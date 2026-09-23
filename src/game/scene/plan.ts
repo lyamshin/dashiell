@@ -655,14 +655,25 @@ function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
   const loose = present.filter((p) => why.get(p.id) === undefined);
   const grouping = loose.length >= 2;
   const taken = new Set<string>();
+  const did = { ...(memory.did ?? {}) };
   for (const person of present) {
     const kept = activities[person.id];
     const sameVisit = kept !== undefined && kept.visit === memory.visit && kept.placeId === input.at;
-    const activity = sameVisit
-      ? kept
-      : chooseActivity(view, person, input.at, input.minutes, memory.visit, input.seed, input.weather, taken);
+    // docs/25: a new visit finds them at something they have not been doing
+    // tonight — unless their trade has nothing else for this room and hour.
+    const before = did[person.id] ?? [];
+    const choose = (skip: ReadonlySet<string>): Activity =>
+      chooseActivity(view, person, input.at, input.minutes, memory.visit, input.seed, input.weather, skip);
+    let activity = kept;
+    if (!sameVisit || activity === undefined) {
+      activity = choose(new Set([...taken, ...before]));
+      if (activity.cardId === '' && before.length > 0) activity = choose(taken);
+    }
     taken.add(activity.cardId);
     taken.add(doingKey(activity.text, person.surname));
+    if (activity.cardId !== '' && !before.includes(activity.cardId)) {
+      did[person.id] = [...before, activity.cardId, doingKey(activity.text, person.surname)];
+    }
     activities[person.id] = activity;
     const seenBefore = input.portrayed === undefined || input.portrayed.includes(person.id);
     const firstSight = !input.met.includes(person.id) || !seenBefore;
@@ -686,13 +697,19 @@ function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
   const mark = sceneMark(view, input.at, again);
   return {
     beat: { kind: 'presence', required: true, ...(mark ? { scene: mark } : {}), people },
-    memory: { ...memory, activities, recalled },
+    memory: { ...memory, activities, recalled, did },
   };
 }
 
 export function planPage(input: PlanInput): Plan {
   const { view, action } = input;
   let memory: SceneMemory = structuredClone(input.memory ?? EMPTY_SCENE);
+  // docs/25: the office page is the first visit's first page, and its hiring
+  // spends the client's recall action ("…turning the ring again."). Once a
+  // visit, so the rest of that visit does not say it again.
+  if (memory.visit === 0 && input.at === view.office.id && memory.recalled[view.client.id] === undefined) {
+    memory = { ...memory, recalled: { ...memory.recalled, [view.client.id]: 0 } };
+  }
   const beats: Beat[] = [];
   const clock = clockBeat(input);
   const newIds = input.foundAfter.filter((id) => !input.foundBefore.includes(id));

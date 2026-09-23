@@ -61,8 +61,12 @@ import {
   tidyPunctuation,
   validateDecks,
   weightsFor,
+  motifsOf,
+  scoreMotifs,
+  tagIs,
   type AskKind,
   type Card,
+  type MotifContext,
 } from '../../src/game/voice/index.js';
 
 const view = buildView(generateCase(7, { difficulty: 2 }));
@@ -981,15 +985,67 @@ describe('the burn tiers', () => {
     }
   });
 
-  it('honours a run-to-run burn handed down from an earlier run', () => {
-    const v = buildView(generateCase(7, { difficulty: 2 }));
-    const similes = DECKS.similes.map((c) => c.id);
-    const dealer = new Dealer(1, [], similes);
-    for (const id of similes) expect(dealer.burned('similes', id)).toBe(true);
-    const withinRun = new Dealer(1, [], DECKS.frames.map((c) => c.id));
-    // A within-run deck does not care what an earlier run read.
-    for (const card of DECKS.frames) expect(withinRun.burned('frames', card.id)).toBe(false);
-    void v;
+  it('holds back what an earlier night read until the rest of its key is read (docs/25)', () => {
+    const key = (c: Card): boolean => tagIs('hours', c, 'beat', 'hour');
+    const cards = DECKS.hours.filter(key).map((c) => c.id);
+    expect(cards.length).toBeGreaterThan(3);
+    const earlier = cards.slice(0, cards.length - 2);
+    // Every card but two read on an earlier night: only those two can come.
+    for (let seed = 1; seed <= 20; seed++) {
+      const dealer = new Dealer(seed, [], earlier);
+      for (const id of earlier) expect(dealer.burned('hours', id)).toBe(true);
+      const drawn = dealer.draw('hours', [key], { hour: 'two' }, true);
+      expect(cards.slice(-2)).toContain(drawn?.cardId);
+    }
+    // All of them read once: the key reshuffles rather than running dry.
+    const all = new Dealer(3, [], cards);
+    expect(all.draw('hours', [key], { hour: 'two' }, true)).not.toBeNull();
+    // Read twice beats read once: the one read least comes first.
+    const dealer = new Dealer(5, [], [...cards, ...cards.slice(1)]);
+    expect(dealer.draw('hours', [key], { hour: 'two' }, true)?.cardId).toBe(cards[0]);
+    // Activity is a person's and forgets between nights.
+    expect(burnTier('activity')).toBe('within-run');
+  });
+
+  it('never reads a card twice in a night while its key has another', () => {
+    const key = (c: Card): boolean => tagIs('hours', c, 'beat', 'hour');
+    const n = DECKS.hours.filter(key).length;
+    const dealer = new Dealer(11, [], []);
+    const ids = Array.from({ length: n }, () => dealer.draw('hours', [key], { hour: 'two' }, true)?.cardId);
+    expect(new Set(ids).size).toBe(n);
+    expect(dealer.takeReshuffles()).toEqual([]);
+    // One more comes round again, and the dealer says so.
+    expect(dealer.draw('hours', [key], { hour: 'two' }, true)).not.toBeNull();
+    expect(dealer.takeReshuffles()).toEqual(['hours']);
+  });
+
+  it('draws by weight, not by sort: every card that fits is dealt, the tagged more often', () => {
+    // off-022 opened 42 of 48 sleepless nights in the rain when the motif
+    // score was a sort. As a weight, every card in the key comes up.
+    const ctx: MotifContext = { night: 'rain', page: new Set(['clock']), before: [], previous: new Set() };
+    const counts = new Map<string, number>();
+    for (let seed = 1; seed <= 400; seed++) {
+      const drawn = new Dealer(seed, [], []).draw('office', [(c) => tagIs('office', c, 'circumstance', 'sleepless')], {}, true, ctx);
+      if (drawn) counts.set(drawn.cardId, (counts.get(drawn.cardId) ?? 0) + 1);
+    }
+    const fits = DECKS.office.filter(
+      (c) => tagIs('office', c, 'circumstance', 'sleepless') && scoreMotifs(motifsOf(c), c, ctx) !== -Infinity,
+    );
+    expect(counts.size).toBe(fits.length);
+    const top = Math.max(...counts.values());
+    expect(top / 400).toBeLessThan(0.8);
+  });
+
+  it('deals the same night the same way for the same reader', () => {
+    const key = (c: Card): boolean => tagIs('hours', c, 'beat', 'hour');
+    const history = DECKS.hours.slice(0, 4).map((c) => c.id);
+    const a = new Dealer(42, ['x'], history);
+    const b = new Dealer(42, ['x'], history);
+    for (let i = 0; i < 5; i++) {
+      expect(a.draw('hours', [key], { hour: 'two' }, true)?.cardId).toBe(
+        b.draw('hours', [key], { hour: 'two' }, true)?.cardId,
+      );
+    }
   });
 
   it('spends the whole of a run out of decks it declares', () => {

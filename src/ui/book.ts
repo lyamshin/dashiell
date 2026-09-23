@@ -12,7 +12,7 @@
 
 import { generateCase, type Case } from '../gen/index.js';
 import { LADDERS, type Level } from '../gen/shape.js';
-import { CROSS_RUN_TOTAL, crossRunOnly } from '../game/voice/index.js';
+import { crossRunOnly, settleReads } from '../game/voice/index.js';
 import {
   caseOptions,
   fileToProfile,
@@ -41,7 +41,9 @@ import { scoreReport, type Verdict } from '../game/scoring.js';
 import {
   addBurned,
   clearRun,
+  closingHistory,
   loadBurned,
+  noteClosing,
   loadRun,
   saveRun,
   type KeyValueStore,
@@ -54,14 +56,14 @@ import { hideCard, type CardSource } from './hover.js';
 import { renderNotebook } from './notebook-view.js';
 import { renderPage } from './prose.js';
 import { renderReportForm, renderVerdict, type TierNews } from './report.js';
-import { storyOf, storyParagraphs } from '../game/story.js';
+import { storyCardIds, storyOf, storyParagraphs } from '../game/story.js';
 import { LIE_RULE } from '../game/voice-data.js';
 import { renderTruthSheet } from '../sheet/truthSheet.js';
 
 type Screen =
   | { kind: 'title' }
   | { kind: 'book' }
-  | { kind: 'verdict'; verdict: Verdict; news?: TierNews };
+  | { kind: 'verdict'; verdict: Verdict; story: string[]; news?: TierNews };
 
 const DEFAULT_NAME = 'Dashiell';
 const NAME_KEY = 'dashiell:detective';
@@ -138,6 +140,20 @@ export function mount(root: HTMLElement): void {
   }
 
   /**
+   * The closing page and the story behind it, dealt against the reader's
+   * history as it stood before this case's closing was first read, and
+   * counted into it once (docs/25), so a reload shows the same page.
+   */
+  function closingOf(v: CaseView, run: RunState, report: Report): { verdict: Verdict; story: string[] } {
+    const key = `${run.seed}|${run.tier ?? ''}|${run.level ?? run.difficulty}`;
+    const history = closingHistory(store, key);
+    const verdict = scoreReport(v, run, report, history);
+    const story = storyOf(v.kase, history);
+    noteClosing(store, key, [...crossRunOnly(verdict.cardsUsed ?? []), ...storyCardIds(story)], settleReads);
+    return { verdict, story: storyParagraphs(story) };
+  }
+
+  /**
    * The newest page keeps the choices it offered, so that turning back to it
    * later shows them greyed. The reducer never sees this; it is the book's
    * note on its own copy of the page.
@@ -162,7 +178,7 @@ export function mount(root: HTMLElement): void {
     } else {
       clearRun(store);
       state = newRun(view, { detectiveName: name, persistedBurned: loadBurned(store) });
-      addBurned(store, crossRunOnly(state.burned), CROSS_RUN_TOTAL);
+      addBurned(store, crossRunOnly(state.burned), settleReads);
     }
     state = withOffered(state, view);
     saveRun(store, state);
@@ -173,9 +189,7 @@ export function mount(root: HTMLElement): void {
     gridUi = newGridUi();
     // A filed run is over. Reopening its URL reopens the verdict, not the
     // page: the report is final, and that has to survive a reload.
-    screen = state.filed
-      ? { kind: 'verdict', verdict: scoreReport(view, state, state.filed) }
-      : { kind: 'book' };
+    screen = state.filed ? { kind: 'verdict', ...closingOf(view, state, state.filed) } : { kind: 'book' };
     writeUrl(seed, pick);
     try {
       store.setItem(NAME_KEY, name);
@@ -203,7 +217,7 @@ export function mount(root: HTMLElement): void {
     hideCard();
     const result = stepInput(state, input, view, loadBurned(store));
     state = withOffered(result.state, view);
-    addBurned(store, crossRunOnly(result.page.cardsUsed), CROSS_RUN_TOTAL);
+    addBurned(store, crossRunOnly(result.page.cardsUsed), settleReads);
     saveRun(store, state);
     turned = state.log.length - 1;
     selected = null;
@@ -255,7 +269,7 @@ export function mount(root: HTMLElement): void {
     if (!view || !state) return;
     state = fileReport(state, report);
     saveRun(store, state);
-    const verdict = scoreReport(view, state, report);
+    const { verdict, story } = closingOf(view, state, report);
     // M7: the profile hears about every filed report, once. A tiered case can
     // clear its tier, and a first clear can open the next one.
     const outcome = fileToProfile(store, {
@@ -270,7 +284,8 @@ export function mount(root: HTMLElement): void {
       state.tier !== undefined && (outcome.firstClear !== null || outcome.unlocked !== null)
         ? { cleared: state.tier, unlocked: outcome.unlocked, firstClear: outcome.firstClear !== null }
         : undefined;
-    screen = news === undefined ? { kind: 'verdict', verdict } : { kind: 'verdict', verdict, news };
+    screen =
+      news === undefined ? { kind: 'verdict', verdict, story } : { kind: 'verdict', verdict, story, news };
     render();
   }
 
@@ -322,7 +337,7 @@ export function mount(root: HTMLElement): void {
           // tiers are chosen and where a newly opened one shows.
           () => toTitle(),
           {
-            story: storyParagraphs(storyOf(kase as Case)),
+            story: screen.story,
             truthSheet: () => renderTruthSheet(kase as Case),
           },
           screen.news,

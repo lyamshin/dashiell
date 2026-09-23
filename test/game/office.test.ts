@@ -137,7 +137,8 @@ describe('the opening', () => {
       const text = (state.log[0]?.blocks ?? [])
         .map((b) => (b.kind === 'prose' || b.kind === 'note' ? b.text : ''))
         .join('\n');
-      if (text.includes(retainer)) said++;
+      // A retainer that opens its sentence is capitalised: "Fifty dollars," she said.
+      if (text.toLowerCase().includes(retainer.toLowerCase())) said++;
     }
     expect(said, 'the retainer never reached the page').toBe(20);
   });

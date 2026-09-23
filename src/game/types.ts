@@ -582,6 +582,12 @@ export interface SceneMemory {
   bridged: Id[];
   /** Night Hone 1: the visit that has had its room's texture, once a visit. */
   ambient?: number;
+  /**
+   * docs/25: what each person has been doing on earlier visits tonight (the
+   * activity cards and what they were doing), so the next visit finds them at
+   * something else. Absent in a save from before it: nobody has done anything.
+   */
+  did?: Record<Id, string[]>;
 }
 
 export const EMPTY_SCENE: SceneMemory = {

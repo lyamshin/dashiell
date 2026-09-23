@@ -1808,14 +1808,17 @@ export function enforceShortRhythm(
     const { short, total } = counts();
     if (total === 0 || short / total >= target) break;
     if (words(blocksOf(laid)) > ceiling - 8) break;
-    const beat = pickShape(rng, pool, {}, last);
-    if (beat.length === 0) break;
-    last = beat;
     // Spread them: the first goes on the last paragraph that will take one,
     // the next on the one before it, so a page does not end in three beats.
     const host = hosts[hosts.length - 1 - added] as Laid;
     const b = host.block;
     if (b.kind !== 'prose') break;
+    // "It went there twice while she sat with me. Nothing moved." A paragraph
+    // about a person has them doing something; stillness is not its beat.
+    const fits = b.voice === 'presence' ? pool.filter((s) => s !== 'Nothing moved.') : pool;
+    const beat = pickShape(rng, fits, {}, last);
+    if (beat.length === 0) break;
+    last = beat;
     host.block = { ...b, text: joinSentences(b.text, beat) };
     host.plainN += 1;
     added++;
@@ -2773,7 +2776,17 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
       : clue
         ? stripAttribution(clue.text, client.surname)
         : null;
-  const hiring = hiringFrame(dealer, { temper, klass, gender, familiar }, { ...slots, fact: fact ?? undefined }, t.ctx);
+  // docs/25: the hiring's `{business}` is the client's own — the pair's recall
+  // action, the tic the entrance just described, come round once on this
+  // visit ("Kreuzer was turning the ring on his smallest finger again."). A
+  // client with no recall action is dealt a hiring card that asks for none.
+  const business = cast.portraits[client.id]?.pair?.action;
+  const hiring = hiringFrame(
+    dealer,
+    { temper, klass, gender, familiar },
+    { ...slots, fact: fact ?? undefined, business },
+    t.ctx,
+  );
   if (hiring.gap) t.gaps.push(hiring.gap);
   if (fact === null) {
     t.gaps.push('no-client-clue: the case has no client brief; the hiring says only what it pays');
