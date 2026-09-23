@@ -715,6 +715,12 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const why =
           b.tie === 'victim' && !known && subjectPerson?.relationshipId ? RELATION_WHY[subjectPerson.relationshipId] : undefined;
         if (why) text = `${why} ${text}`;
+        // "Broadnax might know about Broadnax's evening": once the name has
+        // been said, their evening is their own.
+        if (who && whoPerson && b.subject === `${who}’s evening`) {
+          const own = `${pronounOf(whoPerson) === 'she' ? 'her' : 'his'} own evening`;
+          text = text.replace(new RegExp(`(\\b${who}\\b[^.]*?)\\b${who}’s evening`), `$1${own}`);
+        }
         push({ text, voice: 'bridge', beats: [i] });
         mark(i, {
           tag: b.tie,
@@ -1865,7 +1871,7 @@ function tellingParas(
   /* the tail: attitude, never a fact; not every time */
   let tail: string | undefined;
   // Golden rule 8: flavor is one line at most, and a long answer does without.
-  const long = told.first.length + (told.follow ? told.second.length : 0) >= 5;
+  const long = told.first.length + (told.follow ? told.second.length : 0) >= 4;
   if (!long && dealer.random.chance(TAIL_CHANCE[temper] ?? 0.5)) {
     const t = (c: Card, tag: string, want: string): boolean => tagIs('tail', c, tag, want);
     // No opinion of the victim's habits: they are dead, or gone.
@@ -1895,7 +1901,9 @@ function tellingParas(
   // Golden page 5: a long answer is two turns with a beat between them — "She
   // said it the way you say something you've had to tell the gas company
   // twice." Here the beat is plain: the witness going on.
-  const split = !told.follow && told.first.length >= 4 ? 2 : said.length;
+  // Only a story splits: a count or a list of faces is said in one breath.
+  const story = family.kind === 'movements' || family.kind === 'thing';
+  const split = story && !told.follow && told.first.length >= 4 ? 2 : said.length;
   const firstSaid = said.slice(0, split).join(' ');
   const restSaid = said.slice(split).join(' ');
   const sp = pronounOf(speaker) === 'she';
@@ -1917,7 +1925,8 @@ function tellingParas(
     ],
     frameSlots,
   );
-  const going = restSaid.length > 0 ? ` ${fillTemplate(dealer.random.pick(WENT_ON), { name: speaker.surname })} “${restSaid}”` : '';
+  const going =
+    restSaid.length > 0 ? ` ${fillTemplate(dealer.random.pick(WENT_ON), { name: sp ? 'She' : 'He' })} “${restSaid}”` : '';
   const answer = `${frame?.text ?? `“${firstSaid}”`}${going}`;
   if (frame) parts.frame = frame.text.replace(firstSaid, '{told}');
   paras.push({ text: answer, voice: 'exchange', clueId: family.clueIds[0] as Id });
