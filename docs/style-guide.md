@@ -14,6 +14,49 @@ measurement is a heuristic rather than a parse (fragment detection, the
 concrete noun bank), that's flagged — treat those numbers as directional,
 not exact.
 
+## Rule zero: say what it is
+
+A modern reader who has never read Hammett must understand every sentence on
+first read. Period flavour comes from the setting, the objects and the
+rhythm: the El, the Automat, a nickel-plated revolver, a short declarative
+sentence. It never comes from slang that hides what is meant. The genre's
+trade words (the paper, the note, the marker, the book, the fence, the
+policy) are exactly the words a reader trips on, and a mystery cannot afford
+a reader who has to guess what a clue says. Lending money, gambling, selling
+stolen goods, paying a gang to be left alone: all of it can be in the game,
+and all of it gets described in words people use.
+
+| don't write | write |
+|---|---|
+| has held the paper on the building Sweeney lived in | has held the mortgage on the building Sweeney lived in |
+| has been carrying Sweeney's paper since '22 and renewing it | lent Sweeney money in '22 and has extended the loan every ninety days since |
+| borrowed to cover a note; signed a note to Sweeney | borrowed to pay off another debt; signed an IOU to Sweeney |
+| Fencing stolen goods; the receiver at the pawnshop | Selling stolen goods; the man at the pawnshop who buys the stolen goods |
+| a paper of powder | a little paper packet of morphine |
+| a policy runner; runs policy for a bank uptown | a bet collector for an illegal lottery; collects for the numbers, an illegal lottery (say what the numbers are the first time) |
+| runs a book on the horses | takes illegal bets on the horses |
+| a book of markers | a bookmaker's list of IOUs |
+| a ward heeler; a stringer; a hack driver; a curb broker | a party worker for the local political club; a freelance reporter; a cab driver; a stockbroker who trades in the street |
+| shapes up at seven | lines up at the pier at seven to be picked for work |
+| Who do you like for it? | Who do you think did it? |
+
+The same goes for trade and household words that have gone out of use: a
+boiled shirt is a starched shirt, a mangle is a laundry wringer, the wireless
+is the radio, a door on the latch is shut but not locked, a codicil is a
+change to the will.
+
+**Literal senses are fine.** A newspaper is a paper, the landlady's letter is
+a note, a chalk mark is a mark, the benches are in the square, the fence
+borders the lot. Judge each use by what it means in its sentence.
+
+**The list is data.** `content/plain-terms.json` holds every banned term with
+the plain words to use instead and the literal senses it allows. `npm run
+decks` fails on any card that uses one, and `test/plain-terms.test.ts` holds
+everything the generator and the engine write to it: briefings, clue
+sentences, dossiers, the notebook and every rendered page, over forty seeds,
+three difficulties and all three case types. A new term goes in the list
+when somebody finds it on a page. See `docs/21-plain-terms-notes.md`.
+
 ## 1. Cadence
 
 **Sentence length.** Mean 11.9 words, median 10, p10 = 3, p90 = 24. That

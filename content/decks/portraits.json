@@ -1689,7 +1689,7 @@
   {
     "id": "por-105",
     "deck": "portraits",
-    "text": "A boiled shirt with a ring of yellow at the collar.",
+    "text": "A starched shirt with a ring of yellow at the collar.",
     "tags": {
       "component": "clothing",
       "gender": "m",
@@ -1705,7 +1705,7 @@
   {
     "id": "por-106",
     "deck": "portraits",
-    "text": "A Norfolk jacket, belted, meant for a country he'd never visited.",
+    "text": "A belted tweed hunting jacket, meant for a countryside he'd never visited.",
     "tags": {
       "component": "clothing",
       "gender": "m",
@@ -1736,7 +1736,7 @@
   {
     "id": "por-108",
     "deck": "portraits",
-    "text": "A shirtwaist buttoned to the throat, regardless of the weather.",
+    "text": "A high-necked blouse buttoned to the throat, regardless of the weather.",
     "tags": {
       "component": "clothing",
       "gender": "f",
@@ -1768,7 +1768,7 @@
   {
     "id": "por-110",
     "deck": "portraits",
-    "text": "Gaiters buttoned over shoes that didn't need them.",
+    "text": "Cloth ankle covers buttoned over shoes that didn't need them.",
     "tags": {
       "component": "clothing",
       "gender": "any",
@@ -1815,7 +1815,7 @@
   {
     "id": "por-113",
     "deck": "portraits",
-    "text": "Knickers gone through at one knee, mended with the wrong thread.",
+    "text": "Knee breeches gone through at one knee, mended with the wrong thread.",
     "tags": {
       "component": "clothing",
       "gender": "m",
@@ -2372,7 +2372,7 @@
   {
     "id": "por-150",
     "deck": "portraits",
-    "text": "A bob cut close, with a shingle at the back nobody's caught up to yet.",
+    "text": "A bob cut close and tapered short at the back, a style nobody's caught up to yet.",
     "tags": {
       "component": "clothing",
       "gender": "f",

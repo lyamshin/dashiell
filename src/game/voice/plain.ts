@@ -218,7 +218,7 @@ export const ASK_PURPOSE: string[] = [
 
 /** Before the client names who they would rather you looked at. */
 export const ASK_POINTER: string[] = [
-  'Who do you like for it?',
+  'Who do you think did it?',
   'Who would you start with?',
   'Give me a name.',
   'Who do you want looked at?',

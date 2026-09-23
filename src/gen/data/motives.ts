@@ -33,7 +33,7 @@ export const MOTIVE_TEMPLATES: MotiveTemplate[] = [
     type: 'inheritance',
     description: 'stands to inherit',
     descriptionTemplate: 'stands to inherit from {V}',
-    letter: 'A draft codicil in {V}’s hand striking {P} out of the will, dated last Tuesday and unsigned.',
+    letter: 'A change to {V}’s will, drafted in {V}’s hand, striking {P} out of it, dated last Tuesday and unsigned.',
     overheard: '{V} told {P} the lawyer was coming Thursday and that the arrangement would be changed.',
   },
   {
@@ -55,7 +55,7 @@ export const MOTIVE_TEMPLATES: MotiveTemplate[] = [
     type: 'debt',
     description: 'owed money',
     descriptionTemplate: 'owed {V} four thousand dollars and was past due on it',
-    letter: 'A promissory note for $4,000 signed by {P}, endorsed to {V}, three months past due.',
+    letter: 'An IOU for $4,000 signed by {P}, made out to {V}, three months past due.',
     overheard: '{V} told {P} that Friday was the end of it, one way or the other.',
   },
   {
@@ -77,13 +77,13 @@ export const MOTIVE_TEMPLATES: MotiveTemplate[] = [
     description: 'wanted a lease',
     descriptionTemplate: 'wanted {V} out of the lease and the lease in {P}’s name',
     letter: 'A lease assignment made out in {P}’s name, waiting only on {V}’s signature.',
-    overheard: '{V} told {P} the lease would go to somebody else at the quarter day.',
+    overheard: '{V} told {P} the lease would go to somebody else at the end of the quarter.',
   },
   {
     type: 'insurance',
-    description: 'was the beneficiary of a policy',
-    descriptionTemplate: 'was the beneficiary of a ten-thousand-dollar policy on {V}’s life',
-    letter: 'A policy on {V}’s life for $10,000, twenty months old, with {P} named on the face of it.',
+    description: 'was the beneficiary of a life-insurance policy',
+    descriptionTemplate: 'was the beneficiary of a ten-thousand-dollar life-insurance policy on {V}',
+    letter: 'A life-insurance policy on {V} for $10,000, twenty months old, with {P} named on the face of it.',
     overheard: '{V} asked {P} straight out who had been paying the premiums, and got no answer.',
   },
   {

@@ -591,7 +591,7 @@ export function step(
       blocks = [
         {
           kind: 'note',
-          text: 'I put paper in the machine. Five questions, and the DA only reads the answers.',
+          text: 'I put a sheet of paper in the typewriter. Five questions, and the DA only reads the answers.',
         },
       ];
       break;

@@ -55,7 +55,7 @@ export const ROBBERY_MEANS: MeansTemplate[] = [
   },
   {
     id: 'came-in-the-window',
-    name: 'a cord made fast to the fire escape',
+    name: 'a cord tied to the fire escape',
     entry: 'window',
     noise: 1,
     evidenceObjectId: 'obj-cord',
@@ -64,7 +64,7 @@ export const ROBBERY_MEANS: MeansTemplate[] = [
     evidenceNote: 'A cut end of the same hemp is still tied to the rail it was taken from.',
     sceneTrace: 'The window is down but not latched, and there is grit from the fire escape on the sill.',
     accessNote: 'had to cut the cord down',
-    soundNote: 'a window going up and somebody on the iron outside',
+    soundNote: 'a window going up and somebody on the fire escape outside',
   },
   {
     id: 'never-left',
@@ -87,7 +87,7 @@ export const ROBBERY_MEANS: MeansTemplate[] = [
     evidenceObjectId: 'obj-telephone',
     bodyEvidence:
       'The precinct report says the door was opened from inside. Nothing about it was forced.',
-    evidenceNote: 'The call went through this instrument at a quarter to, and the operator has the ticket for it.',
+    evidenceNote: 'The call went through this telephone at a quarter to, and the operator has a record of it.',
     sceneTrace: 'Two chairs are pulled round to face each other and one of them was sat in.',
     accessNote: 'had to reach a telephone and be believed on it',
     soundNote: 'a bell, and then a door being opened to somebody',
@@ -114,14 +114,14 @@ export const MISSING_MEANS: MeansTemplate[] = [
     evidenceObjectId: 'obj-suitcase',
     bodyEvidence:
       'The precinct took a statement and filed it. Nobody at the desk thought it was a police matter.',
-    evidenceNote: 'The strapped case is gone from the press, and the straps were bought new last week.',
+    evidenceNote: 'The strapped case is gone from the wardrobe, and the straps were bought new last week.',
     sceneTrace: 'Two drawers are open and the good coat is off its hanger.',
-    accessNote: 'had to get the case out of the press',
+    accessNote: 'had to get the case out of the wardrobe',
     soundNote: 'somebody going down the stairs with something heavy',
   },
   {
     id: 'the-pawned-ring',
-    name: 'money raised in a hurry, on a spike of tickets',
+    name: 'money raised in a hurry at a pawnshop, on a spike of pawn tickets',
     noise: 0,
     evidenceObjectId: 'obj-pawn-ticket',
     bodyEvidence:
@@ -139,7 +139,7 @@ export const MISSING_MEANS: MeansTemplate[] = [
     bodyEvidence:
       'The precinct came, looked at the room, and said to wait a day or two.',
     evidenceNote: 'The camel-hair coat is off its hook and the hook is the only empty one.',
-    sceneTrace: 'The lamp was left burning and the door was left on the latch.',
+    sceneTrace: 'The lamp was left burning and the door was left shut but not locked.',
     accessNote: 'had to take a coat that would not be recognised',
     soundNote: 'the street door going, and nobody coming back through it',
   },

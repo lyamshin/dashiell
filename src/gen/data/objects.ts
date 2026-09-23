@@ -14,7 +14,7 @@ export interface ObjectTemplate {
 }
 
 export const OBJECT_TEMPLATES: ObjectTemplate[] = [
-  { id: 'obj-chloral', name: 'a bottle of chloral drops' },
+  { id: 'obj-chloral', name: 'a bottle of chloral sleeping drops' },
   { id: 'obj-bookend', name: 'a bronze bookend' },
   { id: 'obj-roofkey', name: 'the roof-door key' },
   { id: 'obj-cord', name: 'a length of sash cord' },
@@ -22,7 +22,7 @@ export const OBJECT_TEMPLATES: ObjectTemplate[] = [
   { id: 'obj-icepick', name: 'an ice pick' },
 
   { id: 'obj-ledger', name: 'a day ledger' },
-  { id: 'obj-cashbox', name: 'a japanned cash box' },
+  { id: 'obj-cashbox', name: 'a black-lacquered cash box' },
   { id: 'obj-typewriter', name: 'an Underwood typewriter' },
   { id: 'obj-photograph', name: 'a framed photograph' },
   { id: 'obj-cigarette-case', name: 'a silver cigarette case' },

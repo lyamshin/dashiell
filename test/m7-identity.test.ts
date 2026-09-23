@@ -8,6 +8,16 @@ import { generateCase } from '../src/gen/index.js';
  * today's case, byte for byte, for difficulties 1 to 3. The hashes in the
  * fixture were written by `scripts/snapshot-cases.ts --write` before M7
  * changed a line of the generator.
+ *
+ * Rewritten once since, by the plain-terms pass (docs/21-plain-terms-notes.md),
+ * which changed the words of every case and nothing else: its structure-only
+ * hash (`test/structure-identity.test.ts`) is byte-identical to main's for the
+ * same 600 cases, so these hashes were regenerated on the new wording.
+ *
+ * And once more by Night Hone 1 (docs/18-night-hone-1-notes.md), which took
+ * "and that" off four tropes' reported speech so a quote of it reads; with
+ * those four wordings undone every one of the 600 hashes matched, and the
+ * structure-only hash is unchanged.
  */
 const baseline = JSON.parse(
   readFileSync(new URL('./fixtures/m7-baseline-hashes.json', import.meta.url), 'utf8'),

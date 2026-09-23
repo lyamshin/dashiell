@@ -78,7 +78,7 @@ export interface TierNews {
 export function tierNewsLines(news: TierNews): string[] {
   const done = shapeOf(news.cleared).name;
   if (news.unlocked === 'over-easy') {
-    return [`${done} is cleared, and that is the book. **Over easy is open now.**`, shapeOf('over-easy').rule];
+    return [`${done} is cleared, and that is the last of them. **Over easy is open now.**`, shapeOf('over-easy').rule];
   }
   if (news.unlocked !== null) {
     const next = shapeOf(news.unlocked);
@@ -87,10 +87,49 @@ export function tierNewsLines(news: TierNews): string[] {
   return news.firstClear ? [`${done} is cleared.`] : [];
 }
 
+/**
+ * What the closing page can open, once the verdict is read: the crime told as
+ * a story, and the whole truth sheet behind the curtain. Paragraphs for the
+ * one; the sheet is asked for only when somebody opens it.
+ */
+export interface Endings {
+  story: string[];
+  truthSheet: () => string;
+}
+
+/**
+ * A button that shows and hides the panel under it. Either can be open, both
+ * can, and a second press closes it again.
+ */
+function disclosure(id: string, label: string, fill: (panel: HTMLElement) => void): {
+  button: HTMLButtonElement;
+  panel: HTMLElement;
+} {
+  const button = el('button', {
+    class: 'plain-button ending-toggle',
+    type: 'button',
+    'aria-expanded': 'false',
+    'aria-controls': id,
+    text: label,
+  });
+  const panel = el('section', { id, class: 'ending-panel', hidden: true, 'aria-label': label });
+  let filled = false;
+  button.addEventListener('click', () => {
+    const open = button.getAttribute('aria-expanded') !== 'true';
+    if (open && !filled) {
+      fill(panel);
+      filled = true;
+    }
+    button.setAttribute('aria-expanded', String(open));
+    panel.hidden = !open;
+  });
+  return { button, panel };
+}
+
 export function renderVerdict(
   verdict: Verdict,
   onAgain: () => void,
-  onTruth: () => void,
+  endings: Endings,
   news?: TierNews,
 ): HTMLElement {
   const wrap = el('div', { class: 'report' });
@@ -135,10 +174,23 @@ export function renderVerdict(
     wrap.append(box);
   }
 
+  // The crime as a story, in the book's own page; and the whole truth sheet,
+  // secrets, lies and red herrings included, behind the curtain.
+  const story = disclosure('ending-story', 'What really happened', (panel) => {
+    panel.classList.add('ending-story');
+    panel.append(el('h3', { text: 'What really happened' }));
+    for (const paragraph of endings.story) panel.append(el('p', { text: paragraph }));
+  });
+  const curtain = disclosure('ending-curtain', 'Look behind the curtain', (panel) => {
+    panel.classList.add('ending-curtain');
+    panel.append(el('pre', { text: endings.truthSheet() }));
+  });
+  wrap.append(
+    el('div', { class: 'endings' }, el('div', { class: 'ending-buttons' }, story.button, curtain.button), story.panel, curtain.panel),
+  );
+
   const again = el('button', { class: 'open-case', type: 'button', text: 'Open another case' });
   again.addEventListener('click', onAgain);
-  const truth = el('button', { class: 'plain-button', type: 'button', text: 'Read the truth' });
-  truth.addEventListener('click', onTruth);
-  wrap.append(el('div', { class: 'after' }, again, truth));
+  wrap.append(el('div', { class: 'after' }, again));
   return wrap;
 }

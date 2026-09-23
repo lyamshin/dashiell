@@ -64,6 +64,9 @@ export const KNOWN_WORDS: Set<string> = new Set([
   'Eighth', 'Elizabeth', 'Exchange', 'Flushing', 'Hill', 'Murray', 'Nassau',
   'Newark', 'Ninth', 'Selwyn', 'Street', 'Underwood', 'Wood',
 
+  /* A plain word that is capitals by nature: what a debt is written on. */
+  'IOU', 'IOUs',
+
   /* The clock. */
   'AM', 'PM',
 ]);

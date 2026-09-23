@@ -442,6 +442,22 @@ export interface RunState {
    * loads as a night with nothing remembered yet.
    */
   scene?: SceneMemory;
+
+  /* ------------------------------------------------------- the grid */
+
+  /**
+   * The player's pencil on "Where they were": by person, then by tick (as a
+   * string, so the save is plain JSON). Never a fact — nothing in the engine
+   * reads it but the grid, which draws it apart from every sourced entry.
+   * Free, and optional so an older save loads with a clean grid.
+   */
+  marks?: Record<Id, Record<string, CellMark>>;
+}
+
+/** One cell's pencil: at most one "was at", any number of "not at". */
+export interface CellMark {
+  at?: Id;
+  notAt?: Id[];
 }
 
 /** One person's activity, chosen once per visit and kept for it (§4). */

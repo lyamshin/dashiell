@@ -1,0 +1,746 @@
+{
+  "rule": "Say what it is. A modern reader who has never read Hammett must understand every sentence on first read. Period flavour comes from the setting, the objects and the rhythm, never from slang that hides what is meant. See docs/style-guide.md and docs/21-plain-terms-notes.md.",
+  "howToRead": "Each term is matched case-insensitively by any of its `patterns` (JavaScript regular expressions). A match inside a match of one of its `allow` patterns is a literal sense and passes. `plain` is what to write instead. Checked by `npm run decks` over every deck and by test/plain-terms.test.ts over generated text.",
+  "terms": [
+    {
+      "term": "paper (a debt or a mortgage)",
+      "plain": "the mortgage, the loan, the IOU; or say who lent what to whom: 'lent Sweeney money in '22 and keeps extending the loan'",
+      "patterns": [
+        "\\b(?:held|hold|holds|holding|kept|keep|keeps|carr(?:y|ies|ied|ying))\\s+(?:the\\s+)?paper\\s+(?:on|still)\\b",
+        "\\b(?:held|hold|holds|holding|carr(?:y|ies|ied|ying))\\s+(?:[\\w{}]+[’']s\\s+)paper\\b",
+        "\\bdrawn\\s+every\\s+paper\\b"
+      ],
+      "allow": [
+        {
+          "sense": "a newspaper, a sheet of paper, wrapping paper — any paper you can pick up",
+          "pattern": "\\bpaper\\s+at\\s+arm[’']s\\s+length\\b"
+        }
+      ]
+    },
+    {
+      "term": "note (a debt)",
+      "plain": "an IOU, a loan, a debt",
+      "patterns": [
+        "\\b(?:promissory|demand)\\s+notes?\\b",
+        "\\b(?:signed|signs|sign|cover|covers|covered|covering|hold|holds|held|call(?:ed)?\\s+in)\\s+a\\s+note\\b",
+        "\\bnote\\s+(?:for|of)\\s+\\$"
+      ],
+      "allow": [
+        {
+          "sense": "a written message: 'the landlady's note', 'a note in a woman's hand'",
+          "pattern": "\\bsigned\\s+a\\s+note\\s+(?:saying|asking|telling)\\b"
+        }
+      ]
+    },
+    {
+      "term": "marker (an IOU)",
+      "plain": "an IOU, a written promise to pay",
+      "patterns": [
+        "\\b(?:book|list|stack|pile|drawer|handful)\\s+of\\s+markers\\b",
+        "\\bmarkers?\\s+(?:for|against)\\b",
+        "\\b(?:his|her|their|my|your|[\\w{}]+[’']s)\\s+markers?\\b",
+        "\\b(?:held|holds|hold|signed|tore\\s+up)\\s+(?:the\\s+|a\\s+)?markers?\\b"
+      ]
+    },
+    {
+      "term": "vig, vigorish",
+      "plain": "the interest",
+      "patterns": [
+        "\\bvig(?:orish)?\\b"
+      ]
+    },
+    {
+      "term": "juice (loan interest)",
+      "plain": "the interest",
+      "patterns": [
+        "\\bjuice\\b"
+      ],
+      "allow": [
+        {
+          "sense": "a drink",
+          "pattern": "\\b(?:orange|lemon|lime|tomato|grape|apple|fruit|clam)\\s+juice\\b"
+        }
+      ]
+    },
+    {
+      "term": "shylock",
+      "plain": "a moneylender who charges ruinous interest",
+      "patterns": [
+        "\\bshylocks?\\b"
+      ]
+    },
+    {
+      "term": "protection (a racket)",
+      "plain": "say what is paid for: 'paid the gang every week to leave the shop alone'",
+      "patterns": [
+        "\\bprotection\\b"
+      ],
+      "allow": [
+        {
+          "sense": "keeping somebody safe",
+          "pattern": "\\bfor\\s+(?:his|her|their|your|my|our)\\s+own\\s+protection\\b"
+        }
+      ]
+    },
+    {
+      "term": "the take (takings, a share of crooked money)",
+      "plain": "the day's cash, the money, a share of the money",
+      "patterns": [
+        "\\b(?:day|night|week)[’']s\\s+take\\b",
+        "\\b(?:cut|piece|share)\\s+of\\s+the\\s+take\\b",
+        "\\bthe\\s+take\\b(?=[.,;:!?])"
+      ]
+    },
+    {
+      "term": "bagman, the bag",
+      "plain": "the man who carries the money",
+      "patterns": [
+        "\\bbag\\s?m[ae]n\\b",
+        "\\b(?:trusted\\s+with|carr(?:y|ies|ied|ying))\\s+the\\s+bag\\b"
+      ]
+    },
+    {
+      "term": "square (a debt), on the square",
+      "plain": "pay off, settle; honest",
+      "patterns": [
+        "\\bsquare[sd]?\\s+(?:it|things|the\\s+debt|(?:his|her|their|the|an?)\\s+account)\\s+with\\b",
+        "\\bsquare[sd]?\\s+(?:the|a|his|her|their)\\s+debt\\b",
+        "\\bon\\s+the\\s+square\\b"
+      ]
+    },
+    {
+      "term": "cut (a share)",
+      "plain": "a share",
+      "patterns": [
+        "\\b(?:a|his|her|their|my|your|our)\\s+cut\\s+of\\b",
+        "\\bfor\\s+a\\s+cut\\b",
+        "\\btook\\s+a\\s+cut\\b"
+      ]
+    },
+    {
+      "term": "mark (the victim of a con)",
+      "plain": "a victim, an easy target",
+      "patterns": [
+        "\\b(?:an\\s+easy|a\\s+soft|the\\s+easy)\\s+mark\\b"
+      ]
+    },
+    {
+      "term": "stake (to fund somebody)",
+      "plain": "lent money for, paid for",
+      "patterns": [
+        "\\bstaked\\s+(?:him|her|them|me|you|[A-Z{][\\w{}]*)\\s+(?:to|for)\\b",
+        "\\ba\\s+stake\\s+(?:to|for)\\s+(?:start|open)\\b"
+      ]
+    },
+    {
+      "term": "piece of (a share in something)",
+      "plain": "a share of, part of",
+      "patterns": [
+        "\\bpiece\\s+of\\s+(?:the|his|her|their)\\s+(?:action|take|profits?)\\b",
+        "\\bown(?:s|ed)?\\s+a\\s+piece\\s+of\\b"
+      ]
+    },
+    {
+      "term": "welsh (on a debt)",
+      "plain": "fail to pay, go back on",
+      "patterns": [
+        "\\bwelsh(?:ed|ing|ers?)\\b",
+        "\\bwelsh\\s+on\\b"
+      ]
+    },
+    {
+      "term": "grift, grifter",
+      "plain": "a swindle, a swindler, a con man",
+      "patterns": [
+        "\\bgrift(?:er|ers|ing)?\\b"
+      ]
+    },
+    {
+      "term": "dick (a detective)",
+      "plain": "a detective",
+      "patterns": [
+        "\\b(?:private|house|hotel|railroad)\\s+dicks?\\b",
+        "\\bthe\\s+dicks\\b"
+      ]
+    },
+    {
+      "term": "shamus, gumshoe",
+      "plain": "a private detective",
+      "patterns": [
+        "\\bshamus\\b",
+        "\\bgumshoes?\\b"
+      ]
+    },
+    {
+      "term": "hooch",
+      "plain": "liquor",
+      "patterns": [
+        "\\bhooch\\b"
+      ]
+    },
+    {
+      "term": "blind pig, blind tiger",
+      "plain": "an illegal bar",
+      "patterns": [
+        "\\bblind\\s+(?:pig|tiger)s?\\b"
+      ]
+    },
+    {
+      "term": "fence, fencing (stolen goods)",
+      "plain": "sells stolen goods, selling stolen goods; the man who buys stolen goods",
+      "patterns": [
+        "\\bfenc(?:e|es|ed|ing)\\b"
+      ],
+      "allow": [
+        {
+          "sense": "a fence around a yard or a lot",
+          "pattern": "\\b(?:in|over|through|on|along|behind|past|against|across|at|by|beside|under|from|to|into|onto)\\s+the\\s+fence\\b"
+        },
+        {
+          "sense": "a fence around a yard or a lot",
+          "pattern": "\\bfence\\s+(?:bordering|around|posts?|rails?|wire|line|boards?|pickets?)\\b"
+        },
+        {
+          "sense": "a fence around a yard or a lot",
+          "pattern": "\\b(?:picket|iron|wooden|board|chain|wire|garden|yard|backyard|high|low|plank)\\s+fence\\b"
+        }
+      ]
+    },
+    {
+      "term": "receiver (of stolen goods)",
+      "plain": "the man who buys stolen goods",
+      "patterns": [
+        "\\breceivers?\\b"
+      ],
+      "allow": [
+        {
+          "sense": "a telephone receiver",
+          "pattern": "\\b(?:tele)?phone\\s+receivers?\\b"
+        },
+        {
+          "sense": "a telephone receiver",
+          "pattern": "\\breceivers?\\s+(?:back|down|up|off|to|against|in\\s+(?:his|her|its)|on\\s+(?:its|the)\\s+hook|of\\s+the\\s+(?:tele)?phone)\\b"
+        }
+      ]
+    },
+    {
+      "term": "powder (a drug)",
+      "plain": "name the drug: 'a folded paper of morphine'",
+      "patterns": [
+        "\\b(?:paper|packet|twist|deck|bindle)\\s+of\\s+powder\\b"
+      ]
+    },
+    {
+      "term": "dope, hop-head",
+      "plain": "drugs (name the drug), a drug addict",
+      "patterns": [
+        "\\bdope\\b",
+        "\\bhop-?heads?\\b",
+        "\\bdope\\s+fiends?\\b"
+      ]
+    },
+    {
+      "term": "policy (the numbers racket)",
+      "plain": "the numbers, an illegal lottery (on first use); an illegal lottery",
+      "patterns": [
+        "\\bpolicy\\b"
+      ],
+      "allow": [
+        {
+          "sense": "an insurance policy",
+          "pattern": "\\b(?:life-)?insurance\\s+polic(?:y|ies)\\b"
+        },
+        {
+          "sense": "an insurance policy",
+          "pattern": "\\bpolicy\\s+on\\s+[^.]{0,40}\\blife\\b"
+        }
+      ]
+    },
+    {
+      "term": "the numbers (the racket), numbers runner, policy slip",
+      "plain": "the numbers, an illegal lottery (on first use); an illegal lottery; a lottery slip",
+      "patterns": [
+        "\\b(?:numbers|policy)\\s+(?:racket|game|bank|runners?|slips?|writers?|m[ae]n)\\b",
+        "\\bplay(?:s|ed|ing)?\\s+the\\s+numbers\\b",
+        "\\brun(?:s|ning)?\\s+numbers\\b"
+      ],
+      "allow": [
+        {
+          "sense": "said plainly on first use",
+          "pattern": "\\bthe\\s+numbers,\\s+an\\s+illegal\\s+lottery\\b"
+        }
+      ]
+    },
+    {
+      "term": "the book, make a book (bookmaking)",
+      "plain": "takes illegal bets, taking illegal bets",
+      "patterns": [
+        "\\b(?:run|runs|ran|running|make|makes|made|making|keep|keeps|kept)\\s+a\\s+book\\s+on\\b",
+        "\\bthe\\s+book\\s+on\\s+the\\s+(?:horses|fights|races|ponies)\\b"
+      ]
+    },
+    {
+      "term": "runner (for a bookmaker or the numbers)",
+      "plain": "the man who collects the bets",
+      "patterns": [
+        "\\b(?:policy|numbers|bookmaker[’']s|bookie[’']s)\\s+runners?\\b"
+      ]
+    },
+    {
+      "term": "ward heeler",
+      "plain": "a party worker for the local political club",
+      "patterns": [
+        "\\bheelers?\\b"
+      ]
+    },
+    {
+      "term": "stringer",
+      "plain": "a freelance reporter",
+      "patterns": [
+        "\\bstringers?\\b"
+      ]
+    },
+    {
+      "term": "hack, hackman (a cab)",
+      "plain": "a cab, a cab driver",
+      "patterns": [
+        "\\bhack\\s+(?:drivers?|stands?|licen[cs]es?)\\b",
+        "\\bhack(?:man|men|ie|ies)\\b"
+      ]
+    },
+    {
+      "term": "operative (a private detective)",
+      "plain": "a detective from a private agency",
+      "patterns": [
+        "\\boperatives?\\b"
+      ]
+    },
+    {
+      "term": "copper, the bulls (the police)",
+      "plain": "a policeman, the police",
+      "patterns": [
+        "\\bcoppers\\b",
+        "\\b(?:harness|railroad|yard)\\s+bulls?\\b",
+        "\\bthe\\s+bulls\\b"
+      ]
+    },
+    {
+      "term": "stir, up the river, upstate (prison)",
+      "plain": "prison",
+      "patterns": [
+        "\\b(?:in|out\\s+of)\\s+stir\\b",
+        "\\bup\\s+the\\s+river\\b",
+        "\\bin\\s+trouble\\s+upstate\\b"
+      ]
+    },
+    {
+      "term": "gat (a gun)",
+      "plain": "a gun",
+      "patterns": [
+        "\\bgats?\\b"
+      ]
+    },
+    {
+      "term": "yegg (a safecracker)",
+      "plain": "a safecracker",
+      "patterns": [
+        "\\byegg(?:s|man|men)?\\b"
+      ]
+    },
+    {
+      "term": "on the lam",
+      "plain": "on the run",
+      "patterns": [
+        "\\bon\\s+the\\s+lam\\b"
+      ]
+    },
+    {
+      "term": "mouthpiece (a lawyer)",
+      "plain": "a lawyer",
+      "patterns": [
+        "\\bmouthpiece\\b"
+      ],
+      "allow": [
+        {
+          "sense": "the telephone's mouthpiece",
+          "pattern": "\\bphone\\s+mouthpiece\\b"
+        }
+      ]
+    },
+    {
+      "term": "sawbuck, C-note, grand (money)",
+      "plain": "ten dollars, a hundred dollars, a thousand dollars",
+      "patterns": [
+        "\\b(?:double\\s+)?sawbucks?\\b",
+        "\\bc-notes?\\b",
+        "\\b(?:two|three|four|five|six|seven|eight|nine|ten|twenty|fifty|\\d+)\\s+grand\\b"
+      ]
+    },
+    {
+      "term": "put the touch on, a soft touch (borrowing)",
+      "plain": "ask for a loan; somebody easy to borrow from",
+      "patterns": [
+        "\\b(?:put|puts|putting)\\s+the\\s+touch\\s+on\\b",
+        "\\ba\\s+soft\\s+touch\\b"
+      ]
+    },
+    {
+      "term": "shape up (the dock hiring line)",
+      "plain": "line up at the pier to be picked for work",
+      "patterns": [
+        "\\bshap(?:e|es|ed|ing)[ -]up\\s+(?:at|on)\\s+(?:the\\s+)?(?:piers?|docks?|seven|six|eight|dawn|\\d)",
+        "\\bwho\\s+shaped\\s+up\\b",
+        "\\bthe\\s+shape-up\\b"
+      ]
+    },
+    {
+      "term": "the stick (the bar)",
+      "plain": "tended bar",
+      "patterns": [
+        "\\b(?:had|has|have)\\s+(?:had\\s+)?the\\s+stick\\b",
+        "\\bbehind\\s+the\\s+stick\\b"
+      ]
+    },
+    {
+      "term": "curb broker, the curb",
+      "plain": "a stockbroker who trades in the street",
+      "patterns": [
+        "\\bcurb\\s+brokers?\\b",
+        "\\bworks?\\s+the\\s+curb\\b"
+      ]
+    },
+    {
+      "term": "the racing wire",
+      "plain": "the horse-race results",
+      "patterns": [
+        "\\bracing\\s+wire\\b"
+      ]
+    },
+    {
+      "term": "codicil",
+      "plain": "a change to the will",
+      "patterns": [
+        "\\bcodicils?\\b"
+      ]
+    },
+    {
+      "term": "quarter day",
+      "plain": "the end of the quarter",
+      "patterns": [
+        "\\bquarter\\s+day\\b"
+      ]
+    },
+    {
+      "term": "casualty office (accident insurance)",
+      "plain": "an insurance company",
+      "patterns": [
+        "\\bcasualty\\s+office\\b"
+      ]
+    },
+    {
+      "term": "like (somebody) for it",
+      "plain": "think (somebody) did it",
+      "patterns": [
+        "\\blike\\s+(?:[\\w{}]+\\s+)?for\\s+it\\b"
+      ]
+    },
+    {
+      "term": "theatre trade words: fly floor, set and strike, the house (a theatre or its audience)",
+      "plain": "the ropes above the stage; put up and take down the scenery; the theatre, the audience, the show",
+      "patterns": [
+        "\\bfly\\s+floor\\b",
+        "\\bsets?\\s+and\\s+strikes?\\b",
+        "\\blast\\s+house\\b",
+        "\\bsince\\s+the\\s+house\\s+opened\\b",
+        "\\bfour\\s+houses\\s+and\\s+took\\b"
+      ]
+    },
+    {
+      "term": "boiled shirt",
+      "plain": "a starched shirt",
+      "patterns": [
+        "\\bboiled\\s+(?:shirts?|stiff|fronts?)\\b"
+      ]
+    },
+    {
+      "term": "shirtwaist",
+      "plain": "a blouse",
+      "patterns": [
+        "\\bshirtwaists?\\b"
+      ]
+    },
+    {
+      "term": "Norfolk jacket",
+      "plain": "a belted tweed jacket",
+      "patterns": [
+        "\\bnorfolk\\s+jackets?\\b"
+      ]
+    },
+    {
+      "term": "gaiters",
+      "plain": "cloth ankle covers",
+      "patterns": [
+        "\\bgaiters\\b"
+      ]
+    },
+    {
+      "term": "knickers (knee breeches)",
+      "plain": "knee breeches",
+      "patterns": [
+        "\\bknickers\\b"
+      ]
+    },
+    {
+      "term": "shingle (a haircut)",
+      "plain": "cut short at the back",
+      "patterns": [
+        "\\bwith\\s+a\\s+shingle\\b"
+      ]
+    },
+    {
+      "term": "the wireless (a radio)",
+      "plain": "the radio",
+      "patterns": [
+        "\\bthe\\s+wireless\\b"
+      ]
+    },
+    {
+      "term": "the press (a cupboard)",
+      "plain": "the wardrobe, the cupboard",
+      "patterns": [
+        "\\b(?:from|out\\s+of)\\s+the\\s+press\\b"
+      ]
+    },
+    {
+      "term": "mangle (a laundry wringer)",
+      "plain": "a laundry wringer",
+      "patterns": [
+        "\\bmangle(?:[’']s|-roller)?\\b"
+      ]
+    },
+    {
+      "term": "gas bracket",
+      "plain": "a gas lamp on the wall",
+      "patterns": [
+        "\\bgas\\s+brackets?\\b"
+      ]
+    },
+    {
+      "term": "skirting (a baseboard)",
+      "plain": "the baseboard",
+      "patterns": [
+        "\\bskirting\\b"
+      ]
+    },
+    {
+      "term": "areaway",
+      "plain": "the ground below, the sunken yard by the basement steps",
+      "patterns": [
+        "\\bareaways?\\b"
+      ]
+    },
+    {
+      "term": "riser (a building’s wiring)",
+      "plain": "those floors, that side of the building",
+      "patterns": [
+        "\\b(?:the|that)\\s+riser\\b"
+      ]
+    },
+    {
+      "term": "on the latch",
+      "plain": "shut but not locked",
+      "patterns": [
+        "\\bon\\s+the\\s+latch\\b"
+      ]
+    },
+    {
+      "term": "japanned",
+      "plain": "black-lacquered",
+      "patterns": [
+        "\\bjapanned\\b"
+      ]
+    },
+    {
+      "term": "stevedore",
+      "plain": "a dockworker",
+      "patterns": [
+        "\\bstevedores?\\b"
+      ]
+    },
+    {
+      "term": "faro (a card game)",
+      "plain": "cards",
+      "patterns": [
+        "\\bfaro\\b"
+      ]
+    },
+    {
+      "term": "fight card (a boxing programme)",
+      "plain": "a boxing match",
+      "patterns": [
+        "\\bfight\\s+card\\b"
+      ]
+    },
+    {
+      "term": "party line (a shared telephone line)",
+      "plain": "a shared phone line",
+      "patterns": [
+        "\\bparty\\s+line\\b"
+      ]
+    },
+    {
+      "term": "the local (a union branch)",
+      "plain": "the union, the union local",
+      "patterns": [
+        "\\bthe\\s+local[’']s\\b",
+        "\\bwas\\s+the\\s+local\\b"
+      ],
+      "allow": [
+        {
+          "sense": "said with the union named",
+          "pattern": "\\bthe\\s+union\\s+local[’']s\\b"
+        }
+      ]
+    },
+    {
+      "term": "boarded out, board-and-keep (a child kept with a paid family)",
+      "plain": "a child kept in secret with a paid family; a receipt for the child's keep",
+      "patterns": [
+        "\\bboarded\\s+out\\b",
+        "\\bboard-and-keep\\b",
+        "\\bboard\\s+money\\b"
+      ]
+    },
+    {
+      "term": "put out of the country (deported)",
+      "plain": "deported",
+      "patterns": [
+        "\\bput\\s+out\\s+of\\s+the\\s+country\\b"
+      ]
+    },
+    {
+      "term": "ligature (a strangling cord)",
+      "plain": "a groove where a cord was pulled tight",
+      "patterns": [
+        "\\bligature\\b"
+      ]
+    },
+    {
+      "term": "depressed fracture",
+      "plain": "one blow broke in the skull",
+      "patterns": [
+        "\\bdepressed\\s+fracture\\b"
+      ]
+    },
+    {
+      "term": "sexton, sacristy",
+      "plain": "the church caretaker, the church clock",
+      "patterns": [
+        "\\bsexton\\b",
+        "\\bsacristy\\b"
+      ]
+    },
+    {
+      "term": "card (to check somebody's age)",
+      "plain": "ask anybody's age",
+      "patterns": [
+        "\\bdoesn[’']t\\s+card\\b",
+        "\\bcard(?:s|ed)?\\s+(?:anybody|anyone|nobody)\\b"
+      ]
+    },
+    {
+      "term": "temperance pledge",
+      "plain": "has sworn off drink",
+      "patterns": [
+        "\\btemperance\\s+pledge\\b"
+      ]
+    },
+    {
+      "term": "registry card (a nurse on the registry)",
+      "plain": "is on the nurses’ registry",
+      "patterns": [
+        "\\bregistry\\s+card\\b"
+      ]
+    },
+    {
+      "term": "pocketbook (a man’s wallet)",
+      "plain": "a wallet",
+      "patterns": [
+        "\\bpocketbooks?\\b"
+      ]
+    },
+    {
+      "term": "turn a coat (remake it inside out)",
+      "plain": "remake an old coat",
+      "patterns": [
+        "\\b(?:press(?:es)?\\s+and\\s+)?turns?\\s+coats\\b",
+        "\\bpress\\s+and\\s+turn\\b"
+      ]
+    },
+    {
+      "term": "doctor the drink",
+      "plain": "put it in the drink",
+      "patterns": [
+        "\\bdoctor(?:ed)?\\s+the\\s+drink\\b"
+      ]
+    },
+    {
+      "term": "an envelope (a bribe)",
+      "plain": "a bribe",
+      "patterns": [
+        "\\bowed\\s+an\\s+envelope\\b"
+      ]
+    },
+    {
+      "term": "dry goods (cloth)",
+      "plain": "cloth",
+      "patterns": [
+        "\\bdry-goods\\b",
+        "\\bdry\\s+goods\\b"
+      ]
+    },
+    {
+      "term": "stand the box (the box office)",
+      "plain": "works the box office",
+      "patterns": [
+        "\\bstands?\\s+the\\s+box\\b"
+      ]
+    },
+    {
+      "term": "let the rooms",
+      "plain": "rents out the rooms",
+      "patterns": [
+        "\\blets?\\s+the\\s+rooms\\b"
+      ]
+    },
+    {
+      "term": "redemptions (at a pawnshop)",
+      "plain": "what people pay to get out of pawn",
+      "patterns": [
+        "\\bredemptions\\b"
+      ]
+    },
+    {
+      "term": "renewals (of a loan)",
+      "plain": "extensions of the loan",
+      "patterns": [
+        "\\brenewals?\\s+running\\b",
+        "\\brenew(?:ed|ing)\\s+it\\s+every\\b"
+      ]
+    },
+    {
+      "term": "the plays (bets on the numbers)",
+      "plain": "the bets",
+      "patterns": [
+        "\\bcollects?\\s+the\\s+plays\\b"
+      ]
+    },
+    {
+      "term": "the papers (identity papers, unsaid)",
+      "plain": "their identity papers",
+      "patterns": [
+        "\\bthe\\s+person\\s+the\\s+papers\\s+say\\b"
+      ]
+    }
+  ]
+}

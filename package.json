@@ -16,6 +16,7 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "read": "tsx src/cli/read.ts",
+    "story": "tsx src/cli/story.ts",
     "decks": "node scripts/validate-decks.mjs",
     "deploy": "sh scripts/deploy.sh"
   },

@@ -63,7 +63,7 @@
   {
     "id": "frm-p006",
     "deck": "frames",
-    "text": "“Ask the house.” {business} “{fact}”",
+    "text": "“Ask anybody here.” {business} “{fact}”",
     "tags": {
       "register": "evasion",
       "temper": "enigma",

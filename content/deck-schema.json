@@ -99,6 +99,94 @@
     ]
   },
   "decks": {
+    "story": {
+      "file": "story.json",
+      "deckValues": ["story"],
+      "idPrefix": "STY",
+      "placeholderPrefix": "sty-p",
+      "burn": "free",
+      "target": 200,
+      "$comment": "The closing story: what really happened, told by the detective after the verdict (src/game/story.ts). One card is one beat of the night in order, and every slot is filled from a truth field of the case: nothing a card says may be a fact the case does not hold, and no card names a secret, a lie, a noise branch or another suspect. A card's own words carry a fact only through its tags — `method` cards describe that method's weapon and wound (from the means and method templates), `anchor` cards that anchor's trace, `relationship` × `variant` cards one backstory template, `archetype` × `variant` cards one victim standing — and the story test checks each against the case. Plain words only: no genre jargon. {actor} is the culprit's surname and {actorFull} the full name ({he} {his} {him} {himself} theirs); {victim} and {victimFull} the victim ({vhe} {vhis} {vhim}); {scene} where it happened; {place} the place a beat is about; {time} and {until} spoken hours, {vtime} the victim’s arrival, {span} how long one waited for the other; {timing} the anchor's phrase and {anchorPlace} where it was; {aTaken}/{taken} the thing stolen; {goods} where it went; {where} where the missing person went; {found} where the body or the loss was found; {finder} who found it and {seer} who saw the missing person last; {year} {third} {tplace} {spouse} from the tie; {role} the culprit’s line of work and {vrole} the victim’s, {tie} the relationship; {weapon} the weapon, definite.",
+      "slots": [
+        "actor", "actorFull", "he", "his", "him", "himself",
+        "victim", "victimFull", "vhe", "vhis", "vhim",
+        "scene", "place", "time", "until", "vtime", "span", "timing", "anchorPlace",
+        "aTaken", "taken", "goods", "where", "found", "finder", "seer",
+        "year", "third", "tplace", "spouse", "role", "vrole", "tie", "weapon"
+      ],
+      "tags": {
+        "beat": {
+          "required": true,
+          "values": [
+            "open", "headline", "vrole", "vdetail", "role", "standing", "tie", "motive", "motive-color", "why-left",
+            "means", "key", "carried", "owner", "lastseen", "from", "before", "arrive", "alone", "moment", "act",
+            "cover", "frame", "moved", "after", "goods", "whereabouts", "behind", "found", "since",
+            "precinct", "hired", "close"
+          ]
+        },
+        "caseType": { "required": false, "default": "any", "values": ["murder", "robbery", "missing", "any"] },
+        "fate": { "required": false, "default": "any", "values": ["left", "taken", "any"] },
+        "trope": {
+          "required": false,
+          "default": "any",
+          "values": ["body-at-scene", "body-moved", "locked-room", "the-frame", "inside-job", "payroll", "left", "taken", "any"]
+        },
+        "method": {
+          "required": false,
+          "default": "any",
+          "values": [
+            "poison", "blunt", "fall", "strangle", "shot", "stab",
+            "took-the-key", "worked-the-combination", "came-in-the-window", "never-left", "was-let-in",
+            "the-timetable", "the-packed-case", "the-pawned-ring", "the-borrowed-coat", "any"
+          ]
+        },
+        "relationship": {
+          "required": false,
+          "default": "any",
+          "values": [
+            "rel-partner", "rel-tenant", "rel-landlord", "rel-employee", "rel-creditor", "rel-debtor",
+            "rel-lawyer", "rel-cousin", "rel-inlaw", "rel-rival", "rel-spouse", "rel-nurse",
+            "rel-secretary", "rel-engaged", "rel-childhood", "rel-willed", "rel-witness",
+            "rel-customer", "rel-neighbor", "any"
+          ]
+        },
+        "archetype": {
+          "required": false,
+          "default": "any",
+          "values": [
+            "arch-runner", "arch-heeler", "arch-broker", "arch-hackman", "arch-reporter", "arch-bookmaker",
+            "vic-landlord", "vic-bootlegger", "vic-heiress", "vic-agent", "vic-inspector",
+            "vic-union-treasurer", "vic-pawnbroker", "vic-columnist", "vic-bondsman", "vic-wholesaler", "any"
+          ]
+        },
+        "variant": { "required": false, "default": "any", "values": [0, 1, 2, "any"] },
+        "motive": {
+          "required": false,
+          "default": "any",
+          "values": [
+            "inheritance", "jealousy", "silence-a-witness", "debt", "revenge", "exposure",
+            "property", "insurance", "protect-another", "any"
+          ]
+        },
+        "anchor": { "required": false, "default": "any", "vocab": "anchorTemplate", "extraValues": ["any"] },
+        "order": { "required": false, "default": "any", "values": ["culprit-first", "victim-first", "together", "solo", "pair", "any"] },
+        "timed": { "required": false, "default": "any", "values": ["yes", "no", "any"] },
+        "step": { "required": false, "default": "any", "values": ["first", "later", "stayed", "any"] },
+        "stay": { "required": false, "default": "any", "values": ["yes", "no", "any"] },
+        "with": { "required": false, "default": "any", "values": ["yes", "no", "any"] },
+        "via": { "required": false, "default": "any", "values": ["means", "elsewhere", "start", "any"] },
+        "when": { "required": false, "default": "any", "values": ["early", "act", "any"] },
+        "arrived": { "required": false, "default": "any", "values": ["yes", "no", "any"] },
+        "gone": { "required": false, "default": "any", "values": ["yes", "any"] },
+        "finder": { "required": false, "default": "any", "values": ["culprit", "other", "any"] },
+        "precinct": {
+          "required": false,
+          "default": "any",
+          "values": ["came-and-went", "called-it-a-fall", "took-a-statement", "not-yet-called", "closed-it-in-an-hour", "any"]
+        }
+      },
+      "coverage": [["beat"]]
+    },
     "similes": {
       "file": "similes.json",
       "deckValues": ["similes", "simile"],
