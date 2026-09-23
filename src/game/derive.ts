@@ -491,13 +491,15 @@ export function leadFor(view: CaseView, clue: Clue): ThreadSeed {
   }
   const who = view.personById.get(clue.source.personId);
   const surname = who?.surname ?? clue.source.personId;
-  // M9: a tiered case's account is asked as the evening, the way a player asks it.
+  // M9: a tiered case's account is asked as the evening, the way a player
+  // asks it. Shorter nights §2: it comes with any first question, so the
+  // lead sends the detective to the person.
   if (clue.kind === 'account' && view.kase.logic) {
     return {
       clueId: clue.id,
       placeId: clue.place,
       placeLabel,
-      label: `Ask ${surname} about that evening`,
+      label: `Ask ${surname} anything`,
       command: `ask ${surname} about that evening`,
     };
   }

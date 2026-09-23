@@ -814,7 +814,7 @@ function runLogic(
         ...(reject ? { reject } : {}),
       });
       if (!selection) continue;
-      const slack = logicSlackFor(shape, ladder, selection.par);
+      const slack = logicSlackFor(shape, ladder, selection.par, selection.summary.walk);
 
       const descriptions: Record<PersonId, Description> = {};
       for (const p of cast.suspects) descriptions[p.id] = ambiguousDescription(p, cast.suspects);

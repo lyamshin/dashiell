@@ -120,14 +120,19 @@ export interface DeductionDials {
    * Par's floor and ceiling for the logic game. Par is the cheapest rule set
    * the solver needs, walked (M9 §6), which now takes in accounts, questions
    * about people and confrontations; `CaseShape.par` stays the M7 range the
-   * no-options case is still held to.
+   * no-options case is still held to. Shorter nights: the range holds the
+   * par route walked the M9 way (`SolveSummary.walk`), so the cases dealt do
+   * not move; `Case.par`, the shorter walk, is what the night is budgeted on.
    */
   par: [number, number];
   /**
    * M9 polish: spare actions over the ladder's slack. Hard-boiled's par route
    * leans on confessions, each two confrontations and a second, independent
    * fact, and a player who reasons found the ladder's slack a call or two
-   * short (docs/20-m9-polish-notes.md). Tiered cases only.
+   * short (docs/20-m9-polish-notes.md). Tiered cases only. Shorter nights:
+   * two at Hard-boiled — par falls by about two and a half calls there, a
+   * player who reasons saves about two, and the budget keeps one of them
+   * (docs/24-shorter-nights-notes.md).
    */
   extraSlack?: number;
   /**
@@ -223,7 +228,7 @@ export const DEDUCTION_HARD: DeductionDials = {
   hypothesis: true,
   pieces: 0.7,
   par: [10, 22],
-  extraSlack: 1,
+  extraSlack: 2,
 };
 
 export interface Ladder {
@@ -601,8 +606,11 @@ export function slackFor(shape: CaseShape, ladder: Ladder, par: number): number 
  * `extraSlack` (Hard-boiled). The no-options case never comes here, so its
  * budgets are byte for byte what they were.
  */
-export function logicSlackFor(shape: CaseShape, ladder: Ladder, par: number): number {
-  return slackFor(shape, ladder, par) + (deductionOf(shape).extraSlack ?? 0);
+export function logicSlackFor(shape: CaseShape, ladder: Ladder, par: number, walk: number = par): number {
+  // Shorter nights: where slack scales with par, it scales with the size of
+  // the game — the par route walked the M9 way (\`SolveSummary.walk\`) — so
+  // the budget comes down by exactly the calls the night no longer spends.
+  return slackFor(shape, ladder, walk) + (deductionOf(shape).extraSlack ?? 0);
 }
 
 /** How many liars the level wants, capped by what the shape allows. */

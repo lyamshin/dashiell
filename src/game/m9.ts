@@ -240,6 +240,11 @@ export interface ConfrontRecord {
   n?: 0 | 1;
   /** The page it happened on. */
   page: number;
+  /**
+   * Shorter nights §1: the second fact put in the same confrontation, free
+   * ("Put another fact to her"). A `wrong` one ends it with the story standing.
+   */
+  follow?: true;
 }
 
 export function lieKeyOf(c: Confrontation): string {
@@ -439,6 +444,11 @@ export function judgeConfront(
   personId: Id,
   clueId: Id,
   part?: number,
+  /**
+   * Shorter nights §1: the second fact of the same confrontation is judged
+   * against the story that confrontation was about, and nothing else.
+   */
+  opts: { lieKey?: string } = {},
 ): ConfrontJudgement {
   const logic = view.kase.logic;
   if (!logic) return { outcome: 'wrong', lieKey: null };
@@ -469,6 +479,7 @@ export function judgeConfront(
   for (const c of logic.confrontations) {
     if (c.personId !== personId) continue;
     const key = lieKeyOf(c);
+    if (opts.lieKey !== undefined && key !== opts.lieKey) continue;
     const landed = records.filter((r) => r.lieKey === key && r.outcome !== 'wrong');
     const k = landed.length;
     const before = landed.map((r) => r.clueId);

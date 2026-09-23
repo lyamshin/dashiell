@@ -318,6 +318,12 @@ export interface OfferedGroup {
   reference?: string[];
   /** The picker's filter: everybody the facts name, in the notebook's order, with the name the book uses. */
   filters?: { personId: Id; label: string }[];
+  /**
+   * Shorter nights §1, the confront picker only: "Put another fact to her" —
+   * the second fact of a confrontation that just landed, free. A fact that
+   * touches nothing ends it, and costs nothing either.
+   */
+  follow?: boolean;
 }
 
 /**

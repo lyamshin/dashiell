@@ -18,7 +18,7 @@ import { minutesAfter } from './clock.js';
 import type { CaseView } from './derive.js';
 import { gameBudget, peopleHereNow } from './derive.js';
 import { parse } from './parser.js';
-import { answersTo, askedBefore, pendingFor, priceOf } from './reducer.js';
+import { accountRider, answersTo, askedBefore, followUpOf, pendingFor, priceOf } from './reducer.js';
 import type { Command, OfferedChoice, OfferedGroup, RunState } from './types.js';
 import { buildNotebook, type Notebook } from './notebook.js';
 import { possessiveOf, pronounOf } from './voice/cast.js';
@@ -47,6 +47,12 @@ export interface Choice extends OfferedChoice {
   done: boolean;
   /** Small type under the label: "not been" on a place never visited. */
   note?: string;
+  /**
+   * Shorter nights §2: marked only because the first question to somebody
+   * brings their account, which a lead points at. Such a topic keeps its own
+   * place in the list. Never drawn; dropped before the page keeps its groups.
+   */
+  riding?: boolean;
 }
 
 export interface ChoiceGroup extends OfferedGroup {
@@ -205,7 +211,9 @@ function gainsOf(view: CaseView, state: RunState, command: Command): Id[] {
   }
   if (command.kind === 'ask') {
     if (reason === 'ask-again' || reason === 'nobody' || reason === 'self-told') return [];
-    if ((command.topic.kind === 'evening' && !view.kase.logic) || command.topic.kind === 'self') return [];
+    if (command.topic.kind === 'evening' && !view.kase.logic) return [];
+    // Asked about themselves, a person tells no clue — but in a tiered case
+    // the first question still brings their evening (shorter nights §2).
     return now(answersTo(view, command.personId, command.topic, state.found));
   }
   return [];
@@ -247,8 +255,15 @@ function choice(
     price.reason === 'ask-again' ||
     price.reason === 'self-told' ||
     price.reason === 'confront-again';
-  const lead = gainsOf(view, state, parsed.command).some((id) => targets.has(id));
-  return { command, label, minutes, lead, done };
+  const gains = gainsOf(view, state, parsed.command).filter((id) => targets.has(id));
+  const lead = gains.length > 0;
+  // Shorter nights §2: a lead to somebody's account is taken by any first
+  // question to them, so every such question carries the mark. `riding` says
+  // the mark is the account's alone, and the topic keeps its own place.
+  const asked = parsed.command.kind === 'ask' ? parsed.command : null;
+  const rider = asked ? accountRider(view, asked.personId, asked.topic, state.found) : null;
+  const riding = lead && rider !== null && gains.every((id) => id === rider.id);
+  return { command, label, minutes, lead, done, ...(riding ? { riding: true } : {}) };
 }
 
 /** A person's topics, in §1.2's order, with the lead topics first and marked. */
@@ -297,21 +312,28 @@ function askGroup(view: CaseView, state: RunState, person: Person, targets: Set<
   }
 
   // A topic that would take an open lead is that lead, and it is already in
-  // the lead position under its exact name. It appears once.
+  // the lead position under its exact name. It appears once. A topic marked
+  // only because their account rides on it (shorter nights §2) is not that
+  // lead: it stays where it is, marked.
   const leadCommands = new Set(leads.map((c) => c.command));
-  const plain = [...fixed, ...rest].filter((c) => !c.lead && !leadCommands.has(c.command));
+  const plain = [...fixed, ...rest].filter((c) => (!c.lead || c.riding) && !leadCommands.has(c.command));
   const fixedKept = plain.filter((c) => fixed.includes(c));
   const restKept = plain.filter((c) => rest.includes(c));
 
   const shown = [...leads, ...fixedKept];
   const room = Math.max(0, TOPIC_LIMIT - shown.length);
+  const bare = (c: Choice): Choice => {
+    if (!c.riding) return c;
+    const { riding: _riding, ...rest } = c;
+    return rest;
+  };
   const group: ChoiceGroup = {
     kind: 'ask',
     heading: `Ask ${displayName(view, state, person.id)} about`,
     personId: person.id,
-    choices: [...shown, ...restKept.slice(0, room)],
+    choices: [...shown, ...restKept.slice(0, room)].map(bare),
   };
-  const more = restKept.slice(room);
+  const more = restKept.slice(room).map(bare);
   if (more.length > 0) group.more = more;
   return group;
 }
@@ -464,13 +486,17 @@ export function confrontGroup(view: CaseView, state: RunState, person: Person): 
   ];
   const named = new Set(facts.flatMap((f) => f.people));
   const filters = peopleOrder.filter((id) => named.has(id)).map((id) => ({ personId: id, label: nameOf(id) }));
+  // Shorter nights §1: right after a fact landed, the same picker puts a
+  // second one to them, for nothing. Still nothing marked.
+  const follow = followUpOf(view, state)?.personId === person.id;
   return {
     kind: 'confront',
-    heading: `Put it to ${nameOf(person.id)}`,
+    heading: follow ? `Put another fact to ${nameOf(person.id)}` : `Put it to ${nameOf(person.id)}`,
     personId: person.id,
     choices,
     reference,
     filters,
+    ...(follow ? { follow: true } : {}),
   };
 }
 
@@ -481,12 +507,17 @@ export function allChoices(groups: readonly ChoiceGroup[]): Choice[] {
 
 /**
  * §1.2: whose topics the page opens on when the room holds more than one
- * person. The one with a marked lead, else the one most recently spoken to,
- * else the first to enter.
+ * person. The one a fact was just put to while a second can follow, else the
+ * one with a marked lead, else the one most recently spoken to, else the
+ * first to enter.
  */
 export function defaultAskPerson(groups: readonly OfferedGroup[], state: RunState): Id | null {
   const asks = groups.filter((g) => g.kind === 'ask' && g.personId !== undefined);
   if (asks.length === 0) return null;
+  // Shorter nights §1: right after a fact landed, the one it was put to, so
+  // "Put another fact to her" is on the page.
+  const follow = groups.find((g) => g.kind === 'confront' && g.follow === true && asks.some((a) => a.personId === g.personId));
+  if (follow) return follow.personId as Id;
   const marked = asks.find((g) => g.choices.some((c) => c.lead));
   if (marked) return marked.personId as Id;
   for (let i = (state.asked ?? []).length - 1; i >= 0; i--) {

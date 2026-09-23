@@ -161,7 +161,9 @@ export interface Thought {
     | 'quiet'
     | 'admit'
     | 'hold'
-    | 'withdraw';
+    | 'withdraw'
+    /* Shorter nights §1: a second fact that touched nothing ends it. */
+    | 'ends';
   via?: 'office' | 'account';
   who?: 'watcher' | 'client' | 'known' | 'stranger';
   lied?: boolean;

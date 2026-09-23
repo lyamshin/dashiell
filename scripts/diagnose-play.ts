@@ -1392,6 +1392,8 @@ interface DesignSide {
   solvedCalls: number[];
   /** The budget of each case. */
   budgets: number[];
+  /** The par of each case (the game's, walked from the first room). */
+  pars: number[];
 }
 
 interface DesignAgg {
@@ -1401,7 +1403,7 @@ interface DesignAgg {
 }
 
 function newSide(): DesignSide {
-  return { runs: 0, who: 0, deduced: 0, columnRight: 0, columnAsked: 0, actions: 0, confronts: 0, confrontsLanded: 0, solvedCalls: [], budgets: [] };
+  return { runs: 0, who: 0, deduced: 0, columnRight: 0, columnAsked: 0, actions: 0, confronts: 0, confrontsLanded: 0, solvedCalls: [], budgets: [], pars: [] };
 }
 
 function newDesign(): DesignAgg {
@@ -1417,6 +1419,7 @@ function tallyDesign(agg: DesignAgg, view: CaseView, runs: { leads: RunRec; unif
     if (r.deduced) side.deduced++;
     if (r.deduced) side.solvedCalls.push(r.state.actionsUsed);
     side.budgets.push(gameBudget(view.kase));
+    side.pars.push(gamePar(view.kase));
     side.columnRight += r.columnRight;
     side.columnAsked += r.columnAsked;
     side.actions += r.state.actionsUsed;
@@ -1460,6 +1463,36 @@ if (ROUTE_OF !== undefined) {
 }
 
 const DESIGN_ONLY = argv.includes('--design');
+// Shorter nights: where the reasoning player's calls go, per config — moves,
+// searches, questions for an evening alone, other questions, facts put.
+if (argv.includes('--reason-costs')) {
+  for (const cfg of CONFIGS) {
+    const tally = new Map<string, number>();
+    let runs = 0;
+    for (let seed = 1; seed <= SEEDS; seed++) {
+      const view = buildView(generateCase(seed, cfg.opts));
+      const r = drive(view, reasonPicker(), new Rng((seed * 15485863 + 3) >>> 0), 'reason');
+      runs++;
+      for (const st of r.steps) {
+        const kind = st.command.startsWith('go ')
+          ? 'go'
+          : st.command.startsWith('examine ')
+            ? 'search'
+            : st.command.startsWith('put ')
+              ? st.costed
+                ? 'put (paid)'
+                : 'put (free)'
+              : / about that evening$/.test(st.command)
+                ? 'ask: evening'
+                : 'ask: other';
+        const key = `${kind}${st.costed || kind === 'put (free)' ? '' : ' [free]'}`;
+        tally.set(key, (tally.get(key) ?? 0) + 1);
+      }
+    }
+    process.stdout.write(`${cfg.label}: ${[...tally.entries()].sort().map(([k, v]) => `${k} ${(v / runs).toFixed(2)}`).join(' · ')}\n`);
+  }
+  process.exit(0);
+}
 if (argv.includes('--reason-debug')) {
   for (const cfg of CONFIGS) {
     for (let seed = 1; seed <= SEEDS; seed++) {
@@ -1510,13 +1543,14 @@ if (DESIGN_ONLY) {
       `${num(d.reason.confronts / Math.max(1, d.reason.runs))} (${pct(share(d.reason.confrontsLanded, d.reason.confronts))} landed)`,
       num(d.reason.actions / Math.max(1, d.reason.runs)),
       `${num(median(d.reason.solvedCalls), 0)} (budget ${num(median(d.reason.budgets), 0)})`,
+      `${num(median(d.reason.pars), 0)} / ${num(median(d.reason.budgets), 0)}`,
     ]);
   }
   const lines: string[] = [];
   lines.push(`## The design test (${SEEDS} seeds a config)`);
   lines.push('');
-  lines.push('| config | marks-follower names the culprit | reasoning player: who, when and the column all right, within budget | button-pusher names the culprit | reasoning player: facts put to somebody / run | reasoning player: actions | reasoning player: median calls to solve |');
-  lines.push('| --- | --- | --- | --- | --- | --- | --- |');
+  lines.push('| config | marks-follower names the culprit | reasoning player: who, when and the column all right, within budget | button-pusher names the culprit | reasoning player: facts put to somebody / run | reasoning player: actions | reasoning player: median calls to solve | median par / budget |');
+  lines.push('| --- | --- | --- | --- | --- | --- | --- | --- |');
   for (const r of rows) lines.push(`| ${r.join(' | ')} |`);
   lines.push('');
   lines.push('Target: the marks-follower at 50% or under while the reasoning player is at 80% or over, per tier.');

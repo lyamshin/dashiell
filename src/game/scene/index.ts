@@ -77,6 +77,7 @@ export function actionOf(scene: Scene, topic?: { kind: string; id?: Id; topic?: 
         clue: scene.clue,
         judged: scene.judged,
         ...(scene.part === undefined ? {} : { part: scene.part }),
+        ...(scene.follow ? { follow: true } : {}),
       };
     default:
       return { kind: 'look' };

@@ -15,7 +15,7 @@ import { spokenClock } from '../../gen/types.js';
 import type { Block, BeatTrace, ErrandTrace, ProseVoice } from '../types.js';
 import { OTHER_THING } from '../errand.js';
 import { hedged, restates, figuresIn, hourAgrees, introduceNames, nameables, pastTense, sentencesOf, stripHere, wordCount, isSubjectless, bandOf } from './text.js';
-import { APPROACH, APPROACH_AGAIN, COUNT_WORDS, OUTDOOR_PLACES, RELATION_PLAIN, RELATION_WHY, SEARCH_THING_ACTS as THING_ACTS, isPluralPlace } from './lines.js';
+import { APPROACH, APPROACH_AGAIN, COUNT_WORDS, FOLLOW_ON, OUTDOOR_PLACES, RELATION_PLAIN, RELATION_WHY, SEARCH_THING_ACTS as THING_ACTS, isPluralPlace } from './lines.js';
 import { clueAbout, layerCredit, layerOfClue, layerSentences } from '../voice/plain.js';
 import type { Beat, Plan, PresencePerson } from './plan.js';
 import type { Thought } from './thought.js';
@@ -533,7 +533,8 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const written = exchange(stage, scene, beat, gaps, plan.beats);
         for (const p of written) push({ ...p, beats: [i] });
         mark(i, {
-          tag: beat.carried ? 'carried' : 'asked',
+          // M10 §A.3: "Go on" is the same question, a page on; it carries itself.
+          tag: beat.continued ? 'continued' : beat.carried ? 'carried' : 'asked',
           personIds: [beat.personId, ...(beat.subjectId ? [beat.subjectId] : [])],
           clueIds: beat.clueIds,
           text: written.map((p) => p.text).join(' '),
@@ -698,7 +699,8 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const known = (b.tie === 'victim' || b.tie === 'place') && b.subjectId !== undefined && named.has(b.subjectId);
         const slots: Slots = { who, subject: b.subject, tie: b.tieText, where };
         const lead = (c: Card): boolean => (tagOf('bridge', c, 'lead') === 'search') === (b.search === true);
-        const said = (c: Card): boolean => c.text.includes('{tie}') !== known;
+        // Shorter nights §2: an account's bridge may name the hour or not.
+        const said = (c: Card): boolean => b.tie === 'account' || c.text.includes('{tie}') !== known;
         const fits = (c: Card): boolean =>
           (known ? tagIs('bridge', c, 'tie', 'victim') : tagIs('bridge', c, 'tie', b.tie)) && lead(c) && said(c);
         const loose = (c: Card): boolean => tagIs('bridge', c, 'tie', b.tie) && lead(c);
@@ -1622,8 +1624,10 @@ function exchange(
     if (placed) out.push({ text: `“Where was ${subject.surname} tonight?”`, voice: 'exchange' });
   }
   // M10 §A.1: the tellings after this say the answer, a family at a time.
-  if (beat.told) return out.map((p) => ({ ...p, text: tidyPunctuation(p.text) }));
-  scene.clues.forEach((clue, i) => answerClue(clue, i > 0));
+  // Shorter nights §2: a story of themselves comes first, and their evening
+  // is told after it.
+  if (beat.told && !scene.self) return out.map((p) => ({ ...p, text: tidyPunctuation(p.text) }));
+  if (!beat.told) scene.clues.forEach((clue, i) => answerClue(clue, i > 0));
   if (scene.self) {
     if (scene.self.told) {
       out.push({ text: fillTemplate(dealer.random.pick(SELF_ALREADY), { name: surname }), voice: 'exchange' });
@@ -1639,6 +1643,7 @@ function exchange(
       }
     }
   }
+  if (beat.told) return out.map((p) => ({ ...p, text: tidyPunctuation(p.text) }));
   if (scene.clues.length === 0 && !scene.account && !scene.self) {
     const line = fillTemplate(dealer.random.pick(NOTHING_ASKED), { name: surname });
     out.push({ text: line.length > 0 ? line : `${surname} had nothing for me.`, voice: 'exchange' });
@@ -2005,7 +2010,10 @@ function confrontParas(
   const surname = person.surname;
   const out: Omit<Para, 'beats'>[] = [];
   const opening: string[] = [];
-  if (beat.stops) {
+  if (beat.follow) {
+    // Shorter nights §1: the same confrontation, a second fact.
+    opening.push(fillTemplate(dealer.random.pick(FOLLOW_ON), { name: surname }));
+  } else if (beat.stops) {
     const doing = stage.memory?.activities[person.id]?.text;
     const stopped = doing ? stoppedDoing(doing, surname) : null;
     opening.push(stopped ?? fillTemplate(dealer.random.pick(STOP_LINES), { name: surname, pronoun: pronounOf(person) }));
@@ -2018,13 +2026,18 @@ function confrontParas(
   const partFacts = scene.part === undefined ? undefined : new Set(scene.clue.ruleParts?.[scene.part]?.facts ?? []);
   const said = putSaid(view, scene.clue, person, partFacts);
   const them = pronounOf(person) === 'she' ? 'her' : 'him';
-  opening.push(said.length > 0 ? `I put it to ${them} plainly. “${said}”` : `I put what I had to ${them}.`);
+  if (beat.follow) opening.push(said.length > 0 ? `“${said}”` : `I read ${them} the next thing I had.`);
+  else opening.push(said.length > 0 ? `I put it to ${them} plainly. “${said}”` : `I put what I had to ${them}.`);
   out.push({ text: opening.join(' '), voice: 'exchange' });
   const slots = confrontSlots(stage, person, beat.placeId, beat.tick);
+  // A second fact that touches nothing ends the confrontation: the story
+  // stands, and they are done talking about it.
+  const ends = beat.follow === true && beat.outcome === 'wrong';
+  const deckOutcome = ends ? 'ends' : beat.outcome;
   const reaction = deal(
     stage,
     'confront',
-    [(c) => tagIs('confront', c, 'outcome', beat.outcome) && tagIs('confront', c, 'part', 'reaction')],
+    [(c) => tagIs('confront', c, 'outcome', deckOutcome) && tagIs('confront', c, 'part', 'reaction')],
     slots,
   );
   // A story held is said again in their words, the hours the way people say them.
@@ -2034,7 +2047,12 @@ function confrontParas(
     held && heldPlace
       ? `“I told you where I was. ${capitalize(heldPlace)}, ${whenSaid(held.ticks)}.”`
       : (scene.judged.response?.text ?? '');
-  if (beat.outcome === 'wrong') {
+  if (ends) {
+    out.push({
+      text: reaction?.text ?? `${surname} heard me out. “That’s all I’m going to say about it.”`,
+      voice: 'exchange',
+    });
+  } else if (beat.outcome === 'wrong') {
     out.push({
       text: reaction?.text ?? `${surname} heard me out. “That doesn’t touch anything I told you.”`,
       voice: 'exchange',
@@ -2045,7 +2063,7 @@ function confrontParas(
     const said = /^[“"]/.test(words) ? words : endStop(pastTense(words));
     out.push({ text: `${reaction?.text ?? `${surname} took a moment.`} ${said}`.trim(), voice: 'exchange' });
   }
-  if (!reaction) gaps.push(`no-card: confront has no reaction for ${beat.outcome}`);
+  if (!reaction) gaps.push(`no-card: confront has no reaction for ${deckOutcome}`);
   return out.map((p) => ({ ...p, text: tidyPunctuation(p.text) }));
 }
 

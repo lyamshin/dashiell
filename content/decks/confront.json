@@ -790,5 +790,137 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "cnf-073",
+    "deck": "confront",
+    "text": "{subject} shook {their} head before I had finished. “That’s all I’m going to say about it.”",
+    "tags": {
+      "outcome": "ends",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "cnf-074",
+    "deck": "confront",
+    "text": "{subject} looked past me at the door. “That’s all I’m going to say about it.”",
+    "tags": {
+      "outcome": "ends",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "cnf-075",
+    "deck": "confront",
+    "text": "{subject} heard it through and folded {their} hands. “That’s all I’m going to say about it.”",
+    "tags": {
+      "outcome": "ends",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "cnf-076",
+    "deck": "confront",
+    "text": "{subject} let out a breath and sat back. “That’s all I’m going to say about it.”",
+    "tags": {
+      "outcome": "ends",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "cnf-077",
+    "deck": "confront",
+    "text": "{subject} didn’t look at the notebook this time. “That’s all I’m going to say about it.”",
+    "tags": {
+      "outcome": "ends",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "cnf-078",
+    "deck": "confront",
+    "text": "{subject} waited to be sure I was done. “That’s all I’m going to say about it.”",
+    "tags": {
+      "outcome": "ends",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "cnf-079",
+    "deck": "confront",
+    "text": "I let it go. What {subject} had told me last was still what {subject} had told me, and it had cost me nothing more to find that out.",
+    "tags": {
+      "outcome": "ends",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "cnf-080",
+    "deck": "confront",
+    "text": "I closed the notebook on it. {subject}’s story stood where {subject} had left it, for now.",
+    "tags": {
+      "outcome": "ends",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "cnf-081",
+    "deck": "confront",
+    "text": "That was the end of it for tonight. The first thing I had read out touched {subject}’s story, and the second had not.",
+    "tags": {
+      "outcome": "ends",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "cnf-082",
+    "deck": "confront",
+    "text": "I didn’t push {subject}. The story was the same story, and the second thing I had read out was no use against it.",
+    "tags": {
+      "outcome": "ends",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "cnf-083",
+    "deck": "confront",
+    "text": "I put the pencil back. If there was a second thing that crossed {subject}’s story, it was not the one I had just read.",
+    "tags": {
+      "outcome": "ends",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "cnf-084",
+    "deck": "confront",
+    "text": "{subject} was done, and so was I, for the moment. Nothing new went under {subject}’s name.",
+    "tags": {
+      "outcome": "ends",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "tuned"
   }
 ]

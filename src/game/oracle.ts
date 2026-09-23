@@ -18,6 +18,7 @@ import { Rng } from '../gen/rng.js';
 import type { CaseView } from './derive.js';
 import { establishedFrom, gameBudget, gamePar, leadFor, peopleHere } from './derive.js';
 import { continuationOf, newRun, sceneCluesOf, stepInput } from './reducer.js';
+import { accountClueOf } from './m9.js';
 import { leadingTheory } from './voice/reactive.js';
 import type { Report, RunState } from './types.js';
 
@@ -102,7 +103,22 @@ function groupsFor(view: CaseView, wanted: Clue[]): Group[] {
       openers,
     });
   }
-  return [...byCommand.values()];
+  const groups = [...byCommand.values()];
+  // Shorter nights §2: the first question to a suspect brings their account,
+  // whatever it asks. Every other question the route puts to them fetches it
+  // too, and a lead to it opens them.
+  if (view.kase.logic) {
+    for (const g of groups) {
+      const first = view.findableById.get([...g.gains][0] ?? '');
+      if (!first || first.source.type !== 'person' || first.kind === 'account') continue;
+      const account = accountClueOf(view, first.source.personId);
+      if (!account || !want.has(account.id)) continue;
+      g.gains.add(account.id);
+      g.fetches.add(account.id);
+      for (const c of view.kase.findable) if (c.leadsTo.includes(account.id)) g.openers.add(c.id);
+    }
+  }
+  return groups;
 }
 
 /**
@@ -136,6 +152,15 @@ function plan(
     let m = 0;
     groups.forEach((other, j) => {
       if ([...other.fetches].some((id) => g.openers.has(id))) m |= 1 << j;
+    });
+    return m;
+  });
+  // A group whose every gain another also gains is done with it: somebody's
+  // own account, once any other question to them is asked (shorter nights §2).
+  const covers = groups.map((g, i) => {
+    let m = 0;
+    groups.forEach((other, j) => {
+      if (j !== i && [...other.gains].every((id) => g.gains.has(id))) m |= 1 << j;
     });
     return m;
   });
@@ -173,7 +198,7 @@ function plan(
         const g = groups[i] as Group;
         if (g.placeId !== places[p]) continue;
         if (isAsk[i] && !alwaysOpen[i] && (m & (openedBy[i] as number)) === 0) continue;
-        let mask = m | (1 << i);
+        let mask = m | (1 << i) | (covers[i] as number);
         // One command may cover several groups at once when they share a room
         // and a question; the group list is already deduplicated by command,
         // so this only ever folds in groups the same string would fetch.

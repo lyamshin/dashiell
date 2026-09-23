@@ -69,11 +69,15 @@ export function tierSuite(tier: PresetTier, seeds: number, oracleSeeds: number):
         // rule set (docs/20-m9-gen-notes.md); `shape.par` is the M7 range the
         // no-options case is still held to.
         const parRange = c.logic ? deductionOf(shape).par : shape.par;
-        if (c.par < parRange[0] || c.par > parRange[1]) bad.push(`${tag}: par ${c.par}`);
+        // Shorter nights: the range holds the par route walked the M9 way
+        // (`SolveSummary.walk`); the night's par is that walk or shorter.
+        const size = c.logic?.solve.walk ?? c.par;
+        if (size < parRange[0] || size > parRange[1]) bad.push(`${tag}: par ${size}`);
+        if (c.par > size) bad.push(`${tag}: par ${c.par} over the walk ${size}`);
         if (dials.shape.name !== shape.name || dials.ladder.level !== level) bad.push(`${tag}: dials`);
         if (c.difficulty !== level) bad.push(`${tag}: difficulty ${c.difficulty}`);
         // M9 polish: a tiered case adds the tier's `extraSlack` (Hard-boiled).
-        const slack = c.logic ? logicSlackFor(shape, ladder, c.par) : slackFor(shape, ladder, c.par);
+        const slack = c.logic ? logicSlackFor(shape, ladder, c.par, size) : slackFor(shape, ladder, c.par);
         if (c.slack !== slack) bad.push(`${tag}: slack ${c.slack}`);
         if (c.budget !== c.par + c.slack) bad.push(`${tag}: budget`);
         const suspects = c.people.filter((p) => p.kind === 'suspect');
