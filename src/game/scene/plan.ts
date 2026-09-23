@@ -268,6 +268,15 @@ export const WORKPLACES: Record<string, string[]> = {
   'arch-widow': [],
 };
 
+/**
+ * What an activity is, as its first four words after "was": two people in a
+ * room are never both "tapping ash from a cigarette".
+ */
+export function doingKey(text: string, surname = '{name}'): string {
+  const rest = text.replace(surname, '').replace(/^\s*was\s+/, '');
+  return `doing:${rest.toLowerCase().split(/\s+/).slice(0, 4).join(' ')}`;
+}
+
 /** The activity-deck role for a person: fixture role, else archetype, else `any`. */
 export function activityRole(person: Person): string {
   if (person.kind === 'fixture' && person.fixtureRole) return person.fixtureRole;
@@ -313,7 +322,7 @@ export function chooseActivity(
   ];
   const slots = { name: person.surname, place: place?.shortName };
   for (const rung of ladder) {
-    const pool = DECKS.activity.filter((c) => rung(c) && fits(c) && !taken.has(c.id));
+    const pool = DECKS.activity.filter((c) => rung(c) && fits(c) && !taken.has(c.id) && !taken.has(doingKey(c.text)));
     if (pool.length === 0) continue;
     const start = hash(seed, person.id, visit, placeId) % pool.length;
     for (let i = 0; i < pool.length; i++) {
@@ -586,6 +595,7 @@ function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
         ? kept
         : chooseActivity(view, person, input.at, input.minutes, memory.visit, input.seed, input.weather, taken);
     taken.add(activity.cardId);
+    taken.add(doingKey(activity.text, person.surname));
     activities[person.id] = activity;
     const firstSight = !input.met.includes(person.id);
     // A recall phrase, once a visit, for somebody already portrayed.

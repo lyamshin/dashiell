@@ -202,7 +202,8 @@
     "text": "If it was so, {subject} was at {scene} at {time} — the same hour {victim} died there.",
     "tags": {
       "class": "implicates",
-      "basis": "placement"
+      "basis": "placement",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -655,7 +656,8 @@
     "deck": "thought",
     "text": "{subject} {motive}. People had been killed for less.",
     "tags": {
-      "class": "motive"
+      "class": "motive",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -725,7 +727,8 @@
     "deck": "thought",
     "text": "If {subject} {motive}, then {victim} dead was worth something to {subject}.",
     "tags": {
-      "class": "motive"
+      "class": "motive",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -866,7 +869,8 @@
     "text": "The coroner had given me hours. {other} might give me the minute.",
     "tags": {
       "class": "window",
-      "basis": "anchor"
+      "basis": "anchor",
+      "case": "murder"
     },
     "motifs": [],
     "status": "tuned"
@@ -888,7 +892,8 @@
     "text": "{other} at {time} fell inside the coroner’s hours. It might be the minute, and it might not.",
     "tags": {
       "class": "window",
-      "basis": "anchor"
+      "basis": "anchor",
+      "case": "murder"
     },
     "motifs": [],
     "status": "tuned"
@@ -899,7 +904,8 @@
     "text": "The coroner’s window was wide. {other} at {time} might narrow it, if the rest agreed.",
     "tags": {
       "class": "window",
-      "basis": "anchor"
+      "basis": "anchor",
+      "case": "murder"
     },
     "motifs": [],
     "status": "tuned"
@@ -921,7 +927,8 @@
     "text": "{other} came at {time}, inside the coroner’s hours. If the rest fit, that could be when.",
     "tags": {
       "class": "window",
-      "basis": "anchor"
+      "basis": "anchor",
+      "case": "murder"
     },
     "motifs": [],
     "status": "tuned"
@@ -943,7 +950,8 @@
     "text": "I had hours from the coroner. {other} at {time} was a guess at the minute, and only a guess.",
     "tags": {
       "class": "window",
-      "basis": "anchor"
+      "basis": "anchor",
+      "case": "murder"
     },
     "motifs": [],
     "status": "tuned"
@@ -965,7 +973,8 @@
     "text": "Somewhere in the coroner’s hours was {other}, at {time}. It might be the moment.",
     "tags": {
       "class": "window",
-      "basis": "anchor"
+      "basis": "anchor",
+      "case": "murder"
     },
     "motifs": [],
     "status": "tuned"
@@ -1247,7 +1256,8 @@
     "deck": "thought",
     "text": "{subject} had been {other}. It was a secret, and it was not the same thing as killing {victim}.",
     "tags": {
-      "class": "secret"
+      "class": "secret",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -1267,7 +1277,8 @@
     "deck": "thought",
     "text": "{subject}’s secret was {other}. Whatever else {subject} was, the secret wasn’t murder.",
     "tags": {
-      "class": "secret"
+      "class": "secret",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -1327,7 +1338,8 @@
     "deck": "thought",
     "text": "{subject} had been hiding {other}, not a killing.",
     "tags": {
-      "class": "secret"
+      "class": "secret",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -1467,7 +1479,8 @@
     "deck": "thought",
     "text": "That settled {subject}, in the negative: {other}, and not murder.",
     "tags": {
-      "class": "dead-end"
+      "class": "dead-end",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -1610,7 +1623,8 @@
     "text": "The coroner’s hours ran {span}. Anybody I could put somewhere else for all of it was out of it.",
     "tags": {
       "class": "window",
-      "basis": "coroner"
+      "basis": "coroner",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -1632,7 +1646,8 @@
     "text": "{victim} died some time {span}. Everybody’s evening came down to those hours.",
     "tags": {
       "class": "window",
-      "basis": "coroner"
+      "basis": "coroner",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -2554,7 +2569,8 @@
     "text": "I knew more about {subject} now, and nothing more about the hours {victim} died in.",
     "tags": {
       "class": "context",
-      "basis": "self"
+      "basis": "self",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -2576,7 +2592,8 @@
     "text": "Whatever {subject} was, the account of it did not say where {subject} had been while {victim} died.",
     "tags": {
       "class": "context",
-      "basis": "self"
+      "basis": "self",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -2928,7 +2945,8 @@
     "deck": "thought",
     "text": "I put it next to {subject}’s name. A secret was not a murder, but it was a reason to lie.",
     "tags": {
-      "class": "hint"
+      "class": "hint",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
