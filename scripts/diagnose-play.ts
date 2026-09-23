@@ -69,6 +69,9 @@ import {
   columnPeople,
   confessedOf,
   confrontFacts,
+  partBreaks,
+  partRef,
+  partsOf,
   saidRecords,
   solveNotebook,
   truthColumn,
@@ -555,15 +558,28 @@ function reasonPicker(): Picker {
         // A second time needs a second, independent way: what still breaks
         // the claim with the facts already put to them set aside.
         const unused = state.found.filter((id) => !put.has(`${person.id}|${id}`));
-        for (const claim of claims) {
+        // M9 polish: a story about hours nowhere near the crime's is not worth
+        // a half hour: breaking it says nothing about who was in the room.
+        // The claims that touch the notebook's window, or the half hour
+        // either side of it (travel reaches that far), are.
+        const nearCrime = (ticks: Tick[]): boolean =>
+          process.env.REASON_ALL_CLAIMS === '1' ||
+          windowC.length === 0 ||
+          ticks.some((t) => windowC.some((w) => Math.abs(w - t) <= 1));
+        for (const claim of claims.filter((c) => nearCrime(c.ticks))) {
           for (const soft of [false, true]) {
             const res = contradicts(kase, unused, { personId: person.id, ...claim }, { confessed, soft });
             if (!res.yes) continue;
             const pick = res.rules.find((id) => facts.has(id) && !put.has(`${person.id}|${id}`));
             if (!pick) continue;
             if (hereIds.has(person.id)) {
+              // The picker offers one fact at a time: the part of the line
+              // the solver's proof rests on.
+              const clue = view.findableById.get(pick) as Clue;
+              const part = partsOf(clue).findIndex((_, i) => partBreaks(view, unused, person.id, pick, i, claim, confessed));
               put.add(`${person.id}|${pick}`);
-              return { command: `put ${pick} to ${person.surname}`, marked: false };
+              if (part < 0) continue;
+              return { command: `put ${partRef(pick, part)} to ${person.surname}`, marked: false };
             }
             const where = view.placeById.get(person.foundAt ?? '')?.shortName;
             const go = options.find((c) => c.command === `go ${where}`);
@@ -1674,6 +1690,10 @@ interface DesignSide {
   actions: number;
   confronts: number;
   confrontsLanded: number;
+  /** Calls used, for each run the player solved (who, when and the column right). */
+  solvedCalls: number[];
+  /** The budget of each case. */
+  budgets: number[];
 }
 
 interface DesignAgg {
@@ -1683,7 +1703,7 @@ interface DesignAgg {
 }
 
 function newSide(): DesignSide {
-  return { runs: 0, who: 0, deduced: 0, columnRight: 0, columnAsked: 0, actions: 0, confronts: 0, confrontsLanded: 0 };
+  return { runs: 0, who: 0, deduced: 0, columnRight: 0, columnAsked: 0, actions: 0, confronts: 0, confrontsLanded: 0, solvedCalls: [], budgets: [] };
 }
 
 function newDesign(): DesignAgg {
@@ -1697,6 +1717,8 @@ function tallyDesign(agg: DesignAgg, view: CaseView, runs: { leads: RunRec; unif
     side.runs++;
     if (r.report.killerId === view.kase.solution.killerId) side.who++;
     if (r.deduced) side.deduced++;
+    if (r.deduced) side.solvedCalls.push(r.state.actionsUsed);
+    side.budgets.push(gameBudget(view.kase));
     side.columnRight += r.columnRight;
     side.columnAsked += r.columnAsked;
     side.actions += r.state.actionsUsed;
@@ -1789,13 +1811,14 @@ if (DESIGN_ONLY) {
       pct(share(d.uniform.who, d.uniform.runs)),
       `${num(d.reason.confronts / Math.max(1, d.reason.runs))} (${pct(share(d.reason.confrontsLanded, d.reason.confronts))} landed)`,
       num(d.reason.actions / Math.max(1, d.reason.runs)),
+      `${num(median(d.reason.solvedCalls), 0)} (budget ${num(median(d.reason.budgets), 0)})`,
     ]);
   }
   const lines: string[] = [];
   lines.push(`## The design test (${SEEDS} seeds a config)`);
   lines.push('');
-  lines.push('| config | marks-follower names the culprit | reasoning player: who, when and the column all right, within budget | button-pusher names the culprit | reasoning player: facts put to somebody / run | reasoning player: actions |');
-  lines.push('| --- | --- | --- | --- | --- | --- |');
+  lines.push('| config | marks-follower names the culprit | reasoning player: who, when and the column all right, within budget | button-pusher names the culprit | reasoning player: facts put to somebody / run | reasoning player: actions | reasoning player: median calls to solve |');
+  lines.push('| --- | --- | --- | --- | --- | --- | --- |');
   for (const r of rows) lines.push(`| ${r.join(' | ')} |`);
   lines.push('');
   lines.push('Target: the marks-follower at 50% or under while the reasoning player is at 80% or over, per tier.');

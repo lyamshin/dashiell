@@ -119,6 +119,8 @@ export function mount(root: HTMLElement): void {
   let showMore = false;
   /** M9 §3: the "Put it to …" picker, open or shut. */
   let pickerOpen = false;
+  /** M9 polish: the picker narrowed to one person, or everybody. */
+  let pickerFilter: Id | null = null;
   /** How many calls the page that just landed spent, for the one animation. */
   let justSpent = 0;
   /** What the grid has open, folded and lit. Kept across pages, reset per case. */
@@ -207,6 +209,7 @@ export function mount(root: HTMLElement): void {
     selected = null;
     showMore = false;
     pickerOpen = false;
+    pickerFilter = null;
     justSpent = result.page.cost;
     document.body.classList.remove('notebook-open');
     render();
@@ -359,6 +362,7 @@ export function mount(root: HTMLElement): void {
             selected = id;
             showMore = false;
             pickerOpen = false;
+            pickerFilter = null;
             justSpent = 0;
             render();
           },
@@ -370,6 +374,13 @@ export function mount(root: HTMLElement): void {
           pickerOpen,
           onTogglePicker: () => {
             pickerOpen = !pickerOpen;
+            pickerFilter = null;
+            justSpent = 0;
+            render();
+          },
+          pickerFilter,
+          onPickerFilter: (id) => {
+            pickerFilter = id;
             justSpent = 0;
             render();
           },

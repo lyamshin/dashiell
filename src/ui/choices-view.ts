@@ -40,6 +40,9 @@ export interface ChoicesOptions {
   /** M9 §3: whether the "Put it to …" picker is open for the selected person. */
   pickerOpen?: boolean;
   onTogglePicker?: () => void;
+  /** M9 polish: the picker narrowed to the facts about one person, or everybody. */
+  pickerFilter?: Id | null;
+  onPickerFilter?: (personId: Id | null) => void;
 }
 
 function choiceButton(
@@ -72,6 +75,79 @@ function choiceButton(
   if (choice.note) button.append(el('span', { class: 'aside', text: choice.note }));
   button.append(el('span', { class: 'mins', text: minutesText(choice.minutes) }));
   if (!opts.inert) button.addEventListener('click', () => opts.onChoose(choice, group));
+  return button;
+}
+
+/**
+ * M9 polish — the "Put it to …" picker. What they told the detective at the
+ * top, for reference and not to pick; a row of names to narrow the facts to
+ * the ones about one person; then every fact in the notebook, one a line,
+ * under the person or place it is about, with who said it. Nothing is marked
+ * or ordered by whether it breaks anything.
+ */
+function renderPicker(group: OfferedGroup, opts: ChoicesOptions): HTMLElement {
+  const picker = el('div', { class: 'confront-picker', role: 'group', 'aria-label': group.heading });
+  const fresh = group.choices.find((c) => !c.done);
+  const cost = fresh ? minutesText(fresh.minutes) : 'free';
+  const whose = group.personId ? opts.nameOf(group.personId) : 'them';
+  picker.append(
+    el('p', {
+      class: 'note',
+      text: `Which fact do you read ${whose}? ${cost === 'free' ? 'It costs nothing.' : `Each costs ${cost}.`} If it does not touch what ${whose} told you, the time is gone all the same.`,
+    }),
+  );
+  if ((group.reference ?? []).length > 0) {
+    const ref = el('div', { class: 'picker-ref' });
+    ref.append(el('h4', { class: 'picker-head', text: `What ${whose} told me` }));
+    const ul = el('ul');
+    for (const line of group.reference ?? []) ul.append(el('li', { text: line }));
+    ref.append(ul);
+    picker.append(ref);
+  }
+  const filter = opts.pickerFilter ?? null;
+  const filters = group.filters ?? [];
+  if (filters.length > 1) {
+    const row = el('div', { class: 'picker-filter', role: 'group', 'aria-label': 'Show the facts about' });
+    const chip = (label: string, id: Id | null): HTMLElement => {
+      const on = filter === id;
+      const b = el('button', { type: 'button', class: `picker-chip${on ? ' on' : ''}`, 'aria-pressed': on ? 'true' : 'false', text: label });
+      b.addEventListener('click', () => opts.onPickerFilter?.(on ? null : id));
+      return b;
+    };
+    row.append(el('span', { class: 'picker-filter-label', text: 'About' }), chip('everybody', null));
+    for (const f of filters) row.append(chip(f.label, f.personId));
+    picker.append(row);
+  }
+  const shown = group.choices.filter((c) => filter === null || (c.people ?? []).includes(filter));
+  let section: HTMLElement | null = null;
+  let heading: string | undefined;
+  for (const choice of shown) {
+    if (section === null || choice.section !== heading) {
+      heading = choice.section;
+      section = el('section', { class: 'picker-sec' });
+      if (heading) section.append(el('h4', { class: 'picker-head', text: heading }));
+      picker.append(section);
+    }
+    section.append(factButton(choice, group, opts));
+  }
+  if (shown.length === 0) picker.append(el('p', { class: 'note', text: 'Nothing in the notebook about them yet.' }));
+  return picker;
+}
+
+function factButton(choice: OfferedChoice, group: OfferedGroup, opts: ChoicesOptions): HTMLButtonElement {
+  const button = el('button', {
+    class: `choice choice--fact${choice.done ? ' choice--done' : ''}`,
+    type: 'button',
+    'aria-label': [choice.label, choice.source ? `from ${choice.source}` : '', choice.done ? 'already put' : '', spoken(choice.minutes)]
+      .filter((s) => s.length > 0)
+      .join(', '),
+    'data-command': choice.command,
+  });
+  const text = el('span', { class: 'label', text: choice.label });
+  if (choice.done) text.append(el('span', { class: 'check', 'aria-hidden': 'true', text: ' ✓' }));
+  button.append(text);
+  if (choice.source) button.append(el('span', { class: 'fact-src', text: choice.source }));
+  button.addEventListener('click', () => opts.onChoose(choice, group));
   return button;
 }
 
@@ -129,14 +205,7 @@ export function renderChoices(groups: readonly OfferedGroup[], opts: ChoicesOpti
       if (opts.inert) toggle.disabled = true;
       else toggle.addEventListener('click', () => opts.onTogglePicker?.());
       list.append(toggle);
-      if (opts.pickerOpen && !opts.inert) {
-        const picker = el('div', { class: 'confront-picker', role: 'group', 'aria-label': group.heading });
-        picker.append(
-          el('p', { class: 'note', text: 'Which line from the notebook do you read them? If it does not touch what they told you, the half hour is gone all the same.' }),
-        );
-        for (const choice of group.choices) picker.append(choiceButton(choice, group, opts));
-        list.append(picker);
-      }
+      if (opts.pickerOpen && !opts.inert) list.append(renderPicker(group, opts));
       section.append(list);
       panel.append(section);
       continue;

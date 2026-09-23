@@ -417,7 +417,11 @@ export function priceOf(command: Command, state: RunState, view: CaseView): Pric
       if (!canConfront(view, state, command.personId) || !state.found.includes(command.clueId)) {
         return { cost: 0, waived: 0, reason: 'no-confront' };
       }
-      if ((state.confronts ?? []).some((r) => r.personId === command.personId && r.clueId === command.clueId)) {
+      if (
+        (state.confronts ?? []).some(
+          (r) => r.personId === command.personId && r.clueId === command.clueId && r.part === command.part,
+        )
+      ) {
         return { cost: 0, waived: 0, reason: 'confront-again' };
       }
       return { cost: 1, waived: 0, reason: 'confront' };
@@ -689,7 +693,7 @@ export function step(
       }
       if (price.reason === 'confront-again') {
         const before = (state.confronts ?? []).find(
-          (r) => r.personId === person.id && r.clueId === command.clueId,
+          (r) => r.personId === person.id && r.clueId === command.clueId && r.part === command.part,
         );
         blocks = [
           {
@@ -706,16 +710,17 @@ export function step(
       const clue = view.findableById.get(command.clueId);
       if (!clue) break;
       cost = price.cost;
-      const judged = judgeConfront(view, state, person.id, clue.id);
+      const judged = judgeConfront(view, state, person.id, clue.id, command.part);
       confronted = {
         personId: person.id,
         clueId: clue.id,
+        ...(command.part === undefined ? {} : { part: command.part }),
         lieKey: judged.lieKey,
         outcome: judged.outcome,
         ...(judged.n === undefined ? {} : { n: judged.n }),
         page: state.log.length,
       };
-      scene = { kind: 'confront', personId: person.id, clue, judged };
+      scene = { kind: 'confront', personId: person.id, clue, judged, ...(command.part === undefined ? {} : { part: command.part }) };
       break;
     }
     case 'ask': {

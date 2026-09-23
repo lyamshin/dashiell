@@ -67,8 +67,7 @@ async function click(page, command) {
 function cell(page, surname, tickIndex) {
   return page
     .locator('tr.dgrid-row', { has: page.locator('.dgrid-surname', { hasText: surname }) })
-    .locator('td.dgrid-cell')
-    .nth(tickIndex)
+    .locator(`td.dgrid-cell[data-ticks~="${tickIndex}"]`)
     .locator('button');
 }
 

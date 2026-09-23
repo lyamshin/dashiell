@@ -239,6 +239,14 @@ export interface Clue {
    * dealt with a tier; absent on a no-options case.
    */
   rule?: string;
+  /**
+   * M9 polish: `rule`, one fact at a time, for the confront picker. Each part
+   * is one statement that stands on its own ("Sirkin: the subway kiosk,
+   * 6:00–7:00", "Sirkin was alive until at least 8:00") with the indices of
+   * the facts in `establishes` it states; every fact with words is in exactly
+   * one part.
+   */
+  ruleParts?: import('./logic/lines.js').RulePart[];
   /** M9, testimony only: the person the source was asked about. */
   about?: Id;
 }

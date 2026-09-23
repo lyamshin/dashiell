@@ -437,7 +437,7 @@ export type Scene =
     }
   | { kind: 'examine'; placeId: Id; objectId?: Id; clues: Clue[] }
   /** M9 §3: a fact from the notebook put to somebody, and what came of it. */
-  | { kind: 'confront'; personId: Id; clue: Clue; judged: ConfrontJudgement }
+  | { kind: 'confront'; personId: Id; clue: Clue; judged: ConfrontJudgement; part?: number }
   | { kind: 'nothing'; tag: NothingLine['tag']; slots: Slots };
 
 export interface Stage {

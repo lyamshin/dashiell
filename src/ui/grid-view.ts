@@ -34,10 +34,12 @@ export interface GridUi {
   selected: Selection | null;
   rule: string | null;
   scrollLeft: number;
+  /** M9 polish: the key under the grid, open or folded. */
+  keyOpen: boolean;
 }
 
 export function newGridUi(): GridUi {
-  return { collapsed: new Set(), fixturesOpen: false, selected: null, rule: null, scrollLeft: 0 };
+  return { collapsed: new Set(), fixturesOpen: false, selected: null, rule: null, scrollLeft: 0, keyOpen: false };
 }
 
 export interface GridHandlers {
@@ -118,17 +120,21 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
   head.append(marks, labels);
   // M9: a watcher's count sits on the place's column, under the hours.
   if (grid.counts.length > 0) {
-    const counted = el('tr', { class: 'dgrid-counts' }, el('th', { class: 'dgrid-corner', scope: 'row', text: 'counted' }));
+    const counted = el('tr', { class: 'dgrid-counts' }, el('th', { class: 'dgrid-corner', scope: 'row', text: 'head count', title: 'How many a doorman or a clerk counted, besides the one who works there' }));
     for (const t of grid.ticks) {
       const here = grid.counts.filter((c) => c.tick === t.tick);
       const th = el('th', { class: `dgrid-count${band.has(t.tick) ? ' in-band' : ''}` });
       for (const c of here) {
+        // "1 in TF": how many people the one who works there counted.
+        const place = placeById.get(c.placeId);
+        const words = `${c.count} ${c.count === 1 ? 'person' : 'people'} at ${place?.shortName ?? c.placeId}, besides the one who works there`;
         th.append(
           el('span', {
             class: 'dgrid-countchip',
-            style: `--pc: var(--place-${placeById.get(c.placeId)?.slot ?? 0})`,
-            title: `${placeById.get(c.placeId)?.shortName ?? c.placeId}: ${c.count} besides the one who works there`,
-            text: `${placeById.get(c.placeId)?.abbrev ?? c.placeId} ${c.count}`,
+            style: `--pc: var(--place-${place?.slot ?? 0})`,
+            title: words,
+            'aria-label': words,
+            text: `${c.count} in ${place?.tag ?? c.placeId}`,
           }),
         );
       }
@@ -162,18 +168,100 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
     name.addEventListener('click', () => h.onPerson(row.personId));
     th.append(toggle, name);
     tr.append(th);
-    for (const cell of row.cells) tr.append(cellTd(row, cell, collapsed));
+    // M9 polish: half hours running on that hold nothing but the same "not
+    // there" from the same witness are one strike across them — "not at the
+    // third floor, 6–11:30, Rafferty" — instead of a struck chip a column.
+    const cells = row.cells;
+    for (let i = 0; i < cells.length; ) {
+      const sig = collapsed ? null : strikeSig(row, cells[i] as GridCell);
+      let j = i + 1;
+      if (sig !== null) while (j < cells.length && strikeSig(row, cells[j] as GridCell) === sig) j++;
+      if (sig !== null && j - i >= 2) {
+        tr.append(strikeTd(row, cells.slice(i, j)));
+      } else {
+        tr.append(cellTd(row, cells[i] as GridCell, collapsed));
+        j = i + 1;
+      }
+      i = j;
+    }
     return tr;
+  };
+
+  /** What a cell of nothing but strikes says, or null when it says anything else. */
+  const strikeSig = (row: GridRow, cell: GridCell): string | null => {
+    if (cell.entries.length === 0 || cell.mark || cell.life || cell.conflict) return null;
+    if (cell.entries.some((e) => e.present)) return null;
+    if (ui.selected?.kind === 'cell' && ui.selected.personId === row.personId && ui.selected.tick === cell.tick) return null;
+    const groups = grouped(cell.entries)
+      .map((g) => `${g.placeId}|${g.source}|${g.by.join(',')}`)
+      .sort()
+      .join(';');
+    return `${groups}#${lit(row.personId, cell.tick) ? 1 : 0}`;
+  };
+
+  const strikeTd = (row: GridRow, run: GridCell[]): HTMLElement => {
+    const first = run[0] as GridCell;
+    const last = run[run.length - 1] as GridCell;
+    const from = grid.ticks[first.tick]?.label ?? '';
+    const to = grid.ticks[last.tick]?.label ?? '';
+    const when = `${from}–${to}`;
+    // The notebook's window, where the strike crosses it: the columns are
+    // equal, so it is a share of the strike's width.
+    const inBand = run.map((c) => band.has(c.tick));
+    const a = inBand.indexOf(true);
+    const b = inBand.lastIndexOf(true);
+    const style =
+      a >= 0
+        ? `background: linear-gradient(to right, transparent ${(a / run.length) * 100}%, var(--band) ${(a / run.length) * 100}%, var(--band) ${((b + 1) / run.length) * 100}%, transparent ${((b + 1) / run.length) * 100}%)`
+        : '';
+    const td = el('td', {
+      class: `dgrid-cell dgrid-strikes${first.tick % 2 === 0 ? ' hour' : ''}${lit(row.personId, first.tick) ? ' lit' : ''}`,
+      colspan: String(run.length),
+      'data-ticks': run.map((c) => c.tick).join(' '),
+      ...(style ? { style } : {}),
+    });
+    const groups = grouped(first.entries);
+    const words = groups.map((g) => {
+      const place = placeById.get(g.placeId);
+      const by = g.by.map((id) => nameById.get(id) ?? id).join(' and ');
+      return { g, place, by, full: `not at ${place?.shortName ?? g.placeId}, ${when}${by ? `, ${by}` : ''}` };
+    });
+    const b2 = el('button', {
+      type: 'button',
+      class: 'dgrid-cellbtn dgrid-strikebtn',
+      'aria-label': `${row.name}, ${grid.ticks[first.tick]?.clock ?? ''} to ${grid.ticks[last.tick]?.clock ?? ''}: ${words.map((w) => w.full).join('; ')}`,
+    });
+    for (const w of words) {
+      // Wide enough, the strike says it in full; narrow, the tag and initials.
+      const wide = run.length >= 5;
+      const initials = w.g.by.map((id) => (nameById.get(id) ?? id).charAt(0)).join('');
+      b2.append(
+        el('span', {
+          class: 'dstrike',
+          style: `--pc: var(--place-${w.place?.slot ?? 0})`,
+          title: w.full,
+          // Narrow, the columns above say when: "not TF · R".
+          text: wide ? w.full : `not ${w.place?.tag ?? w.g.placeId}${initials ? ` · ${initials}` : ''}`,
+        }),
+      );
+    }
+    b2.addEventListener('click', () => {
+      ui.selected = { kind: 'cell', personId: row.personId, tick: first.tick };
+      redraw();
+    });
+    td.append(b2);
+    return td;
   };
 
   const cellTd = (row: GridRow, cell: GridCell, collapsed: boolean): HTMLElement => {
     const picked = ui.selected?.kind === 'cell' && ui.selected.personId === row.personId && ui.selected.tick === cell.tick;
     const td = el('td', {
-      class: `dgrid-cell${band.has(cell.tick) ? ' in-band' : ''}${cell.conflict ? ' conflict' : ''}${
+      class: `dgrid-cell${cell.tick % 2 === 0 ? ' hour' : ''}${band.has(cell.tick) ? ' in-band' : ''}${cell.conflict ? ' conflict' : ''}${
         picked ? ' picked' : ''
       }${lit(row.personId, cell.tick) ? ' lit' : ''}${
         cell.entries.length === 0 && !cell.mark && !cell.life ? ' empty' : ''
       }`,
+      'data-ticks': String(cell.tick),
     });
     const b = el('button', {
       type: 'button',
@@ -225,7 +313,7 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
           el(
             'span',
             { class: 'dchip dchip--witness dchip--margin', style: `--pc: var(--place-${place?.slot ?? 0})` },
-            el('span', { class: 'dchip-name', text: `${who} · ${place?.abbrev ?? e.placeId}` }),
+            el('span', { class: 'dchip-name', text: `${who} · ${place?.tag ?? e.placeId}`, title: place?.shortName ?? '' }),
             ...(e.by ? [el('sup', { class: 'dchip-by', text: (nameById.get(e.by) ?? e.by).charAt(0) })] : []),
           ),
         );
@@ -243,7 +331,7 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
       for (const t of grid.ticks) {
         const here = ds.filter((d) => d.tick === t.tick);
         const picked = here.some((d) => ui.selected?.kind === 'desc' && ui.selected.key === d.key);
-        const td = el('td', { class: `dgrid-cell${band.has(t.tick) ? ' in-band' : ''}${picked ? ' picked' : ''}${here.length === 0 ? ' empty' : ''}` });
+        const td = el('td', { class: `dgrid-cell${t.tick % 2 === 0 ? ' hour' : ''}${band.has(t.tick) ? ' in-band' : ''}${picked ? ' picked' : ''}${here.length === 0 ? ' empty' : ''}` });
         if (here.length > 0) {
           const d = here[0] as GridDescription;
           const b = el('button', {
@@ -259,7 +347,7 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
               el(
                 'span',
                 { class: 'dchip dchip--described', style: `--pc: var(--place-${place?.slot ?? 0})` },
-                el('span', { class: 'dchip-name', text: place?.abbrev ?? x.placeId }),
+                el('span', { class: 'dchip-name', text: place?.tag ?? x.placeId, title: place?.shortName ?? '' }),
                 el('sup', { class: 'dchip-by', text: `?${x.by ? (nameById.get(x.by) ?? x.by).charAt(0) : ''}` }),
               ),
             );
@@ -304,14 +392,14 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
     ui.scrollLeft = scroller.scrollLeft;
   });
 
-  const out: HTMLElement[] = [scroller];
+  const out: HTMLElement[] = [placesLine(grid), scroller];
 
   /* ------------------------------------------------------- the detail */
   const detail = detailFor(grid, ui, h, redraw, placeById, nameById);
   if (detail) out.push(detail);
 
   /* ------------------------------------------------------- the legend */
-  out.push(legend(grid));
+  out.push(keyBox(grid, ui, redraw));
 
   /* ------------------------------------------------------ M9: the links */
   if (grid.links.length > 0) {
@@ -417,7 +505,8 @@ function chip(g: Group, places: Map<Id, GridPlace>, names: Map<Id, string>): HTM
     style: `--pc: var(--place-${place?.slot ?? 0})`,
   });
   if (g.source === 'evidence') span.append(el('span', { class: 'dchip-sq', 'aria-hidden': 'true', text: '▪' }));
-  span.append(el('span', { class: 'dchip-name', text: place?.abbrev ?? g.placeId }));
+  span.title = `${g.present ? '' : 'not at '}${place?.shortName ?? g.placeId}${g.by.length > 0 ? `, ${g.by.map((id) => names.get(id) ?? id).join(' and ')}` : ''}`;
+  span.append(el('span', { class: 'dchip-name', text: place?.tag ?? g.placeId }));
   if (g.source === 'linked') {
     span.append(el('sup', { class: 'dchip-by', text: `?${g.by[0] ? (names.get(g.by[0]) ?? g.by[0]).charAt(0) : ''}` }));
   }
@@ -437,7 +526,8 @@ function chip(g: Group, places: Map<Id, GridPlace>, names: Map<Id, string>): HTM
 function pencil(placeId: Id, not: boolean, places: Map<Id, GridPlace>): HTMLElement {
   return el('span', {
     class: `dpencil${not ? ' dpencil--not' : ''}`,
-    text: places.get(placeId)?.abbrev ?? placeId,
+    text: places.get(placeId)?.tag ?? placeId,
+    title: places.get(placeId)?.shortName ?? placeId,
   });
 }
 
@@ -579,7 +669,7 @@ function detailFor(
         style: `--pc: var(--place-${p.slot})`,
         'aria-pressed': on ? 'true' : 'false',
         title: `${kind === 'at' ? 'Was at' : 'Not at'} ${p.shortName}`,
-        text: p.abbrev,
+        text: p.shortName.replace(/^the /i, ''),
       });
       b.addEventListener('click', () => {
         h.onMark(row.personId, sel.tick, { kind, placeId: p.id });
@@ -602,26 +692,46 @@ function detailFor(
   return box;
 }
 
-function legend(grid: GridView): HTMLElement {
-  const box = el('div', { class: 'dgrid-legend' });
-  const places = el('ul', { class: 'dgrid-places' });
+/**
+ * M9 polish: the places, one compact line over the grid — a swatch, the
+ * two-letter tag the cells use, the name — so a tag is read off without
+ * scrolling down to a legend.
+ */
+function placesLine(grid: GridView): HTMLElement {
+  const places = el('ul', { class: 'dgrid-places', 'aria-label': 'The places on the grid' });
   for (const p of grid.places) {
     const li = el('li', { class: `${p.used ? '' : 'unused'}${p.scene ? ' scene' : ''}` });
     li.append(
       el('span', { class: 'dgrid-swatch', style: `--pc: var(--place-${p.slot})`, 'aria-hidden': 'true' }),
-      el('span', { class: 'dgrid-abbr', text: p.abbrev }),
-      ` ${p.shortName}`,
+      el('span', { class: 'dgrid-abbr', text: p.tag }),
+      ` ${p.shortName.replace(/^the /i, '')}`,
     );
     if (p.scene) li.append(el('span', { class: 'dgrid-scene', text: ` — ${p.sceneLabel ?? 'the scene'}` }));
     places.append(li);
   }
-  box.append(places);
+  return places;
+}
 
+/** How a chip is drawn: folded under "Key" until asked for. */
+function keyBox(grid: GridView, ui: GridUi, redraw: () => void): HTMLElement {
+  const box = el('div', { class: 'dgrid-legend' });
+  const toggle = el('button', {
+    type: 'button',
+    class: 'dgrid-keytoggle',
+    'aria-expanded': ui.keyOpen ? 'true' : 'false',
+    text: `${ui.keyOpen ? '▾' : '▸'} Key`,
+  });
+  toggle.addEventListener('click', () => {
+    ui.keyOpen = !ui.keyOpen;
+    redraw();
+  });
+  box.append(toggle);
+  if (!ui.keyOpen) return box;
   const key = el('ul', { class: 'dgrid-key' });
   const sample = (source: GridEntry['source'], present = true, by = ''): HTMLElement => {
     const s = el('span', { class: `dchip dchip--${source}${present ? '' : ' dchip--not'}`, style: '--pc: var(--place-0)' });
     if (source === 'evidence') s.append(el('span', { class: 'dchip-sq', text: '▪' }));
-    s.append(el('span', { class: 'dchip-name', text: 'place' }));
+    s.append(el('span', { class: 'dchip-name', text: 'TF' }));
     if (by) s.append(el('sup', { class: 'dchip-by', text: by }));
     return s;
   };
@@ -630,15 +740,29 @@ function legend(grid: GridView): HTMLElement {
     el('li', {}, sample('witness', true, 'K'), ' seen by K'),
     el('li', {}, sample('evidence'), ' evidence'),
     el('li', {}, sample('witness', false, 'K'), ' not there'),
+    el(
+      'li',
+      {},
+      el('span', { class: 'dstrike dstrike--key', style: '--pc: var(--place-0)', text: 'not TF, 6–8 · K' }),
+      ' not there, half hours running',
+    ),
     ...(grid.flags ? [el('li', {}, el('span', { class: 'dgrid-keybang', text: '!' }), ' the sources disagree')] : []),
-    el('li', {}, el('span', { class: 'dpencil', text: 'place' }), ' your pencil, never a fact'),
+    el('li', {}, el('span', { class: 'dpencil', text: 'TF' }), ' your pencil, never a fact'),
   );
   if (grid.descriptions.length > 0) {
-    key.append(
-      el('li', {}, sample('linked', true, '?K'), ' somebody K did not know; tap to link it to a person'),
-    );
+    key.append(el('li', {}, sample('linked', true, '?K'), ' somebody K did not know; tap to link it to a person'));
   }
   if (grid.margins.length > 0) key.append(el('li', {}, el('span', { class: 'dgrid-anchor', text: '◆' }), ' a sighting that waits for its hour'));
+  if (grid.counts.length > 0) {
+    key.append(
+      el(
+        'li',
+        {},
+        el('span', { class: 'dgrid-countchip dgrid-countchip--key', text: '2 in TF' }),
+        ' a head count there, besides the one who works there',
+      ),
+    );
+  }
   if (grid.window) {
     key.append(el('li', {}, el('span', { class: 'dgrid-keyband' }), ` ${grid.window.label}, as the notebook has it`));
   }
@@ -647,3 +771,4 @@ function legend(grid: GridView): HTMLElement {
   box.append(key);
   return box;
 }
+

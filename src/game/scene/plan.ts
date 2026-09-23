@@ -171,7 +171,7 @@ export type PlanAction =
       self: boolean;
       volunteer: Clue | null;
     }
-  | { kind: 'confront'; personId: Id; clue: Clue; judged: ConfrontJudgement };
+  | { kind: 'confront'; personId: Id; clue: Clue; judged: ConfrontJudgement; part?: number };
 
 export interface PlanInput {
   view: CaseView;
@@ -841,9 +841,13 @@ export function planPage(input: PlanInput): Plan {
     if (kept !== undefined && stops) {
       memory = { ...memory, activities: { ...memory.activities, [action.personId]: { ...kept, stopped: true } } };
     }
-    // What the fact is about, for the close: the first placement it makes.
+    // What the fact is about, for the close: the first placement it makes —
+    // of the part put, when one part of the line was put (M9 polish).
+    const inPart = action.part === undefined ? null : new Set(action.clue.ruleParts?.[action.part]?.facts ?? []);
     const placed = action.clue.establishes.find(
-      (f) => f.kind === 'personAt' || f.kind === 'personNotAt' || f.kind === 'describedAt' || f.kind === 'absentFrom',
+      (f, i) =>
+        (inPart === null || inPart.size === 0 || inPart.has(i)) &&
+        (f.kind === 'personAt' || f.kind === 'personNotAt' || f.kind === 'describedAt' || f.kind === 'absentFrom'),
     );
     const placeId = placed && 'place' in placed ? placed.place : action.judged.claimed?.place;
     const tick =

@@ -204,23 +204,45 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
       const placements = (est.placements.get(p.id) ?? [])
         .slice()
         .sort((a, b) => a.tick - b.tick);
-      const facts: NotebookFact[] = placements.map((pl) => {
+      // M9 polish: half hours running on from one source, at or not at one
+      // place, are one line: "9:00–10:00 PM — not at the third floor (Rafferty)".
+      type Run = { from: Tick; to: Tick; key: string; fact: NotebookFact; present: boolean; placeId: Id; order: number };
+      const runs: Run[] = [];
+      const open = new Map<string, Run>();
+      for (const pl of placements) {
         const clue = view.findableById.get(pl.clueId);
         const source =
           clue && clue.source.type === 'person'
             ? personName(view, clue.source.personId)
             : placeName(view, clue?.source.type === 'place' ? clue.source.placeId : null);
-        return {
-          text: `${clock(pl.tick as Tick)} — ${pl.present ? 'at' : 'not at'} ${placeName(
-            view,
-            pl.placeId,
-          )}`,
-          source,
-          // M9: from Poached up the notebook never flags a contradiction.
-          contradicts: pl.contradicts && verdictsOn(view),
-          clueId: pl.clueId,
+        // M9: from Poached up the notebook never flags a contradiction.
+        const contradicts = pl.contradicts && verdictsOn(view);
+        const key = `${pl.present}|${pl.placeId}|${source}|${contradicts}`;
+        const tick = pl.tick as Tick;
+        const run = open.get(key);
+        if (run && run.to === tick - 1) {
+          run.to = tick;
+          continue;
+        }
+        if (run && run.to === tick) continue;
+        const fresh: Run = {
+          from: tick,
+          to: tick,
+          key,
+          present: pl.present,
+          placeId: pl.placeId,
+          order: runs.length,
+          fact: { text: '', source, contradicts, clueId: pl.clueId },
         };
-      });
+        runs.push(fresh);
+        open.set(key, fresh);
+      }
+      const facts: NotebookFact[] = runs
+        .sort((a, b) => a.from - b.from || a.order - b.order)
+        .map((r) => {
+          const when = r.from === r.to ? clock(r.from) : `${clock(r.from).replace(/ PM$/, '')}–${clock(r.to)}`;
+          return { ...r.fact, text: `${when} — ${r.present ? 'at' : 'not at'} ${placeName(view, r.placeId)}` };
+        });
       const account = state.accounts.includes(p.id) ? claimedAccount(view, p.id) : null;
       // The record (A.1): every clue this person gave up, in the generator's
       // own words, in the order the player got them.

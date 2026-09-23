@@ -34,6 +34,13 @@
 }
 
 table.dgrid {
+  /* M9 polish: every half hour the same width, so a strike across several
+     can shade the notebook's window by a share of its width. */
+  --dg-name: 5.4rem;
+  --dg-col: 2.3rem;
+  --band: color-mix(in srgb, var(--amber) 14%, var(--paper));
+  table-layout: fixed;
+  width: calc(var(--dg-name) + 12 * var(--dg-col));
   border-collapse: separate;
   border-spacing: 0;
   font-size: 0.64rem;
@@ -67,9 +74,9 @@ table.dgrid button {
   background: var(--paper);
   text-align: left;
   border-right: 1px solid var(--rule);
-  width: 5.4rem;
-  min-width: 5.4rem;
-  max-width: 5.4rem;
+  width: var(--dg-name);
+  min-width: var(--dg-name);
+  max-width: var(--dg-name);
 }
 
 .dgrid-corner {
@@ -143,7 +150,7 @@ table.dgrid button {
 .dgrid-tick {
   text-align: center;
   color: var(--ink-faint);
-  min-width: 2.5rem;
+  width: var(--dg-col);
 }
 
 .dgrid-mark {
@@ -188,13 +195,13 @@ table.dgrid button {
 .dgrid-cell {
   position: relative;
   vertical-align: top;
-  min-width: 2.5rem;
+  min-width: 0;
   border-top: 1px solid color-mix(in srgb, var(--rule) 60%, transparent);
   border-left: 1px solid color-mix(in srgb, var(--rule) 45%, transparent);
 }
 
-/* An hour starts on an even tick, which is an even child after the name. */
-.dgrid-row .dgrid-cell:nth-child(even) {
+/* An hour starts on an even tick; a strike across half hours starts where it starts. */
+.dgrid-row .dgrid-cell.hour {
   border-left-color: var(--rule);
 }
 
@@ -356,13 +363,15 @@ tr.collapsed .dgrid-surname {
     margin-right: -2.1rem;
   }
   table.dgrid {
+    --dg-name: 4.1rem;
+    --dg-col: 2rem;
     font-size: 0.58rem;
   }
   .dgrid-name,
   .dgrid-corner {
-    width: 4.1rem;
-    min-width: 4.1rem;
-    max-width: 4.1rem;
+    width: var(--dg-name);
+    min-width: var(--dg-name);
+    max-width: var(--dg-name);
   }
   .dgrid-surname {
     font-size: 0.66rem;
@@ -370,16 +379,14 @@ tr.collapsed .dgrid-surname {
   .dgrid-role {
     font-size: 0.5rem;
   }
-  .dgrid-mark,
-  .dgrid-tick,
   .dgrid-cell {
-    min-width: 1.75rem;
+    min-width: 0;
   }
   .dgrid-cellbtn {
     padding: 2px 1px 3px;
   }
   .dchip {
-    font-size: 0.55rem;
+    font-size: 0.6rem;
     padding: 0 1px 1px;
   }
   .dpencil {
@@ -652,6 +659,7 @@ tr.collapsed .dgrid-surname {
 }
 
 .dgrid-rule {
+  vertical-align: top;
   font: inherit;
   color: var(--ink);
   background: none;

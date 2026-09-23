@@ -7,7 +7,7 @@
 
 import type { Case, Clue, DeductionPath, Fact, Id, Tick } from '../types.js';
 import { TICKS } from '../types.js';
-import { deductionOf, dialsOf, slackFor } from '../shape.js';
+import { deductionOf, dialsOf, logicSlackFor } from '../shape.js';
 import { culpritOf, crimeTicks, placesAt, solve, whyNot } from './solver.js';
 import { confessionRule, problemOf, type ProblemFrame } from './select.js';
 
@@ -107,7 +107,7 @@ export function checkLogic(c: LogicCaseUnderTest): { ok: boolean; failures: stri
   const [lo, hi] = ded.par;
   if (c.par < lo) failures.push(`par ${c.par} is under the floor of ${lo}`);
   if (c.par > hi) failures.push(`par ${c.par} is over the ceiling of ${hi}`);
-  const slack = slackFor(shape, ladder, c.par);
+  const slack = logicSlackFor(shape, ladder, c.par);
   if (c.slack !== slack) failures.push(`slack ${c.slack} is not ${slack}`);
   if (c.budget !== c.par + c.slack) failures.push('budget is not par plus slack');
 
