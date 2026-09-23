@@ -152,7 +152,9 @@ const st = solveHeld(kase, state.found);            // soft accounts in, hypothe
 placesAt(st, personId, tick);                       // the places still possible
 whyNot(st, personId, tick, placeId);                // why a place is out: { rules, depth, hyp } | null
 
-// A confrontation pick: does what is held break the claim? Hard facts only.
+// A confrontation pick: does what is held break the claim? Accounts count where
+// something corroborates them (that is how a chain breaks the culprit's word);
+// pass { soft: false } to count only what others saw and what was found.
 contradicts(kase, state.found, { personId, place: lie.claimed, ticks: lie.ticks });
 // → { yes, rules: the clue ids that do it, depth }
 
@@ -185,6 +187,8 @@ Every innocent's lie has at least two independent ways to break it, so a first c
 - a search needs no lead;
 - each secret branch hangs off a clue that names the one keeping it, and runs head to disqualifier;
 - nothing else carries a lead, and no clue leads more than three ways.
+
+The client-to-scene lead is the one lead that can name nobody (a room is not a person). `test/m9-gen.test.ts` measures lead edges sharing a person without it. The Targets table in `scripts/diagnose-play.ts` counts every edge, including this one.
 
 ## 9. The client
 
