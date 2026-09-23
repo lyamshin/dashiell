@@ -1,0 +1,311 @@
+/*
+ * The weather on the glass (docs/27, src/ui/weather.ts).
+ *
+ * The layer spans the window but sits at z-index -1 inside the spread,
+ * which is its own stacking context: on the paper, under every word and
+ * every button, and it never takes a click. The script cuts it into one
+ * strip per margin. Everything that moves moves on transform or opacity,
+ * which the compositor runs without the main thread.
+ */
+
+:root {
+  --wx-rain: rgba(62, 72, 88, 0.3);
+  --wx-frost: rgba(236, 243, 250, 1);
+  --wx-frost-edge: rgba(120, 145, 170, 0.34);
+  --wx-fog: rgba(250, 250, 248, 0.7);
+  --wx-haze: rgba(250, 250, 248, 0.34);
+  --wx-steam: rgba(255, 255, 255, 0.95);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --wx-rain: rgba(190, 202, 220, 0.2);
+    --wx-frost: rgba(200, 218, 236, 0.3);
+    --wx-frost-edge: rgba(200, 218, 236, 0.08);
+    --wx-fog: rgba(170, 176, 188, 0.13);
+    --wx-haze: rgba(170, 176, 188, 0.07);
+    --wx-steam: rgba(205, 208, 214, 0.2);
+  }
+}
+
+:root[data-theme='dark'] {
+  --wx-rain: rgba(190, 202, 220, 0.2);
+  --wx-frost: rgba(200, 218, 236, 0.3);
+  --wx-frost-edge: rgba(200, 218, 236, 0.08);
+  --wx-fog: rgba(170, 176, 188, 0.13);
+  --wx-haze: rgba(170, 176, 188, 0.07);
+  --wx-steam: rgba(205, 208, 214, 0.2);
+}
+
+/*
+ * The spread is the stacking context the layer lives at the bottom of, and
+ * its containing block. The layer is as wide as the window, centred on the
+ * spread, so on a wide screen it reaches the margins outside the book too;
+ * the spread still clips top and bottom, and only lets the layer out sideways
+ * where `overflow: clip` can say so (without it, the layer stays on the book).
+ *
+ * Not `position: fixed`: a fixed layer is composited over the whole window,
+ * and the text above it would be lifted into a layer of its own and
+ * rasterized a shade differently. An absolute layer cut into margin strips
+ * overlaps no text at all, and every word renders exactly as it did.
+ */
+.spread {
+  isolation: isolate;
+  position: relative;
+}
+
+@supports (overflow: clip) {
+  .spread {
+    overflow-x: visible;
+    overflow-y: clip;
+  }
+}
+
+.weather {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* One strip per margin, clipped to it; the script sets left, width and mask. */
+.wx-strip {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  contain: strict;
+}
+
+/* A window-sized view inside the strip, so every margin shares one weather. */
+.wx-view {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.weather[hidden] {
+  display: none;
+}
+
+.weather * {
+  pointer-events: none;
+}
+
+.weather[data-paused='true'] * {
+  animation-play-state: paused;
+}
+
+/* ------------------------------------------------------------------ rain */
+
+.wx-rain {
+  position: absolute;
+  /* Tall enough, and wide enough, to cover a strip once turned 13 degrees. */
+  top: -25vh;
+  bottom: -25vh;
+  left: -32vh;
+  right: -32vh;
+  transform: rotate(13deg);
+}
+
+.wx-sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--wx-rain);
+  mask-repeat: repeat;
+  -webkit-mask-repeat: repeat;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.wx-sheet--far {
+  top: -420px;
+  mask-size: 180px 420px;
+  -webkit-mask-size: 180px 420px;
+  opacity: 0.6;
+  animation-name: wx-fall-far;
+  animation-duration: 2.1s;
+}
+
+.wx-sheet--near {
+  top: -560px;
+  mask-size: 260px 560px;
+  -webkit-mask-size: 260px 560px;
+  animation-name: wx-fall-near;
+  animation-duration: 1.55s;
+}
+
+@keyframes wx-fall-far {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 420px, 0);
+  }
+}
+
+@keyframes wx-fall-near {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 560px, 0);
+  }
+}
+
+/* ----------------------------------------------------------------- frost */
+
+.wx-corner {
+  position: absolute;
+  width: clamp(140px, 34vmin, 330px);
+  height: clamp(140px, 34vmin, 330px);
+  animation: wx-form 11s cubic-bezier(0.2, 0.55, 0.3, 1) both;
+  /* A strip cut again (a resize) picks up where the frost had got to. */
+  animation-delay: var(--wx-age, 0s);
+}
+
+.wx-corner--tl {
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+}
+.wx-corner--tr {
+  top: 0;
+  right: 0;
+  transform-origin: 100% 0;
+  animation-delay: calc(var(--wx-age, 0s) + 0.8s);
+}
+.wx-corner--bl {
+  bottom: 0;
+  left: 0;
+  transform-origin: 0 100%;
+  animation-delay: calc(var(--wx-age, 0s) + 0.4s);
+}
+.wx-corner--br {
+  bottom: 0;
+  right: 0;
+  transform-origin: 100% 100%;
+  animation-delay: calc(var(--wx-age, 0s) + 1.2s);
+}
+
+.wx-rime {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 0 0, var(--wx-frost-edge), transparent 70%),
+    var(--wx-frost);
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+}
+
+.wx-corner--tr .wx-rime {
+  transform: scaleX(-1);
+}
+.wx-corner--bl .wx-rime {
+  transform: scaleY(-1);
+}
+.wx-corner--br .wx-rime {
+  transform: scale(-1, -1);
+}
+
+@keyframes wx-form {
+  from {
+    opacity: 0;
+    transform: scale(0.45);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ------------------------------------------------------------------- fog */
+
+.wx-haze {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--wx-fog), var(--wx-haze) 55%, var(--wx-haze));
+}
+
+.wx-fog-a,
+.wx-fog-b {
+  position: absolute;
+  inset: -18%;
+  animation: wx-drift 70s ease-in-out infinite alternate;
+  animation-delay: var(--wx-age, 0s);
+}
+
+.wx-fog-a {
+  background:
+    radial-gradient(38% 26% at 12% 30%, var(--wx-fog), transparent 70%),
+    radial-gradient(30% 22% at 88% 62%, var(--wx-fog), transparent 70%),
+    radial-gradient(34% 20% at 20% 86%, var(--wx-fog), transparent 70%);
+}
+
+.wx-fog-b {
+  background:
+    radial-gradient(30% 24% at 86% 20%, var(--wx-fog), transparent 70%),
+    radial-gradient(36% 22% at 10% 58%, var(--wx-fog), transparent 70%),
+    radial-gradient(40% 20% at 80% 92%, var(--wx-fog), transparent 70%);
+  animation-duration: 97s;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes wx-drift {
+  from {
+    transform: translate3d(-5%, 1.5%, 0);
+  }
+  to {
+    transform: translate3d(5%, -1.5%, 0);
+  }
+}
+
+/* ----------------------------------------------------------------- steam */
+
+.wx-wisp {
+  position: absolute;
+  bottom: -70px;
+  height: 180px;
+}
+
+.wx-puff {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(50% 50% at 50% 60%, var(--wx-steam), transparent 100%);
+  opacity: 0;
+}
+
+/* ------------------------------------------------- still, for reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .weather *,
+  .weather *::before,
+  .weather *::after {
+    animation: none !important;
+  }
+  .wx-rain,
+  .wx-wisp {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------ the switch */
+
+.pager .wx-toggle {
+  margin-left: auto;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.pager .wx-toggle:hover,
+.pager .wx-toggle:focus-visible {
+  text-decoration: underline;
+  opacity: 1;
+}
