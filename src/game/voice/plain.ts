@@ -1212,9 +1212,9 @@ export const SELF_VICTIM_QUESTIONS: Record<'suspect' | 'fixture', string[]> = {
 
 /** A fixture with no card for the victim's type, by how well they knew the face. */
 export const SELF_VICTIM_PLAIN: Record<'name' | 'sight' | 'stranger', string[]> = {
-  name: ['I knew {him} to talk to. Not much more than that.', 'To say good evening to. That was all.'],
-  sight: ['By sight. I couldn’t tell you much more.', 'I knew the face. That was all.'],
-  stranger: ['Not to speak to.', 'No. I couldn’t have picked {him} out.'],
+  name: ['I knew {him} to talk to. Not much more than that.', 'To say good evening to. {He} said it back, most evenings.'],
+  sight: ['By sight. I couldn’t tell you much more.', 'I knew the face. I never got as far as the rest of {him}.'],
+  stranger: ['Not to speak to.', 'No. I couldn’t have picked {him} out of a crowd of two.'],
 };
 
 /*

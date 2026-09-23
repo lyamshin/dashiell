@@ -2495,7 +2495,9 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   t.put(
     {
       kind: 'note',
-      text: `Midnight. ${capitalize(place?.name ?? 'the office')}, ${view.kase.neighborhood}.`,
+      // The camp golden: "Midnight. My office was a room at the top of a
+      // walk-up on Mulberry Street…" — his own place, said as his.
+      text: `Midnight. My office was ${place?.name ?? 'the office'}, in ${view.kase.neighborhood}.`,
     },
     // The golden's first paragraph is the hour, the address and what the room
     // is like at that hour, in one breath. So is this one.

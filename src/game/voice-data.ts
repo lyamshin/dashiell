@@ -406,7 +406,7 @@ export const OFFICE_KINDS: { kind: string; names: string[] }[] = [
     names: [
       'an office on the fourth floor of a building off {street}',
       'a back office three flights up in a building off {street}',
-      'a room with my name on the door, in a building off {street}',
+      'an office with my name on the door, three flights up off {street}',
     ],
   },
   {

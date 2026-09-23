@@ -1913,6 +1913,15 @@ function exchange(
 
 /** M11 §A.5: his question, when the client is in the room with others. */
 const RUNDOWN_ASKS = ['Who am I looking at?', 'Who’s who in here?', 'Tell me who’s here.'];
+/**
+ * The camp golden: she offers before he asks, and he gets the arrangement
+ * backwards. `{client}` is her surname.
+ */
+const RUNDOWN_OPENERS: { ask: string; quip: string }[] = [
+  { ask: 'Sit down. I’ll tell you who’s who.', quip: 'That’s what I’m paying you for. Wait. Other way round.' },
+  { ask: 'Sit down. You might as well know who you’re looking at.', quip: 'I usually find out the hard way. Go on.' },
+  { ask: 'Sit. I’ll save you some walking.', quip: 'My feet thank you. Go on.' },
+];
 /** And after it, the look he takes: golden §2's "I looked the room over the way she'd laid it out." */
 const RUNDOWN_LOOKS = [
   'I looked the room over the way {she}’d laid it out.',
@@ -1951,7 +1960,12 @@ function rundownParas(
   const named: Id[] = [];
   const victim = view.victim;
   const him = pronounOf(victim) === 'she' ? 'her' : 'him';
-  out.push({ text: attributed(`“${dealer.random.pick(RUNDOWN_ASKS)}”`), voice: 'exchange' });
+  // Half the time she offers first, and he says it backwards; otherwise he asks.
+  const opener = dealer.random.chance(0.5) ? dealer.random.pick(RUNDOWN_OPENERS) : null;
+  if (opener) {
+    out.push({ text: `“${opener.ask}” ${capitalize(she ? 'she' : 'he')} said.`, voice: 'exchange' });
+    out.push({ text: `“${opener.quip}” I said.`, voice: 'exchange' });
+  } else out.push({ text: attributed(`“${dealer.random.pick(RUNDOWN_ASKS)}”`), voice: 'exchange' });
   const said: string[] = [];
   const stranger: string[] = [];
   for (const r of beat.people) {
@@ -1979,15 +1993,15 @@ function rundownParas(
         break;
       }
       case 'sight':
-        said.push(`${Handle}, I’ve seen ${OUTDOOR_PLACES.has(stage.at) ? 'around here' : 'in here'}. I couldn’t tell you ${his} name.`);
+        said.push(`${Handle} comes ${OUTDOOR_PLACES.has(stage.at) ? 'by here' : 'in here'}. Couldn’t tell you ${his} name.`);
         break;
       default:
         stranger.push(handle);
     }
   }
   // Nobody she can name is said last, together: "The girl two stools down, I don't know at all."
-  if (stranger.length === 1) said.push(`${capitalize(stranger[0] as string)}, I don’t know at all.`);
-  else if (stranger.length > 1) said.push(`${capitalize(stranger.slice(0, -1).join(', '))} and ${stranger[stranger.length - 1] as string}, I don’t know at all.`);
+  if (stranger.length === 1) said.push(`${capitalize(stranger[0] as string)}, I’ve never seen in my life.`);
+  else if (stranger.length > 1) said.push(`${capitalize(stranger.slice(0, -1).join(', '))} and ${stranger[stranger.length - 1] as string}, I’ve never seen in my life.`);
   if (said.length === 0) said.push('Nobody I know.');
   // Who is talking, said once at the first full stop: "The woman with the
   // newspaper is Crowninshield," she said. "The dentist…"

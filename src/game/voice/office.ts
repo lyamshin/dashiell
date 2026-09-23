@@ -328,6 +328,7 @@ export const OFFICE_ASK_POLICE: readonly string[] = [
   'And the police?',
   'What did the police make of it?',
   'What did the precinct do about it?',
+  'I take it the police have been.',
 ];
 
 /** "Why me?", after she has said what the police did. By what they did. */
@@ -348,9 +349,10 @@ export const OFFICE_ASK_START: readonly string[] = [
  * the dead man and that he is dead, and he lets her go on in her own time.
  */
 export const OFFICE_FIRST_BEAT: readonly string[] = [
-  'I let {him} sit before I asked anything.',
-  'I let that sit, and waited for the rest of it.',
-  'I didn’t say anything. {He} wasn’t finished.',
+  'I offered {him} the chair. It’s the good chair, which tells you about the other one.',
+  'I let {him} sit before I asked anything. There is a right way to do this, and I do it about half the time.',
+  'I didn’t say anything. {He} wasn’t finished, and I had nowhere to be but here.',
+  'I let that sit. It was the only thing in the office doing any work.',
 ];
 
 /**
@@ -359,16 +361,16 @@ export const OFFICE_FIRST_BEAT: readonly string[] = [
  * name. By the victim's archetype; `{him}` and `{he}` are the victim's.
  */
 export const VICTIM_CONSEQUENCE: Readonly<Record<string, readonly string[]>> = {
-  'vic-inspector': ['You can imagine how many friends that made {him}.', 'Nobody on the street was sorry to see {him} go by.'],
-  'vic-landlord': ['Nobody loves the one who collects the rent.', 'You can imagine how many friends that made {him}.'],
+  'vic-inspector': ['Nobody on this street is going to send flowers.', 'You can imagine how many friends that made {him}.'],
+  'vic-landlord': ['Nobody loves the one who collects the rent. They pay {him}, which is not the same thing.', 'Nobody on this street is going to send flowers.'],
   'vic-bootlegger': ['A man in that line has customers, not friends.', 'Half the street drank what {he} sold, and the other half wished {he} would stop.'],
-  'vic-heiress': ['People were always nice to {him} to {his} face.', 'Money like that has a lot of friends and no close ones.'],
-  'vic-agent': ['Everybody who wanted work was nice to {him}. Nobody else bothered.', 'You can imagine how many people were waiting on {him}.'],
-  'vic-union-treasurer': ['Men keep an eye on whoever holds the money.', 'You can imagine how many friends that made {him}.'],
-  'vic-pawnbroker': ['Nobody is fond of the one who holds their things.', 'People only came to {him} when they had to.'],
-  'vic-columnist': ['Half the city wanted to be in the column, and the other half wanted to stay out of it.', 'You can imagine how many friends that made {him}.'],
+  'vic-heiress': ['People were always nice to {him} to {his} face. It was a lovely face for it.', 'Money like that has a lot of friends and no close ones.'],
+  'vic-agent': ['Everybody who wanted work was nice to {him}. Nobody else bothered.', 'Half the chorus lines in town owed {him} a smile, and paid it through their teeth.'],
+  'vic-union-treasurer': ['Men keep an eye on whoever holds the money. Both eyes, mostly.', 'You can imagine how many friends that made {him}.'],
+  'vic-pawnbroker': ['Nobody is fond of the one who holds their things.', 'People only came to {him} when they had to, and left wearing less.'],
+  'vic-columnist': ['Half the city wanted to be in the column, and the other half wanted to stay out of it.', 'Nobody on this street is going to send flowers, unless they want a mention.'],
   'vic-bondsman': ['People only came to {him} on the worst night of their lives.', 'Nobody thanks the one who holds the bail.'],
-  'vic-wholesaler': ['{He} was retired, but {he} never stopped counting.', 'People on the street still called {him} by {his} old trade.'],
+  'vic-wholesaler': ['{He} was retired, but {he} never stopped counting.', 'People on the street still called {him} by {his} old trade, and {he} still answered.'],
 };
 
 /** One turn of what she says, and the question that opens it. */
