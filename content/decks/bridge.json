@@ -732,5 +732,555 @@
     },
     "motifs": [],
     "status": "tuned"
+  },
+  {
+    "id": "brg-a01",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. If anybody had kept track of {subject} tonight, it was {who}, and {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a02",
+    "deck": "bridge",
+    "text": "{subject} was {tie}, and I wanted to know where {subject} had been tonight. {who} could tell me, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a03",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. The person to ask about {subject} was {who}, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a04",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. I meant to find {who} at {where} and ask where {subject} had been.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a05",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. I had a question about {subject}, and {who} at {where} was the one to put it to.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a06",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} would have something to say about {subject}, and {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a07",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. I had nothing yet on where {subject} had been tonight. {who} might, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a08",
+    "deck": "bridge",
+    "text": "The name that came next was {subject}. {subject} was {tie}, and {who} at {where} would know where {subject} had been.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a09",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. It was {who} I needed to see about {subject}, and {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a10",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. To account for {subject}’s night I needed {who}, and {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a11",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} would know something about {subject}’s evening, and {who} could be found at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a12",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. Where {subject} had been tonight was a question for {who}, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a13",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. Next I wanted {who}, at {where}, and whatever {who} knew about {subject}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a14",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} was at {where}, and {who} was the one who could tell me about {subject}’s night.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a15",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. If I wanted {subject}’s evening from somebody else, {who} was the one, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a16",
+    "deck": "bridge",
+    "text": "{subject} was {tie}, and nobody had told me yet where {subject} was tonight. {who} could, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a17",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. I would go to {where} and ask {who} about {subject}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a18",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} would know where {subject} had been, and {where} was where I would find {who}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a19",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. Before I believed anything about {subject}, I wanted to hear from {who}, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a20",
+    "deck": "bridge",
+    "text": "{who} could tell me where {subject} had been. I would find {who} at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a21",
+    "deck": "bridge",
+    "text": "The next thing was {subject}’s evening, and {who} had some of it. {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a22",
+    "deck": "bridge",
+    "text": "{tie} was where the evening started to matter. {who}, at {where}, might tell me about {subject}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a23",
+    "deck": "bridge",
+    "text": "The question was {subject} around {tie}, and it was for {who}. I would find {who} at {where}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a24",
+    "deck": "bridge",
+    "text": "{who} might know something about {subject} around {tie}. {who} was at {where}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a25",
+    "deck": "bridge",
+    "text": "Around {tie} was the hour I needed filled in. {who} could tell me about {subject}, and {who} was at {where}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a26",
+    "deck": "bridge",
+    "text": "Nobody had told me about {subject} around {tie} yet. I meant to ask {who}, at {where}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a27",
+    "deck": "bridge",
+    "text": "{who} hadn’t given me an evening yet, and {who} was at {where}. The first thing I asked would bring it.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a28",
+    "deck": "bridge",
+    "text": "I had nothing from {who} about where {who} had been. That would come with any question, and {who} was at {where}.",
+    "tags": {
+      "tie": "account"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a29",
+    "deck": "bridge",
+    "text": "{who} could tell me where {subject} had been tonight, and {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a30",
+    "deck": "bridge",
+    "text": "For {subject}, the one to ask was {who}. I would find {who} at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a31",
+    "deck": "bridge",
+    "text": "I still didn’t know where {subject} had been. {who} might, and {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a32",
+    "deck": "bridge",
+    "text": "{subject} again. This time the question was for {who}, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a33",
+    "deck": "bridge",
+    "text": "{who} might have seen something of {subject}’s evening. I meant to find out, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a34",
+    "deck": "bridge",
+    "text": "Where {subject} had been was the question now. {who} was the one to put it to, and {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a35",
+    "deck": "bridge",
+    "text": "I wanted {subject}’s evening from somebody besides {subject}. {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a36",
+    "deck": "bridge",
+    "text": "{who}, at {where}, was the next one to ask about {subject}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a37",
+    "deck": "bridge",
+    "text": "The next thing I needed was {subject}’s night, and {who} at {where} was the one to ask.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a38",
+    "deck": "bridge",
+    "text": "{subject} was still a question. {who} could answer some of it, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a39",
+    "deck": "bridge",
+    "text": "{who} knew something about {subject}, or ought to. I would go to {where} and see.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a40",
+    "deck": "bridge",
+    "text": "It came back to {subject}. {who} was at {where}, and {who} might say where {subject} had been.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a41",
+    "deck": "bridge",
+    "text": "{subject} was still a question, and {who} was the one to ask.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a42",
+    "deck": "bridge",
+    "text": "I wanted to hear about {subject} from {who}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a43",
+    "deck": "bridge",
+    "text": "{who} could tell me something about {subject}’s evening.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a44",
+    "deck": "bridge",
+    "text": "The next question was where {subject} had been, and it was for {who}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a45",
+    "deck": "bridge",
+    "text": "{who} was at {where}. If anybody could tell me about {subject} around {tie}, it was {who}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a46",
+    "deck": "bridge",
+    "text": "Around {tie}, and {subject}: that was the question, and I meant to take it to {who} at {where}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a47",
+    "deck": "bridge",
+    "text": "{who} might remember {subject} around {tie}. I would find {who} at {where}.",
+    "tags": {
+      "tie": "time"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a48",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} was the one to tell me where {subject} had been.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a49",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. I needed somebody who had seen {subject} tonight, and {who} might have.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a50",
+    "deck": "bridge",
+    "text": "{subject} was {tie}, and {who} could tell me about {subject}’s evening.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a51",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} was next, with a question about {subject}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a52",
+    "deck": "bridge",
+    "text": "{who} might have seen {subject} tonight. I meant to ask.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a53",
+    "deck": "bridge",
+    "text": "Where {subject} had been was still open. {who} might close some of it.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a54",
+    "deck": "bridge",
+    "text": "I had a question about {subject}, and it was for {who}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a55",
+    "deck": "bridge",
+    "text": "{subject}’s evening still had gaps in it. {who} might fill one.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]

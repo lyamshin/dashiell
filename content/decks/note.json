@@ -448,5 +448,98 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "not-e001",
+    "deck": "note",
+    "text": "A sighting says where, not why. I had the where.",
+    "tags": {
+      "family": "movements",
+      "band": "play",
+      "polarity": "seen"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-e002",
+    "deck": "note",
+    "text": "It was somebody seeing {him}, which is worth more than {him} saying so.",
+    "tags": {
+      "family": "movements",
+      "band": "play",
+      "polarity": "seen"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-e003",
+    "deck": "note",
+    "text": "It was one pair of eyes on one person, and it went in beside the others.",
+    "tags": {
+      "family": "movements",
+      "band": "play",
+      "polarity": "seen"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-e004",
+    "deck": "note",
+    "text": "It was worth knowing. What it was worth, I couldn’t say yet.",
+    "tags": {
+      "family": "thing",
+      "band": "play"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-e005",
+    "deck": "note",
+    "text": "It was the kind of thing that matters later or not at all.",
+    "tags": {
+      "family": "thing",
+      "band": "play"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-e006",
+    "deck": "note",
+    "text": "It was one more piece. I didn’t know yet where it went.",
+    "tags": {
+      "family": "any",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-e007",
+    "deck": "note",
+    "text": "It put somebody somewhere at an hour. On its own that is a small thing.",
+    "tags": {
+      "family": "movements",
+      "band": "play",
+      "polarity": "seen"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-e008",
+    "deck": "note",
+    "text": "Somebody had seen {him}. That was a better kind of fact than most I had.",
+    "tags": {
+      "family": "movements",
+      "band": "play",
+      "polarity": "seen"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]
