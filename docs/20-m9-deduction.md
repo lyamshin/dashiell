@@ -275,3 +275,13 @@ The last test is the one that matters. When a player who only follows the marks 
    - the lie rule in the title page and help;
    - new decks for confrontations and testimony. Content comes from a parallel Sonnet pass into drafts, as in M8.
 3. **Measure** with `scripts/diagnose-play.ts`, render seeds 3, 7 and 12, and present them.
+
+## Page bugs for the engine half to fix
+
+These came from reading Night Hone 1 (PR #30):
+
+- "I had Dandridge's name before I had the face." is printed while Dandridge is standing in the room (seed 12, page 2). The line has to check who is present.
+- A counterman's activity cards are specific to a pool hall ("racking cues") but get dealt at the pawnshop. Gate activities by place template, not just place kind.
+- The generator can repeat the same noise sentence several times on one search (seed 21).
+- A carried question and the dossier fact can state the same relation twice ("Lindemann owed Dandridge money." / "He has owed Dandridge money since '23…").
+- Crowd strangers aren't named in the text but still appear by surname on the ask buttons. Under "Who knows whom," a stranger's button should use a description until the detective learns the name.
