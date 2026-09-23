@@ -1,0 +1,2697 @@
+[
+  {
+    "id": "pam-001",
+    "deck": "place-ambient",
+    "text": "Down in the basement the boiler knocked twice and went quiet, and the radiator in the front room answered with a long, thin hiss.",
+    "tags": {
+      "place": "res-apartment",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-002",
+    "deck": "place-ambient",
+    "text": "The wallpaper was a pattern of small brown baskets, faded almost to nothing in a square where the window let the streetlight in.",
+    "tags": {
+      "place": "res-apartment",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-003",
+    "deck": "place-ambient",
+    "text": "Four floors of cooking had soaked into the stairwell walls: onions, cabbage, and something fried in lard.",
+    "tags": {
+      "place": "res-apartment",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-004",
+    "deck": "place-ambient",
+    "text": "In the kitchen a tap dripped into a chipped enamel sink, one drop every few seconds, onto a rust mark the size of a thumbnail.",
+    "tags": {
+      "place": "res-apartment",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-005",
+    "deck": "place-ambient",
+    "text": "Four floors down, the avenue still carried the odd taxi, and its tires drummed on the cobbles in the stretch outside the building.",
+    "tags": {
+      "place": "res-apartment",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-006",
+    "deck": "place-ambient",
+    "text": "Behind the plaster the steam pipes ticked one by one as the steam went out of them, and below the window the street was still to the far corner.",
+    "tags": {
+      "place": "res-apartment",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-007",
+    "deck": "place-ambient",
+    "text": "Grey light came in off the air shaft and showed the cracks in the ceiling plaster, and somewhere toward the river a truck ground its gears.",
+    "tags": {
+      "place": "res-apartment",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-008",
+    "deck": "place-ambient",
+    "text": "The parlor ceiling kept its old plaster medallion, a ring of acanthus leaves with a brass chain dropping from the centre.",
+    "tags": {
+      "place": "res-brownstone",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-009",
+    "deck": "place-ambient",
+    "text": "Tall windows faced the street, set in frames deep enough to sit in, their wood painted over more than once.",
+    "tags": {
+      "place": "res-brownstone",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-010",
+    "deck": "place-ambient",
+    "text": "A marble mantel took up one wall, veined in grey, and the coal grate in it had long ago been bricked up and plastered.",
+    "tags": {
+      "place": "res-brownstone",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-011",
+    "deck": "place-ambient",
+    "text": "Now and then the house made small sounds of its own: a joist easing over the hall, a pipe knocking behind the wainscot.",
+    "tags": {
+      "place": "res-brownstone",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-012",
+    "deck": "place-ambient",
+    "text": "Across the street the stoops ran down the block in an even line, each with its iron railing, under streetlamps spaced every few houses.",
+    "tags": {
+      "place": "res-brownstone",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-013",
+    "deck": "place-ambient",
+    "text": "Every radiator in the house had gone silent, and through the ceiling came the faint tick of a clock on the floor above.",
+    "tags": {
+      "place": "res-brownstone",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-014",
+    "deck": "place-ambient",
+    "text": "Pale light found the stained glass over the front door and put a smear of red and amber down the length of the hall.",
+    "tags": {
+      "place": "res-brownstone",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-015",
+    "deck": "place-ambient",
+    "text": "The drugstore's smells came up through the floorboards: vanilla and cherry syrup, and under them something sharper, camphor or carbolic.",
+    "tags": {
+      "place": "res-walkup",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-016",
+    "deck": "place-ambient",
+    "text": "Bare pine stairs climbed from the street, worn pale down the middle, with a rubber tread tacked to every third one.",
+    "tags": {
+      "place": "res-walkup",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-017",
+    "deck": "place-ambient",
+    "text": "Out the back window a fire escape zigzagged down the rear wall into a yard with a clothes pole and a single ailanthus tree.",
+    "tags": {
+      "place": "res-walkup",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-018",
+    "deck": "place-ambient",
+    "text": "Its ceiling was pressed tin, painted cream, with one corner gone brown with rust where a vent pipe ran up through to the roof.",
+    "tags": {
+      "place": "res-walkup",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-019",
+    "deck": "place-ambient",
+    "text": "Down below, the drugstore's sign threw a green glow on the pavement, and its hum came faintly up through the floor.",
+    "tags": {
+      "place": "res-walkup",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-020",
+    "deck": "place-ambient",
+    "text": "Somewhere in the drugstore a refrigerator motor cut in, ran for a minute, and cut out again, the only thing in the building making a sound.",
+    "tags": {
+      "place": "res-walkup",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-021",
+    "deck": "place-ambient",
+    "text": "First light showed in the front window, and at the corner a delivery truck let its tailgate fall with a bang that carried up three flights.",
+    "tags": {
+      "place": "res-walkup",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-022",
+    "deck": "place-ambient",
+    "text": "The hall carpet ran the length of the floor, red gone brown, patterned with a vine that repeated every few yards.",
+    "tags": {
+      "place": "res-suite",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-023",
+    "deck": "place-ambient",
+    "text": "An elevator shaft ran up beside the room, and its cables hummed faintly in the wall even while the car sat idle somewhere below.",
+    "tags": {
+      "place": "res-suite",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-024",
+    "deck": "place-ambient",
+    "text": "A transom over the door let in a thin bar of light from the hall, and a steam pipe rose straight through the corner to the floor above.",
+    "tags": {
+      "place": "res-suite",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-025",
+    "deck": "place-ambient",
+    "text": "Hotel wallpaper, the same on every floor, cream with a gold stripe, had lifted at the seams where the radiator dried it out.",
+    "tags": {
+      "place": "res-suite",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-026",
+    "deck": "place-ambient",
+    "text": "Out the window, the hotel's sign lit the fire escape red, and the street below still had a taxi or two nosing along it.",
+    "tags": {
+      "place": "res-suite",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-027",
+    "deck": "place-ambient",
+    "text": "The steam had been turned down, and the radiator ticked as it cooled, a dry sound in the plaster behind it.",
+    "tags": {
+      "place": "res-suite",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-028",
+    "deck": "place-ambient",
+    "text": "Across the airshaft the next roof went from black to grey, and pigeons started moving along its ledge in short hops.",
+    "tags": {
+      "place": "res-suite",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-029",
+    "deck": "place-ambient",
+    "text": "The back house was older than the building in front of it, with walls a foot thick and low ceilings of rough plank.",
+    "tags": {
+      "place": "res-backhouse",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-030",
+    "deck": "place-ambient",
+    "text": "From its window the only view was the rear of the front house, four stories of brick and a ladder of fire escapes.",
+    "tags": {
+      "place": "res-backhouse",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-031",
+    "deck": "place-ambient",
+    "text": "Outside in the little yard stood a pump with an iron handle painted green, left from the days before the city ran water back here.",
+    "tags": {
+      "place": "res-backhouse",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-032",
+    "deck": "place-ambient",
+    "text": "Its floors sloped toward the lane, and the boards were so old they had worn into ridges around every knot.",
+    "tags": {
+      "place": "res-backhouse",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-033",
+    "deck": "place-ambient",
+    "text": "Over the roofs of the front house, the avenue's signs made a dull band of light along the top of the wall.",
+    "tags": {
+      "place": "res-backhouse",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-034",
+    "deck": "place-ambient",
+    "text": "Water ran somewhere in the old pipes under the yard, a slow gurgle, and after it there was no sound back here at all.",
+    "tags": {
+      "place": "res-backhouse",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-035",
+    "deck": "place-ambient",
+    "text": "Daylight reached the yard late, coming down past the front house, and a sparrow set up a racket on the pump handle.",
+    "tags": {
+      "place": "res-backhouse",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-036",
+    "deck": "place-ambient",
+    "text": "Water tanks stood on iron legs at either end of the roof, their wooden staves banded with hoops of rusted steel.",
+    "tags": {
+      "place": "rooftop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-037",
+    "deck": "place-ambient",
+    "text": "Underfoot the tar was patched in a dozen places, and a low brick parapet ran round the edge, knee high and crumbling at the corners.",
+    "tags": {
+      "place": "rooftop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-038",
+    "deck": "place-ambient",
+    "text": "A pigeon coop of lath and chicken wire sat against the chimney stack, and the birds inside shifted and muttered on their perches.",
+    "tags": {
+      "place": "rooftop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-039",
+    "deck": "place-ambient",
+    "text": "Chimney pots stood up in rows across the neighbouring roofs, and between them clotheslines ran from pole to pole.",
+    "tags": {
+      "place": "rooftop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-040",
+    "deck": "place-ambient",
+    "text": "Below the parapet the avenue signs threw red and white up the fronts of the buildings, and the traffic noise came up thin and far off.",
+    "tags": {
+      "place": "rooftop",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-041",
+    "deck": "place-ambient",
+    "text": "From up here the whole block lay dark below the parapet, and the only sound was one of the tanks dripping into its pan.",
+    "tags": {
+      "place": "rooftop",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-042",
+    "deck": "place-ambient",
+    "text": "Over the river the sky had gone pale, and the water tanks stood out black against it while pigeons circled off the coop.",
+    "tags": {
+      "place": "rooftop",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-043",
+    "deck": "place-ambient",
+    "text": "The delicatessen's back step gave onto the alley, and the air behind it smelled of brine, smoked fish, and sour pickles.",
+    "tags": {
+      "place": "back-alley",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-044",
+    "deck": "place-ambient",
+    "text": "Ash cans lined one wall, dented tin with the lids chained on, and a rat went along the gutter between them.",
+    "tags": {
+      "place": "back-alley",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-045",
+    "deck": "place-ambient",
+    "text": "Fire escapes climbed both walls, and their iron landings threw ladder shadows down across the brick paving.",
+    "tags": {
+      "place": "back-alley",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-046",
+    "deck": "place-ambient",
+    "text": "By the delicatessen's step stood crates of pickle jars, and a grease barrel beside them had its lid wired down.",
+    "tags": {
+      "place": "back-alley",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-047",
+    "deck": "place-ambient",
+    "text": "At the mouth of the alley the street was still bright, and a taxi went by across the gap without slowing.",
+    "tags": {
+      "place": "back-alley",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-048",
+    "deck": "place-ambient",
+    "text": "A cat sat on the lid of an ash can and watched the alley, and high on one of the fire escapes a radio played low behind a window.",
+    "tags": {
+      "place": "back-alley",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-049",
+    "deck": "place-ambient",
+    "text": "Morning came down between the walls grey and slow, and out front a truck backed up to the delicatessen with its motor grumbling.",
+    "tags": {
+      "place": "back-alley",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-050",
+    "deck": "place-ambient",
+    "text": "The tailor's pressing had left its smell in the stair: hot wool, scorched cotton, and steam.",
+    "tags": {
+      "place": "office-over-tailor",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-051",
+    "deck": "place-ambient",
+    "text": "A panel of frosted glass was set in the office door, and the radiator under the window was painted silver and knocked when the steam came up.",
+    "tags": {
+      "place": "office-over-tailor",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-052",
+    "deck": "place-ambient",
+    "text": "A calendar from a coal merchant hung by the window, and below it the plaster had cracked in a long line down to the baseboard.",
+    "tags": {
+      "place": "office-over-tailor",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-053",
+    "deck": "place-ambient",
+    "text": "Outside, the tailor's sign hung from its iron bracket over the pavement, a pair of shears painted gold on a black board.",
+    "tags": {
+      "place": "office-over-tailor",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-054",
+    "deck": "place-ambient",
+    "text": "Across the street a shop sign buzzed and flickered, and its light came through the window in a blue stripe across the floorboards.",
+    "tags": {
+      "place": "office-over-tailor",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-055",
+    "deck": "place-ambient",
+    "text": "With the radiator finished knocking, the only sound in the building was a faucet dripping into a sink in the washroom down the hall.",
+    "tags": {
+      "place": "office-over-tailor",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-056",
+    "deck": "place-ambient",
+    "text": "Dawn came grey through the frosted glass, and down in the street a truck rattled over the cobbles toward the market.",
+    "tags": {
+      "place": "office-over-tailor",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-057",
+    "deck": "place-ambient",
+    "text": "The shed smelled of tar and hemp and river water, and under the corrugated roof the rafters were white with gull droppings.",
+    "tags": {
+      "place": "pier-shed",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-058",
+    "deck": "place-ambient",
+    "text": "Coils of heavy hawser lay along the stringpiece, and iron bollards stood at intervals, worn bright where the lines had run.",
+    "tags": {
+      "place": "pier-shed",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-059",
+    "deck": "place-ambient",
+    "text": "Under the planks the river slapped at the pilings, and the whole pier gave a slow creak whenever the tide pulled against it.",
+    "tags": {
+      "place": "pier-shed",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-060",
+    "deck": "place-ambient",
+    "text": "Crates were stacked to the rafters along the back, stencilled with the names of foreign ports, and a cargo hook hung from its chain overhead.",
+    "tags": {
+      "place": "pier-shed",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-061",
+    "deck": "place-ambient",
+    "text": "A tug's lamp slid slowly downstream past the end of the pier, and its wash came in against the pilings a minute later.",
+    "tags": {
+      "place": "pier-shed",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-062",
+    "deck": "place-ambient",
+    "text": "The tide had turned, and the river sucked and slapped under the stringpiece, loud beneath the shed roof with no other sound to cover it.",
+    "tags": {
+      "place": "pier-shed",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-063",
+    "deck": "place-ambient",
+    "text": "Under the edge of the shed roof the water had gone pale, and gulls had started walking the stringpiece.",
+    "tags": {
+      "place": "pier-shed",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-064",
+    "deck": "place-ambient",
+    "text": "Clotheslines crossed the yard in rows from pole to pole, hung with wooden clothespins gone grey with age.",
+    "tags": {
+      "place": "laundry-yard",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-065",
+    "deck": "place-ambient",
+    "text": "Packed dirt made the ground, with a drain in the middle, and a smell of lye soap and starch came out through the laundry's back wall.",
+    "tags": {
+      "place": "laundry-yard",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-066",
+    "deck": "place-ambient",
+    "text": "A boiler vent stuck out of the laundry wall at head height, streaked white with scale, and the brick around it was stained dark.",
+    "tags": {
+      "place": "laundry-yard",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-067",
+    "deck": "place-ambient",
+    "text": "Wooden washtubs leaned against the fence, their staves bleached almost white, beside an iron wringer with a crank handle.",
+    "tags": {
+      "place": "laundry-yard",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-068",
+    "deck": "place-ambient",
+    "text": "Behind the laundry wall the boiler still ticked, and the vent gave off a last faint smell of soap into the yard.",
+    "tags": {
+      "place": "laundry-yard",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-069",
+    "deck": "place-ambient",
+    "text": "Under the lines the yard was dark to the fence, and nothing made a sound but the drain in the middle, gurgling now and then.",
+    "tags": {
+      "place": "laundry-yard",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-070",
+    "deck": "place-ambient",
+    "text": "As the sky over the fence went pale, the laundry's boiler fire started up inside with a roar that shook the vent pipe.",
+    "tags": {
+      "place": "laundry-yard",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-071",
+    "deck": "place-ambient",
+    "text": "Bare boards made the stairs up, with a banister loose in its posts, and the landing smelled of kerosene and floor soap.",
+    "tags": {
+      "place": "walkup-flat",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-072",
+    "deck": "place-ambient",
+    "text": "Every door on the third-floor landing had a number painted on it and nothing else, and the paint was chipped to the wood.",
+    "tags": {
+      "place": "walkup-flat",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-073",
+    "deck": "place-ambient",
+    "text": "Its one window looked onto the backs of the tenements behind, a grid of fire escapes hung with bedding and washlines.",
+    "tags": {
+      "place": "walkup-flat",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-074",
+    "deck": "place-ambient",
+    "text": "A gas ring and a small sink shared one wall, and the gas pipe ran up the plaster in plain sight, painted over the same tan as the wall.",
+    "tags": {
+      "place": "walkup-flat",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-075",
+    "deck": "place-ambient",
+    "text": "Across the air shaft a radio played dance music low behind a drawn shade, a band going round and round the same tune.",
+    "tags": {
+      "place": "walkup-flat",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-076",
+    "deck": "place-ambient",
+    "text": "A pipe in the wall knocked now and then, and otherwise the third floor had gone silent all the way down to the street door.",
+    "tags": {
+      "place": "walkup-flat",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-077",
+    "deck": "place-ambient",
+    "text": "Early grey came through the window over the rear tenements, and the pigeons on the fire escape opposite were out on the rail.",
+    "tags": {
+      "place": "walkup-flat",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-078",
+    "deck": "place-ambient",
+    "text": "Marble ran underfoot in black and white squares, and a bank of brass mailboxes along one wall had been polished until the numbers wore faint.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-079",
+    "deck": "place-ambient",
+    "text": "A tall mirror in a gilt frame hung opposite the entrance, and a rubber mat inside the doors had a single initial worked into it.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-080",
+    "deck": "place-ambient",
+    "text": "The elevator gate was brass latticework, and above it a half-moon dial with an arrow showed which floor the car was on.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-081",
+    "deck": "place-ambient",
+    "text": "Floor wax and brass polish were what the vestibule smelled of, and a radiator behind a grille of pierced brass hissed under the mirror.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-082",
+    "deck": "place-ambient",
+    "text": "Through the glass of the street doors the avenue's signs showed red and white, and the marble squares took a faint wash of their colour.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-083",
+    "deck": "place-ambient",
+    "text": "An elevator motor high up the shaft hummed for a moment and stopped, and the vestibule's radiator had cooled to an occasional tick.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-084",
+    "deck": "place-ambient",
+    "text": "Grey daylight came through the street doors and lay across the marble, and the mailboxes lost their shine in it.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-085",
+    "deck": "place-ambient",
+    "text": "The room looked onto an air shaft, and across it, close enough to touch with a broom handle, stood another building's windowless brick.",
+    "tags": {
+      "place": "rooming-house-room",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-086",
+    "deck": "place-ambient",
+    "text": "A card of house rules was tacked to the back of the door, lettered by hand, with the price of a bath and the hours of the kitchen.",
+    "tags": {
+      "place": "rooming-house-room",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-087",
+    "deck": "place-ambient",
+    "text": "New wallpaper had been hung over old, and at the seams the older pattern showed through, small roses under large ferns.",
+    "tags": {
+      "place": "rooming-house-room",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-088",
+    "deck": "place-ambient",
+    "text": "A brown water stain spread across one corner of the ceiling, under a bathroom on the floor above.",
+    "tags": {
+      "place": "rooming-house-room",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-089",
+    "deck": "place-ambient",
+    "text": "Down the hall a toilet tank hissed without ever quite shutting off, and a radiator somewhere in the house knocked twice.",
+    "tags": {
+      "place": "rooming-house-room",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-090",
+    "deck": "place-ambient",
+    "text": "Out on the landing the stair creaked once as the old wood settled, and after that there was only the tick of the radiator cooling.",
+    "tags": {
+      "place": "rooming-house-room",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-091",
+    "deck": "place-ambient",
+    "text": "Grey came down the air shaft, just enough to show the roses in the wallpaper, and from the kitchen below rose the smell of coffee.",
+    "tags": {
+      "place": "rooming-house-room",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-092",
+    "deck": "place-ambient",
+    "text": "A brass rail ran along the foot of the bar at ankle height, and the floor under it was scattered with sawdust.",
+    "tags": {
+      "place": "dolans-bar",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-093",
+    "deck": "place-ambient",
+    "text": "Behind the bar the mirror had gone cloudy at the edges, and the tap handles stood in a row in front of it, black and white porcelain.",
+    "tags": {
+      "place": "dolans-bar",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-094",
+    "deck": "place-ambient",
+    "text": "Over the lunch counter hung a framed picture of a racehorse, and beside it a jar of pickled eggs sat on the wood.",
+    "tags": {
+      "place": "dolans-bar",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-095",
+    "deck": "place-ambient",
+    "text": "Beer, sawdust, and the onions on the lunch counter were what the place smelled of, and a beer sign in the window buzzed in red script.",
+    "tags": {
+      "place": "dolans-bar",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-096",
+    "deck": "place-ambient",
+    "text": "A taxi's horn sounded twice in the street, and under the bar the beer coils gurgled as the lines settled.",
+    "tags": {
+      "place": "dolans-bar",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-097",
+    "deck": "place-ambient",
+    "text": "The clock over the door ticked against a tap dripping into the trough under the bar, and neither sound hurried.",
+    "tags": {
+      "place": "dolans-bar",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-098",
+    "deck": "place-ambient",
+    "text": "Daylight came in past the painted lettering on the front window, and it made the tile floor look older than it had under the bulbs.",
+    "tags": {
+      "place": "dolans-bar",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-099",
+    "deck": "place-ambient",
+    "text": "The ceiling was low and crossed with the hat shop's pipes, and a string of coloured bulbs ran along the bar beneath them.",
+    "tags": {
+      "place": "speakeasy",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-100",
+    "deck": "place-ambient",
+    "text": "Brick walls had been whitewashed once and gone yellow, and the air carried coal smoke from the furnace room next door.",
+    "tags": {
+      "place": "speakeasy",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-101",
+    "deck": "place-ambient",
+    "text": "A slot was cut in the door at eye height, with an iron cover on a slide, and the stair down to it was six steps of worn stone.",
+    "tags": {
+      "place": "speakeasy",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-102",
+    "deck": "place-ambient",
+    "text": "Behind the bar, clean glasses stood in rows under a mirror whose silvering had gone, spotted black in the corners.",
+    "tags": {
+      "place": "speakeasy",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-103",
+    "deck": "place-ambient",
+    "text": "The coloured bulbs over the bar gave the room a red and green cast, and the furnace next door thumped as the stoker fed it.",
+    "tags": {
+      "place": "speakeasy",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-104",
+    "deck": "place-ambient",
+    "text": "A drain in the wall gurgled and went quiet, and overhead the hat shop's floor gave a single long creak as the building settled.",
+    "tags": {
+      "place": "speakeasy",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-105",
+    "deck": "place-ambient",
+    "text": "No daylight got down this far, but the smell of the bakery two doors along came in through the vent, sweet and yeasty.",
+    "tags": {
+      "place": "speakeasy",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-106",
+    "deck": "place-ambient",
+    "text": "Red carpet ran from the revolving door to the elevators, worn to the backing down the middle, held at the steps by brass rods.",
+    "tags": {
+      "place": "hotel-lobby",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-107",
+    "deck": "place-ambient",
+    "text": "Pigeonholes filled the wall behind the desk, one for every room, with a small brass number under each.",
+    "tags": {
+      "place": "hotel-lobby",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-108",
+    "deck": "place-ambient",
+    "text": "Marble columns held up a ceiling of gilded plaster, and years of cigar smoke had darkened the rosettes nearest the lamps.",
+    "tags": {
+      "place": "hotel-lobby",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-109",
+    "deck": "place-ambient",
+    "text": "A cigar counter stood by the elevators under a glass top, and the lobby smelled of floor polish and the steam from the radiators.",
+    "tags": {
+      "place": "hotel-lobby",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-110",
+    "deck": "place-ambient",
+    "text": "Behind a leather settee a radiator hissed, and through the front windows the avenue's signs threw red and gold across the carpet.",
+    "tags": {
+      "place": "hotel-lobby",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-111",
+    "deck": "place-ambient",
+    "text": "Over the desk the lobby clock ticked, loud against all that marble, and somewhere under the floor a boiler gave a long, low groan.",
+    "tags": {
+      "place": "hotel-lobby",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-112",
+    "deck": "place-ambient",
+    "text": "Dawn made the gilt on the ceiling look cheap as it came through the tall front windows, and a truck pulled in at the curb outside.",
+    "tags": {
+      "place": "hotel-lobby",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-113",
+    "deck": "place-ambient",
+    "text": "The stand was a wooden box with a corrugated tin roof and a wire strung across its front, with magazines clipped along it under a single bulb.",
+    "tags": {
+      "place": "corner-newsstand",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-114",
+    "deck": "place-ambient",
+    "text": "Chewing gum and cigars sat in a glass case under the counter, and along the side hung racks of detective magazines and movie monthlies.",
+    "tags": {
+      "place": "corner-newsstand",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-115",
+    "deck": "place-ambient",
+    "text": "Behind the stand rose a lamppost at the curb, and a fire hydrant stood beside it, painted red and chipped down to the iron.",
+    "tags": {
+      "place": "corner-newsstand",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-116",
+    "deck": "place-ambient",
+    "text": "A subway grating ran along the curb beside the stand, and warm air came up through it with a smell of iron and grease.",
+    "tags": {
+      "place": "corner-newsstand",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-117",
+    "deck": "place-ambient",
+    "text": "Above the crossing the traffic signal clicked from green to red, and the stand's bulb hummed on its wire over the magazine covers.",
+    "tags": {
+      "place": "corner-newsstand",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-118",
+    "deck": "place-ambient",
+    "text": "The traffic light on the corner went on changing, red to green and back, and its click was the loudest sound at the crossing.",
+    "tags": {
+      "place": "corner-newsstand",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-119",
+    "deck": "place-ambient",
+    "text": "Up the avenue the light went pale block by block, and a street-cleaning truck went by along the gutter, its brushes turning, spraying water at the curb.",
+    "tags": {
+      "place": "corner-newsstand",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-120",
+    "deck": "place-ambient",
+    "text": "A wall of little glass doors filled one side of the room, each with a slot and a knob, and behind them sat pie and sandwiches on white plates.",
+    "tags": {
+      "place": "automat",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-121",
+    "deck": "place-ambient",
+    "text": "Coffee came from brass spouts shaped into dolphins' heads, and the whole room smelled of it, with baked beans underneath.",
+    "tags": {
+      "place": "automat",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-122",
+    "deck": "place-ambient",
+    "text": "Marble topped the tables, the floor was small white hexagonal tile, and every surface in the place had been rubbed to a shine.",
+    "tags": {
+      "place": "automat",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-123",
+    "deck": "place-ambient",
+    "text": "Chrome and glass ran everywhere, and behind the wall of compartments the steam tables gave off a smell of creamed spinach.",
+    "tags": {
+      "place": "automat",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-124",
+    "deck": "place-ambient",
+    "text": "Under the ceiling lights the chrome of the coffee urns shone, and the steam tables behind the wall hissed now and then.",
+    "tags": {
+      "place": "automat",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-125",
+    "deck": "place-ambient",
+    "text": "A refrigerator motor ran somewhere behind the wall of little doors, a steady drone under the ticking of a clock over the entrance.",
+    "tags": {
+      "place": "automat",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-126",
+    "deck": "place-ambient",
+    "text": "Grey from the street mixed with the white of the ceiling lights, and the coffee smell had turned fresh.",
+    "tags": {
+      "place": "automat",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-127",
+    "deck": "place-ambient",
+    "text": "The lobby carpet was a pattern of red and gold scrolls, and gilt plaster cherubs looked down from the corners of the ceiling.",
+    "tags": {
+      "place": "movie-house",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-128",
+    "deck": "place-ambient",
+    "text": "Frames along the lobby walls held posters for coming attractions, painted faces two feet high over lettering in red and yellow.",
+    "tags": {
+      "place": "movie-house",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-129",
+    "deck": "place-ambient",
+    "text": "Popcorn and stale cigarette smoke hung in the auditorium, and the heavy velvet curtain over the screen had faded along its folds.",
+    "tags": {
+      "place": "movie-house",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-130",
+    "deck": "place-ambient",
+    "text": "Red exit signs glowed at the ends of the aisles, and the seats ran down toward the stage in long curved rows of worn plush.",
+    "tags": {
+      "place": "movie-house",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-131",
+    "deck": "place-ambient",
+    "text": "Up in the projection booth a fan turned in the wall, and the smell of warm film and hot carbon came down the booth stair.",
+    "tags": {
+      "place": "movie-house",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-132",
+    "deck": "place-ambient",
+    "text": "Plaster and gilt ticked and creaked as the big auditorium lost its warmth, and each small sound carried up to the balcony rail.",
+    "tags": {
+      "place": "movie-house",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-133",
+    "deck": "place-ambient",
+    "text": "A line of grey showed around the edges of the lobby doors, and a truck stopped under the marquee outside and idled.",
+    "tags": {
+      "place": "movie-house",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-134",
+    "deck": "place-ambient",
+    "text": "A mirror ball hung from the middle of the ceiling, and the maple floor under it had been waxed to a hard shine.",
+    "tags": {
+      "place": "dance-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-135",
+    "deck": "place-ambient",
+    "text": "At the far end stood the bandstand, with music stands in rows, their fronts painted with a lyre in gold.",
+    "tags": {
+      "place": "dance-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-136",
+    "deck": "place-ambient",
+    "text": "Crepe streamers hung from the balcony rail, and the rail itself had been painted gold, peeling now at the posts.",
+    "tags": {
+      "place": "dance-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-137",
+    "deck": "place-ambient",
+    "text": "Floor wax, talcum, and stale perfume filled the hall, and the ceiling was painted dark blue with gold stars.",
+    "tags": {
+      "place": "dance-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-138",
+    "deck": "place-ambient",
+    "text": "A radiator hissed under the bandstand, and in the mirror ball's little squares the room showed a hundred times over.",
+    "tags": {
+      "place": "dance-hall",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-139",
+    "deck": "place-ambient",
+    "text": "Now and then the big floor gave a creak as the boards settled, and the tall windows along one side showed only the room's own reflection.",
+    "tags": {
+      "place": "dance-hall",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-140",
+    "deck": "place-ambient",
+    "text": "Early light came in the tall windows and fell across the dance floor, showing every scuff in the wax.",
+    "tags": {
+      "place": "dance-hall",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-141",
+    "deck": "place-ambient",
+    "text": "The soda fountain ran along one side, marble counter and nickel taps, and the air smelled of chocolate syrup and orange phosphate.",
+    "tags": {
+      "place": "drugstore",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-142",
+    "deck": "place-ambient",
+    "text": "Show cards were propped along the mirror behind the fountain, lettered by hand in red and blue: sodas, malteds, egg creams.",
+    "tags": {
+      "place": "drugstore",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-143",
+    "deck": "place-ambient",
+    "text": "In the window, two tall glass globes of coloured water, one red and one green, stood on pedestals over a display of toothbrushes and talcum tins.",
+    "tags": {
+      "place": "drugstore",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-144",
+    "deck": "place-ambient",
+    "text": "A weighing scale stood by the door with a round mirror in its front, and the floor was small black and white tiles, worn grey by the fountain stools.",
+    "tags": {
+      "place": "drugstore",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-145",
+    "deck": "place-ambient",
+    "text": "A ceiling fan turned slowly over the fountain, and the drink cooler behind the counter shuddered each time its motor cut in.",
+    "tags": {
+      "place": "drugstore",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-146",
+    "deck": "place-ambient",
+    "text": "Behind the prescription counter a small radio played dance music very low, and the syrup pumps at the fountain gave off their sweet smell.",
+    "tags": {
+      "place": "drugstore",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-147",
+    "deck": "place-ambient",
+    "text": "Past the coloured globes in the window the first light came in faint, and it threw a little red and green across the tiles.",
+    "tags": {
+      "place": "drugstore",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-148",
+    "deck": "place-ambient",
+    "text": "A line was painted along the curb for the cabs, and the paint had worn through to concrete where the front wheels always stopped.",
+    "tags": {
+      "place": "cab-stand",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-149",
+    "deck": "place-ambient",
+    "text": "Above the stand the theatre's marquee ran out over the pavement, its underside studded with rows of bulbs.",
+    "tags": {
+      "place": "cab-stand",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-150",
+    "deck": "place-ambient",
+    "text": "Exhaust and hot radiators were what the curb smelled of, and the cabs sat nose to tail with their roof lights showing.",
+    "tags": {
+      "place": "cab-stand",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-151",
+    "deck": "place-ambient",
+    "text": "Brass stanchions stood along the pavement for the theatre's lines, and a signpost at the front of the stand read CABS in white lettering.",
+    "tags": {
+      "place": "cab-stand",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-152",
+    "deck": "place-ambient",
+    "text": "The first cab in line had its motor idling, and its meter flag stood up, white, in the light from the marquee.",
+    "tags": {
+      "place": "cab-stand",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-153",
+    "deck": "place-ambient",
+    "text": "Along the stand the parked motors had gone quiet one by one, and the gutter carried the smell of gasoline down to the corner drain.",
+    "tags": {
+      "place": "cab-stand",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-154",
+    "deck": "place-ambient",
+    "text": "Grey daylight crept up the street under the marquee, and a produce truck went past the stand heading for the markets.",
+    "tags": {
+      "place": "cab-stand",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-155",
+    "deck": "place-ambient",
+    "text": "Each tread was worn into a shallow dip at the middle, and the banister had been rubbed down to bare wood along its whole length.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-156",
+    "deck": "place-ambient",
+    "text": "Every landing had its own smell: garlic on the second, boiled cabbage on the third, and on the fourth, kerosene.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-157",
+    "deck": "place-ambient",
+    "text": "Brown paint covered the walls to shoulder height and green above, and the green had flaked away in patches the size of a hand.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-158",
+    "deck": "place-ambient",
+    "text": "At the top a skylight of wired glass capped the stairwell, and from the bottom the stairs could be seen winding all the way up to it.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-159",
+    "deck": "place-ambient",
+    "text": "Behind one door on the second landing a radio played a dance band, and a bare bulb on the landing above buzzed on its wire.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-160",
+    "deck": "place-ambient",
+    "text": "Water pipes along the stairwell wall knocked as something drained through them from the top floor, and then the stairs went silent.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-161",
+    "deck": "place-ambient",
+    "text": "Through the skylight came the first grey, and it showed the dip in every tread, one after another, all the way to the bottom.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-162",
+    "deck": "place-ambient",
+    "text": "Green-shaded lamps hung low over the tables, and under them the cloth was a hard, even green, marked with chalk dust at the corners.",
+    "tags": {
+      "place": "pool-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-163",
+    "deck": "place-ambient",
+    "text": "Cue racks lined the walls, and strings of scoring beads hung on wires overhead, stretched across the room from wall to wall.",
+    "tags": {
+      "place": "pool-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-164",
+    "deck": "place-ambient",
+    "text": "The pool hall smelled of talcum, cigar smoke, and the linseed oil used on the cues.",
+    "tags": {
+      "place": "pool-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-165",
+    "deck": "place-ambient",
+    "text": "A slate by the counter carried a chalked list of the house rules, and a brass spittoon stood beside every other table.",
+    "tags": {
+      "place": "pool-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-166",
+    "deck": "place-ambient",
+    "text": "Pressed tin overhead had gone brown with smoke, and an exhaust fan high in the rear wall turned slowly, pulling the haze toward it.",
+    "tags": {
+      "place": "pool-hall",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-167",
+    "deck": "place-ambient",
+    "text": "Below street level no sound came in from outside, and the only noise was a pipe dripping into a bucket behind the counter.",
+    "tags": {
+      "place": "pool-hall",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-168",
+    "deck": "place-ambient",
+    "text": "Pale light reached the half-windows high in the front wall, at pavement level, and showed the smoke still hanging over the tables.",
+    "tags": {
+      "place": "pool-hall",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-169",
+    "deck": "place-ambient",
+    "text": "Clocks covered one wall of the back room, a dozen or more, each ticking at its own pace and none of them agreeing.",
+    "tags": {
+      "place": "pawnshop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-170",
+    "deck": "place-ambient",
+    "text": "Musical instruments hung from hooks in the ceiling: a trumpet, two banjos, a saxophone gone green at the joints.",
+    "tags": {
+      "place": "pawnshop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-171",
+    "deck": "place-ambient",
+    "text": "Mothballs, brass polish, and machine oil were what the back room smelled of, from the sewing machines stacked against the far wall.",
+    "tags": {
+      "place": "pawnshop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-172",
+    "deck": "place-ambient",
+    "text": "Shelves ran floor to ceiling, packed with radios and cameras, and a stuffed owl under a glass dome sat on the top one.",
+    "tags": {
+      "place": "pawnshop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-173",
+    "deck": "place-ambient",
+    "text": "One of the radios on the shelves played dance music low, and its dial glowed amber among the dark faces of the others.",
+    "tags": {
+      "place": "pawnshop",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-174",
+    "deck": "place-ambient",
+    "text": "A tailor's dummy stood in the corner in a half-finished jacket, and the refrigerator in the shop next door hummed through the wall.",
+    "tags": {
+      "place": "pawnshop",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-175",
+    "deck": "place-ambient",
+    "text": "A barred window high in the back wall let in a square of grey, and it fell across the shelves, catching the brass of a tuba.",
+    "tags": {
+      "place": "pawnshop",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-176",
+    "deck": "place-ambient",
+    "text": "The room smelled of peanut oil, soy, and ginger, and under it came the starch and steam of the laundry below.",
+    "tags": {
+      "place": "chop-suey",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-177",
+    "deck": "place-ambient",
+    "text": "Red and gold lettering ran across the front windows, and lanterns of red silk hung from the ceiling on thin chains.",
+    "tags": {
+      "place": "chop-suey",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-178",
+    "deck": "place-ambient",
+    "text": "A calendar from a grocer hung by the kitchen door with a tiger on it, and under it a fish tank bubbled in the corner.",
+    "tags": {
+      "place": "chop-suey",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-179",
+    "deck": "place-ambient",
+    "text": "Oilcloth covered the tables, white with a red border, and a kitchen fan in the back wall turned with a steady rattle.",
+    "tags": {
+      "place": "chop-suey",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-180",
+    "deck": "place-ambient",
+    "text": "Behind the swinging door the kitchen range still roared, and the smell of frying onions came through with every turn of the fan.",
+    "tags": {
+      "place": "chop-suey",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-181",
+    "deck": "place-ambient",
+    "text": "Down through the floor came the tick of the laundry's pipes cooling, and in the corner the fish tank's pump hummed on and on.",
+    "tags": {
+      "place": "chop-suey",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-182",
+    "deck": "place-ambient",
+    "text": "Through the red lettering on the windows the sky showed grey, and steam began to rise again through the floorboards from the laundry's first wash.",
+    "tags": {
+      "place": "chop-suey",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-183",
+    "deck": "place-ambient",
+    "text": "A horsehair sofa stood against the wall under a framed sampler, and lace covers were pinned over its arms and back.",
+    "tags": {
+      "place": "boarding-parlor",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-184",
+    "deck": "place-ambient",
+    "text": "The parlour smelled of furniture polish and of the cabbage boiled earlier at the back of the house.",
+    "tags": {
+      "place": "boarding-parlor",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-185",
+    "deck": "place-ambient",
+    "text": "A glass dome of wax fruit sat on the mantelpiece beside a black marble clock with gilt columns.",
+    "tags": {
+      "place": "boarding-parlor",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-186",
+    "deck": "place-ambient",
+    "text": "Its ceiling fixture had been gas once and was wired for electric light now, and the old pipe still stood out from the plaster, painted over.",
+    "tags": {
+      "place": "boarding-parlor",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-187",
+    "deck": "place-ambient",
+    "text": "A radiator under the bay window hissed and knocked, and through the lace curtains the streetlamp outside made a pattern on the carpet.",
+    "tags": {
+      "place": "boarding-parlor",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-188",
+    "deck": "place-ambient",
+    "text": "Under the wallpaper the old lath and plaster ticked and shifted, and out in the hall the brass rods of the stair runner caught the streetlamp.",
+    "tags": {
+      "place": "boarding-parlor",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-189",
+    "deck": "place-ambient",
+    "text": "The lace at the bay window went grey with the first light, and down the hall the smell of coffee and frying bacon began to come from the kitchen.",
+    "tags": {
+      "place": "boarding-parlor",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-190",
+    "deck": "place-ambient",
+    "text": "Three chairs of white porcelain and red leather faced a long mirror, and the mirror on the back wall gave them back again, row on row.",
+    "tags": {
+      "place": "barber-shop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-191",
+    "deck": "place-ambient",
+    "text": "Bay rum and talcum were the shop's smells, with a sharp note of witch hazel from the counter.",
+    "tags": {
+      "place": "barber-shop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-192",
+    "deck": "place-ambient",
+    "text": "A tall jar of blue disinfectant held a stand of combs, and beside it sat a nickel towel steamer with a hinged lid.",
+    "tags": {
+      "place": "barber-shop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-193",
+    "deck": "place-ambient",
+    "text": "In the window the striped pole turned slowly in its glass case, and its motor gave a faint whine through the wall.",
+    "tags": {
+      "place": "barber-shop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-194",
+    "deck": "place-ambient",
+    "text": "The streetlamp outside laid the shop's window lettering backward across the linoleum, and a radiator under the window ticked as the steam came up.",
+    "tags": {
+      "place": "barber-shop",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-195",
+    "deck": "place-ambient",
+    "text": "A tap at the shampoo basin dripped into the porcelain, slow and even, and the mirrors held the dark of the street outside.",
+    "tags": {
+      "place": "barber-shop",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-196",
+    "deck": "place-ambient",
+    "text": "Grey came in over the lettering on the window and found the chrome of the chairs, and a delivery van stopped at the curb with its motor running.",
+    "tags": {
+      "place": "barber-shop",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-197",
+    "deck": "place-ambient",
+    "text": "Oil stains covered the concrete floor in overlapping rings, and the air was thick with gasoline, rubber, and exhaust.",
+    "tags": {
+      "place": "hotel-garage",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-198",
+    "deck": "place-ambient",
+    "text": "A grease pit ran down the middle of the bay, lined with brick and black with old oil, with a work lamp hanging over it on a hook.",
+    "tags": {
+      "place": "hotel-garage",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-199",
+    "deck": "place-ambient",
+    "text": "A red gas pump stood by the entrance with a glass globe on top, and an air hose hung in loops on a peg beside it.",
+    "tags": {
+      "place": "hotel-garage",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-200",
+    "deck": "place-ambient",
+    "text": "Tires hung on pegs along the back wall, and the ramp to the upper level curved up past a painted sign that said SLOW.",
+    "tags": {
+      "place": "hotel-garage",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-201",
+    "deck": "place-ambient",
+    "text": "An engine somewhere along the row ticked as it cooled, and the compressor in the corner cut in with a thump and a long hiss.",
+    "tags": {
+      "place": "hotel-garage",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-202",
+    "deck": "place-ambient",
+    "text": "Long rows of hoods and fenders shone faintly under the hanging bulbs, and the compressor held its pressure without a sound.",
+    "tags": {
+      "place": "hotel-garage",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-203",
+    "deck": "place-ambient",
+    "text": "Daylight showed in a strip above the big rolling door, and a truck downshifted outside with a clash of gears.",
+    "tags": {
+      "place": "hotel-garage",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-204",
+    "deck": "place-ambient",
+    "text": "The platform was planks laid across iron girders, with gaps between them wide enough to see the street two stories down.",
+    "tags": {
+      "place": "el-platform",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-205",
+    "deck": "place-ambient",
+    "text": "Riveted iron columns held up a wooden canopy over the platform, painted a green that had flaked to rust at every joint.",
+    "tags": {
+      "place": "el-platform",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-206",
+    "deck": "place-ambient",
+    "text": "A gum machine with a little mirror on its front was bolted to a column, and an enamel station sign hung above it.",
+    "tags": {
+      "place": "el-platform",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-207",
+    "deck": "place-ambient",
+    "text": "From the platform the view ran straight into second-floor windows across the street, a row of shades and curtains a few yards off.",
+    "tags": {
+      "place": "el-platform",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-208",
+    "deck": "place-ambient",
+    "text": "Turnstiles of brass and wood stood in a row by the change booth, and a bulb in a wire cage hung over them, buzzing.",
+    "tags": {
+      "place": "el-platform",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-209",
+    "deck": "place-ambient",
+    "text": "The rails ran off in both directions, silver under the signal lamps, and the iron under the platform gave a small tick now and then.",
+    "tags": {
+      "place": "el-platform",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-210",
+    "deck": "place-ambient",
+    "text": "Pale sky showed between the canopy and the rooftops, and below, a truck rolled along between the columns, loud in all that iron.",
+    "tags": {
+      "place": "el-platform",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-211",
+    "deck": "place-ambient",
+    "text": "The benches were green slats on iron legs cast into lion's paws, and the arms had lost their paint to grey wood.",
+    "tags": {
+      "place": "square-benches",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-212",
+    "deck": "place-ambient",
+    "text": "Plane trees stood behind the benches, their bark peeling in patches of grey and cream, and the gravel path in front was mixed with cinders.",
+    "tags": {
+      "place": "square-benches",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-213",
+    "deck": "place-ambient",
+    "text": "A drinking fountain of green bronze stood at the end of the row, and the basin under its spout was stained with verdigris.",
+    "tags": {
+      "place": "square-benches",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-214",
+    "deck": "place-ambient",
+    "text": "Iron hoops edged the grass along the path, knee high, and pigeons worked the gravel between the benches for crumbs.",
+    "tags": {
+      "place": "square-benches",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-215",
+    "deck": "place-ambient",
+    "text": "The nearest lamp stood on an iron post past the last bench, and beyond its circle the paths went off dark between the trees.",
+    "tags": {
+      "place": "square-benches",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-216",
+    "deck": "place-ambient",
+    "text": "A granite monument stood in the middle of the square on a stepped base, and from the benches only its outline showed against the lamps beyond.",
+    "tags": {
+      "place": "square-benches",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-217",
+    "deck": "place-ambient",
+    "text": "Between the plane trees the light turned pale, and sparrows started up in the branches over the benches, loud in the square.",
+    "tags": {
+      "place": "square-benches",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-218",
+    "deck": "place-ambient",
+    "text": "The slip was a wooden apron sloping down to the water between two rows of pilings, black with tar and scraped pale by the ferries' hulls.",
+    "tags": {
+      "place": "ferry-slip",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-219",
+    "deck": "place-ambient",
+    "text": "Heavy chains ran from the hinged ramp up to counterweights in iron towers on either side, and they creaked whenever the river lifted the float.",
+    "tags": {
+      "place": "ferry-slip",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-220",
+    "deck": "place-ambient",
+    "text": "Tar, coal smoke, and brackish water were the smells down here, and the river sucked at the pilings under the apron.",
+    "tags": {
+      "place": "ferry-slip",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-221",
+    "deck": "place-ambient",
+    "text": "At the head of the slip stood the ferry house, a wooden building with a clock in its gable and benches behind its windows.",
+    "tags": {
+      "place": "ferry-slip",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-222",
+    "deck": "place-ambient",
+    "text": "Across the river the far shore showed as a line of lights along the water, broken wherever the piers ran out.",
+    "tags": {
+      "place": "ferry-slip",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-223",
+    "deck": "place-ambient",
+    "text": "The float bumped against the pilings with a slow, heavy knock, over and over, and the river ran past the slip black and quick.",
+    "tags": {
+      "place": "ferry-slip",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-224",
+    "deck": "place-ambient",
+    "text": "Pale light spread over the water from the east, and gulls sat along the tops of the pilings facing into it.",
+    "tags": {
+      "place": "ferry-slip",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-225",
+    "deck": "place-ambient",
+    "text": "The kiosk was iron and glass, with a peaked roof of cast iron and a stair going down under it into a tiled passage.",
+    "tags": {
+      "place": "subway-kiosk",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-226",
+    "deck": "place-ambient",
+    "text": "Warm air came up the stair from below, smelling of iron dust, grease, and the creosote on the ties.",
+    "tags": {
+      "place": "subway-kiosk",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-227",
+    "deck": "place-ambient",
+    "text": "White tile lined the stairwell walls below street level, with a border of blue and a mosaic plaque at the landing.",
+    "tags": {
+      "place": "subway-kiosk",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-228",
+    "deck": "place-ambient",
+    "text": "Brass handrails ran down both sides of the stair, and an enamel sign at the top said SUBWAY in white on dark green.",
+    "tags": {
+      "place": "subway-kiosk",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-229",
+    "deck": "place-ambient",
+    "text": "Two iron lamp posts flanked the kiosk, each with a round glass globe, and their light went a few steps down the stair and stopped.",
+    "tags": {
+      "place": "subway-kiosk",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-230",
+    "deck": "place-ambient",
+    "text": "Down the stair the tiled passage ran off under bare bulbs, and the only sound coming up from it was a drip somewhere out of sight.",
+    "tags": {
+      "place": "subway-kiosk",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-231",
+    "deck": "place-ambient",
+    "text": "Grey light lay on the glass panels of the kiosk, and across the intersection a bakery van was making its first stop.",
+    "tags": {
+      "place": "subway-kiosk",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-232",
+    "deck": "place-ambient",
+    "text": "Votive candles burned in rows of red glass cups on an iron stand, and the air was heavy with wax and old incense.",
+    "tags": {
+      "place": "side-chapel",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-233",
+    "deck": "place-ambient",
+    "text": "A plaster saint stood in a niche over the small altar, painted in blue and gold, one hand raised.",
+    "tags": {
+      "place": "side-chapel",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-234",
+    "deck": "place-ambient",
+    "text": "A kneeling rail of dark oak ran across the front, its cushion worn through in two places to the horsehair underneath.",
+    "tags": {
+      "place": "side-chapel",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-235",
+    "deck": "place-ambient",
+    "text": "A marble font for holy water stood by the door, and the walls above the wainscot were painted a pale blue with gilt borders.",
+    "tags": {
+      "place": "side-chapel",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-236",
+    "deck": "place-ambient",
+    "text": "The candle flames in their red cups stood straight and still, and the stand under them was crusted with years of dripped wax.",
+    "tags": {
+      "place": "side-chapel",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-237",
+    "deck": "place-ambient",
+    "text": "A candle guttered in its cup and went out with a small hiss, and the smell of hot wax rose off the stand.",
+    "tags": {
+      "place": "side-chapel",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-238",
+    "deck": "place-ambient",
+    "text": "The stained glass window began to show its colours, and it put blue and red on the stone floor in front of the altar rail.",
+    "tags": {
+      "place": "side-chapel",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-239",
+    "deck": "place-ambient",
+    "text": "The hall smelled of bread from the bakery below, and the floorboards were warm from the ovens.",
+    "tags": {
+      "place": "union-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-240",
+    "deck": "place-ambient",
+    "text": "A framed charter hung behind the lectern, and beside it a painted banner of the local, gold fringe on red silk, with two clasped hands.",
+    "tags": {
+      "place": "union-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-241",
+    "deck": "place-ambient",
+    "text": "One long room made up the hall, with a low stage at the far end, a flag in a stand, and a coffee urn on a trestle table.",
+    "tags": {
+      "place": "union-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-242",
+    "deck": "place-ambient",
+    "text": "Tall windows along the street side had their lower panes painted over, and the upper panes showed the tops of the buildings opposite.",
+    "tags": {
+      "place": "union-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-243",
+    "deck": "place-ambient",
+    "text": "By the stage a radiator hissed, and the smell of the bakery's last batch still hung under the high plaster ceiling.",
+    "tags": {
+      "place": "union-hall",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-244",
+    "deck": "place-ambient",
+    "text": "Down below, the bakery's mixing machine started with a grind and a thump, and the floor of the hall shook faintly under it.",
+    "tags": {
+      "place": "union-hall",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "pam-245",
+    "deck": "place-ambient",
+    "text": "Light came in pale over the painted-out lower panes, and the smell of fresh bread came up through the boards thick and warm.",
+    "tags": {
+      "place": "union-hall",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

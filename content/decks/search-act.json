@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "sac-001",
+    "deck": "search-act",
+    "text": "I went along the walls first, the baseboards and the shelves, then the table and the chairs around it. After that I did the kitchen, the sink and the cupboards, and came back to the middle of the room last.",
+    "tags": {
+      "place": "res-apartment"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-002",
+    "deck": "search-act",
+    "text": "I took the front room first, low to high: under the furniture, along the sill, across the tops of the shelves. Then I did the bedroom the same way and finished in the kitchen by the sink.",
+    "tags": {
+      "place": "res-apartment"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-003",
+    "deck": "search-act",
+    "text": "I stood in the doorway until I had the whole place in my head, then went through it one corner at a time. The closet came last, the coat hooks and the floor and the shelf above.",
+    "tags": {
+      "place": "res-apartment"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-004",
+    "deck": "search-act",
+    "text": "I got down on my knees and looked under everything that stood on legs, then stood up and looked on top of everything tall. I went through the kitchen drawers and ended at the closet.",
+    "tags": {
+      "place": "res-apartment"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-005",
+    "deck": "search-act",
+    "text": "I did the parlor first, the mantel and the grate, the bookcase, the space behind the sofa. Then I went back through the connecting doors to the bedroom and finished at the wardrobe.",
+    "tags": {
+      "place": "res-brownstone"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-006",
+    "deck": "search-act",
+    "text": "The rooms ran front to back, so I went front to back with them. I looked along the mantel, down the side of every cushion, under the sideboard, and last at the hearth.",
+    "tags": {
+      "place": "res-brownstone"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-007",
+    "deck": "search-act",
+    "text": "I began at the front windows and worked toward the rear of the house, taking each piece of furniture as I came to it. I looked behind the pictures, along the wainscot, and ended in the back hall.",
+    "tags": {
+      "place": "res-brownstone"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-008",
+    "deck": "search-act",
+    "text": "I went around the parlor once along the walls and once through the middle. Then I took the back room, the washstand and the wardrobe, and came out into the hall by the stairs.",
+    "tags": {
+      "place": "res-brownstone"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-009",
+    "deck": "search-act",
+    "text": "The place was small enough to do twice. I did it once by the walls, the shelf over the stove, the icebox, the hooks by the door, and once by the floor, on my knees.",
+    "tags": {
+      "place": "res-walkup"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-010",
+    "deck": "search-act",
+    "text": "I went through the kitchen end first, cupboard by cupboard, then the sitting end with its one good chair and its table. Last I got down and looked along the floorboards by the back stair.",
+    "tags": {
+      "place": "res-walkup"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-011",
+    "deck": "search-act",
+    "text": "I took it from the landing in: the coat hooks, the little table, the shelves by the stove, then the bed and the space behind the dresser. I finished at the window over the drugstore sign.",
+    "tags": {
+      "place": "res-walkup"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-012",
+    "deck": "search-act",
+    "text": "Three rooms in a row, so I walked them in a row. In each one I did the corners, the shelves, and the floor under anything with legs, and I stopped in the last one, at the dresser.",
+    "tags": {
+      "place": "res-walkup"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-013",
+    "deck": "search-act",
+    "text": "I started at the door and worked in, along the writing desk, the bookcase, the sideboard, then through to the bedroom and the bathroom beyond it. I ended at the closet by the hall.",
+    "tags": {
+      "place": "res-suite"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-014",
+    "deck": "search-act",
+    "text": "I took the sitting room in a slow circle, desk and sideboard and the low shelves under the window. Then I went through the bedroom, dresser and wardrobe and nightstand, and did the bathroom cabinet last.",
+    "tags": {
+      "place": "res-suite"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-015",
+    "deck": "search-act",
+    "text": "Hotel rooms all have the same hiding places, so I went to those first: the top of the wardrobe, the underside of each drawer, behind the radiator, the tank of the toilet. Then I went over the rest.",
+    "tags": {
+      "place": "res-suite"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-016",
+    "deck": "search-act",
+    "text": "I went over the carpet first, a strip at a time from the hall door to the far wall. Then I did the furniture, the desk before anything, and ended at the bedroom closet.",
+    "tags": {
+      "place": "res-suite"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-017",
+    "deck": "search-act",
+    "text": "I went through the front room and then the kitchen behind it, walls first and then the floor. After that I took the stair up to the bedroom under the roof and finished along the eaves.",
+    "tags": {
+      "place": "res-backhouse"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-018",
+    "deck": "search-act",
+    "text": "The house had two rooms down and one up. I did the downstairs by the walls, stove and shelves and the cupboard under the stair, then went up and did the top room the same way.",
+    "tags": {
+      "place": "res-backhouse"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-019",
+    "deck": "search-act",
+    "text": "I started at the door off the passage and worked back through the house, taking every shelf and cupboard as it came. I finished at the back door, the one that gave onto the yard.",
+    "tags": {
+      "place": "res-backhouse"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-020",
+    "deck": "search-act",
+    "text": "I got down and went along the floorboards of each room looking for a loose one, then stood and went over the shelves and the mantel. The coal bin by the back door came last.",
+    "tags": {
+      "place": "res-backhouse"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-021",
+    "deck": "search-act",
+    "text": "I walked the parapet first, all four sides, looking at the tar along its foot and down over the edge. Then I went around the water tank, the chimneys and the skylight, and ended back at the stair housing.",
+    "tags": {
+      "place": "rooftop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-022",
+    "deck": "search-act",
+    "text": "I went across the tar in straight lines, one side to the other and back, a few feet over each time. After that I took the chimneys and the tank stand, and last the top of the fire escape.",
+    "tags": {
+      "place": "rooftop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-023",
+    "deck": "search-act",
+    "text": "I began at the stair housing and went clockwise along the parapet, then worked in to the middle: the skylight frame, the vent pipes, the legs of the water tank. The pigeon coop came last.",
+    "tags": {
+      "place": "rooftop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-024",
+    "deck": "search-act",
+    "text": "I did the edges before the middle, the gutter along the parapet and the corners where the tar met the brick. Then I looked behind each chimney and under the tank, and stopped at the fire escape.",
+    "tags": {
+      "place": "rooftop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-025",
+    "deck": "search-act",
+    "text": "I went down one side of the alley and back up the other, along the ash cans and the back steps of each store. I looked behind the cans, under the steps, and last in the drain at the low end.",
+    "tags": {
+      "place": "back-alley"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-026",
+    "deck": "search-act",
+    "text": "I walked it from the street end to the blind end, keeping to the wall, and looked into every doorway and behind every can I passed. Then I came back along the other wall to the mouth.",
+    "tags": {
+      "place": "back-alley"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-027",
+    "deck": "search-act",
+    "text": "I took the ground first, brick by brick down the middle where the carts ran, then the walls on either side up to the height of my head. I ended at the delicatessen's back step.",
+    "tags": {
+      "place": "back-alley"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-028",
+    "deck": "search-act",
+    "text": "The alley had three places to put a thing: the ash cans, the space under the fire escape, and the gap behind the loading step. I went through all three, then walked the gutter the whole length.",
+    "tags": {
+      "place": "back-alley"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-029",
+    "deck": "search-act",
+    "text": "I took the outer office first, the desk and the filing cabinet, the coat rack, the bench for callers. Then I went through to the inner office and did it the same way, ending at the safe in the corner.",
+    "tags": {
+      "place": "office-over-tailor"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-030",
+    "deck": "search-act",
+    "text": "I went through the desk drawer by drawer, then the filing cabinet a folder at a time. After that I did the shelves and the floor under the desk, and finished at the wastebasket.",
+    "tags": {
+      "place": "office-over-tailor"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-031",
+    "deck": "search-act",
+    "text": "Two rooms and a closet. I did the closet first because it was smallest, then the inner office, the desk and the cabinet and the shelves, then the outer office, and stood at last by the stairhead.",
+    "tags": {
+      "place": "office-over-tailor"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-032",
+    "deck": "search-act",
+    "text": "I started at the stairs and worked through, looking along each shelf, behind each cabinet, under the blotter and under the desk itself. The last place I looked was the narrow closet off the inner office.",
+    "tags": {
+      "place": "office-over-tailor"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-033",
+    "deck": "search-act",
+    "text": "I went along the stacks of crates first, row by row, and looked between them and behind them. Then I walked the edge of the pier from one end to the other, and ended at the gate.",
+    "tags": {
+      "place": "pier-shed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-034",
+    "deck": "search-act",
+    "text": "I took the planking first, walking it slowly under the shed roof, then the gaps along the water side where the boards met the pilings. Last I went through the crates stacked by the gate.",
+    "tags": {
+      "place": "pier-shed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-035",
+    "deck": "search-act",
+    "text": "I began at the gate and went down the landward side, along the iron wall of the shed and the crates against it. Then I came back up the water side, bollard by bollard, to the corner by the gate.",
+    "tags": {
+      "place": "pier-shed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-036",
+    "deck": "search-act",
+    "text": "I got down and looked between the planks, then under the crates on their pallets, then along the heavy timber at the edge. The hand truck and the scale by the shed door came last.",
+    "tags": {
+      "place": "pier-shed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-037",
+    "deck": "search-act",
+    "text": "I went down the lines one at a time, from the laundry's back step to the fence. Then I walked between the wash tubs, along the fence on all three sides, and ended at the gate.",
+    "tags": {
+      "place": "laundry-yard"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-038",
+    "deck": "search-act",
+    "text": "I took the ground first, the packed dirt under the lines and the soft patches around the tubs. Then I went along the fence, looked behind the stacked baskets, and finished by the drain in the corner.",
+    "tags": {
+      "place": "laundry-yard"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-039",
+    "deck": "search-act",
+    "text": "I walked the yard in strips, fence to fence, each one a step over from the last. When I had covered the ground I went back to the tubs and the wringer and looked around and under them.",
+    "tags": {
+      "place": "laundry-yard"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-040",
+    "deck": "search-act",
+    "text": "I started at the gate and went along the fence, then in among the posts that held the lines. The tubs by the back step and the space beneath the step itself came last.",
+    "tags": {
+      "place": "laundry-yard"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-041",
+    "deck": "search-act",
+    "text": "I did the front room along the walls, then the kitchen, the sink and the shelf above it and the cupboard below. Last I took the bedroom, the dresser and the closet and the floor under the bed.",
+    "tags": {
+      "place": "walkup-flat"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-042",
+    "deck": "search-act",
+    "text": "The flat was three small rooms off a hall. I did the hall first, the hooks and the shelf, then each room in turn, walls before floor, and ended in the kitchen by the fire escape.",
+    "tags": {
+      "place": "walkup-flat"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-043",
+    "deck": "search-act",
+    "text": "I looked over each room from the doorway before I went into it, then did it corner by corner. I took the front room, then the bedroom, and last the kitchen with its narrow cupboard.",
+    "tags": {
+      "place": "walkup-flat"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-044",
+    "deck": "search-act",
+    "text": "I went over the floor first, every board of it from the hall to the fire escape, then the furniture, top and underside. The cupboard under the sink was the last place I looked.",
+    "tags": {
+      "place": "walkup-flat"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-045",
+    "deck": "search-act",
+    "text": "I went along the bank of mailboxes first, then the radiator under them and the bench across from it. After that I did the corners by the glass doors and ended at the elevator gate.",
+    "tags": {
+      "place": "hallam-vestibule"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-046",
+    "deck": "search-act",
+    "text": "I took the marble floor a square at a time from the street doors to the elevator. Then I looked behind the radiator, under the bench, and along the tops of the mailboxes.",
+    "tags": {
+      "place": "hallam-vestibule"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-047",
+    "deck": "search-act",
+    "text": "There was not much to the vestibule, so I went slowly. I did the mailboxes, the directory board, the doormat, the radiator and the bench, and finished by the stairs at the back.",
+    "tags": {
+      "place": "hallam-vestibule"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-048",
+    "deck": "search-act",
+    "text": "I started by the street doors and went along the left wall to the elevator, then back along the right wall past the mailboxes. The space under the stairs at the back was the last place I looked.",
+    "tags": {
+      "place": "hallam-vestibule"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-049",
+    "deck": "search-act",
+    "text": "The room held a bed, a washstand, a chair and a trunk, and I went through them in that order. Then I did the shelf over the washstand, the hooks behind the door and the floor under everything.",
+    "tags": {
+      "place": "rooming-house-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-050",
+    "deck": "search-act",
+    "text": "I took the walls first, the shelf and the hooks and the gap behind the washstand, then the floor, board by board toward the window. The last thing I went through was the trunk at the foot of the bed.",
+    "tags": {
+      "place": "rooming-house-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-051",
+    "deck": "search-act",
+    "text": "A rented room has few places to keep anything. I looked in all of them: the trunk, the drawer of the washstand, under the mattress, behind the mirror, and last on top of the wardrobe.",
+    "tags": {
+      "place": "rooming-house-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-052",
+    "deck": "search-act",
+    "text": "I stood at the door and took the room in, then went around it once, touching every surface I passed. I finished on my knees, looking under the bed and behind the trunk.",
+    "tags": {
+      "place": "rooming-house-room"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-053",
+    "deck": "search-act",
+    "text": "I went down the length of the bar on the customers' side, then around behind it, along the shelves and under the counter. After that I did the tables along the wall and the back hall to the washroom.",
+    "tags": {
+      "place": "dolans-bar"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-054",
+    "deck": "search-act",
+    "text": "I took the tables first, one at a time along the wall, and looked under each. Then I went down the bar, the brass rail and the stools, and finished behind it by the taps.",
+    "tags": {
+      "place": "dolans-bar"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-055",
+    "deck": "search-act",
+    "text": "I began at the back hall, the washroom and the storeroom beside it, and worked forward toward the street. The bar came last, front and back, down to the drain boards under the taps.",
+    "tags": {
+      "place": "dolans-bar"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-056",
+    "deck": "search-act",
+    "text": "I walked the floor from the street door to the back wall, looking along the rail and under the lip of the bar. Then I went behind the counter and did the shelves and the ice chest.",
+    "tags": {
+      "place": "dolans-bar"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-057",
+    "deck": "search-act",
+    "text": "I went along the bar first, the rail and the stools, then behind it where the shelves ran. After that I did the tables at the back, one at a time, and ended at the foot of the stairs.",
+    "tags": {
+      "place": "speakeasy"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-058",
+    "deck": "search-act",
+    "text": "I walked the long room from the stairs to the back wall, the bar on one side and the tables on the other, looking under both. Then I went through the storeroom behind the bar and stopped there.",
+    "tags": {
+      "place": "speakeasy"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-059",
+    "deck": "search-act",
+    "text": "I started behind the bar, since that was where a place like this kept what it kept: the shelves, the cabinet under the counter, the crates stacked by the back wall. Then I did the tables.",
+    "tags": {
+      "place": "speakeasy"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-060",
+    "deck": "search-act",
+    "text": "I went over the floor near the door first, then the booths along the wall, the seats and the space behind each one. The last part I did was the back passage toward the cellar of the hat shop.",
+    "tags": {
+      "place": "speakeasy"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-061",
+    "deck": "search-act",
+    "text": "I went along the front desk from one end to the other, then around behind it to the pigeonholes and the shelf beneath. After that I did the chairs and the sofas in the middle, and ended by the elevator.",
+    "tags": {
+      "place": "hotel-lobby"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-062",
+    "deck": "search-act",
+    "text": "I took the carpet from the revolving door to the elevator first, down the worn middle and along both edges. Then I went around the armchairs, looked behind the pillars, and finished at the writing tables.",
+    "tags": {
+      "place": "hotel-lobby"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-063",
+    "deck": "search-act",
+    "text": "I did the chairs and sofas one at a time, running a hand down between the cushions, and looked under each. Then I went along the writing tables by the wall and around the foot of the stairs.",
+    "tags": {
+      "place": "hotel-lobby"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-064",
+    "deck": "search-act",
+    "text": "The lobby was large, so I cut it in two. I did the desk side first, the counter and the rack of mail slots, then the lounge side with its chairs and tables, finishing at the cigar counter.",
+    "tags": {
+      "place": "hotel-lobby"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-065",
+    "deck": "search-act",
+    "text": "I went around the stand once on the outside, along the racks and the shelf where the stacks sat, then looked under the counter and behind it. I finished along the curb and the base of the lamp post.",
+    "tags": {
+      "place": "corner-newsstand"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-066",
+    "deck": "search-act",
+    "text": "I took the sidewalk first, a yard out from the stand all the way around, then the stand itself: the racks, the shelf under the counter, the narrow space at the back. The gutter came last.",
+    "tags": {
+      "place": "corner-newsstand"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-067",
+    "deck": "search-act",
+    "text": "I started at the counter and worked around, the magazine racks on one side and the stacked bundles on the other. Then I got down and looked beneath the stand where it sat on the pavement.",
+    "tags": {
+      "place": "corner-newsstand"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-068",
+    "deck": "search-act",
+    "text": "I did the corner itself, the curb and the lamp post and the grating by the hydrant, before I did the stand. Then I went through the racks, the counter, and the bin behind it.",
+    "tags": {
+      "place": "corner-newsstand"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-069",
+    "deck": "search-act",
+    "text": "I went along the wall of little glass doors from one end to the other, looking at each slot and ledge. Then I took the tables, row by row, and ended at the change booth by the entrance.",
+    "tags": {
+      "place": "automat"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-070",
+    "deck": "search-act",
+    "text": "I went between the tables first, looking under the tops and along the chair legs, then went along the counter where the coffee spouts were. Last I did the corner by the stairs to the kitchen.",
+    "tags": {
+      "place": "automat"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-071",
+    "deck": "search-act",
+    "text": "I started at the change booth and went down the wall of compartments, then around the steam tables and back through the seating. The corner by the kitchen door was the last I did.",
+    "tags": {
+      "place": "automat"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-072",
+    "deck": "search-act",
+    "text": "I took the floor in strips between the tables, looking low, then went along the ledges under the front glass and the shelf for trays. I finished at the stand of trays by the coffee urns.",
+    "tags": {
+      "place": "automat"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-073",
+    "deck": "search-act",
+    "text": "I started in the lobby at the ticket booth and the candy counter, then went through into the auditorium. I went along the rows one at a time, looking under the seats, and ended at the foot of the screen.",
+    "tags": {
+      "place": "movie-house"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-074",
+    "deck": "search-act",
+    "text": "I took the aisles first, both of them, from the back wall down to the orchestra rail, and looked along each row as I passed it. Then I went up to the balcony and did the same there.",
+    "tags": {
+      "place": "movie-house"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-075",
+    "deck": "search-act",
+    "text": "I did the lobby, the counter and the booth and the rack of posters, then the aisles, then the back rows, seat by seat. Last I climbed the narrow stair to the projection booth.",
+    "tags": {
+      "place": "movie-house"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-076",
+    "deck": "search-act",
+    "text": "I went down the side aisle along the wall, past the exits and the heavy curtains, to the stage. Then I crossed in front of the screen and came back up the other side, row by row.",
+    "tags": {
+      "place": "movie-house"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-077",
+    "deck": "search-act",
+    "text": "I walked the edges of the floor first, along the benches and the rail, then went across the boards in lines. After that I did the bandstand, the coat check and the lounge off the lobby.",
+    "tags": {
+      "place": "dance-hall"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-078",
+    "deck": "search-act",
+    "text": "I took the bandstand first, the music stands and the chairs and the space behind the piano. Then I went down the benches along the walls and ended at the coat check by the lobby.",
+    "tags": {
+      "place": "dance-hall"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-079",
+    "deck": "search-act",
+    "text": "I started at the coat check, the counter and the racks and the shelf under them, then crossed the floor to the bandstand. The benches along the walls I took on my way back.",
+    "tags": {
+      "place": "dance-hall"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-080",
+    "deck": "search-act",
+    "text": "I went around the hall along the walls, looking under each bench and behind the pillars. Then I went out through the lobby and finished on the stairs down to the street.",
+    "tags": {
+      "place": "dance-hall"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-081",
+    "deck": "search-act",
+    "text": "I went along the soda fountain first, the stools and the counter and the taps behind it. Then I did the shelves down one side of the store and up the other, and ended at the prescription counter at the back.",
+    "tags": {
+      "place": "drugstore"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-082",
+    "deck": "search-act",
+    "text": "I took the front of the store first, the magazine rack and the candy case and the counter by the register. Then I went back past the fountain to the prescription counter and the stock shelves behind it.",
+    "tags": {
+      "place": "drugstore"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-083",
+    "deck": "search-act",
+    "text": "I started at the back, behind the prescription counter where the jars and tins stood on the high shelves, and worked toward the street. The fountain and its stools came last.",
+    "tags": {
+      "place": "drugstore"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-084",
+    "deck": "search-act",
+    "text": "I went down each aisle slowly, looking along the lower shelves and under the display cases. Then I took the fountain, the counter and the syrups behind it, and finished at the scale by the entrance.",
+    "tags": {
+      "place": "drugstore"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-085",
+    "deck": "search-act",
+    "text": "I walked the length of the stand along the curb, looking down into the gutter, then came back along the theater side past the poster frames. I ended at the lamp post at the head of the line.",
+    "tags": {
+      "place": "cab-stand"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-086",
+    "deck": "search-act",
+    "text": "I took the gutter first, from the head of the line to the tail, then the sidewalk beside it. After that I went along the front of the theater and around the base of each lamp post.",
+    "tags": {
+      "place": "cab-stand"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-087",
+    "deck": "search-act",
+    "text": "I went along the painted line at the curb, then the grating by the hydrant, the steps of the theater, and the corners of the buildings on either side. The mouth of the alley at the far end came last.",
+    "tags": {
+      "place": "cab-stand"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-088",
+    "deck": "search-act",
+    "text": "I began at the tail of the line and worked forward along the curb, looking under the lip of the sidewalk and around the hydrant. I finished at the head of the line by the lamp post.",
+    "tags": {
+      "place": "cab-stand"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-089",
+    "deck": "search-act",
+    "text": "I went up from the street door one flight at a time, looking at each tread and under each landing. On the top landing I did the corners and the ladder to the roof, then came back down.",
+    "tags": {
+      "place": "tenement-stairwell"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-090",
+    "deck": "search-act",
+    "text": "I took the landings first, the corners and the space under the window on each, then the treads between them. Last I went down and looked under the bottom flight, where the ash cans stood.",
+    "tags": {
+      "place": "tenement-stairwell"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-091",
+    "deck": "search-act",
+    "text": "I climbed slowly and looked along the banister, the dip in each tread, the gap between the steps and the wall. At the top I turned and did the same on the way down to the street door.",
+    "tags": {
+      "place": "tenement-stairwell"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-092",
+    "deck": "search-act",
+    "text": "I started at the bottom, under the stairs, and worked up landing by landing, looking along the baseboards and into the corners. I ended on the top landing by the roof ladder.",
+    "tags": {
+      "place": "tenement-stairwell"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-093",
+    "deck": "search-act",
+    "text": "I went along the rail of each table, one row and then the other, and looked beneath each one. Then I did the cue racks, the space behind the counter, and last the back corner by the washroom door.",
+    "tags": {
+      "place": "pool-hall"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-094",
+    "deck": "search-act",
+    "text": "I took the counter first, the shelf behind it and the cabinet under it, then the benches along the wall. After that I walked the rows of tables, looking into the pockets, and ended at the back.",
+    "tags": {
+      "place": "pool-hall"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-095",
+    "deck": "search-act",
+    "text": "I started at the foot of the stairs and went down the aisle between the two rows, looking under the tables on either side. Then I went along the cue racks and the scoreboards on the far wall.",
+    "tags": {
+      "place": "pool-hall"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-096",
+    "deck": "search-act",
+    "text": "I went around the walls first, the benches and the cue racks and the chalk shelf, then worked in to the tables and the floor beneath them. The washroom at the back came last.",
+    "tags": {
+      "place": "pool-hall"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-097",
+    "deck": "search-act",
+    "text": "I went through the curtain and took the back room shelf by shelf, top to bottom, looking at each tagged thing as I went. Then I did the workbench, the safe in the corner, and the floor under both.",
+    "tags": {
+      "place": "pawnshop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-098",
+    "deck": "search-act",
+    "text": "I did the shelves along the walls first, then the workbench with its drawers and its magnifying glass. After that I got down and looked under the bench, and finished by the curtain to the shop.",
+    "tags": {
+      "place": "pawnshop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-099",
+    "deck": "search-act",
+    "text": "I started at the curtain and worked back, the crates stacked on the floor and the shelves above them. The desk by the back wall came last, its drawers and pigeonholes and the space underneath it.",
+    "tags": {
+      "place": "pawnshop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-100",
+    "deck": "search-act",
+    "text": "I went around the back room once, each shelf and each crate, then went out through the curtain and did the counter and the glass case beneath it. I stopped at the register.",
+    "tags": {
+      "place": "pawnshop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-101",
+    "deck": "search-act",
+    "text": "I went along the tables by the wall, then the ones in the middle, looking under each and along the benches. After that I did the counter by the kitchen hatch and ended at the head of the stairs.",
+    "tags": {
+      "place": "chop-suey"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-102",
+    "deck": "search-act",
+    "text": "I took the counter first, the shelf behind it and the cabinet under it, then went through into the kitchen and did the shelves by the stove. I came back out and did the booths.",
+    "tags": {
+      "place": "chop-suey"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-103",
+    "deck": "search-act",
+    "text": "I did the booths one at a time, looking behind the cushions and under the tables. Then I went around the front where the stairs came up, and finished at the coat hooks by the stairhead.",
+    "tags": {
+      "place": "chop-suey"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-104",
+    "deck": "search-act",
+    "text": "I started by the kitchen door and worked toward the stairs, taking the tables as I came to them. Then I went back and looked behind the counter and along the shelf of tea tins.",
+    "tags": {
+      "place": "chop-suey"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-105",
+    "deck": "search-act",
+    "text": "I went around the parlour along the walls, the piano and the bookcase, the sofa and the side tables. Then I did the mantel and the grate, and ended at the writing desk by the front window.",
+    "tags": {
+      "place": "boarding-parlor"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-106",
+    "deck": "search-act",
+    "text": "I took the furniture first, a piece at a time: under the sofa cushions, inside the piano bench, beneath the tables. Then I did the shelves and the mantel and last the space behind the piano.",
+    "tags": {
+      "place": "boarding-parlor"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-107",
+    "deck": "search-act",
+    "text": "I started at the door from the hall and went to my left, around the room, looking on and under each thing I passed. The piano was last, and I looked inside the lid.",
+    "tags": {
+      "place": "boarding-parlor"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-108",
+    "deck": "search-act",
+    "text": "I did the mantel and the grate first, then the bookcase a shelf at a time, then the chairs and the sofa. The sewing basket and the writing desk by the window came last.",
+    "tags": {
+      "place": "boarding-parlor"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-109",
+    "deck": "search-act",
+    "text": "I went down the row of chairs one at a time, then along the shelf under the mirrors, the combs and the jars and the drawers beneath. Last I did the back room where the towels were kept.",
+    "tags": {
+      "place": "barber-shop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-110",
+    "deck": "search-act",
+    "text": "I took the waiting bench first and the rack of magazines beside it, then the chairs, then the counter with the register. The back room, with its sink and its towel shelves, came last.",
+    "tags": {
+      "place": "barber-shop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-111",
+    "deck": "search-act",
+    "text": "I started at the back, the sink and the shelves of towels and the little stove for the hot water, and worked forward to the front. Last I did the chairs and the shelf under the mirrors.",
+    "tags": {
+      "place": "barber-shop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-112",
+    "deck": "search-act",
+    "text": "I worked down the length of the mirrors, looking at the shelf and the drawers under it, then did each chair and the floor around its base. I ended by the front door.",
+    "tags": {
+      "place": "barber-shop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-113",
+    "deck": "search-act",
+    "text": "I walked the row of cars along one wall and back along the other, looking under each car and along its running boards. Then I did the office by the entrance and the workbench at the back.",
+    "tags": {
+      "place": "hotel-garage"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-114",
+    "deck": "search-act",
+    "text": "I took the little office first, the desk and the shelves, then the workbench at the back. After that I went down the bays between the cars and ended at the gas pump by the rolling door.",
+    "tags": {
+      "place": "hotel-garage"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-115",
+    "deck": "search-act",
+    "text": "I went over the concrete first, the stains and the drains, then along the walls behind the cars. The workbench and the tire racks at the back were the last things I looked at.",
+    "tags": {
+      "place": "hotel-garage"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-116",
+    "deck": "search-act",
+    "text": "I started at the rolling door and went down the middle of the bay, looking into each car as I passed it. At the back I did the workbench, the tire racks and the corner by the grease pit.",
+    "tags": {
+      "place": "hotel-garage"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-117",
+    "deck": "search-act",
+    "text": "I walked the platform from the stair to the far end, along the edge and then along the rail on the street side. Then I did the benches, the change booth and the corners behind the stairhead.",
+    "tags": {
+      "place": "el-platform"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-118",
+    "deck": "search-act",
+    "text": "I took the benches first, looking under the slats and behind them, then went along the edge of the platform, looking down onto the tracks. I finished at the change booth by the stairs.",
+    "tags": {
+      "place": "el-platform"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-119",
+    "deck": "search-act",
+    "text": "I began at the stairhead and went along the street side, the rail and the posts that held up the canopy. Then I came back along the track side, looking over the edge at the ties.",
+    "tags": {
+      "place": "el-platform"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-120",
+    "deck": "search-act",
+    "text": "I went down the stairs from the platform to the street, one step at a time, then back up. After that I walked the platform the whole length, under every bench, and stopped at the last one.",
+    "tags": {
+      "place": "el-platform"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-121",
+    "deck": "search-act",
+    "text": "I went along the row of benches one at a time, looking along the slats, under each seat and behind each back. Then I walked the path in front of them and the grass behind, up to the trees.",
+    "tags": {
+      "place": "square-benches"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-122",
+    "deck": "search-act",
+    "text": "I took the path first, from the lamp post at one end of the row to the lamp post at the other. Then I did the benches, under and behind, and ended at the trash basket by the last one.",
+    "tags": {
+      "place": "square-benches"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-123",
+    "deck": "search-act",
+    "text": "I started at the end nearest the lamp and went down the row, then along the backs of the benches and the ground under the trees. The drinking fountain at the corner came last.",
+    "tags": {
+      "place": "square-benches"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-124",
+    "deck": "search-act",
+    "text": "I walked behind the benches first, in the dirt under the trees, then in front of them along the path. Then I sat down on each in turn and ran a hand under the slats.",
+    "tags": {
+      "place": "square-benches"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-125",
+    "deck": "search-act",
+    "text": "I walked the wooden apron from the street to the edge, then along the edge from one side to the other, looking down at the pilings. After that I did the benches by the ticket window and the gangway.",
+    "tags": {
+      "place": "ferry-slip"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-126",
+    "deck": "search-act",
+    "text": "I took the edge of the slip first, pile by pile, looking down between the pilings and the planking. Then I came back over the apron to the benches and the shelter by the street.",
+    "tags": {
+      "place": "ferry-slip"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-127",
+    "deck": "search-act",
+    "text": "I started at the gangway and worked back toward the street, along the rails on either side and across the planks. The benches and the ground beside the ticket booth came last.",
+    "tags": {
+      "place": "ferry-slip"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-128",
+    "deck": "search-act",
+    "text": "I went along the rail at the water end, then around the bollards, then over the planking in lines. I finished at the street end, by the benches under the ticket window.",
+    "tags": {
+      "place": "ferry-slip"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-129",
+    "deck": "search-act",
+    "text": "I went around the kiosk on the outside first, along the iron and glass and the curb beside it. Then I went down the stair a step at a time, looking along the rail and the corners of each tread.",
+    "tags": {
+      "place": "subway-kiosk"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-130",
+    "deck": "search-act",
+    "text": "I took the stair from the top, one tread at a time, looking at the rail and the tiled wall. At the bottom I turned and looked back up, then came up and did the sidewalk around the kiosk.",
+    "tags": {
+      "place": "subway-kiosk"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-131",
+    "deck": "search-act",
+    "text": "I started on the sidewalk, a yard out from the kiosk all the way around, then did the kiosk itself, the frame and the glass and the ledge under the sign. Last I went down the stair to the landing.",
+    "tags": {
+      "place": "subway-kiosk"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-132",
+    "deck": "search-act",
+    "text": "I went down the stair to the turn and back up, keeping one hand on the rail. Then I did the gutter beside the kiosk, the grating in the sidewalk and the lamp post at the corner.",
+    "tags": {
+      "place": "subway-kiosk"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-133",
+    "deck": "search-act",
+    "text": "I went along the pews from the front to the back, looking along each seat and under the kneelers. Then I did the candle rack and the space behind the altar rail, and ended by the side door.",
+    "tags": {
+      "place": "side-chapel"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-134",
+    "deck": "search-act",
+    "text": "I took the candle rack first, the tray under it and the box of new candles, then the pews, row by row. I finished at the altar rail and the little table beside it.",
+    "tags": {
+      "place": "side-chapel"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-135",
+    "deck": "search-act",
+    "text": "I started at the side door and went along the wall, past the rack of candles and the statues in their niches. Then I did the pews, one after another, and ended at the back row.",
+    "tags": {
+      "place": "side-chapel"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-136",
+    "deck": "search-act",
+    "text": "I got down and looked under every pew, then went along the kneelers and the book racks on their backs. Last I did the front, the rail and the steps and the corner by the confessional.",
+    "tags": {
+      "place": "side-chapel"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-137",
+    "deck": "search-act",
+    "text": "I went along the walls first, past the notice board and the radiators, then down the rows of chairs to the platform at the front. I finished at the table on the platform and the cupboard behind it.",
+    "tags": {
+      "place": "union-hall"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-138",
+    "deck": "search-act",
+    "text": "I took the platform first, the speaker's table and the cupboard behind it, then went down the rows of chairs toward the back. The coat hooks and the head of the outside stair came last.",
+    "tags": {
+      "place": "union-hall"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-139",
+    "deck": "search-act",
+    "text": "I started at the top of the outside stair and went down the length of the hall, looking along each row of chairs. Then I did the platform, the table, and the closet where the banners were kept.",
+    "tags": {
+      "place": "union-hall"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "sac-140",
+    "deck": "search-act",
+    "text": "I went around the hall once along the walls, the notice board and the chairs and the radiators, then once down the middle. I ended at the small office behind the platform.",
+    "tags": {
+      "place": "union-hall"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

@@ -516,7 +516,17 @@ export function planPage(input: PlanInput): Plan {
     }
   };
   const addThoughts = (thoughts: Thought[]): void => {
-    for (const thought of thoughts) beats.push({ kind: 'thought', required: true, thought });
+    for (const thought of thoughts) {
+      // "Nothing" is said about something: the room gone through, or the
+      // person who had nothing to give.
+      const located: Thought =
+        thought.cls !== 'nothing'
+          ? thought
+          : action.kind === 'ask'
+            ? { ...thought, subjectId: action.personId }
+            : { ...thought, placeId: input.at };
+      beats.push({ kind: 'thought', required: true, thought: located });
+    }
   };
 
   /* ---------------------------------------------------------- go, look */
@@ -660,7 +670,7 @@ export function planPage(input: PlanInput): Plan {
   for (const id of newIds) beats.push({ kind: 'find', required: true, clueId: id });
   if (action.self && newClues.length === 0) {
     // Somebody's account of themselves is not a find; it is context.
-    addThoughts([{ cls: 'context', clueIds: [] }]);
+    addThoughts([{ cls: 'context', basis: 'self', subjectId: action.personId, clueIds: [] }]);
   } else if (action.account && newClues.length === 0) {
     // An evening taken down is not a clue, but it can contradict one in hand.
     const accountThoughts = accountThought(input, action.personId);
@@ -691,6 +701,7 @@ function accountThought(input: PlanInput, personId: Id): Thought[] {
         return [
           {
             cls: 'contradicts',
+            basis: f.kind === 'personAt' ? 'at' : 'not-at',
             subjectId: personId,
             placeId: f.place,
             tick: f.tick as Tick,
@@ -702,5 +713,5 @@ function accountThought(input: PlanInput, personId: Id): Thought[] {
       }
     }
   }
-  return [{ cls: 'context', clueIds: [], accountIds: [personId] }];
+  return [{ cls: 'context', basis: 'account', subjectId: personId, clueIds: [], accountIds: [personId] }];
 }

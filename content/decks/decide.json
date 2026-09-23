@@ -1,0 +1,386 @@
+[
+  {
+    "id": "dec-001",
+    "deck": "decide",
+    "text": "I didn’t ask {them} about it. Not yet. A client who leaves things out is still a client, and {subject} was paying.",
+    "tags": {
+      "who": "client",
+      "act": "hold",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-002",
+    "deck": "decide",
+    "text": "I let it lie. {subject} was paying for my questions, and this one could wait until I knew what to do with the answer.",
+    "tags": {
+      "who": "client",
+      "act": "hold",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-003",
+    "deck": "decide",
+    "text": "I didn’t put it to {them}. Not tonight, and not while {subject} was the one paying.",
+    "tags": {
+      "who": "client",
+      "act": "hold",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-004",
+    "deck": "decide",
+    "text": "I kept my face the way it was and said nothing about {place}. {subject} had hired me to find things out, and I had just started with {them}.",
+    "tags": {
+      "who": "client",
+      "act": "hold",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-005",
+    "deck": "decide",
+    "text": "I didn’t go looking for {subject} over it. Not yet. A client who leaves things out is still a client, and {they} was paying.",
+    "tags": {
+      "who": "client",
+      "act": "hold",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-006",
+    "deck": "decide",
+    "text": "I would ask {subject} about {place} sooner or later. Later suited me better, while {subject} was the one paying.",
+    "tags": {
+      "who": "client",
+      "act": "hold",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-007",
+    "deck": "decide",
+    "text": "It could keep until I saw {subject} again. Clients lie to their detectives all the time, and most of them are only lying about themselves.",
+    "tags": {
+      "who": "client",
+      "act": "hold",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-008",
+    "deck": "decide",
+    "text": "I didn’t like it, and I didn’t do anything about it yet. {subject} had hired me, and I wanted to know why before I asked {them} where {they} had been.",
+    "tags": {
+      "who": "client",
+      "act": "hold",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-009",
+    "deck": "decide",
+    "text": "I didn’t let it go. I asked {subject} about {place}, straight out, and watched {their} face while {they} thought about the answer.",
+    "tags": {
+      "who": "suspect",
+      "act": "press",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-010",
+    "deck": "decide",
+    "text": "I put it to {them} plainly: {place}, at {time}. {subject} could answer it now or answer it to somebody less patient.",
+    "tags": {
+      "who": "suspect",
+      "act": "press",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-011",
+    "deck": "decide",
+    "text": "I said {place} out loud and let it sit on the table between us. {subject} talked easily, and a talker who has been caught usually keeps talking.",
+    "tags": {
+      "who": "suspect",
+      "act": "press",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-012",
+    "deck": "decide",
+    "text": "The next time I saw {subject}, {place} would be the first thing I asked about.",
+    "tags": {
+      "who": "suspect",
+      "act": "press",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-013",
+    "deck": "decide",
+    "text": "I wanted {subject} in front of me with that question: {place} at {time}, and no room to walk around it.",
+    "tags": {
+      "who": "suspect",
+      "act": "press",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-014",
+    "deck": "decide",
+    "text": "{subject} was going to hear about {place} from me before the night was out, and I didn’t mean to be gentle about it.",
+    "tags": {
+      "who": "suspect",
+      "act": "press",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-015",
+    "deck": "decide",
+    "text": "I didn’t push. {subject} gave nothing away for free, and pushing would only teach {them} what I had.",
+    "tags": {
+      "who": "suspect",
+      "act": "hold",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-016",
+    "deck": "decide",
+    "text": "I said nothing about it. {subject} was the kind who closed up when pressed, and I wanted {them} talking.",
+    "tags": {
+      "who": "suspect",
+      "act": "hold",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-017",
+    "deck": "decide",
+    "text": "I let {them} think I had missed it. {subject} would be easier to catch a second time if {they} didn’t know about the first.",
+    "tags": {
+      "who": "suspect",
+      "act": "hold",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-018",
+    "deck": "decide",
+    "text": "I kept it to myself. When I saw {subject} next, I wanted {them} to tell me about {place} before I told {them} what I knew.",
+    "tags": {
+      "who": "suspect",
+      "act": "hold",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-019",
+    "deck": "decide",
+    "text": "I kept it. {subject} was careful, and a careful liar is caught by waiting, not by asking.",
+    "tags": {
+      "who": "suspect",
+      "act": "hold",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-020",
+    "deck": "decide",
+    "text": "It could wait. I wanted a second thing on {subject} before I used the first.",
+    "tags": {
+      "who": "suspect",
+      "act": "hold",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-021",
+    "deck": "decide",
+    "text": "I made a note of it and kept my face straight. {subject} and I would come back to {place}.",
+    "tags": {
+      "who": "suspect",
+      "act": "note",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-022",
+    "deck": "decide",
+    "text": "I wrote {subject}’s name at the top of a clean page. It could wait an hour. It could not wait all night.",
+    "tags": {
+      "who": "suspect",
+      "act": "note",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-023",
+    "deck": "decide",
+    "text": "I didn’t say anything yet. I wrote {place} and {time} next to {subject}’s name and underlined them.",
+    "tags": {
+      "who": "suspect",
+      "act": "note",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-024",
+    "deck": "decide",
+    "text": "I put a mark by {subject}’s name. {place} at {time} was a question {subject} owed me an answer to.",
+    "tags": {
+      "who": "suspect",
+      "act": "note",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-025",
+    "deck": "decide",
+    "text": "I underlined {subject}’s name in the book. I would get to {them} before morning.",
+    "tags": {
+      "who": "suspect",
+      "act": "note",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-026",
+    "deck": "decide",
+    "text": "I wrote {place} and {time} down under {subject}’s name, and left room for the explanation.",
+    "tags": {
+      "who": "suspect",
+      "act": "note",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-027",
+    "deck": "decide",
+    "text": "I didn’t say anything to {subject} about it. People who watch a room for a living get careful once they know somebody is watching them.",
+    "tags": {
+      "who": "watcher",
+      "act": "note",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-028",
+    "deck": "decide",
+    "text": "I let it sit. {subject} would still be at {their} post in an hour, and so would the question.",
+    "tags": {
+      "who": "watcher",
+      "act": "note",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-029",
+    "deck": "decide",
+    "text": "I kept it from {subject} for now. A watcher who knows what you know stops telling you what {they} sees.",
+    "tags": {
+      "who": "watcher",
+      "act": "hold",
+      "present": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-030",
+    "deck": "decide",
+    "text": "I made a note to ask {subject} about {place}. {subject} wasn’t going anywhere; {they} never did.",
+    "tags": {
+      "who": "watcher",
+      "act": "note",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-031",
+    "deck": "decide",
+    "text": "It went in the book under {subject}’s name. Watchers see a lot and say a little, and I wanted the rest.",
+    "tags": {
+      "who": "watcher",
+      "act": "note",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "dec-032",
+    "deck": "decide",
+    "text": "I would get to {subject} in time. Somebody who watches one door all night does not leave it.",
+    "tags": {
+      "who": "watcher",
+      "act": "hold",
+      "present": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

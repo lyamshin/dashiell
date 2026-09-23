@@ -8,7 +8,9 @@
  * only thing the length rule may take off is texture (§8).
  */
 
-import type { Clue, Id, Person } from '../../gen/types.js';
+import type { Clue, Id, Person, Tick } from '../../gen/types.js';
+import { METHOD_TEMPLATES } from '../../gen/data/methods.js';
+import { windowOf } from './thought.js';
 import { spokenClock } from '../../gen/types.js';
 import type { Block, BeatTrace, ErrandTrace, ProseVoice } from '../types.js';
 import { OTHER_THING } from '../errand.js';
@@ -853,14 +855,28 @@ export function thoughtSlots(stage: Stage, t: Thought): Slots {
     case 'dead-end': {
       // What the secret was, as a thing somebody does: "embezzling".
       const who = t.subjectId ? view.personById.get(t.subjectId) : undefined;
-      const label = (who?.isKiller ? who.coverSecret : who?.secret)?.label;
-      other = label ? label.charAt(0).toLowerCase() + label.slice(1) : undefined;
+      const secret = who?.isKiller ? who.coverSecret : who?.secret;
+      other = secret ? secretDoing(secret.type, secret.label) : undefined;
       break;
     }
     default:
       break;
   }
+  const method = t.methodId ? METHOD_TEMPLATES.find((m) => m.id === t.methodId) : undefined;
+  const subject = t.subjectId ? view.personById.get(t.subjectId) : undefined;
+  const window = t.cls === 'window' && t.basis === 'coroner' ? windowOf(view, stage.foundAfter, stage.accountsAfter) : [];
   return {
+    // method: what it was, and what whoever did it had to do first.
+    means: method?.name,
+    how: method?.accessNote,
+    // motive: the reason, as the case has it, told afterwards.
+    motive:
+      t.cls === 'motive' && subject?.motive && subject.id !== view.victim.id
+        ? pastTense(subject.motive.description)
+        : undefined,
+    // window from the coroner alone: the hours still open, said aloud.
+    span:
+      window.length > 0 ? spokenSpan(window[0] as Tick, window[window.length - 1] as Tick) : undefined,
     subject: surname(t.subjectId),
     source: surname(t.sourceId),
     place: placeName(t.placeId),
@@ -870,6 +886,29 @@ export function thoughtSlots(stage: Stage, t: Thought): Slots {
     // The room it happened in, by its short name (the content branch's slot).
     scene: view.placeById.get(view.sceneId)?.shortName,
   };
+}
+
+/**
+ * A secret as something a person had been doing, in words anybody reading
+ * now understands — "selling stolen goods", not "fencing".
+ */
+const SECRET_DOING: Record<string, string> = {
+  affair: 'seeing somebody on the quiet',
+  embezzling: 'embezzling from an employer',
+  'gambling-debt': 'running up a gambling debt',
+  fence: 'selling stolen goods',
+  fencing: 'selling stolen goods',
+  blackmail: 'blackmailing somebody',
+  'secret-drinking': 'drinking in secret',
+  drinking: 'drinking in secret',
+  'forged-identity': 'living under a false name',
+  dope: 'buying morphine',
+  'union-organizing': 'organizing a union',
+  'hidden-family': 'visiting a child nobody was supposed to know about',
+};
+
+export function secretDoing(type: string, label: string): string {
+  return SECRET_DOING[type] ?? label.charAt(0).toLowerCase() + label.slice(1);
 }
 
 function thoughtLine(stage: Stage, t: Thought, gaps: string[], finds: readonly string[] = []): string {
