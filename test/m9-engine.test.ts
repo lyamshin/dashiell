@@ -169,7 +169,12 @@ describe('M9: no automatic verdicts from Poached up', () => {
       const raw = tiered(seed, 0);
       expect(verdictsOn(raw)).toBe(true);
       const state = playOracle(raw).state;
-      rawClears += state.log.flatMap((p) => p.beats ?? []).filter((b) => b.kind === 'thought' && b.tag === 'clears').length;
+      // M10 A: Raw's "That cleared X" waits for somebody else's word at the
+      // crime's half hour itself, which Part B's route does not deal; Raw
+      // still concludes, and the lie it catches is the conclusion it teaches.
+      rawClears += state.log
+        .flatMap((p) => p.beats ?? [])
+        .filter((b) => b.kind === 'thought' && (b.tag === 'clears' || b.tag === 'contradicts')).length;
     }
     expect(rawClears).toBeGreaterThan(0);
   }, 180_000);

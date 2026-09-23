@@ -220,6 +220,12 @@ export function parse(
   if (trimmed.length === 0)
     return { ok: false, problem: { kind: 'empty', message: '' } };
 
+  // M10 §A.3: "Go on" continues the conversation a page broke off. It is not
+  // a walk to somewhere called "on".
+  if (/^(?:go on|continue|keep going|and then|go on then)$/.test(fold(trimmed).trim().replace(/\s+/g, ' '))) {
+    return { ok: true, command: { kind: 'continue' } };
+  }
+
   const words = fold(trimmed).split(' ');
   const head = words[0] as string;
   let verb = verbOf(head);

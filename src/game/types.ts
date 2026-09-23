@@ -35,7 +35,7 @@ export type TopicRef =
    */
   | { kind: 'exact'; personId: Id; topic: string };
 
-export type CommandKind = 'go' | 'ask' | 'examine' | 'look' | 'notebook' | 'file' | 'help' | 'confront';
+export type CommandKind = 'go' | 'ask' | 'examine' | 'look' | 'notebook' | 'file' | 'help' | 'confront' | 'continue';
 
 export type Command =
   | { kind: 'go'; placeId: Id }
@@ -51,7 +51,27 @@ export type Command =
    * hand; the generator's solver decides whether it breaks what they said.
    * `part` (M9 polish) is one of its `ruleParts`, typed `put x012 part 2 to Hauck`.
    */
-  | { kind: 'confront'; personId: Id; clueId: Id; part?: number };
+  | { kind: 'confront'; personId: Id; clueId: Id; part?: number }
+  /**
+   * M10 §A.3: "Go on". The conversation (or the search) a page broke off after
+   * three families of fact goes on, at no cost to the clock.
+   */
+  | { kind: 'continue' };
+
+/**
+ * M10 §A.3: what a page had still to tell when it stopped at three families.
+ * A question keeps its person and its key; a search keeps its room.
+ */
+export interface Pending {
+  kind: 'ask' | 'examine';
+  placeId: Id;
+  personId?: Id;
+  /** The question's `askKey`, so asking it again goes on instead of reading back. */
+  key?: string;
+  topic?: TopicRef;
+  objectId?: Id;
+  clueIds: Id[];
+}
 
 /**
  * What the parser hands back when it cannot make a command. Always free.
@@ -208,7 +228,11 @@ export type BeatKind =
   | 'texture'
   | 'decide'
   /** M9: a fact put to somebody, and what they said to it. */
-  | 'confront';
+  | 'confront'
+  /** M10: a family of facts, told in the witness's words. */
+  | 'telling'
+  /** M10: the detective's note on what a family is worth. */
+  | 'note';
 
 /**
  * One planned beat, as it went onto the page. The planner's `Beat` carries
@@ -240,6 +264,26 @@ export interface BeatTrace {
   hedge?: boolean;
   /** Presence: the people said together in one sentence, not a line each (Night Hone 1 §3). */
   grouped?: Id[];
+  /**
+   * M10, a telling only: its words by part, so the correspondence checker can
+   * hold the fact-bearing sentences to the family's facts and the rest to
+   * saying no case fact at all.
+   */
+  parts?: {
+    /** The detective's question for this family, when it had its own. */
+    question?: string;
+    /** The sentences that carry the facts. */
+    told: string[];
+    grounding?: string;
+    followup?: string;
+    tail?: string;
+    /** The telling card's frame and business around the words. */
+    frame?: string;
+    /** The told sentences are an old clue kind's own record, said the witness's way. */
+    fromRecord?: boolean;
+  };
+  /** M10, a telling only: the half hours its fact sentences may name. */
+  ticks?: number[];
 }
 
 /** One choice as the book drew it, kept on the page it was offered under. */
@@ -261,7 +305,7 @@ export interface OfferedChoice {
 }
 
 export interface OfferedGroup {
-  kind: 'ask' | 'search' | 'go' | 'free' | 'confront';
+  kind: 'ask' | 'search' | 'go' | 'free' | 'confront' | 'continue';
   heading: string;
   personId?: Id;
   choices: OfferedChoice[];
@@ -498,6 +542,12 @@ export interface RunState {
    * where a wrong one costs.
    */
   links?: Record<string, Id>;
+  /**
+   * M10 §A.3: conversations and searches that stopped at three families and
+   * have more to tell, oldest first. "Go on" takes the newest one that can go
+   * on here. Optional, so an older save loads with nothing held back.
+   */
+  pending?: Pending[];
 }
 
 export type { ConfrontRecord };

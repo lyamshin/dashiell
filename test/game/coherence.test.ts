@@ -103,6 +103,14 @@ describe('the image budget', () => {
         const carried = new Set(
           page.blocks.flatMap((b) => (b.kind === 'prose' && b.clueId ? [b.clueId] : [])),
         );
+        // M10 §A.2: a family of facts is one telling, and the telling carries
+        // every clue in it, whichever paragraph the block's id names.
+        const prose = page.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join(' ');
+        for (const b of page.beats ?? []) {
+          if (b.kind === 'telling' && b.rendered && b.text && prose.includes(b.text.slice(0, 40))) {
+            for (const id of b.clueIds ?? []) carried.add(id);
+          }
+        }
         for (const id of page.found) expect(carried.has(id), `${id} never reached the page`).toBe(true);
       }
     }

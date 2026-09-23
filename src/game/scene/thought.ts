@@ -784,11 +784,11 @@ function markSingle(input: ThoughtInput, thoughts: Thought[]): Thought[] {
   });
 }
 
-export function thoughtsFor(input: ThoughtInput): Thought[] {
-  return markSingle(input, thoughtsForUnmarked(input));
+export function thoughtsFor(input: ThoughtInput, cap = THOUGHT_CAP): Thought[] {
+  return markSingle(input, thoughtsForUnmarked(input, cap));
 }
 
-function thoughtsForUnmarked(input: ThoughtInput): Thought[] {
+function thoughtsForUnmarked(input: ThoughtInput, cap: number): Thought[] {
   if (input.newClues.length === 0) return [{ cls: 'nothing', clueIds: [] }];
   const all = candidateThoughts(input);
   // One thought per class and subject: two clues placing Hanrahan at the same
@@ -809,7 +809,7 @@ function thoughtsForUnmarked(input: ThoughtInput): Thought[] {
   const kept: Thought[] = [];
   let count = 0;
   for (const t of primaries) {
-    if (count >= THOUGHT_CAP) break;
+    if (count >= cap) break;
     // Context is what a page says when it has nothing better; never beside
     // something better.
     if (t.cls === 'context' && count > 0) continue;
@@ -824,6 +824,11 @@ function thoughtsForUnmarked(input: ThoughtInput): Thought[] {
   }
   if (kept.length === 0) kept.push({ cls: 'context', clueIds: input.newClues.map((c) => c.id) });
   return kept.sort((a, b) => rank(WRITTEN, a.cls) - rank(WRITTEN, b.cls));
+}
+
+/** Which of two thoughts a page keeps first (lower keeps). */
+export function thoughtPriority(cls: ThoughtClass): number {
+  return rank(PRIORITY, cls);
 }
 
 function rank(order: readonly ThoughtClass[], cls: ThoughtClass): number {

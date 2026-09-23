@@ -37,6 +37,7 @@ import type {
   Command,
   ErrandTrace,
   Page,
+  Pending,
   Report,
   RunState,
   Thread,
@@ -62,6 +63,7 @@ import {
   type ConfrontRecord,
 } from './m9.js';
 import { namedIn, proseTexts } from './scene/text.js';
+import { paceClues } from './scene/families.js';
 import { parse } from './parser.js';
 import { possessiveOf } from './voice/cast.js';
 import { DA_AT_THE_DOOR } from './voice-data.js';
@@ -372,7 +374,9 @@ export interface Price {
     /** The same fact put to the same person again: free, read back. */
     | 'confront-again'
     /** Nothing of theirs to put it to yet, or not a fact in hand. Free. */
-    | 'no-confront';
+    | 'no-confront'
+    /** M10 §A.3: "Go on" — the rest of what a page broke off telling. Free. */
+    | 'continue';
 }
 
 /** The key a question is remembered under: who, and the topic as the parser reads it. */
@@ -387,6 +391,41 @@ export function askedBefore(state: RunState, personId: Id, topic: TopicRef): boo
 }
 
 /**
+ * M10 §A.3: the held-back telling a command would go on with, if any — "Go
+ * on" takes the newest one that can go on here; the same question asked
+ * again takes its own; a search of the room takes the room's.
+ */
+export function pendingFor(
+  view: CaseView,
+  state: RunState,
+  command: Command,
+): { item: Pending; index: number } | null {
+  const list = state.pending ?? [];
+  if (list.length === 0) return null;
+  const here = peopleHereNow(view, state.at, {
+    clientInOffice: state.clientInOffice,
+    found: state.found,
+  }).map((p) => p.id);
+  for (let index = list.length - 1; index >= 0; index--) {
+    const item = list[index] as Pending;
+    const open =
+      item.kind === 'ask' ? item.personId !== undefined && here.includes(item.personId) : item.placeId === state.at;
+    if (!open) continue;
+    if (command.kind === 'continue') return { item, index };
+    if (command.kind === 'ask' && item.kind === 'ask' && item.key === askKey(command.personId, command.topic)) {
+      return { item, index };
+    }
+    if (command.kind === 'examine' && item.kind === 'examine') return { item, index };
+  }
+  return null;
+}
+
+/** M10 §A.3: the command that goes on with a held-back telling here, or null. */
+export function continuationOf(view: CaseView, state: RunState): string | null {
+  return pendingFor(view, state, { kind: 'continue' }) === null ? null : 'go on';
+}
+
+/**
  * The price of one command against one state. `step` charges exactly this and
  * the choice model prints exactly this, so a button never says one thing and
  * the clock another.
@@ -398,11 +437,17 @@ export function priceOf(command: Command, state: RunState, view: CaseView): Pric
     case 'help':
     case 'file':
       return { cost: 0, waived: 0, reason: 'free' };
+    case 'continue':
+      return pendingFor(view, state, command) === null
+        ? { cost: 0, waived: 0, reason: 'nobody' }
+        : { cost: 0, waived: 0, reason: 'continue' };
     case 'go':
       return command.placeId === state.at
         ? { cost: 0, waived: 0, reason: 'still' }
         : { cost: 1, waived: 0, reason: 'move' };
     case 'examine':
+      // M10 §A.3: a search that stopped at three finds goes on, free.
+      if (pendingFor(view, state, command) !== null) return { cost: 0, waived: 0, reason: 'continue' };
       // §1.4: a room gives up everything it has to the first search, so the
       // second one finds nothing and costs what nothing costs.
       return (state.searched ?? []).includes(state.at)
@@ -437,6 +482,9 @@ export function priceOf(command: Command, state: RunState, view: CaseView): Pric
       if (command.topic.kind === 'self' && state.selfTold.includes(person.id)) {
         return { cost: 0, waived: 0, reason: 'self-told' };
       }
+      // M10 §A.3: the same question, while they still have more of the
+      // answer to give, goes on with it.
+      if (pendingFor(view, state, command) !== null) return { cost: 0, waived: 0, reason: 'continue' };
       if (askedBefore(state, person.id, command.topic)) {
         return { cost: 0, waived: 0, reason: 'ask-again' };
       }
@@ -522,8 +570,8 @@ function repeatBlocks(view: CaseView, state: RunState, command: Command): Block[
   const person = view.personById.get(command.personId);
   const surname = person?.surname ?? 'them';
   const key = askKey(command.personId, command.topic);
-  const first = (state.asked ?? []).find((a) => a.key === key);
-  const clues = first?.clues ?? [];
+  // M10 §A.3: an answer told over two pages is read back whole.
+  const clues = (state.asked ?? []).filter((a) => a.key === key).flatMap((a) => a.clues);
   const out: Block[] = [];
   if (command.topic.kind === 'evening' && state.accounts.includes(command.personId)) {
     out.push({
@@ -591,8 +639,65 @@ export function step(
   let beats: BeatTrace[] | undefined;
   let memory: SceneMemory | undefined;
   let confronted: ConfrontRecord | null = null;
+  // M10 §A.3: held-back tellings, and the one this command goes on with.
+  const pending: Pending[] = [...(state.pending ?? [])];
+  const going = price.reason === 'continue' ? pendingFor(view, state, command) : null;
+  const goOn = (): void => {
+    if (!going) return;
+    const { item, index } = going;
+    const have = new Set(state.found);
+    const rest = item.clueIds
+      .map((id) => view.findableById.get(id))
+      .filter((c): c is Clue => c !== undefined && !have.has(c.id));
+    const paced = paceClues(view, rest);
+    pending.splice(index, 1, ...(paced.later.length > 0 ? [{ ...item, clueIds: paced.later.map((c) => c.id) }] : []));
+    gained = paced.now.map((c) => c.id);
+    const more = paced.later.length > 0 ? { more: true } : {};
+    if (paced.now.length === 0) {
+      blocks = [{ kind: 'note', text: 'There was nothing more to it.' }];
+      shape = 'repeat';
+      return;
+    }
+    if (item.kind === 'ask' && item.personId !== undefined && item.topic !== undefined) {
+      for (const c of paced.now) {
+        if (c.kind === 'account' && c.source.type === 'person') accounts.push(c.source.personId);
+      }
+      if (item.key !== undefined) asked.push({ key: item.key, clues: gained });
+      scene = {
+        kind: 'ask',
+        personId: item.personId,
+        askKind: askKindOf(item.topic.kind),
+        topicLabel: topicLabel(view, item.topic),
+        topicSlots: topicSlots(view, item.topic),
+        clues: paced.now,
+        account: null,
+        volunteer: null,
+        free: false,
+        topicRef: topicRefOf(item.topic),
+        continued: true,
+        ...more,
+      };
+      return;
+    }
+    scene = {
+      kind: 'examine',
+      placeId: item.placeId,
+      clues: paced.now,
+      continued: true,
+      ...(item.objectId === undefined ? {} : { objectId: item.objectId }),
+      ...more,
+    };
+  };
 
   switch (command.kind) {
+    case 'continue':
+      if (going) {
+        goOn();
+        break;
+      }
+      blocks = [{ kind: 'note', text: 'Nobody was in the middle of telling me anything.' }];
+      shape = 'repeat';
+      break;
     case 'look':
       scene = { kind: 'look' };
       break;
@@ -646,6 +751,10 @@ export function step(
       ];
       break;
     case 'examine': {
+      if (going) {
+        goOn();
+        break;
+      }
       if (price.reason === 'search-again') {
         blocks = repeatBlocks(view, state, command);
         shape = 'repeat';
@@ -653,15 +762,27 @@ export function step(
       }
       cost = price.cost;
       searched.push(state.at);
-      const available = (view.placeClues.get(state.at) ?? []).filter(
+      const all = (view.placeClues.get(state.at) ?? []).filter(
         (c) => !state.found.includes(c.id),
       );
+      // M10 §A.5: each find its own short moment, three to a page.
+      const paced = paceClues(view, all);
+      const available = paced.now;
+      if (paced.later.length > 0) {
+        pending.push({
+          kind: 'examine',
+          placeId: state.at,
+          clueIds: paced.later.map((c) => c.id),
+          ...(command.objectId === undefined ? {} : { objectId: command.objectId }),
+        });
+      }
       gained = available.map((c) => c.id);
       scene = {
         kind: 'examine',
         placeId: state.at,
         clues: available,
         ...(command.objectId === undefined ? {} : { objectId: command.objectId }),
+        ...(paced.later.length > 0 ? { more: true } : {}),
       };
       break;
     }
@@ -742,6 +863,10 @@ export function step(
         };
         break;
       }
+      if (going) {
+        goOn();
+        break;
+      }
       // §1.4: the same question twice is read back out of the notebook, free.
       if (price.reason === 'ask-again') {
         blocks = repeatBlocks(view, state, command);
@@ -820,35 +945,51 @@ export function step(
         (command.topic.kind === 'evening' && !view.kase.logic) || askedSelf
           ? []
           : answersTo(view, command.personId, command.topic, state.found);
-      gained = answers.map((c) => c.id);
-      for (const c of answers) {
-        if (c.kind === 'account' && c.source.type === 'person') accounts.push(c.source.personId);
-      }
-      asked.push({ key: askKey(person.id, command.topic), clues: gained });
-      const volunteer =
+      const volunteerDrawn =
         answers.length > 0 || account || (askedSelf && !toldAlready)
           ? volunteerFrom(
               view,
               state.cast,
               person,
-              [...state.found, ...gained],
+              [...state.found, ...answers.map((c) => c.id)],
               state.volunteered.length,
               state.seed * 31 + state.log.length,
             )
           : null;
-      if (volunteer) {
-        volunteered.push(volunteer.id);
-        gained = [...gained, volunteer.id];
+      if (volunteerDrawn) volunteered.push(volunteerDrawn.id);
+      // M10 §A.3: at most three families of fact a page. The rest waits for
+      // "Go on", or for the same question put again.
+      const paced = paceClues(view, [...answers, ...(volunteerDrawn ? [volunteerDrawn] : [])]);
+      const nowIds = new Set(paced.now.map((c) => c.id));
+      const answered = answers.filter((c) => nowIds.has(c.id));
+      const volunteer = volunteerDrawn && nowIds.has(volunteerDrawn.id) ? volunteerDrawn : null;
+      const key = askKey(person.id, command.topic);
+      if (paced.later.length > 0) {
+        pending.push({
+          kind: 'ask',
+          placeId: state.at,
+          personId: person.id,
+          key,
+          topic: command.topic,
+          clueIds: paced.later.map((c) => c.id),
+        });
       }
+      gained = answered.map((c) => c.id);
+      for (const c of answered) {
+        if (c.kind === 'account' && c.source.type === 'person') accounts.push(c.source.personId);
+      }
+      asked.push({ key, clues: gained });
+      if (volunteer) gained = [...gained, volunteer.id];
       scene = {
         kind: 'ask',
         personId: command.personId,
         askKind: askKindOf(command.topic.kind),
         topicLabel: topicLabel(view, command.topic),
         topicSlots: topicSlots(view, command.topic),
-        clues: answers,
+        clues: answered,
         account,
         volunteer,
+        ...(paced.later.length > 0 ? { more: true } : {}),
         free: waived === 1,
         topicRef: topicRefOf(command.topic),
         ...(askedSelf
@@ -939,6 +1080,7 @@ export function step(
     asked: [...(state.asked ?? []), ...asked],
     searched: [...new Set([...(state.searched ?? []), ...searched])],
     ...(confronted ? { confronts: [...(state.confronts ?? []), confronted] } : {}),
+    ...(pending.length > 0 || state.pending !== undefined ? { pending } : {}),
     ...(memory ? { scene: memory } : state.scene ? { scene: state.scene } : {}),
   };
   const page: Page = {

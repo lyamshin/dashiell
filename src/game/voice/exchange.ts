@@ -24,7 +24,7 @@ import { clueTick } from '../derive.js';
 import type { Tick } from '../../gen/types.js';
 import type { CastSheet, Temper } from './cast.js';
 import { genderHintOf, temperOf } from './cast.js';
-import { Dealer, SCHEMA, tagIs, tagOf, type Card, type Slots } from './cards.js';
+import { Dealer, SCHEMA, knowsTheDetective, tagIs, tagOf, type Card, type Slots } from './cards.js';
 import { bodyConflict, readMotifs, type MotifContext } from './motifs.js';
 import { beatsOf, findKindOf, strippedQuote, type Beat } from './facts.js';
 import { countSentences, deckKnows, plainBeat } from './plain.js';
@@ -484,6 +484,9 @@ export function frameAnswer(
   }
 
   const want = familiar ? 'yes' : 'no';
+  // M10 §A.5: a stranger never calls him by name. The widening rungs keep to
+  // that; only the acquaintance rung reaches for the familiar cards.
+  const met = (c: Card): boolean => familiar || !knowsTheDetective('frames', c);
   const frame = dealer.draw(
     'frames',
     [
@@ -491,9 +494,10 @@ export function frameAnswer(
         tagIs('frames', c, 'register', register) &&
         tagIs('frames', c, 'temper', temper) &&
         tagIs('frames', c, 'familiar', want),
-      (c) => tagIs('frames', c, 'register', register) && tagIs('frames', c, 'temper', temper),
-      (c) => tagIs('frames', c, 'register', register),
-      (c) => tagIs('frames', c, 'temper', temper),
+      (c) => met(c) && tagIs('frames', c, 'register', register) && tagIs('frames', c, 'temper', temper),
+      (c) => met(c) && tagIs('frames', c, 'register', register),
+      (c) => met(c) && tagIs('frames', c, 'temper', temper),
+      met,
     ],
     {
       ...slots,

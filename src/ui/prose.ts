@@ -89,7 +89,7 @@ function renderBlock(block: Block, view: CaseView, cardFor: CardFor): HTMLElemen
       const account = claimedAccount(view, block.personId);
       const heading = el('p', {
         class: 'note',
-        text: `${person?.surname ?? 'They'} gives me the evening, and I write it down as told:`,
+        text: `${person?.surname ?? 'They'} gave me the evening, and I wrote it down as told:`,
       });
       const table = el('table', { class: 'timeline' });
       const rows = account

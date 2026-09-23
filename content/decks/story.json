@@ -1196,7 +1196,7 @@
   {
     "id": "STY-112",
     "deck": "story",
-    "text": "{actor} married {victim}’s sister in {year} and had been in the family ever since.",
+    "text": "{actor} married {victim}’s {sibling} in {year} and had been in the family ever since.",
     "tags": {
       "beat": "tie",
       "relationship": "rel-inlaw",
@@ -1207,7 +1207,7 @@
   {
     "id": "STY-113",
     "deck": "story",
-    "text": "{actor} was {victim}’s brother-in-law and was reminded of it at every holiday.",
+    "text": "{actor} was {victim}’s {inlaw} and was reminded of it at every holiday.",
     "tags": {
       "beat": "tie",
       "relationship": "rel-inlaw",

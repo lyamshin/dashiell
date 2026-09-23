@@ -52,12 +52,14 @@ describe('the grid on seed 3', () => {
     ]);
   });
 
-  it('puts Grasso not at the third floor on Marchetti’s word and Kreuzer’s', () => {
+  // M10 §A.5 changed the words on the oracle's pages, and with them how much
+  // of Marchetti's answer the page at the third floor has room for: her word
+  // on Grasso is no longer taken down on this route, so Kreuzer's stands alone.
+  it('puts Grasso not at the third floor on Kreuzer’s word', () => {
     const grasso = row('Grasso');
     const at10 = grasso?.cells[8]?.entries ?? [];
     expect(at10.map((e) => [e.placeId, e.present, e.source, e.by])).toEqual([
       ['walkup-flat', false, 'witness', 'p-s2'],
-      ['walkup-flat', false, 'witness', 'p-f2'],
     ]);
     expect(grasso?.cells[8]?.conflict).toBe(false);
   });
@@ -81,7 +83,7 @@ describe('the grid on seed 3', () => {
   it('prints for the transcript', () => {
     const text = renderGridText(view, run.state);
     expect(text).toContain('WHERE THEY WERE');
-    expect(text).toContain('-third:M');
+    expect(text).toContain('-third:K');
     expect(text).toContain('RULES');
   });
 });

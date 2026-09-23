@@ -55,6 +55,8 @@ export function actionOf(scene: Scene, topic?: { kind: string; id?: Id; topic?: 
         placeId: scene.placeId,
         clues: scene.clues,
         ...(scene.objectId === undefined ? {} : { objectId: scene.objectId }),
+        ...(scene.continued ? { continued: true } : {}),
+        ...(scene.more ? { more: true } : {}),
       };
     case 'ask':
       return {
@@ -65,6 +67,8 @@ export function actionOf(scene: Scene, topic?: { kind: string; id?: Id; topic?: 
         account: scene.account !== null,
         self: scene.self !== undefined,
         volunteer: scene.volunteer,
+        ...(scene.continued ? { continued: true } : {}),
+        ...(scene.more ? { more: true } : {}),
       };
     case 'confront':
       return {
@@ -99,6 +103,7 @@ export function composeScene(stage: Stage, scene: Scene): Composed {
     seed: stage.view.kase.seed,
     weather: stage.cast.roll.weather,
     tempers: stage.cast.temper,
+    portrayed: stage.portrayed,
     recallable: Object.entries(stage.cast.portraits)
       .filter(([, p]) => p.pair?.action !== undefined)
       .map(([id]) => id),

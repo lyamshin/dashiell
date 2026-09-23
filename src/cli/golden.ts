@@ -1,7 +1,11 @@
 /**
  * The golden loop's page dump (docs/11-golden-loop.md).
  *
- * `npx tsx src/cli/golden.ts --out DIR [--seeds 40] [--pages 3] [--difficulty 2]`
+ * `npx tsx src/cli/golden.ts --out DIR [--seeds 40] [--pages 3] [--difficulty 2] [--tier 0..5] [--level 1..4]`
+ *
+ * M10: `--tier` deals the tiered case instead (at `--level`, Precinct by
+ * default), so the night harness can read the logic game's question pages —
+ * the ones the testimony golden is about.
  *
  * Renders the fixed measurement set — pages one to three of seeds 1..N at
  * difficulty 2 — through exactly the code path `npm run read` uses: the same
@@ -24,7 +28,7 @@ import { buildView } from '../game/derive.js';
 import { playOracle } from '../game/oracle.js';
 import { renderPageText } from '../game/transcript.js';
 import type { Page } from '../game/types.js';
-import { parseArgs } from './args.js';
+import { parseArgs, parseTierLevel } from './args.js';
 
 const { values } = parseArgs(process.argv.slice(2));
 const out = values.get('out') ?? '.golden-pages';
@@ -32,6 +36,8 @@ const seeds = Number(values.get('seeds') ?? 40);
 const pages = Number(values.get('pages') ?? 3);
 const difficulty = Number(values.get('difficulty') ?? 2) as Difficulty;
 const detective = values.get('detective') ?? 'Dashiell';
+const dials = parseTierLevel(values) ?? {};
+const tierOpts = dials.tier === undefined ? {} : { tier: dials.tier, level: dials.level ?? 2 };
 
 /**
  * The prose of a rendered page. `renderPageText` puts the head and a rule on
@@ -98,7 +104,7 @@ mkdirSync(out, { recursive: true });
 
 const rows: Row[] = [];
 for (let seed = 1; seed <= seeds; seed++) {
-  const kase = generateCase(seed, { difficulty, detectiveName: detective });
+  const kase = generateCase(seed, { difficulty, detectiveName: detective, ...tierOpts } as Parameters<typeof generateCase>[1]);
   const view = buildView(kase);
   const run = playOracle(view, detective);
   const state = run.state;

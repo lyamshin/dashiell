@@ -146,12 +146,18 @@ export function planBridge(
   // The victim, an hour, a room or a thing: the question is about the hour
   // the notebook's window opens on, and {subject} is whatever it is about.
   const place = view.places.find((p) => fold(topic).includes(fold(p.shortName)));
+  // M10: somebody's own evening is said with their name, before any pronoun
+  // could stand for it: "Zeldin's evening", never "his own evening … Zeldin".
+  const asker = view.personById.get(whoId);
+  const own = /\b(?:his|her|their) own evening\b/.test(topic) && asker ? `${asker.surname}’s evening` : null;
   const subject =
     named === view.victim.id
       ? view.victim.surname
-      : place && named === null
-        ? place.shortName
-        : topic.replace(/ that evening$/, '');
+      : own !== null
+        ? own
+        : place && named === null
+          ? place.shortName
+          : topic.replace(/ that evening$/, '');
   return {
     ...base,
     ...(named === view.victim.id ? { subjectId: named } : {}),

@@ -57,7 +57,7 @@
   {
     "id": "cry-006",
     "deck": "carry",
-    "text": "On {name}’s word, I went to put {subject} to {who}.",
+    "text": "On {name}’s word, I went to ask {who} about {subject}.",
     "tags": {
       "for": "ask-person",
       "lead": "yes"
@@ -134,7 +134,7 @@
   {
     "id": "cry-013",
     "deck": "carry",
-    "text": "It wasn’t anybody’s lead. I wanted {who}’s word on {subject} regardless.",
+    "text": "It was my own idea. I wanted {who}’s word on {subject} regardless.",
     "tags": {
       "for": "ask-person",
       "lead": "no"
@@ -156,7 +156,7 @@
   {
     "id": "cry-015",
     "deck": "carry",
-    "text": "There was no lead behind it. I put {subject} to {who} on my own account.",
+    "text": "Nobody had asked me to. I asked {who} about {subject} on my own account.",
     "tags": {
       "for": "ask-person",
       "lead": "no"
@@ -189,7 +189,7 @@
   {
     "id": "cry-018",
     "deck": "carry",
-    "text": "No lead sent me. A hunch did. I wanted {who} on {subject}.",
+    "text": "Nobody sent me. A hunch did. I wanted {who}’s word on {subject}.",
     "tags": {
       "for": "ask-person",
       "lead": "no"
@@ -211,7 +211,7 @@
   {
     "id": "cry-020",
     "deck": "carry",
-    "text": "I had no lead pointing at {who}. I asked about {subject} on a hunch.",
+    "text": "Nothing I had found pointed at {who}. I asked about {subject} on a hunch.",
     "tags": {
       "for": "ask-person",
       "lead": "no"
@@ -255,7 +255,7 @@
   {
     "id": "cry-024",
     "deck": "carry",
-    "text": "I had it from {name} that {subject} was worth asking about. I put it to {who}.",
+    "text": "I had it from {name} that {subject} was worth asking about. I asked {who}.",
     "tags": {
       "for": "ask-thing",
       "lead": "yes"
@@ -354,7 +354,7 @@
   {
     "id": "cry-033",
     "deck": "carry",
-    "text": "It wasn’t anybody’s lead. I wanted {who}’s word on {subject} just the same.",
+    "text": "It was my own idea. I wanted {who}’s word on {subject} just the same.",
     "tags": {
       "for": "ask-thing",
       "lead": "no"
@@ -376,7 +376,7 @@
   {
     "id": "cry-035",
     "deck": "carry",
-    "text": "There was no lead behind it. I asked {who} about {subject} anyway.",
+    "text": "Nobody had asked me to. I asked {who} about {subject} anyway.",
     "tags": {
       "for": "ask-thing",
       "lead": "no"
@@ -409,7 +409,7 @@
   {
     "id": "cry-038",
     "deck": "carry",
-    "text": "No lead sent me there, only a hunch. I wanted {who}’s word on {subject}.",
+    "text": "Nobody sent me there, only a hunch. I wanted {who}’s word on {subject}.",
     "tags": {
       "for": "ask-thing",
       "lead": "no"
@@ -431,7 +431,7 @@
   {
     "id": "cry-040",
     "deck": "carry",
-    "text": "I had no lead pointing at {subject}. I asked {who} on a hunch.",
+    "text": "Nothing I had found pointed at {subject}. I asked {who} on a hunch.",
     "tags": {
       "for": "ask-thing",
       "lead": "no"
@@ -464,7 +464,7 @@
   {
     "id": "cry-043",
     "deck": "carry",
-    "text": "{name} thought {subject} was worth asking about. I put it to {who}.",
+    "text": "{name} thought {subject} was worth asking about. I asked {who}.",
     "tags": {
       "for": "ask-place",
       "lead": "yes"
@@ -563,7 +563,7 @@
   {
     "id": "cry-052",
     "deck": "carry",
-    "text": "Nobody had raised {subject}. I put it to {who} regardless.",
+    "text": "Nobody had raised {subject}. I asked {who} about it regardless.",
     "tags": {
       "for": "ask-place",
       "lead": "no"
@@ -574,7 +574,7 @@
   {
     "id": "cry-053",
     "deck": "carry",
-    "text": "It wasn’t anybody’s lead. I wanted {who}’s word on {subject} all the same.",
+    "text": "It was my own idea. I wanted {who}’s word on {subject} all the same.",
     "tags": {
       "for": "ask-place",
       "lead": "no"
@@ -596,7 +596,7 @@
   {
     "id": "cry-055",
     "deck": "carry",
-    "text": "There was no lead behind it. I asked {who} about {subject} anyway.",
+    "text": "Nobody had asked me to. I asked {who} about {subject} all the same.",
     "tags": {
       "for": "ask-place",
       "lead": "no"
@@ -629,7 +629,7 @@
   {
     "id": "cry-058",
     "deck": "carry",
-    "text": "No lead sent me, only a hunch. I wanted {who}’s account of {subject}.",
+    "text": "Nobody sent me, only a hunch. I wanted {who}’s account of {subject}.",
     "tags": {
       "for": "ask-place",
       "lead": "no"
@@ -651,7 +651,7 @@
   {
     "id": "cry-060",
     "deck": "carry",
-    "text": "I had no lead pointing at {subject}. I asked {who} on a hunch.",
+    "text": "Nothing I had found pointed at {subject}. I asked {who} about it on a hunch.",
     "tags": {
       "for": "ask-place",
       "lead": "no"
@@ -794,7 +794,7 @@
   {
     "id": "cry-073",
     "deck": "carry",
-    "text": "It wasn’t anybody’s lead. I asked {who} to account for the hours all the same.",
+    "text": "It was my own idea. I asked {who} to account for the hours all the same.",
     "tags": {
       "for": "ask-evening",
       "lead": "no"
@@ -816,7 +816,7 @@
   {
     "id": "cry-075",
     "deck": "carry",
-    "text": "There was no lead behind it. I wanted {who}’s account of the evening anyway.",
+    "text": "Nobody had asked me to. I wanted {who}’s account of the evening anyway.",
     "tags": {
       "for": "ask-evening",
       "lead": "no"
@@ -849,7 +849,7 @@
   {
     "id": "cry-078",
     "deck": "carry",
-    "text": "No lead sent me, only a hunch. I wanted {who} to walk me through the hours.",
+    "text": "Nobody sent me, only a hunch. I wanted {who} to walk me through the hours.",
     "tags": {
       "for": "ask-evening",
       "lead": "no"
@@ -871,7 +871,7 @@
   {
     "id": "cry-080",
     "deck": "carry",
-    "text": "I had no lead pointing at it. I asked {who} on a hunch.",
+    "text": "Nothing I had found pointed that way. I asked {who} on a hunch.",
     "tags": {
       "for": "ask-evening",
       "lead": "no"
@@ -893,7 +893,7 @@
   {
     "id": "cry-082",
     "deck": "carry",
-    "text": "It was {name} who raised the question of {who}. I put it to {who} straight.",
+    "text": "It was {name} who raised the question of {who}. I asked {who} straight out.",
     "tags": {
       "for": "ask-self",
       "lead": "yes"
@@ -1014,7 +1014,7 @@
   {
     "id": "cry-093",
     "deck": "carry",
-    "text": "It wasn’t anybody’s lead. I wanted {who}’s own answer all the same.",
+    "text": "It was my own idea. I wanted {who}’s own answer all the same.",
     "tags": {
       "for": "ask-self",
       "lead": "no"
@@ -1036,7 +1036,7 @@
   {
     "id": "cry-095",
     "deck": "carry",
-    "text": "There was no lead behind it. I asked {who} the question anyway.",
+    "text": "Nobody had asked me to. I asked {who} the question anyway.",
     "tags": {
       "for": "ask-self",
       "lead": "no"
@@ -1069,7 +1069,7 @@
   {
     "id": "cry-098",
     "deck": "carry",
-    "text": "No lead sent me, only a hunch. I wanted {who}’s answer, not anybody else’s.",
+    "text": "Nobody sent me, only a hunch. I wanted {who}’s answer, not anybody else’s.",
     "tags": {
       "for": "ask-self",
       "lead": "no"
@@ -1091,7 +1091,7 @@
   {
     "id": "cry-100",
     "deck": "carry",
-    "text": "I had no lead pointing at {who}. I asked on a hunch.",
+    "text": "Nothing I had found pointed at {who}. I asked on a hunch.",
     "tags": {
       "for": "ask-self",
       "lead": "no"
@@ -1239,7 +1239,7 @@
   {
     "id": "cry-113",
     "deck": "carry",
-    "text": "It wasn’t anybody’s lead. I searched the room all the same.",
+    "text": "It was my own idea. I searched the room all the same.",
     "tags": {
       "for": "search-room",
       "lead": "no",
@@ -1263,7 +1263,7 @@
   {
     "id": "cry-115",
     "deck": "carry",
-    "text": "There was no lead behind it. I searched it anyway.",
+    "text": "Nobody had asked me to. I searched it anyway.",
     "tags": {
       "for": "search-room",
       "lead": "no"
@@ -1297,7 +1297,7 @@
   {
     "id": "cry-118",
     "deck": "carry",
-    "text": "No lead sent me, only a hunch. I went through it anyway.",
+    "text": "Nobody sent me, only a hunch. I went through it anyway.",
     "tags": {
       "for": "search-room",
       "lead": "no"
@@ -1319,7 +1319,7 @@
   {
     "id": "cry-120",
     "deck": "carry",
-    "text": "I had no lead pointing here. I searched on a hunch.",
+    "text": "Nothing I had found pointed here. I searched on a hunch.",
     "tags": {
       "for": "search-room",
       "lead": "no"
@@ -1462,7 +1462,7 @@
   {
     "id": "cry-133",
     "deck": "carry",
-    "text": "It wasn’t anybody’s lead. I went looking for {subject} regardless.",
+    "text": "It was my own idea. I went looking for {subject} regardless.",
     "tags": {
       "for": "search-thing",
       "lead": "no"
@@ -1484,7 +1484,7 @@
   {
     "id": "cry-135",
     "deck": "carry",
-    "text": "There was no lead behind it. I went looking for {subject} anyway.",
+    "text": "Nobody had asked me to. I went looking for {subject} anyway.",
     "tags": {
       "for": "search-thing",
       "lead": "no"
@@ -1517,7 +1517,7 @@
   {
     "id": "cry-138",
     "deck": "carry",
-    "text": "No lead sent me, only a hunch. I went looking for {subject} anyway.",
+    "text": "Nobody sent me, only a hunch. I went looking for {subject} all the same.",
     "tags": {
       "for": "search-thing",
       "lead": "no"
@@ -1539,7 +1539,7 @@
   {
     "id": "cry-140",
     "deck": "carry",
-    "text": "I had no lead pointing at {subject}. I looked on a hunch.",
+    "text": "Nothing I had found pointed at {subject}. I looked on a hunch.",
     "tags": {
       "for": "search-thing",
       "lead": "no"
@@ -1574,7 +1574,7 @@
   {
     "id": "cry-n03",
     "deck": "carry",
-    "text": "The notebook said to look here, so I looked.",
+    "text": "Everything I had pointed here, so I looked.",
     "tags": {
       "for": "search-room",
       "lead": "yes"
@@ -1596,7 +1596,7 @@
   {
     "id": "cry-n05",
     "deck": "carry",
-    "text": "The notebook had {subject} in it. I went to that first.",
+    "text": "I had {subject} written down. I went to that first.",
     "tags": {
       "for": "search-thing",
       "lead": "yes"
@@ -1629,7 +1629,7 @@
   {
     "id": "cry-n08",
     "deck": "carry",
-    "text": "The notebook had a question for {who} about {subject}.",
+    "text": "I had a question for {who} about {subject}.",
     "tags": {
       "for": "ask-person",
       "lead": "yes"
@@ -1640,7 +1640,7 @@
   {
     "id": "cry-n09",
     "deck": "carry",
-    "text": "I wanted {who}’s word on {subject}. The notebook said so.",
+    "text": "I wanted {who}’s word on {subject} before anything else.",
     "tags": {
       "for": "ask-person",
       "lead": "yes"
@@ -1662,7 +1662,7 @@
   {
     "id": "cry-n11",
     "deck": "carry",
-    "text": "The notebook had a question for {who} about {subject}.",
+    "text": "I had a question about {subject}, and {who} was the one to ask.",
     "tags": {
       "for": "ask-thing",
       "lead": "yes"
@@ -1695,7 +1695,7 @@
   {
     "id": "cry-n14",
     "deck": "carry",
-    "text": "The notebook had a question for {who} about {subject}.",
+    "text": "I wanted to ask {who} about {subject}.",
     "tags": {
       "for": "ask-place",
       "lead": "yes"
@@ -1717,7 +1717,7 @@
   {
     "id": "cry-n16",
     "deck": "carry",
-    "text": "The notebook wanted {who}’s evening, hour by hour.",
+    "text": "I wanted {who}’s evening, hour by hour.",
     "tags": {
       "for": "ask-evening",
       "lead": "yes"
@@ -1742,6 +1742,39 @@
     "text": "I wanted to know where {who} had been, and when.",
     "tags": {
       "for": "ask-evening",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cry-n19",
+    "deck": "carry",
+    "text": "Something I had turned up came back to {who}. I wanted {who}’s own answer.",
+    "tags": {
+      "for": "ask-self",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cry-n20",
+    "deck": "carry",
+    "text": "I wanted {who} to answer for it directly.",
+    "tags": {
+      "for": "ask-self",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cry-n21",
+    "deck": "carry",
+    "text": "What I had so far came back to {who}. I asked {who} about it.",
+    "tags": {
+      "for": "ask-self",
       "lead": "yes"
     },
     "motifs": [],

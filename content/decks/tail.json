@@ -1,0 +1,762 @@
+[
+  {
+    "id": "tai-001",
+    "deck": "tail",
+    "text": "{He} takes the stairs like each one owes {him} money.",
+    "tags": {
+      "family": "movements",
+      "temper": "yap",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-002",
+    "deck": "tail",
+    "text": "You don’t miss {him}. Nobody does.",
+    "tags": {
+      "family": "movements",
+      "temper": "yap",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-003",
+    "deck": "tail",
+    "text": "{He} never went anywhere quietly in {his} life.",
+    "tags": {
+      "family": "movements",
+      "temper": "yap",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-004",
+    "deck": "tail",
+    "text": "{He} always looks like {he}’s late for something.",
+    "tags": {
+      "family": "movements",
+      "temper": "yap",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-005",
+    "deck": "tail",
+    "text": "I don’t keep track of {him} beyond that. I’ve got my own troubles.",
+    "tags": {
+      "family": "movements",
+      "temper": "plain",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-006",
+    "deck": "tail",
+    "text": "That’s all I know about {him}, and it’s more than I wanted to.",
+    "tags": {
+      "family": "movements",
+      "temper": "yap",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-007",
+    "deck": "tail",
+    "text": "{He} takes the stairs like each one owes {him} money.",
+    "tags": {
+      "family": "movements",
+      "temper": "yap",
+      "knows": "relation"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-008",
+    "deck": "tail",
+    "text": "You don’t miss {him}. Nobody does.",
+    "tags": {
+      "family": "movements",
+      "temper": "yap",
+      "knows": "relation"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-009",
+    "deck": "tail",
+    "text": "{He} never went anywhere quietly in {his} life.",
+    "tags": {
+      "family": "movements",
+      "temper": "yap",
+      "knows": "relation"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-010",
+    "deck": "tail",
+    "text": "{He} always looks like {he}’s late for something.",
+    "tags": {
+      "family": "movements",
+      "temper": "yap",
+      "knows": "relation"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-011",
+    "deck": "tail",
+    "text": "I don’t keep track of {him} beyond that. I’ve got my own troubles.",
+    "tags": {
+      "family": "movements",
+      "temper": "plain",
+      "knows": "relation"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-012",
+    "deck": "tail",
+    "text": "That’s all I know about {him}, and it’s more than I wanted to.",
+    "tags": {
+      "family": "movements",
+      "temper": "yap",
+      "knows": "relation"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-013",
+    "deck": "tail",
+    "text": "That’s all I saw.",
+    "tags": {
+      "family": "movements",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-014",
+    "deck": "tail",
+    "text": "I wasn’t watching for anybody in particular.",
+    "tags": {
+      "family": "movements",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-015",
+    "deck": "tail",
+    "text": "I don’t keep a clock on people. I just notice.",
+    "tags": {
+      "family": "movements",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-016",
+    "deck": "tail",
+    "text": "I’ve got better things to do than keep count of people, most nights.",
+    "tags": {
+      "family": "movements",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-017",
+    "deck": "tail",
+    "text": "People think nobody sees them. Somebody always does.",
+    "tags": {
+      "family": "movements",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-018",
+    "deck": "tail",
+    "text": "That’s all.",
+    "tags": {
+      "family": "movements",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-019",
+    "deck": "tail",
+    "text": "Make of it what you like.",
+    "tags": {
+      "family": "movements",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-020",
+    "deck": "tail",
+    "text": "That’s what I saw. What it means is your end of it.",
+    "tags": {
+      "family": "movements",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-021",
+    "deck": "tail",
+    "text": "And I know most people around here.",
+    "tags": {
+      "family": "knowing",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-022",
+    "deck": "tail",
+    "text": "If I knew {him}, I’d tell you. I tell people everything.",
+    "tags": {
+      "family": "knowing",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-023",
+    "deck": "tail",
+    "text": "The name means nothing to me.",
+    "tags": {
+      "family": "knowing",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-024",
+    "deck": "tail",
+    "text": "Sorry. I’d help you if I could.",
+    "tags": {
+      "family": "knowing",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-025",
+    "deck": "tail",
+    "text": "No.",
+    "tags": {
+      "family": "knowing",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-026",
+    "deck": "tail",
+    "text": "Some nights I could count them on one hand.",
+    "tags": {
+      "family": "counts",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-027",
+    "deck": "tail",
+    "text": "It’s not a busy place, whatever anybody tells you.",
+    "tags": {
+      "family": "counts",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-028",
+    "deck": "tail",
+    "text": "I keep count. It’s a habit, like biting your nails.",
+    "tags": {
+      "family": "counts",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-029",
+    "deck": "tail",
+    "text": "That’s the lot.",
+    "tags": {
+      "family": "counts",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-030",
+    "deck": "tail",
+    "text": "That’s all of them.",
+    "tags": {
+      "family": "counts",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-031",
+    "deck": "tail",
+    "text": "I don’t miss many.",
+    "tags": {
+      "family": "counts",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-032",
+    "deck": "tail",
+    "text": "That’s the count.",
+    "tags": {
+      "family": "counts",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-033",
+    "deck": "tail",
+    "text": "Numbers I can give you.",
+    "tags": {
+      "family": "counts",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-034",
+    "deck": "tail",
+    "text": "Half the people through here I wouldn’t know again, and the other half I’d rather not.",
+    "tags": {
+      "family": "strangers",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-035",
+    "deck": "tail",
+    "text": "People around here don’t stop to be known, and I don’t ask.",
+    "tags": {
+      "family": "strangers",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-036",
+    "deck": "tail",
+    "text": "A stranger’s a stranger. You can’t make friends with everybody.",
+    "tags": {
+      "family": "strangers",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-037",
+    "deck": "tail",
+    "text": "People come and go.",
+    "tags": {
+      "family": "strangers",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-038",
+    "deck": "tail",
+    "text": "I didn’t think anything of it at the time.",
+    "tags": {
+      "family": "strangers",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-039",
+    "deck": "tail",
+    "text": "Faces. That’s all most people are to me.",
+    "tags": {
+      "family": "strangers",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-040",
+    "deck": "tail",
+    "text": "I don’t ask.",
+    "tags": {
+      "family": "strangers",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-041",
+    "deck": "tail",
+    "text": "You could set a clock by it, and people do.",
+    "tags": {
+      "family": "timing",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-042",
+    "deck": "tail",
+    "text": "It’s about the only thing around here that’s on time.",
+    "tags": {
+      "family": "timing",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-043",
+    "deck": "tail",
+    "text": "That’s when it was.",
+    "tags": {
+      "family": "timing",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-044",
+    "deck": "tail",
+    "text": "I’m sure of that much.",
+    "tags": {
+      "family": "timing",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-045",
+    "deck": "tail",
+    "text": "Ask anybody.",
+    "tags": {
+      "family": "timing",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-046",
+    "deck": "tail",
+    "text": "Nobody who was there could have missed it.",
+    "tags": {
+      "family": "event",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-047",
+    "deck": "tail",
+    "text": "People talked about nothing else for an hour.",
+    "tags": {
+      "family": "event",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-048",
+    "deck": "tail",
+    "text": "That’s how it was.",
+    "tags": {
+      "family": "event",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-049",
+    "deck": "tail",
+    "text": "That’s all I can tell you about it.",
+    "tags": {
+      "family": "event",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-050",
+    "deck": "tail",
+    "text": "Not much of a night, when you say it out loud.",
+    "tags": {
+      "family": "evening",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-051",
+    "deck": "tail",
+    "text": "I’ve had better evenings. I’ve had worse.",
+    "tags": {
+      "family": "evening",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-052",
+    "deck": "tail",
+    "text": "You’d think I’d have more to show for it.",
+    "tags": {
+      "family": "evening",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-053",
+    "deck": "tail",
+    "text": "That’s my evening.",
+    "tags": {
+      "family": "evening",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-054",
+    "deck": "tail",
+    "text": "It’s not much, but it’s mine.",
+    "tags": {
+      "family": "evening",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-055",
+    "deck": "tail",
+    "text": "That’s all you get.",
+    "tags": {
+      "family": "evening",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-056",
+    "deck": "tail",
+    "text": "Write it down if you like.",
+    "tags": {
+      "family": "evening",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-057",
+    "deck": "tail",
+    "text": "I don’t say it to make trouble. I say it because it’s so.",
+    "tags": {
+      "family": "thing",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-058",
+    "deck": "tail",
+    "text": "People talk. I listen. It isn’t a crime.",
+    "tags": {
+      "family": "thing",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-059",
+    "deck": "tail",
+    "text": "I could tell you more about this street than the street would like.",
+    "tags": {
+      "family": "thing",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-060",
+    "deck": "tail",
+    "text": "That’s what I know.",
+    "tags": {
+      "family": "thing",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-061",
+    "deck": "tail",
+    "text": "I’m only telling you what I know.",
+    "tags": {
+      "family": "thing",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-062",
+    "deck": "tail",
+    "text": "That’s all I’ll say about it.",
+    "tags": {
+      "family": "thing",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-063",
+    "deck": "tail",
+    "text": "You didn’t hear it from me.",
+    "tags": {
+      "family": "thing",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-064",
+    "deck": "tail",
+    "text": "I’ve told you what I know.",
+    "tags": {
+      "family": "any",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-065",
+    "deck": "tail",
+    "text": "That’s the truth, for what it’s worth.",
+    "tags": {
+      "family": "any",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-066",
+    "deck": "tail",
+    "text": "I don’t know why anybody would lie about a thing like that.",
+    "tags": {
+      "family": "any",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-067",
+    "deck": "tail",
+    "text": "There. Now you know as much as I do.",
+    "tags": {
+      "family": "any",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tai-068",
+    "deck": "tail",
+    "text": "That’s it.",
+    "tags": {
+      "family": "any",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

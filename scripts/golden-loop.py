@@ -167,21 +167,27 @@ NIGHT_TARGETS = {
         ("words_per_paragraph", "band", 22.0, 32.0, "low"),
         ("words", "band", 130.0, 280.0, "low"),
     ],
+    # M10: the question is held to the testimony golden
+    # (docs/golden/seed3-testimony.md), pages 5 to 7 — three pages, so GAP.md's
+    # several-page rule: a floor is their mean, a ceiling their larger value
+    # (long sentences never under the day's 0.06), orphan the ceiling plus
+    # 0.05, a band spans them widened by a tenth of dialogue or five words a
+    # paragraph. Words span the golden's own 96-196, widened to §8's ceiling.
     "ask": [
-        ("orphan_word_ratio", "max", 0.85, None, "high"),
-        ("paragraph_cohesion", "min", 0.40, None, "low"),
-        ("sentence_cohesion", "min", 0.29, None, "low"),
-        ("short_share", "min", 0.584, None, "low"),
+        ("orphan_word_ratio", "max", 0.94, None, "high"),
+        ("paragraph_cohesion", "min", 0.43, None, "low"),
+        ("sentence_cohesion", "min", 0.55, None, "low"),
+        ("short_share", "min", 0.50, None, "low"),
         ("long_ratio", "max", 0.06, None, "high"),
-        ("dialogue_share", "band", 0.32, 0.52, "low"),
+        ("dialogue_share", "band", 0.32, 0.57, "low"),
         ("figures", "max", 0.5, None, "high"),
         ("plain_ratio", "min", 0.60, None, "low"),
-        ("words_per_paragraph", "band", 14.7, 24.7, "low"),
-        ("words", "band", 130.0, 280.0, "low"),
+        ("words_per_paragraph", "band", 14.2, 31.8, "low"),
+        ("words", "band", 90.0, 280.0, "low"),
     ],
 }
 
-NIGHT_GOLDEN_PAGES = {"arrive": ["2", "4"], "search": ["3"], "ask": ["5"]}
+NIGHT_GOLDEN_PAGES = {"arrive": ["2", "4"], "search": ["3"], "ask": ["t5", "t6", "t7"]}
 
 
 def golden_night_pages() -> dict[str, dict]:
@@ -204,6 +210,22 @@ def golden_night_pages() -> dict[str, dict]:
         m["figures"] = float(m["figures"])
         m["plain_ratio"] = None
         out[parts[i]] = m
+    # M10: the testimony golden's question pages, keyed t5, t6, t7.
+    tpath = os.path.join(ROOT, "docs", "golden", "seed3-testimony.md")
+    if os.path.exists(tpath):
+        traw = open(tpath, encoding="utf-8").read()
+        tparts = _re.split(r"^## Page (\d) .*$", traw, flags=_re.M)
+        for i in range(1, len(tparts), 2):
+            body = tparts[i + 1].split("## The rules")[0]
+            lines = [l[1:].lstrip() for l in body.splitlines() if l.startswith(">")]
+            text = "\n".join(lines).replace("*", "")
+            m = SM.metrics(text)
+            sents = max(1, m["sentences"])
+            m["short_share"] = round(m["short_sentences_le6"] / sents, 3)
+            m["long_ratio"] = round(m["long_sentences_gt25"] / sents, 3)
+            m["figures"] = float(m["figures"])
+            m["plain_ratio"] = None
+            out["t" + tparts[i]] = m
     return out
 
 
@@ -269,12 +291,12 @@ def golden_pages() -> list[tuple[str, dict]]:
     return out
 
 
-def render(out: str, seeds: int, pages: int) -> None:
+def render(out: str, seeds: int, pages: int, tier: str | None = None) -> None:
     env = dict(os.environ)
     env["PATH"] = os.path.expanduser("~/.local/bin") + os.pathsep + env.get("PATH", "")
     subprocess.run(
         ["npx", "tsx", "src/cli/golden.ts", "--out", out,
-         "--seeds", str(seeds), "--pages", str(pages)],
+         "--seeds", str(seeds), "--pages", str(pages)] + (["--tier", tier] if tier else []),
         cwd=ROOT, env=env, check=True, stdout=subprocess.DEVNULL,
     )
 
@@ -320,7 +342,7 @@ def night(args) -> int:
         measured.append((row, m))
     gold = golden_night_pages()
     out: dict[str, dict] = {}
-    print(f"night · {args.seeds} seeds · pages 2–{args.pages}" + (f" · {args.label}" if args.label else ""))
+    print(f"night · {args.seeds} seeds · pages 2–{args.pages}" + (f" · tier {args.tier}" if args.tier else "") + (f" · {args.label}" if args.label else ""))
     shapes: dict[str, int] = {}
     for row, _ in measured:
         if row["page"] >= 2:
@@ -374,12 +396,13 @@ def main() -> int:
     ap.add_argument("--json", default=None)
     ap.add_argument("--label", default="")
     ap.add_argument("--night", action="store_true")
+    ap.add_argument("--tier", default=None, help="M10: deal the tiered case (0..5) at Precinct")
     args = ap.parse_args()
     if args.pages is None:
         args.pages = 8 if args.night else 3
 
     if not args.no_render:
-        render(args.out, args.seeds, args.pages)
+        render(args.out, args.seeds, args.pages, args.tier)
     if args.night:
         return night(args)
 

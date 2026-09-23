@@ -91,11 +91,28 @@ export interface SlotContext {
   year: string;
   third?: string;
   object?: string;
+  /**
+   * M10 §A.5: the sex of `{person}`, for a word with two forms. A template
+   * writes both, the man's first: `{brother-in-law|sister-in-law}`.
+   */
+  gender?: 'm' | 'f';
+}
+
+/**
+ * A word with a man's form and a woman's form, written `{his form|her form}`,
+ * resolved for one person. "I am his brother-in-law" said by a woman was the
+ * bug: every relation word with two forms carries both, and the person's sex
+ * picks. With no sex known the first form stands.
+ */
+export function genderForms(template: string, gender: 'm' | 'f' | undefined): string {
+  return template.replace(/\{([^{}|]*)\|([^{}|]*)\}/g, (_m, him: string, her: string) =>
+    gender === 'f' ? her : him,
+  );
 }
 
 /** The one substitution everything in this milestone goes through. */
 export function fillSlots(template: string, ctx: SlotContext): string {
-  return template
+  return genderForms(template, ctx.gender)
     .split('{victim}').join(ctx.victim)
     .split('{person}').join(ctx.person)
     .split('{place}').join(ctx.place)
@@ -171,6 +188,7 @@ export function buildDossier(input: DossierInput): Dossier {
       person: surname,
       place: placeName,
       year,
+      gender,
       ...(third ? { third: third.name } : {}),
     };
     tie = {
@@ -200,6 +218,7 @@ export function buildDossier(input: DossierInput): Dossier {
     person: surname,
     place: placeName,
     year,
+    gender,
   };
   const professionDetail = fillSlots(detail, slotsForDetail);
   const detailFirstTemplate = archetype.professionFirst?.[detailIndex];
@@ -210,8 +229,9 @@ export function buildDossier(input: DossierInput): Dossier {
       ? undefined
       : (PROFESSION_PROMPTS[detailIndex % PROFESSION_PROMPTS.length] as string);
 
+  const role = genderForms(archetype.role, gender);
   const selfAccount: string[] = [
-    `${surname} is ${age} years old and ${archetype.role}.`,
+    `${surname} is ${age} years old and ${role}.`,
     `${surname} ${professionDetail}.`,
     `${surname} is ${tie.text}.`,
   ];
@@ -221,7 +241,7 @@ export function buildDossier(input: DossierInput): Dossier {
     { kind: 'age', text: roughAge(age, gender), layer: 0 },
     {
       kind: 'profession',
-      text: asSentence(archetype.role),
+      text: asSentence(role),
       layer: archetype.visibleProfession ? 0 : 1,
     },
     { kind: 'detail', text: `${surname} ${professionDetail}.`, layer: 1 },
@@ -238,7 +258,7 @@ export function buildDossier(input: DossierInput): Dossier {
     age,
     gender,
     profession: {
-      role: archetype.role,
+      role,
       detail: professionDetail,
       ...(professionDetailFirst === undefined ? {} : { detailFirst: professionDetailFirst }),
       ...(professionPrompt === undefined ? {} : { prompt: professionPrompt }),

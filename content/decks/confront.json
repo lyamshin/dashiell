@@ -68,7 +68,7 @@
   {
     "id": "cnf-007",
     "deck": "confront",
-    "text": "Half an hour was gone, and nothing in {subject}’s row of the grid had moved.",
+    "text": "Half an hour was gone, and nothing I knew about {subject} had moved.",
     "tags": {
       "outcome": "wrong",
       "part": "close"
@@ -211,7 +211,7 @@
   {
     "id": "cnf-020",
     "deck": "confront",
-    "text": "I put the new words in {subject}’s row beside the old ones. The grid had room for one place a half hour, and now it had two.",
+    "text": "I wrote the new words beside the old ones. A person can be in one place a half hour, and now {subject} had given me two.",
     "tags": {
       "outcome": "second-lie",
       "part": "close"
@@ -244,7 +244,7 @@
   {
     "id": "cnf-023",
     "deck": "confront",
-    "text": "The notebook had two stories from {subject} now, one above the other. I left them there and looked at the grid.",
+    "text": "I had two stories from {subject} now, one above the other. I left them there and thought about which one the others fit.",
     "tags": {
       "outcome": "second-lie",
       "part": "close"
@@ -365,7 +365,7 @@
   {
     "id": "cnf-034",
     "deck": "confront",
-    "text": "Nothing new went into {subject}’s row. I made a small mark in the margin so I would know I had asked.",
+    "text": "Nothing new went into the notebook under {subject}. I made a small mark so I would know I had asked.",
     "tags": {
       "outcome": "quiet",
       "part": "close"
@@ -376,7 +376,7 @@
   {
     "id": "cnf-035",
     "deck": "confront",
-    "text": "{subject} had stopped talking, and silence did not go on the grid. I closed the notebook.",
+    "text": "{subject} had stopped talking, and silence is not something you can write down. I closed the notebook.",
     "tags": {
       "outcome": "quiet",
       "part": "close"
@@ -464,7 +464,7 @@
   {
     "id": "cnf-043",
     "deck": "confront",
-    "text": "I wrote down where {subject} said {they} had been and what {they} had been doing there. Then I looked at the grid to see what it touched.",
+    "text": "I wrote down where {subject} said {they} had been and what {they} had been doing there. Then I read back what else I had for that hour.",
     "tags": {
       "outcome": "admit",
       "part": "close"
@@ -497,7 +497,7 @@
   {
     "id": "cnf-046",
     "deck": "confront",
-    "text": "{subject}’s row had {place} in it now, in {subject}’s own words. I would have to see what else that touched.",
+    "text": "I had {place} from {subject} now, in {subject}’s own words. I would have to see what else that touched.",
     "tags": {
       "outcome": "admit",
       "part": "close"
@@ -629,7 +629,7 @@
   {
     "id": "cnf-058",
     "deck": "confront",
-    "text": "Nothing in {subject}’s row changed. Both things were still written there, the story and the fact.",
+    "text": "Nothing I had on {subject} changed. Both things were still written down, the story and the fact.",
     "tags": {
       "outcome": "hold",
       "part": "close"
@@ -640,7 +640,7 @@
   {
     "id": "cnf-059",
     "deck": "confront",
-    "text": "I looked at the grid for a while after {subject} finished. Then I closed the notebook and left it the way it was.",
+    "text": "I looked at the notebook for a while after {subject} finished. Then I closed it and left it the way it was.",
     "tags": {
       "outcome": "hold",
       "part": "close"
@@ -728,7 +728,7 @@
   {
     "id": "cnf-067",
     "deck": "confront",
-    "text": "I drew a line through the word “together” in {subject}’s row. It had been {subject}’s word to give, and {subject} had taken it back.",
+    "text": "I drew a line through the word “together” under {subject}’s name. It had been {subject}’s word to give, and {subject} had taken it back.",
     "tags": {
       "outcome": "withdraw",
       "part": "close"
@@ -739,7 +739,7 @@
   {
     "id": "cnf-068",
     "deck": "confront",
-    "text": "I wrote down what {subject} had said. Somebody else’s row on the grid had one name fewer beside it now.",
+    "text": "I wrote down what {subject} had said. Somebody else’s evening had one name fewer in it now.",
     "tags": {
       "outcome": "withdraw",
       "part": "close"
@@ -783,7 +783,7 @@
   {
     "id": "cnf-072",
     "deck": "confront",
-    "text": "I looked at the grid for a while. The words that had put {subject} beside somebody else were gone from the notebook.",
+    "text": "I read the page back for a while. The words that had put {subject} beside somebody else were no good any more.",
     "tags": {
       "outcome": "withdraw",
       "part": "close"

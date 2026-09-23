@@ -106,13 +106,13 @@
       "placeholderPrefix": "sty-p",
       "burn": "free",
       "target": 200,
-      "$comment": "The closing story: what really happened, told by the detective after the verdict (src/game/story.ts). One card is one beat of the night in order, and every slot is filled from a truth field of the case: nothing a card says may be a fact the case does not hold, and no card names a secret, a lie, a noise branch or another suspect. A card's own words carry a fact only through its tags — `method` cards describe that method's weapon and wound (from the means and method templates), `anchor` cards that anchor's trace, `relationship` × `variant` cards one backstory template, `archetype` × `variant` cards one victim standing — and the story test checks each against the case. Plain words only: no genre jargon. {actor} is the culprit's surname and {actorFull} the full name ({he} {his} {him} {himself} theirs); {victim} and {victimFull} the victim ({vhe} {vhis} {vhim}); {scene} where it happened; {place} the place a beat is about; {time} and {until} spoken hours, {vtime} the victim’s arrival, {span} how long one waited for the other; {timing} the anchor's phrase and {anchorPlace} where it was; {aTaken}/{taken} the thing stolen; {goods} where it went; {where} where the missing person went; {found} where the body or the loss was found; {finder} who found it and {seer} who saw the missing person last; {year} {third} {tplace} {spouse} from the tie; {role} the culprit’s line of work and {vrole} the victim’s, {tie} the relationship; {weapon} the weapon, definite.",
+      "$comment": "The closing story: what really happened, told by the detective after the verdict (src/game/story.ts). One card is one beat of the night in order, and every slot is filled from a truth field of the case: nothing a card says may be a fact the case does not hold, and no card names a secret, a lie, a noise branch or another suspect. A card's own words carry a fact only through its tags — `method` cards describe that method's weapon and wound (from the means and method templates), `anchor` cards that anchor's trace, `relationship` × `variant` cards one backstory template, `archetype` × `variant` cards one victim standing — and the story test checks each against the case. Plain words only: no genre jargon. {actor} is the culprit's surname and {actorFull} the full name ({he} {his} {him} {himself} theirs); {victim} and {victimFull} the victim ({vhe} {vhis} {vhim}); {scene} where it happened; {place} the place a beat is about; {time} and {until} spoken hours, {vtime} the victim’s arrival, {span} how long one waited for the other; {timing} the anchor's phrase and {anchorPlace} where it was; {aTaken}/{taken} the thing stolen; {goods} where it went; {where} where the missing person went; {found} where the body or the loss was found; {finder} who found it and {seer} who saw the missing person last; {year} {third} {tplace} {spouse} {sibling} {inlaw} from the tie ({sibling} is the victim’s sister or brother the culprit married, {inlaw} is brother-in-law or sister-in-law, each agreeing with the culprit’s sex); {role} the culprit’s line of work and {vrole} the victim’s, {tie} the relationship; {weapon} the weapon, definite.",
       "slots": [
         "actor", "actorFull", "he", "his", "him", "himself",
         "victim", "victimFull", "vhe", "vhis", "vhim",
         "scene", "place", "time", "until", "vtime", "span", "timing", "anchorPlace",
         "aTaken", "taken", "goods", "where", "found", "finder", "seer",
-        "year", "third", "tplace", "spouse", "role", "vrole", "tie", "weapon"
+        "year", "third", "tplace", "spouse", "sibling", "inlaw", "role", "vrole", "tie", "weapon"
       ],
       "tags": {
         "beat": {
@@ -818,6 +818,94 @@
         "part": { "required": true, "values": ["reaction", "close"] }
       },
       "coverage": [["outcome", "part"]]
+    },
+    "telling": {
+      "file": "telling.json",
+      "deckValues": ["telling"],
+      "idPrefix": "TEL",
+      "placeholderPrefix": "tel-p",
+      "burn": "free",
+      "target": 60,
+      "$comment": "M10 §A.1–§A.2 (docs/golden/seed3-testimony.md). The frame a family of facts is told in: the witness's words, in their register. {told} is the engine's own sentences of the fact, already in the witness's mouth (hours spoken, places the witness's way, people the way this witness knows them) — the card puts it in quotation marks and may add one short line of plain business before it ('Rafferty didn't have to think about it.') or one short spoken lead-in ('Quiet night,' Rafferty said.). A card never states a fact of the case itself, never names an hour or a place, and carries no figure of speech (the tail deck holds the one figure a telling may have). `family`: which family of facts ({told}): movements (one person's comings and goings), counts (a door's head counts and 'nobody but'), strangers (people seen and not known), event (what anybody there would know), knowing (knowing or not knowing somebody), timing (when something the block times things by happened), evening (the witness's own night), thing (access, means, motive: a thing the witness knows about). `temper`: the witness's register — enigma (says little, gives nothing away), plain, yap (talks). `knows`: how the witness knows the person the family is about, for movements and knowing; any elsewhere. {speaker} the witness's surname; {they}/{them}/{their} the witness's pronouns and {he}/{him}/{his} the pronouns of the person the family is about, all filled lower case by the engine, so never first in a sentence.",
+      "slots": ["told", "speaker", "they", "them", "their", "he", "him", "his"],
+      "requiredSlots": ["told"],
+      "minPerCoverageCell": 2,
+      "tags": {
+        "family": { "required": true, "values": ["movements", "counts", "strangers", "event", "knowing", "timing", "evening", "thing"], "extraValues": ["any"] },
+        "temper": { "required": true, "values": ["enigma", "plain", "yap"], "extraValues": ["any"] },
+        "knows": { "required": false, "default": "any", "values": ["name", "relation", "sight", "stranger"], "extraValues": ["any"] }
+      },
+      "coverage": [["family", "temper"]]
+    },
+    "grounding": {
+      "file": "grounding.json",
+      "deckValues": ["grounding"],
+      "idPrefix": "GRD",
+      "placeholderPrefix": "grd-p",
+      "burn": "within-run",
+      "target": 90,
+      "$comment": "M10 §A.1, golden rule 3. The line that makes a telling believable: how the witness knows — from their trade, their post, or their acquaintance with the person. Spoken by the witness, inside their answer, first person. It states no case fact beyond the fact itself: no hour, no place by name, no person by name, nothing about anybody's evening. 'It's my business to be sure who has my keys.' 'I'd have heard him.' 'I don't learn names off the backs of people's coats.' `role`: who the witness is — a posted fixture (bartender, doorman, newsstand, counterman, ticket-taker, elevator-man, landlady, beat-cop, cabbie, druggist) or a suspect; any. `family`: which family it grounds; any. `knows`: how the witness knows the person the family is about; any. `half`: first — said with the first half of the telling; second — said as the answer to a follow-up ('You're sure it was her?', 'And the rest of the evening?'); any. {he}/{him}/{his}/{He} the pronouns of the person the family is about, filled by the engine with the right sex; a card with none of them fits a family about nobody (counts, strangers, timing, event, evening).",
+      "slots": ["he", "him", "his", "He"],
+      "minPerCoverageCell": 3,
+      "tags": {
+        "family": { "required": true, "values": ["movements", "counts", "strangers", "event", "knowing", "timing", "evening", "thing"], "extraValues": ["any"] },
+        "role": { "required": true, "values": ["bartender", "doorman", "newsstand", "counterman", "ticket-taker", "elevator-man", "landlady", "beat-cop", "cabbie", "druggist", "suspect"], "extraValues": ["any"] },
+        "knows": { "required": false, "default": "any", "values": ["name", "relation", "sight", "stranger"], "extraValues": ["any"] },
+        "half": { "required": false, "default": "any", "values": ["first", "second"], "extraValues": ["any"] }
+      },
+      "coverage": [["family"], ["role"]]
+    },
+    "followup": {
+      "file": "followup.json",
+      "deckValues": ["followup"],
+      "idPrefix": "FOL",
+      "placeholderPrefix": "fol-p",
+      "burn": "free",
+      "target": 50,
+      "$comment": "M10 §A.1, golden rules 1 and 4. The detective's questions inside a telling, in his words, short and real (each asks for exactly what the next line gives). `part`: open — the question that asks for a family (the first on the page when the topic was a place or a thing, and each family after the first: 'And the ones you didn't know?'); second — the follow-up that asks for a fact's second half. `family`: which family an open question asks for. `ask`: which second half a follow-up asks for — rest ('And the rest of the evening?': every other half hour), other ('Any other time?': some of them), sure ('You're sure it was {name}?': how the witness knows); none on an open question. `order`: first — the page's first question to this witness about this; later — a question after another family was told; any. {name} the surname of the person the family is about; {he}/{him}/{his} their pronouns, engine-filled; {anchor} the thing the block times things by (\"the milk wagon on its rounds\"), for timing and event.",
+      "slots": ["name", "he", "him", "his", "anchor"],
+      "minPerCoverageCell": 2,
+      "tags": {
+        "part": { "required": true, "values": ["open", "second"] },
+        "family": { "required": true, "values": ["movements", "counts", "strangers", "event", "knowing", "timing", "evening", "thing"], "extraValues": ["any"] },
+        "ask": { "required": false, "default": "none", "values": ["rest", "other", "sure", "none"] },
+        "order": { "required": false, "default": "any", "values": ["first", "later"], "extraValues": ["any"] }
+      },
+      "coverage": [["part", "family"]]
+    },
+    "tail": {
+      "file": "tail.json",
+      "deckValues": ["tail"],
+      "idPrefix": "TAI",
+      "placeholderPrefix": "tai-p",
+      "burn": "within-run",
+      "target": 90,
+      "$comment": "M10 §A.1, golden rule 5. The tail of a telling: attitude, opinion, a small joke, in the witness's mouth — never a fact of the case. 'He takes the stairs like each one owes him money.' It is the only place a figure of speech goes, and a card has one at most; most have none. No hour, no place by name, no person by name, nothing about anybody's evening, nothing about a secret, a debt or a motive. `family`: the family it closes. `temper`: the witness's register (an enigma says the least). `knows`: how well the witness knows the person the family is about — a tail about somebody's habits needs name or relation; any. {he}/{him}/{his}/{He} that person's pronouns, engine-filled.",
+      "slots": ["he", "him", "his", "He"],
+      "minPerCoverageCell": 2,
+      "tags": {
+        "family": { "required": true, "values": ["movements", "counts", "strangers", "event", "knowing", "timing", "evening", "thing"], "extraValues": ["any"] },
+        "temper": { "required": true, "values": ["enigma", "plain", "yap"], "extraValues": ["any"] },
+        "knows": { "required": false, "default": "any", "values": ["name", "relation", "sight", "stranger"], "extraValues": ["any"] }
+      },
+      "coverage": [["family", "temper"]]
+    },
+    "note": {
+      "file": "note.json",
+      "deckValues": ["note"],
+      "idPrefix": "NOT",
+      "placeholderPrefix": "not-p",
+      "burn": "within-run",
+      "target": 60,
+      "$comment": "M10 §A.1, golden rule 6. The detective's note on what a family of facts is worth — not what it proves. One sentence, in his voice, past tense, plain. 'A head count doesn't tell you who.' 'That was one place he wasn't. It left a good many places he might have been.' Never a rule restated, never a verdict, never an hour or a name, never a word for the book's machinery (grid, margin, rule, lead, card, beat, 'the notebook had'). `family`: the family it follows. `band`: teach — Raw and Coddled, where the page may say what a fact is for; play — Poached up, where it may only say what kind of piece it is; any. `polarity`: movements only — seen (the person was placed somewhere), unseen (only where they were not); any. {he}/{him}/{his}/{He} the pronouns of the person the family is about, engine-filled.",
+      "slots": ["he", "him", "his", "He"],
+      "minPerCoverageCell": 2,
+      "tags": {
+        "family": { "required": true, "values": ["movements", "counts", "strangers", "event", "knowing", "timing", "evening", "thing"], "extraValues": ["any"] },
+        "band": { "required": true, "values": ["teach", "play"], "extraValues": ["any"] },
+        "polarity": { "required": false, "default": "any", "values": ["seen", "unseen"], "extraValues": ["any"] }
+      },
+      "coverage": [["family", "band"]]
     }
   }
 }

@@ -24,7 +24,7 @@
  *   claim, it does not make one.
  */
 
-import { TICKS, type Case, type Tick } from '../gen/types.js';
+import { TICKS, clock, type Case, type Tick } from '../gen/types.js';
 import { check, renderedFacts, type Violation } from '../gen/correspond.js';
 import { establishedFrom, threadsFor, type CaseView } from './derive.js';
 import { candidateThoughts } from './scene/thought.js';
@@ -87,6 +87,13 @@ export const ENGINE_WORDS: readonly string[] = [
   'They',
   'He',
   'She',
+  // M10: the pronouns a telling's cards fill in, contracted the way speech is.
+  'He’d',
+  'She’d',
+  'He’s',
+  'She’s',
+  'He’ll',
+  'She’ll',
   'A',
   'An',
 ];
@@ -310,8 +317,80 @@ export function checkPage(
  * an errand line that does not trace back to the notebook.
  */
 export type PageViolation = Omit<Violation, 'rule'> & {
-  rule: Violation['rule'] | 'errand-untraced' | 'thought-untraced' | 'bridge-untraced';
+  rule: Violation['rule'] | 'errand-untraced' | 'thought-untraced' | 'bridge-untraced' | 'telling-untraced';
 };
+
+/**
+ * M10 §A.1 — a telling, traced. Its fact-bearing sentences may name only the
+ * hours of the family's own facts and only the people those facts are about
+ * (or that the clues name); the question, the grounding, the follow-up, the
+ * tail, the frame and the note assert no case fact at all: no hour, no place
+ * by name, nobody but the witness and the one the family is about.
+ */
+export function checkTelling(view: CaseView, page: Page): PageViolation[] {
+  const out: PageViolation[] = [];
+  const beats = page.beats ?? [];
+  const surnames = view.kase.people.map((p) => ({ id: p.id, surname: p.surname }));
+  const namesIn = (text: string): string[] => {
+    let bare = text;
+    for (const pl of view.places) bare = bare.split(pl.shortName).join('');
+    return surnames.filter((p) => new RegExp(`\\b${p.surname}\\b`).test(bare)).map((p) => p.id);
+  };
+  const timesIn = (text: string): string[] => renderedFacts(text, { spoken: true }).times;
+  const placesIn = (text: string): string[] =>
+    view.places.filter((pl) => text.toLowerCase().includes(pl.shortName.toLowerCase())).map((pl) => pl.shortName);
+  for (const [i, b] of beats.entries()) {
+    if (!b.rendered || (b.kind !== 'telling' && b.kind !== 'note')) continue;
+    const where = `page ${page.n} beat ${i} ${b.kind}`;
+    const fail = (detail: string, text: string): void => {
+      out.push({ where, rule: 'telling-untraced', detail, text });
+    };
+    // The victim, whom every page may name (as the thoughts and bridges may).
+    const allowed = new Set<string>([...(b.personIds ?? []), view.victim.id]);
+    const clean = (text: string | undefined, part: string): void => {
+      if (!text) return;
+      for (const t of timesIn(text)) fail(`${part} names an hour (${t})`, text);
+      for (const pl of placesIn(text)) fail(`${part} names a place (${pl})`, text);
+      for (const id of namesIn(text)) if (!allowed.has(id)) fail(`${part} names somebody the family is not about`, text);
+    };
+    if (b.kind === 'note') {
+      clean(b.text, 'the note');
+      continue;
+    }
+    for (const id of b.clueIds ?? []) if (!page.found.includes(id)) fail(`tells ${id}, which this page did not hand over`, b.text ?? '');
+    const parts = b.parts;
+    if (!parts) {
+      fail('a telling with no parts', b.text ?? '');
+      continue;
+    }
+    // The fact-bearing sentences: the family's hours, the family's people.
+    const ticks = new Set((b.ticks ?? []).map((t) => clock(t as Tick)));
+    const people = new Set<string>(allowed);
+    for (const id of b.clueIds ?? []) {
+      const clue = view.findableById.get(id);
+      for (const f of clue?.establishes ?? []) {
+        if ('personId' in f) people.add(f.personId);
+        if ('personIds' in f) for (const p of f.personIds) people.add(p);
+        if (f.kind === 'absentFrom') for (const p of f.except) people.add(p);
+        if (f.kind === 'claims' && f.with) people.add(f.with);
+      }
+      for (const p of namesIn(clue?.text ?? '')) people.add(p);
+    }
+    for (const sentence of parts.told) {
+      // A record's own sentence carries the record's hours; the page check holds those.
+      if (!parts.fromRecord) {
+        for (const t of timesIn(sentence)) if (!ticks.has(t)) fail(`says ${t}, which none of the family’s facts has`, sentence);
+      }
+      for (const id of namesIn(sentence)) if (!people.has(id)) fail('names somebody none of the family’s facts is about', sentence);
+    }
+    clean(parts.question, 'the question');
+    clean(parts.grounding, 'the grounding');
+    clean(parts.followup, 'the follow-up');
+    clean(parts.tail, 'the tail');
+    clean(parts.frame?.replace('{told}', ''), 'the frame');
+  }
+  return out;
+}
 
 /**
  * M6 §2.1 — the errand line, traced.
@@ -596,9 +675,20 @@ export function checkRun(view: CaseView, state: RunState): PageViolation[] {
     const accountsAfter = [
       ...accounts,
       ...page.blocks.flatMap((b) => (b.kind === 'timeline' && !accounts.includes(b.personId) ? [b.personId] : [])),
+      // M9: a tiered case's evening is a clue, and taking it down is an account
+      // in hand exactly as the reducer counts one (M10: Raw's accounts are on
+      // the route now, and at Raw a placement against one is still called a
+      // contradiction).
+      ...page.found.flatMap((id) => {
+        const c = view.findableById.get(id);
+        return c?.kind === 'account' && c.source.type === 'person' && !accounts.includes(c.source.personId)
+          ? [c.source.personId]
+          : [];
+      }),
     ];
     const met = new Set<string>(state.met);
     out.push(...checkBeats(view, page, [...found], [...accounts], accountsAfter, met));
+    out.push(...checkTelling(view, page));
     found.push(...page.found);
     accounts.splice(0, accounts.length, ...new Set(accountsAfter));
     visited.add(page.at);

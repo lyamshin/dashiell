@@ -1,0 +1,710 @@
+[
+  {
+    "id": "tel-001",
+    "deck": "telling",
+    "text": "“{told}”",
+    "tags": {
+      "family": "any",
+      "temper": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-002",
+    "deck": "telling",
+    "text": "“{told}”",
+    "tags": {
+      "family": "any",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-003",
+    "deck": "telling",
+    "text": "{speaker} didn’t have to think about it. “{told}”",
+    "tags": {
+      "family": "any",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-004",
+    "deck": "telling",
+    "text": "{speaker} answered straight off. “{told}”",
+    "tags": {
+      "family": "any",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-005",
+    "deck": "telling",
+    "text": "{speaker} said it plainly. “{told}”",
+    "tags": {
+      "family": "any",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-006",
+    "deck": "telling",
+    "text": "{speaker} thought for a second, then gave it to me. “{told}”",
+    "tags": {
+      "family": "any",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-007",
+    "deck": "telling",
+    "text": "“Well,” {speaker} said. “{told}”",
+    "tags": {
+      "family": "any",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-008",
+    "deck": "telling",
+    "text": "{speaker} was glad to be asked. “{told}”",
+    "tags": {
+      "family": "any",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-009",
+    "deck": "telling",
+    "text": "{speaker} leaned in to tell it. “{told}”",
+    "tags": {
+      "family": "any",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-010",
+    "deck": "telling",
+    "text": "“I’ll tell you,” {speaker} said. “{told}”",
+    "tags": {
+      "family": "any",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-011",
+    "deck": "telling",
+    "text": "{speaker} took {their} time. “{told}”",
+    "tags": {
+      "family": "any",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-012",
+    "deck": "telling",
+    "text": "{speaker} looked at me a while before {they} answered. “{told}”",
+    "tags": {
+      "family": "any",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-013",
+    "deck": "telling",
+    "text": "{speaker} said it without any expression at all. “{told}”",
+    "tags": {
+      "family": "any",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-014",
+    "deck": "telling",
+    "text": "“{told}”",
+    "tags": {
+      "family": "any",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-015",
+    "deck": "telling",
+    "text": "{speaker} nodded. “{told}”",
+    "tags": {
+      "family": "movements",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-016",
+    "deck": "telling",
+    "text": "“{told}”",
+    "tags": {
+      "family": "movements",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-017",
+    "deck": "telling",
+    "text": "{speaker} didn’t have to look anything up. “{told}”",
+    "tags": {
+      "family": "movements",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-018",
+    "deck": "telling",
+    "text": "{speaker} had been waiting for somebody to ask. “{told}”",
+    "tags": {
+      "family": "movements",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-019",
+    "deck": "telling",
+    "text": "“Oh, I saw {him} all right,” {speaker} said. “{told}”",
+    "tags": {
+      "family": "movements",
+      "temper": "yap",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-020",
+    "deck": "telling",
+    "text": "“Oh, I saw {him} all right,” {speaker} said. “{told}”",
+    "tags": {
+      "family": "movements",
+      "temper": "yap",
+      "knows": "relation"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-021",
+    "deck": "telling",
+    "text": "{speaker} counted it off on {their} fingers. “{told}”",
+    "tags": {
+      "family": "movements",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-022",
+    "deck": "telling",
+    "text": "{speaker} said it flatly. “{told}”",
+    "tags": {
+      "family": "movements",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-023",
+    "deck": "telling",
+    "text": "{speaker} gave it to me in pieces. “{told}”",
+    "tags": {
+      "family": "movements",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-024",
+    "deck": "telling",
+    "text": "{speaker} shook {their} head. “{told}”",
+    "tags": {
+      "family": "knowing",
+      "temper": "any",
+      "knows": "stranger"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-025",
+    "deck": "telling",
+    "text": "{speaker} thought about the name and let it go. “{told}”",
+    "tags": {
+      "family": "knowing",
+      "temper": "any",
+      "knows": "sight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-026",
+    "deck": "telling",
+    "text": "“{told}”",
+    "tags": {
+      "family": "knowing",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-027",
+    "deck": "telling",
+    "text": "{speaker} frowned. “{told}”",
+    "tags": {
+      "family": "knowing",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-028",
+    "deck": "telling",
+    "text": "{speaker} didn’t even pretend to think about it. “{told}”",
+    "tags": {
+      "family": "knowing",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-029",
+    "deck": "telling",
+    "text": "{speaker} went through it in order. “{told}”",
+    "tags": {
+      "family": "counts",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-030",
+    "deck": "telling",
+    "text": "{speaker} counted it off without looking anything up. “{told}”",
+    "tags": {
+      "family": "counts",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-031",
+    "deck": "telling",
+    "text": "“{told}”",
+    "tags": {
+      "family": "counts",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-032",
+    "deck": "telling",
+    "text": "“Not a busy night,” {speaker} said. “{told}”",
+    "tags": {
+      "family": "counts",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-033",
+    "deck": "telling",
+    "text": "{speaker} liked this question. “{told}”",
+    "tags": {
+      "family": "counts",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-034",
+    "deck": "telling",
+    "text": "“I can tell you exactly,” {speaker} said. “{told}”",
+    "tags": {
+      "family": "counts",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-035",
+    "deck": "telling",
+    "text": "{speaker} gave me the numbers and nothing else. “{told}”",
+    "tags": {
+      "family": "counts",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-036",
+    "deck": "telling",
+    "text": "{speaker} counted it on {their} fingers. “{told}”",
+    "tags": {
+      "family": "counts",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-037",
+    "deck": "telling",
+    "text": "{speaker} thought back. “{told}”",
+    "tags": {
+      "family": "strangers",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-038",
+    "deck": "telling",
+    "text": "“{told}”",
+    "tags": {
+      "family": "strangers",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-039",
+    "deck": "telling",
+    "text": "“Faces I didn’t know?” {speaker} said. “{told}”",
+    "tags": {
+      "family": "strangers",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-040",
+    "deck": "telling",
+    "text": "{speaker} had noticed, and was pleased to have noticed. “{told}”",
+    "tags": {
+      "family": "strangers",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-041",
+    "deck": "telling",
+    "text": "{speaker} shrugged. “{told}”",
+    "tags": {
+      "family": "strangers",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-042",
+    "deck": "telling",
+    "text": "{speaker} said it to the counter more than to me. “{told}”",
+    "tags": {
+      "family": "strangers",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-043",
+    "deck": "telling",
+    "text": "{speaker} didn’t need to think about it. “{told}”",
+    "tags": {
+      "family": "timing",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-044",
+    "deck": "telling",
+    "text": "“{told}”",
+    "tags": {
+      "family": "timing",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-045",
+    "deck": "telling",
+    "text": "“Everybody on the block knows that,” {speaker} said. “{told}”",
+    "tags": {
+      "family": "timing",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-046",
+    "deck": "telling",
+    "text": "{speaker} was sure of it, and said so. “{told}”",
+    "tags": {
+      "family": "timing",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-047",
+    "deck": "telling",
+    "text": "{speaker} nodded once. “{told}”",
+    "tags": {
+      "family": "timing",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-048",
+    "deck": "telling",
+    "text": "“{told}”",
+    "tags": {
+      "family": "event",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-049",
+    "deck": "telling",
+    "text": "{speaker} considered it. “{told}”",
+    "tags": {
+      "family": "event",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-050",
+    "deck": "telling",
+    "text": "“Well, it’s no secret,” {speaker} said. “{told}”",
+    "tags": {
+      "family": "event",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-051",
+    "deck": "telling",
+    "text": "{speaker} answered carefully. “{told}”",
+    "tags": {
+      "family": "event",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-052",
+    "deck": "telling",
+    "text": "{speaker} told it in order. “{told}”",
+    "tags": {
+      "family": "evening",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-053",
+    "deck": "telling",
+    "text": "{speaker} started at the beginning. “{told}”",
+    "tags": {
+      "family": "evening",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-054",
+    "deck": "telling",
+    "text": "“{told}”",
+    "tags": {
+      "family": "evening",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-055",
+    "deck": "telling",
+    "text": "“Where was I? I’ll tell you where I was,” {speaker} said. “{told}”",
+    "tags": {
+      "family": "evening",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-056",
+    "deck": "telling",
+    "text": "{speaker} seemed to enjoy the telling. “{told}”",
+    "tags": {
+      "family": "evening",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-057",
+    "deck": "telling",
+    "text": "{speaker} gave it to me short. “{told}”",
+    "tags": {
+      "family": "evening",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-058",
+    "deck": "telling",
+    "text": "{speaker} told it the way you read out a list. “{told}”",
+    "tags": {
+      "family": "evening",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-059",
+    "deck": "telling",
+    "text": "“{told}”",
+    "tags": {
+      "family": "thing",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-060",
+    "deck": "telling",
+    "text": "{speaker} said it the way you say a thing you’ve had to say twice already. “{told}”",
+    "tags": {
+      "family": "thing",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-061",
+    "deck": "telling",
+    "text": "{speaker} lowered {their} voice. “{told}”",
+    "tags": {
+      "family": "thing",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-062",
+    "deck": "telling",
+    "text": "“Since you ask,” {speaker} said. “{told}”",
+    "tags": {
+      "family": "thing",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-063",
+    "deck": "telling",
+    "text": "{speaker} chose the words before {they} used them. “{told}”",
+    "tags": {
+      "family": "thing",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-064",
+    "deck": "telling",
+    "text": "{speaker} said it and then said nothing at all. “{told}”",
+    "tags": {
+      "family": "thing",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

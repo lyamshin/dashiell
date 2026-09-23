@@ -17,7 +17,7 @@ import type { Clue, Id, Tick } from '../gen/types.js';
 import { Rng } from '../gen/rng.js';
 import type { CaseView } from './derive.js';
 import { establishedFrom, gameBudget, gamePar, leadFor, peopleHere } from './derive.js';
-import { newRun, sceneCluesOf, stepInput } from './reducer.js';
+import { continuationOf, newRun, sceneCluesOf, stepInput } from './reducer.js';
 import { leadingTheory } from './voice/reactive.js';
 import type { Report, RunState } from './types.js';
 
@@ -254,6 +254,14 @@ export function playOracle(view: CaseView, detectiveName = 'Dashiell'): OracleRe
     }
     state = result.state;
     steps.push({ command, gained: result.page.found });
+    // M10 §A.3: a page that stops at three families ends on "Go on", which
+    // is free; the oracle always takes it.
+    for (let more = continuationOf(view, state); more !== null; more = continuationOf(view, state)) {
+      const next = stepInput(state, more, view);
+      if (next.page.found.length === 0) break;
+      state = next.state;
+      steps.push({ command: more, gained: next.page.found });
+    }
   }
 
   const missing = spine.filter((c) => !state.found.includes(c.id)).map((c) => c.id);
@@ -360,6 +368,12 @@ export function playWandering(
     const result = stepInput(state, command, view);
     state = result.state;
     steps.push({ command, gained: result.page.found });
+    for (let more = continuationOf(view, state); more !== null; more = continuationOf(view, state)) {
+      const next = stepInput(state, more, view);
+      if (next.page.found.length === 0) break;
+      state = next.state;
+      steps.push({ command: more, gained: next.page.found });
+    }
     if (result.page.cost === 0 && result.page.found.length === 0 && state.threads.length === 0) break;
   }
 

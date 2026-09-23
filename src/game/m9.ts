@@ -92,14 +92,41 @@ export function confrontOn(view: CaseView): boolean {
 export function clearedOnTwo(view: CaseView, found: readonly Id[]): Map<Id, Id | null> {
   const out = new Map<Id, Id | null>();
   if (!view.kase.logic || !verdictsOn(view)) return out;
+  const ticks = crimeTicks(solveHeld(view.kase, [...found]));
   for (const [id, rules] of Object.entries(clearedBy(view.kase, [...found]))) {
     if (rules.length < 2) continue;
+    // Two facts agree only where they are about the same half hour: their own
+    // word is one, and the other must be somebody else's (or the room's) and
+    // cover the crime's half hour itself — a sighting at eight and at ten
+    // corroborates nothing about half past nine.
+    if (!ticks.every((t) => placedAwayBy(view, found, id, t))) continue;
     const other = rules
       .map((r) => view.findableById.get(r))
       .find((c) => c && c.source.type === 'person' && c.source.personId !== id);
     out.set(id, other && other.source.type === 'person' ? other.source.personId : null);
   }
   return out;
+}
+
+/**
+ * A fact in hand, not the person's own word, that puts them somewhere other
+ * than the scene at this half hour, or keeps them out of it: somebody saw
+ * them elsewhere then, saw they were not at the scene then, or kept the
+ * scene's door then and names everybody who came in without them.
+ */
+export function placedAwayBy(view: CaseView, found: readonly Id[], personId: Id, tick: Tick): boolean {
+  const scene = view.kase.solution.murderPlaceId;
+  return found.some((cid) => {
+    const clue = view.findableById.get(cid);
+    if (!clue) return false;
+    if (clue.source.type === 'person' && clue.source.personId === personId) return false;
+    return clue.establishes.some(
+      (f) =>
+        (f.kind === 'personAt' && f.personId === personId && f.tick === tick && f.place !== scene) ||
+        (f.kind === 'personNotAt' && f.personId === personId && f.tick === tick && f.place === scene) ||
+        (f.kind === 'absentFrom' && f.place === scene && f.ticks.includes(tick) && !f.except.includes(personId)),
+    );
+  });
 }
 
 /** Spec §5: the full crime column is asked from Medium up. */
