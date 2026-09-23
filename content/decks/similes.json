@@ -114,7 +114,7 @@
   {
     "id": "SIM-008",
     "deck": "similes",
-    "text": "His face when he lied was smoother than when he didn't, ironed flat like a boiled shirt.",
+    "text": "His face when he lied was smoother than when he didn't, ironed flat like a starched shirt.",
     "tags": {
       "mood": "wry",
       "target": "face",
@@ -176,7 +176,7 @@
   {
     "id": "SIM-012",
     "deck": "similes",
-    "text": "His hands were quick as a faro dealer's, and about as honest.",
+    "text": "His hands were quick as a back-room card dealer's, and about as honest.",
     "tags": {
       "mood": "wry",
       "target": "hands",
@@ -381,7 +381,7 @@
   {
     "id": "SIM-025",
     "deck": "similes",
-    "text": "The room was tidy as a undertaker's front parlor, and about as cheerful.",
+    "text": "The room was tidy as an undertaker's front parlor, and about as cheerful.",
     "tags": {
       "mood": "menace",
       "target": "room",
@@ -801,7 +801,7 @@
   {
     "id": "SIM-051",
     "deck": "similes",
-    "text": "He talked about the estate the way a undertaker talks about a casket upgrade.",
+    "text": "He talked about the estate the way an undertaker talks about a casket upgrade.",
     "tags": {
       "mood": "menace",
       "target": "money",
@@ -1399,7 +1399,7 @@
   {
     "id": "SIM-090",
     "deck": "similes",
-    "text": "His collar was boiled stiff as his manner.",
+    "text": "His collar was starched stiff as his manner.",
     "tags": {
       "mood": "wry",
       "target": "clothes",
@@ -2113,7 +2113,7 @@
   {
     "id": "SIM-129",
     "deck": "similes",
-    "text": "His hands were big as a stevedore's, folded now and doing nothing.",
+    "text": "His hands were big as a dockworker's, folded now and doing nothing.",
     "tags": {
       "mood": "flat",
       "target": "hands",
@@ -4693,7 +4693,7 @@
   {
     "id": "SIM-295",
     "deck": "similes",
-    "text": "The whole neighborhood knew before the desk sergeant did, quick as a party line.",
+    "text": "The whole neighborhood knew before the desk sergeant did, quick as gossip on a shared phone line.",
     "tags": {
       "mood": "menace",
       "target": "city",

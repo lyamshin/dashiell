@@ -80,7 +80,7 @@ const MILD = [
 ];
 
 const MILD_BIASED = [
-  '{name} would have the hour wrong before {name} would have it crooked.',
+  '{name} would have the hour wrong before {name} would lie about it.',
   'It does not sit with what {other} said. There will be a reason, and it will be a dull one.',
   'Anybody can lose a half hour. I have lost whole evenings and told the truth about all of them.',
 ];
@@ -92,7 +92,7 @@ const HARD = [
 ];
 
 const HARD_TURNED = [
-  'I had been carrying {name} and I put {name} down. Twice is not a bad memory.',
+  'I had been giving {name} the benefit of the doubt, and I stopped. Twice is not a bad memory.',
   'The second one did it. Whatever I had been telling myself about {name}, I stopped telling it.',
   'I gave {name} a half hour, because of what {name} is to me. The second half hour I could not give.',
 ];
@@ -213,7 +213,7 @@ const THEORY_CERTAIN = [
 ];
 
 const THEORY_CHANGED_LEAN = [
-  'I had been leaning on {old}. Tonight I would lean on {name} instead, and not hard.',
+  'I had been leaning toward {old}. Tonight I would lean toward {name} instead, and not hard.',
   'Put {old} down for a minute. {name} is the one with something against them now.',
 ];
 

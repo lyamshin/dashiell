@@ -18,6 +18,7 @@ import { newRun, stepInput, topicSlots } from '../../src/game/reducer.js';
 import { wordsOnPage } from '../../src/game/transcript.js';
 import { COLOUR_LINES } from '../../src/game/voice-data.js';
 import { nameables, pageFact } from '../../src/game/scene/index.js';
+import { thereWas } from '../../src/game/scene/realize.js';
 import type { RunState } from '../../src/game/types.js';
 import {
   ALL_CARDS,
@@ -564,7 +565,10 @@ describe('the page grammar', () => {
       const v = buildView(generateCase(seed, { difficulty: 2 }));
       for (const page of playOracle(v).state.log) {
         const n = wordsOnPage(page);
-        const ceiling = page.n === 0 ? 380 : 340;
+        // Night Hone 1: pages may be longer ("people can scroll; it's mostly a
+        // story" — the designer). A search that turns up several things runs
+        // past 340 on its finds alone.
+        const ceiling = page.n === 0 ? 380 : 400;
         // M8 §8: a night page has targets, not a floor — the night harness
         // measures its length against the golden's — and a question with one
         // short answer and nothing to make of it is a short page.
@@ -581,7 +585,10 @@ describe('the page grammar', () => {
       const v = buildView(generateCase(seed, { difficulty: 3 }));
       for (const page of playWandering(v, seed).state.log) {
         const n = wordsOnPage(page);
-        const ceiling = page.n === 0 ? 380 : 340;
+        // Night Hone 1: pages may be longer ("people can scroll; it's mostly a
+        // story" — the designer). A search that turns up several things runs
+        // past 340 on its finds alone.
+        const ceiling = page.n === 0 ? 380 : 400;
         // M8 §8: a night page has targets, not a floor — the night harness
         // measures its length against the golden's — and a question with one
         // short answer and nothing to make of it is a short page.
@@ -1090,13 +1097,20 @@ describe('the find slot', () => {
             if (n.clause.length === 0) continue;
             both = both.split(`, ${n.clause},`).join('').split(`, ${n.clause}`).join('');
             one = one.split(`, ${n.clause}`).join('');
+            // Night Hone 1: or a plain sentence of its own after it.
+            if (n.plain.length > 0) {
+              both = both.split(` ${n.plain}`).join('');
+              one = one.split(` ${n.plain}`).join('');
+            }
           }
           const fact = pageFact(clue, here, v).replace(
             new RegExp(`^${v.victim.surname} was found at [^.]+\\.\\s*`),
             '',
           );
+          // Night Hone 1: a paper's label is something that was there.
+          const there = thereWas(fact);
           expect(
-            both.includes(fact) || one.includes(fact),
+            both.includes(fact) || one.includes(fact) || both.includes(there) || one.includes(there),
             `${block.clueId} came upon and then forgotten: ${block.text} / ${fact}`,
           ).toBe(true);
         }

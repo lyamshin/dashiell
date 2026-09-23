@@ -116,11 +116,11 @@ const kinds = (page: Page): string =>
 
 /** §1's table, as patterns over the beat kinds in order. */
 const SHAPES: Record<string, RegExp> = {
-  arrive: /^(clock )?errand establish presence( find)*( thought)*( bridge)?( answer)?$/,
+  arrive: /^(clock )?errand establish presence( find)*( thought)*( decide)?( bridge)?( answer)?$/,
   return: /^(clock )?errand return presence( thought)*( answer)?$/,
   look: /^(establish|return) presence( thought)*$/,
-  search: /^(clock )?errand act( find)*( thought)+( bridge)?$/,
-  ask: /^(clock )?(errand )?exchange( find)*( thought)+( bridge)?$/,
+  search: /^(clock )?errand act( find)*( thought)+( decide)?( bridge)?$/,
+  ask: /^(clock )?(errand )?exchange( find)*( thought)+( decide)?( bridge)?$/,
 };
 
 /* ------------------------------------------------------------------ *
@@ -327,8 +327,18 @@ describe('M8 §5: the thought classes', () => {
     expect(w?.basis).toBe('anchor');
     expect(w?.anchorId).toBe('el-train');
     expect(w?.tick).toBe(8);
-    // Nothing narrower: dead by eleven is already known.
-    expect(classes(clue('morgue', room('res-suite'), [{ kind: 'victimDeadBy', tick: 10 }]))).not.toContain('window');
+    // Nothing narrower: dead by eleven is already known. Night Hone 1 says
+    // so from its own end of the night (basis `dead-by`), and never as a
+    // narrowing of the coroner's hours.
+    const again = candidateThoughts({
+      view,
+      newClues: [clue('morgue', room('res-suite'), [{ kind: 'victimDeadBy', tick: 10 }])],
+      foundBefore: [],
+      foundAfter: [],
+      accountsBefore: [],
+      accountsAfter: [],
+    }).filter((t) => t.cls === 'window');
+    for (const t of again) expect(t.basis).toBe('dead-by');
   });
 
   it('not-robbery: a murder’s room with nothing carried out, and never in a robbery', () => {
@@ -509,9 +519,13 @@ describe('M8 §3–§4: presence', () => {
         const presence = (page.beats ?? []).find((b) => b.kind === 'presence');
         expect(presence?.rendered).toBe(true);
         for (const id of presence?.personIds ?? []) {
+          // Night Hone 1 §3: a crowd nobody has singled out is said together,
+          // in one sentence; everybody else by name.
+          if ((presence?.grouped ?? []).includes(id)) continue;
           const surname = w.view.personById.get(id)?.surname as string;
           expect(presence?.text, `${w.label} p${page.n + 1}`).toContain(surname);
         }
+        if ((presence?.grouped ?? []).length > 0) expect((presence?.grouped ?? []).length).toBeGreaterThanOrEqual(2);
       }
     }
   });
@@ -575,7 +589,10 @@ describe('M8 §7 and §10: the text rules', () => {
     const view = buildView(generateCase(3, { difficulty: 2 }));
     const people = nameables(view);
     const out = introduceNames('Coffin talked to the district attorney and Thorndike never spoke to Coffin again.', people, new Set());
-    expect(out).toContain('Thorndike, the man who held the second mortgage,');
+    // Night Hone 1: one appositive a sentence. Coffin opens it and takes the
+    // clause; Thorndike's is a plain sentence of its own after it.
+    expect(out).toContain('Coffin, a witness against the people Sweeney worked for,');
+    expect(out).toContain('Thorndike was the man who held the second mortgage.');
     expect(namesWithoutClause([out], people)).toEqual([]);
     expect(namesWithoutClause(['Thorndike was there.'], people)).toEqual(['Thorndike']);
   });

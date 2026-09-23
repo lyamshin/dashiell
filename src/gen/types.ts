@@ -672,7 +672,7 @@ export interface ClientBrief {
    * talking about somebody else.
    */
   points: { personId: Id; reason: string; reasonSpoken: string; honest: boolean };
-  /** §A.1. The question the pointer answers: "Who do you like for it?" */
+  /** §A.1. The question the pointer answers: "Who do you think did it?" */
   pointerPrompt: string;
   /** The client's account of their own night, from their claimed schedule. */
   ownEvening: string[];

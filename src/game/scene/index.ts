@@ -83,6 +83,7 @@ export function composeScene(stage: Stage, scene: Scene): Composed {
     ...(stage.memory ? { memory: stage.memory } : {}),
     seed: stage.view.kase.seed,
     weather: stage.cast.roll.weather,
+    tempers: stage.cast.temper,
     recallable: Object.entries(stage.cast.portraits)
       .filter(([, p]) => p.pair?.action !== undefined)
       .map(([id]) => id),
@@ -140,3 +141,4 @@ export function composeScene(stage: Stage, scene: Scene): Composed {
     memory: plan.memory,
   };
 }
+export * from './lines.js';

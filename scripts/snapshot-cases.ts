@@ -9,6 +9,11 @@
  * holds every later build to them: with no options, a case is what it was.
  *
  * Without `--write` it compares against the committed file and reports.
+ *
+ * The plain-terms pass rewrote the file on its new wording, after
+ * `scripts/snapshot-structure.ts` showed the structure of all 600 cases
+ * unchanged (docs/21-plain-terms-notes.md). A wording change goes the same
+ * way: structure first, then this.
  */
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';

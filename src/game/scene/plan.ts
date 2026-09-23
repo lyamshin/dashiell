@@ -63,7 +63,17 @@ export interface PresencePerson {
   firstSight: boolean;
   /** Use their recall phrase on this page (once a visit, never an epithet). */
   recall: boolean;
+  /**
+   * Night Hone 1 §3: somebody the case has given no reason to single out yet,
+   * said together with the others like them in one sentence.
+   */
+  grouped?: boolean;
+  /** Why they matter, when they do: the reason their first sight gives. */
+  why?: 'watcher' | 'client' | 'known' | 'lead';
 }
+
+/** Who the detective does about a catch, and how (Night Hone 1 §5). */
+export type DecideAct = 'hold' | 'press' | 'note';
 
 export type SceneMark = 'body' | 'body-again' | 'robbery' | 'missing';
 
@@ -100,6 +110,18 @@ export type Beat =
       recall: boolean;
     }
   | { kind: 'thought'; required: true; thought: Thought }
+  | {
+      kind: 'decide';
+      required: true;
+      /** The one a thought just caught out. */
+      personId: Id;
+      who: 'client' | 'watcher' | 'suspect';
+      act: DecideAct;
+      /** In the room with him. */
+      present: boolean;
+      placeId?: Id;
+      tick?: Tick;
+    }
   | { kind: 'bridge'; required: true; bridge: BridgePlan }
   | {
       kind: 'answer';
@@ -109,7 +131,7 @@ export type Beat =
       subject?: string;
       name?: string;
     }
-  | { kind: 'texture'; required: false; texture: 'weather' | 'ambient' | 'simile' };
+  | { kind: 'texture'; required: false; texture: 'weather' | 'ambient' | 'simile' | 'place' };
 
 export interface Plan {
   shape: PageShape;
@@ -159,6 +181,8 @@ export interface PlanInput {
   weather?: string;
   /** People whose portrait has a recall action (§4); nobody else is recalled. */
   recallable?: readonly Id[];
+  /** Night Hone 1 §5: each person's temper, for what the detective does about a catch. */
+  tempers?: Readonly<Record<Id, string>>;
 }
 
 /** Which beats each shape must carry (§10's coverage check reads this). */
@@ -244,6 +268,15 @@ export const WORKPLACES: Record<string, string[]> = {
   'arch-widow': [],
 };
 
+/**
+ * What an activity is, as its first four words after "was": two people in a
+ * room are never both "tapping ash from a cigarette".
+ */
+export function doingKey(text: string, surname = '{name}'): string {
+  const rest = text.replace(surname, '').replace(/^\s*was\s+/, '');
+  return `doing:${rest.toLowerCase().split(/\s+/).slice(0, 4).join(' ')}`;
+}
+
 /** The activity-deck role for a person: fixture role, else archetype, else `any`. */
 export function activityRole(person: Person): string {
   if (person.kind === 'fixture' && person.fixtureRole) return person.fixtureRole;
@@ -263,6 +296,8 @@ export function chooseActivity(
   visit: number,
   seed: number,
   weather?: string,
+  /** Cards somebody else in the room is already doing. */
+  taken: ReadonlySet<string> = new Set(),
 ): Activity {
   const place = view.placeById.get(placeId);
   const kind = place?.kind ?? 'semi';
@@ -287,7 +322,7 @@ export function chooseActivity(
   ];
   const slots = { name: person.surname, place: place?.shortName };
   for (const rung of ladder) {
-    const pool = DECKS.activity.filter((c) => rung(c) && fits(c));
+    const pool = DECKS.activity.filter((c) => rung(c) && fits(c) && !taken.has(c.id) && !taken.has(doingKey(c.text)));
     if (pool.length === 0) continue;
     const start = hash(seed, person.id, visit, placeId) % pool.length;
     for (let i = 0; i < pool.length; i++) {
@@ -453,6 +488,43 @@ function sceneMark(view: CaseView, at: Id, again: boolean): SceneMark | undefine
   }
 }
 
+/**
+ * People the notebook knows before this page: whoever a clue in hand came
+ * from, names or places, and whoever has given an account.
+ */
+export function notebookKnows(view: CaseView, found: readonly Id[], accounts: readonly Id[]): Set<Id> {
+  const out = new Set<Id>(accounts);
+  for (const id of found) {
+    const clue = view.findableById.get(id);
+    if (!clue) continue;
+    if (clue.source.type === 'person') out.add(clue.source.personId);
+    for (const f of clue.establishes) if ('personId' in f) out.add(f.personId);
+    for (const p of view.kase.people) {
+      if (new RegExp(`\\b${p.surname}\\b`).test(clue.text)) out.add(p.id);
+    }
+  }
+  return out;
+}
+
+/**
+ * People a lead the page has put in front of the reader points at: the lead
+ * that sent him here, and the leads a bridge has named — the one to ask, and
+ * whoever the question is about. Not every open lead in the notebook: a room
+ * where half the notebook can be asked something is still a crowd.
+ */
+export function leadPointsAt(view: CaseView, found: readonly Id[], named: readonly Id[]): Set<Id> {
+  const out = new Set<Id>();
+  const open = new Set(threadsFor(view, [...found]).map((t) => t.clueId));
+  for (const id of named) {
+    const clue = view.findableById.get(id);
+    if (!clue || !open.has(id) || clue.source.type !== 'person') continue;
+    out.add(clue.source.personId);
+    const about = subjectOfTopic(view, clue.source.topic);
+    if (about !== null) out.add(about);
+  }
+  return out;
+}
+
 /** Presence for everyone in the room, activities kept for the visit. */
 function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
   beat: Extract<Beat, { kind: 'presence' }>;
@@ -472,19 +544,75 @@ function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
         ? 2
         : 1;
   const present = [...input.here].sort((a, b) => order(a) - order(b));
+  // Night Hone 1 §3: the watcher, the client, anybody the notebook knows and
+  // anybody a lead points at get a line of their own; the rest of a crowded
+  // room is said together, once there are two or more of them.
+  const known = notebookKnows(view, input.foundBefore, input.accountsBefore);
+  // The leads that point into this room: the one to ask is here, or a bridge
+  // named them.
+  const errandTarget = input.action.kind === 'travel' ? input.action.errand?.targetId : undefined;
+  // The lead that brought him here, and the leads earlier bridges named.
+  const sent = leadPointsAt(view, input.foundBefore, errandTarget ? [errandTarget] : []);
+  const bridged = leadPointsAt(view, input.foundBefore, memory.bridged);
+  const whyOf = (p: Person): PresencePerson['why'] | 'bridged' =>
+    p.kind === 'fixture' && place?.watcher !== undefined && p.fixtureRole === place.watcher
+      ? 'watcher'
+      : p.id === view.client.id
+        ? 'client'
+        : sent.has(p.id)
+          ? 'lead'
+          : bridged.has(p.id)
+            ? 'bridged'
+            : known.has(p.id)
+              ? 'known'
+              : undefined;
+  // At most four lines of their own (the golden's page 4 has two): past
+  // that, somebody the notebook knows only by name, and then somebody an
+  // earlier bridge named, joins the crowd — named there, since an earlier
+  // page has said who they are.
+  const LINES = 4;
+  const why = new Map(present.map((p) => [p.id, whyOf(p)] as const));
+  const singled = present.filter((p) => why.get(p.id) !== undefined);
+  const lines = (): number => singled.filter((x) => why.get(x.id) !== undefined).length;
+  const crowd = (): number => present.filter((x) => why.get(x.id) === undefined).length;
+  const rank = (p: Person): number =>
+    (why.get(p.id) === 'known' ? 0 : 2) + (input.met.includes(p.id) ? 0 : 1);
+  const demotable = [...singled]
+    .filter((p) => why.get(p.id) === 'known' || why.get(p.id) === 'bridged')
+    .sort((a, b) => rank(a) - rank(b));
+  for (const p of demotable) {
+    // Down to four lines, and a crowd is at least two: one more joins the one.
+    if (lines() <= LINES && crowd() !== 1) break;
+    why.set(p.id, undefined);
+  }
+  const loose = present.filter((p) => why.get(p.id) === undefined);
+  const grouping = loose.length >= 2;
+  const taken = new Set<string>();
   for (const person of present) {
     const kept = activities[person.id];
     const activity =
       kept !== undefined && kept.visit === memory.visit && kept.placeId === input.at
         ? kept
-        : chooseActivity(view, person, input.at, input.minutes, memory.visit, input.seed, input.weather);
+        : chooseActivity(view, person, input.at, input.minutes, memory.visit, input.seed, input.weather, taken);
+    taken.add(activity.cardId);
+    taken.add(doingKey(activity.text, person.surname));
     activities[person.id] = activity;
     const firstSight = !input.met.includes(person.id);
     // A recall phrase, once a visit, for somebody already portrayed.
     const recall =
       !firstSight && recalled[person.id] !== memory.visit && (input.recallable ?? []).includes(person.id);
-    if (recall) recalled[person.id] = memory.visit;
-    people.push({ personId: person.id, activity, firstSight, recall });
+    const found = why.get(person.id);
+    const reason: PresencePerson['why'] = found === 'bridged' ? 'lead' : found;
+    const grouped = grouping && found === undefined;
+    if (recall && !grouped) recalled[person.id] = memory.visit;
+    people.push({
+      personId: person.id,
+      activity,
+      firstSight,
+      recall: recall && !grouped,
+      ...(grouped ? { grouped: true } : {}),
+      ...(reason ? { why: reason } : {}),
+    });
   }
   const mark = sceneMark(view, input.at, again);
   return {
@@ -508,15 +636,78 @@ export function planPage(input: PlanInput): Plan {
     accountsBefore: input.accountsBefore,
     accountsAfter: input.accountsAfter,
   };
-  const addBridge = (opts: { scenesOpening?: boolean } = {}): void => {
+  const addBridge = (opts: { scenesOpening?: boolean; decided?: boolean } = {}): void => {
     const bridge = planBridge(view, newClues, input.foundAfter, input.accountsAfter, input.at, opts);
+    // Golden page 5 ends on its decision; a lead into somebody's secret can
+    // wait for the notebook's list.
+    if (bridge && opts.decided && view.findableById.get(bridge.targetId)?.role === 'noise') return;
     if (bridge) {
       beats.push({ kind: 'bridge', required: true, bridge });
       memory = { ...memory, bridged: [...memory.bridged, bridge.targetId] };
     }
   };
+  /**
+   * Night Hone 1 §5: after a thought catches somebody — seen somewhere they
+   * never mentioned, or contradicted — what the detective does about it now,
+   * from who they are and their temper. Golden page 5's last paragraph.
+   */
+  const addDecide = (): boolean => {
+    const thoughts = beats.flatMap((b) => (b.kind === 'thought' ? [b.thought] : []));
+    const rider = thoughts.find((t) => t.cls === 'unmentioned' && t.sourceId !== undefined);
+    const contra = thoughts.find((t) => t.cls === 'contradicts' && t.subjectId !== undefined);
+    const caught = rider
+      ? { id: rider.sourceId as Id, placeId: rider.placeId, tick: rider.tick }
+      : contra
+        ? { id: contra.subjectId as Id, placeId: contra.placeId, tick: contra.tick }
+        : null;
+    if (caught === null) return false;
+    const person = view.personById.get(caught.id);
+    if (!person || person.id === view.victim.id) return false;
+    const post = view.placeById.get(person.foundAt ?? '');
+    const who: 'client' | 'watcher' | 'suspect' =
+      person.id === view.client.id
+        ? 'client'
+        : person.kind === 'fixture' && post?.watcher !== undefined && person.fixtureRole === post.watcher
+          ? 'watcher'
+          : 'suspect';
+    const temper = input.tempers?.[person.id] ?? 'plain';
+    // A client is still a client; a watcher is marked and kept; a suspect who
+    // talks is pressed, one who gives nothing away is waited out, and a plain
+    // one is marked down and come back to.
+    const act: DecideAct =
+      who === 'client' ? 'hold' : who === 'watcher' ? 'note' : temper === 'yap' ? 'press' : temper === 'enigma' ? 'hold' : 'note';
+    const present =
+      input.here.some((p) => p.id === person.id) || (action.kind === 'ask' && action.personId === person.id);
+    beats.push({
+      kind: 'decide',
+      required: true,
+      personId: person.id,
+      who,
+      act,
+      present,
+      ...(caught.placeId === undefined ? {} : { placeId: caught.placeId }),
+      ...(caught.tick === undefined ? {} : { tick: caught.tick }),
+    });
+    return true;
+  };
+  /** The room's texture, once a visit (Night Hone 1 §1): never the same card twice in a night. */
+  const addPlace = (): void => {
+    if (memory.ambient === memory.visit) return;
+    memory = { ...memory, ambient: memory.visit };
+    beats.push({ kind: 'texture', required: false, texture: 'place' });
+  };
   const addThoughts = (thoughts: Thought[]): void => {
-    for (const thought of thoughts) beats.push({ kind: 'thought', required: true, thought });
+    for (const thought of thoughts) {
+      // "Nothing" is said about something: the room gone through, or the
+      // person who had nothing to give.
+      const located: Thought =
+        thought.cls !== 'nothing'
+          ? thought
+          : action.kind === 'ask'
+            ? { ...thought, subjectId: action.personId }
+            : { ...thought, placeId: input.at };
+      beats.push({ kind: 'thought', required: true, thought: located });
+    }
   };
 
   /* ---------------------------------------------------------- go, look */
@@ -557,6 +748,7 @@ export function planPage(input: PlanInput): Plan {
         placeId: input.at,
         placeKind: input.at === view.startId ? 'scene' : (place?.kind ?? 'semi'),
       });
+      if (moved) addPlace();
     }
     const presence = presenceFor(input, memory, !first);
     memory = presence.memory;
@@ -571,9 +763,7 @@ export function planPage(input: PlanInput): Plan {
       // The last person the page described first, so the thinking picks up
       // the name the paragraph before it ended on.
       const viewed = presence.beat.people
-        .filter((p) => first || p.firstSight)
-        .slice(0, 2)
-        .reverse()
+        .filter((p) => (first || p.firstSight) && !p.grouped)
         .map((p) =>
           viewOf(
             view,
@@ -586,10 +776,15 @@ export function planPage(input: PlanInput): Plan {
             input.foundBefore,
             input.accountsBefore,
           ),
-        );
+        )
+        // Night Hone 1 §2: a stranger gets no thought until there is something to think.
+        .filter((t) => t.who !== 'stranger' || t.lied === true)
+        .slice(0, 2)
+        .reverse();
       addThoughts(viewed);
     }
-    if (opening.length > 0) addBridge({ scenesOpening: true });
+    const decidedHere = opening.length > 0 && addDecide();
+    if (opening.length > 0) addBridge({ scenesOpening: true, decided: decidedHere });
     const thought = beats.some((b) => b.kind === 'thought');
     if (!thought && moved && action.kind === 'travel' && action.errand) {
       // What came of the walk: the person to ask is here, or the room to go
@@ -622,8 +817,11 @@ export function planPage(input: PlanInput): Plan {
     const left = (place?.objects ?? []).filter((id) => id !== action.objectId).slice(0, 2);
     beats.push({ kind: 'act', required: true, ...(action.objectId ? { objectId: action.objectId } : {}), left });
     for (const clue of action.clues) beats.push({ kind: 'find', required: true, clueId: clue.id });
+    // Night Hone 1 §1: the room's own texture, after the finds.
+    addPlace();
     addThoughts(thoughtsFor(thoughtInput));
-    addBridge();
+    const decided = addDecide();
+    addBridge({ decided });
     return { shape: 'search', beats, memory };
   }
 
@@ -636,6 +834,8 @@ export function planPage(input: PlanInput): Plan {
     carry.lead && carry.for === 'ask-person' && subject !== undefined && subject.relationshipToVictim !== undefined;
   if (clock) beats.push(clock);
   if (!carried) beats.push({ kind: 'errand', required: true, form: 'carry', carry });
+  // Night Hone 1 §1: the room, if the page runs short (the realizer decides).
+  addPlace();
   const kept = memory.activities[action.personId];
   const stops = kept !== undefined && kept.visit === memory.visit && !kept.stopped;
   const recall =
@@ -660,7 +860,7 @@ export function planPage(input: PlanInput): Plan {
   for (const id of newIds) beats.push({ kind: 'find', required: true, clueId: id });
   if (action.self && newClues.length === 0) {
     // Somebody's account of themselves is not a find; it is context.
-    addThoughts([{ cls: 'context', clueIds: [] }]);
+    addThoughts([{ cls: 'context', basis: 'self', subjectId: action.personId, clueIds: [] }]);
   } else if (action.account && newClues.length === 0) {
     // An evening taken down is not a clue, but it can contradict one in hand.
     const accountThoughts = accountThought(input, action.personId);
@@ -668,7 +868,8 @@ export function planPage(input: PlanInput): Plan {
   } else {
     addThoughts(thoughtsFor(thoughtInput));
   }
-  addBridge();
+  const decided = addDecide();
+  addBridge({ decided });
   return { shape: 'ask', beats, memory };
 }
 
@@ -691,6 +892,7 @@ function accountThought(input: PlanInput, personId: Id): Thought[] {
         return [
           {
             cls: 'contradicts',
+            basis: f.kind === 'personAt' ? 'at' : 'not-at',
             subjectId: personId,
             placeId: f.place,
             tick: f.tick as Tick,
@@ -702,5 +904,5 @@ function accountThought(input: PlanInput, personId: Id): Thought[] {
       }
     }
   }
-  return [{ cls: 'context', clueIds: [], accountIds: [personId] }];
+  return [{ cls: 'context', basis: 'account', subjectId: personId, clueIds: [], accountIds: [personId] }];
 }

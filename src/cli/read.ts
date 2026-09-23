@@ -28,6 +28,7 @@ import { choicesFor } from '../game/choices.js';
 import { fileReport, newRun, stepInput } from '../game/reducer.js';
 import { truthReport } from '../game/report-form.js';
 import { scoreReport } from '../game/scoring.js';
+import { renderStoryText, storyOf } from '../game/story.js';
 import {
   renderCastText,
   renderChoicesText,
@@ -160,6 +161,9 @@ if (flags.has('grid') || values.has('marks')) {
 if (report) {
   const filed = fileReport(state, report);
   out.push(renderVerdictText(scoreReport(view, filed, report)));
+  // What the closing page's "What really happened" tells: the crime and
+  // nothing else. The truth sheet is `npm run case`.
+  out.push(renderStoryText(storyOf(kase)));
 }
 
 const words = state.log.reduce(

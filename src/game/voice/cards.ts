@@ -53,6 +53,10 @@ import thoughtJson from '../../../content/decks/thought.json';
 import bridgeJson from '../../../content/decks/bridge.json';
 import carryJson from '../../../content/decks/carry.json';
 import answerJson from '../../../content/decks/answer.json';
+import placeAmbientJson from '../../../content/decks/place-ambient.json';
+import searchActJson from '../../../content/decks/search-act.json';
+import crowdJson from '../../../content/decks/crowd.json';
+import decideJson from '../../../content/decks/decide.json';
 
 export type DeckName =
   | 'similes'
@@ -86,7 +90,12 @@ export type DeckName =
   | 'thought'
   | 'bridge'
   | 'carry'
-  | 'answer';
+  | 'answer'
+  /* Night Hone 1: the room's own texture, the search's path, a crowd said at once, the decision after a catch. */
+  | 'place-ambient'
+  | 'search-act'
+  | 'crowd'
+  | 'decide';
 
 export type BurnTier = 'run-to-run' | 'within-run' | 'free';
 
@@ -199,6 +208,10 @@ const RAW: Record<DeckName, unknown> = {
   bridge: bridgeJson,
   carry: carryJson,
   answer: answerJson,
+  'place-ambient': placeAmbientJson,
+  'search-act': searchActJson,
+  crowd: crowdJson,
+  decide: decideJson,
 };
 
 /** Every deck is on disk and imported; nothing is missing. */

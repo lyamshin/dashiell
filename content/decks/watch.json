@@ -12,7 +12,7 @@
   {
     "id": "wch-002",
     "deck": "watch",
-    "text": "Nothing crossed that bar that {watcher} didn't clock.",
+    "text": "Nothing crossed that bar that {watcher} didn’t notice.",
     "tags": {
       "watcher": "bartender"
     },
@@ -322,7 +322,7 @@
   {
     "id": "wch-033",
     "deck": "watch",
-    "text": "{watcher} knew who lived where, and who visited whom, from running the car all day.",
+    "text": "{watcher} knew who lived where, and who visited whom, from running the elevator all day.",
     "tags": {
       "watcher": "elevator-man"
     },
@@ -512,7 +512,7 @@
   {
     "id": "wch-052",
     "deck": "watch",
-    "text": "A hack driver could tell a hurried fare from a patient one, and {watcher} noticed both kinds.",
+    "text": "A cab driver could tell a hurried fare from a patient one, and {watcher} noticed both kinds.",
     "tags": {
       "watcher": "cabbie"
     },

@@ -217,7 +217,7 @@
   {
     "id": "act-020",
     "deck": "activity",
-    "text": "{name} was polishing the brass rail inside the car with a rag.",
+    "text": "{name} was polishing the brass rail inside the elevator with a rag.",
     "tags": {
       "role": "elevator-man",
       "placeKind": "private"
@@ -598,7 +598,7 @@
   {
     "id": "act-052",
     "deck": "activity",
-    "text": "{name} was scanning a folded page of quotations, a pencil marking a column.",
+    "text": "{name} was scanning a folded page of stock prices, a pencil marking a column.",
     "tags": {
       "role": "arch-broker",
       "placeKind": "public",
@@ -659,7 +659,7 @@
   {
     "id": "act-057",
     "deck": "activity",
-    "text": "{name} was checking a ticker tape pulled from a pocket.",
+    "text": "{name} was checking a strip of ticker tape with the day’s stock prices on it.",
     "tags": {
       "role": "arch-broker",
       "placeKind": "semi",
@@ -992,7 +992,7 @@
   {
     "id": "act-084",
     "deck": "activity",
-    "text": "{name} was checking a list of names against a docket.",
+    "text": "{name} was checking a list of names against the court’s calendar of cases.",
     "tags": {
       "role": "arch-lawyer",
       "placeKind": "semi",
@@ -1325,7 +1325,7 @@
   {
     "id": "act-111",
     "deck": "activity",
-    "text": "{name} was counting the day's take into a small box.",
+    "text": "{name} was counting the day’s money into a small box.",
     "tags": {
       "role": "arch-dentist",
       "placeKind": "semi",
@@ -1350,7 +1350,7 @@
   {
     "id": "act-113",
     "deck": "activity",
-    "text": "{name} was checking a ledger of accounts against a stack of unpaid cards.",
+    "text": "{name} was checking a ledger of accounts against a stack of unpaid bills.",
     "tags": {
       "role": "arch-dentist",
       "placeKind": "private",
@@ -1584,7 +1584,7 @@
   {
     "id": "act-132",
     "deck": "activity",
-    "text": "{name} was counting a stack of notes into a coat pocket.",
+    "text": "{name} was counting a stack of dollar bills into a coat pocket.",
     "tags": {
       "role": "arch-reporter",
       "placeKind": "private",
@@ -1794,7 +1794,7 @@
   {
     "id": "act-149",
     "deck": "activity",
-    "text": "{name} was checking a policy against a list of exclusions.",
+    "text": "{name} was checking an insurance policy against a list of exclusions.",
     "tags": {
       "role": "arch-adjuster",
       "placeKind": "private",
@@ -1930,7 +1930,7 @@
   {
     "id": "act-160",
     "deck": "activity",
-    "text": "{name} was leaning against a lamppost, a hook hanging from a belt.",
+    "text": "{name} was leaning against a lamppost, a cargo hook hanging from a belt.",
     "tags": {
       "role": "arch-longshoreman",
       "placeKind": "public",
@@ -1967,7 +1967,7 @@
   {
     "id": "act-163",
     "deck": "activity",
-    "text": "{name} was sitting with a hook set on the table, turning a glass slowly.",
+    "text": "{name} was sitting with a cargo hook set on the table, turning a glass slowly.",
     "tags": {
       "role": "arch-longshoreman",
       "placeKind": "semi",
@@ -2004,7 +2004,7 @@
   {
     "id": "act-166",
     "deck": "activity",
-    "text": "{name} was sitting with a hook laid across a knee, working a knot loose from a length of rope.",
+    "text": "{name} was sitting with a cargo hook laid across a knee, working a knot loose from a length of rope.",
     "tags": {
       "role": "arch-longshoreman",
       "placeKind": "private",
@@ -2078,7 +2078,7 @@
   {
     "id": "act-172",
     "deck": "activity",
-    "text": "{name} was going through a bundle of piecework, counting the pieces.",
+    "text": "{name} was counting a bundle of finished sewing, paid for by the piece.",
     "tags": {
       "role": "arch-seamstress",
       "placeKind": "semi",
@@ -2386,7 +2386,7 @@
   {
     "id": "act-197",
     "deck": "activity",
-    "text": "{name} was checking a call sheet against a wristwatch.",
+    "text": "{name} was checking the theater’s rehearsal schedule against a wristwatch.",
     "tags": {
       "role": "arch-stagehand",
       "placeKind": "public",
@@ -2398,7 +2398,7 @@
   {
     "id": "act-198",
     "deck": "activity",
-    "text": "{name} was carrying a folded flat under one arm.",
+    "text": "{name} was carrying a folded piece of stage scenery under one arm.",
     "tags": {
       "role": "arch-stagehand",
       "placeKind": "public",
@@ -2472,7 +2472,7 @@
   {
     "id": "act-204",
     "deck": "activity",
-    "text": "{name} was counting a stack of call sheets into order.",
+    "text": "{name} was putting a stack of rehearsal schedules in order.",
     "tags": {
       "role": "arch-stagehand",
       "placeKind": "private",
@@ -2731,7 +2731,7 @@
   {
     "id": "act-225",
     "deck": "activity",
-    "text": "{name} was folding an agency's listing into a pocket.",
+    "text": "{name} was folding a list of auditions from a booking agency into a pocket.",
     "tags": {
       "role": "arch-chorus",
       "placeKind": "public",
@@ -2805,7 +2805,7 @@
   {
     "id": "act-231",
     "deck": "activity",
-    "text": "{name} was checking a call sheet pinned to a mirror.",
+    "text": "{name} was checking a rehearsal schedule pinned to a mirror.",
     "tags": {
       "role": "arch-chorus",
       "placeKind": "private",
@@ -2818,7 +2818,7 @@
   {
     "id": "act-232",
     "deck": "activity",
-    "text": "{name} was chalking a number on a slate, then rubbing half of it off.",
+    "text": "{name} was chalking odds on a slate, then rubbing half of them off.",
     "tags": {
       "role": "arch-bookmaker",
       "placeKind": "public",
@@ -2842,7 +2842,7 @@
   {
     "id": "act-234",
     "deck": "activity",
-    "text": "{name} was checking a folded slip against a list.",
+    "text": "{name} was checking a folded betting slip against a list.",
     "tags": {
       "role": "arch-bookmaker",
       "placeKind": "public",
@@ -2941,7 +2941,7 @@
   {
     "id": "act-242",
     "deck": "activity",
-    "text": "{name} was checking a list of names against a ward map.",
+    "text": "{name} was checking a list of names against a map of the voting district.",
     "tags": {
       "role": "arch-heeler",
       "placeKind": "public",
@@ -2953,7 +2953,7 @@
   {
     "id": "act-243",
     "deck": "activity",
-    "text": "{name} was counting coal chits into a stack.",
+    "text": "{name} was counting vouchers for free coal into a stack.",
     "tags": {
       "role": "arch-heeler",
       "placeKind": "public",
@@ -2990,7 +2990,7 @@
   {
     "id": "act-246",
     "deck": "activity",
-    "text": "{name} was counting a stack of tickets into a coat pocket.",
+    "text": "{name} was counting a stack of raffle tickets into a coat pocket.",
     "tags": {
       "role": "arch-heeler",
       "placeKind": "semi",
@@ -3114,7 +3114,7 @@
   {
     "id": "act-256",
     "deck": "activity",
-    "text": "{name} was weighing a ring on a small scale, checking the mark twice.",
+    "text": "{name} was weighing a ring on a small scale, checking the maker’s stamp twice.",
     "tags": {
       "role": "arch-pawnman",
       "placeKind": "private",
@@ -3138,7 +3138,7 @@
   {
     "id": "act-258",
     "deck": "activity",
-    "text": "{name} was checking a ledger of redemptions against a stack of tickets.",
+    "text": "{name} was checking a ledger of what customers had bought back against a stack of tickets.",
     "tags": {
       "role": "arch-pawnman",
       "placeKind": "private",
@@ -3262,7 +3262,7 @@
   {
     "id": "act-268",
     "deck": "activity",
-    "text": "{name} was folding a slip into a pocket without breaking stride.",
+    "text": "{name} was folding a lottery slip into a pocket without breaking stride.",
     "tags": {
       "role": "arch-runner",
       "placeKind": "public",
@@ -3299,7 +3299,7 @@
   {
     "id": "act-271",
     "deck": "activity",
-    "text": "{name} was going through a stack of slips, sorting them by number.",
+    "text": "{name} was going through a stack of illegal lottery slips, sorting them by number.",
     "tags": {
       "role": "arch-runner",
       "placeKind": "semi",
@@ -3323,7 +3323,7 @@
   {
     "id": "act-273",
     "deck": "activity",
-    "text": "{name} was checking a slip against a list of numbers.",
+    "text": "{name} was checking a lottery slip against a list of winning numbers.",
     "tags": {
       "role": "arch-runner",
       "placeKind": "semi",
@@ -3348,7 +3348,7 @@
   {
     "id": "act-275",
     "deck": "activity",
-    "text": "{name} was checking a ledger of plays against a column of numbers.",
+    "text": "{name} was checking a ledger of lottery bets against a column of numbers.",
     "tags": {
       "role": "arch-runner",
       "placeKind": "private",
@@ -3360,7 +3360,7 @@
   {
     "id": "act-276",
     "deck": "activity",
-    "text": "{name} was folding a stack of slips into a rubber band.",
+    "text": "{name} was folding a stack of lottery slips into a rubber band.",
     "tags": {
       "role": "arch-runner",
       "placeKind": "private",

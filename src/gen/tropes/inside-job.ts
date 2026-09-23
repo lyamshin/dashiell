@@ -67,14 +67,14 @@ export const insideJob: Trope = {
             tick: ctx.build.killerAccessTick,
           },
         ],
-        `The key list at ${ctx.placeName(access)} runs to four names, and ${ctx.who(killer.id)} is the third of them. The book has ${ctx.who(killer.id)} there at ${clock(ctx.build.killerAccessTick)}.`,
+        `The key list at ${ctx.placeName(access)} runs to four names, and ${ctx.who(killer.id)} is the third of them. The sign-in book has ${ctx.who(killer.id)} there at ${clock(ctx.build.killerAccessTick)}.`,
       ),
       ctx.add(
         'overheard',
         { type: 'person', personId: b.id, topic: 'the lock' },
         ctx.foundAt(b.id),
         [{ kind: 'hadAccess', personId: killer.id, methodId: ctx.method.id }],
-        `${ctx.who(b.id)} says the lock at ${ctx.placeName(L)} has never been changed, and that the people who can open it can be counted on one hand.`,
+        `${ctx.who(b.id)} says the lock at ${ctx.placeName(L)} has never been changed, and the people who can open it can be counted on one hand.`,
       ),
     ];
     return {

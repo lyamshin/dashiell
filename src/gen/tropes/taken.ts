@@ -66,7 +66,7 @@ export const taken: Trope = {
         { type: 'person', personId: a.id, topic: `the room at ${ctx.placeName(home)}` },
         ctx.foundAt(a.id),
         [{ kind: 'personAt', personId: killer.id, place: home, tick: t1 }],
-        `${ctx.who(a.id)} says ${ctx.who(killer.id)} paid for a room at ${ctx.placeName(home)} at ${clock(t1)} and went up with somebody who was not walking easily, and that the somebody had ${V}’s coat over one arm.`,
+        `${ctx.who(a.id)} says ${ctx.who(killer.id)} paid for a room at ${ctx.placeName(home)} at ${clock(t1)} and went up with somebody who was not walking easily, and the somebody had ${V}’s coat over one arm.`,
       ),
     ];
     return { clues, requirement: essential('taken', `where ${V} is being kept`, clues) };

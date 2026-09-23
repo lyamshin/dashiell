@@ -46,7 +46,7 @@ export interface AnchorTemplate {
 export const ANCHOR_TEMPLATES: AnchorTemplate[] = [
   {
     id: 'bar-radio',
-    name: 'the fight card on the bar radio',
+    name: 'the boxing match on the bar radio',
     attachesTo: 'place',
     placeKinds: ['semi', 'public'],
     ticks: 'single',
@@ -58,7 +58,7 @@ export const ANCHOR_TEMPLATES: AnchorTemplate[] = [
     timing: 'while the fight was on the radio',
     highTiming: 'while the fight was on the radio',
     sceneFact:
-      'The fight card was on the bar radio at {T}, turned up loud enough to carry into the street, and off when the card ended.',
+      'The boxing match was on the bar radio at {T}, turned up loud enough to carry into the street, and off when the last fight ended.',
   },
   {
     id: 'regular-stool',
@@ -126,7 +126,7 @@ export const ANCHOR_TEMPLATES: AnchorTemplate[] = [
     timing: 'as the bells were going',
     highTiming: 'while the bells were going',
     sceneFact:
-      'The bells rang the half hour at {T}. The sexton rings them off the sacristy clock and it keeps good time.',
+      'The bells rang the half hour at {T}. The church caretaker rings them by the church clock, and it keeps good time.',
   },
   {
     id: 'last-edition',
@@ -153,13 +153,13 @@ export const ANCHOR_TEMPLATES: AnchorTemplate[] = [
     ticks: 'single',
     masks: false,
     traces: [
-      { kind: 'sound', description: 'a crack in the cellar and every light on the riser out at once' },
+      { kind: 'sound', description: 'a crack in the cellar and every light on those floors out at once' },
       { kind: 'knowledge', description: 'it was the second floor that went dark and not the whole house' },
       { kind: 'mark', description: 'candle smoke on the ceilings of everyone who sat it out' },
     ],
     timing: 'when the lights went',
     highTiming: 'just after the lights went',
-    sceneFact: 'The fuse went at {T} and the lights on that riser were dead from then until the morning.',
+    sceneFact: 'The fuse went at {T} and the lights on those floors were dead from then until the morning.',
   },
   {
     id: 'rain',

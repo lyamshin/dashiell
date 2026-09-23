@@ -492,5 +492,85 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "brg-k01",
+    "deck": "bridge",
+    "text": "If anyone knew where {subject} had been tonight, it would be {who}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-k02",
+    "deck": "bridge",
+    "text": "If anyone knew where {subject} had been tonight, it would be {who}, at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-k03",
+    "deck": "bridge",
+    "text": "{who} would know where {subject} had been. That was the next question.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-k04",
+    "deck": "bridge",
+    "text": "{who} was the one to ask about {subject}, and {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-k05",
+    "deck": "bridge",
+    "text": "The next question was {subject}, and it was for {who}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-k06",
+    "deck": "bridge",
+    "text": "I wanted {who}’s word on {subject}. {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-k07",
+    "deck": "bridge",
+    "text": "{subject} came next. {who} might know where {subject} had spent the evening.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-k08",
+    "deck": "bridge",
+    "text": "{who} might know where {subject} had spent the evening, and {who} was at {where}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]

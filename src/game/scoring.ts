@@ -94,7 +94,7 @@ export function scoreReport(view: CaseView, state: RunState, report: Report): Ve
 }
 
 function parLine(used: number, par: number): string {
-  if (used < par) return `It took me ${used} calls. The book says ${par}. I will not be telling anybody.`;
+  if (used < par) return `It took me ${used} calls. It could have been done in ${par}. I will not be telling anybody.`;
   if (used === par) return `${used} calls, which is exactly what the night was worth.`;
   return `It took me ${used} calls. A better detective would have done it in ${par}.`;
 }
@@ -150,7 +150,7 @@ const MURDER: ClosingSet = {
 
 const ROBBERY: ClosingSet = {
   solved: (c) => [
-    `Nobody hangs for a box. ${c.actor} took ${c.taken} out of ${c.where} at ${c.when}, and ${c.goods} is where it went, and the precinct sends two men round before breakfast.`,
+    `Nobody hangs for a robbery. ${c.actor} took ${c.taken} out of ${c.where} at ${c.when}, and ${c.goods} is where it went, and the precinct sends two men round before breakfast.`,
     `${c.victim} gets most of it back and thanks nobody. ${c.points} out of ${c.asked}, and ${lowerFirst(c.par)}`,
   ],
   'wrong-man': (c) => [
@@ -159,7 +159,7 @@ const ROBBERY: ClosingSet = {
   ],
   thin: (c) => [
     `They charge ${c.actor} with what I could prove, which is not the half of it. The ${c.wrong.join(', ')} never got settled, and a lawyer will make an afternoon of that.`,
-    `A plea, in the end, and ${c.victim} is still short. ${c.points} out of ${c.asked}. ${c.par}`,
+    `A guilty plea, in the end, and ${c.victim} is still short. ${c.points} out of ${c.asked}. ${c.par}`,
   ],
   cold: (c) => [
     `I hand in a file with a hole where the name goes. Nobody is charged with anything.`,
