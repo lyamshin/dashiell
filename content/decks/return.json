@@ -32,7 +32,7 @@
   {
     "id": "ret-004",
     "deck": "return",
-    "text": "I came back to {place}. The second time was never the first.",
+    "text": "I came back to {place}. It looked smaller the second time.",
     "tags": {
       "placeKind": "public"
     },
@@ -42,7 +42,7 @@
   {
     "id": "ret-005",
     "deck": "return",
-    "text": "{place} was where I had left it.",
+    "text": "I was back at {place}, my second visit of the night.",
     "tags": {
       "placeKind": "public",
       "number": "singular"
@@ -53,7 +53,7 @@
   {
     "id": "ret-006",
     "deck": "return",
-    "text": "Back at {place}. The crowd had turned over since I was last through.",
+    "text": "Back at {place}. I knew my way around it now.",
     "tags": {
       "placeKind": "public"
     },
@@ -133,7 +133,7 @@
   {
     "id": "ret-014",
     "deck": "return",
-    "text": "Back at {place}. Whoever watched the room remembered me from before.",
+    "text": "Back at {place}. This time I knew where everything was.",
     "tags": {
       "placeKind": "semi",
       "setting": "indoor"
@@ -144,7 +144,7 @@
   {
     "id": "ret-015",
     "deck": "return",
-    "text": "{place} hadn't changed, and neither had who was watching it.",
+    "text": "{place} hadn’t changed since I left it.",
     "tags": {
       "placeKind": "semi"
     },
@@ -215,7 +215,7 @@
   {
     "id": "ret-022",
     "deck": "return",
-    "text": "{place} again. The door was where I had left it, and just as quiet.",
+    "text": "{place} again. I let myself in and shut the door, as before.",
     "tags": {
       "placeKind": "private",
       "setting": "indoor"
@@ -307,7 +307,7 @@
   {
     "id": "ret-031",
     "deck": "return",
-    "text": "Back at {place}. It still felt like the room where it happened, because it was.",
+    "text": "Back at {place}, where the night had started for me.",
     "tags": {
       "placeKind": "scene",
       "setting": "indoor"
@@ -359,7 +359,7 @@
   {
     "id": "ret-036",
     "deck": "return",
-    "text": "I went back to {place}, and it still read like the aftermath.",
+    "text": "I went back to {place}. It was no easier to stand in the second time.",
     "tags": {
       "placeKind": "scene"
     },
@@ -390,7 +390,7 @@
   {
     "id": "ret-039",
     "deck": "return",
-    "text": "Second look at {place}, and it was no less the scene of it.",
+    "text": "Second look at {place}. It was still the place where it had happened.",
     "tags": {
       "placeKind": "scene"
     },
