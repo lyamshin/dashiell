@@ -15,7 +15,7 @@
  */
 
 import { describe, expect, it } from 'vitest';
-import { generateCase, type Clue } from '../src/gen/index.js';
+import { crimeTicks, generateCase, solveHeld, type Clue } from '../src/gen/index.js';
 import type { Id } from '../src/gen/types.js';
 import { buildView, type CaseView } from '../src/game/derive.js';
 import { allChoices, choicesFor } from '../src/game/choices.js';
@@ -23,6 +23,7 @@ import { checkRun } from '../src/game/correspond-pages.js';
 import { playOracle } from '../src/game/oracle.js';
 import { parse } from '../src/game/parser.js';
 import { lintRun, MACHINERY } from '../src/game/reader-lint.js';
+import { clearedOnTwo, placedAwayBy } from '../src/game/m9.js';
 import { continuationOf, newRun, priceOf, stepInput } from '../src/game/reducer.js';
 import { checkRunCoverage } from '../src/game/scene/coverage.js';
 import { FAMILY_CAP, familiesOf, paceClues } from '../src/game/scene/families.js';
@@ -277,6 +278,46 @@ describe('M10 §A.3: pacing', () => {
         expect(clauses.length, `${r.label} p${p.n + 1}: ${est.text}`).toBeLessThanOrEqual(1);
       }
     }
+  });
+});
+
+describe('M10: "That cleared X" only when two facts agree about the crime’s half hour', () => {
+  it('seed 11 at Raw: Donnelly’s own word and Mulcahy’s sightings either side of half past nine do not clear him', () => {
+    const view = tiered(11, 0);
+    const donnelly = view.kase.people.find((p) => p.surname === 'Donnelly') as { id: Id };
+    const steps = playOracle(view).steps.map((s) => s.command);
+    const at = steps.indexOf('ask Mulcahy about Donnelly');
+    expect(at, 'the route asks Mulcahy about Donnelly').toBeGreaterThanOrEqual(0);
+    const state = play(view, steps.slice(0, at + 1));
+    const page = state.log[state.log.length - 1] as Page;
+    // What Mulcahy saw: Donnelly at the stairwell, but not at the crime's half hour.
+    const ticks = crimeTicks(solveHeld(view.kase, state.found));
+    expect(ticks.length).toBeGreaterThan(0);
+    for (const t of ticks) expect(placedAwayBy(view, state.found, donnelly.id, t)).toBe(false);
+    expect(clearedOnTwo(view, state.found).has(donnelly.id)).toBe(false);
+    const clears = (page.beats ?? []).filter((b) => b.kind === 'thought' && b.tag === 'clears');
+    expect(clears.map((b) => b.text)).toEqual([]);
+    expect(text(page)).not.toMatch(/cleared Donnelly/);
+  });
+
+  it('never clears on two facts unless somebody else’s word covers every crime half hour, over 40 seeds at Raw and Coddled', () => {
+    let cleared = 0;
+    for (const r of RUNS) {
+      if (!/^T[01] /.test(r.label)) continue;
+      const found: Id[] = [];
+      for (const p of r.state.log) {
+        found.push(...p.found);
+        for (const b of p.beats ?? []) {
+          if (b.kind !== 'thought' || b.tag !== 'clears') continue;
+          cleared++;
+          const who = (b.personIds ?? [])[0] as Id;
+          const ticks = crimeTicks(solveHeld(r.view.kase, [...found]));
+          for (const t of ticks) expect(placedAwayBy(r.view, found, who, t), `${r.label} p${p.n + 1}: ${b.text}`).toBe(true);
+        }
+      }
+    }
+    // eslint-disable-next-line no-console
+    console.log(`M10 "cleared" thoughts at Raw and Coddled, each held: ${cleared}`);
   });
 });
 

@@ -3163,7 +3163,7 @@
   {
     "id": "tht-m018",
     "deck": "thought",
-    "text": "{other} at {time}. Anything I had that was pinned to it now had an hour.",
+    "text": "So {other} was at {time}. Anybody seen somewhere by it had been there at {time}.",
     "tags": {
       "class": "touches",
       "basis": "timing"
@@ -3174,7 +3174,7 @@
   {
     "id": "tht-m019",
     "deck": "thought",
-    "text": "Now {other} had a time: {time}. I went back through the notebook for anything that hung on it.",
+    "text": "Now I knew {other} was at {time}, and anything anybody had timed by it was at {time} too.",
     "tags": {
       "class": "touches",
       "basis": "timing"
@@ -3185,7 +3185,7 @@
   {
     "id": "tht-m020",
     "deck": "thought",
-    "text": "{time}, then, for {other}. Whatever had been waiting on it had an hour now.",
+    "text": "{other} was at {time}, then. Whatever anybody had seen by it happened at {time} as well.",
     "tags": {
       "class": "touches",
       "basis": "timing"
