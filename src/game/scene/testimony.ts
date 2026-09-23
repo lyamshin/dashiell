@@ -87,6 +87,19 @@ export function m9Answer(
       return facts.every((f) => f.kind === 'describedAt') && facts.length > 0
         ? described(view, speaker, facts, spoken)
         : null;
+    case 'anchor': {
+      // The conditional: what anybody there knew, and somebody who did not.
+      const premise = facts.find((f) => f.kind === 'anchorKnowledge');
+      if (premise && premise.kind === 'anchorKnowledge') {
+        return `“Anybody who was ${placeWord(view, premise.place, speaker, spoken)} ${whenSaid(premise.ticks)} would know that ${premise.knowledge}.”`;
+      }
+      const test = facts.find((f) => f.kind === 'knows');
+      if (test && test.kind === 'knows') {
+        const anchor = view.anchorById.get(test.anchorId)?.name ?? 'that';
+        return test.knows ? `“I know what happened with ${anchor}.”` : `“${cap(anchor)}? I couldn’t tell you what happened.”`;
+      }
+      return null;
+    }
     default:
       return null;
   }

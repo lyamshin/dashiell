@@ -39,7 +39,7 @@
  */
 
 import { generateCase, type GenerateOptions } from '../src/gen/index.js';
-import type { Case, Clue, Fact, Id, Tick } from '../src/gen/types.js';
+import type { Case, Clue, Fact, Id, Person, Tick } from '../src/gen/types.js';
 import { TICKS } from '../src/gen/types.js';
 import {
   buildView,
@@ -72,6 +72,7 @@ import {
   saidRecords,
   solveNotebook,
   truthColumn,
+  verdictsOn,
 } from '../src/game/m9.js';
 
 /* ---------------------------------------------------- M9: the solver's view */
@@ -512,6 +513,12 @@ function reasonPicker(): Picker {
         // Only somebody the grid still has open at the crime's half hours:
         // breaking a story the notebook has no use for is a half hour lost.
         if (windowC.length > 0 && windowC.every((t) => placesAt(stC, person.id, t).length === 1)) continue;
+        if (
+          process.env.REASON_VARIANT === 'h' &&
+          windowC.length > 0 &&
+          !windowC.some((t) => placesAt(stC, person.id, t).includes(view.sceneId))
+        )
+          continue;
         if (!canConfront(view, { ...state, at: person.foundAt ?? state.at }, person.id)) continue;
         const facts = new Set(confrontFacts(view, state, person.id).map((c) => c.id));
         // What they say now: a second story replaces the first for its hours,
@@ -581,9 +588,9 @@ function reasonPicker(): Picker {
     const search = notConfront.find((c) => c.command.startsWith('examine ') && !c.done);
     if (search && !(state.searched ?? []).includes(state.at)) return pick(search);
     // 3b. A room a lead points at.
-    const VARIANT = process.env.REASON_VARIANT ?? 'd';
+    const VARIANT = process.env.REASON_VARIANT ?? 'g';
     const markedGo0 = notConfront.filter((c) => c.lead && c.command.startsWith('go ') && worth(c.command));
-    if (VARIANT !== 'b' && markedGo0.length > 0) return pick(markedGo0[0] as (typeof options)[number]);
+    if (VARIANT !== 'b' && VARIANT !== 'f' && markedGo0.length > 0) return pick(markedGo0[0] as (typeof options)[number]);
     // 4. The evening of anybody here whose crime half hour is still open, and
     // 5. what the people here saw of the people whose cell is still open.
     const st = kase.logic ? solveNotebook(view, state) : null;
@@ -602,14 +609,34 @@ function reasonPicker(): Picker {
         .map((x) => x.personId)
         .filter((id) => !confessed.includes(id)),
     );
+    // Who could still have been in the room it happened in: the questions
+    // worth a half hour are about them, and about anybody whose second story
+    // is still standing.
+    const couldBe = (id: Id): boolean =>
+      st === null || window.length === 0 || window.some((t) => placesAt(st, id, t).includes(view.sceneId));
     const openSuspects = columnPeople(view)
-      .filter((p) => open(p.id) || standing.has(p.id))
+      .filter((p) => (open(p.id) && couldBe(p.id)) || standing.has(p.id))
       .sort((a, b) => Number(standing.has(b.id)) - Number(standing.has(a.id)));
+    const askedOf = (who: Person): number => [...asked].filter((c) => c.startsWith(`ask ${who.surname} about `)).length;
+    // 4b. The evening of anybody in the notebook who could still have been in
+    // the room it happened in: the notebook says where they are found.
+    if (kase.logic && process.env.REASON_VARIANT !== 'e') {
+      for (const p of columnPeople(view)) {
+        if (state.accounts.includes(p.id) || !state.met.includes(p.id) || !couldBe(p.id)) continue;
+        if (here.some((h) => h.id === p.id)) continue;
+        const where = view.placeById.get(p.foundAt ?? '')?.shortName;
+        const go = notConfront.find((c) => c.command === `go ${where}`);
+        if (go) return pick(go);
+      }
+    }
+    if (VARIANT === 'f' && markedGo0.length > 0) return pick(markedGo0[0] as (typeof options)[number]);
     // Somebody posted at a door saw everybody who came through it: ask them first.
     const byPost = [...here]
       .sort((a, b) => Number(b.kind === 'fixture') - Number(a.kind === 'fixture'))
       .filter((p) => VARIANT !== 'c' || p.kind === 'fixture' || standing.size > 0);
     for (const person of byPost) {
+      if (askedOf(person) >= 3 && person.kind !== 'fixture') continue;
+      if (VARIANT === 'g' && person.kind !== 'fixture' && standing.size === 0) continue;
       for (const target of [...openSuspects, view.victim]) {
         if (target.id === person.id) continue;
         const c = notConfront.find((x) => x.command === `ask ${person.surname} about ${target.surname}` && x.minutes > 0);
@@ -633,7 +660,12 @@ function fileFor(view: CaseView, state: RunState): Report {
   const est = establishedFrom(view, state.found, state.accounts);
   const facts = factsOf(view, state.found);
   const left = uncleared(kase, facts);
-  const killerId = left.length === 1 ? (left[0] as Id) : leadingTheory(view, est);
+  // M9: from Poached up the monologue has no theory of its own — only the
+  // player's pencil — so a player who does not reason guesses among the ones
+  // the notebook's plain placements leave standing.
+  const guess = left.length > 0 ? (left[kase.seed % left.length] as Id) : null;
+  const killerId =
+    left.length === 1 ? (left[0] as Id) : verdictsOn(view) ? leadingTheory(view, est) : (state.theory ?? guess);
   const ticks = deathTicks(facts);
   const motive = est.motives.find((m) => m.personId === killerId) ?? est.motives[0];
   return {
