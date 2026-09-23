@@ -1,6 +1,29 @@
-# The recap
+# M12 — Conversation: the ask and the recap
 
-*Queued 2026-09-23. Build after M11 (people) lands; both touch the page planner.*
+*Queued 2026-09-23. Build after M11 (people) lands; both parts touch the page planner.*
+
+## Part 1 — The ask
+
+The designer: "it jumps directly to someone answering a question. Write Dashiell actually asking." Their example, which is the target for tone and shape:
+
+> I sat down next to the Dentist. A squirrelly one, and not just because he was chomping down the peanuts, skin and all.
+>
+> I asked him where he was the night of the kerfuffle. He refused, even after I tried to buy him a beer. I guess some nuts are just too hard to crack.
+
+What it has, and every question page needs:
+
+1. **The approach.** Where the detective goes and how they settle: sat down next to, leaned on the counter beside, caught up with on the stair. It's drawn from the place and the person's activity.
+2. **A look at the person.** One sentence of the detective's read of them, tied to what they're doing right now ("chomping down the peanuts, skin and all"). It's character, not a case fact.
+3. **The ask, often in reported speech.** "I asked him where he was the night of the kerfuffle." Direct quotes are for the answer and for a question with an edge. Mix the two.
+4. **A try, when the temper calls for it.** A drink, a cigarette, a coin on the counter, a threat left unsaid. It happens with a guarded person, or a second ask of someone who wouldn't give it the first time. It costs nothing extra.
+5. **The outcome, and a wry last word.** Told plainly, then one dry line from the detective ("I guess some nuts are just too hard to crack."). The wry line is the page's one figure, and it's never a verdict.
+
+**Refusals** are a real outcome only where the rules already have one: the culprit going quiet under confrontation, or a guarded person on a question about their own night. When someone refuses, the page still gives what the refusal is worth: that they wouldn't say. It's never a paid-for dead end on an ordinary question.
+
+**Tone.** Designer: "this isn't Sam & Max, but it doesn't hurt to pull that way. It's a game!" So lean toward humor. It's dry, observational and deadpan: the detective noticing the absurd in people and in the night, puns allowed now and then, and never at the expense of clarity or of a fact. The mystery stays straight: the case, the clues and the deaths aren't jokes. People, habits, weather, the detective's own bad luck and the neighborhood's small lunacies are fair game. The designer's example is lighter and wryer than the goldens so far. Let the detective's closing line be dry and a little funny, one per page at most. Plain words first. Names are used as the detective knows them, and a trade or nickname ("the Dentist") is fine once the reader knows who it is.
+
+## Part 2 — The recap
+
 
 The designer: "we had discussed having the detective give a recap after something happened. I don't think that's there or isn't long enough." It isn't there. The closest thing is a one- or two-sentence thought after a find.
 
