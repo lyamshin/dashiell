@@ -1141,5 +1141,380 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "hum-090",
+    "deck": "dashiell-lines",
+    "text": "“What’s your line?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "any"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-091",
+    "deck": "dashiell-lines",
+    "text": "“What do you do for a living?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "any"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-092",
+    "deck": "dashiell-lines",
+    "text": "“How long have you been at it?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "any"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-093",
+    "deck": "dashiell-lines",
+    "text": "“What kind of work is it?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "any"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-094",
+    "deck": "dashiell-lines",
+    "text": "“Still at the same work?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "yes",
+      "family": "any"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-095",
+    "deck": "dashiell-lines",
+    "text": "“How’s the work treating you?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "yes",
+      "family": "any"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-096",
+    "deck": "dashiell-lines",
+    "text": "“Same line as ever?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "yes",
+      "family": "any"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-097",
+    "deck": "dashiell-lines",
+    "text": "“What keeps you in this part of town?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "money"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-098",
+    "deck": "dashiell-lines",
+    "text": "“How do you fill your days?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "money"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-099",
+    "deck": "dashiell-lines",
+    "text": "“Where do you work?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "working"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-100",
+    "deck": "dashiell-lines",
+    "text": "“How long have you had the job?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "working"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-101",
+    "deck": "dashiell-lines",
+    "text": "“How do you make a living?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "underworld"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-102",
+    "deck": "dashiell-lines",
+    "text": "“How long have you been in that line?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "underworld"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-103",
+    "deck": "dashiell-lines",
+    "text": "“How long have you done this work?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "professional"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-104",
+    "deck": "dashiell-lines",
+    "text": "“How did you come to the work?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "professional"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-105",
+    "deck": "dashiell-lines",
+    "text": "“How long have you had the house?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "fixture",
+      "role": "landlady"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-106",
+    "deck": "dashiell-lines",
+    "text": "“How long have you kept the place?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "fixture",
+      "role": "landlady"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-107",
+    "deck": "dashiell-lines",
+    "text": "“How long have you been behind this bar?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "fixture",
+      "role": "bartender"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-108",
+    "deck": "dashiell-lines",
+    "text": "“How long have you had this door?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "fixture",
+      "role": "doorman"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-109",
+    "deck": "dashiell-lines",
+    "text": "“How long have you had the stand?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "fixture",
+      "role": "newsstand"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-110",
+    "deck": "dashiell-lines",
+    "text": "“How long have you worked this counter?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "fixture",
+      "role": "counterman"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-111",
+    "deck": "dashiell-lines",
+    "text": "“How long have you been taking tickets here?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "fixture",
+      "role": "ticket-taker"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-112",
+    "deck": "dashiell-lines",
+    "text": "“How long have you run this car?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "fixture",
+      "role": "elevator-man"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-113",
+    "deck": "dashiell-lines",
+    "text": "“How long have you walked this post?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "fixture",
+      "role": "beat-cop"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-114",
+    "deck": "dashiell-lines",
+    "text": "“How long have you worked this stand?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "fixture",
+      "role": "cabbie"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-115",
+    "deck": "dashiell-lines",
+    "text": "“How long have you had the store?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "fixture",
+      "role": "druggist"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-116",
+    "deck": "dashiell-lines",
+    "text": "“How long have you been here?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "no",
+      "family": "fixture"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
+  },
+  {
+    "id": "hum-117",
+    "deck": "dashiell-lines",
+    "text": "“How long has this been your post?”",
+    "tags": {
+      "kind": "ask-self",
+      "familiar": "yes",
+      "family": "fixture"
+    },
+    "motifs": [],
+    "status": "generated",
+    "notes": "M11 §A.3: asked about themselves, a plain question about their life — never one that frames them as a mystery."
   }
 ]

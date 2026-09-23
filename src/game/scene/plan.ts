@@ -34,6 +34,8 @@ import { bandOf, hourAgrees } from './text.js';
 import { quietClue, thoughtPriority, thoughtsFor, viewOf, type Thought } from './thought.js';
 import type { ConfrontJudgement } from '../m9.js';
 import { familiesOf, type Family } from './families.js';
+import { doingOf, knownTie, type KnownTie } from './people.js';
+import { visibleTrade } from '../../gen/logic/acquaint.js';
 
 /* ------------------------------------------------------------------ *
  * The beats.
@@ -79,6 +81,12 @@ export interface PresencePerson {
    * in when he came in). Not described again.
    */
   seen?: boolean;
+  /**
+   * M11 §A.2: on first sight, their tie to the case as the notebook knows it,
+   * said as a sentence of its own. Left off for the one the arrival's closing
+   * observation is about, which says it.
+   */
+  tie?: KnownTie;
 }
 
 /** Who the detective does about a catch, and how (Night Hone 1 §5). */
@@ -873,6 +881,28 @@ export function planPage(input: PlanInput): Plan {
     const presence = presenceFor(input, memory, !first);
     memory = presence.memory;
     beats.push(presence.beat);
+    // M11 §A.2 and §A.6: who in the room the notebook has a tie for. On a
+    // first visit with no finds of its own, the page closes on one of them —
+    // the strongest tie — seen doing what they are doing; everybody else the
+    // notebook ties to the case gets the tie on first sight.
+    const opening0 = action.kind === 'travel' ? (action.openingClues ?? []) : [];
+    const rank: Record<string, number> = { finder: 0, pointer: 1, relation: 2, client: 3 };
+    const tied = presence.beat.people
+      .filter((p) => !p.grouped && !p.seen)
+      .map((p) => {
+        const person = view.personById.get(p.personId) as Person;
+        return { p, person, tie: knownTie(view, person, input.foundBefore), doing: doingOf(p.activity.text, person.surname) };
+      })
+      .filter((x) => x.tie !== null);
+    const observed =
+      shape === 'arrive' && opening0.length === 0
+        ? [...tied]
+            .filter((x) => x.doing !== null)
+            .sort((a, b) => (rank[a.tie?.kind ?? ''] ?? 9) - (rank[b.tie?.kind ?? ''] ?? 9))[0]
+        : undefined;
+    for (const x of tied) {
+      if (x.p.firstSight && x !== observed && x.tie) x.p.tie = x.tie;
+    }
 
     const opening = action.kind === 'travel' ? (action.openingClues ?? []) : [];
     for (const clue of opening) beats.push({ kind: 'find', required: true, clueId: clue.id });
@@ -900,9 +930,25 @@ export function planPage(input: PlanInput): Plan {
         )
         // Night Hone 1 §2: a stranger gets no thought until there is something to think.
         .filter((t) => t.who !== 'stranger' || t.lied === true)
-        .slice(0, 2)
+        // M11 §A.6: the observed person's view is the observation, last.
+        .filter((t) => observed === undefined || t.subjectId !== observed.person.id)
+        .slice(0, observed === undefined ? 2 : 1)
         .reverse();
       addThoughts(viewed);
+      if (observed && observed.tie && observed.doing !== null) {
+        const person = observed.person;
+        const trade = visibleTrade(person) ?? null;
+        addThoughts([
+          {
+            cls: 'view',
+            subjectId: person.id,
+            who: person.id === view.client.id ? 'client' : 'known',
+            clueIds: [],
+            ...(observed.tie.otherId ? { secondId: observed.tie.otherId } : {}),
+            observe: { tie: observed.tie.kind, doing: observed.doing, trade: trade === null ? null : trade.replace(/^(?:an?|the) /, '') },
+          },
+        ]);
+      }
     }
     const decidedHere = opening.length > 0 && addDecide();
     if (opening.length > 0) addBridge({ scenesOpening: true, decided: decidedHere });

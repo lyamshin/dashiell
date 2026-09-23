@@ -86,6 +86,7 @@ import {
   frameAnswer,
   dashiellLine,
   registerFor,
+  selfQuestion,
   speakClue,
   type AskKind,
   type Register,
@@ -425,6 +426,8 @@ export type Scene =
       self?: {
         told: boolean;
         lines: string[];
+        /** M11 §A.3: who they were to the dead, in their words (a suspect's tie). */
+        tie?: string[];
         /** A yapper's layer-2 fact about somebody else. */
         gossip?: { personId: Id; text: string };
       };
@@ -1182,10 +1185,9 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       ? null
       : dashiellLine(dealer, scene.askKind, familiar, slots);
     if (scene.self) {
-      // §3: the `dashiell-lines` deck has eight kinds and none of them is
-      // "who are you". Until it has one, the engine asks in its own words.
-      gaps.push('no-deck-kind: dashiell-lines has no ask-self; a hand-written question stood in');
-      say(dealer.random.pick(SELF_QUESTIONS), 'exchange', {
+      // M11 §A.3: a plain question about their life, by the kind of person.
+      const line = person ? selfQuestion(dealer, person, person.kind === 'fixture' ? 'fixture' : classOf(person), familiar) : null;
+      say(line?.text ?? dealer.random.pick(SELF_QUESTIONS), 'exchange', {
         personId: scene.personId,
         targets: DASHIELL_TARGETS,
       });
@@ -2586,7 +2588,12 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   // of someone who did her business standing up…"). Her trade is hers to
   // show later, in his words, where the page has room for it.
   const dossierLines: string[] = [seenSentence(client, arrival !== null)];
-  const look = characterLine(dealer, view, client, 'look');
+  // Hone 2 §A.2's rule for the settle beat holds for the look too: nothing
+  // about hands the pair has already given something to do.
+  const claimedByPair = pairBodyWords(cast, client.id, stage.appearances[client.id] ?? 0);
+  const look = characterLine(dealer, view, client, 'look', {
+    accept: (text) => !bodyConflict(claimedByPair, text),
+  });
   if (look) dossierLines.push(look.text);
   const seenPara = dossierLines.filter((line) => line.length > 0).join(' ');
   if (seenPara.length > 0)

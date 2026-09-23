@@ -71,14 +71,16 @@ export function characterLine(
   view: CaseView,
   person: Person,
   kind: CharacterKind,
-  opts: { avoid?: readonly string[] } = {},
+  opts: { avoid?: readonly string[]; accept?: (text: string) => boolean } = {},
 ): { text: string; cardId: string } | null {
   const role = characterRole(person);
   if (role === null) return null;
+  const slots = characterSlots(view, person);
   const is = (c: Card): boolean =>
     tagIs('character', c, 'role', role) &&
     tagIs('character', c, 'kind', kind) &&
-    !(opts.avoid ?? []).includes(c.id);
+    !(opts.avoid ?? []).includes(c.id) &&
+    (opts.accept === undefined || opts.accept(fill(c, slots) ?? c.text));
   const victimRole = view.victim.archetypeId ?? 'any';
   const ladder =
     kind === 'victim'
@@ -87,7 +89,7 @@ export function characterLine(
           (c: Card) => is(c) && (tagOf('character', c, 'victimRole') ?? 'any') === 'any' && victimPronounFits(c, view.victim),
         ]
       : [is];
-  const drawn = dealer.draw('character', ladder, characterSlots(view, person), true);
+  const drawn = dealer.draw('character', ladder, slots, true);
   if (!drawn) return null;
   return { text: drawn.text, cardId: drawn.cardId };
 }

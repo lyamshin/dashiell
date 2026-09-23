@@ -303,6 +303,7 @@
             "ask-object",
             "ask-evening",
             "ask-hired",
+            "ask-self",
             "follow-up",
             "close"
           ]
@@ -319,6 +320,18 @@
           "default": "none",
           "values": ["there", "held", "none"],
           "$note": "docs/26. 'there': an ask-place line that takes it the witness was at the place ('What time were you at {place}?'); it is not dealt to somebody who is not posted there. 'held': an ask-object line that takes it the thing is in the detective's hand ('This {object} — whose is it?'); it is not dealt for a topic that only names a thing ('the key')."
+        },
+        "family": {
+          "required": false,
+          "default": "any",
+          "values": ["money", "working", "underworld", "professional", "fixture", "any"],
+          "$note": "M11 §A.3, ask-self only: the archetype family of the person asked about themselves (a suspect archetype's class, or fixture for somebody posted at a door). The question is plain — 'How long have you had the house?', 'What's your line?' — and never frames them as a mystery ('Who are you when nobody is asking?' is what this replaced)."
+        },
+        "role": {
+          "required": false,
+          "default": "any",
+          "values": ["bartender", "doorman", "newsstand", "counterman", "ticket-taker", "elevator-man", "landlady", "beat-cop", "cabbie", "druggist", "any"],
+          "$note": "M11 §A.3, ask-self only: a question written for one fixture's post ('How long have you been behind this bar?')."
         }
       },
       "coverage": [["kind", "familiar"]]

@@ -75,13 +75,22 @@ import {
   knowsHim,
   portraitCardIds,
   rollCast,
-  selfAccountFor,
+  selfTelling,
   showedOff,
   temperOf,
   volunteerFrom,
   type Scene,
   type Stage,
 } from './voice/index.js';
+
+/** M11 §A.3: their life, and who they were to the dead, in their own mouth. */
+function selfLines(
+  person: Parameters<typeof selfTelling>[0],
+  temper: Parameters<typeof selfTelling>[1],
+): { lines: string[]; tie: string[] } {
+  const told = selfTelling(person, temper);
+  return { lines: told.life, tie: told.tie };
+}
 
 export interface StepResult {
   state: RunState;
@@ -1070,7 +1079,7 @@ export function step(
           ? {
               self: {
                 told: toldAlready,
-                lines: selfAccountFor(person, temperOf(state.cast, person.id)),
+                ...selfLines(person, temperOf(state.cast, person.id)),
                 ...(told === null ? {} : { gossip: told }),
               },
             }

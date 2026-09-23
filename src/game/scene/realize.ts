@@ -24,6 +24,8 @@ import { m9Answer, whenSaid } from './testimony.js';
 import { acquaintanceOf } from '../../gen/index.js';
 import { pronounsOf, putSaid, saidPlainly, toldOf, type Told } from './telling.js';
 import type { Family } from './families.js';
+import { observation, tieSentence } from './people.js';
+import { characterLine } from '../voice/character.js';
 import { verdictsOn } from '../m9.js';
 import { temperOf } from '../voice/cast.js';
 import {
@@ -44,7 +46,6 @@ import {
   SCENE_MISSING,
   SCENE_ROBBERY,
   SEARCH_ROOM_ACTS,
-  SIGHT_LINES,
   STOP_LINES,
   ANCHORED_KNOWN_THOUGHTS,
   ANCHOR_BRIDGES,
@@ -62,11 +63,11 @@ import {
   TIMING_THOUGHTS_MANY,
 } from '../voice-data.js';
 import { fill, tagIs, tagOf, type Card, type Match, type Slots } from '../voice/cards.js';
-import { genderHintOf, possessiveOf, pronounOf } from '../voice/cast.js';
-import { dashiellLine, registerFor, speakClue, type AskKind } from '../voice/exchange.js';
+import { classOf, genderHintOf, possessiveOf, pronounOf } from '../voice/cast.js';
+import { dashiellLine, registerFor, selfQuestion, speakClue, type AskKind } from '../voice/exchange.js';
 import { spokenSpan, spokenSpans } from '../voice/facts.js';
 import { findKindOf } from '../voice/facts.js';
-import { SELF_ALREADY, SELF_QUESTIONS, briefingQuestion, pickShape } from '../voice/plain.js';
+import { SELF_ALREADY, SELF_QUESTIONS, SELF_VICTIM_PLAIN, SELF_VICTIM_QUESTIONS, briefingQuestion, pickShape } from '../voice/plain.js';
 import { tidyPunctuation } from '../voice/prose.js';
 import { knowsHim } from '../voice/roll.js';
 import { clientLeavingLine } from '../voice/office.js';
@@ -1140,35 +1141,37 @@ function presenceLine(stage: Stage, p: PresencePerson, named: ReadonlySet<Id> = 
   const person = view.personById.get(p.personId) as Person;
   const parts = [endStop(p.activity.text)];
   if (p.firstSight) {
-    const d = person.dossier;
-    const decade = d ? DECADES[Math.floor(d.age / 10)] : undefined;
     const gender = genderHintOf(person);
+    const He = gender === 'f' ? 'She' : 'He';
     // The designer's rule: what the detective can see comes first — sex, age,
-    // what they are doing, and their trade where it shows. docs/25: never
-    // their relation to the victim stacked on it ("He was in Renfro's debt, a
-    // man in his fifties"); that comes from the page's reason for being here —
-    // the errand, the arrival thought — and not from the first sight of them.
+    // what they are doing. docs/25: never their relation to the victim stacked
+    // on it ("He was in Renfro's debt, a man in his fifties"); M11 §A.2 says
+    // the tie in a sentence of its own, last.
     void named;
-    const clause = visibleTrade(person);
-    if (clause) {
-      const sight = fillTemplate(stage.dealer.random.pick(SIGHT_LINES), {
-        Pronoun: gender === 'f' ? 'She' : 'He',
-        clause,
-        noun: gender === 'f' ? 'woman' : 'man',
-        possessive: possessiveOf(person),
-        decade,
-      });
-      if (sight.length > 0) parts.push(sight);
-    } else {
-      // Golden page 4: "Callahan was behind the bar, a woman in her forties."
-      const seen = sightOf(person);
-      const first = parts[0] as string;
-      if (seen && first.startsWith(`${person.surname} `)) {
-        parts[0] = `${person.surname}, ${seen}, ${first.slice(person.surname.length + 1)}`;
-      } else if (seen) {
-        parts.push(`${gender === 'f' ? 'She' : 'He'} was ${seen}.`);
-      }
+    // Golden page 4: "Callahan was behind the bar, a woman in her forties."
+    const seen = sightOf(person);
+    const first = parts[0] as string;
+    if (seen && first.startsWith(`${person.surname} `)) {
+      parts[0] = `${person.surname}, ${seen}, ${first.slice(person.surname.length + 1)}`;
+    } else if (seen) {
+      parts.push(`${He} was ${seen}.`);
     }
+    /*
+     * M11 §A.2: a character, not two facts. Their trade where it shows, one
+     * line of how they carry themselves where it does not, one line of how
+     * the street sees their kind (golden: "He was a big man going soft, the
+     * kind of bartender who knew what you drank before you did"), and the tie
+     * to the case if the notebook has one.
+     */
+    const clause = visibleTrade(person);
+    if (clause) parts.push(`${He} was ${/^(?:the|a|an) /i.test(clause) ? clause : `${/^[aeiou]/i.test(clause) ? 'an' : 'a'} ${clause}`}.`);
+    else {
+      const look = characterLine(stage.dealer, view, person, 'look');
+      if (look) parts.push(look.text);
+    }
+    const street = characterLine(stage.dealer, view, person, 'street');
+    if (street) parts.push(street.text);
+    if (p.tie) parts.push(tieSentence(view, person, p.tie));
   } else if (p.recall) {
     // §4: a recall is something the person does, never a noun and never an
     // epithet. A pair with no action form is not recalled.
@@ -1462,6 +1465,12 @@ function thoughtLine(
     gaps.push(`no-card: confront has no close for ${t.basis ?? 'wrong'}`);
     return `I wrote down what ${person.surname} had said.`;
   }
+  // M11 §A.6: the arrival's closing observation, written from what they were
+  // doing and the tie the notebook has.
+  if (t.cls === 'view' && t.observe && t.subjectId) {
+    const person = stage.view.personById.get(t.subjectId) as Person;
+    return observation(stage.view, person, { kind: t.observe.tie, ...(t.secondId ? { otherId: t.secondId } : {}) }, t.observe.doing, stage.minutes, t.observe.trade);
+  }
   // §3–§4: the watcher's view on arrival is the place's watch clause — why
   // the watcher matters is that they watch — so it is dealt from `watch`.
   if (t.cls === 'view' && t.who === 'watcher' && t.subjectId) {
@@ -1631,7 +1640,10 @@ function exchange(
     }
     question = `“${question}”`;
   } else if (scene.self) {
-    question = dealer.random.pick(SELF_QUESTIONS);
+    // M11 §A.3: a plain question about their life, by the kind of person —
+    // never one that frames them as a mystery.
+    const family = person.kind === 'fixture' ? 'fixture' : classOf(person);
+    question = selfQuestion(dealer, person, family, familiar)?.text ?? dealer.random.pick(SELF_QUESTIONS);
   } else if (byTopic && firstTelling) {
     question = familyQuestion(stage, firstTelling.family, 'first', gaps);
   } else {
@@ -1680,7 +1692,9 @@ function exchange(
   opening.push(question);
   out.push({ text: opening.join(' '), voice: 'exchange' });
   // The free first ask: somebody who knows him answers without the preamble.
-  if (scene.free) out.push({ text: `${surname} knew me from before, and that saved us both some time.`, voice: 'narrator' });
+  // Only somebody who does know him: the client's two questions on the house
+  // are free too, and a stranger who has just hired him did not know him.
+  if (scene.free && familiar) out.push({ text: `${surname} knew me from before, and that saved us both some time.`, voice: 'narrator' });
 
   /* the answer */
   // One piece of business at most, and only the person's own: their recall
@@ -1804,8 +1818,33 @@ function exchange(
     if (scene.self.told) {
       out.push({ text: fillTemplate(dealer.random.pick(SELF_ALREADY), { name: surname }), voice: 'exchange' });
     } else {
-      const lines = scene.self.lines.filter((l) => l.trim().length > 0);
+      // M11 §A.3: their life, in their register, and one line of their kind's
+      // talk (◆) — "I sit where I can see the stairs. People think that's
+      // nosiness. It's rent." Somebody guarded says the least of it.
+      const temper = temperOf(cast, person.id);
+      const talk = temper === 'enigma' ? null : characterLine(dealer, view, person, 'talk');
+      const lines = [...scene.self.lines, ...(talk ? [talk.text] : [])].filter((l) => l.trim().length > 0);
       if (lines.length > 0) out.push({ text: withBusiness(`“${lines.join(' ')}”`), voice: 'exchange' });
+      // Then who the dead man was to them: the golden's "You knew Sirkin?"
+      // The client said it in the office, so the client is not asked again.
+      if (person.id !== view.client.id && person.id !== view.victim.id) {
+        const victim = view.victim;
+        const him = pronounOf(victim) === 'she' ? 'her' : 'him';
+        const said: string[] = [...(scene.self.tie ?? [])];
+        const strength = view.kase.logic ? acquaintanceOf(view.kase, person.id, victim.id)?.strength : undefined;
+        const knows = strength === undefined || strength === 'name' || strength === 'relation' || strength === 'sight';
+        if (person.kind === 'fixture' || temper === 'yap') {
+          const card = knows ? characterLine(dealer, view, person, 'victim') : null;
+          if (card) said.push(card.text);
+        }
+        if (said.length === 0) {
+          const plain = SELF_VICTIM_PLAIN[strength === 'relation' || strength === undefined ? 'name' : strength];
+          said.push(fillTemplate(dealer.random.pick(plain), { him }));
+        }
+        const asked = SELF_VICTIM_QUESTIONS[person.kind === 'fixture' ? 'fixture' : 'suspect'];
+        out.push({ text: `“${fillTemplate(dealer.random.pick(asked), { victim: victim.surname })}”`, voice: 'exchange' });
+        out.push({ text: `“${said.join(' ')}”`, voice: 'exchange' });
+      }
       if (scene.self.gossip) {
         const about = view.personById.get(scene.self.gossip.personId);
         out.push({
@@ -1974,7 +2013,11 @@ function tellingParas(
     // Nobody asked: the answer the question wanted came first, and this is more.
     paras.push({ text: `I had what I came for. ${speaker.surname} was not finished.`, voice: 'narrator' });
   } else if (!beat.first) {
-    const q = familyQuestion(stage, family, 'later', gaps);
+    // M11 §A.3: after somebody's story of themselves their evening is asked
+    // as a first question — "Where were you tonight? All of it." — never
+    // "Now tell me about you", which they just have.
+    const order = scene.self && family.kind === 'evening' ? 'first' : 'later';
+    const q = familyQuestion(stage, family, order, gaps);
     parts.question = q;
     paras.push({ text: q, voice: 'exchange' });
   }
