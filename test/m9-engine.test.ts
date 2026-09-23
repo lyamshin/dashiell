@@ -126,10 +126,14 @@ describe('M9 §3: put it to them', () => {
     expect(culpritLanded).toBeGreaterThan(0);
   }, 180_000);
 
-  it('offers "Put it to" only from Poached up and only once their account is written down; never marked', () => {
+  it('offers "Put it to" only once their account is written down; never marked', () => {
+    // M10 Part B: Raw teaches the verb on the culprit's lie.
     const raw = tiered(2, 0);
+    const rawStart = play(raw, [`go ${raw.placeById.get(raw.startId)?.shortName}`]);
+    expect(choicesFor(raw, rawStart).some((g) => g.kind === 'confront')).toBe(false);
     const rawState = play(raw, playOracle(raw).steps.map((s) => s.command));
-    expect(choicesFor(raw, rawState).some((g) => g.kind === 'confront')).toBe(false);
+    const rawGroup = choicesFor(raw, rawState).find((g) => g.kind === 'confront' && g.personId === raw.kase.solution.killerId);
+    expect(rawGroup?.choices.every((c) => !c.lead)).toBe(true);
     const view = tiered(3, 4);
     const before = play(view, ['go the walk-up', 'go the speakeasy']);
     expect(choicesFor(view, before).some((g) => g.kind === 'confront')).toBe(false);
@@ -217,7 +221,8 @@ describe('M9 §4 and "Who knows whom": the ask buttons', () => {
     expect(price.reason).toBe('told');
     const next = stepInput(state, 'ask Rafferty about that evening', view);
     expect(next.state.actionsUsed).toBe(state.actionsUsed);
-    expect(renderPageText(next.page, view, next.state).replace(/\s+/g, ' ')).toContain('I’ve told you what I know.');
+    // M10: Rafferty has told the detective nothing yet, so he does not say he has.
+    expect(renderPageText(next.page, view, next.state).replace(/\s+/g, ' ')).toContain('I can’t help you there.');
   });
 
   it('a witness who does not know somebody says so, in plain words', () => {

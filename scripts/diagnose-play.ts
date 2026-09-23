@@ -161,6 +161,7 @@ const ALL_CONFIGS: Config[] = [
   { label: 'd2', opts: { difficulty: 2 } },
   { label: 'd3', opts: { difficulty: 3 } },
   { label: 'T0', opts: { tier: 0 } },
+  { label: 'T1L1', opts: { tier: 1, level: 1 } },
   { label: 'T1L2', opts: { tier: 1, level: 2 } },
   { label: 'T3L2', opts: { tier: 3, level: 2 } },
   { label: 'T2L1', opts: { tier: 2, level: 1 } },

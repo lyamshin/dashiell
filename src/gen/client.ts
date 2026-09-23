@@ -25,6 +25,7 @@ import { fillSlots } from './dossier.js';
 import { framedPerson } from './tropes/index.js';
 import type { Rng } from './rng.js';
 import type { Dials } from './shape.js';
+import { deductionOf } from './shape.js';
 
 /**
  * M5 §1.4. Somebody walked up the stairs and asked for help, and until now
@@ -281,7 +282,17 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
     // motive would be naming the answer. The client names somebody and says
     // only what anybody on the block could say about them.
     // M9: and never at the culprit.
-    const target = rng.pick(dials.plain ? others : others.filter((p) => !p.isKiller)) as Person;
+    // M10 Part B: at Raw and Coddled, somebody the client knows by name.
+    const acq = (build as { acq?: { edges: Map<string, { strength: string }> } }).acq;
+    const knows = (p: Person): boolean => {
+      const s = acq?.edges.get(`${client.id}>${p.id}`)?.strength;
+      return s === 'name' || s === 'relation';
+    };
+    const innocentOthers = others.filter((p) => !p.isKiller);
+    const known = innocentOthers.filter(knows);
+    const target = rng.pick(
+      dials.plain ? others : deductionOf(dials.shape).catchTheLie && known.length > 0 ? known : innocentOthers,
+    ) as Person;
     pointsAt = {
       personId: target.id,
       reason: `${who(target.id)} was in and out of there all week`,

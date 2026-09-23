@@ -290,6 +290,9 @@ describe('M9: rules and testimony', () => {
   it('answers every question about every person, never with a stock line', () => {
     const stock = new Set<string>(NOTHING_ASKED);
     for (const tier of TIER_LIST) {
+      // M10 Part B: Raw and Coddled cut the hand to the tier's findable
+      // target, so only the questions it keeps have an answer (test/m10-raw).
+      if (deductionOf(TIERS[tier]).catchTheLie) continue;
       for (const c of cases(tier, levelFor(tier), 10)) {
         const testimony = c.findable.filter((cl) => cl.kind === 'testimony');
         const askers = c.people.filter((p) => p.kind !== 'victim');
@@ -379,8 +382,13 @@ describe('M9: leads', () => {
         const scene = c.findable.find((cl) => cl.kind === 'scene');
         expect(client?.leadsTo).toContain(scene?.id);
         const byId = new Map(c.findable.map((cl) => [cl.id, cl]));
-        // A search is always on the page, so what it finds can lead on.
-        const reached = new Set<Id>([...c.starting, ...c.findable.filter((cl) => cl.source.type === 'place').map((cl) => cl.id)]);
+        // A search is always on the page, so what it finds can lead on; and
+        // M10's unmarked question is on the page all the same.
+        const reached = new Set<Id>([
+          ...c.starting,
+          ...c.findable.filter((cl) => cl.source.type === 'place').map((cl) => cl.id),
+          ...(c.logic?.open ?? []),
+        ]);
         const queue = [...reached];
         while (queue.length > 0) {
           for (const next of byId.get(queue.shift() as Id)?.leadsTo ?? []) {
