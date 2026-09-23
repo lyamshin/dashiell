@@ -1410,7 +1410,7 @@
   {
     "id": "pam-129",
     "deck": "place-ambient",
-    "text": "Popcorn and stale cigarette smoke hung in the auditorium, and the heavy velvet curtain over the screen had faded along its folds.",
+    "text": "Stale cigarette smoke hung in the auditorium, and the heavy velvet curtain over the screen had faded along its folds.",
     "tags": {
       "place": "movie-house",
       "band": "any"
@@ -1586,7 +1586,7 @@
   {
     "id": "pam-145",
     "deck": "place-ambient",
-    "text": "A ceiling fan turned slowly over the fountain, and the drink cooler behind the counter shuddered each time its motor cut in.",
+    "text": "A ceiling fan hung still over the fountain, and the drink cooler behind the counter shuddered each time its motor cut in.",
     "tags": {
       "place": "drugstore",
       "band": "after-midnight"

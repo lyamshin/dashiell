@@ -403,7 +403,7 @@
   {
     "id": "act-036",
     "deck": "activity",
-    "text": "{name} was checking a wristwatch, though nobody was expecting {name} anywhere.",
+    "text": "{name} was checking a wristwatch, then the door, then the wristwatch again.",
     "tags": {
       "role": "arch-heir",
       "placeKind": "public",
@@ -1020,7 +1020,7 @@
   {
     "id": "act-086",
     "deck": "activity",
-    "text": "{name} was reading a will aloud to an empty room, checking each clause.",
+    "text": "{name} was reading a will half aloud, checking each clause against a note.",
     "tags": {
       "role": "arch-lawyer",
       "placeKind": "private",
@@ -2393,7 +2393,8 @@
     "tags": {
       "role": "arch-stagehand",
       "placeKind": "public",
-      "at": "work"
+      "at": "work",
+      "place": "movie-house"
     },
     "motifs": [],
     "status": "generated"
@@ -2640,7 +2641,8 @@
     "tags": {
       "role": "arch-nightman",
       "placeKind": "semi",
-      "at": "work"
+      "at": "work",
+      "place": "hotel-lobby"
     },
     "motifs": [],
     "status": "generated"
@@ -2685,7 +2687,7 @@
   {
     "id": "act-221",
     "deck": "activity",
-    "text": "{name} was counting the till twice before locking it.",
+    "text": "{name} was writing the night’s callers into a book by the door.",
     "tags": {
       "role": "arch-nightman",
       "placeKind": "private",
@@ -3718,6 +3720,642 @@
     "tags": {
       "role": "counterman",
       "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-288",
+    "deck": "activity",
+    "text": "{name} was slicing lemons on a board behind the bar, a few at a time.",
+    "tags": {
+      "role": "bartender",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-289",
+    "deck": "activity",
+    "text": "{name} was drying a glass with a towel and checking it against the lamp.",
+    "tags": {
+      "role": "bartender",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-290",
+    "deck": "activity",
+    "text": "{name} was counting the bottles on the back shelf and writing the number on a card.",
+    "tags": {
+      "role": "bartender",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-291",
+    "deck": "activity",
+    "text": "{name} was bent under the bar, fitting the tap into a fresh keg.",
+    "tags": {
+      "role": "bartender",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-292",
+    "deck": "activity",
+    "text": "{name} was brushing down the front of the uniform coat with the flat of one hand.",
+    "tags": {
+      "role": "doorman",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-293",
+    "deck": "activity",
+    "text": "{name} was polishing the brass plate on the door with a rag, breathing on it first.",
+    "tags": {
+      "role": "doorman",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-294",
+    "deck": "activity",
+    "text": "{name} was out on the step, watching the street both ways for a cab.",
+    "tags": {
+      "role": "doorman",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-295",
+    "deck": "activity",
+    "text": "{name} was cutting the string off a fresh bundle of papers with a pocketknife.",
+    "tags": {
+      "role": "newsstand",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-296",
+    "deck": "activity",
+    "text": "{name} was folding papers in half and stacking them on the counter, headline up.",
+    "tags": {
+      "role": "newsstand",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-297",
+    "deck": "activity",
+    "text": "{name} was sorting magazines into the rack by title, the new ones in front.",
+    "tags": {
+      "role": "newsstand",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-298",
+    "deck": "activity",
+    "text": "{name} was behind the wall of little glass doors, filling the empty ones from the back.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "public",
+      "place": "automat"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-299",
+    "deck": "activity",
+    "text": "{name} was polishing the brass coffee spouts with a rag, one after another.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "public",
+      "place": "automat"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-300",
+    "deck": "activity",
+    "text": "{name} was in the change booth, counting nickels into paper rolls.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "public",
+      "place": "automat"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-301",
+    "deck": "activity",
+    "text": "{name} was snapping rubber bands round bundles of ticket stubs, fifty to a bundle.",
+    "tags": {
+      "role": "ticket-taker",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-302",
+    "deck": "activity",
+    "text": "{name} was sweeping the lobby with a push broom, working toward the door.",
+    "tags": {
+      "role": "ticket-taker",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-303",
+    "deck": "activity",
+    "text": "{name} was changing the letters on the small sign by the door, one at a time.",
+    "tags": {
+      "role": "ticket-taker",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-304",
+    "deck": "activity",
+    "text": "{name} was sitting on the stool in the car with the gate open and a newspaper on one knee.",
+    "tags": {
+      "role": "elevator-man",
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-305",
+    "deck": "activity",
+    "text": "{name} was oiling the hinges of the gate from a small can, working it back and forth.",
+    "tags": {
+      "role": "elevator-man",
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-306",
+    "deck": "activity",
+    "text": "{name} was sorting the late mail into the brass boxes along the wall.",
+    "tags": {
+      "role": "elevator-man",
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-307",
+    "deck": "activity",
+    "text": "{name} was changing the bulb in the hall fixture, standing on a kitchen chair.",
+    "tags": {
+      "role": "landlady",
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-308",
+    "deck": "activity",
+    "text": "{name} was mopping the landing outside the door, wringing the mop into a pail.",
+    "tags": {
+      "role": "landlady",
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-309",
+    "deck": "activity",
+    "text": "{name} was writing out a rent receipt on a small pad, pressing hard with the pencil.",
+    "tags": {
+      "role": "landlady",
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-310",
+    "deck": "activity",
+    "text": "{name} was reading the gas meter by the door and writing the figure on an envelope.",
+    "tags": {
+      "role": "landlady",
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-311",
+    "deck": "activity",
+    "text": "{name} was sweeping the bottom step and the tiles in front of it.",
+    "tags": {
+      "role": "landlady",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-312",
+    "deck": "activity",
+    "text": "{name} was sitting on a hard chair by the door with a basket of mending.",
+    "tags": {
+      "role": "landlady",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-313",
+    "deck": "activity",
+    "text": "{name} was sorting the day’s letters into piles, one for each tenant.",
+    "tags": {
+      "role": "landlady",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-314",
+    "deck": "activity",
+    "text": "{name} was counting rent money out of a tin box, lips moving with the count.",
+    "tags": {
+      "role": "landlady",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-315",
+    "deck": "activity",
+    "text": "{name} was sitting on the running board, eating a sandwich out of wax paper.",
+    "tags": {
+      "role": "cabbie",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-316",
+    "deck": "activity",
+    "text": "{name} was polishing the nickel on the headlamps with a cloth.",
+    "tags": {
+      "role": "cabbie",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-317",
+    "deck": "activity",
+    "text": "{name} was writing the last fare into a little book held against the steering wheel.",
+    "tags": {
+      "role": "cabbie",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-318",
+    "deck": "activity",
+    "text": "{name} was grinding something in a mortar behind the prescription counter.",
+    "tags": {
+      "role": "druggist",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-319",
+    "deck": "activity",
+    "text": "{name} was pasting labels on a row of small brown bottles.",
+    "tags": {
+      "role": "druggist",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-320",
+    "deck": "activity",
+    "text": "{name} was filling glass jars on the back shelf from a paper sack, a scoop at a time.",
+    "tags": {
+      "role": "druggist",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-321",
+    "deck": "activity",
+    "text": "{name} was writing something in a small notebook with a pencil stub.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-322",
+    "deck": "activity",
+    "text": "{name} was standing with the nightstick behind the back, rocking from heel to toe.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-323",
+    "deck": "activity",
+    "text": "{name} was swinging the nightstick on its strap, around and back.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-324",
+    "deck": "activity",
+    "text": "{name} was taking a slow look at everything in sight, the way the job asked.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-325",
+    "deck": "activity",
+    "text": "{name} was eating an apple in small bites, looking around between them.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-326",
+    "deck": "activity",
+    "text": "{name} was straightening the uniform cap and settling the coat on the shoulders.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-327",
+    "deck": "activity",
+    "text": "{name} was just inside the door with the cap in one hand, not meaning to stay long.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-328",
+    "deck": "activity",
+    "text": "{name} was leaning on the wall by the door, the nightstick hanging from its strap.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-329",
+    "deck": "activity",
+    "text": "{name} was looking the room over from the doorway, one corner at a time.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-330",
+    "deck": "activity",
+    "text": "{name} was tapping the nightstick against one palm, slow, taking a look around.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-331",
+    "deck": "activity",
+    "text": "{name} was unbuttoning the top of the uniform coat, in no hurry to go back out.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-332",
+    "deck": "activity",
+    "text": "{name} was writing a line in a notebook standing up, the pencil stub close to the page.",
+    "tags": {
+      "role": "beat-cop",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-333",
+    "deck": "activity",
+    "text": "{name} was brushing the cloth of an empty table with a long brush, end to end.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi",
+      "place": "pool-hall"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-334",
+    "deck": "activity",
+    "text": "{name} was winding a tray of pawned watches one at a time and listening to each.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi",
+      "place": "pawnshop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-335",
+    "deck": "activity",
+    "text": "{name} was writing an order on a pad and pushing it through the kitchen hatch.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi",
+      "place": "chop-suey"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-336",
+    "deck": "activity",
+    "text": "{name} was folding hot towels and stacking them in the steamer.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi",
+      "place": "barber-shop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-337",
+    "deck": "activity",
+    "text": "{name} was filling a tire from the air hose by the door, stopping to check it with a gauge.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "semi",
+      "place": "hotel-garage"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-338",
+    "deck": "activity",
+    "text": "{name} was straightening the rubber mat inside the door with the toe of a shoe.",
+    "tags": {
+      "role": "doorman",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-339",
+    "deck": "activity",
+    "text": "{name} was counting the unsold papers from the evening edition and tying them up to go back.",
+    "tags": {
+      "role": "newsstand",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-340",
+    "deck": "activity",
+    "text": "{name} was carrying a tray of clean cups out to the coffee spouts.",
+    "tags": {
+      "role": "counterman",
+      "placeKind": "public",
+      "place": "automat"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-341",
+    "deck": "activity",
+    "text": "{name} was sitting in the ticket booth with the window shut, reading a magazine.",
+    "tags": {
+      "role": "ticket-taker",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-342",
+    "deck": "activity",
+    "text": "{name} was sitting on the bench across from the mailboxes, cap in lap, eating a sandwich.",
+    "tags": {
+      "role": "elevator-man",
+      "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-343",
+    "deck": "activity",
+    "text": "{name} was sitting behind the wheel with the door open, reading the racing page.",
+    "tags": {
+      "role": "cabbie",
+      "placeKind": "public"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-344",
+    "deck": "activity",
+    "text": "{name} was copying a prescription into a big ledger, one line at a time.",
+    "tags": {
+      "role": "druggist",
+      "placeKind": "public"
     },
     "motifs": [],
     "status": "generated"

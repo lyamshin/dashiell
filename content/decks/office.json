@@ -103,7 +103,7 @@
   {
     "id": "off-008",
     "deck": "office",
-    "text": "Flush enough to run the radiator past midnight without doing the arithmetic. The cold stayed on its side of the glass tonight.",
+    "text": "Flush enough to run the radiator all night without doing the arithmetic. The cold stayed on its side of the glass tonight.",
     "tags": {
       "circumstance": "flush",
       "weather": "cold"
@@ -321,7 +321,7 @@
   {
     "id": "off-023",
     "deck": "office",
-    "text": "Midnight came and went, the way it does when a man isn't planning on bed regardless. I kept the lamp burning for the company more than the light.",
+    "text": "I had no plans for bed and had stopped pretending otherwise. I kept the lamp burning for the company more than the light.",
     "tags": {
       "circumstance": "sleepless",
       "weather": "any"
@@ -432,6 +432,229 @@
       "money",
       "lamp"
     ],
+    "status": "generated"
+  },
+  {
+    "id": "off-031",
+    "deck": "office",
+    "text": "The rent was two weeks late, and the landlady had stopped knocking about it, which was worse. Outside the window the night was clear, the street lamps sharp as far as the corner.",
+    "tags": {
+      "circumstance": "behind-on-rent",
+      "weather": "clear"
+    },
+    "motifs": [
+      "money",
+      "door",
+      "window"
+    ],
+    "weather": "clear",
+    "status": "generated"
+  },
+  {
+    "id": "off-032",
+    "deck": "office",
+    "text": "I had counted what was in my wallet twice, and it came to eleven dollars both times. The rent was thirty. Fog stood against the window and hid the street, which suited me.",
+    "tags": {
+      "circumstance": "behind-on-rent",
+      "weather": "fog"
+    },
+    "motifs": [
+      "money",
+      "window",
+      "street"
+    ],
+    "weather": "fog",
+    "status": "generated"
+  },
+  {
+    "id": "off-033",
+    "deck": "office",
+    "text": "For once there was more money in the drawer than bills on the desk. I had paid the telephone company and the landlady, and there was some left over.",
+    "tags": {
+      "circumstance": "flush",
+      "weather": "any"
+    },
+    "motifs": [
+      "money",
+      "telephone",
+      "paper"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "off-034",
+    "deck": "office",
+    "text": "I had bought a new ribbon for the typewriter and a carton of cigarettes, and there was still money in my pocket. Fog had come up off the river and blotted out the street. I lit one and did not count what was left in the carton.",
+    "tags": {
+      "circumstance": "flush",
+      "weather": "fog"
+    },
+    "motifs": [
+      "money",
+      "cigarette",
+      "street"
+    ],
+    "weather": "fog",
+    "status": "generated"
+  },
+  {
+    "id": "off-035",
+    "deck": "office",
+    "text": "The whiskey was a mistake I had made slowly, over most of the evening. When the window let in a hard, clear moon, I pulled the shade down on it.",
+    "tags": {
+      "circumstance": "hungover",
+      "weather": "clear"
+    },
+    "motifs": [
+      "drink",
+      "window",
+      "late"
+    ],
+    "weather": "clear",
+    "status": "generated"
+  },
+  {
+    "id": "off-036",
+    "deck": "office",
+    "text": "My head ached from the night before, and the aspirin in the drawer had not reached it yet. The fog outside made the street lamp a smudge, and my eyes were glad of it.",
+    "tags": {
+      "circumstance": "hungover",
+      "weather": "fog"
+    },
+    "motifs": [
+      "lamp",
+      "eyes",
+      "street"
+    ],
+    "weather": "fog",
+    "status": "generated"
+  },
+  {
+    "id": "off-037",
+    "deck": "office",
+    "text": "Two fingers on my left hand had swollen since the afternoon, and I held them in a glass of water from the tap. The night outside was clear, and the moon showed every smear on the window.",
+    "tags": {
+      "circumstance": "bruised",
+      "weather": "clear"
+    },
+    "motifs": [
+      "hands",
+      "glass",
+      "window"
+    ],
+    "weather": "clear",
+    "status": "generated"
+  },
+  {
+    "id": "off-038",
+    "deck": "office",
+    "text": "My ribs hurt when I breathed deep, so I breathed shallow. Rain ran down the window in the lamplight, and I sat and listened to it and did not move much.",
+    "tags": {
+      "circumstance": "bruised",
+      "weather": "rain"
+    },
+    "motifs": [
+      "breath",
+      "window",
+      "lamp"
+    ],
+    "weather": "rain",
+    "status": "generated"
+  },
+  {
+    "id": "off-039",
+    "deck": "office",
+    "text": "The husband had paid, the wife had cried, and I had the photographs to show for it. Out the window the sky was clear. I put the envelope of prints face down in the drawer.",
+    "tags": {
+      "circumstance": "off-a-divorce-case",
+      "weather": "clear"
+    },
+    "motifs": [
+      "photograph",
+      "window",
+      "paper"
+    ],
+    "weather": "clear",
+    "status": "generated"
+  },
+  {
+    "id": "off-040",
+    "deck": "office",
+    "text": "I had spent three nights in a hotel corridor watching one door, and the cold of it was still in my feet. The radiator had quit again. I kept my coat on at the desk.",
+    "tags": {
+      "circumstance": "off-a-divorce-case",
+      "weather": "cold"
+    },
+    "motifs": [
+      "coat",
+      "door",
+      "cold"
+    ],
+    "weather": "cold",
+    "status": "generated"
+  },
+  {
+    "id": "off-041",
+    "deck": "office",
+    "text": "I had tried the cot in the back room and given it up. It was too cold to sleep and too late to go anywhere, so I sat at the desk with my coat on and the lamp low.",
+    "tags": {
+      "circumstance": "sleepless",
+      "weather": "cold"
+    },
+    "motifs": [
+      "coat",
+      "lamp",
+      "sleep"
+    ],
+    "weather": "cold",
+    "status": "generated"
+  },
+  {
+    "id": "off-042",
+    "deck": "office",
+    "text": "Sleep would not come, and I had stopped asking for it. Rain had been on the window all evening, steady, and I sat and listened to it.",
+    "tags": {
+      "circumstance": "sleepless",
+      "weather": "rain"
+    },
+    "motifs": [
+      "sleep",
+      "window",
+      "quiet"
+    ],
+    "weather": "rain",
+    "status": "generated"
+  },
+  {
+    "id": "off-043",
+    "deck": "office",
+    "text": "The last client had paid in full, and for once I owed nobody. I sat with my feet on the desk and enjoyed it. The window showed a clear, still night.",
+    "tags": {
+      "circumstance": "just-paid",
+      "weather": "clear"
+    },
+    "motifs": [
+      "money",
+      "window",
+      "office"
+    ],
+    "weather": "clear",
+    "status": "generated"
+  },
+  {
+    "id": "off-044",
+    "deck": "office",
+    "text": "I had paid the landlady, the telephone company and the man who sold me coffee, and there was still money in the drawer. Fog had filled the street as high as the second-floor windows. It could stay there.",
+    "tags": {
+      "circumstance": "just-paid",
+      "weather": "fog"
+    },
+    "motifs": [
+      "money",
+      "telephone",
+      "street"
+    ],
+    "weather": "fog",
     "status": "generated"
   }
 ]
