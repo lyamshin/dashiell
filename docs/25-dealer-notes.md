@@ -34,7 +34,7 @@ A dealer rung is a closure, so there is no key name to store a pile under. The s
 
 `settleReads` replaces `CROSS_RUN_TOTAL`. That constant was meant to clear the pile once every run-to-run card had been burned. `similes` and `asides` are never dealt, so the pile never cleared.
 
-`settleReads` takes a round off a whole deck once every card in it has been read. Subtracting one from every card in a deck changes no comparison inside a key, so this is housekeeping, not the reshuffle itself. It keeps the counts at 0 or 1 in practice.
+`settleReads` takes a round off a whole deck once every card in it has been read. Subtracting one from every card in a deck changes no comparison inside a key, so this is housekeeping, not the reshuffle itself. A deck whose every card can be dealt settles back to 0s and 1s. A deck holding a card nothing deals (a slot never supplied) never settles, and its counts go up by one each cycle. That costs a few bytes and changes no draw.
 
 ### Inside one night
 
@@ -81,12 +81,12 @@ Coherence (motif overlap between adjacent image blocks) is 0.406. The floor is 0
 ## The engine fixes from 22's list
 
 1. **Memory across nights.** Done, as above, for every deck a reader reads.
-2. **Activity remembered across visits.** Done. One person doing the same activity card on two visits fell from **34% of nights (0.87 a night) to 0.0%** (1 night in 2,550). That night was a trade with a single card for the room and hour.
+2. **Activity remembered across visits.** Done. One person doing the same activity card on two visits fell from **30% of nights (0.81 a night) to 0%**. A trade with a single card for the room and hour can still repeat it; none did in 2,550 nights.
 3. **Pair fallback respects tonight.** Done. Two people with the same pair fell from **34% of nights to 0%**. Components are counted as read only where they are printed.
 4. **Slots.**
    - **`{name}` on asks.** This is already supplied whenever the topic names a person. The reducer's `topicSlots` returns the surname for a person topic, and the first surname in an exact topic.
      - The remaining nameless ask-person asks are topics that name nobody: "the key", "the walk-up that evening". The schema says to ask about those with `{topic}`.
-     - The ten written ask-person cards are all in play: `kind=ask-person familiar=no` has 5 dealable cards on the average ask (+1 unfillable). The `{topic}` placeholder's share of those asks fell from 37% to 28%.
+     - The ten written ask-person cards are all in play: `kind=ask-person familiar=no` has 5 dealable cards on the average ask (+1 unfillable). The `{topic}` placeholder's share of those asks fell from 34% to 26%.
      - The "71%" in doc 22 predates M10, whose family questions now ask most of what `dashiellLine` used to.
    - **`{business}` on hiring.** `{business}` is now the client's recall action: the tic the entrance just described, come round once on the office visit.
      - Example: "Steinbach opened the compact again, looked at nothing, and shut it."
@@ -96,45 +96,50 @@ Coherence (motif overlap between adjacent image blocks) is 0.406. The floor is 0
      - `{dashiell}` (3 cards) is still unsupplied.
 5. **Draw inside a band, not the top score.** Done more simply, with weights everywhere. See the favorites table below.
 6. **Rotate the story's most-specific choice.** This was done in deck batch D (weights). It now also has memory.
-7. **Recall action once a visit.** It still holds after M10. **0 of 7,837** visits that said a recall action said it on two pages. The office visit is counted: the hiring spends the client's action, and the planner marks the client recalled for visit 0. The recall on a *later* visit is by design. It is why `portrait-pairs` shows "nights with a repeat" at 75% (up from 31%, because the hiring now says the client's action too).
+7. **Recall action once a visit.** It still holds after M10. **0 of 7,522** visits that said a recall action said it on two pages. The office visit is counted: the hiring spends the client's action, and the planner marks the client recalled for visit 0. The recall on a *later* visit is by design. It is why `portrait-pairs` shows "nights with a repeat" at 75% (up from 28%, because the hiring now says the client's action too).
 
 ## Measurements
 
-`npx tsx scripts/deck-exposure.ts --seeds 50 --people 10`: 2,550 nights, with 30 simulated readers playing 85 nights each, one store each. "Before" is `main` at 584d157, run with the same script's new fallback and return-gap counters patched in. The output is deterministic.
+`npx tsx scripts/deck-exposure.ts --seeds 50 --people 10`: 2,550 nights, with 30 simulated readers playing 85 nights each, one store each.
+
+- **Before** is `main` at 0bf232a (after PR #38, shorter nights).
+- **After** is this branch with that merged in.
+- The before run used the same script, with its new fallback and return-gap counters patched in.
+- The output is deterministic.
 
 ### Per deck
 
 | deck | burn before → after | read / night | nights with a same-night repeat | stale, nights 11–20 | first stale night (median reader) | off a wider rung | nothing dealt |
 | --- | --- | ---: | --- | --- | --- | --- | --- |
-| thought | free → run-to-run | 15.6 | 38% → 38% | 75% → 74% | 2 → 2 | 100% → 100%¹ | 0% → 0% |
 | story | free → run-to-run | 21.7 | 0% → 0% | 72% → 74% | 2 → 3 | — | — |
-| telling | free → run-to-run | 9.5 | 37% → 35% | 88% → 90% | 2 → 2 | 0% → 0% | 0% → 0% |
-| grounding | within-run → run-to-run | 9.5 | 9.7% → 9.8% | 85% → 85% | 2 → 2 | 32.5% → 32.5% | 0% → 0% |
-| activity | free → within-run | 6.9 | 39% → 27% | 61% → 68% | 2 → 2 | — | — |
-| followup | free → run-to-run | 6.3 | 9.5% → 9.3% | 91% → 92% | 2 → 2 | 0% → 0% | 0% → 0% |
-| hours | free → run-to-run | 5.4 | 0% → 0% | 72% → 82%² | **2 → 11** | 0% → 0% | 0% → 0% |
-| carry | free → run-to-run | 5.4 | 1.0% → 0.6% | 78% → 75% | 2 → 4 | 0% → 0% | 0% → 0% |
-| portrait-pairs | run-to-run | 5.1 | 31% → 75%³ | 28% → 23% | 10 → 9 | — | — |
-| bridge | free → run-to-run | 4.5 | 0.6% → 0.7% | 85% → 85% | 3 → 4 | 1.3% → 1.3% | 0% → 0% |
-| errand | free → run-to-run | 3.9 | 0.1% → 0.1% | 54% → 44% | **3 → 8** | 0% → 0% | 0% → 0% |
-| establish | within-run → run-to-run | 3.2 | 0% → 0% | 30% → 7.8% | **6 → 14** | 0% → 0% | 0% → 0% |
-| arrivals | within-run → run-to-run | 3.1 | 2.4% → 2.2% | 58% → 55% | 4 → 6 | 0.4% → 0.4% | 0% → 0% |
-| tail | within-run → run-to-run | 3.0 | 0% → 0% | 69% → 68% | 3 → 5 | 0% → 0% | 0.2% → 0.1% |
-| watch | within-run → run-to-run | 2.9 | 0% → 0% | 60% → 54% | 3 → 6 | 0% → 0% | 0% → 0% |
-| place-ambient | within-run → run-to-run | 2.1 | 0.0% → 0.0% | 32% → 32% | 6 → 6 | 5.2% → 5.5% | 0.6% → 0.6% |
-| note | within-run → run-to-run | 1.4 | 0% → 0% | 83% → 78% | 4 → 5 | 0% → 0% | 1.8% → 1.4% |
-| search-act | within-run → run-to-run | 1.1 | 0% → 0% | 22% → 3.6% | 19 → 50 | 0% → 0% | 0% → 0% |
+| thought | free → run-to-run | 16.6 | 51% → 51% | 75% → 74% | 2 → 2 | 100% → 100%¹ | 0% → 0% |
+| telling | free → run-to-run | 10.5 | 40% → 39% | 89% → 90% | 2 → 2 | 0% → 0% | 0% → 0% |
+| grounding | within-run → run-to-run | 10.5 | 14% → 14% | 86% → 86% | 2 → 2 | 36.6% → 36.5% | 0% → 0% |
+| activity | free → within-run | 6.8 | 36% → 25% | 63% → 68% | 2 → 2 | — | — |
+| followup | free → run-to-run | 6.7 | 7.2% → 6.6% | 91% → 91% | 2 → 3 | 0% → 0% | 0% → 0% |
+| hours | free → run-to-run | 5.2 | 0% → 0% | 70% → 79%² | **2 → 11** | 0% → 0% | 0% → 0% |
+| portrait-pairs | run-to-run | 4.9 | 28% → 75%³ | 29% → 23% | 10 → 10 | — | — |
+| carry | free → run-to-run | 4.2 | 0.7% → 0.5% | 70% → 64% | 3 → 4 | 0% → 0% | 0% → 0% |
+| bridge | free → run-to-run | 4.1 | 0.5% → 0.6% | 78% → 77% | 3 → 4 | 1.5% → 1.4% | 0% → 0% |
+| errand | free → run-to-run | 3.9 | 0.0% → 0.0% | 55% → 43% | **3 → 11** | 0% → 0% | 0% → 0% |
+| tail | within-run → run-to-run | 3.2 | 0% → 0% | 72% → 68% | 3 → 5 | 0% → 0% | 0.1% → 0.1% |
+| establish | within-run → run-to-run | 3.2 | 0% → 0% | 31% → 7.6% | **5 → 14** | 0% → 0% | 0% → 0% |
+| arrivals | within-run → run-to-run | 3.1 | 3.0% → 2.9% | 58% → 54% | 4 → 6 | 0.5% → 0.4% | 0% → 0% |
+| watch | within-run → run-to-run | 2.9 | 0% → 0% | 62% → 54% | 3 → 6 | 0% → 0% | 0% → 0% |
+| place-ambient | within-run → run-to-run | 1.6 | 0.0% → 0.0% | 25% → 24% | 8 → 8 | 5.3% → 5.3% | 1.1% → 1.0% |
+| note | within-run → run-to-run | 1.4 | 0% → 0% | 84% → 78% | 4 → 4 | 0% → 0% | 1.9% → 1.5% |
+| dashiell-lines | free → run-to-run | 1.2 | 2.5% → 1.5% | 70% → 70% | 5 → 8 | 0% → 0% | 0% → 0% |
+| search-act | within-run → run-to-run | 1.1 | 0% → 0% | 22% → 3.6% | 15 → 50 | 0% → 0% | 0% → 0% |
 | office | within-run → run-to-run | 1.0 | 0% → 0% | 50% → 29% | **6 → 13** | 0% → 0% | 0% → 0% |
 | entrances | within-run → run-to-run | 1.0 | 0% → 0% | 40% → 31% | 7 → 9 | 3.5% → 3.6% | 0% → 0% |
 | hiring | within-run → run-to-run | 1.0 | 0% → 0% | 94% → 66% | **2 → 7** | **71.6% → 16.2%** | 0% → 0% |
-| endings | free → run-to-run | 1.0 | 0% → 0% | 63% → 59% | 6 → 9 | 12.3% → 12.4% | 0% → 0% |
-| dashiell-lines | free → run-to-run | 0.9 | 2.2% → 0.7% | 65% → 65% | 5 → 8 | 0% → 0% | 0% → 0% |
-| crowd | within-run → run-to-run | 0.9 | 0.1% → 0.1% | 17% → 8.7% | 10 → 15 | 89% → 89%⁴ | 0% → 0% |
-| utterances | free → run-to-run | 0.8 | 5.5% → 5.5% | 14% → 6.6% | 20 → 26 | 20.1% → 19.9% | 0% → 0% |
-| answer | free → run-to-run | 0.7 | 0% → 0% | 50% → 34% | 12 → 36 | 0% → 0% | 0% → 0% |
-| return | free → run-to-run | 0.7 | 0% → 0% | 40% → 17% | 11 → 31 | 0% → 0% | 0% → 0% |
-| confront | within-run → run-to-run | 0.2 | 0% → 0% | 23% → 0% | 11 → 38 | 0% → 0% | 0% → 0% |
-| decide | within-run → run-to-run | 0.1 | 0% → 0% | 11% → 4.5% | 47 → 77 | 0% → 0.3% | 0% → 0% |
+| endings | free → run-to-run | 1.0 | 0% → 0% | 63% → 59% | 6 → 10 | 12.7% → 12.6% | 0% → 0% |
+| utterances | free → run-to-run | 0.9 | 5.5% → 5.5% | 14% → 6.7% | 16 → 26 | 20.1% → 19.9% | 0% → 0% |
+| crowd | within-run → run-to-run | 0.9 | 0.2% → 0.1% | 16% → 7.5% | 10 → 15 | 89.6% → 89.7%⁴ | 0% → 0% |
+| return | free → run-to-run | 0.7 | 0% → 0% | 38% → 17% | 10 → 37 | 0% → 0% | 0% → 0% |
+| answer | free → run-to-run | 0.6 | 0% → 0% | 51% → 35% | 11 → 45 | 0% → 0% | 0% → 0% |
+| confront | within-run → run-to-run | 0.3 | 0% → 0% | 30% → 2.2% | 8 → 32 | 0% → 0% | 0% → 0% |
+| decide | within-run → run-to-run | 0.1 | 0% → 0% | 20% → 4.5% | 47 → 77 | 0% → 0.3% | 0% → 0% |
 
 1. `thought`'s first rung is the two-facts-agree card. It is empty on every ask that is not about two facts, so every deal is "off a wider rung" by construction, in both columns.
 2. **How to read "stale, nights 11–20".** With memory, a card comes back only after its whole key has been read. A key holding fewer than ten nights of reading has been read through by night 11, so every read after that is "stale" by this metric's definition, and the number cannot fall below that.
@@ -143,7 +148,7 @@ Coherence (motif overlap between adjacent image blocks) is 0.406. The floor is 0
 3. Includes the recall action said again on later visits, which is by design (see fix 7). Two people sharing a pair: 34% of nights → 0%.
 4. By design: the rung asks for a band-specific card first, and the deck writes `band: any`.
 
-Batch E's decks and `thought` still repeat inside a night and go stale by night 2. Their keys are 2–4 cards read 1–2.4 times a night, so memory cannot help them. That is the writing targets' business (below).
+`thought` and batch E's decks still repeat inside a night and go stale by night 2. Their keys are 2–4 cards read 1–3 times a night, and memory cannot help that. It is the writing targets' business (below).
 
 ### When a card comes back: nights since the reader last read it
 
@@ -151,22 +156,25 @@ Batch E's decks and `thought` still repeat inside a night and go stale by night 
 | --- | --- | --- |
 | hours | 1 → 5 | 7 → 11 |
 | errand | 2 → 4 | 8 → 13 |
-| establish | 3 → 7 | 16 → 25 |
+| establish | 3 → 7 | 15 → 25 |
 | office | 2 → 4 | 10 → 18 |
 | hiring | 1 → 2 | 1 → 9 |
-| carry | 1 → 2 | 4 → 6 |
+| carry | 1 → 2 | 5 → 7 |
+| bridge | 1 → 2 | 4 → 6 |
 | watch | 1 → 3 | 6 → 9 |
 | arrivals | 2 → 3 | 9 → 11 |
 | tail | 1 → 2 | 6 → 9 |
-| dashiell-lines | 1 → 2 | 6 → 9 |
+| dashiell-lines | 1 → 2 | 6 → 8 |
 | endings | 2 → 3 | 8 → 10 |
 | portrait-pairs | 3 → 5 | 14 → 18 |
-| search-act | 3 → 8 | 17 → 28 |
-| confront | 2 → 11 | 17 → 34 |
+| answer | 2 → 5 | 11 → 16 |
+| return | 2 → 7 | 12 → 19 |
+| search-act | 3 → 9 | 16 → 28 |
+| confront | 2 → 6 | 17 → 28 |
 | story | 1 → 2 | 6 → 7 |
-| thought | 1 → 1 | 4 → 5 |
-| telling, followup | 1 → 1 | 2 → 2 |
-| grounding | 1 → 1 | 2 → 3 |
+| thought | 1 → 1 | 3 → 4 |
+| telling | 1 → 1 | 2 → 2 |
+| grounding, followup | 1 → 1 | 2–3 → 3 |
 
 A card now comes back when its key has been read through. How soon that is depends only on how big the key is. The decks still at one or two nights are the thin keys the targets below are for.
 
@@ -182,8 +190,8 @@ The top card's share of its key's reads:
 | office behind-on-rent × cold | off-004, 75% | off-001, 45% |
 | office bruised × cold | off-014, 87% | off-014, 60%⁵ |
 | hiring | hir-002 in 64% of nights (`familiar=no`, the one enigma card needing neither `{business}` nor `{dashiell}`); hir-006 63% of the "any" rung | within every temper × familiar key the top card is 1.0–1.3 × its fair share; the "any" rung is asked 21 times in 2,550 nights |
-| portrait-pairs working × m | pp-074, 16% (3.3 × fair) | pp-042, 11% (2.3 × fair) |
-| dashiell-lines ask-person `{topic}` placeholder | 37% | 28% |
+| portrait-pairs working × m | pp-074, 17% (3.4 × fair) | pp-042, 11% (2.2 × fair) |
+| dashiell-lines ask-person `{topic}` placeholder | 34% | 26% |
 | story role | STY-371, 3.9 × fair | STY-370, 1.6 × fair |
 | story since | STY-323, 40% | STY-431, 20% |
 | story motive-color | STY-168, 32% | STY-168, 32%⁶ |
@@ -191,9 +199,9 @@ The top card's share of its key's reads:
 5. The key is probed from the dealt card. The only cold-tagged bruised card, off-014, has a key of its own that the `any` cards do not share. It is a measurement artefact, not a favorite.
 6. For most cases only one motive-color card fits the case's motive. That needs more cards, not a different dealer.
 
-### Checks
+### Checks (on the merged code)
 
-- **Tests:** 43 files and 831 tests, all passing. `npx tsc --noEmit` is clean. Tests that asserted a draw now assert properties:
+- **Tests:** 44 files and 840 tests, all passing. `npx tsc --noEmit` is clean. Tests that asserted a draw now assert properties:
   - held back until the key is read;
   - reshuffles rather than running dry;
   - read-twice waits behind read-once;
@@ -206,32 +214,38 @@ The top card's share of its key's reads:
   - tempers are unmoved by history;
   - activity differs across visits;
   - the hiring gets the client's business.
-  
-  The retainer test now compares case-blind, because a retainer can open its sentence: "Fifty dollars," she said.
-- **Reader lint:** 0 over the M10 sweep (40 seeds × every tier, plus untiered). Also 0 over `scripts/history-sweep.ts`: 240 nights by 6 readers with a history, the oracle's route through every tier.
+
+  Two tests changed:
+  - The retainer test now compares case-blind, because a retainer can open its sentence: "Fifty dollars," she said.
+  - `test/shorter-nights.test.ts` "covers every required beat…" now skips `hour-texture`. That test sets the clock back after the oracle's route on purpose, so the page's hour and the hour the checker adds up from the log disagree by construction. A card naming its hour ("It was after four in the morning.") is then flagged against the wrong clock. Every other rule is still checked.
+
+  Separately, `realize.ts`'s hour filter now reads the card as it will print, with `{hour}` filled in, rather than the bare template.
+- **Reader lint:** 0 over the M10 sweep. Also 0 over `scripts/history-sweep.ts`: 240 nights by 6 readers with a history, the oracle's route through every tier.
 - **Correspondence:** 0 on every sweep in the tests. On the history sweep, 0 from the engine. As in the M10 test, 3 hours printed in a generator's own sentence are skipped (docs/23, "Not fixed").
-- **Plain terms:** `npm run decks` finds 4,877 cards across 39 decks, 0 errors and 0 banned terms. `test/plain-terms.test.ts` passes.
-- **Beat coverage:** 100%, with the same results as the M10 notes.
+- **Plain terms:** `npm run decks` finds 4,912 cards across 39 decks, 0 errors and 0 banned terms. `test/plain-terms.test.ts` passes.
+- **Beat coverage:** 100%.
   - M8 sweeps: 5,455 of 5,455 pages (30,285 of 30,285 required beats).
-  - M10: 3,240 of 3,240.
-  - M9: 1,401 of 1,401 pages with 274 confrontations.
-  - History sweep: 2,680 of 2,680.
+  - M10: 2,952 of 2,952.
+  - M9: 1,299 of 1,299 pages with 273 confrontations.
+  - History sweep: 2,390 of 2,390.
+- **Coherence:** 0.406 (floor 0.28).
 
 ### Read-through
 
-`npm run read -- --seed N --tier T --no-choices` for 11/0, 3/4 and 7/5, read page by page against `main`'s render of the same runs. The tempers and routes match `main`'s.
+`npm run read -- --seed N --tier T --no-choices` for 11/0, 3/4 and 7/5, read page by page against `main`'s render of the same runs. The tempers, routes and page counts match `main`'s.
 
 - **Better.** Sentences of five words or more that appear twice in a run:
   - 11/0: 1 → 1.
-  - 3/4: 7 → 3.
-  - 7/5: 4 → 2.
+  - 3/4: 4 → 4.
+  - 7/5: 3 → 2.
 
-  The hiring now says the client's tic once (11/0: "Steinbach opened the compact again, looked at nothing, and shut it."). A revisited person is found doing something else.
+  What remains is hand-written lines ("I wrote it in the book.", the stranger lines in `telling.ts`), not dealt ones.
+
+  The hiring says the client's tic once (11/0: "Steinbach opened the compact again, looked at nothing, and shut it."). A person revisited is found doing something else.
 - **Fixed on the way.** The rhythm pass put "Nothing moved." on the end of the client's portrait paragraph: "…It went there twice while she sat with me. Nothing moved." That beat is no longer used after a paragraph about a person.
 - **Not the dealer's, noticed:**
-  - "What's Renfro to you?" (hum-014) asks about the relationship, and the answer that follows is sightings. Three of the five ask-person cards (hum-013, hum-014, hum-019) ask about acquaintance rather than whereabouts. With every card now in play, they come up more evenly.
+  - "What's Renfro to you?" (hum-014) asks about the relationship, and the answer that follows is sightings. Three of the five ask-person cards (hum-013, hum-014, hum-019) ask about acquaintance rather than whereabouts, and with every card in play they come up more evenly.
   - When `stoppedDoing` cannot turn an activity round, the hand-written line says "…left off and looked up". This is more visible now that people change activity between visits.
-  - "I couldn't give you a name." is said three times in 7/5. It is hand-written in `telling.ts`.
 
 ## Writing targets, recomputed
 
@@ -240,42 +254,52 @@ The formula is 22's, per key: **add = max(night, 10 nights) − cards now**.
 - **night** is 1.2 × the 95th-centile night.
 - **10 nights** is 10 × the mean night.
 
-The formula already assumed cross-night memory, which now exists, so the totals barely move. The differences are shifts in what gets read:
+The formula already assumed cross-night memory, which now exists, so most totals do not move between the old dealer and the new one on the same code:
 
-- Hiring's `{business}` cards are now dealable, so C falls from 9 to 3.
-- The carry and bridge keys move a little.
+| batch | old dealer | new dealer |
+| --- | ---: | ---: |
+| A | 79 | 79 |
+| B | 6 | 6 |
+| C | 9 | 3 (hiring's `{business}` cards are dealable now) |
+| E | 174 | 174 |
+
+The bigger change since 22 is the content and M10:
+
+- Batch D landed.
+- PR #38 moved the account onto the first question.
+- Batch E is new.
 
 "Cards now" counts only cards the beat can fill.
 
-### A. Reasoning voice (`thought`, `bridge`, `carry`, `answer`, `decide`, `confront`): 88 cards, 8 of them to stop repeats inside a night
+### A. Reasoning voice (`thought`, `bridge`, `carry`, `answer`, `decide`, `confront`): 79 cards, 9 of them to stop repeats inside a night
 
 | deck | key | cards now | read / night | p95 | nights with a repeat | add |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| bridge | `tie=victim lead=ask` | 5 | 2.36 | 5 | 0.7% | 20 |
-| thought | `class=touches case=murder basis=account` | 3 | 2.07 | 4 | **24%** | 18 |
-| bridge | `tie=time lead=ask` | 7 | 2.05 | 5 | 0% | 14 |
+| thought | `class=touches case=murder basis=account` | 3 | 2.66 | 4 | **37%** | 24 |
+| bridge | `tie=victim lead=ask` | 5 | 2.27 | 5 | 0.6% | 19 |
 | thought | `class=view case=murder who=known lied=no` | 2 | 1.08 | 3 | 7.2% | 9 |
-| carry | `for=ask-evening lead=yes setting=indoor` | 9 (+4 unfillable) | 1.49 | 4 | 0% | 7 |
-| thought | `class=implicates case=murder basis=access` | 3 | 0.82 | 3 | 0.6% | 6 |
-| carry | `for=ask-place lead=yes setting=indoor` | 6 (+7 unfillable) | 0.79 | 3 | 0.3% | 3 |
-| thought | `class=window case=murder basis=dead-by` | 6 | 0.77 | 2 | 0% | 2 |
-| thought | `class=touches case=murder basis=described` | 4 | 0.58 | 3 | 0.9% | 2 |
+| thought | `class=implicates case=murder basis=access` | 3 | 0.83 | 3 | 0.9% | 6 |
+| bridge | `tie=time lead=ask` | 8 | 1.16 | 4 | 0% | 5 |
+| carry | `for=ask-place lead=yes setting=indoor` | 6 (+7 unfillable) | 0.78 | 3 | 0.2% | 2 |
+| thought | `class=window case=murder basis=dead-by` | 6 | 0.78 | 2 | 0% | 2 |
+| bridge | `tie=account lead=ask` | 5 | 0.63 | 2 | 0% | 2 |
+| thought | `class=touches case=murder basis=described` | 4 | 0.58 | 3 | 1.1% | 2 |
 | thought | `class=view case=murder who=client lied=no` | 3 | 0.48 | 1 | 0% | 2 |
-| thought | `class=touches case=murder basis=placement` | 4 | 0.43 | 2 | 0% | 1 |
-| thought | `class=touches case=murder basis=timing` | 3 | 0.38 | 2 | 0.1% | 1 |
+| thought | `class=touches case=murder basis=placement` | 4 | 0.44 | 2 | 0.0% | 1 |
+| thought | `class=touches case=murder basis=timing` | 3 | 0.37 | 2 | 0.1% | 1 |
+| thought | `class=touches case=robbery basis=account` | 3 | 0.26 | 3 | 4.0% | 1 |
 | thought | `class=window case=murder basis=coroner` | 2 | 0.30 | 1 | 0% | 1 |
 | thought | `class=touches case=murder basis=absence` | 3 | 0.35 | 2 | 0.2% | 1 |
-| thought | `class=view case=robbery who=known lied=no` | 2 | 0.16 | 2 | 2.4% | 1 |
+| thought | `class=view case=robbery who=known lied=no` | 2 | 0.16 | 2 | 2.3% | 1 |
 
-The first four rows are 61 of the 88. The carry keys' "unfillable" cards want `{name}`, which a carry has only when a person sent him. Writing lead cards without `{name}` counts as much as adding cards.
+The first two rows are 43 of the 79. `touches × account` is now read 2.7 times a night on 3 cards, a repeat in 37% of nights. It is the most-repeated key in the game outside batch E. The carry key's unfillable cards want `{name}`, which a carry has only when a person sent him. Writing lead cards without `{name}` counts as much as adding cards.
 
-### B. Places (`establish`, `place-ambient`, `search-act`, `return`, `watch`, `crowd`, `activity`): 7 cards
+### B. Places (`establish`, `place-ambient`, `search-act`, `return`, `watch`, `crowd`, `activity`): 6 cards
 
 | deck | key | cards now | read / night | add |
 | --- | --- | ---: | ---: | ---: |
 | watch | `watcher=none` | 6 | 1.05 | 5 |
-| activity | `role=bartender placeKind=semi` | 3 | 0.34 | 1 |
-| activity | `role=ticket-taker placeKind=public` | 3 | 0.31 | 1 |
+| activity | `role=bartender placeKind=semi` | 3 | 0.33 | 1 |
 
 22's advice stands and is now the main item: give each fixture role at least six activity cards, about 27 in all.
 
@@ -295,25 +319,25 @@ Hiring's nine unfillable cards are the `{business}` cards, dealt to a client who
 - **A recall action for the 23 pairs that have none.** That makes every client's hiring `{business}`-dealable and every person recallable.
 - **Two more office cards per circumstance, 14 in all.** It is the first paragraph of every night. It now goes 13 nights before a repeat, and 18 by the median.
 
-### Beyond A–C: the M10 testimony decks (batch E): 155 cards, 20 of them to stop repeats inside a night
+### Beyond A–C: the M10 testimony decks (batch E): 174 cards, 21 of them to stop repeats inside a night
 
 The decks are `telling`, `grounding`, `followup`, `tail` and `note`. They were written after 22 drew up the batches. They are now the thinnest thing a reader reads:
 
-- 9.5 tellings and groundings a night;
+- 10.5 tellings and groundings a night;
 - keys of 2–4 cards;
-- a same-night repeat in 35% of nights for `telling`;
-- a card back after a median of 2 nights.
+- a same-night repeat in 39% of nights for `telling`;
+- a card back after a median of 2–3 nights.
 
 The largest asks:
 
 | key | cards now | add |
 | --- | ---: | ---: |
-| grounding `family=evening role=suspect half=first` | 4 | 20 |
-| followup `part=open family=evening order=first` | 4 | 20 |
-| tail (any) | 3 | 11 |
+| grounding `family=evening role=suspect half=first` | 4 | 28 |
+| followup `part=open family=evening order=later` | 6 | 15 |
+| tail (any) | 3 | 12 |
+| telling `family=evening temper=plain` | 3 | 11 |
 | telling `family=movements temper=plain knows=name` | 3 | 10 |
 | grounding `family=movements role=suspect knows=name` | 8 | 9 |
-| telling `family=evening temper=plain` | 3 | 8 |
 
 The full list is in the script's output under "E. testimony (M10)".
 
