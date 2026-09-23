@@ -398,7 +398,7 @@
   {
     "id": "cnf-037",
     "deck": "confront",
-    "text": "{subject} sat down, which {they} had not done since I came in.",
+    "text": "{subject} let {their} shoulders down, which {they} had not done since I came in.",
     "tags": {
       "outcome": "admit",
       "part": "reaction"

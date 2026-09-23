@@ -782,7 +782,8 @@
     "text": "I’m not good with names, but I’d know that one.",
     "tags": {
       "family": "knowing",
-      "role": "suspect"
+      "role": "suspect",
+      "knows": "stranger"
     },
     "motifs": [],
     "status": "generated"
@@ -1010,5 +1011,29 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "grd-091",
+    "deck": "grounding",
+    "text": "Faces stay with me. Names don’t.",
+    "tags": {
+      "role": "suspect",
+      "family": "knowing",
+      "knows": "sight"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "grd-092",
+    "deck": "grounding",
+    "text": "I see a lot of people. I don’t get introduced to many of them.",
+    "tags": {
+      "role": "suspect",
+      "family": "knowing",
+      "knows": "sight"
+    },
+    "motifs": [],
+    "status": "tuned"
   }
 ]

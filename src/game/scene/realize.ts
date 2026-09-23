@@ -1606,7 +1606,12 @@ function exchange(
     first.establishes.some(
       (f) => (f.kind === 'personAt' || f.kind === 'personNotAt') && f.personId === subject.id,
     );
-  if (beat.carried && subject) {
+  // A witness who knows the face and not the name says so in the telling
+  // that follows ("I might know the face if I saw it. Not the name."); the
+  // reply to the name would say it twice.
+  const knowsOnlyTheFace =
+    firstTelling !== undefined && firstTelling.family.kind === 'knowing' && firstTelling.family.subjectId === subject?.id;
+  if (beat.carried && subject && !knowsOnlyTheFace) {
     // "Nora Hanrahan. She's been with him since 'eighteen." — from somebody who knows
     // them; a face known by sight comes with no history.
     const strength = view.kase.logic ? acquaintanceOf(view.kase, person.id, subject.id)?.strength : undefined;
