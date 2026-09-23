@@ -121,7 +121,7 @@ Tests changed to match:
 ## Checks
 
 - `tsc` clean. `npm run decks`: 0 errors, 0 banned terms.
-- Tests: the whole suite. The count is in the PR.
+- Tests: 41 files, 783 tests, all passing (40 and 776 on `main`). `test/m10-raw.test.ts` is new.
 - The untiered default is untouched. `m7-identity` passes and no plain-path code changed. From Poached up, tiered cases hash the same as `main` (100 seeds a tier).
 
 ## Read-through: three Raw runs
