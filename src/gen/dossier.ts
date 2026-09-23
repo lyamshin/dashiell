@@ -367,9 +367,18 @@ export function varyTies(dossiers: readonly { dossier: Dossier; surname: string;
     const sinceAt = rel.since.findIndex((x) => fillSlots(x, fill.ctx) === dossier.tie.since);
     const b = keep ? fill.backstory : unusedVariant(rel.backstory, fill.backstory, used.get(bKey));
     const sinceIndex = keep || sinceAt < 0 ? sinceAt : unusedVariant(rel.since, sinceAt, used.get(sKey));
+    // Every variant that fits is taken: the same one said another way.
+    const alt = !keep && (used.get(bKey)?.has(b) ?? false) ? rel.backstoryAlt?.[b] : undefined;
+    const altKey = `${rel.id}|alt|${b}`;
     mark(bKey, b);
     if (sinceIndex >= 0) mark(sKey, sinceIndex);
-    if (b !== fill.backstory) {
+    if (alt && !used.has(altKey)) {
+      mark(altKey, 0);
+      const oldText = dossier.tie.backstory;
+      dossier.tie.backstory = asSentence(fillSlots(alt[0], fill.ctx));
+      dossier.tie.backstoryFirst = asSentence(fillSlots(alt[1], fill.ctx));
+      for (const f of dossier.layers) if (f.kind === 'tie' && f.text === oldText) f.text = dossier.tie.backstory;
+    } else if (b !== fill.backstory) {
       const oldText = dossier.tie.backstory;
       dossier.tie.backstory = asSentence(fillSlots(rel.backstory[b] as string, fill.ctx));
       const first = rel.backstoryFirst[b];

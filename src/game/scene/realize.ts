@@ -15,7 +15,7 @@ import { anchorsTold, toldFind, type AnchorTold } from './finds.js';
 import { spokenClock } from '../../gen/types.js';
 import type { Block, BeatTrace, ErrandTrace, ProseVoice } from '../types.js';
 import { OTHER_THING } from '../errand.js';
-import { hedged, restates, figuresIn, hourAgrees, introduceNames, nameables, pastTense, sentencesOf, stripHere, wordCount, isSubjectless, bandOf } from './text.js';
+import { hedged, restates, figuresIn, hourAgrees, introduceNames, nameables, pastTense, pastPredicate, sentencesOf, stripHere, wordCount, isSubjectless, bandOf } from './text.js';
 import { APPROACH, APPROACH_AGAIN, COUNT_WORDS, FOLLOW_ON, OUTDOOR_PLACES, RELATION_PLAIN, RELATION_WHY, SEARCH_THING_ACTS as THING_ACTS, isPluralPlace } from './lines.js';
 import { clueAbout, layerCredit, layerOfClue, layerSentences } from '../voice/plain.js';
 import type { Beat, Plan, PresencePerson } from './plan.js';
@@ -1193,6 +1193,15 @@ function presenceLine(stage: Stage, p: PresencePerson, named: ReadonlySet<Id> = 
     }
     const street = p.brief ? null : characterLine(stage.dealer, view, person, 'street', { accept: (t) => !echoes(t, parts) });
     if (street) parts.push(street.text);
+    // The owner of what was taken, alive and in the room: how the street sees
+    // them is their standing, which the office already said in the client's
+    // words ("the man a hundred and forty people paid to keep a roof over them").
+    if (person.id === view.victim.id && !p.brief) {
+      const standing = person.dossier?.tie.backstory;
+      if (standing) parts.push(pastTense(pronounSubject(standing, person.surname, pronounOf(person))));
+      const detail = person.dossier ? `${person.surname} ${person.dossier.profession.detail}.` : null;
+      if (detail) parts.push(pronounSubject(pastPredicate(detail), person.surname, pronounOf(person)));
+    }
     if (p.tie) parts.push(tieSentence(view, person, p.tie));
   } else if (p.recall) {
     // §4: a recall is something the person does, never a noun and never an
