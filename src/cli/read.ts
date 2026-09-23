@@ -94,6 +94,9 @@ if (route !== undefined) {
     .filter((c) => c.length > 0);
   state = newRun(view, { detectiveName: detective });
   for (const command of commands) state = stepInput(state, command, view).state;
+  // M9: `--file` files the truth at the end of a route, so the report page
+  // (the crime column and its proofs included) can be read after one.
+  if (flags.has('file')) report = truthReport(view);
 } else if (flags.has('random')) {
   const run = playWandering(view, seed, detective);
   state = run.state;

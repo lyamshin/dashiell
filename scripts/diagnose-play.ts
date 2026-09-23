@@ -443,7 +443,20 @@ function fileReasoned(view: CaseView, state: RunState): Report {
   let killerId = crime.culprit;
   if (killerId === null && tick !== null) {
     const can = columnPeople(view).filter((p) => placesAt(st, p.id, tick).includes(view.sceneId));
-    killerId = can.length === 1 ? (can[0]?.id as Id) : (can.find((p) => p.id === base.killerId)?.id ?? can[0]?.id ?? base.killerId);
+    // Of those the grid still allows, the one whose own word for that half
+    // hour a fact in hand breaks: somebody who lied about the hour it happened.
+    const broken = can.filter((p) => {
+      const claim = view.claimedOf.get(p.id)?.[tick] ?? null;
+      return (
+        state.accounts.includes(p.id) &&
+        claim !== null &&
+        contradicts(kase, state.found, { personId: p.id, place: claim, ticks: [tick] }, { confessed: confessedOf(state), soft: false }).yes
+      );
+    });
+    killerId =
+      can.length === 1
+        ? (can[0]?.id as Id)
+        : (broken[0]?.id ?? can.find((p) => p.id === base.killerId)?.id ?? can[0]?.id ?? base.killerId);
   }
   const column: Record<Id, Id | null> = {};
   if (tick !== null) {

@@ -135,12 +135,12 @@ export function renderGridText(view: CaseView, state: RunState): string {
     for (const d of unlinked) byText.set(d.text, [...(byText.get(d.text) ?? []), d]);
     for (const [text, ds] of byText) {
       const cells = grid.ticks.map((t) =>
-        ds
-          .filter((d) => d.tick === t.tick)
-          .map((d) => `${ab(d.placeId)}?${d.by ? initial(d.by) : ''}`)
-          .join(''),
+        ds.filter((d) => d.tick === t.tick).map((d) => `${ab(d.placeId)}?${d.by ? initial(d.by) : ''}`),
       );
-      out.push(line(`?${text}`, cells.map((c) => c || '·')));
+      const height = Math.max(1, ...cells.map((c) => c.length));
+      for (let i = 0; i < height; i++) {
+        out.push(line(i === 0 ? `?${text}` : '', cells.map((c) => c[i] ?? (i === 0 ? '·' : ''))));
+      }
     }
   }
   if (grid.fixtures.length > 0) {
