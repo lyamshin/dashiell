@@ -51,13 +51,13 @@ import { hideCard, type CardSource } from './hover.js';
 import { renderNotebook } from './notebook-view.js';
 import { renderPage } from './prose.js';
 import { renderReportForm, renderVerdict, type TierNews } from './report.js';
-import { renderTruth } from './truth.js';
+import { storyOf, storyParagraphs } from '../game/story.js';
+import { renderTruthSheet } from '../sheet/truthSheet.js';
 
 type Screen =
   | { kind: 'title' }
   | { kind: 'book' }
-  | { kind: 'verdict'; verdict: Verdict; news?: TierNews }
-  | { kind: 'truth' };
+  | { kind: 'verdict'; verdict: Verdict; news?: TierNews };
 
 const DEFAULT_NAME = 'Dashiell';
 const NAME_KEY = 'dashiell:detective';
@@ -282,18 +282,6 @@ export function mount(root: HTMLElement): void {
       root.append(titlePage());
       return;
     }
-    if (screen.kind === 'truth') {
-      root.append(
-        renderTruth(kase, () => {
-          screen = state?.filed
-            ? { kind: 'verdict', verdict: scoreReport(view as CaseView, state, state.filed) }
-            : { kind: 'book' };
-          render();
-        }),
-      );
-      return;
-    }
-
     const spread = el('div', { class: 'spread' });
     spread.append(leftPage(), rightPage());
     root.append(spread);
@@ -320,9 +308,9 @@ export function mount(root: HTMLElement): void {
           // M7: another case starts on the title page, which is where the
           // tiers are chosen and where a newly opened one shows.
           () => toTitle(),
-          () => {
-            screen = { kind: 'truth' };
-            render();
+          {
+            story: storyParagraphs(storyOf(kase as Case)),
+            truthSheet: () => renderTruthSheet(kase as Case),
           },
           screen.news,
         ),

@@ -1142,30 +1142,69 @@ li.contradiction::before {
   margin-top: 1.6rem;
 }
 
-/* ------------------------------------------------------------- appendix */
+/* ------------------------------------------------------ after the verdict */
 
-.appendix {
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: 2rem var(--gutter);
+/*
+ * Two doors off the closing page. "What really happened" is the crime told as
+ * a story, set as one more page of the book; "Look behind the curtain" is the
+ * whole truth sheet, set as a carbon copy. Either opens and closes on its own.
+ */
+.endings {
+  margin-top: 1.6rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 1.2rem;
 }
 
-.appendix pre {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.72rem;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  word-break: break-word;
-  color: var(--ink-soft);
-  margin: 1.4rem 0 0;
+.ending-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
 }
 
-.appendix h1 {
+.ending-toggle {
+  min-height: 44px;
+}
+
+.ending-toggle[aria-expanded='true'] {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.ending-panel[hidden] {
+  display: none;
+}
+
+.ending-panel {
+  margin-top: 1.4rem;
+}
+
+.ending-story h3,
+.ending-curtain h3 {
   font-size: 0.8rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 400;
   color: var(--ink-faint);
+  margin: 0 0 1rem;
+}
+
+.ending-story p {
+  margin: 0 0 1rem;
+  text-wrap: pretty;
+}
+
+.ending-story p + p {
+  text-indent: 1.2em;
+}
+
+.ending-curtain pre {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  color: var(--ink-soft);
   margin: 0;
 }
 
