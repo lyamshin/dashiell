@@ -15,7 +15,8 @@
 import { Rng } from '../../gen/rng.js';
 import { PRECINCT_TEXT } from '../../gen/victim.js';
 import type { CaseView } from '../derive.js';
-import type { Person } from '../../gen/types.js';
+import type { BriefingLine, Person } from '../../gen/types.js';
+import { pronounWithinTurns } from '../../gen/briefing.js';
 import {
   CLIENT_LEAVING,
   ENTRANCE_LINES,
@@ -558,6 +559,47 @@ export function officeTurns(plan: OfficePlan, police: SpokenLine[] = plan.police
   if (police.length > 0) turns.push({ ask: 'police', lines: police });
   if (plan.want.length > 0) turns.push({ ask: 'why', lines: plan.want });
   return turns.filter((t) => t.lines.length > 0);
+}
+
+/**
+ * Hone 3 §3's rule, on the turns as the office now groups them: inside one
+ * turn a person is named once and then is "he". The generator ran it on its
+ * own turns; regrouped, "Ashby was the last resort on the block… I live
+ * across the airshaft from Ashby… Mulcahy found Ashby at the walk-up" came
+ * back. A line the pass changes loses its breath form, which was written
+ * with the name in it.
+ */
+export function pronounOfficeTurns(view: CaseView, turns: readonly OfficeTurn[]): void {
+  const lines: BriefingLine[] = [];
+  const back: { turn: OfficeTurn; i: number }[] = [];
+  for (const turn of turns) {
+    turn.lines.forEach((line, i) => {
+      // Who he was and where he was found are two breaths of one turn: the
+      // finder, named in the second, would otherwise keep every "he" in the
+      // first from being said (the pass keeps a name wherever two men share
+      // a turn).
+      const prev = turn.lines[i - 1];
+      const found = (l: SpokenLine | undefined): boolean => l !== undefined && (l.topic === 'discovery' || /\bfound\b/.test(l.text));
+      const opens = i === 0 || (found(line) && !found(prev));
+      lines.push({ text: line.text, spoken: line.text, speaker: 'client', ...(opens ? { prompt: '§' } : {}) });
+      back.push({ turn, i });
+    });
+  }
+  const castLike = {
+    people: view.kase.people,
+    mentions: { mentions: view.kase.mentions },
+    client: view.client,
+    dossiers: {},
+  } as unknown as Parameters<typeof pronounWithinTurns>[1];
+  pronounWithinTurns(lines, castLike);
+  lines.forEach((line, k) => {
+    const at = back[k] as { turn: OfficeTurn; i: number };
+    const old = at.turn.lines[at.i] as SpokenLine;
+    if (line.spoken !== null && line.spoken !== old.text) {
+      const { breath: _breath, ...rest } = old;
+      at.turn.lines[at.i] = { ...rest, text: line.spoken };
+    }
+  });
 }
 
 /* ------------------------------------------------------------------ *

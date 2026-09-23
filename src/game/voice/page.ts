@@ -143,11 +143,12 @@ import {
   officeCard,
   officePlan,
   officeTurns,
+  pronounOfficeTurns,
   retainerFor,
   speechParagraphs,
   splitBriefing,
 } from './office.js';
-import { characterLine } from './character.js';
+import { characterLine, echoes } from './character.js';
 
 export type HourBand = 'midnight-2' | '2-4' | '4-6' | '6-8';
 
@@ -2593,8 +2594,28 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   // Hone 2 §A.2's rule for the settle beat holds for the look too: nothing
   // about hands the pair has already given something to do.
   const claimedByPair = pairBodyWords(cast, client.id, stage.appearances[client.id] ?? 0);
+  const said = [arrival ?? '', entrance.text, portrait];
+  // The office in the order she tells it, planned here so that the page
+  // knows what it has still to say: the look goes in only where the page has
+  // room for all of it, because page one's ceiling cuts the entrance before
+  // it cuts a line of narration, and the entrance is the one thing he sees.
+  const planned = officePlan(view, familiar, dealer.random);
+  const toSay =
+    countWords([
+      {
+        kind: 'note',
+        text: [planned.relation, planned.story, planned.police, planned.want, planned.close]
+          .flat()
+          .map((l) => l.text)
+          .join(' '),
+      },
+    ]) +
+    (planned.trade === null ? 0 : countWords([{ kind: 'note', text: planned.trade }])) +
+    90;
+  const lookFits = (text: string): boolean =>
+    t.count() + countWords([{ kind: 'note', text: `${seenSentence(client, arrival !== null)} ${text}` }]) + toSay <= OPENING_CEILING;
   const look = characterLine(dealer, view, client, 'look', {
-    accept: (text) => !bodyConflict(claimedByPair, text),
+    accept: (text) => !bodyConflict(claimedByPair, text) && !echoes(text, said) && lookFits(text),
   });
   if (look) dossierLines.push(look.text);
   const seenPara = dossierLines.filter((line) => line.length > 0).join(' ');
@@ -2645,8 +2666,8 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
    * prompts were asked in the generator's order, which put "What happens if
    * it is settled loudly?" before she had said anything about quiet.
    */
-  const planned = officePlan(view, familiar, dealer.random);
   const turns = officeTurns(planned);
+  pronounOfficeTurns(view, turns);
   // She talks in short sentences where the generator wrote them (the breath
   // form), always: the page's rhythm is hers now, not the rhythm pass's.
   const breathing = true;
@@ -2711,7 +2732,12 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   // doing it themselves." It is profession and motive in one line, and it sets
   // up what she has just said she wants.
   if (planned.trade !== null) {
-    const street = characterLine(dealer, view, client, 'street');
+    const closing = countWords([{ kind: 'note', text: planned.close.map((l) => l.text).join(' ') }]) + 70;
+    const street = characterLine(dealer, view, client, 'street', {
+      accept: (text) =>
+        !echoes(text, [planned.trade ?? '', arrival ?? '', entrance.text, look?.text ?? '']) &&
+        t.count() + countWords([{ kind: 'note', text: `${planned.trade ?? ''} ${text}` }]) + closing <= OPENING_CEILING,
+    });
     t.say([planned.trade, street?.text].filter((s): s is string => !!s).join(' '), 'narrator', {
       transparent: true,
       verbatim: true,

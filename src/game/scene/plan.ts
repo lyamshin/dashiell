@@ -99,6 +99,12 @@ export interface PresencePerson {
    * observation is about, which says it.
    */
   tie?: KnownTie;
+  /**
+   * M11 §A.2: on a page that is about the room's own finds (the scene, with
+   * the report and the coroner's note), first sight is the look and the tie
+   * without the street's view: the page's business is the body.
+   */
+  brief?: boolean;
 }
 
 /** M11 §A.5: one person in the client's rundown. */
@@ -934,6 +940,7 @@ export function planPage(input: PlanInput): Plan {
     for (const x of tied) {
       if (x.p.firstSight && x !== observed && x.tie) x.p.tie = x.tie;
     }
+    if (opening0.length > 0) for (const p of presence.beat.people) if (p.firstSight) p.brief = true;
 
     const opening = action.kind === 'travel' ? (action.openingClues ?? []) : [];
     for (const clue of opening) beats.push({ kind: 'find', required: true, clueId: clue.id });

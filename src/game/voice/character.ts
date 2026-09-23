@@ -110,6 +110,35 @@ export function fillCharacter(view: CaseView, card: Card, person: Person): strin
   return fill(card, characterSlots(view, person));
 }
 
+/**
+ * Does a card say again what the page has just said? Three words running in
+ * common, or the arrival's own "came up the stairs": "He took whatever walks
+ * up the stairs" as her trade, and then a street line about whatever came up
+ * the stairs, is the same image twice in two sentences.
+ */
+export function echoes(text: string, others: readonly string[]): boolean {
+  const words = (t: string): string[] =>
+    t
+      .toLowerCase()
+      .replace(/[^a-z’' ]+/g, ' ')
+      .split(/\s+/)
+      .filter((w) => w.length > 0);
+  const STOP = new Set(['the', 'a', 'an', 'and', 'of', 'to', 'in', 'on', 'at', 'he', 'she', 'his', 'her', 'was', 'it', 'i', 'for', 'with', 'that']);
+  const grams = (t: string): Set<string> => {
+    const w = words(t);
+    const out = new Set<string>();
+    for (let i = 0; i + 2 < w.length; i++) {
+      const g = w.slice(i, i + 3);
+      if (g.every((x) => STOP.has(x))) continue;
+      out.add(g.join(' '));
+    }
+    return out;
+  };
+  if (/\b(?:came|comes|walks|walked) up the stairs\b/i.test(text) && others.some((o) => /\bup the stairs\b/i.test(o))) return true;
+  const mine = grams(text);
+  return others.some((o) => [...grams(o)].some((g) => mine.has(g)));
+}
+
 function DECK(): Card[] {
   return DECKS.character ?? [];
 }

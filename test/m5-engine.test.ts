@@ -7,6 +7,7 @@
  * nothing on any page names a person or an hour the case does not have.
  */
 
+import { pastPredicate } from '../src/game/scene/text.js';
 import { describe, expect, it } from 'vitest';
 import { generateCase, type CaseType, type Difficulty } from '../src/gen/index.js';
 import { TROPE_IDS } from '../src/gen/tropes/index.js';
@@ -182,7 +183,33 @@ describe('the briefing page', () => {
           `seed ${seed}: what he can see`,
         ).toBe(true);
       }
+      // M11 §A.1: the office in the order a person tells it. Three sentences
+      // reach the page in the new order's words: the relation, said first,
+      // names the dead man in full ("I am Isidore Sirkin's sister-in-law");
+      // the death, said right after it, is "He is dead"; and her trade is his
+      // narration, in the past ("She traded on the street for…"). A turn's
+      // first word for the dead man is his name, not "He".
+      const victim = view.victim;
+      const tie = client.dossier?.tie.text ?? '§';
+      const relationSaid = `I am ${tie.includes(victim.surname) ? tie.replace(victim.surname, victim.name) : tie}`;
+      const detailRecord = client.dossier ? `${client.surname} ${client.dossier.profession.detail}.` : '§';
+      const pronounHead = new RegExp(`^${pronounOf(victim) === 'she' ? 'She' : 'He'}\\b`);
+      const reordered = (line: (typeof view.kase.briefing)[number]): boolean => {
+        if (line.text === `${victim.name} is dead.`) return /\b(?:He|She) is dead\b/.test(text);
+        if (line.text === `${client.surname} is ${tie}.`) return text.includes(bare(relationSaid));
+        if (line.text.replace(/\s+/g, ' ') === detailRecord.replace(/\s+/g, ' ')) {
+          return text.includes(bare(pronounSubject(pastPredicate(detailRecord), client.surname, pronounOf(client))));
+        }
+        const said = line.spoken ?? '';
+        if (pronounHead.test(said) && text.includes(bare(said.replace(pronounHead, victim.surname)))) return true;
+        // And the office's own pronoun pass, on its own turns (Hone 3 §3's
+        // rule, run again): the dead man named once a turn, then "he".
+        const neutral = (s: string): string =>
+          bare(s).replace(new RegExp(`\\b(?:${victim.surname}(?:[’']s)?|He|he|him|his|She|she|her)\\b`, 'g'), '§');
+        return said.length > 0 && neutral(text).includes(neutral(said));
+      };
       const allowed = (line: (typeof view.kase.briefing)[number], i: number): boolean => {
+        if (reordered(line)) return true;
         // §A.4 cuts the arrival atom to fit in front of the entrance card, and
         // drops it where the card climbs the stairs itself. Either way the
         // page says once that somebody came up the stairs.

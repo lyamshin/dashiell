@@ -777,6 +777,10 @@ export function layerSentences(person: Person, layer: 0 | 1 | 2 | 3): string[] {
     const line = dossierSentence(person, f);
     if (line.length > 0 && !out.includes(line)) out.push(line);
   }
+  // M11 §B.1: what they volunteer about themselves now includes how they
+  // came to the work, which every telling of a life starts with.
+  const history = person.dossier?.character?.history.text;
+  if (layer === 1 && history !== undefined && !out.includes(history)) out.push(history);
   return out;
 }
 

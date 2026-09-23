@@ -27,7 +27,7 @@ import type { Family } from './families.js';
 import { SEEN_FAMILIES, thingTopic } from './families.js';
 import { observation, tieSentence } from './people.js';
 import { bareRoleOf } from './plan.js';
-import { characterLine } from '../voice/character.js';
+import { characterLine, echoes } from '../voice/character.js';
 import { verdictsOn } from '../m9.js';
 import { temperOf } from '../voice/cast.js';
 import {
@@ -1188,10 +1188,10 @@ function presenceLine(stage: Stage, p: PresencePerson, named: ReadonlySet<Id> = 
     const clause = visibleTrade(person);
     if (clause) parts.push(`${He} was ${/^(?:the|a|an) /i.test(clause) ? clause : `${/^[aeiou]/i.test(clause) ? 'an' : 'a'} ${clause}`}.`);
     else {
-      const look = characterLine(stage.dealer, view, person, 'look');
+      const look = characterLine(stage.dealer, view, person, 'look', { accept: (t) => !echoes(t, parts) });
       if (look) parts.push(look.text);
     }
-    const street = characterLine(stage.dealer, view, person, 'street');
+    const street = p.brief ? null : characterLine(stage.dealer, view, person, 'street', { accept: (t) => !echoes(t, parts) });
     if (street) parts.push(street.text);
     if (p.tie) parts.push(tieSentence(view, person, p.tie));
   } else if (p.recall) {
