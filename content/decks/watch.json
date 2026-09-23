@@ -602,7 +602,7 @@
   {
     "id": "wch-061",
     "deck": "watch",
-    "text": "Nobody minded who used the stairs.",
+    "text": "Nobody minded who came and went.",
     "tags": {
       "watcher": "none"
     },
@@ -622,7 +622,7 @@
   {
     "id": "wch-063",
     "deck": "watch",
-    "text": "Nobody watched that door, and nobody ever had.",
+    "text": "Nobody kept watch there, and nobody ever had.",
     "tags": {
       "watcher": "none"
     },
@@ -653,6 +653,66 @@
     "id": "wch-066",
     "deck": "watch",
     "text": "Nobody was paid to notice, so nobody did.",
+    "tags": {
+      "watcher": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "wch-067",
+    "deck": "watch",
+    "text": "Nobody there was paid to keep track of anybody.",
+    "tags": {
+      "watcher": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "wch-068",
+    "deck": "watch",
+    "text": "There was nobody on duty, and nobody to ask who had been by.",
+    "tags": {
+      "watcher": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "wch-069",
+    "deck": "watch",
+    "text": "Nobody kept a list of who came and went, on paper or in their head.",
+    "tags": {
+      "watcher": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "wch-070",
+    "deck": "watch",
+    "text": "Anybody could have come and gone, and nobody would have known it.",
+    "tags": {
+      "watcher": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "wch-071",
+    "deck": "watch",
+    "text": "Nobody had the job of noticing who came by.",
+    "tags": {
+      "watcher": "none"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "wch-072",
+    "deck": "watch",
+    "text": "No clerk, no doorman, nobody behind a counter: nobody saw who came.",
     "tags": {
       "watcher": "none"
     },
