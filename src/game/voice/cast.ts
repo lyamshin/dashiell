@@ -12,7 +12,7 @@ import type { Case, Id, Person } from '../../gen/types.js';
 import { ARCHETYPE_BY_ID, VICTIM_ARCHETYPES } from '../../gen/data/cast.js';
 import { NAME_POOLS } from '../../gen/data/names.js';
 import weightsJson from '../../../content/temper-weights.json';
-import { DECKS, fill, motifsOf, tagIs, tagOf, type Card, type Slots } from './cards.js';
+import { DECKS, fill, leastRead, motifsOf, readCounts, tagIs, tagOf, type Card, type Slots } from './cards.js';
 import { tidyPunctuation } from './prose.js';
 import { contradictsWeather } from './motifs.js';
 import { rollDashiell, type DashiellRoll } from './roll.js';
@@ -127,6 +127,7 @@ export function classOf(person: Person): string {
 }
 
 const PORTRAIT_SALT = 0x27d4eb;
+const TEMPER_SALT = 0x165667b1;
 
 /**
  * M10 §A.5: the ages a portrait's `ageBand` can be worn at. "A voice thinned
@@ -150,35 +151,168 @@ export function ageFits(band: unknown, age: number | undefined): boolean {
 }
 
 /**
- * One trait, one habit and one piece of clothing per person, drawn against
- * the burn pile so that a player does not meet the same split thumbnail two
- * runs running. Everything is chosen here, once; the page grammar only ever
- * reads it back.
+ * Every person's temper, as the case has always rolled it.
+ *
+ * Tempers came off the same stream as the portraits, one draw ahead of each
+ * person's cards, so the portraits' draws moved them. docs/25 changes how the
+ * portraits are drawn — against the reader's history, and against the rest of
+ * tonight's cast — and that would have moved every temper in every case, the
+ * goldens' included, and made a temper depend on who is reading. So the old
+ * stream is replayed here exactly as it ran for a reader with no history: the
+ * same draws in the same order, the cards thrown away, the tempers kept.
+ */
+function rollTempers(kase: Case, seed: number, weather: DashiellRoll['weather']): Record<Id, Temper> {
+  const rng = new Rng((seed * 1103515245 + PORTRAIT_SALT) >>> 0);
+  const burned = new Set<string>();
+  const deck = DECKS.portraits;
+  const pairDeck = DECKS['portrait-pairs'];
+  const temper: Record<Id, Temper> = {};
+  for (const person of kase.people) {
+    if (person.kind !== 'victim') temper[person.id] = pickWeighted(rng, weightsFor(person));
+    const gender = genderHintOf(person);
+    const klass = classOf(person);
+    const age = person.dossier?.age;
+    for (const component of ['trait', 'habit', 'clothing'] as const) {
+      const fits = (c: Card): boolean =>
+        tagIs('portraits', c, 'component', component) &&
+        (tagIs('portraits', c, 'gender', gender) || gender === 'any') &&
+        ageFits(tagOf('portraits', c, 'ageBand'), age) &&
+        !contradictsWeather(motifsOf(c), c, weather);
+      const exact = deck.filter((c) => fits(c) && tagIs('portraits', c, 'class', klass));
+      const loose = deck.filter(fits);
+      const pick =
+        rng.shuffle(exact.filter((c) => !burned.has(c.id)))[0] ??
+        rng.shuffle(loose.filter((c) => !burned.has(c.id)))[0] ??
+        rng.shuffle(exact)[0] ??
+        rng.shuffle(loose)[0];
+      if (pick) burned.add(pick.id);
+    }
+    const pairFits = (c: Card): boolean =>
+      (gender === 'any' || tagIs('portrait-pairs', c, 'gender', gender)) &&
+      ageFits(tagOf('portrait-pairs', c, 'ageBand'), age) &&
+      !contradictsWeather(motifsOf(c), c, weather);
+    const ladder: ((c: Card) => boolean)[] = [
+      (c) =>
+        pairFits(c) &&
+        tagIs('portrait-pairs', c, 'class', klass) &&
+        tagIs('portrait-pairs', c, 'setting', person.isClient === true ? 'office' : 'anywhere'),
+      (c) => pairFits(c) && tagIs('portrait-pairs', c, 'class', klass),
+      pairFits,
+    ];
+    for (const rung of ladder) {
+      const fits = pairDeck.filter(rung);
+      const card = rng.shuffle(fits.filter((c) => !burned.has(c.id)))[0] ?? rng.shuffle(fits)[0];
+      if (!card) continue;
+      const recall = typeof card.recall === 'string' ? card.recall.trim() : '';
+      if (fill(card, pronounSlots(person)) === null || recall.length === 0) continue;
+      burned.add(card.id);
+      break;
+    }
+  }
+  return temper;
+}
+
+/**
+ * One portrait pair per person — or, where the pair deck has nothing for them,
+ * one trait, one habit and one piece of clothing — drawn against the reader's
+ * history so that a player does not meet the same split thumbnail two nights
+ * running, and against tonight's cast so that two people never share one.
+ * Everything is chosen here, once; the page grammar only ever reads it back.
  */
 export function rollCast(
   kase: Case,
   opts?: { seed?: number; persistedBurned?: Iterable<string> },
 ): CastSheet {
   const seed = opts?.seed ?? kase.seed;
-  const rng = new Rng((seed * 1103515245 + PORTRAIT_SALT) >>> 0);
-  const burned = new Set(opts?.persistedBurned ?? []);
+  const rng = new Rng((seed * 1103515245 + TEMPER_SALT) >>> 0);
+  // docs/25: how often the reader has met each card on earlier nights, and
+  // what tonight's cast has already been given. A card is never handed to a
+  // second person tonight while anything else fits; across nights the one the
+  // reader has met least often goes first, which reshuffles a key once every
+  // card in it has been met.
+  const reads = readCounts(opts?.persistedBurned ?? []);
+  const tonight = new Set<string>();
+  const choose = (cards: Card[]): Card | undefined => {
+    const open = cards.filter((c) => !tonight.has(c.id));
+    if (open.length === 0) return undefined;
+    return rng.shuffle(leastRead(open, (c) => reads.get(c.id) ?? 0))[0];
+  };
   const deck = DECKS.portraits;
   // The night is rolled first, because a portrait has to agree with it (§A.5).
   const roll = rollDashiell(kase, opts?.seed === undefined ? {} : { seed: opts.seed });
   const weather = roll.weather;
 
-  const temper: Record<Id, Temper> = {};
+  // A person's temper is the case's, whoever is reading (see `rollTempers`).
+  const temper = rollTempers(kase, seed, weather);
   const portraits: Record<Id, Portrait> = {};
   const order: Record<Id, number> = {};
 
   for (const person of kase.people) {
-    if (person.kind !== 'victim') temper[person.id] = pickWeighted(rng, weightsFor(person));
     const gender = genderHintOf(person);
     const klass = classOf(person);
     const age = person.dossier?.age;
     const cardIds: string[] = [];
     const motifs: string[] = [];
     const parts: Record<string, string> = {};
+    /*
+     * §B.4. One pair card is the portrait. The office cards are written for
+     * somebody sitting down across a desk, so the client prefers them and
+     * everybody else takes what is left.
+     *
+     * docs/25: nobody else tonight has this pair while anything else fits. The
+     * ladder widens before two people share one description; only a deck too
+     * thin for the whole cast hands a card round twice.
+     */
+    const pairDeck = DECKS['portrait-pairs'];
+    const wantsOffice = person.isClient === true;
+    const pairFits = (c: Card): boolean =>
+      (gender === 'any' || tagIs('portrait-pairs', c, 'gender', gender)) &&
+      ageFits(tagOf('portrait-pairs', c, 'ageBand'), age) &&
+      !contradictsWeather(motifsOf(c), c, weather) &&
+      typeof c.recall === 'string' &&
+      c.recall.trim().length > 0 &&
+      fill(c, pronounSlots(person)) !== null;
+    const pairLadder: ((c: Card) => boolean)[] = [
+      (c) =>
+        pairFits(c) &&
+        tagIs('portrait-pairs', c, 'class', klass) &&
+        tagIs('portrait-pairs', c, 'setting', wantsOffice ? 'office' : 'anywhere'),
+      (c) => pairFits(c) && tagIs('portrait-pairs', c, 'class', klass),
+      pairFits,
+    ];
+    let card: Card | undefined;
+    for (const rung of pairLadder) {
+      card = choose(pairDeck.filter(rung));
+      if (card) break;
+    }
+    if (!card) {
+      const shared = pairLadder.map((rung) => pairDeck.filter(rung)).find((fits) => fits.length > 0) ?? [];
+      card = rng.shuffle(leastRead(shared, (c) => reads.get(c.id) ?? 0))[0];
+    }
+    let pair: Portrait['pair'];
+    if (card) {
+      tonight.add(card.id);
+      cardIds.push(card.id);
+      for (const m of motifsOf(card)) if (!motifs.includes(m)) motifs.push(m);
+      // M8 §4: the recall as something the person does, filled like the text.
+      const action =
+        typeof card.recallAction === 'string' ? fillText(card.recallAction, pronounSlots(person)) : null;
+      pair = {
+        text: tidyPunctuation(fill(card, pronounSlots(person)) as string),
+        recall: (card.recall as string).trim(),
+        cardId: card.id,
+        ...(action ? { action: tidyPunctuation(action.charAt(0).toUpperCase() + action.slice(1)) } : {}),
+      };
+    }
+
+    /*
+     * The three components: one trait, one habit and one piece of clothing.
+     * A person the pair deck has nothing for is described by them. Everybody
+     * has them rolled, because their motifs are part of the person's motif set
+     * the page threads on; but they are counted as read — spent, for the
+     * reader's history — only where they are what the page prints. docs/22
+     * found about 25 a night burned and never printed.
+     */
     for (const component of ['trait', 'habit', 'clothing'] as const) {
       const fits = (c: Card): boolean =>
         tagIs('portraits', c, 'component', component) &&
@@ -189,59 +323,12 @@ export function rollCast(
         !contradictsWeather(motifsOf(c), c, weather);
       const exact = deck.filter((c) => fits(c) && tagIs('portraits', c, 'class', klass));
       const loose = deck.filter(fits);
-      const pick =
-        rng.shuffle(exact.filter((c) => !burned.has(c.id)))[0] ??
-        rng.shuffle(loose.filter((c) => !burned.has(c.id)))[0] ??
-        rng.shuffle(exact)[0] ??
-        rng.shuffle(loose)[0];
+      const pick = choose(exact) ?? choose(loose) ?? rng.shuffle(exact)[0] ?? rng.shuffle(loose)[0];
       if (!pick) continue;
-      burned.add(pick.id);
-      cardIds.push(pick.id);
+      tonight.add(pick.id);
+      if (pair === undefined) cardIds.push(pick.id);
       for (const m of motifsOf(pick)) if (!motifs.includes(m)) motifs.push(m);
       parts[component] = pick.text;
-    }
-    /*
-     * §B.4. One pair card in place of the list, drawn on the same tags and
-     * against the same burn pile. The office cards are written for somebody
-     * sitting down across a desk, so the client prefers them and everybody
-     * else takes what is left; a person the deck has nothing for keeps the
-     * three components, which is what the fallback is for.
-     */
-    const pairDeck = DECKS['portrait-pairs'];
-    const wantsOffice = person.isClient === true;
-    const pairFits = (c: Card): boolean =>
-      (gender === 'any' || tagIs('portrait-pairs', c, 'gender', gender)) &&
-      ageFits(tagOf('portrait-pairs', c, 'ageBand'), age) &&
-      !contradictsWeather(motifsOf(c), c, weather);
-    const pairLadder: ((c: Card) => boolean)[] = [
-      (c) =>
-        pairFits(c) &&
-        tagIs('portrait-pairs', c, 'class', klass) &&
-        tagIs('portrait-pairs', c, 'setting', wantsOffice ? 'office' : 'anywhere'),
-      (c) => pairFits(c) && tagIs('portrait-pairs', c, 'class', klass),
-      pairFits,
-    ];
-    let pair: Portrait['pair'];
-    for (const rung of pairLadder) {
-      const fits = pairDeck.filter(rung);
-      const card = rng.shuffle(fits.filter((c) => !burned.has(c.id)))[0] ?? rng.shuffle(fits)[0];
-      if (!card) continue;
-      const text = fill(card, pronounSlots(person));
-      const recall = typeof card.recall === 'string' ? card.recall.trim() : '';
-      if (text === null || recall.length === 0) continue;
-      burned.add(card.id);
-      cardIds.push(card.id);
-      for (const m of motifsOf(card)) if (!motifs.includes(m)) motifs.push(m);
-      // M8 §4: the recall as something the person does, filled like the text.
-      const action =
-        typeof card.recallAction === 'string' ? fillText(card.recallAction, pronounSlots(person)) : null;
-      pair = {
-        text: tidyPunctuation(text),
-        recall,
-        cardId: card.id,
-        ...(action ? { action: tidyPunctuation(action.charAt(0).toUpperCase() + action.slice(1)) } : {}),
-      };
-      break;
     }
 
     portraits[person.id] = {

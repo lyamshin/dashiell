@@ -5,14 +5,17 @@ import { newRun, stepInput } from '../../src/game/reducer.js';
 import {
   addBurned,
   clearRun,
+  closingHistory,
   deserializeRun,
   loadBurned,
+  loadReads,
   loadRun,
+  noteClosing,
   saveRun,
   serializeRun,
   type KeyValueStore,
 } from '../../src/game/storage.js';
-import { ALL_CARDS, type Card } from '../../src/game/voice/index.js';
+import { DECKS, settleReads, type Card } from '../../src/game/voice/index.js';
 import { BURNED_KEY, SAVE_KEY } from '../../src/game/types.js';
 
 function memoryStore(): KeyValueStore & { data: Map<string, string> } {
@@ -72,40 +75,87 @@ describe('the run survives a reload', () => {
     expect(() => clearRun(hostile)).not.toThrow();
   });
 
-  it('clears the run without clearing the burned pile', () => {
+  it('clears the run without clearing the reader’s history', () => {
     const store = memoryStore();
     saveRun(store, newRun(view, { detectiveName: 'Dashiell' }));
-    addBurned(store, ['SIM-001'], ALL_CARDS.length);
+    addBurned(store, ['SIM-001'], settleReads);
     clearRun(store);
     expect(loadRun(store)).toBeNull();
     expect(loadBurned(store)).toEqual(['SIM-001']);
   });
 });
 
-describe('burned cards outlive the run', () => {
-  it('accumulates across runs', () => {
+describe('the reader’s history outlives the run (docs/25)', () => {
+  it('counts every read, across runs', () => {
     const store = memoryStore();
-    addBurned(store, ['SIM-001', 'WIT-002'], ALL_CARDS.length);
-    addBurned(store, ['WIT-002', 'PLACE-003'], ALL_CARDS.length);
-    expect(loadBurned(store).sort()).toEqual(['PLACE-003', 'SIM-001', 'WIT-002']);
+    addBurned(store, ['SIM-001', 'WIT-002'], settleReads);
+    addBurned(store, ['WIT-002', 'PLACE-003'], settleReads);
+    // An id once for each time it was read: the dealer counts the repeats.
+    expect(loadBurned(store).sort()).toEqual(['PLACE-003', 'SIM-001', 'WIT-002', 'WIT-002']);
+    expect(loadReads(store).get('WIT-002')).toBe(2);
     expect(store.data.has(BURNED_KEY)).toBe(true);
   });
 
-  it('reshuffles the pile once every card has been read', () => {
+  it('takes a round off a deck once every card in it has been read', () => {
     const store = memoryStore();
-    const everything = ALL_CARDS.map((c: Card) => c.id);
-    addBurned(store, everything, ALL_CARDS.length);
-    // Full: the next run starts from just what it burned itself.
-    const after = addBurned(store, ['SIM-001'], ALL_CARDS.length);
-    expect(after).toEqual(['SIM-001']);
-    expect(loadBurned(store)).toEqual(['SIM-001']);
+    const office = DECKS.office.map((c: Card) => c.id);
+    addBurned(store, office.slice(1), settleReads);
+    // One card still unread: nothing settles, and the reads stand.
+    expect(loadReads(store).get(office[1] as string)).toBe(1);
+    addBurned(store, [office[0] as string, office[1] as string], settleReads);
+    // The last one read: every card down by one, and the one read twice keeps
+    // its lead, so the dealer still holds it back.
+    const reads = loadReads(store);
+    expect(reads.get(office[0] as string)).toBeUndefined();
+    expect(reads.get(office[1] as string)).toBe(1);
+    expect(reads.get(office[2] as string)).toBeUndefined();
   });
 
-  it('ignores a pile that is not a list of strings', () => {
+  it('keeps the counts small however many nights are played', () => {
+    const store = memoryStore();
+    const hours = DECKS.hours.map((c: Card) => c.id);
+    for (let night = 0; night < 50; night++) addBurned(store, hours, settleReads);
+    expect(Math.max(0, ...loadReads(store).values())).toBeLessThanOrEqual(1);
+  });
+
+  it('loads the old pile, a plain list, as one read each, and ignores anything else', () => {
     const store = memoryStore();
     store.setItem(BURNED_KEY, '{"nope":true}');
     expect(loadBurned(store)).toEqual([]);
     store.setItem(BURNED_KEY, '[1,2,"SIM-001"]');
     expect(loadBurned(store)).toEqual(['SIM-001']);
+    store.setItem(BURNED_KEY, '{"v":2,"reads":{"SIM-001":2,"WIT-002":"x","PLACE-003":-1}}');
+    expect(loadBurned(store)).toEqual(['SIM-001', 'SIM-001']);
+  });
+
+  it('forgets quietly when the store is blocked', () => {
+    const hostile: KeyValueStore = {
+      getItem: () => {
+        throw new Error('blocked');
+      },
+      setItem: () => {
+        throw new Error('blocked');
+      },
+      removeItem: () => {
+        throw new Error('blocked');
+      },
+    };
+    expect(() => addBurned(hostile, ['SIM-001'], settleReads)).not.toThrow();
+    expect(loadBurned(hostile)).toEqual([]);
+    expect(closingHistory(hostile, 'x')).toEqual([]);
+    expect(() => noteClosing(hostile, 'x', ['END-001'], settleReads)).not.toThrow();
+  });
+
+  it('counts a closing page once a case, and deals it the same on a reload', () => {
+    const store = memoryStore();
+    addBurned(store, ['SIM-001'], settleReads);
+    const first = closingHistory(store, '7|4|2');
+    noteClosing(store, '7|4|2', ['STY-001', 'STY-002'], settleReads);
+    // Drawn again: the same history as the first time, and no second count.
+    expect(closingHistory(store, '7|4|2')).toEqual(first);
+    noteClosing(store, '7|4|2', ['STY-001', 'STY-002'], settleReads);
+    expect(loadReads(store).get('STY-001')).toBe(1);
+    // The next case's closing is dealt knowing this one was read.
+    expect(closingHistory(store, '8|4|2')).toContain('STY-001');
   });
 });

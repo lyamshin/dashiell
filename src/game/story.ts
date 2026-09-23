@@ -40,6 +40,7 @@ import { MOTIVE_BY_TYPE } from '../gen/data/motives.js';
 import { genderForms } from '../gen/dossier.js';
 import { wrap } from './transcript.js';
 import { tidyPunctuation } from './voice/prose.js';
+import { leastRead, readCounts } from './voice/cards.js';
 
 /* ------------------------------------------------------------ the input */
 
@@ -458,7 +459,11 @@ class Teller {
   private readonly base: Slots;
   private readonly context: Query;
 
-  constructor(readonly input: StoryInput) {
+  constructor(
+    readonly input: StoryInput,
+    /** How often the reader has read each story card (docs/25). */
+    private readonly reads: ReadonlyMap<string, number> = new Map(),
+  ) {
     const { culprit, victim } = input;
     const a = pronouns(culprit.gender);
     const v = pronouns(victim.gender);
@@ -559,6 +564,10 @@ class Teller {
     const lastOpener = last === undefined ? null : opener(cardText(last.cardId));
     const varied = pool.filter((c) => opener(c.text) !== lastOpener);
     if (varied.length > 0) pool = varied;
+    // docs/25: a line the reader has read in an earlier story waits until the
+    // rest of the beat's cards have been read; then the beat reshuffles. The
+    // weights below still favour the specific, among what is left.
+    if (this.reads.size > 0) pool = leastRead(pool, (c) => this.reads.get(c.id) ?? 0);
     // The first and last lines turn over with the seed rather than falling
     // where the hash puts them, so that two cases running never open, or
     // close, the same way.
@@ -651,8 +660,8 @@ function dedupe(facts: StoryFact[]): StoryFact[] {
 }
 
 /** The story of one case, from the fields `storyInput` copied out of it. */
-export function tellStory(input: StoryInput): Story {
-  const s = new Teller(input);
+export function tellStory(input: StoryInput, history: Iterable<string> = []): Story {
+  const s = new Teller(input, readCounts(history));
   const { culprit, victim, act, means } = input;
   const M = act.tick;
   const cid = culprit.id;
@@ -1002,8 +1011,18 @@ function motiveThird(input: StoryInput): string | null {
 
 /* ------------------------------------------------------------ outputs */
 
-export function storyOf(kase: Case): Story {
-  return tellStory(storyInput(kase));
+/**
+ * The story of one case. With the reader's history (docs/25) it keeps off the
+ * lines they have read in earlier stories; with none, one case always tells
+ * the same story.
+ */
+export function storyOf(kase: Case, history: Iterable<string> = []): Story {
+  return tellStory(storyInput(kase), history);
+}
+
+/** Every story card a told story used, for the reader's history. */
+export function storyCardIds(story: Story): string[] {
+  return story.paragraphs.flatMap((p) => p.map((l) => l.cardId));
 }
 
 /** The story as paragraphs of plain text, for the page. */

@@ -70,9 +70,17 @@ export interface Verdict {
   closing: string[];
   /** Where the engine wrote a closing the endings deck should have. */
   gaps: string[];
+  /** The deck cards the closing page dealt, for the reader's history (docs/25). */
+  cardsUsed?: string[];
 }
 
-export function scoreReport(view: CaseView, state: RunState, report: Report): Verdict {
+export function scoreReport(
+  view: CaseView,
+  state: RunState,
+  report: Report,
+  /** The reader's history (docs/25): the last line is one they have not read. */
+  history: Iterable<string> = [],
+): Verdict {
   const fields: FieldResult[] = fieldsFor(view).map((spec) => {
     const given = answerFor(report, spec.key);
     const truth = truthFor(view, spec.key);
@@ -114,7 +122,7 @@ export function scoreReport(view: CaseView, state: RunState, report: Report): Ve
           ? 'solved'
           : 'thin';
 
-  const closing = closingFor(view, state, fields, outcome, points, report, column);
+  const closing = closingFor(view, state, fields, outcome, points, report, column, history);
   const proofs = column.length > 0 || view.kase.logic ? proofLines(view) : undefined;
   return {
     column,
@@ -130,6 +138,7 @@ export function scoreReport(view: CaseView, state: RunState, report: Report): Ve
     par: gamePar(view.kase),
     closing: closing.paragraphs,
     gaps: closing.gaps,
+    cardsUsed: closing.cardsUsed,
   };
 }
 
@@ -240,7 +249,8 @@ function closingFor(
   points: number,
   report: Report,
   column: ColumnResult[] = [],
-): { paragraphs: string[]; gaps: string[] } {
+  history: Iterable<string> = [],
+): { paragraphs: string[]; gaps: string[]; cardsUsed: string[] } {
   const kase = view.kase;
   const act = kase.act;
   const gaps: string[] = [];
@@ -286,7 +296,10 @@ function closingFor(
   const parDelta =
     state.actionsUsed < gamePar(kase) ? 'under' : state.actionsUsed === gamePar(kase) ? 'at' : 'over';
   const deckOutcome = outcome === 'thin' ? 'thin-case' : outcome;
-  const dealer = new Dealer((kase.seed * 8191 + points) >>> 0, [], []);
+  // Off the case seed and the reader's history, so one reader's one case
+  // closes the same way however often the page is drawn (storage.ts keeps the
+  // history as it stood when the page was first read).
+  const dealer = new Dealer((kase.seed * 8191 + points) >>> 0, [], history);
   const fits = (c: Parameters<typeof tagIs>[1]): boolean =>
     tagIs('endings', c, 'caseType', act.type) && tagIs('endings', c, 'trope', act.tropeId);
   const ending = dealer.draw(
@@ -313,7 +326,7 @@ function closingFor(
       `missing-deck: endings has no ${act.type} × ${outcome} card; the hand-written closing stood alone`,
     );
   }
-  return { paragraphs: out, gaps };
+  return { paragraphs: out, gaps, cardsUsed: dealer.spent };
 }
 
 /**

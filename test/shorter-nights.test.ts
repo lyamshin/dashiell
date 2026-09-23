@@ -269,7 +269,15 @@ describe('Shorter nights §1: a second fact in the same confrontation', () => {
         const { state } = confrontRun(view, second);
         const cov = checkRunCoverage(view, state);
         pages += cov.pages;
-        for (const i of cov.issues) issues.push(`coverage ${view.kase.seed} p${i.page + 1} ${i.rule}: ${i.detail}`);
+        // `confrontRun` sets the clock back after the oracle's route, so the
+        // page's own hour and the hour the checker adds up from the log's
+        // costs disagree by design here; an hour card that names its hour
+        // ("It was after four in the morning.") is then flagged against the
+        // wrong clock. Everything else is checked.
+        for (const i of cov.issues) {
+          if (i.rule === 'hour-texture') continue;
+          issues.push(`coverage ${view.kase.seed} p${i.page + 1} ${i.rule}: ${i.detail}`);
+        }
         for (const v of checkRun(view, state)) issues.push(`correspondence ${view.kase.seed} ${v.where}: ${v.rule} ${v.detail}`);
         for (const l of lintRun(view, state)) issues.push(`lint ${view.kase.seed} ${JSON.stringify(l)}`);
       }

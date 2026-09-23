@@ -41,13 +41,13 @@ import { choicesFor } from '../src/game/choices.js';
 import { playOracle, playWandering } from '../src/game/oracle.js';
 import { fileReport, newRun, stepInput } from '../src/game/reducer.js';
 import { scoreReport } from '../src/game/scoring.js';
-import { storyOf } from '../src/game/story.js';
-import { addBurned, loadBurned, type KeyValueStore } from '../src/game/storage.js';
+import { storyCardIds, storyOf } from '../src/game/story.js';
+import { addBurned, closingHistory, loadBurned, noteClosing, type KeyValueStore } from '../src/game/storage.js';
 import { activityRole } from '../src/game/scene/plan.js';
 import { classOf, genderHintOf } from '../src/game/voice/cast.js';
 import storyJson from '../content/decks/story.json';
 import {
-  CROSS_RUN_TOTAL,
+  settleReads,
   DECKS,
   DECK_NAMES,
   Dealer,
@@ -334,6 +334,13 @@ interface Ctx {
   outside: number;
 }
 const CTX: Ctx = { active: false, deals: [], pending: new Map(), outside: 0 };
+/**
+ * Fallback by deck, whatever else the deal was: of the draws that dealt a
+ * card, how many came off a rung wider than the one asked for; and how many
+ * draws dealt nothing. Counted apart from the outcome, where a stale card
+ * hides a widened one.
+ */
+const FALLBACK = new Map<string, { draws: number; off: number; none: number }>();
 
 function siteOf(stack: string): { site: string; fn: string } {
   const frames = stack.split('\n').slice(1).map((l) => l.trim());
@@ -376,7 +383,7 @@ const STARVED = new Map<string, { cards: Set<string>; asks: number; sites: Map<s
     CTX.outside++;
     return originalDraw.call(this, deck, matches, slots, strict, ctx);
   }
-  const self = this as unknown as { order: string[]; persisted: Set<string> };
+  const self = this as unknown as { order: string[]; readCount(id: string): number };
   const lenBefore = self.order.length;
   const pool = DECKS[deck] ?? [];
   const weatherOk = (c: Card): boolean => !ctx || scoreMotifs(motifsOf(c), c, ctx) !== -Infinity;
@@ -434,10 +441,17 @@ const STARVED = new Map<string, { cards: Set<string>; asks: number; sites: Map<s
     poolRaw = setR.length;
     key = keyOf(deck, probe(deck, used, setR, card), card);
   }
+  {
+    const f = FALLBACK.get(deck) ?? { draws: 0, off: 0, none: 0 };
+    f.draws++;
+    if (!res) f.none++;
+    else if (rung > 0) f.off++;
+    FALLBACK.set(deck, f);
+  }
   let outcome: Outcome;
   if (!res) outcome = 'dropped';
   else if (self.order.slice(0, lenBefore).includes(res.cardId)) outcome = 'repeat';
-  else if (burnTier(deck) === 'run-to-run' && self.persisted.has(res.cardId)) outcome = 'stale';
+  else if (burnTier(deck) === 'run-to-run' && self.readCount(res.cardId) > 0) outcome = 'stale';
   else if (rung > 0) outcome = 'widened';
   else outcome = 'fresh';
   const deal: Deal = {
@@ -502,7 +516,15 @@ interface Person {
   firstStale: Map<string, number>;
   /** Per key: distinct cards read. */
   keySeen: Map<string, Set<string>>;
+  /** The run this person last read each card in. */
+  last?: Map<string, number>;
 }
+/**
+ * When a card comes back on a later night, how many nights since the reader
+ * last read it, by deck. With no memory a card comes back at random; with the
+ * dealer's memory it comes back only once the rest of its key has been read.
+ */
+const GAPS = new Map<string, number[]>();
 
 const people: Record<PlayerId, Person[]> = {
   oracle: [],
@@ -631,7 +653,15 @@ const LATE_END = 20;
 
 let RUN = 0;
 /** Engine-side repetition the key tables do not show on their own. */
-const EXTRA = { pairTwiceNights: 0, activityAgain: 0, activityAgainNights: 0 };
+const EXTRA = {
+  pairTwiceNights: 0,
+  activityAgain: 0,
+  activityAgainNights: 0,
+  /** A person's recall action on two pages of one visit (docs/25 keeps it to one). */
+  recallTwiceVisit: 0,
+  recallTwiceVisitNights: 0,
+  recallVisits: 0,
+};
 /** Nights played inside the stale window, over every person. */
 let LATE_RUNS = 0;
 const RUN_CONFIG: string[] = [];
@@ -690,6 +720,16 @@ function account(person: Person, deal: Deal, page: number, runSeen: Map<string, 
   if (late) {
     d.visLate++;
     k.visLate++;
+  }
+  {
+    const last = (person.last ??= new Map());
+    const was = last.get(deal.cardId);
+    if (!runSeen.has(deal.cardId) && was !== undefined && was < runIndex) {
+      const g = GAPS.get(deal.deck) ?? [];
+      g.push(runIndex - was);
+      GAPS.set(deal.deck, g);
+    }
+    last.set(deal.cardId, runIndex);
   }
   if (runSeen.has(deal.cardId)) {
     d.visRepeats++;
@@ -768,6 +808,7 @@ function playNight(person: Person, view: CaseView, cfg: string, seed: number): N
   const store = person.store;
   const runSeen = new Map<string, number>();
   const pageParas: Para[][] = [];
+  const pageVisit: number[] = [];
 
   const readBack = (deals: Deal[], paras: Para[], pageIdx: number): void => {
     for (const deal of deals) {
@@ -794,11 +835,12 @@ function playNight(person: Person, view: CaseView, cfg: string, seed: number): N
   // Page one: the office.
   CTX.active = true;
   let state = newRun(view, { detectiveName: 'Dashiell', persistedBurned: loadBurned(store) });
-  addBurned(store, crossRunOnly(state.burned), CROSS_RUN_TOTAL);
+  addBurned(store, crossRunOnly(state.burned), settleReads);
   const openDeals = flush();
   const firstPage = state.log[state.log.length - 1] as Page;
   const firstParas = parasOf(pageTexts(firstPage));
   pageParas.push(firstParas);
+  pageVisit.push(0);
   readBack(openDeals, firstParas, 0);
 
   const castPending = castDeals(state, kase);
@@ -824,11 +866,12 @@ function playNight(person: Person, view: CaseView, cfg: string, seed: number): N
     const before = state;
     const result = stepInput(state, command, view, loadBurned(store));
     state = result.state;
-    addBurned(store, crossRunOnly(result.page.cardsUsed), CROSS_RUN_TOTAL);
+    addBurned(store, crossRunOnly(result.page.cardsUsed), settleReads);
     const deals = flush();
     pageIdx++;
     const paras = parasOf(pageTexts(result.page));
     pageParas.push(paras);
+    pageVisit.push(state.scene?.visit ?? 0);
     // The activity a person is doing, chosen by the planner off the seed.
     const now = new Map<Id, string>();
     const acts = state.scene?.activities ?? {};
@@ -872,6 +915,7 @@ function playNight(person: Person, view: CaseView, cfg: string, seed: number): N
   if (sameAgain) EXTRA.activityAgainNights++;
 
   // The portraits: read wherever they reached a page this night.
+  let recallTwiceTonight = false;
   for (const { deal, texts } of castPending) {
     let found = -1;
     const recalls: number[] = [];
@@ -896,13 +940,32 @@ function playNight(person: Person, view: CaseView, cfg: string, seed: number): N
       const again: Deal = { ...deal, key: 'recall action (callback, every visit)', site: 'presenceLine realize.ts', para: 1, text: texts[1] ?? null };
       account(person, again, pi, recallSeen, runIndex);
     }
+    // Once a visit is the rule: count the visits that said it on two pages.
+    const byVisit = new Map<number, number>();
+    for (const pi of recalls) {
+      const visit = pageVisit[pi] ?? pi;
+      byVisit.set(visit, (byVisit.get(visit) ?? 0) + 1);
+    }
+    EXTRA.recallVisits += byVisit.size;
+    for (const n of byVisit.values()) {
+      if (n < 2) continue;
+      EXTRA.recallTwiceVisit++;
+      recallTwiceTonight = true;
+    }
   }
+  if (recallTwiceTonight) EXTRA.recallTwiceVisitNights++;
 
   // The report, and the closing page's last line.
   const report =
     person.player === 'reason' ? fileReasoned(view, state) : person.player === 'wander' ? (wanderReport ?? fileFor(view, state)) : fileReasoned(view, state);
   const filed = fileReport(state, report);
-  scoreReport(view, filed, report);
+  // The closing page and the story, dealt against the history as it stood
+  // before this case's closing was read, and counted once, as the book does.
+  const closingKey = `${RUN}`;
+  const history = closingHistory(store, closingKey);
+  const verdict = scoreReport(view, filed, report, history);
+  const story = storyOf(kase, history);
+  noteClosing(store, closingKey, [...crossRunOnly(verdict.cardsUsed ?? []), ...storyCardIds(story)], settleReads);
   const closing = flush();
   for (const d of closing) {
     d.para = d.text ? 99 : -1;
@@ -913,7 +976,6 @@ function playNight(person: Person, view: CaseView, cfg: string, seed: number): N
   CTX.active = false;
 
   // The story, told once a case (the closing page's second button).
-  const story = storyOf(kase);
   story.paragraphs.forEach((para, pi) =>
     para.forEach((line) => {
       const deal: Deal = {
@@ -1276,7 +1338,7 @@ if (recallRow) {
 }
 
 out.push(
-  `Two people given the same portrait-pair card in one night: ${pct(EXTRA.pairTwiceNights / RUNS)} of nights. One person doing the same activity card on two visits in one night: ${pct(EXTRA.activityAgainNights / RUNS)} of nights (${num(EXTRA.activityAgain / RUNS, 2)} a night).`,
+  `Two people given the same portrait-pair card in one night: ${pct(EXTRA.pairTwiceNights / RUNS)} of nights. One person doing the same activity card on two visits in one night: ${pct(EXTRA.activityAgainNights / RUNS)} of nights (${num(EXTRA.activityAgain / RUNS, 2)} a night). A recall action said on two pages of one visit: ${num(EXTRA.recallTwiceVisit, 0)} of ${num(EXTRA.recallVisits, 0)} visits that had one, in ${pct(EXTRA.recallTwiceVisitNights / RUNS)} of nights.`,
 );
 out.push('');
 
@@ -1347,6 +1409,8 @@ const BATCHES: [string, string[]][] = [
   ['B. places', ['establish', 'place-ambient', 'search-act', 'return', 'watch', 'crowd', 'activity']],
   ['C. people and dialogue', ['utterances', 'witness', 'portraits', 'portrait-pairs', 'business', 'entrances', 'hiring', 'office', 'frames']],
   ['D. clock, texture, endings', ['hours', 'transitions', 'arrivals', 'ambient', 'asides', 'similes', 'endings', 'errand', 'story', 'places', 'find', 'dashiell-lines']],
+  // M10's testimony decks, written after docs/22 drew up the batches.
+  ['E. testimony (M10)', ['telling', 'grounding', 'followup', 'tail', 'note']],
 ];
 out.push('## Targets by writing batch');
 out.push('');
@@ -1496,7 +1560,33 @@ for (const deck of DECK_NAMES) {
 out.push('');
 
 const md = out.join('\n');
-if (MD_OUT) writeFileSync(MD_OUT, md);
+const gapQ = (xs: number[], q: number): number => {
+  const s = [...xs].sort((x, y) => x - y);
+  return s.length === 0 ? NaN : (s[Math.min(s.length - 1, Math.floor(q * s.length))] as number);
+};
+const gapMd = [
+  '',
+  '## When a card comes back: nights since the reader last read it',
+  '',
+  '| deck | returns | shortest 10% | median |',
+  '| --- | ---: | ---: | ---: |',
+  ...[...GAPS.entries()]
+    .sort((a, b) => b[1].length - a[1].length)
+    .map(([d, g]) => `| ${d} | ${g.length} | ${gapQ(g, 0.1)} | ${gapQ(g, 0.5)} |`),
+  '',
+].join('\n');
+const fallbackMd = [
+  '',
+  '## Fallback by deck, apart from the outcome',
+  '',
+  '| deck | draws | off a wider rung | nothing dealt |',
+  '| --- | ---: | ---: | ---: |',
+  ...[...FALLBACK.entries()]
+    .sort((a, b) => b[1].draws - a[1].draws)
+    .map(([d, f]) => `| ${d} | ${f.draws} | ${((100 * f.off) / Math.max(1, f.draws - f.none)).toFixed(1)}% | ${((100 * f.none) / Math.max(1, f.draws)).toFixed(1)}% |`),
+  '',
+].join('\n');
+if (MD_OUT) writeFileSync(MD_OUT, md + fallbackMd + gapMd);
 else process.stdout.write(md + '\n');
 if (JSON_OUT) {
   writeFileSync(

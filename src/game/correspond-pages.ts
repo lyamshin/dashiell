@@ -209,6 +209,15 @@ export function ticksOn(view: CaseView, page: Page, found: readonly string[]): T
       // are facts over several half hours at once.
       if ('ticks' in f) for (const t of f.ticks) add(t);
     }
+    // A clue about somebody's secret may name the hours the secret runs over
+    // ("somebody heard a drawer being worked some time after ten o'clock"),
+    // which is how the generator checked it at source (`checkCase`). Told in
+    // the witness's words it names the same hour.
+    const about = view.findableById.get(id)?.aboutSecretOf;
+    const owner = about ? view.personById.get(about) : undefined;
+    for (const cell of owner?.secret?.cells ?? []) add(cell.tick);
+    const partner = owner?.secret?.partnerId ? view.personById.get(owner.secret.partnerId) : undefined;
+    for (const cell of partner?.secret?.cells ?? []) add(cell.tick);
   }
   for (const block of page.blocks) {
     if (block.kind !== 'timeline') continue;

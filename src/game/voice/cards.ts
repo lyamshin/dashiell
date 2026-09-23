@@ -6,14 +6,17 @@
  * is a deck this loader can deal, and a tag a writer adds there is a tag the
  * engine can match on without a code change.
  *
- * Burn tiers (A.8) live in the schema too:
+ * Burn tiers (A.8) live in the schema too, and the dealer notes (docs/25)
+ * say why each deck has the one it has:
  *
- * - `run-to-run` — similes, portraits, asides, endings. Never repeated across
- *   runs; the browser remembers the ids until the deck is exhausted.
- * - `within-run` — frames, places, ambient, arrivals, find. Never repeated
- *   inside one run.
- * - `free` — transitions, business, Dashiell's lines, utterances. These are
- *   the furniture of a page and are allowed to come round again.
+ * - `run-to-run` — every deck a reader reads, bar the people's. A card read
+ *   is not dealt again, that night or a later one, until every card that fits
+ *   the same ask has been read; then that ask reshuffles. The browser keeps a
+ *   read count per card (`storage.ts`).
+ * - `within-run` — `activity`, which belongs to the person doing it: the
+ *   planner keeps what each person did on earlier visits tonight, and a new
+ *   night is a new cast.
+ * - `free` — may repeat. No deck uses it now.
  */
 
 import { Rng } from '../../gen/rng.js';
@@ -113,6 +116,8 @@ export type DeckName =
 
 export type BurnTier = 'run-to-run' | 'within-run' | 'free';
 
+export type SpentPolicy = 'widen' | 'reshuffle';
+
 export type TagValue = string | number;
 
 export interface Card {
@@ -162,6 +167,7 @@ interface DeckSpec {
   idPrefix: string;
   placeholderPrefix: string;
   burn: BurnTier;
+  spent?: SpentPolicy;
   target?: number;
   legacy?: string;
   slots?: string[];
@@ -281,6 +287,15 @@ export function burnTier(deck: DeckName): BurnTier {
   return (SCHEMA.decks[deck]?.burn ?? 'free') as BurnTier;
 }
 
+/**
+ * What the dealer does when every card on the asked key has been read
+ * tonight (the schema's `spentPolicy`): try the next rung first, or bring
+ * the key round again first.
+ */
+export function spentPolicy(deck: DeckName): SpentPolicy {
+  return SCHEMA.decks[deck]?.spent === 'reshuffle' ? 'reshuffle' : 'widen';
+}
+
 /** Which card ids are worth remembering between runs. */
 export function crossRunOnly(ids: string[]): string[] {
   return ids.filter((id) => {
@@ -288,12 +303,6 @@ export function crossRunOnly(ids: string[]): string[] {
     return deck !== null && burnTier(deck) === 'run-to-run';
   });
 }
-
-/** How many cards the cross-run pile holds when it is full. */
-export const CROSS_RUN_TOTAL = DECK_NAMES.filter((d) => burnTier(d) === 'run-to-run').reduce(
-  (n, d) => n + DECKS[d].length,
-  0,
-);
 
 /**
  * A tag off a card, with the schema's alias and default applied. `fixtureRole`
@@ -377,16 +386,108 @@ export interface Drawn {
 export type Match = (card: Card) => boolean;
 
 /**
+ * How much more likely a card is for each point of motif score (M4b §A.2).
+ * The score used to be a sort, so the best-scoring card won every time it was
+ * unread: `off-022` opened 42 of 48 sleepless nights in the rain. Now it is a
+ * weight. A card sharing one of the page's motifs (+2) is twice as likely as
+ * a neutral one; a card echoing the last page's image (−3) about a third as
+ * likely; a card whose weather contradicts the night is still never dealt.
+ */
+export const MOTIF_WEIGHT = Math.SQRT2;
+
+/** A card's weight in a draw, from its motif score. */
+export function weightOf(score: number): number {
+  return MOTIF_WEIGHT ** Math.max(-8, Math.min(8, score));
+}
+
+/** A reader's history as the store hands it over: one id per time it was read. */
+export function readCounts(ids: Iterable<string>): Map<string, number> {
+  const out = new Map<string, number>();
+  for (const id of ids) out.set(id, (out.get(id) ?? 0) + 1);
+  return out;
+}
+
+/**
+ * The reset the cross-night pile needs, per deck: once every card of a deck
+ * has been read at least once, take one read off each of them, so the counts
+ * stay small however many nights a reader plays. The reshuffle itself is the
+ * dealer's, per key (it compares counts inside one ask, and a whole deck going
+ * down by one changes no comparison); this only keeps the store small.
+ *
+ * It replaces `CROSS_RUN_TOTAL`, which cleared the pile only when every
+ * run-to-run card had been read. `similes` and `asides` are never dealt, so
+ * that never happened, and once a key ran out the dealer reshuffled inside it
+ * forever.
+ */
+export function settleReads(reads: Map<string, number>): void {
+  for (const deck of DECK_NAMES) {
+    if (burnTier(deck) !== 'run-to-run') continue;
+    const cards = DECKS[deck];
+    if (cards.length === 0) continue;
+    let min = Infinity;
+    for (const card of cards) {
+      min = Math.min(min, reads.get(card.id) ?? 0);
+      if (min === 0) break;
+    }
+    if (!(min > 0) || !Number.isFinite(min)) continue;
+    for (const card of cards) {
+      const n = (reads.get(card.id) ?? 0) - min;
+      if (n > 0) reads.set(card.id, n);
+      else reads.delete(card.id);
+    }
+  }
+}
+
+/** One of `items`, each as likely as its weight, off `rng`. */
+export function weightedPick<T>(items: readonly T[], weight: (t: T) => number, rng: Rng): T {
+  const weights = items.map((t) => Math.max(0, weight(t)));
+  const total = weights.reduce((a, b) => a + b, 0);
+  if (!(total > 0)) return items[rng.int(items.length)] as T;
+  let roll = rng.next() * total;
+  for (let i = 0; i < items.length; i++) {
+    roll -= weights[i] as number;
+    if (roll < 0) return items[i] as T;
+  }
+  return items[items.length - 1] as T;
+}
+
+/**
+ * Of `items`, the ones the reader has read the fewest times: the part of a
+ * key that has not come round yet. When all of them have been read equally
+ * often, all of them — which is the reshuffle.
+ */
+export function leastRead<T>(items: readonly T[], count: (t: T) => number): T[] {
+  let least = Infinity;
+  for (const t of items) least = Math.min(least, count(t));
+  return items.filter((t) => count(t) === least);
+}
+
+interface Candidate {
+  card: Card;
+  score: number;
+  text: string;
+}
+
+/**
  * The dealer. One per page, seeded from the run; it knows which cards this run
- * has already spent and which ones the browser remembers from earlier runs,
- * and it honours the burn tier of whichever deck it is dealing from.
+ * has already spent and how often the reader has read each card on earlier
+ * nights, and it honours the burn tier of whichever deck it is dealing from.
+ *
+ * The rule (docs/25): a card that has been read is not dealt again — tonight,
+ * or on a later night for a `run-to-run` deck — until the reader has read every
+ * card that fits the same ask. Then that ask reshuffles. Among the cards still
+ * in the running the draw is a weighted roll, not a sort: motif score is a
+ * weight (`weightOf`), and the roll comes off the dealer's seed, which is the
+ * run's seed and the page, so the same night read by the same reader is the
+ * same transcript.
  */
 export class Dealer {
   private readonly rng: Rng;
   private readonly run: Set<string>;
   /** The same ids in the order the run spent them, newest last. */
   private readonly order: string[];
-  private readonly persisted: Set<string>;
+  /** How many times the reader has read each card, as the store had it. */
+  private readonly reads: Map<string, number>;
   private readonly reshuffles = new Set<DeckName>();
   readonly spent: string[] = [];
 
@@ -394,18 +495,17 @@ export class Dealer {
     this.rng = new Rng(seed >>> 0);
     this.order = [...runBurned];
     this.run = new Set(this.order);
-    this.persisted = new Set(persistedBurned);
+    this.reads = readCounts(persistedBurned);
   }
 
   /**
    * The last `n` cards this run dealt from `deck`, oldest first.
    *
-   * A `free` deck may come round again — that is what the tier means — but a
-   * transition is the first line on a page, and the same first line on three
-   * pages running is not a free deck working, it is a reader losing their
-   * place. One transition is dealt a page, so the last four ids from that deck
-   * are the last four pages that had one, and the page grammar can keep off
-   * them without any state of its own.
+   * A transition is the first line on a page, and the same first line on
+   * three pages running is a reader losing their place. One transition is
+   * dealt a page, so the last four ids from that deck are the last four pages
+   * that had one, and the page grammar can keep off them without any state of
+   * its own.
    */
   recent(deck: DeckName, n: number): string[] {
     const out: string[] = [];
@@ -421,37 +521,48 @@ export class Dealer {
     return this.rng;
   }
 
-  burned(deck: DeckName, id: string): boolean {
-    switch (burnTier(deck)) {
-      case 'run-to-run':
-        return this.run.has(id) || this.persisted.has(id);
-      case 'within-run':
-        return this.run.has(id);
-      default:
-        return false;
-    }
+  /** How many times the reader has read this card, as the store had it. */
+  readCount(id: string): number {
+    return this.reads.get(id) ?? 0;
   }
 
-  private take(deck: DeckName, card: Card, slots: Slots, score: number): Drawn | null {
-    const text = fill(card, slots);
-    if (text === null) return null;
-    this.run.add(card.id);
-    this.order.push(card.id);
-    this.spent.push(card.id);
-    return { text, cardId: card.id, deck, motifs: motifsOf(card), score };
+  /**
+   * Has this card been read: tonight, or — for a deck remembered across
+   * nights — on an earlier night? A card read on an earlier night is not out
+   * of the deck for good; it waits until the rest of its key has been read
+   * (see `draw`).
+   */
+  burned(deck: DeckName, id: string): boolean {
+    if (this.run.has(id)) return burnTier(deck) !== 'free';
+    return burnTier(deck) === 'run-to-run' && this.readCount(id) > 0;
+  }
+
+  private take(deck: DeckName, c: Candidate): Drawn {
+    this.run.add(c.card.id);
+    this.order.push(c.card.id);
+    this.spent.push(c.card.id);
+    return { text: c.text, cardId: c.card.id, deck, motifs: motifsOf(c.card), score: c.score };
   }
 
   /**
    * Deal from `deck`, trying each match in turn from the narrowest to the
-   * widest. Nothing repeats until the deck's whole pool is spent, at which
-   * point it reshuffles — M3's lesson: widen all the way to the deck before
-   * reaching back for a card already read.
+   * widest. A rung is the key a writer fills: `thought` for a touch on a
+   * murder by somebody's account, `hours` for the hour.
    *
-   * M4b §A.2 adds closeness on top of the tag match, which stays the hard
-   * filter: inside one rung of the ladder the cards are ordered by their motif
-   * score, and a card whose weather contradicts the night is not in the rung
-   * at all. Ties are broken by the seeded shuffle exactly as before, so the
-   * same seed is still the same night.
+   * 1. On each rung, the cards that fit, suit the night's sky and can be
+   *    filled from `slots`, less any read tonight.
+   * 2. For a deck remembered across nights, only those the reader has read
+   *    the fewest times (`leastRead`). A card read on an earlier night waits
+   *    until every other card of the key has been read; then they all come
+   *    back together. That is the reshuffle, per key and across nights.
+   * 3. One of those, weighted by motif score (`weightOf`).
+   *
+   * A rung with nothing unread tonight widens to the next. When every rung is
+   * spent tonight the narrowest rung that has any card at all comes round
+   * again, the older half of tonight's reads first, and the deck says so: a
+   * deck that reshuffles inside one night is too thin for the tag it was
+   * asked for, which is the content team's business and not something to
+   * hide.
    */
   draw(
     deck: DeckName,
@@ -466,43 +577,44 @@ export class Dealer {
     // still carries the fact and is worth having; an utterance for the wrong
     // fact kind is a lie, so the utterance deck is always drawn strictly.
     const ladder: Match[] = strict ? [...matches] : [...matches, () => true];
-    const scoreOf = (card: Card): number =>
-      ctx ? scoreMotifs(motifsOf(card), card, ctx) : 0;
-    /** Best first: score, then a card this run has not read yet. */
-    const order = (cards: Card[]): { card: Card; score: number }[] =>
-      this.rng
-        .shuffle(cards)
-        .map((card) => ({ card, score: scoreOf(card) }))
-        .filter((c) => c.score !== -Infinity)
-        .sort(
-          (a, b) =>
-            b.score - a.score || Number(this.run.has(a.card.id)) - Number(this.run.has(b.card.id)),
-        );
+    const remembered = burnTier(deck) === 'run-to-run';
+    const candidates = (cards: Card[]): Candidate[] => {
+      const out: Candidate[] = [];
+      for (const card of cards) {
+        const score = ctx ? scoreMotifs(motifsOf(card), card, ctx) : 0;
+        if (score === -Infinity) continue;
+        const text = fill(card, slots);
+        if (text === null) continue;
+        out.push({ card, score, text });
+      }
+      return out;
+    };
+    const roll = (cs: Candidate[]): Candidate => weightedPick(cs, (c) => weightOf(c.score), this.rng);
+    // Every card of a key read tonight: it comes round again, the older half
+    // of tonight's reads first, so the line just read is not the line read
+    // next — and the deck says so.
+    const again = (all: Candidate[]): Drawn => {
+      const when = (c: Candidate): number => this.order.lastIndexOf(c.card.id);
+      const byAge = [...all].sort((a, b) => when(a) - when(b));
+      this.reshuffles.add(deck);
+      return this.take(deck, roll(byAge.slice(0, Math.max(1, Math.ceil(byAge.length / 2)))));
+    };
+    const stay = spentPolicy(deck) === 'reshuffle';
 
     for (const match of ladder) {
-      const fresh = pool.filter((c) => match(c) && !this.burned(deck, c.id));
-      // A `free` deck may repeat, but it should not repeat while anything
-      // else fits: within a page and within a run, prefer what has not been
-      // dealt yet. Transitions and business are furniture, not wallpaper.
-      for (const { card, score } of order(fresh)) {
-        const drawn = this.take(deck, card, slots, score);
-        if (drawn) return drawn;
+      const fits = candidates(pool.filter(match));
+      if (fits.length === 0) continue;
+      const open = fits.filter((c) => !this.run.has(c.card.id));
+      if (open.length > 0) {
+        return this.take(deck, roll(remembered ? leastRead(open, (c) => this.readCount(c.card.id)) : open));
       }
+      if (stay) return again(fits);
     }
-    // Everything that fits has been read. Reshuffle inside the narrowest match
-    // that has any cards at all, and say so: a deck that reshuffles inside one
-    // run is a deck that is too thin for the tag it was asked for, which is
-    // the content team's business and not something to hide.
+    // Everything that fits has been read tonight, on every rung. Come round
+    // again inside the narrowest match that has any cards at all.
     for (const match of ladder) {
-      const all = pool.filter(match);
-      if (all.length === 0) continue;
-      for (const { card, score } of order(all)) {
-        const drawn = this.take(deck, card, slots, score);
-        if (drawn) {
-          this.reshuffles.add(deck);
-          return drawn;
-        }
-      }
+      const all = candidates(pool.filter(match));
+      if (all.length > 0) return again(all);
     }
     return null;
   }
@@ -536,12 +648,16 @@ export class Dealer {
     return out;
   }
 
-  /** Look without spending: does anything unburned fit, and suit the night? */
+  /**
+   * Look without spending: does anything fit that has not been read tonight,
+   * and suit the night? A key the reader has read out on earlier nights
+   * reshuffles rather than running dry, so history never makes this false.
+   */
   has(deck: DeckName, match: Match, ctx?: MotifContext): boolean {
     return (DECKS[deck] ?? []).some(
       (c) =>
         match(c) &&
-        !this.burned(deck, c.id) &&
+        !this.run.has(c.id) &&
         (!ctx || scoreMotifs(motifsOf(c), c, ctx) !== -Infinity),
     );
   }

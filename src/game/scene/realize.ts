@@ -155,7 +155,9 @@ function deal(
     !(outdoors && c.tags.setting === 'indoor') &&
     !(!outdoors && c.tags.setting === 'outdoor') &&
     !(plural && c.tags.number === 'singular');
-  const agrees = (c: Card): boolean => hourAgrees(c.text, stage.minutes) && fitsPlace(c);
+  // The hour is read off the card as it will print: "It was after {hour} in
+  // the morning" names no hour until the slot is in it.
+  const agrees = (c: Card): boolean => hourAgrees(fill(c, slots) ?? c.text, stage.minutes) && fitsPlace(c);
   const drawn = stage.dealer.draw(
     deck,
     ladder.map((m) => (c: Card) => m(c) && agrees(c)),
