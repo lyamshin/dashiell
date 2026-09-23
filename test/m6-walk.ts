@@ -52,7 +52,10 @@ export function walkChoices(difficulty: Difficulty): { problems: string[]; check
           // M10 §A.3: an answer told over two pages is one answer; "Go on" is free.
           let after = first.state;
           const found = [...first.page.found];
-          for (let more = continuationOf(view, after); more !== null; more = continuationOf(view, after)) {
+          // Only this command's own answer: something held back that was not held back before.
+          const had = new Set((s.pending ?? []).map((p) => JSON.stringify(p)));
+          const own = (st: RunState): boolean => (st.pending ?? []).some((p) => !had.has(JSON.stringify(p)));
+          for (let more = own(after) ? continuationOf(view, after) : null; more !== null; more = own(after) ? continuationOf(view, after) : null) {
             const next = stepInput(after, more, view);
             if (next.page.found.length === 0) break;
             after = next.state;

@@ -1609,7 +1609,7 @@
   {
     "id": "tht-e001",
     "deck": "thought",
-    "text": "Whoever did it had been at {scene} {span}. That was the stretch everybody would have to account for.",
+    "text": "Whoever did it had been at {scene} {span}. That was the time everybody would have to account for.",
     "tags": {
       "class": "window",
       "basis": "coroner"
