@@ -28,6 +28,7 @@ import {
   BRIEFING_SETTLE,
   CLIENT_CONTINUES,
   DECKS,
+  OFFICE_BEATS,
   PLAIN_BEATS,
   PLAIN_NOTED,
   PLAIN_STOCK,
@@ -82,7 +83,7 @@ const pagesOf = (seed: number): { state: RunState; view: CaseView; pages: Page[]
  * joined a beat onto the paragraph before it, so the count is over sentences
  * and not over blocks.
  */
-const ELSEWHERE = new Set([...PLAIN_NOTED, ...PLAIN_BEATS, ...PLAIN_STOCK]);
+const ELSEWHERE = new Set([...PLAIN_NOTED, ...PLAIN_BEATS, ...OFFICE_BEATS, ...PLAIN_STOCK]);
 
 const beatSentences = (view: CaseView): Set<string> => {
   const out = new Set<string>();

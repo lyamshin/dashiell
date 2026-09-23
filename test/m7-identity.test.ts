@@ -18,6 +18,11 @@ import { generateCase } from '../src/gen/index.js';
  * "and that" off four tropes' reported speech so a quote of it reads; with
  * those four wordings undone every one of the 600 hashes matched, and the
  * structure-only hash is unchanged.
+ *
+ * And by M10 §A.5 (docs/23-m10-testimony.md), which gave every relation word
+ * its woman's form, took the victim's pronoun out of the scene traces and
+ * dropped "himself" and "he" from two professions any sex can hold. The
+ * structure-only hash of all 600 cases is unchanged.
  */
 const baseline = JSON.parse(
   readFileSync(new URL('./fixtures/m7-baseline-hashes.json', import.meta.url), 'utf8'),

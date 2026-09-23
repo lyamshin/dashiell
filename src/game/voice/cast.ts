@@ -12,7 +12,7 @@ import type { Case, Id, Person } from '../../gen/types.js';
 import { ARCHETYPE_BY_ID, VICTIM_ARCHETYPES } from '../../gen/data/cast.js';
 import { NAME_POOLS } from '../../gen/data/names.js';
 import weightsJson from '../../../content/temper-weights.json';
-import { DECKS, fill, motifsOf, tagIs, type Card, type Slots } from './cards.js';
+import { DECKS, fill, motifsOf, tagIs, tagOf, type Card, type Slots } from './cards.js';
 import { tidyPunctuation } from './prose.js';
 import { contradictsWeather } from './motifs.js';
 import { rollDashiell, type DashiellRoll } from './roll.js';
@@ -129,6 +129,27 @@ export function classOf(person: Person): string {
 const PORTRAIT_SALT = 0x27d4eb;
 
 /**
+ * M10 §A.5: the ages a portrait's `ageBand` can be worn at. "A voice thinned
+ * with age" on somebody in her thirties was the bug. The bands overlap on
+ * purpose: a card tagged young is anything a person under forty-one can carry,
+ * an old one needs fifty, and the middle, which is what an untagged portrait
+ * reads as, covers everybody from twenty-eight to sixty-four.
+ */
+export const AGE_BANDS: Record<string, [number, number]> = {
+  young: [0, 40],
+  middle: [28, 64],
+  old: [50, 200],
+};
+
+/** Can a person of `age` wear a card tagged `band`? No age known, any card. */
+export function ageFits(band: unknown, age: number | undefined): boolean {
+  if (age === undefined || typeof band !== 'string') return true;
+  const range = AGE_BANDS[band];
+  if (range === undefined) return true;
+  return age >= range[0] && age <= range[1];
+}
+
+/**
  * One trait, one habit and one piece of clothing per person, drawn against
  * the burn pile so that a player does not meet the same split thumbnail two
  * runs running. Everything is chosen here, once; the page grammar only ever
@@ -154,6 +175,7 @@ export function rollCast(
     if (person.kind !== 'victim') temper[person.id] = pickWeighted(rng, weightsFor(person));
     const gender = genderHintOf(person);
     const klass = classOf(person);
+    const age = person.dossier?.age;
     const cardIds: string[] = [];
     const motifs: string[] = [];
     const parts: Record<string, string> = {};
@@ -161,6 +183,7 @@ export function rollCast(
       const fits = (c: Card): boolean =>
         tagIs('portraits', c, 'component', component) &&
         (tagIs('portraits', c, 'gender', gender) || gender === 'any') &&
+        ageFits(tagOf('portraits', c, 'ageBand'), age) &&
         // §A.5: a portrait whose clothing implies a sky is a portrait for that
         // night only. A collar up and wet boots on a clear night is the tell.
         !contradictsWeather(motifsOf(c), c, weather);
@@ -188,6 +211,7 @@ export function rollCast(
     const wantsOffice = person.isClient === true;
     const pairFits = (c: Card): boolean =>
       (gender === 'any' || tagIs('portrait-pairs', c, 'gender', gender)) &&
+      ageFits(tagOf('portrait-pairs', c, 'ageBand'), age) &&
       !contradictsWeather(motifsOf(c), c, weather);
     const pairLadder: ((c: Card) => boolean)[] = [
       (c) =>

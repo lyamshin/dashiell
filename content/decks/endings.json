@@ -112,7 +112,7 @@
   {
     "id": "end-004",
     "deck": "endings",
-    "text": "I closed it the way it opened, {name} at the center of it, guilty and proven so with the night's last hour to spare. It was enough.",
+    "text": "I closed it with {name} guilty and proven so, and the night's last hour to spare. It was enough.",
     "tags": {
       "outcome": "solved",
       "parDelta": "at"

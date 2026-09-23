@@ -23,7 +23,7 @@ import {
   OFFICE_LINES,
   RETAINERS,
 } from '../voice-data.js';
-import { Dealer, tagIs, type Slots } from './cards.js';
+import { Dealer, knowsTheDetective, tagIs, type Slots } from './cards.js';
 import type { MotifContext } from './motifs.js';
 import { tidyPunctuation } from './prose.js';
 import type { Temper } from './cast.js';
@@ -96,9 +96,13 @@ export function entranceCard(
 ): OfficeLine {
   const want = client.familiar ? 'yes' : 'no';
   // Gender is a filter and not a rung, as it is for business: a card that says
-  // "she" is wrong on a man however well the rest of it fits.
+  // "she" is wrong on a man however well the rest of it fits. M10 §A.5: so is
+  // acquaintance, one way round. A stranger who calls him by name, or says
+  // "same as always", has met him; a card for an old acquaintance is never
+  // dealt to somebody the roll says he does not know.
   const ok = (c: Parameters<typeof tagIs>[1]): boolean =>
-    client.gender === 'any' || tagIs('entrances', c, 'gender', client.gender);
+    (client.gender === 'any' || tagIs('entrances', c, 'gender', client.gender)) &&
+    (client.familiar || !knowsTheDetective('entrances', c));
   const drawn = dealer.draw(
     'entrances',
     [
@@ -134,6 +138,8 @@ export function hiringFrame(
   ctx: MotifContext,
 ): OfficeLine {
   const want = client.familiar ? 'yes' : 'no';
+  // M10 §A.5: "…same as always, Dashiell" from somebody he has never met.
+  const met = (c: Parameters<typeof tagIs>[1]): boolean => client.familiar || !knowsTheDetective('hiring', c);
   const drawn = dealer.draw(
     'hiring',
     [
@@ -141,8 +147,8 @@ export function hiringFrame(
         c.text.includes('{fact}') &&
         tagIs('hiring', c, 'temper', client.temper) &&
         tagIs('hiring', c, 'familiar', want),
-      (c) => c.text.includes('{fact}') && tagIs('hiring', c, 'temper', client.temper),
-      (c) => c.text.includes('{fact}'),
+      (c) => c.text.includes('{fact}') && met(c) && tagIs('hiring', c, 'temper', client.temper),
+      (c) => c.text.includes('{fact}') && met(c),
     ],
     slots,
     true,

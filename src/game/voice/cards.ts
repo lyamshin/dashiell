@@ -305,6 +305,15 @@ export function motifsOf(card: Card): string[] {
   return readMotifs(card);
 }
 
+/**
+ * M10 §A.5. A card that has the speaker already know the detective: tagged
+ * for an old acquaintance, or calling him by name. Dealt only where the roll
+ * says the two of them know each other.
+ */
+export function knowsTheDetective(deck: DeckName, card: Card): boolean {
+  return tagOf(deck, card, 'familiar') === 'yes' || card.text.includes('{detective}');
+}
+
 /** Match a tag, treating "any" on the card as a wildcard. */
 export function tagIs(deck: DeckName, card: Card, name: string, want: TagValue): boolean {
   const have = tagOf(deck, card, name);

@@ -25,6 +25,7 @@ import { playOracle, playWandering } from '../src/game/oracle.js';
 import { newRun, stepInput } from '../src/game/reducer.js';
 import { fieldsFor, truthReport, withAnswer } from '../src/game/report-form.js';
 import { scoreReport } from '../src/game/scoring.js';
+import { officeCloseLine } from '../src/game/voice/page.js';
 import {
   PLAIN_FLOOR,
   PLAIN_TARGET,
@@ -208,7 +209,8 @@ describe('the briefing page', () => {
       const view = viewOf(seed);
       const text = textOf(newRun(view, { detectiveName: 'Dashiell' }).log[0] as Page);
       expect(text, `seed ${seed}`).toMatch(/dollars|roll with a rubber band/);
-      expect(text).toContain('Two questions on the house');
+      // M10 §A.5: in the past tense, and the page's last line.
+      expect(text).toContain(officeCloseLine(view.client));
     }
   });
 

@@ -24,6 +24,7 @@ import {
   VICTIM_ARCHETYPE_BY_ID,
 } from '../src/gen/data/cast.js';
 import { NAME_POOLS } from '../src/gen/data/names.js';
+import { genderForms } from '../src/gen/dossier.js';
 import { TROPES, TROPE_BY_ID, TROPE_IDS } from '../src/gen/tropes/index.js';
 import { checkCase, formatViolations, renderedFacts } from '../src/gen/correspond.js';
 import { buildView } from '../src/game/derive.js';
@@ -136,7 +137,9 @@ describe('dossiers over seeds 1..200 at every difficulty', () => {
         const tie = p.dossier?.tie;
         expect(tie?.relationshipId).toBe(p.relationshipId);
         const rel = RELATIONSHIP_BY_ID[p.relationshipId as Id];
-        expect(tie?.text).toBe(rel?.text.split('{V}').join(victim.surname));
+        // M10 §A.5: the card writes both forms of a relation word and the
+        // person's sex picks one.
+        expect(tie?.text).toBe(genderForms(rel?.text ?? '', p.gender).split('{V}').join(victim.surname));
         // The specific: a backstory sentence, and it is not the bare card.
         expect(tie?.backstory.length ?? 0).toBeGreaterThan(rel?.text.length ?? 0);
         expect(tie?.backstory).toMatch(/[.!?]$/);

@@ -21,6 +21,7 @@ import {
   type Tick,
 } from '../src/gen/index.js';
 import { activityKey } from '../src/gen/solvability.js';
+import { genderForms } from '../src/gen/dossier.js';
 import { ARCHETYPE_BY_ID, RELATIONSHIP_BY_ID, VICTIM_ARCHETYPES } from '../src/gen/data/cast.js';
 import { PLACE_BY_ID, PLACE_TEMPLATES } from '../src/gen/data/places.js';
 import { MASKING_PHRASES } from '../src/gen/data/anchors.js';
@@ -253,7 +254,10 @@ describe('cast compatibility over seeds 1..200', () => {
         // "the victim", so the card carries `{V}` and the person carries it
         // filled in.
         const victim = c.people.find((q) => q.kind === 'victim');
-        expect(rel?.text.split('{V}').join(victim?.surname ?? '')).toBe(p.relationshipToVictim);
+        // M10 §A.5: with the relation word in the form for the person's sex.
+        expect(genderForms(rel?.text ?? '', p.gender).split('{V}').join(victim?.surname ?? '')).toBe(
+          p.relationshipToVictim,
+        );
         if (p.motive) {
           expect(arch?.motives).toContain(p.motive.type);
           if (rel?.impliesMotives) expect(rel.impliesMotives).toContain(p.motive.type);

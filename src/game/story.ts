@@ -37,6 +37,7 @@ import {
 } from '../gen/types.js';
 import { RELATIONSHIP_BY_ID, VICTIM_ARCHETYPE_BY_ID } from '../gen/data/cast.js';
 import { MOTIVE_BY_TYPE } from '../gen/data/motives.js';
+import { genderForms } from '../gen/dossier.js';
 import { wrap } from './transcript.js';
 import { tidyPunctuation } from './voice/prose.js';
 
@@ -910,7 +911,7 @@ function standingOf(input: StoryInput): { archetypeId: Id; variant: number } | n
   const card = id === undefined ? undefined : VICTIM_ARCHETYPE_BY_ID[id];
   if (!card || input.standing === null) return null;
   const variant = card.standing.findIndex(
-    (t) => parseTemplate(`${input.victim.surname} ${t}`, input.standing as string) !== null,
+    (t) => parseTemplate(`${input.victim.surname} ${genderForms(t, input.victim.gender)}`, input.standing as string) !== null,
   );
   return variant < 0 ? null : { archetypeId: id as Id, variant };
 }
@@ -931,12 +932,15 @@ function tieOf(input: StoryInput): { relationshipId: Id; variant: number; slots:
   const rel = RELATIONSHIP_BY_ID[tie.relationshipId];
   if (!rel) return null;
   for (let variant = 0; variant < rel.backstory.length; variant++) {
-    const got = parseTemplate(rel.backstory[variant] as string, tie.backstory);
+    const got = parseTemplate(genderForms(rel.backstory[variant] as string, input.culprit.gender), tie.backstory);
     if (!got) continue;
     if (got.person !== undefined && got.person !== input.culprit.surname) continue;
     if (got.victim !== undefined && got.victim !== input.victim.surname) continue;
     const slots: Slots = {
       spouse: { text: input.culprit.gender === 'f' ? 'wife' : 'husband', facts: [] },
+      // M10 §A.5: the in-law's words agree with the in-law.
+      sibling: { text: input.culprit.gender === 'f' ? 'brother' : 'sister', facts: [] },
+      inlaw: { text: input.culprit.gender === 'f' ? 'sister-in-law' : 'brother-in-law', facts: [] },
     };
     if (got.year !== undefined) slots.year = { text: got.year, facts: [] };
     if (got.third !== undefined) slots.third = { text: got.third, facts: [{ kind: 'mention', name: got.third }] };
