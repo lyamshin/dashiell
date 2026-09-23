@@ -194,7 +194,7 @@
   {
     "id": "STY-020",
     "deck": "story",
-    "text": "{actor} got out the vote for the ward boss, and collected for it.",
+    "text": "{actor} got out the vote for the local political boss, and was paid for it.",
     "tags": {
       "beat": "role",
       "archetype": "arch-heeler"
