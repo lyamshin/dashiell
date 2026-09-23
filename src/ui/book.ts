@@ -59,6 +59,8 @@ import { renderReportForm, renderVerdict, type TierNews } from './report.js';
 import { storyCardIds, storyOf, storyParagraphs } from '../game/story.js';
 import { LIE_RULE } from '../game/voice-data.js';
 import { renderTruthSheet } from '../sheet/truthSheet.js';
+import { createWeatherLayer, loadWeatherOn, saveWeatherOn } from './weather.js';
+import './weather.css';
 
 type Screen =
   | { kind: 'title' }
@@ -127,6 +129,13 @@ export function mount(root: HTMLElement): void {
   let justSpent = 0;
   /** What the grid has open, folded and lit. Kept across pages, reset per case. */
   let gridUi: GridUi = newGridUi();
+  /**
+   * docs/27: the night's weather on the glass. The spread is kept from one
+   * render to the next so the layer inside it keeps running (and the frost,
+   * once formed, stays formed) while pages are turned.
+   */
+  const weather = createWeatherLayer({ enabled: loadWeatherOn(store) });
+  let spread: HTMLElement | null = null;
 
   /* ------------------------------------------------------------ routing */
 
@@ -304,15 +313,24 @@ export function mount(root: HTMLElement): void {
   /* ------------------------------------------------------------ drawing */
 
   function render(): void {
-    clear(root);
     hideCard();
     if (screen.kind === 'title' || !kase || !view || !state) {
+      clear(root);
+      spread = null;
+      weather.show(null);
       root.append(titlePage());
       return;
     }
-    const spread = el('div', { class: 'spread' });
+    if (!spread || spread.parentNode !== root) {
+      clear(root);
+      spread = el('div', { class: 'spread' });
+      root.append(spread);
+    }
+    for (const node of [...root.childNodes]) if (node !== spread) node.remove();
+    for (const node of [...spread.childNodes]) if (node !== weather.element) node.remove();
     spread.append(leftPage(), rightPage());
-    root.append(spread);
+    weather.show(state.cast.roll.weather);
+    weather.attach(spread);
 
     const tab = el('button', { class: 'tab', type: 'button', text: 'Notebook' });
     tab.addEventListener('click', () => {
@@ -461,8 +479,27 @@ export function mount(root: HTMLElement): void {
       justSpent = 0;
       render();
     });
-    hint.append(back, el('span', { text: `page ${turned + 1} of ${run.log.length}` }), forward);
+    hint.append(back, el('span', { text: `page ${turned + 1} of ${run.log.length}` }), forward, weatherToggle());
     return hint;
+  }
+
+  /** docs/27: the one quiet switch for the weather, remembered. */
+  function weatherToggle(): HTMLElement {
+    const toggle = el('button', {
+      class: 'wx-toggle',
+      type: 'button',
+      'aria-label': 'Weather effects',
+      'aria-pressed': String(weather.enabled),
+      text: weather.enabled ? 'weather on' : 'weather off',
+    });
+    toggle.addEventListener('click', () => {
+      const on = !weather.enabled;
+      saveWeatherOn(store, on);
+      weather.setEnabled(on);
+      toggle.setAttribute('aria-pressed', String(on));
+      toggle.textContent = on ? 'weather on' : 'weather off';
+    });
+    return toggle;
   }
 
   function rightPage(): HTMLElement {
