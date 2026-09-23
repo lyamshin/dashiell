@@ -883,7 +883,7 @@
   {
     "id": "grd-079",
     "deck": "grounding",
-    "text": "That’s the whole of it.",
+    "text": "It’s my own night. I was in every hour of it.",
     "tags": {
       "family": "evening",
       "role": "any"
@@ -894,7 +894,7 @@
   {
     "id": "grd-080",
     "deck": "grounding",
-    "text": "There isn’t any more to it than that.",
+    "text": "It isn’t hard to remember one evening.",
     "tags": {
       "family": "evening",
       "role": "any"
@@ -905,7 +905,7 @@
   {
     "id": "grd-081",
     "deck": "grounding",
-    "text": "I remember it because it was tonight.",
+    "text": "That was tonight, not last year. None of it has had time to go.",
     "tags": {
       "family": "evening",
       "role": "any"
@@ -1035,5 +1035,639 @@
     },
     "motifs": [],
     "status": "tuned"
+  },
+  {
+    "id": "grd-e001",
+    "deck": "grounding",
+    "text": "I’ve been over it once already, for myself.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e002",
+    "deck": "grounding",
+    "text": "Nobody had to remind me. I know where I go.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e003",
+    "deck": "grounding",
+    "text": "I’m telling it the way it happened, in order.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e004",
+    "deck": "grounding",
+    "text": "Those are the places I was. I’m not leaving any out.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e005",
+    "deck": "grounding",
+    "text": "I’ve got nothing to add to it and nothing to take away.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e006",
+    "deck": "grounding",
+    "text": "I didn’t write it down. I didn’t need to.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e007",
+    "deck": "grounding",
+    "text": "I’m sure of the times. I looked at the clock more than once.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e008",
+    "deck": "grounding",
+    "text": "A person knows where they’ve been. I do, anyway.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e009",
+    "deck": "grounding",
+    "text": "Nobody was in a better spot to know than me.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e010",
+    "deck": "grounding",
+    "text": "I could tell it to you again the same way.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e011",
+    "deck": "grounding",
+    "text": "I’ve got a head for times. I always have.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e012",
+    "deck": "grounding",
+    "text": "There’s no reason I’d get my own evening wrong.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e013",
+    "deck": "grounding",
+    "text": "I can’t tell you about anybody else. I can tell you about me.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e014",
+    "deck": "grounding",
+    "text": "I don’t have to guess at any of it.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e015",
+    "deck": "grounding",
+    "text": "I don’t lose track of my own evening.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e016",
+    "deck": "grounding",
+    "text": "Nobody told me where I was. I was there.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e017",
+    "deck": "grounding",
+    "text": "Every bit of that I can stand behind.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e018",
+    "deck": "grounding",
+    "text": "I know my own comings and goings.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e019",
+    "deck": "grounding",
+    "text": "I watch the clock. It’s a habit.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e020",
+    "deck": "grounding",
+    "text": "You asked me where I was. That’s where.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e021",
+    "deck": "grounding",
+    "text": "That’s the order it happened in.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e022",
+    "deck": "grounding",
+    "text": "I’d tell it the same way to anybody who asked.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e023",
+    "deck": "grounding",
+    "text": "I hadn’t thought about it till you asked, but it’s all there.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e024",
+    "deck": "grounding",
+    "text": "It’s my own evening. Who’d know it better?",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e025",
+    "deck": "grounding",
+    "text": "Ask me again tomorrow and you’ll get the same answer.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e026",
+    "deck": "grounding",
+    "text": "I remember it clearly enough. It wasn’t that long ago.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e027",
+    "deck": "grounding",
+    "text": "I’m not mixing it up with any other night.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e028",
+    "deck": "grounding",
+    "text": "I know how I spent my own evening.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e029",
+    "deck": "grounding",
+    "text": "I’ve known {him} long enough not to mistake {him}.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e030",
+    "deck": "grounding",
+    "text": "I know {him} to talk to. I’m not guessing.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e031",
+    "deck": "grounding",
+    "text": "I’d know {him} from the back, let alone the front.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e032",
+    "deck": "grounding",
+    "text": "I know {him}. There’s no mixing {him} up with anybody.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e033",
+    "deck": "grounding",
+    "text": "We’ve said hello often enough. I know {him}.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e034",
+    "deck": "grounding",
+    "text": "I know {his} voice and I know {his} coat.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e035",
+    "deck": "grounding",
+    "text": "It’s not a face I’d get wrong.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e036",
+    "deck": "grounding",
+    "text": "I’ve known {him} for years. That much I’m sure of.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e037",
+    "deck": "grounding",
+    "text": "I know {him} by name and by sight. Both.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e038",
+    "deck": "grounding",
+    "text": "I wouldn’t mistake {him} for anybody.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "relation"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e039",
+    "deck": "grounding",
+    "text": "I know {him} well enough for that.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "relation"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e040",
+    "deck": "grounding",
+    "text": "{He}’s not somebody I’d take for somebody else.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "relation"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e041",
+    "deck": "grounding",
+    "text": "I know {him} to look at, and I know who {he} is.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "relation"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e042",
+    "deck": "grounding",
+    "text": "I know {him}. Not well, but well enough.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "relation"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e043",
+    "deck": "grounding",
+    "text": "I’m giving you what I know. No more than that.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e044",
+    "deck": "grounding",
+    "text": "I’m not repeating gossip. This I know.",
+    "tags": {
+      "family": "thing",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e045",
+    "deck": "grounding",
+    "text": "I wouldn’t say it if I weren’t sure of it.",
+    "tags": {
+      "family": "thing",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e046",
+    "deck": "grounding",
+    "text": "I’d have no reason to invent it.",
+    "tags": {
+      "family": "thing",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e047",
+    "deck": "grounding",
+    "text": "I see plenty of faces I can’t name. Most of them I forget.",
+    "tags": {
+      "family": "strangers",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e048",
+    "deck": "grounding",
+    "text": "A face was all I got. Nobody offered me a name.",
+    "tags": {
+      "family": "strangers",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e049",
+    "deck": "grounding",
+    "text": "I’d have served {him}. I remember who I serve.",
+    "tags": {
+      "family": "movements",
+      "role": "counterman",
+      "knows": "name",
+      "half": "second"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e050",
+    "deck": "grounding",
+    "text": "Everybody who sits down at my counter, I see. I don’t lose count.",
+    "tags": {
+      "family": "counts",
+      "role": "counterman"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e051",
+    "deck": "grounding",
+    "text": "{He}’d have come through my line. I’d have known {him}.",
+    "tags": {
+      "family": "movements",
+      "role": "ticket-taker",
+      "knows": "name",
+      "half": "second"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e052",
+    "deck": "grounding",
+    "text": "I serve plenty of people I couldn’t name. That’s the counter for you.",
+    "tags": {
+      "family": "strangers",
+      "role": "counterman"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e053",
+    "deck": "grounding",
+    "text": "I can give you every place, in the order I went.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e054",
+    "deck": "grounding",
+    "text": "I go the same way most nights, so I know.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e055",
+    "deck": "grounding",
+    "text": "I haven’t had to think hard about it.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-e056",
+    "deck": "grounding",
+    "text": "Every place I said, I was.",
+    "tags": {
+      "family": "evening",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]

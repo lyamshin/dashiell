@@ -1779,5 +1779,38 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "cry-a01",
+    "deck": "carry",
+    "text": "What I had so far pointed at {subject}. {who} was the one here who would know it.",
+    "tags": {
+      "for": "ask-place",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cry-a02",
+    "deck": "carry",
+    "text": "{subject} had come up, and I wanted to hear about it from {who}.",
+    "tags": {
+      "for": "ask-place",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cry-a03",
+    "deck": "carry",
+    "text": "I had a reason to ask about {subject}, and {who} was the one to ask.",
+    "tags": {
+      "for": "ask-place",
+      "lead": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]

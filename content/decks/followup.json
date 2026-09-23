@@ -593,5 +593,485 @@
     },
     "motifs": [],
     "status": "tuned"
+  },
+  {
+    "id": "fol-e001",
+    "deck": "followup",
+    "text": "“Now tell me about you. Where were you tonight?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e002",
+    "deck": "followup",
+    "text": "“And you? Take me through your own evening.”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e003",
+    "deck": "followup",
+    "text": "“What about your own night? Start to finish.”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e004",
+    "deck": "followup",
+    "text": "“Where were you, while all that was going on?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e005",
+    "deck": "followup",
+    "text": "“And yourself? Where did your evening go?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e006",
+    "deck": "followup",
+    "text": "“Let’s have yours now. Where were you?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e007",
+    "deck": "followup",
+    "text": "“One more thing. Where were you tonight?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e008",
+    "deck": "followup",
+    "text": "“I’ll need your own evening too. All of it.”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e009",
+    "deck": "followup",
+    "text": "“Now your own night, if you don’t mind. From the start.”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e010",
+    "deck": "followup",
+    "text": "“Where were you yourself tonight?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e011",
+    "deck": "followup",
+    "text": "“Tell me where you were. All of it, in order.”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e012",
+    "deck": "followup",
+    "text": "“And your evening? Every place you were.”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e013",
+    "deck": "followup",
+    "text": "“Now, you. Where were you all night?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e014",
+    "deck": "followup",
+    "text": "“I’ll have yours as well. Where were you tonight?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e015",
+    "deck": "followup",
+    "text": "“And you, from the start of the evening? Where were you?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e016",
+    "deck": "followup",
+    "text": "“Where were you tonight? All of it.”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e017",
+    "deck": "followup",
+    "text": "“Start with you. Where were you this evening?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e018",
+    "deck": "followup",
+    "text": "“Take me through your night, from the start.”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e019",
+    "deck": "followup",
+    "text": "“Where did your evening take you?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e020",
+    "deck": "followup",
+    "text": "“Tell me where you were tonight, in order.”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e021",
+    "deck": "followup",
+    "text": "“How did your evening go, start to finish?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e022",
+    "deck": "followup",
+    "text": "“Is there anything else you know about it?”",
+    "tags": {
+      "part": "open",
+      "family": "thing",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e023",
+    "deck": "followup",
+    "text": "“What else can you tell me?”",
+    "tags": {
+      "part": "open",
+      "family": "thing",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e024",
+    "deck": "followup",
+    "text": "“Anything more?”",
+    "tags": {
+      "part": "open",
+      "family": "thing",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e025",
+    "deck": "followup",
+    "text": "“Is that everything, or is there more?”",
+    "tags": {
+      "part": "open",
+      "family": "thing",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e026",
+    "deck": "followup",
+    "text": "“And what else do you know?”",
+    "tags": {
+      "part": "open",
+      "family": "thing",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e027",
+    "deck": "followup",
+    "text": "“Anything else I should hear?”",
+    "tags": {
+      "part": "open",
+      "family": "thing",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e028",
+    "deck": "followup",
+    "text": "“Was there a time you know for certain {he} wasn’t around?”",
+    "tags": {
+      "part": "second",
+      "family": "movements",
+      "ask": "other"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e029",
+    "deck": "followup",
+    "text": "“Any hour you’d say for sure {he} wasn’t around?”",
+    "tags": {
+      "part": "second",
+      "family": "movements",
+      "ask": "other"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e030",
+    "deck": "followup",
+    "text": "“Was {he} ever not around, that you’d swear to?”",
+    "tags": {
+      "part": "second",
+      "family": "movements",
+      "ask": "other"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e031",
+    "deck": "followup",
+    "text": "“Any time you can say {he} wasn’t around?”",
+    "tags": {
+      "part": "second",
+      "family": "movements",
+      "ask": "other"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e032",
+    "deck": "followup",
+    "text": "“What about the times {he} wasn’t around? Any you’re sure of?”",
+    "tags": {
+      "part": "second",
+      "family": "movements",
+      "ask": "other"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e033",
+    "deck": "followup",
+    "text": "“Anybody you didn’t know?”",
+    "tags": {
+      "part": "open",
+      "family": "strangers",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e034",
+    "deck": "followup",
+    "text": "“Any faces you couldn’t put a name to?”",
+    "tags": {
+      "part": "open",
+      "family": "strangers",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e035",
+    "deck": "followup",
+    "text": "“And people you didn’t know? Anybody?”",
+    "tags": {
+      "part": "open",
+      "family": "strangers",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e036",
+    "deck": "followup",
+    "text": "“Did you see anybody tonight you didn’t know?”",
+    "tags": {
+      "part": "open",
+      "family": "strangers",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e037",
+    "deck": "followup",
+    "text": "“And anybody you couldn’t name?”",
+    "tags": {
+      "part": "open",
+      "family": "strangers",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e038",
+    "deck": "followup",
+    "text": "“How many came in tonight? Everybody, in order.”",
+    "tags": {
+      "part": "open",
+      "family": "counts",
+      "order": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e039",
+    "deck": "followup",
+    "text": "“Who came in tonight, and when? Start at the top.”",
+    "tags": {
+      "part": "open",
+      "family": "counts",
+      "order": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-e040",
+    "deck": "followup",
+    "text": "“Tell me who came in tonight. All of it, in order.”",
+    "tags": {
+      "part": "open",
+      "family": "counts",
+      "order": "first"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]
