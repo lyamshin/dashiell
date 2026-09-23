@@ -42,6 +42,7 @@ import {
   CARRY_TEMPLATES,
   FAMILIAR_GREETINGS,
   GUEST_POSTS,
+  HIRING_DASHIELL,
   NOTHING_LINES,
   NOTHING_LEFT,
   PLAIN_ARRIVALS,
@@ -1773,6 +1774,11 @@ function takesABeat(l: Laid): boolean {
   const b = l.block;
   if (b.kind !== 'prose') return false;
   if (/["“”]/.test(b.text)) return false;
+  // docs/26: "Neither of us spoke. Nothing moved." A paragraph that already
+  // ends on a beat of its own does not take a second one.
+  const sentences = splitSentences(b.text);
+  const lastSentence = sentences[sentences.length - 1];
+  if (lastSentence !== undefined && wordCount(lastSentence) <= 6) return false;
   return b.voice !== 'exchange' && b.voice !== 'record' && b.voice !== 'errand';
 }
 
@@ -2781,10 +2787,13 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   // visit ("Kreuzer was turning the ring on his smallest finger again."). A
   // client with no recall action is dealt a hiring card that asks for none.
   const business = cast.portraits[client.id]?.pair?.action;
+  // docs/25: `{dashiell}` is what he says between her reason and the money —
+  // one of his own short lines, as one who knows her or one who does not.
+  const dashiell = dealer.random.pick(HIRING_DASHIELL[familiar ? 'yes' : 'no']);
   const hiring = hiringFrame(
     dealer,
     { temper, klass, gender, familiar },
-    { ...slots, fact: fact ?? undefined, business },
+    { ...slots, fact: fact ?? undefined, business, dashiell },
     t.ctx,
   );
   if (hiring.gap) t.gaps.push(hiring.gap);

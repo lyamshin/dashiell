@@ -27,6 +27,7 @@ import type { CaseView } from '../derive.js';
 import { pronounOf } from '../voice/cast.js';
 import { spokenSpan, spokenSpans } from '../voice/facts.js';
 import type { Family } from './families.js';
+import { ANOTHER_TIME } from '../voice-data.js';
 
 /** Which follow-up question asks for a family's second half. */
 export type FollowAsk =
@@ -161,13 +162,15 @@ function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id
   }
   for (const [anchorId, places] of anchored) {
     const timing = view.anchorById.get(anchorId)?.timing ?? 'that evening';
-    const wheres = places.map((pl) => whereOf(view, pl, at));
-    const where = wheres.length === 1 ? (wheres[0] as string) : `${list(wheres.map((w) => `${w} once`))}`;
+    // docs/25: two sightings tied to the same thing are two clauses, each with
+    // its place — never "at the Automat once and here once".
+    const [where, ...others] = places.map((pl) => whereOf(view, pl, at)) as [string, ...string[]];
     first.push(
       stretches.length === 0 && first.length === 0
         ? `I saw ${p.him} ${where} ${timing}.`
         : `${cap(timing)}, ${p.he} was ${where}.`,
     );
+    for (const other of others) first.push(ANOTHER_TIME.split('{he}').join(p.he).split('{where}').join(other));
   }
 
   // Where they were not.

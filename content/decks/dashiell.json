@@ -28,7 +28,8 @@
     "text": "“Tell me about {topic}.”",
     "tags": {
       "kind": "ask-person",
-      "familiar": "no"
+      "familiar": "no",
+      "asks": "any"
     },
     "motifs": [],
     "status": "placeholder"
@@ -39,7 +40,8 @@
     "text": "“{topic},” I said. “Straight, and I’ll go away.”",
     "tags": {
       "kind": "ask-person",
-      "familiar": "yes"
+      "familiar": "yes",
+      "asks": "any"
     },
     "motifs": [],
     "status": "placeholder"
@@ -239,7 +241,8 @@
     "text": "\"Tell me about {name}.\"",
     "tags": {
       "kind": "ask-person",
-      "familiar": "no"
+      "familiar": "no",
+      "asks": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -250,7 +253,8 @@
     "text": "\"Give me your read on {name}.\"",
     "tags": {
       "kind": "ask-person",
-      "familiar": "no"
+      "familiar": "no",
+      "asks": "who"
     },
     "motifs": [],
     "status": "generated"
@@ -261,7 +265,8 @@
     "text": "\"How well did you know {name}?\"",
     "tags": {
       "kind": "ask-person",
-      "familiar": "no"
+      "familiar": "no",
+      "asks": "who"
     },
     "motifs": [],
     "status": "generated"
@@ -272,7 +277,8 @@
     "text": "\"What's {name} to you?\"",
     "tags": {
       "kind": "ask-person",
-      "familiar": "no"
+      "familiar": "no",
+      "asks": "who"
     },
     "motifs": [],
     "status": "generated"
@@ -283,7 +289,8 @@
     "text": "\"When did you last lay eyes on {name}?\"",
     "tags": {
       "kind": "ask-person",
-      "familiar": "no"
+      "familiar": "no",
+      "asks": "where"
     },
     "motifs": [
       "eyes"
@@ -296,7 +303,8 @@
     "text": "\"Straight, now. What's the story with {name}?\"",
     "tags": {
       "kind": "ask-person",
-      "familiar": "yes"
+      "familiar": "yes",
+      "asks": "any"
     },
     "motifs": [],
     "status": "generated"
@@ -307,7 +315,8 @@
     "text": "\"You know {name} better than most. Talk to me.\"",
     "tags": {
       "kind": "ask-person",
-      "familiar": "yes"
+      "familiar": "yes",
+      "asks": "who"
     },
     "motifs": [],
     "status": "generated"
@@ -318,7 +327,8 @@
     "text": "\"Cut the polish. What's {name} really like?\"",
     "tags": {
       "kind": "ask-person",
-      "familiar": "yes"
+      "familiar": "yes",
+      "asks": "who"
     },
     "motifs": [],
     "status": "generated"
@@ -329,7 +339,8 @@
     "text": "\"You and {name} — how far back does that go?\"",
     "tags": {
       "kind": "ask-person",
-      "familiar": "yes"
+      "familiar": "yes",
+      "asks": "who"
     },
     "motifs": [],
     "status": "generated"
@@ -340,9 +351,76 @@
     "text": "\"I need the truth on {name}, not the version you give strangers.\"",
     "tags": {
       "kind": "ask-person",
-      "familiar": "yes"
+      "familiar": "yes",
+      "asks": "any"
     },
     "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hum-081",
+    "deck": "dashiell-lines",
+    "text": "\"Did you see {name} tonight?\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "no",
+      "asks": "where"
+    },
+    "motifs": [
+      "eyes"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hum-082",
+    "deck": "dashiell-lines",
+    "text": "\"Where did {name} get to tonight?\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "no",
+      "asks": "where"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hum-083",
+    "deck": "dashiell-lines",
+    "text": "\"Was {name} about tonight, that you saw?\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "no",
+      "asks": "where"
+    },
+    "motifs": [
+      "eyes"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hum-084",
+    "deck": "dashiell-lines",
+    "text": "\"You'd know. Where was {name} tonight?\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "yes",
+      "asks": "where"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hum-085",
+    "deck": "dashiell-lines",
+    "text": "\"You keep your eyes open. Where did {name} go tonight?\"",
+    "tags": {
+      "kind": "ask-person",
+      "familiar": "yes",
+      "asks": "where"
+    },
+    "motifs": [
+      "eyes"
+    ],
     "status": "generated"
   },
   {
@@ -351,7 +429,8 @@
     "text": "\"You were at {place}?\"",
     "tags": {
       "kind": "ask-place",
-      "familiar": "no"
+      "familiar": "no",
+      "presumes": "there"
     },
     "motifs": [],
     "status": "generated"
@@ -373,7 +452,8 @@
     "text": "\"What time were you at {place}?\"",
     "tags": {
       "kind": "ask-place",
-      "familiar": "no"
+      "familiar": "no",
+      "presumes": "there"
     },
     "motifs": [],
     "status": "generated"
@@ -384,7 +464,8 @@
     "text": "\"Who else was at {place}?\"",
     "tags": {
       "kind": "ask-place",
-      "familiar": "no"
+      "familiar": "no",
+      "presumes": "there"
     },
     "motifs": [],
     "status": "generated"
@@ -395,7 +476,8 @@
     "text": "\"How long were you at {place}?\"",
     "tags": {
       "kind": "ask-place",
-      "familiar": "no"
+      "familiar": "no",
+      "presumes": "there"
     },
     "motifs": [],
     "status": "generated"
@@ -406,7 +488,8 @@
     "text": "\"{place}, same as always?\"",
     "tags": {
       "kind": "ask-place",
-      "familiar": "yes"
+      "familiar": "yes",
+      "presumes": "there"
     },
     "motifs": [],
     "status": "generated"
@@ -417,7 +500,8 @@
     "text": "\"You still keep to {place} most nights?\"",
     "tags": {
       "kind": "ask-place",
-      "familiar": "yes"
+      "familiar": "yes",
+      "presumes": "there"
     },
     "motifs": [],
     "status": "generated"
@@ -428,7 +512,8 @@
     "text": "\"I know you were at {place}. Tell me the rest.\"",
     "tags": {
       "kind": "ask-place",
-      "familiar": "yes"
+      "familiar": "yes",
+      "presumes": "there"
     },
     "motifs": [],
     "status": "generated"
@@ -456,12 +541,57 @@
     "status": "generated"
   },
   {
+    "id": "hum-086",
+    "deck": "dashiell-lines",
+    "text": "\"Who came through {place} tonight?\"",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hum-087",
+    "deck": "dashiell-lines",
+    "text": "\"What went on at {place} tonight?\"",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hum-088",
+    "deck": "dashiell-lines",
+    "text": "\"Anything at {place} tonight I ought to know about?\"",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hum-089",
+    "deck": "dashiell-lines",
+    "text": "\"You'd have heard. What went on at {place} tonight?\"",
+    "tags": {
+      "kind": "ask-place",
+      "familiar": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
     "id": "hum-031",
     "deck": "dashiell-lines",
     "text": "\"This {object} — whose is it?\"",
     "tags": {
       "kind": "ask-object",
-      "familiar": "no"
+      "familiar": "no",
+      "presumes": "held"
     },
     "motifs": [],
     "status": "generated"
@@ -472,7 +602,8 @@
     "text": "\"Ever see this {object} before?\"",
     "tags": {
       "kind": "ask-object",
-      "familiar": "no"
+      "familiar": "no",
+      "presumes": "held"
     },
     "motifs": [],
     "status": "generated"
@@ -527,7 +658,8 @@
     "text": "\"You know exactly whose {object} this is.\"",
     "tags": {
       "kind": "ask-object",
-      "familiar": "yes"
+      "familiar": "yes",
+      "presumes": "held"
     },
     "motifs": [],
     "status": "generated"
@@ -549,7 +681,8 @@
     "text": "\"I've seen that {object} before. Have you?\"",
     "tags": {
       "kind": "ask-object",
-      "familiar": "yes"
+      "familiar": "yes",
+      "presumes": "held"
     },
     "motifs": [],
     "status": "generated"

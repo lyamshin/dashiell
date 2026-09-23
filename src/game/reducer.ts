@@ -720,7 +720,7 @@ export function step(
       scene = {
         kind: 'ask',
         personId: item.personId,
-        askKind: askKindOf(item.topic.kind),
+        askKind: askKindFor(view, item.topic),
         topicLabel: topicLabel(view, item.topic),
         topicSlots: topicSlots(view, item.topic),
         clues: paced.now,
@@ -1057,7 +1057,7 @@ export function step(
       scene = {
         kind: 'ask',
         personId: command.personId,
-        askKind: askKindOf(command.topic.kind),
+        askKind: askKindFor(view, command.topic),
         topicLabel: topicLabel(view, command.topic),
         topicSlots: topicSlots(view, command.topic),
         clues: answered,
@@ -1195,11 +1195,45 @@ export function topicSlots(view: CaseView, topic: TopicRef): Record<string, stri
       return { place: view.placeById.get(topic.id)?.shortName };
     case 'object':
       return { object: view.objectById.get(topic.id)?.name };
-    case 'exact':
-      return { subject: surnameIn(view, topic.topic) };
+    case 'exact': {
+      const subject = surnameIn(view, topic.topic);
+      if (subject !== undefined) return { subject };
+      // docs/25: a topic that names nobody is asked about as the place or the
+      // thing it is — "the walk-up that evening", "the key" — never "Tell me
+      // about {topic}".
+      const place = placeIn(view, topic.topic);
+      if (place !== undefined) return { place };
+      return { object: topic.topic.replace(/^(?:the|a|an) /i, '') };
+    }
     default:
       return {};
   }
+}
+
+/**
+ * docs/25: which question lines a topic is asked with. A generated topic that
+ * names nobody is asked as the place it names, or else as a thing; everything
+ * else by its kind.
+ */
+export function askKindFor(view: CaseView, topic: TopicRef): ReturnType<typeof askKindOf> {
+  if (topic.kind === 'exact' && surnameIn(view, topic.topic) === undefined) {
+    return placeIn(view, topic.topic) !== undefined ? 'ask-place' : 'ask-object';
+  }
+  return askKindOf(topic.kind);
+}
+
+/** The place a generated topic string names, by its short name, if it names one. */
+function placeIn(view: CaseView, text: string): string | undefined {
+  const lower = text.toLowerCase();
+  let best: { at: number; name: string } | null = null;
+  for (const place of view.places) {
+    const at = lower.indexOf(place.shortName.toLowerCase());
+    if (at < 0) continue;
+    if (best === null || at < best.at || (at === best.at && place.shortName.length > best.name.length)) {
+      best = { at, name: place.shortName };
+    }
+  }
+  return best?.name;
 }
 
 /** M8: the topic as plain data, for the planner. */

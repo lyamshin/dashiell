@@ -19,6 +19,7 @@ import { wordsOnPage } from '../../src/game/transcript.js';
 import { COLOUR_LINES } from '../../src/game/voice-data.js';
 import { nameables, pageFact } from '../../src/game/scene/index.js';
 import { thereWas } from '../../src/game/scene/realize.js';
+import { isSecretFind, isTimingFind } from '../../src/game/scene/finds.js';
 import type { RunState } from '../../src/game/types.js';
 import {
   ALL_CARDS,
@@ -1193,6 +1194,19 @@ describe('the find slot', () => {
           if (block.kind !== 'prose' || block.voice !== 'find' || !block.clueId) continue;
           const clue = v.findableById.get(block.clueId);
           if (!clue) continue;
+          // docs/26: a secret explained and an hour written down are told as
+          // what he found, never the record; they keep the person and the thing.
+          if (isSecretFind(clue) || isTimingFind(clue)) {
+            const f = clue.establishes.find((x) => x.kind === 'secretExplained' || x.kind === 'anchorAt');
+            const must =
+              f?.kind === 'secretExplained'
+                ? (v.personById.get(f.personId)?.surname ?? '')
+                : f?.kind === 'anchorAt'
+                  ? (v.anchorById.get(f.anchorId)?.name ?? '')
+                  : '';
+            expect(block.text, `${block.clueId} told without its subject`).toContain(must);
+            continue;
+          }
           // M8 §7: the record is the notebook's; the page tells it in the past
           // tense, standing in the room. Every word of the fact is still there.
           const here = v.placeById.get(page.at)?.shortName ?? '';
@@ -1287,8 +1301,9 @@ describe('the exchange slots', () => {
     expect(topicSlots(view, { kind: 'exact', personId: 'p-1', topic: `${vitale} that evening` })).toEqual({
       subject: vitale,
     });
+    // docs/26: a topic that names nobody is asked as the thing it is.
     expect(topicSlots(view, { kind: 'exact', personId: 'p-1', topic: 'the noise that evening' })).toEqual({
-      subject: undefined,
+      object: 'noise that evening',
     });
   });
 

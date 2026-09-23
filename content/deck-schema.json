@@ -307,7 +307,19 @@
             "close"
           ]
         },
-        "familiar": { "required": true, "values": ["yes", "no"] }
+        "familiar": { "required": true, "values": ["yes", "no"] },
+        "asks": {
+          "required": false,
+          "default": "any",
+          "values": ["where", "who", "any"],
+          "$note": "docs/26, ask-person only: what the question asks about the one named. 'where' asks where they were (the answer is their comings and goings); 'who' asks how the witness knows them (the answer is knowing or not knowing them). The engine deals a 'where' question before a telling of somebody's movements and a 'who' question before a telling of whether the witness knows them; 'any' fits both."
+        },
+        "presumes": {
+          "required": false,
+          "default": "none",
+          "values": ["there", "held", "none"],
+          "$note": "docs/26. 'there': an ask-place line that takes it the witness was at the place ('What time were you at {place}?'); it is not dealt to somebody who is not posted there. 'held': an ask-object line that takes it the thing is in the detective's hand ('This {object} — whose is it?'); it is not dealt for a topic that only names a thing ('the key')."
+        }
       },
       "coverage": [["kind", "familiar"]]
     },

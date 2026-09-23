@@ -19,13 +19,34 @@
  *   between walking into a room and walking out of it, and a recall ("…again")
  *   is used at most once a visit.
  *
+ * docs/25's read-through (docs/26), where a text check can see it:
+ *
+ * - **No verdict from Poached up:** "Brennan was out of it", "That cleared
+ *   Weisglass", "I crossed Zeldin off". An explained secret explains a lie.
+ * - **An anchor's hour told once a night:** a sentence naming the anchor and
+ *   its hour, said on one page and again on a later one, or twice on one page.
+ *   The window thought's "if it happened at ten, it happened under the train"
+ *   is reasoning, not the hour told again, and is not counted.
+ * - **Two anchored sightings, two clauses:** never "at the Automat once and
+ *   here once".
+ * - **First sight is a description:** never the relation stacked on it ("He
+ *   was in Renfro's debt, a man in his fifties").
+ * - **A search thought names only whom its find named.**
+ * - **The question matches what is told:** a "how do you know them" line
+ *   answered with where they were, or the other way about.
+ * - **No placeholder question for a nameless topic** ("Tell me about the
+ *   key."), and **no slot left unfilled**.
+ *
  * Pure: it reads the run and returns what it found.
  */
 
 import type { Clue, Id } from '../gen/types.js';
+import { spokenClock } from '../gen/types.js';
 import type { CaseView } from './derive.js';
 import type { Page, RunState } from './types.js';
-import { proseTexts } from './scene/text.js';
+import { SIGHT, proseTexts, sentencesOf } from './scene/text.js';
+import { verdictsOn } from './m9.js';
+import { DECKS, tagOf } from './voice/cards.js';
 
 export interface LintIssue {
   page: number;
@@ -37,7 +58,16 @@ export interface LintIssue {
     | 'repeated-question'
     | 'too-many-families'
     | 'presence-again'
-    | 'recall-again';
+    | 'recall-again'
+    /* docs/26 */
+    | 'verdict'
+    | 'anchor-restated'
+    | 'two-places-once'
+    | 'stacked-sight'
+    | 'search-thought-name'
+    | 'question-family'
+    | 'placeholder-question'
+    | 'unfilled-slot';
   detail: string;
 }
 
@@ -192,10 +222,149 @@ function lintPage(view: CaseView, page: Page, found: readonly Id[]): LintIssue[]
   return out;
 }
 
+const esc = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/**
+ * docs/25: a verdict, said of somebody by name. Checked only from Poached up,
+ * where the pages give none; Raw and Coddled teach one once two facts agree.
+ */
+export function verdictsIn(text: string, surnames: readonly string[]): string[] {
+  const out: string[] = [];
+  if (/\bwas out of it\b/.test(text)) out.push('was out of it');
+  for (const raw of surnames) {
+    const s = esc(raw);
+    const patterns = [
+      new RegExp(`\\b(?:took|takes|taking) ${s} (?:out of it|off my list)\\b`),
+      new RegExp(`\\b(?:That|It|This) cleared ${s}\\b`),
+      new RegExp(`\\bcleared ${s} of\\b`),
+      new RegExp(`\\bcrossed ${s} off\\b`),
+      new RegExp(`\\bclosed ${s} off\\b`),
+      new RegExp(`\\bclosed the door on ${s}\\b`),
+      new RegExp(`\\bI let ${s} go\\b`),
+      new RegExp(`\\bsettled ${s}, in the negative\\b`),
+      new RegExp(`\\b${s} couldn[’']t have done it\\b`),
+    ];
+    for (const re of patterns) {
+      const m = re.exec(text);
+      if (m) out.push(m[0]);
+    }
+  }
+  return out;
+}
+
+/** The ask-person lines whose words are the placeholder's {topic}. */
+const PLACEHOLDER_ASKS = new Set(
+  (DECKS['dashiell-lines'] ?? [])
+    .filter((c) => tagOf('dashiell-lines', c, 'kind') === 'ask-person' && c.text.includes('{topic}'))
+    .map((c) => c.id),
+);
+
+/** What each ask-person line asks: where somebody was, or how the witness knows them. */
+const ASKS = new Map<string, string>(
+  (DECKS['dashiell-lines'] ?? []).map((c) => [c.id, String(tagOf('dashiell-lines', c, 'asks') ?? 'any')]),
+);
+
+/**
+ * An anchor's hour told again: a sentence naming the anchor (or its scene
+ * sentence) with an hour of it that an earlier sentence tonight already told,
+ * outside the window thought. `told` carries the hours told so far, by anchor.
+ */
+function anchorRestated(view: CaseView, page: Page, told: Map<Id, Set<string>>): string[] {
+  const out: string[] = [];
+  const reasoning = (page.beats ?? [])
+    .filter((b) => b.kind === 'thought' && b.tag === 'window' && b.text)
+    .flatMap((b) => sentencesOf(b.text as string));
+  const sentences = proseTexts(page)
+    .flatMap((t) => sentencesOf(t))
+    .filter((x) => !reasoning.some((r) => x.includes(r) || r.includes(x)));
+  for (const sentence of sentences) {
+    const low = sentence.toLowerCase();
+    for (const a of view.kase.anchors) {
+      const name = a.name.toLowerCase();
+      const head = (a.sceneFact.split('{T}')[0] ?? '').trim().toLowerCase();
+      if (!low.includes(name) && !(head.length > 6 && low.includes(head))) continue;
+      const hours = [...new Set(a.ticks)]
+        .map((t) => spokenClock(t).toLowerCase())
+        .filter((h) => new RegExp(`\\b${esc(h)}\\b`).test(low));
+      const before = told.get(a.templateId) ?? new Set<string>();
+      const again = hours.filter((h) => before.has(h));
+      if (again.length > 0 && page.shape !== 'confront') out.push(`${a.name} at ${again.join(', ')}, told again: “${sentence}”`);
+      for (const h of hours) before.add(h);
+      told.set(a.templateId, before);
+    }
+  }
+  return out;
+}
+
+/** docs/26: the read-through's checks on one page. */
+function lintProse(view: CaseView, page: Page): LintIssue[] {
+  const out: LintIssue[] = [];
+  const add = (rule: LintIssue['rule'], detail: string): void => {
+    out.push({ page: page.n, rule, detail });
+  };
+  const texts = textsOf(page);
+  const beats = page.beats ?? [];
+
+  if (!verdictsOn(view)) {
+    const names = view.kase.people.filter((p) => p.id !== view.victim.id).map((p) => p.surname);
+    for (const text of texts) for (const v of verdictsIn(text, names)) add('verdict', v);
+  }
+  for (const text of texts) {
+    const twice = /\bonce and (?:here|at [^.,;”]+?) once\b/.exec(text);
+    if (twice) add('two-places-once', twice[0]);
+    const slot = /\{[a-zA-Z]+\}/.exec(text);
+    if (slot) add('unfilled-slot', slot[0]);
+  }
+  // First sight: a description, not the relation stacked on it.
+  for (const b of beats) {
+    if (b.kind !== 'presence' || !b.rendered || !b.text) continue;
+    for (const id of b.personIds ?? []) {
+      const rel = view.personById.get(id)?.relationshipToVictim;
+      if (!rel) continue;
+      for (const sentence of sentencesOf(b.text)) {
+        if (sentence.toLowerCase().includes(rel.toLowerCase()) && SIGHT.test(sentence)) add('stacked-sight', sentence);
+      }
+    }
+  }
+  // A search thought names only whom its find named.
+  if (page.shape === 'search') {
+    for (const b of beats) {
+      if (b.kind !== 'thought' || !b.rendered || !b.text || (b.clueIds ?? []).length === 0) continue;
+      const finds = beats
+        .filter((f) => f.kind === 'find' && f.rendered && (f.clueIds ?? []).some((id) => (b.clueIds ?? []).includes(id)))
+        .map((f) => f.text ?? '')
+        .join(' ');
+      if (finds.length === 0) continue;
+      const victimToo = b.tag === 'last-seen' || b.tag === 'seen-after';
+      for (const p of view.kase.people) {
+        if (p.id === view.victim.id && !victimToo) continue;
+        const re = new RegExp(`\\b${esc(p.surname)}\\b`);
+        if (re.test(b.text) && !re.test(finds)) add('search-thought-name', `${b.tag}: ${p.surname}: “${b.text}”`);
+      }
+    }
+  }
+  // The question matches what is told, and a nameless topic is not asked with the placeholder.
+  if (page.shape === 'ask') {
+    const exchange = beats.find((b) => b.kind === 'exchange' && b.rendered);
+    const first = beats.find((b) => b.kind === 'telling' && b.rendered);
+    for (const id of page.cardsUsed) {
+      const asks = ASKS.get(id);
+      if (first && asks === 'who' && first.tag === 'movements') add('question-family', `${id} asks how they know them; told where they were`);
+      if (first && asks === 'where' && first.tag === 'knowing') add('question-family', `${id} asks where they were; told whether they know them`);
+      if (PLACEHOLDER_ASKS.has(id) && exchange && (exchange.personIds ?? []).length <= 1) {
+        add('placeholder-question', `${id} for a topic that names nobody`);
+      }
+    }
+  }
+  return out;
+}
+
 /** Every issue in a run, page by page. */
 export function lintRun(view: CaseView, state: RunState): LintIssue[] {
   const out: LintIssue[] = [];
   const found: Id[] = [];
+  /** docs/26: each anchor's hours told so far tonight. */
+  const hoursTold = new Map<Id, Set<string>>();
   // Presence and recall, a visit at a time: a visit runs from walking into a
   // room to walking out of it.
   let visitAt: Id | null = null;
@@ -209,6 +378,12 @@ export function lintRun(view: CaseView, state: RunState): LintIssue[] {
   for (const page of state.log) {
     found.push(...page.found);
     out.push(...lintPage(view, page, found));
+    out.push(...lintProse(view, page));
+    // The tiered game only: the untiered game's marks are the generator's own
+    // sentences ("The ice being brought in was at half past eight, and…").
+    if (view.kase.logic) {
+      for (const detail of anchorRestated(view, page, hoursTold)) out.push({ page: page.n, rule: 'anchor-restated', detail });
+    }
     if (page.at !== visitAt) {
       visitAt = page.at;
       described = new Set();
