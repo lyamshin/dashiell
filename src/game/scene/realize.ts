@@ -1304,10 +1304,10 @@ function exchange(
   // what the witness knows of the one they are talking about (the dossier fact
   // this clue hands the notebook), said once, in the witness's mouth.
   const factsSaid = new Set<Id>();
-  const factAbout = (clue: Clue): string | null => {
+  const factAbout = (clue: Clue, named: boolean): string | null => {
     const about = clueAbout(clue);
     if (about === null || about === person.id || about === view.victim.id || factsSaid.has(about)) return null;
-    const line = followUpFact(stage, clue, about, person.id);
+    const line = followUpFact(stage, clue, about, person.id, named);
     if (line !== null) factsSaid.add(about);
     return line;
   };
@@ -1325,7 +1325,10 @@ function exchange(
     }
     // Golden page 5: an observation is something the witness saw, and says so.
     const seen = register === 'truth' || register === 'evasion' ? sawLine(view, clue, person, spoken.text) : null;
-    const extra = [seen, quoted ? factAbout(clue) : null].filter((x): x is string => x !== null);
+    // "She" only when the answer has just said who; else the name.
+    const aboutName = view.personById.get(clueAbout(clue) ?? '')?.surname;
+    const named = aboutName !== undefined && new RegExp(`\\b${aboutName}\\b`).test(spoken.text);
+    const extra = [seen, quoted ? factAbout(clue, named) : null].filter((x): x is string => x !== null);
     const said = say(spoken.text);
     let text = withBusiness(said);
     if (extra.length > 0 && quoted) {
@@ -1365,7 +1368,7 @@ function exchange(
     );
   if (beat.carried && subject) {
     // "Nora Hanrahan. She's been with him since 'eighteen."
-    const fact = first ? factAbout(first) : null;
+    const fact = first ? factAbout(first, true) : null;
     out.push({ text: `“${subject.name}.${fact ? ` ${fact}` : ''}”`, voice: 'exchange' });
     if (placed) out.push({ text: `“Where was ${subject.surname} tonight?”`, voice: 'exchange' });
   }
@@ -1431,7 +1434,7 @@ function sawLine(view: Stage['view'], clue: Clue, speaker: Person, said: string)
  * diary" is "She keeps Sweeney's diary". Only a fact this page credits, only
  * one that names nobody else, and never what somebody wants out of life.
  */
-function followUpFact(stage: Stage, clue: Clue, aboutId: Id, speakerId: Id): string | null {
+function followUpFact(stage: Stage, clue: Clue, aboutId: Id, speakerId: Id, pronoun = true): string | null {
   const { view } = stage;
   if (layerOfClue(clue) !== 2) return null;
   const before = layerCredit(view, aboutId, stage.foundBefore, 2);
@@ -1446,9 +1449,9 @@ function followUpFact(stage: Stage, clue: Clue, aboutId: Id, speakerId: Id): str
   );
   if (others.some((o) => new RegExp(`\\b${o.surname}\\b`).test(line))) return null;
   if (new RegExp(`^${about.surname} wants\\b`).test(line)) return null;
-  const pronoun = pronounOf(about) === 'she' ? 'She' : 'He';
+  const head = pronoun ? (pronounOf(about) === 'she' ? 'She' : 'He') : about.surname;
   return line
-    .replace(new RegExp(`^${about.surname}\\b`), pronoun)
+    .replace(new RegExp(`^${about.surname}\\b`), head)
     .replace(/, (since|for years|going back|three years|four years)/, ' $1')
     .replace(/'/g, '’');
 }
