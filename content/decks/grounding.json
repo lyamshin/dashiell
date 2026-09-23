@@ -724,7 +724,7 @@
   {
     "id": "grd-065",
     "deck": "grounding",
-    "text": "I was there, and I have eyes.",
+    "text": "I know what I saw, and what I didn’t.",
     "tags": {
       "family": "movements",
       "role": "suspect"
@@ -735,6 +735,39 @@
   {
     "id": "grd-066",
     "deck": "grounding",
+    "text": "I’m sure of that much.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-067",
+    "deck": "grounding",
+    "text": "I’d remember if I had.",
+    "tags": {
+      "family": "movements",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-068",
+    "deck": "grounding",
+    "text": "I was there, and I have eyes.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-069",
+    "deck": "grounding",
     "text": "I’d have remembered the name.",
     "tags": {
       "family": "knowing",
@@ -744,7 +777,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-067",
+    "id": "grd-070",
     "deck": "grounding",
     "text": "I’m not good with names, but I’d know that one.",
     "tags": {
@@ -755,7 +788,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-068",
+    "id": "grd-071",
     "deck": "grounding",
     "text": "I don’t pay much attention to who people are.",
     "tags": {
@@ -766,7 +799,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-069",
+    "id": "grd-072",
     "deck": "grounding",
     "text": "I don’t know everybody. Nobody does.",
     "tags": {
@@ -777,7 +810,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-070",
+    "id": "grd-073",
     "deck": "grounding",
     "text": "I notice faces. I don’t ask for names.",
     "tags": {
@@ -788,7 +821,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-071",
+    "id": "grd-074",
     "deck": "grounding",
     "text": "I’m not guessing. I know it.",
     "tags": {
@@ -799,7 +832,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-072",
+    "id": "grd-075",
     "deck": "grounding",
     "text": "I wouldn’t tell you if I wasn’t sure.",
     "tags": {
@@ -810,7 +843,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-073",
+    "id": "grd-076",
     "deck": "grounding",
     "text": "I don’t say things I don’t know.",
     "tags": {
@@ -821,7 +854,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-074",
+    "id": "grd-077",
     "deck": "grounding",
     "text": "I know {him}. That’s how I know.",
     "tags": {
@@ -834,7 +867,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-075",
+    "id": "grd-078",
     "deck": "grounding",
     "text": "I know {him} when I see {him}.",
     "tags": {
@@ -847,7 +880,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-076",
+    "id": "grd-079",
     "deck": "grounding",
     "text": "That’s the whole of it.",
     "tags": {
@@ -858,7 +891,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-077",
+    "id": "grd-080",
     "deck": "grounding",
     "text": "There isn’t any more to it than that.",
     "tags": {
@@ -869,7 +902,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-078",
+    "id": "grd-081",
     "deck": "grounding",
     "text": "I remember it because it was tonight.",
     "tags": {
@@ -880,7 +913,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-079",
+    "id": "grd-082",
     "deck": "grounding",
     "text": "I don’t keep a diary, but I know where I’ve been.",
     "tags": {
@@ -891,7 +924,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-080",
+    "id": "grd-083",
     "deck": "grounding",
     "text": "You don’t miss a thing like that.",
     "tags": {
@@ -902,7 +935,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-081",
+    "id": "grd-084",
     "deck": "grounding",
     "text": "Everybody heard it. I’m no different.",
     "tags": {
@@ -913,7 +946,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-082",
+    "id": "grd-085",
     "deck": "grounding",
     "text": "It’s the kind of thing people set their evening by.",
     "tags": {
@@ -924,7 +957,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-083",
+    "id": "grd-086",
     "deck": "grounding",
     "text": "You couldn’t be there and not know it.",
     "tags": {
@@ -935,7 +968,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-084",
+    "id": "grd-087",
     "deck": "grounding",
     "text": "I’m only telling you what anybody there would tell you.",
     "tags": {
@@ -946,7 +979,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-085",
+    "id": "grd-088",
     "deck": "grounding",
     "text": "I’m here all night. I see what there is to see.",
     "tags": {
@@ -957,7 +990,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-086",
+    "id": "grd-089",
     "deck": "grounding",
     "text": "I notice who comes in. It’s what I do.",
     "tags": {
@@ -968,7 +1001,7 @@
     "status": "generated"
   },
   {
-    "id": "grd-087",
+    "id": "grd-090",
     "deck": "grounding",
     "text": "I notice faces. Names are another matter.",
     "tags": {

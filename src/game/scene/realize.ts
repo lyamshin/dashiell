@@ -578,14 +578,16 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const host = last();
         // One or two sentences: the thought, and the note after it when the
         // thought left room.
-        if (host && host.voice === 'thought' && countSentences(host.text) > 2) break;
+        // Golden rule 6: one or two sentences in all — the note only after a one-sentence thought.
+        if (host && host.voice === 'thought' && countSentences(host.text) - (host.noted ? 1 : 0) > 1) break;
         const fam = beat.family;
         const subject = fam.subjectId ? view.personById.get(fam.subjectId) : undefined;
         const pro = subject ? pronounsOf(subject) : undefined;
         const band = verdictsOn(view) ? 'teach' : 'play';
         const seen = lastFamily?.family.key === fam.key && (lastFamily.told?.first.some((s) => /\bI saw\b|\bwas (?:here|at|back)\b/.test(s)) ?? false);
         const polarity = fam.kind === 'movements' ? (seen ? 'seen' : 'unseen') : 'any';
-        const is = (c: Card, tag: string, want: string): boolean => tagIs('note', c, tag, want);
+        // A note is said once a night or not at all: never one read already.
+        const is = (c: Card, tag: string, want: string): boolean => !dealer.used(c.id) && tagIs('note', c, tag, want);
         const drawn = deal(
           stage,
           'note',
@@ -1692,6 +1694,9 @@ function nameReply(stage: Stage, speaker: Person, subject: Person): string {
   return 'I know who you mean. I know the face.';
 }
 
+/** M10: the beat between two turns of one answer. Plain, and the witness's own. */
+const WENT_ON = ['{name} went on.', '{name} kept going.', '{name} wasn’t finished.', '{name} thought a moment.'];
+
 /** M10: the questions a page has asked, so no page asks one twice. */
 const ASKED = new WeakMap<Stage, Set<string>>();
 
@@ -1838,7 +1843,10 @@ function tellingParas(
   /* the grounding: how they know */
   const role = speaker.kind === 'fixture' && speaker.fixtureRole ? speaker.fixtureRole : 'suspect';
   const half = told.follow ? 'second' : 'first';
-  const g = (c: Card, tag: string, want: string): boolean => tagIs('grounding', c, tag, want);
+  // "I saw it myself" grounds a sighting, never "we were never in the same place".
+  const sawIt = told.first.some((s0) => /^I saw\b|\bwas (?:here|at|back|there)\b/.test(s0));
+  const fits = (c: Card): boolean => sawIt || !/\b(?:saw|seen|I was there)\b/.test(c.text);
+  const g = (c: Card, tag: string, want: string): boolean => fits(c) && tagIs('grounding', c, tag, want);
   const exact = (c: Card, tag: string, want: string): boolean => tagOf('grounding', c, tag) === want;
   const grounding = deal(
     stage,
@@ -1862,7 +1870,8 @@ function tellingParas(
     const t = (c: Card, tag: string, want: string): boolean => tagIs('tail', c, tag, want);
     // No opinion of the victim's habits: they are dead, or gone.
     const aboutVictim = subject?.id === view.victim.id;
-    const free = (c: Card): boolean => !aboutVictim || !/\{(?:he|him|his|He)\}/.test(c.text);
+    // And a tail once a night: a witness's joke is not the whole block's.
+    const free = (c: Card): boolean => !dealer.used(c.id) && (!aboutVictim || !/\{(?:he|him|his|He)\}/.test(c.text));
     const drawn = deal(
       stage,
       'tail',
@@ -1879,10 +1888,16 @@ function tellingParas(
   }
 
   /* the frame: the first half, said */
-  const firstSaid = [
+  const said = [
     ...told.first,
     ...(told.follow ? [] : [parts.grounding, tail].filter((x): x is string => x !== undefined)),
-  ].join(' ');
+  ];
+  // Golden page 5: a long answer is two turns with a beat between them — "She
+  // said it the way you say something you've had to tell the gas company
+  // twice." Here the beat is plain: the witness going on.
+  const split = !told.follow && told.first.length >= 4 ? 2 : said.length;
+  const firstSaid = said.slice(0, split).join(' ');
+  const restSaid = said.slice(split).join(' ');
   const sp = pronounOf(speaker) === 'she';
   const frameSlots: Slots = {
     told: firstSaid,
@@ -1902,7 +1917,8 @@ function tellingParas(
     ],
     frameSlots,
   );
-  const answer = frame?.text ?? `“${firstSaid}”`;
+  const going = restSaid.length > 0 ? ` ${fillTemplate(dealer.random.pick(WENT_ON), { name: speaker.surname })} “${restSaid}”` : '';
+  const answer = `${frame?.text ?? `“${firstSaid}”`}${going}`;
   if (frame) parts.frame = frame.text.replace(firstSaid, '{told}');
   paras.push({ text: answer, voice: 'exchange', clueId: family.clueIds[0] as Id });
 
