@@ -31,7 +31,7 @@ import { NO_CONTEXT, scoreMotifs } from '../voice/motifs.js';
 import type { Weather } from '../voice/roll.js';
 import { planBridge, subjectOfTopic, type BridgePlan } from './bridge.js';
 import { bandOf, hourAgrees } from './text.js';
-import { thoughtPriority, thoughtsFor, viewOf, type Thought } from './thought.js';
+import { quietClue, thoughtPriority, thoughtsFor, viewOf, type Thought } from './thought.js';
 import type { ConfrontJudgement } from '../m9.js';
 import { familiesOf, type Family } from './families.js';
 
@@ -895,6 +895,7 @@ export function planPage(input: PlanInput): Plan {
               ),
             input.foundBefore,
             input.accountsBefore,
+            input.met.includes(p.personId),
           ),
         )
         // Night Hone 1 §2: a stranger gets no thought until there is something to think.
@@ -919,7 +920,10 @@ export function planPage(input: PlanInput): Plan {
             action.errand.targetId,
             newIds,
             reachable,
-            action.errand.slots.subject ?? action.errand.slots.who,
+            // docs/26: the answer deck's {subject} is a thing, in hand or not
+            // there ("There was no {subject} here"): only a search for a thing
+            // supplies it, never a person or a question's topic.
+            action.errand.for === 'search-thing' ? action.errand.slots.subject : undefined,
             action.errand.slots.name,
           ),
         );
@@ -1005,7 +1009,8 @@ export function planPage(input: PlanInput): Plan {
       // what it is worth — and never a flat list.
       for (const clue of action.clues) {
         beats.push({ kind: 'find', required: true, clueId: clue.id });
-        addThoughts(familyThoughts([clue]));
+        // docs/26: an hour the night already told has nothing new to think.
+        if (!quietClue(view, clue, input.foundBefore)) addThoughts(familyThoughts([clue]));
       }
       if (!beats.some((b) => b.kind === 'thought')) addThoughts(thoughtsFor(thoughtInput));
     }

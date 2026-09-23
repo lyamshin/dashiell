@@ -333,12 +333,31 @@ export function dashiellLine(
   kind: AskKind,
   familiar: boolean,
   slots: Slots,
+  opts: {
+    /**
+     * docs/26: what the answer tells about the one asked after — where they
+     * were (`where`), or whether the witness knows them (`who`) — so that
+     * "What's Renfro to you?" is never answered with where Renfro was.
+     */
+    asks?: 'where' | 'who';
+    /**
+     * docs/26: a line that takes something for granted that is not so here —
+     * the witness at the place (`there`), the thing in hand (`held`).
+     */
+    avoid?: 'there' | 'held';
+  } = {},
 ): { text: string; cardId: string } | null {
   const want = familiar ? 'yes' : 'no';
+  const { asks, avoid } = opts;
+  const fits = (c: Parameters<typeof tagIs>[1]): boolean =>
+    (asks === undefined || tagIs('dashiell-lines', c, 'asks', asks)) &&
+    (avoid === undefined || tagOf('dashiell-lines', c, 'presumes') !== avoid);
   const drawn = dealer.draw(
     'dashiell-lines',
     [
-      (c) => tagIs('dashiell-lines', c, 'kind', kind) && tagIs('dashiell-lines', c, 'familiar', want),
+      (c) => tagIs('dashiell-lines', c, 'kind', kind) && tagIs('dashiell-lines', c, 'familiar', want) && fits(c),
+      (c) => tagIs('dashiell-lines', c, 'kind', kind) && fits(c),
+      (c) => tagIs('dashiell-lines', c, 'kind', kind) && tagIs('dashiell-lines', c, 'familiar', want) && (avoid === undefined || tagOf('dashiell-lines', c, 'presumes') !== avoid),
       (c) => tagIs('dashiell-lines', c, 'kind', kind),
     ],
     slots,

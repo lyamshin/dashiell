@@ -558,3 +558,208 @@ export const LOOKED_AGAIN: string[] = [
   'Then I read it over again.',
   'Then I looked at it on the page.',
 ];
+
+/* ------------------------------------------------------------------ *
+ * docs/25 read-through, engine prose (docs/26): what a search finds, told.
+ * ------------------------------------------------------------------ */
+
+/**
+ * A secret explained, found by searching (a disqualifier): what the detective
+ * finds, by the kind of secret. The engine writes the sentence after it from
+ * the clue's facts — who, where and when — so every name and hour on the page
+ * traces to the clue. Slots: {P} the one whose secret it is, {V} the victim.
+ * Past tense and plain. It explains a lie; it clears nobody.
+ */
+export const SECRET_FINDS: Record<string, string[]> = {
+  affair: [
+    'A note was tucked in the blotter, in a hand that had not troubled to disguise itself, fixing an hour to meet.',
+    'Two hats hung on the one hook behind the door, and one of them was {P}’s.',
+  ],
+  embezzling: [
+    'In the back of a drawer was a bank book in a name that was not {P}’s, kept in {P}’s hand: two hundred dollars a month for a year.',
+    'Under the blotter were ledger pages copied out in {P}’s hand, with the totals made to come right.',
+  ],
+  'gambling-debt': [
+    'A bookmaker’s receipt was folded small behind the clock, made out to {P} against a debt of eleven hundred dollars.',
+    'A bookmaker’s tally was pinned inside a cupboard door, with {P}’s name against the payments.',
+  ],
+  fence: [
+    'A dealer’s tag was tied to a parcel of silver on the shelf, and the silver had never been {P}’s to sell.',
+    'A dealer’s tag was stuck in the frame of the mirror, dated and signed for a parcel of stolen silver {P} had handed over.',
+  ],
+  blackmail: [
+    '{V}’s bank book was in the desk, with four payments marked in it and a fifth waiting to be collected.',
+    'A folded photograph was in the desk drawer, of something {V} would have paid to keep folded, and {P}’s name was on the envelope it came in.',
+  ],
+  'secret-drinking': [
+    'A bar tab was spiked on a nail behind the counter, run up in {P}’s hand under somebody else’s name.',
+    'A bottle was pushed behind the pipes, and the tab tucked under it was in {P}’s hand.',
+  ],
+  'forged-identity': [
+    'A desertion warrant from 1918 was folded in with some old letters, and the name on it was the one {P} was born with.',
+    'A deportation order was in the drawer, years old, and the name on it had been {P}’s before {P} changed it.',
+  ],
+  dope: [
+    'A doctor’s letter was in the drawer, about {P} and the morphine, with the hour of the last visit written at the foot of it.',
+    'A little packet of morphine was in the drawer, and the receipt under it was made out to {P}.',
+  ],
+  'union-organizing': [
+    'A detective agency’s report was in the desk, typed up for somebody’s employer, about {P} and a union.',
+    'A strapped envelope of signed union cards was in the desk, forty of them, and the list on top was in {P}’s hand.',
+  ],
+  'hidden-family': [
+    'A receipt for a child’s keep was in the drawer, paid up through tonight and signed for by {P}.',
+    'A child’s photograph was in the drawer, with a receipt for the month’s keep behind it in {P}’s name.',
+  ],
+};
+
+/** The same, for a secret whose kind has no line of its own. */
+export const SECRET_FIND_ANY: string[] = [
+  'There was something in the drawer that explained {P}, and {P} would not have wanted it found.',
+];
+
+/** After a secret found: where it put them, from the clue's facts. {who} {at} {when}. */
+export const SECRET_FIND_PUT: string[] = ['It put {who} {at} {when}.', 'It had {who} {at} {when}.'];
+
+/**
+ * What a secret found means, from Poached up: the reason somebody would lie
+ * about an hour, and nothing about the crime. Never "was out of it" (docs/25).
+ * {subject} {doing} {he} {him} {crime}.
+ */
+export const EXPLAINED_THOUGHTS: string[] = [
+  'So that was what {subject} had been keeping back: {doing}. If {subject} told me {he} was somewhere else then, this was why. It did not explain {crime}.',
+  'That was {subject}’s secret, then: {doing}. It was a reason to lie about the hour, and no answer to {crime}.',
+  '{subject} had been {doing}. It explained why {he} might lie about where {he} had been. It did not clear {him} of anything else.',
+  'It explained why {subject} would keep quiet about that hour: {doing}. What it did not explain was {crime}.',
+];
+
+/** A secret found with no hours to it: what it means. */
+export const EXPLAINED_THOUGHTS_NO_HOUR: string[] = [
+  'So that was what {subject} had been keeping back: {doing}. It explained the silence. It did not explain {crime}.',
+  '{subject} had been {doing}, and would rather lie than say so. It did not clear {him} of anything else.',
+];
+
+/** What the case was, for "it did not explain {crime}". */
+export const CRIME_NOUN: Record<string, string> = {
+  murder: 'the killing',
+  robbery: 'the robbery',
+  missing: 'the disappearance',
+};
+
+/**
+ * When something happened, written down where he searched (a timing clue).
+ * {anchor} its name, {times} its hours. Said once a night: a timing clue whose
+ * hour is already told is `SEARCH_TIMING_KNOWN`.
+ */
+export const SEARCH_TIMING: string[] = [
+  'Somebody had pencilled the time of {anchor} on the wall by the door: {times}.',
+  'The time of {anchor} was written on the back of a calendar by the door: {times}.',
+  'Somebody here had kept a note of {anchor}, with the hour in it: {times}.',
+];
+
+/** The same, for something that comes round more than once a night. */
+export const SEARCH_TIMING_MANY: string[] = [
+  'Somebody had pencilled the times of {anchor} on the wall by the door: {times}.',
+  'Somebody here had kept a note of {anchor}, every time it came round: {times}.',
+];
+
+/** The same, when the night has told one of those hours already: only the others are said. */
+export const SEARCH_TIMING_MORE: string[] = [
+  'Somebody here had kept a note of {anchor}, and it had the other times it came round: {times}.',
+  'The times of {anchor} were pencilled by the door: the one I already had, and {times}.',
+];
+
+/** A timing clue whose hour the night has already given: the hour is not said again. */
+export const SEARCH_TIMING_KNOWN: string[] = [
+  'Somebody here had written down {anchor} as well, at the hour I already had.',
+  'The time of {anchor} was pencilled by the door, and it was the hour I already had.',
+];
+
+/**
+ * The thought on the hour of something the block times things by. The find or
+ * the telling has just said the hour, so this says what it is good for and
+ * never says the hour again (docs/25). {other} is the anchor.
+ */
+export const TIMING_THOUGHTS: string[] = [
+  'Now {other} had an hour, and so did anybody seen somewhere by it.',
+  'Anything anybody had timed by {other} had that hour too.',
+  'Whoever was seen somewhere during {other} had been seen at that hour, then.',
+];
+
+/** The same, for something that comes round more than once a night. */
+export const TIMING_THOUGHTS_MANY: string[] = [
+  'Now {other} had its hours, and so did anybody seen somewhere by it, if I knew which time.',
+  'Anything anybody had timed by {other} was at one of those hours, then.',
+];
+
+/**
+ * A sighting tied to something whose hour the night has already told, where
+ * the notebook has that hour only in the room's own words: the hour is not
+ * said again. {subject} {place} {other}.
+ */
+export const ANCHORED_KNOWN_THOUGHTS: string[] = [
+  '{subject} had been at {place} during {other}, and I already had the hour of that.',
+  'It put {subject} at {place} during {other}. I knew when that was.',
+];
+
+/** The same, for something that came round more than once: which time, it does not say. */
+export const ANCHORED_RECURRING_THOUGHTS: string[] = [
+  'It put {subject} at {place} during {other}, at one of the times it came round, and it didn’t say which.',
+  '{subject} had been at {place} during {other}. I knew when that came round, but not which time this was.',
+];
+
+/** The same, for something that comes round more than once, of which the night has told one hour. */
+export const ANCHORED_PARTIAL_THOUGHTS: string[] = [
+  'It put {subject} at {place} during {other}. I had one hour for that, and it came round more than once a night.',
+  '{subject} had been at {place} during {other}. That went more than once a night, and I knew only one of the times.',
+];
+
+/**
+ * A search thought whose find does not name the one it is about: the thought
+ * does not name them either (docs/25). {place} {time}.
+ */
+export const NAMELESS_THOUGHTS: string[] = [
+  'It put somebody at {place} at {time}, and it did not say who. I didn’t guess yet.',
+  'Somebody had been at {place} at {time}. Who, it didn’t say.',
+];
+
+/** The same, with no place and hour to it. */
+export const NAMELESS_THOUGHTS_NO_HOUR: string[] = [
+  'It was worth keeping, though it did not say whose it was.',
+  'It did not say who, and I didn’t guess yet.',
+];
+
+/**
+ * A bridge to when something the block times things by happened: who would
+ * know, and never the window's hour beside it (docs/26). {who} {subject}
+ * {where}.
+ */
+export const ANCHOR_BRIDGES: string[] = [
+  '{who} would know when {subject} came by.',
+  'The question was when {subject} was. {who} was the one to ask.',
+  '{who} would know the hour of {subject}, if anybody did.',
+];
+
+/** The same, with where the one to ask is found. */
+export const ANCHOR_BRIDGES_WHERE: string[] = [
+  '{who} would know when {subject} came by. {who} was at {where}.',
+  'The question was when {subject} was. {who} might say, at {where}.',
+];
+
+/** After a bridge to somebody in the room: they are not sent for (docs/26). {who} {them}. */
+export const BRIDGE_HERE: string[] = ['{who} was right there.', 'I didn’t have far to go for {who}.'];
+
+/** After a bridge to the one he is talking to. */
+export const BRIDGE_TALKING: string[] = ['{who} was still in front of me.', 'I wasn’t done with {who} yet.'];
+
+/** A sighting tied to something that came round more than once, at a second place: its own clause. */
+export const ANOTHER_TIME = 'Another time, {he} was {where}.';
+
+/**
+ * The hiring card's `{dashiell}`: what he says between the client's reason
+ * and the money.
+ */
+export const HIRING_DASHIELL: Record<'yes' | 'no', string[]> = {
+  no: ['“That’s all?” I said.', '“All right,” I said.', '“It’ll do to start,” I said.', '“I’ve started on less,” I said.'],
+  yes: ['“I remember,” I said.', '“Same as last time, then,” I said.', '“All right,” I said.'],
+};

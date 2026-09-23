@@ -85,6 +85,11 @@ const PAST: [RegExp, string][] = [
   [/\bhas been\b/g, 'had been'],
   [/\bhave been\b/g, 'had been'],
   [/\bhas not\b/g, 'had not'],
+  // docs/26: "the hands have not moved since" in a scene report.
+  [/\bhave not\b/g, 'had not'],
+  [/\bhaven[’']t\b/g, 'hadn’t'],
+  [/\bhasn[’']t\b/g, 'hadn’t'],
+  [/\bhave (?=[a-z]+ed\b)/g, 'had '],
   [/\bhas\b/g, 'had'],
   [/\b(I|they|we|you|They|We|You) have\b/g, '$1 had'],
   [/\bdoes not\b/g, 'did not'],

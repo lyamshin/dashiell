@@ -11,6 +11,7 @@
 import type { Clue, Id, Person, Tick } from '../../gen/types.js';
 import { MISSING_MEANS, MURDER_MEANS, ROBBERY_MEANS } from '../../gen/data/means.js';
 import { windowOf } from './thought.js';
+import { anchorsTold, toldFind, type AnchorTold } from './finds.js';
 import { spokenClock } from '../../gen/types.js';
 import type { Block, BeatTrace, ErrandTrace, ProseVoice } from '../types.js';
 import { OTHER_THING } from '../errand.js';
@@ -45,6 +46,20 @@ import {
   SEARCH_ROOM_ACTS,
   SIGHT_LINES,
   STOP_LINES,
+  ANCHORED_KNOWN_THOUGHTS,
+  ANCHOR_BRIDGES,
+  ANCHOR_BRIDGES_WHERE,
+  BRIDGE_HERE,
+  BRIDGE_TALKING,
+  ANCHORED_RECURRING_THOUGHTS,
+  ANCHORED_PARTIAL_THOUGHTS,
+  CRIME_NOUN,
+  EXPLAINED_THOUGHTS,
+  EXPLAINED_THOUGHTS_NO_HOUR,
+  NAMELESS_THOUGHTS,
+  NAMELESS_THOUGHTS_NO_HOUR,
+  TIMING_THOUGHTS,
+  TIMING_THOUGHTS_MANY,
 } from '../voice-data.js';
 import { fill, tagIs, tagOf, type Card, type Match, type Slots } from '../voice/cards.js';
 import { genderHintOf, possessiveOf, pronounOf } from '../voice/cast.js';
@@ -153,6 +168,8 @@ function deal(
   const plural = typeof slots.place === 'string' && isPluralPlace(slots.place);
   const fitsPlace = (c: Card): boolean =>
     !(outdoors && c.tags.setting === 'indoor') &&
+    // docs/26: "Now the face was across the room from me." on the El platform.
+    !(outdoors && /\b(?:the|this|a) room\b|\bin the building\b/i.test(c.text)) &&
     !(!outdoors && c.tags.setting === 'outdoor') &&
     !(plural && c.tags.number === 'singular');
   // The hour is read off the card as it will print: "It was after {hour} in
@@ -200,6 +217,8 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
   let notedOnce = false;
   /** M10: the family whose telling the paragraphs now belong to. */
   let lastFamily: { family: Family; told: Told | null } | null = null;
+  /** docs/26: the anchors whose hour the night has told, as of this point on the page. */
+  const anchorsSoFar = new Map(anchorsTold(view, stage.foundBefore));
 
   const mark = (i: number, patch: Partial<BeatTrace>): void => {
     traces[i] = { ...(traces[i] as BeatTrace), rendered: true, ...patch };
@@ -216,16 +235,22 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
   const last = (): Para | undefined => paras[paras.length - 1];
   /** Golden page 3: the things in the room, named and left, after the finds. */
   let pendingLeft: { text: string; beat: number } | null = null;
+  /** The paragraph of things left alone, once said: a find never joins it. */
+  let leftPara: Para | null = null;
   const flushLeft = (): void => {
     if (!pendingLeft) return;
-    push({ text: pendingLeft.text, voice: 'act', beats: [pendingLeft.beat] });
+    leftPara = push({ text: pendingLeft.text, voice: 'act', beats: [pendingLeft.beat] });
     pendingLeft = null;
   };
 
   const beats = plan.beats;
   for (let i = 0; i < beats.length; i++) {
     const beat = beats[i] as Beat;
-    if (beat.kind !== 'find' && beat.kind !== 'act') flushLeft();
+    // The things left alone come after the first find and before anything else
+    // — never between a later find and the thought on it.
+    if ((beat.kind !== 'find' && beat.kind !== 'act') || (beat.kind === 'find' && paras.some((p) => p.clueId !== undefined))) {
+      flushLeft();
+    }
     switch (beat.kind) {
       /* ------------------------------------------------------ the clock */
       case 'clock': {
@@ -499,7 +524,8 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
           break;
         }
         const clue = view.findableById.get(beat.clueId) as Clue;
-        const text = findText(stage, clue, plan, gaps);
+        const text = findText(stage, clue, plan, gaps, anchorsSoFar);
+        for (const [id, told] of anchorsTold(view, [clue.id])) if (!anchorsSoFar.has(id)) anchorsSoFar.set(id, told);
         // M9 page bug: the generator can deal the same noise sentence twice in
         // one room (seed 21 at difficulty 3). The page says it once; the
         // notebook keeps every record.
@@ -517,7 +543,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
           prev.voice === 'presence' &&
           prev.clueId === undefined &&
           plan.beats.some((b) => b.kind === 'presence' && b.people.length === 0 && (b.scene === 'body' || b.scene === 'body-again'));
-        if (prev && ((prev.voice === 'act' && prev.clueId === undefined) || besideBody)) {
+        if (prev && ((prev.voice === 'act' && prev.clueId === undefined && prev !== leftPara) || besideBody)) {
           prev.text = `${prev.text} ${text}`;
           prev.clueId = clue.id;
           prev.voice = 'find';
@@ -608,7 +634,9 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
             t
               .toLowerCase()
               .split(/[^a-z]+/)
-              .filter((w) => w.length >= 3 && !NOTE_COMMON.has(w)),
+              .filter((w) => w.length >= 3 && !NOTE_COMMON.has(w))
+              // docs/26: "hours" and "an hour" are the same point made twice.
+              .map((w) => (w.length > 4 ? w.replace(/s$/, '') : w)),
           );
         const mine = words(drawn.text);
         if (host && host.voice === 'thought' && [...words(host.text)].some((w) => mine.has(w))) break;
@@ -649,7 +677,12 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         for (const j of run) {
           const t = (beats[j] as Extract<Beat, { kind: 'thought' }>).thought;
           const finds = paras.filter((p) => p.clueId !== undefined).map((p) => p.text);
-          let text = thoughtLine(stage, t, gaps, finds);
+          // docs/26: on a search, the find this thought rests on, as the page told it.
+          const own =
+            plan.shape === 'search'
+              ? paras.filter((p) => p.clueId !== undefined && t.clueIds.includes(p.clueId)).map((p) => p.text)
+              : null;
+          let text = thoughtLine(stage, t, gaps, finds, own);
           if (/^Which\b/.test(text)) {
             const prev = lines[lines.length - 1];
             if (prev !== undefined && /\.$/.test(prev)) {
@@ -692,8 +725,13 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const who = whoPerson?.surname;
         // A fixture's clause already says where they are: "Hargrove, the
         // doorman at the Wyckoff". Saying it again is the same fact twice.
+        // docs/26: somebody in the room is not sent for: "Dettweiler might, at
+        // the Automat", said at the Automat. The page says they are right here.
+        const present =
+          whoPerson !== undefined &&
+          (stage.here.some((p) => p.id === whoPerson.id) || (scene.kind === 'ask' && scene.personId === whoPerson.id));
         const where =
-          b.whereId && !(whoPerson?.kind === 'fixture' && whoPerson.foundAt === b.whereId)
+          b.whereId && !present && !(whoPerson?.kind === 'fixture' && whoPerson.foundAt === b.whereId)
             ? view.placeById.get(b.whereId)?.shortName
             : undefined;
         // A relation is said once (the designer's rule): somebody an earlier
@@ -710,8 +748,12 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const ladder: Match[] = where
           ? [(c) => fits(c) && c.text.includes('{where}'), fits, loose]
           : [(c) => fits(c) && !c.text.includes('{where}'), loose];
-        const drawn = deal(stage, 'bridge', ladder, slots);
-        let text = drawn?.text ?? '';
+        // docs/26: when something happened is asked without the window's hour.
+        const anchorLine = b.anchorId
+          ? fillTemplate(dealer.random.pick(where ? ANCHOR_BRIDGES_WHERE : ANCHOR_BRIDGES), slots)
+          : '';
+        const drawn = anchorLine.length > 0 ? null : deal(stage, 'bridge', ladder, slots);
+        let text = anchorLine.length > 0 ? anchorLine : (drawn?.text ?? '');
         if (text.length === 0) {
           gaps.push(`no-card: bridge has nothing for ${b.tie} with the slots this lead has`);
           text = who ? `${who} was the one to ask about ${b.subject}.` : `${capitalize(b.subject)} was next.`;
@@ -728,6 +770,11 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
           const own = `${pronounOf(whoPerson) === 'she' ? 'her' : 'his'} own evening`;
           text = text.replace(new RegExp(`(\\b${who}\\b[^.]*?)\\b${who}’s evening`), `$1${own}`);
         }
+        if (present && who && whoPerson) {
+          const talking = scene.kind === 'ask' && scene.personId === whoPerson.id;
+          const pool = talking ? BRIDGE_TALKING : BRIDGE_HERE;
+          text = `${text} ${fillTemplate(dealer.random.pick(pool), { who, them: pronounOf(whoPerson) === 'she' ? 'her' : 'him' })}`;
+        }
         push({ text, voice: 'bridge', beats: [i] });
         mark(i, {
           tag: b.tie,
@@ -743,7 +790,9 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
       /* ---------------------------------------------------- the answer */
       case 'answer': {
         const slots: Slots = { subject: beat.subject, name: beat.name };
-        const drawn = deal(stage, 'answer', [(c) => tagIs('answer', c, 'outcome', beat.outcome)], slots);
+        // docs/26: "His lead had paid for itself" is the book's machinery once
+        // the surname turns to a pronoun; an answer card says it plainly or not at all.
+        const drawn = deal(stage, 'answer', [(c) => tagIs('answer', c, 'outcome', beat.outcome) && !/\blead\b/.test(c.text)], slots);
         const text =
           drawn?.text ??
           (beat.outcome === 'found'
@@ -1095,12 +1144,12 @@ function presenceLine(stage: Stage, p: PresencePerson, named: ReadonlySet<Id> = 
     const decade = d ? DECADES[Math.floor(d.age / 10)] : undefined;
     const gender = genderHintOf(person);
     // The designer's rule: what the detective can see comes first — sex, age,
-    // what they are doing, and their trade where it shows. Their relation to
-    // the victim only when it is why they matter here, and only if no earlier
-    // page has said it.
-    const relation =
-      (p.why === 'lead' || p.why === 'known') && !named.has(person.id) ? person.relationshipToVictim : undefined;
-    const clause = relation ?? visibleTrade(person);
+    // what they are doing, and their trade where it shows. docs/25: never
+    // their relation to the victim stacked on it ("He was in Renfro's debt, a
+    // man in his fifties"); that comes from the page's reason for being here —
+    // the errand, the arrival thought — and not from the first sight of them.
+    void named;
+    const clause = visibleTrade(person);
     if (clause) {
       const sight = fillTemplate(stage.dealer.random.pick(SIGHT_LINES), {
         Pronoun: gender === 'f' ? 'She' : 'He',
@@ -1170,8 +1219,18 @@ function crowdLine(stage: Stage, ids: readonly Id[]): string {
  * with its source where the source is a document. The generator's sentence is
  * the notebook's; this is the page's.
  */
-function findText(stage: Stage, clue: Clue, plan: Plan, gaps: string[]): string {
+function findText(
+  stage: Stage,
+  clue: Clue,
+  plan: Plan,
+  gaps: string[],
+  told: ReadonlyMap<Id, AnchorTold> = new Map(),
+): string {
   const { view } = stage;
+  // docs/26: a secret explained, or an hour written down, is told as what he
+  // found and what it put where — never the generator's sentence as narration.
+  const telling = plan.shape === 'search' ? toldFind(view, clue, stage.at, told, stage.dealer.random) : null;
+  if (telling !== null) return telling;
   const here = view.placeById.get(stage.at)?.shortName ?? '';
   let fact = pageFact(clue, here, view);
   // The presence beat already said where the body is; "Sweeney was found at
@@ -1315,6 +1374,11 @@ export function thoughtSlots(stage: Stage, t: Thought): Slots {
     name: surname(t.secondId),
     // The room it happened in, by its short name (the content branch's slot).
     scene: view.placeById.get(view.sceneId)?.shortName,
+    // docs/26, the engine's own thoughts: the secret as something done, the
+    // one it is about in pronouns, and the crime by what it was.
+    doing: t.cls === 'secret' || t.cls === 'dead-end' ? other : undefined,
+    ...(subject ? { he: pronounOf(subject) === 'she' ? 'she' : 'he', him: pronounOf(subject) === 'she' ? 'her' : 'him' } : {}),
+    crime: CRIME_NOUN[view.kase.act.type],
   };
 }
 
@@ -1341,7 +1405,46 @@ export function secretDoing(type: string, label: string): string {
   return SECRET_DOING[type] ?? label.charAt(0).toLowerCase() + label.slice(1);
 }
 
-function thoughtLine(stage: Stage, t: Thought, gaps: string[], finds: readonly string[] = []): string {
+/**
+ * docs/26: a thought the engine writes itself, where the deck has nothing that
+ * keeps the read-through's rules — a secret that explains a lie and clears
+ * nobody, an hour not said twice, an anchor's hour already told.
+ */
+function engineThought(stage: Stage, t: Thought, slots: Slots): string | null {
+  const { view, dealer } = stage;
+  const pick = (pool: readonly string[]): string | null => {
+    const start = dealer.random.int(pool.length);
+    for (let i = 0; i < pool.length; i++) {
+      const text = fillTemplate(pool[(start + i) % pool.length] as string, slots);
+      if (text.length > 0) return text;
+    }
+    return null;
+  };
+  if (t.cls === 'secret' && t.basis === 'explained') {
+    const clue = view.findableById.get(t.clueIds[0] ?? '');
+    const hours = (clue?.establishes ?? []).some((f) => f.kind === 'personAt' && f.personId === t.subjectId);
+    return pick(hours ? EXPLAINED_THOUGHTS : EXPLAINED_THOUGHTS_NO_HOUR);
+  }
+  if (t.cls === 'touches' && t.basis === 'anchored' && t.told) {
+    return pick(
+      t.told === 'recurring' ? ANCHORED_RECURRING_THOUGHTS : t.told === 'partial' ? ANCHORED_PARTIAL_THOUGHTS : ANCHORED_KNOWN_THOUGHTS,
+    );
+  }
+  if (t.cls === 'touches' && t.basis === 'timing') {
+    const many = (view.anchorById.get(t.anchorId ?? '')?.ticks.length ?? 1) > 1;
+    return pick(many ? TIMING_THOUGHTS_MANY : TIMING_THOUGHTS);
+  }
+  return null;
+}
+
+function thoughtLine(
+  stage: Stage,
+  t: Thought,
+  gaps: string[],
+  finds: readonly string[] = [],
+  /** docs/26: on a search, what the find this thought rests on said; null anywhere else. */
+  own: readonly string[] | null = null,
+): string {
   const caseType = stage.view.kase.act.type;
   // M9 §3: after a confrontation, what the detective did with what was said.
   // The confront deck's `close` cards; never a verdict.
@@ -1373,6 +1476,26 @@ function thoughtLine(stage: Stage, t: Thought, gaps: string[], finds: readonly s
     }
   }
   const slots = thoughtSlots(stage, t);
+  // docs/26: a search thought never names somebody its find did not. The one
+  // it is about, the one who saw it and the second person are named only if
+  // the find named them; the victim only where the thought places the victim.
+  let nameless = false;
+  if (own !== null && t.clueIds.length > 0) {
+    const said = own.join(' ');
+    const namedHere = (name: string | undefined): boolean => name !== undefined && new RegExp(`\\b${name}\\b`).test(said);
+    for (const key of ['subject', 'source', 'name'] as const) {
+      if (slots[key] !== undefined && !namedHere(slots[key])) {
+        slots[key] = undefined;
+        if (key === 'subject') nameless = true;
+      }
+    }
+    if ((t.cls === 'last-seen' || t.cls === 'seen-after') && !namedHere(slots.victim)) {
+      slots.victim = undefined;
+      nameless = true;
+    }
+  }
+  const written = nameless ? null : engineThought(stage, t, slots);
+  if (written !== null) return written;
   const is = (c: Card, tag: string, want: string | undefined): boolean =>
     want === undefined || tagIs('thought', c, tag, want);
   const lied = t.lied === undefined ? undefined : t.lied ? 'yes' : 'no';
@@ -1388,9 +1511,14 @@ function thoughtLine(stage: Stage, t: Thought, gaps: string[], finds: readonly s
   ];
   // §5: a thought on one person's word says "if"; and it never says the find
   // again in other words (§5's "find, then thought").
+  // docs/26: a card written to teach (a verdict) only where the pages may give
+  // one; a card written for play only where they may not.
+  const band = verdictsOn(stage.view) ? 'teach' : 'play';
   const cls = (c: Card): boolean =>
     tagOf('thought', c, 'class') === t.cls &&
     is(c, 'case', caseType) &&
+    tagIs('thought', c, 'band', band) &&
+    (t.met === undefined || tagIs('thought', c, 'met', t.met ? 'yes' : 'no')) &&
     (t.single !== true || hedged(c.text)) &&
     !restates(fill(c, slots) ?? c.text, finds, names);
   // Night Hone 1 §2: when the case gives the thought its specifics — the
@@ -1406,8 +1534,12 @@ function thoughtLine(stage: Stage, t: Thought, gaps: string[], finds: readonly s
     (c) => cls(c) && is(c, 'basis', t.basis) && is(c, 'via', t.via) && is(c, 'who', t.who) && is(c, 'lied', lied),
     (c) => cls(c) && is(c, 'basis', t.basis) && is(c, 'via', t.via),
   ];
-  const drawn = deal(stage, 'thought', ladder, slots);
+  const drawn = nameless ? null : deal(stage, 'thought', ladder, slots);
   if (drawn) return drawn.text;
+  if (nameless) {
+    const pool = slots.place !== undefined && slots.time !== undefined ? NAMELESS_THOUGHTS : NAMELESS_THOUGHTS_NO_HOUR;
+    return fillTemplate(stage.dealer.random.pick(pool), slots);
+  }
   gaps.push(`no-card: thought has nothing for ${t.cls} with the slots it has`);
   return 'I wrote it down and thought about it.';
 }
@@ -1503,7 +1635,40 @@ function exchange(
   } else if (byTopic && firstTelling) {
     question = familyQuestion(stage, firstTelling.family, 'first', gaps);
   } else {
-    const line = dashiellLine(dealer, scene.askKind as AskKind, familiar, slots);
+    // docs/25: the question asks what the answer tells — where somebody was,
+    // or how the witness knows them.
+    const opener = scene.clues[0];
+    const about = scene.topicRef?.kind === 'person' ? scene.topicRef.id : beat.subjectId;
+    const whereabouts =
+      opener !== undefined &&
+      about !== undefined &&
+      opener.establishes.some(
+        (f) => (f.kind === 'personAt' || f.kind === 'personNotAt' || f.kind === 'personAtAnchor') && f.personId === about,
+      );
+    const asks =
+      firstTelling?.family.kind === 'movements'
+        ? 'where'
+        : firstTelling?.family.kind === 'knowing'
+          ? 'who'
+          : whereabouts
+            ? 'where'
+            : undefined;
+    // docs/26: a place line that takes it the witness was there, only for
+    // somebody posted there; a thing line that takes it the thing is in hand,
+    // never for a topic that only names it. A place or a thing is asked by its
+    // name, never by the placeholder's {topic}.
+    const posted = view.placeById.get(person.foundAt ?? '')?.shortName;
+    const avoid =
+      scene.askKind === 'ask-place' && scene.topicSlots.place !== undefined && scene.topicSlots.place !== posted
+        ? ('there' as const)
+        : scene.askKind === 'ask-object' && scene.topicRef?.kind === 'exact'
+          ? ('held' as const)
+          : undefined;
+    const asked: Slots = scene.askKind === 'ask-place' && scene.topicSlots.place !== undefined ? { ...slots, topic: undefined } : slots;
+    const line = dashiellLine(dealer, scene.askKind as AskKind, familiar, asked, {
+      ...(scene.askKind === 'ask-person' && asks ? { asks } : {}),
+      ...(avoid ? { avoid } : {}),
+    });
     question = line?.text ?? `“${capitalize(scene.topicLabel)}?”`;
   }
   // The page's own quotation marks, whatever the deck wrote.
@@ -1815,7 +1980,16 @@ function tellingParas(
   }
 
   /* what they said: the engine's sentences, or the old kinds' own voice */
-  let told = toldOf(view, family, clues, speaker, stage.at);
+  // docs/26: "I saw her at the back lot" after a question about the back lot
+  // is nobody. When the question did not name them, the witness does.
+  const questionNamed =
+    subject === undefined ||
+    (beat.first
+      ? scene.topicSlots.subject === subject.surname ||
+        (scene.topicRef?.kind === 'person' && scene.topicRef.id === subject.id) ||
+        (scene.askKind === 'ask-evening' && subject.id === speaker.id)
+      : new RegExp(`\\b${subject.surname}\\b`).test(parts.question ?? ''));
+  let told = toldOf(view, family, clues, speaker, stage.at, !questionNamed && !beat.volunteered);
   let spokenAloud = true;
   if (told === null) {
     const first: string[] = [];
@@ -1930,9 +2104,15 @@ function tellingParas(
     them: sp ? 'her' : 'him',
     their: sp ? 'her' : 'his',
     // The one the family is about, where it is about somebody.
-    ...(pro ? { he: pro.he, him: pro.him, his: pro.his } : {}),
+    ...(pro ? { he: pro.he, him: pro.him, his: pro.his, He: pro.He } : {}),
+    // docs/26: the capital forms, for a card that opens a sentence on them.
+    They: sp ? 'She' : 'He',
   };
-  const f = (c: Card, tag: string, want: string): boolean => tagIs('telling', c, tag, want);
+  // docs/26: a frame written for a sighting, or for its absence, only where
+  // the told sentences are one.
+  const polarity = sawIt ? 'seen' : told.first.some((s0) => /\bwasn[’']t\b|\bNot\b|\bdidn[’']t see\b/.test(s0)) ? 'unseen' : 'any';
+  const f = (c: Card, tag: string, want: string): boolean =>
+    tagIs('telling', c, tag, want) && (polarity === 'any' || tagIs('telling', c, 'polarity', polarity));
   const frame = deal(
     stage,
     'telling',
@@ -1944,7 +2124,17 @@ function tellingParas(
     frameSlots,
   );
   const going =
-    restSaid.length > 0 ? ` ${fillTemplate(dealer.random.pick(WENT_ON), { name: sp ? 'She' : 'He' })} “${restSaid}”` : '';
+    restSaid.length > 0
+      ? ` ${fillTemplate(
+          // docs/26: "Zeldin thought about it for a moment. … He thought a moment."
+          dealer.random.pick(
+            WENT_ON.some((w) => !(frame?.text ?? '').includes(w.split(' ')[1] as string))
+              ? WENT_ON.filter((w) => !(frame?.text ?? '').includes(w.split(' ')[1] as string))
+              : WENT_ON,
+          ),
+          { name: sp ? 'She' : 'He' },
+        )} “${restSaid}”`
+      : '';
   const answer = `${frame?.text ?? `“${firstSaid}”`}${going}`;
   if (frame) parts.frame = frame.text.replace(firstSaid, '{told}');
   paras.push({ text: answer, voice: 'exchange', clueId: family.clueIds[0] as Id });

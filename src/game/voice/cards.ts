@@ -361,13 +361,19 @@ export type Slots = Record<string, string | undefined>;
  */
 export function fill(card: Card, slots: Slots): string | null {
   const names = slotsOf(card);
-  let out = card.text;
   for (const name of names) {
     const value = slots[name];
     if (value === undefined || value.length === 0) return null;
-    out = out.split(`{${name}}`).join(value);
   }
-  if (/^\{/.test(card.text)) out = out.charAt(0).toUpperCase() + out.slice(1);
+  // docs/26: a slot that opens a sentence gets its first letter put up
+  // wherever it falls — at the start of the card, or after a sentence's end,
+  // closing quotation mark and all ("…on it.” A hundred dollars went…").
+  const out = card.text.replace(/\{(\w+)\}/g, (_m, name: string, at: number, whole: string) => {
+    const value = slots[name] as string;
+    // Not after "?”" or "!”": "“Where?” {pronoun} asked" is still one sentence.
+    const opens = at === 0 || /(?:\.[”"’)]+|[.!?])\s+$/.test(whole.slice(0, at));
+    return opens ? value.charAt(0).toUpperCase() + value.slice(1) : value;
+  });
   // Only a card that had something put into it can have a seam in it. A card
   // with no slots is exactly what the writer wrote, punctuation and all.
   return names.length > 0 ? tidyPunctuation(out) : out;

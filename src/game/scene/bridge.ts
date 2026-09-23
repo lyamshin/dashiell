@@ -43,6 +43,12 @@ export interface BridgePlan {
   search?: boolean;
   /** The hour the notebook's window opens on, for a subject already introduced. */
   hour?: string;
+  /**
+   * docs/26: the question is when something the block times things by
+   * happened. Its bridge never puts the window's hour beside it — "the milk
+   * wagon at seven o'clock" reads as the wagon's own hour.
+   */
+  anchorId?: Id;
 }
 
 const fold = (s: string): string => s.toLowerCase().replace(/[’']/g, "'");
@@ -177,12 +183,16 @@ export function planBridge(
         : place && named === null
           ? place.shortName
           : topic.replace(/ that evening$/, '');
+  const anchor =
+    target.establishes.find((f): f is Extract<typeof f, { kind: 'anchorAt' }> => f.kind === 'anchorAt')?.anchorId ??
+    view.kase.anchors.find((a) => fold(topic).includes(fold(a.name)))?.templateId;
   return {
     ...base,
     ...(named === view.victim.id ? { subjectId: named } : {}),
     subject,
     tie: 'time',
     tieText: hourOf(view, foundAfter, accountsAfter),
+    ...(anchor !== undefined && named === null ? { anchorId: anchor } : {}),
   };
 }
 

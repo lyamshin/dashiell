@@ -24,6 +24,7 @@ import { spokenClock } from '../../gen/types.js';
 import type { CaseView } from '../derive.js';
 import { establishedFrom } from '../derive.js';
 import { clearedOnTwo, verdictsOn } from '../m9.js';
+import { anchorsTold } from './finds.js';
 
 const COUNT_WORDS: Record<number, string> = { 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six' };
 
@@ -163,7 +164,9 @@ export interface Thought {
     | 'hold'
     | 'withdraw'
     /* Shorter nights §1: a second fact that touched nothing ends it. */
-    | 'ends';
+    | 'ends'
+    /* docs/26: a secret found that explains a lie, from Poached up — never a verdict. */
+    | 'explained';
   via?: 'office' | 'account';
   who?: 'watcher' | 'client' | 'known' | 'stranger';
   lied?: boolean;
@@ -180,6 +183,14 @@ export interface Thought {
    * possible: the thought may say "if", "might" or "would", and nothing flatter.
    */
   single?: boolean;
+  /**
+   * docs/26, `touches anchored`: the night has already told the anchor's hour
+   * (in the room's own words, or at more than one time), so the thought knows
+   * it and does not say it again.
+   */
+  told?: 'once' | 'recurring' | 'partial';
+  /** docs/26, `view` × `known`: met on an earlier page (the deck's `met: yes`), or only a name. */
+  met?: boolean;
 }
 
 export interface ThoughtInput {
@@ -357,9 +368,15 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
     return null;
   };
   const speaker = (clue: Clue): Id | undefined => (clue.source.type === 'person' ? clue.source.personId : undefined);
+  // docs/26: an anchor's hour is told once a night. One the pages told before
+  // this one is not thought about again, and a sighting timed by it knows it.
+  const toldBefore = anchorsTold(view, input.foundBefore);
+  const toldAfter = anchorsTold(view, input.foundAfter);
 
   for (const clue of newClues) {
     const before = out.length;
+    /** Nothing new to think about this clue, and nothing to fall back on either. */
+    let quiet = false;
     const facts: Fact[] = clue.establishes;
 
     /* ---------------------------------------------------- placements */
@@ -533,9 +550,21 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
             out.push({ cls: 'method', methodId: f.methodId, clueIds: [clue.id] });
           }
           break;
-        case 'secretExplained':
-          out.push({ cls: clue.role === 'disqualifier' ? 'dead-end' : 'secret', subjectId: f.personId, clueIds: [clue.id] });
+        case 'secretExplained': {
+          // docs/25: an explained secret shows why somebody lied. It closes
+          // the door on them ("dead-end") only where the page may give a
+          // verdict — Raw and Coddled once two facts agree, and the untiered
+          // game. From Poached up it is what the lie was for, and nothing more.
+          const disqualified = clue.role === 'disqualifier';
+          const verdict = disqualified && verdicts && clearsNow(f.personId);
+          out.push({
+            cls: verdict ? 'dead-end' : 'secret',
+            ...(disqualified && !verdict ? { basis: 'explained' as const } : {}),
+            subjectId: f.personId,
+            clueIds: [clue.id],
+          });
           break;
+        }
         /* M9: the pieces of the logic game, said as what they touch. */
         case 'claims': {
           if (out.some((x) => x.clueIds.includes(clue.id) && x.subjectId === f.personId && (x.cls === 'touches' || x.cls === 'contradicts'))) break;
@@ -589,6 +618,17 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
         case 'personAtAnchor': {
           if (f.personId === victimId) break;
           const ticks = heldAnchor(f.anchorId, input.foundAfter);
+          // Told: every hour it came round at is on the pages.
+          const every = view.anchorById.get(f.anchorId)?.ticks ?? [];
+          const some = toldAfter.get(f.anchorId)?.ticks ?? [];
+          const told: Thought['told'] =
+            every.length === 0 || some.length === 0
+              ? undefined
+              : toldAll(some, every)
+                ? every.length > 1
+                  ? 'recurring'
+                  : 'once'
+                : 'partial';
           if (ticks !== null && ticks.length === 1) {
             const t = ticks[0] as Tick;
             if (window.includes(t) && f.place !== scene && isSuspect(view.personById.get(f.personId))) {
@@ -608,11 +648,20 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
             anchorId: f.anchorId,
             otherText: anchorName(f.anchorId),
             clueIds: [clue.id],
+            // docs/26: "Once I knew when that was" is wrong when the night has
+            // told it — in the room's words, or as an hour it came round at.
+            ...(told ? { told } : {}),
           });
           break;
         }
         case 'anchorAt': {
           if (f.ticks.length === 0) break;
+          // docs/26: told on an earlier page; the find says it is the hour he
+          // already had, and there is nothing new to think.
+          if (toldAll(toldBefore.get(f.anchorId)?.ticks, f.ticks)) {
+            quiet = true;
+            break;
+          }
           out.push({
             cls: 'touches',
             basis: 'timing',
@@ -673,7 +722,7 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
       out.push({ cls: 'hint', subjectId: clue.aboutSecretOf, clueIds: [clue.id] });
     }
 
-    if (out.length === before && !inHandBefore.has(clue.id)) {
+    if (out.length === before && !inHandBefore.has(clue.id) && !quiet) {
       out.push({ cls: 'context', clueIds: [clue.id] });
     }
   }
@@ -707,6 +756,21 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
     }
   }
   return out;
+}
+
+/**
+ * docs/26: a clue that only tells an anchor's hour the night has already
+ * told. Its find says so, and there is nothing to think about it.
+ */
+export function quietClue(view: CaseView, clue: Clue, foundBefore: readonly Id[]): boolean {
+  if (clue.establishes.length === 0 || clue.establishes.some((f) => f.kind !== 'anchorAt')) return false;
+  const told = anchorsTold(view, foundBefore);
+  return clue.establishes.every((f) => f.kind === 'anchorAt' && toldAll(told.get(f.anchorId)?.ticks, f.ticks));
+}
+
+/** Every hour in `ticks` is one the night has told. */
+function toldAll(told: readonly Tick[] | undefined, ticks: readonly Tick[]): boolean {
+  return told !== undefined && ticks.every((t) => told.includes(t));
 }
 
 /**
@@ -848,6 +912,8 @@ export function viewOf(
   known: boolean,
   found: readonly Id[],
   accounts: readonly Id[],
+  /** docs/26: met on an earlier page, not only named in the notebook. */
+  met?: boolean,
 ): Thought {
   const place = view.placeById.get(person.foundAt ?? '');
   const who: Thought['who'] =
@@ -859,7 +925,15 @@ export function viewOf(
           ? 'known'
           : 'stranger';
   const lied = hasLied(view, person.id, found, accounts);
-  return { cls: 'view', subjectId: person.id, who, lied, clueIds: [], ...(lied ? { accountIds: [person.id] } : {}) };
+  return {
+    cls: 'view',
+    subjectId: person.id,
+    who,
+    lied,
+    clueIds: [],
+    ...(lied ? { accountIds: [person.id] } : {}),
+    ...(who === 'known' && met !== undefined ? { met } : {}),
+  };
 }
 
 /** Caught in a lie: a placement in hand contradicts an evening they gave. */
