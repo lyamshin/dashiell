@@ -1,5 +1,17 @@
 import { describe, expect, it } from 'vitest';
-import { generateCase, type Case, type Clue, type Fact, type Id, type Tick } from '../src/gen/index.js';
+import {
+  acquaintanceOf,
+  contradicts,
+  crimeFromHeld,
+  generateCase,
+  knowsByName,
+  referenceOf,
+  type Case,
+  type Clue,
+  type Fact,
+  type Id,
+  type Tick,
+} from '../src/gen/index.js';
 import { TIERS, deductionOf, type Level } from '../src/gen/shape.js';
 import { TEXT_KEYS } from '../src/gen/structure.js';
 import { NOTHING_ASKED } from '../src/game/voice-data.js';
@@ -343,6 +355,9 @@ describe('M9: leads', () => {
           for (const to of cl.leadsTo) {
             const target = byId.get(to);
             if (!target) continue;
+            // The scene is marked from page one by rule (spec §4), and a room
+            // names nobody: that one lead is not a lead from content.
+            if (cl.kind === 'client' && target.kind === 'scene') continue;
             edges++;
             const theirs = new Set<Id>();
             if (target.source.type === 'person') theirs.add(target.source.personId);
@@ -477,6 +492,50 @@ describe('M9: the client', () => {
     const hard = cases(5, 2, 60);
     const hits = hard.filter((c) => c.clientBrief.points.personId === c.solution.killerId).length;
     expect(hits / hard.length).toBeLessThanOrEqual(1 / 6 + 0.08);
+  });
+});
+
+describe('M9: the solver as the engine calls it', () => {
+  it('says a real lie is broken by what is findable, and a true word never is', () => {
+    for (const tier of [2, 4, 5] as T[]) {
+      for (const c of cases(tier, 2, 10)) {
+        const all = c.findable.map((x) => x.id);
+        for (const k of c.logic?.confrontations ?? []) {
+          if (k.contradictions.length === 0) continue;
+          const got = contradicts(c, all, { personId: k.personId, place: k.lie.claimed, ticks: k.lie.ticks });
+          expect(got.yes, `T${tier} seed ${c.seed} ${k.lie.cover}`).toBe(true);
+          expect(got.rules.length).toBeGreaterThan(0);
+        }
+        for (const cl of c.findable.filter((x) => x.kind === 'account')) {
+          for (const f of cl.establishes) {
+            if (f.kind !== 'claims') continue;
+            const truth = truthOf(c, f.personId);
+            if (f.ticks.some((t) => truth[t] !== f.place)) continue;
+            expect(contradicts(c, all, { personId: f.personId, place: f.place, ticks: f.ticks }).yes).toBe(false);
+          }
+        }
+      }
+    }
+  });
+
+  it('settles the crime from the whole notebook, and names nobody from the opening alone', () => {
+    for (const c of cases(4, 2, 10)) {
+      const whole = crimeFromHeld(c, c.findable.map((x) => x.id));
+      expect(whole.culprit).toBe(c.solution.killerId);
+      expect(whole.ticks).toEqual([c.solution.murderTick]);
+      const opening = crimeFromHeld(c, c.starting);
+      expect(opening.culprit).toBeNull();
+    }
+  });
+
+  it('refers to people the way the witness knows them', () => {
+    for (const c of cases(5, 2, 5)) {
+      for (const e of c.logic?.acquaintance ?? []) {
+        expect(referenceOf(c, e.from, e.to)).toBe(e.ref);
+        expect(knowsByName(c, e.from, e.to)).toBe(e.strength === 'name' || e.strength === 'relation');
+        expect(acquaintanceOf(c, e.from, e.to)).toBe(e);
+      }
+    }
   });
 });
 

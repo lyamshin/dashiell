@@ -729,13 +729,15 @@ function wireLeads(input: LogicSelectInput, findable: Clue[], parSet: Clue[], st
   // player cannot read a reason into.
   const left = parSet.filter((c) => !starting.includes(c) && c.source.type === 'person');
   for (const c of parSet) if (c.source.type === 'place' && !reached.includes(c)) reached.push(c);
-  const outDegree = new Map<Id, number>();
+  const outDegree = new Map<Id, number>(findable.map((c) => [c.id, c.leadsTo.length]));
   let guard = 0;
   while (left.length > 0 && guard++ < 200) {
     let best: { from: Clue; to: Clue; s: number } | null = null;
     for (const to of left) {
       for (const from of reached) {
-        const s = score(from, to) - (outDegree.get(from.id) ?? 0) * 0.5;
+        const out = outDegree.get(from.id) ?? 0;
+        // Three leads out of one clue at the most (spec §4: about three open at a time).
+        const s = score(from, to) - out * 0.5 - (out >= 3 ? 100 : 0);
         if (!best || s > best.s) best = { from, to, s };
       }
     }
@@ -758,22 +760,18 @@ function wireLeads(input: LogicSelectInput, findable: Clue[], parSet: Clue[], st
     list.push(c);
     branches.set(c.branchId, list);
   }
-  for (const list of branches.values()) {
-    const head = list[0] as Clue;
-    const keeper = head.aboutSecretOf;
-    let best: { from: Clue; s: number } | null = null;
-    for (const from of findable) {
-      if (from.branchId || from.kind === 'testimony' || from.kind === 'account') continue;
-      if ((outDegree.get(from.id) ?? 0) >= 2) continue;
-      const names = keeper !== undefined && (named.get(from.id) as Set<Id>).has(keeper) ? 3 : 0;
-      const s = Math.max(names, score(from, head));
-      if (s > 0 && (!best || s > best.s)) best = { from, s };
-    }
-    if (best) {
-      link(best.from, head);
-      outDegree.set(best.from.id, (outDegree.get(best.from.id) ?? 0) + 1);
-    }
-    for (let i = 1; i < list.length; i++) link(list[i - 1] as Clue, list[i] as Clue);
+  for (const all of branches.values()) {
+    // A trace in a room is found by looking, and a word about somebody by
+    // asking about them; a lead is only drawn where the clue it comes from
+    // names the person to ask. The branch's own clues first, in its order.
+    const list = all.filter((c) => c.source.type === 'person');
+    list.forEach((c, i) => {
+      const pool = [...list.slice(0, i).reverse(), ...findable.filter((x) => !x.branchId && x.kind !== 'testimony' && x.kind !== 'account')];
+      const from = pool.find((x) => x.id !== c.id && (outDegree.get(x.id) ?? 0) < 3 && score(x, c) >= 3);
+      if (!from) return;
+      link(from, c);
+      outDegree.set(from.id, (outDegree.get(from.id) ?? 0) + 1);
+    });
   }
 }
 
