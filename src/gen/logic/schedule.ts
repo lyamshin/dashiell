@@ -42,6 +42,7 @@ import {
   tieSecret,
   addSightings,
   type AcqGraph,
+  type Grain,
 } from './acquaint.js';
 
 export interface LieDraft {
@@ -60,7 +61,7 @@ export interface Schedule9Build extends ScheduleBuild {
   /** Hard-boiled: the two whose descriptions only clear them together. */
   pair: [Id, Id] | null;
   /** Their shared description's grain. */
-  pairGrain: 'fine' | 'age' | 'coarse' | null;
+  pairGrain: Grain | null;
 }
 
 export interface Schedule9Context {
@@ -172,6 +173,7 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
     return Array.from({ length: len }, (_, k) => s + k);
   };
 
+  let farLiar = false;
   const assign = (person: Person, template: SecretTemplate, isLiar: boolean): boolean => {
     if (template.type === 'forged-identity') {
       secrets[person.id] = { type: template.type, label: template.label, description: '', cells: [] };
@@ -181,8 +183,17 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
     }
     const pool = placesHosting(template.type);
     if (pool.length === 0) return false;
-    const place = rng.pick(pool);
-    const len = rng.range(template.minTicks, template.maxTicks);
+    // A secret on the crime's half hour stays within a walk of the scene, but
+    // for one: otherwise a sighting next to it would clear the liar alone.
+    const near = pool.filter((p) => gap(p, L) <= 1);
+    const place = isLiar && (farLiar || rng.chance(0.75)) && near.length > 0 ? rng.pick(near) : rng.pick(pool);
+    if (isLiar && gap(place, L) >= 2) {
+      if (farLiar) return false;
+      farLiar = true;
+    }
+    // A secret on the crime's half hour runs past it where it can, so that
+    // somebody can see the liar there at a half hour that clears nobody.
+    const len = rng.range(isLiar ? Math.min(template.maxTicks, Math.max(2, template.minTicks)) : template.minTicks, template.maxTicks);
     const maxTick = template.partner === 'victim' ? M - 2 : TICKS - 1;
     if (maxTick < 0) return false;
     const ticks = window(len, isLiar, 0, maxTick);
@@ -278,22 +289,25 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
   /* --- the means: fetched before the block, from its own room --------------- */
   const accessPlaceId = setting.accessPlaceId;
   let killerAccessTick = -1;
-  for (const t of rng.shuffle(Array.from({ length: blockStart }, (_, i) => i))) {
-    if (killerFixed[t] !== undefined) continue;
-    if (gap(accessPlaceId, L) > blockStart - t) continue;
-    if (killerFixed[t - 1] !== undefined && !walk(killerFixed[t - 1], accessPlaceId)) continue;
-    if (killerFixed[t + 1] !== undefined && !walk(accessPlaceId, killerFixed[t + 1])) continue;
-    // Not flush against the block, so the lie about it is its own span.
-    if (t === blockStart - 1 && blockStart > 1 && rng.chance(0.5)) continue;
-    killerFixed[t] = accessPlaceId;
-    killerAccessTick = t;
-    break;
+  const fetchTicks = rng.shuffle(Array.from({ length: blockStart }, (_, i) => i)).filter((t) => {
+    if (killerFixed[t] !== undefined) return false;
+    if (gap(accessPlaceId, L) > blockStart - t) return false;
+    if (killerFixed[t - 1] !== undefined && !walk(killerFixed[t - 1], accessPlaceId)) return false;
+    if (killerFixed[t + 1] !== undefined && !walk(accessPlaceId, killerFixed[t + 1])) return false;
+    return true;
+  });
+  // Not flush against the block where there is a choice, so the lie about it
+  // is its own span.
+  fetchTicks.sort((a, b) => (a === blockStart - 1 ? 1 : 0) - (b === blockStart - 1 ? 1 : 0));
+  if (fetchTicks.length > 0) {
+    killerAccessTick = fetchTicks[0] as Tick;
+    killerFixed[killerAccessTick] = accessPlaceId;
   }
   if (killerAccessTick < 0) return fail('the culprit has no half hour to fetch the means in');
 
   let innocentAccess: { personId: Id; tick: Tick } | null = null;
   for (const p of rng.shuffle(cast.innocents)) {
-    for (const t of rng.shuffle(Array.from({ length: M }, (_, i) => i))) {
+    for (const t of rng.shuffle(Array.from({ length: Math.max(0, M - 1) }, (_, i) => i))) {
       if ((fixed[p.id] as Record<number, Id>)[t] !== undefined) continue;
       if (t === killerAccessTick) continue;
       (fixed[p.id] as Record<number, Id>)[t] = accessPlaceId;
@@ -310,110 +324,155 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
   atM[killer.id] = L;
   for (const p of liars) atM[p.id] = (fixed[p.id] as Record<number, Id>)[M] as Id;
 
-  // The direct one: a watcher names them. A liar whose secret room is watched
-  // first, because their lie then has its first contradiction for free.
-  let directId: Id | null = null;
-  let directPlace: Id | null = null;
-  if (!plainTier && dials.directClears > 0) {
-    const shuffledLiars = rng.shuffle(liars);
-    const watchedLiar =
-      shuffledLiars.find((p) => watcherAt(atM[p.id] as Id) !== undefined) ?? shuffledLiars[0];
-    if (watchedLiar) {
-      directId = watchedLiar.id;
-      directPlace = atM[watchedLiar.id] as Id;
-    } else if (free.length > 0) {
-      const watched = rng.shuffle(nonScene.filter((p) => watcherAt(p) !== undefined));
-      const d = rng.pick(free);
-      if (watched.length > 0) {
-        directId = d.id;
-        directPlace = watched[0] as Id;
-        atM[d.id] = directPlace;
-      }
-    }
-  }
-
-  const acq = rollAcquaintance({
-    rng,
-    cast,
-    setting,
-    dials,
-    ...(directId && directPlace ? { forceRegular: { personId: directId, placeId: directPlace } } : {}),
-  });
+  const acq = rollAcquaintance({ rng, cast, setting, dials });
   for (const [a, b] of affairs) tieSecret(acq, a, b);
 
   const fixtureAtM = (place: Id): Id[] =>
     cast.fixtures.filter((f) => (truth[f.id] as (Id | null)[])[M] === place).map((f) => f.id);
   const lyingAt = (id: Id, t: Tick): boolean => (secretCells[id] ?? []).includes(t);
-  const makeStranger = (from: Id, to: Id): boolean => {
+  const setEdge = (from: Id, to: Id, strength: 'stranger' | 'name', basis: 'none' | 'regular' | 'roll'): boolean => {
     const e = acq.edges.get(`${from}>${to}`);
     if (!e) return true;
-    if (e.basis === 'tie' || e.basis === 'secret') return e.strength === 'stranger';
-    const d = describeAs(cast.people.find((p) => p.id === to) as Person, cast.suspects, 'age');
-    acq.edges.set(`${from}>${to}`, { ...e, strength: 'stranger', basis: 'none', ref: d.text });
+    if (e.strength === strength) return true;
+    if (e.basis === 'tie' || e.basis === 'secret') return false;
+    const target = cast.people.find((p) => p.id === to) as Person;
+    const ref = strength === 'name' ? target.name : describeAs(target, cast.suspects, 'age').text;
+    acq.edges.set(`${from}>${to}`, { ...e, strength, basis, ref });
     for (const [place, list] of Object.entries(acq.regulars)) {
       if (cast.watcherOf[place] !== from) continue;
-      acq.regulars[place] = list.filter((id) => id !== to);
+      acq.regulars[place] = strength === 'name' ? Array.from(new Set([...list, to])) : list.filter((id) => id !== to);
     }
     return true;
   };
+  const makeStranger = (from: Id, to: Id): boolean => setEdge(from, to, 'stranger', 'none');
+
+  // The direct one: the one innocent somebody names at the crime's half hour.
+  // A liar first, if one can be: their lie then has its first contradiction
+  // for free. One whose secret room is across the neighbourhood from the
+  // scene has to be, because a sighting near it clears them anyway.
+  let directId: Id | null = null;
+  let directPlace: Id | null = null;
+  let directWitness: Id | null = null;
+  if (!plainTier && dials.directClears > 0) {
+    const far = liars.filter((p) => gap(atM[p.id] as Id, L) >= 2);
+    if (far.length > 1) return fail('two liars are across the neighbourhood from the scene');
+    const order = [
+      ...far,
+      ...rng.shuffle(liars.filter((p) => !far.includes(p) && watcherAt(atM[p.id] as Id) !== undefined)),
+      ...rng.shuffle(liars.filter((p) => !far.includes(p) && watcherAt(atM[p.id] as Id) === undefined)),
+      ...rng.shuffle(free),
+    ];
+    for (const d of order) {
+      if (liarIds.has(d.id)) {
+        const S = atM[d.id] as Id;
+        const w = watcherAt(S);
+        if (w) {
+          if (!setEdge(w, d.id, 'name', 'regular')) continue;
+          directId = d.id;
+          directPlace = S;
+          break;
+        }
+        const witness = rng.shuffle(free).find((q) => canName(acq, q.id, d.id));
+        if (!witness) continue;
+        directId = d.id;
+        directPlace = S;
+        directWitness = witness.id;
+        atM[witness.id] = S;
+        break;
+      }
+      const watched = rng.shuffle(nonScene.filter((p) => watcherAt(p) !== undefined));
+      const W = watched[0];
+      if (!W || !setEdge(watcherAt(W) as Id, d.id, 'name', 'regular')) continue;
+      directId = d.id;
+      directPlace = W;
+      atM[d.id] = W;
+      break;
+    }
+    if (far.length > 0 && directId !== far[0]?.id) return fail('a liar across the neighbourhood cannot be the one named');
+  }
 
   /**
-   * Would anybody standing at `place` at the crime's half hour, and telling
-   * the truth about it, name `id`? Or would `id` name any of them?
+   * Who at `place` at the crime's half hour, telling the truth about it,
+   * would name `id`; and whom there `id` would name. Somebody allowed to be
+   * named (the direct one) never counts.
    */
-  const exposed = (id: Id, place: Id): boolean => {
+  const namers = (id: Id, place: Id): [Id, Id][] => {
     const here = [
       ...fixtureAtM(place),
       ...Object.entries(atM)
         .filter(([pid, pl]) => pl === place && pid !== id)
         .map(([pid]) => pid),
     ];
+    const out: [Id, Id][] = [];
     for (const other of here) {
-      if (!lyingAt(other, M) && canName(acq, other, id)) return true;
+      if (id !== directId && !lyingAt(other, M) && canName(acq, other, id)) out.push([other, id]);
       const otherPerson = cast.people.find((p) => p.id === other);
-      if (otherPerson?.kind === 'suspect' && otherPerson.id !== killer.id && !lyingAt(id, M) && canName(acq, id, other)) {
-        if (other !== directId) return true;
+      if (
+        otherPerson?.kind === 'suspect' &&
+        other !== killer.id &&
+        other !== directId &&
+        !lyingAt(id, M) &&
+        canName(acq, id, other)
+      ) {
+        out.push([id, other]);
       }
     }
-    return false;
+    // The direct one's own witness is meant to name them.
+    return out.filter(([from, to]) => !(to === directId && (from === directWitness || from === watcherAt(directPlace ?? ''))));
+  };
+  const exposed = (id: Id, place: Id): boolean => namers(id, place).length > 0;
+  /** Unname whoever would name somebody here, where the knowing is not a tie. */
+  const quieten = (id: Id, place: Id): boolean => {
+    for (const [from, to] of namers(id, place)) if (!makeStranger(from, to)) return false;
+    return !exposed(id, place);
   };
 
-  // A liar named by nobody posted: somebody who knows them stands in the room.
-  if (directId && directPlace && liarIds.has(directId) && watcherAt(directPlace) === undefined) {
-    const witness = rng.shuffle(free).find((q) => atM[q.id] === undefined && canName(acq, q.id, directId as Id));
-    if (!witness) return fail('nobody to see the liar where the secret was');
-    atM[witness.id] = directPlace;
-  }
-  // A liar who is not the direct one is not a regular where the secret was.
+  // A liar who is not the direct one: nobody names them where the secret
+  // was, and from Medium up somebody who does not know them sees them there.
   for (const p of liars) {
     if (p.id === directId) continue;
-    const w = watcherAt(atM[p.id] as Id);
-    if (w && canName(acq, w, p.id)) makeStranger(w, p.id);
+    const S = atM[p.id] as Id;
+    const w = watcherAt(S);
+    if (w) makeStranger(w, p.id);
+    if (w || dials.strangers === 0) continue;
+    const stranger = rng
+      .shuffle(free)
+      .find((q) => atM[q.id] === undefined && !canName(acq, q.id, p.id) && walk(S, S));
+    if (stranger && !exposed(stranger.id, S) && gap(S, L) <= 1) atM[stranger.id] = S;
   }
 
   // Hard-boiled: two innocents who fit one description, in two rooms, seen
   // only by strangers at the half hour.
   let pair: [Id, Id] | null = null;
-  let pairGrain: 'fine' | 'age' | 'coarse' | null = null;
+  let pairGrain: Grain | null = null;
   const pairCells = new Set<string>();
   if (dials.hypothesis) {
-    const candidates = cast.innocents.filter((p) => p.id !== directId);
-    const watchedFree = nonScene.filter((p) => watcherAt(p) !== undefined && p !== directPlace);
+    // Two who tell the truth about the crime's half hour (a liar's claim,
+    // once broken, would place them without any hypothesis at all).
+    const candidates = free.filter((p) => p.id !== directId && atM[p.id] === undefined);
+    const watchedNear = nonScene.filter((p) => watcherAt(p) !== undefined && gap(p, L) <= 1 && p !== directPlace);
     search: for (const a of rng.shuffle(candidates)) {
       for (const b of rng.shuffle(candidates)) {
         if (a.id >= b.id) continue;
-        for (const grain of ['age', 'coarse', 'fine'] as const) {
+        for (const grain of ['age', 'band', 'coarse', 'fine'] as const) {
           const d = describeAs(a, cast.suspects, grain);
           const m = new Set(d.matches);
-          if (m.size !== 2 || !m.has(a.id) || !m.has(b.id)) continue;
-          const pa = liarIds.has(a.id) ? (atM[a.id] as Id) : null;
-          const pb = liarIds.has(b.id) ? (atM[b.id] as Id) : null;
-          const optionsA = pa ? [pa] : rng.shuffle(watchedFree);
-          for (const P of optionsA) {
-            if (!watcherAt(P)) continue;
-            const optionsB = pb ? [pb] : rng.shuffle(watchedFree.filter((q) => q !== P));
-            for (const Q of optionsB) {
-              if (Q === P || !watcherAt(Q)) continue;
+          if (!m.has(a.id) || !m.has(b.id)) continue;
+          // Anybody else it fits must be named somewhere else at the half
+          // hour on their own: the one a watcher names.
+          if ([...m].some((id) => id !== a.id && id !== b.id && id !== directId)) continue;
+          for (const P of rng.shuffle(watchedNear)) {
+            for (const Q of rng.shuffle(watchedNear.filter((q) => q !== P))) {
+              // The half hour either side: one room, within a walk of both
+              // and of the scene, so that travel settles nothing.
+              const R = rng
+                .shuffle(nonScene)
+                .find((r) => r !== P && r !== Q && walk(r, P) && walk(r, Q) && walk(r, L));
+              if (!R) continue;
+              const cellsOk = [a, b].every((x) =>
+                [M - 1, M + 1].every((t) => t < 0 || t >= TICKS || (fixed[x.id] as Record<number, Id>)[t] === undefined),
+              );
+              if (!cellsOk) continue;
               pair = [a.id, b.id];
               pairGrain = grain;
               atM[a.id] = P;
@@ -421,6 +480,9 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
               for (const w of [watcherAt(P) as Id, watcherAt(Q) as Id]) {
                 makeStranger(w, a.id);
                 makeStranger(w, b.id);
+              }
+              for (const x of [a, b]) {
+                for (const t of [M - 1, M + 1]) if (t >= 0 && t < TICKS) (fixed[x.id] as Record<number, Id>)[t] = R;
               }
               pairCells.add(`${a.id}@${M}`);
               pairCells.add(`${b.id}@${M}`);
@@ -433,11 +495,10 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
     if (!pair) return fail('no two innocents fit one description in two watched rooms');
   }
 
-  if (directId && directPlace && !liarIds.has(directId)) atM[directId] = directPlace;
-
-  // Everybody else: somewhere nobody who could name them stands, and a place
-  // they were in the half hour before or after too, so their own account has
-  // a span that somebody else can corroborate.
+  // Everybody else: within a walk of the scene (from across the
+  // neighbourhood one sighting the half hour either side would clear them on
+  // its own), where nobody who could name them stands. From Medium up, a room
+  // with a watcher who does not know them is better: a description is a piece.
   for (const p of rng.shuffle(free)) {
     if (atM[p.id] !== undefined) continue;
     if (plainTier) {
@@ -445,15 +506,24 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
       atM[p.id] = rng.pick(watched.length > 0 && rng.chance(0.7) ? watched : nonScene);
       continue;
     }
-    const options = rng.shuffle(nonScene).filter((pl) => !exposed(p.id, pl));
-    if (options.length === 0) return fail(`nowhere at the crime's half hour for ${p.surname} that nobody would name`);
-    atM[p.id] = options[0] as Id;
+    const options = rng
+      .shuffle(nonScene)
+      .filter((pl) => gap(pl, L) <= 1)
+      .map((pl) => {
+        const w = watcherAt(pl);
+        const pieces = dials.strangers > 0 && w !== undefined && !canName(acq, w, p.id) ? 1 : 0;
+        return { pl, s: (exposed(p.id, pl) ? -10 : 0) + pieces };
+      })
+      .sort((a, b) => b.s - a.s);
+    const pick = options[0];
+    if (!pick) return fail(`nowhere at the crime's half hour for ${p.surname}`);
+    atM[p.id] = pick.pl;
   }
-  // The liars and the pair must not be exposed either, unless they are the direct one.
   if (!plainTier) {
     for (const [id, place] of Object.entries(atM)) {
       if (id === killer.id || id === directId) continue;
-      if (exposed(id, place)) return fail(`somebody at the crime's half hour would name ${id}`);
+      if (gap(place, L) >= 2) return fail(`${id} is across the neighbourhood from the scene at the crime's half hour`);
+      if (!quieten(id, place)) return fail(`somebody at the crime's half hour would name ${id}`);
     }
   }
   for (const [id, place] of Object.entries(atM)) {
@@ -461,33 +531,80 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
     (fixed[id] as Record<number, Id>)[M] = place;
   }
 
-  // Corroboration: the half hour next to the crime's, in the same room, where
-  // somebody who knows them by name sees them and they are not at the scene.
+  // Corroboration: a half hour near the crime's, in the same room, where
+  // somebody who knows them by name sees them. Their account's span then
+  // runs from there through the crime's half hour, and stands.
   if (!plainTier) {
     for (const p of rng.shuffle(free)) {
       if (p.id === directId || pairCells.has(`${p.id}@${M}`)) continue;
       const place = atM[p.id] as Id;
       const mine = fixed[p.id] as Record<number, Id>;
-      for (const s of rng.shuffle([M - 1, M + 1].filter((t) => t >= 0 && t < TICKS))) {
-        if (mine[s] !== undefined && mine[s] !== place) continue;
-        // Somebody who can name them, free at `s`, and able to get there.
+      for (const s of [...rng.shuffle([M - 1, M + 1]), ...rng.shuffle([M - 2, M + 2])]) {
+        if (s < 0 || s >= TICKS) continue;
+        const between: Tick[] = [];
+        for (let u = Math.min(s, M) + 1; u < Math.max(s, M); u++) between.push(u);
+        if ([s, ...between].some((u) => mine[u] !== undefined && mine[u] !== place)) continue;
+        if (between.some((u) => lyingAt(p.id, u))) continue;
         const helpers = rng.shuffle(cast.suspects).filter((q) => {
           if (q.id === p.id) return false;
-          if (!canName(acq, q.id, p.id)) return false;
           const theirs = fixed[q.id] as Record<number, Id>;
           if (theirs[s] !== undefined) return false;
           if (lyingAt(q.id, s)) return false;
-          const qm = theirs[M];
-          if (qm !== undefined && !walk(qm, place)) return false;
-          const other = s === M - 1 ? theirs[M - 2] : theirs[M + 2];
-          if (other !== undefined && !walk(other, place)) return false;
+          // Never somebody in the same room at the crime's half hour: they
+          // would name them there, and that is a conclusion.
+          if (theirs[M] === place) return false;
+          for (const u of [s - 1, s + 1]) {
+            const there = theirs[u];
+            if (there !== undefined && !walk(there, place)) return false;
+          }
           return true;
         });
-        const q = helpers[0];
+        // Somebody who knows them already, or somebody who can: a neighbour
+        // is a neighbour whatever the roll said, where no tie says otherwise.
+        helpers.sort((a, b) => (canName(acq, b.id, p.id) ? 1 : 0) - (canName(acq, a.id, p.id) ? 1 : 0));
+        const q = helpers.find((h) => canName(acq, h.id, p.id) || setEdge(h.id, p.id, 'name', 'roll'));
         if (!q) continue;
-        mine[s] = place;
+        for (const u of [s, ...between]) mine[u] = place;
         (fixed[q.id] as Record<number, Id>)[s] = place;
         break;
+      }
+    }
+  }
+
+  // A secret is a lie waiting to be broken, twice (spec §3). Somebody who
+  // knows the one keeping it sees them where the secret was, at a half hour
+  // of it that is not the crime's.
+  if (dials.secretLies && !plainTier) {
+    const guardedIds = new Set(cast.innocents.map((p) => p.id).filter((id) => id !== directId));
+    for (const p of rng.shuffle(cast.innocents)) {
+      for (const block of secretBlocks[p.id] ?? []) {
+        const S = secrets[p.id]?.cells[0]?.place;
+        if (!S) continue;
+        const partner = secrets[p.id]?.partnerId;
+        let planted = false;
+        for (const t of rng.shuffle(block.filter((u) => u !== M))) {
+          const helpers = rng.shuffle(cast.suspects).filter((q) => {
+            if (q.id === p.id || q.id === partner) return false;
+            const theirs = fixed[q.id] as Record<number, Id>;
+            if (theirs[t] !== undefined) return false;
+            if (lyingAt(q.id, t)) return false;
+            if (guardedIds.has(q.id) && (t === M - 1 || t === M + 1) && gap(S, L) >= 2) return false;
+            for (const u of [t - 1, t + 1]) {
+              const there = theirs[u];
+              if (there !== undefined && !walk(there, S)) return false;
+            }
+            // Nobody who would then name them at the crime's half hour.
+            if (theirs[M] !== undefined && theirs[M] === atM[p.id] && p.id !== directId) return false;
+            return true;
+          });
+          helpers.sort((a, b) => (canName(acq, b.id, p.id) ? 1 : 0) - (canName(acq, a.id, p.id) ? 1 : 0));
+          const q = helpers.find((h) => canName(acq, h.id, p.id) || setEdge(h.id, p.id, 'name', 'roll'));
+          if (!q) continue;
+          (fixed[q.id] as Record<number, Id>)[t] = S;
+          planted = true;
+          break;
+        }
+        void planted;
       }
     }
   }
@@ -536,9 +653,9 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
         (p) =>
           (last === null || walk(last, p)) &&
           (nextT < 0 || gap(p, cells[nextT] as Id) <= nextT - t) &&
-          // The crime's half hour and the one either side are settled: fill
-          // never puts a knower beside somebody the arrangement kept apart.
-          true,
+          // An innocent nobody may name at the crime's half hour is not across
+          // the neighbourhood from the scene the half hour either side of it.
+          !(guarded.has(personId) && (t === M - 1 || t === M + 1) && gap(p, L) >= 2),
       );
       if (pool.length === 0) return null;
       if (last !== null && pool.includes(last) && rng.chance(0.55)) {
@@ -551,6 +668,7 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
     return line;
   };
 
+  const guarded = new Set<Id>(plainTier ? [] : cast.innocents.map((p) => p.id).filter((id) => id !== directId));
   const victimLine = fill(cast.victim.id, victimFixed, ctx.caseType === 'murder' ? M : TICKS - 1);
   if (!victimLine) return fail("the victim's evening does not walk");
   truth[cast.victim.id] = victimLine;
@@ -620,18 +738,21 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
   }
 
   /** Somewhere to claim for a false span: not where they were, not the scene, not the spans either side. */
-  const claimFor = (personId: Id, block: Tick[], prefer: (c: Id) => number): Id | null => {
+  const claimFor = (personId: Id, block: Tick[], prefer: (c: Id) => number, strictWalk = false): Id | null => {
     const line = truth[personId] as (Id | null)[];
     const mine = claimed[personId] as (Id | null)[];
     const first = block[0] as Tick;
     const last = block[block.length - 1] as Tick;
     const before = first > 0 ? mine[first - 1] : null;
     const after = last < TICKS - 1 ? mine[last + 1] : null;
-    const options = nonScene.filter(
-      (c) => !block.some((t) => line[t] === c) && c !== before && c !== after,
-    );
+    const options = nonScene.filter((c) => !block.some((t) => line[t] === c));
     if (options.length === 0) return null;
-    const scored = rng.shuffle(options).map((c) => ({ c, s: prefer(c) + (walk(before, c) && walk(c, after) ? 1 : 0) }));
+    // A claim that runs straight on from the span before or after it is a
+    // seam the account has to show; somewhere else is better where there is one.
+    const scored = rng.shuffle(options).map((c) => ({
+      c,
+      s: prefer(c) + (walk(before, c) && walk(c, after) ? 1 : strictWalk ? -8 : 0) - (c === before || c === after ? 10 : 0),
+    }));
     scored.sort((a, b) => b.s - a.s);
     return scored[0]?.c ?? null;
   };
@@ -658,6 +779,7 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
   const crimeClaim = claimFor(killer.id, murderCells, (c) =>
     (chains ? (knowerPosted(c, killer.id) ? -5 : 0) : knowerPosted(c, killer.id) ? 2 : 0) +
     (peopledAt(c, murderCells, killer.id) > 0 ? 1 : 0),
+    chains,
   );
   if (!crimeClaim) return fail('no room for the culprit to claim');
   addLie({ personId: killer.id, ticks: murderCells.slice(), claimed: crimeClaim, cover: 'crime' });
@@ -674,12 +796,45 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
         }
       }
     }
-    const meansClaim = claimFor(killer.id, [killerAccessTick], (c) => (knowerPosted(c, killer.id) ? (chains ? -5 : 2) : 0));
+    const meansClaim = claimFor(killer.id, [killerAccessTick], (c) => (knowerPosted(c, killer.id) ? (chains ? -5 : 2) : 0), chains);
     if (meansClaim) addLie({ personId: killer.id, ticks: [killerAccessTick], claimed: meansClaim, cover: 'means' });
   }
   if (coverSecret && coverTicks.length > 0) {
     const c = claimFor(killer.id, coverTicks, (x) => (knowerPosted(x, killer.id) ? 1 : 0));
     if (c) addLie({ personId: killer.id, ticks: coverTicks, claimed: c, cover: 'secret' });
+  }
+
+  // Where the tier wants the culprit's lies broken only by chains: nobody
+  // who can name the culprit stands in the claimed room, sees the culprit
+  // anywhere else at those half hours, or sees the culprit the half hour
+  // either side somewhere across the neighbourhood from the claim.
+  if (chains) {
+    for (const d of lieDrafts.filter((x) => x.personId === killer.id)) {
+      for (const t of d.ticks) {
+        for (const q of cast.people) {
+          if (q.id === killer.id || q.kind === 'victim') continue;
+          if (lyingAt(q.id, t) || (lies[q.id] ?? []).includes(t)) continue;
+          const here = (truth[q.id] as (Id | null)[])[t];
+          if (!here) continue;
+          const sawThere = here === d.claimed || here === (truth[killer.id] as (Id | null)[])[t];
+          if (sawThere && canName(acq, q.id, killer.id) && !makeStranger(q.id, killer.id)) {
+            return fail('somebody who knows the culprit would break the lie in one line');
+          }
+        }
+        for (const u of [t - 1, t + 1]) {
+          if (u < 0 || u >= TICKS || d.ticks.includes(u)) continue;
+          const kAt = (truth[killer.id] as (Id | null)[])[u];
+          if (!kAt || gap(kAt, d.claimed) < 2) continue;
+          for (const q of cast.people) {
+            if (q.id === killer.id || q.kind === 'victim') continue;
+            if ((truth[q.id] as (Id | null)[])[u] !== kAt || (lies[q.id] ?? []).includes(u)) continue;
+            if (canName(acq, q.id, killer.id) && !makeStranger(q.id, killer.id)) {
+              return fail('the culprit is seen across the neighbourhood from the claim');
+            }
+          }
+        }
+      }
+    }
   }
 
   // The innocents with secrets: where a watcher who knows them would say they
@@ -691,6 +846,13 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
         const c = claimFor(p.id, block, (x) => (knowerPosted(x, p.id) ? 3 : 0) + (peopledAt(x, block, p.id) > 0 ? 1 : 0));
         if (!c) return fail(`no plausible false account for ${p.surname}`);
         addLie({ personId: p.id, ticks: block.slice(), claimed: c, cover: 'secret' });
+        // A room with somebody posted at it knows its regulars, and a regular
+        // who was not in is the plainest way a lie breaks.
+        const w = watcherAt(c);
+        const atCrime = (truth[p.id] as (Id | null)[])[M];
+        if (w && !block.some((t) => (truth[p.id] as (Id | null)[])[t] === c) && (atCrime !== c || p.id === directId)) {
+          setEdge(w, p.id, 'name', 'regular');
+        }
       }
     }
   }
@@ -704,6 +866,9 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
     if (madeCompanions >= wantCompanions) break;
     const options = rng.shuffle(cast.innocents).filter((q) => {
       if (q.id === d.personId) return false;
+      // Lying about the crime's half hour costs a companion their own way
+      // clear of the scene, unless a watcher names them there anyway.
+      if (d.ticks.includes(M) && q.id !== directId && !plainTier) return false;
       if (d.ticks.some((t) => lyingAt(q.id, t) || (lies[q.id] ?? []).includes(t))) return false;
       if (d.ticks.some((t) => (truth[q.id] as (Id | null)[])[t] === d.claimed)) return false;
       const mine = claimed[q.id] as (Id | null)[];
@@ -719,6 +884,8 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
     d.with = q.id;
     for (const t of d.ticks) (companions[d.personId] as (Id | null)[])[t] = q.id;
     addLie({ personId: q.id, ticks: d.ticks.slice(), claimed: d.claimed, with: d.personId, cover: 'companion' });
+    const w = watcherAt(d.claimed);
+    if (w && ((truth[q.id] as (Id | null)[])[M] !== d.claimed || q.id === directId)) setEdge(w, q.id, 'name', 'regular');
     madeCompanions++;
   }
   for (const p of cast.people) lies[p.id] = Array.from(new Set(lies[p.id] ?? [])).sort((a, b) => a - b);

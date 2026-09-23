@@ -58,6 +58,9 @@ export function strengthOf(g: AcqGraph, from: Id, to: Id): Acquaintance {
 
 /* ------------------------------------------------------------ descriptions */
 
+/** How much a stranger gives: everything a look shows, the decade, over or under forty, or man or woman only. */
+export type Grain = 'fine' | 'age' | 'band' | 'coarse';
+
 const DECADE: Record<number, string> = {
   1: 'twenties',
   2: 'twenties',
@@ -99,9 +102,14 @@ function featuresText(f: DescriptionFeatures): string {
   return `${noun}${age}${trade}`;
 }
 
+/** "under forty" or "over forty": what a glance in poor light gives up. */
+export function broadAge(person: Person): string {
+  return (person.dossier?.age ?? 40) < 40 ? 'under forty' : 'over forty';
+}
+
 function fits(person: Person, f: DescriptionFeatures): boolean {
   if (genderOf(person) !== f.gender) return false;
-  if (f.age !== undefined && ageBand(person).replace(/\b(his|her)\b/, 'X') !== f.age.replace(/\b(his|her)\b/, 'X')) return false;
+  if (f.age !== undefined && f.age !== ageBand(person) && f.age !== broadAge(person)) return false;
   if (f.trade !== undefined && visibleTrade(person) !== f.trade) return false;
   return true;
 }
@@ -118,10 +126,11 @@ export function matchesOf(suspects: Person[], f: DescriptionFeatures): Id[] {
 export function describeAs(
   person: Person,
   suspects: Person[],
-  grain: 'fine' | 'age' | 'coarse',
+  grain: Grain,
 ): Description {
   const features: DescriptionFeatures = { gender: genderOf(person) };
-  if (grain !== 'coarse') features.age = ageBand(person);
+  if (grain === 'fine' || grain === 'age') features.age = ageBand(person);
+  if (grain === 'band') features.age = broadAge(person);
   const trade = visibleTrade(person);
   if (grain === 'fine' && trade) features.trade = trade;
   const matches = matchesOf(suspects, features);
@@ -136,7 +145,7 @@ export function describeAs(
  * nothing fits two people, the finest there is.
  */
 export function ambiguousDescription(person: Person, suspects: Person[]): Description {
-  for (const grain of ['fine', 'age', 'coarse'] as const) {
+  for (const grain of ['fine', 'age', 'band', 'coarse'] as const) {
     const d = describeAs(person, suspects, grain);
     if (d.matches.length >= 2) return d;
   }

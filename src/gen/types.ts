@@ -466,6 +466,12 @@ export interface SolveSummary {
   /** Propagation rounds and hypothesis probes over the whole findable set. */
   rounds: number;
   probes: number;
+  /**
+   * Innocents whose confession the par route needs: each is two
+   * confrontations (two actions, counted in par) with two independent facts
+   * that break the lie, which the par set holds.
+   */
+  confessions: Id[];
 }
 
 /** Everything M9 adds to a case. */

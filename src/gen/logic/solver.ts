@@ -46,6 +46,13 @@ import { TICKS } from '../types.js';
 export interface SolverRule {
   id: Id;
   facts: Fact[];
+  /**
+   * A confession: the facts hold only once this person's claim — the place,
+   * at these half hours — is shown false. It is what an innocent gives up
+   * when a lie is put to them with the facts that break it (spec §3). The
+   * culprit has none.
+   */
+  when?: { personId: Id; place: Id; ticks: Tick[] };
 }
 
 export interface SolverProblem {
@@ -107,6 +114,8 @@ interface Candidate {
   depth: number;
   premise: Premise;
   note?: string;
+  /** From a self-account: committed only once nothing hard is left to derive. */
+  soft?: 1 | 2;
 }
 
 const bit = (i: number): number => 1 << i;
@@ -160,6 +169,7 @@ interface Compiled {
   knowledge: { r: number; a: Id; p: number; ticks: number[] }[];
   ignorance: { r: number; s: number; a: Id }[];
   spans: { r: number; k: number; s: number; p: number; ticks: number[]; with: number }[];
+  confessions: { r: number; s: number; p: number; ticks: number[]; keep: { s: number; t: number; p: number }[] }[];
 }
 
 function compile(pr: SolverProblem): Compiled {
@@ -192,9 +202,24 @@ function compile(pr: SolverProblem): Compiled {
     knowledge: [],
     ignorance: [],
     spans: [],
+    confessions: [],
   };
   const allTicks = (1 << TICKS) - 1;
   pr.rules.forEach((rule, r) => {
+    if (rule.when) {
+      const s = sIndex.get(rule.when.personId);
+      const p = pIndex.get(rule.when.place);
+      if (s === undefined || p === undefined) return;
+      const keep: { s: number; t: number; p: number }[] = [];
+      for (const f of rule.facts) {
+        if (f.kind !== 'personAt') continue;
+        const fs = sIndex.get(f.personId);
+        const fp = pIndex.get(f.place);
+        if (fs !== undefined && fp !== undefined) keep.push({ s: fs, t: f.tick, p: fp });
+      }
+      c.confessions.push({ r, s, p, ticks: rule.when.ticks.slice(), keep });
+      return;
+    }
     let k = 0;
     for (const f of rule.facts) {
       switch (f.kind) {
@@ -560,6 +585,20 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
     }
   }
 
+  // Confessions: once the claim is shown false, the truth comes out.
+  for (const cf of c.confessions) {
+    let premise: Premise | null = null;
+    for (const t of cf.ticks) {
+      const w = struck(st, cf.s, t, cf.p);
+      if (w) {
+        premise = { rules: [cf.r], whys: [w] };
+        break;
+      }
+    }
+    if (!premise) continue;
+    for (const k of cf.keep) keepC(k.s, k.t, k.p, premise);
+  }
+
   // Self-accounts: a span stands when uncontradicted and corroborated, or
   // when the person is already known to have been nowhere near the scene.
   for (const sp of c.spans) {
@@ -578,10 +617,16 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
         break;
       }
     }
-    if (!premise && sp.p !== c.L) {
+    const corroborated = premise !== null;
+    // A span of the crime's half hour stands, too, for somebody already
+    // shown clear of the scene then: the crime column is where people say
+    // they were, once nothing says otherwise. Never a claim of company:
+    // being clear of the scene says nothing about who you were with.
+    if (!premise && sp.p !== c.L && sp.with < 0 && sp.ticks.some((t) => st.tdom & bit(t))) {
       const whys: Why[] = [];
       let clear = true;
       for (const t of sp.ticks) {
+        if (!(st.tdom & bit(t))) continue;
         if (cell(sp.s, t) & bit(c.L)) {
           clear = false;
           break;
@@ -589,10 +634,16 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
         const w = struck(st, sp.s, t, c.L);
         if (w) whys.push(w);
       }
+      for (let t = 0; t < TICKS; t++) {
+        if (st.tdom & bit(t)) continue;
+        const w = st.whyT[t];
+        if (w) whys.push(w);
+      }
       if (clear) premise = { rules: [sp.r], whys };
     }
     if (!premise) continue;
     let any = false;
+    const before = out.length;
     for (const t of sp.ticks) {
       for (const who of sp.with >= 0 ? [sp.s, sp.with] : [sp.s]) {
         const d = cell(who, t);
@@ -601,14 +652,20 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
         keepC(who, t, sp.p, premise);
       }
     }
+    for (let i = before; i < out.length; i++) (out[i] as Candidate).soft = corroborated ? 1 : 2;
     if (!any) st.stood.add(key);
   }
 
   return out;
 }
 
-function commit(st: SolverState, cand: Candidate[]): boolean {
-  if (cand.length === 0) return false;
+function commit(st: SolverState, all: Candidate[]): boolean {
+  if (all.length === 0) return false;
+  // Accounts are defaults: every hard conclusion first, so that a lie the
+  // rules break is broken before anybody's word is taken for it.
+  const hard = all.filter((x) => !x.soft);
+  const vouched = all.filter((x) => x.soft === 1);
+  const cand = hard.length > 0 ? hard : vouched.length > 0 ? vouched : all;
   let min = Infinity;
   for (const x of cand) if (x.depth < min) min = x.depth;
   let progressed = false;

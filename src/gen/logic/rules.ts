@@ -24,7 +24,7 @@
  * Every clue carries `rule`, its one plain line for the notebook.
  */
 
-import { TICKS, clock, type Anchor, type Clue, type Fact, type Id, type Person, type Tick } from '../types.js';
+import { TICKS, clock, speakTimes, type Anchor, type CaseType, type Clue, type Fact, type Id, type Person, type Tick } from '../types.js';
 import type { Cast } from '../cast.js';
 import type { Setting } from '../setting.js';
 import type { CandidateSet, SecretBranchMaterial } from '../clues.js';
@@ -62,6 +62,7 @@ export interface PoolInput {
   legacy: CandidateSet;
   /** Anchor knowledge tests are dealt. */
   knowledgeTests: boolean;
+  caseType: CaseType;
 }
 
 const TOPIC_EVENING = 'their own evening';
@@ -102,19 +103,17 @@ export function buildPool(input: PoolInput): Pool {
   const lying = (id: Id, t: Tick): boolean => (build.lies[id] ?? []).includes(t);
   const foundAt = (id: Id): Id => (person(id).foundAt ?? L) as Id;
   const anchorById = new Map(anchors.map((a) => [a.templateId, a]));
-  const murder = !cast.victim || true;
-  const isMurder = build.whereabouts === undefined && build.discovery?.byId !== cast.victim.id;
+  const isMurder = input.caseType === "murder";
 
   const names: LineNames = {
     who,
     place: placeName,
     anchor: (id) => anchorById.get(id)?.name ?? id,
-    method: (id) => METHOD_TEMPLATES.find((m) => m.id === id)?.name ?? id,
+    method: (id) => (id === setting.method.id ? setting.method.name : (METHOD_TEMPLATES.find((m) => m.id === id)?.name ?? id)),
     motive: (type) => MOTIVE_BY_TYPE[type]?.description ?? type,
     object: (id) => setting.objects.find((o) => o.id === id)?.name ?? id,
     them: (id) => (genderOf(person(id)) === 'f' ? 'her' : 'him'),
   };
-  void murder;
 
   let counter = 0;
   const mint = (
@@ -133,7 +132,7 @@ export function buildPool(input: PoolInput): Pool {
       kind,
       source,
       establishes,
-      text,
+      text: speakTimes(text),
       textRecord: text,
       place,
       leadsTo: [],
@@ -201,14 +200,23 @@ export function buildPool(input: PoolInput): Pool {
       for (const [place, ticks] of byPlace) {
         const clocked: Tick[] = [];
         for (const t of ticks) {
-          const anchor = dials.anchorTimed > 0 && rng.chance(dials.anchorTimed) ? anchorFor(place, t) : null;
+          // The victim is timed only by an anchor that happens once: "just as
+          // the El went over" would not say which train, and the victim has
+          // no row on the grid to settle it on.
+          let anchor = dials.anchorTimed > 0 && rng.chance(dials.anchorTimed) ? anchorFor(place, t) : null;
+          if (anchor && y.kind === 'victim' && anchor.ticks.length > 1) anchor = null;
           if (anchor) {
             facts.push({ kind: 'personAtAnchor', personId: y.id, place, anchorId: anchor.templateId });
             sentences.push(`${X} saw ${Y} at ${placeName(place)} ${anchor.timing}.`);
           } else {
             clocked.push(t);
             facts.push({ kind: 'personAt', personId: y.id, place, tick: t });
-            if (y.kind === 'victim' && isMurder) facts.push({ kind: 'victimAliveAt', tick: t });
+            // Seen alive is still alive. In a theft or a disappearance only
+            // the last sighting before it says so: that is where the owner
+            // still had it, or the one who went had not gone yet.
+            if (y.kind === 'victim' && (isMurder || (t === build.victimSeenAt && place === build.victimSeenPlace))) {
+              facts.push({ kind: 'victimAliveAt', tick: t });
+            }
           }
           if (y.kind === 'suspect' && place === build.accessPlaceId && t < M) {
             if (!facts.some((f) => f.kind === 'hadAccess' && f.personId === y.id)) {
@@ -266,7 +274,9 @@ export function buildPool(input: PoolInput): Pool {
         continue;
       }
       let end = t;
-      while (end + 1 < TICKS && claimed[end + 1] === here && comp[end + 1] === comp[t]) end++;
+      // A span ends where the truth of it changes, so that a lie is always its own span.
+      const liesHere = (u: Tick): boolean => (build.lies[p.id] ?? []).includes(u);
+      while (end + 1 < TICKS && claimed[end + 1] === here && comp[end + 1] === comp[t] && liesHere(end + 1) === liesHere(t)) end++;
       const ticks = Array.from({ length: end - t + 1 }, (_, i) => t + i);
       const withId = comp[t] ?? undefined;
       facts.push({ kind: 'claims', personId: p.id, place: here, ticks, ...(withId ? { with: withId } : {}) });

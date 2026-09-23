@@ -18,6 +18,7 @@ import {
 } from './select.js';
 import { MASKING_PHRASES } from './data/anchors.js';
 import { dialsOf, liarsFor, slackFor } from './shape.js';
+import { checkLogic } from './logic/check.js';
 
 export interface CheckResult {
   ok: boolean;
@@ -66,6 +67,12 @@ export function activityKey(c: Pick<CaseUnderTest, 'people'>, personId: Id): str
  * found so the truth sheet can print it.
  */
 export function checkSolvability(c: CaseUnderTest): CheckResult {
+  // M9: a tiered case is a logic game, and the solver is its checker.
+  if (c.logic) return checkLogic(c);
+  return checkLegacy(c);
+}
+
+function checkLegacy(c: CaseUnderTest): CheckResult {
   // M7: the conditions are the shape's and the ladder's. A no-options case is
   // Hard-boiled on the legacy ladder, and every check below reduces to the one
   // it was before M7.
