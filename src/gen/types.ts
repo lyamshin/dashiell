@@ -492,6 +492,14 @@ export interface Logic {
   lies: LieBlock[];
   confrontations: Confrontation[];
   solve: SolveSummary;
+  /**
+   * M10 Part B (Raw and Coddled): par-route clues asked without a lead. The
+   * question that catches the culprit's lie is on the page anyway (anybody
+   * posted can be asked about anybody the detective can name) and carries no
+   * mark, so that finding who can break the lie is the player's work. The
+   * oracle, the checker and par's walk treat these as always open.
+   */
+  open?: Id[];
 }
 
 /* ------------------------------------------------------------------ M5 --

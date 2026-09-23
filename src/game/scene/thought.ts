@@ -23,7 +23,7 @@ import type { Clue, Fact, Id, Person, Tick } from '../../gen/types.js';
 import { spokenClock } from '../../gen/types.js';
 import type { CaseView } from '../derive.js';
 import { establishedFrom } from '../derive.js';
-import { verdictsOn } from '../m9.js';
+import { clearedOnTwo, verdictsOn } from '../m9.js';
 
 const COUNT_WORDS: Record<number, string> = { 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six' };
 
@@ -153,6 +153,8 @@ export interface Thought {
     | 'together'
     | 'apart'
     | 'said'
+    /* M10, `clears`: two facts that agree (Raw and Coddled). */
+    | 'two'
     /* M9, `confronted`: what came of it. */
     | 'wrong'
     | 'second-lie'
@@ -339,6 +341,10 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
   // M9, "No automatic verdicts from Poached up": no `clears` and no
   // `contradicts`; a placement inside the window is said as what it touches.
   const verdicts = verdictsOn(view);
+  // M10 Part B: in a tiered case (Raw and Coddled) "That cleared X" waits for
+  // two facts that agree; one placement on its own is what it touches.
+  const twoAfter = clearedOnTwo(view, input.foundAfter);
+  const clearsNow = (id: Id): boolean => !kase.logic || twoAfter.has(id);
   const anchorName = (id: Id): string => view.anchorById.get(id)?.name ?? 'that';
   const heldAnchor = (id: Id, found: readonly Id[]): Tick[] | null => {
     for (const fid of found) {
@@ -406,7 +412,7 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
       if (p.present && isSuspect(person) && inWindow) {
         if (p.placeId === scene) {
           out.push({ cls: 'implicates', basis: 'placement', subjectId: p.personId, placeId: p.placeId, tick: t, clueIds: [clue.id] });
-        } else if (verdicts) {
+        } else if (verdicts && clearsNow(p.personId)) {
           out.push({ cls: 'clears', subjectId: p.personId, placeId: p.placeId, tick: t, otherPlaceId: scene, clueIds: [clue.id] });
         } else {
           out.push({ cls: 'touches', basis: 'placement', subjectId: p.personId, placeId: p.placeId, tick: t, clueIds: [clue.id] });
@@ -585,7 +591,7 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
             const t = ticks[0] as Tick;
             if (window.includes(t) && f.place !== scene && isSuspect(view.personById.get(f.personId))) {
               out.push(
-                verdicts
+                verdicts && clearsNow(f.personId)
                   ? { cls: 'clears', subjectId: f.personId, placeId: f.place, tick: t, otherPlaceId: scene, clueIds: [clue.id] }
                   : { cls: 'touches', basis: 'placement', subjectId: f.personId, placeId: f.place, tick: t, clueIds: [clue.id] },
               );
@@ -669,6 +675,35 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
       out.push({ cls: 'context', clueIds: [clue.id] });
     }
   }
+  // M10 Part B: the page that brings the second of two facts that agree says
+  // so (basis `two`): their own account, and somebody who saw them inside it.
+  if (twoAfter.size > 0 && input.newClues.length > 0 && window.length > 0) {
+    const twoBefore = clearedOnTwo(view, input.foundBefore);
+    const last = input.newClues[input.newClues.length - 1] as Clue;
+    const t = window[0] as Tick;
+    for (const [id, source] of twoAfter) {
+      if (twoBefore.has(id) || !isSuspect(view.personById.get(id))) continue;
+      if (out.some((x) => x.cls === 'clears' && x.subjectId === id)) continue;
+      const place = view.claimedOf.get(id)?.[t] ?? null;
+      if (place === null || place === scene) continue;
+      // "Nobody else had said any of it yet" is no longer so.
+      for (let i = out.length - 1; i >= 0; i--) {
+        const x = out[i] as Thought;
+        if (x.subjectId === id && x.cls === 'touches' && x.basis === 'account') out.splice(i, 1);
+      }
+      out.push({
+        cls: 'clears',
+        basis: 'two',
+        subjectId: id,
+        ...(source ? { sourceId: source } : {}),
+        placeId: place,
+        tick: t,
+        otherPlaceId: scene,
+        clueIds: [last.id],
+        accountIds: [id],
+      });
+    }
+  }
   return out;
 }
 
@@ -738,6 +773,8 @@ function markSingle(input: ThoughtInput, thoughts: Thought[]): Thought[] {
     // Somebody off a room, or placed outside the hours, on one person's say-so.
     if (t.cls === 'absent' || (t.cls === 'context' && t.basis === 'outside')) return word ? { ...t, single: true } : t;
     if (t.cls !== 'clears' && t.cls !== 'implicates') return t;
+    // Two facts that agree are not one person's word.
+    if (t.basis === 'two') return t;
     if (!clue) return t;
     if (t.basis === 'access' || t.placeId === undefined || t.tick === undefined || t.subjectId === undefined) {
       const physical = clue.source.type === 'place' && (clue.kind === 'physical' || clue.kind === 'document');

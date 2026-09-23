@@ -875,7 +875,20 @@ export function step(
       }
       // M9 §4: a question that would get nothing new. Free, and they say so.
       if (price.reason === 'told') {
-        blocks = [{ kind: 'note', text: `${person.surname} shook ${possessiveOf(person)} head. “I’ve told you what I know.”` }];
+        // M10: somebody who has told the detective nothing yet has not "told
+        // you what I know" (Raw's small hand makes most questions this one).
+        const toldSome = state.found.some((id) => {
+          const c = view.findableById.get(id);
+          return c?.source.type === 'person' && c.source.personId === person.id;
+        });
+        blocks = [
+          {
+            kind: 'note',
+            text: toldSome
+              ? `${person.surname} shook ${possessiveOf(person)} head. “I’ve told you what I know.”`
+              : `${person.surname} shook ${possessiveOf(person)} head. “I can’t help you there.”`,
+          },
+        ];
         shape = 'repeat';
         asked.push({ key: askKey(person.id, command.topic), clues: [] });
         break;

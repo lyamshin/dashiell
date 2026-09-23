@@ -81,6 +81,43 @@ export function crimeFromHeld(
   return { ticks, culprit: who?.id ?? null, column };
 }
 
+/**
+ * M10 Part B: who the notebook keeps out of the room it happened in, at every
+ * half hour it could have happened in, and on which clues. A page may say
+ * "That cleared X" at Raw and Coddled only once `rules` holds two or more:
+ * two facts that agree, such as their own account and a sighting inside it
+ * (`clearedByTwo`). Accounts count where something corroborates them, as
+ * everywhere; nothing here reads the truth.
+ */
+export function clearedBy(kase: Case, held: Id[], opts: HeldOptions = {}): Record<Id, Id[]> {
+  const st = solveHeld(kase, held, opts);
+  const ticks = crimeTicks(st);
+  const scene = kase.solution.murderPlaceId;
+  const out: Record<Id, Id[]> = {};
+  if (ticks.length === 0) return out;
+  for (const s of st.problem.suspects) {
+    const rules = new Set<Id>();
+    let clear = true;
+    for (const t of ticks) {
+      const w = whyNot(st, s, t, scene);
+      if (!w) {
+        clear = false;
+        break;
+      }
+      for (const id of idsOf(st, w)) rules.add(id);
+    }
+    if (clear) out[s] = [...rules];
+  }
+  return out;
+}
+
+/** The suspects the notebook clears on two clues or more (`clearedBy`). */
+export function clearedByTwo(kase: Case, held: Id[], opts: HeldOptions = {}): Id[] {
+  return Object.entries(clearedBy(kase, held, opts))
+    .filter(([, rules]) => rules.length >= 2)
+    .map(([id]) => id);
+}
+
 /** How `from` knows `to`, from the case's acquaintance graph. */
 export function acquaintanceOf(kase: Case, from: Id, to: Id): AcquaintanceEdge | undefined {
   return kase.logic?.acquaintance.find((e) => e.from === from && e.to === to);

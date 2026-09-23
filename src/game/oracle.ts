@@ -126,8 +126,11 @@ function plan(
   // A search has no openers and is open from the start; a question with no
   // opener anywhere in the case is one nothing will ever put on the page.
   const isAsk = groups.map((g) => !g.command.startsWith('examine '));
+  // M10: a par-route question the case leaves unmarked (`Logic.open`) is on
+  // the page all the same, and the oracle may ask it.
+  const unmarked = new Set(view.kase.logic?.open ?? []);
   const alwaysOpen = groups.map(
-    (g, i) => !isAsk[i] || [...g.openers].some((id) => inHand.has(id)),
+    (g, i) => !isAsk[i] || [...g.openers].some((id) => inHand.has(id)) || [...g.fetches].some((id) => unmarked.has(id)),
   );
   const openedBy = groups.map((g) => {
     let m = 0;
@@ -209,7 +212,12 @@ export function playOracle(view: CaseView, detectiveName = 'Dashiell'): OracleRe
   // <scene>` — which is the one action §B.3 adds to par — and it plans the
   // rest of the route from the scene, exactly as `computePar` does.
   const free = new Set(sceneCluesOf(view).map((c) => c.id));
-  const wanted = spine.filter((c) => !state.found.includes(c.id) && !free.has(c.id));
+  // M10: the unmarked question that catches a lie comes after the lie, where
+  // the route can choose; the route is no longer for it.
+  const unmarked = new Set(kase.logic?.open ?? []);
+  const wanted = spine
+    .filter((c) => !state.found.includes(c.id) && !free.has(c.id))
+    .sort((a, b) => Number(unmarked.has(a.id)) - Number(unmarked.has(b.id)));
   const steps: OracleStep[] = [];
 
   // M5 §6: the first room is the scene for seven tropes and the foot of the

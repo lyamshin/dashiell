@@ -11,6 +11,7 @@
  */
 
 import {
+  clearedBy,
   contradicts,
   solveHeld,
   whyNot,
@@ -70,10 +71,35 @@ export function verdictsOn(view: CaseView): boolean {
   return d === null || d.verdicts;
 }
 
-/** Spec §2 "Tiering": Poached adds lies about secrets and the confront verb. */
+/**
+ * Spec §2 "Tiering": Poached adds lies about secrets and the confront verb.
+ * M10 Part B: Raw and Coddled teach the verb on the culprit's one lie; the
+ * generator says so with `DeductionDials.confront`.
+ */
 export function confrontOn(view: CaseView): boolean {
   const d = dialsFor(view);
-  return d !== null && d.secretLies;
+  return d !== null && (d.confront ?? d.secretLies);
+}
+
+/**
+ * M10 Part B: at Raw and Coddled a page may say "That cleared X", but only
+ * once two facts in the notebook agree that X was somewhere else (the
+ * generator's `clearedBy`: their own account and a sighting inside it, say).
+ * The suspects this notebook clears that way, each with the one whose word
+ * agreed with theirs: the source of a clue it rests on that is not their own.
+ * Empty for a case without the logic game, and where verdicts are off.
+ */
+export function clearedOnTwo(view: CaseView, found: readonly Id[]): Map<Id, Id | null> {
+  const out = new Map<Id, Id | null>();
+  if (!view.kase.logic || !verdictsOn(view)) return out;
+  for (const [id, rules] of Object.entries(clearedBy(view.kase, [...found]))) {
+    if (rules.length < 2) continue;
+    const other = rules
+      .map((r) => view.findableById.get(r))
+      .find((c) => c && c.source.type === 'person' && c.source.personId !== id);
+    out.set(id, other && other.source.type === 'person' ? other.source.personId : null);
+  }
+  return out;
 }
 
 /** Spec §5: the full crime column is asked from Medium up. */
@@ -573,7 +599,14 @@ export function proofsFor(view: CaseView): { who: Proof | null; when: Proof | nu
   const who: Proof | null = culprit
     ? {
         what: `${name(culprit.id)} was the only one who could have been at ${place(view.sceneId)} when it happened.`,
-        rules: ruleLines(view, whyIds(st, culprit.why)),
+        // M10 Part B: at Raw and Coddled the proof ends on the lie, what the
+        // culprit said and the word that broke it (`Logic.open`).
+        rules: ruleLines(view, [
+          ...whyIds(st, culprit.why),
+          ...(logic.open && logic.open.length > 0
+            ? [accountClueOf(view, culprit.id)?.id, ...logic.open].filter((id): id is Id => id !== undefined)
+            : []),
+        ]),
         depth: culprit.why.depth,
         hypothesis: culprit.why.hyp,
       }

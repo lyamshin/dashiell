@@ -1366,6 +1366,8 @@ function thoughtLine(stage: Stage, t: Thought, gaps: string[], finds: readonly s
   const rich = (['motive', 'means', 'span'] as const).filter((k) => slots[k] !== undefined);
   const says = (c: Card): boolean => rich.length === 0 || rich.some((k) => c.text.includes(`{${k}}`));
   const ladder: Match[] = [
+    // M10: two facts that agree have cards of their own, ahead of the hedged ones.
+    (c) => t.basis === 'two' && cls(c) && tagOf('thought', c, 'basis') === 'two',
     (c) => cls(c) && says(c) && is(c, 'basis', t.basis) && is(c, 'via', t.via) && is(c, 'who', t.who) && is(c, 'lied', lied),
     (c) => cls(c) && is(c, 'basis', t.basis) && is(c, 'via', t.via) && is(c, 'who', t.who) && lied === 'yes' && tagOf('thought', c, 'lied') === 'yes',
     (c) => cls(c) && is(c, 'basis', t.basis) && is(c, 'via', t.via) && is(c, 'who', t.who) && is(c, 'lied', lied),

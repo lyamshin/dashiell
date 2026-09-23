@@ -13,6 +13,8 @@ export * from './types.js';
 /* M9: the logic game, for the engine (docs/20-m9-gen-notes.md). */
 export {
   acquaintanceOf,
+  clearedBy,
+  clearedByTwo,
   contradicts,
   crimeFromHeld,
   knowsByName,

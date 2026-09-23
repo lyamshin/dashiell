@@ -875,6 +875,7 @@ function runLogic(
           lies: selection.lies,
           confrontations: selection.confrontations,
           solve: selection.summary,
+          ...(selection.open.length > 0 ? { open: selection.open } : {}),
         },
       };
 
