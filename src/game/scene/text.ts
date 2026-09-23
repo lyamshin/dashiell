@@ -142,6 +142,88 @@ export function pastTense(text: string): string {
     .join('');
 }
 
+/** M11: the verbs a dossier's predicates open on that do not take -ed. */
+const IRREGULAR_THIRD: Record<string, string> = {
+  has: 'had', is: 'was', does: 'did', goes: 'went', keeps: 'kept', sits: 'sat', takes: 'took',
+  writes: 'wrote', runs: 'ran', sells: 'sold', knows: 'knew', draws: 'drew', buys: 'bought',
+  teaches: 'taught', brings: 'brought', gets: 'got', holds: 'held', stands: 'stood', reads: 'read',
+  makes: 'made', pays: 'paid', says: 'said', sees: 'saw', leaves: 'left', forgets: 'forgot',
+  tears: 'tore', wears: 'wore', spends: 'spent', hears: 'heard', comes: 'came', drives: 'drove',
+  sleeps: 'slept', puts: 'put', lets: 'let', sets: 'set', cuts: 'cut', shuts: 'shut', finds: 'found',
+  gives: 'gave', tells: 'told', thinks: 'thought', feels: 'felt', sweeps: 'swept', lends: 'lent',
+  sends: 'sent', builds: 'built', rings: 'rang', sings: 'sang', drinks: 'drank', eats: 'ate',
+  swims: 'swam', wins: 'won', loses: 'lost', meets: 'met', leads: 'led', feeds: 'fed', hangs: 'hung',
+  deals: 'dealt', means: 'meant', catches: 'caught', fights: 'fought', rides: 'rode', hides: 'hid',
+  shakes: 'shook', throws: 'threw', grows: 'grew', speaks: 'spoke', steals: 'stole', wakes: 'woke',
+  can: 'could', will: 'would', may: 'might', shall: 'should', carries: 'carried', tries: 'tried',
+  worries: 'worried', hurries: 'hurried', marries: 'married', copies: 'copied', plays: 'played',
+  stays: 'stayed',
+};
+
+/** One verb in the third person present, put in the past; null when it is not one. */
+function pastVerb(word: string): string | null {
+  const low = word.toLowerCase();
+  const irregular = IRREGULAR_THIRD[low];
+  let out: string | null = irregular ?? null;
+  if (out === null) {
+    if (!/^[a-z]{3,}s$/.test(low) || /(?:ss|us|is|ous)$/.test(low)) return null;
+    if (/ies$/.test(low)) out = `${low.slice(0, -3)}ied`;
+    else if (/(?:sh|ch|x|zz)es$/.test(low)) out = `${low.slice(0, -2)}ed`;
+    else {
+      const base = low.slice(0, -1);
+      // One short syllable, one consonant after it: "rubs", "stops", "plans".
+      out = base.endsWith('e')
+        ? `${base}d`
+        : /^[^aeiou]*[aeiou][bdgmnpt]$/.test(base)
+          ? `${base}${base.slice(-1)}ed`
+          : `${base}ed`;
+    }
+  }
+  return word.charAt(0) === word.charAt(0).toUpperCase() && word.charAt(0) !== word.charAt(0).toLowerCase()
+    ? `${out.charAt(0).toUpperCase()}${out.slice(1)}`
+    : out;
+}
+
+/**
+ * M11: a dossier line, said afterwards. "Hauck trades on the street for men
+ * who would rather not be seen doing it" is the record's present tense; the
+ * page tells it as "She traded on the street…". The dossier writes each line
+ * as a subject and a predicate, so the verbs to turn are the one the
+ * predicate opens on, the ones after its "and", and the ones after a pronoun
+ * ("a drawer she locks"). Nouns that end in s ("trades stocks") are left
+ * alone because nothing but those three positions is ever turned.
+ */
+export function pastPredicate(sentence: string): string {
+  const words = sentence.split(/(\s+)/);
+  const out: string[] = [];
+  let expectVerb = true;
+  for (const [i, raw] of words.entries()) {
+    if (/^\s+$/.test(raw) || raw.length === 0) {
+      out.push(raw);
+      continue;
+    }
+    const m = /^([A-Za-z’']+)(.*)$/.exec(raw);
+    const word = m?.[1] ?? raw;
+    const rest = m?.[2] ?? '';
+    if (expectVerb && i > 0 && m) {
+      const past = pastVerb(word);
+      if (past !== null) {
+        out.push(`${past}${rest}`);
+        expectVerb = false;
+        continue;
+      }
+    }
+    out.push(raw);
+    // The subject is the first word; the verb comes after it, or after "and",
+    // or after a pronoun that starts a clause of its own.
+    expectVerb =
+      /^(?:and|he|she|they|it|who|that|everybody|everyone|nobody|somebody|anybody|thing|one)$/i.test(word) &&
+      rest.length === 0;
+    if (i === 0) expectVerb = true;
+  }
+  return out.join('');
+}
+
 /**
  * "The rug at the suite" when the reader is standing in the suite is the
  * record's address, not a thing anybody says. Take it off where it follows the

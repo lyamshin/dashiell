@@ -27,6 +27,9 @@ import { Dealer, knowsTheDetective, tagIs, type Slots } from './cards.js';
 import type { MotifContext } from './motifs.js';
 import { tidyPunctuation } from './prose.js';
 import type { Temper } from './cast.js';
+import { pronounOf } from './cast.js';
+import { pronounSubject } from './plain.js';
+import { pastPredicate } from '../scene/text.js';
 import type { Circumstance, Weather } from './roll.js';
 
 /** What the retainer looks like on the desk, by the client's class (§B.2.3). */
@@ -306,6 +309,255 @@ export function briefingTurns(
     (turns[turns.length - 1] as BriefingTurn).lines.push(line);
   }
   return turns;
+}
+
+/* ------------------------------------------------------------------ *
+ * M11 §A.1 — the office in the order a person tells it.
+ * ------------------------------------------------------------------ */
+
+/**
+ * The detective's three questions on page one, each written for the line in
+ * front of it. The generator's prompts were written one for one with a
+ * sentence, and asked in the generator's order they came before the sentence
+ * that invited them: "What happens if it is settled loudly?" before she had
+ * said a word about quiet. These answer what she has just said.
+ */
+export const OFFICE_ASK_POLICE: readonly string[] = [
+  'And the police?',
+  'What did the police make of it?',
+  'What did the precinct do about it?',
+];
+
+/** "Why me?", after she has said what the police did. By what they did. */
+export const OFFICE_ASK_WHY: Readonly<Record<'called' | 'not-called' | 'none', readonly string[]>> = {
+  called: ['Why me, and not the precinct again?', 'Then why come to me?', 'Why me?'],
+  'not-called': ['Why me, and not the police?', 'Then why come to me?'],
+  none: ['Why come to me?', 'What do you want me to do about it?'],
+};
+
+export const OFFICE_ASK_START: readonly string[] = [
+  'Where would you start?',
+  'Who would you start with?',
+  'If it were yours to do, where would you start?',
+];
+
+/**
+ * The beat after the first thing she says: she has told him who she is to
+ * the dead man and that he is dead, and he lets her go on in her own time.
+ */
+export const OFFICE_FIRST_BEAT: readonly string[] = [
+  'I let {him} sit before I asked anything.',
+  'I let that sit, and waited for the rest of it.',
+  'I didn’t say anything. {He} wasn’t finished.',
+];
+
+/**
+ * Golden rule 5 of the office: the victim gets a sentence of life and
+ * consequence after his standing. Opinion, never a case fact, and nobody by
+ * name. By the victim's archetype; `{him}` and `{he}` are the victim's.
+ */
+export const VICTIM_CONSEQUENCE: Readonly<Record<string, readonly string[]>> = {
+  'vic-inspector': ['You can imagine how many friends that made {him}.', 'Nobody on the street was sorry to see {him} go by.'],
+  'vic-landlord': ['Nobody loves the one who collects the rent.', 'You can imagine how many friends that made {him}.'],
+  'vic-bootlegger': ['A man in that line has customers, not friends.', 'Half the street drank what {he} sold, and the other half wished {he} would stop.'],
+  'vic-heiress': ['People were always nice to {him} to {his} face.', 'Money like that has a lot of friends and no close ones.'],
+  'vic-agent': ['Everybody who wanted work was nice to {him}. Nobody else bothered.', 'You can imagine how many people were waiting on {him}.'],
+  'vic-union-treasurer': ['Men keep an eye on whoever holds the money.', 'You can imagine how many friends that made {him}.'],
+  'vic-pawnbroker': ['Nobody is fond of the one who holds their things.', 'People only came to {him} when they had to.'],
+  'vic-columnist': ['Half the city wanted to be in the column, and the other half wanted to stay out of it.', 'You can imagine how many friends that made {him}.'],
+  'vic-bondsman': ['People only came to {him} on the worst night of their lives.', 'Nobody thanks the one who holds the bail.'],
+  'vic-wholesaler': ['{He} was retired, but {he} never stopped counting.', 'People on the street still called {him} by {his} old trade.'],
+};
+
+/** One turn of what she says, and the question that opens it. */
+export interface OfficeTurn {
+  ask: 'police' | 'why' | 'start' | null;
+  lines: SpokenLine[];
+}
+
+/**
+ * Page one's speech, in the order the golden tells it:
+ *
+ *   who she is to him, and that he is dead        (unasked)
+ *   who he was, where, and who found him          (she goes on)
+ *   what the police did, what's wrong, and when   "And the police?"
+ *   why she came to him, and what she wants       "Why me?"
+ *   her trade, in his words                       (narration)
+ *   who she would start with, and the money       "Where would you start?"
+ *
+ * Every briefing sentence she says is here, reordered and not reworded,
+ * except the two the relation turn says better in the new order: "I am his
+ * sister-in-law" becomes "I am Isidore Sirkin's sister-in-law", because it
+ * comes first now and "his" has nothing in front of it; and the murder's
+ * "Isidore Sirkin is dead" becomes "He is dead", because the name was just
+ * said. Nothing is added to what she says but those, the victim's trade
+ * ("Sirkin was a buildings inspector"), and one line of opinion about him.
+ */
+export interface OfficePlan {
+  /** Her name, her relation, the death: the first thing she says. */
+  relation: SpokenLine[];
+  story: SpokenLine[];
+  police: SpokenLine[];
+  want: SpokenLine[];
+  /** Her trade in his narration, past tense, a pronoun for a subject. Null when the dossier has none. */
+  trade: string | null;
+  close: SpokenLine[];
+  /** What the precinct did, for the "Why me?" that follows it. */
+  precinct: 'called' | 'not-called' | 'none';
+}
+
+/** The victim's surname, first time in a turn, where a pronoun would be the turn's first word for him. */
+function nameFirst(lines: SpokenLine[], victim: Person): SpokenLine[] {
+  const surname = victim.surname;
+  const he = pronounOf(victim) === 'she' ? 'She' : 'He';
+  let named = false;
+  return lines.map((line) => {
+    if (named) return line;
+    if (new RegExp(`\\b${surname}\\b`).test(line.text)) {
+      named = true;
+      return line;
+    }
+    const re = new RegExp(`^${he}\\b`);
+    if (re.test(line.text)) {
+      named = true;
+      const text = line.text.replace(re, surname);
+      const { breath: _b, ...rest } = line;
+      return { ...rest, text };
+    }
+    return line;
+  });
+}
+
+export function officePlan(
+  view: CaseView,
+  familiar: boolean,
+  rng: { pick<T>(xs: readonly T[]): T },
+): OfficePlan {
+  const kase = view.kase;
+  const client = view.client;
+  const victim = view.victim;
+  const dossier = client.dossier;
+  const topics = briefingTopics(view);
+  type Said = { line: SpokenLine; record: string };
+  const records: Said[] = kase.briefing
+    .filter((line) => line.speaker === 'client')
+    .map((line) => ({
+      record: line.text,
+      line: {
+        topic: topics.get(tidyLine(line.text)) ?? 'other',
+        text: line.spoken ?? line.text,
+        ...(line.breath === undefined ? {} : { breath: line.breath }),
+      },
+    }));
+  const used = new Set<number>();
+  const take = (pred: (l: SpokenLine & { record: string }) => boolean): SpokenLine[] => {
+    const out: SpokenLine[] = [];
+    records.forEach((s, i) => {
+      if (used.has(i) || !pred({ ...s.line, record: s.record })) return;
+      used.add(i);
+      out.push(s.line);
+    });
+    return out;
+  };
+
+  /* Her trade, which the golden gives in his words and not hers. */
+  const detailRecord = dossier ? tidyLine(`${client.surname} ${dossier.profession.detail}.`) : '';
+  take((l) => tidyLine(l.record) === detailRecord);
+  const trade =
+    dossier === undefined
+      ? null
+      : pronounSubject(pastPredicate(detailRecord), client.surname, pronounOf(client));
+
+  /* 1. Who she is to him, and that he is dead. */
+  const deathRecord = tidyLine(`${victim.name} is dead.`);
+  const death = take((l) => kase.act.type === 'murder' && tidyLine(l.record) === deathRecord);
+  const headline =
+    kase.act.type === 'murder'
+      ? death.length > 0
+        ? [{ topic: 'given' as const, text: `${pronounOf(victim) === 'she' ? 'She' : 'He'} is dead.` }]
+        : []
+      : take((l) => l.topic === 'given' && tidyLine(l.record) === tidyLine(kase.act.givens.text[0] ?? '§'));
+  const tieLines = take((l) => l.topic === 'tie');
+  const relation: SpokenLine[] = [];
+  if (!familiar) relation.push({ topic: 'other', text: `My name is ${client.name}.` });
+  if (dossier) {
+    const tie = dossier.tie.text;
+    const full = tie.includes(victim.surname) ? tie.replace(victim.surname, victim.name) : tie;
+    relation.push({ topic: 'tie', text: tidyLine(`I am ${full}`) });
+  } else {
+    relation.push(...tieLines);
+  }
+  relation.push(...headline);
+
+  /* 2. Who he was, where, and who found him. */
+  const role = victim.role.replace(/\.$/, '');
+  const story: SpokenLine[] = [];
+  if (kase.act.type === 'murder') story.push({ topic: 'standing', text: tidyLine(`${victim.surname} was ${role}`) });
+  story.push(...take((l) => l.topic === 'standing'));
+  const pool = VICTIM_CONSEQUENCE[victim.archetypeId ?? ''];
+  if (pool && pool.length > 0 && kase.act.type === 'murder') {
+    const she = pronounOf(victim) === 'she';
+    const line = rng
+      .pick(pool)
+      .split('{him}')
+      .join(she ? 'her' : 'him')
+      .split('{his}')
+      .join(she ? 'her' : 'his')
+      .split('{He}')
+      .join(she ? 'She' : 'He')
+      .split('{he}')
+      .join(she ? 'she' : 'he');
+    story.push({ topic: 'other', text: line });
+  }
+  story.push(...take((l) => l.topic === 'backstory'));
+  const policeWords = /\b(?:precinct|police)\b/i;
+  const coroner = /\bcoroner\b/i;
+  story.push(
+    ...take((l) => l.topic === 'given' && /\bfound\b/i.test(l.record) && !policeWords.test(l.record) && !coroner.test(l.record)),
+  );
+  story.push(...take((l) => l.topic === 'discovery'));
+
+  /* 3. What the police did, what is wrong with it, and when. */
+  const police: SpokenLine[] = [];
+  police.push(...take((l) => l.topic === 'precinct'));
+  police.push(...take((l) => l.topic === 'given' && policeWords.test(l.record)));
+  const precinctSaid = police.length > 0;
+  police.push(...take((l) => l.topic === 'given' && !coroner.test(l.record)));
+  police.push(...take((l) => l.topic === 'given'));
+  const precinct = kase.victimBio.discovery?.precinct;
+  const precinctKind: OfficePlan['precinct'] = !precinctSaid
+    ? 'none'
+    : precinct === 'not-yet-called'
+      ? 'not-called'
+      : 'called';
+
+  /* 4. Why him, and what she wants. */
+  const want = take((l) => l.topic === 'purpose' || l.topic === 'cost');
+  /* 5. Where to start. */
+  const close = take((l) => l.topic === 'pointer' || l.topic === 'reason');
+  /* Anything the fields did not account for rides with the story. */
+  story.push(...take(() => true));
+  // With no word from the police, what is wrong and when it happened is the
+  // rest of the story, and nobody asks about the precinct.
+  if (!precinctSaid) story.push(...police.splice(0));
+
+  return {
+    relation,
+    story: nameFirst(story, victim),
+    police: nameFirst(police, victim),
+    want,
+    trade,
+    close,
+    precinct: precinctKind,
+  };
+}
+
+/** The turns, with the question in front of each, from a plan. */
+export function officeTurns(plan: OfficePlan, police: SpokenLine[] = plan.police): OfficeTurn[] {
+  const turns: OfficeTurn[] = [{ ask: null, lines: plan.relation }, { ask: null, lines: plan.story }];
+  if (police.length > 0) turns.push({ ask: 'police', lines: police });
+  if (plan.want.length > 0) turns.push({ ask: 'why', lines: plan.want });
+  return turns.filter((t) => t.lines.length > 0);
 }
 
 /* ------------------------------------------------------------------ *

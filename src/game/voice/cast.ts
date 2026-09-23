@@ -209,7 +209,43 @@ function rollTempers(kase: Case, seed: number, weather: DashiellRoll['weather'])
       break;
     }
   }
-  return temper;
+  return atMostOneEnigma(kase, seed, temper);
+}
+
+const ENIGMA_SALT = 0x2f6b1c3d;
+
+/**
+ * M11 §A.4: an enigma is somebody guarded, and a case has at most one.
+ *
+ * The weights rolled a third of a cast as enigmas, and every one of them
+ * answered about their own life in two sentences and stopped. The golden's
+ * rule is that guardedness belongs to the night, not to a life, and that one
+ * guarded person in a room of talkers is a character where four are a
+ * pattern. So the stream above runs exactly as it always has — nobody else's
+ * temper moves — and when it has rolled more than one enigma, one of them is
+ * kept, drawn by the weight each had for it off a stream of its own, and the
+ * rest are plain. Plain rather than re-rolled: a yapper volunteers a clue
+ * once a run, so a new yapper would change what the night hands out, and
+ * plain changes only how somebody talks.
+ */
+export function atMostOneEnigma(kase: Case, seed: number, temper: Record<Id, Temper>): Record<Id, Temper> {
+  const enigmas = kase.people.filter((p) => temper[p.id] === 'enigma');
+  if (enigmas.length <= 1) return temper;
+  const rng = new Rng((seed * 1103515245 + ENIGMA_SALT) >>> 0);
+  const weights = enigmas.map((p) => Math.max(0, weightsFor(p).enigma ?? 0));
+  const total = weights.reduce((a, b) => a + b, 0);
+  let roll = rng.next() * (total > 0 ? total : enigmas.length);
+  let keep = enigmas[enigmas.length - 1] as Person;
+  for (const [i, p] of enigmas.entries()) {
+    roll -= total > 0 ? (weights[i] as number) : 1;
+    if (roll < 0) {
+      keep = p;
+      break;
+    }
+  }
+  const out = { ...temper };
+  for (const p of enigmas) if (p.id !== keep.id) out[p.id] = 'plain';
+  return out;
 }
 
 /**

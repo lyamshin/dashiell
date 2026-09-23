@@ -1,0 +1,130 @@
+[
+  {
+    "id": "chr-p001",
+    "deck": "character",
+    "text": "{She} had the build of somebody who had carried coal up four flights and would again.",
+    "tags": { "role": "landlady", "kind": "look" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p002",
+    "deck": "character",
+    "text": "The block knew {name} as a landlady who never missed a rent day and never forgot a face.",
+    "tags": { "role": "landlady", "kind": "street" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p003",
+    "deck": "character",
+    "text": "I sit where I can see the stairs. People think that’s nosiness. It’s rent.",
+    "tags": { "role": "landlady", "kind": "talk" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p004",
+    "deck": "character",
+    "text": "Everybody knew {victim}. He came round twice a year about the stairs and the fire escape, and twice a year I paid him not to find anything.",
+    "tags": { "role": "landlady", "kind": "victim", "victimRole": "vic-inspector" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p005",
+    "deck": "character",
+    "text": "{She} keeps the house, and {she} knows every foot on the stairs.",
+    "tags": { "role": "landlady", "kind": "client" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p006",
+    "deck": "character",
+    "text": "{He} was a big man going soft.",
+    "tags": { "role": "bartender", "kind": "look" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p007",
+    "deck": "character",
+    "text": "{He} was the kind of bartender who knew what you drank before you did and never said your name out loud.",
+    "tags": { "role": "bartender", "kind": "street" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p008",
+    "deck": "character",
+    "text": "I pour and I listen. The pouring is what they pay for.",
+    "tags": { "role": "bartender", "kind": "talk" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p009",
+    "deck": "character",
+    "text": "{He} knows everybody’s drink and nobody’s business.",
+    "tags": { "role": "bartender", "kind": "client" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p010",
+    "deck": "character",
+    "text": "{She} had the look of somebody who did business standing up, on a curb, with one eye on the street.",
+    "tags": { "role": "arch-broker", "kind": "look" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p011",
+    "deck": "character",
+    "text": "On the curb outside the Exchange, {name} was known for a quick yes and a slow no.",
+    "tags": { "role": "arch-broker", "kind": "street" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p012",
+    "deck": "character",
+    "text": "Half my customers would rather not be seen buying. I’m what they send instead.",
+    "tags": { "role": "arch-broker", "kind": "talk" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p013",
+    "deck": "character",
+    "text": "{She} kept both hands still, the way people do whose hands are their living.",
+    "tags": { "role": "arch-dentist", "kind": "look" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p014",
+    "deck": "character",
+    "text": "The block went to {name} for a tooth when it could pay, and to the barber when it couldn’t.",
+    "tags": { "role": "arch-dentist", "kind": "street" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p015",
+    "deck": "character",
+    "text": "People are polite to a dentist. They know they’ll be back in the chair.",
+    "tags": { "role": "arch-dentist", "kind": "talk" },
+    "motifs": [],
+    "status": "placeholder"
+  },
+  {
+    "id": "chr-p016",
+    "deck": "character",
+    "text": "{He} was the kind of patrolman the block could set a clock by.",
+    "tags": { "role": "beat-cop", "kind": "street" },
+    "motifs": [],
+    "status": "placeholder"
+  }
+]

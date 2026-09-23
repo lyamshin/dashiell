@@ -131,7 +131,7 @@ export const WANT_TEXT: Record<Want, string> = {
   'to-be-feared': 'wants to be the one people are careful around',
   'to-be-forgiven': 'wants to be forgiven for something nobody else remembers',
   'to-be-somebody': 'wants a name people know',
-  'to-keep-what-they-have': 'wants to keep what they have and add nothing to it',
+  'to-keep-what-they-have': 'wants to keep what {he|she} has and add nothing to it',
 };
 
 /** The years a backstory can hang on. */
@@ -1372,6 +1372,13 @@ export interface FixtureCard {
   visibleProfession: boolean;
   /** `{place}` is where they are posted. */
   tie: string;
+  /**
+   * M11 §B.1: the same details in their own mouth, one for one with
+   * `professionDetails`, for when they are asked about themselves. Not handed
+   * to the dossier as `professionFirst` — that would give a fixture the
+   * briefing's prompt, which only a client says — but to its character lines.
+   */
+  detailsFirst: string[];
 }
 
 export const FIXTURE_CARDS: Record<string, FixtureCard> = {
@@ -1386,6 +1393,11 @@ export const FIXTURE_CARDS: Record<string, FixtureCard> = {
     wants: ['to-be-left-alone', 'money', 'to-keep-what-they-have'],
     visibleProfession: true,
     tie: 'behind the bar at {place}, every night of the week',
+    detailsFirst: [
+      'Nine years behind the bar at {place}. I remember what everybody drinks.',
+      'I work {place} from four until they lock the door.',
+      'I pour at {place} six nights a week. Mondays are mine.',
+    ],
   },
   doorman: {
     role: 'the doorman',
@@ -1398,6 +1410,11 @@ export const FIXTURE_CARDS: Record<string, FixtureCard> = {
     wants: ['to-keep-what-they-have', 'respectability', 'money'],
     visibleProfession: true,
     tie: 'on the door at {place}',
+    detailsFirst: [
+      'I stand the door at {place}. I don’t write anybody down, and I don’t forget anybody.',
+      'I’ve had the door at {place} since the building changed hands.',
+      'I’m on the door at {place} from six until two. I see every face twice, going in and coming out.',
+    ],
   },
   newsstand: {
     role: 'the news dealer',
@@ -1410,6 +1427,11 @@ export const FIXTURE_CARDS: Record<string, FixtureCard> = {
     wants: ['to-be-left-alone', 'money', 'to-keep-what-they-have'],
     visibleProfession: true,
     tie: 'at the stand at {place}, every day of the year',
+    detailsFirst: [
+      'I’m selling papers at {place} before six. I stay till the last edition’s gone.',
+      'Twenty years on the stand at {place}. I know every regular by the paper they take.',
+      'I run the stand at {place}. Nothing crosses that pavement I don’t see.',
+    ],
   },
   counterman: {
     role: 'the man behind the counter',
@@ -1422,6 +1444,11 @@ export const FIXTURE_CARDS: Record<string, FixtureCard> = {
     wants: ['money', 'to-be-left-alone', 'to-get-out'],
     visibleProfession: true,
     tie: 'behind the counter at {place}',
+    detailsFirst: [
+      'I work the counter at {place} on the evening shift.',
+      'I have the counter at {place} from four until midnight.',
+      'I serve at {place}. Nobody’s ever once asked my name.',
+    ],
   },
   'ticket-taker': {
     role: 'the ticket-taker',
@@ -1434,6 +1461,11 @@ export const FIXTURE_CARDS: Record<string, FixtureCard> = {
     wants: ['to-be-left-alone', 'money', 'respectability'],
     visibleProfession: true,
     tie: 'on the door at {place}, every performance',
+    detailsFirst: [
+      'I take the tickets at {place}. I tear every one of them in half.',
+      'I work the box office at {place} from seven until the last show goes in.',
+      'I’ve taken tickets at {place} since the place opened.',
+    ],
   },
   'elevator-man': {
     role: 'the elevator man',
@@ -1446,6 +1478,11 @@ export const FIXTURE_CARDS: Record<string, FixtureCard> = {
     wants: ['to-keep-what-they-have', 'to-be-left-alone', 'money'],
     visibleProfession: true,
     tie: 'in the car at {place}',
+    detailsFirst: [
+      'I run the car at {place}. I know what floor you want before you say it.',
+      'I have the car at {place} from three until eleven.',
+      'Eleven years on the car at {place}. I’ve never lost a day.',
+    ],
   },
   landlady: {
     role: 'the landlady',
@@ -1458,6 +1495,11 @@ export const FIXTURE_CARDS: Record<string, FixtureCard> = {
     wants: ['respectability', 'to-keep-what-they-have', 'money'],
     visibleProfession: true,
     tie: 'the keeper of {place}',
+    detailsFirst: [
+      'I keep {place}. I sit where I can see the stairs.',
+      'I’ve kept {place} twenty-two years. I know every board that creaks.',
+      'I rent out the rooms at {place}. I collect on Saturdays.',
+    ],
   },
   'beat-cop': {
     role: 'the patrolman on the beat',
@@ -1470,6 +1512,11 @@ export const FIXTURE_CARDS: Record<string, FixtureCard> = {
     wants: ['to-be-feared', 'respectability', 'to-keep-what-they-have'],
     visibleProfession: true,
     tie: 'the patrolman whose post takes in {place}',
+    detailsFirst: [
+      'Same eight corners every night. I try every door on them.',
+      'Four years on this post. I can time the round to the minute.',
+      'I came on at six. I go off at two, the same as every night.',
+    ],
   },
   cabbie: {
     role: 'the cabbie on the stand',
@@ -1482,6 +1529,11 @@ export const FIXTURE_CARDS: Record<string, FixtureCard> = {
     wants: ['money', 'to-be-left-alone', 'to-keep-what-they-have'],
     visibleProfession: true,
     tie: 'on the stand at {place}',
+    detailsFirst: [
+      'I sit the stand at {place} and take the fares as they come.',
+      'Six years on the stand at {place}. I know every regular fare on it.',
+      'I drive nights off the stand at {place}. I sleep in the mornings.',
+    ],
   },
   druggist: {
     role: 'the druggist',
@@ -1494,6 +1546,11 @@ export const FIXTURE_CARDS: Record<string, FixtureCard> = {
     wants: ['respectability', 'to-keep-what-they-have', 'money'],
     visibleProfession: true,
     tie: 'behind the counter at {place}',
+    detailsFirst: [
+      'I keep {place} open until eleven. I fill what’s brought in.',
+      'I’ve had {place} since before the war. I know what everybody on the block takes.',
+      'I stand the counter at {place}. I write down every prescription twice.',
+    ],
   },
 };
 

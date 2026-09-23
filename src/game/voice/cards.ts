@@ -66,6 +66,7 @@ import groundingJson from '../../../content/decks/grounding.json';
 import followupJson from '../../../content/decks/followup.json';
 import tailJson from '../../../content/decks/tail.json';
 import noteJson from '../../../content/decks/note.json';
+import characterJson from '../../../content/decks/character.json';
 
 export type DeckName =
   | 'similes'
@@ -112,7 +113,9 @@ export type DeckName =
   | 'grounding'
   | 'followup'
   | 'tail'
-  | 'note';
+  | 'note'
+  /* M11 Part C: archetype character cards — the look, the street's view, the talk, the victim, the client's word. */
+  | 'character';
 
 export type BurnTier = 'run-to-run' | 'within-run' | 'free';
 
@@ -238,6 +241,7 @@ const RAW: Record<DeckName, unknown> = {
   followup: followupJson,
   tail: tailJson,
   note: noteJson,
+  character: characterJson,
 };
 
 /** Every deck is on disk and imported; nothing is missing. */
