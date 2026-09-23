@@ -408,7 +408,7 @@ export const PLACE_TEMPLATES: PlaceTemplate[] = [
   {
     id: 'union-hall',
     shortName: 'the union hall',
-    name: 'the local’s hall over the bakery',
+    name: 'the union hall over the bakery',
     kind: 'semi',
     murderMethods: ['blunt', 'strangle', 'stab'],
     objects: ['obj-ledger', 'obj-cashbox', 'obj-typewriter'],

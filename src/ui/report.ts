@@ -78,7 +78,7 @@ export interface TierNews {
 export function tierNewsLines(news: TierNews): string[] {
   const done = shapeOf(news.cleared).name;
   if (news.unlocked === 'over-easy') {
-    return [`${done} is cleared, and that is the book. **Over easy is open now.**`, shapeOf('over-easy').rule];
+    return [`${done} is cleared, and that is the last of them. **Over easy is open now.**`, shapeOf('over-easy').rule];
   }
   if (news.unlocked !== null) {
     const next = shapeOf(news.unlocked);

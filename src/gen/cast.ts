@@ -64,7 +64,7 @@ const FIXTURE_ROLE_TEXT: Record<FixtureRole, string> = {
   'elevator-man': 'the elevator man',
   landlady: 'the landlady',
   'beat-cop': 'the patrolman on the beat',
-  cabbie: 'the hackman on the stand',
+  cabbie: 'the cabbie on the stand',
   druggist: 'the druggist',
 };
 

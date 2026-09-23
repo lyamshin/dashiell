@@ -33,6 +33,7 @@ import {
 import { choicesFor, defaultAskPerson } from '../game/choices.js';
 import { clockStrip, usedByPage } from '../game/clock.js';
 import { buildView, gameBudget, peopleHereNow, type CaseView, type Noun } from '../game/derive.js';
+import { applyMark, gridFrom } from '../game/grid.js';
 import { buildNotebook, personCard, placeHoverCard } from '../game/notebook.js';
 import { fileReport, newRun, stepInput } from '../game/reducer.js';
 import { scoreReport, type Verdict } from '../game/scoring.js';
@@ -47,6 +48,7 @@ import {
 import type { Id, OfferedChoice, OfferedGroup, Report, RunState, Thread } from '../game/types.js';
 import { renderChoices } from './choices-view.js';
 import { clear, el } from './dom.js';
+import { newGridUi, renderGridSection, type GridUi } from './grid-view.js';
 import { hideCard, type CardSource } from './hover.js';
 import { renderNotebook } from './notebook-view.js';
 import { renderPage } from './prose.js';
@@ -115,6 +117,8 @@ export function mount(root: HTMLElement): void {
   let showMore = false;
   /** How many calls the page that just landed spent, for the one animation. */
   let justSpent = 0;
+  /** What the grid has open, folded and lit. Kept across pages, reset per case. */
+  let gridUi: GridUi = newGridUi();
 
   /* ------------------------------------------------------------ routing */
 
@@ -160,6 +164,7 @@ export function mount(root: HTMLElement): void {
     selected = null;
     showMore = false;
     justSpent = 0;
+    gridUi = newGridUi();
     // A filed run is over. Reopening its URL reopens the verdict, not the
     // page: the report is final, and that has to survive a reload.
     screen = state.filed
@@ -431,15 +436,36 @@ export function mount(root: HTMLElement): void {
         el('span', { text: caseLine(kase as Case) }),
       ),
     );
-    const body = renderNotebook(buildNotebook(view as CaseView, state as RunState), followLead, () =>
-      runCommand('file'),
-    );
+    const book = buildNotebook(view as CaseView, state as RunState);
+    const grid = renderGridSection(gridUi, {
+      grid: () => gridFrom(view as CaseView, state as RunState),
+      // The pencil is free and writes no page: it changes the run's marks,
+      // is saved with the run, and redraws the grid alone.
+      onMark: (personId, tick, action) => {
+        if (!state) return;
+        state = applyMark(state, personId, tick, action);
+        saveRun(store, state);
+      },
+      onPerson: (personId) => showEntry(personId),
+    });
+    const body = renderNotebook(book, followLead, () => runCommand('file'), grid);
     body.setAttribute('tabindex', '-1');
     page.append(body);
     const back = el('button', { class: 'plain-button nb-back', type: 'button', text: 'Back to the page' });
     back.addEventListener('click', () => document.body.classList.remove('notebook-open'));
     page.append(back);
     return page;
+  }
+
+  /** A name on the grid, tapped: the notebook turns to that person's entry. */
+  function showEntry(personId: Id): void {
+    const entry = root.querySelector(`#nb-person-${CSS.escape(personId)}`) as HTMLElement | null;
+    if (!entry) return;
+    entry.scrollIntoView?.({ block: 'start', behavior: 'smooth' });
+    entry.focus?.({ preventScroll: true });
+    entry.classList.remove('nb-flash');
+    void entry.offsetWidth;
+    entry.classList.add('nb-flash');
   }
 
   /* -------------------------------------------------------- title page */

@@ -403,7 +403,7 @@ describe('the report', () => {
   it('chooses the ending by case type and by outcome', () => {
     const shapes: Record<CaseType, string> = {
       murder: 'hangs',
-      robbery: 'Nobody hangs for a box',
+      robbery: 'Nobody hangs for a robbery',
       missing: 'did not want finding',
     };
     for (const [type, phrase] of Object.entries(shapes) as [CaseType, string][]) {

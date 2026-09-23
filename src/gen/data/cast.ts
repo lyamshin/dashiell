@@ -188,12 +188,12 @@ export const RELATIONSHIPS: Relationship[] = [
     impliesMotives: ['property', 'debt', 'revenge'],
     backstory: [
       '{victim} rented from {person} and was three months behind when it happened',
-      '{person} has held the paper on the building {victim} lived in since {year}',
+      '{person} has held the mortgage on the building {victim} lived in since {year}',
       '{person} put {victim} into the rooms as a favour to {third} and regretted it inside a month',
     ],
     backstoryFirst: [
       '{victim} rented from me. Three months behind when it happened, and I had said nothing about it.',
-      'I have held the paper on the building {victim} lived in since {year}. I hold it still.',
+      'I have held the mortgage on the building {victim} lived in since {year}. I hold it still.',
       'I put {victim} into the rooms as a favour to {third}. Inside a month I regretted it. The favour was never returned.',
     ],
     since: ['since {year}', 'the better part of ten years', 'two leases running'],
@@ -229,16 +229,16 @@ export const RELATIONSHIPS: Relationship[] = [
     text: '{V}’s creditor',
     impliesMotives: ['debt', 'insurance', 'property'],
     backstory: [
-      '{person} has been carrying {victim}’s paper since {year} and renewing it every ninety days',
-      '{victim} borrowed from {person} to cover a note and never mentioned it to anybody',
+      '{person} lent {victim} money in {year} and has extended the loan every ninety days since',
+      '{victim} borrowed from {person} to pay off another debt and never mentioned it to anybody',
       '{person} lent {victim} money in front of {third} and has been reminded of it ever since',
     ],
     backstoryFirst: [
-      'I have carried {victim}’s paper since {year}, and renewed it every ninety days. Every ninety days, on the day.',
-      '{victim} borrowed from me to cover a note. It was never mentioned to anybody. Not by either of us.',
+      'I lent {victim} money in {year}, and I have extended the loan every ninety days since. Every ninety days, on the day.',
+      '{victim} borrowed from me to pay off another debt. It was never mentioned to anybody. Not by either of us.',
       'I lent {victim} money in front of {third}. That was a mistake. I have been reminded of it ever since.',
     ],
-    since: ['since {year}', 'three renewals running', 'going back to the war'],
+    since: ['since {year}', 'through three extensions of the loan', 'going back to the war'],
     purposes: {
       murder: { 'settle-a-debt-with-the-dead': 42, 'find-the-killer-police-wont': 32, 'keep-it-quiet': 26 },
       robbery: { 'get-it-back': 34, 'settle-a-debt-with-the-dead': 34, 'find-it-before-the-cops': 32 },
@@ -251,13 +251,13 @@ export const RELATIONSHIPS: Relationship[] = [
     impliesMotives: ['debt', 'exposure', 'revenge'],
     backstory: [
       '{person} has owed {victim} money since {year} and has not been asked for it lately',
-      '{victim} carried {person} through a bad winter and has been collecting on it ever since',
-      '{person} signed a note to {victim} that {third} witnessed and nobody has torn up',
+      '{victim} lent {person} money through a bad winter and has been collecting on it ever since',
+      '{person} signed an IOU to {victim} that {third} witnessed and nobody has torn up',
     ],
     backstoryFirst: [
       'I have owed {victim} money since {year}. Nobody has asked for it lately. That is what worries me.',
-      '{victim} carried me through a bad winter. The collecting has not stopped since. I am still paying.',
-      'I signed a note to {victim}. {third} witnessed it. Nobody has torn it up.',
+      '{victim} lent me money through a bad winter. The collecting has not stopped since. I am still paying.',
+      'I signed an IOU to {victim}. {third} witnessed it. Nobody has torn it up.',
     ],
     since: ['since {year}', 'since the flu year', 'two winters running'],
     purposes: {
@@ -271,12 +271,12 @@ export const RELATIONSHIPS: Relationship[] = [
     text: '{V}’s lawyer',
     impliesMotives: ['exposure', 'inheritance', 'property'],
     backstory: [
-      '{person} has drawn every paper {victim} ever signed, going back to {year}',
+      '{person} has drawn up every contract {victim} ever signed, going back to {year}',
       '{person} keeps {victim}’s will in a box and has read it more often than {victim} did',
       '{victim} brought {person} the business {third} would not touch',
     ],
     backstoryFirst: [
-      'I have drawn every paper {victim} ever signed. That goes back to {year}. All of it in my own hand.',
+      'I have drawn up every contract {victim} ever signed. That goes back to {year}. All of it in my own hand.',
       '{victim}’s will is in my box. I have read it more often than {victim} did.',
       '{victim} brought me the business {third} would not touch. I took it.',
     ],
@@ -526,12 +526,12 @@ export const RELATIONSHIPS: Relationship[] = [
     text: '{V}’s neighbour across the airshaft',
     impliesMotives: ['revenge', 'jealousy', 'property'],
     backstory: [
-      '{person} lives across the airshaft from {victim} and can hear the wireless through it',
+      '{person} lives across the airshaft from {victim} and can hear the radio through it',
       '{person} has lived on the same landing as {victim} since {year}',
       '{person} and {victim} share a wall, a landing and a long argument about {third}',
     ],
     backstoryFirst: [
-      'I live across the airshaft from {victim}. The wireless comes through it. I hear all of it.',
+      'I live across the airshaft from {victim}. The radio comes through it. I hear all of it.',
       'I have lived on the same landing as {victim} since {year}. The same landing, all that time.',
       '{victim} and I share a wall and a landing. We share a long argument about {third}. It is not settled.',
     ],
@@ -601,7 +601,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
   },
   {
     id: 'arch-broker',
-    role: 'a curb broker',
+    role: 'a stockbroker who trades in the street',
     relationships: ['rel-partner', 'rel-creditor', 'rel-debtor', 'rel-rival', 'rel-inlaw'],
     motives: ['debt', 'exposure', 'property'],
     secrets: ['embezzling', 'gambling-debt', 'fence'],
@@ -609,12 +609,12 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     trade: 'money',
     ageBand: [30, 52],
     professionDetails: [
-      'works the curb outside the Exchange in all weathers',
+      'trades stocks on the sidewalk outside the Exchange in all weathers',
       'trades on the street for men who would rather not be seen doing it',
       'carries three telephone numbers and no office',
     ],
     professionFirst: [
-      'I work the curb outside the Exchange. In all weathers.',
+      'I trade stocks on the sidewalk outside the Exchange. In all weathers.',
       'I trade on the street. My customers would rather not be seen doing it themselves.',
       'I carry three telephone numbers. I have no office.',
     ],
@@ -720,12 +720,12 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     ageBand: [26, 46],
     professionDetails: [
       'sits nights with patients the hospitals have sent home',
-      'has a registry card and takes the cases nobody else will',
+      'is on the nurses’ registry and takes the cases nobody else will',
       'nursed overseas and has not been out of work since',
     ],
     professionFirst: [
       'I sit nights with patients the hospitals have sent home. It is night work.',
-      'I have a registry card. I take the cases nobody else will.',
+      'I am on the nurses’ registry. I take the cases nobody else will.',
       'I nursed overseas. I have not been out of work since.',
     ],
     wants: ['to-be-forgiven', 'respectability', 'money', 'to-be-left-alone'],
@@ -775,7 +775,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
   },
   {
     id: 'arch-reporter',
-    role: 'a stringer for the evening papers',
+    role: 'a freelance reporter for the evening papers',
     relationships: ['rel-witness', 'rel-rival', 'rel-neighbor'],
     motives: ['exposure', 'silence-a-witness', 'revenge'],
     secrets: ['blackmail', 'secret-drinking', 'gambling-debt'],
@@ -826,13 +826,13 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     trade: 'insurance',
     ageBand: [32, 54],
     professionDetails: [
-      'walks fire jobs for the company and writes up what he finds',
-      'settles claims for a casualty office and is paid to doubt people',
+      'inspects fires for the insurance company and writes up what he finds',
+      'settles accident claims for an insurance company and is paid to doubt people',
       'has a district that runs from the river to Eighth Avenue',
     ],
     professionFirst: [
-      'I walk fire jobs for the company. I write up what I find.',
-      'I settle claims for a casualty office. I am paid to doubt people. It is a living.',
+      'I inspect fires for the insurance company. I write up what I find.',
+      'I settle accident claims for an insurance company. I am paid to doubt people. It is a living.',
       'I have a district. It runs from the river to Eighth Avenue.',
     ],
     wants: ['money', 'respectability', 'to-keep-what-they-have'],
@@ -873,13 +873,13 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     ageBand: [24, 48],
     professionDetails: [
       'works the Elizabeth Street pier when there is work',
-      'shapes up at seven and takes whatever the boss hands out',
-      'has a hook, a union button and three days a week',
+      'lines up at the pier at seven to be picked for work and takes whatever the boss hands out',
+      'has a cargo hook, a union button and three days a week',
     ],
     professionFirst: [
       'I work the Elizabeth Street pier. When there is work.',
-      'I shape up at seven. I take whatever the boss hands out.',
-      'I have a hook and a union button. Three days a week.',
+      'I line up at the pier at seven. I wait to be picked. I take whatever the boss hands out.',
+      'I have a cargo hook and a union button. Three days a week.',
     ],
     wants: ['money', 'to-be-feared', 'to-keep-what-they-have'],
     visibleProfession: true,
@@ -896,19 +896,19 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     professionDetails: [
       'finishes coats at home by the piece and takes the bundles back on Fridays',
       'works a machine in a loft and is paid by the dozen',
-      'sews for a house on the avenue and is never named in it',
+      'sews for a fashion house on the avenue and never gets her name on the label',
     ],
     professionFirst: [
       'I finish coats at home. By the piece. The bundles go back on Fridays.',
       'I work a machine in a loft. I am paid by the dozen.',
-      'I sew for a house on the avenue. My name is not in it. It never was.',
+      'I sew for a fashion house on the avenue. My name is not on the label. It never was.',
     ],
     wants: ['to-get-out', 'money', 'to-be-forgiven', 'respectability'],
     visibleProfession: true,
   },
   {
     id: 'arch-hackman',
-    role: 'a hack driver',
+    role: 'a cab driver',
     genderHint: 'm',
     relationships: ['rel-tenant', 'rel-debtor', 'rel-childhood'],
     motives: ['debt', 'revenge'],
@@ -916,12 +916,12 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     class: 'working',
     ageBand: [26, 52],
     professionDetails: [
-      'works the stand outside the hotel from six until the small hours',
+      'waits for fares outside the hotel from six until the small hours',
       'drives nights and sleeps while the city works',
       'owns the cab and owes on it',
     ],
     professionFirst: [
-      'I work the stand outside the hotel. Six until the small hours.',
+      'I wait for fares outside the hotel. Six until the small hours.',
       'I drive nights. I sleep while the city works.',
       'I own the cab. I owe on it.',
     ],
@@ -937,14 +937,14 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     class: 'working',
     ageBand: [30, 60],
     professionDetails: [
-      'presses and turns coats in a shop the width of a hallway',
+      'presses coats and remakes old ones in a shop the width of a hallway',
       'has a shop under the stairs and a boy who delivers',
-      'makes to measure for men who settle at Christmas',
+      'makes suits to measure for men who pay their bill at Christmas',
     ],
     professionFirst: [
-      'I press and turn coats. The shop is the width of a hallway.',
+      'I press coats. I remake old ones. The shop is the width of a hallway.',
       'I have a shop under the stairs. A boy does the delivering.',
-      'I make to measure. My customers settle at Christmas.',
+      'I make suits to measure. My customers pay at Christmas.',
     ],
     wants: ['respectability', 'money', 'to-keep-what-they-have'],
     visibleProfession: true,
@@ -958,14 +958,14 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     class: 'working',
     ageBand: [24, 46],
     professionDetails: [
-      'works the fly floor and is out of the house by eleven',
-      'sets and strikes for whatever is playing',
-      'has been on the same crew since the house opened',
+      'works the ropes above the stage and is out of the theatre by eleven',
+      'puts up and takes down the scenery for whatever is playing',
+      'has been on the same crew since the theatre opened',
     ],
     professionFirst: [
-      'I work the fly floor. I am out of the house by eleven.',
-      'I set and strike for whatever is playing. The play changes. The work does not.',
-      'I have been on the same crew since the house opened. The same crew, all of it.',
+      'I work the ropes above the stage. I am out by eleven.',
+      'I put up and take down the scenery for whatever is playing. The play changes. The work does not.',
+      'I have been on the same crew since the theatre opened. The same crew, all of it.',
     ],
     wants: ['money', 'to-be-left-alone', 'to-be-somebody'],
     visibleProfession: true,
@@ -981,12 +981,12 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     ageBand: [20, 38],
     professionDetails: [
       'sits the board from four until midnight and hears both ends of everything',
-      'works the exchange and knows every number on the floor',
+      'works the telephone exchange and knows every number on the floor',
       'plugs the calls through and is not supposed to listen',
     ],
     professionFirst: [
       'I sit the board, four until midnight. I hear both ends of everything. Both ends.',
-      'I work the exchange. I know every number on the floor.',
+      'I work the telephone exchange. I know every number on the floor.',
       'I plug the calls through. I am not supposed to listen.',
     ],
     wants: ['to-get-out', 'to-be-somebody', 'money'],
@@ -1002,12 +1002,12 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     ageBand: [30, 55],
     professionDetails: [
       'has the desk from six at night until six in the morning',
-      'runs the house while the day manager sleeps',
+      'runs the hotel while the day manager sleeps',
       'keeps the register, the keys, and a memory of who is not in the register',
     ],
     professionFirst: [
       'I have the desk from six at night until six in the morning. Twelve hours of it.',
-      'I run the house. The day manager sleeps through it.',
+      'I run the hotel. The day manager sleeps through it.',
       'I keep the register. I keep the keys. I remember who is not in the register.',
     ],
     wants: ['to-keep-what-they-have', 'respectability', 'money'],
@@ -1024,12 +1024,12 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     ageBand: [19, 32],
     professionDetails: [
       'makes the rounds of the agencies at eleven and is home by one',
-      'did two seasons in the line and is waiting on a third',
+      'did two seasons in the chorus line and is waiting on a third',
       'rehearses when there is anything to rehearse for',
     ],
     professionFirst: [
       'I make the rounds of the agencies at eleven. I am home by one.',
-      'I did two seasons in the line. I am waiting on a third.',
+      'I did two seasons in the chorus line. I am waiting on a third.',
       'I rehearse when there is anything to rehearse for. There is not, at present.',
     ],
     wants: ['to-be-somebody', 'to-get-out', 'money'],
@@ -1047,12 +1047,12 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     ageBand: [30, 55],
     professionDetails: [
       'takes bets in a small way out of the back of a cigar store',
-      'runs a book on the horses for four blocks and no further',
+      'takes illegal bets on the horses for four blocks and no further',
       'writes the odds on a slate and rubs them off before six',
     ],
     professionFirst: [
       'I take bets. In a small way, out of the back of a cigar store.',
-      'I run a book on the horses. Four blocks, and no further.',
+      'I take bets on the horses. Four blocks, and no further.',
       'I write the odds on a slate. They are rubbed off before six.',
     ],
     wants: ['money', 'to-be-feared', 'to-be-left-alone'],
@@ -1060,7 +1060,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
   },
   {
     id: 'arch-heeler',
-    role: 'a ward heeler',
+    role: 'a party worker for the local political club',
     genderHint: 'm',
     relationships: ['rel-witness', 'rel-rival', 'rel-partner'],
     motives: ['silence-a-witness', 'exposure', 'property'],
@@ -1069,12 +1069,12 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     trade: 'graft',
     ageBand: [32, 58],
     professionDetails: [
-      'carries the district for the club and is paid in favours',
+      'brings in the district’s votes for the club and is paid in favours',
       'delivers the vote on the block and the coal in February',
       'sits in the clubhouse and settles what can be settled there',
     ],
     professionFirst: [
-      'I carry the district for the club. I am paid in favours.',
+      'I bring in the district’s votes for the club. I am paid in favours.',
       'I deliver the vote on the block. The coal comes in February.',
       'I sit in the clubhouse. I settle what can be settled there.',
     ],
@@ -1091,14 +1091,14 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     trade: 'pawn',
     ageBand: [26, 50],
     professionDetails: [
-      'writes the tickets behind the grille and knows what a thing is worth',
+      'writes the pawn tickets behind the grille and knows what a thing is worth',
       'minds the shop while the broker is at the auctions',
-      'handles the redemptions, and the ones nobody comes back for',
+      'hands back what people pay to get out of pawn, and sells what nobody comes back for',
     ],
     professionFirst: [
-      'I write the tickets behind the grille. I know what things are worth.',
+      'I write the pawn tickets behind the grille. I know what things are worth.',
       'I mind the shop. The broker is at the auctions.',
-      'I handle the redemptions. And the ones nobody comes back for.',
+      'I hand back what people pay to get out of pawn. Nobody comes back for some. I sell those.',
     ],
     wants: ['money', 'to-be-left-alone', 'to-keep-what-they-have'],
     visibleProfession: false,
@@ -1127,7 +1127,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
   },
   {
     id: 'arch-runner',
-    role: 'a policy runner',
+    role: 'a bet collector for an illegal lottery',
     genderHint: 'm',
     relationships: ['rel-customer', 'rel-debtor', 'rel-childhood'],
     motives: ['debt', 'silence-a-witness', 'revenge'],
@@ -1135,14 +1135,14 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     class: 'underworld',
     ageBand: [20, 38],
     professionDetails: [
-      'carries the slips between four corners and a candy store',
-      'collects the plays in the morning and pays out in the afternoon',
-      'runs policy for a bank uptown and is trusted with the bag',
+      'carries the lottery slips between four corners and a candy store',
+      'collects the bets in the morning and pays the winners in the afternoon',
+      'collects for the numbers, an illegal lottery run from uptown, and is trusted with the money',
     ],
     professionFirst: [
-      'I carry the slips. Four corners and a candy store.',
-      'I collect the plays in the morning. I pay out in the afternoon.',
-      'I run policy for a bank uptown. They trust me with the bag.',
+      'I carry the lottery slips. Four corners and a candy store.',
+      'I collect the bets in the morning. I pay out in the afternoon.',
+      'I collect for the numbers. It is a lottery, an illegal one, run from uptown. They trust me with the money.',
     ],
     wants: ['money', 'to-be-somebody', 'to-get-out'],
     visibleProfession: false,
@@ -1186,7 +1186,7 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
     ageBand: [32, 52],
     professionDetails: [
       'brought the stuff in off the boats and had the lease on the top floor to keep it in',
-      'supplied four houses on the block and took cash only',
+      'supplied four speakeasies on the block and took cash only',
       'paid the precinct monthly and was never once raided',
     ],
     wants: ['money', 'to-be-feared', 'to-keep-what-they-have'],
@@ -1223,7 +1223,7 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
     trade: 'theatrical',
     ageBand: [38, 60],
     professionDetails: [
-      'booked acts into four houses and took ten per cent of all of it',
+      'booked acts into four theatres and took ten per cent of all of it',
       'kept an office with two chairs and a telephone that never stopped',
       'had the say over who worked in the spring and who did not',
     ],
@@ -1232,7 +1232,7 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
     standing: [
       'decided who worked this season, which made for a great many careful friendships',
       'had half the neighbourhood waiting on a telephone call that never came',
-      'could put a name on a bill or leave it off, and did both',
+      'could put a name on a playbill or leave it off, and did both',
     ],
   },
   {
@@ -1251,7 +1251,7 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
     visibleProfession: false,
     standing: [
       'could close a building with a signature, and had closed two',
-      'was owed an envelope by every landlord on six blocks',
+      'was owed a bribe by every landlord on six blocks',
       'was the reason three houses on the street were still standing open',
     ],
   },
@@ -1262,7 +1262,7 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
     trade: 'labor',
     ageBand: [36, 58],
     professionDetails: [
-      'held the local’s books and the local’s cash box',
+      'held the union local’s books and its cash box',
       'counted the dues on Fridays with the door shut',
       'was elected twice and opposed once',
     ],
@@ -1270,8 +1270,8 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
     visibleProfession: false,
     standing: [
       'held the money four hundred men had paid in, and they all knew the figure',
-      'decided who shaped up in the morning and who stood at the back',
-      'was the local, as far as the street was concerned',
+      'decided who was picked for work in the morning and who was sent home',
+      'was the union, as far as the street was concerned',
     ],
   },
   {
@@ -1319,21 +1319,21 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
     trade: 'money',
     ageBand: [38, 60],
     professionDetails: [
-      'wrote bonds out of an office across from the courthouse',
-      'took a house or a wedding ring as security and kept the paper on both',
+      'wrote bail bonds out of an office across from the courthouse',
+      'took a house or a wedding ring as security and kept a claim on both',
       'was in night court four evenings out of seven',
     ],
     wants: ['money', 'to-keep-what-they-have', 'to-be-feared'],
     visibleProfession: false,
     standing: [
-      'had stood bail for most of the block at one time or another, and held the paper still',
+      'had stood bail for most of the block at one time or another, and was still owed for it',
       'was the first telephone call anybody on the street made at two in the morning',
-      'owned a piece of four houses that had been put up as security',
+      'owned a share of four houses that had been put up as security',
     ],
   },
   {
     id: 'vic-wholesaler',
-    role: 'a retired dry-goods wholesaler',
+    role: 'a retired cloth wholesaler',
     genderHint: 'm',
     allowedSuspects: except('arch-chorus', 'arch-runner'),
     // Nothing in the suspect deck is in dry goods, so this victim never has a
@@ -1342,7 +1342,7 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
     ageBand: [55, 74],
     professionDetails: [
       'sold the warehouse in ’24 and has lived on the proceeds since',
-      'ran a dry-goods house on Canal Street for thirty years',
+      'ran a wholesale cloth business on Canal Street for thirty years',
       'kept his hand in by lending to people who had been his customers',
     ],
     wants: ['to-be-left-alone', 'to-keep-what-they-have', 'respectability'],
@@ -1379,7 +1379,7 @@ export const FIXTURE_CARDS: Record<string, FixtureCard> = {
     role: 'the bartender',
     ageBand: [28, 58],
     professionDetails: [
-      'has had the stick at {place} for nine years and remembers what everybody drinks',
+      'has tended bar at {place} for nine years and remembers what everybody drinks',
       'works {place} from four until they lock the door',
       'pours at {place} six nights a week and takes Mondays',
     ],
@@ -1428,8 +1428,8 @@ export const FIXTURE_CARDS: Record<string, FixtureCard> = {
     ageBand: [22, 60],
     professionDetails: [
       'takes the tickets at {place} and tears every one of them in half',
-      'stands the box at {place} from seven until the last house goes in',
-      'has taken tickets at {place} since the house opened',
+      'works the box office at {place} from seven until the last show goes in',
+      'has taken tickets at {place} since the place opened',
     ],
     wants: ['to-be-left-alone', 'money', 'respectability'],
     visibleProfession: true,
@@ -1453,7 +1453,7 @@ export const FIXTURE_CARDS: Record<string, FixtureCard> = {
     professionDetails: [
       'keeps {place} and sits where she can see the stairs',
       'has kept {place} for twenty-two years and knows every board that creaks',
-      'lets the rooms at {place} and collects on Saturdays',
+      'rents out the rooms at {place} and collects on Saturdays',
     ],
     wants: ['respectability', 'to-keep-what-they-have', 'money'],
     visibleProfession: true,
@@ -1472,7 +1472,7 @@ export const FIXTURE_CARDS: Record<string, FixtureCard> = {
     tie: 'the patrolman whose post takes in {place}',
   },
   cabbie: {
-    role: 'the hackman on the stand',
+    role: 'the cabbie on the stand',
     ageBand: [26, 58],
     professionDetails: [
       'sits the stand at {place} and takes the fares as they come',
@@ -1520,7 +1520,7 @@ export const MENTION_ROLES: MentionRole[] = [
   { id: 'men-bail', role: 'an old friend who once put up the bail', gender: 'm' },
   { id: 'men-cousin', role: 'a cousin who went back to the old country', gender: 'm' },
   { id: 'men-landlady', role: 'the landlady at the old address', gender: 'f' },
-  { id: 'men-brother', role: 'a younger brother in trouble upstate', gender: 'm' },
+  { id: 'men-brother', role: 'a younger brother in prison upstate', gender: 'm' },
 ];
 
 export const MENTION_ROLE_BY_ID: Record<Id, MentionRole> = Object.fromEntries(

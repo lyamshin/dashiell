@@ -180,7 +180,7 @@ export const ACQUAINTANCE_GLOSS: Record<AcquaintanceHow, string> = {
   regular: 'I have been drinking on this one’s shift for two years.',
   'did-a-job-for': 'I did a job for this one once and got paid for most of it.',
   'grew-up-with': 'We were on the same block before either of us had a trade.',
-  'owes-me': 'There is money owing here, and it has been owing a while.',
-  'i-owe': 'I owe here, which changes the shape of a question.',
+  'owes-me': 'This one owes me money, and has for a while.',
+  'i-owe': 'I owe this one money, which changes the shape of a question.',
   'old-flame': 'There was a year when this was the only address I knew by heart.',
 };

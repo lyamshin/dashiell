@@ -36,7 +36,7 @@
   {
     "id": "PLACE-003",
     "deck": "places",
-    "text": "Somebody spilled a rye and nobody's mopped it; the whole room smells like it's still 1919 in here. {place} doesn't card and doesn't ask, which is why the regulars keep coming back.",
+    "text": "Somebody spilled a rye and nobody's mopped it; the whole room smells like it's still 1919 in here. {place} doesn't check anybody's age and doesn't ask questions, which is why the regulars keep coming back.",
     "tags": {
       "mood": "menace",
       "placeKind": "semi",
@@ -199,7 +199,7 @@
   {
     "id": "PLACE-013",
     "deck": "places",
-    "text": "A folding stool, a evening paper folded to the sports page, and a cage door that sticks on the fourth floor — that's the elevator man's whole world at {place}. He sees everyone. He repeats nothing.",
+    "text": "A folding stool, an evening paper folded to the sports page, and a cage door that sticks on the fourth floor — that's the elevator man's whole world at {place}. He sees everyone. He repeats nothing.",
     "tags": {
       "mood": "tender",
       "placeKind": "semi",
@@ -233,7 +233,7 @@
   {
     "id": "PLACE-015",
     "deck": "places",
-    "text": "A single gas bracket lights the landing, turned low to save money nobody has to spend. The landlady at {place} can't see the stairs from her kitchen, but she can hear every pair of feet on them.",
+    "text": "A single gas lamp on the wall lights the landing, turned low to save money nobody has to spend. The landlady at {place} can't see the stairs from her kitchen, but she can hear every pair of feet on them.",
     "tags": {
       "mood": "flat",
       "placeKind": "semi",
@@ -1214,7 +1214,7 @@
   {
     "id": "PLACE-072",
     "deck": "places",
-    "text": "Pier 46's shed held two stevedores playing cards on an upturned crate, neither one looking up at footsteps.",
+    "text": "Pier 46's shed held two dockworkers playing cards on an upturned crate, neither one looking up at footsteps.",
     "tags": {
       "placeKind": "private",
       "watcher": "none",

@@ -112,7 +112,7 @@ const COST_TEXT_FIRST: Record<Purpose, string[]> = {
  * the sentence that names somebody.
  */
 export const POINTER_PROMPTS: string[] = [
-  'Who do you like for it?',
+  'Who do you think did it?',
   'Who would do that to {V}?',
   'Who did {V} cross?',
   'Who was no friend of {V}?',

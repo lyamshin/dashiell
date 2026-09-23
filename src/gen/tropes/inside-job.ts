@@ -67,7 +67,7 @@ export const insideJob: Trope = {
             tick: ctx.build.killerAccessTick,
           },
         ],
-        `The key list at ${ctx.placeName(access)} runs to four names, and ${ctx.who(killer.id)} is the third of them. The book has ${ctx.who(killer.id)} there at ${clock(ctx.build.killerAccessTick)}.`,
+        `The key list at ${ctx.placeName(access)} runs to four names, and ${ctx.who(killer.id)} is the third of them. The sign-in book has ${ctx.who(killer.id)} there at ${clock(ctx.build.killerAccessTick)}.`,
       ),
       ctx.add(
         'overheard',
