@@ -566,6 +566,13 @@ function runLogic(
       reject?.('no cast fits the victim and the rooms');
       continue;
     }
+    // The hypothesis a Hard-boiled night needs is two innocents who tell the
+    // truth about the crime's half hour and fit one description; with every
+    // innocent but two lying about it there is rarely such a pair. Three
+    // innocents stay honest about the half hour.
+    if (ded.hypothesis && cast.innocents.length - cast.mLiarIds.length < 3) {
+      cast.mLiarIds = cast.mLiarIds.slice(0, Math.max(0, cast.innocents.length - 3));
+    }
 
     for (let inner = 0; inner < INNER_ATTEMPTS; inner++) {
       attempts++;
@@ -739,6 +746,7 @@ function runLogic(
         act,
         brief: clientBrief,
         knowledgeTests: false,
+        m9: true,
         pointerMotive: shape.innocentMotives > 0,
       });
       for (const clue of legacy.clues) {

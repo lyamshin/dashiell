@@ -45,6 +45,11 @@ debug.hook = ({ reason, input, state, findable }) => {
     }
   }
   for (const d of build.lieDrafts) console.log(`  lie: ${name(d.personId)} ${d.ticks.join(',')} says ${pl(d.claimed)}${d.with ? ` with ${name(d.with)}` : ''} (${d.cover})`);
+  const atCrime = input.pool.descriptions.filter((c) => c.establishes.some((f) => f.kind === 'describedAt' && f.tick === M));
+  for (const c of atCrime) {
+    const inHand = findable.some((x) => x.id === c.id);
+    console.log(`  description at the crime: ${c.id} ${inHand ? '(dealt)' : '(NOT dealt)'} ${c.rule}`);
+  }
   for (const p of cast.suspects) {
     const row: string[] = [];
     for (let t = Math.max(0, M - 3); t <= Math.min(11, M + 2); t++) {

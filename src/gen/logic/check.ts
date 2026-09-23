@@ -124,8 +124,11 @@ export function checkLogic(c: LogicCaseUnderTest): { ok: boolean; failures: stri
       queue.push(next);
     }
   }
+  // A search is always on the page; a question needs a lead to it.
   for (const cl of c.findable) {
-    if (cl.role === 'spine' && !reached.has(cl.id)) failures.push(`spine clue ${cl.id} cannot be reached`);
+    if (cl.role === 'spine' && cl.source.type === 'person' && !reached.has(cl.id)) {
+      failures.push(`spine clue ${cl.id} cannot be reached`);
+    }
   }
 
   /* --- the deduction path, for the sheet --------------------------------- */

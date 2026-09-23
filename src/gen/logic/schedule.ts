@@ -446,11 +446,36 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
   let pair: [Id, Id] | null = null;
   let pairGrain: Grain | null = null;
   const pairCells = new Set<string>();
+  /** The pair's two rooms, and who else fits the description: kept out of them. */
+  const pairRooms: Id[] = [];
+  const pairOthers: Id[] = [];
   if (dials.hypothesis) {
     // Two who tell the truth about the crime's half hour (a liar's claim,
     // once broken, would place them without any hypothesis at all).
     const candidates = free.filter((p) => p.id !== directId && atM[p.id] === undefined);
-    const watchedNear = nonScene.filter((p) => watcherAt(p) !== undefined && gap(p, L) <= 1 && p !== directPlace);
+    const rooms = nonScene.filter((p) => p !== directPlace);
+    // Who sees them there without knowing them: the watcher, or else another
+    // innocent standing in the room who is a stranger to both.
+    const witnessFor = (X: Id, a: Person, b: Person, taken: Set<Id>): Id | null => {
+      const w = watcherAt(X);
+      if (w) return w;
+      const other = rng
+        .shuffle(free)
+        .find(
+          (q) =>
+            q.id !== a.id &&
+            q.id !== b.id &&
+            q.id !== directId &&
+            atM[q.id] === undefined &&
+            !taken.has(q.id) &&
+            [a, b].every((x) => {
+              const e1 = acq.edges.get(`${q.id}>${x.id}`);
+              const e2 = acq.edges.get(`${x.id}>${q.id}`);
+              return e1?.basis !== 'tie' && e1?.basis !== 'secret' && e2?.basis !== 'tie' && e2?.basis !== 'secret';
+            }),
+        );
+      return other?.id ?? null;
+    };
     search: for (const a of rng.shuffle(candidates)) {
       for (const b of rng.shuffle(candidates)) {
         if (a.id >= b.id) continue;
@@ -458,11 +483,22 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
           const d = describeAs(a, cast.suspects, grain);
           const m = new Set(d.matches);
           if (!m.has(a.id) || !m.has(b.id)) continue;
-          // Anybody else it fits must be named somewhere else at the half
-          // hour on their own: the one a watcher names.
-          if ([...m].some((id) => id !== a.id && id !== b.id && id !== directId)) continue;
-          for (const P of rng.shuffle(watchedNear)) {
-            for (const Q of rng.shuffle(watchedNear.filter((q) => q !== P))) {
+          // Anybody else it fits must be shown somewhere else at the half
+          // hour on their own: another innocent, by their own settled
+          // evening; the culprit, by both watchers knowing the culprit and
+          // saying the culprit was not in.
+          const others = [...m].filter((id) => id !== a.id && id !== b.id);
+          const culpritFits = others.includes(killer.id);
+          // Where the culprit is while lying, a watcher who knew the culprit
+          // would break the lie in one line; those rooms cannot say "not in".
+          const culpritRooms = new Set<Id>([accessPlaceId, ...coverTicks.map((t) => killerFixed[t] as Id)]);
+          const ruleOut = (X: Id): boolean => !!watcherAt(X) && !culpritRooms.has(X);
+          for (const P of rng.shuffle(rooms)) {
+            if (others.some((id) => atM[id] === P)) continue;
+            if (culpritFits && !ruleOut(P)) continue;
+            for (const Q of rng.shuffle(rooms.filter((q) => q !== P))) {
+              if (others.some((id) => atM[id] === Q)) continue;
+              if (culpritFits && !ruleOut(Q)) continue;
               // The half hour either side: one room, within a walk of both
               // and of the scene, so that travel settles nothing.
               const R = rng
@@ -473,13 +509,27 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
                 [M - 1, M + 1].every((t) => t < 0 || t >= TICKS || (fixed[x.id] as Record<number, Id>)[t] === undefined),
               );
               if (!cellsOk) continue;
+              const taken = new Set<Id>();
+              const wP = witnessFor(P, a, b, taken);
+              if (!wP) continue;
+              taken.add(wP);
+              const wQ = witnessFor(Q, a, b, taken);
+              if (!wQ) continue;
               pair = [a.id, b.id];
               pairGrain = grain;
               atM[a.id] = P;
               atM[b.id] = Q;
-              for (const w of [watcherAt(P) as Id, watcherAt(Q) as Id]) {
-                makeStranger(w, a.id);
-                makeStranger(w, b.id);
+              pairRooms.push(P, Q);
+              pairOthers.push(...others.filter((id) => id !== killer.id));
+              if (culpritFits) {
+                for (const X of [P, Q]) setEdge(watcherAt(X) as Id, killer.id, 'name', 'regular');
+              }
+              for (const [w, X] of [[wP, P], [wQ, Q]] as [Id, Id][]) {
+                if (!watcherAt(X)) atM[w] = X;
+                for (const x of [a, b]) {
+                  makeStranger(w, x.id);
+                  makeStranger(x.id, w);
+                }
               }
               for (const x of [a, b]) {
                 for (const t of [M - 1, M + 1]) if (t >= 0 && t < TICKS) (fixed[x.id] as Record<number, Id>)[t] = R;
@@ -509,6 +559,7 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
     const options = rng
       .shuffle(nonScene)
       .filter((pl) => gap(pl, L) <= 1)
+      .filter((pl) => !(pairOthers.includes(p.id) && pairRooms.includes(pl)))
       .map((pl) => {
         const w = watcherAt(pl);
         const pieces = dials.strangers > 0 && w !== undefined && !canName(acq, w, p.id) ? 1 : 0;
@@ -522,7 +573,11 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
   if (!plainTier) {
     for (const [id, place] of Object.entries(atM)) {
       if (id === killer.id || id === directId) continue;
-      if (gap(place, L) >= 2) return fail(`${id} is across the neighbourhood from the scene at the crime's half hour`);
+      // The pair's half hours either side are fixed within a walk of the
+      // scene, so their own rooms may be anywhere.
+      if (gap(place, L) >= 2 && !pairCells.has(`${id}@${M}`)) {
+        return fail(`${id} is across the neighbourhood from the scene at the crime's half hour`);
+      }
       if (!quieten(id, place)) return fail(`somebody at the crime's half hour would name ${id}`);
     }
   }
@@ -700,7 +755,7 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
       if (here) found = { tick: t, byId: here.id };
     }
     if (!found) {
-      for (let tick = TICKS - 1; tick > M + 1 && !found; tick--) {
+      for (let tick = TICKS - 1; tick >= M + 1 && !found; tick--) {
         const walkIn = cast.innocents.find((p) => {
           if ((secretCells[p.id] ?? []).includes(tick)) return false;
           const line = truth[p.id] as (Id | null)[];
@@ -715,6 +770,8 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
       }
     }
     if (found) discovery = { placeId, tick: found.tick, byId: found.byId };
+    // A case is only a case because somebody walked in on it (M5 §1.3).
+    else if (!isRobbery) return fail('nobody could walk in on it');
   }
   if (isRobbery && discovery === undefined) {
     const tick = (TICKS - 1) as Tick;

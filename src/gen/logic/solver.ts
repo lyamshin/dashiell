@@ -397,32 +397,43 @@ function tickWhys(st: SolverState): Why[] {
 
 /* ------------------------------------------------------------- propagate */
 
+function cellOf(st: SolverState, s: number, t: number): number {
+  return st.dom[s * T12 + t] as number;
+}
+
+function strikeC(out: Candidate[], st: SolverState, s: number, t: number, p: number, premise: Premise): void {
+  if (!((st.dom[s * T12 + t] as number) & (1 << p))) return;
+  out.push({ kind: 'cell', s, t, p, depth: depthOf(premise), premise });
+}
+
+function keepC(out: Candidate[], st: SolverState, s: number, t: number, p: number, premise: Premise): void {
+  const d = st.dom[s * T12 + t] as number;
+  if (!(d & (1 << p))) {
+    out.push({ kind: 'fail', s, t, p, depth: depthOf(premise), premise, note: 'placed where it cannot be' });
+    return;
+  }
+  for (let q = 0; q < st.P; q++) if (q !== p && d & (1 << q)) strikeC(out, st, s, t, q, premise);
+}
+
+function failC(out: Candidate[], premise: Premise, note: string): void {
+  out.push({ kind: 'fail', s: -1, t: -1, p: -1, depth: depthOf(premise), premise, note });
+}
+
 function candidates(st: SolverState, c: Compiled): Candidate[] {
   const pr = st.problem;
   const out: Candidate[] = [];
   const { S, P, dom } = st;
-  const cell = (s: number, t: number): number => dom[s * T12 + t] as number;
-  const strikeC = (s: number, t: number, p: number, premise: Premise): void => {
-    if (!(cell(s, t) & bit(p))) return;
-    out.push({ kind: 'cell', s, t, p, depth: depthOf(premise), premise });
-  };
-  const keepC = (s: number, t: number, p: number, premise: Premise): void => {
-    const d = cell(s, t);
-    if (!(d & bit(p))) {
-      out.push({ kind: 'fail', s, t, p, depth: depthOf(premise), premise, note: 'placed where it cannot be' });
-      return;
-    }
-    for (let q = 0; q < P; q++) if (q !== p && d & bit(q)) strikeC(s, t, q, premise);
-  };
-  const fail = (premise: Premise, note: string): void => {
-    out.push({ kind: 'fail', s: -1, t: -1, p: -1, depth: depthOf(premise), premise, note });
-  };
 
   {
     for (const d of c.direct) {
-      const premise = { rules: [d.r], whys: [] };
-      if (d.keep !== undefined) keepC(d.s, d.t, d.keep, premise);
-      else if (d.strike !== undefined) strikeC(d.s, d.t, d.strike, premise);
+      const now = dom[d.s * T12 + d.t] as number;
+      if (d.keep !== undefined) {
+        if (now === 1 << d.keep) continue;
+        keepC(out, st, d.s, d.t, d.keep, { rules: [d.r], whys: [] });
+      } else if (d.strike !== undefined) {
+        if (!(now & (1 << d.strike))) continue;
+        strikeC(out, st, d.s, d.t, d.strike, { rules: [d.r], whys: [] });
+      }
     }
     for (const d of c.tickDirect) {
       for (let t = 0; t < T12; t++) {
@@ -435,7 +446,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
       for (const ig of c.ignorance) {
         if (ig.a !== k.a) continue;
         const premise = { rules: [k.r, ig.r], whys: [] };
-        for (const t of k.ticks) strikeC(ig.s, t, k.p, premise);
+        for (const t of k.ticks) strikeC(out, st, ig.s, t, k.p, premise);
       }
     }
     for (const v of c.victimSightings) {
@@ -457,15 +468,15 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
     const whys: Why[] = [];
     for (let t = 0; t < T12; t++) {
       if (!(at.ticks & bit(t))) continue;
-      if (cell(sg.s, t) & bit(sg.p)) open |= bit(t);
+      if (cellOf(st, sg.s, t) & bit(sg.p)) open |= bit(t);
       else {
         const w = struck(st, sg.s, t, sg.p);
         if (w) whys.push(w);
       }
     }
     const premise = { rules: [sg.r, at.r], whys };
-    if (open === 0) fail(premise, 'an anchored sighting fits no half hour');
-    else if (popcount(open) === 1) keepC(sg.s, only(open), sg.p, premise);
+    if (open === 0) failC(out, premise, 'an anchored sighting fits no half hour');
+    else if (popcount(open) === 1) keepC(out, st, sg.s, only(open), sg.p, premise);
   }
 
   // Descriptions: one of these was there.
@@ -473,15 +484,15 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
     const open: number[] = [];
     const whys: Why[] = [];
     for (const s of d.matches) {
-      if (cell(s, d.t) & bit(d.p)) open.push(s);
+      if (cellOf(st, s, d.t) & bit(d.p)) open.push(s);
       else {
         const w = struck(st, s, d.t, d.p);
         if (w) whys.push(w);
       }
     }
     const premise = { rules: [d.r], whys };
-    if (open.length === 0) fail(premise, 'a description fits nobody who could have been there');
-    else if (open.length === 1) keepC(open[0] as number, d.t, d.p, premise);
+    if (open.length === 0) failC(out, premise, 'a description fits nobody who could have been there');
+    else if (open.length === 1) keepC(out, st, open[0] as number, d.t, d.p, premise);
   }
 
   // Counts.
@@ -489,18 +500,18 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
     const forced: number[] = [];
     const possible: number[] = [];
     for (let s = 0; s < S; s++) {
-      const d = cell(s, k.t);
+      const d = cellOf(st, s, k.t);
       if (!(d & bit(k.p))) continue;
       possible.push(s);
       if (d === bit(k.p)) forced.push(s);
     }
     if (possible.length < k.n || forced.length > k.n) {
-      fail({ rules: [k.r], whys: [] }, 'a count does not add up');
+      failC(out, { rules: [k.r], whys: [] }, 'a count does not add up');
       continue;
     }
     if (forced.length === k.n && possible.length > k.n) {
       const whys = forced.flatMap((s) => placedWhy(st, s, k.t));
-      for (const s of possible) if (!forced.includes(s)) strikeC(s, k.t, k.p, { rules: [k.r], whys });
+      for (const s of possible) if (!forced.includes(s)) strikeC(out, st, s, k.t, k.p, { rules: [k.r], whys });
     } else if (possible.length === k.n && forced.length < k.n) {
       const whys: Why[] = [];
       for (let s = 0; s < S; s++) {
@@ -508,7 +519,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
         const w = struck(st, s, k.t, k.p);
         if (w) whys.push(w);
       }
-      for (const s of possible) keepC(s, k.t, k.p, { rules: [k.r], whys });
+      for (const s of possible) keepC(out, st, s, k.t, k.p, { rules: [k.r], whys });
     }
   }
 
@@ -516,19 +527,19 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
   for (const tg of c.together) {
     for (const t of tg.ticks) {
       for (let p = 0; p < P; p++) {
-        const inA = (cell(tg.a, t) & bit(p)) !== 0;
-        const inB = (cell(tg.b, t) & bit(p)) !== 0;
-        if (inA && !inB) strikeC(tg.a, t, p, { rules: [tg.r], whys: [struck(st, tg.b, t, p)].filter((w): w is Why => !!w) });
-        if (inB && !inA) strikeC(tg.b, t, p, { rules: [tg.r], whys: [struck(st, tg.a, t, p)].filter((w): w is Why => !!w) });
+        const inA = (cellOf(st, tg.a, t) & bit(p)) !== 0;
+        const inB = (cellOf(st, tg.b, t) & bit(p)) !== 0;
+        if (inA && !inB) strikeC(out, st, tg.a, t, p, { rules: [tg.r], whys: [struck(st, tg.b, t, p)].filter((w): w is Why => !!w) });
+        if (inB && !inA) strikeC(out, st, tg.b, t, p, { rules: [tg.r], whys: [struck(st, tg.a, t, p)].filter((w): w is Why => !!w) });
       }
     }
   }
   for (const ap of c.apart) {
     for (const t of ap.ticks) {
-      const da = cell(ap.a, t);
-      const db = cell(ap.b, t);
-      if (popcount(da) === 1 && db & da) strikeC(ap.b, t, only(da), { rules: [ap.r], whys: placedWhy(st, ap.a, t) });
-      if (popcount(db) === 1 && da & db) strikeC(ap.a, t, only(db), { rules: [ap.r], whys: placedWhy(st, ap.b, t) });
+      const da = cellOf(st, ap.a, t);
+      const db = cellOf(st, ap.b, t);
+      if (popcount(da) === 1 && db & da) strikeC(out, st, ap.b, t, only(da), { rules: [ap.r], whys: placedWhy(st, ap.a, t) });
+      if (popcount(db) === 1 && da & db) strikeC(out, st, ap.a, t, only(db), { rules: [ap.r], whys: placedWhy(st, ap.b, t) });
     }
   }
 
@@ -564,7 +575,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
             const w = st.why[((s * NT + u) * P) + q];
             if (w) whys.push(w);
           }
-          strikeC(s, t, p, { rules: [], whys });
+          strikeC(out, st, s, t, p, { rules: [], whys });
           break;
         }
       }
@@ -577,7 +588,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
     for (let t = 0; t < T12; t++) {
       if (!(st.tdom & bit(t))) continue;
       let any = false;
-      for (let s = 0; s < S; s++) if (cell(s, t) & bit(L)) any = true;
+      for (let s = 0; s < S; s++) if (cellOf(st, s, t) & bit(L)) any = true;
       if (!any) {
         const whys: Why[] = [];
         for (let s = 0; s < S; s++) {
@@ -591,7 +602,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
       const t = only(st.tdom);
       const tw = tickWhys(st);
       const open: number[] = [];
-      for (let s = 0; s < S; s++) if (cell(s, t) & bit(L)) open.push(s);
+      for (let s = 0; s < S; s++) if (cellOf(st, s, t) & bit(L)) open.push(s);
       if (open.length === 1) {
         const whys = [...tw];
         for (let s = 0; s < S; s++) {
@@ -599,11 +610,11 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
           const w = struck(st, s, t, L);
           if (w) whys.push(w);
         }
-        keepC(open[0] as number, t, L, { rules: [], whys });
+        keepC(out, st, open[0] as number, t, L, { rules: [], whys });
       }
       for (const k of open) {
-        if (cell(k, t) !== bit(L)) continue;
-        for (const s of open) if (s !== k) strikeC(s, t, L, { rules: [], whys: [...tw, ...placedWhy(st, k, t)] });
+        if (cellOf(st, k, t) !== bit(L)) continue;
+        for (const s of open) if (s !== k) strikeC(out, st, s, t, L, { rules: [], whys: [...tw, ...placedWhy(st, k, t)] });
       }
     }
   }
@@ -619,7 +630,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
       }
     }
     if (!premise) continue;
-    for (const k of cf.keep) keepC(k.s, k.t, k.p, premise);
+    for (const k of cf.keep) keepC(out, st, k.s, k.t, k.p, premise);
   }
 
   // Self-accounts: a span stands when uncontradicted and corroborated, or
@@ -629,13 +640,13 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
     if (st.stood.has(key)) continue;
     let contradicted = false;
     for (const t of sp.ticks) {
-      if (!(cell(sp.s, t) & bit(sp.p))) contradicted = true;
-      if (sp.with >= 0 && !(cell(sp.with, t) & bit(sp.p))) contradicted = true;
+      if (!(cellOf(st, sp.s, t) & bit(sp.p))) contradicted = true;
+      if (sp.with >= 0 && !(cellOf(st, sp.with, t) & bit(sp.p))) contradicted = true;
     }
     if (contradicted) continue;
     let premise: Premise | null = null;
     for (const t of sp.ticks) {
-      if (cell(sp.s, t) === bit(sp.p)) {
+      if (cellOf(st, sp.s, t) === bit(sp.p)) {
         premise = { rules: [sp.r], whys: placedWhy(st, sp.s, t) };
         break;
       }
@@ -650,7 +661,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
       let clear = true;
       for (const t of sp.ticks) {
         if (!(st.tdom & bit(t))) continue;
-        if (cell(sp.s, t) & bit(c.L)) {
+        if (cellOf(st, sp.s, t) & bit(c.L)) {
           clear = false;
           break;
         }
@@ -669,10 +680,10 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
     const before = out.length;
     for (const t of sp.ticks) {
       for (const who of sp.with >= 0 ? [sp.s, sp.with] : [sp.s]) {
-        const d = cell(who, t);
+        const d = cellOf(st, who, t);
         if (d === bit(sp.p)) continue;
         any = true;
-        keepC(who, t, sp.p, premise);
+        keepC(out, st, who, t, sp.p, premise);
       }
     }
     for (let i = before; i < out.length; i++) (out[i] as Candidate).soft = corroborated ? 1 : 2;

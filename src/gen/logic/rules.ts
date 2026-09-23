@@ -465,8 +465,10 @@ export function buildPool(input: PoolInput): Pool {
       for (const t of a.ticks) {
         const teller = cast.people.find((p) => p.kind === 'fixture' && at(p.id, t) === P) ??
           cast.people.find((p) => p.kind === 'suspect' && at(p.id, t) === P && !lying(p.id, t));
+        // Somebody who says they were there and was not there for any of it:
+        // anybody in the room at any time the anchor happened would know.
         const liars = cast.suspects.filter(
-          (p) => (build.claimed[p.id] as (Id | null)[])[t] === P && at(p.id, t) !== P,
+          (p) => (build.claimed[p.id] as (Id | null)[])[t] === P && a.ticks.every((u) => at(p.id, u) !== P),
         );
         if (!teller || liars.length === 0) continue;
         knowledge.push(
@@ -538,10 +540,25 @@ export function buildPool(input: PoolInput): Pool {
   // gives it up only when confronted twice, so no disqualifier is dealt; the
   // anchor lead-ins of M7 are the conditional now.
   const coversM = (id: Id): boolean => (build.secrets[id]?.cells ?? []).some((c) => c.tick === M);
+  // Two people with the same kind of secret in the same room leave the same
+  // trace there, word for word; one search would read it out twice (Night
+  // Hone 1, seed 21). The room keeps one of each sentence.
+  const heard = new Map<Id, Set<string>>();
+  const fresh = (c: Clue): boolean => {
+    if (c.source.type !== 'place') return true;
+    const said = heard.get(c.place) ?? new Set<string>();
+    const sentences = (c.textRecord ?? c.text).split(/(?<=[.!?])\s+/).filter((s) => s.length > 30);
+    if (sentences.some((s) => said.has(s))) return false;
+    for (const s of sentences) said.add(s);
+    heard.set(c.place, said);
+    return true;
+  };
   const material: SecretBranchMaterial[] = legacy.material.map((m) => {
     const hints = m.hints.map((c) => withRule(c, sourceOf(c)));
-    const traces = m.traces.map((c) => withRule(c, sourceOf(c)));
-    const disqualifiers = m.personIds.some(coversM) ? [] : m.disqualifiers.map((c) => withRule(c, sourceOf(c)));
+    const traces = m.traces.filter(fresh).map((c) => withRule(c, sourceOf(c)));
+    const disqualifiers = m.personIds.some(coversM)
+      ? []
+      : m.disqualifiers.filter(fresh).map((c) => withRule(c, sourceOf(c)));
     return { ...m, leadIns: [], hints, traces, disqualifiers };
   });
 

@@ -443,7 +443,15 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
   /* --- 5. par: the cheapest set that still solves it -------------------------- */
   const need = new Set<Id>();
   const add = (w: Why | null | undefined): void => {
-    for (const id of idsOf(full, w)) need.add(id);
+    for (const id of idsOf(full, w)) {
+      need.add(id);
+      // A confession needs the account it breaks, which is no premise of it.
+      if (id.startsWith('confess:')) {
+        const person = id.split(':')[1] as Id;
+        const account = accountIdOf.get(person);
+        if (account) need.add(account);
+      }
+    }
   };
   add(cul.why);
   add(whyTick(full));
@@ -479,6 +487,7 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
   if (!parSolves(parSet)) {
     // The union of the shallowest routes can miss a premise that a deeper
     // route needs; fall back to everything and prune.
+    if (debug.timings) debug.timings['(par fallbacks)'] = (debug.timings['(par fallbacks)'] ?? 0) + 1;
     parSet = findableCore.slice();
   }
   const legIds = new Set(legs.flatMap((l) => l.map((c) => c.id)));
@@ -715,7 +724,11 @@ function wireLeads(input: LogicSelectInput, findable: Clue[], parSet: Clue[], st
 
   // The par route, in the order content lets it open.
   const reached: Clue[] = starting.slice();
-  const left = parSet.filter((c) => !starting.includes(c));
+  // Only questions need a lead: a search is always on the page, and a lead
+  // into a room's clue from somewhere that names nobody in it is a lead the
+  // player cannot read a reason into.
+  const left = parSet.filter((c) => !starting.includes(c) && c.source.type === 'person');
+  for (const c of parSet) if (c.source.type === 'place' && !reached.includes(c)) reached.push(c);
   const outDegree = new Map<Id, number>();
   let guard = 0;
   while (left.length > 0 && guard++ < 200) {
@@ -779,8 +792,12 @@ const ADMISSION: Record<string, string> = {
   'hidden-family': 'I was seeing a child nobody knows I have.',
 };
 
-/** How often a caught liar tells a second lie on the first confrontation. Same for everybody. */
+/** How often a caught innocent tells a second lie on the first confrontation. */
 export const SECOND_LIE = 0.7;
+/** The same for the culprit, before the room for one runs out; see `confront`. */
+export const CULPRIT_SECOND_LIE = 0.75;
+/** The culprit, confronted again. */
+export const CULPRIT_THIRD_LIE = 0.2;
 
 function confront(
   input: LogicSelectInput,
@@ -838,10 +855,15 @@ function confront(
   let first: ConfrontResponse;
   let second: ConfrontResponse;
   if (isCulprit) {
-    // The culprit never confesses. A second lie as often as anybody tells one.
-    first = (rng.chance(SECOND_LIE) ? secondLie([lie.claimed]) : null) ?? quiet;
+    // The culprit never confesses. A second lie as often as anybody tells one
+    // on the first confrontation: the culprit's lies are about the crime's
+    // half hours, where fewer rooms are already ruled out, so the culprit is
+    // asked a little more often to find one. On the second the culprit mostly
+    // goes quiet, so that across both a second lie is no commoner from the
+    // culprit than from anybody else (spec §3).
+    first = (rng.chance(CULPRIT_SECOND_LIE) ? secondLie([lie.claimed]) : null) ?? quiet;
     const again = first.kind === 'second-lie' ? [lie.claimed, (first.claims as { place: Id }).place] : [lie.claimed];
-    second = (rng.chance(0.5) ? secondLie(again) : null) ?? quiet;
+    second = (rng.chance(CULPRIT_THIRD_LIE) ? secondLie(again) : null) ?? quiet;
   } else if (lie.cover === 'companion') {
     first = rng.chance(SECOND_LIE) ? hold : withdraw();
     second = withdraw();
