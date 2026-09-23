@@ -1,0 +1,452 @@
+[
+  {
+    "id": "not-001",
+    "deck": "note",
+    "text": "That was one place and one hour. A night has a good many of both.",
+    "tags": {
+      "family": "movements",
+      "band": "any",
+      "polarity": "seen"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-002",
+    "deck": "note",
+    "text": "It put {him} somewhere. It didn’t say what {he} did there.",
+    "tags": {
+      "family": "movements",
+      "band": "any",
+      "polarity": "seen"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-003",
+    "deck": "note",
+    "text": "A place and an hour is worth something. It is worth more with a second one beside it.",
+    "tags": {
+      "family": "movements",
+      "band": "play",
+      "polarity": "seen"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-004",
+    "deck": "note",
+    "text": "It was one person’s eyes, and one person’s eyes can be wrong about the hour.",
+    "tags": {
+      "family": "movements",
+      "band": "play",
+      "polarity": "seen"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-005",
+    "deck": "note",
+    "text": "Anybody put somewhere else when it happened couldn’t have done it, as long as the word held.",
+    "tags": {
+      "family": "movements",
+      "band": "teach",
+      "polarity": "seen"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-006",
+    "deck": "note",
+    "text": "Where {he} was is only half of it. The other half is where {he} says {he} was.",
+    "tags": {
+      "family": "movements",
+      "band": "teach",
+      "polarity": "seen"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-007",
+    "deck": "note",
+    "text": "That was one place {he} wasn’t. It left a good many places {he} might have been.",
+    "tags": {
+      "family": "movements",
+      "band": "any",
+      "polarity": "unseen"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-008",
+    "deck": "note",
+    "text": "Knowing where somebody wasn’t is worth something, but not much on its own.",
+    "tags": {
+      "family": "movements",
+      "band": "play",
+      "polarity": "unseen"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-009",
+    "deck": "note",
+    "text": "A place {he} wasn’t is only worth something against a place {he} says {he} was.",
+    "tags": {
+      "family": "movements",
+      "band": "teach",
+      "polarity": "unseen"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-010",
+    "deck": "note",
+    "text": "It narrowed the evening down a little. Only a little.",
+    "tags": {
+      "family": "movements",
+      "band": "any",
+      "polarity": "unseen"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-011",
+    "deck": "note",
+    "text": "Who knows whom matters, once people start describing each other.",
+    "tags": {
+      "family": "knowing",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-012",
+    "deck": "note",
+    "text": "A person who says they don’t know somebody might be telling the truth.",
+    "tags": {
+      "family": "knowing",
+      "band": "play"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-013",
+    "deck": "note",
+    "text": "Somebody who should know a name and doesn’t is worth a second look.",
+    "tags": {
+      "family": "knowing",
+      "band": "teach"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-014",
+    "deck": "note",
+    "text": "A head count doesn’t tell you who. It tells you how many chairs were filled.",
+    "tags": {
+      "family": "counts",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-015",
+    "deck": "note",
+    "text": "Numbers don’t lie about themselves, but they don’t give names either.",
+    "tags": {
+      "family": "counts",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-016",
+    "deck": "note",
+    "text": "It was arithmetic, and arithmetic needs names put against it before it’s worth anything.",
+    "tags": {
+      "family": "counts",
+      "band": "play"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-017",
+    "deck": "note",
+    "text": "Every story that put somebody through that door had to fit those numbers.",
+    "tags": {
+      "family": "counts",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-018",
+    "deck": "note",
+    "text": "Put names against a count, and somebody’s story has to give.",
+    "tags": {
+      "family": "counts",
+      "band": "teach"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-019",
+    "deck": "note",
+    "text": "A count is a check on everybody who says they were there.",
+    "tags": {
+      "family": "counts",
+      "band": "teach"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-020",
+    "deck": "note",
+    "text": "A description isn’t a name. They went into the notebook without one.",
+    "tags": {
+      "family": "strangers",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-021",
+    "deck": "note",
+    "text": "Somebody would fit. The trouble was finding out who.",
+    "tags": {
+      "family": "strangers",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-022",
+    "deck": "note",
+    "text": "A face with no name is a question, and I had a few of those already.",
+    "tags": {
+      "family": "strangers",
+      "band": "play"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-023",
+    "deck": "note",
+    "text": "A description can fit more than one person. It needs something else before it points at anyone.",
+    "tags": {
+      "family": "strangers",
+      "band": "teach"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-024",
+    "deck": "note",
+    "text": "Match the age and the sex to somebody who can’t say where they were, and the description has a name.",
+    "tags": {
+      "family": "strangers",
+      "band": "teach"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-025",
+    "deck": "note",
+    "text": "An hour for it meant everything tied to it had an hour too.",
+    "tags": {
+      "family": "timing",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-026",
+    "deck": "note",
+    "text": "It was a clock the whole block had heard, and now I had its hours.",
+    "tags": {
+      "family": "timing",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-027",
+    "deck": "note",
+    "text": "Anything anybody had said by it could be put against the clock now.",
+    "tags": {
+      "family": "timing",
+      "band": "teach"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-028",
+    "deck": "note",
+    "text": "It was a test anybody who was there could pass.",
+    "tags": {
+      "family": "event",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-029",
+    "deck": "note",
+    "text": "If somebody said they were there and didn’t know it, they hadn’t been.",
+    "tags": {
+      "family": "event",
+      "band": "teach"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-030",
+    "deck": "note",
+    "text": "Somebody who claimed to be there would have to know it.",
+    "tags": {
+      "family": "event",
+      "band": "play"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-031",
+    "deck": "note",
+    "text": "It was {his} own word, and a person’s own word is the one thing in a case that can lie.",
+    "tags": {
+      "family": "evening",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-032",
+    "deck": "note",
+    "text": "An account is only as good as the next person who puts {him} somewhere.",
+    "tags": {
+      "family": "evening",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-033",
+    "deck": "note",
+    "text": "I had {his} evening the way {he} wanted it told. Now it needed somebody else’s.",
+    "tags": {
+      "family": "evening",
+      "band": "play"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-034",
+    "deck": "note",
+    "text": "An evening in somebody’s own words is worth checking against everybody else’s.",
+    "tags": {
+      "family": "evening",
+      "band": "teach"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-035",
+    "deck": "note",
+    "text": "People lie about themselves. Nobody lies about what they saw. This was the first kind.",
+    "tags": {
+      "family": "evening",
+      "band": "teach"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-036",
+    "deck": "note",
+    "text": "That didn’t make {him} anything yet. It made {him} somebody who could.",
+    "tags": {
+      "family": "thing",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-037",
+    "deck": "note",
+    "text": "It went on the list of things that could matter.",
+    "tags": {
+      "family": "thing",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-038",
+    "deck": "note",
+    "text": "It was a reason or a way. It wasn’t yet a night.",
+    "tags": {
+      "family": "thing",
+      "band": "play"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-039",
+    "deck": "note",
+    "text": "A way in isn’t the same as going in, and a reason isn’t the same as doing it.",
+    "tags": {
+      "family": "thing",
+      "band": "teach"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "not-040",
+    "deck": "note",
+    "text": "It didn’t prove anything. It told me where to look.",
+    "tags": {
+      "family": "thing",
+      "band": "teach"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

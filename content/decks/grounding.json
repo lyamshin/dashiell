@@ -1,0 +1,981 @@
+[
+  {
+    "id": "grd-001",
+    "deck": "grounding",
+    "text": "It’s my business to be sure who has my keys.",
+    "tags": {
+      "family": "thing",
+      "role": "landlady",
+      "half": "second"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-002",
+    "deck": "grounding",
+    "text": "I know what goes on under my roof. That’s what I’m for.",
+    "tags": {
+      "family": "thing",
+      "role": "landlady"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-003",
+    "deck": "grounding",
+    "text": "I don’t say a thing about my tenants unless I know it.",
+    "tags": {
+      "family": "thing",
+      "role": "landlady"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-004",
+    "deck": "grounding",
+    "text": "I’d have heard {him}.",
+    "tags": {
+      "family": "movements",
+      "role": "landlady",
+      "half": "second"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-005",
+    "deck": "grounding",
+    "text": "I hear every foot on those stairs, and I know most of them.",
+    "tags": {
+      "family": "movements",
+      "role": "landlady"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-006",
+    "deck": "grounding",
+    "text": "I know {his} step. I’d know it in my sleep.",
+    "tags": {
+      "family": "movements",
+      "role": "landlady",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-007",
+    "deck": "grounding",
+    "text": "I sit where I can see the door. Nobody goes up without I know it.",
+    "tags": {
+      "family": "counts",
+      "role": "landlady"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-008",
+    "deck": "grounding",
+    "text": "I count them in and I count them out. It’s how I know who owes me.",
+    "tags": {
+      "family": "counts",
+      "role": "landlady"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-009",
+    "deck": "grounding",
+    "text": "I don’t learn names off the backs of people’s coats.",
+    "tags": {
+      "family": "strangers",
+      "role": "landlady"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-010",
+    "deck": "grounding",
+    "text": "If I don’t rent to them, I don’t know them.",
+    "tags": {
+      "family": "strangers",
+      "role": "landlady"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-011",
+    "deck": "grounding",
+    "text": "I’d have remembered the name. I remember everybody’s.",
+    "tags": {
+      "family": "knowing",
+      "role": "landlady"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-012",
+    "deck": "grounding",
+    "text": "I see everybody who comes in. That’s the job.",
+    "tags": {
+      "family": "any",
+      "role": "bartender"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-013",
+    "deck": "grounding",
+    "text": "Nobody gets a drink in here without I see the face.",
+    "tags": {
+      "family": "movements",
+      "role": "bartender"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-014",
+    "deck": "grounding",
+    "text": "I’d have poured for {him}. I’d remember that.",
+    "tags": {
+      "family": "movements",
+      "role": "bartender",
+      "half": "second"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-015",
+    "deck": "grounding",
+    "text": "You stand behind a bar long enough, you count heads without meaning to.",
+    "tags": {
+      "family": "counts",
+      "role": "bartender"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-016",
+    "deck": "grounding",
+    "text": "I pour for everybody who comes through that door.",
+    "tags": {
+      "family": "counts",
+      "role": "bartender"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-017",
+    "deck": "grounding",
+    "text": "I know my regulars. The others I only pour for.",
+    "tags": {
+      "family": "strangers",
+      "role": "bartender"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-018",
+    "deck": "grounding",
+    "text": "People don’t give their names with their money.",
+    "tags": {
+      "family": "strangers",
+      "role": "bartender"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-019",
+    "deck": "grounding",
+    "text": "I hear everything said across this bar. Some of it’s even true.",
+    "tags": {
+      "family": "thing",
+      "role": "bartender"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-020",
+    "deck": "grounding",
+    "text": "Nobody gets past the door without I see them.",
+    "tags": {
+      "family": "any",
+      "role": "doorman"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-021",
+    "deck": "grounding",
+    "text": "I open that door for everybody. I’d know.",
+    "tags": {
+      "family": "counts",
+      "role": "doorman"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-022",
+    "deck": "grounding",
+    "text": "I’d have opened the door for {him}.",
+    "tags": {
+      "family": "movements",
+      "role": "doorman",
+      "half": "second"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-023",
+    "deck": "grounding",
+    "text": "I know the tenants. It’s part of the job.",
+    "tags": {
+      "family": "movements",
+      "role": "doorman"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-024",
+    "deck": "grounding",
+    "text": "I open the door. I don’t ask for names.",
+    "tags": {
+      "family": "strangers",
+      "role": "doorman"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-025",
+    "deck": "grounding",
+    "text": "A doorman hears things. I don’t go looking for them.",
+    "tags": {
+      "family": "thing",
+      "role": "doorman"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-026",
+    "deck": "grounding",
+    "text": "I’m on this corner all night. I see who goes by.",
+    "tags": {
+      "family": "any",
+      "role": "newsstand"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-027",
+    "deck": "grounding",
+    "text": "Selling papers is mostly watching the street.",
+    "tags": {
+      "family": "movements",
+      "role": "newsstand"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-028",
+    "deck": "grounding",
+    "text": "I’d have seen {him}. {He} would’ve had to walk right past me.",
+    "tags": {
+      "family": "movements",
+      "role": "newsstand",
+      "half": "second"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-029",
+    "deck": "grounding",
+    "text": "People buy a paper. They don’t give a name.",
+    "tags": {
+      "family": "strangers",
+      "role": "newsstand"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-030",
+    "deck": "grounding",
+    "text": "I count papers all night. I count people too, when there’s nothing else.",
+    "tags": {
+      "family": "counts",
+      "role": "newsstand"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-031",
+    "deck": "grounding",
+    "text": "I’m behind this counter all night. I see who comes in.",
+    "tags": {
+      "family": "any",
+      "role": "counterman"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-032",
+    "deck": "grounding",
+    "text": "Everybody who eats here, I serve.",
+    "tags": {
+      "family": "movements",
+      "role": "counterman"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-033",
+    "deck": "grounding",
+    "text": "{He}’d have had to come past the counter.",
+    "tags": {
+      "family": "movements",
+      "role": "counterman",
+      "half": "second"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-034",
+    "deck": "grounding",
+    "text": "A face at the counter is a face at the counter. I don’t ask who.",
+    "tags": {
+      "family": "strangers",
+      "role": "counterman"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-035",
+    "deck": "grounding",
+    "text": "I ring up everybody who comes in. I’d know how many.",
+    "tags": {
+      "family": "counts",
+      "role": "counterman"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-036",
+    "deck": "grounding",
+    "text": "Everybody who comes in hands me a ticket.",
+    "tags": {
+      "family": "any",
+      "role": "ticket-taker"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-037",
+    "deck": "grounding",
+    "text": "I tear every ticket. I see every face.",
+    "tags": {
+      "family": "counts",
+      "role": "ticket-taker"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-038",
+    "deck": "grounding",
+    "text": "{He}’d have had to hand me a ticket.",
+    "tags": {
+      "family": "movements",
+      "role": "ticket-taker",
+      "half": "second"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-039",
+    "deck": "grounding",
+    "text": "A ticket doesn’t have a name on it.",
+    "tags": {
+      "family": "strangers",
+      "role": "ticket-taker"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-040",
+    "deck": "grounding",
+    "text": "Everybody who goes up rides with me.",
+    "tags": {
+      "family": "any",
+      "role": "elevator-man"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-041",
+    "deck": "grounding",
+    "text": "I run the car all night. I see who rides.",
+    "tags": {
+      "family": "counts",
+      "role": "elevator-man"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-042",
+    "deck": "grounding",
+    "text": "{He}’d have ridden with me. I’d remember.",
+    "tags": {
+      "family": "movements",
+      "role": "elevator-man",
+      "half": "second"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-043",
+    "deck": "grounding",
+    "text": "I know who lives here. It’s part of the job.",
+    "tags": {
+      "family": "movements",
+      "role": "elevator-man"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-044",
+    "deck": "grounding",
+    "text": "They ride up and they ride down. They don’t introduce themselves.",
+    "tags": {
+      "family": "strangers",
+      "role": "elevator-man"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-045",
+    "deck": "grounding",
+    "text": "It’s my job to notice who’s out at night.",
+    "tags": {
+      "family": "any",
+      "role": "beat-cop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-046",
+    "deck": "grounding",
+    "text": "I notice people. That’s what they pay me for.",
+    "tags": {
+      "family": "movements",
+      "role": "beat-cop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-047",
+    "deck": "grounding",
+    "text": "I’d have noticed {him}. I notice everybody.",
+    "tags": {
+      "family": "movements",
+      "role": "beat-cop",
+      "half": "second"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-048",
+    "deck": "grounding",
+    "text": "I don’t stop people to ask their names. Not without a reason.",
+    "tags": {
+      "family": "strangers",
+      "role": "beat-cop"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-049",
+    "deck": "grounding",
+    "text": "I sit at the stand and watch the street. There’s nothing else to do.",
+    "tags": {
+      "family": "any",
+      "role": "cabbie"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-050",
+    "deck": "grounding",
+    "text": "A cabbie looks at every face. Some of them are fares.",
+    "tags": {
+      "family": "movements",
+      "role": "cabbie"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-051",
+    "deck": "grounding",
+    "text": "Fares don’t tell me their names, and I don’t ask.",
+    "tags": {
+      "family": "strangers",
+      "role": "cabbie"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-052",
+    "deck": "grounding",
+    "text": "I’m behind the counter till I close. I see who comes in.",
+    "tags": {
+      "family": "any",
+      "role": "druggist"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-053",
+    "deck": "grounding",
+    "text": "Everybody who comes in wants something from me. I look at them.",
+    "tags": {
+      "family": "movements",
+      "role": "druggist"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-054",
+    "deck": "grounding",
+    "text": "{He}’d have come to the counter. They all do.",
+    "tags": {
+      "family": "movements",
+      "role": "druggist",
+      "half": "second"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-055",
+    "deck": "grounding",
+    "text": "I don’t ask a customer’s name unless it’s going on a label.",
+    "tags": {
+      "family": "strangers",
+      "role": "druggist"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-056",
+    "deck": "grounding",
+    "text": "I know {him}. I’d know {him} anywhere.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-057",
+    "deck": "grounding",
+    "text": "I know {him} well enough. It was {him}.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-058",
+    "deck": "grounding",
+    "text": "I know {his} face and I know {his} walk.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "name"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-059",
+    "deck": "grounding",
+    "text": "I know who {he} is. It was {him}.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "relation"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-060",
+    "deck": "grounding",
+    "text": "I’ve seen enough of {him} to know {him}.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "relation"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-061",
+    "deck": "grounding",
+    "text": "I know the face. That’s all I know.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "sight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-062",
+    "deck": "grounding",
+    "text": "I’ve seen {him} around. I didn’t need a name.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect",
+      "knows": "sight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-063",
+    "deck": "grounding",
+    "text": "I was there. I saw it myself.",
+    "tags": {
+      "family": "movements",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-064",
+    "deck": "grounding",
+    "text": "I saw it with my own eyes.",
+    "tags": {
+      "family": "any",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-065",
+    "deck": "grounding",
+    "text": "I was there, and I have eyes.",
+    "tags": {
+      "family": "any",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-066",
+    "deck": "grounding",
+    "text": "I’d have remembered the name.",
+    "tags": {
+      "family": "knowing",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-067",
+    "deck": "grounding",
+    "text": "I’m not good with names, but I’d know that one.",
+    "tags": {
+      "family": "knowing",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-068",
+    "deck": "grounding",
+    "text": "I wasn’t paying attention to who they were. I never do.",
+    "tags": {
+      "family": "strangers",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-069",
+    "deck": "grounding",
+    "text": "I don’t know everybody. Nobody does.",
+    "tags": {
+      "family": "strangers",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-070",
+    "deck": "grounding",
+    "text": "I noticed them. I didn’t ask who they were.",
+    "tags": {
+      "family": "strangers",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-071",
+    "deck": "grounding",
+    "text": "I’m not guessing. I know it.",
+    "tags": {
+      "family": "thing",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-072",
+    "deck": "grounding",
+    "text": "I wouldn’t tell you if I wasn’t sure.",
+    "tags": {
+      "family": "thing",
+      "role": "suspect"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-073",
+    "deck": "grounding",
+    "text": "I don’t say things I don’t know.",
+    "tags": {
+      "family": "thing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-074",
+    "deck": "grounding",
+    "text": "I know {him}. That’s how I know.",
+    "tags": {
+      "family": "thing",
+      "role": "any",
+      "knows": "name",
+      "half": "second"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-075",
+    "deck": "grounding",
+    "text": "I know {him} when I see {him}.",
+    "tags": {
+      "family": "thing",
+      "role": "any",
+      "knows": "relation",
+      "half": "second"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-076",
+    "deck": "grounding",
+    "text": "That’s the whole of it.",
+    "tags": {
+      "family": "evening",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-077",
+    "deck": "grounding",
+    "text": "There isn’t any more to it than that.",
+    "tags": {
+      "family": "evening",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-078",
+    "deck": "grounding",
+    "text": "I remember it because it was tonight.",
+    "tags": {
+      "family": "evening",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-079",
+    "deck": "grounding",
+    "text": "I don’t keep a diary, but I know where I’ve been.",
+    "tags": {
+      "family": "evening",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-080",
+    "deck": "grounding",
+    "text": "You don’t miss a thing like that.",
+    "tags": {
+      "family": "timing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-081",
+    "deck": "grounding",
+    "text": "Everybody heard it. I’m no different.",
+    "tags": {
+      "family": "timing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-082",
+    "deck": "grounding",
+    "text": "It’s the kind of thing people set their evening by.",
+    "tags": {
+      "family": "timing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-083",
+    "deck": "grounding",
+    "text": "You couldn’t be there and not know it.",
+    "tags": {
+      "family": "event",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-084",
+    "deck": "grounding",
+    "text": "I’m only telling you what anybody there would tell you.",
+    "tags": {
+      "family": "event",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-085",
+    "deck": "grounding",
+    "text": "I’m here all night. I see what there is to see.",
+    "tags": {
+      "family": "counts",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-086",
+    "deck": "grounding",
+    "text": "I notice who comes in. It’s what I do.",
+    "tags": {
+      "family": "counts",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "grd-087",
+    "deck": "grounding",
+    "text": "I notice faces. Names are another matter.",
+    "tags": {
+      "family": "strangers",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

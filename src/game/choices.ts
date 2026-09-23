@@ -18,7 +18,7 @@ import { minutesAfter } from './clock.js';
 import type { CaseView } from './derive.js';
 import { gameBudget, peopleHereNow } from './derive.js';
 import { parse } from './parser.js';
-import { answersTo, askedBefore, priceOf } from './reducer.js';
+import { answersTo, askedBefore, pendingFor, priceOf } from './reducer.js';
 import type { Command, OfferedChoice, OfferedGroup, RunState } from './types.js';
 import { buildNotebook, type Notebook } from './notebook.js';
 import { possessiveOf, pronounOf } from './voice/cast.js';
@@ -50,7 +50,7 @@ export interface Choice extends OfferedChoice {
 }
 
 export interface ChoiceGroup extends OfferedGroup {
-  kind: 'ask' | 'search' | 'go' | 'free' | 'confront';
+  kind: 'ask' | 'search' | 'go' | 'free' | 'confront' | 'continue';
   /** "Ask Callahan about", "Search", "Go to". */
   heading: string;
   /** For `ask` only: whose topics these are. */
@@ -314,6 +314,18 @@ export function choicesFor(view: CaseView, state: RunState): ChoiceGroup[] {
   if (state.reportOpen || state.filed) return [];
   const targets = openTargets(view, state.found);
   const groups: ChoiceGroup[] = [];
+
+  // M10 §A.3: a page that stopped at three families ends on "Go on", free.
+  const going = pendingFor(view, state, { kind: 'continue' });
+  if (going) {
+    const lead = going.item.clueIds.some((id) => targets.has(id));
+    groups.push({
+      kind: 'continue',
+      heading: '',
+      ...(going.item.personId ? { personId: going.item.personId } : {}),
+      choices: [{ command: 'go on', label: 'Go on', minutes: 0, lead, done: false }],
+    });
+  }
 
   for (const id of presentIds(view, state)) {
     const person = view.personById.get(id);

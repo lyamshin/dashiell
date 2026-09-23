@@ -434,8 +434,12 @@ export type Scene =
       topicRef?: { kind: string; id?: Id; topic?: string };
       /** That was the second free question and the client has a bus to catch. */
       clientLeaves?: boolean;
+      /** M10 §A.3: this page goes on with a conversation "Go on" continued. */
+      continued?: boolean;
+      /** M10 §A.3: there is more to tell, and the page ends on "Go on". */
+      more?: boolean;
     }
-  | { kind: 'examine'; placeId: Id; objectId?: Id; clues: Clue[] }
+  | { kind: 'examine'; placeId: Id; objectId?: Id; clues: Clue[]; continued?: boolean; more?: boolean }
   /** M9 §3: a fact from the notebook put to somebody, and what came of it. */
   | { kind: 'confront'; personId: Id; clue: Clue; judged: ConfrontJudgement; part?: number }
   | { kind: 'nothing'; tag: NothingLine['tag']; slots: Slots };

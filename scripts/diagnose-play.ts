@@ -53,7 +53,7 @@ import {
 import { allChoices, choicesFor } from '../src/game/choices.js';
 import { playOracle, playWandering } from '../src/game/oracle.js';
 import { parse } from '../src/game/parser.js';
-import { answersTo, fileReport, newRun, priceOf, stepInput } from '../src/game/reducer.js';
+import { answersTo, continuationOf, fileReport, newRun, priceOf, stepInput } from '../src/game/reducer.js';
 import { scoreReport } from '../src/game/scoring.js';
 import { leadingTheory } from '../src/game/voice/reactive.js';
 import { Rng } from '../src/gen/rng.js';
@@ -364,8 +364,21 @@ function drive(view: CaseView, pick: Picker, rng: Rng, player: PlayerId, maxStep
     if (!chosen) break;
     const before = state;
     const beforeThreads = new Set(before.threads.map((t) => t.clueId));
-    const result = stepInput(state, chosen.command, view);
-    state = result.state;
+    const first = stepInput(state, chosen.command, view);
+    state = first.state;
+    // M10 §A.3: every player takes "Go on" when a page offers it — it is free,
+    // and the same question asked again would go on too. One step here is the
+    // whole answer, however many pages it took.
+    const found = [...first.page.found];
+    const moreBeats = [...(first.page.beats ?? [])];
+    for (let more = continuationOf(view, state); more !== null; more = continuationOf(view, state)) {
+      const next = stepInput(state, more, view);
+      if (next.page.found.length === 0) break;
+      state = next.state;
+      found.push(...next.page.found);
+      moreBeats.push(...(next.page.beats ?? []));
+    }
+    const result = { ...first, page: { ...first.page, found, beats: moreBeats } };
     const costed = isCosted(before, state);
     if (costed) action++;
     const opened = state.threads
@@ -748,7 +761,9 @@ const leadsPicker: Picker = (_state, _view, rng, groups) => {
   return { command: c.command, marked: c.lead };
 };
 
-function scripted(commands: string[]): Picker {
+function scripted(all: string[]): Picker {
+  // \`drive\` takes every "Go on" itself.
+  const commands = all.filter((c) => c !== 'go on');
   let i = 0;
   return (_state, _view, _rng, groups) => {
     const cmd = commands[i++];
@@ -1880,6 +1895,11 @@ for (const cfg of CONFIGS) {
       classifyChoices(view, st, res.choiceTally);
       for (const s of u.steps) {
         st = stepInput(st, s.command, view).state;
+        for (let more = continuationOf(view, st); more !== null; more = continuationOf(view, st)) {
+          const next = stepInput(st, more, view);
+          if (next.page.found.length === 0) break;
+          st = next.state;
+        }
         if (!st.reportOpen) classifyChoices(view, st, res.choiceTally);
       }
     }

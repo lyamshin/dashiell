@@ -58,6 +58,11 @@ import searchActJson from '../../../content/decks/search-act.json';
 import crowdJson from '../../../content/decks/crowd.json';
 import decideJson from '../../../content/decks/decide.json';
 import confrontJson from '../../../content/decks/confront.json';
+import tellingJson from '../../../content/decks/telling.json';
+import groundingJson from '../../../content/decks/grounding.json';
+import followupJson from '../../../content/decks/followup.json';
+import tailJson from '../../../content/decks/tail.json';
+import noteJson from '../../../content/decks/note.json';
 
 export type DeckName =
   | 'similes'
@@ -98,7 +103,13 @@ export type DeckName =
   | 'crowd'
   | 'decide'
   /* M9 §3: a fact put to somebody, and what they did with it. */
-  | 'confront';
+  | 'confront'
+  /* M10 §A.1: a family of facts told — the frame, how they know, the follow-up, the tail, the note. */
+  | 'telling'
+  | 'grounding'
+  | 'followup'
+  | 'tail'
+  | 'note';
 
 export type BurnTier = 'run-to-run' | 'within-run' | 'free';
 
@@ -216,6 +227,11 @@ const RAW: Record<DeckName, unknown> = {
   crowd: crowdJson,
   decide: decideJson,
   confront: confrontJson,
+  telling: tellingJson,
+  grounding: groundingJson,
+  followup: followupJson,
+  tail: tailJson,
+  note: noteJson,
 };
 
 /** Every deck is on disk and imported; nothing is missing. */

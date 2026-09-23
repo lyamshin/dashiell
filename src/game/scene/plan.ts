@@ -31,8 +31,9 @@ import { NO_CONTEXT, scoreMotifs } from '../voice/motifs.js';
 import type { Weather } from '../voice/roll.js';
 import { planBridge, subjectOfTopic, type BridgePlan } from './bridge.js';
 import { bandOf, hourAgrees } from './text.js';
-import { thoughtsFor, viewOf, type Thought } from './thought.js';
+import { thoughtPriority, thoughtsFor, viewOf, type Thought } from './thought.js';
 import type { ConfrontJudgement } from '../m9.js';
+import { familiesOf, type Family } from './families.js';
 
 /* ------------------------------------------------------------------ *
  * The beats.
@@ -109,7 +110,31 @@ export type Beat =
       stops: boolean;
       /** Their recall action is this page's one piece of business (once a visit). */
       recall: boolean;
+      /**
+       * M10 §A.1: the answer is told a family at a time by the `telling`
+       * beats after this one; the exchange is the approach and the question.
+       */
+      told?: boolean;
+      /** M10 §A.3: this page goes on with an answer "Go on" continued. */
+      continued?: boolean;
     }
+  /**
+   * M10 §A.1–§A.2: one family of facts, told once in the witness's words —
+   * the question (after the first), the telling, its grounding, the follow-up
+   * where the fact has a second half, and a tail.
+   */
+  | {
+      kind: 'telling';
+      required: true;
+      personId: Id;
+      family: Family;
+      /** The first family on the page: the exchange's question asked for it. */
+      first: boolean;
+      /** Offered unasked (the yapper's volunteer). */
+      volunteered: boolean;
+    }
+  /** M10 §A.1: the detective's note on what a family is worth, after its thought. */
+  | { kind: 'note'; required: false; family: Family }
   | { kind: 'thought'; required: true; thought: Thought }
   | {
       kind: 'decide';
@@ -161,7 +186,7 @@ export interface Plan {
 export type PlanAction =
   | { kind: 'travel'; to: Id; already: boolean; openingClues?: Clue[]; errand?: ErrandPlan }
   | { kind: 'look' }
-  | { kind: 'examine'; placeId: Id; objectId?: Id; clues: Clue[] }
+  | { kind: 'examine'; placeId: Id; objectId?: Id; clues: Clue[]; continued?: boolean; more?: boolean }
   | {
       kind: 'ask';
       personId: Id;
@@ -170,6 +195,10 @@ export type PlanAction =
       account: boolean;
       self: boolean;
       volunteer: Clue | null;
+      /** M10 §A.3: "Go on" brought him back to this answer. */
+      continued?: boolean;
+      /** M10 §A.3: there is more, and the page ends on "Go on". */
+      more?: boolean;
     }
   | { kind: 'confront'; personId: Id; clue: Clue; judged: ConfrontJudgement; part?: number };
 
@@ -201,6 +230,12 @@ export interface PlanInput {
   recallable?: readonly Id[];
   /** Night Hone 1 §5: each person's temper, for what the detective does about a catch. */
   tempers?: Readonly<Record<Id, string>>;
+  /**
+   * M10 §A.3: people seen in person on an earlier page. Somebody the notebook
+   * has only heard named is seen for the first time when they are in the
+   * room, and a recall ("…again") is only for somebody seen before.
+   */
+  portrayed?: readonly Id[];
 }
 
 /** Which beats each shape must carry (§10's coverage check reads this). */
@@ -622,10 +657,11 @@ function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
     taken.add(activity.cardId);
     taken.add(doingKey(activity.text, person.surname));
     activities[person.id] = activity;
-    const firstSight = !input.met.includes(person.id);
+    const seenBefore = input.portrayed === undefined || input.portrayed.includes(person.id);
+    const firstSight = !input.met.includes(person.id) || !seenBefore;
     // A recall phrase, once a visit, for somebody already portrayed.
     const recall =
-      !firstSight && recalled[person.id] !== memory.visit && (input.recallable ?? []).includes(person.id);
+      !firstSight && seenBefore && recalled[person.id] !== memory.visit && (input.recallable ?? []).includes(person.id);
     const found = why.get(person.id);
     const reason: PresencePerson['why'] = found === 'bridged' ? 'lead' : found;
     const grouped = grouping && found === undefined;
@@ -720,6 +756,29 @@ export function planPage(input: PlanInput): Plan {
     if (memory.ambient === memory.visit) return;
     memory = { ...memory, ambient: memory.visit };
     beats.push({ kind: 'texture', required: false, texture: 'place' });
+  };
+  /**
+   * M10 §A.1: the thought on one family, after its telling — the one the
+   * family most needs said, and its rider — never one the page has had.
+   */
+  const said = new Set<string>();
+  const familyThoughts = (clues: Clue[], kind?: Family['kind']): Thought[] => {
+    const fresh = thoughtsFor({ ...thoughtInput, newClues: clues }, 3).filter((t) => {
+      const key = `${t.cls}|${t.basis ?? ''}|${t.subjectId ?? ''}|${t.sourceId ?? ''}|${t.placeId ?? ''}`;
+      return !said.has(key);
+    });
+    // A person's comings and goings are about where they were: a placement's
+    // thought before the access a placement near the means happens to give.
+    const aside = (t: Thought): number =>
+      t.cls === 'unmentioned' ? 9 : kind === 'movements' && t.cls === 'implicates' && t.basis === 'access' ? 1 : 0;
+    const primary = fresh.filter((t) => t.cls !== 'unmentioned').sort((a, b) => aside(a) - aside(b) || thoughtPriority(a.cls) - thoughtPriority(b.cls))[0];
+    if (!primary) return [];
+    const kept = [
+      primary,
+      ...fresh.filter((t) => t.cls === 'unmentioned' && primary.cls === 'observer-placed' && t.sourceId === primary.sourceId),
+    ];
+    for (const t of kept) said.add(`${t.cls}|${t.basis ?? ''}|${t.subjectId ?? ''}|${t.sourceId ?? ''}|${t.placeId ?? ''}`);
+    return kept;
   };
   const addThoughts = (thoughts: Thought[]): void => {
     for (const thought of thoughts) {
@@ -891,12 +950,23 @@ export function planPage(input: PlanInput): Plan {
     const place = view.placeById.get(input.at);
     const left = (place?.objects ?? []).filter((id) => id !== action.objectId).slice(0, 2);
     beats.push({ kind: 'act', required: true, ...(action.objectId ? { objectId: action.objectId } : {}), left });
-    for (const clue of action.clues) beats.push({ kind: 'find', required: true, clueId: clue.id });
-    // Night Hone 1 §1: the room's own texture, after the finds.
-    addPlace();
-    addThoughts(thoughtsFor(thoughtInput));
+    if (action.clues.length <= 1) {
+      for (const clue of action.clues) beats.push({ kind: 'find', required: true, clueId: clue.id });
+      // Night Hone 1 §1: the room's own texture, after the finds.
+      addPlace();
+      addThoughts(thoughtsFor(thoughtInput));
+    } else {
+      // M10 §A.5: several finds are several short moments — each find, then
+      // what it is worth — and never a flat list.
+      for (const clue of action.clues) {
+        beats.push({ kind: 'find', required: true, clueId: clue.id });
+        addThoughts(familyThoughts([clue]));
+      }
+      if (!beats.some((b) => b.kind === 'thought')) addThoughts(thoughtsFor(thoughtInput));
+    }
     const decided = addDecide();
-    addBridge({ decided });
+    // A search that stopped at three finds goes on; the lead can wait for the end of it.
+    if (!action.more) addBridge({ decided });
     return { shape: 'search', beats, memory };
   }
 
@@ -908,14 +978,20 @@ export function planPage(input: PlanInput): Plan {
   const carried =
     carry.lead && carry.for === 'ask-person' && subject !== undefined && subject.relationshipToVictim !== undefined;
   if (clock) beats.push(clock);
-  if (!carried) beats.push({ kind: 'errand', required: true, form: 'carry', carry });
+  if (!carried && !action.continued) beats.push({ kind: 'errand', required: true, form: 'carry', carry });
   // Night Hone 1 §1: the room, if the page runs short (the realizer decides).
   addPlace();
   const kept = memory.activities[action.personId];
   const stops = kept !== undefined && kept.visit === memory.visit && !kept.stopped;
   const recall =
-    (input.recallable ?? []).includes(action.personId) && memory.recalled[action.personId] !== memory.visit;
+    (input.recallable ?? []).includes(action.personId) &&
+    memory.recalled[action.personId] !== memory.visit &&
+    (input.portrayed === undefined || input.portrayed.includes(action.personId));
   if (recall) memory = { ...memory, recalled: { ...memory.recalled, [action.personId]: memory.visit } };
+  // M10 §A.2: what the answer tells, a family at a time.
+  const telling = [...action.clues, ...(action.volunteer ? [action.volunteer] : [])].filter((c) => newIds.includes(c.id));
+  const families = action.self ? [] : familiesOf(view, telling);
+  const told = families.length > 0;
   beats.push({
     kind: 'exchange',
     required: true,
@@ -928,9 +1004,32 @@ export function planPage(input: PlanInput): Plan {
     ...(action.volunteer ? { volunteerId: action.volunteer.id } : {}),
     stops,
     recall,
+    ...(told ? { told: true } : {}),
+    ...(action.continued ? { continued: true } : {}),
   });
   if (kept !== undefined && stops) {
     memory = { ...memory, activities: { ...memory.activities, [action.personId]: { ...kept, stopped: true } } };
+  }
+  if (told) {
+    for (const [k, family] of families.entries()) {
+      beats.push({
+        kind: 'telling',
+        required: true,
+        personId: action.personId,
+        family,
+        first: k === 0,
+        volunteered: action.volunteer !== null && family.clueIds.includes(action.volunteer.id),
+      });
+      for (const id of family.clueIds) beats.push({ kind: 'find', required: true, clueId: id });
+      const clues = family.clueIds.map((id) => view.findableById.get(id)).filter((c): c is Clue => c !== undefined);
+      addThoughts(familyThoughts(clues, family.kind));
+      beats.push({ kind: 'note', required: false, family });
+    }
+    // Every family said, and somewhere a thought on it.
+    if (!beats.some((b) => b.kind === 'thought')) addThoughts(thoughtsFor(thoughtInput));
+    const decided = addDecide();
+    if (!action.more) addBridge({ decided });
+    return { shape: 'ask', beats, memory };
   }
   for (const id of newIds) beats.push({ kind: 'find', required: true, clueId: id });
   if (action.self && newClues.length === 0) {

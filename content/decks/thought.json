@@ -889,7 +889,7 @@
   {
     "id": "tht-087",
     "deck": "thought",
-    "text": "{other} at {time} fell inside the coroner’s hours. It might be the minute, and it might not.",
+    "text": "{other} at {time} fell inside the time the coroner gave. It might be the minute, and it might not.",
     "tags": {
       "class": "window",
       "basis": "anchor",
@@ -924,7 +924,7 @@
   {
     "id": "tht-090",
     "deck": "thought",
-    "text": "{other} came at {time}, inside the coroner’s hours. If the rest fit, that could be when.",
+    "text": "{other} came at {time}, inside the time the coroner gave. If the rest fit, that could be when.",
     "tags": {
       "class": "window",
       "basis": "anchor",
@@ -970,7 +970,7 @@
   {
     "id": "tht-094",
     "deck": "thought",
-    "text": "Somewhere in the coroner’s hours was {other}, at {time}. It might be the moment.",
+    "text": "Somewhere in the time the coroner gave was {other}, at {time}. It might be the moment.",
     "tags": {
       "class": "window",
       "basis": "anchor",
@@ -1609,7 +1609,7 @@
   {
     "id": "tht-e001",
     "deck": "thought",
-    "text": "Whoever did it had been at {scene} some time {span}. That was the stretch everybody would have to account for.",
+    "text": "Whoever did it had been at {scene} {span}. That was the stretch everybody would have to account for.",
     "tags": {
       "class": "window",
       "basis": "coroner"
@@ -1620,7 +1620,7 @@
   {
     "id": "tht-e002",
     "deck": "thought",
-    "text": "The coroner’s hours ran {span}. Anybody I could put somewhere else for all of it was out of it.",
+    "text": "The coroner put it {span}. Where everybody was in that time was the whole case now.",
     "tags": {
       "class": "window",
       "basis": "coroner",
@@ -1632,7 +1632,7 @@
   {
     "id": "tht-e003",
     "deck": "thought",
-    "text": "So it had happened {span}. Where people were in those hours was what mattered now.",
+    "text": "So it had happened {span}. Where people were then was what mattered now.",
     "tags": {
       "class": "window",
       "basis": "coroner"
@@ -1643,7 +1643,7 @@
   {
     "id": "tht-e004",
     "deck": "thought",
-    "text": "{victim} died some time {span}. Everybody’s evening came down to those hours.",
+    "text": "{victim} died {span}, as near as the coroner could say. Everybody’s evening came down to that.",
     "tags": {
       "class": "window",
       "basis": "coroner",
@@ -2511,7 +2511,7 @@
   {
     "id": "tht-h033",
     "deck": "thought",
-    "text": "{subject} at {place}, at {time}: one more square of the evening filled in, if it was true.",
+    "text": "{subject} at {place}, at {time}: one more hour of the evening accounted for, if it was true.",
     "tags": {
       "class": "context",
       "basis": "placed"
@@ -2974,7 +2974,7 @@
   {
     "id": "tht-m001",
     "deck": "thought",
-    "text": "{subject} at {place} at {time}. That was inside the coroner’s hours, and {place} was not {scene}.",
+    "text": "{subject} at {place} at {time}. That was inside the time the coroner gave, if the word was good.",
     "tags": {
       "class": "touches",
       "basis": "placement",
@@ -2986,7 +2986,7 @@
   {
     "id": "tht-m002",
     "deck": "thought",
-    "text": "It gave {subject}’s row one more square: {place}, {time}.",
+    "text": "So {subject} had been at {place} at {time}, if it held. That was an hour that mattered.",
     "tags": {
       "class": "touches",
       "basis": "placement"
@@ -2997,7 +2997,7 @@
   {
     "id": "tht-m003",
     "deck": "thought",
-    "text": "{time} was one of the half hours that mattered, and now {subject}’s row had a place in it: {place}.",
+    "text": "{time} was one of the half hours that mattered, and now {subject} was somewhere in it: {place}, if it was true.",
     "tags": {
       "class": "touches",
       "basis": "placement"
@@ -3008,7 +3008,7 @@
   {
     "id": "tht-m004",
     "deck": "thought",
-    "text": "{place} at {time}, with {subject} in it. The coroner put {victim}’s death somewhere in those hours, and I put {subject}’s name in that one square.",
+    "text": "{place} at {time}, with {subject} in it, if the word held. The coroner put {victim}’s death somewhere near that hour.",
     "tags": {
       "class": "touches",
       "basis": "placement",
@@ -3020,7 +3020,7 @@
   {
     "id": "tht-m005",
     "deck": "thought",
-    "text": "{source} had seen {other} at {place} at {time}, and had no name to give me. I wrote the description in the margin, where it could wait for one.",
+    "text": "{source} had seen {other} at {place} at {time}, and had no name to give me. The description would have to wait for one.",
     "tags": {
       "class": "touches",
       "basis": "described"
@@ -3031,7 +3031,7 @@
   {
     "id": "tht-m006",
     "deck": "thought",
-    "text": "{other} at {place} at {time}. It could have been anybody in the notebook who fit, and I did not pick one yet.",
+    "text": "{other} at {place} at {time}. It could have been anybody who fit, and I didn’t pick one yet.",
     "tags": {
       "class": "touches",
       "basis": "described"
@@ -3042,7 +3042,7 @@
   {
     "id": "tht-m007",
     "deck": "thought",
-    "text": "No name from {source}, only {other}. I put it under {time} at {place} and left every row blank.",
+    "text": "No name from {source}, only {other}. I wrote it down the way it was said.",
     "tags": {
       "class": "touches",
       "basis": "described"
@@ -3053,7 +3053,7 @@
   {
     "id": "tht-m008",
     "deck": "thought",
-    "text": "{source} did not know the face. Whoever {other} turned out to be had been at {place} at {time}.",
+    "text": "{source} didn’t know the face. Whoever {other} turned out to be had been at {place} at {time}.",
     "tags": {
       "class": "touches",
       "basis": "described"
@@ -3064,7 +3064,7 @@
   {
     "id": "tht-m009",
     "deck": "thought",
-    "text": "{source} kept {place}, and at {time} nobody came in but the ones {source} named. I wrote the names across that square, and the list was short.",
+    "text": "{source} kept {place}, and at {time} nobody came in but the ones {source} named. It was a short list.",
     "tags": {
       "class": "touches",
       "basis": "absence"
@@ -3086,7 +3086,7 @@
   {
     "id": "tht-m011",
     "deck": "thought",
-    "text": "{source} named who came into {place} at {time}, and nobody else. Every name not on the list got a line through that square.",
+    "text": "{source} named who came into {place} at {time}, and nobody else. Anybody else who claimed {place} at {time} would have to explain it.",
     "tags": {
       "class": "touches",
       "basis": "absence"
@@ -3097,7 +3097,7 @@
   {
     "id": "tht-m012",
     "deck": "thought",
-    "text": "{source} counted {other} at {place} at {time}. I had that many names to find for that square, and no more.",
+    "text": "{source} counted {other} at {place} at {time}. That was how many names I had to find for that half hour, and no more.",
     "tags": {
       "class": "touches",
       "basis": "count"
@@ -3119,7 +3119,7 @@
   {
     "id": "tht-m014",
     "deck": "thought",
-    "text": "It was only a number, {other}, but it was {source}’s number for {place} at {time}, and it put a limit on that square.",
+    "text": "It was only a number, {other}, but it was {source}’s number for {place} at {time}, and it put a limit on who could have been there.",
     "tags": {
       "class": "touches",
       "basis": "count"
@@ -3130,7 +3130,7 @@
   {
     "id": "tht-m015",
     "deck": "thought",
-    "text": "{subject} had been at {place} at the time of {other}. I needed the hour of {other} before it could go on the grid.",
+    "text": "{subject} had been at {place} at the time of {other}. I needed the hour of {other} before it told me anything.",
     "tags": {
       "class": "touches",
       "basis": "anchored"
@@ -3152,7 +3152,7 @@
   {
     "id": "tht-m017",
     "deck": "thought",
-    "text": "I wrote {subject} and {place} in the margin under {other}. It would stay there until something gave {other} an hour.",
+    "text": "{subject} at {place}, during {other}. It would mean nothing until something gave {other} an hour.",
     "tags": {
       "class": "touches",
       "basis": "anchored"
@@ -3185,7 +3185,7 @@
   {
     "id": "tht-m020",
     "deck": "thought",
-    "text": "{time}, then, for {other}. Whatever had been waiting in the margin under it could go on the grid.",
+    "text": "{time}, then, for {other}. Whatever had been waiting on it had an hour now.",
     "tags": {
       "class": "touches",
       "basis": "timing"
@@ -3207,7 +3207,7 @@
   {
     "id": "tht-m022",
     "deck": "thought",
-    "text": "I wrote it down as {subject} told it. It was one person’s account of one person, and I marked it that way.",
+    "text": "I wrote it down as {subject} told it. It was one person’s word about one person.",
     "tags": {
       "class": "touches",
       "basis": "account"
@@ -3218,7 +3218,7 @@
   {
     "id": "tht-m023",
     "deck": "thought",
-    "text": "{subject} had given me the evening hour by hour. It went on {subject}’s row marked as {subject}’s own word.",
+    "text": "{subject} had given me the evening hour by hour. It was {subject}’s own word, and I kept it apart from everybody else’s.",
     "tags": {
       "class": "touches",
       "basis": "account"
@@ -3262,7 +3262,7 @@
   {
     "id": "tht-m027",
     "deck": "thought",
-    "text": "{subject} and {name} in the same place at {time}. Whatever went in one of their rows for that half hour went in the other.",
+    "text": "{subject} and {name} in the same place at {time}. Wherever one of them was then, so was the other.",
     "tags": {
       "class": "touches",
       "basis": "together"
@@ -3273,7 +3273,7 @@
   {
     "id": "tht-m028",
     "deck": "thought",
-    "text": "At {time}, {subject} and {name} had been together. I wrote the same place in two rows.",
+    "text": "At {time}, {subject} and {name} had been together. One place would do for both of them.",
     "tags": {
       "class": "touches",
       "basis": "together"
@@ -3295,7 +3295,7 @@
   {
     "id": "tht-m030",
     "deck": "thought",
-    "text": "{subject} and {name} were never in the same place all evening. There were two rows on the grid that could not share a square.",
+    "text": "{subject} and {name} were never in the same place all evening. Wherever I put one of them, the other was somewhere else.",
     "tags": {
       "class": "touches",
       "basis": "apart"
@@ -3306,7 +3306,7 @@
   {
     "id": "tht-m031",
     "deck": "thought",
-    "text": "Wherever {subject} had been, {name} had been somewhere else. That went for every half hour on the grid.",
+    "text": "Wherever {subject} had been, {name} had been somewhere else. That went for every half hour of the evening.",
     "tags": {
       "class": "touches",
       "basis": "apart"
@@ -3317,7 +3317,7 @@
   {
     "id": "tht-m032",
     "deck": "thought",
-    "text": "I wrote {subject} and {name} at the side of the grid with a line between them. Not once that night had {subject} and {name} shared a room.",
+    "text": "Not once that night had {subject} and {name} shared a room. It was worth keeping in mind.",
     "tags": {
       "class": "touches",
       "basis": "apart"
@@ -3328,7 +3328,7 @@
   {
     "id": "tht-m033",
     "deck": "thought",
-    "text": "{subject}’s new words put {subject} at {place} at {time}. I wrote them under the old ones in {subject}’s row.",
+    "text": "{subject}’s new words put {subject} at {place} at {time}. I wrote them under the old ones.",
     "tags": {
       "class": "touches",
       "basis": "said"
@@ -3339,7 +3339,7 @@
   {
     "id": "tht-m034",
     "deck": "thought",
-    "text": "Now {subject} said {place} at {time}. It was {subject}’s own word again, and it went on the grid the same way the first had.",
+    "text": "Now {subject} said {place} at {time}. It was {subject}’s own word again, and it counted the same as the first.",
     "tags": {
       "class": "touches",
       "basis": "said"
@@ -3350,7 +3350,7 @@
   {
     "id": "tht-m035",
     "deck": "thought",
-    "text": "{place} at {time} was the new answer from {subject}. I looked down the column for {time} to see who else the notebook had there.",
+    "text": "{place} at {time} was the new answer from {subject}. I went through the notebook for anybody else there at {time}.",
     "tags": {
       "class": "touches",
       "basis": "said"

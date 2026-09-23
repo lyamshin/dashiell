@@ -42,6 +42,17 @@ export function deserializeRun(raw: string | null): RunState | null {
     confronts: Array.isArray(run.confronts) ? run.confronts : undefined,
     links:
       typeof run.links === 'object' && run.links !== null && !Array.isArray(run.links) ? run.links : undefined,
+    // M10 §A.3: what a page held back for "Go on". A malformed list is dropped.
+    pending: Array.isArray(run.pending)
+      ? run.pending.filter(
+          (p) =>
+            typeof p === 'object' &&
+            p !== null &&
+            (p.kind === 'ask' || p.kind === 'examine') &&
+            typeof p.placeId === 'string' &&
+            Array.isArray(p.clueIds),
+        )
+      : undefined,
   };
 }
 

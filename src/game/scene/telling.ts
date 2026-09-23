@@ -1,0 +1,426 @@
+/**
+ * M10 §A.1 — the telling: a family of facts, said once, in the witness's
+ * words.
+ *
+ * This file writes the fact-bearing sentences of a telling, and nothing else:
+ * the hours spoken and ordered, places the witness's way ("here" for the room
+ * they stand in), and people the way this witness knows them (`referenceOf`).
+ * Every hour and every name in them comes out of the family's facts, so the
+ * correspondence checker can trace a telling to the clues it tells. The
+ * question, the grounding, the follow-up, the tail and the note are dealt
+ * around these sentences by the realizer (`realize.ts`), from decks that say
+ * no case fact at all.
+ *
+ * A family's sentences come in two halves where the fact has a natural second
+ * half (golden rule 4): a person's comings and goings, then — asked "And the
+ * rest of the evening?" — where they were not.
+ *
+ * Pure. Never quotes a generator sentence: nothing here reads `Clue.text`
+ * except the few old clue kinds that have no structured facts, and those it
+ * breaks into the short sentences a person says.
+ */
+
+import { referenceOf } from '../../gen/index.js';
+import type { Clue, Fact, Id, Person, Tick } from '../../gen/types.js';
+import { TICKS, spokenClock } from '../../gen/types.js';
+import type { CaseView } from '../derive.js';
+import { pronounOf } from '../voice/cast.js';
+import { spokenSpan, spokenSpans } from '../voice/facts.js';
+import type { Family } from './families.js';
+
+/** Which follow-up question asks for a family's second half. */
+export type FollowAsk =
+  /** "And the rest of the evening?" — the second half is every other half hour. */
+  | 'rest'
+  /** "Any other time?" — the second half is some of the other half hours. */
+  | 'other'
+  /** "You're sure it was her?" — the second half is how the witness knows. */
+  | 'sure';
+
+export interface Told {
+  /** What the witness says first. */
+  first: string[];
+  /** What they say when the follow-up asks for it. */
+  second: string[];
+  follow?: FollowAsk;
+  /** The half hours the sentences name, for the correspondence checker. */
+  ticks: Tick[];
+  /** The people the sentences name or stand for. */
+  people: Id[];
+  /** How many people a stranger sighting was: for the grounding's number. */
+  strangers?: number;
+}
+
+type Pro = { he: string; him: string; his: string; He: string };
+
+export function pronounsOf(person: Person | undefined): Pro {
+  return pronounOf(person) === 'she'
+    ? { he: 'she', him: 'her', his: 'her', He: 'She' }
+    : { he: 'he', him: 'him', his: 'his', He: 'He' };
+}
+
+function genderPro(g: 'm' | 'f'): Pro {
+  return g === 'f' ? { he: 'she', him: 'her', his: 'her', He: 'She' } : { he: 'he', him: 'him', his: 'his', He: 'He' };
+}
+
+function cap(s: string): string {
+  return s.length === 0 ? s : s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+function list(items: string[], and = 'and'): string {
+  if (items.length <= 1) return items[0] ?? '';
+  return `${items.slice(0, -1).join(', ')} ${and} ${items[items.length - 1] as string}`;
+}
+
+/** Runs of consecutive ticks. */
+export function runsOf(ticks: readonly Tick[]): [Tick, Tick][] {
+  const out: [Tick, Tick][] = [];
+  for (const t of [...new Set(ticks)].sort((a, b) => a - b)) {
+    const last = out[out.length - 1];
+    if (last && t === last[1] + 1) last[1] = t;
+    else out.push([t, t]);
+  }
+  return out;
+}
+
+/** "at seven o'clock", "from seven until half past". */
+export function whenOf([a, b]: [Tick, Tick]): string {
+  return a === b ? `at ${spokenClock(a)}` : spokenSpan(a, b);
+}
+
+/** Several runs: "at six o'clock, or from eight until half past". */
+function whenRuns(ticks: readonly Tick[], joiner: 'and' | 'or'): string {
+  return list(runsOf(ticks).map(whenOf), joiner);
+}
+
+/** Where, as the witness standing at `at` says it. */
+function whereOf(view: CaseView, placeId: Id, at: Id): string {
+  if (placeId === at) return 'here';
+  const place = view.placeById.get(placeId);
+  return place ? `at ${place.shortName}` : 'somewhere';
+}
+
+function placeName(view: CaseView, placeId: Id, at: Id): string {
+  if (placeId === at) return 'here';
+  return view.placeById.get(placeId)?.shortName ?? 'somewhere';
+}
+
+const COUNT: Record<number, string> = { 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six' };
+
+/* ------------------------------------------------------------------ *
+ * The families.
+ * ------------------------------------------------------------------ */
+
+/** One person's comings and goings (golden page 6). */
+function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id, at: Id): Told {
+  const subject = view.personById.get(subjectId);
+  const p = pronounsOf(subject);
+  const facts: Fact[] = clues.flatMap((c) => c.establishes);
+  const ticks: Tick[] = [];
+  const people = new Set<Id>([subjectId]);
+  const first: string[] = [];
+  const second: string[] = [];
+  let follow: FollowAsk | undefined;
+
+  // Knowing and not knowing.
+  const acquainted = facts.find((f) => f.kind === 'acquainted');
+  if (acquainted && acquainted.kind === 'acquainted') {
+    if (acquainted.strength === 'stranger') first.push(`Never heard of ${p.him}.`);
+    else if (acquainted.strength === 'sight') first.push('I might know the face if I saw it. Not the name.');
+  }
+
+  // Where they were seen, in the order of the evening.
+  const seen = facts.filter((f): f is Extract<Fact, { kind: 'personAt' }> => f.kind === 'personAt' && f.personId === subjectId);
+  const byPlace = new Map<Id, Tick[]>();
+  for (const f of seen) byPlace.set(f.place, [...(byPlace.get(f.place) ?? []), f.tick]);
+  const stretches: { place: Id; run: [Tick, Tick] }[] = [];
+  for (const [place, ts] of byPlace) for (const run of runsOf(ts)) stretches.push({ place, run });
+  stretches.sort((a, b) => a.run[0] - b.run[0]);
+  let last: Id | null = null;
+  for (const [i, s] of stretches.entries()) {
+    ticks.push(s.run[0], s.run[1]);
+    const when = whenOf(s.run);
+    const where = whereOf(view, s.place, at);
+    if (i === 0) first.push(`I saw ${p.him} ${where} ${when}.`);
+    else if (s.place === last) first.push(`${p.He} was back ${when}.`);
+    else first.push(`${cap(when)} ${p.he} was ${where}.`);
+    last = s.place;
+  }
+  // A sighting tied to something the block times things by.
+  for (const f of facts) {
+    if (f.kind !== 'personAtAnchor' || f.personId !== subjectId) continue;
+    const anchor = view.anchorById.get(f.anchorId);
+    const where = whereOf(view, f.place, at);
+    const timing = anchor?.timing ?? 'that evening';
+    first.push(
+      stretches.length === 0 && first.length === 0
+        ? `I saw ${p.him} ${where} ${timing}.`
+        : `${cap(timing)}, ${p.he} was ${where}.`,
+    );
+  }
+
+  // Where they were not.
+  const notAt = new Map<Id, Tick[]>();
+  for (const f of facts) {
+    if (f.kind === 'personNotAt' && f.personId === subjectId) notAt.set(f.place, [...(notAt.get(f.place) ?? []), f.tick]);
+  }
+  for (const [place, ts] of notAt) {
+    ticks.push(...ts);
+    const here = byPlace.get(place) ?? [];
+    const whole = new Set([...ts, ...here]).size === TICKS;
+    const name = placeName(view, place, at);
+    if (first.length === 0) {
+      // Nothing seen: the absence is the whole answer.
+      first.push(
+        whole
+          ? `${p.He} wasn’t ${name === 'here' ? 'here' : `at ${name}`} all evening.`
+          : `${p.He} wasn’t ${name === 'here' ? 'here' : `at ${name}`} ${whenRuns(ts, 'or')}.`,
+      );
+      continue;
+    }
+    if (whole && here.length > 0) {
+      second.push(name === 'here' ? 'Not here.' : `Not at ${name}.`);
+      follow = follow ?? 'rest';
+    } else {
+      second.push(`${name === 'here' ? 'Not here' : `Not at ${name}`} ${whenRuns(ts, 'or')}.`);
+      follow = follow ?? 'other';
+    }
+  }
+
+  // Two people, and whether they were ever in one room.
+  for (const f of facts) {
+    if (f.kind === 'apart' && f.personIds.includes(subjectId)) {
+      const other = f.personIds.find((id) => id !== subjectId) as Id;
+      people.add(other);
+      if (other === speaker.id) first.push(`${p.He} and I were never in the same place all evening.`);
+      else first.push(`${p.He} and ${referenceOf(view.kase, speaker.id, other)} were never in the same place all evening.`);
+    }
+    if (f.kind === 'together' && f.personIds.includes(subjectId)) {
+      const other = f.personIds.find((id) => id !== subjectId) as Id;
+      people.add(other);
+      ticks.push(...f.ticks);
+      const when = f.ticks.length > 0 ? ` ${whenRuns(f.ticks, 'and')}` : '';
+      first.push(
+        other === speaker.id
+          ? `${p.He} was with me${when}.`
+          : `${p.He} was with ${referenceOf(view.kase, speaker.id, other)}${when}.`,
+      );
+    }
+  }
+
+  if (first.length === 0 && second.length === 0) {
+    const refused = clues.some((c) => /will not say/.test(c.text));
+    first.push(refused ? 'I’d rather not say where I saw anybody tonight.' : `I didn’t see ${p.him} that evening.`);
+  }
+  return {
+    first,
+    second: follow ? second : [],
+    ...(follow ? { follow } : {}),
+    ticks,
+    people: [...people],
+  };
+}
+
+/** A door's head counts and its "nobody but" (golden page 7). */
+function counts(view: CaseView, clues: Clue[], speaker: Person, at: Id): Told {
+  const facts = clues.flatMap((c) => c.establishes);
+  const people = new Set<Id>();
+  const ticks: Tick[] = [];
+  type Line = { tick: Tick; text: (first: boolean) => string };
+  const lines: Line[] = [];
+  const covered = new Set<Tick>();
+  for (const f of facts) {
+    if (f.kind !== 'absentFrom') continue;
+    const others = f.except.filter((id) => id !== speaker.id && id !== f.except[0]);
+    for (const id of others) people.add(id);
+    ticks.push(...f.ticks);
+    const where = placeName(view, f.place, at);
+    for (const run of runsOf(f.ticks)) {
+      if (others.length > 0) {
+        const names = others.map((id) => referenceOf(view.kase, speaker.id, id));
+        const p = others.length === 1 ? pronounsOf(view.personById.get(others[0] as Id)) : null;
+        const with_ = p ? `nobody with ${p.him}` : 'nobody else';
+        const whenSaid = run[0] === run[1] ? `At ${spokenClock(run[0])}` : cap(spokenSpan(run[0], run[1]));
+        lines.push({
+          tick: run[0],
+          text: () =>
+            `${whenSaid} it was ${list(names)}${where === 'here' ? '' : ` at ${where}`}, and ${with_}.`,
+        });
+        for (let t = run[0]; t <= run[1]; t++) covered.add(t as Tick);
+        // A head count at the same half hour says the same thing again.
+        for (const g of facts) {
+          if (g.kind === 'countAt' && g.count === others.length && g.tick >= run[0] && g.tick <= run[1]) covered.add(g.tick);
+        }
+      } else {
+        const into = where === 'here' ? 'in' : `into ${where}`;
+        lines.push({ tick: run[0], text: () => `Nobody came ${into} ${whenOf(run)}.` });
+      }
+    }
+  }
+  for (const f of facts) {
+    if (f.kind !== 'countAt') continue;
+    ticks.push(f.tick);
+    if (covered.has(f.tick)) continue;
+    const where = placeName(view, f.place, at);
+    const n = COUNT[f.count] ?? String(f.count);
+    const into = where === 'here' ? 'in' : `into ${where}`;
+    lines.push({
+      tick: f.tick,
+      text: (first) => (first ? `${cap(n)} came ${into} at ${spokenClock(f.tick)}.` : `${cap(n)} at ${spokenClock(f.tick)}.`),
+    });
+  }
+  lines.sort((a, b) => a.tick - b.tick);
+  const first = lines.map((l, i) => l.text(i === 0));
+  if (first.length === 0) first.push('Nobody I could tell you about.');
+  return { first, second: [], ticks, people: [...people] };
+}
+
+/** People the witness saw and did not know by name. */
+function strangers(view: CaseView, clues: Clue[], at: Id): Told {
+  type Seen = { text: string; g: 'm' | 'f'; sight: boolean; place: Id; ticks: Tick[] };
+  const groups: Seen[] = [];
+  const ticks: Tick[] = [];
+  for (const clue of clues) {
+    const sight = / I know by sight\b/.test(clue.text);
+    for (const f of clue.establishes) {
+      if (f.kind !== 'describedAt') continue;
+      ticks.push(f.tick);
+      const had = groups.find((g) => g.text === f.description.text && g.sight === sight && g.place === f.place && g.ticks.includes((f.tick - 1) as Tick));
+      if (had) had.ticks.push(f.tick);
+      else groups.push({ text: f.description.text, g: f.description.features.gender, sight, place: f.place, ticks: [f.tick] });
+    }
+  }
+  groups.sort((a, b) => Math.min(...a.ticks) - Math.min(...b.ticks));
+  // One sentence a description, in the order they were first seen: "A man in
+  // his thirties at half past seven, and one from half past eight until half
+  // past nine." — "one", because nothing says whether it was the same man.
+  const first: string[] = [];
+  const order: string[] = [];
+  for (const g of groups) if (!order.includes(`${g.text}|${g.place}`)) order.push(`${g.text}|${g.place}`);
+  for (const [i, key] of order.entries()) {
+    const same = groups.filter((g) => `${g.text}|${g.place}` === key);
+    const head = same[0] as Seen;
+    const where = head.place === at ? '' : ` at ${view.placeById.get(head.place)?.shortName ?? 'somewhere'}`;
+    const whens = same.map((g) => whenRuns(g.ticks, 'and'));
+    const said = [`${whens[0]}`, ...whens.slice(1).map((w) => `one ${w}`)];
+    const text = i === 0 ? cap(head.text) : `Then ${head.text}`;
+    first.push(`${text}${where} ${list(said)}.`);
+  }
+  const sights = groups.filter((g) => g.sight).length;
+  const only = groups.length === 1 ? genderPro((groups[0] as Seen).g) : null;
+  if (sights === 0) {
+    first.push(
+      only
+        ? `I didn’t know ${only.him}.`
+        : groups.length === 2
+          ? 'I didn’t know either of them.'
+          : 'I didn’t know any of them.',
+    );
+  } else if (sights === groups.length) {
+    first.push(only ? `I’d seen ${only.him} around. I couldn’t give you a name.` : 'I knew the faces. Not one of the names.');
+  } else {
+    first.push('One or two I knew by sight. None of them by name.');
+  }
+  return { first, second: [], ticks, people: [], strangers: groups.length };
+}
+
+/** When something the whole block times things by happened. */
+function timing(clues: Clue[]): Told {
+  const ticks: Tick[] = [];
+  for (const c of clues) for (const f of c.establishes) if (f.kind === 'anchorAt') ticks.push(...f.ticks);
+  const times = [...new Set(ticks)].sort((a, b) => a - b).map(spokenClock);
+  return {
+    first: times.length === 0 ? ['I couldn’t tell you when.'] : [`That was at ${list(times)}.`],
+    second: [],
+    ticks,
+    people: [],
+  };
+}
+
+/** What anybody there would know, and whether somebody does. */
+function event(view: CaseView, clues: Clue[], at: Id): Told {
+  const first: string[] = [];
+  const ticks: Tick[] = [];
+  const people: Id[] = [];
+  for (const f of clues.flatMap((c) => c.establishes)) {
+    if (f.kind === 'anchorKnowledge') {
+      ticks.push(...f.ticks);
+      first.push(`Anybody who was ${whereOf(view, f.place, at)} ${whenRuns(f.ticks, 'and')} would know ${f.knowledge}.`);
+    }
+    if (f.kind === 'knows') {
+      people.push(f.personId);
+      const anchor = view.anchorById.get(f.anchorId)?.name ?? 'that';
+      first.push(f.knows ? `I know what happened with ${anchor}.` : `${cap(anchor)}? I couldn’t tell you what happened.`);
+    }
+  }
+  if (first.length === 0) first.push('I couldn’t tell you.');
+  return { first, second: [], ticks, people };
+}
+
+/** The witness's own evening, start to finish, as a short story. */
+function evening(view: CaseView, clues: Clue[], speaker: Person, at: Id): Told {
+  const claims = clues
+    .flatMap((c) => c.establishes)
+    .filter((f): f is Extract<Fact, { kind: 'claims' }> => f.kind === 'claims')
+    .sort((a, b) => (a.ticks[0] ?? 0) - (b.ticks[0] ?? 0));
+  const ticks: Tick[] = [];
+  const people: Id[] = [speaker.id];
+  const first: string[] = [];
+  for (const [i, c] of claims.entries()) {
+    ticks.push(...c.ticks);
+    const when = whenRuns(c.ticks, 'and');
+    const company = c.with ? ` with ${referenceOf(view.kase, speaker.id, c.with)}` : '';
+    if (c.with) people.push(c.with);
+    const name = placeName(view, c.place, at);
+    if (i === 0) first.push(`I was ${name === 'here' ? 'here' : `at ${name}`}${company} ${when}.`);
+    else if (name === 'here') first.push(`${cap(when)} I was here${company}.`);
+    else first.push(`Then ${name}${company}, ${when}.`);
+  }
+  if (first.length === 0) first.push('I was where I was, and I couldn’t tell you the hours of it.');
+  return { first, second: [], ticks, people };
+}
+
+/**
+ * One of the old clue kinds with no structured telling: its record, said the
+ * way a person says it. The attribution goes ("Rafferty says"), each clause of
+ * the sentence becomes a sentence of its own, and the hours are spoken.
+ */
+export function saidPlainly(text: string): string[] {
+  const spoken = spokenSpans(text.trim()).replace(/\.$/, '');
+  const clauses = spoken
+    .split(/,\s+and\s+(?=(?:it|he|she|they|there|nobody|somebody|the|a|an|[A-Z][a-z]+)\b)|;\s+|,\s+(?=(?:it|he|she|they|there)\s)/)
+    .map((c) => c.trim())
+    .filter((c) => c.length > 0);
+  return clauses.map((c) => `${cap(c)}.`);
+}
+
+/**
+ * The fact-bearing sentences of one family, or null for a family the old
+ * utterance deck still speaks (a clue kind with no telling of its own here).
+ */
+export function toldOf(
+  view: CaseView,
+  family: Family,
+  clues: Clue[],
+  speaker: Person,
+  at: Id,
+): Told | null {
+  if (!view.kase.logic) return null;
+  switch (family.kind) {
+    case 'movements':
+    case 'knowing':
+      return family.subjectId ? movements(view, clues, speaker, family.subjectId, at) : null;
+    case 'counts':
+      return counts(view, clues, speaker, at);
+    case 'strangers':
+      return strangers(view, clues, at);
+    case 'timing':
+      return timing(clues);
+    case 'event':
+      return event(view, clues, at);
+    case 'evening':
+      return evening(view, clues, speaker, at);
+    default:
+      return null;
+  }
+}
