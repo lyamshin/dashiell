@@ -921,7 +921,21 @@
         "family": { "required": true, "values": ["movements", "counts", "strangers", "event", "knowing", "timing", "evening", "thing"], "extraValues": ["any"] },
         "role": { "required": true, "values": ["bartender", "doorman", "newsstand", "counterman", "ticket-taker", "elevator-man", "landlady", "beat-cop", "cabbie", "druggist", "suspect"], "extraValues": ["any"] },
         "knows": { "required": false, "default": "any", "values": ["name", "relation", "sight", "stranger"], "extraValues": ["any"] },
-        "half": { "required": false, "default": "any", "values": ["first", "second"], "extraValues": ["any"] }
+        "half": { "required": false, "default": "any", "values": ["first", "second"], "extraValues": ["any"] },
+        "topic": {
+          "required": false,
+          "default": "any",
+          "values": ["keys", "money", "motive", "means", "secret"],
+          "extraValues": ["any"],
+          "$note": "M11 §A.7, `thing` groundings only: what the thing told is about — keys (a way in: 'It's my business to be sure who has my keys.'), money (a debt, a loan, an estate), motive (a grudge that is not money), means (how it could be done), secret. A card with a topic is dealt only for a thing of that topic; a debt never gets a keys grounding."
+        },
+        "basis": {
+          "required": false,
+          "default": "any",
+          "values": ["sight", "word"],
+          "extraValues": ["any"],
+          "$note": "M11 §A.7: what the witness's knowing rests on. sight — they saw it ('I see everybody who comes in.'), dealt only for a family of what somebody saw: movements, counts, strangers, event; word — they were told or know it. any fits both."
+        }
       },
       "coverage": [["family"], ["role"]]
     },

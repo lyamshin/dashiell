@@ -32,6 +32,9 @@ import type { Block, Page, RunState } from './types.js';
 import { ALL_CARDS } from './voice/cards.js';
 import * as VOICE_DATA from './voice-data.js';
 import * as PLAIN from './voice/plain.js';
+import * as OFFICE from './voice/office.js';
+import { ROLE_CHARACTER } from '../gen/data/character.js';
+import { FIXTURE_CARDS } from '../gen/data/cast.js';
 
 /* ------------------------------------------------------------------ *
  * The engine's own closed vocabulary.
@@ -134,6 +137,11 @@ export function engineVocabulary(): EngineVocabulary {
   for (const card of ALL_CARDS) strings.push(card.text);
   collectStrings(VOICE_DATA, strings);
   collectStrings(PLAIN, strings);
+  // M11: the office's own lines, and the dossier's character lines — the
+  // words a person says about their life, written by hand for the type.
+  collectStrings(OFFICE, strings);
+  collectStrings(ROLE_CHARACTER, strings);
+  collectStrings(FIXTURE_CARDS, strings);
   const names = new Set<string>(ENGINE_WORDS);
   const places = new Set<string>();
   for (const text of strings) {
@@ -271,6 +279,11 @@ const IMAGE_HOURS: { phrase: string; hour: string }[] = (() => {
   for (const card of ALL_CARDS) strings.push(card.text);
   collectStrings(VOICE_DATA, strings);
   collectStrings(PLAIN, strings);
+  // M11: the office's own lines, and the dossier's character lines — the
+  // words a person says about their life, written by hand for the type.
+  collectStrings(OFFICE, strings);
+  collectStrings(ROLE_CHARACTER, strings);
+  collectStrings(FIXTURE_CARDS, strings);
   const re =
     /(?:\S+\s){0,3}(half past (?:six|seven|eight|nine|ten|eleven)|(?:six|seven|eight|nine|ten|eleven) o['’]clock)(?:\s\S+){0,3}/gi;
   for (const text of strings) {

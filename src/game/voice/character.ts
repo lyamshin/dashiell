@@ -21,6 +21,7 @@ import type { Person } from '../../gen/types.js';
 import type { CaseView } from '../derive.js';
 import { DECKS, Dealer, fill, tagIs, tagOf, type Card, type Slots } from './cards.js';
 import { pronounOf } from './cast.js';
+import { isSubjectless, sentencesOf } from '../scene/text.js';
 
 export type CharacterKind = 'look' | 'street' | 'talk' | 'victim' | 'client';
 
@@ -80,6 +81,9 @@ export function characterLine(
     tagIs('character', c, 'role', role) &&
     tagIs('character', c, 'kind', kind) &&
     !(opts.avoid ?? []).includes(c.id) &&
+    // Narration with no subject ("Dressed for an office, she had…" is fine;
+    // "Dressed for an office." is not) is what the beat check refuses.
+    (kind === 'talk' || kind === 'victim' || kind === 'client' || !sentencesOf(fill(c, slots) ?? c.text).some(isSubjectless)) &&
     (opts.accept === undefined || opts.accept(fill(c, slots) ?? c.text));
   const victimRole = view.victim.archetypeId ?? 'any';
   const ladder =

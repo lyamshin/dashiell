@@ -24,6 +24,7 @@ import { m9Answer, whenSaid } from './testimony.js';
 import { acquaintanceOf } from '../../gen/index.js';
 import { pronounsOf, putSaid, saidPlainly, toldOf, type Told } from './telling.js';
 import type { Family } from './families.js';
+import { SEEN_FAMILIES, thingTopic } from './families.js';
 import { observation, tieSentence } from './people.js';
 import { bareRoleOf } from './plan.js';
 import { characterLine } from '../voice/character.js';
@@ -2205,8 +2206,17 @@ function tellingParas(
   // "I saw it myself" grounds a sighting, never "we were never in the same place".
   const sawIt = told.first.some((s0) => /^I saw\b|\bwas (?:here|at|back|there)\b/.test(s0));
   const fits = (c: Card): boolean => sawIt || !/\b(?:saw|seen|I was there)\b/.test(c.text);
-  const g = (c: Card, tag: string, want: string): boolean => fits(c) && tagIs('grounding', c, tag, want);
-  const exact = (c: Card, tag: string, want: string): boolean => tagOf('grounding', c, tag) === want;
+  // M11 §A.7: keyed by what the family is about, not by the trade alone — a
+  // debt never gets "who has my keys", and a thing somebody knows never gets
+  // "I see everybody who comes in".
+  const topic = family.kind === 'thing' ? thingTopic(clues) : 'any';
+  const aboutIt = (c: Card): boolean => {
+    const t = tagOf('grounding', c, 'topic') ?? 'any';
+    const basis = tagOf('grounding', c, 'basis') ?? 'any';
+    return (t === 'any' || t === topic) && (basis !== 'sight' || SEEN_FAMILIES.has(family.kind));
+  };
+  const g = (c: Card, tag: string, want: string): boolean => fits(c) && aboutIt(c) && tagIs('grounding', c, tag, want);
+  const exact = (c: Card, tag: string, want: string): boolean => aboutIt(c) && tagOf('grounding', c, tag) === want;
   const grounding = deal(
     stage,
     'grounding',
