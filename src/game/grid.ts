@@ -188,21 +188,25 @@ function cap(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-/** Short, unique names for the cells: "third", "speak.", "Wyckoff". */
+/**
+ * Short, unique names for the cells: "third", "suite", "garage", "Wyck.",
+ * "spea.". Six characters at most, so the whole evening fits across the
+ * notebook page at 1280 wide; the legend spells each one out.
+ */
 export function placeAbbrevs(names: { id: Id; shortName: string }[]): Map<Id, string> {
   const out = new Map<Id, string>();
   const taken = new Set<string>();
   for (const { id, shortName } of names) {
     const words = shortName.replace(/^(the|my) /i, '').replace(/’s$|'s$/, '').split(/\s+/);
     const first = words[0] ?? shortName;
-    const cut = (w: string): string => (w.length <= 7 ? w : `${w.slice(0, 5)}.`);
+    const cut = (w: string): string => (w.length <= 6 ? w : `${w.slice(0, 4)}.`);
     const candidates = [
       cut(first),
       words[1] ? cut(`${first.slice(0, 3)}${words[1].slice(0, 3)}`) : '',
       cut(words.join('')),
     ].filter((c) => c.length > 0);
     let pick = candidates.find((c) => !taken.has(c.toLowerCase())) ?? cut(first);
-    for (let n = 2; taken.has(pick.toLowerCase()); n++) pick = `${cut(first).slice(0, 5)}${n}`;
+    for (let n = 2; taken.has(pick.toLowerCase()); n++) pick = `${cut(first).slice(0, 4)}${n}`;
     taken.add(pick.toLowerCase());
     out.set(id, pick);
   }

@@ -178,7 +178,7 @@ describe('place names on the grid', () => {
       const view = buildView(generateCase(seed, { difficulty: 2 }));
       const abbrevs = [...placeAbbrevs(view.places).values()];
       expect(new Set(abbrevs.map((a) => a.toLowerCase())).size).toBe(abbrevs.length);
-      for (const a of abbrevs) expect(a.length).toBeLessThanOrEqual(8);
+      for (const a of abbrevs) expect(a.length).toBeLessThanOrEqual(6);
     }
   });
 });

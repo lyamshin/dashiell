@@ -185,7 +185,7 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
   if (grid.fixtures.length > 0) {
     const fx = el('tbody', { class: 'dgrid-fixtures' });
     const tr = el('tr', { class: 'dgrid-fxrow' });
-    const th = el('th', { class: 'dgrid-name', scope: 'row' });
+    const th = el('td', { colspan: String(grid.ticks.length + 1) });
     const b = el('button', {
       type: 'button',
       class: 'dgrid-fxbtn',
@@ -197,7 +197,7 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
       redraw();
     });
     th.append(b);
-    tr.append(th, el('td', { class: 'dgrid-fxfill', colspan: String(grid.ticks.length) }));
+    tr.append(th);
     fx.append(tr);
     if (ui.fixturesOpen) for (const row of grid.fixtures) fx.append(bodyRow(row));
     table.append(fx);
@@ -301,7 +301,14 @@ function chip(g: Group, places: Map<Id, GridPlace>, names: Map<Id, string>): HTM
   if (g.source === 'evidence') span.append(el('span', { class: 'dchip-sq', 'aria-hidden': 'true', text: '▪' }));
   span.append(el('span', { class: 'dchip-name', text: place?.abbrev ?? g.placeId }));
   if (g.source === 'witness' && g.by.length > 0) {
-    span.append(el('sup', { class: 'dchip-by', text: g.by.map((id) => (names.get(id) ?? id).charAt(0)).join('') }));
+    // Two initials at most on the chip; the detail names every witness.
+    const initials = g.by.map((id) => (names.get(id) ?? id).charAt(0));
+    span.append(
+      el('sup', {
+        class: 'dchip-by',
+        text: initials.length > 2 ? `${initials.slice(0, 2).join('')}+` : initials.join(''),
+      }),
+    );
   }
   return span;
 }

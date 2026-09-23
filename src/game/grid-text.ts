@@ -24,7 +24,7 @@ import type { RunState } from './types.js';
 
 const WIDTH = 76;
 const NAME = 22;
-const COL = 9;
+const COL = 10;
 
 export function renderGridText(view: CaseView, state: RunState): string {
   const grid = gridFrom(view, state);
