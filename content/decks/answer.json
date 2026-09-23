@@ -92,7 +92,7 @@
   {
     "id": "ans-010",
     "deck": "answer",
-    "text": "{name}'s lead had paid for itself.",
+    "text": "{name}’s tip had paid for itself.",
     "tags": {
       "outcome": "found"
     },
@@ -172,7 +172,7 @@
   {
     "id": "ans-018",
     "deck": "answer",
-    "text": "Nothing was in it. {name}'s lead had run dry.",
+    "text": "Nothing was in it. {name}’s tip had run dry.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -222,7 +222,7 @@
   {
     "id": "ans-023",
     "deck": "answer",
-    "text": "I crossed {name}'s lead off the list.",
+    "text": "I crossed {name}’s tip off the list.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -242,7 +242,7 @@
   {
     "id": "ans-025",
     "deck": "answer",
-    "text": "That closed {name}'s lead for good.",
+    "text": "{name}’s tip ended there.",
     "tags": {
       "outcome": "dead-end"
     },
