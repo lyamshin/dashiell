@@ -20,6 +20,7 @@
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { findJargon, loadPlainTerms } from './plain-terms.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, '..');
@@ -41,6 +42,18 @@ for (const [name, file] of Object.entries(schema.vocabFiles ?? {})) {
   schema.vocab[name] = Object.values(loaded.groups ?? {}).flat();
 }
 const MOTIF_VOCAB = new Set(schema.vocab.motifs ?? []);
+
+/**
+ * "Say what it is" (docs/style-guide.md): no card may use a term on the
+ * banned list in `content/plain-terms.json`, in any field a player reads. A
+ * hit is an error, except in a deck the list names as pending another pass's
+ * rewrite, where it is a warning until that pass lands.
+ */
+const PLAIN_TERMS = loadPlainTerms();
+const PLAIN_PENDING = new Set(PLAIN_TERMS.pendingDecks?.decks ?? []);
+const PLAYER_FIELDS = ['text', 'recall', 'recallAction'];
+let plainErrors = 0;
+let plainPending = 0;
 const MOTIF_MAX = schema.commonFields?.motifs?.max ?? 3;
 const WEATHER_VALUES = new Set([
   ...(schema.vocab.weather ?? []),
@@ -208,6 +221,18 @@ function validateDeck(deckName, path) {
     }
     if (typeof card.text !== 'string' || card.text.trim().length === 0) {
       report.errors.push(`${where}: missing text`);
+    }
+    for (const field of PLAYER_FIELDS) {
+      for (const hit of findJargon(card[field], PLAIN_TERMS)) {
+        const say = `${where}: ${field} says "${hit.match}" — ${hit.term}; say what it is: ${hit.plain}`;
+        if (PLAIN_PENDING.has(deckName)) {
+          report.warnings.push(`${say} (pending that deck's rewrite)`);
+          plainPending++;
+        } else {
+          report.errors.push(say);
+          plainErrors++;
+        }
+      }
     }
     if (typeof card.status !== 'string' || !schema.common.statuses.includes(card.status)) {
       report.errors.push(
@@ -448,6 +473,10 @@ if (flags.has('json')) {
         grouped.set(gist, seen);
       }
       for (const [gist, { n, first }] of grouped) {
+        if (gist.includes(' says "')) {
+          lines.push(`  warn    ${first}${n === 1 ? '' : ` (and ${n - 1} more)`}`);
+          continue;
+        }
         lines.push(`  warn    ${n === 1 ? first : `${gist} — ${n} cards`}`);
       }
     }
@@ -471,6 +500,10 @@ if (flags.has('json')) {
       `vocabulary words used${
         usedMotifs.size === 0 ? ' — nothing scores until the tagging pass lands' : ''
       }`,
+  );
+  lines.push(
+    `plain terms: ${plainErrors} banned term${plainErrors === 1 ? '' : 's'} in the checked decks · ` +
+      `${plainPending} in decks pending another pass's rewrite (warnings) · content/plain-terms.json`,
   );
   process.stdout.write(lines.join('\n') + '\n');
 }

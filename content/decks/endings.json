@@ -38,7 +38,7 @@
   {
     "id": "end-p004",
     "deck": "endings",
-    "text": "The wrong man goes up, and what I never went back for was this: {missed}",
+    "text": "The wrong man goes to prison, and what I never went back for was this: {missed}",
     "tags": {
       "outcome": "wrong-man",
       "parDelta": "at"

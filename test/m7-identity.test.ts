@@ -8,6 +8,11 @@ import { generateCase } from '../src/gen/index.js';
  * today's case, byte for byte, for difficulties 1 to 3. The hashes in the
  * fixture were written by `scripts/snapshot-cases.ts --write` before M7
  * changed a line of the generator.
+ *
+ * Rewritten once since, by the plain-terms pass (docs/21-plain-terms-notes.md),
+ * which changed the words of every case and nothing else: its structure-only
+ * hash (`test/structure-identity.test.ts`) is byte-identical to main's for the
+ * same 600 cases, so these hashes were regenerated on the new wording.
  */
 const baseline = JSON.parse(
   readFileSync(new URL('./fixtures/m7-baseline-hashes.json', import.meta.url), 'utf8'),

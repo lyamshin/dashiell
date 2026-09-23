@@ -54,7 +54,7 @@
   {
     "id": "fnd-p005",
     "deck": "find",
-    "text": "Behind the bed, against the skirting, with the dust pushed away from it. {fact}",
+    "text": "Behind the bed, against the baseboard, with the dust pushed away from it. {fact}",
     "tags": {
       "clueKind": "physical",
       "placeKind": "private"
@@ -673,7 +673,7 @@
   {
     "id": "fnd-045",
     "deck": "find",
-    "text": "The back door bolt, thrown from the inside, and nobody owning to it. {fact}",
+    "text": "The back door bolt, thrown from the inside, and nobody owning up to it. {fact}",
     "tags": {
       "clueKind": "scene",
       "placeKind": "semi"

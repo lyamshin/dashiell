@@ -17,7 +17,7 @@
   {
     "id": "arr-p002",
     "deck": "arrivals",
-    "text": "The door of {place} is on the latch and the step has been wet a while.",
+    "text": "The door of {place} is shut but not locked, and the step has been wet a while.",
     "tags": {
       "placeKind": "any",
       "hourBand": "midnight-2",
