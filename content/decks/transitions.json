@@ -155,7 +155,7 @@
   {
     "id": "trn-001",
     "deck": "transitions",
-    "text": "The fight card droned on over some radio down the block, and half an hour went with it.",
+    "text": "A boxing match droned on over some radio down the block, and half an hour went with it.",
     "tags": {
       "hourBand": "midnight-2",
       "anchorTemplate": "bar-radio"
@@ -443,7 +443,7 @@
   {
     "id": "trn-022",
     "deck": "transitions",
-    "text": "The last house let out down the avenue, and the street noise came and went with it.",
+    "text": "The last show let out down the avenue, and the street noise came and went with it.",
     "tags": {
       "hourBand": "midnight-2",
       "anchorTemplate": "theater-out"
@@ -553,7 +553,7 @@
   {
     "id": "trn-030",
     "deck": "transitions",
-    "text": "Ice went into somebody's box down the street, dropped once on the step with a crack. Another half hour gone.",
+    "text": "Ice went into somebody's icebox down the street, dropped once on the step with a crack. Another half hour gone.",
     "tags": {
       "hourBand": "6-8",
       "anchorTemplate": "ice-delivery"

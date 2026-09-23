@@ -12,6 +12,8 @@ declare module 'node:fs' {
   export function existsSync(path: string): boolean;
   /** M7: the byte-identity test reads its baseline hashes. */
   export function readFileSync(path: string | URL, encoding: string): string;
+  /** The plain-terms test reads the decks a rewrite is still pending on. */
+  export function readdirSync(path: string | URL): string[];
   /** The golden loop's page dump clears its output directory before filling it. */
   export function rmSync(
     path: string,

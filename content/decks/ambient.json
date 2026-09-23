@@ -183,7 +183,7 @@
   {
     "id": "amb-004",
     "deck": "ambient",
-    "text": "Four days on the rent and I still hadn't worked out which four.",
+    "text": "Four days late on the rent and I still hadn't worked out which four.",
     "tags": {
       "hourBand": "midnight-2",
       "caseState": "tight",
@@ -992,7 +992,7 @@
   {
     "id": "amb-065",
     "deck": "ambient",
-    "text": "The last job had been two people hating each other over a bank book, and I was relieved to be shut of it.",
+    "text": "The last job had been two people hating each other over a bank book, and I was glad it was over.",
     "tags": {
       "hourBand": "midnight-2",
       "caseState": "cold",

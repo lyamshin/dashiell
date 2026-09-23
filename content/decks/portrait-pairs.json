@@ -194,9 +194,9 @@
   {
     "id": "pp-013",
     "deck": "portrait-pairs",
-    "text": "{He} paid me from a pocketbook worn soft at the fold, and a photograph slid partway out with the bills: a young woman, turned face down before I could see more than the edge of her. {He} pushed it back in without looking at it.",
+    "text": "{He} paid me from a wallet worn soft at the fold, and a photograph slid partway out with the bills: a young woman, turned face down before I could see more than the edge of her. {He} pushed it back in without looking at it.",
     "recall": "the hidden photograph",
-    "recallAction": "{name} had a hand on the pocketbook again, over the photograph.",
+    "recallAction": "{name} had a hand on the wallet again, over the photograph.",
     "tags": {
       "gender": "m",
       "class": "money",
@@ -488,7 +488,7 @@
   {
     "id": "pp-031",
     "deck": "portrait-pairs",
-    "text": "The pocketbook was new enough to still smell of the shop it came from, and a receipt was folded behind the bills for something {he} did not mention buying.",
+    "text": "The wallet was new enough to still smell of the shop it came from, and a receipt was folded behind the bills for something {he} did not mention buying.",
     "recall": "the unexplained receipt",
     "tags": {
       "gender": "any",
@@ -962,8 +962,8 @@
   {
     "id": "pp-060",
     "deck": "portrait-pairs",
-    "text": "A pale scar crossed the inside of {his} forearm, old and flat, the width of a mangle's roller. {He} wore {his} sleeve down over it out of habit rather than to hide it.",
-    "recall": "the mangle-roller scar",
+    "text": "A pale scar crossed the inside of {his} forearm, old and flat, the width of the roller on a laundry wringer. {He} wore {his} sleeve down over it out of habit rather than to hide it.",
+    "recall": "the laundry-wringer scar",
     "recallAction": "{name} pulled the sleeve down over the scar again.",
     "tags": {
       "gender": "f",
