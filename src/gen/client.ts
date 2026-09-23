@@ -183,6 +183,12 @@ export interface ClientBriefInput {
   act: Act;
   /** M7: the ladder decides the red herring; the shape, whether motives are in play. */
   dials: Dials;
+  /**
+   * M9, tiered cases where the client may point at anybody: whether an
+   * innocent client's pointer lands on the culprit, decided once per seed so
+   * that turned-down attempts cannot tilt it.
+   */
+  pointerOnKiller?: boolean;
 }
 
 export function buildClientBrief(input: ClientBriefInput): ClientBrief {
@@ -287,9 +293,13 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
     // motive; from Hard-boiled on at anybody but themselves, uniformly, which
     // is no more often the culprit than chance.
     const innocentMotived = motived.filter((p) => !p.isKiller);
+    const innocentOthers = others.filter((p) => !p.isKiller);
+    const killer = others.find((p) => p.isKiller);
     const target = dials.shape.clientMayBeCulprit
-      ? (rng.pick(others) as Person)
-      : (rng.pick(innocentMotived.length > 0 ? innocentMotived : others.filter((p) => !p.isKiller)) as Person);
+      ? input.pointerOnKiller !== undefined
+        ? ((input.pointerOnKiller && killer) || (rng.pick(innocentOthers) as Person))
+        : (rng.pick(others) as Person)
+      : (rng.pick(innocentMotived.length > 0 ? innocentMotived : innocentOthers) as Person);
     pointsAt = {
       personId: target.id,
       reason: `${who(target.id)} ${target.motive?.description ?? 'was in and out of there all week'}`,

@@ -379,7 +379,8 @@ describe('M9: leads', () => {
         const scene = c.findable.find((cl) => cl.kind === 'scene');
         expect(client?.leadsTo).toContain(scene?.id);
         const byId = new Map(c.findable.map((cl) => [cl.id, cl]));
-        const reached = new Set<Id>(c.starting);
+        // A search is always on the page, so what it finds can lead on.
+        const reached = new Set<Id>([...c.starting, ...c.findable.filter((cl) => cl.source.type === 'place').map((cl) => cl.id)]);
         const queue = [...reached];
         while (queue.length > 0) {
           for (const next of byId.get(queue.shift() as Id)?.leadsTo ?? []) {

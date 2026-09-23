@@ -167,7 +167,7 @@ function drawArchetypes(rng: Rng, victim: VictimArchetype, count = 6): Archetype
   return null;
 }
 
-export function buildCast(rng: Rng, setting: Setting, dials: Dials): Cast | null {
+export function buildCast(rng: Rng, setting: Setting, dials: Dials, clientIsKiller?: boolean): Cast | null {
   const { shape, ladder } = dials;
   const name = makeNamer(rng);
   const mentions = createMentionPool(name);
@@ -393,9 +393,17 @@ export function buildCast(rng: Rng, setting: Setting, dials: Dials): Cast | null
   }
 
   /* --- who hired us ------------------------------------------------------ */
-  // M7: never the culprit below Hard-boiled.
+  // M7: never the culprit below Hard-boiled. M9: a tiered case decides it
+  // once per seed (`clientIsKiller`), so that attempts turned down do not
+  // tilt the share towards whichever is easier to deal.
   const client =
-    shape.clientMayBeCulprit && rng.chance(0.25) ? killer : rng.pick(innocents);
+    clientIsKiller !== undefined
+      ? clientIsKiller && shape.clientMayBeCulprit
+        ? killer
+        : rng.pick(innocents)
+      : shape.clientMayBeCulprit && rng.chance(0.25)
+        ? killer
+        : rng.pick(innocents);
   client.isClient = true;
 
   /* --- M5: a dossier for everybody --------------------------------------- */

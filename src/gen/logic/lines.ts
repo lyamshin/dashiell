@@ -109,8 +109,10 @@ function single(f: Fact, n: LineNames): string {
     case 'describedAt':
       return `Somebody who fits “${f.description.text}”: ${n.place(f.place)}, ${hm(f.tick)}`;
     case 'absentFrom': {
-      const others = f.except.map((id) => n.who(id)).filter((s) => s.length > 0);
-      return `${cap(n.place(f.place))}, ${span(f.ticks)}: nobody${others.length > 0 ? ` but ${others.join(' and ')}` : ''}`;
+      // The first of `except` is the one who works there, who says so; the
+      // line leaves them to the source, as a count does.
+      const others = f.except.slice(1).map((id) => n.who(id)).filter((s) => s.length > 0);
+      return `${cap(n.place(f.place))}, ${span(f.ticks)}: nobody${others.length > 0 ? ` but ${others.join(' and ')}` : ''} besides the one who works there`;
     }
     case 'countAt':
       return `${cap(n.place(f.place))}, ${hm(f.tick)}: ${f.count === 1 ? 'one person' : `${f.count} people`} besides the one who works there`;

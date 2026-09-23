@@ -277,7 +277,7 @@ export type Fact =
   | { kind: 'describedAt'; description: Description; place: Id; tick: Tick }
   /**
    * Absence. Nobody but `except` was at the place at any of the ticks. The
-   * watcher posted there is always in `except`.
+   * watcher posted there is always in `except`, and always first.
    */
   | { kind: 'absentFrom'; place: Id; ticks: Tick[]; except: Id[] }
   /**

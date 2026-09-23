@@ -108,7 +108,7 @@ Role `testimony` is a testimony or account clue off the par route. Par-route clu
 | `personAtAnchor` | there when the anchor happened | a margin row under the anchor until an `anchorAt` for it is held, then the cell | `Hanrahan: the third floor, when the El going over happened. Kreuzer saw her.` |
 | `anchorAt` | the anchor's ticks | resolves margin rows | `The El going over: 6:30, 7:30, 8:30.` |
 | `describedAt` | one of `matches` was there | an unlinked entry on the place's column at that tick, "somebody who fits …", until the player links it | `Somebody who fits "a woman in her thirties": the third floor, 10:00. Kreuzer saw her; did not know her.` |
-| `absentFrom` | nobody but `except` was there | a strike on that place for everybody else, for the span | `The third floor, 9:00–11:00: nobody but Marchetti.` |
+| `absentFrom` | nobody but `except` was there (`except[0]` is the watcher) | a strike on that place for everybody else, for the span | `The third floor, 9:00–11:00: nobody but Marchetti besides the one who works there.` |
 | `countAt` | exactly `count` suspects there | a count on the place at the tick | `The speakeasy, 10:00: 2 people besides the one who works there.` |
 | `together` | same room at the ticks | a link between two rows | `Schilling with Grasso, 9:30–10:30.` |
 | `apart` | never the same room | a link between two rows | `Coffin and Mulcahy: never in the same place, all evening.` |
@@ -192,7 +192,9 @@ The client-to-scene lead is the one lead that can name nobody (a room is not a p
 
 ## 9. The client
 
-Tiered cases only. Below Hard-boiled the client points at an innocent: one with a motive where there is one, never the culprit. From Hard-boiled on, the client points uniformly at anybody but themselves, which is at chance or below. When the client is the culprit, the frame still points at an innocent.
+Tiered cases only. Below Hard-boiled the client points at an innocent: one with a motive where there is one, never the culprit. From Hard-boiled on, the client points at anybody but themselves. When the client is the culprit, the frame still points at an innocent.
+
+Two things are decided once per seed, before any attempt, from the trope's stream: whether the client is the culprit (a quarter of the time, where the shape allows it), and whether an innocent client's pointer lands on the culprit (one in however many others there are). Decided per attempt, turned-down attempts tilted both. A client who is the culprit is one fewer innocent to clear, and a pointer at the culprit makes a cheaper route, so the easier deal won more often than it should. Measured over 200 seeds a level at Hard-boiled, the client is the culprit 25–29% of the time, and the pointer lands on the culprit 8–16% of the time (1/6 is 17%).
 
 ## 10. The dials
 

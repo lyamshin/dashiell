@@ -554,6 +554,13 @@ function runLogic(
   });
   const caseType = trope.type;
   const reject = diagnostics ? (reason: string) => diagnostics.rejections.push(reason) : undefined;
+  // Whether the client did it is the seed's, not the attempt's: a client who
+  // is the culprit is one fewer innocent to clear, and deciding it per
+  // attempt let the easier deal win it more often than a quarter of the time.
+  const clientIsKiller = shape.clientMayBeCulprit ? tropeRng.chance(0.25) : undefined;
+  // The same for where an innocent client points: at the culprit at chance,
+  // one in however many others there are to point at.
+  const pointerOnKiller = shape.clientMayBeCulprit ? tropeRng.chance(1 / Math.max(1, shape.suspects - 1)) : undefined;
 
   for (let outer = 0; outer < OUTER_ATTEMPTS; outer++) {
     const setting = buildSetting(rng, caseType, trope.id, shape);
@@ -561,7 +568,7 @@ function runLogic(
       reject?.('the place deck would not deal a legal hand');
       continue;
     }
-    const cast = buildCast(rng, setting, dials);
+    const cast = buildCast(rng, setting, dials, clientIsKiller);
     if (!cast) {
       reject?.('no cast fits the victim and the rooms');
       continue;
@@ -724,7 +731,7 @@ function runLogic(
         act,
         dossier: cast.dossiers[cast.victim.id] as NonNullable<Person['dossier']>,
       });
-      const clientBrief = buildClientBrief({ rng, cast, setting, build, act, dials });
+      const clientBrief = buildClientBrief({ rng, cast, setting, build, act, dials, ...(pointerOnKiller !== undefined ? { pointerOnKiller } : {}) });
       const briefing = buildBriefing({ cast, act, bio: victimBio, brief: clientBrief });
 
       const legacy = deriveCandidates({
