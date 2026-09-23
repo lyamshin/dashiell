@@ -674,7 +674,10 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
             ...(t.single ? { hedge: true } : {}),
           });
         }
-        push({ text: `${noting}${lines.join(' ')}`, voice: 'thought', beats: run, ...(noting ? { noted: true } : {}) });
+        // "I wrote it down. I wrote it down as Mulcahy told it." is the same act twice.
+        const body = lines.join(' ');
+        const prefix = noting && !/\b(?:wrote|written|in the notebook|on paper|got it down)\b/i.test(body) ? noting : '';
+        push({ text: `${prefix}${body}`, voice: 'thought', beats: run, ...(prefix ? { noted: true } : {}) });
         i = run[run.length - 1] as number;
         break;
       }
@@ -1913,6 +1916,8 @@ function tellingParas(
     they: sp ? 'she' : 'he',
     them: sp ? 'her' : 'him',
     their: sp ? 'her' : 'his',
+    // The one the family is about, where it is about somebody.
+    ...(pro ? { he: pro.he, him: pro.him, his: pro.his } : {}),
   };
   const f = (c: Card, tag: string, want: string): boolean => tagIs('telling', c, tag, want);
   const frame = deal(

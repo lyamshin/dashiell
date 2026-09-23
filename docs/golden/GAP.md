@@ -172,3 +172,56 @@ and 3 (0.282 against 0.36): those pages are night pages now, which the night
 golden itself writes at 0.0–0.2 short, and they are held to the night targets
 above. The office page, which is all the day targets were ever about, has not
 moved.
+
+## Question pages held to the testimony golden (M10 §A)
+
+`python3 scripts/golden-loop.py --night` now holds question pages to the
+testimony golden (`seed3-testimony.md`, pages 5 to 7) instead of the night
+golden's page 5. `--tier N` renders the tiered case at Precinct, so the logic
+game's question pages can be read the same way; the untiered run is unchanged.
+
+### The testimony golden, measured one page at a time
+
+`style-metrics.py` over each page's quoted prose, the italic errand line
+included.
+
+| metric | p5 key and stranger | p6 Vitale | p7 the door |
+|---|---|---|---|
+| words | 196 | 96 | 134 |
+| orphan word ratio | 0.76 | 0.86 | 0.89 |
+| paragraph cohesion | 0.78 | 0.25 | 0.25 |
+| sentence cohesion | 0.56 | 0.57 | 0.53 |
+| short sentences (≤6 words) | 0.538 | 0.533 | 0.438 |
+| long sentences (>25 words) | 0.000 | 0.000 | 0.000 |
+| dialogue share | 0.42 | 0.47 | 0.44 |
+| figures | 0 | 0 | 1 |
+| words per paragraph | 19.6 | 19.2 | 26.8 |
+
+### The question's targets
+
+Three golden pages, so the several-page rule: a floor is their mean, a
+ceiling their larger value (long sentences never under the day's 0.06),
+orphan the ceiling plus 0.05, a band spans them widened by a tenth of
+dialogue or five words a paragraph. Words span the golden's own 96–196,
+widened to §8's ceiling of 280.
+
+| metric | ask |
+|---|---|
+| orphan word ratio | ≤ 0.94 |
+| paragraph cohesion | ≥ 0.43 |
+| sentence cohesion | ≥ 0.55 |
+| short sentences | ≥ 0.50 |
+| long sentences | ≤ 0.06 |
+| dialogue share | 0.32–0.57 |
+| figures per page | ≤ 0.5 |
+| plain ratio | ≥ 0.60 |
+| words per paragraph | 14.2–31.8 |
+| words | 90–280 |
+
+**Read the dialogue share with care.** `style-metrics.py` counts a sentence
+as dialogue only when it carries an opening quotation mark, so a witness's
+answer of four sentences in one pair of quotation marks counts once. The
+printout M10 replaced — one fact, one quoted line, one question, over and
+over — scored well on it for exactly the reason the golden rejects it. Where
+the engine stands, before and after M10 Part A, is in
+`docs/23-m10-a-notes.md`.
