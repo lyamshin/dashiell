@@ -218,7 +218,10 @@ describe('§8 repeats are free', () => {
         const { states, commands } = oracleStates(view);
         for (const [i, command] of commands.entries()) {
           if (!command.startsWith('ask ') && !command.startsWith('examine ')) continue;
-          const after = states[i + 1] as RunState;
+          // M10 §A.3: the answer is whole once every "Go on" it offered is taken.
+          let j = i + 1;
+          while (commands[j] === 'go on') j++;
+          const after = states[j] as RunState;
           const again = stepInput(after, command, view);
           repeats++;
           expect(again.page.cost, `seed ${seed}: ${command}`).toBe(0);

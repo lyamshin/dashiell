@@ -763,22 +763,31 @@ export function planPage(input: PlanInput): Plan {
    */
   const said = new Set<string>();
   const familyThoughts = (clues: Clue[], kind?: Family['kind']): Thought[] => {
-    const fresh = thoughtsFor({ ...thoughtInput, newClues: clues }, 3).filter((t) => {
-      const key = `${t.cls}|${t.basis ?? ''}|${t.subjectId ?? ''}|${t.sourceId ?? ''}|${t.placeId ?? ''}`;
-      return !said.has(key);
-    });
+    const keyOf = (t: Thought): string => `${t.cls}|${t.basis ?? ''}|${t.subjectId ?? ''}|${t.sourceId ?? ''}|${t.placeId ?? ''}`;
+    // In the order the page writes them (golden page 5: what the placement
+    // means for the one placed, then what it says about the one who saw it).
+    const fresh = thoughtsFor({ ...thoughtInput, newClues: clues }, 3).filter((t) => !said.has(keyOf(t)));
     // A person's comings and goings are about where they were: a placement's
     // thought before the access a placement near the means happens to give.
-    const aside = (t: Thought): number =>
-      t.cls === 'unmentioned' ? 9 : kind === 'movements' && t.cls === 'implicates' && t.basis === 'access' ? 1 : 0;
-    const primary = fresh.filter((t) => t.cls !== 'unmentioned').sort((a, b) => aside(a) - aside(b) || thoughtPriority(a.cls) - thoughtPriority(b.cls))[0];
-    if (!primary) return [];
-    const kept = [
-      primary,
-      ...fresh.filter((t) => t.cls === 'unmentioned' && primary.cls === 'observer-placed' && t.sourceId === primary.sourceId),
-    ];
-    for (const t of kept) said.add(`${t.cls}|${t.basis ?? ''}|${t.subjectId ?? ''}|${t.sourceId ?? ''}|${t.placeId ?? ''}`);
-    return kept;
+    const aside = (t: Thought): number => (kind === 'movements' && t.cls === 'implicates' && t.basis === 'access' ? 1 : 0);
+    const primaries = fresh
+      .filter((t) => t.cls !== 'unmentioned')
+      .sort((a, b) => aside(a) - aside(b) || thoughtPriority(a.cls) - thoughtPriority(b.cls));
+    // One thought a family, and a second only when it is the other half of
+    // the same find — the observer an observation places.
+    const kept: Thought[] = [];
+    for (const t of primaries) {
+      if (kept.length === 0) kept.push(t);
+      else if (t.cls === 'observer-placed' || (kept[0]?.cls === 'observer-placed' && (t.cls === 'clears' || t.cls === 'implicates'))) {
+        kept.push(t);
+        break;
+      }
+    }
+    for (const t of fresh) {
+      if (t.cls === 'unmentioned' && kept.some((k) => k.cls === 'observer-placed' && k.sourceId === t.sourceId)) kept.push(t);
+    }
+    for (const t of kept) said.add(keyOf(t));
+    return fresh.filter((t) => kept.includes(t));
   };
   const addThoughts = (thoughts: Thought[]): void => {
     for (const thought of thoughts) {

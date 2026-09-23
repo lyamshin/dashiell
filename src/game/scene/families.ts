@@ -116,7 +116,7 @@ export function familyOf(_view: CaseView, clue: Clue): Omit<Family, 'clueIds'> {
     // Not knowing somebody is said where their comings and goings would be.
     return { kind: 'knowing', key: `movements:${subjectId}`, subjectId };
   }
-  if (clue.kind === 'testimony' && subjectId && facts.length === 0) {
+  if (clue.kind === 'testimony' && subjectId) {
     return { kind: 'movements', key: `movements:${subjectId}`, subjectId };
   }
   return {

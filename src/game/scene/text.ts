@@ -440,7 +440,20 @@ function nameRe(surname: string): RegExp {
 
 /** Does this sentence, or the one either side of it, carry the clause? */
 function carries(n: Nameable, sentences: string[], i: number): boolean {
-  const here = `${sentences[i - 1] ?? ''} ${sentences[i] ?? ''} ${sentences[i + 1] ?? ''}`.toLowerCase();
+  // M10: a name said inside somebody's speech is explained after the speech
+  // closes, however long the telling ran — so the sentence after the closing
+  // quotation mark counts as next to it.
+  let balance = 0;
+  let after = '';
+  for (let k = 0; k < sentences.length; k++) {
+    const s = sentences[k] as string;
+    balance += (s.match(/“/g)?.length ?? 0) - (s.match(/”/g)?.length ?? 0);
+    if (k >= i && balance <= 0) {
+      after = sentences[k + 1] ?? '';
+      break;
+    }
+  }
+  const here = `${sentences[i - 1] ?? ''} ${sentences[i] ?? ''} ${sentences[i + 1] ?? ''} ${after}`.toLowerCase();
   if (n.clause.length > 0 && here.includes(n.clause.toLowerCase())) return true;
   // First sight: what the detective can see of them, in their own sentence.
   if (SIGHT.test(sentences[i] ?? '')) return true;

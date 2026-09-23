@@ -119,8 +119,11 @@ const SHAPES: Record<string, RegExp> = {
   arrive: /^(clock )?errand establish presence( find)*( thought)*( decide)?( bridge)?( answer)?$/,
   return: /^(clock )?errand return presence( thought)*( answer)?$/,
   look: /^(establish|return) presence( thought)*$/,
-  search: /^(clock )?errand act( find)*( thought)+( decide)?( bridge)?$/,
-  ask: /^(clock )?(errand )?exchange( find)*( thought)+( decide)?( bridge)?$/,
+  // M10 §A.5: several finds are several moments, each find and then its thought.
+  search: /^(clock )?errand act(( find)+( thought)*)*( thought)*( decide)?( bridge)?$/,
+  // M10 §A.1–§A.2: the question, then a family at a time — told, found,
+  // thought on, and what it is worth.
+  ask: /^(clock )?(errand )?exchange(( find)*( thought)+|( telling( find)+( thought)*( note)?)+( thought)*)( decide)?( bridge)?$/,
 };
 
 /* ------------------------------------------------------------------ *
@@ -613,6 +616,7 @@ describe('M8 §7 and §10: the text rules', () => {
     }
     // eslint-disable-next-line no-console
     console.log(`beat coverage: ${covered} of ${pages} night pages, ${written} of ${required} required beats written`);
+    if (issues.length > 0) console.log(issues.slice(0, 10).join("\n"));
     expect(issues.slice(0, 10)).toEqual([]);
     expect(covered).toBe(pages);
     expect(written).toBe(required);
@@ -694,7 +698,8 @@ describe('M8: the golden route, seed 3', () => {
     expect(p.found).toEqual(['c015']);
     expect(tags(p, 'thought')).toEqual(['clears', 'observer-placed', 'unmentioned']);
     const text = p.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join(' ');
-    expect(text).toContain('Sweeney had a secretary. Hanrahan.');
+    // M10 §A.1: after a line whose subject is the witness, the question says who asks.
+    expect(text).toMatch(/Sweeney had a secretary(?:,” I said\. “|\. )Hanrahan\./);
   });
 });
 

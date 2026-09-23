@@ -1618,7 +1618,7 @@ export function sameRelation(a: string, b: string, view: Stage['view']): boolean
  * the attribution after its first sentence it cannot.
  */
 export function attributed(question: string): string {
-  const m = /^“(.*)”$/.exec(question.trim());
+  const m = /^[“"](.*)[”"]$/.exec(question.trim());
   if (!m) return question;
   const inner = (m[1] as string).trim();
   const split = /^(.+?[.?!])\s+(.+)$/.exec(inner);
@@ -1703,7 +1703,10 @@ function tellingParas(
   const personIds = [speaker.id, ...(subject ? [subject.id] : [])];
 
   /* the question, for every family after the first */
-  if (!beat.first) {
+  if (beat.first && beat.volunteered) {
+    // Nobody asked: the answer the question wanted came first, and this is more.
+    paras.push({ text: `I had what I came for. ${speaker.surname} was not finished.`, voice: 'narrator' });
+  } else if (!beat.first) {
     const q = familyQuestion(stage, family, 'later', gaps);
     parts.question = q;
     paras.push({ text: q, voice: 'exchange' });
@@ -1721,12 +1724,19 @@ function tellingParas(
       // In a logic game the place a witness names is the place in the notebook.
       const local = (l: string): string => (view.kase.logic ? l : localPlaces(view, l));
       if (spoken.mode === 'utterance') first.push(...lines.map((l) => endStop(capitalize(local(spokenSpans(l))))));
-      else if (spoken.mode === 'quote') first.push(...lines.flatMap((l) => saidPlainly(local(l))));
+      else if (spoken.mode === 'quote' || (spoken.mode === 'record' && view.kase.logic)) {
+        // The record in the witness's own words, never the record itself.
+        first.push(...lines.flatMap((l) => saidPlainly(local(l), speaker, view)));
+      }
       else {
         // A record the witness has no words for is the detective's to say.
         spokenAloud = false;
         first.push(...lines.map((l) => capitalize(endStop(pastTense(l)))));
       }
+      // Golden page 5: an observation is something the witness saw, and says so.
+      const seen =
+        spokenAloud && (register === 'truth' || register === 'evasion') ? sawLine(view, clue, speaker, spoken.text) : null;
+      if (seen) first.push(seen);
     }
     const ticks: Tick[] = [];
     for (const c of clues) for (const f of c.establishes) {

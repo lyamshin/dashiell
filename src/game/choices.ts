@@ -21,6 +21,7 @@ import { parse } from './parser.js';
 import { answersTo, askedBefore, pendingFor, priceOf } from './reducer.js';
 import type { Command, OfferedChoice, OfferedGroup, RunState } from './types.js';
 import { buildNotebook, type Notebook } from './notebook.js';
+import { paceClues } from './scene/families.js';
 import { possessiveOf, pronounOf } from './voice/cast.js';
 import {
   accountClueOf,
@@ -185,17 +186,28 @@ export function tiedTo(
 
 /** What a command would fetch, if it were run now. Nothing for a repeat. */
 function gainsOf(view: CaseView, state: RunState, command: Command): Id[] {
+  // M10 §A.3: what a page would tell now — three families at most — and not
+  // what the next "Go on" would.
+  const now = (clues: Clue[]): Id[] => paceClues(view, clues).now.map((c) => c.id);
+  const reason = priceOf(command, state, view).reason;
+  if (reason === 'continue') {
+    const going = pendingFor(view, state, command);
+    if (!going) return [];
+    const have = new Set(state.found);
+    return now(
+      going.item.clueIds
+        .map((id) => view.findableById.get(id))
+        .filter((c): c is Clue => c !== undefined && !have.has(c.id)),
+    );
+  }
   if (command.kind === 'examine') {
-    if (priceOf(command, state, view).reason === 'search-again') return [];
-    return (view.placeClues.get(state.at) ?? [])
-      .filter((c) => !state.found.includes(c.id))
-      .map((c) => c.id);
+    if (reason === 'search-again') return [];
+    return now((view.placeClues.get(state.at) ?? []).filter((c) => !state.found.includes(c.id)));
   }
   if (command.kind === 'ask') {
-    const reason = priceOf(command, state, view).reason;
     if (reason === 'ask-again' || reason === 'nobody' || reason === 'self-told') return [];
     if ((command.topic.kind === 'evening' && !view.kase.logic) || command.topic.kind === 'self') return [];
-    return answersTo(view, command.personId, command.topic, state.found).map((c) => c.id);
+    return now(answersTo(view, command.personId, command.topic, state.found));
   }
   return [];
 }
@@ -318,7 +330,7 @@ export function choicesFor(view: CaseView, state: RunState): ChoiceGroup[] {
   // M10 §A.3: a page that stopped at three families ends on "Go on", free.
   const going = pendingFor(view, state, { kind: 'continue' });
   if (going) {
-    const lead = going.item.clueIds.some((id) => targets.has(id));
+    const lead = gainsOf(view, state, { kind: 'continue' }).some((id) => targets.has(id));
     groups.push({
       kind: 'continue',
       heading: '',

@@ -3357,5 +3357,65 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "tht-q001",
+    "deck": "thought",
+    "text": "It didn’t point anywhere yet. It was one more thing I knew about {victim}’s night.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-q002",
+    "deck": "thought",
+    "text": "On its own it settled nothing about {victim}. I kept it for when something else would.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-q003",
+    "deck": "thought",
+    "text": "It was a small piece of {victim}’s evening, and small pieces add up or they don’t.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-q004",
+    "deck": "thought",
+    "text": "It was worth having, even if I couldn’t say yet what it was worth to {victim}.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-q005",
+    "deck": "thought",
+    "text": "Nothing in it pointed at anybody for {victim}. Not yet.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-q006",
+    "deck": "thought",
+    "text": "It went with the rest of what I had on {victim}, to be read again later.",
+    "tags": {
+      "class": "context"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]

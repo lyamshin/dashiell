@@ -380,15 +380,70 @@ function evening(view: CaseView, clues: Clue[], speaker: Person, at: Id): Told {
   return { first, second: [], ticks, people };
 }
 
+/** Speech contracts where a record does not. */
+const CONTRACTIONS: [RegExp, string][] = [
+  [/\bhas not\b/g, 'hasn’t'],
+  [/\bhave not\b/g, 'haven’t'],
+  [/\bhad not\b/g, 'hadn’t'],
+  [/\bwas not\b/g, 'wasn’t'],
+  [/\bwere not\b/g, 'weren’t'],
+  [/\bis not\b/g, 'isn’t'],
+  [/\bdid not\b/g, 'didn’t'],
+  [/\bdoes not\b/g, 'doesn’t'],
+  [/\bdo not\b/g, 'don’t'],
+  [/\bwould not\b/g, 'wouldn’t'],
+  [/\bcould not\b/g, 'couldn’t'],
+  [/\bcannot\b/g, 'can’t'],
+  [/\bwill not\b/g, 'won’t'],
+  [/\bit is\b/g, 'it’s'],
+  [/\bthat is\b/g, 'that’s'],
+  [/\bthere is\b/g, 'there’s'],
+  [/\b([A-Z][a-z]+) has been\b/g, '$1’s been'],
+  [/\b(he|she|it) has\b/g, '$1’s'],
+];
+
 /**
- * One of the old clue kinds with no structured telling: its record, said the
- * way a person says it. The attribution goes ("Rafferty says"), each clause of
- * the sentence becomes a sentence of its own, and the hours are spoken.
+ * One of the old clue kinds with no structured telling, said the way the
+ * witness says it rather than the way the record has it: the attribution
+ * goes ("Rafferty says", "Prentiss on Renfro:"); the witness is "I" and "me";
+ * what somebody told somebody else is what the witness heard ("I heard
+ * Bidwell tell Winslow…"); the words contract the way speech does; and each
+ * clause of the record's long sentence becomes a sentence of its own, with
+ * the hours spoken.
  */
-export function saidPlainly(text: string): string[] {
-  const spoken = spokenSpans(text.trim()).replace(/\.$/, '');
-  const clauses = spoken
-    .split(/,\s+and\s+(?=(?:it|he|she|they|there|nobody|somebody|the|a|an|[A-Z][a-z]+)\b)|;\s+|,\s+(?=(?:it|he|she|they|there)\s)/)
+export function saidPlainly(text: string, speaker?: Person, view?: CaseView): string[] {
+  let said = spokenSpans(text.trim()).replace(/\.$/, '');
+  if (speaker) {
+    const me = speaker.surname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    said = said
+      .replace(new RegExp(`^${me}\\s+(?:says|said)\\s+(?:that\\s+)?`, 'i'), '')
+      .replace(new RegExp(`^${me}\\s+on\\s+[^:]{1,60}:\\s+`, 'i'), '')
+      .replace(new RegExp(`^${me}\\b`), 'I')
+      .replace(new RegExp(`\\b${me}[’']s\\b`, 'g'), 'my')
+      .replace(new RegExp(`\\b${me}\\b`, 'g'), 'me');
+  }
+  // What somebody said to somebody else, as the witness heard it.
+  said = said
+    .replace(/^([A-Z][a-z]+) told me (?:that )?/, '$1 told me ')
+    .replace(/^([A-Z][a-z]+) told ([A-Z][a-z]+) (?:that )?/, 'I heard $1 tell $2 ')
+    .replace(/^([A-Z][a-z]+) said to ([A-Z][a-z]+) that /, 'I heard $1 say to $2 that ')
+    .replace(/^([A-Z][a-z]+) said (?!to\b)/, 'I heard $1 say ');
+  // "never Marchetti’s to sell": the second time a name is a possessive, it is theirs.
+  for (const p of view?.kase.people ?? []) {
+    const name = p.surname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const first = said.search(new RegExp(`\\b${name}\\b`));
+    if (first < 0) continue;
+    const head = said.slice(0, first + p.surname.length);
+    const rest = said
+      .slice(first + p.surname.length)
+      .replace(new RegExp(`\\b${name}[’']s to\\b`, 'g'), `${pronounOf(p) === 'she' ? 'hers' : 'his'} to`);
+    said = head + rest;
+  }
+  for (const [re, to] of CONTRACTIONS) said = said.replace(re, to);
+  const clauses = said
+    .replace(/ and heard /, '. I heard ')
+    .replace(/, (just as|just after|just before|as|while|when) (?=[a-z])/, '. That was $1 ')
+    .split(/,\s+and\s+(?=(?:it|he|she|they|there|nobody|somebody|the|a|an|I|[A-Z][a-z]+)\b)|;\s+|,\s+(?=(?:it|he|she|they|there)\s)|\.\s+/)
     .map((c) => c.trim())
     .filter((c) => c.length > 0);
   return clauses.map((c) => `${cap(c)}.`);

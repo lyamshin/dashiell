@@ -14,7 +14,7 @@ import type { Fact, Person } from '../../src/gen/types.js';
 import { buildView, establishedFrom, segmentNouns } from '../../src/game/derive.js';
 import { buildNotebook } from '../../src/game/notebook.js';
 import { playOracle, playWandering } from '../../src/game/oracle.js';
-import { newRun, stepInput, topicSlots } from '../../src/game/reducer.js';
+import { continuationOf, newRun, stepInput, topicSlots } from '../../src/game/reducer.js';
 import { wordsOnPage } from '../../src/game/transcript.js';
 import { COLOUR_LINES } from '../../src/game/voice-data.js';
 import { nameables, pageFact } from '../../src/game/scene/index.js';
@@ -72,17 +72,24 @@ const CARD_BY_ID = new Map<string, Card>(ALL_CARDS.map((c) => [c.id, c]));
 function exhaust(seed: number, difficulty: Difficulty): RunState {
   const v = buildView(generateCase(seed, { difficulty }));
   let state = newRun(v, { detectiveName: 'Dashiell' });
+  // M10 §A.3: somebody exhausting a room takes every "Go on" it offers.
+  const take = (command: string): void => {
+    state = stepInput(state, command, v).state;
+    for (let more = continuationOf(v, state); more !== null; more = continuationOf(v, state)) {
+      state = stepInput(state, more, v).state;
+    }
+  };
   for (const place of v.kase.places) {
-    state = stepInput(state, `go ${place.shortName}`, v).state;
-    state = stepInput(state, 'look', v).state;
-    state = stepInput(state, 'examine', v).state;
+    take(`go ${place.shortName}`);
+    take('look');
+    take('examine');
     for (const person of v.peopleAt.get(place.id) ?? []) {
       const surname = v.personById.get(person)?.surname;
-      state = stepInput(state, `ask ${surname} about that evening`, v).state;
+      take(`ask ${surname} about that evening`);
       for (const topic of v.exactBuckets.get(person)?.keys() ?? []) {
-        state = stepInput(state, `ask ${surname} about ${topic}`, v).state;
+        take(`ask ${surname} about ${topic}`);
       }
-      state = stepInput(state, `ask ${surname} about the price of tin`, v).state;
+      take(`ask ${surname} about the price of tin`);
     }
   }
   return state;
@@ -1568,7 +1575,7 @@ describe('two facts in one clue', () => {
     expect(spoken.text).not.toContain(spoken.rest[0] as string);
   });
 
-  it('puts one of Dashiell’s follow-ups between the two answers', () => {
+  it('tells both facts in one answer: one question, one telling (M10 §A.1)', () => {
     let seen = 0;
     for (const seed of [1, 2, 7, 11, 19, 23]) {
       const v = buildView(generateCase(seed, { difficulty: 2 }));
@@ -1577,19 +1584,16 @@ describe('two facts in one clue', () => {
           const clue = v.findableById.get(id);
           return clue !== undefined && beatsOf(v, clue).length > 1;
         });
-        if (twoFact.length === 0) continue;
+        if (twoFact.length === 0 || page.shape !== 'ask') continue;
         for (const id of twoFact) {
           const carrying = page.blocks.filter(
             (b) => b.kind === 'prose' && b.clueId === id && b.voice !== 'find',
           );
-          if (carrying.length < 2) continue;
+          if (carrying.length === 0) continue;
           seen++;
-          // Between the two answers there is a line of Dashiell's, and it is
-          // one of the follow-ups rather than more of the same speech.
-          const first = page.blocks.indexOf(carrying[0] as never);
-          const second = page.blocks.indexOf(carrying[1] as never);
-          const between = page.blocks.slice(first + 1, second);
-          expect(between.length, `${id} glued two answers together`).toBeGreaterThan(0);
+          // The golden's rule 1: facts of one kind arrive together in a single
+          // answer, never one question per fact.
+          expect(carrying.length, `${id} was asked for twice`).toBe(1);
         }
       }
     }
