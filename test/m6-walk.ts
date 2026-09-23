@@ -11,7 +11,7 @@ import { minutesAfter } from '../src/game/clock.js';
 import { buildView, gameBudget, peopleHereNow, type CaseView } from '../src/game/derive.js';
 import { playOracle } from '../src/game/oracle.js';
 import { parse } from '../src/game/parser.js';
-import { costOf, newRun, stepInput } from '../src/game/reducer.js';
+import { continuationOf, costOf, newRun, stepInput } from '../src/game/reducer.js';
 import type { RunState } from '../src/game/types.js';
 
 export const SEEDS = 40;
@@ -48,7 +48,17 @@ export function walkChoices(difficulty: Difficulty): { problems: string[]; check
             problems.push(`${where}: does not parse (${parsed.problem.message})`);
             continue;
           }
-          const result = stepInput(s, c.command, view);
+          const first = stepInput(s, c.command, view);
+          // M10 §A.3: an answer told over two pages is one answer; "Go on" is free.
+          let after = first.state;
+          const found = [...first.page.found];
+          for (let more = continuationOf(view, after); more !== null; more = continuationOf(view, after)) {
+            const next = stepInput(after, more, view);
+            if (next.page.found.length === 0) break;
+            after = next.state;
+            found.push(...next.page.found);
+          }
+          const result = { state: after, page: { ...first.page, found } };
           // Accepted: no refusal page, and a question put to somebody
           // who is actually standing here.
           if (parsed.command.kind === 'ask' && !here.includes(parsed.command.personId)) {

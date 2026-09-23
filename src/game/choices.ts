@@ -21,7 +21,6 @@ import { parse } from './parser.js';
 import { answersTo, askedBefore, pendingFor, priceOf } from './reducer.js';
 import type { Command, OfferedChoice, OfferedGroup, RunState } from './types.js';
 import { buildNotebook, type Notebook } from './notebook.js';
-import { paceClues } from './scene/families.js';
 import { possessiveOf, pronounOf } from './voice/cast.js';
 import {
   accountClueOf,
@@ -186,9 +185,9 @@ export function tiedTo(
 
 /** What a command would fetch, if it were run now. Nothing for a repeat. */
 function gainsOf(view: CaseView, state: RunState, command: Command): Id[] {
-  // M10 §A.3: what a page would tell now — three families at most — and not
-  // what the next "Go on" would.
-  const now = (clues: Clue[]): Id[] => paceClues(view, clues).now.map((c) => c.id);
+  // M10 §A.3: the whole answer, "Go on" and all — a question whose lead is
+  // in its second page is still the question that takes the lead.
+  const now = (clues: Clue[]): Id[] => clues.map((c) => c.id);
   const reason = priceOf(command, state, view).reason;
   if (reason === 'continue') {
     const going = pendingFor(view, state, command);
