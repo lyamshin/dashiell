@@ -56,6 +56,8 @@ export interface CarryPlan {
   /** The lead's target, when a lead did. */
   targetId?: Id;
   slots: { who?: string; subject?: string; name?: string };
+  /** M10 §A.3: "Go on" — the same search, a page on. */
+  continued?: boolean;
 }
 
 export interface PresencePerson {
@@ -93,7 +95,7 @@ export type Beat =
     }
   | { kind: 'return'; required: true; placeId: Id; placeKind: 'public' | 'semi' | 'private' | 'scene' }
   | { kind: 'presence'; required: true; scene?: SceneMark; people: PresencePerson[] }
-  | { kind: 'act'; required: true; objectId?: Id; left: Id[] }
+  | { kind: 'act'; required: true; objectId?: Id; left: Id[]; continued?: boolean }
   | { kind: 'find'; required: true; clueId: Id }
   | {
       kind: 'exchange';
@@ -955,10 +957,17 @@ export function planPage(input: PlanInput): Plan {
   if (action.kind === 'examine') {
     if (clock) beats.push(clock);
     const carry = carryForSearch(input, action.objectId);
-    beats.push({ kind: 'errand', required: true, form: 'carry', carry });
+    beats.push({ kind: 'errand', required: true, form: 'carry', carry: action.continued ? { ...carry, continued: true } : carry });
     const place = view.placeById.get(input.at);
-    const left = (place?.objects ?? []).filter((id) => id !== action.objectId).slice(0, 2);
-    beats.push({ kind: 'act', required: true, ...(action.objectId ? { objectId: action.objectId } : {}), left });
+    // The things left alone were named on the page before; a search going on is not a new one.
+    const left = action.continued ? [] : (place?.objects ?? []).filter((id) => id !== action.objectId).slice(0, 2);
+    beats.push({
+      kind: 'act',
+      required: true,
+      ...(action.objectId ? { objectId: action.objectId } : {}),
+      left,
+      ...(action.continued ? { continued: true } : {}),
+    });
     if (action.clues.length <= 1) {
       for (const clue of action.clues) beats.push({ kind: 'find', required: true, clueId: clue.id });
       // Night Hone 1 §1: the room's own texture, after the finds.

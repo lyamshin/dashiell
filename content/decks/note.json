@@ -26,7 +26,7 @@
   {
     "id": "not-003",
     "deck": "note",
-    "text": "A place and an hour is worth something. It is worth more with a second one beside it.",
+    "text": "A place and an hour was worth something. It would be worth more with a second one beside it.",
     "tags": {
       "family": "movements",
       "band": "play",
@@ -419,7 +419,7 @@
   {
     "id": "not-038",
     "deck": "note",
-    "text": "It was a reason or a way. It wasn’t yet a night.",
+    "text": "It told me something about {him}. It didn’t tell me where {he} was.",
     "tags": {
       "family": "thing",
       "band": "play"

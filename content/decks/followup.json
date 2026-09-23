@@ -158,7 +158,7 @@
   {
     "id": "fol-014",
     "deck": "followup",
-    "text": "“What time was that, exactly?”",
+    "text": "“What time was {anchor}, exactly?”",
     "tags": {
       "part": "open",
       "family": "timing",
@@ -170,7 +170,7 @@
   {
     "id": "fol-015",
     "deck": "followup",
-    "text": "“When was that?”",
+    "text": "“When was {anchor}?”",
     "tags": {
       "part": "open",
       "family": "timing",
@@ -182,11 +182,11 @@
   {
     "id": "fol-016",
     "deck": "followup",
-    "text": "“And when was that?”",
+    "text": "“Do you know when {anchor} was?”",
     "tags": {
       "part": "open",
       "family": "timing",
-      "order": "later"
+      "order": "first"
     },
     "motifs": [],
     "status": "generated"
@@ -194,7 +194,7 @@
   {
     "id": "fol-017",
     "deck": "followup",
-    "text": "“Do you know what time that was?”",
+    "text": "“And {anchor}? When was that?”",
     "tags": {
       "part": "open",
       "family": "timing",
@@ -206,11 +206,11 @@
   {
     "id": "fol-018",
     "deck": "followup",
-    "text": "“Who would know about that?”",
+    "text": "“Do you know what time {anchor} was?”",
     "tags": {
       "part": "open",
-      "family": "event",
-      "order": "first"
+      "family": "timing",
+      "order": "later"
     },
     "motifs": [],
     "status": "generated"
@@ -218,7 +218,7 @@
   {
     "id": "fol-019",
     "deck": "followup",
-    "text": "“What would anybody there have known?”",
+    "text": "“Who would know about {anchor}?”",
     "tags": {
       "part": "open",
       "family": "event",
@@ -230,7 +230,19 @@
   {
     "id": "fol-020",
     "deck": "followup",
-    "text": "“And who would know about that?”",
+    "text": "“What would anybody there have known about {anchor}?”",
+    "tags": {
+      "part": "open",
+      "family": "event",
+      "order": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-021",
+    "deck": "followup",
+    "text": "“And {anchor}? Who would know about that?”",
     "tags": {
       "part": "open",
       "family": "event",
@@ -240,7 +252,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-021",
+    "id": "fol-022",
     "deck": "followup",
     "text": "“And you? Where were you tonight?”",
     "tags": {
@@ -252,7 +264,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-022",
+    "id": "fol-023",
     "deck": "followup",
     "text": "“Where were you, start to finish?”",
     "tags": {
@@ -264,7 +276,43 @@
     "status": "generated"
   },
   {
-    "id": "fol-023",
+    "id": "fol-024",
+    "deck": "followup",
+    "text": "“Where were you tonight? Start at the beginning.”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-025",
+    "deck": "followup",
+    "text": "“Walk me through your evening.”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-026",
+    "deck": "followup",
+    "text": "“Tell me your evening, start to finish.”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "first"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "fol-027",
     "deck": "followup",
     "text": "“And {name}?”",
     "tags": {
@@ -275,7 +323,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-024",
+    "id": "fol-028",
     "deck": "followup",
     "text": "“What about {name}?”",
     "tags": {
@@ -286,7 +334,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-025",
+    "id": "fol-029",
     "deck": "followup",
     "text": "“Did you see {name} tonight?”",
     "tags": {
@@ -297,7 +345,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-026",
+    "id": "fol-030",
     "deck": "followup",
     "text": "“Do you know {name}?”",
     "tags": {
@@ -308,7 +356,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-027",
+    "id": "fol-031",
     "deck": "followup",
     "text": "“What about {name}? Do you know {him}?”",
     "tags": {
@@ -319,7 +367,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-028",
+    "id": "fol-032",
     "deck": "followup",
     "text": "“What else?”",
     "tags": {
@@ -331,7 +379,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-029",
+    "id": "fol-033",
     "deck": "followup",
     "text": "“Anything else I ought to know?”",
     "tags": {
@@ -343,7 +391,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-030",
+    "id": "fol-034",
     "deck": "followup",
     "text": "“What do you know about it?”",
     "tags": {
@@ -355,7 +403,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-031",
+    "id": "fol-035",
     "deck": "followup",
     "text": "“And the rest of the evening?”",
     "tags": {
@@ -367,7 +415,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-032",
+    "id": "fol-036",
     "deck": "followup",
     "text": "“The rest of the night?”",
     "tags": {
@@ -379,7 +427,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-033",
+    "id": "fol-037",
     "deck": "followup",
     "text": "“What about the rest of the evening?”",
     "tags": {
@@ -391,7 +439,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-034",
+    "id": "fol-038",
     "deck": "followup",
     "text": "“And the other hours?”",
     "tags": {
@@ -403,7 +451,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-035",
+    "id": "fol-039",
     "deck": "followup",
     "text": "“Any time you’d swear {he} wasn’t there?”",
     "tags": {
@@ -415,7 +463,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-036",
+    "id": "fol-040",
     "deck": "followup",
     "text": "“Was there a time you know {he} wasn’t around?”",
     "tags": {
@@ -427,7 +475,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-037",
+    "id": "fol-041",
     "deck": "followup",
     "text": "“Any time you’re sure {he} wasn’t there?”",
     "tags": {
@@ -439,7 +487,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-038",
+    "id": "fol-042",
     "deck": "followup",
     "text": "“You’re sure it was {name}?”",
     "tags": {
@@ -451,7 +499,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-039",
+    "id": "fol-043",
     "deck": "followup",
     "text": "“It was {name}? You’re sure?”",
     "tags": {
@@ -463,7 +511,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-040",
+    "id": "fol-044",
     "deck": "followup",
     "text": "“{name}. You’re certain of that?”",
     "tags": {
@@ -475,7 +523,7 @@
     "status": "generated"
   },
   {
-    "id": "fol-041",
+    "id": "fol-045",
     "deck": "followup",
     "text": "“How do you know it was {name}?”",
     "tags": {

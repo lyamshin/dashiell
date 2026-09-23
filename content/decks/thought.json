@@ -3053,7 +3053,7 @@
   {
     "id": "tht-m008",
     "deck": "thought",
-    "text": "{source} didn’t know the face. Whoever {other} turned out to be had been at {place} at {time}.",
+    "text": "{source} had no name for {other}. Whoever it turned out to be had been at {place} at {time}.",
     "tags": {
       "class": "touches",
       "basis": "described"

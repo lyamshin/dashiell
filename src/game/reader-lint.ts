@@ -114,7 +114,7 @@ export function recordSentences(clue: Clue, view: CaseView): string[] {
     // A sentence at a time, where the record has more than one. Short
     // stretches like "then the garage at half past seven" are how anybody
     // says an hour and a place, and are not the record's own sentence.
-    for (const sentence of stripped.split(/(?<=\.)\s+/)) {
+    for (const sentence of stripped.split(/(?<!\b(?:Mrs|Mr|Dr|St|Mt)\.)(?<=\.)\s+/)) {
       const n = norm(sentence);
       if (n.split(' ').length >= 8) out.add(n);
     }

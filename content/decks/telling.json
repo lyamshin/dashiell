@@ -435,7 +435,7 @@
   {
     "id": "tel-040",
     "deck": "telling",
-    "text": "{speaker} had noticed them, and was pleased to have noticed. “{told}”",
+    "text": "{speaker} had noticed, and was pleased to have noticed. “{told}”",
     "tags": {
       "family": "strangers",
       "temper": "yap"

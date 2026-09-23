@@ -21,7 +21,7 @@ import type { Beat, Plan, PresencePerson } from './plan.js';
 import type { Thought } from './thought.js';
 import { m9Answer, whenSaid } from './testimony.js';
 import { acquaintanceOf } from '../../gen/index.js';
-import { pronounsOf, saidPlainly, toldOf, type Told } from './telling.js';
+import { pronounsOf, putSaid, saidPlainly, toldOf, type Told } from './telling.js';
 import type { Family } from './families.js';
 import { verdictsOn } from '../m9.js';
 import { temperOf } from '../voice/cast.js';
@@ -244,6 +244,13 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
 
       /* ----------------------------------------------------- the reason */
       case 'errand': {
+        if (beat.form === 'carry' && beat.carry.continued) {
+          // M10 §A.3: the search goes on where the last page left it.
+          const text = `I wasn’t through with ${here} yet.`;
+          push({ text, voice: 'errand', beats: [i] });
+          mark(i, { tag: 'carry' });
+          break;
+        }
         if (beat.form === 'carry') {
           const c = beat.carry;
           const lead = c.lead ? 'yes' : 'no';
@@ -438,6 +445,12 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
 
       /* ---------------------------------------------------- the search */
       case 'act': {
+        if (beat.continued) {
+          const text = 'I went on from where I had left off.';
+          push({ text, voice: 'act', beats: [i] });
+          mark(i, { tag: 'search-room', text });
+          break;
+        }
         const object = beat.objectId ? view.objectById.get(beat.objectId)?.name : undefined;
         // Night Hone 1 §1: how he went through this place, in its own terms.
         const room = object
@@ -565,6 +578,17 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
           pro ? { ...pro } : {},
         );
         if (!drawn) break;
+        // The note says what the thought has not: a word it shares with the
+        // thought it follows is the same point made twice.
+        const words = (t: string): Set<string> =>
+          new Set(
+            t
+              .toLowerCase()
+              .split(/[^a-z]+/)
+              .filter((w) => w.length >= 3 && !NOTE_COMMON.has(w)),
+          );
+        const mine = words(drawn.text);
+        if (host && host.voice === 'thought' && [...words(host.text)].some((w) => mine.has(w))) break;
         if (host && host.voice === 'thought') {
           host.text = `${host.text} ${drawn.text}`;
           host.beats.push(i);
@@ -1396,11 +1420,13 @@ function exchange(
   const topicKind = scene.topicRef?.kind ?? 'exact';
   const byTopic =
     firstTelling !== undefined &&
-    ['counts', 'strangers', 'timing', 'event'].includes(firstTelling.family.kind) &&
-    topicKind !== 'person' &&
-    topicKind !== 'evening' &&
-    topicKind !== 'self' &&
-    topicKind !== 'hire';
+    ((['counts', 'strangers', 'timing', 'event'].includes(firstTelling.family.kind) &&
+      topicKind !== 'person' &&
+      topicKind !== 'evening' &&
+      topicKind !== 'self' &&
+      topicKind !== 'hire') ||
+      // Their own evening is asked for whole: "Where were you, start to finish?"
+      (firstTelling.family.kind === 'evening' && !beat.carried));
   if (beat.stops) {
     // §4: spoken to, they stop what they were doing — and the page says what
     // that was, when the activity is something they were in the middle of.
@@ -1445,6 +1471,8 @@ function exchange(
     const line = dashiellLine(dealer, scene.askKind as AskKind, familiar, slots);
     question = line?.text ?? `“${capitalize(scene.topicLabel)}?”`;
   }
+  // The page's own quotation marks, whatever the deck wrote.
+  question = question.replace(/^"(.*)"$/, '“$1”');
   // M10 §A.1: the question is clearly the detective's. After a line whose
   // subject is the witness, it says who is asking.
   const lead = opening[opening.length - 1];
@@ -1545,8 +1573,10 @@ function exchange(
       (f) => (f.kind === 'personAt' || f.kind === 'personNotAt') && f.personId === subject.id,
     );
   if (beat.carried && subject) {
-    // "Nora Hanrahan. She's been with him since 'eighteen."
-    const fact = first ? factAbout(first, true) : null;
+    // "Nora Hanrahan. She's been with him since 'eighteen." — from somebody who knows
+    // them; a face known by sight comes with no history.
+    const strength = view.kase.logic ? acquaintanceOf(view.kase, person.id, subject.id)?.strength : undefined;
+    const fact = first && strength !== 'sight' && strength !== 'stranger' ? factAbout(first, true) : null;
     // M9 page bug: when the dossier line the witness gives says the relation
     // the question carried ("Lindemann owed Dandridge money." / "He has owed
     // Dandridge money since '23"), the question asks by name and the witness
@@ -1636,13 +1666,17 @@ function nameReply(stage: Stage, speaker: Person, subject: Person): string {
   const edge = acquaintanceOf(stage.view.kase, speaker.id, subject.id);
   if (!edge || edge.strength === 'name') return `${subject.name}.`;
   if (edge.strength === 'relation') return `${capitalize(edge.ref)}.`;
-  return 'I know the face. I couldn’t give you the name.';
+  return 'I know who you mean. I know the face.';
 }
 
 /** The words of a deck-dealt question, quoted; a hand-written one when the deck has none. */
 function familyQuestion(stage: Stage, family: Family, order: 'first' | 'later', gaps: string[]): string {
   const subject = family.subjectId ? stage.view.personById.get(family.subjectId) : undefined;
-  const slots: Slots = { ...(subject ? { name: subject.surname, ...pronounsOf(subject) } : {}) };
+  const anchor = family.anchorId ? stage.view.anchorById.get(family.anchorId)?.name : undefined;
+  const slots: Slots = {
+    ...(subject ? { name: subject.surname, ...pronounsOf(subject) } : {}),
+    ...(anchor ? { anchor } : {}),
+  };
   const is = (c: Card, tag: string, want: string): boolean => tagIs('followup', c, tag, want);
   const drawn = deal(
     stage,
@@ -1658,8 +1692,8 @@ function familyQuestion(stage: Stage, family: Family, order: 'first' | 'later', 
   const fallback: Record<string, string> = {
     counts: '“Who came in tonight? All of it.”',
     strangers: '“And the ones you didn’t know?”',
-    timing: '“When was that?”',
-    event: '“What would anybody there know?”',
+    timing: anchor ? `“When was ${anchor}?”` : '“When was that?”',
+    event: anchor ? `“Who would know about ${anchor}?”` : '“What would anybody there know?”',
     evening: '“And you? Where were you?”',
     movements: subject ? `“And ${subject.surname}?”` : '“And the other one?”',
     knowing: subject ? `“And ${subject.surname}?”` : '“And the other one?”',
@@ -1667,6 +1701,14 @@ function familyQuestion(stage: Stage, family: Family, order: 'first' | 'later', 
   };
   return fallback[family.kind] ?? '“What else?”';
 }
+
+/** Words a note may share with its thought and still say something new. */
+const NOTE_COMMON = new Set([
+  'the', 'and', 'that', 'was', 'were', 'had', 'has', 'have', 'but', 'not', 'with', 'for', 'one', 'what', 'who',
+  'did', 'didn', 'wasn', 'isn', 'it’s', 'its', 'him', 'her', 'his', 'she', 'they', 'them', 'their', 'this', 'there',
+  'somebody', 'anybody', 'nobody', 'thing', 'more', 'than', 'yet', 'about', 'would', 'could', 'from', 'into', 'only',
+  'worth', 'something', 'tell', 'told', 'said', 'say', 'says', 'all', 'any', 'out', 'too', 'much', 'some', 'where',
+]);
 
 const TAIL_CHANCE: Record<string, number> = { yap: 0.75, plain: 0.4, enigma: 0.15 };
 
@@ -1766,8 +1808,8 @@ function tellingParas(
     'grounding',
     [
       (c) => exact(c, 'role', role) && exact(c, 'family', family.kind) && g(c, 'knows', knows) && g(c, 'half', half),
-      (c) => exact(c, 'role', role) && g(c, 'family', family.kind) && g(c, 'knows', knows) && g(c, 'half', half),
       (c) => g(c, 'role', role) && exact(c, 'family', family.kind) && g(c, 'knows', knows) && g(c, 'half', half),
+      (c) => exact(c, 'role', role) && g(c, 'family', family.kind) && g(c, 'knows', knows) && g(c, 'half', half),
       (c) => g(c, 'role', role) && g(c, 'family', family.kind) && g(c, 'knows', knows) && g(c, 'half', half),
     ],
     pro ? { ...pro } : {},
@@ -1781,12 +1823,15 @@ function tellingParas(
   const long = told.first.length + (told.follow ? told.second.length : 0) >= 5;
   if (!long && dealer.random.chance(TAIL_CHANCE[temper] ?? 0.5)) {
     const t = (c: Card, tag: string, want: string): boolean => tagIs('tail', c, tag, want);
+    // No opinion of the victim's habits: they are dead, or gone.
+    const aboutVictim = subject?.id === view.victim.id;
+    const free = (c: Card): boolean => !aboutVictim || !/\{(?:he|him|his|He)\}/.test(c.text);
     const drawn = deal(
       stage,
       'tail',
       [
-        (c) => tagOf('tail', c, 'family') === family.kind && t(c, 'temper', temper) && t(c, 'knows', knows),
-        (c) => t(c, 'family', family.kind) && t(c, 'temper', temper) && t(c, 'knows', knows),
+        (c) => free(c) && tagOf('tail', c, 'family') === family.kind && t(c, 'temper', temper) && t(c, 'knows', knows),
+        (c) => free(c) && t(c, 'family', family.kind) && t(c, 'temper', temper) && t(c, 'knows', knows),
       ],
       pro ? { ...pro } : {},
     );
@@ -1900,7 +1945,12 @@ function confrontParas(
     const again = stage.memory?.activities[person.id]?.stopped === true;
     opening.push(fillTemplate(dealer.random.pick(again ? APPROACH_AGAIN : APPROACH), { name: surname }));
   }
-  opening.push(`I read ${pronounOf(person) === 'she' ? 'her' : 'him'} a line out of the notebook. “${putLine(view, scene.clue, person)}”`);
+  // M10 §A.1: the fact in the detective's own words, from its facts — never
+  // the record read out in quotation marks.
+  const partFacts = scene.part === undefined ? undefined : new Set(scene.clue.ruleParts?.[scene.part]?.facts ?? []);
+  const said = putSaid(view, scene.clue, person, partFacts);
+  const them = pronounOf(person) === 'she' ? 'her' : 'him';
+  opening.push(said.length > 0 ? `I put it to ${them} plainly. “${said}”` : `I put what I had to ${them}.`);
   out.push({ text: opening.join(' '), voice: 'exchange' });
   const slots = confrontSlots(stage, person, beat.placeId, beat.tick);
   const reaction = deal(

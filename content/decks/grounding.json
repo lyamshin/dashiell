@@ -104,7 +104,7 @@
   {
     "id": "grd-010",
     "deck": "grounding",
-    "text": "If I don’t rent to them, I don’t know them.",
+    "text": "If I don’t rent to somebody, I don’t know who they are.",
     "tags": {
       "family": "strangers",
       "role": "landlady"
@@ -484,7 +484,7 @@
   {
     "id": "grd-044",
     "deck": "grounding",
-    "text": "They ride up and they ride down. They don’t introduce themselves.",
+    "text": "People ride up and ride down. Nobody introduces himself.",
     "tags": {
       "family": "strangers",
       "role": "elevator-man"
@@ -715,7 +715,7 @@
     "deck": "grounding",
     "text": "I saw it with my own eyes.",
     "tags": {
-      "family": "any",
+      "family": "movements",
       "role": "suspect"
     },
     "motifs": [],
@@ -726,7 +726,7 @@
     "deck": "grounding",
     "text": "I was there, and I have eyes.",
     "tags": {
-      "family": "any",
+      "family": "movements",
       "role": "suspect"
     },
     "motifs": [],
@@ -757,7 +757,7 @@
   {
     "id": "grd-068",
     "deck": "grounding",
-    "text": "I wasn’t paying attention to who they were. I never do.",
+    "text": "I don’t pay much attention to who people are.",
     "tags": {
       "family": "strangers",
       "role": "suspect"
@@ -779,7 +779,7 @@
   {
     "id": "grd-070",
     "deck": "grounding",
-    "text": "I noticed them. I didn’t ask who they were.",
+    "text": "I notice faces. I don’t ask for names.",
     "tags": {
       "family": "strangers",
       "role": "suspect"

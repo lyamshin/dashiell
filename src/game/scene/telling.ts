@@ -142,16 +142,24 @@ function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id
     const when = whenOf(s.run);
     const where = whereOf(view, s.place, at);
     if (i === 0) first.push(`I saw ${p.him} ${where} ${when}.`);
-    else if (s.place === last) first.push(`${p.He} was back ${when}.`);
+    // "Back" is back here; anywhere else it is "there again".
+    else if (s.place === last) first.push(s.place === at ? `${p.He} was back ${when}.` : `${p.He} was there again ${when}.`);
     else first.push(`${cap(when)} ${p.he} was ${where}.`);
     last = s.place;
   }
-  // A sighting tied to something the block times things by.
+  // A sighting tied to something the block times things by: one sentence an
+  // anchor, however many times it came round.
+  const anchored = new Map<Id, Id[]>();
   for (const f of facts) {
     if (f.kind !== 'personAtAnchor' || f.personId !== subjectId) continue;
-    const anchor = view.anchorById.get(f.anchorId);
-    const where = whereOf(view, f.place, at);
-    const timing = anchor?.timing ?? 'that evening';
+    const places = anchored.get(f.anchorId) ?? [];
+    if (!places.includes(f.place)) places.push(f.place);
+    anchored.set(f.anchorId, places);
+  }
+  for (const [anchorId, places] of anchored) {
+    const timing = view.anchorById.get(anchorId)?.timing ?? 'that evening';
+    const wheres = places.map((pl) => whereOf(view, pl, at));
+    const where = wheres.length === 1 ? (wheres[0] as string) : `${list(wheres.map((w) => `${w} once`))}`;
     first.push(
       stretches.length === 0 && first.length === 0
         ? `I saw ${p.him} ${where} ${timing}.`
@@ -173,7 +181,7 @@ function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id
       // Nothing seen: the absence is the whole answer.
       first.push(
         whole
-          ? `${p.He} wasn’t ${name === 'here' ? 'here' : `at ${name}`} all evening.`
+          ? `${p.He} wasn’t ${name === 'here' ? 'here' : `at ${name}`}. Not once all evening.`
           : `${p.He} wasn’t ${name === 'here' ? 'here' : `at ${name}`} ${whenRuns(ts, 'or')}.`,
       );
       continue;
@@ -398,8 +406,10 @@ const CONTRACTIONS: [RegExp, string][] = [
   [/\bit is\b/g, 'it’s'],
   [/\bthat is\b/g, 'that’s'],
   [/\bthere is\b/g, 'there’s'],
-  [/\b([A-Z][a-z]+) has been\b/g, '$1’s been'],
-  [/\b(he|she|it) has\b/g, '$1’s'],
+  [/\b([A-Z][a-z]+|he|she|it) has (been|had|got|gone|known|seen|done|taken|given|sworn|told|kept|lost|left|never|always)\b/g, '$1’s $2'],
+  [/\b(I|you|we|they) have (been|had|got|gone|known|seen|done|taken|given|sworn|told|kept|lost|left|never|always)\b/g, '$1’ve $2'],
+  [/\b(I|you|we|they|he|she) would\b/g, '$1’d'],
+  [/\b(he|she|it) is\b/g, '$1’s'],
 ];
 
 /**
@@ -443,7 +453,7 @@ export function saidPlainly(text: string, speaker?: Person, view?: CaseView): st
   const clauses = said
     .replace(/ and heard /, '. I heard ')
     .replace(/, (just as|just after|just before|as|while|when) (?=[a-z])/, '. That was $1 ')
-    .split(/,\s+and\s+(?=(?:it|he|she|they|there|nobody|somebody|the|a|an|I|[A-Z][a-z]+)\b)|;\s+|,\s+(?=(?:it|he|she|they|there)\s)|\.\s+/)
+    .split(/,\s+and\s+(?=(?:it|he|she|they|there|nobody|somebody|the|a|an|I|[A-Z][a-z]+)\b)|;\s+|,\s+(?=(?:it|he|she|they|there)\s)|(?<!\b(?:Mrs|Mr|Dr|St|Mt))\.\s+/)
     .map((c) => c.trim())
     .filter((c) => c.length > 0);
   return clauses.map((c) => `${cap(c)}.`);
@@ -478,4 +488,111 @@ export function toldOf(
     default:
       return null;
   }
+}
+
+/**
+ * M9 §3 with M10 §A.1: the fact put to somebody, said by the detective in his
+ * own words from its facts — never the record read out in quotation marks.
+ * `you` for the one it is put to; the source named, because a fact put is
+ * somebody's word.
+ */
+export function putSaid(view: CaseView, clue: Clue, person: Person, factIdx?: ReadonlySet<number>): string {
+  // "It happened between eight and half past eight" once, however many facts say so.
+  const facts = clue.establishes.filter((_, i) => factIdx === undefined || factIdx.size === 0 || factIdx.has(i));
+  const source = clue.source.type === 'person' ? view.personById.get(clue.source.personId) : undefined;
+  const from = clue.source.type === 'place' ? view.placeById.get(clue.source.placeId) : undefined;
+  const who = (id: Id): string => (id === person.id ? 'you' : (view.personById.get(id)?.surname ?? 'somebody'));
+  const at = (place: Id): string => `at ${view.placeById.get(place)?.shortName ?? 'somewhere'}`;
+  const out: string[] = [];
+  const seen = new Map<string, Tick[]>();
+  const not = new Map<string, Tick[]>();
+  for (const f of facts) {
+    if (f.kind === 'personAt') seen.set(`${f.personId}|${f.place}`, [...(seen.get(`${f.personId}|${f.place}`) ?? []), f.tick]);
+    if (f.kind === 'personNotAt') not.set(`${f.personId}|${f.place}`, [...(not.get(`${f.personId}|${f.place}`) ?? []), f.tick]);
+  }
+  const by = source ? `${source.surname} puts` : from ? `What turned up ${at(from.id)} puts` : 'I have';
+  for (const [key, ticks] of seen) {
+    const [id, place] = key.split('|') as [Id, Id];
+    out.push(`${by} ${who(id)} ${at(place)} ${whenRuns(ticks, 'and')}.`);
+  }
+  for (const [key, ticks] of not) {
+    const [id, place] = key.split('|') as [Id, Id];
+    const says = source ? `${source.surname} says` : 'I have it that';
+    const was = id === person.id ? 'you weren’t' : `${who(id)} wasn’t`;
+    out.push(`${says} ${was} ${at(place)} ${whenRuns(ticks, 'or')}.`);
+  }
+  for (const f of facts) {
+    const says = source ? `${source.surname} says` : 'I have it that';
+    switch (f.kind) {
+      case 'personAtAnchor':
+        out.push(`${by} ${who(f.personId)} ${at(f.place)} ${view.anchorById.get(f.anchorId)?.timing ?? 'that evening'}.`);
+        break;
+      case 'describedAt':
+        out.push(`${source?.surname ?? 'Somebody'} saw ${f.description.text} ${at(f.place)} at ${spokenClock(f.tick)}.`);
+        break;
+      case 'countAt':
+        out.push(`${source?.surname ?? 'Somebody'} counted ${COUNT[f.count] ?? String(f.count)} ${at(f.place)} at ${spokenClock(f.tick)}.`);
+        break;
+      case 'absentFrom': {
+        const others = f.except.slice(1).map(who);
+        out.push(
+          others.length > 0
+            ? `${says} nobody but ${list(others)} went in ${at(f.place)} ${whenRuns(f.ticks, 'and')}.`
+            : `${says} nobody went in ${at(f.place)} ${whenRuns(f.ticks, 'and')}.`,
+        );
+        break;
+      }
+      case 'claims':
+        out.push(
+          `${f.personId === person.id ? 'You told me you were' : `${who(f.personId)} says ${pronounsOf(view.personById.get(f.personId)).he} was`} ${at(f.place)} ${whenRuns(f.ticks, 'and')}.`,
+        );
+        break;
+      case 'anchorAt':
+        out.push(`${cap(view.anchorById.get(f.anchorId)?.name ?? 'It')}: that was at ${list([...f.ticks].sort((a, b) => a - b).map(spokenClock))}.`);
+        break;
+      case 'timeOfDeath': {
+        const a = f.ticks[0];
+        const b = f.ticks[f.ticks.length - 1];
+        if (a !== undefined && b !== undefined) {
+          out.push(
+            a === b
+              ? `It happened at ${spokenClock(a)}, as near as anybody can say.`
+              : `It happened between ${spokenClock(a).replace(/ o[’']clock$/, '')} and ${spokenClock(b)}, as near as anybody can say.`,
+          );
+        }
+        break;
+      }
+      case 'hasMotive':
+        if (f.personId !== view.victim.id) out.push(`${f.personId === person.id ? 'You' : who(f.personId)} had a reason.`);
+        break;
+      case 'hadAccess':
+        out.push(`${f.personId === person.id ? 'You' : who(f.personId)} could have got at it.`);
+        break;
+      case 'objectMissing': {
+        const thing = view.objectById.get(f.objectId)?.name ?? 'It';
+        out.push(`${cap(thing)} went missing ${at(f.fromPlace)}.`);
+        break;
+      }
+      case 'noiseAt':
+        out.push(`${source?.surname ?? 'Somebody'} heard something ${at(f.place)} at ${spokenClock(f.tick)}.`);
+        break;
+      case 'together':
+        out.push(`${says} ${who(f.personIds[0])} and ${who(f.personIds[1])} were together ${whenRuns(f.ticks, 'and')}.`);
+        break;
+      case 'apart':
+        out.push(`${says} ${who(f.personIds[0])} and ${who(f.personIds[1])} were never in the same place.`);
+        break;
+      case 'victimAliveAt':
+        if (!out.some((l) => /alive/.test(l))) out.push(`${view.victim.surname} was alive at ${spokenClock(f.tick)}.`);
+        break;
+      case 'victimDeadBy':
+        out.push(`It was over by ${spokenClock(f.tick)}.`);
+        break;
+      default:
+        break;
+    }
+  }
+  // Nothing the facts can say in words: the detective puts it without reading it.
+  if (out.length === 0) return '';
+  return out.join(' ');
 }
