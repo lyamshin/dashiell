@@ -1720,7 +1720,7 @@
   {
     "id": "tht-e013",
     "deck": "thought",
-    "text": "It was not in the wind after all. {other} had been at {place}.",
+    "text": "It was not lost for good after all. {other} had been at {place}.",
     "tags": {
       "class": "goods"
     },
@@ -1840,7 +1840,7 @@
   {
     "id": "tht-e025",
     "deck": "thought",
-    "text": "{place}, at {time}, was the last place anybody had sworn to {victim} yet.",
+    "text": "{place}, at {time}, was the last place anybody had put {victim} yet.",
     "tags": {
       "class": "last-seen"
     },
@@ -1900,7 +1900,7 @@
   {
     "id": "tht-e031",
     "deck": "thought",
-    "text": "{place} at {time} was later than anybody had put {victim} before. If it was true, gone meant something else.",
+    "text": "{place} at {time} was later than anybody had put {victim} before. If it was true, {victim} had not disappeared when I thought.",
     "tags": {
       "class": "seen-after"
     },
@@ -1910,7 +1910,7 @@
   {
     "id": "tht-e032",
     "deck": "thought",
-    "text": "At {time}, {victim} was at {place}, if the word was good. Whoever had {victim} gone earlier would have to think again.",
+    "text": "At {time}, {victim} was at {place}, if the word was good. Whoever thought {victim} had disappeared earlier would have to think again.",
     "tags": {
       "class": "seen-after"
     },

@@ -141,3 +141,4 @@ export function composeScene(stage: Stage, scene: Scene): Composed {
     memory: plan.memory,
   };
 }
+export * from './lines.js';

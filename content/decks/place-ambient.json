@@ -2389,7 +2389,7 @@
   {
     "id": "pam-218",
     "deck": "place-ambient",
-    "text": "The slip was a wooden apron sloping down to the water between two rows of pilings, black with tar and scraped pale by the ferries' hulls.",
+    "text": "The landing was a wooden ramp sloping down to the water between two rows of pilings, black with tar and scraped pale by the ferries’ hulls.",
     "tags": {
       "place": "ferry-slip",
       "band": "any"
@@ -2411,7 +2411,7 @@
   {
     "id": "pam-220",
     "deck": "place-ambient",
-    "text": "Tar, coal smoke, and brackish water were the smells down here, and the river sucked at the pilings under the apron.",
+    "text": "Tar, coal smoke, and brackish water were the smells down here, and the river sucked at the pilings under the ramp.",
     "tags": {
       "place": "ferry-slip",
       "band": "any"

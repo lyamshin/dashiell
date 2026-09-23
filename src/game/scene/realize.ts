@@ -15,7 +15,7 @@ import { spokenClock } from '../../gen/types.js';
 import type { Block, BeatTrace, ErrandTrace, ProseVoice } from '../types.js';
 import { OTHER_THING } from '../errand.js';
 import { hedged, restates, figuresIn, hourAgrees, introduceNames, nameables, pastTense, sentencesOf, stripHere, wordCount, isSubjectless, bandOf } from './text.js';
-import { COUNT_WORDS, OUTDOOR_PLACES, RELATION_PLAIN, RELATION_WHY, SEARCH_THING_ACTS as THING_ACTS, isPluralPlace } from './lines.js';
+import { APPROACH, APPROACH_AGAIN, COUNT_WORDS, OUTDOOR_PLACES, RELATION_PLAIN, RELATION_WHY, SEARCH_THING_ACTS as THING_ACTS, isPluralPlace } from './lines.js';
 import { clueAbout, layerCredit, layerOfClue, layerSentences } from '../voice/plain.js';
 import type { Beat, Plan, PresencePerson } from './plan.js';
 import type { Thought } from './thought.js';
@@ -40,7 +40,7 @@ import {
   SIGHT_LINES,
   STOP_LINES,
 } from '../voice-data.js';
-import { tagIs, tagOf, type Card, type Match, type Slots } from '../voice/cards.js';
+import { fill, tagIs, tagOf, type Card, type Match, type Slots } from '../voice/cards.js';
 import { genderHintOf, possessiveOf, pronounOf } from '../voice/cast.js';
 import { dashiellLine, registerFor, speakClue, type AskKind } from '../voice/exchange.js';
 import { spokenSpan, spokenSpans } from '../voice/facts.js';
@@ -409,6 +409,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         mark(i, {
           ...(beat.scene ? { tag: beat.scene } : { tag: beat.people.length === 0 ? 'empty' : 'people' }),
           personIds: beat.people.map((p) => p.personId),
+          ...(grouped.length > 0 ? { grouped: grouped.map((p) => p.personId) } : {}),
           text: texts.join(' '),
         });
         break;
@@ -495,9 +496,12 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const onlyContext = run.every((j) => (beats[j] as Extract<Beat, { kind: 'thought' }>).thought.cls === 'context');
         if (found && !onlyContext) {
           const noted = dealer.random.pick(WROTE_IT_DOWN);
-          const again = run.some((j) => (beats[j] as Extract<Beat, { kind: 'thought' }>).thought.cls === 'observer-placed')
-            ? ` ${dealer.random.pick(LOOKED_AGAIN)}`
-            : '';
+          // Golden page 5: "Then I looked at what I'd written." — when what he
+          // wrote down is going to take more than one thought.
+          const again =
+            run.some((j) => (beats[j] as Extract<Beat, { kind: 'thought' }>).thought.cls === 'observer-placed') || run.length > 1
+              ? ` ${dealer.random.pick(LOOKED_AGAIN)}`
+              : '';
           push({ text: `${noted}${again}`, voice: 'narrator', beats: [], noted: true });
         }
         const lines: string[] = [];
@@ -783,6 +787,13 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
       /* cut */
     }
   }
+  // Night Hone 1: the room's texture is for a page that needs the length. A
+  // page already past the top of its shape's range (a search with three
+  // finds) does without it.
+  const high = (NIGHT_TARGETS[shape] ?? [150, 300])[1] as number;
+  while (count() > high && cutOne('place')) {
+    /* cut */
+  }
 
   /* ------------------------- Night Hone 1 §4: "the benches were", not "was" */
   for (const pl of view.places) {
@@ -1024,7 +1035,7 @@ function findText(stage: Stage, clue: Clue, plan: Plan, gaps: string[]): string 
 export function thereWas(fact: string): string {
   const m = /^(A|An|Two|Three|Four|Some) /.exec(fact);
   if (!m) return fact;
-  const head = fact.split(/[,.;]/)[0] ?? fact;
+  const head = (fact.split(/[,.;]/)[0] ?? fact).split(/ (?:who|which|that|where) /)[0] ?? fact;
   if (/\b(is|was|are|were|has|had|have|lies|lay|sits|sat|stands|stood|hangs|hung|shows|showed|says|said|reads|read|puts|put|came|comes|went|goes|turned|leaves|left)\b/.test(head)) return fact;
   const plural = m[1] !== 'A' && m[1] !== 'An';
   return `There ${plural ? 'were' : 'was'} ${fact.charAt(0).toLowerCase()}${fact.slice(1)}`;
@@ -1167,9 +1178,15 @@ function thoughtLine(stage: Stage, t: Thought, gaps: string[], finds: readonly s
   const is = (c: Card, tag: string, want: string | undefined): boolean =>
     want === undefined || tagIs('thought', c, tag, want);
   const lied = t.lied === undefined ? undefined : t.lied ? 'yes' : 'no';
+  // The slot values a card is filled with — people, places, anchors, things,
+  // the method's own words — are not the card saying the find again; the
+  // check reads the card as filled so that a motive told twice is caught.
   const names = [
     ...stage.view.kase.people.map((p) => p.surname),
     ...stage.view.places.map((p) => p.shortName),
+    ...stage.view.kase.anchors.map((a) => a.name),
+    ...stage.view.kase.objects.map((o) => o.name),
+    ...[slots.means, slots.how, slots.span].filter((x): x is string => x !== undefined),
   ];
   // §5: a thought on one person's word says "if"; and it never says the find
   // again in other words (§5's "find, then thought").
@@ -1177,8 +1194,14 @@ function thoughtLine(stage: Stage, t: Thought, gaps: string[], finds: readonly s
     tagOf('thought', c, 'class') === t.cls &&
     is(c, 'case', caseType) &&
     (t.single !== true || hedged(c.text)) &&
-    !restates(c.text, finds, names);
+    !restates(fill(c, slots) ?? c.text, finds, names);
+  // Night Hone 1 §2: when the case gives the thought its specifics — the
+  // motive itself, the method and what it took, the hours — a card that
+  // says them comes first.
+  const rich = (['motive', 'means', 'span'] as const).filter((k) => slots[k] !== undefined);
+  const says = (c: Card): boolean => rich.length === 0 || rich.some((k) => c.text.includes(`{${k}}`));
   const ladder: Match[] = [
+    (c) => cls(c) && says(c) && is(c, 'basis', t.basis) && is(c, 'via', t.via) && is(c, 'who', t.who) && is(c, 'lied', lied),
     (c) => cls(c) && is(c, 'basis', t.basis) && is(c, 'via', t.via) && is(c, 'who', t.who) && lied === 'yes' && tagOf('thought', c, 'lied') === 'yes',
     (c) => cls(c) && is(c, 'basis', t.basis) && is(c, 'via', t.via) && is(c, 'who', t.who) && is(c, 'lied', lied),
     (c) => cls(c) && is(c, 'basis', t.basis) && is(c, 'via', t.via),
@@ -1225,6 +1248,11 @@ function exchange(
     const doing = stage.memory?.activities[person.id]?.text;
     const stopped = doing ? stoppedDoing(doing, surname) : null;
     opening.push(stopped ?? fillTemplate(dealer.random.pick(STOP_LINES), { name: surname, pronoun }));
+  } else if (!scene.free) {
+    // Golden page 5: "I sat down across from her." Somebody already spoken
+    // to this visit is turned back to; anybody else is gone over to.
+    const again = stage.memory?.activities[person.id]?.stopped === true;
+    opening.push(fillTemplate(dealer.random.pick(again ? APPROACH_AGAIN : APPROACH), { name: surname }));
   }
   let question = '';
   if (beat.carried && subject) {
@@ -1335,11 +1363,11 @@ function exchange(
     first.establishes.some(
       (f) => (f.kind === 'personAt' || f.kind === 'personNotAt') && f.personId === subject.id,
     );
-  if (beat.carried && subject && placed) {
+  if (beat.carried && subject) {
     // "Nora Hanrahan. She's been with him since 'eighteen."
     const fact = first ? factAbout(first) : null;
     out.push({ text: `“${subject.name}.${fact ? ` ${fact}` : ''}”`, voice: 'exchange' });
-    out.push({ text: `“Where was ${subject.surname} tonight?”`, voice: 'exchange' });
+    if (placed) out.push({ text: `“Where was ${subject.surname} tonight?”`, voice: 'exchange' });
   }
   scene.clues.forEach((clue, i) => answerClue(clue, i > 0));
   if (scene.self) {

@@ -229,6 +229,8 @@ export interface BeatTrace {
   text?: string;
   /** A thought on one witness's word or an anchor: the words must hedge (§5). */
   hedge?: boolean;
+  /** Presence: the people said together in one sentence, not a line each (Night Hone 1 §3). */
+  grouped?: Id[];
 }
 
 /** One choice as the book drew it, kept on the page it was offered under. */

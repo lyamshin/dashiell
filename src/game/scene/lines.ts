@@ -101,3 +101,9 @@ export const OUTDOOR_PLACES: ReadonlySet<Id> = new Set([
 export function isPluralPlace(shortName: string): boolean {
   return /^the [a-z ]*(?:benches|stairs|steps|docks|stables|rooms|flats|arches|gardens)$/i.test(shortName);
 }
+
+/** Golden page 5: "I sat down across from her." Somebody not yet spoken to this visit. */
+export const APPROACH: string[] = ['I went over to {name}.', 'I sat down across from {name}.', 'I found {name} and pulled up a chair.'];
+
+/** Somebody already spoken to this visit, asked again. */
+export const APPROACH_AGAIN: string[] = ['I turned back to {name}.', 'I had another question for {name}.', 'I wasn’t finished with {name}.'];

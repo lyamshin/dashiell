@@ -979,7 +979,7 @@
   {
     "id": "err-089",
     "deck": "errand",
-    "text": "{name} had said as much. I came to run {subject} down.",
+    "text": "{name} had said as much. I came to track {subject} down.",
     "tags": {
       "because": "said",
       "for": "search-thing"
@@ -1978,7 +1978,7 @@
   {
     "id": "err-179",
     "deck": "errand",
-    "text": "Something written at {from} sent me. I came to run {subject} down.",
+    "text": "Something written at {from} sent me. I came to track {subject} down.",
     "tags": {
       "because": "document",
       "for": "search-thing"
@@ -2977,7 +2977,7 @@
   {
     "id": "err-269",
     "deck": "errand",
-    "text": "What was lying at {from} sent me. I came to run {subject} down.",
+    "text": "What was lying at {from} sent me. I came to track {subject} down.",
     "tags": {
       "because": "found",
       "for": "search-thing"

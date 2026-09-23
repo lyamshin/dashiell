@@ -542,18 +542,41 @@ function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
   // The leads that point into this room: the one to ask is here, or a bridge
   // named them.
   const errandTarget = input.action.kind === 'travel' ? input.action.errand?.targetId : undefined;
-  const pointed = leadPointsAt(view, input.foundBefore, [...memory.bridged, ...(errandTarget ? [errandTarget] : [])]);
-  const whyOf = (p: Person): PresencePerson['why'] =>
+  // The lead that brought him here, and the leads earlier bridges named.
+  const sent = leadPointsAt(view, input.foundBefore, errandTarget ? [errandTarget] : []);
+  const bridged = leadPointsAt(view, input.foundBefore, memory.bridged);
+  const whyOf = (p: Person): PresencePerson['why'] | 'bridged' =>
     p.kind === 'fixture' && place?.watcher !== undefined && p.fixtureRole === place.watcher
       ? 'watcher'
       : p.id === view.client.id
         ? 'client'
-        : pointed.has(p.id)
+        : sent.has(p.id)
           ? 'lead'
-          : known.has(p.id)
-            ? 'known'
-            : undefined;
-  const loose = present.filter((p) => whyOf(p) === undefined);
+          : bridged.has(p.id)
+            ? 'bridged'
+            : known.has(p.id)
+              ? 'known'
+              : undefined;
+  // At most four lines of their own (the golden's page 4 has two): past
+  // that, somebody the notebook knows only by name, and then somebody an
+  // earlier bridge named, joins the crowd — named there, since an earlier
+  // page has said who they are.
+  const LINES = 4;
+  const why = new Map(present.map((p) => [p.id, whyOf(p)] as const));
+  const singled = present.filter((p) => why.get(p.id) !== undefined);
+  const lines = (): number => singled.filter((x) => why.get(x.id) !== undefined).length;
+  const crowd = (): number => present.filter((x) => why.get(x.id) === undefined).length;
+  const rank = (p: Person): number =>
+    (why.get(p.id) === 'known' ? 0 : 2) + (input.met.includes(p.id) ? 0 : 1);
+  const demotable = [...singled]
+    .filter((p) => why.get(p.id) === 'known' || why.get(p.id) === 'bridged')
+    .sort((a, b) => rank(a) - rank(b));
+  for (const p of demotable) {
+    // Down to four lines, and a crowd is at least two: one more joins the one.
+    if (lines() <= LINES && crowd() !== 1) break;
+    why.set(p.id, undefined);
+  }
+  const loose = present.filter((p) => why.get(p.id) === undefined);
   const grouping = loose.length >= 2;
   const taken = new Set<string>();
   for (const person of present) {
@@ -568,8 +591,9 @@ function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
     // A recall phrase, once a visit, for somebody already portrayed.
     const recall =
       !firstSight && recalled[person.id] !== memory.visit && (input.recallable ?? []).includes(person.id);
-    const why = whyOf(person);
-    const grouped = grouping && why === undefined;
+    const found = why.get(person.id);
+    const reason: PresencePerson['why'] = found === 'bridged' ? 'lead' : found;
+    const grouped = grouping && found === undefined;
     if (recall && !grouped) recalled[person.id] = memory.visit;
     people.push({
       personId: person.id,
@@ -577,7 +601,7 @@ function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
       firstSight,
       recall: recall && !grouped,
       ...(grouped ? { grouped: true } : {}),
-      ...(why ? { why } : {}),
+      ...(reason ? { why: reason } : {}),
     });
   }
   const mark = sceneMark(view, input.at, again);

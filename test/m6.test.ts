@@ -394,7 +394,11 @@ describe('§5 the page', () => {
       }
     }
     const over = words.filter((n) => n > PAGE_CEILING).length;
-    expect(over / words.length).toBeLessThan(0.05);
+    // Night Hone 1: the designer's ruling that pages may be longer, where the
+    // length is real content (a search's act and finds, the room itself).
+    // M8 §8 already set no ceiling below 600 on a night page; this keeps the
+    // pages past M6's 220 to a tenth.
+    expect(over / words.length).toBeLessThan(0.1);
   });
 
   it('offers no choices once the report form is open', () => {
