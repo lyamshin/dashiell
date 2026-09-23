@@ -12,11 +12,63 @@ Today almost every useful clue is a finished conclusion: "Kreuzer says Hanrahan 
 
 The fix is to hand the player **pieces that have to be put together**, and a board to put them on.
 
+## The model: an LSAT logic game
+
+The designer's model: it should feel like an LSAT logic game. That settles the design's shape.
+
+A logic game has four parts:
+
+- a fixed set of entities;
+- a fixed set of slots;
+- a short list of rules, each precise and each weak on its own;
+- questions that can only be answered by combining the rules on a diagram.
+
+Solvers draw the board, write each rule in shorthand, and derive what must be true. Most of the work is noticing that two rules together force a third fact.
+
+Dashiell maps onto it directly:
+
+| logic game | Dashiell |
+|---|---|
+| entities | the suspects, the client and the victim |
+| slots | the grid: each person × each half hour → a place |
+| implicit rule | nobody is in two places at once |
+| rules | clues, each stated in the notebook as one precise line with its source |
+| the diagram | the grid, where the notebook's facts are inked and the player's own marks are pencilled |
+| "which must be true?" | the report |
+| the clock | there isn't time to collect every rule, so choosing which rules to go after is the roguelike part |
+
+**Two registers, kept apart.** The pages dramatize: a witness says it in her own words, with a gesture and the detective's thought. The notebook states the same fact as a rule, precisely and without flavor: "Hanrahan: third floor, 10:00–10:30. Kreuzer saw her." The player reads the story and solves on the rules. Neither voice leaks into the other.
+
+**Rule types.** A good game mixes them, as a logic game does:
+
+| type | as testimony or evidence | as a rule |
+|---|---|---|
+| fixed placement | "Grasso was at the bar at nine." (Callahan) | Grasso: speakeasy, 9:00 |
+| negative placement | "He wasn't here all night." (the counterman) | Grasso: not garage, 6:00–11:30 |
+| sequence | "She went up just before the El." | Hanrahan: third floor from the El's run, which the player must time |
+| absence and numbers | "Nobody came up those stairs between nine and eleven but the landlady." | third floor, 9:00–11:00: only Marchetti |
+| together | "We were together the whole evening." (an alibi companion, who may be lying) | Schilling with Grasso, 9:30–10:30 |
+| apart | "Those two wouldn't be in the same room." | Coffin and Mulcahy: never the same place |
+| conditional | "If anybody had come in the back, the bell would have rung. It didn't." | back door, 9:00–11:00: nobody |
+| identity | "A woman in her thirties, turning a coin." | somebody matching this: third floor, 10:00 |
+
+**Each rule weak; the game in the combining.** Measured by the generator's solver:
+
+- above Coddled, no innocent is ruled out at the crime's half hour by a single rule;
+- from Soft-boiled up, the culprit is reached only by chaining at least three rules;
+- at Hard-boiled, at least one deduction requires testing a hypothesis. That's the logic game's "if Grasso was at the garage, then Schilling was lying, but Schilling's account is corroborated, so…" step.
+
 ## The board: the grid
 
 The notebook's "Where they were" grid is being built in parallel (`docs/19-grid-notes.md`). Rows are people and columns are half hours. Each cell holds claims with their sources: a person's own account, another person's word, or evidence.
 
 M9 makes the grid the center of the game, not a summary of it.
+
+- **Ink is what the notebook holds.** The player can't edit it.
+- **Pencil is the player's own work.** They can mark "was at", cross out "not at", or clear a mark. Pencil marks are free, saved with the run, and never counted as facts.
+- **A rules list under the grid** holds every notebook fact as a one-line rule. Tapping a rule highlights the cells it touches.
+
+The grid agent is building the pencil marks and the rules list now.
 
 ## 1. One rule about lies, taught early
 
@@ -47,9 +99,13 @@ The player lacks a way to act on what they've worked out. Add one.
 
 When the grid shows a conflict involving a person's own account, that person gets a new marked choice: **"Put it to Hanrahan."** It costs a half hour. What happens depends on who they are:
 
-- **An innocent with a secret** gives up the secret. "All right. I was on Ninth. I was fixing the books." This clears them of the crime. The grid cell resolves, and a real lead usually opens from what they admit.
-- **The culprit** doesn't confess. They either tell a second lie, which is itself contradictable and is a strong tell once it's caught, or they go quiet. On a page, the quiet reads as a tell.
-- **An alibi companion** withdraws the alibi. That leaves the person they covered with an empty cell at the crime's half hour.
+- **The culprit never confesses.** *(Designer's ruling.)* Usually they lie again: a new account that is itself contradictable. Sometimes they go quiet.
+- **Innocents lie too, so lying is not a tell.** *(Designer's ruling: "the solve for that is to make sure that other people lie too.")* An innocent with a secret often doubles down on the first confrontation with a second lie. They give up the secret only when a second, independent fact contradicts them: "All right. I was on Ninth. I was fixing the books." That clears them of the crime and usually opens a real lead. Alibi companions sometimes hold the alibi through one confrontation and withdraw it on the second.
+- **So demeanor never solves the case; the grid does.** Everyone lies when cornered. The difference is *what* the lie covers. An innocent's lies cover their secret's half hours. The culprit's lies cover the crime's half hour and the fetching of the means. The player finds the culprit by filling the crime column, not by watching who squirms.
+- **Generator requirements that follow:**
+  - Every innocent with a secret has at least two independent findable contradictions.
+  - The share of confrontations that produce a second lie is about the same for innocents and for the culprit, within ten points at every tier from Poached up.
+  - The solver never uses "lied when confronted" as evidence.
 
 Confronting without a conflict isn't offered. This turns catching a lie into the payoff it should be, and it gives every lie a reason to exist.
 
@@ -66,7 +122,7 @@ The report becomes a page of the grid. Across tiers it asks the following:
 
 - **who,** at every tier;
 - **when,** the half hour, from Soft-boiled up;
-- **where each suspect was** at the crime's half hour, from Medium up. That's the crime column filled in.
+- **where every suspect was** at the crime's half hour, from Medium up *(designer's ruling)*. That's the full crime column.
 
 Scoring counts correct cells, like Obra Dinn's fates. This rewards reasoning, not a lucky name. At Hard-boiled, a correct "who" with a wrong column is partial credit and says so.
 
@@ -74,14 +130,20 @@ Scoring counts correct cells, like Obra Dinn's fates. This rewards reasoning, no
 
 - **The lie model** from §1: secrets' ticks, the culprit's means fetch, alibi companions, and every lie contradicted by something findable.
 - **The new clue shapes** from §2, with their `Establishes` facts: `sightingAtAnchor`, `describedAt`, `absentFrom`.
-- **A deduction solver** to replace the current solvability check. It reasons over the grid the way a careful player would:
-  - trust non-self statements;
-  - resolve anchors to times;
-  - link descriptions when the features are unique among the known cast;
-  - apply absences;
-  - treat a self-account as true only when corroborated.
+- **A deduction solver** to replace the current solvability check. It's a constraint solver over the grid:
+  - Each cell (person × half hour) has a domain of places.
+  - Every rule type in the table above is a constraint.
+  - The implicit one-place-at-a-time rule applies.
+  - Self-accounts are soft: true unless contradicted.
+  - Anchors resolve to times when their timing rule is held.
+  - Descriptions resolve when their features are unique among the known cast.
 
-  A case is accepted only if the solver reaches a unique culprit and a filled crime column from the findable clues within par. Par is recomputed as the shortest route that gives the solver enough.
+  The solver propagates constraints and records the **inference depth** each conclusion needed: one rule, a chain, or a hypothesis test. A case is accepted only when three things hold:
+  - The findable rules force a unique culprit and a filled crime column within par.
+  - The depth targets for its tier are met.
+  - No weaker route reaches the culprit.
+
+  Par is recomputed as the cheapest set of rules the solver needs.
 - **Two new difficulty dials:** the share of placements that are pieces rather than conclusions, and the number of lies.
 
 ## 7. What the engine needs
@@ -92,8 +154,21 @@ Scoring counts correct cells, like Obra Dinn's fates. This rewards reasoning, no
 - **The report as the crime column,** and its scoring.
 - **The rule about lies,** in the title page, the help, and the first-run text.
 
-## 8. Open questions for the designer
+## 8. What the report asks, logic-game style
+
+The report doesn't ask "who did it" and stop there. It asks a few "must be true" questions the grid answers:
+
+- who, at every tier;
+- when the crime happened, from Soft-boiled up;
+- where every suspect was at that half hour, from Medium up: the full crime column;
+- at Hard-boiled, one question whose answer needs a hypothesis test.
+
+The DA scores each question. The closing page says which ones the detective got, and the curtain shows the rule chain that proved each.
+
+## 9. Open questions for the designer
 
 1. **Descriptions and linking.** This is the most Obra Dinn thing here, and the most new work. Keep it in M9 or hold it for the next milestone?
-2. **Confront outcomes for the culprit.** A second lie or silence? Or should the culprit sometimes break at Raw and Coddled, so the first runs end on a confession?
-3. **The report as the crime column.** At Medium and up, or only at Hard-boiled?
+Decided 2026-09-23:
+
+- **Confront.** The culprit never confesses and often lies. Innocents lie too, so a lie is not a tell (§3).
+- **The report.** The full crime column is asked from Medium up (§5, §8).
