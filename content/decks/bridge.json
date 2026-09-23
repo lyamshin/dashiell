@@ -1202,5 +1202,85 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "brg-a48",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} was the one to tell me where {subject} had been.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a49",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. I needed somebody who had seen {subject} tonight, and {who} might have.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a50",
+    "deck": "bridge",
+    "text": "{subject} was {tie}, and {who} could tell me about {subject}’s evening.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a51",
+    "deck": "bridge",
+    "text": "{subject} was {tie}. {who} was next, with a question about {subject}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a52",
+    "deck": "bridge",
+    "text": "{who} might have seen {subject} tonight. I meant to ask.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a53",
+    "deck": "bridge",
+    "text": "Where {subject} had been was still open. {who} might close some of it.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a54",
+    "deck": "bridge",
+    "text": "I had a question about {subject}, and it was for {who}.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "brg-a55",
+    "deck": "bridge",
+    "text": "{subject}’s evening still had gaps in it. {who} might fill one.",
+    "tags": {
+      "tie": "victim"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]

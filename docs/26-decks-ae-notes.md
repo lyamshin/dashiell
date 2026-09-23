@@ -4,14 +4,21 @@
 
 ## In one paragraph
 
-Batch A (the detective's reasoning) gets 101 new cards and batch E (the testimony) 189, 290 in all, every one `generated`. They go first to the keys that repeated inside a night: the thought on somebody's own account (3 cards, read 2.7 times a night, a repeat in 37% of nights) and the grounding for a suspect's own evening (4 cards, read 3.1 times a night). Every key on 25's A and E lists now has its cards, and no key in either batch repeats inside a night in more than 1.3% of nights. Along the way, 52 cards were rewritten in place. Twelve thoughts about an explained secret said a verdict ("Brennan was out of it", "it took him off my list", "I let him go") at every tier; the engine has no per-card tier gate for thoughts, so they now say what the secret explains and what it doesn't. Sixteen tails and three groundings said nothing ("That's it.", "I remember it because it was tonight."). Two telling frames said "Oh, I saw him all right" before tellings that can be "He wasn't here." Two view thoughts called somebody already met "only a name in the notebook". Four answers used "lead" as a noun. And thirteen method thoughts were read against every method they can be dealt for: "It was strangling with a cord. That meant whoever did it had to cut the cord down." read as a hanging, and now says the cord was cut down first.
+Batch A (the detective's reasoning) gets 109 new cards and batch E (the testimony) 189, 298 in all, every one `generated`.
+
+- **The same-night repeats came first.** The worst were the thought on somebody's own account (3 cards, read 2.7 times a night, a repeat in 37% of nights) and the grounding for a suspect's own evening (4 cards, read 3.1 times a night). The 9 cards 25 asked for in A and the 21 in E to stop repeats inside a night are all written, and no key on either list repeats inside a night any more (before: up to 37% of nights).
+  - By deck, the thought's nights with a repeat went from 51% to 1.9%, telling's from 39% to 5.6% and grounding's from 14% to 6.7%.
+  - The worst key left in the eleven decks repeats in 2.1% of nights: a 2-card telling frame key, read 0.12 times a night.
+- **The ten-night targets.** Of the 79 + 174, what 25's formula still asks for after this is 11 in A and 4 in E. All of it is cross-night depth on keys that no longer repeat inside a night.
+
+Along the way, 53 cards were rewritten in place. Twelve thoughts about an explained secret said a verdict ("Brennan was out of it", "it took him off my list", "I let him go") at every tier; the engine has no per-card tier gate for thoughts, so they now say what the secret explains and what it doesn't. Sixteen tails and three groundings said nothing ("That's it.", "I remember it because it was tonight."). Two telling frames said "Oh, I saw him all right" before tellings that can be "He wasn't here." Two view thoughts called somebody already met "only a name in the notebook". Four answers used "lead" as a noun. And thirteen method thoughts were read against every method they can be dealt for: "It was strangling with a cord. That meant whoever did it had to cut the cord down." read as a hanging, and now says the cord was cut down first.
 
 ## What was added
 
 | deck | before | after | new | rewritten in place |
 | --- | ---: | ---: | ---: | ---: |
-| thought | 334 | 385 | 51 | 27 |
-| bridge | 73 | 120 | 47 | |
+| thought | 334 | 385 | 51 | 28 |
+| bridge | 73 | 128 | 55 | |
 | carry | 161 | 164 | 3 | |
 | answer | 54 | 54 | | 4 |
 | decide, confront | 32, 84 | 32, 84 | | |
@@ -27,9 +34,32 @@ New ids carry an `a` (batch A: `tht-a…`, `brg-a…`, `cry-a…`) or an `e` (ba
 
 "Cards" is the mean number of cards on the key's rung that fit the ask and can be filled from its slots, as `scripts/deck-exposure.ts` measures it (25's "cards now").
 
-| deck | key | cards before → after | nights with a repeat | first stale night (median reader) |
+| deck | key | cards before → after (25's add) | nights with a repeat | first stale night (median reader) |
 | --- | --- | --- | --- | --- |
-FILL_A
+| thought | `class=touches case=murder basis=account` | 3 → 27 (+24) | 37% → 0% | 2 → 9 |
+| bridge | `tie=victim lead=ask` | 5 → 15 (+19)¹ | 0.6% → 0% | 4 → 11 |
+| thought | `class=view case=murder who=known lied=no` | 2 → 11 (+9) | 7.2% → 0% | 3 → 10 |
+| carry | `for=ask-place lead=yes setting=indoor` | 6 → 9 (+2) | 0.2% → 0% | 4 → 9 |
+| thought | `class=implicates case=murder basis=access` | 3 → 10 (+6) | 0.9% → 0% | 4 → 13 |
+| thought | `class=window case=murder basis=dead-by` | 6 → 8 (+2) | 0% → 0% | 9 → 11 |
+| bridge | `tie=time lead=ask` | 8 → 11 (+5) | 0% → 0% | 12 → 12 |
+| bridge | `tie=account lead=ask` | 5 → 7 (+2) | 0% → 0% | 8 → 11 |
+| thought | `class=touches case=murder basis=described` | 4 → 6 (+2) | 1.1% → 0% | 6 → 9 |
+| thought | `class=view case=murder who=client lied=no` | 3 → 6 (+2) | 0% → 0% | 7 → 11 |
+| thought | `class=touches case=murder basis=placement` | 4 → 5 (+1) | 0.0% → 0% | 9 → 13 |
+| thought | `class=touches case=murder basis=timing` | 3 → 4 (+1) | 0.1% → 0% | 9 → 12 |
+| thought | `class=touches case=robbery basis=account` | 3 → 25 (+1) | 4.0% → 0% | 9 → 22 |
+| thought | `class=window case=murder basis=coroner` | 2 → 3 (+1) | 0% → 0% | 11 → 14 |
+| thought | `class=touches case=murder basis=absence` | 3 → 4 (+1) | 0.2% → 0% | 7 → 10 |
+| thought | `class=view case=robbery who=known lied=no` | 2 → 11 (+1) | 2.3% → 0% | 17 → 17 |
+
+1. The mean over three rungs of very different size; see `bridge` × `victim` below. The 8 cards of round three were written after the last measurement and are not in the 15.
+
+After this batch, 25's formula asks A for 11 more:
+
+- 1 on the account thought (27 cards against 2.7 reads a night is ten nights to the card);
+- 8 on the victim bridge (round three has written those);
+- 2 on the time bridge.
 
 What went where:
 
@@ -38,15 +68,56 @@ What went where:
 - **`view` × `client`** (3). The client met again at night.
 - **`implicates` × `access`** (7). A way in, never more. Every card carries an "if", "might", "could" or "would", because an access thought is usually one person's word (`markSingle`) and the M8 test holds the whole class to it.
 - **`window`** (3), **`touches` × `described`, `placement`, `timing`, `absence`** (5). One or two each, to the recomputed targets.
-- **`bridge` × `victim`** (37). The first round wrote 19 cards that say the relation and 2 that don't. The exposure run showed the key barely moved (5 → 8). Most victim bridges are to somebody already named on an earlier page, and the ladder then takes only cards *without* `{tie}` (`realize.ts`, `said`). That rung had 4 cards with `{where}` and 4 without. Round two wrote 16 more of those, 12 with `{where}` and 4 without.
+- **`bridge` × `victim`** (45). The key is really four rungs: the relation said or not (said the first time the subject is named, never after: `realize.ts`, `said`), crossed with where the one to ask is found or not (dropped for a fixture at their own post).
+  - **Round one** wrote 19 cards with the relation and `{where}`, and 2 without the relation. The exposure run showed the key barely moved (5 → 8): most victim bridges are to somebody already named, whose rungs had 4 cards with `{where}` and 4 without.
+  - **Round two** wrote 16 of those, 12 with `{where}` and 4 without. That brought it to 15.
+  - **Round three** wrote 8 for the no-`{where}` rungs from the second run's remaining target. They are not in its numbers.
 - **`bridge` × `time`** (8), **`account`** (2). With `{where}`, because the ladder asks for it first whenever the notebook knows where the one to ask is.
 - **`carry` × `ask-place` × `lead: yes`** (3). No `{name}`: seven of the key's cards need it, and a carry has it only when a person sent him.
 
 ### Batch E, by key
 
-| deck | key | cards before → after | nights with a repeat | first stale night (median reader) |
+| deck | key | cards before → after (25's add) | nights with a repeat | first stale night (median reader) |
 | --- | --- | --- | --- | --- |
-FILL_E
+| grounding | `family=evening role=suspect half=first` | 4 → 32 (+28) | 7.6% → 0% | 2 → 11 |
+| followup | `part=open family=evening order=later` | 6 → 21 (+15) | 0% → 0% | 4 → 11 |
+| grounding | `family=movements role=suspect knows=name half=first` | 8 → 18 (+9) | 0% → 0% | 5 → 10 |
+| telling | `family=movements temper=plain knows=name` | 3 → 13 (+10) | 9.3% → 0% | 3 → 9 |
+| telling | `family=evening temper=plain` | 3 → 15 (+11) | 2.4% → 0% | 3 → 11 |
+| telling | `family=movements temper=yap knows=name` | 3 → 11 (+8) | 3.1% → 0% | 3 → 10 |
+| telling | `family=evening temper=yap` | 2 → 10 (+8) | 4.2% → 0% | 4 → 12 |
+| grounding | `family=movements role=suspect knows=relation half=first` | 7 → 13 (+5) | 0% → 0% | 5 → 11 |
+| tail | (a family × temper run out tonight; below) | 3 → 5 (+12) | 0% → 0% | 7 → 11 |
+| telling | `family=evening temper=enigma` | 2 → 9 (+7) | 3.1% → 0% | 4 → 12 |
+| followup | `part=open family=evening order=first` | 4 → 10 (+6) | 0.5% → 0% | 6 → 12 |
+| followup | `part=open family=thing order=later` | 2 → 8 (+6) | 3.6% → 0% | 5 → 14 |
+| followup | `part=second family=movements ask=other` | 3 → 8 (+5) | 1.4% → 0% | 5 → 13 |
+| followup | `part=open family=strangers order=later` | 3 → 8 (+5) | 1.6% → 0% | 6 → 13 |
+| followup | `part=open family=counts order=first` | 4 → 7 (+3) | 0% → 0% | 6 → 10 |
+| telling | `family=movements temper=enigma knows=name` | 2 → 5 (+3) | 4.3% → 0% | 4 → 8 |
+| note | `family=movements band=play polarity=seen` | 4 → 8 (+3) | 0% → 0% | 5 → 9 |
+| telling | `family=strangers temper=yap` | 2 → 5 (+3) | 3.3% → 0% | 7 → 15 |
+| telling | `family=strangers temper=plain` | 2 → 5 (+3) | 3.1% → 0% | 5 → 13 |
+| telling | `family=movements temper=plain knows=relation` | 3 → 9 (+2) | 2.0% → 0% | 4 → 14 |
+| telling | `family=movements temper=yap knows=relation` | 3 → 4 (+1) | 0.7% → 0% | 6 → 7 |
+| grounding | `family=thing role=suspect half=first` | 2 → 5 (+3) | 0.9% → 0% | 7 → 11 |
+| grounding | `family=movements role=suspect half=first` | 4 → 5 (+1) | 2.2% → 1.3% | 13 → 13 |
+| telling | `family=thing temper=yap` | 2 → 4 (+2) | 1.3% → 0.0% | 7 → 11 |
+| grounding | `family=strangers role=suspect half=first` | 3 → 5 (+2) | 0% → 0% | 11 → 15 |
+| telling | `family=counts temper=yap` | 3 → 4 (+1) | 0% → 0% | 9 → 13 |
+| telling | `family=thing temper=plain` | 2 → 3 (+1) | 2.2% → 0.8% | 11 → 14 |
+| telling | `family=counts temper=plain` | 3 → 4 (+1) | 0.1% → 0% | 10 → 13 |
+| telling | `family=movements temper=enigma knows=relation` | 2 → 3 (+1) | 3.5% → 0% | 6 → 11 |
+| note | (a family run out tonight) | 3 → 5 (+1) | 0% → 0% | 5 → 13 |
+| note | `family=thing band=play` | 1 → 3 (+2) | 0% → 0% | 10 → 17 |
+| grounding | `family=movements role=counterman knows=name half=second` | 2 → 3 (+1) | 0.0% → 0% | 8 → 13 |
+| grounding | `family=counts role=counterman half=first` | 1 → 2 (+1) | 0% → 0% | 8 → 17 |
+| tail | `family=evening temper=plain` | 2 → 3 (+1) | 0% → 0% | 14 → 14 |
+| grounding | `family=movements role=ticket-taker knows=name half=second` | 1 → 2 (+1) | 0% → 0% | 15 → 22 |
+| grounding | `family=strangers role=counterman half=first` | 1 → 2 (+1) | 0% → 0% | 17 → 23 |
+| tail | `family=movements temper=yap` | 1 → 6 (+1) | 0% → 0% | 33 → 28 |
+
+After this batch, 25's formula asks E for 4 more, all on the tail exhaustion row.
 
 What went where:
 
@@ -132,6 +203,10 @@ Each now carries the witness's attitude. Some examples:
 
 "The name means nothing to me" also said something the telling might not: it is dealt with `knows: any`. None of the tails joked at the game's expense. The curt ones kept are the enigma's refusals, which are attitude: "That’s all you get.", "That’s all I’ll say about it.", "Write it down if you like."
 
+### Account thoughts that said nobody else had placed the person
+
+An account thought is dealt whenever somebody gives their own evening, whatever else the notebook already holds about them. "Nobody else had said any of it yet" (tht-m021) was false whenever an earlier page had placed them. Seed 21 at Poached happened to ask Thorndike first and Salerno about him a page later. Asked the other way round, the card would have been false. The card now says only what the account is: "Nobody else’s word was in it." Three draft cards said the same thing and were rewritten before they went in.
+
 ### Frames that said the witness saw somebody
 
 tel-019 and tel-020, "“Oh, I saw him all right,” Rafferty said.", were dealt before any `movements` telling, including "He wasn’t here. Not once all evening." They now say "“Oh, I know him all right,”" and "“Oh, I know who he is,”", which is what their `knows` tag says.
@@ -152,19 +227,44 @@ tel-019 and tel-020, "“Oh, I saw him all right,” Rafferty said.", were dealt
 
 ## Measurements
 
-`npx tsx scripts/deck-exposure.ts --seeds 50 --people 10`: 2,550 nights, 30 readers of 85 nights each. Before is `main` at d5ac9c9; after is this branch. Deterministic.
+`npx tsx scripts/deck-exposure.ts --seeds 50 --people 10`: 2,550 nights, 30 readers of 85 nights each. Before is `main` at d5ac9c9. After is this branch on the same base, with rounds one and two. It does not have round three's 8 bridges, the later text-only rewrites or PR #40's decks B and C, merged afterwards; none of those changes a tag on these decks. Deterministic, 28 minutes a run.
 
 ### Per deck
 
-| deck | cards | nights with a same-night repeat | stale, nights 11–20 | first stale night (median reader) |
-| --- | --- | --- | --- | --- |
-FILL_DECKS
+| deck | cards | read / night | nights with a same-night repeat | stale, nights 11–20 | first stale night (median reader) |
+| --- | --- | ---: | --- | --- | --- |
+| thought | 334 → 385 | 16.6 | 51% → 1.9% | 74% → 75% | 2 → 5 |
+| telling | 64 → 127 | 10.5 | 39% → 5.6% | 90% → 85% | 2 → 5 |
+| grounding | 92 → 148 | 10.5 | 14% → 6.7% | 86% → 81% | 2 → 5 |
+| followup | 50 → 90 | 6.7 | 6.6% → 0.0% | 91% → 79% | 3 → 7 |
+| carry | 161 → 164 | 4.2 | 0.5% → 0.1% | 64% → 64% | 4 → 6 |
+| bridge | 73 → 120² | 4.1 | 0.6% → 0% | 77% → 52% | 4 → 9 |
+| tail | 68 → 90 | 3.2 | 0% → 0% | 68% → 48% | 5 → 9 |
+| note | 40 → 48 | 1.4 → 1.6³ | 0% → 0% | 78% → 64% | 4 → 8 |
+| answer | 54 | 0.6 | 0% → 0% | 35% → 35% | 45 → 45 |
+| confront | 84 | 0.3 | 0% → 0% | 2.2% → 2.2% | 32 → 32 |
+| decide | 32 | 0.1 | 0% → 0% | 4.5% → 4.5% | 77 → 77 |
+
+2. Measured before round three's 8; the deck is 128 now.
+3. A note is dealt only when an unread one fits, so more notes means a few more of them.
+
+The thought's remaining 1.9% and the testimony decks' 5–7% are the sum over dozens of small keys (the fixtures' own groundings, the bare `“{told}”` frame, the `stranger` thought). No single key in the eleven decks repeats inside a night in more than 2.1% of nights.
 
 **How to read "stale".** As 25 says, with memory a key comes back only once it has been read through. A key sized to about ten nights of reading is read through by night 11, so "stale, nights 11–20" stays high or even rises on the keys this batch filled to exactly that size (the account thought: 85% → 99%). The measure of the writing is the same-night repeat and the first stale night. The account thought went from a repeat in 37% of nights, and a stale read on night 2, to none, and night 9.
 
 ### Checks
 
-FILL_CHECKS
+On the final branch, with PR #40 merged in:
+
+- **`npm run decks`:** 5,303 cards across 39 decks, 0 errors. Plain terms: 0 banned.
+- **Tests:** `npx vitest run`, 44 files and 840 tests, all passing. `npx tsc --noEmit` is clean. The run includes:
+  - the reader lint (40 seeds × every tier);
+  - correspondence on every sweep, with `checkTelling` over every telling and note;
+  - plain terms over 40 seeds × 3 difficulties of each case type;
+  - M10's "new decks say no case fact";
+  - M8's hedging and bridge-judging tests;
+  - Night Hone 1's "every thought names a slot".
+- **Corpus overlap:** 41 → 38 five-word runs over the nine decks touched, none in a new or rewritten card.
 
 ## Read-through
 

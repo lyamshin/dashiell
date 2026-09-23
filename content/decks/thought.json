@@ -2082,7 +2082,7 @@
   {
     "id": "tht-e047",
     "deck": "thought",
-    "text": "{subject} was somebody I knew about already. Now {subject} was across the room from me.",
+    "text": "{subject} was somebody I knew about. Now {subject} was here, where I could ask.",
     "tags": {
       "class": "view",
       "who": "known"
@@ -2093,7 +2093,7 @@
   {
     "id": "tht-e048",
     "deck": "thought",
-    "text": "{subject} was in the notebook already, and now {subject} was in the room.",
+    "text": "{subject} was in the notebook already, and now {subject} was here.",
     "tags": {
       "class": "view",
       "who": "known"
@@ -3197,7 +3197,7 @@
   {
     "id": "tht-m021",
     "deck": "thought",
-    "text": "It was {subject}’s evening in {subject}’s own words. Nobody else had said any of it yet.",
+    "text": "It was {subject}’s evening in {subject}’s own words. Nobody else’s word was in it.",
     "tags": {
       "class": "touches",
       "basis": "account"
@@ -3576,7 +3576,7 @@
   {
     "id": "tht-a003",
     "deck": "thought",
-    "text": "Every hour of it came from {subject}. Nobody else had put {subject} anywhere yet.",
+    "text": "Every hour of it came from {subject}. It would need somebody else’s eyes before it was more than that.",
     "tags": {
       "class": "touches",
       "basis": "account"
@@ -3664,7 +3664,7 @@
   {
     "id": "tht-a011",
     "deck": "thought",
-    "text": "I had the places {subject} named. I didn’t yet have anybody who had seen {subject} at any of them.",
+    "text": "I had the places {subject} named, in {subject}’s own order. Where they matched somebody else’s eyes, they would count for more.",
     "tags": {
       "class": "touches",
       "basis": "account"
@@ -3721,7 +3721,7 @@
   {
     "id": "tht-a016",
     "deck": "thought",
-    "text": "{subject} was the only witness to {subject}’s evening so far. I wrote it down and left room beside it.",
+    "text": "For this account, the only witness was {subject}. I wrote it down and left room beside it.",
     "tags": {
       "class": "touches",
       "basis": "account"
