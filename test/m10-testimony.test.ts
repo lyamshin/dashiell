@@ -256,6 +256,18 @@ describe('M10 §A.3: pacing', () => {
     console.log(`M10 "Go on" steps checked: ${tried}`);
   }, 300_000);
 
+  it('describes each person once a visit: a look round says nothing twice, and no recall comes round again', () => {
+    for (const seed of [3, 7, 12]) {
+      const view = tiered(seed, 4);
+      const route = playOracle(view).steps.map((st) => st.command);
+      // A look after every arrival, and another after that.
+      const commands = route.flatMap((c) => (c.startsWith('go ') ? [c, 'look', 'look'] : [c]));
+      const state = play(view, commands);
+      const issues = lintRun(view, state).filter((i) => i.rule === 'presence-again' || i.rule === 'recall-again');
+      expect(issues.map((i) => `seed ${seed} p${i.page + 1}: ${i.detail}`)).toEqual([]);
+    }
+  });
+
   it('says who watches a place once, never twice in the place’s paragraph', () => {
     for (const r of RUNS) {
       for (const p of r.state.log) {
