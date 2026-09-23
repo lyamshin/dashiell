@@ -3357,5 +3357,137 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "tht-t01",
+    "deck": "thought",
+    "text": "{subject} had said {place}, and {source} had seen {subject} there. Two people telling one story. That cleared {subject}.",
+    "tags": {
+      "class": "clears",
+      "basis": "two"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-t02",
+    "deck": "thought",
+    "text": "{source} put {subject} at {place}, which was where {subject} said. The two agreed, so {subject} was not at {scene} at {time}. That cleared {subject}.",
+    "tags": {
+      "class": "clears",
+      "basis": "two"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-t03",
+    "deck": "thought",
+    "text": "It was {subject}’s own word for {place}, and now it was {source}’s as well. That cleared {subject} of {scene}.",
+    "tags": {
+      "class": "clears",
+      "basis": "two"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-t04",
+    "deck": "thought",
+    "text": "{subject} said {place} at {time}. {source} had seen {subject} at {place} too, and had not been asked to say so. That cleared {subject}.",
+    "tags": {
+      "class": "clears",
+      "basis": "two"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-t05",
+    "deck": "thought",
+    "text": "Nobody had to take {subject}’s word for {place} any more. {source} had seen {subject} there. That cleared {subject}.",
+    "tags": {
+      "class": "clears",
+      "basis": "two"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-t06",
+    "deck": "thought",
+    "text": "{source} and {subject} had not got together on it, and they agreed all the same: {place}, around {time}. That cleared {subject}.",
+    "tags": {
+      "class": "clears",
+      "basis": "two"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-t07",
+    "deck": "thought",
+    "text": "{subject}’s evening had {place} in it around {time}, and so did what {source} saw. That cleared {subject}.",
+    "tags": {
+      "class": "clears",
+      "basis": "two"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-t08",
+    "deck": "thought",
+    "text": "{source}’s word stood behind {subject}’s: {place}, not {scene}. That cleared {subject}.",
+    "tags": {
+      "class": "clears",
+      "basis": "two"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-t09",
+    "deck": "thought",
+    "text": "{subject} had said {place}, and somebody else had put {subject} there. Two facts that agreed. That cleared {subject}.",
+    "tags": {
+      "class": "clears",
+      "basis": "two"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-t10",
+    "deck": "thought",
+    "text": "{subject}’s word for {place} around {time} did not stand alone any more. That cleared {subject} of {scene}.",
+    "tags": {
+      "class": "clears",
+      "basis": "two"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-t11",
+    "deck": "thought",
+    "text": "Two things said {place} for {subject} around {time}, and only one of them came from {subject}. That cleared {subject}.",
+    "tags": {
+      "class": "clears",
+      "basis": "two"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-t12",
+    "deck": "thought",
+    "text": "{subject} was at {place} around {time}, and not only on {subject}’s own say-so. That cleared {subject}.",
+    "tags": {
+      "class": "clears",
+      "basis": "two"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]

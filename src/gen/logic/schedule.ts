@@ -146,7 +146,10 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
   const killer = cast.killer;
   const killerFixed = fixed[killer.id] as Record<number, Id>;
   for (let t = blockStart; t <= M; t++) killerFixed[t] = L;
-  if (M + 1 <= TICKS - 1) {
+  // M10 Part B: at Raw and Coddled the culprit's half hour after is left
+  // open, so that the culprit can be the one who sees an innocent there.
+  const teach = dials.catchTheLie === true;
+  if (M + 1 <= TICKS - 1 && !teach) {
     const after = nonScene.filter((p) => walk(L, p));
     killerFixed[M + 1] =
       ctx.tropeId === 'taken' && whereabouts !== undefined ? whereabouts : rng.pick(after.length > 0 ? after : nonScene);
@@ -330,13 +333,18 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
   const fixtureAtM = (place: Id): Id[] =>
     cast.fixtures.filter((f) => (truth[f.id] as (Id | null)[])[M] === place).map((f) => f.id);
   const lyingAt = (id: Id, t: Tick): boolean => (secretCells[id] ?? []).includes(t);
-  const setEdge = (from: Id, to: Id, strength: 'stranger' | 'name', basis: 'none' | 'regular' | 'roll'): boolean => {
+  const setEdge = (from: Id, to: Id, strength: 'stranger' | 'sight' | 'name', basis: 'none' | 'regular' | 'roll'): boolean => {
     const e = acq.edges.get(`${from}>${to}`);
     if (!e) return true;
     if (e.strength === strength) return true;
     if (e.basis === 'tie' || e.basis === 'secret') return false;
     const target = cast.people.find((p) => p.id === to) as Person;
-    const ref = strength === 'name' ? target.name : describeAs(target, cast.suspects, 'age').text;
+    const ref =
+      strength === 'name'
+        ? target.name
+        : strength === 'sight'
+          ? `${describeAs(target, cast.suspects, 'age').text} I know by sight`
+          : describeAs(target, cast.suspects, 'age').text;
     acq.edges.set(`${from}>${to}`, { ...e, strength, basis, ref });
     for (const [place, list] of Object.entries(acq.regulars)) {
       if (cast.watcherOf[place] !== from) continue;
@@ -344,7 +352,9 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
     }
     return true;
   };
-  const makeStranger = (from: Id, to: Id): boolean => setEdge(from, to, 'stranger', 'none');
+  // At Raw and Coddled nobody is a stranger (the tier deals no descriptions):
+  // somebody who must not name a person knows only the face.
+  const makeStranger = (from: Id, to: Id): boolean => setEdge(from, to, teach ? 'sight' : 'stranger', 'none');
 
   // The direct one: the one innocent somebody names at the crime's half hour.
   // A liar first, if one can be: their lie then has its first contradiction
@@ -563,11 +573,24 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
       .map((pl) => {
         const w = watcherAt(pl);
         const pieces = dials.strangers > 0 && w !== undefined && !canName(acq, w, p.id) ? 1 : 0;
-        return { pl, s: (exposed(p.id, pl) ? -10 : 0) + pieces };
+        // Raw and Coddled: the client stands alone at the crime's half hour.
+        // Two who share a room then would clear each other, which is the night
+        // M10 took away, and the client must go on knowing, by name, the one
+        // the client points at. Others who share a room there know only each
+        // other's faces (`quieten`, below).
+        const shared =
+          teach &&
+          Object.entries(atM).some(
+            ([id, at]) => at === pl && id !== killer.id && (id === cast.client.id || p.id === cast.client.id),
+          )
+            ? -20
+            : 0;
+        return { pl, s: (exposed(p.id, pl) ? -10 : 0) + pieces + shared };
       })
       .sort((a, b) => b.s - a.s);
     const pick = options[0];
     if (!pick) return fail(`nowhere at the crime's half hour for ${p.surname}`);
+    if (teach && pick.s <= -20) return fail('two innocents would share a room at the crime\'s half hour');
     atM[p.id] = pick.pl;
   }
   if (!plainTier) {
@@ -589,6 +612,8 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
   // Corroboration: a half hour near the crime's, in the same room, where
   // somebody who knows them by name sees them. Their account's span then
   // runs from there through the crime's half hour, and stands.
+  /** Raw and Coddled: who corroborates whom, so that no two innocents clear each other. */
+  const corroboratedBy = new Map<Id, Id>();
   if (!plainTier) {
     for (const p of rng.shuffle(free)) {
       if (p.id === directId || pairCells.has(`${p.id}@${M}`)) continue;
@@ -612,15 +637,22 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
             const there = theirs[u];
             if (there !== undefined && !walk(there, place)) return false;
           }
+          // Raw and Coddled: two innocents never clear each other.
+          if (teach && corroboratedBy.get(q.id) === p.id) return false;
           return true;
         });
         // Somebody who knows them already, or somebody who can: a neighbour
         // is a neighbour whatever the roll said, where no tie says otherwise.
         helpers.sort((a, b) => (canName(acq, b.id, p.id) ? 1 : 0) - (canName(acq, a.id, p.id) ? 1 : 0));
+        // Raw and Coddled: the culprit first. What the culprit says about
+        // anybody else is true, and an innocent's word is best kept off
+        // another innocent's alibi.
+        if (teach) helpers.sort((a, b) => (b.id === killer.id ? 1 : 0) - (a.id === killer.id ? 1 : 0));
         const q = helpers.find((h) => canName(acq, h.id, p.id) || setEdge(h.id, p.id, 'name', 'roll'));
         if (!q) continue;
         for (const u of [s, ...between]) mine[u] = place;
         (fixed[q.id] as Record<number, Id>)[s] = place;
+        corroboratedBy.set(p.id, q.id);
         break;
       }
     }
@@ -833,12 +865,24 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
     const w = watcherAt(place);
     return w !== undefined && canName(acq, w, id);
   };
+  // Raw and Coddled: the culprit claims a room somebody is posted at, and the
+  // one posted there knows the culprit, so that one plain word breaks it.
+  const postedThrough = (c: Id): boolean => {
+    const w = watcherAt(c);
+    return w !== undefined && murderCells.every((t) => (truth[w] as (Id | null)[])[t] === c);
+  };
   const crimeClaim = claimFor(killer.id, murderCells, (c) =>
     (chains ? (knowerPosted(c, killer.id) ? -5 : 0) : knowerPosted(c, killer.id) ? 2 : 0) +
-    (peopledAt(c, murderCells, killer.id) > 0 ? 1 : 0),
+    (peopledAt(c, murderCells, killer.id) > 0 ? 1 : 0) +
+    (teach && postedThrough(c) ? 20 : 0),
     chains,
   );
   if (!crimeClaim) return fail('no room for the culprit to claim');
+  if (teach) {
+    const w = watcherAt(crimeClaim);
+    if (!w || !postedThrough(crimeClaim)) return fail('nobody posted where the culprit claims to have been');
+    if (!setEdge(w, killer.id, 'name', 'regular')) return fail('the watcher cannot know the culprit');
+  }
   addLie({ personId: killer.id, ticks: murderCells.slice(), claimed: crimeClaim, cover: 'crime' });
 
   if (dials.meansLie) {

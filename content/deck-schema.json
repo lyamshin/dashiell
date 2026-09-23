@@ -677,7 +677,7 @@
       "tags": {
         "class": { "required": true, "values": ["clears", "implicates", "observer-placed", "unmentioned", "contradicts", "motive", "method", "window", "not-robbery", "robbery-shape", "secret", "dead-end", "context", "nothing", "goods", "last-seen", "seen-after", "view", "absent", "hint", "touches"] },
         "case": { "required": false, "default": "any", "values": ["murder", "robbery", "missing"], "extraValues": ["any"] },
-        "basis": { "required": false, "default": "any", "values": ["placement", "access", "anchor", "coroner", "dead-by", "alive-at", "self", "account", "outside", "placed", "at", "not-at", "described", "absence", "count", "anchored", "timing", "stranger", "together", "apart", "said"], "extraValues": ["any"] },
+        "basis": { "required": false, "default": "any", "values": ["placement", "access", "anchor", "coroner", "dead-by", "alive-at", "self", "account", "outside", "placed", "at", "not-at", "described", "absence", "count", "anchored", "timing", "stranger", "together", "apart", "said", "two"], "extraValues": ["any"] },
         "via": { "required": false, "default": "any", "values": ["office", "account"], "extraValues": ["any"] },
         "who": { "required": false, "default": "any", "values": ["watcher", "client", "known", "stranger"], "extraValues": ["any"] },
         "lied": { "required": false, "default": "any", "values": ["yes", "no"], "extraValues": ["any"] },
