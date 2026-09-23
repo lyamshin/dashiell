@@ -18,6 +18,10 @@ import { generateCase } from '../src/gen/index.js';
  * "and that" off four tropes' reported speech so a quote of it reads; with
  * those four wordings undone every one of the 600 hashes matched, and the
  * structure-only hash is unchanged.
+ *
+ * And by deck batch D, which stopped the briefing adding a second full stop
+ * to a pointer's reason that already had one ("…came out without it.."): 78
+ * cases at difficulty 3 changed wording, and the structure-only hash did not.
  */
 const baseline = JSON.parse(
   readFileSync(new URL('./fixtures/m7-baseline-hashes.json', import.meta.url), 'utf8'),

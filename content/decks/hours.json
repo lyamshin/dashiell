@@ -448,5 +448,635 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "hrs-046",
+    "deck": "hours",
+    "text": "A church clock a few streets over struck {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "bells",
+      "clock"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-047",
+    "deck": "hours",
+    "text": "Somewhere a bell had rung {hour} while I wasn’t counting.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "bells"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-048",
+    "deck": "hours",
+    "text": "I checked my watch: after {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "clock"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-049",
+    "deck": "hours",
+    "text": "By my watch it was past {hour}, and the watch was usually right.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "clock"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-050",
+    "deck": "hours",
+    "text": "The nearest clock I could see said it was past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "clock"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-051",
+    "deck": "hours",
+    "text": "I had heard a clock strike {hour} a while back.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "clock",
+      "bells"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-052",
+    "deck": "hours",
+    "text": "By then {hour} had come and gone.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-053",
+    "deck": "hours",
+    "text": "It was {hour} and after.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-054",
+    "deck": "hours",
+    "text": "It was after {hour} in the morning.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "late"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-055",
+    "deck": "hours",
+    "text": "Another hour gone. It was past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "late"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-056",
+    "deck": "hours",
+    "text": "I had lost track of the time. It was past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-057",
+    "deck": "hours",
+    "text": "The time had kept moving while I wasn’t watching it. It was past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-058",
+    "deck": "hours",
+    "text": "I heard an El train go over a few streets away. By then it was past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "el"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-059",
+    "deck": "hours",
+    "text": "A milk wagon went by in the street, the bottles rattling in their crates. It was after {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "street",
+      "animals"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-060",
+    "deck": "hours",
+    "text": "Across the way a window went dark. It was past {hour}, and somebody had finally gone to bed.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "window",
+      "sleep"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-061",
+    "deck": "hours",
+    "text": "A light came on in a window across the way. It was past {hour}, and somebody was up early or up late.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "window",
+      "lamp"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-062",
+    "deck": "hours",
+    "text": "A cab went by slowly, looking for a fare. It was after {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "traffic",
+      "street"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-063",
+    "deck": "hours",
+    "text": "Down the street a patrolman rapped his nightstick twice on the curb. It was past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "street",
+      "law"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-064",
+    "deck": "hours",
+    "text": "Somewhere a streetcar ground along its rails. It was past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "traffic"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-065",
+    "deck": "hours",
+    "text": "A fire engine went by a few streets over, its bell going. It was after {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "bells",
+      "traffic"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-066",
+    "deck": "hours",
+    "text": "It was past {hour}. A dog was barking somewhere, a long way off.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "animals"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-067",
+    "deck": "hours",
+    "text": "Somewhere a baby was crying, and nobody was hurrying to it. It was past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-068",
+    "deck": "hours",
+    "text": "Somewhere a door slammed and a man shouted something I didn’t catch. It was past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "door"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-069",
+    "deck": "hours",
+    "text": "It was past {hour}. A truck went by with the morning papers, and a bundle hit the pavement at the corner.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "paper",
+      "street"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-070",
+    "deck": "hours",
+    "text": "It was past {hour}. I had been going since midnight, and I felt all of it.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "late"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-071",
+    "deck": "hours",
+    "text": "It was past {hour}, and my eyes had started to sting.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "eyes"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-072",
+    "deck": "hours",
+    "text": "It was after {hour}. I rubbed my eyes and kept at it.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "eyes"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-073",
+    "deck": "hours",
+    "text": "It was past {hour}, and I was hungry, and that would have to wait.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "food"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-074",
+    "deck": "hours",
+    "text": "It was past {hour}. I smoked a cigarette to keep awake.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "cigarette"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-075",
+    "deck": "hours",
+    "text": "I checked the time. It was past {hour}, and the DA would have it at eight whether I was ready or not.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "clock",
+      "law"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-076",
+    "deck": "hours",
+    "text": "Past {hour}, and eight was not getting any further off.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "clock"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-077",
+    "deck": "hours",
+    "text": "The hours were going faster than the questions. It was past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-078",
+    "deck": "hours",
+    "text": "It was past {hour}. That left less time before eight than I wanted.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "clock"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-079",
+    "deck": "hours",
+    "text": "I had until eight, and it was already past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "clock"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-080",
+    "deck": "hours",
+    "text": "The rain hadn’t let up. It was past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "rain"
+    ],
+    "status": "generated",
+    "weather": "rain"
+  },
+  {
+    "id": "hrs-081",
+    "deck": "hours",
+    "text": "It was past {hour}, and water was still running in the gutters.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "rain",
+      "street"
+    ],
+    "status": "generated",
+    "weather": "rain"
+  },
+  {
+    "id": "hrs-082",
+    "deck": "hours",
+    "text": "It was past {hour}. Out on the river a foghorn sounded, and after a while it sounded again.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "fog",
+      "sea"
+    ],
+    "status": "generated",
+    "weather": "fog"
+  },
+  {
+    "id": "hrs-083",
+    "deck": "hours",
+    "text": "The fog hadn’t lifted. It was past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "fog"
+    ],
+    "status": "generated",
+    "weather": "fog"
+  },
+  {
+    "id": "hrs-084",
+    "deck": "hours",
+    "text": "It was past {hour}, and the cold had got into my shoes.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "cold"
+    ],
+    "status": "generated",
+    "weather": "cold"
+  },
+  {
+    "id": "hrs-085",
+    "deck": "hours",
+    "text": "It was after {hour}, and the cold was getting worse, not better.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "cold"
+    ],
+    "status": "generated",
+    "weather": "cold"
+  },
+  {
+    "id": "hrs-086",
+    "deck": "hours",
+    "text": "The night had stayed clear. It was past {hour}.",
+    "tags": {
+      "beat": "hour"
+    },
+    "motifs": [
+      "clear"
+    ],
+    "status": "generated",
+    "weather": "clear"
+  },
+  {
+    "id": "hrs-087",
+    "deck": "hours",
+    "text": "Two calls left. I had to choose them well.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-088",
+    "deck": "hours",
+    "text": "I had time for two more calls, no more.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-089",
+    "deck": "hours",
+    "text": "Two calls left, and more questions than that.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-090",
+    "deck": "hours",
+    "text": "The clock left me two more calls.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [
+      "clock"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-091",
+    "deck": "hours",
+    "text": "Two more calls. After that I would be telling the DA whatever I had.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [
+      "law"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-092",
+    "deck": "hours",
+    "text": "Two calls left. I stopped wasting steps.",
+    "tags": {
+      "beat": "two-left"
+    },
+    "motifs": [
+      "footsteps"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-093",
+    "deck": "hours",
+    "text": "One call left. Whatever I did next, I would have to live with.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-094",
+    "deck": "hours",
+    "text": "Time for one more call, and that was all.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [
+      "clock"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-095",
+    "deck": "hours",
+    "text": "This was the last call I had time for.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-096",
+    "deck": "hours",
+    "text": "One more call, and then it was eight and the DA’s turn.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [
+      "clock",
+      "law"
+    ],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-097",
+    "deck": "hours",
+    "text": "The last call. It had better be a good one.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "hrs-098",
+    "deck": "hours",
+    "text": "I had time for one more, and I meant to spend it well.",
+    "tags": {
+      "beat": "last-call"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]

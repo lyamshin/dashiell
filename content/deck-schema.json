@@ -155,6 +155,10 @@
           "default": "any",
           "values": [
             "arch-runner", "arch-heeler", "arch-broker", "arch-hackman", "arch-reporter", "arch-bookmaker",
+            "arch-heir", "arch-widow", "arch-society", "arch-blockowner", "arch-lawyer", "arch-bookkeeper",
+            "arch-nurse", "arch-dentist", "arch-secretary", "arch-piano-teacher", "arch-adjuster",
+            "arch-chambermaid", "arch-longshoreman", "arch-seamstress", "arch-tailor", "arch-stagehand",
+            "arch-switchboard", "arch-nightman", "arch-chorus", "arch-pawnman", "arch-bouncer",
             "vic-landlord", "vic-bootlegger", "vic-heiress", "vic-agent", "vic-inspector",
             "vic-union-treasurer", "vic-pawnbroker", "vic-columnist", "vic-bondsman", "vic-wholesaler", "any"
           ]
