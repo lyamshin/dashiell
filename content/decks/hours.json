@@ -12,7 +12,7 @@
   {
     "id": "hrs-002",
     "deck": "hours",
-    "text": "It had gone {hour}.",
+    "text": "It was after {hour}.",
     "tags": {
       "beat": "hour"
     },
@@ -62,7 +62,7 @@
   {
     "id": "hrs-007",
     "deck": "hours",
-    "text": "It was gone {hour}.",
+    "text": "It was past {hour}, and later than I liked.",
     "tags": {
       "beat": "hour"
     },

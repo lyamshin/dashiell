@@ -1,23 +1,6 @@
 {
   "rule": "Say what it is. A modern reader who has never read Hammett must understand every sentence on first read. Period flavour comes from the setting, the objects and the rhythm, never from slang that hides what is meant. See docs/style-guide.md and docs/21-plain-terms-notes.md.",
   "howToRead": "Each term is matched case-insensitively by any of its `patterns` (JavaScript regular expressions). A match inside a match of one of its `allow` patterns is a literal sense and passes. `plain` is what to write instead. Checked by `npm run decks` over every deck and by test/plain-terms.test.ts over generated text.",
-  "pendingDecks": {
-    "why": "Another pass is rewriting these decks. A hit in one of them is reported as a warning, not an error, until that rewrite lands; then delete this entry.",
-    "decks": [
-      "establish",
-      "watch",
-      "return",
-      "activity",
-      "thought",
-      "bridge",
-      "carry",
-      "answer",
-      "errand",
-      "hours",
-      "decide",
-      "place-ambient"
-    ]
-  },
   "terms": [
     {
       "term": "paper (a debt or a mortgage)",

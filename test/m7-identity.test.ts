@@ -13,6 +13,11 @@ import { generateCase } from '../src/gen/index.js';
  * which changed the words of every case and nothing else: its structure-only
  * hash (`test/structure-identity.test.ts`) is byte-identical to main's for the
  * same 600 cases, so these hashes were regenerated on the new wording.
+ *
+ * And once more by Night Hone 1 (docs/18-night-hone-1-notes.md), which took
+ * "and that" off four tropes' reported speech so a quote of it reads; with
+ * those four wordings undone every one of the 600 hashes matched, and the
+ * structure-only hash is unchanged.
  */
 const baseline = JSON.parse(
   readFileSync(new URL('./fixtures/m7-baseline-hashes.json', import.meta.url), 'utf8'),

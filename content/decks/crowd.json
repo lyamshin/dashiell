@@ -1,0 +1,1421 @@
+[
+  {
+    "id": "crd-001",
+    "deck": "crowd",
+    "text": "{group} were standing in the little hallway by the kitchen, keeping their hands in their pockets and their voices low.",
+    "tags": {
+      "place": "res-apartment",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-002",
+    "deck": "crowd",
+    "text": "{group} sat around the kitchen table with their hats on, none of them saying much.",
+    "tags": {
+      "place": "res-apartment",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-003",
+    "deck": "crowd",
+    "text": "{group} were waiting just inside the door, out of the way, with their coats still buttoned.",
+    "tags": {
+      "place": "res-apartment",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-004",
+    "deck": "crowd",
+    "text": "{group} were sitting on the edge of the parlor sofa and the chairs beside it, none of them quite settled.",
+    "tags": {
+      "place": "res-brownstone",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-005",
+    "deck": "crowd",
+    "text": "{group} stood in the front hall at the foot of the stairs, talking quietly among themselves.",
+    "tags": {
+      "place": "res-brownstone",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-006",
+    "deck": "crowd",
+    "text": "{group} were gathered at the back of the parlor by the grate, their coats over their arms.",
+    "tags": {
+      "place": "res-brownstone",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-007",
+    "deck": "crowd",
+    "text": "{group} were crowded into the kitchen end of the place, leaning against the icebox and the wall by the stove.",
+    "tags": {
+      "place": "res-walkup",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-008",
+    "deck": "crowd",
+    "text": "{group} sat on the kitchen chairs and a trunk by the wall, since there was little else to sit on.",
+    "tags": {
+      "place": "res-walkup",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-009",
+    "deck": "crowd",
+    "text": "{group} stood out on the landing at the top of the stair, keeping close to the banister.",
+    "tags": {
+      "place": "res-walkup",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-010",
+    "deck": "crowd",
+    "text": "{group} were sitting in the armchairs by the sideboard, their hats in their laps.",
+    "tags": {
+      "place": "res-suite",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-011",
+    "deck": "crowd",
+    "text": "{group} stood by the door to the corridor, talking in low voices and keeping to one side.",
+    "tags": {
+      "place": "res-suite",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-012",
+    "deck": "crowd",
+    "text": "{group} were waiting by the writing desk, none of them willing to sit down.",
+    "tags": {
+      "place": "res-suite",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-013",
+    "deck": "crowd",
+    "text": "{group} were at the kitchen table under the one bulb, their elbows on the oilcloth.",
+    "tags": {
+      "place": "res-backhouse",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-014",
+    "deck": "crowd",
+    "text": "{group} were standing in the front room by the stove, warming their hands over it.",
+    "tags": {
+      "place": "res-backhouse",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-015",
+    "deck": "crowd",
+    "text": "{group} stood in the narrow passage by the back door, their shoulders hunched, saying a word now and then.",
+    "tags": {
+      "place": "res-backhouse",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-016",
+    "deck": "crowd",
+    "text": "{group} were sitting on the parapet at the far end with their backs to the street, sharing a pack of cigarettes.",
+    "tags": {
+      "place": "rooftop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-017",
+    "deck": "crowd",
+    "text": "{group} stood by the water tank, talking low and looking out over the other roofs.",
+    "tags": {
+      "place": "rooftop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-018",
+    "deck": "crowd",
+    "text": "{group} were leaning on the chimney stack near the stair housing, their collars turned up.",
+    "tags": {
+      "place": "rooftop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-019",
+    "deck": "crowd",
+    "text": "{group} were standing at the parapet, watching the sky go gray behind the water tanks across the street.",
+    "tags": {
+      "place": "rooftop",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-020",
+    "deck": "crowd",
+    "text": "{group} were standing near the ash cans at the far end, talking with their heads close together.",
+    "tags": {
+      "place": "back-alley",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-021",
+    "deck": "crowd",
+    "text": "{group} sat on the back step of the delicatessen, smoking and keeping their voices down.",
+    "tags": {
+      "place": "back-alley",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-022",
+    "deck": "crowd",
+    "text": "{group} were leaning against the brick wall halfway down, their hands deep in their pockets.",
+    "tags": {
+      "place": "back-alley",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-023",
+    "deck": "crowd",
+    "text": "{group} were sitting on the bench in the outer office, hats on their knees, waiting their turn.",
+    "tags": {
+      "place": "office-over-tailor",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-024",
+    "deck": "crowd",
+    "text": "{group} stood around the desk in the inner office, talking over some piece of business in quiet voices.",
+    "tags": {
+      "place": "office-over-tailor",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-025",
+    "deck": "crowd",
+    "text": "{group} were drinking coffee from thick mugs in the outer office, sitting wherever there was a chair.",
+    "tags": {
+      "place": "office-over-tailor",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-026",
+    "deck": "crowd",
+    "text": "{group} were sitting on crates under the shed roof, playing cards on an upturned barrel.",
+    "tags": {
+      "place": "pier-shed",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-027",
+    "deck": "crowd",
+    "text": "{group} stood at the edge of the pier by the pilings, looking out at the lights across the water.",
+    "tags": {
+      "place": "pier-shed",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-028",
+    "deck": "crowd",
+    "text": "{group} were leaning against the iron wall of the shed, out of the way, smoking.",
+    "tags": {
+      "place": "pier-shed",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-029",
+    "deck": "crowd",
+    "text": "{group} stood near the gate as the light came up, watching the first boats of the day out on the river.",
+    "tags": {
+      "place": "pier-shed",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-030",
+    "deck": "crowd",
+    "text": "{group} were sitting on upturned wash tubs by the fence, talking quietly under the empty lines.",
+    "tags": {
+      "place": "laundry-yard",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-031",
+    "deck": "crowd",
+    "text": "{group} stood by the back step of the laundry, passing a cigarette between them.",
+    "tags": {
+      "place": "laundry-yard",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-032",
+    "deck": "crowd",
+    "text": "{group} were in the far corner of the yard by the gate, keeping out of the light from the back of the laundry.",
+    "tags": {
+      "place": "laundry-yard",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-033",
+    "deck": "crowd",
+    "text": "{group} were standing among the empty lines in the first gray light, looking up at the back windows of the laundry.",
+    "tags": {
+      "place": "laundry-yard",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-034",
+    "deck": "crowd",
+    "text": "{group} had pulled the kitchen chairs into a circle, with a pot of coffee on the stove behind them.",
+    "tags": {
+      "place": "walkup-flat",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-035",
+    "deck": "crowd",
+    "text": "{group} stood in the narrow hall of the flat, backs to the wall, hats in their hands.",
+    "tags": {
+      "place": "walkup-flat",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-036",
+    "deck": "crowd",
+    "text": "{group} sat in the front room on whatever chairs the place had, talking in low voices.",
+    "tags": {
+      "place": "walkup-flat",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-037",
+    "deck": "crowd",
+    "text": "{group} were waiting by the elevator gate, watching the arrow over it climb and fall.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-038",
+    "deck": "crowd",
+    "text": "{group} stood by the brass mailboxes, their coats buttoned up to the neck.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-039",
+    "deck": "crowd",
+    "text": "{group} sat on the bench across from the mailboxes, their hats on and their hands folded.",
+    "tags": {
+      "place": "hallam-vestibule",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-040",
+    "deck": "crowd",
+    "text": "{group} were crowded into the little room, standing between the washstand and the wall.",
+    "tags": {
+      "place": "rooming-house-room",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-041",
+    "deck": "crowd",
+    "text": "{group} sat wherever the room allowed, on the trunk and the one chair and the sill.",
+    "tags": {
+      "place": "rooming-house-room",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-042",
+    "deck": "crowd",
+    "text": "{group} were in the hall just outside, along the worn runner, speaking only in murmurs.",
+    "tags": {
+      "place": "rooming-house-room",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-043",
+    "deck": "crowd",
+    "text": "{group} were at the far end of the bar with their beers, talking about a ball game.",
+    "tags": {
+      "place": "dolans-bar",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-044",
+    "deck": "crowd",
+    "text": "{group} sat at a table along the wall over a pitcher of beer, taking their time with it.",
+    "tags": {
+      "place": "dolans-bar",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-045",
+    "deck": "crowd",
+    "text": "{group} were playing a slow game of dice at the back table, keeping score on a napkin.",
+    "tags": {
+      "place": "dolans-bar",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-046",
+    "deck": "crowd",
+    "text": "{group} were still at the end of the bar as the front window went gray, eating hard-boiled eggs from the bowl.",
+    "tags": {
+      "place": "dolans-bar",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-047",
+    "deck": "crowd",
+    "text": "{group} were at a back table over drinks, their chairs pulled in close.",
+    "tags": {
+      "place": "speakeasy",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-048",
+    "deck": "crowd",
+    "text": "{group} sat at the bar a few stools apart, each of them minding a glass.",
+    "tags": {
+      "place": "speakeasy",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-049",
+    "deck": "crowd",
+    "text": "{group} were in a booth along the wall, laughing at something one of them had said.",
+    "tags": {
+      "place": "speakeasy",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-050",
+    "deck": "crowd",
+    "text": "{group} were slumped in a booth by the far wall, their drinks gone flat and their talk run down.",
+    "tags": {
+      "place": "speakeasy",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-051",
+    "deck": "crowd",
+    "text": "{group} sat in the armchairs near the elevator, reading and smoking and not talking.",
+    "tags": {
+      "place": "hotel-lobby",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-052",
+    "deck": "crowd",
+    "text": "{group} were at the cigar counter, choosing slowly among the open boxes.",
+    "tags": {
+      "place": "hotel-lobby",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-053",
+    "deck": "crowd",
+    "text": "{group} were waiting on the long sofa by the pillars, coats folded over their knees.",
+    "tags": {
+      "place": "hotel-lobby",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-054",
+    "deck": "crowd",
+    "text": "{group} were drinking coffee in the armchairs by the front windows as the daylight came in over the carpet.",
+    "tags": {
+      "place": "hotel-lobby",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-055",
+    "deck": "crowd",
+    "text": "{group} stood at the stand reading the headlines off the racks without buying anything.",
+    "tags": {
+      "place": "corner-newsstand",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-056",
+    "deck": "crowd",
+    "text": "{group} were on the corner under the bulb, lighting cigarettes off a single match.",
+    "tags": {
+      "place": "corner-newsstand",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-057",
+    "deck": "crowd",
+    "text": "{group} were leaning on the lamp post by the stand, arguing mildly over the racing results.",
+    "tags": {
+      "place": "corner-newsstand",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-058",
+    "deck": "crowd",
+    "text": "{group} were at the stand in the early light, reading the fresh morning headlines over one another's shoulders.",
+    "tags": {
+      "place": "corner-newsstand",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-059",
+    "deck": "crowd",
+    "text": "{group} were at a table by the front over coffee and pie, eating without talking.",
+    "tags": {
+      "place": "automat",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-060",
+    "deck": "crowd",
+    "text": "{group} sat at separate tables near the wall of little doors, each of them with a cup gone lukewarm.",
+    "tags": {
+      "place": "automat",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-061",
+    "deck": "crowd",
+    "text": "{group} were feeding nickels into the slots along the wall, choosing sandwiches one at a time.",
+    "tags": {
+      "place": "automat",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-062",
+    "deck": "crowd",
+    "text": "{group} were dozing over their cups at a corner table, their heads propped on their hands.",
+    "tags": {
+      "place": "automat",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-063",
+    "deck": "crowd",
+    "text": "{group} were eating breakfast at a table near the entrance, eggs and rolls and coffee out of the little glass doors.",
+    "tags": {
+      "place": "automat",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-064",
+    "deck": "crowd",
+    "text": "{group} stood in the lobby by the covered popcorn machine, talking quietly under the one lit bulb.",
+    "tags": {
+      "place": "movie-house",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-065",
+    "deck": "crowd",
+    "text": "{group} were sitting in the back row of the dark auditorium, their feet up on the seats in front.",
+    "tags": {
+      "place": "movie-house",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-066",
+    "deck": "crowd",
+    "text": "{group} were sitting on the steps up to the balcony, smoking, with their hats pushed back.",
+    "tags": {
+      "place": "movie-house",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-067",
+    "deck": "crowd",
+    "text": "{group} sat on the benches along the wall, fanning themselves and resting their feet.",
+    "tags": {
+      "place": "dance-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-068",
+    "deck": "crowd",
+    "text": "{group} were at the edge of the floor, dancing slowly to a tune one of them was humming.",
+    "tags": {
+      "place": "dance-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-069",
+    "deck": "crowd",
+    "text": "{group} stood at the coat check counter, sorting out whose coat was whose.",
+    "tags": {
+      "place": "dance-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-070",
+    "deck": "crowd",
+    "text": "{group} were still out on the floor under the bright house lights, too tired to do more than sway.",
+    "tags": {
+      "place": "dance-hall",
+      "band": "after-midnight"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-071",
+    "deck": "crowd",
+    "text": "{group} were at the soda fountain over coffee, their elbows on the marble.",
+    "tags": {
+      "place": "drugstore",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-072",
+    "deck": "crowd",
+    "text": "{group} sat in the booth by the magazine rack, sharing a plate of toast.",
+    "tags": {
+      "place": "drugstore",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-073",
+    "deck": "crowd",
+    "text": "{group} were waiting at the back counter for a prescription, not talking to one another.",
+    "tags": {
+      "place": "drugstore",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-074",
+    "deck": "crowd",
+    "text": "{group} were at the fountain over coffee and buttered toast, taking the first breakfast of the day slowly.",
+    "tags": {
+      "place": "drugstore",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-075",
+    "deck": "crowd",
+    "text": "{group} were waiting at the curb for a cab, standing a little apart from one another.",
+    "tags": {
+      "place": "cab-stand",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-076",
+    "deck": "crowd",
+    "text": "{group} stood under the theater marquee, arguing mildly over where to get something to eat.",
+    "tags": {
+      "place": "cab-stand",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-077",
+    "deck": "crowd",
+    "text": "{group} were leaning against the theater's poster frames, watching the line of cabs along the curb.",
+    "tags": {
+      "place": "cab-stand",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-078",
+    "deck": "crowd",
+    "text": "{group} were waiting at the head of the line in the gray morning light, their collars turned up.",
+    "tags": {
+      "place": "cab-stand",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-079",
+    "deck": "crowd",
+    "text": "{group} sat on the stairs between the second and third landings, talking in whispers.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-080",
+    "deck": "crowd",
+    "text": "{group} were standing on the first landing under the bare bulb, their backs to the wall.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-081",
+    "deck": "crowd",
+    "text": "{group} stood at the foot of the stairs with their hats on, keeping their voices down for the building.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-082",
+    "deck": "crowd",
+    "text": "{group} sat on the stairs with coffee in chipped cups as the light came gray through the landing window.",
+    "tags": {
+      "place": "tenement-stairwell",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-083",
+    "deck": "crowd",
+    "text": "{group} were shooting a lazy game at a back table, chalking their cues between shots.",
+    "tags": {
+      "place": "pool-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-084",
+    "deck": "crowd",
+    "text": "{group} sat on the bench along the wall with cups of coffee from the counter.",
+    "tags": {
+      "place": "pool-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-085",
+    "deck": "crowd",
+    "text": "{group} were at the counter, paying for their time on the table and counting out change.",
+    "tags": {
+      "place": "pool-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-086",
+    "deck": "crowd",
+    "text": "{group} were bent over the last lit table, shooting on long after any of them had the eye for it.",
+    "tags": {
+      "place": "pool-hall",
+      "band": "small-hours"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-087",
+    "deck": "crowd",
+    "text": "{group} sat around a card table in the back room, playing for pennies.",
+    "tags": {
+      "place": "pawnshop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-088",
+    "deck": "crowd",
+    "text": "{group} stood among the crowded shelves, looking over a tray of watches under the bulb.",
+    "tags": {
+      "place": "pawnshop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-089",
+    "deck": "crowd",
+    "text": "{group} were waiting by the curtain to the shop with their hats in their hands.",
+    "tags": {
+      "place": "pawnshop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-090",
+    "deck": "crowd",
+    "text": "{group} were at a table by the stairs over bowls of rice, eating with chopsticks.",
+    "tags": {
+      "place": "chop-suey",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-091",
+    "deck": "crowd",
+    "text": "{group} sat in a booth at the back, passing dishes back and forth across the table.",
+    "tags": {
+      "place": "chop-suey",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-092",
+    "deck": "crowd",
+    "text": "{group} were at the counter by the kitchen hatch, drinking tea from small cups.",
+    "tags": {
+      "place": "chop-suey",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-093",
+    "deck": "crowd",
+    "text": "{group} were at a back table over the last of their noodles as the painted window went pale.",
+    "tags": {
+      "place": "chop-suey",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-094",
+    "deck": "crowd",
+    "text": "{group} sat in the parlour chairs around the piano, none of them playing it.",
+    "tags": {
+      "place": "boarding-parlor",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-095",
+    "deck": "crowd",
+    "text": "{group} were at the card table by the window, playing a quiet game of rummy.",
+    "tags": {
+      "place": "boarding-parlor",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-096",
+    "deck": "crowd",
+    "text": "{group} stood by the mantel, talking in low voices so as not to wake the house.",
+    "tags": {
+      "place": "boarding-parlor",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-097",
+    "deck": "crowd",
+    "text": "{group} sat in the parlour with their coats already on, waiting for the breakfast bell.",
+    "tags": {
+      "place": "boarding-parlor",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-098",
+    "deck": "crowd",
+    "text": "{group} sat in the barber chairs with their feet up, talking over the ball scores.",
+    "tags": {
+      "place": "barber-shop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-099",
+    "deck": "crowd",
+    "text": "{group} were on the waiting bench under the mirrors, reading magazines from the rack.",
+    "tags": {
+      "place": "barber-shop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-100",
+    "deck": "crowd",
+    "text": "{group} stood by the back room, smoking and tapping their ash into the sink.",
+    "tags": {
+      "place": "barber-shop",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-101",
+    "deck": "crowd",
+    "text": "{group} sat on the waiting bench as the first light came through the painted glass, first in line for a shave.",
+    "tags": {
+      "place": "barber-shop",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-102",
+    "deck": "crowd",
+    "text": "{group} sat on upturned crates by the workbench, playing cards on a spare tire.",
+    "tags": {
+      "place": "hotel-garage",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-103",
+    "deck": "crowd",
+    "text": "{group} were standing beside one of the parked cars, looking under the hood together.",
+    "tags": {
+      "place": "hotel-garage",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-104",
+    "deck": "crowd",
+    "text": "{group} were in the little office by the entrance, sharing a thermos of coffee.",
+    "tags": {
+      "place": "hotel-garage",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-105",
+    "deck": "crowd",
+    "text": "{group} stood by the rolling door as the day came up, watching the street come awake.",
+    "tags": {
+      "place": "hotel-garage",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-106",
+    "deck": "crowd",
+    "text": "{group} sat on the platform bench waiting for a train, their feet stretched out on the boards.",
+    "tags": {
+      "place": "el-platform",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-107",
+    "deck": "crowd",
+    "text": "{group} stood at the edge of the platform, leaning out to look down the tracks.",
+    "tags": {
+      "place": "el-platform",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-108",
+    "deck": "crowd",
+    "text": "{group} were by the change booth, reading the posters on the boards to pass the time.",
+    "tags": {
+      "place": "el-platform",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-109",
+    "deck": "crowd",
+    "text": "{group} were waiting near the stairhead for the first morning train, the street below just getting light.",
+    "tags": {
+      "place": "el-platform",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-110",
+    "deck": "crowd",
+    "text": "{group} were on the benches farther along, sitting apart and looking out at the dark paths.",
+    "tags": {
+      "place": "square-benches",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-111",
+    "deck": "crowd",
+    "text": "{group} sat together on one bench under the lamp, sharing a paper sack of peanuts.",
+    "tags": {
+      "place": "square-benches",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-112",
+    "deck": "crowd",
+    "text": "{group} were stretched out on the benches with their hats over their faces, sleeping or trying to.",
+    "tags": {
+      "place": "square-benches",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-113",
+    "deck": "crowd",
+    "text": "{group} were sitting on the benches with their faces turned toward the first light over the rooftops.",
+    "tags": {
+      "place": "square-benches",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-114",
+    "deck": "crowd",
+    "text": "{group} sat on the benches by the ticket window, waiting on the next boat across.",
+    "tags": {
+      "place": "ferry-slip",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-115",
+    "deck": "crowd",
+    "text": "{group} stood at the rail at the end of the slip, watching the lights of a ferry coming over.",
+    "tags": {
+      "place": "ferry-slip",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-116",
+    "deck": "crowd",
+    "text": "{group} were leaning on the pilings at the edge, smoking and looking down at the water.",
+    "tags": {
+      "place": "ferry-slip",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-117",
+    "deck": "crowd",
+    "text": "{group} were lined up at the ticket window for the first boat of the morning, each of them with a nickel ready.",
+    "tags": {
+      "place": "ferry-slip",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-118",
+    "deck": "crowd",
+    "text": "{group} stood by the kiosk at the top of the stair, counting out change for the fare.",
+    "tags": {
+      "place": "subway-kiosk",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-119",
+    "deck": "crowd",
+    "text": "{group} were sitting on the top steps of the stair, their hats pushed back, in no hurry.",
+    "tags": {
+      "place": "subway-kiosk",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-120",
+    "deck": "crowd",
+    "text": "{group} were leaning on the iron rail of the kiosk, talking over the noise of a train below.",
+    "tags": {
+      "place": "subway-kiosk",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-121",
+    "deck": "crowd",
+    "text": "{group} were coming up the stair out of the ground, blinking at the first daylight on the street.",
+    "tags": {
+      "place": "subway-kiosk",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-122",
+    "deck": "crowd",
+    "text": "{group} were in the back pews with their heads bowed, each of them praying alone.",
+    "tags": {
+      "place": "side-chapel",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-123",
+    "deck": "crowd",
+    "text": "{group} sat near the candle rack, watching the small flames and keeping silent.",
+    "tags": {
+      "place": "side-chapel",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-124",
+    "deck": "crowd",
+    "text": "{group} knelt at the altar rail, their hats on the step beside them.",
+    "tags": {
+      "place": "side-chapel",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-125",
+    "deck": "crowd",
+    "text": "{group} were kneeling in the front pews, waiting for the early service to begin.",
+    "tags": {
+      "place": "side-chapel",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-126",
+    "deck": "crowd",
+    "text": "{group} sat in the front row of chairs, talking over dues and hours in tired voices.",
+    "tags": {
+      "place": "union-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-127",
+    "deck": "crowd",
+    "text": "{group} were at the table on the platform, playing a quiet hand of cards.",
+    "tags": {
+      "place": "union-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-128",
+    "deck": "crowd",
+    "text": "{group} stood by the radiator at the back of the hall, drinking coffee from the bakery below.",
+    "tags": {
+      "place": "union-hall",
+      "band": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "crd-129",
+    "deck": "crowd",
+    "text": "{group} were sitting near the front with rolls from the bakery below as the smell of the first ovens came up.",
+    "tags": {
+      "place": "union-hall",
+      "band": "dawn"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

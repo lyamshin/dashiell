@@ -36,6 +36,8 @@ export interface BridgePlan {
   whereId?: Id;
   /** A room to go through rather than a person to ask: the deck's `lead: search`. */
   search?: boolean;
+  /** The hour the notebook's window opens on, for a subject already introduced. */
+  hour?: string;
 }
 
 const fold = (s: string): string => s.toLowerCase().replace(/[’']/g, "'");
@@ -125,6 +127,7 @@ export function planBridge(
     openerId: opener.id,
     whoId,
     ...(where === undefined ? {} : { whereId: where }),
+    hour: hourOf(view, foundAfter, accountsAfter),
   };
   if (named !== null && named !== view.victim.id) {
     const person = view.personById.get(named);

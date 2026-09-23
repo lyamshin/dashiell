@@ -44,7 +44,10 @@ export type ThoughtClass =
   | 'last-seen'
   | 'seen-after'
   /* §4: the detective's view of a person, on arrival. */
-  | 'view';
+  | 'view'
+  /* Night Hone 1: what used to fall through to an empty `context`. */
+  | 'absent'
+  | 'hint';
 
 export const THOUGHT_CLASSES: readonly ThoughtClass[] = [
   'clears',
@@ -65,6 +68,8 @@ export const THOUGHT_CLASSES: readonly ThoughtClass[] = [
   'last-seen',
   'seen-after',
   'view',
+  'absent',
+  'hint',
 ];
 
 /** One thought, as data: the class, what it is about, and what licensed it. */
@@ -80,8 +85,27 @@ export interface Thought {
   otherPlaceId?: Id;
   anchorId?: Id;
   objectId?: Id;
-  /** Deck tags beyond the class. */
-  basis?: 'placement' | 'access' | 'anchor' | 'coroner';
+  /** method: the method the find points to. */
+  methodId?: Id;
+  /**
+   * Deck tags beyond the class. `dead-by` and `alive-at` are a window thought
+   * from one end of the night (the victim dead by an hour, or alive at one)
+   * that did not move the coroner's hours; `self`, `account` and `outside`
+   * say what a context thought is context about.
+   */
+  basis?:
+    | 'placement'
+    | 'access'
+    | 'anchor'
+    | 'coroner'
+    | 'dead-by'
+    | 'alive-at'
+    | 'self'
+    | 'account'
+    | 'outside'
+    | 'placed'
+    | 'at'
+    | 'not-at';
   via?: 'office' | 'account';
   who?: 'watcher' | 'client' | 'known' | 'stranger';
   lied?: boolean;
@@ -128,8 +152,10 @@ const PRIORITY: ThoughtClass[] = [
   'not-robbery',
   'seen-after',
   'last-seen',
+  'absent',
   'window',
   'method',
+  'hint',
   'context',
 ];
 
@@ -154,6 +180,8 @@ const WRITTEN: ThoughtClass[] = [
   'dead-end',
   'last-seen',
   'seen-after',
+  'absent',
+  'hint',
   'context',
   'nothing',
   'view',
@@ -275,6 +303,9 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
           // scene signature is exactly this fact, from the room or from the
           // one who watched its door.
           out.push({ cls: 'not-robbery', placeId: scene, clueIds: [clue.id] });
+        } else if (kase.act.type === 'robbery') {
+          // The owner somewhere at an hour: one hour of the night accounted for.
+          out.push({ cls: 'context', basis: 'placed', subjectId: p.personId, placeId: p.placeId, tick: t, clueIds: [clue.id] });
         }
         continue;
       }
@@ -287,6 +318,7 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
         if (claim !== null && (p.present ? claim !== p.placeId : claim === p.placeId)) {
           out.push({
             cls: 'contradicts',
+            basis: p.present ? 'at' : 'not-at',
             subjectId: p.personId,
             placeId: p.placeId,
             tick: t,
@@ -296,12 +328,25 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
           });
         }
       }
+      const contradicted = out.some((x) => x.cls === 'contradicts' && x.subjectId === p.personId && x.clueIds.includes(clue.id));
       if (p.present && isSuspect(person) && inWindow) {
         if (p.placeId === scene) {
           out.push({ cls: 'implicates', basis: 'placement', subjectId: p.personId, placeId: p.placeId, tick: t, clueIds: [clue.id] });
         } else {
           out.push({ cls: 'clears', subjectId: p.personId, placeId: p.placeId, tick: t, otherPlaceId: scene, clueIds: [clue.id] });
         }
+      } else if (p.present && isSuspect(person) && window.length > 0 && !contradicted) {
+        // A placement outside the hours that matter: it clears nobody and
+        // hurts nobody, and the thought says so about the one it places.
+        out.push({ cls: 'context', basis: 'outside', subjectId: p.personId, placeId: p.placeId, tick: t, clueIds: [clue.id] });
+      } else if (p.present && isSuspect(person) && window.length === 0 && !contradicted) {
+        // No hours to hold it against yet: it accounts for one hour of theirs.
+        out.push({ cls: 'context', basis: 'placed', subjectId: p.personId, placeId: p.placeId, tick: t, clueIds: [clue.id] });
+      } else if (!p.present && isSuspect(person) && !contradicted) {
+        // "…and says Prentiss was not": somebody is off a room at an hour.
+        // Nothing yet says where they claim to have been; if they ever claim
+        // this room, it is a lie in hand.
+        out.push({ cls: 'absent', subjectId: p.personId, placeId: p.placeId, tick: t, clueIds: [clue.id] });
       }
       // §5: an observation places its observer — only where the truth agrees.
       if (
@@ -353,6 +398,7 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
             } else if (claim !== p.placeId) {
               out.push({
                 cls: 'contradicts',
+                basis: 'at',
                 subjectId: observer.id,
                 placeId: p.placeId,
                 tick: t,
@@ -381,8 +427,9 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
           // A thing gone that is also the means — the weapon from where it
           // lived, the key off its hook, the timetable off the rack — is
           // method, whatever the case is.
-          if (facts.some((g) => g.kind === 'methodEvidence')) {
-            out.push({ cls: 'method', objectId: f.objectId, placeId: f.fromPlace, clueIds: [clue.id] });
+          const means = facts.find((g) => g.kind === 'methodEvidence');
+          if (means && means.kind === 'methodEvidence') {
+            out.push({ cls: 'method', objectId: f.objectId, placeId: f.fromPlace, methodId: means.methodId, clueIds: [clue.id] });
           } else if (f.fromPlace === scene || f.fromPlace === kase.act.place) {
             if (clue.place !== f.fromPlace && kase.act.type === 'robbery') {
               out.push({ cls: 'goods', objectId: f.objectId, placeId: clue.place, clueIds: [clue.id] });
@@ -393,13 +440,13 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
             out.push({ cls: 'goods', objectId: f.objectId, placeId: clue.place, clueIds: [clue.id] });
           } else {
             // A murder's missing thing is its weapon, gone from where it lived.
-            out.push({ cls: 'method', objectId: f.objectId, placeId: f.fromPlace, clueIds: [clue.id] });
+            out.push({ cls: 'method', objectId: f.objectId, placeId: f.fromPlace, methodId: kase.solution.methodId, clueIds: [clue.id] });
           }
           break;
         }
         case 'methodEvidence':
           if (!givenMethod && !out.some((t) => t.cls === 'method' && t.clueIds.includes(clue.id))) {
-            out.push({ cls: 'method', clueIds: [clue.id] });
+            out.push({ cls: 'method', methodId: f.methodId, clueIds: [clue.id] });
           }
           break;
         case 'secretExplained':
@@ -421,6 +468,22 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
           ? { cls: 'window', basis: 'anchor', anchorId: anchor.id, tick: anchor.tick, clueIds: [clue.id] }
           : { cls: 'window', basis: 'coroner', clueIds: [clue.id] },
       );
+    } else if (narrows && kase.act.type !== 'missing') {
+      // One end of the night that did not move the coroner's hours still says
+      // something plain: dead by this hour, or alive at that one.
+      const dead = facts.find((f) => f.kind === 'victimDeadBy');
+      const alive = facts.find((f) => f.kind === 'victimAliveAt');
+      if (dead && dead.kind === 'victimDeadBy') {
+        out.push({ cls: 'window', basis: 'dead-by', tick: dead.tick, clueIds: [clue.id] });
+      } else if (alive && alive.kind === 'victimAliveAt') {
+        out.push({ cls: 'window', basis: 'alive-at', tick: alive.tick, clueIds: [clue.id] });
+      }
+    }
+
+    if (out.length === before && clue.aboutSecretOf && clue.aboutSecretOf !== victimId && !inHandBefore.has(clue.id)) {
+      // Noise about somebody's secret: they are hiding something, and the
+      // detective cannot yet say whether it is this.
+      out.push({ cls: 'hint', subjectId: clue.aboutSecretOf, clueIds: [clue.id] });
     }
 
     if (out.length === before && !inHandBefore.has(clue.id)) {
@@ -490,9 +553,12 @@ function singleWord(view: CaseView, clue: Clue, personId: Id, placeId: Id, tick:
 /** The single-source marks, laid on after the fact. */
 function markSingle(input: ThoughtInput, thoughts: Thought[]): Thought[] {
   return thoughts.map((t) => {
-    if (t.cls === 'window') return t.basis === 'anchor' ? { ...t, single: true } : t;
-    if (t.cls !== 'clears' && t.cls !== 'implicates') return t;
     const clue = input.view.findableById.get(t.clueIds[0] ?? '');
+    const word = clue?.source.type === 'person';
+    if (t.cls === 'window') return t.basis === 'anchor' || word ? { ...t, single: true } : t;
+    // Somebody off a room, or placed outside the hours, on one person's say-so.
+    if (t.cls === 'absent' || (t.cls === 'context' && t.basis === 'outside')) return word ? { ...t, single: true } : t;
+    if (t.cls !== 'clears' && t.cls !== 'implicates') return t;
     if (!clue) return t;
     if (t.basis === 'access' || t.placeId === undefined || t.tick === undefined || t.subjectId === undefined) {
       const physical = clue.source.type === 'place' && (clue.kind === 'physical' || clue.kind === 'document');

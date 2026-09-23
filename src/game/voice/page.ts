@@ -485,6 +485,8 @@ export interface Stage {
   memory?: SceneMemory;
   /** M8: rooms with a page before this one. */
   visitedBefore?: Id[];
+  /** Night Hone 1: people an earlier page has named, and so said who they are. */
+  namedBefore?: Id[];
 }
 
 export interface Composed {

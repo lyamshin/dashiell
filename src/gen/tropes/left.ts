@@ -77,7 +77,7 @@ export const left: Trope = {
         { type: 'person', personId: a.id, topic: `${V} since Tuesday` },
         ctx.foundAt(a.id),
         facts2,
-        `${ctx.who(a.id)} says there was somebody at ${ctx.placeName(home)} at ${clock(t2)} reading the departures off a timetable, and that it was ${V}.`,
+        `${ctx.who(a.id)} says there was somebody at ${ctx.placeName(home)} at ${clock(t2)} reading the departures off a timetable, and it was ${V}.`,
       ),
     ];
     return { clues, requirement: essential('left', `where ${V} went`, clues) };

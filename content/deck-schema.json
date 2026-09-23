@@ -575,7 +575,9 @@
         "because": { "required": true, "values": ["said", "document", "found", "none", "office", "return"] },
         "for": { "required": true, "values": ["ask-person", "ask-thing", "ask-place", "ask-evening", "search-room", "search-thing", "none"] },
         "searched": { "required": false, "default": "any", "values": ["yes", "no", "any"] },
-        "bridged": { "required": false, "default": "any", "values": ["yes", "no", "any"] }
+        "bridged": { "required": false, "default": "any", "values": ["yes", "no", "any"] },
+        "setting": { "required": false, "default": "any", "values": ["indoor", "outdoor"], "extraValues": ["any"] },
+        "number": { "required": false, "default": "any", "values": ["singular"], "extraValues": ["any"] }
       }
     },
     "hours": {
@@ -635,7 +637,9 @@
       "slots": ["detective", "place"],
       "minPerCoverageCell": 10,
       "tags": {
-        "placeKind": { "required": true, "values": ["public", "semi", "private", "scene"] }
+        "placeKind": { "required": true, "values": ["public", "semi", "private", "scene"] },
+        "setting": { "required": false, "default": "any", "values": ["indoor", "outdoor"], "extraValues": ["any"] },
+        "number": { "required": false, "default": "any", "values": ["singular"], "extraValues": ["any"] }
       },
       "coverage": [["placeKind"]]
     },
@@ -665,15 +669,17 @@
       "burn": "free",
       "target": 216,
       "$comment": "M8 §5. What the detective makes of it, one class a card. Slots, by class: clears/implicates/contradicts — {subject} the person placed, {place} where, {time} the spoken hour, {other} the scene (clears) or the place they claimed (contradicts); implicates with basis `access` has only {subject}. observer-placed — {source} the one who saw it, {subject} whom they saw, {place}, {time}. unmentioned — {source}, {place}, {time}; `via: office` when the client left it out of the briefing, `account` when a told evening omits it. motive — {subject}, {victim}. method — {other} the thing, {place}, {victim}. window — basis `anchor`: {other} the anchor as a noun (\"the El going over\"), {time}; basis `coroner`: no anchor. not-robbery — {victim}, {place}. robbery-shape and goods — {other} the thing taken, {place}. secret and dead-end — {subject}. context — {victim}. nothing — {place}. last-seen and seen-after (missing cases) — {victim}, {place}, {time}. view — the detective’s view of a person on arrival: {subject}, keyed by `who` (watcher, client, known, stranger) and `lied`. {scene} on any card is the short name of the room it happened in, {victim} the victim's surname, and {time} always the spoken hour (\"ten o’clock\", \"half past nine\"). A thought may say \"if\" and \"would\"; it never asserts a fact the notebook does not hold. Never a pronoun for a slotted person.",
-      "slots": ["detective", "name", "place", "object", "time", "subject", "source", "victim", "other", "scene"],
+      "$nightHone1": "Night Hone 1: every card names at least one slot, because a thought that names nothing says nothing the reader did not have. New slots: {means} the method as a noun phrase (\"poison in a drink\") and {how} what whoever did it had to do first (\"had to get at the chloral and doctor the drink\"), on method; {motive} the subject's motive told afterwards (\"stood to inherit from Sweeney\"), on motive; {span} the coroner's hours said aloud (\"from half past nine until eleven\"), on window with basis `coroner`. {other} on secret and dead-end is what the secret was, as something a person had been doing (\"selling stolen goods\"). New classes: `absent` — {subject} was not at {place} at {time}; `hint` — somebody noticed {subject} hiding something. New bases: window `dead-by` / `alive-at` — {victim} dead by, or alive at, {time}; context `self` and `account` — {subject} told me who they are, or their evening; context `outside` — {subject} at {place} at {time}, outside the hours that matter; contradicts `at` (placed at {place}, claimed {other}) and `not-at` (claimed {place}, said not to be there). nothing — {place} on a search, {subject} on a question.",
+      "slots": ["detective", "name", "place", "object", "time", "subject", "source", "victim", "other", "scene", "means", "how", "motive", "span"],
       "minPerCoverageCell": 12,
       "tags": {
-        "class": { "required": true, "values": ["clears", "implicates", "observer-placed", "unmentioned", "contradicts", "motive", "method", "window", "not-robbery", "robbery-shape", "secret", "dead-end", "context", "nothing", "goods", "last-seen", "seen-after", "view"] },
+        "class": { "required": true, "values": ["clears", "implicates", "observer-placed", "unmentioned", "contradicts", "motive", "method", "window", "not-robbery", "robbery-shape", "secret", "dead-end", "context", "nothing", "goods", "last-seen", "seen-after", "view", "absent", "hint"] },
         "case": { "required": false, "default": "any", "values": ["murder", "robbery", "missing"], "extraValues": ["any"] },
-        "basis": { "required": false, "default": "any", "values": ["placement", "access", "anchor", "coroner"], "extraValues": ["any"] },
+        "basis": { "required": false, "default": "any", "values": ["placement", "access", "anchor", "coroner", "dead-by", "alive-at", "self", "account", "outside", "placed", "at", "not-at"], "extraValues": ["any"] },
         "via": { "required": false, "default": "any", "values": ["office", "account"], "extraValues": ["any"] },
         "who": { "required": false, "default": "any", "values": ["watcher", "client", "known", "stranger"], "extraValues": ["any"] },
-        "lied": { "required": false, "default": "any", "values": ["yes", "no"], "extraValues": ["any"] }
+        "lied": { "required": false, "default": "any", "values": ["yes", "no"], "extraValues": ["any"] },
+        "number": { "required": false, "default": "any", "values": ["singular"], "extraValues": ["any"] }
       },
       "coverage": [["class"]]
     },
@@ -705,7 +711,8 @@
       "minPerCoverageCell": 10,
       "tags": {
         "for": { "required": true, "values": ["ask-person", "ask-thing", "ask-place", "ask-evening", "ask-self", "search-room", "search-thing"] },
-        "lead": { "required": true, "values": ["yes", "no"] }
+        "lead": { "required": true, "values": ["yes", "no"] },
+        "setting": { "required": false, "default": "any", "values": ["indoor", "outdoor"], "extraValues": ["any"] }
       },
       "coverage": [["for", "lead"]]
     },
@@ -723,6 +730,71 @@
         "outcome": { "required": true, "values": ["found", "dead-end", "something-else"] }
       },
       "coverage": [["outcome"]]
+    },
+    "place-ambient": {
+      "file": "place-ambient.json",
+      "deckValues": ["place-ambient"],
+      "idPrefix": "PAM",
+      "placeholderPrefix": "pam-p",
+      "burn": "within-run",
+      "target": 245,
+      "$comment": "Night Hone 1. What a place is like to stand in: its sounds, its light, its smells, what is on its walls, in one or two past-tense sentences. Dealt on a search after the finds and on a return visit. Keyed by place template id and hour band (after-midnight 12:00–2:59, small-hours 3:00–5:59, dawn 6:00–8:00, or any). No people (nor that the place is empty or full), no weather, no clock, no anchor, nothing that matters to a case, no figures.",
+      "slots": ["detective"],
+      "minPerCoverageCell": 4,
+      "tags": {
+        "place": { "required": true, "values": ["res-apartment", "res-brownstone", "res-walkup", "res-suite", "res-backhouse", "rooftop", "back-alley", "office-over-tailor", "pier-shed", "laundry-yard", "walkup-flat", "hallam-vestibule", "rooming-house-room", "dolans-bar", "speakeasy", "hotel-lobby", "corner-newsstand", "automat", "movie-house", "dance-hall", "drugstore", "cab-stand", "tenement-stairwell", "pool-hall", "pawnshop", "chop-suey", "boarding-parlor", "barber-shop", "hotel-garage", "el-platform", "square-benches", "ferry-slip", "subway-kiosk", "side-chapel", "union-hall"] },
+        "band": { "required": true, "values": ["after-midnight", "small-hours", "dawn"], "extraValues": ["any"] }
+      },
+      "coverage": [["place"]]
+    },
+    "search-act": {
+      "file": "search-act.json",
+      "deckValues": ["search-act"],
+      "idPrefix": "SAC",
+      "placeholderPrefix": "sac-p",
+      "burn": "within-run",
+      "target": 140,
+      "$comment": "Night Hone 1. How the detective goes through a place, in its own terms: the path and the surfaces looked at, two or three sentences, first person, past tense. Never what was or was not there — the finds follow in the same paragraph. Keyed by place template id.",
+      "slots": ["detective"],
+      "minPerCoverageCell": 4,
+      "tags": {
+        "place": { "required": true, "values": ["res-apartment", "res-brownstone", "res-walkup", "res-suite", "res-backhouse", "rooftop", "back-alley", "office-over-tailor", "pier-shed", "laundry-yard", "walkup-flat", "hallam-vestibule", "rooming-house-room", "dolans-bar", "speakeasy", "hotel-lobby", "corner-newsstand", "automat", "movie-house", "dance-hall", "drugstore", "cab-stand", "tenement-stairwell", "pool-hall", "pawnshop", "chop-suey", "boarding-parlor", "barber-shop", "hotel-garage", "el-platform", "square-benches", "ferry-slip", "subway-kiosk", "side-chapel", "union-hall"] }
+      },
+      "coverage": [["place"]]
+    },
+    "crowd": {
+      "file": "crowd.json",
+      "deckValues": ["crowd"],
+      "idPrefix": "CRD",
+      "placeholderPrefix": "crd-p",
+      "burn": "within-run",
+      "target": 129,
+      "$comment": "Night Hone 1. People in a room the case has given the detective no reason to single out yet, said together in one sentence. {group} opens the card: a plural noun phrase the engine builds (\"Two men and a woman\", \"Lanza and a man I didn't know\"), two to five people, the verb after it plural. They are only ever they/them. Keyed by place template id and hour band.",
+      "slots": ["detective", "group"],
+      "requiredSlots": ["group"],
+      "minPerCoverageCell": 3,
+      "tags": {
+        "place": { "required": true, "values": ["res-apartment", "res-brownstone", "res-walkup", "res-suite", "res-backhouse", "rooftop", "back-alley", "office-over-tailor", "pier-shed", "laundry-yard", "walkup-flat", "hallam-vestibule", "rooming-house-room", "dolans-bar", "speakeasy", "hotel-lobby", "corner-newsstand", "automat", "movie-house", "dance-hall", "drugstore", "cab-stand", "tenement-stairwell", "pool-hall", "pawnshop", "chop-suey", "boarding-parlor", "barber-shop", "hotel-garage", "el-platform", "square-benches", "ferry-slip", "subway-kiosk", "side-chapel", "union-hall"] },
+        "band": { "required": true, "values": ["after-midnight", "small-hours", "dawn"], "extraValues": ["any"] }
+      },
+      "coverage": [["place"]]
+    },
+    "decide": {
+      "file": "decide.json",
+      "deckValues": ["decide"],
+      "idPrefix": "DEC",
+      "placeholderPrefix": "dec-p",
+      "burn": "within-run",
+      "target": 36,
+      "$comment": "Night Hone 1. The decision after a catch (golden page 5: \"I didn't ask her about it. Not yet. A client who leaves things out is still a client, and she was paying.\"): what the detective does now about somebody a thought just caught — seen somewhere they never mentioned, or contradicted. `who`: client, watcher or suspect. `act`: hold (not yet), press (put it to them), note (mark it and come back); derived from who it is and their temper. `present`: yes when they are in the room. {subject} their surname, {place} and {time} where and when they were caught; {they}/{them}/{their} their pronouns, filled by the engine.",
+      "slots": ["detective", "subject", "place", "time", "they", "them", "their"],
+      "minPerCoverageCell": 2,
+      "tags": {
+        "who": { "required": true, "values": ["client", "watcher", "suspect"] },
+        "act": { "required": true, "values": ["hold", "press", "note"] },
+        "present": { "required": true, "values": ["yes", "no"] }
+      },
+      "coverage": [["who", "present"]]
     }
   }
 }

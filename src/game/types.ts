@@ -198,7 +198,8 @@ export type BeatKind =
   | 'bridge'
   | 'answer'
   | 'clock'
-  | 'texture';
+  | 'texture'
+  | 'decide';
 
 /**
  * One planned beat, as it went onto the page. The planner's `Beat` carries
@@ -228,6 +229,8 @@ export interface BeatTrace {
   text?: string;
   /** A thought on one witness's word or an anchor: the words must hedge (§5). */
   hedge?: boolean;
+  /** Presence: the people said together in one sentence, not a line each (Night Hone 1 §3). */
+  grouped?: Id[];
 }
 
 /** One choice as the book drew it, kept on the page it was offered under. */
@@ -479,6 +482,8 @@ export interface SceneMemory {
   established: Id[];
   /** Lead targets a bridge has named (§6), so the next errand can be short. */
   bridged: Id[];
+  /** Night Hone 1: the visit that has had its room's texture, once a visit. */
+  ambient?: number;
 }
 
 export const EMPTY_SCENE: SceneMemory = {

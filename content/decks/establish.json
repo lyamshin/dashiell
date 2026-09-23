@@ -134,7 +134,7 @@
   {
     "id": "est-013",
     "deck": "establish",
-    "text": "{place} was on an upper floor of a residential hotel, the kind of building where the rent was paid by the week and the desk clerk didn't ask many questions. The door off the hallway looked no different from the others nearby. At this hour the hall lights had been turned down to save the current.",
+    "text": "{place} was on an upper floor of a residential hotel, the kind of building where the rent was paid by the week and the desk clerk didn’t ask many questions. The door off the hallway looked no different from the others nearby. At this hour the hall lights had been turned down to save on the electric bill.",
     "tags": {
       "place": "res-suite",
       "visit": "first"
@@ -486,7 +486,7 @@
   {
     "id": "est-045",
     "deck": "establish",
-    "text": "{place} was the entry hall of the building, marble underfoot and a bank of brass mailboxes along one wall. At this hour the lobby was empty but for whoever was waiting on the car.",
+    "text": "{place} was the entry hall of the building, marble underfoot and a bank of brass mailboxes along one wall. At this hour the lobby was empty but for whoever was waiting on the elevator.",
     "tags": {
       "place": "hallam-vestibule",
       "visit": "first"
@@ -618,7 +618,7 @@
   {
     "id": "est-057",
     "deck": "establish",
-    "text": "{place} sat under a hat shop, down six steps and through a door you had to knock on. At this hour most of the stools were empty.",
+    "text": "{place} was an illegal bar under a hat shop, down six steps and through a door you had to knock on. At this hour most of the stools were empty.",
     "tags": {
       "place": "speakeasy",
       "visit": "first"
@@ -629,7 +629,7 @@
   {
     "id": "est-058",
     "deck": "establish",
-    "text": "You got into {place} by the hat shop's side entrance, then down a narrow stair to a door with a slot cut in it. By day the street knew the shop as a place to buy a hat; after midnight it was something else entirely. Past midnight the room upstairs had long since gone dark.",
+    "text": "You got into {place} by the hat shop’s side entrance, then down a narrow stair to a door with a slot cut in it. By day the street knew the shop as a place to buy a hat; after midnight the room under it sold liquor, which the law said nobody could. The shop upstairs had long since gone dark.",
     "tags": {
       "place": "speakeasy",
       "visit": "first"
@@ -651,7 +651,7 @@
   {
     "id": "est-060",
     "deck": "establish",
-    "text": "The room under the hat shop, where {place} was, had no sign and needed none. A hallway from the street door ran back to the bar, dim on purpose. At this hour the tables at the back were the ones still occupied.",
+    "text": "The room under the hat shop, where {place} was, had no sign and needed none: it sold liquor, and selling liquor was against the law. A hallway from the street door ran back to the bar, dim on purpose. At this hour the tables at the back were the ones still occupied.",
     "tags": {
       "place": "speakeasy",
       "visit": "first"
@@ -706,7 +706,7 @@
   {
     "id": "est-065",
     "deck": "establish",
-    "text": "{place} ran up the middle of the building, bare bulbs on alternating landings, the rest left dark to save the current. At this hour the building had settled into the particular quiet of people sleeping four to a room.",
+    "text": "{place} ran up the middle of the building, bare bulbs on alternating landings, the rest left dark to save on the electric bill. At this hour the building had settled into the particular quiet of people sleeping four to a room.",
     "tags": {
       "place": "tenement-stairwell",
       "visit": "first"
@@ -1080,7 +1080,7 @@
   {
     "id": "est-099",
     "deck": "establish",
-    "text": "{place} was the local's meeting hall, used for whatever the union needed a room for: votes, speeches, the occasional dance. Nobody minded who used the stairs once the day's business was done. This late the hall's own lamps were usually out, the room lit only from the street.",
+    "text": "{place} was the union’s meeting hall, used for whatever the members needed a room for: votes, speeches, the occasional dance. Nobody minded who used the stairs once the day’s business was done. This late the hall’s own lamps were usually out, the room lit only from the street.",
     "tags": {
       "place": "union-hall",
       "visit": "first"
@@ -1267,7 +1267,7 @@
   {
     "id": "est-116",
     "deck": "establish",
-    "text": "The dance hall making up {place} kept its lights low for dancing and merciless for cleaning up after. By this hour it was well past the second. A single bulb over the bandstand was usually the only one still lit.",
+    "text": "The dance hall making up {place} kept its lights low for dancing and merciless for cleaning up after. By this hour the last dance was long over. A single bulb over the bandstand was usually the only one still lit.",
     "tags": {
       "place": "dance-hall",
       "visit": "first"
@@ -1311,7 +1311,7 @@
   {
     "id": "est-120",
     "deck": "establish",
-    "text": "The drugstore with the soda fountain, where {place} was, ran a single bulb over the register, the rest of the shop left half dark to save the current. At this hour it drew the kind of customer with a headache or nowhere else open.",
+    "text": "The drugstore with the soda fountain, where {place} was, ran a single bulb over the register, the rest of the shop left half dark to save on the electric bill. At this hour it drew the kind of customer with a headache or nowhere else open.",
     "tags": {
       "place": "drugstore",
       "visit": "first"
@@ -1410,7 +1410,7 @@
   {
     "id": "est-129",
     "deck": "establish",
-    "text": "{place} sat under a row of trees along one side of the square, the kind of bench nobody owns and everybody uses. No one was posted to mind who sat there. At this hour the square around it was empty, the paths unlit past the nearest lamp.",
+    "text": "{place} sat under a row of trees along one side of the square, the kind of bench nobody owned and everybody used. No one was posted to mind who sat there. At this hour the square around them was empty, the paths unlit past the nearest lamp.",
     "tags": {
       "place": "square-benches",
       "visit": "first"
@@ -1432,7 +1432,7 @@
   {
     "id": "est-131",
     "deck": "establish",
-    "text": "{place} was public in the plainest sense, open on every side, watched by no one in particular. A lamp at the corner of the square gave what light reached the benches at all. This late they sat empty more often than not.",
+    "text": "{place} were public in the plainest sense, open on every side, watched by no one in particular. A lamp at the corner of the square gave what light reached them at all. This late they sat empty more often than not.",
     "tags": {
       "place": "square-benches",
       "visit": "first"
@@ -1443,7 +1443,7 @@
   {
     "id": "est-132",
     "deck": "establish",
-    "text": "{place} sat among the benches at the square's north end, facing a fountain that had been shut off for the season. Nobody minded who used them, at this hour least of all. The square was still enough to hear a step on the gravel path.",
+    "text": "{place} stood at the square’s north end, facing a fountain that had been shut off for the season. Nobody minded who used them, at this hour least of all. The square was still enough to hear a step on the gravel path.",
     "tags": {
       "place": "square-benches",
       "visit": "first"
@@ -1454,7 +1454,7 @@
   {
     "id": "est-133",
     "deck": "establish",
-    "text": "{place} sat where the street ran out, the pavement giving way to a wooden apron and the water beyond it. No one was posted to watch who came down to it. At this hour the ferries ran on a reduced schedule, long gaps between crossings.",
+    "text": "{place} sat where the street ran out, the pavement giving way to a wooden ramp and the water beyond it. No one was posted to watch who came down to it. At this hour the ferries ran on a reduced schedule, long gaps between crossings.",
     "tags": {
       "place": "ferry-slip",
       "visit": "first"
@@ -1465,7 +1465,7 @@
   {
     "id": "est-134",
     "deck": "establish",
-    "text": "You reached {place} by walking the street straight to its end, the slip itself unmistakable once you got there. A waiting room stood nearby, unlit and locked past a certain hour. Past midnight there was hardly anyone waiting on the next boat.",
+    "text": "You reached {place} by walking the street straight to its end, the ferry landing itself unmistakable once you got there. A waiting room stood nearby, unlit and locked past a certain hour. Past midnight there was hardly anyone waiting on the next boat.",
     "tags": {
       "place": "ferry-slip",
       "visit": "first"

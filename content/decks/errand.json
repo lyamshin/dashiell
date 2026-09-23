@@ -665,7 +665,8 @@
     "text": "{name} sent me. I came to go through the room.",
     "tags": {
       "because": "said",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -698,7 +699,8 @@
     "text": "{name} had pointed me here. I wanted the room gone through, corner to corner.",
     "tags": {
       "because": "said",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -709,7 +711,8 @@
     "text": "{name} put me onto it. I meant to go over the room myself.",
     "tags": {
       "because": "said",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -742,7 +745,8 @@
     "text": "{name} told me where to look. I meant to search the room, top to bottom.",
     "tags": {
       "because": "said",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -764,7 +768,8 @@
     "text": "It was what {name} said. I wanted a proper look at the room.",
     "tags": {
       "because": "said",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -786,7 +791,8 @@
     "text": "{name} had named it first. I came to go through it, drawer by drawer.",
     "tags": {
       "because": "said",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -797,7 +803,8 @@
     "text": "I came on {name}'s word. I wanted the room searched, not just looked at.",
     "tags": {
       "because": "said",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -819,7 +826,8 @@
     "text": "{name} set me on it. I came to give the room a proper going-over.",
     "tags": {
       "because": "said",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -962,7 +970,8 @@
     "text": "I came on {name}'s word. I meant to go through the room for {subject}.",
     "tags": {
       "because": "said",
-      "for": "search-thing"
+      "for": "search-thing",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -970,7 +979,7 @@
   {
     "id": "err-089",
     "deck": "errand",
-    "text": "{name} had said as much. I came to run {subject} down.",
+    "text": "{name} had said as much. I came to track {subject} down.",
     "tags": {
       "because": "said",
       "for": "search-thing"
@@ -1655,7 +1664,8 @@
     "text": "Paperwork at {from} sent me. I came to go through the room.",
     "tags": {
       "because": "document",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1688,7 +1698,8 @@
     "text": "A paper had named it. I wanted the room gone through, corner to corner.",
     "tags": {
       "because": "document",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1699,7 +1710,8 @@
     "text": "Something on paper at {from} sent me. I meant to go over the room myself.",
     "tags": {
       "because": "document",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1732,7 +1744,8 @@
     "text": "What was written at {from} sent me. I meant to search the room, top to bottom.",
     "tags": {
       "because": "document",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1754,7 +1767,8 @@
     "text": "{from} had put it on paper. I wanted a proper look at the room.",
     "tags": {
       "because": "document",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1776,7 +1790,8 @@
     "text": "It was down on paper, out of {from}. I came to go through it, drawer by drawer.",
     "tags": {
       "because": "document",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1787,7 +1802,8 @@
     "text": "A record at {from} sent me. I wanted the room searched, not just looked at.",
     "tags": {
       "because": "document",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1809,7 +1825,8 @@
     "text": "A note out of {from} pointed here. I came to give the room a proper going-over.",
     "tags": {
       "because": "document",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1952,7 +1969,8 @@
     "text": "A record at {from} sent me. I meant to go through the room for {subject}.",
     "tags": {
       "because": "document",
-      "for": "search-thing"
+      "for": "search-thing",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1960,7 +1978,7 @@
   {
     "id": "err-179",
     "deck": "errand",
-    "text": "Something written at {from} sent me. I came to run {subject} down.",
+    "text": "Something written at {from} sent me. I came to track {subject} down.",
     "tags": {
       "because": "document",
       "for": "search-thing"
@@ -2645,7 +2663,8 @@
     "text": "Something at {from} sent me. I came to go through the room.",
     "tags": {
       "because": "found",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -2678,7 +2697,8 @@
     "text": "A thing at {from} pointed here. I wanted the room gone through, corner to corner.",
     "tags": {
       "because": "found",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -2689,7 +2709,8 @@
     "text": "What turned up at {from} sent me. I meant to go over the room myself.",
     "tags": {
       "because": "found",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -2722,7 +2743,8 @@
     "text": "It was what I found at {from}. I meant to search the room, top to bottom.",
     "tags": {
       "because": "found",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -2744,7 +2766,8 @@
     "text": "Something turned up at {from}. I wanted a proper look at the room.",
     "tags": {
       "because": "found",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -2766,7 +2789,8 @@
     "text": "A thing found at {from} pointed me here. I came to go through it, drawer by drawer.",
     "tags": {
       "because": "found",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -2777,7 +2801,8 @@
     "text": "It came out of {from}. I wanted the room searched, not just looked at.",
     "tags": {
       "because": "found",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -2799,7 +2824,8 @@
     "text": "The find at {from} sent me on. I came to give the room a proper going-over.",
     "tags": {
       "because": "found",
-      "for": "search-room"
+      "for": "search-room",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -2942,7 +2968,8 @@
     "text": "It came out of {from}. I meant to go through the room for {subject}.",
     "tags": {
       "because": "found",
-      "for": "search-thing"
+      "for": "search-thing",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -2950,7 +2977,7 @@
   {
     "id": "err-269",
     "deck": "errand",
-    "text": "What was lying at {from} sent me. I came to run {subject} down.",
+    "text": "What was lying at {from} sent me. I came to track {subject} down.",
     "tags": {
       "because": "found",
       "for": "search-thing"
@@ -3393,7 +3420,8 @@
     "tags": {
       "because": "return",
       "for": "none",
-      "searched": "yes"
+      "searched": "yes",
+      "number": "singular"
     },
     "motifs": [],
     "status": "generated"
@@ -3429,7 +3457,8 @@
     "tags": {
       "because": "return",
       "for": "none",
-      "searched": "yes"
+      "searched": "yes",
+      "number": "singular"
     },
     "motifs": [],
     "status": "generated"
@@ -3489,7 +3518,8 @@
     "tags": {
       "because": "return",
       "for": "none",
-      "searched": "yes"
+      "searched": "yes",
+      "number": "singular"
     },
     "motifs": [],
     "status": "generated"
@@ -3511,7 +3541,8 @@
     "text": "Back to the desk at {place}. Some things only add up sitting down.",
     "tags": {
       "because": "office",
-      "for": "none"
+      "for": "none",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -3522,7 +3553,8 @@
     "text": "I went back to {place} and the chair behind the desk.",
     "tags": {
       "because": "office",
-      "for": "none"
+      "for": "none",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -3577,7 +3609,8 @@
     "text": "I went back to {place}, where the desk was waiting.",
     "tags": {
       "because": "office",
-      "for": "none"
+      "for": "none",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -3632,7 +3665,8 @@
     "text": "I went back to {place}. The desk was where the thinking happened.",
     "tags": {
       "because": "office",
-      "for": "none"
+      "for": "none",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -3858,7 +3892,8 @@
     "tags": {
       "because": "said",
       "for": "search-room",
-      "bridged": "yes"
+      "bridged": "yes",
+      "number": "singular"
     },
     "motifs": [],
     "status": "generated"
@@ -3882,7 +3917,8 @@
     "tags": {
       "because": "said",
       "for": "search-room",
-      "bridged": "yes"
+      "bridged": "yes",
+      "number": "singular"
     },
     "motifs": [],
     "status": "generated"
@@ -3894,7 +3930,8 @@
     "tags": {
       "because": "said",
       "for": "search-room",
-      "bridged": "yes"
+      "bridged": "yes",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -4146,7 +4183,8 @@
     "tags": {
       "because": "document",
       "for": "search-room",
-      "bridged": "yes"
+      "bridged": "yes",
+      "number": "singular"
     },
     "motifs": [],
     "status": "generated"
@@ -4170,7 +4208,8 @@
     "tags": {
       "because": "document",
       "for": "search-room",
-      "bridged": "yes"
+      "bridged": "yes",
+      "number": "singular"
     },
     "motifs": [],
     "status": "generated"
@@ -4182,7 +4221,8 @@
     "tags": {
       "because": "document",
       "for": "search-room",
-      "bridged": "yes"
+      "bridged": "yes",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -4434,7 +4474,8 @@
     "tags": {
       "because": "found",
       "for": "search-room",
-      "bridged": "yes"
+      "bridged": "yes",
+      "number": "singular"
     },
     "motifs": [],
     "status": "generated"
@@ -4458,7 +4499,8 @@
     "tags": {
       "because": "found",
       "for": "search-room",
-      "bridged": "yes"
+      "bridged": "yes",
+      "number": "singular"
     },
     "motifs": [],
     "status": "generated"
@@ -4470,7 +4512,8 @@
     "tags": {
       "because": "found",
       "for": "search-room",
-      "bridged": "yes"
+      "bridged": "yes",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
