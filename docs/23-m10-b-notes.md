@@ -116,6 +116,7 @@ Tests changed to match:
 - The contradiction card says "Somebody else's word said otherwise" and doesn't name the watcher. A `{source}` slot on `contradicts` would help.
 - Bridges still say "their own evening" for a person whose sex is known (A.5), and page two still says "the margin … the grid" (A.4).
 - Asking somebody about a person the small hand has nothing on is free. The "(free)" on the button tells a first-time player which questions pay, the same way M9's exhausted questions do.
+- `docs/24-shorter-nights.md` §2 (the account comes with the first question) will take calls off Raw's par by itself: three of Raw's six questions are accounts.
 - The client's two free office questions aren't used by the oracle or the reasoning player. Both go to the scene first.
 
 ## Checks
