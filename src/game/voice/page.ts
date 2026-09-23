@@ -1167,7 +1167,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       );
       onSight(person, 'approach');
       if (scene.free) {
-        put({ kind: 'note', text: 'No charge on this one. There never is, the first time.' });
+        put({ kind: 'note', text: `${person.surname} knew me from before, and that saved us both some time.` });
       }
     }
 

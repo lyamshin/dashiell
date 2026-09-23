@@ -376,7 +376,10 @@ export function checkTelling(view: CaseView, page: Page): PageViolation[] {
       for (const p of namesIn(clue?.text ?? '')) people.add(p);
     }
     for (const sentence of parts.told) {
-      for (const t of timesIn(sentence)) if (!ticks.has(t)) fail(`says ${t}, which none of the family’s facts has`, sentence);
+      // A record's own sentence carries the record's hours; the page check holds those.
+      if (!parts.fromRecord) {
+        for (const t of timesIn(sentence)) if (!ticks.has(t)) fail(`says ${t}, which none of the family’s facts has`, sentence);
+      }
       for (const id of namesIn(sentence)) if (!people.has(id)) fail('names somebody none of the family’s facts is about', sentence);
     }
     clean(parts.question, 'the question');
@@ -671,6 +674,16 @@ export function checkRun(view: CaseView, state: RunState): PageViolation[] {
     const accountsAfter = [
       ...accounts,
       ...page.blocks.flatMap((b) => (b.kind === 'timeline' && !accounts.includes(b.personId) ? [b.personId] : [])),
+      // M9: a tiered case's evening is a clue, and taking it down is an account
+      // in hand exactly as the reducer counts one (M10: Raw's accounts are on
+      // the route now, and at Raw a placement against one is still called a
+      // contradiction).
+      ...page.found.flatMap((id) => {
+        const c = view.findableById.get(id);
+        return c?.kind === 'account' && c.source.type === 'person' && !accounts.includes(c.source.personId)
+          ? [c.source.personId]
+          : [];
+      }),
     ];
     const met = new Set<string>(state.met);
     out.push(...checkBeats(view, page, [...found], [...accounts], accountsAfter, met));

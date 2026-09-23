@@ -71,6 +71,8 @@ const ALLOWED = [
   /\bon the beat\b/i,
   /\b(?:business|registration|calling|playing|union|index|dance|visiting|library|ration|punch|time) cards?\b/i,
   /\bcard case\b/i,
+  // The house's own rules on a card by the door.
+  /\bhouse rules?\b/i,
   // A page's own margin, where somebody wrote on a paper.
   /\b(?:written|pencilled|scrawled|noted|jotted) in the margins?\b/i,
 ];

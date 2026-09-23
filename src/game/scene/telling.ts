@@ -142,8 +142,11 @@ function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id
     const when = whenOf(s.run);
     const where = whereOf(view, s.place, at);
     if (i === 0) first.push(`I saw ${p.him} ${where} ${when}.`);
-    // "Back" is back here; anywhere else it is "there again".
-    else if (s.place === last) first.push(s.place === at ? `${p.He} was back ${when}.` : `${p.He} was there again ${when}.`);
+    // "Back" is back here; anywhere else it is "there again"; a third time is "and again".
+    else if (s.place === last) {
+      const again = i >= 2 && stretches[i - 2]?.place === s.place;
+      first.push(again ? `And again ${when}.` : s.place === at ? `${p.He} was back ${when}.` : `${p.He} was there again ${when}.`);
+    }
     else first.push(`${cap(when)} ${p.he} was ${where}.`);
     last = s.place;
   }
@@ -374,7 +377,16 @@ function evening(view: CaseView, clues: Clue[], speaker: Person, at: Id): Told {
   const ticks: Tick[] = [];
   const people: Id[] = [speaker.id];
   const first: string[] = [];
-  for (const [i, c] of claims.entries()) {
+  // One place said once while the evening stays there, however many spans the
+  // account keeps apart for the notebook: "I was at the stairwell from eight
+  // until half past, from nine until half past, and from ten until half past."
+  const groups: { place: Id; with?: Id; ticks: Tick[] }[] = [];
+  for (const c of claims) {
+    const prev = groups[groups.length - 1];
+    if (prev && prev.place === c.place && prev.with === c.with) prev.ticks.push(...c.ticks);
+    else groups.push({ place: c.place, ...(c.with ? { with: c.with } : {}), ticks: [...c.ticks] });
+  }
+  for (const [i, c] of groups.entries()) {
     ticks.push(...c.ticks);
     const when = whenRuns(c.ticks, 'and');
     const company = c.with ? ` with ${referenceOf(view.kase, speaker.id, c.with)}` : '';

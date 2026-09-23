@@ -272,7 +272,7 @@
   {
     "id": "ans-028",
     "deck": "answer",
-    "text": "There was no {subject} here. The lead had run out.",
+    "text": "There was no {subject} here. Whatever had sent me had run out.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -502,7 +502,7 @@
   {
     "id": "ans-n06",
     "deck": "answer",
-    "text": "The lead ran out there.",
+    "text": "It ran out there.",
     "tags": {
       "outcome": "dead-end"
     },

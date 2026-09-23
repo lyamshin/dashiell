@@ -1492,7 +1492,8 @@ function exchange(
   if (lead !== undefined && !/^I\b/.test(lead)) question = attributed(question);
   opening.push(question);
   out.push({ text: opening.join(' '), voice: 'exchange' });
-  if (scene.free) out.push({ text: 'No charge on this one. There never is, the first time.', voice: 'narrator' });
+  // The free first ask: somebody who knows him answers without the preamble.
+  if (scene.free) out.push({ text: `${surname} knew me from before, and that saved us both some time.`, voice: 'narrator' });
 
   /* the answer */
   // One piece of business at most, and only the person's own: their recall
@@ -1663,6 +1664,8 @@ export function sameRelation(a: string, b: string, view: Stage['view']): boolean
 export function attributed(question: string): string {
   const m = /^[“"](.*)[”"]$/.exec(question.trim());
   if (!m) return question;
+  // Already said who says it, or already two quotations: leave it be.
+  if (/\bI (?:said|asked)\b|[”"]\s|\s[“"]/.test(m[1] as string)) return question;
   const inner = (m[1] as string).trim();
   const split = /^(.+?[.?!])\s+(.+)$/.exec(inner);
   const head = split ? (split[1] as string) : inner;
@@ -1799,6 +1802,9 @@ function tellingParas(
       if ('ticks' in f) ticks.push(...f.ticks);
     }
     told = { first, second: [], ticks, people: personIds };
+    // The record's own hours, said the witness's way: the generator's words,
+    // checked where the generator's words are checked.
+    parts.fromRecord = true;
     if (family.kind === 'thing' && subject && (strength === undefined || strength === 'name' || strength === 'relation') && spokenAloud) {
       told.follow = 'sure';
     }

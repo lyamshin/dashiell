@@ -279,6 +279,8 @@ export interface BeatTrace {
     tail?: string;
     /** The telling card's frame and business around the words. */
     frame?: string;
+    /** The told sentences are an old clue kind's own record, said the witness's way. */
+    fromRecord?: boolean;
   };
   /** M10, a telling only: the half hours its fact sentences may name. */
   ticks?: number[];
