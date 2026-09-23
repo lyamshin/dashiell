@@ -334,6 +334,13 @@ interface Ctx {
   outside: number;
 }
 const CTX: Ctx = { active: false, deals: [], pending: new Map(), outside: 0 };
+/**
+ * Fallback by deck, whatever else the deal was: of the draws that dealt a
+ * card, how many came off a rung wider than the one asked for; and how many
+ * draws dealt nothing. Counted apart from the outcome, where a stale card
+ * hides a widened one.
+ */
+const FALLBACK = new Map<string, { draws: number; off: number; none: number }>();
 
 function siteOf(stack: string): { site: string; fn: string } {
   const frames = stack.split('\n').slice(1).map((l) => l.trim());
@@ -434,6 +441,13 @@ const STARVED = new Map<string, { cards: Set<string>; asks: number; sites: Map<s
     poolRaw = setR.length;
     key = keyOf(deck, probe(deck, used, setR, card), card);
   }
+  {
+    const f = FALLBACK.get(deck) ?? { draws: 0, off: 0, none: 0 };
+    f.draws++;
+    if (!res) f.none++;
+    else if (rung > 0) f.off++;
+    FALLBACK.set(deck, f);
+  }
   let outcome: Outcome;
   if (!res) outcome = 'dropped';
   else if (self.order.slice(0, lenBefore).includes(res.cardId)) outcome = 'repeat';
@@ -502,7 +516,15 @@ interface Person {
   firstStale: Map<string, number>;
   /** Per key: distinct cards read. */
   keySeen: Map<string, Set<string>>;
+  /** The run this person last read each card in. */
+  last?: Map<string, number>;
 }
+/**
+ * When a card comes back on a later night, how many nights since the reader
+ * last read it, by deck. With no memory a card comes back at random; with the
+ * dealer's memory it comes back only once the rest of its key has been read.
+ */
+const GAPS = new Map<string, number[]>();
 
 const people: Record<PlayerId, Person[]> = {
   oracle: [],
@@ -698,6 +720,16 @@ function account(person: Person, deal: Deal, page: number, runSeen: Map<string, 
   if (late) {
     d.visLate++;
     k.visLate++;
+  }
+  {
+    const last = (person.last ??= new Map());
+    const was = last.get(deal.cardId);
+    if (!runSeen.has(deal.cardId) && was !== undefined && was < runIndex) {
+      const g = GAPS.get(deal.deck) ?? [];
+      g.push(runIndex - was);
+      GAPS.set(deal.deck, g);
+    }
+    last.set(deal.cardId, runIndex);
   }
   if (runSeen.has(deal.cardId)) {
     d.visRepeats++;
@@ -1528,7 +1560,33 @@ for (const deck of DECK_NAMES) {
 out.push('');
 
 const md = out.join('\n');
-if (MD_OUT) writeFileSync(MD_OUT, md);
+const gapQ = (xs: number[], q: number): number => {
+  const s = [...xs].sort((x, y) => x - y);
+  return s.length === 0 ? NaN : (s[Math.min(s.length - 1, Math.floor(q * s.length))] as number);
+};
+const gapMd = [
+  '',
+  '## When a card comes back: nights since the reader last read it',
+  '',
+  '| deck | returns | shortest 10% | median |',
+  '| --- | ---: | ---: | ---: |',
+  ...[...GAPS.entries()]
+    .sort((a, b) => b[1].length - a[1].length)
+    .map(([d, g]) => `| ${d} | ${g.length} | ${gapQ(g, 0.1)} | ${gapQ(g, 0.5)} |`),
+  '',
+].join('\n');
+const fallbackMd = [
+  '',
+  '## Fallback by deck, apart from the outcome',
+  '',
+  '| deck | draws | off a wider rung | nothing dealt |',
+  '| --- | ---: | ---: | ---: |',
+  ...[...FALLBACK.entries()]
+    .sort((a, b) => b[1].draws - a[1].draws)
+    .map(([d, f]) => `| ${d} | ${f.draws} | ${((100 * f.off) / Math.max(1, f.draws - f.none)).toFixed(1)}% | ${((100 * f.none) / Math.max(1, f.draws)).toFixed(1)}% |`),
+  '',
+].join('\n');
+if (MD_OUT) writeFileSync(MD_OUT, md + fallbackMd + gapMd);
 else process.stdout.write(md + '\n');
 if (JSON_OUT) {
   writeFileSync(

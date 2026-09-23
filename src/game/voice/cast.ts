@@ -151,6 +151,68 @@ export function ageFits(band: unknown, age: number | undefined): boolean {
 }
 
 /**
+ * Every person's temper, as the case has always rolled it.
+ *
+ * Tempers came off the same stream as the portraits, one draw ahead of each
+ * person's cards, so the portraits' draws moved them. docs/25 changes how the
+ * portraits are drawn — against the reader's history, and against the rest of
+ * tonight's cast — and that would have moved every temper in every case, the
+ * goldens' included, and made a temper depend on who is reading. So the old
+ * stream is replayed here exactly as it ran for a reader with no history: the
+ * same draws in the same order, the cards thrown away, the tempers kept.
+ */
+function rollTempers(kase: Case, seed: number, weather: DashiellRoll['weather']): Record<Id, Temper> {
+  const rng = new Rng((seed * 1103515245 + PORTRAIT_SALT) >>> 0);
+  const burned = new Set<string>();
+  const deck = DECKS.portraits;
+  const pairDeck = DECKS['portrait-pairs'];
+  const temper: Record<Id, Temper> = {};
+  for (const person of kase.people) {
+    if (person.kind !== 'victim') temper[person.id] = pickWeighted(rng, weightsFor(person));
+    const gender = genderHintOf(person);
+    const klass = classOf(person);
+    const age = person.dossier?.age;
+    for (const component of ['trait', 'habit', 'clothing'] as const) {
+      const fits = (c: Card): boolean =>
+        tagIs('portraits', c, 'component', component) &&
+        (tagIs('portraits', c, 'gender', gender) || gender === 'any') &&
+        ageFits(tagOf('portraits', c, 'ageBand'), age) &&
+        !contradictsWeather(motifsOf(c), c, weather);
+      const exact = deck.filter((c) => fits(c) && tagIs('portraits', c, 'class', klass));
+      const loose = deck.filter(fits);
+      const pick =
+        rng.shuffle(exact.filter((c) => !burned.has(c.id)))[0] ??
+        rng.shuffle(loose.filter((c) => !burned.has(c.id)))[0] ??
+        rng.shuffle(exact)[0] ??
+        rng.shuffle(loose)[0];
+      if (pick) burned.add(pick.id);
+    }
+    const pairFits = (c: Card): boolean =>
+      (gender === 'any' || tagIs('portrait-pairs', c, 'gender', gender)) &&
+      ageFits(tagOf('portrait-pairs', c, 'ageBand'), age) &&
+      !contradictsWeather(motifsOf(c), c, weather);
+    const ladder: ((c: Card) => boolean)[] = [
+      (c) =>
+        pairFits(c) &&
+        tagIs('portrait-pairs', c, 'class', klass) &&
+        tagIs('portrait-pairs', c, 'setting', person.isClient === true ? 'office' : 'anywhere'),
+      (c) => pairFits(c) && tagIs('portrait-pairs', c, 'class', klass),
+      pairFits,
+    ];
+    for (const rung of ladder) {
+      const fits = pairDeck.filter(rung);
+      const card = rng.shuffle(fits.filter((c) => !burned.has(c.id)))[0] ?? rng.shuffle(fits)[0];
+      if (!card) continue;
+      const recall = typeof card.recall === 'string' ? card.recall.trim() : '';
+      if (fill(card, pronounSlots(person)) === null || recall.length === 0) continue;
+      burned.add(card.id);
+      break;
+    }
+  }
+  return temper;
+}
+
+/**
  * One portrait pair per person — or, where the pair deck has nothing for them,
  * one trait, one habit and one piece of clothing — drawn against the reader's
  * history so that a player does not meet the same split thumbnail two nights
@@ -162,10 +224,7 @@ export function rollCast(
   opts?: { seed?: number; persistedBurned?: Iterable<string> },
 ): CastSheet {
   const seed = opts?.seed ?? kase.seed;
-  const rng = new Rng((seed * 1103515245 + PORTRAIT_SALT) >>> 0);
-  // A person's temper is the case's, whoever is reading: its own stream, so
-  // the portraits' draw against the reader's history (docs/25) cannot move it.
-  const temperRng = new Rng((seed * 1103515245 + TEMPER_SALT) >>> 0);
+  const rng = new Rng((seed * 1103515245 + TEMPER_SALT) >>> 0);
   // docs/25: how often the reader has met each card on earlier nights, and
   // what tonight's cast has already been given. A card is never handed to a
   // second person tonight while anything else fits; across nights the one the
@@ -183,12 +242,12 @@ export function rollCast(
   const roll = rollDashiell(kase, opts?.seed === undefined ? {} : { seed: opts.seed });
   const weather = roll.weather;
 
-  const temper: Record<Id, Temper> = {};
+  // A person's temper is the case's, whoever is reading (see `rollTempers`).
+  const temper = rollTempers(kase, seed, weather);
   const portraits: Record<Id, Portrait> = {};
   const order: Record<Id, number> = {};
 
   for (const person of kase.people) {
-    if (person.kind !== 'victim') temper[person.id] = pickWeighted(temperRng, weightsFor(person));
     const gender = genderHintOf(person);
     const klass = classOf(person);
     const age = person.dossier?.age;

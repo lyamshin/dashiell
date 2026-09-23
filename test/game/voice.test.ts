@@ -1036,6 +1036,53 @@ describe('the burn tiers', () => {
     expect(top / 400).toBeLessThan(0.8);
   });
 
+  it('never gives two people tonight the same portrait pair while another fits', () => {
+    for (let seed = 1; seed <= 40; seed++) {
+      const cast = rollCast(generateCase(seed, { difficulty: 2 }));
+      const pairs = Object.values(cast.portraits).flatMap((p) => (p.pair ? [p.pair.cardId] : []));
+      expect(new Set(pairs).size, `seed ${seed}`).toBe(pairs.length);
+    }
+  });
+
+  it('keeps a person’s temper whoever is reading', () => {
+    const kase = generateCase(7, { difficulty: 2 });
+    const read = DECKS['portrait-pairs'].map((c) => c.id);
+    expect(rollCast(kase, { persistedBurned: read }).temper).toEqual(rollCast(kase).temper);
+  });
+
+  it('counts portrait components as read only where they are what the page prints', () => {
+    const cast = rollCast(generateCase(7, { difficulty: 2 }));
+    for (const p of Object.values(cast.portraits)) {
+      if (p.pair) expect(p.cardIds).toEqual([p.pair.cardId]);
+    }
+  });
+
+  it('finds a person at something different on a later visit', () => {
+    let seen = 0;
+    for (let seed = 1; seed <= 20; seed++) {
+      const state = playOracle(buildView(generateCase(seed, { difficulty: 2 }))).state;
+      for (const ids of Object.values(state.scene?.did ?? {})) {
+        const cards = ids.filter((id) => !id.startsWith('doing:'));
+        seen += cards.length;
+        expect(new Set(cards).size).toBe(cards.length);
+      }
+    }
+    expect(seen).toBeGreaterThan(50);
+  });
+
+  it('gives the hiring the client’s own business, where the client has a recall action', () => {
+    let said = 0;
+    for (let seed = 1; seed <= 40; seed++) {
+      const v = buildView(generateCase(seed, { difficulty: 2 }));
+      const state = newRun(v, { detectiveName: 'Dashiell' });
+      const action = state.cast.portraits[v.client.id]?.pair?.action;
+      if (!action) continue;
+      const text = (state.log[0]?.blocks ?? []).map((b) => ('text' in b ? String(b.text) : '')).join('\n');
+      if (text.includes(action)) said++;
+    }
+    expect(said).toBeGreaterThan(5);
+  });
+
   it('deals the same night the same way for the same reader', () => {
     const key = (c: Card): boolean => tagIs('hours', c, 'beat', 'hour');
     const history = DECKS.hours.slice(0, 4).map((c) => c.id);
