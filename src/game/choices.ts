@@ -18,7 +18,7 @@ import { minutesAfter } from './clock.js';
 import type { CaseView } from './derive.js';
 import { gameBudget, peopleHereNow } from './derive.js';
 import { parse } from './parser.js';
-import { accountRider, answersTo, askedBefore, followUpOf, pendingFor, priceOf } from './reducer.js';
+import { accountRider, answersTo, askedBefore, followUpOf, pendingFor, priceOf, rundownOpen } from './reducer.js';
 import type { Command, OfferedChoice, OfferedGroup, RunState } from './types.js';
 import { buildNotebook, type Notebook } from './notebook.js';
 import { possessiveOf, pronounOf } from './voice/cast.js';
@@ -56,7 +56,7 @@ export interface Choice extends OfferedChoice {
 }
 
 export interface ChoiceGroup extends OfferedGroup {
-  kind: 'ask' | 'search' | 'go' | 'free' | 'confront' | 'continue';
+  kind: 'ask' | 'search' | 'go' | 'free' | 'confront' | 'continue' | 'rundown';
   /** "Ask Callahan about", "Search", "Go to". */
   heading: string;
   /** For `ask` only: whose topics these are. */
@@ -357,6 +357,25 @@ export function choicesFor(view: CaseView, state: RunState): ChoiceGroup[] {
       heading: '',
       ...(going.item.personId ? { personId: going.item.personId } : {}),
       choices: [{ command: 'go on', label: 'Go on', minutes: 0, lead, done: false }],
+    });
+  }
+
+  // M11 §A.5: with the client in the room and somebody else in it, the
+  // client will say who they are. Free, once a visit, and never a lead.
+  if (rundownOpen(view, state)) {
+    groups.push({
+      kind: 'rundown',
+      heading: '',
+      personId: view.client.id,
+      choices: [
+        {
+          command: `ask ${view.client.surname} who's here`,
+          label: `Ask ${displayName(view, state, view.client.id)} who’s here`,
+          minutes: 0,
+          lead: false,
+          done: false,
+        },
+      ],
     });
   }
 

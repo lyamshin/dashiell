@@ -226,6 +226,19 @@ export function parse(
     return { ok: true, command: { kind: 'continue' } };
   }
 
+  // M11 §A.5: "ask Hauck who's here" — the client names the room. "who's
+  // here" on its own asks whoever can say, which is only ever the client.
+  {
+    const folded = fold(trimmed).trim().replace(/\s+/g, ' ');
+    const m = /^(?:(?:ask|talk to) (.+?) )?(?:who'?s here|who is here|who all is here|who these people are|who's in the room|who is in the room)\??$/.exec(folded);
+    if (m) {
+      const named = m[1];
+      if (named === undefined) return { ok: true, command: { kind: 'rundown' } };
+      const hit = matchPeople(view, named);
+      if (hit.some((c) => c.value === view.client.id)) return { ok: true, command: { kind: 'rundown' } };
+    }
+  }
+
   const words = fold(trimmed).split(' ');
   const head = words[0] as string;
   let verb = verbOf(head);

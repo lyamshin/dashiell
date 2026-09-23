@@ -405,6 +405,8 @@ export type Scene =
       errand?: ErrandPlan;
     }
   | { kind: 'look' }
+  /** M11 §A.5: the client names who is in the room. */
+  | { kind: 'rundown' }
   | {
       kind: 'ask';
       personId: Id;

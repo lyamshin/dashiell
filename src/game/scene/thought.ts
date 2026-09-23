@@ -196,7 +196,7 @@ export interface Thought {
    * person was doing, and the tie to the case the notebook knows. The engine
    * writes it; no card does.
    */
-  observe?: { tie: import('./people.js').TieKind; doing: string; trade: string | null };
+  observe?: { tie: import('./people.js').TieKind; doing: string; trade: string | null; still?: boolean };
 }
 
 export interface ThoughtInput {

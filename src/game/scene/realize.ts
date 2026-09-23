@@ -25,6 +25,7 @@ import { acquaintanceOf } from '../../gen/index.js';
 import { pronounsOf, putSaid, saidPlainly, toldOf, type Told } from './telling.js';
 import type { Family } from './families.js';
 import { observation, tieSentence } from './people.js';
+import { bareRoleOf } from './plan.js';
 import { characterLine } from '../voice/character.js';
 import { verdictsOn } from '../m9.js';
 import { temperOf } from '../voice/cast.js';
@@ -714,7 +715,14 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         // "I wrote it down. I wrote it down as Mulcahy told it." is the same act twice.
         const body = lines.join(' ');
         const prefix = noting && !/\b(?:wrote|written|in the notebook|on paper|got it down)\b/i.test(body) ? noting : '';
-        push({ text: `${prefix}${body}`, voice: 'thought', beats: run, ...(prefix ? { noted: true } : {}) });
+        const host = last();
+        if (plan.shape === 'rundown' && host !== undefined && host.voice === 'narrator') {
+          // M11 §A.5: "I looked the room over the way she'd laid it out." and
+          // what he saw are one paragraph.
+          host.text = `${host.text} ${prefix}${body}`;
+          host.voice = 'thought';
+          host.beats.push(...run);
+        } else push({ text: `${prefix}${body}`, voice: 'thought', beats: run, ...(prefix ? { noted: true } : {}) });
         i = run[run.length - 1] as number;
         break;
       }
@@ -873,6 +881,19 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
           personIds: [beat.personId],
           ...(beat.placeId ? { placeIds: [beat.placeId] } : {}),
           text,
+        });
+        break;
+      }
+
+      /* ------------------------------------ M11 §A.5: who is in the room */
+      case 'rundown': {
+        const written = rundownParas(stage, beat);
+        for (const p of written.paras) push({ ...p, beats: [i] });
+        mark(i, {
+          tag: 'rundown',
+          // Everybody the rundown pointed out, named or not: the room it covered.
+          personIds: [beat.clientId, ...beat.people.map((r) => r.personId)],
+          text: written.paras.map((p) => p.text).join(' '),
         });
         break;
       }
@@ -1469,7 +1490,14 @@ function thoughtLine(
   // doing and the tie the notebook has.
   if (t.cls === 'view' && t.observe && t.subjectId) {
     const person = stage.view.personById.get(t.subjectId) as Person;
-    return observation(stage.view, person, { kind: t.observe.tie, ...(t.secondId ? { otherId: t.secondId } : {}) }, t.observe.doing, stage.minutes, t.observe.trade);
+    return observation(
+      stage.view,
+      person,
+      { kind: t.observe.tie, ...(t.secondId ? { otherId: t.secondId } : {}) },
+      t.observe.still ? `still ${t.observe.doing}` : t.observe.doing,
+      stage.minutes,
+      t.observe.trade,
+    );
   }
   // §3–§4: the watcher's view on arrival is the place's watch clause — why
   // the watcher matters is that they watch — so it is dealt from `watch`.
@@ -1864,6 +1892,99 @@ function exchange(
     answerClue(scene.volunteer, false);
   }
   return out.map((p) => ({ ...p, text: tidyPunctuation(p.text) }));
+}
+
+/** M11 §A.5: his question, when the client is in the room with others. */
+const RUNDOWN_ASKS = ['Who am I looking at?', 'Who’s who in here?', 'Tell me who’s here.'];
+/** And after it, the look he takes: golden §2's "I looked the room over the way she'd laid it out." */
+const RUNDOWN_LOOKS = [
+  'I looked the room over the way {she}’d laid it out.',
+  'I took the room in again, the way {she} had given it to me.',
+];
+
+/**
+ * "The woman with the newspaper": somebody pointed out by what they are
+ * doing, the way a person at a table points out a room without looking at
+ * it. The doing is cut at its first comma or "and", which keeps it a handle.
+ */
+function handleOf(person: Person, doing: string | null): string {
+  const noun = genderHintOf(person) === 'f' ? 'woman' : 'man';
+  if (doing === null) return `the ${noun} over there`;
+  const short = (doing.split(/,| and | while | without /)[0] ?? doing).trim();
+  return `the ${noun} ${short}`;
+}
+
+/**
+ * M11 §A.5: the client names who is here, each person the way the client
+ * knows them (golden §2): a name, with what they are and one line of the
+ * client's own about their kind; a face known by sight and no name; somebody
+ * not known at all; and the one who watches the room, by trade. Strangers
+ * stay strangers — nobody is named the client could not name — so nothing on
+ * the grid is linked by it. The finder is said to be the finder, because the
+ * client said so in the office.
+ */
+function rundownParas(
+  stage: Stage,
+  beat: Extract<Beat, { kind: 'rundown' }>,
+): { paras: Omit<Para, 'beats'>[]; named: Id[] } {
+  const { view, dealer } = stage;
+  const client = view.personById.get(beat.clientId) as Person;
+  const she = pronounOf(client) === 'she';
+  const out: Omit<Para, 'beats'>[] = [];
+  const named: Id[] = [];
+  const victim = view.victim;
+  const him = pronounOf(victim) === 'she' ? 'her' : 'him';
+  out.push({ text: attributed(`“${dealer.random.pick(RUNDOWN_ASKS)}”`), voice: 'exchange' });
+  const said: string[] = [];
+  const stranger: string[] = [];
+  for (const r of beat.people) {
+    const person = view.personById.get(r.personId) as Person;
+    const He = pronounOf(person) === 'she' ? 'She' : 'He';
+    const his = pronounOf(person) === 'she' ? 'her' : 'his';
+    const handle = handleOf(person, r.doing);
+    const Handle = capitalize(handle);
+    const card = r.knows === 'stranger' ? null : characterLine(dealer, view, person, 'client');
+    if (r.watcher) {
+      said.push(`And ${person.surname} you know, or you will.`);
+      if (card) said.push(card.text);
+      named.push(person.id);
+      continue;
+    }
+    switch (r.knows) {
+      case 'name':
+      case 'relation': {
+        const trade = person.kind === 'fixture' ? person.role.replace(/\.$/, '') : bareRoleOf(person);
+        said.push(`${Handle} is ${person.surname}.`);
+        if (trade) said.push(`${capitalize(/^(?:the|a|an) /i.test(trade) ? trade : `${/^[aeiou]/i.test(trade) ? 'an' : 'a'} ${trade}`)}.`);
+        if (view.kase.victimBio.discovery?.foundById === person.id) said.push(`${He}’s the one who found ${him}.`);
+        else if (card) said.push(card.text);
+        named.push(person.id);
+        break;
+      }
+      case 'sight':
+        said.push(`${Handle} I’ve seen around. I couldn’t tell you ${his} name.`);
+        break;
+      default:
+        stranger.push(handle);
+    }
+  }
+  // Nobody she can name is said last, together: "The girl two stools down, I don't know at all."
+  if (stranger.length === 1) said.push(`${capitalize(stranger[0] as string)}, I don’t know at all.`);
+  else if (stranger.length > 1) said.push(`${capitalize(stranger.slice(0, -1).join(', '))} and ${stranger[stranger.length - 1] as string}, I don’t know at all.`);
+  if (said.length === 0) said.push('Nobody I know.');
+  // Who is talking, said once at the first full stop: "The woman with the
+  // newspaper is Crowninshield," she said. "The dentist…"
+  const speech = said.join(' ');
+  const at = speech.search(/\.\s+(?=[A-Z“])/);
+  out.push({
+    text:
+      at < 0
+        ? `“${speech}” ${capitalize(client.surname)} didn’t look round.`
+        : `“${speech.slice(0, at)},” ${she ? 'she' : 'he'} said. “${speech.slice(at + 1).trim()}”`,
+    voice: 'exchange',
+  });
+  out.push({ text: fillTemplate(dealer.random.pick(RUNDOWN_LOOKS), { she: she ? 'she' : 'he' }), voice: 'narrator' });
+  return { paras: out.map((p) => ({ ...p, text: tidyPunctuation(p.text) })), named };
 }
 
 /**

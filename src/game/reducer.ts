@@ -410,7 +410,9 @@ export interface Price {
     /** Nothing of theirs to put it to yet, or not a fact in hand. Free. */
     | 'no-confront'
     /** M10 §A.3: "Go on" — the rest of what a page broke off telling. Free. */
-    | 'continue';
+    | 'continue'
+    /** M11 §A.5: the client names who is in the room. Free, once a visit. */
+    | 'rundown';
 }
 
 /** The key a question is remembered under: who, and the topic as the parser reads it. */
@@ -452,6 +454,19 @@ export function pendingFor(
     if (command.kind === 'examine' && item.kind === 'examine') return { item, index };
   }
   return null;
+}
+
+/**
+ * M11 §A.5: can the client name the room? Only where the client is standing
+ * with the detective and somebody else is too, and once a visit: asked again
+ * in the same room, it is the same answer and the page says so.
+ */
+export function rundownOpen(view: CaseView, state: RunState): boolean {
+  const here = peopleHereNow(view, state.at, { clientInOffice: state.clientInOffice, found: state.found });
+  if (!here.some((p) => p.id === view.client.id)) return false;
+  if (!here.some((p) => p.id !== view.client.id && p.id !== view.victim.id)) return false;
+  const memory = state.scene ?? EMPTY_SCENE;
+  return memory.rundown !== memory.visit;
 }
 
 /** M10 §A.3: the command that goes on with a held-back telling here, or null. */
@@ -497,6 +512,8 @@ export function priceOf(command: Command, state: RunState, view: CaseView): Pric
       return pendingFor(view, state, command) === null
         ? { cost: 0, waived: 0, reason: 'nobody' }
         : { cost: 0, waived: 0, reason: 'continue' };
+    case 'rundown':
+      return rundownOpen(view, state) ? { cost: 0, waived: 0, reason: 'rundown' } : { cost: 0, waived: 0, reason: 'nobody' };
     case 'go':
       return command.placeId === state.at
         ? { cost: 0, waived: 0, reason: 'still' }
@@ -753,6 +770,27 @@ export function step(
   };
 
   switch (command.kind) {
+    case 'rundown': {
+      // M11 §A.5: the client names who is here. Nothing is found; the clock
+      // does not move; the grid learns nothing it did not have.
+      if (price.reason !== 'rundown') {
+        const clientHere = peopleHereNow(view, state.at, { clientInOffice: state.clientInOffice, found: state.found }).some(
+          (p) => p.id === view.client.id,
+        );
+        blocks = [
+          {
+            kind: 'note',
+            text: clientHere
+              ? `${view.client.surname} had told me who was here already, and nobody had come in since.`
+              : `${view.client.surname} wasn’t here to ask.`,
+          },
+        ];
+        shape = 'repeat';
+        break;
+      }
+      scene = { kind: 'rundown' };
+      break;
+    }
     case 'continue':
       if (going) {
         goOn();

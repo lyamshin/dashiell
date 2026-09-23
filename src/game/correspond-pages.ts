@@ -601,7 +601,8 @@ export function checkBeats(
       if (cls === 'nothing') {
         if (page.found.length > 0) fail('"nothing" on a page that found something');
       } else if (cls === 'view') {
-        if (!beats.some((x) => x.kind === 'presence' && (x.personIds ?? []).includes(first ?? ''))) {
+        // M11 §A.5: on the client's rundown, the room is the one she named.
+        if (!beats.some((x) => (x.kind === 'presence' || x.kind === 'rundown') && (x.personIds ?? []).includes(first ?? ''))) {
           fail('a view of somebody who is not in the room');
         }
       } else if (cls === 'context') {
