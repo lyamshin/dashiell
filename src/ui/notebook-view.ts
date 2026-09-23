@@ -8,6 +8,8 @@ export function renderNotebook(
   book: Notebook,
   onLead: (thread: Thread) => void,
   onFile: () => void,
+  /** "Where they were", drawn by the book and set in near the top. */
+  grid?: HTMLElement,
 ): HTMLElement {
   const body = el('div', { class: 'body' });
 
@@ -33,11 +35,15 @@ export function renderNotebook(
     }),
   );
 
+  /* 1b. Where they were: the deduction grid, its legend and its rules. */
+  if (grid) body.append(el('h2', { text: 'Where they were' }), grid);
+
   /* 2. People. */
   body.append(el('h2', { text: 'People' }));
   if (book.people.length === 0) body.append(el('p', { class: 'note', text: 'Nobody yet.' }));
   for (const person of book.people) {
-    const entry = el('div', { class: 'nb-entry' });
+    // The grid turns to a person's entry by this id.
+    const entry = el('div', { class: 'nb-entry', id: `nb-person-${person.id}`, tabindex: '-1' });
     const who = el('div', { class: 'who' });
     who.append(
       person.surname,

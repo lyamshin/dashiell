@@ -12,12 +12,18 @@
  * `--route "go the suite; examine the suite; …"` plays exactly those commands
  * instead (M8: how the golden's own route is rendered for comparison). No
  * report is filed.
+ *
+ * `--grid` prints "Where they were", the deduction grid, after the notebook.
+ * `--marks "Grasso 10 at the suite; Grasso 9:30 not the third floor"` pencils
+ * those cells in first (and implies `--grid`), so the pencil can be reviewed
+ * too: it is drawn apart from everything the notebook holds.
  */
 
 import { generateCase, type CaseType, type Difficulty } from '../gen/index.js';
 import { TROPE_IDS } from '../gen/tropes/index.js';
 import { buildView, gameBudget, gamePar } from '../game/derive.js';
 import { playOracle, playWandering } from '../game/oracle.js';
+import { renderGridText, withMarkSpecs } from '../game/grid-text.js';
 import { choicesFor } from '../game/choices.js';
 import { fileReport, newRun, stepInput } from '../game/reducer.js';
 import { truthReport } from '../game/report-form.js';
@@ -56,7 +62,7 @@ if (
 ) {
   process.stderr.write(
     'usage: npm run read -- --seed <integer> [--difficulty 1|2|3|4] [--random] [--pages N] ' +
-      `[--no-gaps] [--no-choices] [--type murder|robbery|missing] [--trope <id>] ` +
+      `[--no-gaps] [--no-choices] [--grid] [--marks "Grasso 10 at the suite; …"] [--type murder|robbery|missing] [--trope <id>] ` +
       `[--tier 0..5|over-easy] [--level 1..4]
   tropes: ${TROPE_IDS.join(', ')}
 `,
@@ -143,6 +149,13 @@ if (Number.isFinite(pageLimit) && state.log.length > shown.length) {
 
 out.push(renderNotebookText(view, state));
 out.push('');
+
+if (flags.has('grid') || values.has('marks')) {
+  const marked = withMarkSpecs(view, state, values.get('marks') ?? '');
+  for (const spec of marked.unread) process.stderr.write(`(could not read the mark "${spec}")\n`);
+  out.push(renderGridText(view, marked.state));
+  out.push('');
+}
 
 if (report) {
   const filed = fileReport(state, report);
