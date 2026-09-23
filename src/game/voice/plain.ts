@@ -1148,7 +1148,7 @@ export function gossipTarget(
 export function selfTelling(
   person: Person,
   temper: 'enigma' | 'plain' | 'yap',
-): { life: string[]; tie: string[] } {
+): { life: string[]; tie: string[]; history?: string } {
   const d = person.dossier;
   const character = d?.character;
   const firstOf = (text: string): string => (text.split(/(?<=[.!?])\s+/)[0] ?? text).trim();
@@ -1156,24 +1156,32 @@ export function selfTelling(
   if (character) {
     const [drawn, ...rest] = character.details;
     const habits = rest.filter((l) => l.layer === 1).map((l) => l.first);
-    const history = character.history.first;
-    life =
-      temper === 'enigma'
-        ? [firstOf(history), drawn?.first ?? ''].filter((x) => x.length > 0)
-        : [history, drawn?.first ?? '', ...habits.slice(0, temper === 'yap' ? 2 : 1)].filter((x) => x.length > 0);
+    // The designer's note: the plain fact first — "I write tickets at the
+    // pawnshop" — and then how they came to it and the colour. The page puts
+    // the history first instead when that is what the question asked ("How
+    // long have you had the house?").
+    const history = temper === 'enigma' ? firstOf(character.history.first) : character.history.first;
+    life = [drawn?.first ?? '', history, ...(temper === 'enigma' ? [] : habits.slice(0, temper === 'yap' ? 2 : 1))].filter(
+      (x) => x.length > 0,
+    );
+    return { life, tie: suspectTie(person, temper), history };
   } else {
     // A dossier from before M11 §B.1: the detail in their mouth, never the age.
     life = (d?.selfAccount ?? []).slice(1, 2).map((s) => firstPerson(person, s));
   }
-  // Who they were to the dead: a suspect's own tie, in their words. A fixture
-  // has none of its own; the page gives the one its type has (a character
-  // card), or how well they knew the face.
-  const tie: string[] = [];
-  if (person.kind === 'suspect' && d && d.tie.relationshipId !== 'rel-none') {
-    const said = d.tie.backstoryFirst ?? `I was ${d.tie.text}.`;
-    tie.push(temper === 'enigma' ? firstOf(said) : said);
-  }
-  return { life, tie };
+  return { life, tie: suspectTie(person, temper) };
+}
+
+/**
+ * Who they were to the dead: a suspect's own tie, in their words. A fixture
+ * has none of its own; the page gives the one its type has (a character
+ * card), or how well they knew the face.
+ */
+function suspectTie(person: Person, temper: 'enigma' | 'plain' | 'yap'): string[] {
+  const d = person.dossier;
+  if (person.kind !== 'suspect' || !d || d.tie.relationshipId === 'rel-none') return [];
+  const said = d.tie.backstoryFirst ?? `I was ${d.tie.text}.`;
+  return [temper === 'enigma' ? (said.split(/(?<=[.!?])\s+/)[0] ?? said).trim() : said];
 }
 
 /** The life lines alone, for the callers that print one paragraph. */

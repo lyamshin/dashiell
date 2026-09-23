@@ -1861,7 +1861,14 @@ function exchange(
       // nosiness. It's rent." Somebody guarded says the least of it.
       const temper = temperOf(cast, person.id);
       const talk = temper === 'enigma' ? null : characterLine(dealer, view, person, 'talk');
-      const lines = [...scene.self.lines, ...(talk ? [talk.text] : [])].filter((l) => l.trim().length > 0);
+      // The plain fact of their work first; how they came to it first where
+      // that is what he asked ("How long have you had the house?").
+      const history = scene.self.history;
+      const own =
+        history !== undefined && /\bhow long\b/i.test(question) && scene.self.lines.includes(history)
+          ? [history, ...scene.self.lines.filter((l) => l !== history)]
+          : scene.self.lines;
+      const lines = [...own, ...(talk ? [talk.text] : [])].filter((l) => l.trim().length > 0);
       if (lines.length > 0) out.push({ text: withBusiness(`“${lines.join(' ')}”`), voice: 'exchange' });
       // Then who the dead man was to them: the golden's "You knew Sirkin?"
       // The client said it in the office, so the client is not asked again.

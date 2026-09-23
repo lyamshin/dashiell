@@ -431,6 +431,8 @@ export type Scene =
         lines: string[];
         /** M11 §A.3: who they were to the dead, in their words (a suspect's tie). */
         tie?: string[];
+        /** M11 §A.3: how they came to the work, which leads when the question asked how long. */
+        history?: string;
         /** A yapper's layer-2 fact about somebody else. */
         gossip?: { personId: Id; text: string };
       };

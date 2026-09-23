@@ -18,7 +18,7 @@ import { describe, expect, it } from 'vitest';
 import { generateCase } from '../src/gen/index.js';
 import { acquaintanceOf } from '../src/gen/index.js';
 import { characterFor, ROLE_CHARACTER } from '../src/gen/data/character.js';
-import { FIXTURE_CARDS, SUSPECT_ARCHETYPES } from '../src/gen/data/cast.js';
+import { FIXTURE_CARDS, JOB_WORDS, SUSPECT_ARCHETYPES } from '../src/gen/data/cast.js';
 import { buildView, peopleHereNow, type CaseView } from '../src/game/derive.js';
 import { playOracle } from '../src/game/oracle.js';
 import { newRun, priceOf, rundownOpen, stepInput } from '../src/game/reducer.js';
@@ -229,6 +229,57 @@ describe('M11 §A.6: an arrival gives something to think about', () => {
       }
     }
     expect(closed).toBeGreaterThan(10);
+  });
+});
+
+describe('M11: the plain fact first', () => {
+  // The designer: "It should often be 'I write tickets at the pawn shop. I
+  // know what a thing is worth.' … Nobody talks that way." When somebody says
+  // what they do, the first sentence says the job in words anyone knows.
+  const firstSentence = (s: string): string => (s.split(/(?<=[.!?])\s+/)[0] ?? s).trim();
+  it('opens every account of somebody’s work on the plain job', () => {
+    for (const a of SUSPECT_ARCHETYPES) {
+      const job = JOB_WORDS[a.id];
+      expect(job, a.id).toBeDefined();
+      for (const line of a.professionFirst) expect(firstSentence(line), a.id).toMatch(job as RegExp);
+    }
+    for (const [role, card] of Object.entries(FIXTURE_CARDS)) {
+      const job = JOB_WORDS[role];
+      expect(job, role).toBeDefined();
+      for (const line of card.detailsFirst) expect(firstSentence(line), role).toMatch(job as RegExp);
+    }
+  });
+
+  it('says the job in front of a trade the office narrates without one', () => {
+    for (let seed = 1; seed <= 60; seed++) {
+      const view = buildView(generateCase(seed, { difficulty: 2 }));
+      const page = newRun(view, { detectiveName: 'Dashiell' }).log[0] as Page;
+      const client = view.client;
+      const job = JOB_WORDS[client.archetypeId ?? ''];
+      if (!job || !client.dossier) continue;
+      const pronoun = client.dossier.gender === 'f' ? 'She' : 'He';
+      const trade = page.blocks.find(
+        (b) => b.kind === 'prose' && b.voice === 'narrator' && b.text.startsWith(`${pronoun} `) && job.test(b.text),
+      );
+      expect(trade, `seed ${seed}: ${client.dossier.profession.detail}`).toBeDefined();
+    }
+  });
+});
+
+describe('M11: the office is not always two rooms over a shop', () => {
+  it('opens on several kinds of place across forty nights, and no phrase night after night', () => {
+    const kinds = new Set<string>();
+    let last = '';
+    let repeats = 0;
+    for (let seed = 1; seed <= 40; seed++) {
+      const name = buildView(generateCase(seed, { difficulty: 2 })).office.name;
+      const head = name.split(' ').slice(0, 4).join(' ');
+      kinds.add(head);
+      if (head === last) repeats++;
+      last = head;
+    }
+    expect(kinds.size).toBeGreaterThan(8);
+    expect(repeats).toBeLessThan(6);
   });
 });
 

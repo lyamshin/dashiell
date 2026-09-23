@@ -72,10 +72,14 @@ describe('the office', () => {
       const name = officeName(kase);
       expect(name).toBe(officeName(kase));
       expect(buildOffice(kase).name).toBe(name);
-      expect(name).toMatch(/^two rooms over .+ on .+$/);
+      // M11: seven kinds of place and two or three ways of saying each,
+      // always somewhere up the stairs on the neighbourhood's street.
+      expect(name).toMatch(/ (?:on|off) [A-Z][A-Za-z-]+(?: [A-Z][A-Za-z-]+)*$/);
       names.add(name);
     }
-    expect(names.size, 'every case has the same office').toBeGreaterThan(5);
+    expect(names.size, 'every case has the same office').toBeGreaterThan(20);
+    const shapes = new Set([...names].map((n) => n.split(' ').slice(0, 3).join(' ')));
+    expect(shapes.size, 'every office is "two rooms over"').toBeGreaterThan(6);
   });
 
   it('gives itself another short name when the case drew an office of its own', () => {

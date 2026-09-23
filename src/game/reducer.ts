@@ -87,9 +87,9 @@ import {
 function selfLines(
   person: Parameters<typeof selfTelling>[0],
   temper: Parameters<typeof selfTelling>[1],
-): { lines: string[]; tie: string[] } {
+): { lines: string[]; tie: string[]; history?: string } {
   const told = selfTelling(person, temper);
-  return { lines: told.life, tie: told.tie };
+  return { lines: told.life, tie: told.tie, ...(told.history === undefined ? {} : { history: told.history }) };
 }
 
 export interface StepResult {

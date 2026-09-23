@@ -31,6 +31,7 @@ import type { Temper } from './cast.js';
 import { pronounOf } from './cast.js';
 import { pronounSubject } from './plain.js';
 import { pastPredicate } from '../scene/text.js';
+import { JOB_WORDS } from '../../gen/data/cast.js';
 import type { Circumstance, Weather } from './roll.js';
 
 /** What the retainer looks like on the desk, by the client's class (§B.2.3). */
@@ -464,10 +465,18 @@ export function officePlan(
   /* Her trade, which the golden gives in his words and not hers. */
   const detailRecord = dossier ? tidyLine(`${client.surname} ${dossier.profession.detail}.`) : '';
   take((l) => tidyLine(l.record) === detailRecord);
+  // The designer's note: the plain fact first. "She wrote the pawn tickets
+  // behind the grille" says what she does without saying what she is; where
+  // the detail has no plain word for the job, the job goes in front of it.
+  const job = JOB_WORDS[client.archetypeId ?? ''];
+  const plainFirst =
+    dossier !== undefined && job !== undefined && !job.test(dossier.profession.detail)
+      ? `${pronounOf(client) === 'she' ? 'She' : 'He'} was ${dossier.profession.role.replace(/\.$/, '')}. `
+      : '';
   const trade =
     dossier === undefined
       ? null
-      : pronounSubject(pastPredicate(detailRecord), client.surname, pronounOf(client));
+      : `${plainFirst}${pronounSubject(pastPredicate(detailRecord), client.surname, pronounOf(client))}`;
 
   /* 1. Who she is to him, and that he is dead. */
   const deathRecord = tidyLine(`${victim.name} is dead.`);
