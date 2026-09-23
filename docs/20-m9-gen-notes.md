@@ -22,7 +22,7 @@ A case dealt with a tier (`generateCase(seed, { tier, level })`) is now a logic 
 | `src/gen/logic/check.ts` | The checker for a tiered case (`checkSolvability` dispatches to it). |
 | `src/gen/logic/api.ts` | The solver as the engine calls it: `solveHeld`, `contradicts`, `crimeFromHeld`, `acquaintanceOf`, `referenceOf`, `knowsByName`. All exported from `src/gen/index.ts`. |
 | `src/gen/generate.ts` | `runLogic`: the tiered path. `run` hands every tiered case to it and is otherwise unchanged. |
-| `src/gen/client.ts` | The client's pointer, tiered cases only (§9). |
+| `src/gen/client.ts`, `src/gen/cast.ts` | The client's pointer, and whether the client did it, decided per seed for tiered cases (§9). The no-options path draws exactly as before. |
 | `src/gen/clues.ts` | `ClueContext.m9` skips the sightings and denials that testimony replaces (no draws are skipped). |
 | `src/gen/structure.ts` | `rule`, `ref`, `knowledge` and `what` join `TEXT_KEYS`. No no-options case carries any of them. |
 | `src/sheet/truthSheet.ts` | A tiered case prints its rule lines, a compact list of accounts and testimony, and a new section 16, "The logic game". |
@@ -220,7 +220,43 @@ The page bug "the same noise sentence repeated on one search (seed 21)" is fixed
 
 ## 12. Measurements
 
-See the PR description for the Targets table (before/after, Medium and Hard-boiled at Precinct, 100 seeds) and the solver stats; `scripts/diagnose-play.ts --configs T4L2,T5L2` and `scripts/m9-stats.ts` reproduce them.
+`npx tsx scripts/diagnose-play.ts --seeds 100 --configs T4L2,T5L2` gives the Targets table: Medium and Hard-boiled at Precinct, 100 seeds. "Before" is `origin/main` at 7f5f3ac, measured with this branch's script and solver copied in. Each cell reads Medium / Hard-boiled.
+
+| measure | before | after | target |
+|---|---|---|---|
+| innocents cleared by one clue (diagnosis facts / solver) | 100% / 100% · 100% / 100% | 21% / 24% · 15% / 17% | ≤30% |
+| inference depth of the par route (diagnosis formula / solver) | 3.1 / 2.0 · 3.7 / 2.0 | 3.1 / 4.4 · 3.6 / 5.0 | ≥4 |
+| cases that need a two-clue combination | 8% · 70% | 100% · 100% | 100% |
+| false statements among self-accounts on the par route | — · — | 18% · 24% | 20–30% |
+| evening accounts on the oracle's route | 0.0 · 0.0 | 0.9 · 2.5 | ≥2 |
+| "ask about a person" that can pay (any clue / a grid fact) | 11% / 8% · 4% / 2% | 97% / 62% · 97% / 52% | ≥60% |
+| lead edges sharing a person with their source | 30% · 27% | 80% · 78% | ≥80% |
+| button-pusher actions with no clue | 71% · 75% | 41% · 42% | ≤40% |
+| a player who only follows the marks names the culprit | 96% · 93% | 12% · 15% | ≤50% |
+| the client points at the culprit (chance) | 91% · 57% | 0% · 13% (17%) | ≤ 1 / suspects |
+| pages with 5 or more open leads (wanderer / lead-follower) | 69% / 70% · 73% / 73% | 1% / 0% · 1% / 0% | ≤10% |
+| par routes that need a hypothesis tested | 0% · 0% | 0% · 100% | Hard-boiled: 100% |
+| first confrontation brings a second lie (culprit / innocents) | — · — | 72% / 69% · 70% / 72% | within 10 points |
+
+**Short of target:**
+
+- **Medium's route holds 0.9 accounts and 18% false spans.** Medium's par set is the cheapest that solves, and at Medium that is mostly testimony and descriptions. Forcing the culprit's account onto the route got 1.8 accounts but 35% false spans, and doubled generation time, so it was left out. The engine's report asks for the crime column, which a player reads off accounts anyway.
+- **Hard-boiled leads share a person 78% of the time.** The mandated client-to-scene lead names nobody and costs about 5 points. Without it the share is 83% at Hard-boiled and 89% at Medium, over 20 seeds (the `test/m9-gen.test.ts` measure).
+- **At Hard-boiled, 52% of "ask about a person" pays a grid fact.** The rest pay "only knows the face" or "does not know them", which the stranger dial (½) asks for.
+- **Button-pusher actions with no clue are 41–42%, against ≤40%.**
+
+`npx tsx scripts/m9-stats.ts --seeds 100 --levels 2` gives the solver stats (depth is the deepest conclusion on the par route):
+
+| tier | ms/case (max) | attempts | par | depth | culprit depth | hypothesis | cleared by one / case | top rejection |
+|---|---|---|---|---|---|---|---|---|
+| Raw | 2.9 (23) | 1.2 | 3.5 | 2:69 3:30 5:1 | 2:82 3:17 4:1 | 0% | 1.8 | no culprit (17) |
+| Coddled | 2.2 (4) | 1.2 | 4.7 | 3:79 4:18 5+:3 | 2:79 3:18 4+:3 | 0% | 2.8 | no culprit (21) |
+| Poached | 3.8 (18) | 1.6 | 7.3 | 3:9 4:57 5:31 6+:3 | 3:61 4:39 | 0% | 1.0 | the culprit's means lie stands (23) |
+| Soft-boiled | 10.8 (49) | 8.0 | 9.4 | 4:77 5:18 6+:5 | 3:75 4:23 5:2 | 0% | 0.9 | the culprit's means lie stands (556) |
+| Medium | 98.6 (371) | 51.3 | 12.3 | 4:5 5:69 6:17 7+:9 | 4:72 5:20 6+:8 | 0% | 0.8 | the culprit is reached too shallow (2292) |
+| Hard-boiled | 147.9 (916) | 75.0 | 18.0 | 5:13 6:31 7:25 8:18 9+:13 | 4:51 5:25 6:12 7+:12 | 100% | 0.7 | no two innocents fit one description in two watched rooms (3449) |
+
+Most turned-down attempts are turned down in the arrangement, before any solving, which is why a Hard-boiled case with 75 attempts still takes 0.15 s. All 800 Hard-boiled seeds at every level (200 × 4) generate.
 
 ## 13. What the engine half has to do
 
