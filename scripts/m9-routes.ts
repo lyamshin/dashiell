@@ -11,7 +11,7 @@
 import { generateCase } from '../src/gen/index.js';
 import { buildView } from '../src/game/derive.js';
 import { gridFrom } from '../src/game/grid.js';
-import { judgeConfront, confrontFacts, canConfront } from '../src/game/m9.js';
+import { judgeConfront, pickFacts, partRef, canConfront } from '../src/game/m9.js';
 import { playOracle } from '../src/game/oracle.js';
 import { newRun, stepInput } from '../src/game/reducer.js';
 import { columnFor, fieldsFor, truthReport, answerFor } from '../src/game/report-form.js';
@@ -49,13 +49,14 @@ for (const c of view.kase.logic?.confrontations ?? []) {
     trial = stepInput(trial, `ask ${person.surname} about that evening`, view).state;
   }
   if (!canConfront(view, trial, person.id)) continue;
-  const facts = confrontFacts(view, trial, person.id);
-  const hit = facts.find((f) => judgeConfront(view, trial, person.id, f.id).outcome !== 'wrong');
-  const miss = facts.find((f) => judgeConfront(view, trial, person.id, f.id).outcome === 'wrong');
+  // One fact at a time, as the picker offers them (M9 polish).
+  const facts = pickFacts(view, trial, person.id);
+  const hit = facts.find((f) => judgeConfront(view, trial, person.id, f.clueId, f.part).outcome !== 'wrong');
+  const miss = facts.find((f) => judgeConfront(view, trial, person.id, f.clueId, f.part).outcome === 'wrong');
   if (!hit || !miss) continue;
   commands.push(...extra);
-  right = { command: `put ${hit.id} to ${person.surname}`, personId: person.id };
-  wrong = { command: `put ${miss.id} to ${person.surname}`, personId: person.id };
+  right = { command: `put ${partRef(hit.clueId, hit.part)} to ${person.surname}`, personId: person.id };
+  wrong = { command: `put ${partRef(miss.clueId, miss.part)} to ${person.surname}`, personId: person.id };
   commands.push(right.command, wrong.command);
   state = stepInput(stepInput(trial, right.command, view).state, wrong.command, view).state;
 }

@@ -33,6 +33,7 @@ import type {
   Tick,
 } from '../gen/types.js';
 import { deductionOf, dialsOf, type DeductionDials } from '../gen/shape.js';
+import type { RulePart } from '../gen/logic/lines.js';
 import type { CaseView } from './derive.js';
 import type { RunState } from './types.js';
 import { genderHintOf, possessiveOf } from './voice/cast.js';
@@ -172,6 +173,12 @@ export interface ConfrontRecord {
   personId: Id;
   /** The notebook fact put to them: a found clue's id. */
   clueId: Id;
+  /**
+   * M9 polish: which of the clue's parts (`Clue.ruleParts`) was read to them,
+   * one fact at a time. Absent when the whole line was put, as older saves
+   * and typed commands without a part do.
+   */
+  part?: number;
   /** The lie it touched (`accountId|firstTick`), or null for a fact that touched nothing. */
   lieKey: string | null;
   /** What came of it. */
@@ -222,6 +229,137 @@ export function canConfront(view: CaseView, state: Pick<RunState, 'accounts' | '
   return confrontFacts(view, state, personId).length > 0;
 }
 
+/** A clue's rule, one fact at a time: its `ruleParts`, or the whole line as one part. */
+export function partsOf(clue: Clue): RulePart[] {
+  if (clue.ruleParts && clue.ruleParts.length > 0) return clue.ruleParts;
+  if ((clue.rule ?? '').length === 0) return [];
+  return [{ text: (clue.rule as string).replace(/\.$/, ''), facts: clue.establishes.map((_, i) => i), people: [], place: null }];
+}
+
+/**
+ * One fact the picker offers: a part of a clue in hand, with whom and where
+ * it is about for the picker's groups. Nothing here says whether it touches
+ * anything.
+ */
+export interface PickFact {
+  clueId: Id;
+  part: number;
+  text: string;
+  /** Who said it or where it was found, as the grid brackets it. */
+  source: string;
+  people: Id[];
+  place: Id | null;
+  /** About the place first (a watcher's "nobody but …"), not the people it names. */
+  byPlace: boolean;
+  /** The first half hour it names, for ordering; 99 when it names none. */
+  first: number;
+}
+
+function firstTickOf(facts: Fact[]): number {
+  let t = 99;
+  for (const f of facts) {
+    if ('tick' in f) t = Math.min(t, f.tick);
+    if ('ticks' in f && f.ticks.length > 0) t = Math.min(t, ...f.ticks);
+  }
+  return t;
+}
+
+/** Every fact the picker offers against `personId`: each clue in hand, a part at a time. */
+export function pickFacts(view: CaseView, state: Pick<RunState, 'found'>, personId: Id): PickFact[] {
+  const out: PickFact[] = [];
+  for (const clue of confrontFacts(view, state, personId)) {
+    const source =
+      clue.source.type === 'person'
+        ? (view.personById.get(clue.source.personId)?.surname ?? clue.source.personId)
+        : clue.kind === 'morgue'
+          ? 'the coroner'
+          : (view.placeById.get(clue.source.placeId)?.shortName ?? clue.source.placeId);
+    partsOf(clue).forEach((p, i) => {
+      out.push({
+        clueId: clue.id,
+        part: i,
+        text: p.text,
+        source,
+        people: p.people,
+        byPlace: p.byPlace === true,
+        place: p.place,
+        first: firstTickOf(p.facts.map((k) => clue.establishes[k]).filter((f): f is Fact => f !== undefined)),
+      });
+    });
+  }
+  return out;
+}
+
+/** "x012 part 2": the command form of one part of a clue. */
+export function partRef(clueId: Id, part: number | undefined): string {
+  return part === undefined ? clueId : `${clueId} part ${part}`;
+}
+
+type Claim = { place: Id; ticks: Tick[] };
+
+function breaksWith(
+  kase: CaseView['kase'],
+  hand: readonly Id[],
+  personId: Id,
+  claim: Claim,
+  confessed: readonly Id[],
+): Set<Id> {
+  const out = new Set<Id>();
+  for (const soft of [true, false]) {
+    const res = contradicts(kase, [...hand], { personId, ...claim }, { confessed: [...confessed], soft });
+    if (res.yes) for (const id of res.rules) out.add(id);
+  }
+  return out;
+}
+
+/** The case with one clue's facts narrowed to those `keep` allows. */
+function narrowed(kase: CaseView['kase'], clueId: Id, keep: (i: number) => boolean): CaseView['kase'] {
+  return {
+    ...kase,
+    findable: kase.findable.map((c) => (c.id === clueId ? { ...c, establishes: c.establishes.filter((_, i) => keep(i)) } : c)),
+  };
+}
+
+/** Does this fact name the person, or the place at one of the claim's half hours? */
+function factTouches(f: Fact, personId: Id, claim: Claim): boolean {
+  if ('personId' in f && f.personId === personId) return true;
+  if ('personIds' in f && (f.personIds as Id[]).includes(personId)) return true;
+  if (f.kind === 'absentFrom' || f.kind === 'anchorKnowledge') return f.place === claim.place && f.ticks.some((t) => claim.ticks.includes(t));
+  if ('place' in f && 'tick' in f) return f.place === claim.place && claim.ticks.includes(f.tick);
+  return false;
+}
+
+/**
+ * Is this one part of a clue what breaks the claim, and not just a line that
+ * sits beside the fact that does? Read with the solver alone, never the truth:
+ * the part lands when the clue narrowed to it still breaks the claim, or when
+ * the clue without it no longer does. A clue that breaks the claim only as a
+ * member of a written-out chain the solver's proof did not use lands on a
+ * part that names the person, or their claimed place at the claimed hour.
+ */
+export function partBreaks(
+  view: CaseView,
+  hand: readonly Id[],
+  personId: Id,
+  clueId: Id,
+  part: number,
+  claim: Claim,
+  confessed: readonly Id[],
+): boolean {
+  const clue = view.findableById.get(clueId);
+  if (!clue) return false;
+  const parts = partsOf(clue);
+  const mine = parts[part];
+  if (!mine) return false;
+  if (parts.length <= 1) return true;
+  const facts = new Set(mine.facts);
+  if (breaksWith(view.kase, hand, personId, claim, confessed).has(clueId)) {
+    if (breaksWith(narrowed(view.kase, clueId, (i) => facts.has(i)), hand, personId, claim, confessed).has(clueId)) return true;
+    return !breaksWith(narrowed(view.kase, clueId, (i) => !facts.has(i)), hand, personId, claim, confessed).has(clueId);
+  }
+  return clue.establishes.some((f, i) => facts.has(i) && factTouches(f, personId, claim));
+}
+
 export interface ConfrontJudgement {
   outcome: ConfrontRecord['outcome'];
   lieKey: string | null;
@@ -247,6 +385,7 @@ export function judgeConfront(
   state: Pick<RunState, 'found' | 'confronts'>,
   personId: Id,
   clueId: Id,
+  part?: number,
 ): ConfrontJudgement {
   const logic = view.kase.logic;
   if (!logic) return { outcome: 'wrong', lieKey: null };
@@ -265,6 +404,15 @@ export function judgeConfront(
     }
     return out;
   };
+  // M9 polish: a part put on its own lands only when it is what breaks the
+  // claim, not a line beside it (`partBreaks`). The whole line, put without a
+  // part, is judged as before.
+  const partOk = (hand: readonly Id[], claim: Claim): boolean =>
+    part === undefined || partBreaks(view, hand, personId, clueId, part, claim, [...confessed]);
+  if (part !== undefined) {
+    const clue = view.findableById.get(clueId);
+    if (!clue || !partsOf(clue)[part]) return { outcome: 'wrong', lieKey: null };
+  }
   for (const c of logic.confrontations) {
     if (c.personId !== personId) continue;
     const key = lieKeyOf(c);
@@ -281,7 +429,7 @@ export function judgeConfront(
       // The first time: a fact the solver's proof rests on, or one of the
       // lie's written-out ways of breaking it that is all in hand.
       const ways = c.contradictions.filter((g) => g.includes(clueId) && groupHeld(g));
-      touches = ways.length > 0 || breaks(state.found, lie).has(clueId);
+      touches = (ways.length > 0 || breaks(state.found, lie).has(clueId)) && partOk(state.found, lie);
     } else {
       // The second time has to be something new (spec §3, "a second,
       // independent fact contradicts them"): what still breaks the first
@@ -289,14 +437,16 @@ export function judgeConfront(
       // what breaks the second story.
       if (onSecondLie && first.claims) {
         claimed = { place: first.claims.place, ticks: first.claims.ticks };
-        touches = (first.contradictedBy ?? []).includes(clueId) || breaks(state.found, claimed).has(clueId);
+        touches =
+          ((first.contradictedBy ?? []).includes(clueId) || breaks(state.found, claimed).has(clueId)) &&
+          partOk(state.found, claimed);
       }
       if (!touches) {
         const rest = state.found.filter((id) => !before.includes(id));
         const ways = c.contradictions.filter(
           (g) => g.includes(clueId) && groupHeld(g) && !before.some((b) => g.includes(b)),
         );
-        touches = ways.length > 0 || breaks(rest, lie).has(clueId);
+        touches = (ways.length > 0 || breaks(rest, lie).has(clueId)) && partOk(rest, lie);
       }
     }
     if (!touches) continue;

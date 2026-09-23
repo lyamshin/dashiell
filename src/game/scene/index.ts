@@ -67,7 +67,13 @@ export function actionOf(scene: Scene, topic?: { kind: string; id?: Id; topic?: 
         volunteer: scene.volunteer,
       };
     case 'confront':
-      return { kind: 'confront', personId: scene.personId, clue: scene.clue, judged: scene.judged };
+      return {
+        kind: 'confront',
+        personId: scene.personId,
+        clue: scene.clue,
+        judged: scene.judged,
+        ...(scene.part === undefined ? {} : { part: scene.part }),
+      };
     default:
       return { kind: 'look' };
   }

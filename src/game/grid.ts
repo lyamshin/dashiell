@@ -152,8 +152,14 @@ export interface GridRow {
 export interface GridPlace {
   id: Id;
   shortName: string;
-  /** Unique across the case, at most eight characters. */
+  /** Unique across the case, at most eight characters. The typed grid's label. */
   abbrev: string;
+  /**
+   * M9 polish: two letters, unique across the case — "TF" the third floor,
+   * "SP" the speakeasy — the label on the book's grid, where the full name is
+   * on hover and in the legend.
+   */
+  tag: string;
   /** Categorical colour slot 1..8, fixed by the place's order in the case; 0 is neutral. */
   slot: number;
   /** The crime's place, as the notebook knows it; `found` when only the body's place is known. */
@@ -293,6 +299,36 @@ export function placeAbbrevs(names: { id: Id; shortName: string }[]): Map<Id, st
     let pick = candidates.find((c) => !taken.has(c.toLowerCase())) ?? cut(first);
     for (let n = 2; taken.has(pick.toLowerCase()); n++) pick = `${cut(first).slice(0, 4)}${n}`;
     taken.add(pick.toLowerCase());
+    out.set(id, pick);
+  }
+  return out;
+}
+
+/**
+ * M9 polish: two-letter tags for the book's grid, the way a logic-game solver
+ * writes a place on a diagram. Two words give their initials ("third floor" →
+ * TF, "subway kiosk" → SK, "my office" → MO, "Mrs. Teague’s" → MT); one word
+ * its first two letters ("speakeasy" → SP, "walk-up" → WU). A clash takes the
+ * first letter and the next letter of the name that is free.
+ */
+export function placeTags(names: { id: Id; shortName: string }[]): Map<Id, string> {
+  const out = new Map<Id, string>();
+  const taken = new Set<string>();
+  for (const { id, shortName } of names) {
+    const words = shortName
+      .replace(/^(the|a|an) /i, '')
+      .replace(/[’']s\b/g, '')
+      .split(/[\s-]+/)
+      .map((w) => w.replace(/[^A-Za-z]/g, ''))
+      .filter((w) => w.length > 0);
+    const letters = words.join('').toUpperCase();
+    const first = letters.charAt(0) || 'X';
+    const candidates: string[] = [];
+    if (words.length >= 2) candidates.push(`${first}${(words[1] as string).charAt(0).toUpperCase()}`);
+    for (const ch of letters.slice(1)) candidates.push(`${first}${ch}`);
+    for (let n = 2; n < 10; n++) candidates.push(`${first}${n}`);
+    const pick = candidates.find((c) => !taken.has(c)) ?? `${first}?`;
+    taken.add(pick);
     out.set(id, pick);
   }
   return out;
@@ -878,6 +914,7 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
 
   /* Places and the legend. */
   const abbrevs = placeAbbrevs(view.places);
+  const tags = placeTags(view.places);
   const whereAsked = kase.act.unknowns.includes('where');
   const sceneId = whereAsked ? view.startId : view.sceneId;
   const sceneLabel = whereAsked
@@ -902,6 +939,7 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
       id: p.id,
       shortName: p.shortName,
       abbrev: abbrevs.get(p.id) ?? p.shortName,
+      tag: tags.get(p.id) ?? p.shortName.slice(0, 2).toUpperCase(),
       slot: index >= 0 && index < PLACE_SLOTS ? index + 1 : 0,
       scene: isScene ? (whereAsked ? 'found' : 'scene') : null,
       ...(isScene ? { sceneLabel } : {}),

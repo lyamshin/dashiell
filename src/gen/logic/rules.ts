@@ -34,7 +34,7 @@ import { MOTIVE_BY_TYPE } from '../data/motives.js';
 import { METHOD_TEMPLATES } from '../data/methods.js';
 import type { Schedule9Build } from './schedule.js';
 import { ambiguousDescription, canName, describeAs, edgeOf, genderOf, strengthOf } from './acquaint.js';
-import { ruleLine, type LineNames } from './lines.js';
+import { applyRule, type LineNames, type RuleContext } from './lines.js';
 
 export interface Pool {
   starting: Clue[];
@@ -113,6 +113,8 @@ export function buildPool(input: PoolInput): Pool {
     motive: (type) => MOTIVE_BY_TYPE[type]?.description ?? type,
     object: (id) => setting.objects.find((o) => o.id === id)?.name ?? id,
     them: (id) => (genderOf(person(id)) === 'f' ? 'her' : 'him'),
+    victim: who(cast.victim.id),
+    victimId: cast.victim.id,
   };
 
   let counter = 0;
@@ -125,6 +127,7 @@ export function buildPool(input: PoolInput): Pool {
     text: string,
     sourceLine: string,
     extra?: Partial<Clue>,
+    ctx?: RuleContext,
   ): Clue => {
     counter++;
     const clue: Clue = {
@@ -137,10 +140,9 @@ export function buildPool(input: PoolInput): Pool {
       place,
       leadsTo: [],
       role: 'testimony',
-      rule: ruleLine(establishes, sourceLine, names),
-      ...extra,
     };
-    return clue;
+    applyRule(clue, sourceLine, names, ctx);
+    return Object.assign(clue, extra);
   };
 
   /** An anchor the witness could have timed a sighting at this place and half hour by. */
@@ -343,7 +345,9 @@ export function buildPool(input: PoolInput): Pool {
                 foundAt(x.id),
                 facts,
                 `${who(x.id)} says there was ${seen} at ${placeName(place)} ${spanText(run)}, and ${who(x.id)} did not know ${names.them(y.id)} by name.`,
-                `${who(x.id)} saw ${names.them(y.id)}; did not know ${names.them(y.id)}.`,
+                `${who(x.id)} saw ${names.them(y.id)}.`,
+                undefined,
+                { witness: x.id, strength: s },
               ),
             );
           }
@@ -505,7 +509,7 @@ export function buildPool(input: PoolInput): Pool {
   const legacy = input.legacy;
   const high = anchors[1];
   const withRule = (c: Clue, source: string): Clue => {
-    c.rule = ruleLine(c.establishes, source, names);
+    applyRule(c, source, names);
     c.role = 'noise';
     return c;
   };

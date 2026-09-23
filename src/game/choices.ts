@@ -22,7 +22,17 @@ import { answersTo, askedBefore, priceOf } from './reducer.js';
 import type { Command, OfferedChoice, OfferedGroup, RunState } from './types.js';
 import { buildNotebook, type Notebook } from './notebook.js';
 import { possessiveOf, pronounOf } from './voice/cast.js';
-import { canConfront, confrontFacts, displayName, nameKnown } from './m9.js';
+import {
+  accountClueOf,
+  canConfront,
+  displayName,
+  nameKnown,
+  partRef,
+  partsOf,
+  pickFacts,
+  saidRecords,
+  type PickFact,
+} from './m9.js';
 
 export interface Choice extends OfferedChoice {
   /** The typed command this choice issues. The reducer sees nothing else. */
@@ -222,7 +232,10 @@ function choice(
   const minutes =
     minutesAfter(state.actionsUsed + price.cost, budget) - minutesAfter(state.actionsUsed, budget);
   const done =
-    price.reason === 'search-again' || price.reason === 'ask-again' || price.reason === 'self-told';
+    price.reason === 'search-again' ||
+    price.reason === 'ask-again' ||
+    price.reason === 'self-told' ||
+    price.reason === 'confront-again';
   const lead = gainsOf(view, state, parsed.command).some((id) => targets.has(id));
   return { command, label, minutes, lead, done };
 }
@@ -363,21 +376,78 @@ export function choicesFor(view: CaseView, state: RunState): ChoiceGroup[] {
 }
 
 /**
- * The picker behind "Put it to …": one choice per fact in the notebook, its
- * one-line rule as the label, newest first. Null when there is nothing of
- * theirs to put anything to.
+ * The picker behind "Put it to …": one choice per fact in the notebook — a
+ * rule line split into the facts it states, each still the clue's
+ * (`put x012 part 2 to Hauck`) — grouped under the person or place it is
+ * about, the one being confronted first, then everybody else in the case's
+ * order, then the places, then the rest; within a group, by the first half
+ * hour it names. What they told the detective rides along as `reference`.
+ * Nothing is marked or sorted by whether it breaks anything: choosing is the
+ * player's work. Null when there is nothing of theirs to put anything to.
  */
 export function confrontGroup(view: CaseView, state: RunState, person: Person): ChoiceGroup | null {
   if (!canConfront(view, state, person.id)) return null;
-  const facts = confrontFacts(view, state, person.id).reverse();
-  const choices = facts.map((clue) =>
-    choice(view, state, new Set(), `put ${clue.id} to ${person.surname}`, clue.rule ?? clue.text),
-  );
+  const facts = pickFacts(view, state, person.id);
+  const peopleOrder = [person.id, ...view.kase.people.map((p) => p.id).filter((id) => id !== person.id)];
+  const placeOrder = view.places.map((p) => p.id);
+  const nameOf = (id: Id): string => displayName(view, state, id);
+  const placeTitle = (id: Id): string => {
+    const s = view.placeById.get(id)?.shortName ?? id;
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  };
+  const subject = (f: PickFact): Id | undefined => (f.byPlace ? undefined : f.people[0]);
+  const rank = (f: PickFact): number => {
+    const who = subject(f);
+    if (who !== undefined && peopleOrder.includes(who)) return peopleOrder.indexOf(who);
+    if (f.place !== null) return 100 + Math.max(0, placeOrder.indexOf(f.place));
+    return 1000;
+  };
+  const sectionOf = (f: PickFact): string => {
+    const who = subject(f);
+    if (who !== undefined && peopleOrder.includes(who)) return nameOf(who);
+    if (f.place !== null) return placeTitle(f.place);
+    return 'When things happened';
+  };
+  const sorted = facts
+    .map((f, i) => ({ f, i }))
+    .sort((a, b) => rank(a.f) - rank(b.f) || a.f.first - b.f.first || a.i - b.i)
+    .map((x) => x.f);
+  const choices = sorted.map((f) => {
+    const who = subject(f);
+    const surname = who !== undefined ? view.personById.get(who)?.surname : undefined;
+    // Under a person's own heading, "Sirkin: the subway kiosk, 6:00–7:00"
+    // reads "the subway kiosk, 6:00–7:00", and "Hauck says: the speakeasy,
+    // 9:00" reads "own word: the speakeasy, 9:00".
+    const label =
+      surname && f.text.startsWith(`${surname}: `)
+        ? f.text.slice(surname.length + 2)
+        : surname && f.text.startsWith(`${surname} says: `)
+          ? `own word: ${f.text.slice(surname.length + 7)}`
+          : f.text;
+    return {
+      ...choice(view, state, new Set(), `put ${partRef(f.clueId, f.part)} to ${person.surname}`, label),
+      section: sectionOf(f),
+      people: f.people,
+      source: f.source,
+    };
+  });
+  // Their own word, for reference: the account's spans, and anything said since.
+  const account = accountClueOf(view, person.id);
+  const reference = [
+    ...(account ? partsOf(account).map((p) => p.text.replace(new RegExp(`^${person.surname} says: `), '')) : []),
+    ...saidRecords(view, state)
+      .filter((r) => r.personId === person.id)
+      .map((r) => `Put to: ${r.rule}`),
+  ];
+  const named = new Set(facts.flatMap((f) => f.people));
+  const filters = peopleOrder.filter((id) => named.has(id)).map((id) => ({ personId: id, label: nameOf(id) }));
   return {
     kind: 'confront',
-    heading: `Put it to ${displayName(view, state, person.id)}`,
+    heading: `Put it to ${nameOf(person.id)}`,
     personId: person.id,
     choices,
+    reference,
+    filters,
   };
 }
 

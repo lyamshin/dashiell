@@ -81,6 +81,110 @@
   white-space: normal;
 }
 
+/* M9 polish: one fact a line, under who or where it is about. */
+.confront-picker .note {
+  margin: 0 0 0.25rem;
+}
+
+.picker-head {
+  margin: 0.5rem 0 0.15rem;
+  font-size: 0.72rem;
+  font-weight: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.picker-ref {
+  padding: 0.35rem 0.6rem 0.4rem;
+  border: 1px dashed var(--ink-faint);
+  font-size: 0.9rem;
+}
+
+.picker-ref .picker-head {
+  margin-top: 0;
+}
+
+.picker-ref ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.picker-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0.35rem 0 0.1rem;
+}
+
+.picker-filter-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-right: 0.15rem;
+}
+
+.picker-chip {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.15rem 0.55rem;
+  min-height: 32px;
+  border: 1px solid var(--ink-faint);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.picker-chip.on {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.picker-sec {
+  display: flex;
+  flex-direction: column;
+}
+
+.confront-picker .choice--fact {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0.3rem 0.5rem;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink-faint) 45%, transparent);
+  border-radius: 0;
+  font-size: 0.92rem;
+  line-height: 1.3;
+  background: transparent;
+}
+
+.confront-picker .choice--fact:hover,
+.confront-picker .choice--fact:focus-visible {
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+}
+
+.confront-picker .choice--fact .fact-src {
+  flex: none;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .confront-picker .choice--fact {
+    min-height: 44px;
+    align-items: center;
+  }
+}
+
 .lie-rule strong {
   font-weight: 600;
 }
@@ -111,4 +215,92 @@
   margin: 0.25rem 0 0;
   padding-left: 1.4rem;
   font-size: 0.85rem;
+}
+
+/* ------------------------------------------------ M9 polish: the grid */
+
+/* The places over the grid: one compact line, tag and name. */
+.dgrid-section > .dgrid-places {
+  margin: 0 0 0.3rem;
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+}
+
+.dgrid-abbr {
+  font-variant: normal;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+/* The two-letter tag on a chip reads at a glance. */
+.dchip .dchip-name,
+.dpencil {
+  letter-spacing: 0.03em;
+}
+
+/* "not at the third floor, 6–11:30, Rafferty": one strike across the half hours. */
+.dgrid-strikes .dgrid-cellbtn {
+  justify-content: center;
+}
+
+.dstrike {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  padding: 0 4px 1px;
+  border: 1px solid var(--pc);
+  border-radius: 3px;
+  border-left-width: 3px;
+  color: var(--ink-soft);
+  background: color-mix(in srgb, var(--pc) 10%, transparent);
+  font-size: 0.6rem;
+  line-height: 1.25;
+}
+
+.dstrike--key {
+  display: inline-block;
+}
+
+.dgrid-strikes.lit {
+  background: color-mix(in srgb, var(--amber) 34%, var(--paper)) !important;
+}
+
+/* The head count row: "1 in TF". */
+.dgrid-counts .dgrid-corner {
+  font-style: italic;
+  padding-left: 0.3rem;
+}
+
+.dgrid-countchip {
+  font-size: 0.6rem;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.dgrid-countchip--key {
+  display: inline-block;
+  --pc: var(--place-0);
+}
+
+/* The key folds away under one word. */
+.dgrid-keytoggle {
+  font: inherit;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  background: none;
+  border: 0;
+  padding: 0.3rem 0;
+  min-height: 32px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .dgrid-keytoggle {
+    min-height: 44px;
+  }
 }

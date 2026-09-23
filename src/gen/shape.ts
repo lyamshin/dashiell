@@ -121,6 +121,13 @@ export interface DeductionDials {
    * no-options case is still held to.
    */
   par: [number, number];
+  /**
+   * M9 polish: spare actions over the ladder's slack. Hard-boiled's par route
+   * leans on confessions, each two confrontations and a second, independent
+   * fact, and a player who reasons found the ladder's slack a call or two
+   * short (docs/20-m9-polish-notes.md). Tiered cases only.
+   */
+  extraSlack?: number;
 }
 
 export const DEDUCTION_PLAIN: DeductionDials = {
@@ -175,6 +182,7 @@ export const DEDUCTION_HARD: DeductionDials = {
   hypothesis: true,
   pieces: 0.7,
   par: [10, 22],
+  extraSlack: 1,
 };
 
 export interface Ladder {
@@ -545,6 +553,15 @@ export function dialsOf(c: { difficulty: Difficulty; shape?: CaseShape; ladder?:
 export function slackFor(shape: CaseShape, ladder: Ladder, par: number): number {
   if (!shape.scaleSlack) return ladder.slack;
   return Math.max(3, Math.round((ladder.slack * par) / 12));
+}
+
+/**
+ * M9 polish: a tiered case's slack — the ladder's, plus the tier's
+ * `extraSlack` (Hard-boiled). The no-options case never comes here, so its
+ * budgets are byte for byte what they were.
+ */
+export function logicSlackFor(shape: CaseShape, ladder: Ladder, par: number): number {
+  return slackFor(shape, ladder, par) + (deductionOf(shape).extraSlack ?? 0);
 }
 
 /** How many liars the level wants, capped by what the shape allows. */

@@ -262,10 +262,13 @@ export function parse(
     case 'confront': {
       // M9 §3: "put <fact> to <name>", or "confront <name> with <fact>". The
       // fact is a clue in the notebook, by its id: the book's picker types it.
-      const put = /^(\S+) to (.+)$/.exec(rest);
-      const con = /^(.+?) with (\S+)$/.exec(rest);
+      // M9 polish: "put x012 part 2 to Hauck" puts one fact of the line, the
+      // clue's third part (`Clue.ruleParts`).
+      const put = /^(\S+)(?: part (\d+))? to (.+)$/.exec(rest);
+      const con = /^(.+?) with (\S+)(?: part (\d+))?$/.exec(rest);
       const clueText = head === 'put' ? put?.[1] : con?.[2];
-      const whoText = head === 'put' ? put?.[2] : con?.[1];
+      const partText = head === 'put' ? put?.[2] : con?.[3];
+      const whoText = head === 'put' ? put?.[3] : con?.[1];
       if (!clueText || !whoText)
         return { ok: false, problem: { kind: 'incomplete', message: 'Put what to whom?' } };
       const who = matchPeople(view, whoText);
@@ -275,6 +278,7 @@ export function parse(
           problem: { kind: 'unknown-noun', message: `There’s nobody called ${whoText} in this case.` },
         };
       const personId = (who[0] as Candidate<Id>).value;
+      const part = partText === undefined ? undefined : Number(partText);
       const clueId = found.find((id) => id.toLowerCase() === clueText.toLowerCase());
       if (clueId === undefined)
         return {
@@ -292,7 +296,7 @@ export function parse(
           },
         };
       }
-      return { ok: true, command: { kind: 'confront', personId, clueId } };
+      return { ok: true, command: { kind: 'confront', personId, clueId, ...(part === undefined ? {} : { part }) } };
     }
     case 'look':
       return { ok: true, command: { kind: 'look' } };

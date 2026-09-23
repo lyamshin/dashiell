@@ -25,14 +25,14 @@ import { buildVictimBio } from './victim.js';
 import { buildClientBrief } from './client.js';
 import { briefingStrings, buildBriefing } from './briefing.js';
 import { SECRET_BY_TYPE } from './data/secrets.js';
-import { deductionOf, resolveDials, slackFor, unknownsFor, type Dials, type ShapeOptions } from './shape.js';
+import { deductionOf, logicSlackFor, resolveDials, slackFor, unknownsFor, type Dials, type ShapeOptions } from './shape.js';
 import type { Clue, Description, Fact, Id as PersonId } from './types.js';
 import { assignBlocks } from './logic/travel.js';
 import { buildSchedules9 } from './logic/schedule.js';
 import { buildPool } from './logic/rules.js';
 import { selectLogic } from './logic/select.js';
 import { ambiguousDescription, edgesOf } from './logic/acquaint.js';
-import { ruleLine } from './logic/lines.js';
+import { applyRule } from './logic/lines.js';
 
 const OUTER_ATTEMPTS = 120;
 const INNER_ATTEMPTS = 30;
@@ -794,7 +794,7 @@ function runLogic(
         caseType,
       });
       for (const c of sigClues) {
-        c.rule = ruleLine(c.establishes, c.source.type === 'place' ? `Found at ${placeName(c.source.placeId)}.` : `${whoOf(c.source.personId)} says so.`, pool.names);
+        applyRule(c, c.source.type === 'place' ? `Found at ${placeName(c.source.placeId)}.` : `${whoOf(c.source.personId)} says so.`, pool.names);
       }
 
       const startId =
@@ -813,7 +813,7 @@ function runLogic(
         ...(reject ? { reject } : {}),
       });
       if (!selection) continue;
-      const slack = slackFor(shape, ladder, selection.par);
+      const slack = logicSlackFor(shape, ladder, selection.par);
 
       const descriptions: Record<PersonId, Description> = {};
       for (const p of cast.suspects) descriptions[p.id] = ambiguousDescription(p, cast.suspects);

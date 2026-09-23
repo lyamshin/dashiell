@@ -49,8 +49,9 @@ export type Command =
   /**
    * M9 §3: put a fact from the notebook to somebody. `clueId` is a clue in
    * hand; the generator's solver decides whether it breaks what they said.
+   * `part` (M9 polish) is one of its `ruleParts`, typed `put x012 part 2 to Hauck`.
    */
-  | { kind: 'confront'; personId: Id; clueId: Id };
+  | { kind: 'confront'; personId: Id; clueId: Id; part?: number };
 
 /**
  * What the parser hands back when it cannot make a command. Always free.
@@ -249,6 +250,14 @@ export interface OfferedChoice {
   lead: boolean;
   done: boolean;
   note?: string;
+  /**
+   * M9 polish, the confront picker only: the heading the fact sits under (the
+   * person or place it is about), everybody it names for the filter, and who
+   * said it or where it was found.
+   */
+  section?: string;
+  people?: Id[];
+  source?: string;
 }
 
 export interface OfferedGroup {
@@ -257,6 +266,14 @@ export interface OfferedGroup {
   personId?: Id;
   choices: OfferedChoice[];
   more?: OfferedChoice[];
+  /**
+   * M9 polish, the confront picker only: what the person being confronted
+   * told the detective, a line a span, shown over the facts for reference.
+   * Never something to pick.
+   */
+  reference?: string[];
+  /** The picker's filter: everybody the facts name, in the notebook's order, with the name the book uses. */
+  filters?: { personId: Id; label: string }[];
 }
 
 /**

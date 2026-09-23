@@ -37,6 +37,7 @@ const label = arg('label', `t${plan.tier}`);
 const base = arg('url', 'http://localhost:5193');
 const chrome = arg('chrome', '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome');
 const shots = arg('shots', 'docs/screens');
+const prefix = arg('prefix', 'm9');
 mkdirSync(shots, { recursive: true });
 
 const SIZES = [
@@ -105,7 +106,7 @@ try {
       hasTouch: size.phone,
     });
     const page = await context.newPage();
-    const shot = (n, what) => page.screenshot({ path: `${shots}/m9-${label}-${size.name}-${n}-${what}.png` });
+    const shot = (n, what) => page.screenshot({ path: `${shots}/${prefix}-${label}-${size.name}-${n}-${what}.png` });
     await page.goto(`${base}/?seed=${plan.seed}&d=${plan.level}&t=${plan.tier}`);
     await page.waitForSelector('.choices, form.report');
     const r = { confrontRight: null, confrontWrong: null, linked: false, filed: null };
@@ -119,9 +120,23 @@ try {
         const who = page.locator(`button.who-btn[data-person="${personId}"]`);
         if ((await who.count()) > 0) await who.first().click();
         await page.locator(`button[data-command="picker ${personId}"]`).first().click();
-        await page.locator('.confront-picker').first().scrollIntoViewIfNeeded();
+        // The top of the picker: their own word, the filter, the first facts.
+        await page.locator('button.choice--confront').first().evaluate((el) => el.scrollIntoView({ block: 'start' }));
         await noSideways(page, `${where} picker`);
+        const refs = await page.locator('.confront-picker .picker-ref li').count();
+        if (refs === 0) failures.push(`${where}: the picker shows nothing of what they told me`);
+        const facts = await page.locator('.confront-picker .choice--fact').count();
         await shot(1, 'picker');
+        // M9 polish: narrowed to the first person the filter names.
+        const chips = page.locator('.confront-picker .picker-chip');
+        if ((await chips.count()) > 1) {
+          await chips.nth(1).click();
+          const narrowed = await page.locator('.confront-picker .choice--fact').count();
+          if (!(narrowed > 0 && narrowed < facts)) failures.push(`${where}: the filter left ${narrowed} of ${facts} facts`);
+          await page.locator('button.choice--confront').first().evaluate((el) => el.scrollIntoView({ block: 'start' }));
+          await shot(9, 'picker-filtered');
+          await page.locator('.confront-picker .picker-chip').first().click();
+        } else failures.push(`${where}: the picker has no filter`);
       }
       await issue(page, command, personId);
       if (isRight) {
