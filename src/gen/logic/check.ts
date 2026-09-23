@@ -114,7 +114,12 @@ export function checkLogic(c: LogicCaseUnderTest): { ok: boolean; failures: stri
   /* --- the par route can be walked: every spine clue has a way in ------------- */
   const byId = new Map(c.findable.map((cl) => [cl.id, cl]));
   // A search is always on the page, so what a search finds is in hand to lead on.
-  const reached = new Set<Id>([...c.starting, ...c.findable.filter((cl) => cl.source.type === 'place').map((cl) => cl.id)]);
+  // M10: a par-route question the page leaves unmarked is on it all the same.
+  const reached = new Set<Id>([
+    ...c.starting,
+    ...c.findable.filter((cl) => cl.source.type === 'place').map((cl) => cl.id),
+    ...(logic.open ?? []),
+  ]);
   const queue = [...reached];
   while (queue.length > 0) {
     const cur = byId.get(queue.shift() as Id);

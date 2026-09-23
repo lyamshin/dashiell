@@ -83,8 +83,10 @@ export interface CaseShape {
 /**
  * M9 — the logic game's dials for a tier. See `docs/20-m9-deduction.md`.
  *
- * Raw and Coddled keep every placement a conclusion so the first runs stay
- * short. Poached brings the innocents' lies; Soft-boiled times sightings by
+ * Raw and Coddled teach the one loop (M10 Part B, `catchTheLie`): every
+ * innocent cleared by their own word and a sighting that agrees with it, and
+ * the culprit's lie heard and caught by the one posted where it claims to
+ * have been. The pages still conclude, once two facts agree. Poached brings the innocents' lies; Soft-boiled times sightings by
  * anchors and wants the culprit reached by a chain; Medium brings strangers
  * and descriptions; Hard-boiled wants a hypothesis tested.
  */
@@ -128,6 +130,23 @@ export interface DeductionDials {
    * short (docs/20-m9-polish-notes.md). Tiered cases only.
    */
   extraSlack?: number;
+  /**
+   * M10 Part B, Raw and Coddled: the night teaches the one loop the game is.
+   * The culprit's own account is on the par route and lies about the crime's
+   * half hour; the watcher of the room it claims knows the culprit and says
+   * the culprit was not in. Every innocent is cleared by their own account and
+   * one sighting that agrees with it, never by one line and never by another
+   * innocent. The client points at an innocent the client knows. The question
+   * that catches the lie is on the par route unmarked (`Logic.open`): the
+   * marks bring the player to the lie, and the player finds who can break it.
+   * The hand is cut to the tier's findable target.
+   */
+  catchTheLie?: boolean;
+  /**
+   * M10: the confront verb ("Put it to X") is on. Absent, it follows
+   * `secretLies` (Poached up), as M9 built it.
+   */
+  confront?: boolean;
 }
 
 export const DEDUCTION_PLAIN: DeductionDials = {
@@ -143,6 +162,28 @@ export const DEDUCTION_PLAIN: DeductionDials = {
   verdicts: true,
   pieces: 0,
   par: [3, 6],
+};
+
+/**
+ * M10 Part B: Raw. Nobody is cleared by one line; the culprit's lie is heard
+ * and caught (`catchTheLie`). The pages still conclude, once two facts agree.
+ */
+export const DEDUCTION_RAW: DeductionDials = {
+  ...DEDUCTION_PLAIN,
+  directClears: 0,
+  catchTheLie: true,
+  confront: true,
+  par: [5, 7],
+  // Beat's slack scaled to Raw's par is five calls; three keeps the budget
+  // near ten, so the clock matters gently on the first night (spec Part B).
+  extraSlack: -2,
+};
+
+/** Coddled: Raw's night with a fourth suspect, and the method to show. */
+export const DEDUCTION_CODDLED: DeductionDials = {
+  ...DEDUCTION_RAW,
+  par: [6, 9],
+  extraSlack: 0,
 };
 
 export const DEDUCTION_POACHED: DeductionDials = {
@@ -267,10 +308,10 @@ export const RAW: CaseShape = {
   methodGiven: true,
   proof: [],
   par: [4, 5],
-  findable: 12,
+  findable: 13,
   scaleSlack: true,
   lockedLevel: 1,
-  deduction: DEDUCTION_PLAIN,
+  deduction: DEDUCTION_RAW,
 };
 
 const { lockedLevel: _rawLevel, ...RAW_UNLOCKED } = RAW;
@@ -287,7 +328,7 @@ export const CODDLED: CaseShape = {
   proof: ['method'],
   par: [5, 6],
   findable: 17,
-  deduction: { ...DEDUCTION_PLAIN, par: [4, 7] },
+  deduction: DEDUCTION_CODDLED,
 };
 
 export const POACHED: CaseShape = {
@@ -620,7 +661,8 @@ export function describeDials(d: Dials): string {
 export function deductionOf(shape: CaseShape): DeductionDials {
   if (shape.deduction) return shape.deduction;
   const t = shape.tier;
-  if (t === 0 || t === 1) return DEDUCTION_PLAIN;
+  if (t === 0) return DEDUCTION_RAW;
+  if (t === 1) return DEDUCTION_CODDLED;
   if (t === 2) return DEDUCTION_POACHED;
   if (t === 3) return DEDUCTION_SOFT;
   if (t === 4) return DEDUCTION_MEDIUM;

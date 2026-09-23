@@ -825,7 +825,9 @@ describe('M8 designer-read fixes', () => {
     for (const c of DECKS.thought) {
       const cls = String(tagOf('thought', c, 'class'));
       const basis = String(tagOf('thought', c, 'basis'));
-      const reachable = cls === 'clears' || cls === 'implicates' || (cls === 'window' && basis === 'anchor');
+      // M10: `clears` on two facts that agree (basis `two`) is never one witness's word.
+      const reachable =
+        (cls === 'clears' && basis !== 'two') || cls === 'implicates' || (cls === 'window' && basis === 'anchor');
       if (reachable) expect(HEDGE.test(c.text), `${c.id}: ${c.text}`).toBe(true);
     }
     let single = 0;

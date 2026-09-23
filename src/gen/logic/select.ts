@@ -58,6 +58,8 @@ export interface LogicSelection {
   summary: SolveSummary;
   lies: LieBlock[];
   confrontations: Confrontation[];
+  /** M10: par-route questions on the page without a mark (`Logic.open`). */
+  open: Id[];
 }
 
 /** For tuning: called with the solver's state when a case is turned down. */
@@ -353,7 +355,7 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
     hand.push(c);
   }
   const base = [...starting, ...pool.testimony, ...pool.accounts];
-  const findableCore = [...base, ...hand];
+  let findableCore = [...base, ...hand];
 
   /* --- 3. solve it ---------------------------------------------------------- */
   const goals = (st: SolverState): { ok: boolean; why: string } => {
@@ -377,7 +379,7 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
     }
     return crimeTicks(st).includes(M);
   };
-  const full = solve(problemOf(frame, findableCore, ded.hypothesis)).state;
+  let full = solve(problemOf(frame, findableCore, ded.hypothesis)).state;
   if (!truthful(full)) {
     debug.hook?.({ reason: 'false', input, state: full, findable: findableCore });
     return fail('the findable rules say something false');
@@ -545,6 +547,23 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
   // What was added for the confessions can settle something earlier and in
   // another order; the set has to still solve the case, and truly.
   if (!parSolves(parSet)) return fail('the par set with its confessions does not solve it');
+
+  /* --- 5b. Raw and Coddled: the lie heard and caught, and a small hand ------ */
+  const open: Id[] = [];
+  if (ded.catchTheLie) {
+    const taught = teachTheLie(input, parSet, findableCore, frame, ded.hypothesis, legIds);
+    if (typeof taught === 'string') return fail(taught);
+    parSet = taught.parSet;
+    open.push(taught.catchId);
+    if (!parSolves(parSet)) return fail('the par set with the lie caught does not solve it');
+    findableCore = trimHand(input, parSet, findableCore);
+    byId.clear();
+    for (const c of findableCore) byId.set(c.id, c);
+    full = solve(problemOf(frame, findableCore, ded.hypothesis)).state;
+    if (!truthful(full) || !goals(full).ok) return fail('the cut hand does not solve it');
+    lieRoutes.clear();
+    for (const [i, d] of build.lieDrafts.entries()) lieRoutes.set(i, routesFor(d.personId, d.ticks, d.claimed, findableCore));
+  }
   const confrontPseudo: Clue[] = confessed.flatMap((d) => {
     const at = cast.people.find((p) => p.id === d.personId)?.foundAt ?? L;
     return [1, 2].map((k) => ({
@@ -599,7 +618,10 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
   const findable = [...findableCore, ...noise];
 
   /* --- 8. leads from content --------------------------------------------------- */
-  wireLeads(input, findable, parSet, starting);
+  // The question that catches the lie carries no mark (M10): the marks bring
+  // the player to the lie, and finding who can break it is the player's work.
+  const unmarked = new Set(open);
+  wireLeads(input, findable, parSet.filter((c) => !unmarked.has(c.id)), starting);
 
   const parPlaces = placeIds;
   const inHand = new Set(starting.map((c) => c.id));
@@ -609,7 +631,7 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
     inHand,
     parPlaces,
     input.startId,
-    new Set(confrontPseudo.map((c) => c.id)),
+    new Set([...confrontPseudo.map((c) => c.id), ...open]),
   );
   if (!Number.isFinite(par)) return fail('the par route cannot be walked');
 
@@ -680,11 +702,150 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
     summary,
     lies,
     confrontations,
+    open,
   };
 }
 
 function who(cast: Cast, id: Id): string {
   return cast.people.find((p) => p.id === id)?.surname ?? id;
+}
+
+/* ------------------------------------------------ M10: Raw teaches the lie */
+
+/**
+ * Raw and Coddled (`DeductionDials.catchTheLie`): the par route is the lesson
+ * itself. It holds what the night starts with; every innocent's own account
+ * and one sighting that agrees with it, in the room the account gives for the
+ * crime's half hour; the culprit's own account; and the watcher's word that
+ * breaks it, which is the question the page does not mark. Nobody's alibi
+ * rests on an innocent whose own alibi rests on them. The legs the tier asks
+ * for (Coddled's method) stay as the pruned route chose them.
+ */
+function teachTheLie(
+  input: LogicSelectInput,
+  parSet: Clue[],
+  findableCore: Clue[],
+  frame: ProblemFrame,
+  probe: boolean,
+  legIds: Set<Id>,
+): { parSet: Clue[]; catchId: Id } | string {
+  const { cast, build, pool } = input;
+  const killerId = cast.killer.id;
+  const M = build.murderTick;
+  const L = build.murderPlaceId;
+  const crime = build.lieDrafts.find((d) => d.personId === killerId && d.cover === 'crime');
+  if (!crime) return 'the culprit tells no lie about the crime';
+  const accountOf = (id: Id): Clue | undefined =>
+    pool.accounts.find((c) => c.source.type === 'person' && c.source.personId === id && findableCore.includes(c));
+  const account = accountOf(killerId);
+  if (!account) return 'the culprit gives no account';
+  const watcher = cast.watcherOf[crime.claimed];
+  const caught = findableCore.find(
+    (c) =>
+      c.kind === 'testimony' &&
+      c.source.type === 'person' &&
+      c.source.personId === watcher &&
+      c.about === killerId &&
+      c.establishes.some(
+        (f) => f.kind === 'personNotAt' && f.personId === killerId && f.place === crime.claimed && crime.ticks.includes(f.tick),
+      ),
+  );
+  if (!caught) return 'nobody posted can break what the culprit says';
+
+  // Each innocent: their account, and a sighting inside the span of it that
+  // holds the crime's half hour. The culprit's word first (it is true about
+  // anybody else), then somebody posted, then another innocent.
+  const innocentIds = new Set(cast.innocents.map((p) => p.id));
+  const route: Clue[] = [];
+  const leansOn = new Map<Id, Id>();
+  for (const p of cast.innocents) {
+    const own = accountOf(p.id);
+    if (!own) return `${p.surname} gives no account`;
+    const span = own.establishes.find(
+      (f): f is Extract<Fact, { kind: 'claims' }> => f.kind === 'claims' && f.ticks.includes(M),
+    );
+    if (!span || span.place === L) return `${p.surname} gives no account of the crime's half hour`;
+    const agrees = findableCore.filter(
+      (c) =>
+        c.kind === 'testimony' &&
+        c.source.type === 'person' &&
+        c.source.personId !== p.id &&
+        c.establishes.some(
+          (f) => f.kind === 'personAt' && f.personId === p.id && f.place === span.place && f.tick !== M && span.ticks.includes(f.tick),
+        ),
+    );
+    const rank = (c: Clue): number => {
+      const by = (c.source as { personId: Id }).personId;
+      return by === killerId ? 0 : innocentIds.has(by) ? 2 : 1;
+    };
+    agrees.sort((x, y) => rank(x) - rank(y));
+    const pick = agrees.find((c) => leansOn.get((c.source as { personId: Id }).personId) !== p.id);
+    if (!pick) return `nothing agrees with what ${p.surname} says`;
+    leansOn.set(p.id, (pick.source as { personId: Id }).personId);
+    route.push(own, pick);
+  }
+  for (const [p, q] of leansOn) if (leansOn.get(q) === p) return 'two innocents clear each other';
+
+  const starting = new Set(pool.starting.map((c) => c.id));
+  const next: Clue[] = [];
+  const add = (c: Clue): void => {
+    if (!next.includes(c)) next.push(c);
+  };
+  for (const c of parSet) if (starting.has(c.id) || legIds.has(c.id)) add(c);
+  for (const c of route) add(c);
+
+  // The innocents' own words and what agrees with them clear them, before the
+  // culprit is asked anything.
+  const cleared = solve(problemOf(frame, next, probe)).state;
+  if (cleared.contradiction) return 'the innocents\' route contradicts itself';
+  for (const p of cast.innocents) {
+    const w = whyNot(cleared, p.id, M, L);
+    if (!w) return `${p.surname} is not cleared by their own word and a sighting`;
+    if (!idsOf(cleared, w).includes(accountOf(p.id)?.id as Id)) return `${p.surname} is cleared without their own word`;
+  }
+  add(account);
+  add(caught);
+  const st = solve(problemOf(frame, next, probe)).state;
+  if (!crime.ticks.some((t) => whyNot(st, killerId, t, crime.claimed) !== null)) {
+    return 'the watcher does not break what the culprit says';
+  }
+  return { parSet: next, catchId: caught.id };
+}
+
+/** Clue kinds a small hand leaves out: timings and noises the coroner already settles. */
+const HAND_SKIPS = new Set<Clue['kind']>(['timing', 'anchor']);
+
+/**
+ * Raw and Coddled: the hand is the par route and a few things more, up to
+ * the shape's findable target. A motive is never among them: only the culprit
+ * has one below Poached, so a motive would name the answer.
+ */
+function trimHand(input: LogicSelectInput, parSet: Clue[], findableCore: Clue[]): Clue[] {
+  const { rng, dials, cast } = input;
+  const keep = new Set(parSet.map((c) => c.id));
+  const target = Math.max(dials.shape.findable, keep.size + 2);
+  const victimId = cast.victim.id;
+  const says = (c: Clue, pred: (f: Fact) => boolean): boolean => c.establishes.some(pred);
+  const rest = findableCore.filter(
+    (c) =>
+      !keep.has(c.id) &&
+      !HAND_SKIPS.has(c.kind) &&
+      !says(c, (f) => f.kind === 'hasMotive') &&
+      says(c, (f) => f.kind !== 'acquainted' && f.kind !== 'apart'),
+  );
+  const groups: Clue[][] = [
+    rest.filter((c) => c.source.type === 'place'),
+    rest.filter((c) => c.kind === 'testimony' && c.about === victimId && says(c, (f) => f.kind === 'personAt')),
+    rest.filter((c) => c.kind === 'testimony' && c.about !== victimId && says(c, (f) => f.kind === 'personAt')),
+    rest.filter((c) => c.kind === 'watch'),
+  ];
+  for (const g of groups) {
+    for (const c of rng.shuffle(g)) {
+      if (keep.size >= target) break;
+      keep.add(c.id);
+    }
+  }
+  return findableCore.filter((c) => keep.has(c.id));
 }
 
 /* ------------------------------------------------------------------ leads */
