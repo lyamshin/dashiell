@@ -142,7 +142,7 @@
   {
     "id": "brg-015",
     "deck": "bridge",
-    "text": "{subject}, {tie}, was the next question. I would put it to {who} at {where}.",
+    "text": "{subject}, {tie}, was the next question. I would ask {who} at {where}.",
     "tags": {
       "tie": "victim"
     },
@@ -362,7 +362,7 @@
   {
     "id": "brg-037",
     "deck": "bridge",
-    "text": "I still had nothing on {subject} at {tie}. {who} was the one to put it to.",
+    "text": "I still had nothing on {subject} at {tie}. {who} was the one to ask.",
     "tags": {
       "tie": "time"
     },

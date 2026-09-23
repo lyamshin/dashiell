@@ -19,6 +19,7 @@ import {
   buildDossier,
   createMentionPool,
   fillSlots,
+  genderForms,
   relationshipOf,
   type MentionPool,
   type Namer,
@@ -181,7 +182,7 @@ export function buildCast(rng: Rng, setting: Setting, dials: Dials, clientIsKill
     id: 'p-victim',
     name: victimName,
     surname: victimSurname,
-    role: victimArchetype.role,
+    role: genderForms(victimArchetype.role, drawnVictim.gender),
     kind: 'victim',
     archetypeId: victimArchetype.id,
     isKiller: false,
@@ -211,7 +212,7 @@ export function buildCast(rng: Rng, setting: Setting, dials: Dials, clientIsKill
       relationshipId: relId,
       // M5 §3: the relationship names the victim. "Sweeney’s tenant", never
       // "the victim's tenant".
-      relationshipToVictim: (rel?.text ?? relId).split('{V}').join(victimSurname),
+      relationshipToVictim: genderForms(rel?.text ?? relId, drawn.gender).split('{V}').join(victimSurname),
       isKiller: false,
       gender: drawn.gender,
     });
@@ -431,6 +432,7 @@ export function buildCast(rng: Rng, setting: Setting, dials: Dials, clientIsKill
         person: victimSurname,
         place: slotPlace(victim.id),
         year: rng.pick(BACKSTORY_YEARS),
+        gender: drawnVictim.gender,
       })}.`,
     },
     victimSurname,

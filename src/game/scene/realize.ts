@@ -254,7 +254,10 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         if (beat.form === 'carry') {
           const c = beat.carry;
           const lead = c.lead ? 'yes' : 'no';
-          const slots: Slots = { ...c.slots, victim: victim.surname };
+          // M10 §A.5: "On Crowninshield’s word, I asked Crowninshield". A card
+          // naming who sent him is not dealt when that is who he is asking.
+          const self = c.slots.name !== undefined && c.slots.name === c.slots.who;
+          const slots: Slots = { ...c.slots, victim: victim.surname, ...(self ? { name: undefined } : {}) };
           const drawn = deal(
             stage,
             'carry',
@@ -282,8 +285,16 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
           (plan.because !== 'return' || tagIs('errand', c, 'searched', searched));
         const short: Match = (c) => fits(c) && tagOf('errand', c, 'bridged') === 'yes';
         const long: Match = (c) => fits(c) && tagOf('errand', c, 'bridged') !== 'yes';
-        const ladder = beat.form === 'short' ? [short, long] : [long];
-        const drawn = deal(stage, 'errand', ladder, { detective: stage.detectiveName, place: here, ...plan.slots });
+        // M10 §A.5: "Kavanagh had sent me. The question was for Kavanagh." When
+        // who sent him is who he is asking, the short form says it without {name}.
+        const self = plan.slots.name !== undefined && plan.slots.name === plan.slots.who;
+        const ladder = beat.form === 'short' || self ? [short, long] : [long];
+        const drawn = deal(stage, 'errand', ladder, {
+          detective: stage.detectiveName,
+          place: here,
+          ...plan.slots,
+          ...(self ? { name: undefined } : {}),
+        });
         let text = drawn?.text ?? '';
         if (text.length === 0) {
           gaps.push(`no-card: errand has nothing for ${plan.because} × ${plan.for}; a hand-written line stood in`);

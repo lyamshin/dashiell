@@ -24,7 +24,7 @@
   {
     "id": "err-003",
     "deck": "errand",
-    "text": "It was {name}'s lead. The question was for {who}, about {subject}.",
+    "text": "{name} had sent me. The question was for {who}, about {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-person"
@@ -35,7 +35,7 @@
   {
     "id": "err-004",
     "deck": "errand",
-    "text": "{name} had pointed me here. I came to put {subject} to {who}.",
+    "text": "{name} had pointed me here. I came to ask {who} about {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-person"
@@ -134,7 +134,7 @@
   {
     "id": "err-013",
     "deck": "errand",
-    "text": "I came on {name}'s word. The question waiting was for {who}: about {subject}.",
+    "text": "I came on {name}'s word. I had a question for {who} about {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-person"
@@ -189,7 +189,7 @@
   {
     "id": "err-018",
     "deck": "errand",
-    "text": "It was {name}'s lead. The question was for {who}: what {who} knew of {subject}.",
+    "text": "{name} had sent me. The question for {who} was what {who} knew of {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-thing"
@@ -299,7 +299,7 @@
   {
     "id": "err-028",
     "deck": "errand",
-    "text": "I came on {name}'s word. I came to put {subject} to {who}.",
+    "text": "I came on {name}'s word, to ask {who} about {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-thing"
@@ -354,7 +354,7 @@
   {
     "id": "err-033",
     "deck": "errand",
-    "text": "It was {name}'s lead. The question was for {who}: who'd been through {subject}.",
+    "text": "{name} had sent me. The question for {who} was who had been through {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-place"
@@ -519,7 +519,7 @@
   {
     "id": "err-048",
     "deck": "errand",
-    "text": "It was {name}'s lead. The question was for {who}: where the evening went.",
+    "text": "{name} had sent me. The question for {who} was where the evening went.",
     "tags": {
       "because": "said",
       "for": "ask-evening"
@@ -685,7 +685,7 @@
   {
     "id": "err-063",
     "deck": "errand",
-    "text": "It was {name}'s lead. I came to search the place.",
+    "text": "{name} had sent me. I came to search the place.",
     "tags": {
       "because": "said",
       "for": "search-room"
@@ -857,7 +857,7 @@
   {
     "id": "err-078",
     "deck": "errand",
-    "text": "It was {name}'s lead. I meant to find {subject}.",
+    "text": "{name} had sent me. I meant to find {subject}.",
     "tags": {
       "because": "said",
       "for": "search-thing"
@@ -1034,7 +1034,7 @@
   {
     "id": "err-094",
     "deck": "errand",
-    "text": "A paper had named it. I came to put {subject} to {who}.",
+    "text": "A paper had named it. I came to ask {who} about {subject}.",
     "tags": {
       "because": "document",
       "for": "ask-person"
@@ -1298,7 +1298,7 @@
   {
     "id": "err-118",
     "deck": "errand",
-    "text": "A record at {from} sent me. I came to put {subject} to {who}.",
+    "text": "A record at {from} sent me. I came to ask {who} about {subject}.",
     "tags": {
       "because": "document",
       "for": "ask-thing"
@@ -2033,7 +2033,7 @@
   {
     "id": "err-184",
     "deck": "errand",
-    "text": "A thing at {from} pointed here. I came to put {subject} to {who}.",
+    "text": "A thing at {from} pointed here. I came to ask {who} about {subject}.",
     "tags": {
       "because": "found",
       "for": "ask-person"
@@ -2297,7 +2297,7 @@
   {
     "id": "err-208",
     "deck": "errand",
-    "text": "It came out of {from}. I came to put {subject} to {who}.",
+    "text": "It came out of {from}. I came to ask {who} about {subject}.",
     "tags": {
       "because": "found",
       "for": "ask-thing"
@@ -3032,7 +3032,7 @@
   {
     "id": "err-274",
     "deck": "errand",
-    "text": "No lead brought me to {place}. I wanted to see it.",
+    "text": "Nothing had sent me to {place}. I wanted to see it.",
     "tags": {
       "because": "none",
       "for": "none"
@@ -3142,7 +3142,7 @@
   {
     "id": "err-284",
     "deck": "errand",
-    "text": "No lead touched {place}. I went to look anyway.",
+    "text": "Nothing I had found touched {place}. I went to look anyway.",
     "tags": {
       "because": "none",
       "for": "none"
@@ -3200,7 +3200,7 @@
   {
     "id": "err-289",
     "deck": "errand",
-    "text": "No fresh lead sent me to {place}. I went back anyway.",
+    "text": "Nothing new sent me to {place}. I went back anyway.",
     "tags": {
       "because": "return",
       "for": "none",
@@ -3320,7 +3320,7 @@
   {
     "id": "err-299",
     "deck": "errand",
-    "text": "No lead called me back to {place}. I went anyway.",
+    "text": "Nothing called me back to {place}. I went anyway.",
     "tags": {
       "because": "return",
       "for": "none",
@@ -3720,7 +3720,7 @@
   {
     "id": "err-b003",
     "deck": "errand",
-    "text": "I came to put {subject} to {who}.",
+    "text": "I came to ask {who} about {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-person",
@@ -3816,7 +3816,7 @@
   {
     "id": "err-b011",
     "deck": "errand",
-    "text": "{subject} was the question, and {who} was the one to put it to.",
+    "text": "{subject} was the question, and {who} was the one to ask.",
     "tags": {
       "because": "said",
       "for": "ask-thing",
@@ -4011,7 +4011,7 @@
   {
     "id": "err-b027",
     "deck": "errand",
-    "text": "I came to put {subject} to {who}.",
+    "text": "I came to hear what {who} knew of {subject}.",
     "tags": {
       "because": "document",
       "for": "ask-person",
@@ -4302,7 +4302,7 @@
   {
     "id": "err-b051",
     "deck": "errand",
-    "text": "I came to put {subject} to {who}.",
+    "text": "I came to ask {who} what {who} knew about {subject}.",
     "tags": {
       "because": "found",
       "for": "ask-person",

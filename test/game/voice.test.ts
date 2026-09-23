@@ -1877,10 +1877,13 @@ describe('the engine’s assembled sentences', () => {
       const text = (page?.blocks ?? [])
         .map((b) => ('text' in b ? String(b.text ?? '') : ''))
         .join(' ');
+      // M10 §A.5: the line is past tense now, and says it with pronouns.
       const noun = genderHintOf(v.client) === 'f' ? 'woman' : 'man';
-      const wrong = noun === 'woman' ? 'man' : 'woman';
-      expect(text, `seed ${seed}`).toContain(`a ${noun} hiring you answers your questions`);
-      expect(text, `seed ${seed}`).not.toContain(`a ${wrong} hiring you`);
+      const [He, him] = noun === 'woman' ? ['She', 'her'] : ['He', 'him'];
+      const [wrongHe, wrongHim] = noun === 'woman' ? ['He', 'him'] : ['She', 'her'];
+      expect(text, `seed ${seed}`).toContain(`${He} was still in the chair. I had a question or two for ${him}`);
+      expect(text, `seed ${seed}`).not.toContain(`${wrongHe} was still in the chair`);
+      expect(text, `seed ${seed}`).not.toContain(`a question or two for ${wrongHim}`);
       seen.add(noun);
     }
     // Both halves of the rule are exercised, or only one of them is tested.

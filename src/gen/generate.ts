@@ -33,6 +33,7 @@ import { buildPool } from './logic/rules.js';
 import { selectLogic } from './logic/select.js';
 import { ambiguousDescription, edgesOf } from './logic/acquaint.js';
 import { applyRule } from './logic/lines.js';
+import { ownTopics } from './topics.js';
 
 const OUTER_ATTEMPTS = 120;
 const INNER_ATTEMPTS = 30;
@@ -183,7 +184,7 @@ function run(
 ): Case {
   // M9: a case dealt with a tier is a logic game. The no-options case is not,
   // and keeps every draw it made before M9.
-  if (!dials.plain) return runLogic(seed, detectiveName, dials, diagnostics, opts);
+  if (!dials.plain) return ownTopics(runLogic(seed, detectiveName, dials, diagnostics, opts));
   const { shape, ladder, difficulty } = dials;
   const salt = tierSalt(dials);
   const rng = new Rng(seed + difficulty * 7919 + salt * 104729);

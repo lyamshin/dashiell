@@ -18,6 +18,7 @@ import { generateCase, type Case, type Difficulty, type Id, type Tick } from '..
 import { TROPE_IDS } from '../src/gen/tropes/index.js';
 import { RELATIONSHIPS, VICTIM_ARCHETYPES, VICTIM_ARCHETYPE_BY_ID, RELATIONSHIP_BY_ID } from '../src/gen/data/cast.js';
 import { MOTIVE_TEMPLATES } from '../src/gen/data/motives.js';
+import { genderForms } from '../src/gen/dossier.js';
 import { METHOD_TEMPLATES } from '../src/gen/data/methods.js';
 import { MISSING_MEANS, ROBBERY_MEANS } from '../src/gen/data/means.js';
 import {
@@ -138,7 +139,10 @@ function check(kase: Case, f: StoryFact): string | null {
       if (tie?.relationshipId !== f.relationshipId) return 'wrong relationship';
       if (f.variant === undefined) return null;
       const template = RELATIONSHIP_BY_ID[f.relationshipId]?.backstory[f.variant];
-      return template !== undefined && fits(template, tie.backstory) ? null : 'wrong backstory';
+      // M10 §A.5: the template's relation words in the culprit's form.
+      return template !== undefined && fits(genderForms(template, killer.gender), tie.backstory)
+        ? null
+        : 'wrong backstory';
     }
     case 'tieText':
       return f.personId === killer.id && killer.dossier?.tie.text === f.text ? null : 'wrong tie text';
@@ -158,7 +162,8 @@ function check(kase: Case, f: StoryFact): string | null {
       if (f.archetypeId === undefined) return null;
       if (victim.archetypeId !== f.archetypeId) return 'wrong victim archetype';
       const template = VICTIM_ARCHETYPE_BY_ID[f.archetypeId]?.standing[f.variant ?? -1];
-      return template !== undefined && fits(`${victim.surname} ${template}`, kase.victimBio.standing)
+      return template !== undefined &&
+        fits(`${victim.surname} ${genderForms(template, victim.gender)}`, kase.victimBio.standing)
         ? null
         : 'wrong standing';
     }

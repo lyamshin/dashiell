@@ -184,7 +184,7 @@ export const RELATIONSHIPS: Relationship[] = [
   },
   {
     id: 'rel-landlord',
-    text: '{V}’s landlord',
+    text: '{V}’s {landlord|landlady}',
     impliesMotives: ['property', 'debt', 'revenge'],
     backstory: [
       '{victim} rented from {person} and was three months behind when it happened',
@@ -310,16 +310,16 @@ export const RELATIONSHIPS: Relationship[] = [
   },
   {
     id: 'rel-inlaw',
-    text: '{V}’s brother-in-law',
+    text: '{V}’s {brother-in-law|sister-in-law}',
     impliesMotives: ['inheritance', 'jealousy', 'debt'],
     backstory: [
-      '{person} married {victim}’s sister in {year} and has been in the family ever since',
-      '{person} is {victim}’s brother-in-law and has been told so at every holiday',
+      '{person} married {victim}’s {sister|brother} in {year} and has been in the family ever since',
+      '{person} is {victim}’s {brother-in-law|sister-in-law} and has been told so at every holiday',
       '{victim} stood up at {person}’s wedding and {third} has never let either of them forget it',
     ],
     backstoryFirst: [
-      'I married {victim}’s sister in {year}. I have been in the family ever since. For better or worse.',
-      'I am {victim}’s brother-in-law. At every holiday somebody has told me so.',
+      'I married {victim}’s {sister|brother} in {year}. I have been in the family ever since. For better or worse.',
+      'I am {victim}’s {brother-in-law|sister-in-law}. At every holiday somebody has told me so.',
       '{victim} stood up at my wedding. {third} has never let either of us forget it.',
     ],
     since: ['since {year}', 'since the wedding', 'nine years of Sundays'],
@@ -353,17 +353,17 @@ export const RELATIONSHIPS: Relationship[] = [
   },
   {
     id: 'rel-spouse',
-    text: '{V}’s estranged spouse',
+    text: '{V}’s estranged {husband|wife}',
     impliesMotives: ['inheritance', 'jealousy', 'insurance'],
     opposeVictimGender: true,
     backstory: [
       '{person} married {victim} in {year} and they have lived apart for three of those years',
-      '{person} is {victim}’s wife in law and nothing else, and has been since {year}',
+      '{person} is {victim}’s {husband|wife} in law and nothing else, and has been since {year}',
       '{person} and {victim} separated over {third} and never went near a court about it',
     ],
     backstoryFirst: [
       'I married {victim} in {year}. Three of those years we have lived apart.',
-      'I am {victim}’s wife in law and nothing else. That has been true since {year}.',
+      'I am {victim}’s {husband|wife} in law and nothing else. That has been true since {year}.',
       '{victim} and I separated over {third}. We never went near a court about it. No papers, no lawyers.',
     ],
     since: ['since {year}', 'three years apart', 'since the winter they stopped speaking'],
@@ -443,15 +443,15 @@ export const RELATIONSHIPS: Relationship[] = [
     impliesMotives: ['revenge', 'protect-another', 'debt'],
     backstory: [
       '{person} and {victim} grew up on the same block and have known each other since {year}',
-      '{person} and {victim} were boys together and neither of them ever left the neighbourhood',
+      '{person} and {victim} were children together and neither of them ever left the neighbourhood',
       '{person}, {victim} and {third} were inseparable for ten years and have not been in a room together since',
     ],
     backstoryFirst: [
       'We grew up on the same block, {victim} and I. We have known each other since {year}. That is a long time.',
-      '{victim} and I were boys together. Neither of us ever left the neighbourhood. Neither of us tried.',
+      '{victim} and I were children together. Neither of us ever left the neighbourhood. Neither of us tried.',
       '{victim}, {third} and I were inseparable for ten years. We have not been in a room together since. Not once.',
     ],
-    since: ['all their lives', 'since {year}', 'since they were boys on the same stoop'],
+    since: ['all their lives', 'since {year}', 'since they were children on the same stoop'],
     purposes: {
       murder: { 'find-the-killer-police-wont': 42, 'settle-a-debt-with-the-dead': 34, 'clear-my-name': 24 },
       robbery: { 'settle-a-debt-with-the-dead': 40, 'find-it-before-the-cops': 38, 'clear-my-name': 22 },
@@ -654,7 +654,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     ageBand: [45, 66],
     professionDetails: [
       'owns four buildings on the same street and collects in person',
-      'carries the rent book himself on the first of the month',
+      'carries the rent book around the buildings on the first of the month',
       'has a boilerman, a lawyer and no partners',
     ],
     professionFirst: [
@@ -826,7 +826,7 @@ export const SUSPECT_ARCHETYPES: Archetype[] = [
     trade: 'insurance',
     ageBand: [32, 54],
     professionDetails: [
-      'inspects fires for the insurance company and writes up what he finds',
+      'inspects fires for the insurance company and writes up what the fire left',
       'settles accident claims for an insurance company and is paid to doubt people',
       'has a district that runs from the river to Eighth Avenue',
     ],
@@ -1159,7 +1159,7 @@ const except = (...ids: Id[]): Id[] => ALL_SUSPECTS.filter((i) => !ids.includes(
 export const VICTIM_ARCHETYPES: VictimArchetype[] = [
   {
     id: 'vic-landlord',
-    role: 'the landlord of three tenements on Ninth Avenue',
+    role: '{the landlord|the landlady} of three tenements on Ninth Avenue',
     // `arch-blockowner` was excluded, which left `property` with no rival at
     // all. A landlord and the man who owns the block are exactly rivals.
     allowedSuspects: except('arch-chorus'),
@@ -1174,7 +1174,7 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
     visibleProfession: false,
     standing: [
       'held three houses on Ninth Avenue, and half the block was behind on the rent for one of them',
-      'was the man a hundred and forty people paid to keep a roof over them',
+      'was {the man|the woman} a hundred and forty people paid to keep a roof over them',
       'owned more of the street than anybody who lived on it',
     ],
   },

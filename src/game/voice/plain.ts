@@ -505,6 +505,22 @@ export const PLAIN_BEATS: string[] = [
 ];
 
 /**
+ * M10 §A.5: the same beats for page one, where he is at his desk and the
+ * client is in the chair. Nothing here has him going anywhere — "I did not
+ * linger" after "She took a moment" was a man leaving his own office.
+ */
+export const OFFICE_BEATS: string[] = [
+  'I waited.',
+  'I let it sit.',
+  'Nothing moved.',
+  'I listened.',
+  'I kept quiet.',
+  'I sat back.',
+  'I kept still.',
+  'I had time.',
+];
+
+/**
  * "Sit down." Dashiell's first line to somebody who has just come up two
  * flights at midnight, before the client starts talking. The golden's, and
  * two words long on purpose.

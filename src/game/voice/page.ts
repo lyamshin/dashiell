@@ -73,7 +73,6 @@ import {
   classOf,
   describePerson,
   genderHintOf,
-  nounOf,
   pronounOf,
   recallClause,
   temperOf,
@@ -98,6 +97,7 @@ import {
   BRIEFING_SETTLE,
   OFFICE_OPENERS,
   PLAIN_BEATS,
+  OFFICE_BEATS,
   PLAIN_FLOOR,
   PLAIN_NOTED,
   PLAIN_STOCK,
@@ -1331,10 +1331,11 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   // before it starts thinking about it, at the head of the thinking paragraph.
   if (
     scene.kind !== 'nothing' &&
+    // M10 §A.5: page one closes on the client in the chair, not on "Down it
+    // went." The brief is what was written down, and the page has said it.
+    scene.kind !== 'open' &&
     stage.foundAfter.length > stage.foundBefore.length &&
-    // Page one carries the whole briefing and is the longest page in the run.
-    // Four more words is four words it has no room for.
-    words(blocksOf(laid)) < (scene.kind === 'open' ? OPENING_CEILING : PAGE_CEILING) - 20
+    words(blocksOf(laid)) < PAGE_CEILING - 20
   ) {
     say(dealer.random.pick(PLAIN_NOTED), 'narrator', { transparent: true, para: 'think' });
   }
@@ -1546,7 +1547,10 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   fuseParagraphs(laid);
 
   /* ------------------------------- the golden loop §5: short sentences, long */
-  enforceShortRhythm(laid, dealer.random, ceiling);
+  // M10 §A.5: in the office he is at his desk and she is in the chair, so
+  // "I did not linger" and "I moved on" are the wrong page's beats.
+  const beatPool = scene.kind === 'open' ? OFFICE_BEATS : PLAIN_BEATS;
+  enforceShortRhythm(laid, dealer.random, ceiling, SHORT_TARGET, SHORT_TOP_UPS, beatPool);
   // The join costs the page the word "and", and the ceiling is the ceiling.
   if (words(blocksOf(laid)) < ceiling) carryingSentence(laid);
 
@@ -1554,6 +1558,13 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   // After every join, because the repetition it is about can be made by one:
   // two blocks fused into one paragraph are two sentences running.
   pronounRepeatedSubjects(laid, [...view.personById.values()]);
+
+  // M10 §A.5: page one ends where the scene does. Whatever the trim and the
+  // rhythm laid after the client's last line goes before it.
+  if (scene.kind === 'open') {
+    const at = laid.findIndex((l) => l.para === OFFICE_CLOSE);
+    if (at >= 0 && at < laid.length - 1) laid.push(...laid.splice(at, 1));
+  }
 
   const counted = countsOf(laid);
   return {
@@ -1771,6 +1782,7 @@ export function enforceShortRhythm(
   ceiling: number,
   target = SHORT_TARGET,
   limit = SHORT_TOP_UPS,
+  pool: readonly string[] = PLAIN_BEATS,
 ): number {
   const counts = (): { short: number; total: number } => {
     let short = 0;
@@ -1796,7 +1808,7 @@ export function enforceShortRhythm(
     const { short, total } = counts();
     if (total === 0 || short / total >= target) break;
     if (words(blocksOf(laid)) > ceiling - 8) break;
-    const beat = pickShape(rng, PLAIN_BEATS, {}, last);
+    const beat = pickShape(rng, pool, {}, last);
     if (beat.length === 0) break;
     last = beat;
     // Spread them: the first goes on the last paragraph that will take one,
@@ -2777,19 +2789,25 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     targets: ['voice', 'silence'],
   });
 
-  /* 5. Two questions on the house, while he is still standing there. */
-  t.put({
-    kind: 'note',
-    // The noun agrees with the person in the chair, and "your" says what the
-    // line always meant: the two free questions are Dashiell's to ask.
-    //
-    // Hone 2 §A.3: the pronoun, not the surname. The page named her in full
-    // four paragraphs ago and has said the name in every attribution since;
-    // the last line of it is not where English reaches for the name again.
-    text:
-      `${pronounOf(client) === 'she' ? 'She' : 'He'} is still in the chair. ` +
-      `Two questions on the house — a ${nounOf(client)} hiring you answers your questions.`,
-  });
+  /* 5. Two questions on the house, while she is still in the chair. */
+  // Hone 2 §A.3: the pronoun, not the surname. The page named her in full
+  // four paragraphs ago and has said the name in every attribution since;
+  // the last line of it is not where English reaches for the name again.
+  //
+  // M10 §A.5: the page is told in the past tense, and this is where it
+  // closes, so it says the scene's last fact the way the rest was said and
+  // leaves the two free questions to the choices under it.
+  t.put({ kind: 'note', text: officeCloseLine(client) }, OFFICE_CLOSE);
+}
+
+/** The paragraph tag page one's last line carries, so nothing is laid after it. */
+export const OFFICE_CLOSE = 'office-close';
+
+/** Page one's last line: the client still in the chair, and a question or two owed. */
+export function officeCloseLine(client: Person): string {
+  const she = pronounOf(client) === 'she';
+  const [He, him, he] = she ? ['She', 'her', 'she'] : ['He', 'him', 'he'];
+  return `${He} was still in the chair. I had a question or two for ${him} before ${he} went.`;
 }
 
 /**
