@@ -62,7 +62,8 @@
       "setting": "anywhere"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} shifted the resoled heels out of sight again."
   },
   {
     "id": "pp-005",
@@ -172,7 +173,8 @@
       "setting": "office"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} turned a wrist again to show the engraved cufflink, not the plain one."
   },
   {
     "id": "pp-012",
@@ -272,7 +274,8 @@
     "motifs": [
       "memory"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} had the handbag open again, a hand on the dance card inside."
   },
   {
     "id": "pp-018",
@@ -304,7 +307,8 @@
       "setting": "office"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} smoothed the new gloves again, the price tag still folded in one cuff."
   },
   {
     "id": "pp-020",
@@ -453,7 +457,8 @@
     "motifs": [
       "voice"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name}’s voice went sharp again, and for a sentence it sounded twenty years younger."
   },
   {
     "id": "pp-029",
@@ -499,7 +504,8 @@
     "motifs": [
       "money"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} took out the new wallet again, and the folded receipt came halfway out with it."
   },
   {
     "id": "pp-032",
@@ -521,7 +527,7 @@
     "deck": "portrait-pairs",
     "text": "Before signing anything {he} pressed {his} fingers flat against the page for a moment first, an old clerk's habit from a time when the ink was slower to dry than it is now.",
     "recall": "the habit of blotting",
-    "recallAction": "{name} pressed {his} fingers flat against the table again.",
+    "recallAction": "{name} pressed {his} fingers flat again, blotting nothing.",
     "tags": {
       "gender": "any",
       "class": "money",
@@ -577,7 +583,8 @@
       "setting": "anywhere"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} took out the pocket square with the borrowed initials again."
   },
   {
     "id": "pp-037",
@@ -708,7 +715,8 @@
       "setting": "office"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} bent and checked the double knots again, one black lace and one brown."
   },
   {
     "id": "pp-045",
@@ -742,7 +750,8 @@
     "motifs": [
       "hands"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} ran a finger over the black thumbnail again."
   },
   {
     "id": "pp-047",
@@ -759,7 +768,8 @@
       "coat",
       "work"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} brushed at the sawdust in the coat seams again."
   },
   {
     "id": "pp-048",
@@ -791,7 +801,8 @@
       "hands",
       "work"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} worked at the grease under a thumbnail again."
   },
   {
     "id": "pp-050",
@@ -842,7 +853,8 @@
     "motifs": [
       "hat"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} turned the hat over again, and the name inked inside the band showed."
   },
   {
     "id": "pp-053",
@@ -859,7 +871,8 @@
       "voice",
       "machinery"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} answered low again, in the hoarse voice the machines had left."
   },
   {
     "id": "pp-054",
@@ -893,7 +906,8 @@
       "hands",
       "work"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} rubbed the needle-pricked thumb against a finger again."
   },
   {
     "id": "pp-056",
@@ -907,7 +921,8 @@
       "setting": "anywhere"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} touched the collar again, where the red letters were stitched."
   },
   {
     "id": "pp-057",
@@ -924,7 +939,8 @@
       "hands",
       "work"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} folded the blue-stained fingers out of sight again."
   },
   {
     "id": "pp-058",
@@ -1143,7 +1159,8 @@
       "hands",
       "work"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} rubbed at the calluses along the base of {his} fingers again."
   },
   {
     "id": "pp-071",
@@ -1201,7 +1218,7 @@
     "deck": "portrait-pairs",
     "text": "{He} stood near the door through two offers of a chair before finally taking one, and even then sat closest to it of the two chairs in the room.",
     "recall": "the chair nearest the door",
-    "recallAction": "{name} had taken the chair nearest the door again.",
+    "recallAction": "{name} had found the spot nearest the door again.",
     "tags": {
       "gender": "any",
       "class": "working",
@@ -1228,7 +1245,8 @@
       "hands",
       "work"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} rubbed at the white dust in {his} knuckles again."
   },
   {
     "id": "pp-076",
@@ -1287,7 +1305,7 @@
     "deck": "portrait-pairs",
     "text": "{He} tapped a pencil twice against the desk before writing anything down, never once, never three times: a small ritual {he} seemed not to know {he} was keeping.",
     "recall": "the pencil tapped twice",
-    "recallAction": "{name} tapped a pencil twice against the table again.",
+    "recallAction": "{name} tapped a pencil twice again, never once, never three times.",
     "tags": {
       "gender": "any",
       "class": "working",
@@ -1322,7 +1340,7 @@
     "deck": "portrait-pairs",
     "text": "{He} took the chair that faced both the door and the window instead of the one I offered, and did it so smoothly I did not notice until {he} was already sitting in it.",
     "recall": "the chair facing both exits",
-    "recallAction": "{name} had taken the chair that faced the door and the window again.",
+    "recallAction": "{name} had put {his} back to the wall again, facing the way in.",
     "tags": {
       "gender": "m",
       "class": "underworld",
@@ -1349,7 +1367,8 @@
     "motifs": [
       "hands"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} ran a thumb over the two rough knuckles again."
   },
   {
     "id": "pp-083",
@@ -1449,7 +1468,8 @@
       "setting": "anywhere"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} touched the bridge of the crooked nose again."
   },
   {
     "id": "pp-089",
@@ -1532,7 +1552,8 @@
       "face",
       "window"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} touched the powdered scar along the jaw again."
   },
   {
     "id": "pp-094",
@@ -1590,7 +1611,7 @@
     "deck": "portrait-pairs",
     "text": "{He} flipped a coin off {his} thumb and caught it without looking down, over and over, the whole time {he} talked. {He} did not seem to know {he} was doing it.",
     "recall": "the unlooked-at coin flip",
-    "recallAction": "The coin was going over {his} knuckles again.",
+    "recallAction": "{name} was flipping the coin off {his} thumb again, not looking at it.",
     "tags": {
       "gender": "any",
       "class": "underworld",
@@ -1723,7 +1744,7 @@
     "deck": "portrait-pairs",
     "text": "{He} set {his} case at the desk's corner, squared to the edge, and adjusted it a half-inch when {he} thought I was not looking.",
     "recall": "the squared-off case",
-    "recallAction": "{name} squared {his} case to the table's edge again.",
+    "recallAction": "{name} squared the case again and nudged it half an inch.",
     "tags": {
       "gender": "m",
       "class": "professional",
@@ -1765,7 +1786,8 @@
       "coat",
       "work"
     ],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} brushed at the chalk on the cuff again, and missed it."
   },
   {
     "id": "pp-108",
@@ -1779,7 +1801,8 @@
       "setting": "anywhere"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "generated",
+    "recallAction": "{name} ran a finger along the crease in the collar again."
   },
   {
     "id": "pp-109",
@@ -1956,7 +1979,7 @@
     "deck": "portrait-pairs",
     "text": "{He} squared a single sheet of paper against the desk's edge before saying anything, though there was nothing else on the desk for it to be squared against.",
     "recall": "the paper squared alone",
-    "recallAction": "{name} squared a single sheet of paper against the table again.",
+    "recallAction": "{name} squared a single sheet of paper again, though there was nothing to square it against.",
     "tags": {
       "gender": "any",
       "class": "professional",
