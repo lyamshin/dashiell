@@ -113,9 +113,13 @@ const COUNT: Record<number, string> = { 1: 'one', 2: 'two', 3: 'three', 4: 'four
  * ------------------------------------------------------------------ */
 
 /** One person's comings and goings (golden page 6). */
-function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id, at: Id): Told {
+function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id, at: Id, introduce = false): Told {
   const subject = view.personById.get(subjectId);
   const p = pronounsOf(subject);
+  // docs/26: the first sentence names them when the question did not.
+  const ref = introduce ? referenceOf(view.kase, speaker.id, subjectId) : null;
+  const him = ref ?? p.him;
+  const He = ref ? cap(ref) : p.He;
   const facts: Fact[] = clues.flatMap((c) => c.establishes);
   const ticks: Tick[] = [];
   const people = new Set<Id>([subjectId]);
@@ -126,7 +130,7 @@ function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id
   // Knowing and not knowing.
   const acquainted = facts.find((f) => f.kind === 'acquainted');
   if (acquainted && acquainted.kind === 'acquainted') {
-    if (acquainted.strength === 'stranger') first.push(`Never heard of ${p.him}.`);
+    if (acquainted.strength === 'stranger') first.push(`Never heard of ${him}.`);
     else if (acquainted.strength === 'sight') first.push('I might know the face if I saw it. Not the name.');
   }
 
@@ -142,7 +146,7 @@ function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id
     ticks.push(s.run[0], s.run[1]);
     const when = whenOf(s.run);
     const where = whereOf(view, s.place, at);
-    if (i === 0) first.push(`I saw ${p.him} ${where} ${when}.`);
+    if (i === 0) first.push(`I saw ${him} ${where} ${when}.`);
     // "Back" is back here; anywhere else it is "there again"; a third time is "and again".
     else if (s.place === last) {
       const again = i >= 2 && stretches[i - 2]?.place === s.place;
@@ -151,8 +155,8 @@ function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id
     else first.push(`${cap(when)} ${p.he} was ${where}.`);
     last = s.place;
   }
-  // A sighting tied to something the block times things by: one sentence an
-  // anchor, however many times it came round.
+  // A sighting tied to something the block times things by: one sentence a
+  // place, however many times it came round.
   const anchored = new Map<Id, Id[]>();
   for (const f of facts) {
     if (f.kind !== 'personAtAnchor' || f.personId !== subjectId) continue;
@@ -167,7 +171,7 @@ function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id
     const [where, ...others] = places.map((pl) => whereOf(view, pl, at)) as [string, ...string[]];
     first.push(
       stretches.length === 0 && first.length === 0
-        ? `I saw ${p.him} ${where} ${timing}.`
+        ? `I saw ${him} ${where} ${timing}.`
         : `${cap(timing)}, ${p.he} was ${where}.`,
     );
     for (const other of others) first.push(ANOTHER_TIME.split('{he}').join(p.he).split('{where}').join(other));
@@ -187,8 +191,8 @@ function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id
       // Nothing seen: the absence is the whole answer.
       first.push(
         whole
-          ? `${p.He} wasn’t ${name === 'here' ? 'here' : `at ${name}`}. Not once all evening.`
-          : `${p.He} wasn’t ${name === 'here' ? 'here' : `at ${name}`} ${whenRuns(ts, 'or')}.`,
+          ? `${He} wasn’t ${name === 'here' ? 'here' : `at ${name}`}. Not once all evening.`
+          : `${He} wasn’t ${name === 'here' ? 'here' : `at ${name}`} ${whenRuns(ts, 'or')}.`,
       );
       continue;
     }
@@ -224,7 +228,7 @@ function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id
 
   if (first.length === 0 && second.length === 0) {
     const refused = clues.some((c) => /will not say/.test(c.text));
-    first.push(refused ? 'I’d rather not say where I saw anybody tonight.' : `I didn’t see ${p.him} that evening.`);
+    first.push(refused ? 'I’d rather not say where I saw anybody tonight.' : `I didn’t see ${him} that evening.`);
   }
   return {
     first,
@@ -484,12 +488,17 @@ export function toldOf(
   clues: Clue[],
   speaker: Person,
   at: Id,
+  /**
+   * docs/26: nobody has named the one this family is about yet — the question
+   * was about a place or a thing — so the witness says who, not "her".
+   */
+  introduce = false,
 ): Told | null {
   if (!view.kase.logic) return null;
   switch (family.kind) {
     case 'movements':
     case 'knowing':
-      return family.subjectId ? movements(view, clues, speaker, family.subjectId, at) : null;
+      return family.subjectId ? movements(view, clues, speaker, family.subjectId, at, introduce) : null;
     case 'counts':
       return counts(view, clues, speaker, at);
     case 'strangers':

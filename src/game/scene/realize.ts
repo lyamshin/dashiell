@@ -49,6 +49,8 @@ import {
   ANCHORED_KNOWN_THOUGHTS,
   ANCHOR_BRIDGES,
   ANCHOR_BRIDGES_WHERE,
+  BRIDGE_HERE,
+  BRIDGE_TALKING,
   ANCHORED_RECURRING_THOUGHTS,
   ANCHORED_PARTIAL_THOUGHTS,
   CRIME_NOUN,
@@ -167,7 +169,7 @@ function deal(
   const fitsPlace = (c: Card): boolean =>
     !(outdoors && c.tags.setting === 'indoor') &&
     // docs/26: "Now the face was across the room from me." on the El platform.
-    !(outdoors && /\b(?:the|this|a) room\b/i.test(c.text)) &&
+    !(outdoors && /\b(?:the|this|a) room\b|\bin the building\b/i.test(c.text)) &&
     !(!outdoors && c.tags.setting === 'outdoor') &&
     !(plural && c.tags.number === 'singular');
   // The hour is read off the card as it will print: "It was after {hour} in
@@ -723,8 +725,13 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const who = whoPerson?.surname;
         // A fixture's clause already says where they are: "Hargrove, the
         // doorman at the Wyckoff". Saying it again is the same fact twice.
+        // docs/26: somebody in the room is not sent for: "Dettweiler might, at
+        // the Automat", said at the Automat. The page says they are right here.
+        const present =
+          whoPerson !== undefined &&
+          (stage.here.some((p) => p.id === whoPerson.id) || (scene.kind === 'ask' && scene.personId === whoPerson.id));
         const where =
-          b.whereId && !(whoPerson?.kind === 'fixture' && whoPerson.foundAt === b.whereId)
+          b.whereId && !present && !(whoPerson?.kind === 'fixture' && whoPerson.foundAt === b.whereId)
             ? view.placeById.get(b.whereId)?.shortName
             : undefined;
         // A relation is said once (the designer's rule): somebody an earlier
@@ -762,6 +769,11 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         if (who && whoPerson && b.subject === `${who}’s evening`) {
           const own = `${pronounOf(whoPerson) === 'she' ? 'her' : 'his'} own evening`;
           text = text.replace(new RegExp(`(\\b${who}\\b[^.]*?)\\b${who}’s evening`), `$1${own}`);
+        }
+        if (present && who && whoPerson) {
+          const talking = scene.kind === 'ask' && scene.personId === whoPerson.id;
+          const pool = talking ? BRIDGE_TALKING : BRIDGE_HERE;
+          text = `${text} ${fillTemplate(dealer.random.pick(pool), { who, them: pronounOf(whoPerson) === 'she' ? 'her' : 'him' })}`;
         }
         push({ text, voice: 'bridge', beats: [i] });
         mark(i, {
@@ -1499,9 +1511,13 @@ function thoughtLine(
   ];
   // §5: a thought on one person's word says "if"; and it never says the find
   // again in other words (§5's "find, then thought").
+  // docs/26: a card written to teach (a verdict) only where the pages may give
+  // one; a card written for play only where they may not.
+  const band = verdictsOn(stage.view) ? 'teach' : 'play';
   const cls = (c: Card): boolean =>
     tagOf('thought', c, 'class') === t.cls &&
     is(c, 'case', caseType) &&
+    tagIs('thought', c, 'band', band) &&
     (t.single !== true || hedged(c.text)) &&
     !restates(fill(c, slots) ?? c.text, finds, names);
   // Night Hone 1 §2: when the case gives the thought its specifics — the
@@ -1963,7 +1979,16 @@ function tellingParas(
   }
 
   /* what they said: the engine's sentences, or the old kinds' own voice */
-  let told = toldOf(view, family, clues, speaker, stage.at);
+  // docs/26: "I saw her at the back lot" after a question about the back lot
+  // is nobody. When the question did not name them, the witness does.
+  const questionNamed =
+    subject === undefined ||
+    (beat.first
+      ? scene.topicSlots.subject === subject.surname ||
+        (scene.topicRef?.kind === 'person' && scene.topicRef.id === subject.id) ||
+        (scene.askKind === 'ask-evening' && subject.id === speaker.id)
+      : new RegExp(`\\b${subject.surname}\\b`).test(parts.question ?? ''));
+  let told = toldOf(view, family, clues, speaker, stage.at, !questionNamed && !beat.volunteered);
   let spokenAloud = true;
   if (told === null) {
     const first: string[] = [];
@@ -2078,9 +2103,15 @@ function tellingParas(
     them: sp ? 'her' : 'him',
     their: sp ? 'her' : 'his',
     // The one the family is about, where it is about somebody.
-    ...(pro ? { he: pro.he, him: pro.him, his: pro.his } : {}),
+    ...(pro ? { he: pro.he, him: pro.him, his: pro.his, He: pro.He } : {}),
+    // docs/26: the capital forms, for a card that opens a sentence on them.
+    They: sp ? 'She' : 'He',
   };
-  const f = (c: Card, tag: string, want: string): boolean => tagIs('telling', c, tag, want);
+  // docs/26: a frame written for a sighting, or for its absence, only where
+  // the told sentences are one.
+  const polarity = sawIt ? 'seen' : told.first.some((s0) => /\bwasn[’']t\b|\bNot\b|\bdidn[’']t see\b/.test(s0)) ? 'unseen' : 'any';
+  const f = (c: Card, tag: string, want: string): boolean =>
+    tagIs('telling', c, tag, want) && (polarity === 'any' || tagIs('telling', c, 'polarity', polarity));
   const frame = deal(
     stage,
     'telling',

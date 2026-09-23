@@ -370,7 +370,8 @@ export function fill(card: Card, slots: Slots): string | null {
   // closing quotation mark and all ("…on it.” A hundred dollars went…").
   const out = card.text.replace(/\{(\w+)\}/g, (_m, name: string, at: number, whole: string) => {
     const value = slots[name] as string;
-    const opens = at === 0 || /[.!?][”"’)]*\s+$/.test(whole.slice(0, at));
+    // Not after "?”" or "!”": "“Where?” {pronoun} asked" is still one sentence.
+    const opens = at === 0 || /(?:\.[”"’)]+|[.!?])\s+$/.test(whole.slice(0, at));
     return opens ? value.charAt(0).toUpperCase() + value.slice(1) : value;
   });
   // Only a card that had something put into it can have a seam in it. A card

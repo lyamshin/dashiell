@@ -70,7 +70,7 @@ export const METHOD_TEMPLATES: MethodTemplate[] = [
     bodyEvidence: 'A groove across the throat where a cord was pulled tight. Three fibres of hemp in the skin.',
     evidenceNote: 'A cut end of the same hemp is still tied to the fitting it was taken from.',
     sceneTrace: 'The wristwatch broke against the floor and the hands have not moved since.',
-    accessNote: 'had to cut the cord down',
+    accessNote: 'had to get close enough, and have the cord to hand',
     soundNote: 'a scuffle and a chair dragging',
   },
   {

@@ -63,7 +63,7 @@ export const ROBBERY_MEANS: MeansTemplate[] = [
       'The precinct report says the window catch was sprung from outside and the sill was scraped.',
     evidenceNote: 'A cut end of the same hemp is still tied to the rail it was taken from.',
     sceneTrace: 'The window is down but not latched, and there is grit from the fire escape on the sill.',
-    accessNote: 'had to cut the cord down',
+    accessNote: 'had to tie the cord to the fire escape',
     soundNote: 'a window going up and somebody on the fire escape outside',
   },
   {

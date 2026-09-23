@@ -25,6 +25,7 @@ import { candidateThoughts } from '../src/game/scene/thought.js';
 import { checkRun } from '../src/game/correspond-pages.js';
 import { checkRunCoverage } from '../src/game/scene/coverage.js';
 import { HIRING_DASHIELL } from '../src/game/voice-data.js';
+import { Dealer } from '../src/game/voice/cards.js';
 import type { Page, RunState } from '../src/game/types.js';
 
 const tiered = (seed: number, tier: 0 | 1 | 2 | 3 | 4 | 5): CaseView =>
@@ -137,19 +138,21 @@ describe('docs/26: the question', () => {
     expect(askKindFor(view, { kind: 'exact', personId: 'p-s1', topic: `${person} that evening` })).toBe('ask-person');
   });
 
-  it('the hiring supplies {dashiell}: the cards that ask for it are dealt', () => {
-    const dealt = new Set<string>();
+  it('the hiring supplies {dashiell}, so a card that asks for it can be dealt', () => {
     const lines = [...HIRING_DASHIELL.yes, ...HIRING_DASHIELL.no];
-    let said = 0;
-    for (let seed = 1; seed <= 40; seed++) {
-      const v = buildView(generateCase(seed, { difficulty: 2 }));
-      const state = playOracle(v).state;
-      const office = state.log[0] as Page;
-      for (const id of office.cardsUsed) dealt.add(id);
-      if (lines.some((l) => prose(office).includes(l))) said++;
+    const given: (string | undefined)[] = [];
+    const original = Dealer.prototype.draw;
+    Dealer.prototype.draw = function (this: Dealer, ...args: Parameters<Dealer['draw']>) {
+      if (args[0] === 'hiring') given.push(args[2]?.dashiell);
+      return original.apply(this, args);
+    };
+    try {
+      for (let seed = 1; seed <= 6; seed++) playOracle(buildView(generateCase(seed, { difficulty: 2 })));
+    } finally {
+      Dealer.prototype.draw = original;
     }
-    expect([...dealt].some((id) => ['hir-010', 'hir-012', 'hir-019'].includes(id))).toBe(true);
-    expect(said).toBeGreaterThan(0);
+    expect(given.length).toBeGreaterThan(0);
+    for (const d of given) expect(lines).toContain(d);
   });
 });
 

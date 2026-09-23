@@ -746,6 +746,12 @@ export const ANCHOR_BRIDGES_WHERE: string[] = [
   'The question was when {subject} was. {who} might say, at {where}.',
 ];
 
+/** After a bridge to somebody in the room: they are not sent for (docs/26). {who} {them}. */
+export const BRIDGE_HERE: string[] = ['{who} was right there.', 'I didn’t have far to go for {them}.'];
+
+/** After a bridge to the one he is talking to. */
+export const BRIDGE_TALKING: string[] = ['{who} was still in front of me.', 'I wasn’t done with {them} yet.'];
+
 /** A sighting tied to something that came round more than once, at a second place: its own clause. */
 export const ANOTHER_TIME = 'Another time, {he} was {where}.';
 
