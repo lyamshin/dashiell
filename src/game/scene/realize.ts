@@ -1874,7 +1874,8 @@ function tellingParas(
   /* the tail: attitude, never a fact; not every time */
   let tail: string | undefined;
   // Golden rule 8: flavor is one line at most, and a long answer does without.
-  const long = told.first.length + (told.follow ? told.second.length : 0) >= 4;
+  const sentencesSaid = [...told.first, ...(told.follow ? told.second : [])].join(' ').split(/(?<=[.?!])\s+/).length;
+  const long = sentencesSaid >= 4;
   if (!long && dealer.random.chance(TAIL_CHANCE[temper] ?? 0.5)) {
     const t = (c: Card, tag: string, want: string): boolean => tagIs('tail', c, tag, want);
     // No opinion of the victim's habits: they are dead, or gone.
