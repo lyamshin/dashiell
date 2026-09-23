@@ -728,6 +728,7 @@
         "via": { "required": false, "default": "any", "values": ["office", "account"], "extraValues": ["any"] },
         "band": { "required": false, "default": "any", "values": ["teach", "play"], "extraValues": ["any"], "$note": "docs/26: 'teach' for a card that gives a verdict ('That cleared Weisglass.'), dealt only where the pages may give one (Raw and Coddled, and the untiered game); 'play' for a card meant for Poached up only; 'any', the default, everywhere." },
         "who": { "required": false, "default": "any", "values": ["watcher", "client", "known", "stranger"], "extraValues": ["any"] },
+        "met": { "required": false, "default": "any", "values": ["yes", "no"], "extraValues": ["any"], "$note": "docs/26, `view` with `who: known`: 'yes' when he has met them on an earlier page, 'no' when they are only a name in the notebook ('only a name until now')." },
         "lied": { "required": false, "default": "any", "values": ["yes", "no"], "extraValues": ["any"] },
         "number": { "required": false, "default": "any", "values": ["singular"], "extraValues": ["any"] }
       },

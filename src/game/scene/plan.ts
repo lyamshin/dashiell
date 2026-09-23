@@ -895,6 +895,7 @@ export function planPage(input: PlanInput): Plan {
               ),
             input.foundBefore,
             input.accountsBefore,
+            input.met.includes(p.personId),
           ),
         )
         // Night Hone 1 §2: a stranger gets no thought until there is something to think.

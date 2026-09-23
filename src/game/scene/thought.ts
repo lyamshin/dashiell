@@ -189,6 +189,8 @@ export interface Thought {
    * it and does not say it again.
    */
   told?: 'once' | 'recurring' | 'partial';
+  /** docs/26, `view` × `known`: met on an earlier page (the deck's `met: yes`), or only a name. */
+  met?: boolean;
 }
 
 export interface ThoughtInput {
@@ -910,6 +912,8 @@ export function viewOf(
   known: boolean,
   found: readonly Id[],
   accounts: readonly Id[],
+  /** docs/26: met on an earlier page, not only named in the notebook. */
+  met?: boolean,
 ): Thought {
   const place = view.placeById.get(person.foundAt ?? '');
   const who: Thought['who'] =
@@ -921,7 +925,15 @@ export function viewOf(
           ? 'known'
           : 'stranger';
   const lied = hasLied(view, person.id, found, accounts);
-  return { cls: 'view', subjectId: person.id, who, lied, clueIds: [], ...(lied ? { accountIds: [person.id] } : {}) };
+  return {
+    cls: 'view',
+    subjectId: person.id,
+    who,
+    lied,
+    clueIds: [],
+    ...(lied ? { accountIds: [person.id] } : {}),
+    ...(who === 'known' && met !== undefined ? { met } : {}),
+  };
 }
 
 /** Caught in a lie: a placement in hand contradicts an evening they gave. */

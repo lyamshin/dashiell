@@ -910,6 +910,9 @@ describe('M8 designer-read fixes', () => {
           if (b.kind !== 'bridge' || !b.rendered || !b.placeIds?.[0]) continue;
           const who = w.view.personById.get((b.personIds ?? [])[0] ?? '');
           if (!who || (who.kind === 'fixture' && who.foundAt === b.placeIds[0])) continue;
+          // docs/26: somebody in the room he is standing in is not sent for
+          // ("I would find Broadnax at the Automat", said at the Automat).
+          if (page.at === b.placeIds[0] && !(b.text ?? '').includes(`at ${w.view.placeById.get(b.placeIds[0])?.shortName}`)) continue;
           where++;
           const name = w.view.placeById.get(b.placeIds[0])?.shortName as string;
           expect(b.text, `${w.label} p${page.n + 1}`).toContain(name);

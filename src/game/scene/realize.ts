@@ -1518,6 +1518,7 @@ function thoughtLine(
     tagOf('thought', c, 'class') === t.cls &&
     is(c, 'case', caseType) &&
     tagIs('thought', c, 'band', band) &&
+    (t.met === undefined || tagIs('thought', c, 'met', t.met ? 'yes' : 'no')) &&
     (t.single !== true || hedged(c.text)) &&
     !restates(fill(c, slots) ?? c.text, finds, names);
   // Night Hone 1 §2: when the case gives the thought its specifics — the
@@ -2123,7 +2124,17 @@ function tellingParas(
     frameSlots,
   );
   const going =
-    restSaid.length > 0 ? ` ${fillTemplate(dealer.random.pick(WENT_ON), { name: sp ? 'She' : 'He' })} “${restSaid}”` : '';
+    restSaid.length > 0
+      ? ` ${fillTemplate(
+          // docs/26: "Zeldin thought about it for a moment. … He thought a moment."
+          dealer.random.pick(
+            WENT_ON.some((w) => !(frame?.text ?? '').includes(w.split(' ')[1] as string))
+              ? WENT_ON.filter((w) => !(frame?.text ?? '').includes(w.split(' ')[1] as string))
+              : WENT_ON,
+          ),
+          { name: sp ? 'She' : 'He' },
+        )} “${restSaid}”`
+      : '';
   const answer = `${frame?.text ?? `“${firstSaid}”`}${going}`;
   if (frame) parts.frame = frame.text.replace(firstSaid, '{told}');
   paras.push({ text: answer, voice: 'exchange', clueId: family.clueIds[0] as Id });
