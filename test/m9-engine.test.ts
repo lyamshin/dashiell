@@ -37,6 +37,7 @@ import { scoreReport } from '../src/game/scoring.js';
 import { renderPageText } from '../src/game/transcript.js';
 import type { RunState } from '../src/game/types.js';
 import { HELP_LINES, LIE_RULE } from '../src/game/voice-data.js';
+// @ts-expect-error — plain JavaScript module, no declarations.
 import { findJargon, loadPlainTerms } from '../scripts/plain-terms.mjs';
 
 const tiered = (seed: number, tier: 0 | 1 | 2 | 3 | 4 | 5, level: 1 | 2 | 3 = 2): CaseView =>

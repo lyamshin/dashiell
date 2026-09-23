@@ -95,6 +95,7 @@ export function renderChoices(groups: readonly OfferedGroup[], opts: ChoicesOpti
       const button = el('button', {
         class: `who-btn${id === selected ? ' who-btn--on' : ''}${lead ? ' who-btn--lead' : ''}`,
         type: 'button',
+        'data-person': id,
         'aria-pressed': id === selected ? 'true' : 'false',
       });
       if (lead) button.append(el('span', { class: 'mark', 'aria-hidden': 'true', text: '*' }));

@@ -19,7 +19,7 @@ import { APPROACH, APPROACH_AGAIN, COUNT_WORDS, OUTDOOR_PLACES, RELATION_PLAIN, 
 import { clueAbout, layerCredit, layerOfClue, layerSentences } from '../voice/plain.js';
 import type { Beat, Plan, PresencePerson } from './plan.js';
 import type { Thought } from './thought.js';
-import { m9Answer } from './testimony.js';
+import { m9Answer, whenSaid } from './testimony.js';
 import {
   CARRIED_QUESTIONS,
   CARRIED_QUESTIONS_PLAIN,
@@ -451,7 +451,9 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         // one room (seed 21 at difficulty 3). The page says it once; the
         // notebook keeps every record.
         if (paras.some((p) => p.clueId !== undefined && p.text.includes(text))) {
-          mark(i, { clueIds: [clue.id], text });
+          const again = 'The same thing turned up a second time.';
+          push({ text: again, voice: 'find', clueId: clue.id, beats: [i] });
+          mark(i, { clueIds: [clue.id], text: again });
           break;
         }
         // The first find of a search goes in the paragraph the search opened;
@@ -1425,10 +1427,16 @@ function exchange(
     );
   if (beat.carried && subject) {
     // "Nora Hanrahan. She's been with him since 'eighteen."
-    const told = first ? factAbout(first, true) : null;
-    // M9 page bug: the question already said the relation ("Lindemann owed
-    // Dandridge money."); a dossier line saying it again is the same fact twice.
-    const fact = told !== null && sameRelation(question, told, view) ? null : told;
+    const fact = first ? factAbout(first, true) : null;
+    // M9 page bug: when the dossier line the witness gives says the relation
+    // the question carried ("Lindemann owed Dandridge money." / "He has owed
+    // Dandridge money since '23"), the question asks by name and the witness
+    // says it once.
+    if (fact !== null && sameRelation(question, fact, view)) {
+      const asked = out.find((p) => p.text.endsWith(question));
+      const plainAsk = `“Tell me about ${subject.surname}.”`;
+      if (asked && asked.text.endsWith(question)) asked.text = `${asked.text.slice(0, -question.length)}${plainAsk}`;
+    }
     out.push({ text: `“${subject.name}.${fact ? ` ${fact}` : ''}”`, voice: 'exchange' });
     if (placed) out.push({ text: `“Where was ${subject.surname} tonight?”`, voice: 'exchange' });
   }
@@ -1475,9 +1483,12 @@ export function sameRelation(a: string, b: string, view: Stage['view']): boolean
         .filter((w) => w.length > 3 && !names.has(w) && !small.has(w))
         .map((w) => w.replace(/(ing|ed|es|s)$/, '')),
     );
+  // Two words in common — "owed … money" — is the same relation said again;
+  // one ("Sweeney") is only the same people.
   const x = words(a);
-  for (const w of words(b)) if (x.has(w)) return true;
-  return false;
+  let shared = 0;
+  for (const w of words(b)) if (x.has(w)) shared++;
+  return shared >= 2;
 }
 
 /** The confront deck's slots for one person: the surname, the pronouns, where and when. */
@@ -1541,7 +1552,13 @@ function confrontParas(
     [(c) => tagIs('confront', c, 'outcome', beat.outcome) && tagIs('confront', c, 'part', 'reaction')],
     slots,
   );
-  const words = scene.judged.response?.text ?? '';
+  // A story held is said again in their words, the hours the way people say them.
+  const held = scene.judged.response?.kind === 'hold' ? scene.judged.claimed : undefined;
+  const heldPlace = held ? view.placeById.get(held.place)?.shortName : undefined;
+  const words =
+    held && heldPlace
+      ? `“I told you where I was. ${capitalize(heldPlace)}, ${whenSaid(held.ticks)}.”`
+      : (scene.judged.response?.text ?? '');
   if (beat.outcome === 'wrong') {
     out.push({
       text: reaction?.text ?? `${surname} heard me out. “That doesn’t touch anything I told you.”`,
