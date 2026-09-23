@@ -304,8 +304,28 @@ function describedPlaces(state: RunState): Id[] {
   return [...out];
 }
 
+/**
+ * Shorter nights §2: the account that comes with this question. In a tiered
+ * case the first time the detective asks a suspect anything, the page ends
+ * with their own account of the evening, at no extra cost. Null once it is in
+ * hand, for a question about the evening itself (which is the account), and
+ * for a case without the logic game.
+ */
+export function accountRider(view: CaseView, personId: Id, topic: TopicRef, found: readonly Id[]): Clue | null {
+  if (!view.kase.logic || topic.kind === 'evening') return null;
+  const account = accountClueOf(view, personId);
+  if (!account || found.includes(account.id)) return null;
+  return account;
+}
+
 /** Which findable clues one question answers, in the order the case deals them. */
 export function answersTo(view: CaseView, personId: Id, topic: TopicRef, found: Id[]): Clue[] {
+  const rider = accountRider(view, personId, topic, found);
+  const asked = answersToTopic(view, personId, topic, found);
+  return rider && !asked.some((c) => c.id === rider.id) ? [...asked, rider] : asked;
+}
+
+function answersToTopic(view: CaseView, personId: Id, topic: TopicRef, found: Id[]): Clue[] {
   const have = new Set(found);
   if (topic.kind === 'exact') {
     return (view.exactBuckets.get(personId)?.get(topic.topic) ?? []).filter((c) => !have.has(c.id));
@@ -373,6 +393,11 @@ export interface Price {
     | 'confront'
     /** The same fact put to the same person again: free, read back. */
     | 'confront-again'
+    /**
+     * Shorter nights §1: "Put another fact to her" — the second fact of a
+     * confrontation that landed, in the same visit. Free.
+     */
+    | 'confront-follow'
     /** Nothing of theirs to put it to yet, or not a fact in hand. Free. */
     | 'no-confront'
     /** M10 §A.3: "Go on" — the rest of what a page broke off telling. Free. */
@@ -426,6 +451,28 @@ export function continuationOf(view: CaseView, state: RunState): string | null {
 }
 
 /**
+ * Shorter nights §1: the confrontation that can take a second fact now, for
+ * nothing — "Put another fact to her". Open right after a first fact landed
+ * on a story (a second story, a story held, or silence), while the one it
+ * was put to is still here and nothing has happened since but pages that
+ * change nothing (a fact read back again, the notebook). Closed by the second
+ * fact, right or wrong, and by anything else.
+ */
+export function followUpOf(view: CaseView, state: RunState): { personId: Id; lieKey: string } | null {
+  if (!view.kase.logic) return null;
+  const records = state.confronts ?? [];
+  const last = records[records.length - 1];
+  if (!last || last.follow || last.lieKey === null || last.n !== 0) return null;
+  if (last.outcome === 'wrong' || last.outcome === 'admit' || last.outcome === 'withdraw') return null;
+  for (const page of state.log.slice(last.page + 1)) {
+    if (page.cost > 0 || page.found.length > 0 || (page.shape !== undefined && page.shape !== 'repeat')) return null;
+  }
+  const here = peopleHereNow(view, state.at, { clientInOffice: state.clientInOffice, found: state.found });
+  if (!here.some((p) => p.id === last.personId)) return null;
+  return { personId: last.personId, lieKey: last.lieKey };
+}
+
+/**
  * The price of one command against one state. `step` charges exactly this and
  * the choice model prints exactly this, so a button never says one thing and
  * the clock another.
@@ -469,6 +516,7 @@ export function priceOf(command: Command, state: RunState, view: CaseView): Pric
       ) {
         return { cost: 0, waived: 0, reason: 'confront-again' };
       }
+      if (followUpOf(view, state)?.personId === command.personId) return { cost: 0, waived: 0, reason: 'confront-follow' };
       return { cost: 1, waived: 0, reason: 'confront' };
     }
     case 'ask': {
@@ -487,6 +535,12 @@ export function priceOf(command: Command, state: RunState, view: CaseView): Pric
       if (pendingFor(view, state, command) !== null) return { cost: 0, waived: 0, reason: 'continue' };
       if (askedBefore(state, person.id, command.topic)) {
         return { cost: 0, waived: 0, reason: 'ask-again' };
+      }
+      // Shorter nights §2: their evening came with the first question. Asking
+      // for it again is free, done, and read back.
+      if (command.topic.kind === 'evening' && view.kase.logic) {
+        const account = accountClueOf(view, person.id);
+        if (account && state.found.includes(account.id)) return { cost: 0, waived: 0, reason: 'ask-again' };
       }
       // M9 §4: "An exhausted person says so." A question that would get
       // nothing new costs nothing: no more paying to find that out. The first
@@ -831,7 +885,10 @@ export function step(
       const clue = view.findableById.get(command.clueId);
       if (!clue) break;
       cost = price.cost;
-      const judged = judgeConfront(view, state, person.id, clue.id, command.part);
+      // Shorter nights §1: the second fact of the same confrontation is
+      // judged against the story it was about. A wrong one ends it there.
+      const follow = price.reason === 'confront-follow' ? followUpOf(view, state) : null;
+      const judged = judgeConfront(view, state, person.id, clue.id, command.part, follow ? { lieKey: follow.lieKey } : {});
       confronted = {
         personId: person.id,
         clueId: clue.id,
@@ -840,8 +897,16 @@ export function step(
         outcome: judged.outcome,
         ...(judged.n === undefined ? {} : { n: judged.n }),
         page: state.log.length,
+        ...(follow ? { follow: true as const } : {}),
       };
-      scene = { kind: 'confront', personId: person.id, clue, judged, ...(command.part === undefined ? {} : { part: command.part }) };
+      scene = {
+        kind: 'confront',
+        personId: person.id,
+        clue,
+        judged,
+        ...(command.part === undefined ? {} : { part: command.part }),
+        ...(follow ? { follow: true } : {}),
+      };
       break;
     }
     case 'ask': {
@@ -942,9 +1007,16 @@ export function step(
         }
       }
       const answers =
-        (command.topic.kind === 'evening' && !view.kase.logic) || askedSelf
+        command.topic.kind === 'evening' && !view.kase.logic
           ? []
-          : answersTo(view, command.personId, command.topic, state.found);
+          : askedSelf
+            ? toldAlready
+              ? []
+              : answersTo(view, command.personId, command.topic, state.found)
+            : answersTo(view, command.personId, command.topic, state.found);
+      // Shorter nights §2: their own account, which comes with the first
+      // question, ends the page — after anything they volunteer.
+      const rider = accountRider(view, command.personId, command.topic, state.found);
       const volunteerDrawn =
         answers.length > 0 || account || (askedSelf && !toldAlready)
           ? volunteerFrom(
@@ -959,7 +1031,9 @@ export function step(
       if (volunteerDrawn) volunteered.push(volunteerDrawn.id);
       // M10 §A.3: at most three families of fact a page. The rest waits for
       // "Go on", or for the same question put again.
-      const paced = paceClues(view, [...answers, ...(volunteerDrawn ? [volunteerDrawn] : [])]);
+      const body = answers.filter((c) => c.id !== rider?.id);
+      const riding = rider && answers.some((c) => c.id === rider.id) ? [rider] : [];
+      const paced = paceClues(view, [...body, ...(volunteerDrawn ? [volunteerDrawn] : []), ...riding]);
       const nowIds = new Set(paced.now.map((c) => c.id));
       const answered = answers.filter((c) => nowIds.has(c.id));
       const volunteer = volunteerDrawn && nowIds.has(volunteerDrawn.id) ? volunteerDrawn : null;

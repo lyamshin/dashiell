@@ -19,6 +19,7 @@ import {
   canConfront,
   columnAsked,
   confessedOf,
+  confrontFacts,
   displayName,
   judgeConfront,
   lieKeyOf,
@@ -91,11 +92,22 @@ describe('M9 §3: put it to them', () => {
     const page = state.log[state.log.length - 1];
     expect(page?.shape).toBe('confront');
     expect(state.confronts?.[0]?.lieKey).toBe(right ? lieKeyOf(right) : null);
-    // A fact that touches nothing she told me.
+    // Shorter nights §1: a fact that touches nothing, put right after in the
+    // same confrontation, ends it with the story standing, for nothing.
     state = stepInput(state, 'put c001 to Hauck', view).state;
+    const ended = state.log[state.log.length - 1];
+    expect(state.actionsUsed).toBe(before + 1);
+    expect(state.confronts?.[1]).toMatchObject({ outcome: 'wrong', follow: true });
+    expect(renderPageText(ended!, view, state).replace(/\s+/g, ' ')).toContain('That’s all I’m going to say about it.');
+    // Put on its own, a fact that touches nothing she told me costs the half hour.
+    const other = confrontFacts(view, state, view.client.id).find(
+      (c) => c.id !== 'c001' && c.id !== pick && judgeConfront(view, state, view.client.id, c.id).outcome === 'wrong',
+    ) as { id: Id };
+    state = stepInput(state, `put ${other.id} to Hauck`, view).state;
     const wrong = state.log[state.log.length - 1];
     expect(state.actionsUsed).toBe(before + 2);
-    expect(state.confronts?.[1]?.outcome).toBe('wrong');
+    expect(state.confronts?.[2]?.outcome).toBe('wrong');
+    expect(state.confronts?.[2]?.follow).toBeUndefined();
     expect(renderPageText(wrong!, view, state).replace(/\s+/g, ' ')).toContain('That doesn’t touch anything I told you.');
     // The same fact again is read back, free.
     const again = stepInput(state, 'put c001 to Hauck', view);

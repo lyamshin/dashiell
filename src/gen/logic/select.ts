@@ -182,6 +182,12 @@ export function walkPar(
   from: Id,
   /** Always on the page, lead or no lead: the confrontations. */
   open: Set<Id> = new Set(),
+  /**
+   * Shorter nights §2: a person's own account comes with the first question
+   * put to them, whatever it is about. Person id → their account clue's id.
+   * Empty walks every account as a question of its own, as M9 did.
+   */
+  ride: ReadonlyMap<Id, Id> = new Map(),
 ): number {
   const groups = new Map<string, Group>();
   const want = new Set(wanted.map((c) => c.id));
@@ -195,10 +201,36 @@ export function walkPar(
     g.fetches.add(c.id);
     if (want.has(c.id) && !inHand.has(c.id)) g.gains.add(c.id);
   }
+  // Every other question to the same person fetches their account too, and
+  // gains it where the route wants it. Only a question the route already
+  // wants is lengthened by it: a question wanted for nothing else is the
+  // account's own question, and that group is there already.
+  if (ride.size > 0) {
+    const byId = new Map(findable.map((c) => [c.id, c]));
+    for (const g of groups.values()) {
+      // A confrontation is not a question: it needs the account in hand already.
+      if (!g.isAsk || [...g.fetches].every((id) => id.startsWith('confront'))) continue;
+      const personId = g.key.slice('ask:'.length).split('|')[0] as Id;
+      const account = ride.get(personId);
+      const clue = account === undefined ? undefined : byId.get(account);
+      if (!clue || groupKey(clue) === g.key) continue;
+      g.fetches.add(clue.id);
+      if (g.gains.size > 0 && want.has(clue.id) && !inHand.has(clue.id)) g.gains.add(clue.id);
+    }
+  }
   const list = [...groups.values()].filter((g) => g.gains.size > 0);
   const n = list.length;
   if (n === 0) return 0;
   if (n > 20) return Infinity;
+  // A group whose every gain another group also gains is done when that one
+  // is: the account's own question, once any other question to them is asked.
+  const covers = list.map((g, i) => {
+    let m = 0;
+    list.forEach((other, j) => {
+      if (j !== i && [...other.gains].every((id) => g.gains.has(id))) m |= 1 << j;
+    });
+    return m;
+  });
   const openers = list.map((g) => {
     const out = new Set<Id>();
     for (const c of findable) if (c.leadsTo.some((t) => g.fetches.has(t))) out.add(c.id);
@@ -232,7 +264,7 @@ export function walkPar(
         const g = list[i] as Group;
         if (g.placeId !== places[p]) continue;
         if (g.isAsk && !alwaysOpen[i] && (m & (openedBy[i] as number)) === 0) continue;
-        const k = p * span_ + (m | (1 << i));
+        const k = p * span_ + (m | (1 << i) | (covers[i] as number));
         if (seen[k]) continue;
         seen[k] = 1;
         next.push(k);
@@ -564,9 +596,12 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
     lieRoutes.clear();
     for (const [i, d] of build.lieDrafts.entries()) lieRoutes.set(i, routesFor(d.personId, d.ticks, d.claimed, findableCore));
   }
-  const confrontPseudo: Clue[] = confessed.flatMap((d) => {
+  // Shorter nights §1: a confession is one confrontation, and the second
+  // fact goes in the same visit for nothing. M9 walked two, and the par range
+  // still bounds that walk (`SolveSummary.walk`).
+  const pseudoFor = (times: number[]): Clue[] => confessed.flatMap((d) => {
     const at = cast.people.find((p) => p.id === d.personId)?.foundAt ?? L;
-    return [1, 2].map((k) => ({
+    return times.map((k) => ({
       id: `confront${k}:${d.personId}:${d.ticks[0]}`,
       kind: 'account' as const,
       source: { type: 'person' as const, personId: d.personId, topic: k === 1 ? 'put it to them' : 'put it to them again' },
@@ -577,6 +612,8 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
       role: 'spine' as const,
     }));
   });
+  const confrontPseudo = pseudoFor([1]);
+  const confrontPseudoM9 = pseudoFor([1, 2]);
 
   phase('par set');
   /* --- 6. noise: the innocents' secrets, as M7 deals them --------------------- */
@@ -625,6 +662,12 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
 
   const parPlaces = placeIds;
   const inHand = new Set(starting.map((c) => c.id));
+  // Shorter nights §2: every suspect's account rides on the first question.
+  const ride = new Map<Id, Id>(
+    pool.accounts
+      .filter((c) => c.source.type === 'person' && findable.includes(c))
+      .map((c) => [(c.source as { personId: Id }).personId, c.id]),
+  );
   const par = walkPar(
     [...parSet, ...confrontPseudo],
     [...findable, ...confrontPseudo],
@@ -632,8 +675,20 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
     parPlaces,
     input.startId,
     new Set([...confrontPseudo.map((c) => c.id), ...open]),
+    ride,
   );
   if (!Number.isFinite(par)) return fail('the par route cannot be walked');
+  // The walk M9 took, which the tier's par range still bounds: which cases
+  // are dealt does not move, only what the night costs.
+  const walk = walkPar(
+    [...parSet, ...confrontPseudoM9],
+    [...findable, ...confrontPseudoM9],
+    inHand,
+    parPlaces,
+    input.startId,
+    new Set([...confrontPseudoM9.map((c) => c.id), ...open]),
+  );
+  if (!Number.isFinite(walk)) return fail('the par route cannot be walked');
 
   phase('leads and walk');
   /* --- 9. the summary ---------------------------------------------------------- */
@@ -677,6 +732,7 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
     rounds: full.rounds,
     probes: full.probes,
     confessions: confessed.map((d) => d.personId),
+    walk,
   };
 
   phase('summary');

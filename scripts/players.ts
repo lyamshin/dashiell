@@ -7,7 +7,8 @@
 
 import type { Case, Fact, Id, Person, Tick } from '../src/gen/types.js';
 import { TICKS } from '../src/gen/types.js';
-import { establishedFrom, peopleHereNow, type CaseView } from '../src/game/derive.js';
+import { establishedFrom, gameBudget, peopleHereNow, type CaseView } from '../src/game/derive.js';
+import { followUpOf } from '../src/game/reducer.js';
 import type { choicesFor } from '../src/game/choices.js';
 import { allChoices } from '../src/game/choices.js';
 import { leadingTheory } from '../src/game/voice/reactive.js';
@@ -171,12 +172,21 @@ export function reasonPicker(): Picker {
     }
     // 1. A fact in hand that the solver says breaks what somebody said: put
     // it to them if they are here, walk to them if they are not.
+    // Shorter nights §1: a second fact goes in the same visit for nothing, so
+    // a first confrontation with only one fact in hand can wait while there
+    // is other work: `deferred` is taken when there is none.
+    let deferred: { command: string; marked: boolean } | null = null;
     if (kase.logic) {
       const said = saidRecords(view, state);
       const hereIds = new Set(here.map((p) => p.id));
       const stC = solveNotebook(view, state);
       const windowC = establishedFrom(view, state.found, state.accounts).deathTicks;
-      for (const person of columnPeople(view)) {
+      // Shorter nights §1: right after a fact landed, a second one goes to
+      // the same person for nothing. Them first; a paid confrontation with
+      // anybody else would close it.
+      const follow = followUpOf(view, state);
+      const order = columnPeople(view).sort((a, b) => Number(b.id === follow?.personId) - Number(a.id === follow?.personId));
+      for (const person of order) {
         if (!state.accounts.includes(person.id)) continue;
         // Only somebody the grid still has open at the crime's half hours:
         // breaking a story the notebook has no use for is a half hour lost.
@@ -224,6 +234,26 @@ export function reasonPicker(): Picker {
             if (!res.yes) continue;
             const pick = res.rules.find((id) => facts.has(id) && !put.has(`${person.id}|${id}`));
             if (!pick) continue;
+            const landed = (state.confronts ?? []).some((r) => r.personId === person.id && r.outcome !== 'wrong');
+            // It waits only while there is time to come back for it.
+            const left = gameBudget(kase) - state.actionsUsed;
+            if (!landed && process.env.REASON_NO_WAIT !== '1' && left > Number(process.env.REASON_WAIT_LEFT ?? 3)) {
+              const second = contradicts(kase, unused.filter((id) => id !== pick), { personId: person.id, ...claim }, { confessed, soft });
+              if (!second.yes || !second.rules.some((id) => facts.has(id) && id !== pick)) {
+                if (deferred === null) {
+                  if (hereIds.has(person.id)) {
+                    const clue = view.findableById.get(pick) as Clue;
+                    const part = partsOf(clue).findIndex((_, i) => partBreaks(view, unused, person.id, pick, i, claim, confessed));
+                    if (part >= 0) deferred = { command: `put ${partRef(pick, part)} to ${person.surname}`, marked: false };
+                  } else {
+                    const where = view.placeById.get(person.foundAt ?? '')?.shortName;
+                    const go = options.find((c) => c.command === `go ${where}`);
+                    if (go) deferred = { command: go.command, marked: go.lead };
+                  }
+                }
+                continue;
+              }
+            }
             if (hereIds.has(person.id)) {
               // The picker offers one fact at a time: the part of the line
               // the solver's proof rests on.
@@ -264,26 +294,54 @@ export function reasonPicker(): Picker {
     };
     // 2. A marked question or search in this room.
     const markedHere = notConfront.filter((c) => c.lead && !c.command.startsWith('go ') && worth(c.command));
-    if (markedHere.length > 0) return pick(markedHere[0] as (typeof options)[number]);
+    if (markedHere.length > 0) {
+      const first = markedHere[0] as (typeof options)[number];
+      // Shorter nights §2: a lead to somebody's evening is taken by any first
+      // question to them. Ask them about somebody the grid still has open.
+      const m = /^ask (.+) about that evening$/.exec(first.command);
+      const who = m ? here.find((p) => p.surname === m[1]) : undefined;
+      if (kase.logic && who && !state.accounts.includes(who.id)) {
+        const st1 = solveNotebook(view, state);
+        const w1 = establishedFrom(view, state.found, state.accounts).deathTicks;
+        const open1 = columnPeople(view).filter(
+          (p) => p.id !== who.id && (w1.length === 0 || w1.some((t) => placesAt(st1, p.id, t).length > 1)),
+        );
+        for (const target of [...open1, view.victim]) {
+          const c = notConfront.find((x) => x.command === `ask ${who.surname} about ${target.surname}` && x.minutes > 0);
+          if (c && !asked.has(c.command)) return pick(c);
+        }
+      }
+      return pick(first);
+    }
     // 3. The room, once.
     const search = notConfront.find((c) => c.command.startsWith('examine ') && !c.done);
     if (search && !(state.searched ?? []).includes(state.at)) return pick(search);
-    // 3b. A room a lead points at.
     const VARIANT = process.env.REASON_VARIANT ?? 'g';
     const markedGo0 = notConfront.filter((c) => c.lead && c.command.startsWith('go ') && worth(c.command));
-    if (VARIANT !== 'b' && VARIANT !== 'f' && markedGo0.length > 0) return pick(markedGo0[0] as (typeof options)[number]);
+    const early = process.env.REASON_ACCOUNTS_EARLY === '1';
+    // 3b. A room a lead points at (after the evenings here, shorter nights).
+    if (!early && VARIANT !== 'b' && VARIANT !== 'f' && markedGo0.length > 0) return pick(markedGo0[0] as (typeof options)[number]);
+    // 3c. A confrontation that waited for a second fact, once the marks here
+    // and the room are done (shorter nights §1).
+    const takeDeferred = (): { command: string; marked: boolean } | null => {
+      if (deferred === null) return null;
+      const m = /^put (\S+)(?: part \d+)? to (.+)$/.exec(deferred.command);
+      if (m) {
+        const who = view.kase.people.find((p) => p.surname === m[2]);
+        if (who) put.add(`${who.id}|${m[1]}`);
+      }
+      return deferred;
+    };
+    if (process.env.REASON_DEFER_LATE !== '1') {
+      const d = takeDeferred();
+      if (d) return d;
+    }
     // 4. The evening of anybody here whose crime half hour is still open, and
     // 5. what the people here saw of the people whose cell is still open.
     const st = kase.logic ? solveNotebook(view, state) : null;
     const window = establishedFrom(view, state.found, state.accounts).deathTicks;
     const open = (id: Id): boolean =>
       st === null || window.length === 0 || window.some((t) => placesAt(st, id, t).length > 1);
-    for (const person of here) {
-      if (person.kind === 'suspect' && open(person.id)) {
-        const c = notConfront.find((x) => x.command === `ask ${person.surname} about that evening`);
-        if (c && c.minutes > 0) return pick(c);
-      }
-    }
     const standing = new Set(
       saidRecords(view, state)
         .filter((x) => x.outcome === 'second-lie')
@@ -299,6 +357,26 @@ export function reasonPicker(): Picker {
       .filter((p) => (open(p.id) && couldBe(p.id)) || standing.has(p.id))
       .sort((a, b) => Number(standing.has(b.id)) - Number(standing.has(a.id)));
     const askedOf = (who: Person): number => [...asked].filter((c) => c.startsWith(`ask ${who.surname} about `)).length;
+    // 4. The evening of anybody here whose crime half hour is still open.
+    // Shorter nights §2: it comes with the first question, so the question
+    // is about somebody else the grid still has open, and the evening rides
+    // along; their evening alone only when there is nobody to ask about.
+    for (const person of here) {
+      if (person.kind !== 'suspect' || !open(person.id) || state.accounts.includes(person.id)) continue;
+      if (kase.logic) {
+        for (const target of [...openSuspects, view.victim]) {
+          if (target.id === person.id) continue;
+          const c = notConfront.find((x) => x.command === `ask ${person.surname} about ${target.surname}` && x.minutes > 0);
+          if (c && !asked.has(c.command)) return pick(c);
+        }
+      }
+      const c = notConfront.find((x) => x.command === `ask ${person.surname} about that evening`);
+      if (c && c.minutes > 0) return pick(c);
+    }
+    // 3b. A room a lead points at. Shorter nights §2: after the evenings of
+    // the people standing here, which cost nothing extra now that they come
+    // with a question worth asking anyway.
+    if (early && VARIANT !== 'b' && VARIANT !== 'f' && markedGo0.length > 0) return pick(markedGo0[0] as (typeof options)[number]);
     // 4b. The evening of anybody in the notebook who could still have been in
     // the room it happened in: the notebook says where they are found.
     if (kase.logic && process.env.REASON_VARIANT !== 'e') {
@@ -323,6 +401,10 @@ export function reasonPicker(): Picker {
         const c = notConfront.find((x) => x.command === `ask ${person.surname} about ${target.surname}` && x.minutes > 0);
         if (c && !asked.has(c.command)) return pick(c);
       }
+    }
+    if (process.env.REASON_DEFER_LATE === '1') {
+      const d = takeDeferred();
+      if (d) return d;
     }
     // 6. A marked room, then a room with somebody not yet asked, then anywhere new.
     const markedGo = notConfront.filter((c) => c.lead && c.command.startsWith('go '));

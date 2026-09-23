@@ -533,5 +533,65 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "fol-046",
+    "deck": "followup",
+    "text": "“Now you. Where were you tonight, start to finish?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "fol-047",
+    "deck": "followup",
+    "text": "“And your own evening? Walk me through it.”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "fol-048",
+    "deck": "followup",
+    "text": "“All right. And you, tonight?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "fol-049",
+    "deck": "followup",
+    "text": "“And where were you, all evening?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "tuned"
+  },
+  {
+    "id": "fol-050",
+    "deck": "followup",
+    "text": "“Your turn. Where did the evening take you?”",
+    "tags": {
+      "part": "open",
+      "family": "evening",
+      "order": "later"
+    },
+    "motifs": [],
+    "status": "tuned"
   }
 ]

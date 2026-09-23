@@ -475,11 +475,20 @@ export interface SolveSummary {
   rounds: number;
   probes: number;
   /**
-   * Innocents whose confession the par route needs: each is two
-   * confrontations (two actions, counted in par) with two independent facts
-   * that break the lie, which the par set holds.
+   * Innocents whose confession the par route needs. Shorter nights: each is
+   * one confrontation (one action, counted in par) and a second fact put in
+   * the same visit, free; the par set holds two independent facts that break
+   * the lie.
    */
   confessions: Id[];
+  /**
+   * Shorter nights: the par route walked the way M9 walked it — every account
+   * its own question, every confession two confrontations. The tier's par
+   * range (`DeductionDials.par`) bounds this number, so which cases are dealt
+   * is what it was; `Case.par` is the shorter walk the night is budgeted on.
+   * Absent on a case dealt before shorter nights, where it is `Case.par`.
+   */
+  walk?: number;
 }
 
 /** Everything M9 adds to a case. */

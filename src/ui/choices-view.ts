@@ -93,7 +93,10 @@ function renderPicker(group: OfferedGroup, opts: ChoicesOptions): HTMLElement {
   picker.append(
     el('p', {
       class: 'note',
-      text: `Which fact do you read ${whose}? ${cost === 'free' ? 'It costs nothing.' : `Each costs ${cost}.`} If it does not touch what ${whose} told you, the time is gone all the same.`,
+      // Shorter nights §1: the second fact of the same confrontation.
+      text: group.follow
+        ? `Which other fact do you read ${whose}? It costs nothing. If it does not touch what ${whose} told you, that is the end of it for now, and the story stands.`
+        : `Which fact do you read ${whose}? ${cost === 'free' ? 'It costs nothing.' : `Each costs ${cost}.`} If it does not touch what ${whose} told you, the time is gone all the same.`,
     }),
   );
   if ((group.reference ?? []).length > 0) {

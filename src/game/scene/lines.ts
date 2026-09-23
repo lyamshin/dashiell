@@ -107,3 +107,14 @@ export const APPROACH: string[] = ['I went over to {name}.', 'I sat down across 
 
 /** Somebody already spoken to this visit, asked again. */
 export const APPROACH_AGAIN: string[] = ['I turned back to {name}.', 'I had another question for {name}.', 'I wasn’t finished with {name}.'];
+
+/**
+ * Shorter nights §1: the second fact, put in the same breath as the first.
+ * The detective's own line, before he says what the fact is.
+ */
+export const FOLLOW_ON: string[] = [
+  'I didn’t give {name} long with it. “There’s something else,” I said.',
+  'I let that sit, and then I turned the page. “And there’s this,” I said.',
+  'I didn’t close the notebook. “I’m not done,” I said.',
+  '“That’s one thing,” I said. I had another.',
+];

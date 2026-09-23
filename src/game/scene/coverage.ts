@@ -89,7 +89,7 @@ export function checkPageCoverage(
     if (!has(kind)) add('missing-beat', `${shape} has no ${kind}`);
   }
   if (shape === 'ask' && !has('errand')) {
-    const carried = beats.some((b) => b.kind === 'exchange' && b.tag === 'carried');
+    const carried = beats.some((b) => b.kind === 'exchange' && (b.tag === 'carried' || b.tag === 'continued'));
     if (!carried) add('missing-beat', 'ask has neither a carry line nor a question that carries it');
   }
   if ((shape === 'arrive' || shape === 'search') && !has('thought') && !has('answer')) {
