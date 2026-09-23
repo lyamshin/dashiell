@@ -17,7 +17,7 @@ import { pronounOf } from './voice/cast.js';
 import { countWords } from './voice/page.js';
 import type { Verdict } from './scoring.js';
 import type { Block, OfferedGroup, Page, RunState } from './types.js';
-import { EMPTY_ROOM, HELP_LINES, PRESENCE_LEAD } from './voice-data.js';
+import { EMPTY_ROOM, HELP_LINES, LIE_RULE, LIE_RULE_NOTE, PRESENCE_LEAD } from './voice-data.js';
 
 const WIDTH = 76;
 
@@ -79,7 +79,10 @@ function renderBlock(block: Block, view: CaseView): string[] {
       ];
     }
     case 'help':
-      return [HELP_LINES.map((l) => `    ${l.command.padEnd(30)}${l.gloss}`).join('\n')];
+      return [
+        HELP_LINES.map((l) => `    ${l.command.padEnd(30)}${l.gloss}`).join('\n'),
+        wrap(`${LIE_RULE} ${LIE_RULE_NOTE}`),
+      ];
   }
 }
 
@@ -252,6 +255,13 @@ export function renderVerdictText(verdict: Verdict): string {
       `  ${field.label.padEnd(26)}${field.given.padEnd(28)}${field.correct ? '✓' : `✗ ${field.truth}`}`,
     );
   }
+  // M9 §5: the crime column, a line a suspect.
+  if (verdict.column.length > 0) {
+    out.push('', `  Where they were at ${verdict.columnTime ?? 'the hour'}:`);
+    for (const c of verdict.column) {
+      out.push(`    ${c.name.padEnd(24)}${c.given.padEnd(28)}${c.correct ? '✓' : `✗ ${c.truth}`}`);
+    }
+  }
   out.push(
     '',
     `  ${verdict.points} of ${verdict.asked} · ${verdict.outcome} · ${verdict.actionsUsed} actions against par ${verdict.par}`,
@@ -259,6 +269,15 @@ export function renderVerdictText(verdict: Verdict): string {
   );
   for (const paragraph of verdict.closing) out.push(wrap(paragraph), '');
   for (const gap of verdict.gaps) out.push(`[gap: ${gap}]`, '');
+  // M9 §8: behind the curtain, the chain of rules that proves each answer.
+  if (verdict.proofs && verdict.proofs.length > 0) {
+    out.push('HOW IT COULD BE KNOWN', '═'.repeat(WIDTH), '');
+    for (const { label, proof } of verdict.proofs) {
+      out.push(wrap(`${label}: ${proof.what}${proof.hypothesis ? ' (it takes trying one answer and seeing it fail)' : ''}`));
+      for (const r of proof.rules) out.push(wrap(`· ${r}`, WIDTH, '    '));
+      out.push('');
+    }
+  }
   return out.join('\n');
 }
 

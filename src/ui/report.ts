@@ -3,7 +3,8 @@
 import type { CaseView } from '../game/derive.js';
 import { gameBudget } from '../game/derive.js';
 import { shapeOf, type TierKey } from '../game/profile.js';
-import { fieldsFor, withAnswer } from '../game/report-form.js';
+import { columnFor, fieldsFor, withAnswer } from '../game/report-form.js';
+import { clock } from '../gen/types.js';
 import type { Verdict } from '../game/scoring.js';
 import { EMPTY_REPORT, type Report, type RunState } from '../game/types.js';
 import { el } from './dom.js';
@@ -49,6 +50,29 @@ export function renderReportForm(
   const built = specs.map((spec) => ({ spec, ui: field(spec.label, spec.options) }));
   for (const f of built) form.append(f.ui.wrap);
 
+  // M9 §5: from Medium up, where every suspect was at the half hour it
+  // happened — the full crime column, scored a cell at a time.
+  const column = columnFor(view);
+  const columnUi = column.map((spec) => ({ spec, ui: field(spec.label, spec.options) }));
+  if (column.length > 0) {
+    const set = el('fieldset', { class: 'report-column' });
+    const legend = el('legend', { text: 'Where everybody was when it happened' });
+    const when = built.find((f) => f.spec.key === 'when');
+    const note = el('p', { class: 'note', text: '' });
+    const paintNote = (): void => {
+      const t = when?.ui.select.value;
+      note.textContent =
+        t !== undefined && t !== ''
+          ? `At ${clock(Number(t) as Parameters<typeof clock>[0])}, by the hour above. One line a person; the DA checks each.`
+          : 'At the half hour it happened. One line a person; the DA checks each.';
+    };
+    when?.ui.select.addEventListener('change', paintNote);
+    paintNote();
+    set.append(legend, note);
+    for (const f of columnUi) set.append(f.ui.wrap);
+    form.append(set);
+  }
+
   const submit = el('button', { class: 'open-case', type: 'submit', text: 'File it' });
   form.append(el('div', { class: 'after' }, submit));
 
@@ -57,6 +81,11 @@ export function renderReportForm(
     let report: Report = { ...EMPTY_REPORT };
     for (const f of built) {
       report = withAnswer(report, f.spec.key, f.ui.select.value || null);
+    }
+    if (columnUi.length > 0) {
+      const col: Record<string, string | null> = {};
+      for (const f of columnUi) col[f.spec.personId] = f.ui.select.value || null;
+      report = { ...report, column: col };
     }
     onFile(report);
   });
@@ -146,6 +175,21 @@ export function renderVerdict(
     table.append(row);
   }
   wrap.append(table);
+  // M9 §5: the column, a row a suspect.
+  if (verdict.column.length > 0) {
+    wrap.append(el('h3', { class: 'verdict-column-head', text: `Where they were at ${verdict.columnTime ?? 'the hour'}` }));
+    const col = el('div', { class: 'verdict verdict--column' });
+    for (const c of verdict.column) {
+      const row = el('div', { class: `verdict-row${c.correct ? '' : ' wrong'}` });
+      row.append(
+        el('span', {}, c.name),
+        el('span', { class: 'given' }, c.correct ? c.given : `${c.given} — it was ${c.truth}`),
+        el('span', { class: 'mark', text: c.correct ? '✓' : '✗' }),
+      );
+      col.append(row);
+    }
+    wrap.append(col);
+  }
 
   wrap.append(
     el('p', { class: 'score', text: `${verdict.points} out of ${verdict.asked}.` }),
@@ -183,6 +227,22 @@ export function renderVerdict(
   });
   const curtain = disclosure('ending-curtain', 'Look behind the curtain', (panel) => {
     panel.classList.add('ending-curtain');
+    // M9 §8: the rule chain that proves each answer, before the whole sheet.
+    if (verdict.proofs && verdict.proofs.length > 0) {
+      panel.append(el('h3', { text: 'How it could be known' }));
+      for (const { label, proof } of verdict.proofs) {
+        const block = el('div', { class: 'proof' });
+        block.append(
+          el('p', { class: 'proof-what' }, el('strong', { text: `${label}. ` }), proof.what,
+            ...(proof.hypothesis ? [' It takes trying one answer and seeing it fail.'] : [])),
+        );
+        const list = el('ol', { class: 'proof-rules' });
+        for (const r of proof.rules) list.append(el('li', { text: r }));
+        block.append(list);
+        panel.append(block);
+      }
+      panel.append(el('h3', { text: 'The whole sheet' }));
+    }
     panel.append(el('pre', { text: endings.truthSheet() }));
   });
   wrap.append(

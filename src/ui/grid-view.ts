@@ -18,12 +18,14 @@
  */
 
 import type { Id } from '../gen/types.js';
-import type { GridCell, GridEntry, GridPlace, GridRow, GridView, MarkAction } from '../game/grid.js';
+import type { GridCell, GridDescription, GridEntry, GridPlace, GridRow, GridView, MarkAction } from '../game/grid.js';
 import { el } from './dom.js';
 
 type Selection =
   | { kind: 'cell'; personId: Id; tick: number }
-  | { kind: 'column'; tick: number };
+  | { kind: 'column'; tick: number }
+  /** M9: a stranger's sighting, to read and to link. */
+  | { kind: 'desc'; key: string };
 
 /** What the grid remembers between redraws. The book owns it, so a new page keeps it. */
 export interface GridUi {
@@ -42,6 +44,8 @@ export interface GridHandlers {
   grid: () => GridView;
   onMark: (personId: Id, tick: number, action: MarkAction) => void;
   onPerson: (personId: Id) => void;
+  /** M9 §2: link a stranger's sighting to a person, or unlink it. Free. */
+  onLink?: (key: string, personId: Id | null) => void;
 }
 
 export function renderGridSection(ui: GridUi, h: GridHandlers): HTMLElement {
@@ -112,6 +116,26 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
     labels.append(label);
   }
   head.append(marks, labels);
+  // M9: a watcher's count sits on the place's column, under the hours.
+  if (grid.counts.length > 0) {
+    const counted = el('tr', { class: 'dgrid-counts' }, el('th', { class: 'dgrid-corner', scope: 'row', text: 'counted' }));
+    for (const t of grid.ticks) {
+      const here = grid.counts.filter((c) => c.tick === t.tick);
+      const th = el('th', { class: `dgrid-count${band.has(t.tick) ? ' in-band' : ''}` });
+      for (const c of here) {
+        th.append(
+          el('span', {
+            class: 'dgrid-countchip',
+            style: `--pc: var(--place-${placeById.get(c.placeId)?.slot ?? 0})`,
+            title: `${placeById.get(c.placeId)?.shortName ?? c.placeId}: ${c.count} besides the one who works there`,
+            text: `${placeById.get(c.placeId)?.abbrev ?? c.placeId} ${c.count}`,
+          }),
+        );
+      }
+      counted.append(th);
+    }
+    head.append(counted);
+  }
   table.append(head);
 
   const bodyRow = (row: GridRow): HTMLElement => {
@@ -182,6 +206,78 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
   for (const row of grid.rows) main.append(bodyRow(row));
   table.append(main);
 
+  // M9 §2: anchor-timed sightings wait in a margin row under the anchor's name
+  // until the notebook has its hour; strangers' sightings sit in rows of their
+  // own until the player links them to somebody.
+  if (grid.margins.length > 0 || grid.descriptions.length > 0) {
+    const extra = el('tbody', { class: 'dgrid-margins' });
+    for (const m of grid.margins) {
+      const tr = el('tr', { class: 'dgrid-row dgrid-row--margin' });
+      const hours = m.ticks.length > 0 ? `at ${m.ticks.map((t) => grid.ticks[t]?.label ?? '').join(' or ')}` : 'hour not known';
+      tr.append(
+        el('th', { class: 'dgrid-name', scope: 'row' }, el('span', { class: 'dgrid-surname', text: `◆ ${m.name}` }), el('span', { class: 'dgrid-role', text: hours })),
+      );
+      const td = el('td', { class: 'dgrid-margincell', colspan: String(grid.ticks.length) });
+      for (const e of m.entries) {
+        const place = placeById.get(e.placeId);
+        const who = nameById.get(e.personId) ?? e.personId;
+        td.append(
+          el(
+            'span',
+            { class: 'dchip dchip--witness dchip--margin', style: `--pc: var(--place-${place?.slot ?? 0})` },
+            el('span', { class: 'dchip-name', text: `${who} · ${place?.abbrev ?? e.placeId}` }),
+            ...(e.by ? [el('sup', { class: 'dchip-by', text: (nameById.get(e.by) ?? e.by).charAt(0) })] : []),
+          ),
+        );
+      }
+      tr.append(td);
+      extra.append(tr);
+    }
+    const byText = new Map<string, GridDescription[]>();
+    for (const d of grid.descriptions) byText.set(d.text, [...(byText.get(d.text) ?? []), d]);
+    for (const [text, ds] of byText) {
+      const tr = el('tr', { class: 'dgrid-row dgrid-row--desc' });
+      tr.append(
+        el('th', { class: 'dgrid-name', scope: 'row' }, el('span', { class: 'dgrid-surname', text: 'somebody who fits' }), el('span', { class: 'dgrid-role', text })),
+      );
+      for (const t of grid.ticks) {
+        const here = ds.filter((d) => d.tick === t.tick);
+        const picked = here.some((d) => ui.selected?.kind === 'desc' && ui.selected.key === d.key);
+        const td = el('td', { class: `dgrid-cell${band.has(t.tick) ? ' in-band' : ''}${picked ? ' picked' : ''}${here.length === 0 ? ' empty' : ''}` });
+        if (here.length > 0) {
+          const d = here[0] as GridDescription;
+          const b = el('button', {
+            type: 'button',
+            class: 'dgrid-cellbtn',
+            'aria-label': `Somebody who fits ${text}, ${t.clock}: at ${placeById.get(d.placeId)?.shortName ?? ''}${
+              d.linkedTo ? `, linked by you to ${nameById.get(d.linkedTo) ?? ''}` : ', not linked to anybody'
+            }`,
+          });
+          for (const x of here) {
+            const place = placeById.get(x.placeId);
+            b.append(
+              el(
+                'span',
+                { class: 'dchip dchip--described', style: `--pc: var(--place-${place?.slot ?? 0})` },
+                el('span', { class: 'dchip-name', text: place?.abbrev ?? x.placeId }),
+                el('sup', { class: 'dchip-by', text: `?${x.by ? (nameById.get(x.by) ?? x.by).charAt(0) : ''}` }),
+              ),
+            );
+            if (x.linkedTo) b.append(el('span', { class: 'dpencil dpencil--link', text: `→ ${nameById.get(x.linkedTo) ?? ''}` }));
+          }
+          b.addEventListener('click', () => {
+            ui.selected = picked ? null : { kind: 'desc', key: d.key };
+            redraw();
+          });
+          td.append(b);
+        }
+        tr.append(td);
+      }
+      extra.append(tr);
+    }
+    table.append(extra);
+  }
+
   if (grid.fixtures.length > 0) {
     const fx = el('tbody', { class: 'dgrid-fixtures' });
     const tr = el('tr', { class: 'dgrid-fxrow' });
@@ -216,6 +312,28 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
 
   /* ------------------------------------------------------- the legend */
   out.push(legend(grid));
+
+  /* ------------------------------------------------------ M9: the links */
+  if (grid.links.length > 0) {
+    const ties = el('div', { class: 'dgrid-links' });
+    ties.append(el('h3', { text: 'Rows tied together' }));
+    const ul = el('ul');
+    for (const l of grid.links) {
+      const a = nameById.get(l.a) ?? l.a;
+      const b = nameById.get(l.b) ?? l.b;
+      const span =
+        l.ticks.length >= grid.ticks.length ? 'all evening' : l.ticks.map((t) => grid.ticks[t]?.label ?? '').join(', ');
+      const text =
+        l.kind === 'apart'
+          ? `${a} and ${b}: never in the same place, ${span}`
+          : l.kind === 'together'
+            ? `${a} with ${b}, ${span}`
+            : `${a} says ${a} was with ${b}, ${span} (${a}’s own word)`;
+      ul.append(el('li', { text }));
+    }
+    ties.append(ul);
+    out.push(ties);
+  }
 
   /* -------------------------------------------------------- the rules */
   const rules = el('div', { class: 'dgrid-rules' });
@@ -300,6 +418,9 @@ function chip(g: Group, places: Map<Id, GridPlace>, names: Map<Id, string>): HTM
   });
   if (g.source === 'evidence') span.append(el('span', { class: 'dchip-sq', 'aria-hidden': 'true', text: '▪' }));
   span.append(el('span', { class: 'dchip-name', text: place?.abbrev ?? g.placeId }));
+  if (g.source === 'linked') {
+    span.append(el('sup', { class: 'dchip-by', text: `?${g.by[0] ? (names.get(g.by[0]) ?? g.by[0]).charAt(0) : ''}` }));
+  }
   if (g.source === 'witness' && g.by.length > 0) {
     // Two initials at most on the chip; the detail names every witness.
     const initials = g.by.map((id) => (names.get(id) ?? id).charAt(0));
@@ -323,6 +444,7 @@ function pencil(placeId: Id, not: boolean, places: Map<Id, GridPlace>): HTMLElem
 function sourceWords(e: GridEntry | Group, names: Map<Id, string>): string {
   if (e.source === 'claimed') return 'their own account';
   if (e.source === 'evidence') return 'evidence';
+  if (e.source === 'linked') return 'a stranger seen there, linked here by you';
   const by = 'by' in e && Array.isArray(e.by) ? e.by : e.by ? [e.by as Id] : [];
   return `seen by ${by.map((id) => names.get(id) ?? id).join(' and ') || 'a witness'}`;
 }
@@ -363,7 +485,7 @@ function detailFor(
     ui.selected = null;
     redraw();
   });
-  const tick = grid.ticks[sel.tick];
+  const tick = sel.kind === 'desc' ? undefined : grid.ticks[sel.tick];
   const quote = (clueId: Id, how: string): HTMLElement => {
     const src = grid.sources[clueId];
     return el(
@@ -392,6 +514,35 @@ function detailFor(
     }
     if (lines.length === 0) lines.push(el('p', { class: 'note', text: 'Nothing in the notebook marks this half hour.' }));
     box.append(...lines);
+    return box;
+  }
+
+  if (sel.kind === 'desc') {
+    const d = grid.descriptions.find((x) => x.key === sel.key);
+    if (!d) return null;
+    const t = grid.ticks[d.tick];
+    box.append(el('div', { class: 'dgrid-dhead' }, el('span', { text: `Somebody who fits ${d.text} · ${t?.clock ?? ''}` }), close));
+    box.append(quote(d.clueId, `at ${places.get(d.placeId)?.shortName ?? d.placeId}; the one who saw did not know them`));
+    const pad = el('div', { class: 'dgrid-pencil dgrid-link' });
+    pad.append(el('div', { class: 'dgrid-plabel', text: 'That was … — your link, not a fact. Free. The report is where a wrong one costs.' }));
+    const wrap = el('div', { class: 'dgrid-pline' });
+    for (const r of grid.rows) {
+      if (r.kind === 'victim') continue;
+      const on = d.linkedTo === r.personId;
+      const b = el('button', {
+        type: 'button',
+        class: `dgrid-pbtn dgrid-linkbtn${on ? ' on' : ''}`,
+        'aria-pressed': on ? 'true' : 'false',
+        text: r.name,
+      });
+      b.addEventListener('click', () => {
+        h.onLink?.(d.key, on ? null : r.personId);
+        redraw();
+      });
+      wrap.append(b);
+    }
+    pad.append(wrap);
+    box.append(pad);
     return box;
   }
 
@@ -479,9 +630,15 @@ function legend(grid: GridView): HTMLElement {
     el('li', {}, sample('witness', true, 'K'), ' seen by K'),
     el('li', {}, sample('evidence'), ' evidence'),
     el('li', {}, sample('witness', false, 'K'), ' not there'),
-    el('li', {}, el('span', { class: 'dgrid-keybang', text: '!' }), ' the sources disagree'),
+    ...(grid.flags ? [el('li', {}, el('span', { class: 'dgrid-keybang', text: '!' }), ' the sources disagree')] : []),
     el('li', {}, el('span', { class: 'dpencil', text: 'place' }), ' your pencil, never a fact'),
   );
+  if (grid.descriptions.length > 0) {
+    key.append(
+      el('li', {}, sample('linked', true, '?K'), ' somebody K did not know; tap to link it to a person'),
+    );
+  }
+  if (grid.margins.length > 0) key.append(el('li', {}, el('span', { class: 'dgrid-anchor', text: '◆' }), ' a sighting that waits for its hour'));
   if (grid.window) {
     key.append(el('li', {}, el('span', { class: 'dgrid-keyband' }), ` ${grid.window.label}, as the notebook has it`));
   }

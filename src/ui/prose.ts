@@ -11,7 +11,7 @@ import type { Tick } from '../gen/types.js';
 import type { CaseView, Noun } from '../game/derive.js';
 import { accountRuns, claimedAccount, segmentNouns, spanLabel } from '../game/derive.js';
 import type { Block, Page } from '../game/types.js';
-import { HELP_LINES, HELP_NOTE, EMPTY_ROOM, PRESENCE_LEAD } from '../game/voice-data.js';
+import { HELP_LINES, HELP_NOTE, EMPTY_ROOM, LIE_RULE, LIE_RULE_NOTE, PRESENCE_LEAD } from '../game/voice-data.js';
 import { pronounOf } from '../game/voice/cast.js';
 import { el } from './dom.js';
 import { attachCard, type CardSource } from './hover.js';
@@ -125,7 +125,11 @@ function renderBlock(block: Block, view: CaseView, cardFor: CardFor): HTMLElemen
         tr.append(el('td', { text: line.command }), el('td', { text: line.gloss }));
         table.append(tr);
       }
-      wrap.append(table, el('p', { class: 'note', text: HELP_NOTE }));
+      wrap.append(
+        table,
+        el('p', { class: 'note', text: HELP_NOTE }),
+        el('p', { class: 'note lie-rule' }, el('strong', { text: LIE_RULE }), ` ${LIE_RULE_NOTE}`),
+      );
       return [wrap];
     }
   }
