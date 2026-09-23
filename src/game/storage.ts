@@ -34,6 +34,10 @@ export function deserializeRun(raw: string | null): RunState | null {
     ...run,
     asked: Array.isArray(run.asked) ? run.asked : [],
     searched: Array.isArray(run.searched) ? run.searched : [],
+    // The grid's pencil. Anything that is not a plain object is not a mark.
+    ...(typeof run.marks === 'object' && run.marks !== null && !Array.isArray(run.marks)
+      ? { marks: run.marks }
+      : { marks: undefined }),
   };
 }
 

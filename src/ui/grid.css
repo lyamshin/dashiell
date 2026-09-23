@@ -1,0 +1,701 @@
+/*
+ * "Where they were" — the deduction grid on the notebook page.
+ *
+ * Kept apart from book.css so the grid can be read (and changed) on its own.
+ * The book's restraint holds everywhere but the chips: a place wears its
+ * colour (`--pc`, one of the `--place-N` tokens in book.css) and always its
+ * name. How a chip is drawn says where the claim came from:
+ *
+ *   their own account   dashed outline, no fill
+ *   another's word      tinted, with the witness's initial raised
+ *   evidence            filled deeper, with a square
+ *   not there           the same, struck through
+ *
+ * The player's pencil is italic, grey, wavy-underlined, and never boxed, so
+ * it cannot be taken for anything the notebook holds.
+ */
+
+.dgrid-section {
+  margin: 0 0 0.2rem;
+}
+
+.dgrid-scroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  max-width: 100%;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  -webkit-overflow-scrolling: touch;
+}
+
+.dgrid-scroll:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+table.dgrid {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.64rem;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  min-width: 100%;
+}
+
+table.dgrid th,
+table.dgrid td {
+  padding: 0;
+  font-weight: 400;
+}
+
+table.dgrid button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------ names, sticky */
+
+.dgrid-name,
+.dgrid-corner {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: var(--paper);
+  text-align: left;
+  border-right: 1px solid var(--rule);
+  width: 5.4rem;
+  min-width: 5.4rem;
+  max-width: 5.4rem;
+}
+
+.dgrid-corner {
+  z-index: 3;
+}
+
+.dgrid-name {
+  border-top: 1px solid color-mix(in srgb, var(--rule) 60%, transparent);
+  vertical-align: top;
+}
+
+.dgrid-name {
+  display: table-cell;
+}
+
+.dgrid-name > .dgrid-fold,
+.dgrid-name > .dgrid-who {
+  vertical-align: top;
+}
+
+.dgrid-fold {
+  display: inline-block;
+  width: 0.9rem;
+  padding: 0.25rem 0 0 0.1rem;
+  color: var(--ink-faint);
+  font-size: 0.56rem;
+  text-align: center;
+}
+
+.dgrid-who {
+  display: inline-block;
+  width: calc(100% - 0.95rem);
+  padding: 0.18rem 0.2rem 0.18rem 0;
+  text-align: left;
+  overflow: hidden;
+}
+
+.dgrid-surname {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dgrid-who:hover .dgrid-surname,
+.dgrid-who:focus-visible .dgrid-surname {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.dgrid-role {
+  display: block;
+  font-size: 0.54rem;
+  font-style: italic;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dgrid-row--victim .dgrid-surname {
+  color: var(--ink-soft);
+}
+
+/* ---------------------------------------------------------- the hours */
+
+.dgrid-mark,
+.dgrid-tick {
+  text-align: center;
+  color: var(--ink-faint);
+  min-width: 2.5rem;
+}
+
+.dgrid-mark {
+  height: 0.95rem;
+  vertical-align: bottom;
+}
+
+.dgrid-tick {
+  border-bottom: 1px solid var(--rule);
+}
+
+.dgrid-tickbtn,
+.dgrid-markbtn {
+  display: block;
+  width: 100%;
+  padding: 0.1rem 0;
+}
+
+.dgrid-tickbtn {
+  font-size: 0.62rem;
+}
+
+/* The hour, a shade stronger than the half hour. */
+.dgrid-ticks th:nth-child(even) .dgrid-tickbtn {
+  color: var(--ink-soft);
+}
+
+.dgrid-anchor {
+  color: var(--amber);
+  font-size: 0.6rem;
+}
+
+.dgrid-crime {
+  color: var(--accent);
+  font-size: 0.8rem;
+  line-height: 1;
+  margin-right: 1px;
+}
+
+/* ---------------------------------------------------------- the cells */
+
+.dgrid-cell {
+  position: relative;
+  vertical-align: top;
+  min-width: 2.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--rule) 60%, transparent);
+  border-left: 1px solid color-mix(in srgb, var(--rule) 45%, transparent);
+}
+
+/* An hour starts on an even tick, which is an even child after the name. */
+.dgrid-row .dgrid-cell:nth-child(even) {
+  border-left-color: var(--rule);
+}
+
+.dgrid-cellbtn {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  width: 100%;
+  min-height: 2.1rem;
+  padding: 2px 2px 3px;
+  text-align: center;
+}
+
+.dgrid-cellbtn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* The notebook's window, which may be wider than the truth. */
+.in-band {
+  background: color-mix(in srgb, var(--amber) 14%, var(--paper));
+}
+
+.dgrid-cell.conflict {
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+
+.dgrid-bang {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  color: var(--accent);
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+.dgrid-cell.picked {
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+.dgrid-cell.lit,
+.dgrid-mark.lit,
+.dgrid-tick.lit {
+  background: color-mix(in srgb, var(--amber) 34%, var(--paper));
+}
+
+.dgrid-cell.lit {
+  box-shadow: inset 0 0 0 2px var(--amber);
+}
+
+.dgrid-tick.picked,
+.dgrid-mark.picked {
+  color: var(--ink);
+}
+
+.dgrid-tick.picked .dgrid-tickbtn {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.dgrid-life {
+  font-style: italic;
+  font-size: 0.56rem;
+  color: var(--ink-faint);
+}
+
+.dgrid-life--window {
+  color: var(--amber);
+  font-style: normal;
+}
+
+.dgrid-life--after {
+  color: var(--ink-soft);
+}
+
+/* A folded row: the name, and a thin strip of the evening. */
+tr.collapsed .dgrid-cellbtn {
+  min-height: 0.8rem;
+}
+
+tr.collapsed .dgrid-role {
+  display: none;
+}
+
+tr.collapsed .dgrid-surname {
+  color: var(--ink-faint);
+}
+
+/* ------------------------------------------------------------- chips */
+
+.dchip {
+  display: block;
+  border: 1px solid var(--pc);
+  border-radius: 3px;
+  padding: 0 2px 1px;
+  font-size: 0.6rem;
+  line-height: 1.25;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.dchip--claimed {
+  border-style: dashed;
+  background: transparent;
+}
+
+.dchip--witness {
+  background: color-mix(in srgb, var(--pc) 22%, var(--paper));
+}
+
+.dchip--evidence {
+  border-width: 1.5px;
+  background: color-mix(in srgb, var(--pc) 42%, var(--paper));
+}
+
+.dchip--not {
+  color: var(--ink-soft);
+}
+
+.dchip--not .dchip-name {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.dchip-sq {
+  margin-right: 1px;
+  color: var(--ink-soft);
+}
+
+.dchip-by {
+  font-size: 0.48rem;
+  line-height: 1;
+  vertical-align: 0.3em;
+  margin-left: 1px;
+  color: var(--ink-soft);
+}
+
+/*
+ * A wide screen: the whole evening across the notebook page. The grid takes
+ * a little of the page's margin on both sides, the names narrow, and the
+ * chips tighten, so twelve half hours fit at 1280 without a scroll. Narrower
+ * than that, the grid scrolls inside itself and the names stay put.
+ */
+@media (min-width: 900px) {
+  /*
+   * The notebook's body scrolls, so it clips anything that pokes out of it.
+   * Its box reaches into the page margin instead, padded back so every line
+   * of text stays exactly where it was; only the grid uses the extra room.
+   */
+  .page--notebook .body {
+    margin-left: -1.5rem;
+    margin-right: -1.9rem;
+    padding-left: 1.5rem;
+    padding-right: 2.3rem;
+  }
+  .dgrid-section {
+    margin-left: -1.5rem;
+    margin-right: -2.1rem;
+  }
+  table.dgrid {
+    font-size: 0.58rem;
+  }
+  .dgrid-name,
+  .dgrid-corner {
+    width: 4.1rem;
+    min-width: 4.1rem;
+    max-width: 4.1rem;
+  }
+  .dgrid-surname {
+    font-size: 0.66rem;
+  }
+  .dgrid-role {
+    font-size: 0.5rem;
+  }
+  .dgrid-mark,
+  .dgrid-tick,
+  .dgrid-cell {
+    min-width: 1.75rem;
+  }
+  .dgrid-cellbtn {
+    padding: 2px 1px 3px;
+  }
+  .dchip {
+    font-size: 0.55rem;
+    padding: 0 1px 1px;
+  }
+  .dpencil {
+    font-size: 0.58rem;
+  }
+  .dgrid-life {
+    font-size: 0.5rem;
+  }
+}
+
+/* -------------------------------------------------------- the pencil */
+
+.dpencil {
+  display: block;
+  font-style: italic;
+  font-size: 0.64rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  text-decoration: underline wavy color-mix(in srgb, var(--ink-faint) 70%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  padding-bottom: 2px;
+}
+
+.dpencil::before {
+  content: '✎\00a0';
+  font-style: normal;
+  font-size: 0.55rem;
+  text-decoration: none;
+  color: var(--ink-faint);
+}
+
+.dpencil--not {
+  text-decoration: line-through;
+  text-decoration-color: var(--ink-soft);
+}
+
+/* ----------------------------------------------------- the fixtures */
+
+.dgrid-fxrow td {
+  border-top: 1px solid var(--rule);
+}
+
+/* The toggle spans the row and sticks to the left edge while the hours scroll. */
+.dgrid-fxbtn {
+  position: sticky;
+  left: 0;
+  display: inline-block;
+  text-align: left;
+  padding: 0.3rem 0.25rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+/* -------------------------------------------------------- the detail */
+
+.dgrid-detail {
+  border: 1px solid var(--rule);
+  border-top: 0;
+  padding: 0.45rem 0.6rem 0.55rem;
+  font-size: 0.82rem;
+  background: var(--paper);
+}
+
+.dgrid-dhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.dgrid-close {
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--ink-faint);
+  cursor: pointer;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.dgrid-dnote {
+  margin: 0.15rem 0;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.dgrid-dnote--bang {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.dgrid-src {
+  margin: 0.3rem 0;
+}
+
+.dgrid-src .nb-record {
+  margin-left: 0;
+}
+
+.dgrid-srcby {
+  margin-left: 0.7rem;
+  font-size: 0.74rem;
+  color: var(--ink-faint);
+}
+
+.dgrid-pencil {
+  margin-top: 0.5rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed var(--rule);
+}
+
+.dgrid-plabel {
+  font-style: italic;
+  color: var(--ink-faint);
+  font-size: 0.74rem;
+  margin-bottom: 0.2rem;
+}
+
+.dgrid-pline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0.2rem 0;
+}
+
+.dgrid-pkind {
+  width: 3.4rem;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+
+.dgrid-pbtn {
+  font: inherit;
+  font-style: italic;
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  background: none;
+  border: 1px solid var(--pc, var(--rule));
+  border-radius: 3px;
+  padding: 0.1rem 0.4rem;
+  min-height: 32px;
+  cursor: pointer;
+}
+
+.dgrid-pbtn.on {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--pc, var(--rule)) 24%, var(--paper));
+}
+
+.dgrid-pbtn--not.on {
+  text-decoration: line-through;
+}
+
+.dgrid-rub {
+  margin-top: 0.2rem;
+  border-style: dashed;
+  border-color: var(--rule);
+}
+
+@media (max-width: 600px) {
+  .dgrid-pbtn,
+  .dgrid-close {
+    min-height: 44px;
+  }
+  .dgrid-pkind {
+    width: 100%;
+  }
+}
+
+/* -------------------------------------------------------- the legend */
+
+.dgrid-legend {
+  margin: 0.45rem 0 0;
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+}
+
+.dgrid-places,
+.dgrid-key {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 0.8rem;
+}
+
+.dgrid-places li.unused {
+  color: var(--ink-faint);
+}
+
+.dgrid-places li.scene {
+  color: var(--ink);
+}
+
+.dgrid-scene {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.dgrid-swatch {
+  display: inline-block;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 2px;
+  background: var(--pc);
+  margin-right: 0.25rem;
+  vertical-align: -0.05rem;
+}
+
+.dgrid-abbr {
+  font-variant: small-caps;
+  color: var(--ink-faint);
+  margin-right: 0.1rem;
+}
+
+.dgrid-key {
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+}
+
+.dgrid-key li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dgrid-key .dchip,
+.dgrid-key .dpencil {
+  display: inline-block;
+}
+
+.dgrid-keybang {
+  color: var(--accent);
+}
+
+.dgrid-keyband {
+  display: inline-block;
+  width: 1.2rem;
+  height: 0.7rem;
+  background: color-mix(in srgb, var(--amber) 14%, var(--paper));
+  border: 1px solid var(--rule);
+}
+
+/* --------------------------------------------------------- the rules */
+
+.dgrid-rules h3 {
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 400;
+  margin: 0.7rem 0 0.2rem;
+}
+
+.dgrid-rules ol {
+  margin: 0;
+  padding-left: 1.4rem;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+.dgrid-rule {
+  font: inherit;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  padding: 0.08rem 0.2rem;
+  margin-left: -0.2rem;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.dgrid-rule:hover,
+.dgrid-rule:focus-visible {
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 2px;
+}
+
+.dgrid-rule.on {
+  background: color-mix(in srgb, var(--amber) 30%, var(--paper));
+}
+
+/* ----------------------------------------------- the entry, turned to */
+
+.nb-entry:focus {
+  outline: none;
+}
+
+.nb-flash {
+  animation: nb-flash 1.6s ease-out;
+}
+
+@keyframes nb-flash {
+  from {
+    background: color-mix(in srgb, var(--amber) 35%, var(--paper));
+  }
+  to {
+    background: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nb-flash {
+    animation: none;
+    background: color-mix(in srgb, var(--amber) 20%, var(--paper));
+  }
+}
