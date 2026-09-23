@@ -87,11 +87,46 @@ This one rule makes the puzzle solvable by reasoning instead of luck. The player
 Placements come in forms that need combining. Each form is a new clue shape, and the grid shows each one honestly.
 
 1. **Anchor-relative time.** "I saw Hanrahan go up the stairs on Ninth just as the El went over." The sighting has no clock time. It lands on the grid only once the player knows when the El ran, from another clue. Until then, it sits in a margin row under the anchor's name.
-2. **Description instead of a name.** A witness who doesn't know the person describes them: "a woman in her thirties, turning a coin over her knuckles." Strangers describe and acquaintances name, using the acquaintance data the cast already has. The player links a description to a person when the notebook holds enough to match, meaning the portrait, sex, age band and trade. It's a tap on the grid entry, "That was Kreuzer," and it's free. A wrong link is allowed, and the report is where it costs.
+2. **Description instead of a name, sometimes.** *(Designer's ruling: "SOMETIMES. It should be a roll as to whether they know them.")* Whether a witness knows the person they saw is rolled per case, as part of a real acquaintance graph (see "Who knows whom" below). A witness who knows the person names them. One who doesn't describes them: "a woman in her thirties, turning a coin over her knuckles." The player links a description to a person when the notebook holds enough to match, meaning the portrait, sex, age band and trade. It's a free tap on the grid entry, "That was Kreuzer." A wrong link is allowed, and the report is where it costs. Descriptions come in from Medium, where about a third of sightings are of strangers. At Hard-boiled it's about half.
 3. **Absence.** "Nobody came up those stairs between nine and eleven except the landlady." It's a negative fact covering a place and a span, and it clears anyone who claimed to be there, or catches them.
 4. **Direct placements stay,** but fewer. At the crime's half hour, no innocent is cleared by a single direct statement from a single source above Coddled. Clearing takes two pieces: an account plus a corroborating sighting, a sighting plus an anchor, or an absence plus a claim.
 
 **Tiering.** Raw and Coddled keep today's direct placements, so the first runs stay short and plain. Poached adds lies about secrets and the confront verb. Soft-boiled adds anchor-relative times. Medium adds descriptions. Hard-boiled has all of it.
+
+## Who knows whom
+
+*(Designer: "There is an odd feeling that everyone knows everyone here and introduces them in the strangest way imaginable.")*
+
+Today every witness knows every suspect by full name and relation, and speaks as if reading from a file. For example: "Hochstetter, Grasso's tenant, would know about Dandridge, Grasso's business partner." A neighbourhood isn't like that. Some people know each other, most know a few faces, and plenty are strangers.
+
+**The acquaintance graph.** Each case gets a graph, rolled from what the case already has:
+
+- **Ties.** Relationships to the victim and to each other: tenant and landlord, employer, partner, family, debtor and lender.
+- **Places.** Regulars at the same place over the evening know each other by sight. Watchers know the regulars of their own place by name.
+- **Trade.** A bartender knows drinkers; a doorman knows the building's tenants.
+- **A roll** on top of all this for everyone else: most pairs are strangers, and some know each other by sight only.
+
+Each edge has a strength:
+
+| strength | how the witness refers to the person |
+|---|---|
+| **by name** | the name: "Nora Hanrahan" |
+| **by relation** | "Sweeney's secretary", "my landlord", "the fellow who runs the garage" |
+| **by sight** | "the tall one who drinks at the end of the bar", "the woman from the fourth floor" |
+| **stranger** | a description |
+
+**How people are introduced.**
+
+- **A witness introduces people the way they know them.** That means their own relation to the person, not the person's relation to the victim. A tenant says "my landlord", a bartender says "one of my regulars", and a stranger gives a description.
+- **The detective learns names from the people who know them,** and the notebook records the name once a knower has said it. Until then, the notebook uses the witness's own words.
+- **At most one appositive per sentence.** No "X, Y's A, would know about Z, Y's B." A person's relation to the victim is stated once, when it's first learned, and after that they are just their name.
+- **Nobody hands the detective a list.** A witness who doesn't know someone says so ("Never heard of her."), and that's itself a small fact: it's evidence about who knows whom.
+
+**What it changes elsewhere.**
+
+- Bridges say who to ask in terms of who would know: "Callahan knows her regulars. If Grasso drank here, Callahan would know his name."
+- Asking someone about a person they don't know gets a short, honest "Don't know her," which is free on a repeat.
+- The solver treats knowing and not knowing as data. A person who claims not to know someone they have a tie to is lying about themselves, which the lie rule allows.
 
 ## 3. A verb: confront
 
@@ -167,7 +202,7 @@ The DA scores each question. The closing page says which ones the detective got,
 
 ## 9. Open questions for the designer
 
-1. **Descriptions and linking.** This is the most Obra Dinn thing here, and the most new work. Keep it in M9 or hold it for the next milestone?
+1. **Descriptions and linking.** Decided: sometimes, by a roll on whether the witness knows them. In M9, from Medium up.
 Decided 2026-09-23:
 
 - **Confront.** The culprit never confesses and often lies. Innocents lie too, so a lie is not a tell (§3).
