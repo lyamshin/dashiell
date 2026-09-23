@@ -53,7 +53,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, '..');
 const args = process.argv.slice(2);
 const TABLE = args.includes('--table');
-const DECK_PATH = resolve(args.find((a) => !a.startsWith('--')) ?? join(ROOT, 'content', 'drafts', 'character', 'character.json'));
+const DECK_PATH = resolve(args.find((a) => !a.startsWith('--')) ?? join(ROOT, 'content', 'decks', 'character.json'));
 
 /* ---------------------------------------------------------------- the roles */
 

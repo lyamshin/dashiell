@@ -41,6 +41,8 @@ export function characterSlots(view: CaseView, person: Person): Slots {
     She: she ? 'She' : 'He',
     he: she ? 'she' : 'he',
     she: she ? 'she' : 'he',
+    him: she ? 'her' : 'him',
+    his: she ? 'her' : 'his',
     victim: view.victim.surname,
     ...(place ? { place } : {}),
   };
