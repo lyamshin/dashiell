@@ -1972,7 +1972,7 @@ function rundownParas(
         break;
       }
       case 'sight':
-        said.push(`${Handle} I’ve seen around. I couldn’t tell you ${his} name.`);
+        said.push(`${Handle}, I’ve seen ${OUTDOOR_PLACES.has(stage.at) ? 'around here' : 'in here'}. I couldn’t tell you ${his} name.`);
         break;
       default:
         stranger.push(handle);
@@ -2057,7 +2057,14 @@ const WENT_ON = ['{name} went on.', '{name} kept going.', '{name} wasn’t finis
 const ASKED = new WeakMap<Stage, Set<string>>();
 
 /** The words of a deck-dealt question, quoted; a hand-written one when the deck has none. */
-function familyQuestion(stage: Stage, family: Family, order: 'first' | 'later', gaps: string[]): string {
+function familyQuestion(
+  stage: Stage,
+  family: Family,
+  order: 'first' | 'later',
+  gaps: string[],
+  /** M11 §A.3: after somebody's story of themselves, "Start with you" has already happened. */
+  avoid?: RegExp,
+): string {
   const asked = ASKED.get(stage) ?? new Set<string>();
   ASKED.set(stage, asked);
   const said = (q: string): string => {
@@ -2071,7 +2078,7 @@ function familyQuestion(stage: Stage, family: Family, order: 'first' | 'later', 
     ...(anchor ? { anchor } : {}),
   };
   const is = (c: Card, tag: string, want: string): boolean => tagIs('followup', c, tag, want);
-  const fresh = (c: Card): boolean => !asked.has(fill(c, slots) ?? c.text);
+  const fresh = (c: Card): boolean => !asked.has(fill(c, slots) ?? c.text) && !(avoid?.test(c.text) ?? false);
   const drawn = deal(
     stage,
     'followup',
@@ -2148,7 +2155,7 @@ function tellingParas(
     // as a first question — "Where were you tonight? All of it." — never
     // "Now tell me about you", which they just have.
     const order = scene.self && family.kind === 'evening' ? 'first' : 'later';
-    const q = familyQuestion(stage, family, order, gaps);
+    const q = familyQuestion(stage, family, order, gaps, scene.self ? /\b(?:start with you|about you|yourself)\b/i : undefined);
     parts.question = q;
     paras.push({ text: q, voice: 'exchange' });
   }

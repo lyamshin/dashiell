@@ -138,9 +138,14 @@ function check(kase: Case, f: StoryFact): string | null {
       const tie = killer.dossier?.tie;
       if (tie?.relationshipId !== f.relationshipId) return 'wrong relationship';
       if (f.variant === undefined) return null;
-      const template = RELATIONSHIP_BY_ID[f.relationshipId]?.backstory[f.variant];
+      const rel = RELATIONSHIP_BY_ID[f.relationshipId];
+      const template = rel?.backstory[f.variant];
+      // M11 §B.2: or the same variant said another way, where the case dealt
+      // one relation three times and ran out of variants.
+      const other = rel?.backstoryAlt?.[f.variant]?.[0];
       // M10 §A.5: the template's relation words in the culprit's form.
-      return template !== undefined && fits(genderForms(template, killer.gender), tie.backstory)
+      return (template !== undefined && fits(genderForms(template, killer.gender), tie.backstory)) ||
+        (other !== undefined && fits(genderForms(other, killer.gender), tie.backstory))
         ? null
         : 'wrong backstory';
     }

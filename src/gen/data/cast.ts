@@ -300,7 +300,7 @@ export const RELATIONSHIPS: Relationship[] = [
       ],
       [
         '{person} quietly lent {victim} the money to settle another debt',
-        'I lent {victim} the money to settle another debt. Quietly. Nobody else knew.',
+        'I lent {victim} the money to settle another debt. Nobody else knew about it.',
       ],
       null,
     ],
@@ -328,7 +328,7 @@ export const RELATIONSHIPS: Relationship[] = [
     backstoryAlt: [
       [
         '{person} has been in debt to {victim} since {year}, and lately nobody has asked for it',
-        'I have been in debt to {victim} since {year}. Lately nobody has asked. I don’t like that.',
+        'I have been in debt to {victim} since {year}. Nobody has asked for it lately. I do not like that.',
       ],
       [
         '{person} borrowed from {victim} one bad winter and is still paying it back',
@@ -428,7 +428,7 @@ export const RELATIONSHIPS: Relationship[] = [
       ],
       [
         '{person} is {victim}’s {brother-in-law|sister-in-law}, and somebody says so at every holiday',
-        'I’m {victim}’s {brother-in-law|sister-in-law}. Somebody says so at every holiday.',
+        'I am {victim}’s {brother-in-law|sister-in-law}. Somebody says so at every holiday.',
       ],
       null,
     ],
@@ -591,7 +591,7 @@ export const RELATIONSHIPS: Relationship[] = [
       ],
       [
         '{victim} told {person} to come back for the daughter when there was money',
-        '{victim} told me to come back for the daughter when I had money. I haven’t yet.',
+        '{victim} told me to come back for the daughter when I had money. I have not yet.',
       ],
       null,
     ],
@@ -619,7 +619,7 @@ export const RELATIONSHIPS: Relationship[] = [
     backstoryAlt: [
       [
         '{person} has known {victim} since {year}, from the same block',
-        'I’ve known {victim} since {year}. The same block.',
+        'I have known {victim} since {year}. We come from the same block.',
       ],
       [
         'neither {person} nor {victim} ever left the neighbourhood they grew up in together',
