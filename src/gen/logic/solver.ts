@@ -52,7 +52,7 @@ export interface SolverRule {
    * when a lie is put to them with the facts that break it (spec §3). The
    * culprit has none.
    */
-  when?: { personId: Id; place: Id; ticks: Tick[] };
+  when?: { personId: Id; place: Id; ticks: Tick[]; requires?: Id };
 }
 
 export interface SolverProblem {
@@ -205,8 +205,11 @@ function compile(pr: SolverProblem): Compiled {
     confessions: [],
   };
   const allTicks = (1 << TICKS) - 1;
+  const held = new Set(pr.rules.map((rule) => rule.id));
   pr.rules.forEach((rule, r) => {
     if (rule.when) {
+      // Nobody can be caught in a lie the detective has not heard.
+      if (rule.when.requires !== undefined && !held.has(rule.when.requires)) return;
       const s = sIndex.get(rule.when.personId);
       const p = pIndex.get(rule.when.place);
       if (s === undefined || p === undefined) return;

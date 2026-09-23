@@ -32,6 +32,7 @@ export function frameOf(c: LogicCaseUnderTest): ProblemFrame {
           k.lie.claimed,
           k.lie.ticks,
           (k.responses[1].facts ?? []).filter((f) => f.kind === 'personAt'),
+          k.lie.accountId,
         ),
       ),
   };
@@ -103,7 +104,7 @@ export function checkLogic(c: LogicCaseUnderTest): { ok: boolean; failures: stri
   }
 
   /* --- par, slack, budget -------------------------------------------------- */
-  const [lo, hi] = shape.par;
+  const [lo, hi] = ded.par;
   if (c.par < lo) failures.push(`par ${c.par} is under the floor of ${lo}`);
   if (c.par > hi) failures.push(`par ${c.par} is over the ceiling of ${hi}`);
   const slack = slackFor(shape, ladder, c.par);

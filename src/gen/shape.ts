@@ -114,6 +114,13 @@ export interface DeductionDials {
    * absences, descriptions) rather than as a name at a time.
    */
   pieces: number;
+  /**
+   * Par's floor and ceiling for the logic game. Par is the cheapest rule set
+   * the solver needs, walked (M9 §6), which now takes in accounts, questions
+   * about people and confrontations; `CaseShape.par` stays the M7 range the
+   * no-options case is still held to.
+   */
+  par: [number, number];
 }
 
 export const DEDUCTION_PLAIN: DeductionDials = {
@@ -128,6 +135,7 @@ export const DEDUCTION_PLAIN: DeductionDials = {
   hypothesis: false,
   verdicts: true,
   pieces: 0,
+  par: [3, 6],
 };
 
 export const DEDUCTION_POACHED: DeductionDials = {
@@ -137,6 +145,7 @@ export const DEDUCTION_POACHED: DeductionDials = {
   meansLie: true,
   verdicts: false,
   pieces: 0.3,
+  par: [5, 9],
 };
 
 export const DEDUCTION_SOFT: DeductionDials = {
@@ -145,6 +154,7 @@ export const DEDUCTION_SOFT: DeductionDials = {
   culpritChains: true,
   culpritDepth: 3,
   pieces: 0.5,
+  par: [6, 11],
 };
 
 export const DEDUCTION_MEDIUM: DeductionDials = {
@@ -152,6 +162,7 @@ export const DEDUCTION_MEDIUM: DeductionDials = {
   companions: [1, 1],
   strangers: 1 / 3,
   pieces: 0.6,
+  par: [8, 14],
 };
 
 export const DEDUCTION_HARD: DeductionDials = {
@@ -162,6 +173,7 @@ export const DEDUCTION_HARD: DeductionDials = {
   culpritDepth: 4,
   hypothesis: true,
   pieces: 0.7,
+  par: [10, 22],
 };
 
 export interface Ladder {
@@ -266,6 +278,7 @@ export const CODDLED: CaseShape = {
   proof: ['method'],
   par: [5, 6],
   findable: 17,
+  deduction: { ...DEDUCTION_PLAIN, par: [4, 7] },
 };
 
 export const POACHED: CaseShape = {
@@ -366,6 +379,7 @@ export const OVER_EASY: CaseShape = {
   innocentSecrets: 7,
   par: [14, 18],
   findable: 44,
+  deduction: { ...DEDUCTION_HARD, par: [12, 28] },
 };
 
 export const TIERS: Record<0 | 1 | 2 | 3 | 4 | 5 | 'over-easy', CaseShape> = {

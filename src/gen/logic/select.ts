@@ -98,8 +98,12 @@ export function problemOf(frame: ProblemFrame, clues: Clue[], probe: boolean, ba
 }
 
 /** The confession an innocent's lie comes to on the second confrontation. */
-export function confessionRule(personId: Id, claimed: Id, ticks: Tick[], facts: Fact[]): SolverRule {
-  return { id: `confess:${personId}:${ticks[0]}`, facts, when: { personId, place: claimed, ticks: ticks.slice() } };
+export function confessionRule(personId: Id, claimed: Id, ticks: Tick[], facts: Fact[], accountId: Id): SolverRule {
+  return {
+    id: `confess:${personId}:${ticks[0]}`,
+    facts,
+    when: { personId, place: claimed, ticks: ticks.slice(), requires: accountId },
+  };
 }
 
 function idsOf(st: SolverState, w: Why | null | undefined): Id[] {
@@ -266,6 +270,7 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
   const truthAt = (id: Id, t: Tick): Id | null => (build.truth[id] as (Id | null)[])[t] ?? null;
   const cultLies = build.lieDrafts.filter((d) => d.personId === killerId);
   // An innocent caught twice tells the truth about the span; the culprit never.
+  const accountIdOf = new Map(pool.accounts.map((c) => [(c.source as { personId: Id }).personId, c.id]));
   frame.confessions = build.lieDrafts
     .filter((d) => d.personId !== killerId)
     .map((d) =>
@@ -274,6 +279,7 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
         d.claimed,
         d.ticks,
         d.ticks.map((t) => ({ kind: 'personAt' as const, personId: d.personId, place: truthAt(d.personId, t) as Id, tick: t })),
+        accountIdOf.get(d.personId) as Id,
       ),
     );
 
