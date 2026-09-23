@@ -1,0 +1,103 @@
+/**
+ * Night Hone 1 — the few lines the scene writes in code rather than deals,
+ * and the plain-words tables the realizer reads.
+ *
+ * None of these prints an hour or a name of its own: every name and hour in
+ * them comes from a slot the engine fills from the case.
+ */
+
+import type { Id } from '../../gen/types.js';
+
+/**
+ * A search of one thing, the golden's way: go to it, look at it properly,
+ * then at what is around it. {object} is the thing with "the" on it.
+ */
+export const SEARCH_THING_ACTS: string[] = [
+  'I started with {object}. I looked it over, and then at where it stood and what was around it.',
+  'I went to {object} first and gave it a proper look, then the space around it.',
+  'I took my time over {object}, front and back, and then looked at the place it had been kept.',
+];
+
+/**
+ * A relation to the victim said in plain words, as a sentence about the
+ * person: "Hochstetter rented from Grasso." Keyed by the relationship card
+ * (`src/gen/data/cast.ts`); {V} is the victim's surname. Used where a
+ * sentence already has somebody's relation set off in commas, so that no
+ * sentence stacks two ("Hochstetter, Grasso's tenant, would know about
+ * Dandridge, Grasso's business partner").
+ */
+export const RELATION_PLAIN: Record<Id, string> = {
+  'rel-partner': 'was in business with {V}',
+  'rel-tenant': 'rented from {V}',
+  'rel-landlord': 'collected {V}’s rent',
+  'rel-employee': 'used to work for {V}',
+  'rel-creditor': 'had lent {V} money',
+  'rel-debtor': 'owed {V} money',
+  'rel-lawyer': 'did {V}’s legal work',
+  'rel-cousin': 'was {V}’s cousin',
+  'rel-inlaw': 'had married into {V}’s family',
+  'rel-rival': 'competed with {V} for the same customers',
+  'rel-spouse': 'was married to {V} and living apart',
+  'rel-nurse': 'nursed {V} at home',
+  'rel-secretary': 'kept {V}’s appointments',
+  'rel-engaged': 'was engaged to {V}’s daughter',
+  'rel-childhood': 'had grown up on the same block as {V}',
+  'rel-willed': 'was named in {V}’s will',
+  'rel-witness': 'was going to testify against the people {V} worked for',
+  'rel-customer': 'did business with {V}',
+  'rel-neighbor': 'lived across the airshaft from {V}',
+};
+
+/**
+ * Why somebody in this relation to the victim is worth a question, as a thing
+ * anybody knows (golden page 3: "A man in Sweeney's line keeps a secretary,
+ * and a secretary knows who has an appointment"). No names, no hours: it says
+ * what the relation is good for, and the bridge says the rest.
+ */
+export const RELATION_WHY: Record<Id, string> = {
+  'rel-partner': 'A partner knows where the money goes.',
+  'rel-tenant': 'A tenant hears who comes and goes on the stairs.',
+  'rel-landlord': 'A landlord knows when the rent is late, and why.',
+  'rel-employee': 'People who have been let go remember why.',
+  'rel-creditor': 'People who are owed money keep track of the people who owe it.',
+  'rel-debtor': 'A debt is a reason to come calling.',
+  'rel-lawyer': 'A lawyer knows who stands to gain.',
+  'rel-cousin': 'Family knows things the neighbours don’t.',
+  'rel-inlaw': 'Family by marriage knows things the neighbours don’t.',
+  'rel-rival': 'A rival keeps a close eye on the competition.',
+  'rel-spouse': 'A spouse who has moved out still knows the old habits.',
+  'rel-nurse': 'A private nurse knows who visits the sickroom.',
+  'rel-secretary': 'A secretary knows who has an appointment.',
+  'rel-engaged': 'Somebody marrying into a family learns its business fast.',
+  'rel-childhood': 'Somebody from the same block knows the old stories.',
+  'rel-willed': 'Being named in a will is a reason to take an interest.',
+  'rel-witness': 'A witness against dangerous people has reason to be careful.',
+  'rel-customer': 'A regular customer knows the hours and the habits.',
+  'rel-neighbor': 'A neighbour across the airshaft hears most of what goes on.',
+};
+
+/** Two to five, said. */
+export const COUNT_WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven'];
+
+/**
+ * Places with no roof over them, or none worth the name. A card that sends the
+ * detective into "the room" is not dealt here (`setting: indoor`), and one
+ * written for the open air is not dealt anywhere else.
+ */
+export const OUTDOOR_PLACES: ReadonlySet<Id> = new Set([
+  'rooftop',
+  'back-alley',
+  'pier-shed',
+  'laundry-yard',
+  'corner-newsstand',
+  'cab-stand',
+  'el-platform',
+  'square-benches',
+  'ferry-slip',
+  'subway-kiosk',
+]);
+
+/** Place short names that take a plural verb ("the benches were"). */
+export function isPluralPlace(shortName: string): boolean {
+  return /^the [a-z ]*(?:benches|stairs|steps|docks|stables|rooms|flats|arches|gardens)$/i.test(shortName);
+}

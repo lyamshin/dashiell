@@ -58,7 +58,7 @@ export const lockedRoom: Trope = {
         { type: 'person', personId: b.id, topic: 'the key' },
         ctx.foundAt(b.id),
         [{ kind: 'hadAccess', personId: killer.id, methodId: ctx.method.id }],
-        `${ctx.who(b.id)} says there has only ever been the one key to ${ctx.placeName(L)}, that it lives at ${ctx.placeName(access)}, and that ${ctx.who(killer.id)} had it off the hook that evening.`,
+        `${ctx.who(b.id)} says there has only ever been the one key to ${ctx.placeName(L)}, it lives at ${ctx.placeName(access)}, and ${ctx.who(killer.id)} had it off the hook that evening.`,
       ),
     ];
     return {

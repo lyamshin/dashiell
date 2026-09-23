@@ -755,7 +755,8 @@
     "deck": "thought",
     "text": "So it was {means}. Whoever did it {how}.",
     "tags": {
-      "class": "method"
+      "class": "method",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -765,7 +766,8 @@
     "deck": "thought",
     "text": "It was {means}. That meant whoever did it {how}.",
     "tags": {
-      "class": "method"
+      "class": "method",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -775,7 +777,8 @@
     "deck": "thought",
     "text": "{other} was the means. Whoever did it {how}.",
     "tags": {
-      "class": "method"
+      "class": "method",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -785,7 +788,8 @@
     "deck": "thought",
     "text": "If it was {means}, whoever did it {how} first.",
     "tags": {
-      "class": "method"
+      "class": "method",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -795,7 +799,8 @@
     "deck": "thought",
     "text": "Now I knew how: {means}. Whoever did it {how}.",
     "tags": {
-      "class": "method"
+      "class": "method",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -805,7 +810,8 @@
     "deck": "thought",
     "text": "{other} told me how. Whoever did it {how}.",
     "tags": {
-      "class": "method"
+      "class": "method",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -815,7 +821,8 @@
     "deck": "thought",
     "text": "It was {means}, and it had not happened by accident. Whoever did it {how}.",
     "tags": {
-      "class": "method"
+      "class": "method",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -825,7 +832,8 @@
     "deck": "thought",
     "text": "{other} was how it was done, if not who did it. Whoever it was {how}.",
     "tags": {
-      "class": "method"
+      "class": "method",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -835,7 +843,8 @@
     "deck": "thought",
     "text": "That made it {means}. Whoever did it {how}, and then had to leave {scene} without being stopped.",
     "tags": {
-      "class": "method"
+      "class": "method",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -845,7 +854,8 @@
     "deck": "thought",
     "text": "It was {means}. Whoever did it {how}, and that narrowed who could have.",
     "tags": {
-      "class": "method"
+      "class": "method",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -1497,7 +1507,8 @@
     "deck": "thought",
     "text": "Whatever {place} knew, it was not telling me tonight.",
     "tags": {
-      "class": "nothing"
+      "class": "nothing",
+      "number": "singular"
     },
     "motifs": [],
     "status": "generated"
@@ -1789,7 +1800,7 @@
   {
     "id": "tht-e021",
     "deck": "thought",
-    "text": "What I had on {victim} ran as far as {place}, at {time}. It stopped there.",
+    "text": "What I had on {victim} stopped at {place}, at {time}. After that there was nothing.",
     "tags": {
       "class": "last-seen"
     },
@@ -2115,7 +2126,8 @@
     "deck": "thought",
     "text": "The means was {means}, and whoever did it {how}.",
     "tags": {
-      "class": "method"
+      "class": "method",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -2123,9 +2135,10 @@
   {
     "id": "tht-h002",
     "deck": "thought",
-    "text": "{means}, then. Whoever it was {how}.",
+    "text": "It was {means}, then. Whoever it was {how}.",
     "tags": {
-      "class": "method"
+      "class": "method",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -2133,10 +2146,10 @@
   {
     "id": "tht-h003",
     "deck": "thought",
-    "text": "If that was right, whatever happened to {victim} had happened by about {time}.",
+    "text": "So that was the way in: {means}. Whoever took it {how}.",
     "tags": {
-      "class": "window",
-      "basis": "dead-by"
+      "class": "method",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -2144,10 +2157,10 @@
   {
     "id": "tht-h004",
     "deck": "thought",
-    "text": "That would put {victim} dead by about {time}. Whoever did it was at {scene} before then.",
+    "text": "The way in was {means}. Whoever came for it {how} first.",
     "tags": {
-      "class": "window",
-      "basis": "dead-by"
+      "class": "method",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -2155,10 +2168,10 @@
   {
     "id": "tht-h005",
     "deck": "thought",
-    "text": "If {victim} was dead by about {time}, the rest of the evening could not have mattered to {victim}.",
+    "text": "It came down to {means}. Whoever it was {how}, and knew to.",
     "tags": {
-      "class": "window",
-      "basis": "dead-by"
+      "class": "method",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -2166,10 +2179,10 @@
   {
     "id": "tht-h006",
     "deck": "thought",
-    "text": "So it had happened by about {time}, if that held. Anybody who came to {scene} after that came too late.",
+    "text": "That was how it was done: {means}. Whoever did it {how}.",
     "tags": {
-      "class": "window",
-      "basis": "dead-by"
+      "class": "method",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -2177,10 +2190,10 @@
   {
     "id": "tht-h007",
     "deck": "thought",
-    "text": "{victim} would have been dead by about {time}. That was the latest it could have been.",
+    "text": "It pointed to {means}. Whoever arranged it {how}, and that might have been {victim}.",
     "tags": {
-      "class": "window",
-      "basis": "dead-by"
+      "class": "method",
+      "case": "missing"
     },
     "motifs": [],
     "status": "generated"
@@ -2188,10 +2201,10 @@
   {
     "id": "tht-h008",
     "deck": "thought",
-    "text": "If it was done by about {time}, then whoever did it had been at {scene} by then.",
+    "text": "If it was {means}, somebody {how}: {victim}, or whoever took {victim}.",
     "tags": {
-      "class": "window",
-      "basis": "dead-by"
+      "class": "method",
+      "case": "missing"
     },
     "motifs": [],
     "status": "generated"
@@ -2199,10 +2212,10 @@
   {
     "id": "tht-h009",
     "deck": "thought",
-    "text": "If {victim} was still alive at {time}, whatever happened, happened after.",
+    "text": "The way it was done was {means}. Whoever did it {how}.",
     "tags": {
-      "class": "window",
-      "basis": "alive-at"
+      "class": "method",
+      "case": "missing"
     },
     "motifs": [],
     "status": "generated"
@@ -2210,10 +2223,10 @@
   {
     "id": "tht-h010",
     "deck": "thought",
-    "text": "{victim} would have been alive at {time}, then. That took the hours before it off the table.",
+    "text": "So it was {means}. Whoever did it {how}, whether that was {victim} or somebody else.",
     "tags": {
-      "class": "window",
-      "basis": "alive-at"
+      "class": "method",
+      "case": "missing"
     },
     "motifs": [],
     "status": "generated"
@@ -2221,10 +2234,11 @@
   {
     "id": "tht-h011",
     "deck": "thought",
-    "text": "So {victim} might still have been alive at {time}. It happened later, if it held.",
+    "text": "If that was right, whatever happened to {victim} had happened by about {time}.",
     "tags": {
       "class": "window",
-      "basis": "alive-at"
+      "basis": "dead-by",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -2232,10 +2246,11 @@
   {
     "id": "tht-h012",
     "deck": "thought",
-    "text": "If {victim} was alive at {time}, anybody I could place somewhere else for the rest of the evening was clear of it.",
+    "text": "That would put {victim} dead by about {time}. Whoever did it was at {scene} before then.",
     "tags": {
       "class": "window",
-      "basis": "alive-at"
+      "basis": "dead-by",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -2243,10 +2258,11 @@
   {
     "id": "tht-h013",
     "deck": "thought",
-    "text": "That kept {victim} alive until {time}, if it was right. The earliest it could have happened was after that.",
+    "text": "If {victim} was dead by about {time}, the rest of the evening could not have mattered to {victim}.",
     "tags": {
       "class": "window",
-      "basis": "alive-at"
+      "basis": "dead-by",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -2254,16 +2270,253 @@
   {
     "id": "tht-h014",
     "deck": "thought",
-    "text": "At {time} {victim} would still have been alive. Whoever did it came later than that.",
+    "text": "So it had happened by about {time}, if that held. Anybody who came to {scene} after that came too late.",
     "tags": {
       "class": "window",
-      "basis": "alive-at"
+      "basis": "dead-by",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
   },
   {
     "id": "tht-h015",
+    "deck": "thought",
+    "text": "{victim} would have been dead by about {time}. That was the latest it could have been.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "murder"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h016",
+    "deck": "thought",
+    "text": "If it was done by about {time}, then whoever did it had been at {scene} by then.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "murder"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h017",
+    "deck": "thought",
+    "text": "If {victim} was still alive at {time}, whatever happened, happened after.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "murder"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h018",
+    "deck": "thought",
+    "text": "{victim} would have been alive at {time}, then. That took the hours before it off the table.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "murder"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h019",
+    "deck": "thought",
+    "text": "So {victim} might still have been alive at {time}. It happened later, if it held.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "murder"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h020",
+    "deck": "thought",
+    "text": "If {victim} was alive at {time}, anybody I could place somewhere else for the rest of the evening was clear of it.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "murder"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h021",
+    "deck": "thought",
+    "text": "That kept {victim} alive until {time}, if it was right. The earliest it could have happened was after that.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "murder"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h022",
+    "deck": "thought",
+    "text": "At {time} {victim} would still have been alive. Whoever did it came later than that.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "murder"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h023",
+    "deck": "thought",
+    "text": "At {time} nothing had been touched yet, if that was right. Whatever was taken, it was taken after.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h024",
+    "deck": "thought",
+    "text": "So it was still there at {time}. Whoever took it came later than that.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h025",
+    "deck": "thought",
+    "text": "If nothing had been touched by {time}, the hours that mattered started there.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h026",
+    "deck": "thought",
+    "text": "That put the taking after {time}, if it held. Anybody I could place somewhere else from then on was clear of it.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h027",
+    "deck": "thought",
+    "text": "So it was gone by about {time}, if that held. Whoever took it had been and gone before then.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h028",
+    "deck": "thought",
+    "text": "If it was gone by about {time}, the taking happened before that, and anybody I could place elsewhere until then was clear of it.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h029",
+    "deck": "thought",
+    "text": "That would make it gone by about {time}. The hours before it were the ones that mattered.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h030",
+    "deck": "thought",
+    "text": "By about {time} it was already gone, if that was right. Whoever took it came earlier.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "robbery"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h031",
+    "deck": "thought",
+    "text": "If {subject} was at {place} at {time}, that was one hour of {subject}’s night I could account for.",
+    "tags": {
+      "class": "context",
+      "basis": "placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h032",
+    "deck": "thought",
+    "text": "That put {subject} at {place} at {time}, if it held. It was one hour, and I had a night to fill.",
+    "tags": {
+      "class": "context",
+      "basis": "placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h033",
+    "deck": "thought",
+    "text": "{subject} at {place}, at {time}: one more square of the evening filled in, if it was true.",
+    "tags": {
+      "class": "context",
+      "basis": "placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h034",
+    "deck": "thought",
+    "text": "If it was right, I knew where {subject} was at {time}: {place}. The hours around it were still open.",
+    "tags": {
+      "class": "context",
+      "basis": "placed"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-h035",
     "deck": "thought",
     "text": "{subject} had told me who {subject} was. None of it put {subject} anywhere tonight.",
     "tags": {
@@ -2274,7 +2527,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h016",
+    "id": "tht-h036",
     "deck": "thought",
     "text": "It was {subject}’s own account of {subject}, and it said nothing about where {subject} had been tonight.",
     "tags": {
@@ -2285,7 +2538,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h017",
+    "id": "tht-h037",
     "deck": "thought",
     "text": "That was who {subject} said {subject} was. It was not where {subject} had been, and that was the question.",
     "tags": {
@@ -2296,7 +2549,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h018",
+    "id": "tht-h038",
     "deck": "thought",
     "text": "I knew more about {subject} now, and nothing more about the hours {victim} died in.",
     "tags": {
@@ -2307,7 +2560,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h019",
+    "id": "tht-h039",
     "deck": "thought",
     "text": "{subject} had given me a life story and no evening. The evening was what I needed.",
     "tags": {
@@ -2318,7 +2571,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h020",
+    "id": "tht-h040",
     "deck": "thought",
     "text": "Whatever {subject} was, the account of it did not say where {subject} had been while {victim} died.",
     "tags": {
@@ -2329,7 +2582,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h021",
+    "id": "tht-h041",
     "deck": "thought",
     "text": "Nothing I had so far said otherwise about {subject}’s evening. It would stand until something did.",
     "tags": {
@@ -2340,7 +2593,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h022",
+    "id": "tht-h042",
     "deck": "thought",
     "text": "{subject}’s evening, as {subject} told it, did not cross anything in the notebook yet.",
     "tags": {
@@ -2351,7 +2604,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h023",
+    "id": "tht-h043",
     "deck": "thought",
     "text": "I had {subject}’s evening now. If any of it was a lie, nothing I had could show it yet.",
     "tags": {
@@ -2362,7 +2615,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h024",
+    "id": "tht-h044",
     "deck": "thought",
     "text": "Every hour of {subject}’s evening was down in the book. None of it fought with anything I had.",
     "tags": {
@@ -2373,7 +2626,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h025",
+    "id": "tht-h045",
     "deck": "thought",
     "text": "{subject}’s account held, for now. I would hold it up against whatever I found next.",
     "tags": {
@@ -2384,7 +2637,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h026",
+    "id": "tht-h046",
     "deck": "thought",
     "text": "{subject} had given me the whole evening, hour by hour, and nothing I had contradicted it. That was either true or well prepared.",
     "tags": {
@@ -2395,7 +2648,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h027",
+    "id": "tht-h047",
     "deck": "thought",
     "text": "If {subject} was at {place} at {time}, that was outside the hours that mattered. It cleared nobody and hurt nobody.",
     "tags": {
@@ -2406,7 +2659,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h028",
+    "id": "tht-h048",
     "deck": "thought",
     "text": "{subject} at {place} at {time} would be outside the hours that mattered. It did not help {subject}, and it did not hurt.",
     "tags": {
@@ -2417,7 +2670,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h029",
+    "id": "tht-h049",
     "deck": "thought",
     "text": "At {time} {subject} might have been at {place}, but {time} was not when it happened.",
     "tags": {
@@ -2428,7 +2681,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h030",
+    "id": "tht-h050",
     "deck": "thought",
     "text": "That put {subject} at {place} at {time}, if it was true, and {time} was outside the window.",
     "tags": {
@@ -2439,7 +2692,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h031",
+    "id": "tht-h051",
     "deck": "thought",
     "text": "It could put {subject} at {place} at {time}. The hours that counted were somewhere else.",
     "tags": {
@@ -2450,7 +2703,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h032",
+    "id": "tht-h052",
     "deck": "thought",
     "text": "{time} at {place} would account for {subject} at the wrong hour to matter.",
     "tags": {
@@ -2461,7 +2714,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h033",
+    "id": "tht-h053",
     "deck": "thought",
     "text": "If {subject} was not at {place} at {time}, then {subject} had been somewhere else, and I did not know where yet.",
     "tags": {
@@ -2471,7 +2724,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h034",
+    "id": "tht-h054",
     "deck": "thought",
     "text": "That took {subject} out of {place} at {time}, if it was true. If {subject} ever told me otherwise, I would know.",
     "tags": {
@@ -2481,7 +2734,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h035",
+    "id": "tht-h055",
     "deck": "thought",
     "text": "So {subject} might not have been at {place} at {time}. It was worth remembering if {subject} ever claimed it.",
     "tags": {
@@ -2491,7 +2744,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h036",
+    "id": "tht-h056",
     "deck": "thought",
     "text": "If {subject} wasn’t at {place} at {time}, the question was where {subject} was instead.",
     "tags": {
@@ -2501,7 +2754,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h037",
+    "id": "tht-h057",
     "deck": "thought",
     "text": "{subject} was not at {place} at {time}, by that account. If {subject} said different later, one of them would be lying.",
     "tags": {
@@ -2511,7 +2764,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h038",
+    "id": "tht-h058",
     "deck": "thought",
     "text": "That was one hour {subject} could not claim {place} for, if it held.",
     "tags": {
@@ -2521,7 +2774,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h039",
+    "id": "tht-h059",
     "deck": "thought",
     "text": "If {subject} was not at {place} at {time}, I would want to hear where {subject} says {subject} was.",
     "tags": {
@@ -2531,7 +2784,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h040",
+    "id": "tht-h060",
     "deck": "thought",
     "text": "{subject} would not be able to use {place} to account for {time}, if this was right.",
     "tags": {
@@ -2541,7 +2794,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h041",
+    "id": "tht-h061",
     "deck": "thought",
     "text": "If it held, {place} at {time} was one place {subject} had not been. There were plenty of others.",
     "tags": {
@@ -2551,7 +2804,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h042",
+    "id": "tht-h062",
     "deck": "thought",
     "text": "{subject} was missing from {place} at {time}, if the word was good. Missing from one place meant present at another.",
     "tags": {
@@ -2561,7 +2814,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h043",
+    "id": "tht-h063",
     "deck": "thought",
     "text": "That would take {place} away from {subject} for {time}. I wanted to know what {subject} would put there instead.",
     "tags": {
@@ -2571,7 +2824,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h044",
+    "id": "tht-h064",
     "deck": "thought",
     "text": "If {subject} was not at {place} at {time}, anybody who said {subject} was would have some explaining to do.",
     "tags": {
@@ -2581,7 +2834,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h045",
+    "id": "tht-h065",
     "deck": "thought",
     "text": "{subject} was hiding something. Whether it had anything to do with {victim}, I could not say yet.",
     "tags": {
@@ -2591,7 +2844,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h046",
+    "id": "tht-h066",
     "deck": "thought",
     "text": "Somebody had noticed {subject} keeping a secret. It might have nothing to do with {victim}, and it might.",
     "tags": {
@@ -2601,7 +2854,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h047",
+    "id": "tht-h067",
     "deck": "thought",
     "text": "That was {subject} with something to hide. I did not know yet if it was this.",
     "tags": {
@@ -2611,7 +2864,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h048",
+    "id": "tht-h068",
     "deck": "thought",
     "text": "{subject} had a secret, then. People with secrets lie about their evenings, whatever the secret is.",
     "tags": {
@@ -2621,7 +2874,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h049",
+    "id": "tht-h069",
     "deck": "thought",
     "text": "Whatever {subject} was keeping quiet, somebody had seen the edge of it.",
     "tags": {
@@ -2631,7 +2884,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h050",
+    "id": "tht-h070",
     "deck": "thought",
     "text": "{subject} was keeping something back. I would find out what before I decided whether it mattered.",
     "tags": {
@@ -2641,7 +2894,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h051",
+    "id": "tht-h071",
     "deck": "thought",
     "text": "If {subject} had something to hide, it would show up in how {subject} told the evening.",
     "tags": {
@@ -2651,7 +2904,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h052",
+    "id": "tht-h072",
     "deck": "thought",
     "text": "{subject} had a habit somebody had noticed. Habits like that usually had a reason, and the reason might be {victim}.",
     "tags": {
@@ -2661,7 +2914,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h053",
+    "id": "tht-h073",
     "deck": "thought",
     "text": "It was not proof of anything, but it was {subject} acting like somebody with something to keep quiet.",
     "tags": {
@@ -2671,7 +2924,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h054",
+    "id": "tht-h074",
     "deck": "thought",
     "text": "I put it next to {subject}’s name. A secret was not a murder, but it was a reason to lie.",
     "tags": {
@@ -2681,7 +2934,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h055",
+    "id": "tht-h075",
     "deck": "thought",
     "text": "{subject} was worried about something. I did not know yet whether it was {victim}.",
     "tags": {
@@ -2691,7 +2944,7 @@
     "status": "generated"
   },
   {
-    "id": "tht-h056",
+    "id": "tht-h076",
     "deck": "thought",
     "text": "That was the kind of thing a person does when they are hiding something, and {subject} was doing it.",
     "tags": {

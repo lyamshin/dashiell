@@ -55,6 +55,7 @@ import {
   topicKey,
 } from './derive.js';
 import { planErrand } from './errand.js';
+import { namedIn, proseTexts } from './scene/text.js';
 import { parse } from './parser.js';
 import { DA_AT_THE_DOOR } from './voice-data.js';
 import {
@@ -251,6 +252,7 @@ function stageFor(
     here: peopleHereNow(view, at.at, { clientInOffice: at.clientHere, found: at.foundAfter }),
     memory: state.scene ?? EMPTY_SCENE,
     visitedBefore: [...new Set(state.log.map((p) => p.at))],
+    namedBefore: namedIn(view, state.log.flatMap(proseTexts)),
   };
 }
 

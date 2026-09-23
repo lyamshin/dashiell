@@ -103,6 +103,7 @@ export interface Thought {
     | 'self'
     | 'account'
     | 'outside'
+    | 'placed'
     | 'at'
     | 'not-at';
   via?: 'office' | 'account';
@@ -302,6 +303,9 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
           // scene signature is exactly this fact, from the room or from the
           // one who watched its door.
           out.push({ cls: 'not-robbery', placeId: scene, clueIds: [clue.id] });
+        } else if (kase.act.type === 'robbery') {
+          // The owner somewhere at an hour: one hour of the night accounted for.
+          out.push({ cls: 'context', basis: 'placed', subjectId: p.personId, placeId: p.placeId, tick: t, clueIds: [clue.id] });
         }
         continue;
       }
@@ -335,6 +339,9 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
         // A placement outside the hours that matter: it clears nobody and
         // hurts nobody, and the thought says so about the one it places.
         out.push({ cls: 'context', basis: 'outside', subjectId: p.personId, placeId: p.placeId, tick: t, clueIds: [clue.id] });
+      } else if (p.present && isSuspect(person) && window.length === 0 && !contradicted) {
+        // No hours to hold it against yet: it accounts for one hour of theirs.
+        out.push({ cls: 'context', basis: 'placed', subjectId: p.personId, placeId: p.placeId, tick: t, clueIds: [clue.id] });
       } else if (!p.present && isSuspect(person) && !contradicted) {
         // "…and says Prentiss was not": somebody is off a room at an hour.
         // Nothing yet says where they claim to have been; if they ever claim
@@ -461,7 +468,7 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
           ? { cls: 'window', basis: 'anchor', anchorId: anchor.id, tick: anchor.tick, clueIds: [clue.id] }
           : { cls: 'window', basis: 'coroner', clueIds: [clue.id] },
       );
-    } else if (narrows && kase.act.type === 'murder') {
+    } else if (narrows && kase.act.type !== 'missing') {
       // One end of the night that did not move the coroner's hours still says
       // something plain: dead by this hour, or alive at that one.
       const dead = facts.find((f) => f.kind === 'victimDeadBy');

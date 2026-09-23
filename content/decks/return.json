@@ -44,7 +44,8 @@
     "deck": "return",
     "text": "{place} was where I had left it.",
     "tags": {
-      "placeKind": "public"
+      "placeKind": "public",
+      "number": "singular"
     },
     "motifs": [],
     "status": "generated"
@@ -134,7 +135,8 @@
     "deck": "return",
     "text": "Back at {place}. Whoever watched the room remembered me from before.",
     "tags": {
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -174,7 +176,8 @@
     "deck": "return",
     "text": "I was back at {place}, and the door gave me no trouble.",
     "tags": {
-      "placeKind": "semi"
+      "placeKind": "semi",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -214,7 +217,8 @@
     "deck": "return",
     "text": "{place} again. The door was where I had left it, and just as quiet.",
     "tags": {
-      "placeKind": "private"
+      "placeKind": "private",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -244,7 +248,8 @@
     "deck": "return",
     "text": "I returned to {place}, and the room still felt like somebody else’s.",
     "tags": {
-      "placeKind": "private"
+      "placeKind": "private",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -304,7 +309,8 @@
     "deck": "return",
     "text": "Back at {place}. It still felt like the room where it happened, because it was.",
     "tags": {
-      "placeKind": "scene"
+      "placeKind": "scene",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -334,7 +340,8 @@
     "deck": "return",
     "text": "I was back where it happened. The room didn't get any easier to stand in.",
     "tags": {
-      "placeKind": "scene"
+      "placeKind": "scene",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -364,7 +371,8 @@
     "deck": "return",
     "text": "Back at {place}. It was still the room I had first walked into that night.",
     "tags": {
-      "placeKind": "scene"
+      "placeKind": "scene",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -394,7 +402,8 @@
     "deck": "return",
     "text": "I was back at {place}, and the room still had the shape of what happened in it.",
     "tags": {
-      "placeKind": "scene"
+      "placeKind": "scene",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"

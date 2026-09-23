@@ -1410,7 +1410,7 @@
   {
     "id": "est-129",
     "deck": "establish",
-    "text": "{place} sat under a row of trees along one side of the square, the kind of bench nobody owns and everybody uses. No one was posted to mind who sat there. At this hour the square around it was empty, the paths unlit past the nearest lamp.",
+    "text": "{place} sat under a row of trees along one side of the square, the kind of bench nobody owned and everybody used. No one was posted to mind who sat there. At this hour the square around them was empty, the paths unlit past the nearest lamp.",
     "tags": {
       "place": "square-benches",
       "visit": "first"
@@ -1432,7 +1432,7 @@
   {
     "id": "est-131",
     "deck": "establish",
-    "text": "{place} was public in the plainest sense, open on every side, watched by no one in particular. A lamp at the corner of the square gave what light reached the benches at all. This late they sat empty more often than not.",
+    "text": "{place} were public in the plainest sense, open on every side, watched by no one in particular. A lamp at the corner of the square gave what light reached them at all. This late they sat empty more often than not.",
     "tags": {
       "place": "square-benches",
       "visit": "first"
@@ -1443,7 +1443,7 @@
   {
     "id": "est-132",
     "deck": "establish",
-    "text": "{place} sat among the benches at the square's north end, facing a fountain that had been shut off for the season. Nobody minded who used them, at this hour least of all. The square was still enough to hear a step on the gravel path.",
+    "text": "{place} stood at the square’s north end, facing a fountain that had been shut off for the season. Nobody minded who used them, at this hour least of all. The square was still enough to hear a step on the gravel path.",
     "tags": {
       "place": "square-benches",
       "visit": "first"

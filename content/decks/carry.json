@@ -1116,7 +1116,8 @@
     "text": "It was {name} who pointed me at the room. I wanted a proper look.",
     "tags": {
       "for": "search-room",
-      "lead": "yes"
+      "lead": "yes",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1127,7 +1128,8 @@
     "text": "{name} thought the room was worth searching. I meant to see for myself.",
     "tags": {
       "for": "search-room",
-      "lead": "yes"
+      "lead": "yes",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1149,7 +1151,8 @@
     "text": "{name} had said as much about the room. I wanted to see for myself.",
     "tags": {
       "for": "search-room",
-      "lead": "yes"
+      "lead": "yes",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1171,7 +1174,8 @@
     "text": "{name} had named the room. I wanted it searched, not just looked at.",
     "tags": {
       "for": "search-room",
-      "lead": "yes"
+      "lead": "yes",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1204,7 +1208,8 @@
     "text": "{name} had raised the room. I meant to go through it properly.",
     "tags": {
       "for": "search-room",
-      "lead": "yes"
+      "lead": "yes",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1237,7 +1242,8 @@
     "text": "It wasn’t anybody’s lead. I searched the room all the same.",
     "tags": {
       "for": "search-room",
-      "lead": "no"
+      "lead": "no",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1248,7 +1254,8 @@
     "text": "No one had pointed me at the room. I went through it on my own account.",
     "tags": {
       "for": "search-room",
-      "lead": "no"
+      "lead": "no",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1270,7 +1277,8 @@
     "text": "I hadn’t been sent. I went through the room regardless.",
     "tags": {
       "for": "search-room",
-      "lead": "no"
+      "lead": "no",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1545,7 +1553,8 @@
     "text": "Something I had found pointed at this room. I wanted to look at it myself.",
     "tags": {
       "for": "search-room",
-      "lead": "yes"
+      "lead": "yes",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"
@@ -1556,7 +1565,8 @@
     "text": "The last thing I had turned up pointed here. I went through the room.",
     "tags": {
       "for": "search-room",
-      "lead": "yes"
+      "lead": "yes",
+      "setting": "indoor"
     },
     "motifs": [],
     "status": "generated"

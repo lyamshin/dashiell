@@ -74,7 +74,7 @@ export const insideJob: Trope = {
         { type: 'person', personId: b.id, topic: 'the lock' },
         ctx.foundAt(b.id),
         [{ kind: 'hadAccess', personId: killer.id, methodId: ctx.method.id }],
-        `${ctx.who(b.id)} says the lock at ${ctx.placeName(L)} has never been changed, and that the people who can open it can be counted on one hand.`,
+        `${ctx.who(b.id)} says the lock at ${ctx.placeName(L)} has never been changed, and the people who can open it can be counted on one hand.`,
       ),
     ];
     return {

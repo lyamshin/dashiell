@@ -17,7 +17,18 @@ import type { CaseView } from '../derive.js';
 import { gameBudget } from '../derive.js';
 import type { Page, RunState } from '../types.js';
 import { REQUIRED } from './plan.js';
-import { epithetsIn, hourAgrees, isSubjectless, nameables, namesWithoutClause, sentencesOf } from './text.js';
+import type { Id } from '../../gen/types.js';
+import {
+  appositivesIn,
+  epithetsIn,
+  hourAgrees,
+  isSubjectless,
+  nameables,
+  namedIn,
+  namesWithoutClause,
+  proseTexts,
+  sentencesOf,
+} from './text.js';
 
 export interface CoverageIssue {
   page: number;
@@ -32,7 +43,8 @@ export interface CoverageIssue {
     | 'hour-texture'
     | 'unexplained-name'
     | 'leak'
-    | 'sign-off';
+    | 'sign-off'
+    | 'stacked';
   detail: string;
 }
 
@@ -59,6 +71,8 @@ export function checkPageCoverage(
   page: Page,
   minutes: number,
   recalls: { surname: string; recall: string }[] = [],
+  /** People an earlier page named: said who they are once, and not again. */
+  namedBefore: ReadonlySet<Id> = new Set(),
 ): CoverageIssue[] {
   const shape = page.shape;
   if (shape === undefined || shape === 'office' || shape === 'repeat' || shape === 'other') return [];
@@ -100,7 +114,12 @@ export function checkPageCoverage(
     }
     if (shape !== 'ask' && EXIT_LINE.test(text)) add('leak', text);
   }
-  for (const name of namesWithoutClause(texts, nameables(view))) add('unexplained-name', name);
+  const people = nameables(view);
+  for (const name of namesWithoutClause(texts, people, namedBefore)) add('unexplained-name', name);
+  // The designer's rule: at most one person set off in commas a sentence.
+  for (const text of texts) {
+    for (const s of sentencesOf(text)) if (appositivesIn(s, people) > 1) add('stacked', s);
+  }
   const toClient = beats.some((b) => b.kind === 'exchange' && (b.personIds ?? [])[0] === view.client.id);
   if (toClient && texts.some((t) => /leave town/i.test(t))) add('sign-off', 'a sign-off for a suspect, said to the client');
   return out;
@@ -124,6 +143,7 @@ export function checkRunCoverage(view: CaseView, state: RunState): CoverageRepor
   });
   let used = 0;
   let pages = 0;
+  const named = new Set<Id>();
   let covered = 0;
   let required = 0;
   let written = 0;
@@ -131,6 +151,8 @@ export function checkRunCoverage(view: CaseView, state: RunState): CoverageRepor
   for (const page of state.log) {
     used += page.cost;
     const shape = page.shape;
+    const before = new Set(named);
+    for (const id of namedIn(view, proseTexts(page))) named.add(id);
     if (shape === undefined || shape === 'office' || shape === 'repeat' || shape === 'other') continue;
     pages++;
     for (const b of page.beats ?? []) {
@@ -138,7 +160,7 @@ export function checkRunCoverage(view: CaseView, state: RunState): CoverageRepor
       required++;
       if (b.rendered) written++;
     }
-    const found = checkPageCoverage(view, page, minutesAfter(used, budget), recalls);
+    const found = checkPageCoverage(view, page, minutesAfter(used, budget), recalls, before);
     if (found.length === 0) covered++;
     issues.push(...found);
   }

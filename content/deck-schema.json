@@ -487,7 +487,9 @@
         "because": { "required": true, "values": ["said", "document", "found", "none", "office", "return"] },
         "for": { "required": true, "values": ["ask-person", "ask-thing", "ask-place", "ask-evening", "search-room", "search-thing", "none"] },
         "searched": { "required": false, "default": "any", "values": ["yes", "no", "any"] },
-        "bridged": { "required": false, "default": "any", "values": ["yes", "no", "any"] }
+        "bridged": { "required": false, "default": "any", "values": ["yes", "no", "any"] },
+        "setting": { "required": false, "default": "any", "values": ["indoor", "outdoor"], "extraValues": ["any"] },
+        "number": { "required": false, "default": "any", "values": ["singular"], "extraValues": ["any"] }
       }
     },
     "hours": {
@@ -547,7 +549,9 @@
       "slots": ["detective", "place"],
       "minPerCoverageCell": 10,
       "tags": {
-        "placeKind": { "required": true, "values": ["public", "semi", "private", "scene"] }
+        "placeKind": { "required": true, "values": ["public", "semi", "private", "scene"] },
+        "setting": { "required": false, "default": "any", "values": ["indoor", "outdoor"], "extraValues": ["any"] },
+        "number": { "required": false, "default": "any", "values": ["singular"], "extraValues": ["any"] }
       },
       "coverage": [["placeKind"]]
     },
@@ -583,10 +587,11 @@
       "tags": {
         "class": { "required": true, "values": ["clears", "implicates", "observer-placed", "unmentioned", "contradicts", "motive", "method", "window", "not-robbery", "robbery-shape", "secret", "dead-end", "context", "nothing", "goods", "last-seen", "seen-after", "view", "absent", "hint"] },
         "case": { "required": false, "default": "any", "values": ["murder", "robbery", "missing"], "extraValues": ["any"] },
-        "basis": { "required": false, "default": "any", "values": ["placement", "access", "anchor", "coroner", "dead-by", "alive-at", "self", "account", "outside", "at", "not-at"], "extraValues": ["any"] },
+        "basis": { "required": false, "default": "any", "values": ["placement", "access", "anchor", "coroner", "dead-by", "alive-at", "self", "account", "outside", "placed", "at", "not-at"], "extraValues": ["any"] },
         "via": { "required": false, "default": "any", "values": ["office", "account"], "extraValues": ["any"] },
         "who": { "required": false, "default": "any", "values": ["watcher", "client", "known", "stranger"], "extraValues": ["any"] },
-        "lied": { "required": false, "default": "any", "values": ["yes", "no"], "extraValues": ["any"] }
+        "lied": { "required": false, "default": "any", "values": ["yes", "no"], "extraValues": ["any"] },
+        "number": { "required": false, "default": "any", "values": ["singular"], "extraValues": ["any"] }
       },
       "coverage": [["class"]]
     },
@@ -618,7 +623,8 @@
       "minPerCoverageCell": 10,
       "tags": {
         "for": { "required": true, "values": ["ask-person", "ask-thing", "ask-place", "ask-evening", "ask-self", "search-room", "search-thing"] },
-        "lead": { "required": true, "values": ["yes", "no"] }
+        "lead": { "required": true, "values": ["yes", "no"] },
+        "setting": { "required": false, "default": "any", "values": ["indoor", "outdoor"], "extraValues": ["any"] }
       },
       "coverage": [["for", "lead"]]
     },

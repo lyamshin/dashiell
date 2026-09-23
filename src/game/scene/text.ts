@@ -10,6 +10,8 @@
 
 import type { Id, Mention, Person } from '../../gen/types.js';
 import type { CaseView } from '../derive.js';
+import type { Page } from '../types.js';
+import { RELATION_PLAIN } from './lines.js';
 
 /* ------------------------------------------------------------------ *
  * Sentences.
@@ -28,6 +30,24 @@ export function sentencesOf(text: string): string[] {
     const last = out[out.length - 1];
     if (last !== undefined && ABBREVIATION.test(last)) out[out.length - 1] = `${last} ${part}`;
     else if (part.length > 0) out.push(part);
+  }
+  return out;
+}
+
+/**
+ * Sentences, with somebody's speech kept whole: a quotation of three
+ * sentences is one unit, because a name said inside it is introduced, if at
+ * all, where the speech stops — not in the middle of what they are saying.
+ */
+export function unitsOf(text: string): string[] {
+  const out: string[] = [];
+  let open = false;
+  for (const s of sentencesOf(text)) {
+    if (open && out.length > 0) out[out.length - 1] = `${out[out.length - 1] as string} ${s}`;
+    else out.push(s);
+    const opens = (s.match(/“/g)?.length ?? 0) - (s.match(/”/g)?.length ?? 0);
+    if (opens > 0) open = true;
+    else if (opens < 0) open = false;
   }
   return out;
 }
@@ -305,6 +325,26 @@ export function bandOf(minutes: number): Band {
  * §7 — no unexplained names.
  * ------------------------------------------------------------------ */
 
+/** The words of a page a reader reads as prose, in order. */
+export function proseTexts(page: Page): string[] {
+  const out: string[] = [];
+  for (const b of page.blocks) {
+    if (b.kind === 'prose' || b.kind === 'note') out.push(b.text);
+    if (b.kind === 'presence' && b.text) out.push(b.text);
+  }
+  return out;
+}
+
+/** Who a run of text names, by id: people in the case and the backstory's mentions. */
+export function namedIn(view: CaseView, texts: readonly string[]): Id[] {
+  const all = texts.join(' ');
+  const out: Id[] = [];
+  for (const p of [...view.kase.people, ...view.kase.mentions]) {
+    if (new RegExp(`\\b${p.surname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(all)) out.push(p.id);
+  }
+  return out;
+}
+
 /** Somebody who can be named on a page: a person in the case or a mention. */
 export interface Nameable {
   id: Id;
@@ -313,7 +353,19 @@ export interface Nameable {
   clause: string;
   /** Other words that count as the clause when they are in the sentence. */
   also: string[];
+  /**
+   * The clause as a sentence of its own, in plain words — "Hochstetter rented
+   * from Grasso." — for a sentence that already sets somebody off in commas.
+   */
+  plain: string;
 }
+
+/**
+ * What the detective can see of somebody on first sight — "a woman in her
+ * forties" — counts as saying who they are (golden page 4: "Callahan was
+ * behind the bar, a woman in her forties").
+ */
+export const SIGHT = /\ba (?:wo)?man in (?:his|her) (?:teens|twenties|thirties|forties|fifties|sixties|seventies)\b/i;
 
 function bareRole(role: string): string {
   return role.replace(/^(an?|the)\s+/i, '').replace(/\.$/, '').trim();
@@ -332,17 +384,28 @@ export function nameables(view: CaseView): Nameable[] {
   const out: Nameable[] = [];
   for (const p of view.kase.people) {
     const exempt = p.id === view.victim.id || p.id === view.client.id;
+    const plain = exempt ? '' : plainOf(view, p);
     out.push({
       id: p.id,
       surname: p.surname,
       clause: exempt ? '' : clauseOf(view, p),
-      also: exempt ? [] : alsoOf(p),
+      also: exempt ? [] : [...alsoOf(p), ...(plain ? [plain.replace(/\.$/, '').slice(p.surname.length + 1)] : [])],
+      plain,
     });
   }
   for (const m of view.kase.mentions) {
-    out.push({ id: m.id, surname: m.surname, clause: mentionClause(m), also: [bareRole(m.role)] });
+    const clause = mentionClause(m);
+    out.push({ id: m.id, surname: m.surname, clause, also: [bareRole(m.role)], plain: `${m.surname} was ${clause}.` });
   }
   return out;
+}
+
+/** "Hochstetter rented from Grasso." — the relation in plain words, as a sentence. */
+function plainOf(view: CaseView, p: Person): string {
+  const verb = p.relationshipId ? RELATION_PLAIN[p.relationshipId] : undefined;
+  if (p.kind === 'suspect' && verb) return `${p.surname} ${verb.split('{V}').join(view.victim.surname)}.`;
+  const clause = clauseOf(view, p);
+  return clause.length > 0 ? `${p.surname} was ${clause}.` : '';
 }
 
 export function clauseOf(view: CaseView, p: Person): string {
@@ -379,7 +442,25 @@ function nameRe(surname: string): RegExp {
 function carries(n: Nameable, sentences: string[], i: number): boolean {
   const here = `${sentences[i - 1] ?? ''} ${sentences[i] ?? ''} ${sentences[i + 1] ?? ''}`.toLowerCase();
   if (n.clause.length > 0 && here.includes(n.clause.toLowerCase())) return true;
+  // First sight: what the detective can see of them, in their own sentence.
+  if (SIGHT.test(sentences[i] ?? '')) return true;
   return n.also.some((w) => here.includes(w.toLowerCase()));
+}
+
+/**
+ * How many people a sentence sets off in commas with who they are:
+ * "Hochstetter, Grasso's tenant," and "Dandridge, Grasso's business partner"
+ * are two, and the designer's rule is one at most.
+ */
+export function appositivesIn(sentence: string, people: readonly Nameable[]): number {
+  const bare = sentence.replace(/“[^”]*”/g, '“…”');
+  let n = 0;
+  for (const p of people) {
+    if (p.clause.length === 0) continue;
+    if (bare.includes(`${p.surname}, ${p.clause}`)) n++;
+  }
+  const sight = bare.match(new RegExp(`, ${SIGHT.source}`, 'gi'));
+  return n + (sight?.length ?? 0);
 }
 
 /**
@@ -388,11 +469,16 @@ function carries(n: Nameable, sentences: string[], i: number): boolean {
  * the sentence either side of it, counts — "Sweeney had a secretary.
  * Hanrahan." is the golden's own introduction.
  */
-export function namesWithoutClause(texts: string[], people: Nameable[]): string[] {
-  const sentences = texts.flatMap((t) => sentencesOf(t));
+export function namesWithoutClause(
+  texts: string[],
+  people: Nameable[],
+  /** People an earlier page already said who they were (the designer's rule: once). */
+  namedBefore: ReadonlySet<Id> = new Set(),
+): string[] {
+  const sentences = texts.flatMap((t) => unitsOf(t));
   const out: string[] = [];
   for (const n of people) {
-    if (n.clause.length === 0) continue;
+    if (n.clause.length === 0 || namedBefore.has(n.id)) continue;
     const re = nameRe(n.surname);
     const i = sentences.findIndex((s) => re.test(s));
     if (i < 0) continue;
@@ -406,7 +492,13 @@ export function namesWithoutClause(texts: string[], people: Nameable[]): string[
  * name stands as a noun, and a sentence after it where it is a possessive.
  * `named` carries who the page has already introduced, and is updated.
  */
-export function introduceNames(text: string, people: Nameable[], named: Set<Id>): string {
+export function introduceNames(
+  text: string,
+  people: Nameable[],
+  named: Set<Id>,
+  /** Say who they are in a plain sentence of its own, never in commas (a bridge). */
+  opts: { plainFirst?: boolean } = {},
+): string {
   let out = text;
   for (const n of people) {
     if (n.clause.length === 0 || named.has(n.id)) continue;
@@ -414,23 +506,35 @@ export function introduceNames(text: string, people: Nameable[], named: Set<Id>)
     const m = re.exec(out);
     if (!m) continue;
     named.add(n.id);
-    const sentences = sentencesOf(out);
+    const sentences = unitsOf(out);
     const i = sentences.findIndex((s) => re.test(s));
     if (i >= 0 && carries(n, sentences, i)) continue;
     const at = m.index + n.surname.length;
     const next = out.slice(at);
-    if (/^[’']s\b/.test(next)) {
-      // A possessive cannot take an appositive. Say who they are after the
-      // sentence instead.
-      const s = sentences[i] as string;
-      const pos = out.indexOf(s) + s.length;
-      out = `${out.slice(0, pos)} ${n.surname} was ${n.clause}.${out.slice(pos)}`;
-      continue;
-    }
+    const s = sentences[i] as string;
+    // Inside somebody's speech a clause is the speaker's business, not ours.
+    const inQuote = (out.slice(0, m.index).match(/“/g)?.length ?? 0) > (out.slice(0, m.index).match(/”/g)?.length ?? 0);
     const closes = /^[.!?]/.test(next);
     const comma = /^,/.test(next);
-    const quote = /^[”"]/.test(next);
-    const insert = closes || comma || quote ? `, ${n.clause}` : `, ${n.clause},`;
+    // An appositive only where one reads cleanly — the name opening its
+    // sentence ("Kreuzer, the client, looked up") or closing a clause
+    // ("…it would be Hochstetter, Grasso's tenant.") — and only one a
+    // sentence (the designer's rule). Anywhere else, and in a bridge, who
+    // they are is a plain sentence of its own after the one that names them:
+    // "…named on the face of it" never becomes "Callahan, named in the will,
+    // named on the face of it".
+    const opens = s.replace(/^[“"(]+/, '').startsWith(`${n.surname} `) && !/^[’']s\b/.test(next);
+    const clean = !inQuote && opts.plainFirst !== true && appositivesIn(s, people) === 0 && (opens || closes || comma);
+    if (!clean) {
+      const plain = n.plain.length > 0 ? n.plain : `${n.surname} was ${n.clause}.`;
+      // After the speech closes, when the name was said inside it.
+      const close = inQuote ? out.indexOf('”', m.index) : -1;
+      const sentenceAt = out.indexOf(s);
+      const pos = close >= 0 ? close + 1 : sentenceAt >= 0 ? sentenceAt + s.length : out.length;
+      out = `${out.slice(0, pos)} ${plain}${out.slice(pos)}`;
+      continue;
+    }
+    const insert = closes || comma ? `, ${n.clause}` : `, ${n.clause},`;
     out = `${out.slice(0, at)}${insert}${next}`;
   }
   return out;

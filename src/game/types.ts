@@ -198,7 +198,8 @@ export type BeatKind =
   | 'bridge'
   | 'answer'
   | 'clock'
-  | 'texture';
+  | 'texture'
+  | 'decide';
 
 /**
  * One planned beat, as it went onto the page. The planner's `Beat` carries
@@ -463,6 +464,8 @@ export interface SceneMemory {
   established: Id[];
   /** Lead targets a bridge has named (§6), so the next errand can be short. */
   bridged: Id[];
+  /** Night Hone 1: the visit that has had its room's texture, once a visit. */
+  ambient?: number;
 }
 
 export const EMPTY_SCENE: SceneMemory = {

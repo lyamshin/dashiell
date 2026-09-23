@@ -706,7 +706,7 @@
   {
     "id": "pam-065",
     "deck": "place-ambient",
-    "text": "Packed dirt made the ground, with a drain in the middle, and a smell of lye soap and starch came out through the laundry's back wall.",
+    "text": "The ground was packed dirt with a drain in the middle, and a smell of lye soap and starch came through the laundry’s back wall.",
     "tags": {
       "place": "laundry-yard",
       "band": "any"
@@ -1817,7 +1817,7 @@
   {
     "id": "pam-166",
     "deck": "place-ambient",
-    "text": "Pressed tin overhead had gone brown with smoke, and an exhaust fan high in the rear wall turned slowly, pulling the haze toward it.",
+    "text": "The pressed tin overhead had gone brown with smoke, and an exhaust fan high in the rear wall turned slowly, pulling the haze toward it.",
     "tags": {
       "place": "pool-hall",
       "band": "after-midnight"
@@ -2246,7 +2246,7 @@
   {
     "id": "pam-205",
     "deck": "place-ambient",
-    "text": "Riveted iron columns held up a wooden canopy over the platform, painted a green that had flaked to rust at every joint.",
+    "text": "Iron columns, riveted at every joint, held up a wooden canopy over the platform, and the green paint on them had flaked to rust.",
     "tags": {
       "place": "el-platform",
       "band": "any"
