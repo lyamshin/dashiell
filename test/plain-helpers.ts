@@ -18,6 +18,7 @@ import {
   renderPageText,
   renderVerdictText,
 } from '../src/game/transcript.js';
+import { renderStoryText, storyOf } from '../src/game/story.js';
 
 export interface Labelled {
   where: string;
@@ -55,6 +56,8 @@ export function playerText(seed: number, difficulty: Difficulty, type: CaseType)
   const report = truthReport(view);
   const filed = fileReport(state, report);
   out.push({ where: 'verdict', text: renderVerdictText(scoreReport(view, filed, report)) });
+  // What really happened: the story the closing page tells.
+  out.push({ where: 'story', text: renderStoryText(storyOf(kase)) });
   // The transcript wraps at 76 columns; a term split over a line break is
   // still the term.
   return out.map((l) => ({ where: l.where, text: l.text.replace(/\s+/g, ' ') }));
