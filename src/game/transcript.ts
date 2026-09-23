@@ -64,7 +64,7 @@ function renderBlock(block: Block, view: CaseView): string[] {
       const rows = account
         ? accountRuns(account).filter((r) => r.placeId !== null)
         : block.rows.map((r) => ({ from: r.tick as Tick, to: r.tick as Tick, placeId: r.placeId }));
-      const head = `${personName(view, block.personId)} gives me the evening, and I write it down as told:`;
+      const head = `${personName(view, block.personId)} gave me the evening, and I wrote it down as told:`;
       const they = pronounOf(view.personById.get(block.personId));
       if (rows.length === 0) {
         return [wrap(`${head}\n  ${clock(0 as Tick)} onward: nothing ${they} will say.`)];

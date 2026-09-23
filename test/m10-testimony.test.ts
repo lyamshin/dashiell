@@ -60,16 +60,20 @@ const RUNS: { label: string; view: CaseView; state: RunState }[] = (() => {
   return out;
 })();
 
-/** A find whose clue's own sentence names an hour none of that clue's facts has. */
-function recordOwnHour(view: CaseView, text: string): boolean {
-  return view.kase.findable.some((c) => {
-    const said = c.text.replace(/^Found at [^:]{1,60}:\s*/, '');
-    const head = said.split(/[,.]/)[0] ?? '';
-    if (head.length < 12 || !text.toLowerCase().includes(head.toLowerCase().replace(/ is /, ' was ').replace(/ runs /, ' ran '))) {
-      return false;
-    }
-    const facts = new Set(c.establishes.flatMap((f) => ('tick' in f ? [f.tick] : 'ticks' in f ? f.ticks : [])));
-    return facts.size === 0 || !c.establishes.some((f) => f.kind === 'personAt');
+/**
+ * A find whose clue's own record names the hour the checker flagged, while
+ * none of that clue's facts has it: the generator's sentence, printed as it
+ * stands, not the engine asserting an hour.
+ */
+function recordOwnHour(view: CaseView, page: Page | undefined, detail: string): boolean {
+  const m = /^(\d{1,2}):(\d{2}) PM/.exec(detail);
+  if (!page || !m) return false;
+  const tick = (Number(m[1]) - 6) * 2 + (m[2] === '30' ? 1 : 0);
+  const face = `${m[1]}:${m[2]} PM`;
+  return page.found.some((id) => {
+    const c = view.findableById.get(id);
+    if (!c || !(c.textRecord ?? c.text).includes(face)) return false;
+    return !c.establishes.some((f) => ('tick' in f && f.tick === tick) || ('ticks' in f && f.ticks.includes(tick as never)));
   });
 }
 
@@ -105,7 +109,8 @@ describe('M10: correspondence and coverage with tellings', () => {
         // key-book sentence after the logic game took the placement out of its
         // facts (docs/23-m10-a-notes.md, "Not fixed"). The find prints the
         // generator's sentence as it stands.
-        if (v.rule === 'time-disagrees' && / find$/.test(v.where) && recordOwnHour(r.view, v.text)) {
+        const page = r.state.log.find((p) => p.n === Number(/page (\d+)/.exec(v.where)?.[1]));
+        if (v.rule === 'time-disagrees' && / find$/.test(v.where) && recordOwnHour(r.view, page, v.detail)) {
           generators++;
           continue;
         }

@@ -431,15 +431,22 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         }
         const opened = lines.length > 0 ? push({ text: lines.join(' '), voice: 'presence', beats: [i] }) : null;
         const texts: string[] = opened ? [opened.text] : [];
+        // M10 §A.3: a look round a room he is already in says who is there
+        // once, and only what is new.
+        if (beat.people.length > 0 && beat.people.every((p) => p.seen)) {
+          const text = 'Nobody had moved since I came in.';
+          texts.push(text);
+          push({ text, voice: 'presence', beats: [i] });
+        }
         for (const p of beat.people) {
-          if (p.grouped) continue;
+          if (p.grouped || p.seen) continue;
           const text = presenceLine(stage, p, named);
           texts.push(text);
           push({ text, voice: 'presence', beats: [i] });
         }
         // Night Hone 1 §3: the ones the case has given no reason to single
         // out yet, said together, and named only if the detective knows them.
-        const grouped = beat.people.filter((p) => p.grouped);
+        const grouped = beat.people.filter((p) => p.grouped && !p.seen);
         if (grouped.length > 0) {
           const text = crowdLine(stage, grouped.map((p) => p.personId));
           texts.push(text);
@@ -447,7 +454,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         }
         mark(i, {
           ...(beat.scene ? { tag: beat.scene } : { tag: beat.people.length === 0 ? 'empty' : 'people' }),
-          personIds: beat.people.map((p) => p.personId),
+          personIds: beat.people.filter((p) => !p.seen).map((p) => p.personId),
           ...(grouped.length > 0 ? { grouped: grouped.map((p) => p.personId) } : {}),
           text: texts.join(' '),
         });
@@ -1685,8 +1692,17 @@ function nameReply(stage: Stage, speaker: Person, subject: Person): string {
   return 'I know who you mean. I know the face.';
 }
 
+/** M10: the questions a page has asked, so no page asks one twice. */
+const ASKED = new WeakMap<Stage, Set<string>>();
+
 /** The words of a deck-dealt question, quoted; a hand-written one when the deck has none. */
 function familyQuestion(stage: Stage, family: Family, order: 'first' | 'later', gaps: string[]): string {
+  const asked = ASKED.get(stage) ?? new Set<string>();
+  ASKED.set(stage, asked);
+  const said = (q: string): string => {
+    asked.add(q);
+    return q;
+  };
   const subject = family.subjectId ? stage.view.personById.get(family.subjectId) : undefined;
   const anchor = family.anchorId ? stage.view.anchorById.get(family.anchorId)?.name : undefined;
   const slots: Slots = {
@@ -1694,16 +1710,17 @@ function familyQuestion(stage: Stage, family: Family, order: 'first' | 'later', 
     ...(anchor ? { anchor } : {}),
   };
   const is = (c: Card, tag: string, want: string): boolean => tagIs('followup', c, tag, want);
+  const fresh = (c: Card): boolean => !asked.has(fill(c, slots) ?? c.text);
   const drawn = deal(
     stage,
     'followup',
     [
-      (c) => is(c, 'part', 'open') && tagOf('followup', c, 'family') === family.kind && is(c, 'order', order),
-      (c) => is(c, 'part', 'open') && is(c, 'family', family.kind) && is(c, 'order', order),
+      (c) => fresh(c) && is(c, 'part', 'open') && tagOf('followup', c, 'family') === family.kind && is(c, 'order', order),
+      (c) => fresh(c) && is(c, 'part', 'open') && is(c, 'family', family.kind) && is(c, 'order', order),
     ],
     slots,
   );
-  if (drawn) return drawn.text;
+  if (drawn) return said(drawn.text);
   gaps.push(`no-card: followup has no open question for ${family.kind} × ${order}`);
   const fallback: Record<string, string> = {
     counts: '“Who came in tonight? All of it.”',
@@ -1715,7 +1732,8 @@ function familyQuestion(stage: Stage, family: Family, order: 'first' | 'later', 
     knowing: subject ? `“And ${subject.surname}?”` : '“And the other one?”',
     thing: '“What else?”',
   };
-  return fallback[family.kind] ?? '“What else?”';
+  const plain = fallback[family.kind] ?? '“What else?”';
+  return said(asked.has(plain) ? '“And the rest of it?”' : plain);
 }
 
 /** Words a note may share with its thought and still say something new. */

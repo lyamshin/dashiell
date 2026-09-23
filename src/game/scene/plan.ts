@@ -74,6 +74,11 @@ export interface PresencePerson {
   grouped?: boolean;
   /** Why they matter, when they do: the reason their first sight gives. */
   why?: 'watcher' | 'client' | 'known' | 'lead';
+  /**
+   * M10 §A.3: already described this visit (a look round the room they were
+   * in when he came in). Not described again.
+   */
+  seen?: boolean;
 }
 
 /** Who the detective does about a catch, and how (Night Hone 1 §5). */
@@ -652,10 +657,10 @@ function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
   const taken = new Set<string>();
   for (const person of present) {
     const kept = activities[person.id];
-    const activity =
-      kept !== undefined && kept.visit === memory.visit && kept.placeId === input.at
-        ? kept
-        : chooseActivity(view, person, input.at, input.minutes, memory.visit, input.seed, input.weather, taken);
+    const sameVisit = kept !== undefined && kept.visit === memory.visit && kept.placeId === input.at;
+    const activity = sameVisit
+      ? kept
+      : chooseActivity(view, person, input.at, input.minutes, memory.visit, input.seed, input.weather, taken);
     taken.add(activity.cardId);
     taken.add(doingKey(activity.text, person.surname));
     activities[person.id] = activity;
@@ -672,9 +677,10 @@ function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
       personId: person.id,
       activity,
       firstSight,
-      recall: recall && !grouped,
+      recall: recall && !grouped && !(again && sameVisit),
       ...(grouped ? { grouped: true } : {}),
       ...(reason ? { why: reason } : {}),
+      ...(again && sameVisit && input.action.kind === 'look' ? { seen: true } : {}),
     });
   }
   const mark = sceneMark(view, input.at, again);

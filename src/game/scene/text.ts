@@ -449,7 +449,8 @@ function carries(n: Nameable, sentences: string[], i: number): boolean {
     const s = sentences[k] as string;
     balance += (s.match(/“/g)?.length ?? 0) - (s.match(/”/g)?.length ?? 0);
     if (k >= i && balance <= 0) {
-      after = sentences[k + 1] ?? '';
+      // The clauses the name pass puts after a speech come one a person, in order.
+      after = sentences.slice(k + 1, k + 4).join(' ');
       break;
     }
   }

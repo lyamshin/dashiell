@@ -345,7 +345,8 @@ export function checkTelling(view: CaseView, page: Page): PageViolation[] {
     const fail = (detail: string, text: string): void => {
       out.push({ where, rule: 'telling-untraced', detail, text });
     };
-    const allowed = new Set<string>(b.personIds ?? []);
+    // The victim, whom every page may name (as the thoughts and bridges may).
+    const allowed = new Set<string>([...(b.personIds ?? []), view.victim.id]);
     const clean = (text: string | undefined, part: string): void => {
       if (!text) return;
       for (const t of timesIn(text)) fail(`${part} names an hour (${t})`, text);
