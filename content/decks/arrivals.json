@@ -335,8 +335,7 @@
       "weather": "cold"
     },
     "motifs": [
-      "cold",
-      "clear"
+      "cold"
     ],
     "weather": "cold",
     "status": "generated"
@@ -419,7 +418,7 @@
       "weather": "clear"
     },
     "motifs": [
-      "dawn",
+      "late",
       "radio",
       "traffic"
     ],
@@ -535,7 +534,6 @@
     },
     "motifs": [
       "street",
-      "fog",
       "cold"
     ],
     "weather": "cold",
@@ -611,7 +609,7 @@
   {
     "id": "arr-029",
     "deck": "arrivals",
-    "text": "The block was in full swing, grilles up, a boy stacking crates outside the grocer's. {place} had its door propped for the morning trade.",
+    "text": "The block was in full swing, grilles up, a boy stacking crates outside the grocer’s. The door of {place} was propped open for the morning trade.",
     "tags": {
       "placeKind": "semi",
       "hourBand": "6-8",
@@ -677,7 +675,7 @@
   {
     "id": "arr-033",
     "deck": "arrivals",
-    "text": "The square was near empty, just a few benches holding their regular loiterers. A streetcar rattled through, half lit, nobody aboard.",
+    "text": "The street was nearly empty, with a few men about who had nowhere better to be. A streetcar rattled through, half lit, nobody aboard.",
     "tags": {
       "placeKind": "public",
       "hourBand": "midnight-2",
@@ -692,7 +690,7 @@
   {
     "id": "arr-034",
     "deck": "arrivals",
-    "text": "Rain pocked the empty square, and the fountain basin had gone over its rim. A single cab crossed against the light, wipers going.",
+    "text": "Rain pocked the empty pavement, and the gutters had gone over their edges. A single cab crossed against the light, wipers going.",
     "tags": {
       "placeKind": "public",
       "hourBand": "midnight-2",
@@ -707,7 +705,7 @@
   {
     "id": "arr-035",
     "deck": "arrivals",
-    "text": "Fog softened the square's lamps to a string of pale rings. The benches sat empty, beaded with damp.",
+    "text": "Fog softened the streetlamps to a string of pale rings. Nobody was about, and every railing I touched was beaded with damp.",
     "tags": {
       "placeKind": "public",
       "hourBand": "midnight-2",
@@ -723,14 +721,14 @@
   {
     "id": "arr-036",
     "deck": "arrivals",
-    "text": "The wind came straight across the square with nothing to stop it. Even the pigeons had found somewhere better.",
+    "text": "The wind came straight down the street with nothing to stop it. Even the pigeons had found somewhere better.",
     "tags": {
       "placeKind": "public",
       "hourBand": "midnight-2",
       "weather": "cold"
     },
     "motifs": [
-      "wind",
+      "cold",
       "animals"
     ],
     "status": "generated",
@@ -755,7 +753,7 @@
   {
     "id": "arr-038",
     "deck": "arrivals",
-    "text": "The square's lamps threw long reflections down the wet flagstones. Not a soul was out but a sweeper working the gutter.",
+    "text": "The streetlamps threw long reflections down the wet pavement. Not a soul was out but a sweeper working the gutter.",
     "tags": {
       "placeKind": "public",
       "hourBand": "2-4",
@@ -771,7 +769,7 @@
   {
     "id": "arr-039",
     "deck": "arrivals",
-    "text": "Fog off the river had swallowed the square's far end whole. A foghorn sounded once, a long way off.",
+    "text": "Fog off the river had swallowed the street a block away. A foghorn sounded once, a long way off.",
     "tags": {
       "placeKind": "public",
       "hourBand": "2-4",
@@ -787,7 +785,7 @@
   {
     "id": "arr-040",
     "deck": "arrivals",
-    "text": "The cold had the square to itself. A newsboy's stack sat unguarded under a lamp, weighted down with a brick.",
+    "text": "The cold had the street to itself. A newsboy’s stack sat unguarded under a lamp, weighted down with a brick.",
     "tags": {
       "placeKind": "public",
       "hourBand": "2-4",
@@ -803,7 +801,7 @@
   {
     "id": "arr-041",
     "deck": "arrivals",
-    "text": "The first light caught the square's flagstones and made them look scrubbed. A milk wagon crossed at the far end, iron tires loud on the stone.",
+    "text": "The first light caught the paving stones and made them look scrubbed. A milk wagon crossed at the far end, iron tires loud on the stone.",
     "tags": {
       "placeKind": "public",
       "hourBand": "4-6",
@@ -819,14 +817,13 @@
   {
     "id": "arr-042",
     "deck": "arrivals",
-    "text": "The rain had slacked to a mist, and the square held a handful of early men with their collars up, going nowhere in particular.",
+    "text": "The rain had slacked to a mist, and a handful of early men were about with their collars up, going nowhere in particular.",
     "tags": {
       "placeKind": "public",
       "hourBand": "4-6",
       "weather": "rain"
     },
     "motifs": [
-      "fog",
       "rain",
       "coat"
     ],
@@ -836,7 +833,7 @@
   {
     "id": "arr-043",
     "deck": "arrivals",
-    "text": "The square was still fogged in, though the shapes of the benches were starting to come clear. A bell somewhere tolled the half hour.",
+    "text": "It was still fogged in, though the shapes of things were starting to come clear. A tugboat whistle sounded somewhere out on the river.",
     "tags": {
       "placeKind": "public",
       "hourBand": "4-6",
@@ -852,7 +849,7 @@
   {
     "id": "arr-044",
     "deck": "arrivals",
-    "text": "Ice had skinned over the fountain basin in the square. A lone figure crossed fast, breath trailing behind him.",
+    "text": "Ice had skinned over the puddles in the gutter. A lone figure crossed fast, breath trailing behind him.",
     "tags": {
       "placeKind": "public",
       "hourBand": "4-6",
@@ -868,7 +865,7 @@
   {
     "id": "arr-045",
     "deck": "arrivals",
-    "text": "The square had filled in with the morning crowd, pigeons scattering ahead of every third step. The light was flat and full now.",
+    "text": "The street had filled in with the morning crowd, pigeons scattering ahead of every third step. The light was flat and full now.",
     "tags": {
       "placeKind": "public",
       "hourBand": "6-8",
@@ -885,7 +882,7 @@
   {
     "id": "arr-046",
     "deck": "arrivals",
-    "text": "Umbrellas crossed the square from every direction at once, and the flagstones ran with runoff toward the gutters.",
+    "text": "Umbrellas were crossing from every direction at once, and the pavement ran with water toward the gutters.",
     "tags": {
       "placeKind": "public",
       "hourBand": "6-8",
@@ -901,7 +898,7 @@
   {
     "id": "arr-047",
     "deck": "arrivals",
-    "text": "The fog had burned off the square but hung on over the river behind it. Traffic was starting up in earnest along the avenue.",
+    "text": "The fog had burned off the street but hung on over the river. Traffic was starting up in earnest along the avenue.",
     "tags": {
       "placeKind": "public",
       "hourBand": "6-8",
@@ -918,7 +915,7 @@
   {
     "id": "arr-048",
     "deck": "arrivals",
-    "text": "The square was busy despite the cold, everybody moving fast to stay warm. Steam curled up off the coffee cart at the corner.",
+    "text": "The street was busy despite the cold, everybody moving fast to stay warm. Steam curled up off the coffee cart at the corner.",
     "tags": {
       "placeKind": "public",
       "hourBand": "6-8",
@@ -952,7 +949,7 @@
   {
     "id": "arr-050",
     "deck": "arrivals",
-    "text": "A beat cop crossed the square on the diagonal, unhurried, checking doors as he went. Nothing else moved.",
+    "text": "A beat cop went by on the far side, unhurried, trying doors as he went. Nothing else moved.",
     "tags": {
       "placeKind": "public",
       "hourBand": "midnight-2",
@@ -984,7 +981,7 @@
   {
     "id": "arr-052",
     "deck": "arrivals",
-    "text": "The rain had driven everybody off the square but a man asleep on a bench under yesterday's paper.",
+    "text": "The rain had driven everybody indoors but a man asleep in a doorway under yesterday’s paper.",
     "tags": {
       "placeKind": "public",
       "hourBand": "midnight-2",
@@ -1008,7 +1005,6 @@
       "weather": "cold"
     },
     "motifs": [
-      "fog",
       "cold",
       "door"
     ],
@@ -1018,7 +1014,7 @@
   {
     "id": "arr-054",
     "deck": "arrivals",
-    "text": "The fog muffled the square down to almost nothing, just the click of my own heels on the stone.",
+    "text": "The fog muffled everything down to almost nothing, just the click of my own heels on the stone.",
     "tags": {
       "placeKind": "public",
       "hourBand": "midnight-2",
@@ -1066,7 +1062,7 @@
   {
     "id": "arr-057",
     "deck": "arrivals",
-    "text": "A lone trolley ground through the square, empty and slow, nobody aboard. The rain kept at it steady.",
+    "text": "A lone trolley ground past, empty and slow. The rain kept at it, steady.",
     "tags": {
       "placeKind": "public",
       "hourBand": "2-4",
@@ -1098,7 +1094,7 @@
   {
     "id": "arr-059",
     "deck": "arrivals",
-    "text": "Commuters cut across the square at an angle, everyone late for something. The fountain had been turned back on for the day.",
+    "text": "People on their way to work cut past at an angle, everyone late for something. The street cleaner’s cart had already been by.",
     "tags": {
       "placeKind": "public",
       "hourBand": "6-8",
@@ -1126,5 +1122,215 @@
     ],
     "weather": "cold",
     "status": "generated"
+  },
+  {
+    "id": "arr-061",
+    "deck": "arrivals",
+    "text": "The street in front was empty, and most of the windows above it were dark. Somebody on the second floor had left a radio playing low.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "midnight-2",
+      "weather": "clear"
+    },
+    "motifs": [
+      "street",
+      "window",
+      "radio"
+    ],
+    "status": "generated",
+    "weather": "clear"
+  },
+  {
+    "id": "arr-062",
+    "deck": "arrivals",
+    "text": "It was a clear night and a still one. I could hear my own heels on the pavement going up to the door.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "midnight-2",
+      "weather": "clear"
+    },
+    "motifs": [
+      "quiet",
+      "footsteps",
+      "door"
+    ],
+    "status": "generated",
+    "weather": "clear"
+  },
+  {
+    "id": "arr-063",
+    "deck": "arrivals",
+    "text": "The cold had sent everybody indoors early. The front steps had a skin of frost on them.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "midnight-2",
+      "weather": "cold"
+    },
+    "motifs": [
+      "cold",
+      "stairs"
+    ],
+    "status": "generated",
+    "weather": "cold"
+  },
+  {
+    "id": "arr-064",
+    "deck": "arrivals",
+    "text": "It was cold enough that the doorknob stung my hand through the glove.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "midnight-2",
+      "weather": "cold"
+    },
+    "motifs": [
+      "cold",
+      "hands",
+      "door"
+    ],
+    "status": "generated",
+    "weather": "cold"
+  },
+  {
+    "id": "arr-065",
+    "deck": "arrivals",
+    "text": "The fog had come in off the river and settled between the buildings. I could see the door and not much past it.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "midnight-2",
+      "weather": "fog"
+    },
+    "motifs": [
+      "fog",
+      "door"
+    ],
+    "status": "generated",
+    "weather": "fog"
+  },
+  {
+    "id": "arr-066",
+    "deck": "arrivals",
+    "text": "Rain was dripping off the fire escapes onto the sidewalk. Somebody had left a baby carriage out in it on the stoop.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "midnight-2",
+      "weather": "rain"
+    },
+    "motifs": [
+      "rain",
+      "street"
+    ],
+    "status": "generated",
+    "weather": "rain"
+  },
+  {
+    "id": "arr-067",
+    "deck": "arrivals",
+    "text": "Out in the open the air was clear and still, and there was nobody about but a man walking a dog.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "midnight-2",
+      "weather": "clear"
+    },
+    "motifs": [
+      "street",
+      "animals"
+    ],
+    "status": "generated",
+    "weather": "clear"
+  },
+  {
+    "id": "arr-068",
+    "deck": "arrivals",
+    "text": "The cold was worse out in the open, with nothing to break the wind.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "midnight-2",
+      "weather": "cold"
+    },
+    "motifs": [
+      "cold"
+    ],
+    "status": "generated",
+    "weather": "cold"
+  },
+  {
+    "id": "arr-069",
+    "deck": "arrivals",
+    "text": "Nobody was out in the cold who didn’t have to be. A man went by with his hands deep in his pockets and didn’t look up.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "midnight-2",
+      "weather": "cold"
+    },
+    "motifs": [
+      "cold",
+      "hands"
+    ],
+    "status": "generated",
+    "weather": "cold"
+  },
+  {
+    "id": "arr-070",
+    "deck": "arrivals",
+    "text": "The cold had cleared the place of everybody but me. My breath went up white in front of my face.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "midnight-2",
+      "weather": "cold"
+    },
+    "motifs": [
+      "cold",
+      "breath"
+    ],
+    "status": "generated",
+    "weather": "cold"
+  },
+  {
+    "id": "arr-071",
+    "deck": "arrivals",
+    "text": "Nobody was out. The only sound was a streetlamp buzzing overhead.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "2-4",
+      "weather": "clear"
+    },
+    "motifs": [
+      "quiet",
+      "lamp"
+    ],
+    "status": "generated",
+    "weather": "clear"
+  },
+  {
+    "id": "arr-072",
+    "deck": "arrivals",
+    "text": "Nobody on the block was up yet, or nobody was showing it. The shades were down in every window.",
+    "tags": {
+      "placeKind": "private",
+      "hourBand": "4-6",
+      "weather": "clear"
+    },
+    "motifs": [
+      "window",
+      "quiet"
+    ],
+    "status": "generated",
+    "weather": "clear"
+  },
+  {
+    "id": "arr-073",
+    "deck": "arrivals",
+    "text": "The street was empty except for a man hosing down the sidewalk outside a lunchroom.",
+    "tags": {
+      "placeKind": "public",
+      "hourBand": "4-6",
+      "weather": "clear"
+    },
+    "motifs": [
+      "street",
+      "work"
+    ],
+    "status": "generated",
+    "weather": "clear"
   }
 ]
