@@ -172,7 +172,11 @@ export function buildBriefing(input: BriefingInput): BriefingLine[] {
     `Start with ${pointed.surname}.`,
     brief.pointerPrompt,
   );
-  said(`${brief.points.reason}.`, `${brief.points.reasonSpoken}.`);
+  // A reason drawn from a secret's tell is a finished sentence already ("…and
+  // came out without it."); a motive's is a clause. Only the clause gets a
+  // stop, or the hiring card that quotes it ends on "without it..".
+  const stopped = (s: string): string => (/[.!?]$/.test(s.trim()) ? s.trim() : `${s.trim()}.`);
+  said(stopped(brief.points.reason), stopped(brief.points.reasonSpoken));
 
   // Hone 3 §3. Last, because it reads the whole of what she says at once: the
   // surname once a turn, and after that a pronoun. It runs before `breathe`,

@@ -3707,5 +3707,952 @@
       "beat": "close"
     },
     "status": "generated"
+  },
+  {
+    "id": "STY-350",
+    "deck": "story",
+    "text": "Let me set it down in order.",
+    "tags": {
+      "beat": "open"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-351",
+    "deck": "story",
+    "text": "Start at the beginning, then.",
+    "tags": {
+      "beat": "open"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-352",
+    "deck": "story",
+    "text": "Here it is, from the start.",
+    "tags": {
+      "beat": "open"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-353",
+    "deck": "story",
+    "text": "So this is what happened.",
+    "tags": {
+      "beat": "open"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-354",
+    "deck": "story",
+    "text": "All of it, then, the way it went.",
+    "tags": {
+      "beat": "open"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-355",
+    "deck": "story",
+    "text": "The one who killed {victimFull} was {actorFull}.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "murder"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-356",
+    "deck": "story",
+    "text": "{victimFull} was killed by {actorFull}.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "murder"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-357",
+    "deck": "story",
+    "text": "The one who took {aTaken} from {victimFull} was {actorFull}.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "robbery",
+      "trope": "inside-job"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-358",
+    "deck": "story",
+    "text": "{victim} was {vrole}, and most of the block knew {vhim} by sight.",
+    "tags": {
+      "beat": "vrole"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-359",
+    "deck": "story",
+    "text": "To the block, {victim} was {vrole}.",
+    "tags": {
+      "beat": "vrole"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-360",
+    "deck": "story",
+    "text": "Everybody on the street could have told you who {victim} was: {vrole}.",
+    "tags": {
+      "beat": "vrole"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-361",
+    "deck": "story",
+    "text": "First, {victim}. {vhe} was {vrole}.",
+    "tags": {
+      "beat": "vrole"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-362",
+    "deck": "story",
+    "text": "{victim} was {vrole}. That was how the neighbourhood knew {vhim}.",
+    "tags": {
+      "beat": "vrole"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-363",
+    "deck": "story",
+    "text": "{victim} was {vrole}, which on that block made {vhim} somebody.",
+    "tags": {
+      "beat": "vrole"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-364",
+    "deck": "story",
+    "text": "{victim} was {vrole}, and the whole block knew it.",
+    "tags": {
+      "beat": "vrole"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-365",
+    "deck": "story",
+    "text": "Ask anybody on the block and they would have said {victim} was {vrole}.",
+    "tags": {
+      "beat": "vrole"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-366",
+    "deck": "story",
+    "text": "{victim} was {vrole}. The block knew the name.",
+    "tags": {
+      "beat": "vrole"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-367",
+    "deck": "story",
+    "text": "Most people on the block knew {actor} only as {role}.",
+    "tags": {
+      "beat": "role"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-368",
+    "deck": "story",
+    "text": "{actor} was {role}. Nobody on the block thought much more about {him} than that.",
+    "tags": {
+      "beat": "role"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-369",
+    "deck": "story",
+    "text": "Anybody on the block would have told you {actor} was {role}.",
+    "tags": {
+      "beat": "role"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-370",
+    "deck": "story",
+    "text": "As for {actor}, {he} was {role}.",
+    "tags": {
+      "beat": "role"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-371",
+    "deck": "story",
+    "text": "The block knew {actor} as {role}.",
+    "tags": {
+      "beat": "role"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-372",
+    "deck": "story",
+    "text": "{actor}, for {his} part, was {role}.",
+    "tags": {
+      "beat": "role"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-373",
+    "deck": "story",
+    "text": "{actor} had no work to speak of and lived on what {he} expected to come into one day.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-heir"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-374",
+    "deck": "story",
+    "text": "{actor} was a widow, living comfortably in rooms on the avenue.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-widow"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-375",
+    "deck": "story",
+    "text": "{actor} wrote a society column, which meant going to other people’s parties and writing them up.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-society"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-376",
+    "deck": "story",
+    "text": "{actor} owned most of the buildings on the block.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-blockowner"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-377",
+    "deck": "story",
+    "text": "{actor} practised law, with one clerk to help.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-lawyer"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-378",
+    "deck": "story",
+    "text": "{actor} kept accounts for a living.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-bookkeeper"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-379",
+    "deck": "story",
+    "text": "{actor} nursed private patients in their own homes.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-nurse"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-380",
+    "deck": "story",
+    "text": "{actor} filled and pulled the neighbourhood’s teeth.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-dentist"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-381",
+    "deck": "story",
+    "text": "{actor} took dictation and typed letters for a living.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-secretary"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-382",
+    "deck": "story",
+    "text": "{actor} gave piano lessons for a living.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-piano-teacher"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-383",
+    "deck": "story",
+    "text": "{actor} worked for an insurance company, deciding how much its claims were worth.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-adjuster"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-384",
+    "deck": "story",
+    "text": "{actor} cleaned rooms and changed beds in a hotel.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-chambermaid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-385",
+    "deck": "story",
+    "text": "{actor} loaded and unloaded ships on the waterfront, when there was work.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-longshoreman"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-386",
+    "deck": "story",
+    "text": "{actor} made {his} living with a needle and thread.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-seamstress"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-387",
+    "deck": "story",
+    "text": "{actor} made and mended suits for a living.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-tailor"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-388",
+    "deck": "story",
+    "text": "{actor} worked backstage at a theatre, shifting scenery.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-stagehand"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-389",
+    "deck": "story",
+    "text": "{actor} put telephone calls through on a switchboard.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-switchboard"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-390",
+    "deck": "story",
+    "text": "{actor} ran the hotel at night, from behind the front desk.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-nightman"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-391",
+    "deck": "story",
+    "text": "{actor} danced in the chorus when there was a show to dance in.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-chorus"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-392",
+    "deck": "story",
+    "text": "{actor} worked behind the counter at a pawnshop, writing out the pawn tickets.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-pawnman"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-393",
+    "deck": "story",
+    "text": "{actor} kept the door at a club with no sign on it.",
+    "tags": {
+      "beat": "role",
+      "archetype": "arch-bouncer"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-394",
+    "deck": "story",
+    "text": "{actor} had asked {victim} for more time, and been told there was none left.",
+    "tags": {
+      "beat": "motive-color",
+      "motive": "debt"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-395",
+    "deck": "story",
+    "text": "{actor} had not said a civil word to {victim} in a long time.",
+    "tags": {
+      "beat": "motive-color",
+      "motive": "revenge"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-396",
+    "deck": "story",
+    "text": "{actor} had seen {victim} with {third} more than once, and had said so.",
+    "tags": {
+      "beat": "motive-color",
+      "motive": "jealousy"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-397",
+    "deck": "story",
+    "text": "{victim} came on from {place}, where {vhe} had been at {time}.",
+    "tags": {
+      "beat": "before",
+      "arrived": "yes",
+      "stay": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-398",
+    "deck": "story",
+    "text": "{victim} had spent the time from {time} until {until} at {place}.",
+    "tags": {
+      "beat": "before",
+      "arrived": "yes",
+      "stay": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-399",
+    "deck": "story",
+    "text": "From {time} until {until} {victim} had been at {place}. Then {vhe} went to {scene}.",
+    "tags": {
+      "beat": "before",
+      "arrived": "no",
+      "stay": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-400",
+    "deck": "story",
+    "text": "{actor} was there {span} before {victim}, who arrived at {vtime}.",
+    "tags": {
+      "beat": "arrive",
+      "order": "culprit-first"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-401",
+    "deck": "story",
+    "text": "{victim} got there first, at {vtime}.",
+    "tags": {
+      "beat": "arrive",
+      "order": "victim-first"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-402",
+    "deck": "story",
+    "text": "{victim} arrived at {vtime}, at almost the same time.",
+    "tags": {
+      "beat": "arrive",
+      "order": "together"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-403",
+    "deck": "story",
+    "text": "At {time}, {timing}, it was done.",
+    "tags": {
+      "beat": "moment",
+      "timed": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-404",
+    "deck": "story",
+    "text": "The time was {time}, {timing}.",
+    "tags": {
+      "beat": "moment",
+      "timed": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-405",
+    "deck": "story",
+    "text": "When it happened, it was {time}, {timing}.",
+    "tags": {
+      "beat": "moment",
+      "timed": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-406",
+    "deck": "story",
+    "text": "The time was {time}.",
+    "tags": {
+      "beat": "moment",
+      "timed": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-407",
+    "deck": "story",
+    "text": "When it happened, it was {time}.",
+    "tags": {
+      "beat": "moment",
+      "timed": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-408",
+    "deck": "story",
+    "text": "It was done at {time}.",
+    "tags": {
+      "beat": "moment",
+      "timed": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-409",
+    "deck": "story",
+    "text": "Nobody else was with them.",
+    "tags": {
+      "beat": "alone",
+      "order": "pair"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-410",
+    "deck": "story",
+    "text": "Nobody else was at {scene}, only those two.",
+    "tags": {
+      "beat": "alone",
+      "order": "pair"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-411",
+    "deck": "story",
+    "text": "Nobody was there to see it.",
+    "tags": {
+      "beat": "alone",
+      "order": "pair"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-412",
+    "deck": "story",
+    "text": "{actor} had {scene} to {himself}.",
+    "tags": {
+      "beat": "alone",
+      "order": "solo"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-413",
+    "deck": "story",
+    "text": "Nobody saw {him} do it.",
+    "tags": {
+      "beat": "alone",
+      "order": "solo"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-414",
+    "deck": "story",
+    "text": "{actor} was alone there.",
+    "tags": {
+      "beat": "alone",
+      "order": "solo"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-415",
+    "deck": "story",
+    "text": "When it was done, {actor} went to {place}. {he} was there by {time}.",
+    "tags": {
+      "beat": "after",
+      "step": "first",
+      "stay": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-416",
+    "deck": "story",
+    "text": "By {time} {actor} had gone on to {place}.",
+    "tags": {
+      "beat": "after",
+      "step": "first",
+      "stay": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-417",
+    "deck": "story",
+    "text": "From {time} until {until}, {actor} was at {place}.",
+    "tags": {
+      "beat": "after",
+      "step": "first",
+      "stay": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-418",
+    "deck": "story",
+    "text": "{actor} went on to {place} afterwards, and stayed there from {time} until {until}.",
+    "tags": {
+      "beat": "after",
+      "step": "first",
+      "stay": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-419",
+    "deck": "story",
+    "text": "{actor} did not leave {scene} straight away. {he} was still there at {until}.",
+    "tags": {
+      "beat": "after",
+      "step": "stayed",
+      "stay": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-420",
+    "deck": "story",
+    "text": "{actor} stayed on at {scene}, and was there until {until}.",
+    "tags": {
+      "beat": "after",
+      "step": "stayed",
+      "stay": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-421",
+    "deck": "story",
+    "text": "By {time} {he} had moved on to {place}.",
+    "tags": {
+      "beat": "after",
+      "step": "later",
+      "stay": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-422",
+    "deck": "story",
+    "text": "Then {he} went to {place}, and was there at {time}.",
+    "tags": {
+      "beat": "after",
+      "step": "later",
+      "stay": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-423",
+    "deck": "story",
+    "text": "After that {he} was at {place}, from {time} until {until}.",
+    "tags": {
+      "beat": "after",
+      "step": "later",
+      "stay": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-424",
+    "deck": "story",
+    "text": "Next {he} went to {place}, and stayed from {time} until {until}.",
+    "tags": {
+      "beat": "after",
+      "step": "later",
+      "stay": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-425",
+    "deck": "story",
+    "text": "{victim} was found at {time}, at {found}, by {finder}.",
+    "tags": {
+      "beat": "found",
+      "caseType": "murder",
+      "finder": "other"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-426",
+    "deck": "story",
+    "text": "The one who found {victim} was {finder}. That was at {found}, at {time}.",
+    "tags": {
+      "beat": "found",
+      "caseType": "murder",
+      "finder": "other"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-427",
+    "deck": "story",
+    "text": "{actor} was the one who found {victim}, at {found}, at {time}.",
+    "tags": {
+      "beat": "found",
+      "caseType": "murder",
+      "finder": "culprit"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-428",
+    "deck": "story",
+    "text": "At {time}, at {found}, {finder} saw that {taken} was gone.",
+    "tags": {
+      "beat": "found",
+      "caseType": "robbery",
+      "finder": "other"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-429",
+    "deck": "story",
+    "text": "It was {actor} who found {taken} missing from {found}, at {time}.",
+    "tags": {
+      "beat": "found",
+      "caseType": "robbery",
+      "finder": "culprit"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-430",
+    "deck": "story",
+    "text": "{victim} had been dead {span} by then.",
+    "tags": {
+      "beat": "since",
+      "caseType": "murder"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-431",
+    "deck": "story",
+    "text": "{span} had gone by since it happened.",
+    "tags": {
+      "beat": "since",
+      "caseType": "murder"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-432",
+    "deck": "story",
+    "text": "{taken} had been gone {span} by then.",
+    "tags": {
+      "beat": "since",
+      "caseType": "robbery"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-433",
+    "deck": "story",
+    "text": "By then {span} had passed since it was taken.",
+    "tags": {
+      "beat": "since",
+      "caseType": "robbery"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-434",
+    "deck": "story",
+    "text": "The police came, took a look, and left it at that.",
+    "tags": {
+      "beat": "precinct",
+      "precinct": "came-and-went"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-435",
+    "deck": "story",
+    "text": "A policeman walked through, looked, and went.",
+    "tags": {
+      "beat": "precinct",
+      "precinct": "came-and-went"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-436",
+    "deck": "story",
+    "text": "The police were satisfied it was a fall.",
+    "tags": {
+      "beat": "precinct",
+      "precinct": "called-it-a-fall"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-437",
+    "deck": "story",
+    "text": "The police took a statement and left it there.",
+    "tags": {
+      "beat": "precinct",
+      "precinct": "took-a-statement"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-438",
+    "deck": "story",
+    "text": "The precinct wrote down what it was told and did no more than that.",
+    "tags": {
+      "beat": "precinct",
+      "precinct": "took-a-statement"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-439",
+    "deck": "story",
+    "text": "Inside an hour the precinct had it closed.",
+    "tags": {
+      "beat": "precinct",
+      "precinct": "closed-it-in-an-hour"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-440",
+    "deck": "story",
+    "text": "It was {vtime} before {victim} came, {span} later.",
+    "tags": {
+      "beat": "arrive",
+      "order": "culprit-first"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-441",
+    "deck": "story",
+    "text": "{span} went by before {victim} got there, at {vtime}.",
+    "tags": {
+      "beat": "arrive",
+      "order": "culprit-first"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-442",
+    "deck": "story",
+    "text": "{actor} came to me after midnight and paid me to look into it.",
+    "tags": {
+      "beat": "hired"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-443",
+    "deck": "story",
+    "text": "Then, after midnight, {actor} hired me to find out what I have just written down.",
+    "tags": {
+      "beat": "hired"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-444",
+    "deck": "story",
+    "text": "Afterwards {actor} moved {victim}’s body to {found}, and it was there by {time}.",
+    "tags": {
+      "beat": "moved",
+      "trope": "body-moved"
+    },
+    "status": "generated"
   }
 ]

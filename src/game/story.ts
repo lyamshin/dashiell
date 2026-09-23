@@ -323,6 +323,36 @@ function specificity(card: StoryCard): number {
   return Object.entries(card.tags).filter(([k, v]) => k !== 'beat' && v !== 'any').length;
 }
 
+/**
+ * How much more often a card is told for each tag it matches beyond the beat.
+ * A card keyed to the case's method or the culprit's trade says more of the
+ * case in its own words than one that fits any case, so it is favoured; but
+ * only favoured. When the most specific card always won, one line
+ * ("{actor} was {role}.") told the culprit's trade in 71% of stories, and a
+ * card written one tag wider than its neighbours was never read at all.
+ */
+const SPECIFIC_WEIGHT = 3;
+
+/**
+ * The genre's trade words, which the story never says (test/story.test.ts
+ * holds the same list against every story it tells). The deck is written
+ * without them; this is for what a slot brings in.
+ */
+const TRADE_WORDS =
+  /\b(paper|papers|notes?|fence[ds]?|numbers|policy|policies|marker|vig|juice|the take|squares?|marks?|shaped up|shape up|heeler|stringer|hack|curb|books?|houses)\b/i;
+
+/** One card from the pool, each weighted by its specificity, off the given draw. */
+function weightedPick(pool: StoryCard[], rng: Rng): StoryCard {
+  const weights = pool.map((c) => SPECIFIC_WEIGHT ** specificity(c));
+  const total = weights.reduce((a, b) => a + b, 0);
+  let roll = rng.next() * total;
+  for (let i = 0; i < pool.length; i++) {
+    roll -= weights[i] as number;
+    if (roll < 0) return pool[i] as StoryCard;
+  }
+  return pool[pool.length - 1] as StoryCard;
+}
+
 const SLOT_RE = /\{(\w+)\}/g;
 
 const CARD_TEXT = new Map(STORY_CARDS.map((c) => [c.id, c.text]));
@@ -479,9 +509,10 @@ class Teller {
   }
 
   /**
-   * Deal one card for a beat and put it on the page. The most specific card
-   * that fits the case and whose slots can all be filled wins; ties are broken
-   * off the seed, so one case always tells the same story.
+   * Deal one card for a beat and put it on the page. Every card that fits the
+   * case and whose slots can all be filled is in the running, the more
+   * specific ones weighted up (`SPECIFIC_WEIGHT`), and the draw is taken off
+   * the seed, so one case always tells the same story.
    */
   say(beat: string, extra: Query = {}, slots: Slots = {}, facts: StoryFact[] = [], avoidEcho = false): boolean {
     const made = this.compose(beat, extra, slots, facts);
@@ -511,8 +542,16 @@ class Teller {
       (c) => cardMatches(c, beat, query) && slotNames(c.text).every((s) => all[s] !== undefined),
     );
     if (fits.length === 0) return null;
-    const best = Math.max(...fits.map(specificity));
-    let pool = fits.filter((c) => specificity(c) === best);
+    let pool = fits;
+    // A slot carries the generator's words, not the deck's: the reporter's
+    // trade is "a freelance reporter for the evening papers", which the
+    // story's own rule of plain words refuses. A card that would print such a
+    // slot gives way to one that says the thing in the deck's words.
+    const plain = pool.filter((c) => !TRADE_WORDS.test(slotNames(c.text).reduce(
+      (t, s) => t.split(`{${s}}`).join((all[s] as Slot).text),
+      c.text,
+    )));
+    if (plain.length > 0) pool = plain;
     // Two lines running do not open on the same word: "By half past seven
     // she was at the fourth floor. By half past seven he was at the cab stand."
     const paragraph = this.lines[this.lines.length - 1] ?? [];
@@ -527,7 +566,7 @@ class Teller {
     const n = pool.length;
     const card = rotate
       ? ([...pool].sort((x, y) => x.id.localeCompare(y.id))[((this.input.seed % n) + n) % n] as StoryCard)
-      : new Rng(hash(`${this.input.seed}:${beat}:${JSON.stringify(extra)}`)).pick(pool);
+      : weightedPick(pool, new Rng(hash(`${this.input.seed}:${beat}:${JSON.stringify(extra)}`)));
     const used: StoryFact[] = [];
     // A line that opens on the same person the last one opened on says "he"
     // or "she" the second time, and the name again the third: "Grasso rented

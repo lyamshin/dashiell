@@ -4565,5 +4565,53 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "err-b073",
+    "deck": "errand",
+    "text": "The question for {who} was about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b074",
+    "deck": "errand",
+    "text": "{who} was the one to ask about {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b075",
+    "deck": "errand",
+    "text": "What {who} knew about {subject} was what I had come for.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "err-b076",
+    "deck": "errand",
+    "text": "I wanted {who}’s account of {subject}.",
+    "tags": {
+      "because": "said",
+      "for": "ask-person",
+      "bridged": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]

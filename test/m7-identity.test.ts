@@ -23,6 +23,10 @@ import { generateCase } from '../src/gen/index.js';
  * its woman's form, took the victim's pronoun out of the scene traces and
  * dropped "himself" and "he" from two professions any sex can hold. The
  * structure-only hash of all 600 cases is unchanged.
+ *
+ * And by deck batch D, which stopped the briefing adding a second full stop
+ * to a pointer's reason that already had one ("…came out without it.."): 78
+ * cases at difficulty 3 changed wording, and the structure-only hash did not.
  */
 const baseline = JSON.parse(
   readFileSync(new URL('./fixtures/m7-baseline-hashes.json', import.meta.url), 'utf8'),
