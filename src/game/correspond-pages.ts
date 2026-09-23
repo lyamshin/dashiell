@@ -513,6 +513,13 @@ export function checkBeats(
         }
       } else if (cls === 'context') {
         // Context asserts nothing, which is its whole licence.
+      } else if (cls === 'confronted') {
+        // M9 §3: what the detective did with what was said, on the page that
+        // put a fact to somebody — and about that somebody.
+        const put = beats.find((x) => x.kind === 'confront');
+        if (page.shape !== 'confront' || !put || (put.personIds ?? [])[0] !== first) {
+          fail('a confrontation the page did not have');
+        }
       } else if (cls === 'contradicts' && page.found.length === 0) {
         // An evening just taken down, against a placement already in hand.
         const clue = view.findableById.get((b.clueIds ?? [])[0] ?? '');

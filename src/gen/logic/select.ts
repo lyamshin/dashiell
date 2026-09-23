@@ -407,7 +407,10 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
     const out: Id[][] = [];
     let current = clues;
     for (let k = 0; k < 3; k++) {
-      const st = k === 0 ? full : solve(problemOf(frame, current, ded.hypothesis)).state;
+      // M9 engine: the first route is read off the set asked about, not off
+      // the whole findable set — a par set that holds one way of breaking a
+      // lie was being counted as holding two.
+      const st = k === 0 && clues === findableCore ? full : solve(problemOf(frame, current, ded.hypothesis)).state;
       let found: Id[] | null = null;
       for (const t of ticks) {
         const w = whyNot(st, personId, t, claimed);

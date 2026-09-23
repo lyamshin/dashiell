@@ -255,34 +255,48 @@ export function judgeConfront(
   const confessed = new Set(confessedOf(state));
   const groupHeld = (g: Id[]): boolean =>
     g.every((id) => (id.startsWith('confess:') ? confessed.has(id.split(':')[1] ?? '') : held.has(id)));
+  // What breaks a claim, by the solver, reading others' accounts as it may
+  // (soft) and as it may not: a fact that does it either way counts.
+  const breaks = (hand: readonly Id[], claim: { place: Id; ticks: Tick[] }): Set<Id> => {
+    const out = new Set<Id>();
+    for (const soft of [true, false]) {
+      const res = contradicts(view.kase, [...hand], { personId, ...claim }, { confessed: [...confessed], soft });
+      if (res.yes) for (const id of res.rules) out.add(id);
+    }
+    return out;
+  };
   for (const c of logic.confrontations) {
     if (c.personId !== personId) continue;
     const key = lieKeyOf(c);
     const landed = records.filter((r) => r.lieKey === key && r.outcome !== 'wrong');
     const k = landed.length;
+    const before = landed.map((r) => r.clueId);
     const first = c.responses[0];
     const onSecondLie = k >= 1 && first.kind === 'second-lie' && first.claims !== undefined;
+    const lie = { place: c.lie.claimed, ticks: c.lie.ticks };
     let touches = false;
-    let claimed: { place: Id; ticks: Tick[] } = { place: c.lie.claimed, ticks: c.lie.ticks };
-    if (onSecondLie && first.claims) {
-      claimed = { place: first.claims.place, ticks: first.claims.ticks };
-      touches = (first.contradictedBy ?? []).includes(clueId) && held.has(clueId);
+    let claimed: { place: Id; ticks: Tick[] } = lie;
+    if (!held.has(clueId) || before.includes(clueId)) continue;
+    if (k === 0) {
+      // The first time: a fact the solver's proof rests on, or one of the
+      // lie's written-out ways of breaking it that is all in hand.
+      const ways = c.contradictions.filter((g) => g.includes(clueId) && groupHeld(g));
+      touches = ways.length > 0 || breaks(state.found, lie).has(clueId);
     } else {
-      const res = contradicts(view.kase, state.found, { personId, place: c.lie.claimed, ticks: c.lie.ticks }, {
-        confessed: [...confessed],
-      });
-      if (res.yes) {
-        const ways = c.contradictions.filter((g) => g.includes(clueId) && groupHeld(g));
-        touches = res.rules.includes(clueId) || ways.length > 0;
-        if (touches && k >= 1) {
-          // The second time has to be something new: not the first pick, and
-          // not only one of the first pick's own ways of breaking it.
-          const before = landed.map((r) => r.clueId);
-          const independent = c.contradictions.some(
-            (g) => g.includes(clueId) && groupHeld(g) && !before.some((b) => g.includes(b)),
-          );
-          touches = !before.includes(clueId) && (independent || !c.contradictions.some((g) => g.includes(clueId)));
-        }
+      // The second time has to be something new (spec §3, "a second,
+      // independent fact contradicts them"): what still breaks the first
+      // story with the first fact set aside, or — after a second story —
+      // what breaks the second story.
+      if (onSecondLie && first.claims) {
+        claimed = { place: first.claims.place, ticks: first.claims.ticks };
+        touches = (first.contradictedBy ?? []).includes(clueId) || breaks(state.found, claimed).has(clueId);
+      }
+      if (!touches) {
+        const rest = state.found.filter((id) => !before.includes(id));
+        const ways = c.contradictions.filter(
+          (g) => g.includes(clueId) && groupHeld(g) && !before.some((b) => g.includes(b)),
+        );
+        touches = ways.length > 0 || breaks(rest, lie).has(clueId);
       }
     }
     if (!touches) continue;

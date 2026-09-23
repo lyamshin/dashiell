@@ -447,6 +447,13 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         }
         const clue = view.findableById.get(beat.clueId) as Clue;
         const text = findText(stage, clue, plan, gaps);
+        // M9 page bug: the generator can deal the same noise sentence twice in
+        // one room (seed 21 at difficulty 3). The page says it once; the
+        // notebook keeps every record.
+        if (paras.some((p) => p.clueId !== undefined && p.text.includes(text))) {
+          mark(i, { clueIds: [clue.id], text });
+          break;
+        }
         // The first find of a search goes in the paragraph the search opened;
         // the first thing found beside the body goes in the body's paragraph.
         const prev = last();
@@ -1418,7 +1425,10 @@ function exchange(
     );
   if (beat.carried && subject) {
     // "Nora Hanrahan. She's been with him since 'eighteen."
-    const fact = first ? factAbout(first, true) : null;
+    const told = first ? factAbout(first, true) : null;
+    // M9 page bug: the question already said the relation ("Lindemann owed
+    // Dandridge money."); a dossier line saying it again is the same fact twice.
+    const fact = told !== null && sameRelation(question, told, view) ? null : told;
     out.push({ text: `“${subject.name}.${fact ? ` ${fact}` : ''}”`, voice: 'exchange' });
     if (placed) out.push({ text: `“Where was ${subject.surname} tonight?”`, voice: 'exchange' });
   }
@@ -1447,6 +1457,27 @@ function exchange(
     answerClue(scene.volunteer, false);
   }
   return out.map((p) => ({ ...p, text: tidyPunctuation(p.text) }));
+}
+
+/**
+ * Do two lines state the same relation? They share a content word once names
+ * and the small words are set aside — "owed … money" and "has owed … money".
+ */
+export function sameRelation(a: string, b: string, view: Stage['view']): boolean {
+  const names = new Set(view.kase.people.map((p) => p.surname.toLowerCase()));
+  const small = new Set(['that', 'this', 'with', 'from', 'have', 'has', 'had', 'been', 'since', 'they', 'them', 'their', 'what', 'when', 'where', 'there', 'about', 'into', 'over', 'your', 'every']);
+  const words = (t: string): Set<string> =>
+    new Set(
+      t
+        .toLowerCase()
+        .replace(/[’']s\b/g, '')
+        .split(/[^a-z]+/)
+        .filter((w) => w.length > 3 && !names.has(w) && !small.has(w))
+        .map((w) => w.replace(/(ing|ed|es|s)$/, '')),
+    );
+  const x = words(a);
+  for (const w of words(b)) if (x.has(w)) return true;
+  return false;
 }
 
 /** The confront deck's slots for one person: the surname, the pronouns, where and when. */
