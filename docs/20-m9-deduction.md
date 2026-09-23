@@ -1,6 +1,6 @@
 # M9 — Deduction
 
-*Draft, 2026-09-23. It is written ahead of the play diagnosis (`docs/18-diagnosis.md`) and gets revised against its numbers before anything builds.*
+*2026-09-23. Revised against the play diagnosis (`docs/18-diagnosis.md`, PR #26); see "What the diagnosis changed" at the end. The designer's rulings are marked where they apply.*
 
 ## The problem, in the designer's words
 
@@ -207,3 +207,71 @@ Decided 2026-09-23:
 
 - **Confront.** The culprit never confesses and often lies. Innocents lie too, so a lie is not a tell (§3).
 - **The report.** The full crime column is asked from Medium up (§5, §8).
+
+## What the diagnosis changed
+
+The diagnosis (`docs/18-diagnosis.md`) measured 1,300 cases played four ways. Its findings, and what M9 does about each:
+
+| finding | M9 |
+|---|---|
+| Every innocent is cleared by one sentence, and clearing never takes two clues. | §2 pieces, plus **travel**. Places get a distance class (same block, a walk, across the neighbourhood), so two placements and a walk can rule out a room. Fixed placements at the crime's half hour come only from watchers, and only for about one innocent per case. |
+| No findable fact is false. Lies live only in evening accounts, which the par route never hears. | §1. Evening accounts become necessary: clearing a suspect needs their own account corroborated or broken. |
+| The page prints the verdict ("That cleared Weisglass.") and the notebook flags contradictions with "!". | **No automatic verdicts from Poached up.** Drop the `clears` and `contradicts` thought classes and the notebook's "!". Thoughts may point out what a fact touches ("That's the third floor at ten.") but never conclude. At Raw and Coddled they still conclude, to teach. |
+| The monologue names the culprit by the second action, and the client points at the culprit 66–91% of the time at Medium (a 50% coin flip in `client.ts`). | The monologue reacts only to the player's own pencil marks. The client points at a motivated innocent below Hard-boiled, and at the culprit no more often than chance from Hard-boiled on. |
+| Nearly half of all buttons can never pay: 94% of "ask about a person" get one of four stock non-answers. | **Every question gets testimony.** Asked about someone, a person says where they saw them, or that they didn't see them, or that they don't know them. That depends on the acquaintance graph. Under the lie rule, what they say about others is true, but what they say about themselves may not be. The four stock lines go. |
+| Leads hang off random earlier clues. Only 25–33% share a person with their source, and 5 to 16 are open at once. | **Leads come from content.** A clue opens the person it names, the watcher of the room it names, or the companion someone claimed. At most about 3 are open at a time. The scene is marked on page one. |
+| Searching an object is the same as searching the room. | One search button per room, unless objects hold their own clues. |
+
+**Keeping the lie rule.** The diagnosis suggests secret-keepers lie *about other people* (false sightings), and the culprit frames an innocent. M9 keeps the stricter rule: **people lie about themselves; nobody lies about what they saw.** A logic game is fair because its rules are true. Here, the true rules are what anyone says about anyone else. Self-accounts and alibi companions are the unreliable parts, and the player always knows which is which. The lying target is still met, because self-accounts are now on every solving route.
+
+**A verb for catching lies.** Confront (§3) works as the diagnosis proposes: *"Put it to Hanrahan"* opens a picker of the notebook's facts. The player chooses the one that contradicts her account.
+
+- A fact that really contradicts the account triggers the outcomes in §3.
+- A fact that doesn't: "That doesn't touch anything I told you." The half hour is spent anyway.
+
+So the payoff depends on reasoning, not on the game flagging the conflict.
+
+### Targets
+
+The diagnosis script measures all of these. The build is done when the Medium and Hard-boiled numbers are met at Precinct.
+
+| measure | today (Medium / Hard-boiled) | target |
+|---|---|---|
+| innocents cleared by one clue | 100% / 100% | ≤30% |
+| inference depth of the par route | 3.1 / 3.7 | ≥4 |
+| cases that need a two-clue combination | 8% / 70% | 100% |
+| false statements among self-accounts on the par route | 0% / 0% | 20–30% |
+| evening accounts on the oracle's route | 0 / 0 | ≥2 |
+| "ask about a person" that can pay | 6% | ≥60% |
+| lead edges sharing a person with their source | 30% / 27% | ≥80% |
+| button-pusher actions with no clue | 71% / 75% | ≤40% |
+| a player who only follows the marks names the culprit | 96% / 93% | ≤50% |
+| the client points at the culprit | 91% / 57% | ≤ 1 / suspects |
+| pages with 5 or more open leads | 69% / 73% | ≤10% |
+
+The last test is the one that matters. When a player who only follows the marks stops winning, and a player who reasons still does, it's a deduction game.
+
+## Build plan
+
+1. **Generator, now** (Opus, branch `m9-gen`):
+   - the acquaintance graph;
+   - the lie model;
+   - the rule types, including travel and places' distance classes;
+   - testimony for every question;
+   - leads from content;
+   - the client fix;
+   - the constraint solver with inference depth;
+   - par recomputed and tier presets;
+   - the diagnosis script's targets as tests.
+
+   It exports a documented contract (types in `src/gen/types.ts`) for the engine.
+2. **Engine and book, after the grid and Night Hone 1 merge** (Opus, branch `m9-engine`):
+   - confront with its picker;
+   - grid entries for the new rule types, with descriptions and linking;
+   - no verdicts from Poached up;
+   - the monologue reading the player's marks;
+   - trimmed topics and exhausted people;
+   - the report as the crime column, with scoring;
+   - the lie rule in the title page and help;
+   - new decks for confrontations and testimony. Content comes from a parallel Sonnet pass into drafts, as in M8.
+3. **Measure** with `scripts/diagnose-play.ts`, render seeds 3, 7 and 12, and present them.
