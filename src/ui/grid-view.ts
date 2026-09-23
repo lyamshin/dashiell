@@ -262,6 +262,8 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
         cell.entries.length === 0 && !cell.mark && !cell.life ? ' empty' : ''
       }`,
       'data-ticks': String(cell.tick),
+      // How many sources the cell's detail quotes, for scripts/check-grid.mjs.
+      'data-sources': String(new Set(cell.entries.map((e) => e.clueId)).size),
     });
     const b = el('button', {
       type: 'button',

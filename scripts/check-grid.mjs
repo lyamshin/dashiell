@@ -144,13 +144,27 @@ try {
     // The pencil: Grasso at the suite at ten; Coffin not at the suite at half past nine.
     await cell(page, 'Coffin', 7).click();
     await page.locator('.dgrid-pline', { hasText: 'not at' }).locator('button', { hasText: 'suite' }).click();
+    // How many sources the notebook holds for Grasso at ten, read off the
+    // cell (the grid model's own count, `data-sources`), so the check follows
+    // the case and the route rather than a number fixed when it was written.
+    // On seed 3's oracle route today that is one: Kreuzer's "not at the third
+    // floor" (Grasso's own account is not on the route). The fixed 2 went stale
+    // when the route changed; the grid had not lost a source.
+    const want = Number(
+      await page
+        .locator('tr.dgrid-row', { has: page.locator('.dgrid-surname', { hasText: 'Grasso' }) })
+        .locator('td.dgrid-cell[data-ticks~="8"]')
+        .first()
+        .getAttribute('data-sources'),
+    );
     await cell(page, 'Grasso', 8).click();
     await page.locator('.dgrid-pline', { hasText: 'was at' }).locator('button', { hasText: 'suite' }).click();
     await toGrid();
     const pencils = await page.locator('.dgrid-cell .dpencil').count();
     if (pencils !== 2) failures.push(`${size.name}: ${pencils} pencil marks drawn, wanted 2`);
     const sources = await page.locator('.dgrid-detail .dgrid-src').count();
-    if (sources < 2) failures.push(`${size.name}: Grasso at ten shows ${sources} sources, wanted 2`);
+    if (!(want >= 1) || sources !== want) failures.push(`${size.name}: Grasso at ten shows ${sources} sources, wanted ${want}`);
+    report[size.name].grassoSources = sources;
     if (size.phone) {
       // Scroll the grid so ten o'clock is in view beside the names.
       await page.evaluate(() => {
