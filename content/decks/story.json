@@ -11,7 +11,7 @@
   {
     "id": "STY-002",
     "deck": "story",
-    "text": "Here is how it went, from the start.",
+    "text": "This is how it happened.",
     "tags": {
       "beat": "open"
     },
@@ -20,7 +20,7 @@
   {
     "id": "STY-003",
     "deck": "story",
-    "text": "This is how it happened.",
+    "text": "It went like this.",
     "tags": {
       "beat": "open"
     },
@@ -29,7 +29,7 @@
   {
     "id": "STY-004",
     "deck": "story",
-    "text": "Here is how it happened, in the order it happened.",
+    "text": "From the beginning, then, and in order.",
     "tags": {
       "beat": "open"
     },
@@ -38,7 +38,7 @@
   {
     "id": "STY-005",
     "deck": "story",
-    "text": "Here is the whole of it, in order.",
+    "text": "The way it happened was this.",
     "tags": {
       "beat": "open"
     },
@@ -46,6 +46,15 @@
   },
   {
     "id": "STY-006",
+    "deck": "story",
+    "text": "I can tell it now, start to finish.",
+    "tags": {
+      "beat": "open"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-007",
     "deck": "story",
     "text": "{actorFull} killed {victimFull}.",
     "tags": {
@@ -55,7 +64,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-007",
+    "id": "STY-008",
     "deck": "story",
     "text": "It was {actorFull} who killed {victimFull}.",
     "tags": {
@@ -65,7 +74,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-008",
+    "id": "STY-009",
     "deck": "story",
     "text": "{actorFull} took {aTaken} from {victimFull}.",
     "tags": {
@@ -76,7 +85,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-009",
+    "id": "STY-010",
     "deck": "story",
     "text": "It was {actorFull} who took {aTaken} from {victimFull}.",
     "tags": {
@@ -87,7 +96,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-010",
+    "id": "STY-011",
     "deck": "story",
     "text": "{actorFull} took the payroll envelope that {victimFull} carried.",
     "tags": {
@@ -98,7 +107,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-011",
+    "id": "STY-012",
     "deck": "story",
     "text": "It was {actorFull} who took the payroll envelope {victimFull} carried.",
     "tags": {
@@ -109,7 +118,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-012",
+    "id": "STY-013",
     "deck": "story",
     "text": "Nobody took {victimFull}. {vhe} went, and {actorFull} helped {vhim} go.",
     "tags": {
@@ -120,7 +129,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-013",
+    "id": "STY-014",
     "deck": "story",
     "text": "{victimFull} went of {vhis} own accord, and {actorFull} helped.",
     "tags": {
@@ -131,7 +140,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-014",
+    "id": "STY-015",
     "deck": "story",
     "text": "{victimFull} did not go of {vhis} own accord. {actorFull} took {vhim}.",
     "tags": {
@@ -142,7 +151,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-015",
+    "id": "STY-016",
     "deck": "story",
     "text": "It was {actorFull} who took {victimFull}.",
     "tags": {
@@ -153,7 +162,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-016",
+    "id": "STY-017",
     "deck": "story",
     "text": "{actor} was {role}.",
     "tags": {
@@ -162,7 +171,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-017",
+    "id": "STY-018",
     "deck": "story",
     "text": "{actor} ran bets for an illegal lottery.",
     "tags": {
@@ -172,7 +181,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-018",
+    "id": "STY-019",
     "deck": "story",
     "text": "{actor} carried bets for an illegal lottery.",
     "tags": {
@@ -182,7 +191,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-019",
+    "id": "STY-020",
     "deck": "story",
     "text": "{actor} did the legwork for the local political boss.",
     "tags": {
@@ -192,7 +201,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-020",
+    "id": "STY-021",
     "deck": "story",
     "text": "{actor} got out the vote for the local political boss, and was paid for it.",
     "tags": {
@@ -202,7 +211,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-021",
+    "id": "STY-022",
     "deck": "story",
     "text": "{actor} traded stocks on the street outside the exchange.",
     "tags": {
@@ -212,7 +221,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-022",
+    "id": "STY-023",
     "deck": "story",
     "text": "{actor} drove a cab.",
     "tags": {
@@ -222,7 +231,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-023",
+    "id": "STY-024",
     "deck": "story",
     "text": "{actor} drove a taxi for a living.",
     "tags": {
@@ -232,7 +241,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-024",
+    "id": "STY-025",
     "deck": "story",
     "text": "{actor} sold stories to the evening newspapers by the piece.",
     "tags": {
@@ -242,7 +251,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-025",
+    "id": "STY-026",
     "deck": "story",
     "text": "{actor} took bets on horses, in a small way.",
     "tags": {
@@ -252,7 +261,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-026",
+    "id": "STY-027",
     "deck": "story",
     "text": "{victim} was {vrole}.",
     "tags": {
@@ -261,7 +270,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-027",
+    "id": "STY-028",
     "deck": "story",
     "text": "{victim} owned three tenements on Ninth Avenue, and half the block was behind on the rent to {vhim}.",
     "tags": {
@@ -272,7 +281,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-028",
+    "id": "STY-029",
     "deck": "story",
     "text": "A hundred and forty people paid {victim} to keep a roof over their heads.",
     "tags": {
@@ -283,7 +292,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-029",
+    "id": "STY-030",
     "deck": "story",
     "text": "{victim} owned more of the street than anybody who lived on it.",
     "tags": {
@@ -294,7 +303,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-030",
+    "id": "STY-031",
     "deck": "story",
     "text": "{victim} sold liquor to half the bars on the block.",
     "tags": {
@@ -305,7 +314,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-031",
+    "id": "STY-032",
     "deck": "story",
     "text": "{victim} sold liquor to four bars on the street, and the bars stayed open because {vhe} did.",
     "tags": {
@@ -316,7 +325,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-032",
+    "id": "STY-033",
     "deck": "story",
     "text": "{victim} was owed favours by people who would rather have forgotten them.",
     "tags": {
@@ -327,7 +336,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-033",
+    "id": "STY-034",
     "deck": "story",
     "text": "{victim} had money in a neighbourhood that had none, and people watched {vhim} for it.",
     "tags": {
@@ -338,7 +347,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-034",
+    "id": "STY-035",
     "deck": "story",
     "text": "{victim} was the one person on the block the newspapers would have written about.",
     "tags": {
@@ -349,7 +358,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-035",
+    "id": "STY-036",
     "deck": "story",
     "text": "{victim} lent money to people who could not pay it back, and never asked for it twice.",
     "tags": {
@@ -360,7 +369,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-036",
+    "id": "STY-037",
     "deck": "story",
     "text": "{victim} decided who got work that season, and a great many people made sure to stay friendly with {vhim}.",
     "tags": {
@@ -371,7 +380,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-037",
+    "id": "STY-038",
     "deck": "story",
     "text": "Half the neighbourhood was waiting on a telephone call from {victim} that never came.",
     "tags": {
@@ -382,7 +391,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-038",
+    "id": "STY-039",
     "deck": "story",
     "text": "{victim} could put a name on a theatre bill or leave it off, and did both.",
     "tags": {
@@ -393,7 +402,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-039",
+    "id": "STY-040",
     "deck": "story",
     "text": "{victim} could close a building with a signature, and had closed two.",
     "tags": {
@@ -404,7 +413,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-040",
+    "id": "STY-041",
     "deck": "story",
     "text": "Every landlord on six blocks paid {victim} a bribe.",
     "tags": {
@@ -415,7 +424,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-041",
+    "id": "STY-042",
     "deck": "story",
     "text": "Three buildings on the street stayed open because {victim} signed for them.",
     "tags": {
@@ -426,7 +435,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-042",
+    "id": "STY-043",
     "deck": "story",
     "text": "{victim} held the money four hundred union men had paid in, and every one of them knew the figure.",
     "tags": {
@@ -437,7 +446,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-043",
+    "id": "STY-044",
     "deck": "story",
     "text": "{victim} decided who was picked for work in the morning and who stood at the back.",
     "tags": {
@@ -448,7 +457,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-044",
+    "id": "STY-045",
     "deck": "story",
     "text": "As far as the street was concerned, {victim} was the union.",
     "tags": {
@@ -459,7 +468,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-045",
+    "id": "STY-046",
     "deck": "story",
     "text": "{victim} had something belonging to half the block in a back room, and the pawn tickets to prove it.",
     "tags": {
@@ -470,7 +479,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-046",
+    "id": "STY-047",
     "deck": "story",
     "text": "{victim} knew what everybody on the street was worth, down to the coat.",
     "tags": {
@@ -481,7 +490,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-047",
+    "id": "STY-048",
     "deck": "story",
     "text": "People on the block went to {victim} when there was nowhere else to go, and {vhe} charged them for it.",
     "tags": {
@@ -492,7 +501,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-048",
+    "id": "STY-049",
     "deck": "story",
     "text": "{victim} could put a name in the newspaper, and some of the people named never got over it.",
     "tags": {
@@ -503,7 +512,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-049",
+    "id": "STY-050",
     "deck": "story",
     "text": "{victim} kept a file of what had not been printed yet, and let people know it existed.",
     "tags": {
@@ -514,7 +523,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-050",
+    "id": "STY-051",
     "deck": "story",
     "text": "{victim} was invited everywhere, mostly by people who were afraid of the column.",
     "tags": {
@@ -525,7 +534,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-051",
+    "id": "STY-052",
     "deck": "story",
     "text": "{victim} had put up bail for most of the block at one time or another, and was still owed for it.",
     "tags": {
@@ -536,7 +545,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-052",
+    "id": "STY-053",
     "deck": "story",
     "text": "{victim} was the first telephone call anybody on the street made at two in the morning.",
     "tags": {
@@ -547,7 +556,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-053",
+    "id": "STY-054",
     "deck": "story",
     "text": "{victim} owned a share of four buildings that people had put up against their bail.",
     "tags": {
@@ -558,7 +567,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-054",
+    "id": "STY-055",
     "deck": "story",
     "text": "{victim} was the richest person on the landing and the only one who never mentioned it.",
     "tags": {
@@ -569,7 +578,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-055",
+    "id": "STY-056",
     "deck": "story",
     "text": "{victim} had lent money to four families on the block and forgiven none of it.",
     "tags": {
@@ -580,9 +589,9 @@
     "status": "generated"
   },
   {
-    "id": "STY-056",
+    "id": "STY-057",
     "deck": "story",
-    "text": "{victim} was thirty years in the dry-goods trade, and people who had left it still owed {vhim} money.",
+    "text": "{victim} was thirty years in the cloth trade, and people who had left it still owed {vhim} money.",
     "tags": {
       "beat": "standing",
       "archetype": "vic-wholesaler",
@@ -591,7 +600,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-057",
+    "id": "STY-058",
     "deck": "story",
     "text": "{victim} collected the rents in person on the first of the month and never sent anybody else.",
     "tags": {
@@ -602,7 +611,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-058",
+    "id": "STY-059",
     "deck": "story",
     "text": "{victim} owned three tenements on Ninth Avenue and held the mortgages on two more.",
     "tags": {
@@ -613,7 +622,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-059",
+    "id": "STY-060",
     "deck": "story",
     "text": "{victim} kept the buildings full and the repairs undone.",
     "tags": {
@@ -624,7 +633,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-060",
+    "id": "STY-061",
     "deck": "story",
     "text": "{victim} brought the liquor in off the boats and rented the top floor to store it in.",
     "tags": {
@@ -635,7 +644,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-061",
+    "id": "STY-062",
     "deck": "story",
     "text": "{victim} sold to four bars on the block and took cash only.",
     "tags": {
@@ -646,7 +655,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-062",
+    "id": "STY-063",
     "deck": "story",
     "text": "{victim} paid off the police every month and was never once raided.",
     "tags": {
@@ -657,7 +666,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-063",
+    "id": "STY-064",
     "deck": "story",
     "text": "{victim} lived on the income from a trust fund and never signed for anything.",
     "tags": {
@@ -668,7 +677,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-064",
+    "id": "STY-065",
     "deck": "story",
     "text": "{victim} had money from a father nobody in the neighbourhood ever met.",
     "tags": {
@@ -679,7 +688,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-065",
+    "id": "STY-066",
     "deck": "story",
     "text": "{victim} kept an apartment and a maid, and had no occupation at all.",
     "tags": {
@@ -690,7 +699,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-066",
+    "id": "STY-067",
     "deck": "story",
     "text": "{victim} booked acts into four theatres and took ten per cent of all of it.",
     "tags": {
@@ -701,7 +710,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-067",
+    "id": "STY-068",
     "deck": "story",
     "text": "{victim} kept an office with two chairs and a telephone that never stopped ringing.",
     "tags": {
@@ -712,7 +721,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-068",
+    "id": "STY-069",
     "deck": "story",
     "text": "{victim} decided who worked in the spring and who did not.",
     "tags": {
@@ -723,7 +732,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-069",
+    "id": "STY-070",
     "deck": "story",
     "text": "{victim} signed off the boilers and the fire escapes for six blocks.",
     "tags": {
@@ -734,7 +743,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-070",
+    "id": "STY-071",
     "deck": "story",
     "text": "{victim} walked the buildings with a notebook and wrote in it whatever {vhe} was paid to write.",
     "tags": {
@@ -745,7 +754,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-071",
+    "id": "STY-072",
     "deck": "story",
     "text": "{victim} had a district, and a price for everything in it.",
     "tags": {
@@ -756,7 +765,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-072",
+    "id": "STY-073",
     "deck": "story",
     "text": "{victim} kept the union’s accounts and the union’s cash box.",
     "tags": {
@@ -767,7 +776,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-073",
+    "id": "STY-074",
     "deck": "story",
     "text": "{victim} counted the dues on Fridays with the door shut.",
     "tags": {
@@ -778,7 +787,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-074",
+    "id": "STY-075",
     "deck": "story",
     "text": "{victim} was elected twice and opposed once.",
     "tags": {
@@ -789,7 +798,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-075",
+    "id": "STY-076",
     "deck": "story",
     "text": "{victim} kept the shop on the corner, with the pawn tickets on a spike behind the counter.",
     "tags": {
@@ -800,7 +809,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-076",
+    "id": "STY-077",
     "deck": "story",
     "text": "{victim} lent on watches, coats and wedding rings, at a quarter of what they were worth.",
     "tags": {
@@ -811,7 +820,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-077",
+    "id": "STY-078",
     "deck": "story",
     "text": "{victim} opened at eight and closed when the last customer had gone.",
     "tags": {
@@ -822,7 +831,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-078",
+    "id": "STY-079",
     "deck": "story",
     "text": "{victim} wrote six columns a week and never named a source in any of them.",
     "tags": {
@@ -833,7 +842,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-079",
+    "id": "STY-080",
     "deck": "story",
     "text": "{victim} went out to other people’s evenings and wrote them up by midnight.",
     "tags": {
@@ -844,7 +853,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-080",
+    "id": "STY-081",
     "deck": "story",
     "text": "{victim} kept a file of what could not be printed yet.",
     "tags": {
@@ -855,7 +864,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-081",
+    "id": "STY-082",
     "deck": "story",
     "text": "{victim} put up bail money out of an office across from the courthouse.",
     "tags": {
@@ -866,7 +875,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-082",
+    "id": "STY-083",
     "deck": "story",
     "text": "{victim} took a house or a wedding ring as security, and kept the documents for both.",
     "tags": {
@@ -877,7 +886,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-083",
+    "id": "STY-084",
     "deck": "story",
     "text": "{victim} was in night court four evenings out of seven.",
     "tags": {
@@ -888,7 +897,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-084",
+    "id": "STY-085",
     "deck": "story",
     "text": "{victim} sold the warehouse in ’24 and lived on the money after that.",
     "tags": {
@@ -899,9 +908,9 @@
     "status": "generated"
   },
   {
-    "id": "STY-085",
+    "id": "STY-086",
     "deck": "story",
-    "text": "{victim} ran a dry-goods business on Canal Street for thirty years.",
+    "text": "{victim} ran a wholesale cloth business on Canal Street for thirty years.",
     "tags": {
       "beat": "vdetail",
       "archetype": "vic-wholesaler",
@@ -910,7 +919,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-086",
+    "id": "STY-087",
     "deck": "story",
     "text": "{victim} kept {vhis} hand in by lending money to old customers.",
     "tags": {
@@ -921,7 +930,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-087",
+    "id": "STY-088",
     "deck": "story",
     "text": "{actor} and {victim} took the lease together in {year} and had argued about it ever since.",
     "tags": {
@@ -932,7 +941,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-088",
+    "id": "STY-089",
     "deck": "story",
     "text": "{actor} put up the money and {victim} put up the name, and neither of them ever wrote it down.",
     "tags": {
@@ -943,7 +952,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-089",
+    "id": "STY-090",
     "deck": "story",
     "text": "{actor} had bought into {victim}’s business the year {third} walked out of it.",
     "tags": {
@@ -954,7 +963,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-090",
+    "id": "STY-091",
     "deck": "story",
     "text": "{actor} had rented from {victim} since {year}, with the same window and the same complaint about it.",
     "tags": {
@@ -965,7 +974,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-091",
+    "id": "STY-092",
     "deck": "story",
     "text": "{actor} rented the rooms over {tplace} from {victim} and had been two weeks behind since the spring.",
     "tags": {
@@ -976,7 +985,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-092",
+    "id": "STY-093",
     "deck": "story",
     "text": "{victim} had put {actor}’s rent up twice in a year, and {actor} had paid it twice.",
     "tags": {
@@ -987,7 +996,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-093",
+    "id": "STY-094",
     "deck": "story",
     "text": "{victim} rented from {actor} and was three months behind on the rent.",
     "tags": {
@@ -998,7 +1007,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-094",
+    "id": "STY-095",
     "deck": "story",
     "text": "{actor} had held the mortgage on the building {victim} lived in since {year}.",
     "tags": {
@@ -1009,7 +1018,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-095",
+    "id": "STY-096",
     "deck": "story",
     "text": "{actor} had put {victim} into the rooms as a favour to {third} and regretted it inside a month.",
     "tags": {
@@ -1020,7 +1029,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-096",
+    "id": "STY-097",
     "deck": "story",
     "text": "{actor} worked for {victim} for four years and was let go in {year} without a reference.",
     "tags": {
@@ -1031,7 +1040,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-097",
+    "id": "STY-098",
     "deck": "story",
     "text": "{victim} had put {actor} out of a job over forty dollars that were never found.",
     "tags": {
@@ -1042,7 +1051,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-098",
+    "id": "STY-099",
     "deck": "story",
     "text": "{actor} kept {victim}’s accounts until {third} was brought in over {his} head.",
     "tags": {
@@ -1053,7 +1062,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-099",
+    "id": "STY-100",
     "deck": "story",
     "text": "{actor} had lent {victim} money in {year} and renewed the loan every ninety days since.",
     "tags": {
@@ -1064,7 +1073,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-100",
+    "id": "STY-101",
     "deck": "story",
     "text": "{victim} borrowed from {actor} to pay off another debt, and never told anybody.",
     "tags": {
@@ -1075,7 +1084,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-101",
+    "id": "STY-102",
     "deck": "story",
     "text": "{actor} had lent {victim} money in front of {third}, and had been reminded of it ever since.",
     "tags": {
@@ -1086,7 +1095,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-102",
+    "id": "STY-103",
     "deck": "story",
     "text": "{actor} had owed {victim} money since {year}, and {victim} had not asked for it lately.",
     "tags": {
@@ -1097,7 +1106,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-103",
+    "id": "STY-104",
     "deck": "story",
     "text": "{victim} had lent {actor} enough to get through a bad winter, and had been collecting on it ever since.",
     "tags": {
@@ -1108,7 +1117,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-104",
+    "id": "STY-105",
     "deck": "story",
     "text": "{actor} had signed an IOU to {victim}, with {third} as witness, and nobody had torn it up.",
     "tags": {
@@ -1119,7 +1128,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-105",
+    "id": "STY-106",
     "deck": "story",
     "text": "{actor} had drawn up every document {victim} signed, going back to {year}.",
     "tags": {
@@ -1130,7 +1139,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-106",
+    "id": "STY-107",
     "deck": "story",
     "text": "{actor} kept {victim}’s will in a box and had read it more often than {victim} ever did.",
     "tags": {
@@ -1141,7 +1150,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-107",
+    "id": "STY-108",
     "deck": "story",
     "text": "{victim} brought {actor} the legal work {third} would not touch.",
     "tags": {
@@ -1152,7 +1161,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-108",
+    "id": "STY-109",
     "deck": "story",
     "text": "{actor} and {victim} were cousins, raised four doors apart.",
     "tags": {
@@ -1163,7 +1172,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-109",
+    "id": "STY-110",
     "deck": "story",
     "text": "{actor} was {victim}’s cousin on the mother’s side and had not been asked to dinner since {year}.",
     "tags": {
@@ -1174,7 +1183,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-110",
+    "id": "STY-111",
     "deck": "story",
     "text": "{actor} and {victim} came over on the same boat with {third} and split up inside a year.",
     "tags": {
@@ -1185,7 +1194,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-111",
+    "id": "STY-112",
     "deck": "story",
     "text": "{actor} married {victim}’s sister in {year} and had been in the family ever since.",
     "tags": {
@@ -1196,7 +1205,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-112",
+    "id": "STY-113",
     "deck": "story",
     "text": "{actor} was {victim}’s brother-in-law and was reminded of it at every holiday.",
     "tags": {
@@ -1207,7 +1216,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-113",
+    "id": "STY-114",
     "deck": "story",
     "text": "{victim} stood up at {actor}’s wedding, and {third} never let either of them forget it.",
     "tags": {
@@ -1218,7 +1227,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-114",
+    "id": "STY-115",
     "deck": "story",
     "text": "{actor} and {victim} had been in the same trade on the same street since {year}.",
     "tags": {
@@ -1229,7 +1238,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-115",
+    "id": "STY-116",
     "deck": "story",
     "text": "{actor} took two of {victim}’s best customers, and {victim} took one of them back.",
     "tags": {
@@ -1240,7 +1249,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-116",
+    "id": "STY-117",
     "deck": "story",
     "text": "{actor} and {victim} both bid for what {third} was selling, and {victim} got it.",
     "tags": {
@@ -1251,7 +1260,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-117",
+    "id": "STY-118",
     "deck": "story",
     "text": "{actor} married {victim} in {year}, and they had lived apart for three of those years.",
     "tags": {
@@ -1262,7 +1271,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-118",
+    "id": "STY-119",
     "deck": "story",
     "text": "{actor} had been {victim}’s {spouse} in name only since {year}.",
     "tags": {
@@ -1273,7 +1282,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-119",
+    "id": "STY-120",
     "deck": "story",
     "text": "{actor} and {victim} separated over {third} and never went near a court about it.",
     "tags": {
@@ -1284,7 +1293,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-120",
+    "id": "STY-121",
     "deck": "story",
     "text": "{actor} had sat up nights with {victim} since {year}, six nights out of seven.",
     "tags": {
@@ -1295,7 +1304,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-121",
+    "id": "STY-122",
     "deck": "story",
     "text": "{third} had put {actor} in to nurse {victim}, and {actor} stayed on after the fee stopped.",
     "tags": {
@@ -1306,7 +1315,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-122",
+    "id": "STY-123",
     "deck": "story",
     "text": "{actor} knew what medicine {victim} took, and when, and how much of it was necessary.",
     "tags": {
@@ -1317,7 +1326,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-123",
+    "id": "STY-124",
     "deck": "story",
     "text": "{actor} had answered {victim}’s letters since {year} and read them all first.",
     "tags": {
@@ -1328,7 +1337,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-124",
+    "id": "STY-125",
     "deck": "story",
     "text": "{actor} kept {victim}’s diary and knew which of the entries were true.",
     "tags": {
@@ -1339,7 +1348,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-125",
+    "id": "STY-126",
     "deck": "story",
     "text": "{actor} was hired on {third}’s word and had been more use than {third} ever was.",
     "tags": {
@@ -1350,7 +1359,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-126",
+    "id": "STY-127",
     "deck": "story",
     "text": "{actor} had been engaged to {victim}’s daughter since {year}, with no date set.",
     "tags": {
@@ -1361,7 +1370,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-127",
+    "id": "STY-128",
     "deck": "story",
     "text": "{actor} asked {victim} for the daughter and was told to come back when there was money.",
     "tags": {
@@ -1372,7 +1381,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-128",
+    "id": "STY-129",
     "deck": "story",
     "text": "{actor} and {victim}’s daughter had been engaged since {year}, and {third} called it a long engagement.",
     "tags": {
@@ -1383,7 +1392,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-129",
+    "id": "STY-130",
     "deck": "story",
     "text": "{actor} and {victim} grew up on the same block and had known each other since {year}.",
     "tags": {
@@ -1394,7 +1403,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-130",
+    "id": "STY-131",
     "deck": "story",
     "text": "{actor} and {victim} were children together, and neither of them ever left the neighbourhood.",
     "tags": {
@@ -1405,7 +1414,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-131",
+    "id": "STY-132",
     "deck": "story",
     "text": "{actor}, {victim} and {third} were inseparable for ten years and had not been in a room together since.",
     "tags": {
@@ -1416,7 +1425,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-132",
+    "id": "STY-133",
     "deck": "story",
     "text": "{actor} had been named in {victim}’s will since {year}, and had known it that long.",
     "tags": {
@@ -1427,7 +1436,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-133",
+    "id": "STY-134",
     "deck": "story",
     "text": "{victim} told {actor} there was something in the will and never said how much.",
     "tags": {
@@ -1438,7 +1447,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-134",
+    "id": "STY-135",
     "deck": "story",
     "text": "{actor} and {third} were both named in {victim}’s will, and only one of them knew it.",
     "tags": {
@@ -1449,7 +1458,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-135",
+    "id": "STY-136",
     "deck": "story",
     "text": "{actor} had given a statement about the people {victim} worked for and had been careful ever since.",
     "tags": {
@@ -1460,7 +1469,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-136",
+    "id": "STY-137",
     "deck": "story",
     "text": "{actor} was due before the grand jury about the people {victim} worked for, and the date was set.",
     "tags": {
@@ -1471,7 +1480,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-137",
+    "id": "STY-138",
     "deck": "story",
     "text": "{actor} talked to the district attorney in {year}, and {third} had not spoken to {actor} since.",
     "tags": {
@@ -1482,7 +1491,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-138",
+    "id": "STY-139",
     "deck": "story",
     "text": "{actor} had bought from {victim} for years and settled up at the end of every month.",
     "tags": {
@@ -1493,7 +1502,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-139",
+    "id": "STY-140",
     "deck": "story",
     "text": "{actor} had been a customer of {victim}’s since {year}.",
     "tags": {
@@ -1504,7 +1513,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-140",
+    "id": "STY-141",
     "deck": "story",
     "text": "{actor} came to {victim} on {third}’s introduction and stayed a customer.",
     "tags": {
@@ -1515,9 +1524,9 @@
     "status": "generated"
   },
   {
-    "id": "STY-141",
+    "id": "STY-142",
     "deck": "story",
-    "text": "{actor} lived across the airshaft from {victim} and could hear {vhis} wireless through it.",
+    "text": "{actor} lived across the airshaft from {victim} and could hear {vhis} radio through it.",
     "tags": {
       "beat": "tie",
       "relationship": "rel-neighbor",
@@ -1526,7 +1535,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-142",
+    "id": "STY-143",
     "deck": "story",
     "text": "{actor} had lived on the same landing as {victim} since {year}.",
     "tags": {
@@ -1537,7 +1546,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-143",
+    "id": "STY-144",
     "deck": "story",
     "text": "{actor} and {victim} shared a wall, a landing and a long argument about {third}.",
     "tags": {
@@ -1548,7 +1557,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-144",
+    "id": "STY-145",
     "deck": "story",
     "text": "{actor} was {tie}.",
     "tags": {
@@ -1557,7 +1566,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-145",
+    "id": "STY-146",
     "deck": "story",
     "text": "{actor} was {tie}, and had been for a while.",
     "tags": {
@@ -1566,7 +1575,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-146",
+    "id": "STY-147",
     "deck": "story",
     "text": "{actor} stood to inherit from {victim}.",
     "tags": {
@@ -1576,7 +1585,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-147",
+    "id": "STY-148",
     "deck": "story",
     "text": "There was money coming to {actor} from {victim}, and {actor} knew it.",
     "tags": {
@@ -1586,7 +1595,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-148",
+    "id": "STY-149",
     "deck": "story",
     "text": "{actor} was jealous of {victim} over {third}.",
     "tags": {
@@ -1596,7 +1605,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-149",
+    "id": "STY-150",
     "deck": "story",
     "text": "{actor} was jealous of {victim}, and it was over {third}.",
     "tags": {
@@ -1606,7 +1615,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-150",
+    "id": "STY-151",
     "deck": "story",
     "text": "{actor} needed {victim} to keep quiet in front of the grand jury.",
     "tags": {
@@ -1616,7 +1625,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-151",
+    "id": "STY-152",
     "deck": "story",
     "text": "{actor} needed {victim} silent before the grand jury.",
     "tags": {
@@ -1626,7 +1635,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-152",
+    "id": "STY-153",
     "deck": "story",
     "text": "{actor} owed {victim} four thousand dollars and was behind on paying it back.",
     "tags": {
@@ -1636,7 +1645,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-153",
+    "id": "STY-154",
     "deck": "story",
     "text": "{actor} owed {victim} four thousand dollars, and the money was past due.",
     "tags": {
@@ -1646,7 +1655,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-154",
+    "id": "STY-155",
     "deck": "story",
     "text": "{actor} blamed {victim} for the ruin of {his} business.",
     "tags": {
@@ -1656,7 +1665,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-155",
+    "id": "STY-156",
     "deck": "story",
     "text": "{actor} had lost {his} business, and blamed {victim} for it.",
     "tags": {
@@ -1666,7 +1675,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-156",
+    "id": "STY-157",
     "deck": "story",
     "text": "{victim} was about to expose {actor}.",
     "tags": {
@@ -1676,7 +1685,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-157",
+    "id": "STY-158",
     "deck": "story",
     "text": "{actor} was about to be exposed, and {victim} was the one who would do it.",
     "tags": {
@@ -1686,7 +1695,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-158",
+    "id": "STY-159",
     "deck": "story",
     "text": "{actor} wanted {victim} off the lease and the lease in {his} own name.",
     "tags": {
@@ -1696,7 +1705,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-159",
+    "id": "STY-160",
     "deck": "story",
     "text": "{actor} wanted the lease, and {victim} was the name on it.",
     "tags": {
@@ -1706,7 +1715,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-160",
+    "id": "STY-161",
     "deck": "story",
     "text": "There was ten thousand dollars of life insurance on {victim}, and it paid {actor}.",
     "tags": {
@@ -1716,7 +1725,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-161",
+    "id": "STY-162",
     "deck": "story",
     "text": "{actor} was named on ten thousand dollars of insurance on {victim}’s life.",
     "tags": {
@@ -1726,7 +1735,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-162",
+    "id": "STY-163",
     "deck": "story",
     "text": "{actor} was protecting {third}, and {victim} knew what there was to protect {third} from.",
     "tags": {
@@ -1736,7 +1745,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-163",
+    "id": "STY-164",
     "deck": "story",
     "text": "{actor} was covering for {third}, and {victim} knew what {third} had done.",
     "tags": {
@@ -1746,7 +1755,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-164",
+    "id": "STY-165",
     "deck": "story",
     "text": "{victim} had told {actor} the lawyer was coming on Thursday, and that the arrangement would be changed.",
     "tags": {
@@ -1756,7 +1765,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-165",
+    "id": "STY-166",
     "deck": "story",
     "text": "{actor} had told {victim} to keep away from {third}, loud enough to turn heads.",
     "tags": {
@@ -1766,7 +1775,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-166",
+    "id": "STY-167",
     "deck": "story",
     "text": "{victim} had told {actor} that somebody who testifies sleeps better.",
     "tags": {
@@ -1776,7 +1785,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-167",
+    "id": "STY-168",
     "deck": "story",
     "text": "{victim} had told {actor} that Friday was the end of it, one way or the other.",
     "tags": {
@@ -1786,7 +1795,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-168",
+    "id": "STY-169",
     "deck": "story",
     "text": "{actor} had said that {victim} took everything, and would be made to feel it.",
     "tags": {
@@ -1796,7 +1805,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-169",
+    "id": "STY-170",
     "deck": "story",
     "text": "{victim} had told {actor} the story would run whether {actor} liked it or not.",
     "tags": {
@@ -1806,7 +1815,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-170",
+    "id": "STY-171",
     "deck": "story",
     "text": "{victim} had told {actor} the lease would go to somebody else at the end of the quarter.",
     "tags": {
@@ -1816,7 +1825,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-171",
+    "id": "STY-172",
     "deck": "story",
     "text": "{victim} had asked {actor} straight out who had been paying the premiums, and got no answer.",
     "tags": {
@@ -1826,7 +1835,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-172",
+    "id": "STY-173",
     "deck": "story",
     "text": "{actor} had told {victim} that if it came out, it would be {third} who suffered for it.",
     "tags": {
@@ -1836,7 +1845,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-173",
+    "id": "STY-174",
     "deck": "story",
     "text": "That was reason enough for {actor} to want {victim} gone.",
     "tags": {
@@ -1847,7 +1856,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-174",
+    "id": "STY-175",
     "deck": "story",
     "text": "So {actor} had every reason to see {victim} off.",
     "tags": {
@@ -1858,19 +1867,9 @@
     "status": "generated"
   },
   {
-    "id": "STY-175",
-    "deck": "story",
-    "text": "At {time} {actor} was at {place} and took the bottle of chloral drops off the shelf. It left a ring in the dust where it had stood.",
-    "tags": {
-      "beat": "means",
-      "method": "poison"
-    },
-    "status": "generated"
-  },
-  {
     "id": "STY-176",
     "deck": "story",
-    "text": "{actor} was at {place} at {time}, where the chloral was kept, and came away with the bottle. There was a ring in the dust on the shelf where it had been.",
+    "text": "At {time} {actor} was at {place} and took the bottle of chloral sleeping drops off the shelf. It left a ring in the dust where it had stood.",
     "tags": {
       "beat": "means",
       "method": "poison"
@@ -1880,17 +1879,17 @@
   {
     "id": "STY-177",
     "deck": "story",
-    "text": "At {time} {actor} was at {place} and picked up the bronze bookend. It left a clean patch in the dust where it had stood.",
+    "text": "{actor} was at {place} at {time}, where the chloral was kept, and came away with the bottle. There was a ring in the dust on the shelf where it had been.",
     "tags": {
       "beat": "means",
-      "method": "blunt"
+      "method": "poison"
     },
     "status": "generated"
   },
   {
     "id": "STY-178",
     "deck": "story",
-    "text": "{actor} was at {place} at {time}, and when {he} left, the bronze bookend went with {him}. There was a clean patch in the dust where it had stood.",
+    "text": "At {time} {actor} was at {place} and picked up the bronze bookend. It left a clean patch in the dust where it had stood.",
     "tags": {
       "beat": "means",
       "method": "blunt"
@@ -1900,17 +1899,17 @@
   {
     "id": "STY-179",
     "deck": "story",
-    "text": "At {time} {actor} was at {place} and took the roof-door key off its hook. The door it opens was found standing wide.",
+    "text": "{actor} was at {place} at {time}, and when {he} left, the bronze bookend went with {him}. There was a clean patch in the dust where it had stood.",
     "tags": {
       "beat": "means",
-      "method": "fall"
+      "method": "blunt"
     },
     "status": "generated"
   },
   {
     "id": "STY-180",
     "deck": "story",
-    "text": "{actor} was at {place} at {time}, and the roof-door key left its hook with {him}.",
+    "text": "At {time} {actor} was at {place} and took the roof-door key off its hook. The door it opens was found standing wide.",
     "tags": {
       "beat": "means",
       "method": "fall"
@@ -1920,17 +1919,17 @@
   {
     "id": "STY-181",
     "deck": "story",
-    "text": "At {time} {actor} was at {place} and took down a length of sash cord. A short end of it was left tied to the fitting.",
+    "text": "{actor} was at {place} at {time}, and the roof-door key left its hook with {him}.",
     "tags": {
       "beat": "means",
-      "method": "strangle"
+      "method": "fall"
     },
     "status": "generated"
   },
   {
     "id": "STY-182",
     "deck": "story",
-    "text": "{actor} was at {place} at {time}, and came away with a length of sash cord. The rest of it was still tied to the fitting afterwards.",
+    "text": "At {time} {actor} was at {place} and took down a length of sash cord. A short end of it was left tied to the fitting.",
     "tags": {
       "beat": "means",
       "method": "strangle"
@@ -1940,17 +1939,17 @@
   {
     "id": "STY-183",
     "deck": "story",
-    "text": "At {time} {actor} was at {place}, opened the drawer, and took out the nickel-plated revolver. The oiled cloth it was kept in stayed behind.",
+    "text": "{actor} was at {place} at {time}, and came away with a length of sash cord. The rest of it was still tied to the fitting afterwards.",
     "tags": {
       "beat": "means",
-      "method": "shot"
+      "method": "strangle"
     },
     "status": "generated"
   },
   {
     "id": "STY-184",
     "deck": "story",
-    "text": "{actor} was at {place} at {time}, and the nickel-plated revolver went out of the drawer with {him}. The drawer was left open, with the oiled cloth still in it.",
+    "text": "At {time} {actor} was at {place}, opened the drawer, and took out the nickel-plated revolver. The oiled cloth it was kept in stayed behind.",
     "tags": {
       "beat": "means",
       "method": "shot"
@@ -1960,17 +1959,17 @@
   {
     "id": "STY-185",
     "deck": "story",
-    "text": "At {time} {actor} was at {place} and took the ice pick from beside the block of ice.",
+    "text": "{actor} was at {place} at {time}, and the nickel-plated revolver went out of the drawer with {him}. The drawer was left open, with the oiled cloth still in it.",
     "tags": {
       "beat": "means",
-      "method": "stab"
+      "method": "shot"
     },
     "status": "generated"
   },
   {
     "id": "STY-186",
     "deck": "story",
-    "text": "{actor} was at {place} at {time}, and when {he} left, the ice pick was gone from beside the block of ice.",
+    "text": "At {time} {actor} was at {place} and took the ice pick from beside the block of ice.",
     "tags": {
       "beat": "means",
       "method": "stab"
@@ -1980,17 +1979,17 @@
   {
     "id": "STY-187",
     "deck": "story",
-    "text": "At {time} {actor} was at {place} and took the roof-door key off the board. The hook it hung on had been used all week.",
+    "text": "{actor} was at {place} at {time}, and when {he} left, the ice pick was gone from beside the block of ice.",
     "tags": {
       "beat": "means",
-      "method": "took-the-key"
+      "method": "stab"
     },
     "status": "generated"
   },
   {
     "id": "STY-188",
     "deck": "story",
-    "text": "{actor} was at {place} at {time}, and the roof-door key left the board with {him}.",
+    "text": "At {time} {actor} was at {place} and took the roof-door key off the board. The hook it hung on had been used all week.",
     "tags": {
       "beat": "means",
       "method": "took-the-key"
@@ -2000,17 +1999,17 @@
   {
     "id": "STY-189",
     "deck": "story",
-    "text": "At {time} {actor} was at {place} and got hold of the day ledger. The combination was written on the flyleaf.",
+    "text": "{actor} was at {place} at {time}, and the roof-door key left the board with {him}.",
     "tags": {
       "beat": "means",
-      "method": "worked-the-combination"
+      "method": "took-the-key"
     },
     "status": "generated"
   },
   {
     "id": "STY-190",
     "deck": "story",
-    "text": "{actor} was at {place} at {time} and took the day ledger, which had the combination written on the flyleaf.",
+    "text": "At {time} {actor} was at {place} and got hold of the day ledger. The combination was written on the flyleaf.",
     "tags": {
       "beat": "means",
       "method": "worked-the-combination"
@@ -2020,17 +2019,17 @@
   {
     "id": "STY-191",
     "deck": "story",
-    "text": "At {time} {actor} was at {place} and took down a length of sash cord, long enough to reach from the fire escape. A short end of it was left tied to the rail.",
+    "text": "{actor} was at {place} at {time} and took the day ledger, which had the combination written on the flyleaf.",
     "tags": {
       "beat": "means",
-      "method": "came-in-the-window"
+      "method": "worked-the-combination"
     },
     "status": "generated"
   },
   {
     "id": "STY-192",
     "deck": "story",
-    "text": "{actor} was at {place} at {time}, and came away with a length of sash cord. The rest of it was still tied to the rail afterwards.",
+    "text": "At {time} {actor} was at {place} and took down a length of sash cord, long enough to reach from the fire escape. A short end of it was left tied to the rail.",
     "tags": {
       "beat": "means",
       "method": "came-in-the-window"
@@ -2040,17 +2039,17 @@
   {
     "id": "STY-193",
     "deck": "story",
-    "text": "At {time} {actor} was at {place} and collected the strapped suitcase that had been checked there that morning.",
+    "text": "{actor} was at {place} at {time}, and came away with a length of sash cord. The rest of it was still tied to the rail afterwards.",
     "tags": {
       "beat": "means",
-      "method": "never-left"
+      "method": "came-in-the-window"
     },
     "status": "generated"
   },
   {
     "id": "STY-194",
     "deck": "story",
-    "text": "{actor} was at {place} at {time} to collect the strapped suitcase, which had been checked there that morning.",
+    "text": "At {time} {actor} was at {place} and collected the strapped suitcase that had been checked there that morning.",
     "tags": {
       "beat": "means",
       "method": "never-left"
@@ -2060,17 +2059,17 @@
   {
     "id": "STY-195",
     "deck": "story",
-    "text": "At {time} {actor} was at {place} and made a telephone call on the wall telephone there. The operator kept the ticket for it.",
+    "text": "{actor} was at {place} at {time} to collect the strapped suitcase, which had been checked there that morning.",
     "tags": {
       "beat": "means",
-      "method": "was-let-in"
+      "method": "never-left"
     },
     "status": "generated"
   },
   {
     "id": "STY-196",
     "deck": "story",
-    "text": "{actor} was at {place} at {time}, and used the wall telephone. The operator kept the ticket for the call.",
+    "text": "At {time} {actor} was at {place} and made a telephone call on the wall telephone there. The operator kept the ticket for it.",
     "tags": {
       "beat": "means",
       "method": "was-let-in"
@@ -2080,17 +2079,17 @@
   {
     "id": "STY-197",
     "deck": "story",
-    "text": "At {time} {actor} was at {place} and pulled the timetable off the wall. The corner of it was left pasted to the wall.",
+    "text": "{actor} was at {place} at {time}, and used the wall telephone. The operator kept the ticket for the call.",
     "tags": {
       "beat": "means",
-      "method": "the-timetable"
+      "method": "was-let-in"
     },
     "status": "generated"
   },
   {
     "id": "STY-198",
     "deck": "story",
-    "text": "{actor} was at {place} at {time}, and read the departures off the timetable pasted up there.",
+    "text": "At {time} {actor} was at {place} and pulled the timetable off the wall. The corner of it was left pasted to the wall.",
     "tags": {
       "beat": "means",
       "method": "the-timetable"
@@ -2100,17 +2099,17 @@
   {
     "id": "STY-199",
     "deck": "story",
-    "text": "At {time} {actor} was at {place} and got the strapped suitcase out of the cupboard. The straps on it had been bought new the week before.",
+    "text": "{actor} was at {place} at {time}, and read the departures off the timetable pasted up there.",
     "tags": {
       "beat": "means",
-      "method": "the-packed-case"
+      "method": "the-timetable"
     },
     "status": "generated"
   },
   {
     "id": "STY-200",
     "deck": "story",
-    "text": "{actor} was at {place} at {time}, and came away with the strapped suitcase.",
+    "text": "At {time} {actor} was at {place} and got the strapped suitcase out of the cupboard. The straps on it had been bought new the week before.",
     "tags": {
       "beat": "means",
       "method": "the-packed-case"
@@ -2120,17 +2119,17 @@
   {
     "id": "STY-201",
     "deck": "story",
-    "text": "At {time} {actor} was at {place} and raised money there in a hurry. The last pawn ticket written was torn off the pad.",
+    "text": "{actor} was at {place} at {time}, and came away with the strapped suitcase.",
     "tags": {
       "beat": "means",
-      "method": "the-pawned-ring"
+      "method": "the-packed-case"
     },
     "status": "generated"
   },
   {
     "id": "STY-202",
     "deck": "story",
-    "text": "{actor} was at {place} at {time}, and left with money and a pawn ticket. It left a gap on the spike where the ticket had been.",
+    "text": "At {time} {actor} was at {place} and raised money there in a hurry. The last pawn ticket written was torn off the pad.",
     "tags": {
       "beat": "means",
       "method": "the-pawned-ring"
@@ -2140,17 +2139,17 @@
   {
     "id": "STY-203",
     "deck": "story",
-    "text": "At {time} {actor} was at {place} and took the camel-hair overcoat off its hook, a coat nobody on the block would know. Its hook was the only empty one.",
+    "text": "{actor} was at {place} at {time}, and left with money and a pawn ticket. It left a gap on the spike where the ticket had been.",
     "tags": {
       "beat": "means",
-      "method": "the-borrowed-coat"
+      "method": "the-pawned-ring"
     },
     "status": "generated"
   },
   {
     "id": "STY-204",
     "deck": "story",
-    "text": "{actor} was at {place} at {time}, and the camel-hair overcoat left its hook with {him}.",
+    "text": "At {time} {actor} was at {place} and took the camel-hair overcoat off its hook. It was a coat nobody on the block would recognise, and its hook was the only empty one.",
     "tags": {
       "beat": "means",
       "method": "the-borrowed-coat"
@@ -2160,17 +2159,17 @@
   {
     "id": "STY-205",
     "deck": "story",
-    "text": "There was one key to {scene}, and it lived on its hook at {place}. {actor} had it off the hook that evening, and it was back on the hook by morning.",
+    "text": "{actor} was at {place} at {time}, and the camel-hair overcoat left its hook with {him}.",
     "tags": {
-      "beat": "key",
-      "trope": "locked-room"
+      "beat": "means",
+      "method": "the-borrowed-coat"
     },
     "status": "generated"
   },
   {
     "id": "STY-206",
     "deck": "story",
-    "text": "The only key to {scene} hung at {place}. {actor} took it that evening and put it back before morning.",
+    "text": "There was one key to {scene}, and it lived on its hook at {place}. {actor} had it off the hook that evening, and it was back on the hook by morning.",
     "tags": {
       "beat": "key",
       "trope": "locked-room"
@@ -2180,17 +2179,17 @@
   {
     "id": "STY-207",
     "deck": "story",
-    "text": "{victim} carried the payroll envelope along the same route every Friday. At {time} {vhe} still had it, at {place}.",
+    "text": "The only key to {scene} hung at {place}. {actor} took it that evening and put it back before morning.",
     "tags": {
-      "beat": "carried",
-      "trope": "payroll"
+      "beat": "key",
+      "trope": "locked-room"
     },
     "status": "generated"
   },
   {
     "id": "STY-208",
     "deck": "story",
-    "text": "Every Friday {victim} carried the payroll envelope along the same route. At {time} it was still buttoned into {vhis} pocket, at {place}.",
+    "text": "{victim} carried the payroll envelope along the same route every Friday. At {time} {vhe} still had it, at {place}.",
     "tags": {
       "beat": "carried",
       "trope": "payroll"
@@ -2200,17 +2199,17 @@
   {
     "id": "STY-209",
     "deck": "story",
-    "text": "{victim} was not there. At {time} {vhe} was at {place}.",
+    "text": "Every Friday {victim} carried the payroll envelope along the same route. At {time} it was still buttoned into {vhis} pocket, at {place}.",
     "tags": {
-      "beat": "owner",
-      "caseType": "robbery"
+      "beat": "carried",
+      "trope": "payroll"
     },
     "status": "generated"
   },
   {
     "id": "STY-210",
     "deck": "story",
-    "text": "At the time, {victim} was at {place}.",
+    "text": "{victim} was not there. At {time} {vhe} was at {place}.",
     "tags": {
       "beat": "owner",
       "caseType": "robbery"
@@ -2220,6 +2219,16 @@
   {
     "id": "STY-211",
     "deck": "story",
+    "text": "At the time, {victim} was at {place}.",
+    "tags": {
+      "beat": "owner",
+      "caseType": "robbery"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-212",
+    "deck": "story",
     "text": "At {time} {seer} saw {victim} at {place}. Nobody reported seeing {vhim} after that.",
     "tags": {
       "beat": "lastseen",
@@ -2228,7 +2237,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-212",
+    "id": "STY-213",
     "deck": "story",
     "text": "{seer} saw {victim} at {place} at {time}, and that was the last sighting anybody reported.",
     "tags": {
@@ -2238,7 +2247,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-213",
+    "id": "STY-214",
     "deck": "story",
     "text": "From there {actor} went straight to {scene}, and was there by {time}.",
     "tags": {
@@ -2249,7 +2258,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-214",
+    "id": "STY-215",
     "deck": "story",
     "text": "{actor} went straight from there to {scene}, and was there by {time}.",
     "tags": {
@@ -2260,7 +2269,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-215",
+    "id": "STY-216",
     "deck": "story",
     "text": "From there {actor} went straight to {scene}.",
     "tags": {
@@ -2271,7 +2280,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-216",
+    "id": "STY-217",
     "deck": "story",
     "text": "{actor} went straight from there to {scene}.",
     "tags": {
@@ -2282,7 +2291,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-217",
+    "id": "STY-218",
     "deck": "story",
     "text": "{actor} came to {scene} from {place}, and was there by {time}.",
     "tags": {
@@ -2293,7 +2302,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-218",
+    "id": "STY-219",
     "deck": "story",
     "text": "From {place} {actor} went on to {scene}, and was there by {time}.",
     "tags": {
@@ -2304,7 +2313,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-219",
+    "id": "STY-220",
     "deck": "story",
     "text": "{actor} came to {scene} from {place}.",
     "tags": {
@@ -2315,7 +2324,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-220",
+    "id": "STY-221",
     "deck": "story",
     "text": "From {place} {actor} went on to {scene}.",
     "tags": {
@@ -2326,7 +2335,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-221",
+    "id": "STY-222",
     "deck": "story",
     "text": "{actor} was at {scene} from {time}.",
     "tags": {
@@ -2337,7 +2346,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-222",
+    "id": "STY-223",
     "deck": "story",
     "text": "By {time} {actor} was already at {scene}.",
     "tags": {
@@ -2348,7 +2357,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-223",
+    "id": "STY-224",
     "deck": "story",
     "text": "{actor} waited {span} for {victim}, who came in at {vtime}.",
     "tags": {
@@ -2358,7 +2367,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-224",
+    "id": "STY-225",
     "deck": "story",
     "text": "{victim} came in at {vtime}, {span} later.",
     "tags": {
@@ -2368,7 +2377,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-225",
+    "id": "STY-226",
     "deck": "story",
     "text": "{victim} was already at {scene}, and had been since {vtime}.",
     "tags": {
@@ -2378,7 +2387,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-226",
+    "id": "STY-227",
     "deck": "story",
     "text": "{victim} had been at {scene} since {vtime}, {span} before {actor} got there.",
     "tags": {
@@ -2388,7 +2397,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-227",
+    "id": "STY-228",
     "deck": "story",
     "text": "{victim} got to {scene} in the same half hour.",
     "tags": {
@@ -2398,7 +2407,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-228",
+    "id": "STY-229",
     "deck": "story",
     "text": "{victim} got there in the same half hour, at {vtime}.",
     "tags": {
@@ -2408,7 +2417,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-229",
+    "id": "STY-230",
     "deck": "story",
     "text": "Nobody else was there.",
     "tags": {
@@ -2418,7 +2427,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-230",
+    "id": "STY-231",
     "deck": "story",
     "text": "They had {scene} to themselves.",
     "tags": {
@@ -2428,7 +2437,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-231",
+    "id": "STY-232",
     "deck": "story",
     "text": "Nobody else was at {scene}.",
     "tags": {
@@ -2438,7 +2447,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-232",
+    "id": "STY-233",
     "deck": "story",
     "text": "There was nobody else there.",
     "tags": {
@@ -2448,7 +2457,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-233",
+    "id": "STY-234",
     "deck": "story",
     "text": "{victim} came from {place}, where {vhe} had been since {time}.",
     "tags": {
@@ -2459,7 +2468,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-234",
+    "id": "STY-235",
     "deck": "story",
     "text": "Before that, {victim} had been at {place} from {time} until {until}.",
     "tags": {
@@ -2470,7 +2479,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-235",
+    "id": "STY-236",
     "deck": "story",
     "text": "{victim} came from {place}.",
     "tags": {
@@ -2481,7 +2490,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-236",
+    "id": "STY-237",
     "deck": "story",
     "text": "Before that, at {time}, {victim} was at {place}.",
     "tags": {
@@ -2492,7 +2501,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-237",
+    "id": "STY-238",
     "deck": "story",
     "text": "{victim} came to {scene} from {place}, where {vhe} had been since {time}.",
     "tags": {
@@ -2503,7 +2512,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-238",
+    "id": "STY-239",
     "deck": "story",
     "text": "{victim} had been at {place} from {time} until {until}, and came to {scene} from there.",
     "tags": {
@@ -2514,7 +2523,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-239",
+    "id": "STY-240",
     "deck": "story",
     "text": "{victim} came to {scene} from {place}.",
     "tags": {
@@ -2525,7 +2534,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-240",
+    "id": "STY-241",
     "deck": "story",
     "text": "{victim} came to {scene} straight from {place}, where {vhe} had been at {time}.",
     "tags": {
@@ -2536,7 +2545,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-241",
+    "id": "STY-242",
     "deck": "story",
     "text": "It happened at {time}, {timing}.",
     "tags": {
@@ -2546,7 +2555,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-242",
+    "id": "STY-243",
     "deck": "story",
     "text": "It was {time}, {timing}.",
     "tags": {
@@ -2556,7 +2565,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-243",
+    "id": "STY-244",
     "deck": "story",
     "text": "It happened at {time}.",
     "tags": {
@@ -2566,7 +2575,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-244",
+    "id": "STY-245",
     "deck": "story",
     "text": "It was {time}.",
     "tags": {
@@ -2576,7 +2585,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-245",
+    "id": "STY-246",
     "deck": "story",
     "text": "{actor} put the chloral in {victim}’s drink, and {victim} drank it. There was no wound and no struggle.",
     "tags": {
@@ -2587,7 +2596,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-246",
+    "id": "STY-247",
     "deck": "story",
     "text": "{victim} drank what {actor} poured, and the chloral was in it. There was no struggle.",
     "tags": {
@@ -2598,7 +2607,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-247",
+    "id": "STY-248",
     "deck": "story",
     "text": "{actor} hit {victim} with the bookend. It was one blow, at the back of the skull, and {victim} did not die at once.",
     "tags": {
@@ -2609,7 +2618,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-248",
+    "id": "STY-249",
     "deck": "story",
     "text": "{actor} brought the bookend down on the back of {victim}’s skull, once. {victim} did not die at once.",
     "tags": {
@@ -2620,7 +2629,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-249",
+    "id": "STY-250",
     "deck": "story",
     "text": "{actor} pushed {victim} from the parapet. It was six storeys, and two of {victim}’s fingernails were torn back.",
     "tags": {
@@ -2631,7 +2640,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-250",
+    "id": "STY-251",
     "deck": "story",
     "text": "{actor} pushed {victim} off the parapet. It was a fall of six storeys.",
     "tags": {
@@ -2642,7 +2651,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-251",
+    "id": "STY-252",
     "deck": "story",
     "text": "{actor} strangled {victim} with the cord. Three fibres of the hemp stayed in the skin.",
     "tags": {
@@ -2653,7 +2662,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-252",
+    "id": "STY-253",
     "deck": "story",
     "text": "{actor} put the cord round {victim}’s throat and pulled. It left a furrow and three fibres of hemp.",
     "tags": {
@@ -2664,7 +2673,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-253",
+    "id": "STY-254",
     "deck": "story",
     "text": "{actor} shot {victim} once, below the breastbone, close enough to burn the shirt.",
     "tags": {
@@ -2675,7 +2684,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-254",
+    "id": "STY-255",
     "deck": "story",
     "text": "{actor} fired the revolver once, from close enough to burn {victim}’s shirt front.",
     "tags": {
@@ -2686,7 +2695,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-255",
+    "id": "STY-256",
     "deck": "story",
     "text": "{actor} put the ice pick in under {victim}’s ribs, once. There was very little blood.",
     "tags": {
@@ -2697,7 +2706,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-256",
+    "id": "STY-257",
     "deck": "story",
     "text": "{actor} used the ice pick, once, under {victim}’s ribs. Hardly any blood came out.",
     "tags": {
@@ -2708,7 +2717,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-257",
+    "id": "STY-258",
     "deck": "story",
     "text": "{actor} let {himself} into {scene} with the key, took {taken}, and locked the door again behind {him}.",
     "tags": {
@@ -2720,7 +2729,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-258",
+    "id": "STY-259",
     "deck": "story",
     "text": "{actor} opened the lock at {scene} with the key, took {taken}, and locked it again on the way out.",
     "tags": {
@@ -2732,7 +2741,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-259",
+    "id": "STY-260",
     "deck": "story",
     "text": "{actor} opened the safe at {scene} with the combination written on the flyleaf and took {taken}. Nothing was broken.",
     "tags": {
@@ -2744,7 +2753,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-260",
+    "id": "STY-261",
     "deck": "story",
     "text": "{actor} turned the dial at {scene} to the combination from the flyleaf and took {taken}.",
     "tags": {
@@ -2756,7 +2765,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-261",
+    "id": "STY-262",
     "deck": "story",
     "text": "{actor} went up the fire escape on the cord, sprang the window catch at {scene} from outside, and took {taken}.",
     "tags": {
@@ -2768,7 +2777,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-262",
+    "id": "STY-263",
     "deck": "story",
     "text": "{actor} climbed to the window at {scene} on the cord, forced the catch from outside, and took {taken}.",
     "tags": {
@@ -2780,7 +2789,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-263",
+    "id": "STY-264",
     "deck": "story",
     "text": "{actor} was already inside {scene} when the door was shut, and took {taken}. Nothing was forced, because nothing had to be.",
     "tags": {
@@ -2792,7 +2801,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-264",
+    "id": "STY-265",
     "deck": "story",
     "text": "{actor} never came in at all. {he} was inside {scene} before the door was shut, and took {taken}.",
     "tags": {
@@ -2804,7 +2813,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-265",
+    "id": "STY-266",
     "deck": "story",
     "text": "The telephone call got the door at {scene} opened from inside, and {actor} walked in and took {taken}.",
     "tags": {
@@ -2816,7 +2825,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-266",
+    "id": "STY-267",
     "deck": "story",
     "text": "Somebody inside {scene} opened the door because of the telephone call, and {actor} walked in and took {taken}.",
     "tags": {
@@ -2828,7 +2837,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-267",
+    "id": "STY-268",
     "deck": "story",
     "text": "At {scene} {actor} took the envelope, using the key off the board.",
     "tags": {
@@ -2840,7 +2849,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-268",
+    "id": "STY-269",
     "deck": "story",
     "text": "At {scene} {actor} took the envelope, with the combination from the ledger’s flyleaf.",
     "tags": {
@@ -2852,7 +2861,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-269",
+    "id": "STY-270",
     "deck": "story",
     "text": "{actor} came down to {scene} on the cord from the fire escape and took the envelope.",
     "tags": {
@@ -2864,7 +2873,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-270",
+    "id": "STY-271",
     "deck": "story",
     "text": "{actor} was already inside at {scene} before the door was shut, and took the envelope there.",
     "tags": {
@@ -2876,7 +2885,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-271",
+    "id": "STY-272",
     "deck": "story",
     "text": "The telephone call got a door at {scene} opened, and {actor} took the envelope.",
     "tags": {
@@ -2888,7 +2897,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-272",
+    "id": "STY-273",
     "deck": "story",
     "text": "{actor} was with {victim} at {scene}, with the departures read off the timetable. Then {victim} went.",
     "tags": {
@@ -2900,7 +2909,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-273",
+    "id": "STY-274",
     "deck": "story",
     "text": "{actor} took {victim} away from {scene}, with the departures already read off the timetable.",
     "tags": {
@@ -2912,7 +2921,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-274",
+    "id": "STY-275",
     "deck": "story",
     "text": "{actor} was with {victim} at {scene} and handed over the packed suitcase. Then {victim} went.",
     "tags": {
@@ -2924,7 +2933,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-275",
+    "id": "STY-276",
     "deck": "story",
     "text": "{actor} took {victim} away from {scene}, with the suitcase already packed.",
     "tags": {
@@ -2936,7 +2945,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-276",
+    "id": "STY-277",
     "deck": "story",
     "text": "{actor} was with {victim} at {scene} and handed over the money from the pawnshop. Then {victim} went.",
     "tags": {
@@ -2948,7 +2957,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-277",
+    "id": "STY-278",
     "deck": "story",
     "text": "{actor} took {victim} away from {scene}, with the money raised at the pawnshop.",
     "tags": {
@@ -2960,9 +2969,9 @@
     "status": "generated"
   },
   {
-    "id": "STY-278",
+    "id": "STY-279",
     "deck": "story",
-    "text": "{actor} was with {victim} at {scene} and handed over the camel-hair coat, which nobody on the block would know. Then {victim} went.",
+    "text": "{actor} was with {victim} at {scene} and gave {vhim} the camel-hair coat to wear, so that nobody on the block would know {vhim} in it. Then {victim} went.",
     "tags": {
       "beat": "act",
       "method": "the-borrowed-coat",
@@ -2972,9 +2981,9 @@
     "status": "generated"
   },
   {
-    "id": "STY-279",
+    "id": "STY-280",
     "deck": "story",
-    "text": "{actor} took {victim} away from {scene} under the borrowed camel-hair coat, which nobody on the block would know.",
+    "text": "{actor} took {victim} away from {scene} in the borrowed camel-hair coat, so that nobody on the block would know {vhim}.",
     "tags": {
       "beat": "act",
       "method": "the-borrowed-coat",
@@ -2984,7 +2993,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-280",
+    "id": "STY-281",
     "deck": "story",
     "text": "Nobody heard it. For twenty seconds under the El nobody hears anything at all.",
     "tags": {
@@ -2994,7 +3003,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-281",
+    "id": "STY-282",
     "deck": "story",
     "text": "Nobody heard a thing. When the El goes over, everything under the structure goes quiet for twenty seconds.",
     "tags": {
@@ -3004,19 +3013,9 @@
     "status": "generated"
   },
   {
-    "id": "STY-282",
-    "deck": "story",
-    "text": "Nobody heard it. The fight was on the radio at {anchorPlace}, turned up loud enough to carry into the street.",
-    "tags": {
-      "beat": "cover",
-      "anchor": "bar-radio"
-    },
-    "status": "generated"
-  },
-  {
     "id": "STY-283",
     "deck": "story",
-    "text": "Nobody heard a thing over the fight on the radio at {anchorPlace}.",
+    "text": "Nobody heard it. The boxing match was on the radio at {anchorPlace}, turned up loud enough to carry into the street.",
     "tags": {
       "beat": "cover",
       "anchor": "bar-radio"
@@ -3026,17 +3025,17 @@
   {
     "id": "STY-284",
     "deck": "story",
-    "text": "Nobody heard it. The theatre had just let out, and the street was full for a quarter of an hour.",
+    "text": "Nobody heard a thing over the boxing match on the radio at {anchorPlace}.",
     "tags": {
       "beat": "cover",
-      "anchor": "theater-out"
+      "anchor": "bar-radio"
     },
     "status": "generated"
   },
   {
     "id": "STY-285",
     "deck": "story",
-    "text": "Nobody heard a thing in the crush when the theatre let out.",
+    "text": "Nobody heard it. The theatre had just let out, and the street was full for a quarter of an hour.",
     "tags": {
       "beat": "cover",
       "anchor": "theater-out"
@@ -3046,17 +3045,17 @@
   {
     "id": "STY-286",
     "deck": "story",
-    "text": "Afterwards {actor} put {weapon} where the precinct would find it, in somebody else’s rooms.",
+    "text": "Nobody heard a thing in the crush when the theatre let out.",
     "tags": {
-      "beat": "frame",
-      "trope": "the-frame"
+      "beat": "cover",
+      "anchor": "theater-out"
     },
     "status": "generated"
   },
   {
     "id": "STY-287",
     "deck": "story",
-    "text": "Then {actor} left {weapon} in somebody else’s rooms, and the precinct found it there and stopped looking.",
+    "text": "Afterwards {actor} put {weapon} where the precinct would find it, in somebody else’s rooms.",
     "tags": {
       "beat": "frame",
       "trope": "the-frame"
@@ -3066,6 +3065,16 @@
   {
     "id": "STY-288",
     "deck": "story",
+    "text": "Then {actor} left {weapon} in somebody else’s rooms, and the precinct found it there and stopped looking.",
+    "tags": {
+      "beat": "frame",
+      "trope": "the-frame"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-289",
+    "deck": "story",
     "text": "{actor} did not leave {victim} there. By {time} {victim}’s body was at {found}.",
     "tags": {
       "beat": "moved",
@@ -3074,7 +3083,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-289",
+    "id": "STY-290",
     "deck": "story",
     "text": "By {time} {actor} had moved {victim}’s body to {found}, where it had not happened.",
     "tags": {
@@ -3084,7 +3093,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-290",
+    "id": "STY-291",
     "deck": "story",
     "text": "By {time} {actor} was at {place}.",
     "tags": {
@@ -3095,7 +3104,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-291",
+    "id": "STY-292",
     "deck": "story",
     "text": "By {time} {actor} was at {place}, and {he} stayed until {until}.",
     "tags": {
@@ -3106,7 +3115,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-292",
+    "id": "STY-293",
     "deck": "story",
     "text": "Afterwards {actor} went to {place}. {he} was there by {time}.",
     "tags": {
@@ -3117,7 +3126,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-293",
+    "id": "STY-294",
     "deck": "story",
     "text": "Afterwards {actor} went to {place}, and was there from {time} until {until}.",
     "tags": {
@@ -3128,7 +3137,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-294",
+    "id": "STY-295",
     "deck": "story",
     "text": "{actor} stayed at {scene} until {until}.",
     "tags": {
@@ -3139,7 +3148,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-295",
+    "id": "STY-296",
     "deck": "story",
     "text": "{actor} was still at {scene} at {until}.",
     "tags": {
@@ -3150,7 +3159,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-296",
+    "id": "STY-297",
     "deck": "story",
     "text": "At {time} {he} was at {place}.",
     "tags": {
@@ -3161,7 +3170,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-297",
+    "id": "STY-298",
     "deck": "story",
     "text": "At {time} {he} went on to {place}.",
     "tags": {
@@ -3172,7 +3181,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-298",
+    "id": "STY-299",
     "deck": "story",
     "text": "From {time} until {until} {he} was at {place}.",
     "tags": {
@@ -3183,7 +3192,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-299",
+    "id": "STY-300",
     "deck": "story",
     "text": "At {time} {he} went on to {place}, and stayed until {until}.",
     "tags": {
@@ -3194,7 +3203,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-300",
+    "id": "STY-301",
     "deck": "story",
     "text": "{actor} was at {goods} by {time}, and that is where {taken} went.",
     "tags": {
@@ -3205,7 +3214,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-301",
+    "id": "STY-302",
     "deck": "story",
     "text": "By {time} {actor} was at {goods}, and so was {taken}.",
     "tags": {
@@ -3216,7 +3225,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-302",
+    "id": "STY-303",
     "deck": "story",
     "text": "{taken} went to {goods}.",
     "tags": {
@@ -3227,7 +3236,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-303",
+    "id": "STY-304",
     "deck": "story",
     "text": "By {time} {actor} was at {goods}, where the envelope turned up, slit along the fold and empty.",
     "tags": {
@@ -3238,7 +3247,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-304",
+    "id": "STY-305",
     "deck": "story",
     "text": "The envelope turned up at {goods}, slit along the fold and empty.",
     "tags": {
@@ -3249,7 +3258,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-305",
+    "id": "STY-306",
     "deck": "story",
     "text": "By {time} {victim} was at {where}.",
     "tags": {
@@ -3260,9 +3269,9 @@
     "status": "generated"
   },
   {
-    "id": "STY-306",
+    "id": "STY-307",
     "deck": "story",
-    "text": "{victim} was at {where} by {time}, and that is where {vhe} went.",
+    "text": "By {time} {victim} had reached {where}.",
     "tags": {
       "beat": "whereabouts",
       "fate": "left",
@@ -3271,7 +3280,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-307",
+    "id": "STY-308",
     "deck": "story",
     "text": "By {time} {actor} had {victim} at {where}.",
     "tags": {
@@ -3283,7 +3292,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-308",
+    "id": "STY-309",
     "deck": "story",
     "text": "By {time} {actor} had {victim} at {where}, and stayed there with {vhim} until {until}.",
     "tags": {
@@ -3295,7 +3304,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-309",
+    "id": "STY-310",
     "deck": "story",
     "text": "{actor} had {victim} at {where} from {time}, and was still there with {vhim} at {until}.",
     "tags": {
@@ -3307,7 +3316,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-310",
+    "id": "STY-311",
     "deck": "story",
     "text": "{actor} had {victim} at {where} by {time}, and that is where {vhe} was kept.",
     "tags": {
@@ -3319,7 +3328,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-311",
+    "id": "STY-312",
     "deck": "story",
     "text": "By {time} {victim} was at {where}.",
     "tags": {
@@ -3330,7 +3339,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-312",
+    "id": "STY-313",
     "deck": "story",
     "text": "{victim} went to {where}.",
     "tags": {
@@ -3341,7 +3350,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-313",
+    "id": "STY-314",
     "deck": "story",
     "text": "{actor} took {victim} to {where}.",
     "tags": {
@@ -3352,7 +3361,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-314",
+    "id": "STY-315",
     "deck": "story",
     "text": "After that {victim} was gone from the neighbourhood.",
     "tags": {
@@ -3362,7 +3371,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-315",
+    "id": "STY-316",
     "deck": "story",
     "text": "{finder} found {victim} at {found} at {time}.",
     "tags": {
@@ -3373,7 +3382,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-316",
+    "id": "STY-317",
     "deck": "story",
     "text": "It was {time} before anybody found {victim}. It was {finder}, at {found}.",
     "tags": {
@@ -3384,7 +3393,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-317",
+    "id": "STY-318",
     "deck": "story",
     "text": "At {time} it was {actor} who found {victim}, at {found}.",
     "tags": {
@@ -3395,7 +3404,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-318",
+    "id": "STY-319",
     "deck": "story",
     "text": "At {time} {finder} found the door at {found} shut and {taken} gone.",
     "tags": {
@@ -3407,7 +3416,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-319",
+    "id": "STY-320",
     "deck": "story",
     "text": "{finder} found {taken} gone from {found} at {time}.",
     "tags": {
@@ -3418,7 +3427,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-320",
+    "id": "STY-321",
     "deck": "story",
     "text": "At {time} it was {actor} who found {taken} gone from {found}.",
     "tags": {
@@ -3429,23 +3438,12 @@
     "status": "generated"
   },
   {
-    "id": "STY-321",
+    "id": "STY-322",
     "deck": "story",
     "text": "That was {span} after it happened.",
     "tags": {
       "beat": "since",
       "caseType": "murder"
-    },
-    "status": "generated"
-  },
-  {
-    "id": "STY-322",
-    "deck": "story",
-    "text": "By then {victim} had been dead for {span}.",
-    "tags": {
-      "beat": "since",
-      "caseType": "murder",
-      "trope": "body-at-scene"
     },
     "status": "generated"
   },
@@ -3456,7 +3454,7 @@
     "tags": {
       "beat": "since",
       "caseType": "murder",
-      "trope": "locked-room"
+      "trope": "body-at-scene"
     },
     "status": "generated"
   },
@@ -3467,12 +3465,23 @@
     "tags": {
       "beat": "since",
       "caseType": "murder",
-      "trope": "the-frame"
+      "trope": "locked-room"
     },
     "status": "generated"
   },
   {
     "id": "STY-325",
+    "deck": "story",
+    "text": "By then {victim} had been dead for {span}.",
+    "tags": {
+      "beat": "since",
+      "caseType": "murder",
+      "trope": "the-frame"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-326",
     "deck": "story",
     "text": "That was {span} after it was taken.",
     "tags": {
@@ -3482,7 +3491,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-326",
+    "id": "STY-327",
     "deck": "story",
     "text": "By then it had been gone for {span}.",
     "tags": {
@@ -3492,7 +3501,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-327",
+    "id": "STY-328",
     "deck": "story",
     "text": "{victim} left {vhis} rooms tidy, with the rent paid to the end of the month.",
     "tags": {
@@ -3502,7 +3511,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-328",
+    "id": "STY-329",
     "deck": "story",
     "text": "Behind {vhim}, {victim}’s rooms were tidy and the rent was paid to the end of the month.",
     "tags": {
@@ -3512,7 +3521,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-329",
+    "id": "STY-330",
     "deck": "story",
     "text": "{victim}’s coat and hat were still on the hook at home, and the money was still in the drawer.",
     "tags": {
@@ -3522,7 +3531,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-330",
+    "id": "STY-331",
     "deck": "story",
     "text": "At home, {victim}’s coat and hat stayed on the hook and the money stayed in the drawer.",
     "tags": {
@@ -3532,7 +3541,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-331",
+    "id": "STY-332",
     "deck": "story",
     "text": "The police came, walked through it, and went.",
     "tags": {
@@ -3542,7 +3551,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-332",
+    "id": "STY-333",
     "deck": "story",
     "text": "The precinct wrote it down as a fall.",
     "tags": {
@@ -3552,7 +3561,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-333",
+    "id": "STY-334",
     "deck": "story",
     "text": "The precinct wrote it down as a fall and closed the file.",
     "tags": {
@@ -3562,7 +3571,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-334",
+    "id": "STY-335",
     "deck": "story",
     "text": "The precinct took a statement at the desk and filed it.",
     "tags": {
@@ -3572,7 +3581,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-335",
+    "id": "STY-336",
     "deck": "story",
     "text": "Nobody called the police.",
     "tags": {
@@ -3582,7 +3591,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-336",
+    "id": "STY-337",
     "deck": "story",
     "text": "The precinct had somebody for it inside the hour.",
     "tags": {
@@ -3592,7 +3601,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-337",
+    "id": "STY-338",
     "deck": "story",
     "text": "After midnight {actor} came up my stairs and hired me.",
     "tags": {
@@ -3601,7 +3610,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-338",
+    "id": "STY-339",
     "deck": "story",
     "text": "Then, after midnight, {actor} climbed my stairs and put money on my desk to look into it.",
     "tags": {
@@ -3610,7 +3619,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-339",
+    "id": "STY-340",
     "deck": "story",
     "text": "That is all of it. Everything else in the file is somebody else’s trouble, and none of it was this.",
     "tags": {
@@ -3619,7 +3628,7 @@
     "status": "generated"
   },
   {
-    "id": "STY-340",
+    "id": "STY-341",
     "deck": "story",
     "text": "That is the whole of it. The rest of that night belongs to other people.",
     "tags": {
@@ -3628,18 +3637,9 @@
     "status": "generated"
   },
   {
-    "id": "STY-341",
-    "deck": "story",
-    "text": "That was the night, all of it. Whatever else went on in the neighbourhood, this was the part that mattered.",
-    "tags": {
-      "beat": "close"
-    },
-    "status": "generated"
-  },
-  {
     "id": "STY-342",
     "deck": "story",
-    "text": "There is nothing else to it. Everybody else on the block had their own night, and it was not this one.",
+    "text": "That was the night. Whatever else went on in the neighbourhood, this was the part that mattered.",
     "tags": {
       "beat": "close"
     },
@@ -3648,7 +3648,61 @@
   {
     "id": "STY-343",
     "deck": "story",
-    "text": "That is how it went. The rest is other people’s business.",
+    "text": "There is nothing else to it. Everybody else on the block had their own night, and it was not this one.",
+    "tags": {
+      "beat": "close"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-344",
+    "deck": "story",
+    "text": "And that is how it went. The rest is other people’s business.",
+    "tags": {
+      "beat": "close"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-345",
+    "deck": "story",
+    "text": "Nothing else that happened that night had anything to do with it.",
+    "tags": {
+      "beat": "close"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-346",
+    "deck": "story",
+    "text": "The rest of what I wrote down that night was about other people, and none of it was this.",
+    "tags": {
+      "beat": "close"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-347",
+    "deck": "story",
+    "text": "So it went. Nobody else on the block was part of it.",
+    "tags": {
+      "beat": "close"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-348",
+    "deck": "story",
+    "text": "I have told it the way it happened. The file has the rest, and the rest is not this.",
+    "tags": {
+      "beat": "close"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-349",
+    "deck": "story",
+    "text": "Everything else on the block that night was somebody else’s story.",
     "tags": {
       "beat": "close"
     },

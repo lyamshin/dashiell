@@ -519,8 +519,14 @@ class Teller {
     const lastOpener = last === undefined ? null : opener(cardText(last.cardId));
     const varied = pool.filter((c) => opener(c.text) !== lastOpener);
     if (varied.length > 0) pool = varied;
-    const rng = new Rng(hash(`${this.input.seed}:${beat}:${JSON.stringify(extra)}`));
-    const card = rng.pick(pool);
+    // The first and last lines turn over with the seed rather than falling
+    // where the hash puts them, so that two cases running never open, or
+    // close, the same way.
+    const rotate = beat === 'open' || beat === 'close';
+    const n = pool.length;
+    const card = rotate
+      ? ([...pool].sort((x, y) => x.id.localeCompare(y.id))[((this.input.seed % n) + n) % n] as StoryCard)
+      : new Rng(hash(`${this.input.seed}:${beat}:${JSON.stringify(extra)}`)).pick(pool);
     const used: StoryFact[] = [];
     // A line that opens on the same person the last one opened on says "he"
     // or "she" the second time, and the name again the third: "Grasso rented

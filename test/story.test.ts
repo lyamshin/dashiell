@@ -438,11 +438,32 @@ describe('the story: shape', () => {
     }
   });
 
-  it('opens by closing the book, first person, looking back', () => {
+  it('opens by closing the book, and closes on the last line', () => {
     for (const kase of CASES.slice(0, 40)) {
-      const first = storyOf(kase).paragraphs[0]![0]!;
-      expect(first.beat).toBe('open');
-      expect(first.text).toMatch(/^(Here is|This is)/);
+      const paragraphs = storyOf(kase).paragraphs;
+      expect(paragraphs[0]![0]!.beat).toBe('open');
+      expect(paragraphs.at(-1)!.at(-1)!.beat).toBe('close');
+    }
+  });
+
+  it('never opens or closes two seeds running the same way, and has eight closers or more', () => {
+    const family = (text: string) => text.split(/\s+/).slice(0, 3).join(' ').toLowerCase();
+    const closers = STORY_CARDS.filter((c) => c.tags.beat === 'close');
+    expect(closers.length).toBeGreaterThanOrEqual(8);
+    expect(new Set(closers.map((c) => family(c.text))).size).toBe(closers.length);
+    const openers = STORY_CARDS.filter((c) => c.tags.beat === 'open');
+    expect(new Set(openers.map((c) => family(c.text))).size).toBe(openers.length);
+    for (const difficulty of [1, 2, 3, 4] as Difficulty[]) {
+      let last: { open: string; close: string } | null = null;
+      for (let seed = 1; seed <= 10; seed++) {
+        const lines = storyOf(generateCase(seed, { difficulty })).paragraphs.flat();
+        const now = { open: family(lines[0]!.text), close: family(lines.at(-1)!.text) };
+        if (last) {
+          expect(now.open, `seed ${seed} d${difficulty} opener`).not.toBe(last.open);
+          expect(now.close, `seed ${seed} d${difficulty} closer`).not.toBe(last.close);
+        }
+        last = now;
+      }
     }
   });
 
