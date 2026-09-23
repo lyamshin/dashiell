@@ -183,6 +183,12 @@ export interface ClientBriefInput {
   act: Act;
   /** M7: the ladder decides the red herring; the shape, whether motives are in play. */
   dials: Dials;
+  /**
+   * M9, tiered cases where the client may point at anybody: whether an
+   * innocent client's pointer lands on the culprit, decided once per seed so
+   * that turned-down attempts cannot tilt it.
+   */
+  pointerOnKiller?: boolean;
 }
 
 export function buildClientBrief(input: ClientBriefInput): ClientBrief {
@@ -274,11 +280,30 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
     // M7: below Medium only the culprit has a motive, so a client who named a
     // motive would be naming the answer. The client names somebody and says
     // only what anybody on the block could say about them.
-    const target = rng.pick(others) as Person;
+    // M9: and never at the culprit.
+    const target = rng.pick(dials.plain ? others : others.filter((p) => !p.isKiller)) as Person;
     pointsAt = {
       personId: target.id,
       reason: `${who(target.id)} was in and out of there all week`,
       honest: false,
+    };
+  } else if (!dials.plain) {
+    // M9 (spec, "What the diagnosis changed"): no coin that lands on the
+    // culprit. Below Hard-boiled the client points at an innocent with a
+    // motive; from Hard-boiled on at anybody but themselves, uniformly, which
+    // is no more often the culprit than chance.
+    const innocentMotived = motived.filter((p) => !p.isKiller);
+    const innocentOthers = others.filter((p) => !p.isKiller);
+    const killer = others.find((p) => p.isKiller);
+    const target = dials.shape.clientMayBeCulprit
+      ? input.pointerOnKiller !== undefined
+        ? ((input.pointerOnKiller && killer) || (rng.pick(innocentOthers) as Person))
+        : (rng.pick(others) as Person)
+      : (rng.pick(innocentMotived.length > 0 ? innocentMotived : innocentOthers) as Person);
+    pointsAt = {
+      personId: target.id,
+      reason: `${who(target.id)} ${target.motive?.description ?? 'was in and out of there all week'}`,
+      honest: target.motive !== undefined,
     };
   } else {
     const pool = motived.length > 0 ? motived : others;

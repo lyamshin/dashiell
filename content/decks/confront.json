@@ -1,0 +1,794 @@
+[
+  {
+    "id": "cnf-001",
+    "deck": "confront",
+    "text": "{subject} heard me out and turned one hand palm up. “That doesn’t touch anything I told you.”",
+    "tags": {
+      "outcome": "wrong",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-002",
+    "deck": "confront",
+    "text": "{subject} listened to all of it without looking up. “That doesn’t touch anything I told you.”",
+    "tags": {
+      "outcome": "wrong",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-003",
+    "deck": "confront",
+    "text": "{subject} let me finish, then shook {their} head once. “That doesn’t touch anything I told you.”",
+    "tags": {
+      "outcome": "wrong",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-004",
+    "deck": "confront",
+    "text": "{subject} waited until I had read the last word. “That doesn’t touch anything I told you.”",
+    "tags": {
+      "outcome": "wrong",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-005",
+    "deck": "confront",
+    "text": "{subject} heard {place} and {time} and did not seem to mind either one. “That doesn’t touch anything I told you.”",
+    "tags": {
+      "outcome": "wrong",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-006",
+    "deck": "confront",
+    "text": "{subject} looked at me for a moment, then at the notebook. “That doesn’t touch anything I told you.”",
+    "tags": {
+      "outcome": "wrong",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-007",
+    "deck": "confront",
+    "text": "Half an hour was gone, and nothing in {subject}’s row of the grid had moved.",
+    "tags": {
+      "outcome": "wrong",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-008",
+    "deck": "confront",
+    "text": "I laid the fact beside {subject}’s account in the notebook. They did not cross anywhere, and it had cost me half an hour to see it.",
+    "tags": {
+      "outcome": "wrong",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-009",
+    "deck": "confront",
+    "text": "I had put the wrong page to {subject}. The half hour was spent all the same.",
+    "tags": {
+      "outcome": "wrong",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-010",
+    "deck": "confront",
+    "text": "I wrote nothing new under {subject}’s name. There was nothing new to write.",
+    "tags": {
+      "outcome": "wrong",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-011",
+    "deck": "confront",
+    "text": "I closed the notebook. {subject}’s evening was the same evening it had been when I sat down.",
+    "tags": {
+      "outcome": "wrong",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-012",
+    "deck": "confront",
+    "text": "The fact was about {place}, and {subject} had never told me a word about {place}. I had spent the half hour anyway.",
+    "tags": {
+      "outcome": "wrong",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-013",
+    "deck": "confront",
+    "text": "{subject} looked at the notebook, then at the wall behind me, and took {their} time.",
+    "tags": {
+      "outcome": "second-lie",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-014",
+    "deck": "confront",
+    "text": "{subject} set down what {they} had been holding and wiped {their} hands, one and then the other.",
+    "tags": {
+      "outcome": "second-lie",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-015",
+    "deck": "confront",
+    "text": "When I said {time}, {subject} stopped. It was a while before {they} started again.",
+    "tags": {
+      "outcome": "second-lie",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-016",
+    "deck": "confront",
+    "text": "{subject} laughed once, not at anything, and sat up straighter.",
+    "tags": {
+      "outcome": "second-lie",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-017",
+    "deck": "confront",
+    "text": "{subject} took out a cigarette, did not light it, and put it back.",
+    "tags": {
+      "outcome": "second-lie",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-018",
+    "deck": "confront",
+    "text": "{subject} rubbed the side of {their} jaw and looked at the table.",
+    "tags": {
+      "outcome": "second-lie",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-019",
+    "deck": "confront",
+    "text": "I wrote it down under the first story. {subject} had given me two evenings for the same hours now, and there was only one {subject} to spend them.",
+    "tags": {
+      "outcome": "second-lie",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-020",
+    "deck": "confront",
+    "text": "I put the new words in {subject}’s row beside the old ones. The grid had room for one place a half hour, and now it had two.",
+    "tags": {
+      "outcome": "second-lie",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-021",
+    "deck": "confront",
+    "text": "I drew a line from the first story to the second and wrote {subject}’s name beside both.",
+    "tags": {
+      "outcome": "second-lie",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-022",
+    "deck": "confront",
+    "text": "I did not argue with {subject}. I read the new story back, and {subject} said that was how it went.",
+    "tags": {
+      "outcome": "second-lie",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-023",
+    "deck": "confront",
+    "text": "The notebook had two stories from {subject} now, one above the other. I left them there and looked at the grid.",
+    "tags": {
+      "outcome": "second-lie",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-024",
+    "deck": "confront",
+    "text": "I turned the page. {subject}’s second story about {place} would have to meet the rest of the notebook the way the first one had.",
+    "tags": {
+      "outcome": "second-lie",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-025",
+    "deck": "confront",
+    "text": "{subject} looked at me for a long moment and then went back to what {they} had been doing.",
+    "tags": {
+      "outcome": "quiet",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-026",
+    "deck": "confront",
+    "text": "{subject} folded {their} hands and looked down at them.",
+    "tags": {
+      "outcome": "quiet",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-027",
+    "deck": "confront",
+    "text": "{subject} turned away and found something else to look at.",
+    "tags": {
+      "outcome": "quiet",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-028",
+    "deck": "confront",
+    "text": "When I said {place}, {subject}’s mouth closed into a flat line.",
+    "tags": {
+      "outcome": "quiet",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-029",
+    "deck": "confront",
+    "text": "{subject} took a breath, held it, and let it out again.",
+    "tags": {
+      "outcome": "quiet",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-030",
+    "deck": "confront",
+    "text": "{subject} looked past me at the wall and stayed that way.",
+    "tags": {
+      "outcome": "quiet",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-031",
+    "deck": "confront",
+    "text": "I waited. {subject} did not fill the silence, and after a while I stopped expecting it.",
+    "tags": {
+      "outcome": "quiet",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-032",
+    "deck": "confront",
+    "text": "I wrote {subject}’s name and a dash after it. That was all there was to write.",
+    "tags": {
+      "outcome": "quiet",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-033",
+    "deck": "confront",
+    "text": "I left the question with {subject} and got up. The half hour was gone.",
+    "tags": {
+      "outcome": "quiet",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-034",
+    "deck": "confront",
+    "text": "Nothing new went into {subject}’s row. I made a small mark in the margin so I would know I had asked.",
+    "tags": {
+      "outcome": "quiet",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-035",
+    "deck": "confront",
+    "text": "{subject} had stopped talking, and silence did not go on the grid. I closed the notebook.",
+    "tags": {
+      "outcome": "quiet",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-036",
+    "deck": "confront",
+    "text": "I looked at {subject} a little longer than was polite, and then I let it go.",
+    "tags": {
+      "outcome": "quiet",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-037",
+    "deck": "confront",
+    "text": "{subject} sat down, which {they} had not done since I came in.",
+    "tags": {
+      "outcome": "admit",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-038",
+    "deck": "confront",
+    "text": "{subject} let out a long breath and looked at the floor.",
+    "tags": {
+      "outcome": "admit",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-039",
+    "deck": "confront",
+    "text": "For a while {subject} said nothing. Then {subject} sat back.",
+    "tags": {
+      "outcome": "admit",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-040",
+    "deck": "confront",
+    "text": "{subject} took off {their} hat and turned it around in {their} hands.",
+    "tags": {
+      "outcome": "admit",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-041",
+    "deck": "confront",
+    "text": "{subject} looked around to see who else could hear.",
+    "tags": {
+      "outcome": "admit",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-042",
+    "deck": "confront",
+    "text": "When I read out {time}, {subject} closed {their} eyes for a second.",
+    "tags": {
+      "outcome": "admit",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-043",
+    "deck": "confront",
+    "text": "I wrote down where {subject} said {they} had been and what {they} had been doing there. Then I looked at the grid to see what it touched.",
+    "tags": {
+      "outcome": "admit",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-044",
+    "deck": "confront",
+    "text": "It was a different evening from the one {subject} had given me first. I put it in the notebook in {subject}’s own words and said nothing about it.",
+    "tags": {
+      "outcome": "admit",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-045",
+    "deck": "confront",
+    "text": "I wrote it down word for word. {subject} watched me do it and did not ask me to change anything.",
+    "tags": {
+      "outcome": "admit",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-046",
+    "deck": "confront",
+    "text": "{subject}’s row had {place} in it now, in {subject}’s own words. I would have to see what else that touched.",
+    "tags": {
+      "outcome": "admit",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-047",
+    "deck": "confront",
+    "text": "I turned the notebook around so {subject} could read what I had written. {subject} read it and nodded.",
+    "tags": {
+      "outcome": "admit",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-048",
+    "deck": "confront",
+    "text": "I put the pencil away. What {subject} had kept back was in the notebook now, and it had a place and an hour.",
+    "tags": {
+      "outcome": "admit",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-049",
+    "deck": "confront",
+    "text": "{subject} did not look away from me, and did not take long.",
+    "tags": {
+      "outcome": "hold",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-050",
+    "deck": "confront",
+    "text": "{subject} leaned toward me before I had finished.",
+    "tags": {
+      "outcome": "hold",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-051",
+    "deck": "confront",
+    "text": "{subject} nodded while I read it, the whole way through.",
+    "tags": {
+      "outcome": "hold",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-052",
+    "deck": "confront",
+    "text": "{subject} kept on with what {they} had been doing until I finished.",
+    "tags": {
+      "outcome": "hold",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-053",
+    "deck": "confront",
+    "text": "{subject} looked at the notebook and then straight back at me.",
+    "tags": {
+      "outcome": "hold",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-054",
+    "deck": "confront",
+    "text": "When I said {place}, {subject} did not blink.",
+    "tags": {
+      "outcome": "hold",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-055",
+    "deck": "confront",
+    "text": "It was the same evening {subject} had given me the first time. I wrote that down, and left the fact I had brought one line above it.",
+    "tags": {
+      "outcome": "hold",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-056",
+    "deck": "confront",
+    "text": "{subject} had not changed a word of the first story. I wrote that down and turned the page.",
+    "tags": {
+      "outcome": "hold",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-057",
+    "deck": "confront",
+    "text": "I wrote down that {subject} had kept to it. The fact I had read out was still in the notebook too.",
+    "tags": {
+      "outcome": "hold",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-058",
+    "deck": "confront",
+    "text": "Nothing in {subject}’s row changed. Both things were still written there, the story and the fact.",
+    "tags": {
+      "outcome": "hold",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-059",
+    "deck": "confront",
+    "text": "I looked at the grid for a while after {subject} finished. Then I closed the notebook and left it the way it was.",
+    "tags": {
+      "outcome": "hold",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-060",
+    "deck": "confront",
+    "text": "{subject} had said it twice now, the same way both times. I wrote the second time under the first.",
+    "tags": {
+      "outcome": "hold",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-061",
+    "deck": "confront",
+    "text": "{subject} looked at the floor for a long time.",
+    "tags": {
+      "outcome": "withdraw",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-062",
+    "deck": "confront",
+    "text": "{subject} opened {their} mouth, shut it, and started again.",
+    "tags": {
+      "outcome": "withdraw",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-063",
+    "deck": "confront",
+    "text": "{subject} looked at me, then at the notebook in my hand, and swallowed.",
+    "tags": {
+      "outcome": "withdraw",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-064",
+    "deck": "confront",
+    "text": "When I said {time}, {subject} looked away over my shoulder.",
+    "tags": {
+      "outcome": "withdraw",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-065",
+    "deck": "confront",
+    "text": "{subject} rubbed {their} eyes with the heel of one hand.",
+    "tags": {
+      "outcome": "withdraw",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-066",
+    "deck": "confront",
+    "text": "{subject} sat very still, both hands in {their} lap.",
+    "tags": {
+      "outcome": "withdraw",
+      "part": "reaction"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-067",
+    "deck": "confront",
+    "text": "I drew a line through the word “together” in {subject}’s row. It had been {subject}’s word to give, and {subject} had taken it back.",
+    "tags": {
+      "outcome": "withdraw",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-068",
+    "deck": "confront",
+    "text": "I wrote down what {subject} had said. Somebody else’s row on the grid had one name fewer beside it now.",
+    "tags": {
+      "outcome": "withdraw",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-069",
+    "deck": "confront",
+    "text": "{subject} had given somebody a half hour earlier in the night, and now {subject} had taken it back. I wrote it down the way {subject} said it.",
+    "tags": {
+      "outcome": "withdraw",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-070",
+    "deck": "confront",
+    "text": "In {subject}’s first story there had been two people. Now there was only {subject}.",
+    "tags": {
+      "outcome": "withdraw",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-071",
+    "deck": "confront",
+    "text": "I thanked {subject} and did not press. The other name in that story would need somebody else to speak for it, or nobody.",
+    "tags": {
+      "outcome": "withdraw",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "cnf-072",
+    "deck": "confront",
+    "text": "I looked at the grid for a while. The words that had put {subject} beside somebody else were gone from the notebook.",
+    "tags": {
+      "outcome": "withdraw",
+      "part": "close"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

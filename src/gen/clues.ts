@@ -169,6 +169,8 @@ export interface ClueContext {
    * never does, so the client clue puts only the name on the table.
    */
   pointerMotive?: boolean;
+  /** M9: testimony replaces the sightings and the denials; skip them. */
+  m9?: boolean;
 }
 
 export function deriveCandidates(ctx: ClueContext): CandidateSet {
@@ -215,7 +217,8 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
   /* 1. What people saw and will repeat. One subject per clue. ------------ */
   const reportable = cast.people.filter((p) => p.kind !== 'fixture');
   const witnesses = cast.people.filter((p) => p.kind !== 'victim');
-  for (const observer of witnesses) {
+  // M9 deals testimony instead (logic/rules.ts); nothing below draws from the rng.
+  for (const observer of ctx.m9 ? [] : witnesses) {
     for (const subject of reportable) {
       if (subject.id === observer.id) continue;
       const mine = observations.filter(
@@ -252,7 +255,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
   }
 
   /* 2. Flat contradictions of a claimed alibi. --------------------------- */
-  for (const liar of cast.suspects) {
+  for (const liar of ctx.m9 ? [] : cast.suspects) {
     const lieTicks = build.lies[liar.id] as Tick[];
     if (lieTicks.length === 0) continue;
     const blocks = claimBlocks(

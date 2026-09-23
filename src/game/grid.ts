@@ -19,12 +19,13 @@
  */
 
 import { TICKS, clock } from '../gen/types.js';
-import type { Clue, Id, Tick } from '../gen/types.js';
+import type { Clue, Fact, Id, Tick } from '../gen/types.js';
 import type { CaseView } from './derive.js';
 import { accountRuns, claimedAccount, establishedFrom, spanLabel } from './derive.js';
 import { buildNotebook, type Notebook } from './notebook.js';
 import type { CellMark, RunState } from './types.js';
 import { pronounSlots } from './voice/cast.js';
+import { SAID_PREFIX, displayName, saidRecords, verdictsOn } from './m9.js';
 
 export type { CellMark };
 
@@ -38,7 +39,7 @@ export type { CellMark };
  * else's word, and `by` says whose; `evidence` is a document or a physical
  * trace, and `from` says which room it came out of.
  */
-export type GridSource = 'claimed' | 'witness' | 'evidence';
+export type GridSource = 'claimed' | 'witness' | 'evidence' | 'linked';
 
 export interface GridEntry {
   placeId: Id;
@@ -52,9 +53,76 @@ export interface GridEntry {
   /**
    * What the entry traces to: a found clue's id, `account:<personId>` for an
    * account taken down, or `brief:discovery` / `brief:last-seen` for the two
-   * briefing sentences the notebook keeps under the victim.
+   * briefing sentences the notebook keeps under the victim. M9 adds
+   * `said:<…>`, what somebody said when a fact was put to them.
    */
   clueId: Id;
+  /**
+   * M9: a stranger's sighting the player linked to this person — the player's
+   * own work, drawn apart from the ink, with the link's key so it can be undone.
+   */
+  link?: string;
+  /** M9: an anchor-timed sighting, placed once the anchor's hour is in hand. */
+  anchorId?: Id;
+}
+
+/* ------------------------------------------------------------------ *
+ * M9 — the logic game's pieces that are not a cell of one row.
+ * ------------------------------------------------------------------ */
+
+/**
+ * A sighting timed by an anchor whose hour the notebook does not have yet:
+ * it waits in a margin row under the anchor's name (spec §2.1).
+ */
+export interface GridMarginEntry {
+  personId: Id;
+  placeId: Id;
+  clueId: Id;
+  by?: Id;
+}
+
+export interface GridMargin {
+  anchorId: Id;
+  name: string;
+  /** The hours it could be, when the notebook has them but they are more than one. */
+  ticks: Tick[];
+  entries: GridMarginEntry[];
+}
+
+/**
+ * A stranger's sighting: somebody who fits a description at a place and a
+ * half hour. Unlinked, it sits in its own row; the player's free tap links it
+ * to a person ("That was Kreuzer"), and a wrong link is allowed.
+ */
+export interface GridDescription {
+  /** `<clueId>|<tick>`, the key the link is saved under. */
+  key: string;
+  clueId: Id;
+  text: string;
+  placeId: Id;
+  tick: Tick;
+  by?: Id;
+  /** Who the player linked it to, if anybody. */
+  linkedTo?: Id;
+}
+
+/** "Two people at the speakeasy at ten, besides the one who works there." */
+export interface GridCount {
+  placeId: Id;
+  tick: Tick;
+  count: number;
+  clueId: Id;
+  by?: Id;
+}
+
+/** Two rows tied together: the same room, never the same room, or somebody's claimed company. */
+export interface GridLink {
+  kind: 'together' | 'apart' | 'with';
+  a: Id;
+  b: Id;
+  ticks: Tick[];
+  clueId: Id;
+  by?: Id;
 }
 
 /** The victim's row only: before the notebook's window, inside it, after it. */
@@ -123,7 +191,17 @@ export interface GridRuleCell {
  * span, "together", a conditional); the list and the highlighting only read
  * `text` and `cells`, so a new kind needs no new drawing.
  */
-export type GridRuleKind = 'placement' | 'account' | 'window' | 'anchor' | 'discovery' | 'last-seen';
+export type GridRuleKind =
+  | 'placement'
+  | 'account'
+  | 'window'
+  | 'anchor'
+  | 'discovery'
+  | 'last-seen'
+  /** M9: a clue's own one-line rule (`Clue.rule`). */
+  | 'rule'
+  /** M9: what somebody said when a fact was put to them. */
+  | 'said';
 
 export interface GridRule {
   id: string;
@@ -158,6 +236,13 @@ export interface GridView {
   crimeLabel: string;
   sources: Record<Id, GridSourceText>;
   rules: GridRule[];
+  /* M9: the logic game's pieces. Empty on a case without it. */
+  margins: GridMargin[];
+  descriptions: GridDescription[];
+  counts: GridCount[];
+  links: GridLink[];
+  /** Whether the grid may flag a disagreement ("!"): Raw and Coddled only. */
+  flags: boolean;
 }
 
 /* ------------------------------------------------------------------ *
@@ -217,6 +302,7 @@ export function placeAbbrevs(names: { id: Id; shortName: string }[]): Map<Id, st
 export const PLACE_SLOTS = 8;
 
 export const ACCOUNT_PREFIX = 'account:';
+export { SAID_PREFIX };
 export const BRIEF_DISCOVERY = 'brief:discovery';
 export const BRIEF_LAST_SEEN = 'brief:last-seen';
 
@@ -267,6 +353,18 @@ export function applyMark(state: RunState, personId: Id, tick: Tick, action: Mar
   return { ...state, marks };
 }
 
+/**
+ * M9: link a stranger's sighting to a person, or unlink it (`null`). Free and
+ * never a fact: the grid draws it in pencil's company, and only the report
+ * scores it.
+ */
+export function applyLink(state: RunState, key: string, personId: Id | null): RunState {
+  const links = { ...(state.links ?? {}) };
+  if (personId === null || links[key] === personId) delete links[key];
+  else links[key] = personId;
+  return { ...state, links };
+}
+
 /* ------------------------------------------------------------------ *
  * Building the grid.
  * ------------------------------------------------------------------ */
@@ -303,6 +401,9 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
     .filter((c): c is Clue => c !== undefined);
   const est = establishedFrom(view, state.found, state.accounts);
   const inBook = new Set(book.people.map((p) => p.id));
+  // M9, "No automatic verdicts from Poached up": the grid shows two sources
+  // side by side and never flags them; the player decides.
+  const flags = verdictsOn(view);
   const sources: Record<Id, GridSourceText> = {};
   const rules: GridRule[] = [];
 
@@ -352,7 +453,8 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
 
   // 2. Every account taken down, half hour by half hour.
   const accountRules: GridRule[] = [];
-  for (const personId of state.accounts) {
+  const logic = kase.logic !== undefined;
+  for (const personId of logic ? [] : state.accounts) {
     if (!inBook.has(personId)) continue;
     const account = claimedAccount(view, personId);
     if (!account) continue;
@@ -375,6 +477,176 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
         clueIds: [id],
         cells: range(r.from, r.to).map((tick) => ({ personId, tick })),
       });
+    }
+  }
+
+  // 2b. M9: the logic game's pieces, from the found clues and what was said
+  //     when a fact was put to somebody.
+  const margins: GridMargin[] = [];
+  const descriptions: GridDescription[] = [];
+  const counts: GridCount[] = [];
+  const links: GridLink[] = [];
+  const clueRules: GridRule[] = [];
+  if (logic) {
+    const speakerOf = (clue: Clue): Id | undefined =>
+      clue.source.type === 'person' ? clue.source.personId : undefined;
+    // An anchor is timed once a clue in hand says when it happened.
+    const anchorTicks = new Map<Id, Tick[]>();
+    for (const clue of found) {
+      for (const f of clue.establishes) if (f.kind === 'anchorAt') anchorTicks.set(f.anchorId, f.ticks);
+    }
+    const everyone = [...book.people.map((p) => p.id)];
+    for (const clue of found) {
+      const cells: GridRuleCell[] = [];
+      const by = speakerOf(clue);
+      for (const f of clue.establishes) {
+        switch (f.kind) {
+          case 'personAt':
+          case 'personNotAt':
+            cells.push({ personId: f.personId, tick: f.tick });
+            break;
+          case 'claims':
+            noteClue(clue);
+            for (const t of f.ticks) {
+              put(f.personId, t, { placeId: f.place, present: true, source: 'claimed', by: f.personId, clueId: clue.id });
+              cells.push({ personId: f.personId, tick: t });
+            }
+            if (f.with) links.push({ kind: 'with', a: f.personId, b: f.with, ticks: f.ticks, clueId: clue.id, by: f.personId });
+            break;
+          case 'personAtAnchor': {
+            noteClue(clue);
+            const ticks = anchorTicks.get(f.anchorId);
+            if (ticks && ticks.length === 1) {
+              const t = ticks[0] as Tick;
+              put(f.personId, t, {
+                placeId: f.place,
+                present: true,
+                ...entrySource(clue, f.personId),
+                clueId: clue.id,
+                anchorId: f.anchorId,
+              });
+              cells.push({ personId: f.personId, tick: t });
+            } else if (inBook.has(f.personId)) {
+              const anchor = view.anchorById.get(f.anchorId);
+              let m = margins.find((x) => x.anchorId === f.anchorId);
+              if (!m) {
+                m = { anchorId: f.anchorId, name: anchor?.name ?? f.anchorId, ticks: ticks ? [...ticks] : [], entries: [] };
+                margins.push(m);
+              }
+              if (!m.entries.some((e) => e.clueId === clue.id && e.personId === f.personId && e.placeId === f.place)) {
+                m.entries.push({ personId: f.personId, placeId: f.place, clueId: clue.id, ...(by ? { by } : {}) });
+              }
+            }
+            break;
+          }
+          case 'describedAt': {
+            noteClue(clue);
+            const key = `${clue.id}|${f.tick}`;
+            const linkedTo = state.links?.[key];
+            descriptions.push({
+              key,
+              clueId: clue.id,
+              text: f.description.text,
+              placeId: f.place,
+              tick: f.tick,
+              ...(by ? { by } : {}),
+              ...(linkedTo ? { linkedTo } : {}),
+            });
+            if (linkedTo) {
+              put(linkedTo, f.tick, {
+                placeId: f.place,
+                present: true,
+                source: 'linked',
+                ...(by ? { by } : {}),
+                clueId: clue.id,
+                link: key,
+              });
+            }
+            cells.push({ personId: null, tick: f.tick });
+            break;
+          }
+          case 'absentFrom': {
+            noteClue(clue);
+            for (const personId of everyone) {
+              if (f.except.includes(personId)) continue;
+              const person = view.personById.get(personId);
+              if (!person || person.kind === 'victim') continue;
+              for (const t of f.ticks) {
+                put(personId, t, {
+                  placeId: f.place,
+                  present: false,
+                  source: 'witness',
+                  by: f.except[0] ?? by ?? personId,
+                  clueId: clue.id,
+                });
+              }
+            }
+            for (const t of f.ticks) cells.push({ personId: null, tick: t });
+            break;
+          }
+          case 'countAt':
+            noteClue(clue);
+            counts.push({ placeId: f.place, tick: f.tick, count: f.count, clueId: clue.id, ...(by ? { by } : {}) });
+            cells.push({ personId: null, tick: f.tick });
+            break;
+          case 'together':
+          case 'apart':
+            noteClue(clue);
+            links.push({ kind: f.kind, a: f.personIds[0], b: f.personIds[1], ticks: f.ticks, clueId: clue.id, ...(by ? { by } : {}) });
+            for (const t of f.kind === 'together' ? f.ticks : []) {
+              cells.push({ personId: f.personIds[0], tick: t }, { personId: f.personIds[1], tick: t });
+            }
+            break;
+          case 'timeOfDeath':
+          case 'anchorAt':
+            for (const t of f.ticks) cells.push({ personId: null, tick: t });
+            break;
+          case 'victimAliveAt':
+          case 'victimDeadBy':
+          case 'noiseAt':
+            cells.push({ personId: null, tick: f.tick });
+            break;
+          case 'anchorKnowledge':
+            for (const t of f.ticks) cells.push({ personId: null, tick: t });
+            break;
+          default:
+            break;
+        }
+      }
+      if ((clue.rule ?? '').length > 0) {
+        noteClue(clue);
+        const seen = new Set<string>();
+        clueRules.push({
+          id: `rule|${clue.id}`,
+          kind: 'rule',
+          text: clue.rule as string,
+          clueIds: [clue.id],
+          cells: cells.filter((c) => {
+            const k = `${c.personId}|${c.tick}`;
+            if (seen.has(k) || (c.personId !== null && !inBook.has(c.personId))) return false;
+            seen.add(k);
+            return true;
+          }),
+        });
+      }
+    }
+    // What somebody said when a fact was put to them: a second story, or where
+    // they really were. Their own word, in their own row.
+    for (const said of saidRecords(view, state)) {
+      if (!inBook.has(said.personId)) continue;
+      sources[said.id] = { clueId: said.id, text: said.text, label: `${nameOf(said.personId)}, when I put it to ${him(said.personId)}` };
+      const cells: GridRuleCell[] = [];
+      for (const f of said.facts) {
+        const placed: { place: Id; ticks: Tick[] } | null =
+          f.kind === 'claims' ? { place: f.place, ticks: f.ticks } : f.kind === 'personAt' ? { place: f.place, ticks: [f.tick] } : null;
+        if (!placed) continue;
+        const who = (f as Extract<Fact, { personId: Id }>).personId;
+        for (const t of placed.ticks) {
+          put(who, t, { placeId: placed.place, present: true, source: 'claimed', by: who, clueId: said.id });
+          cells.push({ personId: who, tick: t });
+        }
+      }
+      clueRules.push({ id: `said|${said.id}`, kind: 'said', text: said.rule, clueIds: [said.id], cells });
     }
   }
 
@@ -502,6 +774,22 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
       });
     }
   }
+  // M9: an anchor timed by a clue in hand is on the grid at its hours too.
+  for (const clue of found) {
+    for (const f of clue.establishes) {
+      if (f.kind !== 'anchorAt') continue;
+      const anchor = view.anchorById.get(f.anchorId);
+      for (const tick of f.ticks) {
+        noteClue(clue);
+        const had = anchors.find((a) => a.anchorId === f.anchorId && a.tick === tick);
+        if (had) {
+          if (!had.clueIds.includes(clue.id)) had.clueIds.push(clue.id);
+          continue;
+        }
+        anchors.push({ anchorId: f.anchorId, name: anchor?.name ?? f.anchorId, tick, clueIds: [clue.id] });
+      }
+    }
+  }
   anchors.sort((a, b) => a.tick - b.tick);
 
   /* Rows. */
@@ -529,7 +817,7 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
     const cells: GridCell[] = Array.from({ length: TICKS }, (_, tick) => {
       const list = row?.[tick] ?? [];
       const mark = markOf(state, personId, tick);
-      const cell: GridCell = { tick, entries: list, conflict: isConflict(list) };
+      const cell: GridCell = { tick, entries: list, conflict: flags && isConflict(list) };
       if (mark) cell.mark = mark;
       if (kind === 'victim' && life && window) {
         const lo = window.ticks[0] as Tick;
@@ -538,7 +826,8 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
       }
       return cell;
     });
-    return { personId, name: person?.surname ?? personId, role, kind, cells };
+    // M9: somebody only seen is what anybody can see, until named.
+    return { personId, name: displayName(view, state, personId), role, kind, cells };
   };
 
   const order = (kind: GridRowKind): number =>
@@ -574,12 +863,18 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
   const rowIndex = new Map(allRows.map((r, i) => [r.personId, i]));
   const firstTick = (r: GridRule): number => Math.min(...r.cells.map((c) => c.tick));
   const byRow = (r: GridRule): number => rowIndex.get(r.cells[0]?.personId ?? '') ?? 99;
-  rules.push(
-    ...headRules.sort((a, b) => kindOrder(a.kind) - kindOrder(b.kind) || firstTick(a) - firstTick(b)),
-    ...[...accountRules, ...placementRules].sort(
-      (a, b) => byRow(a) - byRow(b) || firstTick(a) - firstTick(b) || kindOrder(a.kind) - kindOrder(b.kind),
-    ),
-  );
+  if (logic) {
+    // M9: every fact in the notebook as the generator's own one-line rule,
+    // in the order found, after the briefing's two.
+    rules.push(...headRules.filter((r) => r.kind === 'discovery' || r.kind === 'last-seen'), ...clueRules);
+  } else {
+    rules.push(
+      ...headRules.sort((a, b) => kindOrder(a.kind) - kindOrder(b.kind) || firstTick(a) - firstTick(b)),
+      ...[...accountRules, ...placementRules].sort(
+        (a, b) => byRow(a) - byRow(b) || firstTick(a) - firstTick(b) || kindOrder(a.kind) - kindOrder(b.kind),
+      ),
+    );
+  }
 
   /* Places and the legend. */
   const abbrevs = placeAbbrevs(view.places);
@@ -627,11 +922,16 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
       type === 'murder' ? 'when it happened' : type === 'robbery' ? 'when it was taken' : 'when they went',
     sources,
     rules,
+    margins,
+    descriptions,
+    counts,
+    links,
+    flags,
   };
 }
 
 function kindOrder(kind: GridRuleKind): number {
-  return ['window', 'anchor', 'discovery', 'last-seen', 'account', 'placement'].indexOf(kind);
+  return ['window', 'anchor', 'discovery', 'last-seen', 'account', 'placement', 'rule', 'said'].indexOf(kind);
 }
 
 function range(a: Tick, b: Tick): Tick[] {

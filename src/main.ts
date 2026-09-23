@@ -2,6 +2,7 @@
 
 import './ui/book.css';
 import './ui/grid.css';
+import './ui/m9.css';
 import { mount } from './ui/book.js';
 
 const root = document.getElementById('book');

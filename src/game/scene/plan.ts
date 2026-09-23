@@ -32,6 +32,7 @@ import type { Weather } from '../voice/roll.js';
 import { planBridge, subjectOfTopic, type BridgePlan } from './bridge.js';
 import { bandOf, hourAgrees } from './text.js';
 import { thoughtsFor, viewOf, type Thought } from './thought.js';
+import type { ConfrontJudgement } from '../m9.js';
 
 /* ------------------------------------------------------------------ *
  * The beats.
@@ -131,7 +132,23 @@ export type Beat =
       subject?: string;
       name?: string;
     }
-  | { kind: 'texture'; required: false; texture: 'weather' | 'ambient' | 'simile' | 'place' };
+  | { kind: 'texture'; required: false; texture: 'weather' | 'ambient' | 'simile' | 'place' }
+  /**
+   * M9 §3: the fact put to somebody, and what they did with it: the approach,
+   * the fact read to them, their reaction, and their words (the generator's).
+   */
+  | {
+      kind: 'confront';
+      required: true;
+      personId: Id;
+      clueId: Id;
+      outcome: ConfrontJudgement['outcome'];
+      /** The first word to them this visit: they stop what they are doing. */
+      stops: boolean;
+      /** The place and half hour the fact put to them is about, when it is one. */
+      placeId?: Id;
+      tick?: Tick;
+    };
 
 export interface Plan {
   shape: PageShape;
@@ -153,7 +170,8 @@ export type PlanAction =
       account: boolean;
       self: boolean;
       volunteer: Clue | null;
-    };
+    }
+  | { kind: 'confront'; personId: Id; clue: Clue; judged: ConfrontJudgement };
 
 export interface PlanInput {
   view: CaseView;
@@ -195,6 +213,7 @@ export const REQUIRED: Record<PageShape, BeatKind[]> = {
   look: ['presence'],
   repeat: [],
   other: [],
+  confront: ['confront', 'thought'],
 };
 
 /* ------------------------------------------------------------------ *
@@ -312,13 +331,19 @@ export function chooseActivity(
   // A trade task only where the person works: a pawnbroker's clerk sorts
   // tickets at the pawnshop, and at a speakeasy has a coffee like anybody.
   const atWork = (WORKPLACES[person.archetypeId ?? ''] ?? []).includes(placeId);
-  const may = (c: Card): boolean => atWork || tagOf('activity', c, 'at') !== 'work';
+  // M9 page bug: a card that belongs to one room (racking cues is the pool
+  // hall's) is dealt in that room and nowhere else, whatever its place kind.
+  const inRoom = (c: Card): boolean => {
+    const only = tagOf('activity', c, 'place');
+    return only === undefined || only === 'any' || only === placeId;
+  };
+  const may = (c: Card): boolean => inRoom(c) && (atWork || tagOf('activity', c, 'at') !== 'work');
   const ladder: ((c: Card) => boolean)[] = [
     (c) => may(c) && roleIs(c, role) && tagIs('activity', c, 'placeKind', kind) && tagOf('activity', c, 'band') === band,
     (c) => may(c) && roleIs(c, role) && tagIs('activity', c, 'placeKind', kind),
-    (c) => roleIs(c, 'any') && tagOf('activity', c, 'placeKind') === kind,
+    (c) => inRoom(c) && roleIs(c, 'any') && tagOf('activity', c, 'placeKind') === kind,
     (c) => may(c) && roleIs(c, role),
-    (c) => roleIs(c, 'any') && tagIs('activity', c, 'placeKind', kind),
+    (c) => inRoom(c) && roleIs(c, 'any') && tagIs('activity', c, 'placeKind', kind),
   ];
   const slots = { name: person.surname, place: place?.shortName };
   for (const rung of ladder) {
@@ -806,6 +831,52 @@ export function planPage(input: PlanInput): Plan {
       }
     }
     return { shape, beats, memory };
+  }
+
+  /* ---------------------------------------------------------- confront */
+  if (action.kind === 'confront') {
+    if (clock) beats.push(clock);
+    const kept = memory.activities[action.personId];
+    const stops = kept !== undefined && kept.visit === memory.visit && !kept.stopped;
+    if (kept !== undefined && stops) {
+      memory = { ...memory, activities: { ...memory.activities, [action.personId]: { ...kept, stopped: true } } };
+    }
+    // What the fact is about, for the close: the first placement it makes.
+    const placed = action.clue.establishes.find(
+      (f) => f.kind === 'personAt' || f.kind === 'personNotAt' || f.kind === 'describedAt' || f.kind === 'absentFrom',
+    );
+    const placeId = placed && 'place' in placed ? placed.place : action.judged.claimed?.place;
+    const tick =
+      placed && 'tick' in placed
+        ? placed.tick
+        : placed && placed.kind === 'absentFrom'
+          ? placed.ticks[0]
+          : action.judged.claimed?.ticks[0];
+    beats.push({
+      kind: 'confront',
+      required: true,
+      personId: action.personId,
+      clueId: action.clue.id,
+      outcome: action.judged.outcome,
+      stops,
+      ...(placeId === undefined ? {} : { placeId }),
+      ...(tick === undefined ? {} : { tick }),
+    });
+    // The close: what the detective did with it. Never a verdict (spec §3:
+    // "demeanor never solves the case; the grid does").
+    beats.push({
+      kind: 'thought',
+      required: true,
+      thought: {
+        cls: 'confronted',
+        basis: action.judged.outcome,
+        subjectId: action.personId,
+        ...(placeId === undefined ? {} : { placeId }),
+        ...(tick === undefined ? {} : { tick }),
+        clueIds: [action.clue.id],
+      },
+    });
+    return { shape: 'confront', beats, memory };
   }
 
   /* ------------------------------------------------------------ search */

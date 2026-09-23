@@ -14,6 +14,7 @@
 
 import type { Id } from '../../gen/types.js';
 import { establishedFrom } from '../derive.js';
+import { markedTheory, verdictsOn } from '../m9.js';
 import type { Composed, Scene, Stage } from '../voice/page.js';
 import { reactiveMonologue } from '../voice/reactive.js';
 import { planPage, type PlanAction } from './plan.js';
@@ -28,7 +29,13 @@ export { realize, pageFact, NIGHT_CEILING, NIGHT_TARGETS, CUT_ORDER, thoughtSlot
 
 /** The scenes the planner writes. The office opening and parser pages keep their own path. */
 export function isNightScene(scene: Scene): boolean {
-  return scene.kind === 'travel' || scene.kind === 'examine' || scene.kind === 'ask' || scene.kind === 'look';
+  return (
+    scene.kind === 'travel' ||
+    scene.kind === 'examine' ||
+    scene.kind === 'ask' ||
+    scene.kind === 'look' ||
+    scene.kind === 'confront'
+  );
 }
 
 /** The reducer's scene, as the planner reads it. */
@@ -59,6 +66,8 @@ export function actionOf(scene: Scene, topic?: { kind: string; id?: Id; topic?: 
         self: scene.self !== undefined,
         volunteer: scene.volunteer,
       };
+    case 'confront':
+      return { kind: 'confront', personId: scene.personId, clue: scene.clue, judged: scene.judged };
     default:
       return { kind: 'look' };
   }
@@ -110,6 +119,9 @@ export function composeScene(stage: Stage, scene: Scene): Composed {
     previousTheory: stage.previousTheory,
     seed: (stage.pageIndex + 1) * 7919 + stage.view.kase.seed,
     used: () => false,
+    ...(verdictsOn(stage.view)
+      ? {}
+      : { pencilOnly: true, marked: markedTheory(stage.view, stage.marks, after.deathTicks) }),
   });
 
   // §1's measurement, kept for the harness: the place card and the texture

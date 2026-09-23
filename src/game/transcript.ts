@@ -17,7 +17,7 @@ import { pronounOf } from './voice/cast.js';
 import { countWords } from './voice/page.js';
 import type { Verdict } from './scoring.js';
 import type { Block, OfferedGroup, Page, RunState } from './types.js';
-import { EMPTY_ROOM, HELP_LINES, PRESENCE_LEAD } from './voice-data.js';
+import { EMPTY_ROOM, HELP_LINES, LIE_RULE, LIE_RULE_NOTE, PRESENCE_LEAD } from './voice-data.js';
 
 const WIDTH = 76;
 
@@ -79,7 +79,10 @@ function renderBlock(block: Block, view: CaseView): string[] {
       ];
     }
     case 'help':
-      return [HELP_LINES.map((l) => `    ${l.command.padEnd(30)}${l.gloss}`).join('\n')];
+      return [
+        HELP_LINES.map((l) => `    ${l.command.padEnd(30)}${l.gloss}`).join('\n'),
+        wrap(`${LIE_RULE} ${LIE_RULE_NOTE}`),
+      ];
   }
 }
 
@@ -135,6 +138,19 @@ export function renderChoicesText(groups: readonly OfferedGroup[], chosen?: stri
   for (const group of groups) {
     const all = [...group.choices, ...(group.more ?? [])];
     if (all.length === 0) continue;
+    if (group.kind === 'confront') {
+      // M9 §3: the picker is a list of every fact in the notebook; the
+      // transcript says how many, and marks the one chosen.
+      const picked = all.find((c) => c.command === chosen);
+      const head = `${group.heading}:`.padEnd(headWidth);
+      const mins = minutesText(all.find((c) => !c.done)?.minutes ?? 0);
+      out.push(
+        `  ${head}${all.length} ${all.length === 1 ? 'fact' : 'facts'} in the notebook (${mins} each)${
+          picked ? ` · >${picked.label}` : ''
+        }`,
+      );
+      continue;
+    }
     const counts = new Map<number, number>();
     for (const c of all) counts.set(c.minutes, (counts.get(c.minutes) ?? 0) + 1);
     const usual = [...counts.entries()].sort((a, b) => b[1] - a[1] || b[0] - a[0])[0]?.[0] ?? 0;
@@ -166,10 +182,13 @@ export function renderNotebookText(view: CaseView, state: RunState): string {
   );
   out.push('', 'PEOPLE');
   for (const person of book.people) {
+    // M9: somebody the detective has only seen is what anybody can see of
+    // them, until somebody who knows them says the name.
+    const title = person.display === person.surname ? `${person.surname}, ${person.role}` : person.display;
     out.push(
-      `  ${person.surname}, ${person.role}${person.isClient ? ' — our client' : ''}${
+      `  ${title}${person.isClient ? ' — our client' : ''}${
         person.isVictim ? ' — the victim' : ''
-      }${person.foundAt ? ` (${person.foundAt})` : ''}`,
+      }${person.foundAt ? ` (${person.foundAt})` : ''}${person.done ? ' — told me all of it' : ''}`,
     );
     // M5 §4: the dossier, by the layer it was learned at. A layer with nothing
     // in it is not printed, because nothing has been learned at it yet.
@@ -195,6 +214,7 @@ export function renderNotebookText(view: CaseView, state: RunState): string {
       out.push(`    ${fact.contradicts ? '!' : '·'} ${fact.text} (${fact.source})`);
     }
     for (const record of person.records) out.push(wrap(`“ ${record.text}`, WIDTH, '      '));
+    for (const said of person.said) out.push(wrap(`put to: ${said.text}`, WIDTH, '      '));
   }
   out.push('', 'PLACES');
   for (const place of book.places) {
@@ -235,6 +255,13 @@ export function renderVerdictText(verdict: Verdict): string {
       `  ${field.label.padEnd(26)}${field.given.padEnd(28)}${field.correct ? '✓' : `✗ ${field.truth}`}`,
     );
   }
+  // M9 §5: the crime column, a line a suspect.
+  if (verdict.column.length > 0) {
+    out.push('', `  Where they were at ${verdict.columnTime ?? 'the hour'}:`);
+    for (const c of verdict.column) {
+      out.push(`    ${c.name.padEnd(24)}${c.given.padEnd(28)}${c.correct ? '✓' : `✗ ${c.truth}`}`);
+    }
+  }
   out.push(
     '',
     `  ${verdict.points} of ${verdict.asked} · ${verdict.outcome} · ${verdict.actionsUsed} actions against par ${verdict.par}`,
@@ -242,6 +269,15 @@ export function renderVerdictText(verdict: Verdict): string {
   );
   for (const paragraph of verdict.closing) out.push(wrap(paragraph), '');
   for (const gap of verdict.gaps) out.push(`[gap: ${gap}]`, '');
+  // M9 §8: behind the curtain, the chain of rules that proves each answer.
+  if (verdict.proofs && verdict.proofs.length > 0) {
+    out.push('HOW IT COULD BE KNOWN', '═'.repeat(WIDTH), '');
+    for (const { label, proof } of verdict.proofs) {
+      out.push(wrap(`${label}: ${proof.what}${proof.hypothesis ? ' (it takes trying one answer and seeing it fail)' : ''}`));
+      for (const r of proof.rules) out.push(wrap(`· ${r}`, WIDTH, '    '));
+      out.push('');
+    }
+  }
   return out.join('\n');
 }
 

@@ -19,6 +19,18 @@
  *                choice on the page that is not already done (ticked).
  * - `leads`    — the lead-follower: a marked question or search in this room
  *                when there is one, else a marked room, else anything.
+ * - `reason`   — M9: the reasoning player. It follows the same marks, but it
+ *                reads the notebook with the solver (`solveHeld`, never the
+ *                truth): it asks for the evening of anybody whose half hour
+ *                of the crime is still open, asks about the people whose cell
+ *                is open, puts a fact to somebody when the solver says a fact
+ *                in hand breaks what they said, and files what the notebook
+ *                settles (`crimeFromHeld`), the full column included.
+ *
+ * `--design` runs only the three players of the M9 design test — the
+ * marks-follower (`leads`), the reasoning player and the button-pusher — and
+ * prints the design-test table: who each names, and how often the reasoning
+ * player gets who, when and the whole crime column right within the budget.
  *
  * Filing (for every player): `who` is the one suspect the notebook's facts
  * leave uncleared at every half hour still open for the death, when exactly
@@ -27,7 +39,7 @@
  */
 
 import { generateCase, type GenerateOptions } from '../src/gen/index.js';
-import type { Case, Clue, Fact, Id, Tick } from '../src/gen/types.js';
+import type { Case, Clue, Fact, Id, Person, Tick } from '../src/gen/types.js';
 import { TICKS } from '../src/gen/types.js';
 import {
   buildView,
@@ -47,6 +59,72 @@ import { leadingTheory } from '../src/game/voice/reactive.js';
 import { Rng } from '../src/gen/rng.js';
 import type { Page, Report, RunState } from '../src/game/types.js';
 import { writeFileSync } from 'node:fs';
+import { culpritOf as solverCulprit, placesAt, solve, type SolverProblem, type SolverRule } from '../src/gen/logic/solver.js';
+import { contradicts, crimeFromHeld } from '../src/gen/index.js';
+import { applyMark } from '../src/game/grid.js';
+import {
+  accountClueOf,
+  canConfront,
+  columnAsked,
+  columnPeople,
+  confessedOf,
+  confrontFacts,
+  saidRecords,
+  solveNotebook,
+  truthColumn,
+  verdictsOn,
+} from '../src/game/m9.js';
+
+/* ---------------------------------------------------- M9: the solver's view */
+
+interface SolverFrame {
+  suspects: Id[];
+  places: Id[];
+  blocks: Record<Id, number>;
+  scene: Id;
+  victimId: Id;
+  murder: boolean;
+  givens: Fact[];
+  confessions: SolverRule[];
+}
+
+/** The grid a case is solved on. A case from before M9 has no blocks: travel is free. */
+function solverFrame(kase: Case): SolverFrame {
+  return {
+    suspects: kase.people.filter((p) => p.kind === 'suspect').map((p) => p.id),
+    places: kase.places.map((p) => p.id),
+    blocks: { ...(kase.logic?.blocks ?? {}) },
+    scene: kase.solution.murderPlaceId,
+    victimId: kase.people.find((p) => p.kind === 'victim')?.id as Id,
+    murder: kase.act.type === 'murder',
+    givens: kase.act.givens.facts,
+    confessions: (kase.logic?.confrontations ?? [])
+      .filter((k) => k.responses[1].kind === 'admit' || k.responses[1].kind === 'withdraw')
+      .map((k) => ({
+        id: `confess:${k.personId}:${k.lie.ticks[0]}`,
+        facts: (k.responses[1].facts ?? []).filter((f) => f.kind === 'personAt'),
+        when: { personId: k.personId, place: k.lie.claimed, ticks: k.lie.ticks, requires: k.lie.accountId },
+      })),
+  };
+}
+
+function solverProblem(frame: SolverFrame, clues: Clue[], probe: boolean, withConfessions?: Case): SolverProblem {
+  return {
+    suspects: frame.suspects,
+    places: frame.places,
+    blocks: frame.blocks,
+    scene: frame.scene,
+    victimId: frame.victimId,
+    murder: frame.murder,
+    rules: [
+      { id: 'given', facts: frame.givens },
+      ...clues.map((c) => ({ id: c.id, facts: c.establishes })),
+      ...(withConfessions ? frame.confessions : []),
+    ],
+    exactlyOne: true,
+    probe,
+  };
+}
 
 /* ------------------------------------------------------------------ args */
 
@@ -67,6 +145,8 @@ const ALL_CONFIGS: Config[] = [
   { label: 'd2', opts: { difficulty: 2 } },
   { label: 'd3', opts: { difficulty: 3 } },
   { label: 'T0', opts: { tier: 0 } },
+  { label: 'T1L2', opts: { tier: 1, level: 2 } },
+  { label: 'T3L2', opts: { tier: 3, level: 2 } },
   { label: 'T2L1', opts: { tier: 2, level: 1 } },
   { label: 'T2L2', opts: { tier: 2, level: 2 } },
   { label: 'T2L3', opts: { tier: 2, level: 3 } },
@@ -82,7 +162,7 @@ const CONFIGS = wanted ? ALL_CONFIGS.filter((c) => wanted.includes(c.label)) : A
 
 /* --------------------------------------------------------------- helpers */
 
-const PLAYERS = ['oracle', 'wander', 'uniform', 'leads'] as const;
+const PLAYERS = ['oracle', 'wander', 'uniform', 'leads', 'reason'] as const;
 type PlayerId = (typeof PLAYERS)[number];
 
 const mean = (xs: number[]): number => (xs.length === 0 ? NaN : xs.reduce((a, b) => a + b, 0) / xs.length);
@@ -245,6 +325,11 @@ interface RunRec {
   report: Report;
   whoCorrect: boolean | null;
   solved: boolean;
+  /** M9: the deduction the report asks — who, when, the column — all right. */
+  deduced: boolean;
+  /** Cells of the column right, of those asked. */
+  columnRight: number;
+  columnAsked: number;
   ownFiling?: { whoCorrect: boolean | null; solved: boolean };
 }
 
@@ -317,9 +402,270 @@ function drive(view: CaseView, pick: Picker, rng: Rng, player: PlayerId, maxStep
     });
     if (!costed && result.page.found.length === 0 && chosen.command !== '' && i > 60) break;
   }
-  const report = fileFor(view, state);
+  const report = player === 'reason' ? fileReasoned(view, state) : fileFor(view, state);
   const scored = score(view, state, report);
-  return { player, steps, state, report, ...scored };
+  return { player, steps, state, report, ...scored, ...deduction(view, report) };
+}
+
+/**
+ * M9's design test scores the deduction: who, when (where asked) and every
+ * cell of the crime column (from Medium up), all right.
+ */
+function deduction(view: CaseView, report: Report): { deduced: boolean; columnRight: number; columnAsked: number } {
+  const kase = view.kase;
+  const unknowns = kase.act.unknowns;
+  const who = report.killerId === kase.solution.killerId;
+  const when = !unknowns.includes('when') || report.tick === kase.solution.murderTick;
+  let columnRight = 0;
+  let columnCount = 0;
+  if (columnAsked(view)) {
+    const truth = truthColumn(view);
+    for (const p of columnPeople(view)) {
+      columnCount++;
+      if ((report.column?.[p.id] ?? null) === (truth[p.id] ?? null)) columnRight++;
+    }
+  }
+  return { deduced: who && when && columnRight === columnCount, columnRight, columnAsked: columnCount };
+}
+
+/**
+ * The reasoning player's report: what the notebook settles, read with the
+ * solver. Where it does not settle a thing, a best guess from the same grid.
+ */
+function fileReasoned(view: CaseView, state: RunState): Report {
+  const kase = view.kase;
+  const base = fileFor(view, state);
+  if (!kase.logic) return base;
+  const confessed = confessedOf(state);
+  const crime = crimeFromHeld(kase, state.found, { confessed });
+  const st = solveNotebook(view, state);
+  const tick = crime.ticks.length === 1 ? (crime.ticks[0] as Tick) : (crime.ticks[crime.ticks.length - 1] ?? base.tick ?? null);
+  let killerId = crime.culprit;
+  if (killerId === null && tick !== null) {
+    const can = columnPeople(view).filter((p) => placesAt(st, p.id, tick).includes(view.sceneId));
+    // Of those the grid still allows, the one whose own word for that half
+    // hour a fact in hand breaks: somebody who lied about the hour it happened.
+    const broken = can.filter((p) => {
+      const claim = view.claimedOf.get(p.id)?.[tick] ?? null;
+      return (
+        state.accounts.includes(p.id) &&
+        claim !== null &&
+        contradicts(kase, state.found, { personId: p.id, place: claim, ticks: [tick] }, { confessed: confessedOf(state), soft: false }).yes
+      );
+    });
+    killerId =
+      can.length === 1
+        ? (can[0]?.id as Id)
+        : (broken[0]?.id ?? can.find((p) => p.id === base.killerId)?.id ?? can[0]?.id ?? base.killerId);
+  }
+  const column: Record<Id, Id | null> = {};
+  if (tick !== null) {
+    for (const p of columnPeople(view)) {
+      const at = placesAt(st, p.id, tick);
+      if (p.id === killerId) column[p.id] = view.sceneId;
+      else if (at.length === 1) column[p.id] = at[0] as Id;
+      else {
+        const claim = view.claimedOf.get(p.id)?.[tick] ?? null;
+        column[p.id] = claim !== null && at.includes(claim) ? claim : (at.find((x) => x !== view.sceneId) ?? null);
+      }
+    }
+  }
+  const motive = establishedFrom(view, state.found, state.accounts).motives.find((m) => m.personId === killerId);
+  return {
+    ...base,
+    killerId,
+    ...(motive ? { motiveType: motive.motiveType } : {}),
+    tick: kase.act.unknowns.includes('when') ? tick : base.tick,
+    column,
+  };
+}
+
+/** Has the notebook settled everything the report asks? Then the reasoning player files. */
+function settled(view: CaseView, state: RunState): boolean {
+  const kase = view.kase;
+  if (!kase.logic) return false;
+  const crime = crimeFromHeld(kase, state.found, { confessed: confessedOf(state) });
+  if (crime.culprit === null) return false;
+  if (kase.act.unknowns.includes('when') && crime.ticks.length !== 1) return false;
+  if (columnAsked(view)) {
+    if (crime.ticks.length !== 1) return false;
+    for (const p of columnPeople(view)) if ((crime.column[p.id] ?? []).length !== 1) return false;
+  }
+  return true;
+}
+
+/**
+ * M9: the reasoning player. It never reads the truth: only what it holds,
+ * through the solver the generator hands the engine.
+ */
+function reasonPicker(): Picker {
+  const put = new Set<string>();
+  const asked = new Set<string>();
+  return (state, view, rng, groups) => {
+    const kase = view.kase;
+    if (settled(view, state)) return null;
+    const options = allChoices(groups).filter((c) => !c.done && !['notebook', 'file'].includes(c.command));
+    if (options.length === 0) return null;
+    const here = peopleHereNow(view, state.at, { clientInOffice: state.clientInOffice, found: state.found });
+    const confessed = confessedOf(state);
+    // 0. The room it happened in first: the briefing names it.
+    if (!state.sceneSeen && state.at !== view.startId) {
+      const start = view.placeById.get(view.startId)?.shortName;
+      const go = options.find((c) => c.command === `go ${start}`);
+      if (go) return { command: go.command, marked: go.lead };
+    }
+    // 1. A fact in hand that the solver says breaks what somebody said: put
+    // it to them if they are here, walk to them if they are not.
+    if (kase.logic) {
+      const said = saidRecords(view, state);
+      const hereIds = new Set(here.map((p) => p.id));
+      const stC = solveNotebook(view, state);
+      const windowC = establishedFrom(view, state.found, state.accounts).deathTicks;
+      for (const person of columnPeople(view)) {
+        if (!state.accounts.includes(person.id)) continue;
+        // Only somebody the grid still has open at the crime's half hours:
+        // breaking a story the notebook has no use for is a half hour lost.
+        if (windowC.length > 0 && windowC.every((t) => placesAt(stC, person.id, t).length === 1)) continue;
+        if (
+          process.env.REASON_VARIANT === 'h' &&
+          windowC.length > 0 &&
+          !windowC.some((t) => placesAt(stC, person.id, t).includes(view.sceneId))
+        )
+          continue;
+        if (!canConfront(view, { ...state, at: person.foundAt ?? state.at }, person.id)) continue;
+        const facts = new Set(confrontFacts(view, state, person.id).map((c) => c.id));
+        // What they say now: a second story replaces the first for its hours,
+        // and what they gave up is not theirs to be caught on again.
+        const mine = said.filter((x) => x.personId === person.id);
+        // What they gave up is not theirs to be caught on again.
+        const moved = new Set<Tick>();
+        for (const x of mine) {
+          if (x.outcome !== 'admit' && x.outcome !== 'withdraw') continue;
+          for (const f of x.facts) if (f.kind === 'personAt') moved.add(f.tick);
+        }
+        const claims: { place: Id; ticks: Tick[] }[] = [];
+        for (const f of accountClueOf(view, person.id)?.establishes ?? []) {
+          if (f.kind === 'claims' && !f.ticks.some((t) => moved.has(t))) claims.push({ place: f.place, ticks: f.ticks });
+        }
+        const done = mine.some((x) => x.outcome === 'admit' || x.outcome === 'withdraw');
+        for (const x of mine) {
+          if (x.outcome !== 'second-lie' || done) continue;
+          for (const f of x.facts) if (f.kind === 'claims') claims.push({ place: f.place, ticks: f.ticks });
+        }
+        // A second time needs a second, independent way: what still breaks
+        // the claim with the facts already put to them set aside.
+        const unused = state.found.filter((id) => !put.has(`${person.id}|${id}`));
+        for (const claim of claims) {
+          for (const soft of [false, true]) {
+            const res = contradicts(kase, unused, { personId: person.id, ...claim }, { confessed, soft });
+            if (!res.yes) continue;
+            const pick = res.rules.find((id) => facts.has(id) && !put.has(`${person.id}|${id}`));
+            if (!pick) continue;
+            if (hereIds.has(person.id)) {
+              put.add(`${person.id}|${pick}`);
+              return { command: `put ${pick} to ${person.surname}`, marked: false };
+            }
+            const where = view.placeById.get(person.foundAt ?? '')?.shortName;
+            const go = options.find((c) => c.command === `go ${where}`);
+            if (go) return { command: go.command, marked: go.lead };
+          }
+        }
+      }
+    }
+    const pick = (c: { command: string; lead: boolean }): { command: string; marked: boolean } => {
+      asked.add(c.command);
+      return { command: c.command, marked: c.lead };
+    };
+    const notConfront = options.filter((c) => !c.command.startsWith('put '));
+    // A lead about somebody whose every half hour of the crime the notebook
+    // already settles can wait: the grid has what it would give.
+    const st0 = kase.logic ? solveNotebook(view, state) : null;
+    const window0 = establishedFrom(view, state.found, state.accounts).deathTicks;
+    const settledRow = (id: Id | undefined): boolean =>
+      st0 !== null &&
+      id !== undefined &&
+      window0.length > 0 &&
+      columnPeople(view).some((p) => p.id === id) &&
+      window0.every((t) => placesAt(st0, id, t).length === 1);
+    const worth = (command: string): boolean => {
+      if (process.env.REASON_VARIANT === 'a') return true;
+      const t = state.threads.find((x) => x.command === command || `go ${x.placeLabel}` === command);
+      if (!t) return true;
+      const leadsHere = state.threads.filter((x) => (command.startsWith('go ') ? `go ${x.placeLabel}` === command : x.command === command));
+      return leadsHere.some((x) => !settledRow(view.findableById.get(x.clueId)?.about));
+    };
+    // 2. A marked question or search in this room.
+    const markedHere = notConfront.filter((c) => c.lead && !c.command.startsWith('go ') && worth(c.command));
+    if (markedHere.length > 0) return pick(markedHere[0] as (typeof options)[number]);
+    // 3. The room, once.
+    const search = notConfront.find((c) => c.command.startsWith('examine ') && !c.done);
+    if (search && !(state.searched ?? []).includes(state.at)) return pick(search);
+    // 3b. A room a lead points at.
+    const VARIANT = process.env.REASON_VARIANT ?? 'g';
+    const markedGo0 = notConfront.filter((c) => c.lead && c.command.startsWith('go ') && worth(c.command));
+    if (VARIANT !== 'b' && VARIANT !== 'f' && markedGo0.length > 0) return pick(markedGo0[0] as (typeof options)[number]);
+    // 4. The evening of anybody here whose crime half hour is still open, and
+    // 5. what the people here saw of the people whose cell is still open.
+    const st = kase.logic ? solveNotebook(view, state) : null;
+    const window = establishedFrom(view, state.found, state.accounts).deathTicks;
+    const open = (id: Id): boolean =>
+      st === null || window.length === 0 || window.some((t) => placesAt(st, id, t).length > 1);
+    for (const person of here) {
+      if (person.kind === 'suspect' && open(person.id)) {
+        const c = notConfront.find((x) => x.command === `ask ${person.surname} about that evening`);
+        if (c && c.minutes > 0) return pick(c);
+      }
+    }
+    const standing = new Set(
+      saidRecords(view, state)
+        .filter((x) => x.outcome === 'second-lie')
+        .map((x) => x.personId)
+        .filter((id) => !confessed.includes(id)),
+    );
+    // Who could still have been in the room it happened in: the questions
+    // worth a half hour are about them, and about anybody whose second story
+    // is still standing.
+    const couldBe = (id: Id): boolean =>
+      st === null || window.length === 0 || window.some((t) => placesAt(st, id, t).includes(view.sceneId));
+    const openSuspects = columnPeople(view)
+      .filter((p) => (open(p.id) && couldBe(p.id)) || standing.has(p.id))
+      .sort((a, b) => Number(standing.has(b.id)) - Number(standing.has(a.id)));
+    const askedOf = (who: Person): number => [...asked].filter((c) => c.startsWith(`ask ${who.surname} about `)).length;
+    // 4b. The evening of anybody in the notebook who could still have been in
+    // the room it happened in: the notebook says where they are found.
+    if (kase.logic && process.env.REASON_VARIANT !== 'e') {
+      for (const p of columnPeople(view)) {
+        if (state.accounts.includes(p.id) || !state.met.includes(p.id) || !couldBe(p.id)) continue;
+        if (here.some((h) => h.id === p.id)) continue;
+        const where = view.placeById.get(p.foundAt ?? '')?.shortName;
+        const go = notConfront.find((c) => c.command === `go ${where}`);
+        if (go) return pick(go);
+      }
+    }
+    if (VARIANT === 'f' && markedGo0.length > 0) return pick(markedGo0[0] as (typeof options)[number]);
+    // Somebody posted at a door saw everybody who came through it: ask them first.
+    const byPost = [...here]
+      .sort((a, b) => Number(b.kind === 'fixture') - Number(a.kind === 'fixture'))
+      .filter((p) => VARIANT !== 'c' || p.kind === 'fixture' || standing.size > 0);
+    for (const person of byPost) {
+      if (askedOf(person) >= 3 && person.kind !== 'fixture') continue;
+      if (VARIANT === 'g' && person.kind !== 'fixture' && standing.size === 0) continue;
+      for (const target of [...openSuspects, view.victim]) {
+        if (target.id === person.id) continue;
+        const c = notConfront.find((x) => x.command === `ask ${person.surname} about ${target.surname}` && x.minutes > 0);
+        if (c && !asked.has(c.command)) return pick(c);
+      }
+    }
+    // 6. A marked room, then a room with somebody not yet asked, then anywhere new.
+    const markedGo = notConfront.filter((c) => c.lead && c.command.startsWith('go '));
+    if (markedGo.length > 0) return pick(markedGo[0] as (typeof options)[number]);
+    const gos = notConfront.filter((c) => c.command.startsWith('go ') && !c.command.endsWith(view.office.shortName));
+    const unvisited = gos.filter((c) => c.note === 'not been');
+    if (unvisited.length > 0) return pick(rng.pick(unvisited));
+    const rest = notConfront.filter((c) => c.minutes > 0 && !asked.has(c.command));
+    if (rest.length > 0) return pick(rng.pick(rest));
+    return gos.length > 0 ? pick(rng.pick(gos)) : null;
+  };
 }
 
 function fileFor(view: CaseView, state: RunState): Report {
@@ -327,7 +673,12 @@ function fileFor(view: CaseView, state: RunState): Report {
   const est = establishedFrom(view, state.found, state.accounts);
   const facts = factsOf(view, state.found);
   const left = uncleared(kase, facts);
-  const killerId = left.length === 1 ? (left[0] as Id) : leadingTheory(view, est);
+  // M9: from Poached up the monologue has no theory of its own — only the
+  // player's pencil — so a player who does not reason guesses among the ones
+  // the notebook's plain placements leave standing.
+  const guess = left.length > 0 ? (left[kase.seed % left.length] as Id) : null;
+  const killerId =
+    left.length === 1 ? (left[0] as Id) : verdictsOn(view) ? leadingTheory(view, est) : (state.theory ?? guess);
   const ticks = deathTicks(facts);
   const motive = est.motives.find((m) => m.personId === killerId) ?? est.motives[0];
   return {
@@ -350,16 +701,26 @@ function score(view: CaseView, state: RunState, report: Report): { whoCorrect: b
 }
 
 const uniformPicker: Picker = (_state, _view, rng, groups) => {
-  const options = allChoices(groups).filter(
-    (c) => !c.done && !['notebook', 'file'].includes(c.command),
-  );
-  if (options.length === 0) return null;
-  const c = rng.pick(options);
+  // M9: "Put it to …" is one button that opens a picker; the button-pusher
+  // presses it as one choice and then reads out any line at all.
+  const plain = groups.filter((g) => g.kind !== 'confront');
+  const pickers = groups.filter((g) => g.kind === 'confront' && g.choices.some((c) => !c.done));
+  const options = allChoices(plain).filter((c) => !c.done && !['notebook', 'file'].includes(c.command));
+  const total = options.length + pickers.length;
+  if (total === 0) return null;
+  const i = rng.int(total);
+  if (i >= options.length) {
+    const g = pickers[i - options.length] as (typeof groups)[number];
+    const c = rng.pick(g.choices.filter((x) => !x.done));
+    return { command: c.command, marked: false };
+  }
+  const c = options[i] as (typeof options)[number];
   return { command: c.command, marked: c.lead };
 };
 
 const leadsPicker: Picker = (_state, _view, rng, groups) => {
-  const options = allChoices(groups).filter(
+  // The marks-follower never opens the picker: a fact is never marked.
+  const options = allChoices(groups.filter((g) => g.kind !== 'confront')).filter(
     (c) => !c.done && !['notebook', 'file'].includes(c.command),
   );
   if (options.length === 0) return null;
@@ -401,7 +762,12 @@ interface ChoiceTally {
   offered: number;
   yieldsNow: number;
   everYields: number;
+  /** M9: could ever return a clue that places somebody, or says they were not there. */
+  everFact?: number;
 }
+
+/** A fact that goes on the grid: a placement, an absence, a description, a count, company. */
+const GRID_FACTS = new Set(['personAt', 'personNotAt', 'personAtAnchor', 'describedAt', 'absentFrom', 'countAt', 'together', 'apart', 'victimAliveAt']);
 
 function classifyChoices(view: CaseView, state: RunState, tally: Map<ChoiceCat, ChoiceTally>): void {
   const present = peopleHereNow(view, state.at, {
@@ -417,6 +783,7 @@ function classifyChoices(view: CaseView, state: RunState, tally: Map<ChoiceCat, 
     let cat: ChoiceCat;
     let now = false;
     let ever = false;
+    let everFact = false;
     if (cmd.kind === 'go') {
       cat = 'go';
       now = c.lead;
@@ -429,9 +796,15 @@ function classifyChoices(view: CaseView, state: RunState, tally: Map<ChoiceCat, 
       ever = clues.length > 0;
     } else if (cmd.kind === 'ask') {
       const t = cmd.topic;
+      // M9: "ask X about Y" resolves to the exact bucket of X's testimony
+      // about Y. It is still a question about a person, not a lead.
+      const bucket = t.kind === 'exact' ? (view.exactBuckets.get(t.personId)?.get(t.topic) ?? []) : [];
+      const aboutPerson = bucket.length > 0 && bucket.every((x) => x.kind === 'testimony');
       cat =
-        t.kind === 'exact'
+        t.kind === 'exact' && !aboutPerson
           ? 'lead (exact topic)'
+          : aboutPerson
+            ? 'ask: a person'
           : t.kind === 'evening'
             ? 'ask: evening'
             : t.kind === 'self'
@@ -451,18 +824,21 @@ function classifyChoices(view: CaseView, state: RunState, tally: Map<ChoiceCat, 
       } else {
         now = answersTo(view, cmd.personId, t, state.found).length > 0;
         const key = topicKey(t);
-        ever = view.kase.findable.some(
+        const answering = view.kase.findable.filter(
           (x) =>
             x.source.type === 'person' &&
             x.source.personId === cmd.personId &&
             (t.kind === 'exact' ? x.source.topic === t.topic : (view.answers.get(x.id) ?? []).includes(key)),
         );
+        ever = answering.length > 0;
+        everFact = answering.some((x) => x.establishes.some((f) => GRID_FACTS.has(f.kind)));
       }
     } else continue;
-    const row = tally.get(cat) ?? { offered: 0, yieldsNow: 0, everYields: 0 };
+    const row = tally.get(cat) ?? { offered: 0, yieldsNow: 0, everYields: 0, everFact: 0 };
     row.offered++;
     if (now) row.yieldsNow++;
     if (ever) row.everYields++;
+    if (everFact) row.everFact = (row.everFact ?? 0) + 1;
     tally.set(cat, row);
   }
 }
@@ -800,7 +1176,11 @@ function analyseRun(view: CaseView, run: RunRec, agg: PlayerAgg, cfg: string): v
     }
   }
   closeVisit();
-  agg.accountsHeard += run.state.accounts.length;
+  // M9: an account is a clue of its own kind now, on the par route; before
+  // M9 it was only ever "their evening", which the oracle never asked.
+  agg.accountsHeard +=
+    run.state.accounts.length +
+    run.state.found.filter((id) => view.findableById.get(id)?.kind === 'account' && !run.state.accounts.includes((view.findableById.get(id)?.source as { personId?: Id }).personId ?? '')).length;
   if (!run.steps.some((s) => s.to === view.startId)) agg.neverStart++;
   agg.goActions += run.steps.filter((s) => s.costed && s.verb === 'go').length;
   if (culprit) {
@@ -885,10 +1265,35 @@ interface CaseAgg {
   contradictingPairs: number;
   caughtAtM: number[];
   culpritOnlyCaughtAtM: number;
+  /* --- M9: measured by the solver, on the old cases as on the new ------- */
+  /** Innocents one findable clue on its own keeps off the scene at the crime's half hour. */
+  solverOneClue: number;
+  solverInnocents: number;
+  /** The par route's culprit, and its deepest conclusion, in the solver's rounds. */
+  parCulpritDepth: number[];
+  parDepth: number[];
+  /** Cases where some innocent or the half hour needs two or more clues put together. */
+  combination: number;
+  /** Account spans on the par route, and how many of them are false. */
+  parAccountSpans: number;
+  parFalseSpans: number;
+  /** Par routes that need a hypothesis tested. */
+  parHypothesis: number;
+  /** The first and second responses when a lie is put to the liar. */
+  confrontFirst: { culprit: number; culpritLies: number; innocent: number; innocentLies: number };
 }
 
 function newCaseAgg(): CaseAgg {
   return {
+    solverOneClue: 0,
+    solverInnocents: 0,
+    parCulpritDepth: [],
+    parDepth: [],
+    combination: 0,
+    parAccountSpans: 0,
+    parFalseSpans: 0,
+    parHypothesis: 0,
+    confrontFirst: { culprit: 0, culpritLies: 0, innocent: 0, innocentLies: 0 },
     cases: 0,
     whoCases: 0,
     ruleMix: new Map(),
@@ -1194,6 +1599,52 @@ function analyseCase(view: CaseView, agg: CaseAgg, cfg: string): void {
     }
   }
   agg.liarsPerCase.push(liars);
+
+  // M9: the solver's reading of the same case. Old cases have no blocks, so
+  // travel constrains nothing; everything else reads the same facts.
+  if (culprit) {
+    const frame = solverFrame(kase);
+    const startingClues = kase.starting.map((id) => view.findableById.get(id)).filter((c): c is Clue => !!c);
+    const innocents = suspectsOf(kase).filter((s) => s !== culprit);
+    const oneClue = new Set<Id>();
+    for (const c of findable) {
+      if (kase.starting.includes(c.id)) continue;
+      const st = solve(solverProblem(frame, [...startingClues, c], false)).state;
+      if (st.contradiction) continue;
+      for (const s of innocents) if (!placesAt(st, s, M).includes(scene)) oneClue.add(s);
+    }
+    agg.solverInnocents += innocents.length;
+    agg.solverOneClue += oneClue.size;
+    const pin = minTickPin(kase, findable);
+    if (oneClue.size < innocents.length || pin >= 2) agg.combination++;
+    const spine = findable.filter((c) => c.role === 'spine');
+    const hyp = kase.logic?.solve.hypothesis ?? false;
+    const parState = solve(solverProblem(frame, spine, hyp, kase)).state;
+    const who = solverCulprit(parState);
+    if (who) agg.parCulpritDepth.push(who.why.depth);
+    let deepest = 0;
+    for (const w of parState.why) if (w && w.depth > deepest) deepest = w.depth;
+    agg.parDepth.push(Math.max(deepest, who?.why.depth ?? 0));
+    if (parState.usedProbe) agg.parHypothesis++;
+    for (const c of spine) {
+      for (const f of c.establishes) {
+        if (f.kind !== 'claims') continue;
+        agg.parAccountSpans++;
+        const truth = kase.schedules.find((s) => s.personId === f.personId)?.truth ?? [];
+        if (f.ticks.some((t) => truth[t] !== f.place)) agg.parFalseSpans++;
+      }
+    }
+    for (const k of kase.logic?.confrontations ?? []) {
+      const lied = k.responses[0].kind === 'second-lie' ? 1 : 0;
+      if (k.personId === culprit) {
+        agg.confrontFirst.culprit++;
+        agg.confrontFirst.culpritLies += lied;
+      } else if (k.lie.cover === 'secret') {
+        agg.confrontFirst.innocent++;
+        agg.confrontFirst.innocentLies += lied;
+      }
+    }
+  }
 }
 
 /* ------------------------------------------------------------------ main */
@@ -1209,6 +1660,49 @@ interface ConfigResult {
   oracleActions: number[];
   unknowns: Map<string, number>;
   types: Map<string, number>;
+  design: DesignAgg;
+}
+
+/* ------------------------------------------------ M9: the design test */
+
+interface DesignSide {
+  runs: number;
+  who: number;
+  deduced: number;
+  columnRight: number;
+  columnAsked: number;
+  actions: number;
+  confronts: number;
+  confrontsLanded: number;
+}
+
+interface DesignAgg {
+  leads: DesignSide;
+  uniform: DesignSide;
+  reason: DesignSide;
+}
+
+function newSide(): DesignSide {
+  return { runs: 0, who: 0, deduced: 0, columnRight: 0, columnAsked: 0, actions: 0, confronts: 0, confrontsLanded: 0 };
+}
+
+function newDesign(): DesignAgg {
+  return { leads: newSide(), uniform: newSide(), reason: newSide() };
+}
+
+function tallyDesign(agg: DesignAgg, view: CaseView, runs: { leads: RunRec; uniform: RunRec; reason: RunRec }): void {
+  for (const k of ['leads', 'uniform', 'reason'] as const) {
+    const r = runs[k];
+    const side = agg[k];
+    side.runs++;
+    if (r.report.killerId === view.kase.solution.killerId) side.who++;
+    if (r.deduced) side.deduced++;
+    side.columnRight += r.columnRight;
+    side.columnAsked += r.columnAsked;
+    side.actions += r.state.actionsUsed;
+    side.confronts += (r.state.confronts ?? []).length;
+    side.confrontsLanded += (r.state.confronts ?? []).filter((c) => c.outcome !== 'wrong').length;
+  }
 }
 
 /*
@@ -1221,10 +1715,92 @@ if (ROUTE_OF !== undefined) {
   const seed = Number(arg('seed') ?? 1);
   const cfg = CONFIGS[0] as Config;
   const view = buildView(generateCase(seed, cfg.opts));
-  const picker = ROUTE_OF === 'leads' ? leadsPicker : uniformPicker;
-  const rng = new Rng(ROUTE_OF === 'leads' ? (seed * 104729 + 7) >>> 0 : (seed * 7919 + 13) >>> 0);
-  const run = drive(view, picker, rng, ROUTE_OF === 'leads' ? 'leads' : 'uniform');
+  const picker = ROUTE_OF === 'leads' ? leadsPicker : ROUTE_OF === 'reason' ? reasonPicker() : uniformPicker;
+  const rng = new Rng(
+    ROUTE_OF === 'leads'
+      ? (seed * 104729 + 7) >>> 0
+      : ROUTE_OF === 'reason'
+        ? (seed * 15485863 + 3) >>> 0
+        : (seed * 7919 + 13) >>> 0,
+  );
+  const run = drive(view, picker, rng, ROUTE_OF === 'leads' ? 'leads' : ROUTE_OF === 'reason' ? 'reason' : 'uniform');
   process.stdout.write(run.steps.map((s) => s.command).join('; ') + '\n');
+  if (argv.includes('--why')) {
+    const kase = view.kase;
+    const par = new Set(kase.logic?.solve.parRules ?? []);
+    const held = new Set(run.state.found);
+    process.stdout.write(`par held ${[...par].filter((id) => held.has(id)).length}/${par.size}; missing ${[...par].filter((id) => !held.has(id)).join(' ')}\n`);
+    const lf = drive(view, leadsPicker, new Rng((seed * 104729 + 7) >>> 0), 'leads');
+    const lheld = new Set(lf.state.found);
+    process.stdout.write(`(the marks-follower holds ${[...par].filter((id) => lheld.has(id)).length}/${par.size} of par)\n`);
+    process.stdout.write(`filed ${JSON.stringify(run.report)}\ntruth killer ${kase.solution.killerId} tick ${kase.solution.murderTick} column ${JSON.stringify(truthColumn(view))}\n`);
+    process.stdout.write(`confessions needed ${JSON.stringify(kase.logic?.solve.confessions)}; confronts ${JSON.stringify(run.state.confronts)}\n`);
+  }
+  process.exit(0);
+}
+
+const DESIGN_ONLY = argv.includes('--design');
+if (argv.includes('--reason-debug')) {
+  for (const cfg of CONFIGS) {
+    for (let seed = 1; seed <= SEEDS; seed++) {
+      const view = buildView(generateCase(seed, cfg.opts));
+      const kase = view.kase;
+      const r = drive(view, reasonPicker(), new Rng((seed * 15485863 + 3) >>> 0), 'reason');
+      const par = kase.logic?.solve.parRules ?? [];
+      const held = new Set(r.state.found);
+      const need = kase.logic?.solve.confessions ?? [];
+      const got = confessedOf(r.state);
+      process.stdout.write(
+        `${cfg.label} ${seed}: ${r.deduced ? 'OK ' : 'bad'} who ${r.report.killerId === kase.solution.killerId ? 'y' : 'n'} col ${r.columnRight}/${r.columnAsked} par ${par.filter((id) => held.has(id)).length}/${par.length} conf ${need.filter((x) => got.includes(x)).length}/${need.length} acts ${r.state.actionsUsed}/${gameBudget(kase)} settled ${settled(view, r.state) ? 'y' : 'n'}\n`,
+      );
+    }
+  }
+  process.exit(0);
+}
+if (DESIGN_ONLY) {
+  const t1 = Date.now();
+  const rows: string[][] = [];
+  const all: { label: string; design: DesignAgg }[] = [];
+  for (const cfg of CONFIGS) {
+    const design = newDesign();
+    for (let seed = 1; seed <= SEEDS; seed++) {
+      let kase: Case;
+      try {
+        kase = generateCase(seed, cfg.opts);
+      } catch (e) {
+        process.stderr.write(`${cfg.label} seed ${seed}: ${(e as Error).message}\n`);
+        continue;
+      }
+      const view = buildView(kase);
+      const u = drive(view, uniformPicker, new Rng((seed * 7919 + 13) >>> 0), 'uniform');
+      const l = drive(view, leadsPicker, new Rng((seed * 104729 + 7) >>> 0), 'leads');
+      const r = drive(view, reasonPicker(), new Rng((seed * 15485863 + 3) >>> 0), 'reason');
+      tallyDesign(design, view, { leads: l, uniform: u, reason: r });
+    }
+    all.push({ label: cfg.label, design });
+    process.stderr.write(`${cfg.label}: done (${Math.round((Date.now() - t1) / 1000)}s)\n`);
+  }
+  for (const { label, design } of all) {
+    const d = design;
+    rows.push([
+      label,
+      pct(share(d.leads.who, d.leads.runs)),
+      `${pct(share(d.reason.deduced, d.reason.runs))} (who ${pct(share(d.reason.who, d.reason.runs))}, column ${pct(share(d.reason.columnRight, d.reason.columnAsked))})`,
+      pct(share(d.uniform.who, d.uniform.runs)),
+      `${num(d.reason.confronts / Math.max(1, d.reason.runs))} (${pct(share(d.reason.confrontsLanded, d.reason.confronts))} landed)`,
+      num(d.reason.actions / Math.max(1, d.reason.runs)),
+    ]);
+  }
+  const lines: string[] = [];
+  lines.push(`## The design test (${SEEDS} seeds a config)`);
+  lines.push('');
+  lines.push('| config | marks-follower names the culprit | reasoning player: who, when and the column all right, within budget | button-pusher names the culprit | reasoning player: facts put to somebody / run | reasoning player: actions |');
+  lines.push('| --- | --- | --- | --- | --- | --- |');
+  for (const r of rows) lines.push(`| ${r.join(' | ')} |`);
+  lines.push('');
+  lines.push('Target: the marks-follower at 50% or under while the reasoning player is at 80% or over, per tier.');
+  process.stdout.write(lines.join('\n') + '\n');
+  if (JSON_OUT) writeFileSync(JSON_OUT, JSON.stringify({ seeds: SEEDS, design: all }, null, 2));
   process.exit(0);
 }
 
@@ -1234,7 +1810,8 @@ for (const cfg of CONFIGS) {
   const res: ConfigResult = {
     label: cfg.label,
     caseAgg: newCaseAgg(),
-    players: { oracle: newAgg(), wander: newAgg(), uniform: newAgg(), leads: newAgg() },
+    players: { oracle: newAgg(), wander: newAgg(), uniform: newAgg(), leads: newAgg(), reason: newAgg() },
+    design: newDesign(),
     choiceTally: new Map(),
     par: [],
     budget: [],
@@ -1285,6 +1862,9 @@ for (const cfg of CONFIGS) {
     }
     const l = drive(view, leadsPicker, new Rng((seed * 104729 + 7) >>> 0), 'leads');
     analyseRun(view, l, res.players.leads, cfg.label);
+    const r = drive(view, reasonPicker(), new Rng((seed * 15485863 + 3) >>> 0), 'reason');
+    analyseRun(view, r, res.players.reason, cfg.label);
+    tallyDesign(res.design, view, { leads: l, uniform: u, reason: r });
   }
   results.push(res);
   process.stderr.write(`${cfg.label}: done (${Math.round((Date.now() - t0) / 1000)}s)\n`);
@@ -1559,6 +2139,88 @@ const CATS: ChoiceCat[] = ['lead (exact topic)', 'ask: evening', 'ask: themselve
     }),
   );
 }
+
+/*
+ * M9 (docs/20-m9-deduction.md, "Targets"). Every row is measured the same way
+ * on a case from before M9 as on one after; where the diagnosis's own
+ * definition and the solver's differ, both are printed, the diagnosis's first.
+ */
+out.push('## Targets (docs/20-m9-deduction.md)');
+out.push('');
+{
+  const suspectsPer = (r: ConfigResult): number => r.caseAgg.innocents / Math.max(1, r.caseAgg.whoCases) + 1;
+  const rows: [string, (r: ConfigResult) => string, string][] = [
+    [
+      'innocents cleared by one clue (diagnosis facts / solver)',
+      (r) => `${pct(share(r.caseAgg.innocentsOneClue, r.caseAgg.innocents))} / ${pct(share(r.caseAgg.solverOneClue, r.caseAgg.solverInnocents))}`,
+      '≤30%',
+    ],
+    [
+      'inference depth of the par route (diagnosis formula / solver)',
+      (r) => `${num(mean(r.players.oracle.routeDepth))} / ${num(mean(r.caseAgg.parCulpritDepth))}`,
+      '≥4',
+    ],
+    [
+      'cases that need a two-clue combination',
+      (r) => pct(share(r.caseAgg.combination, r.caseAgg.whoCases)),
+      '100%',
+    ],
+    [
+      'false statements among self-accounts on the par route',
+      (r) => `${pct(share(r.caseAgg.parFalseSpans, r.caseAgg.parAccountSpans))} (${r.caseAgg.parFalseSpans}/${r.caseAgg.parAccountSpans} spans)`,
+      '20–30%',
+    ],
+    ['evening accounts on the oracle’s route', (r) => num(r.players.oracle.accountsHeard / r.players.oracle.runs), '≥2'],
+    [
+      '"ask about a person" that can pay (any clue / a grid fact)',
+      (r) => {
+        const t = r.choiceTally.get('ask: a person') ?? { offered: 0, yieldsNow: 0, everYields: 0, everFact: 0 };
+        return `${pct(share(t.everYields, t.offered))} / ${pct(share(t.everFact ?? 0, t.offered))}`;
+      },
+      '≥60%',
+    ],
+    ['lead edges sharing a person with their source', (r) => pct(share(r.caseAgg.edgesPersonLinked, r.caseAgg.edges)), '≥80%'],
+    ['button-pusher actions with no clue', (r) => pct(share(r.players.uniform.noClue, r.players.uniform.actions)), '≤40%'],
+    ['a player who only follows the marks names the culprit', (r) => pct(share(r.players.leads.whoCorrect, r.players.leads.whoAsked)), '≤50%'],
+    [
+      'the client points at the culprit (1 / suspects)',
+      (r) => `${pct(share(r.caseAgg.clientPointsAtCulprit, r.caseAgg.whoCases))} (${pct(1 / suspectsPer(r))})`,
+      '≤ 1 / suspects',
+    ],
+    [
+      'pages with 5 or more open leads (wanderer / lead-follower)',
+      (r) =>
+        `${pct(share(r.players.wander.openThreadSamples.filter((x) => x >= 5).length, r.players.wander.openThreadSamples.length))} / ${pct(share(r.players.leads.openThreadSamples.filter((x) => x >= 5).length, r.players.leads.openThreadSamples.length))}`,
+      '≤10%',
+    ],
+    ['par routes that need a hypothesis tested', (r) => pct(share(r.caseAgg.parHypothesis, r.caseAgg.whoCases)), 'Hard-boiled: 100%'],
+    [
+      'first confrontation brings a second lie (culprit / innocents)',
+      (r) => {
+        const k = r.caseAgg.confrontFirst;
+        return `${pct(share(k.culpritLies, k.culprit))} / ${pct(share(k.innocentLies, k.innocent))}`;
+      },
+      'within 10 points',
+    ],
+  ];
+  table(
+    ['measure', ...results.map((r) => r.label), 'target'],
+    rows.map(([label, f, target]) => [label, ...results.map(f), target]),
+  );
+}
+
+out.push('## The design test');
+out.push('');
+table(
+  ['config', 'marks-follower names the culprit', 'reasoning player: who, when, column all right', 'button-pusher names the culprit'],
+  results.map((r) => [
+    r.label,
+    pct(share(r.design.leads.who, r.design.leads.runs)),
+    `${pct(share(r.design.reason.deduced, r.design.reason.runs))} (who ${pct(share(r.design.reason.who, r.design.reason.runs))})`,
+    pct(share(r.design.uniform.who, r.design.uniform.runs)),
+  ]),
+);
+out.push('');
 
 out.push('## Examples');
 out.push('');

@@ -59,6 +59,7 @@ const VERBS: { words: string[]; kind: string }[] = [
   { words: ['notebook', 'notes', 'n'], kind: 'notebook' },
   { words: ['file', 'report'], kind: 'file' },
   { words: ['help', 'commands', '?'], kind: 'help' },
+  { words: ['put', 'confront'], kind: 'confront' },
 ];
 
 function verbOf(word: string): string | null {
@@ -258,6 +259,41 @@ export function parse(
   }
 
   switch (verb) {
+    case 'confront': {
+      // M9 §3: "put <fact> to <name>", or "confront <name> with <fact>". The
+      // fact is a clue in the notebook, by its id: the book's picker types it.
+      const put = /^(\S+) to (.+)$/.exec(rest);
+      const con = /^(.+?) with (\S+)$/.exec(rest);
+      const clueText = head === 'put' ? put?.[1] : con?.[2];
+      const whoText = head === 'put' ? put?.[2] : con?.[1];
+      if (!clueText || !whoText)
+        return { ok: false, problem: { kind: 'incomplete', message: 'Put what to whom?' } };
+      const who = matchPeople(view, whoText);
+      if (who.length !== 1)
+        return {
+          ok: false,
+          problem: { kind: 'unknown-noun', message: `There’s nobody called ${whoText} in this case.` },
+        };
+      const personId = (who[0] as Candidate<Id>).value;
+      const clueId = found.find((id) => id.toLowerCase() === clueText.toLowerCase());
+      if (clueId === undefined)
+        return {
+          ok: false,
+          problem: { kind: 'unknown-noun', message: 'That isn’t anything written in the notebook.' },
+        };
+      const here = present ?? peopleHere(view, at, found).map((p) => p.id);
+      if (!here.includes(personId)) {
+        return {
+          ok: false,
+          problem: {
+            kind: 'absent-person',
+            message: `${(who[0] as Candidate<Id>).label} isn’t here.`,
+            personId,
+          },
+        };
+      }
+      return { ok: true, command: { kind: 'confront', personId, clueId } };
+    }
     case 'look':
       return { ok: true, command: { kind: 'look' } };
     case 'notebook':

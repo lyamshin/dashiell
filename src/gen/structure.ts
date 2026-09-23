@@ -63,6 +63,13 @@ export const TEXT_KEYS: ReadonlySet<string> = new Set([
   'briefingText',
   'spoken',
   'breath',
+  // M9 (a tiered case only; a no-options case has none of these keys): the
+  // notebook's rule lines and the title page's, how one person refers to
+  // another, what an anchor's witnesses know, and what a derivation concludes.
+  'rule',
+  'ref',
+  'knowledge',
+  'what',
 ]);
 
 function strip(value: unknown): unknown {

@@ -162,6 +162,10 @@ export function startPlaceOf(kase: Case): Id {
  * scene costs, and the oracle is held to it.
  */
 export function caseParFrom(kase: Case, startId: Id): number {
+  // M9: a tiered case's par is walked from the night's first room already,
+  // over the oracle's groups rather than one clue at a time, and counts the
+  // confrontations its par route needs (`src/gen/logic/select.ts`).
+  if (kase.logic) return kase.par;
   const spine = kase.findable.filter((c) => c.role === 'spine');
   const starting = new Set(kase.starting);
   const cost = computePar(
@@ -277,6 +281,22 @@ export function buildView(kase: Case): CaseView {
     claimedOf.set(s.personId, s.claimed);
     truthOf.set(s.personId, s.truth);
     liesOf.set(s.personId, new Set(s.lies));
+  }
+  // M9 (gen notes §13.1): a tiered case's account is a clue of its own, and
+  // what a person claims is exactly what that clue says — nothing of the
+  // schedule it does not print. A person with no account clue claims nothing.
+  if (kase.logic) {
+    for (const s of kase.schedules) {
+      const account = kase.findable.find(
+        (c) => c.kind === 'account' && c.source.type === 'person' && c.source.personId === s.personId,
+      );
+      const claimed: (Id | null)[] = Array.from({ length: TICKS }, () => null);
+      for (const f of account?.establishes ?? []) {
+        if (f.kind !== 'claims') continue;
+        for (const t of f.ticks) if (t >= 0 && t < TICKS) claimed[t] = f.place;
+      }
+      claimedOf.set(s.personId, claimed);
+    }
   }
 
   const view: CaseView = {
@@ -471,6 +491,16 @@ export function leadFor(view: CaseView, clue: Clue): ThreadSeed {
   }
   const who = view.personById.get(clue.source.personId);
   const surname = who?.surname ?? clue.source.personId;
+  // M9: a tiered case's account is asked as the evening, the way a player asks it.
+  if (clue.kind === 'account' && view.kase.logic) {
+    return {
+      clueId: clue.id,
+      placeId: clue.place,
+      placeLabel,
+      label: `Ask ${surname} about that evening`,
+      command: `ask ${surname} about that evening`,
+    };
+  }
   return {
     clueId: clue.id,
     placeId: clue.place,

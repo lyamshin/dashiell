@@ -21,6 +21,7 @@ import { clock } from '../gen/types.js';
 import type { CaseView } from './derive.js';
 import { METHOD_POOL, MOTIVE_POOL, personName, placeName } from './derive.js';
 import type { Report } from './types.js';
+import { columnAsked, columnPeople, truthColumn } from './m9.js';
 
 export interface FieldOption {
   value: string;
@@ -116,6 +117,22 @@ export function fieldsFor(view: CaseView): FieldSpec[] {
     label: labelFor(view, key),
     options: optionsFor(view, key),
   }));
+}
+
+/**
+ * M9 §5: from Medium up the report asks the full crime column — where every
+ * suspect was at the half hour it happened — one dropdown of places each.
+ */
+export interface ColumnSpec {
+  personId: Id;
+  label: string;
+  options: FieldOption[];
+}
+
+export function columnFor(view: CaseView): ColumnSpec[] {
+  if (!columnAsked(view)) return [];
+  const options = view.kase.places.map((p) => ({ value: p.id, label: p.shortName }));
+  return columnPeople(view).map((p) => ({ personId: p.id, label: p.surname, options }));
 }
 
 /** What the player filed for one unknown, as the option's value. */
@@ -239,6 +256,7 @@ export function truthReport(view: CaseView): Report {
   for (const key of view.kase.act.unknowns) {
     report = withAnswer(report, key, truthFor(view, key));
   }
+  if (columnAsked(view)) report = { ...report, column: truthColumn(view) };
   return report;
 }
 

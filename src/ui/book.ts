@@ -33,7 +33,8 @@ import {
 import { choicesFor, defaultAskPerson } from '../game/choices.js';
 import { clockStrip, usedByPage } from '../game/clock.js';
 import { buildView, gameBudget, peopleHereNow, type CaseView, type Noun } from '../game/derive.js';
-import { applyMark, gridFrom } from '../game/grid.js';
+import { applyLink, applyMark, gridFrom } from '../game/grid.js';
+import { displayName } from '../game/m9.js';
 import { buildNotebook, personCard, placeHoverCard } from '../game/notebook.js';
 import { fileReport, newRun, stepInput } from '../game/reducer.js';
 import { scoreReport, type Verdict } from '../game/scoring.js';
@@ -54,6 +55,7 @@ import { renderNotebook } from './notebook-view.js';
 import { renderPage } from './prose.js';
 import { renderReportForm, renderVerdict, type TierNews } from './report.js';
 import { storyOf, storyParagraphs } from '../game/story.js';
+import { LIE_RULE } from '../game/voice-data.js';
 import { renderTruthSheet } from '../sheet/truthSheet.js';
 
 type Screen =
@@ -115,6 +117,8 @@ export function mount(root: HTMLElement): void {
   /** Whose topics are showing. Reset to §1.2's default on every new page. */
   let selected: Id | null = null;
   let showMore = false;
+  /** M9 §3: the "Put it to …" picker, open or shut. */
+  let pickerOpen = false;
   /** How many calls the page that just landed spent, for the one animation. */
   let justSpent = 0;
   /** What the grid has open, folded and lit. Kept across pages, reset per case. */
@@ -202,6 +206,7 @@ export function mount(root: HTMLElement): void {
     turned = state.log.length - 1;
     selected = null;
     showMore = false;
+    pickerOpen = false;
     justSpent = result.page.cost;
     document.body.classList.remove('notebook-open');
     render();
@@ -353,6 +358,7 @@ export function mount(root: HTMLElement): void {
           onSelectPerson: (id) => {
             selected = id;
             showMore = false;
+            pickerOpen = false;
             justSpent = 0;
             render();
           },
@@ -361,7 +367,14 @@ export function mount(root: HTMLElement): void {
             justSpent = 0;
             render();
           },
-          nameOf: (id) => (view as CaseView).personById.get(id)?.surname ?? id,
+          pickerOpen,
+          onTogglePicker: () => {
+            pickerOpen = !pickerOpen;
+            justSpent = 0;
+            render();
+          },
+          // M9, "Who knows whom": a stranger is what anybody can see until named.
+          nameOf: (id) => displayName(view as CaseView, run, id),
         }),
       );
     } else if (!newest) {
@@ -447,6 +460,12 @@ export function mount(root: HTMLElement): void {
         saveRun(store, state);
       },
       onPerson: (personId) => showEntry(personId),
+      // M9 §2: "That was Kreuzer." Free, saved with the run, never a fact.
+      onLink: (key, personId) => {
+        if (!state) return;
+        state = applyLink(state, key, personId);
+        saveRun(store, state);
+      },
     });
     const body = renderNotebook(book, followLead, () => runCommand('file'), grid);
     body.setAttribute('tabindex', '-1');
@@ -506,6 +525,8 @@ export function mount(root: HTMLElement): void {
 
     const now = el('p', { class: 'tier-now' });
     const rule = el('p', { class: 'tier-rule' });
+    // M9 §1: the one rule about lies, from the tier where lies first matter.
+    const lies = el('p', { class: 'tier-rule lie-rule', text: LIE_RULE });
 
     // The tier: a choice only once there is more than one to choose from.
     const tierField = el('div', { class: 'field' }, el('label', { text: 'Tier' }));
@@ -541,6 +562,7 @@ export function mount(root: HTMLElement): void {
       const played = levelFor(tier, level);
       now.textContent = `${shape.name}, at ${LADDERS[played].name}`;
       rule.textContent = shape.rule;
+      lies.hidden = tier === 0 || tier === 1;
       levelSelect.hidden = locked;
       levelFixed.hidden = !locked;
       clear(ladder);
@@ -605,6 +627,7 @@ export function mount(root: HTMLElement): void {
     form.append(
       now,
       rule,
+      lies,
       el('div', { class: 'controls' }, tierField, levelField, el('div', { class: 'field' }, el('label', { text: 'Seed' }), seed)),
       el('button', { class: 'open-case', type: 'submit', text: 'Open the case' }),
       ladder,
@@ -621,7 +644,9 @@ export function mount(root: HTMLElement): void {
       el('p', {
         class: 'footnote',
         text:
-          'Every page ends in choices: ask, search, go. Each one says what it costs of the night, and a lead is marked with a star. The DA files at eight whether you have or not. A clean report opens the next tier.',
+          `Every page ends in choices: ask, search, go. Each one says what it costs of the night, and a lead is marked with a star. The DA files at eight whether you have or not. A clean report opens the next tier.${
+            profile.runs === 0 ? ` ${LIE_RULE}` : ''
+          }`,
       }),
     );
     paint();

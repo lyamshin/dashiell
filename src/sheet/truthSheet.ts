@@ -343,12 +343,30 @@ export function renderTruthSheet(c: Case): string {
       'Everything else has to be led to. The full candidate pool is in the companion file.',
   );
   out.push('');
+  // M9: testimony and accounts are one line each, after the rest: anybody can
+  // be asked anything, so there are a great many of them.
+  const compact = (cl: Clue): boolean => c.logic !== undefined && (cl.kind === 'testimony' || cl.kind === 'account');
   for (const place of c.places) {
-    const mine = findable.filter((cl) => cl.place === place.id);
+    const mine = findable.filter((cl) => cl.place === place.id && !compact(cl));
     if (mine.length === 0) continue;
     out.push(`### At ${place.shortName}`);
     out.push('');
     for (const cl of mine) out.push(clueLine(c, cl));
+    out.push('');
+  }
+  if (c.logic) {
+    out.push('### Accounts (each suspect’s own evening; soft, and false where they lie)');
+    out.push('');
+    for (const cl of findable.filter((x) => x.kind === 'account')) {
+      out.push(`- **${cl.id}** [${cl.role}] ${cl.rule ?? cl.textRecord ?? cl.text}`);
+    }
+    out.push('');
+    out.push('### Testimony (every question, answered)');
+    out.push('');
+    for (const cl of findable.filter((x) => x.kind === 'testimony')) {
+      const who = c.people.find((p) => p.id === (cl.source as { personId: Id }).personId)?.surname ?? '?';
+      out.push(`- **${cl.id}** [${cl.role}] ${who} on ${P(cl.about)}: ${cl.rule || cl.textRecord || cl.text}`);
+    }
     out.push('');
   }
 
@@ -463,7 +481,96 @@ export function renderTruthSheet(c: Case): string {
     out.push('');
   }
 
+  if (c.logic) out.push(...logicSection(c));
+
   return out.join('\n');
+}
+
+/**
+ * M9: the logic game — the map, who knows whom, the lies and what breaks
+ * them, what happens when they are put to the liar, and what the solver found.
+ */
+function logicSection(c: Case): string[] {
+  const logic = c.logic as NonNullable<Case['logic']>;
+  const PL = (id: Id | null | undefined): string => (id ? (c.places.find((p) => p.id === id)?.shortName ?? id) : '—');
+  const P = (id: Id | null | undefined): string => (id ? (c.people.find((p) => p.id === id)?.surname ?? id) : '—');
+  const hm = (t: Tick): string => clock(t).replace(' PM', '');
+  const span = (ticks: Tick[]): string =>
+    ticks.length === 1 ? hm(ticks[0] as Tick) : `${hm(ticks[0] as Tick)}–${hm(ticks[ticks.length - 1] as Tick)}`;
+  const byId = new Map(c.findable.map((cl) => [cl.id, cl]));
+  const out: string[] = [];
+  out.push('## 16. The logic game');
+  out.push('');
+  const blocks = [0, 1, 2].map((b) =>
+    c.places.filter((p) => logic.blocks[p.id] === b).map((p) => `${p.shortName}${p.id === c.solution.murderPlaceId ? ' (the scene)' : ''}`),
+  );
+  out.push(`**The map.** Three blocks on a line; the ends are across the neighbourhood from each other. ` +
+    blocks.map((list, b) => `Block ${b + 1}: ${list.join(', ') || '—'}.`).join(' '));
+  out.push('');
+
+  const s = logic.solve;
+  out.push('**What the solver found.**');
+  out.push('');
+  out.push(`- Par route: ${s.parRules.length} rules (${s.parRules.join(', ')}), ${c.par} actions` +
+    `${s.confessions.length > 0 ? `, with ${s.confessions.map(P).join(' and ')} confessing` : ''}.`);
+  out.push(`- The culprit, ${P(c.solution.killerId)}: depth ${s.culprit.depth}${s.culprit.hypothesis ? ', after a hypothesis test' : ''}, on ${s.culprit.rules.join(', ') || '—'}.`);
+  out.push(`- The half hour, ${hm(c.solution.murderTick)}: depth ${s.crimeTick.depth}, on ${s.crimeTick.rules.join(', ') || 'the coroner'}.`);
+  for (const [id, d] of Object.entries(s.cleared)) {
+    out.push(`- ${P(id)} not at the scene: depth ${d.depth}${d.hypothesis ? ' (hypothesis)' : ''}, on ${d.rules.join(', ') || '—'}.`);
+  }
+  out.push(`- Deepest conclusion on the par route: ${s.depth}. Hypothesis test needed: ${s.hypothesis ? 'yes' : 'no'}.`);
+  out.push(`- Innocents one findable rule clears on its own: ${s.clearedByOne.map(P).join(', ') || 'none'}.`);
+  out.push(`- Account spans on the par route: ${s.accountSpans}, of them false: ${s.falseSpans}.`);
+  out.push(`- Over everything findable: ${s.rounds} rounds of propagation, ${s.probes} hypotheses tried.`);
+  out.push('');
+
+  out.push('**The par route, as the notebook states it.**');
+  out.push('');
+  for (const id of s.parRules) {
+    const cl = byId.get(id);
+    if (!cl || !cl.rule) continue;
+    out.push(`- **${id}** ${cl.rule}`);
+  }
+  out.push('');
+
+  out.push('**The lies, what breaks them, and what happens when they are put to the liar.**');
+  out.push('');
+  for (const k of logic.confrontations) {
+    const lie = k.lie;
+    out.push(
+      `- **${P(k.personId)}** says ${PL(lie.claimed)}${lie.with ? ` with ${P(lie.with)}` : ''}, ${span(lie.ticks)}; ` +
+        `was at ${Array.from(new Set(lie.truth)).map(PL).join(', ')} (${lie.cover}). ` +
+        `Broken by: ${k.contradictions.map((r) => `[${r.join(' + ')}]`).join(', ') || 'nothing findable'}.`,
+    );
+    out.push(`  - First time: ${k.responses[0].kind} — ${k.responses[0].text}`);
+    out.push(`  - Second time: ${k.responses[1].kind} — ${k.responses[1].text}`);
+  }
+  if (logic.confrontations.length === 0) out.push('- Nobody lies.');
+  out.push('');
+
+  out.push('**Who knows whom** (from → to: how they put it). Strangers are left out.');
+  out.push('');
+  const suspects = c.people.filter((p) => p.kind === 'suspect');
+  for (const from of c.people.filter((p) => p.kind !== 'victim')) {
+    const known = logic.acquaintance.filter(
+      (e) => e.from === from.id && e.strength !== 'stranger' && suspects.some((q) => q.id === e.to),
+    );
+    const strangers = logic.acquaintance.filter(
+      (e) => e.from === from.id && e.strength === 'stranger' && suspects.some((q) => q.id === e.to),
+    );
+    out.push(
+      `- ${from.surname}: ${known.map((e) => `${P(e.to)} by ${e.strength} (“${e.ref}”)`).join('; ') || 'nobody'}` +
+        `${strangers.length > 0 ? `. Strangers: ${strangers.map((e) => P(e.to)).join(', ')}` : ''}.`,
+    );
+  }
+  out.push('');
+  out.push('**How a stranger would describe each suspect.**');
+  out.push('');
+  for (const [id, d] of Object.entries(logic.descriptions)) {
+    out.push(`- ${P(id)}: “${d.text}” — fits ${d.matches.map(P).join(', ')}.`);
+  }
+  out.push('');
+  return out;
 }
 
 /** A dossier's facts, grouped by the layer they can be learned at. */
@@ -522,7 +629,13 @@ function sentenceCase(text: string): string {
 }
 
 function clueLine(c: Case, clue: Clue): string {
-  const facts = clue.establishes.length > 0 ? summarizeFacts(c, clue.establishes) : 'context only';
+  // M9: a tiered case's clues carry their own rule line, which knows every fact kind.
+  const facts =
+    clue.rule !== undefined && clue.rule.length > 0
+      ? clue.rule
+      : clue.establishes.length > 0
+        ? summarizeFacts(c, clue.establishes)
+        : 'context only';
   const leads = clue.leadsTo.length > 0 ? ` → ${clue.leadsTo.join(', ')}` : ' → (end)';
   const branch = clue.branchId ? ` {${clue.branchId}}` : '';
   const start = c.starting.includes(clue.id) ? ' ⟨opening⟩' : '';

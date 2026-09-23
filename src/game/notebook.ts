@@ -25,6 +25,7 @@ import {
 } from './derive.js';
 import type { RunState, Thread } from './types.js';
 import { dossierKnown } from './voice/plain.js';
+import { displayName, saidRecords, verdictsOn } from './m9.js';
 
 export interface NotebookClock {
   time: string;
@@ -85,6 +86,16 @@ export interface NotebookPerson {
   records: NotebookRecord[];
   /** Their own account, once taken down. */
   account: { span: string; place: string }[] | null;
+  /**
+   * M9: what the book calls them — their surname once somebody who knows them
+   * has said it, and until then what anybody can see ("the man in his
+   * thirties").
+   */
+  display: string;
+  /** M9: what they said when a fact was put to them, in their words, in order. */
+  said: NotebookRecord[];
+  /** M9 §4: they have told everything they will; their questions are free. */
+  done: boolean;
 }
 
 export interface NotebookPlace {
@@ -205,7 +216,8 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
             pl.placeId,
           )}`,
           source,
-          contradicts: pl.contradicts,
+          // M9: from Poached up the notebook never flags a contradiction.
+          contradicts: pl.contradicts && verdictsOn(view),
           clueId: pl.clueId,
         };
       });
@@ -231,9 +243,31 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
         mention && known.fromOthers.length > 0
           ? [{ id: mention.id, name: mention.name, text: mention.text }]
           : [];
+      // M9: somebody only seen is not named in their own entry either.
+      const display = displayName(view, state, p.id);
+      if (display !== p.surname) {
+        const she = known.onSight.some((l) => /\bShe\b/.test(l)) || p.dossier?.gender === 'f';
+        const unname = (l: string): string =>
+          l
+            .replace(new RegExp(`^${p.surname}\\b`), she ? 'She' : 'He')
+            .replace(new RegExp(`\\b${p.surname}\\b`, 'g'), display);
+        known.onSight = known.onSight.map(unname);
+      }
+      const said = saidRecords(view, state)
+        .filter((r) => r.personId === p.id)
+        .map((r) => ({ clueId: r.id, text: r.text }));
+      const mine = view.kase.findable.filter((c) => c.source.type === 'person' && c.source.personId === p.id);
+      const done =
+        view.kase.logic !== undefined &&
+        p.kind !== 'victim' &&
+        mine.length > 0 &&
+        mine.every((c) => state.found.includes(c.id) || !askableNow(view, state, c));
       return {
         id: p.id,
         surname: p.surname,
+        display,
+        said,
+        done,
         role: p.role,
         foundAt: p.foundAt ? placeName(view, p.foundAt) : null,
         isClient: p.isClient === true,
@@ -331,6 +365,20 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
     foundCount: state.found.length,
     findableCount: kase.findable.length,
   };
+}
+
+/**
+ * Could the detective put this clue's question to its source right now: its
+ * topic a name the notebook holds, their evening, or an open lead? What is
+ * still unasked and askable keeps a person from being done.
+ */
+function askableNow(view: CaseView, state: RunState, clue: import('../gen/types.js').Clue): boolean {
+  if (clue.source.type !== 'person') return false;
+  if (clue.kind === 'account') return true;
+  if (state.threads.some((t) => t.clueId === clue.id)) return true;
+  const about = clue.about ? view.personById.get(clue.about) : undefined;
+  if (!about) return false;
+  return about.id === view.victim.id || (state.met.includes(about.id) && displayName(view, state, about.id) === about.surname);
 }
 
 /* ------------------------------------------------------------------ *

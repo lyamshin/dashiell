@@ -1109,8 +1109,14 @@ describe('the find slot', () => {
           );
           // Night Hone 1: a paper's label is something that was there.
           const there = thereWas(fact);
+          // M9 page bug: the generator's same sentence dealt twice in one room
+          // is told once, and the second is said to be the same thing again.
+          const said = (b: (typeof page.blocks)[number]): string => (b.kind === 'prose' ? b.text : '');
+          const again =
+            block.text === 'The same thing turned up a second time.' &&
+            page.blocks.some((b) => b !== block && (said(b).includes(fact) || said(b).includes(there)));
           expect(
-            both.includes(fact) || one.includes(fact) || both.includes(there) || one.includes(there),
+            again || both.includes(fact) || one.includes(fact) || both.includes(there) || one.includes(there),
             `${block.clueId} came upon and then forgotten: ${block.text} / ${fact}`,
           ).toBe(true);
         }

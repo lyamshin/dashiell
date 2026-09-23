@@ -224,7 +224,11 @@ export const NOTHING_LEFT: string[] = [
 
 export const HELP_LINES: { command: string; gloss: string }[] = [
   { command: 'go <place>', gloss: 'Walk there. Costs an action.' },
-  { command: 'ask <person> about <topic>', gloss: 'Put it to them. Costs an action.' },
+  { command: 'ask <person> about <topic>', gloss: 'Ask them. Costs an action.' },
+  {
+    command: 'put <fact> to <person>',
+    gloss: 'Read them a line from the notebook that breaks what they told you. Costs an action.',
+  },
   {
     command: 'ask <person> about themselves',
     gloss: 'Who they are, in their own words. One action, once.',
@@ -238,6 +242,15 @@ export const HELP_LINES: { command: string; gloss: string }[] = [
 
 export const HELP_NOTE =
   'Topics worth trying: anybody’s surname, a room, a thing, something that happened at a fixed hour, that evening, themselves, why I was hired. Underlined words on the page are clickable, and so is every lead in the notebook.';
+
+/**
+ * M9 §1: the one rule about lies, taught early. On the title page, in the
+ * help, and on the first run.
+ */
+export const LIE_RULE = 'People lie about themselves. Nobody lies about what they saw.';
+
+export const LIE_RULE_NOTE =
+  'A person’s own account of their evening may be false. What anybody says they saw of somebody else is true, and so is anything found in a room. The one exception is somebody who says they were with somebody: they may be covering for them.';
 
 /* ------------------------------------------------------------------ *
  * M4 additions. Still the hand-written half: lines about the shape of

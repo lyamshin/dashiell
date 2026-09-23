@@ -198,7 +198,9 @@ export function ticksOn(view: CaseView, page: Page, found: readonly string[]): T
   for (const id of found) {
     for (const f of view.findableById.get(id)?.establishes ?? []) {
       if ('tick' in f) add(f.tick);
-      if (f.kind === 'timeOfDeath') for (const t of f.ticks) add(t);
+      // M9: a claim, an absence, a pair's half hours and an anchor's hours
+      // are facts over several half hours at once.
+      if ('ticks' in f) for (const t of f.ticks) add(t);
     }
   }
   for (const block of page.blocks) {
@@ -433,10 +435,13 @@ export function checkErrand(
   // M8 §7: a name on the page gets its clause, and the clause of anybody in
   // the case is their relation to the victim, whom every page may name.
   allowed.add(view.victim.surname);
-  // Nobody the trace does not account for is named in the line.
+  // Nobody the trace does not account for is named in the line. A room named
+  // for somebody ("Ruggiero’s") is a place, not a person.
+  let line = trace.text;
+  for (const pl of view.places) line = line.split(pl.shortName).join('');
   for (const person of view.kase.people) {
     if (allowed.has(person.surname)) continue;
-    if (new RegExp(`\\b${person.surname}\\b`).test(trace.text)) {
+    if (new RegExp(`\\b${person.surname}\\b`).test(line)) {
       fail(`names ${person.surname}, whom the trace does not account for`);
     }
   }
@@ -513,6 +518,13 @@ export function checkBeats(
         }
       } else if (cls === 'context') {
         // Context asserts nothing, which is its whole licence.
+      } else if (cls === 'confronted') {
+        // M9 §3: what the detective did with what was said, on the page that
+        // put a fact to somebody — and about that somebody.
+        const put = beats.find((x) => x.kind === 'confront');
+        if (page.shape !== 'confront' || !put || (put.personIds ?? [])[0] !== first) {
+          fail('a confrontation the page did not have');
+        }
       } else if (cls === 'contradicts' && page.found.length === 0) {
         // An evening just taken down, against a placement already in hand.
         const clue = view.findableById.get((b.clueIds ?? [])[0] ?? '');

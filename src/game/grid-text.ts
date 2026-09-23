@@ -60,6 +60,20 @@ export function renderGridText(view: CaseView, state: RunState): string {
   if (grid.crimeTick !== null) {
     out.push(line(grid.crimeLabel, grid.ticks.map((t) => (t.tick === grid.crimeTick ? '†' : ''))));
   }
+  // M9: counts on a place's column, under the hours.
+  if (grid.counts.length > 0) {
+    out.push(
+      line(
+        'counted',
+        grid.ticks.map((t) =>
+          grid.counts
+            .filter((c) => c.tick === t.tick)
+            .map((c) => `${ab(c.placeId)}=${c.count}`)
+            .join(' '),
+        ),
+      ),
+    );
+  }
 
   const cellLines = (cell: GridCell): string[] => {
     const lines: string[] = [];
@@ -75,7 +89,14 @@ export function renderGridText(view: CaseView, state: RunState): string {
     }
     const first = lines.length;
     for (const { e, by } of groups.values()) {
-      const suffix = e.source === 'claimed' ? '~' : e.source === 'evidence' ? '#' : `:${[...by].join('')}`;
+      const suffix =
+        e.source === 'claimed'
+          ? '~'
+          : e.source === 'evidence'
+            ? '#'
+            : e.source === 'linked'
+              ? `?${e.by ? initial(e.by) : ''}`
+              : `:${[...by].join('')}`;
       lines.push(`${e.present ? '' : '-'}${ab(e.placeId)}${suffix}`);
     }
     if (cell.conflict && lines.length > first) lines[first] = `!${lines[first] ?? ''}`;
@@ -96,6 +117,32 @@ export function renderGridText(view: CaseView, state: RunState): string {
 
   out.push(rule('─'));
   for (const row of grid.rows) out.push(...rowLines(row));
+  // M9: anchor-timed sightings waiting for the anchor's hour, and strangers'
+  // sightings nobody has put a name to yet.
+  for (const m of grid.margins) {
+    const when = m.ticks.length > 0 ? ` (${m.ticks.map((t) => grid.ticks[t]?.label ?? '').join(' or ')})` : ' (hour not known)';
+    out.push(
+      wrap(
+        `  ^${m.name}${when}: ${m.entries
+          .map((e) => `${grid.rows.concat(grid.fixtures).find((r) => r.personId === e.personId)?.name ?? personName(view, e.personId)} at ${ab(e.placeId)}${e.by ? `:${initial(e.by)}` : ''}`)
+          .join(' · ')}`,
+      ),
+    );
+  }
+  const unlinked = grid.descriptions.filter((d) => d.linkedTo === undefined);
+  if (unlinked.length > 0) {
+    const byText = new Map<string, typeof unlinked>();
+    for (const d of unlinked) byText.set(d.text, [...(byText.get(d.text) ?? []), d]);
+    for (const [text, ds] of byText) {
+      const cells = grid.ticks.map((t) =>
+        ds.filter((d) => d.tick === t.tick).map((d) => `${ab(d.placeId)}?${d.by ? initial(d.by) : ''}`),
+      );
+      const height = Math.max(1, ...cells.map((c) => c.length));
+      for (let i = 0; i < height; i++) {
+        out.push(line(i === 0 ? `?${text}` : '', cells.map((c) => c[i] ?? (i === 0 ? '·' : ''))));
+      }
+    }
+  }
   if (grid.fixtures.length > 0) {
     out.push(rule('─', '─ fixtures '));
     for (const row of grid.fixtures) out.push(...rowLines(row));
@@ -116,10 +163,29 @@ export function renderGridText(view: CaseView, state: RunState): string {
   const who = [...witnesses].map((id) => `${initial(id)} ${personName(view, id)}`).join(', ');
   out.push(
     wrap(
-      'key: x~ their own account · x:K seen by K · x# evidence · -x not there · ! the sources disagree · ' +
+      `key: x~ their own account · x:K seen by K · x# evidence · -x not there · ${
+        grid.flags ? '! the sources disagree · ' : ''
+      }${grid.descriptions.length > 0 ? 'x?K a stranger seen by K (a row of its own, or linked by me) · ' : ''}` +
         `(x) (-x) pencil, never a fact · · nothing known${who ? ` · witnesses: ${who}` : ''}`,
     ),
   );
+  for (const l of grid.links) {
+    const a = personName(view, l.a);
+    const b = personName(view, l.b);
+    const span = l.ticks.length === 12 ? 'all evening' : l.ticks.map((t) => grid.ticks[t]?.label ?? '').join(', ');
+    out.push(
+      wrap(
+        l.kind === 'apart'
+          ? `link: ${a} and ${b} never in the same place, ${span}`
+          : l.kind === 'together'
+            ? `link: ${a} with ${b}, ${span}`
+            : `link: ${a} says with ${b}, ${span}`,
+      ),
+    );
+  }
+  for (const d of grid.descriptions.filter((x) => x.linkedTo !== undefined)) {
+    out.push(wrap(`linked: ${d.text} at ${ab(d.placeId)} ${grid.ticks[d.tick]?.label ?? ''} → ${personName(view, d.linkedTo as Id)} (my link, not a fact)`));
+  }
   out.push('', 'RULES');
   if (grid.rules.length === 0) out.push('  None yet.');
   grid.rules.forEach((r, i) => {

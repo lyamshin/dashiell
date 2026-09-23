@@ -23,6 +23,8 @@ import {
   truthFor,
 } from './report-form.js';
 import type { Report, RunState } from './types.js';
+import { columnFor } from './report-form.js';
+import { proofsFor, truthColumn, type Proof } from './m9.js';
 import { Dealer, tagIs } from './voice/index.js';
 import { nounOf, pronounOf } from './voice/cast.js';
 
@@ -37,7 +39,26 @@ export interface FieldResult {
   answered: boolean;
 }
 
+/** M9 §5: one cell of the crime column, scored against where they truly were. */
+export interface ColumnResult {
+  personId: Id;
+  name: string;
+  given: string;
+  truth: string;
+  correct: boolean;
+  answered: boolean;
+}
+
 export interface Verdict {
+  /** M9 §5: the crime column, cell by cell; empty where the report does not ask it. */
+  column: ColumnResult[];
+  /** The half hour the column is about, as the clock says it. */
+  columnTime?: string;
+  /**
+   * M9 §8: behind the curtain, the rule chain that proves each thing the
+   * report asked — who, when, and each cell of the column.
+   */
+  proofs?: { label: string; proof: Proof }[];
   points: number;
   /** How many the case asked. `points` out of this. */
   asked: number;
@@ -65,7 +86,22 @@ export function scoreReport(view: CaseView, state: RunState, report: Report): Ve
     };
   });
 
-  const points = fields.filter((f) => f.correct).length;
+  // M9 §5: the column, cell by cell, like Obra Dinn's fates.
+  const truthCol = truthColumn(view);
+  const column: ColumnResult[] = columnFor(view).map((spec) => {
+    const given = report.column?.[spec.personId] ?? null;
+    const truth = truthCol[spec.personId] ?? null;
+    return {
+      personId: spec.personId,
+      name: spec.label,
+      given: given === null ? 'I don’t know' : placeName(view, given),
+      truth: placeName(view, truth),
+      correct: given !== null && given === truth,
+      answered: given !== null,
+    };
+  });
+  const points = fields.filter((f) => f.correct).length + column.filter((c) => c.correct).length;
+  const asked = fields.length + column.length;
   // The field the night turns on: the one that names a person where the case
   // asks for one, and otherwise the first thing it asks at all.
   const primary = (fields.find((f) => f.key === 'who') ?? fields[0]) as FieldResult | undefined;
@@ -74,14 +110,18 @@ export function scoreReport(view: CaseView, state: RunState, report: Report): Ve
       ? 'cold'
       : !primary.correct
         ? 'wrong-man'
-        : points === fields.length
+        : points === asked
           ? 'solved'
           : 'thin';
 
-  const closing = closingFor(view, state, fields, outcome, points, report);
+  const closing = closingFor(view, state, fields, outcome, points, report, column);
+  const proofs = column.length > 0 || view.kase.logic ? proofLines(view) : undefined;
   return {
+    column,
+    ...(column.length > 0 ? { columnTime: clock(view.kase.solution.murderTick as Tick) } : {}),
+    ...(proofs && proofs.length > 0 ? { proofs } : {}),
     points,
-    asked: fields.length,
+    asked,
     outcome,
     fields,
     actionsUsed: state.actionsUsed,
@@ -199,6 +239,7 @@ function closingFor(
   outcome: Outcome,
   points: number,
   report: Report,
+  column: ColumnResult[] = [],
 ): { paragraphs: string[]; gaps: string[] } {
   const kase = view.kase;
   const act = kase.act;
@@ -221,14 +262,20 @@ function closingFor(
       act.whereabouts === undefined || act.whereabouts === 'gone'
         ? 'out of the city'
         : placeName(view, act.whereabouts),
-    wrong: fields.filter((f) => !f.correct).map((f) => f.label.toLowerCase()),
+    wrong: [
+      ...fields.filter((f) => !f.correct).map((f) => f.label.toLowerCase()),
+      ...(column.some((c) => !c.correct) ? ['column of where everybody was'] : []),
+    ],
     points,
-    asked: fields.length,
+    asked: fields.length + column.length,
     par: parLine(state.actionsUsed, gamePar(kase)),
   };
   if (ctx.wrong.length === 0) ctx.wrong = ['rest of it'];
 
   const out = (BY_TYPE[act.type] ?? MURDER)[outcome](ctx);
+  // M9 §8: the closing page says which ones the detective got.
+  const got = columnLine(view, fields, column);
+  if (got) out.splice(1, 0, got);
 
   // The deck's last paragraph, keyed by how the night went, by whether it beat
   // par, and by the case type. The deck now has two cards for each (type,
@@ -267,6 +314,46 @@ function closingFor(
     );
   }
   return { paragraphs: out, gaps };
+}
+
+/**
+ * What the report got, in the book's plain voice: the questions it answered
+ * right, and down the column, who it had where. At Hard-boiled a right name
+ * over a wrong column is partial credit, and the page says so.
+ */
+function columnLine(view: CaseView, fields: FieldResult[], column: ColumnResult[]): string | null {
+  if (column.length === 0) return null;
+  const right = column.filter((c) => c.correct);
+  const wrong = column.filter((c) => !c.correct);
+  const when = clock(view.kase.solution.murderTick as Tick);
+  const who = fields.find((f) => f.key === 'who');
+  const list = (xs: string[]): string =>
+    xs.length <= 1 ? (xs[0] ?? '') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`;
+  const parts: string[] = [];
+  parts.push(
+    `The DA went down the column for ${when}. I had ${right.length} of ${column.length} where they were` +
+      (right.length > 0 ? `: ${list(right.map((c) => `${c.name} at ${c.truth}`))}.` : '.'),
+  );
+  if (wrong.length > 0) {
+    parts.push(
+      `I had ${list(wrong.map((c) => (c.answered ? `${c.name} at ${c.given}, and it was ${c.truth}` : `nothing for ${c.name}, who was at ${c.truth}`)))}.`,
+    );
+    if (who?.correct) parts.push('The name was right. The column under it was not, and that is partial credit.');
+  }
+  return parts.join(' ');
+}
+
+/** The curtain's proofs, as label and chain. */
+function proofLines(view: CaseView): { label: string; proof: Proof }[] {
+  const proofs = proofsFor(view);
+  const out: { label: string; proof: Proof }[] = [];
+  if (proofs.who) out.push({ label: 'Who', proof: proofs.who });
+  if (proofs.when) out.push({ label: 'When', proof: proofs.when });
+  for (const p of columnFor(view)) {
+    const proof = proofs.column[p.personId];
+    if (proof) out.push({ label: `Where ${p.label} was`, proof });
+  }
+  return out;
 }
 
 /** Him or her, for a sentence where the person is what was done to. */

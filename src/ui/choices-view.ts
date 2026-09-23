@@ -37,6 +37,9 @@ export interface ChoicesOptions {
   onSelectPerson: (personId: Id) => void;
   onToggleMore: () => void;
   nameOf: (personId: Id) => string;
+  /** M9 §3: whether the "Put it to …" picker is open for the selected person. */
+  pickerOpen?: boolean;
+  onTogglePicker?: () => void;
 }
 
 function choiceButton(
@@ -92,6 +95,7 @@ export function renderChoices(groups: readonly OfferedGroup[], opts: ChoicesOpti
       const button = el('button', {
         class: `who-btn${id === selected ? ' who-btn--on' : ''}${lead ? ' who-btn--lead' : ''}`,
         type: 'button',
+        'data-person': id,
         'aria-pressed': id === selected ? 'true' : 'false',
       });
       if (lead) button.append(el('span', { class: 'mark', 'aria-hidden': 'true', text: '*' }));
@@ -105,7 +109,38 @@ export function renderChoices(groups: readonly OfferedGroup[], opts: ChoicesOpti
 
   for (const group of groups) {
     if (group.kind === 'ask' && group.personId !== selected) continue;
+    if (group.kind === 'confront' && group.personId !== selected) continue;
     if (group.choices.length === 0) continue;
+    if (group.kind === 'confront') {
+      // M9 §3: one button opens a picker of every fact in the notebook. The
+      // opening is free; the fact chosen costs the half hour.
+      const section = el('section', { class: 'choice-group choice-group--confront' });
+      const list = el('div', { class: 'choice-list' });
+      const toggle = el('button', {
+        class: 'choice choice--confront',
+        type: 'button',
+        'aria-expanded': opts.pickerOpen ? 'true' : 'false',
+        'data-command': `picker ${group.personId ?? ''}`,
+      });
+      toggle.append(
+        el('span', { class: 'label', text: opts.pickerOpen ? 'Put nothing to them' : group.heading }),
+        el('span', { class: 'mins', text: 'free' }),
+      );
+      if (opts.inert) toggle.disabled = true;
+      else toggle.addEventListener('click', () => opts.onTogglePicker?.());
+      list.append(toggle);
+      if (opts.pickerOpen && !opts.inert) {
+        const picker = el('div', { class: 'confront-picker', role: 'group', 'aria-label': group.heading });
+        picker.append(
+          el('p', { class: 'note', text: 'Which line from the notebook do you read them? If it does not touch what they told you, the half hour is gone all the same.' }),
+        );
+        for (const choice of group.choices) picker.append(choiceButton(choice, group, opts));
+        list.append(picker);
+      }
+      section.append(list);
+      panel.append(section);
+      continue;
+    }
     const section = el('section', { class: `choice-group choice-group--${group.kind}` });
     if (group.kind === 'ask' && group.personId) {
       section.append(

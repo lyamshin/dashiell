@@ -14,6 +14,8 @@
  * report is filed.
  *
  * `--grid` prints "Where they were", the deduction grid, after the notebook.
+ * `--links "d072 8:00 Vitale"` links a stranger's sighting (a description
+ * clue and its half hour) to a person first (M9), and implies `--grid`.
  * `--marks "Grasso 10 at the suite; Grasso 9:30 not the third floor"` pencils
  * those cells in first (and implies `--grid`), so the pencil can be reviewed
  * too: it is drawn apart from everything the notebook holds.
@@ -24,6 +26,7 @@ import { TROPE_IDS } from '../gen/tropes/index.js';
 import { buildView, gameBudget, gamePar } from '../game/derive.js';
 import { playOracle, playWandering } from '../game/oracle.js';
 import { renderGridText, withMarkSpecs } from '../game/grid-text.js';
+import { applyLink } from '../game/grid.js';
 import { choicesFor } from '../game/choices.js';
 import { fileReport, newRun, stepInput } from '../game/reducer.js';
 import { truthReport } from '../game/report-form.js';
@@ -91,6 +94,9 @@ if (route !== undefined) {
     .filter((c) => c.length > 0);
   state = newRun(view, { detectiveName: detective });
   for (const command of commands) state = stepInput(state, command, view).state;
+  // M9: `--file` files the truth at the end of a route, so the report page
+  // (the crime column and its proofs included) can be read after one.
+  if (flags.has('file')) report = truthReport(view);
 } else if (flags.has('random')) {
   const run = playWandering(view, seed, detective);
   state = run.state;
@@ -151,10 +157,22 @@ if (Number.isFinite(pageLimit) && state.log.length > shown.length) {
 out.push(renderNotebookText(view, state));
 out.push('');
 
-if (flags.has('grid') || values.has('marks')) {
+if (flags.has('grid') || values.has('marks') || values.has('links')) {
   const marked = withMarkSpecs(view, state, values.get('marks') ?? '');
   for (const spec of marked.unread) process.stderr.write(`(could not read the mark "${spec}")\n`);
-  out.push(renderGridText(view, marked.state));
+  // M9: "--links 'd072 8:00 Vitale; …'" links a stranger's sighting to a person.
+  let linked = marked.state;
+  for (const spec of (values.get('links') ?? '').split(';').map((x) => x.trim()).filter(Boolean)) {
+    const m = /^(\S+)\s+(\d{1,2})(?::(\d\d))?\s+(\S+)$/.exec(spec);
+    const person = m ? kase.people.find((p) => p.surname.toLowerCase() === (m[4] ?? '').toLowerCase()) : undefined;
+    if (!m || !person) {
+      process.stderr.write(`(could not read the link "${spec}")\n`);
+      continue;
+    }
+    const tick = (Number(m[2]) - 6) * 2 + (m[3] === '30' ? 1 : 0);
+    linked = applyLink(linked, `${m[1]}|${tick}`, person.id);
+  }
+  out.push(renderGridText(view, linked));
   out.push('');
 }
 

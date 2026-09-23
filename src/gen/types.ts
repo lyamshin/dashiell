@@ -188,9 +188,22 @@ export type ClueKind =
   | 'overheard'
   | 'anchor'
   | 'scene'
-  | 'client';
+  | 'client'
+  /** M9: somebody's answer when asked about somebody else. True, as far as they could see. */
+  | 'testimony'
+  /** M9: somebody's own evening, as they tell it. May be false: people lie about themselves. */
+  | 'account'
+  /** M9: what a posted watcher can say about their own door: who did not come in, and how many did. */
+  | 'watch'
+  /** M9: when something the whole block times things by happened. */
+  | 'timing';
 
-export type ClueRole = 'spine' | 'corroboration' | 'noise' | 'disqualifier';
+/**
+ * M9 adds `testimony`: a testimony or account clue that is findable (anybody
+ * can be asked anything) but is not on the par route. Par-route clues are
+ * `spine` whatever their kind.
+ */
+export type ClueRole = 'spine' | 'corroboration' | 'noise' | 'disqualifier' | 'testimony';
 
 export interface Clue {
   id: Id;
@@ -219,6 +232,15 @@ export interface Clue {
   anchorId?: Id;
   /** The innocent whose secret this clue is about. Every noise clue has one. */
   aboutSecretOf?: Id;
+  /**
+   * M9: the same facts as one plain line for the notebook's rules list —
+   * "Hanrahan: the third floor, 10:00 PM to 10:30 PM. Kreuzer saw her." No
+   * flavour and no conclusion, the source last. Set on every clue of a case
+   * dealt with a tier; absent on a no-options case.
+   */
+  rule?: string;
+  /** M9, testimony only: the person the source was asked about. */
+  about?: Id;
 }
 
 export type Fact =
@@ -236,7 +258,233 @@ export type Fact =
   | { kind: 'victimDeadBy'; tick: Tick }
   | { kind: 'methodEvidence'; methodId: Id }
   /** This person's secret is accounted for and is not the murder. */
-  | { kind: 'secretExplained'; personId: Id; secretType: string };
+  | { kind: 'secretExplained'; personId: Id; secretType: string }
+  /* --- M9: pieces, not conclusions. --------------------------------------- */
+  /**
+   * Sequence. The person was at the place when the anchor happened ("just as
+   * the El went over"), at one of the anchor's ticks, with no clock time. It
+   * lands on the grid once an `anchorAt` for the same anchor is held; until
+   * then it belongs in a margin row under the anchor's name.
+   */
+  | { kind: 'personAtAnchor'; personId: Id; place: Id; anchorId: Id }
+  /** When an anchor happens: every tick it happens at tonight. */
+  | { kind: 'anchorAt'; anchorId: Id; ticks: Tick[] }
+  /**
+   * Identity. Somebody matching the description was at the place at the tick.
+   * The witness did not know them. Exactly one of `description.matches` was
+   * there.
+   */
+  | { kind: 'describedAt'; description: Description; place: Id; tick: Tick }
+  /**
+   * Absence. Nobody but `except` was at the place at any of the ticks. The
+   * watcher posted there is always in `except`, and always first.
+   */
+  | { kind: 'absentFrom'; place: Id; ticks: Tick[]; except: Id[] }
+  /**
+   * Numbers. Exactly `count` people besides the posted watcher were at the
+   * place at the tick. Only dealt where every one of them is a suspect.
+   */
+  | { kind: 'countAt'; place: Id; tick: Tick; count: number }
+  /** The two were in the same place (which, unsaid) at each of the ticks. */
+  | { kind: 'together'; personIds: [Id, Id]; ticks: Tick[] }
+  /** The two were never in the same place at any of the ticks. */
+  | { kind: 'apart'; personIds: [Id, Id]; ticks: Tick[] }
+  /**
+   * Conditional, the premise: anybody at the place at any of the ticks knows
+   * the thing (how the fight ended, what the lesson was playing).
+   */
+  | { kind: 'anchorKnowledge'; anchorId: Id; place: Id; ticks: Tick[]; knowledge: string }
+  /** Conditional, the test: whether this person knows the anchor's thing. */
+  | { kind: 'knows'; personId: Id; anchorId: Id; knows: boolean }
+  /** Who knows whom, as the first of the two puts it: "Never heard of her." */
+  | { kind: 'acquainted'; personIds: [Id, Id]; strength: Acquaintance }
+  /**
+   * A self-account: the person says they were at the place at the ticks and,
+   * with `with`, in that person's company. Soft: it stands only when nothing
+   * contradicts it and something corroborates it. It may be false.
+   */
+  | { kind: 'claims'; personId: Id; place: Id; ticks: Tick[]; with?: Id };
+
+/* ------------------------------------------------------------------ M9 --
+ *
+ * The contract for the engine. Everything below is set only on a case dealt
+ * with a tier (`generateCase(seed, { tier, level })`); a no-options case has
+ * none of it. `docs/20-m9-gen-notes.md` is the long form.
+ * ----------------------------------------------------------------------- */
+
+/** How far apart two places are: 0 the same block, 1 a walk, 2 across the neighbourhood. */
+export type Distance = 0 | 1 | 2;
+
+/** The words for a distance class, for the places list and the rules. */
+export const DISTANCE_TEXT: Record<Distance, string> = {
+  0: 'the same block',
+  1: 'a walk',
+  2: 'across the neighbourhood',
+};
+
+/**
+ * Travel. Nobody is at two places across the neighbourhood from each other in
+ * consecutive half hours. The same block and a walk cost nothing.
+ */
+export function canWalk(d: Distance): boolean {
+  return d <= 1;
+}
+
+/** How well one person knows another. */
+export type Acquaintance = 'name' | 'relation' | 'sight' | 'stranger';
+
+/**
+ * One edge of the acquaintance graph, directed: how `from` knows `to`, and
+ * the words `from` uses for them. Every ordered pair of people in the case
+ * has exactly one edge; the victim appears only as `to`.
+ *
+ * - `name`: "Nora Hanrahan". Can be asked about by name.
+ * - `relation`: "my landlord", "Sweeney's secretary". Can be asked about by name.
+ * - `sight`: "the tall one who drinks at the end of the bar". Knows the face,
+ *   not the name: asked about the name, says so; a sighting comes as a
+ *   description, with this `ref` in the witness's mouth.
+ * - `stranger`: a description.
+ */
+export interface AcquaintanceEdge {
+  from: Id;
+  to: Id;
+  strength: Acquaintance;
+  /** Where the knowing comes from. */
+  basis: 'tie' | 'secret' | 'trade' | 'regular' | 'place' | 'roll' | 'none';
+  /** How `from` refers to `to`, in `from`'s own words. */
+  ref: string;
+}
+
+/** What a stranger can see: man or woman, roughly how old, and the trade when it shows. */
+export interface DescriptionFeatures {
+  gender: 'm' | 'f';
+  /** "in her thirties". Absent when the witness gives no age. */
+  age?: string;
+  /** "a longshoreman". Only when the trade shows (dossier layer 0). */
+  trade?: string;
+}
+
+export interface Description {
+  features: DescriptionFeatures;
+  /** "a woman in her thirties". Lower case, with its article. */
+  text: string;
+  /**
+   * Every suspect whose layer-0 dossier fits the features. The truth is one of
+   * them; the solver reads it as "one of these was there".
+   */
+  matches: Id[];
+  /**
+   * Set only when `matches` is one person: the portrait component the engine
+   * may add ("turning a coin over her knuckles"). Never set on a description
+   * that fits two people, because a portrait detail would settle it.
+   */
+  portrait?: 'habit' | 'clothing' | 'trait';
+}
+
+/** Why a self-account is false for a span. Truth-sheet data, never shown. */
+export type LieCover = 'crime' | 'means' | 'secret' | 'companion';
+
+/** One false span of a self-account. */
+export interface LieBlock {
+  personId: Id;
+  ticks: Tick[];
+  /** What they say: where, and in whose company. */
+  claimed: Id;
+  with?: Id;
+  /** Where they really were, tick by tick. */
+  truth: Id[];
+  cover: LieCover;
+  /** The account clue this span is part of. */
+  accountId: Id;
+}
+
+/**
+ * What happens when the detective puts a real contradiction to a liar. Data
+ * only; the engine renders it. `claims` is a second lie, itself
+ * contradictable; `facts` is what an admission establishes, all of it true.
+ */
+export interface ConfrontResponse {
+  kind: 'second-lie' | 'quiet' | 'admit' | 'hold' | 'withdraw';
+  claims?: Extract<Fact, { kind: 'claims' }>;
+  facts?: Fact[];
+  /** What they say, plainly. */
+  text: string;
+  /** The notebook's one line for it. */
+  rule: string;
+  /** Findable clues that contradict a second lie. */
+  contradictedBy?: Id[];
+}
+
+export interface Confrontation {
+  personId: Id;
+  /** The lie this is about. */
+  lie: LieBlock;
+  /**
+   * Findable clues that contradict the lie, grouped: each inner list is one
+   * independent way of showing it (a clue alone, or a chain). An innocent has
+   * two or more. The culprit's are all chains.
+   */
+  contradictions: Id[][];
+  /** On the first confrontation, and on the second. The culprit never admits. */
+  responses: [ConfrontResponse, ConfrontResponse];
+}
+
+/** How a conclusion was reached: for the report's curtain and for the stats. */
+export interface Derivation {
+  /** What was concluded, in one plain line. */
+  what: string;
+  /** The findable clues it rests on. */
+  rules: Id[];
+  /**
+   * Rounds of combining: 1 is a rule read straight off, 2 is two rules put
+   * together, and so on up the chain.
+   */
+  depth: number;
+  /** It needed a hypothesis tested: "if she was there, then …". */
+  hypothesis: boolean;
+}
+
+/** What the solver found at generation. */
+export interface SolveSummary {
+  /** The clue ids of the cheapest rule set that solves the case: the par route's. */
+  parRules: Id[];
+  /** The culprit, from the par set. */
+  culprit: Derivation;
+  /** Each innocent kept away from the scene at the crime's half hour, from the par set. */
+  cleared: Record<Id, Derivation>;
+  /** The crime's half hour, from the par set. */
+  crimeTick: Derivation;
+  /** The deepest conclusion the par set needs. */
+  depth: number;
+  /** The par set needs a hypothesis tested. */
+  hypothesis: boolean;
+  /** Innocents that one findable rule on its own keeps away from the scene. */
+  clearedByOne: Id[];
+  /** Account spans on the par route, and how many of them are false. */
+  accountSpans: number;
+  falseSpans: number;
+  /** Propagation rounds and hypothesis probes over the whole findable set. */
+  rounds: number;
+  probes: number;
+  /**
+   * Innocents whose confession the par route needs: each is two
+   * confrontations (two actions, counted in par) with two independent facts
+   * that break the lie, which the par set holds.
+   */
+  confessions: Id[];
+}
+
+/** Everything M9 adds to a case. */
+export interface Logic {
+  /** Each place's block on a line of three; the distance is the difference. */
+  blocks: Record<Id, 0 | 1 | 2>;
+  acquaintance: AcquaintanceEdge[];
+  /** Each suspect as a stranger would put it, and who else that fits. */
+  descriptions: Record<Id, Description>;
+  lies: LieBlock[];
+  confrontations: Confrontation[];
+  solve: SolveSummary;
+}
 
 /* ------------------------------------------------------------------ M5 --
  *
@@ -564,6 +812,9 @@ export interface Case {
    */
   shape?: CaseShape;
   ladder?: Ladder;
+  /* --- M9 ------------------------------------------------------------- */
+  /** The logic game: travel, who knows whom, the lies, confrontations, the solver's summary. */
+  logic?: Logic;
 }
 
 /**

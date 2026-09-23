@@ -1,0 +1,114 @@
+/*
+ * M9 — Deduction: the logic game's pieces on the grid, the confront picker,
+ * and the report's crime column. Its own sheet, imported after the grid's,
+ * so the book's and the grid's stay as they were.
+ */
+
+/* ------------------------------------------------- the grid's new pieces */
+
+/* A stranger's sighting: dotted, because nobody has put a name to it. */
+.dchip--described {
+  border-style: dotted;
+  background: color-mix(in srgb, var(--pc) 12%, var(--paper));
+}
+
+/* The same sighting, linked by the player into somebody's row: the player's
+   work, so dotted and italic, never the ink of a named witness. */
+.dchip--linked {
+  border-style: dotted;
+  font-style: italic;
+  background: transparent;
+}
+
+.dpencil--link {
+  font-size: 0.56rem;
+}
+
+.dgrid-margins th.dgrid-name {
+  font-style: italic;
+}
+
+.dgrid-row--margin .dgrid-role,
+.dgrid-row--desc .dgrid-role {
+  white-space: normal;
+}
+
+.dgrid-margincell {
+  text-align: left;
+  padding: 2px 4px;
+}
+
+.dgrid-margincell .dchip {
+  display: inline-block;
+  margin: 0 4px 2px 0;
+}
+
+.dgrid-counts th {
+  font-weight: normal;
+  font-size: 0.56rem;
+  color: var(--ink-soft);
+}
+
+.dgrid-countchip {
+  display: block;
+  border-bottom: 2px solid var(--pc);
+  white-space: nowrap;
+}
+
+.dgrid-links ul {
+  margin: 0.25rem 0 0.75rem;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+}
+
+/* ---------------------------------------------------- put it to them */
+
+.choice--confront {
+  border-style: double;
+}
+
+.confront-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0.25rem 0 0.5rem;
+  padding: 0.5rem;
+  border-left: 2px solid var(--ink-faint);
+}
+
+.confront-picker .choice {
+  text-align: left;
+  white-space: normal;
+}
+
+.lie-rule strong {
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------- the crime column */
+
+.report-column {
+  border: 1px solid var(--ink-faint);
+  padding: 0.5rem 0.75rem 0.25rem;
+  margin: 0.75rem 0;
+}
+
+.report-column legend {
+  padding: 0 0.25rem;
+  font-weight: 600;
+}
+
+.verdict-column-head {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.proof {
+  margin: 0 0 1rem;
+}
+
+.proof-rules {
+  margin: 0.25rem 0 0;
+  padding-left: 1.4rem;
+  font-size: 0.85rem;
+}
