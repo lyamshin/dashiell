@@ -161,6 +161,7 @@ export const DEDUCTION_MEDIUM: DeductionDials = {
   ...DEDUCTION_SOFT,
   companions: [1, 1],
   strangers: 1 / 3,
+  culpritDepth: 4,
   pieces: 0.6,
   par: [8, 14],
 };

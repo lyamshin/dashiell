@@ -47,6 +47,58 @@ import { leadingTheory } from '../src/game/voice/reactive.js';
 import { Rng } from '../src/gen/rng.js';
 import type { Page, Report, RunState } from '../src/game/types.js';
 import { writeFileSync } from 'node:fs';
+import { culpritOf as solverCulprit, placesAt, solve, type SolverProblem, type SolverRule } from '../src/gen/logic/solver.js';
+
+/* ---------------------------------------------------- M9: the solver's view */
+
+interface SolverFrame {
+  suspects: Id[];
+  places: Id[];
+  blocks: Record<Id, number>;
+  scene: Id;
+  victimId: Id;
+  murder: boolean;
+  givens: Fact[];
+  confessions: SolverRule[];
+}
+
+/** The grid a case is solved on. A case from before M9 has no blocks: travel is free. */
+function solverFrame(kase: Case): SolverFrame {
+  return {
+    suspects: kase.people.filter((p) => p.kind === 'suspect').map((p) => p.id),
+    places: kase.places.map((p) => p.id),
+    blocks: { ...(kase.logic?.blocks ?? {}) },
+    scene: kase.solution.murderPlaceId,
+    victimId: kase.people.find((p) => p.kind === 'victim')?.id as Id,
+    murder: kase.act.type === 'murder',
+    givens: kase.act.givens.facts,
+    confessions: (kase.logic?.confrontations ?? [])
+      .filter((k) => k.responses[1].kind === 'admit' || k.responses[1].kind === 'withdraw')
+      .map((k) => ({
+        id: `confess:${k.personId}:${k.lie.ticks[0]}`,
+        facts: (k.responses[1].facts ?? []).filter((f) => f.kind === 'personAt'),
+        when: { personId: k.personId, place: k.lie.claimed, ticks: k.lie.ticks, requires: k.lie.accountId },
+      })),
+  };
+}
+
+function solverProblem(frame: SolverFrame, clues: Clue[], probe: boolean, withConfessions?: Case): SolverProblem {
+  return {
+    suspects: frame.suspects,
+    places: frame.places,
+    blocks: frame.blocks,
+    scene: frame.scene,
+    victimId: frame.victimId,
+    murder: frame.murder,
+    rules: [
+      { id: 'given', facts: frame.givens },
+      ...clues.map((c) => ({ id: c.id, facts: c.establishes })),
+      ...(withConfessions ? frame.confessions : []),
+    ],
+    exactlyOne: true,
+    probe,
+  };
+}
 
 /* ------------------------------------------------------------------ args */
 
@@ -401,7 +453,12 @@ interface ChoiceTally {
   offered: number;
   yieldsNow: number;
   everYields: number;
+  /** M9: could ever return a clue that places somebody, or says they were not there. */
+  everFact?: number;
 }
+
+/** A fact that goes on the grid: a placement, an absence, a description, a count, company. */
+const GRID_FACTS = new Set(['personAt', 'personNotAt', 'personAtAnchor', 'describedAt', 'absentFrom', 'countAt', 'together', 'apart', 'victimAliveAt']);
 
 function classifyChoices(view: CaseView, state: RunState, tally: Map<ChoiceCat, ChoiceTally>): void {
   const present = peopleHereNow(view, state.at, {
@@ -417,6 +474,7 @@ function classifyChoices(view: CaseView, state: RunState, tally: Map<ChoiceCat, 
     let cat: ChoiceCat;
     let now = false;
     let ever = false;
+    let everFact = false;
     if (cmd.kind === 'go') {
       cat = 'go';
       now = c.lead;
@@ -429,9 +487,15 @@ function classifyChoices(view: CaseView, state: RunState, tally: Map<ChoiceCat, 
       ever = clues.length > 0;
     } else if (cmd.kind === 'ask') {
       const t = cmd.topic;
+      // M9: "ask X about Y" resolves to the exact bucket of X's testimony
+      // about Y. It is still a question about a person, not a lead.
+      const bucket = t.kind === 'exact' ? (view.exactBuckets.get(t.personId)?.get(t.topic) ?? []) : [];
+      const aboutPerson = bucket.length > 0 && bucket.every((x) => x.kind === 'testimony');
       cat =
-        t.kind === 'exact'
+        t.kind === 'exact' && !aboutPerson
           ? 'lead (exact topic)'
+          : aboutPerson
+            ? 'ask: a person'
           : t.kind === 'evening'
             ? 'ask: evening'
             : t.kind === 'self'
@@ -451,18 +515,21 @@ function classifyChoices(view: CaseView, state: RunState, tally: Map<ChoiceCat, 
       } else {
         now = answersTo(view, cmd.personId, t, state.found).length > 0;
         const key = topicKey(t);
-        ever = view.kase.findable.some(
+        const answering = view.kase.findable.filter(
           (x) =>
             x.source.type === 'person' &&
             x.source.personId === cmd.personId &&
             (t.kind === 'exact' ? x.source.topic === t.topic : (view.answers.get(x.id) ?? []).includes(key)),
         );
+        ever = answering.length > 0;
+        everFact = answering.some((x) => x.establishes.some((f) => GRID_FACTS.has(f.kind)));
       }
     } else continue;
-    const row = tally.get(cat) ?? { offered: 0, yieldsNow: 0, everYields: 0 };
+    const row = tally.get(cat) ?? { offered: 0, yieldsNow: 0, everYields: 0, everFact: 0 };
     row.offered++;
     if (now) row.yieldsNow++;
     if (ever) row.everYields++;
+    if (everFact) row.everFact = (row.everFact ?? 0) + 1;
     tally.set(cat, row);
   }
 }
@@ -800,7 +867,11 @@ function analyseRun(view: CaseView, run: RunRec, agg: PlayerAgg, cfg: string): v
     }
   }
   closeVisit();
-  agg.accountsHeard += run.state.accounts.length;
+  // M9: an account is a clue of its own kind now, on the par route; before
+  // M9 it was only ever "their evening", which the oracle never asked.
+  agg.accountsHeard +=
+    run.state.accounts.length +
+    run.state.found.filter((id) => view.findableById.get(id)?.kind === 'account' && !run.state.accounts.includes((view.findableById.get(id)?.source as { personId?: Id }).personId ?? '')).length;
   if (!run.steps.some((s) => s.to === view.startId)) agg.neverStart++;
   agg.goActions += run.steps.filter((s) => s.costed && s.verb === 'go').length;
   if (culprit) {
@@ -885,10 +956,35 @@ interface CaseAgg {
   contradictingPairs: number;
   caughtAtM: number[];
   culpritOnlyCaughtAtM: number;
+  /* --- M9: measured by the solver, on the old cases as on the new ------- */
+  /** Innocents one findable clue on its own keeps off the scene at the crime's half hour. */
+  solverOneClue: number;
+  solverInnocents: number;
+  /** The par route's culprit, and its deepest conclusion, in the solver's rounds. */
+  parCulpritDepth: number[];
+  parDepth: number[];
+  /** Cases where some innocent or the half hour needs two or more clues put together. */
+  combination: number;
+  /** Account spans on the par route, and how many of them are false. */
+  parAccountSpans: number;
+  parFalseSpans: number;
+  /** Par routes that need a hypothesis tested. */
+  parHypothesis: number;
+  /** The first and second responses when a lie is put to the liar. */
+  confrontFirst: { culprit: number; culpritLies: number; innocent: number; innocentLies: number };
 }
 
 function newCaseAgg(): CaseAgg {
   return {
+    solverOneClue: 0,
+    solverInnocents: 0,
+    parCulpritDepth: [],
+    parDepth: [],
+    combination: 0,
+    parAccountSpans: 0,
+    parFalseSpans: 0,
+    parHypothesis: 0,
+    confrontFirst: { culprit: 0, culpritLies: 0, innocent: 0, innocentLies: 0 },
     cases: 0,
     whoCases: 0,
     ruleMix: new Map(),
@@ -1194,6 +1290,52 @@ function analyseCase(view: CaseView, agg: CaseAgg, cfg: string): void {
     }
   }
   agg.liarsPerCase.push(liars);
+
+  // M9: the solver's reading of the same case. Old cases have no blocks, so
+  // travel constrains nothing; everything else reads the same facts.
+  if (culprit) {
+    const frame = solverFrame(kase);
+    const startingClues = kase.starting.map((id) => view.findableById.get(id)).filter((c): c is Clue => !!c);
+    const innocents = suspectsOf(kase).filter((s) => s !== culprit);
+    const oneClue = new Set<Id>();
+    for (const c of findable) {
+      if (kase.starting.includes(c.id)) continue;
+      const st = solve(solverProblem(frame, [...startingClues, c], false)).state;
+      if (st.contradiction) continue;
+      for (const s of innocents) if (!placesAt(st, s, M).includes(scene)) oneClue.add(s);
+    }
+    agg.solverInnocents += innocents.length;
+    agg.solverOneClue += oneClue.size;
+    const pin = minTickPin(kase, findable);
+    if (oneClue.size < innocents.length || pin >= 2) agg.combination++;
+    const spine = findable.filter((c) => c.role === 'spine');
+    const hyp = kase.logic?.solve.hypothesis ?? false;
+    const parState = solve(solverProblem(frame, spine, hyp, kase)).state;
+    const who = solverCulprit(parState);
+    if (who) agg.parCulpritDepth.push(who.why.depth);
+    let deepest = 0;
+    for (const w of parState.why) if (w && w.depth > deepest) deepest = w.depth;
+    agg.parDepth.push(Math.max(deepest, who?.why.depth ?? 0));
+    if (parState.usedProbe) agg.parHypothesis++;
+    for (const c of spine) {
+      for (const f of c.establishes) {
+        if (f.kind !== 'claims') continue;
+        agg.parAccountSpans++;
+        const truth = kase.schedules.find((s) => s.personId === f.personId)?.truth ?? [];
+        if (f.ticks.some((t) => truth[t] !== f.place)) agg.parFalseSpans++;
+      }
+    }
+    for (const k of kase.logic?.confrontations ?? []) {
+      const lied = k.responses[0].kind === 'second-lie' ? 1 : 0;
+      if (k.personId === culprit) {
+        agg.confrontFirst.culprit++;
+        agg.confrontFirst.culpritLies += lied;
+      } else if (k.lie.cover === 'secret') {
+        agg.confrontFirst.innocent++;
+        agg.confrontFirst.innocentLies += lied;
+      }
+    }
+  }
 }
 
 /* ------------------------------------------------------------------ main */
@@ -1557,6 +1699,75 @@ const CATS: ChoiceCat[] = ['lead (exact topic)', 'ask: evening', 'ask: themselve
       const off = rows.reduce((a, b) => a + b.offered, 0);
       return [r.label, pct(share(rows.reduce((a, b) => a + b.yieldsNow, 0), off)), pct(share(rows.reduce((a, b) => a + b.everYields, 0), off))];
     }),
+  );
+}
+
+/*
+ * M9 (docs/20-m9-deduction.md, "Targets"). Every row is measured the same way
+ * on a case from before M9 as on one after; where the diagnosis's own
+ * definition and the solver's differ, both are printed, the diagnosis's first.
+ */
+out.push('## Targets (docs/20-m9-deduction.md)');
+out.push('');
+{
+  const suspectsPer = (r: ConfigResult): number => r.caseAgg.innocents / Math.max(1, r.caseAgg.whoCases) + 1;
+  const rows: [string, (r: ConfigResult) => string, string][] = [
+    [
+      'innocents cleared by one clue (diagnosis facts / solver)',
+      (r) => `${pct(share(r.caseAgg.innocentsOneClue, r.caseAgg.innocents))} / ${pct(share(r.caseAgg.solverOneClue, r.caseAgg.solverInnocents))}`,
+      '≤30%',
+    ],
+    [
+      'inference depth of the par route (diagnosis formula / solver)',
+      (r) => `${num(mean(r.players.oracle.routeDepth))} / ${num(mean(r.caseAgg.parCulpritDepth))}`,
+      '≥4',
+    ],
+    [
+      'cases that need a two-clue combination',
+      (r) => pct(share(r.caseAgg.combination, r.caseAgg.whoCases)),
+      '100%',
+    ],
+    [
+      'false statements among self-accounts on the par route',
+      (r) => `${pct(share(r.caseAgg.parFalseSpans, r.caseAgg.parAccountSpans))} (${r.caseAgg.parFalseSpans}/${r.caseAgg.parAccountSpans} spans)`,
+      '20–30%',
+    ],
+    ['evening accounts on the oracle’s route', (r) => num(r.players.oracle.accountsHeard / r.players.oracle.runs), '≥2'],
+    [
+      '"ask about a person" that can pay (any clue / a grid fact)',
+      (r) => {
+        const t = r.choiceTally.get('ask: a person') ?? { offered: 0, yieldsNow: 0, everYields: 0, everFact: 0 };
+        return `${pct(share(t.everYields, t.offered))} / ${pct(share(t.everFact ?? 0, t.offered))}`;
+      },
+      '≥60%',
+    ],
+    ['lead edges sharing a person with their source', (r) => pct(share(r.caseAgg.edgesPersonLinked, r.caseAgg.edges)), '≥80%'],
+    ['button-pusher actions with no clue', (r) => pct(share(r.players.uniform.noClue, r.players.uniform.actions)), '≤40%'],
+    ['a player who only follows the marks names the culprit', (r) => pct(share(r.players.leads.whoCorrect, r.players.leads.whoAsked)), '≤50%'],
+    [
+      'the client points at the culprit (1 / suspects)',
+      (r) => `${pct(share(r.caseAgg.clientPointsAtCulprit, r.caseAgg.whoCases))} (${pct(1 / suspectsPer(r))})`,
+      '≤ 1 / suspects',
+    ],
+    [
+      'pages with 5 or more open leads (wanderer / lead-follower)',
+      (r) =>
+        `${pct(share(r.players.wander.openThreadSamples.filter((x) => x >= 5).length, r.players.wander.openThreadSamples.length))} / ${pct(share(r.players.leads.openThreadSamples.filter((x) => x >= 5).length, r.players.leads.openThreadSamples.length))}`,
+      '≤10%',
+    ],
+    ['par routes that need a hypothesis tested', (r) => pct(share(r.caseAgg.parHypothesis, r.caseAgg.whoCases)), 'Hard-boiled: 100%'],
+    [
+      'first confrontation brings a second lie (culprit / innocents)',
+      (r) => {
+        const k = r.caseAgg.confrontFirst;
+        return `${pct(share(k.culpritLies, k.culprit))} / ${pct(share(k.innocentLies, k.innocent))}`;
+      },
+      'within 10 points',
+    ],
+  ];
+  table(
+    ['measure', ...results.map((r) => r.label), 'target'],
+    rows.map(([label, f, target]) => [label, ...results.map(f), target]),
   );
 }
 

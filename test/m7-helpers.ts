@@ -12,12 +12,14 @@ import {
   requirementInputForCase,
   sourceKey,
   type Case,
+  type Fact,
 } from '../src/gen/index.js';
 import { proofSpecOf } from '../src/gen/select.js';
 import {
   FIELD_OF,
   LADDERS,
   TIERS,
+  deductionOf,
   dialsOf,
   slackFor,
   type Level,
@@ -62,7 +64,11 @@ export function tierSuite(tier: PresetTier, seeds: number, oracleSeeds: number):
         const { deduction: _d, ...rest } = c;
         const check = checkSolvability(rest);
         if (!check.ok) bad.push(`${tag}: ${check.failures.join('; ')}`);
-        if (c.par < shape.par[0] || c.par > shape.par[1]) bad.push(`${tag}: par ${c.par}`);
+        // M9: a tiered case's par is the logic game's, walked over its cheapest
+        // rule set (docs/20-m9-gen-notes.md); `shape.par` is the M7 range the
+        // no-options case is still held to.
+        const parRange = c.logic ? deductionOf(shape).par : shape.par;
+        if (c.par < parRange[0] || c.par > parRange[1]) bad.push(`${tag}: par ${c.par}`);
         if (dials.shape.name !== shape.name || dials.ladder.level !== level) bad.push(`${tag}: dials`);
         if (c.difficulty !== level) bad.push(`${tag}: difficulty ${c.difficulty}`);
         if (c.slack !== slackFor(shape, ladder, c.par)) bad.push(`${tag}: slack ${c.slack}`);
@@ -84,10 +90,15 @@ export function tierSuite(tier: PresetTier, seeds: number, oracleSeeds: number):
         for (const u of c.act.unknowns) {
           if (!shape.reportFields.includes(FIELD_OF[u])) bad.push(`${tag}: asks ${u}`);
         }
-        const noise = c.findable.filter((x) => x.role === 'noise' || x.role === 'disqualifier');
-        const share = noise.length / c.findable.length;
-        if (share < ladder.noiseRatio[0] - 1e-9 || share > ladder.noiseRatio[1] + 1e-9) {
-          bad.push(`${tag}: noise ${Math.round(share * 100)}%`);
+        // M9: testimony and accounts are findable by anybody who asks, so the
+        // noise is measured over the rest of the board, and the ladder's band
+        // is held on average (test/m9-gen.test.ts), not case by case.
+        if (!c.logic) {
+          const noise = c.findable.filter((x) => x.role === 'noise' || x.role === 'disqualifier');
+          const share = noise.length / c.findable.length;
+          if (share < ladder.noiseRatio[0] - 1e-9 || share > ladder.noiseRatio[1] + 1e-9) {
+            bad.push(`${tag}: noise ${Math.round(share * 100)}%`);
+          }
         }
       }
       expect(bad).toEqual([]);
@@ -125,6 +136,23 @@ export function tierSuite(tier: PresetTier, seeds: number, oracleSeeds: number):
       it(`${shape.name} at the DA’s Office: every essential fact has exactly one findable source`, () => {
         const bad: string[] = [];
         for (const c of casesFor(tier, level, seeds)) {
+          if (c.logic) {
+            // M9: the proof is the solver's, and the par route is its
+            // cheapest rule set, so nothing in it is there twice for its own
+            // sake. The motive, which the solver never needs, is the leg that
+            // shows it: exactly one clue of it on the par route.
+            const spine = c.findable.filter((x) => x.role === 'spine');
+            const killer = c.solution.killerId;
+            const legs: [string, (f: Fact) => boolean][] = [
+              ['motive', (f) => f.kind === 'hasMotive' && f.personId === killer && f.motiveType === c.solution.motiveType],
+            ];
+            for (const [name, pred] of legs) {
+              if (!dialsOf(c).shape.proof.includes(name as 'motive' | 'access')) continue;
+              const n = spine.filter((x) => x.establishes.some(pred)).length;
+              if (n > 1) bad.push(`seed ${c.seed}: the ${name} on ${n} spine clues`);
+            }
+            continue;
+          }
           const reqs = buildRequirements(requirementInputForCase(c), c.findable, proofSpecOf(dialsOf(c)));
           for (const r of reqs) {
             for (const part of r.parts) {

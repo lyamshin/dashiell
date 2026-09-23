@@ -63,7 +63,17 @@ export interface LogicSelection {
 /** For tuning: called with the solver's state when a case is turned down. */
 export const debug: {
   hook: ((info: { reason: string; input: LogicSelectInput; state: SolverState; findable: Clue[] }) => void) | null;
-} = { hook: null };
+  /** Milliseconds spent per phase, when set to an object. */
+  timings: Record<string, number> | null;
+} = { hook: null, timings: null };
+
+let phaseAt = 0;
+function phase(name: string): void {
+  if (!debug.timings) return;
+  const now = performance.now();
+  if (phaseAt > 0) debug.timings[name] = (debug.timings[name] ?? 0) + (now - phaseAt);
+  phaseAt = now;
+}
 
 /* ----------------------------------------------------------------- helpers */
 
@@ -243,6 +253,7 @@ export function walkPar(
 
 export function selectLogic(input: LogicSelectInput): LogicSelection | null {
   const { rng, cast, setting, build, pool, dials, act } = input;
+  if (debug.timings) phaseAt = performance.now();
   const ded = deductionOf(dials.shape);
   const fail = (reason: string): null => {
     input.reject?.(`m9 select: ${reason}`);
@@ -283,9 +294,24 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
       ),
     );
 
+  phase('setup');
   /* --- 1. single rules that say too much ---------------------------------- */
   const starting = pool.starting;
+  // One rule reaches no further than the half hours it names and, by travel,
+  // the ones either side; nothing else can be settled by it alone.
+  const watchTicks = new Set<number>();
+  for (const t of [M - 1, M, M + 1]) watchTicks.add(t);
+  if (ded.culpritChains) for (const d of cultLies) for (const t of d.ticks) for (const u of [t - 1, t, t + 1]) watchTicks.add(u);
+  const reaches = (c: Clue): boolean =>
+    c.establishes.some((f) => {
+      // An anchored sighting with no time of its own, and the like: solve it.
+      if (f.kind === 'personAtAnchor' || f.kind === 'knows') return true;
+      if ('tick' in f) return watchTicks.has((f as { tick: Tick }).tick);
+      if ('ticks' in f) return (f as { ticks: Tick[] }).ticks.some((t) => watchTicks.has(t));
+      return false;
+    });
   const tooMuch = (c: Clue): string | null => {
+    if (!reaches(c)) return null;
     const st = solve(problemOf(frame, [...starting, c], false, true)).state;
     if (st.contradiction) return 'contradiction';
     for (const id of innocents) {
@@ -312,6 +338,7 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
     ...input.signature,
   ].filter((c) => tooMuch(c) === null);
 
+  phase('single rules');
   /* --- 2. the hand ---------------------------------------------------------- */
   const pieces = Math.max(0, Math.min(1, ded.pieces + dials.ladder.pieces));
   const near = (c: Clue): boolean =>
@@ -373,6 +400,7 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
   if (!cul) return fail('no culprit');
   if (cul.why.depth < ded.culpritDepth) return fail(`the culprit is reached at depth ${cul.why.depth}`);
 
+  phase('full solve');
   /* --- 4. every innocent's lie, two ways ------------------------------------- */
   const byId = new Map(findableCore.map((c) => [c.id, c]));
   const routesFor = (personId: Id, ticks: Tick[], claimed: Id, clues: Clue[]): Id[][] => {
@@ -404,9 +432,14 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
         `a ${d.cover} lie${d.ticks.includes(M) ? ' at the crime' : ''} (${d.ticks.length} long) has ${routes.length} way(s) to break it`,
       );
     }
-    if (d.personId === killerId && d.cover === 'crime' && routes.length < 1) return fail("the culprit's lie stands");
+    // Every lie that matters is broken by something findable (spec §1): the
+    // culprit's about the crime and about the means, by a chain.
+    if (d.personId === killerId && (d.cover === 'crime' || d.cover === 'means') && routes.length < 1) {
+      return fail(`the culprit's ${d.cover} lie stands`);
+    }
   }
 
+  phase('lie routes');
   /* --- 5. par: the cheapest set that still solves it -------------------------- */
   const need = new Set<Id>();
   const add = (w: Why | null | undefined): void => {
@@ -450,12 +483,26 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
   }
   const legIds = new Set(legs.flatMap((l) => l.map((c) => c.id)));
   const startIds = new Set(starting.map((c) => c.id));
-  for (const c of rng.shuffle(parSet.slice())) {
-    if (startIds.has(c.id)) continue;
-    if (legIds.has(c.id) && legs.some((l) => l.filter((x) => parSet.includes(x)).length === 1 && l.includes(c))) continue;
-    const without = parSet.filter((x) => x.id !== c.id);
-    if (parSolves(without)) parSet = without;
-  }
+  // Prune in halves: try dropping a whole run of clues, and split it only
+  // when the case stops solving without it. Most of the hand goes in a few
+  // solves; the rest one at a time.
+  const keepsLeg = (set: Clue[]): boolean =>
+    legs.every((l) => l.length === 0 || l.some((x) => set.includes(x)));
+  const prune = (run: Clue[]): void => {
+    if (run.length === 0) return;
+    const drop = new Set(run.map((c) => c.id));
+    const without = parSet.filter((x) => !drop.has(x.id));
+    if (keepsLeg(without) && parSolves(without)) {
+      parSet = without;
+      return;
+    }
+    if (run.length === 1) return;
+    const half = Math.ceil(run.length / 2);
+    prune(run.slice(0, half));
+    prune(run.slice(half));
+  };
+  prune(rng.shuffle(parSet.filter((c) => !startIds.has(c.id))));
+  void legIds;
   if (!parSolves(parSet)) return fail('the par set does not solve it');
 
   // Confessions the par route leans on: each is two confrontations, and the
@@ -483,6 +530,9 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
       if (routesFor(d.personId, d.ticks, d.claimed, parSet).length >= 2) break;
     }
   }
+  // What was added for the confessions can settle something earlier and in
+  // another order; the set has to still solve the case, and truly.
+  if (!parSolves(parSet)) return fail('the par set with its confessions does not solve it');
   const confrontPseudo: Clue[] = confessed.flatMap((d) => {
     const at = cast.people.find((p) => p.id === d.personId)?.foundAt ?? L;
     return [1, 2].map((k) => ({
@@ -497,6 +547,7 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
     }));
   });
 
+  phase('par set');
   /* --- 6. noise: the innocents' secrets, as M7 deals them --------------------- */
   const noise: Clue[] = [];
   const [minD, capD] = dials.ladder.branchDepth;
@@ -550,6 +601,7 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
   );
   if (!Number.isFinite(par)) return fail('the par route cannot be walked');
 
+  phase('leads and walk');
   /* --- 9. the summary ---------------------------------------------------------- */
   const parState = solve(problemOf(frame, parSet, ded.hypothesis)).state;
   const derive = (what: string, w: Why | null): Derivation => ({
@@ -593,6 +645,7 @@ export function selectLogic(input: LogicSelectInput): LogicSelection | null {
     confessions: confessed.map((d) => d.personId),
   };
 
+  phase('summary');
   /* --- 10. the lies, and what happens when they are put to the liar ------------ */
   const accountOf = new Map(pool.accounts.map((c) => [(c.source as { personId: Id }).personId, c.id]));
   const lies: LieBlock[] = build.lieDrafts.map((d) => ({
@@ -625,7 +678,7 @@ function who(cast: Cast, id: Id): string {
 /* ------------------------------------------------------------------ leads */
 
 function wireLeads(input: LogicSelectInput, findable: Clue[], parSet: Clue[], starting: Clue[]): void {
-  const { cast, setting, rng } = input;
+  const { cast, setting } = input;
   const victimId = cast.victim.id;
   const people = cast.people;
   const named = new Map(findable.map((c) => [c.id, peopleIn(c, people, victimId)]));
@@ -680,22 +733,34 @@ function wireLeads(input: LogicSelectInput, findable: Clue[], parSet: Clue[], st
     left.splice(left.indexOf(best.to), 1);
   }
 
-  // Everything else on the board: one lead in, from a clue that names it.
-  const onRoute = new Set(parSet.map((c) => c.id));
-  for (const c of rng.shuffle(findable)) {
-    if (onRoute.has(c.id) || starting.includes(c)) continue;
-    if (c.kind === 'testimony' || c.kind === 'account') continue;
+  // The innocents' secrets, a branch at a time: its head hangs off a clue
+  // that names the one keeping it, and each clue of it leads to the next.
+  // Nothing else on the board carries a lead: it is found by asking or
+  // looking, and a page with five marked leads on it is a page nobody can
+  // choose from (spec §4; the diagnosis measured 69–73%).
+  const branches = new Map<Id, Clue[]>();
+  for (const c of findable) {
+    if (!c.branchId) continue;
+    const list = branches.get(c.branchId) ?? [];
+    list.push(c);
+    branches.set(c.branchId, list);
+  }
+  for (const list of branches.values()) {
+    const head = list[0] as Clue;
+    const keeper = head.aboutSecretOf;
     let best: { from: Clue; s: number } | null = null;
     for (const from of findable) {
-      if (from.id === c.id || from.kind === 'testimony' || from.kind === 'account') continue;
+      if (from.branchId || from.kind === 'testimony' || from.kind === 'account') continue;
       if ((outDegree.get(from.id) ?? 0) >= 2) continue;
-      const s = score(from, c);
+      const names = keeper !== undefined && (named.get(from.id) as Set<Id>).has(keeper) ? 3 : 0;
+      const s = Math.max(names, score(from, head));
       if (s > 0 && (!best || s > best.s)) best = { from, s };
     }
     if (best) {
-      link(best.from, c);
+      link(best.from, head);
       outDegree.set(best.from.id, (outDegree.get(best.from.id) ?? 0) + 1);
     }
+    for (let i = 1; i < list.length; i++) link(list[i - 1] as Clue, list[i] as Clue);
   }
 }
 
@@ -744,10 +809,14 @@ function confront(
         const ids = w.rules.map((r) => full.problem.rules[r]?.id as Id).filter((id) => id !== 'given');
         if (ids.length === 0) continue;
         const claims: Extract<Fact, { kind: 'claims' }> = { kind: 'claims', personId: lie.personId, place: p, ticks: lie.ticks.slice() };
+        const last = not[not.length - 1] as Id;
         return {
           kind: 'second-lie',
           claims,
-          text: `“All right, I wasn’t at ${placeName(lie.claimed)}. I was at ${placeName(p)}.”`,
+          text:
+            not.length > 1
+              ? `“Not ${placeName(last)} either, then. I was at ${placeName(p)}.”`
+              : `“All right, I wasn’t at ${placeName(lie.claimed)}. I was at ${placeName(p)}.”`,
           rule: `${X} says now: ${placeName(p)}, ${when}.`,
           contradictedBy: ids,
         };

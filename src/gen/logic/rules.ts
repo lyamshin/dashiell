@@ -158,7 +158,9 @@ export function buildPool(input: PoolInput): Pool {
 
   /* --- 1. testimony -------------------------------------------------------- */
   const askers = cast.people.filter((p) => p.kind !== 'victim');
-  const subjects = cast.people.filter((p) => p.kind === 'suspect' || p.kind === 'victim');
+  // Everybody the notebook can name: the suspects, the victim, and the people
+  // who stand at doors. Every question gets an answer.
+  const subjects = cast.people.slice();
   const testimony: Clue[] = [];
   for (const x of askers) {
     for (const y of subjects) {
@@ -266,17 +268,28 @@ export function buildPool(input: PoolInput): Pool {
     const comp = build.companions[p.id] as (Id | null)[];
     const facts: Fact[] = [];
     const parts: string[] = [];
+    // What the detective asks about: the hours around the crime, and any hour
+    // they have something to hide in, which is what they talk their way round.
+    const liesHere = (u: Tick): boolean => (build.lies[p.id] ?? []).includes(u);
+    const covered = (u: Tick): boolean => (u >= M - 3 && u <= M + 2) || liesHere(u);
     let t = 0;
     while (t < TICKS) {
       const here = claimed[t];
-      if (!here) {
+      if (!here || !covered(t)) {
         t++;
         continue;
       }
       let end = t;
       // A span ends where the truth of it changes, so that a lie is always its own span.
-      const liesHere = (u: Tick): boolean => (build.lies[p.id] ?? []).includes(u);
-      while (end + 1 < TICKS && claimed[end + 1] === here && comp[end + 1] === comp[t] && liesHere(end + 1) === liesHere(t)) end++;
+      while (
+        end + 1 < TICKS &&
+        covered(end + 1) &&
+        claimed[end + 1] === here &&
+        comp[end + 1] === comp[t] &&
+        liesHere(end + 1) === liesHere(t)
+      ) {
+        end++;
+      }
       const ticks = Array.from({ length: end - t + 1 }, (_, i) => t + i);
       const withId = comp[t] ?? undefined;
       facts.push({ kind: 'claims', personId: p.id, place: here, ticks, ...(withId ? { with: withId } : {}) });

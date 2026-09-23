@@ -162,6 +162,10 @@ export function startPlaceOf(kase: Case): Id {
  * scene costs, and the oracle is held to it.
  */
 export function caseParFrom(kase: Case, startId: Id): number {
+  // M9: a tiered case's par is walked from the night's first room already,
+  // over the oracle's groups rather than one clue at a time, and counts the
+  // confrontations its par route needs (`src/gen/logic/select.ts`).
+  if (kase.logic) return kase.par;
   const spine = kase.findable.filter((c) => c.role === 'spine');
   const starting = new Set(kase.starting);
   const cost = computePar(

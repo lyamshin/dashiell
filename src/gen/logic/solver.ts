@@ -43,6 +43,9 @@
 import type { Fact, Id, Tick } from '../types.js';
 import { TICKS } from '../types.js';
 
+/** A local copy: an imported binding is a property read in some module systems, and this is the hot loop. */
+const T12: number = TICKS;
+
 export interface SolverRule {
   id: Id;
   facts: Fact[];
@@ -88,7 +91,7 @@ export interface SolverState {
   dom: Uint16Array;
   /** Crime ticks still possible, as a bitmask. */
   tdom: number;
-  /** Why value p was struck at (s, t): index (s * TICKS + t) * P + p. */
+  /** Why value p was struck at (s, t): index (s * T12 + t) * P + p. */
   why: (Why | undefined)[];
   whyT: (Why | undefined)[];
   contradiction: string | null;
@@ -204,7 +207,7 @@ function compile(pr: SolverProblem): Compiled {
     spans: [],
     confessions: [],
   };
-  const allTicks = (1 << TICKS) - 1;
+  const allTicks = (1 << T12) - 1;
   const held = new Set(pr.rules.map((rule) => rule.id));
   pr.rules.forEach((rule, r) => {
     if (rule.when) {
@@ -257,7 +260,7 @@ function compile(pr: SolverProblem): Compiled {
         }
         case 'victimAliveAt': {
           let m = 0;
-          for (let t = f.tick + 1; t < TICKS; t++) m |= bit(t);
+          for (let t = f.tick + 1; t < T12; t++) m |= bit(t);
           c.tickDirect.push({ r, keep: m });
           break;
         }
@@ -336,16 +339,16 @@ function compile(pr: SolverProblem): Compiled {
 function newState(pr: SolverProblem): SolverState {
   const S = pr.suspects.length;
   const P = pr.places.length;
-  const dom = new Uint16Array(S * TICKS);
+  const dom = new Uint16Array(S * T12);
   dom.fill((1 << P) - 1);
   return {
     problem: pr,
     S,
     P,
     dom,
-    tdom: (1 << TICKS) - 1,
-    why: new Array(S * TICKS * P),
-    whyT: new Array(TICKS),
+    tdom: (1 << T12) - 1,
+    why: new Array(S * T12 * P),
+    whyT: new Array(T12),
     contradiction: null,
     conflict: null,
     rounds: 0,
@@ -368,8 +371,8 @@ function cloneState(st: SolverState): SolverState {
 /** The premises that put (s, t) at its one remaining place. */
 function placedWhy(st: SolverState, s: number, t: number): Why[] {
   const out: Why[] = [];
-  const base = (s * TICKS + t) * st.P;
-  const d = st.dom[s * TICKS + t] as number;
+  const base = (s * T12 + t) * st.P;
+  const d = st.dom[s * T12 + t] as number;
   for (let p = 0; p < st.P; p++) {
     if (d & bit(p)) continue;
     const w = st.why[base + p];
@@ -379,12 +382,12 @@ function placedWhy(st: SolverState, s: number, t: number): Why[] {
 }
 
 function struck(st: SolverState, s: number, t: number, p: number): Why | undefined {
-  return st.why[(s * TICKS + t) * st.P + p];
+  return st.why[(s * T12 + t) * st.P + p];
 }
 
 function tickWhys(st: SolverState): Why[] {
   const out: Why[] = [];
-  for (let t = 0; t < TICKS; t++) {
+  for (let t = 0; t < T12; t++) {
     if (st.tdom & bit(t)) continue;
     const w = st.whyT[t];
     if (w) out.push(w);
@@ -398,7 +401,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
   const pr = st.problem;
   const out: Candidate[] = [];
   const { S, P, dom } = st;
-  const cell = (s: number, t: number): number => dom[s * TICKS + t] as number;
+  const cell = (s: number, t: number): number => dom[s * T12 + t] as number;
   const strikeC = (s: number, t: number, p: number, premise: Premise): void => {
     if (!(cell(s, t) & bit(p))) return;
     out.push({ kind: 'cell', s, t, p, depth: depthOf(premise), premise });
@@ -422,7 +425,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
       else if (d.strike !== undefined) strikeC(d.s, d.t, d.strike, premise);
     }
     for (const d of c.tickDirect) {
-      for (let t = 0; t < TICKS; t++) {
+      for (let t = 0; t < T12; t++) {
         if (st.tdom & bit(t) && !(d.keep & bit(t))) {
           out.push({ kind: 'tick', s: -1, t, p: -1, depth: 1, premise: { rules: [d.r], whys: [] } });
         }
@@ -452,7 +455,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
     if (!at) continue;
     let open = 0;
     const whys: Why[] = [];
-    for (let t = 0; t < TICKS; t++) {
+    for (let t = 0; t < T12; t++) {
       if (!(at.ticks & bit(t))) continue;
       if (cell(sg.s, t) & bit(sg.p)) open |= bit(t);
       else {
@@ -529,23 +532,40 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
     }
   }
 
-  // Travel.
+  // Travel. Where somebody can be at a half hour is limited to what is
+  // within a walk of where they can be either side of it.
+  const NT = 12;
+  const reachAll = c.reach;
+  const within = new Uint16Array(S * NT);
+  for (let i = 0; i < S * NT; i++) {
+    const d = dom[i] as number;
+    let m = 0;
+    for (let q = 0; q < P; q++) if (d & (1 << q)) m |= reachAll[q] as number;
+    within[i] = m;
+  }
   for (let s = 0; s < S; s++) {
-    for (let t = 0; t < TICKS; t++) {
-      const d = cell(s, t);
+    for (let t = 0; t < NT; t++) {
+      const i = s * NT + t;
+      const d = dom[i] as number;
+      let ok = d;
+      if (t > 0) ok &= within[i - 1] as number;
+      if (t < NT - 1) ok &= within[i + 1] as number;
+      const bad = d & ~ok;
+      if (bad === 0) continue;
       for (let p = 0; p < P; p++) {
-        if (!(d & bit(p))) continue;
+        if (!(bad & (1 << p))) continue;
+        const reach = reachAll[p] as number;
         for (const u of [t - 1, t + 1]) {
-          if (u < 0 || u >= TICKS) continue;
-          const next = cell(s, u);
-          if (next & (c.reach[p] as number)) continue;
+          if (u < 0 || u >= NT) continue;
+          if ((dom[s * NT + u] as number) & reach) continue;
           const whys: Why[] = [];
           for (let q = 0; q < P; q++) {
-            if (!((c.reach[p] as number) & bit(q))) continue;
-            const w = struck(st, s, u, q);
+            if (!(reach & (1 << q))) continue;
+            const w = st.why[((s * NT + u) * P) + q];
             if (w) whys.push(w);
           }
           strikeC(s, t, p, { rules: [], whys });
+          break;
         }
       }
     }
@@ -554,7 +574,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
   // Exactly one suspect at the scene at the crime's half hour.
   if (pr.exactlyOne) {
     const L = c.L;
-    for (let t = 0; t < TICKS; t++) {
+    for (let t = 0; t < T12; t++) {
       if (!(st.tdom & bit(t))) continue;
       let any = false;
       for (let s = 0; s < S; s++) if (cell(s, t) & bit(L)) any = true;
@@ -637,7 +657,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
         const w = struck(st, sp.s, t, c.L);
         if (w) whys.push(w);
       }
-      for (let t = 0; t < TICKS; t++) {
+      for (let t = 0; t < T12; t++) {
         if (st.tdom & bit(t)) continue;
         const w = st.whyT[t];
         if (w) whys.push(w);
@@ -692,7 +712,7 @@ function commit(st: SolverState, all: Candidate[]): boolean {
       }
       continue;
     }
-    const i = x.s * TICKS + x.t;
+    const i = x.s * T12 + x.t;
     const d = st.dom[i] as number;
     if (!(d & bit(x.p))) continue;
     st.dom[i] = d & ~bit(x.p);
@@ -722,17 +742,17 @@ function propagate(st: SolverState, c: Compiled): void {
 function probeRound(st: SolverState, c: Compiled): boolean {
   let struckAny = false;
   const ticks: number[] = [];
-  for (let t = 0; t < TICKS; t++) if (st.tdom & bit(t)) ticks.push(t);
+  for (let t = 0; t < T12; t++) if (st.tdom & bit(t)) ticks.push(t);
   if (ticks.length > 4) return false;
   for (const t of ticks) {
     for (let s = 0; s < st.S; s++) {
-      const d = st.dom[s * TICKS + t] as number;
+      const d = st.dom[s * T12 + t] as number;
       if (popcount(d) <= 1) continue;
       for (let p = 0; p < st.P; p++) {
-        if (!((st.dom[s * TICKS + t] as number) & bit(p))) continue;
+        if (!((st.dom[s * T12 + t] as number) & bit(p))) continue;
         const trial = cloneState(st);
         trial.problem = { ...st.problem, stopWhen: undefined };
-        const i = s * TICKS + t;
+        const i = s * T12 + t;
         const hyp: Why = { depth: 1, rules: [], hyp: true };
         for (let q = 0; q < st.P; q++) {
           if (q !== p && (trial.dom[i] as number) & bit(q)) {
@@ -784,13 +804,13 @@ export function solve(problem: SolverProblem): Solved {
 export function placesAt(st: SolverState, personId: Id, t: Tick): Id[] {
   const s = st.problem.suspects.indexOf(personId);
   if (s < 0) return st.problem.places.slice();
-  const d = st.dom[s * TICKS + t] as number;
+  const d = st.dom[s * T12 + t] as number;
   return st.problem.places.filter((_, p) => d & bit(p));
 }
 
 export function crimeTicks(st: SolverState): Tick[] {
   const out: Tick[] = [];
-  for (let t = 0; t < TICKS; t++) if (st.tdom & bit(t)) out.push(t);
+  for (let t = 0; t < T12; t++) if (st.tdom & bit(t)) out.push(t);
   return out;
 }
 
@@ -799,7 +819,7 @@ export function whyNot(st: SolverState, personId: Id, t: Tick, place: Id): Why |
   const s = st.problem.suspects.indexOf(personId);
   const p = st.problem.places.indexOf(place);
   if (s < 0 || p < 0) return null;
-  if ((st.dom[s * TICKS + t] as number) & bit(p)) return null;
+  if ((st.dom[s * T12 + t] as number) & bit(p)) return null;
   return struck(st, s, t, p) ?? { depth: 1, rules: [], hyp: false };
 }
 
@@ -807,7 +827,7 @@ export function whyNot(st: SolverState, personId: Id, t: Tick, place: Id): Why |
 export function whyPlaced(st: SolverState, personId: Id, t: Tick): Why | null {
   const s = st.problem.suspects.indexOf(personId);
   if (s < 0) return null;
-  if (popcount(st.dom[s * TICKS + t] as number) !== 1) return null;
+  if (popcount(st.dom[s * T12 + t] as number) !== 1) return null;
   const whys = placedWhy(st, s, t);
   if (whys.length === 0) return { depth: 0, rules: [], hyp: false };
   return mergeWhy({ rules: [], whys }, Math.max(...whys.map((w) => w.depth)));
@@ -830,10 +850,10 @@ export function culpritOf(st: SolverState): { id: Id; why: Why } | null {
   const L = st.problem.places.indexOf(st.problem.scene);
   let who = -1;
   const whys: Why[] = [];
-  for (let t = 0; t < TICKS; t++) {
+  for (let t = 0; t < T12; t++) {
     if (!(st.tdom & bit(t))) continue;
     for (let s = 0; s < st.S; s++) {
-      if ((st.dom[s * TICKS + t] as number) & bit(L)) {
+      if ((st.dom[s * T12 + t] as number) & bit(L)) {
         if (who >= 0 && who !== s) return null;
         who = s;
       } else {
