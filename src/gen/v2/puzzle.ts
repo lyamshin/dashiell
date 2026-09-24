@@ -403,7 +403,7 @@ export function buildPuzzle(input: LogicSelectInput, frame: ProblemFrame): Puzzl
       }
       if (absent.length > 0) sentences.push(`${X} did not see ${Y} the rest of the evening.`);
       // A watcher's word about the crime's half hour at the door clears by one line.
-      if (absent.includes(M) && truthAt(x, M) !== L) return null;
+      if (absent.includes(M) && truthAt(x, M) === L) return null;
     }
     if (!facts.some((f) => f.kind === 'personAt')) return null;
     const text = sentences.join(' ');
@@ -470,8 +470,34 @@ export function buildPuzzle(input: LogicSelectInput, frame: ProblemFrame): Puzzl
     if (!bottleneck) return 'no key rival could be made to need the tier\'s technique';
   }
 
-  /* --- narrow the key rivals to the band -------------------------------------- */
   const keepsTatham = (n: World): boolean => floor === null || !settled(solveAt(cluesOf(n), floor));
+
+  /* --- the turn on the road: a lie that has to be caught ---------------------- */
+  // docs/35: the turn falls at the first lie caught, and in the worked example
+  // the liars are cleared by what they give up once caught (T8). From
+  // Poached up, an innocent who lies about the crime's half hour is cleared
+  // by their confession where the world allows it: their other ways out of
+  // the scene are dug, so that catching them is on the road to the report.
+  const viaConfession = (st: SolverState, r: Rival): boolean => {
+    const w = brokenWhy(st, r);
+    return !!w && idsOf(st, w).some((id) => id.startsWith('confess:'));
+  };
+  if (secretLies && tier >= 2) {
+    const liars = rivals.filter((r) => r.kind === 'who' && build.mLiars.includes(r.personId as Id));
+    for (const r of rng.shuffle(liars)) {
+      for (let guard = 0; guard < 12; guard++) {
+        const st = solveAt(cluesOf(world), cap);
+        if (viaConfession(st, r)) break;
+        const w = brokenWhy(st, r);
+        if (!w) break;
+        const next = tryDig(world, routeIds(st, w), (n) => keepsTatham(n) && brokenWhy(solveAt(cluesOf(n), cap), r) !== null);
+        if (!next) break;
+        world = next;
+      }
+    }
+  }
+
+  /* --- narrow the key rivals to the band -------------------------------------- */
   if (band.keyMax < 99) {
     const narrowing = [...(bottleneck && bottleneck.kind === 'who' ? [bottleneck] : []), ...rivals.filter((r) => r.key && r.kind === 'who' && r !== bottleneck)];
     for (const r of tier >= 4 ? narrowing : narrowing.slice(0, 1)) {

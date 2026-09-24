@@ -178,9 +178,11 @@ const ALL_CONFIGS: Config[] = [
 const wanted = arg('configs')?.split(',');
 // M14: `--type lost-pet` plays every config at that case type (the design test per type).
 const TYPE = arg('type') as GenerateOptions['type'] | undefined;
-const CONFIGS = (wanted ? ALL_CONFIGS.filter((c) => wanted.includes(c.label)) : ALL_CONFIGS).map((c) =>
-  TYPE === undefined ? c : { label: `${c.label}:${TYPE}`, opts: { ...c.opts, type: TYPE } },
-);
+// v2 (docs/35): `--engine v2` plays every config dealt the v2 way.
+const ENGINE = arg('engine') === 'v2' ? ('v2' as const) : undefined;
+const CONFIGS = (wanted ? ALL_CONFIGS.filter((c) => wanted.includes(c.label)) : ALL_CONFIGS)
+  .map((c) => (TYPE === undefined ? c : { label: `${c.label}:${TYPE}`, opts: { ...c.opts, type: TYPE } }))
+  .map((c) => (ENGINE === undefined ? c : { label: `${c.label}:v2`, opts: { ...c.opts, engine: ENGINE } }));
 
 /* --------------------------------------------------------------- helpers */
 

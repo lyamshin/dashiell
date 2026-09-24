@@ -99,7 +99,7 @@ const SLOT = /\{([A-Za-z][\w]*(?:\.[\w]+)?)\}/g;
  * Fill a line. `{Name}` is `{name}` put up. Null when a slot has nothing to
  * put in it: the caller tries another line or says nothing.
  */
-export function fillLine(template: string, slots: Record<string, string | undefined>): string | null {
+export function fillLine(template: string, slots: Record<string, string | undefined>, sentence = true): string | null {
   let missing = false;
   const out = template.replace(SLOT, (_m, key: string, at: number, whole: string) => {
     const [head, field] = key.split('.') as [string, string | undefined];
@@ -111,7 +111,7 @@ export function fillLine(template: string, slots: Record<string, string | undefi
       missing = true;
       return '';
     }
-    const opens = at === 0 || /[.!?:]\s+$/.test(whole.slice(0, at));
+    const opens = sentence && (at === 0 || /[.!?:]\s+$/.test(whole.slice(0, at)));
     return up || opens ? cap(value) : value;
   });
   return missing ? null : out;
@@ -368,11 +368,14 @@ export function bookPass(view: CaseView, before: RunState, after: RunState, page
       const spec = BOOK_LINES.tell[pieces.kind];
       const slots = tellSlots(view, after, clue, pieces.kind);
       const carry = spec ? sayOne(spec.carry, slots, mem, seed, 'tell') : null;
-      const text = spec ? fillLine(spec.text, slots) : null;
-      const short = spec ? fillLine(spec.short, slots) : null;
+      const text = spec ? fillLine(spec.text, slots, false) : null;
+      const short = spec ? fillLine(spec.short, slots, false) : null;
       if (carry && text && short) {
         mem.roles.tell = { text, short, kind: pieces.kind };
-        insertBeforeRecap(page, [{ kind: 'prose', text: carry, voice: 'thought' }]);
+        // Right after the words that brought the piece, before what he makes of it.
+        const at = page.blocks.findIndex((b) => b.kind === 'prose' && b.clueId === clue.id);
+        if (at >= 0) page.blocks.splice(at + 1, 0, { kind: 'prose', text: carry, voice: 'thought' });
+        else insertBeforeRecap(page, [{ kind: 'prose', text: carry, voice: 'thought' }]);
       }
     }
   }
@@ -497,7 +500,8 @@ function turnRecap(
   out.push(first.join(' '));
   const second: string[] = [];
   const tell = mem.roles.tell;
-  if (tell) {
+  // The tell pays off here unless the turn's own line already said it.
+  if (tell && !kind.startsWith(tell.kind)) {
     const spec = BOOK_LINES.tell[tell.kind];
     const pay = spec ? sayOne(spec.pay, { ...slots, tell: tell.short, Tell: tell.short }, mem, seed, 'tellPay') : null;
     if (pay) second.push(pay);

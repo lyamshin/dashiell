@@ -436,6 +436,22 @@ button {
   text-indent: 0;
 }
 
+/* --------------------------------------------- v2: the book's chapters */
+
+/* docs/35: the book's title and its chapter headings, set like a book's. */
+.leaf p.prose--chapter {
+  text-indent: 0;
+  text-align: center;
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin: 1.1rem 0 1rem;
+}
+
+.leaf p.prose--chapter + p {
+  text-indent: 0;
+}
+
 /* ----------------------------------------------------- M6: the choices */
 
 /*

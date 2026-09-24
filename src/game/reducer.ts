@@ -30,6 +30,7 @@
  *   shortened or lengthened by one.
  */
 
+import { bookPass, officePass } from './v2/book.js';
 import type { Clue, Id } from '../gen/types.js';
 import { TICKS, clock } from '../gen/types.js';
 import type {
@@ -204,8 +205,11 @@ export function newRun(
     image: composed.image,
     ...(composed.sheets ? { sheets: composed.sheets } : {}),
   };
+  // v2 (docs/35): the book's title, chapter one, and the running gag.
+  const v2 = kase.engine === 'v2' ? { v2: officePass(view, page) } : {};
   const state: RunState = {
     ...base,
+    ...v2,
     found,
     burned: [...base.burned, ...dealer.spent],
     met: mergeMet(view, base.met, found, here),
@@ -1304,6 +1308,10 @@ export function step(
     page.cardsUsed = dealer.spent;
     next.burned = [...state.burned, ...dealer.spent];
   }
+  // v2 (docs/35): the book — the act the night has reached, what this page's
+  // steps plant, and at the turn the chapter break. A page that asked for a
+  // recap, or read one back, is left as it is.
+  if (kase.engine === 'v2' && !recapAsked && scene) bookPass(view, state, next, page);
   return { state: next, page };
 }
 

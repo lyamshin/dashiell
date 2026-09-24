@@ -81,8 +81,25 @@ export function selectV2(input: LogicSelectInput): V2Selection | null {
   const starting = pool.starting;
   const needTick = dials.shape.coronerWidth > 1;
 
-  const goals = (st: SolverState): boolean => {
+  // The night's climax is the culprit's word with nowhere to stand (docs/35,
+  // step G): the par route holds the culprit's own account of the crime's
+  // half hour and what breaks it, so the turn is on the road.
+  const crimeLie = build.lieDrafts.find((d) => d.personId === killerId && d.cover === 'crime');
+  const culpritAccount = accountIdOf.get(killerId);
+  const lieBroken = (st: SolverState): Why | null => {
+    if (!crimeLie) return null;
+    for (const t of crimeLie.ticks) {
+      const w = whyNot(st, killerId, t, crimeLie.claimed);
+      if (w) return w;
+    }
+    return null;
+  };
+  const goals = (st: SolverState, set?: Clue[]): boolean => {
     if (st.contradiction) return false;
+    if (crimeLie && set) {
+      if (!lieBroken(st)) return false;
+      if (culpritAccount && !set.some((c) => c.id === culpritAccount)) return false;
+    }
     const w = culpritOf(st);
     if (!w || w.id !== killerId) return false;
     const ticks = crimeTicks(st);
@@ -138,6 +155,10 @@ export function selectV2(input: LogicSelectInput): V2Selection | null {
   if (!cul) return fail('no culprit');
   add(cul.why);
   add(whyTick(full));
+  if (crimeLie && lieBroken(full)) {
+    add(lieBroken(full));
+    if (culpritAccount) need.add(culpritAccount);
+  }
   const legs: Clue[][] = [];
   const has = (pred: (f: Fact) => boolean) => findableCore.filter((c) => c.establishes.some(pred));
   const unknowns = act.unknowns;
@@ -153,7 +174,7 @@ export function selectV2(input: LogicSelectInput): V2Selection | null {
   }
   for (const c of starting) need.add(c.id);
   let parSet = findableCore.filter((c) => need.has(c.id));
-  const parSolves = (set: Clue[]): boolean => goals(solveAt(set));
+  const parSolves = (set: Clue[]): boolean => goals(solveAt(set), crimeLie && lieBroken(full) ? set : undefined);
   if (!parSolves(parSet)) parSet = findableCore.slice();
   const startIds = new Set(starting.map((c) => c.id));
   const keepsLeg = (set: Clue[]): boolean => legs.every((l) => l.length === 0 || l.some((x) => set.includes(x)));
@@ -286,6 +307,9 @@ export function selectV2(input: LogicSelectInput): V2Selection | null {
     input.startId,
     new Set([...confrontPseudoM9.map((c) => c.id), ...open]),
   );
+  // Hard should mean deeper, not longer (docs/34 §5): the tier's par ceiling
+  // holds, walked the shorter way the night is budgeted on.
+  if (par > ded.par[1]) return fail(`par ${par} is over the tier's ceiling of ${ded.par[1]}`);
 
   /* --- 9. the summary --------------------------------------------------------- */
   full = solveAt(findableCore);
