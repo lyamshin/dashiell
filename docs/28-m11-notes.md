@@ -91,12 +91,32 @@ Counted over 840 runs: seeds 1–40 × Raw…Hard-boiled and untiered, each play
 
 ## Checks
 
-- **Tests:** RESULTS_TESTS
+- **Tests:** 47 files, 876 tests, all passing (`npx vitest run --maxWorkers=2`). `npx tsc --noEmit` is clean. `test/m11-people.test.ts` is new (16 tests).
 - **Correspondence:** 0 from the engine over 280 oracle runs, 280 wanderers and 280 runs asking everybody about themselves and taking every rundown (seeds 1–40 × every tier and untiered), and 0 in the tests' own sweeps. The two generator sentences docs/23 lists under "Not fixed" (Medium, seeds 15 and 30) are still there and still counted apart.
 - **Beat coverage:** 100%, 10,727 of 10,727 night pages over those 840 runs; the M8 test's 5,455 of 5,455 (30,285 of 30,285 beats).
 - **Plain terms:** `npm run decks`: 5,992 cards across 40 decks, 0 errors, 0 banned terms. `test/plain-terms.test.ts` passes. `node scripts/check-character-drafts.mjs` passes on the moved deck.
 - **Structure:** identical, 600 of 600.
-- **Design test:** RESULTS_DESIGN
+- **Design test:** unchanged. `npx tsx scripts/diagnose-play.ts --design --seeds 100` gives the same table as `main` at d1ef7a5, line for line:
+
+| config | marks-follower names the culprit | reasoning player: who, when and the column all right, within budget | button-pusher names the culprit | reasoning player: facts put to somebody / run | reasoning player: actions | reasoning player: median calls to solve | median par / budget |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| d1 | 99% | 91% (who 99%, column —) | 65% | 0.0 (— landed) | 20.4 | 20 (budget 20) | 12 / 20 |
+| d2 | 93% | 84% (who 97%, column —) | 54% | 0.0 (— landed) | 18.6 | 18 (budget 19) | 13 / 19 |
+| d3 | 93% | 84% (who 96%, column —) | 50% | 0.0 (— landed) | 16.8 | 17 (budget 17) | 13 / 17 |
+| T0 | 23% | 100% (who 100%, column —) | 22% | 0.0 (— landed) | 6.2 | 6 (budget 10) | 7 / 10 |
+| T1L1 | 19% | 100% (who 100%, column —) | 18% | 0.0 (— landed) | 7.9 | 8 (budget 15) | 9 / 15 |
+| T1L2 | 18% | 100% (who 100%, column —) | 21% | 0.0 (— landed) | 8.0 | 8 (budget 14) | 9 / 14 |
+| T3L2 | 28% | 98% (who 98%, column —) | 25% | 0.1 (100% landed) | 10.0 | 9 (budget 14) | 9 / 14 |
+| T2L1 | 28% | 99% (who 99%, column —) | 28% | 0.1 (100% landed) | 8.7 | 9 (budget 13) | 7 / 13 |
+| T2L2 | 31% | 97% (who 97%, column —) | 25% | 0.1 (100% landed) | 8.7 | 9 (budget 11) | 7 / 11 |
+| T2L3 | 35% | 95% (who 95%, column —) | 26% | 0.2 (100% landed) | 9.0 | 9 (budget 10) | 7 / 10 |
+| T4L1 | 22% | 91% (who 93%, column 96%) | 16% | 0.5 (92% landed) | 14.6 | 14 (budget 21) | 13 / 21 |
+| T4L2 | 24% | 85% (who 88%, column 93%) | 18% | 0.4 (97% landed) | 14.9 | 14 (budget 18) | 12 / 18 |
+| T4L3 | 30% | 74% (who 84%, column 90%) | 29% | 0.6 (100% landed) | 14.6 | 14 (budget 17) | 13 / 17 |
+| T5L1 | 21% | 81% (who 85%, column 94%) | 27% | 2.3 (95% landed) | 22.2 | 21 (budget 27) | 17 / 27 |
+| T5L2 | 19% | 84% (who 89%, column 95%) | 17% | 2.4 (96% landed) | 21.8 | 22 (budget 25) | 17 / 25 |
+| T5L3 | 24% | 72% (who 78%, column 90%) | 19% | 1.9 (97% landed) | 21.1 | 20 (budget 23) | 17 / 23 |
+
 
 ## Where I judged
 
@@ -119,7 +139,7 @@ Counted over 840 runs: seeds 1–40 × Raw…Hard-boiled and untiered, each play
 
 ## Read-through
 
-Rendered after the last change with `npm run read -- --seed N --tier T --no-choices`, and the golden's routes with `--route`. I read each page against the golden. What read wrong and was engine-side is fixed (in the commits: the office's name once a turn, the look and street that echoed the entrance, "Start with you" after a life story, "X knew me from before" for the client on the house, the evening asked after a life story, the rundown's attribution and its face known by sight, the observation again on the rundown). The rest is under "Not fixed".
+Rendered after the last change with `npm run read -- --seed N --tier T --no-choices`, and the golden's routes with `--route`. I read each page against `seed3-people.md` for structure and `seed3-camp.md` for voice. What read wrong and was engine-side is fixed (in the commits: the office's name once a turn, the look and street that echoed the entrance, "Start with you" after a life story, "X knew me from before" for the client on the house, the evening asked after a life story, the rundown's attribution and its face known by sight, the observation again on the rundown). The rest is under "Not fixed".
 
 ### Seed 3 at Medium: the office, beside the golden
 
