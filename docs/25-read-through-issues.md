@@ -32,3 +32,8 @@ Found reading full runs after M10 and shorter nights (2026-09-23). Each item nam
 - **The client's briefing for a lost pet garbles who found what:** "It did not let itself out: the way out of the back lot is always kept shut. It was found standing open. It was me, at half past eleven. I got to the back lot and found the ginger tomcat gone." The finding needs to be said once, in the client's words: "I went round at half past eleven and the gate was standing open. The cat was gone."
 - **The owner's description comes from the archetype's standing line,** so a cat owner is introduced as "kept a file of what was not printed". For the new cases, the owner's standing line should fit the case.
 - **The trade line after "Why me?" still lands on its own:** "He sat the same desk from eight until six and ruled the columns by hand." This is the same problem as the item after M11.
+
+## After v2 slice, 2026-09-24
+- **Chloral both gone and present on one search page** (seed 3, Medium, v2, page 5): "A bottle of chloral sleeping drops was gone from the third floor… There was a bottle of chloral sleeping drops in the room." The object list for a place must exclude an object that a find says is missing.
+- **The whistle heard twice on the scene page** (the motif plant, then the scene clue). Fold the motif plant into the clue when both land on one page.
+- **The detective's gender** comes up in one ending card: "I have never been a man who opens drawers that aren't his." Decide whether the detective has a fixed gender, or make these lines neutral.
