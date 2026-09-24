@@ -284,22 +284,27 @@ describe('M10 §A.3: pacing', () => {
 });
 
 describe('M10: "That cleared X" only when two facts agree about the crime’s half hour', () => {
-  it('seed 11 at Raw: Donnelly’s own word and Mulcahy’s sightings either side of half past nine do not clear him', () => {
+  // Seed 11 at Raw was Donnelly and Mulcahy, two customers of a society
+  // columnist, who sells nothing; the coherence pass deals the seed again,
+  // and the same thing happens to Callahan: his own word, and Brauer's
+  // sightings of him either side of nine o'clock.
+  it('seed 11 at Raw: Callahan’s own word and Brauer’s sightings either side of nine o’clock do not clear him', () => {
     const view = tiered(11, 0);
-    const donnelly = view.kase.people.find((p) => p.surname === 'Donnelly') as { id: Id };
+    const callahan = view.kase.people.find((p) => p.surname === 'Callahan') as { id: Id };
     const steps = playOracle(view).steps.map((s) => s.command);
-    const at = steps.indexOf('ask Mulcahy about Donnelly');
-    expect(at, 'the route asks Mulcahy about Donnelly').toBeGreaterThanOrEqual(0);
+    const at = steps.indexOf('ask Brauer about Callahan');
+    expect(at, 'the route asks Brauer about Callahan').toBeGreaterThanOrEqual(0);
+    expect(steps.indexOf('ask Callahan about that evening')).toBeLessThan(at);
     const state = play(view, steps.slice(0, at + 1));
     const page = state.log[state.log.length - 1] as Page;
-    // What Mulcahy saw: Donnelly at the stairwell, but not at the crime's half hour.
+    // What Brauer saw: Callahan before and after, but not at the crime's half hour.
     const ticks = crimeTicks(solveHeld(view.kase, state.found));
     expect(ticks.length).toBeGreaterThan(0);
-    for (const t of ticks) expect(placedAwayBy(view, state.found, donnelly.id, t)).toBe(false);
-    expect(clearedOnTwo(view, state.found).has(donnelly.id)).toBe(false);
+    for (const t of ticks) expect(placedAwayBy(view, state.found, callahan.id, t)).toBe(false);
+    expect(clearedOnTwo(view, state.found).has(callahan.id)).toBe(false);
     const clears = (page.beats ?? []).filter((b) => b.kind === 'thought' && b.tag === 'clears');
     expect(clears.map((b) => b.text)).toEqual([]);
-    expect(text(page)).not.toMatch(/cleared Donnelly/);
+    expect(text(page)).not.toMatch(/cleared Callahan/);
   });
 
   it('never clears on two facts unless somebody else’s word covers every crime half hour, over 40 seeds at Raw and Coddled', () => {
