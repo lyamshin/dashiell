@@ -208,7 +208,10 @@ export function recapFacts(
           fillLine(pick(RECAP_WHEN[variant] ?? []), {
             Victim: victim.surname,
             Object: object ? cap(object) : undefined,
-            place: scene.shortName,
+            // "Tramonti died at his place", not at Tramonti's.
+            place: base === 'murder' && (scene.shortName.startsWith(`${victim.surname}’s `) || scene.shortName.startsWith(`${victim.surname}'s `))
+              ? `${pronounOf(victim) === 'she' ? 'her' : 'his'} ${scene.shortName.slice(victim.surname.length + 3)}`
+              : scene.shortName,
             span: when,
           }),
       });

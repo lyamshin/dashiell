@@ -70,6 +70,16 @@ function withText(block: Block, text: string): Block {
  * full at its first mention. `log` is the night's pages before this one.
  */
 export function nameFirstMentions(view: CaseView, log: readonly Page[], blocks: Block[]): Block[] {
+  // After the naming, a possessive on a name that is one already folds:
+  // "Mock’s's sign" is Mock’s sign. (Before it, the doubled form is what keeps
+  // the first mention from landing on a possessive.)
+  return firstMentions(view, log, blocks).map((b) => {
+    const text = textOf(b);
+    return text === null ? b : withText(b, text.replace(/([’'])s['’]s\b/g, '$1s'));
+  });
+}
+
+function firstMentions(view: CaseView, log: readonly Page[], blocks: Block[]): Block[] {
   const named = view.places.filter((p) => p.names !== undefined);
   if (named.length === 0) return blocks;
   const before = log.flatMap((p) => p.blocks.map(textOf).filter((t): t is string => t !== null)).join('\n');
@@ -97,7 +107,11 @@ export function nameFirstMentions(view: CaseView, log: readonly Page[], blocks: 
       if (at < 0) continue;
       const capital = /[A-Z]/.test(text.charAt(at)) && /(?:^|[.!?]\s+|[“"]\s*)$/.test(text.slice(0, at));
       const said = capital ? proper.charAt(0).toUpperCase() + proper.slice(1) : proper;
-      out[b] = withText(out[b] as Block, text.slice(0, at) + said + text.slice(at + form.length));
+      // A name that ends on an aside ("…Street, the house with the fanlight")
+      // closes it before the sentence goes on.
+      const rest = text.slice(at + form.length);
+      const close = proper.includes(', ') && /^ [a-z]/.test(rest) ? ',' : '';
+      out[b] = withText(out[b] as Block, text.slice(0, at) + said + close + rest);
       break;
     }
   }
