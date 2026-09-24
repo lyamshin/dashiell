@@ -1,0 +1,233 @@
+[
+  {
+    "id": "RCP-001",
+    "deck": "recap",
+    "text": "I went back over it, which is the part of the job where you find out how little you have.",
+    "tags": {
+      "kind": "open",
+      "trigger": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-002",
+    "deck": "recap",
+    "text": "I found a quiet corner and went over what I had. It didn’t take as long as I’d have liked.",
+    "tags": {
+      "kind": "open",
+      "trigger": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-003",
+    "deck": "recap",
+    "text": "I sat back and went over it.",
+    "tags": {
+      "kind": "open",
+      "trigger": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-004",
+    "deck": "recap",
+    "text": "I stood where I was and went through the notebook from the top.",
+    "tags": {
+      "kind": "open",
+      "trigger": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-005",
+    "deck": "recap",
+    "text": "I took the notebook out and went over it from the top, slowly, because slowly is the only speed it has.",
+    "tags": {
+      "kind": "open",
+      "trigger": "demand"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-006",
+    "deck": "recap",
+    "text": "I stopped and took stock. Taking stock is free, which is the best thing I can say about it.",
+    "tags": {
+      "kind": "open",
+      "trigger": "demand"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-007",
+    "deck": "recap",
+    "text": "It was getting late, and late is when you count what you’ve got.",
+    "tags": {
+      "kind": "open",
+      "trigger": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-008",
+    "deck": "recap",
+    "text": "Another hour had gone, and I went over what it had bought me.",
+    "tags": {
+      "kind": "open",
+      "trigger": "hour"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-009",
+    "deck": "recap",
+    "text": "Somebody’s story had come apart, and that’s a good time to go over all the others.",
+    "tags": {
+      "kind": "open",
+      "trigger": "lie"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-010",
+    "deck": "recap",
+    "text": "Now I had two versions of one half hour, and I went back over the rest to see what else wobbled.",
+    "tags": {
+      "kind": "open",
+      "trigger": "lie"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-011",
+    "deck": "recap",
+    "text": "When somebody changes a story, you check all the other ones. I went over what I had.",
+    "tags": {
+      "kind": "open",
+      "trigger": "confront"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-012",
+    "deck": "recap",
+    "text": "I let that settle and went back over it from the top.",
+    "tags": {
+      "kind": "open",
+      "trigger": "confront"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-013",
+    "deck": "recap",
+    "text": "The hour that mattered had got smaller, and I went over everything else against it.",
+    "tags": {
+      "kind": "open",
+      "trigger": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-014",
+    "deck": "recap",
+    "text": "Now I knew when better than I had, and I went over the rest with that in mind.",
+    "tags": {
+      "kind": "open",
+      "trigger": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-015",
+    "deck": "recap",
+    "text": "I had put a name to a face, in pencil, and that called for going over everything else.",
+    "tags": {
+      "kind": "open",
+      "trigger": "link"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-016",
+    "deck": "recap",
+    "text": "That was the night so far: a lot of people who were somewhere, and one half hour nobody was keen to talk about.",
+    "tags": {
+      "kind": "close",
+      "trigger": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-017",
+    "deck": "recap",
+    "text": "That was where things stood. It wasn’t far, but it was further than the police had got.",
+    "tags": {
+      "kind": "close",
+      "trigger": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-018",
+    "deck": "recap",
+    "text": "That was it. It fitted on one page of the notebook, which is either good news or bad.",
+    "tags": {
+      "kind": "close",
+      "trigger": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-019",
+    "deck": "recap",
+    "text": "That was the whole of it, as of now. It’s always the whole of it, as of now.",
+    "tags": {
+      "kind": "close",
+      "trigger": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-020",
+    "deck": "recap",
+    "text": "That was the night so far, laid out flat.",
+    "tags": {
+      "kind": "close",
+      "trigger": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-021",
+    "deck": "recap",
+    "text": "That was what I had. None of it was a name yet, and I wasn’t going to pretend otherwise.",
+    "tags": {
+      "kind": "close",
+      "trigger": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

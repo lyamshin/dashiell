@@ -1,0 +1,650 @@
+[
+  {
+    "id": "APR-001",
+    "deck": "approach",
+    "text": "I took the stool next to {name}.",
+    "tags": {
+      "setting": "bar",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-002",
+    "deck": "approach",
+    "text": "I sat down next to {name} and put my hat on the bar, which is how you say you’re staying.",
+    "tags": {
+      "setting": "bar",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-003",
+    "deck": "approach",
+    "text": "I pulled out the chair across from {name} and sat in it before {he} could think of a reason I shouldn’t.",
+    "tags": {
+      "setting": "bar",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-004",
+    "deck": "approach",
+    "text": "I took the stool next to {name}, who was {doing}.",
+    "tags": {
+      "setting": "bar",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-005",
+    "deck": "approach",
+    "text": "I sat down across from {name}, who was {doing}.",
+    "tags": {
+      "setting": "bar",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-006",
+    "deck": "approach",
+    "text": "I found a foot of rail next to {name} and leaned on it.",
+    "tags": {
+      "setting": "bar",
+      "posture": "standing",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-007",
+    "deck": "approach",
+    "text": "I leaned on the bar beside {name}.",
+    "tags": {
+      "setting": "bar",
+      "posture": "standing",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-008",
+    "deck": "approach",
+    "text": "I leaned on the bar beside {name}, who was {doing}.",
+    "tags": {
+      "setting": "bar",
+      "posture": "standing",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-009",
+    "deck": "approach",
+    "text": "I leaned on the bar across from {name}.",
+    "tags": {
+      "setting": "bar",
+      "posture": "behind",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-010",
+    "deck": "approach",
+    "text": "I took the stool at {name}’s end of the bar.",
+    "tags": {
+      "setting": "bar",
+      "posture": "behind",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-011",
+    "deck": "approach",
+    "text": "I leaned on the bar across from {name}, who was {doing}.",
+    "tags": {
+      "setting": "bar",
+      "posture": "behind",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-012",
+    "deck": "approach",
+    "text": "I took the next stool along the counter from {name}.",
+    "tags": {
+      "setting": "counter",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-013",
+    "deck": "approach",
+    "text": "I sat down at {name}’s table with my hat in my hands, which is as close as I get to asking.",
+    "tags": {
+      "setting": "counter",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-014",
+    "deck": "approach",
+    "text": "I sat down across the little table from {name}, who was {doing}.",
+    "tags": {
+      "setting": "counter",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-015",
+    "deck": "approach",
+    "text": "I stepped up to the counter beside {name}.",
+    "tags": {
+      "setting": "counter",
+      "posture": "standing",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-016",
+    "deck": "approach",
+    "text": "I stood at the counter next to {name}, who was {doing}.",
+    "tags": {
+      "setting": "counter",
+      "posture": "standing",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-017",
+    "deck": "approach",
+    "text": "I leaned on the counter across from {name}.",
+    "tags": {
+      "setting": "counter",
+      "posture": "behind",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-018",
+    "deck": "approach",
+    "text": "I put my elbows on {name}’s counter, which {he} didn’t care for.",
+    "tags": {
+      "setting": "counter",
+      "posture": "behind",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-019",
+    "deck": "approach",
+    "text": "I leaned on the counter across from {name}, who was {doing}.",
+    "tags": {
+      "setting": "counter",
+      "posture": "behind",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-020",
+    "deck": "approach",
+    "text": "I caught up with {name} by the curb.",
+    "tags": {
+      "setting": "street",
+      "posture": "standing",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-021",
+    "deck": "approach",
+    "text": "I stopped beside {name} and looked at whatever {he} was looking at, which was nothing much.",
+    "tags": {
+      "setting": "street",
+      "posture": "standing",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-022",
+    "deck": "approach",
+    "text": "I fell in next to {name} and turned my collar up.",
+    "tags": {
+      "setting": "street",
+      "posture": "standing",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-023",
+    "deck": "approach",
+    "text": "I caught up with {name}, who was {doing}.",
+    "tags": {
+      "setting": "street",
+      "posture": "standing",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-024",
+    "deck": "approach",
+    "text": "I sat down on the cold end of the bench, next to {name}.",
+    "tags": {
+      "setting": "street",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-025",
+    "deck": "approach",
+    "text": "I sat down at the other end of the bench from {name}, who was {doing}.",
+    "tags": {
+      "setting": "street",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-026",
+    "deck": "approach",
+    "text": "I leaned on the front of {name}’s stand.",
+    "tags": {
+      "setting": "street",
+      "posture": "behind",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-027",
+    "deck": "approach",
+    "text": "I leaned on the front of the stand, where {name} was {doing}.",
+    "tags": {
+      "setting": "street",
+      "posture": "behind",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-028",
+    "deck": "approach",
+    "text": "I caught up with {name} on the stair.",
+    "tags": {
+      "setting": "stair",
+      "posture": "any",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-029",
+    "deck": "approach",
+    "text": "I met {name} on the landing, which was the only flat place in the building.",
+    "tags": {
+      "setting": "stair",
+      "posture": "any",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-030",
+    "deck": "approach",
+    "text": "I stopped two steps below {name}, which is a bad place to ask anybody anything.",
+    "tags": {
+      "setting": "stair",
+      "posture": "any",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-031",
+    "deck": "approach",
+    "text": "I climbed up to {name}, who was {doing}.",
+    "tags": {
+      "setting": "stair",
+      "posture": "any",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-032",
+    "deck": "approach",
+    "text": "I sat down on the step below {name}.",
+    "tags": {
+      "setting": "stair",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-033",
+    "deck": "approach",
+    "text": "I sat down on the step below {name}, who was {doing}.",
+    "tags": {
+      "setting": "stair",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-034",
+    "deck": "approach",
+    "text": "I took the chair across from {name}.",
+    "tags": {
+      "setting": "room",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-035",
+    "deck": "approach",
+    "text": "I sat down across from {name} without being asked, which is how I get most of my chairs.",
+    "tags": {
+      "setting": "room",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-036",
+    "deck": "approach",
+    "text": "I pulled up a chair near {name}, who was {doing}.",
+    "tags": {
+      "setting": "room",
+      "posture": "seated",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-037",
+    "deck": "approach",
+    "text": "I crossed the room to {name}.",
+    "tags": {
+      "setting": "room",
+      "posture": "standing",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-038",
+    "deck": "approach",
+    "text": "I went over to {name} and stood where {he} could see me.",
+    "tags": {
+      "setting": "room",
+      "posture": "standing",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-039",
+    "deck": "approach",
+    "text": "I crossed the room to {name}, who was {doing}.",
+    "tags": {
+      "setting": "room",
+      "posture": "standing",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-040",
+    "deck": "approach",
+    "text": "I sat back down behind my desk, across from {name}.",
+    "tags": {
+      "setting": "office",
+      "posture": "any",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-041",
+    "deck": "approach",
+    "text": "{name} was still in the good chair. I took the other one.",
+    "tags": {
+      "setting": "office",
+      "posture": "any",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-042",
+    "deck": "approach",
+    "text": "I leaned back in my chair and looked at {name} across the desk.",
+    "tags": {
+      "setting": "office",
+      "posture": "any",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-043",
+    "deck": "approach",
+    "text": "I went over to {name}.",
+    "tags": {
+      "setting": "any",
+      "posture": "any",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-044",
+    "deck": "approach",
+    "text": "I found {name} and stood where {he} couldn’t pretend not to see me.",
+    "tags": {
+      "setting": "any",
+      "posture": "any",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-045",
+    "deck": "approach",
+    "text": "I went over to {name}, who was {doing}.",
+    "tags": {
+      "setting": "any",
+      "posture": "any",
+      "again": "no"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-046",
+    "deck": "approach",
+    "text": "I turned back to {name}.",
+    "tags": {
+      "setting": "any",
+      "posture": "any",
+      "again": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-047",
+    "deck": "approach",
+    "text": "I wasn’t finished with {name}, and I said so.",
+    "tags": {
+      "setting": "any",
+      "posture": "any",
+      "again": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-048",
+    "deck": "approach",
+    "text": "I had another one for {name}.",
+    "tags": {
+      "setting": "any",
+      "posture": "any",
+      "again": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-049",
+    "deck": "approach",
+    "text": "{name} hadn’t gone anywhere, and neither had I.",
+    "tags": {
+      "setting": "any",
+      "posture": "any",
+      "again": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-050",
+    "deck": "approach",
+    "text": "I stayed where I was, next to {name}.",
+    "tags": {
+      "setting": "any",
+      "posture": "any",
+      "again": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-051",
+    "deck": "approach",
+    "text": "I kept my stool and turned back to {name}.",
+    "tags": {
+      "setting": "bar",
+      "posture": "any",
+      "again": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-052",
+    "deck": "approach",
+    "text": "I pushed my glass an inch to one side and turned back to {name}.",
+    "tags": {
+      "setting": "bar",
+      "posture": "any",
+      "again": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-053",
+    "deck": "approach",
+    "text": "I stamped my feet for the warmth and turned back to {name}.",
+    "tags": {
+      "setting": "street",
+      "posture": "any",
+      "again": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "APR-054",
+    "deck": "approach",
+    "text": "I turned back to {name} across the desk.",
+    "tags": {
+      "setting": "office",
+      "posture": "any",
+      "again": "yes"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

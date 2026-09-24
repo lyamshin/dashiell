@@ -412,7 +412,9 @@ export interface Price {
     /** M10 §A.3: "Go on" — the rest of what a page broke off telling. Free. */
     | 'continue'
     /** M11 §A.5: the client names who is in the room. Free, once a visit. */
-    | 'rundown';
+    | 'rundown'
+    /** M12 Part 2: "Go over what I have". Free, anywhere but the office. */
+    | 'recap';
 }
 
 /** The key a question is remembered under: who, and the topic as the parser reads it. */
@@ -469,6 +471,15 @@ export function rundownOpen(view: CaseView, state: RunState): boolean {
   return memory.rundown !== memory.visit;
 }
 
+/**
+ * M12 Part 2: "Go over what I have" is offered anywhere but the office, once
+ * the night has started (the office is where the client is, and page one is
+ * her brief, not his notes).
+ */
+export function recapOpen(view: CaseView, state: RunState): boolean {
+  return state.at !== view.office.id && !state.reportOpen && !state.filed;
+}
+
 /** M10 §A.3: the command that goes on with a held-back telling here, or null. */
 export function continuationOf(view: CaseView, state: RunState): string | null {
   return pendingFor(view, state, { kind: 'continue' }) === null ? null : 'go on';
@@ -514,6 +525,8 @@ export function priceOf(command: Command, state: RunState, view: CaseView): Pric
         : { cost: 0, waived: 0, reason: 'continue' };
     case 'rundown':
       return rundownOpen(view, state) ? { cost: 0, waived: 0, reason: 'rundown' } : { cost: 0, waived: 0, reason: 'nobody' };
+    case 'recap':
+      return recapOpen(view, state) ? { cost: 0, waived: 0, reason: 'recap' } : { cost: 0, waived: 0, reason: 'nobody' };
     case 'go':
       return command.placeId === state.at
         ? { cost: 0, waived: 0, reason: 'still' }

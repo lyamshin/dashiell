@@ -115,7 +115,19 @@ export function observation(
   const clause = tieClause(view, person, tie);
   const who = `The ${noun} ${clause}`;
   const hour = hourSaid(minutes);
-  const comma = doing.indexOf(',');
-  const body = comma < 0 ? `${doing} ${hour}` : `${doing.slice(0, comma)} ${hour}${doing.slice(comma)}`;
-  return `${who} was ${body}.`;
+  // docs/25 (after M11): the presence line has told the activity whole, joke
+  // and all. The observation keeps only the plain action, and adds what the
+  // presence line did not: the hour, and the tie to the case.
+  return `${who} was ${plainAction(doing)} ${hour}.`;
+}
+
+/**
+ * The plain action of an activity: up to its first comma, and short of a
+ * second clause ("tapping ash from a cigarette without breaking a sentence"
+ * is "tapping ash from a cigarette"). "reading a folded newspaper, not turning
+ * the page" is "reading a folded newspaper".
+ */
+export function plainAction(doing: string): string {
+  const head = (doing.split(',')[0] ?? doing).trim();
+  return head.replace(/\s+(?:while|without|as if|as though|like)\b.*$/, '').replace(/\s+and\s+(?=\w+ing\b).*$/, '').trim();
 }

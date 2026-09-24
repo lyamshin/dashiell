@@ -803,3 +803,34 @@ export const HIRING_DASHIELL: Record<'yes' | 'no', string[]> = {
   no: ['“That’s all?” I said.', '“All right,” I said.', '“It’ll do to start,” I said.', '“I’ve started on less,” I said.'],
   yes: ['“I remember,” I said.', '“Same as last time, then,” I said.', '“All right,” I said.'],
 };
+
+/* ------------------------------------------------------------------ *
+ * M12 Part 1 — the ask, in reported speech.
+ * ------------------------------------------------------------------ */
+
+/**
+ * The question told in his narration, by what the answer tells (the family of
+ * facts the first telling is): "I asked her where she'd been tonight." {him}
+ * {he} {his} are the person he asks; {name} the one the question is about;
+ * {anchor} the thing the block times itself by; {topic} the thing asked about.
+ * No hour, no place by name.
+ */
+export const ASK_REPORTED: Record<string, string[]> = {
+  evening: [
+    'I asked {him} where {he}’d been tonight.',
+    'I asked {him} for {his} evening, start to finish.',
+    'I asked {him} to walk me through {his} evening.',
+    'I asked {him} where {he}’d been tonight. I asked it nicely.',
+  ],
+  movements: [
+    'I asked {him} where {name} had been tonight.',
+    'I asked what {he} had seen of {name} tonight.',
+    'I asked {him} about {name}’s evening, as much of it as {he} had seen.',
+  ],
+  knowing: ['I asked {him} how well {he} knew {name}.', 'I asked {him} what {name} was to {him}.'],
+  counts: ['I asked {him} who had come and gone tonight, and when.', 'I asked {him} to count me the comings and goings.'],
+  strangers: ['I asked {him} about the faces {he} hadn’t known.', 'I asked whether anybody had come through that {he} didn’t know.'],
+  timing: ['I asked {him} what time {anchor} was.', 'I asked {him} if {he} knew when {anchor} was.'],
+  event: ['I asked {him} what {he} remembered of {anchor}.', 'I asked {him} about {anchor}.'],
+  thing: ['I asked {him} about {topic}.', 'I asked {him} what {he} knew about {topic}.'],
+};
