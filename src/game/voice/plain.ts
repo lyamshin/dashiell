@@ -1140,8 +1140,9 @@ export function gossipTarget(
  * has her say "Eleven years this spring. My husband bought it and I've kept
  * it since he died."
  *
- * Temper is how much of it: a plain talker gives the history, the work and a
- * habit; a yapper a second habit on top; an enigma — somebody guarded, not a
+ * Temper is how much of it: a plain talker gives the work and the history (and
+ * the page adds one line of their kind's talk); a yapper a habit on top; an
+ * enigma — somebody guarded, not a
  * mystery — the history's first sentence and the work, and stops. Guarded
  * people hold back about the night, not about their lives.
  */
@@ -1161,7 +1162,7 @@ export function selfTelling(
     // the history first instead when that is what the question asked ("How
     // long have you had the house?").
     const history = temper === 'enigma' ? firstOf(character.history.first) : character.history.first;
-    life = [drawn?.first ?? '', history, ...(temper === 'enigma' ? [] : habits.slice(0, temper === 'yap' ? 2 : 1))].filter(
+    life = [drawn?.first ?? '', history, ...(temper === 'enigma' ? [] : habits.slice(0, temper === 'yap' ? 1 : 0))].filter(
       (x) => x.length > 0,
     );
     return { life, tie: suspectTie(person, temper), history };

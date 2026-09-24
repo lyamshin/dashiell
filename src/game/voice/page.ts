@@ -2727,7 +2727,13 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     }
     // After the first thing she says, he lets her go on.
     if (i === 0 && turns.length > 1) {
-      const line = beatLine(OFFICE_FIRST_BEAT, firstBeatSlots);
+      // Not "I offered her the chair" after an entrance that has her in it already,
+      // nor "I let her sit" once she has sat.
+      const seated = /\b(?:chair|sat|seat|sitting|sit)\b/i.test(`${arrival ?? ''} ${entrance.text}`);
+      const line = beatLine(
+        seated ? OFFICE_FIRST_BEAT.filter((b) => !/\b(?:chair|sit)\b/.test(b)) : OFFICE_FIRST_BEAT,
+        firstBeatSlots,
+      );
       if (line.length > 0) t.say(line, 'narrator', { transparent: true });
     }
   }

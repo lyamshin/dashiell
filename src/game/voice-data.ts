@@ -404,9 +404,9 @@ export const OFFICE_KINDS: { kind: string; names: string[] }[] = [
   {
     kind: 'office-building',
     names: [
-      'an office on the fourth floor of a building off {street}',
-      'a back office three flights up in a building off {street}',
-      'an office with my name on the door, three flights up off {street}',
+      'a back room on the fourth floor of a building off {street}',
+      'two chairs and a desk three flights up in a building off {street}',
+      'a room behind a door with my name on it, three flights up off {street}',
     ],
   },
   {
@@ -421,7 +421,7 @@ export const OFFICE_KINDS: { kind: string; names: string[] }[] = [
     kind: 'front-room',
     names: ['the front room of my flat on {street}', 'the front room of a second-floor flat on {street}'],
   },
-  { kind: 'end-of-the-hall', names: ['an office at the end of a hall over {trade} on {street}', 'the last door on the landing over {trade} on {street}'] },
+  { kind: 'end-of-the-hall', names: ['a room at the end of a hall over {trade} on {street}', 'the last door on the landing over {trade} on {street}'] },
 ];
 
 /** And what is downstairs from him. */
