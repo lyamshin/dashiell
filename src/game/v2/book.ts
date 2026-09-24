@@ -167,7 +167,7 @@ function personSlots(view: CaseView, state: Pick<RunState, 'log' | 'found'>, pre
 
 const ACT_ORDER: ActId[] = ['hook', 'scene', 'widening', 'turn', 'narrowing'];
 
-function chapterTitle(view: CaseView, book: Book, act: ActId, mem: V2Memory): string | null {
+function chapterTitle(view: CaseView, book: Book, act: ActId, mem: V2Memory, override?: string[]): string | null {
   const lines = BOOK_LINES.books[book.id];
   const motifName = book.motif?.name;
   const slots: Record<string, string | undefined> = {
@@ -175,7 +175,7 @@ function chapterTitle(view: CaseView, book: Book, act: ActId, mem: V2Memory): st
     victim: view.victim.surname,
     title: book.title,
   };
-  const pool = act === 'hook' ? (BOOK_LINES.hookByType[view.kase.act.type] ?? lines.chapters.hook) : lines.chapters[act];
+  const pool = override ?? (act === 'hook' ? (BOOK_LINES.hookByType[view.kase.act.type] ?? lines.chapters.hook) : lines.chapters[act]);
   const name = sayOne(pool, slots, mem, view.kase.seed, `chapter:${act}`) ?? (act === 'scene' ? 'The Scene' : null);
   if (!name) return null;
   const n = mem.acts.length + 1;
@@ -195,12 +195,12 @@ function chapterBlock(text: string): Block {
   return { kind: 'prose', text, voice: 'chapter' };
 }
 
-function openAct(view: CaseView, book: Book, act: ActId, mem: V2Memory, page: number): Block | null {
+function openAct(view: CaseView, book: Book, act: ActId, mem: V2Memory, page: number, override?: string[]): Block | null {
   if (mem.acts.includes(act)) return null;
   // Acts only go forward: a later act opened closes the earlier ones.
   const at = ACT_ORDER.indexOf(act);
   if (mem.acts.some((a) => ACT_ORDER.indexOf(a) > at)) return null;
-  const title = chapterTitle(view, book, act, mem);
+  const title = chapterTitle(view, book, act, mem, override);
   mem.acts.push(act);
   mem.actPages.push(page);
   return title ? chapterBlock(title) : null;
@@ -248,12 +248,19 @@ function catcherOf(view: CaseView, step: GraphStep): { kind: string; clue?: Clue
   const clues = step.leaves.map((id) => view.findableById.get(id)).filter((c): c is Clue => !!c);
   const liar = step.personId as Id;
   const ticks = step.ticks ?? [];
+  // The half hour that matters first, where the piece says it: the crime's.
+  const M = view.kase.solution.murderTick;
+  const atM = (f: Fact): boolean => ('tick' in f && f.tick === M) || ('ticks' in f && f.ticks.includes(M));
   const find = (pred: (f: Fact) => boolean): { clue: Clue; fact: Fact } | null => {
+    let first: { clue: Clue; fact: Fact } | null = null;
     for (const c of clues) {
-      const f = c.establishes.find(pred);
-      if (f) return { clue: c, fact: f };
+      for (const f of c.establishes) {
+        if (!pred(f)) continue;
+        if (atM(f)) return { clue: c, fact: f };
+        first ??= { clue: c, fact: f };
+      }
     }
-    return null;
+    return first;
   };
   const count = find((f) => f.kind === 'countAt' && f.place === step.place && ticks.includes(f.tick));
   if (count) return { kind: 'count', ...count };
@@ -359,8 +366,9 @@ export function bookPass(view: CaseView, before: RunState, after: RunState, page
     if (h) top.push(h);
   }
 
-  // The tell: the page that brings the piece the book is about.
-  if (!mem.roles.tell) {
+  // The tell: the page that brings the piece the book is about, while it can
+  // still set the turn up.
+  if (!mem.roles.tell && !mem.acts.includes('turn')) {
     const pieces = tellPieces(view, book, graph);
     const gained = page.found.filter((id) => pieces?.ids.has(id));
     if (pieces && gained.length > 0) {
@@ -374,8 +382,15 @@ export function bookPass(view: CaseView, before: RunState, after: RunState, page
         mem.roles.tell = { text, short, kind: pieces.kind };
         // Right after the words that brought the piece, before what he makes of it.
         const at = page.blocks.findIndex((b) => b.kind === 'prose' && b.clueId === clue.id);
-        if (at >= 0) page.blocks.splice(at + 1, 0, { kind: 'prose', text: carry, voice: 'thought' });
-        else insertBeforeRecap(page, [{ kind: 'prose', text: carry, voice: 'thought' }]);
+        // Else before the page names its next lead, or its recap.
+        const bridge = page.blocks.findIndex((b) => b.kind === 'prose' && (b.voice === 'bridge' || b.voice === 'recap'));
+        const line: Block = { kind: 'prose', text: carry, voice: 'thought' };
+        // After his note on it, when the next paragraph is his and not theirs.
+        const note = page.blocks[at + 1];
+        const after = note && note.kind === 'prose' && !/^[“"]/.test(note.text) && note.voice !== 'bridge' && note.voice !== 'recap' ? at + 2 : at + 1;
+        if (at >= 0) page.blocks.splice(after, 0, line);
+        else if (bridge >= 0) page.blocks.splice(bridge, 0, line);
+        else insertBeforeRecap(page, [line]);
       }
     }
   }
@@ -394,8 +409,8 @@ export function bookPass(view: CaseView, before: RunState, after: RunState, page
         // The turn is the page's recap: M12's, if it wrote one here, gives way.
         page.blocks = page.blocks.filter((b) => !(b.kind === 'prose' && b.voice === 'recap'));
         page.beats = (page.beats ?? []).filter((b) => b.kind !== 'recap');
-        const h = openAct(view, book, 'turn', mem, page.n);
-        page.blocks.push(...(h ? [h] : []), ...turn.map((text) => ({ kind: 'prose' as const, text, voice: 'recap' as const })));
+        const h = openAct(view, book, 'turn', mem, page.n, turn.matched ? undefined : TURN_PLAIN);
+        page.blocks.push(...(h ? [h] : []), ...turn.paras.map((text) => ({ kind: 'prose' as const, text, voice: 'recap' as const })));
       }
     }
   } else if (mem.acts.includes('turn') && !mem.acts.includes('narrowing') && page.n > (mem.actPages[mem.acts.indexOf('turn')] ?? 0)) {
@@ -445,13 +460,17 @@ function turnRecap(
   after: RunState,
   newly: string[],
   mem: V2Memory,
-): string[] | null {
+): { paras: string[]; matched: boolean } | null {
   const seed = view.kase.seed;
   const step = graph.steps.find((s) => s.id === newly[0]);
   if (!step || !step.personId || !step.place) return null;
   const liar = view.personById.get(step.personId);
   const caught = catcherOf(view, step);
-  const tick: Tick = caught.fact && 'tick' in caught.fact ? (caught.fact as { tick: Tick }).tick : ((step.ticks ?? [])[step.ticks!.length - 1] as Tick);
+  const M = view.kase.solution.murderTick as Tick;
+  const lieTicks = step.ticks ?? [];
+  const factTicks: Tick[] = !caught.fact ? [] : 'tick' in caught.fact ? [caught.fact.tick] : 'ticks' in caught.fact ? caught.fact.ticks : [];
+  const both = factTicks.filter((t) => lieTicks.includes(t));
+  const tick: Tick = both.includes(M) ? M : (both[0] ?? (lieTicks.includes(M) ? M : (lieTicks[lieTicks.length - 1] as Tick)));
   const witness = caught.clue?.source.type === 'person' ? view.personById.get(caught.clue.source.personId) : undefined;
   const slots: Record<string, string | undefined> = {
     ...personSlots(view, after, 'liar', liar),
@@ -510,14 +529,33 @@ function turnRecap(
     const more = sayOne(BOOK_LINES.turnMore, { ...slots, n: NUMBER_WORDS[newly.length] }, mem, seed, 'turnMore');
     if (more) second.push(more);
   }
-  const close = sayOne(BOOK_LINES.books[book.id].turnClose, slots, mem, seed, 'turnClose');
+  // The book's own last word, when what caught the lie is what the book is
+  // about; otherwise the plain one (a Count book whose first lie fell to a
+  // plain sighting does not talk about counting yet).
+  const matched = turnMatches(book, kind);
+  const close = sayOne(BOOK_LINES.books[matched ? book.id : 'lied'].turnClose, slots, mem, seed, 'turnClose');
   if (close) second.push(close);
   const next = sayOne(BOOK_LINES.turnNext, slots, mem, seed, 'turnNext');
   if (next) second.push(next);
   if (second.length > 0) out.push(second.join(' '));
   void before;
-  return out;
+  return { paras: out, matched };
 }
+
+/** Does the piece that caught the lie belong to the book's technique? */
+function turnMatches(book: Book, kind: string): boolean {
+  const kinds: Record<BookId, string[]> = {
+    count: ['count', 'countOne', 'absence'],
+    stranger: ['stranger'],
+    clock: ['anchor'],
+    web: ['together'],
+    lied: [],
+  };
+  return book.id === 'lied' || kinds[book.id].includes(kind);
+}
+
+/** The turn's chapter, when the lie fell to something other than the book's own piece. */
+const TURN_PLAIN = ['Something That Didn’t Fit', 'Two Stories'];
 
 /* ------------------------------------------------------------ the ending */
 

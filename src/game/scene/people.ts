@@ -48,7 +48,7 @@ export function knownTie(view: CaseView, person: Person, found: readonly Id[]): 
  * item — the thing gone. "Who had found Schilling" of a missing watch had the
  * owner lying on the floor.
  */
-function foundWhat(view: CaseView): string {
+export function foundWhat(view: CaseView): string {
   const act = view.kase.act;
   if (isTheft(act.type) && act.taken) return `${act.taken.name.replace(/^(a|an) /, 'the ')} gone`;
   return view.victim.surname;

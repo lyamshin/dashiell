@@ -4,11 +4,21 @@
     "count": {
       "title": "The Count",
       "chapters": {
-        "hook": ["Somebody on the Stairs"],
-        "scene": ["{Motif}"],
-        "widening": ["Everybody Was Somewhere"],
-        "turn": ["The Count"],
-        "narrowing": ["Nowhere to Stand"]
+        "hook": [
+          "Somebody on the Stairs"
+        ],
+        "scene": [
+          "{Motif}"
+        ],
+        "widening": [
+          "Everybody Was Somewhere"
+        ],
+        "turn": [
+          "The Count"
+        ],
+        "narrowing": [
+          "Nowhere to Stand"
+        ]
       },
       "turnClose": [
         "Somebody on this street couldn’t count, or was counting on me not to. It wasn’t {watcher}.",
@@ -18,11 +28,21 @@
     "stranger": {
       "title": "The Stranger",
       "chapters": {
-        "hook": ["Somebody on the Stairs"],
-        "scene": ["{Motif}"],
-        "widening": ["Faces Without Names"],
-        "turn": ["The Stranger"],
-        "narrowing": ["A Name for the Face"]
+        "hook": [
+          "Somebody on the Stairs"
+        ],
+        "scene": [
+          "{Motif}"
+        ],
+        "widening": [
+          "Faces Without Names"
+        ],
+        "turn": [
+          "The Stranger"
+        ],
+        "narrowing": [
+          "A Name for the Face"
+        ]
       },
       "turnClose": [
         "Every stranger in this city is somebody’s neighbour. The trick is finding out whose.",
@@ -32,11 +52,21 @@
     "web": {
       "title": "The Alibi Web",
       "chapters": {
-        "hook": ["Somebody on the Stairs"],
-        "scene": ["{Motif}"],
-        "widening": ["Who Was With Whom"],
-        "turn": ["The Alibi Web"],
-        "narrowing": ["Loose Threads"]
+        "hook": [
+          "Somebody on the Stairs"
+        ],
+        "scene": [
+          "{Motif}"
+        ],
+        "widening": [
+          "Who Was With Whom"
+        ],
+        "turn": [
+          "The Alibi Web"
+        ],
+        "narrowing": [
+          "Loose Threads"
+        ]
       },
       "turnClose": [
         "Two people who swear they were together are either telling the truth or telling the same story. The second kind comes apart at the knots.",
@@ -46,11 +76,21 @@
     "clock": {
       "title": "The Clock",
       "chapters": {
-        "hook": ["Somebody on the Stairs"],
-        "scene": ["{Motif}"],
-        "widening": ["What Time It Was"],
-        "turn": ["The Clock"],
-        "narrowing": ["Out of Time"]
+        "hook": [
+          "Somebody on the Stairs"
+        ],
+        "scene": [
+          "{Motif}"
+        ],
+        "widening": [
+          "What Time It Was"
+        ],
+        "turn": [
+          "The Clock"
+        ],
+        "narrowing": [
+          "Out of Time"
+        ]
       },
       "turnClose": [
         "You can lie about where you were. It’s harder to lie about what you heard when you were there.",
@@ -60,21 +100,37 @@
     "lied": {
       "title": "The One Who Lied",
       "chapters": {
-        "hook": ["Somebody on the Stairs"],
-        "scene": ["{Motif}"],
-        "widening": ["Their Own Words"],
-        "turn": ["The One Who Lied"],
-        "narrowing": ["Nowhere to Stand"]
+        "hook": [
+          "Somebody on the Stairs"
+        ],
+        "scene": [
+          "{Motif}"
+        ],
+        "widening": [
+          "Their Own Words"
+        ],
+        "turn": [
+          "The One Who Lied"
+        ],
+        "narrowing": [
+          "Nowhere to Stand"
+        ]
       },
       "turnClose": [
-        "Everybody lies to a detective. Most of them do it about something that doesn’t matter. This one didn’t.",
-        "It was one lie, and a small one. Small lies are the ones people forget to keep an eye on."
+        "Somebody had told me something that didn’t fit. It was the first thing all night that did.",
+        "Two things that can’t both be true are the most useful thing a detective can own. I owned two now."
       ]
     }
   },
   "hookByType": {
-    "murder": ["Somebody on the Stairs", "A Knock After Midnight"],
-    "lost-pet": ["Somebody on the Stairs", "A Knock After Midnight"]
+    "murder": [
+      "Somebody on the Stairs",
+      "A Knock After Midnight"
+    ],
+    "lost-pet": [
+      "Somebody on the Stairs",
+      "A Knock After Midnight"
+    ]
   },
   "turnOpen": [
     "I sat down on the nearest thing that would hold me and went over it again, slower.",
@@ -120,8 +176,8 @@
     ]
   },
   "turnMore": [
-    "That was {n} stories that didn’t hold, all at once.",
-    "It wasn’t the only story that went at the same time."
+    "It wasn’t the only evening the same pages disagreed with. There were {n} of them.",
+    "And it wasn’t the only one. The same pages sat badly with {n} evenings, all at once."
   ],
   "turnNext": [
     "I’d put it to {liar} next, and see what {he} did with it.",
@@ -158,7 +214,7 @@
       "text": "{desc} at {place}",
       "short": "the face at {place}",
       "pay": [
-        "And {tell} had a name now."
+        "And there was still {tell} to put a name to, and fewer names left to put."
       ]
     },
     "anchor": {
@@ -190,7 +246,7 @@
         "Somewhere off the river a boat let go of its whistle, two long and one short. Nobody on the street looked up. Nobody on this street ever does."
       ],
       "turn": [
-        "The whistle had gone off the river at {hour}, two long and one short. So, it turned out, had {liar}’s story."
+        "The whistle had gone off the river at {hour}, two long and one short. So, it was starting to look, had {liar}’s story."
       ],
       "end": [
         "Down on the river a boat blew two long and one short. On this street it passes for applause."
@@ -201,7 +257,7 @@
         "Somebody’s radio down the block was still going, a fight crowd booing a man for falling over. I knew how he felt."
       ],
       "turn": [
-        "The fight had been on the radio at {hour}, and the whole block had heard it go. {Liar}’s story went down in about the same round."
+        "The fight had been on the radio at {hour}, and the whole block had heard it. {Liar}’s story was starting to wobble in about the same round."
       ],
       "end": [
         "Somewhere a radio was still on, a crowd cheering somebody for staying on his feet. It had been that kind of night."
@@ -234,7 +290,7 @@
         "Upstairs somewhere a piano was getting the same four bars wrong in the same place. It was past midnight. Somebody was either very keen or being punished."
       ],
       "turn": [
-        "The lesson overhead had stopped at {hour}, and {liar} had been nowhere near a piano when it did."
+        "The lesson overhead had stopped at {hour}. Somebody on this street had heard it stop from the wrong room, and I was starting to have an idea who."
       ],
       "end": [
         "Upstairs somebody got the four bars right, finally, at an hour when nobody decent was awake to hear it. I heard it. I felt the same way."
@@ -245,7 +301,7 @@
         "An El train went over at the end of the street and took every other sound with it for twenty seconds. When the sound came back, it came back tired."
       ],
       "turn": [
-        "The El had gone over at {hour}, and it had drowned out everything on the block for twenty seconds. It hadn’t drowned out {liar}’s story. That had gone on its own."
+        "The El had gone over at {hour} and drowned out everything on the block for twenty seconds. It hadn’t drowned out the notebook, and the notebook was getting loud."
       ],
       "end": [
         "An El train went over and shook the window in its frame. It was the last word of the night, and it wasn’t a word."
@@ -256,7 +312,7 @@
         "The bells at St. Malachy’s rang the half hour, the way they had been ringing it since before anybody on this street was born, and nobody on this street had listened to them once."
       ],
       "turn": [
-        "St. Malachy’s had rung {hour} for the whole neighbourhood. {Liar} had heard it from the wrong room."
+        "St. Malachy’s had rung {hour} for the whole neighbourhood. Somebody had heard it from the wrong room."
       ],
       "end": [
         "St. Malachy’s rang the hour. For once I was up to hear it, and for once I didn’t mind."
@@ -267,7 +323,7 @@
         "A truck went by with the last edition, bundles thumping off the back onto the corners. None of tonight was in it yet. It would be."
       ],
       "turn": [
-        "The last edition had come off the truck at {hour}, wet ink and all, and it had seen more of the street than {liar} admitted to."
+        "The last edition had come off the truck at {hour}, wet ink and all, and it had seen more of the street than some people were admitting to."
       ],
       "end": [
         "The first edition would be on the corners by six. None of this would be in it, which is how {client} wanted it."
@@ -278,7 +334,7 @@
         "A light flickered in a window across the way and thought about going out. The whole block ran on fuses and hope, and was short on both."
       ],
       "turn": [
-        "The fuse had gone at {hour} and taken half a building’s lights with it. {Liar} had been sitting in the dark somewhere other than where {he} said."
+        "The fuse had gone at {hour} and taken half a building’s lights with it. Somebody had sat out the dark somewhere other than where they said."
       ],
       "end": [
         "Across the way a light came back on in a window that had been dark all night. Somebody had found a fuse. I’d found less, but it would do."
@@ -289,7 +345,7 @@
         "The sky had the look of somebody about to say something they’d regret. You could smell the rain before it got round to it."
       ],
       "turn": [
-        "The rain had started at {hour}, and it had soaked everybody who was out in it. {Liar}’s story had come in dry."
+        "The rain had started at {hour} and soaked everybody who was out in it. Some stories had come in suspiciously dry."
       ],
       "end": [
         "It was still raining. It had been raining since {hour}, and it didn’t look like it had any other plans."
@@ -311,7 +367,7 @@
         "The marquee at the end of the street was still lit, with nobody under it. The show was long over. The lights hadn’t been told."
       ],
       "turn": [
-        "The theatre had let out at {hour}, and half the street had been on the pavement for it. {Liar} hadn’t been, whatever {he} said."
+        "The theatre had let out at {hour}, and half the street had been on the pavement for it. Not everybody who said so had been."
       ],
       "end": [
         "The marquee lights went off at the end of the street, one row at a time, like the last act of something."
@@ -322,7 +378,7 @@
         "Somewhere a garage door rolled up and a man shouted for somebody who wasn’t there. The night shift is the same everywhere: short a man, and loud about it."
       ],
       "turn": [
-        "The night men had punched in at {hour}, the yard full of them, and not one of them had seen {liar} where {liar} said."
+        "The night men had punched in at {hour}, the yard full of them, and every one of them had a time card to say where he was. Nobody else on the block did."
       ],
       "end": [
         "Down the block the garage let the night shift out, gray in the face, and let the day shift in, grayer. I knew which one I felt like."
@@ -333,7 +389,7 @@
         "Somebody under a window was singing the same two verses of a song nobody asked for. A shoe came out of the window after him, and missed."
       ],
       "turn": [
-        "The singing under the window had stopped at {hour}, when the shoe came down. {Liar} had missed it. {He} hadn’t been there to miss it."
+        "The singing under the window had stopped at {hour}, when the shoe came down. Not everybody who said they were there had heard it stop."
       ],
       "end": [
         "Under a window somewhere the singer was back, two verses and no more. Nobody threw a shoe. Even the street was too tired for it."
@@ -344,7 +400,7 @@
         "Somewhere in the walls a dumbwaiter squealed on its rope, a noise like a cat with an opinion. Everybody in the building heard it. Nobody ever oils it."
       ],
       "turn": [
-        "The dumbwaiter had squealed at {hour}, loud enough for the whole shaft, and {liar} had been nowhere near the shaft to hear it."
+        "The dumbwaiter had squealed at {hour}, loud enough for the whole shaft. Not everybody who said they were in the building had heard it."
       ],
       "end": [
         "The dumbwaiter squealed somewhere in the walls, like it was glad it was over. That made two of us."
@@ -355,7 +411,7 @@
         "An ice wagon stood at the kerb with a wet canvas over its back and nobody minding it. The ice was melting at the same rate as my patience."
       ],
       "turn": [
-        "The ice had come in at {hour}, signed for and written down. {Liar}’s evening hadn’t been written down anywhere, and it showed."
+        "The ice had come in at {hour}, signed for and written down. Not everybody’s evening had been written down anywhere, and it showed."
       ],
       "end": [
         "The ice wagon was back at the kerb, dripping. By morning there’d be a puddle where it stood, and nobody would remember why."
@@ -430,19 +486,47 @@
     }
   },
   "purposes": {
-    "keep-it-quiet": ["{Client} wanted it quiet. It went into a file, and the file went into a drawer, and I have never been a man who opens drawers that aren’t his."],
-    "clear-my-name": ["{Client} had come up my stairs to be cleared. It turned out {she.c} never needed me for that. {She.c} needed me for the rest of it."],
-    "find-the-killer-police-wont": ["{Client} had wanted a name the police wouldn’t go and get. {She.c} had one now, and I’d gone and got it."],
-    "settle-a-debt-with-the-dead": ["{Client} had wanted to settle something with {victim}. Some debts you settle by finding out who closed the account."],
-    "find-it-before-the-cops": ["{Client} had wanted it found before the police came asking. The police never came asking. They seldom do."],
-    "get-it-back": ["{Client} had wanted it back. Some things come back. It depends what you mean by back."],
-    "bring-them-home": ["{Client} had wanted {victim} home. That part was out of my hands, as the best parts usually are."],
-    "make-sure-they-stay-gone": ["{Client} had wanted them to stay gone. I’d found out where. What {she.c} did with it was {her.c} business."],
-    "find-the-pet": ["{Client} had come up my stairs for an animal. I’ve had worse reasons to climb them, and fewer good ones."],
-    "find-the-thing": ["{Client} had wanted it found. It had been found. Things usually are, once somebody stops lying about where they put them."],
-    "before-they-notice": ["{Client} had wanted it back before anybody noticed. Nobody noticed. It is the only thing on this street nobody noticed."],
-    "tell-me-the-truth": ["{Client} had asked for the truth. It came in a size larger than {she.c} ordered, the way it does."],
-    "put-my-mind-at-rest": ["{Client} had wanted a mind put at rest. I did what I could. I’ve never managed it with my own."],
-    "any": ["{Client} had hired me for a night’s work, and got one."]
+    "keep-it-quiet": [
+      "{Client} wanted it quiet. It went into a file, and the file went into a drawer, and I have never been a man who opens drawers that aren’t his."
+    ],
+    "clear-my-name": [
+      "{Client} had come up my stairs to be cleared. It turned out {she.c} never needed me for that. {She.c} needed me for the rest of it."
+    ],
+    "find-the-killer-police-wont": [
+      "{Client} had wanted a name the police wouldn’t go and get. {She.c} had one now, and I’d gone and got it."
+    ],
+    "settle-a-debt-with-the-dead": [
+      "{Client} had wanted to settle something with {victim}. Some debts you settle by finding out who closed the account."
+    ],
+    "find-it-before-the-cops": [
+      "{Client} had wanted it found before the police came asking. The police never came asking. They seldom do."
+    ],
+    "get-it-back": [
+      "{Client} had wanted it back. Some things come back. It depends what you mean by back."
+    ],
+    "bring-them-home": [
+      "{Client} had wanted {victim} home. That part was out of my hands, as the best parts usually are."
+    ],
+    "make-sure-they-stay-gone": [
+      "{Client} had wanted them to stay gone. I’d found out where. What {she.c} did with it was {her.c} business."
+    ],
+    "find-the-pet": [
+      "{Client} had come up my stairs for an animal. I’ve had worse reasons to climb them, and fewer good ones."
+    ],
+    "find-the-thing": [
+      "{Client} had wanted it found. It had been found. Things usually are, once somebody stops lying about where they put them."
+    ],
+    "before-they-notice": [
+      "{Client} had wanted it back before anybody noticed. Nobody noticed. It is the only thing on this street nobody noticed."
+    ],
+    "tell-me-the-truth": [
+      "{Client} had asked for the truth. It came in a size larger than {she.c} ordered, the way it does."
+    ],
+    "put-my-mind-at-rest": [
+      "{Client} had wanted a mind put at rest. I did what I could. I’ve never managed it with my own."
+    ],
+    "any": [
+      "{Client} had hired me for a night’s work, and got one."
+    ]
   }
 }

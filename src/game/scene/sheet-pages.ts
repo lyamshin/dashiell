@@ -29,7 +29,7 @@ import { genderHintOf, pronounOf, temperOf } from '../voice/cast.js';
 import type { Scene, Stage } from '../voice/page.js';
 import { hourBandOf } from '../voice/page.js';
 import type { Beat, Plan, PresencePerson } from './plan.js';
-import { doingOf, hourSaid, plainAction } from './people.js';
+import { doingOf, foundWhat, hourSaid, plainAction } from './people.js';
 import { RELATION_PLAIN } from './lines.js';
 import {
   WATCH_CLAUSE,
@@ -747,7 +747,7 @@ function tieClauseOf(stage: Stage, person: Person, tie: 'finder' | 'pointer' | '
   const victim = stage.view.victim.surname;
   switch (tie) {
     case 'finder':
-      return `who had found ${victim}`;
+      return `who had found ${foundWhat(stage.view)}`;
     case 'pointer':
       return `${stage.view.client.surname} had told me to start with`;
     case 'relation':
