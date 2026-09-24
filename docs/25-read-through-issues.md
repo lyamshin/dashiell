@@ -27,3 +27,8 @@ Found reading full runs after M10 and shorter nights (2026-09-23). Each item nam
 - **A redundant place:** "Petrosino, the cabbie on the stand at the cab stand."
 - **A clunky bridge:** "Sirkin and eight o'clock: that was the next question, and it was for Crowninshield. I wasn't done with Crowninshield yet."
 - **Left open by M13:** counterman looks mention a grill and can land at a pawnshop; the seat check doesn't know chairs; the notebook's own lines repeat within a night.
+
+## After M14 (new cases), 2026-09-24
+- **The client's briefing for a lost pet garbles who found what:** "It did not let itself out: the way out of the back lot is always kept shut. It was found standing open. It was me, at half past eleven. I got to the back lot and found the ginger tomcat gone." The finding needs to be said once, in the client's words: "I went round at half past eleven and the gate was standing open. The cat was gone."
+- **The owner's description comes from the archetype's standing line,** so a cat owner is introduced as "kept a file of what was not printed". For the new cases, the owner's standing line should fit the case.
+- **The trade line after "Why me?" still lands on its own:** "He sat the same desk from eight until six and ruled the columns by hand." This is the same problem as the item after M11.
