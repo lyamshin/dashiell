@@ -234,4 +234,4 @@ That is the worked example's E, F and G: the stairs count, the lies falling toge
 
 - `npx tsc --noEmit` clean.
 - `test/v2-slice.test.ts`: 13 tests (the flag, v1 untouched, the mix, Tatham and the complete check at Raw, Poached, Medium and Hard-boiled, the true world found and no rival world, seed 3 as the worked example, a liar's own confession never a way of breaking the lie, the book on the page and in the closing, the reader lint over v2 runs, every book line fills).
-- The full suite, v1's tests included: see the PR.
+- The full suite, v1's tests included (`npx vitest run --minWorkers=1 --maxWorkers=3`): 52 files, 945 of 949 on the last full run; the four that failed were correspondence checks on the errand line, which a place-name comma had re-punctuated. That was fixed and those four files re-run: 89 of 89. v1's identity tests (the untiered case byte for byte) pass: v1 never sets the solver's new options.
