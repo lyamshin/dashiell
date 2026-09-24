@@ -1,0 +1,104 @@
+{
+  "moment": "office",
+  "$comment": "M13. The office page's frame: the room at midnight (the first paragraph, after 'Midnight. My office was…'), and a last line before the client is left in the chair with a question or two owed. The body is the engine's: the entrance (often 'A woman came up the stairs after midnight.', so a join here does not say stairs or midnight again), the briefing in the order a person tells it, the hiring and the money. Holes: office (the office deck's card for the night; bind prop for a thing in the room the last line can bring back), body. Slots: {client} and {client.he} .He .him .his .His .man; {place}; roles {prop} {mark}. Flags: temper, klass, familiar, circumstance (the detective's: sleepless, flush, bruised, just-paid, behind-on-rent, hungover, off-a-divorce-case), weather, purpose, caseType. Every part is said in the first paragraph, wherever it sits round the body. The last line asserts no case fact and never says the chair (the line after it does): it is about the room, the money, the detective.",
+  "sheets": [
+    {
+      "id": "off-a",
+      "weight": 2,
+      "name": "The room at midnight",
+      "notes": "The camp golden §1: the office card, and at the end a line that brings the room's thing back (its own pay line: 'The radiator knocked once, as if it had been paid too.').",
+      "parts": [{ "hole": "office", "bind": "prop" }, { "hole": "body" }],
+      "close": {
+        "roles": ["prop"],
+        "callback": [
+          "{Prop} had sat through all of it without a word. It’s a quality I look for in a room.",
+          "{Prop} had heard the whole thing, and had heard worse in that office, most of it from me.",
+          "Even {prop} seemed to sit up a little. It had been a slow month for both of us."
+        ],
+        "plain": [
+          "Outside, the city went on doing whatever it does at that hour without consulting me.",
+          "The office felt a little less empty. It’s remarkable what a client does for the furniture.",
+          "I straightened my tie, a little late for a first impression.",
+          "The coffee had gone cold while we talked. It always does, the minute I have company."
+        ],
+        "deck": true
+      }
+    },
+    {
+      "id": "off-b",
+      "name": "Good news waits",
+      "notes": "The golden's join after the room: good news waits for morning, and the entrance that follows is the other kind. The join is the joke; the close is plain.",
+      "parts": [
+        { "hole": "office" },
+        { "text": "Good news waits for morning, like a gentleman. The other kind takes the stairs.", "alt": ["Good news keeps office hours. The other kind lets itself in whenever it likes.", "Nobody brings good news at this hour. Good news can wait, and generally does.", "In my experience, good news is a morning person."], "joke": true },
+        { "hole": "body" }
+      ],
+      "close": {
+        "plain": [
+          "I wrote the name at the top of a page and underlined it. It’s the most confident I ever am about anything.",
+          "I put the money in the drawer and shut it quietly, so as not to wake it.",
+          "I sat back and let it settle. It’s the last quiet minute a case gives you.",
+          "I looked at the notes I’d taken. My handwriting was as confident as I was, which isn’t very."
+        ]
+      }
+    },
+    {
+      "id": "off-c",
+      "name": "A clean notebook",
+      "notes": "A clean notebook on the desk at midnight, and at the end it isn't clean.",
+      "parts": [
+        { "hole": "office" },
+        {
+          "text": "I had a clean notebook open and nothing to put in it.",
+          "alt": [
+            "I’d opened a clean notebook, in case tonight was the night.",
+            "The notebook on the desk was clean, and had been for days.",
+            "A clean notebook sat open on the desk, waiting for anything at all."
+          ],
+          "bind": "mark",
+          "exports": { "mark": { "text": "a clean notebook", "short": "the notebook", "kind": "paper" } }
+        },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["mark"],
+        "callback": [
+          "{Mark} wasn’t clean any more. They never stay that way, which is the only reason I buy them.",
+          "There was writing in {mark} now. It looked happier for it.",
+          "The first page of {mark} was full. The first page is always the neatest."
+        ],
+        "plain": [
+          "Outside, the city went on doing whatever it does at that hour without consulting me.",
+          "I read over what I’d written. It looked like a case, or at least like handwriting.",
+          "I put the pencil down. It had done more work in ten minutes than I had all week.",
+          "I underlined the one thing I was sure of. It didn’t take much ink."
+        ]
+      }
+    },
+    {
+      "id": "off-d",
+      "name": "Still up",
+      "notes": "Where he was before the room: up, waiting; then the office card, and its thing brought back at the end.",
+      "parts": [
+        { "text": "I was still up, which in my line of work is most of the job.", "alt": ["I was awake, which is the one qualification the job asks for.", "Bed was an idea I’d had earlier and not followed up.", "I was still up. In my trade, somebody has to be."] },
+        { "hole": "office", "bind": "prop" },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["prop"],
+        "callback": [
+          "{Prop} had sat through all of it without a word. It’s a quality I look for in a room.",
+          "{Prop} had kept me company till now. From here on, {prop.it} would have to share me.",
+          "{Prop} had been good company until the real company came up."
+        ],
+        "plain": [
+          "The office looked just as it had at midnight. I didn’t. I was employed.",
+          "Staying up had been worth it, for once. I made a note in case it never happens again.",
+          "I was glad I hadn’t gone to bed. I’d have hated to miss this, whatever it turned out to be.",
+          "The night had turned into work. I didn’t mind. It beats lying awake."
+        ],
+        "deck": true
+      }
+    }
+  ]
+}

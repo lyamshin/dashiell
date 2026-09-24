@@ -17,6 +17,17 @@
       "place": "res-apartment"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the sink in the kitchen",
+        "short": "the sink",
+        "kind": "water",
+        "near": "by the sink",
+        "pay": [
+          "I ran the tap in the sink and washed my hands. It was the only thing in the place that did what it was asked."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -57,6 +68,16 @@
       "place": "res-brownstone"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the cushions on the parlor sofa",
+        "short": "the cushions",
+        "kind": "furniture",
+        "pay": [
+          "I put the cushions back the way they’d been and gave each one a pat. Nobody pats a cushion for me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -67,6 +88,16 @@
       "place": "res-brownstone"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the pictures along the wall",
+        "short": "the pictures",
+        "kind": "picture",
+        "pay": [
+          "I straightened the pictures on my way out. It was the one thing in the house I left better than I found it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -97,6 +128,17 @@
       "place": "res-walkup"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the one good chair at the sitting end",
+        "short": "the one good chair",
+        "kind": "furniture",
+        "near": "by the one good chair",
+        "pay": [
+          "I tried the one good chair before I left. Whoever called it good had been sitting in the others."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -107,6 +149,16 @@
       "place": "res-walkup"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the drugstore sign under the window",
+        "short": "the drugstore sign",
+        "kind": "sign",
+        "pay": [
+          "The drugstore sign was still lit under the window when I left. At least somebody on the street was keeping regular hours."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -117,6 +169,17 @@
       "place": "res-walkup"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the dresser in the last room",
+        "short": "the dresser",
+        "kind": "furniture",
+        "near": "by the dresser",
+        "pay": [
+          "I pushed the dresser drawers shut on the way out. One of them stuck, and I let it win."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -137,6 +200,16 @@
       "place": "res-suite"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the cabinet over the bathroom basin",
+        "short": "the bathroom cabinet",
+        "kind": "glass",
+        "pay": [
+          "I shut the bathroom cabinet and met myself in its mirror. Neither of us looked like we’d slept."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -147,6 +220,16 @@
       "place": "res-suite"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the tank of the toilet",
+        "short": "the toilet tank",
+        "kind": "water",
+        "pay": [
+          "I put the lid back on the toilet tank. It’s not the glamorous end of the business, and nobody warns you."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -167,6 +250,16 @@
       "place": "res-backhouse"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the eaves of the bedroom under the roof",
+        "short": "the eaves",
+        "kind": "thing",
+        "pay": [
+          "I came down from under the eaves with my hat in my hand and a bump on my head where the hat should have been."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -197,6 +290,16 @@
       "place": "res-backhouse"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the coal dust on my cuffs",
+        "short": "the coal dust",
+        "kind": "clothes",
+        "pay": [
+          "I tried to brush the coal dust off my cuffs on the way out. It had made itself at home, and I was only visiting."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -207,6 +310,16 @@
       "place": "rooftop"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the edge of the roof, over the parapet",
+        "short": "the edge",
+        "kind": "thing",
+        "pay": [
+          "I didn’t look over the edge again on the way out. Once was plenty for a man with my nerves."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -217,6 +330,16 @@
       "place": "rooftop"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the top of the fire escape",
+        "short": "the fire escape",
+        "kind": "stair",
+        "pay": [
+          "I went down by the stairs and not the fire escape. I’d seen the fire escape."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -227,6 +350,17 @@
       "place": "rooftop"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the pigeon coop on the roof",
+        "short": "the pigeon coop",
+        "kind": "animal",
+        "near": "by the pigeon coop",
+        "pay": [
+          "The pigeons in the coop watched me go. They’d seen the whole thing and weren’t saying, like everybody else in this city."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -247,6 +381,16 @@
       "place": "back-alley"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the drain at the low end of the alley",
+        "short": "the drain",
+        "kind": "water",
+        "pay": [
+          "I wiped my hand on my handkerchief after the drain, and then I threw the handkerchief away."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -277,6 +421,17 @@
       "place": "back-alley"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the ash cans along the alley",
+        "short": "the ash cans",
+        "kind": "thing",
+        "near": "by the ash cans",
+        "pay": [
+          "I put the lids back on the ash cans. The alley cats would take it up with me later."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -287,6 +442,17 @@
       "place": "office-over-tailor"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the bench for callers in the outer office",
+        "short": "the bench for callers",
+        "kind": "furniture",
+        "near": "on the bench for callers",
+        "pay": [
+          "On the way out I sat on the bench for callers for a minute, to see how it felt to wait for me. It felt like a long wait."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -297,6 +463,16 @@
       "place": "office-over-tailor"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the wastebasket under the desk",
+        "short": "the wastebasket",
+        "kind": "paper",
+        "pay": [
+          "I set the wastebasket back under the desk, where it could go on being the most honest thing in the office."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -337,6 +513,17 @@
       "place": "pier-shed"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the crates stacked by the gate",
+        "short": "the crates",
+        "kind": "thing",
+        "near": "by the crates",
+        "pay": [
+          "I left the crates by the gate stacked more or less the way I found them. Crates don’t mind. That’s what I like about crates."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -357,6 +544,16 @@
       "place": "pier-shed"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the river under the planks",
+        "short": "the river",
+        "kind": "smell",
+        "pay": [
+          "The river was still there when I straightened up. So was the smell of it, which had got into my coat and meant to stay."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -367,6 +564,17 @@
       "place": "laundry-yard"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the washing lines across the yard",
+        "short": "the lines",
+        "kind": "fabric",
+        "near": "under the lines",
+        "pay": [
+          "I ducked back out under the lines. A wet sheet had caught me in the face on the way in, and I didn’t give it a second chance."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -387,6 +595,17 @@
       "place": "laundry-yard"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the wringer by the wash tubs",
+        "short": "the wringer",
+        "kind": "machine",
+        "near": "by the wringer",
+        "pay": [
+          "I kept my fingers clear of the wringer on the way out. It had the look of something that had taken a few."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -437,6 +656,16 @@
       "place": "walkup-flat"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the cupboard under the sink",
+        "short": "the cupboard under the sink",
+        "kind": "thing",
+        "pay": [
+          "I washed my hands at the sink afterwards, twice. The cupboard under it had earned that."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -447,6 +676,17 @@
       "place": "hallam-vestibule"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the bank of mailboxes",
+        "short": "the mailboxes",
+        "kind": "thing",
+        "near": "by the mailboxes",
+        "pay": [
+          "I had a last look along the mailboxes. None of them had my name on it, which is how I like a mailbox."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -457,6 +697,16 @@
       "place": "hallam-vestibule"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the marble floor from the street doors to the elevator",
+        "short": "the marble floor",
+        "kind": "sound",
+        "pay": [
+          "My footsteps followed me across the marble floor on the way out. It’s a floor that likes everybody to know who’s coming."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -507,6 +757,17 @@
       "place": "rooming-house-room"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the top of the wardrobe",
+        "short": "the wardrobe",
+        "kind": "furniture",
+        "near": "by the wardrobe",
+        "pay": [
+          "I climbed down from the top of the wardrobe with more dust on me than I went up with. I’ve lived in rooms like that. The dust is the same in all of them."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -537,6 +798,17 @@
       "place": "dolans-bar"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the brass rail along the bar",
+        "short": "the brass rail",
+        "kind": "thing",
+        "near": "with a foot on the brass rail",
+        "pay": [
+          "I put a foot up on the brass rail before I went, out of habit. Nobody took the hint."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -557,6 +829,16 @@
       "place": "dolans-bar"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the ice chest behind the counter",
+        "short": "the ice chest",
+        "kind": "thing",
+        "pay": [
+          "I shut the lid of the ice chest. It was the coldest welcome I’d had all night, and I’d had some."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -567,6 +849,16 @@
       "place": "speakeasy"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the bottom step",
+        "short": "the bottom step",
+        "kind": "stair",
+        "pay": [
+          "I went back up the steps slower than I came down. They were the same six steps. I wasn’t the same man."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -597,6 +889,16 @@
       "place": "speakeasy"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the back passage toward the cellar of the hat shop",
+        "short": "the back passage",
+        "kind": "smell",
+        "pay": [
+          "The back passage had smelled of felt and damp. I came out the other end with strong opinions about hats."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -617,6 +919,16 @@
       "place": "hotel-lobby"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the worn middle of the carpet, where everybody walked",
+        "short": "the carpet",
+        "kind": "fabric",
+        "pay": [
+          "I left by the worn middle of the carpet, along with everybody else who had ever crossed that lobby."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -627,6 +939,16 @@
       "place": "hotel-lobby"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the cushions of the lobby chairs, where a hotel keeps its loose change and its crumbs",
+        "short": "the cushions",
+        "kind": "furniture",
+        "pay": [
+          "I brushed the hotel’s crumbs off my cuffs. The loose change I left where it was, being an honest man and in full view of the desk."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -647,6 +969,17 @@
       "place": "corner-newsstand"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the lamp post at the corner",
+        "short": "the lamp post",
+        "kind": "light",
+        "near": "under the lamp post",
+        "pay": [
+          "I leaned on the lamp post a minute when I’d finished. It had been holding the corner up all night without any help from me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -667,6 +1000,16 @@
       "place": "corner-newsstand"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the stacked bundles of newspapers",
+        "short": "the bundles",
+        "kind": "paper",
+        "pay": [
+          "I left the bundles stacked where they were. By morning they’d be news. For now they were just heavy."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -687,6 +1030,16 @@
       "place": "automat"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the pie behind the little glass door",
+        "short": "the pie",
+        "kind": "food",
+        "pay": [
+          "The pie was still behind its little glass door when I left. We looked at each other. It was a nickel I didn’t have."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -717,6 +1070,17 @@
       "place": "automat"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the coffee urns by the stand of trays",
+        "short": "the coffee urns",
+        "kind": "drink",
+        "near": "by the coffee urns",
+        "pay": [
+          "The coffee urns were cold. I took it harder than I should have."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -727,6 +1091,17 @@
       "place": "movie-house"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the screen",
+        "short": "the screen",
+        "kind": "picture",
+        "near": "below the screen",
+        "pay": [
+          "I stood below the screen a moment before I went. It was blank. For once I knew how it felt."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -747,6 +1122,16 @@
       "place": "movie-house"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the projection booth up its narrow stair",
+        "short": "the projection booth",
+        "kind": "machine",
+        "pay": [
+          "I got back out of the projection booth sideways. It had been built for a thinner man, and it told me so the whole way down."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -777,6 +1162,17 @@
       "place": "dance-hall"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the piano on the bandstand",
+        "short": "the piano",
+        "kind": "sound",
+        "near": "by the piano",
+        "pay": [
+          "I tapped one key on the piano on my way past. It was out of tune, which made two of us."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -787,6 +1183,16 @@
       "place": "dance-hall"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the coat check by the lobby",
+        "short": "the coat check",
+        "kind": "clothes",
+        "pay": [
+          "I didn’t leave anything at the coat check. I only have the one coat, and I like to keep an eye on it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -807,6 +1213,17 @@
       "place": "drugstore"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the taps of the soda fountain",
+        "short": "the soda fountain",
+        "kind": "drink",
+        "near": "at the soda fountain",
+        "pay": [
+          "The taps of the soda fountain shone at me on the way out. I hadn’t had a malted in twenty years, and I missed it all at once."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -837,6 +1254,17 @@
       "place": "drugstore"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the scale by the entrance",
+        "short": "the scale",
+        "kind": "machine",
+        "near": "by the scale",
+        "pay": [
+          "I didn’t get on the scale by the entrance. There was enough bad news going around."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -847,6 +1275,16 @@
       "place": "cab-stand"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the poster frames along the theater",
+        "short": "the poster frames",
+        "kind": "picture",
+        "pay": [
+          "The poster in the frames was for a love story. I didn’t stop to read how it came out."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -867,6 +1305,16 @@
       "place": "cab-stand"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the grating by the hydrant",
+        "short": "the grating",
+        "kind": "thing",
+        "pay": [
+          "I stood up from the grating by the hydrant with both knees wet through. The hydrant, for its part, was bone dry."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -887,6 +1335,16 @@
       "place": "tenement-stairwell"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the ladder to the roof",
+        "short": "the ladder",
+        "kind": "stair",
+        "pay": [
+          "I didn’t go up the ladder to the roof. There’s only so much building a man can climb in one night."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -897,6 +1355,16 @@
       "place": "tenement-stairwell"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the smell under the bottom flight, where the ash cans stood",
+        "short": "the smell",
+        "kind": "smell",
+        "pay": [
+          "The smell under the bottom flight followed me up the stairs. It was the only thing in the building that wanted my company."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -937,6 +1405,16 @@
       "place": "pool-hall"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the pockets of the tables",
+        "short": "the pockets",
+        "kind": "thing",
+        "pay": [
+          "On my way out I rolled a ball the length of a table and into the far pocket. It was the best shot I’d made all night."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -957,6 +1435,16 @@
       "place": "pool-hall"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the chalk shelf by the cue racks",
+        "short": "the chalk",
+        "kind": "thing",
+        "pay": [
+          "I had chalk on both hands and one cheek by the end of it. I looked like I’d lost a game I never played."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -977,6 +1465,16 @@
       "place": "pawnshop"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the magnifying glass on the workbench",
+        "short": "the magnifying glass",
+        "kind": "tool",
+        "pay": [
+          "I put the magnifying glass back on the workbench with some regret. It was the most professional I’d looked in years."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1017,6 +1515,16 @@
       "place": "chop-suey"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the smell of ginger from the kitchen",
+        "short": "the ginger",
+        "kind": "smell",
+        "pay": [
+          "I still smelled of ginger when I left. There are worse things to smell of at that hour, and I’ve smelled of most of them."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1037,6 +1545,16 @@
       "place": "chop-suey"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the shelf of tea tins",
+        "short": "the tea tins",
+        "kind": "thing",
+        "pay": [
+          "I put the tea tins back in their row. They had been in a very particular order, and now they were in mine."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1067,6 +1585,17 @@
       "place": "boarding-parlor"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the piano in the parlour",
+        "short": "the piano",
+        "kind": "furniture",
+        "near": "by the piano",
+        "pay": [
+          "I let the lid of the piano down gently. The boarders had enough to put up with without my playing."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1077,6 +1606,16 @@
       "place": "boarding-parlor"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the sewing basket by the window",
+        "short": "the sewing basket",
+        "kind": "thing",
+        "pay": [
+          "I put the sewing basket back and got a needle in the thumb for my trouble. It was the only thing in the parlour that fought back."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1117,6 +1656,17 @@
       "place": "barber-shop"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the mirrors along the wall",
+        "short": "the mirrors",
+        "kind": "glass",
+        "near": "under the mirrors",
+        "pay": [
+          "I didn’t look in the mirrors on the way out. I’d heard what they had to say the first time."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1147,6 +1697,16 @@
       "place": "hotel-garage"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the oil stains on the concrete",
+        "short": "the concrete",
+        "kind": "thing",
+        "pay": [
+          "I had oil on both knees from the concrete. My trousers had seen worse, but not recently."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1157,6 +1717,16 @@
       "place": "hotel-garage"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the grease pit in the corner",
+        "short": "the grease pit",
+        "kind": "thing",
+        "pay": [
+          "I kept to the edge of the grease pit on my way out. I’ve fallen into worse, but never on purpose."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1177,6 +1747,16 @@
       "place": "el-platform"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the tracks below the platform’s edge",
+        "short": "the tracks",
+        "kind": "sound",
+        "pay": [
+          "A train came through and shook the platform and every bone I own. Then it went on to somewhere with more going for it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1227,6 +1807,17 @@
       "place": "square-benches"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the drinking fountain at the corner",
+        "short": "the drinking fountain",
+        "kind": "water",
+        "near": "by the drinking fountain",
+        "pay": [
+          "I had a drink from the fountain at the corner before I went. It was the best thing anybody had offered me all night, and nobody had offered it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1237,6 +1828,17 @@
       "place": "square-benches"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the row of benches",
+        "short": "the benches",
+        "kind": "furniture",
+        "near": "on the benches",
+        "pay": [
+          "I got up off the last bench, and my back asked me to sit down again. I told it we had work to do."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1257,6 +1859,16 @@
       "place": "ferry-slip"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the river between the pilings",
+        "short": "the pilings",
+        "kind": "water",
+        "pay": [
+          "The river slapped at the pilings the whole time, going on about something and never getting to the point. I’ve questioned people like that."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1287,6 +1899,16 @@
       "place": "subway-kiosk"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the stair down into the subway",
+        "short": "the stair",
+        "kind": "stair",
+        "pay": [
+          "The subway breathed warm air up the stair after me. It was the friendliest thing on the street."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1297,6 +1919,16 @@
       "place": "subway-kiosk"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the tiled wall of the stair",
+        "short": "the tiled wall",
+        "kind": "sound",
+        "pay": [
+          "My footsteps came back at me off the tiled wall all the way up. It’s hard to feel like a professional with an echo like that."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1337,6 +1969,17 @@
       "place": "side-chapel"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the candle rack",
+        "short": "the candle rack",
+        "kind": "light",
+        "near": "by the candle rack",
+        "pay": [
+          "I put a coin in the box by the candle rack on the way out. It seemed only fair, after the way I’d gone through the place."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1357,6 +2000,17 @@
       "place": "side-chapel"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the confessional in the corner",
+        "short": "the confessional",
+        "kind": "furniture",
+        "near": "by the confessional",
+        "pay": [
+          "I didn’t go into the confessional. We’d both have been there all night."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1367,6 +2021,17 @@
       "place": "union-hall"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the notice board on the wall",
+        "short": "the notice board",
+        "kind": "paper",
+        "near": "under the notice board",
+        "pay": [
+          "The notice board wanted volunteers for the social committee. I left at a brisk walk."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1387,6 +2052,16 @@
       "place": "union-hall"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the closet where the banners were kept",
+        "short": "the banners",
+        "kind": "fabric",
+        "pay": [
+          "I rolled the banners back up and put them away. They had more to say than anybody I’d talked to all night, and they said it in bigger letters."
+        ]
+      }
+    },
     "status": "generated"
   },
   {

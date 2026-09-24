@@ -40,6 +40,7 @@
   "$vocabFilesNote": "A vocabulary too long to keep in two places lives in its own file, and both readers — scripts/validate-decks.mjs and src/game/voice/cards.ts — resolve it from there. The motif vocabulary is the only one so far: 70 words in seven groups, and duplicating it here is how it would drift.",
   "vocabFiles": { "motifs": "motifs.json" },
   "vocab": {
+    "exportKind": ["light", "glass", "sound", "smell", "sign", "clock", "machine", "furniture", "picture", "paper", "drink", "food", "fabric", "door", "stair", "water", "plant", "animal", "tool", "thing", "eyes", "hands", "face", "voice", "clothes", "habit", "posture"],
     "mood": ["flat", "wry", "menace", "grief", "tired", "tender"],
     "fixtureRole": [
       "bartender",
@@ -1098,6 +1099,23 @@
       },
       "coverage": [["why"]]
     },
+    "greet": {
+      "file": "greet.json",
+      "deckValues": ["greet"],
+      "idPrefix": "GRT",
+      "placeholderPrefix": "grt-p",
+      "burn": "run-to-run",
+      "spent": "reshuffle",
+      "target": 40,
+      "$comment": "M13: the client's greeting when the detective walks in on her (Sheet C, 'The client waves me over': '“You took your time,” she said. “I’ve been here long enough to be charged rent.”'), in character, keyed by the client's purpose (why she hired him) and temper. One or two sentences of her speech with the attribution. Her own line, never a case fact: no hour, no place by name, nobody named but the victim {victim}. {he}/{He}/{him}/{his} the client's pronouns, {name} the client's surname.",
+      "slots": ["name", "he", "him", "his", "He", "victim"],
+      "minPerCoverageCell": 2,
+      "tags": {
+        "purpose": { "required": true, "values": ["find-the-killer-police-wont", "clear-my-name", "keep-it-quiet", "find-it-before-the-cops", "get-it-back", "bring-them-home", "make-sure-they-stay-gone", "settle-a-debt-with-the-dead"], "extraValues": ["any"] },
+        "temper": { "required": false, "default": "any", "values": ["plain", "yap", "enigma"], "extraValues": ["any"] }
+      },
+      "coverage": [["purpose"]]
+    },
     "close": {
       "file": "close.json",
       "deckValues": ["close"],
@@ -1107,10 +1125,14 @@
       "spent": "reshuffle",
       "target": 60,
       "$comment": "M12 Part 1: the wry last word of a question or a confrontation, after the outcome is told plainly ('I guess some nuts are just too hard to crack.'). The page's one figure, dry and a little funny, and never a verdict: it never says or hints who did it, who is out of it, or that a story is true or false beyond what the page just said. The jokes are on people, habits, the night and the detective; never on the dead, a clue or an hour. `outcome`: what the page came to: evening (their own evening told), placed (somebody seen somewhere), unseen (only where somebody was not), knowing, counts, strangers, timing, event, thing, self (their life), nothing (they knew nothing), contradicts (two words that do not agree), and a confrontation's second-lie, admit, withdraw, hold, quiet (they would not say: the card says what not saying is worth), wrong (the fact touched nothing), ends; any. `role`: a card written for one trade, or any. {name} the person's surname; {he}/{him}/{his}/{He} their pronouns. No hour, no place by name, nobody else.",
-      "slots": ["name", "he", "him", "his", "He"],
+      "slots": ["name", "he", "him", "his", "He", "prop", "trait", "thing", "figure", "mark", "propText", "traitText", "thingText", "figureText", "markText", "place", "victim"],
+      "$sheetNote": "M13: a sheet's closing line is `outcome: sheet`, with `moment` (the sheet moment it closes, or any), `callback` (the role it pays off: prop, trait, thing, figure, mark; or none, a plain close that needs no role) and `kind` (the kind of thing the role is, from `exportKind`, or any). A callback card takes the role's short form as {prop} (or {trait}, {thing}...), and {propText} its whole noun phrase. The same rules as the rest of the deck: never a verdict, no hour, no place by name, nobody named.",
       "minPerCoverageCell": 2,
       "tags": {
-        "outcome": { "required": true, "values": ["evening", "placed", "unseen", "knowing", "counts", "strangers", "timing", "event", "thing", "self", "nothing", "contradicts", "second-lie", "admit", "withdraw", "hold", "quiet", "wrong", "ends"], "extraValues": ["any"] },
+        "outcome": { "required": true, "values": ["evening", "placed", "unseen", "knowing", "counts", "strangers", "timing", "event", "thing", "self", "nothing", "contradicts", "second-lie", "admit", "withdraw", "hold", "quiet", "wrong", "ends"], "extraValues": ["any", "sheet"] },
+        "moment": { "required": false, "default": "any", "values": ["arrival", "company", "ask", "telling", "search", "confront", "recap", "office"], "extraValues": ["any"] },
+        "callback": { "required": false, "default": "none", "values": ["prop", "trait", "thing", "figure", "mark", "none"] },
+        "kind": { "required": false, "default": "any", "vocab": "exportKind", "extraValues": ["any"] },
         "role": { "required": false, "default": "any", "values": ["arch-heir", "arch-widow", "arch-broker", "arch-society", "arch-blockowner", "arch-lawyer", "arch-bookkeeper", "arch-nurse", "arch-dentist", "arch-secretary", "arch-reporter", "arch-piano-teacher", "arch-adjuster", "arch-chambermaid", "arch-longshoreman", "arch-seamstress", "arch-hackman", "arch-tailor", "arch-stagehand", "arch-switchboard", "arch-nightman", "arch-chorus", "arch-bookmaker", "arch-heeler", "arch-pawnman", "arch-bouncer", "arch-runner", "bartender", "doorman", "newsstand", "counterman", "ticket-taker", "elevator-man", "landlady", "beat-cop", "cabbie", "druggist"], "extraValues": ["any"] }
       },
       "coverage": [["outcome"]]

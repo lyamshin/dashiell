@@ -1111,7 +1111,10 @@ describe('the burn tiers', () => {
         deckOf(id) !== null ||
           /^(NA|ROOM)-\d+$/.test(id) ||
           id.startsWith('monologue:') ||
-          id.startsWith('beat:'),
+          id.startsWith('beat:') ||
+          // M13: the sheets a page used, remembered like cards.
+          id.startsWith('sheet:') ||
+          id.startsWith('line:'),
         id,
       ).toBe(true);
     }

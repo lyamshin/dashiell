@@ -12,6 +12,16 @@
       "cold"
     ],
     "weather": "cold",
+    "exports": {
+      "prop": {
+        "text": "the radiator, which had lost its fight with the cold",
+        "short": "the radiator",
+        "kind": "machine",
+        "pay": [
+          "The radiator knocked once, as if it had been paid too."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -26,6 +36,16 @@
       "money",
       "cigarette"
     ],
+    "exports": {
+      "prop": {
+        "text": "the rent envelope on the desk",
+        "short": "the rent envelope",
+        "kind": "paper",
+        "pay": [
+          "The rent envelope hadn’t moved from the desk. It had heard the money, though. I could tell."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -40,6 +60,16 @@
       "money",
       "telephone"
     ],
+    "exports": {
+      "prop": {
+        "text": "the telephone, with the landlady’s bill folded under it",
+        "short": "the telephone",
+        "kind": "machine",
+        "pay": [
+          "The telephone still hadn’t rung. It didn’t need to now. The trouble had taken the stairs."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -56,6 +86,16 @@
       "cold"
     ],
     "weather": "cold",
+    "exports": {
+      "prop": {
+        "text": "the cold coming in round the window sash",
+        "short": "the cold",
+        "kind": "thing",
+        "pay": [
+          "The cold was still coming in round the sash to collect. I told it to take a number."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -72,6 +112,16 @@
       "window"
     ],
     "weather": "rain",
+    "exports": {
+      "prop": {
+        "text": "the rent envelope with its little window",
+        "short": "the rent envelope",
+        "kind": "paper",
+        "pay": [
+          "The rent envelope was still looking out of its little window. For once I had something to show it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -85,6 +135,16 @@
     "motifs": [
       "money"
     ],
+    "exports": {
+      "prop": {
+        "text": "the money in the desk drawer",
+        "short": "the desk drawer",
+        "kind": "furniture",
+        "pay": [
+          "I put the new money in the desk drawer with the old. The drawer had never had company before."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -98,6 +158,16 @@
     "motifs": [
       "drink"
     ],
+    "exports": {
+      "prop": {
+        "text": "the good whiskey in the bottom drawer",
+        "short": "the good whiskey",
+        "kind": "drink",
+        "pay": [
+          "I didn’t offer the good whiskey in the bottom drawer. It was the first night, and it was the good kind."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -114,6 +184,16 @@
       "window"
     ],
     "weather": "cold",
+    "exports": {
+      "prop": {
+        "text": "the radiator, which sensed money and worked",
+        "short": "the radiator",
+        "kind": "machine",
+        "pay": [
+          "The radiator knocked twice, pleased with itself. It could tell there was more money in the room."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -130,6 +210,16 @@
       "clear"
     ],
     "weather": "clear",
+    "exports": {
+      "prop": {
+        "text": "the moonlight across the blotter",
+        "short": "the moonlight",
+        "kind": "light",
+        "pay": [
+          "The moonlight had moved across the blotter while we talked. It had the sense not to interrupt."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -144,6 +234,16 @@
       "clock",
       "lamp"
     ],
+    "exports": {
+      "prop": {
+        "text": "the clock over the safe",
+        "short": "the clock over the safe",
+        "kind": "clock",
+        "pay": [
+          "The clock over the safe went on ticking. My head kept time with it, a little behind and a lot louder."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -157,6 +257,16 @@
     "motifs": [
       "drink"
     ],
+    "exports": {
+      "prop": {
+        "text": "the cold coffee",
+        "short": "the coffee",
+        "kind": "drink",
+        "pay": [
+          "The coffee had gone the rest of the way cold. I finished it anyway. I’d started it, and I’m a professional."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -173,6 +283,16 @@
       "rain"
     ],
     "weather": "rain",
+    "exports": {
+      "prop": {
+        "text": "last night’s cigarette, half-smoked in the ashtray",
+        "short": "last night’s cigarette",
+        "kind": "thing",
+        "pay": [
+          "Last night’s cigarette was still in the ashtray. Neither of us had moved much."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -188,6 +308,16 @@
       "cold"
     ],
     "weather": "cold",
+    "exports": {
+      "prop": {
+        "text": "the telephone, which stayed quiet",
+        "short": "the telephone",
+        "kind": "machine",
+        "pay": [
+          "The telephone kept quiet through all of it. It’s the most tactful thing I own."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -204,6 +334,16 @@
       "window"
     ],
     "weather": "cold",
+    "exports": {
+      "prop": {
+        "text": "frost across the window glass, from the inside",
+        "short": "the frost",
+        "kind": "glass",
+        "pay": [
+          "The frost had got halfway across the window while we talked. It was making better progress than I was."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -218,6 +358,16 @@
       "mirror",
       "lamp"
     ],
+    "exports": {
+      "prop": {
+        "text": "the mirror over the washbasin",
+        "short": "the mirror",
+        "kind": "glass",
+        "pay": [
+          "I didn’t look in the mirror over the washbasin. One of us had had a long night, and it wasn’t the mirror."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -229,6 +379,16 @@
       "weather": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the chair, taken in three stages",
+        "short": "the three stages",
+        "kind": "posture",
+        "pay": [
+          "I stayed where I was. Getting up is three stages as well, and I wasn’t ready to start."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -244,6 +404,16 @@
       "lamp",
       "mirror"
     ],
+    "exports": {
+      "prop": {
+        "text": "my jaw, gone a color nobody sells paint in",
+        "short": "my jaw",
+        "kind": "face",
+        "pay": [
+          "The low lamp was still being kind to my jaw. It’s the only thing in this city that is."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -257,6 +427,16 @@
     "motifs": [
       "photograph"
     ],
+    "exports": {
+      "prop": {
+        "text": "the last case’s photographs in the drawer",
+        "short": "the photographs",
+        "kind": "picture",
+        "pay": [
+          "I didn’t open the drawer with the photographs in it. One case at a time is how I like my trouble."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -270,6 +450,16 @@
     "motifs": [
       "paper"
     ],
+    "exports": {
+      "prop": {
+        "text": "a woman’s calling card under the paperweight",
+        "short": "the calling card",
+        "kind": "paper",
+        "pay": [
+          "The calling card was still under the paperweight. I’d throw it out tomorrow. I’d been saying that for three days."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -286,6 +476,16 @@
       "window"
     ],
     "weather": "fog",
+    "exports": {
+      "prop": {
+        "text": "the ledger open at a column of hotel names",
+        "short": "the ledger",
+        "kind": "paper",
+        "pay": [
+          "I shut the ledger on its column of hotel names. It had seen enough for one week."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -302,6 +502,16 @@
       "door"
     ],
     "weather": "fog",
+    "exports": {
+      "prop": {
+        "text": "my coat by the door, smelling of hotel soap",
+        "short": "my coat",
+        "kind": "clothes",
+        "pay": [
+          "My coat was still hanging by the door, thinking about what it had done. I’d be needing it back in a minute."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -316,6 +526,16 @@
       "clock",
       "door"
     ],
+    "exports": {
+      "prop": {
+        "text": "the clock over the door",
+        "short": "the clock over the door",
+        "kind": "clock",
+        "pay": [
+          "The clock over the door went on keeping its own count. I had started one of my own."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -330,6 +550,16 @@
       "midnight",
       "lamp"
     ],
+    "exports": {
+      "prop": {
+        "text": "the lamp, kept burning for the company",
+        "short": "the lamp",
+        "kind": "light",
+        "pay": [
+          "The lamp had kept us both company. It was the best listener in the room, and I include me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -346,6 +576,16 @@
       "clear"
     ],
     "weather": "clear",
+    "exports": {
+      "prop": {
+        "text": "the building’s quiet, moved in and comfortable",
+        "short": "the building’s quiet",
+        "kind": "sound",
+        "pay": [
+          "The building’s quiet had moved over to make room for us. It didn’t look happy about it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -360,6 +600,16 @@
       "sleep",
       "window"
     ],
+    "exports": {
+      "prop": {
+        "text": "my reflection in the window, with the dark behind it",
+        "short": "my reflection",
+        "kind": "glass",
+        "pay": [
+          "My reflection was still in the window. It looked no better rested than before, but it looked employed."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -374,6 +624,16 @@
       "sleep",
       "stairs"
     ],
+    "exports": {
+      "prop": {
+        "text": "the stairs outside, which creaked",
+        "short": "the stairs",
+        "kind": "stair",
+        "pay": [
+          "The stairs outside had gone quiet again. They’d done their bit for the night."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -388,6 +648,16 @@
       "money",
       "coat"
     ],
+    "exports": {
+      "prop": {
+        "text": "the drawer where the retainer kept its shape",
+        "short": "the drawer",
+        "kind": "furniture",
+        "pay": [
+          "The new money went into the drawer beside the old. It was getting crowded in there, and I didn’t mind."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -404,6 +674,16 @@
       "cold"
     ],
     "weather": "cold",
+    "exports": {
+      "prop": {
+        "text": "a cigarette lit slowly, like a man with a bank account",
+        "short": "my cigarette",
+        "kind": "habit",
+        "pay": [
+          "My cigarette had burned down to my fingers while we talked. A man with a bank account would have noticed sooner."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -418,6 +698,16 @@
       "money",
       "stairs"
     ],
+    "exports": {
+      "prop": {
+        "text": "the stairs, shorter for the rent being paid",
+        "short": "the stairs",
+        "kind": "stair",
+        "pay": [
+          "The stairs would feel shorter going down, too. That’s what paying the rent does for a building."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -432,6 +722,16 @@
       "money",
       "lamp"
     ],
+    "exports": {
+      "prop": {
+        "text": "the fee on the blotter, under the lamp",
+        "short": "the fee",
+        "kind": "paper",
+        "pay": [
+          "The fee on the blotter had company now. The lamp could make the introductions."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -448,6 +748,16 @@
       "window"
     ],
     "weather": "clear",
+    "exports": {
+      "prop": {
+        "text": "the street lamps sharp as far as the corner",
+        "short": "the street lamps",
+        "kind": "light",
+        "pay": [
+          "Outside, the street lamps were still sharp as far as the corner. It was a clear night to be out in, which was lucky, because I was going to be."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -464,6 +774,16 @@
       "street"
     ],
     "weather": "fog",
+    "exports": {
+      "prop": {
+        "text": "my wallet, counted twice",
+        "short": "my wallet",
+        "kind": "thing",
+        "pay": [
+          "I counted my wallet again. It came to more this time, and I didn’t trust that either."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -479,6 +799,16 @@
       "telephone",
       "paper"
     ],
+    "exports": {
+      "prop": {
+        "text": "more money in the drawer than bills on the desk",
+        "short": "the money in the drawer",
+        "kind": "paper",
+        "pay": [
+          "There was more money in the drawer now. I still didn’t know what people did with it. I was prepared to find out."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -495,6 +825,16 @@
       "street"
     ],
     "weather": "fog",
+    "exports": {
+      "prop": {
+        "text": "a new ribbon in the typewriter",
+        "short": "the new ribbon",
+        "kind": "machine",
+        "pay": [
+          "The new ribbon was still in the typewriter, waiting for something to type. It had something now."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -511,6 +851,16 @@
       "late"
     ],
     "weather": "clear",
+    "exports": {
+      "prop": {
+        "text": "the shade pulled down on a hard, clear moon",
+        "short": "the shade",
+        "kind": "light",
+        "pay": [
+          "I left the shade down. The moon could hear about it in the morning, with everybody else."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -527,6 +877,16 @@
       "street"
     ],
     "weather": "fog",
+    "exports": {
+      "prop": {
+        "text": "two aspirin sent after my headache",
+        "short": "the aspirin",
+        "kind": "thing",
+        "pay": [
+          "The two aspirin still hadn’t found my headache. I wished them luck. I had a search of my own now."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -543,6 +903,16 @@
       "window"
     ],
     "weather": "clear",
+    "exports": {
+      "prop": {
+        "text": "two swollen fingers in a glass of water",
+        "short": "the glass of water",
+        "kind": "hands",
+        "pay": [
+          "My two fingers were still in the glass of water. I’d shaken on the job with the other hand."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -559,6 +929,16 @@
       "lamp"
     ],
     "weather": "rain",
+    "exports": {
+      "prop": {
+        "text": "my ribs, which hurt when I breathed deep",
+        "short": "my ribs",
+        "kind": "posture",
+        "pay": [
+          "My ribs had let me breathe through all of it, if shallow. I thanked them and didn’t push my luck."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -575,6 +955,16 @@
       "paper"
     ],
     "weather": "clear",
+    "exports": {
+      "prop": {
+        "text": "the envelope of prints, face down in the drawer",
+        "short": "the envelope of prints",
+        "kind": "picture",
+        "pay": [
+          "The envelope of prints stayed face down in the drawer. It had earned its privacy."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -591,6 +981,16 @@
       "cold"
     ],
     "weather": "cold",
+    "exports": {
+      "prop": {
+        "text": "the radiator, which had quit again",
+        "short": "the radiator",
+        "kind": "machine",
+        "pay": [
+          "The radiator still hadn’t come back to work. I’d have docked its pay, if I paid it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -607,6 +1007,16 @@
       "sleep"
     ],
     "weather": "cold",
+    "exports": {
+      "prop": {
+        "text": "the cot in the back room, which had won",
+        "short": "the cot",
+        "kind": "furniture",
+        "pay": [
+          "The cot in the back room would have to wait for its rematch."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -623,6 +1033,16 @@
       "quiet"
     ],
     "weather": "rain",
+    "exports": {
+      "prop": {
+        "text": "the rain at the window with a lot to say",
+        "short": "the rain",
+        "kind": "water",
+        "pay": [
+          "The rain was still at the window, going on about something. Now there were two of us with something to say."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -639,6 +1059,16 @@
       "office"
     ],
     "weather": "clear",
+    "exports": {
+      "prop": {
+        "text": "my feet on the desk",
+        "short": "my feet",
+        "kind": "posture",
+        "pay": [
+          "I took my feet off the desk. Somebody was paying me to use them."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -655,6 +1085,16 @@
       "street"
     ],
     "weather": "fog",
+    "exports": {
+      "prop": {
+        "text": "the fog as high as the second-floor windows",
+        "short": "the fog",
+        "kind": "water",
+        "pay": [
+          "The fog was still up to the second-floor windows. I’d be going out in it soon, and it knew."
+        ]
+      }
+    },
     "status": "generated"
   }
 ]

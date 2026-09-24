@@ -1,0 +1,215 @@
+{
+  "moment": "ask",
+  "$comment": "M13. A question page: the approach and the look before he asks (a paragraph of their own), then the body the engine writes (the question, the answer told a family at a time, the thought), then the last word. Holes: approach (where he goes and how he settles; its card may export a prop, 'my hat'), look (his read of them; bind trait for one the last word can bring back), thing (what they have in hand, off their activity card: bind thing; says nothing), body (the question and everything after it; one a sheet). Card holes: prop (place-ambient: bind prop), character (of person, kind look or street). Slots: {person} and {person.he} .He .him .his .His .man .doing .act .sight .hour; {place}, {victim}, {hour}; roles {prop} {trait} {thing}. The close: callback lines bring a role back; plain lines need none; when neither fits, the engine's own last word (M12's close deck, by what the page came to). Never a verdict.",
+  "sheets": [
+    {
+      "id": "ask-a",
+      "name": "Stool and trade",
+      "notes": "The camp golden §3: the approach, the look from the trade, then the question. The look may leave a trait for the last word.",
+      "parts": [
+        {
+          "hole": "approach"
+        },
+        {
+          "hole": "look",
+          "bind": "trait",
+          "optional": true
+        },
+        {
+          "hole": "body"
+        }
+      ],
+      "close": {
+        "roles": [
+          "trait"
+        ],
+        "deck": true
+      }
+    },
+    {
+      "id": "ask-b",
+      "name": "The room first",
+      "notes": "A thing in the room gets its sentence before he goes over (or turns back, on a second question), a paragraph of its own, so the page stands somewhere; the last word can bring it back.",
+      "parts": [
+        {
+          "hole": "prop",
+          "deck": "place-ambient",
+          "bind": "prop",
+          "optional": true
+        },
+        {
+          "para": true,
+          "hole": "approach"
+        },
+        {
+          "hole": "look",
+          "optional": true
+        },
+        {
+          "hole": "body"
+        }
+      ],
+      "close": {
+        "roles": [
+          "prop"
+        ],
+        "deck": true,
+        "callback": [
+          "When it was over, {person.he} and I both looked at {prop}. It was the only thing in the room nobody had asked anything of.",
+          "Afterwards we both needed something else to look at, and we both picked {prop}.",
+          "On my way to the next thing, I envied {prop}. Nobody had asked {prop.it} a single question all night."
+        ]
+      }
+    },
+    {
+      "id": "ask-c",
+      "name": "Hands full",
+      "notes": "What they have in hand, said once in the setup (off their activity card), like the golden's pad. The telling's tel-b can bring it back (put down to answer, picked up after); the last word pays the look instead, so the thing is not said four times. The line is written only on a callback page with a thing to bind; otherwise this is the approach and the look.",
+      "when": {
+        "again": false,
+        "doing": true
+      },
+      "parts": [
+        {
+          "hole": "approach"
+        },
+        {
+          "hole": "look",
+          "bind": "trait",
+          "optional": true
+        },
+        {
+          "hole": "thing",
+          "bind": "thing",
+          "optional": true
+        },
+        {
+          "text": "{person.He} didn’t put {thing} down for me.",
+          "optional": true,
+          "alt": [
+            "{person.He} kept hold of {thing}.",
+            "{Thing} stayed in {person.his} hand.",
+            "{person.He} saw no reason to let go of {thing}."
+          ]
+        },
+        {
+          "hole": "body"
+        }
+      ],
+      "close": {
+        "roles": [
+          "thing",
+          "trait"
+        ],
+        "deck": true
+      }
+    },
+    {
+      "id": "ask-d",
+      "name": "One more",
+      "notes": "A second question the same visit: turned back to, and one line that knows he has already had his turn.",
+      "when": {
+        "again": true
+      },
+      "parts": [
+        {
+          "hole": "approach"
+        },
+        {
+          "text": "{person.He} had hoped one question would be the end of me. Most people do.",
+          "joke": true,
+          "alt": [
+            "{person.He} saw me coming back and made a poor job of looking pleased.",
+            "To {person.him} I was a fly that had found its way back in.",
+            "Nobody is glad to see me the second time. {person.He} kept up the tradition."
+          ]
+        },
+        {
+          "hole": "body"
+        }
+      ],
+      "close": {
+        "roles": [
+          "prop",
+          "trait",
+          "thing"
+        ],
+        "deck": true
+      }
+    },
+    {
+      "id": "ask-e",
+      "name": "A cool welcome",
+      "notes": "Somebody guarded, the first question of a visit: the approach, the look, and how little they did to make him welcome. The try after the question is the engine's.",
+      "when": {
+        "temper": "enigma",
+        "again": false
+      },
+      "parts": [
+        {
+          "hole": "approach"
+        },
+        {
+          "hole": "look",
+          "bind": "trait",
+          "optional": true
+        },
+        {
+          "text": "{person.He} gave me the kind of welcome people keep for the man who reads the gas meter.",
+          "joke": true,
+          "alt": [
+            "{person.He} nodded once, and from the look of it the nod had cost {person.him} something.",
+            "If {person.he} was pleased to see me, {person.he} was saving it for a special occasion.",
+            "{person.He} greeted me the way people greet a cold draught, which is to say {person.he} didn’t."
+          ]
+        },
+        {
+          "hole": "body"
+        }
+      ],
+      "close": {
+        "roles": [
+          "trait",
+          "prop"
+        ],
+        "deck": true
+      }
+    },
+    {
+      "id": "ask-f",
+      "name": "About them, for once",
+      "notes": "A question about their own life: the setup says why this one is different before he asks it aloud.",
+      "when": {
+        "self": true
+      },
+      "parts": [
+        {
+          "hole": "approach"
+        },
+        {
+          "hole": "look",
+          "bind": "trait",
+          "optional": true
+        },
+        {
+          "text": "I’d been asking people about other people all night. For a change, I wanted to ask one about {person.him}self.",
+          "joke": true,
+          "alt": [
+            "This one was about {person.him}self, the one subject everybody is an expert on.",
+            "I’d heard plenty about other people. I wanted to hear what {person.he} had to say for {person.him}self.",
+            "For once I had a question about {person.him} and nobody else. People like that question until they hear it."
+          ]
+        },
+        {
+          "hole": "body"
+        }
+      ],
+      "close": {
+        "roles": [
+          "trait"
+        ],
+        "deck": true
+      }
+    }
+  ]
+}

@@ -31,7 +31,9 @@ import type { Clue, Id, Person } from '../../gen/types.js';
 import type { Rng } from '../../gen/rng.js';
 import { spokenClock } from '../../gen/types.js';
 import { NIGHT_MINUTES } from '../types.js';
-import type { BeatTrace, Block, ErrandTrace, PageShape, ProseVoice, RunState, SceneMemory } from '../types.js';
+import type { BeatTrace, Block, ErrandTrace, PageShape, ProseVoice, RunState, SceneMemory, SheetUse } from '../types.js';
+import { officeFrame, personRoleSlots } from '../scene/sheet-pages.js';
+import { sheetsOn } from '../scene/realize.js';
 import type { ConfrontJudgement, ConfrontRecord } from '../m9.js';
 import { markedTheory, verdictsOn } from '../m9.js';
 import { composeScene, isNightScene } from '../scene/index.js';
@@ -538,6 +540,8 @@ export interface Composed {
   shape?: PageShape;
   beats?: BeatTrace[];
   memory?: SceneMemory;
+  /** M13: the sheets the page was written from. */
+  sheets?: SheetUse[];
 }
 
 /**
@@ -653,6 +657,9 @@ interface Laid {
 /** The longest a fused paragraph may get. Past this it is a wall, not a scene. */
 export const PARAGRAPH_CEILING = 60;
 
+/** M13: the office's first paragraph, the hour, the room and a line of the sheet's. */
+export const OFFICE_PARAGRAPH_CEILING = 72;
+
 /**
  * §5's carrying sentence: the band a joined pair has to land in to be one.
  *
@@ -704,6 +711,8 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   if (isNightScene(scene)) return composeScene(stage, scene);
   const { view, cast, dealer } = stage;
   const gaps: string[] = [];
+  /** M13: the sheets this page used (the office's). */
+  const pageSheetUses: SheetUse[] = [];
   const laid: Laid[] = [];
   const portrayed: Id[] = [];
   const appeared: Id[] = [];
@@ -940,6 +949,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       gaps,
       portrayed,
       appeared,
+      sheets: pageSheetUses,
     });
   }
 
@@ -1477,6 +1487,8 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   // office card and the entrance are the two images §2 keeps around it.
   const ceiling = scene.kind === 'open' ? OPENING_CEILING : PAGE_CEILING;
   const CUT_ORDER: { voices: ReadonlySet<string>; keep: number }[] = [
+    // M13: a sheet's own lines on page one (keep 0) go before anything else.
+    { voices: new Set(['narrator']), keep: 1 },
     { voices: new Set(['aside', 'ambient', 'monologue']), keep: 2 },
     { voices: new Set(['transition', 'arrival', 'approach', 'place', 'presence']), keep: 2 },
     { voices: new Set(['transition', 'arrival', 'approach', 'place', 'presence']), keep: 9 },
@@ -1599,6 +1611,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     imageMotifs,
     plain: counted.plain,
     image: counted.image,
+    ...(pageSheetUses.length > 0 ? { sheets: pageSheetUses } : {}),
   };
 }
 
@@ -2027,7 +2040,9 @@ export function fuseParagraphs(
     if (a.kind === 'prose' && b.kind === 'prose' && a.clueId !== undefined && b.clueId !== undefined)
       continue;
     const text = joinSentences(a.text, b.text);
-    if (countWords([{ kind: 'note', text }]) > ceiling) continue;
+    // M13: the office at midnight is one breath, as the golden's (sixty-odd words).
+    const limit = tagged && here.para === 'office' ? OFFICE_PARAGRAPH_CEILING : ceiling;
+    if (countWords([{ kind: 'note', text }]) > limit) continue;
     const clueId = a.kind === 'prose' ? a.clueId : undefined;
     const keptClue = clueId ?? (b.kind === 'prose' ? b.clueId : undefined);
     // Which voice the paragraph keeps, in order of who has a claim on it.
@@ -2453,6 +2468,8 @@ interface OpenTools {
   gaps: string[];
   portrayed: Id[];
   appeared: Id[];
+  /** M13: the office's sheet, when one framed it. */
+  sheets: SheetUse[];
 }
 
 /**
@@ -2504,15 +2521,72 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     'office',
   );
 
-  /* 1. The office at this hour. */
-  const office = officeCard(dealer, cast.roll.circumstance, cast.roll.weather, slots, t.ctx);
-  if (office.gap) t.gaps.push(office.gap);
-  t.say(office.text, 'place', {
-    motifs: office.motifs,
-    score: office.score,
-    keep: 2,
-    para: 'office',
-  });
+  /* 1. The office at this hour. M13: as the office's sheet lays it out. */
+  const framed = sheetsOn(stage)
+    ? officeFrame(stage, {
+        flags: {
+          temper,
+          klass,
+          familiar,
+          circumstance: cast.roll.circumstance,
+          weather: cast.roll.weather,
+          purpose: view.kase.clientBrief.purpose,
+        },
+        slots: { ...personRoleSlots(stage, 'client', client), place: place?.shortName },
+        office: (want) => {
+          const ex = (c: Card): boolean => want === null || c.exports?.[want] !== undefined;
+          const drawn = dealer.draw(
+            'office',
+            [
+              (c) => ex(c) && tagIs('office', c, 'circumstance', cast.roll.circumstance) && tagIs('office', c, 'weather', cast.roll.weather),
+              (c) => ex(c) && tagIs('office', c, 'circumstance', cast.roll.circumstance),
+              (c) => tagIs('office', c, 'circumstance', cast.roll.circumstance) && tagIs('office', c, 'weather', cast.roll.weather),
+              (c) => tagIs('office', c, 'circumstance', cast.roll.circumstance),
+              (c) => tagIs('office', c, 'weather', cast.roll.weather),
+            ],
+            slots,
+            false,
+            t.ctx,
+          );
+          if (!drawn) return null;
+          const card = DECKS.office.find((c) => c.id === drawn.cardId);
+          return { text: drawn.text, motifs: drawn.motifs, score: drawn.score, ...(card?.exports ? { exports: card.exports } : {}) };
+        },
+        closeDeck: (role, exp) => {
+          const c = (x: Card, tag: string, want: string): boolean => tagOf('close', x, tag) === want;
+          const m = (x: Card): boolean => c(x, 'outcome', 'sheet') && (c(x, 'moment', 'office') || c(x, 'moment', 'any'));
+          const drawn = dealer.draw(
+            'close',
+            role === null || exp === null
+              ? [(x) => m(x) && c(x, 'callback', 'none')]
+              : [(x) => m(x) && c(x, 'callback', role) && c(x, 'kind', exp.kind ?? 'thing'), (x) => m(x) && c(x, 'callback', role) && c(x, 'kind', 'any')],
+            { ...personRoleSlots(stage, 'client', client), ...(role !== null && exp !== null ? { [role]: exp.short, [`${role}Text`]: exp.text } : {}) },
+            true,
+          );
+          return drawn?.text ?? null;
+        },
+      })
+    : null;
+  if (framed) {
+    t.sheets.push(framed.use);
+    // The office card is page one's image and is kept; the sheet's own lines
+    // round it are the first thing the ceiling takes, before the entrance.
+    const at = framed.card.length > 0 ? framed.open.indexOf(framed.card) : -1;
+    const before = at > 0 ? framed.open.slice(0, at).trim() : '';
+    const after = at >= 0 ? framed.open.slice(at + framed.card.length).trim() : '';
+    if (before) t.say(before, 'narrator', { transparent: true, verbatim: true, keep: 0, para: 'office' });
+    t.say(at >= 0 ? framed.card : framed.open, 'place', { motifs: framed.motifs, score: framed.score, keep: 2, para: 'office', verbatim: true });
+    if (after) t.say(after, 'narrator', { transparent: true, verbatim: true, keep: 0, para: 'office' });
+  } else {
+    const office = officeCard(dealer, cast.roll.circumstance, cast.roll.weather, slots, t.ctx);
+    if (office.gap) t.gaps.push(office.gap);
+    t.say(office.text, 'place', {
+      motifs: office.motifs,
+      score: office.score,
+      keep: 2,
+      para: 'office',
+    });
+  }
 
   /* 2. The entrance, with the client's portrait woven into it (§A.4).
    *
@@ -2806,6 +2880,8 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   // M10 §A.5: the page is told in the past tense, and this is where it
   // closes, so it says the scene's last fact the way the rest was said and
   // leaves the two free questions to the choices under it.
+  // M13: the office sheet's last word, before she is left in the chair.
+  if (framed?.close) t.say(framed.close, 'narrator', { transparent: true, verbatim: true, keep: 0 });
   t.put({ kind: 'note', text: officeCloseLine(client) }, OFFICE_CLOSE);
 }
 

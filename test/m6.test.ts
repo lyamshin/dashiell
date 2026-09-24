@@ -411,7 +411,10 @@ describe('§5 the page', () => {
     // for ("write Dashiell actually asking"), on top of the camp pass's longer
     // cards: a question page runs about forty words longer, and the share past
     // 220 (the recap left out, which has its own size) is under a quarter.
-    expect(over / words.length).toBeLessThan(0.25);
+    // M13 gives an arrival its sheet's last line and a search a last word of
+    // its own (the callback the designer asked for on about seventy pages in
+    // a hundred): 25.5% past 220 over these forty nights, so under 28%.
+    expect(over / words.length).toBeLessThan(0.28);
   });
 
   it('offers no choices once the report form is open', () => {

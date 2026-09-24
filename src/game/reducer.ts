@@ -44,7 +44,7 @@ import type {
   TopicRef,
 } from './types.js';
 import { EMPTY_REPORT, EMPTY_SCENE } from './types.js';
-import type { BeatTrace, PageShape, SceneMemory } from './types.js';
+import type { BeatTrace, PageShape, SceneMemory, SheetUse } from './types.js';
 import { actionsLeft, isOver, minutesAfter } from './clock.js';
 import type { CaseView } from './derive.js';
 import {
@@ -201,6 +201,7 @@ export function newRun(
     imageMotifs: composed.imageMotifs,
     plain: composed.plain,
     image: composed.image,
+    ...(composed.sheets ? { sheets: composed.sheets } : {}),
   };
   const state: RunState = {
     ...base,
@@ -732,6 +733,7 @@ export function step(
   let errand: ErrandTrace | undefined;
   let shape: PageShape | undefined;
   let beats: BeatTrace[] | undefined;
+  let sheets: SheetUse[] | undefined;
   let memory: SceneMemory | undefined;
   let confronted: ConfrontRecord | null = null;
   /** M12 Part 2: "Go over what I have", written once the state is. */
@@ -1179,6 +1181,7 @@ export function step(
     if (composed.errand) errand = composed.errand;
     if (composed.shape) shape = composed.shape;
     if (composed.beats) beats = composed.beats;
+    if (composed.sheets) sheets = composed.sheets;
     if (composed.memory) memory = composed.memory;
     asideBand = composed.asideBand;
     portrayed = composed.portrayed;
@@ -1252,6 +1255,7 @@ export function step(
     ...(errand === undefined ? {} : { errand }),
     ...(shape === undefined ? {} : { shape }),
     ...(beats === undefined ? {} : { beats }),
+    ...(sheets === undefined ? {} : { sheets }),
   };
   next.log = [...state.log, page];
 
@@ -1284,9 +1288,11 @@ export function step(
         page.blocks = recapBlocks;
         page.shape = 'recap';
         page.beats = [trace];
+        if (written.sheet) page.sheets = [written.sheet];
       } else {
         page.blocks = [...page.blocks, ...recapBlocks];
         page.beats = [...(page.beats ?? []), trace];
+        if (written.sheet) page.sheets = [...(page.sheets ?? []), written.sheet];
       }
       next.scene = { ...(next.scene ?? EMPTY_SCENE), recap: written.memory };
     } else if (recapAsked) {

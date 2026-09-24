@@ -8,6 +8,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a glass of beer",
+        "short": "the beer",
+        "kind": "drink"
+      }
+    },
     "status": "generated"
   },
   {
@@ -19,6 +26,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rag",
+        "short": "the rag",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -31,6 +45,13 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a wet glass",
+        "short": "the glass",
+        "kind": "glass"
+      }
+    },
     "status": "generated"
   },
   {
@@ -53,6 +74,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a claim ticket",
+        "short": "the claim ticket",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -65,6 +93,13 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "an umbrella",
+        "short": "the umbrella",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -76,6 +111,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of evening papers",
+        "short": "the papers",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -87,6 +129,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of change",
+        "short": "the change",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -110,6 +159,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of coins",
+        "short": "the coins",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -121,6 +177,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rag",
+        "short": "the rag",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -133,6 +196,13 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a list",
+        "short": "the list",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -145,6 +215,13 @@
       "place": "pool-hall"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a cue",
+        "short": "the cue",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -157,6 +234,13 @@
       "place": "pool-hall"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of chips",
+        "short": "the chips",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -170,6 +254,13 @@
       "place": "pool-hall"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a cue",
+        "short": "the cue",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -181,6 +272,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ticket",
+        "short": "the ticket",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -192,6 +290,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of ticket stubs",
+        "short": "the stubs",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -226,6 +331,13 @@
       "placeKind": "private"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rag",
+        "short": "the rag",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -249,6 +361,13 @@
       "placeKind": "private"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rent book",
+        "short": "the rent book",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -272,6 +391,13 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rent envelope",
+        "short": "the envelope",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -283,6 +409,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rent book",
+        "short": "the rent book",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -328,6 +461,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rag",
+        "short": "the rag",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -351,6 +491,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small envelope of pills",
+        "short": "the envelope",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -362,6 +509,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a damp cloth",
+        "short": "the cloth",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -374,6 +528,13 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a prescription slip",
+        "short": "the prescription",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -386,6 +547,13 @@
       "at": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a newspaper",
+        "short": "the newspaper",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -398,6 +566,13 @@
       "at": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a coin",
+        "short": "the coin",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -423,6 +598,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a bar tab",
+        "short": "the tab",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -460,6 +642,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of unopened bills",
+        "short": "the bills",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -485,6 +674,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a roll of bills",
+        "short": "the money",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -509,6 +705,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a compact mirror",
+        "short": "the compact",
+        "kind": "glass"
+      }
+    },
     "status": "generated"
   },
   {
@@ -522,6 +725,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small purse",
+        "short": "the purse",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -571,6 +781,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a box of letters",
+        "short": "the letters",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -596,6 +813,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of coins",
+        "short": "the coins",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -608,6 +832,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a folded page of stock prices",
+        "short": "the stock prices",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -620,6 +851,13 @@
       "at": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pocket watch",
+        "short": "the watch",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -633,6 +871,13 @@
       "at": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of change",
+        "short": "the change",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -645,6 +890,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "an old receipt covered in figures",
+        "short": "the receipt",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -657,6 +909,13 @@
       "at": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a cigarette",
+        "short": "the cigarette",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -670,6 +929,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a strip of ticker tape",
+        "short": "the ticker tape",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -682,6 +948,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ledger",
+        "short": "the ledger",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -694,6 +967,14 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of bills",
+        "short": "the money",
+        "kind": "thing"
+      }
+    },
+    "cut": "counting a stack of bills twice",
     "status": "generated"
   },
   {
@@ -707,6 +988,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a telephone",
+        "short": "the telephone",
+        "kind": "machine"
+      }
+    },
     "status": "generated"
   },
   {
@@ -719,6 +1007,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small notebook",
+        "short": "the notebook",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -731,6 +1026,13 @@
       "at": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a compact mirror",
+        "short": "the compact",
+        "kind": "glass"
+      }
+    },
     "status": "generated"
   },
   {
@@ -744,6 +1046,13 @@
       "at": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "an unlit cigarette",
+        "short": "the cigarette",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -768,6 +1077,7 @@
       "at": "any"
     },
     "motifs": [],
+    "cut": "ordering without looking at the menu",
     "status": "generated"
   },
   {
@@ -781,6 +1091,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a glass",
+        "short": "the glass",
+        "kind": "drink"
+      }
+    },
     "status": "generated"
   },
   {
@@ -805,6 +1122,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a typed page",
+        "short": "the page",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -818,6 +1142,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "an index card",
+        "short": "the card",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -830,6 +1161,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rent book",
+        "short": "the rent book",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -842,6 +1180,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of bills",
+        "short": "the money",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -855,6 +1200,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a cane",
+        "short": "the cane",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -867,6 +1219,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stub of pencil",
+        "short": "the pencil",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -879,6 +1238,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a set of keys",
+        "short": "the keys",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -892,6 +1258,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of change",
+        "short": "the change",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -904,6 +1277,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of leases",
+        "short": "the leases",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -916,6 +1296,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a roll of bills",
+        "short": "the money",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -941,6 +1328,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a folded document",
+        "short": "the document",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -953,6 +1347,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pocket watch",
+        "short": "the watch",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -966,6 +1367,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rolled document",
+        "short": "the document",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -978,6 +1386,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a contract",
+        "short": "the contract",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -990,6 +1405,13 @@
       "at": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a cigarette",
+        "short": "the cigarette",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1003,6 +1425,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a list of names",
+        "short": "the list",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1015,6 +1444,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pen",
+        "short": "the pen",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1027,6 +1463,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a will",
+        "short": "the will",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1040,6 +1483,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a folder",
+        "short": "the folder",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1052,6 +1502,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a receipt",
+        "short": "the receipt",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1064,6 +1521,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of change",
+        "short": "the change",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1077,6 +1541,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small account book",
+        "short": "the book",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1089,6 +1560,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a bar tab",
+        "short": "the tab",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1101,6 +1579,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pencil",
+        "short": "the pencil",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1114,6 +1599,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of coins",
+        "short": "the coins",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1126,6 +1618,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a straightedge",
+        "short": "the straightedge",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1138,6 +1637,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ledger",
+        "short": "the ledger",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1151,6 +1657,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a sheet of figures",
+        "short": "the figures",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1175,6 +1688,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a paper cup of pills",
+        "short": "the paper cup",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1188,6 +1708,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a length of gauze",
+        "short": "the gauze",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1200,6 +1727,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a bag of supplies",
+        "short": "the bag",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1225,6 +1759,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a folded blanket",
+        "short": "the blanket",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1237,6 +1778,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a patient’s chart",
+        "short": "the chart",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1249,6 +1797,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small glass with a dose in it",
+        "short": "the glass",
+        "kind": "glass"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1262,6 +1817,14 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "an unopened book",
+        "short": "the book",
+        "kind": "paper"
+      }
+    },
+    "cut": "sitting by a bed",
     "status": "generated"
   },
   {
@@ -1274,6 +1837,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pocket watch",
+        "short": "the watch",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1286,6 +1856,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small case of instruments",
+        "short": "the instruments",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1299,6 +1876,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of appointment cards",
+        "short": "the cards",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1311,6 +1895,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a dental instrument",
+        "short": "the instrument",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1323,6 +1914,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a patient card",
+        "short": "the card",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1336,6 +1934,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "the day’s money",
+        "short": "the money",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1348,6 +1953,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a dental instrument",
+        "short": "the instrument",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1360,6 +1972,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ledger",
+        "short": "the ledger",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1385,6 +2004,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a slip of paper with an address on it",
+        "short": "the slip of paper",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1397,6 +2023,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a letter",
+        "short": "the letter",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1410,6 +2043,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small purse",
+        "short": "the purse",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1422,6 +2062,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of letters",
+        "short": "the letters",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1434,6 +2081,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a shorthand notebook",
+        "short": "the notebook",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1447,6 +2101,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pencil",
+        "short": "the pencil",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1471,6 +2132,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a folder",
+        "short": "the folder",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1484,6 +2152,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a page of notes",
+        "short": "the notes",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1496,6 +2171,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small notebook",
+        "short": "the notebook",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1508,6 +2190,14 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pocket watch",
+        "short": "the watch",
+        "kind": "thing"
+      }
+    },
+    "cut": "checking a pocket watch",
     "status": "generated"
   },
   {
@@ -1521,6 +2211,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pencil",
+        "short": "the pencil",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1533,6 +2230,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small notebook",
+        "short": "the notebook",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1545,6 +2249,13 @@
       "at": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a cigarette",
+        "short": "the cigarette",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1558,6 +2269,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of carbon copies",
+        "short": "the carbon copies",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1582,6 +2300,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a typed page",
+        "short": "the page",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1595,6 +2320,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of dollar bills",
+        "short": "the money",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1632,6 +2364,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a sheet of music",
+        "short": "the music",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1656,6 +2395,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a music book",
+        "short": "the music book",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1669,6 +2415,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small tin of coins",
+        "short": "the tin",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1693,6 +2446,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of sheet music",
+        "short": "the sheet music",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1706,6 +2466,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a metronome",
+        "short": "the metronome",
+        "kind": "machine"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1718,6 +2485,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a claim form",
+        "short": "the claim form",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1730,6 +2504,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small notebook",
+        "short": "the notebook",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1743,6 +2524,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of change",
+        "short": "the change",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1755,6 +2543,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a folder of claims",
+        "short": "the folder",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1767,6 +2562,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pencil",
+        "short": "the pencil",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1780,6 +2582,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a set of photographs",
+        "short": "the photographs",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1792,6 +2601,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a half-written report",
+        "short": "the report",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1804,6 +2620,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "an insurance policy",
+        "short": "the insurance policy",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1817,6 +2640,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a folder",
+        "short": "the folder",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1829,6 +2659,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a folded stack of linen",
+        "short": "the linen",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1841,6 +2678,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ring of keys",
+        "short": "the keys",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1866,6 +2710,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of towels",
+        "short": "the towels",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1878,6 +2729,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a room list",
+        "short": "the list",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1891,6 +2749,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a broom",
+        "short": "the broom",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1915,6 +2780,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a duster",
+        "short": "the duster",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1928,6 +2800,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of linens",
+        "short": "the linens",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1952,6 +2831,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a union card",
+        "short": "the union card",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1965,6 +2851,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of change",
+        "short": "the change",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1977,6 +2870,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a glass",
+        "short": "the glass",
+        "kind": "drink"
+      }
+    },
     "status": "generated"
   },
   {
@@ -1989,6 +2889,13 @@
       "at": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of coins",
+        "short": "the coins",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2014,6 +2921,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a length of rope",
+        "short": "the rope",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2026,6 +2940,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a roll of bills",
+        "short": "the money",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2051,6 +2972,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a bundle of coats tied with string",
+        "short": "the bundle",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2063,6 +2991,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a thimble",
+        "short": "the thimble",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2076,6 +3011,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small purse",
+        "short": "the purse",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2088,6 +3030,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a bundle of finished sewing",
+        "short": "the sewing",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2100,6 +3049,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a needle and thread",
+        "short": "the needle",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2113,6 +3069,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a piece of sewing",
+        "short": "the sewing",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2125,6 +3088,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a hem half stitched",
+        "short": "the sewing",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2137,6 +3107,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of finished coats",
+        "short": "the coats",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2150,6 +3127,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a paper pattern",
+        "short": "the pattern",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2187,6 +3171,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of coins",
+        "short": "the coins",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2211,6 +3202,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rag",
+        "short": "the rag",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2236,6 +3234,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small notebook",
+        "short": "the notebook",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2248,6 +3253,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rag",
+        "short": "the rag",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2261,6 +3273,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of change",
+        "short": "the change",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2273,6 +3292,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a suit on a hanger",
+        "short": "the suit",
+        "kind": "clothes"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2285,6 +3311,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a tape measure",
+        "short": "the tape measure",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2298,6 +3331,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a length of cloth",
+        "short": "the cloth",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2322,6 +3362,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a piece of tailor’s chalk",
+        "short": "the chalk",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2347,6 +3394,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a needle",
+        "short": "the needle",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2359,6 +3413,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a bolt of cloth",
+        "short": "the cloth",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2372,6 +3433,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of finished coats",
+        "short": "the coats",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2384,6 +3452,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a length of rope",
+        "short": "the rope",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2397,6 +3472,13 @@
       "place": "movie-house"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rehearsal schedule",
+        "short": "the schedule",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2410,6 +3492,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a folded piece of stage scenery",
+        "short": "the scenery",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2422,6 +3511,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a list",
+        "short": "the list",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2434,6 +3530,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a length of rope",
+        "short": "the rope",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2459,6 +3562,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a length of rope",
+        "short": "the rope",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2484,6 +3594,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of rehearsal schedules",
+        "short": "the schedules",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2508,6 +3625,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small purse",
+        "short": "the purse",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2521,6 +3645,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a magazine",
+        "short": "the magazine",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2533,6 +3664,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pencil",
+        "short": "the pencil",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2545,6 +3683,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of coins",
+        "short": "the coins",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2558,6 +3703,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a schedule",
+        "short": "the schedule",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2570,6 +3722,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a switchboard cord in each hand",
+        "short": "the cords",
+        "kind": "machine"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2582,6 +3741,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a directory of numbers",
+        "short": "the directory",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2595,6 +3761,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a log book",
+        "short": "the book",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2607,6 +3780,13 @@
       "at": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pocket watch",
+        "short": "the watch",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2619,6 +3799,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of change",
+        "short": "the change",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2632,6 +3819,13 @@
       "at": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a newspaper",
+        "short": "the newspaper",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2645,6 +3839,13 @@
       "place": "hotel-lobby"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "the hotel register",
+        "short": "the register",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2670,6 +3871,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ledger",
+        "short": "the ledger",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2682,6 +3890,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "the night’s mail",
+        "short": "the mail",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2694,6 +3909,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pen",
+        "short": "the pen",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2719,6 +3941,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a compact mirror",
+        "short": "the compact",
+        "kind": "glass"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2731,6 +3960,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small purse",
+        "short": "the purse",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2744,6 +3980,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a list of auditions",
+        "short": "the list",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2793,6 +4036,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a costume",
+        "short": "the costume",
+        "kind": "clothes"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2805,6 +4055,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a roll of bills",
+        "short": "the money",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2830,6 +4087,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a piece of chalk",
+        "short": "the chalk",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2842,6 +4106,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of change",
+        "short": "the change",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2855,6 +4126,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a folded betting slip",
+        "short": "the betting slip",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2867,6 +4145,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of betting slips",
+        "short": "the slips",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2879,6 +4164,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pencil",
+        "short": "the pencil",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2892,6 +4184,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small stack of winnings",
+        "short": "the winnings",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2904,6 +4203,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a roll of bills",
+        "short": "the money",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2916,6 +4222,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ledger",
+        "short": "the ledger",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2929,6 +4242,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rag",
+        "short": "the rag",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2953,6 +4273,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a list of names",
+        "short": "the list",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2966,6 +4293,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of coal vouchers",
+        "short": "the vouchers",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -2990,6 +4324,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pencil",
+        "short": "the pencil",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3003,6 +4344,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of raffle tickets",
+        "short": "the raffle tickets",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3015,6 +4363,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a list of names",
+        "short": "the list",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3027,6 +4382,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a roll of bills",
+        "short": "the money",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3040,6 +4402,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ledger",
+        "short": "the ledger",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3052,6 +4421,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ticket stub",
+        "short": "the stub",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3064,6 +4440,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of change",
+        "short": "the change",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3077,6 +4460,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a claim slip",
+        "short": "the slip",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3089,6 +4479,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a tray of tickets",
+        "short": "the tray",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3101,6 +4498,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ledger",
+        "short": "the ledger",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3114,6 +4518,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of pawn tickets",
+        "short": "the tickets",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3126,6 +4537,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ring",
+        "short": "the ring",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3151,6 +4569,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ledger",
+        "short": "the ledger",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3262,6 +4687,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a roll of bills",
+        "short": "the money",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3274,6 +4706,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a lottery slip",
+        "short": "the slip",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3286,6 +4725,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a handful of change",
+        "short": "the change",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3311,6 +4757,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of lottery slips",
+        "short": "the slips",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3323,6 +4776,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small envelope",
+        "short": "the envelope",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3336,6 +4796,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a lottery slip",
+        "short": "the slip",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3348,6 +4815,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a bag of coins",
+        "short": "the coins",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3360,6 +4834,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ledger",
+        "short": "the ledger",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3373,6 +4854,13 @@
       "at": "work"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of lottery slips",
+        "short": "the slips",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3428,6 +4916,13 @@
       "placeKind": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a folded newspaper",
+        "short": "the newspaper",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3439,6 +4934,13 @@
       "placeKind": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a cigarette",
+        "short": "the cigarette",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3450,6 +4952,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a cold coffee",
+        "short": "the coffee",
+        "kind": "drink"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3461,6 +4970,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a folded newspaper",
+        "short": "the newspaper",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3472,6 +4988,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a drink",
+        "short": "the drink",
+        "kind": "drink"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3483,6 +5006,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a cigarette",
+        "short": "the cigarette",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3505,6 +5035,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a coffee cup",
+        "short": "the coffee cup",
+        "kind": "drink"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3527,6 +5064,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a cigarette",
+        "short": "the cigarette",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3549,6 +5093,14 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a folded newspaper",
+        "short": "the newspaper",
+        "kind": "paper"
+      }
+    },
+    "cut": "reading a folded newspaper",
     "status": "generated"
   },
   {
@@ -3582,6 +5134,13 @@
       "placeKind": "private"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a cigarette",
+        "short": "the cigarette",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3604,6 +5163,13 @@
       "placeKind": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "an unlit cigarette",
+        "short": "the cigarette",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3615,6 +5181,13 @@
       "placeKind": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a paper sack of peanuts",
+        "short": "the peanuts",
+        "kind": "food"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3626,6 +5199,13 @@
       "placeKind": "any"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pair of eyeglasses",
+        "short": "the eyeglasses",
+        "kind": "glass"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3637,6 +5217,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a crossword",
+        "short": "the crossword",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3648,6 +5235,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a matchbook",
+        "short": "the matchbook",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3670,6 +5264,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a hat",
+        "short": "the hat",
+        "kind": "clothes"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3681,6 +5282,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "an old envelope",
+        "short": "the envelope",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3692,6 +5300,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a cup of coffee",
+        "short": "the coffee",
+        "kind": "drink"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3703,6 +5318,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a nickel",
+        "short": "the nickel",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3715,6 +5337,13 @@
       "place": "pawnshop"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pocket watch with a pawn ticket",
+        "short": "the watch",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3727,6 +5356,13 @@
       "place": "pawnshop"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ring",
+        "short": "the ring",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3739,6 +5375,13 @@
       "place": "chop-suey"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a carton of rice",
+        "short": "the carton",
+        "kind": "food"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3751,6 +5394,13 @@
       "place": "chop-suey"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of bowls",
+        "short": "the bowls",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3763,6 +5413,13 @@
       "place": "barber-shop"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a razor",
+        "short": "the razor",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3775,6 +5432,13 @@
       "place": "barber-shop"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a broom",
+        "short": "the broom",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3787,6 +5451,13 @@
       "place": "hotel-garage"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a wrench",
+        "short": "the wrench",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3799,6 +5470,13 @@
       "place": "hotel-garage"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a ledger",
+        "short": "the ledger",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3810,6 +5488,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "the day’s takings",
+        "short": "the money",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3821,6 +5506,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rag",
+        "short": "the rag",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3832,6 +5524,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a junk box",
+        "short": "the junk box",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3843,6 +5542,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a lemon",
+        "short": "the lemon",
+        "kind": "food"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3854,6 +5560,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a glass and a towel",
+        "short": "the glass",
+        "kind": "glass"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3898,6 +5611,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rag",
+        "short": "the rag",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3920,6 +5640,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a fresh bundle of papers",
+        "short": "the bundle",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3931,6 +5658,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of papers",
+        "short": "the papers",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3942,6 +5676,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of magazines",
+        "short": "the magazines",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3966,6 +5707,13 @@
       "place": "automat"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a rag",
+        "short": "the rag",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3978,6 +5726,13 @@
       "place": "automat"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a roll of nickels",
+        "short": "the nickels",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -3989,6 +5744,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a bundle of ticket stubs",
+        "short": "the stubs",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4000,6 +5762,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a push broom",
+        "short": "the broom",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4022,6 +5791,14 @@
       "placeKind": "private"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a newspaper",
+        "short": "the newspaper",
+        "kind": "paper"
+      }
+    },
+    "cut": "sitting on the stool in the car",
     "status": "generated"
   },
   {
@@ -4033,6 +5810,13 @@
       "placeKind": "private"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small oil can",
+        "short": "the oil can",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4044,6 +5828,13 @@
       "placeKind": "private"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a bundle of late mail",
+        "short": "the mail",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4055,6 +5846,13 @@
       "placeKind": "private"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a light bulb",
+        "short": "the bulb",
+        "kind": "light"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4066,6 +5864,13 @@
       "placeKind": "private"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a mop",
+        "short": "the mop",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4077,6 +5882,13 @@
       "placeKind": "private"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a receipt pad",
+        "short": "the receipt pad",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4088,6 +5900,13 @@
       "placeKind": "private"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "an envelope with a figure on it",
+        "short": "the envelope",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4099,6 +5918,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a broom",
+        "short": "the broom",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4110,6 +5936,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a basket of mending",
+        "short": "the mending",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4121,6 +5954,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pile of letters",
+        "short": "the letters",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4132,6 +5972,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a tin box of rent money",
+        "short": "the tin box",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4143,6 +5990,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a sandwich in wax paper",
+        "short": "the sandwich",
+        "kind": "food"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4154,6 +6008,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a polishing cloth",
+        "short": "the cloth",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4165,6 +6026,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a little book of fares",
+        "short": "the book",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4176,6 +6044,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pestle",
+        "short": "the pestle",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4187,6 +6062,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a sheet of labels",
+        "short": "the labels",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4198,6 +6080,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a scoop",
+        "short": "the scoop",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4209,6 +6098,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small notebook",
+        "short": "the notebook",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4220,6 +6116,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a nightstick",
+        "short": "the nightstick",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4231,6 +6134,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a nightstick",
+        "short": "the nightstick",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4253,6 +6163,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "an apple",
+        "short": "the apple",
+        "kind": "food"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4275,6 +6192,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a uniform cap",
+        "short": "the cap",
+        "kind": "clothes"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4308,6 +6232,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a nightstick",
+        "short": "the nightstick",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4330,6 +6261,13 @@
       "placeKind": "semi"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a small notebook",
+        "short": "the notebook",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4342,6 +6280,13 @@
       "place": "pool-hall"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a long brush",
+        "short": "the brush",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4354,6 +6299,13 @@
       "place": "pawnshop"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pawned watch",
+        "short": "the watch",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4366,6 +6318,13 @@
       "place": "chop-suey"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "an order pad",
+        "short": "the order pad",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4378,6 +6337,13 @@
       "place": "barber-shop"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a stack of hot towels",
+        "short": "the towels",
+        "kind": "fabric"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4390,6 +6356,13 @@
       "place": "hotel-garage"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a tire gauge",
+        "short": "the gauge",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4412,6 +6385,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a bundle of unsold papers",
+        "short": "the papers",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4424,6 +6404,13 @@
       "place": "automat"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a tray of clean cups",
+        "short": "the tray",
+        "kind": "thing"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4435,6 +6422,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a magazine",
+        "short": "the magazine",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4446,6 +6440,13 @@
       "placeKind": "private"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a sandwich",
+        "short": "the sandwich",
+        "kind": "food"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4457,6 +6458,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "the racing page",
+        "short": "the racing page",
+        "kind": "paper"
+      }
+    },
     "status": "generated"
   },
   {
@@ -4468,6 +6476,13 @@
       "placeKind": "public"
     },
     "motifs": [],
+    "exports": {
+      "thing": {
+        "text": "a pen",
+        "short": "the pen",
+        "kind": "tool"
+      }
+    },
     "status": "generated"
   }
 ]

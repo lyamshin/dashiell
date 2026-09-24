@@ -72,6 +72,7 @@ import lookJson from '../../../content/decks/look.json';
 import tryJson from '../../../content/decks/try.json';
 import closeJson from '../../../content/decks/close.json';
 import recapJson from '../../../content/decks/recap.json';
+import greetJson from '../../../content/decks/greet.json';
 
 export type DeckName =
   | 'similes'
@@ -126,7 +127,9 @@ export type DeckName =
   | 'look'
   | 'try'
   | 'close'
-  | 'recap';
+  | 'recap'
+  /* M13: the client's greeting on a sheet. */
+  | 'greet';
 
 export type BurnTier = 'run-to-run' | 'within-run' | 'free';
 
@@ -160,8 +163,47 @@ export interface Card {
   recall?: string;
   /** M8 §4, `portrait-pairs` only: the recall as something the person does. */
   recallAction?: string;
+  /**
+   * M13: what a sheet may reuse of this card later on the page — the prop it
+   * puts in the room ("the mirror"), the trait it gives a person ("eyes that
+   * went to the door"), the thing somebody has in hand.
+   */
+  exports?: Record<string, CardExport>;
+  /** M13: the last words of the card's short form (its first clause or sentence, by default). */
+  cut?: string;
   status: string;
   notes?: string;
+}
+
+/** M13: one role a card offers a sheet. */
+export interface CardExport {
+  /** The whole noun phrase: "a mirror whose silvering had gone, spotted black in the corners". */
+  text: string;
+  /** How the page refers back to it: "the mirror". */
+  short: string;
+  /** What kind of thing it is, for the close deck's lines (`light`, `glass`, `sound`…). */
+  kind?: string;
+  /** Where somebody stands by it: "under the mirror". */
+  near?: string;
+  /** Closing lines written for this card's prop, the best callbacks there are. */
+  pay?: string[];
+}
+
+/**
+ * M13: a card's short form, as the page prints it. Up to and through its
+ * `cut` when it has one, else its first sentence.
+ */
+export function shortOf(card: Card, filled: string): string {
+  if (card.cut !== undefined) {
+    const at = filled.indexOf(card.cut);
+    if (at >= 0) {
+      const head = filled.slice(0, at + card.cut.length).replace(/[,;:\s]+$/, '');
+      return /[.!?”]$/.test(head) ? head : `${head}.`;
+    }
+  }
+  // The first sentence, not the first full stop: "Mrs." and "St." are not an end.
+  const m = /^(.+?(?<!\b(?:Mrs|Mr|Dr|St|Mt|Jr|Sr))[.!?])(?:\s|$)/.exec(filled);
+  return m ? (m[1] as string) : filled;
 }
 
 interface TagSpec {
@@ -258,6 +300,7 @@ const RAW: Record<DeckName, unknown> = {
   try: tryJson,
   close: closeJson,
   recap: recapJson,
+  greet: greetJson,
 };
 
 /** Every deck is on disk and imported; nothing is missing. */
@@ -660,6 +703,11 @@ export class Dealer {
     this.run.add(id);
     this.order.push(id);
     this.spent.push(id);
+  }
+
+  /** M13: the noted choices whose ids start with `prefix`, oldest first (tonight's sheets). */
+  notedLike(prefix: string): string[] {
+    return this.order.filter((id) => id.startsWith(prefix));
   }
 
   /** Has this id — a card or a noted choice — been spent this run? */

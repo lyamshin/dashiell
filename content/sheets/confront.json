@@ -1,0 +1,75 @@
+{
+  "moment": "confront",
+  "$comment": "M13. A fact put to somebody: the setup (the approach, and at most one line of the sheet's own) comes before he puts the fact, a paragraph of its own; the body is the engine's (the fact put, the press, the reaction, their words, the thought); then the last word. Holes and slots as the ask's: approach, look (bind trait), thing (bind thing; says nothing), body; card holes prop (place-ambient) and character (of person). Flags as the ask's; outcome says what came of it (admit, withdraw, hold, quiet, second-lie, wrong, ends). The setup is short and pointed. The close brings a role back or leaves it to the engine's own last word, which is written for the outcome. Never a verdict: no line says or hints what the answer was worth.",
+  "sheets": [
+    {
+      "id": "con-a",
+      "name": "Face to face",
+      "notes": "The approach and the look, then the fact. The look may leave a trait for the last word.",
+      "weight": 2,
+      "parts": [
+        { "hole": "approach" },
+        { "hole": "look", "bind": "trait", "optional": true },
+        { "hole": "body" }
+      ],
+      "close": { "roles": ["trait", "prop", "thing"], "deck": true }
+    },
+    {
+      "id": "con-b",
+      "name": "The page ready",
+      "notes": "He comes with the notebook already open. Not when the engine's try is a threat left unsaid (that is the notebook's other job).",
+      "when": { "try": "none" },
+      "parts": [
+        { "hole": "approach" },
+        { "text": "I had the notebook open at the right page. It’s the only part of the job I do ahead of time.", "alt": ["I came with the notebook already open. It makes me look like I know what I’m doing.", "I had the page ready and my thumb on it, so I wouldn’t have to go looking in front of {person.him}.", "I had the notebook open already, which is as close as I come to a plan."], "joke": true },
+        { "hole": "body" }
+      ],
+      "close": { "roles": ["prop", "trait", "thing"], "deck": true }
+    },
+    {
+      "id": "con-c",
+      "name": "One more thing",
+      "notes": "A second go the same visit: turned back to, and one pointed line before the fact.",
+      "when": { "again": true },
+      "parts": [
+        { "hole": "approach" },
+        { "text": "I had one more thing, and it wasn’t a question.", "alt": ["I wasn’t done. This time I had something to tell {person.him}.", "One more thing, and this one I wasn’t asking.", "I came back with a statement this time, not a question."] },
+        { "hole": "body" }
+      ],
+      "close": { "roles": ["prop", "trait", "thing"], "deck": true }
+    },
+    {
+      "id": "con-d",
+      "name": "Wary of the notebook",
+      "notes": "Somebody guarded sees the notebook before the fact, and keeps their distance from it.",
+      "when": { "temper": "enigma" },
+      "parts": [
+        { "hole": "approach" },
+        { "text": "{person.He} saw the notebook come out and leaned away from it, as if it might go off.", "alt": ["{person.He} watched the notebook come out the way people watch a dog they don’t know.", "The notebook came out. {person.He} drew back an inch, which from {person.him} was a shout.", "{person.He} looked at the notebook, then at me, and liked neither of us."], "joke": true },
+        { "hole": "body" }
+      ],
+      "close": { "roles": ["trait", "prop"], "deck": true }
+    },
+    {
+      "id": "con-e",
+      "name": "Something in hand",
+      "notes": "What they are holding, said once before the fact, and brought back at the end. The line is written only on a callback page with a thing to bind.",
+      "when": { "doing": true },
+      "parts": [
+        { "hole": "approach" },
+        { "hole": "thing", "bind": "thing", "optional": true },
+        { "text": "{person.He} still had {thing} in {person.his} hand, which was going to make this awkward for one of us.", "alt": ["{Thing} was still in {person.his} hand. I made a note to stay out of reach.", "{person.He} hadn’t let go of {thing}. I hoped {person.he} wasn’t the throwing type.", "{person.He} kept {thing} in hand, which gave {person.him} something to do and me something to watch."], "optional": true, "joke": true },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["thing"],
+        "deck": true,
+        "callback": [
+          "{person.He} had held on to {thing} through all of it. You have to respect a grip like that.",
+          "Through all of it, {thing} never left {person.his} hand. I’ve known marriages with less commitment.",
+          "{person.He} was still holding {thing} at the end. By then I half believed {thing} was holding {person.him}."
+        ]
+      }
+    }
+  ]
+}

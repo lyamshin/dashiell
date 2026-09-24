@@ -19,3 +19,11 @@ Found reading full runs after M10 and shorter nights (2026-09-23). Each item nam
 - **"Not turning the page" is a common activity.** It turns up for several people across seeds. It needs more variety. *Engine side in M12: a visit's activity is never one somebody else has been doing tonight while the trade has anything else. The variety across seeds is the activity deck's (the camp pass).*
 - **The office has no camp closing on the hiring.** The hiring deck needs camp lines like the golden's "kept two fingers on it until I picked it up".
 - **The 680 character cards need a camp pass.** They were written before the camp ruling, so the look cards and the fixtures' victim cards read sober.
+
+## After M13 (sheets), 2026-09-24
+- **A forced callback.** Sheet C: "From where she was you could see all of it, the floor overhead included." The prop was a creak, which you can't see. A callback has to fit the prop's sense: sound, sight or smell. Tag props with their sense and gate the lines that use them.
+- **The relation sentence lands mid-paragraph.** "Hargrove was the bartender at the speakeasy." is inserted after the first mention inside a list sentence. In sheets, the first-mention clause should go into the sheet's own slot for it, or be dropped when the sheet already says who the person is.
+- **Errand-line jokes that don't fit:** "Hauck had said as much, and my feet had made me promise to keep it short."
+- **A redundant place:** "Petrosino, the cabbie on the stand at the cab stand."
+- **A clunky bridge:** "Sirkin and eight o'clock: that was the next question, and it was for Crowninshield. I wasn't done with Crowninshield yet."
+- **Left open by M13:** counterman looks mention a grill and can land at a pawnshop; the seat check doesn't know chairs; the notebook's own lines repeat within a night.

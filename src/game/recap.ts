@@ -26,8 +26,10 @@ import { establishedFrom, threadsFor } from './derive.js';
 import { gridFrom, type GridEntry } from './grid.js';
 import { buildNotebook } from './notebook.js';
 import { displayName, lieKeyOf } from './m9.js';
-import type { PageShape, RecapClauseTrace, RecapMemory, RunState } from './types.js';
-import { tagOf, type Card, type Dealer } from './voice/cards.js';
+import type { PageShape, RecapClauseTrace, RecapMemory, RunState, SheetUse } from './types.js';
+import { DECKS, tagOf, type Card, type Dealer } from './voice/cards.js';
+import { lineMemory, recapFrame } from './scene/sheet-pages.js';
+import { sheetsOn } from './scene/realize.js';
 import { pronounOf } from './voice/cast.js';
 import { tidyPunctuation } from './voice/prose.js';
 import { namedIn, proseTexts } from './scene/text.js';
@@ -566,6 +568,8 @@ export interface RecapWritten {
   clauses: RecapClauseTrace[];
   /** The memory after it. */
   memory: RecapMemory;
+  /** M13: the recap's sheet. */
+  sheet?: SheetUse;
 }
 
 /** Why a recap was not written: nothing new, or not enough yet. */
@@ -646,8 +650,54 @@ export function renderRecap(
   let include = new Set(fresh.map((f) => f.key));
   const body = (): RecapFact[] => facts.filter((f) => include.has(f.key));
   const count = (texts: string[]): number => texts.reduce((n, t) => n + words(t), 0);
-  const opener = card('open') ?? 'I went over what I had.';
-  const closer = card('close') ?? 'That was where things stood.';
+  // M13: the recap's sheet lays out its frame: the opening line (which may
+  // offer something to bring back) and the closing one.
+  const withExports = (kind: 'open', want: string | null): { text: string; exports?: Card['exports'] } | null => {
+    const fits = (c: Card): boolean => tagOf('recap', c, 'kind') === kind;
+    const trig = (c: Card): boolean => tagOf('recap', c, 'trigger') === trigger;
+    const anyT = (c: Card): boolean => tagOf('recap', c, 'trigger') === 'any';
+    const ex = (c: Card): boolean => want === null || c.exports?.[want] !== undefined;
+    const drawn = dealer.draw(
+      'recap',
+      [(c) => fits(c) && trig(c) && ex(c), (c) => fits(c) && anyT(c) && ex(c), (c) => fits(c) && trig(c), (c) => fits(c) && anyT(c)],
+      {},
+      true,
+    );
+    if (!drawn) return null;
+    const c = (DECKS.recap ?? []).find((x) => x.id === drawn.cardId);
+    return { text: drawn.text, ...(c?.exports ? { exports: c.exports } : {}) };
+  };
+  const tier = view.kase.shape?.tier;
+  const framed = sheetsOn(null)
+    ? recapFrame({
+        seed: view.kase.seed,
+        page: state.log.length - 1,
+        trigger,
+        flags: { caseType: view.kase.act.type, tier: tier === undefined ? 'none' : String(tier), n: memory?.n ?? 0 },
+        random: dealer.random,
+        history: dealer.notedLike('sheet:').map((id) => id.slice('sheet:'.length).split('#')[0] as string),
+        memory: lineMemory(dealer),
+        open: (want) => withExports('open', want),
+        closeCard: () => card('close'),
+        closeDeck: (role, exp) => {
+          const c = (x: Card, tag: string, want: string): boolean => tagOf('close', x, tag) === want;
+          const drawn = dealer.draw(
+            'close',
+            role === null || exp === null
+              ? [(x) => c(x, 'outcome', 'sheet') && (c(x, 'moment', 'recap') || c(x, 'moment', 'any')) && c(x, 'callback', 'none')]
+              : [
+                  (x) => c(x, 'outcome', 'sheet') && (c(x, 'moment', 'recap') || c(x, 'moment', 'any')) && c(x, 'callback', role) && c(x, 'kind', exp.kind ?? 'thing'),
+                  (x) => c(x, 'outcome', 'sheet') && (c(x, 'moment', 'recap') || c(x, 'moment', 'any')) && c(x, 'callback', role) && c(x, 'kind', 'any'),
+                ],
+            role === null || exp === null ? {} : { [role]: exp.short, [`${role}Text`]: exp.text },
+            true,
+          );
+          return drawn?.text ?? null;
+        },
+      })
+    : null;
+  const opener = framed?.open ?? card('open') ?? 'I went over what I had.';
+  const closer = framed?.close ?? card('close') ?? 'That was where things stood.';
   const frameWords = words(opener) + words(closer);
   // Measured without spending the dealer: the shortest way of saying each
   // clause for the floor, the longest for the ceiling, so the page is inside
@@ -701,6 +751,7 @@ export function renderRecap(
   clauses.push({ key: 'frame|close', text: closer, personIds: [], placeIds: [], ticks: [] });
   if (nextFact && nextText.length > 0) trace(nextFact, nextText);
 
+  if (framed) dealer.note(framed.note);
   const kept = body()
     .filter((f) => f.part !== 'next')
     .map((f) => f.key);
@@ -709,6 +760,7 @@ export function renderRecap(
   return {
     paras,
     clauses,
+    ...(framed ? { sheet: framed.use } : {}),
     memory: {
       n: (memory?.n ?? 0) + 1,
       said: [...new Set([...(memory?.said ?? []), ...kept])],

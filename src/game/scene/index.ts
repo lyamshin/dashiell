@@ -25,7 +25,7 @@ export * from './thought.js';
 export * from './bridge.js';
 export * from './text.js';
 export * from './coverage.js';
-export { realize, pageFact, NIGHT_CEILING, NIGHT_TARGETS, CUT_ORDER, thoughtSlots } from './realize.js';
+export { realize, pageFact, NIGHT_CEILING, NIGHT_TARGETS, CUT_ORDER, thoughtSlots, setSheets } from './realize.js';
 
 /** The scenes the planner writes. The office opening and parser pages keep their own path. */
 export function isNightScene(scene: Scene): boolean {
@@ -166,6 +166,7 @@ export function composeScene(stage: Stage, scene: Scene): Composed {
     shape: plan.shape,
     beats: written.traces,
     memory: plan.memory,
+    ...(written.sheets ? { sheets: written.sheets } : {}),
   };
 }
 export * from './lines.js';
