@@ -28,7 +28,7 @@ import { buildNotebook } from './notebook.js';
 import { displayName, lieKeyOf } from './m9.js';
 import type { PageShape, RecapClauseTrace, RecapMemory, RunState, SheetUse } from './types.js';
 import { DECKS, tagOf, type Card, type Dealer } from './voice/cards.js';
-import { recapFrame } from './scene/sheet-pages.js';
+import { lineMemory, recapFrame } from './scene/sheet-pages.js';
 import { sheetsOn } from './scene/realize.js';
 import { pronounOf } from './voice/cast.js';
 import { tidyPunctuation } from './voice/prose.js';
@@ -669,6 +669,7 @@ export function renderRecap(
         flags: { caseType: view.kase.act.type, tier: tier === undefined ? 'none' : String(tier), n: memory?.n ?? 0 },
         random: dealer.random,
         history: dealer.notedLike('sheet:').map((id) => id.slice('sheet:'.length).split('#')[0] as string),
+        memory: lineMemory(dealer),
         open: (want) => withExports('open', want),
         closeCard: () => card('close'),
         closeDeck: (role, exp) => {

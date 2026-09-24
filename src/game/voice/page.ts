@@ -657,6 +657,9 @@ interface Laid {
 /** The longest a fused paragraph may get. Past this it is a wall, not a scene. */
 export const PARAGRAPH_CEILING = 60;
 
+/** M13: the office's first paragraph, the hour, the room and a line of the sheet's. */
+export const OFFICE_PARAGRAPH_CEILING = 72;
+
 /**
  * §5's carrying sentence: the band a joined pair has to land in to be one.
  *
@@ -1484,6 +1487,8 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   // office card and the entrance are the two images §2 keeps around it.
   const ceiling = scene.kind === 'open' ? OPENING_CEILING : PAGE_CEILING;
   const CUT_ORDER: { voices: ReadonlySet<string>; keep: number }[] = [
+    // M13: a sheet's own lines on page one (keep 0) go before anything else.
+    { voices: new Set(['narrator']), keep: 1 },
     { voices: new Set(['aside', 'ambient', 'monologue']), keep: 2 },
     { voices: new Set(['transition', 'arrival', 'approach', 'place', 'presence']), keep: 2 },
     { voices: new Set(['transition', 'arrival', 'approach', 'place', 'presence']), keep: 9 },
@@ -2035,7 +2040,9 @@ export function fuseParagraphs(
     if (a.kind === 'prose' && b.kind === 'prose' && a.clueId !== undefined && b.clueId !== undefined)
       continue;
     const text = joinSentences(a.text, b.text);
-    if (countWords([{ kind: 'note', text }]) > ceiling) continue;
+    // M13: the office at midnight is one breath, as the golden's (sixty-odd words).
+    const limit = tagged && here.para === 'office' ? OFFICE_PARAGRAPH_CEILING : ceiling;
+    if (countWords([{ kind: 'note', text }]) > limit) continue;
     const clueId = a.kind === 'prose' ? a.clueId : undefined;
     const keptClue = clueId ?? (b.kind === 'prose' ? b.clueId : undefined);
     // Which voice the paragraph keeps, in order of who has a claim on it.
@@ -2562,7 +2569,14 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     : null;
   if (framed) {
     t.sheets.push(framed.use);
-    t.say(framed.open, 'place', { motifs: framed.motifs, score: framed.score, keep: 2, para: 'office', verbatim: true });
+    // The office card is page one's image and is kept; the sheet's own lines
+    // round it are the first thing the ceiling takes, before the entrance.
+    const at = framed.card.length > 0 ? framed.open.indexOf(framed.card) : -1;
+    const before = at > 0 ? framed.open.slice(0, at).trim() : '';
+    const after = at >= 0 ? framed.open.slice(at + framed.card.length).trim() : '';
+    if (before) t.say(before, 'narrator', { transparent: true, verbatim: true, keep: 0, para: 'office' });
+    t.say(at >= 0 ? framed.card : framed.open, 'place', { motifs: framed.motifs, score: framed.score, keep: 2, para: 'office', verbatim: true });
+    if (after) t.say(after, 'narrator', { transparent: true, verbatim: true, keep: 0, para: 'office' });
   } else {
     const office = officeCard(dealer, cast.roll.circumstance, cast.roll.weather, slots, t.ctx);
     if (office.gap) t.gaps.push(office.gap);
@@ -2867,7 +2881,7 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   // closes, so it says the scene's last fact the way the rest was said and
   // leaves the two free questions to the choices under it.
   // M13: the office sheet's last word, before she is left in the chair.
-  if (framed?.close) t.say(framed.close, 'narrator', { transparent: true, verbatim: true });
+  if (framed?.close) t.say(framed.close, 'narrator', { transparent: true, verbatim: true, keep: 0 });
   t.put({ kind: 'note', text: officeCloseLine(client) }, OFFICE_CLOSE);
 }
 

@@ -1113,7 +1113,8 @@ describe('the burn tiers', () => {
           id.startsWith('monologue:') ||
           id.startsWith('beat:') ||
           // M13: the sheets a page used, remembered like cards.
-          id.startsWith('sheet:'),
+          id.startsWith('sheet:') ||
+          id.startsWith('line:'),
         id,
       ).toBe(true);
     }

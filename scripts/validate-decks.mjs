@@ -140,7 +140,7 @@ function readTags(deckName, card) {
   return out;
 }
 
-const SLOT_RE = /\{(\w+)\}/g;
+const SLOT_RE = /\{(\w+(?:\.\w+)?)\}/g;
 function slotsOf(text) {
   const out = new Set();
   for (const m in []) void m;
@@ -510,8 +510,8 @@ const PERSON_ROLES = {
 };
 const PERSON_FIELDS = ['he', 'He', 'him', 'his', 'His', 'man', 'doing', 'act', 'sight', 'recall', 'hour', 'tie'];
 const SHEET_TEXT_SLOTS = new Set(['place', 'Place', 'victim', 'hour', 'object', 'list', 'he', 'his', 'him', ...ROLE_NAMES, ...ROLE_NAMES.map((r) => r[0].toUpperCase() + r.slice(1)), 'watcher', 'client', 'tell', 'person', 'speaker']);
-const PART_KEYS = ['text', 'hole', 'deck', 'tags', 'of', 'bind', 'form', 'pool', 'optional', 'if', 'para', 'joke', 'says', 'exports'];
-const VERDICT = /\\b(?:did it|killed him|killed her|the killer|culprit|guilty|innocent|cleared|out of it|off my list|must have|it was [A-Z][a-z]+)\\b/;
+const PART_KEYS = ['text', 'alt', 'hole', 'deck', 'tags', 'of', 'bind', 'form', 'pool', 'optional', 'if', 'para', 'joke', 'says', 'exports'];
+const VERDICT = /\b(?:did it|killed him|killed her|the killer|culprit|guilty|innocent|cleared|out of it|off my list|must have|it was [A-Z][a-z]+)\b/;
 
 function sheetSlotErrors(moment, text, where, okExtra = []) {
   const out = [];
@@ -591,7 +591,8 @@ function validateSheets() {
           if (part.hole === undefined && !part.exports?.[part.bind]) report.errors.push(`${at}: sheet text binds ${part.bind} without exporting it`);
         }
         if (part.exports !== undefined) for (const e of exportErrors(part.exports, part.text ?? '')) report.errors.push(`${at}: ${e}`);
-        const texts = [part.text, ...(part.pool ?? [])].filter((t) => typeof t === 'string');
+        if (part.alt !== undefined && (part.text === undefined || !Array.isArray(part.alt))) report.errors.push(`${at}: alt is a list of other ways to say its text`);
+        const texts = [part.text, ...(part.alt ?? []), ...(part.pool ?? [])].filter((t) => typeof t === 'string');
         for (const t of texts) {
           report.errors.push(...sheetSlotErrors(moment, t, at, [...(part.hole === 'others' ? ['list'] : []), ...(part.pool ? ['he', 'his', 'him'] : [])]));
           for (const hit of findJargon(t, PLAIN_TERMS)) {

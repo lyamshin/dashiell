@@ -2110,10 +2110,12 @@ export function lookOf(stage: Stage, person: Person, staged: AskStage, want: str
 }
 
 /** How he went through the place (or the one thing), in its own terms. */
-export function searchActOf(stage: Stage, objectId: Id | undefined): Dealt {
+export function searchActOf(stage: Stage, objectId: Id | undefined, want: string | null = null): Dealt {
   const object = objectId ? stage.view.objectById.get(objectId)?.name : undefined;
   if (object) return { text: pickShape(stage.dealer.random, THING_ACTS, { object: object.replace(/^(?:a|an) /, 'the ') }) };
-  const room = deal(stage, 'search-act', [(c) => tagIs('search-act', c, 'place', stage.at)], {});
+  const at = (c: Card): boolean => tagIs('search-act', c, 'place', stage.at);
+  // M13: on a page that wants a callback, a card that offers something to bring back first.
+  const room = deal(stage, 'search-act', [...(want === null ? [] : [(c: Card) => at(c) && c.exports?.[want] !== undefined]), at], {});
   if (!room) return { text: stage.dealer.random.pick(SEARCH_ROOM_ACTS) };
   const card = cardOf(room.cardId);
   return { text: room.text, cardId: room.cardId, ...(card?.exports ? { exports: card.exports } : {}) };

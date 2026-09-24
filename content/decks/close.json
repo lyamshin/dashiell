@@ -1983,7 +1983,7 @@
   {
     "id": "CLS-192",
     "deck": "close",
-    "text": "{thing} had sat through all of it, which is more than I’d have done in its place.",
+    "text": "{thing} had kept to itself the whole time. It was the smartest one there.",
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -2165,7 +2165,7 @@
   {
     "id": "CLS-205",
     "deck": "close",
-    "text": "I made a mark in the margin. I have a system. Nobody, including me, knows what it is.",
+    "text": "I made a small note at the bottom of the page. I have a system. Nobody, including me, knows what it is.",
     "tags": {
       "outcome": "sheet",
       "moment": "confront",

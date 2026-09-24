@@ -33,6 +33,7 @@ import {
   type Sheet,
 } from '../src/game/scene/sheets.js';
 import { DECKS, shortOf } from '../src/game/voice/cards.js';
+import { machineryIn, recapVerdicts } from '../src/game/reader-lint.js';
 import type { RunState } from '../src/game/types.js';
 
 type Tier = 0 | 1 | 2 | 3 | 4 | 5;
@@ -84,6 +85,25 @@ describe('M13: the format', () => {
     expect(mirror?.exports?.prop?.pay?.[0]).toBe(
       'I caught myself in the mirror behind the bar. The silvering had gone in the corners, and so, I noticed, had I.',
     );
+  });
+
+  it('says no machinery and no verdict in any sheet line, any pay line, or any sheet close', () => {
+    const lines: { where: string; text: string }[] = [];
+    for (const s of SHEETS) {
+      for (const p of s.parts) for (const t of [p.text, ...(p.alt ?? []), ...(p.pool ?? [])]) if (t) lines.push({ where: s.id, text: t });
+      for (const t of [...(s.close?.callback ?? []), ...(s.close?.plain ?? [])]) lines.push({ where: `${s.id} close`, text: t });
+    }
+    for (const deck of Object.values(DECKS)) {
+      for (const c of deck) {
+        for (const e of Object.values(c.exports ?? {})) for (const t of e.pay ?? []) lines.push({ where: c.id, text: t });
+        if (c.deck === 'close' && c.tags.outcome === 'sheet') lines.push({ where: c.id, text: c.text });
+      }
+    }
+    expect(lines.length).toBeGreaterThan(500);
+    for (const { where, text } of lines) {
+      expect(machineryIn(text), `${where}: ${text}`).toEqual([]);
+      expect(recapVerdicts(text, []), `${where}: ${text}`).toEqual([]);
+    }
   });
 
   it('cuts a card at its cut, or at its first sentence', () => {

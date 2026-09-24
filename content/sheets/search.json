@@ -20,7 +20,9 @@
         ],
         "plain": [
           "I put the room back roughly the way I found it. Roughly is the best anybody does.",
-          "I dusted off my knees and let myself out. The room didn’t see me to the door."
+          "I dusted off my knees and let myself out. The room didn’t see me to the door.",
+          "I made sure I hadn’t left my hat behind. It’s happened.",
+          "I went out the way I came in, only dustier."
         ],
         "deck": true
       }
@@ -32,7 +34,7 @@
       "when": { "texture": true },
       "parts": [
         { "hole": "prop", "deck": "place-ambient", "bind": "prop", "optional": true },
-        { "text": "I gave the place a minute to get used to me." },
+        { "text": "I gave the place a minute to get used to me.", "alt": ["I let the place get a look at me first.", "Before I touched anything, I just looked.", "I didn’t touch anything at first. Looking breaks less."] },
         { "hole": "act" },
         { "hole": "body" }
       ],
@@ -40,10 +42,14 @@
         "roles": ["prop"],
         "callback": [
           "By the time I was done, I knew {prop} better than I wanted to.",
-          "I left {prop} the way I found it. It was the one thing in the place I was sure I hadn’t moved."
+          "I left {prop} the way I found it. It was the one thing in the place I was sure I hadn’t moved.",
+          "I said goodnight to {prop} on the way out. We’d been through a lot together."
         ],
         "plain": [
-          "The place looked no different when I’d finished. I couldn’t say the same for me."
+          "The place looked no different when I’d finished. I couldn’t say the same for me.",
+          "I dusted my hands off on my coat. The coat has seen worse.",
+          "It took longer than it looked. Rooms always do.",
+          "When I was done, the place went quiet again, as if it had been holding its breath."
         ],
         "deck": true
       }
@@ -55,17 +61,22 @@
       "when": { "object": true },
       "parts": [
         { "hole": "left", "bind": "prop", "optional": true },
-        { "text": "I didn’t take the whole of {place} apart. I took one thing, and I took my time." },
+        { "text": "I didn’t take the whole of {place} apart. I took one thing, and I took my time.", "alt": ["I left the rest of {place} alone and gave one thing all my attention.", "One thing, not the whole of {place}. I’d rather do one thing properly than everything badly.", "{Place} could wait. I had one thing in mind, and I meant to go through it properly."] },
         { "hole": "act" },
         { "hole": "body" }
       ],
       "close": {
         "roles": ["prop"],
         "callback": [
-          "I hadn’t touched {prop}. I only have the two hands, and I’d been using both on {object}."
+          "I hadn’t touched {prop}. I only have the two hands, and I’d been using both on {object}.",
+          "{Prop} would keep for another time. I’d given {object} everything I had.",
+          "I never got round to {prop}. One thing at a time is about my speed."
         ],
         "plain": [
-          "I put {object} back the way it had been, near enough. Near enough is what I get paid for."
+          "I put {object} back the way it had been, near enough. Near enough is what I get paid for.",
+          "I gave {object} one last look, to be polite, and put everything back.",
+          "That was {object}, gone over properly. The rest of the place could have its turn another night.",
+          "I straightened up slowly. Going over one thing properly is hard on the back."
         ],
         "deck": true
       }
@@ -83,10 +94,15 @@
       "close": {
         "roles": ["prop"],
         "callback": [
-          "My hands were full already. {Prop} would have to wait its turn."
+          "My hands were full already. {Prop} would have to wait its turn.",
+          "I’d have looked at {prop} too, if I’d had another pair of hands.",
+          "{Prop} would keep. I was carrying about as much as one notebook can hold."
         ],
         "plain": [
-          "That was more than a room usually gives me. I wrote it all down before it could change its mind."
+          "That was more than a room usually gives me. I wrote it all down before it could change its mind.",
+          "The room had been generous. I wrote fast, in case it wanted anything back.",
+          "I hadn’t found this much in one place since I last cleaned out my own coat.",
+          "I stood up with a full page and sore knees, which is as good as the job gets."
         ],
         "deck": true
       }
@@ -102,7 +118,9 @@
       "close": {
         "plain": [
           "I got up off the floor in two stages. My knees wanted it known that neither one was their idea.",
-          "Somewhere in there my back had stopped speaking to me. I couldn’t say I blamed it."
+          "Somewhere in there my back had stopped speaking to me. I couldn’t say I blamed it.",
+          "I stayed down there a moment longer than I needed to. Getting up is the hard part.",
+          "My hat had rolled under something while I wasn’t looking. The room had been searching me back."
         ],
         "joke": true
       }
@@ -119,7 +137,9 @@
       "close": {
         "plain": [
           "It wasn’t much for the time it took. Rooms don’t pay by the hour.",
-          "I had been more thorough than the room deserved, and it paid me about what it thought I was worth."
+          "I had been more thorough than the room deserved, and it paid me about what it thought I was worth.",
+          "That was the search: short on finds and long on dust.",
+          "I’d been over every inch of it. Some of the inches twice."
         ]
       }
     }

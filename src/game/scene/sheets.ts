@@ -56,6 +56,8 @@ export type WhenValue = boolean | string | string[] | number;
 export interface SheetPart {
   /** Sheet text, with `{slots}`. On an engine hole, the frame its words go in (`{list}`). */
   text?: string;
+  /** Other ways to say `text`: one not said yet tonight is chosen, so a sheet that comes round again says it differently. */
+  alt?: string[];
   /** A hole: the realizer's own piece by name, or a card when `deck` is set. */
   hole?: string;
   /** The deck a card hole draws from. */
@@ -283,6 +285,22 @@ export interface Holes {
   /** Engine holes the page must carry wherever the sheet did not put them. */
   musts?: string[];
   random: Rng;
+  /** Has this line of sheet text been said tonight? (The dealer's memory.) */
+  fresh?(template: string): boolean;
+  /** Remember a line of sheet text as said tonight. */
+  spend?(template: string): void;
+}
+
+/**
+ * Of some lines, one to say: at random among those not said tonight, or,
+ * when every one has been, among them all. Remembered as said.
+ */
+function pickLine<T extends { key: string }>(holes: Holes, lines: readonly T[]): T | null {
+  if (lines.length === 0) return null;
+  const fresh = holes.fresh ? lines.filter((l) => holes.fresh?.(l.key) !== false) : [...lines];
+  const pick = holes.random.pick(fresh.length > 0 ? fresh : lines);
+  holes.spend?.(pick.key);
+  return pick;
 }
 
 /** The state of one page's sheets: the roles bound so far, and what was paid off. */
@@ -482,7 +500,12 @@ export function runSheet(sheet: Sheet, holes: Holes, run: SheetRun): SheetOut | 
     }
     if (part.para) flush();
     if (part.hole === undefined) {
-      const filled = fillSheet(part.text ?? '', holes.slots, run);
+      // The line and its other ways of saying it, those that can be filled.
+      const options = [part.text ?? '', ...(part.alt ?? [])]
+        .map((t) => ({ key: t, filled: fillSheet(t, holes.slots, run) }))
+        .filter((o): o is { key: string; filled: NonNullable<ReturnType<typeof fillSheet>> } => o.filled !== null);
+      const chosen = pickLine(holes, options);
+      const filled = chosen?.filled ?? null;
       if (filled === null) {
         if (part.optional) continue;
         return null;
@@ -560,44 +583,59 @@ export function runSheet(sheet: Sheet, holes: Holes, run: SheetRun): SheetOut | 
  */
 function closeLine(sheet: Sheet, holes: Holes, run: SheetRun): SheetOut['close'] {
   const spec = sheet.close as SheetClose;
-  if (run.callback) {
+  if (run.callback && !(spec.roles !== undefined && spec.roles.length === 0)) {
     const bound = [...run.roles.keys()].filter((r) => run.introduced.has(r));
     const order = (spec.roles ?? bound).filter((r) => bound.includes(r));
     for (const role of holes.random.shuffle(order)) {
       const exp = run.roles.get(role) as CardExport;
-      const own = (exp.pay ?? []).map((t) => fillSheet(t, holes.slots, run)).filter((x) => x !== null);
-      if (own.length > 0) {
-        const pick = holes.random.pick(own);
+      const own = (exp.pay ?? [])
+        .map((t) => ({ key: t, filled: fillSheet(t, holes.slots, run) }))
+        .filter((o): o is { key: string; filled: NonNullable<ReturnType<typeof fillSheet>> } => o.filled !== null);
+      const ownPick = pickLine(holes, own);
+      if (ownPick) {
         if (!run.paid.includes(role)) run.paid.push(role);
-        return { text: pick.text, callback: true, role };
+        return { text: ownPick.filled.text, callback: true, role };
       }
       const sheetLines = (spec.callback ?? [])
         .filter((t) => namesRole(t, [role]))
-        .map((t) => fillSheet(t, holes.slots, run))
-        .filter((x): x is NonNullable<typeof x> => x !== null);
+        .map((t) => ({ key: t, filled: fillSheet(t, holes.slots, run) }))
+        .filter((o): o is { key: string; filled: NonNullable<ReturnType<typeof fillSheet>> } => o.filled !== null);
+      const freshSheet = sheetLines.filter((o) => holes.fresh?.(o.key) !== false);
       const fromDeck = spec.deck ? holes.close(role, exp, run) : null;
-      const choices = [...sheetLines.map((x) => x.text), ...(fromDeck ? [fromDeck] : [])];
+      const choices = [
+        ...(freshSheet.length > 0 || fromDeck === null ? (freshSheet.length > 0 ? freshSheet : sheetLines) : []).map((o) => ({ key: o.key, text: o.filled.text })),
+        ...(fromDeck ? [{ key: '', text: fromDeck }] : []),
+      ];
       if (choices.length > 0) {
-        const text = holes.random.pick(choices);
+        const pick = holes.random.pick(choices);
+        if (pick.key) holes.spend?.(pick.key);
         if (!run.paid.includes(role)) run.paid.push(role);
-        return { text, callback: true, role };
+        return { text: pick.text, callback: true, role };
       }
     }
   }
-  const plain = (spec.plain ?? [])
-    .map((t) => fillSheet(t, holes.slots, { ...run, callback: false }))
-    .filter((x): x is NonNullable<typeof x> => x !== null)
-    .map((x) => x.text);
+  const plainAll = (spec.plain ?? [])
+    .map((t) => ({ key: t, filled: fillSheet(t, holes.slots, { ...run, callback: false }) }))
+    .filter((o): o is { key: string; filled: NonNullable<ReturnType<typeof fillSheet>> } => o.filled !== null);
+  // A plain line said tonight already waits for the deck and the engine's.
+  const plainFresh = plainAll.filter((o) => holes.fresh?.(o.key) !== false);
   const deckPlain = spec.deck ? holes.close(null, null, run) : null;
   const engine = holes.plainClose ? holes.plainClose(run) : null;
-  const choices = [...plain, ...(deckPlain ? [deckPlain] : [])];
+  const plain = plainFresh.length > 0 || (deckPlain === null && engine === null) ? (plainFresh.length > 0 ? plainFresh : plainAll) : [];
+  const choices = [...plain.map((o) => ({ key: o.key, text: o.filled.text })), ...(deckPlain ? [{ key: '', text: deckPlain }] : [])];
   if (engine !== null && (choices.length === 0 || holes.random.chance(0.5))) return { text: engine, callback: false };
   if (choices.length === 0) return null;
-  return { text: holes.random.pick(choices), callback: false };
+  const pick = holes.random.pick(choices);
+  if (pick.key) holes.spend?.(pick.key);
+  return { text: pick.text, callback: false };
 }
 
 /** Can a sheet pay anything off at all (a bound role, or a close that needs one)? */
 export function canPay(sheet: Sheet): boolean {
+  // A close that names no roles is plain on purpose.
+  if (sheet.close?.roles !== undefined && sheet.close.roles.length === 0) {
+    return sheet.parts.some((p) => p.text !== undefined && namesRole(p.text, ROLE_NAMES));
+  }
   const binds = sheet.parts.some((p) => p.bind !== undefined);
   const uses = sheet.parts.some((p) => p.text !== undefined && namesRole(p.text, ROLE_NAMES)) ||
     (sheet.close?.callback ?? []).length > 0 ||

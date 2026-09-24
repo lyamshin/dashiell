@@ -128,6 +128,24 @@ export function cutActivity(activity: { text: string; cardId: string } | undefin
   return at < 0 ? activity.text : `${activity.text.slice(0, at + card.cut.length).replace(/[,;:\s]+$/, '')}.`;
 }
 
+/** A short stable key for a line of sheet text, for the dealer's memory. */
+function lineKey(template: string): string {
+  let h = 2166136261;
+  for (let i = 0; i < template.length; i++) {
+    h ^= template.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return `line:${(h >>> 0).toString(36)}`;
+}
+
+/** The dealer remembers the sheets' own lines, as it does cards: said tonight or not. */
+export function lineMemory(dealer: Stage['dealer']): Pick<Holes, 'fresh' | 'spend'> {
+  return {
+    fresh: (t) => !dealer.used(lineKey(t)),
+    spend: (t) => dealer.note(lineKey(t)),
+  };
+}
+
 /** Tonight's sheets, oldest first, off the dealer's memory. */
 export function sheetHistory(stage: Stage): string[] {
   return stage.dealer.notedLike('sheet:').map((id) => id.slice('sheet:'.length).split('#')[0] as string);
@@ -195,7 +213,10 @@ export function deckPiece(stage: Stage, part: SheetPart, want: string | null, wh
   switch (deck) {
     case 'place-ambient': {
       const band = bandOf(stage.minutes);
-      const at = (c: Card): boolean => tagIs('place-ambient', c, 'place', stage.at) && tagsFit(c);
+      // A card that opens on "It" or "Its" leans on an establish card before it;
+      // anywhere else (the head of a question's page) it has nothing to lean on.
+      const leans = (c: Card): boolean => extraSlots['§alone'] !== undefined && /^(?:It|Its|They|Their)\b/.test(c.text);
+      const at = (c: Card): boolean => tagIs('place-ambient', c, 'place', stage.at) && tagsFit(c) && !leans(c);
       const exact = (c: Card): boolean => at(c) && tagOf('place-ambient', c, 'band') === band;
       const any = (c: Card): boolean => at(c) && tagOf('place-ambient', c, 'band') === 'any';
       ladder = [(c) => exact(c) && exports(c), (c) => any(c) && exports(c)];
@@ -448,6 +469,14 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
         // First sight of somebody the case has: what anybody can see (M11 §A.2).
         const seen = p.firstSight && person.kind !== 'fixture' ? sightOf(person) : undefined;
         const who = seen ? `${person.surname}, ${seen},` : person.surname;
+        // The one the page ties to the case is placed with the tie, and that
+        // is the observation said once ("Crowninshield sat at the far end…,
+        // the woman who had found Sirkin"), not a placed line and then it again.
+        if (p === tellP && slots['tell.tie'] !== undefined && !run.said.has('tell')) {
+          const line = `${person.surname} was ${plain}${sep}${pick.filled.text}, ${slots['tell.tie']}.`;
+          run.said.set('tell', line);
+          return line;
+        }
         return `${who} was ${plain}${sep}${pick.filled.text}.`;
       }
       default:
@@ -462,6 +491,7 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
 
   const holes = (moment: Moment): Holes => ({
     random: stage.dealer.random,
+    ...lineMemory(stage.dealer),
     slots,
     people: rolePeople,
     musts: moment === 'arrival' ? ['establish'] : ['people', 'tell', 'views', 'answer'],
@@ -534,8 +564,12 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
           const loose = todo.filter((p) => !p.grouped);
           const crowd = todo.filter((p) => p.grouped);
           if (part.form === 'list') {
-            const text = listLine(stage, todo, part.text ?? '{list}.', slots, counted);
+            // The frame may bring the page's prop back ("all of it, the mirror included").
+            const frame = fillWithRoles((part.text ?? '{list}.').replace('{list}', '§LIST§'), slots, run);
+            if (frame === null) return null;
+            const text = listLine(stage, todo, frame.text.replace('§LIST§', '{list}'), slots, counted);
             if (text === null) return null;
+            for (const r of frame.roles) if (run.introduced.has(r) && !run.paid.includes(r)) run.paid.push(r);
             presenceTexts.push(text);
             return { text, voice: 'presence', presents: todo.map((p) => p.personId), beats: [iP] };
           }
@@ -545,7 +579,8 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
           for (const p of loose) {
             const line = personLine(p, part.form, part, run);
             if (!line) continue;
-            presenceTexts.push(line);
+            // The tell placed with their tie is the observation's line, not the room's.
+            if (!(p === tellP && run.said.get('tell') === line)) presenceTexts.push(line);
             if ((part.form ?? 'full') === 'full' && p.firstSight && sentencesOf(line).length >= 3) {
               block.push({ text: line, voice: 'presence', beats: [iP] });
             } else lines.push(line);
@@ -628,7 +663,7 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
     history,
     random,
     (s) => rolesNeeded(s).every(bound),
-    (s) => !rolled || canPay(s) || bound('prop'),
+    (s) => !rolled || canPay(s) || (bound('prop') && s.close?.roles?.length !== 0),
     companyOf,
   );
   if (!company) return null;
@@ -675,7 +710,9 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
     tag: people.length === 0 ? 'empty' : 'people',
     personIds: everyone,
     ...(grouped.length > 0 || counted.size > 0 ? { grouped: [...new Set([...grouped.map((p) => p.personId), ...counted])] } : {}),
-    text: [...presenceTexts, ...[...companyRun.said.values()]].join(' '),
+    // Who is here, as the page said it. The tell is said by the observation,
+    // and that beat's trace carries those words.
+    text: [...presenceTexts, ...[...companyRun.said.entries()].filter(([k]) => k !== 'tell').map(([, v]) => v)].join(' '),
   });
   const nobody = companyRun.covered.get('nobody');
   if (people.length === 0 && nobody !== undefined) mark(iP, { tag: 'empty', personIds: [], text: nobody });
@@ -763,6 +800,13 @@ function listLine(
     else if (!named.has(person.id) && person.kind !== 'fixture') strangers.push(person);
     else if (plain) items.push(`${person.surname} ${plain}`);
     else items.push(person.surname);
+  }
+  // One stranger is somebody, by name, with the rest; two or more are a count.
+  if (strangers.length === 1) {
+    const one = strangers.pop() as Person;
+    const p = todo.find((x) => x.personId === one.id) as PresencePerson;
+    const doing = doingOf(p.activity.text, one.surname);
+    items.push(doing ? `${one.surname} ${plainAction(doing.trim().replace(/\.$/, ''))}` : one.surname);
   }
   for (const p of strangers) counted.add(p.id);
   if (strangers.length > 0) {
@@ -885,6 +929,7 @@ function askFrame(plan: Plan, stage: Stage, scene: Scene, ps: PageSheets): Frame
   let approachDone = false;
   const holes: Holes = {
     random: stage.dealer.random,
+    ...lineMemory(stage.dealer),
     slots,
     people: { person: person.id },
     engine(part, run) {
@@ -901,8 +946,8 @@ function askFrame(plan: Plan, stage: Stage, scene: Scene, ps: PageSheets): Frame
           return l ? { text: l.text, voice: 'approach', ...(l.exports ? { exports: l.exports } : {}) } : null;
         }
         case 'thing': {
-          // What they have in hand, off their activity card: bound, not said.
-          const card = activity?.cardId ? cardById(activity.cardId) : undefined;
+          // What they have in hand this visit, off their activity card: bound, not said.
+          const card = activity?.cardId && activity.visit === stage.memory?.visit ? cardById(activity.cardId) : undefined;
           const exp = card?.exports?.thing;
           return exp ? { text: '', exports: { thing: exp } } : null;
         }
@@ -911,7 +956,7 @@ function askFrame(plan: Plan, stage: Stage, scene: Scene, ps: PageSheets): Frame
       }
     },
     deck(part, want) {
-      return deckPiece(stage, part, want, { person });
+      return deckPiece(stage, part, want, { person }, { '§alone': 'yes' });
     },
     close(role, exp) {
       return closeDeckLine(stage, moment, role, exp, slots);
@@ -954,11 +999,12 @@ function searchFrame(plan: Plan, stage: Stage, ps: PageSheets): Frame | null {
   let placeText: string | undefined;
   const holes: Holes = {
     random: stage.dealer.random,
+    ...lineMemory(stage.dealer),
     slots,
-    engine(part) {
+    engine(part, run) {
       switch (part.hole) {
         case 'act': {
-          const a = searchActOf(stage, act.objectId);
+          const a = searchActOf(stage, act.objectId, part.bind && run.callback ? part.bind : null);
           return { text: a.text, voice: 'act', ...(a.exports ? { exports: a.exports } : {}) };
         }
         case 'left': {
@@ -973,7 +1019,7 @@ function searchFrame(plan: Plan, stage: Stage, ps: PageSheets): Frame | null {
       }
     },
     deck(part, want) {
-      const piece = deckPiece(stage, part, want, {});
+      const piece = deckPiece(stage, part, want, {}, { '§alone': 'yes' });
       if (piece && part.deck === 'place-ambient' && hasPlace) placeText = piece.text;
       return piece;
     },
@@ -1004,24 +1050,29 @@ export function tellingFrame(
   const { view } = stage;
   const speaker = view.personById.get(scene.personId) as Person;
   const activity = stage.memory?.activities[speaker.id];
-  const card = activity?.cardId ? cardById(activity.cardId) : undefined;
+  // What they have in hand this visit, not on an earlier one.
+  const card = activity?.cardId && activity.visit === stage.memory?.visit ? cardById(activity.cardId) : undefined;
   const page = ps.roles();
   const flags: Flags = {
     ...baseFlags(stage, ps.rolled),
     family: beat.family.kind,
     temper: temperOf(stage.cast, speaker.id),
     volunteered: beat.volunteered,
-    thing: card?.exports?.thing !== undefined,
-    prop: page !== null && page.callback && page.roles.has('prop') && page.introduced.has('prop'),
+    // Not a thing or a prop the question's last word has already brought back:
+    // three mentions of the bulbs is a running joke nobody asked for.
+    thing: card?.exports?.thing !== undefined && !(page?.paid.includes('thing') ?? false),
+    prop: page !== null && page.callback && page.roles.has('prop') && page.introduced.has('prop') && !page.paid.includes('prop'),
     fixture: speaker.kind === 'fixture',
-    // The deck's frame names the speaker first ("Crowninshield didn't have to look anything up.").
-    named: new RegExp(`^${speaker.surname}\\b`).test(frameText),
+    // The deck's frame names the speaker ("Crowninshield didn't have to look anything up."):
+    // a line before it that names them too is the name twice.
+    named: new RegExp(`\\b${speaker.surname}\\b`).test(frameText),
   };
   const slots: Record<string, string | undefined> = {
     ...personRoleSlots(stage, 'speaker', speaker, activity && activity.visit === stage.memory?.visit ? cutActivity(activity) : undefined),
   };
   const holes: Holes = {
     random: stage.dealer.random,
+    ...lineMemory(stage.dealer),
     slots,
     people: { speaker: speaker.id },
     engine(part) {
@@ -1060,6 +1111,8 @@ export interface RecapFrameInput {
   flags: Flags;
   random: Rng;
   history: string[];
+  /** The dealer's memory of the sheets' own lines. */
+  memory: Pick<Holes, 'fresh' | 'spend'>;
   /** The recap deck's opening line, preferring one that exports `want`. */
   open: (want: string | null) => { text: string; exports?: Record<string, CardExport> } | null;
   /** The recap deck's closing line. */
@@ -1078,6 +1131,7 @@ export function recapFrame(input: RecapFrameInput): { open: string; close: strin
   const flags: Flags = { ...input.flags, callback: rolled, trigger: input.trigger };
   const holes: Holes = {
     random: input.random,
+    ...input.memory,
     slots: {},
     engine(part, run) {
       if (part.hole !== 'open') return null;
@@ -1133,13 +1187,15 @@ export interface OfficeFrameInput {
 export function officeFrame(
   stage: Stage,
   input: OfficeFrameInput,
-): { open: string; close: string | null; use: SheetUse; motifs: string[]; score: number } | null {
+): { open: string; card: string; close: string | null; use: SheetUse; motifs: string[]; score: number } | null {
   const rolled = callbackRoll(stage.view.kase.seed, stage.pageIndex);
   const flags: Flags = { ...baseFlags(stage, rolled), ...input.flags };
   let motifs: string[] = [];
   let score = 0;
+  let card = '';
   const holes: Holes = {
     random: stage.dealer.random,
+    ...lineMemory(stage.dealer),
     slots: input.slots,
     engine(part, run) {
       if (part.hole !== 'office') return null;
@@ -1148,6 +1204,7 @@ export function officeFrame(
       if (drawn) {
         motifs = drawn.motifs ?? [];
         score = drawn.score ?? 0;
+        card = drawn.text;
       }
       return drawn ? { text: drawn.text, voice: 'place', ...(drawn.exports ? { exports: drawn.exports } : {}) } : null;
     },
@@ -1170,7 +1227,7 @@ export function officeFrame(
     if (!out) continue;
     noteSheet(stage, sheet.id);
     const open = [...out.pre, ...out.post].map((p) => p.text).join(' ');
-    return { open, close: out.close?.text ?? null, use: { id: sheet.id, moment: 'office', callback: run.paid.length > 0, rolled, fitting: of.fitting + tried.size - 1 }, motifs, score };
+    return { open, card, close: out.close?.text ?? null, use: { id: sheet.id, moment: 'office', callback: run.paid.length > 0, rolled, fitting: of.fitting + tried.size - 1 }, motifs, score };
   }
   return null;
 }

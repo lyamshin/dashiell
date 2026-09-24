@@ -1221,7 +1221,9 @@ export function planPage(input: PlanInput): Plan {
     beats.push({ kind: 'errand', required: true, form: 'carry', carry: action.continued ? { ...carry, continued: true } : carry });
     const place = view.placeById.get(input.at);
     // The things left alone were named on the page before; a search going on is not a new one.
-    const left = action.continued ? [] : (place?.objects ?? []).filter((id) => id !== action.objectId).slice(0, 2);
+    // M13: never the thing that was taken — it is not there to leave alone.
+    const taken = view.kase.act.taken?.id;
+    const left = action.continued ? [] : (place?.objects ?? []).filter((id) => id !== action.objectId && id !== taken).slice(0, 2);
     beats.push({
       kind: 'act',
       required: true,

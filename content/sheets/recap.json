@@ -17,6 +17,11 @@
       "parts": [
         {
           "text": "I turned to a clean page and wrote out what I had, in order, the way they teach you and nobody does it.",
+          "alt": [
+            "I found a clean page and wrote it all out again, start to finish, like a man with a plan.",
+            "I started a clean page. Writing it out fresh is the nearest I get to thinking.",
+            "I gave it a clean page of its own, which is more than I usually give anything."
+          ],
           "bind": "mark",
           "exports": { "mark": { "text": "a clean page", "short": "the page", "kind": "paper" } }
         },
@@ -26,9 +31,15 @@
         "roles": ["mark"],
         "callback": [
           "It didn’t fill {mark}. There was room at the bottom for the rest, whenever the rest turned up.",
-          "I read {mark} over twice. It didn’t get any longer."
+          "I read {mark} over twice. It didn’t get any longer.",
+          "{Mark} looked tidier than the night did. Neat handwriting will do that."
         ],
-        "plain": ["That was the lot, in order. Order is the one thing I can always supply."]
+        "plain": [
+          "That was the lot, in order. Order is the one thing I can always supply.",
+          "I read it back once and put the pencil behind my ear, where it does its best work.",
+          "Written out, it looked tidier than it felt.",
+          "That was all of it, written out neat. Neat is something."
+        ]
       }
     },
     {
@@ -38,6 +49,11 @@
       "parts": [
         {
           "text": "I found somewhere to sit and gave my feet a rest while my head did the walking.",
+          "alt": [
+            "I got off my feet for a minute. They’d earned it more than I had.",
+            "I took the weight off my feet and let my head carry the rest.",
+            "I sat down, and my feet stopped complaining long enough for me to think."
+          ],
           "bind": "figure",
           "exports": { "figure": { "text": "my feet", "short": "my feet", "kind": "posture" } }
         },
@@ -45,8 +61,17 @@
       ],
       "close": {
         "roles": ["figure"],
-        "callback": ["{Figure} had heard all of this before. They were ready to go, and so, more or less, was I."],
-        "plain": ["That was the lot. I stood up, which my feet took personally."]
+        "callback": [
+          "{Figure} had heard all of this before. They were ready to go, and so, more or less, was I.",
+          "I stood up. {Figure} filed a complaint, which I noted and ignored.",
+          "{Figure} had had their minute’s rest and wanted it known that a minute was not enough."
+        ],
+        "plain": [
+          "That was the lot. I stood up, which my feet took personally.",
+          "That was all I had. My feet voted to stay, and were outvoted.",
+          "That was the lot. Getting up again was the hardest part of it.",
+          "I got up before I could get comfortable. Comfortable is where I do my worst thinking."
+        ]
       }
     },
     {
@@ -57,6 +82,11 @@
       "parts": [
         {
           "text": "I got the notebook out again. We were getting to know each other.",
+          "alt": [
+            "Out came the notebook again. It was starting to expect me.",
+            "I read the notebook over again. It had stopped being surprised.",
+            "Back to the notebook. We were starting to finish each other’s sentences."
+          ],
           "bind": "mark",
           "exports": { "mark": { "text": "the notebook", "short": "the notebook", "kind": "paper" } }
         },
@@ -64,8 +94,17 @@
       ],
       "close": {
         "roles": ["mark"],
-        "callback": ["I put {mark} away. It had more in it than last time, and it looked about as tired as I did."],
-        "plain": ["That was where it stood, a little further along than last time. I’ll take further along."]
+        "callback": [
+          "I put {mark} away. It had more in it than last time, and it looked about as tired as I did.",
+          "{Mark} went back in my pocket, a page heavier than before.",
+          "I closed {mark} gently. We’d both had a long night."
+        ],
+        "plain": [
+          "That was where it stood, a little further along than last time. I’ll take further along.",
+          "Every time I read it over, it got a little longer. Some nights that’s the whole job.",
+          "I read it through once more for luck. It came out the same, which is what you want from a notebook.",
+          "It was more than I’d had the last time I looked. Not a lot more, but I’m not proud."
+        ]
       }
     }
   ]

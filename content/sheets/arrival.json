@@ -38,7 +38,12 @@
           "form": "bind"
         },
         {
-          "text": "The first thing you noticed was {prop.text}."
+          "text": "The first thing you noticed was {prop.text}.",
+          "alt": [
+            "What struck you first was {prop.text}.",
+            "You couldn’t miss {prop.text}.",
+            "Before anything else, there was {prop.text}."
+          ]
         }
       ]
     },

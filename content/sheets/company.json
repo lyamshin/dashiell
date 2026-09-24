@@ -10,13 +10,19 @@
       "when": {
         "watcher": true,
         "tell": true,
-        "tellWatcher": false
+        "tellWatcher": false,
+        "tellClient": false
       },
       "parts": [
         {
           "para": true,
           "text": "Nobody looked up except the one person paid to.",
-          "says": "watcher-view"
+          "says": "watcher-view",
+          "alt": [
+            "One head came up. It was paid to.",
+            "Looking up was one person’s job in there.",
+            "Nobody looked up. Well, one did, but that was business."
+          ]
         },
         {
           "hole": "watcher",
@@ -47,7 +53,12 @@
         },
         {
           "para": true,
-          "text": "The only one who didn’t look at me at all was {tell}. {tell.He} was {tell.doing}, {tell.tie}."
+          "text": "The only one who didn’t look at me at all was {tell}. {tell.He} was {tell.doing}, {tell.tie}.",
+          "alt": [
+            "{tell}, {tell.tie}, was {tell.doing}, and didn’t look my way once.",
+            "{tell} was {tell.doing} as if I hadn’t come in. That was {tell.tie}.",
+            "{tell} didn’t look up once, not even when the door went. {tell.He} was {tell.doing}, {tell.tie}."
+          ]
         },
         {
           "hole": "answer",
@@ -62,11 +73,15 @@
         "deck": true,
         "callback": [
           "I caught myself in the glass behind {prop} and looked away first. Somebody in there had to.",
-          "I let {prop} be. It had been there longer than me, and it would be there after."
+          "I let {prop} be. It had been there longer than me, and it would be there after.",
+          "I found a place near {prop}. It was the one spot in the room nobody wanted, and after a minute I could see why.",
+          "Between {prop} and me, only one of us looked as if it belonged there, and it wasn’t me."
         ],
         "plain": [
           "I found a place where I could see the door. Everybody else in there had had the same idea first.",
-          "It was that kind of room. Everybody in it was minding their own business, and I was the only one there to mind everybody else’s."
+          "It was that kind of room. Everybody in it was minding their own business, and I was the only one there to mind everybody else’s.",
+          "The room went back to what it had been doing. I tried to look like part of it and didn’t fool anybody.",
+          "I took my hat off. Nobody offered to hang it up, which in a room like that counts as manners."
         ],
         "joke": true
       }
@@ -129,10 +144,15 @@
         ],
         "deck": true,
         "callback": [
-          "I had a good long look at {prop}. It had a good long look back, and neither of us learned anything."
+          "I had a good long look at {prop}. It had a good long look back, and neither of us learned anything.",
+          "Everybody in there had arranged themselves around {prop}. I did the same; it seemed to be the custom.",
+          "I stood where I could see {prop} and everybody near {prop.it}. That’s most of the job, and I’m good at standing."
         ],
         "plain": [
-          "Nobody asked what I wanted. In that room it was a courtesy."
+          "Nobody asked what I wanted. In that room it was a courtesy.",
+          "I found the one spot nobody had claimed. There’s always one, and it’s always in the draught.",
+          "The room took me in and said nothing about it. I’ve had worse welcomes, most of them at home.",
+          "I stood there until I stopped being new. In that room it took about a minute."
         ],
         "joke": true
       }
@@ -140,7 +160,7 @@
     {
       "id": "com-c",
       "name": "The client waves me over",
-      "notes": "Sheet C. The client is present and the page leans on her; the others are seen over her shoulder, and the free rundown is set up as the next beat of the scene.",
+      "notes": "Sheet C. The client is present and the page leans on her; the others are seen over her shoulder, and the free rundown is set up as the next beat of the scene. Its last line is always the rundown's setup, never a callback: that line is what makes the free choice read as the next beat.",
       "when": {
         "client": true,
         "rundown": true
@@ -148,7 +168,12 @@
       "parts": [
         {
           "para": true,
-          "text": "{client} saw me before I saw {client.him}."
+          "text": "{client} saw me before I saw {client.him}.",
+          "alt": [
+            "{client} had spotted me first.",
+            "{client} had been watching the door for me.",
+            "By the time I found {client}, {client.he} had found me."
+          ]
         },
         {
           "hole": "client",
@@ -165,21 +190,37 @@
           "para": true,
           "hole": "others",
           "form": "list",
+          "if": "callback",
+          "text": "From {client.his} side of the room you could see all of it, {prop} included: {list}.",
+          "optional": true
+        },
+        {
+          "para": true,
+          "hole": "others",
+          "form": "list",
           "text": "From {client.his} side of the room you could see all of it: {list}.",
           "optional": true
         },
         {
           "text": "{tell} was there too, {tell.doing}, {tell.tie}.",
           "optional": true,
-          "if": "tell"
+          "if": "tell",
+          "alt": [
+            "Past {client.his} shoulder I could see {tell}, {tell.doing}, {tell.tie}.",
+            "{tell} was in the room too, {tell.tie}. {tell.He} was {tell.doing}.",
+            "{tell} was there as well, {tell.doing}. That was {tell.tie}."
+          ]
         }
       ],
       "close": {
         "plain": [
           "{client.He} looked like {client.he} was about to tell me who everybody was, whether I asked or not.",
-          "{client.He} had the look of somebody about to tell me who everybody was, and what {client.he} thought of each of them."
+          "{client.He} had the look of somebody about to tell me who everybody was, and what {client.he} thought of each of them.",
+          "{client.He} had the whole room sorted and labelled, and was only waiting for me to sit down.",
+          "{client.He} leaned in. I was about to be introduced to the whole room, whether it liked it or not."
         ],
-        "joke": true
+        "joke": true,
+        "roles": []
       }
     },
     {
@@ -194,7 +235,12 @@
       "parts": [
         {
           "para": true,
-          "text": "I saw {tell} before {tell.he} saw me, which is the right way round. {tell.He} was {tell.doing}, {tell.tie}."
+          "text": "I saw {tell} before {tell.he} saw me, which is the right way round. {tell.He} was {tell.doing}, {tell.tie}.",
+          "alt": [
+            "I found {tell} first, which is how I like it. {tell.He} was {tell.doing}, {tell.tie}.",
+            "{tell} hadn’t noticed me yet. {tell.He} was {tell.doing}, {tell.tie}.",
+            "My eyes went to {tell} first. {tell.He} was {tell.doing}, {tell.tie}."
+          ]
         },
         {
           "para": true,
@@ -225,7 +271,9 @@
         "deck": true,
         "plain": [
           "Nobody made room for me. I made some anyway. It’s a skill, like parking.",
-          "I stood where I could see all of them. It’s the only way I know to be sure of anything in a room."
+          "I stood where I could see all of them. It’s the only way I know to be sure of anything in a room.",
+          "I kept my hat on and my eyes open, which is most of what I know how to do.",
+          "I took the spot with the best view. It was also the draughtiest, which is how you know."
         ],
         "joke": true
       }
@@ -248,9 +296,13 @@
           "optional": true
         },
         {
-          "para": true,
           "text": "{watcher.He} was the only one there, and had the look of somebody who liked it that way.",
-          "joke": true
+          "joke": true,
+          "alt": [
+            "{watcher.He} had the place to {watcher.him}self, or had until I came in.",
+            "There was nobody else there, and {watcher.he} didn’t seem to be missing anybody.",
+            "I was the first company {watcher.he}’d had in a while, and {watcher.he} wasn’t sure {watcher.he} wanted any."
+          ]
         },
         {
           "hole": "answer",
@@ -263,7 +315,10 @@
         ],
         "deck": true,
         "plain": [
-          "I didn’t mind. An empty room is the only kind that can’t lie to you, and it doesn’t try."
+          "That suited me. One person is about as many as I can listen to at that hour.",
+          "It made for a short list. I’ve worked with shorter, but not by choice.",
+          "Two was a crowd in there, and I was the second.",
+          "It was a quiet room. I did my best not to spoil it."
         ]
       }
     },
@@ -279,7 +334,12 @@
           "para": true,
           "text": "There was nobody there. I checked twice, which is once more than an empty room needs.",
           "says": "nobody",
-          "joke": true
+          "joke": true,
+          "alt": [
+            "The place was empty. I said good evening anyway, in case it was listening.",
+            "There was nobody there, unless you count me, and most people don’t.",
+            "The room was empty, which made it the best company I’d had all night."
+          ]
         },
         {
           "hole": "answer",
@@ -292,7 +352,10 @@
         ],
         "deck": true,
         "plain": [
-          "I stood in it a minute anyway. Sometimes a room will tell you things if you give it a chance to get bored."
+          "I stood in it a minute anyway. Sometimes a room will tell you things if you give it a chance to get bored.",
+          "I let the quiet have its say. It didn’t have much.",
+          "I waited to see if anybody would come back. Nobody did, which was at least consistent of them.",
+          "I stood there long enough to be sure. Then I stood there a bit longer, to be thorough."
         ]
       }
     },
@@ -327,7 +390,9 @@
         "deck": true,
         "plain": [
           "Nobody looked twice at me. At that hour, in that neighbourhood, a man in a hat is furniture.",
-          "I let the room get used to me. It didn’t take long. Rooms like that have seen worse."
+          "I let the room get used to me. It didn’t take long. Rooms like that have seen worse.",
+          "Nobody asked who I was. In that part of town, not asking is how people say hello.",
+          "I stood by the wall like I’d been hired to hold it up."
         ],
         "joke": true
       }

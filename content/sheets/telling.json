@@ -7,58 +7,161 @@
       "name": "Straight",
       "notes": "The telling as the engine writes it: nothing before, nothing after.",
       "weight": 2,
-      "parts": [{ "hole": "body" }]
+      "parts": [
+        {
+          "hole": "body"
+        }
+      ]
     },
     {
       "id": "tel-b",
       "name": "Put it down",
       "notes": "The witness puts what they have in hand down to answer, and picks it up again after: a callback inside one family. Not when the deck's frame opens on their name too.",
-      "when": { "callback": true, "thing": true, "named": false },
+      "when": {
+        "callback": true,
+        "thing": true,
+        "named": false
+      },
       "parts": [
-        { "hole": "thing", "bind": "thing" },
-        { "text": "{speaker} put {thing} down to answer, which was a courtesy." },
-        { "hole": "body" },
-        { "text": "Then {speaker} picked {thing} back up, and that was the end of the courtesy.", "joke": true }
+        {
+          "hole": "thing",
+          "bind": "thing"
+        },
+        {
+          "text": "{speaker} put {thing} down to answer, which was a courtesy.",
+          "alt": [
+            "{speaker} did me the courtesy of putting {thing} down first.",
+            "As a courtesy, {speaker} put {thing} down to answer me.",
+            "{speaker} set {thing} aside to answer, a courtesy I noticed."
+          ]
+        },
+        {
+          "hole": "body"
+        },
+        {
+          "text": "Then {speaker} picked {thing} back up, and that was the end of the courtesy.",
+          "joke": true,
+          "alt": [
+            "{speaker} took {thing} back up at once, in case I got ideas.",
+            "Then {speaker} took {thing} back up. Courtesy has its limits, and I’d found them.",
+            "The courtesy lasted one answer. Then {thing} was back in {speaker}’s hand."
+          ]
+        }
       ]
     },
     {
       "id": "tel-c",
       "name": "On the fingers",
       "notes": "A talker's list (their own evening, or who came and went): after it, the count has used up a hand. Goes on from the deck's frames that count on fingers, and stands alone after the rest. Talkers only, so it doesn't come round too often.",
-      "when": { "family": ["evening", "counts"], "temper": "yap" },
+      "when": {
+        "family": [
+          "evening",
+          "counts"
+        ],
+        "temper": "yap"
+      },
       "parts": [
-        { "hole": "body" },
-        { "text": "{speaker} had used up one hand on it and was starting on the other.", "joke": true }
+        {
+          "hole": "body"
+        },
+        {
+          "text": "{speaker} had used up one hand on it and was starting on the other.",
+          "joke": true,
+          "alt": [
+            "{speaker} needed both hands to count it, and didn’t look finished with either.",
+            "{speaker} got to the second hand. I got to the second page.",
+            "{speaker} kept count on {speaker.his} fingers, in case I lost track. I had."
+          ]
+        }
       ]
     },
     {
       "id": "tel-d",
       "name": "Could have gone on",
       "notes": "Somebody who likes to talk: after the telling, the sign that there was plenty more where it came from.",
-      "when": { "temper": "yap" },
+      "when": {
+        "temper": "yap"
+      },
       "parts": [
-        { "hole": "body" },
-        { "text": "{speaker} stopped there, but only to breathe.", "joke": true }
+        {
+          "hole": "body"
+        },
+        {
+          "text": "{speaker} stopped there, but only to breathe.",
+          "joke": true,
+          "alt": [
+            "{speaker} paused for breath, the first one yet.",
+            "That was {speaker}’s short version.",
+            "{speaker} had more lined up behind {speaker.his} teeth."
+          ]
+        }
       ]
     },
     {
       "id": "tel-e",
       "name": "Not a word wasted",
       "notes": "Somebody guarded, who took their time: after the telling, how little of it there was.",
-      "when": { "temper": "enigma" },
+      "when": {
+        "temper": "enigma"
+      },
       "parts": [
-        { "hole": "body" },
-        { "text": "{speaker} didn’t waste a word of it. I’ve had chattier telegrams.", "joke": true }
+        {
+          "hole": "body"
+        },
+        {
+          "text": "{speaker} didn’t waste a word of it. I’ve had chattier telegrams.",
+          "joke": true,
+          "alt": [
+            "{speaker} said it as if every word had to be signed for.",
+            "{speaker} used the fewest words possible, and regretted two of them.",
+            "Not a syllable to spare. I’ve had more from a locked door."
+          ]
+        }
       ]
     },
     {
       "id": "tel-f",
       "name": "Enjoying it",
       "notes": "Somebody who likes to talk, the other way: after the telling, who was having the better time.",
-      "when": { "temper": "yap" },
+      "when": {
+        "temper": "yap"
+      },
       "parts": [
-        { "hole": "body" },
-        { "text": "{speaker} was enjoying this more than I was, and I was the one being paid for it.", "joke": true }
+        {
+          "hole": "body"
+        },
+        {
+          "text": "{speaker} was enjoying this more than I was, and I was the one being paid for it.",
+          "joke": true,
+          "alt": [
+            "{speaker} was having a lovely time. One of us ought to.",
+            "{speaker} hadn’t had an audience in a while. I wasn’t much of one, but {speaker.he} made do.",
+            "{speaker} told it with the kind of relish most people save for dessert."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tel-g",
+      "name": "Told to the room",
+      "notes": "The page's prop, put in the room by the question's sheet and not yet brought back: the witness tells it to the prop more than to him.",
+      "when": {
+        "callback": true,
+        "prop": true
+      },
+      "parts": [
+        {
+          "hole": "body"
+        },
+        {
+          "text": "{speaker} told most of it to {prop}. I didn’t take it personally. I’ve been upstaged by worse.",
+          "joke": true,
+          "alt": [
+            "{speaker} told most of it to {prop}, which listened better than I do.",
+            "It was {prop} that got most of it. I just stood close enough to overhear.",
+            "{speaker} kept {speaker.his} eyes on {prop} the whole time. I tried not to feel left out."
+          ]
+        }
       ]
     }
   ]
