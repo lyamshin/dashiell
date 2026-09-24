@@ -24,7 +24,7 @@ export const PET_DOOR: Record<PetKind, string> = {
 
 /** What it wears or lives in that is left behind: the empty collar, the empty perch. */
 export const PET_LEFT: Record<PetKind, string> = {
-  dog: 'the collar on its hook by the door, with the lead still clipped to it',
+  dog: 'the collar on its hook by the door, with the leash still clipped to it',
   cat: 'a saucer of milk on the floor, full to the brim and going warm',
   parrot: 'an empty perch, still swinging a little',
   goat: 'a length of rope tied to the fence with nothing on the other end of it',

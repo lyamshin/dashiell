@@ -4900,7 +4900,7 @@
   {
     "id": "STY-523",
     "deck": "story",
-    "text": "At {time} {actor} was at {place} and cut a length off the coil of sash cord, long enough for a lead.",
+    "text": "At {time} {actor} was at {place} and cut a length off the coil of sash cord, long enough for a leash.",
     "tags": {
       "beat": "means",
       "method": "pet-sash-cord"
@@ -4910,7 +4910,7 @@
   {
     "id": "STY-524",
     "deck": "story",
-    "text": "{actor} was at {place} at {time}, and came away with a length of sash cord cut clean off the coil. It made a good enough lead.",
+    "text": "{actor} was at {place} at {time}, and came away with a length of sash cord cut clean off the coil. It made a good enough leash.",
     "tags": {
       "beat": "means",
       "method": "pet-sash-cord"

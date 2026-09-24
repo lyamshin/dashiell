@@ -103,9 +103,9 @@ export const DISCOVERY_TEXT_FIRST: Record<DiscoveryShape, string[]> = {
     'I did. I saw {V} at {L} at {T}. Nobody has seen {V} since.',
   ],
   lost: [
-    'I found {thing} gone from {L}. {Tc}. The way out was standing open.',
-    'It was me, at {T}. I got to {L}, and {thing} was gone, and the way out was open.',
-    '{Tc}. I got to {L} and {thing} was not there.',
+    'I found {thing} gone from {L}. {Tc}. Nobody else had noticed.',
+    'It was me, at {T}. I got to {L} and found {thing} gone.',
+    '{Tc}. I got to {L} and found {thing} gone.',
   ],
   affair: [
     '{Tc}. {V} was at {L}, where {V} said {V} would be. After that I cannot tell you.',

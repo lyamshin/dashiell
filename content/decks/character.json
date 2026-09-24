@@ -6600,7 +6600,7 @@
   {
     "id": "chr-639",
     "deck": "character",
-    "text": "Every beat has a bootlegger on it, and every patrolman knows which door. You don’t go through it. People like {victim} make sure you don’t want to.",
+    "text": "Every patrolman’s round has a bootlegger on it, and every patrolman knows which door. You don’t go through it. People like {victim} make sure you don’t want to.",
     "tags": {
       "role": "beat-cop",
       "kind": "victim",

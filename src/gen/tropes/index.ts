@@ -82,33 +82,67 @@ export function pickTrope(
 }
 
 /**
- * M14 §1.5 — the case mix. A tiered case draws its type first, by the tier's
- * weights over the types it has a trope for, and then a trope of that type by
- * the tropes' own weights. Murder is about a third at every tier.
+ * M14 §1.5 — the case mix, dealt so that the old cases stay the old cases.
+ *
+ * The trope is drawn first exactly as it was before M14, off the same stream
+ * and over the tier's classic list (`classic`). Then a second stream of its
+ * own (`mix`) decides whether that case is kept or the seed deals something
+ * else instead: a lost pet, a lost item, an affair, or — below Medium, where
+ * the classic list is all murder — a robbery or a disappearance. The keep
+ * rate is the one that brings murder to the tier's share, and the rest is
+ * shared out so each type lands on its weight in `mix`. A kept case is the
+ * case that seed dealt before M14, draw for draw, which is what keeps the
+ * goldens (seed 3 at Medium) and the sheets built on them where they were.
+ *
+ * Forced by type: the classic draw, when it deals that type; otherwise a
+ * trope of that type off the second stream. Forced by trope: as before.
  */
-export function pickTieredTrope(
-  rng: Rng,
+export function pickMixedTrope(
+  classicRng: Rng,
+  mixRng: Rng,
   mix: Partial<Record<CaseType, number>>,
+  classic: Id[],
   opts?: { type?: CaseType; tropeId?: Id; allowed?: Id[] },
-): (typeof TROPES)[number] {
-  if (opts?.tropeId) return pickTrope(rng, opts);
+): { trope: (typeof TROPES)[number]; kept: boolean } {
   const allowed = opts?.allowed;
-  const has = (type: CaseType): boolean => TROPES.some((t) => t.type === type && (!allowed || allowed.includes(t.id)));
-  let type = opts?.type;
-  if (type === undefined) {
-    const types = (Object.entries(mix) as [CaseType, number][]).filter(([t, w]) => w > 0 && has(t));
-    const total = types.reduce((n, [, w]) => n + w, 0);
-    let roll = rng.next() * total;
-    for (const [t, w] of types) {
-      roll -= w;
-      if (roll < 0) {
-        type = t;
-        break;
-      }
-    }
-    type ??= types[types.length - 1]?.[0];
+  if (opts?.tropeId) {
+    const trope = pickTrope(classicRng, opts);
+    return { trope, kept: classic.includes(trope.id) };
   }
-  return pickTrope(rng, { ...(type !== undefined ? { type } : {}), ...(allowed ? { allowed } : {}) });
+  const drawn = pickTrope(classicRng, { allowed: classic });
+  if (opts?.type !== undefined) {
+    // Asked for a type: the seed's classic case if it is one, so that
+    // `{ tier: 4, type: 'murder' }` at seed 3 is the golden's case.
+    if (drawn.type === opts.type) return { trope: drawn, kept: true };
+    return { trope: pickTrope(mixRng, { type: opts.type, ...(allowed ? { allowed } : {}) }), kept: false };
+  }
+  // What the classic draw deals, by type: its share of the classic weights.
+  const pool = TROPES.filter((t) => classic.includes(t.id));
+  const total = pool.reduce((n, t) => n + t.weight, 0);
+  const share = (type: CaseType): number => pool.filter((t) => t.type === type).reduce((n, t) => n + t.weight, 0) / total;
+  const mixTotal = Object.values(mix).reduce((n, w) => n + (w ?? 0), 0);
+  const want = (type: CaseType): number => (mix[type] ?? 0) / mixTotal;
+  const types = Object.keys(mix) as CaseType[];
+  // Keep as much of the classic draw as fits under every type's share.
+  let keep = 1;
+  for (const type of types) if (share(type) > 0) keep = Math.min(keep, want(type) / share(type));
+  if (mixRng.next() < keep) return { trope: drawn, kept: true };
+  // The rest, to the types the kept draws leave short.
+  const has = (type: CaseType): boolean => TROPES.some((t) => t.type === type && (!allowed || allowed.includes(t.id)));
+  const short = types
+    .map((type) => [type, Math.max(0, want(type) - keep * share(type))] as const)
+    .filter(([type, w]) => w > 1e-9 && has(type));
+  const sum = short.reduce((n, [, w]) => n + w, 0);
+  let roll = mixRng.next() * sum;
+  let type = short[short.length - 1]?.[0] as CaseType;
+  for (const [t, w] of short) {
+    roll -= w;
+    if (roll < 0) {
+      type = t;
+      break;
+    }
+  }
+  return { trope: pickTrope(mixRng, { type, ...(allowed ? { allowed } : {}) }), kept: false };
 }
 
 /** The unknowns a trope's report asks, as a sorted list. */

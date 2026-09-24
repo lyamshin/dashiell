@@ -140,7 +140,7 @@ describe('M11 §A.3 and §A.7: lives in plain words, groundings about what they 
   });
 
   it('tells a key from a debt', () => {
-    const view = buildView(generateCase(3, { tier: 4, level: 2 }));
+    const view = buildView(generateCase(3, { tier: 4, level: 2, classic: true }));
     const key = view.kase.findable.find((c) => c.establishes.some((f) => f.kind === 'hadAccess') && /\bkey\b/.test(c.text));
     const debt = view.kase.findable.find((c) => c.establishes.some((f) => f.kind === 'hasMotive' && f.motiveType === 'debt'));
     if (key) expect(thingTopic([key])).toBe('keys');

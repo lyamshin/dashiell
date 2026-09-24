@@ -131,8 +131,8 @@ const COST_TEXT_FIRST: Record<Purpose, string[]> = {
   ],
   'put-my-mind-at-rest': [
     'If it came out that I had hired somebody over {V}, I would never live it down. So it will not come out.',
-    'Nobody is to know I came here. Least of all {V}.',
-    'I would never live it down. Hiring a detective. Over {V}. At my age.',
+    'Nobody is to know I came here. {V} least of all.',
+    'I would never live it down, hiring a detective over {V} at my age. So nobody hears of it.',
   ],
 };
 

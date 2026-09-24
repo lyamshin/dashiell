@@ -24,7 +24,7 @@ import { checkRun } from '../src/game/correspond-pages.js';
 import { buildNotebook } from '../src/game/notebook.js';
 import { playOracle, playWandering } from '../src/game/oracle.js';
 import { newRun, stepInput } from '../src/game/reducer.js';
-import { fieldsFor, truthReport, withAnswer } from '../src/game/report-form.js';
+import { columnFor, fieldsFor, truthReport, withAnswer } from '../src/game/report-form.js';
 import { scoreReport } from '../src/game/scoring.js';
 import { officeCloseLine } from '../src/game/voice/page.js';
 import {
@@ -406,7 +406,9 @@ describe('the report', () => {
           newRun(view, { detectiveName: 'Dashiell' }),
           truthReport(view),
         );
-        expect(verdict.asked).toBe(view.kase.act.unknowns.length);
+        // M14: a mundane trope asked for untiered is dealt at Hard-boiled,
+        // whose report asks the crime column as well.
+        expect(verdict.asked).toBe(view.kase.act.unknowns.length + columnFor(view).length);
         expect(verdict.points).toBe(verdict.asked);
         expect(verdict.outcome).toBe('solved');
       }

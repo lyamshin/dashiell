@@ -181,6 +181,11 @@ export interface CastCase {
   type: CaseType;
   /** The culprit's motive, where the trope decides it. */
   motive?: string;
+  /**
+   * The case is the classic draw the seed dealt before M14, kept by the case
+   * mix: its cast is drawn as it was, from the archetypes' own ties.
+   */
+  classic?: boolean;
 }
 
 export function buildCast(
@@ -191,7 +196,8 @@ export function buildCast(
   kind?: CastCase,
 ): Cast | null {
   const { shape, ladder } = dials;
-  const tiered = !dials.plain;
+  // M14 §1.4: the ties beyond money, for every case the mix dealt new.
+  const tiered = !dials.plain && kind?.classic !== true;
   const mundane = kind !== undefined && (kind.type === 'lost-pet' || kind.type === 'lost-item' || kind.type === 'affair');
   const name = makeNamer(rng);
   const mentions = createMentionPool(name);

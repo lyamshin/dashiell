@@ -597,7 +597,7 @@
   {
     "id": "end-n002",
     "deck": "endings",
-    "text": "The way out of {place} is shut tonight, and it stays shut. {killer} has a long week of explaining ahead, and the street has nothing but time.",
+    "text": "The way out of {place} is shut tonight, and I watch it stay shut. {killer} has a long week of explaining ahead, and the street has nothing but time.",
     "tags": {
       "outcome": "solved",
       "parDelta": "at",
@@ -741,7 +741,7 @@
   {
     "id": "end-n014",
     "deck": "endings",
-    "text": "It sits there looking as if it never left, which is its own business. {killer} will be asked about it at every Sunday dinner from now until the end of time, and deserves most of them.",
+    "text": "It sits there looking as if it never left, and I let it. {killer} will be asked about it at every Sunday dinner from now until the end of time, and deserves most of them.",
     "tags": {
       "outcome": "solved",
       "parDelta": "at",
@@ -837,7 +837,7 @@
   {
     "id": "end-n022",
     "deck": "endings",
-    "text": "It is back, and nobody’s name goes with it. {killer} is the first to say how glad everybody must be.",
+    "text": "It is back, and no name goes with it, which is my doing. {killer} is the first to say how glad everybody must be.",
     "tags": {
       "outcome": "cold",
       "parDelta": "under",
@@ -849,7 +849,7 @@
   {
     "id": "end-n023",
     "deck": "endings",
-    "text": "It is back where it lives, and nobody knows how it got home. {killer} knows, and smiles at it every time.",
+    "text": "It is back where it lives, and nobody but me wonders how it got home. {killer} knows, and smiles at it every time.",
     "tags": {
       "outcome": "cold",
       "parDelta": "at",
@@ -873,7 +873,7 @@
   {
     "id": "end-n025",
     "deck": "endings",
-    "text": "Some nights the job is to find out, and some nights it is also to say it out loud. Tonight was both, and {name} will be hearing about it by breakfast.",
+    "text": "Some nights my job is to find out, and some nights it is also to say it out loud. Tonight was both, and {name} will be hearing about it by breakfast.",
     "tags": {
       "outcome": "solved",
       "parDelta": "at",
@@ -964,7 +964,7 @@
   {
     "id": "end-n032",
     "deck": "endings",
-    "text": "I spend the whole night getting it wrong, and then say it out loud. {killer} will never know how lucky the evening was.",
+    "text": "I spend the whole night getting it wrong, and then say it out loud. What I never had was {missed}, and {killer} will never know how lucky the evening was.",
     "tags": {
       "outcome": "wrong-man",
       "parDelta": "over",
@@ -990,7 +990,7 @@
   {
     "id": "end-n034",
     "deck": "endings",
-    "text": "I was quick, and kind, and wrong, in that order. A slower man would have seen {killer} at {place}, and I am not often accused of being quick.",
+    "text": "I was quick, and kind, and wrong, in that order. {missed} was there for a slower man, and I am not often accused of being quick.",
     "tags": {
       "outcome": "wrong-man",
       "parDelta": "under",
@@ -1016,7 +1016,7 @@
   {
     "id": "end-n036",
     "deck": "endings",
-    "text": "A whole night’s work with the wrong name at the end of it, and I keep the lot to myself. {killer} will never know I was looking, and neither will anybody else.",
+    "text": "A whole night’s work with the wrong name at the end of it, and I keep the lot to myself. I never had {missed}, and {killer} will never know I was looking.",
     "tags": {
       "outcome": "wrong-man",
       "parDelta": "over",
@@ -1107,7 +1107,7 @@
   {
     "id": "end-n043",
     "deck": "endings",
-    "text": "The truth, it turns out, is a shrug with a bill attached. Somewhere tonight {name} is having a better evening than either of us.",
+    "text": "The truth, it turns out, is a shrug with a bill attached, and I hand over both. Somewhere tonight {name} is having a better evening than either of us.",
     "tags": {
       "outcome": "cold",
       "parDelta": "at",
@@ -1237,7 +1237,7 @@
   {
     "id": "end-n053",
     "deck": "endings",
-    "text": "All night, and then a soft story with the wrong name in it. {killer} was at {place}, and I was somewhere else, being kind.",
+    "text": "All night, and then a soft story with the wrong name in it. What I missed was {missed}, and I was somewhere else, being kind.",
     "tags": {
       "outcome": "wrong-man",
       "parDelta": "over",

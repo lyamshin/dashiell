@@ -88,7 +88,8 @@ describe('§1 — the briefing says it in the order the reader needs it', () => 
       if (c.act.type === 'murder') steps.push(['the death', at(c, `${victim.name} is dead.`)]);
       else steps.push([c.act.type === 'robbery' ? 'the loss' : 'gone', at(c, c.act.givens.text[0])]);
       steps.push(['the standing', at(c, bio.standing)]);
-      steps.push(['found', at(c, bio.discovery?.foundText ?? bio.lastSeen?.text)]);
+      // M14: nobody walked in on an affair; it has no discovery and no last sighting.
+      if (c.act.type !== 'affair') steps.push(['found', at(c, bio.discovery?.foundText ?? bio.lastSeen?.text)]);
       if (bio.discovery) steps.push(['the precinct', at(c, PRECINCT_TEXT[bio.discovery.precinct])]);
       const tie = c.people.find((p) => p.id === c.clientId)?.dossier?.tie;
       if (tie) steps.push(['the tie', at(c, `${client.surname} is ${tie.text}.`)]);

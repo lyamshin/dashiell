@@ -62,6 +62,11 @@ export interface CaseShape {
   caseMix?: Partial<Record<CaseType, number>>;
   /** Which tropes may be drawn. */
   tropes: Id[];
+  /**
+   * M14: the tropes the tier drew from before M14, the classic draw that the
+   * case mix keeps or replaces (`pickMixedTrope`). Absent is `tropes`.
+   */
+  classicTropes?: Id[];
   reportFields: ReportField[];
   /**
    * The murder tropes name the method in their givens ("It was a knife.").
@@ -236,13 +241,7 @@ export const DEDUCTION_HARD: DeductionDials = {
   hypothesis: true,
   pieces: 0.7,
   par: [10, 22],
-  // M14: three, not two. The design test is held per case type now, and at
-  // two the reasoning player ran out of night on a murder, a robbery or a
-  // disappearance a quarter of the time (docs/33-m14-notes.md).
-  extraSlack: 3,
-  // A robbery at Hard-boiled needed one call more again: 78% at three over
-  // 200 seeds, 80% at four.
-  typeSlack: { robbery: 1 },
+  extraSlack: 2,
 };
 
 export interface Ladder {
@@ -357,6 +356,7 @@ export const RAW: CaseShape = {
   caseTypes: ALL_TYPES,
   caseMix: CASE_MIX,
   tropes: [...MURDER_AT_SCENE, ...SMALL_OTHER, ...MUNDANE_TROPES],
+  classicTropes: MURDER_AT_SCENE,
   reportFields: ['who'],
   methodGiven: true,
   proof: [],
@@ -407,6 +407,7 @@ export const SOFT_BOILED: CaseShape = {
   coronerWidth: 2,
   anchorsRequired: 1,
   tropes: [...MURDER_TROPES, ...SMALL_OTHER, ...MUNDANE_TROPES],
+  classicTropes: MURDER_TROPES,
   proof: ['method', 'access', 'signature'],
   par: [7, 8],
   findable: 26,
@@ -431,6 +432,7 @@ export const MEDIUM: CaseShape = {
   caseTypes: ALL_TYPES,
   caseMix: CASE_MIX,
   tropes: [...ALL_TROPES, ...MUNDANE_TROPES],
+  classicTropes: ALL_TROPES,
   reportFields: ALL_FIELDS,
   methodGiven: false,
   proof: ALL_LEGS,
@@ -464,6 +466,7 @@ export const HARD_BOILED: CaseShape = {
   caseTypes: ALL_TYPES,
   caseMix: CASE_MIX,
   tropes: [...ALL_TROPES, ...MUNDANE_TROPES],
+  classicTropes: ALL_TROPES,
   reportFields: ALL_FIELDS,
   methodGiven: true,
   proof: ALL_LEGS,

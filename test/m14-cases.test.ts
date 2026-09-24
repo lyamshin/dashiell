@@ -125,7 +125,8 @@ describe('M14: the three new case types', () => {
 
 // "The kitchen noise had died down" and "the ring it hangs on" are not deaths;
 // a character who was "robbed once" is somebody's history, not the case.
-const DEATH = /\b(died(?! down)|killed|killer|murder|murdered|corpse|the body|slab|hanged|coroner|jury|weapon)\b/i;
+// A witness "due before the grand jury" is a tie, not a trial.
+const DEATH = /\b(died(?! down)|killed|killer|murder|murdered|corpse|the body|slab|hanged|coroner|(?<!grand )jury|weapon)\b/i;
 const THEFT = /\b(robbery|thief|stolen goods)\b/i;
 
 describe('M14: on the page', () => {

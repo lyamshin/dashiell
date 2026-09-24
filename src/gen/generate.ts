@@ -20,7 +20,7 @@ import { buildSchedules, type ScheduleBuild } from './schedule.js';
 import { deriveCandidates, deriveObservations } from './clues.js';
 import { selectFindable } from './select.js';
 import { checkSolvability, type CaseUnderTest } from './solvability.js';
-import { TROPE_BY_ID, pickTieredTrope, pickTrope, type Trope, type TropeContext } from './tropes/index.js';
+import { TROPE_BY_ID, pickMixedTrope, pickTrope, type Trope, type TropeContext } from './tropes/index.js';
 import { buildVictimBio } from './victim.js';
 import { buildClientBrief } from './client.js';
 import { briefingStrings, buildBriefing } from './briefing.js';
@@ -65,6 +65,11 @@ export interface GenerateOptions extends ShapeOptions {
   /** M5: force a shape, for reading. Leave both out and the weights decide. */
   type?: CaseType;
   tropeId?: Id;
+  /**
+   * M14: a tier's classic draw with no case mix — the case the seed dealt
+   * before M14, draw for draw. For the goldens and the tests pinned to them.
+   */
+  classic?: boolean;
 }
 
 /** The single public entry point. Same seed and options, same case. */
@@ -574,13 +579,23 @@ function runLogic(
   let attempts = 0;
   const tropeRng = new Rng((seed * 2654435761 + difficulty * 40503 + salt * 7727) >>> 0);
   for (let i = 0; i < 3; i++) tropeRng.next();
-  // M14 §1.5: a tier with a case mix draws the type first, then the trope.
+  // M14 §1.5: the classic draw as it always was, then the case mix keeps it
+  // or deals the seed something else, off a stream of its own
+  // (`pickMixedTrope`). A kept case is the case the seed dealt before M14.
   const pickOpts = {
     ...(opts?.type !== undefined ? { type: opts.type } : {}),
     ...(opts?.tropeId !== undefined ? { tropeId: opts.tropeId } : {}),
     allowed: shape.tropes,
   };
-  const trope: Trope = shape.caseMix ? pickTieredTrope(tropeRng, shape.caseMix, pickOpts) : pickTrope(tropeRng, pickOpts);
+  const mixRng = new Rng((seed * 1597334677 + difficulty * 3812015801 + salt * 104723 + 17) >>> 0);
+  for (let i = 0; i < 3; i++) mixRng.next();
+  const classicList = shape.classicTropes ?? shape.tropes;
+  const mixed = opts?.classic
+    ? { trope: pickTrope(tropeRng, { ...pickOpts, allowed: classicList }), kept: true }
+    : shape.caseMix
+    ? pickMixedTrope(tropeRng, mixRng, shape.caseMix, classicList, pickOpts)
+    : { trope: pickTrope(tropeRng, pickOpts), kept: true };
+  const trope: Trope = mixed.trope;
   const caseType = trope.type;
   const reject = diagnostics ? (reason: string) => diagnostics.rejections.push(reason) : undefined;
   // Whether the client did it is the seed's, not the attempt's: a client who
@@ -602,6 +617,8 @@ function runLogic(
     const cast = buildCast(rng, setting, dials, clientIsKiller, {
       type: caseType,
       ...(trope.motive !== undefined ? { motive: trope.motive } : {}),
+      // A kept classic case keeps its classic cast, draw for draw.
+      classic: mixed.kept,
     });
     if (!cast) {
       reject?.('no cast fits the victim and the rooms');
@@ -810,6 +827,13 @@ function runLogic(
         );
         if (trope.id === 'the-frame' && c.kind === 'document') {
           c.text = c.text.replace(/\s[^.]*\bwas at\b[^.]*\.$/, '');
+        }
+        // M14: the inside job's sign-in book, likewise, now that a robbery
+        // is dealt below Medium, where the page tests read every hour. The
+        // key list keeps what it proves; the hour went with the placement.
+        // (docs/23-m10-a-notes.md listed it under "Not fixed".)
+        if (trope.id === 'inside-job' && c.kind === 'document' && !mixed.kept) {
+          c.text = c.text.replace(/\sThe sign-in book has [^.]*\.$/, '');
         }
         if (c.textRecord === undefined) c.textRecord = c.text;
         c.text = speakTimes(c.textRecord);

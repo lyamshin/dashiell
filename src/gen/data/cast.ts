@@ -1883,9 +1883,9 @@ export const PURPOSE_TEXT_FIRST: Record<Purpose, string[]> = {
     'I want what I am owed. {V} and I had something between us that death did not settle.',
   ],
   'find-the-pet': [
-    'I want {O} found and brought home. {V} has been standing at the window since supper.',
-    'I want {O} home by morning. I will pay for the morning.',
-    'I want {O} found. I know how that sounds from a grown person at this hour. I am saying it anyway.',
+    'I want {O} found and brought home. {V} has been standing at the window since supper. It is a pitiful sight.',
+    'I want {O} home with {V} by morning. I will pay for the morning.',
+    'I want {O} found, for {V}’s sake. I know how that sounds from a grown person at this hour. I am saying it anyway.',
   ],
   'find-the-thing': [
     'I want {O} found. I want it back where it lives, and I want nobody making a fuss.',
@@ -1894,17 +1894,17 @@ export const PURPOSE_TEXT_FIRST: Record<Purpose, string[]> = {
   ],
   'before-they-notice': [
     'I want {O} back where it belongs before {V} notices it is gone. {V} notices everything, eventually.',
-    'I want it back before {V} misses it. Quietly. That is the whole of it.',
+    'I want it back before {V} misses it, and quietly. That is the whole of it.',
     'I want {O} back in its place before {V} looks for it. {V} will look. {V} always looks.',
   ],
   'tell-me-the-truth': [
-    'I want to know where {V} was that evening. And with whom. Mostly with whom.',
+    'I want to know where {V} was that evening. And with whom. The with whom, mostly.',
     'I want the truth about {V}. Where, and with whom, and I want it plain.',
-    'I want to know where {V} goes on those evenings. I have been told a story. I would like the other one.',
+    'I want to know where {V} goes on those evenings. I have been told a story. I want the other one.',
   ],
   'put-my-mind-at-rest': [
     'I want to be told there is nothing in it. Or told there is. Either way I would like to sleep.',
-    'I want my mind put at rest. If it cannot be put at rest, I want to know that too.',
+    'I want my mind put at rest. If it cannot be, I want to know that too. Either way.',
     'I want to know there is nothing to know. I would pay double for that.',
   ],
 };
@@ -1982,7 +1982,7 @@ export const PURPOSE_PROMPTS: Record<Purpose, string[]> = {
   'put-my-mind-at-rest': [
     'What would put your mind at rest?',
     'You want to be told there is nothing in it.',
-    'And if there is something in it?',
+    'What if there is something in it?',
   ],
 };
 

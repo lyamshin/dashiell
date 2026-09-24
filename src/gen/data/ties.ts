@@ -55,7 +55,7 @@ export const M14_RELATIONSHIPS: Relationship[] = [
     ],
     backstoryFirst: [
       '{victim} and I walked out together for two summers. That was before {year}. I still cross the street.',
-      'I was engaged to {victim} in {year}. For eleven days. People on this block still bring it up.',
+      'I was engaged to {victim} in {year}. For eleven days. The block still brings it up.',
       '{victim} and I were sweet on each other before {third} came along. Everybody on the street remembers it. {victim} does not, apparently.',
     ],
     since: ['since {year}', 'two summers, a long time ago', 'since before {third}'],
@@ -72,7 +72,7 @@ export const M14_RELATIONSHIPS: Relationship[] = [
     ],
     backstoryFirst: [
       'I have bowled against {victim} every Thursday since {year}. {victim} took the cup off me by one pin. One.',
-      '{victim} and I have been the best two in the Thursday league since {year}. {victim} cheats. Ask anybody but {victim}.',
+      '{victim} and I have been the best two in the Thursday league since {year}. {victim} cheats. The whole league knows it.',
       'I bowled on {victim}’s team until {year}. Then {victim} dropped me for {third}. {third} cannot bowl.',
     ],
     since: ['since {year}', 'every Thursday for years', 'since the league started'],
@@ -158,7 +158,7 @@ export const M14_RELATIONSHIPS: Relationship[] = [
     backstoryFirst: [
       '{victim} and I have shared the one line across the yard since {year}. We argue about whose turn Monday is. It is mine.',
       'Every time it has rained since {year} I have taken {victim}’s washing in off the line. Not once a thank you. Not once.',
-      'You learn a lot about a person from a shared clothesline. I have been learning about {victim} since {year}.',
+      'You learn a lot about a person from a shared clothesline. I have been learning about {victim} since {year}. It tells you everything.',
     ],
     since: ['since {year}', 'every washday for years', 'since the line went up'],
     purposes: PLAIN_PURPOSES,
@@ -183,7 +183,7 @@ export const AFFAIR_RELATIONSHIPS: Relationship[] = [
     ],
     backstoryFirst: [
       'I married {victim} in {year}. Until this spring I never had a reason to wonder.',
-      'We have been married since {year}. I still set two places at supper. Lately one of them stays set.',
+      '{victim} and I have been married since {year}. I still set two places at supper. One stays set.',
       '{victim} and I married in {year}. The week before, {third} had turned {victim} down. I try not to count that.',
     ],
     since: ['since {year}', 'eleven years this June', 'since the week after the war'],
