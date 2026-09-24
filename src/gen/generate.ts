@@ -46,10 +46,7 @@ import { checkLogic } from './logic/check.js';
 import { ambiguousDescription, edgesOf } from './logic/acquaint.js';
 import { applyRule } from './logic/lines.js';
 import { ownTopics } from './topics.js';
-import { coherenceFlags, type CoherenceRule } from './coherence.js';
-
-/** What a kept classic case is turned down for: its ties and where it keeps things. */
-const CLASSIC_RULES: CoherenceRule[] = ['tie-trade', 'tie-home', 'keeping-place'];
+import { OWNABLE_ROOMS } from './coherence.js';
 
 const OUTER_ATTEMPTS = 120;
 const INNER_ATTEMPTS = 30;
@@ -652,12 +649,10 @@ function runLogic(
   // one in however many others there are to point at.
   const pointerOnKiller = shape.clientMayBeCulprit ? tropeRng.chance(1 / Math.max(1, shape.suspects - 1)) : undefined;
 
-  // The coherence pass: a case the mix dealt new is dealt coherent; a kept
-  // classic case is dealt as it always was and turned down below if it does
-  // not hang together, and is dealt coherent from then on.
-  let coherent = !mixed.kept;
   for (let outer = 0; outer < OUTER_ATTEMPTS; outer++) {
-    const setting = buildSetting(rng, caseType, trope.id, shape, coherent);
+    // The coherence pass: a case the mix dealt new is dealt coherent; a kept
+    // classic case is dealt as it always was, and said in coherent words.
+    const setting = buildSetting(rng, caseType, trope.id, shape, !mixed.kept);
     if (!setting) {
       reject?.('the place deck would not deal a legal hand');
       continue;
@@ -667,7 +662,11 @@ function runLogic(
       ...(trope.motive !== undefined ? { motive: trope.motive } : {}),
       // A kept classic case keeps its classic cast, draw for draw.
       classic: mixed.kept,
-      coherent,
+      naming: {
+        seed,
+        salt,
+        ...(trope.id === 'inside-job' && OWNABLE_ROOMS.includes(setting.murderPlaceId) ? { owned: setting.murderPlaceId } : {}),
+      },
     });
     if (!cast) {
       reject?.('no cast fits the victim and the rooms');
@@ -780,6 +779,7 @@ function runLogic(
         objects: setting.objects,
         coronerWindow,
         methodGiven: shape.methodGiven,
+        coherent: true,
       };
       const act: Act = {
         type: trope.type,
@@ -880,10 +880,8 @@ function runLogic(
         // M14: the inside job's sign-in book, likewise, now that a robbery
         // is dealt below Medium, where the page tests read every hour. The
         // key list keeps what it proves; the hour went with the placement.
-        // (docs/23-m10-a-notes.md listed it under "Not fixed".) A kept
-        // classic case turned down by the coherence pass is a new case, and
-        // is fixed with the rest.
-        if (trope.id === 'inside-job' && c.kind === 'document' && coherent) {
+        // (docs/23-m10-a-notes.md listed it under "Not fixed".)
+        if (trope.id === 'inside-job' && c.kind === 'document' && !mixed.kept) {
           c.text = c.text.replace(/\sThe sign-in book has [^.]*\.$/, '');
         }
         if (c.textRecord === undefined) c.textRecord = c.text;
@@ -1026,14 +1024,6 @@ function runLogic(
       if (!check.ok) {
         diagnostics?.rejections.push(...check.failures);
         continue;
-      }
-      // A kept classic case that does not hang together — a tie its owner
-      // cannot carry, an inside job's box on a public bench — is turned down
-      // here, after every draw it always made, and the night is dealt again.
-      if (!coherent && coherenceFlags(underTest).some((f) => CLASSIC_RULES.includes(f.rule))) {
-        reject?.('the world does not hang together');
-        coherent = true;
-        break;
       }
       return { ...underTest, deduction: check.deduction };
     }

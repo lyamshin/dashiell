@@ -58,6 +58,31 @@ export interface Place {
    * places per case, chosen when the scene is chosen.
    */
   nearScene: boolean;
+  /**
+   * The place's drawn name set (content/places/rules.md), on a tiered case.
+   * `name` is then its proper form and `shortName` what running text says.
+   */
+  names?: PlaceNames;
+}
+
+/** The senses a place is strongest in, strongest first. */
+export type PlaceSense = 'sound' | 'sight' | 'smell';
+
+/** One place's names for a case: content/places/names.json, slots filled. */
+export interface PlaceNames {
+  /** The name set's id in names.json. */
+  set: string;
+  /** The first mention in a night: "the benches by the dry fountain in Stuyvesant Square". */
+  proper: string;
+  /** What people say: "the square", "Stuyvesant Square". */
+  local: string[];
+  /** The grid's and the rules' label: "Stuyvesant Square". */
+  short: string;
+  /** Read after a comma, one a page at most: "where the pigeons held court". */
+  epithets: string[];
+  sense: PlaceSense[];
+  /** The deck's own short name for the template: "the benches". */
+  bare: string;
 }
 
 export interface GameObject {

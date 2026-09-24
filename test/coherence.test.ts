@@ -6,10 +6,13 @@ import {
   HOME_HAS,
   OWNER_HAS,
   coherenceFlags,
+  homeFits,
   standingsFor,
   tieFits,
+  tradeFits,
 } from '../src/gen/coherence.js';
-import { CUSTOMER_WORDS, RELATIONSHIP_BY_ID, VICTIM_ARCHETYPES } from '../src/gen/data/cast.js';
+import { ARCHETYPE_BY_ID, RELATIONSHIP_BY_ID, VICTIM_ARCHETYPES } from '../src/gen/data/cast.js';
+import { TIE_WORDS, tieWordsFor } from '../src/gen/data/tie-words.js';
 import { PLACE_TEMPLATES } from '../src/gen/data/places.js';
 
 /**
@@ -43,15 +46,29 @@ describe('coherence: every tier, every case type', () => {
     expect([...seen].sort()).toEqual([...CASE_TYPES].sort());
   });
 
-  it('finds nothing out of place in the mix as the title page deals it', () => {
+  it('finds nothing out of place in the mix as the title page deals it, or in the classic draw', () => {
     const problems: string[] = [];
     for (const tier of TIERS) {
-      for (let seed = 100; seed < 106; seed++) {
-        const c = generateCase(seed, { tier, level: 2 });
-        for (const f of coherenceFlags(c)) problems.push(`T${tier} seed ${seed}: ${f.rule} ${f.detail}`);
+      for (let seed = 1; seed <= 12; seed++) {
+        for (const classic of [false, true]) {
+          const c = generateCase(seed, { tier, level: 2, ...(classic ? { classic } : {}) });
+          for (const f of coherenceFlags(c)) problems.push(`T${tier} seed ${seed}${classic ? ' classic' : ''}: ${f.rule} ${f.detail}`);
+        }
       }
     }
     expect(problems).toEqual([]);
+  });
+
+  it('says a kept classic tie in the owner’s words, and moves no draw (Raw seed 1, a theatrical agent)', () => {
+    const c = generateCase(1, { tier: 0, level: 2 });
+    const victim = c.people.find((p) => p.kind === 'victim');
+    expect(victim?.archetypeId).toBe('vic-agent');
+    const customers = c.people.filter((p) => p.relationshipId === 'rel-customer');
+    expect(customers.length).toBeGreaterThan(0);
+    for (const p of customers) {
+      expect(p.dossier?.tie.text).toMatch(/an act on .*’s books/);
+      expect(`${p.dossier?.tie.backstory} ${p.dossier?.tie.backstoryFirst ?? ''}`).not.toMatch(/bought from|Everybody on the block/);
+    }
   });
 });
 
@@ -91,12 +108,25 @@ describe('coherence: the checker catches what it is for', () => {
     expect(coherenceFlags(c).map((f) => f.rule)).toContain('keeping-place');
   });
 
-  it('a customer of somebody who sells nothing', () => {
+  it('a customer of somebody who sells nothing, said in the card’s words', () => {
     const c = copy(lost);
     const victim = c.people.find((p) => p.kind === 'victim');
     if (victim) victim.archetypeId = 'vic-inspector';
     const s = c.people.find((p) => p.kind === 'suspect');
-    if (s) s.relationshipId = 'rel-customer';
+    if (s?.dossier) {
+      s.relationshipId = 'rel-customer';
+      s.dossier.tie.text = `a customer of ${victim?.surname}’s`;
+      s.dossier.tie.backstory = `${s.surname} has bought from ${victim?.surname} for years and settled at the end of every month.`;
+    }
+    expect(coherenceFlags(c).map((f) => f.rule)).toContain('tie-words');
+  });
+
+  it('the husband of an heiress between marriages', () => {
+    const c = copy(lost);
+    const victim = c.people.find((p) => p.kind === 'victim');
+    if (victim) victim.archetypeId = 'vic-heiress';
+    const s = c.people.find((p) => p.kind === 'suspect');
+    if (s) s.relationshipId = 'rel-wed';
     expect(coherenceFlags(c).map((f) => f.rule)).toContain('tie-trade');
   });
 
@@ -128,16 +158,42 @@ describe('coherence: the tables', () => {
     for (const t of PLACE_TEMPLATES.filter((p) => p.isResidence)) expect(HOME_HAS[t.id], t.id).toBeDefined();
   });
 
-  it('gives every owner who sells a customer’s words, one for one with the card', () => {
-    const card = RELATIONSHIP_BY_ID['rel-customer'];
+  it('has words for every tie a classic draw can deal to an owner the card does not fit', () => {
+    const missing: string[] = [];
     for (const v of VICTIM_ARCHETYPES) {
-      const sells = (OWNER_HAS[v.id] ?? []).includes('sells');
-      expect(CUSTOMER_WORDS[v.id] !== undefined, v.id).toBe(sells);
-      const words = CUSTOMER_WORDS[v.id];
-      if (!words || !card) continue;
-      words.backstoryFirst.forEach((t, i) => {
-        expect(t.includes('{third}'), `${v.id} #${i}`).toBe((card.backstory[i] as string).includes('{third}'));
-      });
+      for (const aid of v.allowedSuspects) {
+        const a = ARCHETYPE_BY_ID[aid];
+        for (const rel of a?.relationships ?? []) {
+          if (!tradeFits(rel, v.id, aid) && !tieWordsFor(rel, v.id)) missing.push(`${rel} × ${v.id} (${aid})`);
+          for (const home of Object.keys(HOME_HAS)) {
+            if (!homeFits(rel, home) && !tieWordsFor(rel, '', home)) missing.push(`${rel} @ ${home}`);
+          }
+        }
+      }
+    }
+    expect([...new Set(missing)]).toEqual([]);
+  });
+
+  it('writes the owner’s words one for one with the card, so the dossier takes the same draws', () => {
+    for (const [rel, byOwner] of Object.entries(TIE_WORDS)) {
+      const card = RELATIONSHIP_BY_ID[rel];
+      expect(card, rel).toBeDefined();
+      if (!card) continue;
+      for (const [owner, words] of Object.entries(byOwner)) {
+        const where = `${rel} × ${owner}`;
+        for (const [list, base] of [
+          [words.backstory, card.backstory],
+          [words.backstoryFirst, card.backstoryFirst],
+        ] as const) {
+          if (!list) continue;
+          expect(list.length, where).toBe(base.length);
+          list.forEach((t, i) => expect(t.includes('{third}'), `${where} #${i}`).toBe((base[i] as string).includes('{third}')));
+        }
+        if (words.since) expect(words.since.length, where).toBe(card.since.length);
+        if (words.backstoryAlt) {
+          expect(words.backstoryAlt.map((a) => a === null), where).toEqual((card.backstoryAlt ?? []).map((a) => a === null));
+        }
+      }
     }
     for (const [owner, who] of Object.entries(CUSTOMERS_OF)) {
       expect(OWNER_HAS[owner]).toContain('sells');

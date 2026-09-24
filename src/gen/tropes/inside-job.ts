@@ -1,5 +1,6 @@
 import { clock, type Fact } from '../types.js';
-import { between, elsewhere, essential, stealable, twoSources, type Trope } from './kit.js';
+import { between, elsewhere, essential, stealable, twoSources, type Trope, type TropeContext } from './kit.js';
+import { OWNABLE_ROOMS } from '../coherence.js';
 
 /**
  * Nothing was forced. Whatever was taken went out through a door that was
@@ -29,11 +30,20 @@ export const insideJob: Trope = {
     const [lo, hi] = ctx.coronerWindow;
     const facts: Fact[] = [{ kind: 'timeOfDeath', ticks: [lo, hi] }];
     if (taken) facts.push({ kind: 'objectMissing', objectId: taken.id, fromPlace: ctx.act.place });
+    // The coherence pass: a room of the owner's is theirs, and says so unless
+    // its name already does ("Feeney’s place, which is Feeney’s" says it
+    // twice). Anywhere else — a kept classic case on the ferry slip — it was
+    // the locker the owner rents there, which is a thing a ferry slip has.
+    const theirs = owns(ctx);
     return {
       facts,
       text: [
-        `${cap(taken?.name ?? 'the box')} was taken from ${L}, which is ${V}’s.`,
-        `Nothing at ${L} was forced: the lock was turned and the door was shut again after.`,
+        theirs
+          ? `${cap(taken?.name ?? 'the box')} was taken from ${L}${ctx.coherent === true && L.includes(V) ? '' : `, which is ${V}’s`}.`
+          : `${cap(taken?.name ?? 'the box')} was taken from the locker ${V} rents at ${L}.`,
+        theirs
+          ? `Nothing at ${L} was forced: the lock was turned and the door was shut again after.`
+          : `Nothing at ${L} was forced: the locker was opened with its key and shut again after.`,
         `The precinct puts it ${between(lo, hi)}.`,
         `${V} is not saying much about what was in it.`,
       ],
@@ -52,7 +62,9 @@ export const insideJob: Trope = {
         { type: 'place', placeId: L },
         L,
         taken ? [{ kind: 'objectMissing', objectId: taken.id, fromPlace: L }] : [],
-        `The jamb at ${ctx.placeName(L)} has not been touched and the screws in the plate have paint across them. ${taken ? `${cap(taken.name)} is gone from the shelf` : 'The shelf is empty'}, and nothing either side of it was moved.`,
+        owns(ctx)
+          ? `The jamb at ${ctx.placeName(L)} has not been touched and the screws in the plate have paint across them. ${taken ? `${cap(taken.name)} is gone from the shelf` : 'The shelf is empty'}, and nothing either side of it was moved.`
+          : `The locker at ${ctx.placeName(L)} has not been touched, and there is dust along the edge of its door. ${taken ? `${cap(taken.name)} is gone from it` : 'It is empty'}, and nothing either side of it was moved.`,
       ),
       ctx.add(
         'document',
@@ -74,7 +86,9 @@ export const insideJob: Trope = {
         { type: 'person', personId: b.id, topic: 'the lock' },
         ctx.foundAt(b.id),
         [{ kind: 'hadAccess', personId: killer.id, methodId: ctx.method.id }],
-        `${ctx.who(b.id)} says the lock at ${ctx.placeName(L)} has never been changed, and the people who can open it can be counted on one hand.`,
+        owns(ctx)
+          ? `${ctx.who(b.id)} says the lock at ${ctx.placeName(L)} has never been changed, and the people who can open it can be counted on one hand.`
+          : `${ctx.who(b.id)} says the lock on ${ctx.who(ctx.cast.victim.id)}’s locker at ${ctx.placeName(L)} has never been changed, and the people who can open it can be counted on one hand.`,
       ),
     ];
     return {
@@ -83,6 +97,13 @@ export const insideJob: Trope = {
     };
   },
 };
+
+/** The room it was taken from is the owner's own: the residence, or an office. */
+function owns(ctx: TropeContext): boolean {
+  if (ctx.coherent !== true) return true;
+  const place = ctx.setting.places.find((p) => p.id === ctx.act.place);
+  return place?.isResidence === true || OWNABLE_ROOMS.includes(ctx.act.place);
+}
 
 function cap(text: string): string {
   return text.length === 0 ? text : `${text[0]?.toUpperCase()}${text.slice(1)}`;

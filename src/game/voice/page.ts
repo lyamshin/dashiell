@@ -501,6 +501,11 @@ export interface Stage {
   here: Person[];
   /** M8: the scene's memory before this page — visits, activities, bridges. */
   memory?: SceneMemory;
+  /**
+   * An epithet for the place here that the night has not used yet, for a
+   * sheet that has a hole for one (content/places/rules.md §2.4).
+   */
+  epithet?: string;
   /** M8: rooms with a page before this one. */
   visitedBefore?: Id[];
   /** Night Hone 1: people an earlier page has named, and so said who they are. */

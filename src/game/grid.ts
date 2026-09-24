@@ -152,6 +152,11 @@ export interface GridRow {
 export interface GridPlace {
   id: Id;
   shortName: string;
+  /**
+   * The grid's label: a named place's `short` (content/places/rules.md §2.6),
+   * else the short name without its article.
+   */
+  label: string;
   /** Unique across the case, at most eight characters. The typed grid's label. */
   abbrev: string;
   /**
@@ -934,8 +939,10 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
   }
 
   /* Places and the legend. */
-  const abbrevs = placeAbbrevs(view.places);
-  const tags = placeTags(view.places);
+  // A named place is labelled by its `short`, and tagged from it.
+  const labelled = view.places.map((p) => ({ id: p.id, shortName: p.names?.short ?? p.shortName }));
+  const abbrevs = placeAbbrevs(labelled);
+  const tags = placeTags(labelled);
   const whereAsked = kase.act.unknowns.includes('where');
   const sceneId = whereAsked ? view.startId : view.sceneId;
   const sceneLabel = whereAsked
@@ -967,6 +974,7 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
     return {
       id: p.id,
       shortName: p.shortName,
+      label: p.names?.short ?? p.shortName.replace(/^the /i, ''),
       abbrev: abbrevs.get(p.id) ?? p.shortName,
       tag: tags.get(p.id) ?? p.shortName.slice(0, 2).toUpperCase(),
       slot: index >= 0 && index < PLACE_SLOTS ? index + 1 : 0,

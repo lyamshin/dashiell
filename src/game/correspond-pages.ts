@@ -38,6 +38,8 @@ import * as PLAIN from './voice/plain.js';
 import * as OFFICE from './voice/office.js';
 import { ROLE_CHARACTER } from '../gen/data/character.js';
 import { FIXTURE_CARDS } from '../gen/data/cast.js';
+import { unnamePlaces } from './scene/place-names.js';
+import { saysPlace } from '../gen/place-names.js';
 
 /* ------------------------------------------------------------------ *
  * The engine's own closed vocabulary.
@@ -430,7 +432,7 @@ export function checkRecap(view: CaseView, page: Page, state: RunState, found: r
       const surname = view.personById.get(id)?.surname;
       if (surname) placeText = placeText.split(`${surname}’s evening`).join('').split(`${surname}’s word`).join('').split(`${surname}’s own`).join('').split(`${surname}’s night`).join('');
     }
-    const places = view.places.filter((pl) => placeText.toLowerCase().includes(pl.shortName.toLowerCase())).map((pl) => pl.id);
+    const places = view.places.filter((pl) => saysPlace(placeText, pl)).map((pl) => pl.id);
     const hours = new Set(clause.ticks.map((t) => clock(t as Tick)));
     if (clause.key.startsWith('frame|')) {
       if (names.length > 0) fail('the frame names somebody');
@@ -466,8 +468,12 @@ export function checkTelling(view: CaseView, page: Page): PageViolation[] {
     return surnames.filter((p) => new RegExp(`\\b${p.surname}\\b`).test(bare)).map((p) => p.id);
   };
   const timesIn = (text: string): string[] => renderedFacts(text, { spoken: true }).times;
-  const placesIn = (text: string): string[] =>
-    view.places.filter((pl) => text.toLowerCase().includes(pl.shortName.toLowerCase())).map((pl) => pl.shortName);
+  // An anchor's name is not a place's, though "the El going over" has the El in it.
+  const placesIn = (text: string): string[] => {
+    let bare = text;
+    for (const a of view.kase.anchors) bare = bare.split(a.name).join('').split(`${a.name.charAt(0).toUpperCase()}${a.name.slice(1)}`).join('');
+    return view.places.filter((pl) => saysPlace(bare, pl)).map((pl) => pl.shortName);
+  };
   for (const [i, b] of beats.entries()) {
     if (!b.rendered || (b.kind !== 'telling' && b.kind !== 'note')) continue;
     const where = `page ${page.n} beat ${i} ${b.kind}`;
@@ -548,7 +554,9 @@ export function checkErrand(
     out.push({ where, rule: 'errand-untraced', detail, text: trace.text });
   };
   const first = page.blocks[0];
-  if (!first || first.kind !== 'prose' || first.voice !== 'errand' || first.text !== trace.text) {
+  // A place's first mention in a night is its proper form (scene/place-names.ts),
+  // put in after the errand line was written; the trace wrote its running name.
+  if (!first || first.kind !== 'prose' || first.voice !== 'errand' || unnamePlaces(first.text, view.places) !== trace.text) {
     fail('the errand line is not the first thing on the page, word for word');
   }
   const here = view.placeById.get(page.at);

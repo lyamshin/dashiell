@@ -85,6 +85,7 @@ import {
   type Scene,
   type Stage,
 } from './voice/index.js';
+import { nameFirstMentions, freshEpithet } from './scene/place-names.js';
 
 /** M11 §A.3: their life, and who they were to the dead, in their own mouth. */
 function selfLines(
@@ -194,7 +195,7 @@ export function newRun(
   const page: Page = {
     n: 0,
     head: view.placeById.get(base.at)?.shortName ?? kase.neighborhood,
-    blocks: composed.blocks,
+    blocks: nameFirstMentions(view, [], composed.blocks),
     cost: 0,
     cardsUsed: dealer.spent,
     found,
@@ -279,6 +280,9 @@ function stageFor(
     memory: state.scene ?? EMPTY_SCENE,
     visitedBefore: [...new Set(state.log.map((p) => p.at))],
     namedBefore: namedIn(view, state.log.flatMap(proseTexts)),
+    ...(freshEpithet(view.placeById.get(at.at), state.log) !== undefined
+      ? { epithet: freshEpithet(view.placeById.get(at.at), state.log) as string }
+      : {}),
     ...(state.marks ? { marks: state.marks } : {}),
     ...(state.confronts ? { confronts: state.confronts } : {}),
   };
@@ -1248,7 +1252,7 @@ export function step(
   const page: Page = {
     n: state.log.length,
     head,
-    blocks,
+    blocks: nameFirstMentions(view, state.log, blocks),
     cost,
     cardsUsed: dealer.spent,
     found: gained,
@@ -1290,12 +1294,12 @@ export function step(
         clauses: written.clauses,
       };
       if (recapAsked) {
-        page.blocks = recapBlocks;
+        page.blocks = nameFirstMentions(view, state.log, recapBlocks);
         page.shape = 'recap';
         page.beats = [trace];
         if (written.sheet) page.sheets = [written.sheet];
       } else {
-        page.blocks = [...page.blocks, ...recapBlocks];
+        page.blocks = nameFirstMentions(view, state.log, [...page.blocks, ...recapBlocks]);
         page.beats = [...(page.beats ?? []), trace];
         if (written.sheet) page.sheets = [...(page.sheets ?? []), written.sheet];
       }
@@ -1500,7 +1504,7 @@ export function stepInput(
   const page: Page = {
     n: state.log.length,
     head: view.placeById.get(state.at)?.shortName ?? view.kase.neighborhood,
-    blocks,
+    blocks: nameFirstMentions(view, state.log, blocks),
     cost: 0,
     cardsUsed: dealer.spent,
     found: [],

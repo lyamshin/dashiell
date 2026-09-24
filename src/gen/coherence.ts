@@ -1,5 +1,6 @@
 import { isMundane, type Case, type Id, type PetKind } from './types.js';
-import { VICTIM_ARCHETYPE_BY_ID, customerWordsFor } from './data/cast.js';
+import { RELATIONSHIP_BY_ID, VICTIM_ARCHETYPE_BY_ID } from './data/cast.js';
+import { relationshipFor, tieWordsFor } from './data/tie-words.js';
 
 /**
  * The world-coherence pass: the solved world has to make sense before any of
@@ -115,20 +116,30 @@ export const PET_HOME_NEEDS: Partial<Record<PetKind, HomeHas>> = {
 
 /* ------------------------------------------------------------- the checks */
 
-/**
- * Whether a tie fits its owner: the owner's trade, the owner's address, and,
- * for a trade that sells to the trade, the one who took it.
- */
-export function tieFits(relId: Id, ownerArchetypeId: Id, residenceId?: Id, suspectArchetypeId?: Id): boolean {
+/** Whether a tie fits the owner's trade (and, selling to the trade, the one who took it). */
+export function tradeFits(relId: Id, ownerArchetypeId: Id, suspectArchetypeId?: Id): boolean {
   const need = TIE_NEEDS[relId];
   if (need !== undefined && !(OWNER_HAS[ownerArchetypeId] ?? []).includes(need)) return false;
-  const homeNeed = TIE_HOME_NEEDS[relId];
-  if (homeNeed !== undefined && residenceId !== undefined && !(HOME_HAS[residenceId] ?? []).includes(homeNeed)) return false;
   if (relId === 'rel-customer' && suspectArchetypeId !== undefined) {
     const only = CUSTOMERS_OF[ownerArchetypeId];
     if (only !== undefined && !only.includes(suspectArchetypeId)) return false;
   }
   return true;
+}
+
+/** Whether a tie fits the owner's address. */
+export function homeFits(relId: Id, residenceId?: Id): boolean {
+  const need = TIE_HOME_NEEDS[relId];
+  return need === undefined || residenceId === undefined || (HOME_HAS[residenceId] ?? []).includes(need);
+}
+
+/**
+ * Whether a tie fits its owner as the card says it: the owner's trade, the
+ * owner's address, and, for a trade that sells to the trade, the one who took
+ * it. A case the mix deals new draws only these.
+ */
+export function tieFits(relId: Id, ownerArchetypeId: Id, residenceId?: Id, suspectArchetypeId?: Id): boolean {
+  return tradeFits(relId, ownerArchetypeId, suspectArchetypeId) && homeFits(relId, residenceId);
 }
 
 /** Whether an animal can live at an address. */
@@ -202,7 +213,10 @@ export function coherenceFlags(c: Omit<Case, 'deduction'>): CoherenceFlag[] {
       });
     }
   }
-  if (type === 'robbery' && c.act.tropeId === 'inside-job' && c.act.place !== residence && !OWNABLE_ROOMS.includes(c.act.place)) {
+  // An inside job anywhere but a room of the owner's is the owner's locker
+  // there, and says so; it never calls a ferry slip the owner's.
+  const saysTheirs = c.act.givens.text.some((t) => /, which is [^.]*’s\.$/.test(t));
+  if (type === 'robbery' && c.act.tropeId === 'inside-job' && c.act.place !== residence && !OWNABLE_ROOMS.includes(c.act.place) && saysTheirs) {
     flags.push({
       rule: 'keeping-place',
       subject: c.act.place,
@@ -213,23 +227,29 @@ export function coherenceFlags(c: Omit<Case, 'deduction'>): CoherenceFlag[] {
     flags.push({ rule: 'pet-home', subject: residence, detail: `a ${c.act.pet} living at ${residence}` });
   }
 
-  /* 2. The ties. */
+  /* 2. The ties: drawn to fit, or said in words that fit (`data/tie-words.ts`). */
   for (const p of c.people) {
     const rel = p.relationshipId;
     if (p.kind !== 'suspect' || rel === undefined) continue;
-    if (!tieFits(rel, owner, undefined, p.archetypeId)) {
+    const words = tieWordsFor(rel, owner, residence);
+    if (!tradeFits(rel, owner, p.archetypeId) && !tieWordsFor(rel, owner)) {
       flags.push({ rule: 'tie-trade', subject: p.id, detail: `${rel} to ${owner} (${p.archetypeId})` });
     }
-    if (residence !== undefined && !tieFits(rel, owner, residence)) {
+    if (!homeFits(rel, residence) && !(residence !== undefined && homeWords(rel, residence))) {
       flags.push({ rule: 'tie-home', subject: p.id, detail: `${rel} to somebody living at ${residence}` });
     }
-    const words = rel === 'rel-customer' ? customerWordsFor(owner) : undefined;
-    const first = p.dossier?.tie.backstoryFirst;
-    if (words && first !== undefined) {
-      const said = [...words.backstoryFirst, ...(words.backstoryAltFirst ?? [])];
-      if (!fromTemplates(first, said)) {
-        flags.push({ rule: 'tie-words', subject: p.id, detail: `a customer of ${owner} says "${first}"` });
-      }
+    // Where the owner has words for the tie, the dossier says them.
+    const card = RELATIONSHIP_BY_ID[rel];
+    const tie = p.dossier?.tie;
+    if (words && card && tie) {
+      const said = relationshipFor(card, owner, residence);
+      const third = [...said.backstory, ...(said.backstoryAlt ?? []).flatMap((a) => (a ? [a[0]] : []))];
+      const first = [...said.backstoryFirst, ...(said.backstoryAlt ?? []).flatMap((a) => (a ? [a[1]] : []))];
+      const wrong =
+        (words.text !== undefined && !fromTemplates(tie.text, [said.text])) ||
+        !fromTemplates(tie.backstory, third) ||
+        (tie.backstoryFirst !== undefined && !fromTemplates(tie.backstoryFirst, first));
+      if (wrong) flags.push({ rule: 'tie-words', subject: p.id, detail: `${rel} to ${owner}: "${tie.text}", "${tie.backstoryFirst ?? tie.backstory}"` });
     }
   }
 
@@ -246,3 +266,8 @@ export function coherenceFlags(c: Omit<Case, 'deduction'>): CoherenceFlag[] {
  * office over the tailor's shop is an office, and an office is a tenant's.
  */
 export const OWNABLE_ROOMS: Id[] = ['office-over-tailor'];
+
+/** Whether the owner's address has words for a tie its card cannot carry there. */
+function homeWords(relId: Id, residenceId: Id): boolean {
+  return tieWordsFor(relId, '', residenceId) !== undefined;
+}

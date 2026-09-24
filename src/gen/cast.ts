@@ -1,4 +1,4 @@
-import type { CaseType, Dossier, FixtureRole, Id, Mention, Person } from './types.js';
+import type { CaseType, Dossier, FixtureRole, Id, Mention, Person, PlaceNames } from './types.js';
 import { surnameOf } from './types.js';
 import { liarsFor, type Dials } from './shape.js';
 import { NAME_POOLS } from './data/names.js';
@@ -8,7 +8,6 @@ import {
   FIXTURE_CARDS,
   RELATIONSHIP_BY_ID,
   VICTIM_ARCHETYPES,
-  relationshipFor,
   type Archetype,
   type FixtureCard,
   type SuspectClass,
@@ -18,6 +17,8 @@ import { AFFAIR_MOTIVES, MOTIVE_TEMPLATES, MUNDANE_MOTIVES, type MotiveTemplate 
 import { M14_TIE_IDS, tieWeight } from './data/ties.js';
 import { SECRET_BY_TYPE, type SecretTemplate } from './data/secrets.js';
 import { tieFits } from './coherence.js';
+import { relationshipFor } from './data/tie-words.js';
+import { drawPlaceNames, withNames } from './place-names.js';
 import {
   buildDossier,
   createMentionPool,
@@ -189,10 +190,10 @@ export interface CastCase {
    */
   classic?: boolean;
   /**
-   * A kept classic case already turned down for not hanging together: its
-   * ties are drawn again where they do not fit, as a new case's are.
+   * Name the places (a tiered case): the seed and the tier's salt for the
+   * names' own stream, and a room that is the owner's besides the residence.
    */
-  coherent?: boolean;
+  naming?: { seed: number; salt: number; owned?: Id };
 }
 
 export function buildCast(
@@ -245,18 +246,16 @@ export function buildCast(
     // Drawn again rather than filtered first, off a stream of its own seeded
     // by who this is, so every draw after it is the draw it was.
     //
-    // A classic case the mix kept is not drawn again at first: it is dealt
-    // exactly as before, and the generator turns it down once it is built
-    // (`runLogic`), so a seed whose classic case was coherent already — the
-    // goldens' — is that case byte for byte, attempts turned down on the way
-    // included. Once one has been turned down the seed's case is a new one
-    // anyway, and it is dealt coherent from then on (`CastCase.coherent`).
-    const coherent = tiered || (!dials.plain && kind?.coherent === true);
-    if (coherent && !tieFits(relId, victimArchetype.id, residenceId, a.id)) {
+    // A classic case the mix kept is dealt draw for draw as it always was, so
+    // its truth — the goldens', the sheets' — stands; a tie of its that the
+    // owner cannot carry is said in words that fit the owner instead
+    // (`data/tie-words.ts`: a "customer" of a theatrical agent is an act on
+    // the agent's books).
+    if (tiered && !tieFits(relId, victimArchetype.id, residenceId, a.id)) {
       const fitting = options.filter((id) => tieFits(id, victimArchetype.id, residenceId, a.id));
       if (fitting.length === 0) return null;
       const again = new Rng(hashText(`${victimName}|${i}|${a.id}|${relId}`));
-      relId = tiered ? weightedPick(again, fitting, tieWeight) : again.pick(fitting);
+      relId = weightedPick(again, fitting, tieWeight);
     }
     const rel = RELATIONSHIP_BY_ID[relId];
     // The relationship is drawn before the name, because some relationships
@@ -497,6 +496,28 @@ export function buildCast(
   }
   client.isClient = true;
 
+  /* --- the places' names (content/places/rules.md) ---------------------- *
+   *
+   * Drawn here, once the landladies have names and before anybody's dossier
+   * hangs a `{place}` on a room, on a stream of their own: every draw of the
+   * case is the draw it was, and only the words change.
+   */
+  if (kind?.naming !== undefined && !dials.plain) {
+    const landladyAt: Record<Id, string> = {};
+    for (const f of fixtures) if (f.fixtureRole === 'landlady' && f.foundAt) landladyAt[f.foundAt] = f.surname;
+    const names = drawPlaceNames({
+      seed: kind.naming.seed,
+      salt: kind.naming.salt,
+      neighborhood: setting.neighborhood,
+      places: setting.places,
+      owner: victimSurname,
+      ...(kind.naming.owned !== undefined ? { owned: kind.naming.owned } : {}),
+      landladyAt,
+      surnames: [victim, ...suspects, ...fixtures].map((p) => p.surname),
+    });
+    if (names) setting.places = setting.places.map((p) => (names[p.id] ? withNames(p, names[p.id] as PlaceNames) : p));
+  }
+
   /* --- M5: a dossier for everybody --------------------------------------- */
   const dossiers: Record<Id, Dossier> = {};
   const fixturePlaceOf: Record<Id, Id> = {};
@@ -538,7 +559,7 @@ export function buildCast(
       surname: p.surname,
       gender: p.gender as 'm' | 'f',
       archetype: ARCHETYPE_BY_ID[p.archetypeId as Id] as Archetype,
-      relationship: dials.plain ? relationshipOf(p.relationshipId) : tradeRelationship(p.relationshipId, victimArchetype.id),
+      relationship: dials.plain ? relationshipOf(p.relationshipId) : tradeRelationship(p.relationshipId, victimArchetype.id, residenceId),
       victimSurname,
       placeName: slotPlace(p.id),
       mentions,
@@ -599,9 +620,9 @@ export function buildCast(
 }
 
 /** A tie's card in the owner's words: a customer of a pawnbroker pawns. */
-function tradeRelationship(relationshipId: Id | undefined, ownerArchetypeId: Id) {
+function tradeRelationship(relationshipId: Id | undefined, ownerArchetypeId: Id, residenceId: Id | undefined) {
   const rel = relationshipOf(relationshipId);
-  return rel ? relationshipFor(rel, ownerArchetypeId) : null;
+  return rel ? relationshipFor(rel, ownerArchetypeId, residenceId) : null;
 }
 
 /** FNV-1a: a string to a 32-bit seed, the same on every platform. */
