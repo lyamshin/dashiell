@@ -11,3 +11,11 @@ Found reading full runs after M10 and shorter nights (2026-09-23). Each item nam
 - **An anchor's time gets restated.** Seed 5, Soft-boiled, pages 2 and 3: "The singing under the window stopped at half past seven" is on page 2. Page 3 then says "The drunk singing under the window was at half past seven" twice, once inside the search paragraph and once as a thought. An anchor's time is established once, and later pages use it without restating it.
 - **Questions ask about acquaintance but get sightings.** "What's Renfro to you?" is answered with where Renfro was. Three of the five ask-person question cards ask how the witness knows the person, not where they were. Match the question to the family being told.
 - **Unsupplied slots:** `{dashiell}` on three hiring cards, and `{name}`/`{subject}` on some answer and thought cards. Nameless asks ("the key") fall to the "Tell me about {topic}" placeholder. They should use the place or object question lines, and that routing is in the reducer.
+
+## After M11 (people), 2026-09-23
+- **The client who found the body says it twice.** "She was found dead at the walk-up. That is where it happened. Half past eleven. That is when I found Lindemann at the walk-up." When the client is the finder, the finding is said once, in her own words.
+- **The description line after "Why me?" lands on its own.** "She traded on the street for men who would rather not be seen doing it." It needs a lead-in, or should fold into her line.
+- **The arrival observation repeats the presence activity word for word.** "reading a folded newspaper, not turning the page" appears in both. The observation should add the tie to the case without repeating the activity.
+- **"Not turning the page" is a common activity.** It turns up for several people across seeds. It needs more variety.
+- **The office has no camp closing on the hiring.** The hiring deck needs camp lines like the golden's "kept two fingers on it until I picked it up".
+- **The 680 character cards need a camp pass.** They were written before the camp ruling, so the look cards and the fixtures' victim cards read sober.
