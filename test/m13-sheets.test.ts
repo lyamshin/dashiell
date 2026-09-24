@@ -16,6 +16,7 @@ import { Rng } from '../src/gen/rng.js';
 import { buildView, type CaseView } from '../src/game/derive.js';
 import { playOracle, playWandering } from '../src/game/oracle.js';
 import { newRun, stepInput } from '../src/game/reducer.js';
+import { allChoices, choicesFor } from '../src/game/choices.js';
 import { checkRunCoverage } from '../src/game/scene/coverage.js';
 import { setSheets } from '../src/game/scene/realize.js';
 import {
@@ -278,18 +279,34 @@ describe('M13: the pages', () => {
   });
 
   it('changes nothing but words: the same commands make the same night with the sheets on or off', () => {
+    // And the same choices at every step: a name a page says is a person the
+    // player can ask about (M9, "Who knows whom"), so a sheet never names
+    // anybody the plan's page would not have.
+    const offered = (view: CaseView, commands: readonly string[]): string[][] => {
+      let state = newRun(view, { detectiveName: 'Dashiell' });
+      const out: string[][] = [];
+      for (const c of commands) {
+        state = stepInput(state, c, view).state;
+        out.push(allChoices(choicesFor(view, state)).map((x) => `${x.command}${x.lead ? '*' : ''}`));
+      }
+      return out;
+    };
     for (let seed = 1; seed <= 4; seed++) {
-      for (const tier of [2, 4] as Tier[]) {
+      for (const tier of [0, 2, 4] as Tier[]) {
         const view = buildView(generateCase(seed, { tier }));
         const commands = playWandering(view, 11, 'Dashiell').steps.map((s) => s.command);
         const on = play(view, commands);
+        const choicesOn = offered(view, commands);
         setSheets(false);
         let off: RunState;
+        let choicesOff: string[][];
         try {
           off = play(view, commands);
+          choicesOff = offered(view, commands);
         } finally {
           setSheets(true);
         }
+        expect(choicesOn).toEqual(choicesOff);
         expect(on.found).toEqual(off.found);
         expect(on.accounts).toEqual(off.accounts);
         expect(on.actionsUsed).toBe(off.actionsUsed);

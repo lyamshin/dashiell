@@ -793,21 +793,15 @@ function listLine(
   const named = new Set(stage.namedBefore ?? []);
   const items: string[] = [];
   const strangers: Person[] = [];
+  // Named exactly where the M8 page names people, so no sheet puts a name on
+  // the page (and so in the choices) that the plan did not: everybody with a
+  // line of their own, and a crowd by count unless an earlier page named them.
   for (const p of todo) {
     const person = view.personById.get(p.personId) as Person;
     const doing = doingOf(p.activity.text, person.surname);
     const plain = doing ? plainAction(doing.trim().replace(/\.$/, '')) : null;
-    if (named.has(person.id) && plain) items.push(`${person.surname} ${plain}`);
-    else if (!named.has(person.id) && person.kind !== 'fixture') strangers.push(person);
-    else if (plain) items.push(`${person.surname} ${plain}`);
-    else items.push(person.surname);
-  }
-  // One stranger is somebody, by name, with the rest; two or more are a count.
-  if (strangers.length === 1) {
-    const one = strangers.pop() as Person;
-    const p = todo.find((x) => x.personId === one.id) as PresencePerson;
-    const doing = doingOf(p.activity.text, one.surname);
-    items.push(doing ? `${one.surname} ${plainAction(doing.trim().replace(/\.$/, ''))}` : one.surname);
+    if (p.grouped && !named.has(person.id)) strangers.push(person);
+    else items.push(plain ? `${person.surname} ${plain}` : person.surname);
   }
   for (const p of strangers) counted.add(p.id);
   if (strangers.length > 0) {

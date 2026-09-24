@@ -122,7 +122,7 @@
             "at the far end, well away from {prop}",
             "with {his} back to {prop}",
             "across the room from {prop}",
-            "within reach of {prop}, and not looking at {prop.it} once"
+            "in plain sight of {prop}, and not looking at {prop.it} once"
           ],
           "optional": true
         },
@@ -191,14 +191,14 @@
           "hole": "others",
           "form": "list",
           "if": "callback",
-          "text": "From {client.his} side of the room you could see all of it, {prop} included: {list}.",
+          "text": "From where {client.he} was you could see all of it, {prop} included: {list}.",
           "optional": true
         },
         {
           "para": true,
           "hole": "others",
           "form": "list",
-          "text": "From {client.his} side of the room you could see all of it: {list}.",
+          "text": "From where {client.he} was you could see all of it: {list}.",
           "optional": true
         },
         {
