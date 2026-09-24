@@ -1,0 +1,169 @@
+{
+  "about": "Streets for the {street} and {avenue} slots in names.json, per neighbourhood (the twelve in src/gen/data/places.ts NEIGHBORHOODS). {street} draws from `streets`; {avenue} draws from `avenues`. The street OFFICE_STREETS (src/game/voice-data.ts) uses for the detective's office leads whichever list it belongs to, so the engine can keep his street out of the place names if it wants.",
+  "neighbourhoods": {
+    "the Tenderloin": {
+      "streets": [
+        "West Twenty-Eighth Street",
+        "West Twenty-Sixth Street",
+        "West Twenty-Ninth Street",
+        "West Thirtieth Street",
+        "West Thirty-Third Street"
+      ],
+      "avenues": ["Sixth Avenue", "Seventh Avenue", "Eighth Avenue", "Broadway"]
+    },
+    "Hell’s Kitchen": {
+      "streets": [
+        "West Forty-Seventh Street",
+        "West Thirty-Ninth Street",
+        "West Forty-Fourth Street",
+        "West Fiftieth Street",
+        "West Fifty-Second Street"
+      ],
+      "avenues": ["Tenth Avenue", "Ninth Avenue", "Eleventh Avenue"]
+    },
+    "Yorkville": {
+      "streets": [
+        "East Eighty-Sixth Street",
+        "East Seventy-Ninth Street",
+        "East Eighty-Third Street",
+        "East Seventy-Second Street",
+        "East Eighty-Ninth Street"
+      ],
+      "avenues": [
+        "Second Avenue",
+        "Third Avenue",
+        "First Avenue",
+        "Lexington Avenue"
+      ]
+    },
+    "the Lower East Side": {
+      "streets": [
+        "Rivington Street",
+        "Delancey Street",
+        "Stanton Street",
+        "Hester Street",
+        "Grand Street"
+      ],
+      "avenues": [
+        "Orchard Street",
+        "Essex Street",
+        "Allen Street",
+        "Second Avenue",
+        "Avenue A"
+      ]
+    },
+    "Chelsea": {
+      "streets": [
+        "West Twenty-Third Street",
+        "West Nineteenth Street",
+        "West Twenty-First Street",
+        "West Fourteenth Street",
+        "West Twenty-Fifth Street"
+      ],
+      "avenues": [
+        "Eighth Avenue",
+        "Ninth Avenue",
+        "Tenth Avenue",
+        "Seventh Avenue"
+      ]
+    },
+    "Harlem": {
+      "streets": [
+        "West 133rd Street",
+        "West 125th Street",
+        "West 131st Street",
+        "West 138th Street",
+        "West 116th Street"
+      ],
+      "avenues": [
+        "Lenox Avenue",
+        "Seventh Avenue",
+        "Eighth Avenue",
+        "St. Nicholas Avenue"
+      ]
+    },
+    "the Bowery": {
+      "streets": [
+        "Great Jones Street",
+        "Bond Street",
+        "East Fourth Street",
+        "Stanton Street",
+        "Rivington Street"
+      ],
+      "avenues": [
+        "the Bowery",
+        "Second Avenue",
+        "Third Avenue",
+        "Lafayette Street"
+      ]
+    },
+    "Gramercy": {
+      "streets": [
+        "East Twentieth Street",
+        "East Nineteenth Street",
+        "East Twenty-First Street",
+        "East Twenty-Second Street",
+        "East Sixteenth Street"
+      ],
+      "avenues": [
+        "Irving Place",
+        "Third Avenue",
+        "Lexington Avenue",
+        "Fourth Avenue"
+      ]
+    },
+    "the Gas House District": {
+      "streets": [
+        "East Eighteenth Street",
+        "East Fifteenth Street",
+        "East Twentieth Street",
+        "East Twenty-Second Street",
+        "East Twenty-Fourth Street"
+      ],
+      "avenues": ["First Avenue", "Avenue A", "Second Avenue", "Avenue B"]
+    },
+    "Greenwich Village": {
+      "streets": [
+        "Bleecker Street",
+        "Christopher Street",
+        "Barrow Street",
+        "West Fourth Street",
+        "Morton Street",
+        "Carmine Street"
+      ],
+      "avenues": [
+        "Sixth Avenue",
+        "Seventh Avenue",
+        "Hudson Street",
+        "Greenwich Avenue",
+        "MacDougal Street"
+      ]
+    },
+    "the Upper West Side": {
+      "streets": [
+        "West Seventy-Second Street",
+        "West Seventy-Ninth Street",
+        "West Eighty-First Street",
+        "West Eighty-Sixth Street",
+        "West Ninety-Sixth Street"
+      ],
+      "avenues": ["Columbus Avenue", "Amsterdam Avenue", "Broadway"]
+    },
+    "Little Italy": {
+      "streets": [
+        "Grand Street",
+        "Broome Street",
+        "Hester Street",
+        "Kenmare Street",
+        "Spring Street",
+        "Prince Street"
+      ],
+      "avenues": [
+        "Mulberry Street",
+        "Mott Street",
+        "Elizabeth Street",
+        "the Bowery"
+      ]
+    }
+  }
+}
