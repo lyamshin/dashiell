@@ -2,7 +2,7 @@
   {
     "id": "ent-001",
     "deck": "entrances",
-    "text": "{name} came in wearing mink and said nothing until she'd chosen where to sit.",
+    "text": "{name} came in wearing mink, and neither chair was quite up to her.",
     "tags": {
       "temper": "enigma",
       "class": "money",
@@ -17,7 +17,7 @@
   {
     "id": "ent-002",
     "deck": "entrances",
-    "text": "{name} didn't sit. He said his piece in under two minutes and waited by the door.",
+    "text": "{name} eyed the chair like it was catching and said his piece standing, by the door.",
     "tags": {
       "temper": "enigma",
       "class": "money",
@@ -32,7 +32,7 @@
   {
     "id": "ent-003",
     "deck": "entrances",
-    "text": "{name} shook the rain off his hat at the door. Plainly enough, he asked if this was where a man came for help.",
+    "text": "{name} shook his hat at the door, mostly onto my floor, and asked if a man came here for help.",
     "tags": {
       "temper": "plain",
       "class": "money",
@@ -76,7 +76,7 @@
   {
     "id": "ent-006",
     "deck": "entrances",
-    "text": "{name} was talking before the door shut behind her, about the cab, the weather, anything but the reason she'd come.",
+    "text": "{name} was talking before the door shut, about the cab, the cabman, his manners, anything but why she'd come.",
     "tags": {
       "temper": "yap",
       "class": "money",
@@ -133,7 +133,7 @@
   {
     "id": "ent-010",
     "deck": "entrances",
-    "text": "{name} came up the stairs slow, the way people climb them when they're not sure they want to arrive.",
+    "text": "{name} came up the stairs slow, like somebody not sure they wanted to arrive. My stairs have that effect.",
     "tags": {
       "temper": "plain",
       "class": "money",
@@ -148,7 +148,7 @@
   {
     "id": "ent-011",
     "deck": "entrances",
-    "text": "{name} stood in the doorway a moment, cap still on, before he came all the way in.",
+    "text": "{name} stood in the doorway, cap on, deciding if I was worth coming in for. Narrowly.",
     "tags": {
       "temper": "enigma",
       "class": "working",
@@ -164,7 +164,7 @@
   {
     "id": "ent-012",
     "deck": "entrances",
-    "text": "{name} didn't sit until I told her to. She needed help, she said, and nothing more.",
+    "text": "{name} didn't sit until I told her to. She needed help, she said. That was the speech.",
     "tags": {
       "temper": "enigma",
       "class": "working",
@@ -177,7 +177,7 @@
   {
     "id": "ent-013",
     "deck": "entrances",
-    "text": "{name} came in with her coat still buttoned against the cold. Straight off, she asked what a thing like this would cost.",
+    "text": "{name} came in, coat buttoned against the cold, and asked straight off what it would cost. I liked her.",
     "tags": {
       "temper": "plain",
       "class": "working",
@@ -194,7 +194,7 @@
   {
     "id": "ent-014",
     "deck": "entrances",
-    "text": "{name} wiped his boots twice on the mat, more out of habit than any care for my floor.",
+    "text": "{name} wiped his boots on the mat from habit, not respect. Nobody respects my floor.",
     "tags": {
       "temper": "plain",
       "class": "working",
@@ -278,7 +278,7 @@
   {
     "id": "ent-020",
     "deck": "entrances",
-    "text": "{name} knocked twice, waited for the second, and came in only after I answered.",
+    "text": "{name} knocked twice and waited to be asked in, like somebody's mother was listening.",
     "tags": {
       "temper": "plain",
       "class": "working",
@@ -308,7 +308,7 @@
   {
     "id": "ent-022",
     "deck": "entrances",
-    "text": "{name} looked the office over once and said nothing about it. She waited for me to ask first.",
+    "text": "{name} looked the office over once and kindly said nothing. She waited for me to ask first.",
     "tags": {
       "temper": "enigma",
       "class": "underworld",
@@ -321,7 +321,7 @@
   {
     "id": "ent-023",
     "deck": "entrances",
-    "text": "{name} kept his coat on and put his hat within reach, on the desk.",
+    "text": "{name} kept his coat on. His hat, on my desk, outranked mine.",
     "tags": {
       "temper": "plain",
       "class": "underworld",
@@ -337,7 +337,7 @@
   {
     "id": "ent-024",
     "deck": "entrances",
-    "text": "{name} checked the window before she checked me. She sat with her back to the wall.",
+    "text": "{name} checked the window first, me a distant second, and sat with her back to the wall.",
     "tags": {
       "temper": "plain",
       "class": "underworld",
@@ -449,7 +449,7 @@
   {
     "id": "ent-032",
     "deck": "entrances",
-    "text": "{name} set a card on the desk instead of introducing herself. She let it make the case.",
+    "text": "{name} set a card on the desk instead of introducing herself. It was engraved. I felt underdressed.",
     "tags": {
       "temper": "enigma",
       "class": "professional",
@@ -464,7 +464,7 @@
   {
     "id": "ent-033",
     "deck": "entrances",
-    "text": "{name} hung his own coat, without being asked, and sat with the ease of a man used to waiting rooms.",
+    "text": "{name} hung his own coat and sat like somebody who'd waited in better rooms and billed for it.",
     "tags": {
       "temper": "plain",
       "class": "professional",
@@ -566,7 +566,7 @@
   {
     "id": "ent-040",
     "deck": "entrances",
-    "text": "{name} came up the stairs at an unhurried pace, the hour plainly no concern at all.",
+    "text": "{name} came up the stairs unhurried, as if the hour happened to other people.",
     "tags": {
       "temper": "plain",
       "class": "professional",
@@ -661,7 +661,7 @@
   {
     "id": "ent-046",
     "deck": "entrances",
-    "text": "{name} came in talking about the stairs, how many there were and how dark, and was still talking about them after sitting down.",
+    "text": "{name} came in talking about the stairs, how many and how dark, and was still counting them sitting down. I'd never dared.",
     "tags": {
       "temper": "yap",
       "class": "working",

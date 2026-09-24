@@ -24,7 +24,7 @@
   {
     "id": "crd-003",
     "deck": "crowd",
-    "text": "{group} were waiting just inside the door, out of the way, with their coats still buttoned.",
+    "text": "{group} were waiting just inside the door, keeping clear, coats still buttoned.",
     "tags": {
       "place": "res-apartment",
       "band": "any"
@@ -35,7 +35,7 @@
   {
     "id": "crd-004",
     "deck": "crowd",
-    "text": "{group} were sitting on the edge of the parlor sofa and the chairs beside it, none of them quite settled.",
+    "text": "{group} were perched along the parlor sofa and the chairs beside it, none of them quite settled.",
     "tags": {
       "place": "res-brownstone",
       "band": "any"
@@ -46,7 +46,7 @@
   {
     "id": "crd-005",
     "deck": "crowd",
-    "text": "{group} stood in the front hall at the foot of the stairs, talking quietly among themselves.",
+    "text": "{group} stood in the front hall below the stairs, talking quietly among themselves.",
     "tags": {
       "place": "res-brownstone",
       "band": "any"
@@ -57,7 +57,7 @@
   {
     "id": "crd-006",
     "deck": "crowd",
-    "text": "{group} were gathered at the back of the parlor by the grate, their coats over their arms.",
+    "text": "{group} were gathered by the parlor grate, their coats over their arms.",
     "tags": {
       "place": "res-brownstone",
       "band": "any"
@@ -90,7 +90,7 @@
   {
     "id": "crd-009",
     "deck": "crowd",
-    "text": "{group} stood out on the landing at the top of the stair, keeping close to the banister.",
+    "text": "{group} stood out on the top landing, keeping close to the banister.",
     "tags": {
       "place": "res-walkup",
       "band": "any"
@@ -112,7 +112,7 @@
   {
     "id": "crd-011",
     "deck": "crowd",
-    "text": "{group} stood by the door to the corridor, talking in low voices and keeping to one side.",
+    "text": "{group} stood by the corridor door, talking in low voices and keeping to one side.",
     "tags": {
       "place": "res-suite",
       "band": "any"
@@ -123,7 +123,7 @@
   {
     "id": "crd-012",
     "deck": "crowd",
-    "text": "{group} were waiting by the writing desk, none of them willing to sit down.",
+    "text": "{group} were waiting by the writing desk, none of them willing to be the first to sit down.",
     "tags": {
       "place": "res-suite",
       "band": "any"
@@ -244,7 +244,7 @@
   {
     "id": "crd-023",
     "deck": "crowd",
-    "text": "{group} were sitting on the bench in the outer office, hats on their knees, waiting their turn.",
+    "text": "{group} were sitting on the bench in the outer office, hats on their knees, waiting their turn with the patience of people who owed money.",
     "tags": {
       "place": "office-over-tailor",
       "band": "any"
@@ -277,7 +277,7 @@
   {
     "id": "crd-026",
     "deck": "crowd",
-    "text": "{group} were sitting on crates under the shed roof, playing cards on an upturned barrel.",
+    "text": "{group} were sitting on crates under the shed roof, playing cards on an upturned barrel for stakes nobody would admit to.",
     "tags": {
       "place": "pier-shed",
       "band": "any"
@@ -288,7 +288,7 @@
   {
     "id": "crd-027",
     "deck": "crowd",
-    "text": "{group} stood at the edge of the pier by the pilings, looking out at the lights across the water.",
+    "text": "{group} stood on the pier's edge by the pilings, watching the lights on the far shore.",
     "tags": {
       "place": "pier-shed",
       "band": "any"
@@ -343,7 +343,7 @@
   {
     "id": "crd-032",
     "deck": "crowd",
-    "text": "{group} were in the far corner of the yard by the gate, keeping out of the light from the back of the laundry.",
+    "text": "{group} were off in the yard's far corner by the gate, keeping out of the light from the laundry's back windows.",
     "tags": {
       "place": "laundry-yard",
       "band": "any"
@@ -387,7 +387,7 @@
   {
     "id": "crd-036",
     "deck": "crowd",
-    "text": "{group} sat in the front room on whatever chairs the place had, talking in low voices.",
+    "text": "{group} sat about the front room on whatever chairs the place had, talking in low voices.",
     "tags": {
       "place": "walkup-flat",
       "band": "any"
@@ -398,7 +398,7 @@
   {
     "id": "crd-037",
     "deck": "crowd",
-    "text": "{group} were waiting by the elevator gate, watching the arrow over it climb and fall.",
+    "text": "{group} were waiting by the elevator gate, watching the arrow over it climb and fall and climb again without them.",
     "tags": {
       "place": "hallam-vestibule",
       "band": "any"
@@ -464,7 +464,7 @@
   {
     "id": "crd-043",
     "deck": "crowd",
-    "text": "{group} were at the far end of the bar with their beers, talking about a ball game.",
+    "text": "{group} were down the bar with their beers, arguing about a ball game they had only read about.",
     "tags": {
       "place": "dolans-bar",
       "band": "any"
@@ -486,7 +486,7 @@
   {
     "id": "crd-045",
     "deck": "crowd",
-    "text": "{group} were playing a slow game of dice at the back table, keeping score on a napkin.",
+    "text": "{group} were playing a slow game of dice at the back table, keeping score on a napkin and disputing it.",
     "tags": {
       "place": "dolans-bar",
       "band": "any"
@@ -497,7 +497,7 @@
   {
     "id": "crd-046",
     "deck": "crowd",
-    "text": "{group} were still at the end of the bar as the front window went gray, eating hard-boiled eggs from the bowl.",
+    "text": "{group} were still along the bar as the front window went gray, eating hard-boiled eggs from the bowl.",
     "tags": {
       "place": "dolans-bar",
       "band": "dawn"
@@ -530,7 +530,7 @@
   {
     "id": "crd-049",
     "deck": "crowd",
-    "text": "{group} were in a booth along the wall, laughing at something one of them had said.",
+    "text": "{group} were in a booth along the wall, laughing at something one of them had said, louder than it deserved.",
     "tags": {
       "place": "speakeasy",
       "band": "any"
@@ -563,7 +563,7 @@
   {
     "id": "crd-052",
     "deck": "crowd",
-    "text": "{group} were at the cigar counter, choosing slowly among the open boxes.",
+    "text": "{group} were at the cigar counter, choosing among the open boxes with enormous seriousness.",
     "tags": {
       "place": "hotel-lobby",
       "band": "any"
@@ -596,7 +596,7 @@
   {
     "id": "crd-055",
     "deck": "crowd",
-    "text": "{group} stood at the stand reading the headlines off the racks without buying anything.",
+    "text": "{group} stood at the stand reading the headlines off the racks without buying anything, which the stand had views about.",
     "tags": {
       "place": "corner-newsstand",
       "band": "any"
@@ -662,7 +662,7 @@
   {
     "id": "crd-061",
     "deck": "crowd",
-    "text": "{group} were feeding nickels into the slots along the wall, choosing sandwiches one at a time.",
+    "text": "{group} were feeding nickels into the slots along the wall, choosing sandwiches one at a time and taking each decision hard.",
     "tags": {
       "place": "automat",
       "band": "any"
@@ -728,7 +728,7 @@
   {
     "id": "crd-067",
     "deck": "crowd",
-    "text": "{group} sat on the benches along the wall, fanning themselves and resting their feet.",
+    "text": "{group} sat on the wall benches, fanning themselves and resting their feet.",
     "tags": {
       "place": "dance-hall",
       "band": "any"
@@ -739,7 +739,7 @@
   {
     "id": "crd-068",
     "deck": "crowd",
-    "text": "{group} were at the edge of the floor, dancing slowly to a tune one of them was humming.",
+    "text": "{group} were at the floor's edge, dancing slowly to a tune one of them was humming, badly.",
     "tags": {
       "place": "dance-hall",
       "band": "any"
@@ -750,7 +750,7 @@
   {
     "id": "crd-069",
     "deck": "crowd",
-    "text": "{group} stood at the coat check counter, sorting out whose coat was whose.",
+    "text": "{group} stood at the coat check counter, sorting out whose coat was whose and not agreeing.",
     "tags": {
       "place": "dance-hall",
       "band": "any"
@@ -827,7 +827,7 @@
   {
     "id": "crd-076",
     "deck": "crowd",
-    "text": "{group} stood under the theater marquee, arguing mildly over where to get something to eat.",
+    "text": "{group} stood under the theater marquee, arguing mildly over where to eat.",
     "tags": {
       "place": "cab-stand",
       "band": "any"
@@ -849,7 +849,7 @@
   {
     "id": "crd-078",
     "deck": "crowd",
-    "text": "{group} were waiting at the head of the line in the gray morning light, their collars turned up.",
+    "text": "{group} were waiting first in line in the gray morning light, their collars turned up.",
     "tags": {
       "place": "cab-stand",
       "band": "dawn"
@@ -882,7 +882,7 @@
   {
     "id": "crd-081",
     "deck": "crowd",
-    "text": "{group} stood at the foot of the stairs with their hats on, keeping their voices down for the building.",
+    "text": "{group} stood by the bottom step with their hats on, keeping their voices down for the building.",
     "tags": {
       "place": "tenement-stairwell",
       "band": "any"
@@ -904,7 +904,7 @@
   {
     "id": "crd-083",
     "deck": "crowd",
-    "text": "{group} were shooting a lazy game at a back table, chalking their cues between shots.",
+    "text": "{group} were shooting a lazy game at a back table, chalking their cues with more care than the shots got.",
     "tags": {
       "place": "pool-hall",
       "band": "any"
@@ -948,7 +948,7 @@
   {
     "id": "crd-087",
     "deck": "crowd",
-    "text": "{group} sat around a card table in the back room, playing for pennies.",
+    "text": "{group} sat around a card table in the back room, playing for pennies, and playing hard.",
     "tags": {
       "place": "pawnshop",
       "band": "any"
@@ -1025,7 +1025,7 @@
   {
     "id": "crd-094",
     "deck": "crowd",
-    "text": "{group} sat in the parlour chairs around the piano, none of them playing it.",
+    "text": "{group} sat in the parlour chairs around the piano, none of them playing it, which the house appreciated.",
     "tags": {
       "place": "boarding-parlor",
       "band": "any"
@@ -1124,7 +1124,7 @@
   {
     "id": "crd-103",
     "deck": "crowd",
-    "text": "{group} were standing beside one of the parked cars, looking under the hood together.",
+    "text": "{group} were standing beside one of the parked cars, looking under the hood together, none of them sure what at.",
     "tags": {
       "place": "hotel-garage",
       "band": "any"
@@ -1168,7 +1168,7 @@
   {
     "id": "crd-107",
     "deck": "crowd",
-    "text": "{group} stood at the edge of the platform, leaning out to look down the tracks.",
+    "text": "{group} stood at the platform's edge, leaning out to look down the tracks.",
     "tags": {
       "place": "el-platform",
       "band": "any"
@@ -1212,7 +1212,7 @@
   {
     "id": "crd-111",
     "deck": "crowd",
-    "text": "{group} sat together on one bench under the lamp, sharing a paper sack of peanuts.",
+    "text": "{group} sat together on one bench under the lamp, sharing a paper sack of peanuts and keeping count of the shares.",
     "tags": {
       "place": "square-benches",
       "band": "any"
@@ -1256,7 +1256,7 @@
   {
     "id": "crd-115",
     "deck": "crowd",
-    "text": "{group} stood at the rail at the end of the slip, watching the lights of a ferry coming over.",
+    "text": "{group} stood at the rail where the slip ended, watching the lights of a ferry coming over.",
     "tags": {
       "place": "ferry-slip",
       "band": "any"
@@ -1289,7 +1289,7 @@
   {
     "id": "crd-118",
     "deck": "crowd",
-    "text": "{group} stood by the kiosk at the top of the stair, counting out change for the fare.",
+    "text": "{group} stood by the kiosk at the stairhead, counting out change for the fare.",
     "tags": {
       "place": "subway-kiosk",
       "band": "any"
@@ -1399,7 +1399,7 @@
   {
     "id": "crd-128",
     "deck": "crowd",
-    "text": "{group} stood by the radiator at the back of the hall, drinking coffee from the bakery below.",
+    "text": "{group} stood by the radiator in back, drinking coffee from the bakery below.",
     "tags": {
       "place": "union-hall",
       "band": "any"

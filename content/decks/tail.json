@@ -14,7 +14,7 @@
   {
     "id": "tai-002",
     "deck": "tail",
-    "text": "You don’t miss {him}. Nobody does.",
+    "text": "You don’t miss {him}. Nobody does. People have tried.",
     "tags": {
       "family": "movements",
       "temper": "yap",
@@ -38,7 +38,7 @@
   {
     "id": "tai-004",
     "deck": "tail",
-    "text": "{He} always looks like {he}’s late for something.",
+    "text": "{He} always looks like {he}’s late for something, and usually is.",
     "tags": {
       "family": "movements",
       "temper": "yap",
@@ -62,7 +62,7 @@
   {
     "id": "tai-006",
     "deck": "tail",
-    "text": "That’s all I know about {him}, and it’s more than I wanted to.",
+    "text": "That’s the whole of what I know about {him}, and it’s more than I wanted to.",
     "tags": {
       "family": "movements",
       "temper": "yap",
@@ -86,7 +86,7 @@
   {
     "id": "tai-008",
     "deck": "tail",
-    "text": "You don’t miss {him}. Nobody does.",
+    "text": "You don’t miss {him}. Nobody does. People have tried.",
     "tags": {
       "family": "movements",
       "temper": "yap",
@@ -110,7 +110,7 @@
   {
     "id": "tai-010",
     "deck": "tail",
-    "text": "{He} always looks like {he}’s late for something.",
+    "text": "{He} always looks like {he}’s late for something, and usually is.",
     "tags": {
       "family": "movements",
       "temper": "yap",
@@ -134,7 +134,7 @@
   {
     "id": "tai-012",
     "deck": "tail",
-    "text": "That’s all I know about {him}, and it’s more than I wanted to.",
+    "text": "That’s the whole of what I know about {him}, and it’s more than I wanted to.",
     "tags": {
       "family": "movements",
       "temper": "yap",
@@ -179,7 +179,7 @@
   {
     "id": "tai-016",
     "deck": "tail",
-    "text": "I’ve got better things to do than keep count of people, most nights.",
+    "text": "I’ve got better things to do than keep count of people. Not tonight, but most nights.",
     "tags": {
       "family": "movements",
       "temper": "yap"
@@ -190,7 +190,7 @@
   {
     "id": "tai-017",
     "deck": "tail",
-    "text": "People think nobody sees them. Somebody always does.",
+    "text": "People think nobody sees them. Somebody always does, and usually it’s me.",
     "tags": {
       "family": "movements",
       "temper": "yap"
@@ -234,7 +234,7 @@
   {
     "id": "tai-021",
     "deck": "tail",
-    "text": "And I know most people around here.",
+    "text": "And I know most people around here. The rest I know about.",
     "tags": {
       "family": "knowing",
       "temper": "yap"
@@ -245,7 +245,7 @@
   {
     "id": "tai-022",
     "deck": "tail",
-    "text": "If I knew {him}, I’d tell you. I tell people everything.",
+    "text": "If I knew {him}, I’d tell you. I tell people everything. It’s a failing.",
     "tags": {
       "family": "knowing",
       "temper": "yap"
@@ -399,7 +399,7 @@
   {
     "id": "tai-036",
     "deck": "tail",
-    "text": "A stranger’s a stranger. You can’t make friends with everybody.",
+    "text": "A stranger’s a stranger. You can’t make friends with everybody. I’ve tried.",
     "tags": {
       "family": "strangers",
       "temper": "yap"
@@ -421,7 +421,7 @@
   {
     "id": "tai-038",
     "deck": "tail",
-    "text": "I didn’t think anything of it at the time.",
+    "text": "I didn’t think a thing of it at the time.",
     "tags": {
       "family": "strangers",
       "temper": "plain"
@@ -509,7 +509,7 @@
   {
     "id": "tai-046",
     "deck": "tail",
-    "text": "Nobody who was there could have missed it.",
+    "text": "Nobody who was there could have missed it. I didn’t, and I miss plenty.",
     "tags": {
       "family": "event",
       "temper": "yap"
@@ -564,7 +564,7 @@
   {
     "id": "tai-051",
     "deck": "tail",
-    "text": "I’ve had better evenings. I’ve had worse.",
+    "text": "I’ve had better evenings. I’ve had worse. Not many.",
     "tags": {
       "family": "evening",
       "temper": "yap"
@@ -729,7 +729,7 @@
   {
     "id": "tai-066",
     "deck": "tail",
-    "text": "I don’t know why anybody would lie about a thing like that.",
+    "text": "I can’t see why anybody would lie about a thing like that.",
     "tags": {
       "family": "any",
       "temper": "yap"
@@ -740,7 +740,7 @@
   {
     "id": "tai-067",
     "deck": "tail",
-    "text": "There. Now you know as much as I do.",
+    "text": "There. Now you know as much as I do, and I feel lighter.",
     "tags": {
       "family": "any",
       "temper": "yap"

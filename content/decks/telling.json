@@ -79,7 +79,7 @@
   {
     "id": "tel-008",
     "deck": "telling",
-    "text": "{speaker} was glad to be asked. “{told}”",
+    "text": "{speaker} was glad to be asked, and gladder still to answer. “{told}”",
     "tags": {
       "family": "any",
       "temper": "yap"
@@ -90,7 +90,7 @@
   {
     "id": "tel-009",
     "deck": "telling",
-    "text": "{speaker} leaned in to tell it. “{told}”",
+    "text": "{speaker} leaned in to tell it, close enough that I could have named the supper. “{told}”",
     "tags": {
       "family": "any",
       "temper": "yap"
@@ -134,7 +134,7 @@
   {
     "id": "tel-013",
     "deck": "telling",
-    "text": "{speaker} said it without any expression at all. “{told}”",
+    "text": "{speaker} said it without any expression at all. I’ve had warmer talks with a hat stand. “{told}”",
     "tags": {
       "family": "any",
       "temper": "enigma"
@@ -189,7 +189,7 @@
   {
     "id": "tel-018",
     "deck": "telling",
-    "text": "{speaker} had been waiting for somebody to ask. “{told}”",
+    "text": "{speaker} had been waiting all night for somebody to ask. “{told}”",
     "tags": {
       "family": "movements",
       "temper": "yap"
@@ -246,7 +246,7 @@
   {
     "id": "tel-023",
     "deck": "telling",
-    "text": "{speaker} gave it to me in pieces. “{told}”",
+    "text": "{speaker} gave it to me in pieces, and made me ask for each one. “{told}”",
     "tags": {
       "family": "movements",
       "temper": "enigma"
@@ -358,7 +358,7 @@
   {
     "id": "tel-033",
     "deck": "telling",
-    "text": "{speaker} liked this question. “{told}”",
+    "text": "{speaker} liked this question. It was the first thing all night anybody had liked about me. “{told}”",
     "tags": {
       "family": "counts",
       "temper": "yap"
@@ -611,7 +611,7 @@
   {
     "id": "tel-056",
     "deck": "telling",
-    "text": "{speaker} seemed to enjoy the telling. “{told}”",
+    "text": "{speaker} enjoyed the telling. I could have charged admission. “{told}”",
     "tags": {
       "family": "evening",
       "temper": "yap"
@@ -666,7 +666,7 @@
   {
     "id": "tel-061",
     "deck": "telling",
-    "text": "{speaker} lowered {their} voice. “{told}”",
+    "text": "{speaker} lowered {their} voice, for the benefit of nobody. “{told}”",
     "tags": {
       "family": "thing",
       "temper": "yap"
@@ -1065,7 +1065,7 @@
   {
     "id": "tel-e032",
     "deck": "telling",
-    "text": "{speaker} was glad to tell it, and told all of it. “{told}”",
+    "text": "{speaker} was glad to tell it, and told all of it, and some of it with feeling. “{told}”",
     "tags": {
       "family": "evening",
       "temper": "yap"
@@ -1164,7 +1164,7 @@
   {
     "id": "tel-e041",
     "deck": "telling",
-    "text": "{speaker} waited, then answered. “{told}”",
+    "text": "{speaker} waited until I had started to wonder about my tie, then answered. “{told}”",
     "tags": {
       "family": "evening",
       "temper": "enigma"
@@ -1402,7 +1402,7 @@
   {
     "id": "tel-e062",
     "deck": "telling",
-    "text": "“I keep track, you know,” {speaker} said. “{told}”",
+    "text": "“I keep track, you know. Somebody has to,” {speaker} said. “{told}”",
     "tags": {
       "family": "counts",
       "temper": "yap"

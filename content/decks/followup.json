@@ -38,7 +38,7 @@
   {
     "id": "fol-004",
     "deck": "followup",
-    "text": "“Who came through tonight? All of them, in order.”",
+    "text": "“Who came through tonight? All of them, in order. I’ll keep up.”",
     "tags": {
       "part": "open",
       "family": "counts",
@@ -290,7 +290,7 @@
   {
     "id": "fol-025",
     "deck": "followup",
-    "text": "“Walk me through your evening.”",
+    "text": "“Walk me through your evening. Slowly. I’m a slow walker.”",
     "tags": {
       "part": "open",
       "family": "evening",
@@ -381,7 +381,7 @@
   {
     "id": "fol-033",
     "deck": "followup",
-    "text": "“Anything else I ought to know?”",
+    "text": "“Anything else I ought to know? There usually is.”",
     "tags": {
       "part": "open",
       "family": "thing",
@@ -393,7 +393,7 @@
   {
     "id": "fol-034",
     "deck": "followup",
-    "text": "“What do you know about it?”",
+    "text": "“And what can you say about it?”",
     "tags": {
       "part": "open",
       "family": "thing",
@@ -405,7 +405,7 @@
   {
     "id": "fol-035",
     "deck": "followup",
-    "text": "“And the rest of the evening?”",
+    "text": "“And the evening’s other hours?”",
     "tags": {
       "part": "second",
       "family": "movements",
@@ -417,7 +417,7 @@
   {
     "id": "fol-036",
     "deck": "followup",
-    "text": "“The rest of the night?”",
+    "text": "“And the night’s other hours?”",
     "tags": {
       "part": "second",
       "family": "movements",
@@ -429,7 +429,7 @@
   {
     "id": "fol-037",
     "deck": "followup",
-    "text": "“What about the rest of the evening?”",
+    "text": "“What about the other hours of the evening?”",
     "tags": {
       "part": "second",
       "family": "movements",
@@ -525,7 +525,7 @@
   {
     "id": "fol-045",
     "deck": "followup",
-    "text": "“How do you know it was {name}?”",
+    "text": "“What makes you sure it was {name}?”",
     "tags": {
       "part": "second",
       "family": "any",
@@ -681,7 +681,7 @@
   {
     "id": "fol-e008",
     "deck": "followup",
-    "text": "“I’ll need your own evening too. All of it.”",
+    "text": "“I’ll need your own evening too. All of it. Being thorough is my only virtue.”",
     "tags": {
       "part": "open",
       "family": "evening",
@@ -693,7 +693,7 @@
   {
     "id": "fol-e009",
     "deck": "followup",
-    "text": "“Now your own night, if you don’t mind. From the start.”",
+    "text": "“Now your own night, if you don’t mind. And if you do mind, the same.”",
     "tags": {
       "part": "open",
       "family": "evening",
@@ -741,7 +741,7 @@
   {
     "id": "fol-e013",
     "deck": "followup",
-    "text": "“Now, you. Where were you all night?”",
+    "text": "“Now, you. Where were you all night? Take your time. I’ve been up all of it anyway.”",
     "tags": {
       "part": "open",
       "family": "evening",
