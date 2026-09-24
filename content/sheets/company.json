@@ -1,0 +1,92 @@
+{
+  "moment": "company",
+  "$comment": "M13. The second half of an arrival page: who is there, and the page's last line. Holes: watcher, client (forms: full, the presence line as M11 wrote it; activity, what they were doing and nothing else; placed, what they were doing put by the prop from `pool`; recall, the client's recall action), others (everybody the sheet has not placed: forms full, placed, list with `text` framing {list}), tell (the observation, when the sheet text has not said it), views (the detective's view of anybody else), answer (what came of the walk). Card holes: trait (character, kind look, of watcher/tell/client), street (character, kind street), greet (the client's greeting). Slots: {watcher}, {client}, {tell} and each's .he .He .him .his .His .man .doing .act .sight .hour; {tell.tie} ('the woman who had found Sirkin'); {prop}, {prop.near}, {trait}. Whatever the sheet does not place goes in before the close: nobody present is ever left out, and the observation always lands. One joke slot a sheet.",
+  "sheets": [
+    {
+      "id": "com-a",
+      "weight": 2,
+      "name": "The room looks at me",
+      "notes": "Sheet A, the blessed golden. The watcher sizes the detective up, the room reacts, and the tell is the one person who didn't look. The watcher's trait (eyes that went to the door) sets up the tell.",
+      "when": { "watcher": true, "tell": true, "tellWatcher": false },
+      "parts": [
+        { "para": true, "text": "Nobody looked up except the one person paid to.", "says": "watcher-view" },
+        { "hole": "watcher", "form": "activity" },
+        { "hole": "trait", "deck": "character", "tags": { "kind": "look" }, "of": "watcher", "bind": "trait", "optional": true },
+        { "para": true, "hole": "client", "optional": true },
+        { "hole": "others", "optional": true },
+        { "hole": "views", "optional": true },
+        { "para": true, "text": "The only one who didn’t look at me at all was {tell}. {tell.He} was {tell.doing}, {tell.tie}." },
+        { "hole": "answer", "optional": true }
+      ],
+      "close": {
+        "roles": ["prop", "trait"],
+        "deck": true,
+        "callback": [
+          "I caught myself in the glass behind {prop} and looked away first. Somebody in there had to.",
+          "I let {prop} be. It had been there longer than me, and it would be there after."
+        ],
+        "plain": [
+          "I found a place where I could see the door. Everybody else in there had had the same idea first.",
+          "It was that kind of room. Everybody in it was minding their own business, and I was the only one there to mind everybody else’s."
+        ],
+        "joke": true
+      }
+    },
+    {
+      "id": "com-b",
+      "name": "One thing in the room",
+      "notes": "Sheet B. A single thing dominates. People are placed by it, so the room has a geography instead of a list, and the close pays it off. Needs the arrival sheet to have bound a prop.",
+      "when": { "callback": true, "prop": true, "people": ">=1" },
+      "parts": [
+        { "para": true, "hole": "watcher", "form": "placed", "pool": ["{prop.near}"], "optional": true },
+        {
+          "hole": "client",
+          "form": "placed",
+          "pool": ["as far from {prop} as the room allowed, which I suspected was the point", "with {his} back to {prop}"],
+          "optional": true
+        },
+        {
+          "hole": "others",
+          "form": "placed",
+          "pool": [
+            "at the far end, well away from {prop}",
+            "with {his} back to {prop}",
+            "across the room from {prop}",
+            "within reach of {prop} and paying it no mind"
+          ],
+          "optional": true
+        },
+        { "para": true, "hole": "street", "deck": "character", "tags": { "kind": "street" }, "of": "watcher", "optional": true }
+      ],
+      "close": {
+        "roles": ["prop"],
+        "deck": true,
+        "callback": [
+          "I had a good long look at {prop}. It had a good long look back, and neither of us learned anything."
+        ],
+        "plain": ["Nobody asked what I wanted. In that room it was a courtesy."],
+        "joke": true
+      }
+    },
+    {
+      "id": "com-c",
+      "name": "The client waves me over",
+      "notes": "Sheet C. The client is present and the page leans on her; the others are seen over her shoulder, and the free rundown is set up as the next beat of the scene.",
+      "when": { "client": true, "rundown": true },
+      "parts": [
+        { "para": true, "text": "{client} saw me before I saw {client.him}." },
+        { "hole": "client", "form": "recall", "optional": true },
+        { "para": true, "hole": "greet", "deck": "greet", "of": "client" },
+        { "para": true, "hole": "others", "form": "list", "text": "From {client.his} side of the room you could see all of it: {list}.", "optional": true },
+        { "hole": "tell", "optional": true }
+      ],
+      "close": {
+        "plain": [
+          "{client.He} looked like {client.he} was about to tell me who everybody was, whether I asked or not.",
+          "{client.He} had the look of somebody about to tell me who everybody was, and what each of them owed."
+        ],
+        "joke": true
+      }
+    }
+  ]
+}

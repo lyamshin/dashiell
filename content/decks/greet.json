@@ -1,0 +1,156 @@
+[
+  {
+    "id": "GRT-001",
+    "deck": "greet",
+    "text": "“You took your time,” {he} said. “I’ve been here long enough to be charged rent.”",
+    "tags": {
+      "purpose": "keep-it-quiet",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-002",
+    "deck": "greet",
+    "text": "“Not so loud,” {he} said, although I hadn’t said anything yet. “Sit down and look like you’re here for the drinks.”",
+    "tags": {
+      "purpose": "keep-it-quiet",
+      "temper": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-003",
+    "deck": "greet",
+    "text": "“Well?” {he} said. “Sit down. The police already stood around, and look where that got anybody.”",
+    "tags": {
+      "purpose": "find-the-killer-police-wont",
+      "temper": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-004",
+    "deck": "greet",
+    "text": "“There you are,” {he} said. “I was starting to think I’d hired the other kind of detective. The kind that sleeps.”",
+    "tags": {
+      "purpose": "find-the-killer-police-wont",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-005",
+    "deck": "greet",
+    "text": "“Keep your voice down,” {he} said. “Half this room thinks I did it, and the other half hasn’t heard yet.”",
+    "tags": {
+      "purpose": "clear-my-name",
+      "temper": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-006",
+    "deck": "greet",
+    "text": "“Sit with me,” {he} said. “If they’re going to stare, they can stare at two of us.”",
+    "tags": {
+      "purpose": "clear-my-name",
+      "temper": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-007",
+    "deck": "greet",
+    "text": "“Anything?” {he} said. “Don’t answer that. Sit down first, then tell me nothing.”",
+    "tags": {
+      "purpose": "get-it-back",
+      "temper": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-008",
+    "deck": "greet",
+    "text": "“You look like a man who’s been looking,” {he} said. “Sit down and look somewhere else for a minute.”",
+    "tags": {
+      "purpose": "find-it-before-the-cops",
+      "temper": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-009",
+    "deck": "greet",
+    "text": "“You came,” {he} said, as if that had been in some doubt. “Good. I’ve been watching the door all night.”",
+    "tags": {
+      "purpose": "bring-them-home",
+      "temper": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-010",
+    "deck": "greet",
+    "text": "“I didn’t think you’d find this place,” {he} said. “That’s a compliment to the place, not to you.”",
+    "tags": {
+      "purpose": "make-sure-they-stay-gone",
+      "temper": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-011",
+    "deck": "greet",
+    "text": "“{victim} still owes me,” {he} said, by way of hello. “The dead are slow payers. Sit down.”",
+    "tags": {
+      "purpose": "settle-a-debt-with-the-dead",
+      "temper": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-012",
+    "deck": "greet",
+    "text": "{He} moved {his} coat off the other chair, which was as much hello as I was going to get.",
+    "tags": {
+      "purpose": "any",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-013",
+    "deck": "greet",
+    "text": "“There you are,” {he} said. “Sit. You’re making the room nervous, standing.”",
+    "tags": {
+      "purpose": "any",
+      "temper": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-014",
+    "deck": "greet",
+    "text": "“You found it,” {he} said. “I was hoping you would, and a little hoping you wouldn’t.”",
+    "tags": {
+      "purpose": "any",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

@@ -1119,6 +1119,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a mirror behind the bar whose silvering had gone, spotted black in the corners",
+        "short": "the mirror",
+        "kind": "glass",
+        "near": "under the mirror",
+        "pay": [
+          "I caught myself in the mirror behind the bar. The silvering had gone in the corners, and so, I noticed, had I."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1130,6 +1141,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the coloured bulbs over the bar, which gave the room a red and green cast",
+        "short": "the bulbs",
+        "kind": "light",
+        "near": "under the bulbs",
+        "pay": [
+          "Under the bulbs, everybody looked like they’d been drinking for a week. I probably looked like I’d been drinking for two."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1570,6 +1592,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the two tall glass globes of coloured water in the window, one red and one green, standing on pedestals over a display of toothbrushes and talcum tins",
+        "short": "the globes",
+        "kind": "glass",
+        "near": "under the globes’ glow",
+        "pay": [
+          "The red globe said stop and the green one said go. Nobody in there was doing either."
+        ]
+      }
+    },
     "status": "generated"
   },
   {

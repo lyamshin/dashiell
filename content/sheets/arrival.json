@@ -1,0 +1,36 @@
+{
+  "moment": "arrival",
+  "$comment": "M13. The first half of an arrival page: getting there, and the room. The company sheet that follows says who is there and closes the page. Holes: establish (form short: the card's short form), weather (tonight's sky on the way in), prop (a place-ambient card; bind prop to put a thing in the room the page can bring back; form bind draws it silently for the sheet text to say). Slots: {place}, {Place}, {prop}, {prop.text}, {prop.near}. The golden is docs/golden/sheets-arrival.md, Sheet A.",
+  "sheets": [
+    {
+      "id": "arr-a",
+      "weight": 2,
+      "name": "The place, and one thing in it",
+      "notes": "Sheet A's first half, the blessed golden: the establish card whole, then a place-ambient card that puts a prop in the room (pam-102, the mirror).",
+      "parts": [
+        { "hole": "establish" },
+        { "hole": "prop", "deck": "place-ambient", "bind": "prop" }
+      ]
+    },
+    {
+      "id": "arr-b",
+      "name": "The first thing you noticed",
+      "notes": "Sheet B's first half: the establish card's short form, and the prop said as the first thing anybody sees. Needs a prop the room has not shown tonight.",
+      "when": { "callback": true, "prop": true },
+      "parts": [
+        { "hole": "establish", "form": "short" },
+        { "hole": "prop", "deck": "place-ambient", "bind": "prop", "form": "bind" },
+        { "text": "The first thing you noticed was {prop.text}." }
+      ]
+    },
+    {
+      "id": "arr-c",
+      "name": "In from the night",
+      "notes": "Sheet C's first half: the short form, with the night on the way in, and the room left to the people in it.",
+      "parts": [
+        { "hole": "weather", "optional": true },
+        { "hole": "establish", "form": "short" }
+      ]
+    }
+  ]
+}

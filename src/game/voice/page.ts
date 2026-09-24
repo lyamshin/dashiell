@@ -31,7 +31,9 @@ import type { Clue, Id, Person } from '../../gen/types.js';
 import type { Rng } from '../../gen/rng.js';
 import { spokenClock } from '../../gen/types.js';
 import { NIGHT_MINUTES } from '../types.js';
-import type { BeatTrace, Block, ErrandTrace, PageShape, ProseVoice, RunState, SceneMemory } from '../types.js';
+import type { BeatTrace, Block, ErrandTrace, PageShape, ProseVoice, RunState, SceneMemory, SheetUse } from '../types.js';
+import { officeFrame, personRoleSlots } from '../scene/sheet-pages.js';
+import { sheetsOn } from '../scene/realize.js';
 import type { ConfrontJudgement, ConfrontRecord } from '../m9.js';
 import { markedTheory, verdictsOn } from '../m9.js';
 import { composeScene, isNightScene } from '../scene/index.js';
@@ -538,6 +540,8 @@ export interface Composed {
   shape?: PageShape;
   beats?: BeatTrace[];
   memory?: SceneMemory;
+  /** M13: the sheets the page was written from. */
+  sheets?: SheetUse[];
 }
 
 /**
@@ -704,6 +708,8 @@ export function composePage(stage: Stage, scene: Scene): Composed {
   if (isNightScene(scene)) return composeScene(stage, scene);
   const { view, cast, dealer } = stage;
   const gaps: string[] = [];
+  /** M13: the sheets this page used (the office's). */
+  const pageSheetUses: SheetUse[] = [];
   const laid: Laid[] = [];
   const portrayed: Id[] = [];
   const appeared: Id[] = [];
@@ -940,6 +946,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
       gaps,
       portrayed,
       appeared,
+      sheets: pageSheetUses,
     });
   }
 
@@ -1599,6 +1606,7 @@ export function composePage(stage: Stage, scene: Scene): Composed {
     imageMotifs,
     plain: counted.plain,
     image: counted.image,
+    ...(pageSheetUses.length > 0 ? { sheets: pageSheetUses } : {}),
   };
 }
 
@@ -2453,6 +2461,8 @@ interface OpenTools {
   gaps: string[];
   portrayed: Id[];
   appeared: Id[];
+  /** M13: the office's sheet, when one framed it. */
+  sheets: SheetUse[];
 }
 
 /**
@@ -2504,15 +2514,65 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     'office',
   );
 
-  /* 1. The office at this hour. */
-  const office = officeCard(dealer, cast.roll.circumstance, cast.roll.weather, slots, t.ctx);
-  if (office.gap) t.gaps.push(office.gap);
-  t.say(office.text, 'place', {
-    motifs: office.motifs,
-    score: office.score,
-    keep: 2,
-    para: 'office',
-  });
+  /* 1. The office at this hour. M13: as the office's sheet lays it out. */
+  const framed = sheetsOn(stage)
+    ? officeFrame(stage, {
+        flags: {
+          temper,
+          klass,
+          familiar,
+          circumstance: cast.roll.circumstance,
+          weather: cast.roll.weather,
+          purpose: view.kase.clientBrief.purpose,
+        },
+        slots: { ...personRoleSlots(stage, 'client', client), place: place?.shortName },
+        office: (want) => {
+          const ex = (c: Card): boolean => want === null || c.exports?.[want] !== undefined;
+          const drawn = dealer.draw(
+            'office',
+            [
+              (c) => ex(c) && tagIs('office', c, 'circumstance', cast.roll.circumstance) && tagIs('office', c, 'weather', cast.roll.weather),
+              (c) => ex(c) && tagIs('office', c, 'circumstance', cast.roll.circumstance),
+              (c) => tagIs('office', c, 'circumstance', cast.roll.circumstance) && tagIs('office', c, 'weather', cast.roll.weather),
+              (c) => tagIs('office', c, 'circumstance', cast.roll.circumstance),
+              (c) => tagIs('office', c, 'weather', cast.roll.weather),
+            ],
+            slots,
+            false,
+            t.ctx,
+          );
+          if (!drawn) return null;
+          const card = DECKS.office.find((c) => c.id === drawn.cardId);
+          return { text: drawn.text, ...(card?.exports ? { exports: card.exports } : {}) };
+        },
+        closeDeck: (role, exp) => {
+          const c = (x: Card, tag: string, want: string): boolean => tagOf('close', x, tag) === want;
+          const m = (x: Card): boolean => c(x, 'outcome', 'sheet') && (c(x, 'moment', 'office') || c(x, 'moment', 'any'));
+          const drawn = dealer.draw(
+            'close',
+            role === null || exp === null
+              ? [(x) => m(x) && c(x, 'callback', 'none')]
+              : [(x) => m(x) && c(x, 'callback', role) && c(x, 'kind', exp.kind ?? 'thing'), (x) => m(x) && c(x, 'callback', role) && c(x, 'kind', 'any')],
+            { ...personRoleSlots(stage, 'client', client), ...(role !== null && exp !== null ? { [role]: exp.short, [`${role}Text`]: exp.text } : {}) },
+            true,
+          );
+          return drawn?.text ?? null;
+        },
+      })
+    : null;
+  if (framed) {
+    t.sheets.push(framed.use);
+    t.say(framed.open, 'place', { keep: 2, para: 'office', verbatim: true });
+  } else {
+    const office = officeCard(dealer, cast.roll.circumstance, cast.roll.weather, slots, t.ctx);
+    if (office.gap) t.gaps.push(office.gap);
+    t.say(office.text, 'place', {
+      motifs: office.motifs,
+      score: office.score,
+      keep: 2,
+      para: 'office',
+    });
+  }
 
   /* 2. The entrance, with the client's portrait woven into it (§A.4).
    *
@@ -2806,6 +2866,8 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
   // M10 §A.5: the page is told in the past tense, and this is where it
   // closes, so it says the scene's last fact the way the rest was said and
   // leaves the two free questions to the choices under it.
+  // M13: the office sheet's last word, before she is left in the chair.
+  if (framed?.close) t.say(framed.close, 'narrator', { transparent: true, verbatim: true });
   t.put({ kind: 'note', text: officeCloseLine(client) }, OFFICE_CLOSE);
 }
 

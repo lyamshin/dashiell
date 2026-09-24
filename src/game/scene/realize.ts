@@ -13,7 +13,7 @@ import { MISSING_MEANS, MURDER_MEANS, ROBBERY_MEANS } from '../../gen/data/means
 import { windowOf } from './thought.js';
 import { anchorsTold, toldFind, type AnchorTold } from './finds.js';
 import { spokenClock } from '../../gen/types.js';
-import type { Block, BeatTrace, ErrandTrace, ProseVoice } from '../types.js';
+import type { Block, BeatTrace, ErrandTrace, ProseVoice, SheetUse } from '../types.js';
 import { OTHER_THING } from '../errand.js';
 import { hedged, restates, figuresIn, hourAgrees, introduceNames, nameables, pastTense, pastPredicate, sentencesOf, stripHere, wordCount, isSubjectless, bandOf } from './text.js';
 import { APPROACH, APPROACH_AGAIN, COUNT_WORDS, FOLLOW_ON, OUTDOOR_PLACES, RELATION_PLAIN, RELATION_WHY, SEARCH_THING_ACTS as THING_ACTS, isPluralPlace } from './lines.js';
@@ -28,6 +28,7 @@ import { SEEN_FAMILIES, thingTopic } from './families.js';
 import { observation, plainAction, tieSentence } from './people.js';
 import { doingClause, lookRole, personSlots } from './stage.js';
 import { bareRoleOf } from './plan.js';
+import { arrivalPage, framesFor, newPageSheets, tellingFrame, type PageSheets } from './sheet-pages.js';
 import { characterLine, echoes } from '../voice/character.js';
 import { verdictsOn } from '../m9.js';
 import { temperOf } from '../voice/cast.js';
@@ -66,7 +67,7 @@ import {
   TIMING_THOUGHTS_MANY,
   ASK_REPORTED,
 } from '../voice-data.js';
-import { fill, tagIs, tagOf, type Card, type Match, type Slots } from '../voice/cards.js';
+import { DECKS, deckOf, fill, tagIs, tagOf, type Card, type Match, type Slots } from '../voice/cards.js';
 import { classOf, genderHintOf, possessiveOf, pronounOf } from '../voice/cast.js';
 import { dashiellLine, registerFor, selfQuestion, speakClue, type AskKind } from '../voice/exchange.js';
 import { spokenSpan, spokenSpans } from '../voice/facts.js';
@@ -122,6 +123,8 @@ export interface Realized {
   traces: BeatTrace[];
   errand?: ErrandTrace;
   gaps: string[];
+  /** M13: the sheets this page was written from, and whether it paid a role off. */
+  sheets?: SheetUse[];
 }
 
 const DECADES: Record<number, string> = {
@@ -134,7 +137,7 @@ const DECADES: Record<number, string> = {
   7: 'seventies',
 };
 
-function fillTemplate(template: string, slots: Record<string, string | undefined>): string {
+export function fillTemplate(template: string, slots: Record<string, string | undefined>): string {
   let out = template;
   for (const m of new Set(template.match(/\{(\w+)\}/g) ?? [])) {
     const key = m.slice(1, -1);
@@ -146,11 +149,11 @@ function fillTemplate(template: string, slots: Record<string, string | undefined
   return tidyPunctuation(out);
 }
 
-function capitalize(s: string): string {
+export function capitalize(s: string): string {
   return s.length === 0 ? s : `${s.charAt(0).toUpperCase()}${s.slice(1)}`;
 }
 
-function endStop(s: string): string {
+export function endStop(s: string): string {
   const t = s.trim();
   return /[.!?”"]$/.test(t) ? t : `${t}.`;
 }
@@ -160,7 +163,7 @@ function endStop(s: string): string {
  * hour the clock does not agree with (§7). Null when nothing fits, and the
  * caller logs the gap.
  */
-function deal(
+export function deal(
   stage: Stage,
   deck: Parameters<Stage['dealer']['draw']>[0],
   ladder: Match[],
@@ -200,7 +203,7 @@ export const WATCH_CLAUSE =
   /\b(?:no ?one|nobody|nothing)\b[^.]*\b(?:posted|watch(?:ed|ing)?|mind(?:ed|s)?|notic(?:e|ed)|see who|saw who|kept track)\b/i;
 
 /** The deck name a place is keyed under in `establish`. */
-function placeKey(stage: Stage, placeId: Id): string {
+export function placeKey(stage: Stage, placeId: Id): string {
   return placeId === stage.view.office.id ? 'office' : placeId;
 }
 
@@ -249,8 +252,37 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
   };
 
   const beats = plan.beats;
+  /** M13: a page written from sheets claims its beats, and the loop leaves them to it. */
+  const pageSheets = newPageSheets(stage);
+  const sheetPage = sheetsOn(stage) ? arrivalPage(plan, stage, scene, mark, gaps, pageSheets) : null;
+  /** M13: the sheets that frame a question, a confrontation or a search: what goes before, and the last word. */
+  const frames = sheetsOn(stage) ? framesFor(plan, stage, scene, pageSheets) : {};
+  // M13: a search's last word goes after its thinking, before any decision or next lead.
+  const searchCloseAt = (() => {
+    if (!frames.search?.close) return -1;
+    const at = beats.findIndex((b) => b.kind === 'decide' || b.kind === 'bridge');
+    return at >= 0 ? at : beats.length;
+  })();
+  const searchClose = (): void => {
+    const text = frames.search?.close;
+    if (!text) return;
+    const host = last();
+    if (host && host.voice === 'thought' && wordCount(host.text) < 60) host.text = `${host.text} ${text}`;
+    else push({ text, voice: 'thought', beats: [] });
+  };
   for (let i = 0; i < beats.length; i++) {
     const beat = beats[i] as Beat;
+    if (i === searchCloseAt) {
+      flushLeft();
+      searchClose();
+    }
+    if (sheetPage && sheetPage.claimed.has(i)) {
+      if (i === sheetPage.at) {
+        flushLeft();
+        for (const p of sheetPage.paras) push({ text: p.text, voice: p.voice, beats: [...p.beats], ...(p.imageN ? { imageN: p.imageN } : {}) });
+      }
+      continue;
+    }
     // The things left alone come after the first find and before anything else
     // — never between a later find and the thought on it.
     if ((beat.kind !== 'find' && beat.kind !== 'act') || (beat.kind === 'find' && paras.some((p) => p.clueId !== undefined))) {
@@ -501,14 +533,9 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
           mark(i, { tag: 'search-room', text });
           break;
         }
-        const object = beat.objectId ? view.objectById.get(beat.objectId)?.name : undefined;
         // Night Hone 1 §1: how he went through this place, in its own terms.
-        const room = object
-          ? null
-          : deal(stage, 'search-act', [(c) => tagIs('search-act', c, 'place', stage.at)], {});
-        const text = object
-          ? pickShape(dealer.random, THING_ACTS, { object: object.replace(/^(?:a|an) /, 'the ') })
-          : (room?.text ?? dealer.random.pick(SEARCH_ROOM_ACTS));
+        // M13: or as the search's sheet lays it out.
+        const text = frames.search?.pre.join(' ') || searchActOf(stage, beat.objectId).text;
         push({ text, voice: 'act', beats: [i] });
         const names = beat.left.map((id) => view.objectById.get(id)?.name).filter((n): n is string => !!n);
         const leftText =
@@ -563,7 +590,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
       /* ------------------------------------------------- the question */
       case 'exchange': {
         if (scene.kind !== 'ask') break;
-        const written = exchange(stage, scene, beat, gaps, plan.beats);
+        const written = exchange(stage, scene, beat, gaps, plan.beats, frames.ask?.pre);
         for (const p of written) push({ ...p, beats: [i] });
         mark(i, {
           // M10 §A.3: "Go on" is the same question, a page on; it carries itself.
@@ -586,7 +613,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
       /* ------------------------------------------ M10: a family told */
       case 'telling': {
         if (scene.kind !== 'ask') break;
-        const t = tellingParas(stage, scene, beat, gaps);
+        const t = tellingParas(stage, scene, beat, gaps, sheetsOn(stage) ? pageSheets : null);
         for (const p of t.paras) push({ ...p, beats: [i] });
         lastFamily = { family: beat.family, told: t.told };
         mark(i, {
@@ -829,6 +856,11 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         // Weather is written with the place; ambient is decided on length below.
         // A question's room texture waits until the page's length is known.
         if (beat.texture !== 'place' || plan.shape === 'ask') break;
+        // M13: a search whose sheet put the room's texture in its first paragraph.
+        if (plan.shape === 'search' && frames.search?.place) {
+          mark(i, { tag: 'place', text: frames.search.place });
+          break;
+        }
         // Night Hone 1 §1: the room's own sounds, light and smells, after the
         // finds on a search and with the line on a return.
         const band = bandOf(stage.minutes);
@@ -891,7 +923,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
       /* --------------------------------------- M12: the page's last word */
       case 'close': {
         const person = view.personById.get(beat.personId);
-        const text = person ? closeOf(stage, person, beat.outcome) : null;
+        const text = frames.ask?.close ?? (person ? closeOf(stage, person, beat.outcome) : null);
         if (!text) break;
         // Golden §3: told plainly, then one dry line — on the end of the
         // paragraph that told what it came to, when that paragraph has room.
@@ -922,7 +954,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
       /* ---------------------------------------------- M9: put it to them */
       case 'confront': {
         if (scene.kind !== 'confront') break;
-        const written = confrontParas(stage, scene, beat, gaps);
+        const written = confrontParas(stage, scene, beat, gaps, frames.ask?.pre);
         for (const p of written) push({ ...p, beats: [i] });
         mark(i, {
           tag: beat.outcome,
@@ -937,6 +969,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
   }
 
   flushLeft();
+  if (searchCloseAt === beats.length) searchClose();
 
   /* ----------------------------------------- the client's close (office) */
   if (scene.kind === 'ask' && scene.clientLeaves) {
@@ -1135,7 +1168,21 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
     const first = blocks[0];
     if (first && first.kind === 'prose' && first.voice === 'errand') errand = { ...errand, text: first.text };
   }
-  return { blocks, plain: plainN, image: imageN, traces, ...(errand ? { errand } : {}), gaps };
+  const sheets = pageSheets.traces();
+  return { blocks, plain: plainN, image: imageN, traces, ...(errand ? { errand } : {}), gaps, ...(sheets.length > 0 ? { sheets } : {}) };
+}
+
+/**
+ * M13: sheets are on unless a test turns them off, to show a page the old way
+ * (`setSheets`), the way M12's recaps can be.
+ */
+let SHEETS_ON = true;
+export function setSheets(on: boolean): void {
+  SHEETS_ON = on;
+}
+export function sheetsOn(stage: Stage | null): boolean {
+  void stage;
+  return SHEETS_ON;
 }
 
 /* ------------------------------------------------------------------ *
@@ -1147,7 +1194,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
  * that was moved, the shelf that was emptied, the place somebody was last
  * seen. The office already said the rest.
  */
-function sceneGiven(stage: Stage): string {
+export function sceneGiven(stage: Stage): string {
   const { view } = stage;
   const act = view.kase.act;
   const note = openingNote(view, stage.at);
@@ -1163,7 +1210,7 @@ function sceneGiven(stage: Stage): string {
 
 /** One person in the room: what they are doing, and on first sight who they are. */
 /** "a woman in her forties": what anybody can see. */
-function sightOf(person: Person): string | undefined {
+export function sightOf(person: Person): string | undefined {
   const d = person.dossier;
   const decade = d ? DECADES[Math.floor(d.age / 10)] : undefined;
   if (!decade) return undefined;
@@ -1178,7 +1225,7 @@ function visibleTrade(person: Person): string | undefined {
   return shows ? person.role.replace(/\.$/, '') : undefined;
 }
 
-function presenceLine(stage: Stage, p: PresencePerson, named: ReadonlySet<Id> = new Set()): string {
+export function presenceLine(stage: Stage, p: PresencePerson, named: ReadonlySet<Id> = new Set()): string {
   const { view, cast } = stage;
   const person = view.personById.get(p.personId) as Person;
   const parts = [endStop(p.activity.text)];
@@ -1237,7 +1284,7 @@ function presenceLine(stage: Stage, p: PresencePerson, named: ReadonlySet<Id> = 
  * sentence — "Two men and a woman were at the far tables…" — with the names
  * the detective already has ("Lanza and two men I didn't know").
  */
-function crowdLine(stage: Stage, ids: readonly Id[]): string {
+export function crowdLine(stage: Stage, ids: readonly Id[]): string {
   const { view } = stage;
   const people = ids.map((id) => view.personById.get(id)).filter((p): p is Person => p !== undefined);
   // Named only if an earlier page said who they are; the rest by what shows.
@@ -1491,7 +1538,7 @@ function engineThought(stage: Stage, t: Thought, slots: Slots): string | null {
   return null;
 }
 
-function thoughtLine(
+export function thoughtLine(
   stage: Stage,
   t: Thought,
   gaps: string[],
@@ -1629,6 +1676,8 @@ function exchange(
   beat: Extract<Beat, { kind: 'exchange' }>,
   gaps: string[],
   planned: readonly Beat[] = [],
+  /** M13: the approach and the look as the question's sheet wrote them. */
+  setupText?: string[],
 ): Omit<Para, 'beats'>[] {
   const { view, cast, dealer } = stage;
   const person = view.personById.get(scene.personId) as Person;
@@ -1673,8 +1722,8 @@ function exchange(
     // M12 Part 1: the approach and the look, a paragraph of their own before
     // he says anything (the camp golden §3: "I took the stool next to
     // Crowninshield. She was a dentist…").
-    const setup = setupOf(stage, person, staged);
-    if (setup.length > 0) out.push({ text: setup, voice: 'approach' });
+    const setup = setupText ?? [setupOf(stage, person, staged)];
+    for (const text of setup) if (text.length > 0) out.push({ text, voice: 'approach' });
   } else if (beat.stops) {
     // §4: spoken to, they stop what they were doing — and the page says what
     // that was, when the activity is something they were in the middle of.
@@ -1978,8 +2027,27 @@ function exchange(
  * settles (the room, and what they are doing), then one sentence of his read
  * of them (their trade), or, asked again, how they take a second question.
  */
-function setupOf(stage: Stage, person: Person, staged: AskStage): string {
-  const { cast } = stage;
+export function setupOf(stage: Stage, person: Person, staged: AskStage): string {
+  const approach = approachOf(stage, person, staged);
+  const look = lookOf(stage, person, staged);
+  return [approach.text, look?.text].filter((x): x is string => x !== undefined && x.length > 0).join(' ');
+}
+
+/** M13: a card as a sheet's hole takes it: its words, and what it offers to be brought back. */
+export interface Dealt {
+  text: string;
+  cardId?: string;
+  exports?: Card['exports'];
+}
+
+function cardOf(id: string | undefined): Card | undefined {
+  if (id === undefined) return undefined;
+  const deck = deckOf(id);
+  return deck ? DECKS[deck].find((c) => c.id === id) : undefined;
+}
+
+/** The approach: where he goes and how he settles, from the room and what they are doing. */
+export function approachOf(stage: Stage, person: Person, staged: AskStage): Dealt {
   const doing = doingClause(staged.doing);
   const slots: Slots = { ...personSlots(person), ...(doing ? { doing } : {}) };
   const again = staged.again ? 'yes' : 'no';
@@ -2006,19 +2074,49 @@ function setupOf(stage: Stage, person: Person, staged: AskStage): string {
     ],
     slots,
   );
-  const approachText =
-    approach?.text ?? fillTemplate(stage.dealer.random.pick(staged.again ? APPROACH_AGAIN : APPROACH), { name: person.surname });
+  if (!approach) return { text: fillTemplate(stage.dealer.random.pick(staged.again ? APPROACH_AGAIN : APPROACH), { name: person.surname }) };
+  const card = cardOf(approach.cardId);
+  return { text: approach.text, cardId: approach.cardId, ...(card?.exports ? { exports: card.exports } : {}) };
+}
+
+/** The look: one sentence of his read of them, or, asked again, how they take a second question. */
+export function lookOf(stage: Stage, person: Person, staged: AskStage, want: string | null = null): Dealt | null {
+  const { cast } = stage;
+  const doing = doingClause(staged.doing);
+  const slots: Slots = { ...personSlots(person), ...(doing ? { doing } : {}) };
   const temper = temperOf(cast, person.id);
   const role = lookRole(person);
-  const lk = (c: Card, tag: string, want: string): boolean => tagOf('look', c, tag) === want;
+  const lk = (c: Card, tag: string, v: string): boolean => tagOf('look', c, tag) === v;
+  const ex = (c: Card): boolean => want === null || c.exports?.[want] !== undefined;
   const look = staged.again
     ? deal(stage, 'look', [(c) => lk(c, 'again', 'yes') && lk(c, 'temper', temper), (c) => lk(c, 'again', 'yes') && lk(c, 'temper', 'any')], slots)
-    : deal(stage, 'look', [(c) => lk(c, 'again', 'no') && lk(c, 'role', role), (c) => lk(c, 'again', 'no') && lk(c, 'role', 'any')], slots);
-  return [approachText, look?.text].filter((x): x is string => x !== undefined && x.length > 0).join(' ');
+    : deal(
+        stage,
+        'look',
+        [
+          ...(want === null ? [] : [(c: Card) => lk(c, 'again', 'no') && lk(c, 'role', role) && ex(c)]),
+          (c) => lk(c, 'again', 'no') && lk(c, 'role', role),
+          (c) => lk(c, 'again', 'no') && lk(c, 'role', 'any'),
+        ],
+        slots,
+      );
+  if (!look) return null;
+  const card = cardOf(look.cardId);
+  return { text: look.text, cardId: look.cardId, ...(card?.exports ? { exports: card.exports } : {}) };
+}
+
+/** How he went through the place (or the one thing), in its own terms. */
+export function searchActOf(stage: Stage, objectId: Id | undefined): Dealt {
+  const object = objectId ? stage.view.objectById.get(objectId)?.name : undefined;
+  if (object) return { text: pickShape(stage.dealer.random, THING_ACTS, { object: object.replace(/^(?:a|an) /, 'the ') }) };
+  const room = deal(stage, 'search-act', [(c) => tagIs('search-act', c, 'place', stage.at)], {});
+  if (!room) return { text: stage.dealer.random.pick(SEARCH_ROOM_ACTS) };
+  const card = cardOf(room.cardId);
+  return { text: room.text, cardId: room.cardId, ...(card?.exports ? { exports: card.exports } : {}) };
 }
 
 /** The try: a drink, a cigarette, a coin, a threat left unsaid. */
-function tryOf(stage: Stage, person: Person, staged: AskStage): string | null {
+export function tryOf(stage: Stage, person: Person, staged: AskStage): string | null {
   if (!staged.try) return null;
   const why = staged.try;
   const t = (c: Card, tag: string, want: string): boolean => tagOf('try', c, tag) === want;
@@ -2098,7 +2196,7 @@ function reportedQuestion(
  * The page's last word: one dry line on what the page came to. A card
  * written for the person's trade first, then any.
  */
-function closeOf(stage: Stage, person: Person, outcome: CloseOutcome): string | null {
+export function closeOf(stage: Stage, person: Person, outcome: CloseOutcome): string | null {
   const role = lookRole(person);
   const c = (card: Card, tag: string, want: string): boolean => tagOf('close', card, tag) === want;
   const drawn = deal(
@@ -2350,6 +2448,8 @@ function tellingParas(
   scene: Extract<Scene, { kind: 'ask' }>,
   beat: Extract<Beat, { kind: 'telling' }>,
   gaps: string[],
+  /** M13: the page's sheets, so the first family told can be framed by one. */
+  pageSheets: PageSheets | null = null,
 ): {
   paras: Omit<Para, 'beats'>[];
   told: Told | null;
@@ -2549,7 +2649,10 @@ function tellingParas(
           { name: sp ? 'She' : 'He' },
         )} “${restSaid}”`
       : '';
-  const answer = `${frame?.text ?? `“${firstSaid}”`}${going}`;
+  // M13: a line of the telling's sheet before the answer, and one after it.
+  const framed = pageSheets && beat.first ? tellingFrame(stage, scene, beat, pageSheets, frame?.text ?? '') : null;
+  if (framed) parts.sheet = [framed.before, framed.after].filter((x): x is string => x !== undefined && x.length > 0);
+  const answer = `${framed?.before ? `${framed.before} ` : ''}${frame?.text ?? `“${firstSaid}”`}${going}`;
   if (frame) parts.frame = frame.text.replace(firstSaid, '{told}');
   paras.push({ text: answer, voice: 'exchange', clueId: family.clueIds[0] as Id });
 
@@ -2573,6 +2676,10 @@ function tellingParas(
     paras.push({ text: q, voice: 'exchange' });
     const second = [...told.second, parts.grounding, tail].filter((x): x is string => x !== undefined && x.length > 0);
     if (second.length > 0) paras.push({ text: `“${second.join(' ')}”`, voice: 'exchange' });
+  }
+  if (framed?.after) {
+    const lastPara = paras[paras.length - 1];
+    if (lastPara) lastPara.text = `${lastPara.text} ${framed.after}`;
   }
   return { paras: paras.map((p) => ({ ...p, text: tidyPunctuation(p.text) })), told, parts, ticks: told.ticks, personIds };
 }
@@ -2615,6 +2722,8 @@ function confrontParas(
   scene: Extract<Scene, { kind: 'confront' }>,
   beat: Extract<Beat, { kind: 'confront' }>,
   gaps: string[],
+  /** M13: the approach and the look as the confrontation's sheet wrote them. */
+  setupText?: string[],
 ): Omit<Para, 'beats'>[] {
   const { view, dealer } = stage;
   const person = view.personById.get(scene.personId) as Person;
@@ -2626,8 +2735,8 @@ function confrontParas(
     opening.push(fillTemplate(dealer.random.pick(FOLLOW_ON), { name: surname }));
   } else if (beat.stage) {
     // M12 Part 1: a confrontation is staged the way a question is.
-    const setup = setupOf(stage, person, beat.stage);
-    if (setup.length > 0) out.push({ text: setup, voice: 'approach' });
+    const setup = setupText ?? [setupOf(stage, person, beat.stage)];
+    for (const text of setup) if (text.length > 0) out.push({ text, voice: 'approach' });
   } else if (beat.stops) {
     const doing = stage.memory?.activities[person.id]?.text;
     const stopped = doing ? stoppedDoing(doing, surname) : null;

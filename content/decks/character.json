@@ -5198,10 +5198,17 @@
   {
     "id": "chr-503",
     "deck": "character",
-    "text": "A pleasant, forgettable face, which in that trade is the whole trick, and eyes that went to the door every time it opened, and came back.",
+    "text": "{He} had a pleasant, forgettable face, which in that trade is the whole trick, and eyes that went to the door every time it opened, and came back.",
     "tags": {
       "role": "bartender",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "eyes that went to the door every time it opened, and came back",
+        "short": "the eyes",
+        "kind": "eyes"
+      }
     },
     "status": "generated"
   },

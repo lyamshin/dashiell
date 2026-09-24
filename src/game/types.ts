@@ -228,6 +228,18 @@ export interface Page {
    */
   shape?: PageShape;
   beats?: BeatTrace[];
+  /** M13: the sheets the page was written from, and whether it paid a role off. */
+  sheets?: SheetUse[];
+}
+
+/** M13: one sheet a page used. */
+export interface SheetUse {
+  id: string;
+  moment: string;
+  /** The page paid a role off (a callback). */
+  callback: boolean;
+  /** The page's roll: whether it wanted one. */
+  rolled: boolean;
 }
 
 /**
@@ -313,6 +325,8 @@ export interface BeatTrace {
    * saying no case fact at all.
    */
   parts?: {
+    /** M13: the telling's sheet lines, before and after it; they assert no case fact. */
+    sheet?: string[];
     /** The detective's question for this family, when it had its own. */
     question?: string;
     /** The sentences that carry the facts. */
