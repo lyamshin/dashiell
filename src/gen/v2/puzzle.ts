@@ -215,14 +215,14 @@ export function buildPuzzle(input: LogicSelectInput, frame: ProblemFrame): Puzzl
         const w = whyNot(st, d.personId, t, d.claimed);
         if (!w) continue;
         const ids = idsOf(st, w);
-        if (ids.some((id) => id.startsWith(`confess:${d.personId}:`))) {
+        if (ids.some((id) => id === `confess:${d.personId}:${d.ticks[0]}`)) {
           own ??= ids;
           continue;
         }
         found = ids;
         break;
       }
-      found ??= own;
+      void own;
       if (!found || found.length === 0) break;
       out.push(found);
       const byId = new Map(cur.map((x) => [x.id, x]));

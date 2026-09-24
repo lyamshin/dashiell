@@ -117,12 +117,12 @@ describe('v2: the puzzle', () => {
     expect(ways.some((w) => w.includes(count!.id) && !w.some((id) => id.startsWith('confess:')))).toBe(true);
   });
 
-  it('never counts a liar’s own confession as a way of breaking the lie', () => {
+  it('never counts a liar’s own confession to a lie as a way of breaking that lie', () => {
     for (const tier of [2, 4, 5] as const) {
       for (let seed = 1; seed <= 4; seed++) {
         const k = v2(seed, tier);
         for (const c of k.logic?.confrontations ?? []) {
-          for (const w of c.contradictions) expect(w.some((id) => id.startsWith(`confess:${c.personId}:`))).toBe(false);
+          for (const w of c.contradictions) expect(w.some((id) => id === `confess:${c.personId}:${c.lie.ticks[0]}`)).toBe(false);
         }
       }
     }

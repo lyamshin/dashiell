@@ -88,3 +88,35 @@ Seed 3 at Medium (`npx tsx scripts/v2-stats.ts --seed 3 --tier 4`):
 - The book: **The Count** — the step that catches the culprit's word is the count. Motif: the whistle off the river. Gag: the office's own frost.
 
 That is the worked example's shape: the stairs count (T4 + T7), the room placed by Hargrove, the lies falling to the count, Marchetti with nowhere to stand. Differences: Rafferty knows Hauck by name here, so Hauck's third-floor story is broken by Rafferty's word straight off (T8a) as well as by the count; Vitale is placed by a second stranger rather than by Hargrove's count; and the worked example's seven steps come out as about a dozen solver steps, most of them folds of the same three pieces.
+
+## Stage 3: the book
+
+The book is named by the step that breaks the **culprit's** word — the lie with nowhere to stand is the night's story — and where that is a plain read-off, by the bottleneck's technique; at Raw and Coddled it is always The One Who Lied.
+
+| book | the piece that breaks the culprit's word | its tell | turn chapter |
+|---|---|---|---|
+| The Count | a head count or an empty doorway (T4) | "Rafferty counted heads the way other people count their change: twice, and out loud." | The Count |
+| The Stranger | a description tied to a face (T7), or two tested (T10) | "A face with no name is half a fact…" | The Stranger |
+| The Alibi Web | together and apart (T6), a companion's claim | "Company is the best alibi there is, as long as the company agrees." | The Alibi Web |
+| The Clock | an anchor (T3), the conditional (T9), travel | "Everybody on the street kept time by the whistle, whether they meant to or not." | The Clock |
+| The One Who Lied | a sighting read straight off | — | The One Who Lied |
+
+The acts are cuts through the graph: the hook (what the givens settle), the scene (the half hour and the legs the scene gives), the widening (every step not in another act), the turn (the first lie a player can catch, and the lies the same step catches with it), the narrowing (the confessions, the other lies, who), the report (the targets). On the page an act opens when the night reaches it, in whatever order the player takes the steps: the scene the first time the scene is reached, the widening on the page after, the turn on the first page the notebook holds everything that breaks somebody's own account, the narrowing on the page after the turn.
+
+**Night-long roles.** The motif is the anchor nearest the crime's half hour (a room's anchor gives way to one the whole street hears): planted at the scene with a line of its own, called back at the turn where the notebook has its hour, and given the last word of the closing page. The running gag is the office's: if the office's own deck already planted one (the frost on the window, the radiator), the book takes that one up; otherwise it plants its own on page one. The tell is planted by the page that brings the piece the book is about, only while it can still set the turn up, and paid off at the turn unless the turn's own line already said it.
+
+**The turn** writes the lie as two things side by side, never as a verdict — the same rule M12's recap keeps: "Two people had told me they were at the third floor at half past eight. Rafferty had counted one." When the first lie a player catches falls to something other than the book's own piece, the chapter is "Something That Didn't Fit" and the closing line is the plain one: a Count book whose first lie fell to a sighting doesn't talk about counting yet. The turn takes the place of M12's recap on that page.
+
+**Simplified:** the acts other than the turn have a heading and no recap of their own (M12's recaps still come at their own triggers). Books are five shapes with one line set each; there is no book-specific sheet for the confrontation or the confession — those pages are M12's, which already stage "All right. I was at the Velvet Room. I was selling things that were stolen." well.
+
+## Stage 4: pages from the graph
+
+The player chooses freely, as before: every page has its choices, costs, the grid, confront with the free second pick, the rundown. What a question can return is what the dig left in the world, which is the designer's three kinds of extra by construction:
+
+- **no new fact**: "never heard of anybody called Vitale", where the dig cut a name; "couldn't tell you", where there was nothing to see;
+- **facts that go nowhere**: testimony on no route, the innocents' secrets (dealt as before, about eight facts a night whatever the tier);
+- **facts that go somewhere with overlap**: a rival's second and later routes.
+
+Per case, on average (50 seeds a tier): route facts / overlap facts / dead ends in the findable core are about 5 / 1 / 33 at Raw, 9 / 3 / 48 at Poached, 16 / 5 / 116 at Medium and 19 / 7 / 175 at Hard-boiled. (Most of the dead ends are the one-clue-per-pair testimony the engine has always dealt: anybody can be asked about anybody.)
+
+**Simplified:** a page carries its steps through the tell (the step the book is about) and the turn (the lie step), not through a sheet chosen per step on every page; the rest of each page is v1's planner and sheets, unchanged.

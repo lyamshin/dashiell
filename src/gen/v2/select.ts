@@ -131,14 +131,15 @@ export function selectV2(input: LogicSelectInput): V2Selection | null {
         const w = whyNot(st, personId, t, claimed);
         if (!w) continue;
         const ids = idsOf(st, w);
-        if (ids.some((id) => id.startsWith(`confess:${personId}:`))) {
+        if (ids.some((id) => id === `confess:${personId}:${ticks[0]}`)) {
           own ??= ids;
           continue;
         }
         found = ids;
         break;
       }
-      found ??= own;
+      // Only its own confession left: no further way of breaking it.
+      void own;
       if (!found || found.length === 0) break;
       out.push(found);
       const drop = new Set(found.map((id) => byId.get(id)).filter((c): c is Clue => !!c).map(sourceKey));
