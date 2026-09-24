@@ -20,7 +20,7 @@ import { buildSchedules, type ScheduleBuild } from './schedule.js';
 import { deriveCandidates, deriveObservations } from './clues.js';
 import { selectFindable } from './select.js';
 import { checkSolvability, type CaseUnderTest } from './solvability.js';
-import { TROPE_BY_ID, pickMixedTrope, pickTrope, type Trope, type TropeContext } from './tropes/index.js';
+import { TROPE_BY_ID, TROPES, pickMixedTrope, pickTrope, type Trope, type TropeContext } from './tropes/index.js';
 import { buildVictimBio } from './victim.js';
 import { buildClientBrief } from './client.js';
 import { briefingStrings, buildBriefing } from './briefing.js';
@@ -39,7 +39,10 @@ import type { Clue, Description, Fact, Id as PersonId } from './types.js';
 import { assignBlocks } from './logic/travel.js';
 import { buildSchedules9 } from './logic/schedule.js';
 import { buildPool } from './logic/rules.js';
-import { selectLogic } from './logic/select.js';
+import { selectLogic, type LogicSelection } from './logic/select.js';
+import { selectV2, type V2Selection } from './v2/select.js';
+import { chooseBook } from './v2/book.js';
+import { checkLogic } from './logic/check.js';
 import { ambiguousDescription, edgesOf } from './logic/acquaint.js';
 import { applyRule } from './logic/lines.js';
 import { ownTopics } from './topics.js';
@@ -70,6 +73,40 @@ export interface GenerateOptions extends ShapeOptions {
    * before M14, draw for draw. For the goldens and the tests pinned to them.
    */
   classic?: boolean;
+  /**
+   * The rewrite (docs/35): `v2` builds the puzzle first (`v2/puzzle.ts`) and
+   * chooses a book for it (`v2/book.ts`). Murder and lost pets only. Absent
+   * or `v1` is the game as it is.
+   */
+  engine?: 'v1' | 'v2';
+}
+
+/**
+ * v2's case mix: murder and lost pets, two to one. The classic draw is kept
+ * where it is a murder the mix has room for, so seed 3 at Medium is still
+ * the Sirkin case the worked example is built on.
+ */
+function pickV2Trope(
+  tropeRng: Rng,
+  mixRng: Rng,
+  classicList: PersonId[],
+  pickOpts: { type?: CaseType; tropeId?: PersonId; allowed?: PersonId[] },
+): { trope: Trope; kept: boolean } {
+  if (pickOpts.tropeId !== undefined || pickOpts.type !== undefined) {
+    return pickMixedTrope(tropeRng, mixRng, { murder: 2, 'lost-pet': 1 }, classicList, pickOpts);
+  }
+  const wantMurder = 2 / 3;
+  const drawn = pickTrope(tropeRng, { allowed: classicList });
+  const pool = TROPES.filter((t) => classicList.includes(t.id));
+  const total = pool.reduce((n, t) => n + t.weight, 0);
+  const shareMurder = pool.filter((t) => t.type === 'murder').reduce((n, t) => n + t.weight, 0) / Math.max(1, total);
+  const keep = shareMurder > 0 ? Math.min(1, wantMurder / shareMurder) : 0;
+  const roll = mixRng.next();
+  if (drawn.type === 'murder' && roll < keep) return { trope: drawn, kept: true };
+  const kept = shareMurder * keep;
+  const murderLeft = Math.max(0, wantMurder - kept);
+  const type: CaseType = mixRng.next() < murderLeft / Math.max(1e-9, 1 - kept) ? 'murder' : 'lost-pet';
+  return { trope: pickTrope(mixRng, { type, ...(pickOpts.allowed ? { allowed: pickOpts.allowed } : {}) }), kept: false };
 }
 
 /** The single public entry point. Same seed and options, same case. */
@@ -590,8 +627,11 @@ function runLogic(
   const mixRng = new Rng((seed * 1597334677 + difficulty * 3812015801 + salt * 104723 + 17) >>> 0);
   for (let i = 0; i < 3; i++) mixRng.next();
   const classicList = shape.classicTropes ?? shape.tropes;
+  const v2 = opts?.engine === 'v2';
   const mixed = opts?.classic
     ? { trope: pickTrope(tropeRng, { ...pickOpts, allowed: classicList }), kept: true }
+    : v2
+    ? pickV2Trope(tropeRng, mixRng, classicList, pickOpts)
     : shape.caseMix
     ? pickMixedTrope(tropeRng, mixRng, shape.caseMix, classicList, pickOpts)
     : { trope: pickTrope(tropeRng, pickOpts), kept: true };
@@ -863,7 +903,7 @@ function runLogic(
           : act.type === 'affair' && act.claimedAt && act.claimedAt !== act.place
             ? act.claimedAt
             : build.murderPlaceId;
-      const selection = selectLogic({
+      const selectInput = {
         rng,
         cast,
         setting,
@@ -875,7 +915,17 @@ function runLogic(
         startId,
         blocks,
         ...(reject ? { reject } : {}),
-      });
+      };
+      // v2, stage 1: the solved grid is the one v1 deals for this seed. v1's
+      // selection runs first as the gate (it consumes the attempt's stream
+      // exactly as v1 does), so where the puzzle stage accepts the same
+      // attempt the night is v1's night: seed 3 at Medium is still the
+      // Sirkin case. The puzzle stage then draws on a stream of its own.
+      const gate = v2 ? selectLogic(selectInput) : null;
+      if (v2 && !gate) continue;
+      const selection: LogicSelection | V2Selection | null = v2
+        ? selectV2({ ...selectInput, rng: new Rng((seed * 2246822519 + attempts * 3266489917 + salt) >>> 0) })
+        : selectLogic(selectInput);
       if (!selection) continue;
       const slack = logicSlackFor(shape, ladder, selection.par, selection.summary.walk, caseType);
 
@@ -893,6 +943,14 @@ function runLogic(
         ...pool.material.flatMap((m) => [...m.hints, ...m.traces, ...m.disqualifiers]),
         ...sigClues,
       ];
+      if (v2) {
+        // A witness the dig made a stranger says so in the truth as well.
+        const now = new Map(selection.findable.map((c) => [c.id, c]));
+        for (let i = 0; i < candidates.length; i++) {
+          const c = now.get((candidates[i] as Clue).id);
+          if (c) candidates[i] = c;
+        }
+      }
 
       const underTest: CaseUnderTest = {
         seed,
@@ -943,6 +1001,15 @@ function runLogic(
         },
       };
 
+      if (v2) {
+        const graph = (selection as V2Selection).graph;
+        // v2 accepts by its own rules (the puzzle stage); M9's checker still
+        // writes the deduction path the truth sheet prints.
+        const deduction = checkLogic(underTest).deduction;
+        const kase: Case = { ...underTest, deduction, engine: 'v2', v2: { graph, book: null as never } };
+        kase.v2 = { graph, book: chooseBook(kase, graph) };
+        return kase;
+      }
       const check = checkSolvability(underTest);
       if (!check.ok) {
         diagnostics?.rejections.push(...check.failures);

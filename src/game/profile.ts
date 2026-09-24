@@ -123,26 +123,30 @@ export function levelFor(tier: TierKey, level: Level): Level {
 export interface CasePick {
   tier?: TierKey;
   level: Level;
+  /** The rewrite (docs/35), behind `?engine=v2`. Absent is the game as it is. */
+  engine?: 'v2';
 }
 
-export function caseOptions(pick: CasePick): ShapeOptions {
+export function caseOptions(pick: CasePick): ShapeOptions & { engine?: 'v2' } {
   if (pick.tier === undefined) return { difficulty: pick.level as Difficulty };
-  return { tier: pick.tier, level: levelFor(pick.tier, pick.level) };
+  return { tier: pick.tier, level: levelFor(pick.tier, pick.level), ...(pick.engine ? { engine: pick.engine } : {}) };
 }
 
 /** The pick a saved run was dealt from. A save from before M7 has no tier. */
-export function pickOfRun(run: { difficulty: Difficulty; tier?: TierKey; level?: Level }): CasePick {
+export function pickOfRun(run: { difficulty: Difficulty; tier?: TierKey; level?: Level; engine?: 'v2' }): CasePick {
   if (run.tier === undefined) return { level: run.difficulty };
-  return { tier: run.tier, level: run.level ?? run.difficulty };
+  return { tier: run.tier, level: run.level ?? run.difficulty, ...(run.engine ? { engine: run.engine } : {}) };
 }
 
 /** Whether a saved run is the case this pick would deal from this seed. */
 export function runMatches(
-  run: { seed: number; difficulty: Difficulty; tier?: TierKey; level?: Level },
+  run: { seed: number; difficulty: Difficulty; tier?: TierKey; level?: Level; engine?: 'v2' },
   seed: number,
   pick: CasePick,
 ): boolean {
   if (run.seed !== seed) return false;
+  // A v2 night resumes only as a v2 night, and a v1 night only as v1.
+  if ((run.engine ?? null) !== (pick.engine ?? null)) return false;
   const saved = pickOfRun(run);
   if (saved.tier !== pick.tier) return false;
   if (pick.tier === undefined) return saved.level === pick.level;
@@ -162,13 +166,17 @@ export function pickFromParams(params: URLSearchParams): { seed: number | null; 
   const tier = rawTier !== null && rawTier.trim() !== '' && isTierKey(asTier) ? asTier : undefined;
   const seed =
     rawSeed !== null && rawSeed.trim() !== '' && Number.isFinite(Number(rawSeed)) ? Number(rawSeed) : null;
-  return { seed, pick: tier === undefined ? { level } : { tier, level: levelFor(tier, level) } };
+  const engine = params.get('engine') === 'v2' ? ('v2' as const) : undefined;
+  return {
+    seed,
+    pick: tier === undefined ? { level } : { tier, level: levelFor(tier, level), ...(engine ? { engine } : {}) },
+  };
 }
 
 /** The same, the other way. The level written is the one actually played. */
 export function paramsForPick(seed: number, pick: CasePick): string {
   const level = pick.tier === undefined ? pick.level : levelFor(pick.tier, pick.level);
-  return `?seed=${seed}&d=${level}${pick.tier === undefined ? '' : `&t=${pick.tier}`}`;
+  return `?seed=${seed}&d=${level}${pick.tier === undefined ? '' : `&t=${pick.tier}`}${pick.engine ? `&engine=${pick.engine}` : ''}`;
 }
 
 /* ------------------------------------------------------ filing a report */

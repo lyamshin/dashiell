@@ -132,7 +132,8 @@ export function placedAwayBy(view: CaseView, found: readonly Id[], personId: Id,
 /** Spec §5: the full crime column is asked from Medium up. */
 export function columnAsked(view: CaseView): boolean {
   const t = tierNumber(view);
-  return view.kase.logic !== undefined && t !== null && t >= 4;
+  // v2 (docs/35): "where was everyone" is dropped; the report asks only what the tier asks.
+  return view.kase.logic !== undefined && t !== null && t >= 4 && view.kase.engine !== 'v2';
 }
 
 /* ------------------------------------------------------------------ *

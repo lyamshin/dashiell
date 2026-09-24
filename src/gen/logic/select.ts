@@ -118,12 +118,12 @@ export function confessionRule(personId: Id, claimed: Id, ticks: Tick[], facts: 
   };
 }
 
-function idsOf(st: SolverState, w: Why | null | undefined): Id[] {
+export function idsOf(st: SolverState, w: Why | null | undefined): Id[] {
   if (!w) return [];
   return w.rules.map((r) => st.problem.rules[r]?.id as Id).filter((id) => id !== 'given' && id !== undefined);
 }
 
-function sourceKey(c: Clue): string {
+export function sourceKey(c: Clue): string {
   return c.source.type === 'person' ? `p:${c.source.personId}` : `l:${c.source.placeId}`;
 }
 
@@ -777,7 +777,7 @@ function who(cast: Cast, id: Id): string {
  * rests on an innocent whose own alibi rests on them. The legs the tier asks
  * for (Coddled's method) stay as the pruned route chose them.
  */
-function teachTheLie(
+export function teachTheLie(
   input: LogicSelectInput,
   parSet: Clue[],
   findableCore: Clue[],
@@ -876,7 +876,7 @@ const HAND_SKIPS = new Set<Clue['kind']>(['timing', 'anchor']);
  * the shape's findable target. A motive is never among them: only the culprit
  * has one below Poached, so a motive would name the answer.
  */
-function trimHand(input: LogicSelectInput, parSet: Clue[], findableCore: Clue[]): Clue[] {
+export function trimHand(input: LogicSelectInput, parSet: Clue[], findableCore: Clue[]): Clue[] {
   const { rng, dials, cast } = input;
   const keep = new Set(parSet.map((c) => c.id));
   const target = Math.max(dials.shape.findable, keep.size + 2);
@@ -906,7 +906,7 @@ function trimHand(input: LogicSelectInput, parSet: Clue[], findableCore: Clue[])
 
 /* ------------------------------------------------------------------ leads */
 
-function wireLeads(input: LogicSelectInput, findable: Clue[], parSet: Clue[], starting: Clue[]): void {
+export function wireLeads(input: LogicSelectInput, findable: Clue[], parSet: Clue[], starting: Clue[]): void {
   const { cast, setting } = input;
   const victimId = cast.victim.id;
   const people = cast.people;
@@ -1017,7 +1017,7 @@ export const CULPRIT_SECOND_LIE = 0.75;
 /** The culprit, confronted again. */
 export const CULPRIT_THIRD_LIE = 0.2;
 
-function confront(
+export function confront(
   input: LogicSelectInput,
   lie: LieBlock,
   routes: Id[][],

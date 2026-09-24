@@ -926,6 +926,13 @@ export interface Case {
   /* --- M9 ------------------------------------------------------------- */
   /** The logic game: travel, who knows whom, the lies, confrontations, the solver's summary. */
   logic?: Logic;
+  /* --- v2 (docs/35) --------------------------------------------------- */
+  /** Dealt by the rewrite: the puzzle first, then the book. Absent on every v1 case. */
+  engine?: 'v2';
+  v2?: {
+    graph: import('./v2/graph.js').DeductionGraph;
+    book: import('./v2/book.js').Book;
+  };
 }
 
 /**

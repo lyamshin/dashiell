@@ -56,6 +56,8 @@ const type = values.get('type');
 const trope = values.get('trope');
 // M7: the tier and the level. Neither given is today's case.
 const dialFlags = parseTierLevel(values);
+// The rewrite (docs/35): `--engine v2` deals and pages the night the v2 way.
+const engine = values.get('engine') === 'v2' ? ('v2' as const) : undefined;
 
 if (
   !Number.isInteger(seed) ||
@@ -80,6 +82,7 @@ const kase = generateCase(seed, {
   ...(type === undefined ? {} : { type: type as CaseType }),
   ...(trope === undefined ? {} : { tropeId: trope }),
   ...dialFlags,
+  ...(engine ? { engine } : {}),
 });
 const view = buildView(kase);
 

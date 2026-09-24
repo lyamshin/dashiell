@@ -143,6 +143,7 @@ export function newRun(
     ...(tier !== undefined && tier !== 'custom' && kase.ladder !== undefined
       ? { tier, level: kase.ladder.level }
       : {}),
+    ...(kase.engine === 'v2' ? { engine: 'v2' as const } : {}),
     detectiveName: opts.detectiveName,
     // §B.2: the run starts at the office, at midnight.
     at: view.office.id,

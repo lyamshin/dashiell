@@ -73,7 +73,38 @@ export interface SolverProblem {
   probe: boolean;
   /** Stop as soon as these hold (skips work the caller does not want). */
   stopWhen?: (s: SolverState) => boolean;
+  /**
+   * v2: commit the cheapest technique first (by the chain's peak cost), then
+   * the shallowest. Absent, the M9 order: shallowest first, techniques only
+   * recorded.
+   */
+  techniques?: boolean;
+  /** v2: the dearest technique cost the solver may use. Absent: any. */
+  maxCost?: number;
 }
+
+/**
+ * v2 (docs/34 §4): the technique ladder. Every conclusion is tagged with the
+ * technique that made it, and `peak` is the dearest technique anywhere in the
+ * chain under it. `E` is the one-at-the-scene elimination the report itself
+ * is, and costs a read-off.
+ */
+export type Tech = 'T1' | 'T2' | 'T3' | 'T4' | 'T5' | 'T6' | 'T7' | 'T8a' | 'T8b' | 'T9' | 'T10' | 'E';
+
+export const TECH_COST: Record<Tech, number> = {
+  T1: 1,
+  T2: 1.5,
+  T3: 2,
+  T4: 2.5,
+  T5: 3,
+  T6: 3,
+  T7: 4,
+  T8a: 2.5,
+  T8b: 5,
+  T9: 5.5,
+  T10: 7,
+  E: 1,
+};
 
 /** Why a value was struck, or a half hour ruled out. */
 export interface Why {
@@ -81,6 +112,16 @@ export interface Why {
   /** Rule indices into `problem.rules`. */
   rules: number[];
   hyp: boolean;
+  /** v2: the technique of this conclusion's own step. */
+  tech?: Tech;
+  /** v2: the dearest technique cost anywhere in the chain, this step included. */
+  peak?: number;
+  /** v2: the conclusions this one was drawn from (its premise whys). */
+  from?: Why[];
+  /** v2: one number per step: every value struck by one step shares it. */
+  key?: number;
+  /** v2: the cells this step placed somebody in, as [suspect, tick, place] indices. */
+  placed?: [number, number, number][];
 }
 
 export interface SolverState {
@@ -107,6 +148,30 @@ export interface SolverState {
 interface Premise {
   rules: number[];
   whys: Why[];
+  /** v2: the technique this step uses. Absent reads as a read-off. */
+  tech?: Tech;
+  /** v2: where this step put somebody, when it did. */
+  placed?: [number, number, number][];
+}
+
+const premiseKeys = new WeakMap<Premise, number>();
+let premiseCounter = 0;
+function keyOfPremise(prem: Premise): number {
+  let k = premiseKeys.get(prem);
+  if (k === undefined) {
+    k = ++premiseCounter;
+    premiseKeys.set(prem, k);
+  }
+  return k;
+}
+
+function peakOf(prem: Premise): number {
+  let m = TECH_COST[prem.tech ?? 'T1'];
+  for (const w of prem.whys) {
+    const p = w.peak ?? TECH_COST[w.tech ?? 'T1'];
+    if (p > m) m = p;
+  }
+  return m;
 }
 
 interface Candidate {
@@ -150,7 +215,16 @@ function mergeWhy(prem: Premise, depth: number, hyp = false): Why {
     for (const r of w.rules) set.add(r);
     if (w.hyp) h = true;
   }
-  return { depth, rules: [...set].sort((a, b) => a - b), hyp: h };
+  return {
+    depth,
+    rules: [...set].sort((a, b) => a - b),
+    hyp: h,
+    tech: prem.tech ?? 'T1',
+    peak: peakOf(prem),
+    ...(prem.whys.length > 0 ? { from: prem.whys } : {}),
+    key: keyOfPremise(prem),
+    ...(prem.placed ? { placed: prem.placed } : {}),
+  };
 }
 
 /* ------------------------------------------------------- compiled problem */
@@ -160,7 +234,7 @@ interface Compiled {
   pIndex: Map<Id, number>;
   L: number;
   reach: Uint16Array; // per place: bitmask of places reachable next half hour
-  direct: { r: number; s: number; t: number; keep?: number; strike?: number }[];
+  direct: { r: number; s: number; t: number; keep?: number; strike?: number; tech?: Tech }[];
   tickDirect: { r: number; keep: number }[];
   anchorAt: Map<Id, { r: number; ticks: number }>;
   sightings: { r: number; s: number; p: number; a: Id }[];
@@ -246,7 +320,7 @@ function compile(pr: SolverProblem): Compiled {
           if (p === undefined) break;
           for (const [id, s] of sIndex) {
             if (f.except.includes(id)) continue;
-            for (const t of f.ticks) c.direct.push({ r, s, t, strike: p });
+            for (const t of f.ticks) c.direct.push({ r, s, t, strike: p, tech: 'T4' });
           }
           break;
         }
@@ -408,6 +482,7 @@ function strikeC(out: Candidate[], st: SolverState, s: number, t: number, p: num
 
 function keepC(out: Candidate[], st: SolverState, s: number, t: number, p: number, premise: Premise): void {
   const d = st.dom[s * T12 + t] as number;
+  if (d !== 1 << p) (premise.placed ??= []).push([s, t, p]);
   if (!(d & (1 << p))) {
     out.push({ kind: 'fail', s, t, p, depth: depthOf(premise), premise, note: 'placed where it cannot be' });
     return;
@@ -429,23 +504,23 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
       const now = dom[d.s * T12 + d.t] as number;
       if (d.keep !== undefined) {
         if (now === 1 << d.keep) continue;
-        keepC(out, st, d.s, d.t, d.keep, { rules: [d.r], whys: [] });
+        keepC(out, st, d.s, d.t, d.keep, { rules: [d.r], whys: [], tech: d.tech ?? 'T1' });
       } else if (d.strike !== undefined) {
         if (!(now & (1 << d.strike))) continue;
-        strikeC(out, st, d.s, d.t, d.strike, { rules: [d.r], whys: [] });
+        strikeC(out, st, d.s, d.t, d.strike, { rules: [d.r], whys: [], tech: d.tech ?? 'T1' });
       }
     }
     for (const d of c.tickDirect) {
       for (let t = 0; t < T12; t++) {
         if (st.tdom & bit(t) && !(d.keep & bit(t))) {
-          out.push({ kind: 'tick', s: -1, t, p: -1, depth: 1, premise: { rules: [d.r], whys: [] } });
+          out.push({ kind: 'tick', s: -1, t, p: -1, depth: 1, premise: { rules: [d.r], whys: [], tech: 'T1' } });
         }
       }
     }
     for (const k of c.knowledge) {
       for (const ig of c.ignorance) {
         if (ig.a !== k.a) continue;
-        const premise = { rules: [k.r, ig.r], whys: [] };
+        const premise: Premise = { rules: [k.r, ig.r], whys: [], tech: 'T9' };
         for (const t of k.ticks) strikeC(out, st, ig.s, t, k.p, premise);
       }
     }
@@ -453,7 +528,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
       const at = c.anchorAt.get(v.a);
       if (!at || at.ticks === 0) continue;
       const earliest = only(at.ticks & -at.ticks);
-      const premise = { rules: [v.r, at.r], whys: [] };
+      const premise: Premise = { rules: [v.r, at.r], whys: [], tech: 'T3' };
       for (let t = 0; t <= earliest; t++) {
         if (st.tdom & bit(t)) out.push({ kind: 'tick', s: -1, t, p: -1, depth: depthOf(premise), premise });
       }
@@ -474,7 +549,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
         if (w) whys.push(w);
       }
     }
-    const premise = { rules: [sg.r, at.r], whys };
+    const premise: Premise = { rules: [sg.r, at.r], whys, tech: 'T3' };
     if (open === 0) failC(out, premise, 'an anchored sighting fits no half hour');
     else if (popcount(open) === 1) keepC(out, st, sg.s, only(open), sg.p, premise);
   }
@@ -490,7 +565,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
         if (w) whys.push(w);
       }
     }
-    const premise = { rules: [d.r], whys };
+    const premise: Premise = { rules: [d.r], whys, tech: d.matches.length <= 1 ? 'T1' : 'T7' };
     if (open.length === 0) failC(out, premise, 'a description fits nobody who could have been there');
     else if (open.length === 1) keepC(out, st, open[0] as number, d.t, d.p, premise);
   }
@@ -506,12 +581,12 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
       if (d === bit(k.p)) forced.push(s);
     }
     if (possible.length < k.n || forced.length > k.n) {
-      failC(out, { rules: [k.r], whys: [] }, 'a count does not add up');
+      failC(out, { rules: [k.r], whys: [], tech: 'T4' }, 'a count does not add up');
       continue;
     }
     if (forced.length === k.n && possible.length > k.n) {
       const whys = forced.flatMap((s) => placedWhy(st, s, k.t));
-      for (const s of possible) if (!forced.includes(s)) strikeC(out, st, s, k.t, k.p, { rules: [k.r], whys });
+      for (const s of possible) if (!forced.includes(s)) strikeC(out, st, s, k.t, k.p, { rules: [k.r], whys, tech: 'T4' });
     } else if (possible.length === k.n && forced.length < k.n) {
       const whys: Why[] = [];
       for (let s = 0; s < S; s++) {
@@ -519,7 +594,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
         const w = struck(st, s, k.t, k.p);
         if (w) whys.push(w);
       }
-      for (const s of possible) keepC(out, st, s, k.t, k.p, { rules: [k.r], whys });
+      for (const s of possible) keepC(out, st, s, k.t, k.p, { rules: [k.r], whys, tech: 'T4' });
     }
   }
 
@@ -529,8 +604,8 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
       for (let p = 0; p < P; p++) {
         const inA = (cellOf(st, tg.a, t) & bit(p)) !== 0;
         const inB = (cellOf(st, tg.b, t) & bit(p)) !== 0;
-        if (inA && !inB) strikeC(out, st, tg.a, t, p, { rules: [tg.r], whys: [struck(st, tg.b, t, p)].filter((w): w is Why => !!w) });
-        if (inB && !inA) strikeC(out, st, tg.b, t, p, { rules: [tg.r], whys: [struck(st, tg.a, t, p)].filter((w): w is Why => !!w) });
+        if (inA && !inB) strikeC(out, st, tg.a, t, p, { rules: [tg.r], whys: [struck(st, tg.b, t, p)].filter((w): w is Why => !!w), tech: 'T6' });
+        if (inB && !inA) strikeC(out, st, tg.b, t, p, { rules: [tg.r], whys: [struck(st, tg.a, t, p)].filter((w): w is Why => !!w), tech: 'T6' });
       }
     }
   }
@@ -538,8 +613,8 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
     for (const t of ap.ticks) {
       const da = cellOf(st, ap.a, t);
       const db = cellOf(st, ap.b, t);
-      if (popcount(da) === 1 && db & da) strikeC(out, st, ap.b, t, only(da), { rules: [ap.r], whys: placedWhy(st, ap.a, t) });
-      if (popcount(db) === 1 && da & db) strikeC(out, st, ap.a, t, only(db), { rules: [ap.r], whys: placedWhy(st, ap.b, t) });
+      if (popcount(da) === 1 && db & da) strikeC(out, st, ap.b, t, only(da), { rules: [ap.r], whys: placedWhy(st, ap.a, t), tech: 'T6' });
+      if (popcount(db) === 1 && da & db) strikeC(out, st, ap.a, t, only(db), { rules: [ap.r], whys: placedWhy(st, ap.b, t), tech: 'T6' });
     }
   }
 
@@ -575,7 +650,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
             const w = st.why[((s * NT + u) * P) + q];
             if (w) whys.push(w);
           }
-          strikeC(out, st, s, t, p, { rules: [], whys });
+          strikeC(out, st, s, t, p, { rules: [], whys, tech: 'T5' });
           break;
         }
       }
@@ -595,7 +670,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
           const w = struck(st, s, t, L);
           if (w) whys.push(w);
         }
-        out.push({ kind: 'tick', s: -1, t, p: -1, depth: depthOf({ rules: [], whys }), premise: { rules: [], whys } });
+        out.push({ kind: 'tick', s: -1, t, p: -1, depth: depthOf({ rules: [], whys }), premise: { rules: [], whys, tech: 'E' } });
       }
     }
     if (popcount(st.tdom) === 1) {
@@ -610,11 +685,11 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
           const w = struck(st, s, t, L);
           if (w) whys.push(w);
         }
-        keepC(out, st, open[0] as number, t, L, { rules: [], whys });
+        keepC(out, st, open[0] as number, t, L, { rules: [], whys, tech: 'E' });
       }
       for (const k of open) {
         if (cellOf(st, k, t) !== bit(L)) continue;
-        for (const s of open) if (s !== k) strikeC(out, st, s, t, L, { rules: [], whys: [...tw, ...placedWhy(st, k, t)] });
+        for (const s of open) if (s !== k) strikeC(out, st, s, t, L, { rules: [], whys: [...tw, ...placedWhy(st, k, t)], tech: 'E' });
       }
     }
   }
@@ -625,7 +700,8 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
     for (const t of cf.ticks) {
       const w = struck(st, cf.s, t, cf.p);
       if (w) {
-        premise = { rules: [cf.r], whys: [w] };
+        // A lie caught: straight off one fact, or down a chain (T8a, T8b).
+        premise = { rules: [cf.r], whys: [w], tech: (w.peak ?? 1) <= TECH_COST.T2 ? 'T8a' : 'T8b' };
         break;
       }
     }
@@ -647,7 +723,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
     let premise: Premise | null = null;
     for (const t of sp.ticks) {
       if (cellOf(st, sp.s, t) === bit(sp.p)) {
-        premise = { rules: [sp.r], whys: placedWhy(st, sp.s, t) };
+        premise = { rules: [sp.r], whys: placedWhy(st, sp.s, t), tech: 'T2' };
         break;
       }
     }
@@ -673,7 +749,7 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
         const w = st.whyT[t];
         if (w) whys.push(w);
       }
-      if (clear) premise = { rules: [sp.r], whys };
+      if (clear) premise = { rules: [sp.r], whys, tech: 'T2' };
     }
     if (!premise) continue;
     let any = false;
@@ -693,13 +769,25 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
   return out;
 }
 
-function commit(st: SolverState, all: Candidate[]): boolean {
+function commit(st: SolverState, input: Candidate[]): boolean {
+  const pr = st.problem;
+  // v2: a solver held to a rung of the ladder never uses a dearer technique.
+  const all = pr.maxCost === undefined ? input : input.filter((x) => peakOf(x.premise) <= (pr.maxCost as number));
   if (all.length === 0) return false;
   // Accounts are defaults: every hard conclusion first, so that a lie the
   // rules break is broken before anybody's word is taken for it.
   const hard = all.filter((x) => !x.soft);
   const vouched = all.filter((x) => x.soft === 1);
-  const cand = hard.length > 0 ? hard : vouched.length > 0 ? vouched : all;
+  let cand = hard.length > 0 ? hard : vouched.length > 0 ? vouched : all;
+  if (pr.techniques) {
+    // v2: the cheapest technique first, as a careful person solves.
+    let least = Infinity;
+    for (const x of cand) {
+      const p = peakOf(x.premise);
+      if (p < least) least = p;
+    }
+    cand = cand.filter((x) => peakOf(x.premise) === least);
+  }
   let min = Infinity;
   for (const x of cand) if (x.depth < min) min = x.depth;
   let progressed = false;
@@ -764,7 +852,7 @@ function probeRound(st: SolverState, c: Compiled): boolean {
         const trial = cloneState(st);
         trial.problem = { ...st.problem, stopWhen: undefined };
         const i = s * T12 + t;
-        const hyp: Why = { depth: 1, rules: [], hyp: true };
+        const hyp: Why = { depth: 1, rules: [], hyp: true, tech: 'T10', peak: TECH_COST.T10 };
         for (let q = 0; q < st.P; q++) {
           if (q !== p && (trial.dom[i] as number) & bit(q)) {
             trial.dom[i] = (trial.dom[i] as number) & ~bit(q);
@@ -777,7 +865,14 @@ function probeRound(st: SolverState, c: Compiled): boolean {
         const conflict = trial.conflict ?? { depth: 1, rules: [], hyp: true };
         // Everything the trial leaned on, short of the assumption itself.
         st.dom[i] = (st.dom[i] as number) & ~bit(p);
-        st.why[i * st.P + p] = { depth: conflict.depth + 1, rules: conflict.rules.slice(), hyp: true };
+        st.why[i * st.P + p] = {
+          depth: conflict.depth + 1,
+          rules: conflict.rules.slice(),
+          hyp: true,
+          tech: 'T10',
+          peak: TECH_COST.T10,
+          from: [conflict],
+        };
         st.usedProbe = true;
         struckAny = true;
         if (st.dom[i] === 0) {
@@ -801,7 +896,7 @@ export function solve(problem: SolverProblem): Solved {
   const c = compile(problem);
   const st = newState(problem);
   propagate(st, c);
-  if (problem.probe) {
+  if (problem.probe && (problem.maxCost ?? Infinity) >= TECH_COST.T10) {
     for (let k = 0; k < 6 && !st.contradiction; k++) {
       if (problem.stopWhen?.(st)) break;
       if (!probeRound(st, c)) break;
