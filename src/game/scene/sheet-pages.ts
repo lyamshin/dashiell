@@ -50,6 +50,7 @@ import {
   callbackRoll,
   canPay,
   fillSheet,
+  pluralThing,
   chooseSheet,
   newRun,
   rolesNeeded,
@@ -78,7 +79,7 @@ export interface PageSheets {
   /** A run for the next sheet on the page, sharing the page's roles. */
   start(moment: Moment, flags: Flags): SheetRun;
   /** Remember a sheet the page used (and the night, like the dealer). */
-  used(id: string, moment: Moment): void;
+  used(id: string, moment: Moment, fitting?: number): void;
   /** Roles on the page, bound and in words. */
   roles(): SheetRun | null;
   traces(): SheetUse[];
@@ -87,7 +88,7 @@ export interface PageSheets {
 export function newPageSheets(stage: Stage): PageSheets {
   const rolled = callbackRoll(stage.view.kase.seed, stage.pageIndex);
   let shared: SheetRun | null = null;
-  const uses: { id: string; moment: Moment }[] = [];
+  const uses: { id: string; moment: Moment; fitting?: number }[] = [];
   return {
     rolled,
     start(moment, flags) {
@@ -95,8 +96,8 @@ export function newPageSheets(stage: Stage): PageSheets {
       shared = run;
       return run;
     },
-    used(id, moment) {
-      uses.push({ id, moment });
+    used(id, moment, fitting) {
+      uses.push({ id, moment, ...(fitting === undefined ? {} : { fitting }) });
       noteSheet(stage, id);
     },
     roles() {
@@ -104,7 +105,7 @@ export function newPageSheets(stage: Stage): PageSheets {
     },
     traces() {
       const paid = (shared?.paid.length ?? 0) > 0;
-      return uses.map((u) => ({ id: u.id, moment: u.moment, callback: paid, rolled }));
+      return uses.map((u) => ({ id: u.id, moment: u.moment, callback: paid, rolled, ...(u.fitting === undefined ? {} : { fitting: u.fitting }) }));
     },
   };
 }
@@ -113,6 +114,18 @@ const CARD_BY_ID = new Map<string, Card>();
 function cardById(id: string): Card | undefined {
   if (CARD_BY_ID.size === 0) for (const deck of Object.values(DECKS)) for (const c of deck) CARD_BY_ID.set(c.id, c);
   return CARD_BY_ID.get(id);
+}
+
+/**
+ * What somebody was doing, as a sheet says it: the activity up to its card's
+ * `cut` when it has one ("reading a folded newspaper"), the whole of it else.
+ */
+export function cutActivity(activity: { text: string; cardId: string } | undefined): string | undefined {
+  if (!activity) return undefined;
+  const card = activity.cardId ? cardById(activity.cardId) : undefined;
+  if (!card?.cut) return activity.text;
+  const at = activity.text.indexOf(card.cut);
+  return at < 0 ? activity.text : `${activity.text.slice(0, at + card.cut.length).replace(/[,;:\s]+$/, '')}.`;
 }
 
 /** Tonight's sheets, oldest first, off the dealer's memory. */
@@ -236,6 +249,29 @@ export function deckPiece(stage: Stage, part: SheetPart, want: string | null, wh
       ladder = [(c) => tagsFit(c) && exports(c), tagsFit];
     }
   }
+  if (part.form === 'named' && person) {
+    // "The regulars said Hargrove poured an honest drink": the card's first
+    // pronoun is the person's name, when other people stand between it and them.
+    const s0 = slots;
+    // Not "Fairbanks’d": a pronoun with something run on to it stays a pronoun, so the card is not dealt named.
+    const firstSlot = (c: Card): string | undefined => {
+      const m = /\{(He|he|him|his)\}([’']?)/.exec(c.text);
+      return m && m[2] === '' ? m[1] : undefined;
+    };
+    ladder = ladder.map((m) => (c: Card) => m(c) && firstSlot(c) !== undefined);
+    const drawnNamed = deal(stage, deck, ladder, s0);
+    if (!drawnNamed) return null;
+    const card = cardById(drawnNamed.cardId) as Card;
+    const which = firstSlot(card) as string;
+    const name = which === 'his' ? `${person.surname}’s` : person.surname;
+    const once = card.text.replace(`{${which}}`, name);
+    const text = once.replace(/\{(\w+)\}/g, (_m, k: string) => s0[k] ?? `{${k}}`);
+    return {
+      text: text.charAt(0).toUpperCase() + text.slice(1),
+      voice: 'presence',
+      ...(card.exports ? { exports: card.exports } : {}),
+    };
+  }
   const drawn = deal(stage, deck, ladder, slots);
   if (!drawn) return null;
   const card = cardById(drawn.cardId);
@@ -342,7 +378,7 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
       people.some((p) => p.personId !== view.client.id && p.personId !== view.victim.id) &&
       (stage.memory?.rundown ?? -1) !== plan.memory.visit,
   };
-  const activityOf = (p: PresencePerson | undefined): string | undefined => p?.activity.text;
+  const activityOf = (p: PresencePerson | undefined): string | undefined => cutActivity(p?.activity);
   const slots: Record<string, string | undefined> = {
     place: place?.shortName,
     Place: place ? capitalize(place.shortName) : undefined,
@@ -371,6 +407,8 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
   if (iW >= 0) beatsClaimed.add(iW);
   if (iA >= 0) beatsClaimed.add(iA);
   let reserved = new Set<Id>();
+  /** People a list said by count ("two men I didn't know"), not by name. */
+  const counted = new Set<Id>();
   let viewsCovered = new Set<number>();
 
   const personLine = (p: PresencePerson, form: string | undefined, part: SheetPart, run: SheetRun): string | null => {
@@ -386,6 +424,9 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
       case 'placed': {
         const plain = act.plain;
         if (!plain) return presenceLine(stage, p);
+        // The prop places two people at most: past that a room is a list of
+        // distances from one lamp (the fan came up five times on one page).
+        if (usedPhrases.size >= 2) return endStop(p.activity.text);
         const pool = (part.pool ?? []).filter((t) => !usedPhrases.has(t));
         const slotsHere: Record<string, string | undefined> = {
           ...slots,
@@ -400,7 +441,14 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
         const pick = fillable[stage.dealer.random.int(fillable.length)] as { t: string; filled: { text: string; roles: string[] } };
         usedPhrases.add(pick.t);
         for (const r of pick.filled.roles) if (run.introduced.has(r) && !run.paid.includes(r)) run.paid.push(r);
-        return `${person.surname} was ${plain} ${pick.filled.text}.`;
+        // Where they already are ("by the light that was there") and where
+        // the prop puts them are two phrases, with a comma between.
+        const placedAlready = /\b(?:by|at|in|on|under|behind|beside|near|over|against|along|across|inside|outside|through)\b/.test(plain);
+        const sep = placedAlready ? ', ' : ' ';
+        // First sight of somebody the case has: what anybody can see (M11 §A.2).
+        const seen = p.firstSight && person.kind !== 'fixture' ? sightOf(person) : undefined;
+        const who = seen ? `${person.surname}, ${seen},` : person.surname;
+        return `${who} was ${plain}${sep}${pick.filled.text}.`;
       }
       default:
         return presenceLine(stage, p);
@@ -408,7 +456,7 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
   };
   const slotsFor = (p: PresencePerson): { plain: string | undefined } => {
     const person = personOf(p) as Person;
-    const doing = doingOf(p.activity.text, person.surname);
+    const doing = doingOf(cutActivity(p.activity) ?? p.activity.text, person.surname);
     return { plain: doing ? plainAction(doing.trim().replace(/\.$/, '')) : undefined };
   };
 
@@ -464,6 +512,9 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
           const text = personLine(p, part.form, part, run);
           if (text === null) return null;
           presenceTexts.push(text);
+          if ((part.form ?? 'full') === 'full' && p.firstSight && sentencesOf(text).length >= 3) {
+            return { text: '', voice: 'presence', presents: [p.personId], beats: [iP], block: [{ text, voice: 'presence', beats: [iP] }] };
+          }
           return { text, voice: 'presence', presents: [p.personId], beats: [iP] };
         }
         case 'tell': {
@@ -483,18 +534,32 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
           const loose = todo.filter((p) => !p.grouped);
           const crowd = todo.filter((p) => p.grouped);
           if (part.form === 'list') {
-            const text = listLine(stage, todo, part.text ?? '{list}.', slots);
+            const text = listLine(stage, todo, part.text ?? '{list}.', slots, counted);
             if (text === null) return null;
             presenceTexts.push(text);
             return { text, voice: 'presence', presents: todo.map((p) => p.personId), beats: [iP] };
           }
+          // A first sight in full is a character, three to five sentences (M11
+          // §A.2): a paragraph of its own. Short lines run on together.
+          const block: OutPara[] = [];
           for (const p of loose) {
             const line = personLine(p, part.form, part, run);
-            if (line) lines.push(line);
+            if (!line) continue;
+            presenceTexts.push(line);
+            if ((part.form ?? 'full') === 'full' && p.firstSight && sentencesOf(line).length >= 3) {
+              block.push({ text: line, voice: 'presence', beats: [iP] });
+            } else lines.push(line);
           }
-          if (crowd.length > 0) lines.push(crowdLine(stage, crowd.map((p) => p.personId)));
+          if (crowd.length > 0) {
+            const line = crowdLine(stage, crowd.map((p) => p.personId));
+            presenceTexts.push(line);
+            lines.push(line);
+          }
           const text = lines.join(' ');
-          presenceTexts.push(text);
+          if (block.length > 0) {
+            if (text.length > 0) block.push({ text, voice: 'presence', beats: [iP] });
+            return { text: '', voice: 'presence', presents: todo.map((p) => p.personId), beats: [iP], block };
+          }
           return { text, voice: 'presence', presents: todo.map((p) => p.personId), beats: [iP] };
         }
         case 'views': {
@@ -544,12 +609,19 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
   const history = sheetHistory(stage);
   const run = ps.start('arrival', flags);
   const random = stage.dealer.random;
-  const arrival = chooseSheet('arrival', flags, history, random, () => true, (s) => !rolled || canPay(s));
+  const arrivalOf = { fitting: 0 };
+  const arrival = chooseSheet('arrival', flags, history, random, () => true, (s) => !rolled || canPay(s), arrivalOf);
   if (!arrival) return null;
   const first = runSheet(arrival, holes('arrival'), run);
   if (!first) return null;
   const bound = (r: string): boolean => run.roles.has(r) && run.introduced.has(r);
-  const companyRun = ps.start('company', { ...flags, prop: bound('prop') });
+  const companyRun = ps.start('company', {
+    ...flags,
+    prop: bound('prop'),
+    // A prop somebody can stand by ("under the bulbs"), not the far shore or a sound.
+    propNear: bound('prop') && run.roles.get('prop')?.near !== undefined,
+  });
+  const companyOf = { fitting: 0 };
   const company = chooseSheet(
     'company',
     companyRun.flags,
@@ -557,14 +629,15 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
     random,
     (s) => rolesNeeded(s).every(bound),
     (s) => !rolled || canPay(s) || bound('prop'),
+    companyOf,
   );
   if (!company) return null;
   reserved = reservedBy(company, rolePeople);
   if (company.parts.some((p) => p.says === 'watcher-view') && iWatchView !== undefined) viewsCovered = new Set([iWatchView]);
   const second = runSheet(company, holes('company'), companyRun);
   if (!second) return null;
-  ps.used(arrival.id, 'arrival');
-  ps.used(company.id, 'company');
+  ps.used(arrival.id, 'arrival', arrivalOf.fitting);
+  ps.used(company.id, 'company', companyOf.fitting);
 
   const paras: OutPara[] = [...first.pre, ...first.post, ...second.pre, ...second.post];
   if (second.close) paras.push({ text: second.close.text, voice: 'thought', beats: [] });
@@ -601,10 +674,12 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
   mark(iP, {
     tag: people.length === 0 ? 'empty' : 'people',
     personIds: everyone,
-    ...(grouped.length > 0 ? { grouped: grouped.map((p) => p.personId) } : {}),
-    text: [...presenceTexts, ...[...companyRun.said.entries()].filter(([k]) => k !== 'tell').map(([, v]) => v)].join(' '),
+    ...(grouped.length > 0 || counted.size > 0 ? { grouped: [...new Set([...grouped.map((p) => p.personId), ...counted])] } : {}),
+    text: [...presenceTexts, ...[...companyRun.said.values()]].join(' '),
   });
-  if (people.length === 0 && !paras.some((p) => p.beats.includes(iP))) {
+  const nobody = companyRun.covered.get('nobody');
+  if (people.length === 0 && nobody !== undefined) mark(iP, { tag: 'empty', personIds: [], text: nobody });
+  else if (people.length === 0 && !paras.some((p) => p.beats.includes(iP))) {
     // Who is here is always said, if only that it is nobody (M8 §3).
     paras.splice(paras.length - (second.close ? 1 : 0), 0, { text: 'There was nobody else there.', voice: 'presence', beats: [iP] });
   }
@@ -615,9 +690,11 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
 function reservedBy(sheet: Sheet, people: Record<string, Id>): Set<Id> {
   const out = new Set<Id>();
   for (const part of sheet.parts) {
+    // The tell is theirs when sheet text names them; the observation (the
+    // `tell` hole) says them without their name, so the room still does.
     const heads = [
-      ...(part.hole && part.deck === undefined ? [part.hole] : []),
-      ...slotsIn(part.text ?? '').map((k) => (k.split('.')[0] as string).toLowerCase()),
+      ...(part.hole && part.deck === undefined && part.hole !== 'tell' ? [part.hole] : []),
+      ...(part.hole === undefined ? slotsIn(part.text ?? '').map((k) => (k.split('.')[0] as string).toLowerCase()) : []),
     ];
     for (const h of heads) if (people[h] !== undefined) out.add(people[h] as Id);
   }
@@ -652,7 +729,7 @@ function fillWithRoles(
     const exp = run.callback ? run.roles.get(head) : undefined;
     let v: string | undefined;
     if (exp) {
-      v = field === 'near' ? exp.near : field === 'text' ? exp.text : exp.short;
+      v = field === 'near' ? exp.near : field === 'text' ? exp.text : field === 'it' ? (pluralThing(exp.short) ? 'them' : 'it') : exp.short;
       if (v !== undefined) roles.push(head);
     } else v = slots[key];
     if (v === undefined) missing = true;
@@ -667,7 +744,13 @@ function fillWithRoles(
  * room in one sentence, from the client's side of it: people the pages have
  * named by name, the rest by what anybody can see.
  */
-function listLine(stage: Stage, todo: readonly PresencePerson[], frame: string, slots: Record<string, string | undefined>): string | null {
+function listLine(
+  stage: Stage,
+  todo: readonly PresencePerson[],
+  frame: string,
+  slots: Record<string, string | undefined>,
+  counted: Set<Id>,
+): string | null {
   const { view } = stage;
   const named = new Set(stage.namedBefore ?? []);
   const items: string[] = [];
@@ -681,6 +764,7 @@ function listLine(stage: Stage, todo: readonly PresencePerson[], frame: string, 
     else if (plain) items.push(`${person.surname} ${plain}`);
     else items.push(person.surname);
   }
+  for (const p of strangers) counted.add(p.id);
   if (strangers.length > 0) {
     const men = strangers.filter((p) => genderHintOf(p) !== 'f').length;
     const women = strangers.length - men;
@@ -689,7 +773,8 @@ function listLine(stage: Stage, todo: readonly PresencePerson[], frame: string, 
     const group = [count(men, 'man', 'men'), count(women, 'woman', 'women')].filter((x) => x.length > 0).join(' and ');
     items.push(`${group} I didn’t know`);
   }
-  if (items.length === 0) return null;
+  // "You could see all of it" is two people at least.
+  if (items.length < 2) return null;
   const list = items.length === 1 ? (items[0] as string) : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1] as string}`;
   const text = frame.replace('{list}', list).replace(/\{([\w.]+)\}/g, (_m, k: string) => slots[k] ?? `{${k}}`);
   if (/\{[\w.]+\}/.test(text)) return null;
@@ -741,16 +826,17 @@ function runFor(
   const history = sheetHistory(stage);
   const tried = new Set<string>();
   for (let k = 0; k < 4; k++) {
+    const of = { fitting: 0 };
     const sheet = chooseSheet(moment, flags, history, stage.dealer.random, (s) => !tried.has(s.id) && rolesNeeded(s).every((r) => {
       const run = ps.roles();
       return run !== null && run.callback && run.roles.has(r) && run.introduced.has(r);
-    }), (s) => !ps.rolled || canPay(s));
+    }), (s) => !ps.rolled || canPay(s), of);
     if (!sheet) return null;
     tried.add(sheet.id);
     const run = ps.start(moment, flags);
     const out = runSheet(sheet, holes, run);
     if (out) {
-      ps.used(sheet.id, moment);
+      ps.used(sheet.id, moment, of.fitting + tried.size - 1);
       return { sheet, out };
     }
   }
@@ -794,7 +880,7 @@ function askFrame(plan: Plan, stage: Stage, scene: Scene, ps: PageSheets): Frame
     Place: place ? capitalize(place.shortName) : undefined,
     victim: view.victim.surname,
     hour: hourSaid(stage.minutes).replace(/^(?:at|past|after) /, ''),
-    ...personRoleSlots(stage, 'person', person, activity && activity.visit === stage.memory?.visit ? activity.text : undefined),
+    ...personRoleSlots(stage, 'person', person, activity && activity.visit === stage.memory?.visit ? cutActivity(activity) : undefined),
   };
   let approachDone = false;
   const holes: Holes = {
@@ -880,7 +966,7 @@ function searchFrame(plan: Plan, stage: Stage, ps: PageSheets): Frame | null {
           const name = act.left.map((id) => view.objectById.get(id)?.name).find((n): n is string => !!n);
           if (!name) return null;
           const short = name.replace(/^(?:a|an|some) /i, 'the ').replace(/,.*$/, '');
-          return { text: '', exports: { prop: { text: name, short, kind: 'thing' } } };
+          return { text: '', introduces: true, exports: { prop: { text: name, short, kind: 'thing' } } };
         }
         default:
           return null;
@@ -899,8 +985,6 @@ function searchFrame(plan: Plan, stage: Stage, ps: PageSheets): Frame | null {
   if (!done) return null;
   // The thing left alone is named on the page (after the first find), so a
   // close may bring it back even though the sheet's own words never said it.
-  const run = ps.roles();
-  if (run && run.roles.has('prop') && !run.introduced.has('prop') && act.left.length > 0) run.introduced.add('prop');
   const pre = [...done.out.pre, ...done.out.post].map((p) => p.text);
   return { pre: [pre.join(' ')], close: done.out.close?.text ?? null, ...(placeText ? { place: placeText } : {}) };
 }
@@ -934,7 +1018,7 @@ export function tellingFrame(
     named: new RegExp(`^${speaker.surname}\\b`).test(frameText),
   };
   const slots: Record<string, string | undefined> = {
-    ...personRoleSlots(stage, 'speaker', speaker, activity && activity.visit === stage.memory?.visit ? activity.text : undefined),
+    ...personRoleSlots(stage, 'speaker', speaker, activity && activity.visit === stage.memory?.visit ? cutActivity(activity) : undefined),
   };
   const holes: Holes = {
     random: stage.dealer.random,
@@ -976,7 +1060,6 @@ export interface RecapFrameInput {
   flags: Flags;
   random: Rng;
   history: string[];
-  note: (id: string) => void;
   /** The recap deck's opening line, preferring one that exports `want`. */
   open: (want: string | null) => { text: string; exports?: Record<string, CardExport> } | null;
   /** The recap deck's closing line. */
@@ -990,7 +1073,7 @@ export interface RecapFrameInput {
  * step), from a recap sheet. The recap's own roll, so a page's recap can pay
  * something off on a page that did not.
  */
-export function recapFrame(input: RecapFrameInput): { open: string; close: string | null; use: SheetUse } | null {
+export function recapFrame(input: RecapFrameInput): { open: string; close: string | null; use: SheetUse; note: string } | null {
   const rolled = callbackRoll(input.seed, 5000 + input.page);
   const flags: Flags = { ...input.flags, callback: rolled, trigger: input.trigger };
   const holes: Holes = {
@@ -1014,7 +1097,8 @@ export function recapFrame(input: RecapFrameInput): { open: string; close: strin
   };
   const tried = new Set<string>();
   for (let k = 0; k < 3; k++) {
-    const sheet = chooseSheet('recap', flags, input.history, input.random, (s) => !tried.has(s.id), (s) => !rolled || canPay(s));
+    const of = { fitting: 0 };
+    const sheet = chooseSheet('recap', flags, input.history, input.random, (s) => !tried.has(s.id), (s) => !rolled || canPay(s), of);
     if (!sheet) return null;
     tried.add(sheet.id);
     const run = newRun('recap', flags, rolled);
@@ -1022,8 +1106,14 @@ export function recapFrame(input: RecapFrameInput): { open: string; close: strin
     if (!out) continue;
     const open = [...out.pre, ...out.post].map((p) => p.text).join(' ');
     if (open.length === 0) continue;
-    input.note(`sheet:${sheet.id}#${input.page}#${input.history.length}`);
-    return { open, close: out.close?.text ?? null, use: { id: sheet.id, moment: 'recap', callback: run.paid.length > 0, rolled } };
+    // Remembered only once the recap is written (the caller notes it then):
+    // a recap refused for want of anything new used no sheet.
+    return {
+      open,
+      close: out.close?.text ?? null,
+      use: { id: sheet.id, moment: 'recap', callback: run.paid.length > 0, rolled, fitting: of.fitting + tried.size - 1 },
+      note: `sheet:${sheet.id}#${input.page}#${input.history.length}`,
+    };
   }
   return null;
 }
@@ -1032,7 +1122,7 @@ export interface OfficeFrameInput {
   flags: Flags;
   slots: Record<string, string | undefined>;
   /** The office deck's card for the hour, preferring one that exports `want`. */
-  office: (want: string | null) => { text: string; exports?: Record<string, CardExport> } | null;
+  office: (want: string | null) => { text: string; exports?: Record<string, CardExport>; motifs?: string[]; score?: number } | null;
   closeDeck: (role: string | null, exp: CardExport | null) => string | null;
 }
 
@@ -1040,9 +1130,14 @@ export interface OfficeFrameInput {
  * The office's frame: the room at this hour (the first paragraph, after
  * "Midnight."), and a last line before she is left in the chair.
  */
-export function officeFrame(stage: Stage, input: OfficeFrameInput): { open: string; close: string | null; use: SheetUse } | null {
+export function officeFrame(
+  stage: Stage,
+  input: OfficeFrameInput,
+): { open: string; close: string | null; use: SheetUse; motifs: string[]; score: number } | null {
   const rolled = callbackRoll(stage.view.kase.seed, stage.pageIndex);
   const flags: Flags = { ...baseFlags(stage, rolled), ...input.flags };
+  let motifs: string[] = [];
+  let score = 0;
   const holes: Holes = {
     random: stage.dealer.random,
     slots: input.slots,
@@ -1050,6 +1145,10 @@ export function officeFrame(stage: Stage, input: OfficeFrameInput): { open: stri
       if (part.hole !== 'office') return null;
       const want = part.bind && run.callback ? part.bind : null;
       const drawn = input.office(want);
+      if (drawn) {
+        motifs = drawn.motifs ?? [];
+        score = drawn.score ?? 0;
+      }
       return drawn ? { text: drawn.text, voice: 'place', ...(drawn.exports ? { exports: drawn.exports } : {}) } : null;
     },
     deck(part, want) {
@@ -1062,7 +1161,8 @@ export function officeFrame(stage: Stage, input: OfficeFrameInput): { open: stri
   const history = sheetHistory(stage);
   const tried = new Set<string>();
   for (let k = 0; k < 3; k++) {
-    const sheet = chooseSheet('office', flags, history, stage.dealer.random, (s) => !tried.has(s.id), (s) => !rolled || canPay(s));
+    const of = { fitting: 0 };
+    const sheet = chooseSheet('office', flags, history, stage.dealer.random, (s) => !tried.has(s.id), (s) => !rolled || canPay(s), of);
     if (!sheet) return null;
     tried.add(sheet.id);
     const run = newRun('office', flags, rolled);
@@ -1070,7 +1170,7 @@ export function officeFrame(stage: Stage, input: OfficeFrameInput): { open: stri
     if (!out) continue;
     noteSheet(stage, sheet.id);
     const open = [...out.pre, ...out.post].map((p) => p.text).join(' ');
-    return { open, close: out.close?.text ?? null, use: { id: sheet.id, moment: 'office', callback: run.paid.length > 0, rolled } };
+    return { open, close: out.close?.text ?? null, use: { id: sheet.id, moment: 'office', callback: run.paid.length > 0, rolled, fitting: of.fitting + tried.size - 1 }, motifs, score };
   }
   return null;
 }

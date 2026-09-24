@@ -9,6 +9,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who had never once been asked to pay for anything at the time",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "Somebody was going to be asked to pay for that half hour, and I knew already it wouldn’t be {person.him}."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -21,6 +31,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the bad posture of somebody waiting for the family money to arrive by itself",
+        "short": "the posture",
+        "kind": "posture",
+        "pay": [
+          "{person.He} was still waiting for the family money. I was still waiting for mine, and I don’t even have a family."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -33,6 +53,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the easy manners of somebody who has been forgiven for everything so far",
+        "short": "the easy manners",
+        "kind": "habit",
+        "pay": [
+          "The easy manners held to the end. Somebody always forgives that kind, and they always send somebody else the bill."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -45,6 +75,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who kept the good china for company",
+        "short": "the good china",
+        "kind": "habit",
+        "pay": [
+          "I never did get to be company. Some nights you’re the good china, and most nights you’re me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -57,6 +97,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a handbag held on the knees with both hands",
+        "short": "the handbag",
+        "kind": "hands",
+        "pay": [
+          "The handbag stayed on {person.his} knees the whole time. Whatever it had heard before me, it was keeping to itself."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -69,6 +119,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a very straight back, in case the avenue was watching",
+        "short": "the straight back",
+        "kind": "posture",
+        "pay": [
+          "{person.He} sat up straight to the end. On the avenue somebody is always watching, and tonight it was me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -81,6 +141,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who could sell you a share of anything",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I kept a hand on my hat. With that kind, you can own a thing one minute and a tenth of it the next."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -93,6 +163,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "one eye on me and the other on the door",
+        "short": "the eye on the door",
+        "kind": "eyes",
+        "pay": [
+          "Nobody better came through the door. I was still the best customer {person.he} had all night, which tells you about the night."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -105,6 +185,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the quick, pleasant face of somebody who never lets anybody see them count",
+        "short": "the pleasant face",
+        "kind": "face",
+        "pay": [
+          "I never saw {person.him} count. Somewhere behind that pleasant face, though, I’d been added up and carried."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -117,6 +207,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who could make a party sound wonderful without enjoying a minute of it",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "By morning I’d be a wonderful party. That kind can make anything sound wonderful, even me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -129,6 +229,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a look that decided which paragraph I’d go in",
+        "short": "the paragraph",
+        "kind": "habit",
+        "pay": [
+          "I’d go in the paragraph somewhere near the bottom, after the flowers. I’ve been lower."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -141,6 +251,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "good gloves and a sharp pencil",
+        "short": "the sharp pencil",
+        "kind": "hands",
+        "pay": [
+          "The sharp pencil never came out for me. I’m not the kind of name anybody gets paid for."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -153,6 +273,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who knew what every window on the street was paying",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I have a window too, and it’s late. I didn’t mention it. {person.He} probably knew."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -165,6 +295,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the air of somebody who owned the floor under the room",
+        "short": "the floor",
+        "kind": "posture",
+        "pay": [
+          "I stood on {person.his} floor the whole time and never once offered rent. It was the most daring thing I did all night."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -177,6 +317,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a landlord’s face, sympathetic right up to the first of the month",
+        "short": "the landlord’s face",
+        "kind": "face",
+        "pay": [
+          "It wasn’t the first of the month yet. I made a note to be somewhere else when it was."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -189,6 +339,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who charged by the quarter hour",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "By {person.his} clock I owed for a quarter hour already, and I hadn’t even had any advice."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -201,6 +361,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a head held on one side, weighing whether anything would stand up in court",
+        "short": "the head on one side",
+        "kind": "posture",
+        "pay": [
+          "{person.His} head was still on one side. I had a feeling nothing I’d said would stand up in court, and some of it wouldn’t stand up at all."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -213,6 +383,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the tidy, underfed look of a lawyer with one clerk",
+        "short": "the underfed look",
+        "kind": "face",
+        "pay": [
+          "Somewhere a clerk was having a worse night than me. It was a comfort, and I don’t get many."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -225,6 +405,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who could find a missing nickel in a year of books",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I counted my change before I got up. With that kind in the room, you feel you ought to."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -237,6 +427,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "elbows kept in from twenty years at a desk too small",
+        "short": "the elbows",
+        "kind": "posture",
+        "pay": [
+          "{person.His} elbows stayed in the whole time. Twenty years at a small desk does that. Twenty years at a bar does something else, and I had the elbows to prove it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -249,6 +449,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the patience of somebody who adds the same column three times",
+        "short": "the patience",
+        "kind": "habit",
+        "pay": [
+          "I’d go over it again later, three times. It seemed to work for {person.him}."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -261,6 +471,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who has heard every excuse a sick man can make",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I didn’t make any excuses. I could see they’d be taken, checked, and not believed, like a temperature."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -273,6 +493,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a professional look that found nothing worth a thermometer",
+        "short": "the professional look",
+        "kind": "eyes",
+        "pay": [
+          "I felt fine, more or less. It’s nice to hear it from a professional, even without the words."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -285,6 +515,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "very clean cuffs and the calm of somebody who stays up all night on purpose",
+        "short": "the clean cuffs",
+        "kind": "clothes",
+        "pay": [
+          "We were both up all night. One of us had clean cuffs and was being paid for it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -297,6 +537,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who bought a practice second-hand and was still paying off the chair",
+        "short": "the chair",
+        "kind": "face",
+        "pay": [
+          "A dentist tells you it won’t hurt, and {person.he} still had a chair to pay off. You nod, and you check later."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -309,6 +559,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the steady hands of somebody who tells people it won’t hurt for a living",
+        "short": "the steady hands",
+        "kind": "hands",
+        "pay": [
+          "It hadn’t hurt, so far. That’s exactly what they tell you, just before."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -321,6 +581,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "eyes that watched my mouth while I talked",
+        "short": "the eyes on my mouth",
+        "kind": "eyes",
+        "pay": [
+          "I closed my mouth when I was done and kept it closed. There’s only so much a dentist should see for free."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -333,6 +603,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who had typed other people’s secrets for years and never hit a wrong key",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "Not a wrong key all the way through. I’d read it back later anyway. I always do, and I always find my own."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -345,6 +625,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "hands folded, ready for somebody to dictate a letter",
+        "short": "the folded hands",
+        "kind": "hands",
+        "pay": [
+          "Nobody dictated anything. {person.His} hands stayed folded and ready, which is more than I can say for my notebook."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -357,6 +647,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the air of somebody who had already filed me under a heading",
+        "short": "the heading",
+        "kind": "habit",
+        "pay": [
+          "Somewhere I’d been filed under a heading. I hoped it was a short one. They’re easier to lose."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -369,6 +669,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who would put me in the evening edition",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "Nothing I’d said was worth a paragraph. I’d have to buy the evening edition to be sure."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -381,6 +691,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a pencil out before I’d got my hat off",
+        "short": "the pencil",
+        "kind": "hands",
+        "pay": [
+          "The pencil was still going when I stopped. Somebody got an interview out of that, and I’m not sure it was me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -393,6 +713,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the rumpled, hungry look of somebody paid by the line",
+        "short": "the hungry look",
+        "kind": "face",
+        "pay": [
+          "{person.He} looked a little less hungry at the end. I’d been worth a few lines, then. I’m usually worth fewer."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -405,6 +735,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who had sat through ten thousand scales and forgiven about half of them",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I’d been listened to the way a scale gets listened to: all the way through, and forgiven about half."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -417,6 +757,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "two fingers keeping time on the knee",
+        "short": "the two fingers",
+        "kind": "hands",
+        "pay": [
+          "The two fingers were still keeping time on {person.his} knee. Music or nerves; I never did work out which. I’m no good at music, and worse at nerves."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -429,6 +779,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the patient, faintly pained face of somebody who listens to children practise",
+        "short": "the pained face",
+        "kind": "face",
+        "pay": [
+          "I got the same patient, pained face the children get. I’d have practised, if I’d known."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -441,6 +801,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who had never once believed a fire started by itself",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "{person.He} didn’t believe a fire starts by itself, and I don’t believe an answer does. We’d have got on, in another line of work."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -453,6 +823,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "an eye that priced the room",
+        "short": "the eye",
+        "kind": "eyes",
+        "pay": [
+          "The room hadn’t burned down while we talked. {person.He} looked a little let down."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -465,6 +845,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a pleasant face over a doubtful mind",
+        "short": "the pleasant face",
+        "kind": "face",
+        "pay": [
+          "The face stayed pleasant to the end. I had no idea what the mind was doing, which I suppose is the uniform working."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -477,6 +867,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who had made a thousand beds and knew what got left in them",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "Everybody leaves something behind. A chambermaid finds it in the morning, and I find it about a week later."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -489,6 +889,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a way of standing half ready to be rung for",
+        "short": "the readiness",
+        "kind": "posture",
+        "pay": [
+          "Nobody rang. {person.He} stayed half ready anyway. Some people never get to sit all the way down."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -501,6 +911,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "red hands and sharp eyes",
+        "short": "the sharp eyes",
+        "kind": "eyes",
+        "pay": [
+          "The sharp eyes had done most of the work again. I’d have hired them, if I could afford eyes."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -513,6 +933,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who put heavy things down only when paid",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I hadn’t paid, so I didn’t expect much to be put down. It’s a fair system. The docks run on it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -525,6 +955,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "shoulders wide enough to need their own chair",
+        "short": "the shoulders",
+        "kind": "posture",
+        "pay": [
+          "The shoulders had a chair of their own by then. I had about half of mine."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -537,6 +977,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "big scarred hands folded on the table and kept there",
+        "short": "the hands",
+        "kind": "hands",
+        "pay": [
+          "The hands stayed on the table the whole time. I’ve never been so grateful to a pair of hands for doing nothing."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -549,6 +999,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who could tell what my coat cost and how much of that was a lie",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I didn’t ask what the coat had cost. I didn’t want to hear how much of it was a lie."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -561,6 +1021,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a squint from close work",
+        "short": "the squint",
+        "kind": "eyes",
+        "pay": [
+          "The squint was still on me. I did my coat up, in case it found the seams."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -573,6 +1043,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a fold in the sleeve that kept getting smoothed and wasn’t there",
+        "short": "the fold in the sleeve",
+        "kind": "hands",
+        "pay": [
+          "The fold in the sleeve got smoothed once more. It still wasn’t there. Hands like that don’t know how to stop."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -585,6 +1065,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody with a complaint about every street in the city",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I didn’t say which way I’d come. I didn’t want to hear what was wrong with it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -597,6 +1087,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the patience of somebody who gets paid to wait",
+        "short": "the patience",
+        "kind": "habit",
+        "pay": [
+          "{person.He} waited, patiently, for me to be done. It was the only waiting {person.he}’d done all night that nobody paid for."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -609,6 +1109,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "one arm along the back of the seat, expecting a fare",
+        "short": "the arm along the seat",
+        "kind": "posture",
+        "pay": [
+          "The arm stayed along the back of the seat. I was still not a fare. I’m rarely anything that pays."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -621,6 +1131,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who had measured me for a better suit",
+        "short": "the better suit",
+        "kind": "face",
+        "pay": [
+          "Somewhere in {person.his} head I was wearing a better suit. I hoped I looked well in it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -633,6 +1153,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a tape measure round the neck",
+        "short": "the tape measure",
+        "kind": "clothes",
+        "pay": [
+          "The tape measure stayed round {person.his} neck. I don’t think I’d have measured up anyway."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -645,6 +1175,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a glance at my cuffs, and a wince",
+        "short": "the wince",
+        "kind": "face",
+        "pay": [
+          "I kept my cuffs out of sight after that. It seemed the least I could do."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -657,6 +1197,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who had moved a great deal of scenery and been thanked by none of it",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I thanked {person.him} when I was done. It was probably a first. The scenery never does."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -669,6 +1219,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "rope burns on both palms",
+        "short": "the rope burns",
+        "kind": "hands",
+        "pay": [
+          "The rope burns didn’t get a mention and didn’t want one. Everything that matters in a theatre happens where nobody looks."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -681,6 +1241,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a stance with the weight back, ready to catch something falling",
+        "short": "the stance",
+        "kind": "posture",
+        "pay": [
+          "Nothing fell. {person.He} stayed ready to catch it anyway. I could have used somebody like that around me for years."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -693,6 +1263,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who had heard half the neighbourhood’s business and been asked to forget it",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "Half the neighbourhood’s business was behind that face, forgotten on purpose. I’d settle for remembering mine."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -705,6 +1285,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a way of sitting up straight, listening for a light over the next line",
+        "short": "the listening",
+        "kind": "habit",
+        "pay": [
+          "{person.He} was still listening for the next light. I was hoping for one myself."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -717,6 +1307,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a pleasant, careful voice that sounded rehearsed",
+        "short": "the careful voice",
+        "kind": "voice",
+        "pay": [
+          "The careful voice had one more pleasant thing left in it, and {person.he} used it on me. I felt put through to nowhere."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -729,6 +1329,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who had seen every guest come in late and heard every reason why",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I didn’t give {person.him} my reason for being out this late. {person.He}’d heard it already, from better liars."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -741,6 +1351,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a carnation that had been fresh this afternoon and was now just loyal",
+        "short": "the carnation",
+        "kind": "clothes",
+        "pay": [
+          "The carnation was still loyal. I had a coat like that once, and a dog before it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -753,6 +1373,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the practised politeness of somebody who remembers who tipped",
+        "short": "the politeness",
+        "kind": "habit",
+        "pay": [
+          "I hadn’t tipped. I could tell from how polite {person.he} stayed."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -765,6 +1395,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who could tell you who in a line of twenty was half a step late",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I’d been half a step late all night. {person.He} could probably have told me which step."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -777,6 +1417,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "clothes for the next engagement, in case it walked in",
+        "short": "the clothes",
+        "kind": "clothes",
+        "pay": [
+          "The next engagement didn’t walk in. I did, which was nobody’s idea of a booking."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -789,6 +1439,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the bright, tired smile of somebody who does two shows a night",
+        "short": "the smile",
+        "kind": "face",
+        "pay": [
+          "The smile stayed on through the whole of it. Two shows a night teaches you to smile at anybody, even me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -801,6 +1461,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who would give you odds on anything",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I never asked what the odds had been. I didn’t want to know how long a shot I was."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -813,6 +1483,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "chalk on the cuff and a pencil stub behind the ear",
+        "short": "the pencil stub",
+        "kind": "hands",
+        "pay": [
+          "The pencil stub hadn’t lost money yet, and I hadn’t given it any. That’s how you stay friends with a bookmaker."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -825,6 +1505,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the friendliness of somebody who knows what you owe",
+        "short": "the friendliness",
+        "kind": "habit",
+        "pay": [
+          "{person.He} stayed friendly to the end. I checked, and I didn’t owe {person.him} anything. It’s the kind of thing you check."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -837,6 +1527,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who knew every voter on the block and what each wanted for Christmas",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I didn’t say what I wanted for Christmas. {person.He} probably had it written down."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -849,6 +1549,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a handshake that came before anybody offered one",
+        "short": "the handshake",
+        "kind": "hands",
+        "pay": [
+          "My hand still felt shaken. I hadn’t even registered to vote."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -861,6 +1571,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a big warm smile that stopped a good inch short of the eyes",
+        "short": "the smile",
+        "kind": "face",
+        "pay": [
+          "The smile never did make that last inch. I’ve had friendships stop in the same place."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -873,6 +1593,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who could tell you what anything was worth, and what you’d take for it",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I didn’t ask what I was worth. I didn’t want to hear what I’d take."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -885,6 +1615,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a look at my watch before me",
+        "short": "the look at my watch",
+        "kind": "eyes",
+        "pay": [
+          "I put my watch away. There’s no sense letting a pawnbroker get attached."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -897,6 +1637,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the pale, patient face of somebody who hears all day why things have to go",
+        "short": "the patient face",
+        "kind": "face",
+        "pay": [
+          "I didn’t tell {person.him} why anything had to go. {person.He}’d heard it, and priced it, years ago."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -909,6 +1659,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody whose whole job was being larger than the doorway",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "{person.He} was still larger than the doorway. I’d be going out through it later, and I was already making myself small."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -921,6 +1681,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "knuckles cracked one at a time, in my general direction",
+        "short": "the knuckles",
+        "kind": "hands",
+        "pay": [
+          "There were still a few knuckles left uncracked. I decided not to wait for them."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -933,6 +1703,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a nose broken at least twice",
+        "short": "the nose",
+        "kind": "face",
+        "pay": [
+          "I didn’t ask about the other fellows. I didn’t want to be one."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -945,6 +1725,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who could forget any name for a price",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I didn’t make an offer. I wanted {person.him} to remember me, and it seemed cheaper that way."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -957,6 +1747,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "glances at the street, as regular as breathing",
+        "short": "the glances at the street",
+        "kind": "eyes",
+        "pay": [
+          "{person.He} glanced at the street again. It was still there. Some people need to check."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -969,6 +1769,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a jacket with more inside pockets than a jacket needs",
+        "short": "the jacket",
+        "kind": "clothes",
+        "pay": [
+          "I didn’t ask about the pockets. A jacket like that has answers in it, and none of them for me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -981,6 +1791,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who knew what I drank before I did",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "{person.He} knew what I’d have and still didn’t say it. In a bartender, that’s love."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -993,6 +1813,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a habit of wiping the same spot on the bar",
+        "short": "the spot on the bar",
+        "kind": "habit",
+        "pay": [
+          "The same spot on the bar got another wipe. By the next election it would be through to the cellar."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1005,6 +1835,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the mild, deaf expression bartenders wear",
+        "short": "the deaf expression",
+        "kind": "face",
+        "pay": [
+          "The deaf expression came back the moment I finished. I’ve been heard less politely by people who were listening."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1017,6 +1857,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody keeping count of who tipped",
+        "short": "the count",
+        "kind": "face",
+        "pay": [
+          "I made a note to tip {person.him} next time. It would go in the count, and I like to be in somebody’s."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1029,6 +1879,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a uniform with more brass on it than the average general",
+        "short": "the brass",
+        "kind": "clothes",
+        "pay": [
+          "The brass caught the light when {person.he} moved. I stood up straighter. It’s hard not to, near a general."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1041,6 +1901,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the knack doormen have for being furniture",
+        "short": "the knack",
+        "kind": "posture",
+        "pay": [
+          "When I was done, {person.he} went back to being furniture. I’ve been trying to get the knack for years, mostly in chairs."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1053,6 +1923,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who had read every paper in the stand and believed none of them",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "{person.He} didn’t believe the papers, and I couldn’t say how much {person.he} believed me. I was in good company."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1065,6 +1945,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a way of making change without looking at it",
+        "short": "the change",
+        "kind": "hands",
+        "pay": [
+          "I counted my own change after. It was right. I don’t know how {person.he} does it, with the eyes on me the whole time."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1077,6 +1967,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "newsprint on the fingers",
+        "short": "the newsprint",
+        "kind": "hands",
+        "pay": [
+          "I had newsprint on my own fingers by then. None of the neighbourhood’s business came with it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1089,6 +1989,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who had poured a million cups of coffee and been thanked for about six",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I thanked {person.him} anyway. That made seven."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1101,6 +2011,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the calm of somebody who owns the only warm room on the block",
+        "short": "the calm",
+        "kind": "posture",
+        "pay": [
+          "I stayed a while longer than I needed to. It was the only warm room on the block, and {person.he} knew it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1113,6 +2033,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a pencil behind the ear for orders",
+        "short": "the pencil",
+        "kind": "habit",
+        "pay": [
+          "The pencil stayed behind {person.his} ear. My order was still unwritten, and so was most of the night."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1125,6 +2055,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who had torn a hundred thousand tickets and enjoyed maybe three",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I didn’t have a ticket for {person.him} to tear. I’d have liked to be one of the three."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1137,6 +2077,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a look for a ticket stub first and a face second",
+        "short": "the look for a stub",
+        "kind": "eyes",
+        "pay": [
+          "I still didn’t have a stub. I’d got by on my face, which doesn’t happen often."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1149,6 +2099,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the glassy patience of somebody who has watched the same picture forty times",
+        "short": "the glassy patience",
+        "kind": "face",
+        "pay": [
+          "I’d been watched the way the picture gets watched the fortieth time: all the way through, and nothing new."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1161,6 +2121,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who went up and down all day and had opinions about both",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I didn’t ask which way {person.he} preferred. I had a feeling it was down, and I was the reason."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1173,6 +2143,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a way of knowing every tenant by the floor they got off at",
+        "short": "the floors",
+        "kind": "habit",
+        "pay": [
+          "{person.He} never did work out my floor. I don’t have one. That’s the trouble with me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1185,6 +2165,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "white gloves and the gravity of somebody trusted with the only lift in the building",
+        "short": "the white gloves",
+        "kind": "hands",
+        "pay": [
+          "The white gloves went back on the lever. Somewhere a floor was waiting, and it wasn’t mine."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1197,6 +2187,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a drawer for every excuse for late rent",
+        "short": "the drawers",
+        "kind": "habit",
+        "pay": [
+          "I didn’t give {person.him} an excuse. I had one ready. There’s always a drawer for it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1209,6 +2209,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a chair where the stairs could be seen",
+        "short": "the stairs",
+        "kind": "habit",
+        "pay": [
+          "I’d be going down those stairs later, and {person.he} would see me do it. I planned to do it well."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1221,6 +2231,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a habit of counting everything",
+        "short": "the counting",
+        "kind": "habit",
+        "pay": [
+          "I’d been counted. I came out at one, which is about what I expected."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1233,6 +2253,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody with a favourite doorway on every street",
+        "short": "the favourite doorway",
+        "kind": "face",
+        "pay": [
+          "{person.He}’d be back in a favourite doorway in a minute. I have a few of those myself. None of them pay."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1245,6 +2275,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "cold ears, warm boots, and a settled face",
+        "short": "the cold ears",
+        "kind": "face",
+        "pay": [
+          "The ears were still cold and the boots still warm, and the pay would be the same either way. I’ve envied worse things."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1257,6 +2297,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a way of rocking on the heels",
+        "short": "the rocking",
+        "kind": "posture",
+        "pay": [
+          "{person.He} went on rocking on {person.his} heels. I got the feeling I’d been considered, and filed with the weather."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1269,6 +2319,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who had sat in the same seat so long it had taken their shape",
+        "short": "the seat",
+        "kind": "posture",
+        "pay": [
+          "The seat had {person.his} shape, and the night had mine. Neither of us was getting up soon."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1281,6 +2341,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the radio going low, and an opinion about every fare",
+        "short": "the radio",
+        "kind": "habit",
+        "pay": [
+          "The radio was still going low. By now I had my place in the evening’s opinions, somewhere between the drunk and the one who didn’t tip."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1293,6 +2363,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a look in the mirror first, from habit",
+        "short": "the mirror",
+        "kind": "habit",
+        "pay": [
+          "I caught {person.him} looking at me in the mirror again, from habit. It’s the only way some people look at anybody."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1305,6 +2385,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who knew what everybody on the street was taking and why",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "{person.He} knew what everybody on the street was taking. I hoped nobody had asked about me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1317,6 +2407,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a way of peering over the spectacles, with the caution of somebody who signs for things",
+        "short": "the spectacles",
+        "kind": "face",
+        "pay": [
+          "{person.He} looked at me over the spectacles one more time, the way you look at something before you sign for it. I didn’t get signed for."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1329,6 +2429,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a quiet voice never raised above the price of aspirin",
+        "short": "the quiet voice",
+        "kind": "voice",
+        "pay": [
+          "The quiet voice never went above the price of aspirin. By then I needed some."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1341,6 +2451,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the look of somebody who had been having a long night before I got there",
+        "short": "the look",
+        "kind": "face",
+        "pay": [
+          "I hadn’t made {person.his} night any shorter. I rarely do that for anybody, me included."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1353,6 +2473,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "the polite dread people keep for detectives and dentists",
+        "short": "the polite dread",
+        "kind": "face",
+        "pay": [
+          "The polite dread never quite went away. I don’t blame anybody. I feel the same about dentists."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1365,6 +2495,16 @@
       "temper": "any"
     },
     "motifs": [],
+    "exports": {
+      "trait": {
+        "text": "a face trying hard to look as if it had nothing to do with anything",
+        "short": "the face",
+        "kind": "face",
+        "pay": [
+          "The face was still trying hard to have nothing to do with anything. Most faces do, around me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {

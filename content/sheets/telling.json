@@ -1,4 +1,65 @@
 {
   "moment": "telling",
-  "sheets": []
+  "$comment": "M13. The first family a witness tells on a page: a line before it (in the same paragraph, ahead of the deck's frame) and a line after it (on the end of the telling's last paragraph). The body is the telling itself, the engine's. Holes: thing (bind thing: what the witness has in hand, off their activity card; says nothing), body. Slots: {speaker} and {speaker.he} .He .him .his .His .man .doing .act; roles {thing} and the page's {prop} (a prop the question's sheet put in the room). These lines assert no case fact at all: no hour, no place by name, nobody but the witness. Flags: family (movements, evening, knowing, counts, strangers, timing, event, thing, find, self…), temper, volunteered, thing (the witness has a thing), prop (the page has a prop), named (the deck's frame opens on the witness's name). A line after the telling must not say the witness has finished talking: a follow-up may come after it.",
+  "sheets": [
+    {
+      "id": "tel-a",
+      "name": "Straight",
+      "notes": "The telling as the engine writes it: nothing before, nothing after.",
+      "weight": 2,
+      "parts": [{ "hole": "body" }]
+    },
+    {
+      "id": "tel-b",
+      "name": "Put it down",
+      "notes": "The witness puts what they have in hand down to answer, and picks it up again after: a callback inside one family. Not when the deck's frame opens on their name too.",
+      "when": { "callback": true, "thing": true, "named": false },
+      "parts": [
+        { "hole": "thing", "bind": "thing" },
+        { "text": "{speaker} put {thing} down to answer, which was a courtesy." },
+        { "hole": "body" },
+        { "text": "Then {speaker} picked {thing} back up, and that was the end of the courtesy.", "joke": true }
+      ]
+    },
+    {
+      "id": "tel-c",
+      "name": "On the fingers",
+      "notes": "A talker's list (their own evening, or who came and went): after it, the count has used up a hand. Goes on from the deck's frames that count on fingers, and stands alone after the rest. Talkers only, so it doesn't come round too often.",
+      "when": { "family": ["evening", "counts"], "temper": "yap" },
+      "parts": [
+        { "hole": "body" },
+        { "text": "{speaker} had used up one hand on it and was starting on the other.", "joke": true }
+      ]
+    },
+    {
+      "id": "tel-d",
+      "name": "Could have gone on",
+      "notes": "Somebody who likes to talk: after the telling, the sign that there was plenty more where it came from.",
+      "when": { "temper": "yap" },
+      "parts": [
+        { "hole": "body" },
+        { "text": "{speaker} stopped there, but only to breathe.", "joke": true }
+      ]
+    },
+    {
+      "id": "tel-e",
+      "name": "Not a word wasted",
+      "notes": "Somebody guarded, who took their time: after the telling, how little of it there was.",
+      "when": { "temper": "enigma" },
+      "parts": [
+        { "hole": "body" },
+        { "text": "{speaker} didn’t waste a word of it. I’ve had chattier telegrams.", "joke": true }
+      ]
+    },
+    {
+      "id": "tel-f",
+      "name": "Enjoying it",
+      "notes": "Somebody who likes to talk, the other way: after the telling, who was having the better time.",
+      "when": { "temper": "yap" },
+      "parts": [
+        { "hole": "body" },
+        { "text": "{speaker} was enjoying this more than I was, and I was the one being paid for it.", "joke": true }
+      ]
+    }
+  ]
 }

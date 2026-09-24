@@ -669,7 +669,6 @@ export function renderRecap(
         flags: { caseType: view.kase.act.type, tier: tier === undefined ? 'none' : String(tier), n: memory?.n ?? 0 },
         random: dealer.random,
         history: dealer.notedLike('sheet:').map((id) => id.slice('sheet:'.length).split('#')[0] as string),
-        note: (id) => dealer.note(id),
         open: (want) => withExports('open', want),
         closeCard: () => card('close'),
         closeDeck: (role, exp) => {
@@ -744,6 +743,7 @@ export function renderRecap(
   clauses.push({ key: 'frame|close', text: closer, personIds: [], placeIds: [], ticks: [] });
   if (nextFact && nextText.length > 0) trace(nextFact, nextText);
 
+  if (framed) dealer.note(framed.note);
   const kept = body()
     .filter((f) => f.part !== 'next')
     .map((f) => f.key);

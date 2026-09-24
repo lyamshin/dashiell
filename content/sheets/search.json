@@ -1,4 +1,127 @@
 {
   "moment": "search",
-  "sheets": []
+  "$comment": "M13. A search page: how he went through the place (the first paragraph, which the first find joins), the body the engine writes (the finds, the things left alone, what they are worth), and a last word before any decision or next lead. Holes: act (how he went through it, off search-act, or the one thing he searched; bind prop for a thing the act card names, 'the one good chair'), left (bind prop: the first thing he left alone, which the page names after the first find; says nothing), body. Card holes: prop (place-ambient: bind prop; the room's texture, said in the first paragraph). Slots: {place} {Place} {victim} {hour} {object} (the thing searched, when it was one); roles {prop}. Every part is said in the first paragraph, before the first find, wherever it sits round the body. A later bind of prop wins over an earlier one, so a sheet that binds both left and act puts left first: the act card's thing when it offers one (with its own pay line), else the thing left alone. Never a verdict: a last word is about the room, the search, the detective — never what a find means.",
+  "sheets": [
+    {
+      "id": "sea-a",
+      "name": "The way through",
+      "notes": "The way through, and a last word on a thing the act card named (the kitchen end, the one good chair: its own pay line) or, when the card offers none, on the first thing he left alone.",
+      "parts": [
+        { "hole": "left", "bind": "prop", "optional": true },
+        { "hole": "act", "bind": "prop" },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["prop"],
+        "callback": [
+          "I left {prop} where it was. It had waited this long; it could wait for a second visit.",
+          "I didn’t touch {prop} on the way out, either. Some things you save for when you know what to ask them.",
+          "I left {prop} where it stood. I’d know where to find it, which is more than I can say for my hat most mornings."
+        ],
+        "plain": [
+          "I put the room back roughly the way I found it. Roughly is the best anybody does.",
+          "I dusted off my knees and let myself out. The room didn’t see me to the door."
+        ],
+        "deck": true
+      }
+    },
+    {
+      "id": "sea-b",
+      "name": "The room first",
+      "notes": "The room's texture before he touches anything (a place-ambient card, said in the first paragraph), then the way through; the last word brings the room's thing back.",
+      "when": { "texture": true },
+      "parts": [
+        { "hole": "prop", "deck": "place-ambient", "bind": "prop", "optional": true },
+        { "text": "I gave the place a minute to get used to me." },
+        { "hole": "act" },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["prop"],
+        "callback": [
+          "By the time I was done, I knew {prop} better than I wanted to.",
+          "I left {prop} the way I found it. It was the one thing in the place I was sure I hadn’t moved."
+        ],
+        "plain": [
+          "The place looked no different when I’d finished. I couldn’t say the same for me."
+        ],
+        "deck": true
+      }
+    },
+    {
+      "id": "sea-c",
+      "name": "One thing, properly",
+      "notes": "A search of one thing: a join that says so, the thing, and a last word that puts it back (or on what he left alone).",
+      "when": { "object": true },
+      "parts": [
+        { "hole": "left", "bind": "prop", "optional": true },
+        { "text": "I didn’t take the whole of {place} apart. I took one thing, and I took my time." },
+        { "hole": "act" },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["prop"],
+        "callback": [
+          "I hadn’t touched {prop}. I only have the two hands, and I’d been using both on {object}."
+        ],
+        "plain": [
+          "I put {object} back the way it had been, near enough. Near enough is what I get paid for."
+        ],
+        "deck": true
+      }
+    },
+    {
+      "id": "sea-d",
+      "name": "A good haul",
+      "notes": "A search that turned up three things or more: the last word is about having his hands full, never about what the finds mean.",
+      "when": { "finds": ">=3" },
+      "parts": [
+        { "hole": "left", "bind": "prop", "optional": true },
+        { "hole": "act", "bind": "prop" },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["prop"],
+        "callback": [
+          "My hands were full already. {Prop} would have to wait its turn."
+        ],
+        "plain": [
+          "That was more than a room usually gives me. I wrote it all down before it could change its mind."
+        ],
+        "deck": true
+      }
+    },
+    {
+      "id": "sea-e",
+      "name": "Down on the floor",
+      "notes": "Plain: the search, and a last word on the detective's knees and back. No role, so it is a sheet for a page without a callback.",
+      "parts": [
+        { "hole": "act" },
+        { "hole": "body" }
+      ],
+      "close": {
+        "plain": [
+          "I got up off the floor in two stages. My knees wanted it known that neither one was their idea.",
+          "Somewhere in there my back had stopped speaking to me. I couldn’t say I blamed it."
+        ],
+        "joke": true
+      }
+    },
+    {
+      "id": "sea-f",
+      "name": "Not much",
+      "notes": "A search that turned up one thing or nothing: a last word on the time it took.",
+      "when": { "finds": "<=1" },
+      "parts": [
+        { "hole": "act" },
+        { "hole": "body" }
+      ],
+      "close": {
+        "plain": [
+          "It wasn’t much for the time it took. Rooms don’t pay by the hour.",
+          "I had been more thorough than the room deserved, and it paid me about what it thought I was worth."
+        ]
+      }
+    }
+  ]
 }

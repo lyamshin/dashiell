@@ -1,4 +1,72 @@
 {
   "moment": "recap",
-  "sheets": []
+  "$comment": "M13. The recap's frame: its opening line (open, off the recap deck, which may export a figure the close brings back; or sheet text of its own) and its closing line, before the engine's next step. The body is the engine's: when and how, whose evening is whose, who nobody has placed. The frame names nobody, no hour, no place (the correspondence check holds it to that). Flags: trigger (hour, lie, window, confront, link, demand), n (recaps so far tonight), tier, caseType, callback. The close: callback lines bring {figure} (or {mark}) back; plain lines need none; the engine's plain close is the recap deck's closing card. Every part is said in the opening paragraph, wherever it sits round the body; keep the opening and the closing line short (the recap is 80–180 words in all).",
+  "sheets": [
+    {
+      "id": "rcp-a",
+      "weight": 2,
+      "name": "Taking stock",
+      "notes": "The camp golden §4: the recap deck's opening line, the notebook, the deck's closing line; on a callback page the opening's own phrase comes back.",
+      "parts": [{ "hole": "open", "bind": "figure" }, { "hole": "body" }],
+      "close": { "roles": ["figure"], "deck": true }
+    },
+    {
+      "id": "rcp-b",
+      "name": "A clean page",
+      "notes": "He writes it out fresh instead of reading it back; the page comes back at the end.",
+      "parts": [
+        {
+          "text": "I turned to a clean page and wrote out what I had, in order, the way they teach you and nobody does it.",
+          "bind": "mark",
+          "exports": { "mark": { "text": "a clean page", "short": "the page", "kind": "paper" } }
+        },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["mark"],
+        "callback": [
+          "It didn’t fill {mark}. There was room at the bottom for the rest, whenever the rest turned up.",
+          "I read {mark} over twice. It didn’t get any longer."
+        ],
+        "plain": ["That was the lot, in order. Order is the one thing I can always supply."]
+      }
+    },
+    {
+      "id": "rcp-c",
+      "name": "My feet",
+      "notes": "He sits down to take stock, and his feet get the last word before the next step.",
+      "parts": [
+        {
+          "text": "I found somewhere to sit and gave my feet a rest while my head did the walking.",
+          "bind": "figure",
+          "exports": { "figure": { "text": "my feet", "short": "my feet", "kind": "posture" } }
+        },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["figure"],
+        "callback": ["{Figure} had heard all of this before. They were ready to go, and so, more or less, was I."],
+        "plain": ["That was the lot. I stood up, which my feet took personally."]
+      }
+    },
+    {
+      "id": "rcp-d",
+      "name": "Again",
+      "notes": "A second recap or later: the notebook read over again, which is getting to be a habit.",
+      "when": { "n": ">=1" },
+      "parts": [
+        {
+          "text": "I got the notebook out again. We were getting to know each other.",
+          "bind": "mark",
+          "exports": { "mark": { "text": "the notebook", "short": "the notebook", "kind": "paper" } }
+        },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["mark"],
+        "callback": ["I put {mark} away. It had more in it than last time, and it looked about as tired as I did."],
+        "plain": ["That was where it stood, a little further along than last time. I’ll take further along."]
+      }
+    }
+  ]
 }

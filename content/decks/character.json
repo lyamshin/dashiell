@@ -7,6 +7,16 @@
       "role": "arch-heir",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "shoes that had been resoled twice and were holding out for a third",
+        "short": "the shoes",
+        "kind": "clothes",
+        "pay": [
+          "I looked down at my own shoes. They’d been resoled three times, and they weren’t holding out for anything."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -17,15 +27,35 @@
       "role": "arch-heir",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a way of leaning on whatever was nearest, as if standing up straight cost extra",
+        "short": "the leaning",
+        "kind": "posture",
+        "pay": [
+          "By then I was leaning on something myself. It’s catching, like yawning, and about as much use."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-003",
     "deck": "character",
-    "text": "A good coat hung open over an evening shirt that had seen the evening before. {He} had a gold cigarette case in {his} hand and nothing in it.",
+    "text": "{He} wore a good coat open over an evening shirt that had seen the evening before, and had a gold cigarette case in {his} hand with nothing in it.",
     "tags": {
       "role": "arch-heir",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a gold cigarette case with nothing in it",
+        "short": "the cigarette case",
+        "kind": "hands",
+        "pay": [
+          "I had cigarettes and no gold case to keep them in. Between the two of us, we had one good smoke."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -215,15 +245,35 @@
       "role": "arch-widow",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "both hands on the clasp of a handbag",
+        "short": "the handbag",
+        "kind": "hands",
+        "pay": [
+          "Nobody in there went anywhere near the handbag. I didn’t blame them. I’d seen the grip."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-022",
     "deck": "character",
-    "text": "There was a straight back on {him}, the back of a woman who had been told to sit up as a girl and had never stopped hearing it.",
+    "text": "There was a straight back on {him}, the back of somebody who had been told to sit up as a child and had never stopped hearing it.",
     "tags": {
       "role": "arch-widow",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a straight back that had been told to sit up as a child",
+        "short": "the straight back",
+        "kind": "posture",
+        "pay": [
+          "I found I was standing up a little straighter myself. Nobody had told me to. That was the trouble."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -234,6 +284,16 @@
     "tags": {
       "role": "arch-widow",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "rings turned round on fingers grown thinner",
+        "short": "the rings",
+        "kind": "hands",
+        "pay": [
+          "The rings went round once more while I watched. I found I was turning my hat to keep them company."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -401,6 +461,16 @@
       "role": "arch-broker",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a look at the door every time it opened, in case it was the market come back to apologize",
+        "short": "the look at the door",
+        "kind": "eyes",
+        "pay": [
+          "The door opened again. It wasn’t the market. It never is, and it never apologizes either."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -411,6 +481,16 @@
       "role": "arch-broker",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "one hand in a coat pocket, turning over whatever was left in there",
+        "short": "the hand in the pocket",
+        "kind": "hands",
+        "pay": [
+          "I put a hand in my own pocket to keep it company. There wasn’t much to turn over in there either."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -420,6 +500,16 @@
     "tags": {
       "role": "arch-broker",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a watch checked twice a minute and never read",
+        "short": "the watch",
+        "kind": "habit",
+        "pay": [
+          "I checked my own watch. It said what it always says, which is later than I’d like."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -609,6 +699,16 @@
       "role": "arch-society",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "clothes for a better room than this one",
+        "short": "the clothes",
+        "kind": "clothes",
+        "pay": [
+          "Everybody else was dressed for the room they were in. I was dressed for the room I could afford, which was smaller."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -619,6 +719,16 @@
       "role": "arch-society",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a small notebook in a leather cover with a gold pencil across it",
+        "short": "the notebook",
+        "kind": "habit",
+        "pay": [
+          "I got my own notebook out, so there’d be two of us. Mine had a pencil stub and a coffee ring, and nobody chose their words for it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -628,6 +738,16 @@
     "tags": {
       "role": "arch-society",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a look at everybody once, the way you read the headlines",
+        "short": "the look",
+        "kind": "eyes",
+        "pay": [
+          "I’d been read as a headline and not turned to. It happens. I’m more of an inside-page man."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -817,25 +937,55 @@
       "role": "arch-blockowner",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a ring of keys that never went into a pocket",
+        "short": "the keys",
+        "kind": "hands",
+        "pay": [
+          "The keys jingled once, somewhere behind me. Every door on the block knew the sound, and by then so did I."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-080",
     "deck": "character",
-    "text": "Big square hands, and the look of somebody who had been a tenant once and meant never to be one again.",
+    "text": "{He} had big square hands and the look of somebody who had been a tenant once and meant never to be one again.",
     "tags": {
       "role": "arch-blockowner",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "big square hands",
+        "short": "the hands",
+        "kind": "hands",
+        "pay": [
+          "I thought about my own landlord’s hands. They were the same hands. They always are."
+        ]
+      }
     },
     "status": "generated"
   },
   {
     "id": "chr-081",
     "deck": "character",
-    "text": "{He} sat as if the chair were {his}, and was working out what to charge me for the other one.",
+    "text": "{He} looked at the chairs as if they were all {his}, and at me as if working out what to charge me for the floor.",
     "tags": {
       "role": "arch-blockowner",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "the air of somebody who owned the chair and was pricing the floor",
+        "short": "the chair",
+        "kind": "posture",
+        "pay": [
+          "I stayed on my feet. At those rates, I couldn’t afford to sit down."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -1003,25 +1153,55 @@
       "role": "arch-lawyer",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "cuffs gone shiny from the desk",
+        "short": "the cuffs",
+        "kind": "clothes",
+        "pay": [
+          "My own cuffs had gone shiny too, from the bar. Everybody wears out on whatever they lean on."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-098",
     "deck": "character",
-    "text": "Off came the glasses to listen and on again to answer, and {he} never gave a question one word more than it had paid for.",
+    "text": "{He} had a pair of glasses that came off to listen and went back on to speak, and {he} gave nobody one word more than they had paid for.",
     "tags": {
       "role": "arch-lawyer",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "glasses that came off to listen and went back on to speak",
+        "short": "the glasses",
+        "kind": "face",
+        "pay": [
+          "The glasses came off. Somebody in that room was about to be listened to, and I had a nasty feeling it was me."
+        ]
+      }
     },
     "status": "generated"
   },
   {
     "id": "chr-099",
     "deck": "character",
-    "text": "A worn briefcase stood at {his} feet with the buckle fastened, and {he} kept one shoe against it the whole time we talked. I tried not to take it personally.",
+    "text": "A worn briefcase stood at {his} feet with the buckle fastened, and {he} kept one shoe against it, in case I was the kind who took briefcases. I tried not to take it personally.",
     "tags": {
       "role": "arch-lawyer",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "one shoe kept against a worn briefcase",
+        "short": "the briefcase",
+        "kind": "habit",
+        "pay": [
+          "The shoe stayed on the briefcase. Whatever was in there was better looked after than most clients."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -1211,6 +1391,16 @@
       "role": "arch-bookkeeper",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "ink worn into the side of one finger, too deep to scrub out",
+        "short": "the ink",
+        "kind": "hands",
+        "pay": [
+          "I had ink on my finger too, from the notebook. Mine would scrub out. That’s the difference between a career and a night."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1221,6 +1411,16 @@
       "role": "arch-bookkeeper",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "hands that stayed folded until one was needed, and then only the one",
+        "short": "the folded hands",
+        "kind": "hands",
+        "pay": [
+          "One hand came unfolded, did something small, and went back. I’ve seen banks spend less carefully."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1230,6 +1430,16 @@
     "tags": {
       "role": "arch-bookkeeper",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a squint from years of adding small figures under a green lamp",
+        "short": "the squint",
+        "kind": "eyes",
+        "pay": [
+          "The squint added me up once more, in case it had forgotten to carry a one. I still came out short."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -1397,15 +1607,35 @@
       "role": "arch-nurse",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "the grey under the eyes of somebody who slept in the daytime",
+        "short": "the grey under the eyes",
+        "kind": "face",
+        "pay": [
+          "I had the same grey under my own eyes, and none of the excuse."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-136",
     "deck": "character",
-    "text": "Very still in the chair, feet together, {he} sat the way a nurse learns to sit in a sickroom so as not to wake anybody. I lowered my voice without being asked.",
+    "text": "{He} had the stillness a nurse learns in a sickroom, so as not to wake anybody. I started walking on the sides of my shoes.",
     "tags": {
       "role": "arch-nurse",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a stillness learned in sickrooms, so as not to wake anybody",
+        "short": "the stillness",
+        "kind": "posture",
+        "pay": [
+          "I kept my voice down after that. Stillness like that, you start to feel like the patient."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -1416,6 +1646,16 @@
     "tags": {
       "role": "arch-nurse",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a watch pinned face down at the breast",
+        "short": "the watch",
+        "kind": "clothes",
+        "pay": [
+          "The watch was still face down. I hoped it had got a good reading. I hadn’t had one in years."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -1583,15 +1823,35 @@
       "role": "arch-dentist",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "hands that were very clean and very steady",
+        "short": "the steady hands",
+        "kind": "hands",
+        "pay": [
+          "I kept my mouth shut, on principle. Those steady hands looked like they could have it open in a minute and a half."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-154",
     "deck": "character",
-    "text": "A starched white collar, a dark suit a little warm for the room, and eyes that went to my mouth whenever I talked. I had the feeling my fillings were being counted.",
+    "text": "{He} wore a starched white collar and a dark suit a little warm for the room, and {his} eyes went to my mouth the moment I came in. I had the feeling my fillings were being counted.",
     "tags": {
       "role": "arch-dentist",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "eyes that went straight to my mouth",
+        "short": "the eyes",
+        "kind": "eyes",
+        "pay": [
+          "I kept my mouth closed after that. There are some counts I’d rather not hear the total of."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -1602,6 +1862,16 @@
     "tags": {
       "role": "arch-dentist",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "the pale indoor look of somebody bent over a chair all day under an electric light",
+        "short": "the pale look",
+        "kind": "face",
+        "pay": [
+          "Under that light we both looked like we’d spent the day bent over something. In my case it was the bar."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -1769,25 +2039,55 @@
       "role": "arch-secretary",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a steno pad kept ready in case I said something worth taking down",
+        "short": "the steno pad",
+        "kind": "hands",
+        "pay": [
+          "The steno pad was still blank. I’ve had reviews like that."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-172",
     "deck": "character",
-    "text": "There was a way {he} had of waiting for the end of each of my sentences, the way a person waits for dictation, and I began to hear my own grammar.",
+    "text": "{He} had a way of waiting, head a little on one side, the way a person waits for dictation, and I found I was minding my grammar before I’d said a word.",
     "tags": {
       "role": "arch-secretary",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a way of waiting, head on one side, as if for dictation",
+        "short": "the waiting",
+        "kind": "habit",
+        "pay": [
+          "I said nothing, and I said it grammatically. It’s harder than it sounds."
+        ]
+      }
     },
     "status": "generated"
   },
   {
     "id": "chr-173",
     "deck": "character",
-    "text": "The fingertips had gone flat from typing all day, and {he} was dressed for an office in a good plain way that no office would ever notice.",
+    "text": "{He} had fingertips gone flat from typing all day, and was dressed for an office in a good plain way that no office would ever notice.",
     "tags": {
       "role": "arch-secretary",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "fingertips gone flat from typing all day",
+        "short": "the fingertips",
+        "kind": "hands",
+        "pay": [
+          "The flat fingertips were drumming on nothing, a line at a time. Somewhere a letter was getting written whether anybody wanted it or not."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -1955,6 +2255,16 @@
       "role": "arch-reporter",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a press card tucked in the hatband",
+        "short": "the press card",
+        "kind": "clothes",
+        "pay": [
+          "The press card was still in the hatband. I was still worth about fifty words, and none of them were going on the front page."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1965,6 +2275,16 @@
       "role": "arch-reporter",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a chin a day past its shave",
+        "short": "the stubble",
+        "kind": "face",
+        "pay": [
+          "I rubbed my own chin. It was two days past a shave, and I didn’t even have a deadline to blame."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1974,6 +2294,16 @@
     "tags": {
       "role": "arch-reporter",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a pencil that wrote on whatever was handy without anybody looking",
+        "short": "the pencil",
+        "kind": "hands",
+        "pay": [
+          "The pencil was still going. I hoped it was spelling my name right. Nobody ever does."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -2158,10 +2488,20 @@
   {
     "id": "chr-209",
     "deck": "character",
-    "text": "{He} sat as a pianist sits, bolt upright, with {his} hands palm down in {his} lap, waiting to be counted in.",
+    "text": "{He} had a pianist’s back, bolt upright, and hands that seemed to be waiting to be counted in.",
     "tags": {
       "role": "arch-piano-teacher",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "hands that seemed to be waiting to be counted in",
+        "short": "the waiting hands",
+        "kind": "posture",
+        "pay": [
+          "Nobody counted anybody in. I nearly did it myself, out loud, just to get things started."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -2173,15 +2513,35 @@
       "role": "arch-piano-teacher",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a music case with its handle mended with twine",
+        "short": "the music case",
+        "kind": "hands",
+        "pay": [
+          "The twine on the music case was holding. Most things in this city are held together with less."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-211",
     "deck": "character",
-    "text": "Long fingers, cold-looking, and a habit of humming under {his} breath, always the same few bars and never the end of them.",
+    "text": "{He} had long, cold-looking fingers and a habit of humming under {his} breath, always the same few bars and never the end of them.",
     "tags": {
       "role": "arch-piano-teacher",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a habit of humming the same few bars and never the end of them",
+        "short": "the humming",
+        "kind": "voice",
+        "pay": [
+          "The humming stopped short of the end again. I’d have paid a nickel to hear how it came out."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -2349,6 +2709,16 @@
       "role": "arch-adjuster",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "an eye that priced the furniture",
+        "short": "the eye",
+        "kind": "eyes",
+        "pay": [
+          "The eye went round the furniture once more and skipped me again. I’ve never been insured, and now I knew why."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2359,6 +2729,16 @@
       "role": "arch-adjuster",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a smile the eyes didn’t join in",
+        "short": "the smile",
+        "kind": "face",
+        "pay": [
+          "The smile came my way once more. The eyes sent their regrets."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2368,6 +2748,16 @@
     "tags": {
       "role": "arch-adjuster",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "soot in the welt of one shoe",
+        "short": "the soot",
+        "kind": "clothes",
+        "pay": [
+          "The soot was still in the shoe. Somewhere a fire was waiting for somebody to believe in it."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -2535,6 +2925,16 @@
       "role": "arch-chambermaid",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a habit of standing near the wall, clear of the traffic",
+        "short": "the wall",
+        "kind": "posture",
+        "pay": [
+          "I found a bit of wall myself. It turned out to be the best spot in the room. The help always know."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2545,15 +2945,35 @@
       "role": "arch-chambermaid",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "apron strings showing under the coat",
+        "short": "the apron",
+        "kind": "clothes",
+        "pay": [
+          "The apron strings were still showing. Somewhere a bed was waiting to be made, which put it one up on mine."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-247",
     "deck": "character",
-    "text": "The flat shoes and thick ankles were those of a woman who climbed stairs all day. {He} sat on the front edge of the chair, ready to be up again the moment anybody rang.",
+    "text": "The flat shoes and thick ankles were those of somebody who climbed stairs all day, and {he} had the look of being ready to be off again the moment anybody rang.",
     "tags": {
       "role": "arch-chambermaid",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a look of being ready to be off the moment anybody rang",
+        "short": "the readiness",
+        "kind": "posture",
+        "pay": [
+          "Nobody rang. It didn’t matter. Some people are never off, and some of us are never quite on."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -2716,10 +3136,20 @@
   {
     "id": "chr-263",
     "deck": "character",
-    "text": "{He} was big through the shoulders and heavy in the hands, and stood with {his} weight forward, as if the floor might move under {him}. On the piers, floors do.",
+    "text": "{He} was big through the shoulders and heavy in the hands, and carried {his} weight forward, as if the floor might move under {him}. On the piers, floors do.",
     "tags": {
       "role": "arch-longshoreman",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a way of carrying the weight forward, as if the floor might move",
+        "short": "the stance",
+        "kind": "posture",
+        "pay": [
+          "The floor stayed where it was. I don’t think it would have dared."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -2731,15 +3161,35 @@
       "role": "arch-longshoreman",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "knuckles that had split and healed and split again",
+        "short": "the knuckles",
+        "kind": "hands",
+        "pay": [
+          "I looked at my own knuckle. It had split once and was still talking about it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-265",
     "deck": "character",
-    "text": "The wool cap was pushed back, the jacket smelled of tar and the river, and {he} didn’t sit until I did. Then the chair had a bad minute.",
+    "text": "{He} had {his} wool cap pushed back and a jacket that smelled of tar and the river, and every chair {he} looked at had a bad minute.",
     "tags": {
       "role": "arch-longshoreman",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a jacket that smelled of tar and the river",
+        "short": "the smell of tar",
+        "kind": "clothes",
+        "pay": [
+          "By then the whole room smelled of tar and the river. I didn’t mind. It was an improvement."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -2907,15 +3357,35 @@
       "role": "arch-seamstress",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "an eye for a loose button",
+        "short": "the eye",
+        "kind": "eyes",
+        "pay": [
+          "I did my coat up over the loose button. It knew it had been seen."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-282",
     "deck": "character",
-    "text": "Thin and a little bent at the shoulders from the machine, {he} wore a dress better made than anything {he} could have bought, and it hadn’t been.",
+    "text": "Thin and a little bent at the shoulders from the machine, {he} wore clothes better made than anything {he} could have bought, and they hadn’t been.",
     "tags": {
       "role": "arch-seamstress",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "clothes better made than anything a store sells",
+        "short": "the clothes",
+        "kind": "clothes",
+        "pay": [
+          "My coat came from a store. You could tell from across the room, and somebody had."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -2926,6 +3396,16 @@
     "tags": {
       "role": "arch-seamstress",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a squint for a needle’s eye",
+        "short": "the squint",
+        "kind": "eyes",
+        "pay": [
+          "The squint stayed on me a while. I tried to look thinner. It didn’t help."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -3110,10 +3590,20 @@
   {
     "id": "chr-301",
     "deck": "character",
-    "text": "{He} had a driver’s cap with a shiny peak and a driver’s squint, and {he} sat forward in the chair as though it were stuck behind a streetcar.",
+    "text": "{He} had a driver’s cap with a shiny peak and a driver’s squint, and leaned forward wherever {he} was, as though stuck behind a streetcar.",
     "tags": {
       "role": "arch-hackman",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a way of leaning forward, as if stuck behind a streetcar",
+        "short": "the lean",
+        "kind": "posture",
+        "pay": [
+          "Nothing in that room was going anywhere. Somebody should have honked."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -3125,6 +3615,16 @@
       "role": "arch-hackman",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "change jingling in one pocket",
+        "short": "the change",
+        "kind": "habit",
+        "pay": [
+          "The change was still jingling. Somewhere a meter was running, and I had a feeling it was on me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -3134,6 +3634,16 @@
     "tags": {
       "role": "arch-hackman",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "gloves with the fingertips cut out",
+        "short": "the gloves",
+        "kind": "hands",
+        "pay": [
+          "I could have used gloves like that. Mine have all ten fingertips, and they still let the cold in."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -3301,6 +3811,16 @@
       "role": "arch-tailor",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a look at my coat before my face",
+        "short": "the look at my coat",
+        "kind": "eyes",
+        "pay": [
+          "I did my coat up. It didn’t help the coat, but it made me feel better."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -3311,6 +3831,16 @@
       "role": "arch-tailor",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a row of pins in the lapel",
+        "short": "the pins",
+        "kind": "clothes",
+        "pay": [
+          "I kept moving. With those pins in the room, it seemed wise."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -3320,6 +3850,16 @@
     "tags": {
       "role": "arch-tailor",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a waistcoat that kept getting smoothed",
+        "short": "the waistcoat",
+        "kind": "habit",
+        "pay": [
+          "The waistcoat got smoothed once more. My coat stayed the way it was. It’s loyal like that."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -3487,6 +4027,16 @@
       "role": "arch-stagehand",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "dark clothes, the way the crew wears them so the audience won’t see",
+        "short": "the dark clothes",
+        "kind": "clothes",
+        "pay": [
+          "I lost track of the dark clothes twice before I was done. That’s a good crew."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -3497,15 +4047,35 @@
       "role": "arch-stagehand",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a stance for a narrow walkway, waiting on a cue",
+        "short": "the stance",
+        "kind": "posture",
+        "pay": [
+          "The cue still hadn’t come. I knew how that felt. Mine has been running late for years."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-339",
     "deck": "character",
-    "text": "Sawdust in the turn-ups, a stub of pencil behind one ear, and a smell of glue and paint that got into the room a step ahead of {him}.",
+    "text": "{He} had sawdust in {his} trouser cuffs and a stub of pencil behind one ear, and a smell of glue and paint that got into the room a step ahead of {him}.",
     "tags": {
       "role": "arch-stagehand",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a smell of glue and paint that got in a step ahead",
+        "short": "the smell of glue and paint",
+        "kind": "clothes",
+        "pay": [
+          "The smell of glue and paint had got to me too by then. It’s the only part of a theatre I’ve ever taken home."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -3668,20 +4238,40 @@
   {
     "id": "chr-355",
     "deck": "character",
-    "text": "{He} held {his} head tilted a little, as if the headset were still on it, and answered before I’d finished asking, and waited for me to hang up.",
+    "text": "{He} held {his} head tilted a little, as if the headset were still on it, and looked at me as if I were a call that had come through on the wrong line.",
     "tags": {
       "role": "arch-switchboard",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a head tilted as if the headset were still on it",
+        "short": "the tilt",
+        "kind": "posture",
+        "pay": [
+          "The head was still tilted, listening. I kept quiet. I didn’t want to be put through to anybody."
+        ]
+      }
     },
     "status": "generated"
   },
   {
     "id": "chr-356",
     "deck": "character",
-    "text": "Quick small hands, the nails cut short for the plugs, tapping on {his} knee, still putting calls through to nobody.",
+    "text": "{He} had quick small hands with the nails cut short for the plugs, and they kept tapping on {his} knee, still putting calls through to nobody.",
     "tags": {
       "role": "arch-switchboard",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "quick small hands still putting calls through to nobody",
+        "short": "the hands",
+        "kind": "hands",
+        "pay": [
+          "The hands were still putting calls through. I hoped one of them was for me. Nobody had rung all week."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -3692,6 +4282,16 @@
     "tags": {
       "role": "arch-switchboard",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "the mark of the headset band pressed into the hair",
+        "short": "the headset mark",
+        "kind": "face",
+        "pay": [
+          "My hat had left a mark in my hair too. Nobody was paying me by the hour for mine."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -3859,15 +4459,35 @@
       "role": "arch-nightman",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "the grey look of somebody who works while the city sleeps",
+        "short": "the grey look",
+        "kind": "face",
+        "pay": [
+          "I had the same grey look by then. The city was asleep, and I was holding it against the city too."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-374",
     "deck": "character",
-    "text": "The hotel’s black coat and striped trousers, and a carnation in the buttonhole that had been fresh when the shift began.",
+    "text": "{He} wore the hotel’s black coat and striped trousers, and a carnation in the buttonhole that had been fresh when the shift began.",
     "tags": {
       "role": "arch-nightman",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a carnation that had been fresh when the shift began",
+        "short": "the carnation",
+        "kind": "clothes",
+        "pay": [
+          "The carnation had given up a little more while I stood there. We had that in common."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -3878,6 +4498,16 @@
     "tags": {
       "role": "arch-nightman",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a way of being so polite you forgot anybody was there",
+        "short": "the politeness",
+        "kind": "habit",
+        "pay": [
+          "I looked round to say something and nearly forgot who to. That’s service."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -4045,6 +4675,16 @@
       "role": "arch-chorus",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a cheap fur collar that kept getting touched",
+        "short": "the fur collar",
+        "kind": "clothes",
+        "pay": [
+          "The fur collar was still there. So was I. Neither of us had left with anybody richer."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -4055,6 +4695,16 @@
       "role": "arch-chorus",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a laugh that came a moment before anything was funny",
+        "short": "the laugh",
+        "kind": "voice",
+        "pay": [
+          "Somebody laughed early. I checked, and I hadn’t said anything funny yet. I rarely have."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -4064,6 +4714,16 @@
     "tags": {
       "role": "arch-chorus",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a hat set at the angle the magazines said",
+        "short": "the hat",
+        "kind": "clothes",
+        "pay": [
+          "I tipped my own hat to the angle the magazines said. It was the wrong magazine."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -4231,6 +4891,16 @@
       "role": "arch-bookmaker",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "sums done on the fingers without moving the lips",
+        "short": "the sums",
+        "kind": "hands",
+        "pay": [
+          "The fingers were still doing sums. From the look of it, my odds hadn’t got any shorter."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -4241,6 +4911,16 @@
       "role": "arch-bookmaker",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "eyes on the door, in case it was the police or a winner",
+        "short": "the eyes",
+        "kind": "eyes",
+        "pay": [
+          "The door opened. It was neither. It hardly ever is, which is how bookmakers stay in business."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -4250,6 +4930,16 @@
     "tags": {
       "role": "arch-bookmaker",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "chalk from a slate, wiped off on the trousers",
+        "short": "the chalk",
+        "kind": "hands",
+        "pay": [
+          "A bit more chalk went on the trousers. They took it the way I take most things: without comment and without improving."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -4417,6 +5107,16 @@
       "role": "arch-heeler",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a club button touched whenever the word ‘neighbors’ came up",
+        "short": "the club button",
+        "kind": "habit",
+        "pay": [
+          "Somebody said ‘neighbors’, and a hand went to the club button. I nearly voted."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -4427,6 +5127,16 @@
       "role": "arch-heeler",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a hat that came off in every room, in case there was a vote in it",
+        "short": "the hat",
+        "kind": "habit",
+        "pay": [
+          "I took my own hat off. There was no vote in it for me either."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -4436,6 +5146,16 @@
     "tags": {
       "role": "arch-heeler",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "cigar ash on both lapels",
+        "short": "the cigar ash",
+        "kind": "clothes",
+        "pay": [
+          "I brushed off my own lapel. Nothing on it but the night. It hadn’t been a good day for handshaking."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -4625,6 +5345,16 @@
       "role": "arch-pawnman",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a habit of turning things upside down to see the bottom",
+        "short": "the habit",
+        "kind": "habit",
+        "pay": [
+          "I kept both feet on the floor. In that company, anything could get turned upside down to see what was on the bottom."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -4635,6 +5365,16 @@
       "role": "arch-pawnman",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a green eyeshade pushed up on the forehead",
+        "short": "the eyeshade",
+        "kind": "face",
+        "pay": [
+          "I had a sad story of my own, but I kept it. I didn’t want to hear what it would fetch."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -4644,6 +5384,16 @@
     "tags": {
       "role": "arch-pawnman",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "an eye that put a figure on my watch",
+        "short": "the eye",
+        "kind": "eyes",
+        "pay": [
+          "I put my watch in my pocket. There’s no sense being outvalued by your own watch in public."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -4811,6 +5561,16 @@
       "role": "arch-bouncer",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a collar a size too small for the neck",
+        "short": "the collar",
+        "kind": "clothes",
+        "pay": [
+          "The collar was holding, just. So was I."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -4821,15 +5581,35 @@
       "role": "arch-bouncer",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a stance like something poured and left to set",
+        "short": "the stance",
+        "kind": "posture",
+        "pay": [
+          "Whatever had been poured there had set by then. I walked round it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-467",
     "deck": "character",
-    "text": "{He} had scarred knuckles and a mild voice, and kept {his} eyes on the door behind me while I talked, working out which of us it would be easier to put through it.",
+    "text": "{He} had scarred knuckles and a mild voice, and when I came in {he} looked at the door behind me, working out which of us would go through it easier.",
     "tags": {
       "role": "arch-bouncer",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a look at the door, working out who would go through it easier",
+        "short": "the look at the door",
+        "kind": "eyes",
+        "pay": [
+          "I stayed a good way from the door. There was no sense helping anybody with the arithmetic."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -4997,15 +5777,35 @@
       "role": "arch-runner",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "pockets that bulged with folded slips of paper",
+        "short": "the pockets",
+        "kind": "clothes",
+        "pay": [
+          "A hand went over the bulging pockets again. I hadn’t asked. I hadn’t needed to."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-484",
     "deck": "character",
-    "text": "A good hat and cheap shoes, and {he} was up on {his} toes the whole time, ready to be somewhere else.",
+    "text": "{He} had a good hat and cheap shoes, and was up on {his} toes the whole time, ready to be somewhere else.",
     "tags": {
       "role": "arch-runner",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a way of staying up on the toes, ready to be somewhere else",
+        "short": "the toes",
+        "kind": "posture",
+        "pay": [
+          "The toes were still ready to be somewhere else. So were mine, but mine were further from the door."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -5016,6 +5816,16 @@
     "tags": {
       "role": "arch-runner",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "small quick eyes that counted the ways out",
+        "short": "the eyes",
+        "kind": "eyes",
+        "pay": [
+          "I counted the ways out myself. There were two, and one of them was the way I’d come in."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -5183,15 +5993,35 @@
       "role": "bartender",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a towel over one shoulder and a habit of wiping the bar after every glass",
+        "short": "the towel",
+        "kind": "habit",
+        "pay": [
+          "The towel went down the bar once more, over a ring that wasn’t there. I’d been in cleaner places. I couldn’t think where."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-502",
     "deck": "character",
-    "text": "Both hands spread on the bar, {he} leaned the way somebody leans who has been standing since the afternoon and has opinions about it.",
+    "text": "Between customers {he} leaned on both hands spread on the bar, the way somebody leans who has been standing since the afternoon and has opinions about it.",
     "tags": {
       "role": "bartender",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "both hands spread on the bar",
+        "short": "the hands",
+        "kind": "posture",
+        "pay": [
+          "The hands went back down on the bar. Standing since the afternoon, and not a word of complaint. I’ve complained about less by lunchtime."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -5207,7 +6037,10 @@
       "trait": {
         "text": "eyes that went to the door every time it opened, and came back",
         "short": "the eyes",
-        "kind": "eyes"
+        "kind": "eyes",
+        "pay": [
+          "Somebody came in behind me. The eyes went to the door and came back, and I was glad to see I’d been promoted to furniture."
+        ]
       }
     },
     "status": "generated"
@@ -5376,15 +6209,35 @@
       "role": "doorman",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a way of standing very straight, in case the building leaned",
+        "short": "the posture",
+        "kind": "posture",
+        "pay": [
+          "The building didn’t lean. I did, a little, and nobody held me up."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-520",
     "deck": "character",
-    "text": "A doorman’s face, pleasant and closed at once, and white gloves that {he} took off a finger at a time so we could talk. I nearly left before the second glove.",
+    "text": "{He} had a doorman’s face, pleasant and closed at once, and white gloves {he} started taking off a finger at a time when {he} saw me coming. I nearly left before the second glove.",
     "tags": {
       "role": "doorman",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "white gloves that came off a finger at a time",
+        "short": "the gloves",
+        "kind": "hands",
+        "pay": [
+          "The second glove was nearly off. I decided to stay for it. A man should see something finished."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -5395,6 +6248,16 @@
     "tags": {
       "role": "doorman",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a way of having the door open before anybody reached for it",
+        "short": "the door",
+        "kind": "habit",
+        "pay": [
+          "I could feel the door behind me, ready to swing wide the moment I turned. It’s nice to be wanted gone that efficiently."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -5562,15 +6425,35 @@
       "role": "newsstand",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a change apron that clinked with every move",
+        "short": "the change apron",
+        "kind": "clothes",
+        "pay": [
+          "The change apron clinked once, which meant somebody had moved. At that stand, it counts as news."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-538",
     "deck": "character",
-    "text": "On an upturned crate inside the stand, a tin of coffee between {his} feet, {he} made change without looking down and read the headlines without looking up.",
+    "text": "On an upturned crate inside the stand, a tin of coffee between {his} feet, {he} made change without looking down, which left {his} eyes free for me.",
     "tags": {
       "role": "newsstand",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a way of making change without looking down",
+        "short": "the change",
+        "kind": "hands",
+        "pay": [
+          "Change went out of the stand without anybody looking at it, and it came out right. I can’t do that with my eyes open."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -5581,6 +6464,16 @@
     "tags": {
       "role": "newsstand",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "eyes that followed everybody to the corner, and a little after",
+        "short": "the eyes",
+        "kind": "eyes",
+        "pay": [
+          "When I left, I knew, those eyes would see me to the corner, and a little after. It’s nice to have somebody."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -5748,15 +6641,35 @@
       "role": "counterman",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a burn scar where the grill had won an argument",
+        "short": "the burn scar",
+        "kind": "hands",
+        "pay": [
+          "I kept away from anything hot. That grill had a record."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-556",
     "deck": "character",
-    "text": "The rag went round on the counter while we talked, the same small circle over and over, until that one spot was the cleanest thing on the block and {he} still hadn’t looked at me.",
+    "text": "The rag went round on the counter, the same small circle over and over, until that one spot was the cleanest thing on the block, and {his} eyes went round the room the whole time and stopped on me.",
     "tags": {
       "role": "counterman",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a rag going round the same small circle",
+        "short": "the rag",
+        "kind": "habit",
+        "pay": [
+          "The rag was still going round the same spot. At that rate it would be through to the cellar by morning."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -5767,6 +6680,16 @@
     "tags": {
       "role": "counterman",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a pencil behind one ear and an order pad at the ready",
+        "short": "the order pad",
+        "kind": "hands",
+        "pay": [
+          "The order pad was still waiting for me. I still didn’t know what I’d have. I rarely do."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -5934,6 +6857,16 @@
       "role": "ticket-taker",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a callus on one thumb from tearing stubs",
+        "short": "the callus",
+        "kind": "hands",
+        "pay": [
+          "The thumb with the callus was twitching for a stub. I didn’t have one. I rarely have a ticket for anything."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -5944,6 +6877,16 @@
       "role": "ticket-taker",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a cap reshaped by a hundred hot nights",
+        "short": "the cap",
+        "kind": "clothes",
+        "pay": [
+          "My own hat had been reshaped by a few nights too. Not hot ones."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -5953,6 +6896,16 @@
     "tags": {
       "role": "ticket-taker",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a hand held out, and eyes only for hands",
+        "short": "the hand",
+        "kind": "hands",
+        "pay": [
+          "The hand was still out. I kept mine in my pockets and felt like a man without a ticket, which I was."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -6115,10 +7068,20 @@
   {
     "id": "chr-591",
     "deck": "character",
-    "text": "{He} sat on a folding stool in the car, one glove on the lever, and rose when I got in as if I were somebody.",
+    "text": "{He} looked old enough to have run the car since it was new, and {he} straightened up when I came in as if I were somebody.",
     "tags": {
       "role": "elevator-man",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a way of standing up for anybody, as if they were somebody",
+        "short": "the good manners",
+        "kind": "posture",
+        "pay": [
+          "Nobody else had stood up for me all year. I nearly tipped."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -6130,6 +7093,16 @@
       "role": "elevator-man",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "gloves that were the cleanest thing in the building",
+        "short": "the gloves",
+        "kind": "hands",
+        "pay": [
+          "I kept my hands in my pockets. Next to those gloves, they looked like they’d been somewhere."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -6139,6 +7112,16 @@
     "tags": {
       "role": "elevator-man",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a low voice that called the floors for nobody",
+        "short": "the voice",
+        "kind": "voice",
+        "pay": [
+          "Somewhere above me a floor got called that nobody needed. It was a comfort. Somebody in the building knew where they were."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -6306,25 +7289,55 @@
       "role": "landlady",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a look at my shoes before my face, to see what they’d do to the stairs",
+        "short": "the look at my shoes",
+        "kind": "eyes",
+        "pay": [
+          "I wiped my feet, late. It didn’t do much for me, but the stairs appreciated it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
     "id": "chr-610",
     "deck": "character",
-    "text": "A stout woman in a housedress and cardigan, sleeves pushed up, a dish towel over one shoulder for drying things, or swatting them.",
+    "text": "{He} was a stout woman in a housedress and cardigan, sleeves pushed up, with a dish towel over one shoulder for drying things, or swatting them.",
     "tags": {
       "role": "landlady",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a dish towel over one shoulder, for drying things or swatting them",
+        "short": "the dish towel",
+        "kind": "clothes",
+        "pay": [
+          "The dish towel stayed on the shoulder. I stayed out of its reach, to be on the safe side."
+        ]
+      }
     },
     "status": "generated"
   },
   {
     "id": "chr-611",
     "deck": "character",
-    "text": "Strong hands, a sharp mouth, and a way of folding {his} arms that ended a conversation and collected the rent on it.",
+    "text": "{He} had strong hands, a sharp mouth, and a way of folding {his} arms that ended a conversation and collected the rent on it.",
     "tags": {
       "role": "landlady",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a way of folding the arms that ended a conversation",
+        "short": "the folded arms",
+        "kind": "posture",
+        "pay": [
+          "The arms were still folded. I felt in my pocket for the rent, out of habit. It isn’t even my building."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -6492,6 +7505,16 @@
       "role": "beat-cop",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "a way of rocking heel to toe when standing still",
+        "short": "the rocking",
+        "kind": "posture",
+        "pay": [
+          "The rocking went on, heel to toe. On a beat that’s most of the job. On mine it’s most of the evening."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -6502,6 +7525,16 @@
       "role": "beat-cop",
       "kind": "look"
     },
+    "exports": {
+      "trait": {
+        "text": "shoes resoled so often the heels had more years in than the badge",
+        "short": "the shoes",
+        "kind": "clothes",
+        "pay": [
+          "I looked at my own heels. They’d put in as many years as that badge and never once been polished for it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -6511,6 +7544,16 @@
     "tags": {
       "role": "beat-cop",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a mustache still on its way, and taking the long route",
+        "short": "the mustache",
+        "kind": "face",
+        "pay": [
+          "The mustache hadn’t got any further while I stood there. I rooted for it quietly."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -6673,20 +7716,40 @@
   {
     "id": "chr-645",
     "deck": "character",
-    "text": "{He} leaned on the fender of the cab at {place} with {his} cap tipped back and a toothpick that moved when {he} thought. It didn’t move much.",
+    "text": "{He} had {his} cap tipped back and a toothpick that moved when {he} thought. It didn’t move much.",
     "tags": {
       "role": "cabbie",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a toothpick that only moved for thinking",
+        "short": "the toothpick",
+        "kind": "face",
+        "pay": [
+          "The toothpick moved once. Somebody in there had had a thought, and it wasn’t me."
+        ]
+      }
     },
     "status": "generated"
   },
   {
     "id": "chr-646",
     "deck": "character",
-    "text": "A newspaper folded on the seat, a thermos on the floor, and a look that took my measure like a meter taking a fare.",
+    "text": "{He} kept a newspaper folded on the seat and a thermos on the floor, and took my measure like a meter taking a fare.",
     "tags": {
       "role": "cabbie",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a look that took my measure like a meter taking a fare",
+        "short": "the look",
+        "kind": "eyes",
+        "pay": [
+          "The look was still running on me like a meter. I’d have got out, but I didn’t know where I was going either."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -6697,6 +7760,16 @@
     "tags": {
       "role": "cabbie",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a scarf wound twice round the neck",
+        "short": "the scarf",
+        "kind": "clothes",
+        "pay": [
+          "I turned my collar up. Next to that scarf, it looked like I wasn’t trying."
+        ]
+      }
     },
     "status": "generated"
   },
@@ -6859,30 +7932,60 @@
   {
     "id": "chr-663",
     "deck": "character",
-    "text": "{He} wore a white coat with a fountain pen clipped in the pocket and rimless glasses on a chain, and {his} hands smelled of camphor. So, faintly, did the conversation.",
+    "text": "{He} wore a white coat with a fountain pen clipped in the pocket and rimless glasses on a chain, and {his} hands smelled of camphor. So, faintly, did the whole shop, and after a minute so did I.",
     "tags": {
       "role": "druggist",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "hands that smelled of camphor",
+        "short": "the camphor",
+        "kind": "hands",
+        "pay": [
+          "I smelled faintly of camphor by then. It’s the only thing I’ve ever got from a drugstore for free."
+        ]
+      }
     },
     "status": "generated"
   },
   {
     "id": "chr-664",
     "deck": "character",
-    "text": "Behind the counter among the big glass jars, {he} was weighing something on a brass scale, and didn’t look up until it balanced.",
+    "text": "{He} was the kind of druggist who didn’t look up from the brass scale until it balanced, and then looked at me as if I might tip it.",
     "tags": {
       "role": "druggist",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a brass scale that had to balance first",
+        "short": "the brass scale",
+        "kind": "habit",
+        "pay": [
+          "Somewhere behind the counter the brass scale settled. I wished something in my evening would."
+        ]
+      }
     },
     "status": "generated"
   },
   {
     "id": "chr-665",
     "deck": "character",
-    "text": "Neat and grey and precise, {he} wrote everything down, even the things I said.",
+    "text": "Neat and grey and precise, {he} wrote everything down, and I had the feeling I’d be written down too before long.",
     "tags": {
       "role": "druggist",
       "kind": "look"
+    },
+    "exports": {
+      "trait": {
+        "text": "a habit of writing everything down",
+        "short": "the writing",
+        "kind": "habit",
+        "pay": [
+          "The pen was still going. Whatever I’d done so far, it was in a book now, spelled right."
+        ]
+      }
     },
     "status": "generated"
   },

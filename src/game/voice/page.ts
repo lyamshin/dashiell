@@ -2543,7 +2543,7 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
           );
           if (!drawn) return null;
           const card = DECKS.office.find((c) => c.id === drawn.cardId);
-          return { text: drawn.text, ...(card?.exports ? { exports: card.exports } : {}) };
+          return { text: drawn.text, motifs: drawn.motifs, score: drawn.score, ...(card?.exports ? { exports: card.exports } : {}) };
         },
         closeDeck: (role, exp) => {
           const c = (x: Card, tag: string, want: string): boolean => tagOf('close', x, tag) === want;
@@ -2562,7 +2562,7 @@ function openTheOffice(stage: Stage, scene: Extract<Scene, { kind: 'open' }>, t:
     : null;
   if (framed) {
     t.sheets.push(framed.use);
-    t.say(framed.open, 'place', { keep: 2, para: 'office', verbatim: true });
+    t.say(framed.open, 'place', { motifs: framed.motifs, score: framed.score, keep: 2, para: 'office', verbatim: true });
   } else {
     const office = officeCard(dealer, cast.roll.circumstance, cast.roll.weather, slots, t.ctx);
     if (office.gap) t.gaps.push(office.gap);

@@ -201,7 +201,8 @@ export function shortOf(card: Card, filled: string): string {
       return /[.!?”]$/.test(head) ? head : `${head}.`;
     }
   }
-  const m = /^(.+?[.!?])(?:\s|$)/.exec(filled);
+  // The first sentence, not the first full stop: "Mrs." and "St." are not an end.
+  const m = /^(.+?(?<!\b(?:Mrs|Mr|Dr|St|Mt|Jr|Sr))[.!?])(?:\s|$)/.exec(filled);
   return m ? (m[1] as string) : filled;
 }
 

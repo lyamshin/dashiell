@@ -8,6 +8,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the radiator in the front room, which hissed back at the boiler to have the last word",
+        "short": "the radiator",
+        "kind": "machine",
+        "near": "by the radiator",
+        "pay": [
+          "The radiator hissed at me again. Mine at the office doesn’t even do that much, so I took it as a compliment."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -19,6 +30,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the wallpaper, printed with small brown baskets and faded to nothing in a square where the streetlight got at it",
+        "short": "the wallpaper",
+        "kind": "picture",
+        "near": "against the basket wallpaper",
+        "pay": [
+          "I counted the baskets on the wallpaper while I thought. I got to forty and ran out of thinking before I ran out of baskets."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -41,6 +63,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a tap in the kitchen dripping into a chipped enamel sink, onto a rust mark it had been working on for years",
+        "short": "the tap",
+        "kind": "water",
+        "near": "by the kitchen sink",
+        "pay": [
+          "The tap went on dripping onto its rust mark. Years at one small job, and it still hadn’t finished. I admired the dedication, if not the progress."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -63,6 +96,16 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the steam pipes behind the plaster, ticking one by one as they cooled",
+        "short": "the pipes",
+        "kind": "sound",
+        "pay": [
+          "The pipes went on ticking behind the plaster, cooling off one at a time. I tried it myself. It works better for pipes."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -74,6 +117,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the cracks in the ceiling plaster, showing in the grey light off the air shaft",
+        "short": "the cracks",
+        "kind": "thing",
+        "near": "under the cracked ceiling",
+        "pay": [
+          "The light kept finding more cracks in the ceiling. I kept my hat on. It’s the only roof I own."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -85,6 +139,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "an old plaster medallion on the parlor ceiling, a ring of plaster leaves with a brass chain dropping from the centre",
+        "short": "the medallion",
+        "kind": "thing",
+        "near": "under the medallion",
+        "pay": [
+          "The brass chain hung from the medallion with nothing on the end of it. Whatever it used to hold up had quit years ago. I stood under it and didn’t take it personally."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -96,6 +161,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the tall windows onto the street, set in frames deep enough to sit in",
+        "short": "the tall windows",
+        "kind": "glass",
+        "near": "in the deep frame of a front window",
+        "pay": [
+          "I sat in the deep window frame for a minute. The cold off the glass told me, politely, why nobody else did."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -107,6 +183,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a marble mantel veined in grey, round a coal grate that had been bricked up long ago",
+        "short": "the mantel",
+        "kind": "furniture",
+        "near": "by the mantel",
+        "pay": [
+          "I leaned on the marble mantel. It was cold, and it was sulking, and it had been sulking since before I was born."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -118,6 +205,16 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a pipe knocking behind the wainscot now and then, as the house muttered to itself",
+        "short": "the pipe",
+        "kind": "sound",
+        "pay": [
+          "The pipe behind the wainscot knocked again. I didn’t answer it. It’s a rule of mine, in other people’s houses."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -140,6 +237,16 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the faint tick of a clock on the floor above",
+        "short": "the clock upstairs",
+        "kind": "clock",
+        "pay": [
+          "The clock upstairs ticked on, keeping time for a house that had gone to bed. I checked my watch against it. We disagreed, and I let it win."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -151,6 +258,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the stained glass over the door, laying red and amber the length of the hall",
+        "short": "the stained glass",
+        "kind": "glass",
+        "near": "in the red and amber from the door",
+        "pay": [
+          "The stained glass laid its colours across my shoes. They were the best-dressed they’d been all year."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -162,6 +280,16 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the smell of cherry syrup coming up through the floorboards from the drugstore",
+        "short": "the cherry syrup",
+        "kind": "smell",
+        "pay": [
+          "The cherry syrup kept coming up through the floorboards. I hadn’t eaten, and my stomach had stopped listening to anything else."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -173,6 +301,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the bare pine stairs, worn pale down the middle, with a rubber tread tacked to every third one",
+        "short": "the stairs",
+        "kind": "stair",
+        "near": "at the top of the stairs",
+        "pay": [
+          "Somebody had tacked a rubber tread to every third stair. I suppose the other two were on their own, like the rest of us."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -184,6 +323,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a fire escape out the back window, and below it a yard with one tree growing out of spite",
+        "short": "the tree",
+        "kind": "plant",
+        "near": "at the back window",
+        "pay": [
+          "The tree down in the yard went on growing out of spite. I respected that. Most nights it’s what gets me up the stairs."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -195,6 +345,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a pressed tin ceiling painted cream, gone brown with rust in one corner",
+        "short": "the tin ceiling",
+        "kind": "thing",
+        "near": "under the rusted corner of the ceiling",
+        "pay": [
+          "The rust in the corner of the ceiling had the shape of a country I’d never heard of. I looked at it long enough to want to go there."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -206,6 +367,16 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the green glow of the drugstore sign on the pavement below, and its hum coming up through the floor",
+        "short": "the drugstore sign",
+        "kind": "sign",
+        "pay": [
+          "The drugstore sign hummed up through the floor, one note, over and over. It was the most patient thing in the building, and I include myself."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -217,6 +388,16 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a refrigerator motor somewhere in the drugstore below, cutting in and out",
+        "short": "the refrigerator",
+        "kind": "machine",
+        "pay": [
+          "Downstairs the refrigerator cut in for its minute of work and knocked off again. I liked its hours. I’d have asked about openings."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -239,6 +420,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a hall carpet the length of the floor, red gone brown, with a vine that repeated every few yards in case you’d missed it",
+        "short": "the carpet",
+        "kind": "fabric",
+        "near": "halfway down the carpet",
+        "pay": [
+          "The vine on the carpet repeated itself every few yards, in case I’d missed it the first time. I had. I miss most things the first time."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -250,6 +442,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the elevator shaft beside the room, its cables humming in the wall",
+        "short": "the elevator",
+        "kind": "machine",
+        "near": "by the elevator",
+        "pay": [
+          "The cables in the wall hummed again. Somewhere below, the car was thinking about coming up. I’ve had clients like that."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -261,6 +464,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a transom over the door, letting in a thin bar of light from the hall",
+        "short": "the transom",
+        "kind": "light",
+        "near": "under the transom",
+        "pay": [
+          "The bar of light from the transom lay across the floor like a line I wasn’t supposed to cross. I crossed it twice, to be thorough."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -272,6 +486,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the hotel wallpaper, cream with a gold stripe, lifting at the seams",
+        "short": "the wallpaper",
+        "kind": "picture",
+        "near": "against the striped wallpaper",
+        "pay": [
+          "The wallpaper was coming away at the seams. I didn’t hold it against it. I was coming away at a few seams myself."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -283,6 +508,16 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the hotel’s sign outside the window, lighting the fire escape red",
+        "short": "the hotel sign",
+        "kind": "sign",
+        "pay": [
+          "The hotel sign kept the fire escape red for the benefit of nobody on it. It reminded me of my own advertising."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -294,6 +529,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the radiator, ticking as it cooled and complaining about it",
+        "short": "the radiator",
+        "kind": "machine",
+        "near": "by the radiator",
+        "pay": [
+          "The radiator ticked and complained as it cooled. I stood by it anyway, which is more loyalty than any radiator has shown me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -305,6 +551,16 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the pigeons on the ledge of the next roof across the air shaft, moving along it in short hops",
+        "short": "the pigeons",
+        "kind": "animal",
+        "pay": [
+          "The pigeons across the air shaft were up and at work. I felt a small professional jealousy of anybody who knew where they were going."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -316,6 +572,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the low ceilings of rough plank, over walls a foot thick",
+        "short": "the low ceiling",
+        "kind": "thing",
+        "near": "under the low ceiling",
+        "pay": [
+          "I found the low ceiling with the top of my head, the way you find a step in the dark. The house had been waiting a hundred years for somebody my height."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -327,6 +594,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the one window, with nothing in it but the back of the front house",
+        "short": "the window",
+        "kind": "glass",
+        "near": "at the window",
+        "pay": [
+          "The one window looked at four stories of brick wall. I looked at it too. Neither of us had anything to add."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -338,6 +616,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "an old pump in the little yard, with an iron handle painted green",
+        "short": "the pump",
+        "kind": "water",
+        "near": "by the pump",
+        "pay": [
+          "I worked the pump handle once, for luck. It squealed and gave nothing. The city stopped sending water back there years ago, and nobody told the pump."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -349,6 +638,16 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the floors, which leaned toward the lane as if ready to leave",
+        "short": "the leaning floor",
+        "kind": "thing",
+        "pay": [
+          "The floor leaned toward the lane the whole time I was there. By the end I was leaning with it. It had the right idea."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -371,6 +670,16 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the water running somewhere in the old pipes under the yard, a slow gurgle",
+        "short": "the pipes",
+        "kind": "sound",
+        "pay": [
+          "The water under the yard gurgled once more and quit. After that it was quiet enough to hear myself think, and I’ve heard better."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -393,6 +702,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "two water tanks on iron legs, their wooden staves banded with rusted hoops",
+        "short": "the water tanks",
+        "kind": "water",
+        "near": "in the shadow of the water tanks",
+        "pay": [
+          "The water tanks stood on their iron legs like two fat men waiting for a streetcar that had stopped running. I felt I ought to wait with them."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -404,6 +724,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a low brick parapet round the edge, knee high, crumbling at the corners, and not to be leaned on",
+        "short": "the parapet",
+        "kind": "thing",
+        "near": "by the parapet",
+        "pay": [
+          "I didn’t lean on the parapet. I’m a lot of things, but I’m not an optimist about brick."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -415,6 +746,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a pigeon coop of lath and chicken wire against the chimney stack, the birds inside muttering on their perches",
+        "short": "the pigeon coop",
+        "kind": "animal",
+        "near": "by the pigeon coop",
+        "pay": [
+          "The pigeons went on muttering in the coop. I couldn’t make out the words, but I knew the tone. My landlady uses it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -426,6 +768,16 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the chimney pots in rows across the neighbouring roofs, with clotheslines strung between them",
+        "short": "the chimney pots",
+        "kind": "thing",
+        "pay": [
+          "The chimney pots stood in rows across the roofs like a choir waiting for somebody to start them off. Nobody did. It was that kind of roof."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -448,6 +800,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "one of the water tanks, dripping into its pan",
+        "short": "the dripping tank",
+        "kind": "water",
+        "near": "under the dripping tank",
+        "pay": [
+          "The tank dripped into its pan every few seconds. I stood out of range. A man has to keep one thing dry, and my hat was all I had left."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -459,6 +822,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the water tanks, standing out black against the pale sky over the river",
+        "short": "the water tanks",
+        "kind": "water",
+        "near": "in the shadow of the water tanks",
+        "pay": [
+          "The sky came up behind the water tanks and made them look like they had somewhere to be. It was more than it was doing for me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -470,6 +844,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the delicatessen’s back step, and a smell of brine, smoked fish and sour pickles, all at full strength",
+        "short": "the back step",
+        "kind": "smell",
+        "near": "on the back step",
+        "pay": [
+          "The pickles had got into my coat by then. I’d smell like a delicatessen for a week, and the only ones who’d thank me were the cats."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -481,6 +866,18 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a rat going along the gutter between the ash cans in no hurry, since it lived there",
+        "short": "the rat",
+        "kind": "animal",
+        "near": "near the ash cans",
+        "pay": [
+          "The rat came back along the gutter and gave me a look. It lived there. I was only visiting, and we both knew it.",
+          "The rat went on about its business along the gutter. It was the only one in that alley who looked like he knew what he was doing."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -492,6 +889,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the fire escapes climbing both walls, throwing ladder shadows across the brick paving",
+        "short": "the fire escapes",
+        "kind": "stair",
+        "near": "under the fire escapes",
+        "pay": [
+          "The fire escapes laid their ladder shadows across the bricks. I stepped round every one of them. I’m not superstitious, but I’m not careless either."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -503,6 +911,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a grease barrel with its lid wired down, beside crates of pickle jars stacked by the step",
+        "short": "the grease barrel",
+        "kind": "thing",
+        "near": "by the grease barrel",
+        "pay": [
+          "I kept well clear of the grease barrel. It was the only coat I had, and the barrel had the look of something that wanted it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -525,6 +944,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a cat on the lid of an ash can, watching the alley",
+        "short": "the cat",
+        "kind": "animal",
+        "near": "by the cat on the ash can",
+        "pay": [
+          "The cat on the ash can hadn’t blinked the whole time. It was a better watcher than I was, and it worked for scraps."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -547,6 +977,16 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the smell of the tailor’s pressing in the stair: hot wool, scorched cotton, and steam",
+        "short": "the smell of pressing",
+        "kind": "smell",
+        "pay": [
+          "The stair still smelled of hot wool and steam. I thought about asking the tailor to press me while he was at it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -558,6 +998,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a panel of frosted glass in the office door",
+        "short": "the frosted glass",
+        "kind": "glass",
+        "near": "by the frosted glass",
+        "pay": [
+          "The frosted glass in the door made everything behind it look mysterious. I have the same glass on my own door. It’s the only mysterious thing about me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -569,6 +1020,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a coal merchant’s calendar by the window, over a long crack in the plaster",
+        "short": "the calendar",
+        "kind": "paper",
+        "near": "under the calendar",
+        "pay": [
+          "The calendar by the window had a picture of a mountain on it. I looked at the mountain longer than I should have. It was the nearest I was going to get to a holiday."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -580,6 +1042,16 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the tailor’s sign outside, a pair of gold shears painted on a black board",
+        "short": "the tailor’s sign",
+        "kind": "sign",
+        "pay": [
+          "The gold shears on the tailor’s sign hung open over the street. I had the feeling they had their eye on my coat, and I couldn’t blame them."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -591,6 +1063,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a blue stripe of light across the floorboards, from a sign buzzing across the street",
+        "short": "the blue stripe",
+        "kind": "light",
+        "near": "in the blue stripe of light",
+        "pay": [
+          "I stepped over the blue stripe on the floor, both times. It was the only colour in the room, and it seemed rude to stand on it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -602,6 +1085,16 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a faucet dripping into a sink in the washroom down the hall",
+        "short": "the faucet",
+        "kind": "water",
+        "pay": [
+          "The faucet down the hall went on dripping. It was keeping better time than I was."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -613,6 +1106,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the frosted glass in the door, going grey with the dawn",
+        "short": "the frosted glass",
+        "kind": "glass",
+        "near": "by the frosted glass",
+        "pay": [
+          "The dawn came through the frosted glass grey and in no hurry. It was the first thing all night to turn up later than I had."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -624,6 +1128,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the rafters under the corrugated roof, white with gull droppings",
+        "short": "the rafters",
+        "kind": "thing",
+        "near": "under the rafters",
+        "pay": [
+          "I kept my hat on under the rafters. The gulls had been at work up there for years, and I wasn’t going to be the thing they finished on."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -635,6 +1150,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the iron bollards along the edge of the pier, worn bright where the lines had run",
+        "short": "the bollards",
+        "kind": "thing",
+        "near": "by the bollards",
+        "pay": [
+          "I sat on a bollard for a minute. It was cold and hard, and it had held bigger things than me all its life without making a fuss about it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -646,6 +1172,16 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the river slapping at the pilings, and the whole pier giving a slow, put-upon creak whenever the tide pulled",
+        "short": "the pier",
+        "kind": "sound",
+        "pay": [
+          "The pier gave another long, put-upon creak as the tide pulled at it. I made the same noise getting up off the crate."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -657,6 +1193,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a cargo hook hanging from its chain overhead, above crates stencilled with the names of foreign ports",
+        "short": "the cargo hook",
+        "kind": "tool",
+        "near": "under the cargo hook",
+        "pay": [
+          "I didn’t stand under the cargo hook. Everything on that pier got hauled up and set down somewhere else, and I wasn’t ready to be shipped."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -668,6 +1215,16 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a tug’s lamp sliding slowly downstream past the end of the pier",
+        "short": "the tug",
+        "kind": "light",
+        "pay": [
+          "The tug’s wash came in against the pilings a minute after the tug had gone. Some things take a while to reach you. I’m one of them, ask anybody."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -690,6 +1247,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the gulls walking the edge of the pier in the early light, inspecting it",
+        "short": "the gulls",
+        "kind": "animal",
+        "near": "among the gulls",
+        "pay": [
+          "The gulls went on inspecting the pier one board at a time, heads cocked. They were more thorough than I’d been, and they’d get breakfast out of it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -701,6 +1269,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the clotheslines in rows from pole to pole, hung with wooden clothespins gone grey with age",
+        "short": "the clotheslines",
+        "kind": "thing",
+        "near": "under the clotheslines",
+        "pay": [
+          "I ducked under the clotheslines. The old clothespins were still hanging on with nothing left to hold. I admired their commitment."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -712,6 +1291,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a drain in the middle of the packed dirt, and a smell of lye soap and starch through the laundry wall",
+        "short": "the drain",
+        "kind": "water",
+        "near": "by the drain",
+        "pay": [
+          "The smell of starch came through the wall. My collar could have used some. My collar could have used a new owner."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -723,6 +1313,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a boiler vent sticking out of the laundry wall at head height, streaked white with scale",
+        "short": "the boiler vent",
+        "kind": "machine",
+        "near": "by the boiler vent",
+        "pay": [
+          "I stood by the boiler vent to get the chill off. It gave me a faint, soapy warmth, like a hug from an aunt."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -734,6 +1335,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "an iron wringer with a crank handle, beside wooden washtubs bleached almost white",
+        "short": "the wringer",
+        "kind": "tool",
+        "near": "by the wringer",
+        "pay": [
+          "I kept my hands clear of the wringer. I’ve been through one before, in a manner of speaking, and I came out flatter."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -756,6 +1368,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the drain in the middle of the yard, gurgling now and then",
+        "short": "the drain",
+        "kind": "water",
+        "near": "by the drain",
+        "pay": [
+          "The drain gurgled now and then, like it was about to say something. It never did. It was the most discreet thing in the yard, and there was a lot of competition."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -767,6 +1390,16 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the laundry’s boiler, starting up inside with a roar that shook the vent pipe",
+        "short": "the boiler",
+        "kind": "machine",
+        "pay": [
+          "The boiler roared into its day’s work behind the wall. Somebody on that block was getting up bright and early. It wasn’t going to be me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -778,6 +1411,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a banister loose in its posts on the bare board stairs",
+        "short": "the banister",
+        "kind": "stair",
+        "near": "by the loose banister",
+        "pay": [
+          "I didn’t touch the banister. It wobbled when I looked at it, and I didn’t want to be the thing that finished it off."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -789,6 +1433,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the doors on the landing, with nothing on them but a painted number, chipped to the wood",
+        "short": "the numbered doors",
+        "kind": "door",
+        "near": "on the landing",
+        "pay": [
+          "Every door on the landing had a number and nothing else. It seemed a sensible way to live. Nobody knocks on a number."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -800,6 +1455,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the one window, onto row on row of fire escapes hung with bedding and washlines",
+        "short": "the window",
+        "kind": "glass",
+        "near": "at the window",
+        "pay": [
+          "Out the window, somebody’s bedding hung on a fire escape, airing its business to the whole block. I looked away. It’s a professional courtesy."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -811,6 +1477,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a gas pipe running up the plaster in plain sight, painted the same tan as the wall to blend in",
+        "short": "the gas pipe",
+        "kind": "thing",
+        "near": "by the gas ring",
+        "pay": [
+          "The gas pipe went on trying to blend in with the wall. I stood beside it a while and tried the same. Neither of us fooled anybody."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -822,6 +1499,16 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a radio across the air shaft playing dance music low, a band going round and round the same tune",
+        "short": "the radio",
+        "kind": "sound",
+        "pay": [
+          "The band across the air shaft started the same tune over again. At least it had a band. I was going round in circles on my own."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -833,6 +1520,16 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a pipe in the wall that knocked now and then",
+        "short": "the pipe",
+        "kind": "sound",
+        "pay": [
+          "The pipe in the wall knocked again. I nearly said come in."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -855,6 +1552,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a bank of brass mailboxes along one wall, polished until the numbers had worn faint",
+        "short": "the mailboxes",
+        "kind": "thing",
+        "near": "by the mailboxes",
+        "pay": [
+          "Somebody had polished the numbers right off the mailboxes. That building would rather shine than tell you where anybody lived."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -866,6 +1574,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a tall mirror in a gilt frame, hung opposite the entrance",
+        "short": "the tall mirror",
+        "kind": "glass",
+        "near": "in front of the tall mirror",
+        "pay": [
+          "The tall mirror in the gilt frame gave me back the whole length of me. It’s a lot of length to be disappointed in."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -877,6 +1596,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a half-moon dial over the brass elevator gate, its arrow showing which floor the car was on",
+        "short": "the elevator dial",
+        "kind": "clock",
+        "near": "by the elevator gate",
+        "pay": [
+          "The arrow on the elevator dial hadn’t moved the whole time I was there. It was the only thing in the building that knew exactly where it stood."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -888,6 +1618,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a radiator behind a grille of pierced brass, hissing under the mirror",
+        "short": "the brass radiator",
+        "kind": "machine",
+        "near": "by the brass radiator",
+        "pay": [
+          "Even the radiator in that vestibule wore brass. It hissed at me when I stood near it, which I took personally."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -910,6 +1651,16 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "an elevator motor high up the shaft, humming for a moment and stopping",
+        "short": "the elevator motor",
+        "kind": "machine",
+        "pay": [
+          "The motor up the shaft hummed again and thought better of it. That building had a lot of second thoughts for a place made of marble."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -921,6 +1672,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the brass mailboxes, losing their shine in the grey daylight",
+        "short": "the mailboxes",
+        "kind": "thing",
+        "near": "by the mailboxes",
+        "pay": [
+          "In the daylight the mailboxes lost their shine all at once. I checked my reflection in the brass and decided to leave it at that."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -932,6 +1694,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a window on an air shaft, and across it another building’s blank brick, close enough to touch with a broom handle",
+        "short": "the brick wall",
+        "kind": "thing",
+        "near": "at the window",
+        "pay": [
+          "The brick across the air shaft was close enough to touch with a broom handle. Whoever had that room had probably tried it, just for the company."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -943,6 +1716,18 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a card of house rules tacked inside the door, lettered by hand, the underlining getting heavier toward the bottom",
+        "short": "the house rules",
+        "kind": "paper",
+        "near": "by the house rules on the door",
+        "pay": [
+          "I read the house rules down to the bottom, where the underlining got heaviest. I was breaking at least one of them just by standing there.",
+          "The house rules were still on the door, underlined harder the further down you went. Whoever wrote them had lost an argument once, and I had a feeling it was about the bath."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -954,6 +1739,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the new wallpaper hung over the old, with small roses showing through the ferns at the seams",
+        "short": "the wallpaper",
+        "kind": "picture",
+        "near": "against the wallpaper",
+        "pay": [
+          "The old roses kept coming through the new ferns at the seams. I liked the roses better. They’d been there first, and they weren’t giving up the room."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -965,6 +1761,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a brown water stain spreading over the ceiling in one corner, with ambitions",
+        "short": "the water stain",
+        "kind": "water",
+        "near": "under the water stain",
+        "pay": [
+          "The water stain on the ceiling had got a little bigger while I was there, or I had got a little smaller. Either way it was winning."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -987,6 +1794,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the stair out on the landing, creaking once as the old wood settled",
+        "short": "the stair",
+        "kind": "stair",
+        "near": "at the top of the stair",
+        "pay": [
+          "The stair on the landing creaked again, and I looked round. Nobody. The house was only clearing its throat."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -998,6 +1816,16 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the smell of coffee rising from the kitchen below",
+        "short": "the coffee",
+        "kind": "smell",
+        "pay": [
+          "The smell of coffee came up from the kitchen. It wasn’t for me. Nothing that smells that good ever is."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1009,6 +1837,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a brass rail along the foot of the bar at ankle height, with sawdust scattered under it",
+        "short": "the brass rail",
+        "kind": "furniture",
+        "near": "with a foot on the brass rail",
+        "pay": [
+          "I put a foot on the brass rail. It’s the only thing in a bar that’s always glad to see you."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1020,6 +1859,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a mirror behind the bar gone cloudy at the edges, with a row of porcelain tap handles in front of it",
+        "short": "the cloudy mirror",
+        "kind": "glass",
+        "near": "under the cloudy mirror",
+        "pay": [
+          "The mirror had gone cloudy round the edges, and I looked better in it than I had in weeks. From then on I decided to drink only in bars with bad mirrors."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1031,6 +1881,18 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a jar of pickled eggs on the lunch counter, older than the racehorse in the picture above it",
+        "short": "the pickled eggs",
+        "kind": "food",
+        "near": "by the jar of pickled eggs",
+        "pay": [
+          "The pickled eggs were still in their jar on the counter. Nobody had eaten one in my lifetime, and I wasn’t going to be the first.",
+          "I looked at the pickled eggs a while. They looked back. I lost my appetite, and I hadn’t had much of one to lose."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1042,6 +1904,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a beer sign in the window, buzzing in red script",
+        "short": "the beer sign",
+        "kind": "sign",
+        "near": "under the beer sign",
+        "pay": [
+          "The beer sign in the window buzzed away in red, spelling out the one word everybody in there could still read."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1053,6 +1926,16 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the beer coils under the bar, gurgling as the lines settled",
+        "short": "the beer coils",
+        "kind": "sound",
+        "pay": [
+          "The beer coils gurgled again under the bar, and my stomach answered them. It hadn’t been fed since I couldn’t remember when."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1064,6 +1947,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the clock over the door, ticking against a tap dripping into the trough under the bar",
+        "short": "the clock",
+        "kind": "clock",
+        "near": "under the clock",
+        "pay": [
+          "The clock over the door and the tap under the bar went on keeping two different times. I went with the tap. It wasn’t pretending to be anything."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1075,6 +1969,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the painted lettering on the front window, with the daylight coming in past it",
+        "short": "the lettering",
+        "kind": "sign",
+        "near": "by the front window",
+        "pay": [
+          "The daylight came in past the lettering on the window and showed the place its age. I kept my back to it. I wasn’t ready to be shown mine."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1086,6 +1991,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a low ceiling crossed with the hat shop’s pipes",
+        "short": "the pipes overhead",
+        "kind": "thing",
+        "near": "under the pipes",
+        "pay": [
+          "I kept my hat on under the pipes. It seemed only polite, considering whose pipes they were."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1097,6 +2013,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the brick walls, which had been whitewashed once and had let themselves go since",
+        "short": "the whitewashed brick",
+        "kind": "thing",
+        "near": "against the whitewashed brick",
+        "pay": [
+          "I put my back to the whitewashed brick. We were both past our best, and neither of us was going to mention it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1108,6 +2035,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a slot cut in the door at eye height, with an iron cover on a slide",
+        "short": "the door slot",
+        "kind": "door",
+        "near": "by the door",
+        "pay": [
+          "Every so often the cover on the door slot scraped open, an eye looked the room over, and it scraped shut. I envied that eye. It never had to come in."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1163,6 +2101,16 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the hat shop’s floor overhead, giving a long creak as the building settled",
+        "short": "the floor overhead",
+        "kind": "sound",
+        "pay": [
+          "The floor overhead creaked again, long and slow. Up there a shop full of hats was settling in for the night. Nobody asks a hat anything."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1174,6 +2122,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the smell of the bakery two doors along, coming in sweet through the vent",
+        "short": "the vent",
+        "kind": "smell",
+        "near": "under the vent",
+        "pay": [
+          "The bakery smell kept coming in through the vent. It was the best thing in the room, and it wasn’t even in the room."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1185,6 +2144,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the red carpet from the revolving door to the elevators, worn to the backing down the middle",
+        "short": "the red carpet",
+        "kind": "fabric",
+        "near": "at the edge of the red carpet",
+        "pay": [
+          "Somebody had worn the red carpet right through to the backing. I added my share. It’s the closest I’ll get to a premiere."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1196,6 +2166,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the pigeonholes behind the desk, one for every room, each with a small brass number",
+        "short": "the pigeonholes",
+        "kind": "thing",
+        "near": "by the pigeonholes behind the desk",
+        "pay": [
+          "Most of the pigeonholes behind the desk held a key and not one letter. I felt at home. Nobody writes to me either."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1207,6 +2188,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the marble columns holding up a ceiling of gilded plaster, and making a ceremony of it",
+        "short": "the marble columns",
+        "kind": "thing",
+        "near": "by one of the marble columns",
+        "pay": [
+          "I leaned on one of the marble columns. It had held up that ceiling for forty years with great ceremony, and it held me up for a minute without any."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1218,6 +2210,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a cigar counter by the elevators, under a glass top",
+        "short": "the cigar counter",
+        "kind": "furniture",
+        "near": "at the cigar counter",
+        "pay": [
+          "I looked over the cigars under the glass. Each one cost more than my lunch. I bought nothing, and the cigars looked relieved."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1229,6 +2232,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a leather settee with a radiator hissing behind it",
+        "short": "the leather settee",
+        "kind": "furniture",
+        "near": "on the leather settee",
+        "pay": [
+          "The settee let out a long sigh when I sat on it, like it had waited all night for somebody my size and was sorry it had."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1240,6 +2254,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the lobby clock over the desk, ticking loud against all that marble",
+        "short": "the lobby clock",
+        "kind": "clock",
+        "near": "under the lobby clock",
+        "pay": [
+          "The lobby clock ticked on over the desk, loud against the marble. It had nowhere to be. It was the only one of us who could say so."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1251,6 +2276,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the gilt on the ceiling, looking cheap in the dawn through the tall front windows",
+        "short": "the gilt ceiling",
+        "kind": "light",
+        "near": "under the gilt ceiling",
+        "pay": [
+          "I kept out of the light coming through the tall windows. It was being very honest with everything that morning, and I wasn’t up to it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1262,6 +2298,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a single bulb over a wire of magazines clipped along the front of the stand",
+        "short": "the bulb",
+        "kind": "light",
+        "near": "under the bulb",
+        "pay": [
+          "The bulb swung over the stand in the wind, giving each magazine its moment. I stood in the light a second myself. Nobody bought me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1273,6 +2320,18 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the racks of detective magazines and movie monthlies along the side of the stand",
+        "short": "the detective magazines",
+        "kind": "paper",
+        "near": "by the detective magazines",
+        "pay": [
+          "The detective on the cover of the nearest magazine had it all worked out by page forty. I was still looking for page one.",
+          "On every magazine cover the detective had a jaw like a shovel and a blonde on his arm. I had a hat, and it needed brushing."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1284,6 +2343,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a fire hydrant at the curb, painted red and chipped down to the iron",
+        "short": "the hydrant",
+        "kind": "thing",
+        "near": "by the hydrant",
+        "pay": [
+          "The hydrant stood at the curb, chipped to the iron and ready for anything. It was the only thing on that corner prepared for an emergency, and that included me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1295,6 +2365,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a subway grating along the curb, breathing up warm air that smelled of iron and grease",
+        "short": "the subway grating",
+        "kind": "thing",
+        "near": "over the subway grating",
+        "pay": [
+          "I stood on the subway grating for the warm air. It smelled of iron and grease, and it was the best offer I’d had all night."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1306,6 +2387,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the traffic signal over the crossing, clicking from green to red",
+        "short": "the traffic signal",
+        "kind": "light",
+        "near": "under the traffic signal",
+        "pay": [
+          "The signal clicked back to green. I didn’t go anywhere. A green light is a rare thing, and I like to look at one without being rushed."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1317,6 +2409,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the traffic light on the corner, changing red to green and back for no traffic at all",
+        "short": "the traffic light",
+        "kind": "light",
+        "near": "under the traffic light",
+        "pay": [
+          "The light on the corner went on changing for nobody at all. I’ve had jobs like that. I may have one now."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1339,6 +2442,18 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a wall of little glass doors, each with a slot and a knob, and pie and sandwiches behind them on white plates",
+        "short": "the little glass doors",
+        "kind": "machine",
+        "near": "by the little glass doors",
+        "pay": [
+          "Behind one of the little glass doors a slice of apple pie had been waiting all night for somebody. I looked at it a long time. Neither of us was getting picked up.",
+          "I read the little glass doors top to bottom like a menu at a good hotel. In the end I didn’t put a nickel in. I just liked knowing I could."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1350,6 +2465,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the brass coffee spouts, shaped like dolphins’ heads",
+        "short": "the brass dolphins",
+        "kind": "drink",
+        "near": "by the brass dolphins",
+        "pay": [
+          "The brass dolphin poured coffee for anybody with a nickel and asked no questions. It was the friendliest face in the place, and it wasn’t even a person."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1361,6 +2487,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the marble-topped tables, rubbed to a shine they were a little too proud of",
+        "short": "the marble tables",
+        "kind": "furniture",
+        "near": "at one of the marble tables",
+        "pay": [
+          "I could see my face in the table top. I put my hat over it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1372,6 +2509,16 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the steam tables behind the wall, giving off a smell of creamed spinach",
+        "short": "the creamed spinach",
+        "kind": "food",
+        "pay": [
+          "The smell of creamed spinach followed me round the room, closer than anybody has ever followed me on purpose, and I’ve been followed by professionals."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1383,6 +2530,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the chrome coffee urns, shining under the ceiling lights",
+        "short": "the coffee urns",
+        "kind": "drink",
+        "near": "by the coffee urns",
+        "pay": [
+          "I had a cup from one of the urns in the end. It was hot and black, and it didn’t ask me a single question."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1394,6 +2552,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the clock over the entrance, ticking over the drone of a refrigerator motor",
+        "short": "the clock",
+        "kind": "clock",
+        "near": "under the clock",
+        "pay": [
+          "The clock over the entrance kept ticking. In a place that never closed, I couldn’t see what it was counting down to, and I don’t think it knew either."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1405,6 +2574,16 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the smell of fresh coffee, as the morning’s first urns came on",
+        "short": "the fresh coffee",
+        "kind": "drink",
+        "pay": [
+          "The coffee smell had turned fresh. Somewhere a new day was starting, full of people who’d slept. I didn’t trust any of them."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1416,6 +2595,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the gilt plaster cherubs in the corners of the lobby ceiling, looking down unimpressed",
+        "short": "the cherubs",
+        "kind": "picture",
+        "near": "under the plaster cherubs",
+        "pay": [
+          "The plaster cherubs went on looking down at me, unimpressed. They’d seen every picture that ever played the place, and I wasn’t one of the good ones."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1427,6 +2617,18 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the posters for coming attractions along the lobby walls, painted faces two feet high",
+        "short": "the posters",
+        "kind": "picture",
+        "near": "under the posters",
+        "pay": [
+          "On the nearest poster a man in a hat had a gun in one hand and a blonde in the other. I had a hat.",
+          "The faces on the posters were two feet high and sure of themselves. Mine was the usual size, and not sure of anything."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1438,6 +2640,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the heavy velvet curtain over the screen, faded along its folds",
+        "short": "the velvet curtain",
+        "kind": "fabric",
+        "near": "in front of the velvet curtain",
+        "pay": [
+          "The velvet curtain stayed shut over the screen. I stood in front of it anyway, the way you do in a picture house, waiting for somebody else’s story to start."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1449,6 +2662,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the red exit signs glowing where the aisles ended",
+        "short": "the exit signs",
+        "kind": "sign",
+        "near": "under an exit sign",
+        "pay": [
+          "The exit signs glowed red at the ends of the aisles. It’s the first thing I look for in a room, and the last thing I use."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1460,6 +2684,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a fan turning in the projection booth wall, and the smell of warm film coming down the booth stair",
+        "short": "the projection booth",
+        "kind": "machine",
+        "near": "at the foot of the booth stair",
+        "pay": [
+          "The fan in the projection booth went on turning, for a picture that had ended hours ago. Somebody ought to tell it. I didn’t have the heart."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1493,6 +2728,18 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a mirror ball hanging from the middle of the ceiling, over a maple floor waxed to a hard shine",
+        "short": "the mirror ball",
+        "kind": "light",
+        "near": "under the mirror ball",
+        "pay": [
+          "The mirror ball turned a little in a breath of air nobody could feel, and a hundred small squares of me went round the walls. None of them could dance either.",
+          "I stood under the mirror ball a moment. It broke me into a hundred small pieces and threw them round the room, which saved everybody else the trouble."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1504,6 +2751,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the bandstand at the far end, with music stands in rows, a gold lyre painted on each",
+        "short": "the bandstand",
+        "kind": "furniture",
+        "near": "by the bandstand",
+        "pay": [
+          "The music stands were still in their rows on the bandstand, waiting for a band that had gone home. I’d have asked for a slow one, if there’d been anybody to ask."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1515,6 +2773,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the crepe streamers hanging from the balcony rail, tired of celebrating",
+        "short": "the streamers",
+        "kind": "thing",
+        "near": "under the streamers",
+        "pay": [
+          "The streamers hung from the balcony rail, still dressed for a party that had gone home without them. I didn’t say anything. I’ve been that streamer."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1526,6 +2795,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a ceiling painted dark blue with gold stars",
+        "short": "the painted stars",
+        "kind": "picture",
+        "near": "under the painted stars",
+        "pay": [
+          "I looked up at the painted stars on the ceiling. They were the only stars I’d seen all night, and somebody had had to paint them."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1537,6 +2817,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the mirror ball, showing the room back a hundred times over in its little squares",
+        "short": "the mirror ball",
+        "kind": "light",
+        "near": "under the mirror ball",
+        "pay": [
+          "In the mirror ball’s little squares the room went round a hundred times, and so did I. Every one of me looked like he needed a sit-down."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1548,6 +2839,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the tall windows along one side, showing nothing but the room’s own reflection",
+        "short": "the tall windows",
+        "kind": "glass",
+        "near": "by the tall windows",
+        "pay": [
+          "The tall windows showed me the room again, and me in it, from a bad angle. At that hour they’re all bad angles."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1559,6 +2861,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the dance floor, with the early light showing every scuff in the wax",
+        "short": "the dance floor",
+        "kind": "thing",
+        "near": "at the edge of the dance floor",
+        "pay": [
+          "The morning light went over the dance floor and found every scuff. I stayed off it. I had enough scuffs of my own without having them pointed out."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1570,6 +2883,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the soda fountain along one side, a marble counter with nickel taps",
+        "short": "the soda fountain",
+        "kind": "drink",
+        "near": "at the soda fountain",
+        "pay": [
+          "I sat at the fountain a minute and didn’t order. A grown man in a hat at a soda fountain is either a detective or in trouble, and I was both."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1581,6 +2905,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the show cards propped along the mirror behind the fountain, lettered by hand: sodas, malteds, egg creams",
+        "short": "the show cards",
+        "kind": "sign",
+        "near": "under the show cards",
+        "pay": [
+          "I read the show cards behind the fountain twice. An egg cream has no egg in it and no cream. It was the most honest lie on the block."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1614,6 +2949,18 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a penny weighing scale by the door, with a round mirror in its front",
+        "short": "the weighing scale",
+        "kind": "machine",
+        "near": "by the weighing scale",
+        "pay": [
+          "The scale by the door had a mirror in its front, so you could watch your face while it gave you the news. I left it alone. I’d had enough news.",
+          "I didn’t get on the scale by the door. I knew what it would say, and the little mirror would show me taking it badly."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1625,6 +2972,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a ceiling fan hanging still over the fountain",
+        "short": "the ceiling fan",
+        "kind": "machine",
+        "near": "under the ceiling fan",
+        "pay": [
+          "The ceiling fan hung still over the fountain. It had been told to wait for summer, and it was waiting. I admired the patience. I’ve never had any."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1636,6 +2994,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a small radio behind the prescription counter, playing dance music very low",
+        "short": "the radio",
+        "kind": "sound",
+        "near": "by the prescription counter",
+        "pay": [
+          "The little radio behind the counter played a slow one. Nobody danced. I thought about it, and my knees talked me out of it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1647,6 +3016,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the coloured globes in the window, throwing a little red and green across the tiles in the first light",
+        "short": "the globes",
+        "kind": "light",
+        "near": "under the globes",
+        "pay": [
+          "The first light came through the globes and put a little red and a little green on my shoes. I looked like Christmas, if Christmas hadn’t slept."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1658,6 +3038,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a line painted along the curb for the cabs, worn through to the concrete where the front wheels always stopped",
+        "short": "the painted line",
+        "kind": "sign",
+        "near": "at the painted line",
+        "pay": [
+          "I stood behind the painted line like a good citizen. No cab came for me. It turns out good citizens don’t get cabs either."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1669,6 +3060,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the theatre’s marquee running out over the pavement, its underside studded with rows of bulbs",
+        "short": "the marquee",
+        "kind": "light",
+        "near": "under the marquee",
+        "pay": [
+          "I stood under the marquee, where the stars stand to be looked at. Nobody looked. The bulbs did their best."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1680,6 +3082,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the cabs sitting nose to tail along the curb with their roof lights showing",
+        "short": "the cabs",
+        "kind": "machine",
+        "near": "by the line of cabs",
+        "pay": [
+          "The cabs sat nose to tail with their roof lights on, all of them for hire and none of them hired. I felt right at home."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1691,6 +3104,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the brass stanchions along the pavement for the theatre’s lines",
+        "short": "the brass stanchions",
+        "kind": "thing",
+        "near": "by the brass stanchions",
+        "pay": [
+          "The brass stanchions stood there to hold back a crowd that had gone home hours ago. I leaned on one. It was the most use it had been since the last show."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1702,6 +3126,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the first cab in line with its motor idling and its meter flag up",
+        "short": "the first cab",
+        "kind": "machine",
+        "near": "by the first cab",
+        "pay": [
+          "The first cab went on idling with its flag up, ready to go anywhere in the city. I stood by it and didn’t get in. It’s nice to have a choice, even one you can’t afford."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1735,6 +3170,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a banister rubbed down to bare wood, over treads worn into a shallow dip at the middle",
+        "short": "the banister",
+        "kind": "stair",
+        "near": "at the banister",
+        "pay": [
+          "I ran my hand along the banister. Fifty years of hands had worn it to bare wood, and mine didn’t make a dent. That’s about the size of my influence."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1746,6 +3192,16 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a different smell on every landing: garlic on the second, boiled cabbage on the third, and kerosene on the fourth",
+        "short": "the smells",
+        "kind": "smell",
+        "pay": [
+          "I could tell which floor I was on by the smell. It’s the most use my nose has been to me all year."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1757,6 +3213,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the paint on the walls, brown to shoulder height and green above, flaking away in patches the size of a hand",
+        "short": "the flaking paint",
+        "kind": "thing",
+        "near": "against the flaking wall",
+        "pay": [
+          "The green paint went on coming off the wall in patches. I kept my shoulder off it. My coat has enough on it already."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1768,6 +3235,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a skylight of wired glass capping the stairwell, a long way up",
+        "short": "the skylight",
+        "kind": "glass",
+        "near": "under the skylight",
+        "pay": [
+          "I looked up the stairwell at the skylight. It was a long way up, and my knees had already made their views known."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1779,6 +3257,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a bare bulb on the landing, buzzing on its wire",
+        "short": "the bare bulb",
+        "kind": "light",
+        "near": "under the bare bulb",
+        "pay": [
+          "The bare bulb on the landing buzzed on, lighting three floors by itself. Nobody had thanked it in years. I didn’t either, but I thought about it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1812,6 +3301,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the green-shaded lamps hung low over the tables",
+        "short": "the green lamps",
+        "kind": "light",
+        "near": "under the green lamps",
+        "pay": [
+          "The green lamps made everybody under them look seasick. I stayed out of their light. I was queasy enough on my own."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1823,6 +3323,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the strings of scoring beads hung on wires over the tables",
+        "short": "the scoring beads",
+        "kind": "thing",
+        "near": "under the scoring beads",
+        "pay": [
+          "I looked up at the scoring beads over the tables. Somebody is always keeping score in a place like that. I didn’t want to know mine."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1845,6 +3356,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a brass spittoon beside every other table",
+        "short": "the spittoon",
+        "kind": "thing",
+        "near": "by a brass spittoon",
+        "pay": [
+          "The spittoon by the table caught the lamplight and shone. It was the best-kept thing in the room. I tried not to think about why."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1856,6 +3378,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "an exhaust fan high in the rear wall, turning slowly and pulling the smoke toward it",
+        "short": "the exhaust fan",
+        "kind": "machine",
+        "near": "under the exhaust fan",
+        "pay": [
+          "The exhaust fan went on turning, pulling the smoke out a little at a time. It would take all night. It would take all year. It was the most hopeful thing in the room."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1867,6 +3400,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a pipe dripping into a bucket behind the counter",
+        "short": "the bucket",
+        "kind": "water",
+        "near": "by the bucket behind the counter",
+        "pay": [
+          "The pipe went on dripping into the bucket behind the counter. Somebody would empty the bucket in the morning. Nobody was ever going to fix the pipe."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1878,6 +3422,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the half-windows high in the front wall at pavement level, going pale",
+        "short": "the half-windows",
+        "kind": "glass",
+        "near": "under the half-windows",
+        "pay": [
+          "Through the half-windows at pavement level, the first feet of the day went by. I watched them a while. Feet don’t pretend they aren’t tired."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1889,6 +3444,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a wall of clocks, a dozen or more, each ticking at its own pace and none of them agreeing",
+        "short": "the clocks",
+        "kind": "clock",
+        "near": "under the wall of clocks",
+        "pay": [
+          "I listened to the clocks on the wall a while. Every one of them had its own opinion and was very sure of it. It was like asking directions on that street."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1900,6 +3466,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the musical instruments hanging from hooks in the ceiling: a trumpet, two banjos, a saxophone gone green at the joints",
+        "short": "the instruments",
+        "kind": "thing",
+        "near": "under the hanging instruments",
+        "pay": [
+          "The saxophone went on hanging from its hook, green at the joints, waiting for somebody to come back for it. Nobody was coming. I didn’t tell it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1922,6 +3499,18 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a stuffed owl under a glass dome on the top shelf, disapproving of everything below",
+        "short": "the owl",
+        "kind": "animal",
+        "near": "under the stuffed owl",
+        "pay": [
+          "The stuffed owl on the top shelf went on disapproving of me. It had seen everything that came through that shop, and I wasn’t going to be the thing that changed its mind.",
+          "The owl was still looking down at me from under its dome. It had been stuffed for years, and it still had more authority than I did."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1933,6 +3522,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "one radio among the shelves playing dance music low, its dial glowing amber among the dark faces of the others",
+        "short": "the radio",
+        "kind": "sound",
+        "near": "by the shelf of radios",
+        "pay": [
+          "One radio on the shelf went on playing while the others sat dark. It had been pawned like the rest of them, and it still had a song in it. I liked it best."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1944,6 +3544,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a tailor’s dummy in the corner, wearing half a jacket",
+        "short": "the tailor’s dummy",
+        "kind": "clothes",
+        "near": "beside the tailor’s dummy",
+        "pay": [
+          "The tailor’s dummy stood in the corner in half a jacket. It was better dressed than I was, and it didn’t have a head. That’s the kind of week I was having."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1955,6 +3566,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a square of grey from the barred window, catching the brass of a tuba on the shelf",
+        "short": "the tuba",
+        "kind": "thing",
+        "near": "by the tuba",
+        "pay": [
+          "The first light caught the tuba on the shelf and made it shine. Somebody had pawned a tuba. I wondered what that week had been like, and then I stopped, because I had my own."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1977,6 +3599,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the lanterns of red silk hanging from the ceiling on thin chains",
+        "short": "the red lanterns",
+        "kind": "light",
+        "near": "under the red lanterns",
+        "pay": [
+          "Under the red lanterns I looked healthier than I had in a month. I thought about eating there every night, for the lighting alone."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1988,6 +3621,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a grocer’s calendar with a tiger on it, hanging by the kitchen door",
+        "short": "the tiger",
+        "kind": "picture",
+        "near": "under the tiger calendar",
+        "pay": [
+          "The tiger on the calendar watched the room with its mouth open. It was the only thing in there that looked hungrier than I was."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -1999,6 +3643,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a kitchen fan in the back wall, turning with a steady rattle",
+        "short": "the kitchen fan",
+        "kind": "machine",
+        "near": "by the kitchen fan",
+        "pay": [
+          "The kitchen fan rattled on in the back wall, working the late shift without a word of thanks. I tipped my hat to it. Nobody ever tips the fan."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2010,6 +3665,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the swinging door to the kitchen, with the range still roaring behind it",
+        "short": "the swinging door",
+        "kind": "door",
+        "near": "by the swinging door",
+        "pay": [
+          "The swinging door let out another breath of frying onions. I stood there longer than I needed to. A man has to eat, even if it’s only through the nose."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2021,6 +3687,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a fish tank in the corner, its pump humming on and on",
+        "short": "the fish tank",
+        "kind": "water",
+        "near": "by the fish tank",
+        "pay": [
+          "The fish in the tank went round again. It had nowhere to be and all the time in the world. I envied it for about a minute, and then I remembered the glass."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2043,6 +3720,18 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a horsehair sofa under a framed sampler, with lace covers pinned over its arms and back",
+        "short": "the horsehair sofa",
+        "kind": "furniture",
+        "near": "on the horsehair sofa",
+        "pay": [
+          "I sat on the horsehair sofa for a minute to be polite. It wasn’t polite back.",
+          "The horsehair sofa had been built for callers who weren’t meant to stay. I stayed anyway. The sofa took it personally."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2054,6 +3743,16 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the smell of furniture polish fighting a smell of boiled cabbage, and losing",
+        "short": "the cabbage",
+        "kind": "smell",
+        "pay": [
+          "The cabbage had won by then. The polish had gone quiet in the corners, the way the losing side does."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2065,6 +3764,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a glass dome of wax fruit on the mantelpiece, beside a black marble clock",
+        "short": "the wax fruit",
+        "kind": "food",
+        "near": "by the mantelpiece",
+        "pay": [
+          "The wax fruit sat under its dome looking better than any fruit I’d eaten in years. It had never been fresh, so it had never gone off. There was a lesson in that I didn’t want."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2087,6 +3797,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the lace curtains at the bay window, and the streetlamp making a pattern through them on the carpet",
+        "short": "the lace curtains",
+        "kind": "fabric",
+        "near": "by the bay window",
+        "pay": [
+          "The streetlamp through the lace put a pattern on the carpet, and on me when I stood in it. It was the fanciest I’d been dressed all year."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2098,6 +3819,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the brass rods of the stair runner out in the hall, catching the streetlamp",
+        "short": "the stair rods",
+        "kind": "stair",
+        "near": "at the foot of the stairs",
+        "pay": [
+          "The brass rods on the stairs caught the streetlamp one above another, all the way up. Somebody polished them every week. Nobody polishes me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2109,6 +3841,16 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the smell of coffee and frying bacon coming down the hall from the kitchen",
+        "short": "the bacon",
+        "kind": "food",
+        "pay": [
+          "The bacon down the hall was for the boarders. I wasn’t a boarder. I’ve never wanted to live in a boarding house so much in my life."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2120,6 +3862,18 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the three barber chairs of white porcelain and red leather, facing a long mirror that gave the room back row on row",
+        "short": "the barber chairs",
+        "kind": "furniture",
+        "near": "by the barber chairs",
+        "pay": [
+          "Between the two mirrors there were a hundred of me, one behind the other, all the way back. Not one of us had had a haircut.",
+          "I looked at myself in the mirrors, row on row. Every one of me needed a shave, and none of me was going to get one."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2142,6 +3896,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a tall jar of blue disinfectant with a stand of combs in it",
+        "short": "the jar of combs",
+        "kind": "thing",
+        "near": "by the jar of blue disinfectant",
+        "pay": [
+          "The combs stood in their jar of blue water like patients in a waiting room. I had half a mind to comb my hair, just to give one of them something to do."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2153,6 +3918,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the striped pole in the window, turning slowly in its glass case",
+        "short": "the barber pole",
+        "kind": "sign",
+        "near": "by the barber pole",
+        "pay": [
+          "The pole in the window went on turning, going nowhere with great dedication. I took it as a sign. I’ve been doing the same for years."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2164,6 +3940,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the shop’s window lettering, laid backward across the linoleum by the streetlamp",
+        "short": "the backward lettering",
+        "kind": "sign",
+        "near": "on the backward lettering",
+        "pay": [
+          "I read the shop’s name backward off the floor and got it on the second try. It was the easiest thing I’d had to work out since supper."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2175,6 +3962,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a tap at the shampoo basin, dripping into the porcelain",
+        "short": "the shampoo basin",
+        "kind": "water",
+        "near": "by the shampoo basin",
+        "pay": [
+          "The tap at the basin went on dripping, slow and even. In a barber shop even the tap keeps a steady hand."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2197,6 +3995,16 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the oil stains all over the concrete floor, in overlapping rings",
+        "short": "the oil stains",
+        "kind": "thing",
+        "pay": [
+          "The oil stains overlapped on the floor like rings on a bar top. I stepped round them. Anything spilled that many times has earned its place."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2208,6 +4016,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a grease pit down the middle of the bay, with a work lamp hanging over it on a hook",
+        "short": "the grease pit",
+        "kind": "thing",
+        "near": "at the edge of the grease pit",
+        "pay": [
+          "I kept to the edge of the grease pit. I’ve been in a few pits in my time, but never one that would ruin the coat."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2219,6 +4038,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a red gas pump by the entrance, with a glass globe on top",
+        "short": "the gas pump",
+        "kind": "machine",
+        "near": "by the gas pump",
+        "pay": [
+          "The globe on the gas pump glowed on like a lamp left in a window for somebody who drove. I don’t drive. It still made me feel expected."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2230,6 +4060,18 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a painted sign on the ramp to the upper level that said SLOW",
+        "short": "the SLOW sign",
+        "kind": "sign",
+        "near": "at the foot of the ramp",
+        "pay": [
+          "The sign on the ramp said SLOW. It was the first advice I’d been given in a week that I could follow.",
+          "I read the sign on the ramp again. SLOW. It was painted in big letters, as if somebody had me in mind."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2241,6 +4083,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the compressor in the corner, cutting in with a thump and a long hiss",
+        "short": "the compressor",
+        "kind": "machine",
+        "near": "by the compressor",
+        "pay": [
+          "The compressor cut in again with a thump and a long hiss, like a man sitting down after a long day. I wanted to do the same, and I didn’t have a corner."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2252,6 +4105,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the long rows of hoods and fenders, shining faintly under the hanging bulbs",
+        "short": "the cars",
+        "kind": "machine",
+        "near": "between the rows of cars",
+        "pay": [
+          "The cars sat in their rows with their hoods shining, asleep. None of them had to be anywhere until morning. I tried not to hold it against them."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2274,6 +4138,16 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the planks underfoot, laid across iron girders with gaps wide enough to see the street two stories down",
+        "short": "the gaps",
+        "kind": "thing",
+        "pay": [
+          "I didn’t look down through the gaps in the planks again. Once was enough to know the street was still there, and my knees had asked me not to."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2285,6 +4159,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the iron columns, riveted at every joint, holding up a wooden canopy, their green paint flaked to rust",
+        "short": "the iron columns",
+        "kind": "thing",
+        "near": "by one of the iron columns",
+        "pay": [
+          "I leaned on an iron column. It had been holding up the canopy since before I was born and showed no sign of tiring. I wish they’d built me with rivets."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2296,6 +4181,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a gum machine bolted to a column, with a little mirror on its front",
+        "short": "the gum machine",
+        "kind": "machine",
+        "near": "by the gum machine",
+        "pay": [
+          "I caught my face in the little mirror on the gum machine. It was a penny machine, and it gave me about a penny’s worth."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2307,6 +4203,16 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the second-floor windows across the street, a row of shades and curtains a few yards off",
+        "short": "the windows opposite",
+        "kind": "glass",
+        "pay": [
+          "A shade came down in one of the windows across the street. Somebody had caught me looking. It happens in my line of work, and it never gets less awkward."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2318,6 +4224,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a bulb in a wire cage over the turnstiles, buzzing",
+        "short": "the caged bulb",
+        "kind": "light",
+        "near": "under the caged bulb",
+        "pay": [
+          "The bulb over the turnstiles buzzed in its little cage. Somebody had locked up a light bulb. I didn’t ask what it had done."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2329,6 +4246,16 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the rails running off both ways, silver under the signal lamps",
+        "short": "the rails",
+        "kind": "thing",
+        "pay": [
+          "The rails ran off silver in both directions, and nothing came along either of them. I watched anyway. It’s restful, waiting for something you know isn’t coming."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2351,6 +4278,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the benches themselves, green slats on iron legs cast into lion’s paws",
+        "short": "the benches",
+        "kind": "furniture",
+        "near": "on one of the benches",
+        "pay": [
+          "The bench legs ended in iron lion’s paws. It was a lot of ferocity for something that only sat there. I felt seen."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2362,6 +4300,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the plane trees behind the benches, their bark peeling in patches of grey and cream",
+        "short": "the plane trees",
+        "kind": "plant",
+        "near": "under the plane trees",
+        "pay": [
+          "The plane trees were shedding their bark in patches and not a bit embarrassed about it. I’ve been peeling for years, and I still mind."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2373,6 +4322,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a drinking fountain of green bronze at the end of the row",
+        "short": "the drinking fountain",
+        "kind": "water",
+        "near": "by the drinking fountain",
+        "pay": [
+          "I bent to the drinking fountain out of habit. Nothing came. It had been shut off for the winter, like everything else in the square but me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2384,6 +4344,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the pigeons working the gravel between the benches for crumbs, thoroughly and without shame",
+        "short": "the pigeons",
+        "kind": "animal",
+        "near": "among the pigeons",
+        "pay": [
+          "The pigeons were still going over the gravel one crumb at a time. It’s the same method I use, and they were getting more out of it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2395,6 +4366,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the nearest lamp on its iron post past the last bench, with the paths going off dark beyond it",
+        "short": "the lamp",
+        "kind": "light",
+        "near": "under the lamp",
+        "pay": [
+          "I stayed inside the lamp’s circle. Past it the paths went off into the dark, and I’d had enough dark for one night."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2406,6 +4388,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a granite monument on a stepped base in the middle of the square",
+        "short": "the monument",
+        "kind": "thing",
+        "near": "at the foot of the monument",
+        "pay": [
+          "I never did find out who the monument was for. He’d been standing out there in the cold a lot longer than I had, and he hadn’t complained once."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2417,6 +4410,16 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the sparrows starting up in the branches over the benches",
+        "short": "the sparrows",
+        "kind": "animal",
+        "pay": [
+          "The sparrows in the plane trees were making their plans for the day at the top of their voices. I hadn’t made any for the night yet."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2428,6 +4431,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a wooden ramp sloping down to the water between two rows of tarred pilings",
+        "short": "the ramp",
+        "kind": "thing",
+        "near": "at the top of the ramp",
+        "pay": [
+          "I stayed at the top of the ramp. The river was at the bottom of it, and I’ve never met a river I trusted."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2439,6 +4453,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the heavy chains running from the ramp up to counterweights in iron towers, creaking whenever the river lifted the float",
+        "short": "the chains",
+        "kind": "sound",
+        "near": "under the iron towers",
+        "pay": [
+          "The chains creaked again as the river lifted the float. Everything down there groaned when it moved. I fitted right in."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2461,6 +4486,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the ferry house at the head of the slip, with a clock in its gable",
+        "short": "the ferry clock",
+        "kind": "clock",
+        "near": "under the ferry clock",
+        "pay": [
+          "The clock in the gable kept time for ferries that weren’t running. It didn’t seem to mind. Some jobs are mostly showing up."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2472,6 +4508,16 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the far shore across the river, a line of lights along the water",
+        "short": "the far shore",
+        "kind": "light",
+        "pay": [
+          "The lights on the far shore looked warm from where I stood. They always do. I’ve been over there, and they’re not."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2483,6 +4529,17 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the float bumping against the pilings with a slow, heavy knock, over and over",
+        "short": "the float",
+        "kind": "sound",
+        "near": "at the edge of the float",
+        "pay": [
+          "The float knocked against the pilings again, slow and heavy, like somebody who knows you’re home. I didn’t answer that either."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2494,6 +4551,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the gulls sitting along the tops of the pilings, all facing into the light",
+        "short": "the gulls",
+        "kind": "animal",
+        "near": "under the row of gulls",
+        "pay": [
+          "The gulls sat on the pilings facing the sunrise, every one of them, like they’d paid for seats. I kept my back to it. I’d seen one before."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2505,6 +4573,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "an iron-and-glass kiosk with a peaked roof, over a stair going down into a tiled passage",
+        "short": "the kiosk",
+        "kind": "thing",
+        "near": "under the kiosk roof",
+        "pay": [
+          "The kiosk stood over its stair like a little iron chapel for people in a hurry. I wasn’t in a hurry. I stood in it anyway."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2516,6 +4595,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the warm air coming up the stair from below, smelling of iron dust and grease",
+        "short": "the warm air",
+        "kind": "smell",
+        "near": "at the top of the stair",
+        "pay": [
+          "I stood in the warm air from below until my hands came back. It smelled like the inside of a machine, and I didn’t care."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2527,6 +4617,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a mosaic plaque at the landing, set in white tile with a blue border",
+        "short": "the mosaic plaque",
+        "kind": "sign",
+        "near": "by the mosaic plaque",
+        "pay": [
+          "Somebody had set the station’s name in little tiles, one at a time, a long time ago. I’ve never done anything that carefully in my life."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2538,6 +4639,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "an enamel sign at the top of the stair that said SUBWAY in white on dark green",
+        "short": "the SUBWAY sign",
+        "kind": "sign",
+        "near": "under the SUBWAY sign",
+        "pay": [
+          "The sign said SUBWAY, in case anybody had come across a hole in the street and wondered. The glass on my office door says what I do, and people still ask."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2549,6 +4661,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "two iron lamp posts with round glass globes, their light going a few steps down the stair and stopping",
+        "short": "the lamp posts",
+        "kind": "light",
+        "near": "between the lamp posts",
+        "pay": [
+          "The lamplight went a few steps down the stair and stopped, as if it had thought better of it. I have a lot of respect for a light that knows its limits."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2560,6 +4683,16 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a drip somewhere down the tiled passage, out of sight",
+        "short": "the drip",
+        "kind": "sound",
+        "pay": [
+          "The drip down in the passage kept on, one at a time. I counted a few. It didn’t help, but it was something to be good at."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2582,6 +4715,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the votive candles burning in rows of red glass cups on an iron stand",
+        "short": "the candles",
+        "kind": "light",
+        "near": "by the candles",
+        "pay": [
+          "I thought about lighting a candle, and then about what I’d be asking for, and the list got long. I left it for another night."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2593,6 +4737,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a plaster saint in a niche over the altar, painted blue and gold, one hand raised",
+        "short": "the plaster saint",
+        "kind": "picture",
+        "near": "under the plaster saint",
+        "pay": [
+          "The plaster saint still had one hand raised, like a man with a question nobody would take. I left him to it. We were in the same line of work."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2604,6 +4759,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a kneeling rail of dark oak, its cushion worn through in two places",
+        "short": "the kneeling rail",
+        "kind": "furniture",
+        "near": "at the kneeling rail",
+        "pay": [
+          "The cushion on the kneeling rail was worn through in two places, just where the knees go. A lot of people had asked for a lot in there. I hoped some of them got it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2615,6 +4781,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a marble font for holy water by the door",
+        "short": "the font",
+        "kind": "water",
+        "near": "by the font",
+        "pay": [
+          "I dipped my fingers in the font by the door, out of habit, and found the water cold. My mother would have said that was the point."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2626,6 +4803,17 @@
       "band": "after-midnight"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the candle flames, standing straight and still in their red cups over a stand crusted with years of wax",
+        "short": "the candles",
+        "kind": "light",
+        "near": "by the candles",
+        "pay": [
+          "The candle flames stood straight up in their cups, not a flicker. It was the steadiest thing I’d seen all night, and it was on fire."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2648,6 +4836,17 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the stained glass window, beginning to show its colours on the stone floor",
+        "short": "the stained glass",
+        "kind": "glass",
+        "near": "under the stained glass",
+        "pay": [
+          "The stained glass put its blue and red across the floor, careful not to touch me. It was early, and it didn’t know me yet."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2659,6 +4858,16 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the floorboards, warm from the bakery ovens underneath",
+        "short": "the warm floorboards",
+        "kind": "thing",
+        "pay": [
+          "The floor was warm from the ovens underneath. I stood in one place until my feet forgave me."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2670,6 +4879,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a painted banner of red silk with a gold fringe and two clasped hands, beside a framed charter",
+        "short": "the banner",
+        "kind": "picture",
+        "near": "under the banner",
+        "pay": [
+          "The two hands on the banner went on shaking. They’d been at it for thirty years and neither one had let go. I’ve never had a handshake last past the door."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2681,6 +4901,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a coffee urn on a trestle table, by a low stage at the far end",
+        "short": "the coffee urn",
+        "kind": "drink",
+        "near": "by the coffee urn",
+        "pay": [
+          "The coffee in the urn had gone cold hours before. I tried it anyway. It tasted like a meeting that had run long."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2692,6 +4923,17 @@
       "band": "any"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the tall windows, their lower panes painted over",
+        "short": "the painted windows",
+        "kind": "glass",
+        "near": "under the painted windows",
+        "pay": [
+          "Whoever painted over the lower panes had stopped at the top ones. It was a meeting hall, and it had come to half a decision."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2714,6 +4956,16 @@
       "band": "small-hours"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the bakery’s mixing machine below, starting with a grind and a thump that shook the floor",
+        "short": "the mixing machine",
+        "kind": "machine",
+        "pay": [
+          "The mixing machine below started up again and the floor shook under my shoes. Somebody down there was making bread for the whole block. I’d have settled for a roll."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -2725,6 +4977,16 @@
       "band": "dawn"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "the smell of fresh bread coming up through the boards, thick and warm",
+        "short": "the fresh bread",
+        "kind": "food",
+        "pay": [
+          "The smell of fresh bread came up through the boards. I’ve been in love before, and it was about like that."
+        ]
+      }
+    },
     "status": "generated"
   }
 ]

@@ -1,4 +1,70 @@
 {
   "moment": "office",
-  "sheets": []
+  "$comment": "M13. The office page's frame: the room at midnight (the first paragraph, after 'Midnight. My office was…'), and a last line before the client is left in the chair with a question or two owed. The body is the engine's: the entrance (often 'A woman came up the stairs after midnight.', so a join here does not say stairs or midnight again), the briefing in the order a person tells it, the hiring and the money. Holes: office (the office deck's card for the night; bind prop for a thing in the room the last line can bring back), body. Slots: {client} and {client.he} .He .him .his .His .man; {place}; roles {prop} {mark}. Flags: temper, klass, familiar, circumstance (the detective's: sleepless, flush, bruised, just-paid, behind-on-rent, hungover, off-a-divorce-case), weather, purpose, caseType. Every part is said in the first paragraph, wherever it sits round the body. The last line asserts no case fact and never says the chair (the line after it does): it is about the room, the money, the detective.",
+  "sheets": [
+    {
+      "id": "off-a",
+      "weight": 2,
+      "name": "The room at midnight",
+      "notes": "The camp golden §1: the office card, and at the end a line that brings the room's thing back (its own pay line: 'The radiator knocked once, as if it had been paid too.').",
+      "parts": [{ "hole": "office", "bind": "prop" }, { "hole": "body" }],
+      "close": {
+        "roles": ["prop"],
+        "callback": ["{Prop} had sat through all of it without a word. It’s a quality I look for in a room."],
+        "plain": ["Outside, the city went on doing whatever it does at that hour without consulting me."],
+        "deck": true
+      }
+    },
+    {
+      "id": "off-b",
+      "name": "Good news waits",
+      "notes": "The golden's join after the room: good news waits for morning, and the entrance that follows is the other kind. The join is the joke; the close is plain.",
+      "parts": [
+        { "hole": "office" },
+        { "text": "Good news waits for morning, like a gentleman. The other kind takes the stairs.", "joke": true },
+        { "hole": "body" }
+      ],
+      "close": {
+        "plain": [
+          "I wrote the name at the top of a page and underlined it. It’s the most confident I ever am about anything.",
+          "I put the money where I keep money, which didn’t take long to find."
+        ]
+      }
+    },
+    {
+      "id": "off-c",
+      "name": "A clean notebook",
+      "notes": "A clean notebook on the desk at midnight, and at the end it isn't clean.",
+      "parts": [
+        { "hole": "office" },
+        {
+          "text": "I had a clean notebook open and nothing to put in it.",
+          "bind": "mark",
+          "exports": { "mark": { "text": "a clean notebook", "short": "the notebook", "kind": "paper" } }
+        },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["mark"],
+        "callback": ["{Mark} wasn’t clean any more. They never stay that way, which is the only reason I buy them."],
+        "plain": ["Outside, the city went on doing whatever it does at that hour without consulting me."]
+      }
+    },
+    {
+      "id": "off-d",
+      "name": "At the desk",
+      "notes": "Where he was before the room: at the desk, waiting; then the office card, and its thing brought back at the end.",
+      "parts": [
+        { "text": "I was at the desk, where I do most of my waiting." },
+        { "hole": "office", "bind": "prop" },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["prop"],
+        "callback": ["{Prop} had sat through all of it without a word. It’s a quality I look for in a room."],
+        "plain": ["The office looked just as it had at midnight. I didn’t. I was employed."],
+        "deck": true
+      }
+    }
+  ]
 }

@@ -8,6 +8,16 @@
       "trigger": "any"
     },
     "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "how little you have",
+        "short": "how little I had",
+        "kind": "thing",
+        "pay": [
+          "That was how little I had. It was more than nothing, and I’ve worked with nothing."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -19,6 +29,16 @@
       "trigger": "any"
     },
     "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "a quiet corner",
+        "short": "the quiet corner",
+        "kind": "thing",
+        "pay": [
+          "I got up out of the quiet corner. It had been the most restful part of the night, and it was over."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -52,6 +72,16 @@
       "trigger": "demand"
     },
     "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "the notebook, slowly",
+        "short": "the notebook",
+        "kind": "paper",
+        "pay": [
+          "I shut the notebook. It had gone as fast as it goes, which is not fast."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -63,6 +93,16 @@
       "trigger": "demand"
     },
     "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "taking stock",
+        "short": "taking stock",
+        "kind": "habit",
+        "pay": [
+          "Taking stock had cost me nothing, and it was worth every cent."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -74,6 +114,16 @@
       "trigger": "hour"
     },
     "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "counting what you’ve got",
+        "short": "the count",
+        "kind": "habit",
+        "pay": [
+          "That was the count. It hadn’t taken long, which left more of the night to add to it."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -85,6 +135,16 @@
       "trigger": "hour"
     },
     "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "what the hour had bought me",
+        "short": "what the hour had bought me",
+        "kind": "thing",
+        "pay": [
+          "That was what the hour had bought me. I’ve paid more for less."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -96,6 +156,16 @@
       "trigger": "lie"
     },
     "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "all the other stories",
+        "short": "the other stories",
+        "kind": "thing",
+        "pay": [
+          "The other stories were still in one piece. I handled them a little more carefully after that."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -107,6 +177,16 @@
       "trigger": "lie"
     },
     "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "what else wobbled",
+        "short": "what else wobbled",
+        "kind": "thing",
+        "pay": [
+          "Nothing else wobbled yet. I gave it time."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -118,6 +198,16 @@
       "trigger": "confront"
     },
     "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "all the other stories",
+        "short": "the other stories",
+        "kind": "thing",
+        "pay": [
+          "The other stories were standing where I’d left them, which is all you can ask of a story that late in the night."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -140,6 +230,16 @@
       "trigger": "window"
     },
     "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "the hour that mattered",
+        "short": "the hour that mattered",
+        "kind": "clock",
+        "pay": [
+          "The hour that mattered was smaller than it had been. So, by then, was my patience."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -162,6 +262,16 @@
       "trigger": "link"
     },
     "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "a name put to a face in pencil",
+        "short": "the pencil",
+        "kind": "tool",
+        "pay": [
+          "The name was still in pencil. I keep an eraser for exactly that, and I’ve worn out three."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -228,6 +338,206 @@
       "trigger": "any"
     },
     "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-022",
+    "deck": "recap",
+    "text": "I got the notebook out and read it back to myself, which is as close as anybody comes to reading me a story.",
+    "tags": {
+      "kind": "open",
+      "trigger": "any"
+    },
+    "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "the notebook, read back",
+        "short": "the notebook",
+        "kind": "paper",
+        "pay": [
+          "I put the notebook away. It hadn’t told me anything I hadn’t told it first."
+        ]
+      }
+    },
+    "status": "generated"
+  },
+  {
+    "id": "RCP-023",
+    "deck": "recap",
+    "text": "I stopped where I was and read the notebook from the first page, moving my lips only a little.",
+    "tags": {
+      "kind": "open",
+      "trigger": "demand"
+    },
+    "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "my lips, moving only a little",
+        "short": "my lips",
+        "kind": "face",
+        "pay": [
+          "I put the notebook away and stopped moving my lips."
+        ]
+      }
+    },
+    "status": "generated"
+  },
+  {
+    "id": "RCP-024",
+    "deck": "recap",
+    "text": "Another hour had gone by without asking me, so I went over what I had to show for it.",
+    "tags": {
+      "kind": "open",
+      "trigger": "hour"
+    },
+    "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "what I had to show for it",
+        "short": "what I had to show for it",
+        "kind": "thing",
+        "pay": [
+          "That was what I had to show for it. I’ve shown less and got away with it."
+        ]
+      }
+    },
+    "status": "generated"
+  },
+  {
+    "id": "RCP-025",
+    "deck": "recap",
+    "text": "One story had just turned into a different one. When that happens, I count all the others again.",
+    "tags": {
+      "kind": "open",
+      "trigger": "lie"
+    },
+    "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "all the other stories, counted again",
+        "short": "the others",
+        "kind": "thing",
+        "pay": [
+          "The others all counted out the same as before. I counted them twice, to be sure of it."
+        ]
+      }
+    },
+    "status": "generated"
+  },
+  {
+    "id": "RCP-026",
+    "deck": "recap",
+    "text": "I had put something to somebody and got something back. I went over the rest while it was still warm.",
+    "tags": {
+      "kind": "open",
+      "trigger": "confront"
+    },
+    "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "the rest, while it was still warm",
+        "short": "still warm",
+        "kind": "thing",
+        "pay": [
+          "It had all cooled a little by the time I was done. So had I."
+        ]
+      }
+    },
+    "status": "generated"
+  },
+  {
+    "id": "RCP-027",
+    "deck": "recap",
+    "text": "The time that mattered was narrower now, and I held everybody’s evening up against it.",
+    "tags": {
+      "kind": "open",
+      "trigger": "window"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "RCP-028",
+    "deck": "recap",
+    "text": "I had a name and a face that might go together. I went over the rest before I got attached.",
+    "tags": {
+      "kind": "open",
+      "trigger": "link"
+    },
+    "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "getting attached",
+        "short": "attached",
+        "kind": "habit",
+        "pay": [
+          "I wasn’t attached yet. I’ve been attached before, and it ended in a lot of apologies."
+        ]
+      }
+    },
+    "status": "generated"
+  },
+  {
+    "id": "RCP-029",
+    "deck": "recap",
+    "text": "The night was getting on, and so was I. I sat down and went over what I had.",
+    "tags": {
+      "kind": "open",
+      "trigger": "hour"
+    },
+    "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "the night, getting on",
+        "short": "the night",
+        "kind": "clock",
+        "pay": [
+          "The night went on getting on. I got up and went with it."
+        ]
+      }
+    },
+    "status": "generated"
+  },
+  {
+    "id": "RCP-030",
+    "deck": "recap",
+    "text": "I stopped and added it up, which is the arithmetic part of the job and the part I’m worst at.",
+    "tags": {
+      "kind": "open",
+      "trigger": "demand"
+    },
+    "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "the arithmetic part of the job",
+        "short": "the arithmetic",
+        "kind": "habit",
+        "pay": [
+          "That was the sum of it. I checked my arithmetic, and it was still the sum of it."
+        ]
+      }
+    },
+    "status": "generated"
+  },
+  {
+    "id": "RCP-031",
+    "deck": "recap",
+    "text": "I leaned on the nearest wall and went through the notebook. The wall had the easier job.",
+    "tags": {
+      "kind": "open",
+      "trigger": "any"
+    },
+    "motifs": [],
+    "exports": {
+      "figure": {
+        "text": "the nearest wall",
+        "short": "the wall",
+        "kind": "thing",
+        "pay": [
+          "I came off the wall. It had held up its end, and I meant to hold up mine."
+        ]
+      }
+    },
     "status": "generated"
   }
 ]

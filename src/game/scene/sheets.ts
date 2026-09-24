@@ -193,12 +193,15 @@ export function chooseSheet(
   random: Rng,
   can: (sheet: Sheet) => boolean = () => true,
   prefer: (sheet: Sheet) => boolean = () => true,
+  /** Filled with how many sheets were in the running, for the measure. */
+  out?: { fitting: number },
 ): Sheet | null {
   let pool = sheetsFor(moment).filter((s) => fitsWhen(s, flags) && can(s));
   if (pool.length === 0) return null;
   // A callback page wants a sheet that can pay something off, if one fits.
   const preferred = pool.filter(prefer);
   if (preferred.length > 0) pool = preferred;
+  if (out) out.fitting = pool.length;
   const mine = history.filter((id) => pool.some((s) => s.id === id));
   const last = mine[mine.length - 1];
   if (pool.length > 1 && last !== undefined) pool = pool.filter((s) => s.id !== last);
@@ -260,6 +263,8 @@ export interface Piece {
   presents?: Id[];
   /** Paragraphs of their own: the sheet breaks around them. */
   block?: OutPara[];
+  /** The engine says this piece's roles elsewhere on the page, before the close. */
+  introduces?: boolean;
 }
 
 export interface Holes {
@@ -338,9 +343,17 @@ function roleValue(exp: CardExport, field: string | undefined): string | undefin
       return exp.text;
     case 'near':
       return exp.near;
+    case 'it':
+      return pluralThing(exp.short) ? 'them' : 'it';
     default:
       return undefined;
   }
+}
+
+/** "the globes" are them, "the glass" is it. */
+export function pluralThing(short: string): boolean {
+  const last = short.trim().split(/\s+/).pop() ?? '';
+  return /s$/i.test(last) && !/(?:ss|us|is|ys)$/i.test(last);
 }
 
 /**
@@ -441,7 +454,7 @@ export function runSheet(sheet: Sheet, holes: Holes, run: SheetRun): SheetOut | 
     const exp = piece.exports?.[part.bind];
     if (exp === undefined) return;
     run.roles.set(part.bind, exp);
-    if (piece.text.trim().length > 0) run.introduced.add(part.bind);
+    if (piece.text.trim().length > 0 || piece.introduces) run.introduced.add(part.bind);
   };
   const payoff = (roles: readonly string[]): void => {
     for (const r of roles) {
@@ -451,7 +464,7 @@ export function runSheet(sheet: Sheet, holes: Holes, run: SheetRun): SheetOut | 
     }
   };
   const person = (prefixes: readonly string[], text: string): void => {
-    for (const p of prefixes) {
+    for (const p of new Set(prefixes)) {
       const id = holes.people?.[p];
       if (id !== undefined) {
         run.presented.add(id);

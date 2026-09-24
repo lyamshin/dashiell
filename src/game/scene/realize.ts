@@ -1258,7 +1258,11 @@ export function presenceLine(stage: Stage, p: PresencePerson, named: ReadonlySet
       const look = characterLine(stage.dealer, view, person, 'look', { accept: (t) => !echoes(t, parts) });
       if (look) parts.push(look.text);
     }
-    const street = p.brief ? null : characterLine(stage.dealer, view, person, 'street', { accept: (t) => !echoes(t, parts) });
+    // M11 §A.2: three to five sentences in all, the tie included.
+    const room = 5 - countSentences(parts.join(' ')) - (p.tie ? 1 : 0);
+    const street = p.brief
+      ? null
+      : characterLine(stage.dealer, view, person, 'street', { accept: (t) => !echoes(t, parts) && countSentences(t) <= room });
     if (street) parts.push(street.text);
     // The owner of what was taken, alive and in the room: how the street sees
     // them is their standing, which the office already said in the client's

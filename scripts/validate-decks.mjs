@@ -480,7 +480,7 @@ const MOMENTS = ['arrival', 'company', 'ask', 'telling', 'search', 'confront', '
 const COMMON_FLAGS = ['place', 'placeKind', 'setting', 'caseType', 'tier', 'band', 'hour', 'callback', 'prop'];
 const FLAGS = {
   arrival: [...COMMON_FLAGS, 'watcher', 'client', 'tell', 'tellWatcher', 'tellClient', 'others', 'people', 'crowd', 'alone', 'rundown'],
-  company: [...COMMON_FLAGS, 'watcher', 'client', 'tell', 'tellWatcher', 'tellClient', 'others', 'people', 'crowd', 'alone', 'rundown'],
+  company: [...COMMON_FLAGS, 'watcher', 'client', 'tell', 'tellWatcher', 'tellClient', 'others', 'people', 'crowd', 'alone', 'rundown', 'propNear'],
   ask: [...COMMON_FLAGS, 'again', 'reported', 'try', 'posture', 'doing', 'temper', 'self', 'account', 'family', 'outcome', 'client', 'fixture', 'close'],
   confront: [...COMMON_FLAGS, 'again', 'reported', 'try', 'posture', 'doing', 'temper', 'self', 'account', 'family', 'outcome', 'client', 'fixture', 'close'],
   search: [...COMMON_FLAGS, 'object', 'finds', 'left', 'texture'],
@@ -519,7 +519,7 @@ function sheetSlotErrors(moment, text, where, okExtra = []) {
     const [head, field] = slot.split('.');
     const lowerHead = head[0].toLowerCase() + head.slice(1);
     if (ROLE_NAMES.includes(lowerHead)) {
-      if (field !== undefined && !['text', 'near', 'short'].includes(field)) out.push(`${where}: {${slot}} — a role has .text, .near or nothing`);
+      if (field !== undefined && !['text', 'near', 'short', 'it'].includes(field)) out.push(`${where}: {${slot}} — a role has .text, .near, .it or nothing`);
       continue;
     }
     if (PERSON_ROLES[moment].includes(head)) {

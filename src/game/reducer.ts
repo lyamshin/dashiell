@@ -200,6 +200,7 @@ export function newRun(
     imageMotifs: composed.imageMotifs,
     plain: composed.plain,
     image: composed.image,
+    ...(composed.sheets ? { sheets: composed.sheets } : {}),
   };
   const state: RunState = {
     ...base,

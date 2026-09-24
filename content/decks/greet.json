@@ -16,7 +16,7 @@
     "text": "“Not so loud,” {he} said, although I hadn’t said anything yet. “Sit down and look like you’re here for the drinks.”",
     "tags": {
       "purpose": "keep-it-quiet",
-      "temper": "any"
+      "temper": "yap"
     },
     "motifs": [],
     "status": "generated"
@@ -27,7 +27,7 @@
     "text": "“Well?” {he} said. “Sit down. The police already stood around, and look where that got anybody.”",
     "tags": {
       "purpose": "find-the-killer-police-wont",
-      "temper": "any"
+      "temper": "plain"
     },
     "motifs": [],
     "status": "generated"
@@ -49,7 +49,7 @@
     "text": "“Keep your voice down,” {he} said. “Half this room thinks I did it, and the other half hasn’t heard yet.”",
     "tags": {
       "purpose": "clear-my-name",
-      "temper": "any"
+      "temper": "plain"
     },
     "motifs": [],
     "status": "generated"
@@ -71,7 +71,7 @@
     "text": "“Anything?” {he} said. “Don’t answer that. Sit down first, then tell me nothing.”",
     "tags": {
       "purpose": "get-it-back",
-      "temper": "any"
+      "temper": "yap"
     },
     "motifs": [],
     "status": "generated"
@@ -82,7 +82,7 @@
     "text": "“You look like a man who’s been looking,” {he} said. “Sit down and look somewhere else for a minute.”",
     "tags": {
       "purpose": "find-it-before-the-cops",
-      "temper": "any"
+      "temper": "plain"
     },
     "motifs": [],
     "status": "generated"
@@ -93,7 +93,7 @@
     "text": "“You came,” {he} said, as if that had been in some doubt. “Good. I’ve been watching the door all night.”",
     "tags": {
       "purpose": "bring-them-home",
-      "temper": "any"
+      "temper": "plain"
     },
     "motifs": [],
     "status": "generated"
@@ -104,7 +104,7 @@
     "text": "“I didn’t think you’d find this place,” {he} said. “That’s a compliment to the place, not to you.”",
     "tags": {
       "purpose": "make-sure-they-stay-gone",
-      "temper": "any"
+      "temper": "plain"
     },
     "motifs": [],
     "status": "generated"
@@ -112,10 +112,10 @@
   {
     "id": "GRT-011",
     "deck": "greet",
-    "text": "“{victim} still owes me,” {he} said, by way of hello. “The dead are slow payers. Sit down.”",
+    "text": "“{victim} still owes me,” {he} said, by way of hello. “Sit down. I’d like somebody at this table on my side of that.”",
     "tags": {
       "purpose": "settle-a-debt-with-the-dead",
-      "temper": "any"
+      "temper": "plain"
     },
     "motifs": [],
     "status": "generated"
@@ -146,6 +146,292 @@
     "id": "GRT-014",
     "deck": "greet",
     "text": "“You found it,” {he} said. “I was hoping you would, and a little hoping you wouldn’t.”",
+    "tags": {
+      "purpose": "any",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-015",
+    "deck": "greet",
+    "text": "“Sit,” {he} said, barely moving {his} lips. “And keep your voice where I keep mine.”",
+    "tags": {
+      "purpose": "keep-it-quiet",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-016",
+    "deck": "greet",
+    "text": "“Don’t wave,” {he} said. “People in here remember a man who waves.”",
+    "tags": {
+      "purpose": "keep-it-quiet",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-017",
+    "deck": "greet",
+    "text": "{He} didn’t get up. “Everybody else has given up on it,” {he} said. “Sit down and don’t.”",
+    "tags": {
+      "purpose": "find-the-killer-police-wont",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-018",
+    "deck": "greet",
+    "text": "“Sit down,” {he} said. “You’re on my money now, so you may as well be comfortable.”",
+    "tags": {
+      "purpose": "find-the-killer-police-wont",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-019",
+    "deck": "greet",
+    "text": "“Before you say anything, I know how it looks,” {he} said. “I’ve been sitting here looking at how it looks, and it looks worse every time somebody new comes in.”",
+    "tags": {
+      "purpose": "clear-my-name",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-020",
+    "deck": "greet",
+    "text": "“Let them look,” {he} said, without looking at anybody. “Sit where they can see you too.”",
+    "tags": {
+      "purpose": "clear-my-name",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-021",
+    "deck": "greet",
+    "text": "“Sit down,” {he} said. “I’d rather not talk about it standing up, and I’d rather not talk about it at all.”",
+    "tags": {
+      "purpose": "get-it-back",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-022",
+    "deck": "greet",
+    "text": "{He} nodded at the chair and not at me. “You know what I want back,” {he} said. “Don’t say it in here.”",
+    "tags": {
+      "purpose": "get-it-back",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-023",
+    "deck": "greet",
+    "text": "“I’ve told myself it will turn up about forty times since I sat down,” {he} said. “You’re the first one who might make it true.”",
+    "tags": {
+      "purpose": "get-it-back",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-024",
+    "deck": "greet",
+    "text": "“Quick, sit, before the whole room decides you’re a policeman,” {he} said. “You have the walk. They all have the walk.”",
+    "tags": {
+      "purpose": "find-it-before-the-cops",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-025",
+    "deck": "greet",
+    "text": "“Not here,” {he} said, and then, when I didn’t move, “Well. Sit, then.”",
+    "tags": {
+      "purpose": "find-it-before-the-cops",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-026",
+    "deck": "greet",
+    "text": "“You’re quicker than the police,” {he} said. “Keep it that way, and sit down.”",
+    "tags": {
+      "purpose": "find-it-before-the-cops",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-027",
+    "deck": "greet",
+    "text": "“Have you heard anything? Has anybody said anything? You’d tell me,” {he} said, all in one breath. “Sit. No, there, where I can see the door.”",
+    "tags": {
+      "purpose": "bring-them-home",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-028",
+    "deck": "greet",
+    "text": "{He} looked past me at the door, and then at me. “Not yet, then,” {he} said.",
+    "tags": {
+      "purpose": "bring-them-home",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-029",
+    "deck": "greet",
+    "text": "“Every time that door opens I think it’s {victim},” {he} said. “Then it’s somebody like you. Sit down.”",
+    "tags": {
+      "purpose": "bring-them-home",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-030",
+    "deck": "greet",
+    "text": "“I don’t want to talk about it here, and I don’t want to talk about it anywhere else either,” {he} said. “Sit down. You make me nervous, hovering.”",
+    "tags": {
+      "purpose": "make-sure-they-stay-gone",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-031",
+    "deck": "greet",
+    "text": "“Sit,” {he} said. “And don’t say the name. I’ve got used to not hearing it.”",
+    "tags": {
+      "purpose": "make-sure-they-stay-gone",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-032",
+    "deck": "greet",
+    "text": "“You’re late, which is good,” {he} said. “Nobody watches the door this late.”",
+    "tags": {
+      "purpose": "make-sure-they-stay-gone",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-033",
+    "deck": "greet",
+    "text": "“{victim} owed me, you know, and I don’t mind who hears it,” {he} said. “Well, I mind a little. Sit down.”",
+    "tags": {
+      "purpose": "settle-a-debt-with-the-dead",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-034",
+    "deck": "greet",
+    "text": "“Money,” {he} said, as if that was hello. “Sit down.”",
+    "tags": {
+      "purpose": "settle-a-debt-with-the-dead",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-035",
+    "deck": "greet",
+    "text": "“I’m out a good deal already,” {he} said. “Sit down before it’s more.”",
+    "tags": {
+      "purpose": "settle-a-debt-with-the-dead",
+      "temper": "plain"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-036",
+    "deck": "greet",
+    "text": "“There you are. I was about to send out for you or for another drink, whichever came first,” {he} said. “Sit, sit.”",
+    "tags": {
+      "purpose": "any",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-037",
+    "deck": "greet",
+    "text": "“You found it! Most people walk straight past,” {he} said. “I walked straight past it twice, and I knew where it was.”",
+    "tags": {
+      "purpose": "any",
+      "temper": "yap"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-038",
+    "deck": "greet",
+    "text": "“Sit,” {he} said. It was all {he} said for a while.",
+    "tags": {
+      "purpose": "any",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-039",
+    "deck": "greet",
+    "text": "“You,” {he} said, as if that settled something. “Good.”",
+    "tags": {
+      "purpose": "any",
+      "temper": "enigma"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "GRT-040",
+    "deck": "greet",
+    "text": "“Sit down before somebody takes that chair,” {he} said. “It’s the only one in here that doesn’t wobble.”",
     "tags": {
       "purpose": "any",
       "temper": "plain"

@@ -8,19 +8,38 @@
       "name": "The place, and one thing in it",
       "notes": "Sheet A's first half, the blessed golden: the establish card whole, then a place-ambient card that puts a prop in the room (pam-102, the mirror).",
       "parts": [
-        { "hole": "establish" },
-        { "hole": "prop", "deck": "place-ambient", "bind": "prop" }
+        {
+          "hole": "establish"
+        },
+        {
+          "hole": "prop",
+          "deck": "place-ambient",
+          "bind": "prop"
+        }
       ]
     },
     {
       "id": "arr-b",
       "name": "The first thing you noticed",
       "notes": "Sheet B's first half: the establish card's short form, and the prop said as the first thing anybody sees. Needs a prop the room has not shown tonight.",
-      "when": { "callback": true, "prop": true },
+      "when": {
+        "callback": true,
+        "prop": true
+      },
       "parts": [
-        { "hole": "establish", "form": "short" },
-        { "hole": "prop", "deck": "place-ambient", "bind": "prop", "form": "bind" },
-        { "text": "The first thing you noticed was {prop.text}." }
+        {
+          "hole": "establish",
+          "form": "short"
+        },
+        {
+          "hole": "prop",
+          "deck": "place-ambient",
+          "bind": "prop",
+          "form": "bind"
+        },
+        {
+          "text": "The first thing you noticed was {prop.text}."
+        }
       ]
     },
     {
@@ -28,8 +47,34 @@
       "name": "In from the night",
       "notes": "Sheet C's first half: the short form, with the night on the way in, and the room left to the people in it.",
       "parts": [
-        { "hole": "weather", "optional": true },
-        { "hole": "establish", "form": "short" }
+        {
+          "hole": "weather",
+          "optional": true
+        },
+        {
+          "hole": "establish",
+          "form": "short"
+        }
+      ]
+    },
+    {
+      "id": "arr-d",
+      "name": "The night, then the place",
+      "notes": "Tonight's weather on the way in, the establish card whole, and a thing in the room.",
+      "parts": [
+        {
+          "hole": "weather",
+          "optional": true
+        },
+        {
+          "hole": "establish"
+        },
+        {
+          "hole": "prop",
+          "deck": "place-ambient",
+          "bind": "prop",
+          "optional": true
+        }
       ]
     }
   ]

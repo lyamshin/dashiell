@@ -75,6 +75,7 @@ const used = new Map<string, number>();
 const byMoment = new Map<string, { pages: number; paid: number }>();
 let repeatsNight = 0;
 let repeatsRow = 0;
+let repeatsRowAny = 0;
 let nights = 0;
 let coverageIssues = 0;
 let required = 0;
@@ -88,9 +89,8 @@ for (const r of runs) {
   const tonight = new Map<string, number>();
   const lastOf = new Map<string, string>();
   for (const page of r.state.log) {
-    if (page.shape === undefined || page.shape === 'office' || page.shape === 'repeat' || page.shape === 'other') {
-      if (page.shape !== 'office') continue;
-    }
+    // Night pages and the office (page one); not a question read back or a parser page.
+    if (page.n > 0 && (page.shape === undefined || page.shape === 'repeat' || page.shape === 'other')) continue;
     pages++;
     const sheets = page.sheets ?? [];
     if (sheets.length === 0) continue;
@@ -106,7 +106,8 @@ for (const r of runs) {
       const n = (tonight.get(s.id) ?? 0) + 1;
       tonight.set(s.id, n);
       if (n > 1) repeatsNight++;
-      if (lastOf.get(s.moment) === s.id) repeatsRow++;
+      if (lastOf.get(s.moment) === s.id && (s.fitting ?? 0) > 1) repeatsRow++;
+      if (lastOf.get(s.moment) === s.id) repeatsRowAny++;
       lastOf.set(s.moment, s.id);
     }
   }
@@ -135,7 +136,7 @@ out.push(`callback share: ${paid} of ${sheeted} sheeted pages paid a role off ($
 for (const [m, v] of [...byMoment.entries()].sort()) out.push(`  ${m.padEnd(9)} ${String(v.pages).padStart(5)} uses, ${pct(v.paid, v.pages)} on a callback page`);
 out.push('sheet usage:');
 for (const s of SHEETS) out.push(`  ${s.moment.padEnd(9)} ${s.id.padEnd(10)} ${String(used.get(s.id) ?? 0).padStart(5)}  ${s.name}`);
-out.push(`within-night repeats: ${repeatsNight} uses of a sheet already used that night (${(repeatsNight / nights).toFixed(2)} a night); ${repeatsRow} the same sheet twice running for one moment`);
+out.push(`within-night repeats: ${repeatsNight} uses of a sheet already used that night (${(repeatsNight / nights).toFixed(2)} a night); ${repeatsRowAny} the same sheet twice running for one moment (${repeatsRow} of them when another fitted)`);
 out.push(`beat coverage: ${written} of ${required} required beats written; ${coverageIssues} coverage issues`);
 out.push(`correspondence: ${correspondence}${corrRules.size ? ` (${[...corrRules].map(([k, v]) => `${k} ${v}`).join(', ')})` : ''}`);
 out.push(`reader lint: ${lint}${lintRules.size ? ` (${[...lintRules].map(([k, v]) => `${k} ${v}`).join(', ')})` : ''}`);

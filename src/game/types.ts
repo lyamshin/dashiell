@@ -240,6 +240,8 @@ export interface SheetUse {
   callback: boolean;
   /** The page's roll: whether it wanted one. */
   rolled: boolean;
+  /** How many sheets were in the running when it was chosen. */
+  fitting?: number;
 }
 
 /**

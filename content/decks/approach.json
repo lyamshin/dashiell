@@ -21,6 +21,16 @@
       "again": "no"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "my hat on the bar",
+        "short": "my hat",
+        "kind": "clothes",
+        "pay": [
+          "I took my hat off the bar. I’d said I was staying; I hadn’t said for how long."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -74,13 +84,23 @@
   {
     "id": "APR-007",
     "deck": "approach",
-    "text": "I leaned on the bar beside {name}.",
+    "text": "I leaned on the bar beside {name} and set my matches down on it, in a puddle I hadn’t seen.",
     "tags": {
       "setting": "bar",
       "posture": "standing",
       "again": "no"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "my matches, in a puddle on the bar",
+        "short": "my matches",
+        "kind": "thing",
+        "pay": [
+          "I picked my matches up out of the puddle. They were done for, like most of my plans, and I kept them anyway."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -153,6 +173,16 @@
       "again": "no"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "my hat in my hands",
+        "short": "my hat",
+        "kind": "clothes",
+        "pay": [
+          "I was still holding my hat. I put it back on, which is as close as I get to saying thank you."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -170,13 +200,23 @@
   {
     "id": "APR-015",
     "deck": "approach",
-    "text": "I stepped up to the counter beside {name}.",
+    "text": "I stepped up to the counter beside {name} and lit a cigarette, to give my hands something to do while my mouth worked.",
     "tags": {
       "setting": "counter",
       "posture": "standing",
       "again": "no"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "a cigarette I’d lit to give my hands something to do",
+        "short": "my cigarette",
+        "kind": "thing",
+        "pay": [
+          "My cigarette had burned down to my fingers while we talked. It usually does. I’m a better listener than a smoker."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -213,6 +253,16 @@
       "again": "no"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "my elbows on the counter",
+        "short": "my elbows",
+        "kind": "posture",
+        "pay": [
+          "I took my elbows off the counter. {person.He} looked more relieved about that than about anything I’d asked."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -261,6 +311,16 @@
       "again": "no"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "my collar, turned up",
+        "short": "my collar",
+        "kind": "clothes",
+        "pay": [
+          "I turned my collar back down. It hadn’t kept anything out, including the cold."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -374,13 +434,23 @@
   {
     "id": "APR-032",
     "deck": "approach",
-    "text": "I sat down on the step below {name}.",
+    "text": "I sat down on the step below {name} and put my hat on the step beside me, where it would get the worst of the draught.",
     "tags": {
       "setting": "stair",
       "posture": "seated",
       "again": "no"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "my hat on the step beside me",
+        "short": "my hat",
+        "kind": "clothes",
+        "pay": [
+          "I picked my hat up off the step. It had had the worst of the draught, and it looked it. So did I."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -398,13 +468,23 @@
   {
     "id": "APR-034",
     "deck": "approach",
-    "text": "I took the chair across from {name}.",
+    "text": "I took the chair across from {name} and put my notebook on the table, face down, so we could both pretend it wasn’t there.",
     "tags": {
       "setting": "room",
       "posture": "seated",
       "again": "no"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "my notebook, face down on the table",
+        "short": "my notebook",
+        "kind": "paper",
+        "pay": [
+          "I turned the notebook face up and wrote it down. Neither of us had been fooled, but it was polite of us to try."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
@@ -621,6 +701,16 @@
       "again": "yes"
     },
     "motifs": [],
+    "exports": {
+      "prop": {
+        "text": "my glass, pushed an inch to one side",
+        "short": "my glass",
+        "kind": "drink",
+        "pay": [
+          "I pulled my glass back the inch. It had waited long enough, and it was the only one in there that had."
+        ]
+      }
+    },
     "status": "generated"
   },
   {
