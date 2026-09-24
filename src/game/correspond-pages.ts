@@ -64,6 +64,10 @@ import { FIXTURE_CARDS } from '../gen/data/cast.js';
 export const ENGINE_WORDS: readonly string[] = [
   // `page.ts`, the opening note and the notes the grammar writes.
   'Midnight',
+  // M11: the client's rundown, in `realize.ts` ("Wait. Other way round.").
+  'Wait',
+  'Couldn’t',
+  'Sit',
   'Two',
   'Eight',
   'Nobody',

@@ -45,33 +45,33 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'keeps his evening clothes at his club and changes there more nights than not',
-        first: 'I keep my evening clothes at the club. I change there more nights than not. It saves going home.',
+        first: 'I keep my evening clothes at the club and change there more nights than not. It saves going home. Home is lovely, but it’s very far from the club.',
         layer: 1,
       },
       {
         text: 'sleeps late and takes breakfast in a hotel dining room because the coffee is better',
-        first: 'I sleep late. I take breakfast at a hotel, because the coffee there is better than anything at home.',
+        first: 'I sleep late and take breakfast in a hotel dining room, because the coffee is better. I’ve tried the coffee at home. Once.',
         layer: 1,
       },
       {
         text: 'signs for things instead of paying cash and lets the bills go to the family lawyer',
-        first: 'I sign for things. I don’t carry much cash. The bills go to the family lawyer, and he sends them on.',
+        first: 'I sign for things instead of paying cash. The bills go to the family lawyer. It gives him something to do.',
         layer: 1,
       },
       {
         text: 'is liked by headwaiters for tipping large and disliked by shopkeepers for paying late',
-        first: 'Headwaiters like me. I tip well. Shopkeepers are another matter, and I can’t say I blame them.',
+        first: 'Headwaiters adore me, because I tip large. Shopkeepers don’t, because I pay late. I can’t say I blame either of them.',
         layer: 2,
       },
     ],
     history: [
       {
         text: 'left college in his second year and has been waiting on the family money since',
-        first: 'I left college in my second year. I’ve been waiting on the family money since. It’s slow work.',
+        first: 'I left college in my second year, and I’ve been waiting on the family money since. It’s slow work, but the hours suit me.',
       },
       {
         text: 'came into an allowance at twenty-one and has lived on it since, more or less',
-        first: 'I came into an allowance at twenty-one. I’ve lived on it since, more or less.',
+        first: 'I came into an allowance at twenty-one. I’ve lived on it since, more or less. Mostly more.',
       },
     ],
     talk: 'easy',
@@ -81,33 +81,33 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'still wears black on Sundays and grey the rest of the week',
-        first: 'I still wear black on Sundays. Grey the rest of the week. It seems right to me.',
+        first: 'I still wear black on Sundays and grey the rest of the week. People have stopped asking why, which is how I prefer it.',
         layer: 1,
       },
       {
         text: 'writes her letters every morning at a small desk by the window and answers every one she gets',
-        first: 'I write my letters in the morning, at the desk by the window. I answer every one I get. Nobody does that now.',
+        first: 'I write my letters every morning at the small desk by the window, and I answer every one I get. Some people have stopped writing to me for that very reason.',
         layer: 1,
       },
       {
         text: 'goes over the household accounts herself every Friday, to the penny',
-        first: 'I go over the household accounts myself on Fridays. To the penny. My husband never did, and I learned why.',
+        first: 'I go over the household accounts myself every Friday, to the penny. My husband never did. It shows in the early pages.',
         layer: 1,
       },
       {
         text: 'is thought by her neighbours to be better off than she lets on',
-        first: 'The neighbours think I have more than I let on. Let them think it.',
+        first: 'The neighbours think I am better off than I let on. I let them think it. It costs me nothing, and I do like a thing that costs nothing.',
         layer: 2,
       },
     ],
     history: [
       {
         text: 'has been a widow since {year} and has kept up the same household on less',
-        first: 'Since {year}. I’ve kept the same household on less money, and nobody has noticed.',
+        first: 'I have been a widow since {year}. I keep up the same household on less money, and nobody has noticed. I have made quite sure of that.',
       },
       {
         text: 'married young to an older man and has now been a widow longer than she was a wife',
-        first: 'I married young. He was a good deal older. I’ve been a widow longer than I was a wife.',
+        first: 'I married young, to a man a good deal older. I have now been a widow longer than I was a wife. Nobody plans these things.',
       },
     ],
     talk: 'careful',
@@ -117,33 +117,33 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'talks prices across the street by hand signals to a telephone clerk in an upstairs window',
-        first: 'I talk prices across the street with my hands. A clerk in an upstairs window reads them. It’s faster than shouting.',
+        first: 'I talk prices across the street with my hands, to a telephone clerk in an upstairs window. It’s faster than shouting. I haven’t waved at a friend in years.',
         layer: 1,
       },
       {
         text: 'wears a loud hat so the clerks upstairs can pick {him|her} out of the crowd',
-        first: 'I wear a loud hat. The clerks upstairs have to find me in a crowd, and they find me quick.',
+        first: 'I wear a loud hat so the clerks upstairs can pick me out of the crowd. Nobody has ever called it a nice hat. That’s not what it’s for.',
         layer: 1,
       },
       {
         text: 'eats lunch standing up off a cart and never sits down before the closing bell',
-        first: 'I eat lunch standing up, off a cart. I don’t sit down till the closing bell.',
+        first: 'I eat lunch standing up, off a cart, and I never sit down before the closing bell. My feet have filed a complaint.',
         layer: 1,
       },
       {
         text: 'is said on the street to be good for a quick trade and no questions',
-        first: 'They say I’m good for a quick trade and no questions. That’s about right. Questions slow a trade down.',
+        first: 'They say on the street I’m good for a quick trade and no questions. That’s about right. A question slows a trade down, and then it’s a conversation.',
         layer: 2,
       },
     ],
     history: [
       {
         text: 'started as a messenger running orders between offices and has traded on the street since {year}',
-        first: 'Since {year}. I started as a messenger, running orders between offices. I watched how it was done.',
+        first: 'I started as a messenger, running orders between offices. I’ve traded on the street since {year}. It’s the same running, only now I get to shout.',
       },
       {
         text: 'left a bank job that paid less and bored {him|her} more, and has been out on the street nearly ten years',
-        first: 'I had a bank job. It paid less and bored me more. I’ve been out here nearly ten years.',
+        first: 'I left a bank job that paid less and bored me more. I’ve been out on the street nearly ten years. The street has rained on me plenty, but it has never once bored me.',
       },
     ],
     talk: 'easy',
@@ -153,33 +153,33 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'dresses for dinner every night, whether or not there is a dinner to go to',
-        first: 'I dress for dinner every night. Whether there’s a dinner or not. You never know who’ll telephone.',
+        first: 'I dress for dinner every night, whether or not there’s a dinner. Some nights I’m simply very well dressed for an egg.',
         layer: 1,
       },
       {
         text: 'writes in pencil in a small notebook and never in front of the people {he|she} is writing about',
-        first: 'I write in pencil, in a little notebook. Never in front of anyone I’m writing about. That’s the whole trick of it.',
+        first: 'I write in pencil, in a little notebook, and never in front of anybody I’m writing about. People say the most wonderful things to somebody who isn’t writing.',
         layer: 1,
       },
       {
         text: 'is said by the other columnists to read their columns before they do',
-        first: 'The other columnists say I read their columns before they do. I read all of them before breakfast. I like to know what I’ve missed.',
+        first: 'The other columnists say I read their columns before they do. I read them before breakfast. They might try it.',
         layer: 2,
       },
       {
         text: 'is asked to parties by hostesses who would rather be written up than left out',
-        first: 'Hostesses ask me because they’d rather be written up than left out. I’m not fooled by it. I go anyway.',
+        first: 'Hostesses ask me because they’d rather be written up than left out. I know it, and they know I know it. We all have a lovely time.',
         layer: 2,
       },
     ],
     history: [
       {
         text: 'started on the wedding notices for a newspaper and asked for the column the day it came open',
-        first: 'I started on weddings. Two years of other people’s weddings. Then the column came open and I asked for it.',
+        first: 'I started on the wedding notices for a newspaper. The day the column came open, I asked for it. I’d have asked sooner, but it wasn’t open.',
       },
       {
         text: 'was born into the set {he|she} writes about and lost the money but kept the invitations',
-        first: 'I was born into the people I write about. The money went. The invitations didn’t, so I made a living of them.',
+        first: 'I was born into the set I write about. The money went. The invitations didn’t, and a person has to do something with invitations.',
       },
     ],
     talk: 'easy',
@@ -189,33 +189,33 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'goes down to the boilers in the cold months to see the coal is not wasted',
-        first: 'I go down to the boilers in winter. Coal costs money. I watch it.',
+        first: 'I go down to the boilers in the cold months. Coal is money. I watch it burn.',
         layer: 1,
       },
       {
         text: 'carries one ring of keys that opens every door {he|she} owns',
-        first: 'I carry a key to every door I own. All on one ring.',
+        first: 'One ring of keys opens every door I own. It’s heavy. I like it heavy.',
         layer: 1,
       },
       {
         text: 'fixes what the city orders fixed and nothing sooner',
-        first: 'I fix what the city tells me to fix. Nothing sooner.',
+        first: 'I fix what the city orders fixed, and nothing sooner. The city is slow. I appreciate that in a city.',
         layer: 1,
       },
       {
         text: 'has a name with the tenants for turning the heat off on the first warm day of spring',
-        first: 'The tenants say I turn the heat off on the first warm day. They’re right. Spring is spring.',
+        first: 'Tenants say I turn the heat off the first warm day of spring. True. I decide which day that is.',
         layer: 2,
       },
     ],
     history: [
       {
         text: 'bought the first building out of a grocery’s savings and has been buying since',
-        first: 'The first one came out of a grocery. Twenty years of canned peas. I’ve been buying since.',
+        first: 'I bought the first building out of the grocery’s savings. A great many canned peas. I’ve been buying since.',
       },
       {
         text: 'inherited the buildings from {his|her} father and has run them without help since {year}',
-        first: 'They were my father’s. I’ve run them without help since {year}.',
+        first: 'The buildings were my father’s. I’ve run them without help since {year}. I’ve been offered help, and I didn’t need it.',
       },
     ],
     talk: 'clipped',
@@ -226,33 +226,33 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'writes every letter out in longhand before it is typed and reads it twice before signing',
-        first: 'I write every letter out in longhand first. Then it is typed. I read it twice before I sign.',
+        first: 'I write every letter out in longhand before it is typed, and I read it twice before I sign. My name at the bottom is a promise. I like to know what I promised.',
         layer: 1,
       },
       {
         text: 'spends most mornings in the courts and the afternoons at a desk',
-        first: 'I am in court most mornings. The afternoons are for the desk, and the desk is most of the work.',
+        first: 'I spend most mornings in the courts and the afternoons at a desk. The courts are where the arguing is. The desk is where the work is.',
         layer: 1,
       },
       {
         text: 'owns the law books {he|she} can afford and borrows the rest from the bar association library',
-        first: 'I own the law books I can afford. The rest I borrow from the bar association library.',
+        first: 'I own the law books I can afford. The rest I borrow from the bar association library, which has been very patient with me.',
         layer: 1,
       },
       {
         text: 'is thought in the building to charge less than {he|she} should and to collect less than {he|she} charges',
-        first: 'People say I charge too little and collect less than that. They are not wrong. It is a fault I can afford, most years.',
+        first: 'People in the building say I charge less than I should and collect less than I charge. They are not wrong. It is a fault I can afford, most years.',
         layer: 2,
       },
     ],
     history: [
       {
         text: 'clerked for an older lawyer for years and took over the rooms when he retired',
-        first: 'I clerked for an older man for years. When he retired I took the rooms, and whatever clients would stay.',
+        first: 'I clerked for an older lawyer for years. When he retired, I took over the rooms. I got his desk, his chair and his opinion of every judge in the city.',
       },
       {
         text: 'read law at night while working days in an insurance office, and has had {his|her} own door since {year}',
-        first: 'I read law at night. In the daytime I worked in an insurance office. I have had my own door since {year}.',
+        first: 'I read law at night and worked days in an insurance office. I have had my own door since {year}. The painter got my name right the second time.',
       },
     ],
     talk: 'careful',
@@ -262,17 +262,17 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'wears sleeve protectors at the desk because ink does not come out of a cuff',
-        first: 'I wear sleeve protectors at the desk. Ink does not come out of a cuff.',
+        first: 'I wear sleeve protectors at the desk. Ink does not come out of a cuff. I have tried, and so has the laundry.',
         layer: 1,
       },
       {
         text: 'adds every column twice, once down and once up',
-        first: 'I add every column twice. Down, then up. If the two agree, I go on.',
+        first: 'I add every column twice, once down and once up. If the two agree, I go on. If they do not, I have an interesting afternoon.',
         layer: 1,
       },
       {
         text: 'eats a sandwich from home at the desk rather than go out at midday',
-        first: 'I eat at the desk. A sandwich from home. Going out in the middle of a column is how mistakes happen.',
+        first: 'I eat a sandwich from home at the desk rather than go out at midday. Going out in the middle of a column is how mistakes happen. So is mustard.',
         layer: 1,
       },
       {
@@ -284,11 +284,11 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     history: [
       {
         text: 'learned bookkeeping at a business school at night and has kept books since {year}',
-        first: 'I learned it at a business school, at night. I have kept books since {year}.',
+        first: 'I learned bookkeeping at a business school, at night. I have kept books since {year}. Every one of them balances.',
       },
       {
         text: 'started as an office junior copying invoices and worked up to the ledgers',
-        first: 'I started as an office junior. I copied invoices for two years. Then they let me near the ledgers.',
+        first: 'I started as an office junior, copying invoices. I worked up to the ledgers. It took years, and I remember the day they let me touch one.',
       },
     ],
     talk: 'careful',
@@ -298,33 +298,33 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'irons her own uniforms because the laundry starches the collars wrong',
-        first: 'I iron my own uniforms. The laundry never gets the collar right.',
+        first: 'I iron my own uniforms. The laundry starches the collars wrong. A doctor never notices a collar, so I notice for both of us.',
         layer: 1,
       },
       {
         text: 'carries a small black bag with a thermometer, a watch with a second hand and a spare cap',
-        first: 'I carry my own bag. A thermometer, a watch with a second hand, and a spare cap.',
+        first: 'I carry a small black bag. A thermometer, a watch with a second hand, and a spare cap. The cap gets more use than you would think.',
         layer: 1,
       },
       {
         text: 'sleeps when the case allows and can sleep sitting up in a chair',
-        first: 'I sleep when the case lets me. I can sleep sitting up in a chair. You learn that early.',
+        first: 'I sleep when the case allows it. I can sleep sitting up in a chair. I have slept better in chairs than in some beds.',
         layer: 1,
       },
       {
         text: 'is asked for by name by doctors who want a patient kept to the orders',
-        first: 'Doctors ask for me by name. I keep a patient to the orders. Not every nurse will.',
+        first: 'Doctors ask for me by name when they want a patient kept to the orders. Patients do not ask for me by name. Not after the first day.',
         layer: 2,
       },
     ],
     history: [
       {
         text: 'trained at a hospital school at eighteen and has never done any other work',
-        first: 'I trained at eighteen, at a hospital school. I have never done any other work. I never wanted to.',
+        first: 'I trained at a hospital school at eighteen. I have never done any other work. I have never wanted to.',
       },
       {
         text: 'went into nursing after her mother and has done it her whole working life',
-        first: 'My mother was a nurse. So I am a nurse. It was never much of a question.',
+        first: 'My mother was a nurse, so I went into nursing. I have done it my whole working life. It was never much of a question in our house.',
       },
     ],
     talk: 'careful',
@@ -334,33 +334,33 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'boils the instruments after every patient and tells every patient so',
-        first: 'I boil my instruments after every patient. I tell them so. It calms them more than the gas does.',
+        first: 'I boil my instruments after every patient, and I tell every patient so. It calms them more than the gas does.',
         layer: 1,
       },
       {
         text: 'works a drill run by a foot pedal because the electric kind cost more than {he|she} had',
-        first: 'My drill runs off a foot pedal. The electric kind cost more than I had. My leg does the work.',
+        first: 'My drill runs off a foot pedal. The electric kind cost more than I had. So one of my legs is very strong, and the other is jealous.',
         layer: 1,
       },
       {
         text: 'keeps a jar of pulled teeth on the shelf to show the children it is soon over',
-        first: 'I keep a jar of pulled teeth on the shelf. The children count them and forget to be frightened.',
+        first: 'I keep a jar of pulled teeth on the shelf, to show the children it is soon over. The children find it a comfort. Their mothers find it less so.',
         layer: 1,
       },
       {
         text: 'is said to have gentle hands and no patience with a patient who cancels',
-        first: 'People say I have gentle hands. They also say I have no patience with a patient who cancels. Both are true.',
+        first: 'People say I have gentle hands and no patience with a patient who cancels. Both are true. The hands are for the ones who come.',
         layer: 2,
       },
     ],
     history: [
       {
         text: 'has had {his|her} own chair since {year} and worked another dentist’s chair before that',
-        first: 'I have had my own chair since {year}. Before that I worked another man’s, for less than I was worth.',
+        first: 'I have had my own chair since {year}. Before that I worked another dentist’s chair, for less than I was worth.',
       },
       {
         text: 'was a dentist’s assistant for years before going to dental college',
-        first: 'I was a dentist’s assistant first. I held the tray for years. Then I went to college and got my licence.',
+        first: 'I was a dentist’s assistant for years. I held the tray and watched. Then I went to dental college, and now I am the one who says it won’t hurt.',
       },
     ],
     talk: 'careful',
@@ -370,33 +370,33 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'takes shorthand faster than most people talk and has it typed before lunch',
-        first: 'I take shorthand faster than most people talk. It is typed before lunch.',
+        first: 'I take shorthand faster than most people talk, and it is typed before lunch. Some of them I could take down before they have thought of it.',
         layer: 1,
       },
       {
         text: 'keeps a typewriter ribbon, two pens and a clean handkerchief in the top drawer',
-        first: 'My top drawer has a typewriter ribbon, two pens and a clean handkerchief. Somebody always needs one of them.',
+        first: 'My top drawer has a typewriter ribbon, two pens and a clean handkerchief. Somebody always needs one of them, and it is never the ribbon.',
         layer: 1,
       },
       {
         text: 'answers the telephone with the employer’s name and never {his|her} own',
-        first: 'I answer the telephone with his name, not mine. Nobody is calling for me.',
+        first: 'I answer the telephone with his name, never mine. Nobody has ever rung up asking for me. I would not know what to say.',
         layer: 1,
       },
       {
         text: 'is the one the rest of the office asks before going in to the boss',
-        first: 'People come to me before they go in to him. I tell them whether it is a good day.',
+        first: 'The rest of the office asks me before they go in to him. I tell them whether it is a good day. Nine times in ten I tell them to wait until after lunch.',
         layer: 2,
       },
     ],
     history: [
       {
         text: 'learned typing and shorthand at a commercial school after high school',
-        first: 'I went to a commercial school after high school. Typing and shorthand. I have been at a desk since.',
+        first: 'I learned typing and shorthand at a commercial school after high school. I have been at a desk since. It is a very good desk.',
       },
       {
         text: 'started in a typing pool and was picked out of it for a private office',
-        first: 'I started in a typing pool. Forty machines in one room. I was picked out of it, and I have not been back.',
+        first: 'I started in a typing pool. Forty machines in one room. I was picked out of it for a private office, and I have not been back, even to visit.',
       },
     ],
     talk: 'careful',
@@ -406,7 +406,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'keeps copy paper folded in {his|her} hat band and three pencils sharpened at both ends',
-        first: 'I keep copy paper folded in my hat band. Three pencils, sharp at both ends. A pencil always breaks at the worst moment.',
+        first: 'I keep copy paper folded in my hat band and three pencils sharp at both ends. That’s six points. No story has ever needed more than five.',
         layer: 1,
       },
       {
@@ -421,18 +421,18 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'is trusted by the city desks to spell a name right, which is rarer than it sounds',
-        first: 'The desks buy from me because I spell the names right. You’d be surprised how rare that is.',
+        first: 'The city desks trust me to spell a name right. You’d be surprised how rare that is. So would the people whose names get spelled wrong.',
         layer: 2,
       },
     ],
     history: [
       {
         text: 'ran copy in a newsroom at sixteen and sold a first story at nineteen',
-        first: 'I ran copy in a newsroom at sixteen. I sold my first story at nineteen. Eleven dollars, and I spent it the same night.',
+        first: 'I ran copy in a newsroom at sixteen and sold my first story at nineteen. I spent the money the same night. I’ve been spending it the same night ever since.',
       },
       {
         text: 'was on the staff of a morning newspaper until it closed and has sold by the piece since',
-        first: 'I was on staff at a morning newspaper. It closed. I’ve sold by the piece since, and I eat about as well.',
+        first: 'I was on staff at a morning newspaper until it closed. I’ve sold by the piece since. I eat about as well, only less often.',
       },
     ],
     talk: 'easy',
@@ -447,12 +447,12 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'can tell from the first four bars whether a pupil has practised that week',
-        first: 'I can tell from the first four bars if they’ve practised. They always say they have.',
+        first: 'I can tell from the first four bars whether they’ve practised that week. They always say they have. The piano always says they haven’t.',
         layer: 1,
       },
       {
         text: 'plays for an hour after the last pupil goes, with the window shut',
-        first: 'When the last pupil goes, I play for an hour. For me. With the window shut.',
+        first: 'When the last pupil goes, I play for an hour, with the window shut. The street has heard enough scales for one day.',
         layer: 1,
       },
       {
@@ -468,7 +468,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'has taught piano since {year}, when {his|her} own teacher retired and passed the pupils on',
-        first: 'Since {year}. My own teacher retired and passed the pupils on to me. Most of them left. I found more.',
+        first: 'I’ve taught piano since {year}, when my own teacher retired and passed the pupils on to me. I got a list of which ones lie about practising, too.',
       },
     ],
     talk: 'plain',
@@ -478,12 +478,12 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'carries a folding rule, a flashlight and a camera in a case',
-        first: 'I carry a folding rule, a flashlight and a camera. Most of the job is measuring.',
+        first: 'I carry a folding rule, a flashlight and a camera in a case. Most of the job is measuring. The rest is people telling me it was bigger.',
         layer: 1,
       },
       {
         text: 'writes everything down while the claimant watches, so nobody can say later it was put differently',
-        first: 'I write it all down while they watch. Nobody can tell me later they said it different.',
+        first: 'I write it all down while they watch. That way nobody can tell me later they said it differently. They try.',
         layer: 1,
       },
       {
@@ -493,18 +493,18 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'is disliked by claimants for asking the same question three ways',
-        first: 'People don’t like me. I ask the same question three ways. The answer should come out the same each time.',
+        first: 'People don’t like me. I ask the same question three ways. The answer should come out the same each time, and it’s remarkable how often it doesn’t.',
         layer: 2,
       },
     ],
     history: [
       {
         text: 'was a clerk in the company office for years until they sent {him|her} out to see for {him|her}self',
-        first: 'I was a clerk in the company office for years. They sent me out when they saw I didn’t believe anybody.',
+        first: 'I was a clerk in the company office for years, until they sent me out to see for myself. I’ve been seeing for myself ever since. I don’t care for most of it.',
       },
       {
         text: 'has adjusted claims since {year} and came to it from a bank’s loan desk',
-        first: 'Since {year}. Before that I sat at a bank’s loan desk. People lie to banks too. Now I get to see where they live.',
+        first: 'I’ve adjusted claims since {year}. Before that I sat at a bank’s loan desk, where people lie too. Now I get to see where they live.',
       },
     ],
     talk: 'plain',
@@ -515,7 +515,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'carries her own soap in her apron because the hotel’s is too harsh on her hands',
-        first: 'I carry my own soap in my apron. The hotel’s is too harsh on my hands.',
+        first: 'I carry my own soap in my apron. The hotel’s is too harsh on my hands. The guests only have to use it for a night.',
         layer: 1,
       },
       {
@@ -525,7 +525,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'is trusted by the housekeeper with whatever guests leave behind, because she has never kept a thing',
-        first: 'The housekeeper trusts me with what guests leave behind. I’ve never kept a thing. Not a hairpin.',
+        first: 'The housekeeper trusts me with whatever guests leave behind. I’ve never kept a thing. Not a hairpin, and you would not believe what people leave behind.',
         layer: 2,
       },
       {
@@ -541,7 +541,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'came over from the old country with a sister and found hotel work the first week',
-        first: 'I came over with my sister. I had hotel work the first week. I’ve had it since.',
+        first: 'I came over from the old country with my sister. I found hotel work the first week. I’ve made a great many beds since, and none of them mine.',
       },
     ],
     talk: 'plain',
@@ -551,12 +551,12 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'keeps his hook on a nail by the door and his pay in his boot',
-        first: 'My hook hangs on a nail by the door. My pay goes in my boot.',
+        first: 'My hook hangs on a nail by the door. My pay goes in my boot. Nobody takes a man’s boot.',
         layer: 1,
       },
       {
         text: 'can carry a hundred-pound sack up a gangplank without a hand on the rail',
-        first: 'I can carry a hundred-pound sack up a gangplank and never touch the rail. Most can’t.',
+        first: 'I can carry a hundred-pound sack up a gangplank and never touch the rail. Most can’t. Most don’t try it twice.',
         layer: 1,
       },
       {
@@ -587,12 +587,12 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'keeps pins in her mouth while she sews and talks around them',
-        first: 'I keep pins in my mouth when I sew. I can talk around them. Most of us can.',
+        first: 'I keep pins in my mouth while I sew, and I talk around them. I’ve never swallowed one. I’ve come close when somebody tells a good story.',
         layer: 1,
       },
       {
         text: 'wears a thimble worn through at the top from years on the same finger',
-        first: 'My thimble’s worn through at the top. Same finger, all those years.',
+        first: 'My thimble’s worn through at the top. Same finger, all those years. The finger’s holding up better than the thimble.',
         layer: 1,
       },
       {
@@ -623,7 +623,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'keeps a blanket in the back for fares in winter and a flask of coffee for himself',
-        first: 'There’s a blanket in the back for fares in the winter. The coffee’s for me.',
+        first: 'There’s a blanket in the back for fares in the winter. The flask of coffee is for me. Fares have asked.',
         layer: 1,
       },
       {
@@ -638,7 +638,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'is the driver the doormen send out to fares who want quiet, because he never says who rode where',
-        first: 'The doormen send me the fares that want quiet. I don’t talk about who rode where. Not to anybody.',
+        first: 'The doormen send me the fares who want quiet. I never say who rode where. I hardly say where I’m going.',
         layer: 2,
       },
     ],
@@ -674,7 +674,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'is said to press a crease that lasts through a rainstorm',
-        first: 'They say my creases last through a rainstorm. That’s the steam and the weight of the iron. And practice.',
+        first: 'They say my crease lasts through a rainstorm. It does. The man wearing it is another matter.',
         layer: 2,
       },
     ],
@@ -757,7 +757,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'went to the telephone company straight out of school and trained six weeks before they sat her down',
-        first: 'Straight out of school. Six weeks of training, and they sat me down at the board. That was a while ago now.',
+        first: 'Straight out of school. Six weeks of training, and they sat me down at the board. I haven’t really stood up since.',
       },
     ],
     talk: 'easy',
@@ -789,7 +789,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     history: [
       {
         text: 'started as a bellhop and carried bags for years before being let behind the desk',
-        first: 'I started as a bellhop. I carried bags for years before they let me behind the desk.',
+        first: 'I started as a bellhop. I carried bags for years before they let me behind the desk. My arms are still longer than they need to be.',
       },
       {
         text: 'has kept hotel nights since {year} and sees little daylight',
@@ -813,7 +813,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'eats one real meal a day and makes it a good one',
-        first: 'One real meal a day. I make it a good one. The rest is coffee.',
+        first: 'One real meal a day. I make it a good one. The rest is coffee and hope.',
         layer: 1,
       },
       {
@@ -840,7 +840,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'keeps the bets in {his|her} head and writes down no more than {he|she} has to',
-        first: 'I keep the bets in my head. I write down what I have to and not a line more.',
+        first: 'I keep the bets in my head. I write down what I have to and not a line more. My head’s never been left on a streetcar.',
         layer: 1,
       },
       {
@@ -927,7 +927,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'is said by customers to pay the least on the block and to say so first',
-        first: 'Customers say I pay the least on the block. Fair. I tell them so before they sign.',
+        first: 'Customers say I pay the least on the block. Fair. I say so first, and it saves time.',
         layer: 2,
       },
     ],
@@ -970,7 +970,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     history: [
       {
         text: 'boxed for pay in small clubs for a few years before he took up door work',
-        first: 'I boxed. Small clubs, a few years. Then the door. The door pays steady.',
+        first: 'I boxed in small clubs for a few years. Then the door. The door pays steady.',
       },
       {
         text: 'worked the door at a dance hall first and has stood doors since he was twenty',
@@ -1010,7 +1010,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'delivered groceries on a bicycle until a collector’s route came open and he took it',
-        first: 'I delivered groceries on a bike. Paid nothing. This came open and I took it. Been a few years now.',
+        first: 'I delivered groceries on a bike, and it paid nothing. This route came open and I took it. Been a few years now.',
       },
     ],
     talk: 'rough',
@@ -1026,17 +1026,17 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'keeps the tips in a cigar box under the bar and counts them only at home',
-        first: 'Tips go in a cigar box under the bar. I count it at home. Never in front of the customers.',
+        first: 'Tips go in a cigar box under the bar. I count them at home, never in front of the customers. It gives them ideas.',
         layer: 1,
       },
       {
         text: 'pours every drink at {place} as it comes from the bottle and says so to anybody who asks',
-        first: 'Nothing gets watered here. I tell anybody who asks. Some places can’t say that.',
+        first: 'Every drink here comes the way it came out of the bottle. I say so to anybody who asks. It’s the only thing in this place I’ll swear to.',
         layer: 1,
       },
       {
         text: 'is known around {place} for never saying a customer’s name out loud',
-        first: 'I don’t say names across the bar. People come here not to be named. I let them.',
+        first: 'I don’t say names across the bar. People come here to be nobody for an hour. I let them.',
         layer: 2,
       },
     ],
@@ -1062,12 +1062,12 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'whistles up cabs from the curb and knows every driver who works the block by his first name',
-        first: 'I whistle up the cabs. I know every driver who works this block by his first name.',
+        first: 'I whistle up the cabs, and I know every driver who works this block by his first name. Some of them come when I haven’t even whistled.',
         layer: 1,
       },
       {
         text: 'keeps a spare umbrella inside the door at {place} for people caught in the rain',
-        first: 'There’s a spare umbrella inside the door. Somebody’s always caught in the rain. I get it back, mostly.',
+        first: 'There’s a spare umbrella inside the door for people caught in the rain. I get it back, mostly. I’ve bought it more than once.',
         layer: 1,
       },
       {
@@ -1144,7 +1144,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'is said by the regulars at {place} to make the best coffee on the street and the least conversation',
-        first: 'They say my coffee’s the best on the street. They also say I don’t talk. I’m working.',
+        first: 'They say my coffee’s the best on the street. They also say I don’t talk. I’m working, and talk isn’t on the menu.',
         layer: 2,
       },
     ],
@@ -1206,7 +1206,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
       },
       {
         text: 'wears white gloves in the car and changes them at midday',
-        first: 'White gloves. Clean pair at midday.',
+        first: 'White gloves, and a clean pair at midday. Nobody sees the first pair get dirty. I do.',
         layer: 1,
       },
       {
@@ -1237,7 +1237,7 @@ export const ROLE_CHARACTER: Record<string, RoleCharacter> = {
     details: [
       {
         text: 'keeps the rent book in a drawer she locks and the key on her',
-        first: 'The rent book’s in a drawer. The drawer’s locked. The key’s on me.',
+        first: 'The rent book’s in a drawer. The drawer’s locked. The key’s on me, and it stays there.',
         layer: 1,
       },
       {
