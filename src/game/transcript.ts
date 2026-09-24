@@ -133,7 +133,7 @@ export function renderChoicesText(groups: readonly OfferedGroup[], chosen?: stri
   const out: string[] = [];
   const headWidth = Math.max(
     8,
-    ...groups.map((g) => (g.kind === 'free' ? 'Free:' : `${g.heading}:`).length + 2),
+    ...groups.map((g) => (g.kind === 'free' || g.kind === 'rundown' ? 'Free:' : `${g.heading}:`).length + 2),
   );
   for (const group of groups) {
     const all = [...group.choices, ...(group.more ?? [])];
@@ -162,9 +162,10 @@ export function renderChoicesText(groups: readonly OfferedGroup[], chosen?: stri
     if (group.more && group.more.length > 0) {
       items.push(`[other topics: ${group.more.map(item).join(' · ')}]`);
     }
-    const head = (group.kind === 'free' ? 'Free:' : `${group.heading}:`).padEnd(headWidth);
-    const tail =
-      group.kind === 'free' ? '' : `   (${minutesText(usual)}${usual > 0 && all.length > 1 ? ' each' : ''})`;
+    // M11 §A.5: "Ask Hauck who's here" is a free choice of its own.
+    const bare = group.kind === 'free' || group.kind === 'rundown';
+    const head = (bare ? 'Free:' : `${group.heading}:`).padEnd(headWidth);
+    const tail = bare ? '' : `   (${minutesText(usual)}${usual > 0 && all.length > 1 ? ' each' : ''})`;
     const body = wrap(`${items.join(' · ')}${tail}`, WIDTH - 2 - headWidth);
     const lines = body.split('\n');
     out.push(`  ${head}${lines[0] ?? ''}`);

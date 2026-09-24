@@ -38,6 +38,7 @@ import type { GenerateOptions } from '../src/gen/generate.js';
 import type { Case, Id } from '../src/gen/types.js';
 import { buildView, gameBudget, type CaseView } from '../src/game/derive.js';
 import { choicesFor } from '../src/game/choices.js';
+import { playerChoices } from './players.js';
 import { playOracle, playWandering } from '../src/game/oracle.js';
 import { fileReport, newRun, stepInput } from '../src/game/reducer.js';
 import { scoreReport } from '../src/game/scoring.js';
@@ -861,7 +862,7 @@ function playNight(person: Person, view: CaseView, cfg: string, seed: number): N
     if (state.reportOpen || state.actionsUsed >= budget) break;
     let command: string | null;
     if (commands) command = commands[i] ?? null;
-    else command = (picker as Picker)(state, view, rng, choicesFor(view, state))?.command ?? null;
+    else command = (picker as Picker)(state, view, rng, playerChoices(view, state))?.command ?? null;
     if (command === null) break;
     const before = state;
     const result = stepInput(state, command, view, loadBurned(store));

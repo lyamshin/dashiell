@@ -384,6 +384,46 @@ export const OFFICE_STREETS: Record<string, string> = {
   'Little Italy': 'Mulberry Street',
 };
 
+/**
+ * What kind of place his office is, and the ways of saying each. The
+ * designer's note: "Why always 'two rooms above'? Bizarre habit." Every case
+ * used to open on "two rooms over a Chinese laundry on…", a shop's name the
+ * only thing that moved. Now there are seven kinds of place — the old two
+ * rooms over a shop among them — and two or three ways of saying each, so no
+ * phrase comes round night after night. Every one of them is up a flight of
+ * stairs, because page one has the client come up them, and every one reads
+ * as his own place. `{street}` is the neighbourhood's street; `{trade}` the
+ * shop downstairs.
+ */
+export const OFFICE_KINDS: { kind: string; names: string[] }[] = [
+  { kind: 'over-a-shop', names: ['two rooms over {trade} on {street}', 'a pair of rooms above {trade} on {street}'] },
+  {
+    kind: 'walk-up',
+    names: ['a room at the top of a walk-up on {street}', 'the top floor of a walk-up on {street}'],
+  },
+  {
+    kind: 'office-building',
+    names: [
+      'a back room on the fourth floor of a building off {street}',
+      'two chairs and a desk three flights up in a building off {street}',
+      'a room behind a door with my name on it, three flights up off {street}',
+    ],
+  },
+  {
+    kind: 'over-a-cigar-store',
+    names: ['one room over a cigar store on {street}', 'the room upstairs from a cigar store on {street}'],
+  },
+  {
+    kind: 'shared-room',
+    names: ['a desk in a shared room over a printer’s on {street}', 'half of a room over a printer’s on {street}'],
+  },
+  {
+    kind: 'front-room',
+    names: ['the front room of my flat on {street}', 'the front room of a second-floor flat on {street}'],
+  },
+  { kind: 'end-of-the-hall', names: ['a room at the end of a hall over {trade} on {street}', 'the last door on the landing over {trade} on {street}'] },
+];
+
 /** And what is downstairs from him. */
 export const OFFICE_TRADES: string[] = [
   'a tailor’s',

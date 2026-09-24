@@ -41,7 +41,7 @@ import { Rng } from '../gen/rng.js';
 import { METHOD_TEMPLATES } from '../gen/data/methods.js';
 import { MOTIVE_TEMPLATES } from '../gen/data/motives.js';
 import { computePar } from '../gen/select.js';
-import { OFFICE_STREETS, OFFICE_TRADES } from './voice-data.js';
+import { OFFICE_KINDS, OFFICE_STREETS, OFFICE_TRADES } from './voice-data.js';
 import type { TopicRef } from './types.js';
 
 export const METHOD_POOL = METHOD_TEMPLATES.map((m) => ({ id: m.id, name: m.name }));
@@ -102,14 +102,26 @@ function hasWord(haystack: string, needle: string): boolean {
 export const OFFICE_ID = 'dashiell-office';
 
 /**
- * Its full name varies with the neighbourhood — "two rooms over a tailor's on
- * Rivington Street" — and is fixed per case, because a detective does not move
- * office between page one and page two.
+ * Its full name varies with the neighbourhood and with the kind of place it
+ * is — "a room at the top of a walk-up on Rivington Street", "two rooms over a
+ * tailor's on Rivington Street", "the front room of my flat on Mulberry
+ * Street" (`OFFICE_KINDS`) — and is fixed per case, because a detective does
+ * not move office between page one and page two. Its own stream, so nothing
+ * else in the case moves with it.
  */
 export function officeName(kase: Case): string {
   const street = OFFICE_STREETS[kase.neighborhood] ?? 'Great Jones Street';
   const rng = new Rng((kase.seed * 2246822507 + 0x0ff1ce) >>> 0);
-  return `two rooms over ${rng.pick(OFFICE_TRADES)} on ${street}`;
+  const trade = rng.pick(OFFICE_TRADES);
+  // The kind of place on a stream of its own, mixed hard from the seed: the
+  // stream above hands neighbouring seeds neighbouring first draws, and three
+  // cases running opened on the same kind of room.
+  let h = 2166136261 ^ kase.seed;
+  for (const c of `office|${kase.seed}|${kase.neighborhood}`) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+  const own = new Rng(h >>> 0);
+  own.next();
+  const kind = own.pick(OFFICE_KINDS);
+  return own.pick(kind.names).split('{trade}').join(trade).split('{street}').join(street);
 }
 
 export function buildOffice(kase: Case): Place {

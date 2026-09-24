@@ -32,6 +32,9 @@ import type { Block, Page, RunState } from './types.js';
 import { ALL_CARDS } from './voice/cards.js';
 import * as VOICE_DATA from './voice-data.js';
 import * as PLAIN from './voice/plain.js';
+import * as OFFICE from './voice/office.js';
+import { ROLE_CHARACTER } from '../gen/data/character.js';
+import { FIXTURE_CARDS } from '../gen/data/cast.js';
 
 /* ------------------------------------------------------------------ *
  * The engine's own closed vocabulary.
@@ -61,6 +64,10 @@ import * as PLAIN from './voice/plain.js';
 export const ENGINE_WORDS: readonly string[] = [
   // `page.ts`, the opening note and the notes the grammar writes.
   'Midnight',
+  // M11: the client's rundown, in `realize.ts` ("Wait. Other way round.").
+  'Wait',
+  'Couldn’t',
+  'Sit',
   'Two',
   'Eight',
   'Nobody',
@@ -134,6 +141,11 @@ export function engineVocabulary(): EngineVocabulary {
   for (const card of ALL_CARDS) strings.push(card.text);
   collectStrings(VOICE_DATA, strings);
   collectStrings(PLAIN, strings);
+  // M11: the office's own lines, and the dossier's character lines — the
+  // words a person says about their life, written by hand for the type.
+  collectStrings(OFFICE, strings);
+  collectStrings(ROLE_CHARACTER, strings);
+  collectStrings(FIXTURE_CARDS, strings);
   const names = new Set<string>(ENGINE_WORDS);
   const places = new Set<string>();
   for (const text of strings) {
@@ -271,6 +283,11 @@ const IMAGE_HOURS: { phrase: string; hour: string }[] = (() => {
   for (const card of ALL_CARDS) strings.push(card.text);
   collectStrings(VOICE_DATA, strings);
   collectStrings(PLAIN, strings);
+  // M11: the office's own lines, and the dossier's character lines — the
+  // words a person says about their life, written by hand for the type.
+  collectStrings(OFFICE, strings);
+  collectStrings(ROLE_CHARACTER, strings);
+  collectStrings(FIXTURE_CARDS, strings);
   const re =
     /(?:\S+\s){0,3}(half past (?:six|seven|eight|nine|ten|eleven)|(?:six|seven|eight|nine|ten|eleven) o['’]clock)(?:\s\S+){0,3}/gi;
   for (const text of strings) {
@@ -601,7 +618,8 @@ export function checkBeats(
       if (cls === 'nothing') {
         if (page.found.length > 0) fail('"nothing" on a page that found something');
       } else if (cls === 'view') {
-        if (!beats.some((x) => x.kind === 'presence' && (x.personIds ?? []).includes(first ?? ''))) {
+        // M11 §A.5: on the client's rundown, the room is the one she named.
+        if (!beats.some((x) => (x.kind === 'presence' || x.kind === 'rundown') && (x.personIds ?? []).includes(first ?? ''))) {
           fail('a view of somebody who is not in the room');
         }
       } else if (cls === 'context') {

@@ -777,6 +777,10 @@ export function layerSentences(person: Person, layer: 0 | 1 | 2 | 3): string[] {
     const line = dossierSentence(person, f);
     if (line.length > 0 && !out.includes(line)) out.push(line);
   }
+  // M11 §B.1: what they volunteer about themselves now includes how they
+  // came to the work, which every telling of a life starts with.
+  const history = person.dossier?.character?.history.text;
+  if (layer === 1 && history !== undefined && !out.includes(history)) out.push(history);
   return out;
 }
 
@@ -1128,33 +1132,91 @@ export function gossipTarget(
 }
 
 /**
- * The self-account in the person's own mouth, cut to their temper (§3).
+ * The self-account in the person's own mouth (§3), as M11 §A.3 has it: their
+ * life, told — how they came to the work, what the work is, a habit or two —
+ * never the record read aloud. "I am 45 years old and the landlady. I keep
+ * the third floor and sit where I can see the stairs. I am the keeper of the
+ * third floor." was the dossier's three sentences with "I" put in; the golden
+ * has her say "Eleven years this spring. My husband bought it and I've kept
+ * it since he died."
  *
- * An enigma gives two sentences and stops. A plain talker gives the account.
- * A yapper gives the account and then a fact about somebody else, because that
- * is what a yapper is for.
+ * Temper is how much of it: a plain talker gives the work and the history (and
+ * the page adds one line of their kind's talk); a yapper a habit on top; an
+ * enigma — somebody guarded, not a
+ * mystery — the history's first sentence and the work, and stops. Guarded
+ * people hold back about the night, not about their lives.
  */
+export function selfTelling(
+  person: Person,
+  temper: 'enigma' | 'plain' | 'yap',
+): { life: string[]; tie: string[]; history?: string } {
+  const d = person.dossier;
+  const character = d?.character;
+  const firstOf = (text: string): string => (text.split(/(?<=[.!?])\s+/)[0] ?? text).trim();
+  let life: string[];
+  if (character) {
+    const [drawn, ...rest] = character.details;
+    const habits = rest.filter((l) => l.layer === 1).map((l) => l.first);
+    // The designer's note: the plain fact first — "I write tickets at the
+    // pawnshop" — and then how they came to it and the colour. The page puts
+    // the history first instead when that is what the question asked ("How
+    // long have you had the house?").
+    const history = temper === 'enigma' ? firstOf(character.history.first) : character.history.first;
+    life = [drawn?.first ?? '', history, ...(temper === 'enigma' ? [] : habits.slice(0, temper === 'yap' ? 1 : 0))].filter(
+      (x) => x.length > 0,
+    );
+    return { life, tie: suspectTie(person, temper), history };
+  } else {
+    // A dossier from before M11 §B.1: the detail in their mouth, never the age.
+    life = (d?.selfAccount ?? []).slice(1, 2).map((s) => firstPerson(person, s));
+  }
+  return { life, tie: suspectTie(person, temper) };
+}
+
+/**
+ * Who they were to the dead: a suspect's own tie, in their words. A fixture
+ * has none of its own; the page gives the one its type has (a character
+ * card), or how well they knew the face.
+ */
+function suspectTie(person: Person, temper: 'enigma' | 'plain' | 'yap'): string[] {
+  const d = person.dossier;
+  if (person.kind !== 'suspect' || !d || d.tie.relationshipId === 'rel-none') return [];
+  const said = d.tie.backstoryFirst ?? `I was ${d.tie.text}.`;
+  return [temper === 'enigma' ? (said.split(/(?<=[.!?])\s+/)[0] ?? said).trim() : said];
+}
+
+/** The life lines alone, for the callers that print one paragraph. */
 export function selfAccountFor(
   person: Person,
   temper: 'enigma' | 'plain' | 'yap',
 ): string[] {
-  const account = (person.dossier?.selfAccount ?? []).map((s) => firstPerson(person, s));
-  if (temper === 'enigma') return account.slice(0, 2);
-  return account;
+  return selfTelling(person, temper).life;
 }
 
 /**
- * Dashiell asking somebody to account for themselves. The `dashiell-lines`
- * deck has no `ask-self` kind yet, so these stand in and the page logs the gap.
+ * Dashiell asking somebody about their life, where the `dashiell-lines`
+ * deck has no `ask-self` line for them. Plain questions about a life (M11
+ * §A.3); the old ones — "Who are you when nobody is asking?" — framed the
+ * person as a mystery, and the reader lint now refuses that kind of line.
  */
 export const SELF_QUESTIONS: string[] = [
-  '"Tell me about yourself," I said. "Start anywhere."',
-  '"Who am I talking to?" I said.',
-  '"Before anything else," I said. "You. Who are you when nobody is asking?"',
-  '"What do you do with your days?" I said.',
-  '"Let us start with you," I said.',
-  '"Tell me who you are," I said, "and I will tell you what I want."',
+  '“What’s your line?” I said.',
+  '“What do you do for a living?” I said.',
+  '“How long have you been at it?” I said.',
 ];
+
+/** M11 §A.3: the second question, about the dead, after the first answer. */
+export const SELF_VICTIM_QUESTIONS: Record<'suspect' | 'fixture', string[]> = {
+  suspect: ['How did you know {victim}?', 'You knew {victim}?', 'What was {victim} to you?'],
+  fixture: ['You knew {victim}?', 'Did you know {victim}?'],
+};
+
+/** A fixture with no card for the victim's type, by how well they knew the face. */
+export const SELF_VICTIM_PLAIN: Record<'name' | 'sight' | 'stranger', string[]> = {
+  name: ['I knew {him} to talk to. Not much more than that.', 'To say good evening to. {He} said it back, most evenings.'],
+  sight: ['By sight. I couldn’t tell you much more.', 'I knew the face. I never got as far as the rest of {him}.'],
+  stranger: ['Not to speak to.', 'No. I couldn’t have picked {him} out of a crowd of two.'],
+};
 
 /*
  * There was a pool of leads here — "She gave it to me in the third person, as

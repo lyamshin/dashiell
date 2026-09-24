@@ -21,6 +21,7 @@ import {
   fillSlots,
   genderForms,
   relationshipOf,
+  varyTies,
   type MentionPool,
   type Namer,
 } from './dossier.js';
@@ -450,9 +451,15 @@ export function buildCast(rng: Rng, setting: Setting, dials: Dials, clientIsKill
       victimSurname,
       placeName: slotPlace(p.id),
       mentions,
+      characterKey: p.archetypeId as Id,
     });
     p.relationshipToVictim = dossiers[p.id]?.tie.text ?? p.relationshipToVictim;
   }
+
+  // M11 §B.2: no two people in a case share a tie sentence.
+  varyTies(
+    suspects.map((p) => ({ dossier: dossiers[p.id] as Dossier, surname: p.surname, keep: p.isClient === true })),
+  );
 
   for (const f of fixtures) {
     const card = FIXTURE_CARDS[f.fixtureRole as string] as FixtureCard;
@@ -470,6 +477,8 @@ export function buildCast(rng: Rng, setting: Setting, dials: Dials, clientIsKill
       victimSurname,
       placeName: where,
       mentions,
+      characterKey: f.fixtureRole as string,
+      detailsFirst: card.detailsFirst,
     });
   }
 

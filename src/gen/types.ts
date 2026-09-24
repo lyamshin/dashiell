@@ -15,6 +15,7 @@
  */
 
 import type { CaseShape, Ladder } from './shape.js';
+import type { Talk } from './data/character.js';
 
 /** 0..11. Tick 0 is 6:00 PM, tick 11 is 11:30 PM. Half-hour steps. */
 export type Tick = number;
@@ -586,6 +587,31 @@ export interface Dossier {
   /** Two or three plain sentences they would say about themselves. */
   selfAccount: string[];
   layers: DossierFact[];
+  /**
+   * M11 §B.1: the person as a type fills them in — three to five details
+   * (the drawn profession detail first), how they came to the work, and how
+   * they talk. Each detail carries the layer it is learned at, as the facts
+   * above do. Words only: the structure hash leaves this key out
+   * (`src/gen/structure.ts`), because it was added after the baseline and no
+   * id, tick or link hangs on it. The victim has none.
+   */
+  character?: DossierCharacter;
+}
+
+/** One line of a dossier's character: the record's sentence and the person's own. */
+export interface DossierLine {
+  /** Third person, with the surname: "Rafferty keeps the rent book in a drawer she locks." */
+  text: string;
+  /** In their own mouth: "The rent book’s in a drawer. The drawer’s locked." */
+  first: string;
+  /** 1: volunteered about themselves. 2: what other people say about them. */
+  layer: 1 | 2;
+}
+
+export interface DossierCharacter {
+  details: DossierLine[];
+  history: { text: string; first: string };
+  talk: Talk;
 }
 
 /**

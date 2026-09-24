@@ -35,7 +35,17 @@ export type TopicRef =
    */
   | { kind: 'exact'; personId: Id; topic: string };
 
-export type CommandKind = 'go' | 'ask' | 'examine' | 'look' | 'notebook' | 'file' | 'help' | 'confront' | 'continue';
+export type CommandKind =
+  | 'go'
+  | 'ask'
+  | 'examine'
+  | 'look'
+  | 'notebook'
+  | 'file'
+  | 'help'
+  | 'confront'
+  | 'continue'
+  | 'rundown';
 
 export type Command =
   | { kind: 'go'; placeId: Id }
@@ -56,7 +66,13 @@ export type Command =
    * M10 §A.3: "Go on". The conversation (or the search) a page broke off after
    * three families of fact goes on, at no cost to the clock.
    */
-  | { kind: 'continue' };
+  | { kind: 'continue' }
+  /**
+   * M11 §A.5: "Ask Hauck who's here". With the client in the room, the client
+   * names who else is in it, the way the client knows them. Free, and once a
+   * visit.
+   */
+  | { kind: 'rundown' };
 
 /**
  * M10 §A.3: what a page had still to tell when it stopped at three families.
@@ -211,7 +227,18 @@ export interface Page {
  * later one; `look` is a free look round (or a walk to where he already is);
  * `repeat` is a question or a search already done, read back free.
  */
-export type PageShape = 'office' | 'arrive' | 'return' | 'search' | 'ask' | 'repeat' | 'look' | 'other' | 'confront';
+export type PageShape =
+  | 'office'
+  | 'arrive'
+  | 'return'
+  | 'search'
+  | 'ask'
+  | 'repeat'
+  | 'look'
+  | 'other'
+  | 'confront'
+  /** M11 §A.5: the client names who is in the room. */
+  | 'rundown';
 
 export type BeatKind =
   | 'errand'
@@ -232,7 +259,9 @@ export type BeatKind =
   /** M10: a family of facts, told in the witness's words. */
   | 'telling'
   /** M10: the detective's note on what a family is worth. */
-  | 'note';
+  | 'note'
+  /** M11 §A.5: the client naming who is in the room. */
+  | 'rundown';
 
 /**
  * One planned beat, as it went onto the page. The planner's `Beat` carries
@@ -305,7 +334,7 @@ export interface OfferedChoice {
 }
 
 export interface OfferedGroup {
-  kind: 'ask' | 'search' | 'go' | 'free' | 'confront' | 'continue';
+  kind: 'ask' | 'search' | 'go' | 'free' | 'confront' | 'continue' | 'rundown';
   heading: string;
   personId?: Id;
   choices: OfferedChoice[];
@@ -594,6 +623,10 @@ export interface SceneMemory {
    * something else. Absent in a save from before it: nobody has done anything.
    */
   did?: Record<Id, string[]>;
+  /** M11 §A.5: the visit the client last named the room on. Once a visit. */
+  rundown?: number;
+  /** M11 §A.6: whom this visit's arrival page closed on, so the rundown closes on somebody else. */
+  observed?: Id[];
 }
 
 export const EMPTY_SCENE: SceneMemory = {

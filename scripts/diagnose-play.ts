@@ -51,6 +51,7 @@ import {
   type CaseView,
 } from '../src/game/derive.js';
 import { allChoices, choicesFor } from '../src/game/choices.js';
+import { playerChoices } from './players.js';
 import { playOracle, playWandering } from '../src/game/oracle.js';
 import { parse } from '../src/game/parser.js';
 import { answersTo, continuationOf, fileReport, newRun, priceOf, stepInput } from '../src/game/reducer.js';
@@ -320,7 +321,12 @@ function drive(view: CaseView, pick: Picker, rng: Rng, player: PlayerId, maxStep
   let action = 0;
   for (let i = 0; i < maxSteps; i++) {
     if (state.reportOpen || state.actionsUsed >= budget) break;
-    const groups = choicesFor(view, state);
+    // M11 §A.5: "Ask Hauck who's here" is free and tells no fact — the client
+    // names the room, and the grid learns nothing from it — so no player
+    // spends a step on it. Taking it would add a page, and the page count
+    // seeds the volunteer's roll and the dealer; leaving it out is what keeps
+    // this test's table line for line where it was.
+    const groups = playerChoices(view, state);
     const offered = allChoices(groups).filter((c) => !['notebook', 'file'].includes(c.command));
     const chosen = pick(state, view, rng, groups);
     if (!chosen) break;

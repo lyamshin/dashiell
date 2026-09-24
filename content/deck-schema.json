@@ -303,6 +303,7 @@
             "ask-object",
             "ask-evening",
             "ask-hired",
+            "ask-self",
             "follow-up",
             "close"
           ]
@@ -319,6 +320,18 @@
           "default": "none",
           "values": ["there", "held", "none"],
           "$note": "docs/26. 'there': an ask-place line that takes it the witness was at the place ('What time were you at {place}?'); it is not dealt to somebody who is not posted there. 'held': an ask-object line that takes it the thing is in the detective's hand ('This {object} — whose is it?'); it is not dealt for a topic that only names a thing ('the key')."
+        },
+        "family": {
+          "required": false,
+          "default": "any",
+          "values": ["money", "working", "underworld", "professional", "fixture", "any"],
+          "$note": "M11 §A.3, ask-self only: the archetype family of the person asked about themselves (a suspect archetype's class, or fixture for somebody posted at a door). The question is plain — 'How long have you had the house?', 'What's your line?' — and never frames them as a mystery ('Who are you when nobody is asking?' is what this replaced)."
+        },
+        "role": {
+          "required": false,
+          "default": "any",
+          "values": ["bartender", "doorman", "newsstand", "counterman", "ticket-taker", "elevator-man", "landlady", "beat-cop", "cabbie", "druggist", "any"],
+          "$note": "M11 §A.3, ask-self only: a question written for one fixture's post ('How long have you been behind this bar?')."
         }
       },
       "coverage": [["kind", "familiar"]]
@@ -908,7 +921,21 @@
         "family": { "required": true, "values": ["movements", "counts", "strangers", "event", "knowing", "timing", "evening", "thing"], "extraValues": ["any"] },
         "role": { "required": true, "values": ["bartender", "doorman", "newsstand", "counterman", "ticket-taker", "elevator-man", "landlady", "beat-cop", "cabbie", "druggist", "suspect"], "extraValues": ["any"] },
         "knows": { "required": false, "default": "any", "values": ["name", "relation", "sight", "stranger"], "extraValues": ["any"] },
-        "half": { "required": false, "default": "any", "values": ["first", "second"], "extraValues": ["any"] }
+        "half": { "required": false, "default": "any", "values": ["first", "second"], "extraValues": ["any"] },
+        "topic": {
+          "required": false,
+          "default": "any",
+          "values": ["keys", "money", "motive", "means", "secret"],
+          "extraValues": ["any"],
+          "$note": "M11 §A.7, `thing` groundings only: what the thing told is about — keys (a way in: 'It's my business to be sure who has my keys.'), money (a debt, a loan, an estate), motive (a grudge that is not money), means (how it could be done), secret. A card with a topic is dealt only for a thing of that topic; a debt never gets a keys grounding."
+        },
+        "basis": {
+          "required": false,
+          "default": "any",
+          "values": ["sight", "word"],
+          "extraValues": ["any"],
+          "$note": "M11 §A.7: what the witness's knowing rests on. sight — they saw it ('I see everybody who comes in.'), dealt only for a family of what somebody saw: movements, counts, strangers, event; word — they were told or know it. any fits both."
+        }
       },
       "coverage": [["family"], ["role"]]
     },
@@ -966,6 +993,33 @@
         "polarity": { "required": false, "default": "any", "values": ["seen", "unseen"], "extraValues": ["any"] }
       },
       "coverage": [["family", "band"]]
+    },
+    "character": {
+      "file": "character.json",
+      "deckValues": ["character"],
+      "idPrefix": "CHR",
+      "placeholderPrefix": "chr-p",
+      "burn": "run-to-run",
+      "spent": "reshuffle",
+      "target": 600,
+      "$comment": "M11 Part C, golden seed3-people (the ◆ lines). Archetype character cards: the habits, the talk and the street's view of a TYPE of person, true of the type and never a fact of the case. Keyed by `role`: every suspect archetype id and every fixture role. `kind`: look — how the type looks and carries themselves, beyond sex and age ('{He} was a big man going soft.'), dealt on first sight; street — how the street sees the type ('{He} was the kind of bartender who knew what you drank before you did and never said your name out loud.'), dealt on first sight and on page one; talk — a line the person would say about their own trade or life, first person, inside quotation marks the engine supplies ('I sit where I can see the stairs. People think that’s nosiness. It’s rent.'), dealt when they are asked about themselves; victim — how this type deals with the victim's type, first person, keyed also by `victimRole` (a victim archetype id, or any), spoken about the victim only in the victim's own trade terms, never a motive ('Everybody knew {victim}. He came round twice a year about the stairs and the fire escape, and twice a year I paid him not to find anything.'), dealt when they are asked about themselves and the case's tie between the two fits; client — how a client of this type names somebody in the rundown ('He knows everybody’s drink and nobody’s business.'), keyed by the role of the person being named, dealt on the client's rundown. No hour, no place beyond {place}, no person beyond {name} and {victim}, no crime, no motive the case does not hold. Plain words; one figure at most. look and street are Dashiell's narration, past tense, whole sentences; talk, victim and client are spoken, bare text the page puts in quotation marks (a quotation inside one takes single curly quotes). {name} the person's surname; {He}/{She} and {he}/{she} the person's own pronoun (the engine fills both spellings with the right sex), capitalised or not, and {his}/{him} likewise; {victim} the victim's surname, on victim cards only; {place} where the person is posted, on fixture roles only. The counts and the true-of-the-type rules are checked by scripts/check-character-drafts.mjs; docs/28-m11-character-cards.md is the writers' note. At least 3 of each kind per role; 2 victim cards per common pairing.",
+      "slots": ["He", "She", "he", "she", "his", "him", "victim"],
+      "minPerCoverageCell": 3,
+      "tags": {
+        "role": {
+          "required": true,
+          "values": ["arch-heir", "arch-widow", "arch-broker", "arch-society", "arch-blockowner", "arch-lawyer", "arch-bookkeeper", "arch-nurse", "arch-dentist", "arch-secretary", "arch-reporter", "arch-piano-teacher", "arch-adjuster", "arch-chambermaid", "arch-longshoreman", "arch-seamstress", "arch-hackman", "arch-tailor", "arch-stagehand", "arch-switchboard", "arch-nightman", "arch-chorus", "arch-bookmaker", "arch-heeler", "arch-pawnman", "arch-bouncer", "arch-runner", "bartender", "doorman", "newsstand", "counterman", "ticket-taker", "elevator-man", "landlady", "beat-cop", "cabbie", "druggist"]
+        },
+        "kind": { "required": true, "values": ["look", "street", "talk", "victim", "client"] },
+        "victimRole": {
+          "required": false,
+          "default": "any",
+          "values": ["vic-landlord", "vic-bootlegger", "vic-heiress", "vic-agent", "vic-inspector", "vic-union-treasurer", "vic-pawnbroker", "vic-columnist", "vic-bondsman", "vic-wholesaler"],
+          "extraValues": ["any"],
+          "$note": "victim cards only: the victim archetype the card is written for, or any."
+        }
+      },
+      "coverage": [["role", "kind"]]
     }
   }
 }

@@ -37,6 +37,15 @@
  * - **No placeholder question for a nameless topic** ("Tell me about the
  *   key."), and **no slot left unfilled**.
  *
+ * M11 (docs/28, Measure):
+ *
+ * - **No question that frames a person as a mystery:** "Who are you when
+ *   nobody is asking?", "Who am I talking to?", "Tell me who you are".
+ * - **No "I am 45 years old and…":** the dossier's record read aloud.
+ * - **A grounding matches what it grounds:** "who has my keys" only for a
+ *   way in, and "I see everybody who comes in" only for something seen.
+ * - **At most one enigma in a case.**
+ *
  * Pure: it reads the run and returns what it found.
  */
 
@@ -47,6 +56,7 @@ import type { Page, RunState } from './types.js';
 import { SIGHT, proseTexts, sentencesOf } from './scene/text.js';
 import { verdictsOn } from './m9.js';
 import { DECKS, tagOf } from './voice/cards.js';
+import { thingTopic } from './scene/families.js';
 
 export interface LintIssue {
   page: number;
@@ -67,7 +77,12 @@ export interface LintIssue {
     | 'search-thought-name'
     | 'question-family'
     | 'placeholder-question'
-    | 'unfilled-slot';
+    | 'unfilled-slot'
+    /* M11 */
+    | 'mystery-question'
+    | 'age-self'
+    | 'grounding-family'
+    | 'enigma-count';
   detail: string;
 }
 
@@ -101,6 +116,9 @@ const ALLOWED = [
   /\bon the beat\b/i,
   /\b(?:business|registration|calling|playing|union|index|dance|visiting|library|ration|punch|time) cards?\b/i,
   /\bcard case\b/i,
+  // A patrolman walks his beat; an adjuster carries a folding rule.
+  /\b(?:walks?|walked|walking) (?:a|the|his|her|my) beat\b/i,
+  /\b(?:folding|steel|carpenter[’']s) rule\b/i,
   // The house's own rules on a card by the door.
   /\bhouse rules?\b/i,
   // A page's own margin, where somebody wrote on a paper.
@@ -359,6 +377,53 @@ function lintProse(view: CaseView, page: Page): LintIssue[] {
   return out;
 }
 
+/** M11: the questions that framed a person as a mystery instead of asking about a life. */
+export const MYSTERY_QUESTIONS: RegExp[] = [
+  /\bwho are you when nobody\b/i,
+  /\bwho am I talking to\b/i,
+  /\btell me who you are\b/i,
+  /\btell me about yourself\b/i,
+  /\bwhat do you do with your days\b/i,
+  /\blet us start with you\b/i,
+  /\bwho are you,? really\b/i,
+  /\bwhat are you hiding\b/i,
+];
+
+/** M11: "I am 45 years old and the landlady." */
+export const AGE_SELF = /\bI(?: am|['’]m) \d{1,3} years old\b/;
+
+/** M11 §A.7: what each grounding says it rests on, read off its words. */
+const KEYS_GROUNDING = /\b(?:my keys|the keys|a key|keys)\b/i;
+const SIGHT_GROUNDING =
+  /\bI see (?:everybody|everyone|who|them|all)\b|\bwithout I see\b|\bsee who\b|\bnotice who\b|\bI watch the (?:door|street|stairs|room|corner)\b/i;
+const SEEN = new Set(['movements', 'counts', 'strangers', 'event']);
+
+function lintPeople(view: CaseView, page: Page): LintIssue[] {
+  const out: LintIssue[] = [];
+  const add = (rule: LintIssue['rule'], detail: string): void => {
+    out.push({ page: page.n, rule, detail });
+  };
+  for (const text of textsOf(page)) {
+    for (const q of quotedSpans(text)) {
+      for (const re of MYSTERY_QUESTIONS) if (re.test(q)) add('mystery-question', `“${q.trim()}”`);
+      if (AGE_SELF.test(q)) add('age-self', `“${q.trim().slice(0, 80)}”`);
+    }
+  }
+  for (const b of page.beats ?? []) {
+    if (b.kind !== 'telling' || !b.rendered) continue;
+    const grounding = b.parts?.grounding;
+    if (!grounding) continue;
+    const clues = (b.clueIds ?? []).map((id) => view.findableById.get(id)).filter((c): c is Clue => c !== undefined);
+    if (KEYS_GROUNDING.test(grounding) && (b.tag !== 'thing' || thingTopic(clues) !== 'keys')) {
+      add('grounding-family', `${b.tag}/${b.tag === 'thing' ? thingTopic(clues) : '-'}: “${grounding}”`);
+    }
+    if (SIGHT_GROUNDING.test(grounding) && !SEEN.has(b.tag ?? '') && !/\bI saw\b/.test((b.parts?.told ?? []).join(' '))) {
+      add('grounding-family', `${b.tag}: “${grounding}”`);
+    }
+  }
+  return out;
+}
+
 /** Every issue in a run, page by page. */
 export function lintRun(view: CaseView, state: RunState): LintIssue[] {
   const out: LintIssue[] = [];
@@ -375,10 +440,20 @@ export function lintRun(view: CaseView, state: RunState): LintIssue[] {
     const action = portrait.pair?.action;
     if (action) recallOf.set(id, action.trim());
   }
+  // M11 §A.4: one guarded person in a room of talkers is a character; more is a pattern.
+  const enigmas = Object.entries(state.cast.temper).filter(([, t]) => t === 'enigma');
+  if (enigmas.length > 1) {
+    out.push({
+      page: 0,
+      rule: 'enigma-count',
+      detail: `${enigmas.length} enigmas: ${enigmas.map(([id]) => view.personById.get(id)?.surname ?? id).join(', ')}`,
+    });
+  }
   for (const page of state.log) {
     found.push(...page.found);
     out.push(...lintPage(view, page, found));
     out.push(...lintProse(view, page));
+    out.push(...lintPeople(view, page));
     // The tiered game only: the untiered game's marks are the generator's own
     // sentences ("The ice being brought in was at half past eight, and…").
     if (view.kase.logic) {

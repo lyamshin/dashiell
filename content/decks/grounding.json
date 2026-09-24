@@ -6,7 +6,8 @@
     "tags": {
       "family": "thing",
       "role": "landlady",
-      "half": "second"
+      "half": "second",
+      "topic": "keys"
     },
     "motifs": [],
     "status": "generated"
@@ -129,7 +130,8 @@
     "text": "I see everybody who comes in. That’s the job.",
     "tags": {
       "family": "any",
-      "role": "bartender"
+      "role": "bartender",
+      "basis": "sight"
     },
     "motifs": [],
     "status": "generated"
@@ -218,7 +220,8 @@
     "text": "Nobody gets past the door without I see them.",
     "tags": {
       "family": "any",
-      "role": "doorman"
+      "role": "doorman",
+      "basis": "sight"
     },
     "motifs": [],
     "status": "generated"
@@ -285,7 +288,8 @@
     "text": "I’m on this corner all night. I see who goes by.",
     "tags": {
       "family": "any",
-      "role": "newsstand"
+      "role": "newsstand",
+      "basis": "sight"
     },
     "motifs": [],
     "status": "generated"
@@ -341,7 +345,8 @@
     "text": "I’m behind this counter all night. I see who comes in.",
     "tags": {
       "family": "any",
-      "role": "counterman"
+      "role": "counterman",
+      "basis": "sight"
     },
     "motifs": [],
     "status": "generated"
@@ -397,7 +402,8 @@
     "text": "Everybody who comes in hands me a ticket.",
     "tags": {
       "family": "any",
-      "role": "ticket-taker"
+      "role": "ticket-taker",
+      "basis": "sight"
     },
     "motifs": [],
     "status": "generated"
@@ -442,7 +448,8 @@
     "text": "Everybody who goes up rides with me.",
     "tags": {
       "family": "any",
-      "role": "elevator-man"
+      "role": "elevator-man",
+      "basis": "sight"
     },
     "motifs": [],
     "status": "generated"
@@ -498,7 +505,8 @@
     "text": "It’s my job to notice who’s out at night.",
     "tags": {
       "family": "any",
-      "role": "beat-cop"
+      "role": "beat-cop",
+      "basis": "sight"
     },
     "motifs": [],
     "status": "generated"
@@ -543,7 +551,8 @@
     "text": "I sit at the stand and watch the street. There’s nothing else to do.",
     "tags": {
       "family": "any",
-      "role": "cabbie"
+      "role": "cabbie",
+      "basis": "sight"
     },
     "motifs": [],
     "status": "generated"
@@ -576,7 +585,8 @@
     "text": "I’m behind the counter till I close. I see who comes in.",
     "tags": {
       "family": "any",
-      "role": "druggist"
+      "role": "druggist",
+      "basis": "sight"
     },
     "motifs": [],
     "status": "generated"

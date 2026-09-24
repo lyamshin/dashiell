@@ -1,4 +1,5 @@
-import type { Dossier, DossierFact, Id, Mention, Tie, Want } from './types.js';
+import type { Dossier, DossierCharacter, DossierFact, Id, Mention, Tie, Want } from './types.js';
+import { characterFor } from './data/character.js';
 import { surnameOf } from './types.js';
 import {
   BACKSTORY_YEARS,
@@ -158,6 +159,48 @@ export interface DossierInput {
   mentions: MentionPool;
   /** One hint at what this person is hiding, already rendered. */
   secretHint?: string;
+  /**
+   * M11 §B.1: whose character lines this person gets — their archetype id, or
+   * the door a fixture stands at. None for the victim.
+   */
+  characterKey?: string;
+  /**
+   * M11 §B.1: a fixture's profession details in its own mouth, one for one
+   * with the card's details. A suspect's are `archetype.professionFirst`.
+   */
+  detailsFirst?: string[];
+}
+
+/**
+ * M11 §B.2: the variant drawn, or — when somebody else in the case already
+ * has it — the next one along that uses `{third}` exactly when the drawn one
+ * does. Never a new draw, so nothing after it in the case moves.
+ */
+export function unusedVariant(templates: readonly string[], drawn: number, used: ReadonlySet<number> | undefined): number {
+  if (used === undefined || !used.has(drawn)) return drawn;
+  const third = (templates[drawn] ?? '').includes('{third}');
+  for (let step = 1; step < templates.length; step++) {
+    const i = (drawn + step) % templates.length;
+    if (used.has(i)) continue;
+    if ((templates[i] ?? '').includes('{third}') !== third) continue;
+    return i;
+  }
+  return drawn;
+}
+
+/**
+ * A choice made without the case's stream. The dossier's draws are what the
+ * case is built on, and a line of character is words: taking another draw
+ * for it would move every draw after it, and every case with them. So the
+ * character lines are chosen by a hash of who the person is instead.
+ */
+export function wordHash(text: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < text.length; i++) {
+    h ^= text.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
 }
 
 export function buildDossier(input: DossierInput): Dossier {
@@ -174,6 +217,7 @@ export function buildDossier(input: DossierInput): Dossier {
 
   let third: Mention | undefined;
   let tie: Tie;
+  let tieFill: TieFill | undefined;
   if (relationship) {
     // The card is picked by index, because the first-person variants are one
     // for one with the third-person ones and the pair has to stay together.
@@ -197,6 +241,7 @@ export function buildDossier(input: DossierInput): Dossier {
       backstory: asSentence(fillSlots(backstoryTemplate, ctx)),
       since: fillSlots(rng.pick(relationship.since), ctx),
     };
+    tieFill = { relationship, backstory: backstoryIndex, ctx };
     if (backstoryFirstTemplate !== undefined) {
       tie.backstoryFirst = asSentence(fillSlots(backstoryFirstTemplate, ctx));
     }
@@ -230,6 +275,15 @@ export function buildDossier(input: DossierInput): Dossier {
       : (PROFESSION_PROMPTS[detailIndex % PROFESSION_PROMPTS.length] as string);
 
   const role = genderForms(archetype.role, gender);
+  const character = characterOf(input, {
+    detail: professionDetail,
+    detailFirst:
+      professionDetailFirst ??
+      (input.detailsFirst?.[detailIndex] === undefined
+        ? undefined
+        : fillSlots(input.detailsFirst[detailIndex] as string, slotsForDetail)),
+    slots: slotsForDetail,
+  });
   const selfAccount: string[] = [
     `${surname} is ${age} years old and ${role}.`,
     `${surname} ${professionDetail}.`,
@@ -246,7 +300,8 @@ export function buildDossier(input: DossierInput): Dossier {
     },
     { kind: 'detail', text: `${surname} ${professionDetail}.`, layer: 1 },
     { kind: 'tie', text: tie.backstory, layer: 2 },
-    { kind: 'want', text: `${surname} ${WANT_TEXT[want]}.`, layer: 2 },
+    // M11 §B.2: "wants to keep what they have" of a woman whose sex is known.
+    { kind: 'want', text: `${surname} ${genderForms(WANT_TEXT[want], gender)}.`, layer: 2 },
   ];
   if (tie.since) {
     layers.push({ kind: 'since', text: `${surname} has been ${tie.text}, ${tie.since}.`, layer: 2 });
@@ -254,7 +309,7 @@ export function buildDossier(input: DossierInput): Dossier {
   if (third) layers.push({ kind: 'third', text: third.text, layer: 2 });
   if (input.secretHint) layers.push({ kind: 'secret-hint', text: input.secretHint, layer: 3 });
 
-  return {
+  const dossier: Dossier = {
     age,
     gender,
     profession: {
@@ -267,6 +322,111 @@ export function buildDossier(input: DossierInput): Dossier {
     tie,
     selfAccount,
     layers,
+    ...(character ? { character } : {}),
+  };
+  if (tieFill) TIE_FILLS.set(dossier, tieFill);
+  return dossier;
+}
+
+/** What a tie sentence was filled from, so the cast can deal it again (§B.2). */
+interface TieFill {
+  relationship: Relationship;
+  backstory: number;
+  ctx: SlotContext;
+}
+
+const TIE_FILLS = new WeakMap<Dossier, TieFill>();
+
+/**
+ * M11 §B.2: no two people in one case say the same tie sentence.
+ *
+ * Two tenants said "has rented from Sweeney since '22 and has the same window
+ * and the same complaint", word for word but for the year. Here, once every
+ * suspect has a dossier, a backstory somebody earlier in the case already has
+ * is dealt again as the next variant that names a third party exactly when
+ * the drawn one did — so the draw that invented that third party still
+ * stands — and the same for the "since". The client keeps theirs, because
+ * the client's is said on page one and a sentence there is part of the
+ * briefing's shape. No draw is taken: the case's stream is untouched, and
+ * only words change.
+ */
+export function varyTies(dossiers: readonly { dossier: Dossier; surname: string; keep: boolean }[]): void {
+  const used = new Map<string, Set<number>>();
+  const mark = (key: string, i: number): void => {
+    const set = used.get(key) ?? new Set<number>();
+    set.add(i);
+    used.set(key, set);
+  };
+  const ordered = [...dossiers.filter((d) => d.keep), ...dossiers.filter((d) => !d.keep)];
+  for (const { dossier, surname, keep } of ordered) {
+    const fill = TIE_FILLS.get(dossier);
+    if (!fill) continue;
+    const rel = fill.relationship;
+    const bKey = `${rel.id}|b`;
+    const sKey = `${rel.id}|s`;
+    const sinceAt = rel.since.findIndex((x) => fillSlots(x, fill.ctx) === dossier.tie.since);
+    const b = keep ? fill.backstory : unusedVariant(rel.backstory, fill.backstory, used.get(bKey));
+    const sinceIndex = keep || sinceAt < 0 ? sinceAt : unusedVariant(rel.since, sinceAt, used.get(sKey));
+    // Every variant that fits is taken: the same one said another way.
+    const alt = !keep && (used.get(bKey)?.has(b) ?? false) ? rel.backstoryAlt?.[b] : undefined;
+    const altKey = `${rel.id}|alt|${b}`;
+    mark(bKey, b);
+    if (sinceIndex >= 0) mark(sKey, sinceIndex);
+    if (alt && !used.has(altKey)) {
+      mark(altKey, 0);
+      const oldText = dossier.tie.backstory;
+      dossier.tie.backstory = asSentence(fillSlots(alt[0], fill.ctx));
+      dossier.tie.backstoryFirst = asSentence(fillSlots(alt[1], fill.ctx));
+      for (const f of dossier.layers) if (f.kind === 'tie' && f.text === oldText) f.text = dossier.tie.backstory;
+    } else if (b !== fill.backstory) {
+      const oldText = dossier.tie.backstory;
+      dossier.tie.backstory = asSentence(fillSlots(rel.backstory[b] as string, fill.ctx));
+      const first = rel.backstoryFirst[b];
+      if (first !== undefined) dossier.tie.backstoryFirst = asSentence(fillSlots(first, fill.ctx));
+      for (const f of dossier.layers) if (f.kind === 'tie' && f.text === oldText) f.text = dossier.tie.backstory;
+    }
+    if (sinceIndex >= 0 && sinceIndex !== sinceAt) {
+      const oldSince = dossier.tie.since;
+      dossier.tie.since = fillSlots(rel.since[sinceIndex] as string, fill.ctx);
+      for (const f of dossier.layers) {
+        if (f.kind === 'since' && oldSince !== undefined) f.text = f.text.replace(oldSince, dossier.tie.since);
+      }
+    }
+    void surname;
+  }
+}
+
+/**
+ * M11 §B.1: the dossier's character — the drawn detail first, then the
+ * type's own details, a history, and a talk register — or nothing for a
+ * person whose type has no lines (the victim).
+ */
+function characterOf(
+  input: DossierInput,
+  drawn: { detail: string; detailFirst: string | undefined; slots: SlotContext },
+): DossierCharacter | undefined {
+  const key = input.characterKey;
+  const card = key === undefined ? undefined : characterFor(key);
+  if (!card) return undefined;
+  const { surname } = input;
+  const fill = (t: string): string => fillSlots(t, drawn.slots).replace(/\s+/g, ' ').trim();
+  const sentence = (predicate: string): string => asSentence(`${surname} ${fill(predicate)}`);
+  const said = (t: string): string => asSentence(fill(t));
+  const history = card.history[wordHash(`${surname}|${key}|history`) % card.history.length] as {
+    text: string;
+    first: string;
+  };
+  return {
+    details: [
+      {
+        text: asSentence(`${surname} ${drawn.detail}`),
+        first: drawn.detailFirst === undefined ? asSentence(`${surname} ${drawn.detail}`) : said(drawn.detailFirst),
+        layer: 1,
+      },
+      ...card.details.map((d) => ({ text: sentence(d.text), first: said(d.first), layer: d.layer })),
+    ],
+    history: { text: sentence(history.text), first: said(history.first) },
+    talk: card.talk,
   };
 }
 

@@ -72,11 +72,22 @@ export const TEXT_KEYS: ReadonlySet<string> = new Set([
   'what',
 ]);
 
+/**
+ * Words added after the baseline was taken, left out whole rather than
+ * blanked. A blanked key is still a key, and the baseline has none of these:
+ * M11 §B.1's dossier character (details, a history, a talk register) is prose
+ * a person says or is said about them, and no id, tick or link hangs on it.
+ */
+export const ADDED_TEXT_KEYS: ReadonlySet<string> = new Set(['character']);
+
 function strip(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(strip);
   if (value && typeof value === 'object') {
     const out: Record<string, unknown> = {};
-    for (const [k, v] of Object.entries(value)) out[k] = TEXT_KEYS.has(k) ? '~' : strip(v);
+    for (const [k, v] of Object.entries(value)) {
+      if (ADDED_TEXT_KEYS.has(k)) continue;
+      out[k] = TEXT_KEYS.has(k) ? '~' : strip(v);
+    }
     return out;
   }
   return value;

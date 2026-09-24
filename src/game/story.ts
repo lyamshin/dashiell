@@ -979,8 +979,14 @@ function tieOf(input: StoryInput): { relationshipId: Id; variant: number; slots:
   if (!tie) return null;
   const rel = RELATIONSHIP_BY_ID[tie.relationshipId];
   if (!rel) return null;
-  for (let variant = 0; variant < rel.backstory.length; variant++) {
-    const got = parseTemplate(genderForms(rel.backstory[variant] as string, input.culprit.gender), tie.backstory);
+  // M11 §B.2: a tie can be said another way when a case deals one relation
+  // three times; the other way carries the same variant's facts.
+  const forms = [
+    ...rel.backstory.map((t, variant) => ({ t, variant })),
+    ...(rel.backstoryAlt ?? []).flatMap((alt, variant) => (alt ? [{ t: alt[0], variant }] : [])),
+  ];
+  for (const { t: template, variant } of forms) {
+    const got = parseTemplate(genderForms(template, input.culprit.gender), tie.backstory);
     if (!got) continue;
     if (got.person !== undefined && got.person !== input.culprit.surname) continue;
     if (got.victim !== undefined && got.victim !== input.victim.surname) continue;

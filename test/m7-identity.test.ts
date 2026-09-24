@@ -27,6 +27,14 @@ import { generateCase } from '../src/gen/index.js';
  * And by deck batch D, which stopped the briefing adding a second full stop
  * to a pointer's reason that already had one ("…came out without it.."): 78
  * cases at difficulty 3 changed wording, and the structure-only hash did not.
+ *
+ * And by M11 Part B (docs/28-m11-people.md), deliberately: every dossier now
+ * carries its character — three to five details, a history and a talk
+ * register, under a key the structure hash leaves out — a want says "what
+ * she has" of a woman, and no two people in a case share a tie sentence
+ * (a later person's variant is dealt again, with no new draw). All 600 cases
+ * changed wording; `scripts/snapshot-structure.ts` reports the structure of
+ * all 600 identical, and `test/structure-identity.test.ts` holds it.
  */
 const baseline = JSON.parse(
   readFileSync(new URL('./fixtures/m7-baseline-hashes.json', import.meta.url), 'utf8'),

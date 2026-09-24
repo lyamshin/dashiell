@@ -155,3 +155,38 @@ export function paceClues(view: CaseView, clues: readonly Clue[]): { now: Clue[]
   const keep = new Set(families.slice(0, FAMILY_CAP).flatMap((f) => f.clueIds));
   return { now: clues.filter((c) => keep.has(c.id)), later: clues.filter((c) => !keep.has(c.id)) };
 }
+
+/**
+ * M11 §A.7: what a `thing` family is about, so its grounding is about the
+ * same thing. "It's my business to be sure who has my keys." grounded a debt
+ * because the ladder keyed on the witness's trade and the family and nothing
+ * finer: a landlady's thing was always keys.
+ *
+ *   keys    a way in — a key, a lock, a door (an access fact whose words say so)
+ *   means   any other way it could be done
+ *   money   a motive that is money: a debt, a loan, an estate, insurance
+ *   motive  any other motive
+ *   secret  what somebody was hiding
+ *   any     nothing the facts say (an old kind's own sentence)
+ */
+export type ThingTopic = 'keys' | 'means' | 'money' | 'motive' | 'secret' | 'any';
+
+const MONEY_MOTIVES = new Set(['debt', 'money', 'insurance', 'inheritance', 'property', 'embezzling', 'greed']);
+
+export function thingTopic(clues: readonly Clue[]): ThingTopic {
+  for (const clue of clues) {
+    for (const f of clue.establishes) {
+      if (f.kind === 'hadAccess') return /\b(?:keys?|locks?|locked|door|hook|latch)\b/i.test(`${clue.text} ${clue.textRecord ?? ''}`) ? 'keys' : 'means';
+      if (f.kind === 'hasMotive') return MONEY_MOTIVES.has(f.motiveType) ? 'money' : 'motive';
+      if (f.kind === 'secretExplained') return 'secret';
+      if (f.kind === 'methodEvidence') return 'means';
+    }
+  }
+  const text = clues.map((c) => c.text).join(' ');
+  if (/\b(?:keys?|locks?|locked|hook)\b/i.test(text)) return 'keys';
+  if (/\b(?:owed|owes|debt|IOU|loan|lent|money|dollars)\b/i.test(text)) return 'money';
+  return 'any';
+}
+
+/** M11 §A.7: the families that rest on something the witness saw. */
+export const SEEN_FAMILIES: ReadonlySet<Family['kind']> = new Set(['movements', 'counts', 'strangers', 'event']);

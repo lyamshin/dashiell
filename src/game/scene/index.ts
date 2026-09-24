@@ -34,7 +34,8 @@ export function isNightScene(scene: Scene): boolean {
     scene.kind === 'examine' ||
     scene.kind === 'ask' ||
     scene.kind === 'look' ||
-    scene.kind === 'confront'
+    scene.kind === 'confront' ||
+    scene.kind === 'rundown'
   );
 }
 
@@ -79,6 +80,8 @@ export function actionOf(scene: Scene, topic?: { kind: string; id?: Id; topic?: 
         ...(scene.part === undefined ? {} : { part: scene.part }),
         ...(scene.follow ? { follow: true } : {}),
       };
+    case 'rundown':
+      return { kind: 'rundown' };
     default:
       return { kind: 'look' };
   }

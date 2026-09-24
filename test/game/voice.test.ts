@@ -8,6 +8,7 @@
  * that watch for it are the first two describes below.
  */
 
+import { OPENING_CEILING } from '../../src/game/voice/page.js';
 import { describe, expect, it } from 'vitest';
 import { generateCase, type Difficulty } from '../../src/gen/index.js';
 import type { Fact, Person } from '../../src/gen/types.js';
@@ -571,7 +572,7 @@ describe('the page grammar', () => {
    * words and is the only page in a run allowed past 340; everything after it
    * is trimmed to 300 exactly as before.
    */
-  it('keeps every page between 50 and 380 words, over 100 oracle runs', () => {
+  it('keeps every page between 50 and the opening ceiling (page one) or 400 words, over 100 oracle runs', () => {
     const offenders: string[] = [];
     for (let seed = 1; seed <= 100; seed++) {
       const v = buildView(generateCase(seed, { difficulty: 2 }));
@@ -580,7 +581,7 @@ describe('the page grammar', () => {
         // Night Hone 1: pages may be longer ("people can scroll; it's mostly a
         // story" — the designer). A search that turns up several things runs
         // past 340 on its finds alone.
-        const ceiling = page.n === 0 ? 380 : 400;
+        const ceiling = page.n === 0 ? OPENING_CEILING : 400;
         // M8 §8: a night page has targets, not a floor — the night harness
         // measures its length against the golden's — and a question with one
         // short answer and nothing to make of it is a short page.
@@ -600,7 +601,7 @@ describe('the page grammar', () => {
         // Night Hone 1: pages may be longer ("people can scroll; it's mostly a
         // story" — the designer). A search that turns up several things runs
         // past 340 on its finds alone.
-        const ceiling = page.n === 0 ? 380 : 400;
+        const ceiling = page.n === 0 ? OPENING_CEILING : 400;
         // M8 §8: a night page has targets, not a floor — the night harness
         // measures its length against the golden's — and a question with one
         // short answer and nothing to make of it is a short page.

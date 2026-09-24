@@ -34,6 +34,20 @@ import { bandOf, hourAgrees } from './text.js';
 import { quietClue, thoughtPriority, thoughtsFor, viewOf, type Thought } from './thought.js';
 import type { ConfrontJudgement } from '../m9.js';
 import { familiesOf, type Family } from './families.js';
+import { doingOf, knownTie, type KnownTie } from './people.js';
+import { visibleTrade } from '../../gen/logic/acquaint.js';
+import { acquaintanceOf } from '../../gen/index.js';
+
+/** "a dentist with a chair and a waiting room" is "dentist": the noun a person would say. */
+export function bareRoleOf(person: Person): string | null {
+  const role = person.dossier?.profession.role ?? person.role;
+  const m = /^(?:an?|the)\s+([a-z-]+(?:\s[a-z-]+)?)/i.exec(role.trim());
+  if (!m) return null;
+  const words = (m[1] as string).split(' ');
+  // "stockbroker who", "dentist with": the head noun, and a second word only where it belongs to it.
+  const keep = words.length > 1 && !/^(?:who|with|in|on|at|for|of|that|living|from|to)$/.test(words[1] as string) ? words.join(' ') : (words[0] as string);
+  return keep;
+}
 
 /* ------------------------------------------------------------------ *
  * The beats.
@@ -79,6 +93,29 @@ export interface PresencePerson {
    * in when he came in). Not described again.
    */
   seen?: boolean;
+  /**
+   * M11 §A.2: on first sight, their tie to the case as the notebook knows it,
+   * said as a sentence of its own. Left off for the one the arrival's closing
+   * observation is about, which says it.
+   */
+  tie?: KnownTie;
+  /**
+   * M11 §A.2: on a page that is about the room's own finds (the scene, with
+   * the report and the coroner's note), first sight is the look and the tie
+   * without the street's view: the page's business is the body.
+   */
+  brief?: boolean;
+}
+
+/** M11 §A.5: one person in the client's rundown. */
+export interface RundownPerson {
+  personId: Id;
+  /** How the client knows them: by name, by what they are, by sight, or not at all. */
+  knows: 'name' | 'relation' | 'sight' | 'stranger';
+  /** What they are doing this visit, without their name, for "the woman reading a newspaper". */
+  doing: string | null;
+  /** The door this person stands at, when they are the room's watcher. */
+  watcher: boolean;
 }
 
 /** Who the detective does about a catch, and how (Night Hone 1 §5). */
@@ -166,6 +203,11 @@ export type Beat =
     }
   | { kind: 'texture'; required: false; texture: 'weather' | 'ambient' | 'simile' | 'place' }
   /**
+   * M11 §A.5: the client naming who is in the room, each the way the client
+   * knows them — a name, a trade, a face, or nobody at all.
+   */
+  | { kind: 'rundown'; required: true; clientId: Id; people: RundownPerson[] }
+  /**
    * M9 §3: the fact put to somebody, and what they did with it: the approach,
    * the fact read to them, their reaction, and their words (the generator's).
    */
@@ -209,7 +251,9 @@ export type PlanAction =
       /** M10 §A.3: there is more, and the page ends on "Go on". */
       more?: boolean;
     }
-  | { kind: 'confront'; personId: Id; clue: Clue; judged: ConfrontJudgement; part?: number; follow?: boolean };
+  | { kind: 'confront'; personId: Id; clue: Clue; judged: ConfrontJudgement; part?: number; follow?: boolean }
+  /** M11 §A.5: the client names who is in the room. */
+  | { kind: 'rundown' };
 
 export interface PlanInput {
   view: CaseView;
@@ -255,6 +299,7 @@ export const REQUIRED: Record<PageShape, BeatKind[]> = {
   search: ['errand', 'act', 'thought'],
   ask: ['exchange', 'thought'],
   look: ['presence'],
+  rundown: ['rundown'],
   repeat: [],
   other: [],
   confront: ['confront', 'thought'],
@@ -873,6 +918,29 @@ export function planPage(input: PlanInput): Plan {
     const presence = presenceFor(input, memory, !first);
     memory = presence.memory;
     beats.push(presence.beat);
+    // M11 §A.2 and §A.6: who in the room the notebook has a tie for. On a
+    // first visit with no finds of its own, the page closes on one of them —
+    // the strongest tie — seen doing what they are doing; everybody else the
+    // notebook ties to the case gets the tie on first sight.
+    const opening0 = action.kind === 'travel' ? (action.openingClues ?? []) : [];
+    const rank: Record<string, number> = { finder: 0, pointer: 1, relation: 2, client: 3 };
+    const tied = presence.beat.people
+      .filter((p) => !p.grouped && !p.seen)
+      .map((p) => {
+        const person = view.personById.get(p.personId) as Person;
+        return { p, person, tie: knownTie(view, person, input.foundBefore), doing: doingOf(p.activity.text, person.surname) };
+      })
+      .filter((x) => x.tie !== null);
+    const observed =
+      shape === 'arrive' && opening0.length === 0
+        ? [...tied]
+            .filter((x) => x.doing !== null)
+            .sort((a, b) => (rank[a.tie?.kind ?? ''] ?? 9) - (rank[b.tie?.kind ?? ''] ?? 9))[0]
+        : undefined;
+    for (const x of tied) {
+      if (x.p.firstSight && x !== observed && x.tie) x.p.tie = x.tie;
+    }
+    if (opening0.length > 0) for (const p of presence.beat.people) if (p.firstSight) p.brief = true;
 
     const opening = action.kind === 'travel' ? (action.openingClues ?? []) : [];
     for (const clue of opening) beats.push({ kind: 'find', required: true, clueId: clue.id });
@@ -900,9 +968,26 @@ export function planPage(input: PlanInput): Plan {
         )
         // Night Hone 1 §2: a stranger gets no thought until there is something to think.
         .filter((t) => t.who !== 'stranger' || t.lied === true)
-        .slice(0, 2)
+        // M11 §A.6: the observed person's view is the observation, last.
+        .filter((t) => observed === undefined || t.subjectId !== observed.person.id)
+        .slice(0, observed === undefined ? 2 : 1)
         .reverse();
       addThoughts(viewed);
+      if (observed && observed.tie && observed.doing !== null) {
+        const person = observed.person;
+        memory = { ...memory, observed: [person.id] };
+        const trade = visibleTrade(person) ?? null;
+        addThoughts([
+          {
+            cls: 'view',
+            subjectId: person.id,
+            who: person.id === view.client.id ? 'client' : 'known',
+            clueIds: [],
+            ...(observed.tie.otherId ? { secondId: observed.tie.otherId } : {}),
+            observe: { tie: observed.tie.kind, doing: observed.doing, trade: trade === null ? null : trade.replace(/^(?:an?|the) /, '') },
+          },
+        ]);
+      }
     }
     const decidedHere = opening.length > 0 && addDecide();
     if (opening.length > 0) addBridge({ scenesOpening: true, decided: decidedHere });
@@ -930,6 +1015,53 @@ export function planPage(input: PlanInput): Plan {
       }
     }
     return { shape, beats, memory };
+  }
+
+  /* ----------------------------------------------------------- rundown */
+  if (action.kind === 'rundown') {
+    // M11 §A.5: the client names who is here, the way the client knows them,
+    // and the page closes on one observation of the detective's own.
+    const client = view.client;
+    const place = view.placeById.get(input.at);
+    const others = input.here.filter((p) => p.id !== client.id && p.id !== view.victim.id);
+    const ordered = [
+      ...others.filter((p) => p.kind !== 'fixture'),
+      ...others.filter((p) => p.kind === 'fixture' && !(place?.watcher !== undefined && p.fixtureRole === place.watcher)),
+      ...others.filter((p) => p.kind === 'fixture' && place?.watcher !== undefined && p.fixtureRole === place.watcher),
+    ];
+    const people: RundownPerson[] = ordered.map((p) => {
+      const edge = acquaintanceOf(view.kase, client.id, p.id);
+      const knows: RundownPerson['knows'] = edge?.strength ?? (p.kind === 'fixture' ? 'relation' : 'name');
+      const kept = memory.activities[p.id];
+      const doing = kept && kept.visit === memory.visit ? doingOf(kept.text, p.surname) : null;
+      return { personId: p.id, knows, doing, watcher: p.kind === 'fixture' && place?.watcher !== undefined && p.fixtureRole === place.watcher };
+    });
+    beats.push({ kind: 'rundown', required: true, clientId: client.id, people });
+    memory = { ...memory, rundown: memory.visit };
+    // The one the notebook ties to the case most strongly, seen doing what
+    // they are doing (golden §2: "The dentist who found the body was reading
+    // a newspaper at one in the morning without turning the page.").
+    const rank: Record<string, number> = { finder: 0, pointer: 1, relation: 2 };
+    const observed = people
+      .map((r) => ({ r, person: view.personById.get(r.personId) as Person }))
+      .map((x) => ({ ...x, tie: knownTie(view, x.person, input.foundBefore) }))
+      .filter((x) => x.tie !== null && x.tie.kind !== 'client' && x.r.doing !== null && x.r.knows !== 'stranger')
+      .sort((a, b) => (rank[a.tie?.kind ?? ''] ?? 9) - (rank[b.tie?.kind ?? ''] ?? 9))[0];
+    if (observed && observed.tie && observed.r.doing !== null) {
+      const trade = visibleTrade(observed.person) ?? (observed.r.knows === 'relation' || observed.r.knows === 'name' ? bareRoleOf(observed.person) : null);
+      addThoughts([
+        {
+          cls: 'view',
+          subjectId: observed.person.id,
+          who: 'known',
+          clueIds: [],
+          ...(observed.tie.otherId ? { secondId: observed.tie.otherId } : {}),
+          // Seen once already this visit, the page says they are still at it.
+          observe: { tie: observed.tie.kind, doing: observed.r.doing, trade, ...((memory.observed ?? []).includes(observed.person.id) ? { still: true } : {}) },
+        },
+      ]);
+    }
+    return { shape: 'rundown', beats, memory };
   }
 
   /* ---------------------------------------------------------- confront */

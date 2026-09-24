@@ -9,8 +9,22 @@ import type { Case, Fact, Id, Person, Tick } from '../src/gen/types.js';
 import { TICKS } from '../src/gen/types.js';
 import { establishedFrom, gameBudget, peopleHereNow, type CaseView } from '../src/game/derive.js';
 import { followUpOf } from '../src/game/reducer.js';
-import type { choicesFor } from '../src/game/choices.js';
+import { choicesFor } from '../src/game/choices.js';
 import { allChoices } from '../src/game/choices.js';
+
+/**
+ * M11 §A.5: the choices a player weighs. The client's rundown ("Ask Hauck
+ * who's here") is left out: it costs nothing and tells no fact, so the
+ * reasoning player has nothing to gain by it, and a button-pusher that could
+ * press it would be a different button-pusher from the one the design test
+ * has measured since M9.
+ */
+export function playerChoices(
+  view: Parameters<typeof choicesFor>[0],
+  state: Parameters<typeof choicesFor>[1],
+): ReturnType<typeof choicesFor> {
+  return choicesFor(view, state).filter((g) => g.kind !== 'rundown');
+}
 import { leadingTheory } from '../src/game/voice/reactive.js';
 import type { Rng } from '../src/gen/rng.js';
 import type { Report, RunState } from '../src/game/types.js';

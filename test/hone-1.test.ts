@@ -37,6 +37,7 @@ import {
   type Card,
 } from '../src/game/voice/index.js';
 import type { Page } from '../src/game/types.js';
+import { OFFICE_ASK_POLICE, OFFICE_ASK_START, OFFICE_ASK_WHY } from '../src/game/voice/office.js';
 
 const viewOf = (seed: number, difficulty: Difficulty = 2): CaseView =>
   buildView(generateCase(seed, { difficulty }));
@@ -290,16 +291,17 @@ describe('correspondence', () => {
  * ------------------------------------------------------------------ */
 
 describe('page one', () => {
-  it('gives Dashiell three lines at most, and they are the prompts', () => {
+  // M11 §A.1: his questions are the office's own now, each written for the
+  // line in front of it ("And the police?" after where the body was found),
+  // and not the generator's prompts, which were asked before the sentence
+  // that invited them.
+  it('gives Dashiell three lines at most, and they are the office’s own questions', () => {
     for (let seed = 1; seed <= 40; seed++) {
       const view = viewOf(seed);
       const state = newRun(view, { detectiveName: 'Dashiell' });
       const page = state.log[0] as Page;
       const prompts = new Set(
-        view.kase.briefing
-          .map((l) => l.prompt)
-          .filter((p): p is string => p !== undefined)
-          .map((p) => `“${p}”`),
+        [...OFFICE_ASK_POLICE, ...OFFICE_ASK_START, ...Object.values(OFFICE_ASK_WHY).flat()].map((p) => `“${p}”`),
       );
       const openers = new Set(OFFICE_OPENERS.map((o) => `“${o}”`));
       const his = quotedLines(page).filter((t) => prompts.has(t.trim()) || openers.has(t.trim()));

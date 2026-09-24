@@ -367,6 +367,37 @@ export function dashiellLine(
 }
 
 /**
+ * M11 §A.3: the question that asks somebody about their life — plain, and by
+ * the kind of person they are: "How long have you had the house?" for a
+ * landlady, "What's your line?" for anybody. Null where the deck has none.
+ */
+export function selfQuestion(
+  dealer: Dealer,
+  person: { kind: string; fixtureRole?: string; archetypeId?: string },
+  family: string,
+  familiar: boolean,
+): { text: string; cardId: string } | null {
+  const want = familiar ? 'yes' : 'no';
+  const role = person.kind === 'fixture' ? (person.fixtureRole ?? 'any') : 'any';
+  const is = (c: Parameters<typeof tagIs>[1]): boolean => tagIs('dashiell-lines', c, 'kind', 'ask-self');
+  const roleIs = (c: Parameters<typeof tagIs>[1]): boolean => tagOf('dashiell-lines', c, 'role') === role;
+  const familyIs = (c: Parameters<typeof tagIs>[1]): boolean => tagOf('dashiell-lines', c, 'family') === family;
+  const anyRole = (c: Parameters<typeof tagIs>[1]): boolean => (tagOf('dashiell-lines', c, 'role') ?? 'any') === 'any';
+  const drawn = dealer.draw(
+    'dashiell-lines',
+    [
+      (c) => is(c) && role !== 'any' && roleIs(c) && tagIs('dashiell-lines', c, 'familiar', want),
+      (c) => is(c) && familyIs(c) && anyRole(c) && tagIs('dashiell-lines', c, 'familiar', want),
+      (c) => is(c) && tagOf('dashiell-lines', c, 'family') === 'any' && tagIs('dashiell-lines', c, 'familiar', want),
+      (c) => is(c) && tagOf('dashiell-lines', c, 'family') === 'any',
+    ],
+    {},
+    true,
+  );
+  return drawn ? { text: drawn.text, cardId: drawn.cardId } : null;
+}
+
+/**
  * What the person is doing with their hands while they answer.
  *
  * Role first, temper second, and never another fixture's role. A landlady

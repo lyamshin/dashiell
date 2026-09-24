@@ -191,6 +191,12 @@ export interface Thought {
   told?: 'once' | 'recurring' | 'partial';
   /** docs/26, `view` × `known`: met on an earlier page (the deck's `met: yes`), or only a name. */
   met?: boolean;
+  /**
+   * M11 §A.6, `view` only: the arrival's closing observation — what the
+   * person was doing, and the tie to the case the notebook knows. The engine
+   * writes it; no card does.
+   */
+  observe?: { tie: import('./people.js').TieKind; doing: string; trade: string | null; still?: boolean };
 }
 
 export interface ThoughtInput {
