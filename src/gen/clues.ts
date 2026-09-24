@@ -349,7 +349,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
       : act.type === 'lost-pet'
         ? `${cap(act.taken?.name ?? 'the animal')} is gone from ${placeName(L)}, which is ${V}’s, and has not come home.`
         : act.type === 'affair'
-          ? `${V} was not at ${claimed} for the whole of the evening, which is where ${V} said ${V} would be.`
+          ? `${V} said ${cast.victim.gender === 'f' ? 'she' : 'he'} would be at ${claimed} all evening, and was not there for the whole of it.`
           : act.type === 'missing'
         ? `${V} is not at ${placeName(L)} and has not been since that evening.`
         : `${V} was found at ${placeName(foundPlace)}.`;
@@ -361,7 +361,11 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
       { kind: 'victimDeadBy', tick: M },
       { kind: 'methodEvidence', methodId: method.id },
     ],
-    `${sceneOpening} ${ctx.sceneTrace} ${high.sceneFact.split('{T}').join(clock(M))}`,
+    // M14: an affair's report is handed over where they said they would be,
+    // and the room the pair of them were in is not described until it is found.
+    act.type === 'affair'
+      ? `${sceneOpening} ${high.sceneFact.split('{T}').join(clock(M))}`
+      : `${sceneOpening} ${ctx.sceneTrace} ${high.sceneFact.split('{T}').join(clock(M))}`,
     { anchorId: high.templateId },
   );
 
@@ -386,7 +390,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
       : act.type === 'lost-pet' || act.type === 'lost-item'
         ? `It went at ${clock(ctx.coronerWindow[0])}, as near as anybody in the house can say.`
         : act.type === 'affair'
-          ? `The half hour that matters is ${clock(ctx.coronerWindow[0])}, by the client's own reckoning.`
+          ? `The half hour that matters is ${clock(ctx.coronerWindow[0])}, by ${who(cast.client.id)}’s own reckoning.`
           : act.type === 'robbery'
         ? `The desk sergeant's report puts it at ${clock(ctx.coronerWindow[0])}.`
         : `Nobody can put it closer than ${clock(ctx.coronerWindow[0])}.`
@@ -395,7 +399,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
       : act.type === 'lost-pet' || act.type === 'lost-item'
         ? `It went between ${windowText}, as near as anybody in the house can say.`
         : act.type === 'affair'
-          ? `It was between ${windowText}, by the client's own reckoning.`
+          ? `It was between ${windowText}, by ${who(cast.client.id)}’s own reckoning.`
           : act.type === 'robbery'
         ? `The desk sergeant's report puts it between ${windowText}.`
         : `Nobody can put it closer than between ${windowText}.`;

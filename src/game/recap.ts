@@ -182,7 +182,14 @@ export function recapFacts(
   /* When, where, and how. */
   const scene = grid.places.find((p) => p.scene !== null);
   if (scene) {
-    const base = type === 'murder' ? (scene.scene === 'found' ? 'found' : 'murder') : type;
+    const base =
+      type === 'murder'
+        ? scene.scene === 'found'
+          ? 'found'
+          : 'murder'
+        : type === 'affair' && scene.scene === 'found'
+          ? 'claimed'
+          : type;
     const object = kase.act.taken?.name;
     if (type !== 'robbery' || object !== undefined) {
       const variant = `${base}-${matter.length > 0 ? 'span' : 'none'}`;

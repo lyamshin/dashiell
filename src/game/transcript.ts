@@ -253,7 +253,7 @@ export function renderVerdictText(verdict: Verdict): string {
   const out: string[] = ['THE REPORT', '═'.repeat(WIDTH), ''];
   for (const field of verdict.fields) {
     out.push(
-      `  ${field.label.padEnd(26)}${field.given.padEnd(28)}${field.correct ? '✓' : `✗ ${field.truth}`}`,
+      `  ${field.label.padEnd(26)} ${field.given.padEnd(28)}${field.correct ? '✓' : `✗ ${field.truth}`}`,
     );
   }
   // M9 §5: the crime column, a line a suspect.

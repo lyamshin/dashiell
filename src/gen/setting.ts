@@ -240,7 +240,14 @@ export function buildSetting(
       : drawPlacesSized(rng, shape.places, shape.watched);
   if (!drawn) return null;
 
-  const scene = chooseScene(rng, drawn, MEANS_DECK[caseType], caseType === 'murder', caseType === 'lost-pet', caseType === 'affair');
+  // M14: the animal comes first, because the way out has to suit it.
+  let pet: PetKind | undefined;
+  if (caseType === 'lost-pet') {
+    const roll = rng.next();
+    pet = roll < 0.45 ? 'dog' : roll < 0.75 ? 'cat' : roll < 0.95 ? 'parrot' : 'goat';
+  }
+  const deck = MEANS_DECK[caseType].filter((m) => pet === undefined || m.pets === undefined || m.pets.includes(pet));
+  const scene = chooseScene(rng, drawn, deck, caseType === 'murder', caseType === 'lost-pet', caseType === 'affair');
   if (!scene) return null;
 
   /* --- who is posted where ------------------------------------------- */
@@ -330,15 +337,8 @@ export function buildSetting(
   }
   // M14: the animal, or the ring, is at the scene on purpose too. Neither is
   // on any place card, so no other draw moves.
-  let pet: PetKind | undefined;
   if (caseType === 'lost-pet' || caseType === 'lost-item') {
-    if (caseType === 'lost-pet') {
-      const roll = rng.next();
-      pet = roll < 0.45 ? 'dog' : roll < 0.75 ? 'cat' : roll < 0.95 ? 'parrot' : 'goat';
-      swagId = PET_OBJECT[pet];
-    } else {
-      swagId = rng.pick(LOST_ITEM_IDS);
-    }
+    swagId = pet !== undefined ? PET_OBJECT[pet] : rng.pick(LOST_ITEM_IDS);
     objects.push({ id: swagId, name: OBJECT_NAMES[swagId] as string, homePlace: scene.murderPlaceId });
     usedObjects.add(swagId);
   }

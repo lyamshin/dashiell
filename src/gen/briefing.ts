@@ -135,6 +135,12 @@ export function buildBriefing(input: BriefingInput): BriefingLine[] {
     if (headline !== undefined) said(headline);
     said(bio.standing);
     for (const line of restOfGivens) said(line);
+  } else if (act.type === 'affair') {
+    // M14: where they said they would be, who they are, and then the hole in
+    // the evening and the client's reason for thinking so.
+    if (headline !== undefined) said(headline);
+    said(bio.standing);
+    for (const line of restOfGivens) said(line);
   } else {
     if (headline !== undefined) said(headline);
     said(bio.standing);

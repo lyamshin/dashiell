@@ -36,7 +36,7 @@ function givens(ctx: TropeContext, closer: string) {
   return {
     facts,
     text: [
-      `${cap(thing(ctx))} is gone from ${L}, where ${V} keeps it.`,
+      `${V}’s ${thing(ctx).replace(/^(a|an|the) /, '')} is gone from ${L}, where ${V} keeps it.`,
       `Nothing at ${L} was forced, and nothing else was touched.`,
       `It went ${between(lo, hi)}.`,
       closer,

@@ -36,19 +36,29 @@ import type {
   Place,
   Tick,
 } from '../gen/types.js';
-import { TICKS, clock } from '../gen/types.js';
+import { TICKS, clock, isTheft, type CaseType } from '../gen/types.js';
 import { Rng } from '../gen/rng.js';
 import { METHOD_TEMPLATES } from '../gen/data/methods.js';
-import { MOTIVE_TEMPLATES } from '../gen/data/motives.js';
+import { AFFAIR_MOTIVES, MOTIVE_TEMPLATES, MUNDANE_MOTIVES } from '../gen/data/motives.js';
 import { computePar } from '../gen/select.js';
 import { OFFICE_KINDS, OFFICE_STREETS, OFFICE_TRADES } from './voice-data.js';
 import type { TopicRef } from './types.js';
 
 export const METHOD_POOL = METHOD_TEMPLATES.map((m) => ({ id: m.id, name: m.name }));
-export const MOTIVE_POOL = MOTIVE_TEMPLATES.map((m) => ({
+/** Every reason the generator can deal, for looking one up by its type. */
+export const MOTIVE_POOL = [...MOTIVE_TEMPLATES, ...MUNDANE_MOTIVES, ...AFFAIR_MOTIVES].map((m) => ({
   type: m.type,
   description: m.description,
 }));
+
+/**
+ * M14: the reasons the report offers for a case of this type. A lost dog's
+ * report offers spite and pride, not an inheritance; an affair never asks.
+ */
+export function motivePoolFor(type: CaseType): { type: string; description: string }[] {
+  const pick = type === 'lost-pet' || type === 'lost-item' ? MUNDANE_MOTIVES : type === 'affair' ? AFFAIR_MOTIVES : MOTIVE_TEMPLATES;
+  return pick.map((m) => ({ type: m.type, description: m.description }));
+}
 
 export function topicKey(t: TopicRef): string {
   switch (t.kind) {
@@ -156,6 +166,8 @@ export function startPlaceOf(kase: Case): Id {
   if (act.tropeId === 'body-moved' && act.bodyFoundAt && act.bodyFoundAt !== act.place) {
     return act.bodyFoundAt;
   }
+  // M14: an affair opens where they said they would be.
+  if (act.type === 'affair' && act.claimedAt && act.claimedAt !== act.place) return act.claimedAt;
   return kase.solution.murderPlaceId;
 }
 
@@ -383,7 +395,7 @@ export function topicsAnsweredBy(clue: Clue, view: CaseView): string[] {
  */
 export function victimAddress(kase: Case): Id | null {
   const act = kase.act;
-  if (act.type === 'robbery') {
+  if (isTheft(act.type)) {
     const line = kase.schedules.find((s) => s.personId === kase.people.find((p) => p.kind === 'victim')?.id);
     const last = [...(line?.truth ?? [])].reverse().find((p) => p !== null) ?? null;
     return last ?? kase.places.find((p) => p.isResidence)?.id ?? null;
@@ -404,7 +416,10 @@ export function victimAddress(kase: Case): Id | null {
  * sightings open.
  */
 export function victimReachable(kase: Case, found: readonly Id[]): boolean {
-  if (kase.act.type === 'robbery') return true;
+  // M14: the owner of a lost dog or a lost ring is at home and will talk. The
+  // one an affair is about does not talk to a detective their husband or wife
+  // hired, and is never in a room he walks into.
+  if (isTheft(kase.act.type)) return true;
   if (kase.act.type !== 'missing') return false;
   const victimId = kase.people.find((p) => p.kind === 'victim')?.id;
   if (!victimId) return false;

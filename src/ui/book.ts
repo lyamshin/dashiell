@@ -55,7 +55,7 @@ import { newGridUi, renderGridSection, type GridUi } from './grid-view.js';
 import { hideCard, type CardSource } from './hover.js';
 import { renderNotebook } from './notebook-view.js';
 import { renderPage } from './prose.js';
-import { renderReportForm, renderVerdict, type TierNews } from './report.js';
+import { renderReportForm, renderTellChoice, renderVerdict, type TierNews } from './report.js';
 import { storyCardIds, storyOf, storyParagraphs } from '../game/story.js';
 import { LIE_RULE } from '../game/voice-data.js';
 import { renderTruthSheet } from '../sheet/truthSheet.js';
@@ -65,7 +65,9 @@ import './weather.css';
 type Screen =
   | { kind: 'title' }
   | { kind: 'book' }
-  | { kind: 'verdict'; verdict: Verdict; story: string[]; news?: TierNews };
+  | { kind: 'verdict'; verdict: Verdict; story: string[]; news?: TierNews }
+  /** M14 §2.2: an affair's report is in, and the client is waiting to be told something. */
+  | { kind: 'tell'; report: Report };
 
 const DEFAULT_NAME = 'Dashiell';
 const NAME_KEY = 'dashiell:detective';
@@ -157,7 +159,7 @@ export function mount(root: HTMLElement): void {
     const key = `${run.seed}|${run.tier ?? ''}|${run.level ?? run.difficulty}`;
     const history = closingHistory(store, key);
     const verdict = scoreReport(v, run, report, history);
-    const story = storyOf(v.kase, history);
+    const story = storyOf(v.kase, history, report.told);
     noteClosing(store, key, [...crossRunOnly(verdict.cardsUsed ?? []), ...storyCardIds(story)], settleReads);
     return { verdict, story: storyParagraphs(story) };
   }
@@ -276,6 +278,14 @@ export function mount(root: HTMLElement): void {
 
   function file(report: Report): void {
     if (!view || !state) return;
+    // M14 §2.2: after an affair's report, before the closing page, what to
+    // tell the client. The report is final already; the choice only changes
+    // the words that follow it.
+    if (view.kase.act.type === 'affair' && report.told === undefined) {
+      screen = { kind: 'tell', report };
+      render();
+      return;
+    }
     state = fileReport(state, report);
     saveRun(store, state);
     const { verdict, story } = closingOf(view, state, report);
@@ -288,6 +298,7 @@ export function mount(root: HTMLElement): void {
       asked: verdict.asked,
       actionsUsed: verdict.actionsUsed,
       par: verdict.par,
+      ...(report.told === undefined ? {} : { told: report.told }),
     });
     const news: TierNews | undefined =
       state.tier !== undefined && (outcome.firstClear !== null || outcome.unlocked !== null)
@@ -346,6 +357,13 @@ export function mount(root: HTMLElement): void {
     page.append(runningHead(shownIndex));
 
     const leaf = el('div', { class: 'leaf' });
+
+    if (screen.kind === 'tell') {
+      const report = screen.report;
+      leaf.append(renderTellChoice(view as CaseView, (told) => file({ ...report, told })));
+      page.append(leaf);
+      return page;
+    }
 
     if (screen.kind === 'verdict') {
       leaf.append(

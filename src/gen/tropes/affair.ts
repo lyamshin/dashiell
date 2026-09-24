@@ -48,14 +48,20 @@ function givens(ctx: TropeContext, closer: string) {
   };
 }
 
-function signature(ctx: TropeContext, id: string, left: string) {
+function signature(ctx: TropeContext, id: string, left: (V: string, L: string, T: string) => string) {
   const V = ctx.who(ctx.cast.victim.id);
   const L = ctx.act.place;
   const M = ctx.act.tick;
   const fact: Fact[] = [{ kind: 'personAt', personId: ctx.cast.victim.id, place: L, tick: M }];
   const [a] = twoSources(ctx);
   const clues = [
-    ctx.add('physical', { type: 'place', placeId: L }, L, fact, `${cap(left)} at ${ctx.placeName(L)}, and it is ${V}’s, and ${V} left it there at ${clock(M)} and has not been back for it.`),
+    ctx.add(
+      'physical',
+      { type: 'place', placeId: L },
+      L,
+      fact,
+      left(V, ctx.placeName(L), clock(M)),
+    ),
     ctx.add(
       'overheard',
       { type: 'person', personId: a.id, topic: `${V} that evening` },
@@ -89,7 +95,7 @@ export const theAffair: Trope = {
   motive: 'love',
   shape: shape(() => 'affair'),
   givens: (ctx) => givens(ctx, `This is the third Tuesday running.`),
-  signature: (ctx) => signature(ctx, 'the-affair', `${his(ctx)} scarf is over the back of a chair`),
+  signature: (ctx) => signature(ctx, 'the-affair', (V, L, T) => `There is a scarf of ${V}’s over the back of a chair at ${L}, left there at ${T}, and it smells of somebody else’s cigarettes.`),
 };
 
 export const theSecret: Trope = {
@@ -100,7 +106,7 @@ export const theSecret: Trope = {
   motive: 'secret-kept',
   shape: shape((ctx) => ctx.rng.pick(SECRET_ERRANDS)),
   givens: (ctx) => givens(ctx, `${cap(he(ctx))} has been tired, and short with everybody, and pleased with something.`),
-  signature: (ctx) => signature(ctx, 'the-secret', `${his(ctx)} gloves are on the table`),
+  signature: (ctx) => signature(ctx, 'the-secret', (V, L, T) => `There is a pair of ${V}’s gloves on the table at ${L}, left there at ${T} and folded by somebody tidy.`),
 };
 
 export const theBusiness: Trope = {
@@ -111,5 +117,5 @@ export const theBusiness: Trope = {
   motive: 'business-done',
   shape: shape(() => 'business'),
   givens: (ctx) => givens(ctx, `${cap(he(ctx))} came home and went through the accounts until two in the morning.`),
-  signature: (ctx) => signature(ctx, 'the-business', `${his(ctx)} fountain pen is on the table`),
+  signature: (ctx) => signature(ctx, 'the-business', (V, L, T) => `${V}’s fountain pen is on the table at ${L}, left there at ${T} with the cap off and a column of figures beside it.`),
 };

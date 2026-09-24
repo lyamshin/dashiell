@@ -358,7 +358,13 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
         ? 'time of death'
         : type === 'robbery'
           ? 'when it was taken'
-          : 'when they were last seen',
+          : type === 'lost-pet'
+            ? 'when it got out'
+            : type === 'lost-item'
+              ? 'when it went'
+              : type === 'affair'
+                ? 'the half hour that matters'
+                : 'when they were last seen',
     methodLabel: type === 'murder' ? 'method' : 'how it was done',
     accessLabel: type === 'murder' ? 'near the weapon' : 'had the means',
     death,

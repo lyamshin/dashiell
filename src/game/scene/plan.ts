@@ -164,7 +164,7 @@ export type CloseOutcome =
 /** Who the detective does about a catch, and how (Night Hone 1 §5). */
 export type DecideAct = 'hold' | 'press' | 'note';
 
-export type SceneMark = 'body' | 'body-again' | 'robbery' | 'missing';
+export type SceneMark = 'body' | 'body-again' | 'robbery' | 'missing' | 'lost-pet' | 'lost-item' | 'claimed';
 
 export type Beat =
   | { kind: 'clock'; required: true; beat: 'hour' | 'two-left' | 'last-call'; hour?: string }
@@ -649,6 +649,13 @@ function sceneMark(view: CaseView, at: Id, again: boolean): SceneMark | undefine
       return view.kase.act.taken ? 'robbery' : undefined;
     case 'missing':
       return 'missing';
+    // M14: the empty collar, the empty drawer, the room they said they were in.
+    case 'lost-pet':
+      return again ? undefined : 'lost-pet';
+    case 'lost-item':
+      return again ? undefined : 'lost-item';
+    case 'affair':
+      return again ? undefined : 'claimed';
   }
 }
 

@@ -43,9 +43,9 @@ export const ERRAND_TEXT: Record<Errand, string> = {
 /** Where the affair's errand was going on, as a plain clause about the pair of them. */
 export const ERRAND_DOING: Record<Errand, string> = {
   affair: 'were keeping company that neither of them had told anybody about',
-  'night-class': 'were at a lesson: reading, which {V} had never let on {V} could not do',
-  'second-job': 'were at work: {V} had taken a second job, and the money was going somewhere',
-  surprise: 'were getting a surprise ready, for the one who hired me',
+  'night-class': 'were at a lesson: {V} is learning to read, and never once let on there was any need',
+  'second-job': 'were at work: {V} has taken a second job, and the money is going somewhere',
+  surprise: 'were getting a surprise ready, and it was for the one who hired me',
   'sick-relative': 'were sitting up with a relative who was ill, and whom nobody else was supposed to know about',
   business: 'were doing business, the kind that is done after hours and not written down',
 };

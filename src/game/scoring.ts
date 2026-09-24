@@ -26,6 +26,8 @@ import type { Report, RunState } from './types.js';
 import { columnFor } from './report-form.js';
 import { proofsFor, truthColumn, type Proof } from './m9.js';
 import { Dealer, tagIs } from './voice/index.js';
+import { ERRAND_DOING, PET_WORD } from '../gen/data/mundane.js';
+import type { Told } from './types.js';
 import { nounOf, pronounOf } from './voice/cast.js';
 
 export type Outcome = 'solved' | 'wrong-man' | 'thin' | 'cold';
@@ -176,6 +178,17 @@ interface ClosingContext {
   points: number;
   asked: number;
   par: string;
+  /* M14 */
+  client: string;
+  /** "his" or "her", for the client. */
+  clientHis: string;
+  /** "dog", for a lost pet. */
+  pet: string;
+  /** What the affair was, as a plain clause about the pair of them. */
+  errand: string;
+  /** Which of the three kinds of affair it was. */
+  errandKind: 'affair' | 'secret' | 'business';
+  told: Told;
 }
 
 const MURDER: ClosingSet = {
@@ -235,13 +248,114 @@ const MISSING: ClosingSet = {
   ],
 };
 
+/* M14 §2.3: the mundane three, in camp. A lost dog ends with the dog. */
+
+const LOST_PET: ClosingSet = {
+  solved: (c) => [
+    `${cap(c.taken)} is at ${c.goods}, and I carry it home to ${c.victim} myself, which it permits. ${c.actor} let it out of ${c.where} at ${c.when}, and has a reason that sounds worse said out loud.`,
+    `${c.victim} cries on the step, and on me, and on the ${c.pet}. ${c.points} out of ${c.asked}, and ${lowerFirst(c.par)}`,
+  ],
+  'wrong-man': (c) => [
+    `I tell ${c.victim} it was ${c.named}, and ${c.victim} stops speaking to ${c.named} across the whole width of the street.`,
+    `It was ${c.actor}, and ${c.taken} was at ${c.goods} the whole time. **The wrong ${c.namedNoun} gets the cold shoulder for a year**, and I am the one who pointed.`,
+  ],
+  thin: (c) => [
+    `${cap(c.taken)} comes home, which is the part ${c.victim} wanted. The ${c.wrong.join(', ')} never got settled, and ${c.victim} will ask me about it every time we pass on the stairs.`,
+    `${c.actor} gets a look from ${c.victim} that would take the paint off a door. ${c.points} out of ${c.asked}. ${c.par}`,
+  ],
+  cold: (c) => [
+    `I hand ${c.victim} a list of people who did not do it, which is not what anybody pays for.`,
+    `${cap(c.taken)} was at ${c.goods} all along, and it was ${c.actor}, at ${c.where}, ${c.when}. The ${c.pet} knows, and is not saying.`,
+  ],
+};
+
+const LOST_ITEM: ClosingSet = {
+  solved: (c) => [
+    `${cap(the(c.taken))} was at ${c.goods}, and it goes back where it lives before breakfast. ${c.actor} took it from ${c.where} at ${c.when}, and has an explanation that gets worse the longer it goes on.`,
+    `${c.victim} puts it back and looks at it for a long time. ${c.points} out of ${c.asked}, and ${lowerFirst(c.par)}`,
+  ],
+  'wrong-man': (c) => [
+    `I name ${c.named}, and ${c.victim} believes me, which is worse.`,
+    `It was ${c.actor}, and ${the(c.taken)} was at ${c.goods} all along. **The wrong ${c.namedNoun} carries it**, and nobody on this street forgets a thing like that.`,
+  ],
+  thin: (c) => [
+    `${cap(the(c.taken))} comes back, and ${c.actor} gets the blame, and the ${c.wrong.join(', ')} never got nailed down. It is the kind of thing that comes up again every Christmas.`,
+    `${c.victim} is glad, and says so, and counts the spoons after I leave. ${c.points} out of ${c.asked}. ${c.par}`,
+  ],
+  cold: (c) => [
+    `I hand in what I have, which is a list of places it is not.`,
+    `${cap(the(c.taken))} was at ${c.goods} the whole time, and it was ${c.actor}. I know that now, which is the one kind of knowing nobody pays for.`,
+  ],
+};
+
+/**
+ * M14 §2.2. An affair's closing page is what the report found, then what I
+ * told the client, which the player chose, then the tally. The report is
+ * scored on the facts; the choice only changes the words.
+ */
+const TOLD_PARAGRAPH: Record<Told, Record<'affair' | 'secret' | 'business', (c: ClosingContext) => string>> = {
+  truth: {
+    affair: (c) =>
+      `I tell ${c.client} all of it, in order, and do not dress any of it up. ${c.client} hears me out with ${c.clientHis} hat still on, and then goes home to have it out, and I go down to the street to be somewhere else.`,
+    secret: (c) =>
+      `I tell ${c.client} all of it. It was not what ${c.client} was afraid of, and it was a secret all the same, and now it is not one. I have spoiled better things in my time, but not many.`,
+    business: (c) =>
+      `I tell ${c.client} all of it: business, done after hours, with ${c.actor}. ${c.client} looks relieved, and then suspicious, in that order, and I let ${c.clientHis} own face have the last word.`,
+  },
+  half: {
+    affair: (c) =>
+      `I tell ${c.client} where ${c.victim} was, and not who with. It is the half of the truth a person can sleep on, and I charge for the whole of it.`,
+    secret: (c) =>
+      `I tell ${c.client} there is nothing in it to lose sleep over, which is true, and nothing about what it was, which is kind. Some secrets are better let out by their owners.`,
+    business: (c) =>
+      `I tell ${c.client} it was business, and leave out whose. ${c.client} can take it or leave it. ${c.client} takes it.`,
+  },
+  nothing: {
+    affair: (c) =>
+      `I tell ${c.client} I found nothing, and take the smaller half of the fee for it. It is the worst thing I do all week, and I do it with a straight face.`,
+    secret: (c) =>
+      `I tell ${c.client} I found nothing. In a month or so ${c.client} will find out for ${c.clientHis === 'her' ? 'herself' : 'himself'}, and like it better that way.`,
+    business: (c) =>
+      `I tell ${c.client} I found nothing worth the money, and hand some of the money back. ${c.victim}’s business stays ${c.victim}’s.`,
+  },
+};
+
+const AFFAIR: ClosingSet = {
+  solved: (c) => [
+    `${c.victim} was at ${c.where} at ${c.when}, and ${c.actor} was there too. The two of them ${c.errand}.`,
+    TOLD_PARAGRAPH[c.told][c.errandKind](c),
+    `${c.points} out of ${c.asked}, and ${lowerFirst(c.par)}`,
+  ],
+  'wrong-man': (c) => [
+    `I put ${c.named} in the report as the one ${c.victim} was with. It was ${c.actor}.`,
+    c.told === 'truth'
+      ? `I tell ${c.client} it was ${c.named}, which is the truth as I have it and not the truth. **The wrong ${c.namedNoun} gets the blame** at a kitchen table, and a kitchen table is a harder court than most.`
+      : c.told === 'half'
+        ? `I tell ${c.client} a softer version with ${c.named} in it, which is two mistakes wrapped up in one kindness. **The wrong ${c.namedNoun} gets looked at sideways** for a year.`
+        : `I tell ${c.client} nothing. It is the one right thing I do all night, and I do it by accident.`,
+  ],
+  thin: (c) => [
+    `${c.victim} was at ${c.where}, with ${c.actor}. I have the name, and the ${c.wrong.join(', ')} I have less under than I would like.`,
+    TOLD_PARAGRAPH[c.told][c.errandKind](c),
+    `${c.points} out of ${c.asked}. ${c.par}`,
+  ],
+  cold: (c) => [
+    `I never get the name. ${c.victim} was at ${c.where} at ${c.when} with ${c.actor}, and I am the only one who knows I do not know it.`,
+    c.told === 'truth'
+      ? `I tell ${c.client} the truth, which is that I do not know, and ${c.client} pays me for the evening anyway, which is more than the evening deserved.`
+      : c.told === 'half'
+        ? `I tell ${c.client} there is nothing in it, which I do not know to be true. It helps ${c.client} sleep. It does nothing for me.`
+        : `I tell ${c.client} nothing, which is all I have.`,
+  ],
+};
+
 const BY_TYPE: Record<CaseType, ClosingSet> = {
   murder: MURDER,
   robbery: ROBBERY,
   missing: MISSING,
-  'lost-pet': ROBBERY,
-  'lost-item': ROBBERY,
-  affair: MISSING,
+  'lost-pet': LOST_PET,
+  'lost-item': LOST_ITEM,
+  affair: AFFAIR,
 };
 
 function closingFor(
@@ -282,6 +396,13 @@ function closingFor(
     points,
     asked: fields.length + column.length,
     par: parLine(state.actionsUsed, gamePar(kase)),
+    client: view.client.surname,
+    clientHis: pronounOf(view.client) === 'she' ? 'her' : 'his',
+    pet: act.pet ? PET_WORD[act.pet] : 'animal',
+    errand: (ERRAND_DOING[act.errand ?? 'affair'] ?? '').split('{V}').join(view.victim.surname),
+    errandKind: act.errand === 'business' ? 'business' : act.errand === undefined || act.errand === 'affair' ? 'affair' : 'secret',
+    // An affair filed without a choice (a test, the reader) tells the truth.
+    told: report.told ?? 'truth',
   };
   if (ctx.wrong.length === 0) ctx.wrong = ['rest of it'];
 
@@ -304,7 +425,10 @@ function closingFor(
   // history as it stood when the page was first read).
   const dealer = new Dealer((kase.seed * 8191 + points) >>> 0, [], history);
   const fits = (c: Parameters<typeof tagIs>[1]): boolean =>
-    tagIs('endings', c, 'caseType', act.type) && tagIs('endings', c, 'trope', act.tropeId);
+    tagIs('endings', c, 'caseType', act.type) &&
+    tagIs('endings', c, 'trope', act.tropeId) &&
+    // M14: an affair's last line knows what I told the client.
+    (act.type !== 'affair' || tagIs('endings', c, 'told', ctx.told));
   const ending = dealer.draw(
     'endings',
     [
@@ -346,8 +470,10 @@ function columnLine(view: CaseView, fields: FieldResult[], column: ColumnResult[
   const list = (xs: string[]): string =>
     xs.length <= 1 ? (xs[0] ?? '') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`;
   const parts: string[] = [];
+  // M14: nobody sends a lost dog to the DA; I go down the column myself.
+  const reader = ['lost-pet', 'lost-item', 'affair'].includes(view.kase.act.type) ? 'I' : 'The DA';
   parts.push(
-    `The DA went down the column for ${when}. I had ${right.length} of ${column.length} where they were` +
+    `${reader} went down the column for ${when}. I had ${right.length} of ${column.length} where they were` +
       (right.length > 0 ? `: ${list(right.map((c) => `${c.name} at ${c.truth}`))}.` : '.'),
   );
   if (wrong.length > 0) {
@@ -400,6 +526,15 @@ function missedLead(view: CaseView, state: RunState): string {
 }
 
 export type { Id };
+
+/** "A gold ring" -> "a gold ring" -> "the gold ring", once it has been introduced. */
+function the(text: string): string {
+  return text.replace(/^(a|an) /i, 'the ');
+}
+
+function cap(text: string): string {
+  return text.length === 0 ? text : `${text[0]?.toUpperCase()}${text.slice(1)}`;
+}
 
 /** Lowercase only the first letter, so "I" and names inside the line survive. */
 function lowerFirst(text: string): string {

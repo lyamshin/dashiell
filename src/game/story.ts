@@ -27,14 +27,18 @@
 import deckJson from '../../content/decks/story.json';
 import { Rng } from '../gen/rng.js';
 import {
+  isTheft,
   spokenClock,
   type Case,
   type CaseType,
   type Entry,
+  type Errand,
   type Id,
+  type PetKind,
   type Precinct,
   type Tick,
 } from '../gen/types.js';
+import type { Told } from './types.js';
 import { RELATIONSHIP_BY_ID, VICTIM_ARCHETYPE_BY_ID } from '../gen/data/cast.js';
 import { MOTIVE_BY_TYPE } from '../gen/data/motives.js';
 import { genderForms } from '../gen/dossier.js';
@@ -94,7 +98,19 @@ export interface StoryInput {
     goodsWentTo?: Id;
     whereabouts?: Id | 'gone';
     fate?: 'left' | 'taken' | 'dead';
+    /** M14, affair: where they said they would be. */
+    claimedAt?: Id;
+    /** M14, affair: what it really was. */
+    errand?: Errand;
+    /** M14, lost pet: the kind of animal. */
+    pet?: PetKind;
   };
+  /**
+   * M14 §2.2, an affair: the client, and what I told them. The story ends on
+   * it; nothing else in the story is about the client.
+   */
+  client?: StoryPerson;
+  told?: Told;
   /** Where the culprit truly was, every half hour of the evening. */
   culpritTruth: (Id | null)[];
   /** Where the victim truly was. */
@@ -148,7 +164,7 @@ function sceneAnchor(kase: Case): StoryInput['anchor'] {
 }
 
 /** The only reader of a `Case` in this file. */
-export function storyInput(kase: Case): StoryInput {
+export function storyInput(kase: Case, told?: Told): StoryInput {
   const act = kase.act;
   const culpritId = kase.solution.killerId;
   const victimId = (kase.people.find((p) => p.kind === 'victim') as { id: Id }).id;
@@ -200,7 +216,11 @@ export function storyInput(kase: Case): StoryInput {
       ...(act.goodsWentTo === undefined ? {} : { goodsWentTo: act.goodsWentTo }),
       ...(act.whereabouts === undefined ? {} : { whereabouts: act.whereabouts }),
       ...(act.fate === undefined ? {} : { fate: act.fate }),
+      ...(act.claimedAt === undefined ? {} : { claimedAt: act.claimedAt }),
+      ...(act.errand === undefined ? {} : { errand: act.errand }),
+      ...(act.pet === undefined ? {} : { pet: act.pet }),
     },
+    ...(act.type === 'affair' ? { client: personOf(kase, kase.clientId), told: told ?? 'truth' } : {}),
     culpritTruth,
     victimTruth: truthOf(kase, victimId),
     anchor: sceneAnchor(kase),
@@ -265,7 +285,13 @@ export type StoryFact =
   | { kind: 'found'; personId: Id; placeId: Id; tick: Tick }
   | { kind: 'precinct'; value: Precinct }
   | { kind: 'lastSeen'; personId: Id; placeId: Id; tick: Tick }
-  | { kind: 'client'; personId: Id };
+  | { kind: 'client'; personId: Id }
+  /** M14, affair: where they said they would be. */
+  | { kind: 'claimed'; placeId: Id }
+  /** M14, affair: what it really was. */
+  | { kind: 'errand'; value: Errand }
+  /** M14, affair: what I told the client, which is not a fact about the case. */
+  | { kind: 'told'; value: Told };
 
 export interface StoryLine {
   beat: string;
@@ -291,7 +317,7 @@ export interface StoryCard {
 export const STORY_CARDS: StoryCard[] = (deckJson as unknown as StoryCard[]).filter((c) => c.status !== 'cut');
 
 /** Tags whose value on a card is a claim about the case, and the fact it is. */
-const CLAIM_TAGS = ['caseType', 'trope', 'fate', 'method', 'precinct', 'anchor'] as const;
+const CLAIM_TAGS = ['caseType', 'trope', 'fate', 'method', 'precinct', 'anchor', 'errand'] as const;
 
 /** One slot's words and what they assert. */
 interface Slot {
@@ -490,7 +516,20 @@ class Teller {
       trope: input.tropeId,
       method: input.means.methodId,
       ...(input.act.fate === 'left' || input.act.fate === 'taken' ? { fate: input.act.fate } : {}),
+      ...(input.act.errand === undefined ? {} : { errand: input.act.errand }),
+      ...(input.act.pet === undefined ? {} : { pet: input.act.pet }),
+      ...(input.told === undefined ? {} : { told: input.told }),
     };
+    if (input.client) {
+      this.base.client = { text: input.client.surname, facts: [{ kind: 'names', personId: input.client.id }] };
+    }
+    if (input.act.claimedAt !== undefined) {
+      const place = this.place(input.act.claimedAt);
+      if (place) this.base.claimed = { text: place.text, facts: [...place.facts, { kind: 'claimed', placeId: input.act.claimedAt }] };
+    }
+    if (input.act.pet !== undefined) {
+      this.base.petWord = { text: input.act.pet, facts: [] };
+    }
     if (input.act.taken) {
       const taken: StoryFact[] = [{ kind: 'taken', objectId: input.act.taken.id }];
       this.base.aTaken = { text: input.act.taken.name, facts: taken };
@@ -646,6 +685,8 @@ function claimOf(key: (typeof CLAIM_TAGS)[number], value: string, input: StoryIn
       return { kind: 'precinct', value: value as Precinct };
     case 'anchor':
       return { kind: 'anchor', templateId: value, tick: input.act.tick };
+    case 'errand':
+      return { kind: 'errand', value: value as Errand };
   }
 }
 
@@ -667,7 +708,10 @@ export function tellStory(input: StoryInput, history: Iterable<string> = []): St
   const cid = culprit.id;
   const vid = victim.id;
   const isMissing = input.type === 'missing';
-  const isRobbery = input.type === 'robbery';
+  // M14: a lost pet and a lost item are told as a theft is: the owner was
+  // somewhere else, and the thing went to wherever it is now.
+  const isRobbery = isTheft(input.type);
+  const isAffair = input.type === 'affair';
   const culpritFacts: StoryFact[] = [{ kind: 'culprit', personId: cid }];
 
   /* 1. Who did it, to whom. ------------------------------------------- */
@@ -732,6 +776,8 @@ export function tellStory(input: StoryInput, history: Iterable<string> = []): St
   s.paragraph();
 
   /* 3. The means, and how they came to be there. ----------------------- */
+  // M14, an affair: where the one it is about said they would be.
+  if (isAffair && act.claimedAt !== undefined) s.say('claimed');
   const meansFacts: StoryFact[] = [{ kind: 'means', placeId: means.placeId, objectId: means.objectId }];
   if (means.tick !== null) {
     s.say(
@@ -836,6 +882,8 @@ export function tellStory(input: StoryInput, history: Iterable<string> = []): St
     s.say('cover', { anchor: anchor.templateId }, { anchorPlace: s.place(anchor.placeId) }, [{ kind: 'masked' }]);
   }
   s.say('frame', {}, { weapon: { text: definite(means.objectName), facts: [{ kind: 'weapon', objectId: means.objectId }] } });
+  // M14, an affair: what it really was.
+  if (isAffair && act.errand !== undefined) s.say('errand', {}, {}, [{ kind: 'errand', value: act.errand }]);
   s.paragraph();
 
   /* 5. Afterwards. ----------------------------------------------------- */
@@ -933,6 +981,10 @@ export function tellStory(input: StoryInput, history: Iterable<string> = []): St
   }
   if (isMissing) s.say('behind');
   if (input.culpritIsClient) s.say('hired', {}, {}, [{ kind: 'client', personId: cid }]);
+  // M14: a lost animal's story ends with the animal.
+  if (input.type === 'lost-pet') s.say('pet');
+  // M14 §2.2: an affair's ends on what I told the client.
+  if (isAffair && input.told !== undefined) s.say('told', {}, {}, [{ kind: 'told', value: input.told }]);
   s.paragraph();
   s.say('close');
   return s.story();
@@ -1022,8 +1074,8 @@ function motiveThird(input: StoryInput): string | null {
  * lines they have read in earlier stories; with none, one case always tells
  * the same story.
  */
-export function storyOf(kase: Case, history: Iterable<string> = []): Story {
-  return tellStory(storyInput(kase), history);
+export function storyOf(kase: Case, history: Iterable<string> = [], told?: Told): Story {
+  return tellStory(storyInput(kase, told), history);
 }
 
 /** Every story card a told story used, for the reader's history. */

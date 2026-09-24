@@ -19,7 +19,7 @@
 import type { Entry, Id, Tick, Unknown } from '../gen/types.js';
 import { clock } from '../gen/types.js';
 import type { CaseView } from './derive.js';
-import { METHOD_POOL, MOTIVE_POOL, personName, placeName } from './derive.js';
+import { METHOD_POOL, MOTIVE_POOL, motivePoolFor, personName, placeName } from './derive.js';
 import type { Report } from './types.js';
 import { columnAsked, columnPeople, truthColumn } from './m9.js';
 
@@ -57,19 +57,27 @@ export const GONE = 'gone';
 export function labelFor(view: CaseView, key: Unknown): string {
   const type = view.kase.act.type;
   const victim = view.victim.surname;
+  // M14: the thing, "the fox terrier", for the three questions that name it.
+  const thing = view.kase.act.taken?.name.replace(/^(a|an) /, 'the ') ?? 'it';
   switch (key) {
     case 'who':
       return type === 'murder'
         ? `Who killed ${victim}`
         : type === 'robbery'
           ? 'Who took it'
-          : `Who took ${victim}`;
+          : type === 'lost-pet'
+            ? `Who let ${thing} out`
+            : type === 'lost-item'
+              ? `Who had ${thing} last`
+              : type === 'affair'
+                ? `Who ${victim} was with`
+                : `Who took ${victim}`;
     case 'why':
       return 'Why';
     case 'when':
       return 'When';
     case 'where':
-      return 'Where it happened';
+      return type === 'affair' ? `Where ${victim} was` : 'Where it happened';
     case 'how':
       return 'How';
     case 'entry':
@@ -79,7 +87,7 @@ export function labelFor(view: CaseView, key: Unknown): string {
     case 'fate':
       return `What became of ${victim}`;
     case 'goods':
-      return 'Where it went';
+      return type === 'lost-pet' || type === 'lost-item' ? `Where ${thing} is now` : 'Where it went';
   }
 }
 
@@ -92,7 +100,7 @@ export function optionsFor(view: CaseView, key: Unknown): FieldOption[] {
         .filter((p) => p.kind === 'suspect')
         .map((p) => ({ value: p.id, label: `${p.name} — ${p.role}` }));
     case 'why':
-      return MOTIVE_POOL.map((m) => ({ value: m.type, label: `${m.type} — ${m.description}` }));
+      return motivePoolFor(kase.act.type).map((m) => ({ value: m.type, label: `${m.type} — ${m.description}` }));
     case 'when':
       return Array.from({ length: 12 }, (_, t) => ({ value: String(t), label: clock(t as Tick) }));
     case 'where':
@@ -267,15 +275,16 @@ export function truthReport(view: CaseView): Report {
  */
 export function missedPhrase(view: CaseView, key: Unknown): string {
   const victim = view.victim.surname;
+  const type = view.kase.act.type;
   switch (key) {
     case 'who':
-      return 'the name of the one who did it';
+      return type === 'affair' ? `who ${victim} was with` : 'the name of the one who did it';
     case 'why':
       return 'the reason for it';
     case 'when':
       return 'the hour it happened';
     case 'where':
-      return 'the room it happened in';
+      return type === 'affair' ? `where ${victim} was` : 'the room it happened in';
     case 'how':
       return 'how it was done';
     case 'entry':
@@ -285,6 +294,6 @@ export function missedPhrase(view: CaseView, key: Unknown): string {
     case 'fate':
       return `what became of ${victim}`;
     case 'goods':
-      return 'where the goods went';
+      return type === 'lost-pet' ? 'where the animal got to' : type === 'lost-item' ? 'where the thing had got to' : 'where the goods went';
   }
 }

@@ -1,4 +1,4 @@
-import type { Entry } from '../types.js';
+import type { Entry, PetKind } from '../types.js';
 import { METHOD_TEMPLATES, type MethodTemplate } from './methods.js';
 
 /**
@@ -22,6 +22,8 @@ import { METHOD_TEMPLATES, type MethodTemplate } from './methods.js';
 export interface MeansTemplate extends MethodTemplate {
   /** How they got in. Robbery only. */
   entry?: Entry;
+  /** M14, lost pet: the animals this way out makes sense for. A goat does not go in a hatbox. */
+  pets?: PetKind[];
 }
 
 export const MURDER_MEANS: MeansTemplate[] = METHOD_TEMPLATES;
@@ -157,9 +159,10 @@ export const PET_MEANS: MeansTemplate[] = [
   {
     id: 'pet-roof-door',
     name: 'the roof door, opened with its key',
+    pets: ['dog', 'cat', 'parrot', 'goat'],
     noise: 0,
     evidenceObjectId: 'obj-roofkey',
-    bodyEvidence: 'The roof door was found propped open with a brick, and it only opens with the key.',
+    bodyEvidence: 'It went out by the roof door, which was found propped open with a brick, and which only opens with the key.',
     evidenceNote: 'The key is off its nail, and the nail is the only clean thing on that wall.',
     sceneTrace: 'The water dish is full and the blanket in the corner is still warm on one side.',
     accessNote: 'had to take the roof-door key off its nail',
@@ -168,9 +171,10 @@ export const PET_MEANS: MeansTemplate[] = [
   {
     id: 'pet-sash-cord',
     name: 'a length of sash cord, for a lead',
+    pets: ['dog', 'goat'],
     noise: 0,
     evidenceObjectId: 'obj-cord',
-    bodyEvidence: 'The collar was found on the step, unbuckled, not broken. Somebody took it off.',
+    bodyEvidence: 'It went out by the front, on a lead. The collar was found on the step, unbuckled, not broken, and somebody took it off.',
     evidenceNote: 'A length has been cut off the coil, clean, with a sharp knife, by somebody in no hurry.',
     sceneTrace: 'The collar is on the floor by the door with the buckle undone and the tag still on it.',
     accessNote: 'had to cut a length of sash cord to lead the animal off with',
@@ -179,9 +183,10 @@ export const PET_MEANS: MeansTemplate[] = [
   {
     id: 'pet-hatbox',
     name: 'a hatbox with holes punched in the lid',
+    pets: ['cat', 'parrot'],
     noise: 0,
     evidenceObjectId: 'obj-hatbox',
-    bodyEvidence: 'There were hairs on the sill and a hatbox lid in the areaway with holes punched in it.',
+    bodyEvidence: 'It went out carried. There was a hatbox lid in the areaway with holes punched in it.',
     evidenceNote: 'One box is gone off the top of the stack, and the stack has been squared up again by somebody tidy.',
     sceneTrace: 'The basket is empty, and somebody has put the cushion back in it very neatly.',
     accessNote: 'had to take a hatbox off the stack',
@@ -190,9 +195,10 @@ export const PET_MEANS: MeansTemplate[] = [
   {
     id: 'pet-gate-pin',
     name: 'the pin out of the gate hinge',
+    pets: ['dog', 'goat'],
     noise: 0,
     evidenceObjectId: 'obj-toolbox',
-    bodyEvidence: 'The back gate was found hanging off its top hinge. The pin was drawn, not broken.',
+    bodyEvidence: 'It went out by the back gate, which was found hanging off its top hinge. The pin was drawn, not broken.',
     evidenceNote: 'The pliers are missing from the toolbox, and the tray they live in is the only empty one.',
     sceneTrace: 'The gate is hanging by one hinge, and the pin is gone from the other.',
     accessNote: 'had to get a pair of pliers out of the toolbox',

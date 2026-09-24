@@ -115,6 +115,12 @@ export function buildPool(input: PoolInput): Pool {
     them: (id) => (genderOf(person(id)) === 'f' ? 'her' : 'him'),
     victim: who(cast.victim.id),
     victimId: cast.victim.id,
+    // M14: nobody died in these three.
+    ...(input.caseType === 'lost-pet' || input.caseType === 'lost-item'
+      ? { alive: 'still had it at', crime: 'When it went' }
+      : input.caseType === 'affair'
+        ? { alive: 'was where they said until at least', crime: 'The half hour' }
+        : {}),
   };
 
   let counter = 0;
