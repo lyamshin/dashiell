@@ -141,6 +141,8 @@ export interface DeductionDials {
    * (docs/24-shorter-nights-notes.md).
    */
   extraSlack?: number;
+  /** M14: spare actions over `extraSlack` for one case type, where the design test needs them. */
+  typeSlack?: Partial<Record<CaseType, number>>;
   /**
    * M10 Part B, Raw and Coddled: the night teaches the one loop the game is.
    * The culprit's own account is on the par route and lies about the crime's
@@ -234,7 +236,13 @@ export const DEDUCTION_HARD: DeductionDials = {
   hypothesis: true,
   pieces: 0.7,
   par: [10, 22],
-  extraSlack: 2,
+  // M14: three, not two. The design test is held per case type now, and at
+  // two the reasoning player ran out of night on a murder, a robbery or a
+  // disappearance a quarter of the time (docs/33-m14-notes.md).
+  extraSlack: 3,
+  // A robbery at Hard-boiled needed one call more again: 78% at three over
+  // 200 seeds, 80% at four.
+  typeSlack: { robbery: 1 },
 };
 
 export interface Ladder {
@@ -648,11 +656,18 @@ export function slackFor(shape: CaseShape, ladder: Ladder, par: number): number 
  * `extraSlack` (Hard-boiled). The no-options case never comes here, so its
  * budgets are byte for byte what they were.
  */
-export function logicSlackFor(shape: CaseShape, ladder: Ladder, par: number, walk: number = par): number {
+export function logicSlackFor(
+  shape: CaseShape,
+  ladder: Ladder,
+  par: number,
+  walk: number = par,
+  type?: CaseType,
+): number {
   // Shorter nights: where slack scales with par, it scales with the size of
   // the game — the par route walked the M9 way (\`SolveSummary.walk\`) — so
   // the budget comes down by exactly the calls the night no longer spends.
-  return slackFor(shape, ladder, walk) + (deductionOf(shape).extraSlack ?? 0);
+  const ded = deductionOf(shape);
+  return slackFor(shape, ladder, walk) + (ded.extraSlack ?? 0) + (type !== undefined ? (ded.typeSlack?.[type] ?? 0) : 0);
 }
 
 /** How many liars the level wants, capped by what the shape allows. */

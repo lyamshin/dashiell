@@ -123,8 +123,10 @@ describe('M14: the three new case types', () => {
   });
 });
 
-const DEATH = /\b(died|killed|killer|murder|murdered|corpse|the body|slab|hanged|hangs|coroner|jury|weapon)\b/i;
-const THEFT = /\b(robbery|robbed|thief|stolen goods)\b/i;
+// "The kitchen noise had died down" and "the ring it hangs on" are not deaths;
+// a character who was "robbed once" is somebody's history, not the case.
+const DEATH = /\b(died(?! down)|killed|killer|murder|murdered|corpse|the body|slab|hanged|coroner|jury|weapon)\b/i;
+const THEFT = /\b(robbery|thief|stolen goods)\b/i;
 
 describe('M14: on the page', () => {
   it('never speaks of a death, and a lost dog or an affair never of a robbery', () => {

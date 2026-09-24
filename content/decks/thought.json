@@ -4312,7 +4312,7 @@
   {
     "id": "tht-n016",
     "deck": "thought",
-    "text": "So {victim} was still where {victim} had said at {time}, if that held. Whatever the evening turned into, it turned into it after.",
+    "text": "So {victim} was still where promised at {time}, if that held. Whatever the evening turned into, it turned into it after.",
     "tags": {
       "class": "window",
       "basis": "alive-at",
@@ -4444,7 +4444,7 @@
   {
     "id": "tht-n027",
     "deck": "thought",
-    "text": "By {time} {victim} would have stopped being where {victim} had said. The hours before that were the ones worth knowing about.",
+    "text": "By {time} {victim} would have stopped being where promised. The hours before that were the ones worth knowing about.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
