@@ -497,7 +497,7 @@
   {
     "id": "CLS-046",
     "deck": "close",
-    "text": "Everybody has something in a drawer. {name}’s had just come out of it.",
+    "text": "Everybody keeps something in a drawer. {name}’s drawer had just come open.",
     "tags": {
       "outcome": "admit",
       "role": "any"

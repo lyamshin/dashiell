@@ -410,7 +410,13 @@ export function checkRecap(view: CaseView, page: Page, state: RunState, found: r
     for (const pl of view.places) bare = bare.split(pl.shortName).join('');
     const names = surnames.filter((q) => new RegExp(`\\b${q.surname}\\b`).test(bare)).map((q) => q.id);
     const times = renderedFacts(clause.text, { spoken: true }).times;
-    const places = view.places.filter((pl) => clause.text.toLowerCase().includes(pl.shortName.toLowerCase())).map((pl) => pl.id);
+    // "Ruggiero’s evening" is a person's, not the barber's shop called Ruggiero’s.
+    let placeText = clause.text;
+    for (const id of clause.personIds) {
+      const surname = view.personById.get(id)?.surname;
+      if (surname) placeText = placeText.split(`${surname}’s evening`).join('').split(`${surname}’s word`).join('').split(`${surname}’s own`).join('').split(`${surname}’s night`).join('');
+    }
+    const places = view.places.filter((pl) => placeText.toLowerCase().includes(pl.shortName.toLowerCase())).map((pl) => pl.id);
     const hours = new Set(clause.ticks.map((t) => clock(t as Tick)));
     if (clause.key.startsWith('frame|')) {
       if (names.length > 0) fail('the frame names somebody');

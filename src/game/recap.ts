@@ -479,7 +479,9 @@ export function recapFacts(view: CaseView, state: RunState, opts: { everyone?: b
     const search = /^examine (.+)$/.exec(t.command);
     if (search) {
       const at = view.places.find((pl) => pl.shortName === search[1]);
-      if (at) next.push({ key: `next|${t.command}`, ids: [], places: [at.id], lines: RECAP_NEXT_SEARCH, slots: { place: at.shortName } });
+      // A room named for somebody the reader has not met names them.
+      const namesSomebody = at !== undefined && kase.people.some((q) => at.shortName.includes(q.surname) && !readerKnows(q.id));
+      if (at && !namesSomebody) next.push({ key: `next|${t.command}`, ids: [], places: [at.id], lines: RECAP_NEXT_SEARCH, slots: { place: at.shortName } });
     }
   }
   const untold = unplaced.find((P) => !st.accounts.includes(P) && named(P));

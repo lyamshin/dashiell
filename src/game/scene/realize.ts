@@ -1683,10 +1683,18 @@ function exchange(
   // M12 Part 1: the ask, often in his narration. Direct quotes are for the
   // answer, and for a question with an edge — to somebody guarded, a question
   // that carries its own reason, their life, why he was hired.
-  const reported =
-    staged?.reported === true && !beat.carried && !scene.self && scene.askKind !== 'ask-hired'
+  // A question that carries its own reason is told with the reason first:
+  // "Vitale had lent Sirkin money. I asked her where Vitale had been tonight."
+  const carriedVerb = beat.carried && subject?.relationshipId ? RELATION_PLAIN[subject.relationshipId] : undefined;
+  const reportedCarried = staged?.reported === true && carriedVerb !== undefined && subject !== undefined;
+  const reportedLine =
+    staged?.reported === true && (!beat.carried || reportedCarried) && !scene.self && scene.askKind !== 'ask-hired'
       ? reportedQuestion(stage, scene, beat, firstTelling, person)
       : null;
+  const reported =
+    reportedLine !== null && reportedCarried && subject && carriedVerb
+      ? `${subject.surname} ${carriedVerb.split('{V}').join(view.victim.surname)}. ${reportedLine}`
+      : reportedLine;
   let question = '';
   if (reported !== null) {
     question = reported;
@@ -1873,7 +1881,7 @@ function exchange(
   // reply to the name would say it twice.
   const knowsOnlyTheFace =
     firstTelling !== undefined && firstTelling.family.kind === 'knowing' && firstTelling.family.subjectId === subject?.id;
-  if (beat.carried && subject && !knowsOnlyTheFace) {
+  if (beat.carried && subject && !knowsOnlyTheFace && reported === null) {
     // "Nora Hanrahan. She's been with him since 'eighteen." — from somebody who knows
     // them; a face known by sight comes with no history.
     const strength = view.kase.logic ? acquaintanceOf(view.kase, person.id, subject.id)?.strength : undefined;
