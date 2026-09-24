@@ -110,6 +110,22 @@ describe('v2: the puzzle', () => {
     // The count at the third floor at half past eight is findable, and on the road.
     const count = k.findable.find((c) => c.establishes.some((f) => f.kind === 'countAt' && f.tick === 5 && f.count === 1));
     expect(count).toBeDefined();
+    // The count breaks Hauck's third floor as well as Marchetti's, as a way of
+    // its own that does not lean on her own confession.
+    const hauck = k.people.find((p) => p.surname === 'Hauck')?.id;
+    const ways = k.logic?.confrontations.find((c) => c.personId === hauck)?.contradictions ?? [];
+    expect(ways.some((w) => w.includes(count!.id) && !w.some((id) => id.startsWith('confess:')))).toBe(true);
+  });
+
+  it('never counts a liar’s own confession as a way of breaking the lie', () => {
+    for (const tier of [2, 4, 5] as const) {
+      for (let seed = 1; seed <= 4; seed++) {
+        const k = v2(seed, tier);
+        for (const c of k.logic?.confrontations ?? []) {
+          for (const w of c.contradictions) expect(w.some((id) => id.startsWith(`confess:${c.personId}:`))).toBe(false);
+        }
+      }
+    }
   });
 });
 

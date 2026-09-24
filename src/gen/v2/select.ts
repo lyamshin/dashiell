@@ -123,13 +123,22 @@ export function selectV2(input: LogicSelectInput): V2Selection | null {
     for (let k = 0; k < 3; k++) {
       const st = k === 0 && clues === findableCore ? full : solveAt(current);
       let found: Id[] | null = null;
+      // A half hour struck by the person's own confession is not a way of
+      // breaking the story: the confession comes after it. Another half hour's
+      // reason first (M9's routes took the first half hour, which could be that).
+      let own: Id[] | null = null;
       for (const t of ticks) {
         const w = whyNot(st, personId, t, claimed);
-        if (w) {
-          found = idsOf(st, w);
-          break;
+        if (!w) continue;
+        const ids = idsOf(st, w);
+        if (ids.some((id) => id.startsWith(`confess:${personId}:`))) {
+          own ??= ids;
+          continue;
         }
+        found = ids;
+        break;
       }
+      found ??= own;
       if (!found || found.length === 0) break;
       out.push(found);
       const drop = new Set(found.map((id) => byId.get(id)).filter((c): c is Clue => !!c).map(sourceKey));

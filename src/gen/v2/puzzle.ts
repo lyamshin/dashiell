@@ -210,13 +210,19 @@ export function buildPuzzle(input: LogicSelectInput, frame: ProblemFrame): Puzzl
     for (let k = 0; k < max; k++) {
       const st = k === 0 && first ? first : solveAt(cur, c);
       let found: Id[] | null = null;
+      let own: Id[] | null = null;
       for (const t of d.ticks) {
         const w = whyNot(st, d.personId, t, d.claimed);
-        if (w) {
-          found = idsOf(st, w);
-          break;
+        if (!w) continue;
+        const ids = idsOf(st, w);
+        if (ids.some((id) => id.startsWith(`confess:${d.personId}:`))) {
+          own ??= ids;
+          continue;
         }
+        found = ids;
+        break;
       }
+      found ??= own;
       if (!found || found.length === 0) break;
       out.push(found);
       const byId = new Map(cur.map((x) => [x.id, x]));
