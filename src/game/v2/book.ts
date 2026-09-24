@@ -509,7 +509,14 @@ function turnRecap(
       .filter((c) => after.found.includes(c.id))
       .flatMap((c) => c.establishes)
       .find((f): f is Extract<Fact, { kind: 'anchorAt' }> => f.kind === 'anchorAt' && f.anchorId === motif.anchorId);
-    const at = heard?.ticks.find((t) => t === tick) ?? heard?.ticks.find((t) => t === view.kase.solution.murderTick);
+    // Or the scene said it: the scene's report gives the motif's hour at the crime.
+    const sceneSaid = view.kase.findable.some(
+      (c) => c.kind === 'scene' && after.found.includes(c.id) && (c.textRecord ?? c.text).toLowerCase().includes((motif.name.replace(/^the /, '').split(' ')[0] ?? '').toLowerCase()),
+    );
+    const at =
+      heard?.ticks.find((t) => t === tick) ??
+      heard?.ticks.find((t) => t === view.kase.solution.murderTick) ??
+      (sceneSaid && motif.ticks.includes(view.kase.solution.murderTick) ? view.kase.solution.murderTick : undefined);
     if (at !== undefined) {
       const m = BOOK_LINES.motifs[motif.anchorId] ?? BOOK_LINES.motifs['any'];
       const said = sayOne(m?.turn, { ...slots, hour: spokenClock(at) }, mem, seed, 'motifTurn');

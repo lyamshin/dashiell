@@ -225,7 +225,7 @@ export function recapFacts(
       ticks: [anchor.tick],
       anchorIds: [anchor.anchorId],
       keep: 1,
-      say: (pick) => fillLine(pick(RECAP_ANCHOR), { Anchor: cap(anchor.name), time: spokenClock(anchor.tick) }),
+      say: (pick) => fillLine(pick(RECAP_ANCHOR), { Anchor: cap(anchor.name), was: /^the bells\b/.test(anchor.name) ? 'were' : 'was', time: spokenClock(anchor.tick) }),
     });
   }
   if (type === 'murder' && book.established.method !== null) {

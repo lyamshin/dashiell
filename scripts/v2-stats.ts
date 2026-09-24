@@ -61,8 +61,8 @@ const median = (xs: number[]) => {
   const s = xs.slice().sort((a, b) => a - b);
   return s[Math.floor(s.length / 2)] ?? 0;
 };
-console.log('| tier | dealt | ms (max) | attempts | murder / lost pet | peak | key R (median, min) | other R (median) | critical | width min / median | load | par | books | bands held (peak, key, other, critical, width, load) |');
-console.log('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
+console.log('| tier | dealt | ms (max) | attempts | murder / lost pet | peak | key R (median, min) | other R (median) | critical | width min / median | load | par | books | facts: route / overlap / dead end | turn on the par route | bands held (peak, key, other, critical, width, load) |');
+console.log('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
 for (const tier of tiers) {
   let dealt = 0;
   let ms = 0;
@@ -79,6 +79,8 @@ for (const tier of tiers) {
   const par: number[] = [];
   const books: Record<string, number> = {};
   const bands: Record<string, number> = {};
+  const cls = { route: 0, overlap: 0, 'dead-end': 0 } as Record<string, number>;
+  let turnOnPar = 0;
   const rejections: Record<string, number> = {};
   for (let seed = 1; seed <= seeds; seed++) {
     const t0 = performance.now();
@@ -112,6 +114,9 @@ for (const tier of tiers) {
     const b = k.v2?.book;
     if (b) books[b.title] = (books[b.title] ?? 0) + 1;
     for (const [name, ok] of Object.entries(g.stats.bands)) if (ok) bands[name] = (bands[name] ?? 0) + 1;
+    for (const c of Object.values(g.classes)) if (c in cls) cls[c] = (cls[c] ?? 0) + 1;
+    const parIds = new Set(k.logic?.solve.parRules ?? []);
+    if (g.lies.some((l) => { const s = g.steps.find((x) => x.id === l); return !!s && s.leaves.every((id) => parIds.has(id)); })) turnOnPar++;
   }
   const peakText = Object.entries(peaks)
     .sort((a, b) => TECH_COST[a[0] as 'T1'] - TECH_COST[b[0] as 'T1'])
@@ -120,7 +125,7 @@ for (const tier of tiers) {
   const bookText = Object.entries(books).map(([b, n]) => `${b} ${n}`).join(', ');
   const bandText = ['peak', 'keyRoutes', 'otherRoutes', 'critical', 'width', 'load'].map((b) => pct(bands[b] ?? 0, dealt)).join(', ');
   console.log(
-    `| ${TIER_NAMES[tier]} | ${dealt}/${seeds} | ${Math.round(ms / Math.max(1, dealt))} (${Math.round(maxMs)}) | ${(attempts / Math.max(1, dealt)).toFixed(1)} | ${types['murder'] ?? 0} / ${types['lost-pet'] ?? 0} | ${peakText} | ${median(keyR)}, ${Math.min(...keyR)} | ${median(otherR)} | ${median(critical)} | ${median(wmin)} / ${median(wmed)} | ${median(load)} | ${median(par)} | ${bookText} | ${bandText} |`,
+    `| ${TIER_NAMES[tier]} | ${dealt}/${seeds} | ${Math.round(ms / Math.max(1, dealt))} (${Math.round(maxMs)}) | ${(attempts / Math.max(1, dealt)).toFixed(1)} | ${types['murder'] ?? 0} / ${types['lost-pet'] ?? 0} | ${peakText} | ${median(keyR)}, ${Math.min(...keyR)} | ${median(otherR)} | ${median(critical)} | ${median(wmin)} / ${median(wmed)} | ${median(load)} | ${median(par)} | ${bookText} | ${Math.round(cls.route / dealt)} / ${Math.round(cls.overlap / dealt)} / ${Math.round(cls['dead-end'] / dealt)} | ${pct(turnOnPar, dealt)} | ${bandText} |`,
   );
   if (flags.has('why')) {
     for (const [r, n] of Object.entries(rejections).sort((a, b) => b[1] - a[1]).slice(0, 8)) console.log(`    ${n} × ${r}`);

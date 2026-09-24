@@ -927,7 +927,8 @@ function runLogic(
         ? selectV2({ ...selectInput, rng: new Rng((seed * 2246822519 + attempts * 3266489917 + salt) >>> 0) })
         : selectLogic(selectInput);
       if (!selection) continue;
-      const slack = logicSlackFor(shape, ladder, selection.par, selection.summary.walk, caseType);
+      // v2: a call more from Medium up, where the night leans on a confession or two (docs/36).
+      const slack = logicSlackFor(shape, ladder, selection.par, selection.summary.walk, caseType) + (v2 && typeof shape.tier === 'number' && shape.tier >= 4 ? 1 : 0);
 
       const descriptions: Record<PersonId, Description> = {};
       for (const p of cast.suspects) descriptions[p.id] = ambiguousDescription(p, cast.suspects);
