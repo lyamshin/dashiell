@@ -186,7 +186,7 @@ export const PET_MEANS: MeansTemplate[] = [
     pets: ['cat', 'parrot'],
     noise: 0,
     evidenceObjectId: 'obj-hatbox',
-    bodyEvidence: 'It went out carried. There was a hatbox lid in the areaway with holes punched in it.',
+    bodyEvidence: 'It went out carried. There was a hatbox lid by the basement steps with holes punched in it.',
     evidenceNote: 'One box is gone off the top of the stack, and the stack has been squared up again by somebody tidy.',
     sceneTrace: 'The basket is empty, and somebody has put the cushion back in it very neatly.',
     accessNote: 'had to take a hatbox off the stack',

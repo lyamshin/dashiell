@@ -17,7 +17,7 @@ import { describe, expect, it } from 'vitest';
 import { generateCase, type Case, type Difficulty, type Id, type Tick } from '../src/gen/index.js';
 import { TROPE_IDS } from '../src/gen/tropes/index.js';
 import { LEGACY_TROPES } from '../src/gen/shape.js';
-import { RELATIONSHIPS, VICTIM_ARCHETYPES, VICTIM_ARCHETYPE_BY_ID, RELATIONSHIP_BY_ID } from '../src/gen/data/cast.js';
+import { RELATIONSHIPS, VICTIM_ARCHETYPES, VICTIM_ARCHETYPE_BY_ID, RELATIONSHIP_BY_ID, allStandings } from '../src/gen/data/cast.js';
 import { MOTIVE_TEMPLATES } from '../src/gen/data/motives.js';
 import { genderForms } from '../src/gen/dossier.js';
 import { METHOD_TEMPLATES } from '../src/gen/data/methods.js';
@@ -178,7 +178,10 @@ function check(kase: Case, f: StoryFact): string | null {
       if (f.personId !== victim.id) return 'standing of somebody else';
       if (f.archetypeId === undefined) return null;
       if (victim.archetypeId !== f.archetypeId) return 'wrong victim archetype';
-      const template = VICTIM_ARCHETYPE_BY_ID[f.archetypeId]?.standing[f.variant ?? -1];
+      const card = VICTIM_ARCHETYPE_BY_ID[f.archetypeId];
+      // The coherence pass: a lost cat's owner stands on the block by the
+      // card's mundane lines, which the story numbers after the old three.
+      const template = card ? allStandings(card)[f.variant ?? -1] : undefined;
       return template !== undefined &&
         fits(`${victim.surname} ${genderForms(template, victim.gender)}`, kase.victimBio.standing)
         ? null
@@ -536,7 +539,7 @@ describe('the story deck', () => {
 
   it('has a standing card for every victim the generator can draw', () => {
     for (const v of VICTIM_ARCHETYPES) {
-      v.standing.forEach((_t, variant) => {
+      allStandings(v).forEach((_t, variant) => {
         expect(has('standing', { archetype: v.id, variant }), `${v.id} #${variant}`).toBe(true);
       });
     }

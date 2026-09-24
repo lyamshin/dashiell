@@ -39,7 +39,7 @@ import {
   type Tick,
 } from '../gen/types.js';
 import type { Told } from './types.js';
-import { RELATIONSHIP_BY_ID, VICTIM_ARCHETYPE_BY_ID } from '../gen/data/cast.js';
+import { RELATIONSHIP_BY_ID, VICTIM_ARCHETYPE_BY_ID, allStandings } from '../gen/data/cast.js';
 import { MOTIVE_BY_TYPE } from '../gen/data/motives.js';
 import { genderForms } from '../gen/dossier.js';
 import { wrap } from './transcript.js';
@@ -1013,7 +1013,8 @@ function standingOf(input: StoryInput): { archetypeId: Id; variant: number } | n
   const id = input.victim.archetypeId;
   const card = id === undefined ? undefined : VICTIM_ARCHETYPE_BY_ID[id];
   if (!card || input.standing === null) return null;
-  const variant = card.standing.findIndex(
+  // The mundane three's owners stand on the block another way: variants 3–5.
+  const variant = allStandings(card).findIndex(
     (t) => parseTemplate(`${input.victim.surname} ${genderForms(t, input.victim.gender)}`, input.standing as string) !== null,
   );
   return variant < 0 ? null : { archetypeId: id as Id, variant };

@@ -12,6 +12,7 @@ import {
 } from './data/means.js';
 import { ANCHOR_TEMPLATES, canTimeScene, type AnchorTemplate } from './data/anchors.js';
 import type { Rng } from './rng.js';
+import { OWNABLE_ROOMS, petFits } from './coherence.js';
 import type { CaseShape } from './shape.js';
 
 /** Which deck the means comes out of, and whether the place has to host it. */
@@ -188,6 +189,7 @@ function chooseScene(
   gated: boolean,
   home = false,
   away = false,
+  owned?: (t: PlaceTemplate) => boolean,
 ): Scene | null {
   const options: Scene[] = [];
   for (const scene of drawn) {
@@ -214,7 +216,12 @@ function chooseScene(
   // Flatten by scene first so a place that hosts five methods is not five
   // times as likely to be the scene as one that hosts one.
   const scenes = Array.from(new Set(options.map((o) => o.murderPlaceId)));
-  const sceneId = rng.pick(scenes);
+  let sceneId = rng.pick(scenes);
+  if (owned) {
+    const own = scenes.filter((id) => owned(drawn.find((t) => t.id === id) as PlaceTemplate));
+    if (own.length === 0) return null;
+    if (!own.includes(sceneId)) sceneId = rng.pick(own);
+  }
   return rng.pick(options.filter((o) => o.murderPlaceId === sceneId));
 }
 
@@ -230,6 +237,13 @@ export function buildSetting(
   caseType: CaseType = 'murder',
   tropeId = 'body-at-scene',
   shape?: CaseShape,
+  /**
+   * The coherence pass: a case the mix dealt new, or a kept classic case once
+   * turned down, keeps an inside job's box in a room of the owner's. The
+   * untiered case, and a kept classic case at first, deal what they always
+   * dealt, byte for byte.
+   */
+  coherent = false,
 ): Setting | null {
   const neighborhood = rng.pick(NEIGHBORHOODS);
 
@@ -245,9 +259,23 @@ export function buildSetting(
   if (caseType === 'lost-pet') {
     const roll = rng.next();
     pet = roll < 0.45 ? 'dog' : roll < 0.75 ? 'cat' : roll < 0.95 ? 'parrot' : 'goat';
+    // A goat lives where there is a yard to keep it in, and nowhere else.
+    const home = drawn.find((t) => t.isResidence === true);
+    if (home && !petFits(pet, home.id)) {
+      const again = rng.next() * 0.95;
+      pet = again < 0.45 ? 'dog' : again < 0.75 ? 'cat' : 'parrot';
+    }
   }
   const deck = MEANS_DECK[caseType].filter((m) => pet === undefined || m.pets === undefined || m.pets.includes(pet));
-  const scene = chooseScene(rng, drawn, deck, caseType === 'murder', caseType === 'lost-pet', caseType === 'affair');
+  // The coherence pass: a lost thing is kept at the owner's own address, never
+  // the benches in the square, and an inside job is a room with a lock on it
+  // that is the owner's. Drawn again where the first draw was not, so a draw
+  // that was already coherent is the one it always was.
+  const owned =
+    caseType === 'lost-item' || (coherent && tropeId === 'inside-job')
+      ? (t: PlaceTemplate) => t.isResidence === true || (tropeId === 'inside-job' && OWNABLE_ROOMS.includes(t.id))
+      : undefined;
+  const scene = chooseScene(rng, drawn, deck, caseType === 'murder', caseType === 'lost-pet', caseType === 'affair', owned);
   if (!scene) return null;
 
   /* --- who is posted where ------------------------------------------- */

@@ -6639,5 +6639,335 @@
       "motive": "business-done"
     },
     "status": "generated"
+  },
+  {
+    "id": "STY-689",
+    "deck": "story",
+    "text": "{victim} kept a geranium in every window {vhe} owned, and owned a good many windows.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-landlord",
+      "variant": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-690",
+    "deck": "story",
+    "text": "{victim} knew every tenant on Ninth Avenue by name, and most of them by their excuses.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-landlord",
+      "variant": 4
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-691",
+    "deck": "story",
+    "text": "{victim} owned three buildings on the avenue and still swept {vhis} own front step.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-landlord",
+      "variant": 5
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-692",
+    "deck": "story",
+    "text": "{victim} kept the top floor, the best radio on the street, and regular hours for a bootlegger.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-bootlegger",
+      "variant": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-693",
+    "deck": "story",
+    "text": "{victim} was known on the block for good whisky and a bad temper, in that order.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-bootlegger",
+      "variant": 4
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-694",
+    "deck": "story",
+    "text": "{victim} was polite to everybody on the stairs, which on that street made {vhim} a gentleman.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-bootlegger",
+      "variant": 5
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-695",
+    "deck": "story",
+    "text": "{victim} had money in a neighbourhood that had none, and spent most of it on hats.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-heiress",
+      "variant": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-696",
+    "deck": "story",
+    "text": "{victim} had been married twice and photographed more often than that.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-heiress",
+      "variant": 4
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-697",
+    "deck": "story",
+    "text": "{victim} was the one name on the block the newspapers would have printed, and knew it.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-heiress",
+      "variant": 5
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-698",
+    "deck": "story",
+    "text": "{victim} knew every act on the circuit and had seen most of them twice.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-agent",
+      "variant": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-699",
+    "deck": "story",
+    "text": "{victim} could get anybody a booking in Newark, and said so often.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-agent",
+      "variant": 4
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-700",
+    "deck": "story",
+    "text": "{victim} kept a signed photograph of everybody {vhe} ever booked, and had booked a great many.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-agent",
+      "variant": 5
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-701",
+    "deck": "story",
+    "text": "{victim} inspected buildings for the city in the same brown suit every day.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-inspector",
+      "variant": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-702",
+    "deck": "story",
+    "text": "{victim} knew every staircase on six blocks, and which ones to stay off.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-inspector",
+      "variant": 4
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-703",
+    "deck": "story",
+    "text": "{victim} had a city badge, a pension coming, and a very clean hat.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-inspector",
+      "variant": 5
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-704",
+    "deck": "story",
+    "text": "{victim} kept the union’s accounts in a green ledger and could add a column in {vhis} head.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-union-treasurer",
+      "variant": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-705",
+    "deck": "story",
+    "text": "{victim} ran the union picnic every summer, and the raffle, and never won it.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-union-treasurer",
+      "variant": 4
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-706",
+    "deck": "story",
+    "text": "{victim} knew four hundred union men by name, and most of their wives.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-union-treasurer",
+      "variant": 5
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-707",
+    "deck": "story",
+    "text": "{victim} had three brass balls over the door and a good memory behind the counter.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-pawnbroker",
+      "variant": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-708",
+    "deck": "story",
+    "text": "{victim} knew the block by what it had pawned, and said good morning to all of it.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-pawnbroker",
+      "variant": 4
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-709",
+    "deck": "story",
+    "text": "{victim} could price a watch across the room and was seldom wrong.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-pawnbroker",
+      "variant": 5
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-710",
+    "deck": "story",
+    "text": "{victim} wrote about who danced with whom, and was right more often than not.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-columnist",
+      "variant": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-711",
+    "deck": "story",
+    "text": "{victim} had a seat at every wedding on the block, and wrote about the cake.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-columnist",
+      "variant": 4
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-712",
+    "deck": "story",
+    "text": "{victim} was invited everywhere, and went to most of it.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-columnist",
+      "variant": 5
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-713",
+    "deck": "story",
+    "text": "{victim} kept an office with a bench outside it and a kettle always on.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-bondsman",
+      "variant": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-714",
+    "deck": "story",
+    "text": "{victim} never locked the office door, because nobody robs a bondsman.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-bondsman",
+      "variant": 4
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-715",
+    "deck": "story",
+    "text": "{victim} sent a card every Christmas to everybody {vhe} had ever stood bail for.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-bondsman",
+      "variant": 5
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-716",
+    "deck": "story",
+    "text": "{victim} could tell a good wool from a bad one by the smell, and often did, out loud.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-wholesaler",
+      "variant": 3
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-717",
+    "deck": "story",
+    "text": "{victim} had retired from the cloth trade and taken up telling people about it.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-wholesaler",
+      "variant": 4
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-718",
+    "deck": "story",
+    "text": "{victim} was the best-dressed man on the landing and the only one who never mentioned it.",
+    "tags": {
+      "beat": "standing",
+      "archetype": "vic-wholesaler",
+      "variant": 5
+    },
+    "status": "generated"
   }
 ]
