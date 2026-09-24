@@ -1,6 +1,6 @@
 # Golden: sheets for walking into a room with people in it
 
-*Draft for the designer to bless or edit, 2026-09-24.*
+*Blessed 2026-09-24: "Sheet A, seed 3 is the most golden golden." Callbacks (a role paid off later in the sheet) should run on about 70% of pages, not every page.*
 
 > The designer: "We need another element that'll make it sing, and that's a 'sheet.' … like a madlib page. Now I don't want ours to be that formalized … cards from the decks slot into known holes in each sheet. Sheets should be mutable and have their own internal roles … it demand[s] cards from specified decks in the correct places and … reuse[s], in the same sheet, some of the info from those cards."
 >

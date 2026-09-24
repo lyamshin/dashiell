@@ -70,3 +70,10 @@ Money stays, but as one tie among many.
 2. Should the first tiers be mostly mundane, with murder saved for later?
 3. For affairs, is the ending choice (what to tell the client) something the player decides? That would be a small, real decision at the end of a run.
 4. Books after sheets, or do you want the book shape sketched as a golden now too?
+
+## Decisions (2026-09-24)
+
+- **The new cases are right:** a lost pet, a lost item, and an affair.
+- **Mixed at all levels.** Every tier deals a mix of case types, murder included. There's no mundane-only opening tier.
+- **The affair's ending is the player's choice:** what to tell the client.
+- **Books come after sheets.**
