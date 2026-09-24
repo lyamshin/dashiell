@@ -14,7 +14,8 @@
         {
           "hole": "prop",
           "deck": "place-ambient",
-          "bind": "prop"
+          "bind": "prop",
+          "optional": true
         }
       ]
     },

@@ -864,7 +864,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         // Night Hone 1 §1: the room's own sounds, light and smells, after the
         // finds on a search and with the line on a return.
         const band = bandOf(stage.minutes);
-        const at = (c: Card): boolean => tagIs('place-ambient', c, 'place', stage.at);
+        const at = (c: Card): boolean => tagIs('place-ambient', c, 'place', stage.at) && !dealer.used(c.id);
         const drawn = deal(
           stage,
           'place-ambient',
@@ -990,7 +990,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
   const words = (): number => paras.reduce((n, p) => n + wordCount(p.text), 0);
   if (plan.shape === 'ask' && placeAt >= 0 && words() < ASK_TEXTURE_BELOW) {
     const band = bandOf(stage.minutes);
-    const at = (c: Card): boolean => tagIs('place-ambient', c, 'place', stage.at);
+    const at = (c: Card): boolean => tagIs('place-ambient', c, 'place', stage.at) && !dealer.used(c.id);
     const drawn = deal(
       stage,
       'place-ambient',

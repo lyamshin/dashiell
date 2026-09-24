@@ -90,8 +90,13 @@ describe('M13: the format', () => {
   it('says no machinery and no verdict in any sheet line, any pay line, or any sheet close', () => {
     const lines: { where: string; text: string }[] = [];
     for (const s of SHEETS) {
-      for (const p of s.parts) for (const t of [p.text, ...(p.alt ?? []), ...(p.pool ?? [])]) if (t) lines.push({ where: s.id, text: t });
-      for (const t of [...(s.close?.callback ?? []), ...(s.close?.plain ?? [])]) lines.push({ where: `${s.id} close`, text: t });
+      // A role the sheet's own text offers is said as itself, any other as a hat. (A role that is
+      // "the notebook" is the engine's to keep out of "the notebook had": see the test below.)
+      const own = Object.assign({}, ...s.parts.map((p) => p.exports ?? {})) as Record<string, { short: string }>;
+      const said = (t: string): string =>
+        t.replace(/\{([Pp]rop|[Tt]rait|[Tt]hing|[Ff]igure|[Mm]ark)[^}]*\}/g, (_m, r: string) => own[r.toLowerCase()]?.short ?? 'the hat');
+      for (const p of s.parts) for (const t of [p.text, ...(p.alt ?? []), ...(p.pool ?? [])]) if (t) lines.push({ where: s.id, text: said(t) });
+      for (const t of [...(s.close?.callback ?? []), ...(s.close?.plain ?? [])]) lines.push({ where: `${s.id} close`, text: said(t) });
     }
     for (const deck of Object.values(DECKS)) {
       for (const c of deck) {
@@ -167,6 +172,14 @@ describe('M13: running a sheet', () => {
       'She was reading, the woman who had found Sirkin.',
     );
     expect(fillSheet('{prop} was there.', {}, run)).toBeNull();
+  });
+
+  it('never lets a role make the book’s machinery of a line', () => {
+    const run = newSheetRun('ask', {}, true);
+    run.roles.set('thing', { text: 'a notebook', short: 'the notebook' });
+    expect(fillSheet('{Thing} had seen worse.', {}, run)).toBeNull();
+    run.roles.set('thing', { text: 'a folded newspaper', short: 'the newspaper' });
+    expect(fillSheet('{Thing} had seen worse.', {}, run)?.text).toBe('The newspaper had seen worse.');
   });
 
   it('reads its conditions', () => {

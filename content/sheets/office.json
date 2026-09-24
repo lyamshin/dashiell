@@ -64,8 +64,8 @@
         "roles": ["mark"],
         "callback": [
           "{Mark} wasn’t clean any more. They never stay that way, which is the only reason I buy them.",
-          "{Mark} had writing in it now. It looked happier for it.",
-          "{Mark} had its first page filled. The first page is always the neatest."
+          "There was writing in {mark} now. It looked happier for it.",
+          "The first page of {mark} was full. The first page is always the neatest."
         ],
         "plain": [
           "Outside, the city went on doing whatever it does at that hour without consulting me.",

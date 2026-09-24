@@ -216,7 +216,8 @@ export function deckPiece(stage: Stage, part: SheetPart, want: string | null, wh
       // A card that opens on "It" or "Its" leans on an establish card before it;
       // anywhere else (the head of a question's page) it has nothing to lean on.
       const leans = (c: Card): boolean => extraSlots['§alone'] !== undefined && /^(?:It|Its|They|Their)\b/.test(c.text);
-      const at = (c: Card): boolean => tagIs('place-ambient', c, 'place', stage.at) && tagsFit(c) && !leans(c);
+      // A room's texture is never read twice in a night (Night Hone 1): a card read tonight is not dealt again, and the hole goes empty.
+      const at = (c: Card): boolean => tagIs('place-ambient', c, 'place', stage.at) && tagsFit(c) && !leans(c) && !stage.dealer.used(c.id);
       const exact = (c: Card): boolean => at(c) && tagOf('place-ambient', c, 'band') === band;
       const any = (c: Card): boolean => at(c) && tagOf('place-ambient', c, 'band') === 'any';
       ladder = [(c) => exact(c) && exports(c), (c) => any(c) && exports(c)];

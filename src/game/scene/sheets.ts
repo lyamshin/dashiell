@@ -34,6 +34,7 @@ import type { Id } from '../../gen/types.js';
 import type { ProseVoice } from '../types.js';
 import type { CardExport } from '../voice/cards.js';
 import { tidyPunctuation } from '../voice/prose.js';
+import { machineryIn } from '../reader-lint.js';
 import arrivalJson from '../../../content/sheets/arrival.json';
 import companyJson from '../../../content/sheets/company.json';
 import askJson from '../../../content/sheets/ask.json';
@@ -407,6 +408,8 @@ export function fillSheet(
     return up || opens ? cap(value) as string : value;
   });
   if (missing) return null;
+  // A role said as "the notebook" must not make the book's machinery of a line ("{Thing} had…").
+  if (machineryIn(out).length > machineryIn(template).length) return null;
   return { text: tidyPunctuation(out), roles, prefixes };
 }
 
@@ -482,7 +485,9 @@ export function runSheet(sheet: Sheet, holes: Holes, run: SheetRun): SheetOut | 
     }
   };
   const person = (prefixes: readonly string[], text: string): void => {
-    for (const p of new Set(prefixes)) {
+    // A line that names the tell is the tell's, whoever else it mentions ("Past her shoulder I could see Shapiro").
+    const heads = prefixes.includes('tell') ? ['tell'] : prefixes;
+    for (const p of new Set(heads)) {
       const id = holes.people?.[p];
       if (id !== undefined) {
         run.presented.add(id);
@@ -504,7 +509,13 @@ export function runSheet(sheet: Sheet, holes: Holes, run: SheetRun): SheetOut | 
       const options = [part.text ?? '', ...(part.alt ?? [])]
         .map((t) => ({ key: t, filled: fillSheet(t, holes.slots, run) }))
         .filter((o): o is { key: string; filled: NonNullable<ReturnType<typeof fillSheet>> } => o.filled !== null);
-      const chosen = pickLine(holes, options);
+      // The sheet's own line the first time tonight (the golden's words, where
+      // they are the golden's); its other ways of saying it when it comes round.
+      const first = options[0];
+      const chosen =
+        first !== undefined && first.key === (part.text ?? '') && holes.fresh?.(first.key) !== false
+          ? (holes.spend?.(first.key), first)
+          : pickLine(holes, options);
       const filled = chosen?.filled ?? null;
       if (filled === null) {
         if (part.optional) continue;
@@ -601,7 +612,8 @@ function closeLine(sheet: Sheet, holes: Holes, run: SheetRun): SheetOut['close']
         .map((t) => ({ key: t, filled: fillSheet(t, holes.slots, run) }))
         .filter((o): o is { key: string; filled: NonNullable<ReturnType<typeof fillSheet>> } => o.filled !== null);
       const freshSheet = sheetLines.filter((o) => holes.fresh?.(o.key) !== false);
-      const fromDeck = spec.deck ? holes.close(role, exp, run) : null;
+      const dealt = spec.deck ? holes.close(role, exp, run) : null;
+      const fromDeck = dealt !== null && machineryIn(dealt).length === 0 ? dealt : null;
       const choices = [
         ...(freshSheet.length > 0 || fromDeck === null ? (freshSheet.length > 0 ? freshSheet : sheetLines) : []).map((o) => ({ key: o.key, text: o.filled.text })),
         ...(fromDeck ? [{ key: '', text: fromDeck }] : []),
