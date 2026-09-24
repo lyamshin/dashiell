@@ -81,7 +81,15 @@ export function renderTruthSheet(c: Case): string {
   // the machinery under it — alone at the place at the tick, having fetched
   // the thing beforehand — does not.
   const did =
-    c.act.type === 'robbery'
+    c.act.type === 'lost-pet'
+      ? `let ${c.act.taken?.name ?? 'the animal'} out of ${PL(ML)}, which is ${victim.name}’s, ${victim.role}, at ${clock(M)}, by ${c.method.name}`
+      : c.act.type === 'lost-item'
+        ? `took ${c.act.taken?.name ?? 'the thing'} from ${PL(ML)}, where ${victim.name}, ${victim.role}, keeps it, at ${clock(M)}, by ${c.method.name}`
+        : c.act.type === 'affair'
+          ? `was with ${victim.name}, ${victim.role}, at ${PL(ML)} at ${clock(M)}, when ${victim.surname} had said ${
+              victim.gender === 'f' ? 'she' : 'he'
+            } would be at ${PL(c.act.claimedAt)}: ${c.act.errand ?? 'an affair'}, arranged by ${c.method.name}`
+          : c.act.type === 'robbery'
       ? `took ${c.act.taken?.name ?? 'the goods'} from ${PL(ML)}, which belonged to ` +
         `${victim.name}, ${victim.role}, at ${clock(M)}, by ${c.method.name}`
       : c.act.type === 'missing'
@@ -89,7 +97,7 @@ export function renderTruthSheet(c: Case): string {
           `and ${c.act.tropeId === 'left' ? 'saw them off' : 'took them'} by ${c.method.name}`
         : `killed ${victim.name}, ${victim.role}, with ${c.method.name} at ${PL(ML)} at ${clock(M)}`;
   const aloneWith =
-    c.act.type === 'robbery'
+    c.act.type === 'robbery' || c.act.type === 'lost-pet' || c.act.type === 'lost-item'
       ? `and was alone at ${PL(ML)} when it happened`
       : `and was alone with ${victim.surname} when it happened`;
   out.push(
@@ -120,6 +128,9 @@ export function renderTruthSheet(c: Case): string {
     );
   }
   if (c.act.fate) actBits.push(`fate: ${c.act.fate}`);
+  if (c.act.claimedAt) actBits.push(`said they would be at ${PL(c.act.claimedAt)}`);
+  if (c.act.errand) actBits.push(`it was: ${c.act.errand}`);
+  if (c.act.pet) actBits.push(`the animal: a ${c.act.pet}`);
   if (actBits.length > 0) {
     out.push(actBits.map((b) => `- ${b}`).join('\n'));
     out.push('');

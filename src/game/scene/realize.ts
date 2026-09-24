@@ -9,7 +9,15 @@
  */
 
 import type { Clue, Id, Person, Tick } from '../../gen/types.js';
-import { MISSING_MEANS, MURDER_MEANS, ROBBERY_MEANS } from '../../gen/data/means.js';
+import {
+  ITEM_MEANS,
+  MEETING_MEANS,
+  MISSING_MEANS,
+  MURDER_MEANS,
+  PET_MEANS,
+  ROBBERY_MEANS,
+} from '../../gen/data/means.js';
+import { PET_LEFT, PET_WORD } from '../../gen/data/mundane.js';
 import { windowOf } from './thought.js';
 import { anchorsTold, toldFind, type AnchorTold } from './finds.js';
 import { spokenClock } from '../../gen/types.js';
@@ -47,7 +55,10 @@ import {
   SCENE_BODY,
   SCENE_BODY_AGAIN,
   SCENE_BODY_OUTSIDE,
+  SCENE_CLAIMED,
+  SCENE_ITEM,
   SCENE_MISSING,
+  SCENE_PET,
   SCENE_ROBBERY,
   SEARCH_ROOM_ACTS,
   STOP_LINES,
@@ -462,6 +473,9 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
           him: he === 'she' ? 'her' : 'him',
           his: possessiveOf(victim),
           object: view.kase.act.taken?.name,
+          // M14: what a lost animal leaves behind.
+          pet: view.kase.act.pet ? PET_WORD[view.kase.act.pet] : undefined,
+          left: view.kase.act.pet ? PET_LEFT[view.kase.act.pet] : undefined,
         };
         if (beat.scene) {
           const pool =
@@ -473,7 +487,13 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
                 ? SCENE_BODY_AGAIN
                 : beat.scene === 'robbery'
                   ? SCENE_ROBBERY
-                  : SCENE_MISSING;
+                  : beat.scene === 'lost-pet'
+                    ? SCENE_PET
+                    : beat.scene === 'lost-item'
+                      ? SCENE_ITEM
+                      : beat.scene === 'claimed'
+                        ? SCENE_CLAIMED
+                        : SCENE_MISSING;
           // The empty shelf is said once: by the find, when the opening report
           // carries it, and by this line only when nothing else will.
           const taken = view.kase.act.taken?.name ?? '§';
@@ -1451,7 +1471,9 @@ export function thoughtSlots(stage: Stage, t: Thought): Slots {
       break;
   }
   const method = t.methodId
-    ? [...MURDER_MEANS, ...ROBBERY_MEANS, ...MISSING_MEANS].find((m) => m.id === t.methodId)
+    ? [...MURDER_MEANS, ...ROBBERY_MEANS, ...MISSING_MEANS, ...PET_MEANS, ...ITEM_MEANS, ...MEETING_MEANS].find(
+        (m) => m.id === t.methodId,
+      )
     : undefined;
   const subject = t.subjectId ? view.personById.get(t.subjectId) : undefined;
   const window = t.cls === 'window' && t.basis === 'coroner' ? windowOf(view, stage.foundAfter, stage.accountsAfter) : [];

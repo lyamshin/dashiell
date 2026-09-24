@@ -26,6 +26,7 @@ import {
 import { NAME_POOLS } from '../src/gen/data/names.js';
 import { genderForms } from '../src/gen/dossier.js';
 import { TROPES, TROPE_BY_ID, TROPE_IDS } from '../src/gen/tropes/index.js';
+import { LEGACY_TROPES } from '../src/gen/shape.js';
 import { checkCase, formatViolations, renderedFacts } from '../src/gen/correspond.js';
 import { buildView } from '../src/game/derive.js';
 import { playOracle } from '../src/game/oracle.js';
@@ -320,7 +321,7 @@ describe('the client brief over seeds 1..200 at every difficulty', () => {
       byType.set(type, row);
     }
     for (const rel of RELATIONSHIPS) {
-      for (const type of ['murder', 'robbery', 'missing'] as CaseType[]) {
+      for (const type of ['murder', 'robbery', 'missing'] as const) {
         const set = eligible.get(type) ?? new Set<string>();
         for (const p of Object.keys(rel.purposes[type])) set.add(p);
         eligible.set(type, set);
@@ -354,7 +355,7 @@ describe('the client brief over seeds 1..200 at every difficulty', () => {
       'rel-witness',
     ]);
     for (const rel of RELATIONSHIPS) {
-      for (const type of ['murder', 'robbery', 'missing'] as CaseType[]) {
+      for (const type of ['murder', 'robbery', 'missing'] as const) {
         const cell = rel.purposes[type];
         for (const purpose of Object.keys(cell)) {
           const where = `${rel.id} × ${type}`;
@@ -463,7 +464,9 @@ describe('the tropes', () => {
     for (const c of DISTRIBUTION) {
       counts.set(c.act.tropeId, (counts.get(c.act.tropeId) ?? 0) + 1);
     }
-    for (const id of TROPE_IDS) {
+    // M14: the untiered case still deals the eight and only the eight; the
+    // mundane three are a tier's (test/m14-cases.test.ts).
+    for (const id of LEGACY_TROPES) {
       expect(counts.get(id) ?? 0, `${id} never came up`).toBeGreaterThan(0);
     }
   });
@@ -472,7 +475,7 @@ describe('the tropes', () => {
     const n = DISTRIBUTION.filter((c) => c.act.tropeId === 'body-at-scene').length;
     const share = n / DISTRIBUTION.length;
     expect(share, `body-at-scene is ${(share * 100).toFixed(1)}%`).toBeGreaterThanOrEqual(0.35);
-    for (const id of TROPE_IDS) {
+    for (const id of LEGACY_TROPES) {
       if (id === 'body-at-scene') continue;
       const other = DISTRIBUTION.filter((c) => c.act.tropeId === id).length;
       expect(other, `${id} is commoner than body-at-scene`).toBeLessThan(n);
@@ -488,6 +491,17 @@ describe('the tropes', () => {
       'inside-job': ['who', 'entry', 'goods'],
       payroll: ['who', 'goods', 'how'],
       left: ['whereabouts', 'why'],
+      // M14.
+      'pet-left-open': ['who', 'when', 'goods', 'why'],
+      'pet-taken': ['who', 'when', 'goods', 'why'],
+      'pet-followed': ['who', 'when', 'goods', 'why'],
+      'item-borrowed': ['who', 'when', 'goods', 'why'],
+      'item-pawned': ['who', 'when', 'goods', 'why'],
+      'item-hidden': ['who', 'when', 'goods', 'why'],
+      'item-mislaid': ['who', 'when', 'goods', 'why'],
+      'the-affair': ['who', 'when', 'where'],
+      'the-secret': ['who', 'when', 'where'],
+      'the-business': ['who', 'when', 'where'],
       taken: ['who', 'whereabouts', 'why'],
     };
     for (const trope of TROPES) {

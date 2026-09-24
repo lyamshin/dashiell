@@ -20,12 +20,21 @@ import { buildSchedules, type ScheduleBuild } from './schedule.js';
 import { deriveCandidates, deriveObservations } from './clues.js';
 import { selectFindable } from './select.js';
 import { checkSolvability, type CaseUnderTest } from './solvability.js';
-import { pickTrope, type Trope, type TropeContext } from './tropes/index.js';
+import { TROPE_BY_ID, pickMixedTrope, pickTrope, type Trope, type TropeContext } from './tropes/index.js';
 import { buildVictimBio } from './victim.js';
 import { buildClientBrief } from './client.js';
 import { briefingStrings, buildBriefing } from './briefing.js';
 import { SECRET_BY_TYPE } from './data/secrets.js';
-import { deductionOf, logicSlackFor, resolveDials, slackFor, unknownsFor, type Dials, type ShapeOptions } from './shape.js';
+import {
+  LEGACY_TROPES,
+  deductionOf,
+  logicSlackFor,
+  resolveDials,
+  slackFor,
+  unknownsFor,
+  type Dials,
+  type ShapeOptions,
+} from './shape.js';
 import type { Clue, Description, Fact, Id as PersonId } from './types.js';
 import { assignBlocks } from './logic/travel.js';
 import { buildSchedules9 } from './logic/schedule.js';
@@ -56,6 +65,11 @@ export interface GenerateOptions extends ShapeOptions {
   /** M5: force a shape, for reading. Leave both out and the weights decide. */
   type?: CaseType;
   tropeId?: Id;
+  /**
+   * M14: a tier's classic draw with no case mix — the case the seed dealt
+   * before M14, draw for draw. For the goldens and the tests pinned to them.
+   */
+  classic?: boolean;
 }
 
 /** The single public entry point. Same seed and options, same case. */
@@ -81,6 +95,14 @@ export function diagnoseCase(
   const kase = run(seed, 'Dashiell', dials, diagnostics, opts);
   diagnostics.attempts = kase.attempts;
   return { case: kase, diagnostics };
+}
+
+/**
+ * M14: generation with the caller's diagnostics, which are filled in even
+ * when the case cannot be dealt and this throws. For the tuning scripts.
+ */
+export function generateCaseDiagnosed(seed: number, opts: GenerateOptions | undefined, diagnostics: Diagnostics): Case {
+  return run(seed, opts?.detectiveName ?? 'Dashiell', resolveDials(opts), diagnostics, opts);
 }
 
 function recurring(phase: number, everyN: number): Tick[] {
@@ -185,6 +207,13 @@ function run(
   // M9: a case dealt with a tier is a logic game. The no-options case is not,
   // and keeps every draw it made before M9.
   if (!dials.plain) return ownTopics(runLogic(seed, detectiveName, dials, diagnostics, opts));
+  // M14: the mundane three exist only as logic games. Asked for by name on
+  // the untiered path — a reader's `--trope pet-taken`, a test sweeping every
+  // trope — they are dealt at Hard-boiled on the spec's ladder at that level.
+  const forced = opts?.tropeId !== undefined ? TROPE_BY_ID[opts.tropeId]?.type : opts?.type;
+  if (forced === 'lost-pet' || forced === 'lost-item' || forced === 'affair') {
+    return run(seed, detectiveName, resolveDials({ tier: 5, level: dials.difficulty }), diagnostics, opts);
+  }
   const { shape, ladder, difficulty } = dials;
   const salt = tierSalt(dials);
   const rng = new Rng(seed + difficulty * 7919 + salt * 104729);
@@ -202,10 +231,12 @@ function run(
   for (let i = 0; i < 3; i++) tropeRng.next();
   // M7: a tier deals only its own tropes. Hard-boiled deals all eight, and a
   // filter that keeps all eight leaves the weighted draw exactly where it was.
+  // M14: the untiered case draws from the eight it always drew from, so the
+  // mundane three, which only a tier deals, never move its weights.
   const trope: Trope = pickTrope(tropeRng, {
     ...(opts?.type !== undefined ? { type: opts.type } : {}),
     ...(opts?.tropeId !== undefined ? { tropeId: opts.tropeId } : {}),
-    allowed: shape.tropes,
+    allowed: shape.tropes.filter((id) => LEGACY_TROPES.includes(id)),
   });
   const caseType = trope.type;
 
@@ -548,17 +579,31 @@ function runLogic(
   let attempts = 0;
   const tropeRng = new Rng((seed * 2654435761 + difficulty * 40503 + salt * 7727) >>> 0);
   for (let i = 0; i < 3; i++) tropeRng.next();
-  const trope: Trope = pickTrope(tropeRng, {
+  // M14 §1.5: the classic draw as it always was, then the case mix keeps it
+  // or deals the seed something else, off a stream of its own
+  // (`pickMixedTrope`). A kept case is the case the seed dealt before M14.
+  const pickOpts = {
     ...(opts?.type !== undefined ? { type: opts.type } : {}),
     ...(opts?.tropeId !== undefined ? { tropeId: opts.tropeId } : {}),
     allowed: shape.tropes,
-  });
+  };
+  const mixRng = new Rng((seed * 1597334677 + difficulty * 3812015801 + salt * 104723 + 17) >>> 0);
+  for (let i = 0; i < 3; i++) mixRng.next();
+  const classicList = shape.classicTropes ?? shape.tropes;
+  const mixed = opts?.classic
+    ? { trope: pickTrope(tropeRng, { ...pickOpts, allowed: classicList }), kept: true }
+    : shape.caseMix
+    ? pickMixedTrope(tropeRng, mixRng, shape.caseMix, classicList, pickOpts)
+    : { trope: pickTrope(tropeRng, pickOpts), kept: true };
+  const trope: Trope = mixed.trope;
   const caseType = trope.type;
   const reject = diagnostics ? (reason: string) => diagnostics.rejections.push(reason) : undefined;
   // Whether the client did it is the seed's, not the attempt's: a client who
   // is the culprit is one fewer innocent to clear, and deciding it per
   // attempt let the easier deal win it more often than a quarter of the time.
-  const clientIsKiller = shape.clientMayBeCulprit ? tropeRng.chance(0.25) : undefined;
+  // M14: never in an affair, where the client is married to the one it is
+  // about and the culprit is the one they were with.
+  const clientIsKiller = shape.clientMayBeCulprit ? (caseType === 'affair' ? false : tropeRng.chance(0.25)) : undefined;
   // The same for where an innocent client points: at the culprit at chance,
   // one in however many others there are to point at.
   const pointerOnKiller = shape.clientMayBeCulprit ? tropeRng.chance(1 / Math.max(1, shape.suspects - 1)) : undefined;
@@ -569,7 +614,12 @@ function runLogic(
       reject?.('the place deck would not deal a legal hand');
       continue;
     }
-    const cast = buildCast(rng, setting, dials, clientIsKiller);
+    const cast = buildCast(rng, setting, dials, clientIsKiller, {
+      type: caseType,
+      ...(trope.motive !== undefined ? { motive: trope.motive } : {}),
+      // A kept classic case keeps its classic cast, draw for draw.
+      classic: mixed.kept,
+    });
     if (!cast) {
       reject?.('no cast fits the victim and the rooms');
       continue;
@@ -778,6 +828,13 @@ function runLogic(
         if (trope.id === 'the-frame' && c.kind === 'document') {
           c.text = c.text.replace(/\s[^.]*\bwas at\b[^.]*\.$/, '');
         }
+        // M14: the inside job's sign-in book, likewise, now that a robbery
+        // is dealt below Medium, where the page tests read every hour. The
+        // key list keeps what it proves; the hour went with the placement.
+        // (docs/23-m10-a-notes.md listed it under "Not fixed".)
+        if (trope.id === 'inside-job' && c.kind === 'document' && !mixed.kept) {
+          c.text = c.text.replace(/\sThe sign-in book has [^.]*\.$/, '');
+        }
         if (c.textRecord === undefined) c.textRecord = c.text;
         c.text = speakTimes(c.textRecord);
         return c;
@@ -798,8 +855,14 @@ function runLogic(
         applyRule(c, c.source.type === 'place' ? `Found at ${placeName(c.source.placeId)}.` : `${whoOf(c.source.personId)} says so.`, pool.names);
       }
 
+      // M14: an affair opens where they said they would be, as a moved body
+      // opens where it was found, so `where` is a question and not a room.
       const startId =
-        trope.id === 'body-moved' && act.bodyFoundAt && act.bodyFoundAt !== act.place ? act.bodyFoundAt : build.murderPlaceId;
+        trope.id === 'body-moved' && act.bodyFoundAt && act.bodyFoundAt !== act.place
+          ? act.bodyFoundAt
+          : act.type === 'affair' && act.claimedAt && act.claimedAt !== act.place
+            ? act.claimedAt
+            : build.murderPlaceId;
       const selection = selectLogic({
         rng,
         cast,
@@ -814,7 +877,7 @@ function runLogic(
         ...(reject ? { reject } : {}),
       });
       if (!selection) continue;
-      const slack = logicSlackFor(shape, ladder, selection.par, selection.summary.walk);
+      const slack = logicSlackFor(shape, ladder, selection.par, selection.summary.walk, caseType);
 
       const descriptions: Record<PersonId, Description> = {};
       for (const p of cast.suspects) descriptions[p.id] = ambiguousDescription(p, cast.suspects);

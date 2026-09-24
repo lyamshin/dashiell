@@ -466,6 +466,10 @@ export const GUEST_POSTS: Record<string, string[]> = {
 export const DA_AT_THE_DOOR =
   'Eight o’clock. Somebody from the DA’s office is at the door with a folder and a pen, and the folder is mine whether I write in it or not.';
 
+/** M14: nobody sends a lost dog or a husband to the DA. {client} is the client. */
+export const CLIENT_AT_THE_DOOR =
+  'Eight o’clock, and the knock at the door is {client}, wanting an answer. The answer is mine to give whether I have it or not.';
+
 /* ------------------------------------------------------------------ *
  * M8 — the lines the scene's planner writes in code rather than deals.
  *
@@ -506,6 +510,27 @@ export const SCENE_ROBBERY: string[] = [
 export const SCENE_MISSING: string[] = [
   '{victim} was not there, which was the whole trouble.',
   'There was no sign of {victim}, and nobody had expected one.',
+];
+
+/**
+ * M14 §2.1: no body where there's no death. The pet's empty collar, the
+ * item's empty drawer, and the room where somebody said they would be.
+ * {left} is what the animal left behind (`PET_LEFT`), {object} the thing.
+ */
+export const SCENE_PET: string[] = [
+  'There was {left}, and no {pet}.',
+  'What was left was {left}. It is the saddest thing in any house, and I have seen the insides of a lot of houses.',
+];
+
+export const SCENE_ITEM: string[] = [
+  'The place where {object} had been kept was empty, and somebody had shut it again afterwards, which is manners of a kind.',
+  'There was a dent in the velvet where {object} had been, and nothing in it now.',
+];
+
+/** At the room where the one it is about said they would be. */
+export const SCENE_CLAIMED: string[] = [
+  '{victim} was not there. {victim} had been, earlier, which is not the same thing.',
+  'There was no sign of {victim}, which was the point of coming.',
 ];
 
 /** Nobody alive in a room that has the body in it. Said plainly (§3). */
@@ -684,6 +709,9 @@ export const CRIME_NOUN: Record<string, string> = {
   murder: 'the killing',
   robbery: 'the robbery',
   missing: 'the disappearance',
+  'lost-pet': 'the open gate',
+  'lost-item': 'the empty drawer',
+  affair: 'the missing half hour',
 };
 
 /**
@@ -854,6 +882,15 @@ export const RECAP_WHEN: Record<string, string[]> = {
   'robbery-none': ['{Object} went from {place}, and I didn’t have the hour yet.'],
   'missing-span': ['{Victim} went missing from {place} {span}.'],
   'missing-none': ['{Victim} went missing from {place}, and I didn’t have the hour yet.'],
+  // M14.
+  'lost-pet-span': ['{Object} got out of {place} {span}.', '{Object} went out of {place} {span}, and did not say where to.'],
+  'lost-pet-none': ['{Object} got out of {place}, and I didn’t have the hour yet.'],
+  'lost-item-span': ['{Object} went from {place} {span}.', '{Object} left {place} {span}, and not under its own power.'],
+  'lost-item-none': ['{Object} went from {place}, and I didn’t have the hour yet.'],
+  'claimed-span': ['{Victim} was supposed to be at {place}, and was somewhere else {span}.'],
+  'claimed-none': ['{Victim} was supposed to be at {place}, and was somewhere else, and I didn’t have the hour yet.'],
+  'affair-span': ['{Victim} was at {place} with somebody {span}.', '{Victim} had been at {place} {span}, and not alone.'],
+  'affair-none': ['{Victim} was at {place} with somebody, and I didn’t have the hour yet.'],
 };
 
 export const RECAP_ANCHOR: string[] = [

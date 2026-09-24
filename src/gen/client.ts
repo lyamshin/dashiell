@@ -20,6 +20,7 @@ import {
   RELATIONSHIP_BY_ID,
   type PurposeWeights,
 } from './data/cast.js';
+import { purposesOf } from './data/ties.js';
 import { SECRET_BY_TYPE } from './data/secrets.js';
 import { fillSlots } from './dossier.js';
 import { framedPerson } from './tropes/index.js';
@@ -52,6 +53,11 @@ const COST_TEXT: Record<Purpose, string> = {
   'bring-them-home': '{P} has been to the precinct twice already and was sent away twice.',
   'make-sure-they-stay-gone': '{P} does not want it known that this is what {P} is paying for.',
   'settle-a-debt-with-the-dead': '{P} is spending money {P} was owed and may never see.',
+  'find-the-pet': '{P} has walked every street on the block twice already and is embarrassed to be paying for a third time.',
+  'find-the-thing': '{P} tried the precinct, and the desk sergeant asked whether anybody had looked under the bed.',
+  'before-they-notice': '{P} would have to explain how it went missing on {P}’s watch.',
+  'tell-me-the-truth': '{P} is paying to find out something {P} may not want to know.',
+  'put-my-mind-at-rest': '{P} would never live it down if it came out that {P} had hired somebody over {V}.',
 };
 
 /**
@@ -103,6 +109,31 @@ const COST_TEXT_FIRST: Record<Purpose, string[]> = {
     'The money I am spending is money I was owed. I may never see any of it. I am spending it anyway.',
     'I was owed this money. I am spending it to find out, and I may never see it back.',
   ],
+  'find-the-pet': [
+    'I have walked every street on the block twice. I am embarrassed to be paying you for the third time. I am paying anyway.',
+    'I have been up and down this street calling until the windows went up. Now I am paying you instead.',
+    'I have been round the block calling. People have started calling back, and not kindly.',
+  ],
+  'find-the-thing': [
+    'I tried the precinct. The desk sergeant asked if I had looked under the bed. I had.',
+    'A sergeant would laugh. It is worth nothing to a sergeant. It is worth a good deal to us.',
+    'The police do not look for things like this. I asked. They said so, and they were nice about it.',
+  ],
+  'before-they-notice': [
+    'It went missing while I was minding it. I would rather not explain that to anybody.',
+    'It was in my keeping. I would like it to have stayed in my keeping, if anybody asks.',
+    'I was supposed to be looking after it. I was looking after it. Then I was not.',
+  ],
+  'tell-me-the-truth': [
+    'I am paying to find out something I may not want to know. I know that. I would rather know it.',
+    'I may not like what you find. I would rather not like it than not know it.',
+    'I know what this costs. I do not mean the money.',
+  ],
+  'put-my-mind-at-rest': [
+    'If it came out that I had hired somebody over {V}, I would never live it down. So it will not come out.',
+    'Nobody is to know I came here. {V} least of all.',
+    'I would never live it down, hiring a detective over {V} at my age. So nobody hears of it.',
+  ],
 };
 
 /**
@@ -120,6 +151,27 @@ export const POINTER_PROMPTS: string[] = [
   'Who had a reason to want {V} out of the way?',
   'Whose name have you got?',
 ];
+
+/**
+ * M14: the same question for the cases where nobody died. "Who would do that
+ * to {V}?" of a dog that got out is the wrong size of question.
+ */
+export const POINTER_PROMPTS_MUNDANE: Record<'lost-pet' | 'lost-item' | 'affair', string[]> = {
+  'lost-pet': ['Who do you think let it out?', 'Who on the street has it in for {V}?', 'Whose name have you got?'],
+  'lost-item': ['Who do you think has it?', 'Who had their eye on it?', 'Whose name have you got?'],
+  affair: ['Who do you think it is?', 'Whose name have you got?', 'Who has {V} been seeing?'],
+};
+
+/**
+ * M14: what the client says about somebody with no reason on record. The old
+ * line — "was in and out of there all week" — is about a room, and a dog or a
+ * husband is not a room.
+ */
+const HUNCH: Partial<Record<Act['type'], string>> = {
+  'lost-pet': 'never liked that animal and never pretended to',
+  'lost-item': 'always had an eye on it, and said so once too often',
+  affair: 'has found a reason to call at the house every week since the spring',
+};
 
 /** How much heavier the quiet purposes weigh when the client did it. */
 const KILLER_COVER_BIAS = 3;
@@ -202,7 +254,7 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
 
   /* --- purpose ---------------------------------------------------------- */
   const rel = RELATIONSHIP_BY_ID[client.relationshipId as Id];
-  const allowed: PurposeWeights = rel?.purposes[act.type] ?? {
+  const allowed: PurposeWeights = purposesOf(rel, act.type) ?? {
     'find-the-killer-police-wont': 1,
   };
   // A killer who hires a detective is buying cover, so the quiet two weigh
@@ -222,7 +274,9 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
   // A robbery's owner is alive and a missing person may be, so the one purpose
   // written around a death says it another way for them.
   const living = act.type === 'murder' ? undefined : PURPOSE_TEXT_LIVING[purpose];
-  const slots = { victim: V, person: client.surname, place: '', year: '' };
+  // M14: `{O}` is the thing or the animal, "the fox terrier", for the three
+  // purposes that name it.
+  const slots = { victim: V, person: client.surname, place: '', year: '', object: act.taken?.name ?? 'it' };
   const purposeText = `${client.surname} ${fillSlots(living?.third ?? PURPOSE_TEXT[purpose], slots)}.`;
   /*
    * Hone 2 §Track B. One draw covers three things: what the client says she
@@ -246,7 +300,14 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
   // Most of them name the victim, which is also the noun her last sentence
   // ended on: the golden loop's §2 joiner, written into the question itself
   // rather than chosen for it afterwards.
-  const pointerPrompt = fillSlots(rng.pick(POINTER_PROMPTS), slots);
+  const pointerPrompt = fillSlots(
+    rng.pick(
+      act.type === 'lost-pet' || act.type === 'lost-item' || act.type === 'affair'
+        ? POINTER_PROMPTS_MUNDANE[act.type]
+        : POINTER_PROMPTS,
+    ),
+    slots,
+  );
 
   /* --- the pointer ------------------------------------------------------ */
   const others = cast.suspects.filter((p) => p.id !== client.id);
@@ -263,7 +324,7 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
       framedPerson(cast.innocents.filter((p) => p.id !== client.id), act.tick);
     pointsAt = {
       personId: target.id,
-      reason: `${who(target.id)} ${target.motive?.description ?? 'was in and out of there all week'}`,
+      reason: `${who(target.id)} ${target.motive?.description ?? HUNCH[act.type] ?? 'was in and out of there all week'}`,
       honest: false,
     };
   } else if (dials.ladder.clientRedHerring && branchable.length > 0 && rng.chance(0.5)) {
@@ -295,7 +356,7 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
     ) as Person;
     pointsAt = {
       personId: target.id,
-      reason: `${who(target.id)} was in and out of there all week`,
+      reason: `${who(target.id)} ${HUNCH[act.type] ?? 'was in and out of there all week'}`,
       honest: false,
     };
   } else if (!dials.plain) {
@@ -313,7 +374,7 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
       : (rng.pick(innocentMotived.length > 0 ? innocentMotived : innocentOthers) as Person);
     pointsAt = {
       personId: target.id,
-      reason: `${who(target.id)} ${target.motive?.description ?? 'was in and out of there all week'}`,
+      reason: `${who(target.id)} ${target.motive?.description ?? HUNCH[act.type] ?? 'was in and out of there all week'}`,
       honest: target.motive !== undefined,
     };
   } else {
@@ -322,7 +383,7 @@ export function buildClientBrief(input: ClientBriefInput): ClientBrief {
       (rng.chance(0.5) ? pool.find((p) => p.isKiller) : undefined) ?? (rng.pick(pool) as Person);
     pointsAt = {
       personId: target.id,
-      reason: `${who(target.id)} ${target.motive?.description ?? 'was in and out of there all week'}`,
+      reason: `${who(target.id)} ${target.motive?.description ?? HUNCH[act.type] ?? 'was in and out of there all week'}`,
       honest: target.motive !== undefined,
     };
   }

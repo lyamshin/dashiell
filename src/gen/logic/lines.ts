@@ -26,6 +26,12 @@ export interface LineNames {
   /** The victim's name and id, for "Sirkin was alive until at least 8:00". */
   victim?: string;
   victimId?: Id;
+  /**
+   * M14: the two lines that assume a death, in the words of a case that has
+   * none. "Sirkin still had it at 8:00"; "It got out: between 9:00 and 9:30".
+   */
+  alive?: string;
+  crime?: string;
 }
 
 export function hm(t: Tick): string {
@@ -171,7 +177,7 @@ export function ruleParts(facts: Fact[], n: LineNames, ctx: RuleContext = {}): P
         d.text = `${d.head ?? ""}${d.tail}`;
         break;
       case 'victimAliveAt':
-        d.text = `${n.victim ?? 'The victim'} was alive until at least ${hm(lastOf(ticks))}`;
+        d.text = `${n.victim ?? 'The victim'} ${n.alive ?? 'was alive until at least'} ${hm(lastOf(ticks))}`;
         break;
       case 'victimDeadBy':
         d.text = `Over by ${hm(firstOf(ticks))}`;
@@ -298,10 +304,10 @@ function single(f: Fact, n: LineNames): string {
       return `${n.who(f.personId)} says: ${n.place(f.place)}, ${span(f.ticks)}${f.with ? `, with ${n.who(f.with)}` : ''}`;
     case 'timeOfDeath':
       return f.ticks[0] === f.ticks[f.ticks.length - 1]
-        ? `The crime: ${hm(f.ticks[0] as Tick)}`
-        : `The crime: between ${hm(f.ticks[0] as Tick)} and ${hm(f.ticks[f.ticks.length - 1] as Tick)}`;
+        ? `${n.crime ?? 'The crime'}: ${hm(f.ticks[0] as Tick)}`
+        : `${n.crime ?? 'The crime'}: between ${hm(f.ticks[0] as Tick)} and ${hm(f.ticks[f.ticks.length - 1] as Tick)}`;
     case 'victimAliveAt':
-      return `${n.victim ?? 'The victim'} was alive until at least ${hm(f.tick)}`;
+      return `${n.victim ?? 'The victim'} ${n.alive ?? 'was alive until at least'} ${hm(f.tick)}`;
     case 'victimDeadBy':
       return `Over by ${hm(f.tick)}`;
     case 'noiseAt':

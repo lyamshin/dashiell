@@ -1,4 +1,4 @@
-import { speakTimes, type Act, type BriefingLine, type ClientBrief, type Id, type Person, type VictimBio } from './types.js';
+import { isTheft, speakTimes, type Act, type BriefingLine, type ClientBrief, type Id, type Person, type VictimBio } from './types.js';
 import { breathe } from './breath.js';
 import { PRECINCT_TEXT } from './victim.js';
 import type { Cast } from './cast.js';
@@ -128,10 +128,16 @@ export function buildBriefing(input: BriefingInput): BriefingLine[] {
     said(`${cast.victim.name} is dead.`);
     said(bio.standing);
     for (const line of givens) said(line);
-  } else if (act.type === 'robbery') {
+  } else if (isTheft(act.type)) {
     // The loss is the trope's own first given — "A jewel case was taken from
     // the suite, which is Sweeney's" — and it is already the headline. Whose
     // it was follows it, which is what the possessive in it was reaching for.
+    if (headline !== undefined) said(headline);
+    said(bio.standing);
+    for (const line of restOfGivens) said(line);
+  } else if (act.type === 'affair') {
+    // M14: where they said they would be, who they are, and then the hole in
+    // the evening and the client's reason for thinking so.
     if (headline !== undefined) said(headline);
     said(bio.standing);
     for (const line of restOfGivens) said(line);

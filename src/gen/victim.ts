@@ -39,7 +39,10 @@ export const PRECINCT_TEXT: Record<Precinct, string> = {
  *
  * `{V}` is the victim's surname, `{L}` the place, `{thing}` what was taken.
  */
-export const DISCOVERY_PROMPTS: Record<'murder' | 'robbery' | 'missing', string[]> = {
+/** The discovery sentence's shapes: the three old ones, and M14's lost thing and the hour. */
+export type DiscoveryShape = 'murder' | 'robbery' | 'missing' | 'lost' | 'affair';
+
+export const DISCOVERY_PROMPTS: Record<DiscoveryShape, string[]> = {
   murder: [
     'Where did you find {V}, and when?',
     'Who found {V}?',
@@ -53,6 +56,16 @@ export const DISCOVERY_PROMPTS: Record<'murder' | 'robbery' | 'missing', string[
   missing: [
     'When did you last see {V}?',
     'Where did you see {V} last, and at what hour?',
+    'Who saw {V} last?',
+  ],
+  lost: [
+    'When did you find it gone?',
+    'Who noticed first, and at what hour?',
+    'What time was it when you got to {L}?',
+  ],
+  affair: [
+    'When did you last see {V} where {V} said {V} would be?',
+    'Where was {V} supposed to be?',
     'Who saw {V} last?',
   ],
 };
@@ -73,7 +86,7 @@ export const DISCOVERY_PROMPTS: Record<'murder' | 'robbery' | 'missing', string[
  * variant carries all of the shape's facts, and none of them opens a sentence
  * on `{thing}`, whose article is lower case and would read as a stumble.
  */
-export const DISCOVERY_TEXT_FIRST: Record<'murder' | 'robbery' | 'missing', string[]> = {
+export const DISCOVERY_TEXT_FIRST: Record<DiscoveryShape, string[]> = {
   murder: [
     'I found {V}. {Tc}, at {L}.',
     'I did. I found {V} at {L}, at {T}.',
@@ -89,6 +102,16 @@ export const DISCOVERY_TEXT_FIRST: Record<'murder' | 'robbery' | 'missing', stri
     'At {L}, at {T}. I saw {V} there. Nobody has seen {V} since.',
     'I did. I saw {V} at {L} at {T}. Nobody has seen {V} since.',
   ],
+  lost: [
+    'I found {thing} gone from {L}. {Tc}. Nobody else had noticed.',
+    'It was me, at {T}. I got to {L} and found {thing} gone.',
+    '{Tc}. I got to {L} and found {thing} gone.',
+  ],
+  affair: [
+    '{Tc}. {V} was at {L}, where {V} said {V} would be. After that I cannot tell you.',
+    'At {L}. {V} was there at {T}. After that it gets vague.',
+    'I did. I saw {V} at {L} at {T}. After that {V} was somewhere I was not told about.',
+  ],
 };
 
 const PRECINCT_BY_TROPE: Record<Id, Precinct[]> = {
@@ -100,6 +123,17 @@ const PRECINCT_BY_TROPE: Record<Id, Precinct[]> = {
   payroll: ['took-a-statement'],
   left: ['not-yet-called', 'took-a-statement'],
   taken: ['took-a-statement', 'not-yet-called'],
+  // M14: nobody calls the police about a dog, and a husband is not a police matter.
+  'pet-left-open': ['not-yet-called'],
+  'pet-taken': ['not-yet-called'],
+  'pet-followed': ['not-yet-called'],
+  'item-borrowed': ['not-yet-called'],
+  'item-pawned': ['not-yet-called', 'took-a-statement'],
+  'item-hidden': ['not-yet-called'],
+  'item-mislaid': ['not-yet-called'],
+  'the-affair': ['not-yet-called'],
+  'the-secret': ['not-yet-called'],
+  'the-business': ['not-yet-called'],
 };
 
 export interface VictimBioInput {
@@ -125,6 +159,11 @@ export function buildVictimBio(input: VictimBioInput): VictimBio {
     ...input.dossier,
     standing: input.dossier.tie.backstory,
   };
+
+  // M14: an affair has no discovery and no last sighting in the briefing:
+  // where they were seen before the half hour is the start of the night, and
+  // saying when would answer `when` before the first question.
+  if (act.type === 'affair') return bio;
 
   if (act.type === 'missing') {
     const byId = build.lastSeenById ?? (cast.fixtures[0] as Person | undefined)?.id ?? cast.killer.id;
@@ -157,13 +196,15 @@ export function buildVictimBio(input: VictimBioInput): VictimBio {
       foundText:
         act.type === 'robbery'
           ? `${who(discovery.byId)} found the door at ${PL(discovery.placeId)} shut and ${taken ?? 'the box'} gone, at ${clock(discovery.tick)}.`
-          : `${who(discovery.byId)} found ${V} at ${PL(discovery.placeId)} at ${clock(discovery.tick)}.`,
+          : act.type === 'lost-pet' || act.type === 'lost-item'
+            ? `${who(discovery.byId)} found ${taken ?? 'it'} gone from ${PL(discovery.placeId)} at ${clock(discovery.tick)}.`
+            : `${who(discovery.byId)} found ${V} at ${PL(discovery.placeId)} at ${clock(discovery.tick)}.`,
       precinct,
     };
     // The one who walked in on it is often the one who then walks up the
     // stairs to hire somebody, and on page one they are saying it themselves.
     if (discovery.byId === cast.client.id) {
-      const said = spokenPair(rng, act.type === 'robbery' ? 'robbery' : 'murder', {
+      const said = spokenPair(rng, act.type === 'robbery' ? 'robbery' : act.type === 'murder' ? 'murder' : 'lost', {
         V,
         L: PL(discovery.placeId),
         thing: taken ?? 'the box',
@@ -203,7 +244,7 @@ function fill(template: string, slots: Record<string, string>): string | null {
  */
 function spokenPair(
   rng: Rng,
-  shape: 'murder' | 'robbery' | 'missing',
+  shape: DiscoveryShape,
   slots: Record<string, string>,
 ): { text: string; prompt: string } {
   const prompts = DISCOVERY_PROMPTS[shape];

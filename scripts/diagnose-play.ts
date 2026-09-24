@@ -176,7 +176,11 @@ const ALL_CONFIGS: Config[] = [
   { label: 'T5L3', opts: { tier: 5, level: 3 } },
 ];
 const wanted = arg('configs')?.split(',');
-const CONFIGS = wanted ? ALL_CONFIGS.filter((c) => wanted.includes(c.label)) : ALL_CONFIGS;
+// M14: `--type lost-pet` plays every config at that case type (the design test per type).
+const TYPE = arg('type') as GenerateOptions['type'] | undefined;
+const CONFIGS = (wanted ? ALL_CONFIGS.filter((c) => wanted.includes(c.label)) : ALL_CONFIGS).map((c) =>
+  TYPE === undefined ? c : { label: `${c.label}:${TYPE}`, opts: { ...c.opts, type: TYPE } },
+);
 
 /* --------------------------------------------------------------- helpers */
 

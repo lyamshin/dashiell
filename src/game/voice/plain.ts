@@ -922,25 +922,35 @@ export function plainBeat(view: CaseView, beat: Beat): string {
         ? `The coroner puts it ${s.window ?? 'that evening'}.`
         : type === 'robbery'
           ? `The precinct puts it ${s.window ?? 'that evening'}.`
-          : `Nobody can put it closer than ${s.window ?? 'that evening'}.`;
+          : type === 'lost-pet' || type === 'lost-item'
+            ? `As near as anybody in the house can say, it went ${s.window ?? 'that evening'}.`
+            : type === 'affair'
+              ? `By ${view.client.surname}’s reckoning it was ${s.window ?? 'that evening'}.`
+              : `Nobody can put it closer than ${s.window ?? 'that evening'}.`;
     case 'victimAliveAt':
       // §7: the owner of a stolen thing is alive. What the fact closes is when
       // the thing was last where it belonged, and that is what it says.
-      return type === 'robbery'
+      return type === 'robbery' || type === 'lost-item'
         ? `${name} still had ${thing} ${at(time)}.`
-        : type === 'missing'
-          ? `${name} was still about ${at(time)}.`
-          : `${name} was still alive ${at(time)}.`;
+        : type === 'lost-pet'
+          ? `${capitalize(thing)} was still at home ${at(time)}.`
+          : type === 'affair'
+            ? `${name} was still where ${view.victim.gender === 'f' ? 'she' : 'he'} said ${at(time)}.`
+            : type === 'missing'
+              ? `${name} was still about ${at(time)}.`
+              : `${name} was still alive ${at(time)}.`;
     case 'victimDeadBy':
-      return type === 'robbery'
-        ? `${thing} was gone by ${time}.`
-        : type === 'missing'
-          ? `${name} was gone by ${time}.`
-          : `${name} was dead by ${time}.`;
+      return type === 'robbery' || type === 'lost-pet' || type === 'lost-item'
+        ? `${capitalize(thing)} was gone by ${time}.`
+        : type === 'affair'
+          ? `${name} was somewhere else by ${time}.`
+          : type === 'missing'
+            ? `${name} was gone by ${time}.`
+            : `${name} was dead by ${time}.`;
     case 'hasMotive':
       return endStop(`${name} ${s.motive ?? 'had a reason'}`);
     case 'objectMissing':
-      return `${capitalize(s.object ?? 'the thing')} is gone from ${place}.`;
+      return `${s.object ? `The ${s.object}` : 'The thing'} is gone from ${place}.`;
     case 'secretExplained':
       return `${name}’s ${s.secret ?? 'business'} is accounted for, and it is not this.`;
     default:
@@ -1291,6 +1301,21 @@ function openingNoteRecord(view: CaseView, placeId: Id): string {
     }
     case 'missing':
       return `${head} This is where ${victim.surname} was last seen, and nobody in this neighbourhood has seen ${victim.surname} since.`;
+    case 'lost-pet': {
+      // M14: where it lived, the way out, and the owner alive and fretting.
+      const thing = act.taken?.name ?? 'the animal';
+      const door = act.givens.text.find((t) => /standing open/i.test(t)) ?? '';
+      return `${head} ${capitalize(thing)} lived here. ${victim.surname} is at ${victimAddressName(view)} and has been asking the whole street. ${door}`.trim();
+    }
+    case 'lost-item': {
+      const thing = act.taken?.name ?? 'the thing';
+      const forced = act.givens.text.find((t) => /forced/i.test(t)) ?? '';
+      return `${head} ${capitalize(thing)} was kept in this room, and ${victim.surname} is at ${victimAddressName(view)}, which is the first thing anybody says about it. ${forced}`.trim();
+    }
+    case 'affair': {
+      const he = victim.gender === 'f' ? 'she' : 'he';
+      return `${head} This is where ${victim.surname} said ${he} would be all evening, and where ${view.client.surname} would like to believe ${he} was.`;
+    }
     default: {
       if (act.bodyFoundAt && act.bodyFoundAt !== act.place && placeId === act.bodyFoundAt) {
         // The trope's own given, which is the thing the room will not support.

@@ -29,7 +29,7 @@ import { Dealer } from '../src/game/voice/cards.js';
 import type { Page, RunState } from '../src/game/types.js';
 
 const tiered = (seed: number, tier: 0 | 1 | 2 | 3 | 4 | 5): CaseView =>
-  buildView(generateCase(seed, { difficulty: 2, detectiveName: 'Dashiell', tier }));
+  buildView(generateCase(seed, { difficulty: 2, detectiveName: 'Dashiell', tier, classic: true }));
 
 const prose = (page: Page): string =>
   page.blocks

@@ -4227,6 +4227,7 @@
     "deck": "story",
     "text": "At {time}, {timing}, it was done.",
     "tags": {
+      "mundane": "no",
       "beat": "moment",
       "timed": "yes"
     },
@@ -4277,6 +4278,7 @@
     "deck": "story",
     "text": "It was done at {time}.",
     "tags": {
+      "mundane": "no",
       "beat": "moment",
       "timed": "no"
     },
@@ -4652,6 +4654,1989 @@
     "tags": {
       "beat": "moved",
       "trope": "body-moved"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-501",
+    "deck": "story",
+    "text": "{actorFull} left the way out open, and {victimFull} lost {taken} through it. {he} never owned up.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "lost-pet",
+      "trope": "pet-left-open"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-502",
+    "deck": "story",
+    "text": "It was {actorFull} who left the way out standing open, and {taken} went through it. {victimFull} never heard it from {actor}.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "lost-pet",
+      "trope": "pet-left-open"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-503",
+    "deck": "story",
+    "text": "{actorFull} took {taken} from {victimFull}, on purpose, over a feud.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "lost-pet",
+      "trope": "pet-taken"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-504",
+    "deck": "story",
+    "text": "It was {actorFull} who took {taken}, and not by mistake. It was done to get at {victimFull}.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "lost-pet",
+      "trope": "pet-taken"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-505",
+    "deck": "story",
+    "text": "Nobody took {taken} from {victimFull}. It followed {actorFull} home, and {actor} let it.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "lost-pet",
+      "trope": "pet-followed"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-506",
+    "deck": "story",
+    "text": "{taken} belonging to {victimFull} followed {actorFull} home, and {actorFull} did not have the heart to send it back.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "lost-pet",
+      "trope": "pet-followed"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-507",
+    "deck": "story",
+    "text": "{actorFull} borrowed {taken} without asking {victimFull}, and meant to put it back before anybody noticed.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "lost-item",
+      "trope": "item-borrowed"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-508",
+    "deck": "story",
+    "text": "It was {actorFull} who had {taken}. {he} borrowed it from {victimFull} without a word, and meant every minute to put it back.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "lost-item",
+      "trope": "item-borrowed"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-509",
+    "deck": "story",
+    "text": "{actorFull} took {taken} from {victimFull} and pawned it, and meant to buy it back.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "lost-item",
+      "trope": "item-pawned"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-510",
+    "deck": "story",
+    "text": "It was {actorFull} who pawned {taken}. It belonged to {victimFull}, and {actor} meant to buy it back before {victim} ever knew.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "lost-item",
+      "trope": "item-pawned"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-511",
+    "deck": "story",
+    "text": "{actorFull} took {taken} and hid it, to spite {victimFull}.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "lost-item",
+      "trope": "item-hidden"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-512",
+    "deck": "story",
+    "text": "It was {actorFull} who hid {taken}, and the only reason was to spite {victimFull}.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "lost-item",
+      "trope": "item-hidden"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-513",
+    "deck": "story",
+    "text": "{actorFull} put {taken} away somewhere safe, forgot where, and let the street think somebody took it from {victimFull}.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "lost-item",
+      "trope": "item-mislaid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-514",
+    "deck": "story",
+    "text": "Nobody took {taken} from {victimFull}. {actorFull} put it away safe, forgot, and let the street think otherwise.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "lost-item",
+      "trope": "item-mislaid"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-515",
+    "deck": "story",
+    "text": "{victimFull} was with {actorFull}, and it was exactly what it looked like.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "affair",
+      "trope": "the-affair"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-516",
+    "deck": "story",
+    "text": "It was an affair. {victimFull} was seeing {actorFull}.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "affair",
+      "trope": "the-affair"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-517",
+    "deck": "story",
+    "text": "{victimFull} was with {actorFull}, and it only looked like an affair.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "affair",
+      "trope": "the-secret"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-518",
+    "deck": "story",
+    "text": "It was not an affair, though it looked like one from the outside. {victimFull} was with {actorFull}.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "affair",
+      "trope": "the-secret"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-519",
+    "deck": "story",
+    "text": "{victimFull} was with {actorFull}, and it was business.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "affair",
+      "trope": "the-business"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-520",
+    "deck": "story",
+    "text": "There was no affair. {victimFull} met {actorFull} on business, which is duller and a lot more common.",
+    "tags": {
+      "beat": "headline",
+      "caseType": "affair",
+      "trope": "the-business"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-521",
+    "deck": "story",
+    "text": "At {time} {actor} was at {place} and took the roof-door key off its nail.",
+    "tags": {
+      "beat": "means",
+      "method": "pet-roof-door"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-522",
+    "deck": "story",
+    "text": "{actor} was at {place} at {time}, and the roof-door key left its nail with {him}. The nail was the only clean thing on that wall.",
+    "tags": {
+      "beat": "means",
+      "method": "pet-roof-door"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-523",
+    "deck": "story",
+    "text": "At {time} {actor} was at {place} and cut a length off the coil of sash cord, long enough for a leash.",
+    "tags": {
+      "beat": "means",
+      "method": "pet-sash-cord"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-524",
+    "deck": "story",
+    "text": "{actor} was at {place} at {time}, and came away with a length of sash cord cut clean off the coil. It made a good enough leash.",
+    "tags": {
+      "beat": "means",
+      "method": "pet-sash-cord"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-525",
+    "deck": "story",
+    "text": "At {time} {actor} was at {place} and took a hatbox off the top of the stack. The holes in the lid came later.",
+    "tags": {
+      "beat": "means",
+      "method": "pet-hatbox"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-526",
+    "deck": "story",
+    "text": "{actor} was at {place} at {time}, and a hatbox went off the stack with {him}. {he} punched the holes in the lid afterwards.",
+    "tags": {
+      "beat": "means",
+      "method": "pet-hatbox"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-527",
+    "deck": "story",
+    "text": "At {time} {actor} was at {place} and took the pliers out of the mechanic’s toolbox.",
+    "tags": {
+      "beat": "means",
+      "method": "pet-gate-pin"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-528",
+    "deck": "story",
+    "text": "{actor} was at {place} at {time}, and the pliers left the toolbox with {him}. Their tray was the only empty one.",
+    "tags": {
+      "beat": "means",
+      "method": "pet-gate-pin"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-529",
+    "deck": "story",
+    "text": "At {time} {actor} was at {place} and took down the ring of keys. The drawer key hung on it, next to the roof-door key.",
+    "tags": {
+      "beat": "means",
+      "method": "item-drawer-key"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-530",
+    "deck": "story",
+    "text": "{actor} was at {place} at {time}, and took the ring the drawer key hung on. The ring went back afterwards, on the wrong nail.",
+    "tags": {
+      "beat": "means",
+      "method": "item-drawer-key"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-531",
+    "deck": "story",
+    "text": "At {time} {actor} was at {place} and took the empty hatbox off the stack.",
+    "tags": {
+      "beat": "means",
+      "method": "item-hatbox"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-532",
+    "deck": "story",
+    "text": "{actor} was at {place} at {time}, and came away with a hatbox off the stack. It was the empty one.",
+    "tags": {
+      "beat": "means",
+      "method": "item-hatbox"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-533",
+    "deck": "story",
+    "text": "At {time} {actor} was at {place} and tore a blank ticket off the pawnbroker’s spike.",
+    "tags": {
+      "beat": "means",
+      "method": "item-pawn-ticket"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-534",
+    "deck": "story",
+    "text": "{actor} was at {place} at {time}, and a blank pawn ticket went off the spike with {him}. It was torn off in a hurry.",
+    "tags": {
+      "beat": "means",
+      "method": "item-pawn-ticket"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-535",
+    "deck": "story",
+    "text": "At {time} {actor} was at {place} and took an umbrella out of the brass stand. It was not raining.",
+    "tags": {
+      "beat": "means",
+      "method": "item-umbrella"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-536",
+    "deck": "story",
+    "text": "{actor} was at {place} at {time}, and took an umbrella out of the brass stand on a perfectly dry night.",
+    "tags": {
+      "beat": "means",
+      "method": "item-umbrella"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-537",
+    "deck": "story",
+    "text": "At {time} {actor} was at {place} and borrowed the camel-hair overcoat off its hook, so as not to be known.",
+    "tags": {
+      "beat": "means",
+      "method": "meet-overcoat"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-538",
+    "deck": "story",
+    "text": "{actor} was at {place} at {time}, and the camel-hair overcoat left its hook with {him}. Nobody on the block would know {him} in it.",
+    "tags": {
+      "beat": "means",
+      "method": "meet-overcoat"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-539",
+    "deck": "story",
+    "text": "At {time} {actor} was at {place} and used the wall telephone to fix the time. The operator wrote it down.",
+    "tags": {
+      "beat": "means",
+      "method": "meet-telephone"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-540",
+    "deck": "story",
+    "text": "{actor} was at {place} at {time}, and made a call on the wall telephone to fix the hour. The operator wrote the call down.",
+    "tags": {
+      "beat": "means",
+      "method": "meet-telephone"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-541",
+    "deck": "story",
+    "text": "At {time} {actor} was at {place} and took an evening newspaper off the stack. There was a message folded inside it.",
+    "tags": {
+      "beat": "means",
+      "method": "meet-evening-paper"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-542",
+    "deck": "story",
+    "text": "{actor} was at {place} at {time}, and came away with an evening newspaper off the top of the stack, with a message folded into it.",
+    "tags": {
+      "beat": "means",
+      "method": "meet-evening-paper"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-543",
+    "deck": "story",
+    "text": "At {time} {actor} was at {place} and took an umbrella out of the stand. It was a dry night, and {he} meant to walk under it anyway.",
+    "tags": {
+      "beat": "means",
+      "method": "meet-umbrella"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-544",
+    "deck": "story",
+    "text": "{actor} was at {place} at {time}, and took an umbrella out of the stand to walk under. It did not rain all evening.",
+    "tags": {
+      "beat": "means",
+      "method": "meet-umbrella"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-545",
+    "deck": "story",
+    "text": "{actor} opened the locked door at {scene} with the roof-door key and did not shut it again. {taken} went out through it.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-pet",
+      "method": "pet-roof-door"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-546",
+    "deck": "story",
+    "text": "{taken} went out of {scene} by the door the roof-door key opens, and {actor} had left it standing wide.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-pet",
+      "method": "pet-roof-door"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-547",
+    "deck": "story",
+    "text": "{taken} went out of {scene} on the end of the sash cord, and {actor} was on the other end. The collar stayed behind, unbuckled.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-pet",
+      "method": "pet-sash-cord"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-548",
+    "deck": "story",
+    "text": "{actor} tied the sash cord on at {scene}, and {taken} went out on it as good as gold. The collar was left on the step.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-pet",
+      "method": "pet-sash-cord"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-549",
+    "deck": "story",
+    "text": "{actor} carried {taken} out of {scene} in the hatbox, with holes punched in the lid.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-pet",
+      "method": "pet-hatbox"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-550",
+    "deck": "story",
+    "text": "{taken} went down the stairs from {scene} in a hatbox with holes in the lid, and {actor} was carrying it. It complained all the way down.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-pet",
+      "method": "pet-hatbox"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-551",
+    "deck": "story",
+    "text": "{actor} drew the pin out of the gate hinge at {scene} with the pliers, and the gate hung open on one hinge. {taken} went out through the gap.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-pet",
+      "method": "pet-gate-pin"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-552",
+    "deck": "story",
+    "text": "The gate at {scene} hung off one hinge once {actor} had the pin out with the pliers, and {taken} was through it in a moment.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-pet",
+      "method": "pet-gate-pin"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-553",
+    "deck": "story",
+    "text": "{actor} unlocked the drawer at {scene} with the key, took out {taken}, and locked the drawer again.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-item",
+      "method": "item-drawer-key"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-554",
+    "deck": "story",
+    "text": "The drawer at {scene} opened with its own key, and {actor} had the key. {taken} came out, and the drawer was locked again after.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-item",
+      "method": "item-drawer-key"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-555",
+    "deck": "story",
+    "text": "{actor} took {taken} off the shelf at {scene} and carried it out in the empty hatbox.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-item",
+      "method": "item-hatbox"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-556",
+    "deck": "story",
+    "text": "Nobody looks twice at a hatbox. {actor} carried {taken} out of {scene} in one.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-item",
+      "method": "item-hatbox"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-557",
+    "deck": "story",
+    "text": "{actor} put {taken} in a pocket at {scene} and walked out with it. A pocket is quiet.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-item",
+      "method": "item-pawn-ticket"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-558",
+    "deck": "story",
+    "text": "At {scene}, {actor} slipped {taken} into one pocket, with the blank pawn ticket already in the other.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-item",
+      "method": "item-pawn-ticket"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-559",
+    "deck": "story",
+    "text": "{actor} carried {taken} out of {scene} under the umbrella, on a night without a drop of rain.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-item",
+      "method": "item-umbrella"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-560",
+    "deck": "story",
+    "text": "{taken} left {scene} under {actor}’s umbrella, and it had not rained all evening.",
+    "tags": {
+      "beat": "act",
+      "caseType": "lost-item",
+      "method": "item-umbrella"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-561",
+    "deck": "story",
+    "text": "{actor} and {victim} met at {scene}, and {actor} came in the borrowed camel-hair coat with the collar turned up.",
+    "tags": {
+      "beat": "act",
+      "caseType": "affair",
+      "method": "meet-overcoat"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-562",
+    "deck": "story",
+    "text": "{victim} was at {scene} with {actor}, who had come in the camel-hair coat so as not to be known on the stairs.",
+    "tags": {
+      "beat": "act",
+      "caseType": "affair",
+      "method": "meet-overcoat"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-563",
+    "deck": "story",
+    "text": "{actor} and {victim} met at {scene}, at the time the telephone call had fixed.",
+    "tags": {
+      "beat": "act",
+      "caseType": "affair",
+      "method": "meet-telephone"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-564",
+    "deck": "story",
+    "text": "The telephone call had fixed the time, and {victim} kept it. {victim} was at {scene} with {actor}, on the dot.",
+    "tags": {
+      "beat": "act",
+      "caseType": "affair",
+      "method": "meet-telephone"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-565",
+    "deck": "story",
+    "text": "The message in the evening newspaper said {scene}, and that is where {actor} and {victim} met.",
+    "tags": {
+      "beat": "act",
+      "caseType": "affair",
+      "method": "meet-evening-paper"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-566",
+    "deck": "story",
+    "text": "{actor} met {victim} at {scene}, as the message folded into the evening newspaper had arranged.",
+    "tags": {
+      "beat": "act",
+      "caseType": "affair",
+      "method": "meet-evening-paper"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-567",
+    "deck": "story",
+    "text": "{actor} came to {scene} under an umbrella on a dry night, and met {victim} there.",
+    "tags": {
+      "beat": "act",
+      "caseType": "affair",
+      "method": "meet-umbrella"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-568",
+    "deck": "story",
+    "text": "{victim} and {actor} were together at {scene}. {actor} had kept {his} face under the umbrella all the way, and it was not raining.",
+    "tags": {
+      "beat": "act",
+      "caseType": "affair",
+      "method": "meet-umbrella"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-569",
+    "deck": "story",
+    "text": "{actor} was at {goods} by {time}, and so was {taken}, which had wandered in on its own and been given something to eat.",
+    "tags": {
+      "beat": "goods",
+      "trope": "pet-left-open",
+      "with": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-570",
+    "deck": "story",
+    "text": "By {time} {actor} was at {goods}. {taken} had wandered in there by itself, and somebody had fed it.",
+    "tags": {
+      "beat": "goods",
+      "trope": "pet-left-open",
+      "with": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-571",
+    "deck": "story",
+    "text": "{taken} wandered into {goods} on its own, and was given the run of the place and something to eat.",
+    "tags": {
+      "beat": "goods",
+      "trope": "pet-left-open",
+      "with": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-572",
+    "deck": "story",
+    "text": "{actor} was at {goods} by {time}, where {taken} was shut in with a bowl of water and a blanket.",
+    "tags": {
+      "beat": "goods",
+      "trope": "pet-taken",
+      "with": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-573",
+    "deck": "story",
+    "text": "By {time} {actor} was at {goods}. {taken} was shut in there on purpose, with water and a blanket, kept and not hurt.",
+    "tags": {
+      "beat": "goods",
+      "trope": "pet-taken",
+      "with": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-574",
+    "deck": "story",
+    "text": "{taken} was shut in at {goods} with a bowl of water and a blanket, kept but not hurt.",
+    "tags": {
+      "beat": "goods",
+      "trope": "pet-taken",
+      "with": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-575",
+    "deck": "story",
+    "text": "By {time} {actor} was at {goods}, and {taken} was curled up at {his} feet, very pleased with itself.",
+    "tags": {
+      "beat": "goods",
+      "trope": "pet-followed",
+      "with": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-576",
+    "deck": "story",
+    "text": "{actor} was at {goods} by {time}, where {taken} had curled up next to {him} and would not be sent home.",
+    "tags": {
+      "beat": "goods",
+      "trope": "pet-followed",
+      "with": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-577",
+    "deck": "story",
+    "text": "{taken} ended up at {goods}, curled up where somebody it liked sat, and would not be sent home.",
+    "tags": {
+      "beat": "goods",
+      "trope": "pet-followed",
+      "with": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-578",
+    "deck": "story",
+    "text": "By {time} {actor} was at {goods}, and {taken} was with {him}, polished, having a better evening than its owner.",
+    "tags": {
+      "beat": "goods",
+      "trope": "item-borrowed",
+      "with": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-579",
+    "deck": "story",
+    "text": "{actor} was at {goods} by {time}, and {taken} was there too, polished up and out for the evening.",
+    "tags": {
+      "beat": "goods",
+      "trope": "item-borrowed",
+      "with": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-580",
+    "deck": "story",
+    "text": "{taken} turned up at {goods}, polished, which was more than anybody at home ever did for it.",
+    "tags": {
+      "beat": "goods",
+      "trope": "item-borrowed",
+      "with": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-581",
+    "deck": "story",
+    "text": "{actor} was at {goods} by {time}, and {taken} was on a shelf there, with a pawn tag tied to it.",
+    "tags": {
+      "beat": "goods",
+      "trope": "item-pawned",
+      "with": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-582",
+    "deck": "story",
+    "text": "By {time} {actor} was at {goods}, and so was {taken}, tagged and on a shelf, pawned for less than it was worth.",
+    "tags": {
+      "beat": "goods",
+      "trope": "item-pawned",
+      "with": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-583",
+    "deck": "story",
+    "text": "{taken} went to {goods}, where it was tagged and put on a shelf. It was pawned for less than it was worth.",
+    "tags": {
+      "beat": "goods",
+      "trope": "item-pawned",
+      "with": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-584",
+    "deck": "story",
+    "text": "{actor} was at {goods} by {time}, and {taken} was there too, pushed to the back behind something heavy.",
+    "tags": {
+      "beat": "goods",
+      "trope": "item-hidden",
+      "with": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-585",
+    "deck": "story",
+    "text": "By {time} {actor} was at {goods}, where {taken} had been pushed behind something heavy, somewhere nobody would think to look.",
+    "tags": {
+      "beat": "goods",
+      "trope": "item-hidden",
+      "with": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-586",
+    "deck": "story",
+    "text": "{taken} was at {goods}, behind something heavy. It was not lost. It was put there.",
+    "tags": {
+      "beat": "goods",
+      "trope": "item-hidden",
+      "with": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-587",
+    "deck": "story",
+    "text": "{actor} was at {goods} by {time}, and so was {taken}, wrapped in a clean handkerchief and put somewhere safe.",
+    "tags": {
+      "beat": "goods",
+      "trope": "item-mislaid",
+      "with": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-588",
+    "deck": "story",
+    "text": "By {time} {actor} was at {goods}, where {taken} sat wrapped in a clean handkerchief, somewhere safe. That is how people lose things.",
+    "tags": {
+      "beat": "goods",
+      "trope": "item-mislaid",
+      "with": "yes"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-589",
+    "deck": "story",
+    "text": "{taken} was at {goods}, wrapped in a clean handkerchief and put away safe, which is exactly how people lose things.",
+    "tags": {
+      "beat": "goods",
+      "trope": "item-mislaid",
+      "with": "no"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-590",
+    "deck": "story",
+    "text": "{victim} was out. At {time} {vhe} was at {place}, and thought the {petWord} was safe at home.",
+    "tags": {
+      "beat": "owner",
+      "caseType": "lost-pet"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-591",
+    "deck": "story",
+    "text": "At {time} {victim} was at {place}, with no idea {vhis} {petWord} was about to have an evening of its own.",
+    "tags": {
+      "beat": "owner",
+      "caseType": "lost-pet"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-592",
+    "deck": "story",
+    "text": "{victim} was not there. At {time} {vhe} was at {place}, with no idea anything was missing.",
+    "tags": {
+      "beat": "owner",
+      "caseType": "lost-item"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-593",
+    "deck": "story",
+    "text": "At {time} {victim} was at {place}, minding {vhis} own business for once.",
+    "tags": {
+      "beat": "owner",
+      "caseType": "lost-item"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-594",
+    "deck": "story",
+    "text": "{finder} found {taken} gone from {found} at {time}.",
+    "tags": {
+      "beat": "found",
+      "caseType": "lost-pet",
+      "finder": "other"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-595",
+    "deck": "story",
+    "text": "At {time} {finder} looked in at {found}, and {taken} was not there.",
+    "tags": {
+      "beat": "found",
+      "caseType": "lost-pet",
+      "finder": "other"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-596",
+    "deck": "story",
+    "text": "It was {finder} who found {taken} gone from {found} at {time}, of all the people on the street.",
+    "tags": {
+      "beat": "found",
+      "caseType": "lost-pet",
+      "finder": "culprit"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-597",
+    "deck": "story",
+    "text": "At {time} {finder} found {taken} gone from {found}, and knew better than anybody how it got out.",
+    "tags": {
+      "beat": "found",
+      "caseType": "lost-pet",
+      "finder": "culprit"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-598",
+    "deck": "story",
+    "text": "{finder} saw that {taken} was gone from {found} at {time}.",
+    "tags": {
+      "beat": "found",
+      "caseType": "lost-item",
+      "finder": "other"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-599",
+    "deck": "story",
+    "text": "At {time}, at {found}, {finder} went to put a hand on {taken} and found only the place where it had been.",
+    "tags": {
+      "beat": "found",
+      "caseType": "lost-item",
+      "finder": "other"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-600",
+    "deck": "story",
+    "text": "It was {finder}, of all people, who found {taken} missing from {found} at {time}.",
+    "tags": {
+      "beat": "found",
+      "caseType": "lost-item",
+      "finder": "culprit"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-601",
+    "deck": "story",
+    "text": "At {time} {finder} found {taken} gone from {found}. {he} was also the last one who had a hand on it.",
+    "tags": {
+      "beat": "found",
+      "caseType": "lost-item",
+      "finder": "culprit"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-602",
+    "deck": "story",
+    "text": "That was {span} after it went.",
+    "tags": {
+      "beat": "since",
+      "caseType": "lost-pet"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-603",
+    "deck": "story",
+    "text": "By then it had been missing for {span}, which to a {petWord} is about a week.",
+    "tags": {
+      "beat": "since",
+      "caseType": "lost-pet"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-604",
+    "deck": "story",
+    "text": "It had been gone {span} by then.",
+    "tags": {
+      "beat": "since",
+      "caseType": "lost-item"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-605",
+    "deck": "story",
+    "text": "By then it had been out of its place for {span}.",
+    "tags": {
+      "beat": "since",
+      "caseType": "lost-item"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-606",
+    "deck": "story",
+    "text": "{victim} had said {vhe} would be at {claimed}.",
+    "tags": {
+      "beat": "claimed",
+      "caseType": "affair"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-607",
+    "deck": "story",
+    "text": "As far as anybody at home knew, {victim} was at {claimed}. That is what {vhe} had told them.",
+    "tags": {
+      "beat": "claimed",
+      "caseType": "affair"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-608",
+    "deck": "story",
+    "text": "The story at home was that {victim} would be at {claimed}.",
+    "tags": {
+      "beat": "claimed",
+      "caseType": "affair"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-609",
+    "deck": "story",
+    "text": "{victim} and {actor} were keeping company, and neither of them had told anybody about it.",
+    "tags": {
+      "beat": "errand",
+      "errand": "affair"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-610",
+    "deck": "story",
+    "text": "It was an affair, plain and simple, and {victim} and {actor} had kept it to themselves.",
+    "tags": {
+      "beat": "errand",
+      "errand": "affair"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-611",
+    "deck": "story",
+    "text": "{actor} was teaching {victim} to read. {victim} had never once let on there was any need.",
+    "tags": {
+      "beat": "errand",
+      "errand": "night-class"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-612",
+    "deck": "story",
+    "text": "It was a lesson. {victim} was learning to read, with {actor} teaching {vhim}, and nobody at home knew there was any need.",
+    "tags": {
+      "beat": "errand",
+      "errand": "night-class"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-613",
+    "deck": "story",
+    "text": "{victim} had taken a second job, and {actor} was the one paying for it.",
+    "tags": {
+      "beat": "errand",
+      "errand": "second-job"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-614",
+    "deck": "story",
+    "text": "What {victim} had was a second job, and it was {actor} paying the wages. Nobody at home knew.",
+    "tags": {
+      "beat": "errand",
+      "errand": "second-job"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-615",
+    "deck": "story",
+    "text": "{victim} and {actor} were getting a surprise ready, and it was for the one who hired me.",
+    "tags": {
+      "beat": "errand",
+      "errand": "surprise"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-616",
+    "deck": "story",
+    "text": "The whole thing was a surprise. {actor} was helping {victim} get it ready, and it was meant for the one who hired me.",
+    "tags": {
+      "beat": "errand",
+      "errand": "surprise"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-617",
+    "deck": "story",
+    "text": "{victim} and {actor} were sitting up with a relative who was ill, one nobody else was supposed to know about.",
+    "tags": {
+      "beat": "errand",
+      "errand": "sick-relative"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-618",
+    "deck": "story",
+    "text": "There was a relative who was ill, and nobody else was supposed to know. {victim} and {actor} were sitting up with the patient.",
+    "tags": {
+      "beat": "errand",
+      "errand": "sick-relative"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-619",
+    "deck": "story",
+    "text": "{victim} and {actor} were doing business, the after-hours kind, with no receipts.",
+    "tags": {
+      "beat": "errand",
+      "errand": "business"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-620",
+    "deck": "story",
+    "text": "It was a business meeting and nothing warmer. {victim} and {actor} held it after hours, so nobody would ask about it.",
+    "tags": {
+      "beat": "errand",
+      "errand": "business"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-621",
+    "deck": "story",
+    "text": "I told {client} all of it: where {victim} had been, and that {actor} was there too.",
+    "tags": {
+      "beat": "told",
+      "told": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-622",
+    "deck": "story",
+    "text": "{client} got the truth from me, all of it, {actor} included.",
+    "tags": {
+      "beat": "told",
+      "told": "truth"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-623",
+    "deck": "story",
+    "text": "I told {client} where {victim} had been, and not who with.",
+    "tags": {
+      "beat": "told",
+      "told": "half"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-624",
+    "deck": "story",
+    "text": "{client} heard from me that there was nothing to lose sleep over. I left {actor} out of it.",
+    "tags": {
+      "beat": "told",
+      "told": "half"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-625",
+    "deck": "story",
+    "text": "I told {client} nothing, and kept the smaller half of the fee.",
+    "tags": {
+      "beat": "told",
+      "told": "nothing"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-626",
+    "deck": "story",
+    "text": "{client} got nothing out of me, and I kept the smaller half of the fee. What {victim} did with {vhis} evenings stayed between {victim} and {actor}.",
+    "tags": {
+      "beat": "told",
+      "told": "nothing"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-627",
+    "deck": "story",
+    "text": "As for {taken}, it never thought any of it was a problem. Dogs don’t.",
+    "tags": {
+      "beat": "pet",
+      "pet": "dog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-628",
+    "deck": "story",
+    "text": "{taken} came out of the whole business better than anybody, with no regrets at all.",
+    "tags": {
+      "beat": "pet",
+      "pet": "dog"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-629",
+    "deck": "story",
+    "text": "As for {taken}, it treated the whole night as its own idea, which is how cats treat everything.",
+    "tags": {
+      "beat": "pet",
+      "pet": "cat"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-630",
+    "deck": "story",
+    "text": "{taken} was never lost, as far as {taken} was concerned. It knew exactly where it was the whole time.",
+    "tags": {
+      "beat": "pet",
+      "pet": "cat"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-631",
+    "deck": "story",
+    "text": "As for {taken}, it had a lot to say about the evening, and none of it was any use to me.",
+    "tags": {
+      "beat": "pet",
+      "pet": "parrot"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-632",
+    "deck": "story",
+    "text": "{taken} said a great deal about the night afterwards, and not one word of it would stand up.",
+    "tags": {
+      "beat": "pet",
+      "pet": "parrot"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-633",
+    "deck": "story",
+    "text": "As for {taken}, it was a goat about the whole thing, which is the most you can ask.",
+    "tags": {
+      "beat": "pet",
+      "pet": "goat"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-634",
+    "deck": "story",
+    "text": "{taken} was not sorry. Goats never are.",
+    "tags": {
+      "beat": "pet",
+      "pet": "goat"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-635",
+    "deck": "story",
+    "text": "{actor} had lived over the back-yard wall from {victim} since {year}, and the posts between them had leaned {actor}’s way the whole time.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-fence",
+      "variant": 0
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-636",
+    "deck": "story",
+    "text": "{actor} and {victim} had talked over the back-yard wall every morning since {year}, and agreed about nothing in all that time.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-fence",
+      "variant": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-637",
+    "deck": "story",
+    "text": "{actor} planted tomatoes along the yard wall in {year}, and {victim} had been picking them ever since.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-fence",
+      "variant": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-638",
+    "deck": "story",
+    "text": "{actor} walked out with {victim} for two summers before {year}, and still crossed the street to avoid {vhim}.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-old-flame",
+      "variant": 0
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-639",
+    "deck": "story",
+    "text": "{actor} was engaged to {victim} for eleven days in {year}, which was a record on the block.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-old-flame",
+      "variant": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-640",
+    "deck": "story",
+    "text": "{actor} and {victim} were sweet on each other before {third} came along, and everybody on the street remembered it but {victim}.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-old-flame",
+      "variant": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-641",
+    "deck": "story",
+    "text": "{actor} had bowled against {victim} every Thursday since {year}, and lost the cup to {vhim} by one pin.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-bowling",
+      "variant": 0
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-642",
+    "deck": "story",
+    "text": "{actor} and {victim} had been the two best bowlers in the Thursday league since {year}, and each said the other cheated.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-bowling",
+      "variant": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-643",
+    "deck": "story",
+    "text": "{actor} bowled on {victim}’s team until {year}, when {victim} dropped {him} for {third}.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-bowling",
+      "variant": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-644",
+    "deck": "story",
+    "text": "{actor} had played {victim} at the chess club every Tuesday since {year}, and had not won since the spring.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-chess",
+      "variant": 0
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-645",
+    "deck": "story",
+    "text": "{actor} and {victim} had one game going at the chess club since {year}, and neither of them would resign.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-chess",
+      "variant": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-646",
+    "deck": "story",
+    "text": "{actor} taught {victim} chess in {year}, and {victim} had been beating {him} at it ever since.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-chess",
+      "variant": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-647",
+    "deck": "story",
+    "text": "{actor} had played second trumpet behind {victim} in the Saturday dance band since {year}, and wanted to play first.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-band",
+      "variant": 0
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-648",
+    "deck": "story",
+    "text": "{actor} and {victim} started the dance band together in {year}, and had fallen out over its name four times.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-band",
+      "variant": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-649",
+    "deck": "story",
+    "text": "{actor} played in the band {victim} led, and was fined a dollar by {victim} for coming in late in {year}. {he} never forgot the dollar.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-band",
+      "variant": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-650",
+    "deck": "story",
+    "text": "{actor} said {victim}’s cat had slept on {his} windowsill since {year}, and {victim} said the windowsill was the problem.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-cat-feud",
+      "variant": 0
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-651",
+    "deck": "story",
+    "text": "{actor} fed a cat that {victim} said was {vhis}, and the two of them had not spoken since {year} except about the cat.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-cat-feud",
+      "variant": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-652",
+    "deck": "story",
+    "text": "{actor} and {victim} called the same cat by different names, and it answered to neither.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-cat-feud",
+      "variant": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-653",
+    "deck": "story",
+    "text": "{actor} borrowed {victim}’s ladder in {year} to fix a gutter, still had it, and had fixed the gutter twice since.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-ladder",
+      "variant": 0
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-654",
+    "deck": "story",
+    "text": "{actor} said the ladder had always been {his}, and {victim} painted a name on it in {year} to prove otherwise.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-ladder",
+      "variant": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-655",
+    "deck": "story",
+    "text": "{actor} lent the ladder on to {third} in {year}, and {victim} had been asking {actor} for it back ever since.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-ladder",
+      "variant": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-656",
+    "deck": "story",
+    "text": "{actor} and {victim} had shared one clothesline across the yard since {year}, and argued about whose turn Monday was.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-clothesline",
+      "variant": 0
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-657",
+    "deck": "story",
+    "text": "{actor} had taken {victim}’s washing in off the shared line every time it rained since {year}, and was never once thanked.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-clothesline",
+      "variant": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-658",
+    "deck": "story",
+    "text": "{actor} knew more about {victim} from the shared clothesline than anybody on the street, and had since {year}.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-clothesline",
+      "variant": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-659",
+    "deck": "story",
+    "text": "{actor} married {victim} in {year} and never had a reason to wonder until that spring.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-wed",
+      "variant": 0
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-660",
+    "deck": "story",
+    "text": "{actor} had been {victim}’s {spouse} since {year}, and still set two places at supper.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-wed",
+      "variant": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-661",
+    "deck": "story",
+    "text": "{actor} married {victim} in {year}, the week after {third} turned {victim} down.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-wed",
+      "variant": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-662",
+    "deck": "story",
+    "text": "{actor} had been engaged to {victim} since {year}, and the date had been put back twice.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-intended",
+      "variant": 0
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-663",
+    "deck": "story",
+    "text": "{actor} got engaged to {victim} the Christmas before, in front of {third}, who cried, and not from happiness.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-intended",
+      "variant": 1
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-664",
+    "deck": "story",
+    "text": "{actor} was to marry {victim} in June, and had paid for the hall.",
+    "tags": {
+      "beat": "tie",
+      "relationship": "rel-intended",
+      "variant": 2
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-665",
+    "deck": "story",
+    "text": "{actor} had it in for {victim}, and wanted {vhim} to feel it.",
+    "tags": {
+      "beat": "motive",
+      "motive": "spite"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-666",
+    "deck": "story",
+    "text": "It was spite, plain and small. {actor} wanted {victim} to feel it.",
+    "tags": {
+      "beat": "motive",
+      "motive": "spite"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-667",
+    "deck": "story",
+    "text": "{actor} had told {victim} on the stairs that some people get what is coming to them, and looked right at {vhim}.",
+    "tags": {
+      "beat": "motive-color",
+      "motive": "spite"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-668",
+    "deck": "story",
+    "text": "{actor} was jealous of what {victim} had, and said so to anybody who would stand still.",
+    "tags": {
+      "beat": "motive",
+      "motive": "envy"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-669",
+    "deck": "story",
+    "text": "{victim} had things {actor} wanted, and {actor} told anybody who would stand still.",
+    "tags": {
+      "beat": "motive",
+      "motive": "envy"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-670",
+    "deck": "story",
+    "text": "{actor} had said {victim} had everything handed to {vhim} on a plate, and never once said thank you for the plate.",
+    "tags": {
+      "beat": "motive-color",
+      "motive": "envy"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-671",
+    "deck": "story",
+    "text": "{actor} had done a foolish thing, and could not stand for {victim} to find out about it.",
+    "tags": {
+      "beat": "motive",
+      "motive": "embarrassment"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-672",
+    "deck": "story",
+    "text": "It was embarrassment. {actor} had done something foolish, and {victim} was the last person {he} wanted knowing.",
+    "tags": {
+      "beat": "motive",
+      "motive": "embarrassment"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-673",
+    "deck": "story",
+    "text": "{actor} had told somebody that if {victim} ever found out, {he} would have to leave the city, and possibly the state.",
+    "tags": {
+      "beat": "motive-color",
+      "motive": "embarrassment"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-674",
+    "deck": "story",
+    "text": "{actor} was fonder of what {victim} had than {victim} ever was.",
+    "tags": {
+      "beat": "motive",
+      "motive": "affection"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-675",
+    "deck": "story",
+    "text": "It was affection, more or less. {actor} cared more for what {victim} had than {victim} ever did.",
+    "tags": {
+      "beat": "motive",
+      "motive": "affection"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-676",
+    "deck": "story",
+    "text": "{actor} had said {victim} did not deserve it, never had, and did not even know how to look after it.",
+    "tags": {
+      "beat": "motive-color",
+      "motive": "affection"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-677",
+    "deck": "story",
+    "text": "{actor} had pride at stake against {victim}, and would not be the one to lose.",
+    "tags": {
+      "beat": "motive",
+      "motive": "pride"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-678",
+    "deck": "story",
+    "text": "Pride was the whole of it. {actor} would not lose to {victim}, not at anything.",
+    "tags": {
+      "beat": "motive",
+      "motive": "pride"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-679",
+    "deck": "story",
+    "text": "{actor} had told {victim} that one day {he} would have the last laugh, and then laughed early, to practise.",
+    "tags": {
+      "beat": "motive-color",
+      "motive": "pride"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-680",
+    "deck": "story",
+    "text": "{actor} had been in love with {victim} since the spring, and had stopped pretending otherwise.",
+    "tags": {
+      "beat": "motive",
+      "motive": "love"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-681",
+    "deck": "story",
+    "text": "Since the spring {actor} had been in love with {victim}, and had given up pretending not to be.",
+    "tags": {
+      "beat": "motive",
+      "motive": "love"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-682",
+    "deck": "story",
+    "text": "{actor} had told {victim} on the stairs that Tuesday could not come round fast enough, and {victim} laughed and said hush.",
+    "tags": {
+      "beat": "motive-color",
+      "motive": "love"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-683",
+    "deck": "story",
+    "text": "{actor} was keeping {victim}’s secret for {vhim}, and had given {vhim} a promise about it.",
+    "tags": {
+      "beat": "motive",
+      "motive": "secret-kept"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-684",
+    "deck": "story",
+    "text": "{victim} had a secret, and {actor} had promised to keep it.",
+    "tags": {
+      "beat": "motive",
+      "motive": "secret-kept"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-685",
+    "deck": "story",
+    "text": "{actor} had told {victim} that nobody would hear it from {him}, and {victim} said that was the whole point.",
+    "tags": {
+      "beat": "motive-color",
+      "motive": "secret-kept"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-686",
+    "deck": "story",
+    "text": "{actor} had business with {victim} that neither of them wanted written down.",
+    "tags": {
+      "beat": "motive",
+      "motive": "business-done"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-687",
+    "deck": "story",
+    "text": "Neither {actor} nor {victim} wanted their business written down anywhere.",
+    "tags": {
+      "beat": "motive",
+      "motive": "business-done"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-688",
+    "deck": "story",
+    "text": "{actor} had told {victim} to bring the rest of it on Tuesday, to come alone, and not to tell anybody at home.",
+    "tags": {
+      "beat": "motive-color",
+      "motive": "business-done"
     },
     "status": "generated"
   }

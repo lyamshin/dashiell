@@ -37,7 +37,7 @@ type Tier = 0 | 1 | 2 | 3 | 4 | 5;
 const TIERS: Tier[] = [0, 1, 2, 3, 4, 5];
 const SEEDS = 40;
 
-const tiered = (seed: number, tier: Tier): CaseView => buildView(generateCase(seed, { tier, level: 2 }));
+const tiered = (seed: number, tier: Tier): CaseView => buildView(generateCase(seed, { tier, level: 2, classic: true }));
 
 function play(view: CaseView, commands: string[]): RunState {
   let state = newRun(view, { detectiveName: 'Dashiell' });
@@ -50,8 +50,10 @@ const RUNS: { label: string; view: CaseView; state: RunState }[] = (() => {
   const out: { label: string; view: CaseView; state: RunState }[] = [];
   for (const tier of TIERS) {
     for (let seed = 1; seed <= SEEDS; seed++) {
-      const view = tiered(seed, tier);
-      out.push({ label: `T${tier} seed ${seed}`, view, state: playOracle(view).state });
+      // M14: the sweep is the case mix, every type in it; the goldens below
+      // are the classic draw (`tiered`).
+      const view = buildView(generateCase(seed, { tier, level: 2 }));
+      out.push({ label: `T${tier} seed ${seed} ${view.kase.act.type}`, view, state: playOracle(view).state });
     }
   }
   for (let seed = 1; seed <= SEEDS; seed++) {

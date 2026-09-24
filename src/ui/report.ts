@@ -6,7 +6,7 @@ import { shapeOf, type TierKey } from '../game/profile.js';
 import { columnFor, fieldsFor, withAnswer } from '../game/report-form.js';
 import { clock } from '../gen/types.js';
 import type { Verdict } from '../game/scoring.js';
-import { EMPTY_REPORT, type Report, type RunState } from '../game/types.js';
+import { EMPTY_REPORT, type Report, type RunState, type Told } from '../game/types.js';
 import { el } from './dom.js';
 
 const UNKNOWN = 'I don’t know';
@@ -38,7 +38,9 @@ export function renderReportForm(
       class: 'note',
       text:
         state.actionsUsed >= gameBudget(kase)
-          ? 'Eight o’clock, and the DA’s man is standing over the desk. Whatever is on the page is what gets filed.'
+          ? ['lost-pet', 'lost-item', 'affair'].includes(kase.act.type)
+            ? `Eight o’clock, and ${view.client.surname} is at the door wanting an answer. Whatever is on the page is what gets said.`
+            : 'Eight o’clock, and the DA’s man is standing over the desk. Whatever is on the page is what gets filed.'
           : 'Filing is final. Leave a line blank and it goes in as I don’t know.',
     }),
   );
@@ -59,12 +61,14 @@ export function renderReportForm(
     const legend = el('legend', { text: 'Where everybody was when it happened' });
     const when = built.find((f) => f.spec.key === 'when');
     const note = el('p', { class: 'note', text: '' });
+    // M14: nobody sends a lost dog to the DA.
+    const checker = ['lost-pet', 'lost-item', 'affair'].includes(kase.act.type) ? 'I check each myself' : 'the DA checks each';
     const paintNote = (): void => {
       const t = when?.ui.select.value;
       note.textContent =
         t !== undefined && t !== ''
-          ? `At ${clock(Number(t) as Parameters<typeof clock>[0])}, by the hour above. One line a person; the DA checks each.`
-          : 'At the half hour it happened. One line a person; the DA checks each.';
+          ? `At ${clock(Number(t) as Parameters<typeof clock>[0])}, by the hour above. One line a person; ${checker}.`
+          : `At the half hour it happened. One line a person; ${checker}.`;
     };
     when?.ui.select.addEventListener('change', paintNote);
     paintNote();
@@ -91,6 +95,37 @@ export function renderReportForm(
   });
 
   return form;
+}
+
+/**
+ * M14 §2.2: an affair's report is filed, and the client is waiting. What to
+ * tell them is the player's choice, and it is the last thing the night asks.
+ * It is never scored.
+ */
+export function renderTellChoice(view: CaseView, onTell: (told: Told) => void): HTMLElement {
+  const client = view.client;
+  const she = client.gender === 'f';
+  const his = she ? 'her' : 'his';
+  const section = el('section', { class: 'report tell' });
+  section.append(
+    el('h2', { text: `What I tell ${client.surname}` }),
+    el('p', {
+      text: `${client.surname} was waiting on my stairs with ${his} hat in ${his} hands, which is where people keep their hats when they are afraid of the answer. The report was written. What I said out loud was up to me.`,
+    }),
+  );
+  const options: { told: Told; label: string; note: string }[] = [
+    { told: 'truth', label: 'The truth, all of it', note: 'Where, when, and with whom, and what it was.' },
+    { told: 'half', label: 'A kinder half of it', note: 'Enough to sleep on. Not the name.' },
+    { told: 'nothing', label: 'Nothing at all', note: 'I found nothing. I keep the smaller half of the fee.' },
+  ];
+  const list = el('div', { class: 'after tell-options' });
+  for (const o of options) {
+    const button = el('button', { class: 'open-case', type: 'button', text: o.label });
+    button.addEventListener('click', () => onTell(o.told));
+    list.append(el('div', { class: 'tell-option' }, button, el('p', { class: 'note', text: o.note })));
+  }
+  section.append(list, el('p', { class: 'note', text: 'The report is scored on the facts. This changes only what happens next.' }));
+  return section;
 }
 
 /** M7: what a filed report did to the ladder, for the closing page. */

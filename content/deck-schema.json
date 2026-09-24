@@ -119,7 +119,8 @@
         "victim", "victimFull", "vhe", "vhis", "vhim",
         "scene", "place", "time", "until", "vtime", "span", "timing", "anchorPlace",
         "aTaken", "taken", "goods", "where", "found", "finder", "seer",
-        "year", "third", "tplace", "spouse", "sibling", "inlaw", "role", "vrole", "tie", "weapon"
+        "year", "third", "tplace", "spouse", "sibling", "inlaw", "role", "vrole", "tie", "weapon",
+        "client", "claimed", "petWord"
       ],
       "tags": {
         "beat": {
@@ -128,15 +129,16 @@
             "open", "headline", "vrole", "vdetail", "role", "standing", "tie", "motive", "motive-color", "why-left",
             "means", "key", "carried", "owner", "lastseen", "from", "before", "arrive", "alone", "moment", "act",
             "cover", "frame", "moved", "after", "goods", "whereabouts", "behind", "found", "since",
-            "precinct", "hired", "close"
+            "precinct", "hired", "close",
+            "claimed", "errand", "told", "pet"
           ]
         },
-        "caseType": { "required": false, "default": "any", "values": ["murder", "robbery", "missing", "any"] },
+        "caseType": { "required": false, "default": "any", "values": ["murder", "robbery", "missing", "lost-pet", "lost-item", "affair", "any"] },
         "fate": { "required": false, "default": "any", "values": ["left", "taken", "any"] },
         "trope": {
           "required": false,
           "default": "any",
-          "values": ["body-at-scene", "body-moved", "locked-room", "the-frame", "inside-job", "payroll", "left", "taken", "any"]
+          "values": ["body-at-scene", "body-moved", "locked-room", "the-frame", "inside-job", "payroll", "left", "taken", "pet-left-open", "pet-taken", "pet-followed", "item-borrowed", "item-pawned", "item-hidden", "item-mislaid", "the-affair", "the-secret", "the-business", "any"]
         },
         "method": {
           "required": false,
@@ -144,7 +146,10 @@
           "values": [
             "poison", "blunt", "fall", "strangle", "shot", "stab",
             "took-the-key", "worked-the-combination", "came-in-the-window", "never-left", "was-let-in",
-            "the-timetable", "the-packed-case", "the-pawned-ring", "the-borrowed-coat", "any"
+            "the-timetable", "the-packed-case", "the-pawned-ring", "the-borrowed-coat",
+            "pet-roof-door", "pet-sash-cord", "pet-hatbox", "pet-gate-pin",
+            "item-drawer-key", "item-hatbox", "item-pawn-ticket", "item-umbrella",
+            "meet-overcoat", "meet-telephone", "meet-evening-paper", "meet-umbrella", "any"
           ]
         },
         "relationship": {
@@ -154,7 +159,9 @@
             "rel-partner", "rel-tenant", "rel-landlord", "rel-employee", "rel-creditor", "rel-debtor",
             "rel-lawyer", "rel-cousin", "rel-inlaw", "rel-rival", "rel-spouse", "rel-nurse",
             "rel-secretary", "rel-engaged", "rel-childhood", "rel-willed", "rel-witness",
-            "rel-customer", "rel-neighbor", "any"
+            "rel-customer", "rel-neighbor",
+            "rel-fence", "rel-old-flame", "rel-bowling", "rel-chess", "rel-band", "rel-cat-feud", "rel-ladder", "rel-clothesline",
+            "rel-wed", "rel-intended", "any"
           ]
         },
         "archetype": {
@@ -176,7 +183,8 @@
           "default": "any",
           "values": [
             "inheritance", "jealousy", "silence-a-witness", "debt", "revenge", "exposure",
-            "property", "insurance", "protect-another", "any"
+            "property", "insurance", "protect-another",
+            "spite", "envy", "embarrassment", "affection", "pride", "love", "secret-kept", "business-done", "any"
           ]
         },
         "anchor": { "required": false, "default": "any", "vocab": "anchorTemplate", "extraValues": ["any"] },
@@ -194,7 +202,11 @@
           "required": false,
           "default": "any",
           "values": ["came-and-went", "called-it-a-fall", "took-a-statement", "not-yet-called", "closed-it-in-an-hour", "any"]
-        }
+        },
+        "errand": { "required": false, "default": "any", "values": ["affair", "night-class", "second-job", "surprise", "sick-relative", "business", "any"] },
+        "mundane": { "required": false, "default": "any", "values": ["yes", "no", "any"], "$note": "M14: no for a line that reads as a crime being done, kept out of a lost pet, a lost item and an affair." },
+        "told": { "required": false, "default": "any", "values": ["truth", "half", "nothing", "any"] },
+        "pet": { "required": false, "default": "any", "values": ["dog", "cat", "parrot", "goat", "any"] }
       },
       "coverage": [["beat"]]
     },
@@ -515,7 +527,8 @@
         "$outcomeNote": "`solved` was `hanged` until this deck had cards for a robbery and a disappearance. The axis names the outcome, not one case type's form of it: nobody goes to the gallows over a strongbox, and finding somebody alive is not a verdict. The cards that are about a hanging still say so in their own words.",
         "outcome": { "required": true, "values": ["solved", "wrong-man", "thin-case", "cold"] },
         "parDelta": { "required": true, "values": ["under", "at", "over"] },
-        "caseType": { "required": false, "default": "murder", "values": ["murder", "robbery", "missing", "any"] },
+        "caseType": { "required": false, "default": "murder", "values": ["murder", "robbery", "missing", "lost-pet", "lost-item", "affair", "any"] },
+        "told": { "required": false, "default": "any", "values": ["truth", "half", "nothing", "any"], "$note": "M14: an affair's last line, by what I told the client." },
         "trope": {
           "required": false,
           "default": "any",
@@ -528,6 +541,16 @@
             "payroll",
             "left",
             "taken",
+            "pet-left-open",
+            "pet-taken",
+            "pet-followed",
+            "item-borrowed",
+            "item-pawned",
+            "item-hidden",
+            "item-mislaid",
+            "the-affair",
+            "the-secret",
+            "the-business",
             "any"
           ]
         }
@@ -737,7 +760,7 @@
       "minPerCoverageCell": 12,
       "tags": {
         "class": { "required": true, "values": ["clears", "implicates", "observer-placed", "unmentioned", "contradicts", "motive", "method", "window", "not-robbery", "robbery-shape", "secret", "dead-end", "context", "nothing", "goods", "last-seen", "seen-after", "view", "absent", "hint", "touches"] },
-        "case": { "required": false, "default": "any", "values": ["murder", "robbery", "missing"], "extraValues": ["any"] },
+        "case": { "required": false, "default": "any", "values": ["murder", "robbery", "missing", "lost-pet", "lost-item", "affair"], "extraValues": ["any"] },
         "basis": { "required": false, "default": "any", "values": ["placement", "access", "anchor", "coroner", "dead-by", "alive-at", "self", "account", "outside", "placed", "at", "not-at", "described", "absence", "count", "anchored", "timing", "stranger", "together", "apart", "said", "two"], "extraValues": ["any"] },
         "via": { "required": false, "default": "any", "values": ["office", "account"], "extraValues": ["any"] },
         "band": { "required": false, "default": "any", "values": ["teach", "play"], "extraValues": ["any"], "$note": "docs/26: 'teach' for a card that gives a verdict ('That cleared Weisglass.'), dealt only where the pages may give one (Raw and Coddled, and the untiered game); 'play' for a card meant for Poached up only; 'any', the default, everywhere." },
@@ -1088,7 +1111,7 @@
       "slots": ["name", "he", "him", "his", "He", "victim"],
       "minPerCoverageCell": 2,
       "tags": {
-        "purpose": { "required": true, "values": ["find-the-killer-police-wont", "clear-my-name", "keep-it-quiet", "find-it-before-the-cops", "get-it-back", "bring-them-home", "make-sure-they-stay-gone", "settle-a-debt-with-the-dead"], "extraValues": ["any"] },
+        "purpose": { "required": true, "values": ["find-the-killer-police-wont", "clear-my-name", "keep-it-quiet", "find-it-before-the-cops", "get-it-back", "bring-them-home", "make-sure-they-stay-gone", "settle-a-debt-with-the-dead", "find-the-pet", "find-the-thing", "before-they-notice", "tell-me-the-truth", "put-my-mind-at-rest"], "extraValues": ["any"] },
         "temper": { "required": false, "default": "any", "values": ["plain", "yap", "enigma"], "extraValues": ["any"] }
       },
       "coverage": [["purpose"]]

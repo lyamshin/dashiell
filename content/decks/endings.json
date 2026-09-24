@@ -581,5 +581,761 @@
       "paper"
     ],
     "status": "generated"
+  },
+  {
+    "id": "end-n001",
+    "deck": "endings",
+    "text": "I am back at my desk before the milk comes, with hair or feathers on my only good coat. {killer} can do the explaining to the neighbours, and I hope it takes all week.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "under",
+      "caseType": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n002",
+    "deck": "endings",
+    "text": "The way out of {place} is shut tonight, and I watch it stay shut. {killer} has a long week of explaining ahead, and the street has nothing but time.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "at",
+      "caseType": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n003",
+    "deck": "endings",
+    "text": "It took me all night to do what a whistle and some patience might have done by ten. {killer} gets the rest of the week to explain, and the whole street to explain it to.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "over",
+      "caseType": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n004",
+    "deck": "endings",
+    "text": "I was quick, and I was wrong, which is the fastest way there is to be wrong. {killer} nods to me on the stairs, friendly as you like, and what I never got right was {missed}.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "under",
+      "caseType": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n005",
+    "deck": "endings",
+    "text": "The animal is home, and that is what the street will remember, until it remembers the rest. {killer} keeps a straight face on the stoop, and what I got wrong was {missed}.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "at",
+      "caseType": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n006",
+    "deck": "endings",
+    "text": "I take the whole night and still pick the wrong door. {killer} was behind the other one, and I think about {missed} every time something on this street barks, or squawks.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "over",
+      "caseType": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n007",
+    "deck": "endings",
+    "text": "The animal is home and {killer} is in the doghouse, which for once is the right house. The rest of it I wrote down fast, and would not swear to.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "under",
+      "caseType": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n008",
+    "deck": "endings",
+    "text": "The animal is home, and the whole street agrees on {killer}. They agree less on the rest, and so, if I am honest, do I.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "at",
+      "caseType": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n009",
+    "deck": "endings",
+    "text": "It took me all night to get half of it right, and the half that counts is asleep where it belongs. The other half I would not bet a nickel on.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "over",
+      "caseType": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n010",
+    "deck": "endings",
+    "text": "The animal is found, nobody is named, and I call it a night early. Somewhere on this street {killer} sleeps very well.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "under",
+      "caseType": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n011",
+    "deck": "endings",
+    "text": "Nobody gets the blame, and the animal gets the good cushion. {killer} passes me on the stairs a week later and says good morning, and means something by it.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "at",
+      "caseType": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n012",
+    "deck": "endings",
+    "text": "I spend the whole night and come home with an animal and no name. {killer} buys me a drink at Christmas and never says what for.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "over",
+      "caseType": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n013",
+    "deck": "endings",
+    "text": "I am home in time to put the kettle on, which is a first. {killer} has the whole morning to think up a better story, and will need it.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "under",
+      "caseType": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n014",
+    "deck": "endings",
+    "text": "It sits there looking as if it never left, and I let it. {killer} will be asked about it at every Sunday dinner from now until the end of time, and deserves most of them.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "at",
+      "caseType": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n015",
+    "deck": "endings",
+    "text": "It took me all night to put one small thing back in one small place. {killer} tells everybody it was a joke, and nobody laughs, least of all me.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "over",
+      "caseType": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n016",
+    "deck": "endings",
+    "text": "I had it back and a name on it before breakfast, and the name was wrong. {killer} says nothing, which is easy, and what I got wrong was {missed}.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "under",
+      "caseType": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n017",
+    "deck": "endings",
+    "text": "It is back, with the wrong name stuck to it like a price tag. {killer} lets it stay there, and the part I never got right was {missed}.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "at",
+      "caseType": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n018",
+    "deck": "endings",
+    "text": "I spent all night on it and handed over the wrong name at the end, which is a lot of work to do badly. {killer} knows it, and what I should have gone back for was {missed}.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "over",
+      "caseType": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n019",
+    "deck": "endings",
+    "text": "I got there early, and early is not the same as sure. {killer} is the right name, and the rest of it I would not stand behind in a strong wind.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "under",
+      "caseType": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n020",
+    "deck": "endings",
+    "text": "{killer}’s name is on it, and the rest is a guess in a good coat. I have filed worse, but not this year.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "at",
+      "caseType": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n021",
+    "deck": "endings",
+    "text": "It took me the night to get {killer} and not much else. The story round it has holes you could lose the thing in all over again.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "over",
+      "caseType": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n022",
+    "deck": "endings",
+    "text": "It is back, and no name goes with it, which is my doing. {killer} is the first to say how glad everybody must be.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "under",
+      "caseType": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n023",
+    "deck": "endings",
+    "text": "It is back where it lives, and nobody but me wonders how it got home. {killer} knows, and smiles at it every time.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "at",
+      "caseType": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n024",
+    "deck": "endings",
+    "text": "I spend the whole night and get the thing and not the name. {killer} holds the door for me on my way out, very politely.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "over",
+      "caseType": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n025",
+    "deck": "endings",
+    "text": "Some nights my job is to find out, and some nights it is also to say it out loud. Tonight was both, and {name} will be hearing about it by breakfast.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "at",
+      "caseType": "affair",
+      "told": "truth"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n026",
+    "deck": "endings",
+    "text": "It is done early, and the truth keeps no better for being early. I walk home past {place}, and it looks like anywhere else, which is the trouble with places.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "under",
+      "caseType": "affair",
+      "told": "truth"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n027",
+    "deck": "endings",
+    "text": "{name} will never know about the favour, which is the only kind I am any good at: the kind nobody thanks me for.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "at",
+      "caseType": "affair",
+      "told": "half"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n028",
+    "deck": "endings",
+    "text": "It took me all night to find out, and a minute to decide how much of it to hand over. I keep {name}’s name for myself, and it weighs more than a name should.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "over",
+      "caseType": "affair",
+      "told": "half"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n029",
+    "deck": "endings",
+    "text": "The fee’s smaller half buys a bottle, and not a good one. {name}’s name stays in my notebook, which is the only place in this city it is safe.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "at",
+      "caseType": "affair",
+      "told": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n030",
+    "deck": "endings",
+    "text": "I finish early and say nothing, which makes it the quickest nothing I ever sold. {name} will never know my name, and I will not forget {name}’s.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "under",
+      "caseType": "affair",
+      "told": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n031",
+    "deck": "endings",
+    "text": "The truth I told had the wrong name in it, which makes it a lie with good manners. What I got wrong was {missed}, and {killer} goes on as before.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "at",
+      "caseType": "affair",
+      "told": "truth"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n032",
+    "deck": "endings",
+    "text": "I spend the whole night getting it wrong, and then say it out loud. What I never had was {missed}, and {killer} will never know how lucky the evening was.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "over",
+      "caseType": "affair",
+      "told": "truth"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n033",
+    "deck": "endings",
+    "text": "What I got wrong was {missed}. {killer} walks past the house the next week, tips a hat, and is never asked a thing.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "at",
+      "caseType": "affair",
+      "told": "half"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n034",
+    "deck": "endings",
+    "text": "I was quick, and kind, and wrong, in that order. {missed} was there for a slower man, and I am not often accused of being quick.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "under",
+      "caseType": "affair",
+      "told": "half"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n035",
+    "deck": "endings",
+    "text": "What I got wrong was {missed}, and I keep that, and the smaller half of the fee, and neither one is any comfort.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "at",
+      "caseType": "affair",
+      "told": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n036",
+    "deck": "endings",
+    "text": "A whole night’s work with the wrong name at the end of it, and I keep the lot to myself. I never had {missed}, and {killer} will never know I was looking.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "over",
+      "caseType": "affair",
+      "told": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n037",
+    "deck": "endings",
+    "text": "I give the truth as I have it, and I have {name} and not much round {name}. It will do for one conversation, and it had better.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "at",
+      "caseType": "affair",
+      "told": "truth"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n038",
+    "deck": "endings",
+    "text": "I tell it early, and all of it, and all of it is not very much. {name} is the part I am sure of, and the part that matters.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "under",
+      "caseType": "affair",
+      "told": "truth"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n039",
+    "deck": "endings",
+    "text": "Half of a thin story is thinner still, and I hand it over with a straight face. {name} stays out of it, and so do the parts I could not swear to.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "at",
+      "caseType": "affair",
+      "told": "half"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n040",
+    "deck": "endings",
+    "text": "It took me all night to get {name}, and then I gave half of it away. What I have left would not keep out a draught.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "over",
+      "caseType": "affair",
+      "told": "half"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n041",
+    "deck": "endings",
+    "text": "I have {name} and not much else, and I say none of it. A thin story kept in a drawer never hurt anybody.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "at",
+      "caseType": "affair",
+      "told": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n042",
+    "deck": "endings",
+    "text": "I had {name} early and the rest never, and I tell nothing of either. The fee’s smaller half, and a clear conscience I did not pay for.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "under",
+      "caseType": "affair",
+      "told": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n043",
+    "deck": "endings",
+    "text": "The truth, it turns out, is a shrug with a bill attached, and I hand over both. Somewhere tonight {name} is having a better evening than either of us.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "at",
+      "caseType": "affair",
+      "told": "truth"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n044",
+    "deck": "endings",
+    "text": "A whole night, and nothing to show for it but honesty, which does not pay the rent. {name} never has to hear a word from me, because I never had one to say.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "over",
+      "caseType": "affair",
+      "told": "truth"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n045",
+    "deck": "endings",
+    "text": "A kindness with nothing behind it is still a kindness. I tell myself so all the way down the stairs, and {name} goes on never being found out.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "at",
+      "caseType": "affair",
+      "told": "half"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n046",
+    "deck": "endings",
+    "text": "I give up early and hand over a soft answer with nothing inside it. {name} will never know how close I did not get.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "under",
+      "caseType": "affair",
+      "told": "half"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n047",
+    "deck": "endings",
+    "text": "Nothing found, nothing told, and the fee’s smaller half on my desk. {name} never hears my name, and I never hear {name}’s.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "at",
+      "caseType": "affair",
+      "told": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n048",
+    "deck": "endings",
+    "text": "A whole night, and I come away with the fee’s smaller half and cold feet. {name} goes home by the usual street and never once looks back.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "over",
+      "caseType": "affair",
+      "told": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n049",
+    "deck": "endings",
+    "text": "It took the whole night to find out and five minutes to say. {name} is going to have a longer morning than I am.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "over",
+      "caseType": "affair",
+      "told": "truth"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n050",
+    "deck": "endings",
+    "text": "I finish early, hand over half of it, and keep the other half in my coat. {name} never finds out which half I kept.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "under",
+      "caseType": "affair",
+      "told": "half"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n051",
+    "deck": "endings",
+    "text": "A whole night’s work, and I sell it for the fee’s smaller half and a straight face. {name}’s name goes in the drawer with the other things I know and never say.",
+    "tags": {
+      "outcome": "solved",
+      "parDelta": "over",
+      "caseType": "affair",
+      "told": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n052",
+    "deck": "endings",
+    "text": "I was quick, and sure, and I said it all out loud, which is three mistakes in a row. What I got wrong was {missed}, and {killer} never hears a word of it.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "under",
+      "caseType": "affair",
+      "told": "truth"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n053",
+    "deck": "endings",
+    "text": "All night, and then a soft story with the wrong name in it. What I missed was {missed}, and I was somewhere else, being kind.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "over",
+      "caseType": "affair",
+      "told": "half"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n054",
+    "deck": "endings",
+    "text": "I got it wrong early and kept it to myself, which saves everybody the trouble. What I got wrong was {missed}, and nobody will ever know that but me.",
+    "tags": {
+      "outcome": "wrong-man",
+      "parDelta": "under",
+      "caseType": "affair",
+      "told": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n055",
+    "deck": "endings",
+    "text": "It took me all night to get {name} and not much else, and I hand over every bit of it. It is the truth, only thin, and it has to hold up over breakfast.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "over",
+      "caseType": "affair",
+      "told": "truth"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n056",
+    "deck": "endings",
+    "text": "I had {name} early and the rest not at all, and I hand over less than that. Half of not much is a very small kindness, but it is still one.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "under",
+      "caseType": "affair",
+      "told": "half"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n057",
+    "deck": "endings",
+    "text": "I spend all night getting {name} and not much round {name}, and then I keep the lot. Some nights my notebook is the only one who hears the story.",
+    "tags": {
+      "outcome": "thin-case",
+      "parDelta": "over",
+      "caseType": "affair",
+      "told": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n058",
+    "deck": "endings",
+    "text": "I give up early and say so, which is honest and cheap. {name} goes on having evenings, and nobody asks where.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "under",
+      "caseType": "affair",
+      "told": "truth"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n059",
+    "deck": "endings",
+    "text": "A whole night, and at the end of it I hand over a comfort I cannot back up. {name} has a quieter week than I do.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "over",
+      "caseType": "affair",
+      "told": "half"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "end-n060",
+    "deck": "endings",
+    "text": "I quit early and say nothing, and the fee’s smaller half still spends. {name} walks the same streets as before, and I walk them the long way round.",
+    "tags": {
+      "outcome": "cold",
+      "parDelta": "under",
+      "caseType": "affair",
+      "told": "nothing"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]

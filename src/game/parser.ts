@@ -450,6 +450,8 @@ export function parse(
             message:
               type === 'missing'
                 ? `Nobody knows where ${view.victim.surname} is. That is the job.`
+                : type === 'affair'
+                  ? `${view.victim.surname} is not going to talk to anybody ${view.client.surname} is paying. Ask somebody else.`
                 : `${view.victim.surname} is on a slab. Ask somebody else about ${view.victim.surname}.`,
           },
         };

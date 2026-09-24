@@ -77,7 +77,7 @@ export function tierSuite(tier: PresetTier, seeds: number, oracleSeeds: number):
         if (dials.shape.name !== shape.name || dials.ladder.level !== level) bad.push(`${tag}: dials`);
         if (c.difficulty !== level) bad.push(`${tag}: difficulty ${c.difficulty}`);
         // M9 polish: a tiered case adds the tier's `extraSlack` (Hard-boiled).
-        const slack = c.logic ? logicSlackFor(shape, ladder, c.par, size) : slackFor(shape, ladder, c.par);
+        const slack = c.logic ? logicSlackFor(shape, ladder, c.par, size, c.act.type) : slackFor(shape, ladder, c.par);
         if (c.slack !== slack) bad.push(`${tag}: slack ${c.slack}`);
         if (c.budget !== c.par + c.slack) bad.push(`${tag}: budget`);
         const suspects = c.people.filter((p) => p.kind === 'suspect');

@@ -50,7 +50,7 @@ export function renderNotebook(
       el('span', {
         class: 'role',
         text: `, ${person.role}${person.isClient ? ' — our client' : ''}${
-          person.isVictim ? ' — the victim' : ''
+          person.isVictim ? ` — ${book.victimWord}` : ''
         }`,
       }),
     );

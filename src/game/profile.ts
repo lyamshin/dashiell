@@ -21,6 +21,7 @@
 import type { Difficulty } from '../gen/types.js';
 import { CAMPAIGN, TIERS, type CaseShape, type Level, type ShapeOptions } from '../gen/shape.js';
 import type { KeyValueStore } from './storage.js';
+import { TOLD_CHOICES, type Told } from './types.js';
 
 export const PROFILE_KEY = 'dashiell:profile';
 
@@ -49,6 +50,11 @@ export interface Profile {
   wins: number;
   /** What the title page opens on. */
   current: { tier: TierKey; level: Level };
+  /**
+   * M14 §2.2: what I told the clients of affairs, counted. Absent on a profile
+   * from before M14, and until the first affair is filed.
+   */
+  told?: Record<Told, number>;
 }
 
 export function emptyProfile(): Profile {
@@ -177,6 +183,8 @@ export interface RunResult {
   actionsUsed: number;
   /** The game's par, as the verdict holds the night to it. */
   par: number;
+  /** M14: an affair, and what I told the client. */
+  told?: Told;
 }
 
 export interface RecordOutcome {
@@ -200,6 +208,12 @@ export function recordRun(profile: Profile, result: RunResult): RecordOutcome {
     wins: profile.wins + (won ? 1 : 0),
     current: { ...profile.current },
   };
+  // M14 §2.2: the choice is kept, and changes nothing but the count.
+  if (result.told !== undefined) {
+    const told = { truth: 0, half: 0, nothing: 0, ...(profile.told ?? {}) };
+    told[result.told] += 1;
+    next.told = told;
+  }
   if (!won || result.tier === undefined) {
     return { profile: next, won, firstClear: null, unlocked: null };
   }
@@ -262,6 +276,12 @@ export function sanitizeProfile(value: unknown): Profile {
     typeof x === 'number' && Number.isFinite(x) && x >= 0 ? Math.floor(x) : 0;
   out.runs = count(v.runs);
   out.wins = Math.min(count(v.wins), out.runs);
+  if (typeof v.told === 'object' && v.told !== null) {
+    const t = v.told as Record<string, unknown>;
+    const told = { truth: 0, half: 0, nothing: 0 } as Record<Told, number>;
+    for (const k of TOLD_CHOICES) told[k] = count(t[k]);
+    if (TOLD_CHOICES.some((k) => told[k] > 0)) out.told = told;
+  }
   if (typeof v.current === 'object' && v.current !== null) {
     const c = v.current as Record<string, unknown>;
     const level = isLevel(c.level) ? c.level : 1;

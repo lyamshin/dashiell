@@ -445,6 +445,15 @@ export interface ErrandTrace {
  * are exactly them; the four that are new are optional, and a field the case
  * does not ask is never read.
  */
+/**
+ * M14 §2.2: what the detective tells the client of an affair, after the
+ * report. Never scored; it changes the closing page and the story, and the
+ * profile keeps count.
+ */
+export type Told = 'truth' | 'half' | 'nothing';
+
+export const TOLD_CHOICES: Told[] = ['truth', 'half', 'nothing'];
+
 export interface Report {
   /** `who`. */
   killerId: Id | null;
@@ -469,6 +478,8 @@ export interface Report {
    * the full crime column, one place per suspect, scored cell by cell.
    */
   column?: Record<Id, Id | null> | null;
+  /** M14, an affair: what I told the client. Chosen after the report; not scored. */
+  told?: Told;
 }
 
 export const EMPTY_REPORT: Report = {

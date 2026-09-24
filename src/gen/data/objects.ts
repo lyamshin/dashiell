@@ -48,7 +48,34 @@ export const OBJECT_TEMPLATES: ObjectTemplate[] = [
   { id: 'obj-payroll', name: 'a payroll envelope' },
   { id: 'obj-bonds', name: 'a packet of bearer bonds' },
   { id: 'obj-jewels', name: 'a jewel case' },
+
+  /**
+   * M14: what goes missing when nobody is a thief. Like the goods above, never
+   * dealt into a room at random — a lost-pet or lost-item case puts exactly one
+   * at the scene, on purpose — and never listed in a place card, so the draw
+   * for every other case is untouched.
+   */
+  { id: 'obj-pet-dog', name: 'the fox terrier' },
+  { id: 'obj-pet-cat', name: 'the ginger tomcat' },
+  { id: 'obj-pet-parrot', name: 'the green parrot' },
+  { id: 'obj-pet-goat', name: 'the nanny goat' },
+  { id: 'obj-ring', name: 'the gold wedding ring' },
+  { id: 'obj-watch', name: 'the gold pocket watch' },
+  { id: 'obj-medal', name: 'the war medal in its velvet box' },
+  { id: 'obj-teeth', name: 'the set of false teeth' },
+  { id: 'obj-trophy', name: 'the bowling trophy' },
 ];
+
+/** M14: the animal, by kind. */
+export const PET_OBJECT: Record<'dog' | 'cat' | 'parrot' | 'goat', Id> = {
+  dog: 'obj-pet-dog',
+  cat: 'obj-pet-cat',
+  parrot: 'obj-pet-parrot',
+  goat: 'obj-pet-goat',
+};
+
+/** M14: what a lost-item case can lose. */
+export const LOST_ITEM_IDS: Id[] = ['obj-ring', 'obj-watch', 'obj-medal', 'obj-teeth', 'obj-trophy'];
 
 /** The goods, by trope. A payroll job takes a payroll. */
 export const SWAG_IDS: Id[] = ['obj-payroll', 'obj-bonds', 'obj-jewels', 'obj-cashbox'];

@@ -26,7 +26,7 @@
  * start and stop.
  */
 
-import { TICKS, clock, type CaseType, type Id, type LieCover, type Person, type Secret, type Tick } from '../types.js';
+import { TICKS, clock, isTheft, machineOf, type CaseType, type Id, type LieCover, type Person, type Secret, type Tick } from '../types.js';
 import type { Rng } from '../rng.js';
 import type { Cast } from '../cast.js';
 import type { Setting } from '../setting.js';
@@ -100,8 +100,12 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
   const nonScene = placeIds.filter((p) => p !== L);
   const templateOf = (id: Id) => setting.templates[id];
   const watcherAt = (place: Id): Id | undefined => cast.watcherOf[place];
-  const isRobbery = ctx.caseType === 'robbery';
+  // M14: a lost pet and a lost item are thefts to the schedule, and an
+  // affair is a meeting — the one it is about at the scene at the half hour,
+  // alive before and after, and nobody walking in on anything.
+  const isRobbery = isTheft(ctx.caseType);
   const isMissing = ctx.caseType === 'missing';
+  const isMeeting = machineOf(ctx.caseType) === 'meeting';
   const plainTier = dials.directClears >= cast.innocents.length;
 
   const blockStart = Math.max(1, M - rng.int(3));
@@ -778,7 +782,7 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
 
   /* --- who found it ----------------------------------------------------------- */
   let discovery: { placeId: Id; tick: Tick; byId: Id } | undefined;
-  if (!isMissing && M + 1 <= TICKS - 1) {
+  if (!isMissing && !isMeeting && M + 1 <= TICKS - 1) {
     const placeId = ctx.tropeId === 'body-moved' ? (rng.pick(nonScene) as Id) : L;
     const eligible = cast.people.filter((p) => p.id !== killer.id && p.id !== cast.victim.id);
     let found: { tick: Tick; byId: Id } | undefined;
@@ -1002,7 +1006,13 @@ export function buildSchedules9(ctx: Schedule9Context): Schedule9Build | null {
     const where = secret.cells.length > 0 ? placeName(secret.cells[0]?.place as Id) : '';
     secret.description = describeSecret(template, p.surname, secret.partnerId ? nameOf(secret.partnerId) : null, where, ticks, cast.victim.surname);
   }
-  murderSecret.description = isRobbery
+  murderSecret.description = isMeeting
+    ? `${killer.surname} is at ${placeName(L)} from ${tickRange(murderCells)}, and ${cast.victim.surname} is there with ${killer.surname} at ${clock(M)}.`
+    : ctx.caseType === 'lost-pet'
+      ? `${killer.surname} is at ${placeName(L)} from ${tickRange(murderCells)}, and ${cast.victim.surname}’s animal goes out of it at ${clock(M)}.`
+      : ctx.caseType === 'lost-item'
+        ? `${killer.surname} is at ${placeName(L)} from ${tickRange(murderCells)}, alone with what ${cast.victim.surname} kept there, and it goes at ${clock(M)}.`
+        : isRobbery
     ? `${killer.surname} is at ${placeName(L)} from ${tickRange(murderCells)}, alone with what ${cast.victim.surname} kept there, and takes it at ${clock(M)}.`
     : isMissing
       ? `${killer.surname} is at ${placeName(L)} from ${tickRange(murderCells)}, alone with ${cast.victim.surname}, who is not seen again after ${clock(M)}.`

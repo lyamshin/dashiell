@@ -21,7 +21,7 @@ import { checkRunCoverage } from '../src/game/scene/coverage.js';
 import type { RunState } from '../src/game/types.js';
 
 const tiered = (seed: number, tier: 2 | 3 | 4 | 5, level: 1 | 2 | 3 = 2): CaseView =>
-  buildView(generateCase(seed, { tier, level }));
+  buildView(generateCase(seed, { tier, level, classic: true }));
 
 function play(view: CaseView, commands: string[]): RunState {
   let state = newRun(view, { detectiveName: 'Dashiell' });

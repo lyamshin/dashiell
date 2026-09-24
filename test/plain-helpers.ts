@@ -25,7 +25,8 @@ export interface Labelled {
   text: string;
 }
 
-export const CASE_TYPES: CaseType[] = ['murder', 'robbery', 'missing'];
+// M14: the mundane three, dealt at Hard-boiled when asked for without a tier.
+export const CASE_TYPES: CaseType[] = ['murder', 'robbery', 'missing', 'lost-pet', 'lost-item', 'affair'];
 
 function caseStrings(value: unknown, path: string, out: Labelled[], inText = false): void {
   if (typeof value === 'string') {

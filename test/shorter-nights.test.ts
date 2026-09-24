@@ -22,7 +22,7 @@ import { renderPageText } from '../src/game/transcript.js';
 import type { Page, RunState } from '../src/game/types.js';
 
 const tiered = (seed: number, tier: 0 | 1 | 2 | 3 | 4 | 5, level: 1 | 2 | 3 = 2): CaseView =>
-  buildView(generateCase(seed, { tier, level }));
+  buildView(generateCase(seed, { tier, level, classic: true }));
 
 const last = (state: RunState): Page => state.log[state.log.length - 1] as Page;
 
@@ -301,7 +301,7 @@ describe('Shorter nights: par and budget', () => {
         const [lo, hi] = deductionOf(shape).par;
         expect(walk).toBeGreaterThanOrEqual(lo);
         expect(walk).toBeLessThanOrEqual(hi);
-        expect(kase.budget).toBe(kase.par + logicSlackFor(shape, ladder, kase.par, walk));
+        expect(kase.budget).toBe(kase.par + logicSlackFor(shape, ladder, kase.par, walk, kase.act.type));
         if (kase.par < walk) shorter++;
         if ((kase.logic?.solve.confessions.length ?? 0) > 0) {
           withConfession++;

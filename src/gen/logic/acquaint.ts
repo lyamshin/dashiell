@@ -184,6 +184,27 @@ function victimRefFrom(relationshipId: Id | undefined, victim: Person): string |
       return f ? 'the woman I work for' : 'the man I work for';
     case 'rel-neighbor':
       return 'my neighbour across the airshaft';
+    // M14: the ties beyond money.
+    case 'rel-fence':
+      return 'my neighbour over the backyard fence';
+    case 'rel-old-flame':
+      return f ? 'a woman I used to walk out with' : 'a man I used to walk out with';
+    case 'rel-bowling':
+      return 'my rival in the bowling league';
+    case 'rel-chess':
+      return 'the one I play chess with on Tuesdays';
+    case 'rel-band':
+      return 'the one I play in the band with';
+    case 'rel-cat-feud':
+      return f ? 'the woman with the cat' : 'the man with the cat';
+    case 'rel-ladder':
+      return f ? 'the woman whose ladder I borrowed' : 'the man whose ladder I borrowed';
+    case 'rel-clothesline':
+      return 'my neighbour on the washing line';
+    case 'rel-wed':
+      return f ? 'my wife' : 'my husband';
+    case 'rel-intended':
+      return f ? 'my fiancée' : 'my fiancé';
     default:
       return null;
   }

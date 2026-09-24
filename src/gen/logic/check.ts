@@ -111,7 +111,7 @@ export function checkLogic(c: LogicCaseUnderTest): { ok: boolean; failures: stri
   if (size < lo) failures.push(`par ${size} (walked as M9 walked it) is under the floor of ${lo}`);
   if (size > hi) failures.push(`par ${size} (walked as M9 walked it) is over the ceiling of ${hi}`);
   if (c.par > size) failures.push(`par ${c.par} is longer than the M9 walk of ${size}`);
-  const slack = logicSlackFor(shape, ladder, c.par, size);
+  const slack = logicSlackFor(shape, ladder, c.par, size, c.act.type);
   if (c.slack !== slack) failures.push(`slack ${c.slack} is not ${slack}`);
   if (c.budget !== c.par + c.slack) failures.push('budget is not par plus slack');
 

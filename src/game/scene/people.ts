@@ -11,7 +11,7 @@
  * the notebook has it.
  */
 
-import type { Id, Person } from '../../gen/types.js';
+import { isTheft, type Id, type Person } from '../../gen/types.js';
 import type { CaseView } from '../derive.js';
 import { layerCredit } from '../voice/plain.js';
 import { pronounOf } from '../voice/cast.js';
@@ -43,6 +43,17 @@ export function knownTie(view: CaseView, person: Person, found: readonly Id[]): 
   return null;
 }
 
+/**
+ * What the finder found: the victim, or — in a theft, a lost pet or a lost
+ * item — the thing gone. "Who had found Schilling" of a missing watch had the
+ * owner lying on the floor.
+ */
+function foundWhat(view: CaseView): string {
+  const act = view.kase.act;
+  if (isTheft(act.type) && act.taken) return `${act.taken.name.replace(/^(a|an) /, 'the ')} gone`;
+  return view.victim.surname;
+}
+
 /** "She was the one who had found Sirkin." — the tie, as a sentence of its own. */
 export function tieSentence(view: CaseView, person: Person, tie: KnownTie): string {
   const she = pronounOf(person) === 'she';
@@ -51,7 +62,7 @@ export function tieSentence(view: CaseView, person: Person, tie: KnownTie): stri
   const victim = view.victim.surname;
   switch (tie.kind) {
     case 'finder':
-      return `${He} was the one who had found ${victim}.`;
+      return `${He} was the one who had found ${foundWhat(view)}.`;
     case 'pointer':
       return `${view.client.surname} had told me to start with ${him}.`;
     case 'relation':
@@ -66,7 +77,7 @@ function tieClause(view: CaseView, person: Person, tie: KnownTie): string {
   const victim = view.victim.surname;
   switch (tie.kind) {
     case 'finder':
-      return `who had found ${victim}`;
+      return `who had found ${foundWhat(view)}`;
     case 'pointer':
       return `${view.client.surname} had told me to start with`;
     case 'relation':

@@ -111,7 +111,10 @@ describe('M12 Part 1: the ask, staged', () => {
         if (page.shape !== 'ask') continue;
         const q = page.blocks.find((b) => b.kind === 'prose' && b.voice === 'exchange');
         if (!q || q.kind !== 'prose') continue;
-        if (/^I asked (?:him|her|what|whether)\b/.test(q.text)) reported++;
+        // A carried question is reported with its reason first ("Quill did
+        // business with Colquitt. I asked what he had seen of Quill tonight."),
+        // and M14's ties beyond money carry more of them.
+        if (/(?:^|[.!?]\s+)I asked (?:him|her|what|whether)\b/.test(q.text)) reported++;
         else if (/^“/.test(q.text)) aloud++;
       }
     }

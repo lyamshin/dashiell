@@ -21,7 +21,7 @@
  * too: it is drawn apart from everything the notebook holds.
  */
 
-import { generateCase, type CaseType, type Difficulty } from '../gen/index.js';
+import { CASE_TYPES, generateCase, type CaseType, type Difficulty } from '../gen/index.js';
 import { TROPE_IDS } from '../gen/tropes/index.js';
 import { buildView, gameBudget, gamePar } from '../game/derive.js';
 import { playOracle, playWandering } from '../game/oracle.js';
@@ -61,12 +61,12 @@ if (
   !Number.isInteger(seed) ||
   ![1, 2, 3, 4].includes(difficulty) ||
   dialFlags === null ||
-  (type !== undefined && !['murder', 'robbery', 'missing'].includes(type)) ||
+  (type !== undefined && !(CASE_TYPES as string[]).includes(type)) ||
   (trope !== undefined && !TROPE_IDS.includes(trope))
 ) {
   process.stderr.write(
     'usage: npm run read -- --seed <integer> [--difficulty 1|2|3|4] [--random] [--pages N] ' +
-      `[--no-gaps] [--no-choices] [--grid] [--marks "Grasso 10 at the suite; …"] [--type murder|robbery|missing] [--trope <id>] ` +
+      `[--no-gaps] [--no-choices] [--grid] [--marks "Grasso 10 at the suite; …"] [--type ${CASE_TYPES.join('|')}] [--told truth|half|nothing] [--trope <id>] ` +
       `[--tier 0..5|over-easy] [--level 1..4]
   tropes: ${TROPE_IDS.join(', ')}
 `,
@@ -177,11 +177,17 @@ if (flags.has('grid') || values.has('marks') || values.has('links')) {
 }
 
 if (report) {
-  const filed = fileReport(state, report);
-  out.push(renderVerdictText(scoreReport(view, filed, report)));
+  // M14 §2.2: `--told truth|half|nothing` is what the detective tells an
+  // affair's client after the report. The truth, unless asked otherwise.
+  const toldFlag = values.get('told');
+  const told = toldFlag === 'half' || toldFlag === 'nothing' ? toldFlag : 'truth';
+  const final: Report = kase.act.type === 'affair' ? { ...report, told } : report;
+  const filed = fileReport(state, final);
+  if (kase.act.type === 'affair') out.push(`(What I tell ${view.client.surname}: ${told}.)`, '');
+  out.push(renderVerdictText(scoreReport(view, filed, final)));
   // What the closing page's "What really happened" tells: the crime and
   // nothing else. The truth sheet is `npm run case`.
-  out.push(renderStoryText(storyOf(kase)));
+  out.push(renderStoryText(storyOf(kase, [], final.told)));
 }
 
 const words = state.log.reduce(

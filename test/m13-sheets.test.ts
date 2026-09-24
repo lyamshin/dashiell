@@ -264,7 +264,7 @@ describe('M13: the pages', () => {
   });
 
   it('seed 3 at Medium: the speakeasy arrival is written from an arrival sheet and a company sheet, and ends on its last line', () => {
-    const view = buildView(generateCase(3, { tier: 4 }));
+    const view = buildView(generateCase(3, { tier: 4, classic: true }));
     const state = playOracle(view).state;
     const page = state.log.find((p) => p.shape === 'arrive' && p.at === 'speakeasy');
     expect(page).toBeDefined();

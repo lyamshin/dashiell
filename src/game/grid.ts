@@ -18,7 +18,7 @@
  * the briefing the notebook prints under the victim.
  */
 
-import { TICKS, clock } from '../gen/types.js';
+import { TICKS, clock, isTheft } from '../gen/types.js';
 import type { Clue, Fact, Id, Tick } from '../gen/types.js';
 import type { CaseView } from './derive.js';
 import { accountRuns, claimedAccount, establishedFrom, spanLabel } from './derive.js';
@@ -412,7 +412,16 @@ export function applyLink(state: RunState, key: string, personId: Id | null): Ru
  */
 function sourceLabelOf(view: CaseView, clue: Clue): string {
   if (clue.source.type === 'person') return view.personById.get(clue.source.personId)?.surname ?? clue.source.personId;
-  if (clue.kind === 'morgue') return view.kase.act.type === 'murder' ? 'the coroner' : 'the precinct report';
+  if (clue.kind === 'morgue') {
+    const type = view.kase.act.type;
+    return type === 'murder'
+      ? 'the coroner'
+      : type === 'affair'
+        ? view.client.surname
+        : type === 'lost-pet' || type === 'lost-item'
+          ? 'the household'
+          : 'the precinct report';
+  }
   return view.placeById.get(clue.source.placeId)?.shortName ?? clue.source.placeId;
 }
 
@@ -741,7 +750,17 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
 
   /* The window, the life line, the crime's half hour. */
   const deathLabel =
-    type === 'murder' ? 'time of death' : type === 'robbery' ? 'when it was taken' : 'when they were last seen';
+    type === 'murder'
+      ? 'time of death'
+      : type === 'robbery'
+        ? 'when it was taken'
+        : type === 'lost-pet'
+          ? 'when it got out'
+          : type === 'lost-item'
+            ? 'when it went'
+            : type === 'affair'
+              ? 'the half hour that matters'
+              : 'when they were last seen';
   const window = est.deathTicks.length > 0 ? { ticks: [...est.deathTicks], label: deathLabel } : null;
   const life =
     type === 'murder'
@@ -750,7 +769,7 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
         ? { before: 'about', after: 'gone' }
         : null;
   const crimeTick = est.deathTicks.length === 1 ? (est.deathTicks[0] as Tick) : null;
-  const victimRowTouched = type !== 'robbery';
+  const victimRowTouched = !isTheft(type);
   for (const clue of found) {
     for (const f of clue.establishes) {
       if (f.kind === 'timeOfDeath') {
@@ -843,9 +862,11 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
       kind === 'victim'
         ? type === 'murder'
           ? 'the victim'
-          : type === 'robbery'
+          : isTheft(type)
             ? 'the owner'
-            : 'missing'
+            : type === 'affair'
+              ? 'the one it is about'
+              : 'missing'
         : kind === 'client'
           ? 'our client'
           : (person?.role ?? '');
@@ -918,12 +939,20 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
   const whereAsked = kase.act.unknowns.includes('where');
   const sceneId = whereAsked ? view.startId : view.sceneId;
   const sceneLabel = whereAsked
-    ? 'where the body was found'
+    ? type === 'affair'
+      ? 'where they said they would be'
+      : 'where the body was found'
     : type === 'murder'
       ? 'the scene'
       : type === 'robbery'
         ? 'where it was taken from'
-        : 'where they were missed from';
+        : type === 'lost-pet'
+          ? 'where it got out'
+          : type === 'lost-item'
+            ? 'where it was kept'
+            : type === 'affair'
+              ? 'where they were'
+              : 'where they were missed from';
   const used = new Set<Id>();
   for (const r of allRows) {
     for (const c of r.cells) {
@@ -957,7 +986,17 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
     anchors,
     crimeTick,
     crimeLabel:
-      type === 'murder' ? 'when it happened' : type === 'robbery' ? 'when it was taken' : 'when they went',
+      type === 'murder'
+        ? 'when it happened'
+        : type === 'robbery'
+          ? 'when it was taken'
+          : type === 'lost-pet'
+            ? 'when it got out'
+            : type === 'lost-item'
+              ? 'when it went'
+              : type === 'affair'
+                ? 'the half hour that matters'
+                : 'when they went',
     sources,
     rules,
     margins,

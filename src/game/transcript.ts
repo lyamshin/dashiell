@@ -11,7 +11,7 @@ import { clock } from '../gen/types.js';
 import type { Id, Tick } from '../gen/types.js';
 import { clockAfter } from './clock.js';
 import type { CaseView } from './derive.js';
-import { accountRuns, claimedAccount, gameBudget, personName, spanLabel } from './derive.js';
+import { accountRuns, claimedAccount, gameBudget, personName, spanLabel, victimWord } from './derive.js';
 import { buildNotebook } from './notebook.js';
 import { pronounOf } from './voice/cast.js';
 import { countWords } from './voice/page.js';
@@ -188,7 +188,7 @@ export function renderNotebookText(view: CaseView, state: RunState): string {
     const title = person.display === person.surname ? `${person.surname}, ${person.role}` : person.display;
     out.push(
       `  ${title}${person.isClient ? ' — our client' : ''}${
-        person.isVictim ? ' — the victim' : ''
+        person.isVictim ? ` — ${victimWord(view.kase.act.type)}` : ''
       }${person.foundAt ? ` (${person.foundAt})` : ''}${person.done ? ' — told me all of it' : ''}`,
     );
     // M5 §4: the dossier, by the layer it was learned at. A layer with nothing
@@ -253,7 +253,7 @@ export function renderVerdictText(verdict: Verdict): string {
   const out: string[] = ['THE REPORT', '═'.repeat(WIDTH), ''];
   for (const field of verdict.fields) {
     out.push(
-      `  ${field.label.padEnd(26)}${field.given.padEnd(28)}${field.correct ? '✓' : `✗ ${field.truth}`}`,
+      `  ${field.label.padEnd(26)} ${field.given.padEnd(28)}${field.correct ? '✓' : `✗ ${field.truth}`}`,
     );
   }
   // M9 §5: the crime column, a line a suspect.

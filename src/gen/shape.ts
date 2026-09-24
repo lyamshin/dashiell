@@ -54,8 +54,19 @@ export interface CaseShape {
   killerCoverSecret: boolean;
   clientMayBeCulprit: boolean;
   caseTypes: CaseType[];
+  /**
+   * M14 §1.5: how often each type is dealt, as weights over the types the
+   * tier has a trope for. Absent is the pre-M14 draw: one pick over the
+   * tropes' own weights.
+   */
+  caseMix?: Partial<Record<CaseType, number>>;
   /** Which tropes may be drawn. */
   tropes: Id[];
+  /**
+   * M14: the tropes the tier drew from before M14, the classic draw that the
+   * case mix keeps or replaces (`pickMixedTrope`). Absent is `tropes`.
+   */
+  classicTropes?: Id[];
   reportFields: ReportField[];
   /**
    * The murder tropes name the method in their givens ("It was a knife.").
@@ -135,6 +146,8 @@ export interface DeductionDials {
    * (docs/24-shorter-nights-notes.md).
    */
   extraSlack?: number;
+  /** M14: spare actions over `extraSlack` for one case type, where the design test needs them. */
+  typeSlack?: Partial<Record<CaseType, number>>;
   /**
    * M10 Part B, Raw and Coddled: the night teaches the one loop the game is.
    * The culprit's own account is on the par route and lies about the crime's
@@ -217,6 +230,10 @@ export const DEDUCTION_MEDIUM: DeductionDials = {
   culpritDepth: 4,
   pieces: 0.6,
   par: [8, 14],
+  // M14: the design test is held per case type now. A robbery or a
+  // disappearance at Medium and Hard-boiled ran the reasoning player out of
+  // night a call short of it one time in five (docs/33-m14-notes.md).
+  typeSlack: { robbery: 1, missing: 1 },
 };
 
 export const DEDUCTION_HARD: DeductionDials = {
@@ -287,6 +304,39 @@ const ALL_TROPES: Id[] = [
   'left',
   'taken',
 ];
+/** The eight tropes before M14: what the untiered case draws from, and nothing else. */
+export const LEGACY_TROPES: Id[] = ALL_TROPES.slice();
+/** M14: the mundane three, every trope of each. */
+const MUNDANE_TROPES: Id[] = [
+  'pet-left-open',
+  'pet-taken',
+  'pet-followed',
+  'item-borrowed',
+  'item-pawned',
+  'item-hidden',
+  'item-mislaid',
+  'the-affair',
+  'the-secret',
+  'the-business',
+];
+/**
+ * M14: the robbery and missing tropes a small tier can deal. `left` asks where
+ * and why and never who, and a tier below Medium asks neither, so it waits.
+ */
+const SMALL_OTHER: Id[] = ['inside-job', 'payroll', 'taken'];
+const ALL_TYPES: CaseType[] = ['murder', 'robbery', 'missing', 'lost-pet', 'lost-item', 'affair'];
+/**
+ * M14 §1.5, the designer: "too much murder". Every tier deals every type, and
+ * murder is about a third of it.
+ */
+export const CASE_MIX: Record<CaseType, number> = {
+  murder: 34,
+  'lost-pet': 16,
+  'lost-item': 16,
+  affair: 16,
+  robbery: 9,
+  missing: 9,
+};
 const ALL_FIELDS: ReportField[] = ['who', 'how', 'why', 'when', 'where'];
 const ALL_LEGS: ProofLeg[] = ['access', 'method', 'motive', 'signature'];
 
@@ -307,8 +357,10 @@ export const RAW: CaseShape = {
   liarsAtCrime: 0,
   killerCoverSecret: false,
   clientMayBeCulprit: false,
-  caseTypes: ['murder'],
-  tropes: MURDER_AT_SCENE,
+  caseTypes: ALL_TYPES,
+  caseMix: CASE_MIX,
+  tropes: [...MURDER_AT_SCENE, ...SMALL_OTHER, ...MUNDANE_TROPES],
+  classicTropes: MURDER_AT_SCENE,
   reportFields: ['who'],
   methodGiven: true,
   proof: [],
@@ -358,7 +410,8 @@ export const SOFT_BOILED: CaseShape = {
   rule: 'This time: the coroner gives an hour, not a half hour, and the scene can lie.',
   coronerWidth: 2,
   anchorsRequired: 1,
-  tropes: MURDER_TROPES,
+  tropes: [...MURDER_TROPES, ...SMALL_OTHER, ...MUNDANE_TROPES],
+  classicTropes: MURDER_TROPES,
   proof: ['method', 'access', 'signature'],
   par: [7, 8],
   findable: 26,
@@ -380,8 +433,10 @@ export const MEDIUM: CaseShape = {
   liarsAtCrime: 2,
   killerCoverSecret: false,
   clientMayBeCulprit: false,
-  caseTypes: ['murder', 'robbery', 'missing'],
-  tropes: ALL_TROPES,
+  caseTypes: ALL_TYPES,
+  caseMix: CASE_MIX,
+  tropes: [...ALL_TROPES, ...MUNDANE_TROPES],
+  classicTropes: ALL_TROPES,
   reportFields: ALL_FIELDS,
   methodGiven: false,
   proof: ALL_LEGS,
@@ -412,8 +467,10 @@ export const HARD_BOILED: CaseShape = {
   liarsAtCrime: 3,
   killerCoverSecret: true,
   clientMayBeCulprit: true,
-  caseTypes: ['murder', 'robbery', 'missing'],
-  tropes: ALL_TROPES,
+  caseTypes: ALL_TYPES,
+  caseMix: CASE_MIX,
+  tropes: [...ALL_TROPES, ...MUNDANE_TROPES],
+  classicTropes: ALL_TROPES,
   reportFields: ALL_FIELDS,
   methodGiven: true,
   proof: ALL_LEGS,
@@ -606,11 +663,18 @@ export function slackFor(shape: CaseShape, ladder: Ladder, par: number): number 
  * `extraSlack` (Hard-boiled). The no-options case never comes here, so its
  * budgets are byte for byte what they were.
  */
-export function logicSlackFor(shape: CaseShape, ladder: Ladder, par: number, walk: number = par): number {
+export function logicSlackFor(
+  shape: CaseShape,
+  ladder: Ladder,
+  par: number,
+  walk: number = par,
+  type?: CaseType,
+): number {
   // Shorter nights: where slack scales with par, it scales with the size of
   // the game — the par route walked the M9 way (\`SolveSummary.walk\`) — so
   // the budget comes down by exactly the calls the night no longer spends.
-  return slackFor(shape, ladder, walk) + (deductionOf(shape).extraSlack ?? 0);
+  const ded = deductionOf(shape);
+  return slackFor(shape, ladder, walk) + (ded.extraSlack ?? 0) + (type !== undefined ? (ded.typeSlack?.[type] ?? 0) : 0);
 }
 
 /** How many liars the level wants, capped by what the shape allows. */
