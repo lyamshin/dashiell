@@ -32,6 +32,7 @@ import type { Block, Page, RunState } from './types.js';
 import { recapKeys } from './recap.js';
 import { namedIn } from './scene/text.js';
 import { ALL_CARDS } from './voice/cards.js';
+import { SHEETS } from './scene/sheets.js';
 import * as VOICE_DATA from './voice-data.js';
 import * as PLAIN from './voice/plain.js';
 import * as OFFICE from './voice/office.js';
@@ -141,6 +142,10 @@ export function engineVocabulary(): EngineVocabulary {
   if (cachedVocabulary) return cachedVocabulary;
   const strings: string[] = [];
   for (const card of ALL_CARDS) strings.push(card.text);
+  // M13: what a card offers a sheet (a prop's short form, its own closing
+  // lines), and the sheets' own words.
+  for (const card of ALL_CARDS) if (card.exports) collectStrings(card.exports, strings);
+  for (const sheet of SHEETS) collectStrings(sheet, strings);
   collectStrings(VOICE_DATA, strings);
   collectStrings(PLAIN, strings);
   // M11: the office's own lines, and the dossier's character lines — the
@@ -283,6 +288,10 @@ const IMAGE_HOURS: { phrase: string; hour: string }[] = (() => {
   const out: { phrase: string; hour: string }[] = [];
   const strings: string[] = [];
   for (const card of ALL_CARDS) strings.push(card.text);
+  // M13: what a card offers a sheet (a prop's short form, its own closing
+  // lines), and the sheets' own words.
+  for (const card of ALL_CARDS) if (card.exports) collectStrings(card.exports, strings);
+  for (const sheet of SHEETS) collectStrings(sheet, strings);
   collectStrings(VOICE_DATA, strings);
   collectStrings(PLAIN, strings);
   // M11: the office's own lines, and the dossier's character lines — the
@@ -508,6 +517,7 @@ export function checkTelling(view: CaseView, page: Page): PageViolation[] {
     clean(parts.followup, 'the follow-up');
     clean(parts.tail, 'the tail');
     clean(parts.frame?.replace('{told}', ''), 'the frame');
+    for (const line of parts.sheet ?? []) clean(line, 'the sheet');
   }
   return out;
 }

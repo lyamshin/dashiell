@@ -140,7 +140,7 @@ function readTags(deckName, card) {
   return out;
 }
 
-const SLOT_RE = /\{(\w+)\}/g;
+const SLOT_RE = /\{(\w+(?:\.\w+)?)\}/g;
 function slotsOf(text) {
   const out = new Set();
   for (const m in []) void m;
@@ -244,6 +244,21 @@ function validateDeck(deckName, path) {
     }
     if (card.notes !== undefined && typeof card.notes !== 'string') {
       report.errors.push(`${where}: notes is not a string`);
+    }
+    // M13: what a card offers a sheet, and where its short form ends.
+    for (const e of exportErrors(card.exports, card.text)) report.errors.push(`${where}: ${e}`);
+    if (card.cut !== undefined) {
+      if (typeof card.cut !== 'string' || card.cut.length === 0) report.errors.push(`${where}: cut is not a string`);
+      else if (typeof card.text === 'string' && !card.text.includes(card.cut)) report.errors.push(`${where}: cut "${card.cut}" is not in the text`);
+      else if (/\{\w+\}/.test(card.cut)) report.errors.push(`${where}: cut has a slot in it`);
+    }
+    for (const role of Object.values(card.exports ?? {})) {
+      for (const line of [role?.text, role?.short, role?.near, ...(role?.pay ?? [])]) {
+        for (const hit of findJargon(line, PLAIN_TERMS)) {
+          report.errors.push(`${where}: an export says "${hit.match}" — ${hit.term}; say what it is: ${hit.plain}`);
+          plainErrors++;
+        }
+      }
     }
     const status = typeof card.status === 'string' ? card.status : '?';
     report.byStatus[status] = (report.byStatus[status] ?? 0) + 1;
@@ -423,9 +438,204 @@ function validateDeck(deckName, path) {
   return report;
 }
 
+
+/* ---------------------------------------------------------------- M13 */
+
+const ROLE_NAMES = ['prop', 'trait', 'thing', 'figure', 'mark'];
+const EXPORT_KINDS = new Set(schema.vocab.exportKind ?? []);
+
+/** A card's `exports`: each role a noun phrase, a short form, a kind from exportKind, and its own closing lines. */
+function exportErrors(exports, text) {
+  const out = [];
+  if (exports === undefined) return out;
+  if (typeof exports !== 'object' || exports === null || Array.isArray(exports)) return ['exports is not an object'];
+  for (const [role, e] of Object.entries(exports)) {
+    if (!ROLE_NAMES.includes(role)) out.push(`exports a role "${role}"; roles are ${ROLE_NAMES.join(', ')}`);
+    if (typeof e !== 'object' || e === null) {
+      out.push(`exports.${role} is not an object`);
+      continue;
+    }
+    if (typeof e.text !== 'string' || e.text.length === 0) out.push(`exports.${role}.text is missing`);
+    if (typeof e.short !== 'string' || e.short.length === 0) out.push(`exports.${role}.short is missing`);
+    if (e.kind !== undefined && !EXPORT_KINDS.has(e.kind)) out.push(`exports.${role}.kind "${e.kind}" is not in exportKind`);
+    if (e.near !== undefined && typeof e.near !== 'string') out.push(`exports.${role}.near is not a string`);
+    if (e.pay !== undefined && (!Array.isArray(e.pay) || e.pay.some((l) => typeof l !== 'string' || l.length === 0))) out.push(`exports.${role}.pay is not a list of lines`);
+    for (const [k, v] of Object.entries(e)) {
+      if (!['text', 'short', 'kind', 'near', 'pay'].includes(k)) out.push(`exports.${role} has an unknown field "${k}"`);
+      void v;
+    }
+    for (const line of [e.text, e.short, e.near, ...(e.pay ?? [])]) {
+      if (typeof line === 'string' && /\{/.test(line) && !/^\{/.test(line)) {
+        // A slot in an export is filled from the sheet's own slots; say which.
+        for (const slot of slotsOf(line)) if (!SHEET_TEXT_SLOTS.has(slot.split('.')[0])) out.push(`exports.${role} uses {${slot}}, which no sheet fills`);
+      }
+    }
+    void text;
+  }
+  return out;
+}
+
+const SHEET_DIR = join(ROOT, 'content', 'sheets');
+const MOMENTS = ['arrival', 'company', 'ask', 'telling', 'search', 'confront', 'recap', 'office'];
+const COMMON_FLAGS = ['place', 'placeKind', 'setting', 'caseType', 'tier', 'band', 'hour', 'callback', 'prop'];
+const FLAGS = {
+  arrival: [...COMMON_FLAGS, 'watcher', 'client', 'tell', 'tellWatcher', 'tellClient', 'others', 'people', 'crowd', 'alone', 'rundown'],
+  company: [...COMMON_FLAGS, 'watcher', 'client', 'tell', 'tellWatcher', 'tellClient', 'others', 'people', 'crowd', 'alone', 'rundown', 'propNear'],
+  ask: [...COMMON_FLAGS, 'again', 'reported', 'try', 'posture', 'doing', 'temper', 'self', 'account', 'family', 'outcome', 'client', 'fixture', 'close'],
+  confront: [...COMMON_FLAGS, 'again', 'reported', 'try', 'posture', 'doing', 'temper', 'self', 'account', 'family', 'outcome', 'client', 'fixture', 'close'],
+  search: [...COMMON_FLAGS, 'object', 'finds', 'left', 'texture'],
+  telling: [...COMMON_FLAGS, 'family', 'temper', 'volunteered', 'thing', 'fixture', 'named'],
+  recap: ['caseType', 'tier', 'callback', 'trigger', 'n'],
+  office: [...COMMON_FLAGS, 'temper', 'klass', 'familiar', 'circumstance', 'weather', 'purpose'],
+};
+const ENGINE_HOLES = {
+  arrival: ['establish', 'weather'],
+  company: ['watcher', 'client', 'tell', 'others', 'people', 'views', 'answer'],
+  ask: ['approach', 'look', 'thing', 'body'],
+  confront: ['approach', 'look', 'thing', 'body'],
+  search: ['act', 'left', 'body'],
+  telling: ['thing', 'body'],
+  recap: ['open', 'body'],
+  office: ['office', 'body'],
+};
+const PERSON_ROLES = {
+  arrival: [],
+  company: ['watcher', 'client', 'tell'],
+  ask: ['person'],
+  confront: ['person'],
+  search: [],
+  telling: ['speaker'],
+  recap: [],
+  office: ['client'],
+};
+const PERSON_FIELDS = ['he', 'He', 'him', 'his', 'His', 'man', 'doing', 'act', 'sight', 'recall', 'hour', 'tie'];
+const SHEET_TEXT_SLOTS = new Set(['place', 'Place', 'victim', 'hour', 'object', 'list', 'he', 'his', 'him', ...ROLE_NAMES, ...ROLE_NAMES.map((r) => r[0].toUpperCase() + r.slice(1)), 'watcher', 'client', 'tell', 'person', 'speaker']);
+const PART_KEYS = ['text', 'alt', 'hole', 'deck', 'tags', 'of', 'bind', 'form', 'pool', 'optional', 'if', 'para', 'joke', 'says', 'exports'];
+const VERDICT = /\b(?:did it|killed him|killed her|the killer|culprit|guilty|innocent|cleared|out of it|off my list|must have|it was [A-Z][a-z]+)\b/;
+
+function sheetSlotErrors(moment, text, where, okExtra = []) {
+  const out = [];
+  for (const slot of slotsOf(text)) {
+    const [head, field] = slot.split('.');
+    const lowerHead = head[0].toLowerCase() + head.slice(1);
+    if (ROLE_NAMES.includes(lowerHead)) {
+      if (field !== undefined && !['text', 'near', 'short', 'it'].includes(field)) out.push(`${where}: {${slot}} — a role has .text, .near, .it or nothing`);
+      continue;
+    }
+    if (PERSON_ROLES[moment].includes(head)) {
+      if (field !== undefined && !PERSON_FIELDS.includes(field)) out.push(`${where}: {${slot}} is not a field a person has`);
+      continue;
+    }
+    if (['place', 'Place', 'victim', 'hour'].includes(slot)) continue;
+    if (moment === 'search' && slot === 'object') continue;
+    if (okExtra.includes(slot)) continue;
+    out.push(`${where}: {${slot}} is not a slot a ${moment} sheet can fill`);
+  }
+  return out;
+}
+
+function validateSheets() {
+  const report = { files: 0, sheets: 0, errors: [], byMoment: {} };
+  if (!existsSync(SHEET_DIR)) {
+    report.errors.push('content/sheets does not exist');
+    return report;
+  }
+  const ids = new Set();
+  for (const file of readdirSync(SHEET_DIR).filter((f) => f.endsWith('.json')).sort()) {
+    report.files++;
+    let data;
+    try {
+      data = JSON.parse(readFileSync(join(SHEET_DIR, file), 'utf8'));
+    } catch (err) {
+      report.errors.push(`${file}: not JSON: ${err.message}`);
+      continue;
+    }
+    const moment = data.moment;
+    if (!MOMENTS.includes(moment)) {
+      report.errors.push(`${file}: moment "${moment}" is not one of ${MOMENTS.join(', ')}`);
+      continue;
+    }
+    if (file !== `${moment}.json`) report.errors.push(`${file}: a ${moment} sheet file is ${moment}.json`);
+    for (const [i, sheet] of (data.sheets ?? []).entries()) {
+      const where = `${file}[${i}]${sheet?.id ? ` (${sheet.id})` : ''}`;
+      report.sheets++;
+      report.byMoment[moment] = (report.byMoment[moment] ?? 0) + 1;
+      if (typeof sheet.id !== 'string' || sheet.id.length === 0) report.errors.push(`${where}: missing id`);
+      else if (ids.has(sheet.id)) report.errors.push(`${where}: duplicate id`);
+      else ids.add(sheet.id);
+      if (typeof sheet.name !== 'string' || sheet.name.length === 0) report.errors.push(`${where}: missing name`);
+      if (!Array.isArray(sheet.parts)) {
+        report.errors.push(`${where}: parts is not a list`);
+        continue;
+      }
+      for (const key of Object.keys(sheet.when ?? {})) {
+        if (!FLAGS[moment].includes(key)) report.errors.push(`${where}: when.${key} is not a flag a ${moment} sheet can test`);
+      }
+      let jokes = 0;
+      let bodies = 0;
+      const binds = new Set();
+      for (const [k, part] of sheet.parts.entries()) {
+        const at = `${where} part ${k}`;
+        for (const key of Object.keys(part)) if (!PART_KEYS.includes(key)) report.errors.push(`${at}: unknown key "${key}"`);
+        if (part.joke) jokes++;
+        if (part.text === undefined && part.hole === undefined) report.errors.push(`${at}: neither text nor a hole`);
+        if (part.hole !== undefined && part.deck === undefined && !ENGINE_HOLES[moment].includes(part.hole)) {
+          report.errors.push(`${at}: "${part.hole}" is not a hole a ${moment} sheet has (${ENGINE_HOLES[moment].join(', ')}), and no deck is named`);
+        }
+        if (part.hole === 'body') bodies++;
+        if (part.deck !== undefined && !schema.decks[part.deck]) report.errors.push(`${at}: no deck "${part.deck}"`);
+        if (part.of !== undefined && !PERSON_ROLES[moment].includes(part.of)) report.errors.push(`${at}: of "${part.of}" is not a person a ${moment} sheet has`);
+        if (part.bind !== undefined) {
+          if (!ROLE_NAMES.includes(part.bind)) report.errors.push(`${at}: bind "${part.bind}" is not a role (${ROLE_NAMES.join(', ')})`);
+          binds.add(part.bind);
+          if (part.hole === undefined && !part.exports?.[part.bind]) report.errors.push(`${at}: sheet text binds ${part.bind} without exporting it`);
+        }
+        if (part.exports !== undefined) for (const e of exportErrors(part.exports, part.text ?? '')) report.errors.push(`${at}: ${e}`);
+        if (part.alt !== undefined && (part.text === undefined || !Array.isArray(part.alt))) report.errors.push(`${at}: alt is a list of other ways to say its text`);
+        const texts = [part.text, ...(part.alt ?? []), ...(part.pool ?? [])].filter((t) => typeof t === 'string');
+        for (const t of texts) {
+          report.errors.push(...sheetSlotErrors(moment, t, at, [...(part.hole === 'others' ? ['list'] : []), ...(part.pool ? ['he', 'his', 'him'] : [])]));
+          for (const hit of findJargon(t, PLAIN_TERMS)) {
+            report.errors.push(`${at}: says "${hit.match}" — ${hit.term}; say what it is: ${hit.plain}`);
+            plainErrors++;
+          }
+          if (VERDICT.test(t)) report.errors.push(`${at}: reads as a verdict: ${t}`);
+        }
+      }
+      if (bodies > 1) report.errors.push(`${where}: more than one body`);
+      if (sheet.close !== undefined) {
+        const c = sheet.close;
+        if (c.joke) jokes++;
+        for (const t of c.callback ?? []) {
+          if (!slotsOf(t).some((x) => ROLE_NAMES.includes(x.split('.')[0].replace(/^./, (ch) => ch.toLowerCase())))) {
+            report.errors.push(`${where}: a callback close that brings no role back: ${t}`);
+          }
+        }
+        for (const t of c.plain ?? []) {
+          if (slotsOf(t).some((x) => ROLE_NAMES.includes(x.split('.')[0].replace(/^./, (ch) => ch.toLowerCase())))) {
+            report.errors.push(`${where}: a plain close that needs a role: ${t}`);
+          }
+        }
+        for (const t of [...(c.callback ?? []), ...(c.plain ?? [])]) {
+          report.errors.push(...sheetSlotErrors(moment, t, `${where} close`));
+          for (const hit of findJargon(t, PLAIN_TERMS)) {
+            report.errors.push(`${where} close: says "${hit.match}" — ${hit.term}; say what it is: ${hit.plain}`);
+            plainErrors++;
+          }
+          if (VERDICT.test(t)) report.errors.push(`${where} close: reads as a verdict: ${t}`);
+        }
+        for (const r of c.roles ?? []) if (!ROLE_NAMES.includes(r)) report.errors.push(`${where}: close.roles has "${r}"`);
+      }
+      if (jokes > 1) report.errors.push(`${where}: ${jokes} joke slots; one a sheet at most`);
+    }
+  }
+  return report;
+}
+
 /* ---------------------------------------------------------------- output */
 
 const reports = decksToCheck().map(({ deckName, path }) => validateDeck(deckName, path));
+const sheetReport = files.length === 0 && wantedDecks.length === 0 ? validateSheets() : null;
 
 if (flags.has('json')) {
   process.stdout.write(JSON.stringify(reports, null, 2) + '\n');
@@ -484,7 +694,13 @@ if (flags.has('json')) {
     for (const t of r.thin) lines.push(`  thin    ${t}`);
     lines.push('');
   }
-  const errors = reports.reduce((n, r) => n + r.errors.length, 0);
+  if (sheetReport) {
+    const moments = Object.entries(sheetReport.byMoment).map(([m, n]) => `${m} ${n}`).join(', ');
+    lines.push(`sheets — ${sheetReport.sheets} in ${sheetReport.files} files (${moments})`);
+    for (const e of sheetReport.errors) lines.push(`  ERROR   ${e}`);
+    lines.push('');
+  }
+  const errors = reports.reduce((n, r) => n + r.errors.length, 0) + (sheetReport?.errors.length ?? 0);
   const gaps = reports.reduce((n, r) => n + r.gaps.length, 0);
   const cards = reports.reduce((n, r) => n + r.count, 0);
   const tagged = reports.reduce((n, r) => n + r.tagged, 0);
@@ -508,4 +724,4 @@ if (flags.has('json')) {
   process.stdout.write(lines.join('\n') + '\n');
 }
 
-process.exit(reports.some((r) => r.errors.length > 0) ? 1 : 0);
+process.exit(reports.some((r) => r.errors.length > 0) || (sheetReport?.errors.length ?? 0) > 0 ? 1 : 0);

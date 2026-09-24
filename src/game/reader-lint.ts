@@ -128,6 +128,19 @@ const ALLOWED = [
   /\b(?:written|pencilled|scrawled|noted|jotted) in the margins?\b/i,
 ];
 
+/** The book's machinery in a line of prose, less the plain senses (M13: sheets and their lines are held to it too). */
+export function machineryIn(text: string, roles: readonly string[] = []): string[] {
+  let bare = text;
+  for (const re of ALLOWED) bare = bare.replace(new RegExp(re.source, 'gi'), ' ');
+  for (const r of roles) bare = bare.split(r).join(' ');
+  const out: string[] = [];
+  for (const { name, re } of MACHINERY) {
+    const m = re.exec(bare);
+    if (m) out.push(`${name}: “…${bare.slice(Math.max(0, m.index - 40), m.index + 40)}…”`);
+  }
+  return out;
+}
+
 /** Narration and dialogue: every word of prose a page prints. */
 function textsOf(page: Page): string[] {
   return proseTexts(page);
@@ -184,14 +197,8 @@ function lintPage(view: CaseView, page: Page, found: readonly Id[]): LintIssue[]
 
   /* The machinery. */
   for (const text of texts) {
-    let bare = text;
-    for (const re of ALLOWED) bare = bare.replace(new RegExp(re.source, 'gi'), ' ');
     // A patrolman on the beat, a card case: the role and the object are the case's.
-    for (const p of view.kase.people) bare = bare.split(p.role).join(' ');
-    for (const { name, re } of MACHINERY) {
-      const m = re.exec(bare);
-      if (m) add('machinery', `${name}: “…${bare.slice(Math.max(0, m.index - 40), m.index + 40)}…”`);
-    }
+    for (const m of machineryIn(text, view.kase.people.map((p) => p.role))) add('machinery', m);
   }
 
   /* Garbled errands and empty thoughts. */

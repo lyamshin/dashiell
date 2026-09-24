@@ -530,7 +530,14 @@ describe('M8 §3–§4: presence', () => {
           // in one sentence; everybody else by name.
           if ((presence?.grouped ?? []).includes(id)) continue;
           const surname = w.view.personById.get(id)?.surname as string;
-          expect(presence?.text, `${w.label} p${page.n + 1}`).toContain(surname);
+          // M13: a company sheet may say the one the page ties to the case in
+          // the observation's own line ("The only one who didn't look at me at
+          // all was Crowninshield."), which that beat's trace carries.
+          const said = [
+            presence?.text ?? '',
+            ...(page.beats ?? []).filter((b) => b.kind === 'thought' && b.tag === 'view' && (b.personIds ?? [])[0] === id).map((b) => b.text ?? ''),
+          ].join(' ');
+          expect(said, `${w.label} p${page.n + 1}`).toContain(surname);
         }
         if ((presence?.grouped ?? []).length > 0) expect((presence?.grouped ?? []).length).toBeGreaterThanOrEqual(2);
       }

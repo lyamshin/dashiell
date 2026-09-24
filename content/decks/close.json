@@ -691,5 +691,2049 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "CLS-100",
+    "deck": "close",
+    "text": "I kept out from under {prop} as much as I could. Some faces, mine included, should be taken on trust.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "light",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-101",
+    "deck": "close",
+    "text": "{prop} did nobody in the room any favours, and I was in the room.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "light",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-102",
+    "deck": "close",
+    "text": "{prop} had the whole room in it, me included. I’ve been in better pictures, but not many.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "glass",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-103",
+    "deck": "close",
+    "text": "I didn’t look in {prop}. I knew how the night had gone for me, and I didn’t need it in writing.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "glass",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-104",
+    "deck": "close",
+    "text": "{prop} went on as if none of us were there. It was the only one in the room with the right idea.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "sound",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-105",
+    "deck": "close",
+    "text": "I let {prop} do the talking for a while. It was better at it than anybody else in there, me included.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "sound",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-106",
+    "deck": "close",
+    "text": "By then {prop} had got into my coat. My coat has been in worse places, and so have I.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "smell",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-107",
+    "deck": "close",
+    "text": "{prop} was the first thing in the room to make me welcome, and it didn’t even mean it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "smell",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-108",
+    "deck": "close",
+    "text": "I read {prop} twice. It was the only thing in there that wanted to be read.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "sign",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-109",
+    "deck": "close",
+    "text": "{prop} had more to say than anybody in the room, and said it without being asked.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "sign",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-110",
+    "deck": "close",
+    "text": "{prop} went on ticking as if it had somewhere to be. Nothing else in the room did.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "clock",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-111",
+    "deck": "close",
+    "text": "I set my watch by {prop}, then set it back. I’ve never trusted a clock that looked that sure of itself.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "clock",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-112",
+    "deck": "close",
+    "text": "{prop} was the hardest worker in the room. I knew how it felt, in theory.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "machine",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-113",
+    "deck": "close",
+    "text": "{prop} gave a shudder. It was the only thing in there that reacted to me at all.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "machine",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-114",
+    "deck": "close",
+    "text": "{prop} had held up under worse than me. It had the scratches to prove it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "furniture",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-115",
+    "deck": "close",
+    "text": "{prop} creaked when I leaned on it, which was the warmest welcome I got.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "furniture",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-116",
+    "deck": "close",
+    "text": "{prop} had been hanging there longer than anybody in the room had been sitting. Nobody had looked at it in years, and it knew.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "picture",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-117",
+    "deck": "close",
+    "text": "I gave {prop} a look. It was the only thing in there glad to be looked at.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "picture",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-118",
+    "deck": "close",
+    "text": "{prop} was curling at the corners. So was I.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "paper",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-119",
+    "deck": "close",
+    "text": "Nobody had read {prop} in a long time. I knew the feeling.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "paper",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-120",
+    "deck": "close",
+    "text": "{prop} looked better than it would taste. Most things do, that late.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "drink",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-121",
+    "deck": "close",
+    "text": "Nobody offered me {prop}, and I didn’t ask. A man has to keep some of his dignity, and I was running low.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "drink",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-122",
+    "deck": "close",
+    "text": "I listened to {prop} for a while. It didn’t have much to say, but it kept on saying it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "water",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-123",
+    "deck": "close",
+    "text": "{prop} was keeping better time than anybody in the room, me included.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "water",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-124",
+    "deck": "close",
+    "text": "I made a note of {prop}. You always want to know how you’re getting out.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "door",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-125",
+    "deck": "close",
+    "text": "{prop} shut behind me as if it had been waiting all night to do it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "door",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-126",
+    "deck": "close",
+    "text": "I left {prop} alone. It hadn’t done anything to me yet.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "thing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-127",
+    "deck": "close",
+    "text": "{prop} was the only thing in the room that wasn’t pretending not to notice me.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "thing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-128",
+    "deck": "close",
+    "text": "{prop} smelled better than anything I’d eaten that week. That isn’t saying much, but it’s saying something.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "food",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-129",
+    "deck": "close",
+    "text": "{prop} had faded to the colour of the room. Give me long enough and I would too.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "fabric",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-130",
+    "deck": "close",
+    "text": "I’d have to take {prop} again on the way out. My knees were already talking about it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "stair",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-131",
+    "deck": "close",
+    "text": "{prop} was doing its best in there. I knew the feeling, and it was doing better.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "plant",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-132",
+    "deck": "close",
+    "text": "{prop} gave me one look and lost interest. I’ve had the same review from better critics.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "animal",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-133",
+    "deck": "close",
+    "text": "{prop} lay where somebody had put it down. I envied it. Nobody wanted anything from it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "tool",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-134",
+    "deck": "close",
+    "text": "I took a last look at {prop}. It didn’t take one back.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-135",
+    "deck": "close",
+    "text": "{prop} was still there when I looked again. In that room, that made it the most dependable thing I’d seen.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "prop",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-136",
+    "deck": "close",
+    "text": "{trait} found me again and stayed a second longer than I liked. I’ve had shorter looks from the police.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "trait",
+      "kind": "eyes",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-137",
+    "deck": "close",
+    "text": "I sat where {trait} could see me. It saved everybody the trouble.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "trait",
+      "kind": "eyes",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-138",
+    "deck": "close",
+    "text": "I watched {trait} for a while. Faces lie for a living. Hands mostly haven’t been told to.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "trait",
+      "kind": "hands",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-139",
+    "deck": "close",
+    "text": "I’d remember {trait}. I’d have been glad to forget mine, but it comes with me everywhere.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "trait",
+      "kind": "face",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-140",
+    "deck": "close",
+    "text": "I’d know {trait} again anywhere. That’s the trouble with a voice: you can’t pull a hat down over it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "trait",
+      "kind": "voice",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-141",
+    "deck": "close",
+    "text": "{trait} had seen better days, and had the manners not to bring them up. I buttoned my coat, in sympathy.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "trait",
+      "kind": "clothes",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-142",
+    "deck": "close",
+    "text": "I made a note of {trait}. Everybody has a habit. Mine is making notes.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "trait",
+      "kind": "habit",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-143",
+    "deck": "close",
+    "text": "I stood up a little straighter, out of respect for {trait}. It didn’t last.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "trait",
+      "kind": "posture",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-144",
+    "deck": "close",
+    "text": "I made room in my head for {trait}. There was plenty; it had been a slow week.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "trait",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-145",
+    "deck": "close",
+    "text": "I found a place to stand and stood in it. It’s the one thing I do well.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-146",
+    "deck": "close",
+    "text": "Nobody offered me a seat. I took one anyway; I’d been standing up for myself all night.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-147",
+    "deck": "close",
+    "text": "I kept my hat on. It was the only thing I’d brought with me that knew how to behave.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-148",
+    "deck": "close",
+    "text": "The room went back to what it had been doing before I came in. I’ve always had that effect.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-149",
+    "deck": "close",
+    "text": "Nobody said hello. Round here, that’s how you know they’ve noticed you.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-150",
+    "deck": "close",
+    "text": "I gave the room a minute to get used to me. It didn’t need the whole minute.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-151",
+    "deck": "close",
+    "text": "Everybody in there had a reason to be up so late. Mine was being paid for it, which is the saddest reason there is.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-152",
+    "deck": "close",
+    "text": "I stood by the door long enough to look like I belonged, which, in my case, takes a while.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-153",
+    "deck": "close",
+    "text": "I took my gloves off one finger at a time, like a man who means to stay. Nobody was impressed.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "company",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-154",
+    "deck": "close",
+    "text": "I wrote the answer down, and {trait} beside it. You never know which one you’ll need.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "trait",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-155",
+    "deck": "close",
+    "text": "I’d remember {trait} longer than the answer. That’s no reflection on the answer.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "trait",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-156",
+    "deck": "close",
+    "text": "I thought about {trait} on the way to the next question. It’s the details that keep me up. That and the coffee.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "trait",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-157",
+    "deck": "close",
+    "text": "{trait} went back to wherever they’d been before I came over. I’d been let go, politely.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "trait",
+      "kind": "eyes",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-158",
+    "deck": "close",
+    "text": "{trait} were back at work before I’d closed the notebook. I admired that. I’ve never once managed it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "trait",
+      "kind": "hands",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-159",
+    "deck": "close",
+    "text": "{trait} was still in my ear when I’d finished writing. It’s the kind of thing that doesn’t go in a notebook, and should.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "trait",
+      "kind": "voice",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-160",
+    "deck": "close",
+    "text": "I made a note of {trait}, the way you do. Faces are easier to write down than answers. They hold still for it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "trait",
+      "kind": "face",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-161",
+    "deck": "close",
+    "text": "I thought about {trait} while I wrote. I thought about my own coat too, and stopped.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "trait",
+      "kind": "clothes",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-162",
+    "deck": "close",
+    "text": "{trait} kept on through all of it. It’s nice to see something that doesn’t stop on my account.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "trait",
+      "kind": "habit",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-163",
+    "deck": "close",
+    "text": "By the end I felt I knew {thing} better than I knew its owner. It was certainly easier to talk to.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "thing",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-164",
+    "deck": "close",
+    "text": "{thing} got its owner’s attention back the minute I’d finished. I know when I’m the intermission.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "thing",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-165",
+    "deck": "close",
+    "text": "I left {thing} to its owner. It had had more attention than I had, and it deserved it more.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "thing",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-166",
+    "deck": "close",
+    "text": "{thing} had gone warm while we talked. I felt I owed it an apology.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "thing",
+      "kind": "drink",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-167",
+    "deck": "close",
+    "text": "{thing} had waited through all of it without a word. There’s a lesson in that, and I’ll never learn it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "thing",
+      "kind": "paper",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-168",
+    "deck": "close",
+    "text": "I looked at {prop} while I wrote it down. Neither of us had anything to add.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "prop",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-169",
+    "deck": "close",
+    "text": "{prop} had heard all of it and had the sense to keep quiet. I envied that.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "prop",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-170",
+    "deck": "close",
+    "text": "I let my eyes rest on {prop} for a minute. It’s what I do when I’m thinking, or want to look like it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "prop",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-171",
+    "deck": "close",
+    "text": "I caught the two of us in {prop}. One of us looked like he’d been up all night, and it was me.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "prop",
+      "kind": "glass",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-172",
+    "deck": "close",
+    "text": "I picked up {prop} and put it down again. It’s what I do instead of a clever remark.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "prop",
+      "kind": "clothes",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-173",
+    "deck": "close",
+    "text": "{prop} made us both look tired. It was only being honest about one of us.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "prop",
+      "kind": "light",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-174",
+    "deck": "close",
+    "text": "I said thank you. It’s cheap, and people remember it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-175",
+    "deck": "close",
+    "text": "That was a question asked and answered, which some nights is as good as it gets.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-176",
+    "deck": "close",
+    "text": "I licked the pencil and wrote it down. It’s the only part of the job that tastes of anything.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-177",
+    "deck": "close",
+    "text": "Asking is the easy part. The hard part is looking as if you knew the answer already.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-178",
+    "deck": "close",
+    "text": "I wrote it down in my best handwriting, which is still nobody’s best handwriting.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-179",
+    "deck": "close",
+    "text": "I nodded as if I’d expected it. It’s the nod I use for everything.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-180",
+    "deck": "close",
+    "text": "I gave the notebook a pat. It was getting heavier, or I was getting tired.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-181",
+    "deck": "close",
+    "text": "People will tell you a lot if you look tired enough. I didn’t have to pretend.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-182",
+    "deck": "close",
+    "text": "I turned to a fresh page for the next one. It’s the only tidy thing about me.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-183",
+    "deck": "close",
+    "text": "I touched my hat, which is as far as my manners go without costing money.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-184",
+    "deck": "close",
+    "text": "It was a small thing to know. I’ve built whole evenings out of smaller.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "ask",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-185",
+    "deck": "close",
+    "text": "I’d watched {trait} the whole time. That’s half the job. The other half is not reading too much into it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "trait",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-186",
+    "deck": "close",
+    "text": "I wrote down what was said, and {trait} beside it. The notebook doesn’t know which one matters, and some nights neither do I.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "trait",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-187",
+    "deck": "close",
+    "text": "{trait} had gone to the notebook and stayed there. People always think the notebook is the dangerous part. It’s the handwriting.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "trait",
+      "kind": "eyes",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-188",
+    "deck": "close",
+    "text": "{trait} had gone still while I read it out. That means somebody is listening, and it’s all it means.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "trait",
+      "kind": "hands",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-189",
+    "deck": "close",
+    "text": "{trait} had come down a notch by the end, and mine had come up one. We met in the middle, which is more than most people manage.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "trait",
+      "kind": "voice",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-190",
+    "deck": "close",
+    "text": "{trait} did something small while I read it out, and then undid it. I wrote down that it had, and not what it meant.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "trait",
+      "kind": "face",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-191",
+    "deck": "close",
+    "text": "Nobody had looked at {thing} since I started. It was the first thing all night I’d been more interesting than.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "thing",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-192",
+    "deck": "close",
+    "text": "{thing} had kept to itself the whole time. It was the smartest one there.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "thing",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-193",
+    "deck": "close",
+    "text": "{thing} had gone untouched through all of it. I’d have drunk it myself, but I was working, and it wasn’t mine.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "thing",
+      "kind": "drink",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-194",
+    "deck": "close",
+    "text": "{prop} had watched the whole thing without a word. It would make somebody a very poor witness.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "prop",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-195",
+    "deck": "close",
+    "text": "I looked at {prop} while my own pulse came down. Putting a fact to somebody is harder on the one holding it than you’d think.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "prop",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-196",
+    "deck": "close",
+    "text": "{prop} hadn’t flickered once through any of it. It was the steadiest thing there, me included.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "prop",
+      "kind": "light",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-197",
+    "deck": "close",
+    "text": "I saw myself in {prop} halfway through and nearly lost my place. I don’t look like somebody who knows anything.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "prop",
+      "kind": "glass",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-198",
+    "deck": "close",
+    "text": "I closed the notebook. It had done its part without saying a word, which is more than I can say for me.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-199",
+    "deck": "close",
+    "text": "Putting a fact to somebody is like handing them a hot plate. You learn a little from how they hold it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-200",
+    "deck": "close",
+    "text": "I put the pencil back behind my ear. It had done its share, and so, for a minute, had I.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-201",
+    "deck": "close",
+    "text": "My mouth had gone dry. It does that when I read aloud, which is why I don’t do more of it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-202",
+    "deck": "close",
+    "text": "I’d said my piece. It had sounded better in the notebook than out loud. Most things do.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-203",
+    "deck": "close",
+    "text": "I breathed out. Putting a fact to somebody takes something out of you, and I hadn’t had much in to start with.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-204",
+    "deck": "close",
+    "text": "That’s the thing about a fact. It doesn’t care who’s holding it, and it doesn’t get tired.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-205",
+    "deck": "close",
+    "text": "I made a small note at the bottom of the page. I have a system. Nobody, including me, knows what it is.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "confront",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-206",
+    "deck": "close",
+    "text": "I never laid a finger on {prop}. My mother would have been proud; she always said I touched too much.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "prop",
+      "kind": "thing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-207",
+    "deck": "close",
+    "text": "I let {prop} be. Not everything in a room is trying to tell you something, though that late it all looks like it is.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "prop",
+      "kind": "thing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-208",
+    "deck": "close",
+    "text": "{prop} sat there through the whole search, minding its own business. I’ve met people who couldn’t manage it.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "prop",
+      "kind": "thing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-209",
+    "deck": "close",
+    "text": "{prop} was still where it had been when I came in. Some things know how to stay out of trouble.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "prop",
+      "kind": "thing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-210",
+    "deck": "close",
+    "text": "I stepped round {prop} the way you step round a sleeping dog. It’s good manners, and it saves on trousers.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "prop",
+      "kind": "thing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-211",
+    "deck": "close",
+    "text": "When I straightened up, {prop} was still there, as unhelpful as when I came in.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "prop",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-212",
+    "deck": "close",
+    "text": "I stood by {prop} a minute and let my knees tell me how old they were.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "prop",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-213",
+    "deck": "close",
+    "text": "{prop} had watched me go through the whole room without offering to help. It fitted right in.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "prop",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-214",
+    "deck": "close",
+    "text": "I gave {prop} a last look. It had seen me at my worst now, on my knees and muttering.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "prop",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-215",
+    "deck": "close",
+    "text": "My knees had opinions about the search. I let them have the last word.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-216",
+    "deck": "close",
+    "text": "I dusted off my hands. I’d collected more of the room than I’d meant to.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-217",
+    "deck": "close",
+    "text": "I stood up slowly. Getting down is easy; it’s getting up that tells you how old you are.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-218",
+    "deck": "close",
+    "text": "That was the room, as far as it went. I’ve been through worse ones, and I’ve been through better ones faster.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-219",
+    "deck": "close",
+    "text": "I wiped my hands on my handkerchief. It had seen dirtier jobs, but not many.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-220",
+    "deck": "close",
+    "text": "I’d had my hands in everything and my nose in most of it. It’s a glamorous line of work, if you don’t look closely.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-221",
+    "deck": "close",
+    "text": "Going through a room is like reading somebody’s mail. You feel bad about it for exactly as long as it takes.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-222",
+    "deck": "close",
+    "text": "Rooms don’t volunteer anything. You have to ask them on your knees.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "search",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-223",
+    "deck": "close",
+    "text": "So much for {figure}. It hadn’t got me a name, but it had got me off my feet for a minute.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "recap",
+      "callback": "figure",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-224",
+    "deck": "close",
+    "text": "{figure} had done what it could. The rest was up to me, which was the worrying part.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "recap",
+      "callback": "figure",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-225",
+    "deck": "close",
+    "text": "I’d come back to {figure} later. It would still be there, which is more than I could say for the night.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "recap",
+      "callback": "figure",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-226",
+    "deck": "close",
+    "text": "That was {figure}, as far as it went. It didn’t go far, but I’ve walked further for less.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "recap",
+      "callback": "figure",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-227",
+    "deck": "close",
+    "text": "I left {figure} where it was. I’m not the kind who asks twice. I’m the kind who asks three times.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "recap",
+      "callback": "figure",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-228",
+    "deck": "close",
+    "text": "That was all of it, on one page. The page looked about as tired as I felt.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "recap",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-229",
+    "deck": "close",
+    "text": "I read it over once more, in case it had improved. It hadn’t, but it hadn’t got worse either.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "recap",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-230",
+    "deck": "close",
+    "text": "It wasn’t a case yet. It was a list with ambitions.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "recap",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-231",
+    "deck": "close",
+    "text": "I put the pencil away. It had worked harder than I had, and it hadn’t complained once.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "recap",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-232",
+    "deck": "close",
+    "text": "{prop} and I had been through a lot together. Most of it had been my fault.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "office",
+      "callback": "prop",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-233",
+    "deck": "close",
+    "text": "{prop} had seen clients come and go. Mostly go.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "office",
+      "callback": "prop",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-234",
+    "deck": "close",
+    "text": "I looked at {prop} the way I do every night, in case it had changed. It hadn’t. Neither had I.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "office",
+      "callback": "prop",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-235",
+    "deck": "close",
+    "text": "{prop} knocked twice, as if it wanted in on the job. I’d have taken it on; it works cheaper than I do.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "office",
+      "callback": "prop",
+      "kind": "machine",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-236",
+    "deck": "close",
+    "text": "{prop} had held up under worse than me. Not much worse, but some.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "office",
+      "callback": "prop",
+      "kind": "furniture",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-237",
+    "deck": "close",
+    "text": "Outside {prop}, the city went on without me. It usually does.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "office",
+      "callback": "prop",
+      "kind": "glass",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-238",
+    "deck": "close",
+    "text": "{prop} buzzed over the desk, making the best of what it had to work with. So was I.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "office",
+      "callback": "prop",
+      "kind": "light",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-239",
+    "deck": "close",
+    "text": "I moved {prop} under the blotter, where the rest of my problems live.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "office",
+      "callback": "prop",
+      "kind": "paper",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-240",
+    "deck": "close",
+    "text": "{prop} said it was late. It says that every night, and it’s never once been wrong.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "office",
+      "callback": "prop",
+      "kind": "clock",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-241",
+    "deck": "close",
+    "text": "{prop} stayed where it was. I have principles, and a client in the room is one of them.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "office",
+      "callback": "prop",
+      "kind": "drink",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-242",
+    "deck": "close",
+    "text": "I had a client again. I tried to look like a man who has them all the time.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "office",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-243",
+    "deck": "close",
+    "text": "The office felt smaller with somebody else in it, and it had never felt big.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "office",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-244",
+    "deck": "close",
+    "text": "I straightened my tie, which is what I do instead of having a plan.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "office",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-245",
+    "deck": "close",
+    "text": "I wrote the date at the top of a clean page. It was the only thing on it I was sure of.",
+    "tags": {
+      "outcome": "sheet",
+      "moment": "office",
+      "callback": "none",
+      "kind": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
   }
 ]

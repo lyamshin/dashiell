@@ -1,0 +1,111 @@
+{
+  "moment": "recap",
+  "$comment": "M13. The recap's frame: its opening line (open, off the recap deck, which may export a figure the close brings back; or sheet text of its own) and its closing line, before the engine's next step. The body is the engine's: when and how, whose evening is whose, who nobody has placed. The frame names nobody, no hour, no place (the correspondence check holds it to that). Flags: trigger (hour, lie, window, confront, link, demand), n (recaps so far tonight), tier, caseType, callback. The close: callback lines bring {figure} (or {mark}) back; plain lines need none; the engine's plain close is the recap deck's closing card. Every part is said in the opening paragraph, wherever it sits round the body; keep the opening and the closing line short (the recap is 80–180 words in all).",
+  "sheets": [
+    {
+      "id": "rcp-a",
+      "weight": 2,
+      "name": "Taking stock",
+      "notes": "The camp golden §4: the recap deck's opening line, the notebook, the deck's closing line; on a callback page the opening's own phrase comes back.",
+      "parts": [{ "hole": "open", "bind": "figure" }, { "hole": "body" }],
+      "close": { "roles": ["figure"], "deck": true }
+    },
+    {
+      "id": "rcp-b",
+      "name": "A clean page",
+      "notes": "He writes it out fresh instead of reading it back; the page comes back at the end.",
+      "parts": [
+        {
+          "text": "I turned to a clean page and wrote out what I had, in order, the way they teach you and nobody does it.",
+          "alt": [
+            "I found a clean page and wrote it all out again, start to finish, like a man with a plan.",
+            "I started a clean page. Writing it out fresh is the nearest I get to thinking.",
+            "I gave it a clean page of its own, which is more than I usually give anything."
+          ],
+          "bind": "mark",
+          "exports": { "mark": { "text": "a clean page", "short": "the page", "kind": "paper" } }
+        },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["mark"],
+        "callback": [
+          "It didn’t fill {mark}. There was room at the bottom for the rest, whenever the rest turned up.",
+          "I read {mark} over twice. It didn’t get any longer.",
+          "{Mark} looked tidier than the night did. Neat handwriting will do that."
+        ],
+        "plain": [
+          "That was the lot, in order. Order is the one thing I can always supply.",
+          "I read it back once and put the pencil behind my ear, where it does its best work.",
+          "Written out, it looked tidier than it felt.",
+          "That was all of it, written out neat. Neat is something."
+        ]
+      }
+    },
+    {
+      "id": "rcp-c",
+      "name": "My feet",
+      "notes": "He sits down to take stock, and his feet get the last word before the next step.",
+      "parts": [
+        {
+          "text": "I found somewhere to sit and gave my feet a rest while my head did the walking.",
+          "alt": [
+            "I got off my feet for a minute. They’d earned it more than I had.",
+            "I took the weight off my feet and let my head carry the rest.",
+            "I sat down, and my feet stopped complaining long enough for me to think."
+          ],
+          "bind": "figure",
+          "exports": { "figure": { "text": "my feet", "short": "my feet", "kind": "posture" } }
+        },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["figure"],
+        "callback": [
+          "{Figure} had heard all of this before. They were ready to go, and so, more or less, was I.",
+          "I stood up. {Figure} filed a complaint, which I noted and ignored.",
+          "{Figure} had had their minute’s rest and wanted it known that a minute was not enough."
+        ],
+        "plain": [
+          "That was the lot. I stood up, which my feet took personally.",
+          "That was all I had. My feet voted to stay, and were outvoted.",
+          "That was the lot. Getting up again was the hardest part of it.",
+          "I got up before I could get comfortable. Comfortable is where I do my worst thinking."
+        ]
+      }
+    },
+    {
+      "id": "rcp-d",
+      "name": "Again",
+      "notes": "A second recap or later: the notebook read over again, which is getting to be a habit.",
+      "when": { "n": ">=1" },
+      "parts": [
+        {
+          "text": "I got the notebook out again. We were getting to know each other.",
+          "alt": [
+            "Out came the notebook again. It was starting to expect me.",
+            "I read the notebook over again. It had stopped being surprised.",
+            "Back to the notebook. We were starting to finish each other’s sentences."
+          ],
+          "bind": "mark",
+          "exports": { "mark": { "text": "the notebook", "short": "the notebook", "kind": "paper" } }
+        },
+        { "hole": "body" }
+      ],
+      "close": {
+        "roles": ["mark"],
+        "callback": [
+          "I put {mark} away. It had more in it than last time, and it looked about as tired as I did.",
+          "{Mark} went back in my pocket, a page heavier than before.",
+          "I closed {mark} gently. We’d both had a long night."
+        ],
+        "plain": [
+          "That was where it stood, a little further along than last time. I’ll take further along.",
+          "Every time I read it over, it got a little longer. Some nights that’s the whole job.",
+          "I read it through once more for luck. It came out the same, which is what you want from a notebook.",
+          "It was more than I’d had the last time I looked. Not a lot more, but I’m not proud."
+        ]
+      }
+    }
+  ]
+}
