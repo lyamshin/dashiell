@@ -223,7 +223,7 @@ export function officePass(view: CaseView, page: Page): V2Memory {
   const office = first >= 0 ? (page.blocks[first] as Extract<Block, { kind: 'prose' }>) : null;
   const officeText = page.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join(' ').toLowerCase();
   // The gag the office already tells, if it tells one; otherwise the book's.
-  const already = Object.entries(BOOK_LINES.gags).find(([, g]) => new RegExp(`\\b${g.match}\\b`).test(officeText));
+  const already = Object.entries(BOOK_LINES.gags).find(([, g]) => new RegExp(`\\b${g.match}`, 'i').test(officeText));
   const gagId = already?.[0] ?? book.gag;
   const gag = BOOK_LINES.gags[gagId];
   if (gag) {

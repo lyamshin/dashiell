@@ -440,7 +440,7 @@
       ]
     },
     "chair": {
-      "match": "chair",
+      "match": "chair[^.]*(?:short|wobbl|leg)",
       "plant": [
         "My chair had a leg that was shorter than the others, the way some people have a story that’s shorter than the truth. I’d been meaning to fix it for a year."
       ],
@@ -451,14 +451,14 @@
     "window": {
       "match": "frost",
       "plant": [
-        "Frost had got in on the inside of the window again. It does that when it wants to make a point about the rent."
+        "Frost had got in on the inside of the window again. It does that when it wants me to know whose window it really is."
       ],
       "end": [
         "The frost on the inside of my window had melted into a puddle on the sill. Something had come in from the cold tonight, and it wasn’t me."
       ]
     },
     "coffee": {
-      "match": "coffee",
+      "match": "coffee[^.]*(?:days|stale|cold|pot|hot plate)",
       "plant": [
         "There was coffee on the hot plate from about Tuesday. It had stopped being coffee some time ago and started being a decision."
       ],
@@ -476,7 +476,7 @@
       ]
     },
     "plant": {
-      "match": "plant",
+      "match": "plant on",
       "plant": [
         "There was a plant on the filing cabinet that had been dying since the day it was given to me, slowly, with great dignity. We had that in common."
       ],
