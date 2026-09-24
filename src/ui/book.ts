@@ -777,14 +777,14 @@ export function mount(root: HTMLElement): void {
 /** The notebook's header line: the case, and what it was dealt at. */
 function caseLine(kase: Case): string {
   if (kase.shape !== undefined && kase.ladder !== undefined) {
-    return `case ${kase.seed} · ${kase.shape.name} · ${kase.ladder.name}`;
+    return `case ${kase.seed} · ${kase.shape.name} · ${kase.ladder.name}${kase.engine === 'v2' ? ` · v2 · ${kase.v2?.book.title ?? ''}` : ''}`;
   }
   return `case ${kase.seed} · difficulty ${kase.difficulty}`;
 }
 
 function pickWords(pick: CasePick): string {
   if (pick.tier === undefined) return `difficulty ${pick.level}, from before the tiers`;
-  return `${shapeOf(pick.tier).name}, at ${LADDERS[levelFor(pick.tier, pick.level)].name}`;
+  return `${shapeOf(pick.tier).name}, at ${LADDERS[levelFor(pick.tier, pick.level)].name}${pick.engine === 'v2' ? ', the new engine' : ''}`;
 }
 
 function parWords(delta: number): string {
