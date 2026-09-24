@@ -110,7 +110,9 @@ function firstMentions(view: CaseView, log: readonly Page[], blocks: Block[]): B
       // A name that ends on an aside ("…Street, the house with the fanlight")
       // closes it before the sentence goes on.
       const rest = text.slice(at + form.length);
-      const close = proper.includes(', ') && /^ [a-z]/.test(rest) ? ',' : '';
+      // (Never in the errand line, which the checker traces word for word.)
+      const errand = (out[b] as Block).kind === 'prose' && (out[b] as { voice?: string }).voice === 'errand';
+      const close = !errand && proper.includes(', ') && /^ [a-z]/.test(rest) ? ',' : '';
       out[b] = withText(out[b] as Block, text.slice(0, at) + said + close + rest);
       break;
     }
