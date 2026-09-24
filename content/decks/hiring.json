@@ -2,7 +2,7 @@
   {
     "id": "hir-001",
     "deck": "hiring",
-    "text": "{business} “{fact}” I named the fee. {retainer} went into the drawer without another word between us.",
+    "text": "{business} “{fact}” I named the fee. {retainer} went into the drawer. Money likes a quiet room.",
     "tags": {
       "temper": "enigma",
       "familiar": "no"
@@ -15,7 +15,7 @@
   {
     "id": "hir-002",
     "deck": "hiring",
-    "text": "“{fact}.” That was the whole of it. I took {retainer} and didn't ask for more explaining than I'd been given.",
+    "text": "“{fact}.” That was the whole of it. I took {retainer} and asked nothing. I’m not proud. I’m paid.",
     "tags": {
       "temper": "enigma",
       "familiar": "no"
@@ -28,7 +28,7 @@
   {
     "id": "hir-003",
     "deck": "hiring",
-    "text": "{business} “{fact}, and that’s all I’ll say on it.” I put {retainer} in my coat, folded once.",
+    "text": "{business} “{fact}, and that’s all I’ll say on it.” I put {retainer} in my coat, away from the landlord.",
     "tags": {
       "temper": "enigma",
       "familiar": "no"
@@ -42,7 +42,7 @@
   {
     "id": "hir-004",
     "deck": "hiring",
-    "text": "“{fact}, {detective}.” {name} didn't waste breath explaining further. I took {retainer} the way I always did from {them}, without counting it.",
+    "text": "“{fact}, {detective}.” {name} didn’t explain further. I took {retainer} from {them} without counting it. I count on the stairs.",
     "tags": {
       "temper": "enigma",
       "familiar": "yes"
@@ -55,7 +55,7 @@
   {
     "id": "hir-005",
     "deck": "hiring",
-    "text": "{business} “{fact}.” Short, the way {name} always told it. {retainer} went into my pocket before {pronoun} had finished the sentence.",
+    "text": "{business} “{fact}.” Short, the way {name} told it. {retainer} was in my pocket before {pronoun} finished. I’m slow at most things.",
     "tags": {
       "temper": "enigma",
       "familiar": "yes"
@@ -68,7 +68,7 @@
   {
     "id": "hir-006",
     "deck": "hiring",
-    "text": "“{fact}. You know the rate.” I did. I held out my hand, and {retainer} landed in it.",
+    "text": "“{fact}. You know the rate.” My hand came out on its own, and {retainer} landed in it.",
     "tags": {
       "temper": "enigma",
       "familiar": "yes"
@@ -82,7 +82,7 @@
   {
     "id": "hir-007",
     "deck": "hiring",
-    "text": "{business} “{fact}” I asked what the trouble was worth. {name} put {retainer} on the blotter and let that answer.",
+    "text": "{business} “{fact}” {name} put {retainer} on the blotter and kept two fingers on it until I picked it up. I respected that.",
     "tags": {
       "temper": "plain",
       "familiar": "no"
@@ -95,7 +95,7 @@
   {
     "id": "hir-008",
     "deck": "hiring",
-    "text": "{business} “{fact}” I named my rate the way I would name a price for anything else. {name} put {retainer} on the desk without arguing.",
+    "text": "{business} “{fact}” I named my rate, a little high, in case. {name} put {retainer} on the desk without arguing, and I wished I’d said more.",
     "tags": {
       "temper": "plain",
       "familiar": "no"
@@ -108,7 +108,7 @@
   {
     "id": "hir-009",
     "deck": "hiring",
-    "text": "“{fact}” {business} I took {retainer} and wrote {name}'s business into the notebook before either of us thought better of it.",
+    "text": "“{fact}” {business} I took {retainer} and wrote {name}’s business down fast. I’ve lost clients between the desk and the door.",
     "tags": {
       "temper": "plain",
       "familiar": "no"
@@ -122,7 +122,7 @@
   {
     "id": "hir-010",
     "deck": "hiring",
-    "text": "{business} “{fact}” {name} asked what I charged and put {retainer} on the desk when I said it, then waited for me to pick it up first.",
+    "text": "{business} “{fact}” {name} asked what I charged, put {retainer} on the desk, and waited for me to pick it up first. I did. I always do.",
     "tags": {
       "temper": "plain",
       "familiar": "no"
@@ -135,7 +135,7 @@
   {
     "id": "hir-011",
     "deck": "hiring",
-    "text": "{business} “{fact}, {detective}.” I skipped the usual formalities with {name}. {retainer} came out before I'd even named a figure.",
+    "text": "{business} “{fact}, {detective}.” {name} had {retainer} out before I’d named a figure, which saved me pretending to think of one.",
     "tags": {
       "temper": "plain",
       "familiar": "yes"
@@ -148,7 +148,7 @@
   {
     "id": "hir-012",
     "deck": "hiring",
-    "text": "“{fact}. You remember how I work,” {name} said. I remembered. I took {retainer} the way I always had from {them}.",
+    "text": "“{fact}. You remember how I work,” {name} said. I remembered. I took {retainer} from {them} quickly, with what dignity I had left.",
     "tags": {
       "temper": "plain",
       "familiar": "yes"
@@ -161,7 +161,7 @@
   {
     "id": "hir-013",
     "deck": "hiring",
-    "text": "{business} “{fact}” {name} didn't argue the fee, same as last time. {retainer} went away without my checking it twice.",
+    "text": "{business} “{fact}” {name} didn’t argue the fee. I keep meaning to raise it. {retainer} went into the drawer.",
     "tags": {
       "temper": "plain",
       "familiar": "yes"
@@ -174,7 +174,7 @@
   {
     "id": "hir-014",
     "deck": "hiring",
-    "text": "“{fact}, {detective}.” {business} {retainer} changed hands quick, the way it does between people who've done this before.",
+    "text": "“{fact}, {detective}.” {business} {retainer} changed hands quick, the way it does between two people who’ve both been broke.",
     "tags": {
       "temper": "plain",
       "familiar": "yes"
@@ -187,7 +187,7 @@
   {
     "id": "hir-015",
     "deck": "hiring",
-    "text": "{business} “{fact}” and a good deal I hadn't asked for besides. I let {name} talk until {retainer} came up, and took it the moment it did.",
+    "text": "{business} “{fact}” and a good deal I hadn’t asked for. I let {name} talk until {retainer} came up, and took it before it changed its mind.",
     "tags": {
       "temper": "yap",
       "familiar": "no"
@@ -200,7 +200,7 @@
   {
     "id": "hir-016",
     "deck": "hiring",
-    "text": "“{fact}” {business} {name} kept talking well past the point where {retainer} had already changed hands.",
+    "text": "“{fact}” {business} {name} talked on long after {retainer} changed hands. For that money I’d nod through an opera.",
     "tags": {
       "temper": "yap",
       "familiar": "no"
@@ -252,7 +252,7 @@
   {
     "id": "hir-020",
     "deck": "hiring",
-    "text": "“{fact}, and here's the rest of it whether you asked or not,” {name} said. I took {retainer} before {pronoun} had gotten halfway through the second sentence.",
+    "text": "“{fact}, and here’s the rest of it,” {name} said. I took {retainer} before {pronoun} was through the second sentence. By the fourth I’d spent it.",
     "tags": {
       "temper": "yap",
       "familiar": "yes"
@@ -265,7 +265,7 @@
   {
     "id": "hir-021",
     "deck": "hiring",
-    "text": "“{fact}.” {name} said nothing after that, and I didn’t need more. {retainer} sat on the desk between us until I put it away.",
+    "text": "“{fact}.” {name} said no more. {retainer} sat between us, the best-looking thing in the office, until I put it away.",
     "tags": {
       "temper": "enigma",
       "familiar": "no"
@@ -291,7 +291,7 @@
   {
     "id": "hir-023",
     "deck": "hiring",
-    "text": "“{fact}.” {name} asked what I charged. I told {them}, and {retainer} came out of a coat pocket and onto the desk.",
+    "text": "“{fact}.” {name} asked what I charged. I told {them}, and {retainer} came out of a coat pocket. I tried to look used to it.",
     "tags": {
       "temper": "plain",
       "familiar": "no"

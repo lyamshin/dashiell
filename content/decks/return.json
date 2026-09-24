@@ -12,7 +12,7 @@
   {
     "id": "ret-002",
     "deck": "return",
-    "text": "I was back at {place}, and nobody looked up.",
+    "text": "I was back at {place}, and nobody looked up. I was starting to take it personally.",
     "tags": {
       "placeKind": "public"
     },
@@ -154,7 +154,7 @@
   {
     "id": "ret-016",
     "deck": "return",
-    "text": "I returned to {place} the way a regular would, without being stopped.",
+    "text": "I returned to {place} and nobody stopped me. I was practically a regular, without the tab.",
     "tags": {
       "placeKind": "semi"
     },
@@ -277,7 +277,7 @@
   {
     "id": "ret-028",
     "deck": "return",
-    "text": "I went back into {place} without knocking this time.",
+    "text": "I went back into {place} without knocking this time. I was getting familiar, and not in the nice way.",
     "tags": {
       "placeKind": "private"
     },

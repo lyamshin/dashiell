@@ -2,7 +2,7 @@
   {
     "id": "grd-001",
     "deck": "grounding",
-    "text": "It’s my business to be sure who has my keys.",
+    "text": "They’re my keys. I know where every one of them sleeps.",
     "tags": {
       "family": "thing",
       "role": "landlady",
@@ -15,7 +15,7 @@
   {
     "id": "grd-002",
     "deck": "grounding",
-    "text": "I know what goes on under my roof. That’s what I’m for.",
+    "text": "I know what goes on under my roof. I’d be a poor landlady if I didn’t, and I’m not poor at anything.",
     "tags": {
       "family": "thing",
       "role": "landlady"
@@ -37,7 +37,7 @@
   {
     "id": "grd-004",
     "deck": "grounding",
-    "text": "I’d have heard {him}.",
+    "text": "I’d have heard {him}. I hear the mice.",
     "tags": {
       "family": "movements",
       "role": "landlady",
@@ -49,7 +49,7 @@
   {
     "id": "grd-005",
     "deck": "grounding",
-    "text": "I hear every foot on those stairs, and I know most of them.",
+    "text": "I hear every foot on those stairs, and I know most of them by the creak.",
     "tags": {
       "family": "movements",
       "role": "landlady"
@@ -105,7 +105,7 @@
   {
     "id": "grd-010",
     "deck": "grounding",
-    "text": "If I don’t rent to somebody, I don’t know who they are.",
+    "text": "If I don’t rent to somebody, they’re nobody to me.",
     "tags": {
       "family": "strangers",
       "role": "landlady"
@@ -116,7 +116,7 @@
   {
     "id": "grd-011",
     "deck": "grounding",
-    "text": "I’d have remembered the name. I remember everybody’s.",
+    "text": "I’d have remembered the name. I remember everybody’s, and what they owe.",
     "tags": {
       "family": "knowing",
       "role": "landlady"
@@ -127,7 +127,7 @@
   {
     "id": "grd-012",
     "deck": "grounding",
-    "text": "I see everybody who comes in. That’s the job.",
+    "text": "I see everybody who comes in. That’s the job. The drinks are just to pass the time.",
     "tags": {
       "family": "any",
       "role": "bartender",
@@ -173,7 +173,7 @@
   {
     "id": "grd-016",
     "deck": "grounding",
-    "text": "I pour for everybody who comes through that door.",
+    "text": "I pour for everybody who comes through that door, and a few who come through the back.",
     "tags": {
       "family": "counts",
       "role": "bartender"
@@ -217,7 +217,7 @@
   {
     "id": "grd-020",
     "deck": "grounding",
-    "text": "Nobody gets past the door without I see them.",
+    "text": "Nobody gets past this door without I see them. That’s what the buttons are for.",
     "tags": {
       "family": "any",
       "role": "doorman",
@@ -229,7 +229,7 @@
   {
     "id": "grd-021",
     "deck": "grounding",
-    "text": "I open that door for everybody. I’d know.",
+    "text": "I open that door for everybody, going in and coming out. I’d know.",
     "tags": {
       "family": "counts",
       "role": "doorman"
@@ -240,7 +240,7 @@
   {
     "id": "grd-022",
     "deck": "grounding",
-    "text": "I’d have opened the door for {him}.",
+    "text": "I’d have opened the door for {him}. It’s a heavy door. I remember who I open it for.",
     "tags": {
       "family": "movements",
       "role": "doorman",
@@ -252,7 +252,7 @@
   {
     "id": "grd-023",
     "deck": "grounding",
-    "text": "I know the tenants. It’s part of the job.",
+    "text": "I know the tenants. I know their coats better than they do.",
     "tags": {
       "family": "movements",
       "role": "doorman"
@@ -263,7 +263,7 @@
   {
     "id": "grd-024",
     "deck": "grounding",
-    "text": "I open the door. I don’t ask for names.",
+    "text": "I open the door. The door doesn’t ask for names, and neither do I.",
     "tags": {
       "family": "strangers",
       "role": "doorman"
@@ -274,7 +274,7 @@
   {
     "id": "grd-025",
     "deck": "grounding",
-    "text": "A doorman hears things. I don’t go looking for them.",
+    "text": "A doorman hears things. I don’t go looking for them. They come to the door, same as everybody.",
     "tags": {
       "family": "thing",
       "role": "doorman"
@@ -297,7 +297,7 @@
   {
     "id": "grd-027",
     "deck": "grounding",
-    "text": "Selling papers is mostly watching the street.",
+    "text": "Selling papers is mostly watching the street. The papers sell themselves.",
     "tags": {
       "family": "movements",
       "role": "newsstand"
@@ -342,7 +342,7 @@
   {
     "id": "grd-031",
     "deck": "grounding",
-    "text": "I’m behind this counter all night. I see who comes in.",
+    "text": "I’m behind this counter all night. I see who comes in. It’s that or look at the grill.",
     "tags": {
       "family": "any",
       "role": "counterman",
@@ -354,7 +354,7 @@
   {
     "id": "grd-032",
     "deck": "grounding",
-    "text": "Everybody who eats here, I serve.",
+    "text": "Everybody who eats here, I serve. There’s nobody else back here to do it.",
     "tags": {
       "family": "movements",
       "role": "counterman"
@@ -388,7 +388,7 @@
   {
     "id": "grd-035",
     "deck": "grounding",
-    "text": "I ring up everybody who comes in. I’d know how many.",
+    "text": "I ring up everybody who comes in. Between me and the register, we’d know.",
     "tags": {
       "family": "counts",
       "role": "counterman"
@@ -399,7 +399,7 @@
   {
     "id": "grd-036",
     "deck": "grounding",
-    "text": "Everybody who comes in hands me a ticket.",
+    "text": "Everybody who comes in hands me a ticket, or tries a story on me first.",
     "tags": {
       "family": "any",
       "role": "ticket-taker",
@@ -434,7 +434,7 @@
   {
     "id": "grd-039",
     "deck": "grounding",
-    "text": "A ticket doesn’t have a name on it.",
+    "text": "A ticket doesn’t have a name on it. Just a seat, and half of them sit in the wrong one.",
     "tags": {
       "family": "strangers",
       "role": "ticket-taker"
@@ -445,7 +445,7 @@
   {
     "id": "grd-040",
     "deck": "grounding",
-    "text": "Everybody who goes up rides with me.",
+    "text": "Everybody who goes up rides with me. The stairs are for tenants who don’t like me.",
     "tags": {
       "family": "any",
       "role": "elevator-man",
@@ -480,7 +480,7 @@
   {
     "id": "grd-043",
     "deck": "grounding",
-    "text": "I know who lives here. It’s part of the job.",
+    "text": "I know who lives here, and on which floor, and what kind of day they’ve had.",
     "tags": {
       "family": "movements",
       "role": "elevator-man"
@@ -491,7 +491,7 @@
   {
     "id": "grd-044",
     "deck": "grounding",
-    "text": "People ride up and ride down. Nobody introduces himself.",
+    "text": "People ride up and ride down. Nobody introduces himself between floors.",
     "tags": {
       "family": "strangers",
       "role": "elevator-man"
@@ -514,7 +514,7 @@
   {
     "id": "grd-046",
     "deck": "grounding",
-    "text": "I notice people. That’s what they pay me for.",
+    "text": "I notice people. That’s what they pay me for, and it isn’t much.",
     "tags": {
       "family": "movements",
       "role": "beat-cop"
@@ -571,7 +571,7 @@
   {
     "id": "grd-051",
     "deck": "grounding",
-    "text": "Fares don’t tell me their names, and I don’t ask.",
+    "text": "Fares don’t tell me their names, and I don’t ask. I ask where to.",
     "tags": {
       "family": "strangers",
       "role": "cabbie"
@@ -594,7 +594,7 @@
   {
     "id": "grd-053",
     "deck": "grounding",
-    "text": "Everybody who comes in wants something from me. I look at them.",
+    "text": "Everybody who comes in wants something from me. I look at them first.",
     "tags": {
       "family": "movements",
       "role": "druggist"
@@ -723,7 +723,7 @@
   {
     "id": "grd-064",
     "deck": "grounding",
-    "text": "I saw it with my own eyes.",
+    "text": "I saw it with these eyes. I haven’t got any others.",
     "tags": {
       "family": "movements",
       "role": "suspect"
@@ -904,7 +904,7 @@
   {
     "id": "grd-080",
     "deck": "grounding",
-    "text": "It isn’t hard to remember one evening.",
+    "text": "It isn’t hard to remember one evening. I only had the one.",
     "tags": {
       "family": "evening",
       "role": "any"
@@ -1037,7 +1037,7 @@
   {
     "id": "grd-092",
     "deck": "grounding",
-    "text": "I see a lot of people. I don’t get introduced to many of them.",
+    "text": "I see a lot of faces in a night. Hardly any of them get introduced.",
     "tags": {
       "role": "suspect",
       "family": "knowing",
@@ -1335,7 +1335,7 @@
   {
     "id": "grd-e027",
     "deck": "grounding",
-    "text": "I’m not mixing it up with any other night.",
+    "text": "I’m not mixing it up with any other night. They don’t get that interesting.",
     "tags": {
       "family": "evening",
       "role": "suspect"

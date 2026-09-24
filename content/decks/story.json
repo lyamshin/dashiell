@@ -223,7 +223,7 @@
   {
     "id": "STY-023",
     "deck": "story",
-    "text": "{actor} drove a cab.",
+    "text": "{actor} drove a cab, and knew every short way across town and charged for the long ones.",
     "tags": {
       "beat": "role",
       "archetype": "arch-hackman"
@@ -470,7 +470,7 @@
   {
     "id": "STY-046",
     "deck": "story",
-    "text": "{victim} had something belonging to half the block in a back room, and the pawn tickets to prove it.",
+    "text": "{victim} kept something belonging to half the block in the back room, with the pawn tickets to prove it.",
     "tags": {
       "beat": "standing",
       "archetype": "vic-pawnbroker",
@@ -536,7 +536,7 @@
   {
     "id": "STY-052",
     "deck": "story",
-    "text": "{victim} had put up bail for most of the block at one time or another, and was still owed for it.",
+    "text": "{victim} had put up bail for most of the block over the years, and was still owed for it.",
     "tags": {
       "beat": "standing",
       "archetype": "vic-bondsman",
@@ -602,7 +602,7 @@
   {
     "id": "STY-058",
     "deck": "story",
-    "text": "{victim} collected the rents in person on the first of the month and never sent anybody else.",
+    "text": "{victim} collected the rents in person on the first, and never sent anybody else.",
     "tags": {
       "beat": "vdetail",
       "archetype": "vic-landlord",
@@ -690,7 +690,7 @@
   {
     "id": "STY-066",
     "deck": "story",
-    "text": "{victim} kept an apartment and a maid, and had no occupation at all.",
+    "text": "{victim} kept an apartment and a maid, and had no occupation at all, and worked at it full time.",
     "tags": {
       "beat": "vdetail",
       "archetype": "vic-heiress",
@@ -3621,7 +3621,7 @@
   {
     "id": "STY-340",
     "deck": "story",
-    "text": "That is all of it. Everything else in the file is somebody else’s trouble, and none of it was this.",
+    "text": "That is all of it. Everything else in the file is somebody else’s trouble, and not one line of it was this.",
     "tags": {
       "beat": "close"
     },
@@ -3630,7 +3630,7 @@
   {
     "id": "STY-341",
     "deck": "story",
-    "text": "That is the whole of it. The rest of that night belongs to other people.",
+    "text": "That is the whole of it. What else happened that night belongs to other people.",
     "tags": {
       "beat": "close"
     },
@@ -3657,7 +3657,7 @@
   {
     "id": "STY-344",
     "deck": "story",
-    "text": "And that is how it went. The rest is other people’s business.",
+    "text": "And that is how it went. The rest is other people’s business, and I have enough of my own.",
     "tags": {
       "beat": "close"
     },
@@ -3666,7 +3666,7 @@
   {
     "id": "STY-345",
     "deck": "story",
-    "text": "Nothing else that happened that night had anything to do with it.",
+    "text": "Nothing else that happened that night touched it.",
     "tags": {
       "beat": "close"
     },
@@ -3675,7 +3675,7 @@
   {
     "id": "STY-346",
     "deck": "story",
-    "text": "The rest of what I wrote down that night was about other people, and none of it was this.",
+    "text": "The rest of what I wrote down that night was about other people, and not one word of it was this.",
     "tags": {
       "beat": "close"
     },
@@ -3729,7 +3729,7 @@
   {
     "id": "STY-352",
     "deck": "story",
-    "text": "Here it is, from the start.",
+    "text": "Here it is, from the start, the way it took me all night to find out.",
     "tags": {
       "beat": "open"
     },
@@ -4012,7 +4012,7 @@
   {
     "id": "STY-382",
     "deck": "story",
-    "text": "{actor} gave piano lessons for a living.",
+    "text": "{actor} gave piano lessons for a living, such as it was.",
     "tags": {
       "beat": "role",
       "archetype": "arch-piano-teacher"
@@ -4022,7 +4022,7 @@
   {
     "id": "STY-383",
     "deck": "story",
-    "text": "{actor} worked for an insurance company, deciding how much its claims were worth.",
+    "text": "{actor} worked for an insurance company, deciding how much its claims were worth, which was usually less than people hoped.",
     "tags": {
       "beat": "role",
       "archetype": "arch-adjuster"

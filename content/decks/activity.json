@@ -2,7 +2,7 @@
   {
     "id": "act-001",
     "deck": "activity",
-    "text": "{name} was drawing a beer and setting it down without being asked.",
+    "text": "{name} was drawing a beer, setting it down before anybody asked, which is the whole art.",
     "tags": {
       "role": "bartender",
       "placeKind": "semi"
@@ -13,7 +13,7 @@
   {
     "id": "act-002",
     "deck": "activity",
-    "text": "{name} was running a rag along the length of the bar.",
+    "text": "{name} was running a rag along the length of the bar, for the look of the thing.",
     "tags": {
       "role": "bartender",
       "placeKind": "semi"
@@ -36,7 +36,7 @@
   {
     "id": "act-004",
     "deck": "activity",
-    "text": "{name} was standing just inside the door, watching the street through the glass.",
+    "text": "{name} was standing just inside the door, watching the street through the glass with deep suspicion.",
     "tags": {
       "role": "doorman",
       "placeKind": "semi"
@@ -58,7 +58,7 @@
   {
     "id": "act-006",
     "deck": "activity",
-    "text": "{name} was straightening a line of umbrellas in the stand by the door.",
+    "text": "{name} was straightening a line of umbrellas in the stand by the door, tallest at the back.",
     "tags": {
       "role": "doorman",
       "placeKind": "semi",
@@ -81,7 +81,7 @@
   {
     "id": "act-008",
     "deck": "activity",
-    "text": "{name} was making change out of a cigar box nailed to the counter.",
+    "text": "{name} was making change out of a cigar box nailed to the counter, in case anybody got ideas.",
     "tags": {
       "role": "newsstand",
       "placeKind": "public"
@@ -92,7 +92,7 @@
   {
     "id": "act-009",
     "deck": "activity",
-    "text": "{name} was calling out a headline to nobody in particular.",
+    "text": "{name} was calling out a headline to nobody in particular, and nobody in particular kept walking.",
     "tags": {
       "role": "newsstand",
       "placeKind": "public",
@@ -115,7 +115,7 @@
   {
     "id": "act-011",
     "deck": "activity",
-    "text": "{name} was wiping down the counter in long, even strokes.",
+    "text": "{name} was wiping down the counter, in long even strokes.",
     "tags": {
       "role": "counterman",
       "placeKind": "public"
@@ -197,7 +197,7 @@
   {
     "id": "act-018",
     "deck": "activity",
-    "text": "{name} was straightening the velvet rope by the entrance.",
+    "text": "{name} was straightening the velvet rope by the entrance, for a line that had gone home hours ago.",
     "tags": {
       "role": "ticket-taker",
       "placeKind": "public",
@@ -209,7 +209,7 @@
   {
     "id": "act-019",
     "deck": "activity",
-    "text": "{name} was working the gate open and shut, calling the floor out of habit.",
+    "text": "{name} was working the gate open and shut, calling the floor out of habit to an empty car.",
     "tags": {
       "role": "elevator-man",
       "placeKind": "private"
@@ -231,7 +231,7 @@
   {
     "id": "act-021",
     "deck": "activity",
-    "text": "{name} was sitting on a stool by the gate, waiting for a bell to ring.",
+    "text": "{name} was sitting on a stool by the gate, waiting on a bell and hoping it wouldn’t ring.",
     "tags": {
       "role": "elevator-man",
       "placeKind": "private",
@@ -243,7 +243,7 @@
   {
     "id": "act-022",
     "deck": "activity",
-    "text": "{name} was going over a rent book at the kitchen table, column by column.",
+    "text": "{name} was going over a rent book at the kitchen table, column by column, remembering every excuse.",
     "tags": {
       "role": "landlady",
       "placeKind": "private"
@@ -265,7 +265,7 @@
   {
     "id": "act-024",
     "deck": "activity",
-    "text": "{name} was counting out coins from a rent envelope, stacking them by denomination.",
+    "text": "{name} was counting out coins from a rent envelope, stacking them by denomination and trusting none of them.",
     "tags": {
       "role": "landlady",
       "placeKind": "private",
@@ -277,7 +277,7 @@
   {
     "id": "act-025",
     "deck": "activity",
-    "text": "{name} was going over a rent book at the hall table, pencil in hand.",
+    "text": "{name} was going over a rent book at the hall table, pencil in hand and a name in mind.",
     "tags": {
       "role": "landlady",
       "placeKind": "semi"
@@ -288,7 +288,7 @@
   {
     "id": "act-026",
     "deck": "activity",
-    "text": "{name} was listening from the bottom step before going up.",
+    "text": "{name} was listening from the bottom step, hearing more than the tenants would have liked.",
     "tags": {
       "role": "landlady",
       "placeKind": "semi"
@@ -311,7 +311,7 @@
   {
     "id": "act-028",
     "deck": "activity",
-    "text": "{name} was leaning against the fender, watching the corner for a fare.",
+    "text": "{name} was leaning against the fender, watching the corner for a fare that wasn’t coming.",
     "tags": {
       "role": "cabbie",
       "placeKind": "public"
@@ -333,7 +333,7 @@
   {
     "id": "act-030",
     "deck": "activity",
-    "text": "{name} was checking the meter, tapping it once to be sure it read right.",
+    "text": "{name} was checking the meter, tapping it once to remind it who was boss.",
     "tags": {
       "role": "cabbie",
       "placeKind": "public",
@@ -379,7 +379,7 @@
   {
     "id": "act-034",
     "deck": "activity",
-    "text": "{name} was folding a newspaper closed without finishing it.",
+    "text": "{name} was folding a newspaper closed without finishing it, bored by the news, all of it.",
     "tags": {
       "role": "arch-heir",
       "placeKind": "public",
@@ -391,7 +391,7 @@
   {
     "id": "act-035",
     "deck": "activity",
-    "text": "{name} was tapping a coin against the counter, waiting on nothing in particular.",
+    "text": "{name} was tapping a coin against the counter, bored in the way only money can afford.",
     "tags": {
       "role": "arch-heir",
       "placeKind": "public",
@@ -416,7 +416,7 @@
   {
     "id": "act-037",
     "deck": "activity",
-    "text": "{name} was running a finger down a tab, working out the total.",
+    "text": "{name} was running a finger down a tab, looking for somebody else to pay it.",
     "tags": {
       "role": "arch-heir",
       "placeKind": "semi",
@@ -428,7 +428,7 @@
   {
     "id": "act-038",
     "deck": "activity",
-    "text": "{name} was setting a hat on the next seat over, leaving it there.",
+    "text": "{name} was setting a hat on the next seat over, so nobody sat there uninvited.",
     "tags": {
       "role": "arch-heir",
       "placeKind": "semi",
@@ -440,7 +440,7 @@
   {
     "id": "act-039",
     "deck": "activity",
-    "text": "{name} was ordering another round, not waiting to be asked twice.",
+    "text": "{name} was ordering another round, on credit and in good spirits.",
     "tags": {
       "role": "arch-heir",
       "placeKind": "semi",
@@ -453,7 +453,7 @@
   {
     "id": "act-040",
     "deck": "activity",
-    "text": "{name} was going through a stack of unopened bills, setting each one aside.",
+    "text": "{name} was going through a stack of unopened bills, setting each one aside, which was a system.",
     "tags": {
       "role": "arch-heir",
       "placeKind": "private",
@@ -465,7 +465,7 @@
   {
     "id": "act-041",
     "deck": "activity",
-    "text": "{name} was straightening a necktie in a mirror, taking a long time about it.",
+    "text": "{name} was straightening a necktie in a mirror, taking a long time about it and enjoying all of it.",
     "tags": {
       "role": "arch-heir",
       "placeKind": "private",
@@ -539,7 +539,7 @@
   {
     "id": "act-047",
     "deck": "activity",
-    "text": "{name} was smoothing a coat that did not need smoothing.",
+    "text": "{name} was smoothing a coat that did not need smoothing, again.",
     "tags": {
       "role": "arch-widow",
       "placeKind": "semi",
@@ -601,7 +601,7 @@
   {
     "id": "act-052",
     "deck": "activity",
-    "text": "{name} was scanning a folded page of stock prices, a pencil marking a column.",
+    "text": "{name} was scanning a folded page of stock prices, not liking the look of any of them.",
     "tags": {
       "role": "arch-broker",
       "placeKind": "public",
@@ -613,7 +613,7 @@
   {
     "id": "act-053",
     "deck": "activity",
-    "text": "{name} was checking a pocket watch against the street clock.",
+    "text": "{name} was checking a pocket watch against the street clock, and siding with the watch.",
     "tags": {
       "role": "arch-broker",
       "placeKind": "public",
@@ -638,7 +638,7 @@
   {
     "id": "act-055",
     "deck": "activity",
-    "text": "{name} was working figures across the back of an old receipt.",
+    "text": "{name} was working figures across the back of an old receipt, coming out ahead every time.",
     "tags": {
       "role": "arch-broker",
       "placeKind": "semi",
@@ -687,7 +687,7 @@
   {
     "id": "act-059",
     "deck": "activity",
-    "text": "{name} was counting a stack of bills twice before putting it away.",
+    "text": "{name} was counting a stack of bills twice before putting it away, and once more for luck.",
     "tags": {
       "role": "arch-broker",
       "placeKind": "private",
@@ -736,7 +736,7 @@
   {
     "id": "act-063",
     "deck": "activity",
-    "text": "{name} was tapping a cigarette against a case without lighting it.",
+    "text": "{name} was tapping a cigarette against a case without lighting it, waiting for somebody to offer.",
     "tags": {
       "role": "arch-society",
       "placeKind": "public",
@@ -761,7 +761,7 @@
   {
     "id": "act-065",
     "deck": "activity",
-    "text": "{name} was ordering without looking at the menu.",
+    "text": "{name} was ordering without looking at the menu, and sending it back without tasting it.",
     "tags": {
       "role": "arch-society",
       "placeKind": "semi",
@@ -847,7 +847,7 @@
   {
     "id": "act-072",
     "deck": "activity",
-    "text": "{name} was tapping a cane against the pavement, looking up at a cornice.",
+    "text": "{name} was tapping a cane against the pavement, looking up at a cornice and adding up what it would cost.",
     "tags": {
       "role": "arch-blockowner",
       "placeKind": "public",
@@ -934,7 +934,7 @@
   {
     "id": "act-079",
     "deck": "activity",
-    "text": "{name} was reading a folded document, lips moving slightly over the clauses.",
+    "text": "{name} was reading a folded document, lips moving over the clauses and lingering on the long ones.",
     "tags": {
       "role": "arch-lawyer",
       "placeKind": "public",
@@ -971,7 +971,7 @@
   {
     "id": "act-082",
     "deck": "activity",
-    "text": "{name} was going over a contract with a pencil, marking a clause.",
+    "text": "{name} was going over a contract with a pencil, marking a clause somebody was going to regret.",
     "tags": {
       "role": "arch-lawyer",
       "placeKind": "semi",
@@ -1057,7 +1057,7 @@
   {
     "id": "act-089",
     "deck": "activity",
-    "text": "{name} was counting change twice before handing it over.",
+    "text": "{name} was counting change twice before handing it over, and looking sorry to see it go.",
     "tags": {
       "role": "arch-bookkeeper",
       "placeKind": "public",
@@ -1082,7 +1082,7 @@
   {
     "id": "act-091",
     "deck": "activity",
-    "text": "{name} was going through a tab, checking the addition.",
+    "text": "{name} was going through a tab, checking the addition and not trusting it.",
     "tags": {
       "role": "arch-bookkeeper",
       "placeKind": "semi",
@@ -1279,7 +1279,7 @@
   {
     "id": "act-107",
     "deck": "activity",
-    "text": "{name} was wiping down a small case of instruments.",
+    "text": "{name} was wiping down a small case of instruments, fondly.",
     "tags": {
       "role": "arch-dentist",
       "placeKind": "public",
@@ -1304,7 +1304,7 @@
   {
     "id": "act-109",
     "deck": "activity",
-    "text": "{name} was going through a drawer of instruments, checking each one.",
+    "text": "{name} was going through a drawer of instruments, testing each point with real pleasure.",
     "tags": {
       "role": "arch-dentist",
       "placeKind": "semi",
@@ -1341,7 +1341,7 @@
   {
     "id": "act-112",
     "deck": "activity",
-    "text": "{name} was polishing a set of instruments laid out on a cloth.",
+    "text": "{name} was polishing a set of instruments laid out on a cloth, humming to them.",
     "tags": {
       "role": "arch-dentist",
       "placeKind": "private",
@@ -1365,7 +1365,7 @@
   {
     "id": "act-114",
     "deck": "activity",
-    "text": "{name} was adjusting a lamp over an empty chair.",
+    "text": "{name} was adjusting a lamp over an empty chair, for a patient who had had the sense to stay home.",
     "tags": {
       "role": "arch-dentist",
       "placeKind": "private",
@@ -1415,7 +1415,7 @@
   {
     "id": "act-118",
     "deck": "activity",
-    "text": "{name} was going through a stack of correspondence, sorting it into two piles.",
+    "text": "{name} was going through a stack of correspondence, sorting it into two piles, answered and never.",
     "tags": {
       "role": "arch-secretary",
       "placeKind": "semi",
@@ -1489,7 +1489,7 @@
   {
     "id": "act-124",
     "deck": "activity",
-    "text": "{name} was scribbling a line into a notebook, then folding it shut.",
+    "text": "{name} was scribbling a line into a notebook, then reading it back, pleased with it.",
     "tags": {
       "role": "arch-reporter",
       "placeKind": "public",
@@ -1501,7 +1501,7 @@
   {
     "id": "act-125",
     "deck": "activity",
-    "text": "{name} was checking a pocket watch against a deadline only {name} knew.",
+    "text": "{name} was checking a pocket watch against a deadline only {name} knew, and losing to it.",
     "tags": {
       "role": "arch-reporter",
       "placeKind": "public",
@@ -1538,7 +1538,7 @@
   {
     "id": "act-128",
     "deck": "activity",
-    "text": "{name} was tapping ash from a cigarette, eyes on the room.",
+    "text": "{name} was tapping ash from a cigarette, eyes on the room and a headline already written.",
     "tags": {
       "role": "arch-reporter",
       "placeKind": "semi",
@@ -1600,7 +1600,7 @@
   {
     "id": "act-133",
     "deck": "activity",
-    "text": "{name} was tapping out a rhythm on a tabletop, counting under breath.",
+    "text": "{name} was tapping out a rhythm on a tabletop, counting under breath and correcting the table.",
     "tags": {
       "role": "arch-piano-teacher",
       "placeKind": "public",
@@ -1612,7 +1612,7 @@
   {
     "id": "act-134",
     "deck": "activity",
-    "text": "{name} was checking a small watch pinned to a collar.",
+    "text": "{name} was checking a small watch pinned to a collar, keeping time for nobody.",
     "tags": {
       "role": "arch-piano-teacher",
       "placeKind": "public",
@@ -1674,7 +1674,7 @@
   {
     "id": "act-139",
     "deck": "activity",
-    "text": "{name} was running a hand along piano keys without pressing them down.",
+    "text": "{name} was running a hand along piano keys without pressing them down, as a kindness to the neighbors.",
     "tags": {
       "role": "arch-piano-teacher",
       "placeKind": "private",
@@ -1711,7 +1711,7 @@
   {
     "id": "act-142",
     "deck": "activity",
-    "text": "{name} was checking a claim form against a wristwatch.",
+    "text": "{name} was checking a claim form against a wristwatch, doubting both.",
     "tags": {
       "role": "arch-adjuster",
       "placeKind": "public",
@@ -1748,7 +1748,7 @@
   {
     "id": "act-145",
     "deck": "activity",
-    "text": "{name} was going through a folder of claims, checking each date.",
+    "text": "{name} was going through a folder of claims, checking each date and believing none of them.",
     "tags": {
       "role": "arch-adjuster",
       "placeKind": "semi",
@@ -1772,7 +1772,7 @@
   {
     "id": "act-147",
     "deck": "activity",
-    "text": "{name} was checking a set of photographs against a written description.",
+    "text": "{name} was checking a set of photographs against a written description, and trusting the photographs.",
     "tags": {
       "role": "arch-adjuster",
       "placeKind": "semi",
@@ -1797,7 +1797,7 @@
   {
     "id": "act-149",
     "deck": "activity",
-    "text": "{name} was checking an insurance policy against a list of exclusions.",
+    "text": "{name} was checking an insurance policy against a list of exclusions, and the list was the longer document.",
     "tags": {
       "role": "arch-adjuster",
       "placeKind": "private",
@@ -1883,7 +1883,7 @@
   {
     "id": "act-156",
     "deck": "activity",
-    "text": "{name} was sweeping a hallway in short, practiced strokes.",
+    "text": "{name} was sweeping a hallway in short strokes, giving the dust no quarter.",
     "tags": {
       "role": "arch-chambermaid",
       "placeKind": "semi",
@@ -1970,7 +1970,7 @@
   {
     "id": "act-163",
     "deck": "activity",
-    "text": "{name} was sitting with a cargo hook set on the table, turning a glass slowly.",
+    "text": "{name} was sitting with a cargo hook set on the table, turning a glass slowly, and nobody asked about the hook.",
     "tags": {
       "role": "arch-longshoreman",
       "placeKind": "semi",
@@ -1994,7 +1994,7 @@
   {
     "id": "act-165",
     "deck": "activity",
-    "text": "{name} was checking a callused palm against a splinter.",
+    "text": "{name} was working a splinter out of a callused palm, without much sympathy for it.",
     "tags": {
       "role": "arch-longshoreman",
       "placeKind": "semi",
@@ -2093,7 +2093,7 @@
   {
     "id": "act-173",
     "deck": "activity",
-    "text": "{name} was threading a needle by a low light, squinting at it.",
+    "text": "{name} was threading a needle by a low light, squinting, and winning on the third try.",
     "tags": {
       "role": "arch-seamstress",
       "placeKind": "semi",
@@ -2155,7 +2155,7 @@
   {
     "id": "act-178",
     "deck": "activity",
-    "text": "{name} was leaning against the cab, watching the corner for a fare.",
+    "text": "{name} was leaning against the cab, watching the corner for a fare and cursing the ones who walked.",
     "tags": {
       "role": "arch-hackman",
       "placeKind": "public",
@@ -2266,7 +2266,7 @@
   {
     "id": "act-187",
     "deck": "activity",
-    "text": "{name} was carrying a suit on a hanger, brushing lint from the shoulder.",
+    "text": "{name} was carrying a suit on a hanger, brushing lint from the shoulder that only a tailor could see.",
     "tags": {
       "role": "arch-tailor",
       "placeKind": "public",
@@ -2352,7 +2352,7 @@
   {
     "id": "act-194",
     "deck": "activity",
-    "text": "{name} was checking a bolt of cloth against the light.",
+    "text": "{name} was checking a bolt of cloth against the light, and finding it wanting.",
     "tags": {
       "role": "arch-tailor",
       "placeKind": "private",
@@ -2402,7 +2402,7 @@
   {
     "id": "act-198",
     "deck": "activity",
-    "text": "{name} was carrying a folded piece of stage scenery under one arm.",
+    "text": "{name} was carrying a folded piece of stage scenery under one arm, a painted window that opened on nothing.",
     "tags": {
       "role": "arch-stagehand",
       "placeKind": "public",
@@ -2489,7 +2489,7 @@
   {
     "id": "act-205",
     "deck": "activity",
-    "text": "{name} was checking a small watch pinned to a collar.",
+    "text": "{name} was checking a small watch pinned to a collar, still on switchboard time.",
     "tags": {
       "role": "arch-switchboard",
       "placeKind": "public",
@@ -2600,7 +2600,7 @@
   {
     "id": "act-214",
     "deck": "activity",
-    "text": "{name} was checking a pocket watch against the street clock.",
+    "text": "{name} was checking a pocket watch against the street clock, and finding the street clock slow again.",
     "tags": {
       "role": "arch-nightman",
       "placeKind": "public",
@@ -2712,7 +2712,7 @@
   {
     "id": "act-223",
     "deck": "activity",
-    "text": "{name} was checking a compact mirror, then closing it with a snap.",
+    "text": "{name} was checking a compact mirror, approving of what was in it.",
     "tags": {
       "role": "arch-chorus",
       "placeKind": "public",
@@ -2872,7 +2872,7 @@
   {
     "id": "act-236",
     "deck": "activity",
-    "text": "{name} was tapping a pencil against a slate of odds.",
+    "text": "{name} was tapping a pencil against a slate of odds, not liking the look of the favorite.",
     "tags": {
       "role": "arch-bookmaker",
       "placeKind": "semi",
@@ -2884,7 +2884,7 @@
   {
     "id": "act-237",
     "deck": "activity",
-    "text": "{name} was counting out winnings into small stacks.",
+    "text": "{name} was counting out winnings into small stacks, very small stacks.",
     "tags": {
       "role": "arch-bookmaker",
       "placeKind": "semi",
@@ -2934,7 +2934,7 @@
   {
     "id": "act-241",
     "deck": "activity",
-    "text": "{name} was shaking a hand and moving to the next one down the line.",
+    "text": "{name} was shaking a hand, already looking past it to the next one down the line.",
     "tags": {
       "role": "arch-heeler",
       "placeKind": "public",
@@ -2983,7 +2983,7 @@
   {
     "id": "act-245",
     "deck": "activity",
-    "text": "{name} was tapping a pencil against a list of favors owed.",
+    "text": "{name} was tapping a pencil against a list of favors owed, and it was a long list.",
     "tags": {
       "role": "arch-heeler",
       "placeKind": "semi",
@@ -3119,7 +3119,7 @@
   {
     "id": "act-256",
     "deck": "activity",
-    "text": "{name} was weighing a ring on a small scale, checking the maker’s stamp twice.",
+    "text": "{name} was weighing a ring on a small scale, checking the maker’s stamp twice and not believing it either time.",
     "tags": {
       "role": "arch-pawnman",
       "placeKind": "private",
@@ -3156,7 +3156,7 @@
   {
     "id": "act-259",
     "deck": "activity",
-    "text": "{name} was standing with arms crossed, watching the street from a doorway.",
+    "text": "{name} was standing with arms crossed, watching the street from a doorway and daring it.",
     "tags": {
       "role": "arch-bouncer",
       "placeKind": "public",
@@ -3230,7 +3230,7 @@
   {
     "id": "act-265",
     "deck": "activity",
-    "text": "{name} was standing where the staircase topped out, arms crossed.",
+    "text": "{name} was standing where the staircase topped out, arms crossed, taking up most of it.",
     "tags": {
       "role": "arch-bouncer",
       "placeKind": "private",
@@ -3389,7 +3389,7 @@
   {
     "id": "act-a02",
     "deck": "activity",
-    "text": "{name} was sitting with both hands flat on the table.",
+    "text": "{name} was sitting with both hands flat on the table, holding it down.",
     "tags": {
       "role": "any",
       "placeKind": "any"
@@ -3400,7 +3400,7 @@
   {
     "id": "act-a03",
     "deck": "activity",
-    "text": "{name} was looking at nothing in particular.",
+    "text": "{name} was looking at nothing in particular, very hard.",
     "tags": {
       "role": "any",
       "placeKind": "any"
@@ -3411,7 +3411,7 @@
   {
     "id": "act-a04",
     "deck": "activity",
-    "text": "{name} was sitting against the wall, doing nothing much.",
+    "text": "{name} was sitting against the wall, doing nothing much and doing it well.",
     "tags": {
       "role": "any",
       "placeKind": "any"
@@ -3422,7 +3422,7 @@
   {
     "id": "act-a05",
     "deck": "activity",
-    "text": "{name} was reading a folded newspaper.",
+    "text": "{name} was reading a folded newspaper, and disagreeing with it.",
     "tags": {
       "role": "any",
       "placeKind": "any"
@@ -3433,7 +3433,7 @@
   {
     "id": "act-a06",
     "deck": "activity",
-    "text": "{name} was smoking a cigarette down to the end.",
+    "text": "{name} was smoking a cigarette down to the end, then a little past it.",
     "tags": {
       "role": "any",
       "placeKind": "any"
@@ -3444,7 +3444,7 @@
   {
     "id": "act-w01",
     "deck": "activity",
-    "text": "{name} was at a table with a cup of coffee going cold.",
+    "text": "{name} was at a table with a cold coffee, neither of them trying any more.",
     "tags": {
       "role": "any",
       "placeKind": "semi"
@@ -3455,7 +3455,7 @@
   {
     "id": "act-w02",
     "deck": "activity",
-    "text": "{name} was reading a folded newspaper, not turning the page.",
+    "text": "{name} was reading a folded newspaper, on the same column for the third time.",
     "tags": {
       "role": "any",
       "placeKind": "semi"
@@ -3466,7 +3466,7 @@
   {
     "id": "act-w03",
     "deck": "activity",
-    "text": "{name} was sitting with a drink and not drinking it.",
+    "text": "{name} was sitting with a drink, and keeping it company.",
     "tags": {
       "role": "any",
       "placeKind": "semi"
@@ -3477,7 +3477,7 @@
   {
     "id": "act-w04",
     "deck": "activity",
-    "text": "{name} was smoking at a table near the wall.",
+    "text": "{name} was smoking at a table near the wall, lighting each one off the last.",
     "tags": {
       "role": "any",
       "placeKind": "semi"
@@ -3499,7 +3499,7 @@
   {
     "id": "act-w06",
     "deck": "activity",
-    "text": "{name} was watching the door over a cup of coffee.",
+    "text": "{name} was watching the door over a coffee cup, and looked disappointed when it was me.",
     "tags": {
       "role": "any",
       "placeKind": "semi"
@@ -3521,7 +3521,7 @@
   {
     "id": "act-w08",
     "deck": "activity",
-    "text": "{name} was smoking under the nearest light.",
+    "text": "{name} was smoking under the nearest light, so as to be seen doing it.",
     "tags": {
       "role": "any",
       "placeKind": "public"
@@ -3532,7 +3532,7 @@
   {
     "id": "act-w09",
     "deck": "activity",
-    "text": "{name} was waiting, and looking up the street now and then.",
+    "text": "{name} was waiting, and looking up the street every so often at nobody coming.",
     "tags": {
       "role": "any",
       "placeKind": "public"
@@ -3543,7 +3543,7 @@
   {
     "id": "act-w10",
     "deck": "activity",
-    "text": "{name} was reading a folded newspaper by the light that was there.",
+    "text": "{name} was reading a folded newspaper by the light that was there, and squinting to make up the rest.",
     "tags": {
       "role": "any",
       "placeKind": "public"
@@ -3565,7 +3565,7 @@
   {
     "id": "act-w12",
     "deck": "activity",
-    "text": "{name} was sitting in a hard chair, doing nothing much.",
+    "text": "{name} was sitting in a hard chair, and the chair was winning.",
     "tags": {
       "role": "any",
       "placeKind": "private"
@@ -3587,10 +3587,120 @@
   {
     "id": "act-w14",
     "deck": "activity",
-    "text": "{name} was waiting, and had been for a while.",
+    "text": "{name} was waiting, and had been for a while, by the look of the ashtray.",
     "tags": {
       "role": "any",
       "placeKind": "private"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-a07",
+    "deck": "activity",
+    "text": "{name} was staring at a cigarette, deciding whether it was worth the match.",
+    "tags": {
+      "role": "any",
+      "placeKind": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-a08",
+    "deck": "activity",
+    "text": "{name} was eating peanuts out of a paper sack, one at a time, rationing them.",
+    "tags": {
+      "role": "any",
+      "placeKind": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-a09",
+    "deck": "activity",
+    "text": "{name} was cleaning a pair of eyeglasses on a sleeve, making them worse.",
+    "tags": {
+      "role": "any",
+      "placeKind": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w15",
+    "deck": "activity",
+    "text": "{name} was doing a crossword in pencil, and losing.",
+    "tags": {
+      "role": "any",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w16",
+    "deck": "activity",
+    "text": "{name} was reading the back of a matchbook, for the second time.",
+    "tags": {
+      "role": "any",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w17",
+    "deck": "activity",
+    "text": "{name} was working a knot out of a shoelace, taking it personally.",
+    "tags": {
+      "role": "any",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w18",
+    "deck": "activity",
+    "text": "{name} was turning a hat by the brim, a quarter turn at a time, getting nowhere.",
+    "tags": {
+      "role": "any",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w19",
+    "deck": "activity",
+    "text": "{name} was writing on an old envelope, crossing it out, and writing it again.",
+    "tags": {
+      "role": "any",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w20",
+    "deck": "activity",
+    "text": "{name} was stirring a cup of coffee, long after there was any reason to.",
+    "tags": {
+      "role": "any",
+      "placeKind": "semi"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "act-w21",
+    "deck": "activity",
+    "text": "{name} was flipping a nickel, calling it, and calling it wrong.",
+    "tags": {
+      "role": "any",
+      "placeKind": "semi"
     },
     "motifs": [],
     "status": "generated"
@@ -3646,7 +3756,7 @@
   {
     "id": "act-281",
     "deck": "activity",
-    "text": "{name} was stropping a razor on a leather strap, slow and even.",
+    "text": "{name} was stropping a razor on a leather strap, taking a long, fond time over it.",
     "tags": {
       "role": "counterman",
       "placeKind": "semi",
@@ -3716,7 +3826,7 @@
   {
     "id": "act-287",
     "deck": "activity",
-    "text": "{name} was sorting a box of odds and ends behind the counter.",
+    "text": "{name} was sorting a junk box behind the counter, finding none of it worth keeping and keeping all of it.",
     "tags": {
       "role": "counterman",
       "placeKind": "semi"
@@ -3727,7 +3837,7 @@
   {
     "id": "act-288",
     "deck": "activity",
-    "text": "{name} was slicing lemons on a board behind the bar, a few at a time.",
+    "text": "{name} was slicing lemons on a board behind the bar, for drinks nobody here would order.",
     "tags": {
       "role": "bartender",
       "placeKind": "semi"
@@ -3738,7 +3848,7 @@
   {
     "id": "act-289",
     "deck": "activity",
-    "text": "{name} was drying a glass with a towel and checking it against the lamp.",
+    "text": "{name} was drying a glass with a towel, holding it to the lamp, and starting over.",
     "tags": {
       "role": "bartender",
       "placeKind": "semi"
@@ -3749,7 +3859,7 @@
   {
     "id": "act-290",
     "deck": "activity",
-    "text": "{name} was counting the bottles on the back shelf and writing the number on a card.",
+    "text": "{name} was counting the bottles on the back shelf, and the number came out different every night.",
     "tags": {
       "role": "bartender",
       "placeKind": "semi"
@@ -3994,7 +4104,7 @@
   {
     "id": "act-312",
     "deck": "activity",
-    "text": "{name} was sitting on a hard chair by the door with a basket of mending.",
+    "text": "{name} was sitting on a hard chair by the door with a basket of mending, and the door got most of the attention.",
     "tags": {
       "role": "landlady",
       "placeKind": "semi"
@@ -4005,7 +4115,7 @@
   {
     "id": "act-313",
     "deck": "activity",
-    "text": "{name} was sorting the day’s letters into piles, one for each tenant.",
+    "text": "{name} was sorting the day’s letters into piles, one for each tenant, reading the envelopes closely.",
     "tags": {
       "role": "landlady",
       "placeKind": "semi"
