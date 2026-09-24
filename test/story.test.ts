@@ -33,6 +33,7 @@ import {
   type StoryFact,
   type StoryLine,
 } from '../src/game/story.js';
+import { maskPlaces, placeFormsOf } from '../src/game/scene/place-names.js';
 
 /* ------------------------------------------------------------ the cases */
 
@@ -508,7 +509,9 @@ describe('the story: shape', () => {
       /\b(paper|papers|notes?|fence[ds]?|numbers|policy|policies|marker|vig|juice|the take|squares?|marks?|shaped up|shape up|heeler|stringer|hack|curb|books?|houses)\b/i;
     for (const card of STORY_CARDS) expect(JARGON.test(card.text), `${card.id}: ${card.text}`).toBe(false);
     for (const kase of CASES) {
-      const text = storyParagraphs(storyOf(kase)).join(' ');
+      // A place's name (content/places, checked by scripts/check-place-names.mjs)
+      // is a name: "Stuyvesant Square" is not a square, "the Golden Rule" not a rule.
+      const text = maskPlaces(storyParagraphs(storyOf(kase)).join(' '), placeFormsOf(kase.places));
       const hit = JARGON.exec(text);
       expect(hit, `case ${kase.seed}: ${hit?.[0]} in “${text}”`).toBeNull();
     }

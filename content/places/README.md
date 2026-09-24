@@ -1,6 +1,10 @@
-# Place names (drafts)
+# Place names
 
-Content only. Nothing reads these files yet. They get wired in after the generator and page-planner rewrite.
+Every place in a tiered case is named from these files; the untiered case keeps the place deck's short names.
+
+- **The generator** (`src/gen/place-names.ts`) draws one set per place per case, on a stream of its own after the cast (so no draw of the case moves), fills the slots, and puts it on the place: `name` is the proper form, `shortName` the running name (the first local form that is a noun, never "the square" on its own), `names` everything else. The residence, and an inside job's office, draw the owner's sets.
+- **The page** (`src/game/scene/place-names.ts`): the first mention of a place in a night is its proper form; an epithet is offered to a sheet with a hole for one (`{place.epithet}`, arrival sheet C), once a night, only for a place already named. The grid and the parser read `names.short` and every local form.
+- The checks read a surname inside a place's name ("Mrs. Kessler’s", "Feeney’s place") as the place's, and a place's words ("the Golden Rule") as a name.
 
 - `names.json`: 252 name sets across all 35 place templates in `src/gen/data/places.ts`, 6–10 per template.
 - `streets.json`: streets and avenues for each of the twelve neighbourhoods, used to fill the `{street}` and `{avenue}` slots.

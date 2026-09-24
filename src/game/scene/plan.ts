@@ -38,6 +38,7 @@ import { doingOf, knownTie, type KnownTie } from './people.js';
 import { visibleTrade } from '../../gen/logic/acquaint.js';
 import { acquaintanceOf } from '../../gen/index.js';
 import { postureOf, pressFor, reportedFor, settingOf, tryFor, type Posture, type Setting, type TryWhy } from './stage.js';
+import { saysPlace } from '../../gen/place-names.js';
 
 /** "a dentist with a chair and a waiting room" is "dentist": the noun a person would say. */
 export function bareRoleOf(person: Person): string | null {
@@ -584,7 +585,7 @@ function carryForAsk(
         forWhat = 'ask-evening';
         subject = who;
       } else {
-        const place = view.places.find((p) => topic.toLowerCase().includes(p.shortName.toLowerCase()));
+        const place = view.places.find((p) => saysPlace(topic, p));
         forWhat = place ? 'ask-place' : 'ask-thing';
         subject = place?.shortName ?? topic;
       }

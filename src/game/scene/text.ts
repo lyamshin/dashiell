@@ -11,7 +11,8 @@
 import type { Id, Mention, Person } from '../../gen/types.js';
 import type { CaseView } from '../derive.js';
 import type { Page } from '../types.js';
-import { RELATION_PLAIN } from './lines.js';
+import { relationPlain } from './lines.js';
+import { maskPlaces, placeFormsOf } from './place-names.js';
 
 /* ------------------------------------------------------------------ *
  * Sentences.
@@ -424,7 +425,7 @@ export function proseTexts(page: Page): string[] {
 
 /** Who a run of text names, by id: people in the case and the backstory's mentions. */
 export function namedIn(view: CaseView, texts: readonly string[]): Id[] {
-  const all = texts.join(' ');
+  const all = maskPlaces(texts.join(' '), placeFormsOf(view.kase.places));
   const out: Id[] = [];
   for (const p of [...view.kase.people, ...view.kase.mentions]) {
     if (new RegExp(`\\b${p.surname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(all)) out.push(p.id);
@@ -445,6 +446,11 @@ export interface Nameable {
    * from Grasso." — for a sentence that already sets somebody off in commas.
    */
   plain: string;
+  /**
+   * Place names with this surname in them ("Mrs. Kessler’s", "Feeney’s
+   * place"): a mention of the place, not of the person, so not read as one.
+   */
+  masks?: string[];
 }
 
 /**
@@ -469,15 +475,18 @@ function bareRole(role: string): string {
  */
 export function nameables(view: CaseView): Nameable[] {
   const out: Nameable[] = [];
+  const forms = placeFormsOf(view.kase.places);
   for (const p of view.kase.people) {
     const exempt = p.id === view.victim.id || p.id === view.client.id;
     const plain = exempt ? '' : plainOf(view, p);
+    const masks = forms.filter((f) => nameRe(p.surname).test(f));
     out.push({
       id: p.id,
       surname: p.surname,
       clause: exempt ? '' : clauseOf(view, p),
       also: exempt ? [] : [...alsoOf(p), ...(plain ? [plain.replace(/\.$/, '').slice(p.surname.length + 1)] : [])],
       plain,
+      ...(masks.length > 0 ? { masks } : {}),
     });
   }
   for (const m of view.kase.mentions) {
@@ -489,7 +498,7 @@ export function nameables(view: CaseView): Nameable[] {
 
 /** "Hochstetter rented from Grasso." — the relation in plain words, as a sentence. */
 function plainOf(view: CaseView, p: Person): string {
-  const verb = p.relationshipId ? RELATION_PLAIN[p.relationshipId] : undefined;
+  const verb = relationPlain(view.kase, p.relationshipId);
   if (p.kind === 'suspect' && verb) return `${p.surname} ${verb.split('{V}').join(view.victim.surname)}.`;
   const clause = clauseOf(view, p);
   return clause.length > 0 ? `${p.surname} was ${clause}.` : '';
@@ -581,7 +590,7 @@ export function namesWithoutClause(
   for (const n of people) {
     if (n.clause.length === 0 || namedBefore.has(n.id)) continue;
     const re = nameRe(n.surname);
-    const i = sentences.findIndex((s) => re.test(s));
+    const i = sentences.findIndex((s) => re.test(maskPlaces(s, n.masks ?? [])));
     if (i < 0) continue;
     if (!carries(n, sentences, i)) out.push(n.surname);
   }
@@ -604,11 +613,12 @@ export function introduceNames(
   for (const n of people) {
     if (n.clause.length === 0 || named.has(n.id)) continue;
     const re = nameRe(n.surname);
-    const m = re.exec(out);
+    // A surname inside a place's name is the place's: read past it.
+    const m = re.exec(maskPlaces(out, n.masks ?? []));
     if (!m) continue;
     named.add(n.id);
     const sentences = unitsOf(out);
-    const i = sentences.findIndex((s) => re.test(s));
+    const i = sentences.findIndex((s) => re.test(maskPlaces(s, n.masks ?? [])));
     if (i >= 0 && carries(n, sentences, i)) continue;
     const at = m.index + n.surname.length;
     const next = out.slice(at);

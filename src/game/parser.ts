@@ -122,7 +122,8 @@ export function matchPlaces(view: CaseView, text: string): Candidate<Id>[] {
   if (n.length === 0) return [];
   const out: Candidate<Id>[] = [];
   for (const p of view.places) {
-    const s = score(n, [p.shortName, p.name]);
+    // A named place answers to every form it goes by (content/places/rules.md §2.7).
+    const s = score(n, p.names ? [p.shortName, p.name, p.names.short, ...p.names.local, p.names.bare] : [p.shortName, p.name]);
     if (s > 0) out.push({ value: p.id, label: p.shortName, strength: s });
   }
   return best(out);

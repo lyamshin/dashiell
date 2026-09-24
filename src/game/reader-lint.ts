@@ -57,6 +57,7 @@ import { SIGHT, proseTexts, sentencesOf } from './scene/text.js';
 import { verdictsOn } from './m9.js';
 import { DECKS, tagOf } from './voice/cards.js';
 import { thingTopic } from './scene/families.js';
+import { maskPlaces, placeFormsOf } from './scene/place-names.js';
 
 export interface LintIssue {
   page: number;
@@ -198,7 +199,7 @@ function lintPage(view: CaseView, page: Page, found: readonly Id[]): LintIssue[]
   /* The machinery. */
   for (const text of texts) {
     // A patrolman on the beat, a card case: the role and the object are the case's.
-    for (const m of machineryIn(text, view.kase.people.map((p) => p.role))) add('machinery', m);
+    for (const m of machineryIn(text, [...view.kase.people.map((p) => p.role), ...placeFormsOf(view.kase.places)])) add('machinery', m);
   }
 
   /* Garbled errands and empty thoughts. */
@@ -369,7 +370,9 @@ function lintProse(view: CaseView, page: Page): LintIssue[] {
       for (const p of view.kase.people) {
         if (p.id === view.victim.id && !victimToo) continue;
         const re = new RegExp(`\\b${esc(p.surname)}\\b`);
-        if (re.test(b.text) && !re.test(finds)) add('search-thought-name', `${b.tag}: ${p.surname}: “${b.text}”`);
+        // "Renfro’s place" is a place: a surname inside a place's name names nobody.
+        const forms = placeFormsOf(view.kase.places);
+        if (re.test(maskPlaces(b.text, forms)) && !re.test(maskPlaces(finds, forms))) add('search-thought-name', `${b.tag}: ${p.surname}: “${b.text}”`);
       }
     }
   }

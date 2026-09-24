@@ -30,7 +30,7 @@ import type { Scene, Stage } from '../voice/page.js';
 import { hourBandOf } from '../voice/page.js';
 import type { Beat, Plan, PresencePerson } from './plan.js';
 import { doingOf, hourSaid, plainAction } from './people.js';
-import { RELATION_PLAIN } from './lines.js';
+import { relationPlain } from './lines.js';
 import {
   WATCH_CLAUSE,
   approachOf,
@@ -52,6 +52,7 @@ import {
   fillSheet,
   pluralThing,
   chooseSheet,
+  fitsSense,
   newRun,
   rolesNeeded,
   runSheet,
@@ -404,6 +405,8 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
   const slots: Record<string, string | undefined> = {
     place: place?.shortName,
     Place: place ? capitalize(place.shortName) : undefined,
+    // content/places/rules.md §2.4: a place's epithet, where a sheet has a hole for one.
+    'place.epithet': stage.epithet,
     victim: view.victim.surname,
     hour: hourSaid(stage.minutes).replace(/^(?:at|past|after) /, ''),
     ...(watcher ? personRoleSlots(stage, 'watcher', watcher, activityOf(watcherP)) : {}),
@@ -751,7 +754,7 @@ function tieClauseOf(stage: Stage, person: Person, tie: 'finder' | 'pointer' | '
     case 'pointer':
       return `${stage.view.client.surname} had told me to start with`;
     case 'relation':
-      return `who ${(RELATION_PLAIN[person.relationshipId ?? ''] ?? '').split('{V}').join(victim)}`;
+      return `who ${(relationPlain(stage.view.kase, person.relationshipId) ?? '').split('{V}').join(victim)}`;
     case 'client':
       return 'who was paying me';
   }
@@ -769,7 +772,8 @@ function fillWithRoles(
     const [head, field] = key.split('.') as [string, string | undefined];
     const exp = run.callback ? run.roles.get(head) : undefined;
     let v: string | undefined;
-    if (exp) {
+    if (exp && !fitsSense(template, exp)) v = undefined;
+    else if (exp) {
       v = field === 'near' ? exp.near : field === 'text' ? exp.text : field === 'it' ? (pluralThing(exp.short) ? 'them' : 'it') : exp.short;
       if (v !== undefined) roles.push(head);
     } else v = slots[key];

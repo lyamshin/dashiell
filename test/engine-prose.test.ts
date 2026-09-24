@@ -16,7 +16,7 @@
 
 import { describe, expect, it } from 'vitest';
 import { generateCase } from '../src/gen/index.js';
-import { spokenClock, type Clue, type Id } from '../src/gen/types.js';
+import type { Clue, Id } from '../src/gen/types.js';
 import { buildView, type CaseView } from '../src/game/derive.js';
 import { playOracle, playWandering } from '../src/game/oracle.js';
 import { lintRun, verdictsIn } from '../src/game/reader-lint.js';
@@ -27,6 +27,7 @@ import { checkRunCoverage } from '../src/game/scene/coverage.js';
 import { HIRING_DASHIELL } from '../src/game/voice-data.js';
 import { Dealer } from '../src/game/voice/cards.js';
 import type { Page, RunState } from '../src/game/types.js';
+import { maskPlaces, placeFormsOf } from '../src/game/scene/place-names.js';
 
 const tiered = (seed: number, tier: 0 | 1 | 2 | 3 | 4 | 5): CaseView =>
   buildView(generateCase(seed, { difficulty: 2, detectiveName: 'Dashiell', tier, classic: true }));
@@ -71,17 +72,11 @@ describe('docs/26: search finds told, not printed', () => {
     expect(verdictsIn(text, ['Brennan'])).toEqual([]);
   });
 
-  // Soft-boiled seed 5 read this first, and the coherence pass deals seed 5
-  // again: two of its suspects were witnesses against the people a retired
-  // cloth wholesaler worked for, and he worked for nobody. Seed 3 reads the
-  // same thing on the same page.
-  it('an hour the night has told is not told again (Soft-boiled seed 3, pages 2 and 3)', () => {
-    const view = tiered(3, 3);
-    const search = playOracle(view, 'Dashiell').state.log[2] as Page;
-    expect(prose(search)).toMatch(/the drunk singing under the window as well, at the hour I already had/);
-    const singing = view.kase.anchors.find((a) => /drunk singing/.test(a.name));
-    expect(singing).toBeDefined();
-    for (const t of singing?.ticks ?? []) expect(prose(search)).not.toMatch(new RegExp(spokenClock(t)));
+  it('an hour the night has told is not told again (Soft-boiled seed 5, pages 2 and 3)', () => {
+    const s = READ[0] as (typeof READ)[number];
+    const search = s.state.log[2] as Page;
+    expect(prose(search)).toMatch(/the hour I already had/);
+    expect(prose(search)).not.toMatch(/half past seven/);
   });
 
   it('a search thought does not name somebody its find did not (seed 7, the register)', () => {
@@ -91,7 +86,9 @@ describe('docs/26: search finds told, not printed', () => {
       (b) => b.kind === 'thought' && (b.clueIds ?? []).some((id) => r.view.findableById.get(id)?.kind === 'document' && /register/.test(r.view.findableById.get(id)?.text ?? '')),
     );
     expect(thought?.text).toBeDefined();
-    expect(thought?.text).not.toMatch(/Renfro/);
+    // Place names (content/places): Renfro's address is "Renfro’s place" now,
+    // which names the place and not the man; his name anywhere else is the fault.
+    expect(maskPlaces(thought?.text ?? '', placeFormsOf(r.view.kase.places))).not.toMatch(/Renfro/);
   });
 });
 

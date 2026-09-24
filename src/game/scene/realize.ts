@@ -24,7 +24,7 @@ import { spokenClock } from '../../gen/types.js';
 import type { Block, BeatTrace, ErrandTrace, ProseVoice, SheetUse } from '../types.js';
 import { OTHER_THING } from '../errand.js';
 import { hedged, restates, figuresIn, hourAgrees, introduceNames, nameables, pastTense, pastPredicate, sentencesOf, stripHere, wordCount, isSubjectless, bandOf } from './text.js';
-import { APPROACH, APPROACH_AGAIN, COUNT_WORDS, FOLLOW_ON, OUTDOOR_PLACES, RELATION_PLAIN, RELATION_WHY, SEARCH_THING_ACTS as THING_ACTS, isPluralPlace } from './lines.js';
+import { APPROACH, APPROACH_AGAIN, COUNT_WORDS, FOLLOW_ON, OUTDOOR_PLACES, relationPlain, relationWhy, SEARCH_THING_ACTS as THING_ACTS, isPluralPlace } from './lines.js';
 import { clueAbout, layerCredit, layerOfClue, layerSentences } from '../voice/plain.js';
 import type { AskStage, Beat, CloseOutcome, Plan, PresencePerson } from './plan.js';
 import type { Thought } from './thought.js';
@@ -397,7 +397,10 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const slots: Slots = { place: here, owner: owner?.surname };
         const drawn = deal(stage, 'establish', [(c) => tagIs('establish', c, 'place', key)], slots);
         const parts: string[] = [];
-        if (drawn) parts.push(drawn.text);
+        // A named place that says whose it is ("Margolis’s place") is not
+        // then said to belong to Margolis.
+        const own = owner && here.includes(owner.surname) ? `${capitalize(here)} belonged to ${owner.surname}, ` : null;
+        if (drawn) parts.push(own && drawn.text.startsWith(own) ? `${capitalize(here)} was ${drawn.text.slice(own.length)}` : drawn.text);
         else {
           gaps.push(`no-card: establish has nothing for ${key}; the place's own name stood in`);
           parts.push(`${capitalize(place?.name.replace('{V}', victim.surname) ?? here)}.`);
@@ -821,7 +824,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         // the first time the relation is said.
         const subjectPerson = b.subjectId ? view.personById.get(b.subjectId) : undefined;
         const why =
-          b.tie === 'victim' && !known && subjectPerson?.relationshipId ? RELATION_WHY[subjectPerson.relationshipId] : undefined;
+          b.tie === 'victim' && !known && subjectPerson?.relationshipId ? relationWhy(view.kase, subjectPerson.relationshipId) : undefined;
         if (why) text = `${why} ${text}`;
         // "Broadnax might know about Broadnax's evening": once the name has
         // been said, their evening is their own.
@@ -1767,7 +1770,7 @@ function exchange(
   // that carries its own reason, their life, why he was hired.
   // A question that carries its own reason is told with the reason first:
   // "Vitale had lent Sirkin money. I asked her where Vitale had been tonight."
-  const carriedVerb = beat.carried && subject?.relationshipId ? RELATION_PLAIN[subject.relationshipId] : undefined;
+  const carriedVerb = beat.carried && subject?.relationshipId ? relationPlain(stage.view.kase, subject.relationshipId) : undefined;
   const reportedCarried = staged?.reported === true && carriedVerb !== undefined && subject !== undefined;
   const reportedLine =
     staged?.reported === true && (!beat.carried || reportedCarried) && !scene.self && scene.askKind !== 'ask-hired'
@@ -1794,7 +1797,7 @@ function exchange(
     } else {
       // "Broadnax owed Obermann money." — the relation in plain words, not
       // "Broadnax, in Obermann's debt."
-      const verb = subject.relationshipId ? RELATION_PLAIN[subject.relationshipId] : undefined;
+      const verb = relationPlain(stage.view.kase, subject.relationshipId);
       question = verb
         ? `${subject.surname} ${verb.split('{V}').join(view.victim.surname)}.`
         : fillTemplate(dealer.random.pick(CARRIED_QUESTIONS_PLAIN), {

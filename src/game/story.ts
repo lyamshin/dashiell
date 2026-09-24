@@ -756,9 +756,16 @@ export function tellStory(input: StoryInput, history: Iterable<string> = []): St
       { kind: 'tie', personId: cid, relationshipId: tie.relationshipId, variant: tie.variant },
     ]);
   } else if (input.tie) {
-    s.say('tie', { relationship: '-', variant: -1 }, { tie: { text: input.tie.text, facts: [] } }, [
-      { kind: 'tieText', personId: cid, text: input.tie.text },
-    ]);
+    // A tie said in the owner's words ("Winslow’s partner in a sideline",
+    // gen/data/tie-words.ts) has no card of its own: it is said as it stands,
+    // and the victim it names is a fact of it.
+    const namesVictim = new RegExp(`\\b${victim.surname}\\b`).test(input.tie.text);
+    s.say(
+      'tie',
+      { relationship: '-', variant: -1 },
+      { tie: { text: input.tie.text, facts: namesVictim ? [{ kind: 'names', personId: vid }] : [] } },
+      [{ kind: 'tieText', personId: cid, text: input.tie.text }],
+    );
   }
   if (input.motive) {
     const third = motiveThird(input);
