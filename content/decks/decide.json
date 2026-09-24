@@ -14,7 +14,7 @@
   {
     "id": "dec-002",
     "deck": "decide",
-    "text": "I let it lie. {subject} was paying for my questions, and this one could wait until I knew what to do with the answer.",
+    "text": "I let it lie. {subject} was paying for my questions, and this one could wait until I knew what I’d do with the answer.",
     "tags": {
       "who": "client",
       "act": "hold",
@@ -134,7 +134,7 @@
   {
     "id": "dec-012",
     "deck": "decide",
-    "text": "The next time I saw {subject}, {place} would be the first thing I asked about.",
+    "text": "The next time I saw {subject}, {place} would be the first thing I asked about, ahead of hello.",
     "tags": {
       "who": "suspect",
       "act": "press",
@@ -146,7 +146,7 @@
   {
     "id": "dec-013",
     "deck": "decide",
-    "text": "I wanted {subject} in front of me with that question: {place} at {time}, and no room to walk around it.",
+    "text": "I wanted {subject} across a table from me with that question: {place} at {time}, and no room to walk around it.",
     "tags": {
       "who": "suspect",
       "act": "press",
@@ -182,7 +182,7 @@
   {
     "id": "dec-016",
     "deck": "decide",
-    "text": "I said nothing about it. {subject} was the kind who closed up when pressed, and I wanted {them} talking.",
+    "text": "I said nothing about it. {subject} was the kind who shut up shop when pressed, and I wanted {them} talking.",
     "tags": {
       "who": "suspect",
       "act": "hold",
@@ -206,7 +206,7 @@
   {
     "id": "dec-018",
     "deck": "decide",
-    "text": "I kept it to myself. When I saw {subject} next, I wanted {them} to tell me about {place} before I told {them} what I knew.",
+    "text": "I kept it to myself. When I saw {subject} next, I wanted {them} to tell me about {place} before I showed {them} my hand.",
     "tags": {
       "who": "suspect",
       "act": "hold",
@@ -242,7 +242,7 @@
   {
     "id": "dec-021",
     "deck": "decide",
-    "text": "I made a note of it and kept my face straight. {subject} and I would come back to {place}.",
+    "text": "I put it in the notebook and kept my face straight, which at that hour took some doing. {subject} and I would come back to {place}.",
     "tags": {
       "who": "suspect",
       "act": "note",
@@ -254,7 +254,7 @@
   {
     "id": "dec-022",
     "deck": "decide",
-    "text": "I wrote {subject}’s name at the top of a clean page. It could wait an hour. It could not wait all night.",
+    "text": "I started a clean page with {subject}’s name at the head of it. It could wait an hour. It could not wait all night.",
     "tags": {
       "who": "suspect",
       "act": "note",
@@ -290,7 +290,7 @@
   {
     "id": "dec-025",
     "deck": "decide",
-    "text": "I underlined {subject}’s name in the book. I would get to {them} before morning.",
+    "text": "I underlined {subject}’s name in the book, twice, which is as close as I get to raising my voice. I would get to {them} before morning.",
     "tags": {
       "who": "suspect",
       "act": "note",
@@ -314,7 +314,7 @@
   {
     "id": "dec-027",
     "deck": "decide",
-    "text": "I didn’t say anything to {subject} about it. People who watch a room for a living get careful once they know somebody is watching them.",
+    "text": "I said nothing to {subject} about it. People who watch a room for a living get careful once they know somebody is watching them.",
     "tags": {
       "who": "watcher",
       "act": "note",

@@ -2,7 +2,7 @@
   {
     "id": "err-001",
     "deck": "errand",
-    "text": "{name} sent me. I came to ask {who} about {subject}.",
+    "text": "{name} sent me, and I go where I'm pointed. I came to ask {who} about {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-person"
@@ -79,7 +79,7 @@
   {
     "id": "err-008",
     "deck": "errand",
-    "text": "{name} told me where to look. I wanted {who} on the subject of {subject}.",
+    "text": "{name} told me where to go, and for once meant it kindly. I wanted {who}'s word on {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-person"
@@ -145,7 +145,7 @@
   {
     "id": "err-014",
     "deck": "errand",
-    "text": "{name} had said as much. I had come to ask {who} about {subject}, nothing more.",
+    "text": "{name} had said as much, and my feet had made me promise to keep it short. I had come to ask {who} about {subject}, nothing more.",
     "tags": {
       "because": "said",
       "for": "ask-person"
@@ -299,7 +299,7 @@
   {
     "id": "err-028",
     "deck": "errand",
-    "text": "I came on {name}'s word, to ask {who} about {subject}.",
+    "text": "I came on {name}'s word, and on foot. I wanted to ask {who} about {subject}.",
     "tags": {
       "because": "said",
       "for": "ask-thing"
@@ -310,7 +310,7 @@
   {
     "id": "err-029",
     "deck": "errand",
-    "text": "{name} had said as much. I had one question for {who}: about {subject}.",
+    "text": "{name} had said as much. I had one question for {who}, about {subject}, and I had walked a long way to ask it.",
     "tags": {
       "because": "said",
       "for": "ask-thing"
@@ -464,7 +464,7 @@
   {
     "id": "err-043",
     "deck": "errand",
-    "text": "I came on {name}'s word. I came to raise {subject} with {who}.",
+    "text": "I came on {name}'s word, which is cheaper to give than to follow. I wanted to raise {subject} with {who}.",
     "tags": {
       "because": "said",
       "for": "ask-place"
@@ -541,7 +541,7 @@
   {
     "id": "err-050",
     "deck": "errand",
-    "text": "{name} put me onto it. I wanted to hear {who} walk through the evening.",
+    "text": "{name} put me onto it, and for once somebody else would do the walking. I wanted to hear {who} walk through the evening.",
     "tags": {
       "because": "said",
       "for": "ask-evening"
@@ -629,7 +629,7 @@
   {
     "id": "err-058",
     "deck": "errand",
-    "text": "I came on {name}'s word. I came to hear {who} account for the hours.",
+    "text": "I came on {name}'s word, to hear {who} account for the hours.",
     "tags": {
       "because": "said",
       "for": "ask-evening"
@@ -742,7 +742,7 @@
   {
     "id": "err-068",
     "deck": "errand",
-    "text": "{name} told me where to look. I meant to search the room, top to bottom.",
+    "text": "{name} told me where to look. Telling is the easy part. I meant to search the room, top to bottom.",
     "tags": {
       "because": "said",
       "for": "search-room",
@@ -823,7 +823,7 @@
   {
     "id": "err-075",
     "deck": "errand",
-    "text": "{name} set me on it. I came to give the room a proper going-over.",
+    "text": "{name} set me on it. I came to give the room a proper going-over, which is more than my own room ever gets.",
     "tags": {
       "because": "said",
       "for": "search-room",
@@ -979,7 +979,7 @@
   {
     "id": "err-089",
     "deck": "errand",
-    "text": "{name} had said as much. I came to track {subject} down.",
+    "text": "{name} had said as much. I came to track {subject} down. Things don't come to me; I've waited.",
     "tags": {
       "because": "said",
       "for": "search-thing"
@@ -1034,7 +1034,7 @@
   {
     "id": "err-094",
     "deck": "errand",
-    "text": "A paper had named it. I came to ask {who} about {subject}.",
+    "text": "A paper had named it. Paper has been sending me places since I learned to read. I came to ask {who} about {subject}.",
     "tags": {
       "because": "document",
       "for": "ask-person"
@@ -1111,7 +1111,7 @@
   {
     "id": "err-101",
     "deck": "errand",
-    "text": "The paper trail ran from {from}. I meant to ask {who} about {subject}.",
+    "text": "The paper trail ran from {from}, and I ran after it. I meant to ask {who} about {subject}.",
     "tags": {
       "because": "document",
       "for": "ask-person"
@@ -1210,7 +1210,7 @@
   {
     "id": "err-110",
     "deck": "errand",
-    "text": "Something on paper at {from} sent me. I wanted an answer from {who} about {subject}.",
+    "text": "Something on paper at {from} had more say over my evening than I did. I wanted an answer from {who} about {subject}.",
     "tags": {
       "because": "document",
       "for": "ask-thing"
@@ -1463,7 +1463,7 @@
   {
     "id": "err-133",
     "deck": "errand",
-    "text": "A record at {from} sent me. I came to raise {subject} with {who}.",
+    "text": "A record at {from} sent me. Records never have to walk anywhere themselves. I came to raise {subject} with {who}.",
     "tags": {
       "because": "document",
       "for": "ask-place"
@@ -1562,7 +1562,7 @@
   {
     "id": "err-142",
     "deck": "errand",
-    "text": "I had it from a paper at {from}. I had one question for {who}: the evening, start to finish.",
+    "text": "I had it from a paper at {from}. I had one question for {who}, and it was a big one: the evening, start to finish.",
     "tags": {
       "because": "document",
       "for": "ask-evening"
@@ -1834,7 +1834,7 @@
   {
     "id": "err-166",
     "deck": "errand",
-    "text": "Paperwork at {from} sent me. I came for {subject}.",
+    "text": "Paperwork at {from} sent me. I came for {subject}. Paperwork always gets its way.",
     "tags": {
       "because": "document",
       "for": "search-thing"
@@ -1978,7 +1978,7 @@
   {
     "id": "err-179",
     "deck": "errand",
-    "text": "Something written at {from} sent me. I came to track {subject} down.",
+    "text": "Something written at {from} sent me, and it hadn't even asked nicely. I came to track {subject} down.",
     "tags": {
       "because": "document",
       "for": "search-thing"
@@ -2088,7 +2088,7 @@
   {
     "id": "err-189",
     "deck": "errand",
-    "text": "A find at {from} sent me on. I came to hear {who} out on {subject}.",
+    "text": "A find at {from} sent me on, and on is the direction I mostly go. I came to hear {who} out on {subject}.",
     "tags": {
       "because": "found",
       "for": "ask-person"
@@ -2786,7 +2786,7 @@
   {
     "id": "err-252",
     "deck": "errand",
-    "text": "A thing found at {from} pointed me here. I came to go through it, drawer by drawer.",
+    "text": "A thing found at {from} pointed me here. I came to go through it, drawer by drawer, the way my mother went through my pockets.",
     "tags": {
       "because": "found",
       "for": "search-room",
@@ -3076,7 +3076,7 @@
   {
     "id": "err-278",
     "deck": "errand",
-    "text": "I came to {place} on nothing at all.",
+    "text": "I came to {place} on nothing at all. I'm used to running on nothing.",
     "tags": {
       "because": "none",
       "for": "none"
@@ -3164,7 +3164,7 @@
   {
     "id": "err-286",
     "deck": "errand",
-    "text": "Nobody sent me back. I came back to see {place} again.",
+    "text": "Nobody sent me back. I'm the sentimental type. I came back to see {place} again.",
     "tags": {
       "because": "return",
       "for": "none",
@@ -3284,7 +3284,7 @@
   {
     "id": "err-296",
     "deck": "errand",
-    "text": "I went back to {place} without being told to.",
+    "text": "I went back to {place} without being told to, which my landlady would call a first.",
     "tags": {
       "because": "return",
       "for": "none",
@@ -3404,7 +3404,7 @@
   {
     "id": "err-306",
     "deck": "errand",
-    "text": "I had searched {place} already. I came back to see it with fresh eyes.",
+    "text": "I had searched {place} already. I came back to see it with fresh eyes. They were the same eyes, only more tired.",
     "tags": {
       "because": "return",
       "for": "none",
@@ -3527,7 +3527,7 @@
   {
     "id": "err-316",
     "deck": "errand",
-    "text": "I went back to {place} to think.",
+    "text": "I went back to {place} to think. It's cheaper than drinking, and the chair is better.",
     "tags": {
       "because": "office",
       "for": "none"
@@ -3550,7 +3550,7 @@
   {
     "id": "err-318",
     "deck": "errand",
-    "text": "I went back to {place} and the chair behind the desk.",
+    "text": "I went back to {place} and the chair behind the desk, which was the only thing in town glad to see me.",
     "tags": {
       "because": "office",
       "for": "none",
@@ -3662,7 +3662,7 @@
   {
     "id": "err-328",
     "deck": "errand",
-    "text": "I went back to {place}. The desk was where the thinking happened.",
+    "text": "I went back to {place}. The desk was where the thinking happened, when it happened.",
     "tags": {
       "because": "office",
       "for": "none",

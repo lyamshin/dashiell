@@ -612,7 +612,7 @@
   {
     "id": "tht-059",
     "deck": "thought",
-    "text": "{subject} had put {subject} at {place} at {time}. Somebody else’s word said otherwise, and one of them was wrong.",
+    "text": "{subject} had put {subject} at {place} at {time}. Somebody else’s word said otherwise, and they could not both be right.",
     "tags": {
       "class": "contradicts",
       "basis": "not-at"
@@ -1144,7 +1144,7 @@
   {
     "id": "tht-111",
     "deck": "thought",
-    "text": "{place} was short {other}. That was robbery, whatever else it turned out to be.",
+    "text": "{place} was short {other}. That was robbery, whatever else it proved to be.",
     "tags": {
       "class": "robbery-shape"
     },
@@ -1326,7 +1326,7 @@
   {
     "id": "tht-129",
     "deck": "thought",
-    "text": "So the thing {subject} kept quiet about was {other}. It was a smaller crime than the one I was working.",
+    "text": "So the thing {subject} kept quiet about was {other}. It was a smaller crime than the one on my desk.",
     "tags": {
       "class": "secret"
     },
@@ -1530,7 +1530,7 @@
   {
     "id": "tht-161",
     "deck": "thought",
-    "text": "{place} gave me nothing. I crossed it off, for now.",
+    "text": "{place} gave me nothing, and took its time about it.",
     "tags": {
       "class": "nothing"
     },
@@ -1776,7 +1776,7 @@
   {
     "id": "tht-e017",
     "deck": "thought",
-    "text": "So {victim} had been at {place} at {time}. After that I had nothing on {victim}.",
+    "text": "So {victim} had been at {place} at {time}. After that I had nothing about {victim} at all.",
     "tags": {
       "class": "last-seen"
     },
@@ -2016,7 +2016,7 @@
   {
     "id": "tht-e041",
     "deck": "thought",
-    "text": "If anybody had come or gone tonight, {subject} would know it.",
+    "text": "If anybody had come or gone tonight, {subject} would know it, and what they had on.",
     "tags": {
       "class": "view",
       "who": "watcher"
@@ -2027,7 +2027,7 @@
   {
     "id": "tht-e042",
     "deck": "thought",
-    "text": "{subject} watched the room for a living. That made {subject} worth a question.",
+    "text": "{subject} watched the room for a living. That made {subject} worth a question, and maybe a dollar.",
     "tags": {
       "class": "view",
       "who": "watcher"
@@ -2049,7 +2049,7 @@
   {
     "id": "tht-e044",
     "deck": "thought",
-    "text": "{subject} was the client, and the client was paying.",
+    "text": "{subject} was the client, and the client was paying. I try to remember that when they’re in the room.",
     "tags": {
       "class": "view",
       "who": "client"
@@ -2274,7 +2274,7 @@
   {
     "id": "tht-h013",
     "deck": "thought",
-    "text": "If {victim} was dead by about {time}, the rest of the evening could not have mattered to {victim}.",
+    "text": "If {victim} was dead by about {time}, nothing later in the evening could have mattered to {victim}.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
@@ -2358,7 +2358,7 @@
   {
     "id": "tht-h020",
     "deck": "thought",
-    "text": "If {victim} was alive at {time}, anybody I could place somewhere else for the rest of the evening was clear of it.",
+    "text": "If {victim} was alive at {time}, anybody I could place somewhere else for the remainder of the evening was clear of it.",
     "tags": {
       "class": "window",
       "basis": "alive-at",
@@ -2534,7 +2534,7 @@
   {
     "id": "tht-h035",
     "deck": "thought",
-    "text": "{subject} had told me who {subject} was. None of it put {subject} anywhere tonight.",
+    "text": "{subject} had told me who {subject} was, at some length. None of it put {subject} anywhere tonight.",
     "tags": {
       "class": "context",
       "basis": "self"
@@ -2734,7 +2734,7 @@
   {
     "id": "tht-h053",
     "deck": "thought",
-    "text": "If {subject} was not at {place} at {time}, then {subject} had been somewhere else, and I did not know where yet.",
+    "text": "If {subject} was not at {place} at {time}, then {subject} had been somewhere else, and where that was, I did not know yet.",
     "tags": {
       "class": "absent"
     },
@@ -2804,7 +2804,7 @@
   {
     "id": "tht-h060",
     "deck": "thought",
-    "text": "{subject} would not be able to use {place} to account for {time}, if this was right.",
+    "text": "{subject} could not use {place} to account for {time}, if this was right.",
     "tags": {
       "class": "absent"
     },
@@ -2834,7 +2834,7 @@
   {
     "id": "tht-h063",
     "deck": "thought",
-    "text": "That would take {place} away from {subject} for {time}. I wanted to know what {subject} would put there instead.",
+    "text": "That would take {place} away from {subject} for {time}. I wanted to hear what {subject} would put there instead.",
     "tags": {
       "class": "absent"
     },
@@ -2854,7 +2854,7 @@
   {
     "id": "tht-h065",
     "deck": "thought",
-    "text": "{subject} was hiding something. Whether it had anything to do with {victim}, I could not say yet.",
+    "text": "{subject} was hiding something. Whether it touched {victim}, I could not say yet.",
     "tags": {
       "class": "hint"
     },
@@ -2864,7 +2864,7 @@
   {
     "id": "tht-h066",
     "deck": "thought",
-    "text": "Somebody had noticed {subject} keeping a secret. It might have nothing to do with {victim}, and it might.",
+    "text": "Somebody had noticed {subject} keeping a secret. It might have no bearing on {victim}, and it might.",
     "tags": {
       "class": "hint"
     },
@@ -2965,7 +2965,7 @@
   {
     "id": "tht-h076",
     "deck": "thought",
-    "text": "That was the kind of thing a person does when they are hiding something, and {subject} was doing it.",
+    "text": "People do that sort of thing when they are hiding something, and {subject} was doing it.",
     "tags": {
       "class": "hint"
     },
@@ -3054,7 +3054,7 @@
   {
     "id": "tht-m008",
     "deck": "thought",
-    "text": "{source} had no name for {other}. Whoever it turned out to be had been at {place} at {time}.",
+    "text": "{source} had no name for {other}. Whoever it proved to be had been at {place} at {time}.",
     "tags": {
       "class": "touches",
       "basis": "described"
@@ -3131,7 +3131,7 @@
   {
     "id": "tht-m015",
     "deck": "thought",
-    "text": "{subject} had been at {place} at the time of {other}. I needed the hour of {other} before it told me anything.",
+    "text": "{subject} had been at {place} during {other}. I needed the hour of {other} before it told me anything.",
     "tags": {
       "class": "touches",
       "basis": "anchored"
@@ -3230,7 +3230,7 @@
   {
     "id": "tht-m024",
     "deck": "thought",
-    "text": "{source} did not know {subject}. It was a small fact, and I wrote it down anyway.",
+    "text": "{source} did not know {subject}. It was a small fact, and I wrote it down anyway. The big ones don’t come to me often.",
     "tags": {
       "class": "touches",
       "basis": "stranger"
@@ -3514,7 +3514,7 @@
   {
     "id": "tht-q003",
     "deck": "thought",
-    "text": "It was a small piece of {victim}’s evening, and small pieces add up or they don’t.",
+    "text": "It was one small piece of {victim}’s evening, and small pieces add up or they don’t.",
     "tags": {
       "class": "context"
     },
@@ -3642,7 +3642,7 @@
   {
     "id": "tht-a009",
     "deck": "thought",
-    "text": "It went into the notebook under {subject}’s name, as told.",
+    "text": "It went into the notebook under {subject}’s name, as told. My handwriting did what it could.",
     "tags": {
       "class": "touches",
       "basis": "account"
@@ -3886,7 +3886,7 @@
   {
     "id": "tht-a031",
     "deck": "thought",
-    "text": "{subject} already had a part in this somewhere. That was worth a few minutes.",
+    "text": "{subject} already had a part in this somewhere. That was worth a few minutes, and a few minutes was about what I could afford.",
     "tags": {
       "class": "view",
       "who": "known"
@@ -3941,7 +3941,7 @@
   {
     "id": "tht-a036",
     "deck": "thought",
-    "text": "{subject} had hired me to find things out, and had got here before me.",
+    "text": "{subject} had hired me to find things out, and had got here before me. That’s never a good look for the man being paid.",
     "tags": {
       "class": "view",
       "who": "client"

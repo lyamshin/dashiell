@@ -42,7 +42,7 @@
   {
     "id": "ans-005",
     "deck": "answer",
-    "text": "It checked out. {name}'s tip was good.",
+    "text": "It checked out. {name}'s tip was good, and I made a note to be surprised about it later.",
     "tags": {
       "outcome": "found"
     },
@@ -142,7 +142,7 @@
   {
     "id": "ans-015",
     "deck": "answer",
-    "text": "{subject} was where it should have been. I hadn't wasted the walk.",
+    "text": "{subject} was where it should have been. For once my shoes had earned their keep.",
     "tags": {
       "outcome": "found"
     },
@@ -162,7 +162,7 @@
   {
     "id": "ans-017",
     "deck": "answer",
-    "text": "{name} had been wrong about this one. It happened.",
+    "text": "{name} had been wrong about this one. It happens. It happens to me most nights.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -202,7 +202,7 @@
   {
     "id": "ans-021",
     "deck": "answer",
-    "text": "{name} had sent me chasing nothing. I let it go.",
+    "text": "{name} had sent me chasing nothing, and I had caught it.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -292,7 +292,7 @@
   {
     "id": "ans-030",
     "deck": "answer",
-    "text": "{subject} wasn't here, and no amount of looking was going to change that.",
+    "text": "{subject} wasn't here, and no amount of looking was going to change that. I looked anyway, longer than a grown man should.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -312,7 +312,7 @@
   {
     "id": "ans-032",
     "deck": "answer",
-    "text": "{name} had sent me for one thing. I walked out with another.",
+    "text": "{name} had sent me for one thing. I walked out with another, which is more than I usually walk out with.",
     "tags": {
       "outcome": "something-else"
     },
@@ -492,7 +492,7 @@
   {
     "id": "ans-n05",
     "deck": "answer",
-    "text": "Nothing came of it. A dead end.",
+    "text": "Nothing came of it. A dead end, and I had walked all the way to it.",
     "tags": {
       "outcome": "dead-end"
     },
@@ -502,7 +502,7 @@
   {
     "id": "ans-n06",
     "deck": "answer",
-    "text": "It ran out there.",
+    "text": "It ran out there, about where my patience did.",
     "tags": {
       "outcome": "dead-end"
     },

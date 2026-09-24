@@ -59,7 +59,7 @@
   {
     "id": "arr-p005",
     "deck": "arrivals",
-    "text": "There is grey at the bottom of the sky over {place}, and nothing open yet.",
+    "text": "There is grey low in the sky over {place}, and nothing open yet.",
     "tags": {
       "placeKind": "any",
       "hourBand": "4-6",
@@ -90,7 +90,7 @@
   {
     "id": "arr-p007",
     "deck": "arrivals",
-    "text": "Gratings are going back at {place} and the first of the day is going to work past me.",
+    "text": "Gratings are going back at {place}, and the day's first shift is going to work past me.",
     "tags": {
       "placeKind": "any",
       "hourBand": "6-8",
@@ -163,7 +163,7 @@
   {
     "id": "arr-002",
     "deck": "arrivals",
-    "text": "Rain slicked the stoop steps black. A cat crossed under a parked car and didn't look up.",
+    "text": "Rain slicked the stoop steps black. A cat crossed under a parked car without looking up. It had somewhere dry to be, which made one of us.",
     "tags": {
       "placeKind": "private",
       "hourBand": "midnight-2",
@@ -195,7 +195,7 @@
   {
     "id": "arr-004",
     "deck": "arrivals",
-    "text": "The cold cut through, and the block had emptied early because of it. Every stoop light was out but the one over the door.",
+    "text": "The cold cut straight through my coat and went looking for the rest of me. The block had emptied early, and every stoop light was out but the one over the door.",
     "tags": {
       "placeKind": "private",
       "hourBand": "midnight-2",
@@ -261,7 +261,7 @@
   {
     "id": "arr-008",
     "deck": "arrivals",
-    "text": "Frost had already silvered the iron railings. My own footsteps were the only sound on the block.",
+    "text": "Frost had already silvered the iron railings. My own footsteps were the only sound on the block, and they sounded guilty.",
     "tags": {
       "placeKind": "private",
       "hourBand": "2-4",
@@ -428,7 +428,7 @@
   {
     "id": "arr-018",
     "deck": "arrivals",
-    "text": "Rain beaded on the awnings up and down the block, and the gutter ran fast past {place}. A cab sat at the curb, meter dark.",
+    "text": "Rain beaded on the awnings up and down the block, and the gutter ran fast past {place}. A cab sat at the curb with its meter dark, waiting for somebody richer than me.",
     "tags": {
       "placeKind": "semi",
       "hourBand": "midnight-2",
@@ -675,7 +675,7 @@
   {
     "id": "arr-033",
     "deck": "arrivals",
-    "text": "The street was nearly empty, with a few men about who had nowhere better to be. A streetcar rattled through, half lit, nobody aboard.",
+    "text": "The street was nearly empty, with a few men about who had nowhere better to be. A streetcar rattled through half lit with nobody aboard, keeping its schedule out of pride.",
     "tags": {
       "placeKind": "public",
       "hourBand": "midnight-2",
@@ -705,7 +705,7 @@
   {
     "id": "arr-035",
     "deck": "arrivals",
-    "text": "Fog softened the streetlamps to a string of pale rings. Nobody was about, and every railing I touched was beaded with damp.",
+    "text": "Fog softened the streetlamps to a string of pale rings. Nobody was about, and every railing I touched was beaded with damp, and before long so was I.",
     "tags": {
       "placeKind": "public",
       "hourBand": "midnight-2",
@@ -721,7 +721,7 @@
   {
     "id": "arr-036",
     "deck": "arrivals",
-    "text": "The wind came straight down the street with nothing to stop it. Even the pigeons had found somewhere better.",
+    "text": "The wind came straight down the street with nothing to stop it, and it seemed to have my name. Even the pigeons had found somewhere better.",
     "tags": {
       "placeKind": "public",
       "hourBand": "midnight-2",
@@ -1062,7 +1062,7 @@
   {
     "id": "arr-057",
     "deck": "arrivals",
-    "text": "A lone trolley ground past, empty and slow. The rain kept at it, steady.",
+    "text": "A lone trolley ground past, empty and slow. The rain kept at it, steady. It had noticed I had no umbrella.",
     "tags": {
       "placeKind": "public",
       "hourBand": "2-4",
@@ -1225,7 +1225,7 @@
   {
     "id": "arr-067",
     "deck": "arrivals",
-    "text": "Out in the open the air was clear and still, and there was nobody about but a man walking a dog.",
+    "text": "Out in the open the air was clear and still, and there was nobody about but a man walking a dog, or the other way round.",
     "tags": {
       "placeKind": "public",
       "hourBand": "midnight-2",
@@ -1272,7 +1272,7 @@
   {
     "id": "arr-070",
     "deck": "arrivals",
-    "text": "The cold had cleared the place of everybody but me. My breath went up white in front of my face.",
+    "text": "The cold had cleared the place of everybody but me, which said something about me. My breath went up white in front of my face.",
     "tags": {
       "placeKind": "public",
       "hourBand": "midnight-2",

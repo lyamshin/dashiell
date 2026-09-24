@@ -596,7 +596,7 @@
   {
     "id": "brg-048",
     "deck": "bridge",
-    "text": "I had nothing yet from {who} about {who}’s own night. Any question would get it.",
+    "text": "I had nothing yet from {who} about {who}’s own night. Any question would get it. People will tell you their evening for the price of asking.",
     "tags": {
       "tie": "account"
     },
@@ -626,7 +626,7 @@
   {
     "id": "brg-051",
     "deck": "bridge",
-    "text": "I wanted {who} talking. Around {tie} was the hour, and {who} would give me the rest of the night with it.",
+    "text": "I wanted {who} talking. Around {tie} was the hour, and {who} would give me the whole night along with it.",
     "tags": {
       "tie": "account"
     },
@@ -686,7 +686,7 @@
   {
     "id": "brg-057",
     "deck": "bridge",
-    "text": "{who} had an evening to account for, the same as everybody. I meant to put a question to {who}.",
+    "text": "{who} had an evening to account for, the same as everybody. Nobody ever asks about mine. I meant to ask {who}.",
     "tags": {
       "tie": "account"
     },
@@ -706,7 +706,7 @@
   {
     "id": "brg-059",
     "deck": "bridge",
-    "text": "{who} hadn’t said a word to me yet about the evening. {who} was at {where}.",
+    "text": "{who} hadn’t told me a thing yet about the evening. {who} was at {where}.",
     "tags": {
       "tie": "account"
     },

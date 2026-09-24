@@ -2,7 +2,7 @@
   {
     "id": "chr-001",
     "deck": "character",
-    "text": "{He} was dressed better than {his} shoes. The shoes had been good once and had been resoled twice, and the money had gone on what showed first.",
+    "text": "{He} was dressed better than {his} shoes, and the shoes knew it. They had been resoled twice and were holding out for a third.",
     "tags": {
       "role": "arch-heir",
       "kind": "look"
@@ -210,7 +210,7 @@
   {
     "id": "chr-021",
     "deck": "character",
-    "text": "{He} was in good black that had been let out at the seams once, and {he} kept {his} handbag on {his} knees with both hands on the clasp.",
+    "text": "{He} was in good black that had been let out at the seams once, and {he} held {his} handbag on {his} knees with both hands on the clasp. I kept my own hands in plain sight.",
     "tags": {
       "role": "arch-widow",
       "kind": "look"
@@ -396,7 +396,7 @@
   {
     "id": "chr-039",
     "deck": "character",
-    "text": "{He} had a newspaper folded to the stock prices under one arm and a pencil behind one ear, and looked at the door every time it opened.",
+    "text": "{He} had a newspaper folded to the stock prices under one arm and looked up every time the door opened, in case it was the market, come back to apologize.",
     "tags": {
       "role": "arch-broker",
       "kind": "look"
@@ -406,7 +406,7 @@
   {
     "id": "chr-040",
     "deck": "character",
-    "text": "Everything {he} had on was good and nothing was new. One hand stayed in {his} coat pocket, turning something over, coins or a key.",
+    "text": "Everything {he} had on was good and nothing was new. One hand stayed in {his} coat pocket, turning over whatever was left in there.",
     "tags": {
       "role": "arch-broker",
       "kind": "look"
@@ -614,7 +614,7 @@
   {
     "id": "chr-060",
     "deck": "character",
-    "text": "A small notebook in a leather cover sat by {his} hand with a gold pencil across it, where {he} could reach both without looking.",
+    "text": "A small notebook in a leather cover sat by {his} hand with a gold pencil across it, where {he} could reach both. People near it had started choosing their words.",
     "tags": {
       "role": "arch-society",
       "kind": "look"
@@ -624,7 +624,7 @@
   {
     "id": "chr-061",
     "deck": "character",
-    "text": "{He} looked at everybody in the room once, quickly, the way you read the headlines, and came back to nobody.",
+    "text": "{He} looked at everybody in the room once, the way you read the headlines, and didn’t turn to the inside pages.",
     "tags": {
       "role": "arch-society",
       "kind": "look"
@@ -812,7 +812,7 @@
   {
     "id": "chr-079",
     "deck": "character",
-    "text": "{He} wore a plain dark suit with a heavy watch chain across it and carried a ring of keys that never went into a pocket.",
+    "text": "{He} wore a plain dark suit with a heavy watch chain across it and carried a ring of keys that never went into a pocket. Every door on the block knew the sound.",
     "tags": {
       "role": "arch-blockowner",
       "kind": "look"
@@ -832,7 +832,7 @@
   {
     "id": "chr-081",
     "deck": "character",
-    "text": "{He} sat as if the chair were {his} and you were welcome to the rest.",
+    "text": "{He} sat as if the chair were {his}, and was working out what to charge me for the other one.",
     "tags": {
       "role": "arch-blockowner",
       "kind": "look"
@@ -852,7 +852,7 @@
   {
     "id": "chr-083",
     "deck": "character",
-    "text": "{He} collected in person and wrote the receipts in {his} own hand, and nobody on the street had ever seen {him} forget a dollar.",
+    "text": "{He} collected in person and wrote the receipts in {his} own hand, and nobody on the street had ever seen {him} forget a dollar, or forgive one.",
     "tags": {
       "role": "arch-blockowner",
       "kind": "street"
@@ -902,7 +902,7 @@
   {
     "id": "chr-088",
     "deck": "character",
-    "text": "{He} owns the block, and half the people on it pay {him} rent.",
+    "text": "{He} owns the block, and half the people on it pay {him} rent. The other half are behind.",
     "tags": {
       "role": "arch-blockowner",
       "kind": "client"
@@ -987,7 +987,7 @@
   {
     "id": "chr-096",
     "deck": "character",
-    "text": "{victim} was known to me. I make it my business to know who lives near my buildings.",
+    "text": "{victim} was known to me. I make it my business to know who lives near my buildings, in case they’d like to live in one.",
     "tags": {
       "role": "arch-blockowner",
       "kind": "victim",
@@ -998,7 +998,7 @@
   {
     "id": "chr-097",
     "deck": "character",
-    "text": "{He} had the tired, careful look of somebody who reads the small print for a living, and {his} cuffs had gone shiny at the edge from the desk.",
+    "text": "{He} had the tired, careful look of somebody who reads the small print for a living, and {his} cuffs had gone shiny from the desk. I had the feeling I was being read for a clause.",
     "tags": {
       "role": "arch-lawyer",
       "kind": "look"
@@ -1008,7 +1008,7 @@
   {
     "id": "chr-098",
     "deck": "character",
-    "text": "Off came the glasses to listen, and on again to answer, and {he} never said a word more than the question needed.",
+    "text": "Off came the glasses to listen and on again to answer, and {he} never gave a question one word more than it had paid for.",
     "tags": {
       "role": "arch-lawyer",
       "kind": "look"
@@ -1018,7 +1018,7 @@
   {
     "id": "chr-099",
     "deck": "character",
-    "text": "A worn briefcase stood at {his} feet with the buckle fastened, and {he} kept one shoe against it the whole time we talked.",
+    "text": "A worn briefcase stood at {his} feet with the buckle fastened, and {he} kept one shoe against it the whole time we talked. I tried not to take it personally.",
     "tags": {
       "role": "arch-lawyer",
       "kind": "look"
@@ -1206,7 +1206,7 @@
   {
     "id": "chr-117",
     "deck": "character",
-    "text": "There was ink worn into the side of {his} second finger, too deep ever to scrub out, and sleeve guards folded in {his} breast pocket.",
+    "text": "There was ink worn into the side of {his} second finger, too deep to scrub out, and sleeve guards folded in {his} breast pocket in case a column broke out.",
     "tags": {
       "role": "arch-bookkeeper",
       "kind": "look"
@@ -1216,7 +1216,7 @@
   {
     "id": "chr-118",
     "deck": "character",
-    "text": "{He} was neat in a way that took effort: every button done, the collar pinned, the hair flat. The hands stayed folded until {he} needed one.",
+    "text": "{He} was neat in a way that took effort: every button done, the collar pinned, the hair flat. The hands stayed folded until {he} needed one, and then only the one.",
     "tags": {
       "role": "arch-bookkeeper",
       "kind": "look"
@@ -1226,7 +1226,7 @@
   {
     "id": "chr-119",
     "deck": "character",
-    "text": "A slight squint stayed with {him} even in good light, the squint of years spent adding small figures under a green lamp.",
+    "text": "A slight squint stayed with {him} even in good light, from years of adding small figures under a green lamp. It added me up once, and I came out short.",
     "tags": {
       "role": "arch-bookkeeper",
       "kind": "look"
@@ -1246,7 +1246,7 @@
   {
     "id": "chr-121",
     "deck": "character",
-    "text": "Nobody on the block noticed {him} much. {He} came and went at the same hours with the same newspaper, and that was the whole report.",
+    "text": "Nobody on the block noticed {him} much. {He} came and went with the same newspaper under the same arm, and that was the whole report, and it balanced.",
     "tags": {
       "role": "arch-bookkeeper",
       "kind": "street"
@@ -1392,7 +1392,7 @@
   {
     "id": "chr-135",
     "deck": "character",
-    "text": "{He} had the scrubbed hands of a nurse and the grey under the eyes of somebody who slept in the daytime with the blinds down.",
+    "text": "{He} had the scrubbed hands of a nurse and the grey under the eyes of somebody who slept in the daytime with the blinds down and the neighbors up.",
     "tags": {
       "role": "arch-nurse",
       "kind": "look"
@@ -1402,7 +1402,7 @@
   {
     "id": "chr-136",
     "deck": "character",
-    "text": "Very still in the chair, feet together, {he} sat the way a nurse learns to sit in a sickroom so as not to wake anybody.",
+    "text": "Very still in the chair, feet together, {he} sat the way a nurse learns to sit in a sickroom so as not to wake anybody. I lowered my voice without being asked.",
     "tags": {
       "role": "arch-nurse",
       "kind": "look"
@@ -1412,7 +1412,7 @@
   {
     "id": "chr-137",
     "deck": "character",
-    "text": "A plain dark coat was buttoned over the white uniform, and the sensible shoes had their heels worn level. There was a watch pinned at {his} breast, face down.",
+    "text": "A plain dark coat was buttoned over the white uniform, and the sensible shoes had their heels worn level. There was a watch pinned at {his} breast, face down, and I had the feeling it was taking my pulse.",
     "tags": {
       "role": "arch-nurse",
       "kind": "look"
@@ -1432,7 +1432,7 @@
   {
     "id": "chr-139",
     "deck": "character",
-    "text": "{He} was the one the registry sent when a case was long and the family was difficult.",
+    "text": "{He} was the one the registry sent when a case was long and the family was difficult, which was most of the time.",
     "tags": {
       "role": "arch-nurse",
       "kind": "street"
@@ -1442,7 +1442,7 @@
   {
     "id": "chr-140",
     "deck": "character",
-    "text": "People on the block stopped {him} in the street to ask about their coughs. {He} always answered and never charged.",
+    "text": "People on the block stopped {him} in the street to ask about their coughs. {He} always answered, never charged, and told every one of them to stop smoking.",
     "tags": {
       "role": "arch-nurse",
       "kind": "street"
@@ -1578,7 +1578,7 @@
   {
     "id": "chr-153",
     "deck": "character",
-    "text": "{He} smelled faintly of clove oil, and {his} hands were very clean and very steady, the nails cut short.",
+    "text": "{He} smelled faintly of clove oil, and {his} hands were very clean and very steady. I kept my own mouth closed, on principle.",
     "tags": {
       "role": "arch-dentist",
       "kind": "look"
@@ -1588,7 +1588,7 @@
   {
     "id": "chr-154",
     "deck": "character",
-    "text": "A starched white collar, a dark suit a little too warm for the room, and eyes that went to my mouth when I talked, from habit.",
+    "text": "A starched white collar, a dark suit a little warm for the room, and eyes that went to my mouth whenever I talked. I had the feeling my fillings were being counted.",
     "tags": {
       "role": "arch-dentist",
       "kind": "look"
@@ -1764,7 +1764,7 @@
   {
     "id": "chr-171",
     "deck": "character",
-    "text": "{He} was neat as a typed page, with a steno pad in {his} lap that {he} had forgotten {he} was holding.",
+    "text": "{He} was neat as a typed page, with a steno pad in {his} lap that {he} kept ready in case I said something worth taking down. So far {he} hadn’t needed it.",
     "tags": {
       "role": "arch-secretary",
       "kind": "look"
@@ -1774,7 +1774,7 @@
   {
     "id": "chr-172",
     "deck": "character",
-    "text": "There was a way {he} had of waiting for the end of your sentence before moving, the way a person waits for dictation.",
+    "text": "There was a way {he} had of waiting for the end of each of my sentences, the way a person waits for dictation, and I began to hear my own grammar.",
     "tags": {
       "role": "arch-secretary",
       "kind": "look"
@@ -1784,7 +1784,7 @@
   {
     "id": "chr-173",
     "deck": "character",
-    "text": "Dressed for an office in a good plain way, {he} had the flat fingertips of somebody who typed all day.",
+    "text": "The fingertips had gone flat from typing all day, and {he} was dressed for an office in a good plain way that no office would ever notice.",
     "tags": {
       "role": "arch-secretary",
       "kind": "look"
@@ -1804,7 +1804,7 @@
   {
     "id": "chr-175",
     "deck": "character",
-    "text": "{He} knew every appointment, every letter and every excuse that went with them, and the street took {his} silence for loyalty.",
+    "text": "{He} knew every appointment, every letter and every excuse that went with them, and typed the excuses neatest. The street took {his} silence for loyalty.",
     "tags": {
       "role": "arch-secretary",
       "kind": "street"
@@ -1854,7 +1854,7 @@
   {
     "id": "chr-180",
     "deck": "character",
-    "text": "{He}’s a secretary. {He} knows more about the business than the boss does.",
+    "text": "{He}’s a secretary. {He} knows more about the business than the boss does, and lets the boss sign it.",
     "tags": {
       "role": "arch-secretary",
       "kind": "client"
@@ -1950,7 +1950,7 @@
   {
     "id": "chr-189",
     "deck": "character",
-    "text": "A press card was tucked in {his} hatband and the pencil was worn to a stub, and {he} looked at everything as if it might be worth two hundred words.",
+    "text": "A press card was tucked in {his} hatband, and {he} looked at everything as if it might be worth two hundred words. I seemed to be worth about fifty.",
     "tags": {
       "role": "arch-reporter",
       "kind": "look"
@@ -1970,7 +1970,7 @@
   {
     "id": "chr-191",
     "deck": "character",
-    "text": "{He} talked fast and wrote while {he} talked, on the back of whatever was handy, and never once looked down at the page.",
+    "text": "{He} talked fast and wrote while {he} talked, on the back of whatever was handy, and never once looked down to see if it could be read.",
     "tags": {
       "role": "arch-reporter",
       "kind": "look"
@@ -2158,7 +2158,7 @@
   {
     "id": "chr-209",
     "deck": "character",
-    "text": "{He} sat as a pianist sits, straight, with {his} hands laid palm down in {his} lap.",
+    "text": "{He} sat as a pianist sits, bolt upright, with {his} hands palm down in {his} lap, waiting to be counted in.",
     "tags": {
       "role": "arch-piano-teacher",
       "kind": "look"
@@ -2168,7 +2168,7 @@
   {
     "id": "chr-210",
     "deck": "character",
-    "text": "One button was missing from the cardigan, and the music case had its handle mended with twine.",
+    "text": "One button was missing from the cardigan, and the music case had its handle mended with twine. Scales pay about what you’d think.",
     "tags": {
       "role": "arch-piano-teacher",
       "kind": "look"
@@ -2178,7 +2178,7 @@
   {
     "id": "chr-211",
     "deck": "character",
-    "text": "Long fingers, cold-looking, and a habit of humming under {his} breath without knowing it, always the same few bars.",
+    "text": "Long fingers, cold-looking, and a habit of humming under {his} breath, always the same few bars and never the end of them.",
     "tags": {
       "role": "arch-piano-teacher",
       "kind": "look"
@@ -2208,7 +2208,7 @@
   {
     "id": "chr-214",
     "deck": "character",
-    "text": "People said {he} had been meant for the concert hall once and had ended up teaching scales in a parlor, and that {he} didn’t talk about it.",
+    "text": "People said {he} had been meant for the concert hall once and had ended up teaching scales in a parlor, and that {he} didn’t talk about it, except to every pupil, every week.",
     "tags": {
       "role": "arch-piano-teacher",
       "kind": "street"
@@ -2344,7 +2344,7 @@
   {
     "id": "chr-227",
     "deck": "character",
-    "text": "{He} had a clipboard under one arm and a tape measure in {his} pocket, and looked at the room as if pricing the furniture.",
+    "text": "{He} had a clipboard under one arm and a tape measure in {his} pocket, and priced the furniture by eye. I was the only item in the room that didn’t get a figure.",
     "tags": {
       "role": "arch-adjuster",
       "kind": "look"
@@ -2364,7 +2364,7 @@
   {
     "id": "chr-229",
     "deck": "character",
-    "text": "A camera case hung from {his} shoulder on a strap, and there was soot in the welt of one shoe that no polish had shifted.",
+    "text": "A camera case hung from {his} shoulder, and there was soot in the welt of one shoe from the last fire the company didn’t believe in.",
     "tags": {
       "role": "arch-adjuster",
       "kind": "look"
@@ -2540,7 +2540,7 @@
   {
     "id": "chr-246",
     "deck": "character",
-    "text": "Small and quick, {he} still had the apron on under {his} coat, the strings showing at the hem.",
+    "text": "Small and quick, {he} still had the apron on under {his} coat, the strings showing at the hem, in case a bed somewhere needed making.",
     "tags": {
       "role": "arch-chambermaid",
       "kind": "look"
@@ -2550,7 +2550,7 @@
   {
     "id": "chr-247",
     "deck": "character",
-    "text": "The flat shoes and thick ankles were those of a woman who climbed stairs all day. {He} sat on the front edge of the chair, ready to be up again.",
+    "text": "The flat shoes and thick ankles were those of a woman who climbed stairs all day. {He} sat on the front edge of the chair, ready to be up again the moment anybody rang.",
     "tags": {
       "role": "arch-chambermaid",
       "kind": "look"
@@ -2716,7 +2716,7 @@
   {
     "id": "chr-263",
     "deck": "character",
-    "text": "{He} was big through the shoulders and heavy in the hands, and stood with {his} weight forward, as if the floor might move under {him}.",
+    "text": "{He} was big through the shoulders and heavy in the hands, and stood with {his} weight forward, as if the floor might move under {him}. On the piers, floors do.",
     "tags": {
       "role": "arch-longshoreman",
       "kind": "look"
@@ -2726,7 +2726,7 @@
   {
     "id": "chr-264",
     "deck": "character",
-    "text": "A cargo hook hung through {his} belt and a union button was pinned to {his} coat. The knuckles had split and healed and split again.",
+    "text": "A cargo hook hung through {his} belt and a union button was pinned to {his} coat. The knuckles had split and healed and split again, and unlike mine they didn’t make a fuss about it.",
     "tags": {
       "role": "arch-longshoreman",
       "kind": "look"
@@ -2736,7 +2736,7 @@
   {
     "id": "chr-265",
     "deck": "character",
-    "text": "The wool cap was pushed back, the jacket smelled of tar and the river, and {he} didn’t sit until I did.",
+    "text": "The wool cap was pushed back, the jacket smelled of tar and the river, and {he} didn’t sit until I did. Then the chair had a bad minute.",
     "tags": {
       "role": "arch-longshoreman",
       "kind": "look"
@@ -2902,7 +2902,7 @@
   {
     "id": "chr-281",
     "deck": "character",
-    "text": "{He} had pins stuck in {his} collar where {he} could reach them and a thimble callus on one finger.",
+    "text": "{He} had pins stuck in {his} collar where {he} could reach them, a thimble callus on one finger, and an eye on my loose button.",
     "tags": {
       "role": "arch-seamstress",
       "kind": "look"
@@ -2912,7 +2912,7 @@
   {
     "id": "chr-282",
     "deck": "character",
-    "text": "Thin and a little bent at the shoulders from the machine, {he} wore a dress better made than anything {he} could have bought.",
+    "text": "Thin and a little bent at the shoulders from the machine, {he} wore a dress better made than anything {he} could have bought, and it hadn’t been.",
     "tags": {
       "role": "arch-seamstress",
       "kind": "look"
@@ -2922,7 +2922,7 @@
   {
     "id": "chr-283",
     "deck": "character",
-    "text": "{He} squinted at me the way you squint at a needle’s eye, then looked away when {he} saw I’d noticed.",
+    "text": "{He} squinted at me the way you squint at a needle’s eye, and {he} doubted I’d go through.",
     "tags": {
       "role": "arch-seamstress",
       "kind": "look"
@@ -2932,7 +2932,7 @@
   {
     "id": "chr-284",
     "deck": "character",
-    "text": "The women on the block brought {him} their good dresses to let out and their husbands’ coats to remake, and {he} did both for half what the shops charged.",
+    "text": "The women on the block brought {him} their good dresses to let out and their husbands’ coats to take in, and {he} never said a word about either.",
     "tags": {
       "role": "arch-seamstress",
       "kind": "street"
@@ -2942,7 +2942,7 @@
   {
     "id": "chr-285",
     "deck": "character",
-    "text": "People said {he} could copy a dress off the avenue after one look in a window, and {he} never said they were wrong.",
+    "text": "People said {he} could copy a dress off the avenue after one look in a window, and {he} never said they were wrong. The avenue had started pulling its blinds.",
     "tags": {
       "role": "arch-seamstress",
       "kind": "street"
@@ -3110,7 +3110,7 @@
   {
     "id": "chr-301",
     "deck": "character",
-    "text": "{He} had a driver’s cap with a shiny peak and a driver’s squint, and sat forward in the chair the way {he} sat at the wheel.",
+    "text": "{He} had a driver’s cap with a shiny peak and a driver’s squint, and {he} sat forward in the chair as though it were stuck behind a streetcar.",
     "tags": {
       "role": "arch-hackman",
       "kind": "look"
@@ -3120,7 +3120,7 @@
   {
     "id": "chr-302",
     "deck": "character",
-    "text": "Heavy in the seat and quick with {his} eyes, {he} jingled change in one pocket without seeming to know it.",
+    "text": "Heavy in the seat and quick with {his} eyes, {he} jingled change in one pocket, and somewhere a meter was running.",
     "tags": {
       "role": "arch-hackman",
       "kind": "look"
@@ -3150,7 +3150,7 @@
   {
     "id": "chr-305",
     "deck": "character",
-    "text": "They said on the rank that {he} knew every street in the city and every alley between them.",
+    "text": "They said on the rank that {he} knew every street in the city and every alley between them, and charged for the alleys.",
     "tags": {
       "role": "arch-hackman",
       "kind": "street"
@@ -3296,7 +3296,7 @@
   {
     "id": "chr-319",
     "deck": "character",
-    "text": "{He} had a tape measure round {his} neck and chalk on {his} sleeve, and looked at my coat before {he} looked at my face.",
+    "text": "{He} had a tape measure round {his} neck and chalk on {his} sleeve, and looked at my coat before {he} looked at my face. The coat came off worse.",
     "tags": {
       "role": "arch-tailor",
       "kind": "look"
@@ -3306,7 +3306,7 @@
   {
     "id": "chr-320",
     "deck": "character",
-    "text": "Small and neat and a little stooped from the bench, {he} wore a row of pins in {his} lapel, ready for use.",
+    "text": "Small and neat and a little stooped from the bench, {he} wore a row of pins in {his} lapel, ready for anybody who stood still.",
     "tags": {
       "role": "arch-tailor",
       "kind": "look"
@@ -3316,7 +3316,7 @@
   {
     "id": "chr-321",
     "deck": "character",
-    "text": "The waistcoat fit better than anything a store sells, and {he} kept smoothing it as if it might crease while I watched.",
+    "text": "The waistcoat fit better than anything a store sells, and {he} kept smoothing it, in case my coat was catching.",
     "tags": {
       "role": "arch-tailor",
       "kind": "look"
@@ -3326,7 +3326,7 @@
   {
     "id": "chr-322",
     "deck": "character",
-    "text": "The men on the block brought {him} their one good suit twice a year, and {he} kept it going longer than it had any right to.",
+    "text": "The men on the block brought {him} their one good suit twice a year, and {he} kept it going long after it had asked to be let go.",
     "tags": {
       "role": "arch-tailor",
       "kind": "street"
@@ -3386,7 +3386,7 @@
   {
     "id": "chr-328",
     "deck": "character",
-    "text": "{He}’s the tailor. {He}’s had {his} hands on every good suit on this block.",
+    "text": "{He}’s the tailor. {He}’s had {his} hands on every good suit on this block, and most of the bad ones, which is harder work.",
     "tags": {
       "role": "arch-tailor",
       "kind": "client"
@@ -3482,7 +3482,7 @@
   {
     "id": "chr-337",
     "deck": "character",
-    "text": "There were rope calluses across both palms, and {he} wore dark clothes, the way the crew does so the audience won’t see them in the wings.",
+    "text": "There were rope calluses across both palms, and {he} wore dark clothes, the way the crew does so the audience won’t see them. It nearly worked on me.",
     "tags": {
       "role": "arch-stagehand",
       "kind": "look"
@@ -3492,7 +3492,7 @@
   {
     "id": "chr-338",
     "deck": "character",
-    "text": "{He} stood with {his} arms folded and {his} feet apart, the way you stand on a narrow walkway above a stage.",
+    "text": "{He} stood with {his} arms folded and {his} feet apart, the way you stand on a narrow walkway above a stage, waiting on a cue that was running late.",
     "tags": {
       "role": "arch-stagehand",
       "kind": "look"
@@ -3502,7 +3502,7 @@
   {
     "id": "chr-339",
     "deck": "character",
-    "text": "Sawdust in the turn-ups, a stub of pencil behind one ear, and a smell of glue and paint that came into the room with {him}.",
+    "text": "Sawdust in the turn-ups, a stub of pencil behind one ear, and a smell of glue and paint that got into the room a step ahead of {him}.",
     "tags": {
       "role": "arch-stagehand",
       "kind": "look"
@@ -3668,7 +3668,7 @@
   {
     "id": "chr-355",
     "deck": "character",
-    "text": "{He} held {his} head tilted a little, as if the headset were still on it, and answered before I’d finished asking.",
+    "text": "{He} held {his} head tilted a little, as if the headset were still on it, and answered before I’d finished asking, and waited for me to hang up.",
     "tags": {
       "role": "arch-switchboard",
       "kind": "look"
@@ -3678,7 +3678,7 @@
   {
     "id": "chr-356",
     "deck": "character",
-    "text": "Quick small hands, the nails cut short for the plugs, tapping on {his} knee as though still putting calls through.",
+    "text": "Quick small hands, the nails cut short for the plugs, tapping on {his} knee, still putting calls through to nobody.",
     "tags": {
       "role": "arch-switchboard",
       "kind": "look"
@@ -3698,7 +3698,7 @@
   {
     "id": "chr-358",
     "deck": "character",
-    "text": "The girls at the exchange said {he} could put through forty calls a minute and remember every one of them the next day.",
+    "text": "The girls at the exchange said {he} could put through forty calls a minute and remember every one of them the next day. The subscribers found this less charming.",
     "tags": {
       "role": "arch-switchboard",
       "kind": "street"
@@ -3854,7 +3854,7 @@
   {
     "id": "chr-373",
     "deck": "character",
-    "text": "{He} had the grey look of somebody who works while the city sleeps, and a room key on a chain that {he} turned round one finger.",
+    "text": "{He} had the grey look of somebody who works while the city sleeps, and {he} seemed to hold it against the city.",
     "tags": {
       "role": "arch-nightman",
       "kind": "look"
@@ -3864,7 +3864,7 @@
   {
     "id": "chr-374",
     "deck": "character",
-    "text": "The hotel’s black coat and striped trousers, and a carnation in the buttonhole gone brown at the edges.",
+    "text": "The hotel’s black coat and striped trousers, and a carnation in the buttonhole that had been fresh when the shift began.",
     "tags": {
       "role": "arch-nightman",
       "kind": "look"
@@ -3874,7 +3874,7 @@
   {
     "id": "chr-375",
     "deck": "character",
-    "text": "Polite to the point of being invisible, {he} kept {his} voice low and {his} hands clasped behind.",
+    "text": "Polite to the point of being invisible, {he} kept {his} voice low and {his} hands behind. Twice I forgot anybody was there, which I gathered was the idea.",
     "tags": {
       "role": "arch-nightman",
       "kind": "look"
@@ -3914,7 +3914,7 @@
   {
     "id": "chr-379",
     "deck": "character",
-    "text": "At night a hotel is a different building. The daytime people don’t know it. The guests who come in after dark are the ones worth watching.",
+    "text": "At night a hotel is a different building. The day manager has never been inside it. The guests who come in after dark are the ones worth watching.",
     "tags": {
       "role": "arch-nightman",
       "kind": "talk"
@@ -4040,7 +4040,7 @@
   {
     "id": "chr-391",
     "deck": "character",
-    "text": "{He} had a dancer’s walk and a cheap fur collar {he} kept touching, as if to check it was still there.",
+    "text": "{He} had a dancer’s walk and a cheap fur collar {he} kept touching, to make sure it hadn’t left with somebody richer.",
     "tags": {
       "role": "arch-chorus",
       "kind": "look"
@@ -4050,7 +4050,7 @@
   {
     "id": "chr-392",
     "deck": "character",
-    "text": "Very young under the powder and older than that around the eyes, {he} laughed a half-beat before anything was funny.",
+    "text": "Very young under the powder and older than that around the eyes, {he} laughed a moment before anything was funny, just to be safe.",
     "tags": {
       "role": "arch-chorus",
       "kind": "look"
@@ -4226,7 +4226,7 @@
   {
     "id": "chr-409",
     "deck": "character",
-    "text": "{He} had a cigar {he} wasn’t smoking and a folded racing sheet in {his} breast pocket, and did sums on {his} fingers without moving {his} lips.",
+    "text": "{He} had a cigar {he} wasn’t smoking and a folded racing sheet in {his} breast pocket, and did sums on {his} fingers without moving {his} lips. From the look of it, I was long odds.",
     "tags": {
       "role": "arch-bookmaker",
       "kind": "look"
@@ -4236,7 +4236,7 @@
   {
     "id": "chr-410",
     "deck": "character",
-    "text": "Round and pleasant and dressed a little too well for a cigar store, {he} kept letting {his} eyes go to the door.",
+    "text": "Round and pleasant and dressed a little too well for a cigar store, {he} kept {his} eyes on the door, in case it was the police or a winner.",
     "tags": {
       "role": "arch-bookmaker",
       "kind": "look"
@@ -4246,7 +4246,7 @@
   {
     "id": "chr-411",
     "deck": "character",
-    "text": "There was chalk on the side of one hand from a slate, and {he} kept wiping it on {his} trousers.",
+    "text": "There was chalk on the side of one hand from a slate, and {he} kept wiping it on {his} trousers, which had given up.",
     "tags": {
       "role": "arch-bookmaker",
       "kind": "look"
@@ -4390,7 +4390,7 @@
   {
     "id": "chr-425",
     "deck": "character",
-    "text": "Everybody on the block’s been in the store, if only for tobacco. {victim} had.",
+    "text": "Everybody on the block’s been in the store, and some of them even came for tobacco. {victim} had been in.",
     "tags": {
       "role": "arch-bookmaker",
       "kind": "victim",
@@ -4432,7 +4432,7 @@
   {
     "id": "chr-429",
     "deck": "character",
-    "text": "The good overcoat hung unbuttoned so the suit showed, and there was cigar ash on the lapels of both.",
+    "text": "The good overcoat hung unbuttoned so the suit showed, and there was cigar ash on the lapels of both, the mark of a good day’s handshaking.",
     "tags": {
       "role": "arch-heeler",
       "kind": "look"
@@ -4598,7 +4598,7 @@
   {
     "id": "chr-445",
     "deck": "character",
-    "text": "Sure, I knew {victim}. I know everybody in the district. That’s the job.",
+    "text": "Sure, I knew {victim}. I know everybody in the district, and their cousins. That’s the job.",
     "tags": {
       "role": "arch-heeler",
       "kind": "victim",
@@ -4630,7 +4630,7 @@
   {
     "id": "chr-448",
     "deck": "character",
-    "text": "{He} was thin and pale from the shop, with sleeve garters and a green eyeshade pushed up on {his} forehead.",
+    "text": "{He} was thin and pale from the shop, a green eyeshade pushed up on {his} forehead, with the look of somebody who had heard every sad story on the block and priced them.",
     "tags": {
       "role": "arch-pawnman",
       "kind": "look"
@@ -4640,7 +4640,7 @@
   {
     "id": "chr-449",
     "deck": "character",
-    "text": "My watch got looked at before I did. I could see {him} putting a figure on it.",
+    "text": "My watch got looked at before I did. I could see {him} putting a figure on it, and the watch did better.",
     "tags": {
       "role": "arch-pawnman",
       "kind": "look"
@@ -4806,7 +4806,7 @@
   {
     "id": "chr-465",
     "deck": "character",
-    "text": "{He} was big and square and quiet, with a flattened nose and a collar a size too small for {his} neck.",
+    "text": "{He} was big and square and quiet, with a flattened nose and a collar a size too small for {his} neck. Most things were.",
     "tags": {
       "role": "arch-bouncer",
       "kind": "look"
@@ -4816,7 +4816,7 @@
   {
     "id": "chr-466",
     "deck": "character",
-    "text": "Hands clasped in front, weight back on {his} heels, {he} stood like a man who has done nothing but stand for years.",
+    "text": "Hands clasped in front, weight back on {his} heels, {he} stood as though poured there and left to set.",
     "tags": {
       "role": "arch-bouncer",
       "kind": "look"
@@ -4826,7 +4826,7 @@
   {
     "id": "chr-467",
     "deck": "character",
-    "text": "{He} had scarred knuckles and a mild voice, and kept {his} eyes on the door behind me while I talked.",
+    "text": "{He} had scarred knuckles and a mild voice, and kept {his} eyes on the door behind me while I talked, working out which of us it would be easier to put through it.",
     "tags": {
       "role": "arch-bouncer",
       "kind": "look"
@@ -4992,7 +4992,7 @@
   {
     "id": "chr-483",
     "deck": "character",
-    "text": "{He} was young and quick and restless, and {his} pockets bulged with folded slips of paper that {he} kept a hand over.",
+    "text": "{He} was young and quick and restless, and {his} pockets bulged with folded slips of paper that {he} kept a hand over and would have sworn were nothing.",
     "tags": {
       "role": "arch-runner",
       "kind": "look"
@@ -5012,7 +5012,7 @@
   {
     "id": "chr-485",
     "deck": "character",
-    "text": "{He} had a pencil stub behind {his} ear and small quick eyes that counted the room.",
+    "text": "{He} had a pencil stub behind {his} ear and small quick eyes that counted the room, then counted the ways out of it.",
     "tags": {
       "role": "arch-runner",
       "kind": "look"
@@ -5178,7 +5178,7 @@
   {
     "id": "chr-501",
     "deck": "character",
-    "text": "{He} had forearms like a baker’s and a clean towel over one shoulder, and never set a glass down without wiping the ring after it.",
+    "text": "{He} had forearms like a baker’s and a clean towel over one shoulder, and wiped the bar after every glass, including the ones that hadn’t left a ring.",
     "tags": {
       "role": "bartender",
       "kind": "look"
@@ -5188,7 +5188,7 @@
   {
     "id": "chr-502",
     "deck": "character",
-    "text": "Both hands spread on the bar, {he} leaned the way somebody leans who has been standing since the afternoon.",
+    "text": "Both hands spread on the bar, {he} leaned the way somebody leans who has been standing since the afternoon and has opinions about it.",
     "tags": {
       "role": "bartender",
       "kind": "look"
@@ -5198,7 +5198,7 @@
   {
     "id": "chr-503",
     "deck": "character",
-    "text": "A pleasant, forgettable face, and eyes that went to the door every time it opened, and came back.",
+    "text": "A pleasant, forgettable face, which in that trade is the whole trick, and eyes that went to the door every time it opened, and came back.",
     "tags": {
       "role": "bartender",
       "kind": "look"
@@ -5298,7 +5298,7 @@
   {
     "id": "chr-513",
     "deck": "character",
-    "text": "The bootlegger is what keeps a place like this open. You don’t ask where it comes from. You ask when the next case comes. People in {victim}’s line were always on time.",
+    "text": "The bootlegger is what keeps a place like this open. You don’t ask where it comes from. You ask when the next case comes. People in {victim}’s line were always on time. The customers, never.",
     "tags": {
       "role": "bartender",
       "kind": "victim",
@@ -5320,7 +5320,7 @@
   {
     "id": "chr-515",
     "deck": "character",
-    "text": "A columnist in a bar is working even with a glass in hand. Columnists like {victim} sit where the whole room shows, and tip for the names.",
+    "text": "A columnist in a bar is working even with a glass in hand. Columnists like {victim} sit where the whole room shows, and tip for the names. I’ve never had a name worth a quarter.",
     "tags": {
       "role": "bartender",
       "kind": "victim",
@@ -5353,7 +5353,7 @@
   {
     "id": "chr-518",
     "deck": "character",
-    "text": "I’d know {victim}’s drink before the name. Most of us are like that.",
+    "text": "I’d know {victim}’s drink before the name. Names don’t come with ice.",
     "tags": {
       "role": "bartender",
       "kind": "victim",
@@ -5374,7 +5374,7 @@
   {
     "id": "chr-520",
     "deck": "character",
-    "text": "A doorman’s face, pleasant and closed at once, and white gloves that {he} took off one finger at a time to talk to me.",
+    "text": "A doorman’s face, pleasant and closed at once, and white gloves that {he} took off a finger at a time so we could talk. I nearly left before the second glove.",
     "tags": {
       "role": "doorman",
       "kind": "look"
@@ -5384,7 +5384,7 @@
   {
     "id": "chr-521",
     "deck": "character",
-    "text": "Heavy in the coat and light on {his} feet, {he} had the door swung wide before I’d reached for it.",
+    "text": "Heavy in the coat and light on {his} feet, {he} had the door swung wide before I’d reached for it, and shut again before I’d decided anything.",
     "tags": {
       "role": "doorman",
       "kind": "look"
@@ -5394,7 +5394,7 @@
   {
     "id": "chr-522",
     "deck": "character",
-    "text": "The tenants at {place} said {he} knew who came and went and in whose company, and that {he} was paid at Christmas to forget half of it.",
+    "text": "The tenants at {place} said {he} knew who came and went and in whose company, and that {he} forgot half of it on purpose and the other half for a dollar.",
     "tags": {
       "role": "doorman",
       "kind": "street"
@@ -5444,7 +5444,7 @@
   {
     "id": "chr-527",
     "deck": "character",
-    "text": "I’ve stood at this door long enough to see children in the building grow up and move out. None of them ever came back to say hello.",
+    "text": "I’ve stood at this door long enough to see children in the building grow up and move out. None of them ever came back to say hello. I’d have held the door.",
     "tags": {
       "role": "doorman",
       "kind": "talk"
@@ -5484,7 +5484,7 @@
   {
     "id": "chr-531",
     "deck": "character",
-    "text": "An heiress keeps a doorman the way a house keeps a lock. Heiresses like {victim} tip at Christmas and never learn your name.",
+    "text": "An heiress keeps a doorman the way a house keeps a lock. Heiresses like {victim} tip at Christmas and call you ‘the door’. After a while you answer to it.",
     "tags": {
       "role": "doorman",
       "kind": "victim",
@@ -5517,7 +5517,7 @@
   {
     "id": "chr-534",
     "deck": "character",
-    "text": "I never gave a columnist anything. {victim}’s kind asked anyway, every time. You learn to smile and say it was a quiet night.",
+    "text": "I never gave a columnist anything. {victim}’s kind asked anyway, every time. You learn to smile and say it was a quiet night. At this door, every night has been a quiet night.",
     "tags": {
       "role": "doorman",
       "kind": "victim",
@@ -5539,7 +5539,7 @@
   {
     "id": "chr-536",
     "deck": "character",
-    "text": "{victim} came past the door, I suppose, same as everybody. I don’t forget faces.",
+    "text": "{victim} came past the door, I suppose, same as everybody. I don’t forget faces. They pay me for the door, and the faces come free.",
     "tags": {
       "role": "doorman",
       "kind": "victim",
@@ -5550,7 +5550,7 @@
   {
     "id": "chr-537",
     "deck": "character",
-    "text": "{He} wore fingerless gloves gone black with newsprint and a change apron with a heavy pocket that clinked when {he} moved.",
+    "text": "{He} wore fingerless gloves gone black with newsprint and a change apron that clinked when {he} moved, which wasn’t often.",
     "tags": {
       "role": "newsstand",
       "kind": "look"
@@ -5560,7 +5560,7 @@
   {
     "id": "chr-538",
     "deck": "character",
-    "text": "On an upturned crate inside the stand, a tin of coffee between {his} feet, {he} made change without looking down.",
+    "text": "On an upturned crate inside the stand, a tin of coffee between {his} feet, {he} made change without looking down and read the headlines without looking up.",
     "tags": {
       "role": "newsstand",
       "kind": "look"
@@ -5570,7 +5570,7 @@
   {
     "id": "chr-539",
     "deck": "character",
-    "text": "Small and old and wrapped in two coats, {he} followed everybody who passed with {his} eyes until they’d turned the corner.",
+    "text": "Small and old and wrapped in two coats, {he} followed everybody who passed with {his} eyes until they’d turned the corner, and a little after.",
     "tags": {
       "role": "newsstand",
       "kind": "look"
@@ -5590,7 +5590,7 @@
   {
     "id": "chr-541",
     "deck": "character",
-    "text": "People on the corner at {place} said {he} had never taken a day off, and they would have noticed.",
+    "text": "People on the corner at {place} said {he} had never taken a day off, and the corner wasn’t sure how it would manage one.",
     "tags": {
       "role": "newsstand",
       "kind": "street"
@@ -5600,7 +5600,7 @@
   {
     "id": "chr-542",
     "deck": "character",
-    "text": "{He} had your paper folded before you reached the stand and your change counted before you asked for it.",
+    "text": "{He} had your paper folded before you reached the stand and your change counted before you’d made up your mind.",
     "tags": {
       "role": "newsstand",
       "kind": "street"
@@ -5620,7 +5620,7 @@
   {
     "id": "chr-544",
     "deck": "character",
-    "text": "I’m on this corner every day of the year, Christmas too. People like knowing somebody’s always here.",
+    "text": "I’m on this corner every day of the year, Christmas too. People like knowing somebody’s always here. Nobody’s asked if I like it.",
     "tags": {
       "role": "newsstand",
       "kind": "talk"
@@ -5670,7 +5670,7 @@
   {
     "id": "chr-549",
     "deck": "character",
-    "text": "A columnist reads the column at the stand before paying for the paper. People like {victim} do it every morning, standing right there.",
+    "text": "A columnist reads the column at the stand before paying for the paper. People like {victim} read their own twice and never buy the second copy.",
     "tags": {
       "role": "newsstand",
       "kind": "victim",
@@ -5681,7 +5681,7 @@
   {
     "id": "chr-550",
     "deck": "character",
-    "text": "The columns sell papers. People came to the stand wanting to know what {victim} had said about who, and they read it before they’re off the curb.",
+    "text": "The columns sell papers. People came to the stand wanting to know what {victim} had said about who, and read it before they were off the curb. Some of them even paid.",
     "tags": {
       "role": "newsstand",
       "kind": "victim",
@@ -5714,7 +5714,7 @@
   {
     "id": "chr-553",
     "deck": "character",
-    "text": "I knew {victim}’s paper. That’s how I know everybody.",
+    "text": "I knew {victim}’s paper. On this corner that’s closer than a name.",
     "tags": {
       "role": "newsstand",
       "kind": "victim",
@@ -5725,7 +5725,7 @@
   {
     "id": "chr-554",
     "deck": "character",
-    "text": "{victim} bought from me, or walked past. Everybody does one or the other.",
+    "text": "{victim} bought from me, or walked past. Everybody does one or the other. Most walk.",
     "tags": {
       "role": "newsstand",
       "kind": "victim",
@@ -5736,7 +5736,7 @@
   {
     "id": "chr-555",
     "deck": "character",
-    "text": "{He} had a white apron and a paper cap and sleeves rolled to the elbow, and a burn scar across the back of one wrist from the grill.",
+    "text": "{He} had a white apron and a paper cap and sleeves rolled to the elbow, and a burn scar across one wrist where the grill had won an argument.",
     "tags": {
       "role": "counterman",
       "kind": "look"
@@ -5746,7 +5746,7 @@
   {
     "id": "chr-556",
     "deck": "character",
-    "text": "The rag went round on the counter while we talked, the same small circle over and over, and {he} never quite looked at me.",
+    "text": "The rag went round on the counter while we talked, the same small circle over and over, until that one spot was the cleanest thing on the block and {he} still hadn’t looked at me.",
     "tags": {
       "role": "counterman",
       "kind": "look"
@@ -5756,7 +5756,7 @@
   {
     "id": "chr-557",
     "deck": "character",
-    "text": "Young and tired, {he} had a pencil behind one ear and an order pad in {his} apron pocket.",
+    "text": "Young and tired, {he} had a pencil behind one ear and an order pad in {his} apron pocket, and asked what I’d have before I’d sat down.",
     "tags": {
       "role": "counterman",
       "kind": "look"
@@ -5856,7 +5856,7 @@
   {
     "id": "chr-567",
     "deck": "character",
-    "text": "The union men come in after the meeting, and the treasurer pays for the coffee. Treasurers like {victim} count the change twice.",
+    "text": "The union men come in after the meeting, and the treasurer pays for the coffee. Treasurers like {victim} count the change twice. The tip goes to a vote.",
     "tags": {
       "role": "counterman",
       "kind": "victim",
@@ -5889,7 +5889,7 @@
   {
     "id": "chr-570",
     "deck": "character",
-    "text": "Everybody at the counter pays rent to somebody. When a landlord like {victim} sits down, the whole counter gets quiet.",
+    "text": "Everybody at the counter pays rent to somebody. When a landlord like {victim} sits down, the whole counter gets quiet and eats faster.",
     "tags": {
       "role": "counterman",
       "kind": "victim",
@@ -5911,7 +5911,7 @@
   {
     "id": "chr-572",
     "deck": "character",
-    "text": "{victim} ate here, maybe. Everybody on the street has eaten here once.",
+    "text": "{victim} ate here, maybe. Everybody on the street has eaten here once. Some of them came back.",
     "tags": {
       "role": "counterman",
       "kind": "victim",
@@ -5922,7 +5922,7 @@
   {
     "id": "chr-573",
     "deck": "character",
-    "text": "{He} had a roll of tickets on a spindle and a coin changer on {his} belt, and a callus on one thumb from tearing stubs.",
+    "text": "{He} had a roll of tickets on a spindle and a coin changer on {his} belt, and a callus on one thumb from tearing stubs, the only part of the job that showed.",
     "tags": {
       "role": "ticket-taker",
       "kind": "look"
@@ -5942,7 +5942,7 @@
   {
     "id": "chr-575",
     "deck": "character",
-    "text": "In the lit doorway {he} kept a hand out and didn’t look at faces, only at hands and the tickets in them.",
+    "text": "In the lit doorway {he} kept a hand out and didn’t look at faces, only at hands. I kept mine out of sight and felt rude.",
     "tags": {
       "role": "ticket-taker",
       "kind": "look"
@@ -6002,7 +6002,7 @@
   {
     "id": "chr-581",
     "deck": "character",
-    "text": "People try to get in free every night. A sick aunt, a friend in the chorus, a ticket left at home. I’ve heard every story there is.",
+    "text": "People try to get in free every night. A sick aunt, a friend in the chorus, a ticket left at home. The aunt is always sickest on a Saturday.",
     "tags": {
       "role": "ticket-taker",
       "kind": "talk"
@@ -6042,7 +6042,7 @@
   {
     "id": "chr-585",
     "deck": "character",
-    "text": "An agent never buys a ticket. Agents like {victim} walk straight past the door with a nod, and you’re supposed to know who they are.",
+    "text": "An agent never buys a ticket. Agents like {victim} walk straight past the door with a nod, and you’re supposed to know who they are. I nod back. It’s the cheapest seat in the house.",
     "tags": {
       "role": "ticket-taker",
       "kind": "victim",
@@ -6064,7 +6064,7 @@
   {
     "id": "chr-587",
     "deck": "character",
-    "text": "A columnist comes in on the free list and sits where the people are. Columnists like {victim} watch the audience more than the stage.",
+    "text": "A columnist comes in on the free list and sits where the people are. Columnists like {victim} watch the audience more than the stage, and some nights I don’t blame them.",
     "tags": {
       "role": "ticket-taker",
       "kind": "victim",
@@ -6118,7 +6118,7 @@
   {
     "id": "chr-592",
     "deck": "character",
-    "text": "The uniform had frayed cuffs and a stripe down the trouser leg, and the gloves were very white.",
+    "text": "The uniform had frayed cuffs and a stripe down the trouser leg, and the gloves were the cleanest thing in the building by several floors.",
     "tags": {
       "role": "elevator-man",
       "kind": "look"
@@ -6228,7 +6228,7 @@
   {
     "id": "chr-603",
     "deck": "character",
-    "text": "An heiress rides up and down more than anybody in the building and never once says good evening. Heiresses like {victim} look at the ceiling of the car.",
+    "text": "An heiress rides up and down more than anybody in the building and never once says good evening. Heiresses like {victim} look at the ceiling of the car. It’s a nice ceiling. I polish it.",
     "tags": {
       "role": "elevator-man",
       "kind": "victim",
@@ -6272,7 +6272,7 @@
   {
     "id": "chr-607",
     "deck": "character",
-    "text": "I’d have had {victim} in the car. I’ve had everybody in the car.",
+    "text": "I’d have had {victim} in the car. I’ve had everybody in the car. It’s a small car.",
     "tags": {
       "role": "elevator-man",
       "kind": "victim",
@@ -6294,7 +6294,7 @@
   {
     "id": "chr-609",
     "deck": "character",
-    "text": "{He} had a big ring of keys at {his} waist and reading glasses pushed up into {his} hair, and looked at my shoes before my face.",
+    "text": "{He} had a big ring of keys at {his} waist and reading glasses pushed up into {his} hair, and looked at my shoes before my face, to see what they’d do to the stairs.",
     "tags": {
       "role": "landlady",
       "kind": "look"
@@ -6304,7 +6304,7 @@
   {
     "id": "chr-610",
     "deck": "character",
-    "text": "A stout woman in a housedress and cardigan, sleeves pushed up, a dish towel over one shoulder.",
+    "text": "A stout woman in a housedress and cardigan, sleeves pushed up, a dish towel over one shoulder for drying things, or swatting them.",
     "tags": {
       "role": "landlady",
       "kind": "look"
@@ -6314,7 +6314,7 @@
   {
     "id": "chr-611",
     "deck": "character",
-    "text": "Strong hands and a sharp mouth, and a way of folding {his} arms that closed a conversation before it started.",
+    "text": "Strong hands, a sharp mouth, and a way of folding {his} arms that ended a conversation and collected the rent on it.",
     "tags": {
       "role": "landlady",
       "kind": "look"
@@ -6436,7 +6436,7 @@
   {
     "id": "chr-623",
     "deck": "character",
-    "text": "Owning a house and keeping one are different trades. People like {victim} own the building and never climb the stairs. The tenants bring their complaints to me.",
+    "text": "Owning a house and keeping one are different trades. People like {victim} own the building and never climb the stairs. The tenants bring their complaints to me, and I climb the stairs for both of us.",
     "tags": {
       "role": "landlady",
       "kind": "victim",
@@ -6469,7 +6469,7 @@
   {
     "id": "chr-626",
     "deck": "character",
-    "text": "I’d seen {victim} on the street. I don’t rent to everybody I see on the street.",
+    "text": "I’d seen {victim} on the street. I don’t rent to everybody I see on the street, thank God.",
     "tags": {
       "role": "landlady",
       "kind": "victim",
@@ -6480,7 +6480,7 @@
   {
     "id": "chr-627",
     "deck": "character",
-    "text": "{He} had a big square face red from the wind and a nightstick on a strap at {his} wrist, and rocked heel to toe when {he} stood still.",
+    "text": "{He} had a big square face red from the wind and a nightstick on a strap at {his} wrist, and rocked heel to toe when {he} stood still, which on a beat is most of the job.",
     "tags": {
       "role": "beat-cop",
       "kind": "look"
@@ -6490,7 +6490,7 @@
   {
     "id": "chr-628",
     "deck": "character",
-    "text": "The blue coat was buttoned to the throat and the badge was polished, and the shoes had been resoled so often the heels had layers.",
+    "text": "The blue coat was buttoned to the throat and the badge was polished, and the shoes had been resoled so often the heels had more years in than the badge.",
     "tags": {
       "role": "beat-cop",
       "kind": "look"
@@ -6500,7 +6500,7 @@
   {
     "id": "chr-629",
     "deck": "character",
-    "text": "Young for the job and trying to look older, {he} wore a mustache that wasn’t quite there yet.",
+    "text": "Young for the job and trying to look older, {he} wore a mustache that was still on its way and taking the long route.",
     "tags": {
       "role": "beat-cop",
       "kind": "look"
@@ -6540,7 +6540,7 @@
   {
     "id": "chr-633",
     "deck": "character",
-    "text": "I walk the same round every night. You’d think it would get dull. It never does. Something’s always different, and it’s my job to know what.",
+    "text": "I walk the same round every night. It gets cold and it gets long, but it never gets dull. Something’s always different, and it’s my job to know what.",
     "tags": {
       "role": "beat-cop",
       "kind": "talk"
@@ -6580,7 +6580,7 @@
   {
     "id": "chr-637",
     "deck": "character",
-    "text": "{He}’s the patrolman. {He} knows every shopkeeper on {his} round by name.",
+    "text": "{He}’s the patrolman. {He} knows every shopkeeper on {his} round by name, and which ones keep the coffee hot.",
     "tags": {
       "role": "beat-cop",
       "kind": "client"
@@ -6611,7 +6611,7 @@
   {
     "id": "chr-640",
     "deck": "character",
-    "text": "A bootlegger pays the precinct, not the patrolman. The patrolman just walks past. I walked past {victim}’s kind of door every night, same as everybody.",
+    "text": "A bootlegger pays the precinct, not the patrolman. The patrolman just walks past, and gets the sore feet. I walked past {victim}’s kind of door every night, same as everybody.",
     "tags": {
       "role": "beat-cop",
       "kind": "victim",
@@ -6633,7 +6633,7 @@
   {
     "id": "chr-642",
     "deck": "character",
-    "text": "You bring somebody in, and before you’re done with the forms the bondsman’s there. Bondsmen like {victim} hear things fast.",
+    "text": "You bring somebody in, and before you’re done with the forms the bondsman’s there. Bondsmen like {victim} hear things before the desk does.",
     "tags": {
       "role": "beat-cop",
       "kind": "victim",
@@ -6666,7 +6666,7 @@
   {
     "id": "chr-645",
     "deck": "character",
-    "text": "{He} leaned on the fender of the cab at {place} with {his} cap tipped back and a toothpick that moved when {he} thought.",
+    "text": "{He} leaned on the fender of the cab at {place} with {his} cap tipped back and a toothpick that moved when {he} thought. It didn’t move much.",
     "tags": {
       "role": "cabbie",
       "kind": "look"
@@ -6726,7 +6726,7 @@
   {
     "id": "chr-651",
     "deck": "character",
-    "text": "I sit on the stand and wait. That’s most of the job. The driving’s the easy part.",
+    "text": "I sit on the stand and wait. That’s most of the job. The driving’s easy. It’s the sitting that ruins your back.",
     "tags": {
       "role": "cabbie",
       "kind": "talk"
@@ -6808,7 +6808,7 @@
   {
     "id": "chr-659",
     "deck": "character",
-    "text": "A bondsman takes a cab to night court every evening. {victim}’s kind always sit forward and tell you the fastest way.",
+    "text": "A bondsman takes a cab to night court every evening. {victim}’s kind always sit forward and tell you the fastest way, and it’s never the fastest way.",
     "tags": {
       "role": "cabbie",
       "kind": "victim",
@@ -6841,7 +6841,7 @@
   {
     "id": "chr-662",
     "deck": "character",
-    "text": "I know {victim}’s address, likely. That’s how cabbies know people.",
+    "text": "I know {victim}’s address, likely. That’s how cabbies know people. Faces I lose. Addresses I keep.",
     "tags": {
       "role": "cabbie",
       "kind": "victim",
@@ -6852,7 +6852,7 @@
   {
     "id": "chr-663",
     "deck": "character",
-    "text": "{He} wore a white coat with a fountain pen clipped in the pocket and rimless glasses on a chain, and {his} hands smelled faintly of camphor.",
+    "text": "{He} wore a white coat with a fountain pen clipped in the pocket and rimless glasses on a chain, and {his} hands smelled of camphor. So, faintly, did the conversation.",
     "tags": {
       "role": "druggist",
       "kind": "look"
@@ -6994,7 +6994,7 @@
   {
     "id": "chr-677",
     "deck": "character",
-    "text": "A corner store pays more rent than any other on the block. {victim}’s kind know what a corner is worth to the dollar.",
+    "text": "A corner store pays more rent than any other on the block. {victim}’s kind know what a corner is worth to the dollar, and they round up.",
     "tags": {
       "role": "druggist",
       "kind": "victim",

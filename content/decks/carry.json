@@ -112,7 +112,7 @@
   {
     "id": "cry-011",
     "deck": "carry",
-    "text": "No one sent me to {who}. I asked about {subject} anyway.",
+    "text": "No one sent me to {who}. I asked about {subject} anyway; I’m self-employed.",
     "tags": {
       "for": "ask-person",
       "lead": "no"
@@ -134,7 +134,7 @@
   {
     "id": "cry-013",
     "deck": "carry",
-    "text": "It was my own idea. I wanted {who}’s word on {subject} regardless.",
+    "text": "The idea was my own, and I get about one a night. I wanted {who}’s word on {subject}.",
     "tags": {
       "for": "ask-person",
       "lead": "no"
@@ -189,7 +189,7 @@
   {
     "id": "cry-018",
     "deck": "carry",
-    "text": "Nobody sent me. A hunch did. I wanted {who}’s word on {subject}.",
+    "text": "Nobody sent me. A hunch did, and hunches don’t pay cab fare. I wanted {who}’s word on {subject}.",
     "tags": {
       "for": "ask-person",
       "lead": "no"
@@ -354,7 +354,7 @@
   {
     "id": "cry-033",
     "deck": "carry",
-    "text": "It was my own idea. I wanted {who}’s word on {subject} just the same.",
+    "text": "The idea was mine, which is the cheapest kind. I wanted {who}’s word on {subject} just the same.",
     "tags": {
       "for": "ask-thing",
       "lead": "no"
@@ -376,7 +376,7 @@
   {
     "id": "cry-035",
     "deck": "carry",
-    "text": "Nobody had asked me to. I asked {who} about {subject} anyway.",
+    "text": "Nobody had asked me to. Nobody ever does. I asked {who} about {subject} anyway.",
     "tags": {
       "for": "ask-thing",
       "lead": "no"
@@ -574,7 +574,7 @@
   {
     "id": "cry-053",
     "deck": "carry",
-    "text": "It was my own idea. I wanted {who}’s word on {subject} all the same.",
+    "text": "Nobody’s idea but mine. I wanted {who}’s word on {subject} all the same.",
     "tags": {
       "for": "ask-place",
       "lead": "no"
@@ -794,7 +794,7 @@
   {
     "id": "cry-073",
     "deck": "carry",
-    "text": "It was my own idea. I asked {who} to account for the hours all the same.",
+    "text": "It was my idea and nobody else’s. I asked {who} to account for the hours all the same.",
     "tags": {
       "for": "ask-evening",
       "lead": "no"
@@ -849,7 +849,7 @@
   {
     "id": "cry-078",
     "deck": "carry",
-    "text": "Nobody sent me, only a hunch. I wanted {who} to walk me through the hours.",
+    "text": "Nobody sent me, only a hunch. I wanted {who} to walk me through the hours, and for once somebody else could do the walking.",
     "tags": {
       "for": "ask-evening",
       "lead": "no"
@@ -992,7 +992,7 @@
   {
     "id": "cry-091",
     "deck": "carry",
-    "text": "No one had told me to press {who}. I did it anyway.",
+    "text": "No one had told me to press {who}. I did it anyway. Pressing people is half the job, and stairs are the other half.",
     "tags": {
       "for": "ask-self",
       "lead": "no"
@@ -1014,7 +1014,7 @@
   {
     "id": "cry-093",
     "deck": "carry",
-    "text": "It was my own idea. I wanted {who}’s own answer all the same.",
+    "text": "The idea was my own. I wanted {who}’s own answer all the same.",
     "tags": {
       "for": "ask-self",
       "lead": "no"
@@ -1160,7 +1160,7 @@
   {
     "id": "cry-106",
     "deck": "carry",
-    "text": "On {name}’s word, I went through it, corner to corner.",
+    "text": "On {name}’s word, I went through it corner to corner, which at my age means on my knees.",
     "tags": {
       "for": "search-room",
       "lead": "yes"
@@ -1228,7 +1228,7 @@
   {
     "id": "cry-112",
     "deck": "carry",
-    "text": "Nobody had said to look here. I looked anyway.",
+    "text": "Nobody had said to look here. I looked anyway. Looking is free, and it’s about all I can afford.",
     "tags": {
       "for": "search-room",
       "lead": "no"
@@ -1239,7 +1239,7 @@
   {
     "id": "cry-113",
     "deck": "carry",
-    "text": "It was my own idea. I searched the room all the same.",
+    "text": "Nobody’s idea but mine. I searched the room all the same.",
     "tags": {
       "for": "search-room",
       "lead": "no",
@@ -1286,7 +1286,7 @@
   {
     "id": "cry-117",
     "deck": "carry",
-    "text": "Nobody had told me to search it. I did, on my own account.",
+    "text": "Nobody had told me to search it. I did, on my own account, which was already overdrawn.",
     "tags": {
       "for": "search-room",
       "lead": "no"
@@ -1319,7 +1319,7 @@
   {
     "id": "cry-120",
     "deck": "carry",
-    "text": "Nothing I had found pointed here. I searched on a hunch.",
+    "text": "Nothing I had found pointed here. I searched on a hunch, which is what I call it when I have nothing.",
     "tags": {
       "for": "search-room",
       "lead": "no"
@@ -1407,7 +1407,7 @@
   {
     "id": "cry-128",
     "deck": "carry",
-    "text": "{name} sent me looking for {subject}.",
+    "text": "{name} sent me looking for {subject}. People are always sending me places.",
     "tags": {
       "for": "search-thing",
       "lead": "yes"
@@ -1462,7 +1462,7 @@
   {
     "id": "cry-133",
     "deck": "carry",
-    "text": "It was my own idea. I went looking for {subject} regardless.",
+    "text": "The idea was mine, so the blame would be too. I went looking for {subject}.",
     "tags": {
       "for": "search-thing",
       "lead": "no"
@@ -1574,7 +1574,7 @@
   {
     "id": "cry-n03",
     "deck": "carry",
-    "text": "Everything I had pointed here, so I looked.",
+    "text": "Everything I had pointed here, which wasn’t saying much. I looked.",
     "tags": {
       "for": "search-room",
       "lead": "yes"

@@ -12,7 +12,7 @@
   {
     "id": "wch-002",
     "deck": "watch",
-    "text": "Nothing crossed that bar that {watcher} didn’t notice.",
+    "text": "Nothing crossed that bar that {watcher} didn’t notice, including the change.",
     "tags": {
       "watcher": "bartender"
     },
@@ -32,7 +32,7 @@
   {
     "id": "wch-004",
     "deck": "watch",
-    "text": "A bartender learned the regulars' faces before their names, and {watcher} was no different.",
+    "text": "{watcher} knew the regulars by their drinks first and their faces second, and the names hardly came into it.",
     "tags": {
       "watcher": "bartender"
     },
@@ -72,7 +72,7 @@
   {
     "id": "wch-008",
     "deck": "watch",
-    "text": "Nobody got past {watcher} unremarked.",
+    "text": "Nobody got past {watcher} without being looked up and down, mostly down.",
     "tags": {
       "watcher": "doorman"
     },
@@ -112,7 +112,7 @@
   {
     "id": "wch-012",
     "deck": "watch",
-    "text": "Whoever passed {watcher}'s door left a trace of it in {watcher}'s memory.",
+    "text": "Whoever passed {watcher}'s door got looked over on the way in, and {watcher} judged them on the way out.",
     "tags": {
       "watcher": "doorman"
     },
@@ -132,7 +132,7 @@
   {
     "id": "wch-014",
     "deck": "watch",
-    "text": "Nothing much passed the newsstand that {watcher} missed.",
+    "text": "Nothing passed the newsstand that {watcher} missed, and most of it got an opinion.",
     "tags": {
       "watcher": "newsstand"
     },
@@ -212,7 +212,7 @@
   {
     "id": "wch-022",
     "deck": "watch",
-    "text": "A counterman saw every face twice, coming and going, and {watcher} was no different.",
+    "text": "A counterman saw every face twice, coming and going, and {watcher} remembered which ones had tipped.",
     "tags": {
       "watcher": "counterman"
     },
@@ -252,7 +252,7 @@
   {
     "id": "wch-026",
     "deck": "watch",
-    "text": "Nobody got past {watcher} without being seen.",
+    "text": "Nobody got past {watcher} without a ticket, or without being seen trying.",
     "tags": {
       "watcher": "ticket-taker"
     },
@@ -312,7 +312,7 @@
   {
     "id": "wch-032",
     "deck": "watch",
-    "text": "Nobody moved through the building without {watcher} carrying them there.",
+    "text": "Nobody moved through the building without {watcher} carrying them there and forming a view on the way.",
     "tags": {
       "watcher": "elevator-man"
     },
@@ -332,7 +332,7 @@
   {
     "id": "wch-034",
     "deck": "watch",
-    "text": "An elevator man learned a building's business without asking for it, and {watcher} knew most of it.",
+    "text": "An elevator man learned a building's business without asking for it, and {watcher} knew most of it and kept it between floors.",
     "tags": {
       "watcher": "elevator-man"
     },
@@ -372,7 +372,7 @@
   {
     "id": "wch-038",
     "deck": "watch",
-    "text": "Nothing happened on the stairs that {watcher} didn't hear about.",
+    "text": "Nothing happened on the stairs that {watcher} didn't hear about, usually while it was still happening.",
     "tags": {
       "watcher": "landlady"
     },
@@ -392,7 +392,7 @@
   {
     "id": "wch-040",
     "deck": "watch",
-    "text": "A landlady kept track of tenants' comings and goings as a matter of business, and {watcher} was thorough about it.",
+    "text": "A landlady kept track of tenants' comings and goings as a matter of business, and {watcher} made it a pleasure as well.",
     "tags": {
       "watcher": "landlady"
     },
@@ -412,7 +412,7 @@
   {
     "id": "wch-042",
     "deck": "watch",
-    "text": "Whoever used the stairs, {watcher} generally knew about it.",
+    "text": "Whoever used the stairs, {watcher} generally knew about it, and generally knew why.",
     "tags": {
       "watcher": "landlady"
     },
@@ -452,7 +452,7 @@
   {
     "id": "wch-046",
     "deck": "watch",
-    "text": "A beat cop learned a block the way a doctor came to know a patient, and {watcher} knew this one well.",
+    "text": "A beat cop learned a block door by door, and {watcher} knew which doors to knock on and which to walk past.",
     "tags": {
       "watcher": "beat-cop"
     },
@@ -552,7 +552,7 @@
   {
     "id": "wch-056",
     "deck": "watch",
-    "text": "Nothing much happened in that store that {watcher} didn't ring up or notice.",
+    "text": "Nothing much happened in that store that {watcher} didn't ring up or recommend a powder for.",
     "tags": {
       "watcher": "druggist"
     },
@@ -702,7 +702,7 @@
   {
     "id": "wch-071",
     "deck": "watch",
-    "text": "Nobody had the job of noticing who came by.",
+    "text": "Nobody had the job of noticing who came by, and nobody had applied for it.",
     "tags": {
       "watcher": "none"
     },

@@ -57,7 +57,7 @@
   {
     "id": "cnf-006",
     "deck": "confront",
-    "text": "{subject} looked at me for a moment, then at the notebook. “That doesn’t touch anything I told you.”",
+    "text": "{subject} looked at me a moment, then at the notebook. “That doesn’t touch anything I told you.”",
     "tags": {
       "outcome": "wrong",
       "part": "reaction"
@@ -68,7 +68,7 @@
   {
     "id": "cnf-007",
     "deck": "confront",
-    "text": "Half an hour was gone, and nothing I knew about {subject} had moved.",
+    "text": "Half an hour was gone, and nothing I knew about {subject} had moved. I had spent worse half hours, but not many.",
     "tags": {
       "outcome": "wrong",
       "part": "close"
@@ -90,7 +90,7 @@
   {
     "id": "cnf-009",
     "deck": "confront",
-    "text": "I had put the wrong page to {subject}. The half hour was spent all the same.",
+    "text": "I had put the wrong page to {subject}. The half hour was spent all the same, and nobody gives those back.",
     "tags": {
       "outcome": "wrong",
       "part": "close"
@@ -112,7 +112,7 @@
   {
     "id": "cnf-011",
     "deck": "confront",
-    "text": "I closed the notebook. {subject}’s evening was the same evening it had been when I sat down.",
+    "text": "I closed the notebook. {subject}’s evening was the same evening it had been when I sat down. Mine was shorter.",
     "tags": {
       "outcome": "wrong",
       "part": "close"
@@ -145,7 +145,7 @@
   {
     "id": "cnf-014",
     "deck": "confront",
-    "text": "{subject} set down what {they} had been holding and wiped {their} hands, one and then the other.",
+    "text": "{subject} set down what {they} had been holding and wiped {their} hands, each one in turn.",
     "tags": {
       "outcome": "second-lie",
       "part": "reaction"
@@ -167,7 +167,7 @@
   {
     "id": "cnf-016",
     "deck": "confront",
-    "text": "{subject} laughed once, not at anything, and sat up straighter.",
+    "text": "{subject} laughed once, at nothing in particular, and sat up straighter.",
     "tags": {
       "outcome": "second-lie",
       "part": "reaction"
@@ -178,7 +178,7 @@
   {
     "id": "cnf-017",
     "deck": "confront",
-    "text": "{subject} took out a cigarette, did not light it, and put it back.",
+    "text": "{subject} took out a cigarette, did not light it, and put it away again.",
     "tags": {
       "outcome": "second-lie",
       "part": "reaction"
@@ -255,7 +255,7 @@
   {
     "id": "cnf-024",
     "deck": "confront",
-    "text": "I turned the page. {subject}’s second story about {place} would have to meet the rest of the notebook the way the first one had.",
+    "text": "I turned the page. {subject}’s second story about {place} would have to face everything else in the notebook, the way the first one had.",
     "tags": {
       "outcome": "second-lie",
       "part": "close"
@@ -266,7 +266,7 @@
   {
     "id": "cnf-025",
     "deck": "confront",
-    "text": "{subject} looked at me for a long moment and then went back to what {they} had been doing.",
+    "text": "{subject} gave me a long look, then took up again whatever {they} had been doing.",
     "tags": {
       "outcome": "quiet",
       "part": "reaction"
@@ -277,7 +277,7 @@
   {
     "id": "cnf-026",
     "deck": "confront",
-    "text": "{subject} folded {their} hands and looked down at them.",
+    "text": "{subject} folded {their} hands and looked down at them. The hands had nothing to say either.",
     "tags": {
       "outcome": "quiet",
       "part": "reaction"
@@ -288,7 +288,7 @@
   {
     "id": "cnf-027",
     "deck": "confront",
-    "text": "{subject} turned away and found something else to look at.",
+    "text": "{subject} turned away and found something else to look at. Anything else.",
     "tags": {
       "outcome": "quiet",
       "part": "reaction"
@@ -321,7 +321,7 @@
   {
     "id": "cnf-030",
     "deck": "confront",
-    "text": "{subject} looked past me at the wall and stayed that way.",
+    "text": "{subject} stared past me at the wall and stayed that way. The wall was a very ordinary one.",
     "tags": {
       "outcome": "quiet",
       "part": "reaction"
@@ -332,7 +332,7 @@
   {
     "id": "cnf-031",
     "deck": "confront",
-    "text": "I waited. {subject} did not fill the silence, and after a while I stopped expecting it.",
+    "text": "I waited. {subject} did not fill the silence, and after a time I stopped expecting it.",
     "tags": {
       "outcome": "quiet",
       "part": "close"
@@ -409,7 +409,7 @@
   {
     "id": "cnf-038",
     "deck": "confront",
-    "text": "{subject} let out a long breath and looked at the floor.",
+    "text": "{subject} let out a long breath, with most of the evening in it, and looked at the floor.",
     "tags": {
       "outcome": "admit",
       "part": "reaction"
@@ -431,7 +431,7 @@
   {
     "id": "cnf-040",
     "deck": "confront",
-    "text": "{subject} took off {their} hat and turned it around in {their} hands.",
+    "text": "{subject} took off {their} hat and turned it around in {their} hands, all the way round, twice.",
     "tags": {
       "outcome": "admit",
       "part": "reaction"
@@ -497,7 +497,7 @@
   {
     "id": "cnf-046",
     "deck": "confront",
-    "text": "I had {place} from {subject} now, in {subject}’s own words. I would have to see what else that touched.",
+    "text": "I had {place} from {subject} now, in {subject}’s own words. I would have to find out what else that touched.",
     "tags": {
       "outcome": "admit",
       "part": "close"
@@ -508,7 +508,7 @@
   {
     "id": "cnf-047",
     "deck": "confront",
-    "text": "I turned the notebook around so {subject} could read what I had written. {subject} read it and nodded.",
+    "text": "I turned the notebook around so {subject} could read what I had written. {subject} read it and nodded, and was kind enough not to mention my handwriting.",
     "tags": {
       "outcome": "admit",
       "part": "close"
@@ -563,7 +563,7 @@
   {
     "id": "cnf-052",
     "deck": "confront",
-    "text": "{subject} kept on with what {they} had been doing until I finished.",
+    "text": "{subject} kept on with what {they} had been doing until I finished, and a little after.",
     "tags": {
       "outcome": "hold",
       "part": "reaction"
@@ -585,7 +585,7 @@
   {
     "id": "cnf-054",
     "deck": "confront",
-    "text": "When I said {place}, {subject} did not blink.",
+    "text": "When I said {place}, {subject} did not blink. I did enough blinking for the pair of us.",
     "tags": {
       "outcome": "hold",
       "part": "reaction"
@@ -596,7 +596,7 @@
   {
     "id": "cnf-055",
     "deck": "confront",
-    "text": "It was the same evening {subject} had given me the first time. I wrote that down, and left the fact I had brought one line above it.",
+    "text": "It was the same evening {subject} had given me before. I wrote that down, and left the fact I had brought one line above it.",
     "tags": {
       "outcome": "hold",
       "part": "close"
@@ -805,7 +805,7 @@
   {
     "id": "cnf-074",
     "deck": "confront",
-    "text": "{subject} looked past me at the door. “That’s all I’m going to say about it.”",
+    "text": "{subject} glanced past me at the door. “That’s all I’m going to say about it.”",
     "tags": {
       "outcome": "ends",
       "part": "reaction"
@@ -882,7 +882,7 @@
   {
     "id": "cnf-081",
     "deck": "confront",
-    "text": "That was the end of it for tonight. The first thing I had read out touched {subject}’s story, and the second had not.",
+    "text": "That was all of it for tonight. The first thing I had read out touched {subject}’s story, and the second had not.",
     "tags": {
       "outcome": "ends",
       "part": "close"
