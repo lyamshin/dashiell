@@ -1972,13 +1972,21 @@ function setupOf(stage: Stage, person: Person, staged: AskStage): string {
   const fits = (c: Card, tag: string, want: string): boolean => tagIs('approach', c, tag, want);
   // With something they are doing to say, half the time the approach says it.
   const wantDoing = doing !== null && !staged.again && stage.dealer.random.chance(0.5);
+  // A stool is not a table: the seat the card takes agrees with where they are.
+  const seat = (t: string): string | null =>
+    /\bstool\b/.test(t) ? 'stool' : /\b(?:table|booth)\b/.test(t) ? 'table' : /\bbench\b/.test(t) ? 'bench' : null;
+  const theirs = seat(staged.doing ?? '');
+  const agrees = (c: Card): boolean => {
+    const mine = seat(c.text.replace('{doing}', ''));
+    return mine === null || theirs === null || mine === theirs;
+  };
   const approach = deal(
     stage,
     'approach',
     [
-      (c) => is(c, 'again', again) && is(c, 'setting', staged.setting) && fits(c, 'posture', staged.posture) && c.text.includes('{doing}') === wantDoing,
-      (c) => is(c, 'again', again) && is(c, 'setting', staged.setting) && fits(c, 'posture', staged.posture),
-      (c) => is(c, 'again', again) && fits(c, 'setting', staged.setting) && fits(c, 'posture', staged.posture),
+      (c) => agrees(c) && is(c, 'again', again) && is(c, 'setting', staged.setting) && fits(c, 'posture', staged.posture) && c.text.includes('{doing}') === wantDoing,
+      (c) => agrees(c) && is(c, 'again', again) && is(c, 'setting', staged.setting) && fits(c, 'posture', staged.posture),
+      (c) => agrees(c) && is(c, 'again', again) && fits(c, 'setting', staged.setting) && fits(c, 'posture', staged.posture),
       (c) => is(c, 'again', again) && is(c, 'setting', 'any'),
     ],
     slots,

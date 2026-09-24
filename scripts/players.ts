@@ -23,7 +23,7 @@ export function playerChoices(
   view: Parameters<typeof choicesFor>[0],
   state: Parameters<typeof choicesFor>[1],
 ): ReturnType<typeof choicesFor> {
-  return choicesFor(view, state).filter((g) => g.kind !== 'rundown');
+  return choicesFor(view, state).filter((g) => g.kind !== 'rundown' && g.kind !== 'recap');
 }
 import { leadingTheory } from '../src/game/voice/reactive.js';
 import type { Rng } from '../src/gen/rng.js';

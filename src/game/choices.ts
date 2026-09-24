@@ -18,7 +18,7 @@ import { minutesAfter } from './clock.js';
 import type { CaseView } from './derive.js';
 import { gameBudget, peopleHereNow } from './derive.js';
 import { parse } from './parser.js';
-import { accountRider, answersTo, askedBefore, followUpOf, pendingFor, priceOf, rundownOpen } from './reducer.js';
+import { accountRider, answersTo, askedBefore, followUpOf, pendingFor, priceOf, recapOpen, rundownOpen } from './reducer.js';
 import type { Command, OfferedChoice, OfferedGroup, RunState } from './types.js';
 import { buildNotebook, type Notebook } from './notebook.js';
 import { possessiveOf, pronounOf } from './voice/cast.js';
@@ -56,7 +56,7 @@ export interface Choice extends OfferedChoice {
 }
 
 export interface ChoiceGroup extends OfferedGroup {
-  kind: 'ask' | 'search' | 'go' | 'free' | 'confront' | 'continue' | 'rundown';
+  kind: 'ask' | 'search' | 'go' | 'free' | 'confront' | 'continue' | 'rundown' | 'recap';
   /** "Ask Callahan about", "Search", "Go to". */
   heading: string;
   /** For `ask` only: whose topics these are. */
@@ -427,6 +427,16 @@ export function choicesFor(view: CaseView, state: RunState): ChoiceGroup[] {
     };
   });
   groups.push({ kind: 'go', heading: 'Go to', choices: go });
+
+  // M12 Part 2: taking stock of what the notebook holds. Free, anywhere but
+  // the office, and never a lead.
+  if (recapOpen(view, state)) {
+    groups.push({
+      kind: 'recap',
+      heading: '',
+      choices: [{ command: 'go over what I have', label: 'Go over what I have', minutes: 0, lead: false, done: false }],
+    });
+  }
 
   groups.push({
     kind: 'free',

@@ -82,7 +82,10 @@ export interface LintIssue {
     | 'mystery-question'
     | 'age-self'
     | 'grounding-family'
-    | 'enigma-count';
+    | 'enigma-count'
+    /* M12 */
+    | 'recap-verdict'
+    | 'recap-length';
   detail: string;
 }
 
@@ -289,8 +292,10 @@ const ASKS = new Map<string, string>(
  */
 function anchorRestated(view: CaseView, page: Page, told: Map<Id, Set<string>>): string[] {
   const out: string[] = [];
+  // The window thought's reasoning, and a recap taking stock (M12), say an
+  // anchor's hour again on purpose; neither is the hour told again.
   const reasoning = (page.beats ?? [])
-    .filter((b) => b.kind === 'thought' && b.tag === 'window' && b.text)
+    .filter((b) => ((b.kind === 'thought' && b.tag === 'window') || b.kind === 'recap') && b.text)
     .flatMap((b) => sentencesOf(b.text as string));
   const sentences = proseTexts(page)
     .flatMap((t) => sentencesOf(t))
@@ -424,6 +429,47 @@ function lintPeople(view: CaseView, page: Page): LintIssue[] {
   return out;
 }
 
+/**
+ * M12 Part 2: a recap lays the pieces out and never concludes — at any
+ * difficulty, since a recap never clears anybody either. No "did it", no
+ * killer, no guilt or innocence, no "cleared" or "out of it", no "must have",
+ * no "it was <name>".
+ */
+export const RECAP_VERDICT: RegExp[] = [
+  /\bdid it\b/i,
+  /\b(?:the )?(?:killer|murderer|culprit)\b/i,
+  /\b(?:guilty|innocent)\b/i,
+  /\bcleared\b|\bin the clear\b|\bout of it\b|\boff (?:the|my) list\b/i,
+  /\b(?:must|had to) have (?:been|done|killed)\b/i,
+  /\bcould(?:n[’']t| not) have (?:been|done|killed)\b/i,
+  /\b(?:killed|poisoned|shot|stabbed|strangled) (?:him|her)\b/i,
+];
+
+export function recapVerdicts(text: string, surnames: readonly string[]): string[] {
+  const out: string[] = [];
+  for (const re of RECAP_VERDICT) {
+    const m = re.exec(text);
+    if (m) out.push(m[0]);
+  }
+  for (const s of surnames) {
+    const m = new RegExp(`\\bit was ${esc(s)}\\b`, 'i').exec(text);
+    if (m) out.push(m[0]);
+  }
+  return [...out, ...verdictsIn(text, surnames)];
+}
+
+function lintRecap(view: CaseView, page: Page): LintIssue[] {
+  const out: LintIssue[] = [];
+  const names = view.kase.people.filter((p) => p.id !== view.victim.id).map((p) => p.surname);
+  for (const b of page.beats ?? []) {
+    if (b.kind !== 'recap' || !b.rendered || !b.text) continue;
+    for (const v of recapVerdicts(b.text, names)) out.push({ page: page.n, rule: 'recap-verdict', detail: v });
+    const n = b.text.split(/\s+/).filter((w) => /[A-Za-z]/.test(w)).length;
+    if (n < 80 || n > 180) out.push({ page: page.n, rule: 'recap-length', detail: `${n} words` });
+  }
+  return out;
+}
+
 /** Every issue in a run, page by page. */
 export function lintRun(view: CaseView, state: RunState): LintIssue[] {
   const out: LintIssue[] = [];
@@ -454,6 +500,7 @@ export function lintRun(view: CaseView, state: RunState): LintIssue[] {
     out.push(...lintPage(view, page, found));
     out.push(...lintProse(view, page));
     out.push(...lintPeople(view, page));
+    out.push(...lintRecap(view, page));
     // The tiered game only: the untiered game's marks are the generator's own
     // sentences ("The ice being brought in was at half past eight, and…").
     if (view.kase.logic) {

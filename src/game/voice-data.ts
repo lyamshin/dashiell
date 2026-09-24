@@ -834,3 +834,102 @@ export const ASK_REPORTED: Record<string, string[]> = {
   event: ['I asked {him} what {he} remembered of {anchor}.', 'I asked {him} about {anchor}.'],
   thing: ['I asked {him} about {topic}.', 'I asked {him} what {he} knew about {topic}.'],
 };
+
+/* ------------------------------------------------------------------ *
+ * M12 Part 2 — the recap's clauses.
+ *
+ * One clause a fact the notebook holds, or the absence of one. Every slot is
+ * filled from the notebook by `recap.ts`; the correspondence checker holds
+ * each clause to its trace. {span} and {when} carry their own preposition
+ * ("between eight and half past eight", "at half past eight"). A clause marked
+ * with a leading `*` has a joke in it, and a paragraph has one joke at most.
+ * ------------------------------------------------------------------ */
+
+export const RECAP_WHEN: Record<string, string[]> = {
+  'murder-span': ['{Victim} died at {place} {span}.', '{Victim} died at {place}, {span}.'],
+  'murder-none': ['{Victim} was dead at {place}, and I didn’t have the hour yet.'],
+  'found-span': ['{Victim} was found at {place}, and died {span}.'],
+  'found-none': ['{Victim} was found dead at {place}, and I didn’t have the hour yet.'],
+  'robbery-span': ['{Object} went from {place} {span}.'],
+  'robbery-none': ['{Object} went from {place}, and I didn’t have the hour yet.'],
+  'missing-span': ['{Victim} went missing from {place} {span}.'],
+  'missing-none': ['{Victim} went missing from {place}, and I didn’t have the hour yet.'],
+};
+
+export const RECAP_ANCHOR: string[] = [
+  '*{Anchor} was at {time}, and so far it was the only honest clock on the street.',
+  '{Anchor} was at {time}. It was the nearest thing I had to a clock I could trust.',
+];
+
+export const RECAP_METHOD: string[] = ['As for how, it was {method}.', 'The how of it was {method}.'];
+
+export const RECAP_CLAIMED_ALONE: string[] = [
+  '{P} had given me {his} own evening, and nobody’s word under it but {his} own.',
+  '{P} had told me {his} evening, and so far nobody else had said a word about it.',
+];
+
+export const RECAP_CLAIMED_WITH: string[] = [
+  '{P} had given me {his} evening, and {S}’s word sat under part of it.',
+  '{P}’s evening had {S} backing up some of it.',
+];
+
+export const RECAP_OTHERS: string[] = [
+  '{P}’s evening I had only from {S}.',
+  'All I had of {P}’s evening came from {S}.',
+  'For {P} I had {S}’s word, and nothing of {his} own.',
+  'What I knew of {P}’s night, I knew from {S}.',
+];
+
+/** The same, from people the reader has not met: {hole} is empty or ", and it had a hole in it {when}". */
+export const RECAP_OTHERS_ANON: string[] = ['{P}’s evening I had only from other people{hole}.'];
+
+/** An evening with a word under it from somebody the reader has not met. */
+export const RECAP_CLAIMED_ANON: string[] = ['{P} had given me {his} evening, and somebody else’s word sat under part of it.'];
+
+/** Two words that disagree, the other from somebody the reader has not met. */
+export const RECAP_CONFLICT_ANON: string[] = ['{P} said {A} {when}, and somebody else had {him} at {B}. One of them had it wrong.'];
+
+export const RECAP_OTHERS_HOLE: string[] = [
+  '{P}’s evening I had only from {S}, and it had a hole in it {when}.',
+  'For {P} I had {S}’s word, nothing of {his} own, and nothing at all {when}.',
+  '*{P}’s evening I had from {S}, with a hole in it {when} you could drive a milk wagon through.',
+];
+
+export const RECAP_SEEN: string[] = ['{P} I had only seen, at {place}.', '{P} I’d seen at {place}, and that was all.'];
+
+export const RECAP_CONFLICT: string[] = [
+  '{P} said {A} {when}. {S} had {him} at {B}. One of them had it wrong.',
+  '*{P} told me {A} {when}, and {S} told me {B}. Somebody’s memory was off, or somebody’s manners.',
+];
+
+export const RECAP_CONFLICT_FOUND: string[] = ['{P} said {A} {when}, and what I found at {room} had {him} at {B}.'];
+
+export const RECAP_CONFLICT_NOT: string[] = ['{P} said {A} {when}, and {S} said {he} wasn’t there.'];
+
+export const RECAP_UNPLACED_ONE: string[] = [
+  'Nobody had told me where {P} was {when}, including {P}.',
+  'Nobody had put {P} anywhere {when}, not even {P}.',
+];
+
+/** The same, just after a clause about the same person: {he} for the first mention. */
+export const RECAP_UNPLACED_AGAIN: string[] = ['Nobody had told me where {he} was {when}, including {P}.'];
+
+export const RECAP_UNPLACED_MANY: string[] = [
+  'Nobody had told me where {list} were {when}, and none of them had told me either.',
+];
+
+export const RECAP_NEXT_ASK: string[] = ['I’d ask {who} about {topic} next.', 'I wanted {who} next, about {topic}.'];
+export const RECAP_NEXT_SEARCH: string[] = ['I’d go through {place} next.', 'I wanted a look through {place} next.'];
+export const RECAP_NEXT_EVENING: string[] = [
+  'I wanted {P}’s own account of {his} evening.',
+  'I wanted {P} to tell me {his} evening in {his} own words.',
+];
+export const RECAP_NEXT_PUT: string[] = [
+  'It was time to start putting what I had to people, and see whose story gave.',
+  'It was time to read some of this back to the people it was about.',
+];
+
+/** The on-demand page when there is nothing new to go over, or not enough yet. */
+export const RECAP_NOTHING_NEW = 'I went over it again. Nothing had moved since the last time, including me.';
+export const RECAP_TOO_SOON = 'There wasn’t enough in the notebook yet to be worth going over. I went back to filling it.';
+export const RECAP_OFFICE = 'I didn’t go over it here. The office was for the client’s troubles; mine could wait for the street.';

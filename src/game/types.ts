@@ -148,6 +148,8 @@ export type ProseVoice =
    * by a later pass, because the correspondence checker traces it verbatim.
    */
   | 'errand'
+  /** M12 Part 2: the detective taking stock of the notebook. */
+  | 'recap'
   /* M8 — the planned page. Each beat of §1 that is prose has its own voice. */
   | 'establish'
   | 'act'
