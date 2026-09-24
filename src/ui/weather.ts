@@ -424,7 +424,11 @@ export function createWeatherLayer(opts: { enabled: boolean }): WeatherLayer {
       // column's box would count as overlapping it.
       columns.push([Math.floor(left) - 2, Math.ceil(right) + 2]);
     }
-    return { zones: marginZones(columns, width).filter(([a, b]) => b - a >= 6), width };
+    // Since 2026-09-24 the weather goes over the text as well: one zone, the
+    // whole window. The columns are still measured so the margins could be
+    // told apart again if the designer asks.
+    void columns;
+    return { zones: [[0, width]], width };
   }
 
   /** Cut one strip per margin and fill each with tonight's weather. */

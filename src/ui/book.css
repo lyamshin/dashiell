@@ -34,7 +34,7 @@
   --place-6: #008300;
   --place-7: #4a3aa7;
   --place-8: #e34948;
-  color-scheme: light dark;
+  color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {

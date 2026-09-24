@@ -67,7 +67,10 @@
   bottom: 0;
   left: calc(50% - 50vw);
   width: 100vw;
-  z-index: -1;
+  /* Over the text since 2026-09-24 (designer: "let weather go over the text,
+   * assuming that it's mostly transparent anyway"). It still never takes a
+   * click. */
+  z-index: 5;
   pointer-events: none;
 }
 
