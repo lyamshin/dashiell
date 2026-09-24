@@ -46,6 +46,17 @@ export const RELATION_PLAIN: Record<Id, string> = {
   'rel-witness': 'was going to testify against the people {V} worked for',
   'rel-customer': 'did business with {V}',
   'rel-neighbor': 'lived across the airshaft from {V}',
+  // M14: the ties beyond money.
+  'rel-fence': 'lived over the backyard fence from {V}',
+  'rel-old-flame': 'used to walk out with {V}',
+  'rel-bowling': 'bowled against {V} on Thursdays',
+  'rel-chess': 'played chess with {V} on Tuesdays',
+  'rel-band': 'played in the band with {V}',
+  'rel-cat-feud': 'had been feuding with {V} over a cat',
+  'rel-ladder': 'had borrowed {V}’s ladder and kept it',
+  'rel-clothesline': 'shared a washing line with {V}',
+  'rel-wed': 'was married to {V}',
+  'rel-intended': 'was engaged to {V}',
 };
 
 /**
@@ -74,6 +85,17 @@ export const RELATION_WHY: Record<Id, string> = {
   'rel-witness': 'A witness against dangerous people has reason to be careful.',
   'rel-customer': 'A regular customer knows the hours and the habits.',
   'rel-neighbor': 'A neighbour across the airshaft hears most of what goes on.',
+  // M14.
+  'rel-fence': 'A neighbour over the backyard fence sees who uses the back way.',
+  'rel-old-flame': 'An old flame keeps track, whatever they tell you.',
+  'rel-bowling': 'A rival in the league knows where the other one is on a Thursday.',
+  'rel-chess': 'A chess partner knows how the other one thinks, and when.',
+  'rel-band': 'A band plays the same halls on the same nights, and notices who is missing.',
+  'rel-cat-feud': 'A feud over a cat is carried on from a windowsill, which is a good place to watch from.',
+  'rel-ladder': 'Somebody who owes you a ladder keeps an eye on your windows.',
+  'rel-clothesline': 'A shared washing line means knowing everybody’s business by Monday.',
+  'rel-wed': 'A husband or a wife knows the habits, and the stories told about them.',
+  'rel-intended': 'Somebody engaged to be married keeps a close eye on the other party.',
 };
 
 /** Two to five, said. */

@@ -1,4 +1,5 @@
 import {
+  isMundane,
   TICKS,
   clock,
   type Act,
@@ -364,8 +365,8 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
     // M14: an affair's report is handed over where they said they would be,
     // and the room the pair of them were in is not described until it is found.
     act.type === 'affair'
-      ? `${sceneOpening} ${high.sceneFact.split('{T}').join(clock(M))}`
-      : `${sceneOpening} ${ctx.sceneTrace} ${high.sceneFact.split('{T}').join(clock(M))}`,
+      ? `${sceneOpening} ${aliveFact(high.sceneFact).split('{T}').join(clock(M))}`
+      : `${sceneOpening} ${ctx.sceneTrace} ${(isMundane(act.type) ? aliveFact(high.sceneFact) : high.sceneFact).split('{T}').join(clock(M))}`,
     { anchorId: high.templateId },
   );
 
@@ -717,4 +718,12 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
   }
 
   return { clues, scene, morgue, client, material };
+}
+
+/**
+ * M14: an anchor's fact about the scene, for a case with no body in it. The
+ * rain's says the wet stopped spreading "by the time the body was found".
+ */
+function aliveFact(fact: string): string {
+  return fact.split('by the time the body was found').join('by the time anybody looked');
 }

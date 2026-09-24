@@ -1126,7 +1126,8 @@
     "deck": "thought",
     "text": "{other} was gone. That was the shape of it: robbery.",
     "tags": {
-      "class": "robbery-shape"
+      "class": "robbery-shape",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -1136,7 +1137,8 @@
     "deck": "thought",
     "text": "{other} had been taken from {place}. That made it a robbery first, whatever else it was.",
     "tags": {
-      "class": "robbery-shape"
+      "class": "robbery-shape",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -1146,7 +1148,8 @@
     "deck": "thought",
     "text": "{place} was short {other}. That was robbery, whatever else it proved to be.",
     "tags": {
-      "class": "robbery-shape"
+      "class": "robbery-shape",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -1156,7 +1159,8 @@
     "deck": "thought",
     "text": "Whoever came for {other} got it, and left the rest.",
     "tags": {
-      "class": "robbery-shape"
+      "class": "robbery-shape",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -1176,7 +1180,8 @@
     "deck": "thought",
     "text": "That was theft, plain: {other} was gone and the room said so.",
     "tags": {
-      "class": "robbery-shape"
+      "class": "robbery-shape",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -1206,7 +1211,8 @@
     "deck": "thought",
     "text": "It was robbery, not a grudge against {victim}: {other} was gone.",
     "tags": {
-      "class": "robbery-shape"
+      "class": "robbery-shape",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -1226,7 +1232,8 @@
     "deck": "thought",
     "text": "Whoever came, came for {other}, and got it.",
     "tags": {
-      "class": "robbery-shape"
+      "class": "robbery-shape",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -1236,7 +1243,8 @@
     "deck": "thought",
     "text": "{other} was missing, and that was enough to call it robbery.",
     "tags": {
-      "class": "robbery-shape"
+      "class": "robbery-shape",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -1678,7 +1686,8 @@
     "deck": "thought",
     "text": "That put {other} at {place}. Whoever took it had needed somewhere to put it.",
     "tags": {
-      "class": "goods"
+      "class": "goods",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -1698,7 +1707,8 @@
     "deck": "thought",
     "text": "The goods had a stop on the way, and it was {place}. That was worth more than a guess.",
     "tags": {
-      "class": "goods"
+      "class": "goods",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -1718,7 +1728,8 @@
     "deck": "thought",
     "text": "Stolen things went somewhere, and {other} had gone to {place}.",
     "tags": {
-      "class": "goods"
+      "class": "goods",
+      "case": "robbery"
     },
     "motifs": [],
     "status": "generated"
@@ -4057,7 +4068,8 @@
     "text": "If the coroner was right, it happened {span}. Everybody’s evening would have to be held up against that.",
     "tags": {
       "class": "window",
-      "basis": "coroner"
+      "basis": "coroner",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -4113,6 +4125,726 @@
     "tags": {
       "class": "touches",
       "basis": "absence"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n001",
+    "deck": "thought",
+    "text": "If the household had its hours right, the way out of {scene} stood open {span}. Whoever was near it then was who I wanted to talk to.",
+    "tags": {
+      "class": "window",
+      "basis": "coroner",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n002",
+    "deck": "thought",
+    "text": "So it came down to {span}, if the house had the hours right. Nobody sets a clock by a missing animal, but I would have to.",
+    "tags": {
+      "class": "window",
+      "basis": "coroner",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n003",
+    "deck": "thought",
+    "text": "The animal went {span}, going by the house, and I would take that until somebody gave me better. Every evening I heard from now on would be held up against it.",
+    "tags": {
+      "class": "window",
+      "basis": "coroner",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n004",
+    "deck": "thought",
+    "text": "So it had left {scene} {span}, if the household had it right. Everybody’s evening would have to be held up against that.",
+    "tags": {
+      "class": "window",
+      "basis": "coroner",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n005",
+    "deck": "thought",
+    "text": "{span}, then. A thing that small can go in a minute, but somebody would still have had to be in {scene} for the minute.",
+    "tags": {
+      "class": "window",
+      "basis": "coroner",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n006",
+    "deck": "thought",
+    "text": "The household put it {span}. I would take their word for the hour until somebody gave me a better one.",
+    "tags": {
+      "class": "window",
+      "basis": "coroner",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n007",
+    "deck": "thought",
+    "text": "So the hour that mattered was {span}, if the one who hired me had kept good time. Where {victim} was then, and who else was there, was the whole job.",
+    "tags": {
+      "class": "window",
+      "basis": "coroner",
+      "case": "affair"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n008",
+    "deck": "thought",
+    "text": "{span}, then, by the client’s clock, and nobody keeps better time than somebody who has been kept waiting. Everybody’s evening would have to be held up against it.",
+    "tags": {
+      "class": "window",
+      "basis": "coroner",
+      "case": "affair"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n009",
+    "deck": "thought",
+    "text": "If the client had it right, {victim} was unaccounted for {span}. That was the stretch of the evening I needed filled in, and filled in with a name.",
+    "tags": {
+      "class": "window",
+      "basis": "coroner",
+      "case": "affair"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n010",
+    "deck": "thought",
+    "text": "So {victim}’s animal was still at home at {time}, if that held. Whoever let it out would have come after.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n011",
+    "deck": "thought",
+    "text": "If {victim}’s animal was still where it belonged at {time}, the hours before that were no use to me. It was the ones after that I wanted filled in.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n012",
+    "deck": "thought",
+    "text": "{victim} still had an animal at {time}, if that was right. Anybody I could put somewhere else from then on could go to the back of the line.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n013",
+    "deck": "thought",
+    "text": "So {victim} still had it at {time}, if that held. Wherever it went, it went after that.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n014",
+    "deck": "thought",
+    "text": "If it was still in its place at {time}, the evening before that could go back in the drawer. The hours after were the ones I wanted.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n015",
+    "deck": "thought",
+    "text": "At {time} {victim} would still have had it, going by that. Anybody I could put somewhere else from then on was less interesting to me.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n016",
+    "deck": "thought",
+    "text": "So {victim} was still where {victim} had said at {time}, if that held. Whatever the evening turned into, it turned into it after.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "affair"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n017",
+    "deck": "thought",
+    "text": "At {time} {victim} would still have been keeping to the story. If it came apart, it came apart later than that.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "affair"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n018",
+    "deck": "thought",
+    "text": "If {victim} was where {victim} had promised to be at {time}, the hours before that were honest ones. It was the hours after that I needed.",
+    "tags": {
+      "class": "window",
+      "basis": "alive-at",
+      "case": "affair"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n019",
+    "deck": "thought",
+    "text": "So it was gone by {time}, if that held. Whoever left the way open would have done it before then.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n020",
+    "deck": "thought",
+    "text": "By {time} {victim}’s animal would already have been out in the city somewhere. The hours before that were the ones that mattered.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n021",
+    "deck": "thought",
+    "text": "If it was gone by {time}, anybody who only turned up after that turned up too late to hold the door.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n022",
+    "deck": "thought",
+    "text": "So it was gone by {time}, if that was right. Whoever moved it would have been and gone before then.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n023",
+    "deck": "thought",
+    "text": "By {time} {victim} would no longer have had it. The hours before that were the ones people would have to account for.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n024",
+    "deck": "thought",
+    "text": "If it had left by {time}, the evening after that was no use to me. It was the stretch before it I wanted.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n025",
+    "deck": "thought",
+    "text": "So by {time} {victim} had gone off somewhere, if that held. Where, and who was waiting there, was the question now.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "affair"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n026",
+    "deck": "thought",
+    "text": "If {victim} was not where promised by {time}, the leaving came before that. Whoever {victim} left to meet would have been waiting.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "affair"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n027",
+    "deck": "thought",
+    "text": "By {time} {victim} would have stopped being where {victim} had said. The hours before that were the ones worth knowing about.",
+    "tags": {
+      "class": "window",
+      "basis": "dead-by",
+      "case": "affair"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n028",
+    "deck": "thought",
+    "text": "That pointed to {means}. Before anything else, whoever let {victim}’s animal out {how}.",
+    "tags": {
+      "class": "method",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n029",
+    "deck": "thought",
+    "text": "If that meant {means}, whoever let it out {how}, and knew where to look.",
+    "tags": {
+      "class": "method",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n030",
+    "deck": "thought",
+    "text": "It came down to {means}. Whoever let it out {how}, which is more planning than most people put into a Sunday.",
+    "tags": {
+      "class": "method",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n031",
+    "deck": "thought",
+    "text": "So that was how: {means}. Whoever let {victim}’s animal out {how}, and would remember doing it, whatever got said now.",
+    "tags": {
+      "class": "method",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n032",
+    "deck": "thought",
+    "text": "That pointed to {means}. Before anything else, whoever moved it {how}.",
+    "tags": {
+      "class": "method",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n033",
+    "deck": "thought",
+    "text": "If that meant {means}, whoever moved it {how}, and knew the house well enough to.",
+    "tags": {
+      "class": "method",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n034",
+    "deck": "thought",
+    "text": "It came down to {means}. Whoever moved it {how}, which is a lot of trouble to go to in somebody else’s house.",
+    "tags": {
+      "class": "method",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n035",
+    "deck": "thought",
+    "text": "So that was how it left {victim}’s keeping: {means}. Whoever moved it {how}, and would remember doing so.",
+    "tags": {
+      "class": "method",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n036",
+    "deck": "thought",
+    "text": "That pointed to {means}. Before anything else, whoever {victim} was with {how}.",
+    "tags": {
+      "class": "method",
+      "case": "affair"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n037",
+    "deck": "thought",
+    "text": "If that meant {means}, whoever {victim} was meeting {how}. People do not go to that much trouble over nothing.",
+    "tags": {
+      "class": "method",
+      "case": "affair"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n038",
+    "deck": "thought",
+    "text": "It came down to {means}. Whoever {victim} met {how}, and an evening that takes that much arranging is not an accident.",
+    "tags": {
+      "class": "method",
+      "case": "affair"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n039",
+    "deck": "thought",
+    "text": "So that was how {victim}’s evening was fixed: {means}. Whoever was at the other end of it {how}.",
+    "tags": {
+      "class": "method",
+      "case": "affair"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n040",
+    "deck": "thought",
+    "text": "{other} was out of {place}, and animals that are fed on time are not great adventurers. Somebody would have helped it along, or left a door to do the helping.",
+    "tags": {
+      "class": "robbery-shape",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n041",
+    "deck": "thought",
+    "text": "{other} does not work a latch, whatever {victim} says about how clever it is. Somebody with hands would have been at {place}.",
+    "tags": {
+      "class": "robbery-shape",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n042",
+    "deck": "thought",
+    "text": "So the question was not where {other} had gone. The question was who had been at {place} to let it go.",
+    "tags": {
+      "class": "robbery-shape",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n043",
+    "deck": "thought",
+    "text": "Nobody loses {other} on purpose, and nobody owns up to it by accident. Whoever was last at {place} would know how it went.",
+    "tags": {
+      "class": "robbery-shape",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n044",
+    "deck": "thought",
+    "text": "{victim} had lost {other} and a night’s sleep in the same hour. The hour was the thing to find, and who was at {place} in it.",
+    "tags": {
+      "class": "robbery-shape",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n045",
+    "deck": "thought",
+    "text": "{other} had not so much gone missing from {place} as been let go from it. Somebody would have held a door, or failed to shut one.",
+    "tags": {
+      "class": "robbery-shape",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n046",
+    "deck": "thought",
+    "text": "{other} did not get up and walk out of {place} on its own. Somebody would have carried it, with a pocket or a bag to carry it in.",
+    "tags": {
+      "class": "robbery-shape",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n047",
+    "deck": "thought",
+    "text": "Nobody comes in off the street for {other}. Whoever moved it from {place} would be somebody who already had the run of the place.",
+    "tags": {
+      "class": "robbery-shape",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n048",
+    "deck": "thought",
+    "text": "Whoever moved {other} from {place} would have known where to look for it. In most households that is a short list.",
+    "tags": {
+      "class": "robbery-shape",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n049",
+    "deck": "thought",
+    "text": "{victim} would swear {other} had been in {place}, and so would anybody who had seen it there. The question was who had seen it there last.",
+    "tags": {
+      "class": "robbery-shape",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n050",
+    "deck": "thought",
+    "text": "The trouble with {other} is that it goes wherever a coat goes. Anybody who passed through {place} that evening had a coat.",
+    "tags": {
+      "class": "robbery-shape",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n051",
+    "deck": "thought",
+    "text": "{other} had stayed put at {place} until a hand moved it. I wanted the hand, and whether it had meant to bring the thing back.",
+    "tags": {
+      "class": "robbery-shape",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n052",
+    "deck": "thought",
+    "text": "So that was where {other} had got to: {place}. Somebody would have had to walk it there, or let it follow.",
+    "tags": {
+      "class": "goods",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n053",
+    "deck": "thought",
+    "text": "{place} was a long way for {other} to wander on its own. I wanted to know whether it had company on the way.",
+    "tags": {
+      "class": "goods",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n054",
+    "deck": "thought",
+    "text": "{other} had turned up at {place}, looking better fed than I was. Whoever was there that evening would know how it came in.",
+    "tags": {
+      "class": "goods",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n055",
+    "deck": "thought",
+    "text": "Animals go where the food is, or where the people they like are. {place} had one of those for {other}, and I wanted to know which.",
+    "tags": {
+      "class": "goods",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n056",
+    "deck": "thought",
+    "text": "So {other} had spent the evening at {place}. That answered where, and asked a better question: whether it had got there alone.",
+    "tags": {
+      "class": "goods",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n057",
+    "deck": "thought",
+    "text": "Nobody at {place} would have sent for {other}. It would have come with somebody, or after somebody, and either way that was a name.",
+    "tags": {
+      "class": "goods",
+      "case": "lost-pet"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n058",
+    "deck": "thought",
+    "text": "So {other} had turned up at {place}. Things like that do not travel on their own, whatever the family says.",
+    "tags": {
+      "class": "goods",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n059",
+    "deck": "thought",
+    "text": "{place} was the last place anybody would look for {other}, which may have been the idea.",
+    "tags": {
+      "class": "goods",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n060",
+    "deck": "thought",
+    "text": "Somebody had carried {other} as far as {place}. Whoever it was would have a reason, and it would not be a large one.",
+    "tags": {
+      "class": "goods",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n061",
+    "deck": "thought",
+    "text": "Now I knew where {other} had got to: {place}. That left how it got there, and in whose pocket.",
+    "tags": {
+      "class": "goods",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n062",
+    "deck": "thought",
+    "text": "{other} at {place}, of all places. If it had been mislaid, somebody had mislaid it a long way from home.",
+    "tags": {
+      "class": "goods",
+      "case": "lost-item"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-n063",
+    "deck": "thought",
+    "text": "{other} had got as far as {place}. Whoever set it down there would have a story about it, and I wanted to hear the story.",
+    "tags": {
+      "class": "goods",
+      "case": "lost-item"
     },
     "motifs": [],
     "status": "generated"

@@ -452,7 +452,14 @@ export function mount(root: HTMLElement): void {
     const budget = gameBudget((kase as Case));
     const newest = shownIndex === run.log.length - 1;
     const used = usedByPage(run.log, shownIndex);
-    const strip = clockStrip(used, budget);
+    // M14: a mundane case answers to the client at eight, not the DA.
+    const strip = clockStrip(
+      used,
+      budget,
+      ['lost-pet', 'lost-item', 'affair'].includes((view as CaseView).kase.act.type)
+        ? `${(view as CaseView).client.surname} wants an answer at eight`
+        : undefined,
+    );
     const head = el('header', { class: 'runhead runhead--clock' });
     // On a phone the notebook is a page of its own, and the way to it lives
     // in the running head rather than on a tab over the prose.

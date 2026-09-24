@@ -28,19 +28,19 @@ const PLAIN_PURPOSES = {
 export const M14_RELATIONSHIPS: Relationship[] = [
   {
     id: 'rel-fence',
-    text: '{V}’s neighbour across the back fence',
+    text: '{V}’s neighbour over the backyard fence',
     impliesMotives: ['property', 'revenge'],
     backstory: [
-      '{person} has lived on the other side of {victim}’s back fence since {year}, and the fence has leaned toward {person}’s side the whole time',
-      '{person} and {victim} have talked across the back fence every morning since {year} and agreed about nothing in all that time',
-      '{person} planted tomatoes along {victim}’s fence in {year}, and {victim} has been picking them ever since',
+      '{person} has lived on the other side of {victim}’s backyard fence since {year}, and the fence posts have leaned toward {person}’s side the whole time',
+      '{person} and {victim} have talked across the fence every morning since {year} and agreed about nothing in all that time',
+      '{person} planted tomatoes along the fence in {year}, and {victim} has been picking them ever since',
     ],
     backstoryFirst: [
-      'I have lived on the other side of {victim}’s back fence since {year}. The fence leans my way. It has always leaned my way.',
-      '{victim} and I talk across the back fence every morning. Since {year}. We have not agreed about one thing.',
-      'I planted tomatoes along {victim}’s fence in {year}. {victim} has been picking them ever since. On {victim}’s side, you understand.',
+      'I have lived on the other side of {victim}’s backyard fence since {year}. The fence posts lean my way. They have always leaned my way.',
+      '{victim} and I talk across the fence every morning. Since {year}. We have not agreed about one thing.',
+      'I planted tomatoes along the fence in {year}. {victim} has been picking them ever since. On {victim}’s side, you understand.',
     ],
-    since: ['since {year}', 'every morning for years', 'since the fence went up'],
+    since: ['since {year}', 'every morning for years', 'since the garden fence went up'],
     purposes: PLAIN_PURPOSES,
   },
   {
@@ -188,9 +188,7 @@ export const AFFAIR_RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'eleven years this June', 'since the week after the war'],
     purposes: {
-      murder: { 'find-the-killer-police-wont': 50, 'clear-my-name': 30, 'keep-it-quiet': 20 },
-      robbery: { 'get-it-back': 50, 'keep-it-quiet': 30, 'clear-my-name': 20 },
-      missing: { 'bring-them-home': 70, 'keep-it-quiet': 30 },
+      ...PLAIN_PURPOSES,
       affair: { 'tell-me-the-truth': 60, 'put-my-mind-at-rest': 40 },
     },
   },
@@ -211,9 +209,7 @@ export const AFFAIR_RELATIONSHIPS: Relationship[] = [
     ],
     since: ['since {year}', 'since last Christmas', 'until June'],
     purposes: {
-      murder: { 'find-the-killer-police-wont': 50, 'clear-my-name': 30, 'keep-it-quiet': 20 },
-      robbery: { 'get-it-back': 40, 'keep-it-quiet': 30, 'clear-my-name': 30 },
-      missing: { 'bring-them-home': 70, 'keep-it-quiet': 30 },
+      ...PLAIN_PURPOSES,
       affair: { 'tell-me-the-truth': 55, 'put-my-mind-at-rest': 45 },
     },
   },

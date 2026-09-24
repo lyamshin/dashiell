@@ -20,7 +20,7 @@ import { buildSchedules, type ScheduleBuild } from './schedule.js';
 import { deriveCandidates, deriveObservations } from './clues.js';
 import { selectFindable } from './select.js';
 import { checkSolvability, type CaseUnderTest } from './solvability.js';
-import { pickTieredTrope, pickTrope, type Trope, type TropeContext } from './tropes/index.js';
+import { TROPE_BY_ID, pickTieredTrope, pickTrope, type Trope, type TropeContext } from './tropes/index.js';
 import { buildVictimBio } from './victim.js';
 import { buildClientBrief } from './client.js';
 import { briefingStrings, buildBriefing } from './briefing.js';
@@ -202,6 +202,13 @@ function run(
   // M9: a case dealt with a tier is a logic game. The no-options case is not,
   // and keeps every draw it made before M9.
   if (!dials.plain) return ownTopics(runLogic(seed, detectiveName, dials, diagnostics, opts));
+  // M14: the mundane three exist only as logic games. Asked for by name on
+  // the untiered path — a reader's `--trope pet-taken`, a test sweeping every
+  // trope — they are dealt at Hard-boiled on the spec's ladder at that level.
+  const forced = opts?.tropeId !== undefined ? TROPE_BY_ID[opts.tropeId]?.type : opts?.type;
+  if (forced === 'lost-pet' || forced === 'lost-item' || forced === 'affair') {
+    return run(seed, detectiveName, resolveDials({ tier: 5, level: dials.difficulty }), diagnostics, opts);
+  }
   const { shape, ladder, difficulty } = dials;
   const salt = tierSalt(dials);
   const rng = new Rng(seed + difficulty * 7919 + salt * 104729);

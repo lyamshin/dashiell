@@ -15,6 +15,7 @@ import { actionsLeft, clockAfter, minutesPerAction } from './clock.js';
 import type { CaseView } from './derive.js';
 import {
   MOTIVE_POOL,
+  victimWord,
   accountRuns,
   claimedAccount,
   establishedFrom,
@@ -140,6 +141,8 @@ export interface Notebook {
   established: NotebookEstablished;
   foundCount: number;
   findableCount: number;
+  /** M14: what the one the case is about is called: the victim, the owner, the one it is about. */
+  victimWord: string;
 }
 
 /** `dossierKnown`'s four layers, under the names the notebook prints. */
@@ -386,6 +389,7 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
       budget: gameBudget(kase),
       perAction: minutesPerAction(gameBudget(kase)),
     },
+    victimWord: victimWord(kase.act.type),
     people,
     places,
     threads,
@@ -451,7 +455,7 @@ export function personCard(
 
   const title = onPaper(view, state).includes(person.name) ? person.name : person.surname;
   const lines: string[] = [];
-  const role = `${entry.role}${entry.isClient ? ', our client' : ''}${entry.isVictim ? ', the victim' : ''}`;
+  const role = `${entry.role}${entry.isClient ? ', our client' : ''}${entry.isVictim ? `, ${victimWord(view.kase.act.type)}` : ''}`;
   lines.push(`${role.charAt(0).toUpperCase()}${role.slice(1)}.`);
   const look = entry.dossier.onSight.find((l) =>
     /\b(teens|twenties|thirties|forties|fifties|sixties|seventies)\b/.test(l),

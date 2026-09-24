@@ -52,6 +52,14 @@ export const MOTIVE_POOL = [...MOTIVE_TEMPLATES, ...MUNDANE_MOTIVES, ...AFFAIR_M
 }));
 
 /**
+ * M14: what the notebook calls the person the case is about. Nobody died in a
+ * lost-pet or lost-item case, and an affair's is a husband or a wife.
+ */
+export function victimWord(type: CaseType): string {
+  return type === 'lost-pet' || type === 'lost-item' ? 'the owner' : type === 'affair' ? 'the one it is about' : 'the victim';
+}
+
+/**
  * M14: the reasons the report offers for a case of this type. A lost dog's
  * report offers spite and pride, not an inheritance; an affair never asks.
  */

@@ -242,13 +242,13 @@ export const ITEM_MEANS: MeansTemplate[] = [
   },
   {
     id: 'item-umbrella',
-    name: 'an umbrella out of the stand, to carry it under',
+    name: 'something carried out under an umbrella on a dry night',
     noise: 0,
     evidenceObjectId: 'obj-umbrella',
     bodyEvidence: 'Nothing was forced. It went out under something, on a dry night, which somebody noticed.',
     evidenceNote: 'One umbrella is gone out of the stand on a night it did not rain.',
     sceneTrace: 'The shelf is bare where it stood, and there is a drip of candle wax on the edge that was not there before.',
-    accessNote: 'had to take an umbrella out of the stand on a dry night',
+    accessNote: 'had to fetch one out of the brass stand first',
     soundNote: 'an umbrella being opened indoors, and somebody saying that was bad luck',
   },
 ];
@@ -289,13 +289,13 @@ export const MEETING_MEANS: MeansTemplate[] = [
   },
   {
     id: 'meet-umbrella',
-    name: 'an umbrella, on a dry night, to walk under',
+    name: 'a walk under an umbrella on a dry night, so as not to be seen',
     noise: 0,
     evidenceObjectId: 'obj-umbrella',
     bodyEvidence: 'Somebody walked there under an umbrella on a night it did not rain, which is how you walk when you do not want your face seen.',
     evidenceNote: 'One umbrella is out of the stand, and it did not rain all evening.',
     sceneTrace: 'A dry umbrella stand by the door, and two coats on one hook.',
-    accessNote: 'had to take an umbrella out of the stand',
+    accessNote: 'had to fetch one out of the brass stand first',
     soundNote: 'two sets of footsteps on the stairs, one of them trying to be quiet',
   },
 ];

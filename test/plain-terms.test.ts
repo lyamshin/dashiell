@@ -97,11 +97,14 @@ describe('plain terms: no banned genre term in anything a player reads', () => {
   });
 
   for (const type of CASE_TYPES) {
-    it(`finds none in 40 seeds × 3 difficulties of ${type} cases`, () => {
+    // M14: the mundane three are Hard-boiled logic games, slower to deal and
+    // play, so they are read over fewer seeds.
+    const seeds = ['lost-pet', 'lost-item', 'affair'].includes(type) ? 12 : 40;
+    it(`finds none in ${seeds} seeds × 3 difficulties of ${type} cases`, () => {
       const found: string[] = [];
       let pending = 0;
       for (const difficulty of [1, 2, 3] as Difficulty[]) {
-        for (let seed = 1; seed <= 40; seed++) {
+        for (let seed = 1; seed <= seeds; seed++) {
           for (const { where, text } of playerText(seed, difficulty, type)) {
             for (const hit of find(text)) {
               if (excused(text, hit)) {

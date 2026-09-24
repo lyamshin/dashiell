@@ -66,7 +66,8 @@ import { namedIn, proseTexts } from './scene/text.js';
 import { paceClues } from './scene/families.js';
 import { parse } from './parser.js';
 import { possessiveOf } from './voice/cast.js';
-import { DA_AT_THE_DOOR, RECAP_NOTHING_NEW, RECAP_OFFICE, RECAP_TOO_SOON } from './voice-data.js';
+import { CLIENT_AT_THE_DOOR, DA_AT_THE_DOOR, RECAP_NOTHING_NEW, RECAP_OFFICE, RECAP_TOO_SOON } from './voice-data.js';
+import { isMundane } from '../gen/types.js';
 import { recapTrigger, renderRecap, type RecapTrigger } from './recap.js';
 import {
   Dealer,
@@ -874,7 +875,9 @@ export function step(
       blocks = [
         {
           kind: 'note',
-          text: 'I put a sheet of paper in the typewriter. Five questions, and the DA only reads the answers.',
+          text: isMundane(view.kase.act.type)
+            ? `I put a sheet of paper in the typewriter. ${view.client.surname} only wants the answers.`
+            : 'I put a sheet of paper in the typewriter. Five questions, and the DA only reads the answers.',
         },
       ];
       break;
@@ -1193,7 +1196,10 @@ export function step(
   const actionsUsed = state.actionsUsed + cost;
   const overNow = isOver(actionsUsed, gameBudget(kase));
   if (cost > 0 && overNow && !state.reportOpen) {
-    blocks.push({ kind: 'note', text: DA_AT_THE_DOOR });
+    blocks.push({
+      kind: 'note',
+      text: isMundane(kase.act.type) ? CLIENT_AT_THE_DOOR.split('{client}').join(view.client.surname) : DA_AT_THE_DOOR,
+    });
   }
 
   const next: RunState = {

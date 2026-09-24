@@ -71,12 +71,17 @@ describe('M7: the presets', () => {
     expect(TIERS[2].innocentSecrets).toBe(1);
     expect(TIERS[3].coronerWidth).toBe(2);
     expect(TIERS[3].anchorsRequired).toBe(1);
-    expect(TIERS[4].caseTypes).toEqual(['murder', 'robbery', 'missing']);
+    // M14 §1.5: every tier deals every case type, the mundane three included.
+    for (const s of CAMPAIGN) expect(s.caseTypes).toEqual(['murder', 'robbery', 'missing', 'lost-pet', 'lost-item', 'affair']);
     expect(HARD_BOILED.clientMayBeCulprit).toBe(true);
     for (const s of CAMPAIGN.slice(0, 5)) expect(s.clientMayBeCulprit).toBe(false);
-    // Raw through Poached deal only murders with the body at the scene.
-    for (const s of CAMPAIGN.slice(0, 3)) expect(s.tropes).toEqual(['body-at-scene']);
-    expect(TIERS[3].tropes.every((t) => TROPE_BY_ID[t]?.type === 'murder')).toBe(true);
+    // Raw through Poached deal only the murders with the body at the scene;
+    // Soft-boiled opens every murder trope. `left` waits for Medium, whose
+    // report asks where and why, since it never asks who.
+    const murders = (s: (typeof CAMPAIGN)[number]) => s.tropes.filter((t) => TROPE_BY_ID[t]?.type === 'murder');
+    for (const s of CAMPAIGN.slice(0, 3)) expect(murders(s)).toEqual(['body-at-scene']);
+    expect(murders(TIERS[3]).length).toBe(4);
+    for (const s of CAMPAIGN.slice(0, 4)) expect(s.tropes).not.toContain('left');
   });
 
   it('spreads the noise across the ladder and ends single-route', () => {
@@ -155,8 +160,10 @@ describe('M7: resolving options into dials', () => {
   });
 
   it('refuses a trope the tier does not deal', () => {
-    expect(() => generateCase(1, { tier: 0, tropeId: 'payroll' })).toThrow();
-    expect(() => generateCase(1, { tier: 2, type: 'robbery' })).toThrow();
+    // M14: every tier deals every type now, but `left` still waits for Medium,
+    // and the moved body for Soft-boiled.
+    expect(() => generateCase(1, { tier: 0, tropeId: 'left' })).toThrow();
+    expect(() => generateCase(1, { tier: 2, tropeId: 'body-moved' })).toThrow();
   });
 });
 
@@ -201,11 +208,12 @@ describe('M7: the report asks the tier’s questions', () => {
 
   it('never names the method in the givens where the report asks how', () => {
     for (const seed of [1, 2, 3, 4, 5]) {
-      const c = generateCase(seed, { tier: 1, level: 2 });
+      // M14: a murder, which is the case type the method belongs to.
+      const c = generateCase(seed, { tier: 1, level: 2, type: 'murder' });
       expect(c.act.unknowns).toContain('how');
       expect(c.act.givens.text.some((t) => t.includes(c.method.name))).toBe(false);
       expect(c.act.givens.facts.some((f) => f.kind === 'methodEvidence')).toBe(false);
-      const raw = generateCase(seed, { tier: 0 });
+      const raw = generateCase(seed, { tier: 0, type: 'murder' });
       expect(raw.act.givens.text.some((t) => t.includes(raw.method.name))).toBe(true);
     }
   });

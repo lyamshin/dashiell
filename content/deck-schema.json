@@ -203,6 +203,7 @@
           "values": ["came-and-went", "called-it-a-fall", "took-a-statement", "not-yet-called", "closed-it-in-an-hour", "any"]
         },
         "errand": { "required": false, "default": "any", "values": ["affair", "night-class", "second-job", "surprise", "sick-relative", "business", "any"] },
+        "mundane": { "required": false, "default": "any", "values": ["yes", "no", "any"], "$note": "M14: no for a line that reads as a crime being done, kept out of a lost pet, a lost item and an affair." },
         "told": { "required": false, "default": "any", "values": ["truth", "half", "nothing", "any"] },
         "pet": { "required": false, "default": "any", "values": ["dog", "cat", "parrot", "goat", "any"] }
       },

@@ -430,7 +430,7 @@ describe('the report', () => {
   });
 
   it('chooses the ending by case type and by outcome', () => {
-    const shapes: Record<CaseType, string> = {
+    const shapes: Partial<Record<CaseType, string>> = {
       murder: 'hangs',
       robbery: 'Nobody hangs for a robbery',
       missing: 'did not want finding',

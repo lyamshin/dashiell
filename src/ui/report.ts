@@ -61,12 +61,14 @@ export function renderReportForm(
     const legend = el('legend', { text: 'Where everybody was when it happened' });
     const when = built.find((f) => f.spec.key === 'when');
     const note = el('p', { class: 'note', text: '' });
+    // M14: nobody sends a lost dog to the DA.
+    const checker = ['lost-pet', 'lost-item', 'affair'].includes(kase.act.type) ? 'I check each myself' : 'the DA checks each';
     const paintNote = (): void => {
       const t = when?.ui.select.value;
       note.textContent =
         t !== undefined && t !== ''
-          ? `At ${clock(Number(t) as Parameters<typeof clock>[0])}, by the hour above. One line a person; the DA checks each.`
-          : 'At the half hour it happened. One line a person; the DA checks each.';
+          ? `At ${clock(Number(t) as Parameters<typeof clock>[0])}, by the hour above. One line a person; ${checker}.`
+          : `At the half hour it happened. One line a person; ${checker}.`;
     };
     when?.ui.select.addEventListener('change', paintNote);
     paintNote();

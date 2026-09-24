@@ -20,7 +20,7 @@
  */
 
 import type { Clue, Fact, Id, Person, Tick } from '../../gen/types.js';
-import { spokenClock } from '../../gen/types.js';
+import { isTheft, spokenClock } from '../../gen/types.js';
 import type { CaseView } from '../derive.js';
 import { establishedFrom } from '../derive.js';
 import { clearedOnTwo, verdictsOn } from '../m9.js';
@@ -408,8 +408,9 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
           // scene signature is exactly this fact, from the room or from the
           // one who watched its door.
           out.push({ cls: 'not-robbery', placeId: scene, clueIds: [clue.id] });
-        } else if (kase.act.type === 'robbery') {
+        } else if (isTheft(kase.act.type) || kase.act.type === 'affair') {
           // The owner somewhere at an hour: one hour of the night accounted for.
+          // M14: and in an affair, the one it is about — which is the case.
           out.push({ cls: 'context', basis: 'placed', subjectId: p.personId, placeId: p.placeId, tick: t, clueIds: [clue.id] });
         }
         continue;
@@ -538,12 +539,12 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
           if (means && means.kind === 'methodEvidence') {
             out.push({ cls: 'method', objectId: f.objectId, placeId: f.fromPlace, methodId: means.methodId, clueIds: [clue.id] });
           } else if (f.fromPlace === scene || f.fromPlace === kase.act.place) {
-            if (clue.place !== f.fromPlace && kase.act.type === 'robbery') {
+            if (clue.place !== f.fromPlace && isTheft(kase.act.type)) {
               out.push({ cls: 'goods', objectId: f.objectId, placeId: clue.place, clueIds: [clue.id] });
             } else {
               out.push({ cls: 'robbery-shape', objectId: f.objectId, placeId: f.fromPlace, clueIds: [clue.id] });
             }
-          } else if (kase.act.type === 'robbery') {
+          } else if (isTheft(kase.act.type)) {
             out.push({ cls: 'goods', objectId: f.objectId, placeId: clue.place, clueIds: [clue.id] });
           } else {
             // A murder's missing thing is its weapon, gone from where it lived.

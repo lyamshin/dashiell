@@ -16,6 +16,7 @@
 import { describe, expect, it } from 'vitest';
 import { generateCase, type Case, type Difficulty, type Id, type Tick } from '../src/gen/index.js';
 import { TROPE_IDS } from '../src/gen/tropes/index.js';
+import { LEGACY_TROPES } from '../src/gen/shape.js';
 import { RELATIONSHIPS, VICTIM_ARCHETYPES, VICTIM_ARCHETYPE_BY_ID, RELATIONSHIP_BY_ID } from '../src/gen/data/cast.js';
 import { MOTIVE_TEMPLATES } from '../src/gen/data/motives.js';
 import { genderForms } from '../src/gen/dossier.js';
@@ -35,6 +36,9 @@ import {
 
 /* ------------------------------------------------------------ the cases */
 
+/** M14: the tropes the untiered case never deals. */
+const M14_TROPES = TROPE_IDS.filter((id) => !LEGACY_TROPES.includes(id));
+
 const CASES: Case[] = [];
 // `STORY_SEEDS=600 npx vitest run test/story.test.ts` reads further, for a sweep.
 const SEEDS = Number(process.env.STORY_SEEDS ?? 120);
@@ -48,6 +52,12 @@ for (const tropeId of TROPE_IDS) {
 // M7's tiers deal smaller and larger cases on other dials.
 for (const tier of [0, 2, 4, 'over-easy'] as const) {
   for (let seed = 300; seed < 306; seed++) CASES.push(generateCase(seed, { tier }));
+}
+// M14: the mundane three, which only a tier deals, every trope of them.
+for (const tropeId of M14_TROPES) {
+  for (const tier of [0, 2, 4] as const) {
+    for (let seed = 400; seed < 403; seed++) CASES.push(generateCase(seed, { tier, tropeId }));
+  }
 }
 
 /* ------------------------------------------------------------ the checker */
@@ -65,6 +75,8 @@ function allowedPeople(kase: Case): Set<Id> {
   const out = new Set<Id>([kase.solution.killerId, victimOf(kase).id]);
   if (kase.victimBio.discovery) out.add(kase.victimBio.discovery.foundById);
   if (kase.victimBio.lastSeen) out.add(kase.victimBio.lastSeen.byId);
+  // M14: an affair's story ends on what I told the client.
+  if (kase.act.type === 'affair') out.add(kase.clientId);
   return out;
 }
 
@@ -201,6 +213,13 @@ function check(kase: Case, f: StoryFact): string | null {
       return ls?.byId === f.personId && ls.place === f.placeId && ls.tick === f.tick ? null : 'wrong last sighting';
     case 'client':
       return kase.clientId === f.personId && f.personId === killer.id ? null : 'not the client';
+    case 'claimed':
+      return act.claimedAt === f.placeId ? null : 'not where they said';
+    case 'errand':
+      return act.errand === f.value ? null : 'wrong errand';
+    case 'told':
+      // What I told the client is the player's, not the case's.
+      return act.type === 'affair' ? null : 'told, of a case that is not an affair';
   }
 }
 
@@ -430,11 +449,15 @@ describe('the story: shape', () => {
       const lines = storyOf(kase).paragraphs.flat();
       const beats = lines.map((l) => l.beat);
       const need = ['open', 'headline', 'motive', 'moment', 'act', 'close'];
-      if (kase.act.type !== 'missing') need.push('found');
+      // M14: an affair has nobody walking in on anything; it has where they
+      // said they would be, what it really was, and what I told the client.
+      if (kase.act.type === 'affair') need.push('claimed', 'errand', 'told');
+      else if (kase.act.type !== 'missing') need.push('found');
       else need.push('lastseen', 'whereabouts');
       if (kase.act.tropeId === 'body-moved') need.push('moved');
       if (kase.act.tropeId === 'locked-room') need.push('key');
-      if (kase.act.type === 'robbery') need.push('goods');
+      if (kase.act.type === 'robbery' || kase.act.type === 'lost-pet' || kase.act.type === 'lost-item') need.push('goods');
+      if (kase.act.type === 'lost-pet') need.push('pet');
       for (const beat of need) expect(beats, `case ${kase.seed} ${kase.act.tropeId}: ${beat}`).toContain(beat);
       expect(beats.includes('means') || beats.includes('key'), `case ${kase.seed}: means`).toBe(true);
       const order = ['headline', 'means', 'moment', 'act', 'found'].map((b) => beats.indexOf(b)).filter((i) => i >= 0);

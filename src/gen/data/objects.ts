@@ -59,11 +59,11 @@ export const OBJECT_TEMPLATES: ObjectTemplate[] = [
   { id: 'obj-pet-cat', name: 'the ginger tomcat' },
   { id: 'obj-pet-parrot', name: 'the green parrot' },
   { id: 'obj-pet-goat', name: 'the nanny goat' },
-  { id: 'obj-ring', name: 'a gold wedding ring' },
-  { id: 'obj-watch', name: 'a gold pocket watch' },
-  { id: 'obj-medal', name: 'a war medal in a velvet box' },
-  { id: 'obj-teeth', name: 'a set of false teeth' },
-  { id: 'obj-trophy', name: 'a bowling trophy' },
+  { id: 'obj-ring', name: 'the gold wedding ring' },
+  { id: 'obj-watch', name: 'the gold pocket watch' },
+  { id: 'obj-medal', name: 'the war medal in its velvet box' },
+  { id: 'obj-teeth', name: 'the set of false teeth' },
+  { id: 'obj-trophy', name: 'the bowling trophy' },
 ];
 
 /** M14: the animal, by kind. */

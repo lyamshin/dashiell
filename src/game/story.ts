@@ -347,7 +347,9 @@ function cardMatches(card: StoryCard, beat: string, query: Query): boolean {
 }
 
 function specificity(card: StoryCard): number {
-  return Object.entries(card.tags).filter(([k, v]) => k !== 'beat' && v !== 'any').length;
+  // M14: `mundane: no` keeps a card out of the three mundane cases; it says
+  // nothing more of the case, so it weighs nothing.
+  return Object.entries(card.tags).filter(([k, v]) => k !== 'beat' && k !== 'mundane' && v !== 'any').length;
 }
 
 /**
@@ -517,6 +519,7 @@ class Teller {
       method: input.means.methodId,
       ...(input.act.fate === 'left' || input.act.fate === 'taken' ? { fate: input.act.fate } : {}),
       ...(input.act.errand === undefined ? {} : { errand: input.act.errand }),
+      mundane: input.type === 'lost-pet' || input.type === 'lost-item' || input.type === 'affair' ? 'yes' : 'no',
       ...(input.act.pet === undefined ? {} : { pet: input.act.pet }),
       ...(input.told === undefined ? {} : { told: input.told }),
     };

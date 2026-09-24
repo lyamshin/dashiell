@@ -104,7 +104,7 @@ export const DISCOVERY_TEXT_FIRST: Record<DiscoveryShape, string[]> = {
   ],
   lost: [
     'I found {thing} gone from {L}. {Tc}. The way out was standing open.',
-    'I did, at {T}. I got to {L}, and {thing} was gone, and the way out was open.',
+    'It was me, at {T}. I got to {L}, and {thing} was gone, and the way out was open.',
     '{Tc}. I got to {L} and {thing} was not there.',
   ],
   affair: [
@@ -125,12 +125,12 @@ const PRECINCT_BY_TROPE: Record<Id, Precinct[]> = {
   taken: ['took-a-statement', 'not-yet-called'],
   // M14: nobody calls the police about a dog, and a husband is not a police matter.
   'pet-left-open': ['not-yet-called'],
-  'pet-taken': ['not-yet-called', 'came-and-went'],
+  'pet-taken': ['not-yet-called'],
   'pet-followed': ['not-yet-called'],
   'item-borrowed': ['not-yet-called'],
   'item-pawned': ['not-yet-called', 'took-a-statement'],
   'item-hidden': ['not-yet-called'],
-  'item-mislaid': ['not-yet-called', 'came-and-went'],
+  'item-mislaid': ['not-yet-called'],
   'the-affair': ['not-yet-called'],
   'the-secret': ['not-yet-called'],
   'the-business': ['not-yet-called'],

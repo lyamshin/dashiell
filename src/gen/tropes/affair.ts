@@ -41,7 +41,11 @@ function givens(ctx: TropeContext, closer: string) {
     facts,
     text: [
       `${V} said ${he(ctx)} would be at ${P} all evening.`,
-      `Some time ${between(lo, hi)}, ${V} was somewhere else, with somebody.`,
+      // Below Medium the report does not ask where, so where is a given: the
+      // question is only who with.
+      ctx.act.unknowns.includes('where')
+        ? `Some time ${between(lo, hi)}, ${V} was somewhere else, with somebody.`
+        : `Some time ${between(lo, hi)}, ${V} was at ${ctx.placeName(ctx.act.place)} instead, with somebody.`,
       `${V} came home late with a story about ${P}, and the story had a hole in it the size of the evening.`,
       closer,
     ],

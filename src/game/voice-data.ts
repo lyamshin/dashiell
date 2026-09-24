@@ -466,6 +466,10 @@ export const GUEST_POSTS: Record<string, string[]> = {
 export const DA_AT_THE_DOOR =
   'Eight o’clock. Somebody from the DA’s office is at the door with a folder and a pen, and the folder is mine whether I write in it or not.';
 
+/** M14: nobody sends a lost dog or a husband to the DA. {client} is the client. */
+export const CLIENT_AT_THE_DOOR =
+  'Eight o’clock, and the knock at the door is {client}, wanting an answer. The answer is mine to give whether I have it or not.';
+
 /* ------------------------------------------------------------------ *
  * M8 — the lines the scene's planner writes in code rather than deals.
  *
