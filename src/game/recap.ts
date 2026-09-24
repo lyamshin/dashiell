@@ -61,6 +61,9 @@ export type RecapTrigger = 'lie' | 'confront' | 'window' | 'link' | 'hour' | 'de
 /** The recap's word count, both ends inclusive. */
 export const RECAP_WORDS: readonly [number, number] = [80, 180];
 
+/** Pages before the frame (when, where, how) may be said again to make a recap's length. */
+export const RECAP_FRAME_GAP = 4;
+
 type Part = 'when' | 'people' | 'next';
 
 /** One thing the notebook holds (or lacks), keyed by exactly what a clause about it asserts. */
@@ -144,7 +147,11 @@ function inkOnly(view: CaseView, state: RunState, everyone: boolean): RunState {
  * the correspondence checker asks for a superset: a clause about one person
  * is keyed by that person alone, so what the notebook held is still found.
  */
-export function recapFacts(view: CaseView, state: RunState, opts: { everyone?: boolean } = {}): RecapFact[] {
+export function recapFacts(
+  view: CaseView,
+  state: RunState,
+  opts: { everyone?: boolean; prefer?: Id } = {},
+): RecapFact[] {
   const kase = view.kase;
   const st = inkOnly(view, state, opts.everyone === true);
   const book = buildNotebook(view, st);
@@ -240,8 +247,12 @@ export function recapFacts(view: CaseView, state: RunState, opts: { everyone?: b
       ink(t).find(
         (e) => e.source === 'claimed' && e.by === P && e.present && !e.clueId.startsWith('said:') && !e.clueId.startsWith('brief:'),
       );
+    // Somebody else's word, or a thing found — never the briefing's line about
+    // who found the body, which is not anybody's account of an evening.
     const othersAt = (t: number): GridEntry[] =>
-      ink(t).filter((e) => (e.source === 'witness' && e.by !== undefined && e.by !== P) || e.source === 'evidence');
+      ink(t).filter(
+        (e) => !e.clueId.startsWith('brief:') && ((e.source === 'witness' && e.by !== undefined && e.by !== P) || e.source === 'evidence'),
+      );
     const covered = new Set<number>();
     let told = false;
 
@@ -390,7 +401,7 @@ export function recapFacts(view: CaseView, state: RunState, opts: { everyone?: b
         const shown = known.slice(0, 2);
         const list = shown.length > 0 ? shown.map((x) => name(x)).join(' and ') : undefined;
         out.push({
-          key: `others|${P}|${shown.length > 0 ? shown.join(',') : 'somebody'}|${hole ? `hole:${matter.join(',')}` : 'whole'}`,
+          key: `others|${P}|${shown.length > 0 ? shown.join(',') : 'somebody'}`,
           part: 'people',
           kind: 'others',
           personIds: [P, ...shown],
@@ -413,6 +424,8 @@ export function recapFacts(view: CaseView, state: RunState, opts: { everyone?: b
         sources.length === 0 &&
         !Array.from({ length: 12 }, (_, t) => t).some((t) => inkAt(t)) &&
         person.foundAt &&
+        // The one paying him is not somebody he has "only seen".
+        P !== view.client.id &&
         // Seen in person on a page, not only named in somebody's mouth.
         (opts.everyone === true || (shownIds.has(P) && readerKnows(P)))
       ) {
@@ -431,12 +444,11 @@ export function recapFacts(view: CaseView, state: RunState, opts: { everyone?: b
         });
       }
     }
-    // Nobody has placed them at the half hour that matters — unless the
-    // clause about whose word their evening is on has already said so.
-    const saidHole = out.some((f) => f.kind === 'others' && f.subjectId === P && f.ticks.length > 0);
+    // Nobody has placed them at the half hour that matters. (When the clause
+    // about whose word their evening is on says so too, the recap says it once.)
     // Somebody the reader knows by name, or has at least seen and can be told by sight.
-    const sayable = named(P) || (opts.everyone === true) || (shownIds.has(P) && name(P) !== person.surname);
-    if (hole && !saidHole && sayable) unplaced.push(P);
+    const sayable = named(P) || opts.everyone === true || (shownIds.has(P) && name(P) !== person.surname);
+    if (hole && sayable) unplaced.push(P);
   }
   for (const P of unplaced) {
     const person = view.personById.get(P) as Person;
@@ -459,7 +471,9 @@ export function recapFacts(view: CaseView, state: RunState, opts: { everyone?: b
 
   /* What he means to do next: the first lead open, and an evening nobody has told. */
   const next: { key: string; ids: Id[]; places: Id[]; lines: readonly string[]; slots: Record<string, string | undefined> }[] = [];
-  for (const t of threadsFor(view, st.found)) {
+  // The lead the page just named first, so the recap and the page agree on what comes next.
+  const threads = threadsFor(view, st.found).sort((a, b) => Number(b.clueId === opts.prefer) - Number(a.clueId === opts.prefer));
+  for (const t of threads) {
     if (next.length > 0) break;
     const ask = /^ask (\S+) about (.+)$/.exec(t.command);
     if (ask) {
@@ -562,14 +576,18 @@ export function renderRecap(
   state: RunState,
   dealer: Dealer,
   trigger: RecapTrigger,
+  /** The lead this page named, so the recap's "next" agrees with the page. */
+  prefer?: Id,
 ): RecapWritten | RecapRefusal {
   const memory = state.scene?.recap;
   const said = new Set(memory?.said ?? []);
-  const facts = recapFacts(view, state);
+  const facts = recapFacts(view, state, prefer === undefined ? {} : { prefer });
   const fresh = facts.filter((f) => f.part === 'next' || !said.has(f.key));
   const substance = fresh.filter((f) => f.part !== 'next');
   if (substance.length === 0) return 'nothing-new';
-  if (trigger !== 'demand' && substance.length < 2) return 'too-soon';
+  // After something happens, the thing that happened is enough to go over;
+  // at the turn of the hour, or for a name pencilled in, two new things.
+  if ((trigger === 'hour' || trigger === 'link') && substance.length < 2) return 'too-soon';
 
   // One joke a paragraph, at most.
   let joked = false;
@@ -598,7 +616,9 @@ export function renderRecap(
 
   // Two or more nobody has placed are one sentence.
   const merged = (fs: RecapFact[]): RecapFact[] => {
-    const loose = fs.filter((f) => f.kind === 'unplaced');
+    const holed = new Set(fs.filter((f) => f.kind === 'others' && f.ticks.length > 0).map((f) => f.subjectId));
+  fs = fs.filter((f) => !(f.kind === 'unplaced' && holed.has(f.subjectId)));
+  const loose = fs.filter((f) => f.kind === 'unplaced');
     if (loose.length < 2) return fs;
     const names = loose.map((f) => displayName(view, state, f.subjectId as Id));
     const list = `${names.slice(0, -1).join(', ')} and ${names[names.length - 1] as string}`;
@@ -629,9 +649,12 @@ export function renderRecap(
     [...l].sort((a, b) => (longest ? b.length - a.length : a.length - b.length))[0] as string;
   const measure = (fs: RecapFact[], longest: boolean): number =>
     frameWords + count(merged(fs).map((f) => f.say(byLength(longest), undefined)));
+  // The frame of taking stock — when, where and how — may be said again, when
+  // it was not said a page or three ago (or when he asked for it).
+  const pageNow = state.log.length - 1;
+  const stale = (f: RecapFact): boolean => trigger === 'demand' || pageNow - (memory?.saidAt?.[f.key] ?? -99) >= RECAP_FRAME_GAP;
   if (measure(body(), false) < RECAP_WORDS[0]) {
-    // The frame of taking stock — when, where and how — may be said again.
-    for (const f of facts) if (f.part === 'when') include.add(f.key);
+    for (const f of facts) if (f.part === 'when' && stale(f)) include.add(f.key);
   }
   if (measure(body(), false) < RECAP_WORDS[0]) return 'too-soon';
   // Too long: leave the least of it for the next recap.
@@ -672,6 +695,8 @@ export function renderRecap(
   const kept = body()
     .filter((f) => f.part !== 'next')
     .map((f) => f.key);
+  const saidAt = { ...(memory?.saidAt ?? {}) };
+  for (const key of kept) saidAt[key] = pageNow;
   return {
     paras,
     clauses,
@@ -680,6 +705,7 @@ export function renderRecap(
       said: [...new Set([...(memory?.said ?? []), ...kept])],
       found: state.found.length,
       links: linksKey(state),
+      saidAt,
     },
   };
 }
@@ -721,7 +747,9 @@ export function recapTrigger(
   const memory = after.scene?.recap;
   if (shape === 'confront') {
     const last = (after.confronts ?? [])[after.confronts?.length ? after.confronts.length - 1 : 0];
-    if (last && (last.outcome === 'second-lie' || last.outcome === 'admit' || last.outcome === 'withdraw') && (after.confronts?.length ?? 0) > (before.confronts?.length ?? 0)) {
+    // Golden §4: after the second fact is put and the story is given up — a
+    // confession, or a story taken back. A second story is not the end of it.
+    if (last && (last.outcome === 'admit' || last.outcome === 'withdraw') && (after.confronts?.length ?? 0) > (before.confronts?.length ?? 0)) {
       return 'confront';
     }
   }

@@ -830,7 +830,7 @@ export const ASK_REPORTED: Record<string, string[]> = {
   knowing: ['I asked {him} how well {he} knew {name}.', 'I asked {him} what {name} was to {him}.'],
   counts: ['I asked {him} who had come and gone tonight, and when.', 'I asked {him} to count me the comings and goings.'],
   strangers: ['I asked {him} about the faces {he} hadn’t known.', 'I asked whether anybody had come through that {he} didn’t know.'],
-  timing: ['I asked {him} what time {anchor} was.', 'I asked {him} if {he} knew when {anchor} was.'],
+  timing: ['I asked {him} what time {anchor} was.', 'I asked {him} for the hour of {anchor}.'],
   event: ['I asked {him} what {he} remembered of {anchor}.', 'I asked {him} about {anchor}.'],
   thing: ['I asked {him} about {topic}.', 'I asked {him} what {he} knew about {topic}.'],
 };
@@ -925,8 +925,8 @@ export const RECAP_NEXT_EVENING: string[] = [
   'I wanted {P} to tell me {his} evening in {his} own words.',
 ];
 export const RECAP_NEXT_PUT: string[] = [
-  'It was time to start putting what I had to people, and see whose story gave.',
-  'It was time to read some of this back to the people it was about.',
+  'It was time to hold the evenings I had up against each other and see where they didn’t meet.',
+  'I wanted to lay the evenings side by side and see which of them gave.',
 ];
 
 /** The on-demand page when there is nothing new to go over, or not enough yet. */

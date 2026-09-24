@@ -25,7 +25,7 @@ import { acquaintanceOf } from '../../gen/index.js';
 import { pronounsOf, putSaid, saidPlainly, toldOf, type Told } from './telling.js';
 import type { Family } from './families.js';
 import { SEEN_FAMILIES, thingTopic } from './families.js';
-import { observation, tieSentence } from './people.js';
+import { observation, plainAction, tieSentence } from './people.js';
 import { doingClause, lookRole, personSlots } from './stage.js';
 import { bareRoleOf } from './plan.js';
 import { characterLine, echoes } from '../voice/character.js';
@@ -1524,7 +1524,14 @@ function thoughtLine(
       stage.view,
       person,
       { kind: t.observe.tie, ...(t.secondId ? { otherId: t.secondId } : {}) },
-      t.observe.still ? `still ${t.observe.doing}` : t.observe.doing,
+      // docs/25 (after M11): the presence line told the activity; the
+      // observation says the plain action, or, when that is all the activity
+      // was, that they were still at it.
+      t.observe.still
+        ? `still ${t.observe.doing}`
+        : plainAction(t.observe.doing) === t.observe.doing.trim().replace(/\.$/, '')
+          ? 'still at it'
+          : t.observe.doing,
       stage.minutes,
       t.observe.trade,
     );
@@ -1982,7 +1989,7 @@ function setupOf(stage: Stage, person: Person, staged: AskStage): string {
   const wantDoing = doing !== null && !staged.again && stage.dealer.random.chance(0.5);
   // A stool is not a table: the seat the card takes agrees with where they are.
   const seat = (t: string): string | null =>
-    /\bstool\b/.test(t) ? 'stool' : /\b(?:table|booth)\b/.test(t) ? 'table' : /\bbench\b/.test(t) ? 'bench' : null;
+    /\bstool\b|\bon the bar\b/.test(t) ? 'stool' : /\b(?:table|booth)\b/.test(t) ? 'table' : /\bbench\b/.test(t) ? 'bench' : null;
   const theirs = seat(staged.doing ?? '');
   const agrees = (c: Card): boolean => {
     const mine = seat(c.text.replace('{doing}', ''));
@@ -2071,7 +2078,12 @@ function reportedQuestion(
     his: pro.his,
     name: about?.surname,
     anchor,
-    topic: scene.topicSlots.object ?? scene.topicSlots.place ?? (scene.topicRef?.kind === 'exact' ? undefined : scene.topicLabel),
+    topic:
+      scene.topicSlots.object !== undefined
+        ? /^(?:the|a|an|his|her) /i.test(scene.topicSlots.object)
+          ? scene.topicSlots.object
+          : `the ${scene.topicSlots.object}`
+        : (scene.topicSlots.place ?? (scene.topicRef?.kind === 'exact' ? undefined : scene.topicLabel)),
   };
   const pool = [...(ASK_REPORTED[kind] ?? [])];
   while (pool.length > 0) {

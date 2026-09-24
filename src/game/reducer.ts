@@ -1260,7 +1260,8 @@ export function step(
             after: minutesAfter(actionsUsed, budget),
           })
         : null;
-    const written = trigger === null ? null : renderRecap(view, next, dealer, trigger);
+    const bridged = (page.beats ?? []).find((b) => b.kind === 'bridge' && b.rendered)?.targetId;
+    const written = trigger === null ? null : renderRecap(view, next, dealer, trigger, bridged);
     if (written !== null && typeof written !== 'string') {
       const recapBlocks: Block[] = written.paras.map((text) => ({ kind: 'prose', text, voice: 'recap' }));
       const trace: BeatTrace = {

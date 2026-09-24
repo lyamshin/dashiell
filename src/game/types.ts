@@ -680,6 +680,8 @@ export interface RecapMemory {
   found: number;
   /** The player's links at the last recap, as `key=personId`. */
   links: string[];
+  /** The page each `when` key was last said on, so the frame is not said again straight after. */
+  saidAt?: Record<string, number>;
 }
 
 export const EMPTY_SCENE: SceneMemory = {

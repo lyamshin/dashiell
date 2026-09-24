@@ -763,7 +763,14 @@ function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
       chooseActivity(view, person, input.at, input.minutes, memory.visit, input.seed, input.weather, skip);
     let activity = kept;
     if (!sameVisit || activity === undefined) {
-      activity = choose(new Set([...taken, ...before]));
+      // docs/25 (after M11): nor something somebody else has been doing
+      // tonight — "not turning the page" was everybody's — while the trade
+      // has anything else.
+      const others = Object.entries(did)
+        .filter(([id]) => id !== person.id)
+        .flatMap(([, xs]) => xs);
+      activity = choose(new Set([...taken, ...before, ...others]));
+      if (activity.cardId === '') activity = choose(new Set([...taken, ...before]));
       if (activity.cardId === '' && before.length > 0) activity = choose(taken);
     }
     taken.add(activity.cardId);
