@@ -31,7 +31,9 @@ The truth is built as before and the puzzle is built on it the way a sudoku sett
 | `src/game/types.ts`, `storage.ts`, `profile.ts`, `src/ui/book.ts`, `src/ui/book.css`, `src/cli/read.ts` | `RunState.engine` and `.v2`, the `chapter` voice, the flag in the URL, the pick, the save and the CLI. |
 | `src/game/m9.ts` | No crime column under v2. |
 | `scripts/v2-stats.ts` (new), `scripts/diagnose-play.ts` | The measures; `--engine v2` on the design test. |
-| `test/v2-slice.test.ts` (new) | 12 tests: the flag, v1 untouched, the mix, Tatham and the complete check at four tiers, the true world found and no rival world, seed 3 as the worked example, the book on the page, the closing, the reader lint over v2 runs, every book line fills. |
+| `test/v2-slice.test.ts` (new) | 13 tests (see Checks). |
+| `src/game/scene/people.ts`, `sheet-pages.ts`, `content/decks/thought.json`, `src/game/recap.ts`, `voice-data.ts`, `src/game/scene/place-names.ts` | Read-through fixes that are v1's too (see Read-through). |
+| merged: branch `coherence` | The world-coherence pass (where things are kept, ties in the owner's words, standings that fit the case, `src/gen/coherence.ts` and its test) and the place names wired in (`content/places`), done alongside on the coordinator's ask. |
 
 ## Stage 1–2: the puzzle
 
@@ -120,3 +122,116 @@ The player chooses freely, as before: every page has its choices, costs, the gri
 Per case, on average (50 seeds a tier): route facts / overlap facts / dead ends in the findable core are about 5 / 1 / 33 at Raw, 9 / 3 / 48 at Poached, 16 / 5 / 116 at Medium and 19 / 7 / 175 at Hard-boiled. (Most of the dead ends are the one-clue-per-pair testimony the engine has always dealt: anybody can be asked about anybody.)
 
 **Simplified:** a page carries its steps through the tell (the step the book is about) and the turn (the lie step), not through a sheet chosen per step on every page; the rest of each page is v1's planner and sheets, unchanged.
+
+## Measures
+
+### The design test, v2 beside v1
+
+`npx tsx scripts/diagnose-play.ts --design --seeds 50 --configs T0,T2L2,T4L2,T5L2 [--engine v2]`, the same 50 seeds for both, after merging the coherence and place-name branch. v1 is asked the column from Medium up; v2 never is.
+
+| tier | engine | marks-follower names the culprit | reasoning player right within budget | button-pusher names the culprit | facts put / run | reasoning player's median calls to solve | median par / budget |
+|---|---|---|---|---|---|---|---|
+| Raw | v1 | 16% | 100% | 18% | 0.0 | 6 | 7 / 10 |
+| Raw | **v2** | 28% | 100% | 44% | 0.0 | 7 | 7 / 10 |
+| Poached | v1 | 32% | 100% | 24% | 0.1 | 9 | 7 / 11 |
+| Poached | **v2** | 28% | 98% | 20% | 0.9 | 10 | 9 / 15 |
+| Medium | v1 | 20% | 86% | 18% | 0.6 | 15 | 13 / 19 |
+| Medium | **v2** | 26% | 88% | 18% | 1.7 | 17 | 15 / 22 |
+| Hard-boiled | v1 | 24% | 76% | 12% | 2.5 | 21 | 18 / 26 |
+| Hard-boiled | **v2** | 16% | 78% | 16% | 3.7 | 23 | 19 / 28 |
+
+Targets: the marks-follower at or under 60% at Raw and 50% from Poached up; the reasoning player at or over 95% at Raw and 80% from Poached up. v2 holds every cell but Hard-boiled's reasoning player, 78% — where v1, on the same seeds, is at 76% (docs/33 had v1 at 84% over 100 seeds; 50 seeds is about ±6 points). The Hard-boiled misses are the reasoning player running out of night on cases that lean on two confessions; two more calls of slack did not move it (78% either way), so the slack stays at one. Raw's button-pusher at 44% is three suspects and a small night: a random name is right a third of the time.
+
+**What moved:** the reasoning player puts facts to people two to four times as often (0.9, 1.7 and 3.7 a night from Poached up, against 0.1, 0.6 and 2.5): the turn and the confessions are on the road now. Par is a call or two longer from Poached up, and so is the budget (v2 adds one call from Medium up). Medium's median par, 15, is over the worked example's 10–11; see "Not done".
+
+### The puzzle, per tier
+
+`npx tsx scripts/v2-stats.ts --seeds 50 --tiers 0,2,4,5`:
+
+| tier | ms a case (max) | attempts | murder / lost pet | peak | key rivals: R median, min | other rivals: R | critical facts | width: min / median | load | par | books | facts: route / overlap / dead end | a lie caught on the par route |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Raw | 8 (44) | 1.4 | 34 / 16 | T2 100% | 1, 1 | — | 1 | 2 / 3 | 2 | 6 | The One Who Lied 50 | 5 / 1 / 33 | 100% |
+| Poached | 25 (86) | 3.0 | 30 / 20 | T4 62%, T8a 38% | 2, 1 | 2 | 1 | 2 / 4 | 1 | 8 | The Count 33, The One Who Lied 17 | 9 / 3 / 49 | 80% |
+| Medium | 552 (2444) | 99 | 36 / 14 | T7 56%, T8b 44% | 2, 1 | 2 | 2 | 2 / 6 | 1 | 14 | The Count 22, The Stranger 11, The Clock 9, The One Who Lied 4, The Alibi Web 4 | 17 / 5 / 115 | 96% |
+| Hard-boiled | 548 (2069) | 109 | 33 / 17 | T10 100% | 1, 1 | 2 | 3 | 1 / 7 | 6 | 18 | The Stranger 24, The Count 16, The Clock 10 | 20 / 8 / 177 | 98% |
+
+How often each band rule of docs/34 §5 held (peak, key R, other R, critical, width, load): Raw 100%, 0%, 100%, 12%, 0%, 100%; Poached 100%, 42%, 86%, 38%, 60%, 100%; Medium 100%, 86%, 100%, 76%, 100%, 100%; Hard-boiled 100%, 10%, 0%, 82%, 100%, 18%.
+
+- **Tatham holds in every case** (the peak column): Raw ≤ T2; Poached needs T4 or T8a, never solvable at T2; Medium needs T7 or T8b; Hard-boiled needs T10. On today's v1 cases Poached and Medium mostly didn't.
+- **The complete check** found no rival world in any of the 200, and never ran out of budget.
+- **Raw is too narrow**: one route per key rival where the band wants three. Widening can only give a witness a name, and Raw's grid puts each innocent in front of one witness inside their own account; widening further means changing the schedule (a second witness passing through), which this slice doesn't do.
+- **Hard-boiled's other rivals** have two or more routes where the band wants at most two, and **load** is 6 against 3: the hypothesis test's premises are the whole chain, so every step under it counts. Hard should be deeper, not longer; this is the first thing to tune.
+- **Generation time**: v1's selection runs first on every attempt as the gate for the grid, and Medium and Hard-boiled turn down about half of what v1 accepts (par over the ceiling, no key rival that can be made to need the rung), so attempts are about double v1's: half a second a case, two and a half at the worst.
+
+## Read-through
+
+Four v2 runs read page by page (`npm run read -- --engine v2 --seed N --tier T --no-choices`, the oracle's route), after merging the coherence and place-name work: seed 3 at Medium (a murder, The Count), seed 1 at Raw (a murder, The One Who Lied), seed 2 at Poached (a lost pet, The Count), seed 12 at Hard-boiled (a murder, The Stranger); and seed 3 at Medium again down a player's route with confrontations, below.
+
+**What read wrong, and was fixed on the way:**
+
+- The turn written as a verdict ("It was one lie, and a small one"; "That was three stories that didn't hold"); the motif's turn line saying where somebody had been ("{Liar} had been nowhere near a piano"). The turn now puts two things side by side and the motif lines say only the hour.
+- The Count's close ("Somebody on this street couldn't count… It wasn't Ruggiero") on a turn a plain sighting caught; the tell ("Obermann counted heads…") planted after the turn it was meant to set up. A turn that isn't the book's piece gets the plain chapter ("Two Stories") and close; the tell is only planted before the turn.
+- The turn naming half past nine when the lie that mattered was at ten: the turn now prefers the crime's half hour.
+- The tell line landing after the page's bridge, and between a witness's words and his note on them: it goes after his note.
+- The motif missing from the turn when the scene's report gave its hour and no timing clue did.
+- The office's own "good chair" line taken for the chair gag, whose payoff is a short leg nobody had mentioned: the office's gag is taken up only where the office planted that gag.
+- "Frost… when it wants to make a point about the rent" on a page where the rent was paid.
+- A lost pet's finder called "the woman who had found Reinhardt" (the owner, alive): now "who had found the ginger tomcat gone". v1 too.
+- A contradicting thought that read as a clearing ("At ten o'clock, Stannard claimed Mock's. This took Stannard out of it." — of the culprit): the card now says the claim has a hole in it. v1 too.
+- **Confronting Hauck with Rafferty's count got "That doesn't touch anything I told you"**, though the count breaks her third floor as surely as Marchetti's. M9's lie routes took the first half hour of the lie, whose reason was her own confession (struck after the other half hour fell to the count). v2's routes never count a liar's own confession as a way of breaking that lie, so the count lands and her second fact is the free second pick. (v1 has the same fault; it is left alone there, since fixing it moves v1's confrontations.)
+- "The bells at St. Malachy's was at half past seven" (the recap); "Mock's's sign"; "Tramonti died at Tramonti's place"; a first mention that ended on an aside and ran into "and had been asking" without a comma — from the place names meeting the old templates. v1 too.
+- "I am a customer of Salvatore Tramonti's… I bought from him for years" of a theatrical agent — the coherence pass, now "an act on Tramonti's books".
+
+### Seed 3 at Medium, a player's route
+
+`npm run read -- --engine v2 --seed 3 --tier 4 --no-choices --route "go the walk-up; examine the walk-up; go the third floor; ask Rafferty about the third floor; ask Rafferty about Vitale; go the speakeasy; ask Hauck about that evening; ask Marchetti about that evening; ask Hargrove about Hauck; put w108 to Marchetti; put w108 to Hauck; put x054 to Hauck"`
+
+The scene, page 2 (after the establishing paragraph):
+
+> Somewhere off the river a boat let go of its whistle, two long and one short. Nobody on the street looked up. Nobody on this street ever does.
+>
+> Sirkin lay where he had fallen. Nobody had covered him yet. There was nobody else in the room. A glass was on its side and the spill had not yet reached the edge of the table when it dried. The whistle went off the river at half past eight, two long and one short, and the boat's log had the hour.
+
+Rafferty's count, page 5, and the tell:
+
+> "I can tell you exactly," Rafferty said. "One came in at half past six. At seven o'clock it was Carmine Vitale, and nobody with him. One at half past eight. Two at nine o'clock. […] I count them in and I count them out. It's how I know who owes me."
+>
+> […]
+>
+> Rafferty counted heads the way other people count their change: twice, and out loud.
+
+The turn, page 9, after Marchetti's own evening:
+
+> Chapter Four: The Count
+>
+> I leaned on the wall for a minute. The wall didn't mind, and I needed the company. Two people had told me they were at the third floor at half past eight. Rafferty had counted one. The whistle had gone off the river at half past eight, two long and one short. So, it was starting to look, had Marchetti's story.
+>
+> People will lie to you about where they were. A head count won't. It hasn't got the imagination. Marchetti was next. I wanted to watch her hear it.
+
+The narrowing, pages 11–13: Marchetti, given the count, lies again ("All right, I wasn't at the third floor. I was at the Velvet Room."); Hauck holds on the count, and gives it up on the free second pick, Hargrove's word:
+
+> When I read out six o'clock, Hauck closed her eyes for a second. "All right. I was at the Velvet Room. I was selling things that were stolen."
+
+That is the worked example's E, F and G: the stairs count, the lies falling together, a confession played small, and Marchetti with nowhere to stand.
+
+### The other three
+
+- **Raw, seed 1 (The One Who Lied).** The gag is the book's own ("My chair had a leg that was shorter than the others, the way some people have a story that's shorter than the truth."); the motif the dumbwaiter; the turn on page 6: "Stannard had told me Mock's at ten o'clock. Bellucci was there, and said he wasn't. The dumbwaiter had squealed at ten o'clock, loud enough for the whole shaft. The whole shaft had kept its own counsel about it." The last word: "I sat down in my own chair at last, and the short leg took my weight without a word. Somebody tonight had finally told the whole story. It might as well have been the chair."
+- **Poached, seed 2, a lost pet (The Count, turned by a sighting).** Lathrop, Reinhardt's neighbour on the shared clothesline; the piano lesson overhead as the motif; the turn falls to Ruggiero's sighting, so the chapter is "Two Stories". The ending: "Lathrop had come up my stairs for an animal. I've had worse reasons to climb them, and fewer good ones." … "Upstairs somebody got the four bars right, finally, at an hour when nobody decent was awake to hear it."
+- **Hard-boiled, seed 12 (The Stranger).** The bells at St. Malachy's; the tell is a stranger's face at Mrs. Tillman's parlour ("A face with no name is half a fact. I wrote it down anyway."), paid off at the turn ("And there was still the face at Mrs. Tillman's parlour to put a name to, and fewer names left to put."), where Marchetti's parlour falls to the landlady.
+
+## Not done, and next
+
+- **Stage 1 is v1's grid**, gated by v1's selection. Planting the tier's seed first (Snyder-style) and dropping the gate would halve generation time at Medium and Hard-boiled.
+- **Widening needs the world**: Raw and Poached want more routes than the grid allows; the next step is letting the dig add a witness (a second person through a room inside an innocent's account), not only a name.
+- **Hard-boiled is long**: load 6 and par 19; narrowing the other rivals and capping the hypothesis's premises is the next tuning.
+- **Medium's par** (15 by the game's count) is over the worked example's 10–11: the legs (how, the way in, why) and the culprit's word are on the road, and the pieces that make a case need T7 are spread across more people than a name was.
+- **Books**: one line set each, and no book-specific sheet for the confrontation, the confession or the report page; the widening and narrowing open with a heading and no recap of their own.
+- **v1's own-confession route** (above) is fixed only in v2.
+- The engine's reasoning player never says "Go over what I have"; the turn's recap changes words only, like M12's.
+
+## Checks
+
+- `npx tsc --noEmit` clean.
+- `test/v2-slice.test.ts`: 13 tests (the flag, v1 untouched, the mix, Tatham and the complete check at Raw, Poached, Medium and Hard-boiled, the true world found and no rival world, seed 3 as the worked example, a liar's own confession never a way of breaking the lie, the book on the page and in the closing, the reader lint over v2 runs, every book line fills).
+- The full suite, v1's tests included: see the PR.
