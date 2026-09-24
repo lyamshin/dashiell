@@ -29,6 +29,8 @@ import { check, renderedFacts, type Violation } from '../gen/correspond.js';
 import { establishedFrom, threadsFor, type CaseView } from './derive.js';
 import { candidateThoughts } from './scene/thought.js';
 import type { Block, Page, RunState } from './types.js';
+import { recapKeys } from './recap.js';
+import { namedIn } from './scene/text.js';
 import { ALL_CARDS } from './voice/cards.js';
 import * as VOICE_DATA from './voice-data.js';
 import * as PLAIN from './voice/plain.js';
@@ -343,8 +345,100 @@ export function checkPage(
  * an errand line that does not trace back to the notebook.
  */
 export type PageViolation = Omit<Violation, 'rule'> & {
-  rule: Violation['rule'] | 'errand-untraced' | 'thought-untraced' | 'bridge-untraced' | 'telling-untraced';
+  rule: Violation['rule'] | 'errand-untraced' | 'thought-untraced' | 'bridge-untraced' | 'telling-untraced' | 'recap-untraced';
 };
+
+/**
+ * M12 Part 2 — a recap, traced clause by clause.
+ *
+ * Every clause carries the key of what it asserts, and the key must be one
+ * the recap's own derivation finds when it is run again from the notebook as
+ * it stood after this page (with everybody in it, so nothing the notebook held
+ * is missed). A clause names nobody but the people its key is about (and the
+ * victim), no hour but its own, no place but its own; a clause about somebody
+ * names somebody the pages so far have put in front of the reader, and "only
+ * seen" is said only of somebody a page has shown in person. The opening and
+ * closing lines rest on nothing and name nothing at all.
+ */
+export function checkRecap(view: CaseView, page: Page, state: RunState, found: readonly string[], accounts: readonly string[]): PageViolation[] {
+  const beat = (page.beats ?? []).find((b) => b.kind === 'recap' && b.rendered);
+  if (!beat) return [];
+  const out: PageViolation[] = [];
+  const snapshot: RunState = {
+    ...state,
+    found: [...found],
+    accounts: [...accounts],
+    confronts: (state.confronts ?? []).filter((r) => r.page <= page.n),
+    log: state.log.slice(0, page.n + 1),
+  };
+  const keys = recapKeys(view, snapshot, true);
+  // Who the reader has met on a page so far, or read about in a find.
+  const pages = state.log.slice(0, page.n + 1);
+  const shown = new Set<string>();
+  const known = new Set<string>([view.victim.id, view.client.id]);
+  for (const pg of pages) {
+    for (const b of pg.beats ?? []) {
+      if (b.kind === 'recap') continue;
+      for (const id of b.personIds ?? []) known.add(id);
+      if (b.kind === 'presence' || b.kind === 'exchange' || b.kind === 'confront' || b.kind === 'rundown') {
+        for (const id of b.personIds ?? []) shown.add(id);
+      }
+    }
+  }
+  // Named in the prose so far, the recap's own words aside.
+  const prose = pages.flatMap((pg) =>
+    pg.blocks.flatMap((b) => (b.kind === 'prose' && b.voice !== 'recap') || b.kind === 'note' ? [b.text] : []),
+  );
+  for (const id of namedIn(view, prose)) known.add(id);
+  for (const id of found) {
+    const clue = view.findableById.get(id);
+    if (!clue) continue;
+    if (clue.source.type === 'person') known.add(clue.source.personId);
+    for (const f of clue.establishes) {
+      if ('personId' in f) known.add(f.personId);
+      if ('personIds' in f) for (const q of f.personIds) known.add(q);
+    }
+    for (const q of view.kase.people) if (new RegExp(`\\b${q.surname}\\b`).test(clue.text)) known.add(q.id);
+  }
+  const where = `page ${page.n} recap`;
+  const surnames = view.kase.people.map((q) => ({ id: q.id, surname: q.surname }));
+  for (const clause of beat.clauses ?? []) {
+    const fail = (detail: string): void => {
+      out.push({ where, rule: 'recap-untraced', detail, text: clause.text });
+    };
+    let bare = clause.text;
+    for (const pl of view.places) bare = bare.split(pl.shortName).join('');
+    const names = surnames.filter((q) => new RegExp(`\\b${q.surname}\\b`).test(bare)).map((q) => q.id);
+    const times = renderedFacts(clause.text, { spoken: true }).times;
+    // "Ruggiero’s evening" is a person's, not the barber's shop called Ruggiero’s;
+    // "the shift change at the garage" is the anchor's own name.
+    let placeText = clause.text;
+    for (const id of clause.anchorIds ?? []) {
+      const name = view.anchorById.get(id)?.name;
+      if (name) placeText = placeText.split(name).join('').split(`${name.charAt(0).toUpperCase()}${name.slice(1)}`).join('');
+    }
+    for (const id of clause.personIds) {
+      const surname = view.personById.get(id)?.surname;
+      if (surname) placeText = placeText.split(`${surname}’s evening`).join('').split(`${surname}’s word`).join('').split(`${surname}’s own`).join('').split(`${surname}’s night`).join('');
+    }
+    const places = view.places.filter((pl) => placeText.toLowerCase().includes(pl.shortName.toLowerCase())).map((pl) => pl.id);
+    const hours = new Set(clause.ticks.map((t) => clock(t as Tick)));
+    if (clause.key.startsWith('frame|')) {
+      if (names.length > 0) fail('the frame names somebody');
+      if (times.length > 0) fail('the frame names an hour');
+      if (places.length > 0) fail('the frame names a place');
+      continue;
+    }
+    for (const part of clause.key.split('+')) if (!keys.has(part)) fail(`asserts ${part}, which the notebook does not hold`);
+    const allowed = new Set([...clause.personIds, view.victim.id]);
+    for (const id of names) if (!allowed.has(id)) fail(`names somebody the clause is not about (${id})`);
+    for (const id of clause.personIds) if (!known.has(id)) fail(`is about somebody no page has put in front of the reader (${id})`);
+    if (clause.key.startsWith('seen|') && !clause.personIds.every((id) => shown.has(id))) fail('"only seen" of somebody no page has shown');
+    for (const t of times) if (!hours.has(t)) fail(`says ${t}, which is not the clause's own hour`);
+    for (const id of places) if (!clause.placeIds.includes(id)) fail(`names a place the clause is not about (${id})`);
+  }
+  return out;
+}
 
 /**
  * M10 §A.1 — a telling, traced. Its fact-bearing sentences may name only the
@@ -716,6 +810,7 @@ export function checkRun(view: CaseView, state: RunState): PageViolation[] {
     const met = new Set<string>(state.met);
     out.push(...checkBeats(view, page, [...found], [...accounts], accountsAfter, met));
     out.push(...checkTelling(view, page));
+    out.push(...checkRecap(view, page, state, [...found, ...page.found], [...new Set(accountsAfter)]));
     found.push(...page.found);
     accounts.splice(0, accounts.length, ...new Set(accountsAfter));
     visited.add(page.at);

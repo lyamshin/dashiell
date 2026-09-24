@@ -1020,6 +1020,94 @@
         }
       },
       "coverage": [["role", "kind"]]
+    },
+    "approach": {
+      "file": "approach.json",
+      "deckValues": ["approach"],
+      "idPrefix": "APR",
+      "placeholderPrefix": "apr-p",
+      "burn": "run-to-run",
+      "spent": "reshuffle",
+      "target": 50,
+      "$comment": "M12 Part 1, the ask: where the detective goes and how he settles before a question or a confrontation ('I took the stool next to {name}.'). Dashiell's narration, one sentence, past tense, plain; a light touch at most, never a figure. `setting`: the kind of room, which the engine reads off the place (bar: a bar, a speakeasy, a pool hall, a dance hall; counter: an Automat, a drugstore, a lunch counter, a pawnshop, a barber's, a hotel lobby; street: a kiosk, a stand, a platform, the benches, a slip, an alley, a roof, a yard, a pier; stair: a stairwell, a vestibule, a landlady's landing; room: a flat, an office, a parlour, a chapel, a hall, a picture house, a garage; office: his own office, where the client sits in the good chair); any. `posture`: the person's, read off what they are doing (seated, standing, behind a bar or counter or stand); any. `again`: yes for somebody already spoken to this visit. {name} their surname; {he}/{him}/{his}/{He} their pronouns; {doing} what they are doing, without their name ('reading a folded newspaper'), dealt only when the page has it. No hour, no place by name, nobody else.",
+      "slots": ["name", "he", "him", "his", "He", "doing"],
+      "minPerCoverageCell": 1,
+      "tags": {
+        "setting": { "required": true, "values": ["bar", "counter", "street", "stair", "room", "office"], "extraValues": ["any"] },
+        "posture": { "required": true, "values": ["seated", "standing", "behind"], "extraValues": ["any"] },
+        "again": { "required": true, "values": ["yes", "no"] }
+      },
+      "coverage": [["setting", "again"]]
+    },
+    "look": {
+      "file": "look.json",
+      "deckValues": ["look"],
+      "idPrefix": "LOK",
+      "placeholderPrefix": "lok-p",
+      "burn": "run-to-run",
+      "spent": "reshuffle",
+      "target": 120,
+      "$comment": "M12 Part 1, the ask: the detective's read of the person he is about to ask, one sentence, after the approach ('{He} had the look of a {man} who had bought {his} practice second-hand and was still paying off the chair.'). Character, never a case fact: true of the type, the trade turned up a notch, and never about the victim, the night, a debt, a secret or a motive. A wry read, not a simile: the page's one figure is its closing line. Keyed by `role` (every suspect archetype and fixture role, or any); `again` yes is the look on a second question the same visit, keyed by `temper` (how they take being asked again). {He}/{he}/{him}/{his} the person's pronouns; {man} is man or woman; {name} their surname. No hour, no place by name, nobody else.",
+      "slots": ["name", "he", "him", "his", "He", "man"],
+      "minPerCoverageCell": 3,
+      "tags": {
+        "role": { "required": true, "values": ["arch-heir", "arch-widow", "arch-broker", "arch-society", "arch-blockowner", "arch-lawyer", "arch-bookkeeper", "arch-nurse", "arch-dentist", "arch-secretary", "arch-reporter", "arch-piano-teacher", "arch-adjuster", "arch-chambermaid", "arch-longshoreman", "arch-seamstress", "arch-hackman", "arch-tailor", "arch-stagehand", "arch-switchboard", "arch-nightman", "arch-chorus", "arch-bookmaker", "arch-heeler", "arch-pawnman", "arch-bouncer", "arch-runner", "bartender", "doorman", "newsstand", "counterman", "ticket-taker", "elevator-man", "landlady", "beat-cop", "cabbie", "druggist"], "extraValues": ["any"] },
+        "again": { "required": true, "values": ["yes", "no"] },
+        "temper": { "required": false, "default": "any", "values": ["enigma", "plain", "yap"], "extraValues": ["any"] }
+      },
+      "coverage": [["role", "again"]]
+    },
+    "try": {
+      "file": "try.json",
+      "deckValues": ["try"],
+      "idPrefix": "TRY",
+      "placeholderPrefix": "try-p",
+      "burn": "run-to-run",
+      "spent": "reshuffle",
+      "target": 30,
+      "$comment": "M12 Part 1, the ask: what the detective tries, when the temper or a second ask calls for it: a drink, a cigarette, a coin, a threat left unsaid. It costs nothing and it changes nothing: the answer is the case's either way, so a card never says the try worked or bought anything ('I offered to buy {him} a drink, which in that room was mostly a gesture.'). `setting` as the approach deck's; `why`: guarded (somebody who gives nothing away), again (a second ask after an answer that had nothing in it), easy (a friendly gesture), press (a fact about to be put to them); any. `kind`: drink, smoke, coin, unsaid. {he}/{him}/{his}/{He} the person's pronouns. No hour, no place by name, nobody else.",
+      "slots": ["he", "him", "his", "He"],
+      "minPerCoverageCell": 1,
+      "tags": {
+        "setting": { "required": true, "values": ["bar", "counter", "street", "stair", "room", "office"], "extraValues": ["any"] },
+        "why": { "required": true, "values": ["guarded", "again", "easy", "press"], "extraValues": ["any"] },
+        "kind": { "required": true, "values": ["drink", "smoke", "coin", "unsaid"] }
+      },
+      "coverage": [["why"]]
+    },
+    "close": {
+      "file": "close.json",
+      "deckValues": ["close"],
+      "idPrefix": "CLS",
+      "placeholderPrefix": "cls-p",
+      "burn": "run-to-run",
+      "spent": "reshuffle",
+      "target": 60,
+      "$comment": "M12 Part 1: the wry last word of a question or a confrontation, after the outcome is told plainly ('I guess some nuts are just too hard to crack.'). The page's one figure, dry and a little funny, and never a verdict: it never says or hints who did it, who is out of it, or that a story is true or false beyond what the page just said. The jokes are on people, habits, the night and the detective; never on the dead, a clue or an hour. `outcome`: what the page came to: evening (their own evening told), placed (somebody seen somewhere), unseen (only where somebody was not), knowing, counts, strangers, timing, event, thing, self (their life), nothing (they knew nothing), contradicts (two words that do not agree), and a confrontation's second-lie, admit, withdraw, hold, quiet (they would not say: the card says what not saying is worth), wrong (the fact touched nothing), ends; any. `role`: a card written for one trade, or any. {name} the person's surname; {he}/{him}/{his}/{He} their pronouns. No hour, no place by name, nobody else.",
+      "slots": ["name", "he", "him", "his", "He"],
+      "minPerCoverageCell": 2,
+      "tags": {
+        "outcome": { "required": true, "values": ["evening", "placed", "unseen", "knowing", "counts", "strangers", "timing", "event", "thing", "self", "nothing", "contradicts", "second-lie", "admit", "withdraw", "hold", "quiet", "wrong", "ends"], "extraValues": ["any"] },
+        "role": { "required": false, "default": "any", "values": ["arch-heir", "arch-widow", "arch-broker", "arch-society", "arch-blockowner", "arch-lawyer", "arch-bookkeeper", "arch-nurse", "arch-dentist", "arch-secretary", "arch-reporter", "arch-piano-teacher", "arch-adjuster", "arch-chambermaid", "arch-longshoreman", "arch-seamstress", "arch-hackman", "arch-tailor", "arch-stagehand", "arch-switchboard", "arch-nightman", "arch-chorus", "arch-bookmaker", "arch-heeler", "arch-pawnman", "arch-bouncer", "arch-runner", "bartender", "doorman", "newsstand", "counterman", "ticket-taker", "elevator-man", "landlady", "beat-cop", "cabbie", "druggist"], "extraValues": ["any"] }
+      },
+      "coverage": [["outcome"]]
+    },
+    "recap": {
+      "file": "recap.json",
+      "deckValues": ["recap"],
+      "idPrefix": "RCP",
+      "placeholderPrefix": "rcp-p",
+      "burn": "run-to-run",
+      "spent": "reshuffle",
+      "target": 20,
+      "$comment": "M12 Part 2, the recap: the frame round the detective's taking stock. `kind` open: the line he starts on ('I went back over it, which is the part of the job where you find out how little you have.'), keyed by what set it off (`trigger`: lie, two words about one half hour that do not agree; confront, a fact put to somebody changed their story; window, the hour narrowed; link, a name pencilled to a face; hour, two more hours gone; demand, the player asked; any). `kind` close: the line after the facts and before what he means to do next ('That was the night so far, laid out flat.'). The facts in between are the engine's, one clause each off the notebook. Never a verdict, never a name, never an hour, never a place by name; plain words; no simile.",
+      "slots": [],
+      "minPerCoverageCell": 1,
+      "tags": {
+        "kind": { "required": true, "values": ["open", "close"] },
+        "trigger": { "required": true, "values": ["lie", "confront", "window", "link", "hour", "demand"], "extraValues": ["any"] }
+      },
+      "coverage": [["kind"]]
     }
   }
 }

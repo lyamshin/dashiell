@@ -66,7 +66,8 @@ import { namedIn, proseTexts } from './scene/text.js';
 import { paceClues } from './scene/families.js';
 import { parse } from './parser.js';
 import { possessiveOf } from './voice/cast.js';
-import { DA_AT_THE_DOOR } from './voice-data.js';
+import { DA_AT_THE_DOOR, RECAP_NOTHING_NEW, RECAP_OFFICE, RECAP_TOO_SOON } from './voice-data.js';
+import { recapTrigger, renderRecap, type RecapTrigger } from './recap.js';
 import {
   Dealer,
   askKindOf,
@@ -412,7 +413,9 @@ export interface Price {
     /** M10 §A.3: "Go on" — the rest of what a page broke off telling. Free. */
     | 'continue'
     /** M11 §A.5: the client names who is in the room. Free, once a visit. */
-    | 'rundown';
+    | 'rundown'
+    /** M12 Part 2: "Go over what I have". Free, anywhere but the office. */
+    | 'recap';
 }
 
 /** The key a question is remembered under: who, and the topic as the parser reads it. */
@@ -469,6 +472,15 @@ export function rundownOpen(view: CaseView, state: RunState): boolean {
   return memory.rundown !== memory.visit;
 }
 
+/**
+ * M12 Part 2: "Go over what I have" is offered anywhere but the office, once
+ * the night has started (the office is where the client is, and page one is
+ * her brief, not his notes).
+ */
+export function recapOpen(view: CaseView, state: RunState): boolean {
+  return state.at !== view.office.id && !state.reportOpen && !state.filed;
+}
+
 /** M10 §A.3: the command that goes on with a held-back telling here, or null. */
 export function continuationOf(view: CaseView, state: RunState): string | null {
   return pendingFor(view, state, { kind: 'continue' }) === null ? null : 'go on';
@@ -514,6 +526,8 @@ export function priceOf(command: Command, state: RunState, view: CaseView): Pric
         : { cost: 0, waived: 0, reason: 'continue' };
     case 'rundown':
       return rundownOpen(view, state) ? { cost: 0, waived: 0, reason: 'rundown' } : { cost: 0, waived: 0, reason: 'nobody' };
+    case 'recap':
+      return recapOpen(view, state) ? { cost: 0, waived: 0, reason: 'recap' } : { cost: 0, waived: 0, reason: 'nobody' };
     case 'go':
       return command.placeId === state.at
         ? { cost: 0, waived: 0, reason: 'still' }
@@ -719,6 +733,8 @@ export function step(
   let beats: BeatTrace[] | undefined;
   let memory: SceneMemory | undefined;
   let confronted: ConfrontRecord | null = null;
+  /** M12 Part 2: "Go over what I have", written once the state is. */
+  let recapAsked = false;
   // M10 §A.3: held-back tellings, and the one this command goes on with.
   const pending: Pending[] = [...(state.pending ?? [])];
   const going = price.reason === 'continue' ? pendingFor(view, state, command) : null;
@@ -770,6 +786,17 @@ export function step(
   };
 
   switch (command.kind) {
+    case 'recap': {
+      // M12 Part 2: "Go over what I have". Nothing is found; the clock does
+      // not move; the page is written after the state, from the notebook.
+      if (price.reason !== 'recap') {
+        blocks = [{ kind: 'note', text: RECAP_OFFICE }];
+        shape = 'repeat';
+        break;
+      }
+      recapAsked = true;
+      break;
+    }
     case 'rundown': {
       // M11 §A.5: the client names who is here. Nothing is found; the clock
       // does not move; the grid learns nothing it did not have.
@@ -1221,7 +1248,60 @@ export function step(
     ...(beats === undefined ? {} : { beats }),
   };
   next.log = [...state.log, page];
+
+  /* M12 Part 2: the recap — asked for, or after something has shifted. */
+  if (recapAsked || scene) {
+    const budget = gameBudget(kase);
+    const trigger: RecapTrigger | null = recapAsked
+      ? 'demand'
+      : recapsOn
+        ? recapTrigger(view, state, next, page, {
+            before: minutesAfter(state.actionsUsed, budget),
+            after: minutesAfter(actionsUsed, budget),
+          })
+        : null;
+    const bridged = (page.beats ?? []).find((b) => b.kind === 'bridge' && b.rendered)?.targetId;
+    const written = trigger === null ? null : renderRecap(view, next, dealer, trigger, bridged);
+    if (written !== null && typeof written !== 'string') {
+      const recapBlocks: Block[] = written.paras.map((text) => ({ kind: 'prose', text, voice: 'recap' }));
+      const trace: BeatTrace = {
+        kind: 'recap',
+        required: true,
+        rendered: true,
+        tag: trigger as string,
+        personIds: [...new Set(written.clauses.flatMap((c) => c.personIds))],
+        placeIds: [...new Set(written.clauses.flatMap((c) => c.placeIds))],
+        text: written.paras.join(' '),
+        clauses: written.clauses,
+      };
+      if (recapAsked) {
+        page.blocks = recapBlocks;
+        page.shape = 'recap';
+        page.beats = [trace];
+      } else {
+        page.blocks = [...page.blocks, ...recapBlocks];
+        page.beats = [...(page.beats ?? []), trace];
+      }
+      next.scene = { ...(next.scene ?? EMPTY_SCENE), recap: written.memory };
+    } else if (recapAsked) {
+      page.blocks = [{ kind: 'note', text: written === 'too-soon' ? RECAP_TOO_SOON : RECAP_NOTHING_NEW }];
+      page.shape = 'repeat';
+    }
+    for (const deck of dealer.takeReshuffles()) page.gaps.push(`deck-exhausted: ${deck} came round again inside one run`);
+    page.cardsUsed = dealer.spent;
+    next.burned = [...state.burned, ...dealer.spent];
+  }
   return { state: next, page };
+}
+
+/**
+ * M12 Part 2: recaps after a page can be switched off, so a test can show a
+ * player who reads them does no better than one who does not (they change
+ * nothing but the words on the page).
+ */
+let recapsOn = true;
+export function setRecaps(on: boolean): void {
+  recapsOn = on;
 }
 
 /**

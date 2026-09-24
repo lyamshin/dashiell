@@ -45,7 +45,8 @@ export type CommandKind =
   | 'help'
   | 'confront'
   | 'continue'
-  | 'rundown';
+  | 'rundown'
+  | 'recap';
 
 export type Command =
   | { kind: 'go'; placeId: Id }
@@ -72,7 +73,12 @@ export type Command =
    * names who else is in it, the way the client knows them. Free, and once a
    * visit.
    */
-  | { kind: 'rundown' };
+  | { kind: 'rundown' }
+  /**
+   * M12 Part 2: "Go over what I have". The detective takes stock of what the
+   * notebook holds, and what is still open. Free, anywhere but the office.
+   */
+  | { kind: 'recap' };
 
 /**
  * M10 §A.3: what a page had still to tell when it stopped at three families.
@@ -142,6 +148,8 @@ export type ProseVoice =
    * by a later pass, because the correspondence checker traces it verbatim.
    */
   | 'errand'
+  /** M12 Part 2: the detective taking stock of the notebook. */
+  | 'recap'
   /* M8 — the planned page. Each beat of §1 that is prose has its own voice. */
   | 'establish'
   | 'act'
@@ -238,7 +246,9 @@ export type PageShape =
   | 'other'
   | 'confront'
   /** M11 §A.5: the client names who is in the room. */
-  | 'rundown';
+  | 'rundown'
+  /** M12 Part 2: "Go over what I have" — the recap on its own page. */
+  | 'recap';
 
 export type BeatKind =
   | 'errand'
@@ -261,7 +271,11 @@ export type BeatKind =
   /** M10: the detective's note on what a family is worth. */
   | 'note'
   /** M11 §A.5: the client naming who is in the room. */
-  | 'rundown';
+  | 'rundown'
+  /** M12 Part 1: the wry last word of a question or a confrontation. */
+  | 'close'
+  /** M12 Part 2: the detective taking stock of what the notebook holds. */
+  | 'recap';
 
 /**
  * One planned beat, as it went onto the page. The planner's `Beat` carries
@@ -313,6 +327,27 @@ export interface BeatTrace {
   };
   /** M10, a telling only: the half hours its fact sentences may name. */
   ticks?: number[];
+  /**
+   * M12 Part 2, a recap only: every clause it said, with what it rests on, so
+   * the correspondence checker can hold each one to the notebook as it stood.
+   */
+  clauses?: RecapClauseTrace[];
+}
+
+/** M12 Part 2: one clause of a recap, and what licenses it. */
+export interface RecapClauseTrace {
+  /** What the clause asserts, as a key the recap can rebuild from the notebook alone. */
+  key: string;
+  /** The words it put on the page. */
+  text: string;
+  /** The people it may name (besides the victim). */
+  personIds: Id[];
+  /** The places it may name. */
+  placeIds: Id[];
+  /** The half hours it may name. */
+  ticks: number[];
+  /** The anchors it may name. */
+  anchorIds?: Id[];
 }
 
 /** One choice as the book drew it, kept on the page it was offered under. */
@@ -334,7 +369,7 @@ export interface OfferedChoice {
 }
 
 export interface OfferedGroup {
-  kind: 'ask' | 'search' | 'go' | 'free' | 'confront' | 'continue' | 'rundown';
+  kind: 'ask' | 'search' | 'go' | 'free' | 'confront' | 'continue' | 'rundown' | 'recap';
   heading: string;
   personId?: Id;
   choices: OfferedChoice[];
@@ -627,6 +662,26 @@ export interface SceneMemory {
   rundown?: number;
   /** M11 §A.6: whom this visit's arrival page closed on, so the rundown closes on somebody else. */
   observed?: Id[];
+  /** M12: the visit each person was last asked something on, so a second question is asked again. */
+  spoken?: Record<Id, number>;
+  /** M12: the visit a question to each person last came back with nothing, so the next one gets a try. */
+  nothing?: Record<Id, number>;
+  /** M12 Part 2: what the recaps tonight have said, so none says it again. */
+  recap?: RecapMemory;
+}
+
+/** M12 Part 2: the recaps so far tonight. */
+export interface RecapMemory {
+  /** How many recaps tonight. */
+  n: number;
+  /** Every clause key a recap has said tonight. */
+  said: string[];
+  /** How many things were in the notebook at the last recap. */
+  found: number;
+  /** The player's links at the last recap, as `key=personId`. */
+  links: string[];
+  /** The page each `when` key was last said on, so the frame is not said again straight after. */
+  saidAt?: Record<string, number>;
 }
 
 export const EMPTY_SCENE: SceneMemory = {

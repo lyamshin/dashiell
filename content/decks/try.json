@@ -1,0 +1,314 @@
+[
+  {
+    "id": "TRY-001",
+    "deck": "try",
+    "text": "I offered to buy {him} a drink, which in that room was mostly a gesture.",
+    "tags": {
+      "setting": "bar",
+      "why": "easy",
+      "kind": "drink"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-002",
+    "deck": "try",
+    "text": "I put a coin on the bar for whatever {he} was having. {He} was having it anyway.",
+    "tags": {
+      "setting": "bar",
+      "why": "easy",
+      "kind": "drink"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-003",
+    "deck": "try",
+    "text": "I bought {him} a drink. {He} looked at it for a while before deciding it didn’t oblige {him} to anything.",
+    "tags": {
+      "setting": "bar",
+      "why": "guarded",
+      "kind": "drink"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-004",
+    "deck": "try",
+    "text": "I had another poured for {him}. {He} let it stand there, untouched, where we could both see it.",
+    "tags": {
+      "setting": "bar",
+      "why": "guarded",
+      "kind": "drink"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-005",
+    "deck": "try",
+    "text": "I bought another round, which is the second-oldest way of asking twice.",
+    "tags": {
+      "setting": "bar",
+      "why": "again",
+      "kind": "drink"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-006",
+    "deck": "try",
+    "text": "I offered {him} a cigarette. {He} took it, which is not the same as taking the question.",
+    "tags": {
+      "setting": "bar",
+      "why": "guarded",
+      "kind": "smoke"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-007",
+    "deck": "try",
+    "text": "I put a nickel on the counter for {his} coffee. At that hour it’s practically a bribe.",
+    "tags": {
+      "setting": "counter",
+      "why": "easy",
+      "kind": "coin"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-008",
+    "deck": "try",
+    "text": "I bought {him} a coffee. {He} held the cup in both hands and gave me nothing but the steam.",
+    "tags": {
+      "setting": "counter",
+      "why": "guarded",
+      "kind": "coin"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-009",
+    "deck": "try",
+    "text": "I pushed another coin across the counter and asked it again.",
+    "tags": {
+      "setting": "counter",
+      "why": "again",
+      "kind": "coin"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-010",
+    "deck": "try",
+    "text": "I held out my cigarettes. {He} took two, which I decided to call progress.",
+    "tags": {
+      "setting": "street",
+      "why": "easy",
+      "kind": "smoke"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-011",
+    "deck": "try",
+    "text": "I offered {him} a cigarette. {He} put it behind {his} ear for later, which told me where I stood.",
+    "tags": {
+      "setting": "street",
+      "why": "guarded",
+      "kind": "smoke"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-012",
+    "deck": "try",
+    "text": "I lit {him} a cigarette and asked it again, slower.",
+    "tags": {
+      "setting": "street",
+      "why": "again",
+      "kind": "smoke"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-013",
+    "deck": "try",
+    "text": "I turned a half-dollar over in my fingers where {he} could see it. {He} watched it with polite interest and no more.",
+    "tags": {
+      "setting": "street",
+      "why": "guarded",
+      "kind": "coin"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-014",
+    "deck": "try",
+    "text": "I offered {him} a cigarette and lit it for {him}, which is as close as I get to manners.",
+    "tags": {
+      "setting": "stair",
+      "why": "guarded",
+      "kind": "smoke"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-015",
+    "deck": "try",
+    "text": "I offered {him} a cigarette and lit it for {him}, which is as close as I get to manners.",
+    "tags": {
+      "setting": "room",
+      "why": "guarded",
+      "kind": "smoke"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-016",
+    "deck": "try",
+    "text": "I held out my cigarettes. {He} looked at the packet as if it might be a trick, and then took one.",
+    "tags": {
+      "setting": "room",
+      "why": "guarded",
+      "kind": "smoke"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-017",
+    "deck": "try",
+    "text": "I passed {him} a cigarette. It seemed to cheer {him} up, which made one of us.",
+    "tags": {
+      "setting": "room",
+      "why": "easy",
+      "kind": "smoke"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-018",
+    "deck": "try",
+    "text": "I pushed the ashtray across the desk to {him}, which is my office’s idea of hospitality.",
+    "tags": {
+      "setting": "office",
+      "why": "any",
+      "kind": "coin"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-019",
+    "deck": "try",
+    "text": "I offered {him} the bottle from the bottom drawer. {He} looked at the glass and declined, and I didn’t blame {him}.",
+    "tags": {
+      "setting": "office",
+      "why": "any",
+      "kind": "coin"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-020",
+    "deck": "try",
+    "text": "I didn’t mention the police. I just let {him} watch me not mentioning them.",
+    "tags": {
+      "setting": "any",
+      "why": "guarded",
+      "kind": "unsaid"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-021",
+    "deck": "try",
+    "text": "I tried a little charm. It isn’t my best tool, but it was the one I had on me.",
+    "tags": {
+      "setting": "any",
+      "why": "guarded",
+      "kind": "unsaid"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-022",
+    "deck": "try",
+    "text": "I asked it again, nicer. I even said please, which I keep for emergencies.",
+    "tags": {
+      "setting": "any",
+      "why": "again",
+      "kind": "unsaid"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-023",
+    "deck": "try",
+    "text": "I asked it again and let the quiet do the rest of the work.",
+    "tags": {
+      "setting": "any",
+      "why": "again",
+      "kind": "unsaid"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-024",
+    "deck": "try",
+    "text": "I didn’t say what happens to a story that falls apart in front of a judge. I let {him} work it out.",
+    "tags": {
+      "setting": "any",
+      "why": "press",
+      "kind": "unsaid"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-025",
+    "deck": "try",
+    "text": "I didn’t raise my voice. I put the notebook on the table and let it sit there looking official.",
+    "tags": {
+      "setting": "any",
+      "why": "press",
+      "kind": "unsaid"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "TRY-026",
+    "deck": "try",
+    "text": "I left the police out of it, and made sure {he} noticed.",
+    "tags": {
+      "setting": "any",
+      "why": "press",
+      "kind": "unsaid"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

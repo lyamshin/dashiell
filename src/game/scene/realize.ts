@@ -18,14 +18,15 @@ import { OTHER_THING } from '../errand.js';
 import { hedged, restates, figuresIn, hourAgrees, introduceNames, nameables, pastTense, pastPredicate, sentencesOf, stripHere, wordCount, isSubjectless, bandOf } from './text.js';
 import { APPROACH, APPROACH_AGAIN, COUNT_WORDS, FOLLOW_ON, OUTDOOR_PLACES, RELATION_PLAIN, RELATION_WHY, SEARCH_THING_ACTS as THING_ACTS, isPluralPlace } from './lines.js';
 import { clueAbout, layerCredit, layerOfClue, layerSentences } from '../voice/plain.js';
-import type { Beat, Plan, PresencePerson } from './plan.js';
+import type { AskStage, Beat, CloseOutcome, Plan, PresencePerson } from './plan.js';
 import type { Thought } from './thought.js';
 import { m9Answer, whenSaid } from './testimony.js';
 import { acquaintanceOf } from '../../gen/index.js';
 import { pronounsOf, putSaid, saidPlainly, toldOf, type Told } from './telling.js';
 import type { Family } from './families.js';
 import { SEEN_FAMILIES, thingTopic } from './families.js';
-import { observation, tieSentence } from './people.js';
+import { observation, plainAction, tieSentence } from './people.js';
+import { doingClause, lookRole, personSlots } from './stage.js';
 import { bareRoleOf } from './plan.js';
 import { characterLine, echoes } from '../voice/character.js';
 import { verdictsOn } from '../m9.js';
@@ -63,6 +64,7 @@ import {
   NAMELESS_THOUGHTS_NO_HOUR,
   TIMING_THOUGHTS,
   TIMING_THOUGHTS_MANY,
+  ASK_REPORTED,
 } from '../voice-data.js';
 import { fill, tagIs, tagOf, type Card, type Match, type Slots } from '../voice/cards.js';
 import { classOf, genderHintOf, possessiveOf, pronounOf } from '../voice/cast.js';
@@ -886,6 +888,24 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         break;
       }
 
+      /* --------------------------------------- M12: the page's last word */
+      case 'close': {
+        const person = view.personById.get(beat.personId);
+        const text = person ? closeOf(stage, person, beat.outcome) : null;
+        if (!text) break;
+        // Golden §3: told plainly, then one dry line — on the end of the
+        // paragraph that told what it came to, when that paragraph has room.
+        const host = last();
+        if (host && host.voice === 'thought' && wordCount(host.text) < 60) {
+          host.text = `${host.text} ${text}`;
+          host.beats.push(i);
+        } else {
+          push({ text, voice: 'thought', beats: [i] });
+        }
+        mark(i, { tag: beat.outcome, personIds: [beat.personId], text });
+        break;
+      }
+
       /* ------------------------------------ M11 §A.5: who is in the room */
       case 'rundown': {
         const written = rundownParas(stage, beat);
@@ -944,7 +964,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
       [(c) => at(c) && tagOf('place-ambient', c, 'band') === band, (c) => at(c) && tagOf('place-ambient', c, 'band') === 'any'],
       {},
     );
-    const host = paras.find((p) => p.voice === 'exchange');
+    const host = paras.find((p) => p.voice === 'approach') ?? paras.find((p) => p.voice === 'exchange');
     if (drawn && host) {
       // Before he speaks: the clock, if the hour turned, then the room.
       const clock = traces.find((t) => t.kind === 'clock' && t.rendered)?.text;
@@ -1504,7 +1524,14 @@ function thoughtLine(
       stage.view,
       person,
       { kind: t.observe.tie, ...(t.secondId ? { otherId: t.secondId } : {}) },
-      t.observe.still ? `still ${t.observe.doing}` : t.observe.doing,
+      // docs/25 (after M11): the presence line told the activity; the
+      // observation says the plain action, or, when that is all the activity
+      // was, that they were still at it.
+      t.observe.still
+        ? `still ${t.observe.doing}`
+        : plainAction(t.observe.doing) === t.observe.doing.trim().replace(/\.$/, '')
+          ? 'still at it'
+          : t.observe.doing,
       stage.minutes,
       t.observe.trade,
     );
@@ -1641,7 +1668,14 @@ function exchange(
       topicKind !== 'hire') ||
       // Their own evening is asked for whole: "Where were you, start to finish?"
       (firstTelling.family.kind === 'evening' && !beat.carried));
-  if (beat.stops) {
+  const staged = beat.stage;
+  if (staged) {
+    // M12 Part 1: the approach and the look, a paragraph of their own before
+    // he says anything (the camp golden §3: "I took the stool next to
+    // Crowninshield. She was a dentist…").
+    const setup = setupOf(stage, person, staged);
+    if (setup.length > 0) out.push({ text: setup, voice: 'approach' });
+  } else if (beat.stops) {
     // §4: spoken to, they stop what they were doing — and the page says what
     // that was, when the activity is something they were in the middle of.
     const doing = stage.memory?.activities[person.id]?.text;
@@ -1653,8 +1687,25 @@ function exchange(
     const again = stage.memory?.activities[person.id]?.stopped === true;
     opening.push(fillTemplate(dealer.random.pick(again ? APPROACH_AGAIN : APPROACH), { name: surname }));
   }
+  // M12 Part 1: the ask, often in his narration. Direct quotes are for the
+  // answer, and for a question with an edge — to somebody guarded, a question
+  // that carries its own reason, their life, why he was hired.
+  // A question that carries its own reason is told with the reason first:
+  // "Vitale had lent Sirkin money. I asked her where Vitale had been tonight."
+  const carriedVerb = beat.carried && subject?.relationshipId ? RELATION_PLAIN[subject.relationshipId] : undefined;
+  const reportedCarried = staged?.reported === true && carriedVerb !== undefined && subject !== undefined;
+  const reportedLine =
+    staged?.reported === true && (!beat.carried || reportedCarried) && !scene.self && scene.askKind !== 'ask-hired'
+      ? reportedQuestion(stage, scene, beat, firstTelling, person)
+      : null;
+  const reported =
+    reportedLine !== null && reportedCarried && subject && carriedVerb
+      ? `${subject.surname} ${carriedVerb.split('{V}').join(view.victim.surname)}. ${reportedLine}`
+      : reportedLine;
   let question = '';
-  if (beat.carried && subject) {
+  if (reported !== null) {
+    question = reported;
+  } else if (beat.carried && subject) {
     const tie = subject.relationshipToVictim ?? '';
     const m = /^(.+?)[’']s ([a-z][a-z -]*)$/.exec(tie);
     if (m && m[1] === view.victim.surname) {
@@ -1721,13 +1772,20 @@ function exchange(
     });
     question = line?.text ?? `“${capitalize(scene.topicLabel)}?”`;
   }
-  // The page's own quotation marks, whatever the deck wrote.
-  question = question.replace(/^"(.*)"$/, '“$1”');
-  // M10 §A.1: the question is clearly the detective's. After a line whose
-  // subject is the witness, it says who is asking.
-  const lead = opening[opening.length - 1];
-  if (lead !== undefined && !/^I\b/.test(lead)) question = attributed(question);
+  if (reported === null) {
+    // The page's own quotation marks, whatever the deck wrote.
+    question = question.replace(/^"(.*)"$/, '“$1”');
+    // M10 §A.1: the question is clearly the detective's. After a line whose
+    // subject is the witness — or at the head of its own paragraph — it says
+    // who is asking.
+    const lead = opening[opening.length - 1];
+    if (staged || (lead !== undefined && !/^I\b/.test(lead))) question = attributed(question);
+  }
   opening.push(question);
+  // M12 Part 1: what he tries first, when he tries anything. Free, and the
+  // answer is the same either way.
+  const tried = staged?.try ? tryOf(stage, person, staged) : null;
+  if (tried) opening.push(tried);
   out.push({ text: opening.join(' '), voice: 'exchange' });
   // The free first ask: somebody who knows him answers without the preamble.
   // Only somebody who does know him: the client's two questions on the house
@@ -1830,7 +1888,7 @@ function exchange(
   // reply to the name would say it twice.
   const knowsOnlyTheFace =
     firstTelling !== undefined && firstTelling.family.kind === 'knowing' && firstTelling.family.subjectId === subject?.id;
-  if (beat.carried && subject && !knowsOnlyTheFace) {
+  if (beat.carried && subject && !knowsOnlyTheFace && reported === null) {
     // "Nora Hanrahan. She's been with him since 'eighteen." — from somebody who knows
     // them; a face known by sight comes with no history.
     const strength = view.kase.logic ? acquaintanceOf(view.kase, person.id, subject.id)?.strength : undefined;
@@ -1909,6 +1967,151 @@ function exchange(
     answerClue(scene.volunteer, false);
   }
   return out.map((p) => ({ ...p, text: tidyPunctuation(p.text) }));
+}
+
+/* ------------------------------------------------------------------ *
+ * M12 Part 1 — the ask, staged.
+ * ------------------------------------------------------------------ */
+
+/**
+ * The approach and the look, as one paragraph: where he goes and how he
+ * settles (the room, and what they are doing), then one sentence of his read
+ * of them (their trade), or, asked again, how they take a second question.
+ */
+function setupOf(stage: Stage, person: Person, staged: AskStage): string {
+  const { cast } = stage;
+  const doing = doingClause(staged.doing);
+  const slots: Slots = { ...personSlots(person), ...(doing ? { doing } : {}) };
+  const again = staged.again ? 'yes' : 'no';
+  const is = (c: Card, tag: string, want: string): boolean => tagOf('approach', c, tag) === want;
+  const fits = (c: Card, tag: string, want: string): boolean => tagIs('approach', c, tag, want);
+  // With something they are doing to say, half the time the approach says it.
+  const wantDoing = doing !== null && !staged.again && stage.dealer.random.chance(0.5);
+  // A stool is not a table: the seat the card takes agrees with where they are.
+  const seat = (t: string): string | null =>
+    /\bstool\b|\bon the bar\b/.test(t) ? 'stool' : /\b(?:table|booth)\b/.test(t) ? 'table' : /\bbench\b/.test(t) ? 'bench' : null;
+  const theirs = seat(staged.doing ?? '');
+  const agrees = (c: Card): boolean => {
+    const mine = seat(c.text.replace('{doing}', ''));
+    return mine === null || theirs === null || mine === theirs;
+  };
+  const approach = deal(
+    stage,
+    'approach',
+    [
+      (c) => agrees(c) && is(c, 'again', again) && is(c, 'setting', staged.setting) && fits(c, 'posture', staged.posture) && c.text.includes('{doing}') === wantDoing,
+      (c) => agrees(c) && is(c, 'again', again) && is(c, 'setting', staged.setting) && fits(c, 'posture', staged.posture),
+      (c) => agrees(c) && is(c, 'again', again) && fits(c, 'setting', staged.setting) && fits(c, 'posture', staged.posture),
+      (c) => is(c, 'again', again) && is(c, 'setting', 'any'),
+    ],
+    slots,
+  );
+  const approachText =
+    approach?.text ?? fillTemplate(stage.dealer.random.pick(staged.again ? APPROACH_AGAIN : APPROACH), { name: person.surname });
+  const temper = temperOf(cast, person.id);
+  const role = lookRole(person);
+  const lk = (c: Card, tag: string, want: string): boolean => tagOf('look', c, tag) === want;
+  const look = staged.again
+    ? deal(stage, 'look', [(c) => lk(c, 'again', 'yes') && lk(c, 'temper', temper), (c) => lk(c, 'again', 'yes') && lk(c, 'temper', 'any')], slots)
+    : deal(stage, 'look', [(c) => lk(c, 'again', 'no') && lk(c, 'role', role), (c) => lk(c, 'again', 'no') && lk(c, 'role', 'any')], slots);
+  return [approachText, look?.text].filter((x): x is string => x !== undefined && x.length > 0).join(' ');
+}
+
+/** The try: a drink, a cigarette, a coin, a threat left unsaid. */
+function tryOf(stage: Stage, person: Person, staged: AskStage): string | null {
+  if (!staged.try) return null;
+  const why = staged.try;
+  const t = (c: Card, tag: string, want: string): boolean => tagOf('try', c, tag) === want;
+  const drawn = deal(
+    stage,
+    'try',
+    [
+      (c) => t(c, 'setting', staged.setting) && t(c, 'why', why),
+      (c) => t(c, 'setting', 'any') && t(c, 'why', why),
+      (c) => t(c, 'setting', staged.setting) && t(c, 'why', 'any'),
+    ],
+    personSlots(person),
+  );
+  return drawn?.text ?? null;
+}
+
+/**
+ * The question told in his narration, by what the answer tells: "I asked her
+ * where she'd been tonight." Null when there is no telling of it that fits,
+ * and the question is said aloud instead.
+ */
+function reportedQuestion(
+  stage: Stage,
+  scene: Extract<Scene, { kind: 'ask' }>,
+  beat: Extract<Beat, { kind: 'exchange' }>,
+  firstTelling: Extract<Beat, { kind: 'telling' }> | undefined,
+  person: Person,
+): string | null {
+  const { view, dealer } = stage;
+  const family = firstTelling?.family;
+  let kind: string | null = family
+    ? family.kind === 'find'
+      ? 'thing'
+      : family.kind
+    : scene.account || scene.askKind === 'ask-evening'
+      ? 'evening'
+      : scene.askKind === 'ask-person'
+        ? 'movements'
+        : scene.askKind === 'ask-object' || scene.askKind === 'ask-place'
+          ? 'thing'
+          : null;
+  if (kind === null) return null;
+  const aboutId =
+    family?.subjectId ?? beat.subjectId ?? (scene.topicRef?.kind === 'person' ? scene.topicRef.id : undefined);
+  const about = aboutId ? view.personById.get(aboutId) : undefined;
+  // Their own evening is theirs; somebody else's is where that somebody was.
+  if (kind === 'evening' && about !== undefined && about.id !== person.id) kind = 'movements';
+  if ((kind === 'movements' || kind === 'knowing') && (about === undefined || about.id === person.id)) {
+    if (kind === 'knowing') return null;
+    kind = 'evening';
+  }
+  const anchor = family?.anchorId ? view.anchorById.get(family.anchorId)?.name : undefined;
+  const pro = personSlots(person);
+  const slots: Record<string, string | undefined> = {
+    him: pro.him,
+    he: pro.he,
+    his: pro.his,
+    name: about?.surname,
+    anchor,
+    topic:
+      scene.topicSlots.object !== undefined
+        ? /^(?:the|a|an|his|her) /i.test(scene.topicSlots.object)
+          ? scene.topicSlots.object
+          : `the ${scene.topicSlots.object}`
+        : (scene.topicSlots.place ?? (scene.topicRef?.kind === 'exact' ? undefined : scene.topicLabel)),
+  };
+  const pool = [...(ASK_REPORTED[kind] ?? [])];
+  while (pool.length > 0) {
+    const i = dealer.random.int(pool.length);
+    const line = fillTemplate(pool.splice(i, 1)[0] as string, slots);
+    if (line.length > 0) return line;
+  }
+  return null;
+}
+
+/**
+ * The page's last word: one dry line on what the page came to. A card
+ * written for the person's trade first, then any.
+ */
+function closeOf(stage: Stage, person: Person, outcome: CloseOutcome): string | null {
+  const role = lookRole(person);
+  const c = (card: Card, tag: string, want: string): boolean => tagOf('close', card, tag) === want;
+  const drawn = deal(
+    stage,
+    'close',
+    [
+      (card) => c(card, 'outcome', outcome) && c(card, 'role', role),
+      (card) => c(card, 'outcome', outcome) && c(card, 'role', 'any'),
+      (card) => c(card, 'outcome', 'any') && c(card, 'role', 'any'),
+    ],
+    personSlots(person),
+  );
+  return drawn?.text ?? null;
 }
 
 /** M11 §A.5: his question, when the client is in the room with others. */
@@ -2421,6 +2624,10 @@ function confrontParas(
   if (beat.follow) {
     // Shorter nights §1: the same confrontation, a second fact.
     opening.push(fillTemplate(dealer.random.pick(FOLLOW_ON), { name: surname }));
+  } else if (beat.stage) {
+    // M12 Part 1: a confrontation is staged the way a question is.
+    const setup = setupOf(stage, person, beat.stage);
+    if (setup.length > 0) out.push({ text: setup, voice: 'approach' });
   } else if (beat.stops) {
     const doing = stage.memory?.activities[person.id]?.text;
     const stopped = doing ? stoppedDoing(doing, surname) : null;
@@ -2436,6 +2643,9 @@ function confrontParas(
   const them = pronounOf(person) === 'she' ? 'her' : 'him';
   if (beat.follow) opening.push(said.length > 0 ? `“${said}”` : `I read ${them} the next thing I had.`);
   else opening.push(said.length > 0 ? `I put it to ${them} plainly. “${said}”` : `I put what I had to ${them}.`);
+  // M12: a threat left unsaid, for somebody guarded (and now and then anybody).
+  const pressed = beat.stage?.try ? tryOf(stage, person, beat.stage) : null;
+  if (pressed) opening.push(pressed);
   out.push({ text: opening.join(' '), voice: 'exchange' });
   const slots = confrontSlots(stage, person, beat.placeId, beat.tick);
   // A second fact that touches nothing ends the confrontation: the story
@@ -2486,7 +2696,9 @@ export function stoppedDoing(activity: string, surname: string): string | null {
   if (!m) return null;
   const verb = m[1] as string;
   if (/^(waiting|sitting|standing|leaning|nursing|keeping|watching|smoking|drinking|eating|looking)$/.test(verb)) return null;
-  const rest = (m[2] ?? '').replace(/\s+(?:and|while|without)\b.*$/, '').trimEnd();
+  // Cut at a clause, not at every "and": "working the gate open and shut" is
+  // one thing being done, "counting coins and humming" is two.
+  const rest = (m[2] ?? '').replace(/\s+(?:while|without|as if|as though)\b.*$|\s+and\s+(?=\w+ing\b).*$/, '').trimEnd();
   return `${surname} stopped ${verb}${rest} and looked up as I came over.`;
 }
 

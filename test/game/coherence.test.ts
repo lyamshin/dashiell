@@ -107,7 +107,10 @@ describe('the image budget', () => {
         // every clue in it, whichever paragraph the block's id names.
         const prose = page.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join(' ');
         for (const b of page.beats ?? []) {
-          if (b.kind === 'telling' && b.rendered && b.text && prose.includes(b.text.slice(0, 40))) {
+          // M12: the words said, from the first quotation mark — the frame's
+          // opening name may have become "He" after the approach named them.
+          const at = b.text ? Math.max(0, b.text.indexOf('“')) : 0;
+          if (b.kind === 'telling' && b.rendered && b.text && prose.includes(b.text.slice(at, at + 40))) {
             for (const id of b.clueIds ?? []) carried.add(id);
           }
         }

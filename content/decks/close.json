@@ -1,0 +1,695 @@
+[
+  {
+    "id": "CLS-001",
+    "deck": "close",
+    "text": "Everybody’s evening sounds tidy when they tell it. Nobody’s ever is.",
+    "tags": {
+      "outcome": "evening",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-002",
+    "deck": "close",
+    "text": "It was a very orderly evening. I couldn’t remember the last time I had one.",
+    "tags": {
+      "outcome": "evening",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-003",
+    "deck": "close",
+    "text": "People always remember their own evenings well. It’s other people’s they go vague on.",
+    "tags": {
+      "outcome": "evening",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-004",
+    "deck": "close",
+    "text": "It had the neat edges of a story that had been told before, if only to a mirror.",
+    "tags": {
+      "outcome": "evening",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-005",
+    "deck": "close",
+    "text": "I’d have liked it better with a second opinion under it, but then so would everybody.",
+    "tags": {
+      "outcome": "evening",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-006",
+    "deck": "close",
+    "text": "A dentist tells you it won’t hurt. You nod, and you check later.",
+    "tags": {
+      "outcome": "evening",
+      "role": "arch-dentist"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-007",
+    "deck": "close",
+    "text": "A lawyer’s evening comes with the loopholes already in it. I’d look for them later.",
+    "tags": {
+      "outcome": "evening",
+      "role": "arch-lawyer"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-008",
+    "deck": "close",
+    "text": "A bookmaker gives you his evening the way he gives you odds: generous, and on his terms.",
+    "tags": {
+      "outcome": "evening",
+      "role": "arch-bookmaker"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-009",
+    "deck": "close",
+    "text": "Somebody always sees you. It’s the one thing this neighbourhood does for free.",
+    "tags": {
+      "outcome": "placed",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-010",
+    "deck": "close",
+    "text": "People notice more than they let on, and let on more than they should.",
+    "tags": {
+      "outcome": "placed",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-011",
+    "deck": "close",
+    "text": "Nobody crosses this neighbourhood without somebody writing it down, and tonight the somebody was me.",
+    "tags": {
+      "outcome": "placed",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-012",
+    "deck": "close",
+    "text": "It was one person’s word. Round here, that’s a small fortune.",
+    "tags": {
+      "outcome": "placed",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-013",
+    "deck": "close",
+    "text": "Where somebody wasn’t is still something. It’s not much of a something.",
+    "tags": {
+      "outcome": "unseen",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-014",
+    "deck": "close",
+    "text": "It ruled out one room. The city has a great many rooms.",
+    "tags": {
+      "outcome": "unseen",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-015",
+    "deck": "close",
+    "text": "Knowing where a person wasn’t is like knowing what isn’t for dinner. It helps, a little.",
+    "tags": {
+      "outcome": "unseen",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-016",
+    "deck": "close",
+    "text": "Everybody knows everybody round here, until you ask.",
+    "tags": {
+      "outcome": "knowing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-017",
+    "deck": "close",
+    "text": "It’s a big city, but the same forty people keep turning up in it.",
+    "tags": {
+      "outcome": "knowing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-018",
+    "deck": "close",
+    "text": "Who knows who is half of any job like this. The other half is who knows what.",
+    "tags": {
+      "outcome": "knowing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-019",
+    "deck": "close",
+    "text": "A head count doesn’t tell you whose heads. It’s a start.",
+    "tags": {
+      "outcome": "counts",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-020",
+    "deck": "close",
+    "text": "Doors have better memories than people. Unfortunately, all they do is count.",
+    "tags": {
+      "outcome": "counts",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-021",
+    "deck": "close",
+    "text": "It was arithmetic. I was never good at arithmetic, but I’m stubborn.",
+    "tags": {
+      "outcome": "counts",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-022",
+    "deck": "close",
+    "text": "Faces without names are the city’s favourite joke, and it never gets tired of telling it.",
+    "tags": {
+      "outcome": "strangers",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-023",
+    "deck": "close",
+    "text": "A stranger is just somebody you haven’t put a name to yet. I had a few of those now.",
+    "tags": {
+      "outcome": "strangers",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-024",
+    "deck": "close",
+    "text": "Every stranger is somebody’s cousin. That’s the trouble with this neighbourhood.",
+    "tags": {
+      "outcome": "strangers",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-025",
+    "deck": "close",
+    "text": "A clock you can hear across the street is worth two on a wall.",
+    "tags": {
+      "outcome": "timing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-026",
+    "deck": "close",
+    "text": "It’s a comfort when something in this city happens on time.",
+    "tags": {
+      "outcome": "timing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-027",
+    "deck": "close",
+    "text": "Now I had a clock that wasn’t mine. Mine runs slow.",
+    "tags": {
+      "outcome": "timing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-028",
+    "deck": "close",
+    "text": "The whole street lives through the same evening and remembers it five different ways.",
+    "tags": {
+      "outcome": "event",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-029",
+    "deck": "close",
+    "text": "Everybody has a story about the same five minutes. It’s how you know they happened.",
+    "tags": {
+      "outcome": "event",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-030",
+    "deck": "close",
+    "text": "Everybody on this street knows one thing about everybody else. The trick is getting them to say it to me.",
+    "tags": {
+      "outcome": "thing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-031",
+    "deck": "close",
+    "text": "It was the kind of thing people only mention once you’ve stopped asking.",
+    "tags": {
+      "outcome": "thing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-032",
+    "deck": "close",
+    "text": "Small talk, round here, is never as small as it sounds.",
+    "tags": {
+      "outcome": "thing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-033",
+    "deck": "close",
+    "text": "Everybody’s the hero of their own story, and most of them are underpaid.",
+    "tags": {
+      "outcome": "self",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-034",
+    "deck": "close",
+    "text": "People like talking about themselves. It’s the one subject they’ve all studied.",
+    "tags": {
+      "outcome": "self",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-035",
+    "deck": "close",
+    "text": "I’d asked for a life and got one. It wasn’t mine, which was a relief.",
+    "tags": {
+      "outcome": "self",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-036",
+    "deck": "close",
+    "text": "I guess some nuts are just too hard to crack.",
+    "tags": {
+      "outcome": "nothing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-037",
+    "deck": "close",
+    "text": "I’d spent good time learning that {he} didn’t know. It’s a living.",
+    "tags": {
+      "outcome": "nothing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-038",
+    "deck": "close",
+    "text": "Not knowing is an answer. It’s just not one you can take to the bank.",
+    "tags": {
+      "outcome": "nothing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-039",
+    "deck": "close",
+    "text": "Some people don’t know anything, and some of those are telling the truth.",
+    "tags": {
+      "outcome": "nothing",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-040",
+    "deck": "close",
+    "text": "Two people, one half hour, two different rooms. Somebody’s clock was wrong, and it wasn’t the clock.",
+    "tags": {
+      "outcome": "contradicts",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-041",
+    "deck": "close",
+    "text": "Stories don’t have to match. It’s just more interesting when they don’t.",
+    "tags": {
+      "outcome": "contradicts",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-042",
+    "deck": "close",
+    "text": "It’s never the big things that don’t add up. It’s always some half hour.",
+    "tags": {
+      "outcome": "contradicts",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-043",
+    "deck": "close",
+    "text": "Two stories in one night. Some people just can’t commit.",
+    "tags": {
+      "outcome": "second-lie",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-044",
+    "deck": "close",
+    "text": "It was a better story than the first one. That isn’t saying much.",
+    "tags": {
+      "outcome": "second-lie",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-045",
+    "deck": "close",
+    "text": "The new one came out quick. Some people keep a spare story the way other people keep an umbrella.",
+    "tags": {
+      "outcome": "second-lie",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-046",
+    "deck": "close",
+    "text": "Everybody keeps something in a drawer. {name}’s drawer had just come open.",
+    "tags": {
+      "outcome": "admit",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-047",
+    "deck": "close",
+    "text": "The truth is always smaller than the lie that was covering it. It’s one of the disappointments of the job.",
+    "tags": {
+      "outcome": "admit",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-048",
+    "deck": "close",
+    "text": "It explained the lie. It didn’t explain anything else, and I made a note of that.",
+    "tags": {
+      "outcome": "admit",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-049",
+    "deck": "close",
+    "text": "{He} took the story back and didn’t offer a new one. I’ve had shops treat me the same way.",
+    "tags": {
+      "outcome": "withdraw",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-050",
+    "deck": "close",
+    "text": "Now I had one story fewer and one question more. That’s how the job goes.",
+    "tags": {
+      "outcome": "withdraw",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-051",
+    "deck": "close",
+    "text": "{He} stuck to it. So did I, in the notebook.",
+    "tags": {
+      "outcome": "hold",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-052",
+    "deck": "close",
+    "text": "A story that holds is either true or well rehearsed, and I couldn’t afford a rehearsal.",
+    "tags": {
+      "outcome": "hold",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-053",
+    "deck": "close",
+    "text": "{He} didn’t move an inch. I didn’t either, which made two of us wasting the evening.",
+    "tags": {
+      "outcome": "hold",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-054",
+    "deck": "close",
+    "text": "{He} wouldn’t say. It’s not nothing, somebody not saying. It just doesn’t come with a room and an hour.",
+    "tags": {
+      "outcome": "quiet",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-055",
+    "deck": "close",
+    "text": "That was worth writing down too: {name} would rather say nothing than say where.",
+    "tags": {
+      "outcome": "quiet",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-056",
+    "deck": "close",
+    "text": "Silence isn’t an answer to where. It is an answer to whether {he} wanted to tell me.",
+    "tags": {
+      "outcome": "quiet",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-057",
+    "deck": "close",
+    "text": "It hadn’t touched a thing. I’d spent good time finding that out, which is about my usual rate.",
+    "tags": {
+      "outcome": "wrong",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-058",
+    "deck": "close",
+    "text": "It went past {him} like a streetcar past a stop with nobody waiting at it.",
+    "tags": {
+      "outcome": "wrong",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-059",
+    "deck": "close",
+    "text": "Wrong fact, wrong person, right time of night for it.",
+    "tags": {
+      "outcome": "wrong",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-060",
+    "deck": "close",
+    "text": "{name} was done talking about it. I had other people to annoy.",
+    "tags": {
+      "outcome": "ends",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-061",
+    "deck": "close",
+    "text": "That was the end of that conversation, and I had nobody to blame but the notebook.",
+    "tags": {
+      "outcome": "ends",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-062",
+    "deck": "close",
+    "text": "It wasn’t much, but I hadn’t come for much.",
+    "tags": {
+      "outcome": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "CLS-063",
+    "deck": "close",
+    "text": "I’d had worse half hours. Not many, but some.",
+    "tags": {
+      "outcome": "any",
+      "role": "any"
+    },
+    "motifs": [],
+    "status": "generated"
+  }
+]

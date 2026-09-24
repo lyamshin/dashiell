@@ -577,7 +577,8 @@ describe('the page grammar', () => {
     for (let seed = 1; seed <= 100; seed++) {
       const v = buildView(generateCase(seed, { difficulty: 2 }));
       for (const page of playOracle(v).state.log) {
-        const n = wordsOnPage(page);
+        // M12: a recap after the page has its own size (80 to 180 words).
+        const n = wordsOnPage({ ...page, blocks: page.blocks.filter((b) => !(b.kind === 'prose' && b.voice === 'recap')) });
         // Night Hone 1: pages may be longer ("people can scroll; it's mostly a
         // story" — the designer). A search that turns up several things runs
         // past 340 on its finds alone.
@@ -597,7 +598,8 @@ describe('the page grammar', () => {
     for (let seed = 1; seed <= 40; seed++) {
       const v = buildView(generateCase(seed, { difficulty: 3 }));
       for (const page of playWandering(v, seed).state.log) {
-        const n = wordsOnPage(page);
+        // M12: a recap after the page has its own size (80 to 180 words).
+        const n = wordsOnPage({ ...page, blocks: page.blocks.filter((b) => !(b.kind === 'prose' && b.voice === 'recap')) });
         // Night Hone 1: pages may be longer ("people can scroll; it's mostly a
         // story" — the designer). A search that turns up several things runs
         // past 340 on its finds alone.

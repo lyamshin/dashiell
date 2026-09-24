@@ -115,15 +115,19 @@ const kinds = (page: Page): string =>
     .join(' ');
 
 /** §1's table, as patterns over the beat kinds in order. */
+// M12: a question and a confrontation end on the detective's last word
+// (`close`), and a page after which something shifted ends on a recap.
 const SHAPES: Record<string, RegExp> = {
-  arrive: /^(clock )?errand establish presence( find)*( thought)*( decide)?( bridge)?( answer)?$/,
-  return: /^(clock )?errand return presence( thought)*( answer)?$/,
+  arrive: /^(clock )?errand establish presence( find)*( thought)*( decide)?( bridge)?( answer)?( recap)?$/,
+  return: /^(clock )?errand return presence( thought)*( answer)?( recap)?$/,
   look: /^(establish|return) presence( thought)*$/,
   // M10 §A.5: several finds are several moments, each find and then its thought.
-  search: /^(clock )?errand act(( find)+( thought)*)*( thought)*( decide)?( bridge)?$/,
+  search: /^(clock )?errand act(( find)+( thought)*)*( thought)*( decide)?( bridge)?( recap)?$/,
   // M10 §A.1–§A.2: the question, then a family at a time — told, found,
   // thought on, and what it is worth.
-  ask: /^(clock )?(errand )?exchange(( find)*( thought)+|( telling( find)+( thought)*( note)?)+( thought)*)( decide)?( bridge)?$/,
+  ask: /^(clock )?(errand )?exchange(( find)*( thought)+|( telling( find)+( thought)*( note)?)+( thought)*)( close)?( decide)?( bridge)?( recap)?$/,
+  confront: /^(clock )?confront thought( close)?( recap)?$/,
+  recap: /^recap$/,
 };
 
 /* ------------------------------------------------------------------ *

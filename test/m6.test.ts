@@ -386,7 +386,9 @@ describe('§5 the page', () => {
       const view = buildView(generateCase(seed, { difficulty: 2 }));
       for (const page of playOracle(view).state.log) {
         if (page.n === 0) continue;
-        const n = wordsOnPage(page);
+        // M12: a recap after the page is sized by its own rule (80 to 180
+        // words, test/m12-conversation.test.ts) and is not the page's length.
+        const n = wordsOnPage({ ...page, blocks: page.blocks.filter((b) => !(b.kind === 'prose' && b.voice === 'recap')) });
         words.push(n);
         if (n <= PAGE_CEILING) continue;
         // Thinking goes first: a page past the ceiling has none left.
@@ -404,8 +406,12 @@ describe('§5 the page', () => {
     // character on first sight — three to five sentences where there were
     // two — and the designer's read was that pages were too thin: an arrival
     // runs 220 to 350 words by M8's own targets, so the share past 220 is a
-    // fifth at most now.
-    expect(over / words.length).toBeLessThan(0.2);
+    // fifth at most now. M12 stages every question — the approach, a look at
+    // the person, sometimes a try, and a last word — which the designer asked
+    // for ("write Dashiell actually asking"), on top of the camp pass's longer
+    // cards: a question page runs about forty words longer, and the share past
+    // 220 (the recap left out, which has its own size) is under a quarter.
+    expect(over / words.length).toBeLessThan(0.25);
   });
 
   it('offers no choices once the report form is open', () => {

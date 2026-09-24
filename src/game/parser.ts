@@ -226,6 +226,16 @@ export function parse(
     return { ok: true, command: { kind: 'continue' } };
   }
 
+  // M12 Part 2: "go over what I have" — the detective takes stock. It is not
+  // a walk to somewhere called "over".
+  if (
+    /^(?:go over (?:what i have|it|it all|what i've got|what i got|the notebook|my notes)|recap|take stock|think|think it over|sum up)$/.test(
+      fold(trimmed).trim().replace(/\s+/g, ' ').replace(/[’`]/g, "'"),
+    )
+  ) {
+    return { ok: true, command: { kind: 'recap' } };
+  }
+
   // M11 §A.5: "ask Hauck who's here" — the client names the room. "who's
   // here" on its own asks whoever can say, which is only ever the client.
   {

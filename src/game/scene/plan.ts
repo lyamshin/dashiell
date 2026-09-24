@@ -37,6 +37,7 @@ import { familiesOf, type Family } from './families.js';
 import { doingOf, knownTie, type KnownTie } from './people.js';
 import { visibleTrade } from '../../gen/logic/acquaint.js';
 import { acquaintanceOf } from '../../gen/index.js';
+import { postureOf, pressFor, reportedFor, settingOf, tryFor, type Posture, type Setting, type TryWhy } from './stage.js';
 
 /** "a dentist with a chair and a waiting room" is "dentist": the noun a person would say. */
 export function bareRoleOf(person: Person): string | null {
@@ -118,6 +119,48 @@ export interface RundownPerson {
   watcher: boolean;
 }
 
+/**
+ * M12 Part 1: how a question or a confrontation is staged — where he goes and
+ * how he settles, whether it is asked again, whether it is told in his
+ * narration, and what he tries first. Chosen here, without a dealer, so a
+ * test can assert it.
+ */
+export interface AskStage {
+  setting: Setting;
+  posture: Posture;
+  /** Already spoken to this visit: turned back to, not gone over to. */
+  again: boolean;
+  /** The question in his narration ("I asked her where she'd been"), not in quotation marks. */
+  reported: boolean;
+  /** A drink, a cigarette, a coin, a threat left unsaid — and why. */
+  try?: TryWhy;
+  /** What they are doing, without their name, when the page has it. */
+  doing: string | null;
+}
+
+/** M12 Part 1: what a question or a confrontation came to, for its last word. */
+export type CloseOutcome =
+  | 'evening'
+  | 'placed'
+  | 'unseen'
+  | 'knowing'
+  | 'counts'
+  | 'strangers'
+  | 'timing'
+  | 'event'
+  | 'thing'
+  | 'self'
+  | 'nothing'
+  | 'contradicts'
+  | 'second-lie'
+  | 'admit'
+  | 'withdraw'
+  | 'hold'
+  | 'quiet'
+  | 'wrong'
+  | 'ends'
+  | 'any';
+
 /** Who the detective does about a catch, and how (Night Hone 1 §5). */
 export type DecideAct = 'hold' | 'press' | 'note';
 
@@ -161,6 +204,8 @@ export type Beat =
       told?: boolean;
       /** M10 §A.3: this page goes on with an answer "Go on" continued. */
       continued?: boolean;
+      /** M12 Part 1: the approach, the look, reported or direct, the try. */
+      stage?: AskStage;
     }
   /**
    * M10 §A.1–§A.2: one family of facts, told once in the witness's words —
@@ -224,7 +269,11 @@ export type Beat =
       tick?: Tick;
       /** Shorter nights §1: the second fact of the same confrontation, put for nothing. */
       follow?: boolean;
-    };
+      /** M12 Part 1: the same staging a question gets. */
+      stage?: AskStage;
+    }
+  /** M12 Part 1: the page's wry last word, after the outcome is told. Never a verdict. */
+  | { kind: 'close'; required: false; personId: Id; outcome: CloseOutcome };
 
 export interface Plan {
   shape: PageShape;
@@ -303,6 +352,7 @@ export const REQUIRED: Record<PageShape, BeatKind[]> = {
   repeat: [],
   other: [],
   confront: ['confront', 'thought'],
+  recap: ['recap'],
 };
 
 /* ------------------------------------------------------------------ *
@@ -713,7 +763,14 @@ function presenceFor(input: PlanInput, memory: SceneMemory, again: boolean): {
       chooseActivity(view, person, input.at, input.minutes, memory.visit, input.seed, input.weather, skip);
     let activity = kept;
     if (!sameVisit || activity === undefined) {
-      activity = choose(new Set([...taken, ...before]));
+      // docs/25 (after M11): nor something somebody else has been doing
+      // tonight — "not turning the page" was everybody's — while the trade
+      // has anything else.
+      const others = Object.entries(did)
+        .filter(([id]) => id !== person.id)
+        .flatMap(([, xs]) => xs);
+      activity = choose(new Set([...taken, ...before, ...others]));
+      if (activity.cardId === '') activity = choose(new Set([...taken, ...before]));
       if (activity.cardId === '' && before.length > 0) activity = choose(taken);
     }
     taken.add(activity.cardId);
@@ -873,6 +930,40 @@ export function planPage(input: PlanInput): Plan {
             : { ...thought, placeId: input.at };
       beats.push({ kind: 'thought', required: true, thought: located });
     }
+  };
+  /**
+   * M12 Part 1: the staging of a question or a confrontation — read before
+   * this page marks them spoken to. The room and what they are doing give the
+   * approach; a second question the same visit is asked again; the temper, an
+   * answer that came back with nothing, or a fact about to be put decide
+   * whether he tries something first.
+   */
+  const stageOf = (personId: Id, confronting: boolean): AskStage => {
+    const person = view.personById.get(personId) as Person;
+    const setting = settingOf(view, input.at);
+    const kept = memory.activities[personId];
+    const doing = kept !== undefined && kept.visit === memory.visit ? doingOf(kept.text, person.surname) : null;
+    const again = memory.spoken?.[personId] === memory.visit;
+    const temper = input.tempers?.[personId] ?? 'plain';
+    const key = { seed: input.seed, minutes: input.minutes, personId, temper, again };
+    const tried = confronting
+      ? pressFor(key)
+      : tryFor({ ...key, afterNothing: memory.nothing?.[personId] === memory.visit, setting });
+    return {
+      setting,
+      posture: postureOf(person, doing, setting),
+      again,
+      reported: !confronting && reportedFor(key),
+      ...(tried ? { try: tried } : {}),
+      doing,
+    };
+  };
+  /** M12: spoken to this visit, and whether it came back with nothing. */
+  const markSpoken = (personId: Id, nothing: boolean): void => {
+    const empty = { ...(memory.nothing ?? {}) };
+    if (nothing) empty[personId] = memory.visit;
+    else delete empty[personId];
+    memory = { ...memory, spoken: { ...(memory.spoken ?? {}), [personId]: memory.visit }, nothing: empty };
   };
 
   /* ---------------------------------------------------------- go, look */
@@ -1067,6 +1158,9 @@ export function planPage(input: PlanInput): Plan {
   /* ---------------------------------------------------------- confront */
   if (action.kind === 'confront') {
     if (clock) beats.push(clock);
+    // M12: the second fact of a confrontation is the same breath; the first is staged.
+    const staged = action.follow ? undefined : stageOf(action.personId, true);
+    markSpoken(action.personId, false);
     const kept = memory.activities[action.personId];
     const stops = kept !== undefined && kept.visit === memory.visit && !kept.stopped;
     if (kept !== undefined && stops) {
@@ -1097,6 +1191,7 @@ export function planPage(input: PlanInput): Plan {
       ...(placeId === undefined ? {} : { placeId }),
       ...(tick === undefined ? {} : { tick }),
       ...(action.follow ? { follow: true } : {}),
+      ...(staged ? { stage: staged } : {}),
     });
     // The close: what the detective did with it. Never a verdict (spec §3:
     // "demeanor never solves the case; the grid does"). A second fact that
@@ -1113,6 +1208,9 @@ export function planPage(input: PlanInput): Plan {
         clueIds: [action.clue.id],
       },
     });
+    // M12: and his last word on it — for a silence, what the silence is worth.
+    const outcome: CloseOutcome = action.follow && action.judged.outcome === 'wrong' ? 'ends' : action.judged.outcome;
+    beats.push({ kind: 'close', required: false, personId: action.personId, outcome });
     return { shape: 'confront', beats, memory };
   }
 
@@ -1184,6 +1282,19 @@ export function planPage(input: PlanInput): Plan {
   // evening with it the first time, as a telling after their own story.
   const families = action.self && !view.kase.logic ? [] : familiesOf(view, telling);
   const told = families.length > 0;
+  // M12 Part 1: "Go on" is the same conversation a page on, and is not staged again.
+  const staged = action.continued ? undefined : stageOf(action.personId, false);
+  markSpoken(action.personId, newIds.length === 0 && !action.self && !action.account);
+  /** M12: the last word, on what the page came to. */
+  const addClose = (): void => {
+    const outcome = closeOutcome(
+      view,
+      beats.flatMap((b) => (b.kind === 'thought' ? [b.thought] : [])),
+      families,
+      { self: action.self, account: action.account, found: newIds.length },
+    );
+    beats.push({ kind: 'close', required: false, personId: action.personId, outcome });
+  };
   beats.push({
     kind: 'exchange',
     required: true,
@@ -1198,6 +1309,7 @@ export function planPage(input: PlanInput): Plan {
     recall,
     ...(told ? { told: true } : {}),
     ...(action.continued ? { continued: true } : {}),
+    ...(staged ? { stage: staged } : {}),
   });
   if (kept !== undefined && stops) {
     memory = { ...memory, activities: { ...memory.activities, [action.personId]: { ...kept, stopped: true } } };
@@ -1220,6 +1332,7 @@ export function planPage(input: PlanInput): Plan {
     }
     // Every family said, and somewhere a thought on it.
     if (!beats.some((b) => b.kind === 'thought')) addThoughts(thoughtsFor(thoughtInput));
+    if (!action.more) addClose();
     const decided = addDecide();
     if (!action.more) addBridge({ decided });
     return { shape: 'ask', beats, memory };
@@ -1235,9 +1348,37 @@ export function planPage(input: PlanInput): Plan {
   } else {
     addThoughts(thoughtsFor(thoughtInput));
   }
+  addClose();
   const decided = addDecide();
   addBridge({ decided });
   return { shape: 'ask', beats, memory };
+}
+
+/**
+ * M12 Part 1: what a question came to, for its last word — two words that do
+ * not agree, else the last family told (a sighting, only where they were not,
+ * their evening, a count…), else their life, or nothing at all.
+ */
+export function closeOutcome(
+  view: CaseView,
+  thoughts: readonly Thought[],
+  families: readonly Family[],
+  asked: { self: boolean; account: boolean; found: number },
+): CloseOutcome {
+  if (thoughts.some((t) => t.cls === 'contradicts')) return 'contradicts';
+  const last = families[families.length - 1];
+  if (last) {
+    if (last.kind === 'movements') {
+      const clues = last.clueIds.map((id) => view.findableById.get(id)).filter((c): c is Clue => c !== undefined);
+      const seen = clues.some((c) => c.establishes.some((f) => f.kind === 'personAt' || f.kind === 'personAtAnchor'));
+      return seen ? 'placed' : 'unseen';
+    }
+    return last.kind === 'find' ? 'thing' : last.kind;
+  }
+  if (asked.self) return 'self';
+  if (asked.account) return 'evening';
+  if (asked.found === 0) return 'nothing';
+  return 'any';
 }
 
 /**

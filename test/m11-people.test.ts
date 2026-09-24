@@ -224,7 +224,8 @@ describe('M11 §A.6: an arrival gives something to think about', () => {
         const observation = (page.beats ?? []).find((b) => b.kind === 'thought' && b.tag === 'view' && /\bwho had\b|\bhad told me to start with\b|\bwho was paying me\b/.test(b.text ?? ''));
         if (!observation) continue;
         closed++;
-        const last = [...page.blocks].reverse().find((b) => b.kind === 'prose');
+        // M12: a recap that follows the page comes after it.
+        const last = [...page.blocks].reverse().find((b) => b.kind === 'prose' && b.voice !== 'recap');
         expect(last && last.kind === 'prose' ? last.text : '').toContain(observation.text ?? '§');
       }
     }

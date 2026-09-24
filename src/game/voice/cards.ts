@@ -67,6 +67,11 @@ import followupJson from '../../../content/decks/followup.json';
 import tailJson from '../../../content/decks/tail.json';
 import noteJson from '../../../content/decks/note.json';
 import characterJson from '../../../content/decks/character.json';
+import approachJson from '../../../content/decks/approach.json';
+import lookJson from '../../../content/decks/look.json';
+import tryJson from '../../../content/decks/try.json';
+import closeJson from '../../../content/decks/close.json';
+import recapJson from '../../../content/decks/recap.json';
 
 export type DeckName =
   | 'similes'
@@ -115,7 +120,13 @@ export type DeckName =
   | 'tail'
   | 'note'
   /* M11 Part C: archetype character cards — the look, the street's view, the talk, the victim, the client's word. */
-  | 'character';
+  | 'character'
+  /* M12: the ask staged (the approach, the look, the try, the last word) and the recap's frame. */
+  | 'approach'
+  | 'look'
+  | 'try'
+  | 'close'
+  | 'recap';
 
 export type BurnTier = 'run-to-run' | 'within-run' | 'free';
 
@@ -242,6 +253,11 @@ const RAW: Record<DeckName, unknown> = {
   tail: tailJson,
   note: noteJson,
   character: characterJson,
+  approach: approachJson,
+  look: lookJson,
+  try: tryJson,
+  close: closeJson,
+  recap: recapJson,
 };
 
 /** Every deck is on disk and imported; nothing is missing. */
