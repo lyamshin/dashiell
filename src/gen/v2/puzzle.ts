@@ -471,6 +471,14 @@ export function buildPuzzle(input: LogicSelectInput, frame: ProblemFrame): Puzzl
   }
 
   const keepsTatham = (n: World): boolean => floor === null || !settled(solveAt(cluesOf(n), floor));
+  // The bottleneck is a key rival whatever its distance (Hard-boiled's pair
+  // stand a walk off); it takes the place of the farther of the two nearest.
+  if (bottleneck && bottleneck.kind === 'who' && !bottleneck.key) {
+    const keyed = byNearness.filter((id) => keyWho.has(id));
+    const drop = rivals.find((r) => r.kind === 'who' && r.personId === keyed[keyed.length - 1]);
+    if (drop) drop.key = false;
+    bottleneck.key = true;
+  }
 
   /* --- the turn on the road: a lie that has to be caught ---------------------- */
   // docs/35: the turn falls at the first lie caught, and in the worked example
