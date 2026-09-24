@@ -650,9 +650,11 @@ export function renderRecap(
   const measure = (fs: RecapFact[], longest: boolean): number =>
     frameWords + count(merged(fs).map((f) => f.say(byLength(longest), undefined)));
   // The frame of taking stock — when, where and how — may be said again, when
-  // it was not said a page or three ago (or when he asked for it).
+  // it was not said a page or three ago, when he asked for it, or when a
+  // story has just been given up (golden §4).
   const pageNow = state.log.length - 1;
-  const stale = (f: RecapFact): boolean => trigger === 'demand' || pageNow - (memory?.saidAt?.[f.key] ?? -99) >= RECAP_FRAME_GAP;
+  const stale = (f: RecapFact): boolean =>
+    trigger === 'demand' || trigger === 'confront' || pageNow - (memory?.saidAt?.[f.key] ?? -99) >= RECAP_FRAME_GAP;
   if (measure(body(), false) < RECAP_WORDS[0]) {
     for (const f of facts) if (f.part === 'when' && stale(f)) include.add(f.key);
   }
