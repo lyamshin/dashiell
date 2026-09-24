@@ -438,5 +438,105 @@
     },
     "motifs": [],
     "status": "generated"
+  },
+  {
+    "id": "GRT-041",
+    "deck": "greet",
+    "text": "“Anything?” {he} said, before I was all the way in. “No. Of course not. Sit down, you’ve been walking.”",
+    "tags": {
+      "purpose": "find-the-pet",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "GRT-042",
+    "deck": "greet",
+    "text": "“I keep thinking I hear it scratching at the door,” {he} said. “Then it’s only the door. Sit down, sit down.”",
+    "tags": {
+      "purpose": "find-the-pet",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "GRT-043",
+    "deck": "greet",
+    "text": "“Sit down,” {he} said. “I’ve looked under this table twice already, in case you were wondering.”",
+    "tags": {
+      "purpose": "find-the-thing",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "GRT-044",
+    "deck": "greet",
+    "text": "{He} moved a glass so I could sit. “It’s still missing,” {he} said, and looked at my hands in case I’d brought it.",
+    "tags": {
+      "purpose": "find-the-thing",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "GRT-045",
+    "deck": "greet",
+    "text": "“Keep your voice down,” {he} said. “Sit. If {victim} walks in, we’re talking about the weather.”",
+    "tags": {
+      "purpose": "before-they-notice",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "GRT-046",
+    "deck": "greet",
+    "text": "“{victim} asked me tonight if I’d seen it, and I said no, which is true, more or less,” {he} said. “Sit down. Tell me something good.”",
+    "tags": {
+      "purpose": "before-they-notice",
+      "temper": "yap"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "GRT-047",
+    "deck": "greet",
+    "text": "“Well?” {he} said. “Sit down. Tell me slowly, or don’t tell me at all.”",
+    "tags": {
+      "purpose": "tell-me-the-truth",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "GRT-048",
+    "deck": "greet",
+    "text": "{He} didn’t look up. “Sit,” {he} said. “Whatever it is, I’d rather hear it sitting down.”",
+    "tags": {
+      "purpose": "tell-me-the-truth",
+      "temper": "enigma"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "GRT-049",
+    "deck": "greet",
+    "text": "“You’re smiling,” {he} said. “Are you smiling? Sit down and tell me why.”",
+    "tags": {
+      "purpose": "put-my-mind-at-rest",
+      "temper": "plain"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "GRT-050",
+    "deck": "greet",
+    "text": "“I told myself I wouldn’t ask the minute you walked in,” {he} said. “Well? Sit down. I’m asking.”",
+    "tags": {
+      "purpose": "put-my-mind-at-rest",
+      "temper": "yap"
+    },
+    "status": "generated"
   }
 ]

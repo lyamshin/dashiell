@@ -1111,7 +1111,7 @@
       "slots": ["name", "he", "him", "his", "He", "victim"],
       "minPerCoverageCell": 2,
       "tags": {
-        "purpose": { "required": true, "values": ["find-the-killer-police-wont", "clear-my-name", "keep-it-quiet", "find-it-before-the-cops", "get-it-back", "bring-them-home", "make-sure-they-stay-gone", "settle-a-debt-with-the-dead"], "extraValues": ["any"] },
+        "purpose": { "required": true, "values": ["find-the-killer-police-wont", "clear-my-name", "keep-it-quiet", "find-it-before-the-cops", "get-it-back", "bring-them-home", "make-sure-they-stay-gone", "settle-a-debt-with-the-dead", "find-the-pet", "find-the-thing", "before-they-notice", "tell-me-the-truth", "put-my-mind-at-rest"], "extraValues": ["any"] },
         "temper": { "required": false, "default": "any", "values": ["plain", "yap", "enigma"], "extraValues": ["any"] }
       },
       "coverage": [["purpose"]]
