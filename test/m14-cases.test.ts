@@ -14,7 +14,10 @@ import { TROPES } from '../src/gen/tropes/index.js';
 import { buildView, peopleHere, victimReachable, type CaseView } from '../src/game/derive.js';
 import { fieldsFor, truthReport, withAnswer } from '../src/game/report-form.js';
 import { fileReport, newRun } from '../src/game/reducer.js';
-import { playOracle } from '../src/game/oracle.js';
+import { playOracle, playWandering } from '../src/game/oracle.js';
+import { checkRun } from '../src/game/correspond-pages.js';
+import { lintRun } from '../src/game/reader-lint.js';
+import { checkRunCoverage } from '../src/game/scene/coverage.js';
 import { scoreReport } from '../src/game/scoring.js';
 import { storyOf, storyParagraphs } from '../src/game/story.js';
 import { emptyProfile, recordRun, sanitizeProfile } from '../src/game/profile.js';
@@ -167,6 +170,39 @@ describe('M14: on the page', () => {
       expect(storyParagraphs(storyOf(view.kase)).join(' ').length).toBeGreaterThan(200);
     }
   });
+});
+
+describe('M14: traced, covered and plain', () => {
+  it('has no correspondence violation, no uncovered beat and no lint over the new types, oracle and wanderer', () => {
+    const problems: string[] = [];
+    let pages = 0;
+    let covered = 0;
+    let runs = 0;
+    for (const type of MUNDANE) {
+      for (const tier of TIER_IDS) {
+        for (let seed = 1; seed <= 4; seed++) {
+          const view = viewOf(seed, tier, type);
+          for (const [who, state] of [
+            ['oracle', playOracle(view).state],
+            ['wanderer', playWandering(view, seed).state],
+          ] as const) {
+            runs++;
+            const label = `${type} T${tier} s${seed} ${who}`;
+            for (const v of checkRun(view, state)) problems.push(`${label} ${v.where} ${v.rule}: ${v.detail}`);
+            for (const i of lintRun(view, state)) problems.push(`${label} p${i.page + 1} ${i.rule}: ${i.detail}`);
+            const c = checkRunCoverage(view, state);
+            pages += c.pages;
+            covered += c.covered;
+            for (const i of c.issues) problems.push(`${label} p${i.page + 1} ${i.rule}: ${i.detail}`);
+          }
+        }
+      }
+    }
+    // eslint-disable-next-line no-console
+    console.log(`M14: ${runs} runs of the new types, ${covered} of ${pages} night pages covered, ${problems.length} problems`);
+    expect(problems.slice(0, 10)).toEqual([]);
+    expect(covered).toBe(pages);
+  }, 600_000);
 });
 
 describe('M14: the affair ends on what I tell the client', () => {
