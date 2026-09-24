@@ -301,7 +301,7 @@ describe('Shorter nights: par and budget', () => {
         const [lo, hi] = deductionOf(shape).par;
         expect(walk).toBeGreaterThanOrEqual(lo);
         expect(walk).toBeLessThanOrEqual(hi);
-        expect(kase.budget).toBe(kase.par + logicSlackFor(shape, ladder, kase.par, walk));
+        expect(kase.budget).toBe(kase.par + logicSlackFor(shape, ladder, kase.par, walk, kase.act.type));
         if (kase.par < walk) shorter++;
         if ((kase.logic?.solve.confessions.length ?? 0) > 0) {
           withConfession++;

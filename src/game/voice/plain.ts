@@ -950,7 +950,7 @@ export function plainBeat(view: CaseView, beat: Beat): string {
     case 'hasMotive':
       return endStop(`${name} ${s.motive ?? 'had a reason'}`);
     case 'objectMissing':
-      return `${capitalize(s.object ?? 'the thing')} is gone from ${place}.`;
+      return `${s.object ? `The ${s.object}` : 'The thing'} is gone from ${place}.`;
     case 'secretExplained':
       return `${name}’s ${s.secret ?? 'business'} is accounted for, and it is not this.`;
     default:

@@ -103,7 +103,9 @@ export function spokenSpans(text: string): string {
 export function beatsOf(view: CaseView, clue: Clue): Beat[] {
   const victim = view.victim;
   const out: Beat[] = [];
-  const objectName = (id: Id): string | undefined => view.objectById.get(id)?.name;
+  // The utterance cards put their own article in front ("The {object}'s
+  // gone"), so the name goes in bare: "jewel case", "ginger tomcat".
+  const objectName = (id: Id): string | undefined => view.objectById.get(id)?.name.replace(/^(?:a|an|the)\s+/i, '');
   const placeName = (id: Id): string | undefined => view.placeById.get(id)?.shortName;
   const surname = (id: Id): string | undefined => view.personById.get(id)?.surname;
 

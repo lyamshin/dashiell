@@ -539,7 +539,9 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
           if (means && means.kind === 'methodEvidence') {
             out.push({ cls: 'method', objectId: f.objectId, placeId: f.fromPlace, methodId: means.methodId, clueIds: [clue.id] });
           } else if (f.fromPlace === scene || f.fromPlace === kase.act.place) {
-            if (clue.place !== f.fromPlace && isTheft(kase.act.type)) {
+            // Where it is now is a thing found there, never somebody's word
+            // about it where they happen to be standing (M14).
+            if (clue.place !== f.fromPlace && isTheft(kase.act.type) && clue.source.type === 'place') {
               out.push({ cls: 'goods', objectId: f.objectId, placeId: clue.place, clueIds: [clue.id] });
             } else {
               out.push({ cls: 'robbery-shape', objectId: f.objectId, placeId: f.fromPlace, clueIds: [clue.id] });

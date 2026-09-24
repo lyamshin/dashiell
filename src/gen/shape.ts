@@ -230,6 +230,10 @@ export const DEDUCTION_MEDIUM: DeductionDials = {
   culpritDepth: 4,
   pieces: 0.6,
   par: [8, 14],
+  // M14: the design test is held per case type now. A robbery or a
+  // disappearance at Medium and Hard-boiled ran the reasoning player out of
+  // night a call short of it one time in five (docs/33-m14-notes.md).
+  typeSlack: { robbery: 1, missing: 1 },
 };
 
 export const DEDUCTION_HARD: DeductionDials = {
