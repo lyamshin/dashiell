@@ -1,0 +1,3165 @@
+{
+  "about": "Place names for Dashiell (drafts). Every place template in src/gen/data/places.ts has 6–10 name sets; the engine picks one per place per case. See rules.md for how each form is used and README.md for slots and counts.",
+  "slots": {
+    "{street}": "a cross street (or other named street) in the case’s neighbourhood, full name: “Rivington Street”. From streets.json.",
+    "{avenue}": "a north–south avenue or main street in the case’s neighbourhood, full name with any article it carries: “Tenth Avenue”, “the Bowery”. From streets.json. Never the same street as {street}.",
+    "{V}": "the family name of the person whose own place this is: the victim’s address in a murder, the owner’s in a lost-item or lost-pet case. Residence sets always carry it; other sets carry it only when marked keeping.",
+    "{W}": "the family name of the landlady posted at this place (fixture role landlady). Used only on landlady-watched templates."
+  },
+  "fields": {
+    "id": "unique across the file",
+    "proper": "first mention in a night",
+    "local": "what people in the neighbourhood say (1–3 forms)",
+    "short": "the notebook grid and the rules; 1–2 words",
+    "epithets": "descriptive tags, each read after a comma: “Mancuso’s, where the smoke hung over the tables like a second ceiling”",
+    "sense": "sound, sight, smell: the senses the place is strongest in, strongest first",
+    "fits": "optional; the neighbourhoods this set may be drawn in (it names a real landmark or a fixed street). Absent means any neighbourhood.",
+    "keeping": "optional; true means the set names the place as {V}’s own. Drawn only when the place belongs to {V} in this case, and then always one of these."
+  },
+  "templates": {
+    "res-apartment": [
+      {
+        "id": "apt-linden",
+        "proper": "{V}’s apartment on the fourth floor of the Linden Arms on {street}",
+        "local": ["{V}’s place", "the Linden Arms"],
+        "short": "{V}’s flat",
+        "epithets": [
+          "where the mailboxes had lost half their names",
+          "with a super in the basement who kept an owl’s hours",
+          "four flights up, and every one of them personal"
+        ],
+        "sense": ["sight", "sound"]
+      },
+      {
+        "id": "apt-excelsior",
+        "proper": "{V}’s four rooms on the fourth floor of the Excelsior, a walk-up on {street}",
+        "local": ["{V}’s place", "the Excelsior"],
+        "short": "{V}’s rooms",
+        "epithets": [
+          "which had never once excelled at anything",
+          "where the stair light gave up at the third landing",
+          "with a front hall no bigger than a coat closet"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "apt-grieco",
+        "proper": "{V}’s apartment on the fourth floor over Grieco’s fish market on {avenue}",
+        "local": ["{V}’s place", "over Grieco’s"],
+        "short": "{V}’s flat",
+        "epithets": [
+          "that smelled faithfully of the fish market four floors down",
+          "where the gulls came inland to ask about the fish",
+          "with sawdust from the market tracked up every stair"
+        ],
+        "sense": ["smell", "sound"]
+      },
+      {
+        "id": "apt-green-escape",
+        "proper": "{V}’s flat on the fourth floor of the red-brick house at {street} and {avenue}, the one with the green fire escape",
+        "local": ["{V}’s place", "the green fire escape"],
+        "short": "{V}’s flat",
+        "epithets": [
+          "with its fire escape painted the green of a billiard table",
+          "where somebody on the second floor practised the cornet",
+          "which leaned a little toward the avenue, as if listening"
+        ],
+        "sense": ["sight", "sound"]
+      },
+      {
+        "id": "apt-adelaide",
+        "proper": "{V}’s apartment on the fourth floor of the Adelaide on {street}",
+        "local": ["{V}’s place", "the Adelaide"],
+        "short": "{V}’s flat",
+        "epithets": [
+          "where the elevator had been coming soon since 1911",
+          "with a stained-glass street door nobody had ever cleaned",
+          "whose front steps were the block’s favourite place to sit"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "apt-novak",
+        "proper": "{V}’s apartment on the fourth floor over Novak’s bakery on {avenue}",
+        "local": ["{V}’s place", "over Novak’s"],
+        "short": "{V}’s flat",
+        "epithets": [
+          "that smelled of rye bread before anybody was awake to want it",
+          "where the floors stayed warm from the ovens below",
+          "with flour dust on every banister"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "apt-wedding-cake",
+        "proper": "{V}’s apartment at the back of the fourth floor of the building on {street} that the block called the Wedding Cake",
+        "local": ["{V}’s place", "the Wedding Cake"],
+        "short": "{V}’s flat",
+        "epithets": [
+          "with more plaster curlicues than sense",
+          "iced in white stone like a cake nobody was allowed to eat",
+          "whose cornice dropped a piece of itself on the sidewalk every spring"
+        ],
+        "sense": ["sight"]
+      }
+    ],
+    "res-brownstone": [
+      {
+        "id": "brn-lions",
+        "proper": "{V}’s rooms on the parlour floor of the brownstone on {street} with the stone lions on the stoop",
+        "local": ["{V}’s place", "the house with the lions"],
+        "short": "{V}’s rooms",
+        "epithets": [
+          "guarded by two stone lions with no noses left between them",
+          "whose stoop had been worn smooth in the middle",
+          "with its curtains drawn at noon"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "brn-van-tassel",
+        "proper": "{V}’s rooms in the old Van Tassel house on {street}",
+        "local": ["{V}’s place", "the Van Tassel house"],
+        "short": "{V}’s rooms",
+        "epithets": [
+          "which no Van Tassel had set foot in since the Civil War",
+          "with a brass knocker shaped like a fist",
+          "where the family portraits had been sold and the nails left in the wall"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "brn-wisteria",
+        "proper": "{V}’s rooms on the second floor of the brownstone on {street} with the wisteria over the door",
+        "local": ["{V}’s place", "the wisteria house"],
+        "short": "{V}’s rooms",
+        "epithets": [
+          "with a wisteria over the door that had opinions about the mail slot",
+          "that smelled of wisteria in May and wet stone the rest of the year",
+          "where the vine had got into the gutters and was working on the roof"
+        ],
+        "sense": ["smell", "sight"]
+      },
+      {
+        "id": "brn-pettibone",
+        "proper": "{V}’s rooms in the brownstone on {street} where old Dr. Pettibone used to set bones",
+        "local": ["{V}’s place", "the doctor’s house", "Pettibone’s"],
+        "short": "{V}’s rooms",
+        "epithets": [
+          "with the doctor’s brass plate still on the railing",
+          "where strangers still knocked at the side door out of habit",
+          "which still smelled faintly of iodine"
+        ],
+        "sense": ["smell", "sight"]
+      },
+      {
+        "id": "brn-narrow",
+        "proper": "{V}’s rooms on the parlour floor of the narrow brownstone on {street}, squeezed between a church and a bakery",
+        "local": ["{V}’s place", "the narrow house"],
+        "short": "{V}’s rooms",
+        "epithets": [
+          "twelve feet wide and proud of every one of them",
+          "where you could touch both walls of the hall at once",
+          "with a church on one side and a bakery on the other, which covered most needs"
+        ],
+        "sense": ["sight", "smell"]
+      },
+      {
+        "id": "brn-bay-window",
+        "proper": "{V}’s rooms in the brownstone on {street} with the bay window",
+        "local": ["{V}’s place", "the bay window"],
+        "short": "{V}’s rooms",
+        "epithets": [
+          "with a bay window sticking out into the street like a chin",
+          "where the street could see in and mostly did",
+          "with a window seat worn to the shape of whoever sat in it"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "brn-harrington",
+        "proper": "{V}’s rooms in Harrington Row on {street}",
+        "local": ["{V}’s place", "Harrington Row"],
+        "short": "{V}’s rooms",
+        "epithets": [
+          "the last three houses on the block the builders hadn’t bought yet",
+          "with a new apartment house glaring at it from across the street",
+          "where every stoop had a flower box and every flower box had given up"
+        ],
+        "sense": ["sight"]
+      }
+    ],
+    "res-walkup": [
+      {
+        "id": "wlk-lipsky",
+        "proper": "{V}’s walk-up over Lipsky’s drugstore on {avenue}",
+        "local": ["{V}’s place", "over Lipsky’s"],
+        "short": "{V}’s walk-up",
+        "epithets": [
+          "where the cherry syrup smell climbed the stairs ahead of you",
+          "over a window full of hot-water bottles",
+          "with a stair so steep it counted as exercise"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "wlk-eagle",
+        "proper": "{V}’s walk-up over the Eagle Drug Store on {street}, the one with the stuffed eagle in the window",
+        "local": ["{V}’s place", "over the Eagle"],
+        "short": "{V}’s walk-up",
+        "epithets": [
+          "over a stuffed eagle that had seen everything and said nothing",
+          "three flights of bare wood with no runner",
+          "where the hall bulb burned out about as often as it was changed"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "wlk-brunetti",
+        "proper": "{V}’s walk-up over Brunetti’s pharmacy on {avenue}",
+        "local": ["{V}’s place", "Brunetti’s walk-up"],
+        "short": "{V}’s walk-up",
+        "epithets": [
+          "over a pharmacy that sold as much wine tonic as aspirin",
+          "that smelled of camphor and boiled coffee",
+          "where the ceiling fan in the store below hummed up through the floor"
+        ],
+        "sense": ["smell", "sound"]
+      },
+      {
+        "id": "wlk-gottlieb",
+        "proper": "{V}’s walk-up over Gottlieb’s drugstore at {street} and {avenue}",
+        "local": ["{V}’s place", "Gottlieb’s walk-up"],
+        "short": "{V}’s walk-up",
+        "epithets": [
+          "where the soda fountain gurgled up through the floorboards",
+          "with a back stair that swayed a little when it had company",
+          "over a window advertising a cure for everything but the rent"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "wlk-doc-farrow",
+        "proper": "{V}’s walk-up over Doc Farrow’s drugstore on {street}",
+        "local": ["{V}’s place", "over Doc Farrow’s"],
+        "short": "{V}’s walk-up",
+        "epithets": [
+          "over a druggist the whole block called Doc without ever having seen a diploma",
+          "where the hall smelled of liniment and cabbage",
+          "with a door that stuck in wet weather and in dry weather too"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "wlk-palace",
+        "proper": "{V}’s walk-up over the Palace Pharmacy on {avenue}",
+        "local": ["{V}’s place", "over the Palace"],
+        "short": "{V}’s walk-up",
+        "epithets": [
+          "over a pharmacy that was no kind of palace",
+          "where the electric sign buzzed against the bedroom window all night",
+          "up a stair lit by the pharmacy sign and nothing else"
+        ],
+        "sense": ["sound", "sight"]
+      },
+      {
+        "id": "wlk-ostrowski",
+        "proper": "{V}’s walk-up over Ostrowski’s drugstore on {street}, three flights up and one room deep",
+        "local": ["{V}’s place", "Ostrowski’s walk-up"],
+        "short": "{V}’s walk-up",
+        "epithets": [
+          "one room deep and three flights tall, like a filing cabinet somebody lived in",
+          "where the roof leaked only on Sundays, out of respect",
+          "over a window full of trusses and corn plasters"
+        ],
+        "sense": ["sight"]
+      }
+    ],
+    "res-suite": [
+      {
+        "id": "ste-aldine",
+        "proper": "{V}’s suite on the sixth floor of the Hotel Aldine on {street}",
+        "local": ["{V}’s place", "the Aldine"],
+        "short": "{V}’s suite",
+        "epithets": [
+          "where the rent was by the week and the questions were by appointment",
+          "with an elevator that ran when it felt appreciated",
+          "whose hall carpet had a path worn down the middle like a cow track"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "ste-marlowe",
+        "proper": "{V}’s suite at the Marlowe, a residential hotel on {avenue}",
+        "local": ["{V}’s place", "the Marlowe"],
+        "short": "{V}’s suite",
+        "epithets": [
+          "a hotel for bachelors and people who had stopped explaining",
+          "where every hallway smelled of shaving soap",
+          "with a lobby fern older than the desk clerk"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "ste-wentworth",
+        "proper": "{V}’s two rooms and bath at the Hotel Wentworth on {street}",
+        "local": ["{V}’s place", "the Wentworth"],
+        "short": "{V}’s suite",
+        "epithets": [
+          "two rooms and a bath, and the bath was the proud one",
+          "where the house rules were framed on every door and obeyed behind none",
+          "with its name in gold leaf on a window nobody washed"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "ste-castleton",
+        "proper": "{V}’s suite on the top floor of the Hotel Castleton on {avenue}, under the copper roof",
+        "local": ["{V}’s place", "the Castleton"],
+        "short": "{V}’s suite",
+        "epithets": [
+          "under a copper roof gone as green as a pickle",
+          "where the top-floor rent came with a view and a draught",
+          "which had been fashionable for about a year in 1904"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "ste-st-ives",
+        "proper": "{V}’s suite at the St. Ives on {street}, the residential hotel full of retired actors",
+        "local": ["{V}’s place", "the St. Ives"],
+        "short": "{V}’s suite",
+        "epithets": [
+          "where every retired actor in the building took the stairs like an entrance",
+          "full of people who had played the Palace once and would tell you about it",
+          "with a lobby done up like the set of a play that had closed"
+        ],
+        "sense": ["sound", "sight"]
+      },
+      {
+        "id": "ste-pembroke",
+        "proper": "{V}’s suite at the Hotel Pembroke on {street}, six floors of plain brick",
+        "local": ["{V}’s place", "the Pembroke"],
+        "short": "{V}’s suite",
+        "epithets": [
+          "six floors of brick with nothing to say for itself",
+          "where the carpet had been red once and could prove it in the corners",
+          "whose one ambition was to be left alone"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "ste-belmont",
+        "proper": "{V}’s suite at the Belmont Residence on {avenue}, over the tearoom",
+        "local": ["{V}’s place", "the Belmont"],
+        "short": "{V}’s suite",
+        "epithets": [
+          "over a tearoom that sold more gossip than tea",
+          "that smelled of toast and floor wax on every landing",
+          "where the doormat said WELCOME and the desk clerk didn’t"
+        ],
+        "sense": ["smell"]
+      }
+    ],
+    "res-backhouse": [
+      {
+        "id": "bkh-stable",
+        "proper": "{V}’s little house on the back lot behind {street}, the old stable with the hayloft door",
+        "local": ["{V}’s place", "the back house", "the old stable"],
+        "short": "{V}’s house",
+        "epithets": [
+          "with a hayloft door nobody had opened since the horse moved out",
+          "where you could still find a horseshoe nail between the floorboards",
+          "down a passage so narrow you went through it sideways"
+        ],
+        "sense": ["sight", "smell"]
+      },
+      {
+        "id": "bkh-weber",
+        "proper": "{V}’s house behind the Weber place on {street}, down the gravel lane",
+        "local": ["{V}’s place", "behind the Webers’"],
+        "short": "{V}’s house",
+        "epithets": [
+          "down a gravel lane that announced every step",
+          "which the Webers pretended wasn’t there",
+          "with a tin washtub hung by the door like a coat of arms"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "bkh-fig",
+        "proper": "{V}’s cottage on the back lot off {street}, with the fig tree",
+        "local": ["{V}’s place", "the fig tree house"],
+        "short": "{V}’s house",
+        "epithets": [
+          "with a fig tree wrapped in burlap every winter like a patient",
+          "that smelled of tomato vines all August",
+          "where the lot was more garden than lot"
+        ],
+        "sense": ["smell", "sight"]
+      },
+      {
+        "id": "bkh-carriage",
+        "proper": "{V}’s house at the back of the carriage yard on {street}",
+        "local": ["{V}’s place", "the carriage yard"],
+        "short": "{V}’s house",
+        "epithets": [
+          "at the back of a carriage yard without a carriage in it",
+          "reached through an arch with a gate that complained on its hinges",
+          "where the cobbles came up to meet your ankles"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "bkh-rourke",
+        "proper": "{V}’s two-room house behind Rourke’s old saloon on {street}",
+        "local": ["{V}’s place", "behind Rourke’s"],
+        "short": "{V}’s house",
+        "epithets": [
+          "behind a saloon that now claimed to sell only soda",
+          "with a door painted three colours, none of them on purpose",
+          "where the saloon’s back window was the only lamp"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "bkh-eleven-half",
+        "proper": "{V}’s house at Number Eleven and a Half, {street}, the half being the house in back",
+        "local": ["{V}’s place", "Eleven and a Half"],
+        "short": "{V}’s house",
+        "epithets": [
+          "the half of an address the mailman had to be told about",
+          "which the city had never been told about at all",
+          "where the only light came from the big house’s kitchen"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "bkh-coops",
+        "proper": "{V}’s house on the back lot off {street}, next to the pigeon coops",
+        "local": ["{V}’s place", "by the coops"],
+        "short": "{V}’s house",
+        "epithets": [
+          "next door to a man who kept pigeons and loved them out loud",
+          "where the cooing started before anybody else was up",
+          "with a yard that was mostly feathers"
+        ],
+        "sense": ["sound"]
+      }
+    ],
+    "rooftop": [
+      {
+        "id": "roof-dover",
+        "proper": "the roof over the Dover apartments on {street}",
+        "local": ["the Dover roof", "up top at the Dover"],
+        "short": "Dover roof",
+        "epithets": [
+          "with two water tanks squatting at the ends like a pair of old aunts",
+          "where the tar went soft in July and stayed sticky till October",
+          "with a view of every other roof and none of the sky"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "roof-belvedere",
+        "proper": "the roof over the Belvedere on {avenue}, with the pigeon loft",
+        "local": ["the Belvedere roof", "the pigeon roof"],
+        "short": "Belvedere roof",
+        "epithets": [
+          "where the pigeons held the lease and everybody else was a guest",
+          "with a loft of pigeons who took an interest in visitors",
+          "that murmured like a crowd even when nobody was on it"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "roof-tar-beach",
+        "proper": "the roof over the tenement at {street} and {avenue}, which the block called Tar Beach",
+        "local": ["Tar Beach", "the roof"],
+        "short": "Tar Beach",
+        "epithets": [
+          "where the block went to sleep on hot nights and to sunbathe on hot days",
+          "with a clothesline strung between every two things that stood still",
+          "sticky underfoot from May to September"
+        ],
+        "sense": ["sight", "smell"]
+      },
+      {
+        "id": "roof-liver-pills",
+        "proper": "the roof over the Grayson building on {street}, under the big sign for Dr. Hopewell’s Liver Pills",
+        "local": ["under the Liver Pills sign", "the Grayson roof"],
+        "short": "Grayson roof",
+        "epithets": [
+          "under a sign promising a new liver to the whole avenue",
+          "in the shadow of a painted doctor with a very trustworthy moustache",
+          "where the sign’s bulbs buzzed like a summer porch"
+        ],
+        "sense": ["sight", "sound"]
+      },
+      {
+        "id": "roof-engel",
+        "proper": "the roof over Engel’s bakery on {avenue}",
+        "local": ["Engel’s roof", "the bakery roof"],
+        "short": "Engel’s roof",
+        "epithets": [
+          "warm underfoot from the ovens even in January",
+          "that smelled of bread at every hour but the useful ones",
+          "where the chimney breathed out cinnamon"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "roof-ardmore",
+        "proper": "the roof of the Ardmore apartments on {street}, with the garden nobody watered",
+        "local": ["the Ardmore roof", "the garden roof"],
+        "short": "Ardmore roof",
+        "epithets": [
+          "with tomato plants in tin cans, most of them long past saving",
+          "where somebody had once put out deck chairs and then lost interest",
+          "with a trellis that had given up and lain down"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "roof-keeping",
+        "proper": "{V}’s corner of the roof over the building on {street}, with the tar-paper shed",
+        "local": ["{V}’s roof", "up on {V}’s roof"],
+        "short": "{V}’s roof",
+        "epithets": [
+          "with a tar-paper shed {V} called the summer house",
+          "where {V} had set out two kitchen chairs and called it a terrace",
+          "which the rest of the building visited by invitation only"
+        ],
+        "sense": ["sight"],
+        "keeping": true
+      }
+    ],
+    "back-alley": [
+      {
+        "id": "aly-rubin",
+        "proper": "the alley behind Rubin’s delicatessen off {street}",
+        "local": ["behind Rubin’s", "Rubin’s alley"],
+        "short": "Rubin’s alley",
+        "epithets": [
+          "that smelled of pickle brine and ash cans in equal parts",
+          "where the crates of empty jars stood taller than a man",
+          "lit by one bulb over Rubin’s back door"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "aly-koenig",
+        "proper": "the alley behind Koenig’s delicatessen on {avenue}, between the smokehouse and the stable",
+        "local": ["behind Koenig’s", "the smokehouse alley"],
+        "short": "Koenig’s alley",
+        "epithets": [
+          "where the smokehouse had been curing the bricks for thirty years",
+          "that smelled of hickory smoke and horse",
+          "with a drain in the middle that everything ran toward, eventually"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "aly-pickle",
+        "proper": "the alley behind Glick’s delicatessen off {street}, which the block called Pickle Alley",
+        "local": ["Pickle Alley", "behind Glick’s"],
+        "short": "Pickle Alley",
+        "epithets": [
+          "where the pickle barrels waited to be taken in and never quite were",
+          "slick with brine in patches",
+          "that a man could find in the dark by nose alone"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "aly-bon-ton",
+        "proper": "the alley behind the Bon Ton Delicatessen off {avenue}",
+        "local": ["behind the Bon Ton", "the Bon Ton alley"],
+        "short": "Bon Ton",
+        "epithets": [
+          "behind a delicatessen whose name promised more than its sandwiches",
+          "where the Bon Ton’s cook sat on a crate to smoke and argue with nobody",
+          "with a back door painted green in 1910 and not since"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "aly-pappas",
+        "proper": "the gap behind Pappas’s delicatessen on {street}, where the fire escapes met",
+        "local": ["behind Pappas’s", "the gap"],
+        "short": "Pappas’s alley",
+        "epithets": [
+          "where six fire escapes met overhead in a tangle like dropped knitting",
+          "wide enough for a delivery cart and no wider",
+          "where the washing hung overhead like the flags of a small, poor country"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "aly-dinapoli",
+        "proper": "the alley behind DiNapoli’s delicatessen off {street}, under the hanging provolone",
+        "local": ["behind DiNapoli’s"],
+        "short": "DiNapoli’s alley",
+        "epithets": [
+          "under a back window where the provolone hung to cure like fat church lamps",
+          "that smelled of olive oil and garlic and whatever the ash cans added",
+          "where a bicycle had been chained to a drainpipe since before the war"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "aly-keeping",
+        "proper": "the alley behind {V}’s delicatessen on {street}",
+        "local": ["behind {V}’s", "{V}’s alley"],
+        "short": "{V}’s alley",
+        "epithets": [
+          "where {V} stacked the empty crates a little higher every week",
+          "lit by the bulb over {V}’s back door",
+          "which {V} swept every morning and nobody else ever did"
+        ],
+        "sense": ["sight"],
+        "keeping": true
+      }
+    ],
+    "office-over-tailor": [
+      {
+        "id": "off-abruzzo",
+        "proper": "the office over Abruzzo’s tailor shop on {street}",
+        "local": ["over Abruzzo’s", "the office over the tailor’s"],
+        "short": "Abruzzo’s upstairs",
+        "epithets": [
+          "that smelled of steam and hot wool from the pressing irons below",
+          "over a window full of suits on headless dummies",
+          "with a frosted-glass door that had worn three different names in gold"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "off-fishbein",
+        "proper": "the office over Fishbein the tailor on {avenue}, under the gold-leaf sign",
+        "local": ["over Fishbein’s", "upstairs from Fishbein"],
+        "short": "Fishbein’s upstairs",
+        "epithets": [
+          "over a tailor who hemmed trousers while you waited and judged you while he did it",
+          "where the steam from the pressing machine came up through the floor",
+          "under a gold-leaf sign that read ALTERATIONS and meant it"
+        ],
+        "sense": ["sound", "smell"]
+      },
+      {
+        "id": "off-imperial",
+        "proper": "the office over the Imperial Tailoring Company on {street}",
+        "local": ["over the Imperial", "the Imperial office"],
+        "short": "Imperial office",
+        "epithets": [
+          "over a company that was one tailor and his brother-in-law",
+          "where a dress dummy stood on the landing like a headless hostess",
+          "with a door that stuck until you said please"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "off-szabo",
+        "proper": "the office over Szabo’s tailor shop on {street}, up the stair with the brass rail",
+        "local": ["over Szabo’s", "Szabo’s upstairs"],
+        "short": "Szabo’s upstairs",
+        "epithets": [
+          "up a stair with a brass rail polished by nervous hands",
+          "over a tailor who talked to his suits in Hungarian",
+          "that smelled of tailor’s chalk and pressed wool"
+        ],
+        "sense": ["smell"],
+        "fits": ["Yorkville", "the Lower East Side", "the Gas House District"]
+      },
+      {
+        "id": "off-moe",
+        "proper": "the office over Moe’s Suits Pressed While You Wait on {street}",
+        "local": ["over Moe’s", "Moe’s upstairs"],
+        "short": "Moe’s upstairs",
+        "epithets": [
+          "over a sign promising suits pressed while you wait, and people did wait",
+          "where the iron below hissed every few minutes like it had heard something shocking",
+          "with a window that looked straight into a laundry across the street"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "off-donatelli",
+        "proper": "the office over Donatelli & Son, Tailors, on {avenue}",
+        "local": ["over Donatelli’s"],
+        "short": "Donatelli’s upstairs",
+        "epithets": [
+          "over a shop where the son was sixty and still called the boy",
+          "with bolts of cloth in the window going pale in the sun",
+          "up a stair so narrow you had to let the other fellow finish first"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "off-keeping",
+        "proper": "{V}’s office over the tailor’s shop on {street}",
+        "local": ["{V}’s office", "over the tailor’s"],
+        "short": "{V}’s office",
+        "epithets": [
+          "with {V}’s name lettered in gold on the frosted glass",
+          "where {V} kept the blinds half down in all weathers",
+          "that smelled of pressing steam from the tailor’s downstairs"
+        ],
+        "sense": ["smell"],
+        "keeping": true
+      }
+    ],
+    "pier-shed": [
+      {
+        "id": "pier-46",
+        "proper": "Pier 46, under the shed at the foot of {street}",
+        "local": ["Pier 46", "the pier"],
+        "short": "Pier 46",
+        "epithets": [
+          "where the river slapped the pilings like it had a grudge",
+          "under a tin roof that boomed in any wind",
+          "that smelled of tar, rope and oranges off the fruit boats"
+        ],
+        "sense": ["sound", "smell"]
+      },
+      {
+        "id": "pier-banana",
+        "proper": "the banana shed on Pier 14 at the foot of {street}",
+        "local": ["the banana pier", "Pier 14"],
+        "short": "Banana pier",
+        "epithets": [
+          "where the air was thick with green bananas going yellow",
+          "with a story about a tarantula that every dockworker told and nobody had seen",
+          "where the crates were stacked three high and labelled in Spanish"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "pier-coal",
+        "proper": "the coal shed on the railroad pier off {street}",
+        "local": ["the coal pier"],
+        "short": "Coal pier",
+        "epithets": [
+          "where everything, including the air, was a little bit black",
+          "with a coal chute that roared like a waterfall when it ran",
+          "where a white shirt lasted about a minute"
+        ],
+        "sense": ["sight", "sound"]
+      },
+      {
+        "id": "pier-fish",
+        "proper": "the fish pier at the foot of {street}, under the long shed",
+        "local": ["the fish pier"],
+        "short": "Fish pier",
+        "epithets": [
+          "that smelled of Friday every day of the week",
+          "where the gulls outnumbered the men and outshouted them",
+          "with planks that were never quite dry and never quite clean"
+        ],
+        "sense": ["smell", "sound"]
+      },
+      {
+        "id": "pier-mulvaney",
+        "proper": "the Mulvaney Towing shed on the pier at the foot of {street}",
+        "local": ["Mulvaney’s shed", "the tugboat pier"],
+        "short": "Mulvaney’s shed",
+        "epithets": [
+          "where the tugboats sat nose to the pilings like cab horses waiting for a fare",
+          "with MULVANEY TOWING painted on the roof for the benefit of the gulls",
+          "that shook whenever a tug bumped in"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "pier-61",
+        "proper": "the freight shed on Pier 61 off {street}",
+        "local": ["Pier 61", "the freight shed"],
+        "short": "Pier 61",
+        "epithets": [
+          "with a freight door as big as a church front",
+          "where the hand trucks stood in rows like a parked army",
+          "that echoed like the inside of a drum whenever anybody walked on it"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "pier-sugar",
+        "proper": "the sugar shed on Pier 22 off {street}",
+        "local": ["the sugar pier", "Pier 22"],
+        "short": "Sugar pier",
+        "epithets": [
+          "where the planks were sticky and the flies were in heaven",
+          "that smelled like the inside of a candy jar left in the sun",
+          "with burst sacks swept into sweet grey drifts in the corners"
+        ],
+        "sense": ["smell"]
+      }
+    ],
+    "laundry-yard": [
+      {
+        "id": "lau-quong",
+        "proper": "the drying yard behind Quong’s laundry on {street}",
+        "local": ["behind Quong’s", "the drying yard"],
+        "short": "Quong’s yard",
+        "epithets": [
+          "strung with more clotheslines than a ship has ropes",
+          "where the steam hung in the air long after the irons were cold",
+          "damp underfoot in every season"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "lau-pioneer",
+        "proper": "the drying yard behind the Pioneer Steam Laundry on {avenue}",
+        "local": ["behind the Pioneer", "the Pioneer yard"],
+        "short": "Pioneer yard",
+        "epithets": [
+          "behind a laundry that boiled the whole block’s collars",
+          "where the lines creaked in the wind like a ship’s rigging",
+          "that smelled of lye soap strong enough to clean a conscience"
+        ],
+        "sense": ["smell", "sound"]
+      },
+      {
+        "id": "lau-odwyer",
+        "proper": "the yard behind Mrs. O’Dwyer’s hand laundry on {street}",
+        "local": ["behind O’Dwyer’s", "O’Dwyer’s yard"],
+        "short": "O’Dwyer’s yard",
+        "epithets": [
+          "where Mrs. O’Dwyer’s sheets were the whitest in the ward, and she would tell you so",
+          "with a tin tub the size of a rowboat by the back door",
+          "where a holy picture was nailed up to keep an eye on the wash"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "lau-monarch",
+        "proper": "the yard behind the Monarch Wet Wash on {avenue}",
+        "local": ["behind the Monarch", "the Monarch yard"],
+        "short": "Monarch yard",
+        "epithets": [
+          "behind a laundry that sent your wash home wet and your socks home as strangers",
+          "where the lines sagged under sheets as heavy as sails",
+          "that dripped from every line like a cave"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "lau-hirsch",
+        "proper": "the drying yard behind Hirsch’s French Hand Laundry on {street}",
+        "local": ["behind Hirsch’s", "Hirsch’s yard"],
+        "short": "Hirsch’s yard",
+        "epithets": [
+          "behind a French laundry about as French as the fire hydrant",
+          "where the lace curtains of the whole neighbourhood dried side by side",
+          "that smelled of starch and scorched cotton"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "lau-kite",
+        "proper": "the drying yard behind Hop Kee’s laundry on {street}, which the block called the Kite Yard",
+        "local": ["the Kite Yard", "behind Hop Kee’s"],
+        "short": "Kite Yard",
+        "epithets": [
+          "where the sheets went up like kites in a good wind",
+          "walled in on three sides by the backs of buildings",
+          "where you learned to duck without being told"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "lau-keeping",
+        "proper": "the drying yard behind {V}’s laundry on {street}",
+        "local": ["behind {V}’s", "{V}’s yard"],
+        "short": "{V}’s yard",
+        "epithets": [
+          "strung with {V}’s own lines, knotted {V}’s own way",
+          "which {V} swept and watered down like a front parlour",
+          "with {V}’s washtubs stacked by the back door"
+        ],
+        "sense": ["sight"],
+        "keeping": true
+      }
+    ],
+    "walkup-flat": [
+      {
+        "id": "wuf-shoeshine",
+        "proper": "the third-floor front in the walk-up on {avenue}, over Kostas’s shoeshine stand",
+        "local": ["the third floor", "over the shoeshine"],
+        "short": "Third floor",
+        "epithets": [
+          "over a shoeshine stand that smelled of polish and gossip",
+          "with three front windows on the avenue and a draught for each",
+          "where the banister came loose in two places and you learned which"
+        ],
+        "sense": ["smell", "sight"]
+      },
+      {
+        "id": "wuf-rosalind",
+        "proper": "the third floor of the Rosalind, a walk-up on {street}",
+        "local": ["the Rosalind", "the third floor at the Rosalind"],
+        "short": "The Rosalind",
+        "epithets": [
+          "whose name was carved over the door with more confidence than the building deserved",
+          "where every step had its own complaint",
+          "with a skylight over the stair so grey it counted as a wall"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "wuf-vasquez",
+        "proper": "the third-floor flat over Vasquez’s cigar store on {avenue}",
+        "local": ["over Vasquez’s", "the third floor"],
+        "short": "Over Vasquez’s",
+        "epithets": [
+          "that smelled of cigar leaf all the way up the stairs",
+          "over a store where men rolled cigars in the window",
+          "with a wooden figure at the street door that the block said good evening to"
+        ],
+        "sense": ["smell"],
+        "fits": ["Chelsea", "Harlem", "Hell’s Kitchen", "the Tenderloin"]
+      },
+      {
+        "id": "wuf-busted-lamp",
+        "proper": "the third floor of the walk-up at {street} and {avenue} with the busted lamp out front",
+        "local": ["the third floor", "the building with the busted lamp"],
+        "short": "Third floor",
+        "epithets": [
+          "with a busted lamp out front the city had been fixing since the Taft administration",
+          "where the halls were dark enough to count your steps",
+          "up three flights that each felt longer than the last"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "wuf-dunmore",
+        "proper": "the third-floor rear in the Dunmore walk-up on {street}",
+        "local": ["the Dunmore", "the third floor"],
+        "short": "The Dunmore",
+        "epithets": [
+          "that looked out on a yard full of other people’s washing",
+          "where the hall smelled of six dinners at once",
+          "with walls thin enough to follow a neighbour’s argument without leaning in"
+        ],
+        "sense": ["sound", "smell"]
+      },
+      {
+        "id": "wuf-paradise",
+        "proper": "the third-floor flat over the Paradise Candy Store on {avenue}",
+        "local": ["over the Paradise", "the third floor"],
+        "short": "Paradise flat",
+        "epithets": [
+          "over a candy store the children called Paradise without a trace of irony",
+          "where the stairs were sticky from generations of lollipops",
+          "that smelled of burnt sugar up to the landing"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "wuf-wedge",
+        "proper": "the third-floor flat in the wedge-shaped walk-up at {street} and {avenue}",
+        "local": ["the wedge", "the third floor"],
+        "short": "The wedge",
+        "epithets": [
+          "narrow at one end like a slice of pie",
+          "where the corner room was too thin for a bed and too wide for a closet",
+          "with windows on three sides and heat on none"
+        ],
+        "sense": ["sight"]
+      }
+    ],
+    "hallam-vestibule": [
+      {
+        "id": "hal-hallam",
+        "proper": "the vestibule of the Hallam apartments on {street}",
+        "local": ["the Hallam", "the Hallam lobby"],
+        "short": "The Hallam",
+        "epithets": [
+          "all marble and brass and the feeling you should wipe your feet twice",
+          "with brass mailboxes polished to the point of vanity",
+          "where the glass doors locked themselves and took a certain pleasure in it"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "hal-chatsworth",
+        "proper": "the vestibule of the Chatsworth on {avenue}",
+        "local": ["the Chatsworth"],
+        "short": "Chatsworth",
+        "epithets": [
+          "a building that wanted you to know it had an elevator",
+          "with a doormat monogrammed like a bath towel",
+          "where the potted palms were real and seemed surprised about it"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "hal-sherwood",
+        "proper": "the vestibule of the Sherwood Arms on {street}, with the mural of Robin Hood",
+        "local": ["the Sherwood", "the Sherwood Arms"],
+        "short": "Sherwood Arms",
+        "epithets": [
+          "under a painted Robin Hood who had robbed nobody in thirty years",
+          "with a marble floor that rang under every heel",
+          "where the long mirror had watched a great many hats adjusted"
+        ],
+        "sense": ["sight", "sound"]
+      },
+      {
+        "id": "hal-beaumont",
+        "proper": "the vestibule of the Beaumont on {avenue}, the apartment house with the green awning",
+        "local": ["the Beaumont", "the green awning"],
+        "short": "Beaumont",
+        "epithets": [
+          "under a green awning that ran all the way to the curb in case of royalty",
+          "where the tenants’ names were engraved, not typed",
+          "with a night buzzer loud enough to wake the fourth floor"
+        ],
+        "sense": ["sight", "sound"]
+      },
+      {
+        "id": "hal-kenilworth",
+        "proper": "the vestibule of the Kenilworth on {street}",
+        "local": ["the Kenilworth"],
+        "short": "Kenilworth",
+        "epithets": [
+          "with marble so white it looked embarrassed by the street",
+          "that smelled of floor polish and money",
+          "with a bench nobody sat on for longer than it took to be looked at"
+        ],
+        "sense": ["smell", "sight"]
+      },
+      {
+        "id": "hal-van-dam",
+        "proper": "the vestibule of Van Dam Court on {street}",
+        "local": ["Van Dam Court", "the Van Dam"],
+        "short": "Van Dam",
+        "epithets": [
+          "which was not a court and had never met a Van Dam",
+          "with its name cut in stone over the door as if it meant to last forever",
+          "where even the radiator cover was marble, to be safe"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "hal-montague",
+        "proper": "the vestibule of the Montague on {avenue}, the building with the stone gargoyles",
+        "local": ["the Montague", "the gargoyle building"],
+        "short": "Montague",
+        "epithets": [
+          "under four stone gargoyles who had seen worse",
+          "where a crack in the marble floor was what the super called character",
+          "with mailboxes for forty tenants and names on thirty"
+        ],
+        "sense": ["sight"]
+      }
+    ],
+    "rooming-house-room": [
+      {
+        "id": "rmh-w",
+        "proper": "the back room at Mrs. {W}’s rooming house on {street}",
+        "local": ["Mrs. {W}’s", "the back room"],
+        "short": "Mrs. {W}’s",
+        "epithets": [
+          "where the house rules were typed and pinned to every door",
+          "with a runner on the stairs worn through to the boards in a path",
+          "where grace before supper was not optional"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "rmh-laurel",
+        "proper": "the back room at the Laurel House, Mrs. {W}’s rooming house on {street}",
+        "local": ["the Laurel House", "Mrs. {W}’s"],
+        "short": "Laurel House",
+        "epithets": [
+          "with a laurel in a tub by the door that had been failing since the Armistice",
+          "where the back room sat over the kitchen and got every smell first",
+          "where the boarders ate in shifts and argued in all of them"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "rmh-theatrical",
+        "proper": "the back room at Mrs. {W}’s theatrical rooming house on {avenue}",
+        "local": ["Mrs. {W}’s", "the actors’ house"],
+        "short": "Mrs. {W}’s",
+        "epithets": [
+          "where every boarder had once been almost famous",
+          "with playbills pasted up the stairs like wallpaper",
+          "where somebody was always rehearsing a farewell speech behind a door"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "rmh-kilkenny",
+        "proper": "the back room at the Hotel Kilkenny, which was Mrs. {W}’s rooming house with ideas, on {street}",
+        "local": ["the Kilkenny", "Mrs. {W}’s"],
+        "short": "Kilkenny",
+        "epithets": [
+          "a rooming house that had painted HOTEL on its window and hoped",
+          "where the sheets were changed on Saturdays whether they needed it or not",
+          "with a hall table where the mail lay for days and got read by everybody"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "rmh-rooms-plate",
+        "proper": "the back room at Mrs. {W}’s on {street}, the house with the brass plate that said ROOMS",
+        "local": ["Mrs. {W}’s", "the ROOMS house"],
+        "short": "Mrs. {W}’s",
+        "epithets": [
+          "with a brass plate on the door that said ROOMS and nothing else",
+          "where the lace curtains twitched whenever anybody came up the stoop",
+          "with a hall so narrow the boarders had worked out a rule for passing"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "rmh-gentlemen",
+        "proper": "the back room at Mrs. {W}’s boarding house for Respectable Gentlemen on {avenue}",
+        "local": ["Mrs. {W}’s", "the Respectable Gentlemen"],
+        "short": "Mrs. {W}’s",
+        "epithets": [
+          "for respectable gentlemen, which ruled out most of the boarders",
+          "where the stairs had been waxed into a hazard",
+          "that smelled of boiled beef and carpet soap"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "rmh-keeping",
+        "proper": "{V}’s back room at Mrs. {W}’s on {street}",
+        "local": ["{V}’s room", "Mrs. {W}’s"],
+        "short": "{V}’s room",
+        "epithets": [
+          "the cheapest room in the house, and {V} knew it",
+          "where {V} kept everything worth keeping under the bed",
+          "with {V}’s name on a card tacked to the door"
+        ],
+        "sense": ["sight"],
+        "keeping": true
+      }
+    ],
+    "dolans-bar": [
+      {
+        "id": "bar-dolan",
+        "proper": "Dolan’s Bar on {avenue}",
+        "local": ["Dolan’s"],
+        "short": "Dolan’s",
+        "epithets": [
+          "where the sawdust on the floor got changed at Easter",
+          "with a painted name over the door and not one other word",
+          "where a stranger got served and stared at, in that order"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "bar-quinlan",
+        "proper": "Quinlan’s Bar and Grill on {street}",
+        "local": ["Quinlan’s"],
+        "short": "Quinlan’s",
+        "epithets": [
+          "which had not grilled anything since 1920",
+          "where the free lunch was a hard-boiled egg and a warning",
+          "under a tin ceiling the colour of old tea"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "bar-shamrock",
+        "proper": "the Shamrock Café on {avenue}, a bar that had called itself a café since the law changed",
+        "local": ["the Shamrock"],
+        "short": "Shamrock",
+        "epithets": [
+          "a bar that had been a café ever since the law changed, and fooled nobody",
+          "with a shamrock in the window faded to the colour of lettuce",
+          "where the corned beef came with the glass whether you asked or not"
+        ],
+        "sense": ["smell", "sight"]
+      },
+      {
+        "id": "bar-kowalczyk",
+        "proper": "Kowalczyk’s on {street}, the bar with the moose head",
+        "local": ["Kowalczyk’s", "the moose"],
+        "short": "Kowalczyk’s",
+        "epithets": [
+          "under a moose head the regulars toasted by name",
+          "where nobody could spell the owner’s name and everybody could say it",
+          "that smelled of kielbasa and spilled beer"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "bar-hofbrau",
+        "proper": "the Hofbrau on {avenue}, the German bar with the long tables",
+        "local": ["the Hofbrau"],
+        "short": "Hofbrau",
+        "epithets": [
+          "with long wooden tables built for arguing",
+          "where the pretzels were free and the mustard was hot enough to clear a head cold",
+          "under a painted Bavarian mountain on the back wall"
+        ],
+        "sense": ["smell"],
+        "fits": [
+          "Yorkville",
+          "the Gas House District",
+          "Hell’s Kitchen",
+          "the Upper West Side"
+        ]
+      },
+      {
+        "id": "bar-silver-dollar",
+        "proper": "the Silver Dollar on {street}, the bar with silver dollars set in the floor",
+        "local": ["the Silver Dollar"],
+        "short": "Silver Dollar",
+        "epithets": [
+          "with silver dollars set in the floor under the rail, and men who had tried to pry them up",
+          "where the tiles were cracked in the shape of old fights",
+          "with a swinging door that only swung one way"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "bar-mcglade",
+        "proper": "McGlade’s on {avenue}, the bar the firemen from the engine house used",
+        "local": ["McGlade’s"],
+        "short": "McGlade’s",
+        "epithets": [
+          "where the firemen from the engine house drank and told the same fire twice",
+          "with a brass fire nozzle over the door for luck",
+          "which emptied in one minute flat whenever the engine house turned out"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "bar-keeping",
+        "proper": "{V}’s bar on {street}",
+        "local": ["{V}’s"],
+        "short": "{V}’s bar",
+        "epithets": [
+          "with {V}’s name painted over the door and nothing else",
+          "where {V} kept the good bottles out of sight and the bad ones out of reach",
+          "which {V} opened every morning and closed whenever"
+        ],
+        "sense": ["sight"],
+        "keeping": true
+      }
+    ],
+    "speakeasy": [
+      {
+        "id": "spk-rochelle",
+        "proper": "the speakeasy under Madame Rochelle’s hat shop on {street}",
+        "local": ["under the hat shop", "Rochelle’s cellar"],
+        "short": "Rochelle’s cellar",
+        "epithets": [
+          "six steps down under a window full of hats nobody bought",
+          "where the knock on the door was a formality and everybody knew it",
+          "behind a door with a slot that opened for anybody who looked thirsty"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "spk-brim",
+        "proper": "the Brim, the speakeasy under Greenbaum’s hat shop on {avenue}",
+        "local": ["the Brim", "under Greenbaum’s"],
+        "short": "The Brim",
+        "epithets": [
+          "named for the hats upstairs and full to the brim most nights",
+          "with a ceiling so low the tall men drank bowing",
+          "where the gin came in teacups, in case anyone asked"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "spk-parish",
+        "proper": "the cellar under the Parisian Hat Shoppe on {street}, which the whole block called the Parish",
+        "local": ["the Parish", "the Parisian"],
+        "short": "The Parish",
+        "epithets": [
+          "called the Parish because its regulars went there more faithfully than to church",
+          "under a hat shop that spelled shop with two p’s and an e",
+          "where the password changed every week and nobody bothered to learn it"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "spk-fogarty",
+        "proper": "the speakeasy under Mrs. Fogarty’s hat shop on {avenue}, down the old coal-chute stairs",
+        "local": ["Fogarty’s cellar", "under Fogarty’s"],
+        "short": "Fogarty’s cellar",
+        "epithets": [
+          "down stairs that had been a coal chute and still felt like one",
+          "where the bar was three doors laid across barrels",
+          "where every hat ended up on a peg its owner hadn’t chosen"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "spk-velvet",
+        "proper": "the Velvet Room, under the hat shop at {street} and {avenue}",
+        "local": ["the Velvet Room"],
+        "short": "Velvet Room",
+        "epithets": [
+          "with red velvet on the walls that had been a theatre curtain in a better life",
+          "where the velvet soaked up the smoke and never gave it back",
+          "that made you whisper even when you didn’t mean to"
+        ],
+        "sense": ["smell", "sight"]
+      },
+      {
+        "id": "spk-bellini",
+        "proper": "the speakeasy under Bellini Brothers Hats on {street}",
+        "local": ["Bellini’s", "under the Bellinis"],
+        "short": "Bellini’s cellar",
+        "epithets": [
+          "under a hat shop that sold one hat a week and never seemed to mind",
+          "where the wine came in coffee cups and the coffee didn’t come at all",
+          "with a trapdoor behind the bar that everybody pretended not to see"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "spk-owl",
+        "proper": "the Owl’s Nest, the speakeasy under the hat shop on {avenue}",
+        "local": ["the Owl’s Nest"],
+        "short": "Owl’s Nest",
+        "epithets": [
+          "open all night, as the name promised",
+          "with a painted owl on the door slot, winking",
+          "where the regulars were pale from never seeing daylight"
+        ],
+        "sense": ["sight"]
+      }
+    ],
+    "hotel-lobby": [
+      {
+        "id": "lob-wyckoff",
+        "proper": "the lobby of the Wyckoff on {avenue}",
+        "local": ["the Wyckoff"],
+        "short": "Wyckoff",
+        "epithets": [
+          "with a red carpet worn thin by a million trips to the elevator",
+          "where the spittoons were polished brighter than the guests",
+          "with a revolving door that stuck if you pushed it like you meant it"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "lob-continental",
+        "proper": "the lobby of the Hotel Continental on {street}",
+        "local": ["the Continental"],
+        "short": "Continental",
+        "epithets": [
+          "which had seen better decades and kept the furniture from all of them",
+          "under a chandelier that had lost a third of its crystals and none of its pride",
+          "where the lobby chairs held the shape of the last man who sat in them"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "lob-van-cortlandt",
+        "proper": "the lobby of the Van Cortlandt House on {avenue}",
+        "local": ["the Van Cortlandt"],
+        "short": "Van Cortlandt",
+        "epithets": [
+          "with an oil painting of a Van Cortlandt nobody could name over the desk",
+          "where the potted palms had been there longer than the staff",
+          "that smelled of cigar smoke and furniture polish"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "lob-alcazar",
+        "proper": "the lobby of the Hotel Alcazar on {street}, done up Spanish",
+        "local": ["the Alcazar"],
+        "short": "Alcazar",
+        "epithets": [
+          "done up Spanish, with tiles, arches and a fountain that hadn’t run since the war",
+          "where every arch had a potted palm and every palm had a cigar butt in it",
+          "which tried hard to be Seville and mostly got as far as Hoboken"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "lob-metropole",
+        "proper": "the lobby of the Hotel Metropole on {avenue}, the one with the gilded elevator",
+        "local": ["the Metropole"],
+        "short": "Metropole",
+        "epithets": [
+          "with a gilded elevator cage like a birdcage for a very rich bird",
+          "with more mirrors than a barber shop",
+          "where the rooms were by the night and the gossip was free"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "lob-albemarle",
+        "proper": "the lobby of the Hotel Albemarle on {street}, all dark wood and deep chairs",
+        "local": ["the Albemarle"],
+        "short": "Albemarle",
+        "epithets": [
+          "with chairs deep enough to lose a man in",
+          "where the carpet swallowed footsteps whole",
+          "with a writing desk whose hotel stationery walked off steadily"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "lob-royal-palms",
+        "proper": "the lobby of the Hotel Royal Palms on {avenue}",
+        "local": ["the Royal Palms"],
+        "short": "Royal Palms",
+        "epithets": [
+          "which had one palm, in a tub, and nothing royal about it",
+          "where the brass had been polished so often it had gone thin",
+          "with a sign by the elevator forbidding cooking in the rooms, and a smell that said somebody did"
+        ],
+        "sense": ["smell"]
+      }
+    ],
+    "corner-newsstand": [
+      {
+        "id": "nws-corner",
+        "proper": "the newsstand on the corner of {street} and {avenue}",
+        "local": ["the newsstand", "the corner stand"],
+        "short": "Newsstand",
+        "epithets": [
+          "under a corrugated roof that drummed in any weather",
+          "with a bulb hung over the headlines for anybody reading after dark",
+          "which had held the corner since before the buildings went up"
+        ],
+        "sense": ["sound", "sight"]
+      },
+      {
+        "id": "nws-el-stairs",
+        "proper": "the newsstand under the El stairs at {street} and {avenue}",
+        "local": ["the stand under the El"],
+        "short": "El newsstand",
+        "epithets": [
+          "in the shadow of the El stairs all day and all night",
+          "where the magazines hung on clothespins like washing",
+          "which sold chewing gum, cigarettes and opinions"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "nws-pincus",
+        "proper": "the newsstand outside Pincus’s cigar store at {street} and {avenue}",
+        "local": ["the stand by Pincus’s"],
+        "short": "Pincus’s stand",
+        "epithets": [
+          "leaning on Pincus’s cigar store like a tired friend",
+          "where the pages with the horse races sold out before anything else",
+          "with a tin roof and a canvas flap for the wind"
+        ],
+        "sense": ["sight", "smell"]
+      },
+      {
+        "id": "nws-church",
+        "proper": "the green newsstand at the foot of the church steps on {street}",
+        "local": ["the green stand", "the stand by the church"],
+        "short": "Green stand",
+        "epithets": [
+          "painted the same green as the church door, which was either piety or a bargain on paint",
+          "where the Sunday funnies were sold straight after Mass",
+          "with a wooden box to stand on for anybody short enough to need it"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "nws-six-languages",
+        "proper": "the newsstand at {street} and {avenue} with the magazines in six languages",
+        "local": ["the corner stand"],
+        "short": "Corner stand",
+        "epithets": [
+          "selling magazines in six languages and gossip in all of them",
+          "where the whole world’s headlines hung on clothespins, in no particular order",
+          "with a pile of foreign magazines held down by a brick"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "nws-granite",
+        "proper": "the newsstand against the granite wall of the post office on {avenue}",
+        "local": ["the stand by the post office"],
+        "short": "Post-office stand",
+        "epithets": [
+          "against a granite wall that made the stand look like it had wandered into church",
+          "the only thing on the corner open after the post office shut",
+          "with a tin roof painted to look like shingles, and fooling nobody"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "nws-keeping",
+        "proper": "{V}’s newsstand at {street} and {avenue}",
+        "local": ["{V}’s stand"],
+        "short": "{V}’s stand",
+        "epithets": [
+          "where {V} had stood through twenty winters and complained about each one",
+          "with a padlocked cupboard underneath that {V} guarded like a bank vault",
+          "hung with {V}’s magazines on clothespins"
+        ],
+        "sense": ["sight"],
+        "keeping": true
+      }
+    ],
+    "automat": [
+      {
+        "id": "aut-dolphin",
+        "proper": "the Automat at {street} and {avenue}",
+        "local": ["the Automat"],
+        "short": "Automat",
+        "epithets": [
+          "with a wall of little glass doors, each hiding a slice of pie and a hope",
+          "where the coffee came out of a brass dolphin’s mouth",
+          "which never closed and never looked like it wanted to"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "aut-marble",
+        "proper": "the big Automat on {avenue} with the marble counters",
+        "local": ["the Automat", "the big Automat"],
+        "short": "Automat",
+        "epithets": [
+          "with marble counters and brass fittings, like a bank that sold beans",
+          "where a nickel bought a cup of coffee and an hour of sitting",
+          "lit like an operating room at every hour"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "aut-little",
+        "proper": "the little Automat on {street} next to the telegraph office",
+        "local": ["the little Automat"],
+        "short": "Little Automat",
+        "epithets": [
+          "half the size of the big ones and twice as lonely at night",
+          "where the pie doors stuck and you had to know the trick",
+          "that smelled of coffee and floor soap round the clock"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "aut-chorus",
+        "proper": "the Automat at {street} and {avenue}, the one the chorus girls used",
+        "local": ["the Automat", "the chorus girls’ Automat"],
+        "short": "Automat",
+        "epithets": [
+          "where the chorus girls ate baked beans in full make-up between shows",
+          "with mirrors on every wall, so nobody ever ate alone",
+          "where the cashier could turn a dollar into twenty nickels without looking"
+        ],
+        "sense": ["sight"],
+        "fits": ["the Tenderloin", "Hell’s Kitchen"]
+      },
+      {
+        "id": "aut-armory",
+        "proper": "the Automat on {avenue} across from the armory",
+        "local": ["the Automat", "across from the armory"],
+        "short": "Automat",
+        "epithets": [
+          "across from the armory, so half the customers had haircuts to match",
+          "where the macaroni and cheese had a following",
+          "with a brass nickel slot under every little door"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "aut-stained-glass",
+        "proper": "the Automat at {street} and {avenue} with the stained-glass front",
+        "local": ["the Automat", "the stained-glass Automat"],
+        "short": "Automat",
+        "epithets": [
+          "with a two-storey stained-glass window, as if a cathedral had gone into the lunch business",
+          "where the light came through the glass in colours and landed on the creamed spinach",
+          "which took itself very seriously for a place that sold pie through a slot"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "aut-nickel-palace",
+        "proper": "the Automat on {street} that everybody called the Nickel Palace",
+        "local": ["the Nickel Palace", "the Automat"],
+        "short": "Nickel Palace",
+        "epithets": [
+          "a palace of nickels, where every nickel got counted twice",
+          "where lonely people came to sit near other lonely people",
+          "with rows of little lit windows like an Advent calendar"
+        ],
+        "sense": ["sight"]
+      }
+    ],
+    "movie-house": [
+      {
+        "id": "mov-bijou",
+        "proper": "the Bijou picture house on {avenue}",
+        "local": ["the Bijou"],
+        "short": "Bijou",
+        "epithets": [
+          "with a marquee that had lost three letters and gained a pigeon",
+          "where the red carpet had gone pink down the middle",
+          "that smelled of hot peanuts and wet coats"
+        ],
+        "sense": ["smell", "sight"]
+      },
+      {
+        "id": "mov-gem",
+        "proper": "the Gem Theatre on {street}, a picture house with four hundred seats",
+        "local": ["the Gem"],
+        "short": "Gem",
+        "epithets": [
+          "four hundred seats and two good ones",
+          "where you could hear the projector clatter like a sewing machine from the lobby",
+          "with posters in glass cases for pictures that had closed a month ago"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "mov-alhambra",
+        "proper": "the Alhambra picture palace on {avenue}, all arches and plaster stars",
+        "local": ["the Alhambra"],
+        "short": "Alhambra",
+        "epithets": [
+          "with a ceiling painted like a night sky over somewhere warmer",
+          "all Moorish arches and plaster camels",
+          "where the ushers dressed like doormen from a better hotel"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "mov-star",
+        "proper": "the Star Theatre on {street}, the picture house the block called the Scratch House",
+        "local": ["the Star", "the Scratch House"],
+        "short": "Star",
+        "epithets": [
+          "called the Scratch House on account of what lived in the seats",
+          "where a dime bought two pictures and a newsreel",
+          "with a balcony that swayed when the audience laughed"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "mov-majestic",
+        "proper": "the Majestic on {avenue}, the big picture house with the balcony",
+        "local": ["the Majestic"],
+        "short": "Majestic",
+        "epithets": [
+          "with a balcony so high the screen looked like a postage stamp",
+          "where the ushers carried flashlights like altar boys with candles",
+          "with a lobby of gilt mirrors that made any crowd look twice as big"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "mov-olympia",
+        "proper": "the Olympia Photoplay House on {street}",
+        "local": ["the Olympia"],
+        "short": "Olympia",
+        "epithets": [
+          "which called itself a photoplay house, having been built before anybody settled on a word",
+          "where the cowboy pictures ran on Saturdays and the romances the rest of the week",
+          "that smelled of sweeping compound and cigar"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "mov-dreamland",
+        "proper": "the Dreamland on {avenue}",
+        "local": ["the Dreamland"],
+        "short": "Dreamland",
+        "epithets": [
+          "where half the customers came to sleep somewhere warm for a dime",
+          "with a painted moon over the screen that somebody had given a moustache",
+          "whose ticket booth was shaped like a little castle"
+        ],
+        "sense": ["sight"]
+      }
+    ],
+    "dance-hall": [
+      {
+        "id": "dnc-arcadia",
+        "proper": "the Arcadia dance hall on {avenue}",
+        "local": ["the Arcadia"],
+        "short": "Arcadia",
+        "epithets": [
+          "with a floor waxed so slick the timid danced by holding on",
+          "where the band played louder than it played well",
+          "that smelled of floor wax and hair oil"
+        ],
+        "sense": ["smell", "sound"]
+      },
+      {
+        "id": "dnc-rosebud",
+        "proper": "the Rosebud Ballroom on {street}, ten cents a dance",
+        "local": ["the Rosebud"],
+        "short": "Rosebud",
+        "epithets": [
+          "ten cents a dance and no refunds",
+          "where the dancing partners wore their tickets on a string like pearls",
+          "with paper roses on every pillar, going brown at the edges"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "dnc-starlight",
+        "proper": "the Starlight Roof, the dance hall over the furniture store on {avenue}",
+        "local": ["the Starlight"],
+        "short": "Starlight",
+        "epithets": [
+          "over a furniture store, so every foxtrot shook the sofas downstairs",
+          "under a ceiling of little electric stars, some of them working",
+          "where the saxophone could be heard three blocks off"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "dnc-lindner",
+        "proper": "Lindner’s Dance Academy on {street}",
+        "local": ["Lindner’s", "the Academy"],
+        "short": "Lindner’s",
+        "epithets": [
+          "an academy where nobody had learned a step since it opened",
+          "with a painted sign promising the tango in six easy lessons",
+          "where the mirrors on the walls were kind to nobody"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "dnc-golden-slipper",
+        "proper": "the Golden Slipper on {avenue}, the dance hall with the mirrored ball",
+        "local": ["the Slipper", "the Golden Slipper"],
+        "short": "Golden Slipper",
+        "epithets": [
+          "under a ball of little mirrors that threw spots of light across everybody like confetti",
+          "with a gold slipper the size of a bathtub over the door",
+          "where the foxtrot went on longer than the dancers did"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "dnc-hibernian",
+        "proper": "the Hibernian Hall on {street}, where the Irish danced on Saturdays",
+        "local": ["the Hibernian", "the Hall"],
+        "short": "Hibernian Hall",
+        "epithets": [
+          "where the Saturday reels shook the dust off the rafters",
+          "with a portrait of a stern bishop keeping an eye on the dancing",
+          "that smelled of beer served in teapots and wet wool"
+        ],
+        "sense": ["sound", "smell"]
+      },
+      {
+        "id": "dnc-tango-palace",
+        "proper": "the Tango Palace on {avenue}",
+        "local": ["the Tango Palace"],
+        "short": "Tango Palace",
+        "epithets": [
+          "which had given up the tango years ago and kept the name for luck",
+          "where the band sat behind a row of potted ferns like men in hiding",
+          "with a sprung floor that bounced under a crowd"
+        ],
+        "sense": ["sound"]
+      }
+    ],
+    "drugstore": [
+      {
+        "id": "drg-kaplan",
+        "proper": "Kaplan’s drugstore with the soda fountain, on {avenue}",
+        "local": ["Kaplan’s"],
+        "short": "Kaplan’s",
+        "epithets": [
+          "with a soda fountain that made the best egg cream on the avenue",
+          "where the bottles behind the counter were labelled in a hand that hadn’t changed in thirty years",
+          "that smelled of vanilla syrup and iodine"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "drg-brodsky",
+        "proper": "Brodsky’s drugstore on {street}, the one with the marble soda fountain",
+        "local": ["Brodsky’s"],
+        "short": "Brodsky’s",
+        "epithets": [
+          "with a marble soda fountain as long as a streetcar",
+          "where the children spun the fountain seats round and round",
+          "which sold a cough syrup the block drank for reasons unrelated to coughing"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "drg-crown",
+        "proper": "the Crown Pharmacy at {street} and {avenue}",
+        "local": ["the Crown"],
+        "short": "Crown Pharmacy",
+        "epithets": [
+          "under a gilded crown over the door that was missing two points",
+          "where the soda jerk could build a sundae like a cathedral",
+          "which sold corn plasters, face cream and nerve tonic off the same counter"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "drg-rossi",
+        "proper": "Rossi’s drugstore on {avenue}, where the grandmothers bought camphor",
+        "local": ["Rossi’s"],
+        "short": "Rossi’s",
+        "epithets": [
+          "where the grandmothers of the block bought camphor by the pound",
+          "with a soda fountain the owner’s son ran like a stage show",
+          "that smelled of camphor, almond and cigars"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "drg-victory",
+        "proper": "the Victory Drug Company on {street}, with the big mortar and pestle over the door",
+        "local": ["the Victory", "Victory Drug"],
+        "short": "Victory Drug",
+        "epithets": [
+          "under a wooden mortar and pestle the size of a beer keg",
+          "whose window promised cures for coughs, bad feet and the blues",
+          "with a scale by the door that told you your weight and your fortune for a penny"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "drg-whitlock",
+        "proper": "Whitlock’s drugstore on {avenue}, the one with the soda fountain everybody stopped at",
+        "local": ["Whitlock’s"],
+        "short": "Whitlock’s",
+        "epithets": [
+          "where the whole avenue stopped for a soda on the way home",
+          "with a sign in the window promising prescriptions filled carefully, and a second sign promising it again",
+          "that smelled of ginger ale and floor oil"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "drg-keeping",
+        "proper": "{V}’s drugstore on {avenue}",
+        "local": ["{V}’s"],
+        "short": "{V}’s drugstore",
+        "epithets": [
+          "where {V} had filled prescriptions for twenty years without once smiling",
+          "with {V}’s diploma framed by the register where the customers could check it",
+          "where {V} kept the back room locked and the front room spotless"
+        ],
+        "sense": ["sight"],
+        "keeping": true
+      }
+    ],
+    "cab-stand": [
+      {
+        "id": "cab-hippodrome",
+        "proper": "the cab stand outside the Hippodrome",
+        "local": ["the Hippodrome stand", "the cab stand"],
+        "short": "Hippodrome stand",
+        "epithets": [
+          "outside a theatre so big they once made an elephant vanish on its stage",
+          "where the cabbies kept their engines warm and their opinions warmer",
+          "with a line painted on the curb that the cabs obeyed and the pigeons didn’t"
+        ],
+        "sense": ["sound"],
+        "fits": ["the Tenderloin", "Hell’s Kitchen", "Chelsea"]
+      },
+      {
+        "id": "cab-gaiety",
+        "proper": "the cab stand outside the Gaiety Theatre on {street}",
+        "local": ["the Gaiety stand", "the cab stand"],
+        "short": "Gaiety stand",
+        "epithets": [
+          "outside a burlesque house that had painted over the word burlesque",
+          "where the cabbies argued about baseball in three languages",
+          "under a marquee with more bulbs out than in"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "cab-lyric",
+        "proper": "the cab stand outside the Lyric on {avenue}, by the fire hydrant",
+        "local": ["the Lyric stand", "the cab stand"],
+        "short": "Lyric stand",
+        "epithets": [
+          "by a fire hydrant every cabbie swore he wasn’t parked at",
+          "outside a theatre that had played the same operetta for two years",
+          "where the cabs lined up yellow and black like a row of wasps"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "cab-yiddish",
+        "proper": "the cab stand outside the Yiddish theatre on Second Avenue",
+        "local": ["the stand by the Yiddish theatre", "the cab stand"],
+        "short": "Theatre stand",
+        "epithets": [
+          "outside a theatre where every play ended in tears and then a wedding",
+          "where the cabbies knew the plots better than the actors did",
+          "under a marquee in letters half the cabbies couldn’t read and all of them could quote"
+        ],
+        "sense": ["sound"],
+        "fits": ["the Lower East Side", "the Bowery", "the Gas House District"]
+      },
+      {
+        "id": "cab-lafayette",
+        "proper": "the cab stand outside the Lafayette Theatre on Seventh Avenue",
+        "local": ["the Lafayette stand", "the cab stand"],
+        "short": "Lafayette stand",
+        "epithets": [
+          "beside the tree the performers touched for luck on their way to auditions",
+          "where the cabbies had heard every good band on the avenue through the walls",
+          "under a marquee that stayed lit longer than the rest of the avenue"
+        ],
+        "sense": ["sound"],
+        "fits": ["Harlem"]
+      },
+      {
+        "id": "cab-empire",
+        "proper": "the cab stand outside the Empire Music Hall on {avenue}",
+        "local": ["the Empire stand", "the cab stand"],
+        "short": "Empire stand",
+        "epithets": [
+          "outside a music hall whose poster lady had faded through twelve summers",
+          "where the cabbies ate their sandwiches on the running boards",
+          "where one raised hand could bring three cabs and a fight"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "cab-casino",
+        "proper": "the cab stand outside the Casino Theatre on {street}",
+        "local": ["the Casino stand", "the cab stand"],
+        "short": "Casino stand",
+        "epithets": [
+          "outside a theatre called the Casino that had never taken a bet in its life",
+          "where the cabbies played checkers on an upturned crate",
+          "with a streetlamp that leaned toward the stand like it wanted a ride"
+        ],
+        "sense": ["sight"]
+      }
+    ],
+    "tenement-stairwell": [
+      {
+        "id": "stw-plain",
+        "proper": "the stairwell of the tenement on {street}",
+        "local": ["the stairwell", "the tenement stairs"],
+        "short": "Stairwell",
+        "epithets": [
+          "where every tread was worn to a dip in the middle",
+          "that smelled of six floors of dinners at once",
+          "lit by a bare bulb on every other landing, to save money"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "stw-bella-vista",
+        "proper": "the stairwell of the Bella Vista tenement on {street}",
+        "local": ["the Bella Vista", "the stairwell"],
+        "short": "Bella Vista",
+        "epithets": [
+          "named for a beautiful view it did not have",
+          "where a window on each landing looked out, closely, at the building next door",
+          "with a banister polished by children sliding down it"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "stw-saint",
+        "proper": "the stairwell of the six-storey tenement at {street} and {avenue} with the saint in the front hall",
+        "local": ["the stairwell", "the house with the saint"],
+        "short": "Saint’s stairwell",
+        "epithets": [
+          "with a plaster saint in a niche in the front hall and a candle always lit at his feet",
+          "where the neighbours left their doors open for the air and their business open with them",
+          "that carried six floors of arguments in four languages"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "stw-97",
+        "proper": "the stairwell of Number 97, {street}",
+        "local": ["Number 97", "the stairwell"],
+        "short": "Number 97",
+        "epithets": [
+          "where six floors shared one stair and one opinion of the landlord",
+          "with pressed-tin walls painted the colour of pea soup",
+          "which nobody had swept since the Armistice"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "stw-garibaldi",
+        "proper": "the stairwell of the Garibaldi Flats on {street}",
+        "local": ["the Garibaldi", "the stairwell"],
+        "short": "Garibaldi stairs",
+        "epithets": [
+          "named for a hero on horseback who would never have fit up the stairs",
+          "where the landings were stacked with baby carriages and bicycles",
+          "that smelled of garlic on one floor and cabbage on the next"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "stw-feld",
+        "proper": "the back stairwell of the tenement over Feld’s shoe store on {street}",
+        "local": ["the stairwell over Feld’s"],
+        "short": "Feld’s stairwell",
+        "epithets": [
+          "over a shoe store whose smell of leather reached the second landing",
+          "with a skylight at the top that let in more pigeons than light",
+          "where every step groaned in a different key"
+        ],
+        "sense": ["smell", "sound"]
+      },
+      {
+        "id": "stw-keeping",
+        "proper": "the landing outside {V}’s door in the tenement on {street}",
+        "local": ["{V}’s landing", "the stairwell"],
+        "short": "{V}’s landing",
+        "epithets": [
+          "outside {V}’s door, which had three locks and a holy picture",
+          "where {V} kept a kitchen chair for the cool of the evening",
+          "which {V} scrubbed on Saturdays, whether it was {V}’s turn or not"
+        ],
+        "sense": ["sight"],
+        "keeping": true
+      }
+    ],
+    "pool-hall": [
+      {
+        "id": "pool-mancuso",
+        "proper": "Mancuso’s pool hall on {avenue}",
+        "local": ["Mancuso’s"],
+        "short": "Mancuso’s",
+        "epithets": [
+          "where the smoke hung over the tables like a second ceiling",
+          "where the green felt had seen better shots and worse men",
+          "that smelled of chalk, cigars and wet wool"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "pool-cue-club",
+        "proper": "the Cue Club, down the stairs at {street} and {avenue}",
+        "local": ["the Cue Club"],
+        "short": "Cue Club",
+        "epithets": [
+          "which called itself a club so it could keep out whoever it liked",
+          "where the good table was at the back and so were the good players",
+          "with a spittoon by every table and a sign asking you to use it"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "pool-karras",
+        "proper": "Karras’s billiard parlour on {street}, eight tables and a lunch counter",
+        "local": ["Karras’s"],
+        "short": "Karras’s",
+        "epithets": [
+          "eight tables and a lunch counter, and the lunch counter was the bigger hazard",
+          "where the balls clicked like a telegraph office",
+          "with a sign over the door that said GENTLEMEN ONLY and customers who had not read it"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "pool-corner-pocket",
+        "proper": "the Corner Pocket on {avenue}, under the barber college",
+        "local": ["the Corner Pocket"],
+        "short": "Corner Pocket",
+        "epithets": [
+          "under a barber college where the students practised on anybody brave enough",
+          "where the lamps hung so low the tall players got a tan",
+          "with a floor you didn’t look at too closely"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "pool-sokol",
+        "proper": "Sokol’s pool hall on {street}, the long room with the tin ceiling",
+        "local": ["Sokol’s"],
+        "short": "Sokol’s",
+        "epithets": [
+          "a room so long the far tables were a rumour",
+          "under a pressed-tin ceiling brown with fifty years of smoke",
+          "where the score was kept on wooden beads strung overhead like an abacus"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "pool-eight-ball",
+        "proper": "the Eight Ball Academy on {avenue}",
+        "local": ["the Academy", "the Eight Ball"],
+        "short": "Eight Ball",
+        "epithets": [
+          "an academy with no diploma and plenty of homework",
+          "where the cues were chained to the wall after a certain incident",
+          "where the clack of the balls carried up to the street"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "pool-mahoney",
+        "proper": "Mahoney’s billiard hall on {street}, over the harness maker’s",
+        "local": ["Mahoney’s"],
+        "short": "Mahoney’s",
+        "epithets": [
+          "over a harness maker’s, so the whole place smelled faintly of saddle",
+          "where the chalk dust got into everything including the coffee",
+          "with a window so dirty the daylight had to knock"
+        ],
+        "sense": ["smell"]
+      }
+    ],
+    "pawnshop": [
+      {
+        "id": "pwn-zelinsky",
+        "proper": "the back room of Zelinsky’s pawnshop on {street}",
+        "local": ["Zelinsky’s", "the back room at Zelinsky’s"],
+        "short": "Zelinsky’s",
+        "epithets": [
+          "behind a curtain that never quite closed",
+          "under three gold balls that had lost most of their gold",
+          "where a hundred things nobody had come back for sat waiting anyway"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "pwn-uncle-ike",
+        "proper": "the back room of Uncle Ike’s Loan Office on {avenue}",
+        "local": ["Uncle Ike’s"],
+        "short": "Uncle Ike’s",
+        "epithets": [
+          "where the block had pawned its Sunday suits every Monday for thirty years",
+          "behind a window full of trumpets, banjos and one stuffed alligator",
+          "where the back room smelled of mothballs and other people’s luck"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "pwn-moskowitz",
+        "proper": "the back room of Moskowitz’s pawnshop on {street}",
+        "local": ["Moskowitz’s"],
+        "short": "Moskowitz’s",
+        "epithets": [
+          "behind a grille that came down with a noise like a dropped drawer of cutlery",
+          "where the shelves went up to the ceiling and the ladder only halfway",
+          "with a desk buried under things that hadn’t been decided about yet"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "pwn-golden-rule",
+        "proper": "the back room of the Golden Rule Loan Company on {avenue}",
+        "local": ["the Golden Rule"],
+        "short": "Golden Rule",
+        "epithets": [
+          "which was one pawnbroker and his mother, and the mother did the pricing",
+          "under a sign reading WE BUY GOLD that had worn down to WE BUY OLD",
+          "where the back room was a museum of bad luck"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "pwn-fiorello",
+        "proper": "the back room of Fiorello’s pawnshop on {street}, behind the accordions",
+        "local": ["Fiorello’s"],
+        "short": "Fiorello’s",
+        "epithets": [
+          "behind a wall of pawned accordions that wheezed whenever the door slammed",
+          "where nobody had come back for the violin in twelve years",
+          "that smelled of brass polish and old leather"
+        ],
+        "sense": ["sound", "smell"]
+      },
+      {
+        "id": "pwn-friendly",
+        "proper": "the back room of the Friendly Loan Office on {avenue}",
+        "local": ["the Friendly"],
+        "short": "Friendly Loan",
+        "epithets": [
+          "friendly about everything but the interest",
+          "with a barred window on a brick wall close enough to lick",
+          "where the pawned wedding dresses hung in a row like brides at the wrong church"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "pwn-keeping",
+        "proper": "the back room of {V}’s pawnshop on {street}",
+        "local": ["{V}’s", "{V}’s back room"],
+        "short": "{V}’s pawnshop",
+        "epithets": [
+          "where {V} kept what wasn’t for sale",
+          "behind {V}’s counter and {V}’s curtain",
+          "where {V} did the accounts under a single bulb"
+        ],
+        "sense": ["sight"],
+        "keeping": true
+      }
+    ],
+    "chop-suey": [
+      {
+        "id": "chs-plain",
+        "proper": "the chop suey place over the laundry on {street}",
+        "local": ["the chop suey place"],
+        "short": "Chop suey",
+        "epithets": [
+          "up a stair with a paper lantern at the bottom",
+          "where the tea came in a pot big enough to bathe in",
+          "with a calendar on the wall two months behind and in no hurry"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "chs-canton",
+        "proper": "the Canton Garden, the chop suey place over the Wah Lee laundry on {avenue}",
+        "local": ["the Canton Garden", "the Garden"],
+        "short": "Canton Garden",
+        "epithets": [
+          "which had no garden but one very determined paper plum tree",
+          "where the egg foo young came out the size of a hubcap",
+          "open later than anything else on the avenue and proud of it"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "chs-oriental",
+        "proper": "the Oriental Chop Suey over Lee’s hand laundry on {street}",
+        "local": ["the Oriental"],
+        "short": "The Oriental",
+        "epithets": [
+          "up a stair lit by a red sign that said CHOP SUEY and nothing else",
+          "where the tables were so close you ate your neighbour’s conversation with your noodles",
+          "with a jade-green door at the top of the stair"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "chs-dragon",
+        "proper": "the Golden Dragon chop suey house over the laundry at {street} and {avenue}",
+        "local": ["the Dragon", "the Golden Dragon"],
+        "short": "Golden Dragon",
+        "epithets": [
+          "under a painted dragon that had lost its tail to the weather",
+          "where the chow mein was a dime and the conversation was free",
+          "that smelled of hot oil and ginger all the way down to the street"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "chs-mock",
+        "proper": "Mock’s chop suey place over the laundry on {street}",
+        "local": ["Mock’s"],
+        "short": "Mock’s",
+        "epithets": [
+          "open till daylight and a little past",
+          "where the cook and the waiter argued through a hatch all night",
+          "with booths along one wall and a curtain for each"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "chs-tea-garden",
+        "proper": "the Far East Tea Garden over the laundry on {avenue}",
+        "local": ["the Tea Garden"],
+        "short": "Tea Garden",
+        "epithets": [
+          "where the tea came in teapots and sometimes wasn’t tea",
+          "with a string of paper lanterns across the ceiling, half of them lit",
+          "that smelled of jasmine and frying onions"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "chs-keeping",
+        "proper": "{V}’s chop suey place over the laundry on {street}",
+        "local": ["{V}’s"],
+        "short": "{V}’s restaurant",
+        "epithets": [
+          "where {V} kept the cash register close and the recipes closer",
+          "with {V}’s name on the lantern at the foot of the stair",
+          "where {V} knew every customer’s order before the coat was off"
+        ],
+        "sense": ["sight"],
+        "keeping": true
+      }
+    ],
+    "boarding-parlor": [
+      {
+        "id": "bpl-w",
+        "proper": "the parlour of Mrs. {W}’s boarding house on {street}",
+        "local": ["Mrs. {W}’s parlour", "the parlour"],
+        "short": "Mrs. {W}’s",
+        "epithets": [
+          "with a horsehair sofa nobody sat on twice",
+          "where lace covers were pinned to every chair back like napkins at a banquet",
+          "that smelled of lavender polish and boiled supper"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "bpl-magnolia",
+        "proper": "the front parlour of the Magnolia House, Mrs. {W}’s boarding house on {avenue}",
+        "local": ["the Magnolia", "Mrs. {W}’s"],
+        "short": "Magnolia parlour",
+        "epithets": [
+          "with wax magnolias under a glass dome, the only flowers that ever lasted a winter there",
+          "kept for callers who never called",
+          "where a fern in a brass tub was the oldest boarder in the house"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "bpl-business-girls",
+        "proper": "the parlour of Mrs. {W}’s house for business girls on {street}",
+        "local": ["Mrs. {W}’s", "the girls’ house"],
+        "short": "Mrs. {W}’s",
+        "epithets": [
+          "where gentleman callers were received with the door wide open",
+          "with the house rules on the wall, numbered, all the way to twenty-two",
+          "that smelled of face cream and hot curling irons"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "bpl-harwood",
+        "proper": "the parlour of the Harwood, Mrs. {W}’s boarding house on {avenue}",
+        "local": ["the Harwood", "Mrs. {W}’s"],
+        "short": "Harwood parlour",
+        "epithets": [
+          "which had been a sea captain’s house and still had his brass telescope in the window",
+          "where the ship in a bottle on the mantel was the only thing in the house that had travelled",
+          "with wallpaper of ships sailing nowhere in rows"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "bpl-sailors-rest",
+        "proper": "the parlour of the Sailors’ Rest, Mrs. {W}’s boarding house on {street}",
+        "local": ["the Sailors’ Rest", "Mrs. {W}’s"],
+        "short": "Sailors’ Rest",
+        "epithets": [
+          "where the sailors were asked to rest quietly and mostly didn’t",
+          "with a painted lifebuoy over the mantel",
+          "that smelled of pipe tobacco and salt-stiff wool"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "bpl-fanlight",
+        "proper": "the parlour of Mrs. {W}’s on {street}, the house with the stained-glass fanlight",
+        "local": ["Mrs. {W}’s", "the parlour"],
+        "short": "Mrs. {W}’s",
+        "epithets": [
+          "under a stained-glass fanlight that threw coloured diamonds on the hall floor",
+          "where the good china lived behind glass and never came out",
+          "with a bowl of wax fruit nobody had been fooled by since 1900"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "bpl-dunleavy",
+        "proper": "the parlour of the Dunleavy House on {avenue}, which Mrs. {W} ran like a convent",
+        "local": ["the Dunleavy", "Mrs. {W}’s"],
+        "short": "Dunleavy parlour",
+        "epithets": [
+          "run like a convent, with fewer candles and more rules",
+          "where the chairs stood in a circle for conversations nobody wanted",
+          "where you sat up straight without being told"
+        ],
+        "sense": ["sight"]
+      }
+    ],
+    "barber-shop": [
+      {
+        "id": "brb-esposito",
+        "proper": "Esposito’s barber shop on {avenue}",
+        "local": ["Esposito’s"],
+        "short": "Esposito’s",
+        "epithets": [
+          "with a striped pole out front that turned whether anybody was coming or not",
+          "where three chairs faced a mirror and the mirror faced back",
+          "where the talk was baseball until somebody said a name"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "brb-ritz",
+        "proper": "the Ritz Tonsorial Parlor on {street}",
+        "local": ["the Ritz"],
+        "short": "Ritz barbers",
+        "epithets": [
+          "which called itself tonsorial and meant barber",
+          "with a shoeshine boy asleep on the waiting bench",
+          "where the hot towels came out of a steamer like dumplings"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "brb-schmitt",
+        "proper": "Schmitt’s barber shop on {avenue}, with the hair tonic in the window",
+        "local": ["Schmitt’s"],
+        "short": "Schmitt’s",
+        "epithets": [
+          "with a pyramid of hair tonic in the window promising a full head by Easter",
+          "where old Schmitt had been cutting the same heads since they had hair on them",
+          "that smelled of talc and lilac water"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "brb-eureka",
+        "proper": "the Eureka barber shop on {street}, under the pole with the missing stripe",
+        "local": ["the Eureka"],
+        "short": "Eureka",
+        "epithets": [
+          "under a barber pole missing one stripe, like a candy cane somebody had bitten",
+          "where the waiting bench was the neighbourhood’s parliament",
+          "with a leather strop hanging by every chair like a tongue"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "brb-mitchell",
+        "proper": "Mitchell’s barber shop on {avenue}, the one with the shoeshine stand",
+        "local": ["Mitchell’s"],
+        "short": "Mitchell’s",
+        "epithets": [
+          "where the whole avenue came to be shaved and to settle arguments",
+          "with a shoeshine stand by the door raised up like a throne",
+          "where the talk ran on long after the haircuts stopped"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "brb-figaro",
+        "proper": "Figaro’s, the barber shop on {street} named for the opera",
+        "local": ["Figaro’s"],
+        "short": "Figaro’s",
+        "epithets": [
+          "named for an opera barber and run by a man who had never seen an opera",
+          "with a gramophone that played the same three records",
+          "where a shave came with a hot towel and a lecture on the tariff"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "brb-keeping",
+        "proper": "{V}’s barber shop on {avenue}",
+        "local": ["{V}’s"],
+        "short": "{V}’s shop",
+        "epithets": [
+          "with {V}’s own chair at the front by the window",
+          "where {V} kept the good razors locked in a drawer",
+          "with {V}’s name in gold on the glass"
+        ],
+        "sense": ["sight"],
+        "keeping": true
+      }
+    ],
+    "hotel-garage": [
+      {
+        "id": "gar-acme",
+        "proper": "the Acme Garage on {avenue}",
+        "local": ["the Acme", "the garage"],
+        "short": "Acme Garage",
+        "epithets": [
+          "that smelled of gasoline clear out to the sidewalk",
+          "with oil stains on the floor in the shape of every car that had ever parked there",
+          "where the rolling door groaned like a man getting out of bed"
+        ],
+        "sense": ["smell", "sound"]
+      },
+      {
+        "id": "gar-keystone",
+        "proper": "the Keystone Garage on {street}, where the hotels sent their guests’ cars",
+        "local": ["the Keystone"],
+        "short": "Keystone",
+        "epithets": [
+          "where the hotels sent their guests’ cars to be kept out of sight and out of trouble",
+          "with a row of limousines under canvas like horses in blankets",
+          "where somebody’s feet were sticking out from under a car most hours of the day"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "gar-livery",
+        "proper": "the garage on {avenue} that used to be the Metropolitan livery stable",
+        "local": ["the old livery", "the garage"],
+        "short": "Livery garage",
+        "epithets": [
+          "which had been a stable and still had the hay hooks in the ceiling",
+          "where the ramp to the second floor had been built for horses",
+          "that smelled of motor oil with a little horse underneath"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "gar-speedwell",
+        "proper": "the Speedwell Garage on {street}, the one with the gasoline pump out front",
+        "local": ["the Speedwell"],
+        "short": "Speedwell",
+        "epithets": [
+          "with a gasoline pump out front shaped like a lighthouse",
+          "where the tires were stacked like a giant’s checkers",
+          "that echoed like a railway station whenever a door slammed"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "gar-gallagher",
+        "proper": "Gallagher’s Garage and Taxi Repair on {avenue}",
+        "local": ["Gallagher’s"],
+        "short": "Gallagher’s",
+        "epithets": [
+          "where the cabs came in coughing and went out swearing",
+          "with a calendar of pretty girls holding spark plugs",
+          "that smelled of burnt clutch and coffee"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "gar-sterling",
+        "proper": "the Sterling Motor Garage on {street}, four floors of cars with an elevator for them",
+        "local": ["the Sterling"],
+        "short": "Sterling",
+        "epithets": [
+          "with a car elevator big enough for a Packard and slow enough to read a book on",
+          "four floors of cars sleeping under canvas",
+          "where the night lamps made the chrome look like a parade"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "gar-keeping",
+        "proper": "{V}’s garage on {avenue}",
+        "local": ["{V}’s", "{V}’s garage"],
+        "short": "{V}’s garage",
+        "epithets": [
+          "where {V} knew every car by the sound of its engine",
+          "with {V}’s name painted over the door in letters a yard high",
+          "where {V} kept a cot in the office for the long nights"
+        ],
+        "sense": ["sound"],
+        "keeping": true
+      }
+    ],
+    "el-platform": [
+      {
+        "id": "el-uptown",
+        "proper": "the uptown platform of the El at {street}",
+        "local": ["the El", "the platform"],
+        "short": "El platform",
+        "epithets": [
+          "two storeys up on iron legs, with the whole street for a basement",
+          "where the wind came up through the planks from below",
+          "with a change booth at the top of the stairs like a sentry box nobody had posted anyone to"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "el-third-ave",
+        "proper": "the Third Avenue El station at {street}",
+        "local": ["the Third Avenue El", "the El"],
+        "short": "El station",
+        "epithets": [
+          "with a pot-bellied stove in the waiting room that was the warmest thing for blocks",
+          "where you could look straight into second-floor windows and usually wished you hadn’t",
+          "with iron stairs painted so many times the rivets had gone soft"
+        ],
+        "sense": ["sight"],
+        "fits": [
+          "Yorkville",
+          "Gramercy",
+          "the Gas House District",
+          "the Bowery",
+          "Little Italy",
+          "Harlem"
+        ]
+      },
+      {
+        "id": "el-sixth-ave",
+        "proper": "the Sixth Avenue El station at {street}",
+        "local": ["the Sixth Avenue El", "the El"],
+        "short": "El station",
+        "epithets": [
+          "over an avenue that lived its whole life in the shade of the tracks",
+          "with cinders drifting down onto the hats below",
+          "where the sunlight came through the ties in stripes, like a jail cell with ambitions"
+        ],
+        "sense": ["sight"],
+        "fits": ["the Tenderloin", "Chelsea", "Greenwich Village"]
+      },
+      {
+        "id": "el-ninth-ave",
+        "proper": "the Ninth Avenue El station at {street}",
+        "local": ["the Ninth Avenue El", "the El"],
+        "short": "El station",
+        "epithets": [
+          "the oldest El in the city and determined to be the loudest",
+          "with a platform that swayed a little in the wind, for character",
+          "where the stair rail had been worn silver by a million gloves"
+        ],
+        "sense": ["sound"],
+        "fits": ["Hell’s Kitchen", "Chelsea", "the Upper West Side", "Harlem"]
+      },
+      {
+        "id": "el-second-ave",
+        "proper": "the Second Avenue El station at {street}",
+        "local": ["the Second Avenue El", "the El"],
+        "short": "El station",
+        "epithets": [
+          "looking down on pushcarts and up at washing",
+          "where the wooden platform had been patched with every kind of wood there was",
+          "with signs for corsets and cough drops all along the railing"
+        ],
+        "sense": ["sight"],
+        "fits": ["the Lower East Side", "Yorkville", "the Gas House District"]
+      },
+      {
+        "id": "el-gingerbread",
+        "proper": "the El platform over {street}, with the little station house",
+        "local": ["the El", "the station"],
+        "short": "El station",
+        "epithets": [
+          "with a station house like a gingerbread cottage perched on iron stilts",
+          "where the pigeons roosted in the girders and dropped their opinions",
+          "that caught every wind off the river and kept it"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "el-birdcage",
+        "proper": "the El station at {street} that the kids called the Birdcage",
+        "local": ["the Birdcage", "the El"],
+        "short": "Birdcage",
+        "epithets": [
+          "an iron birdcage for people, two storeys up",
+          "where the view of the neighbourhood was all rooftops and laundry",
+          "with a turnstile that took your nickel and made you think about it"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "el-coal-yard",
+        "proper": "the El platform at {street}, above the coal yard",
+        "local": ["the El", "the coal-yard station"],
+        "short": "El platform",
+        "epithets": [
+          "above a coal yard, so everybody waiting went home a shade darker",
+          "where the stairs were iron and rang under every step",
+          "looking down into the coal heaps like a gull over a harbour"
+        ],
+        "sense": ["sight", "sound"]
+      }
+    ],
+    "square-benches": [
+      {
+        "id": "sq-stuyvesant",
+        "proper": "the benches by the dry fountain in Stuyvesant Square",
+        "local": ["the square", "Stuyvesant Square"],
+        "short": "Stuyvesant Square",
+        "epithets": [
+          "where the pigeons held court",
+          "by a fountain that had been dry so long it had forgotten how",
+          "under elms old enough to remember Peter Stuyvesant’s wooden leg"
+        ],
+        "sense": ["sight"],
+        "fits": ["Gramercy", "the Gas House District"]
+      },
+      {
+        "id": "sq-tompkins",
+        "proper": "the benches along the north walk of Tompkins Square",
+        "local": ["Tompkins Square", "the square"],
+        "short": "Tompkins Square",
+        "epithets": [
+          "where the old men played chess in five languages and lost in all of them",
+          "under an elm that had heard more speeches than any politician",
+          "where the pushcart men came to rest their feet"
+        ],
+        "sense": ["sound"],
+        "fits": ["the Lower East Side", "the Bowery", "the Gas House District"]
+      },
+      {
+        "id": "sq-washington",
+        "proper": "the benches at the arch end of Washington Square",
+        "local": ["Washington Square", "the square"],
+        "short": "Washington Square",
+        "epithets": [
+          "in sight of the big white arch",
+          "where the poets sat and the pigeons listened, which was more than the poets deserved",
+          "with chess tables that were never empty in daylight"
+        ],
+        "sense": ["sight"],
+        "fits": ["Greenwich Village"]
+      },
+      {
+        "id": "sq-mount-morris",
+        "proper": "the benches by the bandstand in Mount Morris Park",
+        "local": ["Mount Morris Park", "the park"],
+        "short": "Mount Morris",
+        "epithets": [
+          "under the old iron fire tower on the hill",
+          "by a bandstand whose bands had gone home for the season",
+          "where the paths climbed like they had somewhere important to be"
+        ],
+        "sense": ["sight"],
+        "fits": ["Harlem"]
+      },
+      {
+        "id": "sq-gramercy",
+        "proper": "the benches outside the railings of Gramercy Park",
+        "local": ["Gramercy Park", "the railings"],
+        "short": "Gramercy Park",
+        "epithets": [
+          "outside the railings, since only the people with keys got to sit inside",
+          "looking in at a park locked up like a pantry",
+          "where the rich walked by without seeing the benches at all"
+        ],
+        "sense": ["sight"],
+        "fits": ["Gramercy", "the Gas House District"]
+      },
+      {
+        "id": "sq-columbus",
+        "proper": "the benches in Columbus Park, where Mulberry Bend used to be",
+        "local": ["Columbus Park", "the Bend"],
+        "short": "Columbus Park",
+        "epithets": [
+          "where the worst block in the city had been torn down to make a lawn",
+          "where the old men rolled bocce balls in their Sunday hats",
+          "with Chinatown on one side and Little Italy on the other, and the benches in between"
+        ],
+        "sense": ["sound"],
+        "fits": ["Little Italy", "the Bowery"]
+      },
+      {
+        "id": "sq-generic",
+        "proper": "the benches by the dry fountain at the north end of the square off {street}",
+        "local": ["the square", "the benches"],
+        "short": "The square",
+        "epithets": [
+          "where the pigeons ran the place and let the people sit",
+          "by a stone fountain shut off for the season, or possibly the decade",
+          "with one lamp at the corner doing the work of four"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "sq-triangle",
+        "proper": "the benches under the plane trees in the little triangle at {street} and {avenue}",
+        "local": ["the triangle", "the benches"],
+        "short": "The triangle",
+        "epithets": [
+          "in a park so small it was mostly its own railings",
+          "under two plane trees shedding bark like old wallpaper",
+          "where the traffic went round all three sides like a moat"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "sq-general",
+        "proper": "the benches around the bronze general in the square on {street}",
+        "local": ["the square", "the general"],
+        "short": "Monument square",
+        "epithets": [
+          "around a bronze general on a horse gone green with pigeons and weather",
+          "where the general’s sword pointed at the bakery across the street, which everybody agreed was fair",
+          "with a lamp at each corner and one of them working"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "sq-flagpole",
+        "proper": "the benches around the flagpole in the little park on {street}",
+        "local": ["the flagpole park", "the benches"],
+        "short": "Flagpole park",
+        "epithets": [
+          "around a flagpole with no flag, which the neighbourhood took personally",
+          "where the pigeons had worn a path of their own in the grass",
+          "with the park’s single lamp at the gate, doing its best"
+        ],
+        "sense": ["sight"]
+      }
+    ],
+    "ferry-slip": [
+      {
+        "id": "fry-generic",
+        "proper": "the ferry slip at the foot of {street}",
+        "local": ["the ferry", "the slip"],
+        "short": "Ferry slip",
+        "epithets": [
+          "where the street ran out of street and turned into river",
+          "with a waiting room whose benches had been polished by a million impatient trousers",
+          "that smelled of tar and river water and coal smoke off the boats"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "fry-hoboken",
+        "proper": "the Hoboken ferry slip at the foot of Christopher Street",
+        "local": ["the Hoboken ferry", "the Christopher Street ferry"],
+        "short": "Hoboken ferry",
+        "epithets": [
+          "where the boats left for Hoboken as if that were a treat",
+          "with a ferry house trimmed in green copper like a seaside pavilion",
+          "where the gulls rode the ferry for free and knew it"
+        ],
+        "sense": ["sight"],
+        "fits": ["Greenwich Village"]
+      },
+      {
+        "id": "fry-weehawken",
+        "proper": "the Weehawken ferry at the foot of West Forty-Second Street",
+        "local": ["the Weehawken ferry", "the ferry"],
+        "short": "Weehawken ferry",
+        "epithets": [
+          "crossing to Weehawken, where the famous duel was, and nobody here let you forget it",
+          "with a row of lamps on the ferry house that doubled in the water",
+          "where the gangplank banged down like a judge’s hammer"
+        ],
+        "sense": ["sound"],
+        "fits": ["Hell’s Kitchen", "the Tenderloin"]
+      },
+      {
+        "id": "fry-thirty-fourth",
+        "proper": "the Long Island ferry slip at the foot of East Thirty-Fourth Street",
+        "local": ["the Thirty-Fourth Street ferry", "the ferry"],
+        "short": "Queens ferry",
+        "epithets": [
+          "where the ferry crossed to Long Island City and came back looking relieved",
+          "with a stove in the waiting room the regulars sat round like a campfire",
+          "that smelled of the gasworks up the shore"
+        ],
+        "sense": ["smell"],
+        "fits": ["Gramercy", "the Gas House District"]
+      },
+      {
+        "id": "fry-grand-street",
+        "proper": "the Grand Street ferry slip, where the boats crossed to Williamsburg",
+        "local": ["the Grand Street ferry", "the ferry"],
+        "short": "Williamsburg ferry",
+        "epithets": [
+          "where the Williamsburg boats came in low with pushcart men and their carts",
+          "with a waiting room that smelled of pickles and river",
+          "where the ramp rose and fell with the tide like a long sigh"
+        ],
+        "sense": ["smell"],
+        "fits": ["the Lower East Side", "Little Italy", "the Bowery"]
+      },
+      {
+        "id": "fry-fireboat",
+        "proper": "the ferry slip at the foot of {street}, next to the fireboat station",
+        "local": ["the ferry", "the slip by the fireboat"],
+        "short": "Ferry slip",
+        "epithets": [
+          "next to a red fireboat that nobody had ever seen go anywhere",
+          "where the pilings wore green beards of weed",
+          "with a tide that came and went under the planks, talking to itself"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "fry-old",
+        "proper": "the old ferry slip at the foot of {street}, under the big painted sign",
+        "local": ["the old ferry", "the slip"],
+        "short": "Old ferry",
+        "epithets": [
+          "under a sign that said FERRY in letters a yard high, in case of doubt",
+          "where the waiting room had one window and it faced the wrong way",
+          "with the river so close under the planks you could hear it thinking"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "fry-edgewater",
+        "proper": "the ferry slip at the foot of West 125th Street, where the boats crossed to Edgewater",
+        "local": ["the Edgewater ferry", "the ferry"],
+        "short": "Edgewater ferry",
+        "epithets": [
+          "where Harlem went to cross the river on a Sunday",
+          "with the Jersey cliffs standing up across the water like a wall",
+          "where the frankfurter man kept his cart going even in winter"
+        ],
+        "sense": ["sight"],
+        "fits": ["Harlem"]
+      },
+      {
+        "id": "fry-twenty-third",
+        "proper": "the Twenty-Third Street ferry to Jersey City",
+        "local": ["the Twenty-Third Street ferry", "the ferry"],
+        "short": "Jersey ferry",
+        "epithets": [
+          "where the Jersey commuters came off in a rush like a dropped drawer of forks",
+          "under a ferry house as big as a railway station and twice as draughty",
+          "that smelled of coal smoke and oysters"
+        ],
+        "sense": ["smell"],
+        "fits": ["Chelsea"]
+      }
+    ],
+    "subway-kiosk": [
+      {
+        "id": "sub-greenhouse",
+        "proper": "the subway kiosk at {street} and {avenue}",
+        "local": ["the subway", "the kiosk"],
+        "short": "Subway kiosk",
+        "epithets": [
+          "an iron-and-glass hut over a hole in the ground, like a greenhouse for commuters",
+          "where warm air came up the stairs smelling of pennies and wet cement",
+          "with a bulb over the top step and nothing much further down"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "sub-cupola",
+        "proper": "the subway kiosk at {street} and {avenue}, with the iron cupola",
+        "local": ["the kiosk", "the subway"],
+        "short": "Subway kiosk",
+        "epithets": [
+          "with an iron cupola on top like a bandstand that had lost its band",
+          "where the station name was set in blue and white tiles down the stairs, in case you forgot",
+          "with a draught up the stairs that could take a hat clean off"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "sub-uptown-lamps",
+        "proper": "the uptown subway entrance at {street} and {avenue}, between the two lamp posts",
+        "local": ["the uptown entrance", "the subway"],
+        "short": "Uptown kiosk",
+        "epithets": [
+          "between two iron lamp posts with glass globes, like the gate of a very small palace",
+          "where the stairs went down as steep as a well",
+          "which breathed out warm air in winter like something asleep"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "sub-savings",
+        "proper": "the subway kiosk outside the savings bank at {street} and {avenue}",
+        "local": ["the kiosk by the bank", "the subway"],
+        "short": "Bank kiosk",
+        "epithets": [
+          "outside a savings bank with columns, so the subway looked underdressed",
+          "where the gum wrappers blew round in circles on the landing",
+          "with a stair rail rubbed silver by a million palms"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "sub-chestnuts",
+        "proper": "the downtown kiosk at {street} and {avenue}, by the chestnut roaster",
+        "local": ["the downtown kiosk", "the subway"],
+        "short": "Downtown kiosk",
+        "epithets": [
+          "beside a chestnut roaster who kept his fire going for the smell as much as the trade",
+          "where the tiles on the stair were cracked in the shape of Italy",
+          "with a draught up the stairs that tasted of iron"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "sub-lenox",
+        "proper": "the Lenox Avenue subway entrance at West 135th Street",
+        "local": ["the Lenox Avenue subway", "the kiosk"],
+        "short": "Lenox subway",
+        "epithets": [
+          "where all of Harlem came up out of the ground on its way home",
+          "with a kiosk painted green and a stairway always half full",
+          "where the shoeshine men worked the top step like a stage"
+        ],
+        "sense": ["sound"],
+        "fits": ["Harlem"]
+      },
+      {
+        "id": "sub-astor",
+        "proper": "the subway kiosk at Astor Place",
+        "local": ["Astor Place", "the kiosk"],
+        "short": "Astor Place",
+        "epithets": [
+          "with beavers set into the tiles downstairs, in honour of a fur fortune",
+          "where the students from Cooper Union argued on the stairs",
+          "beside a traffic island where everybody crossed the wrong way"
+        ],
+        "sense": ["sight"],
+        "fits": ["the Bowery", "Greenwich Village"]
+      }
+    ],
+    "side-chapel": [
+      {
+        "id": "chp-malachy",
+        "proper": "the side chapel at St. Malachy’s on {street}",
+        "local": ["St. Malachy’s", "the chapel"],
+        "short": "St. Malachy’s",
+        "epithets": [
+          "where the actors came to pray for good reviews",
+          "that smelled of wax and old stone and a little of greasepaint",
+          "with a rack of candles burning for causes nobody wrote down"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "chp-brigid",
+        "proper": "the side chapel at St. Brigid’s on {street}",
+        "local": ["St. Brigid’s", "the chapel"],
+        "short": "St. Brigid’s",
+        "epithets": [
+          "built by men off the famine ships and still a little hungry-looking",
+          "where the kneelers had been worn thin by grandmothers",
+          "with a stained-glass saint who looked like she would rather be elsewhere"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "chp-sorrows",
+        "proper": "the side chapel at Our Lady of Sorrows on {street}",
+        "local": ["Our Lady of Sorrows", "the chapel"],
+        "short": "Sorrows chapel",
+        "epithets": [
+          "a church whose name set the mood for the whole block",
+          "where the old women said the rosary in Italian and at great speed",
+          "that smelled of lilies and candle smoke"
+        ],
+        "sense": ["smell", "sound"]
+      },
+      {
+        "id": "chp-aloysius",
+        "proper": "the side chapel at St. Aloysius on {avenue}, the church with the copper spire",
+        "local": ["St. Aloysius", "the chapel"],
+        "short": "St. Aloysius",
+        "epithets": [
+          "under a copper spire gone as green as a lime",
+          "where the candles were a penny and the prayers were free",
+          "with pews so old they creaked like a ship"
+        ],
+        "sense": ["sound"]
+      },
+      {
+        "id": "chp-st-pauls",
+        "proper": "the little side chapel at St. Paul’s Lutheran on {street}",
+        "local": ["St. Paul’s", "the chapel"],
+        "short": "St. Paul’s",
+        "epithets": [
+          "plain as a scrubbed table, the way Lutherans liked it",
+          "where last Sunday’s hymn numbers were still up on the board",
+          "that smelled of floor soap and hymn books"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "chp-little-church",
+        "proper": "the side chapel at the Church of the Transfiguration on {street}, which the block called the Little Church",
+        "local": ["the Little Church", "the chapel"],
+        "short": "Little Church",
+        "epithets": [
+          "which the block loved like a favourite aunt",
+          "with a little roofed gate and a garden no bigger than a rug",
+          "where more people got married in a hurry than anywhere else in the city"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "chp-cecilia",
+        "proper": "the side chapel at St. Cecilia’s on {avenue}",
+        "local": ["St. Cecilia’s", "the chapel"],
+        "short": "St. Cecilia’s",
+        "epithets": [
+          "dedicated to the patron saint of musicians, so the organ was held to a high standard",
+          "under a painted ceiling of angels who all seemed to have somewhere to be",
+          "where the candle rack held more stubs than candles"
+        ],
+        "sense": ["sight"]
+      }
+    ],
+    "union-hall": [
+      {
+        "id": "unh-hoffmann",
+        "proper": "the union hall over Hoffmann’s bakery on {street}",
+        "local": ["the union hall", "over Hoffmann’s"],
+        "short": "Union hall",
+        "epithets": [
+          "up an outside stair that smelled of bread hours after the ovens went cold",
+          "where the folding chairs leaned in stacks against the wall like tired men",
+          "with a lectern pounded on so often it leaned"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "unh-garment",
+        "proper": "the garment workers’ hall over the Star Bakery on {avenue}",
+        "local": ["the garment hall", "the union hall"],
+        "short": "Garment hall",
+        "epithets": [
+          "under a banner in Yiddish, Italian and English, all saying roughly the same thing",
+          "where the steam from the bakery came up through the floor and fogged the windows",
+          "that smelled of rye bread and strong opinions"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "unh-dockworkers",
+        "proper": "the dockworkers’ union hall over Kearney’s bakery on {street}",
+        "local": ["the dock hall", "the union hall"],
+        "short": "Dockworkers’ hall",
+        "epithets": [
+          "where the chairs were built for big men and still complained",
+          "with a hand-lettered sign on the door about dues, underlined three times",
+          "where the coffee urn at the back had been on the boil since the last strike"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "unh-drivers",
+        "proper": "the drivers’ union hall over Rosen’s bakery on {avenue}",
+        "local": ["the drivers’ hall", "the union hall"],
+        "short": "Drivers’ hall",
+        "epithets": [
+          "over a bakery whose trucks the members drove, which made for lively meetings",
+          "with a portrait of the union’s founder glaring at the empty chairs",
+          "where every chair had a name carved in it and none of them matched"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "unh-bakers",
+        "proper": "the bakers’ union hall over Schulz’s bakery on {street}",
+        "local": ["the bakers’ hall", "the union hall"],
+        "short": "Bakers’ hall",
+        "epithets": [
+          "over the bakery, which saved the bakers a trip and gave them the smell to argue in",
+          "where the flour dust got into the meeting notes",
+          "with long tables that had been doors in a previous life"
+        ],
+        "sense": ["smell"]
+      },
+      {
+        "id": "unh-liberty",
+        "proper": "Liberty Hall, over the Vienna Bakery on {avenue}",
+        "local": ["Liberty Hall", "the hall"],
+        "short": "Liberty Hall",
+        "epithets": [
+          "named for liberty and furnished for thrift",
+          "with a stage just big enough for one speaker and his temper",
+          "where the posters on the walls were layered so thick the room was an inch smaller"
+        ],
+        "sense": ["sight"]
+      },
+      {
+        "id": "unh-carpenters",
+        "proper": "the carpenters’ union hall over Vitello’s bakery on {street}",
+        "local": ["the carpenters’ hall", "the union hall"],
+        "short": "Carpenters’ hall",
+        "epithets": [
+          "where the carpenters had built the platform themselves and it showed, in a good way",
+          "over a bakery whose cannoli came to every meeting uninvited",
+          "with sawdust in the corners that nobody could explain"
+        ],
+        "sense": ["smell"]
+      }
+    ]
+  }
+}
