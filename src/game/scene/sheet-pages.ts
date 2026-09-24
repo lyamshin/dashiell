@@ -412,7 +412,10 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
   };
   if (tell && obs?.observe) {
     // "the woman who had found Sirkin": the observation's who, as a noun phrase.
-    const noun = obs.observe.trade ?? (pronounOf(tell) === 'she' ? 'woman' : 'man');
+    // Not "the stagehand at the Selwyn Dettweiler had told me to start with":
+    // a clause with no "who" takes the plain noun.
+    const bare = pronounOf(tell) === 'she' ? 'woman' : 'man';
+    const noun = obs.observe.tie === 'pointer' ? bare : (obs.observe.trade ?? bare);
     slots['tell.tie'] = `the ${noun} ${tieClauseOf(stage, tell, obs.observe.tie)}`;
   }
   const rolePeople: Record<string, Id> = {
