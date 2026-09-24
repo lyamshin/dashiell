@@ -381,7 +381,8 @@ export function topicsAnsweredBy(clue: Clue, view: CaseView): string[] {
     if (t.includes(fold(a.name))) out.add(`anchor:${a.templateId}`);
   }
   for (const pl of view.places) {
-    if (t.includes(fold(pl.shortName))) out.add(`place:${pl.id}`);
+    // A named place's running name is read as a word ("the El" is not "the elevator man").
+    if (pl.names ? hasWord(t, fold(pl.shortName)) : t.includes(fold(pl.shortName))) out.add(`place:${pl.id}`);
   }
   for (const o of view.kase.objects) {
     if (t.includes(fold(o.name))) out.add(`object:${o.id}`);

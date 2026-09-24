@@ -208,7 +208,10 @@ export function recapFacts(
           fillLine(pick(RECAP_WHEN[variant] ?? []), {
             Victim: victim.surname,
             Object: object ? cap(object) : undefined,
-            place: scene.shortName,
+            // "Tramonti died at his place", not at Tramonti's.
+            place: base === 'murder' && (scene.shortName.startsWith(`${victim.surname}’s `) || scene.shortName.startsWith(`${victim.surname}'s `))
+              ? `${pronounOf(victim) === 'she' ? 'her' : 'his'} ${scene.shortName.slice(victim.surname.length + 3)}`
+              : scene.shortName,
             span: when,
           }),
       });
@@ -225,7 +228,7 @@ export function recapFacts(
       ticks: [anchor.tick],
       anchorIds: [anchor.anchorId],
       keep: 1,
-      say: (pick) => fillLine(pick(RECAP_ANCHOR), { Anchor: cap(anchor.name), time: spokenClock(anchor.tick) }),
+      say: (pick) => fillLine(pick(RECAP_ANCHOR), { Anchor: cap(anchor.name), was: /^the bells\b/.test(anchor.name) ? 'were' : 'was', time: spokenClock(anchor.tick) }),
     });
   }
   if (type === 'murder' && book.established.method !== null) {

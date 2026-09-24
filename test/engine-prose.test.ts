@@ -27,6 +27,7 @@ import { checkRunCoverage } from '../src/game/scene/coverage.js';
 import { HIRING_DASHIELL } from '../src/game/voice-data.js';
 import { Dealer } from '../src/game/voice/cards.js';
 import type { Page, RunState } from '../src/game/types.js';
+import { maskPlaces, placeFormsOf } from '../src/game/scene/place-names.js';
 
 const tiered = (seed: number, tier: 0 | 1 | 2 | 3 | 4 | 5): CaseView =>
   buildView(generateCase(seed, { difficulty: 2, detectiveName: 'Dashiell', tier, classic: true }));
@@ -85,7 +86,9 @@ describe('docs/26: search finds told, not printed', () => {
       (b) => b.kind === 'thought' && (b.clueIds ?? []).some((id) => r.view.findableById.get(id)?.kind === 'document' && /register/.test(r.view.findableById.get(id)?.text ?? '')),
     );
     expect(thought?.text).toBeDefined();
-    expect(thought?.text).not.toMatch(/Renfro/);
+    // Place names (content/places): Renfro's address is "Renfro’s place" now,
+    // which names the place and not the man; his name anywhere else is the fault.
+    expect(maskPlaces(thought?.text ?? '', placeFormsOf(r.view.kase.places))).not.toMatch(/Renfro/);
   });
 });
 

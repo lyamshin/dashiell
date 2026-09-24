@@ -127,6 +127,18 @@ export interface VictimArchetype {
   visibleProfession: boolean;
   /** Where they stood in the neighbourhood. `{V}` is the surname. */
   standing: string[];
+  /**
+   * The same, for a case that is not a crime against them: the owner of a
+   * lost cat or a lost watch, or the one an affair is about. The designer: a
+   * cat's owner is not introduced as the keeper of a file of what was never
+   * printed. Three, like `standing`, and the story reads them as variants 3–5.
+   */
+  standingMundane: string[];
+}
+
+/** Every standing line a victim card has, in the order the story numbers them. */
+export function allStandings(card: VictimArchetype): string[] {
+  return [...card.standing, ...card.standingMundane];
 }
 
 /** Everything a person can want out of life, in the plain register. */
@@ -1401,6 +1413,11 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
       'was {the man|the woman} a hundred and forty people paid to keep a roof over them',
       'owned more of the street than anybody who lived on it',
     ],
+    standingMundane: [
+      'kept a geranium in every window {he|she} owned, and owned a good many windows',
+      'knew every tenant on Ninth Avenue by name, and most of them by their excuses',
+      'owned three buildings on the avenue and still swept {his|her} own front step',
+    ],
   },
   {
     id: 'vic-bootlegger',
@@ -1419,6 +1436,11 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
       'supplied half the bars on the block, and the other half wished otherwise',
       'was the reason four places on the street stayed open, and everyone knew it',
       'was owed favours by people who would rather not be reminded of them',
+    ],
+    standingMundane: [
+      'kept the top floor, the best radio on the street, and regular hours for a bootlegger',
+      'was known on the block for good whisky and a bad temper, in that order',
+      'was polite to everybody on the stairs, which on that street made him a gentleman',
     ],
   },
   {
@@ -1439,6 +1461,11 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
       'was the one name on the block the papers would have printed',
       'lent to people who could not pay it back and never asked twice',
     ],
+    standingMundane: [
+      'had money in a neighbourhood that had none, and spent most of it on hats',
+      'had been married twice and photographed more often than that',
+      'was the one name on the block the papers would have printed, and she knew it',
+    ],
   },
   {
     id: 'vic-agent',
@@ -1457,6 +1484,11 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
       'decided who worked this season, which made for a great many careful friendships',
       'had half the neighbourhood waiting on a telephone call that never came',
       'could put a name on a playbill or leave it off, and did both',
+    ],
+    standingMundane: [
+      'knew every act on the circuit and had seen most of them twice',
+      'could get anybody a booking in Newark, and said so often',
+      'kept a signed photograph of everybody {he|she} ever booked, and booked a great many',
     ],
   },
   {
@@ -1478,6 +1510,11 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
       'was owed a bribe by every landlord on six blocks',
       'was the reason three houses on the street were still standing open',
     ],
+    standingMundane: [
+      'inspected buildings for the city in the same brown suit every day',
+      'knew every staircase on six blocks, and which ones to stay off',
+      'had a city badge, a pension coming, and a very clean hat',
+    ],
   },
   {
     id: 'vic-union-treasurer',
@@ -1496,6 +1533,11 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
       'held the money four hundred men had paid in, and they all knew the figure',
       'decided who was picked for work in the morning and who was sent home',
       'was the union, as far as the street was concerned',
+    ],
+    standingMundane: [
+      'kept the union’s accounts in a green ledger and could add a column in {his|her} head',
+      'ran the union picnic every summer, and the raffle, and never won it',
+      'knew four hundred men by name and most of their wives',
     ],
   },
   {
@@ -1516,6 +1558,11 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
       'knew what everybody on the street was worth, down to the coat',
       'was the last resort on the block, and charged accordingly',
     ],
+    standingMundane: [
+      'had three brass balls over the door and a good memory behind the counter',
+      'knew the block by what it had pawned, and said good morning to all of it',
+      'could price a watch across the room and was seldom wrong',
+    ],
   },
   {
     id: 'vic-columnist',
@@ -1535,6 +1582,11 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
       'kept a file of what was not printed, and let it be known that it existed',
       'was invited everywhere, mostly by people who were afraid of the column',
     ],
+    standingMundane: [
+      'wrote about who danced with whom, and was right more often than not',
+      'had a seat at every wedding on the block, and wrote about the cake',
+      'was invited everywhere, and went to most of it',
+    ],
   },
   {
     id: 'vic-bondsman',
@@ -1553,6 +1605,11 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
       'had stood bail for most of the block at one time or another, and was still owed for it',
       'was the first telephone call anybody on the street made at two in the morning',
       'owned a share of four houses that had been put up as security',
+    ],
+    standingMundane: [
+      'kept an office with a bench outside it and a kettle always on',
+      'never locked {his|her} office door, because nobody robs a bondsman',
+      'sent a card every Christmas to everybody {he|she} ever stood bail for',
     ],
   },
   {
@@ -1575,6 +1632,11 @@ export const VICTIM_ARCHETYPES: VictimArchetype[] = [
       'was the richest man on the landing and the only one who never mentioned it',
       'had lent money to four families on the block and forgiven none of it',
       'was thirty years in the trade and is still owed by people who left it',
+    ],
+    standingMundane: [
+      'could tell a good wool from a bad one by the smell, and often did, out loud',
+      'had retired from the cloth trade and taken up telling people about it',
+      'was the best-dressed man on the landing and the only one who never mentioned it',
     ],
   },
 ];

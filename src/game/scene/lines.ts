@@ -6,7 +6,8 @@
  * them comes from a slot the engine fills from the case.
  */
 
-import type { Id } from '../../gen/types.js';
+import type { Case, Id } from '../../gen/types.js';
+import { tieWordsFor } from '../../gen/data/tie-words.js';
 
 /**
  * A search of one thing, the golden's way: go to it, look at it properly,
@@ -97,6 +98,32 @@ export const RELATION_WHY: Record<Id, string> = {
   'rel-wed': 'A husband or a wife knows the habits, and the stories told about them.',
   'rel-intended': 'Somebody engaged to be married keeps a close eye on the other party.',
 };
+
+/**
+ * The world-coherence pass: a relation said in the owner's words, where the
+ * card's own do not fit the owner (`gen/data/tie-words.ts`): a "customer" of
+ * a theatrical agent "was on Tramonti's books". A tiered case only; the
+ * untiered case says what it always said.
+ */
+function wordsOf(kase: Case, relId: Id) {
+  if (kase.shape === undefined) return undefined;
+  const owner = kase.people.find((p) => p.kind === 'victim')?.archetypeId;
+  if (owner === undefined) return undefined;
+  return tieWordsFor(relId, owner, kase.places.find((p) => p.isResidence)?.id);
+}
+
+/** `RELATION_PLAIN` for this case's owner. */
+export function relationPlain(kase: Case, relId: Id | undefined): string | undefined {
+  if (relId === undefined) return undefined;
+  return wordsOf(kase, relId)?.plain ?? RELATION_PLAIN[relId];
+}
+
+/** `RELATION_WHY` for this case's owner. */
+export function relationWhy(kase: Case, relId: Id | undefined): string | undefined {
+  if (relId === undefined) return undefined;
+  return wordsOf(kase, relId)?.why ?? RELATION_WHY[relId];
+}
+
 
 /** Two to five, said. */
 export const COUNT_WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven'];

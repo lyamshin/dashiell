@@ -1,4 +1,4 @@
-import type { CaseType, Dossier, FixtureRole, Id, Mention, Person } from './types.js';
+import type { CaseType, Dossier, FixtureRole, Id, Mention, Person, PlaceNames } from './types.js';
 import { surnameOf } from './types.js';
 import { liarsFor, type Dials } from './shape.js';
 import { NAME_POOLS } from './data/names.js';
@@ -16,6 +16,9 @@ import {
 import { AFFAIR_MOTIVES, MOTIVE_TEMPLATES, MUNDANE_MOTIVES, type MotiveTemplate } from './data/motives.js';
 import { M14_TIE_IDS, tieWeight } from './data/ties.js';
 import { SECRET_BY_TYPE, type SecretTemplate } from './data/secrets.js';
+import { tieFits } from './coherence.js';
+import { relationshipFor } from './data/tie-words.js';
+import { drawPlaceNames, withNames } from './place-names.js';
 import {
   buildDossier,
   createMentionPool,
@@ -27,7 +30,7 @@ import {
   type Namer,
 } from './dossier.js';
 import type { Setting } from './setting.js';
-import type { Rng } from './rng.js';
+import { Rng } from './rng.js';
 
 export interface Cast {
   people: Person[];
@@ -186,6 +189,11 @@ export interface CastCase {
    * mix: its cast is drawn as it was, from the archetypes' own ties.
    */
   classic?: boolean;
+  /**
+   * Name the places (a tiered case): the seed and the tier's salt for the
+   * names' own stream, and a room that is the owner's besides the residence.
+   */
+  naming?: { seed: number; salt: number; owned?: Id };
 }
 
 export function buildCast(
@@ -221,6 +229,7 @@ export function buildCast(
   const archetypes = drawArchetypes(rng, victimArchetype, shape.suspects);
   if (!archetypes) return null;
 
+  const residenceId = setting.places.find((p) => p.isResidence)?.id;
   const suspects: Person[] = [];
   for (const [i, a] of archetypes.entries()) {
     // M14: one back fence, one ladder, one old flame to a case.
@@ -230,7 +239,24 @@ export function buildCast(
     if (options.length === 0) return null;
     // M14 §1.4: in a tiered case a debt is one tie among many, and weighs a
     // fraction of the rest. The untiered draw is the old uniform pick.
-    const relId = tiered ? weightedPick(rng, options, tieWeight) : rng.pick(options);
+    let relId = tiered ? weightedPick(rng, options, tieWeight) : rng.pick(options);
+    // The world-coherence pass: a tie the owner's trade or address cannot
+    // carry — a customer of a buildings inspector, the neighbour over the
+    // backyard fence of a hotel suite — is drawn again among those it can.
+    // Drawn again rather than filtered first, off a stream of its own seeded
+    // by who this is, so every draw after it is the draw it was.
+    //
+    // A classic case the mix kept is dealt draw for draw as it always was, so
+    // its truth — the goldens', the sheets' — stands; a tie of its that the
+    // owner cannot carry is said in words that fit the owner instead
+    // (`data/tie-words.ts`: a "customer" of a theatrical agent is an act on
+    // the agent's books).
+    if (tiered && !tieFits(relId, victimArchetype.id, residenceId, a.id)) {
+      const fitting = options.filter((id) => tieFits(id, victimArchetype.id, residenceId, a.id));
+      if (fitting.length === 0) return null;
+      const again = new Rng(hashText(`${victimName}|${i}|${a.id}|${relId}`));
+      relId = weightedPick(again, fitting, tieWeight);
+    }
     const rel = RELATIONSHIP_BY_ID[relId];
     // The relationship is drawn before the name, because some relationships
     // only read one way round and so decide who this person is.
@@ -458,7 +484,9 @@ export function buildCast(
       if (!other) return null;
       client = other;
     }
-    const relId = rng.chance(0.75) ? 'rel-wed' : 'rel-intended';
+    // An heiress between marriages is engaged, not married.
+    const wed = rng.chance(0.75) && tieFits('rel-wed', victimArchetype.id);
+    const relId = wed ? 'rel-wed' : 'rel-intended';
     client.relationshipId = relId;
     client.relationshipToVictim = genderForms(RELATIONSHIP_BY_ID[relId]?.text ?? relId, client.gender)
       .split('{V}')
@@ -467,6 +495,28 @@ export function buildCast(
     if (suspects.some((p) => p.id !== spoken.id && ['rel-spouse', 'rel-engaged'].includes(p.relationshipId ?? ''))) return null;
   }
   client.isClient = true;
+
+  /* --- the places' names (content/places/rules.md) ---------------------- *
+   *
+   * Drawn here, once the landladies have names and before anybody's dossier
+   * hangs a `{place}` on a room, on a stream of their own: every draw of the
+   * case is the draw it was, and only the words change.
+   */
+  if (kind?.naming !== undefined && !dials.plain) {
+    const landladyAt: Record<Id, string> = {};
+    for (const f of fixtures) if (f.fixtureRole === 'landlady' && f.foundAt) landladyAt[f.foundAt] = f.surname;
+    const names = drawPlaceNames({
+      seed: kind.naming.seed,
+      salt: kind.naming.salt,
+      neighborhood: setting.neighborhood,
+      places: setting.places,
+      owner: victimSurname,
+      ...(kind.naming.owned !== undefined ? { owned: kind.naming.owned } : {}),
+      landladyAt,
+      surnames: [victim, ...suspects, ...fixtures].map((p) => p.surname),
+    });
+    if (names) setting.places = setting.places.map((p) => (names[p.id] ? withNames(p, names[p.id] as PlaceNames) : p));
+  }
 
   /* --- M5: a dossier for everybody --------------------------------------- */
   const dossiers: Record<Id, Dossier> = {};
@@ -488,7 +538,9 @@ export function buildCast(
     relationship: null,
     fallbackTie: {
       text: 'the one this is about',
-      backstory: `${victimSurname} ${fillSlots(rng.pick(victimArchetype.standing), {
+      // A cat's owner, a watch's, or the one an affair is about stands on the
+      // block for something other than who would want them dead.
+      backstory: `${victimSurname} ${fillSlots(rng.pick(mundane ? victimArchetype.standingMundane : victimArchetype.standing), {
         victim: victimSurname,
         person: victimSurname,
         place: slotPlace(victim.id),
@@ -507,7 +559,7 @@ export function buildCast(
       surname: p.surname,
       gender: p.gender as 'm' | 'f',
       archetype: ARCHETYPE_BY_ID[p.archetypeId as Id] as Archetype,
-      relationship: relationshipOf(p.relationshipId),
+      relationship: dials.plain ? relationshipOf(p.relationshipId) : tradeRelationship(p.relationshipId, victimArchetype.id, residenceId),
       victimSurname,
       placeName: slotPlace(p.id),
       mentions,
@@ -565,6 +617,22 @@ export function buildCast(
   if (beatCop) cast.beatCop = beatCop;
   if (killerCoverSecret) cast.killerCoverSecret = killerCoverSecret;
   return cast;
+}
+
+/** A tie's card in the owner's words: a customer of a pawnbroker pawns. */
+function tradeRelationship(relationshipId: Id | undefined, ownerArchetypeId: Id, residenceId: Id | undefined) {
+  const rel = relationshipOf(relationshipId);
+  return rel ? relationshipFor(rel, ownerArchetypeId, residenceId) : null;
+}
+
+/** FNV-1a: a string to a 32-bit seed, the same on every platform. */
+function hashText(text: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < text.length; i++) {
+    h ^= text.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h >>> 0;
 }
 
 /** One of `options`, by weight. */

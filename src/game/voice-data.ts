@@ -894,8 +894,8 @@ export const RECAP_WHEN: Record<string, string[]> = {
 };
 
 export const RECAP_ANCHOR: string[] = [
-  '*{Anchor} was at {time}, and so far it was the only honest clock on the street.',
-  '{Anchor} was at {time}. It was the nearest thing I had to a clock I could trust.',
+  '*{Anchor} {was} at {time}, and so far it was the only honest clock on the street.',
+  '{Anchor} {was} at {time}. It was the nearest thing I had to a clock I could trust.',
 ];
 
 export const RECAP_METHOD: string[] = ['As for how, it was {method}.', 'The how of it was {method}.'];

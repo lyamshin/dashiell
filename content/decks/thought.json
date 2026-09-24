@@ -579,7 +579,7 @@
   {
     "id": "tht-056",
     "deck": "thought",
-    "text": "At {time}, {subject} claimed {place}. This took {subject} out of it.",
+    "text": "At {time}, {subject} claimed {place}. This put a hole in the claim you could see daylight through.",
     "tags": {
       "class": "contradicts",
       "basis": "not-at"

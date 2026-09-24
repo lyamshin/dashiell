@@ -39,7 +39,7 @@ import {
   type Tick,
 } from '../gen/types.js';
 import type { Told } from './types.js';
-import { RELATIONSHIP_BY_ID, VICTIM_ARCHETYPE_BY_ID } from '../gen/data/cast.js';
+import { RELATIONSHIP_BY_ID, VICTIM_ARCHETYPE_BY_ID, allStandings } from '../gen/data/cast.js';
 import { MOTIVE_BY_TYPE } from '../gen/data/motives.js';
 import { genderForms } from '../gen/dossier.js';
 import { wrap } from './transcript.js';
@@ -756,9 +756,16 @@ export function tellStory(input: StoryInput, history: Iterable<string> = []): St
       { kind: 'tie', personId: cid, relationshipId: tie.relationshipId, variant: tie.variant },
     ]);
   } else if (input.tie) {
-    s.say('tie', { relationship: '-', variant: -1 }, { tie: { text: input.tie.text, facts: [] } }, [
-      { kind: 'tieText', personId: cid, text: input.tie.text },
-    ]);
+    // A tie said in the owner's words ("Winslow’s partner in a sideline",
+    // gen/data/tie-words.ts) has no card of its own: it is said as it stands,
+    // and the victim it names is a fact of it.
+    const namesVictim = new RegExp(`\\b${victim.surname}\\b`).test(input.tie.text);
+    s.say(
+      'tie',
+      { relationship: '-', variant: -1 },
+      { tie: { text: input.tie.text, facts: namesVictim ? [{ kind: 'names', personId: vid }] : [] } },
+      [{ kind: 'tieText', personId: cid, text: input.tie.text }],
+    );
   }
   if (input.motive) {
     const third = motiveThird(input);
@@ -1013,7 +1020,8 @@ function standingOf(input: StoryInput): { archetypeId: Id; variant: number } | n
   const id = input.victim.archetypeId;
   const card = id === undefined ? undefined : VICTIM_ARCHETYPE_BY_ID[id];
   if (!card || input.standing === null) return null;
-  const variant = card.standing.findIndex(
+  // The mundane three's owners stand on the block another way: variants 3–5.
+  const variant = allStandings(card).findIndex(
     (t) => parseTemplate(`${input.victim.surname} ${genderForms(t, input.victim.gender)}`, input.standing as string) !== null,
   );
   return variant < 0 ? null : { archetypeId: id as Id, variant };

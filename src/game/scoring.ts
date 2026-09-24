@@ -11,6 +11,7 @@
  * anything to anybody, where they went.
  */
 
+import { bookClosing } from './v2/book.js';
 import { clock } from '../gen/types.js';
 import type { CaseType, Id, Tick, Unknown } from '../gen/types.js';
 import type { CaseView } from './derive.js';
@@ -410,6 +411,9 @@ function closingFor(
   // M9 §8: the closing page says which ones the detective got.
   const got = columnLine(view, fields, column);
   if (got) out.splice(1, 0, got);
+  // v2 (docs/35): the client's question, answered in the client's terms.
+  const book = kase.engine === 'v2' ? bookClosing(view, state) : null;
+  if (book) out.push(...book.middle);
 
   // The deck's last paragraph, keyed by how the night went, by whether it beat
   // par, and by the case type. The deck now has two cards for each (type,
@@ -448,7 +452,9 @@ function closingFor(
     true,
   );
   if (ending) out.push(ending.text);
-  else {
+  // v2: the motif and the running gag have the last word.
+  if (book) out.push(...book.last);
+  if (!ending) {
     gaps.push(
       `missing-deck: endings has no ${act.type} × ${outcome} card; the hand-written closing stood alone`,
     );

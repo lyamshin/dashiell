@@ -15,7 +15,7 @@ import { isTheft, type Id, type Person } from '../../gen/types.js';
 import type { CaseView } from '../derive.js';
 import { layerCredit } from '../voice/plain.js';
 import { pronounOf } from '../voice/cast.js';
-import { RELATION_PLAIN } from './lines.js';
+import { relationPlain } from './lines.js';
 
 /** Why somebody in the room matters to the case, as far as the notebook knows. */
 export type TieKind = 'finder' | 'pointer' | 'relation' | 'client';
@@ -36,7 +36,7 @@ export function knownTie(view: CaseView, person: Person, found: readonly Id[]): 
   const bio = view.kase.victimBio;
   if (bio.discovery?.foundById === person.id && person.id !== view.client.id) return { kind: 'finder' };
   if (view.kase.clientBrief.points.personId === person.id) return { kind: 'pointer', otherId: view.client.id };
-  if (person.relationshipId && RELATION_PLAIN[person.relationshipId] && layerCredit(view, person.id, found, 2) > 0) {
+  if (person.relationshipId && relationPlain(view.kase, person.relationshipId) && layerCredit(view, person.id, found, 2) > 0) {
     return { kind: 'relation' };
   }
   if (person.id === view.client.id) return { kind: 'client' };
@@ -48,7 +48,7 @@ export function knownTie(view: CaseView, person: Person, found: readonly Id[]): 
  * item — the thing gone. "Who had found Schilling" of a missing watch had the
  * owner lying on the floor.
  */
-function foundWhat(view: CaseView): string {
+export function foundWhat(view: CaseView): string {
   const act = view.kase.act;
   if (isTheft(act.type) && act.taken) return `${act.taken.name.replace(/^(a|an) /, 'the ')} gone`;
   return view.victim.surname;
@@ -66,7 +66,7 @@ export function tieSentence(view: CaseView, person: Person, tie: KnownTie): stri
     case 'pointer':
       return `${view.client.surname} had told me to start with ${him}.`;
     case 'relation':
-      return `${He} ${(RELATION_PLAIN[person.relationshipId ?? ''] ?? '').split('{V}').join(victim)}.`;
+      return `${He} ${(relationPlain(view.kase, person.relationshipId) ?? '').split('{V}').join(victim)}.`;
     case 'client':
       return `${He} was the one paying me.`;
   }
@@ -81,7 +81,7 @@ function tieClause(view: CaseView, person: Person, tie: KnownTie): string {
     case 'pointer':
       return `${view.client.surname} had told me to start with`;
     case 'relation':
-      return `who ${(RELATION_PLAIN[person.relationshipId ?? ''] ?? '').split('{V}').join(victim)}`;
+      return `who ${(relationPlain(view.kase, person.relationshipId) ?? '').split('{V}').join(victim)}`;
     case 'client':
       return 'who was paying me';
   }

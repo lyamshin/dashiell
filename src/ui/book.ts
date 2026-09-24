@@ -115,6 +115,18 @@ function plainChoice(c: OfferedChoice): OfferedChoice {
 
 export function mount(root: HTMLElement): void {
   const store = safeStore();
+  /**
+   * The rewrite (docs/35), behind a flag: `?engine=v2` deals and pages every
+   * case opened from this page the v2 way, and the flag rides along in the
+   * URL and the save. Without it the game is the game as it is.
+   */
+  const engine: 'v2' | undefined = (() => {
+    try {
+      return new URLSearchParams(window.location.search).get('engine') === 'v2' ? 'v2' : undefined;
+    } catch {
+      return undefined;
+    }
+  })();
   let screen: Screen = { kind: 'title' };
   let kase: Case | null = null;
   let view: CaseView | null = null;
@@ -146,7 +158,7 @@ export function mount(root: HTMLElement): void {
   }
 
   function writeUrl(seed: number | null, pick?: CasePick): void {
-    const query = seed === null || pick === undefined ? '' : paramsForPick(seed, pick);
+    const query = seed === null || pick === undefined ? (engine ? `?engine=${engine}` : '') : paramsForPick(seed, pick);
     window.history.replaceState(null, '', `${window.location.pathname}${query}`);
   }
 
@@ -592,7 +604,8 @@ export function mount(root: HTMLElement): void {
    */
   function titlePage(): HTMLElement {
     let profile = loadProfile(store);
-    const open = unlockedTiers(profile);
+    // v2 is a preview for the designer: every tier is open to it.
+    const open = engine ? (TIER_ORDER.filter((t) => t !== 'over-easy') as TierKey[]) : unlockedTiers(profile);
     let tier: TierKey = profile.current.tier;
     let level: Level = profile.current.level;
 
@@ -692,6 +705,7 @@ export function mount(root: HTMLElement): void {
     form.append(
       el('h1', { text: 'DASHIELL' }),
       el('p', { class: 'sub', text: 'A murder, an evening, and eight hours to write it down.' }),
+      ...(engine ? [el('p', { class: 'tier-rule', text: 'The new engine (v2): the puzzle is built first, and the night is told as a book around it. Murders and lost pets.' })] : []),
       el('div', { class: 'name-line' }, el('label', { text: 'The detective' }), name),
     );
 
@@ -744,7 +758,7 @@ export function mount(root: HTMLElement): void {
       const chosen = Number(seed.value) || randomSeed();
       profile = withCurrent(profile, tier, level);
       saveProfile(store, profile);
-      openCase(chosen, { tier, level: levelFor(tier, level) }, name.value.trim() || DEFAULT_NAME, true);
+      openCase(chosen, { tier, level: levelFor(tier, level), ...(engine ? { engine } : {}) }, name.value.trim() || DEFAULT_NAME, true);
     });
     wrap.append(form);
     return wrap;
@@ -763,14 +777,14 @@ export function mount(root: HTMLElement): void {
 /** The notebook's header line: the case, and what it was dealt at. */
 function caseLine(kase: Case): string {
   if (kase.shape !== undefined && kase.ladder !== undefined) {
-    return `case ${kase.seed} · ${kase.shape.name} · ${kase.ladder.name}`;
+    return `case ${kase.seed} · ${kase.shape.name} · ${kase.ladder.name}${kase.engine === 'v2' ? ` · v2 · ${kase.v2?.book.title ?? ''}` : ''}`;
   }
   return `case ${kase.seed} · difficulty ${kase.difficulty}`;
 }
 
 function pickWords(pick: CasePick): string {
   if (pick.tier === undefined) return `difficulty ${pick.level}, from before the tiers`;
-  return `${shapeOf(pick.tier).name}, at ${LADDERS[levelFor(pick.tier, pick.level)].name}`;
+  return `${shapeOf(pick.tier).name}, at ${LADDERS[levelFor(pick.tier, pick.level)].name}${pick.engine === 'v2' ? ', the new engine' : ''}`;
 }
 
 function parWords(delta: number): string {

@@ -150,6 +150,8 @@ export type ProseVoice =
   | 'errand'
   /** M12 Part 2: the detective taking stock of the notebook. */
   | 'recap'
+  /** v2: a chapter heading of the night's book. */
+  | 'chapter'
   /* M8 — the planned page. Each beat of §1 that is prose has its own voice. */
   | 'establish'
   | 'act'
@@ -519,6 +521,13 @@ export interface RunState {
    */
   tier?: 0 | 1 | 2 | 3 | 4 | 5 | 'over-easy';
   level?: Difficulty;
+  /**
+   * The rewrite (docs/35): a night dealt by v2 says so, so that a reload deals
+   * it again the same way. Absent on every v1 night.
+   */
+  engine?: 'v2';
+  /** v2: the book's memory across pages — acts opened, night roles bound, steps held. */
+  v2?: import('./v2/book.js').V2Memory;
   detectiveName: string;
   at: Id;
   actionsUsed: number;

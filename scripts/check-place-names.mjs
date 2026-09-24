@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Check the place-name drafts (content/drafts/places/names.json, streets.json).
+ * Check the place-name drafts (content/places/names.json, streets.json).
  *
  * Errors (exit 1):
  *   - coverage: every template id in src/gen/data/places.ts has 6–10 name
@@ -36,7 +36,7 @@ import { findJargon, loadPlainTerms } from './plain-terms.mjs';
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, '..');
 const TABLE = process.argv.includes('--table');
-const DIR = join(ROOT, 'content', 'drafts', 'places');
+const DIR = join(ROOT, 'content', 'places');
 
 const names = JSON.parse(readFileSync(join(DIR, 'names.json'), 'utf8'));
 const streets = JSON.parse(readFileSync(join(DIR, 'streets.json'), 'utf8'));

@@ -218,11 +218,21 @@ export function vocabularyOf(c: Case): CaseVocabulary {
   for (const p of c.places) {
     add(p.shortName);
     add(p.name);
+    // A named place (content/places): every form it goes by, its epithets
+    // ("Peter Stuyvesant’s wooden leg") and its streets are the case's words.
+    if (p.names) {
+      for (const form of [p.names.proper, p.names.short, ...p.names.local, ...p.names.epithets]) {
+        add(form);
+        // As the check reads them: "Café" is read "Caf".
+        for (const t of form.match(NAME_RE) ?? []) names.add(bareToken(t));
+      }
+    }
   }
   const objects = new Set<string>(c.mentions.map((m) => m.name));
   return {
     names,
-    places: new Set(c.places.map((p) => p.shortName)),
+    // The deck's own short name of a dealt place still means that place.
+    places: new Set(c.places.flatMap((p) => (p.names ? [p.shortName, p.names.bare] : [p.shortName]))),
     victimSurname: c.people.find((p) => p.kind === 'victim')?.surname ?? '',
     objects,
   };

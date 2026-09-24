@@ -52,6 +52,12 @@ export interface ShapeContext {
    * which is every case before M7.
    */
   methodGiven?: boolean;
+  /**
+   * The coherence pass: a tiered case says its world in words that hang
+   * together (an inside job at a ferry slip is the owner's locker there).
+   * Absent on the untiered case, which says what it always said.
+   */
+  coherent?: boolean;
 }
 
 export interface TropeShape {

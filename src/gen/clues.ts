@@ -20,6 +20,7 @@ import type { ScheduleBuild } from './schedule.js';
 import { MOTIVE_BY_TYPE } from './data/motives.js';
 import { SECRET_BY_TYPE } from './data/secrets.js';
 import type { Rng } from './rng.js';
+import { OWNABLE_ROOMS } from './coherence.js';
 
 /**
  * Deriving the candidate pool.
@@ -344,11 +345,24 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
   const V = who(cast.victim.id);
   const foundPlace = act.bodyFoundAt ?? L;
   const claimed = placeName(act.claimedAt ?? build.victimSeenPlace);
+  // The coherence pass (a tiered case): a place whose name says whose it is
+  // is not told whose it is again, and a place that is nobody's — the ferry
+  // slip of a kept classic robbery — is not called the owner's.
+  const coherent = ctx.m9 === true;
+  const home = setting.places.find((p) => p.id === L);
+  const owned = home?.isResidence === true || OWNABLE_ROOMS.includes(L);
+  const whose = coherent && placeName(L).includes(V) ? '' : `, which is ${V}’s`;
+  const goneFrom = (thing: string): string =>
+    !coherent || owned
+      ? `${cap(thing)} is gone from ${placeName(L)}${whose}.`
+      : act.tropeId === 'inside-job'
+        ? `${cap(thing)} is gone from the locker ${V} rents at ${placeName(L)}.`
+        : `${cap(thing)} is gone: it was taken off ${V} at ${placeName(L)}.`;
   const sceneOpening =
     act.type === 'robbery' || act.type === 'lost-item'
-      ? `${cap(act.taken?.name ?? 'the box')} is gone from ${placeName(L)}, which is ${V}’s.`
+      ? goneFrom(act.taken?.name ?? 'the box')
       : act.type === 'lost-pet'
-        ? `${cap(act.taken?.name ?? 'the animal')} is gone from ${placeName(L)}, which is ${V}’s, and has not come home.`
+        ? `${cap(act.taken?.name ?? 'the animal')} is gone from ${placeName(L)}${whose}, and has not come home.`
         : act.type === 'affair'
           ? `${V} said ${cast.victim.gender === 'f' ? 'she' : 'he'} would be at ${claimed} all evening, and was not there for the whole of it.`
           : act.type === 'missing'

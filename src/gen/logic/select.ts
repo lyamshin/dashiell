@@ -25,7 +25,7 @@
  * claimed.
  */
 
-import { TICKS, type Act, type Clue, type Confrontation, type ConfrontResponse, type Fact, type Id, type LieBlock, type Person, type SolveSummary, type Tick, type Derivation } from '../types.js';
+import { TICKS, type Act, type Clue, type Confrontation, type ConfrontResponse, type Fact, type Id, type LieBlock, type Person, type Place, type SolveSummary, type Tick, type Derivation } from '../types.js';
 import type { Rng } from '../rng.js';
 import type { Cast } from '../cast.js';
 import type { Setting } from '../setting.js';
@@ -35,6 +35,7 @@ import type { Pool } from './rules.js';
 import type { Schedule9Build } from './schedule.js';
 import { culpritOf, crimeTicks, placesAt, solve, whyNot, whyPlaced, whyTick, type SolverProblem, type SolverRule, type SolverState, type Why } from './solver.js';
 import { hm, span } from './lines.js';
+import { saysPlace } from '../place-names.js';
 
 export interface LogicSelectInput {
   rng: Rng;
@@ -118,17 +119,17 @@ export function confessionRule(personId: Id, claimed: Id, ticks: Tick[], facts: 
   };
 }
 
-function idsOf(st: SolverState, w: Why | null | undefined): Id[] {
+export function idsOf(st: SolverState, w: Why | null | undefined): Id[] {
   if (!w) return [];
   return w.rules.map((r) => st.problem.rules[r]?.id as Id).filter((id) => id !== 'given' && id !== undefined);
 }
 
-function sourceKey(c: Clue): string {
+export function sourceKey(c: Clue): string {
   return c.source.type === 'person' ? `p:${c.source.personId}` : `l:${c.source.placeId}`;
 }
 
 /** Everybody a clue names: its source, its subjects, and surnames in its text. */
-export function peopleIn(c: Clue, people: Person[], victimId: Id): Set<Id> {
+export function peopleIn(c: Clue, people: Person[], victimId: Id, places: readonly Place[] = []): Set<Id> {
   const out = new Set<Id>();
   if (c.source.type === 'person') out.add(c.source.personId);
   for (const f of c.establishes) {
@@ -137,13 +138,19 @@ export function peopleIn(c: Clue, people: Person[], victimId: Id): Set<Id> {
     if (f.kind === 'claims' && f.with) out.add(f.with);
     if (f.kind === 'absentFrom') for (const id of f.except) out.add(id);
   }
-  const text = (c.textRecord ?? c.text).toLowerCase();
+  let text = (c.textRecord ?? c.text).toLowerCase();
+  // A place named for somebody ("Mrs. Kessler’s", the landlady's) names the
+  // place, not the landlady: its forms are taken out before the surnames.
+  for (const pl of places) {
+    if (!pl.names) continue;
+    for (const form of [pl.names.proper, pl.shortName, pl.names.short, ...pl.names.local]) text = text.split(form.toLowerCase()).join(' ');
+  }
   for (const p of people) if (text.includes(p.surname.toLowerCase())) out.add(p.id);
   out.delete(victimId);
   return out;
 }
 
-function placesIn(c: Clue, places: { id: Id; shortName: string }[]): Set<Id> {
+function placesIn(c: Clue, places: Place[]): Set<Id> {
   const out = new Set<Id>();
   if (c.source.type === 'place') out.add(c.source.placeId);
   for (const f of c.establishes) {
@@ -151,7 +158,7 @@ function placesIn(c: Clue, places: { id: Id; shortName: string }[]): Set<Id> {
     if (f.kind === 'objectMissing') out.add(f.fromPlace);
   }
   const text = (c.textRecord ?? c.text).toLowerCase();
-  for (const p of places) if (text.includes(p.shortName.toLowerCase())) out.add(p.id);
+  for (const p of places) if (saysPlace(text, p)) out.add(p.id);
   return out;
 }
 
@@ -777,7 +784,7 @@ function who(cast: Cast, id: Id): string {
  * rests on an innocent whose own alibi rests on them. The legs the tier asks
  * for (Coddled's method) stay as the pruned route chose them.
  */
-function teachTheLie(
+export function teachTheLie(
   input: LogicSelectInput,
   parSet: Clue[],
   findableCore: Clue[],
@@ -876,7 +883,7 @@ const HAND_SKIPS = new Set<Clue['kind']>(['timing', 'anchor']);
  * the shape's findable target. A motive is never among them: only the culprit
  * has one below Poached, so a motive would name the answer.
  */
-function trimHand(input: LogicSelectInput, parSet: Clue[], findableCore: Clue[]): Clue[] {
+export function trimHand(input: LogicSelectInput, parSet: Clue[], findableCore: Clue[]): Clue[] {
   const { rng, dials, cast } = input;
   const keep = new Set(parSet.map((c) => c.id));
   const target = Math.max(dials.shape.findable, keep.size + 2);
@@ -906,11 +913,11 @@ function trimHand(input: LogicSelectInput, parSet: Clue[], findableCore: Clue[])
 
 /* ------------------------------------------------------------------ leads */
 
-function wireLeads(input: LogicSelectInput, findable: Clue[], parSet: Clue[], starting: Clue[]): void {
+export function wireLeads(input: LogicSelectInput, findable: Clue[], parSet: Clue[], starting: Clue[]): void {
   const { cast, setting } = input;
   const victimId = cast.victim.id;
   const people = cast.people;
-  const named = new Map(findable.map((c) => [c.id, peopleIn(c, people, victimId)]));
+  const named = new Map(findable.map((c) => [c.id, peopleIn(c, people, victimId, setting.places)]));
   const rooms = new Map(findable.map((c) => [c.id, placesIn(c, setting.places)]));
   const targetPeople = (c: Clue): Set<Id> => {
     const out = new Set<Id>();
@@ -1017,7 +1024,7 @@ export const CULPRIT_SECOND_LIE = 0.75;
 /** The culprit, confronted again. */
 export const CULPRIT_THIRD_LIE = 0.2;
 
-function confront(
+export function confront(
   input: LogicSelectInput,
   lie: LieBlock,
   routes: Id[][],

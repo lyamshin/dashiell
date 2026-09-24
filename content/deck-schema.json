@@ -177,7 +177,7 @@
             "vic-union-treasurer", "vic-pawnbroker", "vic-columnist", "vic-bondsman", "vic-wholesaler", "any"
           ]
         },
-        "variant": { "required": false, "default": "any", "values": [0, 1, 2, "any"] },
+        "variant": { "required": false, "default": "any", "values": [0, 1, 2, 3, 4, 5, "any"] },
         "motive": {
           "required": false,
           "default": "any",

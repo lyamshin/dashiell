@@ -51,7 +51,7 @@
     {
       "id": "arr-c",
       "name": "In from the night",
-      "notes": "Sheet C's first half: the short form, with the night on the way in, and the room left to the people in it.",
+      "notes": "Sheet C's first half: the short form, with the night on the way in, and the room left to the people in it. A place the night has named already may be said once more with an epithet (content/places/rules.md §2.4).",
       "parts": [
         {
           "hole": "weather",
@@ -60,6 +60,14 @@
         {
           "hole": "establish",
           "form": "short"
+        },
+        {
+          "text": "This was {place}, {place.epithet}.",
+          "alt": [
+            "So this was {place}, {place.epithet}.",
+            "Here it was, then: {place}, {place.epithet}."
+          ],
+          "optional": true
         }
       ]
     },

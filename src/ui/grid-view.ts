@@ -671,7 +671,7 @@ function detailFor(
         style: `--pc: var(--place-${p.slot})`,
         'aria-pressed': on ? 'true' : 'false',
         title: `${kind === 'at' ? 'Was at' : 'Not at'} ${p.shortName}`,
-        text: p.shortName.replace(/^the /i, ''),
+        text: p.label,
       });
       b.addEventListener('click', () => {
         h.onMark(row.personId, sel.tick, { kind, placeId: p.id });
@@ -706,7 +706,7 @@ function placesLine(grid: GridView): HTMLElement {
     li.append(
       el('span', { class: 'dgrid-swatch', style: `--pc: var(--place-${p.slot})`, 'aria-hidden': 'true' }),
       el('span', { class: 'dgrid-abbr', text: p.tag }),
-      ` ${p.shortName.replace(/^the /i, '')}`,
+      ` ${p.label}`,
     );
     if (p.scene) li.append(el('span', { class: 'dgrid-scene', text: ` — ${p.sceneLabel ?? 'the scene'}` }));
     places.append(li);

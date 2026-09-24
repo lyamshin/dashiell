@@ -527,6 +527,8 @@ function sheetSlotErrors(moment, text, where, okExtra = []) {
       continue;
     }
     if (['place', 'Place', 'victim', 'hour'].includes(slot)) continue;
+    // content/places/rules.md §2.4: a named place's epithet, on an arrival.
+    if (moment === 'arrival' && slot === 'place.epithet') continue;
     if (moment === 'search' && slot === 'object') continue;
     if (okExtra.includes(slot)) continue;
     out.push(`${where}: {${slot}} is not a slot a ${moment} sheet can fill`);

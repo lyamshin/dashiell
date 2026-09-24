@@ -375,6 +375,20 @@ export function pluralThing(short: string): boolean {
   return /s$/i.test(last) && !/(?:ss|us|is|ys)$/i.test(last);
 }
 
+/** Words that look at something: a line with one cannot bring back a sound or a smell. */
+const SIGHT_WORDS = /\b(?:see|sees|saw|seen|look|looks|looked|looking|watch|watched|watching|glass|sight|eye|eyes|view)\b/i;
+
+/**
+ * Does a line that brings a role back fit the role's sense? docs/25, "After
+ * M13": "From where she was you could see all of it, the floor overhead
+ * included" — the floor overhead was a creak, and a creak is not seen. A
+ * sound or a smell is heard or smelled, never looked at.
+ */
+export function fitsSense(template: string, exp: CardExport): boolean {
+  if (exp.kind !== 'sound' && exp.kind !== 'smell') return true;
+  return !SIGHT_WORDS.test(template.replace(/\{[^}]*\}/g, ' '));
+}
+
 /**
  * Fill sheet text. Null when a slot has nothing to put in it (a role not
  * bound, a person not in the room). `roles` are read only on a callback page.
@@ -394,7 +408,7 @@ export function fillSheet(
     let value: string | undefined;
     const exp = run.callback ? run.roles.get(lower) : undefined;
     if (exp !== undefined) {
-      value = roleValue(exp, field);
+      value = fitsSense(template, exp) ? roleValue(exp, field) : undefined;
       if (value !== undefined) roles.push(lower);
     } else {
       value = slots[key] ?? (up ? cap(slots[`${lower}${field ? `.${field}` : ''}`]) : undefined);

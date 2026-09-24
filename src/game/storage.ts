@@ -69,6 +69,7 @@ function isRunState(value: unknown): value is RunState {
     // untiered case it always was; a tier that is not one is not a save.
     (v.tier === undefined || [0, 1, 2, 3, 4, 5, 'over-easy'].includes(v.tier as number | string)) &&
     (v.level === undefined || v.level === 1 || v.level === 2 || v.level === 3 || v.level === 4) &&
+    (v.engine === undefined || v.engine === 'v2') &&
     typeof v.detectiveName === 'string' &&
     typeof v.at === 'string' &&
     typeof v.actionsUsed === 'number' &&
