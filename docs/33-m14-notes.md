@@ -109,7 +109,7 @@ Targets: the marks-follower at or under 60% at Raw and Coddled and 50% from Poac
 
 ### The rest
 
-- **Tests:** the full suite after merging main (M13): 50 files, 920 of 921 passing; the one failure was `m13-sheets`' seed-3 golden, which a case mix changes, now pinned to the classic draw (18 of 18). `m14-cases` then gained its sweep (13 of 13), and the suite was run again to finish (below). `npx tsc --noEmit` clean.
+- **Tests:** the full suite after merging main (M13): 50 files, 920 of 921 passing; the one failure was `m13-sheets`' seed-3 golden, which a case mix changes, now pinned to the classic draw (18 of 18). `m14-cases` then gained its sweep (13 of 13), and the suite was run again to finish: 50 files, 922 of 922 passing. `npx tsc --noEmit` clean.
 - **Correspondence:** 0. The M10 sweep, now the case mix (40 seeds × every tier, every type in it): 0 violations and no excused generator hours. The M14 sweep (the three new types × every tier × 4 seeds, oracle and wanderer, 144 runs): 0.
 - **Beat coverage:** 100%: M8's 5,455 of 5,455 night pages; M10's 2,938 of 2,938; M9's 1,299 of 1,299; M14's 1,606 of 1,606.
 - **Reader lint:** clean over the M10 and M14 sweeps (it caught "lead" in the dog's lead, now a leash, and an empty thought where a way out's words repeated the find).
