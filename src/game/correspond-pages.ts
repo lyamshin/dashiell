@@ -410,8 +410,13 @@ export function checkRecap(view: CaseView, page: Page, state: RunState, found: r
     for (const pl of view.places) bare = bare.split(pl.shortName).join('');
     const names = surnames.filter((q) => new RegExp(`\\b${q.surname}\\b`).test(bare)).map((q) => q.id);
     const times = renderedFacts(clause.text, { spoken: true }).times;
-    // "Ruggiero’s evening" is a person's, not the barber's shop called Ruggiero’s.
+    // "Ruggiero’s evening" is a person's, not the barber's shop called Ruggiero’s;
+    // "the shift change at the garage" is the anchor's own name.
     let placeText = clause.text;
+    for (const id of clause.anchorIds ?? []) {
+      const name = view.anchorById.get(id)?.name;
+      if (name) placeText = placeText.split(name).join('').split(`${name.charAt(0).toUpperCase()}${name.slice(1)}`).join('');
+    }
     for (const id of clause.personIds) {
       const surname = view.personById.get(id)?.surname;
       if (surname) placeText = placeText.split(`${surname}’s evening`).join('').split(`${surname}’s word`).join('').split(`${surname}’s own`).join('').split(`${surname}’s night`).join('');

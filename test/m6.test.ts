@@ -386,7 +386,9 @@ describe('§5 the page', () => {
       const view = buildView(generateCase(seed, { difficulty: 2 }));
       for (const page of playOracle(view).state.log) {
         if (page.n === 0) continue;
-        const n = wordsOnPage(page);
+        // M12: a recap after the page is sized by its own rule (80 to 180
+        // words, test/m12-conversation.test.ts) and is not the page's length.
+        const n = wordsOnPage({ ...page, blocks: page.blocks.filter((b) => !(b.kind === 'prose' && b.voice === 'recap')) });
         words.push(n);
         if (n <= PAGE_CEILING) continue;
         // Thinking goes first: a page past the ceiling has none left.

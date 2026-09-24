@@ -250,14 +250,14 @@
   {
     "id": "hum-012",
     "deck": "dashiell-lines",
-    "text": "\"Give me your read on {name}.\"",
+    "text": "\"Give me your read on {name}. The one you wouldn’t say at a wedding.\"",
     "tags": {
       "kind": "ask-person",
       "familiar": "no",
       "asks": "who"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "hum-013",
@@ -360,7 +360,7 @@
   {
     "id": "hum-081",
     "deck": "dashiell-lines",
-    "text": "\"Did you see {name} tonight?\"",
+    "text": "\"Did you see {name} tonight? Anywhere at all counts.\"",
     "tags": {
       "kind": "ask-person",
       "familiar": "no",
@@ -369,7 +369,7 @@
     "motifs": [
       "eyes"
     ],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "hum-082",
@@ -543,24 +543,24 @@
   {
     "id": "hum-086",
     "deck": "dashiell-lines",
-    "text": "\"Who came through {place} tonight?\"",
+    "text": "\"Who came through {place} tonight? Take your time. I’ve got until morning.\"",
     "tags": {
       "kind": "ask-place",
       "familiar": "no"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "hum-087",
     "deck": "dashiell-lines",
-    "text": "\"What went on at {place} tonight?\"",
+    "text": "\"What went on at {place} tonight, besides the usual?\"",
     "tags": {
       "kind": "ask-place",
       "familiar": "no"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "hum-088",
@@ -633,13 +633,13 @@
   {
     "id": "hum-035",
     "deck": "dashiell-lines",
-    "text": "\"Tell me about the {object}.\"",
+    "text": "\"Tell me about the {object}. Start anywhere.\"",
     "tags": {
       "kind": "ask-object",
       "familiar": "no"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "hum-036",
@@ -723,24 +723,24 @@
   {
     "id": "hum-043",
     "deck": "dashiell-lines",
-    "text": "\"What hour did you clear out?\"",
+    "text": "\"Where were you tonight? All of it, and slowly. I write slow.\"",
     "tags": {
       "kind": "ask-evening",
       "familiar": "no"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "hum-044",
     "deck": "dashiell-lines",
-    "text": "\"Anyone with you?\"",
+    "text": "\"Tell me your evening. Leave in the dull parts. I like the dull parts.\"",
     "tags": {
       "kind": "ask-evening",
       "familiar": "no"
     },
     "motifs": [],
-    "status": "generated"
+    "status": "tuned"
   },
   {
     "id": "hum-045",
