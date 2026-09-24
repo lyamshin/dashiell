@@ -1,7 +1,15 @@
-import type { CaseType, FixtureRole, GameObject, Id, Place } from './types.js';
+import type { CaseType, FixtureRole, GameObject, Id, PetKind, Place } from './types.js';
 import { NEIGHBORHOODS, PLACE_TEMPLATES, type PlaceTemplate } from './data/places.js';
-import { OBJECT_NAMES, SWAG_IDS } from './data/objects.js';
-import { MISSING_MEANS, MURDER_MEANS, ROBBERY_MEANS, type MeansTemplate } from './data/means.js';
+import { LOST_ITEM_IDS, OBJECT_NAMES, PET_OBJECT, SWAG_IDS } from './data/objects.js';
+import {
+  ITEM_MEANS,
+  MEETING_MEANS,
+  MISSING_MEANS,
+  MURDER_MEANS,
+  PET_MEANS,
+  ROBBERY_MEANS,
+  type MeansTemplate,
+} from './data/means.js';
 import { ANCHOR_TEMPLATES, canTimeScene, type AnchorTemplate } from './data/anchors.js';
 import type { Rng } from './rng.js';
 import type { CaseShape } from './shape.js';
@@ -11,6 +19,9 @@ export const MEANS_DECK: Record<CaseType, MeansTemplate[]> = {
   murder: MURDER_MEANS,
   robbery: ROBBERY_MEANS,
   missing: MISSING_MEANS,
+  'lost-pet': PET_MEANS,
+  'lost-item': ITEM_MEANS,
+  affair: MEETING_MEANS,
 };
 
 /** An anchor with a home but not yet a time. Ticks arrive once M is chosen. */
@@ -35,6 +46,8 @@ export interface Setting {
   beatCopPhase: number;
   /** Robbery: the thing that was worth taking, put at the scene on purpose. */
   swagId?: Id;
+  /** M14, lost pet: what kind of animal it is. */
+  pet?: PetKind;
   /** The anchor that puts the victim alive at M − 1. Always place-attached. */
   low: AnchorDraw;
   /** The anchor that times the scene at M. */
@@ -168,9 +181,20 @@ interface Scene {
  * to be true is that the actor was alone there, which is why a watched place
  * is never the scene in any of the three.
  */
-function chooseScene(rng: Rng, drawn: PlaceTemplate[], means: MeansTemplate[], gated: boolean): Scene | null {
+function chooseScene(
+  rng: Rng,
+  drawn: PlaceTemplate[],
+  means: MeansTemplate[],
+  gated: boolean,
+  home = false,
+  away = false,
+): Scene | null {
   const options: Scene[] = [];
   for (const scene of drawn) {
+    // M14: a pet goes missing from where it lives, which is the owner's.
+    if (home && scene.isResidence !== true) continue;
+    // M14: and an affair is never carried on at home, where the client lives.
+    if (away && scene.isResidence === true) continue;
     // A watched place cannot be the scene: the watcher would be standing in
     // the room, which breaks "alone with the victim" and finds the body an
     // hour early.
@@ -216,7 +240,7 @@ export function buildSetting(
       : drawPlacesSized(rng, shape.places, shape.watched);
   if (!drawn) return null;
 
-  const scene = chooseScene(rng, drawn, MEANS_DECK[caseType], caseType === 'murder');
+  const scene = chooseScene(rng, drawn, MEANS_DECK[caseType], caseType === 'murder', caseType === 'lost-pet', caseType === 'affair');
   if (!scene) return null;
 
   /* --- who is posted where ------------------------------------------- */
@@ -304,6 +328,20 @@ export function buildSetting(
     });
     usedObjects.add(swagId);
   }
+  // M14: the animal, or the ring, is at the scene on purpose too. Neither is
+  // on any place card, so no other draw moves.
+  let pet: PetKind | undefined;
+  if (caseType === 'lost-pet' || caseType === 'lost-item') {
+    if (caseType === 'lost-pet') {
+      const roll = rng.next();
+      pet = roll < 0.45 ? 'dog' : roll < 0.75 ? 'cat' : roll < 0.95 ? 'parrot' : 'goat';
+      swagId = PET_OBJECT[pet];
+    } else {
+      swagId = rng.pick(LOST_ITEM_IDS);
+    }
+    objects.push({ id: swagId, name: OBJECT_NAMES[swagId] as string, homePlace: scene.murderPlaceId });
+    usedObjects.add(swagId);
+  }
   for (const t of drawn) {
     const want = rng.range(2, 3);
     const pool = rng.shuffle(t.objects.filter((o) => !usedObjects.has(o)));
@@ -348,5 +386,6 @@ export function buildSetting(
     extra,
     soundMasked: high.template.masks,
     ...(swagId === undefined ? {} : { swagId }),
+    ...(pet === undefined ? {} : { pet }),
   };
 }

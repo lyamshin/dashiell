@@ -21,7 +21,7 @@
  * too: it is drawn apart from everything the notebook holds.
  */
 
-import { generateCase, type CaseType, type Difficulty } from '../gen/index.js';
+import { CASE_TYPES, generateCase, type CaseType, type Difficulty } from '../gen/index.js';
 import { TROPE_IDS } from '../gen/tropes/index.js';
 import { buildView, gameBudget, gamePar } from '../game/derive.js';
 import { playOracle, playWandering } from '../game/oracle.js';
@@ -61,7 +61,7 @@ if (
   !Number.isInteger(seed) ||
   ![1, 2, 3, 4].includes(difficulty) ||
   dialFlags === null ||
-  (type !== undefined && !['murder', 'robbery', 'missing'].includes(type)) ||
+  (type !== undefined && !(CASE_TYPES as string[]).includes(type)) ||
   (trope !== undefined && !TROPE_IDS.includes(trope))
 ) {
   process.stderr.write(

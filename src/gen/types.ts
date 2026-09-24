@@ -687,7 +687,13 @@ export type Purpose =
   | 'get-it-back'
   | 'bring-them-home'
   | 'make-sure-they-stay-gone'
-  | 'settle-a-debt-with-the-dead';
+  | 'settle-a-debt-with-the-dead'
+  /* M14: the mundane cases. */
+  | 'find-the-pet'
+  | 'find-the-thing'
+  | 'before-they-notice'
+  | 'tell-me-the-truth'
+  | 'put-my-mind-at-rest';
 
 export interface ClientBrief {
   purpose: Purpose;
@@ -729,7 +735,48 @@ export interface ClientBrief {
   ownEvening: string[];
 }
 
-export type CaseType = 'murder' | 'robbery' | 'missing';
+export type CaseType = 'murder' | 'robbery' | 'missing' | 'lost-pet' | 'lost-item' | 'affair';
+
+/** Every case type, in the order the sheet and the mix tables list them. */
+export const CASE_TYPES: CaseType[] = ['murder', 'robbery', 'missing', 'lost-pet', 'lost-item', 'affair'];
+
+/**
+ * M14: the three mundane cases run on the machinery of the old three. A lost
+ * pet and a lost item are thefts to the schedule and the solver — the owner is
+ * alive and elsewhere, one thing went from one room at one half hour — and an
+ * affair is a meeting: the suspected person is at the scene at the half hour
+ * with the one the report asks for, alive before and after. Words differ by
+ * type; the machine differs only by `machineOf`.
+ */
+export type Machine = 'murder' | 'theft' | 'missing' | 'meeting';
+
+export function machineOf(type: CaseType): Machine {
+  switch (type) {
+    case 'murder':
+      return 'murder';
+    case 'robbery':
+    case 'lost-pet':
+    case 'lost-item':
+      return 'theft';
+    case 'missing':
+      return 'missing';
+    case 'affair':
+      return 'meeting';
+  }
+}
+
+/** Something went from where it was kept: a robbery, a lost pet, a lost item. */
+export function isTheft(type: CaseType): boolean {
+  return machineOf(type) === 'theft';
+}
+
+/** The three M14 cases, where nobody died and nothing criminal need have happened. */
+export function isMundane(type: CaseType): boolean {
+  return type === 'lost-pet' || type === 'lost-item' || type === 'affair';
+}
+
+/** What the affair turned out to be. The report never asks it; the ending tells it. */
+export type Errand = 'affair' | 'night-class' | 'second-job' | 'surprise' | 'sick-relative' | 'business';
 
 /** What the report still has to work out. Givens are not asked. */
 export type Unknown =
@@ -747,6 +794,9 @@ export interface Givens {
   facts: Fact[];
   text: string[];
 }
+
+/** M14: the animals a lost-pet case deals. */
+export type PetKind = 'dog' | 'cat' | 'parrot' | 'goat';
 
 export type Entry = 'key' | 'window' | 'let-in' | 'never-left' | 'combination';
 
@@ -775,6 +825,16 @@ export interface Act {
   /** Missing. */
   whereabouts?: Id | 'gone';
   fate?: 'left' | 'taken' | 'dead';
+  /**
+   * M14, affair: where the suspected person said they would be, and where the
+   * night opens. They were there the half hour before and gone at the one
+   * that matters.
+   */
+  claimedAt?: Id;
+  /** M14, affair: what it really was. */
+  errand?: Errand;
+  /** M14, lost pet: what kind of animal, for the words ("dog", "cat"). */
+  pet?: PetKind;
   givens: Givens;
   /** Exactly what the report asks. */
   unknowns: Unknown[];

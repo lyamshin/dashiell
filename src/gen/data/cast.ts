@@ -1,4 +1,5 @@
 import type { CaseType, Id, Purpose, Want } from '../types.js';
+import { AFFAIR_RELATIONSHIPS, M14_RELATIONSHIPS } from './ties.js';
 
 /**
  * Cast archetypes.
@@ -79,7 +80,7 @@ export interface Relationship {
    * then says how much of that cell it takes. A missing weight means the
    * purpose is not open to this relationship in this kind of case.
    */
-  purposes: Record<CaseType, PurposeWeights>;
+  purposes: Record<'murder' | 'robbery' | 'missing', PurposeWeights> & Partial<Record<CaseType, PurposeWeights>>;
 }
 
 /** A cell of the purpose table: the purposes that fit, and their weights. */
@@ -762,6 +763,10 @@ export const RELATIONSHIPS: Relationship[] = [
     },
   },
 ];
+
+// M14: the ties beyond money, and the two an affair's client holds. Never on
+// an archetype's own list, so the untiered draw never sees them.
+RELATIONSHIPS.push(...M14_RELATIONSHIPS, ...AFFAIR_RELATIONSHIPS);
 
 export const RELATIONSHIP_BY_ID: Record<Id, Relationship> = Object.fromEntries(
   RELATIONSHIPS.map((r) => [r.id, r]),
@@ -1814,6 +1819,11 @@ export const PURPOSE_TEXT: Record<Purpose, string> = {
   'bring-them-home': 'wants {V} found and brought home',
   'make-sure-they-stay-gone': 'wants to know {V} is gone for good, and where',
   'settle-a-debt-with-the-dead': 'has something owing with {V} that death did not settle',
+  'find-the-pet': 'wants {O} found and brought home to {V}',
+  'find-the-thing': 'wants {O} found and put back where it belongs',
+  'before-they-notice': 'wants {O} back where it belongs before {V} notices it is gone',
+  'tell-me-the-truth': 'wants to know where {V} was that evening, and with whom',
+  'put-my-mind-at-rest': 'wants to be told there is nothing in it, or to be told there is',
 };
 
 /**
@@ -1872,6 +1882,31 @@ export const PURPOSE_TEXT_FIRST: Record<Purpose, string[]> = {
     'I have something owing with {V} that death did not settle. It is still owing.',
     'I want what I am owed. {V} and I had something between us that death did not settle.',
   ],
+  'find-the-pet': [
+    'I want {O} found and brought home. {V} has been standing at the window since supper.',
+    'I want {O} home by morning. I will pay for the morning.',
+    'I want {O} found. I know how that sounds from a grown person at this hour. I am saying it anyway.',
+  ],
+  'find-the-thing': [
+    'I want {O} found. I want it back where it lives, and I want nobody making a fuss.',
+    'I want {O} back. It is worth nothing to anybody but us, which is the whole trouble.',
+    'I want {O} found. It did not walk off by itself, whatever anybody says.',
+  ],
+  'before-they-notice': [
+    'I want {O} back where it belongs before {V} notices it is gone. {V} notices everything, eventually.',
+    'I want it back before {V} misses it. Quietly. That is the whole of it.',
+    'I want {O} back in its place before {V} looks for it. {V} will look. {V} always looks.',
+  ],
+  'tell-me-the-truth': [
+    'I want to know where {V} was that evening. And with whom. Mostly with whom.',
+    'I want the truth about {V}. Where, and with whom, and I want it plain.',
+    'I want to know where {V} goes on those evenings. I have been told a story. I would like the other one.',
+  ],
+  'put-my-mind-at-rest': [
+    'I want to be told there is nothing in it. Or told there is. Either way I would like to sleep.',
+    'I want my mind put at rest. If it cannot be put at rest, I want to know that too.',
+    'I want to know there is nothing to know. I would pay double for that.',
+  ],
 };
 
 /**
@@ -1923,6 +1958,31 @@ export const PURPOSE_PROMPTS: Record<Purpose, string[]> = {
     'What is it {V} left unsettled with you?',
     'What is still between you and {V}?',
     'So it is the money you want.',
+  ],
+  'find-the-pet': [
+    'What is it you want found?',
+    'You want the animal back.',
+    'Is it the animal you want, or whoever let it out?',
+  ],
+  'find-the-thing': [
+    'What is it you want found?',
+    'You want it back.',
+    'Is it the thing you want, or whoever took it?',
+  ],
+  'before-they-notice': [
+    'How long before {V} notices?',
+    'You want it back before anybody misses it.',
+    'Does {V} know yet?',
+  ],
+  'tell-me-the-truth': [
+    'What is it you want to know about {V}?',
+    'You want to know where {V} was.',
+    'What do you think {V} is doing?',
+  ],
+  'put-my-mind-at-rest': [
+    'What would put your mind at rest?',
+    'You want to be told there is nothing in it.',
+    'And if there is something in it?',
   ],
 };
 

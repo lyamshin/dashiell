@@ -96,6 +96,89 @@ export const MOTIVE_TEMPLATES: MotiveTemplate[] = [
   },
 ];
 
+/**
+ * M14 — the small reasons. A lost dog, a borrowed ring and an hour nobody
+ * will account for are not done for an inheritance. The designer's list:
+ * spite, jealousy, embarrassment, affection, pride. `envy` is the jealousy of
+ * a thing rather than of a person, because `jealousy` above is already the
+ * one about a woman and means it.
+ *
+ * Never drawn off an archetype: the trope decides the culprit's, and the
+ * innocents of a mundane case draw theirs from this list and no other. Kept
+ * apart from `MOTIVE_TEMPLATES` so the report of a murder still offers the
+ * murder's reasons, and a lost dog's report offers these.
+ */
+export const MUNDANE_MOTIVES: MotiveTemplate[] = [
+  {
+    type: 'spite',
+    description: 'did it out of spite',
+    descriptionTemplate: 'had it in for {V} and wanted {V} to feel it',
+    letter: 'A note in {P}’s hand to {V}, never sent, which says {V} will be sorry and underlines sorry twice.',
+    overheard: '{P} told {V} on the stairs that some people get what is coming to them, and looked right at {V}.',
+  },
+  {
+    type: 'envy',
+    description: 'was jealous of what somebody else had',
+    descriptionTemplate: 'was jealous of what {V} had, and said so to anybody who would stand still',
+    letter: 'A list in {P}’s hand of everything {V} has that {P} has not, with the last line underlined.',
+    overheard: '{P} said {V} had everything handed to {V} on a plate and never once said thank you for the plate.',
+  },
+  {
+    type: 'embarrassment',
+    description: 'was covering an embarrassment',
+    descriptionTemplate: 'did a foolish thing and could not stand for {V} to find out about it',
+    letter: 'A note in {P}’s hand that starts an apology to {V} three times and never finishes one.',
+    overheard: '{P} told somebody that if {V} ever found out, {P} would have to leave the city, and possibly the state.',
+  },
+  {
+    type: 'affection',
+    description: 'did it out of affection',
+    descriptionTemplate: 'was fonder of what {V} had than {V} ever was',
+    letter: 'A drawing in {P}’s hand on the back of a laundry list, of the very thing {V} lost, done with a great deal of care.',
+    overheard: '{P} said {V} did not deserve it, never had, and did not even know how to look after it.',
+  },
+  {
+    type: 'pride',
+    description: 'had pride at stake',
+    descriptionTemplate: 'had pride at stake against {V} and would not be the one to lose',
+    letter: 'A league sheet with {V}’s name at the top and {P}’s second, and {V}’s name gone over with a pen until the paper tore.',
+    overheard: '{P} told {V} that one day {P} would have the last laugh, and then laughed early, to practise.',
+  },
+];
+
+/**
+ * M14 — why the one an affair case is about was where they were, with whom.
+ * The report does not ask it; the proof's motive leg still wants the reason
+ * found, and the ending tells it. Never drawn by anybody but the culprit of
+ * an affair.
+ */
+export const AFFAIR_MOTIVES: MotiveTemplate[] = [
+  {
+    type: 'love',
+    description: 'was in love',
+    descriptionTemplate: 'has been in love with {V} since the spring and has stopped pretending otherwise',
+    letter: 'A letter in {P}’s hand to {V}, four pages long, and the last page is mostly the word Tuesday.',
+    overheard: '{P} told {V} on the stairs that Tuesday could not come round fast enough, and {V} laughed and said hush.',
+  },
+  {
+    type: 'secret-kept',
+    description: 'was keeping somebody’s secret',
+    descriptionTemplate: 'was keeping {V}’s secret for {V}, and had given {V} a promise about it',
+    letter: 'A note in {V}’s hand to {P}: same time, same place, and not a word at home.',
+    overheard: '{P} told {V} that nobody would hear it from {P}, and {V} said that was the whole point.',
+  },
+  {
+    type: 'business-done',
+    description: 'had business that was not done in daylight',
+    descriptionTemplate: 'had business with {V} that neither of them wanted written down',
+    letter: 'A page of figures in {P}’s hand with {V}’s initials at the bottom and a date that was a Tuesday.',
+    overheard: '{P} told {V} to bring the rest of it on Tuesday, and to come alone, and not to tell anybody at home.',
+  },
+];
+
+/** The mundane reasons, by type. */
+export const MUNDANE_MOTIVE_TYPES: string[] = MUNDANE_MOTIVES.map((m) => m.type);
+
 export const MOTIVE_BY_TYPE: Record<string, MotiveTemplate> = Object.fromEntries(
-  MOTIVE_TEMPLATES.map((m) => [m.type, m]),
+  [...MOTIVE_TEMPLATES, ...MUNDANE_MOTIVES, ...AFFAIR_MOTIVES].map((m) => [m.type, m]),
 );

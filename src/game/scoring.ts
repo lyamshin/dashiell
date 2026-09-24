@@ -239,6 +239,9 @@ const BY_TYPE: Record<CaseType, ClosingSet> = {
   murder: MURDER,
   robbery: ROBBERY,
   missing: MISSING,
+  'lost-pet': ROBBERY,
+  'lost-item': ROBBERY,
+  affair: MISSING,
 };
 
 function closingFor(

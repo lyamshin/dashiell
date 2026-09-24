@@ -20,12 +20,21 @@ import { buildSchedules, type ScheduleBuild } from './schedule.js';
 import { deriveCandidates, deriveObservations } from './clues.js';
 import { selectFindable } from './select.js';
 import { checkSolvability, type CaseUnderTest } from './solvability.js';
-import { pickTrope, type Trope, type TropeContext } from './tropes/index.js';
+import { pickTieredTrope, pickTrope, type Trope, type TropeContext } from './tropes/index.js';
 import { buildVictimBio } from './victim.js';
 import { buildClientBrief } from './client.js';
 import { briefingStrings, buildBriefing } from './briefing.js';
 import { SECRET_BY_TYPE } from './data/secrets.js';
-import { deductionOf, logicSlackFor, resolveDials, slackFor, unknownsFor, type Dials, type ShapeOptions } from './shape.js';
+import {
+  LEGACY_TROPES,
+  deductionOf,
+  logicSlackFor,
+  resolveDials,
+  slackFor,
+  unknownsFor,
+  type Dials,
+  type ShapeOptions,
+} from './shape.js';
 import type { Clue, Description, Fact, Id as PersonId } from './types.js';
 import { assignBlocks } from './logic/travel.js';
 import { buildSchedules9 } from './logic/schedule.js';
@@ -81,6 +90,14 @@ export function diagnoseCase(
   const kase = run(seed, 'Dashiell', dials, diagnostics, opts);
   diagnostics.attempts = kase.attempts;
   return { case: kase, diagnostics };
+}
+
+/**
+ * M14: generation with the caller's diagnostics, which are filled in even
+ * when the case cannot be dealt and this throws. For the tuning scripts.
+ */
+export function generateCaseDiagnosed(seed: number, opts: GenerateOptions | undefined, diagnostics: Diagnostics): Case {
+  return run(seed, opts?.detectiveName ?? 'Dashiell', resolveDials(opts), diagnostics, opts);
 }
 
 function recurring(phase: number, everyN: number): Tick[] {
@@ -202,10 +219,12 @@ function run(
   for (let i = 0; i < 3; i++) tropeRng.next();
   // M7: a tier deals only its own tropes. Hard-boiled deals all eight, and a
   // filter that keeps all eight leaves the weighted draw exactly where it was.
+  // M14: the untiered case draws from the eight it always drew from, so the
+  // mundane three, which only a tier deals, never move its weights.
   const trope: Trope = pickTrope(tropeRng, {
     ...(opts?.type !== undefined ? { type: opts.type } : {}),
     ...(opts?.tropeId !== undefined ? { tropeId: opts.tropeId } : {}),
-    allowed: shape.tropes,
+    allowed: shape.tropes.filter((id) => LEGACY_TROPES.includes(id)),
   });
   const caseType = trope.type;
 
@@ -548,17 +567,21 @@ function runLogic(
   let attempts = 0;
   const tropeRng = new Rng((seed * 2654435761 + difficulty * 40503 + salt * 7727) >>> 0);
   for (let i = 0; i < 3; i++) tropeRng.next();
-  const trope: Trope = pickTrope(tropeRng, {
+  // M14 §1.5: a tier with a case mix draws the type first, then the trope.
+  const pickOpts = {
     ...(opts?.type !== undefined ? { type: opts.type } : {}),
     ...(opts?.tropeId !== undefined ? { tropeId: opts.tropeId } : {}),
     allowed: shape.tropes,
-  });
+  };
+  const trope: Trope = shape.caseMix ? pickTieredTrope(tropeRng, shape.caseMix, pickOpts) : pickTrope(tropeRng, pickOpts);
   const caseType = trope.type;
   const reject = diagnostics ? (reason: string) => diagnostics.rejections.push(reason) : undefined;
   // Whether the client did it is the seed's, not the attempt's: a client who
   // is the culprit is one fewer innocent to clear, and deciding it per
   // attempt let the easier deal win it more often than a quarter of the time.
-  const clientIsKiller = shape.clientMayBeCulprit ? tropeRng.chance(0.25) : undefined;
+  // M14: never in an affair, where the client is married to the one it is
+  // about and the culprit is the one they were with.
+  const clientIsKiller = shape.clientMayBeCulprit ? (caseType === 'affair' ? false : tropeRng.chance(0.25)) : undefined;
   // The same for where an innocent client points: at the culprit at chance,
   // one in however many others there are to point at.
   const pointerOnKiller = shape.clientMayBeCulprit ? tropeRng.chance(1 / Math.max(1, shape.suspects - 1)) : undefined;
@@ -569,7 +592,10 @@ function runLogic(
       reject?.('the place deck would not deal a legal hand');
       continue;
     }
-    const cast = buildCast(rng, setting, dials, clientIsKiller);
+    const cast = buildCast(rng, setting, dials, clientIsKiller, {
+      type: caseType,
+      ...(trope.motive !== undefined ? { motive: trope.motive } : {}),
+    });
     if (!cast) {
       reject?.('no cast fits the victim and the rooms');
       continue;
@@ -798,8 +824,14 @@ function runLogic(
         applyRule(c, c.source.type === 'place' ? `Found at ${placeName(c.source.placeId)}.` : `${whoOf(c.source.personId)} says so.`, pool.names);
       }
 
+      // M14: an affair opens where they said they would be, as a moved body
+      // opens where it was found, so `where` is a question and not a room.
       const startId =
-        trope.id === 'body-moved' && act.bodyFoundAt && act.bodyFoundAt !== act.place ? act.bodyFoundAt : build.murderPlaceId;
+        trope.id === 'body-moved' && act.bodyFoundAt && act.bodyFoundAt !== act.place
+          ? act.bodyFoundAt
+          : act.type === 'affair' && act.claimedAt && act.claimedAt !== act.place
+            ? act.claimedAt
+            : build.murderPlaceId;
       const selection = selectLogic({
         rng,
         cast,

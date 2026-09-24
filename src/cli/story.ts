@@ -7,7 +7,7 @@
  * each line the facts it rests on and the card it came from.
  */
 
-import { generateCase, type CaseType, type Difficulty } from '../gen/index.js';
+import { CASE_TYPES, generateCase, type CaseType, type Difficulty } from '../gen/index.js';
 import { TROPE_IDS } from '../gen/tropes/index.js';
 import { storyOf, storyParagraphs, storyWords, type StoryFact } from '../game/story.js';
 import { wrap } from '../game/transcript.js';
@@ -29,7 +29,7 @@ if (
   count < 1 ||
   ![1, 2, 3, 4].includes(difficulty) ||
   dialFlags === null ||
-  (type !== undefined && !['murder', 'robbery', 'missing'].includes(type)) ||
+  (type !== undefined && !(CASE_TYPES as string[]).includes(type)) ||
   (trope !== undefined && !TROPE_IDS.includes(trope))
 ) {
   process.stderr.write(

@@ -1,4 +1,4 @@
-import type { Dossier, FixtureRole, Id, Mention, Person } from './types.js';
+import type { CaseType, Dossier, FixtureRole, Id, Mention, Person } from './types.js';
 import { surnameOf } from './types.js';
 import { liarsFor, type Dials } from './shape.js';
 import { NAME_POOLS } from './data/names.js';
@@ -13,7 +13,8 @@ import {
   type SuspectClass,
   type VictimArchetype,
 } from './data/cast.js';
-import { MOTIVE_TEMPLATES, type MotiveTemplate } from './data/motives.js';
+import { AFFAIR_MOTIVES, MOTIVE_TEMPLATES, MUNDANE_MOTIVES, type MotiveTemplate } from './data/motives.js';
+import { M14_TIE_IDS, tieWeight } from './data/ties.js';
 import { SECRET_BY_TYPE, type SecretTemplate } from './data/secrets.js';
 import {
   buildDossier,
@@ -118,10 +119,12 @@ function genderOf(hint: 'm' | 'f' | 'any' | undefined): 'male' | 'female' | unde
  * pass: a ward heeler is not a retired dry-goods wholesaler's rival in trade,
  * because neither of them is in the other's trade.
  */
-export function relationshipsFor(a: Archetype, victim: VictimArchetype): Id[] {
+export function relationshipsFor(a: Archetype, victim: VictimArchetype, tiered = false): Id[] {
   const victimGender = genderOf(victim.genderHint);
   const suspectGender = genderOf(a.genderHint);
-  return a.relationships.filter((id) => {
+  // M14: a tiered case may draw the ties beyond money as well as the card's own.
+  const menu = tiered ? [...a.relationships, ...M14_TIE_IDS.filter((id) => !a.relationships.includes(id))] : a.relationships;
+  return menu.filter((id) => {
     const rel = RELATIONSHIP_BY_ID[id];
     if (!rel) return false;
     if (rel.requiresTrade && (a.trade === undefined || a.trade !== victim.trade)) return false;
@@ -169,8 +172,27 @@ function drawArchetypes(rng: Rng, victim: VictimArchetype, count = 6): Archetype
   return null;
 }
 
-export function buildCast(rng: Rng, setting: Setting, dials: Dials, clientIsKiller?: boolean): Cast | null {
+/**
+ * M14: what the cast needs to know about the case it is being dealt for. A
+ * mundane case's culprit has the trope's small reason and nobody's inheritance,
+ * and an affair's client is married to the one the case is about.
+ */
+export interface CastCase {
+  type: CaseType;
+  /** The culprit's motive, where the trope decides it. */
+  motive?: string;
+}
+
+export function buildCast(
+  rng: Rng,
+  setting: Setting,
+  dials: Dials,
+  clientIsKiller?: boolean,
+  kind?: CastCase,
+): Cast | null {
   const { shape, ladder } = dials;
+  const tiered = !dials.plain;
+  const mundane = kind !== undefined && (kind.type === 'lost-pet' || kind.type === 'lost-item' || kind.type === 'affair');
   const name = makeNamer(rng);
   const mentions = createMentionPool(name);
   const motiveObject: Record<Id, Mention> = {};
@@ -195,9 +217,14 @@ export function buildCast(rng: Rng, setting: Setting, dials: Dials, clientIsKill
 
   const suspects: Person[] = [];
   for (const [i, a] of archetypes.entries()) {
-    const options = relationshipsFor(a, victimArchetype);
+    // M14: one back fence, one ladder, one old flame to a case.
+    const options = relationshipsFor(a, victimArchetype, tiered).filter(
+      (id) => !M14_TIE_IDS.includes(id) || !suspects.some((p) => p.relationshipId === id),
+    );
     if (options.length === 0) return null;
-    const relId = rng.pick(options);
+    // M14 §1.4: in a tiered case a debt is one tie among many, and weighs a
+    // fraction of the rest. The untiered draw is the old uniform pick.
+    const relId = tiered ? weightedPick(rng, options, tieWeight) : rng.pick(options);
     const rel = RELATIONSHIP_BY_ID[relId];
     // The relationship is drawn before the name, because some relationships
     // only read one way round and so decide who this person is.
@@ -221,6 +248,8 @@ export function buildCast(rng: Rng, setting: Setting, dials: Dials, clientIsKill
 
   const archetypeOf = (p: Person): Archetype => ARCHETYPE_BY_ID[p.archetypeId as Id] as Archetype;
   const allowedMotives = (p: Person): string[] => {
+    // M14: the small reasons are anybody's. Nobody loses a dog for an inheritance.
+    if (mundane) return MUNDANE_MOTIVES.map((m) => m.type);
     const a = archetypeOf(p);
     const rel = RELATIONSHIP_BY_ID[p.relationshipId as Id];
     const implied = rel?.impliesMotives;
@@ -257,8 +286,10 @@ export function buildCast(rng: Rng, setting: Setting, dials: Dials, clientIsKill
   killer.isKiller = true;
   const innocents = suspects.filter((p) => p.id !== killer.id);
 
-  const killerMotiveType = rng.pick(allowedMotives(killer));
-  const killerMotive = MOTIVE_TEMPLATES.find((m) => m.type === killerMotiveType) as MotiveTemplate;
+  const killerMotiveType = kind?.motive ?? rng.pick(allowedMotives(killer));
+  const killerMotive = [...MOTIVE_TEMPLATES, ...MUNDANE_MOTIVES, ...AFFAIR_MOTIVES].find(
+    (m) => m.type === killerMotiveType,
+  ) as MotiveTemplate;
   assignMotive(killer, killerMotive);
 
   /* --- one to three innocents carry a motive too ----------------------- *
@@ -268,14 +299,16 @@ export function buildCast(rng: Rng, setting: Setting, dials: Dials, clientIsKill
    * is asking.
    */
   const usedMotives = new Set<string>([killerMotiveType]);
-  const wantInnocentMotives = shape.innocentMotives > 0 ? rng.range(1, shape.innocentMotives) : 0;
+  // M14: an affair asks nobody why, and the only reason in it is the one the
+  // pair of them had; the others are just people on the street.
+  const wantInnocentMotives = shape.innocentMotives > 0 && kind?.type !== 'affair' ? rng.range(1, shape.innocentMotives) : 0;
   let given = 0;
   for (const p of rng.shuffle(innocents)) {
     if (given >= wantInnocentMotives) break;
     const fresh = allowedMotives(p).filter((m) => !usedMotives.has(m));
     if (fresh.length === 0) continue;
     const type = rng.pick(fresh);
-    const t = MOTIVE_TEMPLATES.find((m) => m.type === type) as MotiveTemplate;
+    const t = [...MOTIVE_TEMPLATES, ...MUNDANE_MOTIVES].find((m) => m.type === type) as MotiveTemplate;
     assignMotive(p, t);
     usedMotives.add(type);
     given++;
@@ -398,7 +431,7 @@ export function buildCast(rng: Rng, setting: Setting, dials: Dials, clientIsKill
   // M7: never the culprit below Hard-boiled. M9: a tiered case decides it
   // once per seed (`clientIsKiller`), so that attempts turned down do not
   // tilt the share towards whichever is easier to deal.
-  const client =
+  let client =
     clientIsKiller !== undefined
       ? clientIsKiller && shape.clientMayBeCulprit
         ? killer
@@ -406,6 +439,27 @@ export function buildCast(rng: Rng, setting: Setting, dials: Dials, clientIsKill
       : shape.clientMayBeCulprit && rng.chance(0.25)
         ? killer
         : rng.pick(innocents);
+  /*
+   * M14 §1.3: tell me the truth about my husband. The client of an affair is
+   * married to the one it is about, or engaged to them, and is not the one
+   * they were with. Nobody else in the case is a spouse, and the tie words
+   * come from the relationship card, so the dossier below agrees.
+   */
+  if (kind?.type === 'affair') {
+    if (client.isKiller) return null;
+    if (client.gender === victim.gender) {
+      const other = innocents.find((p) => p.gender !== victim.gender);
+      if (!other) return null;
+      client = other;
+    }
+    const relId = rng.chance(0.75) ? 'rel-wed' : 'rel-intended';
+    client.relationshipId = relId;
+    client.relationshipToVictim = genderForms(RELATIONSHIP_BY_ID[relId]?.text ?? relId, client.gender)
+      .split('{V}')
+      .join(victimSurname);
+    const spoken = client;
+    if (suspects.some((p) => p.id !== spoken.id && ['rel-spouse', 'rel-engaged'].includes(p.relationshipId ?? ''))) return null;
+  }
   client.isClient = true;
 
   /* --- M5: a dossier for everybody --------------------------------------- */
@@ -505,4 +559,15 @@ export function buildCast(rng: Rng, setting: Setting, dials: Dials, clientIsKill
   if (beatCop) cast.beatCop = beatCop;
   if (killerCoverSecret) cast.killerCoverSecret = killerCoverSecret;
   return cast;
+}
+
+/** One of `options`, by weight. */
+function weightedPick(rng: Rng, options: Id[], weight: (id: Id) => number): Id {
+  const total = options.reduce((n, id) => n + weight(id), 0);
+  let roll = rng.next() * total;
+  for (const id of options) {
+    roll -= weight(id);
+    if (roll < 0) return id;
+  }
+  return options[options.length - 1] as Id;
 }

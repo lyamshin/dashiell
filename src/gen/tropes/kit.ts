@@ -4,12 +4,14 @@ import {
   type CaseType,
   type Clue,
   type Entry,
+  type Errand,
   type Fact,
   type GameObject,
   type Givens,
   type Id,
   type Method,
   type Person,
+  type PetKind,
   type Tick,
   type Unknown,
 } from '../types.js';
@@ -53,6 +55,12 @@ export interface ShapeContext {
 }
 
 export interface TropeShape {
+  /** M14, affair: where they said they would be. */
+  claimedAt?: Id;
+  /** M14, affair: what it really was. */
+  errand?: Errand;
+  /** M14, lost pet: the kind of animal. */
+  pet?: PetKind;
   bodyFoundAt?: Id;
   taken?: GameObject;
   entry?: Entry;
@@ -99,6 +107,11 @@ export interface Trope {
   label: string;
   /** Exactly what the report asks. Everything else is a given. */
   unknowns: Unknown[];
+  /**
+   * M14: the culprit's reason, where the trope decides it. A dog let out of a
+   * gate was let out from embarrassment or spite, never for an inheritance.
+   */
+  motive?: string;
   shape: (ctx: ShapeContext) => TropeShape;
   givens: (ctx: TropeContext) => Givens;
   signature: (ctx: TropeContext) => Signature;

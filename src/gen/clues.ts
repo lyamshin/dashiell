@@ -342,10 +342,15 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
   const act = ctx.act;
   const V = who(cast.victim.id);
   const foundPlace = act.bodyFoundAt ?? L;
+  const claimed = placeName(act.claimedAt ?? build.victimSeenPlace);
   const sceneOpening =
-    act.type === 'robbery'
+    act.type === 'robbery' || act.type === 'lost-item'
       ? `${cap(act.taken?.name ?? 'the box')} is gone from ${placeName(L)}, which is ${V}’s.`
-      : act.type === 'missing'
+      : act.type === 'lost-pet'
+        ? `${cap(act.taken?.name ?? 'the animal')} is gone from ${placeName(L)}, which is ${V}’s, and has not come home.`
+        : act.type === 'affair'
+          ? `${V} was not at ${claimed} for the whole of the evening, which is where ${V} said ${V} would be.`
+          : act.type === 'missing'
         ? `${V} is not at ${placeName(L)} and has not been since that evening.`
         : `${V} was found at ${placeName(foundPlace)}.`;
   const scene = add(
@@ -378,12 +383,20 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
   const morgueOpening = exact
     ? act.type === 'murder'
       ? `The coroner puts death at ${clock(ctx.coronerWindow[0])}.`
-      : act.type === 'robbery'
+      : act.type === 'lost-pet' || act.type === 'lost-item'
+        ? `It went at ${clock(ctx.coronerWindow[0])}, as near as anybody in the house can say.`
+        : act.type === 'affair'
+          ? `The half hour that matters is ${clock(ctx.coronerWindow[0])}, by the client's own reckoning.`
+          : act.type === 'robbery'
         ? `The desk sergeant's report puts it at ${clock(ctx.coronerWindow[0])}.`
         : `Nobody can put it closer than ${clock(ctx.coronerWindow[0])}.`
     : act.type === 'murder'
       ? `The coroner puts death between ${windowText}.`
-      : act.type === 'robbery'
+      : act.type === 'lost-pet' || act.type === 'lost-item'
+        ? `It went between ${windowText}, as near as anybody in the house can say.`
+        : act.type === 'affair'
+          ? `It was between ${windowText}, by the client's own reckoning.`
+          : act.type === 'robbery'
         ? `The desk sergeant's report puts it between ${windowText}.`
         : `Nobody can put it closer than between ${windowText}.`;
   const morgue = add(
@@ -431,6 +444,10 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
       `${who(w.id)} puts ${V} at ${placeName(lowPlace)} ${low.timing}, which was ${clock(build.victimSeenAt)}, ${
         act.type === 'murder'
           ? 'and alive enough to argue about the weather'
+          : act.type === 'affair'
+            ? 'and looking at the clock'
+            : act.type === 'lost-pet' || act.type === 'lost-item'
+              ? 'and everything at home was where it should be then'
           : act.type === 'robbery'
             ? 'and nothing had been touched then'
             : 'and in no hurry to be anywhere'
