@@ -98,6 +98,10 @@ export function renderNotebook(
     for (const record of person.records) {
       entry.append(el('div', { class: 'nb-record', text: record.text }));
     }
+    // docs/39 §1: a confrontation that landed, recorded as one.
+    for (const said of person.said) {
+      entry.append(el('div', { class: 'nb-record nb-said', text: `Put to ${person.display}: ${said.broke ? `${said.broke} ` : ''}${said.text}` }));
+    }
     body.append(entry);
   }
 

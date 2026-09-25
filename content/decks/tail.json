@@ -3,6 +3,7 @@
     "id": "tai-001",
     "deck": "tail",
     "text": "{He} takes the stairs like each one owes {him} money.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "temper": "yap",
@@ -15,6 +16,7 @@
     "id": "tai-002",
     "deck": "tail",
     "text": "You don’t miss {him}. Nobody does. People have tried.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "temper": "yap",
@@ -39,6 +41,7 @@
     "id": "tai-004",
     "deck": "tail",
     "text": "{He} always looks like {he}’s late for something, and usually is.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "temper": "yap",
@@ -63,6 +66,7 @@
     "id": "tai-006",
     "deck": "tail",
     "text": "That’s the whole of what I know about {him}, and it’s more than I wanted to.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "temper": "yap",
@@ -75,6 +79,7 @@
     "id": "tai-007",
     "deck": "tail",
     "text": "{He} takes the stairs like each one owes {him} money.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "temper": "yap",
@@ -87,6 +92,7 @@
     "id": "tai-008",
     "deck": "tail",
     "text": "You don’t miss {him}. Nobody does. People have tried.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "temper": "yap",
@@ -111,6 +117,7 @@
     "id": "tai-010",
     "deck": "tail",
     "text": "{He} always looks like {he}’s late for something, and usually is.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "temper": "yap",
@@ -135,6 +142,7 @@
     "id": "tai-012",
     "deck": "tail",
     "text": "That’s the whole of what I know about {him}, and it’s more than I wanted to.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "temper": "yap",
@@ -180,6 +188,7 @@
     "id": "tai-016",
     "deck": "tail",
     "text": "I’ve got better things to do than keep count of people. Not tonight, but most nights.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "temper": "yap"
@@ -191,6 +200,7 @@
     "id": "tai-017",
     "deck": "tail",
     "text": "People think nobody sees them. Somebody always does, and usually it’s me.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "temper": "yap"
@@ -246,6 +256,7 @@
     "id": "tai-022",
     "deck": "tail",
     "text": "If I knew {him}, I’d tell you. I tell people everything. It’s a failing.",
+    "joke": true,
     "tags": {
       "family": "knowing",
       "temper": "yap"
@@ -312,6 +323,7 @@
     "id": "tai-028",
     "deck": "tail",
     "text": "I keep count. It’s a habit, like biting your nails.",
+    "joke": true,
     "tags": {
       "family": "counts",
       "temper": "yap"
@@ -378,6 +390,7 @@
     "id": "tai-034",
     "deck": "tail",
     "text": "Half the people through here I wouldn’t know again, and the other half I’d rather not.",
+    "joke": true,
     "tags": {
       "family": "strangers",
       "temper": "yap"
@@ -400,6 +413,7 @@
     "id": "tai-036",
     "deck": "tail",
     "text": "A stranger’s a stranger. You can’t make friends with everybody. I’ve tried.",
+    "joke": true,
     "tags": {
       "family": "strangers",
       "temper": "yap"
@@ -466,6 +480,7 @@
     "id": "tai-042",
     "deck": "tail",
     "text": "It’s about the only thing around here that’s on time.",
+    "joke": true,
     "tags": {
       "family": "timing",
       "temper": "yap"
@@ -510,6 +525,7 @@
     "id": "tai-046",
     "deck": "tail",
     "text": "Nobody who was there could have missed it. I didn’t, and I miss plenty.",
+    "joke": true,
     "tags": {
       "family": "event",
       "temper": "yap"
@@ -565,6 +581,7 @@
     "id": "tai-051",
     "deck": "tail",
     "text": "I’ve had better evenings. I’ve had worse. Not many.",
+    "joke": true,
     "tags": {
       "family": "evening",
       "temper": "yap"
@@ -653,6 +670,7 @@
     "id": "tai-059",
     "deck": "tail",
     "text": "I could tell you more about this street than the street would like.",
+    "joke": true,
     "tags": {
       "family": "thing",
       "temper": "yap"
@@ -741,6 +759,7 @@
     "id": "tai-067",
     "deck": "tail",
     "text": "There. Now you know as much as I do, and I feel lighter.",
+    "joke": true,
     "tags": {
       "family": "any",
       "temper": "yap"
@@ -796,6 +815,7 @@
     "id": "tai-e004",
     "deck": "tail",
     "text": "I don’t miss much. Some nights I wish I did.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "temper": "yap"
@@ -873,6 +893,7 @@
     "id": "tai-e011",
     "deck": "tail",
     "text": "Some nights you could fire a cannon through here and not hit anybody.",
+    "joke": true,
     "tags": {
       "family": "counts",
       "temper": "yap"
@@ -972,6 +993,7 @@
     "id": "tai-e020",
     "deck": "tail",
     "text": "If I’d known anybody would ask, I’d have done something worth hearing about.",
+    "joke": true,
     "tags": {
       "family": "evening",
       "temper": "yap"

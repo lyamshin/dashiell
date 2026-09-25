@@ -33,7 +33,7 @@ import { acquaintanceOf } from '../../gen/index.js';
 import { pronounsOf, putSaid, saidPlainly, toldOf, type Told } from './telling.js';
 import type { Family } from './families.js';
 import { SEEN_FAMILIES, thingTopic } from './families.js';
-import { observation, plainAction, tieSentence } from './people.js';
+import { doingOf, observation, plainAction, tieSentence } from './people.js';
 import { doingClause, lookRole, personSlots } from './stage.js';
 import { bareRoleOf } from './plan.js';
 import { arrivalPage, framesFor, newPageSheets, tellingFrame, type PageSheets } from './sheet-pages.js';
@@ -265,9 +265,17 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
   const beats = plan.beats;
   /** M13: a page written from sheets claims its beats, and the loop leaves them to it. */
   const pageSheets = newPageSheets(stage);
+  // Guidance §4: on a page that pays something off, the payoff is the page's
+  // joke, so the sheets keep it for their last word.
+  if (sheetsOn(stage) && pageSheets.rolled) dealer.holdJoke(true);
+  const jokesBefore = dealer.jokes;
   const sheetPage = sheetsOn(stage) ? arrivalPage(plan, stage, scene, mark, gaps, pageSheets) : null;
+  // Guidance §4: an arrival the sheets could not write told no joke.
+  if (sheetPage === null) dealer.resetJokes(jokesBefore);
   /** M13: the sheets that frame a question, a confrontation or a search: what goes before, and the last word. */
   const frames = sheetsOn(stage) ? framesFor(plan, stage, scene, pageSheets) : {};
+  // The last words are chosen; whatever joke is left is the page's again.
+  dealer.holdJoke(false);
   // M13: a search's last word goes after its thinking, before any decision or next lead.
   const searchCloseAt = (() => {
     if (!frames.search?.close) return -1;
@@ -322,6 +330,20 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         if (beat.form === 'carry' && beat.carry.continued) {
           // M10 §A.3: the search goes on where the last page left it.
           const text = `I wasn’t through with ${here} yet.`;
+          push({ text, voice: 'errand', beats: [i] });
+          mark(i, { tag: 'carry' });
+          break;
+        }
+        if (beat.form === 'carry' && beat.carry.post) {
+          // docs/39 §2: the watcher, asked about the room they keep.
+          const c = beat.carry;
+          const asked = view.kase.people.find((p) => p.surname === c.slots.who);
+          const her = asked && pronounOf(asked) === 'she' ? 'her' : 'him';
+          const lines = [
+            `${c.slots.who} kept ${c.slots.subject}. If anybody had counted it tonight, it was ${her}.`,
+            `Nobody had sent me. Nobody had to: ${c.slots.who} kept ${c.slots.subject}, and people who keep a room count it.`,
+          ];
+          const text = lines[(view.kase.seed + i) % lines.length] as string;
           push({ text, voice: 'errand', beats: [i] });
           mark(i, { tag: 'carry' });
           break;
@@ -1254,10 +1276,31 @@ function visibleTrade(person: Person): string | undefined {
   return shows ? person.role.replace(/\.$/, '') : undefined;
 }
 
+/**
+ * Guidance §4: what somebody was doing, whole. An activity whose tail is a
+ * joke ("…which is the whole art") is the page's joke when the page has none
+ * yet; on a page that has told one it is the plain action ("Hargrove was
+ * drawing a beer.").
+ */
+export function activitySaid(stage: Stage, p: PresencePerson): string {
+  const whole = endStop(p.activity.text);
+  if (!cardOf(p.activity.cardId)?.joke) return whole;
+  if (stage.dealer.mayJoke) {
+    stage.dealer.joke();
+    return whole;
+  }
+  const surname = stage.view.personById.get(p.personId)?.surname ?? '';
+  const doing = doingOf(p.activity.text, surname);
+  const plain = doing ? plainAction(doing.trim().replace(/\.$/, '')) : '';
+  if (plain.length > 0 && whole.startsWith(`${surname} was `)) return `${surname} was ${plain}.`;
+  stage.dealer.forcedJokes++;
+  return whole;
+}
+
 export function presenceLine(stage: Stage, p: PresencePerson, named: ReadonlySet<Id> = new Set()): string {
   const { view, cast } = stage;
   const person = view.personById.get(p.personId) as Person;
-  const parts = [endStop(p.activity.text)];
+  const parts = [activitySaid(stage, p)];
   if (p.firstSight) {
     const gender = genderHintOf(person);
     const He = gender === 'f' ? 'She' : 'He';
@@ -1284,14 +1327,14 @@ export function presenceLine(stage: Stage, p: PresencePerson, named: ReadonlySet
     const clause = visibleTrade(person);
     if (clause) parts.push(`${He} was ${/^(?:the|a|an) /i.test(clause) ? clause : `${/^[aeiou]/i.test(clause) ? 'an' : 'a'} ${clause}`}.`);
     else {
-      const look = characterLine(stage.dealer, view, person, 'look', { accept: (t) => !echoes(t, parts) });
+      const look = characterLine(stage.dealer, view, person, 'look', { accept: (t) => !echoes(t, parts), need: true });
       if (look) parts.push(look.text);
     }
     // M11 §A.2: three to five sentences in all, the tie included.
     const room = 5 - countSentences(parts.join(' ')) - (p.tie ? 1 : 0);
     const street = p.brief
       ? null
-      : characterLine(stage.dealer, view, person, 'street', { accept: (t) => !echoes(t, parts) && countSentences(t) <= room });
+      : characterLine(stage.dealer, view, person, 'street', { accept: (t) => !echoes(t, parts) && countSentences(t) <= room, need: true });
     if (street) parts.push(street.text);
     // The owner of what was taken, alive and in the room: how the street sees
     // them is their standing, which the office already said in the client's
@@ -1513,7 +1556,7 @@ export function thoughtSlots(stage: Stage, t: Thought): Slots {
     // docs/26, the engine's own thoughts: the secret as something done, the
     // one it is about in pronouns, and the crime by what it was.
     doing: t.cls === 'secret' || t.cls === 'dead-end' ? other : undefined,
-    ...(subject ? { he: pronounOf(subject) === 'she' ? 'she' : 'he', him: pronounOf(subject) === 'she' ? 'her' : 'him' } : {}),
+    ...(subject ? pronounsOf(subject) : {}),
     crime: CRIME_NOUN[view.kase.act.type],
   };
 }
@@ -2533,7 +2576,9 @@ function tellingParas(
         (scene.topicRef?.kind === 'person' && scene.topicRef.id === subject.id) ||
         (scene.askKind === 'ask-evening' && subject.id === speaker.id)
       : new RegExp(`\\b${subject.surname}\\b`).test(parts.question ?? ''));
-  let told = toldOf(view, family, clues, speaker, stage.at, !questionNamed && !beat.volunteered);
+  // Guidance §4: the half hours that matter, as the notebook held them when he asked.
+  const window = windowOf(view, stage.foundBefore, stage.accountsBefore);
+  let told = toldOf(view, family, clues, speaker, stage.at, !questionNamed && !beat.volunteered, window);
   let spokenAloud = true;
   if (told === null) {
     const first: string[] = [];
@@ -2828,9 +2873,71 @@ function confrontParas(
     // has nothing more to say about it.") is narration, in the past tense.
     const said = /^[“"]/.test(words) ? words : endStop(pastTense(words));
     out.push({ text: `${reaction?.text ?? `${surname} took a moment.`} ${said}`.trim(), voice: 'exchange' });
+    // Guidance (docs/39 §1): a confrontation that landed looks like one, at
+    // every tier. The story broke, and the page says so; the one who goes
+    // quiet is refusing, on a broken story, not letting nothing happen.
+    const landed = landedLine(person, beat.outcome, scene.judged.claimed?.ticks ?? [], stage.view.kase.seed + stage.foundBefore.length);
+    if (landed) out.push({ text: landed, voice: 'exchange' });
   }
   if (!reaction) gaps.push(`no-card: confront has no reaction for ${deckOutcome}`);
   return out.map((p) => ({ ...p, text: tidyPunctuation(p.text) }));
+}
+
+/**
+ * docs/39 §1: the line that says a confrontation landed. Never a verdict on
+ * who did it: it says the story broke, and that they knew it. Chosen by a
+ * hash of the night, so no card draw moves.
+ */
+const LANDED: Record<string, string[]> = {
+  quiet: [
+    '{He} didn’t say where {he} had been instead. That was a hole in {his} story {when}, and {he} knew it.',
+    'It wasn’t an answer. It was a refusal, from somebody whose story had a hole in it {when} and knew I’d seen it.',
+    'Silence is an answer too. {His} story had broken {when}, and {he} wasn’t going to be the one to mend it.',
+  ],
+  'second-lie': [
+    'The first story had broken {when}, and {he} knew it. {He} had the next one ready, which told me something too.',
+    'That was a hole in the first story, and {he} knew it. The new one would want checking like the old.',
+  ],
+  admit: [
+    'That was a hole in the story, and {he} knew it. What came through the hole was the truth, or nearer to it.',
+    'The story had broken {when}, and {he} knew it. {He} stopped holding it up.',
+  ],
+  withdraw: [
+    'That was a hole in the story, and {he} knew it. {He} took back the company {he} had given.',
+    'The story had broken {when}, and {he} knew it.',
+  ],
+  hold: [
+    'The fact and {his} story couldn’t both be right {when}. {He} knew it, and kept to the story anyway.',
+    '{He} kept to it. But the fact was still in my notebook, and {his} story still had to get past it {when}.',
+  ],
+};
+
+function landedLine(person: Person, outcome: string, ticks: readonly Tick[], salt: number): string | null {
+  const lines = LANDED[outcome];
+  if (!lines || lines.length === 0) return null;
+  let h = salt;
+  for (const ch of person.id) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  const template = lines[h % lines.length] as string;
+  const he = pronounOf(person) === 'she' ? 'she' : 'he';
+  const his = he === 'she' ? 'her' : 'his';
+  const sorted = [...ticks].sort((a, b) => a - b);
+  const first = sorted[0] as Tick;
+  const last = sorted[sorted.length - 1] as Tick;
+  const when =
+    sorted.length === 0
+      ? ''
+      : sorted.length === 1
+        ? `at ${spokenClock(first)}`
+        : sorted.length === 2 && last - first === 1
+          ? `at ${spokenClock(first)} and ${spokenClock(last)}`
+          : `from ${spokenClock(first).replace(/ o[’']clock$/, '')} until ${spokenClock(last)}`;
+  const out = template
+    .replace(/\{He\}/g, he === 'she' ? 'She' : 'He')
+    .replace(/\{His\}/g, his === 'her' ? 'Her' : 'His')
+    .replace(/\{he\}/g, he)
+    .replace(/\{his\}/g, his)
+    .replace(/ \{when\}/g, when ? ` ${when}` : '');
+  return out;
 }
 
 /**

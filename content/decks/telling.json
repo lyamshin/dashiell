@@ -91,6 +91,7 @@
     "id": "tel-009",
     "deck": "telling",
     "text": "{speaker} leaned in to tell it, close enough that I could have named the supper. “{told}”",
+    "joke": true,
     "tags": {
       "family": "any",
       "temper": "yap"
@@ -135,6 +136,7 @@
     "id": "tel-013",
     "deck": "telling",
     "text": "{speaker} said it without any expression at all. I’ve had warmer talks with a hat stand. “{told}”",
+    "joke": true,
     "tags": {
       "family": "any",
       "temper": "enigma"
@@ -359,6 +361,7 @@
     "id": "tel-033",
     "deck": "telling",
     "text": "{speaker} liked this question. It was the first thing all night anybody had liked about me. “{told}”",
+    "joke": true,
     "tags": {
       "family": "counts",
       "temper": "yap"
@@ -612,6 +615,7 @@
     "id": "tel-056",
     "deck": "telling",
     "text": "{speaker} enjoyed the telling. I could have charged admission. “{told}”",
+    "joke": true,
     "tags": {
       "family": "evening",
       "temper": "yap"
@@ -667,6 +671,7 @@
     "id": "tel-061",
     "deck": "telling",
     "text": "{speaker} lowered {their} voice, for the benefit of nobody. “{told}”",
+    "joke": true,
     "tags": {
       "family": "thing",
       "temper": "yap"
@@ -1066,6 +1071,7 @@
     "id": "tel-e032",
     "deck": "telling",
     "text": "{speaker} was glad to tell it, and told all of it, and some of it with feeling. “{told}”",
+    "joke": true,
     "tags": {
       "family": "evening",
       "temper": "yap"
@@ -1165,6 +1171,7 @@
     "id": "tel-e041",
     "deck": "telling",
     "text": "{speaker} waited until I had started to wonder about my tie, then answered. “{told}”",
+    "joke": true,
     "tags": {
       "family": "evening",
       "temper": "enigma"

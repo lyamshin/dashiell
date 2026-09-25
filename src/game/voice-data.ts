@@ -840,6 +840,30 @@ export const BRIDGE_TALKING: string[] = ['{who} was still in front of me.', 'I w
 export const ANOTHER_TIME = 'Another time, {he} was {where}.';
 
 /**
+ * Guidance §4 (docs/39, after docs/golden/seed3-testimony.md): where somebody
+ * was not, said the way a witness says it. The rest of the evening is the
+ * rest of the evening, never a list of half hours. `rest` only where every
+ * other half hour is one the witness can speak for; `whileHere` where the
+ * witness was away some of it; `matters` the half hour the notebook already
+ * knows matters, when the summary hedged it; `away` a place other than the
+ * witness's own, and `awayPosted` when the witness was there themselves.
+ * {He}/{he} the one it is about, {when} the spoken hours ("at eight
+ * o’clock"), {When} the same opening a sentence, {where} a place.
+ */
+export const NOT_HERE = {
+  rest: 'Not here.',
+  once: 'Not here {when}.',
+  whileHere: 'Any other time I was here, {he} wasn’t.',
+  never: '{He} wasn’t here. Not once all evening.',
+  neverOnce: '{He} wasn’t here {when}.',
+  neverWhileHere: '{He} never came in, any time I was here.',
+  awayOnly: '{He} wasn’t at {where} {when}.',
+  away: '{When}, {he} wasn’t at {where} either.',
+  awayPosted: '{When} I was at {where}, and {he} wasn’t there either.',
+  matters: ['Least of all {when}.', 'Certainly not {when}.'],
+};
+
+/**
  * The hiring card's `{dashiell}`: what he says between the client's reason
  * and the money.
  */

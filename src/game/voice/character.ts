@@ -72,7 +72,8 @@ export function characterLine(
   view: CaseView,
   person: Person,
   kind: CharacterKind,
-  opts: { avoid?: readonly string[]; accept?: (text: string) => boolean } = {},
+  /** `need`: a line the page must have (a first sight's), even once it has told its joke. */
+  opts: { avoid?: readonly string[]; accept?: (text: string) => boolean; need?: boolean } = {},
 ): { text: string; cardId: string } | null {
   const role = characterRole(person);
   if (role === null) return null;
@@ -93,7 +94,7 @@ export function characterLine(
           (c: Card) => is(c) && (tagOf('character', c, 'victimRole') ?? 'any') === 'any' && victimPronounFits(c, view.victim),
         ]
       : [is];
-  const drawn = dealer.draw('character', ladder, slots, true);
+  const drawn = dealer.draw('character', ladder, slots, true, undefined, opts.need === true);
   if (!drawn) return null;
   return { text: drawn.text, cardId: drawn.cardId };
 }

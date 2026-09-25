@@ -597,6 +597,7 @@
     "id": "brg-048",
     "deck": "bridge",
     "text": "I had nothing yet from {who} about {who}’s own night. Any question would get it. People will tell you their evening for the price of asking.",
+    "joke": true,
     "tags": {
       "tie": "account"
     },
@@ -687,6 +688,7 @@
     "id": "brg-057",
     "deck": "bridge",
     "text": "{who} had an evening to account for, the same as everybody. Nobody ever asks about mine. I meant to ask {who}.",
+    "joke": true,
     "tags": {
       "tie": "account"
     },

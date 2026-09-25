@@ -80,6 +80,7 @@
     "id": "err-008",
     "deck": "errand",
     "text": "{name} told me where to go, and for once meant it kindly. I wanted {who}'s word on {subject}.",
+    "joke": true,
     "tags": {
       "because": "said",
       "for": "ask-person"
@@ -146,6 +147,7 @@
     "id": "err-014",
     "deck": "errand",
     "text": "{name} had said as much, and my feet had made me promise to keep it short. I had come to ask {who} about {subject}, nothing more.",
+    "joke": true,
     "tags": {
       "because": "said",
       "for": "ask-person"
@@ -300,6 +302,7 @@
     "id": "err-028",
     "deck": "errand",
     "text": "I came on {name}'s word, and on foot. I wanted to ask {who} about {subject}.",
+    "joke": true,
     "tags": {
       "because": "said",
       "for": "ask-thing"
@@ -311,6 +314,7 @@
     "id": "err-029",
     "deck": "errand",
     "text": "{name} had said as much. I had one question for {who}, about {subject}, and I had walked a long way to ask it.",
+    "joke": true,
     "tags": {
       "because": "said",
       "for": "ask-thing"
@@ -465,6 +469,7 @@
     "id": "err-043",
     "deck": "errand",
     "text": "I came on {name}'s word, which is cheaper to give than to follow. I wanted to raise {subject} with {who}.",
+    "joke": true,
     "tags": {
       "because": "said",
       "for": "ask-place"
@@ -542,6 +547,7 @@
     "id": "err-050",
     "deck": "errand",
     "text": "{name} put me onto it, and for once somebody else would do the walking. I wanted to hear {who} walk through the evening.",
+    "joke": true,
     "tags": {
       "because": "said",
       "for": "ask-evening"
@@ -743,6 +749,7 @@
     "id": "err-068",
     "deck": "errand",
     "text": "{name} told me where to look. Telling is the easy part. I meant to search the room, top to bottom.",
+    "joke": true,
     "tags": {
       "because": "said",
       "for": "search-room",
@@ -824,6 +831,7 @@
     "id": "err-075",
     "deck": "errand",
     "text": "{name} set me on it. I came to give the room a proper going-over, which is more than my own room ever gets.",
+    "joke": true,
     "tags": {
       "because": "said",
       "for": "search-room",
@@ -980,6 +988,7 @@
     "id": "err-089",
     "deck": "errand",
     "text": "{name} had said as much. I came to track {subject} down. Things don't come to me; I've waited.",
+    "joke": true,
     "tags": {
       "because": "said",
       "for": "search-thing"
@@ -1035,6 +1044,7 @@
     "id": "err-094",
     "deck": "errand",
     "text": "A paper had named it. Paper has been sending me places since I learned to read. I came to ask {who} about {subject}.",
+    "joke": true,
     "tags": {
       "because": "document",
       "for": "ask-person"
@@ -1112,6 +1122,7 @@
     "id": "err-101",
     "deck": "errand",
     "text": "The paper trail ran from {from}, and I ran after it. I meant to ask {who} about {subject}.",
+    "joke": true,
     "tags": {
       "because": "document",
       "for": "ask-person"
@@ -1211,6 +1222,7 @@
     "id": "err-110",
     "deck": "errand",
     "text": "Something on paper at {from} had more say over my evening than I did. I wanted an answer from {who} about {subject}.",
+    "joke": true,
     "tags": {
       "because": "document",
       "for": "ask-thing"
@@ -1464,6 +1476,7 @@
     "id": "err-133",
     "deck": "errand",
     "text": "A record at {from} sent me. Records never have to walk anywhere themselves. I came to raise {subject} with {who}.",
+    "joke": true,
     "tags": {
       "because": "document",
       "for": "ask-place"
@@ -1563,6 +1576,7 @@
     "id": "err-142",
     "deck": "errand",
     "text": "I had it from a paper at {from}. I had one question for {who}, and it was a big one: the evening, start to finish.",
+    "joke": true,
     "tags": {
       "because": "document",
       "for": "ask-evening"
@@ -1835,6 +1849,7 @@
     "id": "err-166",
     "deck": "errand",
     "text": "Paperwork at {from} sent me. I came for {subject}. Paperwork always gets its way.",
+    "joke": true,
     "tags": {
       "because": "document",
       "for": "search-thing"
@@ -1979,6 +1994,7 @@
     "id": "err-179",
     "deck": "errand",
     "text": "Something written at {from} sent me, and it hadn't even asked nicely. I came to track {subject} down.",
+    "joke": true,
     "tags": {
       "because": "document",
       "for": "search-thing"
@@ -2089,6 +2105,7 @@
     "id": "err-189",
     "deck": "errand",
     "text": "A find at {from} sent me on, and on is the direction I mostly go. I came to hear {who} out on {subject}.",
+    "joke": true,
     "tags": {
       "because": "found",
       "for": "ask-person"
@@ -2787,6 +2804,7 @@
     "id": "err-252",
     "deck": "errand",
     "text": "A thing found at {from} pointed me here. I came to go through it, drawer by drawer, the way my mother went through my pockets.",
+    "joke": true,
     "tags": {
       "because": "found",
       "for": "search-room",
@@ -3077,6 +3095,7 @@
     "id": "err-278",
     "deck": "errand",
     "text": "I came to {place} on nothing at all. I'm used to running on nothing.",
+    "joke": true,
     "tags": {
       "because": "none",
       "for": "none"
@@ -3132,6 +3151,7 @@
     "id": "err-283",
     "deck": "errand",
     "text": "I came to {place} because nobody had told me not to.",
+    "joke": true,
     "tags": {
       "because": "none",
       "for": "none"
@@ -3154,6 +3174,7 @@
     "id": "err-285",
     "deck": "errand",
     "text": "I had no reason for {place}. I went to make one.",
+    "joke": true,
     "tags": {
       "because": "none",
       "for": "none"
@@ -3165,6 +3186,7 @@
     "id": "err-286",
     "deck": "errand",
     "text": "Nobody sent me back. I'm the sentimental type. I came back to see {place} again.",
+    "joke": true,
     "tags": {
       "because": "return",
       "for": "none",
@@ -3285,6 +3307,7 @@
     "id": "err-296",
     "deck": "errand",
     "text": "I went back to {place} without being told to, which my landlady would call a first.",
+    "joke": true,
     "tags": {
       "because": "return",
       "for": "none",
@@ -3405,6 +3428,7 @@
     "id": "err-306",
     "deck": "errand",
     "text": "I had searched {place} already. I came back to see it with fresh eyes. They were the same eyes, only more tired.",
+    "joke": true,
     "tags": {
       "because": "return",
       "for": "none",
@@ -3528,6 +3552,7 @@
     "id": "err-316",
     "deck": "errand",
     "text": "I went back to {place} to think. It's cheaper than drinking, and the chair is better.",
+    "joke": true,
     "tags": {
       "because": "office",
       "for": "none"
@@ -3551,6 +3576,7 @@
     "id": "err-318",
     "deck": "errand",
     "text": "I went back to {place} and the chair behind the desk, which was the only thing in town glad to see me.",
+    "joke": true,
     "tags": {
       "because": "office",
       "for": "none",

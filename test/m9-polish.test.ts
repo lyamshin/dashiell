@@ -119,7 +119,11 @@ describe('M9 polish: the confront picker', () => {
         expect(g.choices.every((c) => !c.lead)).toBe(true);
         expect((g.reference ?? []).length).toBeGreaterThan(0);
         // Sections run together: a heading is never picked up again later.
-        const order = g.choices.map((c) => c.section);
+        // docs/39 §1: from Poached up the facts about their own half hours
+        // come first, under the half hours; the rest keep the old order.
+        const firstRest = g.choices.findIndex((c) => !c.focus);
+        expect(g.choices.slice(firstRest < 0 ? g.choices.length : firstRest).every((c) => !c.focus)).toBe(true);
+        const order = g.choices.filter((c) => !c.focus).map((c) => c.section);
         const runs = order.filter((s, i) => i === 0 || s !== order[i - 1]);
         expect(new Set(runs).size).toBe(runs.length);
         // The one being confronted heads the list when anything is about them.

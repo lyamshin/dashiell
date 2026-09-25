@@ -81,6 +81,11 @@ export interface SheetPart {
   para?: boolean;
   /** This is the sheet's one joke. */
   joke?: boolean;
+  /**
+   * Guidance §4: the same line without its joke, for a page that has told
+   * one already. A joke line with none is left out on such a page.
+   */
+  plain?: string[];
   /** A beat this text says, so the realizer does not write it too (`watcher-view`). */
   says?: string;
   /** Roles sheet text introduces itself (with `bind`): "I turned to a clean page" offers the page. */
@@ -97,6 +102,11 @@ export interface SheetClose {
   /** Which roles the close may pay off, in order of preference (default: any bound). */
   roles?: string[];
   joke?: boolean;
+  /**
+   * Guidance §4: a last line with no joke in it, for a page that has told
+   * its joke already. A close with none is left off such a page.
+   */
+  quiet?: string[];
 }
 
 export interface Sheet {
@@ -290,6 +300,29 @@ export interface Holes {
   fresh?(template: string): boolean;
   /** Remember a line of sheet text as said tonight. */
   spend?(template: string): void;
+  /** Guidance §4: the page's joke count, shared with the dealer. */
+  jokes?: JokeBudget;
+}
+
+/**
+ * Guidance §4 — about one joke a page. The sheets and the dealer keep one
+ * count between them (`Dealer.jokes`): a card flagged `joke` counts when it
+ * is dealt, a sheet's `joke` line when it is written, and a closing line —
+ * the page's last word, a joke by design — when it is chosen. Once the page
+ * has told one, a joke line is said plain (`plain`) or left out, and the
+ * close is the sheet's quiet line (`quiet`) or nothing, unless the close
+ * brings back the very card that told the joke (a callback is one joke, set
+ * up and paid off). On a page that pays something off, the joke is kept for
+ * the payoff (`held`): only a setup, a card a sheet binds, may be funny
+ * before it.
+ */
+export interface JokeBudget {
+  told(): number;
+  tell(): void;
+  reset(n: number): void;
+  /** Is the page keeping its joke for the last word? (`Dealer.holdJoke`) */
+  held(): boolean;
+  hold(on: boolean): void;
 }
 
 /**
@@ -324,6 +357,8 @@ export interface SheetRun {
   said: Map<string, string>;
   /** The sheets this page used, in order. */
   sheets: string[];
+  /** Guidance §4: roles bound from the card that told the page's joke; paying one off is the same joke. */
+  jokeRoles: Set<string>;
 }
 
 export function newRun(moment: Moment, flags: Flags, callback: boolean, carry?: SheetRun): SheetRun {
@@ -339,6 +374,7 @@ export function newRun(moment: Moment, flags: Flags, callback: boolean, carry?: 
     covered: new Map(),
     said: new Map(),
     sheets: carry?.sheets ?? [],
+    jokeRoles: carry?.jokeRoles ?? new Set(),
   };
 }
 
@@ -519,15 +555,20 @@ export function runSheet(sheet: Sheet, holes: Holes, run: SheetRun): SheetOut | 
     }
     if (part.para) flush();
     if (part.hole === undefined) {
+      // Guidance §4: the sheet's joke only on a page that has not told one,
+      // nor kept it for the last word (unless the line sets that up). A line
+      // that also says a beat is left to the realizer, which says it plainly.
+      const noJoke = part.joke === true && holes.jokes !== undefined && (holes.jokes.told() > 0 || (holes.jokes.held() && !part.bind));
+      if (noJoke && (part.plain ?? []).length === 0) continue;
       // The line and its other ways of saying it, those that can be filled.
-      const options = [part.text ?? '', ...(part.alt ?? [])]
+      const options = (noJoke ? (part.plain as string[]) : [part.text ?? '', ...(part.alt ?? [])])
         .map((t) => ({ key: t, filled: fillSheet(t, holes.slots, run) }))
         .filter((o): o is { key: string; filled: NonNullable<ReturnType<typeof fillSheet>> } => o.filled !== null);
       // The sheet's own line the first time tonight (the golden's words, where
       // they are the golden's); its other ways of saying it when it comes round.
       const first = options[0];
       const chosen =
-        first !== undefined && first.key === (part.text ?? '') && holes.fresh?.(first.key) !== false
+        !noJoke && first !== undefined && first.key === (part.text ?? '') && holes.fresh?.(first.key) !== false
           ? (holes.spend?.(first.key), first)
           : pickLine(holes, options);
       const filled = chosen?.filled ?? null;
@@ -542,15 +583,26 @@ export function runSheet(sheet: Sheet, holes: Holes, run: SheetRun): SheetOut | 
         run.roles.set(part.bind, part.exports[part.bind] as CardExport);
         run.introduced.add(part.bind);
       }
+      if (part.joke && !noJoke) {
+        holes.jokes?.tell();
+        if (part.bind) run.jokeRoles.add(part.bind);
+      }
       add(filled.text, [], undefined);
       continue;
     }
     const want = part.bind && run.callback ? part.bind : null;
+    const jokesBefore = holes.jokes?.told() ?? 0;
+    // A setup may be funny while the page keeps its joke for the payoff.
+    const held = holes.jokes?.held() ?? false;
+    if (held && part.bind) holes.jokes?.hold(false);
     const piece = part.deck !== undefined ? holes.deck(part, want, run) : holes.engine(part, run);
+    if (held && part.bind) holes.jokes?.hold(true);
     if (piece === null) {
       if (part.optional) continue;
       return null;
     }
+    // The card that told the page's joke: what it offers comes back as the same joke.
+    if (part.bind && (holes.jokes?.told() ?? 0) > jokesBefore) run.jokeRoles.add(part.bind);
     if (part.deck === undefined) run.written.add(part.hole);
     bindFrom(part, piece);
     if (piece.uses) payoff(piece.uses);
@@ -607,9 +659,29 @@ export function runSheet(sheet: Sheet, holes: Holes, run: SheetRun): SheetOut | 
  * engine's own last word.
  */
 function closeLine(sheet: Sheet, holes: Holes, run: SheetRun): SheetOut['close'] {
+  // Guidance §4: the last word is a joke by design, and it is the page's one
+  // unless the page has told its joke already. Then only a callback on the
+  // card that told it (the same joke, paid off), or the sheet's quiet line,
+  // or nothing. Whatever the deck dealt on the way to choosing, the page is
+  // one joke on for a close; a quiet line, said only after one, tells none.
+  const budget = holes.jokes;
+  const before = budget?.told() ?? 0;
+  // The joke a page keeps is kept for this.
+  const held = budget?.held() ?? false;
+  if (held) budget?.hold(false);
+  const out = closeChoice(sheet, holes, run, before > 0);
+  if (held) budget?.hold(true);
+  if (budget) {
+    budget.reset(before);
+    if (out !== null && before === 0) budget.tell();
+  }
+  return out;
+}
+
+function closeChoice(sheet: Sheet, holes: Holes, run: SheetRun, joked: boolean): SheetOut['close'] {
   const spec = sheet.close as SheetClose;
   if (run.callback && !(spec.roles !== undefined && spec.roles.length === 0)) {
-    const bound = [...run.roles.keys()].filter((r) => run.introduced.has(r));
+    const bound = [...run.roles.keys()].filter((r) => run.introduced.has(r) && (!joked || run.jokeRoles.has(r)));
     const order = (spec.roles ?? bound).filter((r) => bound.includes(r));
     for (const role of holes.random.shuffle(order)) {
       const exp = run.roles.get(role) as CardExport;
@@ -639,6 +711,13 @@ function closeLine(sheet: Sheet, holes: Holes, run: SheetRun): SheetOut['close']
         return { text: pick.text, callback: true, role };
       }
     }
+  }
+  if (joked) {
+    const quiet = (spec.quiet ?? [])
+      .map((t) => ({ key: t, filled: fillSheet(t, holes.slots, { ...run, callback: false }) }))
+      .filter((o): o is { key: string; filled: NonNullable<ReturnType<typeof fillSheet>> } => o.filled !== null);
+    const line = pickLine(holes, quiet);
+    return line ? { text: line.filled.text, callback: false } : null;
   }
   const plainAll = (spec.plain ?? [])
     .map((t) => ({ key: t, filled: fillSheet(t, holes.slots, { ...run, callback: false }) }))

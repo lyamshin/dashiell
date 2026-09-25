@@ -13,6 +13,7 @@
     "id": "wch-002",
     "deck": "watch",
     "text": "Nothing crossed that bar that {watcher} didn’t notice, including the change.",
+    "joke": true,
     "tags": {
       "watcher": "bartender"
     },
@@ -73,6 +74,7 @@
     "id": "wch-008",
     "deck": "watch",
     "text": "Nobody got past {watcher} without being looked up and down, mostly down.",
+    "joke": true,
     "tags": {
       "watcher": "doorman"
     },
@@ -113,6 +115,7 @@
     "id": "wch-012",
     "deck": "watch",
     "text": "Whoever passed {watcher}'s door got looked over on the way in, and {watcher} judged them on the way out.",
+    "joke": true,
     "tags": {
       "watcher": "doorman"
     },
@@ -133,6 +136,7 @@
     "id": "wch-014",
     "deck": "watch",
     "text": "Nothing passed the newsstand that {watcher} missed, and most of it got an opinion.",
+    "joke": true,
     "tags": {
       "watcher": "newsstand"
     },
@@ -213,6 +217,7 @@
     "id": "wch-022",
     "deck": "watch",
     "text": "A counterman saw every face twice, coming and going, and {watcher} remembered which ones had tipped.",
+    "joke": true,
     "tags": {
       "watcher": "counterman"
     },
@@ -313,6 +318,7 @@
     "id": "wch-032",
     "deck": "watch",
     "text": "Nobody moved through the building without {watcher} carrying them there and forming a view on the way.",
+    "joke": true,
     "tags": {
       "watcher": "elevator-man"
     },
@@ -333,6 +339,7 @@
     "id": "wch-034",
     "deck": "watch",
     "text": "An elevator man learned a building's business without asking for it, and {watcher} knew most of it and kept it between floors.",
+    "joke": true,
     "tags": {
       "watcher": "elevator-man"
     },
@@ -373,6 +380,7 @@
     "id": "wch-038",
     "deck": "watch",
     "text": "Nothing happened on the stairs that {watcher} didn't hear about, usually while it was still happening.",
+    "joke": true,
     "tags": {
       "watcher": "landlady"
     },
@@ -393,6 +401,7 @@
     "id": "wch-040",
     "deck": "watch",
     "text": "A landlady kept track of tenants' comings and goings as a matter of business, and {watcher} made it a pleasure as well.",
+    "joke": true,
     "tags": {
       "watcher": "landlady"
     },
@@ -413,6 +422,7 @@
     "id": "wch-042",
     "deck": "watch",
     "text": "Whoever used the stairs, {watcher} generally knew about it, and generally knew why.",
+    "joke": true,
     "tags": {
       "watcher": "landlady"
     },
@@ -553,6 +563,7 @@
     "id": "wch-056",
     "deck": "watch",
     "text": "Nothing much happened in that store that {watcher} didn't ring up or recommend a powder for.",
+    "joke": true,
     "tags": {
       "watcher": "druggist"
     },
@@ -583,6 +594,7 @@
     "id": "wch-059",
     "deck": "watch",
     "text": "{watcher} watched the aisle out of habit, the way anyone did who had been robbed once.",
+    "joke": true,
     "tags": {
       "watcher": "druggist"
     },
@@ -703,6 +715,7 @@
     "id": "wch-071",
     "deck": "watch",
     "text": "Nobody had the job of noticing who came by, and nobody had applied for it.",
+    "joke": true,
     "tags": {
       "watcher": "none"
     },

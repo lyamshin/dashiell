@@ -74,6 +74,11 @@ export interface CarryPlan {
   slots: { who?: string; subject?: string; name?: string };
   /** M10 §A.3: "Go on" — the same search, a page on. */
   continued?: boolean;
+  /**
+   * docs/39 §2: a watcher asked about the room they keep. Nobody sent him,
+   * and nobody had to: people who keep a room count it.
+   */
+  post?: boolean;
 }
 
 export interface PresencePerson {
@@ -595,6 +600,10 @@ function carryForAsk(
   const open = new Set(threadsFor(view, [...input.foundBefore]).map((x) => x.clueId));
   const target = action.clues.find((c) => open.has(c.id));
   const carry: CarryPlan = { for: forWhat, lead: false, slots: { who, ...(subject ? { subject } : {}) } };
+  const place = forWhat === 'ask-place' ? view.places.find((p) => p.shortName === subject) : undefined;
+  if (!target && view.kase.engine === 'v2' && place?.watcher && asked?.kind === 'fixture' && asked.fixtureRole === place.watcher && asked.foundAt === place.id) {
+    carry.post = true;
+  }
   if (target) {
     const opener = openerOf(view, input.foundBefore, target.id);
     carry.lead = true;

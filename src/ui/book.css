@@ -1266,3 +1266,28 @@ li.contradiction::before {
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+/* docs/39 §5: the teaching page, before the office. */
+.teach {
+  max-width: 34rem;
+  margin: 1.5rem 0;
+}
+
+.teach-title {
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+
+.teach-line {
+  margin: 0 0 0.9rem;
+  line-height: 1.55;
+}
+
+.teach-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}

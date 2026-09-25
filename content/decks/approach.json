@@ -15,6 +15,7 @@
     "id": "APR-002",
     "deck": "approach",
     "text": "I sat down next to {name} and put my hat on the bar, which is how you say you’re staying.",
+    "joke": true,
     "tags": {
       "setting": "bar",
       "posture": "seated",
@@ -37,6 +38,7 @@
     "id": "APR-003",
     "deck": "approach",
     "text": "I pulled out the chair across from {name} and sat in it before {he} could think of a reason I shouldn’t.",
+    "joke": true,
     "tags": {
       "setting": "bar",
       "posture": "seated",
@@ -85,6 +87,7 @@
     "id": "APR-007",
     "deck": "approach",
     "text": "I leaned on the bar beside {name} and set my matches down on it, in a puddle I hadn’t seen.",
+    "joke": true,
     "tags": {
       "setting": "bar",
       "posture": "standing",
@@ -167,6 +170,7 @@
     "id": "APR-013",
     "deck": "approach",
     "text": "I sat down at {name}’s table with my hat in my hands, which is as close as I get to asking.",
+    "joke": true,
     "tags": {
       "setting": "counter",
       "posture": "seated",
@@ -201,6 +205,7 @@
     "id": "APR-015",
     "deck": "approach",
     "text": "I stepped up to the counter beside {name} and lit a cigarette, to give my hands something to do while my mouth worked.",
+    "joke": true,
     "tags": {
       "setting": "counter",
       "posture": "standing",
@@ -247,6 +252,7 @@
     "id": "APR-018",
     "deck": "approach",
     "text": "I put my elbows on {name}’s counter, which {he} didn’t care for.",
+    "joke": true,
     "tags": {
       "setting": "counter",
       "posture": "behind",
@@ -293,6 +299,7 @@
     "id": "APR-021",
     "deck": "approach",
     "text": "I stopped beside {name} and looked at whatever {he} was looking at, which was nothing much.",
+    "joke": true,
     "tags": {
       "setting": "street",
       "posture": "standing",
@@ -399,6 +406,7 @@
     "id": "APR-029",
     "deck": "approach",
     "text": "I met {name} on the landing, which was the only flat place in the building.",
+    "joke": true,
     "tags": {
       "setting": "stair",
       "posture": "any",
@@ -411,6 +419,7 @@
     "id": "APR-030",
     "deck": "approach",
     "text": "I stopped two steps below {name}, which is a bad place to ask anybody anything.",
+    "joke": true,
     "tags": {
       "setting": "stair",
       "posture": "any",
@@ -435,6 +444,7 @@
     "id": "APR-032",
     "deck": "approach",
     "text": "I sat down on the step below {name} and put my hat on the step beside me, where it would get the worst of the draught.",
+    "joke": true,
     "tags": {
       "setting": "stair",
       "posture": "seated",
@@ -469,6 +479,7 @@
     "id": "APR-034",
     "deck": "approach",
     "text": "I took the chair across from {name} and put my notebook on the table, face down, so we could both pretend it wasn’t there.",
+    "joke": true,
     "tags": {
       "setting": "room",
       "posture": "seated",
@@ -491,6 +502,7 @@
     "id": "APR-035",
     "deck": "approach",
     "text": "I sat down across from {name} without being asked, which is how I get most of my chairs.",
+    "joke": true,
     "tags": {
       "setting": "room",
       "posture": "seated",
@@ -563,6 +575,7 @@
     "id": "APR-041",
     "deck": "approach",
     "text": "{name} was still in the good chair. I took the other one.",
+    "joke": true,
     "tags": {
       "setting": "office",
       "posture": "any",

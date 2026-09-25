@@ -3,6 +3,7 @@
     "id": "LOK-001",
     "deck": "look",
     "text": "{He} had the look of a {man} who had never once been asked to pay for anything at the time.",
+    "joke": true,
     "tags": {
       "role": "arch-heir",
       "again": "no",
@@ -25,6 +26,7 @@
     "id": "LOK-002",
     "deck": "look",
     "text": "{He} had the good coat and the bad posture of somebody waiting for the family money to arrive by itself.",
+    "joke": true,
     "tags": {
       "role": "arch-heir",
       "again": "no",
@@ -47,6 +49,7 @@
     "id": "LOK-003",
     "deck": "look",
     "text": "{He} had the easy manners of somebody who has been forgiven for everything so far and expects the streak to hold.",
+    "joke": true,
     "tags": {
       "role": "arch-heir",
       "again": "no",
@@ -69,6 +72,7 @@
     "id": "LOK-004",
     "deck": "look",
     "text": "{He} had the look of a {man} who kept the good china for company and had decided I wasn’t company.",
+    "joke": true,
     "tags": {
       "role": "arch-widow",
       "again": "no",
@@ -91,6 +95,7 @@
     "id": "LOK-005",
     "deck": "look",
     "text": "{He} held {his} handbag on {his} knees with both hands, and I got the feeling it had heard worse than me.",
+    "joke": true,
     "tags": {
       "role": "arch-widow",
       "again": "no",
@@ -113,6 +118,7 @@
     "id": "LOK-006",
     "deck": "look",
     "text": "{He} sat very straight, in case the avenue was watching, and on the avenue somebody always is.",
+    "joke": true,
     "tags": {
       "role": "arch-widow",
       "again": "no",
@@ -135,6 +141,7 @@
     "id": "LOK-007",
     "deck": "look",
     "text": "{He} had the look of somebody who could sell you a share of anything, including the hat on your head.",
+    "joke": true,
     "tags": {
       "role": "arch-broker",
       "again": "no",
@@ -157,6 +164,7 @@
     "id": "LOK-008",
     "deck": "look",
     "text": "{He} kept one eye on me and the other on the door, in case a better customer came through it.",
+    "joke": true,
     "tags": {
       "role": "arch-broker",
       "again": "no",
@@ -179,6 +187,7 @@
     "id": "LOK-009",
     "deck": "look",
     "text": "{He} had the quick, pleasant face of a {man} who has never once let anybody see {him} count.",
+    "joke": true,
     "tags": {
       "role": "arch-broker",
       "again": "no",
@@ -201,6 +210,7 @@
     "id": "LOK-010",
     "deck": "look",
     "text": "{He} had the look of a {man} who could make a party sound wonderful without having enjoyed a minute of it.",
+    "joke": true,
     "tags": {
       "role": "arch-society",
       "again": "no",
@@ -223,6 +233,7 @@
     "id": "LOK-011",
     "deck": "look",
     "text": "{He} looked me over and decided which paragraph I’d go in, and it wasn’t the first one.",
+    "joke": true,
     "tags": {
       "role": "arch-society",
       "again": "no",
@@ -245,6 +256,7 @@
     "id": "LOK-012",
     "deck": "look",
     "text": "{He} had good gloves, a sharp pencil, and the patient smile of somebody who gets paid by the name.",
+    "joke": true,
     "tags": {
       "role": "arch-society",
       "again": "no",
@@ -267,6 +279,7 @@
     "id": "LOK-013",
     "deck": "look",
     "text": "{He} had the look of a {man} who knew what every window on the street was paying and which ones were late.",
+    "joke": true,
     "tags": {
       "role": "arch-blockowner",
       "again": "no",
@@ -289,6 +302,7 @@
     "id": "LOK-014",
     "deck": "look",
     "text": "{He} took up a good deal of the room and had the air of somebody who owned the floor under it, which {he} probably did.",
+    "joke": true,
     "tags": {
       "role": "arch-blockowner",
       "again": "no",
@@ -311,6 +325,7 @@
     "id": "LOK-015",
     "deck": "look",
     "text": "{He} had a landlord’s face: sympathetic right up to the first of the month.",
+    "joke": true,
     "tags": {
       "role": "arch-blockowner",
       "again": "no",
@@ -333,6 +348,7 @@
     "id": "LOK-016",
     "deck": "look",
     "text": "{He} had the look of a {man} who charged by the quarter hour and had just started counting mine.",
+    "joke": true,
     "tags": {
       "role": "arch-lawyer",
       "again": "no",
@@ -355,6 +371,7 @@
     "id": "LOK-017",
     "deck": "look",
     "text": "{He} listened with {his} head on one side, weighing whether anything I said would stand up in court.",
+    "joke": true,
     "tags": {
       "role": "arch-lawyer",
       "again": "no",
@@ -377,6 +394,7 @@
     "id": "LOK-018",
     "deck": "look",
     "text": "{He} had the tidy, underfed look of a lawyer with one clerk and a great many opinions about the clerk.",
+    "joke": true,
     "tags": {
       "role": "arch-lawyer",
       "again": "no",
@@ -399,6 +417,7 @@
     "id": "LOK-019",
     "deck": "look",
     "text": "{He} had the look of a {man} who could find a missing nickel in a year of books and tell you which day it went.",
+    "joke": true,
     "tags": {
       "role": "arch-bookkeeper",
       "again": "no",
@@ -443,6 +462,7 @@
     "id": "LOK-021",
     "deck": "look",
     "text": "{He} had ink on one finger and the kind of patience that comes from adding the same column three times.",
+    "joke": true,
     "tags": {
       "role": "arch-bookkeeper",
       "again": "no",
@@ -465,6 +485,7 @@
     "id": "LOK-022",
     "deck": "look",
     "text": "{He} had the look of a {man} who has heard every excuse a sick man can make and believes none of them.",
+    "joke": true,
     "tags": {
       "role": "arch-nurse",
       "again": "no",
@@ -487,6 +508,7 @@
     "id": "LOK-023",
     "deck": "look",
     "text": "{He} looked me over with professional interest and found nothing worth a thermometer.",
+    "joke": true,
     "tags": {
       "role": "arch-nurse",
       "again": "no",
@@ -509,6 +531,7 @@
     "id": "LOK-024",
     "deck": "look",
     "text": "{He} had very clean cuffs and the calm of somebody who stays up all night on purpose, and for money.",
+    "joke": true,
     "tags": {
       "role": "arch-nurse",
       "again": "no",
@@ -531,6 +554,7 @@
     "id": "LOK-025",
     "deck": "look",
     "text": "{He} had the look of a {man} who had bought {his} practice second-hand and was still paying off the chair.",
+    "joke": true,
     "tags": {
       "role": "arch-dentist",
       "again": "no",
@@ -553,6 +577,7 @@
     "id": "LOK-026",
     "deck": "look",
     "text": "{He} had the steady hands of somebody who tells people it won’t hurt for a living, and the eyes of somebody who knows better.",
+    "joke": true,
     "tags": {
       "role": "arch-dentist",
       "again": "no",
@@ -575,6 +600,7 @@
     "id": "LOK-027",
     "deck": "look",
     "text": "{He} watched my mouth while I talked, which is a professional habit and not a comfortable one.",
+    "joke": true,
     "tags": {
       "role": "arch-dentist",
       "again": "no",
@@ -597,6 +623,7 @@
     "id": "LOK-028",
     "deck": "look",
     "text": "{He} had the look of a {man} who had typed other people’s secrets for years and never once hit the wrong key.",
+    "joke": true,
     "tags": {
       "role": "arch-secretary",
       "again": "no",
@@ -641,6 +668,7 @@
     "id": "LOK-030",
     "deck": "look",
     "text": "{He} had a pencil behind one ear and the air of somebody who had already filed me under a heading.",
+    "joke": true,
     "tags": {
       "role": "arch-secretary",
       "again": "no",
@@ -663,6 +691,7 @@
     "id": "LOK-031",
     "deck": "look",
     "text": "{He} had the look of a {man} who would put me in the evening edition if I said anything worth a paragraph.",
+    "joke": true,
     "tags": {
       "role": "arch-reporter",
       "again": "no",
@@ -685,6 +714,7 @@
     "id": "LOK-032",
     "deck": "look",
     "text": "{He} had a pencil out before I’d got my hat off, which told me who thought this was an interview.",
+    "joke": true,
     "tags": {
       "role": "arch-reporter",
       "again": "no",
@@ -707,6 +737,7 @@
     "id": "LOK-033",
     "deck": "look",
     "text": "{He} had the rumpled, hungry look of somebody paid by the line and short of lines this week.",
+    "joke": true,
     "tags": {
       "role": "arch-reporter",
       "again": "no",
@@ -729,6 +760,7 @@
     "id": "LOK-034",
     "deck": "look",
     "text": "{He} had the look of a {man} who had sat through ten thousand scales and forgiven about half of them.",
+    "joke": true,
     "tags": {
       "role": "arch-piano-teacher",
       "again": "no",
@@ -751,6 +783,7 @@
     "id": "LOK-035",
     "deck": "look",
     "text": "{He} kept time on {his} knee with two fingers without knowing it, which is either music or nerves.",
+    "joke": true,
     "tags": {
       "role": "arch-piano-teacher",
       "again": "no",
@@ -773,6 +806,7 @@
     "id": "LOK-036",
     "deck": "look",
     "text": "{He} had the patient, faintly pained face of somebody who listens to children practise for a living.",
+    "joke": true,
     "tags": {
       "role": "arch-piano-teacher",
       "again": "no",
@@ -795,6 +829,7 @@
     "id": "LOK-037",
     "deck": "look",
     "text": "{He} had the look of a {man} who had never once believed a fire started by itself.",
+    "joke": true,
     "tags": {
       "role": "arch-adjuster",
       "again": "no",
@@ -817,6 +852,7 @@
     "id": "LOK-038",
     "deck": "look",
     "text": "{He} looked around the room and priced it, in case it burned down while we talked.",
+    "joke": true,
     "tags": {
       "role": "arch-adjuster",
       "again": "no",
@@ -839,6 +875,7 @@
     "id": "LOK-039",
     "deck": "look",
     "text": "{He} had a pleasant face and a doubtful mind, which in {his} line counts as a uniform.",
+    "joke": true,
     "tags": {
       "role": "arch-adjuster",
       "again": "no",
@@ -861,6 +898,7 @@
     "id": "LOK-040",
     "deck": "look",
     "text": "{He} had the look of a {man} who had made a thousand beds and knew exactly what got left in them.",
+    "joke": true,
     "tags": {
       "role": "arch-chambermaid",
       "again": "no",
@@ -883,6 +921,7 @@
     "id": "LOK-041",
     "deck": "look",
     "text": "{He} stood half ready to be rung for, and hoping nobody would.",
+    "joke": true,
     "tags": {
       "role": "arch-chambermaid",
       "again": "no",
@@ -905,6 +944,7 @@
     "id": "LOK-042",
     "deck": "look",
     "text": "{He} had red hands and sharp eyes, and I’d have bet the eyes did more of the work.",
+    "joke": true,
     "tags": {
       "role": "arch-chambermaid",
       "again": "no",
@@ -927,6 +967,7 @@
     "id": "LOK-043",
     "deck": "look",
     "text": "{He} had the look of a {man} who picked up heavy things for a living and put them down only when paid.",
+    "joke": true,
     "tags": {
       "role": "arch-longshoreman",
       "again": "no",
@@ -949,6 +990,7 @@
     "id": "LOK-044",
     "deck": "look",
     "text": "{He} had shoulders wide enough to need their own chair.",
+    "joke": true,
     "tags": {
       "role": "arch-longshoreman",
       "again": "no",
@@ -971,6 +1013,7 @@
     "id": "LOK-045",
     "deck": "look",
     "text": "{He} had big scarred hands folded on the table, and {he} kept them there, which I appreciated.",
+    "joke": true,
     "tags": {
       "role": "arch-longshoreman",
       "again": "no",
@@ -993,6 +1036,7 @@
     "id": "LOK-046",
     "deck": "look",
     "text": "{He} had the look of a {man} who could tell you what my coat cost and how much of that was a lie.",
+    "joke": true,
     "tags": {
       "role": "arch-seamstress",
       "again": "no",
@@ -1015,6 +1059,7 @@
     "id": "LOK-047",
     "deck": "look",
     "text": "{He} had pins in {his} lapel and a squint from close work, and {he} used the squint on me.",
+    "joke": true,
     "tags": {
       "role": "arch-seamstress",
       "again": "no",
@@ -1037,6 +1082,7 @@
     "id": "LOK-048",
     "deck": "look",
     "text": "{He} kept smoothing a fold in {his} sleeve that wasn’t there, which is what happens when your hands are never off the clock.",
+    "joke": true,
     "tags": {
       "role": "arch-seamstress",
       "again": "no",
@@ -1059,6 +1105,7 @@
     "id": "LOK-049",
     "deck": "look",
     "text": "{He} had the look of a {man} who had driven every street in the city and had a complaint about each of them.",
+    "joke": true,
     "tags": {
       "role": "arch-hackman",
       "again": "no",
@@ -1103,6 +1150,7 @@
     "id": "LOK-051",
     "deck": "look",
     "text": "{He} sat with one arm along the back of the seat, a {man} expecting a fare and getting me.",
+    "joke": true,
     "tags": {
       "role": "arch-hackman",
       "again": "no",
@@ -1125,6 +1173,7 @@
     "id": "LOK-052",
     "deck": "look",
     "text": "{He} had the look of a {man} who had measured me for a better suit the moment I came in.",
+    "joke": true,
     "tags": {
       "role": "arch-tailor",
       "again": "no",
@@ -1147,6 +1196,7 @@
     "id": "LOK-053",
     "deck": "look",
     "text": "{He} had a tape measure round {his} neck and no intention of taking it off for me.",
+    "joke": true,
     "tags": {
       "role": "arch-tailor",
       "again": "no",
@@ -1169,6 +1219,7 @@
     "id": "LOK-054",
     "deck": "look",
     "text": "{He} glanced at my cuffs, winced, and was too polite to say anything, which was worse.",
+    "joke": true,
     "tags": {
       "role": "arch-tailor",
       "again": "no",
@@ -1191,6 +1242,7 @@
     "id": "LOK-055",
     "deck": "look",
     "text": "{He} had the look of a {man} who had moved a great deal of scenery and been thanked by none of it.",
+    "joke": true,
     "tags": {
       "role": "arch-stagehand",
       "again": "no",
@@ -1235,6 +1287,7 @@
     "id": "LOK-057",
     "deck": "look",
     "text": "{He} stood with {his} weight back, ready to catch something falling, which in {his} line is most things.",
+    "joke": true,
     "tags": {
       "role": "arch-stagehand",
       "again": "no",
@@ -1257,6 +1310,7 @@
     "id": "LOK-058",
     "deck": "look",
     "text": "{He} had the look of a {man} who had heard half the neighbourhood’s business and been asked to forget all of it.",
+    "joke": true,
     "tags": {
       "role": "arch-switchboard",
       "again": "no",
@@ -1301,6 +1355,7 @@
     "id": "LOK-060",
     "deck": "look",
     "text": "{He} had a pleasant, careful voice that sounded rehearsed, because {he} had used it forty times an hour all day.",
+    "joke": true,
     "tags": {
       "role": "arch-switchboard",
       "again": "no",
@@ -1323,6 +1378,7 @@
     "id": "LOK-061",
     "deck": "look",
     "text": "{He} had the look of a {man} who had seen every guest come in late and heard every reason why.",
+    "joke": true,
     "tags": {
       "role": "arch-nightman",
       "again": "no",
@@ -1345,6 +1401,7 @@
     "id": "LOK-062",
     "deck": "look",
     "text": "{He} had a carnation in {his} buttonhole that had been fresh this afternoon and was now just loyal.",
+    "joke": true,
     "tags": {
       "role": "arch-nightman",
       "again": "no",
@@ -1367,6 +1424,7 @@
     "id": "LOK-063",
     "deck": "look",
     "text": "{He} was polite to me with the practised politeness of somebody who is polite to everybody and remembers who tipped.",
+    "joke": true,
     "tags": {
       "role": "arch-nightman",
       "again": "no",
@@ -1389,6 +1447,7 @@
     "id": "LOK-064",
     "deck": "look",
     "text": "{He} had the look of a {man} who had kicked in a line of twenty and could tell you which of the other nineteen were half a step late.",
+    "joke": true,
     "tags": {
       "role": "arch-chorus",
       "again": "no",
@@ -1411,6 +1470,7 @@
     "id": "LOK-065",
     "deck": "look",
     "text": "{He} was between engagements and dressed for the next one, just in case it walked in.",
+    "joke": true,
     "tags": {
       "role": "arch-chorus",
       "again": "no",
@@ -1433,6 +1493,7 @@
     "id": "LOK-066",
     "deck": "look",
     "text": "{He} had stage paint still at the hairline and the bright, tired smile of somebody who does two shows a night.",
+    "joke": true,
     "tags": {
       "role": "arch-chorus",
       "again": "no",
@@ -1455,6 +1516,7 @@
     "id": "LOK-067",
     "deck": "look",
     "text": "{He} had the look of a {man} who would give you odds on anything, including whether I’d get anything out of {him}.",
+    "joke": true,
     "tags": {
       "role": "arch-bookmaker",
       "again": "no",
@@ -1477,6 +1539,7 @@
     "id": "LOK-068",
     "deck": "look",
     "text": "{He} had chalk on {his} cuff and a pencil stub behind {his} ear, and neither of them had ever lost money.",
+    "joke": true,
     "tags": {
       "role": "arch-bookmaker",
       "again": "no",
@@ -1499,6 +1562,7 @@
     "id": "LOK-069",
     "deck": "look",
     "text": "{He} was friendly, with the friendliness of a {man} who knows exactly what you owe {him}.",
+    "joke": true,
     "tags": {
       "role": "arch-bookmaker",
       "again": "no",
@@ -1521,6 +1585,7 @@
     "id": "LOK-070",
     "deck": "look",
     "text": "{He} had the look of a {man} who knew every voter on the block and what each of them wanted for Christmas.",
+    "joke": true,
     "tags": {
       "role": "arch-heeler",
       "again": "no",
@@ -1543,6 +1608,7 @@
     "id": "LOK-071",
     "deck": "look",
     "text": "{He} shook my hand before I’d offered it, which is how you can tell the ones who work for the club.",
+    "joke": true,
     "tags": {
       "role": "arch-heeler",
       "again": "no",
@@ -1565,6 +1631,7 @@
     "id": "LOK-072",
     "deck": "look",
     "text": "{He} had a big warm smile that stopped a good inch short of {his} eyes.",
+    "joke": true,
     "tags": {
       "role": "arch-heeler",
       "again": "no",
@@ -1587,6 +1654,7 @@
     "id": "LOK-073",
     "deck": "look",
     "text": "{He} had the look of a {man} who could tell you what anything was worth, and what you’d take for it.",
+    "joke": true,
     "tags": {
       "role": "arch-pawnman",
       "again": "no",
@@ -1609,6 +1677,7 @@
     "id": "LOK-074",
     "deck": "look",
     "text": "{He} looked at my watch before {he} looked at me, and {he} wasn’t impressed by either.",
+    "joke": true,
     "tags": {
       "role": "arch-pawnman",
       "again": "no",
@@ -1631,6 +1700,7 @@
     "id": "LOK-075",
     "deck": "look",
     "text": "{He} had the pale, patient face of somebody who spends the day behind a grille hearing why things have to go.",
+    "joke": true,
     "tags": {
       "role": "arch-pawnman",
       "again": "no",
@@ -1653,6 +1723,7 @@
     "id": "LOK-076",
     "deck": "look",
     "text": "{He} had the look of a {man} whose whole job was standing in a doorway being larger than the doorway.",
+    "joke": true,
     "tags": {
       "role": "arch-bouncer",
       "again": "no",
@@ -1675,6 +1746,7 @@
     "id": "LOK-077",
     "deck": "look",
     "text": "{He} cracked {his} knuckles one at a time, not at me exactly, but in my general direction.",
+    "joke": true,
     "tags": {
       "role": "arch-bouncer",
       "again": "no",
@@ -1697,6 +1769,7 @@
     "id": "LOK-078",
     "deck": "look",
     "text": "{He} had a nose that had been broken at least twice and an expression that said the other fellows had it worse.",
+    "joke": true,
     "tags": {
       "role": "arch-bouncer",
       "again": "no",
@@ -1719,6 +1792,7 @@
     "id": "LOK-079",
     "deck": "look",
     "text": "{He} had the look of a {man} who could remember forty numbers and forty names and forget any of them for a price.",
+    "joke": true,
     "tags": {
       "role": "arch-runner",
       "again": "no",
@@ -1741,6 +1815,7 @@
     "id": "LOK-080",
     "deck": "look",
     "text": "{He} kept glancing at the street, which in {his} line is the same as breathing.",
+    "joke": true,
     "tags": {
       "role": "arch-runner",
       "again": "no",
@@ -1763,6 +1838,7 @@
     "id": "LOK-081",
     "deck": "look",
     "text": "{He} had quick feet, quick eyes, and a jacket with more inside pockets than a jacket needs.",
+    "joke": true,
     "tags": {
       "role": "arch-runner",
       "again": "no",
@@ -1785,6 +1861,7 @@
     "id": "LOK-082",
     "deck": "look",
     "text": "{He} had the look of a {man} who knew what I drank before I did and wasn’t going to say it out loud.",
+    "joke": true,
     "tags": {
       "role": "bartender",
       "again": "no",
@@ -1807,6 +1884,7 @@
     "id": "LOK-083",
     "deck": "look",
     "text": "{He} kept wiping the same spot on the bar, which had been clean since the last election.",
+    "joke": true,
     "tags": {
       "role": "bartender",
       "again": "no",
@@ -1829,6 +1907,7 @@
     "id": "LOK-084",
     "deck": "look",
     "text": "{He} had the mild, deaf expression bartenders wear when a customer is about to tell them something.",
+    "joke": true,
     "tags": {
       "role": "bartender",
       "again": "no",
@@ -1851,6 +1930,7 @@
     "id": "LOK-085",
     "deck": "look",
     "text": "{He} had the look of a {man} who had opened ten thousand doors and was keeping count of who tipped.",
+    "joke": true,
     "tags": {
       "role": "doorman",
       "again": "no",
@@ -1873,6 +1953,7 @@
     "id": "LOK-086",
     "deck": "look",
     "text": "{He} had a uniform with more brass on it than the average general, and {he} knew it.",
+    "joke": true,
     "tags": {
       "role": "doorman",
       "again": "no",
@@ -1895,6 +1976,7 @@
     "id": "LOK-087",
     "deck": "look",
     "text": "{He} stood very still, with the special knack doormen have for being furniture until somebody needs them.",
+    "joke": true,
     "tags": {
       "role": "doorman",
       "again": "no",
@@ -1917,6 +1999,7 @@
     "id": "LOK-088",
     "deck": "look",
     "text": "{He} had the look of a {man} who had read every paper in the stand and believed none of them.",
+    "joke": true,
     "tags": {
       "role": "newsstand",
       "again": "no",
@@ -1939,6 +2022,7 @@
     "id": "LOK-089",
     "deck": "look",
     "text": "{He} made change without looking at it, which in {his} line is the only skill that matters.",
+    "joke": true,
     "tags": {
       "role": "newsstand",
       "again": "no",
@@ -1983,6 +2067,7 @@
     "id": "LOK-091",
     "deck": "look",
     "text": "{He} had the look of a {man} who had poured a million cups of coffee and been thanked for about six.",
+    "joke": true,
     "tags": {
       "role": "counterman",
       "again": "no",
@@ -2005,6 +2090,7 @@
     "id": "LOK-092",
     "deck": "look",
     "text": "{He} leaned on {his} counter with the calm of somebody who owns the only warm room on the block.",
+    "joke": true,
     "tags": {
       "role": "counterman",
       "again": "no",
@@ -2027,6 +2113,7 @@
     "id": "LOK-093",
     "deck": "look",
     "text": "{He} had a pencil behind {his} ear for orders and no intention of writing mine down.",
+    "joke": true,
     "tags": {
       "role": "counterman",
       "again": "no",
@@ -2049,6 +2136,7 @@
     "id": "LOK-094",
     "deck": "look",
     "text": "{He} had the look of a {man} who had torn a hundred thousand tickets in half and enjoyed maybe three.",
+    "joke": true,
     "tags": {
       "role": "ticket-taker",
       "again": "no",
@@ -2071,6 +2159,7 @@
     "id": "LOK-095",
     "deck": "look",
     "text": "{He} looked at me for a ticket stub first and a face second.",
+    "joke": true,
     "tags": {
       "role": "ticket-taker",
       "again": "no",
@@ -2093,6 +2182,7 @@
     "id": "LOK-096",
     "deck": "look",
     "text": "{He} had the glassy patience of somebody who has watched the same picture forty times from the lobby.",
+    "joke": true,
     "tags": {
       "role": "ticket-taker",
       "again": "no",
@@ -2115,6 +2205,7 @@
     "id": "LOK-097",
     "deck": "look",
     "text": "{He} had the look of a {man} who went up and down all day and had strong opinions about both.",
+    "joke": true,
     "tags": {
       "role": "elevator-man",
       "again": "no",
@@ -2137,6 +2228,7 @@
     "id": "LOK-098",
     "deck": "look",
     "text": "{He} knew every tenant by the floor they got off at, and I could see {him} trying to work out mine.",
+    "joke": true,
     "tags": {
       "role": "elevator-man",
       "again": "no",
@@ -2159,6 +2251,7 @@
     "id": "LOK-099",
     "deck": "look",
     "text": "{He} had white gloves and the gravity of a {man} trusted with the only lift in the building.",
+    "joke": true,
     "tags": {
       "role": "elevator-man",
       "again": "no",
@@ -2181,6 +2274,7 @@
     "id": "LOK-100",
     "deck": "look",
     "text": "{He} had the look of a {man} who had heard every excuse for late rent and kept a drawer for each of them.",
+    "joke": true,
     "tags": {
       "role": "landlady",
       "again": "no",
@@ -2203,6 +2297,7 @@
     "id": "LOK-101",
     "deck": "look",
     "text": "{He} sat where {he} could see the stairs, and I realised that included me.",
+    "joke": true,
     "tags": {
       "role": "landlady",
       "again": "no",
@@ -2225,6 +2320,7 @@
     "id": "LOK-102",
     "deck": "look",
     "text": "{He} counted everything, and I got the feeling I was being counted too.",
+    "joke": true,
     "tags": {
       "role": "landlady",
       "again": "no",
@@ -2247,6 +2343,7 @@
     "id": "LOK-103",
     "deck": "look",
     "text": "{He} had the look of a {man} who had walked the same streets for years and had a favourite doorway on every one of them.",
+    "joke": true,
     "tags": {
       "role": "beat-cop",
       "again": "no",
@@ -2269,6 +2366,7 @@
     "id": "LOK-104",
     "deck": "look",
     "text": "{He} had cold ears, warm boots, and the settled face of somebody who gets paid whether anything happens or not.",
+    "joke": true,
     "tags": {
       "role": "beat-cop",
       "again": "no",
@@ -2291,6 +2389,7 @@
     "id": "LOK-105",
     "deck": "look",
     "text": "{He} rocked on {his} heels and considered me, which is what they teach them instead of manners.",
+    "joke": true,
     "tags": {
       "role": "beat-cop",
       "again": "no",
@@ -2313,6 +2412,7 @@
     "id": "LOK-106",
     "deck": "look",
     "text": "{He} had the look of a {man} who had sat in the same seat so long it had given up and taken {his} shape.",
+    "joke": true,
     "tags": {
       "role": "cabbie",
       "again": "no",
@@ -2335,6 +2435,7 @@
     "id": "LOK-107",
     "deck": "look",
     "text": "{He} had the radio going low and an opinion about every fare of the evening.",
+    "joke": true,
     "tags": {
       "role": "cabbie",
       "again": "no",
@@ -2379,6 +2480,7 @@
     "id": "LOK-109",
     "deck": "look",
     "text": "{He} had the look of a {man} who knew what everybody on the street was taking and why.",
+    "joke": true,
     "tags": {
       "role": "druggist",
       "again": "no",
@@ -2401,6 +2503,7 @@
     "id": "LOK-110",
     "deck": "look",
     "text": "{He} peered at me over {his} spectacles with the caution of somebody who has to sign for things.",
+    "joke": true,
     "tags": {
       "role": "druggist",
       "again": "no",
@@ -2423,6 +2526,7 @@
     "id": "LOK-111",
     "deck": "look",
     "text": "{He} had a clean white coat and a quiet voice that {he} never raised above the price of aspirin.",
+    "joke": true,
     "tags": {
       "role": "druggist",
       "again": "no",
@@ -2467,6 +2571,7 @@
     "id": "LOK-113",
     "deck": "look",
     "text": "{He} looked at me with the polite dread people keep for detectives and dentists.",
+    "joke": true,
     "tags": {
       "role": "any",
       "again": "no",
@@ -2489,6 +2594,7 @@
     "id": "LOK-114",
     "deck": "look",
     "text": "{He} had a face that was trying hard to look as if it had nothing to do with anything.",
+    "joke": true,
     "tags": {
       "role": "any",
       "again": "no",
@@ -2511,6 +2617,7 @@
     "id": "LOK-115",
     "deck": "look",
     "text": "{He} gave me the same look as before, only less of it.",
+    "joke": true,
     "tags": {
       "role": "any",
       "again": "yes",
@@ -2523,6 +2630,7 @@
     "id": "LOK-116",
     "deck": "look",
     "text": "{He} didn’t sigh, but {he} let me watch {him} decide not to.",
+    "joke": true,
     "tags": {
       "role": "any",
       "again": "yes",
@@ -2535,6 +2643,7 @@
     "id": "LOK-117",
     "deck": "look",
     "text": "{He} waited, which with {him} was most of the conversation.",
+    "joke": true,
     "tags": {
       "role": "any",
       "again": "yes",
@@ -2547,6 +2656,7 @@
     "id": "LOK-118",
     "deck": "look",
     "text": "{He} had the patient look of somebody being asked for directions twice.",
+    "joke": true,
     "tags": {
       "role": "any",
       "again": "yes",
@@ -2571,6 +2681,7 @@
     "id": "LOK-120",
     "deck": "look",
     "text": "{He} looked at me, then at the clock, and decided I was still there.",
+    "joke": true,
     "tags": {
       "role": "any",
       "again": "yes",
@@ -2583,6 +2694,7 @@
     "id": "LOK-121",
     "deck": "look",
     "text": "{He} brightened, which is what that kind does when you come back.",
+    "joke": true,
     "tags": {
       "role": "any",
       "again": "yes",
@@ -2619,6 +2731,7 @@
     "id": "LOK-124",
     "deck": "look",
     "text": "{He} gave me the look people give the second question, which is less polite than the one they give the first.",
+    "joke": true,
     "tags": {
       "role": "any",
       "again": "yes",

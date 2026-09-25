@@ -178,6 +178,7 @@
     "id": "not-016",
     "deck": "note",
     "text": "It was arithmetic, and arithmetic needs names put against it before it’s worth anything. I was always better at the names.",
+    "joke": true,
     "tags": {
       "family": "counts",
       "band": "play"
@@ -222,6 +223,7 @@
     "id": "not-020",
     "deck": "note",
     "text": "A description isn’t a name. Half the city answers to one.",
+    "joke": true,
     "tags": {
       "family": "strangers",
       "band": "any"
@@ -233,6 +235,7 @@
     "id": "not-021",
     "deck": "note",
     "text": "Somebody would fit. Finding out who was the part I got paid for, in theory.",
+    "joke": true,
     "tags": {
       "family": "strangers",
       "band": "any"
@@ -409,6 +412,7 @@
     "id": "not-037",
     "deck": "note",
     "text": "It went on the list of things that could matter. It was a long list, and nobody read it but me.",
+    "joke": true,
     "tags": {
       "family": "thing",
       "band": "any"
@@ -511,6 +515,7 @@
     "id": "not-e006",
     "deck": "note",
     "text": "It was one more piece. I didn’t know yet where it went, which is how I feel about most of my furniture.",
+    "joke": true,
     "tags": {
       "family": "any",
       "band": "any"

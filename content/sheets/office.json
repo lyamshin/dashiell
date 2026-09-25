@@ -80,7 +80,7 @@
       "name": "Still up",
       "notes": "Where he was before the room: up, waiting; then the office card, and its thing brought back at the end.",
       "parts": [
-        { "text": "I was still up, which in my line of work is most of the job.", "alt": ["I was awake, which is the one qualification the job asks for.", "Bed was an idea I’d had earlier and not followed up.", "I was still up. In my trade, somebody has to be."] },
+        { "text": "I was still up, which in my line of work is most of the job.", "joke": true, "alt": ["I was awake, which is the one qualification the job asks for.", "Bed was an idea I’d had earlier and not followed up.", "I was still up. In my trade, somebody has to be."] },
         { "hole": "office", "bind": "prop" },
         { "hole": "body" }
       ],

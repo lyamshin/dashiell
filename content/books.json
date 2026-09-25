@@ -528,5 +528,35 @@
     "any": [
       "{Client} had hired me for a night’s work, and got one."
     ]
+  },
+  "watchers": {
+    "$comment": "docs/39 §2: the first time the night meets somebody posted at a room, one line in the detective's voice on what they are good for. By the watcher's trade; `any` for the rest. Names nobody, states no case fact.",
+    "landlady": [
+      "A landlady who sits on her stairs knows who used them. Names, maybe not."
+    ],
+    "bartender": [
+      "A bartender who keeps one eye on the door can tell you how many came through it. The names he keeps for the regulars."
+    ],
+    "doorman": [
+      "A doorman counts the door for a living. He'll know how many went in. Who is another matter."
+    ],
+    "newsstand": [
+      "A man who sells papers on a corner sees everybody who passes it. He'll know how many. The names are a different paper."
+    ],
+    "counterman": [
+      "A counterman knows how many sat at his counter, down to the stool. The names come with the regulars."
+    ],
+    "ticket-taker": [
+      "A ticket-taker tears every stub. He knows how many went in, if not always who."
+    ],
+    "elevator-man": [
+      "An elevator man knows every floor anybody asked for. How many, always. Who, sometimes."
+    ],
+    "druggist": [
+      "A druggist behind his counter sees who comes in. How many, always. Who, when they're regulars."
+    ],
+    "any": [
+      "Somebody who works a room sees who comes into it. The count, always. The names, sometimes."
+    ]
   }
 }

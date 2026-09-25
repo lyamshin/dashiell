@@ -54,6 +54,8 @@ interface Lines {
   motifs: Record<string, { plant: string[]; turn: string[]; end: string[] }>;
   gags: Record<string, { match: string; plant: string[]; end: string[] }>;
   purposes: Record<string, string[]>;
+  /** docs/39 §2: what somebody posted at a room is good for, by their trade. */
+  watchers?: Record<string, string[] | string>;
 }
 
 export const BOOK_LINES = booksJson as unknown as Lines;
@@ -65,7 +67,7 @@ export interface V2Memory {
   /** The page each act opened on. */
   actPages: number[];
   /** Night roles bound, by name: `gag`, `motif`, `tell`. */
-  roles: Record<string, { text: string; short: string; kind: string }>;
+  roles: Record<string, { text: string; short: string; kind: string; by?: Id }>;
   /** Lie steps the notebook has held everything for. */
   caught: string[];
   /** Lines said tonight, so a line is not said twice. */
@@ -379,7 +381,10 @@ export function bookPass(view: CaseView, before: RunState, after: RunState, page
       const text = spec ? fillLine(spec.text, slots, false) : null;
       const short = spec ? fillLine(spec.short, slots, false) : null;
       if (carry && text && short) {
-        mem.roles.tell = { text, short, kind: pieces.kind };
+        // Whose piece it is, so the payoff names the one who counted, not
+        // whoever happened to catch the lie (docs/39, found while playing).
+        const by = clue.source.type === 'person' ? clue.source.personId : undefined;
+        mem.roles.tell = { text, short, kind: pieces.kind, ...(by ? { by } : {}) };
         // Right after the words that brought the piece, before what he makes of it.
         const at = page.blocks.findIndex((b) => b.kind === 'prose' && b.clueId === clue.id);
         // Else before the page names its next lead, or its recap.
@@ -418,9 +423,34 @@ export function bookPass(view: CaseView, before: RunState, after: RunState, page
     if (h) top.push(h);
   }
 
+  // docs/39 §2: the first time the night meets a watcher at their post, one
+  // line on what watchers are good for: they count their rooms.
+  if (!mem.said.includes(WATCHER_LESSON)) {
+    const place = view.placeById.get(page.at);
+    const watcher = place?.watcher
+      ? view.kase.people.find((p) => p.kind === 'fixture' && p.fixtureRole === place.watcher && p.foundAt === place.id)
+      : undefined;
+    const shown = watcher !== undefined && page.blocks.some((b) => (b.kind === 'prose' || b.kind === 'presence') && new RegExp(`\\b${watcher.surname}\\b`).test(b.kind === 'prose' ? b.text : (b.text ?? '')));
+    if (watcher && place?.watcher && shown) {
+      const pool = BOOK_LINES.watchers?.[place.watcher] ?? BOOK_LINES.watchers?.['any'];
+      const lines = Array.isArray(pool) ? pool : [];
+      const line = lines.length > 0 ? (lines[hash(seed, 'watcher', page.n) % lines.length] as string) : null;
+      if (line) {
+        mem.said.push(WATCHER_LESSON);
+        const at = page.blocks.findIndex((b) => b.kind === 'prose' && b.voice !== 'chapter' && new RegExp(`\\b${watcher.surname}\\b`).test(b.text));
+        const block: Block = { kind: 'prose', text: line, voice: 'thought' };
+        if (at >= 0) page.blocks.splice(at + 1, 0, block);
+        else insertBeforeRecap(page, [block]);
+      }
+    }
+  }
+
   if (top.length > 0) page.blocks = [...top, ...page.blocks];
   after.v2 = mem;
 }
+
+/** The marker in `V2Memory.said` that the watchers' line has been said tonight. */
+const WATCHER_LESSON = 'watcher-lesson';
 
 function tellSlots(view: CaseView, state: RunState, clue: Clue, kind: string): Record<string, string | undefined> {
   const src = clue.source.type === 'person' ? view.personById.get(clue.source.personId) : undefined;
@@ -529,7 +559,9 @@ function turnRecap(
   // The tell pays off here unless the turn's own line already said it.
   if (tell && !kind.startsWith(tell.kind)) {
     const spec = BOOK_LINES.tell[tell.kind];
-    const pay = spec ? sayOne(spec.pay, { ...slots, tell: tell.short, Tell: tell.short }, mem, seed, 'tellPay') : null;
+    const teller = tell.by ? view.personById.get(tell.by) : undefined;
+    const own = teller ? personSlots(view, after, 'watcher', teller) : {};
+    const pay = spec ? sayOne(spec.pay, { ...slots, ...own, tell: tell.short, Tell: tell.short }, mem, seed, 'tellPay') : null;
     if (pay) second.push(pay);
   }
   if (newly.length > 1) {

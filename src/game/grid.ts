@@ -28,6 +28,7 @@ import { pronounSlots } from './voice/cast.js';
 import { SAID_PREFIX, displayName, saidRecords, verdictsOn } from './m9.js';
 
 export type { CellMark };
+import { softMarks, type SoftMark } from './guidance.js';
 
 /* ------------------------------------------------------------------ *
  * The model.
@@ -142,6 +143,20 @@ export interface GridCell {
   /** The player's pencil. Never a fact. */
   mark?: CellMark;
   life?: GridLife;
+  /**
+   * Guidance (docs/39 §3): marks to think about, never verdicts — "? not
+   * seen by Abramowitz", "counted 1, 3 claim it". At every tier.
+   */
+  hints?: GridHint[];
+}
+
+/** One soft mark on a cell (docs/39 §3). */
+export interface GridHint {
+  kind: 'unseen' | 'count';
+  text: string;
+  placeId: Id;
+  by?: Id;
+  clueIds: Id[];
 }
 
 export type GridRowKind = 'victim' | 'client' | 'suspect' | 'fixture';
@@ -260,6 +275,8 @@ export interface GridView {
   links: GridLink[];
   /** Whether the grid may flag a disagreement ("!"): Raw and Coddled only. */
   flags: boolean;
+  /** Guidance (docs/39 §3): every soft mark, in the order found, for the key and the text grid. */
+  hints: SoftMark[];
 }
 
 /* ------------------------------------------------------------------ *
@@ -899,6 +916,7 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
   anchors.sort((a, b) => a.tick - b.tick);
 
   /* Rows. */
+  const hints = logic ? softMarks(view, state).filter((h) => inBook.has(h.personId)) : [];
   const makeRow = (personId: Id): GridRow => {
     const person = view.personById.get(personId);
     const kind: GridRowKind =
@@ -927,6 +945,10 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
       const mark = markOf(state, personId, tick);
       const cell: GridCell = { tick, entries: list, conflict: flags && isConflict(list) };
       if (mark) cell.mark = mark;
+      const soft = hints.filter((h) => h.personId === personId && h.tick === tick);
+      if (soft.length > 0) {
+        cell.hints = soft.map((h) => ({ kind: h.kind, text: h.text, placeId: h.placeId, ...(h.by ? { by: h.by } : {}), clueIds: h.clueIds }));
+      }
       if (kind === 'victim' && life && window) {
         const lo = window.ticks[0] as Tick;
         const hi = window.ticks[window.ticks.length - 1] as Tick;
@@ -1058,6 +1080,7 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
     counts,
     links,
     flags,
+    hints,
   };
 }
 

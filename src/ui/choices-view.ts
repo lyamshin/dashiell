@@ -44,6 +44,13 @@ export interface ChoicesOptions {
   /** M9 polish: the picker narrowed to the facts about one person, or everybody. */
   pickerFilter?: Id | null;
   onPickerFilter?: (personId: Id | null) => void;
+  /**
+   * docs/39 §1: from Poached up the picker opens on the facts about them at
+   * the half hours their own account covers; this is "Everything else in
+   * the notebook", opened.
+   */
+  pickerAll?: boolean;
+  onPickerAll?: () => void;
 }
 
 function choiceButton(
@@ -108,6 +115,32 @@ function renderPicker(group: OfferedGroup, opts: ChoicesOptions): HTMLElement {
     for (const line of group.reference ?? []) ul.append(el('li', { text: line }));
     ref.append(ul);
     picker.append(ref);
+  }
+  const focus = group.choices.filter((c) => c.focus === true);
+  const narrow = focus.length > 0 && opts.pickerAll !== true;
+  if (narrow) {
+    picker.append(
+      el('p', { class: 'note picker-focus-note', text: `The facts about ${whose} at the half hours ${whose}’s own story covers, by the half hour.` }),
+    );
+    let section: HTMLElement | null = null;
+    let heading: string | undefined;
+    for (const choice of focus) {
+      if (section === null || choice.section !== heading) {
+        heading = choice.section;
+        section = el('section', { class: 'picker-sec' });
+        if (heading) section.append(el('h4', { class: 'picker-head', text: heading }));
+        picker.append(section);
+      }
+      section.append(factButton(choice, group, opts));
+    }
+    const rest = group.choices.length - focus.length;
+    if (rest > 0) {
+      const more = el('button', { type: 'button', class: 'choice choice--more picker-all', 'aria-expanded': 'false' });
+      more.append(el('span', { class: 'label', text: `Everything else in the notebook (${rest} more)` }), el('span', { class: 'mins', text: 'free' }));
+      more.addEventListener('click', () => opts.onPickerAll?.());
+      picker.append(more);
+    }
+    return picker;
   }
   const filter = opts.pickerFilter ?? null;
   const filters = group.filters ?? [];

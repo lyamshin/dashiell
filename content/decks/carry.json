@@ -113,6 +113,7 @@
     "id": "cry-011",
     "deck": "carry",
     "text": "No one sent me to {who}. I asked about {subject} anyway; I’m self-employed.",
+    "joke": true,
     "tags": {
       "for": "ask-person",
       "lead": "no"
@@ -135,6 +136,7 @@
     "id": "cry-013",
     "deck": "carry",
     "text": "The idea was my own, and I get about one a night. I wanted {who}’s word on {subject}.",
+    "joke": true,
     "tags": {
       "for": "ask-person",
       "lead": "no"
@@ -190,6 +192,7 @@
     "id": "cry-018",
     "deck": "carry",
     "text": "Nobody sent me. A hunch did, and hunches don’t pay cab fare. I wanted {who}’s word on {subject}.",
+    "joke": true,
     "tags": {
       "for": "ask-person",
       "lead": "no"
@@ -355,6 +358,7 @@
     "id": "cry-033",
     "deck": "carry",
     "text": "The idea was mine, which is the cheapest kind. I wanted {who}’s word on {subject} just the same.",
+    "joke": true,
     "tags": {
       "for": "ask-thing",
       "lead": "no"
@@ -377,6 +381,7 @@
     "id": "cry-035",
     "deck": "carry",
     "text": "Nobody had asked me to. Nobody ever does. I asked {who} about {subject} anyway.",
+    "joke": true,
     "tags": {
       "for": "ask-thing",
       "lead": "no"
@@ -850,6 +855,7 @@
     "id": "cry-078",
     "deck": "carry",
     "text": "Nobody sent me, only a hunch. I wanted {who} to walk me through the hours, and for once somebody else could do the walking.",
+    "joke": true,
     "tags": {
       "for": "ask-evening",
       "lead": "no"
@@ -993,6 +999,7 @@
     "id": "cry-091",
     "deck": "carry",
     "text": "No one had told me to press {who}. I did it anyway. Pressing people is half the job, and stairs are the other half.",
+    "joke": true,
     "tags": {
       "for": "ask-self",
       "lead": "no"
@@ -1161,6 +1168,7 @@
     "id": "cry-106",
     "deck": "carry",
     "text": "On {name}’s word, I went through it corner to corner, which at my age means on my knees.",
+    "joke": true,
     "tags": {
       "for": "search-room",
       "lead": "yes"
@@ -1229,6 +1237,7 @@
     "id": "cry-112",
     "deck": "carry",
     "text": "Nobody had said to look here. I looked anyway. Looking is free, and it’s about all I can afford.",
+    "joke": true,
     "tags": {
       "for": "search-room",
       "lead": "no"
@@ -1287,6 +1296,7 @@
     "id": "cry-117",
     "deck": "carry",
     "text": "Nobody had told me to search it. I did, on my own account, which was already overdrawn.",
+    "joke": true,
     "tags": {
       "for": "search-room",
       "lead": "no"
@@ -1320,6 +1330,7 @@
     "id": "cry-120",
     "deck": "carry",
     "text": "Nothing I had found pointed here. I searched on a hunch, which is what I call it when I have nothing.",
+    "joke": true,
     "tags": {
       "for": "search-room",
       "lead": "no"
@@ -1408,6 +1419,7 @@
     "id": "cry-128",
     "deck": "carry",
     "text": "{name} sent me looking for {subject}. People are always sending me places.",
+    "joke": true,
     "tags": {
       "for": "search-thing",
       "lead": "yes"
@@ -1463,6 +1475,7 @@
     "id": "cry-133",
     "deck": "carry",
     "text": "The idea was mine, so the blame would be too. I went looking for {subject}.",
+    "joke": true,
     "tags": {
       "for": "search-thing",
       "lead": "no"
@@ -1575,6 +1588,7 @@
     "id": "cry-n03",
     "deck": "carry",
     "text": "Everything I had pointed here, which wasn’t saying much. I looked.",
+    "joke": true,
     "tags": {
       "for": "search-room",
       "lead": "yes"

@@ -391,10 +391,18 @@ export interface OfferedChoice {
   section?: string;
   people?: Id[];
   source?: string;
+  /**
+   * Guidance (docs/39 §1), the picker only, from Poached up: a fact about the
+   * one being confronted at a half hour their own account covers (about
+   * them, the room they said, or somebody they said they were with). The
+   * picker opens on these; the rest are "Everything else in the notebook".
+   * Never a mark of which one breaks anything.
+   */
+  focus?: boolean;
 }
 
 export interface OfferedGroup {
-  kind: 'ask' | 'search' | 'go' | 'free' | 'confront' | 'continue' | 'rundown' | 'recap';
+  kind: 'ask' | 'search' | 'go' | 'free' | 'confront' | 'continue' | 'rundown' | 'recap' | 'put';
   heading: string;
   personId?: Id;
   choices: OfferedChoice[];
