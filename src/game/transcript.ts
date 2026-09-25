@@ -9,7 +9,7 @@
 
 import { clock } from '../gen/types.js';
 import type { Id, Tick } from '../gen/types.js';
-import { clockAfter } from './clock.js';
+import { clockAfter, shortByPage } from './clock.js';
 import type { CaseView } from './derive.js';
 import { accountRuns, claimedAccount, gameBudget, personName, spanLabel, victimWord } from './derive.js';
 import { buildNotebook } from './notebook.js';
@@ -104,7 +104,7 @@ export function renderPageText(
   const rule = '─'.repeat(WIDTH);
   const head = `${page.head}${' '.repeat(
     Math.max(1, WIDTH - page.head.length - 22),
-  )}${clockAfter(usedBy, budget)}   page ${page.n + 1}`;
+  )}${clockAfter(usedBy, budget, shortByPage(state.log, page.n))}   page ${page.n + 1}`;
   const body = renderPageBody(page, view);
   const foot: string[] = [];
   const cost = page.cost === 0 ? 'free' : `${page.cost} action`;
@@ -165,7 +165,7 @@ export function renderChoicesText(groups: readonly OfferedGroup[], chosen?: stri
     const item = (c: (typeof all)[number]): string =>
       `${c.command === chosen ? '>' : ''}${c.lead ? '*' : ''}${c.label}${c.done ? ' ✓' : ''}${
         c.minutes === usual ? '' : ` (${minutesText(c.minutes)})`
-      }`;
+      }${c.lead && c.why ? ` [${c.why}]` : ''}`;
     const items = group.choices.map(item);
     if (group.more && group.more.length > 0) {
       items.push(`[other topics: ${group.more.map(item).join(' · ')}]`);

@@ -71,11 +71,22 @@ describe('npm run play', () => {
       for (const command of route) {
         const page = run('look');
         // The "Put it to …" picker: opened, read, and shut again for nothing.
-        const put = /^\s+(\d+)\.\s+Put (?:it|another fact) to (\S+) \(opens/m.exec(page);
+        let put = /^\s+(\d+)\.\s+Put (?:it|another fact) to (\S+) \(opens/m.exec(page);
+        if (!put && !pickerTried && night.engine === 'v2') {
+          // docs/40 §3: in v2 "Put it to …" is among a person's topics. A
+          // person opens for nothing, and "back" shuts them for nothing.
+          for (const m of page.matchAll(/^\s+(\d+)\.\s+\*?\s*(\S+).*\btopics?\b/gm)) {
+            const list = run('do', m[1] as string);
+            expect(list).toMatch(/^ASK .+ ABOUT$/m);
+            put = /^\s+(\d+)\.\s+Put (?:it|another fact) to (\S+) \(pick/m.exec(list);
+            if (put) break;
+            expect(run('do', 'back')).toContain('WHAT NEXT');
+          }
+        }
         if (put && !pickerTried) {
           pickerTried = true;
           const picker = run('do', put[1] as string);
-          expect(picker).toMatch(/Which (other )?fact do you read/);
+          expect(picker).toMatch(/Which (other )?fact do you read|Pick something you know that (her|his) story can’t live with/);
           const nothing = /^\s+(\d+)\.\s+Put nothing to them/m.exec(picker);
           expect(nothing).not.toBeNull();
           run('do', (nothing as RegExpExecArray)[1] as string);

@@ -12,7 +12,7 @@ import { ANCHOR_TEMPLATES } from '../src/gen/data/anchors.js';
 import { OWED_TO_TIES } from '../src/gen/data/motives.js';
 import { ownerOnce } from '../src/gen/place-names.js';
 import { choicesFor, stableChoices, type Choice } from '../src/game/choices.js';
-import { clockStrip, minutesAfter } from '../src/game/clock.js';
+import { clockMinutes, clockStrip } from '../src/game/clock.js';
 import { checkClaims, checkRun } from '../src/game/correspond-pages.js';
 import { buildView, gameBudget, gamePar, type CaseView } from '../src/game/derive.js';
 import { gridFrom } from '../src/game/grid.js';
@@ -91,7 +91,9 @@ describe('1. a cost label is what the reducer charges, always', () => {
           const offered = flat(choicesFor(view, s)).filter((x) => x.command !== 'file');
           for (const choice of offered) {
             const r = stepInput(s, choice.command, view);
-            const moved = minutesAfter(r.state.actionsUsed, budget) - minutesAfter(s.actionsUsed, budget);
+            // docs/40 §3: the clock is the calls and the short questions' minutes.
+            const moved =
+              clockMinutes(r.state.actionsUsed, budget, r.state.shortMinutes ?? 0) - clockMinutes(s.actionsUsed, budget, s.shortMinutes ?? 0);
             checked++;
             if (moved !== choice.minutes) problems.push(`${c.label} s${seed} p${s.log.length} "${choice.command}": said ${choice.minutes}, moved ${moved}`);
             // A free label that spends an allowance says so; nothing else does.

@@ -187,6 +187,11 @@ export interface Page {
   blocks: Block[];
   /** Actions this page cost. Zero for everything free. */
   cost: number;
+  /**
+   * docs/40 §3: minutes this page put on the short-question tally (a name
+   * the witness didn't know), less a call's worth when the tally made one.
+   */
+  short?: number;
   /** Deck card ids spent on this page. */
   cardsUsed: string[];
   /** Clue ids delivered by this page, in order. */
@@ -406,6 +411,14 @@ export interface OfferedChoice {
    * Never a mark of which one breaks anything.
    */
   focus?: boolean;
+  /** docs/40 §2: why this choice carries the star, in the detective's voice, eight words at most. */
+  why?: string;
+  /**
+   * docs/40 §3: a question about a name, priced by whether the witness knows
+   * it — a call, or five minutes if they turn out not to. The label says
+   * both ("25 min or 5"); `minutes` is what this one will charge.
+   */
+  nameCost?: { full: number; short: number; rounded?: true };
 }
 
 export interface OfferedGroup {
@@ -428,6 +441,11 @@ export interface OfferedGroup {
    * touches nothing ends it, and costs nothing either.
    */
   follow?: boolean;
+  /**
+   * docs/40 §3, `ask` only: the names this person turned out not to know,
+   * asked already. They are in the notebook, and not offered again.
+   */
+  unknown?: string[];
 }
 
 /**
@@ -553,6 +571,8 @@ export interface RunState {
   detectiveName: string;
   at: Id;
   actionsUsed: number;
+  /** docs/40 §3: minutes of short questions not yet a whole call. */
+  shortMinutes?: number;
   found: Id[];
   threads: Thread[];
   burned: string[];

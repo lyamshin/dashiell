@@ -474,7 +474,7 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
 
   return {
     clock: {
-      time: clockAfter(state.actionsUsed, gameBudget(kase)),
+      time: clockAfter(state.actionsUsed, gameBudget(kase), state.shortMinutes ?? 0),
       actionsLeft: actionsLeft(state.actionsUsed, gameBudget(kase)),
       budget: gameBudget(kase),
       perAction: minutesPerAction(gameBudget(kase)),

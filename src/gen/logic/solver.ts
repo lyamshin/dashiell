@@ -81,6 +81,14 @@ export interface SolverProblem {
   techniques?: boolean;
   /** v2: the dearest technique cost the solver may use. Absent: any. */
   maxCost?: number;
+  /**
+   * docs/40 §1: a head count reads the descriptions at its place and half
+   * hour as heads in it. "One on the stairs at half past eight" and "a man in
+   * his thirties there then" keep a woman off the stairs, before anybody
+   * knows which man it was. Off for the generator (the cases are dealt as
+   * before); the game turns it on to judge what is put to somebody.
+   */
+  pairs?: boolean;
 }
 
 /**
@@ -587,6 +595,34 @@ function candidates(st: SolverState, c: Compiled): Candidate[] {
     if (forced.length === k.n && possible.length > k.n) {
       const whys = forced.flatMap((s) => placedWhy(st, s, k.t));
       for (const s of possible) if (!forced.includes(s)) strikeC(out, st, s, k.t, k.p, { rules: [k.r], whys, tech: 'T4' });
+    } else if (pr.pairs && forced.length < k.n && possible.length > k.n) {
+      // docs/40 §1: a count and the faces seen there then. Each description
+      // no forced person could answer is one more head, when no two of them
+      // could be the same person; with the count full, nobody else was there.
+      const heads: { r: number; open: number[]; whys: Why[] }[] = [];
+      const taken = new Set<number>(forced);
+      for (const d of c.described) {
+        if (d.t !== k.t || d.p !== k.p) continue;
+        if (d.matches.some((s) => forced.includes(s))) continue;
+        const open = d.matches.filter((s) => possible.includes(s));
+        if (open.length === 0 || open.some((s) => taken.has(s))) continue;
+        const whys: Why[] = [];
+        for (const s of d.matches) {
+          if (open.includes(s)) continue;
+          const w = struck(st, s, k.t, k.p);
+          if (w) whys.push(w);
+        }
+        heads.push({ r: d.r, open, whys });
+        for (const s of open) taken.add(s);
+      }
+      if (heads.length > 0 && forced.length + heads.length === k.n) {
+        const premise: Premise = {
+          rules: [k.r, ...heads.map((h) => h.r)],
+          whys: [...forced.flatMap((s) => placedWhy(st, s, k.t)), ...heads.flatMap((h) => h.whys)],
+          tech: 'T7',
+        };
+        for (const s of possible) if (!taken.has(s)) strikeC(out, st, s, k.t, k.p, premise);
+      }
     } else if (possible.length === k.n && forced.length < k.n) {
       const whys: Why[] = [];
       for (let s = 0; s < S; s++) {

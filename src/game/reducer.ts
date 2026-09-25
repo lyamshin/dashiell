@@ -46,7 +46,7 @@ import type {
 } from './types.js';
 import { EMPTY_REPORT, EMPTY_SCENE } from './types.js';
 import type { BeatTrace, PageShape, SceneMemory, SheetUse } from './types.js';
-import { actionsLeft, isOver, minutesAfter } from './clock.js';
+import { actionsLeft, clockMinutes, isOver, minutesAfter, SHORT_MINUTES } from './clock.js';
 import type { CaseView } from './derive.js';
 import {
   claimedAccount,
@@ -57,9 +57,11 @@ import {
   topicKey,
 } from './derive.js';
 import { planErrand } from './errand.js';
+import { starsLine } from './choices.js';
 import {
   accountClueOf,
   canConfront,
+  heldLine,
   judgeConfront,
   type ConfrontRecord,
 } from './m9.js';
@@ -246,10 +248,13 @@ function stageFor(
     persisted: string[];
     /** Whether the client is still in the office while this page happens. */
     clientHere?: boolean;
+    /** docs/40 §3: minutes this page puts on the short-question tally. */
+    short?: number;
   },
 ): Stage {
   const used = state.actionsUsed + at.cost;
   const budget = gameBudget(view.kase);
+  const shortBefore = state.shortMinutes ?? 0;
   return {
     view,
     cast: state.cast,
@@ -257,8 +262,8 @@ function stageFor(
     detectiveName: state.detectiveName,
     at: at.at,
     cost: at.cost,
-    minutes: minutesAfter(used, budget),
-    minutesBefore: minutesAfter(state.actionsUsed, budget),
+    minutes: clockMinutes(used, budget, shortBefore + (at.short ?? 0)),
+    minutesBefore: clockMinutes(state.actionsUsed, budget, shortBefore),
     actionsLeft: actionsLeft(used, budget),
     foundBefore: state.found,
     foundAfter: at.foundAfter,
@@ -391,6 +396,8 @@ function answersToTopic(view: CaseView, personId: Id, topic: TopicRef, found: Id
 /** Why a command costs what it costs. `step` reads the reason; a button reads the number. */
 export interface Price {
   cost: number;
+  /** docs/40 §3: minutes a short question puts on the tally (less a call, when it makes one). */
+  short?: number;
   /**
    * Slack the clock never sees and par still counts: the client's two
    * questions on the house, and the free first ask of somebody who knows him.
@@ -426,7 +433,12 @@ export interface Price {
     /** M11 §A.5: the client names who is in the room. Free, once a visit. */
     | 'rundown'
     /** M12 Part 2: "Go over what I have". Free, anywhere but the office. */
-    | 'recap';
+    | 'recap'
+    /**
+     * docs/40 §3: a name the witness turns out not to know. Five minutes, not
+     * a call; the answer still goes in the notebook.
+     */
+    | 'short';
 }
 
 /** The key a question is remembered under: who, and the topic as the parser reads it. */
@@ -512,7 +524,7 @@ export function followUpOf(view: CaseView, state: RunState): { personId: Id; lie
   if (!last || last.follow || last.lieKey === null || last.n !== 0) return null;
   if (last.outcome === 'wrong' || last.outcome === 'admit' || last.outcome === 'withdraw') return null;
   for (const page of state.log.slice(last.page + 1)) {
-    if (page.cost > 0 || page.found.length > 0 || (page.shape !== undefined && page.shape !== 'repeat')) return null;
+    if (page.cost > 0 || (page.short ?? 0) !== 0 || page.found.length > 0 || (page.shape !== undefined && page.shape !== 'repeat')) return null;
   }
   const here = peopleHereNow(view, state.at, { clientInOffice: state.clientInOffice, found: state.found });
   if (!here.some((p) => p.id === last.personId)) return null;
@@ -629,9 +641,55 @@ export function priceOf(command: Command, state: RunState, view: CaseView): Pric
       if (knowsHim(state.cast.roll, person.id) && !state.freeAsked.includes(person.id)) {
         return { cost: 0, waived: 1, reason: 'familiar' };
       }
+      // docs/40 §3: a name they turn out not to know is five minutes on the
+      // tally; a call once the tally makes one.
+      if (unknownNameOnly(view, person.id, command.topic, state.found)) {
+        // The tally becomes a call when it would reach the next call's
+        // minutes, and keeps the rest, so the clock moves five exactly.
+        const budget = gameBudget(view.kase);
+        const step = minutesAfter(state.actionsUsed + 1, budget) - minutesAfter(state.actionsUsed, budget);
+        const convert = (state.shortMinutes ?? 0) + SHORT_MINUTES >= step;
+        return { cost: convert ? 1 : 0, waived: 0, reason: 'short', short: SHORT_MINUTES - (convert ? step : 0) };
+      }
       return { cost: 1, waived: 0, reason: 'ask' };
     }
   }
+}
+
+/**
+ * docs/40 §3: whether a question is about a name the witness doesn't know,
+ * and brings nothing else: every clue it would bring says they don't know
+ * that person by name ("Rafferty does not know Hauck", "knows Steinbach by
+ * sight only"). v2 only.
+ */
+export function unknownNameOnly(view: CaseView, personId: Id, topic: TopicRef, found: readonly Id[]): boolean {
+  const about = topicPersonOf(view, topic);
+  if (view.kase.engine !== 'v2' || !view.kase.logic || about === null) return false;
+  const clues = answersTo(view, personId, topic, [...found]);
+  return clues.length > 0 && clues.every((c) => notKnownBy(c, personId, about));
+}
+
+/** The person a question is about by name — "Steinbach", or the victim — or null. */
+export function topicPersonOf(view: CaseView, topic: TopicRef): Id | null {
+  if (topic.kind === 'person') return topic.id;
+  if (topic.kind !== 'exact') return null;
+  const t = topic.topic.trim();
+  return view.kase.people.find((p) => p.surname === t || p.name === t)?.id ?? null;
+}
+
+/** A clue that says only that `from` doesn't know `to` by name. */
+export function notKnownBy(clue: Clue, from: Id, to: Id): boolean {
+  return (
+    clue.establishes.length > 0 &&
+    clue.establishes.every(
+      (f) =>
+        f.kind === 'acquainted' &&
+        f.personIds[0] === from &&
+        f.personIds[1] === to &&
+        (f.strength === 'stranger' || f.strength === 'sight') &&
+        f.heard !== true,
+    )
+  );
 }
 
 /**
@@ -724,6 +782,8 @@ export function step(
 
   let at = state.at;
   let cost = 0;
+  /** docs/40 §3: what this page puts on the short-question tally. */
+  let short = 0;
   let waived = 0;
   let head = view.placeById.get(state.at)?.shortName ?? kase.neighborhood;
   let scene: Scene | null = null;
@@ -979,7 +1039,10 @@ export function step(
             text: `I had put that to ${person.surname} already. What came of it is in the notebook, and I read it back instead of asking twice.`,
           },
           ...(before && before.outcome === 'wrong'
-            ? [{ kind: 'note', text: '“That doesn’t touch anything I told you.”' } as Block]
+            ? [
+                { kind: 'note', text: '“That doesn’t touch anything I told you.”' } as Block,
+                { kind: 'note', text: heldLine(view, state, person.id, command.clueId, command.part) } as Block,
+              ]
             : []),
         ];
         shape = 'repeat';
@@ -992,6 +1055,8 @@ export function step(
       // judged against the story it was about. A wrong one ends it there.
       const follow = price.reason === 'confront-follow' ? followUpOf(view, state) : null;
       const judged = judgeConfront(view, state, person.id, clue.id, command.part, follow ? { lieKey: follow.lieKey } : {});
+      // docs/40 §1: a fact that broke nothing says why.
+      if (judged.outcome === 'wrong') judged.why = heldLine(view, state, person.id, clue.id, command.part);
       confronted = {
         personId: person.id,
         clueId: clue.id,
@@ -1062,6 +1127,7 @@ export function step(
         break;
       }
       cost = price.cost;
+      short = price.short ?? 0;
       // §B.2.4: while the client is in the office, his first two questions are
       // free. A man hiring you answers your questions. Like the free first ask
       // this is slack handed to the player and never a shorter route, so it is
@@ -1197,6 +1263,7 @@ export function step(
       stageFor(state, view, dealer, {
         at,
         cost,
+        short,
         foundAfter: found,
         accountsAfter,
         persisted: persistedBurned,
@@ -1238,6 +1305,7 @@ export function step(
     ...state,
     at,
     actionsUsed,
+    ...(short !== 0 || state.shortMinutes !== undefined ? { shortMinutes: (state.shortMinutes ?? 0) + short } : {}),
     found,
     burned: [...state.burned, ...dealer.spent],
     met: mergeMet(
@@ -1274,6 +1342,7 @@ export function step(
     head,
     blocks: nameFirstMentions(view, state.log, blocks),
     cost,
+    ...(short !== 0 ? { short } : {}),
     cardsUsed: dealer.spent,
     found: gained,
     at,
@@ -1295,12 +1364,15 @@ export function step(
       ? 'demand'
       : recapsOn
         ? recapTrigger(view, state, next, page, {
-            before: minutesAfter(state.actionsUsed, budget),
-            after: minutesAfter(actionsUsed, budget),
+            before: clockMinutes(state.actionsUsed, budget, state.shortMinutes ?? 0),
+            after: clockMinutes(actionsUsed, budget, (state.shortMinutes ?? 0) + short),
           })
         : null;
     const bridged = (page.beats ?? []).find((b) => b.kind === 'bridge' && b.rendered)?.targetId;
-    const written = trigger === null ? null : renderRecap(view, next, dealer, trigger, bridged);
+    const written =
+      trigger === null
+        ? null
+        : renderRecap(view, next, dealer, trigger, bridged, trigger === 'demand' && kase.engine === 'v2' ? starsLine(view, next) : null);
     if (written !== null && typeof written !== 'string') {
       const recapBlocks: Block[] = written.paras.map((text) => ({ kind: 'prose', text, voice: 'recap' }));
       const trace: BeatTrace = {
