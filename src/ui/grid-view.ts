@@ -189,7 +189,7 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
 
   /** What a cell of nothing but strikes says, or null when it says anything else. */
   const strikeSig = (row: GridRow, cell: GridCell): string | null => {
-    if (cell.entries.length === 0 || cell.mark || cell.life || cell.conflict) return null;
+    if (cell.entries.length === 0 || cell.mark || cell.life || cell.conflict || (cell.hints ?? []).length > 0) return null;
     if (cell.entries.some((e) => e.present)) return null;
     if (ui.selected?.kind === 'cell' && ui.selected.personId === row.personId && ui.selected.tick === cell.tick) return null;
     const groups = grouped(cell.entries)
@@ -281,6 +281,17 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
       }
       for (const g of grouped(cell.entries)) b.append(chip(g, placeById, nameById));
       if (cell.conflict) b.append(el('span', { class: 'dgrid-bang', 'aria-hidden': 'true', text: '!' }));
+      // docs/39 §3: a soft mark, to think about.
+      for (const h of cell.hints ?? []) {
+        b.append(
+          el('span', {
+            class: `dgrid-hint dgrid-hint--${h.kind}`,
+            'aria-hidden': 'true',
+            title: h.text,
+            text: h.kind === 'unseen' ? `? ${h.by ? (nameById.get(h.by) ?? '').charAt(0) : ''}` : h.text.replace(/^counted (\d+), (\d+) claim it$/, '$1 of $2'),
+          }),
+        );
+      }
       if (cell.mark?.at) b.append(pencil(cell.mark.at, false, placeById));
       for (const p of cell.mark?.notAt ?? []) b.append(pencil(p, true, placeById));
     }
@@ -556,6 +567,7 @@ function cellWords(
     parts.unshift(cell.life === 'before' ? grid.life.before : cell.life === 'after' ? grid.life.after : 'inside the window');
   }
   if (cell.conflict) parts.push('the sources disagree');
+  for (const h of cell.hints ?? []) parts.push(h.text);
   if (cell.mark?.at) parts.push(`pencilled at ${places.get(cell.mark.at)?.shortName ?? ''}`);
   for (const p of cell.mark?.notAt ?? []) parts.push(`pencilled not at ${places.get(p)?.shortName ?? ''}`);
   return `${row.name}, ${t}: ${parts.length > 0 ? parts.join('; ') : 'nothing known'}`;
@@ -647,6 +659,18 @@ function detailFor(
     box.append(el('p', { class: 'dgrid-dnote', text: `${w} the ${grid.window.label} as the notebook has it.` }));
   }
   if (cell.conflict) box.append(el('p', { class: 'dgrid-dnote dgrid-dnote--bang', text: '! The sources disagree.' }));
+  for (const hint of cell.hints ?? []) {
+    const at = places.get(hint.placeId)?.shortName ?? hint.placeId;
+    box.append(
+      el('p', {
+        class: 'dgrid-dnote dgrid-dnote--hint',
+        text:
+          hint.kind === 'unseen'
+            ? `${hint.text}: ${row.name} says ${at}, and ${names.get(hint.by ?? '') ?? 'a witness'} was there and did not name ${row.name}. Something to think about, not a fact.`
+            : `${hint.text} at ${at}. Something to think about, not a fact.`,
+      }),
+    );
+  }
   const seen = new Set<Id>();
   for (const e of cell.entries) {
     if (seen.has(e.clueId)) continue;

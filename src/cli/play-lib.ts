@@ -39,6 +39,7 @@ import { storyOf, storyParagraphs } from '../game/story.js';
 import { renderNotebookText, renderPageBody, wrap } from '../game/transcript.js';
 import { EMPTY_REPORT, TOLD_CHOICES, type Report, type RunState, type Told } from '../game/types.js';
 import { HELP_LINES, HELP_NOTE, LIE_RULE, LIE_RULE_NOTE } from '../game/voice-data.js';
+import { TEACH_LINES, TEACH_TITLE } from '../game/guidance.js';
 import { renderTruthSheet } from '../sheet/truthSheet.js';
 
 const WIDTH = 76;
@@ -80,6 +81,12 @@ export interface PlaySave {
   events: PlayEvent[];
   /** Whose "Put it to …" picker is open, if one is. Not a page; free. */
   picker: Id | null;
+  /**
+   * docs/39 §1: from Poached up the picker opens on the facts about them at
+   * the half hours their account covers; "Everything else in the notebook"
+   * opens the rest. Free; shut again with the picker.
+   */
+  pickerAll?: boolean;
   /** An affair's report, filled in, while the client waits to be told something. */
   pendingReport: Report | null;
 }
@@ -300,7 +307,7 @@ function choicesText(night: Night): string {
     if (g !== lastGroup) {
       // The confront button carries its own words; the free rows share one heading.
       const heading =
-        g.kind === 'confront'
+        g.kind === 'confront' || g.kind === 'put'
           ? ''
           : g.kind === 'ask' && g.personId
             ? `Ask ${displayName(view, state, g.personId)} about:`
@@ -308,7 +315,7 @@ function choicesText(night: Night): string {
               ? `${g.heading}:`
               : 'Free:';
       if (heading === '' || heading !== lastHeading) {
-        if (lastGroup !== null) out.push('');
+        if (lastGroup !== null && !(g.kind === 'put' && lastGroup.kind === 'put')) out.push('');
         if (heading !== '') out.push(heading);
       }
       lastHeading = heading;
@@ -317,14 +324,14 @@ function choicesText(night: Night): string {
     if (g.kind === 'confront') {
       const fresh = g.choices.find((c) => !c.done);
       const cost = fresh ? minutesText(fresh.minutes) : 'free';
+      const focused = g.choices.filter((c) => c.focus).length;
+      const whose = g.personId ? displayName(view, state, g.personId) : 'them';
+      const list =
+        focused > 0
+          ? `opens the ${focused} ${focused === 1 ? 'fact' : 'facts'} about ${whose} at the hours of ${whose}’s own story, and everything else in the notebook one step further`
+          : `opens the list of ${g.choices.length} ${g.choices.length === 1 ? 'fact' : 'facts'} in the notebook`;
       out.push(
-        itemLine(
-          item.n,
-          item.choice,
-          ` (opens the list of ${g.choices.length} ${g.choices.length === 1 ? 'fact' : 'facts'} in the notebook; ${
-            cost === 'free' ? 'a fact costs nothing' : `each fact costs ${cost}`
-          })`,
-        ),
+        itemLine(item.n, item.choice, ` (${list}; ${cost === 'free' ? 'a fact costs nothing' : `each fact costs ${cost}`})`),
       );
       continue;
     }
@@ -332,7 +339,14 @@ function choicesText(night: Night): string {
     if (more.length > 0 && item.choice === more[0]) out.push('    Other topics:');
     out.push(itemLine(item.n, item.choice));
   }
-  out.push('', 'A star is an open lead. ✓ is done already, and free to do again.');
+  out.push(
+    '',
+    wrap(
+      view.kase.engine === 'v2'
+        ? 'A star is a lead worth taking now (never more than three). ✓ is done already, and free to do again.'
+        : 'A star is an open lead. ✓ is done already, and free to do again.',
+    ),
+  );
   return out.join('\n');
 }
 
@@ -361,18 +375,41 @@ function pickerText(night: Night, group: ChoiceGroup): string {
     out.push('', `What ${whose} told me:`);
     for (const line of group.reference ?? []) out.push(wrap(line, WIDTH, '    '));
   }
+  const { shown, rest } = pickerLists(night, group);
+  const focused = shown.length < group.choices.length || group.choices.some((c) => c.focus);
+  if (focused && shown.length > 0) {
+    out.push('', wrap(`The facts about ${whose} at the half hours ${whose}’s own story covers, by the half hour:`));
+  }
   let heading: string | undefined;
   let n = 1;
-  for (const c of group.choices) {
-    if (n === 1 || c.section !== heading) {
+  let first = true;
+  for (const c of shown) {
+    if (first || c.section !== heading) {
       heading = c.section;
       out.push('', heading ?? '');
+      first = false;
     }
     out.push(itemLine(n++, c as Choice, c.source ? ` (${c.source})` : ''));
   }
   if (group.choices.length === 0) out.push('', 'Nothing in the notebook about them yet.');
+  else if (shown.length === 0) out.push('', `Nothing in the notebook about ${whose} at those half hours.`);
+  if (rest > 0) {
+    out.push('', itemLine(n++, { command: '', label: `Everything else in the notebook (${rest} more)`, minutes: 0, lead: false, done: false }));
+  }
   out.push('', itemLine(n, { command: '', label: 'Put nothing to them', minutes: 0, lead: false, done: false }));
   return out.join('\n');
+}
+
+/**
+ * The facts the picker shows, in order, and how many more are behind
+ * "Everything else in the notebook": from Poached up the picker opens on the
+ * focused facts (docs/39 §1); once opened wide, or at Raw and Coddled, it
+ * shows every one.
+ */
+function pickerLists(night: Night, group: ChoiceGroup): { shown: ChoiceGroup['choices']; rest: number } {
+  const focus = group.choices.filter((c) => c.focus);
+  if (focus.length === 0 || night.save.pickerAll) return { shown: group.choices, rest: 0 };
+  return { shown: focus, rest: group.choices.length - focus.length };
 }
 
 /* ------------------------------------------------------------ the form */
@@ -607,7 +644,7 @@ function helpText(night: Night | null, savePath: string | undefined): string {
       'The book has no text box: every page ends in choices, and this tool prints them numbered, with what each costs. Pick one by its number, or by its words exactly as printed.',
     ),
     '',
-    `  npm run play -- new --seed N --tier 0..5 [--level 1..4] [--engine v2] --save ${s}`,
+    `  npm run play -- new --seed N --tier 0..5 [--level 1..4] [--engine v2] [--no-teach] --save ${s}`,
     `  npm run play -- look --save ${s}              the page and its choices again`,
     `  npm run play -- do "<number or words>" --save ${s}`,
     `  npm run play -- page <n> --save ${s}          turn back to an earlier page`,
@@ -689,7 +726,18 @@ function cmdNew(io: PlayIo, a: Args): string {
   };
   const night = deal(save);
   store(io, path, save);
-  return [titleText(save), '', caseLine(night.kase), '', DOUBLE, '', lookText(night, path)].join('\n');
+  // docs/39 §5: the teaching page, before the office. This tool keeps no
+  // profile, so every night it deals is a first night; --no-teach skips it.
+  const teach = a.values.has('no-teach') ? [] : [teachText(), '', DOUBLE, ''];
+  return [titleText(save), '', caseLine(night.kase), '', DOUBLE, '', ...teach, lookText(night, path)].join('\n');
+}
+
+/** docs/39 §5: four lines in the detective's voice, before the office. */
+function teachText(): string {
+  const out = [TEACH_TITLE.toUpperCase(), ''];
+  for (const line of TEACH_LINES) out.push(wrap(line), '');
+  out.push(wrap('(Shown on a first night. `new --no-teach` leaves it out.)'));
+  return out.join('\n');
 }
 
 function resolveChoice(items: readonly Numbered[], raw: string): Numbered | null {
@@ -731,15 +779,24 @@ function cmdDo(io: PlayIo, a: Args, path: string): string {
   const { groups, items } = menuOf(night);
   const picker = pickerGroup(night);
   if (picker) {
-    const facts: Numbered[] = picker.choices.map((c, i) => ({ n: i + 1, choice: c as Choice, group: picker }));
-    const nothing = facts.length + 1;
+    const { shown, rest } = pickerLists(night, picker);
+    const facts: Numbered[] = shown.map((c, i) => ({ n: i + 1, choice: c as Choice, group: picker }));
+    const wide = rest > 0 ? facts.length + 1 : -1;
+    const nothing = facts.length + (rest > 0 ? 2 : 1);
     const v = fold(raw);
     if (v === String(nothing) || v === 'put nothing to them') {
-      night = commit(io, path, night, [], { picker: null });
+      night = commit(io, path, night, [], { picker: null, pickerAll: false });
+      return lookText(night, path);
+    }
+    if (v === String(wide) || v.startsWith('everything else')) {
+      night = commit(io, path, night, [], { pickerAll: true });
       return lookText(night, path);
     }
     const hit = resolveChoice(facts, raw);
     if (hit) return take(io, path, night, hit.choice.command);
+    // A fact behind "Everything else", by its words.
+    const hidden = /^\d+$/.test(v) ? null : resolveChoice(picker.choices.map((c) => ({ n: 0, choice: c as Choice, group: picker })), raw);
+    if (hidden) return take(io, path, night, hidden.choice.command);
     // Anything else on the page can still be chosen by its words.
     const other = /^\d+$/.test(v) ? null : resolveChoice(items, raw);
     if (!other) fail(`No fact ${raw} in the list. \`look\` shows it again.`);
@@ -762,7 +819,7 @@ function cmdDo(io: PlayIo, a: Args, path: string): string {
 
 function chosen(io: PlayIo, path: string, night: Night, hit: Numbered): string {
   if (hit.group.kind === 'confront') {
-    const opened = commit(io, path, night, [], { picker: hit.group.personId ?? null });
+    const opened = commit(io, path, night, [], { picker: hit.group.personId ?? null, pickerAll: false });
     return lookText(opened, path);
   }
   if (hit.choice.command === 'notebook') return renderNotebookText(night.view, night.state, { book: true });
@@ -770,7 +827,7 @@ function chosen(io: PlayIo, path: string, night: Night, hit: Numbered): string {
 }
 
 function take(io: PlayIo, path: string, night: Night, command: string): string {
-  const next = commit(io, path, night, [{ do: command }], { picker: null });
+  const next = commit(io, path, night, [{ do: command }], { picker: null, pickerAll: false });
   return lookText(next, path);
 }
 
@@ -779,7 +836,7 @@ function cmdConfront(io: PlayIo, a: Args, path: string): string {
   requirePlaying(night);
   if (night.state.reportOpen) fail('The report form is open; nobody is left to put anything to.');
   const name = fold(a.arg ?? '');
-  if (name === 'off' || name === 'nothing') return lookText(commit(io, path, night, [], { picker: null }), path);
+  if (name === 'off' || name === 'nothing') return lookText(commit(io, path, night, [], { picker: null, pickerAll: false }), path);
   const groups = choicesFor(night.view, night.state).filter((g) => g.kind === 'confront');
   const hit = groups.find((g) => {
     const person = night.view.personById.get(g.personId as Id);
@@ -794,7 +851,7 @@ function cmdConfront(io: PlayIo, a: Args, path: string): string {
         : `Nobody here by that name to put anything to. This page offers: ${offered.join(', ')}.`,
     );
   }
-  return lookText(commit(io, path, night, [], { picker: hit.personId ?? null }), path);
+  return lookText(commit(io, path, night, [], { picker: hit.personId ?? null, pickerAll: false }), path);
 }
 
 function gridPeople(night: Night): { id: Id; name: string }[] {

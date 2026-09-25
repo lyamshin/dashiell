@@ -243,6 +243,20 @@ table.dgrid button {
   box-shadow: inset 0 0 0 2px var(--ink);
 }
 
+/* docs/39 §3: a soft mark — a question, not a fact. Dashed, never the accent. */
+.dgrid-hint {
+  display: inline-block;
+  margin-top: 1px;
+  padding: 0 2px;
+  border: 1px dashed var(--ink-faint);
+  border-radius: 2px;
+  color: var(--ink-soft);
+  font-size: 0.62rem;
+  line-height: 1.2;
+  font-style: italic;
+  white-space: nowrap;
+}
+
 .dgrid-cell.lit,
 .dgrid-mark.lit,
 .dgrid-tick.lit {
@@ -484,6 +498,10 @@ tr.collapsed .dgrid-surname {
 .dgrid-dnote--bang {
   color: var(--accent);
   font-style: normal;
+}
+
+.dgrid-dnote--hint {
+  font-style: italic;
 }
 
 .dgrid-src {

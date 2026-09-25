@@ -23,6 +23,19 @@ import type { Command, OfferedChoice, OfferedGroup, RunState } from './types.js'
 import { buildNotebook, type Notebook } from './notebook.js';
 import { possessiveOf, pronounOf } from './voice/cast.js';
 import {
+  clientPointerOnly,
+  claimedNow,
+  firstVisit,
+  focusOn,
+  graphStars,
+  pickerFocus,
+  readyConfronts,
+  readyOn,
+  softMarks,
+  watcherOf,
+  type StarCandidate,
+} from './guidance.js';
+import {
   accountClueOf,
   canConfront,
   displayName,
@@ -53,10 +66,19 @@ export interface Choice extends OfferedChoice {
    * place in the list. Never drawn; dropped before the page keeps its groups.
    */
   riding?: boolean;
+  /**
+   * What it would bring, if taken now: for the star pass (docs/39 §2).
+   * Dropped before the page keeps its groups.
+   */
+  gains?: Id[];
 }
 
 export interface ChoiceGroup extends OfferedGroup {
-  kind: 'ask' | 'search' | 'go' | 'free' | 'confront' | 'continue' | 'rundown' | 'recap';
+  /**
+   * `put` (docs/39 §1): at Raw and Coddled, the ready-made confrontation — a
+   * fact in hand that truly breaks somebody's account, named on the button.
+   */
+  kind: 'ask' | 'search' | 'go' | 'free' | 'confront' | 'continue' | 'rundown' | 'recap' | 'put';
   /** "Ask Callahan about", "Search", "Go to". */
   heading: string;
   /** For `ask` only: whose topics these are. */
@@ -277,7 +299,8 @@ function choice(
     price.reason === 'ask-again' ||
     price.reason === 'self-told' ||
     price.reason === 'confront-again';
-  const gains = gainsOf(view, state, parsed.command).filter((id) => targets.has(id));
+  const all = gainsOf(view, state, parsed.command);
+  const gains = all.filter((id) => targets.has(id));
   const lead = gains.length > 0;
   // Shorter nights §2: a lead to somebody's account is taken by any first
   // question to them, so every such question carries the mark. `riding` says
@@ -294,7 +317,14 @@ function choice(
     done,
     ...(freeNote ? { freeNote } : {}),
     ...(riding ? { riding: true } : {}),
+    ...(all.length > 0 ? { gains: all } : {}),
   };
+}
+
+/** Would "why I was hired" bring anything the notebook lacks, their evening aside? */
+function hireBrings(view: CaseView, state: RunState, person: Person): boolean {
+  const rider = accountRider(view, person.id, { kind: 'hire' }, state.found);
+  return answersTo(view, person.id, { kind: 'hire' }, state.found).some((c) => c.id !== rider?.id);
 }
 
 /** A person's topics, in §1.2's order, with the lead topics first and marked. */
@@ -320,11 +350,25 @@ function askGroup(view: CaseView, state: RunState, person: Person, targets: Set<
   // of their own (a watcher at their post) has no evening to give; the
   // button would only ever get "I can't help you there", so it is not offered.
   const hasEvening = !view.kase.logic || accountClueOf(view, person.id) !== null;
+  const v2 = view.kase.engine === 'v2';
   const fixed: Choice[] = [
     ...(hasEvening ? [ask('that evening', `${possessiveOf(person)} evening`)] : []),
     ask('themselves', `${pronounOf(person) === 'she' ? 'herself' : 'himself'}`),
   ];
-  if (person.id === view.client.id) fixed.push(ask('why I was hired', 'why I was hired'));
+  // Guidance (docs/39): in v2 the client's reasons are on page one, and the
+  // question brought nothing but "I've told you what I know" (and, first,
+  // spent a question on the house on it). It is offered while it would
+  // bring something the notebook lacks.
+  if (person.id === view.client.id && (!v2 || hireBrings(view, state, person))) fixed.push(ask('why I was hired', 'why I was hired'));
+  // Guidance (docs/39 §2): a watcher at their post is asked about the room
+  // they watch — their counts, their doorway. In a tiered case no room is a
+  // topic otherwise, and in v2 no lead ever pointed there, so the counts the
+  // lie rule teaches were out of reach.
+  const post = v2 && view.kase.logic ? watcherOf(view, state.at) : null;
+  if (post && post.id === person.id) {
+    const place = view.placeById.get(state.at);
+    if (place) fixed.push(ask(place.shortName, place.shortName));
+  }
 
   // 4. People, 5. places, 6. things the notebook knows.
   const rest: Choice[] = [];
@@ -418,6 +462,18 @@ export function choicesFor(view: CaseView, state: RunState): ChoiceGroup[] {
     const person = view.personById.get(id);
     if (person) groups.push(askGroup(view, state, person, targets));
   }
+  // Guidance (docs/39 §1): at Raw and Coddled, a fact in hand that truly
+  // breaks somebody's own account, offered ready-made with the fact named —
+  // the reducer's own judgement, so it always lands. A fact behind a mark on
+  // the grid first, so the mark and the button say the same thing.
+  const ready = readyOn(view) ? readyConfronts(view, state, new Set(softMarks(view, state).flatMap((m) => m.clueIds))) : [];
+  if (ready.length > 0) {
+    groups.push({
+      kind: 'put',
+      heading: '',
+      choices: ready.map((r) => ({ ...choice(view, state, targets, r.command, r.label), lead: false })),
+    });
+  }
   // M9 §3: "Put it to Hanrahan" — the facts in the notebook, for anybody here
   // whose own account is written down. Never marked: choosing the fact that
   // breaks what they said is the player's work, not the page's.
@@ -481,7 +537,100 @@ export function choicesFor(view: CaseView, state: RunState): ChoiceGroup[] {
       { command: 'file', label: 'File the report', minutes: 0, lead: false, done: false },
     ],
   });
+  restar(view, state, groups);
   return groups;
+}
+
+/**
+ * Guidance (docs/39 §2): what carries the star.
+ *
+ * - **v2:** of the leads the notebook has opened (a question that takes one,
+ *   a walk to where one waits), the ones that bring a fact an open step of
+ *   the deduction graph or an open route against a rival rests on, at most
+ *   three, a question here before a walk, nearest the bottleneck first
+ *   (`graphStars`). A lead to a dead end is still offered, and not starred.
+ *   The client's pointer is starred only when what it points at serves the
+ *   graph, like anything else. On the first visit to a watched room, asking
+ *   the watcher about it comes first.
+ * - **v1:** the leads as before, less the ones only the client's pointer
+ *   opened.
+ *
+ * Mutates the groups' choices, and drops what the pass read (`gains`).
+ */
+function restar(view: CaseView, state: RunState, groups: ChoiceGroup[]): void {
+  const strip = (c: Choice): void => {
+    delete c.gains;
+  };
+  const every = groups.flatMap((g) => [...g.choices, ...(g.more ?? [])]);
+  if (view.kase.engine === 'v2' && view.kase.v2) {
+    // The candidates are the leads the notebook has opened — a question that
+    // takes one, a walk to where one is — and, on the first visit to a
+    // watched room, asking the watcher about it. What each would bring is
+    // weighed against the graph's open steps and open routes.
+    const first = firstVisit(state);
+    const post = watcherOf(view, state.at);
+    const targets = openTargets(view, state.found);
+    const leadPlaces = new Set(state.threads.map((t) => t.placeId));
+    const cands: StarCandidate[] = [];
+    for (const g of groups) {
+      if (g.kind === 'confront' || g.kind === 'put' || g.kind === 'free' || g.kind === 'rundown' || g.kind === 'recap') continue;
+      for (const c of [...g.choices, ...(g.more ?? [])]) {
+        const isGo = g.kind === 'go';
+        const place = isGo ? view.places.find((p) => `go ${p.shortName}` === c.command) : undefined;
+        const watcherFirst =
+          first && post !== null && g.personId === post.id && c.command === `ask ${post.surname} about ${view.placeById.get(state.at)?.shortName ?? ''}`;
+        const gains = isGo
+          ? place && leadPlaces.has(place.id)
+            ? reachableAt(view, state, place.id).filter((id) => targets.has(id))
+            : []
+          : watcherFirst
+            ? (c.gains ?? [])
+            : (c.gains ?? []).filter((id) => targets.has(id));
+        cands.push({ command: c.command, gains, go: isGo, evening: / about that evening$/.test(c.command), watcherFirst, done: c.done });
+      }
+    }
+    const starred = graphStars(view, state.found, cands);
+    for (const c of every) c.lead = starred.has(c.command);
+  } else if (view.kase.logic) {
+    const pointer = clientPointerOnly(view, state.found);
+    if (pointer.size > 0) {
+      const targets = openTargets(view, state.found);
+      const kept = new Set([...targets].filter((t) => !pointer.has(t)));
+      for (const g of groups) {
+        for (const c of [...g.choices, ...(g.more ?? [])]) {
+          if (!c.lead) continue;
+          if (g.kind === 'go') {
+            const place = view.places.find((p) => `go ${p.shortName}` === c.command);
+            c.lead = state.threads.some((t) => t.placeId === place?.id && kept.has(t.clueId));
+          } else if (g.kind !== 'continue') {
+            c.lead = (c.gains ?? []).some((id) => kept.has(id));
+          }
+        }
+      }
+    }
+  }
+  every.forEach(strip);
+}
+
+/**
+ * What a walk to `placeId` could bring: what the room gives up to a search,
+ * and what the questions the page there would offer would fetch — the same
+ * topic lists, priced from there. For the star pass only: a star on a walk
+ * is never for something the page it leads to could not then offer.
+ */
+function reachableAt(view: CaseView, state: RunState, placeId: Id): Id[] {
+  const have = new Set(state.found);
+  const out = new Set<Id>();
+  if (!(state.searched ?? []).includes(placeId)) {
+    for (const c of view.placeClues.get(placeId) ?? []) if (!have.has(c.id)) out.add(c.id);
+  }
+  const there: RunState = { ...state, at: placeId };
+  const none = new Set<Id>();
+  for (const person of peopleHereNow(view, placeId, { clientInOffice: state.clientInOffice, found: state.found })) {
+    const g = askGroup(view, there, person, none);
+    for (const c of [...g.choices, ...(g.more ?? [])]) for (const id of c.gains ?? []) out.add(id);
+  }
+  return [...out];
 }
 
 /**
@@ -517,9 +666,26 @@ export function confrontGroup(view: CaseView, state: RunState, person: Person): 
     if (f.place !== null) return placeTitle(f.place);
     return 'When things happened';
   };
+  // Guidance (docs/39 §1): from Poached up the picker opens on the facts
+  // about them at the half hours their own account covers, grouped by the
+  // half hour, and the rest are one tap away. Nothing says which one breaks it.
+  const claimed = focusOn(view) ? claimedNow(view, state, person.id) : new Map();
+  const focusOf = (f: PickFact): { tick: number; section: string } | null => {
+    if (claimed.size === 0) return null;
+    const clue = view.findableById.get(f.clueId);
+    return clue ? pickerFocus(view, state, person, clue, f.part, claimed) : null;
+  };
+  const focused = new Map(facts.map((f) => [f, focusOf(f)]));
   const sorted = facts
     .map((f, i) => ({ f, i }))
-    .sort((a, b) => rank(a.f) - rank(b.f) || a.f.first - b.f.first || a.i - b.i)
+    .sort((a, b) => {
+      const fa = focused.get(a.f);
+      const fb = focused.get(b.f);
+      if (fa && !fb) return -1;
+      if (fb && !fa) return 1;
+      if (fa && fb && fa.tick !== fb.tick) return fa.tick - fb.tick;
+      return rank(a.f) - rank(b.f) || a.f.first - b.f.first || a.i - b.i;
+    })
     .map((x) => x.f);
   const choices = sorted.map((f) => {
     const who = subject(f);
@@ -533,11 +699,14 @@ export function confrontGroup(view: CaseView, state: RunState, person: Person): 
         : surname && f.text.startsWith(`${surname} says: `)
           ? `own word: ${f.text.slice(surname.length + 7)}`
           : f.text;
+    const focus = focused.get(f);
+    const { gains: _gains, ...plain } = choice(view, state, new Set(), `put ${partRef(f.clueId, f.part)} to ${person.surname}`, label);
     return {
-      ...choice(view, state, new Set(), `put ${partRef(f.clueId, f.part)} to ${person.surname}`, label),
-      section: sectionOf(f),
+      ...plain,
+      section: focus ? focus.section : sectionOf(f),
       people: f.people,
       source: f.source,
+      ...(focus ? { focus: true } : {}),
     };
   });
   // Their own word, for reference: the account's spans, and anything said since.
@@ -624,8 +793,10 @@ export function stableChoices(
   // is nothing new (a rundown given, nothing left to go on with), so it is
   // done, and choosing it writes the book's "already" page, free.
   const ghost = (c: OfferedChoice): Choice => {
-    const { riding: _riding, ...plain } = choice(view, state, targets, c.command, c.label);
-    return { ...plain, done: plain.done || plain.minutes === 0 };
+    const { riding: _riding, gains: _gains, ...plain } = choice(view, state, targets, c.command, c.label);
+    const done = plain.done || plain.minutes === 0;
+    // docs/39 §2: in v2 the star is the star pass's alone, and a choice done is never starred.
+    return { ...plain, done, lead: view.kase.engine === 'v2' ? false : plain.lead };
   };
   const merge = (old: readonly OfferedChoice[], now: readonly Choice[]): Choice[] => {
     const byCommand = new Map(now.map((c) => [c.command, c]));

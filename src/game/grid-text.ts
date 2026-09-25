@@ -97,6 +97,10 @@ export function renderGridText(view: CaseView, state: RunState): string {
       lines.push(`${e.present ? '' : '-'}${ab(e.placeId)}${suffix}`);
     }
     if (cell.conflict && lines.length > first) lines[first] = `!${lines[first] ?? ''}`;
+    // docs/39 §3: the soft marks, short in the cell and in full under the grid.
+    for (const h of cell.hints ?? []) {
+      lines.push(h.kind === 'unseen' ? `?not:${h.by ? initial(h.by) : ''}` : `${h.text.replace(/^counted (\d+), (\d+) claim it$/, '$1<$2')}#`);
+    }
     if (cell.mark?.at) lines.push(`(${ab(cell.mark.at)})`);
     for (const p of cell.mark?.notAt ?? []) lines.push(`(-${ab(p)})`);
     return lines;
@@ -145,6 +149,21 @@ export function renderGridText(view: CaseView, state: RunState): string {
     for (const row of grid.fixtures) out.push(...rowLines(row));
   }
   out.push('');
+  // docs/39 §3: marks to think about, never verdicts.
+  if (grid.hints.length > 0) {
+    out.push('MARKS TO THINK ABOUT (not facts; the grid noticed them)');
+    const rows = [...grid.rows, ...grid.fixtures];
+    const seen = new Set<string>();
+    for (const h of grid.hints) {
+      const who = rows.find((r) => r.personId === h.personId)?.name ?? personName(view, h.personId);
+      const at = grid.places.find((p) => p.id === h.placeId)?.shortName ?? h.placeId;
+      const line = `${who}, ${grid.ticks[h.tick]?.label ?? ''} at ${at}: ${h.text}`;
+      if (seen.has(line)) continue;
+      seen.add(line);
+      out.push(wrap(line, WIDTH, '  '));
+    }
+    out.push('');
+  }
 
   out.push(
     wrap(
@@ -163,6 +182,7 @@ export function renderGridText(view: CaseView, state: RunState): string {
       `key: x~ their own account · x:K seen by K · x# evidence · -x not there · ${
         grid.flags ? '! the sources disagree · ' : ''
       }${grid.descriptions.length > 0 ? 'x?K a stranger seen by K (a row of its own, or linked by me) · ' : ''}` +
+        `${grid.hints.length > 0 ? '?not:K claims it, and K was there and did not name them · n<m# counted n, m claim it · ' : ''}` +
         `(x) (-x) pencil, never a fact · · nothing known${
           grid.counts.length > 0 ? ' · counted: P=n is n people at P besides the one who works there; a blank is not counted yet' : ''
         }${who ? ` · witnesses: ${who}` : ''}`,

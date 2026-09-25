@@ -58,6 +58,7 @@ import { renderPage } from './prose.js';
 import { renderReportForm, renderTellChoice, renderVerdict, type TierNews } from './report.js';
 import { storyCardIds, storyOf, storyParagraphs } from '../game/story.js';
 import { LIE_RULE } from '../game/voice-data.js';
+import { TEACH_LINES, TEACH_TITLE, teachOn } from '../game/guidance.js';
 import { renderTruthSheet } from '../sheet/truthSheet.js';
 import { createWeatherLayer, loadWeatherOn, saveWeatherOn } from './weather.js';
 import './weather.css';
@@ -67,7 +68,9 @@ type Screen =
   | { kind: 'book' }
   | { kind: 'verdict'; verdict: Verdict; story: string[]; news?: TierNews }
   /** M14 §2.2: an affair's report is in, and the client is waiting to be told something. */
-  | { kind: 'tell'; report: Report };
+  | { kind: 'tell'; report: Report }
+  /** docs/39 §5: the teaching page, before the office, on a profile's first nights. */
+  | { kind: 'teach' };
 
 const DEFAULT_NAME = 'Dashiell';
 const NAME_KEY = 'dashiell:detective';
@@ -140,6 +143,8 @@ export function mount(root: HTMLElement): void {
   let pickerOpen = false;
   /** M9 polish: the picker narrowed to one person, or everybody. */
   let pickerFilter: Id | null = null;
+  /** docs/39 §1: from Poached up the picker opens on the facts that matter; this opens the rest. */
+  let pickerAll = false;
   /** How many calls the page that just landed spent, for the one animation. */
   let justSpent = 0;
   /** What the grid has open, folded and lit. Kept across pages, reset per case. */
@@ -195,11 +200,13 @@ export function mount(root: HTMLElement): void {
     kase = generateCase(seed, { ...caseOptions(pick), detectiveName: name });
     view = buildView(kase);
     const saved = resume ? loadRun(store) : null;
+    let fresh = false;
     // A save resumes only into the case it was dealt from: the same seed, the
     // same tier (none, for a save from before tiers), the same level.
     if (saved && runMatches(saved, seed, pick)) {
       state = saved;
     } else {
+      fresh = true;
       clearRun(store);
       state = newRun(view, { detectiveName: name, persistedBurned: loadBurned(store) });
       addBurned(store, crossRunOnly(state.burned), settleReads);
@@ -213,7 +220,11 @@ export function mount(root: HTMLElement): void {
     gridUi = newGridUi();
     // A filed run is over. Reopening its URL reopens the verdict, not the
     // page: the report is final, and that has to survive a reload.
-    screen = state.filed ? { kind: 'verdict', ...closingOf(view, state, state.filed) } : { kind: 'book' };
+    screen = state.filed
+      ? { kind: 'verdict', ...closingOf(view, state, state.filed) }
+      : fresh && teachOn(loadProfile(store), pick.tier)
+        ? { kind: 'teach' }
+        : { kind: 'book' };
     writeUrl(seed, pick);
     try {
       store.setItem(NAME_KEY, name);
@@ -248,6 +259,7 @@ export function mount(root: HTMLElement): void {
     showMore = false;
     pickerOpen = false;
     pickerFilter = null;
+    pickerAll = false;
     justSpent = result.page.cost;
     document.body.classList.remove('notebook-open');
     render();
@@ -371,6 +383,28 @@ export function mount(root: HTMLElement): void {
 
     const leaf = el('div', { class: 'leaf' });
 
+    if (screen.kind === 'teach') {
+      // docs/39 §5: four lines, then the office. Skippable, and skipped by
+      // anything: the office is one tap away.
+      const teach = el('div', { class: 'teach', role: 'region', 'aria-label': TEACH_TITLE });
+      teach.append(el('h2', { class: 'teach-title', text: TEACH_TITLE }));
+      for (const line of TEACH_LINES) teach.append(el('p', { class: 'teach-line', text: line }));
+      const go = el('button', { class: 'plain-button teach-go', type: 'button', text: 'Up the stairs to the office' });
+      go.addEventListener('click', () => {
+        screen = { kind: 'book' };
+        render();
+      });
+      const skip = el('button', { class: 'plain-button teach-skip', type: 'button', text: 'Skip' });
+      skip.addEventListener('click', () => {
+        screen = { kind: 'book' };
+        render();
+      });
+      teach.append(el('div', { class: 'teach-buttons' }, go, skip));
+      leaf.append(teach);
+      page.append(leaf);
+      return page;
+    }
+
     if (screen.kind === 'tell') {
       const report = screen.report;
       leaf.append(renderTellChoice(view as CaseView, (told) => file({ ...report, told })));
@@ -427,6 +461,7 @@ export function mount(root: HTMLElement): void {
             showMore = false;
             pickerOpen = false;
             pickerFilter = null;
+            pickerAll = false;
             justSpent = 0;
             render();
           },
@@ -439,6 +474,13 @@ export function mount(root: HTMLElement): void {
           onTogglePicker: () => {
             pickerOpen = !pickerOpen;
             pickerFilter = null;
+            pickerAll = false;
+            justSpent = 0;
+            render();
+          },
+          pickerAll,
+          onPickerAll: () => {
+            pickerAll = true;
             justSpent = 0;
             render();
           },

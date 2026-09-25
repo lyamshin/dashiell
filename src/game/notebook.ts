@@ -27,7 +27,7 @@ import {
 } from './derive.js';
 import type { RunState, Thread } from './types.js';
 import { dossierKnown } from './voice/plain.js';
-import { accountedFor, displayName, saidRecords, verdictsOn } from './m9.js';
+import { accountedFor, displayName, lieKeyOf, saidRecords, verdictsOn, type SaidRecord } from './m9.js';
 
 export interface NotebookClock {
   time: string;
@@ -281,7 +281,7 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
       }
       const said = saidRecords(view, state)
         .filter((r) => r.personId === p.id)
-        .map((r) => ({ clueId: r.id, text: r.text }));
+        .map((r) => ({ clueId: r.id, text: `${brokeLine(view, state, r)}${r.text}` }));
       const mine = view.kase.findable.filter((c) => c.source.type === 'person' && c.source.personId === p.id);
       const done =
         view.kase.logic !== undefined &&
@@ -535,4 +535,39 @@ export function placeHoverCard(
     );
   }
   return { title: place.shortName, lines };
+}
+
+/**
+ * Guidance (docs/39 §1): a confrontation that landed is recorded as one —
+ * whose word broke which half hours of the story — ahead of what they said
+ * to it. "Story broke on Tillman’s word: the Garibaldi, 8:00–8:30 PM.
+ * Rafferty has nothing more to say about it." A story that held says so.
+ */
+function brokeLine(view: CaseView, state: RunState, said: SaidRecord): string {
+  const record = (state.confronts ?? []).find(
+    (r) => r.lieKey !== null && r.n !== undefined && `said:${r.personId}:${r.lieKey}:${r.n}` === said.id,
+  );
+  if (!record) return '';
+  const c = view.kase.logic?.confrontations.find((x) => x.personId === said.personId && lieKeyOf(x) === record.lieKey);
+  if (!c) return '';
+  const first = c.responses[0];
+  const claim = record.n === 1 && first.kind === 'second-lie' && first.claims ? { place: first.claims.place, ticks: first.claims.ticks } : { place: c.lie.claimed, ticks: c.lie.ticks };
+  const clue = view.findableById.get(record.clueId);
+  const by =
+    clue?.source.type === 'person'
+      ? `${displayName(view, state, clue.source.personId)}’s word`
+      : clue?.kind === 'morgue'
+        ? 'the coroner’s word'
+        : 'what the room showed';
+  const ticks = [...claim.ticks].sort((a, b) => a - b);
+  const span =
+    ticks.length === 0
+      ? ''
+      : ticks.length === 1
+        ? clock(ticks[0] as Tick)
+        : `${clock(ticks[0] as Tick).replace(/ PM$/, '')}–${clock(ticks[ticks.length - 1] as Tick)}`;
+  const place = view.placeById.get(claim.place)?.shortName ?? claim.place;
+  return said.outcome === 'hold'
+    ? `Kept to ${place}, ${span}, against ${by}. `
+    : `Story broke on ${by}: ${place}, ${span}. `;
 }

@@ -326,6 +326,20 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
           mark(i, { tag: 'carry' });
           break;
         }
+        if (beat.form === 'carry' && beat.carry.post) {
+          // docs/39 §2: the watcher, asked about the room they keep.
+          const c = beat.carry;
+          const asked = view.kase.people.find((p) => p.surname === c.slots.who);
+          const her = asked && pronounOf(asked) === 'she' ? 'her' : 'him';
+          const lines = [
+            `${c.slots.who} kept ${c.slots.subject}. If anybody had counted it tonight, it was ${her}.`,
+            `Nobody had sent me. Nobody had to: ${c.slots.who} kept ${c.slots.subject}, and people who keep a room count it.`,
+          ];
+          const text = lines[(view.kase.seed + i) % lines.length] as string;
+          push({ text, voice: 'errand', beats: [i] });
+          mark(i, { tag: 'carry' });
+          break;
+        }
         if (beat.form === 'carry') {
           const c = beat.carry;
           const lead = c.lead ? 'yes' : 'no';
@@ -2828,9 +2842,71 @@ function confrontParas(
     // has nothing more to say about it.") is narration, in the past tense.
     const said = /^[“"]/.test(words) ? words : endStop(pastTense(words));
     out.push({ text: `${reaction?.text ?? `${surname} took a moment.`} ${said}`.trim(), voice: 'exchange' });
+    // Guidance (docs/39 §1): a confrontation that landed looks like one, at
+    // every tier. The story broke, and the page says so; the one who goes
+    // quiet is refusing, on a broken story, not letting nothing happen.
+    const landed = landedLine(person, beat.outcome, scene.judged.claimed?.ticks ?? [], stage.view.kase.seed + stage.foundBefore.length);
+    if (landed) out.push({ text: landed, voice: 'exchange' });
   }
   if (!reaction) gaps.push(`no-card: confront has no reaction for ${deckOutcome}`);
   return out.map((p) => ({ ...p, text: tidyPunctuation(p.text) }));
+}
+
+/**
+ * docs/39 §1: the line that says a confrontation landed. Never a verdict on
+ * who did it: it says the story broke, and that they knew it. Chosen by a
+ * hash of the night, so no card draw moves.
+ */
+const LANDED: Record<string, string[]> = {
+  quiet: [
+    '{He} didn’t say where {he} had been instead. That was a hole in {his} story {when}, and {he} knew it.',
+    'It wasn’t an answer. It was a refusal, from somebody whose story had a hole in it {when} and knew I’d seen it.',
+    'Silence is an answer too. {His} story had broken {when}, and {he} wasn’t going to be the one to mend it.',
+  ],
+  'second-lie': [
+    'The first story had broken {when}, and {he} knew it. {He} had the next one ready, which told me something too.',
+    'That was a hole in the first story, and {he} knew it. The new one would want checking like the old.',
+  ],
+  admit: [
+    'That was a hole in the story, and {he} knew it. What came through the hole was the truth, or nearer to it.',
+    'The story had broken {when}, and {he} knew it. {He} stopped holding it up.',
+  ],
+  withdraw: [
+    'That was a hole in the story, and {he} knew it. {He} took back the company {he} had given.',
+    'The story had broken {when}, and {he} knew it.',
+  ],
+  hold: [
+    'The fact and {his} story couldn’t both be right {when}. {He} knew it, and kept to the story anyway.',
+    '{He} kept to it. But the fact was still in my notebook, and {his} story still had to get past it {when}.',
+  ],
+};
+
+function landedLine(person: Person, outcome: string, ticks: readonly Tick[], salt: number): string | null {
+  const lines = LANDED[outcome];
+  if (!lines || lines.length === 0) return null;
+  let h = salt;
+  for (const ch of person.id) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  const template = lines[h % lines.length] as string;
+  const he = pronounOf(person) === 'she' ? 'she' : 'he';
+  const his = he === 'she' ? 'her' : 'his';
+  const sorted = [...ticks].sort((a, b) => a - b);
+  const first = sorted[0] as Tick;
+  const last = sorted[sorted.length - 1] as Tick;
+  const when =
+    sorted.length === 0
+      ? ''
+      : sorted.length === 1
+        ? `at ${spokenClock(first)}`
+        : sorted.length === 2 && last - first === 1
+          ? `at ${spokenClock(first)} and ${spokenClock(last)}`
+          : `from ${spokenClock(first).replace(/ o[’']clock$/, '')} until ${spokenClock(last)}`;
+  const out = template
+    .replace(/\{He\}/g, he === 'she' ? 'She' : 'He')
+    .replace(/\{His\}/g, his === 'her' ? 'Her' : 'His')
+    .replace(/\{he\}/g, he)
+    .replace(/\{his\}/g, his)
+    .replace(/ \{when\}/g, when ? ` ${when}` : '');
+  return out;
 }
 
 /**

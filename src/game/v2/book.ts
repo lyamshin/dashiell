@@ -54,6 +54,8 @@ interface Lines {
   motifs: Record<string, { plant: string[]; turn: string[]; end: string[] }>;
   gags: Record<string, { match: string; plant: string[]; end: string[] }>;
   purposes: Record<string, string[]>;
+  /** docs/39 §2: what somebody posted at a room is good for, by their trade. */
+  watchers?: Record<string, string[] | string>;
 }
 
 export const BOOK_LINES = booksJson as unknown as Lines;
@@ -418,9 +420,34 @@ export function bookPass(view: CaseView, before: RunState, after: RunState, page
     if (h) top.push(h);
   }
 
+  // docs/39 §2: the first time the night meets a watcher at their post, one
+  // line on what watchers are good for: they count their rooms.
+  if (!mem.said.includes(WATCHER_LESSON)) {
+    const place = view.placeById.get(page.at);
+    const watcher = place?.watcher
+      ? view.kase.people.find((p) => p.kind === 'fixture' && p.fixtureRole === place.watcher && p.foundAt === place.id)
+      : undefined;
+    const shown = watcher !== undefined && page.blocks.some((b) => (b.kind === 'prose' || b.kind === 'presence') && new RegExp(`\\b${watcher.surname}\\b`).test(b.kind === 'prose' ? b.text : (b.text ?? '')));
+    if (watcher && place?.watcher && shown) {
+      const pool = BOOK_LINES.watchers?.[place.watcher] ?? BOOK_LINES.watchers?.['any'];
+      const lines = Array.isArray(pool) ? pool : [];
+      const line = lines.length > 0 ? (lines[hash(seed, 'watcher', page.n) % lines.length] as string) : null;
+      if (line) {
+        mem.said.push(WATCHER_LESSON);
+        const at = page.blocks.findIndex((b) => b.kind === 'prose' && b.voice !== 'chapter' && new RegExp(`\\b${watcher.surname}\\b`).test(b.text));
+        const block: Block = { kind: 'prose', text: line, voice: 'thought' };
+        if (at >= 0) page.blocks.splice(at + 1, 0, block);
+        else insertBeforeRecap(page, [block]);
+      }
+    }
+  }
+
   if (top.length > 0) page.blocks = [...top, ...page.blocks];
   after.v2 = mem;
 }
+
+/** The marker in `V2Memory.said` that the watchers' line has been said tonight. */
+const WATCHER_LESSON = 'watcher-lesson';
 
 function tellSlots(view: CaseView, state: RunState, clue: Clue, kind: string): Record<string, string | undefined> {
   const src = clue.source.type === 'person' ? view.personById.get(clue.source.personId) : undefined;
