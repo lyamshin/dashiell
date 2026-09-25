@@ -27,7 +27,7 @@ import type { CaseView } from '../derive.js';
 import { pronounOf } from '../voice/cast.js';
 import { spokenSpan, spokenSpans } from '../voice/facts.js';
 import type { Family } from './families.js';
-import { ANOTHER_TIME } from '../voice-data.js';
+import { ANOTHER_TIME, NOT_HERE } from '../voice-data.js';
 
 /** Which follow-up question asks for a family's second half. */
 export type FollowAsk =
@@ -112,8 +112,34 @@ const COUNT: Record<number, string> = { 1: 'one', 2: 'two', 3: 'three', 4: 'four
  * The families.
  * ------------------------------------------------------------------ */
 
+/** A NOT_HERE line with its slots in. */
+function said(template: string, slots: Record<string, string>): string {
+  let out = template;
+  for (const [k, v] of Object.entries(slots)) out = out.split(`{${k}}`).join(v);
+  return out;
+}
+
+/**
+ * Guidance §4: is this the posted witness's word — somebody who minds a
+ * place, and knows where a person was not because they were there
+ * themselves? Their record says so ("did not see Vitale the rest of the
+ * evening", "did not come by the third floor all evening").
+ */
+function postedWord(clues: readonly Clue[]): boolean {
+  return clues.some((c) => /\bdid not see\b.*\bthe rest of the evening\b|\bdid not come by\b.*\ball evening\b/.test(c.textRecord ?? c.text));
+}
+
 /** One person's comings and goings (golden page 6). */
-function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id, at: Id, introduce = false): Told {
+function movements(
+  view: CaseView,
+  clues: Clue[],
+  speaker: Person,
+  subjectId: Id,
+  at: Id,
+  introduce = false,
+  /** Guidance §4: the half hours that matter, as the notebook holds them (the coroner's window). */
+  window: readonly Tick[] = [],
+): Told {
   const subject = view.personById.get(subjectId);
   const p = pronounsOf(subject);
   // docs/26: the first sentence names them when the question did not.
@@ -177,32 +203,65 @@ function movements(view: CaseView, clues: Clue[], speaker: Person, subjectId: Id
     for (const other of others) first.push(ANOTHER_TIME.split('{he}').join(p.he).split('{where}').join(other));
   }
 
-  // Where they were not.
+  // Where they were not. Guidance §4 (docs/golden/seed3-testimony.md): the
+  // rest of the evening said as the rest of the evening, never recited as a
+  // list of half hours — "machine output wearing a fedora". The facts stay
+  // whole: "Not here" is said only where every other half hour is one; a
+  // witness who was elsewhere for part of it says where they were not
+  // instead ("any other time I was here"); a half hour the notebook already
+  // knows matters (the coroner's window) gets a sentence of its own; and a
+  // place other than here is its own plain sentence.
   const notAt = new Map<Id, Tick[]>();
   for (const f of facts) {
     if (f.kind === 'personNotAt' && f.personId === subjectId) notAt.set(f.place, [...(notAt.get(f.place) ?? []), f.tick]);
   }
-  for (const [place, ts] of notAt) {
-    ticks.push(...ts);
-    const here = byPlace.get(place) ?? [];
-    const whole = new Set([...ts, ...here]).size === TICKS;
-    const name = placeName(view, place, at);
-    if (first.length === 0) {
-      // Nothing seen: the absence is the whole answer.
-      first.push(
-        whole
-          ? `${He} wasn’t ${name === 'here' ? 'here' : `at ${name}`}. Not once all evening.`
-          : `${He} wasn’t ${name === 'here' ? 'here' : `at ${name}`} ${whenRuns(ts, 'or')}.`,
-      );
-      continue;
-    }
-    if (whole && here.length > 0) {
-      second.push(name === 'here' ? 'Not here.' : `Not at ${name}.`);
-      follow = follow ?? 'rest';
+  const seenTicks = new Set(seen.map((f) => f.tick));
+  const hereNot = [...new Set(notAt.get(at) ?? [])].sort((a, b) => a - b) as Tick[];
+  const away = [...notAt].filter(([place]) => place !== at);
+  const awayTicks = new Set(away.flatMap(([, ts]) => ts));
+  const nothingSeen = first.length === 0;
+  const neg: string[] = [];
+  let summary: FollowAsk | undefined;
+  if (hereNot.length > 0) {
+    ticks.push(...hereNot);
+    const whole = new Set([...hereNot, ...(byPlace.get(at) ?? [])]).size === TICKS;
+    const covered = new Set<Tick>([...hereNot, ...seenTicks, ...awayTicks]).size === TICKS;
+    const runs = runsOf(hereNot);
+    const slots = { He, he: p.he, when: runs.length === 1 ? whenOf(runs[0] as [Tick, Tick]) : '' };
+    if (nothingSeen) {
+      neg.push(said(whole ? NOT_HERE.never : runs.length === 1 ? NOT_HERE.neverOnce : NOT_HERE.neverWhileHere, slots));
+    } else if (whole || (covered && runs.length > 1)) {
+      neg.push(NOT_HERE.rest);
+      summary = 'rest';
+    } else if (runs.length === 1) {
+      neg.push(said(NOT_HERE.once, slots));
+      summary = 'other';
     } else {
-      second.push(`${name === 'here' ? 'Not here' : `Not at ${name}`} ${whenRuns(ts, 'or')}.`);
-      follow = follow ?? 'other';
+      neg.push(said(NOT_HERE.whileHere, slots));
+      summary = 'other';
     }
+    // The half hour that matters, when the summary hedged it ("any other
+    // time I was here"). A plain "Not here." is the golden's, and the note
+    // after it gives the hour its weight.
+    const hedged = runs.length > 1 && !whole && !covered;
+    const matters = hedged ? hereNot.filter((t) => window.includes(t)) : [];
+    if (matters.length > 0) {
+      neg.push(said(NOT_HERE.matters[(matters[0] as number) % NOT_HERE.matters.length] as string, { when: whenRuns(matters, 'or') }));
+    }
+  }
+  const posted = postedWord(clues);
+  for (const [place, ts] of away) {
+    ticks.push(...ts);
+    const where = placeName(view, place, at);
+    const when = whenRuns(ts, 'and');
+    const slots = { He, he: p.he, where, when, When: cap(when) };
+    neg.push(said(neg.length === 0 && nothingSeen ? NOT_HERE.awayOnly : posted ? NOT_HERE.awayPosted : NOT_HERE.away, slots));
+    summary = summary ?? 'other';
+  }
+  if (nothingSeen) first.push(...neg);
+  else if (neg.length > 0) {
+    second.push(...neg);
+    follow = follow ?? summary ?? 'other';
   }
 
   // Two people, and whether they were ever in one room.
@@ -493,12 +552,14 @@ export function toldOf(
    * was about a place or a thing — so the witness says who, not "her".
    */
   introduce = false,
+  /** Guidance §4: the half hours that matter as the notebook holds them, for the weight a telling gives them. */
+  window: readonly Tick[] = [],
 ): Told | null {
   if (!view.kase.logic) return null;
   switch (family.kind) {
     case 'movements':
     case 'knowing':
-      return family.subjectId ? movements(view, clues, speaker, family.subjectId, at, introduce) : null;
+      return family.subjectId ? movements(view, clues, speaker, family.subjectId, at, introduce, window) : null;
     case 'counts':
       return counts(view, clues, speaker, at);
     case 'strangers':

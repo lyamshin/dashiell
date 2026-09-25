@@ -23,6 +23,7 @@
     "id": "hrs-003",
     "deck": "hours",
     "text": "Somewhere a clock had gone past {hour}, and made no apology.",
+    "joke": true,
     "tags": {
       "beat": "hour"
     },
@@ -63,6 +64,7 @@
     "id": "hrs-007",
     "deck": "hours",
     "text": "It was past {hour}, which was later than I liked and earlier than it was going to get.",
+    "joke": true,
     "tags": {
       "beat": "hour"
     },
@@ -103,6 +105,7 @@
     "id": "hrs-011",
     "deck": "hours",
     "text": "It was {hour} by every clock in the neighborhood, and for once they agreed.",
+    "joke": true,
     "tags": {
       "beat": "hour"
     },
@@ -273,6 +276,7 @@
     "id": "hrs-028",
     "deck": "hours",
     "text": "Two calls left. No room for a wrong turn, and I had a gift for them.",
+    "joke": true,
     "tags": {
       "beat": "two-left"
     },
@@ -433,6 +437,7 @@
     "id": "hrs-044",
     "deck": "hours",
     "text": "The last call was the one I had left. I held on to it the way you hold on to the last cigarette in the pack.",
+    "joke": true,
     "tags": {
       "beat": "last-call"
     },
@@ -453,6 +458,7 @@
     "id": "hrs-046",
     "deck": "hours",
     "text": "A church clock a few streets over struck {hour}, in a tone of mild reproach.",
+    "joke": true,
     "tags": {
       "beat": "hour"
     },
@@ -490,6 +496,7 @@
     "id": "hrs-049",
     "deck": "hours",
     "text": "By my watch it was past {hour}, and the watch was the most honest thing I owned.",
+    "joke": true,
     "tags": {
       "beat": "hour"
     },
@@ -616,6 +623,7 @@
     "id": "hrs-060",
     "deck": "hours",
     "text": "Across the way a window went dark. It was past {hour}, and somebody had finally gone to bed, the lucky devil.",
+    "joke": true,
     "tags": {
       "beat": "hour"
     },
@@ -642,6 +650,7 @@
     "id": "hrs-062",
     "deck": "hours",
     "text": "A cab went by slowly, looking for a fare. It took one look at me and kept going. It was after {hour}.",
+    "joke": true,
     "tags": {
       "beat": "hour"
     },
@@ -693,6 +702,7 @@
     "id": "hrs-066",
     "deck": "hours",
     "text": "It was past {hour}. A dog was barking somewhere, a long way off, about something that mattered to the dog.",
+    "joke": true,
     "tags": {
       "beat": "hour"
     },
@@ -740,6 +750,7 @@
     "id": "hrs-070",
     "deck": "hours",
     "text": "It was past {hour}. I had been going since midnight, and my feet were keeping a list of grievances.",
+    "joke": true,
     "tags": {
       "beat": "hour"
     },
@@ -776,6 +787,7 @@
     "id": "hrs-073",
     "deck": "hours",
     "text": "It was past {hour}, and I was hungry, and my stomach was taking it harder than I was.",
+    "joke": true,
     "tags": {
       "beat": "hour"
     },
@@ -859,6 +871,7 @@
     "id": "hrs-080",
     "deck": "hours",
     "text": "The rain hadn’t let up, and it had found the hole in my left shoe. It was past {hour}.",
+    "joke": true,
     "tags": {
       "beat": "hour"
     },
@@ -913,6 +926,7 @@
     "id": "hrs-084",
     "deck": "hours",
     "text": "It was past {hour}, and the cold had got into my shoes and was making itself at home.",
+    "joke": true,
     "tags": {
       "beat": "hour"
     },
@@ -939,6 +953,7 @@
     "id": "hrs-086",
     "deck": "hours",
     "text": "The night had stayed clear, which was the one thing it had done right. It was past {hour}.",
+    "joke": true,
     "tags": {
       "beat": "hour"
     },
@@ -972,6 +987,7 @@
     "id": "hrs-089",
     "deck": "hours",
     "text": "Two calls left, and more questions than that. The arithmetic was against me.",
+    "joke": true,
     "tags": {
       "beat": "two-left"
     },
@@ -982,6 +998,7 @@
     "id": "hrs-090",
     "deck": "hours",
     "text": "The clock, in a generous mood, left me two more calls.",
+    "joke": true,
     "tags": {
       "beat": "two-left"
     },
@@ -1063,6 +1080,7 @@
     "id": "hrs-097",
     "deck": "hours",
     "text": "The last call. I straightened my tie for it, which tells you how serious it was.",
+    "joke": true,
     "tags": {
       "beat": "last-call"
     },
@@ -1073,6 +1091,7 @@
     "id": "hrs-098",
     "deck": "hours",
     "text": "I had time for one more call, and I meant to spend it better than I spent my money.",
+    "joke": true,
     "tags": {
       "beat": "last-call"
     },

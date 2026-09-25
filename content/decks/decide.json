@@ -75,6 +75,7 @@
     "id": "dec-007",
     "deck": "decide",
     "text": "It could keep until I saw {subject} again. Clients lie to their detectives all the time, and most of them are only lying about themselves.",
+    "joke": true,
     "tags": {
       "who": "client",
       "act": "hold",
@@ -243,6 +244,7 @@
     "id": "dec-021",
     "deck": "decide",
     "text": "I put it in the notebook and kept my face straight, which at that hour took some doing. {subject} and I would come back to {place}.",
+    "joke": true,
     "tags": {
       "who": "suspect",
       "act": "note",
@@ -291,6 +293,7 @@
     "id": "dec-025",
     "deck": "decide",
     "text": "I underlined {subject}’s name in the book, twice, which is as close as I get to raising my voice. I would get to {them} before morning.",
+    "joke": true,
     "tags": {
       "who": "suspect",
       "act": "note",

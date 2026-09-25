@@ -83,7 +83,12 @@
           "The room went back to what it had been doing. I tried to look like part of it and didn’t fool anybody.",
           "I took my hat off. Nobody offered to hang it up, which in a room like that counts as manners."
         ],
-        "joke": true
+        "joke": true,
+        "quiet": [
+          "I found a place by the wall where I could see all of them.",
+          "I stayed where I was and let the room settle.",
+          "I took a spot near the door and waited to be noticed."
+        ]
       }
     },
     {
@@ -154,7 +159,12 @@
           "The room took me in and said nothing about it. I’ve had worse welcomes, most of them at home.",
           "I stood there until I stopped being new. In that room it took about a minute."
         ],
-        "joke": true
+        "joke": true,
+        "quiet": [
+          "I found a spot where I could see them all.",
+          "I stood a little way off and took them in.",
+          "Nobody made room for me, and I didn’t ask for any."
+        ]
       }
     },
     {
@@ -220,7 +230,12 @@
           "{client.He} leaned in. I was about to be introduced to the whole room, whether it liked it or not."
         ],
         "joke": true,
-        "roles": []
+        "roles": [],
+        "quiet": [
+          "{client.He} waited for me to sit down.",
+          "{client.He} moved over so I could sit.",
+          "I sat down where {client.he} could talk without raising {client.his} voice."
+        ]
       }
     },
     {
@@ -275,7 +290,12 @@
           "I kept my hat on and my eyes open, which is most of what I know how to do.",
           "I took the spot with the best view. It was also the draughtiest, which is how you know."
         ],
-        "joke": true
+        "joke": true,
+        "quiet": [
+          "I stood where I could see all of them.",
+          "I found a place near the door and stayed in it.",
+          "I kept to the wall and let them get used to me."
+        ]
       }
     },
     {
@@ -319,6 +339,11 @@
           "It made for a short list. I’ve worked with shorter, but not by choice.",
           "Two was a crowd in there, and I was the second.",
           "It was a quiet room. I did my best not to spoil it."
+        ],
+        "quiet": [
+          "It was just the two of us, then.",
+          "That made two of us in there.",
+          "I had {watcher.him} to myself."
         ]
       }
     },
@@ -339,6 +364,11 @@
             "The place was empty. I said good evening anyway, in case it was listening.",
             "There was nobody there, unless you count me, and most people don’t.",
             "The room was empty, which made it the best company I’d had all night."
+          ],
+          "plain": [
+            "There was nobody there. I looked twice to be sure.",
+            "The place was empty. Nobody came while I stood in it.",
+            "There was nobody there. Nothing said anybody was expected."
           ]
         },
         {
@@ -356,6 +386,11 @@
           "I let the quiet have its say. It didn’t have much.",
           "I waited to see if anybody would come back. Nobody did, which was at least consistent of them.",
           "I stood there long enough to be sure. Then I stood there a bit longer, to be thorough."
+        ],
+        "quiet": [
+          "I stood in it a minute before I did anything else. Nobody came.",
+          "I let my eyes get used to the dark. Nobody came in while I did.",
+          "I waited a minute, in case anybody came back. Nobody did."
         ]
       }
     },
@@ -394,7 +429,12 @@
           "Nobody asked who I was. In that part of town, not asking is how people say hello.",
           "I stood by the wall like I’d been hired to hold it up."
         ],
-        "joke": true
+        "joke": true,
+        "quiet": [
+          "Nobody looked up when I came in.",
+          "I found a place by the wall and took them in.",
+          "Nobody asked who I was."
+        ]
       }
     }
   ]

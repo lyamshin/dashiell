@@ -17,6 +17,7 @@
       "parts": [
         {
           "text": "I turned to a clean page and wrote out what I had, in order, the way they teach you and nobody does it.",
+          "joke": true,
           "alt": [
             "I found a clean page and wrote it all out again, start to finish, like a man with a plan.",
             "I started a clean page. Writing it out fresh is the nearest I get to thinking.",
@@ -49,6 +50,7 @@
       "parts": [
         {
           "text": "I found somewhere to sit and gave my feet a rest while my head did the walking.",
+          "joke": true,
           "alt": [
             "I got off my feet for a minute. They’d earned it more than I had.",
             "I took the weight off my feet and let my head carry the rest.",
@@ -82,6 +84,7 @@
       "parts": [
         {
           "text": "I got the notebook out again. We were getting to know each other.",
+          "joke": true,
           "alt": [
             "Out came the notebook again. It was starting to expect me.",
             "I read the notebook over again. It had stopped being surprised.",

@@ -3,6 +3,7 @@
     "id": "grd-001",
     "deck": "grounding",
     "text": "They’re my keys. I know where every one of them sleeps.",
+    "joke": true,
     "tags": {
       "family": "thing",
       "role": "landlady",
@@ -16,6 +17,7 @@
     "id": "grd-002",
     "deck": "grounding",
     "text": "I know what goes on under my roof. I’d be a poor landlady if I didn’t, and I’m not poor at anything.",
+    "joke": true,
     "tags": {
       "family": "thing",
       "role": "landlady"
@@ -38,6 +40,7 @@
     "id": "grd-004",
     "deck": "grounding",
     "text": "I’d have heard {him}. I hear the mice.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "role": "landlady",
@@ -84,6 +87,7 @@
     "id": "grd-008",
     "deck": "grounding",
     "text": "I count them in and I count them out. It’s how I know who owes me.",
+    "joke": true,
     "tags": {
       "family": "counts",
       "role": "landlady"
@@ -128,6 +132,7 @@
     "id": "grd-012",
     "deck": "grounding",
     "text": "I see everybody who comes in. That’s the job. The drinks are just to pass the time.",
+    "joke": true,
     "tags": {
       "family": "any",
       "role": "bartender",
@@ -174,6 +179,7 @@
     "id": "grd-016",
     "deck": "grounding",
     "text": "I pour for everybody who comes through that door, and a few who come through the back.",
+    "joke": true,
     "tags": {
       "family": "counts",
       "role": "bartender"
@@ -207,6 +213,7 @@
     "id": "grd-019",
     "deck": "grounding",
     "text": "I hear everything said across this bar. Some of it’s even true.",
+    "joke": true,
     "tags": {
       "family": "thing",
       "role": "bartender"
@@ -218,6 +225,7 @@
     "id": "grd-020",
     "deck": "grounding",
     "text": "Nobody gets past this door without I see them. That’s what the buttons are for.",
+    "joke": true,
     "tags": {
       "family": "any",
       "role": "doorman",
@@ -253,6 +261,7 @@
     "id": "grd-023",
     "deck": "grounding",
     "text": "I know the tenants. I know their coats better than they do.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "role": "doorman"
@@ -298,6 +307,7 @@
     "id": "grd-027",
     "deck": "grounding",
     "text": "Selling papers is mostly watching the street. The papers sell themselves.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "role": "newsstand"
@@ -332,6 +342,7 @@
     "id": "grd-030",
     "deck": "grounding",
     "text": "I count papers all night. I count people too, when there’s nothing else.",
+    "joke": true,
     "tags": {
       "family": "counts",
       "role": "newsstand"
@@ -343,6 +354,7 @@
     "id": "grd-031",
     "deck": "grounding",
     "text": "I’m behind this counter all night. I see who comes in. It’s that or look at the grill.",
+    "joke": true,
     "tags": {
       "family": "any",
       "role": "counterman",
@@ -355,6 +367,7 @@
     "id": "grd-032",
     "deck": "grounding",
     "text": "Everybody who eats here, I serve. There’s nobody else back here to do it.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "role": "counterman"
@@ -400,6 +413,7 @@
     "id": "grd-036",
     "deck": "grounding",
     "text": "Everybody who comes in hands me a ticket, or tries a story on me first.",
+    "joke": true,
     "tags": {
       "family": "any",
       "role": "ticket-taker",
@@ -435,6 +449,7 @@
     "id": "grd-039",
     "deck": "grounding",
     "text": "A ticket doesn’t have a name on it. Just a seat, and half of them sit in the wrong one.",
+    "joke": true,
     "tags": {
       "family": "strangers",
       "role": "ticket-taker"
@@ -446,6 +461,7 @@
     "id": "grd-040",
     "deck": "grounding",
     "text": "Everybody who goes up rides with me. The stairs are for tenants who don’t like me.",
+    "joke": true,
     "tags": {
       "family": "any",
       "role": "elevator-man",
@@ -481,6 +497,7 @@
     "id": "grd-043",
     "deck": "grounding",
     "text": "I know who lives here, and on which floor, and what kind of day they’ve had.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "role": "elevator-man"
@@ -515,6 +532,7 @@
     "id": "grd-046",
     "deck": "grounding",
     "text": "I notice people. That’s what they pay me for, and it isn’t much.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "role": "beat-cop"
@@ -561,6 +579,7 @@
     "id": "grd-050",
     "deck": "grounding",
     "text": "A cabbie looks at every face. Some of them are fares.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "role": "cabbie"
@@ -724,6 +743,7 @@
     "id": "grd-064",
     "deck": "grounding",
     "text": "I saw it with these eyes. I haven’t got any others.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "role": "suspect"
@@ -905,6 +925,7 @@
     "id": "grd-080",
     "deck": "grounding",
     "text": "It isn’t hard to remember one evening. I only had the one.",
+    "joke": true,
     "tags": {
       "family": "evening",
       "role": "any"
@@ -1336,6 +1357,7 @@
     "id": "grd-e027",
     "deck": "grounding",
     "text": "I’m not mixing it up with any other night. They don’t get that interesting.",
+    "joke": true,
     "tags": {
       "family": "evening",
       "role": "suspect"
@@ -1382,6 +1404,7 @@
     "id": "grd-e031",
     "deck": "grounding",
     "text": "I’d know {him} from the back, let alone the front.",
+    "joke": true,
     "tags": {
       "family": "movements",
       "role": "suspect",

@@ -3,6 +3,7 @@
     "id": "est-001",
     "deck": "establish",
     "text": "{place} was reached by a narrow stair round the back, the kind that creaked on every other step and complained about the rest. The lock was nothing special, a five-cent job any building super could open. At this hour the rest of that floor stayed quiet, every door shut.",
+    "joke": true,
     "tags": {
       "place": "res-apartment",
       "visit": "first"
@@ -14,6 +15,7 @@
     "id": "est-002",
     "deck": "establish",
     "text": "You got to {place} past a row of mailboxes with half the names worn off. It was one door among six on that landing, no different to look at than the rest. Past midnight the building had gone still, the way a place did once everyone in it was either asleep or pretending to be.",
+    "joke": true,
     "tags": {
       "place": "res-apartment",
       "visit": "first"
@@ -25,6 +27,7 @@
     "id": "est-003",
     "deck": "establish",
     "text": "{place} belonged to {owner}, four flights up from a street door that didn't lock, and I felt every one of the four. The stairwell smelled of somebody's dinner from hours before. It was late enough that no one on the floor was going to ask any questions about who came up.",
+    "joke": true,
     "tags": {
       "place": "res-apartment",
       "visit": "first"
@@ -80,6 +83,7 @@
     "id": "est-008",
     "deck": "establish",
     "text": "{place} had a stoop worn smooth in the middle by four generations of feet. Inside, the hall ran straight back to a stair nobody had oiled in years. It was quiet enough at this hour to hear the stair complain about a single set of footsteps, which were mine.",
+    "joke": true,
     "tags": {
       "place": "res-brownstone",
       "visit": "first"
@@ -124,6 +128,7 @@
     "id": "est-012",
     "deck": "establish",
     "text": "{place} was over the drugstore, in a narrow building one room deep with the stairs up the middle of it. The rooms were at the top, under the roof, where the heat from the store below never quite reached and never meant to. It was late enough that the drugstore’s own noise had stopped hours before.",
+    "joke": true,
     "tags": {
       "place": "res-walkup",
       "visit": "first"
@@ -201,6 +206,7 @@
     "id": "est-019",
     "deck": "establish",
     "text": "{place} belonged to {owner}, tucked behind a larger house, out of sight the way a poor relation so often was. The path in was gravel, loud underfoot. This late there was nobody else back there to hear it.",
+    "joke": true,
     "tags": {
       "place": "res-backhouse",
       "visit": "first"
@@ -212,6 +218,7 @@
     "id": "est-020",
     "deck": "establish",
     "text": "The house on {place} had been a stable once, then storage, and now it was somebody’s rooms. The horse had had more space. A single window faced the passage in. At this hour the passage was dark end to end.",
+    "joke": true,
     "tags": {
       "place": "res-backhouse",
       "visit": "first"
@@ -235,6 +242,7 @@
     "id": "est-022",
     "deck": "establish",
     "text": "You got onto {place} by an iron fire escape bolted along the rear wall, the last flight of it a straight ladder. Water tanks stood at either end like a pair of sentries nobody had posted. Past midnight the building below was dark all the way down.",
+    "joke": true,
     "tags": {
       "place": "rooftop",
       "visit": "first"
@@ -367,6 +375,7 @@
     "id": "est-034",
     "deck": "establish",
     "text": "You got onto {place} along the water side of the shed, past pilings slick underfoot even on a dry night. The shed itself was corrugated iron, loud in any wind at all. Past midnight there was no watchman posted, and no reason for anyone honest to be there, which put me in an awkward spot.",
+    "joke": true,
     "tags": {
       "place": "pier-shed",
       "visit": "first"
@@ -411,6 +420,7 @@
     "id": "est-038",
     "deck": "establish",
     "text": "You got to {place} down a passage beside the laundry building, narrow enough to touch both walls at once, and my coat did. The ground back there stayed damp even on a dry day, from the runoff. Past midnight nobody was hanging wash or taking it down.",
+    "joke": true,
     "tags": {
       "place": "laundry-yard",
       "visit": "first"
@@ -467,6 +477,7 @@
     "id": "est-043",
     "deck": "establish",
     "text": "{place} looked straight down onto the street, three windows in a row. The lock on the street door hadn't worked in years, which was its own kind of honesty. This late there was nobody on the stairs but whoever was coming up them.",
+    "joke": true,
     "tags": {
       "place": "walkup-flat",
       "visit": "first"
@@ -500,6 +511,7 @@
     "id": "est-046",
     "deck": "establish",
     "text": "You came into {place} through a set of glass doors that locked themselves at midnight, working only from a buzzer after that. It was the kind of building that wanted you to know it had standards. Past midnight the lobby's own lights had been dimmed to half.",
+    "joke": true,
     "tags": {
       "place": "hallam-vestibule",
       "visit": "first"
@@ -511,6 +523,7 @@
     "id": "est-047",
     "deck": "establish",
     "text": "The vestibule at {place} sat just inside the street doors, a small room meant to make an impression before the elevator ever came. A mirror ran the length of one wall, spotted at the corners. This late it reflected mostly marble, and then me, which it didn’t care for.",
+    "joke": true,
     "tags": {
       "place": "hallam-vestibule",
       "visit": "first"
@@ -569,6 +582,7 @@
     "id": "est-052",
     "deck": "establish",
     "text": "{place} took in boarders one to a door, meals included at set hours. The back room was the cheapest one and the farthest from the front door. It had my sympathy; I had lived in that room in other houses. At this hour the house had turned in.",
+    "joke": true,
     "tags": {
       "place": "rooming-house-room",
       "visit": "first"
@@ -605,6 +619,7 @@
     "id": "est-055",
     "deck": "establish",
     "text": "{place} was the kind of bar a block kept for itself, known by name to everyone who drank there and by nobody past it. This late the radio behind the bar was the loudest thing in the room, and the only thing still in a good mood.",
+    "joke": true,
     "tags": {
       "place": "dolans-bar",
       "visit": "first"
@@ -627,6 +642,7 @@
     "id": "est-057",
     "deck": "establish",
     "text": "{place} was an illegal bar under a hat shop, down six steps and through a door you had to knock on, a formality, since everybody knew about the door. At this hour most of the stools were empty.",
+    "joke": true,
     "tags": {
       "place": "speakeasy",
       "visit": "first"
@@ -684,6 +700,7 @@
     "id": "est-062",
     "deck": "establish",
     "text": "You came into {place} through a revolving door that stuck if you pushed it too hard. A desk sat at the far end, a night clerk behind it paying half attention and saving the rest. Past midnight the lobby's usual traffic had thinned to almost nothing.",
+    "joke": true,
     "tags": {
       "place": "hotel-lobby",
       "visit": "first"
@@ -706,6 +723,7 @@
     "id": "est-064",
     "deck": "establish",
     "text": "{place} kept its lobby lit even at this hour, the habit of a hotel that never fully closes. A spittoon by the door sat polished and unused. Past midnight there was more lobby than there were people in it.",
+    "joke": true,
     "tags": {
       "place": "hotel-lobby",
       "visit": "first"
@@ -861,6 +879,7 @@
     "id": "est-078",
     "deck": "establish",
     "text": "You climbed to {place} past a window painted over halfway up, steam from the kitchen below still faintly in the stairwell. It kept later hours than most places on the block, which was most of its business. Past midnight it was still doing a slow trade.",
+    "joke": true,
     "tags": {
       "place": "chop-suey",
       "visit": "first"
@@ -927,6 +946,7 @@
     "id": "est-084",
     "deck": "establish",
     "text": "{place} had a horsehair sofa nobody sat on if they could help it and a clock that ran five minutes fast. It was the first room past the entry, and the last one anybody used at this hour.",
+    "joke": true,
     "tags": {
       "place": "boarding-parlor",
       "visit": "first"
@@ -994,6 +1014,7 @@
     "id": "est-090",
     "deck": "establish",
     "text": "You got into {place} through a rolling door left cracked open for the night man's convenience. The smell of gasoline hung in the air, thick enough to notice from the street. Past midnight there was usually one man on duty and not much for him to do, and he did it slowly.",
+    "joke": true,
     "tags": {
       "place": "hotel-garage",
       "visit": "first"
@@ -1071,6 +1092,7 @@
     "id": "est-097",
     "deck": "establish",
     "text": "{place} sat over a bakery, reached by an outside stair that smelled of bread long after the ovens had gone cold, which was hard on a man who hadn't eaten. The hall itself was one long room, folding chairs stacked along the walls. At this hour the chairs were still set out from whatever meeting had last used them.",
+    "joke": true,
     "tags": {
       "place": "union-hall",
       "visit": "first"
@@ -1181,6 +1203,7 @@
     "id": "est-107",
     "deck": "establish",
     "text": "{place} ran the length of a storefront, mirrors on the walls doubling a room that was already more empty than full at this hour. This late it drew the kind of customer who had nowhere better to sit, and I was in no position to judge.",
+    "joke": true,
     "tags": {
       "place": "automat",
       "visit": "first"
@@ -1302,6 +1325,7 @@
     "id": "est-118",
     "deck": "establish",
     "text": "You reached {place} through a door with a bell that announced every customer, and announced me with less enthusiasm. Shelves of bottles ran behind the counter, labeled in handwriting that hadn’t changed in years. Past midnight there was little trade beyond whoever needed something and couldn’t wait for morning.",
+    "joke": true,
     "tags": {
       "place": "drugstore",
       "visit": "first"
@@ -1391,6 +1415,7 @@
     "id": "est-126",
     "deck": "establish",
     "text": "You climbed to {place} by an open iron stair, the street noise falling away with every step up and my breath going with it. A change booth stood at the top, unmanned this late. Past midnight the wait between trains stretched long enough to notice.",
+    "joke": true,
     "tags": {
       "place": "el-platform",
       "visit": "first"
@@ -1523,6 +1548,7 @@
     "id": "est-138",
     "deck": "establish",
     "text": "You reached {place} from any corner of the intersection, the kiosk itself the only marker needed. Past midnight the trains slowed to a schedule that turned waiting for one into a hobby. The street around the kiosk had gone quiet by comparison.",
+    "joke": true,
     "tags": {
       "place": "subway-kiosk",
       "visit": "first"
@@ -1567,6 +1593,7 @@
     "id": "est-142",
     "deck": "establish",
     "text": "You climbed to {place} up a narrow flight that ran alongside the shop downstairs, closed for the night by the time anyone was likely to be coming up. The stairs let out at a single door with my name lettered on the glass, spelled right, which had cost extra. Past midnight the block outside was as quiet as the stairwell.",
+    "joke": true,
     "tags": {
       "place": "office",
       "visit": "first"
@@ -1589,6 +1616,7 @@
     "id": "est-144",
     "deck": "establish",
     "text": "{place} kept no better hours than the man who rented it. A single lamp on the desk did what the overhead bulb wouldn’t. At this hour the street below had emptied out the way it always did once the last trolley had gone by.",
+    "joke": true,
     "tags": {
       "place": "office",
       "visit": "first"

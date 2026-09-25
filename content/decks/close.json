@@ -3,6 +3,7 @@
     "id": "CLS-001",
     "deck": "close",
     "text": "Everybody’s evening sounds tidy when they tell it. Nobody’s ever is.",
+    "joke": true,
     "tags": {
       "outcome": "evening",
       "role": "any"
@@ -14,6 +15,7 @@
     "id": "CLS-002",
     "deck": "close",
     "text": "It was a very orderly evening. I couldn’t remember the last time I had one.",
+    "joke": true,
     "tags": {
       "outcome": "evening",
       "role": "any"
@@ -25,6 +27,7 @@
     "id": "CLS-003",
     "deck": "close",
     "text": "People always remember their own evenings well. It’s other people’s they go vague on.",
+    "joke": true,
     "tags": {
       "outcome": "evening",
       "role": "any"
@@ -36,6 +39,7 @@
     "id": "CLS-004",
     "deck": "close",
     "text": "It had the neat edges of a story that had been told before, if only to a mirror.",
+    "joke": true,
     "tags": {
       "outcome": "evening",
       "role": "any"
@@ -47,6 +51,7 @@
     "id": "CLS-005",
     "deck": "close",
     "text": "I’d have liked it better with a second opinion under it, but then so would everybody.",
+    "joke": true,
     "tags": {
       "outcome": "evening",
       "role": "any"
@@ -58,6 +63,7 @@
     "id": "CLS-006",
     "deck": "close",
     "text": "A dentist tells you it won’t hurt. You nod, and you check later.",
+    "joke": true,
     "tags": {
       "outcome": "evening",
       "role": "arch-dentist"
@@ -69,6 +75,7 @@
     "id": "CLS-007",
     "deck": "close",
     "text": "A lawyer’s evening comes with the loopholes already in it. I’d look for them later.",
+    "joke": true,
     "tags": {
       "outcome": "evening",
       "role": "arch-lawyer"
@@ -80,6 +87,7 @@
     "id": "CLS-008",
     "deck": "close",
     "text": "A bookmaker gives you his evening the way he gives you odds: generous, and on his terms.",
+    "joke": true,
     "tags": {
       "outcome": "evening",
       "role": "arch-bookmaker"
@@ -91,6 +99,7 @@
     "id": "CLS-009",
     "deck": "close",
     "text": "Somebody always sees you. It’s the one thing this neighbourhood does for free.",
+    "joke": true,
     "tags": {
       "outcome": "placed",
       "role": "any"
@@ -102,6 +111,7 @@
     "id": "CLS-010",
     "deck": "close",
     "text": "People notice more than they let on, and let on more than they should.",
+    "joke": true,
     "tags": {
       "outcome": "placed",
       "role": "any"
@@ -113,6 +123,7 @@
     "id": "CLS-011",
     "deck": "close",
     "text": "Nobody crosses this neighbourhood without somebody writing it down, and tonight the somebody was me.",
+    "joke": true,
     "tags": {
       "outcome": "placed",
       "role": "any"
@@ -124,6 +135,7 @@
     "id": "CLS-012",
     "deck": "close",
     "text": "It was one person’s word. Round here, that’s a small fortune.",
+    "joke": true,
     "tags": {
       "outcome": "placed",
       "role": "any"
@@ -135,6 +147,7 @@
     "id": "CLS-013",
     "deck": "close",
     "text": "Where somebody wasn’t is still something. It’s not much of a something.",
+    "joke": true,
     "tags": {
       "outcome": "unseen",
       "role": "any"
@@ -146,6 +159,7 @@
     "id": "CLS-014",
     "deck": "close",
     "text": "It ruled out one room. The city has a great many rooms.",
+    "joke": true,
     "tags": {
       "outcome": "unseen",
       "role": "any"
@@ -157,6 +171,7 @@
     "id": "CLS-015",
     "deck": "close",
     "text": "Knowing where a person wasn’t is like knowing what isn’t for dinner. It helps, a little.",
+    "joke": true,
     "tags": {
       "outcome": "unseen",
       "role": "any"
@@ -168,6 +183,7 @@
     "id": "CLS-016",
     "deck": "close",
     "text": "Everybody knows everybody round here, until you ask.",
+    "joke": true,
     "tags": {
       "outcome": "knowing",
       "role": "any"
@@ -179,6 +195,7 @@
     "id": "CLS-017",
     "deck": "close",
     "text": "It’s a big city, but the same forty people keep turning up in it.",
+    "joke": true,
     "tags": {
       "outcome": "knowing",
       "role": "any"
@@ -190,6 +207,7 @@
     "id": "CLS-018",
     "deck": "close",
     "text": "Who knows who is half of any job like this. The other half is who knows what.",
+    "joke": true,
     "tags": {
       "outcome": "knowing",
       "role": "any"
@@ -201,6 +219,7 @@
     "id": "CLS-019",
     "deck": "close",
     "text": "A head count doesn’t tell you whose heads. It’s a start.",
+    "joke": true,
     "tags": {
       "outcome": "counts",
       "role": "any"
@@ -212,6 +231,7 @@
     "id": "CLS-020",
     "deck": "close",
     "text": "Doors have better memories than people. Unfortunately, all they do is count.",
+    "joke": true,
     "tags": {
       "outcome": "counts",
       "role": "any"
@@ -223,6 +243,7 @@
     "id": "CLS-021",
     "deck": "close",
     "text": "It was arithmetic. I was never good at arithmetic, but I’m stubborn.",
+    "joke": true,
     "tags": {
       "outcome": "counts",
       "role": "any"
@@ -234,6 +255,7 @@
     "id": "CLS-022",
     "deck": "close",
     "text": "Faces without names are the city’s favourite joke, and it never gets tired of telling it.",
+    "joke": true,
     "tags": {
       "outcome": "strangers",
       "role": "any"
@@ -245,6 +267,7 @@
     "id": "CLS-023",
     "deck": "close",
     "text": "A stranger is just somebody you haven’t put a name to yet. I had a few of those now.",
+    "joke": true,
     "tags": {
       "outcome": "strangers",
       "role": "any"
@@ -256,6 +279,7 @@
     "id": "CLS-024",
     "deck": "close",
     "text": "Every stranger is somebody’s cousin. That’s the trouble with this neighbourhood.",
+    "joke": true,
     "tags": {
       "outcome": "strangers",
       "role": "any"
@@ -267,6 +291,7 @@
     "id": "CLS-025",
     "deck": "close",
     "text": "A clock you can hear across the street is worth two on a wall.",
+    "joke": true,
     "tags": {
       "outcome": "timing",
       "role": "any"
@@ -278,6 +303,7 @@
     "id": "CLS-026",
     "deck": "close",
     "text": "It’s a comfort when something in this city happens on time.",
+    "joke": true,
     "tags": {
       "outcome": "timing",
       "role": "any"
@@ -289,6 +315,7 @@
     "id": "CLS-027",
     "deck": "close",
     "text": "Now I had a clock that wasn’t mine. Mine runs slow.",
+    "joke": true,
     "tags": {
       "outcome": "timing",
       "role": "any"
@@ -300,6 +327,7 @@
     "id": "CLS-028",
     "deck": "close",
     "text": "The whole street lives through the same evening and remembers it five different ways.",
+    "joke": true,
     "tags": {
       "outcome": "event",
       "role": "any"
@@ -311,6 +339,7 @@
     "id": "CLS-029",
     "deck": "close",
     "text": "Everybody has a story about the same five minutes. It’s how you know they happened.",
+    "joke": true,
     "tags": {
       "outcome": "event",
       "role": "any"
@@ -322,6 +351,7 @@
     "id": "CLS-030",
     "deck": "close",
     "text": "Everybody on this street knows one thing about everybody else. The trick is getting them to say it to me.",
+    "joke": true,
     "tags": {
       "outcome": "thing",
       "role": "any"
@@ -333,6 +363,7 @@
     "id": "CLS-031",
     "deck": "close",
     "text": "It was the kind of thing people only mention once you’ve stopped asking.",
+    "joke": true,
     "tags": {
       "outcome": "thing",
       "role": "any"
@@ -344,6 +375,7 @@
     "id": "CLS-032",
     "deck": "close",
     "text": "Small talk, round here, is never as small as it sounds.",
+    "joke": true,
     "tags": {
       "outcome": "thing",
       "role": "any"
@@ -355,6 +387,7 @@
     "id": "CLS-033",
     "deck": "close",
     "text": "Everybody’s the hero of their own story, and most of them are underpaid.",
+    "joke": true,
     "tags": {
       "outcome": "self",
       "role": "any"
@@ -366,6 +399,7 @@
     "id": "CLS-034",
     "deck": "close",
     "text": "People like talking about themselves. It’s the one subject they’ve all studied.",
+    "joke": true,
     "tags": {
       "outcome": "self",
       "role": "any"
@@ -377,6 +411,7 @@
     "id": "CLS-035",
     "deck": "close",
     "text": "I’d asked for a life and got one. It wasn’t mine, which was a relief.",
+    "joke": true,
     "tags": {
       "outcome": "self",
       "role": "any"
@@ -388,6 +423,7 @@
     "id": "CLS-036",
     "deck": "close",
     "text": "I guess some nuts are just too hard to crack.",
+    "joke": true,
     "tags": {
       "outcome": "nothing",
       "role": "any"
@@ -399,6 +435,7 @@
     "id": "CLS-037",
     "deck": "close",
     "text": "I’d spent good time learning that {he} didn’t know. It’s a living.",
+    "joke": true,
     "tags": {
       "outcome": "nothing",
       "role": "any"
@@ -410,6 +447,7 @@
     "id": "CLS-038",
     "deck": "close",
     "text": "Not knowing is an answer. It’s just not one you can take to the bank.",
+    "joke": true,
     "tags": {
       "outcome": "nothing",
       "role": "any"
@@ -421,6 +459,7 @@
     "id": "CLS-039",
     "deck": "close",
     "text": "Some people don’t know anything, and some of those are telling the truth.",
+    "joke": true,
     "tags": {
       "outcome": "nothing",
       "role": "any"
@@ -432,6 +471,7 @@
     "id": "CLS-040",
     "deck": "close",
     "text": "Two people, one half hour, two different rooms. Somebody’s clock was wrong, and it wasn’t the clock.",
+    "joke": true,
     "tags": {
       "outcome": "contradicts",
       "role": "any"
@@ -443,6 +483,7 @@
     "id": "CLS-041",
     "deck": "close",
     "text": "Stories don’t have to match. It’s just more interesting when they don’t.",
+    "joke": true,
     "tags": {
       "outcome": "contradicts",
       "role": "any"
@@ -454,6 +495,7 @@
     "id": "CLS-042",
     "deck": "close",
     "text": "It’s never the big things that don’t add up. It’s always some half hour.",
+    "joke": true,
     "tags": {
       "outcome": "contradicts",
       "role": "any"
@@ -465,6 +507,7 @@
     "id": "CLS-043",
     "deck": "close",
     "text": "Two stories in one night. Some people just can’t commit.",
+    "joke": true,
     "tags": {
       "outcome": "second-lie",
       "role": "any"
@@ -476,6 +519,7 @@
     "id": "CLS-044",
     "deck": "close",
     "text": "It was a better story than the first one. That isn’t saying much.",
+    "joke": true,
     "tags": {
       "outcome": "second-lie",
       "role": "any"
@@ -487,6 +531,7 @@
     "id": "CLS-045",
     "deck": "close",
     "text": "The new one came out quick. Some people keep a spare story the way other people keep an umbrella.",
+    "joke": true,
     "tags": {
       "outcome": "second-lie",
       "role": "any"
@@ -498,6 +543,7 @@
     "id": "CLS-046",
     "deck": "close",
     "text": "Everybody keeps something in a drawer. {name}’s drawer had just come open.",
+    "joke": true,
     "tags": {
       "outcome": "admit",
       "role": "any"
@@ -509,6 +555,7 @@
     "id": "CLS-047",
     "deck": "close",
     "text": "The truth is always smaller than the lie that was covering it. It’s one of the disappointments of the job.",
+    "joke": true,
     "tags": {
       "outcome": "admit",
       "role": "any"
@@ -520,6 +567,7 @@
     "id": "CLS-048",
     "deck": "close",
     "text": "It explained the lie. It didn’t explain anything else, and I made a note of that.",
+    "joke": true,
     "tags": {
       "outcome": "admit",
       "role": "any"
@@ -531,6 +579,7 @@
     "id": "CLS-049",
     "deck": "close",
     "text": "{He} took the story back and didn’t offer a new one. I’ve had shops treat me the same way.",
+    "joke": true,
     "tags": {
       "outcome": "withdraw",
       "role": "any"
@@ -542,6 +591,7 @@
     "id": "CLS-050",
     "deck": "close",
     "text": "Now I had one story fewer and one question more. That’s how the job goes.",
+    "joke": true,
     "tags": {
       "outcome": "withdraw",
       "role": "any"
@@ -553,6 +603,7 @@
     "id": "CLS-051",
     "deck": "close",
     "text": "{He} stuck to it. So did I, in the notebook.",
+    "joke": true,
     "tags": {
       "outcome": "hold",
       "role": "any"
@@ -564,6 +615,7 @@
     "id": "CLS-052",
     "deck": "close",
     "text": "A story that holds is either true or well rehearsed, and I couldn’t afford a rehearsal.",
+    "joke": true,
     "tags": {
       "outcome": "hold",
       "role": "any"
@@ -575,6 +627,7 @@
     "id": "CLS-053",
     "deck": "close",
     "text": "{He} didn’t move an inch. I didn’t either, which made two of us wasting the evening.",
+    "joke": true,
     "tags": {
       "outcome": "hold",
       "role": "any"
@@ -586,6 +639,7 @@
     "id": "CLS-054",
     "deck": "close",
     "text": "{He} wouldn’t say. It’s not nothing, somebody not saying. It just doesn’t come with a room and an hour.",
+    "joke": true,
     "tags": {
       "outcome": "quiet",
       "role": "any"
@@ -597,6 +651,7 @@
     "id": "CLS-055",
     "deck": "close",
     "text": "That was worth writing down too: {name} would rather say nothing than say where.",
+    "joke": true,
     "tags": {
       "outcome": "quiet",
       "role": "any"
@@ -608,6 +663,7 @@
     "id": "CLS-056",
     "deck": "close",
     "text": "Silence isn’t an answer to where. It is an answer to whether {he} wanted to tell me.",
+    "joke": true,
     "tags": {
       "outcome": "quiet",
       "role": "any"
@@ -619,6 +675,7 @@
     "id": "CLS-057",
     "deck": "close",
     "text": "It hadn’t touched a thing. I’d spent good time finding that out, which is about my usual rate.",
+    "joke": true,
     "tags": {
       "outcome": "wrong",
       "role": "any"
@@ -630,6 +687,7 @@
     "id": "CLS-058",
     "deck": "close",
     "text": "It went past {him} like a streetcar past a stop with nobody waiting at it.",
+    "joke": true,
     "tags": {
       "outcome": "wrong",
       "role": "any"
@@ -641,6 +699,7 @@
     "id": "CLS-059",
     "deck": "close",
     "text": "Wrong fact, wrong person, right time of night for it.",
+    "joke": true,
     "tags": {
       "outcome": "wrong",
       "role": "any"
@@ -652,6 +711,7 @@
     "id": "CLS-060",
     "deck": "close",
     "text": "{name} was done talking about it. I had other people to annoy.",
+    "joke": true,
     "tags": {
       "outcome": "ends",
       "role": "any"
@@ -663,6 +723,7 @@
     "id": "CLS-061",
     "deck": "close",
     "text": "That was the end of that conversation, and I had nobody to blame but the notebook.",
+    "joke": true,
     "tags": {
       "outcome": "ends",
       "role": "any"
@@ -674,6 +735,7 @@
     "id": "CLS-062",
     "deck": "close",
     "text": "It wasn’t much, but I hadn’t come for much.",
+    "joke": true,
     "tags": {
       "outcome": "any",
       "role": "any"
@@ -685,6 +747,7 @@
     "id": "CLS-063",
     "deck": "close",
     "text": "I’d had worse half hours. Not many, but some.",
+    "joke": true,
     "tags": {
       "outcome": "any",
       "role": "any"
@@ -696,6 +759,7 @@
     "id": "CLS-100",
     "deck": "close",
     "text": "I kept out from under {prop} as much as I could. Some faces, mine included, should be taken on trust.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -710,6 +774,7 @@
     "id": "CLS-101",
     "deck": "close",
     "text": "{prop} did nobody in the room any favours, and I was in the room.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -724,6 +789,7 @@
     "id": "CLS-102",
     "deck": "close",
     "text": "{prop} had the whole room in it, me included. I’ve been in better pictures, but not many.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -738,6 +804,7 @@
     "id": "CLS-103",
     "deck": "close",
     "text": "I didn’t look in {prop}. I knew how the night had gone for me, and I didn’t need it in writing.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -752,6 +819,7 @@
     "id": "CLS-104",
     "deck": "close",
     "text": "{prop} went on as if none of us were there. It was the only one in the room with the right idea.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -766,6 +834,7 @@
     "id": "CLS-105",
     "deck": "close",
     "text": "I let {prop} do the talking for a while. It was better at it than anybody else in there, me included.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -780,6 +849,7 @@
     "id": "CLS-106",
     "deck": "close",
     "text": "By then {prop} had got into my coat. My coat has been in worse places, and so have I.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -794,6 +864,7 @@
     "id": "CLS-107",
     "deck": "close",
     "text": "{prop} was the first thing in the room to make me welcome, and it didn’t even mean it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -808,6 +879,7 @@
     "id": "CLS-108",
     "deck": "close",
     "text": "I read {prop} twice. It was the only thing in there that wanted to be read.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -822,6 +894,7 @@
     "id": "CLS-109",
     "deck": "close",
     "text": "{prop} had more to say than anybody in the room, and said it without being asked.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -836,6 +909,7 @@
     "id": "CLS-110",
     "deck": "close",
     "text": "{prop} went on ticking as if it had somewhere to be. Nothing else in the room did.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -850,6 +924,7 @@
     "id": "CLS-111",
     "deck": "close",
     "text": "I set my watch by {prop}, then set it back. I’ve never trusted a clock that looked that sure of itself.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -864,6 +939,7 @@
     "id": "CLS-112",
     "deck": "close",
     "text": "{prop} was the hardest worker in the room. I knew how it felt, in theory.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -878,6 +954,7 @@
     "id": "CLS-113",
     "deck": "close",
     "text": "{prop} gave a shudder. It was the only thing in there that reacted to me at all.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -892,6 +969,7 @@
     "id": "CLS-114",
     "deck": "close",
     "text": "{prop} had held up under worse than me. It had the scratches to prove it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -906,6 +984,7 @@
     "id": "CLS-115",
     "deck": "close",
     "text": "{prop} creaked when I leaned on it, which was the warmest welcome I got.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -920,6 +999,7 @@
     "id": "CLS-116",
     "deck": "close",
     "text": "{prop} had been hanging there longer than anybody in the room had been sitting. Nobody had looked at it in years, and it knew.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -934,6 +1014,7 @@
     "id": "CLS-117",
     "deck": "close",
     "text": "I gave {prop} a look. It was the only thing in there glad to be looked at.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -948,6 +1029,7 @@
     "id": "CLS-118",
     "deck": "close",
     "text": "{prop} was curling at the corners. So was I.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -962,6 +1044,7 @@
     "id": "CLS-119",
     "deck": "close",
     "text": "Nobody had read {prop} in a long time. I knew the feeling.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -976,6 +1059,7 @@
     "id": "CLS-120",
     "deck": "close",
     "text": "{prop} looked better than it would taste. Most things do, that late.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -990,6 +1074,7 @@
     "id": "CLS-121",
     "deck": "close",
     "text": "Nobody offered me {prop}, and I didn’t ask. A man has to keep some of his dignity, and I was running low.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1004,6 +1089,7 @@
     "id": "CLS-122",
     "deck": "close",
     "text": "I listened to {prop} for a while. It didn’t have much to say, but it kept on saying it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1018,6 +1104,7 @@
     "id": "CLS-123",
     "deck": "close",
     "text": "{prop} was keeping better time than anybody in the room, me included.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1032,6 +1119,7 @@
     "id": "CLS-124",
     "deck": "close",
     "text": "I made a note of {prop}. You always want to know how you’re getting out.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1046,6 +1134,7 @@
     "id": "CLS-125",
     "deck": "close",
     "text": "{prop} shut behind me as if it had been waiting all night to do it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1060,6 +1149,7 @@
     "id": "CLS-126",
     "deck": "close",
     "text": "I left {prop} alone. It hadn’t done anything to me yet.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1074,6 +1164,7 @@
     "id": "CLS-127",
     "deck": "close",
     "text": "{prop} was the only thing in the room that wasn’t pretending not to notice me.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1088,6 +1179,7 @@
     "id": "CLS-128",
     "deck": "close",
     "text": "{prop} smelled better than anything I’d eaten that week. That isn’t saying much, but it’s saying something.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1102,6 +1194,7 @@
     "id": "CLS-129",
     "deck": "close",
     "text": "{prop} had faded to the colour of the room. Give me long enough and I would too.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1116,6 +1209,7 @@
     "id": "CLS-130",
     "deck": "close",
     "text": "I’d have to take {prop} again on the way out. My knees were already talking about it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1130,6 +1224,7 @@
     "id": "CLS-131",
     "deck": "close",
     "text": "{prop} was doing its best in there. I knew the feeling, and it was doing better.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1144,6 +1239,7 @@
     "id": "CLS-132",
     "deck": "close",
     "text": "{prop} gave me one look and lost interest. I’ve had the same review from better critics.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1158,6 +1254,7 @@
     "id": "CLS-133",
     "deck": "close",
     "text": "{prop} lay where somebody had put it down. I envied it. Nobody wanted anything from it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1172,6 +1269,7 @@
     "id": "CLS-134",
     "deck": "close",
     "text": "I took a last look at {prop}. It didn’t take one back.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1186,6 +1284,7 @@
     "id": "CLS-135",
     "deck": "close",
     "text": "{prop} was still there when I looked again. In that room, that made it the most dependable thing I’d seen.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1200,6 +1299,7 @@
     "id": "CLS-136",
     "deck": "close",
     "text": "{trait} found me again and stayed a second longer than I liked. I’ve had shorter looks from the police.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1214,6 +1314,7 @@
     "id": "CLS-137",
     "deck": "close",
     "text": "I sat where {trait} could see me. It saved everybody the trouble.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1228,6 +1329,7 @@
     "id": "CLS-138",
     "deck": "close",
     "text": "I watched {trait} for a while. Faces lie for a living. Hands mostly haven’t been told to.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1242,6 +1344,7 @@
     "id": "CLS-139",
     "deck": "close",
     "text": "I’d remember {trait}. I’d have been glad to forget mine, but it comes with me everywhere.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1256,6 +1359,7 @@
     "id": "CLS-140",
     "deck": "close",
     "text": "I’d know {trait} again anywhere. That’s the trouble with a voice: you can’t pull a hat down over it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1270,6 +1374,7 @@
     "id": "CLS-141",
     "deck": "close",
     "text": "{trait} had seen better days, and had the manners not to bring them up. I buttoned my coat, in sympathy.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1284,6 +1389,7 @@
     "id": "CLS-142",
     "deck": "close",
     "text": "I made a note of {trait}. Everybody has a habit. Mine is making notes.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1298,6 +1404,7 @@
     "id": "CLS-143",
     "deck": "close",
     "text": "I stood up a little straighter, out of respect for {trait}. It didn’t last.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1312,6 +1419,7 @@
     "id": "CLS-144",
     "deck": "close",
     "text": "I made room in my head for {trait}. There was plenty; it had been a slow week.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1326,6 +1434,7 @@
     "id": "CLS-145",
     "deck": "close",
     "text": "I found a place to stand and stood in it. It’s the one thing I do well.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1340,6 +1449,7 @@
     "id": "CLS-146",
     "deck": "close",
     "text": "Nobody offered me a seat. I took one anyway; I’d been standing up for myself all night.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1354,6 +1464,7 @@
     "id": "CLS-147",
     "deck": "close",
     "text": "I kept my hat on. It was the only thing I’d brought with me that knew how to behave.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1368,6 +1479,7 @@
     "id": "CLS-148",
     "deck": "close",
     "text": "The room went back to what it had been doing before I came in. I’ve always had that effect.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1382,6 +1494,7 @@
     "id": "CLS-149",
     "deck": "close",
     "text": "Nobody said hello. Round here, that’s how you know they’ve noticed you.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1396,6 +1509,7 @@
     "id": "CLS-150",
     "deck": "close",
     "text": "I gave the room a minute to get used to me. It didn’t need the whole minute.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1410,6 +1524,7 @@
     "id": "CLS-151",
     "deck": "close",
     "text": "Everybody in there had a reason to be up so late. Mine was being paid for it, which is the saddest reason there is.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1424,6 +1539,7 @@
     "id": "CLS-152",
     "deck": "close",
     "text": "I stood by the door long enough to look like I belonged, which, in my case, takes a while.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1438,6 +1554,7 @@
     "id": "CLS-153",
     "deck": "close",
     "text": "I took my gloves off one finger at a time, like a man who means to stay. Nobody was impressed.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "company",
@@ -1452,6 +1569,7 @@
     "id": "CLS-154",
     "deck": "close",
     "text": "I wrote the answer down, and {trait} beside it. You never know which one you’ll need.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1466,6 +1584,7 @@
     "id": "CLS-155",
     "deck": "close",
     "text": "I’d remember {trait} longer than the answer. That’s no reflection on the answer.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1480,6 +1599,7 @@
     "id": "CLS-156",
     "deck": "close",
     "text": "I thought about {trait} on the way to the next question. It’s the details that keep me up. That and the coffee.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1494,6 +1614,7 @@
     "id": "CLS-157",
     "deck": "close",
     "text": "{trait} went back to wherever they’d been before I came over. I’d been let go, politely.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1508,6 +1629,7 @@
     "id": "CLS-158",
     "deck": "close",
     "text": "{trait} were back at work before I’d closed the notebook. I admired that. I’ve never once managed it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1522,6 +1644,7 @@
     "id": "CLS-159",
     "deck": "close",
     "text": "{trait} was still in my ear when I’d finished writing. It’s the kind of thing that doesn’t go in a notebook, and should.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1536,6 +1659,7 @@
     "id": "CLS-160",
     "deck": "close",
     "text": "I made a note of {trait}, the way you do. Faces are easier to write down than answers. They hold still for it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1550,6 +1674,7 @@
     "id": "CLS-161",
     "deck": "close",
     "text": "I thought about {trait} while I wrote. I thought about my own coat too, and stopped.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1564,6 +1689,7 @@
     "id": "CLS-162",
     "deck": "close",
     "text": "{trait} kept on through all of it. It’s nice to see something that doesn’t stop on my account.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1578,6 +1704,7 @@
     "id": "CLS-163",
     "deck": "close",
     "text": "By the end I felt I knew {thing} better than I knew its owner. It was certainly easier to talk to.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1592,6 +1719,7 @@
     "id": "CLS-164",
     "deck": "close",
     "text": "{thing} got its owner’s attention back the minute I’d finished. I know when I’m the intermission.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1606,6 +1734,7 @@
     "id": "CLS-165",
     "deck": "close",
     "text": "I left {thing} to its owner. It had had more attention than I had, and it deserved it more.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1620,6 +1749,7 @@
     "id": "CLS-166",
     "deck": "close",
     "text": "{thing} had gone warm while we talked. I felt I owed it an apology.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1634,6 +1764,7 @@
     "id": "CLS-167",
     "deck": "close",
     "text": "{thing} had waited through all of it without a word. There’s a lesson in that, and I’ll never learn it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1648,6 +1779,7 @@
     "id": "CLS-168",
     "deck": "close",
     "text": "I looked at {prop} while I wrote it down. Neither of us had anything to add.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1662,6 +1794,7 @@
     "id": "CLS-169",
     "deck": "close",
     "text": "{prop} had heard all of it and had the sense to keep quiet. I envied that.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1676,6 +1809,7 @@
     "id": "CLS-170",
     "deck": "close",
     "text": "I let my eyes rest on {prop} for a minute. It’s what I do when I’m thinking, or want to look like it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1690,6 +1824,7 @@
     "id": "CLS-171",
     "deck": "close",
     "text": "I caught the two of us in {prop}. One of us looked like he’d been up all night, and it was me.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1704,6 +1839,7 @@
     "id": "CLS-172",
     "deck": "close",
     "text": "I picked up {prop} and put it down again. It’s what I do instead of a clever remark.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1718,6 +1854,7 @@
     "id": "CLS-173",
     "deck": "close",
     "text": "{prop} made us both look tired. It was only being honest about one of us.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1732,6 +1869,7 @@
     "id": "CLS-174",
     "deck": "close",
     "text": "I said thank you. It’s cheap, and people remember it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1746,6 +1884,7 @@
     "id": "CLS-175",
     "deck": "close",
     "text": "That was a question asked and answered, which some nights is as good as it gets.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1760,6 +1899,7 @@
     "id": "CLS-176",
     "deck": "close",
     "text": "I licked the pencil and wrote it down. It’s the only part of the job that tastes of anything.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1774,6 +1914,7 @@
     "id": "CLS-177",
     "deck": "close",
     "text": "Asking is the easy part. The hard part is looking as if you knew the answer already.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1788,6 +1929,7 @@
     "id": "CLS-178",
     "deck": "close",
     "text": "I wrote it down in my best handwriting, which is still nobody’s best handwriting.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1802,6 +1944,7 @@
     "id": "CLS-179",
     "deck": "close",
     "text": "I nodded as if I’d expected it. It’s the nod I use for everything.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1816,6 +1959,7 @@
     "id": "CLS-180",
     "deck": "close",
     "text": "I gave the notebook a pat. It was getting heavier, or I was getting tired.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1830,6 +1974,7 @@
     "id": "CLS-181",
     "deck": "close",
     "text": "People will tell you a lot if you look tired enough. I didn’t have to pretend.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1844,6 +1989,7 @@
     "id": "CLS-182",
     "deck": "close",
     "text": "I turned to a fresh page for the next one. It’s the only tidy thing about me.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1858,6 +2004,7 @@
     "id": "CLS-183",
     "deck": "close",
     "text": "I touched my hat, which is as far as my manners go without costing money.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1872,6 +2019,7 @@
     "id": "CLS-184",
     "deck": "close",
     "text": "It was a small thing to know. I’ve built whole evenings out of smaller.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "ask",
@@ -1886,6 +2034,7 @@
     "id": "CLS-185",
     "deck": "close",
     "text": "I’d watched {trait} the whole time. That’s half the job. The other half is not reading too much into it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -1900,6 +2049,7 @@
     "id": "CLS-186",
     "deck": "close",
     "text": "I wrote down what was said, and {trait} beside it. The notebook doesn’t know which one matters, and some nights neither do I.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -1914,6 +2064,7 @@
     "id": "CLS-187",
     "deck": "close",
     "text": "{trait} had gone to the notebook and stayed there. People always think the notebook is the dangerous part. It’s the handwriting.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -1928,6 +2079,7 @@
     "id": "CLS-188",
     "deck": "close",
     "text": "{trait} had gone still while I read it out. That means somebody is listening, and it’s all it means.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -1942,6 +2094,7 @@
     "id": "CLS-189",
     "deck": "close",
     "text": "{trait} had come down a notch by the end, and mine had come up one. We met in the middle, which is more than most people manage.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -1956,6 +2109,7 @@
     "id": "CLS-190",
     "deck": "close",
     "text": "{trait} did something small while I read it out, and then undid it. I wrote down that it had, and not what it meant.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -1970,6 +2124,7 @@
     "id": "CLS-191",
     "deck": "close",
     "text": "Nobody had looked at {thing} since I started. It was the first thing all night I’d been more interesting than.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -1984,6 +2139,7 @@
     "id": "CLS-192",
     "deck": "close",
     "text": "{thing} had kept to itself the whole time. It was the smartest one there.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -1998,6 +2154,7 @@
     "id": "CLS-193",
     "deck": "close",
     "text": "{thing} had gone untouched through all of it. I’d have drunk it myself, but I was working, and it wasn’t mine.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -2012,6 +2169,7 @@
     "id": "CLS-194",
     "deck": "close",
     "text": "{prop} had watched the whole thing without a word. It would make somebody a very poor witness.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -2026,6 +2184,7 @@
     "id": "CLS-195",
     "deck": "close",
     "text": "I looked at {prop} while my own pulse came down. Putting a fact to somebody is harder on the one holding it than you’d think.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -2040,6 +2199,7 @@
     "id": "CLS-196",
     "deck": "close",
     "text": "{prop} hadn’t flickered once through any of it. It was the steadiest thing there, me included.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -2054,6 +2214,7 @@
     "id": "CLS-197",
     "deck": "close",
     "text": "I saw myself in {prop} halfway through and nearly lost my place. I don’t look like somebody who knows anything.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -2068,6 +2229,7 @@
     "id": "CLS-198",
     "deck": "close",
     "text": "I closed the notebook. It had done its part without saying a word, which is more than I can say for me.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -2082,6 +2244,7 @@
     "id": "CLS-199",
     "deck": "close",
     "text": "Putting a fact to somebody is like handing them a hot plate. You learn a little from how they hold it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -2096,6 +2259,7 @@
     "id": "CLS-200",
     "deck": "close",
     "text": "I put the pencil back behind my ear. It had done its share, and so, for a minute, had I.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -2110,6 +2274,7 @@
     "id": "CLS-201",
     "deck": "close",
     "text": "My mouth had gone dry. It does that when I read aloud, which is why I don’t do more of it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -2124,6 +2289,7 @@
     "id": "CLS-202",
     "deck": "close",
     "text": "I’d said my piece. It had sounded better in the notebook than out loud. Most things do.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -2138,6 +2304,7 @@
     "id": "CLS-203",
     "deck": "close",
     "text": "I breathed out. Putting a fact to somebody takes something out of you, and I hadn’t had much in to start with.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -2152,6 +2319,7 @@
     "id": "CLS-204",
     "deck": "close",
     "text": "That’s the thing about a fact. It doesn’t care who’s holding it, and it doesn’t get tired.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -2166,6 +2334,7 @@
     "id": "CLS-205",
     "deck": "close",
     "text": "I made a small note at the bottom of the page. I have a system. Nobody, including me, knows what it is.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "confront",
@@ -2180,6 +2349,7 @@
     "id": "CLS-206",
     "deck": "close",
     "text": "I never laid a finger on {prop}. My mother would have been proud; she always said I touched too much.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2194,6 +2364,7 @@
     "id": "CLS-207",
     "deck": "close",
     "text": "I let {prop} be. Not everything in a room is trying to tell you something, though that late it all looks like it is.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2208,6 +2379,7 @@
     "id": "CLS-208",
     "deck": "close",
     "text": "{prop} sat there through the whole search, minding its own business. I’ve met people who couldn’t manage it.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2222,6 +2394,7 @@
     "id": "CLS-209",
     "deck": "close",
     "text": "{prop} was still where it had been when I came in. Some things know how to stay out of trouble.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2236,6 +2409,7 @@
     "id": "CLS-210",
     "deck": "close",
     "text": "I stepped round {prop} the way you step round a sleeping dog. It’s good manners, and it saves on trousers.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2250,6 +2424,7 @@
     "id": "CLS-211",
     "deck": "close",
     "text": "When I straightened up, {prop} was still there, as unhelpful as when I came in.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2264,6 +2439,7 @@
     "id": "CLS-212",
     "deck": "close",
     "text": "I stood by {prop} a minute and let my knees tell me how old they were.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2278,6 +2454,7 @@
     "id": "CLS-213",
     "deck": "close",
     "text": "{prop} had watched me go through the whole room without offering to help. It fitted right in.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2292,6 +2469,7 @@
     "id": "CLS-214",
     "deck": "close",
     "text": "I gave {prop} a last look. It had seen me at my worst now, on my knees and muttering.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2306,6 +2484,7 @@
     "id": "CLS-215",
     "deck": "close",
     "text": "My knees had opinions about the search. I let them have the last word.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2320,6 +2499,7 @@
     "id": "CLS-216",
     "deck": "close",
     "text": "I dusted off my hands. I’d collected more of the room than I’d meant to.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2334,6 +2514,7 @@
     "id": "CLS-217",
     "deck": "close",
     "text": "I stood up slowly. Getting down is easy; it’s getting up that tells you how old you are.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2348,6 +2529,7 @@
     "id": "CLS-218",
     "deck": "close",
     "text": "That was the room, as far as it went. I’ve been through worse ones, and I’ve been through better ones faster.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2362,6 +2544,7 @@
     "id": "CLS-219",
     "deck": "close",
     "text": "I wiped my hands on my handkerchief. It had seen dirtier jobs, but not many.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2376,6 +2559,7 @@
     "id": "CLS-220",
     "deck": "close",
     "text": "I’d had my hands in everything and my nose in most of it. It’s a glamorous line of work, if you don’t look closely.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2390,6 +2574,7 @@
     "id": "CLS-221",
     "deck": "close",
     "text": "Going through a room is like reading somebody’s mail. You feel bad about it for exactly as long as it takes.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2404,6 +2589,7 @@
     "id": "CLS-222",
     "deck": "close",
     "text": "Rooms don’t volunteer anything. You have to ask them on your knees.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "search",
@@ -2418,6 +2604,7 @@
     "id": "CLS-223",
     "deck": "close",
     "text": "So much for {figure}. It hadn’t got me a name, but it had got me off my feet for a minute.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "recap",
@@ -2432,6 +2619,7 @@
     "id": "CLS-224",
     "deck": "close",
     "text": "{figure} had done what it could. The rest was up to me, which was the worrying part.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "recap",
@@ -2446,6 +2634,7 @@
     "id": "CLS-225",
     "deck": "close",
     "text": "I’d come back to {figure} later. It would still be there, which is more than I could say for the night.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "recap",
@@ -2460,6 +2649,7 @@
     "id": "CLS-226",
     "deck": "close",
     "text": "That was {figure}, as far as it went. It didn’t go far, but I’ve walked further for less.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "recap",
@@ -2474,6 +2664,7 @@
     "id": "CLS-227",
     "deck": "close",
     "text": "I left {figure} where it was. I’m not the kind who asks twice. I’m the kind who asks three times.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "recap",
@@ -2488,6 +2679,7 @@
     "id": "CLS-228",
     "deck": "close",
     "text": "That was all of it, on one page. The page looked about as tired as I felt.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "recap",
@@ -2502,6 +2694,7 @@
     "id": "CLS-229",
     "deck": "close",
     "text": "I read it over once more, in case it had improved. It hadn’t, but it hadn’t got worse either.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "recap",
@@ -2516,6 +2709,7 @@
     "id": "CLS-230",
     "deck": "close",
     "text": "It wasn’t a case yet. It was a list with ambitions.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "recap",
@@ -2530,6 +2724,7 @@
     "id": "CLS-231",
     "deck": "close",
     "text": "I put the pencil away. It had worked harder than I had, and it hadn’t complained once.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "recap",
@@ -2544,6 +2739,7 @@
     "id": "CLS-232",
     "deck": "close",
     "text": "{prop} and I had been through a lot together. Most of it had been my fault.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "office",
@@ -2558,6 +2754,7 @@
     "id": "CLS-233",
     "deck": "close",
     "text": "{prop} had seen clients come and go. Mostly go.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "office",
@@ -2572,6 +2769,7 @@
     "id": "CLS-234",
     "deck": "close",
     "text": "I looked at {prop} the way I do every night, in case it had changed. It hadn’t. Neither had I.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "office",
@@ -2586,6 +2784,7 @@
     "id": "CLS-235",
     "deck": "close",
     "text": "{prop} knocked twice, as if it wanted in on the job. I’d have taken it on; it works cheaper than I do.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "office",
@@ -2600,6 +2799,7 @@
     "id": "CLS-236",
     "deck": "close",
     "text": "{prop} had held up under worse than me. Not much worse, but some.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "office",
@@ -2614,6 +2814,7 @@
     "id": "CLS-237",
     "deck": "close",
     "text": "Outside {prop}, the city went on without me. It usually does.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "office",
@@ -2628,6 +2829,7 @@
     "id": "CLS-238",
     "deck": "close",
     "text": "{prop} buzzed over the desk, making the best of what it had to work with. So was I.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "office",
@@ -2642,6 +2844,7 @@
     "id": "CLS-239",
     "deck": "close",
     "text": "I moved {prop} under the blotter, where the rest of my problems live.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "office",
@@ -2656,6 +2859,7 @@
     "id": "CLS-240",
     "deck": "close",
     "text": "{prop} said it was late. It says that every night, and it’s never once been wrong.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "office",
@@ -2670,6 +2874,7 @@
     "id": "CLS-241",
     "deck": "close",
     "text": "{prop} stayed where it was. I have principles, and a client in the room is one of them.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "office",
@@ -2684,6 +2889,7 @@
     "id": "CLS-242",
     "deck": "close",
     "text": "I had a client again. I tried to look like a man who has them all the time.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "office",
@@ -2698,6 +2904,7 @@
     "id": "CLS-243",
     "deck": "close",
     "text": "The office felt smaller with somebody else in it, and it had never felt big.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "office",
@@ -2712,6 +2919,7 @@
     "id": "CLS-244",
     "deck": "close",
     "text": "I straightened my tie, which is what I do instead of having a plan.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "office",
@@ -2726,6 +2934,7 @@
     "id": "CLS-245",
     "deck": "close",
     "text": "I wrote the date at the top of a clean page. It was the only thing on it I was sure of.",
+    "joke": true,
     "tags": {
       "outcome": "sheet",
       "moment": "office",

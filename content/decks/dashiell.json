@@ -251,6 +251,7 @@
     "id": "hum-012",
     "deck": "dashiell-lines",
     "text": "\"Give me your read on {name}. The one you wouldn’t say at a wedding.\"",
+    "joke": true,
     "tags": {
       "kind": "ask-person",
       "familiar": "no",
@@ -544,6 +545,7 @@
     "id": "hum-086",
     "deck": "dashiell-lines",
     "text": "\"Who came through {place} tonight? Take your time. I’ve got until morning.\"",
+    "joke": true,
     "tags": {
       "kind": "ask-place",
       "familiar": "no"
@@ -724,6 +726,7 @@
     "id": "hum-043",
     "deck": "dashiell-lines",
     "text": "\"Where were you tonight? All of it, and slowly. I write slow.\"",
+    "joke": true,
     "tags": {
       "kind": "ask-evening",
       "familiar": "no"
@@ -735,6 +738,7 @@
     "id": "hum-044",
     "deck": "dashiell-lines",
     "text": "\"Tell me your evening. Leave in the dull parts. I like the dull parts.\"",
+    "joke": true,
     "tags": {
       "kind": "ask-evening",
       "familiar": "no"

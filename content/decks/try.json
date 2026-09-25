@@ -3,6 +3,7 @@
     "id": "TRY-001",
     "deck": "try",
     "text": "I offered to buy {him} a drink, which in that room was mostly a gesture.",
+    "joke": true,
     "tags": {
       "setting": "bar",
       "why": "easy",
@@ -15,6 +16,7 @@
     "id": "TRY-002",
     "deck": "try",
     "text": "I put a coin on the bar for whatever {he} was having. {He} was having it anyway.",
+    "joke": true,
     "tags": {
       "setting": "bar",
       "why": "easy",
@@ -27,6 +29,7 @@
     "id": "TRY-003",
     "deck": "try",
     "text": "I bought {him} a drink. {He} looked at it for a while before deciding it didn’t oblige {him} to anything.",
+    "joke": true,
     "tags": {
       "setting": "bar",
       "why": "guarded",
@@ -51,6 +54,7 @@
     "id": "TRY-005",
     "deck": "try",
     "text": "I bought another round, which is the second-oldest way of asking twice.",
+    "joke": true,
     "tags": {
       "setting": "bar",
       "why": "again",
@@ -63,6 +67,7 @@
     "id": "TRY-006",
     "deck": "try",
     "text": "I offered {him} a cigarette. {He} took it, which is not the same as taking the question.",
+    "joke": true,
     "tags": {
       "setting": "bar",
       "why": "guarded",
@@ -75,6 +80,7 @@
     "id": "TRY-007",
     "deck": "try",
     "text": "I put a nickel on the counter for {his} coffee. At that hour it’s practically a bribe.",
+    "joke": true,
     "tags": {
       "setting": "counter",
       "why": "easy",
@@ -87,6 +93,7 @@
     "id": "TRY-008",
     "deck": "try",
     "text": "I bought {him} a coffee. {He} held the cup in both hands and gave me nothing but the steam.",
+    "joke": true,
     "tags": {
       "setting": "counter",
       "why": "guarded",
@@ -111,6 +118,7 @@
     "id": "TRY-010",
     "deck": "try",
     "text": "I held out my cigarettes. {He} took two, which I decided to call progress.",
+    "joke": true,
     "tags": {
       "setting": "street",
       "why": "easy",
@@ -123,6 +131,7 @@
     "id": "TRY-011",
     "deck": "try",
     "text": "I offered {him} a cigarette. {He} put it behind {his} ear for later, which told me where I stood.",
+    "joke": true,
     "tags": {
       "setting": "street",
       "why": "guarded",
@@ -159,6 +168,7 @@
     "id": "TRY-014",
     "deck": "try",
     "text": "I offered {him} a cigarette and lit it for {him}, which is as close as I get to manners.",
+    "joke": true,
     "tags": {
       "setting": "stair",
       "why": "guarded",
@@ -171,6 +181,7 @@
     "id": "TRY-015",
     "deck": "try",
     "text": "I offered {him} a cigarette and lit it for {him}, which is as close as I get to manners.",
+    "joke": true,
     "tags": {
       "setting": "room",
       "why": "guarded",
@@ -195,6 +206,7 @@
     "id": "TRY-017",
     "deck": "try",
     "text": "I passed {him} a cigarette. It seemed to cheer {him} up, which made one of us.",
+    "joke": true,
     "tags": {
       "setting": "room",
       "why": "easy",
@@ -207,6 +219,7 @@
     "id": "TRY-018",
     "deck": "try",
     "text": "I pushed the ashtray across the desk to {him}, which is my office’s idea of hospitality.",
+    "joke": true,
     "tags": {
       "setting": "office",
       "why": "any",
@@ -219,6 +232,7 @@
     "id": "TRY-019",
     "deck": "try",
     "text": "I offered {him} the bottle from the bottom drawer. {He} looked at the glass and declined, and I didn’t blame {him}.",
+    "joke": true,
     "tags": {
       "setting": "office",
       "why": "any",
@@ -243,6 +257,7 @@
     "id": "TRY-021",
     "deck": "try",
     "text": "I tried a little charm. It isn’t my best tool, but it was the one I had on me.",
+    "joke": true,
     "tags": {
       "setting": "any",
       "why": "guarded",
@@ -255,6 +270,7 @@
     "id": "TRY-022",
     "deck": "try",
     "text": "I asked it again, nicer. I even said please, which I keep for emergencies.",
+    "joke": true,
     "tags": {
       "setting": "any",
       "why": "again",
@@ -291,6 +307,7 @@
     "id": "TRY-025",
     "deck": "try",
     "text": "I didn’t raise my voice. I put the notebook on the table and let it sit there looking official.",
+    "joke": true,
     "tags": {
       "setting": "any",
       "why": "press",

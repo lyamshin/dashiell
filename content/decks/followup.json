@@ -39,6 +39,7 @@
     "id": "fol-004",
     "deck": "followup",
     "text": "“Who came through tonight? All of them, in order. I’ll keep up.”",
+    "joke": true,
     "tags": {
       "part": "open",
       "family": "counts",
@@ -291,6 +292,7 @@
     "id": "fol-025",
     "deck": "followup",
     "text": "“Walk me through your evening. Slowly. I’m a slow walker.”",
+    "joke": true,
     "tags": {
       "part": "open",
       "family": "evening",
@@ -382,6 +384,7 @@
     "id": "fol-033",
     "deck": "followup",
     "text": "“Anything else I ought to know? There usually is.”",
+    "joke": true,
     "tags": {
       "part": "open",
       "family": "thing",
@@ -682,6 +685,7 @@
     "id": "fol-e008",
     "deck": "followup",
     "text": "“I’ll need your own evening too. All of it. Being thorough is my only virtue.”",
+    "joke": true,
     "tags": {
       "part": "open",
       "family": "evening",
@@ -694,6 +698,7 @@
     "id": "fol-e009",
     "deck": "followup",
     "text": "“Now your own night, if you don’t mind. And if you do mind, the same.”",
+    "joke": true,
     "tags": {
       "part": "open",
       "family": "evening",
@@ -742,6 +747,7 @@
     "id": "fol-e013",
     "deck": "followup",
     "text": "“Now, you. Where were you all night? Take your time. I’ve been up all of it anyway.”",
+    "joke": true,
     "tags": {
       "part": "open",
       "family": "evening",
