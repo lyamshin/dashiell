@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { generateCase } from '../src/gen/index.js';
 import { renderCandidateSheet, renderTruthSheet } from '../src/sheet/truthSheet.js';
+import { gameBudget, gamePar } from '../src/game/derive.js';
 
 describe('truth sheet', () => {
   it('emits the spec sections in order', () => {
@@ -39,8 +40,9 @@ describe('truth sheet', () => {
     expect(sheet).toContain(`**Attempts** ${c.attempts}`);
     expect(sheet).toContain('**Detective** Dashiell');
     expect(sheet).toContain(`**Difficulty** ${c.difficulty}`);
-    expect(sheet).toContain(`**Par** ${c.par} actions`);
-    expect(sheet).toContain(`**Budget** ${c.budget}`);
+    // docs/38: the night's own par and budget, as the clock and the verdict count them.
+    expect(sheet).toContain(`**Par** ${gamePar(c)} calls`);
+    expect(sheet).toContain(`**Budget** ${gameBudget(c)} calls`);
     expect(sheet).toContain(`**Findable** ${c.findable.length}`);
     expect(sheet).toContain('**Noise ratio**');
     expect(sheet).toContain(`**Type** ${c.act.type}`);
@@ -162,10 +164,13 @@ describe('sheet hygiene — short names', () => {
     for (let seed = 1; seed <= 20; seed++) {
       const c = generateCase(seed);
       const sheet = renderTruthSheet(c);
-      expect(sheet).toContain(`**Par** ${c.par} actions`);
+      // docs/38: the night's par and budget (the walk from the office
+      // added to both), and the slack between them is the generator's.
+      expect(sheet).toContain(`**Par** ${gamePar(c)} calls`);
       expect(sheet).toContain(`**Slack** ${c.slack}`);
-      expect(sheet).toContain(`**Budget** ${c.budget}`);
+      expect(sheet).toContain(`**Budget** ${gameBudget(c)} calls`);
       expect(c.budget).toBe(c.par + c.slack);
+      expect(gameBudget(c) - gamePar(c)).toBe(c.slack);
     }
   });
 });

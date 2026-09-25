@@ -226,7 +226,7 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
   const place = view.placeById.get(stage.at);
   const here = place?.shortName ?? '';
   const victim = view.victim;
-  const people = nameables(view);
+  const people = nameables(view, stage.foundAfter);
   /** Who has been said who they are: on an earlier page, or already on this one. */
   const named = new Set<Id>(stage.namedBefore ?? []);
   let errand: ErrandTrace | undefined;
@@ -331,7 +331,12 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
           const lead = c.lead ? 'yes' : 'no';
           // M10 §A.5: "On Crowninshield’s word, I asked Crowninshield". A card
           // naming who sent him is not dealt when that is who he is asking.
-          const self = c.slots.name !== undefined && c.slots.name === c.slots.who;
+          // docs/38: nor when that is who the question is about ("On Shapiro’s
+          // word, I went to ask Bellucci about Shapiro"), which the carry line
+          // says since the question no longer carries a tie the notebook lacks.
+          const self =
+            c.slots.name !== undefined &&
+            (c.slots.name === c.slots.who || (c.slots.subject !== undefined && new RegExp(`^${c.slots.name}\\b`).test(c.slots.subject)));
           const slots: Slots = { ...c.slots, victim: victim.surname, ...(self ? { name: undefined } : {}) };
           const drawn = deal(
             stage,
@@ -995,13 +1000,14 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
   if (searchCloseAt === beats.length) searchClose();
 
   /* ----------------------------------------- the client's close (office) */
-  if (scene.kind === 'ask' && scene.clientLeaves) {
+  if (scene.kind === 'ask' && (scene.clientLeaves || scene.clientWhere)) {
     const client = view.client;
     push({
       text: clientLeavingLine(
         dealer,
         client.surname,
         view.placeById.get(client.foundAt ?? '')?.shortName ?? `the address ${pronounOf(client)} gave me`,
+        scene.clientWhere === true && scene.clientLeaves !== true,
       ),
       voice: 'exchange',
       beats: [],
@@ -2295,8 +2301,10 @@ function rundownParas(
   // Half the time she offers first, and he says it backwards; otherwise he asks.
   const opener = dealer.random.chance(0.5) ? dealer.random.pick(RUNDOWN_OPENERS) : null;
   if (opener) {
-    out.push({ text: `“${opener.ask}” ${capitalize(she ? 'she' : 'he')} said.`, voice: 'exchange' });
-    out.push({ text: `“${opener.quip}” I said.`, voice: 'exchange' });
+    // “Sit. I’ll save you some walking,” she said. — the tag after a quote runs on from it.
+    const tagged = (line: string): string => line.replace(/\.$/, ',');
+    out.push({ text: `“${tagged(opener.ask)}” ${she ? 'she' : 'he'} said.`, voice: 'exchange' });
+    out.push({ text: `“${tagged(opener.quip)}” I said.`, voice: 'exchange' });
   } else out.push({ text: attributed(`“${dealer.random.pick(RUNDOWN_ASKS)}”`), voice: 'exchange' });
   const said: string[] = [];
   const stranger: string[] = [];

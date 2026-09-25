@@ -209,6 +209,23 @@ export function caseParFrom(kase: Case, startId: Id): number {
   return Number.isFinite(cost) ? cost : kase.par;
 }
 
+/**
+ * docs/38: the things the notebook knows are not where they belong — the
+ * one the case is about (the cat, the watch), and anything a find in hand
+ * says is missing. A room's list of things, and its buttons, leave them out:
+ * a page never goes through a bottle it has just said was gone.
+ */
+export function goneObjects(kase: Case, found: readonly Id[]): Set<Id> {
+  const out = new Set<Id>();
+  if (kase.act.taken?.id) out.add(kase.act.taken.id);
+  const have = new Set(found);
+  for (const c of kase.findable) {
+    if (!have.has(c.id)) continue;
+    for (const f of c.establishes) if (f.kind === 'objectMissing') out.add(f.objectId);
+  }
+  return out;
+}
+
 export function gamePar(kase: Case): number {
   const start = startPlaceOf(kase);
   if (start === kase.solution.murderPlaceId) return kase.par + 1;

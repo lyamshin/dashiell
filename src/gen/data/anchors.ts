@@ -85,7 +85,7 @@ export const ANCHOR_TEMPLATES: AnchorTemplate[] = [
     traces: [{ kind: 'sighting' }],
     timing: 'when the cop came round',
     highTiming: 'as the cop was coming round',
-    sceneFact: 'The patrolman’s round brought him two streets off at {T}.',
+    sceneFact: 'The patrolman’s round brought him two streets off at {T}, on one of the passes his beat makes in an evening.',
   },
   {
     id: 'piano-lesson',
@@ -113,7 +113,7 @@ export const ANCHOR_TEMPLATES: AnchorTemplate[] = [
     timing: 'just as the El went over',
     highTiming: 'just as the El went over',
     sceneFact:
-      'The El went over at {T}, running to timetable, and for twenty seconds nothing under the structure can be heard at all.',
+      'The El went over at {T}, one of the trains that run to timetable all evening, and for twenty seconds nothing under the structure can be heard at all.',
   },
   {
     id: 'church-bells',
@@ -126,7 +126,7 @@ export const ANCHOR_TEMPLATES: AnchorTemplate[] = [
     timing: 'as the bells were going',
     highTiming: 'while the bells were going',
     sceneFact:
-      'The bells rang the half hour at {T}. The church caretaker rings them by the church clock, and it keeps good time.',
+      'The bells rang at {T}, one of the times they ring in an evening. The church caretaker rings them by the church clock, and it keeps good time.',
   },
   {
     id: 'last-edition',
@@ -183,7 +183,7 @@ export const ANCHOR_TEMPLATES: AnchorTemplate[] = [
     traces: [{ kind: 'sound', description: 'iron tyres and a horse that will not stand still' }],
     timing: 'while the milk wagon was in the street',
     highTiming: 'while the milk wagon was in the street',
-    sceneFact: 'The milk wagon was at the corner at {T}, where the driver’s round puts him every night.',
+    sceneFact: 'The milk wagon was at the corner at {T}, on one of the rounds that bring the driver past it every night.',
   },
   {
     id: 'theater-out',
@@ -246,7 +246,7 @@ export const ANCHOR_TEMPLATES: AnchorTemplate[] = [
     ],
     timing: 'when the dumbwaiter went up',
     highTiming: 'as the dumbwaiter was going up',
-    sceneFact: 'The dumbwaiter car was worked at {T}, as it is on the hour and the half hour.',
+    sceneFact: 'The dumbwaiter car was worked at {T}, one of the times it is worked in an evening.',
   },
   {
     id: 'ice-delivery',
@@ -274,7 +274,7 @@ export const ANCHOR_TEMPLATES: AnchorTemplate[] = [
     traces: [{ kind: 'sound', description: 'two long and one short, and you can hear it a mile inland' }],
     timing: 'when the whistle went off the river',
     highTiming: 'as the whistle went off the river',
-    sceneFact: 'The whistle went off the river at {T}, two long and one short, and the boat’s log has the hour.',
+    sceneFact: 'The whistle went off the river at {T}, two long and one short. The boats sound it more than once in an evening, and the log has that one at {T}.',
   },
 ];
 

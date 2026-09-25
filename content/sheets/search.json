@@ -1,11 +1,11 @@
 {
   "moment": "search",
-  "$comment": "M13. A search page: how he went through the place (the first paragraph, which the first find joins), the body the engine writes (the finds, the things left alone, what they are worth), and a last word before any decision or next lead. Holes: act (how he went through it, off search-act, or the one thing he searched; bind prop for a thing the act card names, 'the one good chair'), left (bind prop: the first thing he left alone, which the page names after the first find; says nothing), body. Card holes: prop (place-ambient: bind prop; the room's texture, said in the first paragraph). Slots: {place} {Place} {victim} {hour} {object} (the thing searched, when it was one); roles {prop}. Every part is said in the first paragraph, before the first find, wherever it sits round the body. A later bind of prop wins over an earlier one, so a sheet that binds both left and act puts left first: the act card's thing when it offers one (with its own pay line), else the thing left alone. Never a verdict: a last word is about the room, the search, the detective — never what a find means.",
+  "$comment": "M13. A search page: how he went through the place (the first paragraph, which the first find joins), the body the engine writes (the finds, the things left alone, what they are worth), and a last word before any decision or next lead. Holes: act (how he went through it, off search-act, or the one thing he searched; bind prop for a thing the act card names, 'the one good chair'), left (bind prop: the first thing in the room besides what he started with, which the page names after the first find and says he went through with the rest — a search takes the whole room), body. Card holes: prop (place-ambient: bind prop; the room's texture, said in the first paragraph). Slots: {place} {Place} {victim} {hour} {object} (the thing searched, when it was one); roles {prop}. Every part is said in the first paragraph, before the first find, wherever it sits round the body. A later bind of prop wins over an earlier one, so a sheet that binds both left and act puts left first: the act card's thing when it offers one (with its own pay line), else the other thing in the room. Never a verdict: a last word is about the room, the search, the detective — never what a find means.",
   "sheets": [
     {
       "id": "sea-a",
       "name": "The way through",
-      "notes": "The way through, and a last word on a thing the act card named (the kitchen end, the one good chair: its own pay line) or, when the card offers none, on the first thing he left alone.",
+      "notes": "The way through, and a last word on a thing the act card named (the kitchen end, the one good chair: its own pay line) or, when the card offers none, on the first other thing in the room he went through.",
       "parts": [
         { "hole": "left", "bind": "prop", "optional": true },
         { "hole": "act", "bind": "prop" },
@@ -14,9 +14,9 @@
       "close": {
         "roles": ["prop"],
         "callback": [
-          "I left {prop} where it was. It had waited this long; it could wait for a second visit.",
-          "I didn’t touch {prop} on the way out, either. Some things you save for when you know what to ask them.",
-          "I left {prop} where it stood. I’d know where to find it, which is more than I can say for my hat most mornings."
+          "I put {prop} back where I found it, when I had been through it with the rest.",
+          "I went through {prop} last, on the way out. Some things you save for when you know what to ask them.",
+          "I put {prop} back where it stood. I’d know where to find it, which is more than I can say for my hat most mornings."
         ],
         "plain": [
           "I put the room back roughly the way I found it. Roughly is the best anybody does.",
@@ -57,25 +57,25 @@
     {
       "id": "sea-c",
       "name": "One thing, properly",
-      "notes": "A search of one thing: a join that says so, the thing, and a last word that puts it back (or on what he left alone).",
+      "notes": "A search of one thing: a join that says so, the thing, and a last word that puts it back (or on the other thing he went through after it). A search of one thing is still a search of the room: it starts there.",
       "when": { "object": true },
       "parts": [
         { "hole": "left", "bind": "prop", "optional": true },
-        { "text": "I didn’t take the whole of {place} apart. I took one thing, and I took my time.", "alt": ["I left the rest of {place} alone and gave one thing all my attention.", "One thing, not the whole of {place}. I’d rather do one thing properly than everything badly.", "{Place} could wait. I had one thing in mind, and I meant to go through it properly."] },
+        { "text": "I started with one thing and took my time over it, and then I went through the rest of {place}.", "alt": ["I gave one thing all my attention first, and the rest of {place} what was left.", "One thing first, properly, and then the whole of {place} after it. I’d rather do one thing properly than everything badly.", "I had one thing in mind, and I went through it properly before I did the rest of {place}."] },
         { "hole": "act" },
         { "hole": "body" }
       ],
       "close": {
         "roles": ["prop"],
         "callback": [
-          "I hadn’t touched {prop}. I only have the two hands, and I’d been using both on {object}.",
-          "{Prop} would keep for another time. I’d given {object} everything I had.",
-          "I never got round to {prop}. One thing at a time is about my speed."
+          "I got to {prop} after {object}. I only have the two hands, and I’d been using both on {object}.",
+          "{Prop} got what was left of me after {object}. I’d given {object} the best of it.",
+          "I got round to {prop} last. One thing at a time is about my speed."
         ],
         "plain": [
           "I put {object} back the way it had been, near enough. Near enough is what I get paid for.",
           "I gave {object} one last look, to be polite, and put everything back.",
-          "That was {object}, gone over properly. The rest of the place could have its turn another night.",
+          "That was {object}, gone over properly, and the rest of the place after it.",
           "I straightened up slowly. Going over one thing properly is hard on the back."
         ],
         "deck": true
@@ -94,9 +94,9 @@
       "close": {
         "roles": ["prop"],
         "callback": [
-          "My hands were full already. {Prop} would have to wait its turn.",
-          "I’d have looked at {prop} too, if I’d had another pair of hands.",
-          "{Prop} would keep. I was carrying about as much as one notebook can hold."
+          "My hands were full already by the time I got to {prop}.",
+          "I went through {prop} too, and could have used another pair of hands for it.",
+          "{Prop} got its turn as well. I was carrying about as much as one notebook can hold."
         ],
         "plain": [
           "That was more than a room usually gives me. I wrote it all down before it could change its mind.",

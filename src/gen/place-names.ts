@@ -182,3 +182,44 @@ export function saysPlace(text: string, place: Pick<Place, 'shortName' | 'names'
     from = i + 1;
   }
 }
+
+/**
+ * docs/38: a sentence that has already named somebody says what is theirs
+ * with a pronoun. "Lefkowitz was found at Lefkowitz’s place" is "…at his
+ * place"; "Lefkowitz’s rooms at Lefkowitz’s place" is "Lefkowitz’s rooms".
+ * Only where nobody else is named between the two, and only inside the same
+ * voice (both in the narration, or both in one speech), so the pronoun can
+ * only mean them.
+ */
+export function ownerOnce(text: string, people: readonly { surname: string; gender?: string }[]): string {
+  let out = text;
+  const escape = (x: string): string => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  for (const p of people) {
+    if (!out.includes(p.surname)) continue;
+    const S = escape(p.surname);
+    const his = p.gender === 'f' ? 'her' : 'his';
+    // "S’s rooms at S’s place": the second says nothing the first did not.
+    out = out.replace(new RegExp(`(\\b${S}[’']s [a-z]+(?: [a-z]+)?) at ${S}[’']s place\\b`, 'g'), '$1');
+    const others = people.filter((q) => q.surname !== p.surname).map((q) => new RegExp(`\\b${escape(q.surname)}\\b`));
+    const units = out.split(/(?<=[.!?:;])(\s+)/);
+    for (let u = 0; u < units.length; u++) {
+      const s = units[u] as string;
+      const first = new RegExp(`\\b${S}\\b`).exec(s);
+      if (!first) continue;
+      const later = new RegExp(`\\b${S}[’']s (?=[a-z])`, 'g');
+      later.lastIndex = first.index + p.surname.length;
+      let rebuilt = '';
+      let from = 0;
+      for (let m = later.exec(s); m; m = later.exec(s)) {
+        const between = s.slice(first.index + p.surname.length, m.index);
+        const quotes = (between.match(/[“”]/g) ?? []).length;
+        if (quotes > 0 || others.some((re) => re.test(between))) continue;
+        rebuilt += `${s.slice(from, m.index)}${his} `;
+        from = m.index + m[0].length;
+      }
+      if (from > 0) units[u] = rebuilt + s.slice(from);
+    }
+    out = units.join('');
+  }
+  return out;
+}

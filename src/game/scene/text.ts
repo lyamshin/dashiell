@@ -12,6 +12,7 @@ import type { Id, Mention, Person } from '../../gen/types.js';
 import type { CaseView } from '../derive.js';
 import type { Page } from '../types.js';
 import { relationPlain } from './lines.js';
+import { relationHeld } from './people.js';
 import { maskPlaces, placeFormsOf } from './place-names.js';
 
 /* ------------------------------------------------------------------ *
@@ -473,17 +474,22 @@ function bareRole(role: string): string {
  * in the case at all; a fixture is their job; a mention is the role the
  * backstory gave them.
  */
-export function nameables(view: CaseView): Nameable[] {
+export function nameables(view: CaseView, found?: readonly Id[]): Nameable[] {
   const out: Nameable[] = [];
   const forms = placeFormsOf(view.kase.places);
   for (const p of view.kase.people) {
     const exempt = p.id === view.victim.id || p.id === view.client.id;
-    const plain = exempt ? '' : plainOf(view, p);
+    // Honest mechanics (docs/38): a suspect's tie to the victim is their
+    // clause only once the notebook holds it (`relationHeld`); before that,
+    // who they are is what the notebook's own list of people says: their
+    // line of work.
+    const unheld = found !== undefined && p.kind === 'suspect' && !exempt && !relationHeld(view, p.id, found);
+    const plain = exempt ? '' : unheld ? `${p.surname} was ${p.role.replace(/\.$/, '')}.` : plainOf(view, p);
     const masks = forms.filter((f) => nameRe(p.surname).test(f));
     out.push({
       id: p.id,
       surname: p.surname,
-      clause: exempt ? '' : clauseOf(view, p),
+      clause: exempt ? '' : unheld ? p.role.replace(/\.$/, '') : clauseOf(view, p),
       also: exempt ? [] : [...alsoOf(p), ...(plain ? [plain.replace(/\.$/, '').slice(p.surname.length + 1)] : [])],
       plain,
       ...(masks.length > 0 ? { masks } : {}),

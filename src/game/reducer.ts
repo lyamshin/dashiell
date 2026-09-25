@@ -1051,11 +1051,14 @@ export function step(
       // free. A man hiring you answers your questions. Like the free first ask
       // this is slack handed to the player and never a shorter route, so it is
       // counted as waived and par's accounting does not move.
+      // Honest mechanics (docs/38): the second free question no longer ends
+      // the visit. The client stays in the chair until the detective walks
+      // out; questions past the two cost what any question costs, and the
+      // buttons say so before they are asked.
       const clientOnTheHouse = price.reason === 'house';
       if (clientOnTheHouse) {
         waived = 1;
         clientAsks += 1;
-        if (clientAsks >= 2) clientInOffice = false;
       } else if (price.reason === 'familiar') {
         // The free first ask. Unearned slack, and it should feel like luck.
         waived = 1;
@@ -1154,6 +1157,9 @@ export function step(
         ...(paced.later.length > 0 ? { more: true } : {}),
         free: waived === 1,
         topicRef: topicRefOf(command.topic),
+        // docs/38: the last question on the house says where the client
+        // will be later; the client stays until the detective walks out.
+        ...(clientOnTheHouse && clientAsks >= 2 ? { clientWhere: true } : {}),
         ...(askedSelf
           ? {
               self: {
@@ -1163,7 +1169,6 @@ export function step(
               },
             }
           : {}),
-        ...(clientOnTheHouse && !clientInOffice ? { clientLeaves: true } : {}),
       };
       break;
     }

@@ -1,3 +1,4 @@
+import { ownerOnce } from '../place-names.js';
 /**
  * M9 — the rule pool.
  *
@@ -33,7 +34,7 @@ import type { Rng } from '../rng.js';
 import { MOTIVE_BY_TYPE } from '../data/motives.js';
 import { METHOD_TEMPLATES } from '../data/methods.js';
 import type { Schedule9Build } from './schedule.js';
-import { ambiguousDescription, canName, describeAs, edgeOf, genderOf, strengthOf } from './acquaint.js';
+import { ambiguousDescription, canName, describeAs, genderOf, strengthOf } from './acquaint.js';
 import { applyRule, type LineNames, type RuleContext } from './lines.js';
 
 export interface Pool {
@@ -141,8 +142,8 @@ export function buildPool(input: PoolInput): Pool {
       kind,
       source,
       establishes,
-      text: speakTimes(text),
-      textRecord: text,
+      text: speakTimes(ownerOnce(text, cast.people)),
+      textRecord: ownerOnce(text, cast.people),
       place,
       leadsTo: [],
       role: 'testimony',
@@ -342,7 +343,12 @@ export function buildPool(input: PoolInput): Pool {
                 ? describeAs(y, cast.suspects, build.pairGrain)
                 : ambiguousDescription(y, cast.suspects);
             const facts: Fact[] = run.map((t) => ({ kind: 'describedAt', description: desc, place, tick: t }));
-            const seen = s === 'sight' ? `${edgeOf(build.acq, x.id, y.id)?.ref ?? desc.text}` : desc.text;
+            // docs/38: the record says what the witness said — the fact's own
+            // description, in the fact's own grain — and, for a face they
+            // knew, that they knew it by sight (in the third person: "…a man
+            // over forty, one he knew by sight,", never "I know by sight").
+            const knew = genderOf(person(x.id)) === 'f' ? 'she' : 'he';
+            const seen = s === 'sight' ? `${desc.text}, one ${knew} knew by sight,` : desc.text;
             descriptions.push(
               mint(
                 'd',

@@ -353,6 +353,18 @@ export const HIRING_LINES: string[] = [
 ];
 
 /** The client leaving, with the address the detective can find them at after. */
+/**
+ * docs/38: the client's second question on the house no longer ends the
+ * visit. The client says where to find them later and stays in the chair
+ * until the detective walks out; questions past the two cost what any
+ * question costs.
+ */
+export const CLIENT_STAYING: string[] = [
+  '“After this I’ll be at {place}, if you want me later.” {name} stayed in the chair all the same.',
+  '“When we’re done here, {place}. That’s where I’ll be.” {name} made no move to go yet.',
+  '{name} gave me an address for later, “{place},” and kept the chair for now.',
+];
+
 export const CLIENT_LEAVING: string[] = [
   '“I’ll be at {place} if you want me.” {name} took the stairs faster going down than coming up.',
   '{name} was finished talking. “{place}. That’s where I’ll be.” Then the door, and then the stairs, and then the street.',
@@ -561,17 +573,21 @@ export const SEARCH_THING_ACTS: string[] = [
 ];
 
 /**
- * Golden page 3: the things the buttons offer are named in the story and
- * deliberately left, so the buttons read as "go back to that".
+ * Golden page 3: the things the buttons offer are named in the story. A
+ * search of the room goes through everything in it (the reducer's rule: the
+ * room gives up all it has to the first search), so the page says so, and
+ * the things' buttons are done and free because they were gone through
+ * (honest mechanics, docs/38 — they used to be "left where they were" and
+ * marked done all the same).
  */
 export const LEFT_ONE: string[] = [
-  'There was {object} in the room as well. I left it where it was for now.',
-  '{object} was there too. I left it alone for now.',
+  'There was {object} in the room as well, and I went through it with the rest.',
+  '{object} was there too. I went through it along with everything else.',
 ];
 
 export const LEFT_TWO: string[] = [
-  '{object} was there, and {other}. I left them both where they were for now.',
-  'There was {object} in the room, and {other}. I left them both alone for now.',
+  '{object} was there, and {other}. I went through them both with the rest of the room.',
+  'There was {object} in the room, and {other}. I went through both of them while I was at it.',
 ];
 
 
@@ -896,6 +912,12 @@ export const RECAP_WHEN: Record<string, string[]> = {
 export const RECAP_ANCHOR: string[] = [
   '*{Anchor} {was} at {time}, and so far it was the only honest clock on the street.',
   '{Anchor} {was} at {time}. It was the nearest thing I had to a clock I could trust.',
+];
+
+/** docs/38: an anchor that happens more than once is never said as if it happened once. */
+export const RECAP_ANCHOR_AGAIN: string[] = [
+  '*{Anchor} went at {time}, one of the times it goes in an evening, and so far it was the only honest clock on the street.',
+  '{Anchor} went at {time}. It goes more than once of an evening, but that one was the nearest thing I had to a clock I could trust.',
 ];
 
 export const RECAP_METHOD: string[] = ['As for how, it was {method}.', 'The how of it was {method}.'];

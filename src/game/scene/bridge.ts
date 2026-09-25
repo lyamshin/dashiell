@@ -15,6 +15,7 @@ import type { Clue, Id, Tick } from '../../gen/types.js';
 import { spokenClock } from '../../gen/types.js';
 import type { CaseView } from '../derive.js';
 import { windowOf } from './thought.js';
+import { relationHeld } from './people.js';
 
 /**
  * `account` (shorter nights §2): the lead is somebody's own account of the
@@ -157,7 +158,8 @@ export function planBridge(
   if (named !== null && named !== view.victim.id) {
     const person = view.personById.get(named);
     const subject = person?.surname ?? topic;
-    if (person?.relationshipToVictim) {
+    // docs/38: the tie to the victim only once the notebook holds it.
+    if (person?.relationshipToVictim && relationHeld(view, person.id, foundAfter)) {
       return { ...base, subjectId: named, subject, tie: 'victim', tieText: person.relationshipToVictim };
     }
     // A fixture matters for the room they keep: "the landlady at the third floor".

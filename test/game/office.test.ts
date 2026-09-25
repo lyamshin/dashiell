@@ -174,7 +174,7 @@ describe('the client’s two free questions', () => {
         : `ask ${view.client.surname} about ${view.victim.surname}`,
     );
 
-  it('charges nothing for the first two and then he is gone', () => {
+  it('charges nothing for the first two, and he stays in the chair after them', () => {
     let state = fresh();
     const first = stepInput(state, `ask ${view.client.surname} about that evening`, view);
     expect(first.page.cost).toBe(0);
@@ -188,17 +188,19 @@ describe('the client’s two free questions', () => {
     );
     expect(second.page.cost).toBe(0);
     expect(second.state.clientAsks).toBe(2);
-    expect(second.state.clientInOffice).toBe(false);
+    // docs/38: the second free question no longer ends the visit.
+    expect(second.state.clientInOffice).toBe(true);
     state = second.state;
+    expect(peopleHereNow(view, state.at, state).map((p) => p.id)).toContain(view.client.id);
 
-    // He has left: the office is empty and the question is free and refused.
-    expect(peopleHereNow(view, state.at, state)).toEqual([]);
-    const third = stepInput(state, `ask ${view.client.surname} about that evening`, view);
-    expect(third.page.cost).toBe(0);
+    // A third question is an ordinary one: it costs what any question costs
+    // (or nothing, if he knows the detective and has not had his free one).
+    const third = stepInput(state, `ask ${view.client.surname} about themselves`, view);
     expect(third.state.clientAsks).toBe(2);
+    expect(third.state.clientInOffice).toBe(true);
   });
 
-  it('says where he will be when he goes', () => {
+  it('says where he will be later on his last free question', () => {
     const state = askClient(askClient(fresh()));
     const text = (state.log.at(-1)?.blocks ?? [])
       .map((b) => (b.kind === 'prose' || b.kind === 'note' ? b.text : ''))

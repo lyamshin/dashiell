@@ -26,7 +26,7 @@ import { establishedFrom, threadsFor } from './derive.js';
 import { gridFrom, type GridEntry } from './grid.js';
 import { buildNotebook } from './notebook.js';
 import { displayName, lieKeyOf } from './m9.js';
-import type { PageShape, RecapClauseTrace, RecapMemory, RunState, SheetUse } from './types.js';
+import type { Page, PageShape, RecapClauseTrace, RecapMemory, RunState, SheetUse } from './types.js';
 import { DECKS, tagOf, type Card, type Dealer } from './voice/cards.js';
 import { lineMemory, recapFrame } from './scene/sheet-pages.js';
 import { sheetsOn } from './scene/realize.js';
@@ -35,6 +35,7 @@ import { tidyPunctuation } from './voice/prose.js';
 import { namedIn, proseTexts } from './scene/text.js';
 import {
   RECAP_ANCHOR,
+  RECAP_ANCHOR_AGAIN,
   RECAP_CLAIMED_ALONE,
   RECAP_CLAIMED_WITH,
   RECAP_CLAIMED_ANON,
@@ -166,14 +167,11 @@ export function recapFacts(
   const readerKnows = (id: Id): boolean => opts.everyone === true || read.has(id);
   const named = (id: Id): boolean => name(id) === view.personById.get(id)?.surname && readerKnows(id);
   // Shown in person on a page so far: in a room with him, spoken to, put to.
-  const shownIds = new Set<Id>();
-  for (const pg of st.log) {
-    for (const b of pg.beats ?? []) {
-      if (b.kind === 'presence' || b.kind === 'exchange' || b.kind === 'confront' || b.kind === 'rundown') {
-        for (const id of b.personIds ?? []) shownIds.add(id);
-      }
-    }
-  }
+  // Who a page has put in front of the reader, and where: everybody in a
+  // room's roll or the client's rundown, and the one spoken to or confronted
+  // (docs/38: not the one a question was about, who may be across town).
+  const shownAt = shownPlaces(st.log);
+  const shownIds = new Set<Id>(shownAt.keys());
   const place = (id: Id): string => view.placeById.get(id)?.shortName ?? id;
   const window = grid.window?.ticks ?? [];
   const matter: Tick[] = grid.crimeTick !== null ? [grid.crimeTick] : [...window];
@@ -228,7 +226,12 @@ export function recapFacts(
       ticks: [anchor.tick],
       anchorIds: [anchor.anchorId],
       keep: 1,
-      say: (pick) => fillLine(pick(RECAP_ANCHOR), { Anchor: cap(anchor.name), was: /^the bells\b/.test(anchor.name) ? 'were' : 'was', time: spokenClock(anchor.tick) }),
+      say: (pick) =>
+        fillLine(pick((view.anchorById.get(anchor.anchorId)?.ticks.length ?? 1) > 1 ? RECAP_ANCHOR_AGAIN : RECAP_ANCHOR), {
+          Anchor: cap(anchor.name),
+          was: /^the bells\b/.test(anchor.name) ? 'were' : 'was',
+          time: spokenClock(anchor.tick),
+        }),
     });
   }
   if (type === 'murder' && book.established.method !== null) {
@@ -441,7 +444,10 @@ export function recapFacts(
         // Seen in person on a page, not only named in somebody's mouth.
         (opts.everyone === true || (shownIds.has(P) && readerKnows(P)))
       ) {
-        const at = person.foundAt;
+        // Where the reader saw them: their own room if a page showed them
+        // there, else the room a page did show them in.
+        const rooms = shownAt.get(P) ?? new Set<Id>();
+        const at = rooms.has(person.foundAt) || rooms.size === 0 ? person.foundAt : ([...rooms][0] as Id);
         out.push({
           key: `seen|${P}|${at}`,
           part: 'people',
@@ -828,4 +834,28 @@ export function recapTrigger(
   const turned = Math.floor(minutes.after / 120) > Math.floor(minutes.before / 120) && minutes.after >= 120;
   if (turned && after.found.length - (memory?.found ?? 0) >= 2) return 'hour';
   return null;
+}
+
+/**
+ * Who the pages have put in front of the reader, and in which rooms: the
+ * people in a room's roll or the client's rundown, and the one spoken to or
+ * confronted — never the one a question was only about.
+ */
+export function shownPlaces(log: readonly Page[]): Map<Id, Set<Id>> {
+  const out = new Map<Id, Set<Id>>();
+  const add = (id: Id, at: Id): void => {
+    const rooms = out.get(id) ?? new Set<Id>();
+    rooms.add(at);
+    out.set(id, rooms);
+  };
+  for (const pg of log) {
+    for (const b of pg.beats ?? []) {
+      if (b.kind === 'presence' || b.kind === 'rundown') for (const id of b.personIds ?? []) add(id, pg.at);
+      if (b.kind === 'exchange' || b.kind === 'confront') {
+        const first = (b.personIds ?? [])[0];
+        if (first !== undefined) add(first, pg.at);
+      }
+    }
+  }
+  return out;
 }

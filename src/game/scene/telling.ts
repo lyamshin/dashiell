@@ -299,7 +299,7 @@ function strangers(view: CaseView, clues: Clue[], at: Id): Told {
   const groups: Seen[] = [];
   const ticks: Tick[] = [];
   for (const clue of clues) {
-    const sight = / I know by sight\b/.test(clue.text);
+    const sight = / (?:I know|knew) by sight\b/.test(clue.text);
     for (const f of clue.establishes) {
       if (f.kind !== 'describedAt') continue;
       ticks.push(f.tick);

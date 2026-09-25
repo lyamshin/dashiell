@@ -13,7 +13,7 @@ import {
   type SuspectClass,
   type VictimArchetype,
 } from './data/cast.js';
-import { AFFAIR_MOTIVES, MOTIVE_TEMPLATES, MUNDANE_MOTIVES, type MotiveTemplate } from './data/motives.js';
+import { AFFAIR_MOTIVES, MOTIVE_TEMPLATES, MUNDANE_MOTIVES, motiveWords, type MotiveTemplate } from './data/motives.js';
 import { M14_TIE_IDS, tieWeight } from './data/ties.js';
 import { SECRET_BY_TYPE, type SecretTemplate } from './data/secrets.js';
 import { tieFits } from './coherence.js';
@@ -301,7 +301,7 @@ export function buildCast(
     }
     p.motive = {
       type: t.type,
-      description: fillSlots(t.descriptionTemplate, {
+      description: fillSlots(motiveWords(t, p.relationshipId).descriptionTemplate, {
         victim: victimSurname,
         person: p.surname,
         place: '',
@@ -564,6 +564,7 @@ export function buildCast(
       placeName: slotPlace(p.id),
       mentions,
       characterKey: p.archetypeId as Id,
+      ...(p.motive?.type === 'jealousy' && motiveObject[p.id] ? { jealousOver: motiveObject[p.id] as Mention } : {}),
     });
     p.relationshipToVictim = dossiers[p.id]?.tie.text ?? p.relationshipToVictim;
   }

@@ -60,19 +60,16 @@ export function renderGridText(view: CaseView, state: RunState): string {
   if (grid.crimeTick !== null) {
     out.push(line(grid.crimeLabel, grid.ticks.map((t) => (t.tick === grid.crimeTick ? '†' : ''))));
   }
-  // M9: counts on a place's column, under the hours.
+  // M9: counts on a place's column, under the hours — every one the
+  // notebook holds, a line each (docs/38: one cell used to print one of
+  // them and cut the rest off). The same place and hour counted twice by
+  // two people prints once.
   if (grid.counts.length > 0) {
-    out.push(
-      line(
-        'counted',
-        grid.ticks.map((t) =>
-          grid.counts
-            .filter((c) => c.tick === t.tick)
-            .map((c) => `${ab(c.placeId)}=${c.count}`)
-            .join(' '),
-        ),
-      ),
-    );
+    const cells = grid.ticks.map((t) => [
+      ...new Set(grid.counts.filter((c) => c.tick === t.tick).map((c) => `${ab(c.placeId)}=${c.count}`)),
+    ]);
+    const height = Math.max(1, ...cells.map((c) => c.length));
+    for (let i = 0; i < height; i++) out.push(line(i === 0 ? 'counted' : '', cells.map((c) => c[i] ?? '')));
   }
 
   const cellLines = (cell: GridCell): string[] => {
@@ -120,7 +117,7 @@ export function renderGridText(view: CaseView, state: RunState): string {
   // M9: anchor-timed sightings waiting for the anchor's hour, and strangers'
   // sightings nobody has put a name to yet.
   for (const m of grid.margins) {
-    const when = m.ticks.length > 0 ? ` (${m.ticks.map((t) => grid.ticks[t]?.label ?? '').join(' or ')})` : ' (hour not known)';
+    const when = ` (${m.when})`;
     out.push(
       wrap(
         `  ^${m.name}${when}: ${m.entries
@@ -166,7 +163,9 @@ export function renderGridText(view: CaseView, state: RunState): string {
       `key: x~ their own account · x:K seen by K · x# evidence · -x not there · ${
         grid.flags ? '! the sources disagree · ' : ''
       }${grid.descriptions.length > 0 ? 'x?K a stranger seen by K (a row of its own, or linked by me) · ' : ''}` +
-        `(x) (-x) pencil, never a fact · · nothing known${who ? ` · witnesses: ${who}` : ''}`,
+        `(x) (-x) pencil, never a fact · · nothing known${
+          grid.counts.length > 0 ? ' · counted: P=n is n people at P besides the one who works there; a blank is not counted yet' : ''
+        }${who ? ` · witnesses: ${who}` : ''}`,
     ),
   );
   for (const l of grid.links) {

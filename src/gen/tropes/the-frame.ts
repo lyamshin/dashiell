@@ -33,8 +33,10 @@ export const theFrame: Trope = {
         `${V} was found dead at ${L}.`,
         `The coroner puts it ${between(lo, hi)}.`,
         ...(methodGiven(ctx) ? [`It was ${ctx.method.name}.`] : []),
-        `The precinct found the weapon in ${ctx.who(framed.id)}’s rooms and stopped looking.`,
-        `${ctx.who(framed.id)} says it was put there, and has been saying so since Tuesday.`,
+        // docs/38: the framed one is out and about tonight, on the pages and
+        // on the grid, so the briefing never has them in a cell.
+        `The precinct found the weapon in ${ctx.who(framed.id)}’s rooms and stopped looking, though nobody has come round to pick ${framed.gender === 'f' ? 'her' : 'him'} up yet.`,
+        `${ctx.who(framed.id)} says it was put there, and says so to anybody who will listen.`,
       ],
     };
   },

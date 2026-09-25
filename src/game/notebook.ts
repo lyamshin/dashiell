@@ -20,13 +20,14 @@ import {
   claimedAccount,
   establishedFrom,
   gameBudget,
+  goneObjects,
   personName,
   placeName,
   spanLabel,
 } from './derive.js';
 import type { RunState, Thread } from './types.js';
 import { dossierKnown } from './voice/plain.js';
-import { displayName, saidRecords, verdictsOn } from './m9.js';
+import { accountedFor, displayName, saidRecords, verdictsOn } from './m9.js';
 
 export interface NotebookClock {
   time: string;
@@ -312,6 +313,7 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
       };
     });
 
+  const gone = goneObjects(kase, state.found);
   const places: NotebookPlace[] = view.places.map((pl) => ({
     id: pl.id,
     shortName: pl.shortName,
@@ -320,7 +322,7 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
     watcher: pl.watcher ?? null,
     visited: visited.has(pl.id),
     objects: visited.has(pl.id)
-      ? pl.objects.map((o) => view.objectById.get(o)?.name ?? o)
+      ? pl.objects.filter((o) => !gone.has(o)).map((o) => view.objectById.get(o)?.name ?? o)
       : [],
     // Only what the room itself gave up. What a person said in this room is
     // written under the person.
@@ -379,7 +381,15 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
         }`,
     ),
     access: est.access.map((a) => personName(view, a.personId)),
-    cleared: est.secretsExplained.map((id) => personName(view, id)),
+    // Honest mechanics (docs/38): everybody the notebook's facts clear on
+    // two that agree (M10's rule, `accountedFor`), and anybody whose secret
+    // is accounted for, in the case's order.
+    cleared: (() => {
+      const two = new Set(accountedFor(view, state.found));
+      return kase.people
+        .filter((p) => two.has(p.id) || est.secretsExplained.includes(p.id))
+        .map((p) => personName(view, p.id));
+    })(),
   };
 
   return {

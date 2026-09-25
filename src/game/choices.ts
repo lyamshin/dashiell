@@ -16,7 +16,7 @@
 import type { Clue, Id, Person } from '../gen/types.js';
 import { minutesAfter } from './clock.js';
 import type { CaseView } from './derive.js';
-import { gameBudget, peopleHereNow } from './derive.js';
+import { gameBudget, goneObjects, peopleHereNow } from './derive.js';
 import { parse } from './parser.js';
 import { accountRider, answersTo, askedBefore, followUpOf, pendingFor, priceOf, recapOpen, rundownOpen } from './reducer.js';
 import type { Command, OfferedChoice, OfferedGroup, RunState } from './types.js';
@@ -80,6 +80,26 @@ export function minutesLabel(minutes: number): string {
   return `${minutes} min`;
 }
 
+/**
+ * What a button says it costs: its minutes, and, when it is free only by an
+ * allowance, which one ("free — 1 left on the house"). The book and the play
+ * tool both print this, so a label never promises more than the reducer gives.
+ */
+export function costLabel(choice: { minutes: number; freeNote?: string }): string {
+  const base = minutesLabel(choice.minutes);
+  return choice.minutes <= 0 && choice.freeNote ? `${base} — ${choice.freeNote}` : base;
+}
+
+/** The allowance a free price spends, in the button's words, if it spends one. */
+function freeNoteOf(reason: string, state: RunState): string | undefined {
+  if (reason === 'house') {
+    const left = Math.max(0, 2 - state.clientAsks);
+    return `${left === 1 ? 'the last one' : `${left} left`} on the house`;
+  }
+  if (reason === 'familiar') return 'first question only';
+  return undefined;
+}
+
 /** Clue ids an open lead points at: named by a found clue, not yet found. */
 export function openTargets(view: CaseView, found: readonly Id[]): Set<Id> {
   const have = new Set(found);
@@ -112,7 +132,9 @@ export function knownObjects(view: CaseView, state: RunState): Id[] {
     .map((id) => view.findableById.get(id))
     .filter((c): c is Clue => c !== undefined)
     .map((c) => fold(c.textRecord ?? c.text));
+  const gone = goneObjects(view.kase, state.found);
   return view.kase.objects
+    .filter((o) => !gone.has(o.id))
     .filter((o) => visited.has(o.homePlace) || records.some((r) => r.includes(fold(o.name))))
     .map((o) => o.id);
 }
@@ -263,7 +285,16 @@ function choice(
   const asked = parsed.command.kind === 'ask' ? parsed.command : null;
   const rider = asked ? accountRider(view, asked.personId, asked.topic, state.found) : null;
   const riding = lead && rider !== null && gains.every((id) => id === rider.id);
-  return { command, label, minutes, lead, done, ...(riding ? { riding: true } : {}) };
+  const freeNote = minutes === 0 ? freeNoteOf(price.reason, state) : undefined;
+  return {
+    command,
+    label,
+    minutes,
+    lead,
+    done,
+    ...(freeNote ? { freeNote } : {}),
+    ...(riding ? { riding: true } : {}),
+  };
 }
 
 /** A person's topics, in §1.2's order, with the lead topics first and marked. */
@@ -285,8 +316,12 @@ function askGroup(view: CaseView, state: RunState, person: Person, targets: Set<
   }
 
   // 2. Their evening, and themselves. 3. Why I was hired, for the client.
+  // Honest mechanics (docs/38): in a tiered case somebody with no account
+  // of their own (a watcher at their post) has no evening to give; the
+  // button would only ever get "I can't help you there", so it is not offered.
+  const hasEvening = !view.kase.logic || accountClueOf(view, person.id) !== null;
   const fixed: Choice[] = [
-    ask('that evening', `${possessiveOf(person)} evening`),
+    ...(hasEvening ? [ask('that evening', `${possessiveOf(person)} evening`)] : []),
     ask('themselves', `${pronounOf(person) === 'she' ? 'herself' : 'himself'}`),
   ];
   if (person.id === view.client.id) fixed.push(ask('why I was hired', 'why I was hired'));
@@ -559,3 +594,89 @@ export function defaultAskPerson(groups: readonly OfferedGroup[], state: RunStat
 
 /** Has this person been asked this topic before? Re-exported for the book. */
 export { askedBefore };
+
+/**
+ * Honest mechanics (docs/38): the choices after a free action, laid out as
+ * the page before laid them out. A free action — the notebook, a question read
+ * back, the client's rundown, "Go on", a question on the house — writes a new
+ * page in the same room with the clock where it was, and a numbered plan made
+ * on the page before must still mean the same buttons. So nothing moves:
+ * every choice the page before offered keeps its place, one that would have
+ * dropped out (the rundown once given, "Go on" once gone on) stays where it
+ * was, priced again and marked done, and anything new goes at the end of its
+ * group, or, a new group, at the end of the list before the free row.
+ *
+ * `previous` is what the page before offered, already laid out this way; the
+ * book keeps it on the page (`Page.offered`), the play tool replays it. After
+ * a page that cost something, or a walk, the page's own order stands.
+ */
+export function stableChoices(
+  view: CaseView,
+  state: RunState,
+  previous: readonly OfferedGroup[] | undefined,
+): ChoiceGroup[] {
+  const fresh = choicesFor(view, state);
+  if (!previous || previous.length === 0 || fresh.length === 0 || !freeStep(state)) return fresh;
+  const targets = openTargets(view, state.found);
+  const keyOf = (g: { kind: string; personId?: Id }): string => `${g.kind}|${g.personId ?? ''}`;
+  const freshBy = new Map(fresh.map((g) => [keyOf(g), g]));
+  // A choice that dropped out, priced as it stands now. What it would do now
+  // is nothing new (a rundown given, nothing left to go on with), so it is
+  // done, and choosing it writes the book's "already" page, free.
+  const ghost = (c: OfferedChoice): Choice => {
+    const { riding: _riding, ...plain } = choice(view, state, targets, c.command, c.label);
+    return { ...plain, done: plain.done || plain.minutes === 0 };
+  };
+  const merge = (old: readonly OfferedChoice[], now: readonly Choice[]): Choice[] => {
+    const byCommand = new Map(now.map((c) => [c.command, c]));
+    const out: Choice[] = old.map((c) => byCommand.get(c.command) ?? ghost(c));
+    const kept = new Set(old.map((c) => c.command));
+    for (const c of now) if (!kept.has(c.command)) out.push(c);
+    return out;
+  };
+  const out: ChoiceGroup[] = [];
+  const placed = new Set<string>();
+  for (const old of previous) {
+    const key = keyOf(old);
+    const now = freshBy.get(key);
+    if (now === undefined) {
+      // A group that is gone entirely: the rundown and "Go on" stay, done.
+      // Anybody's own group goes with them if they have left the room.
+      if (old.kind === 'continue' || old.kind === 'rundown') {
+        out.push({ ...(old as ChoiceGroup), choices: old.choices.map(ghost) });
+        placed.add(key);
+      }
+      continue;
+    }
+    placed.add(key);
+    if (now.kind === 'confront') {
+      // The picker lists the notebook's facts as they stand; it is one button.
+      out.push(now);
+      continue;
+    }
+    const oldMore = old.more ?? [];
+    const inOldMore = new Set(oldMore.map((c) => c.command));
+    const nowAll = [...now.choices, ...(now.more ?? [])];
+    const choices = merge(old.choices, nowAll.filter((c) => !inOldMore.has(c.command)));
+    const more = oldMore.length > 0 ? merge(oldMore, nowAll.filter((c) => inOldMore.has(c.command))) : [];
+    const { more: _more, ...head } = now;
+    out.push({ ...head, choices, ...(more.length > 0 ? { more } : {}) });
+  }
+  // New groups, in the page's own order, ahead of the free row.
+  const added = fresh.filter((g) => !placed.has(keyOf(g)));
+  if (added.length > 0) {
+    const freeAt = out.findIndex((g) => g.kind === 'free');
+    out.splice(freeAt < 0 ? out.length : freeAt, 0, ...added);
+  }
+  return out;
+}
+
+/**
+ * Did the newest page cost nothing and leave the detective where he was? Then
+ * it is the same page's choices, and `stableChoices` keeps them in place.
+ */
+export function freeStep(state: RunState): boolean {
+  const last = state.log[state.log.length - 1];
+  const before = state.log[state.log.length - 2];
+  return last !== undefined && before !== undefined && last.cost === 0 && last.at === before.at;
+}

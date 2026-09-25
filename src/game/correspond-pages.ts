@@ -29,7 +29,9 @@ import { check, renderedFacts, type Violation } from '../gen/correspond.js';
 import { establishedFrom, threadsFor, type CaseView } from './derive.js';
 import { candidateThoughts } from './scene/thought.js';
 import type { Block, Page, RunState } from './types.js';
-import { recapKeys } from './recap.js';
+import { recapKeys, shownPlaces } from './recap.js';
+import { relationHeld } from './scene/people.js';
+import { relationPlain } from './scene/lines.js';
 import { namedIn } from './scene/text.js';
 import { ALL_CARDS } from './voice/cards.js';
 import { SHEETS } from './scene/sheets.js';
@@ -356,8 +358,71 @@ export function checkPage(
  * an errand line that does not trace back to the notebook.
  */
 export type PageViolation = Omit<Violation, 'rule'> & {
-  rule: Violation['rule'] | 'errand-untraced' | 'thought-untraced' | 'bridge-untraced' | 'telling-untraced' | 'recap-untraced';
+  rule:
+    | Violation['rule']
+    | 'errand-untraced'
+    | 'thought-untraced'
+    | 'bridge-untraced'
+    | 'telling-untraced'
+    | 'recap-untraced'
+    | 'claim-unheld';
 };
+
+/**
+ * Honest mechanics (docs/38) — a claim the narrator makes about somebody must
+ * be one the notebook holds, or one said out loud on the same page. The
+ * claims a page can make about a person that the notebook does not hold from
+ * the start are their tie to the victim ("Ruggiero paid Lefkowitz for a
+ * clean inspection", "Petrosino was Lefkowitz's landlord"): the narrator may
+ * say it only once a clue that carries it is in hand (`relationHeld`), and a
+ * witness may always say it in their own words. Checked in the narration of
+ * every block (speech set aside), sentence by sentence, wherever it came from:
+ * a bridge, a question that carries its reason, a name's first clause, a
+ * sheet line, a recap.
+ */
+export function checkClaims(view: CaseView, page: Page, foundAfter: readonly string[]): PageViolation[] {
+  const out: PageViolation[] = [];
+  const victim = view.victim.surname;
+  const texts = page.blocks.flatMap((b) => (b.kind === 'prose' || b.kind === 'note' ? [b.text] : []));
+  const spoken = texts.flatMap((t) => t.match(/“[^”]*”/g) ?? []).join(' ').toLowerCase();
+  for (const p of view.kase.people) {
+    if (p.kind !== 'suspect' || p.id === view.client.id || p.id === view.victim.id) continue;
+    if (relationHeld(view, p.id, foundAfter)) continue;
+    const phrases = [
+      p.relationshipToVictim,
+      relationPlain(view.kase, p.relationshipId)?.split('{V}').join(victim),
+    ].filter((x): x is string => typeof x === 'string' && x.length > 0);
+    const said = phrases.filter((ph) => spoken.includes(ph.toLowerCase()));
+    const name = new RegExp(`\\b${p.surname}\\b`, 'g');
+    const others = view.kase.people.filter((q) => q.id !== p.id && q.id !== view.victim.id).map((q) => new RegExp(`\\b${q.surname}\\b`));
+    // What the sentence says of them: from their name to the next person's.
+    const ofThem = (sentence: string): string[] =>
+      [...sentence.matchAll(name)].map((m) => {
+        const rest = sentence.slice((m.index ?? 0) + p.surname.length);
+        const stop = Math.min(rest.length, ...others.map((re) => rest.search(re)).filter((i) => i >= 0));
+        return rest.slice(0, stop).toLowerCase();
+      });
+    for (const text of texts) {
+      let narration = text.replace(/“[^”]*”/g, '“…”');
+      for (const pl of view.places) narration = narration.split(pl.shortName).join('');
+      for (const sentence of narration.split(/(?<=[.!?])\s+/)) {
+        const parts = ofThem(sentence);
+        if (parts.length === 0) continue;
+        // One finding a sentence: "somebody who paid X" and "paid X" are one tie.
+        const ph = phrases.find((x) => !said.includes(x) && parts.some((part) => part.includes(x.toLowerCase())));
+        if (ph !== undefined) {
+          out.push({
+            where: `page ${page.n}`,
+            rule: 'claim-unheld',
+            detail: `says ${p.surname} ${ph}, which the notebook does not hold yet`,
+            text: sentence,
+          });
+        }
+      }
+    }
+  }
+  return out;
+}
 
 /**
  * M12 Part 2 — a recap, traced clause by clause.
@@ -385,17 +450,16 @@ export function checkRecap(view: CaseView, page: Page, state: RunState, found: r
   const keys = recapKeys(view, snapshot, true);
   // Who the reader has met on a page so far, or read about in a find.
   const pages = state.log.slice(0, page.n + 1);
-  const shown = new Set<string>();
   const known = new Set<string>([view.victim.id, view.client.id]);
   for (const pg of pages) {
     for (const b of pg.beats ?? []) {
       if (b.kind === 'recap') continue;
       for (const id of b.personIds ?? []) known.add(id);
-      if (b.kind === 'presence' || b.kind === 'exchange' || b.kind === 'confront' || b.kind === 'rundown') {
-        for (const id of b.personIds ?? []) shown.add(id);
-      }
     }
   }
+  // docs/38: shown in person, and where — the room's roll, the rundown, the
+  // one spoken to; never the one a question was only about.
+  const shownAt = shownPlaces(pages);
   // Named in the prose so far, the recap's own words aside.
   const prose = pages.flatMap((pg) =>
     pg.blocks.flatMap((b) => (b.kind === 'prose' && b.voice !== 'recap') || b.kind === 'note' ? [b.text] : []),
@@ -444,7 +508,12 @@ export function checkRecap(view: CaseView, page: Page, state: RunState, found: r
     const allowed = new Set([...clause.personIds, view.victim.id]);
     for (const id of names) if (!allowed.has(id)) fail(`names somebody the clause is not about (${id})`);
     for (const id of clause.personIds) if (!known.has(id)) fail(`is about somebody no page has put in front of the reader (${id})`);
-    if (clause.key.startsWith('seen|') && !clause.personIds.every((id) => shown.has(id))) fail('"only seen" of somebody no page has shown');
+    if (clause.key.startsWith('seen|') && !clause.personIds.every((id) => shownAt.has(id))) fail('"only seen" of somebody no page has shown');
+    if (clause.key.startsWith('seen|')) {
+      for (const id of clause.personIds) {
+        for (const pl of clause.placeIds) if (!(shownAt.get(id)?.has(pl) ?? false)) fail(`"only seen" at ${pl}, where no page has shown them`);
+      }
+    }
     for (const t of times) if (!hours.has(t)) fail(`says ${t}, which is not the clause's own hour`);
     for (const id of places) if (!clause.placeIds.includes(id)) fail(`names a place the clause is not about (${id})`);
   }
@@ -829,6 +898,7 @@ export function checkRun(view: CaseView, state: RunState): PageViolation[] {
     out.push(...checkBeats(view, page, [...found], [...accounts], accountsAfter, met));
     out.push(...checkTelling(view, page));
     out.push(...checkRecap(view, page, state, [...found, ...page.found], [...new Set(accountsAfter)]));
+    out.push(...checkClaims(view, page, [...found, ...page.found]));
     found.push(...page.found);
     accounts.splice(0, accounts.length, ...new Set(accountsAfter));
     visited.add(page.at);

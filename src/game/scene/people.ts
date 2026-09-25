@@ -27,6 +27,24 @@ export interface KnownTie {
 }
 
 /**
+ * Honest mechanics (docs/38): does the notebook hold how this person stands
+ * to the victim? Only once a clue that carries their tie is in hand (the
+ * dossier's layer 2 — "Petrosino has held the mortgage on the building"), or
+ * for the client, whose own brief said it on page one. Until then the
+ * narrator may not say it: not in a bridge, not in a question that carries
+ * its reason, not in the clause a name gets on its first appearance.
+ */
+export function relationHeld(view: CaseView, personId: Id, found: readonly Id[]): boolean {
+  // The untiered game (M8's golden night) deals everybody's tie to the
+  // victim as the reason they are in the case at all, known from the start;
+  // the tiered game — every case the book and `npm run play` open — is the
+  // one where the notebook has to find it.
+  if (!view.kase.logic) return true;
+  if (personId === view.client.id) return true;
+  return layerCredit(view, personId, found, 2) > 0;
+}
+
+/**
  * The tie the detective knows, strongest first: the one who found the body,
  * the one the client told him to start with, a relation the notebook holds,
  * the client. Null when he knows none, and then the page says none.

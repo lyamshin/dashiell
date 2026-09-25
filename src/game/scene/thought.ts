@@ -147,6 +147,8 @@ export interface Thought {
     /* M9, `touches`: the piece of the logic game it is. */
     | 'described'
     | 'absence'
+    /** docs/38: "nobody came in" — an absence that names nobody but the one keeping the door. */
+    | 'empty'
     | 'count'
     | 'anchored'
     | 'timing'
@@ -601,9 +603,12 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
         }
         case 'absentFrom': {
           const by = f.except[0] ?? speaker(clue);
+          // docs/38: "nobody came in" is not "nobody but the ones named" —
+          // the cards that talk about who was named are for somebody named.
+          const named = f.except.slice(1).some((id) => input.view.personById.get(id)?.kind === 'suspect');
           out.push({
             cls: 'touches',
-            basis: 'absence',
+            basis: named ? 'absence' : 'empty',
             ...(by ? { sourceId: by } : {}),
             placeId: f.place,
             tick: tickIn(f.ticks, window),
