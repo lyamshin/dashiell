@@ -241,7 +241,7 @@ export function renderNotebookText(view: CaseView, state: RunState, opts: Notebo
       out.push(`    ${fact.contradicts ? '!' : '·'} ${fact.text} (${fact.source})`);
     }
     for (const record of person.records) out.push(wrap(`“ ${record.text}`, WIDTH, '      '));
-    for (const said of person.said) out.push(wrap(`put to: ${said.text}`, WIDTH, '      '));
+    for (const said of person.said) out.push(wrap(`put to: ${said.broke ? `${said.broke} ` : ''}${said.text}`, WIDTH, '      '));
   }
   out.push('', 'PLACES');
   for (const place of book.places) {

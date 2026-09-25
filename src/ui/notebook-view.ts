@@ -100,7 +100,7 @@ export function renderNotebook(
     }
     // docs/39 §1: a confrontation that landed, recorded as one.
     for (const said of person.said) {
-      entry.append(el('div', { class: 'nb-record nb-said', text: `Put to ${person.display}: ${said.text}` }));
+      entry.append(el('div', { class: 'nb-record nb-said', text: `Put to ${person.display}: ${said.broke ? `${said.broke} ` : ''}${said.text}` }));
     }
     body.append(entry);
   }

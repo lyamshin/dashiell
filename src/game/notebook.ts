@@ -48,6 +48,12 @@ export interface NotebookFact {
 export interface NotebookRecord {
   clueId: Id;
   text: string;
+  /**
+   * docs/39 §1, what was said when a fact was put only: whose word broke
+   * which half hours of the story ("Story broke on Tillman’s word: the
+   * Garibaldi, 8:00–8:30 PM."), or that it held.
+   */
+  broke?: string;
 }
 
 /**
@@ -281,7 +287,10 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
       }
       const said = saidRecords(view, state)
         .filter((r) => r.personId === p.id)
-        .map((r) => ({ clueId: r.id, text: `${brokeLine(view, state, r)}${r.text}` }));
+        .map((r) => {
+          const broke = brokeLine(view, state, r);
+          return { clueId: r.id, text: r.text, ...(broke ? { broke } : {}) };
+        });
       const mine = view.kase.findable.filter((c) => c.source.type === 'person' && c.source.personId === p.id);
       const done =
         view.kase.logic !== undefined &&
@@ -568,6 +577,6 @@ function brokeLine(view: CaseView, state: RunState, said: SaidRecord): string {
         : `${clock(ticks[0] as Tick).replace(/ PM$/, '')}–${clock(ticks[ticks.length - 1] as Tick)}`;
   const place = view.placeById.get(claim.place)?.shortName ?? claim.place;
   return said.outcome === 'hold'
-    ? `Kept to ${place}, ${span}, against ${by}. `
-    : `Story broke on ${by}: ${place}, ${span}. `;
+    ? `Kept to ${place}, ${span}, against ${by}.`
+    : `Story broke on ${by}: ${place}, ${span}.`;
 }

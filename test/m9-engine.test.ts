@@ -217,6 +217,9 @@ describe('M9 §4 and "Who knows whom": the ask buttons', () => {
           if (!nameKnown(view, state, g.personId)) expect(g.heading).not.toContain(person?.surname ?? '§');
           for (const c of [...g.choices, ...(g.more ?? [])]) {
             if (c.lead) continue;
+            // docs/39 §2: a lead only the client's pointer opened is still
+            // offered by its own words, and no longer starred.
+            if (state.threads.some((t) => t.command === c.command)) continue;
             const topic = c.command.replace(/^ask \S+ about /, '');
             const place = view.places.some((p) => p.shortName === topic);
             const thing = view.kase.objects.some((o) => o.name === topic);

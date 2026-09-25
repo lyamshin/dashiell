@@ -180,7 +180,7 @@ describe('§1 confront help by tier', () => {
           const text = (page?.blocks ?? []).map((b) => ('text' in b ? (b.text ?? '') : '')).join(' ');
           expect(text, text).toMatch(/knew it|knew I’d seen it|broken|couldn’t both be right/);
           const entry = buildNotebook(view, after).people.find((p) => p.id === rec.personId);
-          expect(entry?.said.some((s) => /^(Story broke on|Kept to) /.test(s.text))).toBe(true);
+          expect(entry?.said.some((s) => /^(Story broke on|Kept to) /.test(s.broke ?? ''))).toBe(true);
         }
       }
     }
