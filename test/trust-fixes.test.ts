@@ -271,6 +271,92 @@ describe('4. a watcher’s count says every half hour at the door, and who was t
   });
 });
 
+const HOURS = ['six', 'seven', 'eight', 'nine', 'ten', 'eleven'];
+/** "six o’clock", "half past seven", and the bare "eight" / "half past" a span ends on. */
+function tickOf(words: string, from?: number): number | null {
+  const w = words.trim();
+  let m = /^half past (\w+)$/.exec(w);
+  if (m) return HOURS.indexOf(m[1] as string) * 2 + 1;
+  m = /^(\w+)(?: o’clock)?$/.exec(w);
+  if (m && HOURS.includes(m[1] as string)) return HOURS.indexOf(m[1] as string) * 2;
+  if (w === 'half past' && from !== undefined) return from - (from % 2) + 1;
+  return null;
+}
+/** The half hours a count answer says it "couldn't swear to a number" for. */
+function unswornTicks(text: string): number[] {
+  const out: number[] = [];
+  const flat = text.replace(/\s+/g, ' ');
+  for (const m of flat.matchAll(/(At|From) ([a-z’ ]+?)(?: until ([a-z’ ]+?))? I couldn’t swear to a number/g)) {
+    const a = tickOf(m[2] as string);
+    if (a === null) continue;
+    const b = m[3] ? tickOf(m[3] as string, a) : a;
+    for (let t = a; t <= (b ?? a); t++) out.push(t);
+  }
+  return out;
+}
+
+describe('4b. a watcher never contradicts their own count (coordinator, PR #56)', () => {
+  it('seed 3 route: Rafferty’s part count and her whole count agree', () => {
+    const view = viewOf(3, 4);
+    let state = newRun(view, { detectiveName: 'Dashiell' });
+    for (const s of playOracle(view).steps) {
+      state = stepInput(state, s.command, view).state;
+      if (state.filed || state.reportOpen) break;
+    }
+    const tellings = state.log.flatMap((p) => (p.beats ?? []).filter((b) => b.kind === 'telling' && b.rendered && b.tag === 'counts'));
+    expect(tellings.length).toBeGreaterThan(1);
+    const text = tellings.map((b) => b.text ?? '').join(' ');
+    expect(text).not.toMatch(/From six until half past ten I couldn’t swear/);
+  });
+
+  it('no answer says a half hour is uncounted that any count of the same watcher covers, on the four playtest seeds', () => {
+    const nights: [CaseView, string[][]][] = [
+      [viewOf(3, 4), [COUNT3]],
+      [viewOf(21, 4), [MED21]],
+      [viewOf(2, 2), [POACHED2]],
+      [viewOf(11, 0, 1), [RAW11]],
+    ];
+    let checked = 0;
+    for (const [view, saves] of nights) {
+      const routes = [...saves, playOracle(view).steps.map((s) => s.command), playWandering(view, view.kase.seed).steps.map((s) => s.command)];
+      // And every watcher asked about every person and their own door, in turn.
+      const watchers = view.kase.people.filter((p) => p.kind === 'fixture' && p.fixtureRole !== 'beat-cop' && p.foundAt);
+      for (const w of watchers) {
+        const place = view.placeById.get(w.foundAt as Id)?.shortName as string;
+        routes.push([`go ${place}`, ...view.kase.people.filter((p) => p.id !== w.id).map((p) => `ask ${w.surname} about ${p.surname}`), `ask ${w.surname} about ${place}`, 'go on', 'go on']);
+      }
+      for (const commands of routes) {
+        let state = newRun(view, { detectiveName: 'Dashiell' });
+        for (const c of commands) {
+          state = stepInput(state, c, view).state;
+          if (state.filed || state.reportOpen) break;
+        }
+        for (const page of state.log) {
+          for (const b of page.beats ?? []) {
+            if (b.kind !== 'telling' || !b.rendered || b.tag !== 'counts') continue;
+            const speaker = b.personIds?.[0] ? view.personById.get(b.personIds[0] as Id) : undefined;
+            const post = speaker?.foundAt;
+            if (!speaker || !post) continue;
+            const counted = new Set<number>();
+            for (const c of view.kase.findable) {
+              if (c.source.type !== 'person' || c.source.personId !== speaker.id) continue;
+              for (const f of c.establishes) {
+                if (f.kind === 'countAt' && f.place === post) counted.add(f.tick);
+                if (f.kind === 'absentFrom' && f.place === post) for (const t of f.ticks) counted.add(t);
+              }
+            }
+            for (const t of unswornTicks(b.text ?? '')) {
+              checked++;
+              expect(counted.has(t), `seed ${view.kase.seed} ${speaker.surname} page ${page.n}: "couldn’t swear" at tick ${t}, which another answer counts: ${b.text}`).toBe(false);
+            }
+          }
+        }
+      }
+    }
+    expect(checked).toBeGreaterThan(10);
+  });
+});
+
 describe('5. the page says what was chosen, and what is true', () => {
   it('seed 2: asked for her evening, Lathrop gives her evening first, and nothing about anybody else’s evening is asked', () => {
     const view = viewOf(2, 2);

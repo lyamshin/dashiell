@@ -2601,7 +2601,7 @@ function tellingParas(
       : new RegExp(`\\b${subject.surname}\\b`).test(parts.question ?? ''));
   // Guidance §4: the half hours that matter, as the notebook held them when he asked.
   const window = windowOf(view, stage.foundBefore, stage.accountsBefore);
-  let told = toldOf(view, family, clues, speaker, stage.at, !questionNamed && !beat.volunteered, window);
+  let told = toldOf(view, family, clues, speaker, stage.at, !questionNamed && !beat.volunteered, window, stage.foundBefore);
   let spokenAloud = true;
   if (told === null) {
     const first: string[] = [];
