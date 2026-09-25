@@ -38,8 +38,25 @@ export function formatClock(minutesPastMidnight: number): string {
   return `${h12}:${String(m).padStart(2, '0')} ${suffix}`;
 }
 
-export function clockAfter(used: number, budget: number): string {
-  return formatClock(minutesAfter(used, budget));
+export function clockAfter(used: number, budget: number, short = 0): string {
+  return formatClock(clockMinutes(used, budget, short));
+}
+
+/**
+ * docs/40 §3: a question about a name the witness turns out not to know
+ * costs this many minutes, not a call. The minutes run on a tally of their
+ * own; when the tally reaches a call's worth, it is a call (`priceOf`).
+ */
+export const SHORT_MINUTES = 5;
+
+/** Minutes past midnight after `used` calls and `short` minutes of short questions. Never past 8:00 AM. */
+export function clockMinutes(used: number, budget: number, short = 0): number {
+  return Math.min(NIGHT_MINUTES, minutesAfter(used, budget) + short);
+}
+
+/** Short-question minutes on the tally by the end of page `n` of a log. */
+export function shortByPage(log: readonly { short?: number }[], n: number): number {
+  return log.slice(0, n + 1).reduce((sum, p) => sum + (p.short ?? 0), 0);
 }
 
 export function actionsLeft(used: number, budget: number): number {
@@ -104,6 +121,8 @@ export function clockStrip(
   budget: number,
   /** M14: who is waiting at eight — the DA, or a client who wants an answer. */
   deadline = 'the DA files at eight',
+  /** docs/40 §3: minutes of short questions on the tally. */
+  short = 0,
 ): ClockStrip {
   const spent = Math.max(0, Math.min(used, budget));
   const notches: Notch[] = Array.from({ length: Math.max(0, budget) }, (_, i) =>
@@ -115,7 +134,7 @@ export function clockStrip(
     n === 0
       ? `No calls left. ${deadline.charAt(0).toUpperCase()}${deadline.slice(1)}.`
       : `${word.charAt(0).toUpperCase()}${word.slice(1)} call${n === 1 ? '' : 's'} left before ${deadline}.`;
-  return { time: clockAfter(used, budget), notches, left };
+  return { time: clockAfter(used, budget, short), notches, left };
 }
 
 /** Actions spent by the end of page `n` of a log: what the strip shows on that page. */

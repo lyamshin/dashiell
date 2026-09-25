@@ -13,12 +13,12 @@
  * it takes an open lead.
  */
 
-import type { Clue, Id, Person } from '../gen/types.js';
-import { minutesAfter, minutesPerAction } from './clock.js';
+import { spokenClock, type Clue, type Id, type Person, type Tick } from '../gen/types.js';
+import { clockMinutes, minutesPerAction, SHORT_MINUTES } from './clock.js';
 import type { CaseView } from './derive.js';
 import { gameBudget, goneObjects, peopleHereNow } from './derive.js';
 import { parse } from './parser.js';
-import { accountRider, answersTo, askedBefore, followUpOf, pendingFor, priceOf, recapOpen, rundownOpen } from './reducer.js';
+import { accountRider, answersTo, askedBefore, followUpOf, notKnownBy, pendingFor, priceOf, recapOpen, rundownOpen, topicPersonOf } from './reducer.js';
 import type { Command, OfferedChoice, OfferedGroup, RunState } from './types.js';
 import { buildNotebook, type Notebook } from './notebook.js';
 import { possessiveOf, pronounOf } from './voice/cast.js';
@@ -32,6 +32,7 @@ import {
   readyConfronts,
   readyOn,
   softMarks,
+  starReason,
   watcherOf,
   type StarCandidate,
 } from './guidance.js';
@@ -44,6 +45,7 @@ import {
   partsOf,
   pickFacts,
   saidRecords,
+  tierNumber,
   type PickFact,
 } from './m9.js';
 
@@ -107,7 +109,18 @@ export function minutesLabel(minutes: number): string {
  * allowance, which one ("free — 1 left on the house"). The book and the play
  * tool both print this, so a label never promises more than the reducer gives.
  */
-export function costLabel(choice: { minutes: number; freeNote?: string; rounded?: true }): string {
+export function costLabel(choice: {
+  minutes: number;
+  freeNote?: string;
+  rounded?: true;
+  nameCost?: { full: number; short: number; rounded?: true };
+}): string {
+  // docs/40 §3: a name costs a call, or five minutes if the witness turns
+  // out not to know it; the button says both, and never which.
+  if (choice.nameCost) {
+    const n = choice.nameCost;
+    return `${minutesLabel(n.full)}${n.rounded ? ' (rounded)' : ''} or ${n.short}`;
+  }
   const base = minutesLabel(choice.minutes);
   if (choice.minutes <= 0 && choice.freeNote) return `${base} — ${choice.freeNote}`;
   // Playtest round 2: why this call is five minutes off the night's usual.
@@ -294,8 +307,9 @@ function choice(
     return { command, label, minutes: 0, lead: false, done: false };
   }
   const price = priceOf(parsed.command, state, view);
+  const short = state.shortMinutes ?? 0;
   const minutes =
-    minutesAfter(state.actionsUsed + price.cost, budget) - minutesAfter(state.actionsUsed, budget);
+    clockMinutes(state.actionsUsed + price.cost, budget, short + (price.short ?? 0)) - clockMinutes(state.actionsUsed, budget, short);
   const done =
     price.reason === 'search-again' ||
     price.reason === 'ask-again' ||
@@ -314,7 +328,21 @@ function choice(
   // Playtest round 2: the clock's running total is rounded to five minutes so
   // the last call lands on eight; a call that comes out five off the usual
   // says why, so 20 beside 25 is not a different price.
-  const rounded = price.cost > 0 && minutes !== price.cost * minutesPerAction(budget);
+  // docs/40 §3: a question about a name in v2 says both of its prices.
+  const named =
+    parsed.command.kind === 'ask' &&
+    topicPersonOf(view, parsed.command.topic) !== null &&
+    view.kase.engine === 'v2' &&
+    view.kase.logic !== undefined &&
+    (price.reason === 'ask' || price.reason === 'short');
+  const full = clockMinutes(state.actionsUsed + 1, budget, short) - clockMinutes(state.actionsUsed, budget, short);
+  const nameCost = named
+    ? { full, short: SHORT_MINUTES, ...(full !== minutesPerAction(budget) ? { rounded: true as const } : {}) }
+    : undefined;
+  const rounded =
+    !named &&
+    (price.cost > 0 || price.reason === 'short') &&
+    minutes !== (price.reason === 'short' ? SHORT_MINUTES : price.cost * minutesPerAction(budget));
   return {
     command,
     label,
@@ -323,6 +351,7 @@ function choice(
     done,
     ...(freeNote ? { freeNote } : {}),
     ...(rounded ? { rounded: true as const } : {}),
+    ...(nameCost ? { nameCost } : {}),
     ...(riding ? { riding: true } : {}),
     ...(all.length > 0 ? { gains: all } : {}),
   };
@@ -378,9 +407,12 @@ function askGroup(view: CaseView, state: RunState, person: Person, targets: Set<
   }
 
   // 4. People, 5. places, 6. things the notebook knows.
+  // docs/40 §3: a name they turned out not to know is in the notebook, and
+  // not offered again.
+  const unknown = unknownTo(view, state, person.id);
   const rest: Choice[] = [];
   for (const other of knownPeople(view, state)) {
-    if (other.id === person.id) continue;
+    if (other.id === person.id || unknown.has(other.id)) continue;
     rest.push(ask(other.surname, other.surname));
   }
   // Only the places and things the notebook ties to this person (M6 review):
@@ -421,7 +453,32 @@ function askGroup(view: CaseView, state: RunState, person: Person, targets: Set<
   };
   const more = restKept.slice(room).map(bare);
   if (more.length > 0) group.more = more;
+  if (unknown.size > 0) {
+    group.unknown = [...unknown].map((id) => displayName(view, state, id));
+  }
   return group;
+}
+
+/**
+ * docs/40 §3: the people `personId` was asked about and turned out not to
+ * know by name — every clue the question brought said so.
+ */
+export function unknownTo(view: CaseView, state: RunState, personId: Id): Set<Id> {
+  const out = new Set<Id>();
+  if (view.kase.engine !== 'v2') return out;
+  for (const a of state.asked ?? []) {
+    if (!a.key.startsWith(`${personId}|`) || a.clues.length === 0) continue;
+    const rest = a.key.slice(personId.length + 1);
+    const other = rest.startsWith('person:')
+      ? rest.slice('person:'.length)
+      : rest.startsWith('exact:')
+        ? topicPersonOf(view, { kind: 'exact', personId, topic: rest.split('|').slice(1).join('|') })
+        : null;
+    if (other === null) continue;
+    const clues = a.clues.map((id) => view.findableById.get(id));
+    if (clues.every((c) => c !== undefined && notKnownBy(c, personId, other))) out.add(other);
+  }
+  return out;
 }
 
 /**
@@ -498,7 +555,9 @@ export function choicesFor(view: CaseView, state: RunState): ChoiceGroup[] {
     const search: Choice[] = [
       choice(view, state, targets, `examine ${here.shortName}`, 'the room'),
     ];
-    for (const id of knownObjects(view, state)) {
+    // docs/40 §3: in v2 a room gives up everything to one search, the things
+    // in it included, so the things are not choices of their own.
+    for (const id of view.kase.engine === 'v2' ? [] : knownObjects(view, state)) {
       const object = view.objectById.get(id);
       if (object?.homePlace !== here.id) continue;
       search.push(choice(view, state, targets, `examine ${object.name}`, object.name));
@@ -540,7 +599,10 @@ export function choicesFor(view: CaseView, state: RunState): ChoiceGroup[] {
     kind: 'free',
     heading: '',
     choices: [
-      { command: 'notebook', label: 'Notebook', minutes: 0, lead: false, done: false },
+      // docs/40 §3: in v2 the notebook is always a tap away (beside the page,
+      // or in the running head, and `notebook` in the play tool), so it is
+      // not one of the page's choices.
+      ...(view.kase.engine === 'v2' ? [] : [{ command: 'notebook', label: 'Notebook', minutes: 0, lead: false, done: false }]),
       { command: 'file', label: 'File the report', minutes: 0, lead: false, done: false },
     ],
   });
@@ -574,30 +636,70 @@ function restar(view: CaseView, state: RunState, groups: ChoiceGroup[]): void {
     // takes one, a walk to where one is — and, on the first visit to a
     // watched room, asking the watcher about it. What each would bring is
     // weighed against the graph's open steps and open routes.
+    // docs/40 §2: stars last while their step is open. A choice here is a
+    // candidate when it takes a lead the notebook has opened, or when it
+    // brings what an open step stands on that the player can always go and
+    // get: somebody's own story, or the counts and faces of whoever keeps a
+    // room. A walk is a candidate for a lead that waits there; and when
+    // nothing here or along a lead serves an open step, for those standing
+    // facts there too, so a page is never without a star while something is
+    // open. (Every fact an open step needs, starred wherever it was, sent a
+    // follower of stars straight to the answer at Raw, and the reasoning
+    // player on errands from Poached up: docs/39 notes, docs/40 "Built".)
     const first = firstVisit(state);
     const post = watcherOf(view, state.at);
-    const targets = openTargets(view, state.found);
     const leadPlaces = new Set(state.threads.map((t) => t.placeId));
-    const cands: StarCandidate[] = [];
-    for (const g of groups) {
-      if (g.kind === 'confront' || g.kind === 'put' || g.kind === 'free' || g.kind === 'rundown' || g.kind === 'recap') continue;
-      for (const c of [...g.choices, ...(g.more ?? [])]) {
-        const isGo = g.kind === 'go';
-        const place = isGo ? view.places.find((p) => `go ${p.shortName}` === c.command) : undefined;
-        const watcherFirst =
-          first && post !== null && g.personId === post.id && c.command === `ask ${post.surname} about ${view.placeById.get(state.at)?.shortName ?? ''}`;
-        const gains = isGo
-          ? place && leadPlaces.has(place.id)
-            ? reachableAt(view, state, place.id).filter((id) => targets.has(id))
-            : []
-          : watcherFirst
-            ? (c.gains ?? [])
-            : (c.gains ?? []).filter((id) => targets.has(id));
-        cands.push({ command: c.command, gains, go: isGo, evening: / about that evening$/.test(c.command), watcherFirst, done: c.done });
+    const targets = openTargets(view, state.found);
+    const standing = (id: Id): boolean => {
+      const clue = view.findableById.get(id);
+      if (!clue) return false;
+      return (
+        clue.kind === 'account' ||
+        clue.kind === 'watch' ||
+        clue.establishes.some((f) => f.kind === 'countAt' || f.kind === 'describedAt' || f.kind === 'absentFrom')
+      );
+    };
+    const candidates = (level: 0 | 1 | 2): StarCandidate[] => {
+      const walkStanding = level >= 1;
+      const any = level >= 2;
+      const cands: StarCandidate[] = [];
+      for (const g of groups) {
+        if (g.kind === 'confront' || g.kind === 'put' || g.kind === 'free' || g.kind === 'rundown' || g.kind === 'recap') continue;
+        for (const c of [...g.choices, ...(g.more ?? [])]) {
+          const isGo = g.kind === 'go';
+          const place = isGo ? view.places.find((p) => `go ${p.shortName}` === c.command) : undefined;
+          const watcherFirst =
+            first && post !== null && g.personId === post.id && c.command === `ask ${post.surname} about ${view.placeById.get(state.at)?.shortName ?? ''}`;
+          const gains = isGo
+            ? place && (walkStanding || leadPlaces.has(place.id))
+              ? reachableAt(view, state, place.id).filter((id) => any || targets.has(id) || (walkStanding && standing(id)))
+              : []
+            : watcherFirst || any
+              ? (c.gains ?? [])
+              : (c.gains ?? []).filter((id) => targets.has(id) || standing(id));
+          cands.push({ command: c.command, gains, go: isGo, evening: / about that evening$/.test(c.command), watcherFirst, done: c.done });
+        }
       }
+      return cands;
+    };
+    // Still nothing: from Poached up, anything an open step rests on, here
+    // or a walk away. At Raw and Coddled that would be the answer itself,
+    // three steps long, so the stars there stop at the standing facts.
+    const deepest = (tierNumber(view) ?? 5) >= 2 ? 2 : 1;
+    let cands = candidates(0);
+    let starred = graphStars(view, state, cands);
+    for (const level of [1, 2] as const) {
+      if (starred.size > 0 || level > deepest) break;
+      cands = candidates(level);
+      starred = graphStars(view, state, cands);
     }
-    const starred = graphStars(view, state.found, cands);
-    for (const c of every) c.lead = starred.has(c.command);
+    const goes = new Set(cands.filter((c) => c.go).map((c) => c.command));
+    for (const c of every) {
+      const star = starred.get(c.command);
+      c.lead = star !== undefined;
+      if (star) c.why = starReason(view, state, star, goes.has(c.command));
+      else delete c.why;
+    }
   } else if (view.kase.logic) {
     const pointer = clientPointerOnly(view, state.found);
     if (pointer.size > 0) {
@@ -740,6 +842,58 @@ export function confrontGroup(view: CaseView, state: RunState, person: Person): 
   };
 }
 
+/** docs/40 §2: the stars on a page, said as the stock-taking's last lines. */
+export interface StarsLine {
+  text: string;
+  personIds: Id[];
+  placeIds: Id[];
+  ticks: number[];
+}
+
+const COUNT_WORDS = ['No', 'One', 'Two', 'Three'];
+
+/**
+ * docs/40 §2: "Go over what I have" ends on the starred questions that would
+ * move it, each with its reason: "Two things would move it. Hargrove, about
+ * Hauck: Hauck's story against Hargrove's eyes. The third floor: somebody
+ * there counts heads." Null where the page has no star (v1, or nothing open).
+ */
+export function starsLine(view: CaseView, state: RunState): StarsLine | null {
+  if (view.kase.engine !== 'v2') return null;
+  const groups = choicesFor(view, state);
+  const lines: string[] = [];
+  const personIds = new Set<Id>();
+  const placeIds = new Set<Id>();
+  for (const g of groups) {
+    for (const c of [...g.choices, ...(g.more ?? [])]) {
+      if (!c.lead || !c.why) continue;
+      let what: string;
+      if (g.kind === 'ask' && g.personId) {
+        const name = displayName(view, state, g.personId);
+        const evening = / about that evening$/.test(c.command);
+        what = evening ? `${name}’s own evening` : `${name}, about ${c.label}`;
+        personIds.add(g.personId);
+      } else if (g.kind === 'go') {
+        const place = view.places.find((p) => `go ${p.shortName}` === c.command);
+        what = c.label;
+        if (place) placeIds.add(place.id);
+      } else if (g.kind === 'search') {
+        what = `A look through ${view.placeById.get(state.at)?.shortName ?? 'the room'}`;
+        placeIds.add(state.at);
+      } else continue;
+      lines.push(`${what.charAt(0).toUpperCase()}${what.slice(1)}: ${c.why}${/[?.!]$/.test(c.why) ? '' : '.'}`);
+    }
+  }
+  if (lines.length === 0) return null;
+  const text = `${COUNT_WORDS[lines.length] ?? String(lines.length)} ${lines.length === 1 ? 'thing' : 'things'} would move it. ${lines.join(' ')}`;
+  // What the lines name, for the recap's own check.
+  for (const p of view.kase.people) if (new RegExp(`\\b${p.surname}\\b`).test(text)) personIds.add(p.id);
+  for (const pl of view.places) if (text.includes(pl.shortName)) placeIds.add(pl.id);
+  const ticks: number[] = [];
+  for (let t = 0; t < 12; t++) if (text.includes(spokenClock(t as Tick))) ticks.push(t);
+  return { text, personIds: [...personIds], placeIds: [...placeIds], ticks };
+}
+
 /** Every choice in a list of groups, the collapsed ones included. */
 export function allChoices(groups: readonly ChoiceGroup[]): Choice[] {
   return groups.flatMap((g) => [...g.choices, ...(g.more ?? [])]);
@@ -856,5 +1010,5 @@ export function stableChoices(
 export function freeStep(state: RunState): boolean {
   const last = state.log[state.log.length - 1];
   const before = state.log[state.log.length - 2];
-  return last !== undefined && before !== undefined && last.cost === 0 && last.at === before.at;
+  return last !== undefined && before !== undefined && last.cost === 0 && !last.short && last.at === before.at;
 }

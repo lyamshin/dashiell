@@ -24,21 +24,22 @@
  * Pure.
  */
 
-import { contradicts } from '../gen/index.js';
-import { spokenClock, type Clue, type Fact, type Id, type Person, type Tick } from '../gen/types.js';
+import { contradicts, crimeTicks, culpritOf, placesAt, whyNot } from '../gen/index.js';
+import type { Clue, Fact, Id, Person, Tick } from '../gen/types.js';
 import type { CaseView } from './derive.js';
 import { peopleHereNow } from './derive.js';
 import {
-  accountClueOf,
   canConfront,
   confessedOf,
   confrontFacts,
   confrontOn,
   displayName,
   judgeConfront,
+  lieKeyOf,
+  nameKnown,
+  solveNotebook,
   partRef,
   partsOf,
-  saidRecords,
   tierNumber,
 } from './m9.js';
 import type { Profile, TierKey } from './profile.js';
@@ -50,45 +51,9 @@ import type { RunState } from './types.js';
  * Small helpers.
  * ------------------------------------------------------------------ */
 
-function ticksOfFact(f: Fact): Tick[] {
-  if ('ticks' in f && Array.isArray(f.ticks)) return f.ticks as Tick[];
-  if ('tick' in f && typeof f.tick === 'number') return [f.tick as Tick];
-  return [];
-}
-
-/** "at half past eight", "from eight until half past nine". */
-export function spokenWhen(ticks: readonly Tick[]): string {
-  const sorted = [...new Set(ticks)].sort((a, b) => a - b);
-  if (sorted.length === 0) return '';
-  const first = sorted[0] as Tick;
-  const last = sorted[sorted.length - 1] as Tick;
-  if (first === last) return `at ${spokenClock(first)}`;
-  if (sorted.length === 2 && last - first === 1) return `at ${spokenClock(first)} and ${spokenClock(last)}`;
-  const contiguous = last - first === sorted.length - 1;
-  if (!contiguous) return sorted.map((t) => `at ${spokenClock(t)}`).join(' and ');
-  return `from ${spokenClock(first).replace(/ o[’']clock$/, '')} until ${spokenClock(last)}`;
-}
-
-/** The half hours somebody's own word puts them somewhere, as the notebook has it now. */
-export function claimedNow(view: CaseView, state: Pick<RunState, 'accounts' | 'confronts'>, personId: Id): Map<Tick, { place: Id; with?: Id }> {
-  const out = new Map<Tick, { place: Id; with?: Id }>();
-  if (!state.accounts.includes(personId)) return out;
-  const account = accountClueOf(view, personId);
-  if (!account) return out;
-  for (const f of account.establishes) {
-    if (f.kind !== 'claims') continue;
-    for (const t of f.ticks) out.set(t, { place: f.place, ...(f.with ? { with: f.with } : {}) });
-  }
-  // A second story replaces the first for its hours; what they gave up is theirs no more.
-  for (const s of saidRecords(view, state)) {
-    if (s.personId !== personId) continue;
-    for (const f of s.facts) {
-      if (f.kind === 'claims') for (const t of f.ticks) out.set(t, { place: f.place });
-      if (f.kind === 'personAt') out.delete(f.tick);
-    }
-  }
-  return out;
-}
+/** docs/40: moved to m9, where the held line reads them too. */
+export { claimedNow, spokenWhen, ticksOfFact } from './m9.js';
+import { claimedNow, spokenWhen, ticksOfFact } from './m9.js';
 
 /* ------------------------------------------------------------------ *
  * §1. Confront help at Raw and Coddled: the ready-made confrontation.
@@ -156,9 +121,16 @@ export function readySentence(
       case 'personNotAt':
         if (f.personId !== person.id) break;
         return `${says} you weren’t at ${placeName(view, f.place)} ${spokenWhen(inClaim(facts.filter((g) => g.kind === 'personNotAt' && g.personId === person.id && g.place === f.place).map((g) => (g as { tick: Tick }).tick)))}`;
-      case 'personAt':
-        if (f.personId !== person.id) break;
-        return `${who === 'the room' ? 'The room puts you' : `${who} saw you`} at ${placeName(view, f.place)} ${spokenWhen(inClaim(facts.filter((g) => g.kind === 'personAt' && g.personId === person.id && g.place === f.place).map((g) => (g as { tick: Tick }).tick)))}`;
+      case 'personAt': {
+        // docs/40: somebody else seen, said with their name (the fallback
+        // below read "Abramowitz: the Garibaldi, 8:00", and lost whom).
+        const at = facts.filter((g) => g.kind === 'personAt' && g.personId === f.personId && g.place === f.place).map((g) => (g as { tick: Tick }).tick);
+        if (f.personId !== person.id) {
+          if (ordered.some((g) => mine(g))) break;
+          return `${who === 'the room' ? `The room puts ${nameList([f.personId])}` : `${who} saw ${nameList([f.personId])}`} at ${placeName(view, f.place)} ${spokenWhen(at)}`;
+        }
+        return `${who === 'the room' ? 'The room puts you' : `${who} saw you`} at ${placeName(view, f.place)} ${spokenWhen(inClaim(at))}`;
+      }
       case 'absentFrom': {
         const others = f.except.slice(1);
         const when = spokenWhen(inClaim(f.ticks));
@@ -216,7 +188,7 @@ export function readyConfronts(view: CaseView, state: RunState, prefer: Readonly
       const claims = [{ place: c.lie.claimed, ticks: c.lie.ticks }, ...c.responses.flatMap((r) => (r.claims ? [{ place: r.claims.place, ticks: r.claims.ticks }] : []))];
       for (const claim of claims) {
         for (const soft of [true, false]) {
-          const res = contradicts(view.kase, [...state.found], { personId: person.id, ...claim }, { confessed: [...confessed], soft });
+          const res = contradicts(view.kase, [...state.found], { personId: person.id, ...claim }, { confessed: [...confessed], soft, pairs: true });
           if (res.yes) for (const id of res.rules) if (held.has(id)) candidates.add(id);
         }
       }
@@ -331,19 +303,128 @@ export interface StarCandidate {
 /** At most this many stars on a page. */
 export const STAR_LIMIT = 3;
 
+/** What an open fact serves: the step (or a rival's route) it is ranked by. */
+export interface OpenFact {
+  rank: number;
+  /** A graph step's id, or a rival's (for a fact on one of its other routes). */
+  step: string;
+  rival?: true;
+}
+
+const CLOSED = new WeakMap<CaseView, Map<string, { closed: Set<string>; window: Tick[] }>>();
+
+/**
+ * docs/40 §2: the steps of the deduction graph the notebook has closed. A
+ * star stays on a choice while the step it serves is open, and only that
+ * long. Read with the solver on what is held (and the confrontations that
+ * landed), never the truth:
+ *
+ * - a place or a "not" step, once the solver places them (or strikes it);
+ * - when, once the half hour is one; a half hour ruled out, once it is;
+ * - a lie, once what is in hand breaks it, or a fact put to it landed;
+ * - who, once the solver names them; a leg of the report, once one of its
+ *   facts is held.
+ */
+export function closedSteps(view: CaseView, state: Pick<RunState, 'found' | 'confronts'>): Set<string> {
+  const graph = view.kase.v2?.graph;
+  const out = new Set<string>();
+  if (!graph) return out;
+  const key = `${state.found.join(',')}|${(state.confronts ?? []).map((r) => `${r.lieKey}:${r.outcome}`).join(',')}`;
+  let memo = CLOSED.get(view);
+  if (!memo) {
+    memo = new Map();
+    CLOSED.set(view, memo);
+  }
+  const hit = memo.get(key);
+  if (hit) return hit.closed;
+  const held = new Set(state.found);
+  const st = solveNotebook(view, state);
+  const culprit = culpritOf(st)?.id ?? null;
+  const ticks = crimeTicks(st);
+  const landed = new Set(
+    (state.confronts ?? []).filter((r) => r.outcome !== 'wrong' && r.lieKey !== null).map((r) => `${r.personId}|${r.lieKey}`),
+  );
+  const confessed = confessedOf(state);
+  for (const s of graph.steps) {
+    const who = s.personId;
+    const at = s.ticks ?? [];
+    let closed = false;
+    switch (s.kind) {
+      case 'place':
+        closed =
+          who !== undefined &&
+          s.place !== undefined &&
+          at.every((t) => {
+            const p = placesAt(st, who, t);
+            return p.length === 1 && p[0] === s.place;
+          });
+        break;
+      case 'not':
+        closed = who !== undefined && s.place !== undefined && at.every((t) => whyNot(st, who, t, s.place as Id) !== null);
+        break;
+      case 'when':
+        closed = ticks.length === 1;
+        break;
+      case 'tick':
+        closed = at.every((t) => !ticks.includes(t));
+        break;
+      case 'lie': {
+        if (who === undefined || s.place === undefined) break;
+        const put = (view.kase.logic?.confrontations ?? []).some(
+          (c) => c.personId === who && c.lie.claimed === s.place && c.lie.ticks.join() === at.join() && landed.has(`${who}|${lieKeyOf(c)}`),
+        );
+        // A lie is caught when it is put to them and lands. Holding what
+        // breaks it is the player's to see, and the star stays till then.
+        closed = put;
+        break;
+      }
+      case 'confess':
+        closed = who !== undefined && confessed.includes(who);
+        break;
+      case 'who':
+        closed = culprit !== null && culprit === who;
+        break;
+      case 'leg':
+        // A leg's facts say more than the leg (the chloral gone, a noise at
+        // half past eight): each is its own until held.
+        closed = s.facts.every((f) => held.has(f));
+        break;
+    }
+    if (closed) out.add(s.id);
+  }
+  if (memo.size > 64) memo.clear();
+  memo.set(key, { closed: out, window: ticks });
+  return out;
+}
+
+/** The half hours the notebook still holds open for the crime (read with `closedSteps`'s solve). */
+function heldWindow(view: CaseView, state: Pick<RunState, 'found' | 'confronts'>): Tick[] {
+  closedSteps(view, state);
+  const key = `${state.found.join(',')}|${(state.confronts ?? []).map((r) => `${r.lieKey}:${r.outcome}`).join(',')}`;
+  return CLOSED.get(view)?.get(key)?.window ?? [];
+}
+
 /**
  * Each fact the graph's open steps rest on, ranked: lower is nearer the
  * bottleneck. Steps under the bottleneck step by their distance from it;
  * then the lies in the order a player can first catch them; then every step
  * under the report's targets by distance; then the rest; then the facts of
- * a rival's other routes, not yet held in full. Held facts and the givens are
- * not in it.
+ * a rival's other routes, not yet held in full. Held facts, the givens, and
+ * the facts of a step the notebook has closed (`closedSteps`) are not in it.
  */
-export function openFactRanks(view: CaseView, found: readonly Id[]): Map<Id, number> {
-  const graph = view.kase.v2?.graph;
+export function openFactRanks(view: CaseView, found: readonly Id[], confronts: RunState['confronts'] = []): Map<Id, number> {
   const out = new Map<Id, number>();
+  for (const [id, o] of openFacts(view, { found: [...found], confronts })) out.set(id, o.rank);
+  return out;
+}
+
+/** `openFactRanks`, with the step each fact serves. */
+export function openFacts(view: CaseView, state: Pick<RunState, 'found' | 'confronts'>): Map<Id, OpenFact> {
+  const graph = view.kase.v2?.graph;
+  const out = new Map<Id, OpenFact>();
   if (!graph) return out;
-  const held = new Set(found);
+  const held = new Set(state.found);
+  const closed = closedSteps(view, state);
   const byId = new Map(graph.steps.map((s) => [s.id, s]));
   const bfs = (roots: readonly string[]): Map<string, number> => {
     const d = new Map<string, number>();
@@ -367,6 +448,7 @@ export function openFactRanks(view: CaseView, found: readonly Id[]): Map<Id, num
   const fromTargets = bfs(graph.targets);
   const lieIndex = new Map(graph.lies.map((id, i) => [id, i]));
   for (const s of graph.steps) {
+    if (closed.has(s.id)) continue;
     const rank = fromBottleneck.has(s.id)
       ? (fromBottleneck.get(s.id) as number)
       : lieIndex.has(s.id)
@@ -377,21 +459,30 @@ export function openFactRanks(view: CaseView, found: readonly Id[]): Map<Id, num
     for (const f of s.facts) {
       if (held.has(f) || graph.classes[f] === 'given') continue;
       const had = out.get(f);
-      if (had === undefined || rank < had) out.set(f, rank);
+      if (had === undefined || rank < had.rank) out.set(f, { rank, step: s.id });
     }
   }
   // A rival's other routes are the deduction too: a fact on a route not yet
   // held in full breaks somebody the steps above may not reach first.
   for (const r of graph.rivals) {
+    if (closed.has(r.step)) continue;
     for (const route of r.routeFacts) {
       if (route.every((f) => held.has(f))) continue;
       for (const f of route) {
         if (held.has(f) || graph.classes[f] === 'given' || out.has(f)) continue;
-        out.set(f, 60);
+        out.set(f, { rank: 60, step: r.id, rival: true });
       }
     }
   }
   return out;
+}
+
+/** One star: the choice, and the fact and step it is for. */
+export interface Star {
+  command: string;
+  fact: Id;
+  step: string;
+  rival?: true;
 }
 
 /**
@@ -403,16 +494,21 @@ export function openFactRanks(view: CaseView, found: readonly Id[]): Map<Id, num
  * star). On the first visit to a watched room, asking the watcher about it
  * comes first when it brings anything an open step rests on.
  */
-export function graphStars(view: CaseView, found: readonly Id[], candidates: readonly StarCandidate[]): Set<string> {
-  const ranks = openFactRanks(view, found);
-  const out = new Set<string>();
-  if (ranks.size === 0) return out;
+export function graphStars(
+  view: CaseView,
+  state: Pick<RunState, 'found' | 'confronts'>,
+  candidates: readonly StarCandidate[],
+): Map<string, Star> {
+  const facts = openFacts(view, state);
+  const out = new Map<string, Star>();
+  if (facts.size === 0) return out;
+  const rankOf = (id: Id): number => (facts.get(id) as OpenFact).rank;
   // What can be had without walking is never a reason to walk.
   const here = new Set(candidates.filter((c) => !c.go && !c.done).flatMap((c) => c.gains));
   const scored = candidates
     .map((c, i) => {
-      const useful = c.gains.filter((id) => ranks.has(id) && !(c.go && here.has(id)));
-      const rank = useful.length === 0 ? Infinity : Math.min(...useful.map((id) => ranks.get(id) as number));
+      const useful = c.gains.filter((id) => facts.has(id) && !(c.go && here.has(id)));
+      const rank = useful.length === 0 ? Infinity : Math.min(...useful.map(rankOf));
       return { c, i, useful, rank: c.watcherFirst && useful.length > 0 ? -1 : rank };
     })
     .filter((x) => !x.c.done && x.useful.length > 0)
@@ -429,13 +525,131 @@ export function graphStars(view: CaseView, found: readonly Id[], candidates: rea
     if (out.size >= STAR_LIMIT) break;
     const fresh = x.useful.filter((id) => !covered.has(id));
     if (fresh.length === 0) continue;
-    // The star is for the fact nearest the bottleneck this choice brings; a
-    // choice whose only new facts rank lower than one already starred for the
-    // same reason still gets one while there is room.
-    out.add(x.c.command);
+    // The star is for the fact nearest the bottleneck this choice brings that
+    // no other star is already for.
+    // A question's own answer before the evening that rides along with it.
+    const own = x.c.evening ? fresh : fresh.filter((id) => view.findableById.get(id)?.kind !== 'account');
+    const pool = own.length > 0 ? own : fresh;
+    const best = pool.reduce((b, id) => (rankOf(id) < rankOf(b) ? id : b), pool[0] as Id);
+    const o = facts.get(best) as OpenFact;
+    out.set(x.c.command, { command: x.c.command, fact: best, step: o.step, ...(o.rival ? { rival: true as const } : {}) });
     for (const id of x.useful) covered.add(id);
   }
   return out;
+}
+
+/* ------------------------------------------------------------------ *
+ * docs/40 §2: why a star, in eight words or fewer.
+ * ------------------------------------------------------------------ */
+
+/** The longest a star's reason may run, in words. */
+export const REASON_WORDS = 8;
+
+/**
+ * The reason a star carries, in the detective's voice, from the step it
+ * serves and what the choice would bring: "she counts that room", "who saw
+ * him last?", "Hauck's story against Hargrove's eyes". It says why the fact
+ * would matter, never what it is, and names only who the notebook names.
+ */
+export function starReason(
+  view: CaseView,
+  state: Pick<RunState, 'found' | 'confronts' | 'accounts' | 'log'>,
+  star: Star,
+  go: boolean,
+): string {
+  const graph = view.kase.v2?.graph;
+  const clue = view.findableById.get(star.fact);
+  const step = star.rival ? undefined : graph?.steps.find((s) => s.id === star.step);
+  const rival = star.rival ? graph?.rivals.find((r) => r.id === star.step) : undefined;
+  const person = (id: Id | undefined): Person | undefined => (id === undefined ? undefined : view.personById.get(id));
+  const known = (id: Id | undefined): string | null => {
+    if (id === undefined || !nameKnown(view, state, id)) return null;
+    return view.personById.get(id)?.surname ?? null;
+  };
+  const she = (p: Person | undefined): string => (p && pronounOf(p) === 'she' ? 'she' : 'he');
+  const her = (p: Person | undefined): string => (p && pronounOf(p) === 'she' ? 'her' : 'his');
+  const him = (p: Person | undefined): string => (p && pronounOf(p) === 'she' ? 'her' : 'him');
+  const source = clue && clue.source.type === 'person' ? person(clue.source.personId) : undefined;
+  const kind = rival ? (rival.kind === 'when' ? 'tick' : 'not') : step?.kind;
+  const who = rival?.personId ?? step?.personId;
+  const ticks = rival?.tick !== undefined ? [rival.tick] : (step?.ticks ?? []);
+  const time = ticks.length > 0 ? spokenWhen([ticks[0] as Tick]) : '';
+  const fits = (s: string, fallback = 'it bears on what’s still open'): string =>
+    s.split(/\s+/).length <= REASON_WORDS ? s : fallback;
+
+  // What kind of fact it brings, first: that is what the player can act on.
+  if (clue) {
+    const facts = clue.establishes;
+    if (facts.some((f) => f.kind === 'victimAliveAt' || (f.kind === 'personAt' && f.personId === view.victim.id))) {
+      return `who saw ${him(view.victim)} last?`;
+    }
+    if (clue.kind === 'watch' || facts.some((f) => f.kind === 'countAt' || f.kind === 'absentFrom')) {
+      return go || !source ? 'somebody there counts heads' : `${she(source)} counts that room`;
+    }
+    if (facts.some((f) => f.kind === 'describedAt')) {
+      return go || !source ? 'somebody there notices faces' : `${she(source)} knows faces, if not names`;
+    }
+    // A sighting: said of whom it saw, at the hour that matters to the step
+    // when it covers it.
+    const seen = facts.find(
+      (f): f is Extract<Fact, { personId: Id }> =>
+        (f.kind === 'personAt' || f.kind === 'personNotAt' || f.kind === 'personAtAnchor') && f.personId !== view.victim.id,
+    );
+    if (seen && clue.kind !== 'account') {
+      const p = seen.personId;
+      const n = known(p);
+      const told = (state.accounts ?? []).includes(p);
+      const src = known(source?.id);
+      if (kind === 'lie' && who === p && told && n && src && n !== src) {
+        return fits(`${n}’s story against ${src}’s eyes`, `does ${n}’s story hold up?`);
+      }
+      const theirs = facts.flatMap((f) => ('personId' in f && f.personId === p && 'tick' in f ? [f.tick] : []));
+      // The step's own hour; else an hour the notebook still holds open for
+      // the crime; else the first the fact names.
+      const open = heldWindow(view, state);
+      const gap = (t: number): number => (open.length === 0 ? 0 : Math.min(...open.map((o) => Math.abs(o - t))));
+      const nearest = [...theirs].sort((a, b) => gap(a) - gap(b) || b - a)[0];
+      const at = ticks.find((t) => theirs.includes(t)) ?? nearest;
+      const when = at === undefined ? '' : spokenWhen([at]);
+      if (n && when) return fits(`where was ${n} ${when}?`, `who was where ${when}?`);
+      return when ? `who was where ${when}?` : 'who was where, and when?';
+    }
+    if (clue.kind === 'account' && clue.source.type === 'person') {
+      const p = person(clue.source.personId);
+      const n = known(p?.id);
+      return fits(go && n ? `${n}’s story, to check` : `${her(p)} story, to check against the others`);
+    }
+  }
+  switch (kind) {
+    case 'when':
+    case 'tick':
+      return 'when did it happen, exactly?';
+    case 'leg':
+      if (step?.id === 'leg:how') return 'how was it done?';
+      if (step?.id === 'leg:entry') return 'who could have got in?';
+      if (step?.id === 'leg:why') return 'who had a reason?';
+      return 'what the report still asks';
+    case 'lie': {
+      const liar = known(who);
+      const src = known(source?.id);
+      // Only a story the notebook has can be checked; before that, the hour.
+      const told = who !== undefined && (state.accounts ?? []).includes(who);
+      if (told && liar && src && liar !== src) return fits(`${liar}’s story against ${src}’s eyes`, `does ${liar}’s story hold up?`);
+      if (told && liar) return `does ${liar}’s story hold up?`;
+      if (liar && time) return fits(`where was ${liar} ${time}?`, `who was where ${time}?`);
+      return time ? `who was where ${time}?` : 'who was where, and when?';
+    }
+    case 'who':
+      return fits(`who was at ${view.placeById.get(view.sceneId)?.shortName ?? 'the scene'} then?`, 'who was there when it happened?');
+    case 'confess': {
+      const n = known(who);
+      return n ? `what ${n} is keeping back` : 'what somebody is keeping back';
+    }
+    default: {
+      const n = known(who);
+      return fits(n && time ? `where was ${n} ${time}?` : time ? `who was where ${time}?` : 'who was where, and when?', time ? `who was where ${time}?` : 'who was where, and when?');
+    }
+  }
 }
 
 /**

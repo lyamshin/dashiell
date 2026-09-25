@@ -486,6 +486,12 @@ describe('9. a call five minutes off the usual says why', () => {
       for (const s of playOracle(view).steps) {
         for (const c of choicesFor(view, state).flatMap((g) => g.choices)) {
           if (c.minutes <= 0) continue;
+          // docs/40 §3: a name says both its prices, and which is the call's.
+          if (c.nameCost) {
+            expect([c.nameCost.full, c.nameCost.short]).toContain(c.minutes);
+            expect(costLabel(c)).toBe(`${c.nameCost.full} min${c.nameCost.full !== usual ? ' (rounded)' : ''} or 5`);
+            continue;
+          }
           if (c.minutes !== usual) {
             rounded++;
             expect(costLabel(c)).toBe(`${c.minutes} min (rounded)`);

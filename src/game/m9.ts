@@ -22,6 +22,7 @@ import {
   type SolverState,
   type Why,
 } from '../gen/index.js';
+import { spokenClock } from '../gen/types.js';
 import type {
   Clue,
   ConfrontResponse,
@@ -240,6 +241,57 @@ export function claimedFromClue(clue: Clue): (Id | null)[] {
  * Confront.
  * ------------------------------------------------------------------ */
 
+export function ticksOfFact(f: Fact): Tick[] {
+  if ('ticks' in f && Array.isArray(f.ticks)) return f.ticks as Tick[];
+  if ('tick' in f && typeof f.tick === 'number') return [f.tick as Tick];
+  return [];
+}
+
+/** "at half past eight", "from eight until half past nine". */
+export function spokenWhen(ticks: readonly Tick[]): string {
+  const sorted = [...new Set(ticks)].sort((a, b) => a - b);
+  if (sorted.length === 0) return '';
+  const first = sorted[0] as Tick;
+  const last = sorted[sorted.length - 1] as Tick;
+  if (first === last) return `at ${spokenClock(first)}`;
+  if (sorted.length === 2 && last - first === 1) return `at ${spokenClock(first)} and ${spokenClock(last)}`;
+  const contiguous = last - first === sorted.length - 1;
+  if (!contiguous) {
+    // docs/40: runs said as runs — "at eight o'clock and from ten until eleven".
+    const runs: Tick[][] = [];
+    for (const t of sorted) {
+      const run = runs[runs.length - 1];
+      if (run && t === (run[run.length - 1] as Tick) + 1) run.push(t);
+      else runs.push([t]);
+    }
+    const said = runs.map((r) => spokenWhen(r));
+    return said.length <= 2 ? said.join(' and ') : `${said.slice(0, -1).join(', ')} and ${said[said.length - 1]}`;
+  }
+  return `from ${spokenClock(first).replace(/ o[’']clock$/, '')} until ${spokenClock(last)}`;
+}
+
+/** The half hours somebody's own word puts them somewhere, as the notebook has it now. */
+export function claimedNow(view: CaseView, state: Pick<RunState, 'accounts' | 'confronts'>, personId: Id): Map<Tick, { place: Id; with?: Id }> {
+  const out = new Map<Tick, { place: Id; with?: Id }>();
+  if (!state.accounts.includes(personId)) return out;
+  const account = accountClueOf(view, personId);
+  if (!account) return out;
+  for (const f of account.establishes) {
+    if (f.kind !== 'claims') continue;
+    for (const t of f.ticks) out.set(t, { place: f.place, ...(f.with ? { with: f.with } : {}) });
+  }
+  // A second story replaces the first for its hours; what they gave up is theirs no more.
+  for (const s of saidRecords(view, state)) {
+    if (s.personId !== personId) continue;
+    for (const f of s.facts) {
+      if (f.kind === 'claims') for (const t of f.ticks) out.set(t, { place: f.place });
+      if (f.kind === 'personAt') out.delete(f.tick);
+    }
+  }
+  return out;
+}
+
+
 /** One confrontation, as the run keeps it. */
 export interface ConfrontRecord {
   personId: Id;
@@ -383,7 +435,7 @@ function breaksWith(
 ): Set<Id> {
   const out = new Set<Id>();
   for (const soft of [true, false]) {
-    const res = contradicts(kase, [...hand], { personId, ...claim }, { confessed: [...confessed], soft });
+    const res = contradicts(kase, [...hand], { personId, ...claim }, { confessed: [...confessed], soft, pairs: true });
     if (res.yes) for (const id of res.rules) out.add(id);
   }
   return out;
@@ -445,6 +497,13 @@ export interface ConfrontJudgement {
   response?: ConfrontResponse;
   /** What they claimed, for the page: the place and the half hours the fact touched. */
   claimed?: { place: Id; ticks: Tick[] };
+  /** docs/40 §1: for a fact that broke nothing, why, in one plain line (`heldLine`). */
+  why?: string;
+  /**
+   * docs/40 §1: a count that broke it with a face seen there then, or a face
+   * with a count: the other fact of the two, which the page says as well.
+   */
+  pair?: { clueId: Id; fact: Fact };
 }
 
 /**
@@ -481,7 +540,7 @@ export function judgeConfront(
   const breaks = (hand: readonly Id[], claim: { place: Id; ticks: Tick[] }): Set<Id> => {
     const out = new Set<Id>();
     for (const soft of [true, false]) {
-      const res = contradicts(view.kase, [...hand], { personId, ...claim }, { confessed: [...confessed], soft });
+      const res = contradicts(view.kase, [...hand], { personId, ...claim }, { confessed: [...confessed], soft, pairs: true });
       if (res.yes) for (const id of res.rules) out.add(id);
     }
     return out;
@@ -540,9 +599,178 @@ export function judgeConfront(
     if (!touches) continue;
     const n: 0 | 1 = k === 0 ? 0 : 1;
     const response = c.responses[n];
-    return { outcome: response.kind, lieKey: key, n, confrontation: c, response, claimed };
+    const pair = pairOf(view, state.found, personId, clueId, part, claimed, [...confessed]);
+    return { outcome: response.kind, lieKey: key, n, confrontation: c, response, claimed, ...(pair ? { pair } : {}) };
   }
   return { outcome: 'wrong', lieKey: null };
+}
+
+/**
+ * docs/40 §1: the other half of a two-fact break — the face seen there then,
+ * for a count put; the count, for a face — when the solver's proof rests on
+ * both. Undefined for anything else.
+ */
+function pairOf(
+  view: CaseView,
+  hand: readonly Id[],
+  personId: Id,
+  clueId: Id,
+  part: number | undefined,
+  claim: Claim,
+  confessed: readonly Id[],
+): { clueId: Id; fact: Fact } | undefined {
+  const clue = view.findableById.get(clueId);
+  if (!clue) return undefined;
+  const idx = part === undefined ? clue.establishes.map((_, i) => i) : (partsOf(clue)[part]?.facts ?? []);
+  const facts = idx.map((i) => clue.establishes[i]).filter((f): f is Fact => f !== undefined);
+  const inClaim = (f: Fact): boolean => 'tick' in f && 'place' in f && f.place === claim.place && claim.ticks.includes(f.tick as Tick);
+  const count = facts.find((f) => f.kind === 'countAt' && inClaim(f));
+  const face = facts.find((f) => f.kind === 'describedAt' && inClaim(f));
+  const mine = count ?? face;
+  if (!mine || !('tick' in mine)) return undefined;
+  const res = contradicts(view.kase, [...hand], { personId, ...claim }, { confessed: [...confessed], soft: true, pairs: true });
+  if (!res.yes) return undefined;
+  const want = count ? 'describedAt' : 'countAt';
+  for (const id of res.rules) {
+    if (id === clueId) continue;
+    const other = view.findableById.get(id)?.establishes.find(
+      (f) => f.kind === want && 'tick' in f && f.tick === mine.tick && 'place' in f && f.place === (mine as { place: Id }).place,
+    );
+    if (other) return { clueId: id, fact: other };
+  }
+  return undefined;
+}
+
+/**
+ * docs/40 §1: a fact put that did not break the story ends on one plain line
+ * saying why, in the detective's voice and in the rule's terms: "A count of
+ * one doesn't say who. I'd have to put somebody else at the third floor at
+ * half past eight first." Read from the fact and what they claim now, never
+ * from the truth.
+ */
+export function heldLine(
+  view: CaseView,
+  state: Pick<RunState, 'found' | 'confronts' | 'accounts' | 'log'>,
+  personId: Id,
+  clueId: Id,
+  part?: number,
+): string {
+  const person = view.personById.get(personId);
+  const clue = view.findableById.get(clueId);
+  if (!person || !clue) return 'It didn’t touch anything in the story.';
+  const she = genderHintOf(person) === 'f' ? 'she' : 'he';
+  const She = she === 'she' ? 'She' : 'He';
+  const her = she === 'she' ? 'her' : 'him';
+  const hers = she === 'she' ? 'her' : 'his';
+  const Hers = she === 'she' ? 'Her' : 'His';
+  const place = (id: Id): string => view.placeById.get(id)?.shortName ?? 'there';
+  const src =
+    clue.source.type === 'person'
+      ? displayName(view, state, clue.source.personId)
+      : clue.kind === 'morgue'
+        ? 'The coroner'
+        : 'The room';
+  const bare = (ticks: readonly Tick[]): string => spokenWhen(ticks).replace(/^at /, '');
+  const idx = part === undefined ? clue.establishes.map((_, i) => i) : (partsOf(clue)[part]?.facts ?? []);
+  const facts = idx.map((i) => clue.establishes[i]).filter((f): f is Fact => f !== undefined);
+  const claims = claimedNow(view, state, personId);
+  const account = accountClueOf(view, personId);
+  const first = new Map<Tick, Id>();
+  for (const f of account?.establishes ?? []) if (f.kind === 'claims') for (const t of f.ticks) first.set(t, f.place);
+  const claimedAt = (t: Tick): Id | undefined => claims.get(t)?.place;
+  const ticksAt = (q: Id): Tick[] => [...claims.entries()].filter(([, c]) => c.place === q).map(([t]) => t);
+  const word = (n: number): string => ['nobody', 'one', 'two', 'three', 'four', 'five', 'six'][n] ?? String(n);
+
+  // A story already broken, and every answer to it already given.
+  const logic = view.kase.logic;
+  for (const c of logic?.confrontations ?? []) {
+    if (c.personId !== personId) continue;
+    const key = lieKeyOf(c);
+    const landed = (state.confronts ?? []).filter((r) => r.lieKey === key && r.outcome !== 'wrong');
+    if (landed.length < 2) continue;
+    const touches = facts.some((f) => ticksOfFact(f).some((t) => c.lie.ticks.includes(t)) && ('place' in f ? f.place === c.lie.claimed : true));
+    if (touches) return `${Hers} story ${spokenWhen(c.lie.ticks)} was broken already, and ${she} had said all ${she} was going to say about it.`;
+  }
+
+  const lines: string[] = [];
+  for (const f of facts) {
+    switch (f.kind) {
+      case 'countAt': {
+        if (claimedAt(f.tick) !== f.place || f.count === 0) break;
+        const n = word(f.count);
+        lines.push(`A count of ${n} doesn’t say who. I’d have to put ${f.count === 1 ? 'somebody else' : `${n} others`} at ${place(f.place)} ${spokenWhen([f.tick])} first.`);
+        break;
+      }
+      case 'describedAt': {
+        if (claimedAt(f.tick) !== f.place) break;
+        const who = f.description.text;
+        const Who = who.charAt(0).toUpperCase() + who.slice(1);
+        lines.push(
+          f.description.matches.includes(personId)
+            ? `${Who} at ${place(f.place)} ${spokenWhen([f.tick])} could have been ${her}. It put nobody else there instead.`
+            : `${Who} at ${place(f.place)} ${spokenWhen([f.tick])} wasn’t ${her}, but that didn’t mean ${she} wasn’t there too. For that I’d need a count.`,
+        );
+        break;
+      }
+      case 'personAt': {
+        if (f.personId === personId) {
+          const at = claimedAt(f.tick);
+          if (at === f.place) lines.push(`That only had ${her} where ${she} said ${she} was, ${spokenWhen([f.tick])}.`);
+          else if (at === undefined) {
+            const same = ticksAt(f.place);
+            lines.push(
+              same.length > 0
+                ? `${src} had ${her} at ${place(f.place)} ${spokenWhen([f.tick])}. ${She}’d said ${bare(same)}.`
+                : `${src} had ${her} at ${place(f.place)} ${spokenWhen([f.tick])}. ${Hers} story didn’t say where ${she} was then, so there was nothing there to break.`,
+            );
+          }
+        } else if (claimedAt(f.tick) === f.place) {
+          lines.push(`${displayName(view, state, f.personId)} at ${place(f.place)} ${spokenWhen([f.tick])} didn’t mean ${she} wasn’t there too. I’d need a count, or somebody who kept the door.`);
+        }
+        break;
+      }
+      case 'personNotAt': {
+        if (f.personId !== personId) break;
+        const at = claimedAt(f.tick);
+        if (at !== undefined && at !== f.place) lines.push(`${She} never said ${she} was at ${place(f.place)} ${spokenWhen([f.tick])}. ${She} said ${place(at)}.`);
+        else if (at === undefined) lines.push(`${Hers} story didn’t have ${her} at ${place(f.place)} ${spokenWhen([f.tick])}, so there was nothing there to break.`);
+        break;
+      }
+      case 'personAtAnchor': {
+        if (f.personId !== personId) break;
+        const timed = state.found.some((id) =>
+          (view.findableById.get(id)?.establishes ?? []).some((g) => g.kind === 'anchorAt' && g.anchorId === f.anchorId),
+        );
+        const name = view.anchorById.get(f.anchorId)?.name ?? 'it';
+        if (!timed) lines.push(`I didn’t know yet when ${name} went, so it didn’t put ${her} anywhere at an hour ${she} named.`);
+        break;
+      }
+      case 'absentFrom': {
+        const mine = f.ticks.filter((t) => claimedAt(t) === f.place);
+        if (mine.length > 0 && f.except.includes(personId)) lines.push(`If anything, that put ${her} there ${spokenWhen(mine)}.`);
+        else if (mine.length === 0) lines.push(`${She} never said ${she} was at ${place(f.place)} ${spokenWhen(f.ticks)}.`);
+        break;
+      }
+      default:
+        break;
+    }
+  }
+  if (lines.length > 0) return lines[0] as string;
+  // A part of the story they have already taken back.
+  for (const f of facts) {
+    for (const t of ticksOfFact(f)) {
+      const was = first.get(t);
+      if (was !== undefined && claimedAt(t) !== was && (!('place' in f) || f.place === was)) {
+        return `${She}’d given up that part of ${hers} story already.`;
+      }
+    }
+  }
+  const touched = facts.flatMap(ticksOfFact).filter((t) => claimedAt(t) !== undefined);
+  if (touched.length > 0) {
+    const t = touched[0] as Tick;
+    return `${She} said ${place(claimedAt(t) as Id)} ${spokenWhen([t])}, and nothing in that said otherwise.`;
+  }
+  return `Nothing in it touched where ${she} said ${she} was.`;
 }
 
 /**

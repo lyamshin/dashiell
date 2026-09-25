@@ -8,7 +8,7 @@
  * only thing the length rule may take off is texture (§8).
  */
 
-import type { Clue, Id, Person, Tick } from '../../gen/types.js';
+import type { Clue, Fact, Id, Person, Tick } from '../../gen/types.js';
 import {
   ITEM_MEANS,
   MEETING_MEANS,
@@ -2855,7 +2855,7 @@ function confrontParas(
   // M10 §A.1: the fact in the detective's own words, from its facts — never
   // the record read out in quotation marks.
   const partFacts = scene.part === undefined ? undefined : new Set(scene.clue.ruleParts?.[scene.part]?.facts ?? []);
-  const said = putSaid(view, scene.clue, person, partFacts);
+  const said = [putSaid(view, scene.clue, person, partFacts), pairSaid(view, scene.judged.pair)].filter((s) => s.length > 0).join(' ');
   const them = pronounOf(person) === 'she' ? 'her' : 'him';
   if (beat.follow) opening.push(said.length > 0 ? `“${said}”` : `I read ${them} the next thing I had.`);
   else opening.push(said.length > 0 ? `I put it to ${them} plainly. “${said}”` : `I put what I had to ${them}.`);
@@ -2886,11 +2886,14 @@ function confrontParas(
       text: reaction?.text ?? `${surname} heard me out. “That’s all I’m going to say about it.”`,
       voice: 'exchange',
     });
+    // docs/40 §1: every put ends on one plain line saying what happened.
+    if (scene.judged.why) out.push({ text: scene.judged.why, voice: 'exchange' });
   } else if (beat.outcome === 'wrong') {
     out.push({
       text: reaction?.text ?? `${surname} heard me out. “That doesn’t touch anything I told you.”`,
       voice: 'exchange',
     });
+    if (scene.judged.why) out.push({ text: scene.judged.why, voice: 'exchange' });
   } else {
     // Their words: quoted speech stays as it is; a plain line ("Marchetti
     // has nothing more to say about it.") is narration, in the past tense.
@@ -2904,6 +2907,25 @@ function confrontParas(
   }
   if (!reaction) gaps.push(`no-card: confront has no reaction for ${deckOutcome}`);
   return out.map((p) => ({ ...p, text: tidyPunctuation(p.text) }));
+}
+
+/**
+ * docs/40 §1: the other fact of a two-fact break, said with the one put: "The
+ * one she saw there then was a man in his thirties." Empty for none.
+ */
+function pairSaid(view: Stage['view'], pair: { clueId: Id; fact: Fact } | undefined): string {
+  if (!pair) return '';
+  const clue = view.findableById.get(pair.clueId);
+  const source = clue && clue.source.type === 'person' ? view.personById.get(clue.source.personId) : undefined;
+  const who = source?.surname ?? 'Somebody';
+  const she = source && pronounOf(source) === 'she' ? 'she' : 'he';
+  const f = pair.fact;
+  if (f.kind === 'describedAt') return `And the one ${she} saw there then was ${f.description.text}.`;
+  if (f.kind === 'countAt') {
+    const n = ['nobody', 'one', 'two', 'three', 'four', 'five', 'six'][f.count] ?? String(f.count);
+    return `And ${who} counted ${n} there then, besides ${source ? (she === 'she' ? 'herself' : 'himself') : 'the one who keeps the door'}.`;
+  }
+  return '';
 }
 
 /**

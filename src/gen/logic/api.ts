@@ -28,6 +28,8 @@ export interface HeldOptions {
    * notebook. By default, every confession whose lie the held clues break.
    */
   confessed?: Id[];
+  /** docs/40 §1: a count reads the faces seen there then as heads in it (`SolverProblem.pairs`). */
+  pairs?: boolean;
 }
 
 /** Solve the grid from the clues the player holds. */
@@ -42,7 +44,7 @@ export function solveHeld(kase: Case, held: Id[], opts: HeldOptions = {}): Solve
   const soft = opts.soft ?? true;
   const probe = opts.probe ?? deductionOf(dialsOf(kase).shape).hypothesis;
   const usable = soft ? clues : clues.map((c) => ({ ...c, establishes: c.establishes.filter((f) => f.kind !== 'claims') }));
-  return solve(problemOf(frame, usable, probe)).state;
+  return solve({ ...problemOf(frame, usable, probe), ...(opts.pairs ? { pairs: true } : {}) }).state;
 }
 
 /**

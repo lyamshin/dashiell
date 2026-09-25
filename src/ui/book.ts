@@ -31,10 +31,11 @@ import {
   type TierKey,
 } from '../game/profile.js';
 import { defaultAskPerson, stableChoices } from '../game/choices.js';
-import { clockStrip, usedByPage } from '../game/clock.js';
+import { clockStrip, shortByPage, usedByPage } from '../game/clock.js';
 import { buildView, gameBudget, peopleHereNow, type CaseView, type Noun } from '../game/derive.js';
 import { applyLink, applyMark, gridFrom } from '../game/grid.js';
 import { displayName } from '../game/m9.js';
+import { pronounOf } from '../game/voice/cast.js';
 import { buildNotebook, personCard, placeHoverCard } from '../game/notebook.js';
 import { fileReport, newRun, stepInput } from '../game/reducer.js';
 import { scoreReport, type Verdict } from '../game/scoring.js';
@@ -102,6 +103,7 @@ function offeredOf(groups: readonly OfferedGroup[]): OfferedGroup[] {
     ...(g.personId === undefined ? {} : { personId: g.personId }),
     choices: g.choices.map(plainChoice),
     ...(g.more && g.more.length > 0 ? { more: g.more.map(plainChoice) } : {}),
+    ...(g.unknown && g.unknown.length > 0 ? { unknown: [...g.unknown] } : {}),
   }));
 }
 
@@ -114,6 +116,8 @@ function plainChoice(c: OfferedChoice): OfferedChoice {
     done: c.done,
     ...(c.note === undefined ? {} : { note: c.note }),
     ...(c.freeNote === undefined ? {} : { freeNote: c.freeNote }),
+    ...(c.why === undefined ? {} : { why: c.why }),
+    ...(c.nameCost === undefined ? {} : { nameCost: c.nameCost }),
   };
 }
 
@@ -348,6 +352,21 @@ export function mount(root: HTMLElement): void {
 
   /* ------------------------------------------------------------ drawing */
 
+  /**
+   * docs/40 §3: a choice that opens or shuts something on the page (a
+   * person's topics, the picker) redraws it where the reader is, not at the
+   * top: the second click of two is right under the first.
+   */
+  function renderInPlace(): void {
+    const prose = root.querySelector('.page--prose');
+    const top = prose ? prose.scrollTop : 0;
+    const y = window.scrollY;
+    render();
+    const again = root.querySelector('.page--prose');
+    if (again) again.scrollTop = top;
+    window.scrollTo?.({ top: y });
+  }
+
   function render(): void {
     hideCard();
     if (screen.kind === 'title' || !kase || !view || !state) {
@@ -449,26 +468,31 @@ export function mount(root: HTMLElement): void {
       ? stableChoices(view as CaseView, run, run.log[run.log.length - 2]?.offered)
       : (shown?.offered ?? []);
     if (groups.length > 0) {
-      const who = selected ?? defaultAskPerson(groups, run);
+      // docs/40 §3: in v2 a page opens on the people, and a name opens their
+      // topics; only a confrontation waiting on a second fact opens itself.
+      const peopleFirst = (view as CaseView).kase.engine === 'v2';
+      const who = peopleFirst ? selected : (selected ?? defaultAskPerson(groups, run));
       page.append(
         renderChoices(groups, {
           inert: !newest,
+          peopleFirst,
           selected: who,
           showMore,
           onChoose: (choice) => choose(choice),
           onSelectPerson: (id) => {
-            selected = id;
+            // docs/40 §3: a name chosen again shuts their topics (backing out is free).
+            selected = peopleFirst && id === who ? null : id;
             showMore = false;
             pickerOpen = false;
             pickerFilter = null;
             pickerAll = false;
             justSpent = 0;
-            render();
+            renderInPlace();
           },
           onToggleMore: () => {
             showMore = !showMore;
             justSpent = 0;
-            render();
+            renderInPlace();
           },
           pickerOpen,
           onTogglePicker: () => {
@@ -476,22 +500,23 @@ export function mount(root: HTMLElement): void {
             pickerFilter = null;
             pickerAll = false;
             justSpent = 0;
-            render();
+            renderInPlace();
           },
           pickerAll,
           onPickerAll: () => {
             pickerAll = true;
             justSpent = 0;
-            render();
+            renderInPlace();
           },
           pickerFilter,
           onPickerFilter: (id) => {
             pickerFilter = id;
             justSpent = 0;
-            render();
+            renderInPlace();
           },
           // M9, "Who knows whom": a stranger is what anybody can see until named.
           nameOf: (id) => displayName(view as CaseView, run, id),
+          pronounOf: (id) => pronounOf((view as CaseView).personById.get(id)),
         }),
       );
     } else if (!newest) {
@@ -514,6 +539,7 @@ export function mount(root: HTMLElement): void {
       ['lost-pet', 'lost-item', 'affair'].includes((view as CaseView).kase.act.type)
         ? `${(view as CaseView).client.surname} wants an answer at eight`
         : undefined,
+      shortByPage(run.log, shownIndex),
     );
     const head = el('header', { class: 'runhead runhead--clock' });
     // On a phone the notebook is a page of its own, and the way to it lives

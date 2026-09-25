@@ -52,3 +52,19 @@ Four blind playtesters (v2: seed 11 Raw, 2 Poached, 3 Medium, 21 Medium) all sol
 - **20 minutes against 25.** Not travel or a surcharge: the clock's running total is rounded to five minutes so that the last call lands on eight, and a call that comes out five minutes off the night's usual now says so: "20 min (rounded)". The CLI's help says why.
 - **Checks.** Every case deals as before (seed 3 at Medium is still the Sirkin case; the m7 and structure hashes are untouched). The four saves replay to the end, and each page above was read again after the fix. The v2 design test (`--design --seeds 50 --configs T0,T1L2,T2L2,T4L2,T5L2 --engine v2`), before → after: marks-follower Raw 24% → 28%, Coddled 14% → 18%, Poached 28% → 28%, Medium 24% → 24%, Hard-boiled 14% → 14%; the reasoning player 100 / 100 / 98 / 82 / 82%, unchanged. The marks-follower moves only where the grid's soft marks drive the ready-made confrontation (fewer marks, each on ground).
 - **Left as it is.** A watcher's stated gaps can run long where the one the case is about sat in their room all evening (a lost cat's owner in the landlady's parlour: "From nine until half past eleven I couldn't swear to a number"). Counting them would give away where the owner was, and the puzzle stage takes counts away on purpose; the gap is said, not filled.
+
+## After legible play (docs/40), 2026-09-25
+Branch `legible-play`. What changed is logged in docs/40 "Built". These were found reading seeds 3 and 21 (Medium), 2 (Poached) and 11 (Raw) through `npm run read --route`, and playing seed 3 through `npm run play`.
+
+- **Fixed here.**
+  - The wrong-put closes said "half hour" of a call, and "they did not cross anywhere" of a fact the new held line explains (cnf-007/008/009/012).
+  - The Raw ready-made label lost who was seen ("Abramowitz: the Garibaldi, 8:00").
+  - Broken hours read as a list ("at ten o'clock and at half past ten and at eleven o'clock").
+- **Chapters crowd.**
+  - Seed 2, pages 5 and 6: "Chapter Four: Something That Didn't Fit", then "Chapter Five: Nowhere to Stand" on the next page.
+  - Seed 3, played by hand, pages 6 and 7: Chapters Three and Four, one after the other.
+
+  The book's acts can turn faster than the night does.
+- **The picker files other people's own word under the one being confronted.** Marchetti's picker lists "own word: the Velvet Room, 7:00–7:30 (Hauck)" under "7:00 · she says the Velvet Room". Somebody else's story is no fact against hers.
+- **A Raw ready-made put that rests on a chain says only one link.** Seed 11: "Put it to Rafferty: Abramowitz saw Fairbanks at the Garibaldi at eight o'clock…". That breaks Rafferty's story only through Fairbanks's own account, and the label doesn't say how.
+- **The closing overstates the time to spare.** Seed 3, played by hand and filed with seven calls left, closes with "the night's last hour to spare".

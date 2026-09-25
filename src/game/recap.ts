@@ -529,6 +529,8 @@ export function recapFacts(
       ...threadsFor(view, st.found).map((t) => (/ about that evening$/.test(t.command) ? `next|evening|${kase.people.find((q) => t.command === `ask ${q.surname} about that evening`)?.id ?? ''}` : `next|${t.command}`)),
       ...unplaced.filter((P) => !st.accounts.includes(P)).map((P) => `next|evening|${P}`),
       'next|put',
+      // docs/40 §2: the stars, which the page computes and the recap says.
+      'next|stars',
     ];
     for (const key of alts) {
       out.push({ key, part: 'next', kind: 'next', personIds: [], placeIds: [], ticks: [], anchorIds: [], keep: 0, say: () => '' });
@@ -598,6 +600,8 @@ export function renderRecap(
   trigger: RecapTrigger,
   /** The lead this page named, so the recap's "next" agrees with the page. */
   prefer?: Id,
+  /** docs/40 §2: asked for, in v2, it ends on the page's stars and their reasons. */
+  stars?: { text: string; personIds: Id[]; placeIds: Id[]; ticks: number[] } | null,
 ): RecapWritten | RecapRefusal {
   const memory = state.scene?.recap;
   const said = new Set(memory?.said ?? []);
@@ -778,10 +782,17 @@ export function renderRecap(
   }
   joked = !dealer.mayJoke;
   const nextFact = body().find((f) => f.part === 'next');
-  const nextText = nextFact ? nextFact.say(pick, undefined) : '';
-  paras.push([closer, nextText].filter((t) => t.length > 0).join(' '));
-  clauses.push({ key: 'frame|close', text: closer, personIds: [], placeIds: [], ticks: [] });
-  if (nextFact && nextText.length > 0) trace(nextFact, nextText);
+  if (demand && stars) {
+    // docs/40 §2: the starred questions that would move it, and why.
+    paras.push(closer, stars.text);
+    clauses.push({ key: 'frame|close', text: closer, personIds: [], placeIds: [], ticks: [] });
+    clauses.push({ key: 'next|stars', text: stars.text, personIds: stars.personIds, placeIds: stars.placeIds, ticks: stars.ticks as Tick[] });
+  } else {
+    const nextText = nextFact ? nextFact.say(pick, undefined) : '';
+    paras.push([closer, nextText].filter((t) => t.length > 0).join(' '));
+    clauses.push({ key: 'frame|close', text: closer, personIds: [], placeIds: [], ticks: [] });
+    if (nextFact && nextText.length > 0) trace(nextFact, nextText);
+  }
 
   if (framed) dealer.note(framed.note);
   const kept = body()

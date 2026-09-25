@@ -546,6 +546,35 @@ button {
   font-style: italic;
 }
 
+/* docs/40 §2: a star's reason, beside the label, in the detective's words. */
+.choice .aside.why {
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+.choice .aside.why::before {
+  content: '— ';
+  font-style: normal;
+}
+
+/* docs/40 §3: the person chosen, whose topics are open under the row. */
+.who-choice--on {
+  border-color: var(--ink);
+  background: var(--paper-edge);
+}
+
+.choice-group--people + .choice-group--ask {
+  margin-left: 0.8rem;
+  padding-left: 0.6rem;
+  border-left: 2px solid var(--rule);
+}
+
+.topic-note {
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  margin: 0.35rem 0 0;
+}
+
 .choice--done .label {
   color: var(--ink-soft);
 }
