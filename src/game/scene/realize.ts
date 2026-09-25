@@ -33,7 +33,7 @@ import { acquaintanceOf } from '../../gen/index.js';
 import { pronounsOf, putSaid, saidPlainly, toldOf, type Told } from './telling.js';
 import type { Family } from './families.js';
 import { SEEN_FAMILIES, thingTopic } from './families.js';
-import { observation, plainAction, tieSentence } from './people.js';
+import { doingOf, observation, plainAction, tieSentence } from './people.js';
 import { doingClause, lookRole, personSlots } from './stage.js';
 import { bareRoleOf } from './plan.js';
 import { arrivalPage, framesFor, newPageSheets, tellingFrame, type PageSheets } from './sheet-pages.js';
@@ -265,9 +265,17 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
   const beats = plan.beats;
   /** M13: a page written from sheets claims its beats, and the loop leaves them to it. */
   const pageSheets = newPageSheets(stage);
+  // Guidance §4: on a page that pays something off, the payoff is the page's
+  // joke, so the sheets keep it for their last word.
+  if (sheetsOn(stage) && pageSheets.rolled) dealer.holdJoke(true);
+  const jokesBefore = dealer.jokes;
   const sheetPage = sheetsOn(stage) ? arrivalPage(plan, stage, scene, mark, gaps, pageSheets) : null;
+  // Guidance §4: an arrival the sheets could not write told no joke.
+  if (sheetPage === null) dealer.resetJokes(jokesBefore);
   /** M13: the sheets that frame a question, a confrontation or a search: what goes before, and the last word. */
   const frames = sheetsOn(stage) ? framesFor(plan, stage, scene, pageSheets) : {};
+  // The last words are chosen; whatever joke is left is the page's again.
+  dealer.holdJoke(false);
   // M13: a search's last word goes after its thinking, before any decision or next lead.
   const searchCloseAt = (() => {
     if (!frames.search?.close) return -1;
@@ -1268,10 +1276,31 @@ function visibleTrade(person: Person): string | undefined {
   return shows ? person.role.replace(/\.$/, '') : undefined;
 }
 
+/**
+ * Guidance §4: what somebody was doing, whole. An activity whose tail is a
+ * joke ("…which is the whole art") is the page's joke when the page has none
+ * yet; on a page that has told one it is the plain action ("Hargrove was
+ * drawing a beer.").
+ */
+export function activitySaid(stage: Stage, p: PresencePerson): string {
+  const whole = endStop(p.activity.text);
+  if (!cardOf(p.activity.cardId)?.joke) return whole;
+  if (stage.dealer.mayJoke) {
+    stage.dealer.joke();
+    return whole;
+  }
+  const surname = stage.view.personById.get(p.personId)?.surname ?? '';
+  const doing = doingOf(p.activity.text, surname);
+  const plain = doing ? plainAction(doing.trim().replace(/\.$/, '')) : '';
+  if (plain.length > 0 && whole.startsWith(`${surname} was `)) return `${surname} was ${plain}.`;
+  stage.dealer.forcedJokes++;
+  return whole;
+}
+
 export function presenceLine(stage: Stage, p: PresencePerson, named: ReadonlySet<Id> = new Set()): string {
   const { view, cast } = stage;
   const person = view.personById.get(p.personId) as Person;
-  const parts = [endStop(p.activity.text)];
+  const parts = [activitySaid(stage, p)];
   if (p.firstSight) {
     const gender = genderHintOf(person);
     const He = gender === 'f' ? 'She' : 'He';
@@ -1298,14 +1327,14 @@ export function presenceLine(stage: Stage, p: PresencePerson, named: ReadonlySet
     const clause = visibleTrade(person);
     if (clause) parts.push(`${He} was ${/^(?:the|a|an) /i.test(clause) ? clause : `${/^[aeiou]/i.test(clause) ? 'an' : 'a'} ${clause}`}.`);
     else {
-      const look = characterLine(stage.dealer, view, person, 'look', { accept: (t) => !echoes(t, parts) });
+      const look = characterLine(stage.dealer, view, person, 'look', { accept: (t) => !echoes(t, parts), need: true });
       if (look) parts.push(look.text);
     }
     // M11 §A.2: three to five sentences in all, the tie included.
     const room = 5 - countSentences(parts.join(' ')) - (p.tie ? 1 : 0);
     const street = p.brief
       ? null
-      : characterLine(stage.dealer, view, person, 'street', { accept: (t) => !echoes(t, parts) && countSentences(t) <= room });
+      : characterLine(stage.dealer, view, person, 'street', { accept: (t) => !echoes(t, parts) && countSentences(t) <= room, need: true });
     if (street) parts.push(street.text);
     // The owner of what was taken, alive and in the room: how the street sees
     // them is their standing, which the office already said in the client's
@@ -1527,7 +1556,7 @@ export function thoughtSlots(stage: Stage, t: Thought): Slots {
     // docs/26, the engine's own thoughts: the secret as something done, the
     // one it is about in pronouns, and the crime by what it was.
     doing: t.cls === 'secret' || t.cls === 'dead-end' ? other : undefined,
-    ...(subject ? { he: pronounOf(subject) === 'she' ? 'she' : 'he', him: pronounOf(subject) === 'she' ? 'her' : 'him' } : {}),
+    ...(subject ? pronounsOf(subject) : {}),
     crime: CRIME_NOUN[view.kase.act.type],
   };
 }
@@ -2547,7 +2576,9 @@ function tellingParas(
         (scene.topicRef?.kind === 'person' && scene.topicRef.id === subject.id) ||
         (scene.askKind === 'ask-evening' && subject.id === speaker.id)
       : new RegExp(`\\b${subject.surname}\\b`).test(parts.question ?? ''));
-  let told = toldOf(view, family, clues, speaker, stage.at, !questionNamed && !beat.volunteered);
+  // Guidance §4: the half hours that matter, as the notebook held them when he asked.
+  const window = windowOf(view, stage.foundBefore, stage.accountsBefore);
+  let told = toldOf(view, family, clues, speaker, stage.at, !questionNamed && !beat.volunteered, window);
   let spokenAloud = true;
   if (told === null) {
     const first: string[] = [];

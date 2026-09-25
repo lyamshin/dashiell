@@ -609,18 +609,26 @@ export function renderRecap(
   // at the turn of the hour, or for a name pencilled in, two new things.
   if ((trigger === 'hour' || trigger === 'link') && substance.length < 2) return 'too-soon';
 
-  // One joke a paragraph, at most.
-  let joked = false;
+  // One joke a page, at most (guidance §4): the page's count is the dealer's,
+  // and a recap after a page that has told one tells none.
+  const jokesAtStart = dealer.jokes;
+  let joked = !dealer.mayJoke;
   // No line said twice in one recap, where the pool has another.
   const usedLines = new Set<string>();
   const pick: Picker = (lines) => {
     const fresh = lines.filter((l) => !usedLines.has(l));
     const from = fresh.length > 0 ? fresh : lines;
     const plain = from.filter((l) => !l.startsWith('*'));
-    const pool = joked || plain.length === 0 ? (plain.length > 0 ? plain : from) : from;
+    // Once the page has had its joke, a plain line said again beats a new joke.
+    const plainAny = lines.filter((l) => !l.startsWith('*'));
+    const pool = joked ? (plain.length > 0 ? plain : plainAny.length > 0 ? plainAny : from) : from;
     const line = dealer.random.pick([...pool]);
     usedLines.add(line);
-    if (line.startsWith('*')) joked = true;
+    if (line.startsWith('*')) {
+      if (joked) dealer.forcedJokes++;
+      else dealer.joke();
+      joked = true;
+    }
     return line;
   };
   const card = (kind: 'open' | 'close'): string | null => {
@@ -724,7 +732,11 @@ export function renderRecap(
   if (measure(body(), false) < RECAP_WORDS[0]) {
     for (const f of facts) if (f.part === 'when' && stale(f)) include.add(f.key);
   }
-  if (measure(body(), false) < RECAP_WORDS[0]) return 'too-soon';
+  if (measure(body(), false) < RECAP_WORDS[0]) {
+    // Not written: its frame told no joke.
+    dealer.resetJokes(jokesAtStart);
+    return 'too-soon';
+  }
   // Too long: leave the least of it for the next recap.
   const droppable = body()
     .filter((f) => f.part === 'people')
@@ -741,7 +753,7 @@ export function renderRecap(
   const paras: string[] = [opener];
   clauses.push({ key: 'frame|open', text: opener, personIds: [], placeIds: [], ticks: [] });
   for (const part of ['when', 'people'] as const) {
-    joked = false;
+    joked = !dealer.mayJoke;
     let prev: Id | undefined;
     const lines: string[] = [];
     for (const f of merged(body().filter((x) => x.part === part))) {
@@ -753,7 +765,7 @@ export function renderRecap(
     }
     if (lines.length > 0) paras.push(lines.join(' '));
   }
-  joked = false;
+  joked = !dealer.mayJoke;
   const nextFact = body().find((f) => f.part === 'next');
   const nextText = nextFact ? nextFact.say(pick, undefined) : '';
   paras.push([closer, nextText].filter((t) => t.length > 0).join(' '));

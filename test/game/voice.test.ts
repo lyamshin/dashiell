@@ -1015,11 +1015,17 @@ describe('the burn tiers', () => {
     const key = (c: Card): boolean => tagIs('hours', c, 'beat', 'hour');
     const n = DECKS.hours.filter(key).length;
     const dealer = new Dealer(11, [], []);
-    const ids = Array.from({ length: n }, () => dealer.draw('hours', [key], { hour: 'two' }, true)?.cardId);
+    // Each draw is a page's: a page starts with no joke told (guidance §4),
+    // and one that has told its joke deals plain.
+    const page = (): string | undefined => {
+      dealer.resetJokes(0);
+      return dealer.draw('hours', [key], { hour: 'two' }, true)?.cardId;
+    };
+    const ids = Array.from({ length: n }, page);
     expect(new Set(ids).size).toBe(n);
     expect(dealer.takeReshuffles()).toEqual([]);
     // One more comes round again, and the dealer says so.
-    expect(dealer.draw('hours', [key], { hour: 'two' }, true)).not.toBeNull();
+    expect(page()).toBeDefined();
     expect(dealer.takeReshuffles()).toEqual(['hours']);
   });
 

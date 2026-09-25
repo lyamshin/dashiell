@@ -13,6 +13,7 @@
     "id": "ret-002",
     "deck": "return",
     "text": "I was back at {place}, and nobody looked up. I was starting to take it personally.",
+    "joke": true,
     "tags": {
       "placeKind": "public"
     },
@@ -155,6 +156,7 @@
     "id": "ret-016",
     "deck": "return",
     "text": "I returned to {place} and nobody stopped me. I was practically a regular, without the tab.",
+    "joke": true,
     "tags": {
       "placeKind": "semi"
     },
@@ -278,6 +280,7 @@
     "id": "ret-028",
     "deck": "return",
     "text": "I went back into {place} without knocking this time. I was getting familiar, and not in the nice way.",
+    "joke": true,
     "tags": {
       "placeKind": "private"
     },

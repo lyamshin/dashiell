@@ -245,6 +245,7 @@
     "id": "crd-023",
     "deck": "crowd",
     "text": "{group} were sitting on the bench in the outer office, hats on their knees, waiting their turn with the patience of people who owed money.",
+    "joke": true,
     "tags": {
       "place": "office-over-tailor",
       "band": "any"
@@ -278,6 +279,7 @@
     "id": "crd-026",
     "deck": "crowd",
     "text": "{group} were sitting on crates under the shed roof, playing cards on an upturned barrel for stakes nobody would admit to.",
+    "joke": true,
     "tags": {
       "place": "pier-shed",
       "band": "any"
@@ -465,6 +467,7 @@
     "id": "crd-043",
     "deck": "crowd",
     "text": "{group} were down the bar with their beers, arguing about a ball game they had only read about.",
+    "joke": true,
     "tags": {
       "place": "dolans-bar",
       "band": "any"
@@ -487,6 +490,7 @@
     "id": "crd-045",
     "deck": "crowd",
     "text": "{group} were playing a slow game of dice at the back table, keeping score on a napkin and disputing it.",
+    "joke": true,
     "tags": {
       "place": "dolans-bar",
       "band": "any"
@@ -531,6 +535,7 @@
     "id": "crd-049",
     "deck": "crowd",
     "text": "{group} were in a booth along the wall, laughing at something one of them had said, louder than it deserved.",
+    "joke": true,
     "tags": {
       "place": "speakeasy",
       "band": "any"
@@ -564,6 +569,7 @@
     "id": "crd-052",
     "deck": "crowd",
     "text": "{group} were at the cigar counter, choosing among the open boxes with enormous seriousness.",
+    "joke": true,
     "tags": {
       "place": "hotel-lobby",
       "band": "any"
@@ -597,6 +603,7 @@
     "id": "crd-055",
     "deck": "crowd",
     "text": "{group} stood at the stand reading the headlines off the racks without buying anything, which the stand had views about.",
+    "joke": true,
     "tags": {
       "place": "corner-newsstand",
       "band": "any"
@@ -663,6 +670,7 @@
     "id": "crd-061",
     "deck": "crowd",
     "text": "{group} were feeding nickels into the slots along the wall, choosing sandwiches one at a time and taking each decision hard.",
+    "joke": true,
     "tags": {
       "place": "automat",
       "band": "any"
@@ -740,6 +748,7 @@
     "id": "crd-068",
     "deck": "crowd",
     "text": "{group} were at the floor's edge, dancing slowly to a tune one of them was humming, badly.",
+    "joke": true,
     "tags": {
       "place": "dance-hall",
       "band": "any"
@@ -905,6 +914,7 @@
     "id": "crd-083",
     "deck": "crowd",
     "text": "{group} were shooting a lazy game at a back table, chalking their cues with more care than the shots got.",
+    "joke": true,
     "tags": {
       "place": "pool-hall",
       "band": "any"
@@ -1026,6 +1036,7 @@
     "id": "crd-094",
     "deck": "crowd",
     "text": "{group} sat in the parlour chairs around the piano, none of them playing it, which the house appreciated.",
+    "joke": true,
     "tags": {
       "place": "boarding-parlor",
       "band": "any"
@@ -1125,6 +1136,7 @@
     "id": "crd-103",
     "deck": "crowd",
     "text": "{group} were standing beside one of the parked cars, looking under the hood together, none of them sure what at.",
+    "joke": true,
     "tags": {
       "place": "hotel-garage",
       "band": "any"
@@ -1213,6 +1225,7 @@
     "id": "crd-111",
     "deck": "crowd",
     "text": "{group} sat together on one bench under the lamp, sharing a paper sack of peanuts and keeping count of the shares.",
+    "joke": true,
     "tags": {
       "place": "square-benches",
       "band": "any"

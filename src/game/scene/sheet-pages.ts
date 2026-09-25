@@ -33,6 +33,7 @@ import { doingOf, foundWhat, hourSaid, plainAction } from './people.js';
 import { relationPlain } from './lines.js';
 import {
   WATCH_CLAUSE,
+  activitySaid,
   approachOf,
   closeOf,
   crowdLine,
@@ -139,11 +140,22 @@ function lineKey(template: string): string {
   return `line:${(h >>> 0).toString(36)}`;
 }
 
-/** The dealer remembers the sheets' own lines, as it does cards: said tonight or not. */
-export function lineMemory(dealer: Stage['dealer']): Pick<Holes, 'fresh' | 'spend'> {
+/**
+ * The dealer remembers the sheets' own lines, as it does cards: said tonight
+ * or not. And it keeps the page's joke count (guidance §4), which the sheets
+ * share.
+ */
+export function lineMemory(dealer: Stage['dealer']): Pick<Holes, 'fresh' | 'spend' | 'jokes'> {
   return {
     fresh: (t) => !dealer.used(lineKey(t)),
     spend: (t) => dealer.note(lineKey(t)),
+    jokes: {
+      told: () => dealer.jokes,
+      tell: () => dealer.joke(),
+      reset: (n) => dealer.resetJokes(n),
+      held: () => dealer.jokeHeld,
+      hold: (on) => dealer.holdJoke(on),
+    },
   };
 }
 
@@ -444,7 +456,7 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
     const act = slotsFor(p);
     switch (form) {
       case 'activity':
-        return endStop(p.activity.text);
+        return activitySaid(stage, p);
       case 'recall': {
         const action = stage.cast.portraits[p.personId]?.pair?.action;
         return action ?? null;
@@ -454,7 +466,7 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
         if (!plain) return presenceLine(stage, p);
         // The prop places two people at most: past that a room is a list of
         // distances from one lamp (the fan came up five times on one page).
-        if (usedPhrases.size >= 2) return endStop(p.activity.text);
+        if (usedPhrases.size >= 2) return activitySaid(stage, p);
         const pool = (part.pool ?? []).filter((t) => !usedPhrases.has(t));
         const slotsHere: Record<string, string | undefined> = {
           ...slots,
@@ -880,11 +892,14 @@ function runFor(
     if (!sheet) return null;
     tried.add(sheet.id);
     const run = ps.start(moment, flags);
+    const jokes = stage.dealer.jokes;
     const out = runSheet(sheet, holes, run);
     if (out) {
       ps.used(sheet.id, moment, of.fitting + tried.size - 1);
       return { sheet, out };
     }
+    // A sheet tried and not used told no joke.
+    stage.dealer.resetJokes(jokes);
   }
   return null;
 }
@@ -1113,8 +1128,8 @@ export interface RecapFrameInput {
   flags: Flags;
   random: Rng;
   history: string[];
-  /** The dealer's memory of the sheets' own lines. */
-  memory: Pick<Holes, 'fresh' | 'spend'>;
+  /** The dealer's memory of the sheets' own lines, and the page's joke count. */
+  memory: Pick<Holes, 'fresh' | 'spend' | 'jokes'>;
   /** The recap deck's opening line, preferring one that exports `want`. */
   open: (want: string | null) => { text: string; exports?: Record<string, CardExport> } | null;
   /** The recap deck's closing line. */
@@ -1158,10 +1173,14 @@ export function recapFrame(input: RecapFrameInput): { open: string; close: strin
     if (!sheet) return null;
     tried.add(sheet.id);
     const run = newRun('recap', flags, rolled);
+    const jokes = input.memory.jokes?.told() ?? 0;
     const out = runSheet(sheet, holes, run);
-    if (!out) continue;
-    const open = [...out.pre, ...out.post].map((p) => p.text).join(' ');
-    if (open.length === 0) continue;
+    const open = out ? [...out.pre, ...out.post].map((p) => p.text).join(' ') : '';
+    if (!out || open.length === 0) {
+      // A sheet tried and not used told no joke.
+      input.memory.jokes?.reset(jokes);
+      continue;
+    }
     // Remembered only once the recap is written (the caller notes it then):
     // a recap refused for want of anything new used no sheet.
     return {
@@ -1225,8 +1244,12 @@ export function officeFrame(
     if (!sheet) return null;
     tried.add(sheet.id);
     const run = newRun('office', flags, rolled);
+    const jokes = stage.dealer.jokes;
     const out = runSheet(sheet, holes, run);
-    if (!out) continue;
+    if (!out) {
+      stage.dealer.resetJokes(jokes);
+      continue;
+    }
     noteSheet(stage, sheet.id);
     const open = [...out.pre, ...out.post].map((p) => p.text).join(' ');
     return { open, card, close: out.close?.text ?? null, use: { id: sheet.id, moment: 'office', callback: run.paid.length > 0, rolled, fitting: of.fitting + tried.size - 1 }, motifs, score };

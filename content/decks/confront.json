@@ -69,6 +69,7 @@
     "id": "cnf-007",
     "deck": "confront",
     "text": "Half an hour was gone, and nothing I knew about {subject} had moved. I had spent worse half hours, but not many.",
+    "joke": true,
     "tags": {
       "outcome": "wrong",
       "part": "close"
@@ -113,6 +114,7 @@
     "id": "cnf-011",
     "deck": "confront",
     "text": "I closed the notebook. {subject}’s evening was the same evening it had been when I sat down. Mine was shorter.",
+    "joke": true,
     "tags": {
       "outcome": "wrong",
       "part": "close"
@@ -278,6 +280,7 @@
     "id": "cnf-026",
     "deck": "confront",
     "text": "{subject} folded {their} hands and looked down at them. The hands had nothing to say either.",
+    "joke": true,
     "tags": {
       "outcome": "quiet",
       "part": "reaction"
@@ -322,6 +325,7 @@
     "id": "cnf-030",
     "deck": "confront",
     "text": "{subject} stared past me at the wall and stayed that way. The wall was a very ordinary one.",
+    "joke": true,
     "tags": {
       "outcome": "quiet",
       "part": "reaction"
@@ -509,6 +513,7 @@
     "id": "cnf-047",
     "deck": "confront",
     "text": "I turned the notebook around so {subject} could read what I had written. {subject} read it and nodded, and was kind enough not to mention my handwriting.",
+    "joke": true,
     "tags": {
       "outcome": "admit",
       "part": "close"
@@ -586,6 +591,7 @@
     "id": "cnf-054",
     "deck": "confront",
     "text": "When I said {place}, {subject} did not blink. I did enough blinking for the pair of us.",
+    "joke": true,
     "tags": {
       "outcome": "hold",
       "part": "reaction"

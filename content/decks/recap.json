@@ -3,6 +3,7 @@
     "id": "RCP-001",
     "deck": "recap",
     "text": "I went back over it, which is the part of the job where you find out how little you have.",
+    "joke": true,
     "tags": {
       "kind": "open",
       "trigger": "any"
@@ -24,6 +25,7 @@
     "id": "RCP-002",
     "deck": "recap",
     "text": "I found a quiet corner and went over what I had. It didn’t take as long as I’d have liked.",
+    "joke": true,
     "tags": {
       "kind": "open",
       "trigger": "any"
@@ -67,6 +69,7 @@
     "id": "RCP-005",
     "deck": "recap",
     "text": "I took the notebook out and went over it from the top, slowly, because slowly is the only speed it has.",
+    "joke": true,
     "tags": {
       "kind": "open",
       "trigger": "demand"
@@ -88,6 +91,7 @@
     "id": "RCP-006",
     "deck": "recap",
     "text": "I stopped and took stock. Taking stock is free, which is the best thing I can say about it.",
+    "joke": true,
     "tags": {
       "kind": "open",
       "trigger": "demand"
@@ -289,6 +293,7 @@
     "id": "RCP-017",
     "deck": "recap",
     "text": "That was where things stood. It wasn’t far, but it was further than the police had got.",
+    "joke": true,
     "tags": {
       "kind": "close",
       "trigger": "any"
@@ -300,6 +305,7 @@
     "id": "RCP-018",
     "deck": "recap",
     "text": "That was it. It fitted on one page of the notebook, which is either good news or bad.",
+    "joke": true,
     "tags": {
       "kind": "close",
       "trigger": "any"
@@ -344,6 +350,7 @@
     "id": "RCP-022",
     "deck": "recap",
     "text": "I got the notebook out and read it back to myself, which is as close as anybody comes to reading me a story.",
+    "joke": true,
     "tags": {
       "kind": "open",
       "trigger": "any"
@@ -365,6 +372,7 @@
     "id": "RCP-023",
     "deck": "recap",
     "text": "I stopped where I was and read the notebook from the first page, moving my lips only a little.",
+    "joke": true,
     "tags": {
       "kind": "open",
       "trigger": "demand"
@@ -386,6 +394,7 @@
     "id": "RCP-024",
     "deck": "recap",
     "text": "Another hour had gone by without asking me, so I went over what I had to show for it.",
+    "joke": true,
     "tags": {
       "kind": "open",
       "trigger": "hour"
@@ -481,6 +490,7 @@
     "id": "RCP-029",
     "deck": "recap",
     "text": "The night was getting on, and so was I. I sat down and went over what I had.",
+    "joke": true,
     "tags": {
       "kind": "open",
       "trigger": "hour"
@@ -502,6 +512,7 @@
     "id": "RCP-030",
     "deck": "recap",
     "text": "I stopped and added it up, which is the arithmetic part of the job and the part I’m worst at.",
+    "joke": true,
     "tags": {
       "kind": "open",
       "trigger": "demand"
@@ -523,6 +534,7 @@
     "id": "RCP-031",
     "deck": "recap",
     "text": "I leaned on the nearest wall and went through the notebook. The wall had the easier job.",
+    "joke": true,
     "tags": {
       "kind": "open",
       "trigger": "any"

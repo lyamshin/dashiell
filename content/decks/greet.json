@@ -3,6 +3,7 @@
     "id": "GRT-001",
     "deck": "greet",
     "text": "“You took your time,” {he} said. “I’ve been here long enough to be charged rent.”",
+    "joke": true,
     "tags": {
       "purpose": "keep-it-quiet",
       "temper": "plain"
@@ -36,6 +37,7 @@
     "id": "GRT-004",
     "deck": "greet",
     "text": "“There you are,” {he} said. “I was starting to think I’d hired the other kind of detective. The kind that sleeps.”",
+    "joke": true,
     "tags": {
       "purpose": "find-the-killer-police-wont",
       "temper": "yap"
@@ -47,6 +49,7 @@
     "id": "GRT-005",
     "deck": "greet",
     "text": "“Keep your voice down,” {he} said. “Half this room thinks I did it, and the other half hasn’t heard yet.”",
+    "joke": true,
     "tags": {
       "purpose": "clear-my-name",
       "temper": "plain"
@@ -69,6 +72,7 @@
     "id": "GRT-007",
     "deck": "greet",
     "text": "“Anything?” {he} said. “Don’t answer that. Sit down first, then tell me nothing.”",
+    "joke": true,
     "tags": {
       "purpose": "get-it-back",
       "temper": "yap"
@@ -102,6 +106,7 @@
     "id": "GRT-010",
     "deck": "greet",
     "text": "“I didn’t think you’d find this place,” {he} said. “That’s a compliment to the place, not to you.”",
+    "joke": true,
     "tags": {
       "purpose": "make-sure-they-stay-gone",
       "temper": "plain"
@@ -168,6 +173,7 @@
     "id": "GRT-016",
     "deck": "greet",
     "text": "“Don’t wave,” {he} said. “People in here remember a man who waves.”",
+    "joke": true,
     "tags": {
       "purpose": "keep-it-quiet",
       "temper": "plain"
@@ -256,6 +262,7 @@
     "id": "GRT-024",
     "deck": "greet",
     "text": "“Quick, sit, before the whole room decides you’re a policeman,” {he} said. “You have the walk. They all have the walk.”",
+    "joke": true,
     "tags": {
       "purpose": "find-it-before-the-cops",
       "temper": "yap"
@@ -399,6 +406,7 @@
     "id": "GRT-037",
     "deck": "greet",
     "text": "“You found it! Most people walk straight past,” {he} said. “I walked straight past it twice, and I knew where it was.”",
+    "joke": true,
     "tags": {
       "purpose": "any",
       "temper": "yap"
@@ -432,6 +440,7 @@
     "id": "GRT-040",
     "deck": "greet",
     "text": "“Sit down before somebody takes that chair,” {he} said. “It’s the only one in here that doesn’t wobble.”",
+    "joke": true,
     "tags": {
       "purpose": "any",
       "temper": "plain"
@@ -463,6 +472,7 @@
     "id": "GRT-043",
     "deck": "greet",
     "text": "“Sit down,” {he} said. “I’ve looked under this table twice already, in case you were wondering.”",
+    "joke": true,
     "tags": {
       "purpose": "find-the-thing",
       "temper": "plain"

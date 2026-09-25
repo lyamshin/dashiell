@@ -171,6 +171,13 @@ export interface Card {
   exports?: Record<string, CardExport>;
   /** M13: the last words of the card's short form (its first clause or sentence, by default). */
   cut?: string;
+  /**
+   * Guidance §4: this card is a joke — a punchline, or a figure meant to be
+   * funny. A page tells about one (`Dealer.jokes`): once it has, the dealer
+   * deals only cards without this flag. A plain line is not a joke, however
+   * dry.
+   */
+  joke?: boolean;
   status: string;
   notes?: string;
 }
@@ -538,6 +545,25 @@ interface Candidate {
 }
 
 /**
+ * Guidance §4: the decks whose hole may go empty once the page has told its
+ * joke — a tail, a last word, a try, a look, a note, the room's texture, a
+ * character line, a crowd. Every caller already writes the page without
+ * them. Any other deck's hole takes a joke rather than break when nothing
+ * plain fits.
+ */
+export const JOKE_OPTIONAL: ReadonlySet<DeckName> = new Set<DeckName>([
+  'close',
+  'tail',
+  'try',
+  'look',
+  'note',
+  'arrivals',
+  'place-ambient',
+  'character',
+  'crowd',
+]);
+
+/**
  * The dealer. One per page, seeded from the run; it knows which cards this run
  * has already spent and how often the reader has read each card on earlier
  * nights, and it honours the burn tier of whichever deck it is dealing from.
@@ -559,6 +585,12 @@ export class Dealer {
   private readonly reads: Map<string, number>;
   private readonly reshuffles = new Set<DeckName>();
   readonly spent: string[] = [];
+  /** Guidance §4: the jokes this page has told (see `jokes`). */
+  private told = 0;
+  /** Guidance §4: the page's joke is kept for its last word (see `holdJoke`). */
+  private held = false;
+  /** Guidance §4: draws where a hole had only jokes and took one anyway, for the measure. */
+  forcedJokes = 0;
 
   constructor(seed: number, runBurned: Iterable<string>, persistedBurned: Iterable<string>) {
     this.rng = new Rng(seed >>> 0);
@@ -610,7 +642,50 @@ export class Dealer {
     this.run.add(c.card.id);
     this.order.push(c.card.id);
     this.spent.push(c.card.id);
+    if (c.card.joke) this.told++;
     return { text: c.text, cardId: c.card.id, deck, motifs: motifsOf(c.card), score: c.score };
+  }
+
+  /**
+   * Guidance §4 — about one joke a page. Playtesters called three or four
+   * quips a page "padding between facts". The dealer is the page's, so it
+   * keeps the page's count: a card flagged `joke` counts when it is dealt,
+   * and a joke that is not a card (a sheet's joke line, an activity's tail, a
+   * recap's aside) counts through `joke()`. Once the page has told one,
+   * `draw` deals only plain cards.
+   */
+  get jokes(): number {
+    return this.told;
+  }
+
+  /** Count a joke the page told that was not a card. */
+  joke(): void {
+    this.told++;
+  }
+
+  /** Put the count back to `n`: a sheet that was tried and not used told nothing. */
+  resetJokes(n: number): void {
+    this.told = n;
+  }
+
+  /**
+   * Keep the page's joke for its last word, or stop keeping it. On a page
+   * that pays something off (M13's callback), the payoff is the joke: while
+   * it is held, the draws that set nothing up deal plain, and the card a
+   * sheet binds (the setup) and the closing line may still be funny.
+   */
+  holdJoke(on: boolean): void {
+    this.held = on;
+  }
+
+  /** Is the joke being kept for the last word? */
+  get jokeHeld(): boolean {
+    return this.held;
+  }
+
+  /** May the page tell a joke now: none told yet, and none being kept? */
+  get mayJoke(): boolean {
+    return this.told === 0 && !this.held;
   }
 
   /**
@@ -639,9 +714,34 @@ export class Dealer {
     slots: Slots = {},
     strict = false,
     ctx?: MotifContext,
+    /** Guidance §4: this hole must be filled, even from a deck that may go without. */
+    need = false,
+  ): Drawn | null {
+    // Guidance §4: a page that has told its joke gets plain cards. A hole
+    // whose deck is all flourish (a tail, a last word) goes empty; a hole the
+    // page needs takes a joke rather than break, and the measure counts it.
+    if (!this.mayJoke) {
+      const plain = this.drawFrom(deck, matches, slots, strict, ctx, true);
+      if (plain !== null || (JOKE_OPTIONAL.has(deck) && !need)) return plain;
+      const any = this.drawFrom(deck, matches, slots, strict, ctx, false);
+      if (any !== null) this.forcedJokes++;
+      return any;
+    }
+    return this.drawFrom(deck, matches, slots, strict, ctx, false);
+  }
+
+  private drawFrom(
+    deck: DeckName,
+    matches: Match[],
+    slots: Slots,
+    strict: boolean,
+    ctx: MotifContext | undefined,
+    plainOnly: boolean,
   ): Drawn | null {
     const pool = DECKS[deck] ?? [];
     if (pool.length === 0) return null;
+    // Guidance §4: plain only, once the page has told its joke.
+    const plain = (cs: Candidate[]): Candidate[] => (plainOnly ? cs.filter((c) => !c.card.joke) : cs);
     // `strict` refuses the last widening step. A frame with the wrong register
     // still carries the fact and is worth having; an utterance for the wrong
     // fact kind is a lie, so the utterance deck is always drawn strictly.
@@ -671,18 +771,18 @@ export class Dealer {
     const stay = spentPolicy(deck) === 'reshuffle';
 
     for (const match of ladder) {
-      const fits = candidates(pool.filter(match));
-      if (fits.length === 0) continue;
+      const fits = plain(candidates(pool.filter(match)));
       const open = fits.filter((c) => !this.run.has(c.card.id));
       if (open.length > 0) {
         return this.take(deck, roll(remembered ? leastRead(open, (c) => this.readCount(c.card.id)) : open));
       }
+      if (fits.length === 0) continue;
       if (stay) return again(fits);
     }
     // Everything that fits has been read tonight, on every rung. Come round
     // again inside the narrowest match that has any cards at all.
     for (const match of ladder) {
-      const all = candidates(pool.filter(match));
+      const all = plain(candidates(pool.filter(match)));
       if (all.length > 0) return again(all);
     }
     return null;

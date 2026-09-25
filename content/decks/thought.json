@@ -2,7 +2,7 @@
   {
     "id": "tht-001",
     "deck": "thought",
-    "text": "If {subject} was at {place} at {time}, {subject} was nowhere near {victim} when it happened. That was good news for {subject}.",
+    "text": "If {subject} was at {place} at {time}, {he} was nowhere near {victim} when it happened. That was good news for {subject}.",
     "tags": {
       "class": "clears"
     },
@@ -22,7 +22,7 @@
   {
     "id": "tht-003",
     "deck": "thought",
-    "text": "If {subject} was really at {place} at {time}, {scene} never saw {subject} at all. That let {subject} breathe easier.",
+    "text": "If {subject} was really at {place} at {time}, {scene} never saw {him} at all. That let {subject} breathe easier.",
     "tags": {
       "class": "clears"
     },
@@ -82,7 +82,7 @@
   {
     "id": "tht-009",
     "deck": "thought",
-    "text": "If {subject} was truly at {place} at {time}, {scene} was somewhere {subject} simply was not. That favored {subject}.",
+    "text": "If {subject} was truly at {place} at {time}, {scene} was somewhere {he} simply was not. That favored {subject}.",
     "tags": {
       "class": "clears"
     },
@@ -122,7 +122,7 @@
   {
     "id": "tht-013",
     "deck": "thought",
-    "text": "If {subject} was at {scene} at {time}, {subject} was there when it happened to {victim}. That was bad news for {subject}.",
+    "text": "If {subject} was at {scene} at {time}, {he} was there when it happened to {victim}. That was bad news for {subject}.",
     "tags": {
       "class": "implicates",
       "basis": "placement"
@@ -535,7 +535,7 @@
   {
     "id": "tht-052",
     "deck": "thought",
-    "text": "{subject} had claimed {other} at {time}. Now I had {subject} at {place} instead, and {subject} would have to explain it.",
+    "text": "{subject} had claimed {other} at {time}. Now I had {him} at {place} instead, and {he} would have to explain it.",
     "tags": {
       "class": "contradicts",
       "basis": "at"
@@ -634,7 +634,7 @@
   {
     "id": "tht-061",
     "deck": "thought",
-    "text": "So {subject} {motive}. That was a reason, if {subject} needed one.",
+    "text": "So {subject} {motive}. That was a reason, if {he} needed one.",
     "tags": {
       "class": "motive"
     },
@@ -686,7 +686,7 @@
   {
     "id": "tht-066",
     "deck": "thought",
-    "text": "That gave {subject} a reason: {subject} {motive}.",
+    "text": "That gave {subject} a reason: {he} {motive}.",
     "tags": {
       "class": "motive"
     },
@@ -726,7 +726,7 @@
   {
     "id": "tht-070",
     "deck": "thought",
-    "text": "If {subject} {motive}, then {victim} dead was worth something to {subject}.",
+    "text": "If {subject} {motive}, then {victim} dead was worth something to {him}.",
     "tags": {
       "class": "motive",
       "case": "murder"
@@ -737,7 +737,7 @@
   {
     "id": "tht-071",
     "deck": "thought",
-    "text": "{subject} {motive}. That put {subject} among the people with a reason to want {victim} gone.",
+    "text": "{subject} {motive}. That put {him} among the people with a reason to want {victim} gone.",
     "tags": {
       "class": "motive",
       "case": "murder"
@@ -1387,7 +1387,7 @@
   {
     "id": "tht-134",
     "deck": "thought",
-    "text": "{subject} had been {other}. That answered why {subject} might lie. It didn’t answer where {subject} was when it happened.",
+    "text": "{subject} had been {other}. That answered why {he} might lie. It didn’t answer where {he} was when it happened.",
     "tags": {
       "class": "dead-end"
     },
@@ -1428,7 +1428,7 @@
   {
     "id": "tht-138",
     "deck": "thought",
-    "text": "{subject} had been {other}. It told me why {subject} might lie to me, not whether {subject} had.",
+    "text": "{subject} had been {other}. It told me why {he} might lie to me, not whether {he} had.",
     "tags": {
       "class": "dead-end"
     },
@@ -1478,7 +1478,7 @@
   {
     "id": "tht-143",
     "deck": "thought",
-    "text": "{subject} had been {other}, which was {subject}’s own trouble. Where {subject} was when it mattered was still for me to find out.",
+    "text": "{subject} had been {other}, which was {his} own trouble. Where {he} was when it mattered was still for me to find out.",
     "tags": {
       "class": "dead-end"
     },
@@ -1541,6 +1541,7 @@
     "id": "tht-161",
     "deck": "thought",
     "text": "{place} gave me nothing, and took its time about it.",
+    "joke": true,
     "tags": {
       "class": "nothing"
     },
@@ -1581,6 +1582,7 @@
     "id": "tht-165",
     "deck": "thought",
     "text": "{subject} was no help on that one. I did not hold it against {subject}, yet.",
+    "joke": true,
     "tags": {
       "class": "nothing"
     },
@@ -2547,7 +2549,7 @@
   {
     "id": "tht-h035",
     "deck": "thought",
-    "text": "{subject} had told me who {subject} was, at some length. None of it put {subject} anywhere tonight.",
+    "text": "{subject} had told me who {he} was, at some length. None of it put {him} anywhere tonight.",
     "tags": {
       "class": "context",
       "basis": "self"
@@ -2558,7 +2560,7 @@
   {
     "id": "tht-h036",
     "deck": "thought",
-    "text": "It was {subject}’s own account of {subject}, and it said nothing about where {subject} had been tonight.",
+    "text": "It was {subject}’s own account of {him}self, and it said nothing about where {he} had been tonight.",
     "tags": {
       "class": "context",
       "basis": "self"
@@ -2569,7 +2571,7 @@
   {
     "id": "tht-h037",
     "deck": "thought",
-    "text": "That was who {subject} said {subject} was. It was not where {subject} had been, and that was the question.",
+    "text": "That was who {subject} said {he} was. It was not where {he} had been, and that was the question.",
     "tags": {
       "class": "context",
       "basis": "self"
@@ -2807,7 +2809,7 @@
   {
     "id": "tht-h059",
     "deck": "thought",
-    "text": "If {subject} was not at {place} at {time}, I would want to hear where {subject} says {subject} was.",
+    "text": "If {subject} was not at {place} at {time}, I would want to hear where {he} says {he} was.",
     "tags": {
       "class": "absent"
     },
@@ -3100,7 +3102,7 @@
   {
     "id": "tht-m010b",
     "deck": "thought",
-    "text": "{source} kept {place}, and at {time} nobody came in at all. Anybody who claimed {place} then would have to explain it.",
+    "text": "{source} kept {place}, and at {time} nobody came in at all. Anybody who claimed to be there then would have to explain it.",
     "tags": {
       "class": "touches",
       "basis": "empty"
@@ -3266,6 +3268,7 @@
     "id": "tht-m024",
     "deck": "thought",
     "text": "{source} did not know {subject}. It was a small fact, and I wrote it down anyway. The big ones don’t come to me often.",
+    "joke": true,
     "tags": {
       "class": "touches",
       "basis": "stranger"
@@ -3287,7 +3290,7 @@
   {
     "id": "tht-m026",
     "deck": "thought",
-    "text": "To {source}, {subject} was a stranger. Whatever {source} had seen, {source} would not have put {subject}’s name to it.",
+    "text": "{subject} was a stranger to {source}. Whatever {source} had seen, it would not have come with {subject}’s name on it.",
     "tags": {
       "class": "touches",
       "basis": "stranger"
@@ -3397,7 +3400,7 @@
   {
     "id": "tht-t01",
     "deck": "thought",
-    "text": "{subject} had said {place}, and {source} had seen {subject} there. Two people telling one story. That cleared {subject}.",
+    "text": "{subject} had said {place}, and {source} had seen {him} there. Two people telling one story. That cleared {subject}.",
     "tags": {
       "class": "clears",
       "basis": "two"
@@ -3408,7 +3411,7 @@
   {
     "id": "tht-t02",
     "deck": "thought",
-    "text": "{source} put {subject} at {place}, which was where {subject} said. The two agreed, so {subject} was not at {scene} at {time}. That cleared {subject}.",
+    "text": "{source} put {subject} at {place}, which was where {subject} said too. The two agreed, and that kept {him} away from {scene} at {time}. It cleared {him}.",
     "tags": {
       "class": "clears",
       "basis": "two"
@@ -3430,7 +3433,7 @@
   {
     "id": "tht-t04",
     "deck": "thought",
-    "text": "{subject} said {place} at {time}. {source} had seen {subject} at {place} too, and had not been asked to say so. That cleared {subject}.",
+    "text": "{subject} said {place} at {time}. {source} had seen {him} at {place} too, and had not been asked to say so. That cleared {subject}.",
     "tags": {
       "class": "clears",
       "basis": "two"
@@ -3441,7 +3444,7 @@
   {
     "id": "tht-t05",
     "deck": "thought",
-    "text": "Nobody had to take {subject}’s word for {place} any more. {source} had seen {subject} there. That cleared {subject}.",
+    "text": "Nobody had to take {subject}’s word for {place} any more. {source} had seen {him} there. That cleared {subject}.",
     "tags": {
       "class": "clears",
       "basis": "two"
@@ -3485,7 +3488,7 @@
   {
     "id": "tht-t09",
     "deck": "thought",
-    "text": "{subject} had said {place}, and somebody else had put {subject} there. Two facts that agreed. That cleared {subject}.",
+    "text": "{subject} had said {place}, and somebody else had put {him} there. Two facts that agreed. That cleared {subject}.",
     "tags": {
       "class": "clears",
       "basis": "two"
@@ -3507,7 +3510,7 @@
   {
     "id": "tht-t11",
     "deck": "thought",
-    "text": "Two things said {place} for {subject} around {time}, and only one of them came from {subject}. That cleared {subject}.",
+    "text": "Two things said {place} for {subject} around {time}, and only one of them came from {him}. That cleared {subject}.",
     "tags": {
       "class": "clears",
       "basis": "two"
@@ -3518,7 +3521,7 @@
   {
     "id": "tht-t12",
     "deck": "thought",
-    "text": "{subject} was at {place} around {time}, and not only on {subject}’s own say-so. That cleared {subject}.",
+    "text": "{subject} was at {place} around {time}, and not only on {his} own say-so. That cleared {him}.",
     "tags": {
       "class": "clears",
       "basis": "two"
@@ -3678,6 +3681,7 @@
     "id": "tht-a009",
     "deck": "thought",
     "text": "It went into the notebook under {subject}’s name, as told. My handwriting did what it could.",
+    "joke": true,
     "tags": {
       "class": "touches",
       "basis": "account"
@@ -3922,6 +3926,7 @@
     "id": "tht-a031",
     "deck": "thought",
     "text": "{subject} already had a part in this somewhere. That was worth a few minutes, and a few minutes was about what I could afford.",
+    "joke": true,
     "tags": {
       "class": "view",
       "who": "known"
@@ -3977,6 +3982,7 @@
     "id": "tht-a036",
     "deck": "thought",
     "text": "{subject} had hired me to find things out, and had got here before me. That’s never a good look for the man being paid.",
+    "joke": true,
     "tags": {
       "class": "view",
       "who": "client"
@@ -4241,6 +4247,7 @@
     "id": "tht-n008",
     "deck": "thought",
     "text": "{span}, then, by the client’s clock, and nobody keeps better time than somebody who has been kept waiting. Everybody’s evening would have to be held up against it.",
+    "joke": true,
     "tags": {
       "class": "window",
       "basis": "coroner",
@@ -4503,6 +4510,7 @@
     "id": "tht-n030",
     "deck": "thought",
     "text": "It came down to {means}. Whoever let it out {how}, which is more planning than most people put into a Sunday.",
+    "joke": true,
     "tags": {
       "class": "method",
       "case": "lost-pet"
@@ -4547,6 +4555,7 @@
     "id": "tht-n034",
     "deck": "thought",
     "text": "It came down to {means}. Whoever moved it {how}, which is a lot of trouble to go to in somebody else’s house.",
+    "joke": true,
     "tags": {
       "class": "method",
       "case": "lost-item"
@@ -4624,6 +4633,7 @@
     "id": "tht-n041",
     "deck": "thought",
     "text": "{other} does not work a latch, whatever {victim} says about how clever it is. Somebody with hands would have been at {place}.",
+    "joke": true,
     "tags": {
       "class": "robbery-shape",
       "case": "lost-pet"
@@ -4657,6 +4667,7 @@
     "id": "tht-n044",
     "deck": "thought",
     "text": "{victim} had lost {other} and a night’s sleep in the same hour. The hour was the thing to find, and who was at {place} in it.",
+    "joke": true,
     "tags": {
       "class": "robbery-shape",
       "case": "lost-pet"
@@ -4767,6 +4778,7 @@
     "id": "tht-n054",
     "deck": "thought",
     "text": "{other} had turned up at {place}, looking better fed than I was. Whoever was there that evening would know how it came in.",
+    "joke": true,
     "tags": {
       "class": "goods",
       "case": "lost-pet"

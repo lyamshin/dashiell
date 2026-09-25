@@ -44,6 +44,7 @@
     "id": "sac-004",
     "deck": "search-act",
     "text": "I knelt and looked under everything that stood on legs, then stood up and looked on top of everything tall. My knees had opinions about the first part. The kitchen drawers came next, and I ended at the closet.",
+    "joke": true,
     "tags": {
       "place": "res-apartment"
     },
@@ -114,6 +115,7 @@
     "id": "sac-009",
     "deck": "search-act",
     "text": "The place was small enough to do twice. I did it once by the walls, the shelf over the stove, the icebox, the hooks by the door, and once by the floor, on my knees, where I do my best work and most of my complaining.",
+    "joke": true,
     "tags": {
       "place": "res-walkup"
     },
@@ -236,6 +238,7 @@
     "id": "sac-016",
     "deck": "search-act",
     "text": "I went over the carpet first, a strip at a time from the hall door to the far wall, which is slow and hard on the back and the only way I know. Then I did the furniture, the desk before anything, and ended at the bedroom closet.",
+    "joke": true,
     "tags": {
       "place": "res-suite"
     },
@@ -286,6 +289,7 @@
     "id": "sac-020",
     "deck": "search-act",
     "text": "I got down and went along the floorboards of each room looking for a loose one, then stood and went over the shelves and the mantel. The coal bin by the back door came last, and so did the coal dust on my cuffs.",
+    "joke": true,
     "tags": {
       "place": "res-backhouse"
     },
@@ -377,6 +381,7 @@
     "id": "sac-025",
     "deck": "search-act",
     "text": "I went down the alley on one side and back up on the other, along the ash cans and the back steps of each store. I looked behind the cans, under the steps, and last, with regret, in the drain at the low end.",
+    "joke": true,
     "tags": {
       "place": "back-alley"
     },
@@ -459,6 +464,7 @@
     "id": "sac-030",
     "deck": "search-act",
     "text": "I went through the desk drawer by drawer, then the filing cabinet a folder at a time. After that I did the shelves and the floor under the desk, and finished at the wastebasket, where the honest paper usually ends up.",
+    "joke": true,
     "tags": {
       "place": "office-over-tailor"
     },
@@ -540,6 +546,7 @@
     "id": "sac-036",
     "deck": "search-act",
     "text": "I got down and looked between the planks, closer to the river than my nose would have liked, then under the crates on their pallets, then along the heavy timber at the edge. The hand truck and the scale by the shed door came last.",
+    "joke": true,
     "tags": {
       "place": "pier-shed"
     },
@@ -652,6 +659,7 @@
     "id": "sac-044",
     "deck": "search-act",
     "text": "I went over the floor first, every board of it from the hall to the fire escape, then the furniture, top and underside. The cupboard under the sink came last. It usually does, and it is never pleasant.",
+    "joke": true,
     "tags": {
       "place": "walkup-flat"
     },
@@ -753,6 +761,7 @@
     "id": "sac-051",
     "deck": "search-act",
     "text": "A rented room has few places to keep anything, and I’ve lived in enough of them to know every one. I looked in all of them: the trunk, the drawer of the washstand, under the mattress, behind the mirror, and last on top of the wardrobe.",
+    "joke": true,
     "tags": {
       "place": "rooming-house-room"
     },
@@ -774,6 +783,7 @@
     "id": "sac-052",
     "deck": "search-act",
     "text": "From the doorway I took the room in, then went around it once, touching every surface I passed. I finished on my knees, looking under the bed and behind the trunk, and got up slower than I got down.",
+    "joke": true,
     "tags": {
       "place": "rooming-house-room"
     },
@@ -825,6 +835,7 @@
     "id": "sac-056",
     "deck": "search-act",
     "text": "I walked the floor from the street door to the back wall, looking along the rail and under the lip of the bar. Then I went behind the counter and did the shelves and the ice chest, and nobody offered me a drink for my trouble.",
+    "joke": true,
     "tags": {
       "place": "dolans-bar"
     },
@@ -935,6 +946,7 @@
     "id": "sac-063",
     "deck": "search-act",
     "text": "I did the chairs and sofas one at a time, running a hand down between the cushions, where a hotel keeps its loose change and its crumbs, and looked under each. Then I went along the writing tables by the wall and around the stairs.",
+    "joke": true,
     "tags": {
       "place": "hotel-lobby"
     },
@@ -1026,6 +1038,7 @@
     "id": "sac-069",
     "deck": "search-act",
     "text": "I went along the wall of little glass doors end to end, looking at each slot and ledge and at the pie behind it, which I could not afford to stop for. Then I took the tables, row by row, and ended at the change booth by the entrance.",
+    "joke": true,
     "tags": {
       "place": "automat"
     },
@@ -1118,6 +1131,7 @@
     "id": "sac-075",
     "deck": "search-act",
     "text": "I did the lobby, the counter and the booth and the rack of posters, then the aisles, then the back rows, seat by seat. Last I climbed the narrow stair to the projection booth, which was built for somebody thinner.",
+    "joke": true,
     "tags": {
       "place": "movie-house"
     },
@@ -1351,6 +1365,7 @@
     "id": "sac-090",
     "deck": "search-act",
     "text": "I took the landings first, the corners and the space under the window on each, then the treads between them. Last I went down and looked under the bottom flight, where the ash cans stood and the smell lived.",
+    "joke": true,
     "tags": {
       "place": "tenement-stairwell"
     },
@@ -1461,6 +1476,7 @@
     "id": "sac-098",
     "deck": "search-act",
     "text": "I did the shelves along the walls first, then the workbench with its drawers and its magnifying glass, which I used for a while because it made me feel professional. After that I got down and looked under the bench, and finished by the curtain to the shop.",
+    "joke": true,
     "tags": {
       "place": "pawnshop"
     },
@@ -1511,6 +1527,7 @@
     "id": "sac-102",
     "deck": "search-act",
     "text": "I took the counter first, the shelf behind it and the cabinet under it, then went through into the kitchen and did the shelves by the stove, and came out smelling of ginger. Then I did the booths.",
+    "joke": true,
     "tags": {
       "place": "chop-suey"
     },
@@ -1581,6 +1598,7 @@
     "id": "sac-107",
     "deck": "search-act",
     "text": "I started at the door from the hall and went to my left, around the room, looking on and under each thing I passed. The piano was last. I looked inside the lid and did not play anything, though I was tempted.",
+    "joke": true,
     "tags": {
       "place": "boarding-parlor"
     },
@@ -1652,6 +1670,7 @@
     "id": "sac-112",
     "deck": "search-act",
     "text": "I worked along the mirrors, looking at the shelf and the drawers under it, then did each chair and the floor around its base. The mirrors watched me the whole way, and none of them thought I looked well.",
+    "joke": true,
     "tags": {
       "place": "barber-shop"
     },
@@ -1824,6 +1843,7 @@
     "id": "sac-124",
     "deck": "search-act",
     "text": "I walked behind the benches first, in the dirt under the trees, then in front of them along the path. Then I sat down on each in turn and ran a hand under the slats. It was the most sitting I had done all night.",
+    "joke": true,
     "tags": {
       "place": "square-benches"
     },
