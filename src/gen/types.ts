@@ -330,8 +330,14 @@ export type Fact =
   | { kind: 'anchorKnowledge'; anchorId: Id; place: Id; ticks: Tick[]; knowledge: string }
   /** Conditional, the test: whether this person knows the anchor's thing. */
   | { kind: 'knows'; personId: Id; anchorId: Id; knows: boolean }
-  /** Who knows whom, as the first of the two puts it: "Never heard of her." */
-  | { kind: 'acquainted'; personIds: [Id, Id]; strength: Acquaintance }
+  /**
+   * Who knows whom, as the first of the two puts it: "Never heard of her."
+   * `heard`: a stranger or a face they know, whose name they know all the
+   * same, because a line of their own names them (the client's pointer, a
+   * motive they overheard, the key they saw taken): "I know the name. I
+   * couldn't put a face to it." Playtest round 2.
+   */
+  | { kind: 'acquainted'; personIds: [Id, Id]; strength: Acquaintance; heard?: true }
   /**
    * A self-account: the person says they were at the place at the ticks and,
    * with `with`, in that person's company. Soft: it stands only when nothing
@@ -387,6 +393,15 @@ export interface AcquaintanceEdge {
   basis: 'tie' | 'secret' | 'trade' | 'regular' | 'place' | 'roll' | 'none';
   /** How `from` refers to `to`, in `from`'s own words. */
   ref: string;
+  /**
+   * Playtest round 2: `from` knows `to`'s name without knowing the face, or
+   * without putting the two together, because a line of their own names
+   * them (the client's pointer and briefing, a motive they overheard, the key
+   * they saw taken), or their trade does (a landlady and the owner of the
+   * block). `strength` stays what the roll and the dig made it, so what they
+   * saw still comes as a description; asked about the name, they know it.
+   */
+  heard?: true;
 }
 
 /** What a stranger can see: man or woman, roughly how old, and the trade when it shows. */

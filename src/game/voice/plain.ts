@@ -32,6 +32,7 @@ import type { DossierFact } from '../../gen/types.js';
 import { Rng } from '../../gen/rng.js';
 import type { CaseView } from '../derive.js';
 import { MOTIVE_POOL } from '../derive.js';
+import { motiveCategory } from '../../gen/data/motives.js';
 import type { Beat } from './facts.js';
 import { beatsOf } from './facts.js';
 import { tidyPunctuation } from './prose.js';
@@ -989,7 +990,7 @@ export function plainMotive(view: CaseView, personId: Id, motiveType: string): s
   const own = person?.motive;
   if (own && own.type === motiveType) return endStop(own.description);
   const pool = MOTIVE_POOL.find((m) => m.type === motiveType);
-  return endStop(`${person?.surname ?? 'somebody'} ${pool?.description ?? motiveType}`);
+  return endStop(`${person?.surname ?? 'somebody'} ${motiveCategory(motiveType, person?.relationshipId, pool?.description)}`);
 }
 
 /* ------------------------------------------------------------------ *

@@ -163,8 +163,8 @@ export function readySentence(
         const others = f.except.slice(1);
         const when = spokenWhen(inClaim(f.ticks));
         return others.length === 0
-          ? `${says} nobody came into ${placeName(view, f.place)} ${when}`
-          : `${says} nobody but ${nameList(others)} came into ${placeName(view, f.place)} ${when}`;
+          ? `${says} nobody was at ${placeName(view, f.place)} ${when}`
+          : `${says} nobody but ${nameList(others)} was at ${placeName(view, f.place)} ${when}`;
       }
       case 'countAt': {
         const n = ['nobody', 'one', 'two', 'three', 'four', 'five', 'six'][f.count] ?? String(f.count);
@@ -503,15 +503,22 @@ export interface SoftMark {
 /**
  * The marks to think about, not verdicts:
  *
- * - **A missing sighting.** A witness who was at a place at a half hour (at
- *   their post, or by their own word, or by somebody's sighting) and who has
- *   told the notebook who they saw — of this person, or of that room at that
- *   half hour — without naming somebody who claims to have been there then:
- *   "? not seen by Abramowitz". Where the witness said outright that they
- *   were not there, the grid already has it in ink, and no mark is added.
+ * - **A missing sighting.** A witness shown to have been at a place at a half
+ *   hour by something in the notebook that is not their own account (what
+ *   they said they saw there then — a count, a face, somebody by name — or
+ *   somebody else's sighting of them), who knows the claimant by name (the
+ *   notebook holds their sightings of that person), and whose sightings of
+ *   that person leave out this place and half hour: "? not seen by
+ *   Abramowitz". Never from anybody's own word about where they were (a
+ *   story, true or broken, puts nobody anywhere), never where the witness
+ *   could not have put a name to them, and never where the witness's own
+ *   story has them somewhere else then (they may be keeping it back). Where
+ *   the witness said outright that they were not there, the grid already has
+ *   it in ink, and no mark is added. (Playtest round 2.)
  * - **A count that doesn't add up.** A head count at a place and half hour
  *   lower than the number who claim to have been there: every claimant's
- *   cell gets "counted 1, 3 claim it".
+ *   cell gets "counted 1, 3 claim it". A "nobody but …" is not a count here:
+ *   whoever it leaves out is already struck in ink.
  */
 export function softMarks(view: CaseView, state: RunState): SoftMark[] {
   if (!view.kase.logic) return [];
@@ -528,13 +535,21 @@ export function softMarks(view: CaseView, state: RunState): SoftMark[] {
   const out: SoftMark[] = [];
   const name = (id: Id): string => displayName(view, state, id);
 
-  // Where each witness was: their post, their own word, somebody's sighting.
-  const presence = (w: Id, place: Id, t: Tick): boolean => {
-    const watcher = watcherOf(view, place);
-    if (watcher?.id === w) return true;
-    if (claims.get(w)?.get(t)?.place === place) return true;
-    return found.some((c) => c.establishes.some((f) => f.kind === 'personAt' && f.personId === w && f.place === place && f.tick === t));
-  };
+  // Where each witness was, shown by what they saw there then, or by
+  // somebody else's sighting of them. Never their post alone, and never their
+  // own account of their evening.
+  const presence = (w: Id, place: Id, t: Tick): boolean =>
+    found.some((c) => {
+      if (c.kind === 'account') return false;
+      const own = c.source.type === 'person' && c.source.personId === w;
+      return c.establishes.some((f) => {
+        if (f.kind === 'personAt' && f.place === place && f.tick === t) return f.personId === w ? !own : own;
+        if (!own) return false;
+        if (f.kind === 'countAt' || f.kind === 'describedAt') return f.place === place && f.tick === t;
+        if (f.kind === 'absentFrom') return f.place === place && f.ticks.includes(t);
+        return false;
+      });
+    });
   // What each witness has said: facts sourced by them.
   const bySource = new Map<Id, Clue[]>();
   for (const c of found) {
@@ -543,15 +558,23 @@ export function softMarks(view: CaseView, state: RunState): SoftMark[] {
     list.push(c);
     bySource.set(c.source.personId, list);
   }
+  const SIGHTING = new Set<Fact['kind']>(['personAt', 'personNotAt', 'personAtAnchor']);
   for (const [claimant, map] of claims) {
     for (const [t, claim] of map) {
       for (const [w, clues] of bySource) {
         if (w === claimant) continue;
+        // Their own story has them somewhere else then: they may be keeping back what they saw.
+        const own = claims.get(w)?.get(t);
+        if (own && own.place !== claim.place) continue;
         if (!presence(w, claim.place, t)) continue;
         const facts = clues.flatMap((c) => c.establishes.map((f) => ({ f, c })));
-        const aboutClaimant = facts.filter(({ f }) => 'personId' in f && f.personId === claimant);
-        const namedAtRoom = facts.filter(({ f }) => f.kind === 'personAt' && f.place === claim.place && f.tick === t && f.personId !== w);
-        if (aboutClaimant.length === 0 && namedAtRoom.length === 0) continue;
+        // They know the claimant by name: the notebook has their sightings of them.
+        const aboutClaimant = facts.filter(
+          ({ f, c }) =>
+            c.about === claimant &&
+            ((SIGHTING.has(f.kind) && 'personId' in f && f.personId === claimant) || (f.kind === 'apart' && f.personIds.includes(claimant))),
+        );
+        if (aboutClaimant.length === 0) continue;
         const saw = facts.some(({ f }) => f.kind === 'personAt' && f.personId === claimant && f.place === claim.place && f.tick === t);
         const saidNot = facts.some(
           ({ f }) =>
@@ -562,7 +585,7 @@ export function softMarks(view: CaseView, state: RunState): SoftMark[] {
         // A stranger the witness saw there may be them: that is the player's link to make.
         const stranger = facts.some(({ f }) => f.kind === 'describedAt' && f.place === claim.place && f.tick === t);
         if (saw || saidNot || stranger) continue;
-        const ids = [...new Set([...aboutClaimant, ...namedAtRoom].map(({ c }) => c.id))];
+        const ids = [...new Set(aboutClaimant.map(({ c }) => c.id))];
         out.push({ kind: 'unseen', personId: claimant, tick: t, placeId: claim.place, by: w, text: `? not seen by ${name(w)}`, clueIds: ids });
       }
     }
@@ -579,10 +602,6 @@ export function softMarks(view: CaseView, state: RunState): SoftMark[] {
         else if (had.count === count && !had.clueIds.includes(c.id)) had.clueIds.push(c.id);
       };
       if (f.kind === 'countAt') add(f.place, f.tick, f.count);
-      if (f.kind === 'absentFrom') {
-        const named = f.except.slice(1).filter((id) => view.personById.get(id)?.kind === 'suspect').length;
-        for (const t of f.ticks) add(f.place, t, named);
-      }
     }
   }
   for (const k of counts.values()) {

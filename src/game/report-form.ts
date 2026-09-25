@@ -100,7 +100,7 @@ export function optionsFor(view: CaseView, key: Unknown): FieldOption[] {
         .filter((p) => p.kind === 'suspect')
         .map((p) => ({ value: p.id, label: `${p.name} — ${p.role}` }));
     case 'why':
-      return motivePoolFor(kase.act.type).map((m) => ({ value: m.type, label: `${m.type} — ${m.description}` }));
+      return motivePoolFor(kase.act.type).map((m) => ({ value: m.type, label: `${m.type} — ${m.menu}` }));
     case 'when':
       return Array.from({ length: 12 }, (_, t) => ({ value: String(t), label: clock(t as Tick) }));
     case 'where':
@@ -225,7 +225,7 @@ export function readable(view: CaseView, key: Unknown, value: string | null): st
       return personName(view, value);
     case 'why': {
       const hit = MOTIVE_POOL.find((m) => m.type === value);
-      return hit ? `${hit.type} — ${hit.description}` : value;
+      return hit ? `${hit.type} — ${hit.menu}` : value;
     }
     case 'when':
       return clock(Number(value) as Tick);

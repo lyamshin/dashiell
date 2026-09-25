@@ -520,6 +520,25 @@ export function followUpOf(view: CaseView, state: RunState): { personId: Id; lie
 }
 
 /**
+ * Playtest round 2: whether this fact was put to this person against the
+ * story they tell now. A fact put before, whose answer was a second story (or
+ * an admission, or a companion given up), may be put again to the story that
+ * replaced it: "I had put that to Prentiss already" was said of a fact that
+ * broke his second story as well as his first.
+ */
+export function putBeforeOnThisStory(state: RunState, personId: Id, clueId: Id, part: number | undefined): boolean {
+  const records = state.confronts ?? [];
+  let last = -1;
+  records.forEach((r, i) => {
+    if (r.personId === personId && r.clueId === clueId && r.part === part) last = i;
+  });
+  if (last < 0) return false;
+  return !records
+    .slice(last)
+    .some((r) => r.personId === personId && (r.outcome === 'second-lie' || r.outcome === 'admit' || r.outcome === 'withdraw'));
+}
+
+/**
  * The price of one command against one state. `step` charges exactly this and
  * the choice model prints exactly this, so a button never says one thing and
  * the clock another.
@@ -560,11 +579,7 @@ export function priceOf(command: Command, state: RunState, view: CaseView): Pric
       if (!canConfront(view, state, command.personId) || !state.found.includes(command.clueId)) {
         return { cost: 0, waived: 0, reason: 'no-confront' };
       }
-      if (
-        (state.confronts ?? []).some(
-          (r) => r.personId === command.personId && r.clueId === command.clueId && r.part === command.part,
-        )
-      ) {
+      if (putBeforeOnThisStory(state, command.personId, command.clueId, command.part)) {
         return { cost: 0, waived: 0, reason: 'confront-again' };
       }
       if (followUpOf(view, state)?.personId === command.personId) return { cost: 0, waived: 0, reason: 'confront-follow' };

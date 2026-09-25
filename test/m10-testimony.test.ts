@@ -152,7 +152,10 @@ describe('M10 §A.1–§A.2: the golden’s pages, seed 3 at Medium', () => {
     const p = page(7);
     expect(tellings(p).map((b) => b.tag)).toEqual(['counts', 'strangers']);
     const t = text(p);
-    expect(t).toMatch(/One came in at half past six\. One at half past eight\. Two at nine o’clock\. One at half past nine\./);
+    // Playtest round 2: a count says who was there, and every half hour at the door is said.
+    expect(t).toMatch(/At half past six there was one in here, besides me\./);
+    expect(t).toMatch(/One at half past eight\. Two at nine o’clock\. One at half past nine\./);
+    expect(t).not.toMatch(/came in at/);
     expect(t).toContain('At half past ten it was Ilse Hauck, and nobody with her.');
     expect(t).not.toMatch(/What else at/);
     expect(t).not.toMatch(/nobody else\.”\s*“/);

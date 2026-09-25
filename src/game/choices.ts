@@ -14,7 +14,7 @@
  */
 
 import type { Clue, Id, Person } from '../gen/types.js';
-import { minutesAfter } from './clock.js';
+import { minutesAfter, minutesPerAction } from './clock.js';
 import type { CaseView } from './derive.js';
 import { gameBudget, goneObjects, peopleHereNow } from './derive.js';
 import { parse } from './parser.js';
@@ -107,9 +107,11 @@ export function minutesLabel(minutes: number): string {
  * allowance, which one ("free — 1 left on the house"). The book and the play
  * tool both print this, so a label never promises more than the reducer gives.
  */
-export function costLabel(choice: { minutes: number; freeNote?: string }): string {
+export function costLabel(choice: { minutes: number; freeNote?: string; rounded?: true }): string {
   const base = minutesLabel(choice.minutes);
-  return choice.minutes <= 0 && choice.freeNote ? `${base} — ${choice.freeNote}` : base;
+  if (choice.minutes <= 0 && choice.freeNote) return `${base} — ${choice.freeNote}`;
+  // Playtest round 2: why this call is five minutes off the night's usual.
+  return choice.rounded && choice.minutes > 0 ? `${base} (rounded)` : base;
 }
 
 /** The allowance a free price spends, in the button's words, if it spends one. */
@@ -309,6 +311,10 @@ function choice(
   const rider = asked ? accountRider(view, asked.personId, asked.topic, state.found) : null;
   const riding = lead && rider !== null && gains.every((id) => id === rider.id);
   const freeNote = minutes === 0 ? freeNoteOf(price.reason, state) : undefined;
+  // Playtest round 2: the clock's running total is rounded to five minutes so
+  // the last call lands on eight; a call that comes out five off the usual
+  // says why, so 20 beside 25 is not a different price.
+  const rounded = price.cost > 0 && minutes !== price.cost * minutesPerAction(budget);
   return {
     command,
     label,
@@ -316,6 +322,7 @@ function choice(
     lead,
     done,
     ...(freeNote ? { freeNote } : {}),
+    ...(rounded ? { rounded: true as const } : {}),
     ...(riding ? { riding: true } : {}),
     ...(all.length > 0 ? { gains: all } : {}),
   };

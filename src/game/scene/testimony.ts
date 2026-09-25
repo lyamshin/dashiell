@@ -117,6 +117,11 @@ function testimony(
   const p = pronouns(about);
   const acquainted = facts.find((f) => f.kind === 'acquainted');
   if (acquainted && acquainted.kind === 'acquainted') {
+    if (acquainted.heard) {
+      return acquainted.strength === 'sight'
+        ? `“I know the name. I might know the face too, but I couldn’t tell you which face goes with it.”`
+        : `“I know the name. I couldn’t put a face to it.”`;
+    }
     return acquainted.strength === 'stranger'
       ? `“Never heard of ${p.him}. I don’t know anybody called ${about?.surname ?? 'that'}.”`
       : `“I might know the face if I saw it. Not the name.”`;

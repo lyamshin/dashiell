@@ -120,6 +120,8 @@ export interface GridCount {
   count: number;
   clueId: Id;
   by?: Id;
+  /** Read off a "nobody (but …)" rather than a head count. */
+  fromAbsence?: true;
 }
 
 /** Two rows tied together: the same room, never the same room, or somebody's claimed company. */
@@ -490,8 +492,12 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
     const p = view.personById.get(id);
     return p ? (pronounSlots(p).his ?? 'his') : 'his';
   };
+  // Playtest round 2: a door's head counts are one notebook line, and the
+  // grid quotes that line for each of them.
+  const countLine = new Map<Id, string>();
+  for (const p of book.people) for (const r of p.records) for (const id of r.clueIds ?? []) countLine.set(id, r.text);
   const noteClue = (clue: Clue): void => {
-    sources[clue.id] ??= { clueId: clue.id, text: clue.textRecord ?? clue.text, label: sourceLabelOf(view, clue) };
+    sources[clue.id] ??= { clueId: clue.id, text: countLine.get(clue.id) ?? clue.textRecord ?? clue.text, label: sourceLabelOf(view, clue) };
   };
 
   /* Entries, by person and tick. */
@@ -689,11 +695,13 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
             for (const t of f.ticks) cells.push({ personId: null, tick: t });
             // Honest mechanics (docs/38): "nobody came in" is a count of
             // none, and "nobody but Bellucci" a count of one, on the same
-            // row as the watcher's other counts.
-            const named = f.except.slice(1).filter((id) => view.personById.get(id)?.kind === 'suspect').length;
+            // row as the watcher's other counts. Playtest round 2: everybody
+            // it names counts, the patrolman on his round included, as the
+            // words say ("Ilse Hauck and the patrolman on the beat").
+            const named = f.except.slice(1).length;
             for (const t of f.ticks) {
               if (counts.some((c) => c.placeId === f.place && c.tick === t && c.clueId === clue.id)) continue;
-              counts.push({ placeId: f.place, tick: t, count: named, clueId: clue.id, ...(by ? { by } : {}) });
+              counts.push({ placeId: f.place, tick: t, count: named, clueId: clue.id, fromAbsence: true, ...(by ? { by } : {}) });
             }
             break;
           }
@@ -1051,6 +1059,15 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
       used: used.has(p.id),
     };
   });
+
+  // A head count is exact; a "nobody but" over a run may name somebody who
+  // was there for only part of it (the patrolman on his round), so where both
+  // speak of one half hour, the count's number stands.
+  const exact = new Set(counts.filter((c) => !c.fromAbsence).map((c) => `${c.placeId}|${c.tick}`));
+  for (let i = counts.length - 1; i >= 0; i--) {
+    const c = counts[i] as GridCount;
+    if (c.fromAbsence && exact.has(`${c.placeId}|${c.tick}`)) counts.splice(i, 1);
+  }
 
   return {
     ticks: Array.from({ length: TICKS }, (_, tick) => ({ tick, label: tickLabel(tick), clock: clock(tick) })),

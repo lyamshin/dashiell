@@ -507,7 +507,12 @@ export function judgeConfront(
     const lie = { place: c.lie.claimed, ticks: c.lie.ticks };
     let touches = false;
     let claimed: { place: Id; ticks: Tick[] } = lie;
-    if (!held.has(clueId) || before.includes(clueId)) continue;
+    if (!held.has(clueId)) continue;
+    // Playtest round 2: a fact that broke the first story may break the
+    // second one too, and may be put to it; anything else already put to
+    // this lie is not new.
+    const again = before.includes(clueId);
+    if (again && !(onSecondLie && k === 1)) continue;
     if (k === 0) {
       // The first time: a fact the solver's proof rests on, or one of the
       // lie's written-out ways of breaking it that is all in hand.
@@ -524,7 +529,7 @@ export function judgeConfront(
           ((first.contradictedBy ?? []).includes(clueId) || breaks(state.found, claimed).has(clueId)) &&
           partOk(state.found, claimed);
       }
-      if (!touches) {
+      if (!touches && !again) {
         const rest = state.found.filter((id) => !before.includes(id));
         const ways = c.contradictions.filter(
           (g) => g.includes(clueId) && groupHeld(g) && !before.some((b) => g.includes(b)),

@@ -19,7 +19,8 @@ export interface LineNames {
   place: (id: Id) => string;
   anchor: (id: Id) => string;
   method: (id: Id) => string;
-  motive: (type: string) => string;
+  /** The category, for one person: playtest round 2, "was owed money" where the debt runs the other way. */
+  motive: (type: string, personId?: Id) => string;
   object: (id: Id) => string;
   /** 'her' or 'him'. */
   them: (id: Id) => string;
@@ -295,6 +296,11 @@ function single(f: Fact, n: LineNames): string {
         ? `${n.who(f.personId)} knows what happened when ${n.anchor(f.anchorId)} happened`
         : `${n.who(f.personId)} does not know what happened when ${n.anchor(f.anchorId)} happened`;
     case 'acquainted':
+      if (f.heard) {
+        return f.strength === 'sight'
+          ? `${n.who(f.personIds[0])} knows ${n.who(f.personIds[1])}'s name and maybe the face, but not which goes with which`
+          : `${n.who(f.personIds[0])} knows ${n.who(f.personIds[1])}'s name, not the face`;
+      }
       return f.strength === 'stranger'
         ? `${n.who(f.personIds[0])} does not know ${n.who(f.personIds[1])}`
         : f.strength === 'sight'
@@ -315,7 +321,7 @@ function single(f: Fact, n: LineNames): string {
     case 'methodEvidence':
       return `How: ${n.method(f.methodId)}`;
     case 'hasMotive':
-      return `${n.who(f.personId)} had a reason: ${n.motive(f.motiveType)}`;
+      return `${n.who(f.personId)} had a reason: ${n.motive(f.motiveType, f.personId)}`;
     case 'hadAccess':
       return `${n.who(f.personId)} could have got hold of it`;
     case 'objectMissing':

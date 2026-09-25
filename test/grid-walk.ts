@@ -258,7 +258,8 @@ export function problemsOf(view: CaseView, state: RunState, where: string): stri
   }
   for (const c of grid.counts) {
     const clue = view.findableById.get(c.clueId);
-    // docs/38: "nobody (but X) came in" is a count too — of the suspects it names.
+    // docs/38: "nobody (but X) came in" is a count too — playtest round 2: of
+    // everybody it names, the patrolman on his round included, as its words do.
     const ok =
       clue &&
       found.has(clue.id) &&
@@ -268,7 +269,7 @@ export function problemsOf(view: CaseView, state: RunState, where: string): stri
           (f.kind === 'absentFrom' &&
             f.place === c.placeId &&
             f.ticks.includes(c.tick) &&
-            f.except.slice(1).filter((id) => view.personById.get(id)?.kind === 'suspect').length === c.count),
+            f.except.slice(1).length === c.count),
       );
     if (!ok) problems.push(`${where}: count ${c.clueId} does not trace`);
   }

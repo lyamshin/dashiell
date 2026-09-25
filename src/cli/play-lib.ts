@@ -630,7 +630,7 @@ function helpText(night: Night | null, savePath: string | undefined): string {
     out.push(
       '',
       wrap(
-        `Tonight: ${budget} calls between midnight and eight, about ${minutesPerAction(budget)} minutes a call. ${clockStrip(night.state.actionsUsed, budget, deadlineOf(night.view)).left}`,
+        `Tonight: ${budget} calls between midnight and eight, about ${minutesPerAction(budget)} minutes a call. Every call is one call; the clock keeps to five-minute marks and still ends at eight, so a call marked “(rounded)” moves it five minutes less or more than the usual. ${clockStrip(night.state.actionsUsed, budget, deadlineOf(night.view)).left}`,
       ),
     );
   }
@@ -902,29 +902,83 @@ function cmdPencil(io: PlayIo, a: Args, path: string): string {
   return `(pencilled: ${spec}. Free; never a fact.)\n\n${renderGridText(next.view, next.state)}`;
 }
 
+/**
+ * Playtest round 2: a stranger's sighting is one line a run (the same face,
+ * the same witness, one place, half hours in a row), not one line a half
+ * hour, and linking it links the whole run.
+ */
+interface SightingRun {
+  keys: string[];
+  text: string;
+  placeId: Id;
+  from: Tick;
+  to: Tick;
+  linkedTo?: Id;
+}
+
+function sightingRuns(night: Night): SightingRun[] {
+  const grid = gridFrom(night.view, night.state);
+  const out: SightingRun[] = [];
+  for (const d of grid.descriptions) {
+    const last = out[out.length - 1];
+    const lastKey = last?.keys[last.keys.length - 1];
+    if (
+      last &&
+      lastKey !== undefined &&
+      lastKey.split('|')[0] === d.key.split('|')[0] &&
+      last.placeId === d.placeId &&
+      last.text === d.text &&
+      d.tick === last.to + 1 &&
+      (last.linkedTo ?? null) === (d.linkedTo ?? null)
+    ) {
+      last.keys.push(d.key);
+      last.to = d.tick;
+      continue;
+    }
+    out.push({ keys: [d.key], text: d.text, placeId: d.placeId, from: d.tick, to: d.tick, ...(d.linkedTo ? { linkedTo: d.linkedTo } : {}) });
+  }
+  return out;
+}
+
+function runWhen(night: Night, r: SightingRun): string {
+  const grid = gridFrom(night.view, night.state);
+  const a = grid.ticks[r.from]?.clock ?? '';
+  const b = grid.ticks[r.to]?.clock ?? '';
+  return r.from === r.to ? a : `${a.replace(/ PM$/, '')}–${b}`;
+}
+
 function cmdLink(io: PlayIo, a: Args, path: string): string {
   const night = load(io, path);
   requirePlaying(night);
   const grid = gridFrom(night.view, night.state);
-  const list = grid.descriptions;
+  const list = sightingRuns(night);
   const spec = (a.arg ?? '').trim();
+  const who = (id: Id | undefined): string => (id ? (gridPeople(night).find((p) => p.id === id)?.name ?? '') : '');
+  const placeOf = (id: Id): string => grid.places.find((p) => p.id === id)?.shortName ?? '';
   if (spec === '') {
     if (list.length === 0) return 'No stranger’s sighting in the notebook to put a name to.';
     const out = ['STRANGERS SEEN', ''];
-    list.forEach((d, i) => {
-      const at = grid.places.find((p) => p.id === d.placeId)?.shortName ?? '';
-      const linked = d.linkedTo ? ` → ${gridPeople(night).find((p) => p.id === d.linkedTo)?.name ?? ''} (my link, not a fact)` : '';
-      out.push(wrap(`${i + 1}. Somebody who fits ${d.text} · ${grid.ticks[d.tick]?.clock ?? ''} · at ${at}${linked}`, WIDTH, ''));
+    list.forEach((r, i) => {
+      const linked = r.linkedTo ? ` → ${who(r.linkedTo)} (my link, not a fact)` : '';
+      out.push(wrap(`${i + 1}. Somebody who fits ${r.text} · ${runWhen(night, r)} · at ${placeOf(r.placeId)}${linked}`, WIDTH, ''));
     });
     out.push('', wrap(`That was …: npm run play -- link "<n> <Name>" --save ${path}, or "<n> none" to rub it out. Your link, not a fact. Free. The report is where a wrong one costs.`));
     return out.join('\n');
   }
   const m = /^(\d+)\s+(.+)$/.exec(spec);
-  const d = m ? list[Number(m[1]) - 1] : undefined;
-  if (!m || !d) fail('link reads "<n> <Name>" or "<n> none"; `link` alone lists the sightings.');
-  const personId = fold(m[2] as string) === 'none' ? null : findRow(night, m[2] as string, false);
-  const next = commit(io, path, night, [{ link: { key: d.key, personId: personId ?? d.linkedTo ?? null } }]);
-  return renderGridText(next.view, next.state);
+  const r = m ? list[Number(m[1]) - 1] : undefined;
+  if (!m || !r) fail('link reads "<n> <Name>" or "<n> none"; `link` alone lists the sightings.');
+  const rubOut = fold(m[2] as string) === 'none';
+  const personId = rubOut ? null : findRow(night, m[2] as string, false);
+  // applyLink rubs out a link made to the same person again, so a run already
+  // on that row is left as it is.
+  if (personId === null || r.linkedTo !== personId) commit(io, path, night, r.keys.map((key) => ({ link: { key, personId } })));
+  const what = `${r.text} · ${runWhen(night, r)} · at ${placeOf(r.placeId)}`;
+  return wrap(
+    rubOut
+      ? `Rubbed out: ${what}${r.linkedTo ? ` (was ${who(r.linkedTo)})` : ''}. Nobody's name is on it now.`
+      : `Linked: ${what} → ${who(personId ?? undefined)}. My link, in pencil, not a fact. \`grid\` shows it on ${who(personId ?? undefined)}'s row; \`link\` lists the sightings again.`,
+  );
 }
 
 function cmdFile(io: PlayIo, a: Args, path: string): string {

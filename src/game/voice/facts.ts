@@ -24,6 +24,7 @@
 import type { Clue, Fact, Id, Person, Tick } from '../../gen/types.js';
 import { spokenClock } from '../../gen/types.js';
 import { MOTIVE_POOL } from '../derive.js';
+import { motiveCategory } from '../../gen/data/motives.js';
 import type { CaseView } from '../derive.js';
 
 /** Facts that are never a sentence of their own: they ride on another one. */
@@ -171,8 +172,11 @@ export function beatsOf(view: CaseView, clue: Clue): Beat[] {
           slots: {
             subject: surname(f.personId),
             name: surname(f.personId),
-            motive:
-              MOTIVE_POOL.find((m) => m.type === f.motiveType)?.description ?? f.motiveType,
+            motive: motiveCategory(
+              f.motiveType,
+              view.personById.get(f.personId)?.relationshipId,
+              MOTIVE_POOL.find((m) => m.type === f.motiveType)?.description,
+            ),
           },
         });
         break;

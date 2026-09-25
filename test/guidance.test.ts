@@ -285,17 +285,29 @@ describe('§2 stars follow the deduction', () => {
 
 describe('§3 the grid shows what should jump out', () => {
   it('a claimant a present witness did not name gets "? not seen by …"', () => {
+    // Playtest round 2: the witness is shown there by somebody else's
+    // sighting (Rafferty saw Abramowitz at the Garibaldi at eight), never by
+    // their own story; Abramowitz knows Rafferty by name and did not see her.
     const view = viewOf(11, 0, 'v2');
     let state = newRun(view, { detectiveName: 'Dashiell' });
-    for (const c of ['ask Abramowitz about that evening', 'go the Garibaldi', 'ask Tillman about Rafferty', 'ask Rafferty about Abramowitz']) {
+    for (const c of [
+      'ask Abramowitz about that evening',
+      'ask Abramowitz about Fairbanks',
+      'go the Garibaldi',
+      "ask Abramowitz who's here",
+      'ask Abramowitz about Rafferty',
+      'ask Fairbanks about that evening',
+      'ask Rafferty about Abramowitz',
+    ]) {
       state = stepInput(state, c, view).state;
     }
     const marks = softMarks(view, state);
-    expect(marks.some((m) => m.kind === 'unseen' && m.text === '? not seen by Rafferty')).toBe(true);
+    const rafferty = view.kase.people.find((p) => p.surname === 'Rafferty')?.id;
+    expect(marks.some((m) => m.kind === 'unseen' && m.text === '? not seen by Abramowitz' && m.personId === rafferty)).toBe(true);
     const grid = gridFrom(view, state);
-    const row = grid.rows.find((r) => r.personId === view.client.id);
-    expect(row?.cells.some((c) => (c.hints ?? []).some((h) => h.text === '? not seen by Rafferty'))).toBe(true);
-    expect(renderGridText(view, state)).toMatch(/MARKS TO THINK ABOUT[\s\S]*\? not seen by Rafferty/);
+    const row = grid.rows.find((r) => r.personId === rafferty);
+    expect(row?.cells.some((c) => (c.hints ?? []).some((h) => h.text === '? not seen by Abramowitz'))).toBe(true);
+    expect(renderGridText(view, state)).toMatch(/MARKS TO THINK ABOUT[\s\S]*\? not seen by Abramowitz/);
   });
 
   it('a count lower than its claimants marks every claimant: "counted n, m claim it"', () => {

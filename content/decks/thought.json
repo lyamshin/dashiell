@@ -3080,7 +3080,7 @@
   {
     "id": "tht-m009",
     "deck": "thought",
-    "text": "{source} kept {place}, and at {time} nobody came in but the ones {source} named. It was a short list.",
+    "text": "{source} kept {place}, and at {time} nobody was there but the ones {source} named. It was a short list.",
     "tags": {
       "class": "touches",
       "basis": "absence"
@@ -3091,7 +3091,7 @@
   {
     "id": "tht-m010",
     "deck": "thought",
-    "text": "It was a fact about a door more than about anybody. At {time}, nobody went into {place} without {source} seeing it.",
+    "text": "It was a fact about a door more than about anybody. At {time}, nobody was at {place} without {source} seeing it.",
     "tags": {
       "class": "touches",
       "basis": "empty"
@@ -3102,7 +3102,7 @@
   {
     "id": "tht-m010b",
     "deck": "thought",
-    "text": "{source} kept {place}, and at {time} nobody came in at all. Anybody who claimed to be there then would have to explain it.",
+    "text": "{source} kept {place}, and at {time} nobody was there at all. Anybody who claimed to be there then would have to explain it.",
     "tags": {
       "class": "touches",
       "basis": "empty"
@@ -3124,7 +3124,7 @@
   {
     "id": "tht-m011",
     "deck": "thought",
-    "text": "{source} named who came into {place} at {time}, and nobody else. Anybody else who claimed {place} at {time} would have to explain it.",
+    "text": "{source} named who was at {place} at {time}, and nobody else. Anybody else who claimed {place} at {time} would have to explain it.",
     "tags": {
       "class": "touches",
       "basis": "absence"
@@ -3294,6 +3294,40 @@
     "tags": {
       "class": "touches",
       "basis": "stranger"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m026b",
+    "deck": "thought",
+    "text": "{source} knew {subject}’s name and not the face. Whatever {source} had seen, it would not have come with the name on it.",
+    "tags": {
+      "class": "touches",
+      "basis": "name-only"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m026c",
+    "deck": "thought",
+    "text": "{source} had the name {subject} and no face to hang it on. A name without a face is half a witness, and I wrote down the half.",
+    "joke": true,
+    "tags": {
+      "class": "touches",
+      "basis": "name-only"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m026d",
+    "deck": "thought",
+    "text": "{source} knew of {subject} and would not have known {him} in a room. It went in the notebook that way.",
+    "tags": {
+      "class": "touches",
+      "basis": "name-only"
     },
     "motifs": [],
     "status": "generated"

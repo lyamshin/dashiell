@@ -2,7 +2,7 @@
   {
     "id": "fol-001",
     "deck": "followup",
-    "text": "“Who came in tonight? All of it.”",
+    "text": "“Who was in here tonight? All of it, half hour by half hour.”",
     "tags": {
       "part": "open",
       "family": "counts",
@@ -14,7 +14,7 @@
   {
     "id": "fol-002",
     "deck": "followup",
-    "text": "“Who came through here tonight? Start at the beginning.”",
+    "text": "“Who was here tonight? Start at the beginning.”",
     "tags": {
       "part": "open",
       "family": "counts",
@@ -26,7 +26,7 @@
   {
     "id": "fol-003",
     "deck": "followup",
-    "text": "“How many came in tonight, and when?”",
+    "text": "“How many were in here tonight, and when?”",
     "tags": {
       "part": "open",
       "family": "counts",
@@ -38,7 +38,7 @@
   {
     "id": "fol-004",
     "deck": "followup",
-    "text": "“Who came through tonight? All of them, in order. I’ll keep up.”",
+    "text": "“Who was here tonight? All of them, half hour by half hour. I’ll keep up.”",
     "joke": true,
     "tags": {
       "part": "open",
@@ -51,7 +51,7 @@
   {
     "id": "fol-005",
     "deck": "followup",
-    "text": "“And how many came through, all told?”",
+    "text": "“And how many were in here, all told? Every half hour.”",
     "tags": {
       "part": "open",
       "family": "counts",
@@ -63,7 +63,7 @@
   {
     "id": "fol-006",
     "deck": "followup",
-    "text": "“Who else came in tonight? All of it.”",
+    "text": "“Who else was in here tonight? All of it.”",
     "tags": {
       "part": "open",
       "family": "counts",
@@ -75,7 +75,7 @@
   {
     "id": "fol-007",
     "deck": "followup",
-    "text": "“Count them for me. Everybody who came in.”",
+    "text": "“Count them for me. Everybody who was in here, every half hour.”",
     "tags": {
       "part": "open",
       "family": "counts",
@@ -1047,7 +1047,7 @@
   {
     "id": "fol-e038",
     "deck": "followup",
-    "text": "“How many came in tonight? Everybody, in order.”",
+    "text": "“How many were in here tonight? Every half hour, in order.”",
     "tags": {
       "part": "open",
       "family": "counts",
@@ -1059,7 +1059,7 @@
   {
     "id": "fol-e039",
     "deck": "followup",
-    "text": "“Who came in tonight, and when? Start at the top.”",
+    "text": "“Who was in here tonight, and when? Start at the top.”",
     "tags": {
       "part": "open",
       "family": "counts",
@@ -1071,7 +1071,7 @@
   {
     "id": "fol-e040",
     "deck": "followup",
-    "text": "“Tell me who came in tonight. All of it, in order.”",
+    "text": "“Tell me who was in here tonight. All of it, in order.”",
     "tags": {
       "part": "open",
       "family": "counts",

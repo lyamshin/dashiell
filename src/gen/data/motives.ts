@@ -33,7 +33,13 @@ export interface MotiveTemplate {
    * so between those two the motive's words turn round: the victim owed them.
    * Words only — the motive, its type and its draws are the same.
    */
-  owedTo?: { descriptionTemplate: string; letter: string };
+  owedTo?: { description: string; descriptionTemplate: string; letter: string };
+  /**
+   * Playtest round 2: the report's menu line, where the category alone would
+   * say a direction the case may not have ("owed money" of the one who was
+   * owed it). Absent: the category.
+   */
+  menu?: string;
 }
 
 /** Ties where the victim already owed the other one money. */
@@ -43,6 +49,27 @@ export const OWED_TO_TIES: readonly string[] = ['rel-creditor', 'rel-landlord'];
 export function motiveWords(t: MotiveTemplate, relationshipId: string | undefined): { descriptionTemplate: string; letter: string } {
   if (t.owedTo && relationshipId !== undefined && OWED_TO_TIES.includes(relationshipId)) return t.owedTo;
   return { descriptionTemplate: t.descriptionTemplate, letter: t.letter };
+}
+
+/**
+ * Playtest round 2: whether this motive, for somebody with this tie, runs the
+ * other way (the victim owed them). One direction everywhere, from the truth:
+ * the witness's talk, the rules list, the notebook, the story and the curtain.
+ */
+export function owedTheOtherWay(type: string, relationshipId: string | undefined): boolean {
+  const t = MOTIVE_BY_TYPE[type];
+  return t?.owedTo !== undefined && relationshipId !== undefined && OWED_TO_TIES.includes(relationshipId);
+}
+
+/**
+ * The bare category, for one person: "owed money", or "was owed money" where
+ * the tie runs the debt the other way. `fallback` is the category of a motive
+ * outside the murder list (a mundane or an affair's).
+ */
+export function motiveCategory(type: string, relationshipId: string | undefined, fallback?: string): string {
+  const t = MOTIVE_BY_TYPE[type];
+  if (t?.owedTo && owedTheOtherWay(type, relationshipId)) return t.owedTo.description;
+  return t?.description ?? fallback ?? type;
 }
 
 export const MOTIVE_TEMPLATES: MotiveTemplate[] = [
@@ -71,9 +98,11 @@ export const MOTIVE_TEMPLATES: MotiveTemplate[] = [
   {
     type: 'debt',
     description: 'owed money',
+    menu: 'money owed, one way or the other',
     descriptionTemplate: 'owed {V} four thousand dollars and was past due on it',
     letter: 'An IOU for $4,000 signed by {P}, made out to {V}, three months past due.',
     owedTo: {
+      description: 'was owed money',
       descriptionTemplate: 'was owed four thousand dollars by {V} and had given up waiting for it',
       letter: 'An IOU for $4,000 signed by {V}, made out to {P}, three months past due.',
     },
