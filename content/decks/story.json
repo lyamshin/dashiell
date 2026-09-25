@@ -3593,7 +3593,7 @@
   {
     "id": "STY-337",
     "deck": "story",
-    "text": "The precinct had somebody for it inside the hour.",
+    "text": "The precinct settled on somebody for it inside the hour, and never troubled to pick them up.",
     "tags": {
       "beat": "precinct",
       "precinct": "closed-it-in-an-hour"

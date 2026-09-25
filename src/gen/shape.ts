@@ -710,16 +710,20 @@ export function unknownsFor(shape: CaseShape, type: CaseType, tropeUnknowns: Unk
 }
 
 /** A one-line read-out of the dials, for sheet headers and transcripts. */
-export function describeDials(d: Dials): string {
+export function describeDials(d: Dials, opts: { targets?: boolean } = {}): string {
   const s = d.shape;
   const l = d.ladder;
   const pct = (x: number): string => `${Math.round(x * 100)}`;
   // A tiered case is held to the deduction dials' par (M9), the plain path to the shape's.
   const par = d.plain ? s.par : deductionOf(s).par;
+  // docs/38: the curtain prints the night's own par and budget; the dials'
+  // targets (a par band, a level's slack) would be two more numbers that
+  // disagree with it, so it leaves them out.
+  const targets = opts.targets !== false;
   return (
     `${s.name} (${s.suspects} suspects, ${s.places} places, ${s.innocentSecrets} secrets, ` +
-    `coroner ${s.coronerWidth / 2 === 0.5 ? 'half an hour' : `${s.coronerWidth / 2}h`}, ` +
-    `par ${par[0]}–${par[1]}) at ${l.name} (level ${l.level}, slack ${l.slack}, ` +
+    `coroner ${s.coronerWidth / 2 === 0.5 ? 'half an hour' : `${s.coronerWidth / 2}h`}` +
+    `${targets ? `, par ${par[0]}–${par[1]}` : ''}) at ${l.name} (level ${l.level}${targets ? `, slack ${l.slack}` : ''}, ` +
     `noise ${pct(l.noiseRatio[0])}–${pct(l.noiseRatio[1])}%, ` +
     `depth ${l.branchDepth[0] === l.branchDepth[1] ? l.branchDepth[0] : `${l.branchDepth[0]}–${l.branchDepth[1]}`}, ` +
     `${l.corroboration}${l.legacy ? ', pre-M7 dials' : ''})`

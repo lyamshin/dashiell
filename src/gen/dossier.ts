@@ -160,6 +160,13 @@ export interface DossierInput {
   /** One hint at what this person is hiding, already rendered. */
   secretHint?: string;
   /**
+   * docs/38: the one a jealous suspect is jealous over. A backstory that puts
+   * a third party between them and the victim romantically ("separated over
+   * {third}") names this one, so a case never has two different rivals for
+   * one heart.
+   */
+  jealousOver?: Mention;
+  /**
    * M11 §B.1: whose character lines this person gets — their archetype id, or
    * the door a fixture stands at. None for the victim.
    */
@@ -203,6 +210,9 @@ export function wordHash(text: string): number {
   return h >>> 0;
 }
 
+/** A backstory whose third party stands between the two of them in love. */
+const ROMANTIC_THIRD = /\b(?:separated|divorced|split) over \{third\}|before \{third\} came along|\{third\} turned \{victim\} down|sweet on/;
+
 export function buildDossier(input: DossierInput): Dossier {
   const { rng, archetype, relationship, surname, gender, victimSurname, placeName } = input;
   const [minAge, maxAge] = archetype.ageBand;
@@ -225,7 +235,9 @@ export function buildDossier(input: DossierInput): Dossier {
     const backstoryTemplate = relationship.backstory[backstoryIndex] as string;
     const backstoryFirstTemplate = relationship.backstoryFirst[backstoryIndex];
     if (backstoryTemplate.includes('{third}')) {
-      third = input.mentions.mentionFor(input.mentions.freeRole(rng));
+      // The draw is taken either way, so the case is dealt draw for draw.
+      const drawn = input.mentions.mentionFor(input.mentions.freeRole(rng));
+      third = input.jealousOver && ROMANTIC_THIRD.test(backstoryTemplate) ? input.jealousOver : drawn;
     }
     const ctx: SlotContext = {
       victim: victimSurname,

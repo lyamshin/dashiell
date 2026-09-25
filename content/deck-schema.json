@@ -761,7 +761,7 @@
       "tags": {
         "class": { "required": true, "values": ["clears", "implicates", "observer-placed", "unmentioned", "contradicts", "motive", "method", "window", "not-robbery", "robbery-shape", "secret", "dead-end", "context", "nothing", "goods", "last-seen", "seen-after", "view", "absent", "hint", "touches"] },
         "case": { "required": false, "default": "any", "values": ["murder", "robbery", "missing", "lost-pet", "lost-item", "affair"], "extraValues": ["any"] },
-        "basis": { "required": false, "default": "any", "values": ["placement", "access", "anchor", "coroner", "dead-by", "alive-at", "self", "account", "outside", "placed", "at", "not-at", "described", "absence", "count", "anchored", "timing", "stranger", "together", "apart", "said", "two"], "extraValues": ["any"] },
+        "basis": { "required": false, "default": "any", "values": ["placement", "access", "anchor", "coroner", "dead-by", "alive-at", "self", "account", "outside", "placed", "at", "not-at", "described", "absence", "empty", "count", "anchored", "timing", "stranger", "together", "apart", "said", "two"], "extraValues": ["any"] },
         "via": { "required": false, "default": "any", "values": ["office", "account"], "extraValues": ["any"] },
         "band": { "required": false, "default": "any", "values": ["teach", "play"], "extraValues": ["any"], "$note": "docs/26: 'teach' for a card that gives a verdict ('That cleared Weisglass.'), dealt only where the pages may give one (Raw and Coddled, and the untiered game); 'play' for a card meant for Poached up only; 'any', the default, everywhere." },
         "who": { "required": false, "default": "any", "values": ["watcher", "client", "known", "stranger"], "extraValues": ["any"] },

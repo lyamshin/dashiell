@@ -19,6 +19,7 @@ import type { BriefingLine, Person } from '../../gen/types.js';
 import { pronounWithinTurns } from '../../gen/briefing.js';
 import {
   CLIENT_LEAVING,
+  CLIENT_STAYING,
   ENTRANCE_LINES,
   HIRING_LINES,
   OFFICE_LINES,
@@ -905,8 +906,8 @@ export function attributed(chunk: string, attribution: string): string | null {
 }
 
 /** 4. The client leaving, with the address he can be found at afterwards. */
-export function clientLeavingLine(dealer: Dealer, surname: string, foundAt: string): string {
-  let text = dealer.random.pick(CLIENT_LEAVING);
+export function clientLeavingLine(dealer: Dealer, surname: string, foundAt: string, staying = false): string {
+  let text = dealer.random.pick(staying ? CLIENT_STAYING : CLIENT_LEAVING);
   text = text.split('{name}').join(surname).split('{place}').join(foundAt);
   return tidyPunctuation(text);
 }

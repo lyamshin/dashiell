@@ -646,7 +646,8 @@
     "deck": "thought",
     "text": "That gave {subject} a reason to want {victim} gone.",
     "tags": {
-      "class": "motive"
+      "class": "motive",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -738,7 +739,8 @@
     "deck": "thought",
     "text": "{subject} {motive}. That put {subject} among the people with a reason to want {victim} gone.",
     "tags": {
-      "class": "motive"
+      "class": "motive",
+      "case": "murder"
     },
     "motifs": [],
     "status": "generated"
@@ -1598,7 +1600,7 @@
   {
     "id": "tht-167",
     "deck": "thought",
-    "text": "{subject} had nothing to give on it, and I had half an hour less.",
+    "text": "{subject} had nothing to give on it, and said so plainly.",
     "tags": {
       "class": "nothing"
     },
@@ -2273,7 +2275,7 @@
   {
     "id": "tht-h012",
     "deck": "thought",
-    "text": "That would put {victim} dead by about {time}. Whoever did it was at {scene} before then.",
+    "text": "That would put {victim} dead by about {time}. Whoever did it was at {scene} by then.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
@@ -2453,7 +2455,7 @@
   {
     "id": "tht-h027",
     "deck": "thought",
-    "text": "So it was gone by about {time}, if that held. Whoever took it had been and gone before then.",
+    "text": "So it was gone by about {time}, if that held. Whoever took it had been and gone by then.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
@@ -2465,7 +2467,7 @@
   {
     "id": "tht-h028",
     "deck": "thought",
-    "text": "If it was gone by about {time}, the taking happened before that, and anybody I could place elsewhere until then was clear of it.",
+    "text": "If it was gone by about {time}, the taking happened no later than that, and anybody I could place elsewhere up to then was clear of it.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
@@ -2477,7 +2479,7 @@
   {
     "id": "tht-h029",
     "deck": "thought",
-    "text": "That would make it gone by about {time}. The hours before it were the ones that mattered.",
+    "text": "That would make it gone by about {time}. The hours up to it were the ones that mattered.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
@@ -2489,7 +2491,7 @@
   {
     "id": "tht-h030",
     "deck": "thought",
-    "text": "By about {time} it was already gone, if that was right. Whoever took it came earlier.",
+    "text": "By about {time} it was already gone, if that was right. Whoever took it came no later than that.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
@@ -3090,7 +3092,29 @@
     "text": "It was a fact about a door more than about anybody. At {time}, nobody went into {place} without {source} seeing it.",
     "tags": {
       "class": "touches",
-      "basis": "absence"
+      "basis": "empty"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m010b",
+    "deck": "thought",
+    "text": "{source} kept {place}, and at {time} nobody came in at all. Anybody who claimed {place} then would have to explain it.",
+    "tags": {
+      "class": "touches",
+      "basis": "empty"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tht-m010c",
+    "deck": "thought",
+    "text": "An empty doorway is still a fact. At {time}, on {source}’s word, nobody went into {place}.",
+    "tags": {
+      "class": "touches",
+      "basis": "empty"
     },
     "motifs": [],
     "status": "generated"
@@ -4041,7 +4065,7 @@
   {
     "id": "tht-a044",
     "deck": "thought",
-    "text": "If it held, it was over by about {time}. What people did before then counted. What they did after didn’t.",
+    "text": "If it held, it was over by about {time}. What people did up to then counted. What they did after didn’t.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
@@ -4053,7 +4077,7 @@
   {
     "id": "tht-a045",
     "deck": "thought",
-    "text": "By about {time} it would already have been done. The hours before it were the ones I needed accounted for.",
+    "text": "By about {time} it would already have been done. The hours up to it were the ones I needed accounted for.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
@@ -4348,7 +4372,7 @@
   {
     "id": "tht-n019",
     "deck": "thought",
-    "text": "So it was gone by {time}, if that held. Whoever left the way open would have done it before then.",
+    "text": "So it was gone by {time}, if that held. Whoever left the way open would have done it by then, not after.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
@@ -4360,7 +4384,7 @@
   {
     "id": "tht-n020",
     "deck": "thought",
-    "text": "By {time} {victim}’s animal would already have been out in the city somewhere. The hours before that were the ones that mattered.",
+    "text": "By {time} {victim}’s animal would already have been out in the city somewhere. The hours up to then were the ones that mattered.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
@@ -4384,7 +4408,7 @@
   {
     "id": "tht-n022",
     "deck": "thought",
-    "text": "So it was gone by {time}, if that was right. Whoever moved it would have been and gone before then.",
+    "text": "So it was gone by {time}, if that was right. Whoever moved it would have been and gone by then.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
@@ -4396,7 +4420,7 @@
   {
     "id": "tht-n023",
     "deck": "thought",
-    "text": "By {time} {victim} would no longer have had it. The hours before that were the ones people would have to account for.",
+    "text": "By {time} {victim} would no longer have had it. The hours up to then were the ones people would have to account for.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
@@ -4408,7 +4432,7 @@
   {
     "id": "tht-n024",
     "deck": "thought",
-    "text": "If it had left by {time}, the evening after that was no use to me. It was the stretch before it I wanted.",
+    "text": "If it had left by {time}, the evening after that was no use to me. It was the stretch up to it I wanted.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
@@ -4432,7 +4456,7 @@
   {
     "id": "tht-n026",
     "deck": "thought",
-    "text": "If {victim} was not where promised by {time}, the leaving came before that. Whoever {victim} left to meet would have been waiting.",
+    "text": "If {victim} was not where promised by {time}, the leaving came no later than that. Whoever {victim} left to meet would have been waiting.",
     "tags": {
       "class": "window",
       "basis": "dead-by",
@@ -4444,7 +4468,7 @@
   {
     "id": "tht-n027",
     "deck": "thought",
-    "text": "By {time} {victim} would have stopped being where promised. The hours before that were the ones worth knowing about.",
+    "text": "By {time} {victim} would have stopped being where promised. The hours up to then were the ones worth knowing about.",
     "tags": {
       "class": "window",
       "basis": "dead-by",

@@ -1,6 +1,7 @@
 import type { Place } from '../../gen/types.js';
 import type { CaseView } from '../derive.js';
 import type { Block, Page } from '../types.js';
+import { ownerOnce } from '../../gen/place-names.js';
 
 /**
  * Place names on the page (content/places/rules.md §2). A tiered case's
@@ -75,7 +76,8 @@ export function nameFirstMentions(view: CaseView, log: readonly Page[], blocks: 
   // the first mention from landing on a possessive.)
   return firstMentions(view, log, blocks).map((b) => {
     const text = textOf(b);
-    return text === null ? b : withText(b, text.replace(/([’'])s['’]s\b/g, '$1s'));
+    // docs/38: and what is somebody's is theirs once they are named.
+    return text === null ? b : withText(b, ownerOnce(text.replace(/([’'])s['’]s\b/g, '$1s'), view.kase.people));
   });
 }
 

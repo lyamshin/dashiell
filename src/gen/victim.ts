@@ -13,6 +13,7 @@ import type { Cast } from './cast.js';
 import type { Setting } from './setting.js';
 import type { ScheduleBuild } from './schedule.js';
 import type { Rng } from './rng.js';
+import { ownerOnce } from './place-names.js';
 
 /**
  * M5 §1.3. The victim had a life before the case and the case has a beginning:
@@ -26,7 +27,8 @@ export const PRECINCT_TEXT: Record<Precinct, string> = {
   'called-it-a-fall': 'The precinct wrote it down as a fall and closed the book on it.',
   'took-a-statement': 'The precinct took a statement at the desk and filed it.',
   'not-yet-called': 'The precinct has not been called, and is not going to be.',
-  'closed-it-in-an-hour': 'The precinct had somebody for it inside the hour.',
+  // docs/38: settled on, not locked up — whoever it is may be on the street tonight.
+  'closed-it-in-an-hour': 'The precinct settled on somebody for it inside the hour.',
 };
 
 /**
@@ -198,7 +200,7 @@ export function buildVictimBio(input: VictimBioInput): VictimBio {
           ? `${who(discovery.byId)} found the door at ${PL(discovery.placeId)} shut and ${taken ?? 'the box'} gone, at ${clock(discovery.tick)}.`
           : act.type === 'lost-pet' || act.type === 'lost-item'
             ? `${who(discovery.byId)} found ${taken ?? 'it'} gone from ${PL(discovery.placeId)} at ${clock(discovery.tick)}.`
-            : `${who(discovery.byId)} found ${V} at ${PL(discovery.placeId)} at ${clock(discovery.tick)}.`,
+            : ownerOnce(`${who(discovery.byId)} found ${V} at ${PL(discovery.placeId)} at ${clock(discovery.tick)}.`, cast.people),
       precinct,
     };
     // The one who walked in on it is often the one who then walks up the

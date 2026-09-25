@@ -12,6 +12,7 @@
 import type { Id } from '../game/types.js';
 import type { OfferedChoice, OfferedGroup } from '../game/types.js';
 import { el } from './dom.js';
+import { costLabel } from '../game/choices.js';
 
 /** "½ hr" when it is thirty, "25 min" otherwise, "free" when nothing. */
 export function minutesText(minutes: number): string {
@@ -58,6 +59,7 @@ function choiceButton(
     choice.lead ? 'open lead' : '',
     choice.done ? 'already done' : '',
     spoken(choice.minutes),
+    choice.minutes <= 0 && choice.freeNote ? choice.freeNote : '',
   ]
     .filter((s) => s.length > 0)
     .join(', ');
@@ -73,7 +75,7 @@ function choiceButton(
   if (choice.done) text.append(el('span', { class: 'check', 'aria-hidden': 'true', text: ' ✓' }));
   button.append(text);
   if (choice.note) button.append(el('span', { class: 'aside', text: choice.note }));
-  button.append(el('span', { class: 'mins', text: minutesText(choice.minutes) }));
+  button.append(el('span', { class: 'mins', text: costLabel(choice) }));
   if (!opts.inert) button.addEventListener('click', () => opts.onChoose(choice, group));
   return button;
 }

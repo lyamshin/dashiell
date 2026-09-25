@@ -303,7 +303,7 @@ function build(grid: GridView, ui: GridUi, h: GridHandlers, redraw: () => void):
     const extra = el('tbody', { class: 'dgrid-margins' });
     for (const m of grid.margins) {
       const tr = el('tr', { class: 'dgrid-row dgrid-row--margin' });
-      const hours = m.ticks.length > 0 ? `at ${m.ticks.map((t) => grid.ticks[t]?.label ?? '').join(' or ')}` : 'hour not known';
+      const hours = m.ticks.length > 0 ? `at ${m.when}` : m.when;
       tr.append(
         el('th', { class: 'dgrid-name', scope: 'row' }, el('span', { class: 'dgrid-surname', text: `◆ ${m.name}` }), el('span', { class: 'dgrid-role', text: hours })),
       );

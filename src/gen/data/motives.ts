@@ -26,6 +26,23 @@ export interface MotiveTemplate {
   objectRole?: Id;
   letter: string;
   overheard: string;
+  /**
+   * docs/38: the same motive where the tie already runs the money the other
+   * way. A creditor or a landlord who "owed the victim four thousand dollars"
+   * reads as two debts in one breath ("held the mortgage… owed him $4,000"),
+   * so between those two the motive's words turn round: the victim owed them.
+   * Words only — the motive, its type and its draws are the same.
+   */
+  owedTo?: { descriptionTemplate: string; letter: string };
+}
+
+/** Ties where the victim already owed the other one money. */
+export const OWED_TO_TIES: readonly string[] = ['rel-creditor', 'rel-landlord'];
+
+/** A motive's words for somebody with this tie: the reverse-direction ones where the tie needs them. */
+export function motiveWords(t: MotiveTemplate, relationshipId: string | undefined): { descriptionTemplate: string; letter: string } {
+  if (t.owedTo && relationshipId !== undefined && OWED_TO_TIES.includes(relationshipId)) return t.owedTo;
+  return { descriptionTemplate: t.descriptionTemplate, letter: t.letter };
 }
 
 export const MOTIVE_TEMPLATES: MotiveTemplate[] = [
@@ -56,6 +73,10 @@ export const MOTIVE_TEMPLATES: MotiveTemplate[] = [
     description: 'owed money',
     descriptionTemplate: 'owed {V} four thousand dollars and was past due on it',
     letter: 'An IOU for $4,000 signed by {P}, made out to {V}, three months past due.',
+    owedTo: {
+      descriptionTemplate: 'was owed four thousand dollars by {V} and had given up waiting for it',
+      letter: 'An IOU for $4,000 signed by {V}, made out to {P}, three months past due.',
+    },
     overheard: '{V} told {P} that Friday was the end of it, one way or the other.',
   },
   {

@@ -109,6 +109,24 @@ export function clearedOnTwo(view: CaseView, found: readonly Id[]): Map<Id, Id |
 }
 
 /**
+ * docs/38: the notebook's ESTABLISHED panel, "accounted for": everybody the
+ * notebook's facts keep out of the room it happened in, at every half hour it
+ * could have happened in, on two facts that agree — M10's rule (the
+ * generator's `clearedBy` with two clues or more: their own account and a
+ * sighting inside it, say), at every tier. The pages' own "That cleared X"
+ * (`clearedOnTwo`) is stricter still — the second fact must be about the
+ * half hour itself — and is said only at Raw and Coddled; the panel is a
+ * fact in the notebook at every tier, and used to stay "nobody yet" all
+ * night because it only ever listed secrets explained.
+ */
+export function accountedFor(view: CaseView, found: readonly Id[]): Id[] {
+  if (!view.kase.logic) return [];
+  return Object.entries(clearedBy(view.kase, [...found]))
+    .filter(([, rules]) => rules.length >= 2)
+    .map(([id]) => id);
+}
+
+/**
  * A fact in hand, not the person's own word, that puts them somewhere other
  * than the scene at this half hour, or keeps them out of it: somebody saw
  * them elsewhere then, saw they were not at the scene then, or kept the

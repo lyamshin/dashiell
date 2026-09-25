@@ -35,6 +35,15 @@ import { generateCase } from '../src/gen/index.js';
  * (a later person's variant is dealt again, with no new draw). All 600 cases
  * changed wording; `scripts/snapshot-structure.ts` reports the structure of
  * all 600 identical, and `test/structure-identity.test.ts` holds it.
+ *
+ * And by honest mechanics (docs/38-honest-mechanics-notes.md), which changed
+ * words only: a recurring anchor's scene fact says it is one of several, a
+ * sentence that has named somebody says what is theirs with a pronoun
+ * ("found at his place"), a stranger's sighting is recorded in the fact's own
+ * description, a romantic third party is the one the jealousy is over, a debt
+ * between a creditor and the victim runs the right way, and the frame's
+ * precinct has nobody in a cell. 587 of the 600 hashes changed; the
+ * structure-only hash of all 600 is unchanged.
  */
 const baseline = JSON.parse(
   readFileSync(new URL('./fixtures/m7-baseline-hashes.json', import.meta.url), 'utf8'),

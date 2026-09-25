@@ -25,7 +25,7 @@
 import { generateCase, type Case } from '../gen/index.js';
 import { LADDERS, type Level } from '../gen/shape.js';
 import type { Id, Tick } from '../gen/types.js';
-import { choicesFor, type Choice, type ChoiceGroup } from '../game/choices.js';
+import { choicesFor, costLabel, freeStep, stableChoices, type Choice, type ChoiceGroup } from '../game/choices.js';
 import { clockStrip, minutesPerAction, usedByPage } from '../game/clock.js';
 import { buildView, gameBudget, type CaseView } from '../game/derive.js';
 import { applyLink, applyMark, gridFrom, type MarkAction } from '../game/grid.js';
@@ -89,6 +89,8 @@ interface Night {
   kase: Case;
   view: CaseView;
   state: RunState;
+  /** The state each page was written in, by page index: the menu of a free page is laid out from the page before's. */
+  pages: RunState[];
 }
 
 /** The last few cases dealt in this process, so a test's many commands deal each once. */
@@ -108,8 +110,12 @@ function deal(save: PlaySave): Night {
   }
   const { kase, view } = hit;
   let state = newRun(view, { detectiveName: save.detective });
-  for (const e of save.events) state = apply(state, view, e);
-  return { save, kase, view, state };
+  const pages: RunState[] = [state];
+  for (const e of save.events) {
+    state = apply(state, view, e);
+    pages[state.log.length - 1] = state;
+  }
+  return { save, kase, view, state, pages };
 }
 
 function apply(state: RunState, view: CaseView, e: PlayEvent): RunState {
@@ -211,30 +217,65 @@ interface Numbered {
   group: ChoiceGroup;
 }
 
-/** Every choice on the page, numbered in the order the book draws them. */
-function numbered(groups: readonly ChoiceGroup[]): Numbered[] {
+/**
+ * Every choice on the page, numbered in the order the book draws them. After
+ * a free page (docs/38), a choice keeps the number it had on the page before,
+ * and anything new is numbered after everything that was there, so "do 7"
+ * means the same button it meant a page ago.
+ */
+function numbered(groups: readonly ChoiceGroup[], before?: ReadonlyMap<string, number>): Numbered[] {
   const out: Numbered[] = [];
-  let n = 1;
+  const items: { group: ChoiceGroup; choice: Choice }[] = [];
   for (const group of groups) {
     if (group.kind === 'confront') {
       // The one button that opens the picker. Free: it writes no page.
-      out.push({
-        n: n++,
+      items.push({
         group,
         choice: { command: `confront ${group.personId ?? ''}`, label: group.heading, minutes: 0, lead: false, done: false },
       });
       continue;
     }
-    for (const choice of [...group.choices, ...(group.more ?? [])]) out.push({ n: n++, choice, group });
+    for (const choice of [...group.choices, ...(group.more ?? [])]) items.push({ group, choice });
   }
+  if (!before) return items.map((it, i) => ({ n: i + 1, ...it }));
+  let next = Math.max(0, ...before.values()) + 1;
+  const taken = new Set<number>();
+  for (const it of items) {
+    const had = before.get(it.choice.command);
+    if (had !== undefined && !taken.has(had)) {
+      taken.add(had);
+      out.push({ n: had, ...it });
+    } else out.push({ n: -1, ...it });
+  }
+  for (const o of out) if (o.n < 0) o.n = next++;
   return out;
+}
+
+/**
+ * The page's choices as the book lays them out, and their numbers: from the
+ * last page that cost something or moved the detective, each free page after
+ * it keeps the one before's layout (`stableChoices`) and its numbers.
+ */
+function menuOf(night: Night): { groups: ChoiceGroup[]; items: Numbered[] } {
+  const { view, pages } = night;
+  const last = pages.length - 1;
+  let k = last;
+  while (k > 0 && pages[k] !== undefined && freeStep(pages[k] as RunState)) k--;
+  const at = (i: number): RunState => (i === last ? night.state : ((pages[i] ?? night.state) as RunState));
+  let groups = choicesFor(view, at(k));
+  let items = numbered(groups);
+  for (let i = k + 1; i <= last; i++) {
+    groups = stableChoices(view, at(i), groups);
+    items = numbered(groups, new Map(items.map((it) => [it.choice.command, it.n])));
+  }
+  return { groups, items };
 }
 
 function itemLine(n: number, c: Choice, extra = ''): string {
   const mark = c.lead ? '* ' : '  ';
   const label = `${c.label}${c.done ? ' ✓' : ''}${c.note ? ` — ${c.note}` : ''}${extra}`;
   const num = `${String(n).padStart(4)}. `;
-  const cost = minutesText(c.minutes);
+  const cost = costLabel(c);
   const room = WIDTH - num.length - mark.length - cost.length - 2;
   const lines = wrap(label, room).split('\n');
   const first = `${num}${mark}${(lines[0] ?? '').padEnd(room)}  ${cost}`;
@@ -243,8 +284,7 @@ function itemLine(n: number, c: Choice, extra = ''): string {
 
 function choicesText(night: Night): string {
   const { view, state } = night;
-  const groups = choicesFor(view, state);
-  const items = numbered(groups);
+  const { groups, items } = menuOf(night);
   const out: string[] = ['WHAT NEXT', ''];
   const asks = groups.filter((g) => g.kind === 'ask');
   if (asks.length > 1) {
@@ -613,9 +653,13 @@ function requirePlaying(night: Night): void {
 function commit(io: PlayIo, path: string, night: Night, events: PlayEvent[], changes: Partial<PlaySave> = {}): Night {
   const save: PlaySave = { ...night.save, ...changes, events: [...night.save.events, ...events] };
   let state = night.state;
-  for (const e of events) state = apply(state, night.view, e);
+  const pages = [...night.pages];
+  for (const e of events) {
+    state = apply(state, night.view, e);
+    pages[state.log.length - 1] = state;
+  }
   store(io, path, save);
-  return { ...night, save, state };
+  return { ...night, save, state, pages };
 }
 
 function cmdNew(io: PlayIo, a: Args): string {
@@ -684,7 +728,7 @@ function cmdDo(io: PlayIo, a: Args, path: string): string {
     fail(`The report form is open, and there is nothing else to do tonight. See it with: npm run play -- report --save ${path}`);
   }
 
-  const groups = choicesFor(night.view, night.state);
+  const { groups, items } = menuOf(night);
   const picker = pickerGroup(night);
   if (picker) {
     const facts: Numbered[] = picker.choices.map((c, i) => ({ n: i + 1, choice: c as Choice, group: picker }));
@@ -697,12 +741,11 @@ function cmdDo(io: PlayIo, a: Args, path: string): string {
     const hit = resolveChoice(facts, raw);
     if (hit) return take(io, path, night, hit.choice.command);
     // Anything else on the page can still be chosen by its words.
-    const other = /^\d+$/.test(v) ? null : resolveChoice(numbered(groups), raw);
+    const other = /^\d+$/.test(v) ? null : resolveChoice(items, raw);
     if (!other) fail(`No fact ${raw} in the list. \`look\` shows it again.`);
     return chosen(io, path, night, other);
   }
 
-  const items = numbered(groups);
   let hit = resolveChoice(items, raw);
   if (!hit) {
     // A fact put straight to somebody by its words: the picker opened and

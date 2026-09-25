@@ -30,7 +30,7 @@ import {
   type CasePick,
   type TierKey,
 } from '../game/profile.js';
-import { choicesFor, defaultAskPerson } from '../game/choices.js';
+import { defaultAskPerson, stableChoices } from '../game/choices.js';
 import { clockStrip, usedByPage } from '../game/clock.js';
 import { buildView, gameBudget, peopleHereNow, type CaseView, type Noun } from '../game/derive.js';
 import { applyLink, applyMark, gridFrom } from '../game/grid.js';
@@ -110,6 +110,7 @@ function plainChoice(c: OfferedChoice): OfferedChoice {
     lead: c.lead,
     done: c.done,
     ...(c.note === undefined ? {} : { note: c.note }),
+    ...(c.freeNote === undefined ? {} : { freeNote: c.freeNote }),
   };
 }
 
@@ -184,7 +185,7 @@ export function mount(root: HTMLElement): void {
   function withOffered(run: RunState, v: CaseView): RunState {
     const last = run.log[run.log.length - 1];
     if (!last || last.offered) return run;
-    const offered = offeredOf(choicesFor(v, run));
+    const offered = offeredOf(stableChoices(v, run, run.log[run.log.length - 2]?.offered));
     return { ...run, log: [...run.log.slice(0, -1), { ...last, offered }] };
   }
 
@@ -411,7 +412,7 @@ export function mount(root: HTMLElement): void {
     page.append(leaf);
 
     const groups: OfferedGroup[] = newest
-      ? choicesFor(view as CaseView, run)
+      ? stableChoices(view as CaseView, run, run.log[run.log.length - 2]?.offered)
       : (shown?.offered ?? []);
     if (groups.length > 0) {
       const who = selected ?? defaultAskPerson(groups, run);

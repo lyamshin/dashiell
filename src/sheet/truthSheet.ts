@@ -11,6 +11,7 @@ import {
   type Tick,
 } from '../gen/types.js';
 import { describeDials, dialsOf } from '../gen/shape.js';
+import { gameBudget, gamePar } from '../game/derive.js';
 
 /**
  * A designer's read-out of one case. Clarity over polish: this is the document
@@ -21,6 +22,11 @@ import { describeDials, dialsOf } from '../gen/shape.js';
  * can actually get hold of. The full candidate pool goes to its own file.
  */
 export function renderTruthSheet(c: Case): string {
+  // The night's par and budget, as the clock, the verdict and the closing
+  // page count them (the walk from the office included), so the curtain never
+  // says one number and the page another.
+  const par = gamePar(c);
+  const budget = gameBudget(c);
   /** Short name. The full name of a place is printed once, in section 8. */
   const PL = (id: Id | null | undefined): string =>
     id ? (c.places.find((p) => p.id === id)?.shortName ?? id) : '—';
@@ -56,7 +62,7 @@ export function renderTruthSheet(c: Case): string {
     const tier = dials.shape.tier;
     out.push(
       `**Tier** ${typeof tier === 'number' ? `${tier} ` : ''}${dials.shape.name} · ` +
-        `**Level** ${dials.ladder.level} ${dials.ladder.name} · ${describeDials(dials)}`,
+        `**Level** ${dials.ladder.level} ${dials.ladder.name} · ${describeDials(dials, { targets: false })}`,
     );
     out.push('');
   }
@@ -66,7 +72,7 @@ export function renderTruthSheet(c: Case): string {
   );
   out.push('');
   out.push(
-    `**Par** ${c.par} actions · **Slack** ${c.slack} · **Budget** ${c.budget} · ` +
+    `**Par** ${par} calls · **Slack** ${budget - par} · **Budget** ${budget} calls · ` +
       `**Findable** ${findable.length} (spine ${byRole('spine').length}, corroboration ${byRole('corroboration').length}, ` +
       `noise ${byRole('noise').length} + ${byRole('disqualifier').length} disqualifiers) · ` +
       `**Noise ratio** ${Math.round((noiseCount / findable.length) * 100)}% · ` +
@@ -391,7 +397,7 @@ export function renderTruthSheet(c: Case): string {
   out.push('## 14. Deduction path');
   out.push('');
   out.push(
-    `Par is **${c.par} actions** and the budget is par plus ${c.slack}: **${c.budget}**. ` +
+    `Par is **${par} calls** and the budget is par plus ${budget - par}: **${budget}**. ` +
       'Every id below is a spine clue; the inference is the sheet\u2019s, not the clue\u2019s.',
   );
   out.push('');
@@ -522,7 +528,7 @@ function logicSection(c: Case): string[] {
   const s = logic.solve;
   out.push('**What the solver found.**');
   out.push('');
-  out.push(`- Par route: ${s.parRules.length} rules (${s.parRules.join(', ')}), ${c.par} actions` +
+  out.push(`- Par route: ${s.parRules.length} rules (${s.parRules.join(", ")}), ${gamePar(c)} calls` +
     `${s.confessions.length > 0 ? `, with ${s.confessions.map(P).join(' and ')} confessing` : ''}.`);
   out.push(`- The culprit, ${P(c.solution.killerId)}: depth ${s.culprit.depth}${s.culprit.hypothesis ? ', after a hypothesis test' : ''}, on ${s.culprit.rules.join(', ') || '—'}.`);
   out.push(`- The half hour, ${hm(c.solution.murderTick)}: depth ${s.crimeTick.depth}, on ${s.crimeTick.rules.join(', ') || 'the coroner'}.`);

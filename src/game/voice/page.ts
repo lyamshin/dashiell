@@ -444,6 +444,8 @@ export type Scene =
       topicRef?: { kind: string; id?: Id; topic?: string };
       /** That was the second free question and the client has a bus to catch. */
       clientLeaves?: boolean;
+      /** docs/38: the client's last question on the house: where to find them later. They stay. */
+      clientWhere?: boolean;
       /** M10 §A.3: this page goes on with a conversation "Go on" continued. */
       continued?: boolean;
       /** M10 §A.3: there is more to tell, and the page ends on "Go on". */

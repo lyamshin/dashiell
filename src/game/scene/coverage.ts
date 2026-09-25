@@ -73,6 +73,8 @@ export function checkPageCoverage(
   recalls: { surname: string; recall: string }[] = [],
   /** People an earlier page named: said who they are once, and not again. */
   namedBefore: ReadonlySet<Id> = new Set(),
+  /** The notebook after this page: whose tie to the victim it holds (docs/38). */
+  foundAfter?: readonly Id[],
 ): CoverageIssue[] {
   const shape = page.shape;
   if (shape === undefined || shape === 'office' || shape === 'repeat' || shape === 'other') return [];
@@ -114,7 +116,7 @@ export function checkPageCoverage(
     }
     if (shape !== 'ask' && EXIT_LINE.test(text)) add('leak', text);
   }
-  const people = nameables(view);
+  const people = nameables(view, foundAfter);
   for (const name of namesWithoutClause(texts, people, namedBefore)) add('unexplained-name', name);
   // The designer's rule: at most one person set off in commas a sentence.
   for (const text of texts) {
@@ -148,8 +150,10 @@ export function checkRunCoverage(view: CaseView, state: RunState): CoverageRepor
   let required = 0;
   let written = 0;
   const issues: CoverageIssue[] = [];
+  const found: Id[] = [];
   for (const page of state.log) {
     used += page.cost;
+    found.push(...page.found);
     const shape = page.shape;
     const before = new Set(named);
     for (const id of namedIn(view, proseTexts(page))) named.add(id);
@@ -160,9 +164,9 @@ export function checkRunCoverage(view: CaseView, state: RunState): CoverageRepor
       required++;
       if (b.rendered) written++;
     }
-    const found = checkPageCoverage(view, page, minutesAfter(used, budget), recalls, before);
-    if (found.length === 0) covered++;
-    issues.push(...found);
+    const onPage = checkPageCoverage(view, page, minutesAfter(used, budget), recalls, before, [...found]);
+    if (onPage.length === 0) covered++;
+    issues.push(...onPage);
   }
   return { pages, covered, issues, required, written };
 }

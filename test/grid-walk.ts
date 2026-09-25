@@ -141,6 +141,16 @@ export function problemsOf(view: CaseView, state: RunState, where: string): stri
         for (const id of state.found) {
           for (const f of view.findableById.get(id)?.establishes ?? []) if (f.kind === 'anchorAt' && f.anchorId === anchorId) return f.ticks;
         }
+        // docs/38: an anchor that happens once is timed by a clue in hand
+        // that names its hour in words (the scene's "…stopped at nine o'clock").
+        const anchor = view.anchorById.get(anchorId);
+        if (anchor && anchor.ticks.length === 1) {
+          const t = anchor.ticks[0] as number;
+          for (const id of state.found) {
+            const c = view.findableById.get(id);
+            if (c?.anchorId === anchorId && (c.textRecord ?? c.text).includes(clock(t as never))) return [t];
+          }
+        }
         return [];
       };
       const makes = clue.establishes.some(
@@ -248,7 +258,18 @@ export function problemsOf(view: CaseView, state: RunState, where: string): stri
   }
   for (const c of grid.counts) {
     const clue = view.findableById.get(c.clueId);
-    const ok = clue && found.has(clue.id) && clue.establishes.some((f) => f.kind === 'countAt' && f.place === c.placeId && f.tick === c.tick && f.count === c.count);
+    // docs/38: "nobody (but X) came in" is a count too — of the suspects it names.
+    const ok =
+      clue &&
+      found.has(clue.id) &&
+      clue.establishes.some(
+        (f) =>
+          (f.kind === 'countAt' && f.place === c.placeId && f.tick === c.tick && f.count === c.count) ||
+          (f.kind === 'absentFrom' &&
+            f.place === c.placeId &&
+            f.ticks.includes(c.tick) &&
+            f.except.slice(1).filter((id) => view.personById.get(id)?.kind === 'suspect').length === c.count),
+      );
     if (!ok) problems.push(`${where}: count ${c.clueId} does not trace`);
   }
   for (const l of grid.links) {

@@ -34,7 +34,7 @@ import { bandOf, hourAgrees } from './text.js';
 import { quietClue, thoughtPriority, thoughtsFor, viewOf, type Thought } from './thought.js';
 import type { ConfrontJudgement } from '../m9.js';
 import { familiesOf, type Family } from './families.js';
-import { doingOf, knownTie, type KnownTie } from './people.js';
+import { doingOf, knownTie, relationHeld, type KnownTie } from './people.js';
 import { visibleTrade } from '../../gen/logic/acquaint.js';
 import { acquaintanceOf } from '../../gen/index.js';
 import { postureOf, pressFor, reportedFor, settingOf, tryFor, type Posture, type Setting, type TryWhy } from './stage.js';
@@ -1231,7 +1231,16 @@ export function planPage(input: PlanInput): Plan {
     // The things left alone were named on the page before; a search going on is not a new one.
     // M13: never the thing that was taken — it is not there to leave alone.
     const taken = view.kase.act.taken?.id;
-    const left = action.continued ? [] : (place?.objects ?? []).filter((id) => id !== action.objectId && id !== taken).slice(0, 2);
+    // docs/25, docs/38: nor a thing a find says is missing from here — the
+    // page cannot go through a bottle it has just said was gone.
+    const missing = new Set(
+      [...input.foundBefore.map((id) => view.findableById.get(id)), ...action.clues]
+        .flatMap((c) => c?.establishes ?? [])
+        .flatMap((f) => (f.kind === 'objectMissing' ? [f.objectId] : [])),
+    );
+    const left = action.continued
+      ? []
+      : (place?.objects ?? []).filter((id) => id !== action.objectId && id !== taken && !missing.has(id)).slice(0, 2);
     beats.push({
       kind: 'act',
       required: true,
@@ -1266,7 +1275,12 @@ export function planPage(input: PlanInput): Plan {
   // §2: the question carries its own reason when it is the lead's subject and
   // the notebook knows why that subject matters.
   const carried =
-    carry.lead && carry.for === 'ask-person' && subject !== undefined && subject.relationshipToVictim !== undefined;
+    carry.lead &&
+    carry.for === 'ask-person' &&
+    subject !== undefined &&
+    subject.relationshipToVictim !== undefined &&
+    // docs/38: "the notebook knows why that subject matters" — held, not just true.
+    relationHeld(view, subject.id, input.foundBefore);
   if (clock) beats.push(clock);
   if (!carried && !action.continued) beats.push({ kind: 'errand', required: true, form: 'carry', carry });
   // Night Hone 1 §1: the room, if the page runs short (the realizer decides).

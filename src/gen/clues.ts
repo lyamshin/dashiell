@@ -1,3 +1,4 @@
+import { ownerOnce } from './place-names.js';
 import {
   isMundane,
   TICKS,
@@ -17,7 +18,7 @@ import {
 import type { Cast } from './cast.js';
 import type { Setting } from './setting.js';
 import type { ScheduleBuild } from './schedule.js';
-import { MOTIVE_BY_TYPE } from './data/motives.js';
+import { MOTIVE_BY_TYPE, motiveWords } from './data/motives.js';
 import { SECRET_BY_TYPE } from './data/secrets.js';
 import type { Rng } from './rng.js';
 import { OWNABLE_ROOMS } from './coherence.js';
@@ -205,7 +206,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
       kind,
       source,
       establishes,
-      text,
+      text: ownerOnce(text, cast.people),
       place,
       leadsTo: [],
       role: 'noise',
@@ -612,7 +613,7 @@ export function deriveCandidates(ctx: ClueContext): CandidateSet {
       { type: 'place', placeId: letterPlace },
       letterPlace,
       [{ kind: 'hasMotive', personId: p.id, motiveType: p.motive?.type as string }],
-      `Found at ${placeName(letterPlace)}: ${fill(template.letter)}`,
+      `Found at ${placeName(letterPlace)}: ${fill(motiveWords(template, p.relationshipId).letter)}`,
     );
     const speakerPool = cast.people.filter(
       (q) => q.id !== p.id && q.kind !== 'victim' && (q.kind === 'fixture' || q.kind === 'suspect'),

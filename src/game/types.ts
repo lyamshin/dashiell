@@ -377,6 +377,13 @@ export interface OfferedChoice {
   done: boolean;
   note?: string;
   /**
+   * Honest mechanics (docs/38): a choice that is free only because it spends
+   * an allowance — the client's two questions on the house, the free first
+   * question to somebody who knows him — says so beside "free", because the
+   * next question to them will not be. Absent on anything free outright.
+   */
+  freeNote?: string;
+  /**
    * M9 polish, the confront picker only: the heading the fact sits under (the
    * person or place it is about), everybody it names for the filter, and who
    * said it or where it was found.

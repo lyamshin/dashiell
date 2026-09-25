@@ -86,6 +86,12 @@ export interface GridMargin {
   name: string;
   /** The hours it could be, when the notebook has them but they are more than one. */
   ticks: Tick[];
+  /**
+   * Honest mechanics (docs/38): what the notebook knows of its hours, in
+   * words — "6:30 or 8:30 or 10:30", "8:30 was one of them; the others are
+   * not known", or "hour not known" — the same on the grid and in the text.
+   */
+  when: string;
   entries: GridMarginEntry[];
 }
 
@@ -545,6 +551,38 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
     for (const clue of found) {
       for (const f of clue.establishes) if (f.kind === 'anchorAt') anchorTicks.set(f.anchorId, f.ticks);
     }
+    // Honest mechanics (docs/38): a found clue that names the anchor and one
+    // of its hours in so many words (the scene: "the whistle went at half
+    // past eight") has told the page that hour. An anchor that happens once
+    // is then timed; one that happens more than once has one hour known of
+    // several, and the grid says so rather than "hour not known".
+    const namedTicks = new Map<Id, Tick[]>();
+    for (const clue of found) {
+      if (!clue.anchorId) continue;
+      const anchor = view.anchorById.get(clue.anchorId);
+      if (!anchor) continue;
+      const text = clue.textRecord ?? clue.text;
+      const named = anchor.ticks.filter((t) => text.includes(clock(t)));
+      if (named.length === 0) continue;
+      namedTicks.set(anchor.templateId, [...new Set([...(namedTicks.get(anchor.templateId) ?? []), ...named])].sort((a, b) => a - b));
+    }
+    for (const [id, ticks] of namedTicks) {
+      const anchor = view.anchorById.get(id);
+      if (!anchorTicks.has(id) && anchor && anchor.ticks.length === 1 && ticks.length === 1) anchorTicks.set(id, ticks);
+    }
+    const hourOf = (t: Tick): string => hm(t);
+    const whenOf = (anchorId: Id): { ticks: Tick[]; when: string } => {
+      const known = anchorTicks.get(anchorId);
+      if (known && known.length > 0) return { ticks: [...known], when: known.map(hourOf).join(' or ') };
+      const named = namedTicks.get(anchorId) ?? [];
+      if (named.length > 0) {
+        return {
+          ticks: [],
+          when: `${named.map(hourOf).join(' and ')} ${named.length === 1 ? 'was one of its hours' : 'were among its hours'}; the others are not known`,
+        };
+      }
+      return { ticks: [], when: 'hour not known' };
+    };
     const everyone = [...book.people.map((p) => p.id)];
     for (const clue of found) {
       const cells: GridRuleCell[] = [];
@@ -580,7 +618,7 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
               const anchor = view.anchorById.get(f.anchorId);
               let m = margins.find((x) => x.anchorId === f.anchorId);
               if (!m) {
-                m = { anchorId: f.anchorId, name: anchor?.name ?? f.anchorId, ticks: ticks ? [...ticks] : [], entries: [] };
+                m = { anchorId: f.anchorId, name: anchor?.name ?? f.anchorId, ...whenOf(f.anchorId), entries: [] };
                 margins.push(m);
               }
               if (!m.entries.some((e) => e.clueId === clue.id && e.personId === f.personId && e.placeId === f.place)) {
@@ -632,6 +670,14 @@ export function gridFrom(view: CaseView, state: RunState, book: Notebook = build
               }
             }
             for (const t of f.ticks) cells.push({ personId: null, tick: t });
+            // Honest mechanics (docs/38): "nobody came in" is a count of
+            // none, and "nobody but Bellucci" a count of one, on the same
+            // row as the watcher's other counts.
+            const named = f.except.slice(1).filter((id) => view.personById.get(id)?.kind === 'suspect').length;
+            for (const t of f.ticks) {
+              if (counts.some((c) => c.placeId === f.place && c.tick === t && c.clueId === clue.id)) continue;
+              counts.push({ placeId: f.place, tick: t, count: named, clueId: clue.id, ...(by ? { by } : {}) });
+            }
             break;
           }
           case 'countAt':
