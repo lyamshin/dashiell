@@ -120,6 +120,11 @@ export function matchPeople(view: CaseView, text: string): Candidate<Id>[] {
 export function matchPlaces(view: CaseView, text: string): Candidate<Id>[] {
   const n = fold(text);
   if (n.length === 0) return [];
+  // A place's own short name, the one every "Go to" button prints, is never
+  // ambiguous: "go the office" is the detective's office even when a named
+  // place (the office over the Imperial) also answers to "the office".
+  const own = view.places.find((p) => fold(p.shortName) === n);
+  if (own) return [{ value: own.id, label: own.shortName, strength: 3 }];
   const out: Candidate<Id>[] = [];
   for (const p of view.places) {
     // A named place answers to every form it goes by (content/places/rules.md §2.7).

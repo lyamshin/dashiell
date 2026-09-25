@@ -252,3 +252,18 @@ describe('across the corpus', () => {
     }
   });
 });
+
+describe('a place’s own short name', () => {
+  it('is never ambiguous: "go the office" is the office even beside "the office over the Imperial"', () => {
+    // v2 seed 3, tier 4: the office over the Imperial Tailoring Company also
+    // answers to "the office", and every "Go to: the office" button wrote a
+    // "Which one?" page instead of walking home.
+    const v = buildView(generateCase(3, { tier: 4, level: 2, engine: 'v2' }));
+    const imperial = v.places.find((p) => p.names?.bare === 'the office' && p.id !== v.office.id);
+    expect(imperial).toBeDefined();
+    const home = parse(v, v.kase.solution.murderPlaceId, 'go the office');
+    expect(home.ok && home.command.kind === 'go' ? home.command.placeId : null).toBe(v.office.id);
+    const there = parse(v, v.office.id, `go ${imperial?.shortName ?? ''}`);
+    expect(there.ok && there.command.kind === 'go' ? there.command.placeId : null).toBe(imperial?.id);
+  });
+});
