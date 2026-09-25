@@ -97,6 +97,17 @@ npm run case -- --seed 7 --candidates                # the full candidate pool
 npm run batch -- --count 20 --out out                # a corpus of sheets
 ```
 
+## Playing blind in a terminal
+
+```sh
+npm run play -- new --seed 3 --tier 4 --engine v2 --save night.json
+npm run play -- do 4 --save night.json    # one numbered choice
+npm run play -- help                      # the rules and every command
+```
+
+For blind playtesters: exactly what the book shows, one choice at a time, and
+nothing of the truth until the report is filed. See `docs/37-play-cli.md`.
+
 ## Reading a run without playing it
 
 ```sh

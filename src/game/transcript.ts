@@ -105,7 +105,7 @@ export function renderPageText(
   const head = `${page.head}${' '.repeat(
     Math.max(1, WIDTH - page.head.length - 22),
   )}${clockAfter(usedBy, budget)}   page ${page.n + 1}`;
-  const body = page.blocks.flatMap((b) => renderBlock(b, view)).join('\n\n');
+  const body = renderPageBody(page, view);
   const foot: string[] = [];
   const cost = page.cost === 0 ? 'free' : `${page.cost} action`;
   const found = page.found.length > 0 ? `, ${page.found.length} written down` : '';
@@ -114,6 +114,14 @@ export function renderPageText(
     for (const gap of page.gaps) foot.push(`[gap: ${gap}]`);
   }
   return [head, rule, '', body, '', foot.join('\n')].join('\n');
+}
+
+/**
+ * A page's words and nothing else: no running head, no cost line, no gap log.
+ * What the player reads on the page (`npm run play` prints exactly this).
+ */
+export function renderPageBody(page: Page, view: CaseView): string {
+  return page.blocks.flatMap((b) => renderBlock(b, view)).join('\n\n');
 }
 
 /** "½ hr", "25 min", "free". The same words the book puts on a button. */
@@ -174,13 +182,31 @@ export function renderChoicesText(groups: readonly OfferedGroup[], chosen?: stri
   return out.join('\n');
 }
 
-export function renderNotebookText(view: CaseView, state: RunState): string {
+export interface NotebookTextOptions {
+  /**
+   * As the book's notebook page draws it (`npm run play`): the things in each
+   * room, and "go there first" beside a lead in another room.
+   */
+  book?: boolean;
+}
+
+export function renderNotebookText(view: CaseView, state: RunState, opts: NotebookTextOptions = {}): string {
   const book = buildNotebook(view, state);
   const out: string[] = ['THE NOTEBOOK', '═'.repeat(WIDTH), ''];
-  out.push(
-    `The clock: ${book.clock.time}, ${book.clock.actionsLeft} of ${book.clock.budget} left. ` +
-      `${book.foundCount} of ${book.findableCount} things written down.`,
-  );
+  if (opts.book) {
+    // The notebook page's clock, in the book's words.
+    out.push(
+      `The clock: ${book.clock.time}, ${book.clock.actionsLeft} of ${book.clock.budget} left. ` +
+        (book.clock.actionsLeft === 0
+          ? 'The DA is at the door.'
+          : `About ${book.clock.perAction} minutes a call. ${book.foundCount} of ${book.findableCount} things written down.`),
+    );
+  } else {
+    out.push(
+      `The clock: ${book.clock.time}, ${book.clock.actionsLeft} of ${book.clock.budget} left. ` +
+        `${book.foundCount} of ${book.findableCount} things written down.`,
+    );
+  }
   out.push('', 'PEOPLE');
   for (const person of book.people) {
     // M9: somebody the detective has only seen is what anybody can see of
@@ -224,13 +250,16 @@ export function renderNotebookText(view: CaseView, state: RunState): string {
         place.watcher ? `, watched by the ${place.watcher}` : ', unwatched'
       }${place.visited ? '' : ' — not been'}`,
     );
+    if (opts.book && place.objects.length > 0) out.push(wrap(place.objects.join(', '), WIDTH, '      '));
     for (const record of place.clues) out.push(wrap(`“ ${record.text}`, WIDTH, '      '));
   }
   out.push('', 'LEADS');
-  if (book.threads.length === 0) out.push('  Nothing open.');
+  if (book.threads.length === 0) out.push(opts.book ? '  Nothing open. Go through a room.' : '  Nothing open.');
   for (const group of book.threads) {
     out.push(`  ${group.placeLabel}${group.here ? ' — here' : ''}`);
-    for (const lead of group.leads) out.push(`    · ${lead.label}`);
+    for (const lead of group.leads) {
+      out.push(`    ${opts.book ? '*' : '·'} ${lead.label}${opts.book && !group.here ? ' — go there first' : ''}`);
+    }
   }
   out.push('', 'ESTABLISHED');
   out.push(`  ${book.established.deathLabel}: ${book.established.death}`);
