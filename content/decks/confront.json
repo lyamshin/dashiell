@@ -347,7 +347,7 @@
   {
     "id": "cnf-032",
     "deck": "confront",
-    "text": "I wrote {subject}’s name and a dash after it. That was all there was to write.",
+    "text": "I wrote the story down again under {subject}’s name, the hole in it and all, and a dash where the answer should have been.",
     "tags": {
       "outcome": "quiet",
       "part": "close"
@@ -358,7 +358,7 @@
   {
     "id": "cnf-033",
     "deck": "confront",
-    "text": "I left the question with {subject} and got up. The half hour was gone.",
+    "text": "I left the question with {subject}. A story with a hole in it doesn’t mend for being left alone.",
     "tags": {
       "outcome": "quiet",
       "part": "close"
@@ -369,7 +369,7 @@
   {
     "id": "cnf-034",
     "deck": "confront",
-    "text": "Nothing new went into the notebook under {subject}. I made a small mark so I would know I had asked.",
+    "text": "Under {subject}’s name I wrote that the story had broken, and that {they} would not say where {they} had been instead.",
     "tags": {
       "outcome": "quiet",
       "part": "close"
@@ -380,7 +380,7 @@
   {
     "id": "cnf-035",
     "deck": "confront",
-    "text": "{subject} had stopped talking, and silence is not something you can write down. I closed the notebook.",
+    "text": "{subject} had stopped talking. Refusing to answer is an answer of a kind, and I wrote that one down.",
     "tags": {
       "outcome": "quiet",
       "part": "close"
@@ -391,7 +391,7 @@
   {
     "id": "cnf-036",
     "deck": "confront",
-    "text": "I looked at {subject} a little longer than was polite, and then I let it go.",
+    "text": "I looked at {subject} a little longer than was polite. The story still had its hole, and we both knew where it was.",
     "tags": {
       "outcome": "quiet",
       "part": "close"

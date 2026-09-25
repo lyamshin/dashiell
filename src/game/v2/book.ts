@@ -67,7 +67,7 @@ export interface V2Memory {
   /** The page each act opened on. */
   actPages: number[];
   /** Night roles bound, by name: `gag`, `motif`, `tell`. */
-  roles: Record<string, { text: string; short: string; kind: string }>;
+  roles: Record<string, { text: string; short: string; kind: string; by?: Id }>;
   /** Lie steps the notebook has held everything for. */
   caught: string[];
   /** Lines said tonight, so a line is not said twice. */
@@ -381,7 +381,10 @@ export function bookPass(view: CaseView, before: RunState, after: RunState, page
       const text = spec ? fillLine(spec.text, slots, false) : null;
       const short = spec ? fillLine(spec.short, slots, false) : null;
       if (carry && text && short) {
-        mem.roles.tell = { text, short, kind: pieces.kind };
+        // Whose piece it is, so the payoff names the one who counted, not
+        // whoever happened to catch the lie (docs/39, found while playing).
+        const by = clue.source.type === 'person' ? clue.source.personId : undefined;
+        mem.roles.tell = { text, short, kind: pieces.kind, ...(by ? { by } : {}) };
         // Right after the words that brought the piece, before what he makes of it.
         const at = page.blocks.findIndex((b) => b.kind === 'prose' && b.clueId === clue.id);
         // Else before the page names its next lead, or its recap.
@@ -556,7 +559,9 @@ function turnRecap(
   // The tell pays off here unless the turn's own line already said it.
   if (tell && !kind.startsWith(tell.kind)) {
     const spec = BOOK_LINES.tell[tell.kind];
-    const pay = spec ? sayOne(spec.pay, { ...slots, tell: tell.short, Tell: tell.short }, mem, seed, 'tellPay') : null;
+    const teller = tell.by ? view.personById.get(tell.by) : undefined;
+    const own = teller ? personSlots(view, after, 'watcher', teller) : {};
+    const pay = spec ? sayOne(spec.pay, { ...slots, ...own, tell: tell.short, Tell: tell.short }, mem, seed, 'tellPay') : null;
     if (pay) second.push(pay);
   }
   if (newly.length > 1) {
