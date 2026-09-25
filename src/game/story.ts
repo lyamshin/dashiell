@@ -40,7 +40,7 @@ import {
 } from '../gen/types.js';
 import type { Told } from './types.js';
 import { RELATIONSHIP_BY_ID, VICTIM_ARCHETYPE_BY_ID, allStandings } from '../gen/data/cast.js';
-import { MOTIVE_BY_TYPE } from '../gen/data/motives.js';
+import { MOTIVE_BY_TYPE, owedTheOtherWay } from '../gen/data/motives.js';
 import { genderForms } from '../gen/dossier.js';
 import { wrap } from './transcript.js';
 import { tidyPunctuation } from './voice/prose.js';
@@ -71,8 +71,11 @@ export interface StoryInput {
   victim: StoryPerson;
   /** The culprit's tie to the victim, from the culprit's dossier. */
   tie: { relationshipId: Id; text: string; backstory: string } | null;
-  /** The culprit's motive. Nobody else's. */
-  motive: { type: string; description: string } | null;
+  /**
+   * The culprit's motive. Nobody else's. `owedTo`: the debt runs the other
+   * way (the victim owed the culprit), as the tie says (playtest round 2).
+   */
+  motive: { type: string; description: string; owedTo?: boolean } | null;
   /** The victim's standing on the block, from the victim's dossier. */
   standing: string | null;
   /** What the victim did, up close: the victim's dossier profession detail. */
@@ -195,7 +198,13 @@ export function storyInput(kase: Case, told?: Told): StoryInput {
     culprit: personOf(kase, culpritId),
     victim: personOf(kase, victimId),
     tie: tie ? { relationshipId: tie.relationshipId, text: tie.text, backstory: tie.backstory } : null,
-    motive: killer?.motive ? { type: killer.motive.type, description: killer.motive.description } : null,
+    motive: killer?.motive
+      ? {
+          type: killer.motive.type,
+          description: killer.motive.description,
+          ...(owedTheOtherWay(killer.motive.type, killer.relationshipId) ? { owedTo: true } : {}),
+        }
+      : null,
     standing: bio.standing ?? null,
     victimDetail,
     places,
@@ -769,15 +778,18 @@ export function tellStory(input: StoryInput, history: Iterable<string> = []): St
   }
   if (input.motive) {
     const third = motiveThird(input);
+    // Playtest round 2: a debt said the way the truth has it ("He owed
+    // Lefkowitz four thousand dollars" of the man Lefkowitz owed).
+    const motiveTag = input.motive.owedTo ? `${input.motive.type}-owed` : input.motive.type;
     s.say(
       'motive',
-      { motive: input.motive.type },
+      { motive: motiveTag },
       third ? { third: { text: third, facts: [{ kind: 'mention', name: third }] } } : {},
       [{ kind: 'motive', personId: cid, value: input.motive.type }],
     );
     s.say(
       'motive-color',
-      { motive: input.motive.type },
+      { motive: motiveTag },
       third ? { third: { text: third, facts: [{ kind: 'mention', name: third }] } } : {},
       [{ kind: 'motive', personId: cid, value: input.motive.type }],
     );

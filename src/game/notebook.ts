@@ -10,8 +10,9 @@
  */
 
 import { clock } from '../gen/types.js';
-import type { Id, Tick } from '../gen/types.js';
+import type { Clue, Id, Tick } from '../gen/types.js';
 import { actionsLeft, clockAfter, minutesPerAction } from './clock.js';
+import { motiveCategory } from '../gen/data/motives.js';
 import type { CaseView } from './derive.js';
 import {
   MOTIVE_POOL,
@@ -45,9 +46,62 @@ export interface NotebookFact {
 }
 
 /** A clue's own sentence, verbatim, under the source it came from. */
+/** The place a watcher's head count or "nobody but" is about, or null for any other clue. */
+function countPlace(c: Clue): Id | null {
+  if (c.kind !== 'watch') return null;
+  const f = c.establishes.find((g) => g.kind === 'countAt' || g.kind === 'absentFrom');
+  if (!f || !c.establishes.every((g) => g.kind === 'countAt' || g.kind === 'absentFrom')) return null;
+  return f.kind === 'countAt' || f.kind === 'absentFrom' ? f.place : null;
+}
+
+/**
+ * Playtest round 2: one line for everything a watcher counted at a door, a
+ * half hour once, in the order of the evening: "Counted at the third floor,
+ * besides herself: 6:30 PM one; 7:00 PM Vitale, nobody else; 8:30 PM one;
+ * 11:00–11:30 PM nobody."
+ */
+function countsRecord(view: CaseView, watcher: { id: Id; gender?: 'm' | 'f'; dossier?: { gender?: 'm' | 'f' } }, place: Id, clues: readonly Clue[]): string {
+  const at = new Map<Tick, string>();
+  const named = new Set<Tick>();
+  for (const c of clues) {
+    if (countPlace(c) !== place) continue;
+    for (const f of c.establishes) {
+      if (f.kind === 'absentFrom' && f.place === place) {
+        const others = f.except.slice(1).map((id) => personName(view, id));
+        for (const t of f.ticks) {
+          at.set(t, others.length === 0 ? 'nobody' : `${others.join(' and ')}, nobody else`);
+          named.add(t);
+        }
+      }
+      if (f.kind === 'countAt' && f.place === place && !named.has(f.tick)) {
+        at.set(f.tick, ['nobody', 'one', 'two', 'three', 'four', 'five', 'six'][f.count] ?? String(f.count));
+      }
+    }
+  }
+  // Runs of the same words, so "11:00–11:30 PM nobody".
+  const ticks = [...at.keys()].sort((a, b) => a - b);
+  const parts: string[] = [];
+  for (let i = 0; i < ticks.length; ) {
+    const from = ticks[i] as Tick;
+    const words = at.get(from) as string;
+    let to = from;
+    while (i + 1 < ticks.length && ticks[i + 1] === to + 1 && at.get(ticks[i + 1] as Tick) === words) {
+      i++;
+      to = ticks[i] as Tick;
+    }
+    i++;
+    const when = from === to ? clock(from) : `${clock(from).replace(/ PM$/, '')}–${clock(to)}`;
+    parts.push(`${when} ${words}`);
+  }
+  const self = (watcher.dossier?.gender ?? watcher.gender) === 'f' ? 'herself' : 'himself';
+  return `Counted at ${placeName(view, place)}, besides ${self}: ${parts.join('; ')}.`;
+}
+
 export interface NotebookRecord {
   clueId: Id;
   text: string;
+  /** Playtest round 2: every clue one line stands for (a door's head counts are one line). */
+  clueIds?: Id[];
   /**
    * docs/39 §1, what was said when a fact was put only: whose word broke
    * which half hours of the story ("Story broke on Tillman’s word: the
@@ -256,13 +310,28 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
       const account = state.accounts.includes(p.id) ? claimedAccount(view, p.id) : null;
       // The record (A.1): every clue this person gave up, in the generator's
       // own words, in the order the player got them.
-      const records: NotebookRecord[] = state.found
+      // Playtest round 2: a door's head counts are one line a door, a half
+      // hour once each ("nobody but Vitale" and "one person" at seven o'clock
+      // were two lines saying the same thing).
+      const given = state.found
         .map((id) => view.findableById.get(id))
         .filter(
           (c): c is NonNullable<typeof c> =>
             c !== undefined && c.source.type === 'person' && c.source.personId === p.id,
-        )
-        .map((c) => ({ clueId: c.id, text: c.textRecord ?? c.text }));
+        );
+      const records: NotebookRecord[] = [];
+      const countLines = new Set<Id>();
+      for (const c of given) {
+        const place = countPlace(c);
+        if (place === null) {
+          records.push({ clueId: c.id, text: c.textRecord ?? c.text });
+          continue;
+        }
+        if (countLines.has(place)) continue;
+        countLines.add(place);
+        const covers = given.filter((g) => countPlace(g) === place).map((g) => g.id);
+        records.push({ clueId: c.id, text: countsRecord(view, p, place, given), clueIds: covers });
+      }
       const known: NotebookDossier =
         p.kind === 'victim'
           ? victimDossier(view, learned)
@@ -385,9 +454,11 @@ export function buildNotebook(view: CaseView, state: RunState): Notebook {
     method: est.methodEvidence ? kase.method.name : null,
     motives: est.motives.map(
       (m) =>
-        `${personName(view, m.personId)} — ${
-          MOTIVE_POOL.find((x) => x.type === m.motiveType)?.description ?? m.motiveType
-        }`,
+        `${personName(view, m.personId)} — ${motiveCategory(
+          m.motiveType,
+          view.personById.get(m.personId)?.relationshipId,
+          MOTIVE_POOL.find((x) => x.type === m.motiveType)?.description,
+        )}`,
     ),
     access: est.access.map((a) => personName(view, a.personId)),
     // Honest mechanics (docs/38): everybody the notebook's facts clear on

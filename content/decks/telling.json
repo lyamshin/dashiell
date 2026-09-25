@@ -269,6 +269,30 @@
     "status": "generated"
   },
   {
+    "id": "tel-024b",
+    "deck": "telling",
+    "text": "{speaker} nodded at the name, and no further. “{told}”",
+    "tags": {
+      "family": "knowing",
+      "temper": "any",
+      "knows": "heard"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
+    "id": "tel-024c",
+    "deck": "telling",
+    "text": "{speaker} gave the name a moment. “{told}”",
+    "tags": {
+      "family": "knowing",
+      "temper": "any",
+      "knows": "heard"
+    },
+    "motifs": [],
+    "status": "generated"
+  },
+  {
     "id": "tel-025",
     "deck": "telling",
     "text": "{speaker} thought about the name and let it go. “{told}”",

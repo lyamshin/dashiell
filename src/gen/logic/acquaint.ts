@@ -372,6 +372,33 @@ export function tieSecret(g: AcqGraph, a: Person, b: Person): void {
 }
 
 /**
+ * Playtest round 2: somebody whose own line names a person — the client's
+ * pointer ("Start with Steinbach"), a motive they overheard, the key they saw
+ * taken off its hook — knows the name, whatever the roll or the dig made the
+ * edge. The strength is left alone (what they saw of a face they cannot put
+ * a name to still comes as a description, and the puzzle is the one it was);
+ * the edge is marked `heard`, and asked about the name they say they know it
+ * ("I know the name. I couldn't put a face to it."), never "Never heard of
+ * him." Returns whether the edge changed.
+ */
+export function markHeard(g: AcqGraph, from: Id, to: Id): boolean {
+  const k = key(from, to);
+  const e = g.edges.get(k);
+  if (!e || e.heard || e.strength === 'name' || e.strength === 'relation') return false;
+  g.edges.set(k, { ...e, heard: true });
+  return true;
+}
+
+/**
+ * Knowing by trade, where the trade says so and the roll did not: a landlady
+ * knows the name of anybody who owns property on her block (playtest round 2:
+ * the landlady at the Garibaldi had "never heard of" the owner of the block).
+ */
+export function knownByTrade(from: Person, to: Person): boolean {
+  return from.fixtureRole === 'landlady' && to.kind === 'suspect' && ARCHETYPE_BY_ID[to.archetypeId ?? '']?.trade === 'property';
+}
+
+/**
  * An evening spent in the same room: two strangers who shared a place for two
  * half hours or more know each other's faces afterwards. Never upgrades
  * anybody to a name, so it cannot turn a piece into a conclusion.

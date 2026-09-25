@@ -193,7 +193,8 @@ describe('M12 Part 2: the recap', () => {
         if (!b?.text) continue;
         recaps++;
         const n = words(b.text);
-        expect(n, `${r.label} p${page.n}: ${b.text}`).toBeGreaterThanOrEqual(80);
+        // Playtest round 2: asked for, it goes over what there is, however little.
+        if (b.tag !== 'demand') expect(n, `${r.label} p${page.n}: ${b.text}`).toBeGreaterThanOrEqual(80);
         expect(n, `${r.label} p${page.n}: ${b.text}`).toBeLessThanOrEqual(180);
       }
       for (const v of checkRun(r.view, r.state)) violations.push(`${r.label} ${v.where} ${v.rule} ${v.detail}`);
@@ -212,7 +213,8 @@ describe('M12 Part 2: the recap', () => {
         const b = (page.beats ?? []).find((x) => x.kind === 'recap');
         for (const c of b?.clauses ?? []) {
           if (/^(?:frame|when|anchor|method|next)\|/.test(c.key)) continue;
-          expect(said.has(c.key), `${r.label} p${page.n}: ${c.key} again`).toBe(false);
+          // Playtest round 2: "Go over what I have" goes over all of it, said before or not.
+          if (b?.tag !== 'demand') expect(said.has(c.key), `${r.label} p${page.n}: ${c.key} again`).toBe(false);
           said.add(c.key);
         }
       }

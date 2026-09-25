@@ -602,12 +602,17 @@ export function renderRecap(
   const memory = state.scene?.recap;
   const said = new Set(memory?.said ?? []);
   const facts = recapFacts(view, state, prefer === undefined ? {} : { prefer });
-  const fresh = facts.filter((f) => f.part === 'next' || !said.has(f.key));
+  // Playtest round 2: asked for, "Go over what I have" goes over all of it —
+  // what is settled and what is still open — however much was said before,
+  // and never answers with a joke.
+  const demand = trigger === 'demand';
+  const fresh = demand ? facts : facts.filter((f) => f.part === 'next' || !said.has(f.key));
   const substance = fresh.filter((f) => f.part !== 'next');
-  if (substance.length === 0) return 'nothing-new';
+  if (substance.length === 0 && !demand) return 'nothing-new';
   // After something happens, the thing that happened is enough to go over;
   // at the turn of the hour, or for a name pencilled in, two new things.
   if ((trigger === 'hour' || trigger === 'link') && substance.length < 2) return 'too-soon';
+  const openLine = demand ? stillOpen(view, state) : '';
 
   // One joke a page, at most (guidance §4): the page's count is the dealer's,
   // and a recap after a page that has told one tells none.
@@ -732,16 +737,17 @@ export function renderRecap(
   if (measure(body(), false) < RECAP_WORDS[0]) {
     for (const f of facts) if (f.part === 'when' && stale(f)) include.add(f.key);
   }
-  if (measure(body(), false) < RECAP_WORDS[0]) {
+  if (measure(body(), false) < RECAP_WORDS[0] && !demand) {
     // Not written: its frame told no joke.
     dealer.resetJokes(jokesAtStart);
     return 'too-soon';
   }
   // Too long: leave the least of it for the next recap.
+  const ceiling = RECAP_WORDS[1];
   const droppable = body()
     .filter((f) => f.part === 'people')
     .sort((a, b) => b.keep - a.keep);
-  while (measure(body(), true) > RECAP_WORDS[1] && droppable.length > 0) {
+  while (measure(body(), true) + words(openLine) > ceiling && droppable.length > 0) {
     const f = droppable.shift() as RecapFact;
     include = new Set([...include].filter((k) => k !== f.key));
   }
@@ -762,6 +768,11 @@ export function renderRecap(
       lines.push(text);
       trace(f, text);
       prev = f.subjectId;
+    }
+    // Playtest round 2: asked for, the stock-taking says what is still open.
+    if (part === 'when' && openLine.length > 0) {
+      lines.push(openLine);
+      clauses.push({ key: 'frame|open-questions', text: openLine, personIds: [], placeIds: [], ticks: [] });
     }
     if (lines.length > 0) paras.push(lines.join(' '));
   }
@@ -790,6 +801,27 @@ export function renderRecap(
       saidAt,
     },
   };
+}
+
+/**
+ * Playtest round 2: what the report asks that the notebook does not settle
+ * yet, in one plain sentence: the half hour (where the report asks it and
+ * the window is still more than one), how, why, and who.
+ */
+export function stillOpen(view: CaseView, state: RunState): string {
+  const kase = view.kase;
+  const asks = new Set<string>(kase.act.unknowns);
+  const est = establishedFrom(view, state.found, state.accounts);
+  const open: string[] = [];
+  if (asks.has('when') && est.deathTicks.length !== 1) {
+    open.push(est.deathTicks.length > 1 ? 'which of those half hours it was' : 'when');
+  }
+  if (asks.has('how') && !est.methodEvidence) open.push('how it was done');
+  if (asks.has('why') && est.motives.length === 0) open.push('why');
+  if (asks.has('who')) open.push('who');
+  if (open.length === 0) return '';
+  const said = open.length === 1 ? open[0] : `${open.slice(0, -1).join(', ')}, or ${open[open.length - 1]}`;
+  return `I still didn’t know ${said}.`;
 }
 
 /** The player's links, as the recap remembers them. */

@@ -153,6 +153,8 @@ export interface Thought {
     | 'anchored'
     | 'timing'
     | 'stranger'
+    /** Playtest round 2: they know the name (a line of their own names them), not the face. */
+    | 'name-only'
     | 'together'
     | 'apart'
     | 'said'
@@ -688,7 +690,8 @@ export function candidateThoughts(input: ThoughtInput): Thought[] {
         }
         case 'acquainted': {
           if (f.strength === 'name' || f.strength === 'relation') break;
-          out.push({ cls: 'touches', basis: 'stranger', sourceId: f.personIds[0], subjectId: f.personIds[1], clueIds: [clue.id] });
+          // Playtest round 2: a name without a face is not a stranger.
+          out.push({ cls: 'touches', basis: f.heard ? 'name-only' : 'stranger', sourceId: f.personIds[0], subjectId: f.personIds[1], clueIds: [clue.id] });
           break;
         }
         case 'together':

@@ -156,7 +156,11 @@ function movements(
   // Knowing and not knowing.
   const acquainted = facts.find((f) => f.kind === 'acquainted');
   if (acquainted && acquainted.kind === 'acquainted') {
-    if (acquainted.strength === 'stranger') first.push(`Never heard of ${him}.`);
+    // Playtest round 2: somebody whose own line named them knows the name.
+    if (acquainted.heard && acquainted.strength === 'sight') {
+      first.push('I know the name. I might know the face too, but I couldn’t tell you which face goes with it.');
+    } else if (acquainted.heard) first.push('I know the name. I couldn’t put a face to it.');
+    else if (acquainted.strength === 'stranger') first.push(`Never heard of ${him}.`);
     else if (acquainted.strength === 'sight') first.push('I might know the face if I saw it. Not the name.');
   }
 
@@ -303,7 +307,7 @@ function counts(view: CaseView, clues: Clue[], speaker: Person, at: Id): Told {
   const facts = clues.flatMap((c) => c.establishes);
   const people = new Set<Id>();
   const ticks: Tick[] = [];
-  type Line = { tick: Tick; text: (first: boolean) => string };
+  type Line = { tick: Tick; text: (first: boolean) => string; count?: true };
   const lines: Line[] = [];
   const covered = new Set<Tick>();
   for (const f of facts) {
@@ -329,8 +333,10 @@ function counts(view: CaseView, clues: Clue[], speaker: Person, at: Id): Told {
           if (g.kind === 'countAt' && g.count === others.length && g.tick >= run[0] && g.tick <= run[1]) covered.add(g.tick);
         }
       } else {
-        const into = where === 'here' ? 'in' : `into ${where}`;
-        lines.push({ tick: run[0], text: () => `Nobody came ${into} ${whenOf(run)}.` });
+        // Playtest round 2: a count says who was there, not who came in.
+        const inside = where === 'here' ? 'in here' : `at ${where}`;
+        for (let t = run[0]; t <= run[1]; t++) covered.add(t as Tick);
+        lines.push({ tick: run[0], text: () => `Nobody ${inside} ${whenOf(run)}, besides me.` });
       }
     }
   }
@@ -338,16 +344,35 @@ function counts(view: CaseView, clues: Clue[], speaker: Person, at: Id): Told {
     if (f.kind !== 'countAt') continue;
     ticks.push(f.tick);
     if (covered.has(f.tick)) continue;
+    covered.add(f.tick);
     const where = placeName(view, f.place, at);
     const n = COUNT[f.count] ?? String(f.count);
-    const into = where === 'here' ? 'in' : `into ${where}`;
+    const inside = where === 'here' ? 'in here' : `at ${where}`;
+    const was = f.count === 1 ? 'was' : 'were';
     lines.push({
       tick: f.tick,
-      text: (first) => (first ? `${cap(n)} came ${into} at ${spokenClock(f.tick)}.` : `${cap(n)} at ${spokenClock(f.tick)}.`),
+      count: true,
+      text: (first) =>
+        first ? `At ${spokenClock(f.tick)} there ${was} ${n} ${inside}, besides me.` : `${cap(n)} at ${spokenClock(f.tick)}.`,
     });
   }
+  // Playtest round 2: every half hour they kept the door is said, the ones
+  // they give no number for included, so a gap in the count is never silent.
+  const post = speaker.kind === 'fixture' ? speaker.foundAt : undefined;
+  if (post !== undefined && facts.some((f) => (f.kind === 'countAt' || f.kind === 'absentFrom') && f.place === post)) {
+    const truth = view.kase.schedules.find((s) => s.personId === speaker.id)?.truth ?? [];
+    const open: Tick[] = [];
+    for (let t = 0; t < TICKS; t++) if (truth[t] === post && !covered.has(t as Tick)) open.push(t as Tick);
+    for (const run of runsOf(open)) {
+      for (let t = run[0]; t <= run[1]; t++) ticks.push(t as Tick);
+      lines.push({ tick: run[0], text: () => `${cap(whenOf(run))} I couldn’t swear to a number.` });
+    }
+  }
   lines.sort((a, b) => a.tick - b.tick);
-  const first = lines.map((l, i) => l.text(i === 0));
+  // The first head count is said in full ("At six o'clock there were two in
+  // here, besides me"), and the rest short ("Three at half past eight").
+  const firstCount = lines.findIndex((l) => l.count);
+  const first = lines.map((l, i) => l.text(i === firstCount));
   if (first.length === 0) first.push('Nobody I could tell you about.');
   return { first, second: [], ticks, people: [...people] };
 }

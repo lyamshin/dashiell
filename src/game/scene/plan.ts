@@ -251,6 +251,12 @@ export type Beat =
       targetId?: Id;
       subject?: string;
       name?: string;
+      /**
+       * Playtest round 2: the walk found the person to ask, not yet the
+       * answer. "It was there, just as Hauck said it would be" was said of a
+       * bartender nobody had asked anything yet.
+       */
+      askHere?: true;
     }
   | { kind: 'texture'; required: false; texture: 'weather' | 'ambient' | 'simile' | 'place' }
   /**
@@ -629,6 +635,7 @@ function answerFor(
   reachable: boolean,
   subject: string | undefined,
   name: string | undefined,
+  askHere = false,
 ): Extract<Beat, { kind: 'answer' }> {
   const outcome: 'found' | 'dead-end' | 'something-else' =
     target !== undefined && (found.includes(target) || reachable)
@@ -643,6 +650,7 @@ function answerFor(
     ...(target === undefined ? {} : { targetId: target }),
     ...(subject ? { subject } : {}),
     ...(name ? { name } : {}),
+    ...(askHere && outcome === 'found' && target !== undefined && !found.includes(target) ? { askHere: true as const } : {}),
   };
 }
 
@@ -1118,6 +1126,7 @@ export function planPage(input: PlanInput): Plan {
             // supplies it, never a person or a question's topic.
             action.errand.for === 'search-thing' ? action.errand.slots.subject : undefined,
             action.errand.slots.name,
+            target !== undefined && target.source.type === 'person',
           ),
         );
       }
@@ -1185,19 +1194,19 @@ export function planPage(input: PlanInput): Plan {
     }
     // What the fact is about, for the close: the first placement it makes —
     // of the part put, when one part of the line was put (M9 polish).
+    // Playtest round 2: where the fact broke a story, the half hour it broke
+    // it at ("When I said half past seven"), not the first hour the line names.
     const inPart = action.part === undefined ? null : new Set(action.clue.ruleParts?.[action.part]?.facts ?? []);
-    const placed = action.clue.establishes.find(
+    const broke = action.judged.claimed?.ticks ?? [];
+    const placements = action.clue.establishes.filter(
       (f, i) =>
         (inPart === null || inPart.size === 0 || inPart.has(i)) &&
         (f.kind === 'personAt' || f.kind === 'personNotAt' || f.kind === 'describedAt' || f.kind === 'absentFrom'),
     );
+    const ticksOf = (f: (typeof placements)[number]): Tick[] => ('tick' in f ? [f.tick] : f.kind === 'absentFrom' ? f.ticks : []);
+    const placed = placements.find((f) => ticksOf(f).some((t) => broke.includes(t))) ?? placements[0];
     const placeId = placed && 'place' in placed ? placed.place : action.judged.claimed?.place;
-    const tick =
-      placed && 'tick' in placed
-        ? placed.tick
-        : placed && placed.kind === 'absentFrom'
-          ? placed.ticks[0]
-          : action.judged.claimed?.ticks[0];
+    const tick = placed ? (ticksOf(placed).find((t) => broke.includes(t)) ?? ticksOf(placed)[0]) : broke[0];
     beats.push({
       kind: 'confront',
       required: true,
@@ -1304,13 +1313,17 @@ export function planPage(input: PlanInput): Plan {
   // M10 §A.2: what the answer tells, a family at a time.
   // Shorter nights §2: their own evening, which came with the question, ends
   // the answer, after anything they volunteered.
+  // Playtest round 2: asked for their evening, the evening is the answer and
+  // comes first; what they volunteer follows it ("I asked her about
+  // Rosenbaum's evening" was the page's reply to "her evening").
   const own = (c: Clue): boolean =>
     c.kind === 'account' && c.source.type === 'person' && c.source.personId === action.personId;
-  const telling = [
-    ...action.clues.filter((c) => !own(c)),
-    ...(action.volunteer ? [action.volunteer] : []),
-    ...action.clues.filter(own),
-  ].filter((c) => newIds.includes(c.id));
+  const askedEvening = action.topic.kind === 'evening';
+  const telling = (
+    askedEvening
+      ? [...action.clues.filter(own), ...action.clues.filter((c) => !own(c)), ...(action.volunteer ? [action.volunteer] : [])]
+      : [...action.clues.filter((c) => !own(c)), ...(action.volunteer ? [action.volunteer] : []), ...action.clues.filter(own)]
+  ).filter((c) => newIds.includes(c.id));
   // Shorter nights §2: asked about themselves, somebody still gives their
   // evening with it the first time, as a telling after their own story.
   const families = action.self && !view.kase.logic ? [] : familiesOf(view, telling);

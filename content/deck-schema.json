@@ -185,7 +185,7 @@
           "required": false,
           "default": "any",
           "values": [
-            "inheritance", "jealousy", "silence-a-witness", "debt", "revenge", "exposure",
+            "inheritance", "jealousy", "silence-a-witness", "debt", "debt-owed", "revenge", "exposure",
             "property", "insurance", "protect-another",
             "spite", "envy", "embarrassment", "affection", "pride", "love", "secret-kept", "business-done", "any"
           ]
@@ -765,7 +765,7 @@
       "tags": {
         "class": { "required": true, "values": ["clears", "implicates", "observer-placed", "unmentioned", "contradicts", "motive", "method", "window", "not-robbery", "robbery-shape", "secret", "dead-end", "context", "nothing", "goods", "last-seen", "seen-after", "view", "absent", "hint", "touches"] },
         "case": { "required": false, "default": "any", "values": ["murder", "robbery", "missing", "lost-pet", "lost-item", "affair"], "extraValues": ["any"] },
-        "basis": { "required": false, "default": "any", "values": ["placement", "access", "anchor", "coroner", "dead-by", "alive-at", "self", "account", "outside", "placed", "at", "not-at", "described", "absence", "empty", "count", "anchored", "timing", "stranger", "together", "apart", "said", "two"], "extraValues": ["any"] },
+        "basis": { "required": false, "default": "any", "values": ["placement", "access", "anchor", "coroner", "dead-by", "alive-at", "self", "account", "outside", "placed", "at", "not-at", "described", "absence", "empty", "count", "anchored", "timing", "stranger", "name-only", "together", "apart", "said", "two"], "extraValues": ["any"] },
         "via": { "required": false, "default": "any", "values": ["office", "account"], "extraValues": ["any"] },
         "band": { "required": false, "default": "any", "values": ["teach", "play"], "extraValues": ["any"], "$note": "docs/26: 'teach' for a card that gives a verdict ('That cleared Weisglass.'), dealt only where the pages may give one (Raw and Coddled, and the untiered game); 'play' for a card meant for Poached up only; 'any', the default, everywhere." },
         "who": { "required": false, "default": "any", "values": ["watcher", "client", "known", "stranger"], "extraValues": ["any"] },
@@ -929,7 +929,7 @@
       "tags": {
         "family": { "required": true, "values": ["movements", "counts", "strangers", "event", "knowing", "timing", "evening", "thing"], "extraValues": ["any"] },
         "temper": { "required": true, "values": ["enigma", "plain", "yap"], "extraValues": ["any"] },
-        "knows": { "required": false, "default": "any", "values": ["name", "relation", "sight", "stranger"], "extraValues": ["any"] },
+        "knows": { "required": false, "default": "any", "values": ["name", "relation", "sight", "stranger", "heard"], "extraValues": ["any"], "$note": "heard: playtest round 2, they know the name (a line of their own names the person) and not the face." },
         "polarity": { "required": false, "default": "any", "values": ["seen", "unseen"], "extraValues": ["any"], "$note": "docs/26: 'seen' for a telling in which the witness saw the one it is about ('I saw her…'), 'unseen' for one in which they did not ('He wasn't here.'). The engine reads it off the told sentences." }
       },
       "coverage": [["family", "temper"]]

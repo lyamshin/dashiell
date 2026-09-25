@@ -167,3 +167,17 @@ export const FOLLOW_ON: string[] = [
   'I didn’t close the notebook. “I’m not done,” I said.',
   '“That’s one thing,” I said. I had another.',
 ];
+
+/** Playtest round 2: a walk that found the one to ask, and nothing asked yet. */
+const ASK_HERE_NAMED = [
+  '{name} had sent me to the right door. The one I wanted was here.',
+  'The one I had come to ask was here, where {name} had said.',
+  'I had come on {name}’s word, and the one I wanted was here to be asked.',
+];
+const ASK_HERE = ['The one I had come to ask was here.', 'The one I wanted was here to be asked.'];
+
+/** The answer beat's line when the walk found the person to ask, not yet the answer. */
+export function askHereLine(name: string | undefined, salt: number): string {
+  const lines = name ? ASK_HERE_NAMED : ASK_HERE;
+  return (lines[Math.abs(salt) % lines.length] as string).split('{name}').join(name ?? '');
+}

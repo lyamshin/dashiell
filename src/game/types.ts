@@ -384,6 +384,13 @@ export interface OfferedChoice {
    */
   freeNote?: string;
   /**
+   * Playtest round 2: every call is one call, but the clock keeps to
+   * five-minute marks and still lands on eight, so now and then a call moves
+   * it five minutes less or more than the night's usual (20 against 25, 50
+   * against 55). Such a label says so: "20 min (rounded)".
+   */
+  rounded?: true;
+  /**
    * M9 polish, the confront picker only: the heading the fact sits under (the
    * person or place it is about), everybody it names for the filter, and who
    * said it or where it was found.

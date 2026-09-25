@@ -1645,6 +1645,46 @@
     "status": "generated"
   },
   {
+    "id": "STY-153b",
+    "deck": "story",
+    "text": "{victim} owed {actor} four thousand dollars, and {actor} had given up waiting for it.",
+    "tags": {
+      "beat": "motive",
+      "motive": "debt-owed"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-154b",
+    "deck": "story",
+    "text": "{victim} had owed {actor} four thousand dollars for three months, and the money was past due.",
+    "tags": {
+      "beat": "motive",
+      "motive": "debt-owed"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-168b",
+    "deck": "story",
+    "text": "{actor} had told {victim} that Friday was the end of it, one way or the other.",
+    "tags": {
+      "beat": "motive-color",
+      "motive": "debt-owed"
+    },
+    "status": "generated"
+  },
+  {
+    "id": "STY-394b",
+    "deck": "story",
+    "text": "{victim} had asked {actor} for more time, and been told there was none left.",
+    "tags": {
+      "beat": "motive-color",
+      "motive": "debt-owed"
+    },
+    "status": "generated"
+  },
+  {
     "id": "STY-154",
     "deck": "story",
     "text": "{actor} owed {victim} four thousand dollars, and the money was past due.",

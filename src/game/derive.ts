@@ -49,6 +49,8 @@ export const METHOD_POOL = METHOD_TEMPLATES.map((m) => ({ id: m.id, name: m.name
 export const MOTIVE_POOL = [...MOTIVE_TEMPLATES, ...MUNDANE_MOTIVES, ...AFFAIR_MOTIVES].map((m) => ({
   type: m.type,
   description: m.description,
+  /** The report's words for it: the category, or a menu line that says no direction the case may not have. */
+  menu: ('menu' in m && typeof m.menu === 'string' ? m.menu : undefined) ?? m.description,
 }));
 
 /**
@@ -63,9 +65,9 @@ export function victimWord(type: CaseType): string {
  * M14: the reasons the report offers for a case of this type. A lost dog's
  * report offers spite and pride, not an inheritance; an affair never asks.
  */
-export function motivePoolFor(type: CaseType): { type: string; description: string }[] {
+export function motivePoolFor(type: CaseType): { type: string; description: string; menu: string }[] {
   const pick = type === 'lost-pet' || type === 'lost-item' ? MUNDANE_MOTIVES : type === 'affair' ? AFFAIR_MOTIVES : MOTIVE_TEMPLATES;
-  return pick.map((m) => ({ type: m.type, description: m.description }));
+  return pick.map((m) => ({ type: m.type, description: m.description, menu: ('menu' in m && typeof m.menu === 'string' ? m.menu : undefined) ?? m.description }));
 }
 
 export function topicKey(t: TopicRef): string {
@@ -210,17 +212,19 @@ export function caseParFrom(kase: Case, startId: Id): number {
 }
 
 /**
- * docs/38: the things the notebook knows are not where they belong — the
- * one the case is about (the cat, the watch), and anything a find in hand
- * says is missing. A room's list of things, and its buttons, leave them out:
+ * docs/38: the things that are not where they belong — the one the case is
+ * about (the cat, the watch), and anything a find says is missing, whether
+ * or not the find is in hand yet (playtest round 2). A room's list of things, and its buttons, leave them out:
  * a page never goes through a bottle it has just said was gone.
  */
 export function goneObjects(kase: Case, found: readonly Id[]): Set<Id> {
   const out = new Set<Id>();
   if (kase.act.taken?.id) out.add(kase.act.taken.id);
-  const have = new Set(found);
-  for (const c of kase.findable) {
-    if (!have.has(c.id)) continue;
+  // Playtest round 2: a thing that is gone was never in the room to be
+  // searched, find or no find. The third floor offered "a bottle of chloral
+  // sleeping drops" to search, and the search then said the bottle was gone.
+  void found;
+  for (const c of [...kase.findable, ...kase.candidates]) {
     for (const f of c.establishes) if (f.kind === 'objectMissing') out.add(f.objectId);
   }
   return out;
@@ -628,6 +632,16 @@ export function establishedFrom(view: CaseView, found: Id[], accounts: Id[]): Es
     const base = ticks ?? Array.from({ length: TICKS }, (_, i) => i);
     ticks = base.filter(keep);
   };
+  // Playtest round 2: what the briefing says of the hour is in hand from page
+  // one ("The ginger tomcat went at eleven o'clock"), and "Go over what I
+  // have" never says the hour is not known after the client has said it.
+  if (view.kase.logic) {
+    for (const f of view.kase.act.givens.facts) {
+      if (f.kind !== 'timeOfDeath') continue;
+      const [a, b] = [f.ticks[0] as Tick, f.ticks[f.ticks.length - 1] as Tick];
+      narrow((t) => t >= a && t <= b);
+    }
+  }
 
   for (const id of found) {
     const clue = view.findableById.get(id);

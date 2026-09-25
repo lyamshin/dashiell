@@ -14,7 +14,7 @@ import {
   type Tick,
 } from './types.js';
 import { Rng } from './rng.js';
-import { buildCast } from './cast.js';
+import { buildCast, type Cast } from './cast.js';
 import { buildSetting, type AnchorDraw, type Setting } from './setting.js';
 import { buildSchedules, type ScheduleBuild } from './schedule.js';
 import { deriveCandidates, deriveObservations } from './clues.js';
@@ -35,7 +35,7 @@ import {
   type Dials,
   type ShapeOptions,
 } from './shape.js';
-import type { Clue, Description, Fact, Id as PersonId } from './types.js';
+import type { BriefingLine, ClientBrief, Clue, Description, Fact, Id as PersonId } from './types.js';
 import { assignBlocks } from './logic/travel.js';
 import { buildSchedules9 } from './logic/schedule.js';
 import { buildPool } from './logic/rules.js';
@@ -43,8 +43,8 @@ import { selectLogic, type LogicSelection } from './logic/select.js';
 import { selectV2, type V2Selection } from './v2/select.js';
 import { chooseBook } from './v2/book.js';
 import { checkLogic } from './logic/check.js';
-import { ambiguousDescription, edgesOf } from './logic/acquaint.js';
-import { applyRule } from './logic/lines.js';
+import { ambiguousDescription, edgesOf, knownByTrade, markHeard, type AcqGraph } from './logic/acquaint.js';
+import { applyRule, type LineNames } from './logic/lines.js';
 import { ownTopics } from './topics.js';
 import { OWNABLE_ROOMS } from './coherence.js';
 
@@ -939,6 +939,10 @@ function runLogic(
       // v2: a call more from Medium up, where the night leans on a confession or two (docs/36).
       const slack = logicSlackFor(shape, ladder, selection.par, selection.summary.walk, caseType) + (v2 && typeof shape.tier === 'number' && shape.tier >= 4 ? 1 : 0);
 
+      // Playtest round 2: whoever names somebody in a line of their own knows
+      // the name, and says so when asked, rather than "Never heard of him".
+      nameHeard(cast, build.acq, briefing, clientBrief, [...candidates0(pool, legacy.clues, sigClues), ...selection.findable], pool.names);
+
       const descriptions: Record<PersonId, Description> = {};
       for (const p of cast.suspects) descriptions[p.id] = ambiguousDescription(p, cast.suspects);
       const candidates: Clue[] = [
@@ -1029,4 +1033,98 @@ function runLogic(
     }
   }
   throw new Error(`could not generate a solvable case for seed ${seed}`);
+}
+
+/** Every clue the pool and the trope dealt, before selection: the legacy's, the pool's and the signature. */
+function candidates0(pool: ReturnType<typeof buildPool>, legacy: Clue[], sig: Clue[]): Clue[] {
+  return [
+    ...legacy,
+    ...pool.starting,
+    ...pool.testimony,
+    ...pool.accounts,
+    ...pool.descriptions,
+    ...pool.watch,
+    ...pool.timing,
+    ...pool.knowledge,
+    ...pool.kept,
+    ...pool.material.flatMap((m) => [...m.hints, ...m.traces, ...m.disqualifiers]),
+    ...sig,
+  ];
+}
+
+/** Fact kinds that are a sighting or a person's own word: written from the graph, they name nobody the speaker does not know. */
+const SEEN_KINDS = new Set<Fact['kind']>([
+  'personAt',
+  'personNotAt',
+  'personAtAnchor',
+  'describedAt',
+  'apart',
+  'together',
+  'claims',
+  'acquainted',
+  'countAt',
+  'absentFrom',
+]);
+
+/**
+ * Playtest round 2, bug 1: a line that names a person means its speaker knows
+ * the name. The client knows everybody her briefing names (the pointer above
+ * all); a witness knows whoever their overheard motive or key line names; a
+ * landlady knows who owns property on her block. Each such edge that the roll
+ * or the dig left at a stranger or a face is marked `heard`, and the
+ * witness's answer about that person is rewritten to say they know the name
+ * and not the face. Nothing else moves: the strength, and so every sighting
+ * and the puzzle, is what it was.
+ */
+function nameHeard(cast: Cast, acq: AcqGraph, briefing: BriefingLine[], brief: ClientBrief, clues: Clue[], names: LineNames): void {
+  const person = (id: PersonId) => cast.people.find((p) => p.id === id);
+  const pairs: [PersonId, PersonId][] = [];
+  const add = (from: PersonId, to: PersonId): void => {
+    if (from === to || person(to)?.kind !== 'suspect') return;
+    if (markHeard(acq, from, to)) pairs.push([from, to]);
+  };
+  const client = cast.client;
+  add(client.id, brief.points.personId);
+  const spoken = briefing
+    .filter((l) => l.speaker === 'client')
+    .map((l) => l.spoken ?? l.text)
+    .join(' ');
+  for (const p of cast.suspects) {
+    const esc = p.surname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    if (new RegExp(`(?<!\\p{L})${esc}(?!\\p{L})`, 'u').test(spoken)) add(client.id, p.id);
+  }
+  const seen = new Set<Clue>();
+  for (const c of clues) {
+    if (seen.has(c)) continue;
+    seen.add(c);
+    if (c.source.type !== 'person') continue;
+    for (const f of c.establishes) {
+      if (SEEN_KINDS.has(f.kind)) continue;
+      if ('personId' in f && typeof f.personId === 'string') add(c.source.personId, f.personId);
+    }
+  }
+  for (const f of cast.fixtures) for (const p of cast.suspects) if (knownByTrade(f, p)) add(f.id, p.id);
+  if (pairs.length === 0) return;
+  // Their answer about that person, in every copy the case keeps.
+  for (const c of seen) {
+    if (c.kind !== 'testimony' || c.source.type !== 'person' || !c.about) continue;
+    const from = c.source.personId;
+    const to = c.about;
+    if (!pairs.some(([a, b]) => a === from && b === to)) continue;
+    const i = c.establishes.findIndex((f) => f.kind === 'acquainted');
+    const f = c.establishes[i];
+    if (!f || f.kind !== 'acquainted') continue;
+    c.establishes[i] = { ...f, heard: true };
+    const X = names.who(from);
+    const Y = names.who(to);
+    const text =
+      f.strength === 'sight'
+        ? `${X} knows the name ${Y} and might know the face, but could not say which face goes with the name.`
+        : `${X} knows the name ${Y}, and could not put a face to it.`;
+    c.text = speakTimes(text);
+    c.textRecord = text;
+    delete c.rule;
+    delete c.ruleParts;
+    applyRule(c, '', names);
+  }
 }

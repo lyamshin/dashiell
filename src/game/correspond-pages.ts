@@ -246,6 +246,12 @@ export function ticksOn(view: CaseView, page: Page, found: readonly string[]): T
     if (block.kind !== 'timeline') continue;
     for (const row of block.rows) if (row.placeId !== null) add(row.tick);
   }
+  // Playtest round 2: a watcher's count says every half hour they kept the
+  // door, the ones they give no number for included ("At eight o'clock I
+  // couldn't swear to a number"); the telling's trace carries those hours.
+  for (const b of page.beats ?? []) {
+    if (b.kind === 'telling' && b.rendered && b.tag === 'counts') for (const t of b.ticks ?? []) add(t);
+  }
   // A page that prints somebody's whole claimed evening prints every hour of
   // the evening, and the evening is twelve half hours long.
   for (const block of page.blocks) {

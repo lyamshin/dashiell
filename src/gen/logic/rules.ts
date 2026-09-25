@@ -31,7 +31,7 @@ import type { Setting } from '../setting.js';
 import type { CandidateSet, SecretBranchMaterial } from '../clues.js';
 import type { DeductionDials } from '../shape.js';
 import type { Rng } from '../rng.js';
-import { MOTIVE_BY_TYPE } from '../data/motives.js';
+import { motiveCategory } from '../data/motives.js';
 import { METHOD_TEMPLATES } from '../data/methods.js';
 import type { Schedule9Build } from './schedule.js';
 import { ambiguousDescription, canName, describeAs, genderOf, strengthOf } from './acquaint.js';
@@ -111,7 +111,7 @@ export function buildPool(input: PoolInput): Pool {
     place: placeName,
     anchor: (id) => anchorById.get(id)?.name ?? id,
     method: (id) => (id === setting.method.id ? setting.method.name : (METHOD_TEMPLATES.find((m) => m.id === id)?.name ?? id)),
-    motive: (type) => MOTIVE_BY_TYPE[type]?.description ?? type,
+    motive: (type, personId) => motiveCategory(type, personId ? person(personId)?.relationshipId : undefined),
     object: (id) => setting.objects.find((o) => o.id === id)?.name ?? id,
     them: (id) => (genderOf(person(id)) === 'f' ? 'her' : 'him'),
     victim: who(cast.victim.id),
@@ -369,6 +369,9 @@ export function buildPool(input: PoolInput): Pool {
   }
 
   /* --- 3b. what a watcher can say about their own door ----------------------- */
+  // Playtest round 2: a count says who was there ("there were two at the
+  // Velvet Room besides himself"), never who "came in", which reads as arrivals.
+  const selfOf = (p: Person): string => (genderOf(p) === 'f' ? 'herself' : 'himself');
   const watch: Clue[] = [];
   for (const f of cast.fixtures) {
     if (f.fixtureRole === 'beat-cop' || !f.foundAt) continue;
@@ -391,7 +394,9 @@ export function buildPool(input: PoolInput): Pool {
           { type: 'person', personId: f.id, topic: placeName(post) },
           post,
           [{ kind: 'absentFrom', place: post, ticks: run, except }],
-          `${W} says nobody came into ${placeName(post)} ${spanText(run)}.`,
+          except.length > 1
+            ? `${W} says nobody but ${except.slice(1).map(who).join(' and ')} was at ${placeName(post)} ${spanText(run)}, besides ${selfOf(f)}.`
+            : `${W} says nobody was at ${placeName(post)} ${spanText(run)} but ${selfOf(f)}.`,
           `${W} says so.`,
         ),
       );
@@ -416,7 +421,7 @@ export function buildPool(input: PoolInput): Pool {
             { type: 'person', personId: f.id, topic: placeName(post) },
             post,
             [{ kind: 'absentFrom', place: post, ticks: run, except }],
-            `${W} says nobody but ${who(id)} came into ${placeName(post)} ${spanText(run)}.`,
+            `${W} says nobody but ${except.slice(1).map(who).join(' and ')} was at ${placeName(post)} ${spanText(run)}, besides ${selfOf(f)}.`,
             `${W} says so.`,
           ),
         );
@@ -433,7 +438,7 @@ export function buildPool(input: PoolInput): Pool {
           { type: 'person', personId: f.id, topic: placeName(post) },
           post,
           [{ kind: 'countAt', place: post, tick: t, count: n }],
-          `${W} says ${n === 1 ? 'one person' : `${n} people`} came into ${placeName(post)} at ${clock(t)}, and nobody else.`,
+          `${W} says there ${n === 1 ? 'was one person' : `were ${n} people`} at ${placeName(post)} at ${clock(t)} besides ${selfOf(f)}, and nobody else.`,
           `${W} counted.`,
         ),
       );

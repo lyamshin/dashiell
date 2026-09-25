@@ -856,7 +856,7 @@ export const NOT_HERE = {
   whileHere: 'Any other time I was here, {he} wasn’t.',
   never: '{He} wasn’t here. Not once all evening.',
   neverOnce: '{He} wasn’t here {when}.',
-  neverWhileHere: '{He} never came in, any time I was here.',
+  neverWhileHere: '{He} wasn’t here, any time I was.',
   awayOnly: '{He} wasn’t at {where} {when}.',
   away: '{When}, {he} wasn’t at {where} either.',
   awayPosted: '{When} I was at {where}, and {he} wasn’t there either.',

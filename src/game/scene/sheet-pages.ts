@@ -69,7 +69,7 @@ import {
 } from './sheets.js';
 import { bandOf, isSubjectless, sentencesOf } from './text.js';
 import { settingOf } from './stage.js';
-import { COUNT_WORDS } from './lines.js';
+import { COUNT_WORDS, askHereLine } from './lines.js';
 
 /**
  * One page's sheets: the roll (does this page pay anything off?), the roles
@@ -638,12 +638,16 @@ export function arrivalPage(plan: Plan, stage: Stage, scene: Scene, mark: Mark, 
         case 'answer': {
           if (iA < 0) return null;
           const b = beats[iA] as Extract<Beat, { kind: 'answer' }>;
-          const drawn = deal(stage, 'answer', [(c) => tagIs('answer', c, 'outcome', b.outcome) && !/\blead\b/.test(c.text)], {
-            subject: b.subject,
-            name: b.name,
-          });
-          const text =
-            drawn?.text ??
+          // Playtest round 2: the one to ask is here, and nothing is in hand yet.
+          const drawn = b.askHere
+            ? null
+            : deal(stage, 'answer', [(c) => tagIs('answer', c, 'outcome', b.outcome) && !/\blead\b/.test(c.text)], {
+                subject: b.subject,
+                name: b.name,
+              });
+          const text = b.askHere
+            ? askHereLine(b.name, stage.view.kase.seed + iA)
+            : drawn?.text ??
             (b.outcome === 'found' ? 'It was what I had come for.' : b.outcome === 'dead-end' ? 'It was a dead end.' : 'It was not what I came for.');
           mark(iA, { tag: b.outcome, ...(b.targetId ? { targetId: b.targetId } : {}), text });
           return { text, voice: 'narrator', beats: [iA] };

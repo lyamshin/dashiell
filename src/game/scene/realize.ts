@@ -24,7 +24,7 @@ import { spokenClock } from '../../gen/types.js';
 import type { Block, BeatTrace, ErrandTrace, ProseVoice, SheetUse } from '../types.js';
 import { OTHER_THING } from '../errand.js';
 import { hedged, restates, figuresIn, hourAgrees, introduceNames, nameables, pastTense, pastPredicate, sentencesOf, stripHere, wordCount, isSubjectless, bandOf } from './text.js';
-import { APPROACH, APPROACH_AGAIN, COUNT_WORDS, FOLLOW_ON, OUTDOOR_PLACES, relationPlain, relationWhy, SEARCH_THING_ACTS as THING_ACTS, isPluralPlace } from './lines.js';
+import { APPROACH, APPROACH_AGAIN, COUNT_WORDS, askHereLine, FOLLOW_ON, OUTDOOR_PLACES, relationPlain, relationWhy, SEARCH_THING_ACTS as THING_ACTS, isPluralPlace } from './lines.js';
 import { clueAbout, layerCredit, layerOfClue, layerSentences } from '../voice/plain.js';
 import type { AskStage, Beat, CloseOutcome, Plan, PresencePerson } from './plan.js';
 import type { Thought } from './thought.js';
@@ -695,7 +695,20 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const subject = fam.subjectId ? view.personById.get(fam.subjectId) : undefined;
         const pro = subject ? pronounsOf(subject) : undefined;
         const band = verdictsOn(view) ? 'teach' : 'play';
-        const seen = lastFamily?.family.key === fam.key && (lastFamily.told?.first.some((s) => /\bI saw\b|\bwas (?:here|at|back)\b/.test(s)) ?? false);
+        // Playtest round 2: seen or not is the family's facts, not its words
+        // ("I was at the Velvet Room, and she wasn't there either" is unseen).
+        const famFacts = fam.clueIds.flatMap((id) => view.findableById.get(id)?.establishes ?? []);
+        // And a note after a thought about where somebody was not says nothing
+        // of where they were ("It put him somewhere" after "could not use the
+        // Hallam to account for eleven o'clock").
+        const hostAbsence = (host?.beats ?? []).some((bi) => {
+          const hb = beats[bi];
+          return hb?.kind === 'thought' && (hb.thought.basis === 'not-at' || hb.thought.basis === 'outside');
+        });
+        const seen =
+          !hostAbsence &&
+          lastFamily?.family.key === fam.key &&
+          famFacts.some((f) => (f.kind === 'personAt' || f.kind === 'personAtAnchor') && f.personId === fam.subjectId);
         const polarity = fam.kind === 'movements' ? (seen ? 'seen' : 'unseen') : 'any';
         // A note is said once a night or not at all: never one read already.
         const is = (c: Card, tag: string, want: string): boolean => !dealer.used(c.id) && tagIs('note', c, tag, want);
@@ -881,15 +894,18 @@ export function realize(plan: Plan, stage: Stage, scene: Scene): Realized {
         const slots: Slots = { subject: beat.subject, name: beat.name };
         // docs/26: "His lead had paid for itself" is the book's machinery once
         // the surname turns to a pronoun; an answer card says it plainly or not at all.
-        const drawn = deal(stage, 'answer', [(c) => tagIs('answer', c, 'outcome', beat.outcome) && !/\blead\b/.test(c.text)], slots);
-        const text =
-          drawn?.text ??
+        // Playtest round 2: the one to ask is here, and nothing is in hand yet.
+        const askHere = beat.askHere === true;
+        const drawn = askHere ? null : deal(stage, 'answer', [(c) => tagIs('answer', c, 'outcome', beat.outcome) && !/\blead\b/.test(c.text)], slots);
+        const text = askHere
+          ? askHereLine(beat.name, stage.view.kase.seed + i)
+          : drawn?.text ??
           (beat.outcome === 'found'
             ? 'It was what I had come for.'
             : beat.outcome === 'dead-end'
               ? 'It was a dead end.'
               : 'It was not what I came for.');
-        if (!drawn) gaps.push(`no-card: answer has nothing for ${beat.outcome}`);
+        if (!drawn && !askHere) gaps.push(`no-card: answer has nothing for ${beat.outcome}`);
         const prev = last();
         if (prev && prev.voice !== 'errand' && prev.voice !== 'exchange' && wordCount(prev.text) < 45) {
           prev.text = `${prev.text} ${text}`;
@@ -2451,6 +2467,7 @@ function nameReply(stage: Stage, speaker: Person, subject: Person): string {
   const edge = acquaintanceOf(stage.view.kase, speaker.id, subject.id);
   if (!edge || edge.strength === 'name') return `${subject.name}.`;
   if (edge.strength === 'relation') return `${capitalize(edge.ref)}.`;
+  if (edge.heard) return 'I know the name. That’s as far as it goes.';
   return 'I know who you mean. I know the face.';
 }
 
@@ -2495,7 +2512,7 @@ function familyQuestion(
   if (drawn) return said(drawn.text);
   gaps.push(`no-card: followup has no open question for ${family.kind} × ${order}`);
   const fallback: Record<string, string> = {
-    counts: '“Who came in tonight? All of it.”',
+    counts: '“Who was in here tonight? All of it, half hour by half hour.”',
     strangers: '“And the ones you didn’t know?”',
     timing: anchor ? `“When was ${anchor}?”` : '“When was that?”',
     event: anchor ? `“Who would know about ${anchor}?”` : '“What would anybody there know?”',
@@ -2547,7 +2564,13 @@ function tellingParas(
   const pro = subject ? pronounsOf(subject) : undefined;
   const temper = temperOf(cast, speaker.id);
   const strength = subject && view.kase.logic ? acquaintanceOf(view.kase, speaker.id, subject.id)?.strength : undefined;
-  const knows = strength ?? 'any';
+  // Playtest round 2: somebody who knows the name and not the face ("I know
+  // the name. I couldn't put a face to it.") gets none of the knowing cards
+  // that say the opposite ("I'd have remembered the name"), and a frame of
+  // their own.
+  const nameOnly =
+    family.kind === 'knowing' && subject !== undefined && view.kase.logic !== undefined && acquaintanceOf(view.kase, speaker.id, subject.id)?.heard === true;
+  const knows = nameOnly ? 'heard' : (strength ?? 'any');
   const paras: Omit<Para, 'beats'>[] = [];
   const parts: NonNullable<BeatTrace['parts']> = { told: [] };
   const personIds = [speaker.id, ...(subject ? [subject.id] : [])];
@@ -2641,7 +2664,7 @@ function tellingParas(
   };
   const g = (c: Card, tag: string, want: string): boolean => fits(c) && aboutIt(c) && tagIs('grounding', c, tag, want);
   const exact = (c: Card, tag: string, want: string): boolean => aboutIt(c) && tagOf('grounding', c, tag) === want;
-  const grounding = deal(
+  const grounding = nameOnly ? null : deal(
     stage,
     'grounding',
     [
@@ -2653,14 +2676,14 @@ function tellingParas(
     pro ? { ...pro } : {},
   );
   if (grounding) parts.grounding = grounding.text;
-  else gaps.push(`no-card: grounding has nothing for ${role} × ${family.kind} × ${knows}`);
+  else if (!nameOnly) gaps.push(`no-card: grounding has nothing for ${role} × ${family.kind} × ${knows}`);
 
   /* the tail: attitude, never a fact; not every time */
   let tail: string | undefined;
   // Golden rule 8: flavor is one line at most, and a long answer does without.
   const sentencesSaid = [...told.first, ...(told.follow ? told.second : [])].join(' ').split(/(?<=[.?!])\s+/).length;
   const long = sentencesSaid >= 4;
-  if (!long && dealer.random.chance(TAIL_CHANCE[temper] ?? 0.5)) {
+  if (!long && !nameOnly && dealer.random.chance(TAIL_CHANCE[temper] ?? 0.5)) {
     const t = (c: Card, tag: string, want: string): boolean => tagIs('tail', c, tag, want);
     // No opinion of the victim's habits: they are dead, or gone.
     const aboutVictim = subject?.id === view.victim.id;
