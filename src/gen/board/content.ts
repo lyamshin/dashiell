@@ -61,10 +61,10 @@ export interface UDef {
 
 /** Unwatched places: where a secret goes, or a person who was alone. */
 export const UNWATCHED: UDef[] = [
-  { name: 'the card room over Kessler’s garage', short: 'the card room', street: 'Forsyth Street', kind: 'club', secret: 'a card game he swore he’d given up', honest: 'doing the books' },
+  { name: 'the card room over the Bowery garage', short: 'the card room', street: 'Forsyth Street', kind: 'club', secret: 'a card game {they} swore off at Easter', honest: 'doing the books' },
   { name: 'the back of Sokol’s bakery on Rivington Street, where the numbers are taken', short: 'Sokol’s back room', street: 'Rivington Street', kind: 'club', secret: 'playing the numbers, sworn off at Easter', honest: 'coffee with Sokol' },
   { name: 'the back office of the Eagle Social Club', short: 'the Eagle club office', street: 'Eldridge Street', kind: 'club', secret: 'a meeting with a man who lends money', honest: 'writing letters' },
-  { name: 'the all-night Automat on Delancey Street', short: 'the Automat', street: 'Delancey Street', kind: 'restaurant', secret: 'a meeting she promised her husband she’d never have', honest: 'coffee and a newspaper' },
+  { name: 'the all-night Automat on Delancey Street', short: 'the Automat', street: 'Delancey Street', kind: 'restaurant', secret: 'a meeting {they} promised at home never to have', honest: 'coffee and a newspaper' },
 ];
 
 export const JOBS = [
@@ -87,13 +87,13 @@ export const JOBS = [
 export const VICTIM_JOBS = ['a buildings inspector', 'a pawnbroker', 'a landlord', 'a moneylender', 'an alderman’s clerk', 'a bail bondsman'];
 
 export const MOTIVES = [
-  'he had a file on {them}',
-  '{they} owed him four hundred dollars',
-  'he closed {their} business',
-  'he’d been squeezing {them} for years',
-  'he testified against {their} brother',
-  'he threw {them} out of a lease',
-  'he knew where {they} was in 1921',
+  '{victim} had a file on {them}',
+  '{they} owed {victim} four hundred dollars',
+  '{victim} closed {their} business',
+  '{victim} had been squeezing {them} for years',
+  '{victim} testified against {their} brother',
+  '{victim} threw {them} out of a lease',
+  '{victim} knew where {they} was in 1921',
 ];
 
 export const SMALL_MOTIVES = [

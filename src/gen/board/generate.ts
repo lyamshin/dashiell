@@ -66,7 +66,7 @@ interface Named {
   female: boolean;
 }
 
-function drawNames(rng: Rng, n: number, avoid: string): Named[] {
+function drawNames(rng: Rng, n: number, avoid: string, maleAt = -1): Named[] {
   const out: Named[] = [];
   const used = new Set<string>();
   while (out.length < n) {
@@ -74,7 +74,7 @@ function drawNames(rng: Rng, n: number, avoid: string): Named[] {
     const family = rng.pick(pool.family);
     if (used.has(family) || avoid.includes(family)) continue;
     used.add(family);
-    const female = rng.chance(0.5);
+    const female = out.length === maleAt ? false : rng.chance(0.5);
     out.push({ given: rng.pick(female ? pool.given.female : pool.given.male), family, female });
   }
   return out;
@@ -112,7 +112,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   const bar = rng.pick(K.BARS);
   const rooming = rng.pick(K.ROOMING);
   const u = rng.pick(K.UNWATCHED);
-  const names = drawNames(rng, tags.length + 6, `${bar.name} ${rooming.name} ${u.name}`);
+  const names = drawNames(rng, tags.length + 6, `${bar.name} ${rooming.name} ${u.name}`, murder ? tags.length : -1);
   const nm = (i: number) => names[i] as Named;
   const suspectNames = tags.map((_, i) => nm(i));
   const victimName = nm(tags.length);
@@ -376,7 +376,8 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   tags.forEach((t, i) => {
     const id = ids[i] as PersonId;
     const n = nm(i);
-    const home = lodges.has(id) ? `lodges at ${rooming.short}` : residentAtScene.includes(id) ? `lodges with ${clientName.given} ${clientName.family}` : '';
+    const streets = ['Pitt Street', 'Cannon Street', 'Attorney Street', 'Ridge Street', 'Clinton Street', 'Essex Street'];
+    const home = lodges.has(id) ? `lodges at ${rooming.short}` : residentAtScene.includes(id) ? `lodges with ${clientName.given} ${clientName.family}` : id === C && tier >= 4 ? `lives at ${(placeById.get(H) as Place).short}` : `lives on ${streets[i % streets.length]}`;
     const last = at(id, hL) as PlaceId;
     people.push({
       id,
@@ -386,8 +387,8 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       description: [jobs[i] as string, home].filter(Boolean).join('; '),
       look: looks[i] as string,
       foundAt: last === S ? (tier >= 4 && murder ? H : B) : last,
-      motive: fill(motives[i % motives.length] as string, n),
-      ...(t === 'L' ? { secret: variant === 'pair' ? 'a card game in the back room he swore he’d given up' : u.secret } : {}),
+      motive: fill(motives[i % motives.length] as string, n).replace('{victim}', victimName.family),
+      ...(t === 'L' ? { secret: fill(variant === 'pair' ? `a card game in the back room at ${bar.short}, sworn off at Easter` : u.secret, n) } : {}),
     });
   });
   if (murder) {
@@ -433,7 +434,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       claimOverride.set(`${L}@${hc}`, { place: H, company: [C], reason: `at ${cName.family}’s, the two of us, playing gin` });
     } else {
       // The cover story is somewhere watched, so it collides with a list.
-      const cover = murder ? pick([B, O]) : B;
+      const cover = murder ? pick([B, O]) : company.includes(KP) ? pick([B, R]) : B;
       lies.push({ person: L, hour: hc, kind: 'secret', truth: U, claim: cover });
       claimOverride.set(`${L}@${hc}`, { place: cover, company: [], reason: cover === O ? 'home in my room' : `at ${bar.short}` });
     }
@@ -624,7 +625,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       window,
       scene: S,
       victim: V,
-      why: murder ? ((people.find((p) => p.id === C) as Person).motive as string) : holder.why,
+      why: murder ? ((people.find((p) => p.id === C) as Person).motive as string) : holder.why.replace(/^he /, `${pron(cName).they} `),
       ...(murder ? {} : { whereNow: { place: B, text: `with ${holder.who}, at ${bar.short}` } }),
       finder,
     },
