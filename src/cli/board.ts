@@ -1,12 +1,12 @@
 import { analyse, CASE_TYPES, generateBoard, parseTier, typesFor, type BoardCase, type CaseType } from '../gen/board/index.js';
 import { renderCase } from '../gen/board/render.js';
 import { seed3, seed3Repaired } from '../gen/board/fixtures/seed3.js';
-import { lostWatch } from '../gen/board/fixtures/lost-watch.js';
+import { lostWatch, lostWatchRepaired } from '../gen/board/fixtures/lost-watch.js';
 import { ignoreBrokenPipe, parseArgs } from './args.js';
 
 /**
  * docs/42 §4: `npm run board -- --seed N --tier T [--type murder|lost-item|lost-pet]`
- * prints one small-board case in plain text. `--fixture seed3|seed3-repaired|lost-watch`
+ * prints one small-board case in plain text. `--fixture seed3|seed3-repaired|lost-watch|lost-watch-repaired`
  * prints a hand-built golden instead.
  */
 
@@ -15,9 +15,9 @@ const { flags, values } = parseArgs(process.argv.slice(2));
 const usage =
   'usage: npm run board -- --seed <integer> --tier raw|coddled|poached|soft-boiled|medium|hard-boiled|0..5 ' +
   '[--type murder|lost-item|lost-pet] [--json]\n' +
-  '       npm run board -- --fixture seed3|seed3-repaired|lost-watch\n';
+  '       npm run board -- --fixture seed3|seed3-repaired|lost-watch|lost-watch-repaired\n';
 
-const FIXTURES: Record<string, () => BoardCase> = { seed3, 'seed3-repaired': seed3Repaired, 'lost-watch': lostWatch };
+const FIXTURES: Record<string, () => BoardCase> = { seed3, 'seed3-repaired': seed3Repaired, 'lost-watch': lostWatch, 'lost-watch-repaired': lostWatchRepaired };
 
 const fixture = values.get('fixture');
 if (fixture !== undefined) {

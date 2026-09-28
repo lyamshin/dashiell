@@ -1,16 +1,16 @@
 import { Rng } from '../rng.js';
 import type { BoardCase, CaseType, TierIndex } from './types.js';
-import { buildCase, typesFor } from './generate.js';
-import { analyse, rate, type Analysis } from './path.js';
+import { buildCase, lastVeto, typesFor } from './generate.js';
+import { analyse, rate, refusalShortcut, type Analysis } from './path.js';
 import { checkInvariants, invariantFailures } from './invariants.js';
 import { PAR_TARGET, TIERS } from './tiers.js';
 
 export * from './types.js';
-export { analyse, type Analysis } from './path.js';
+export { analyse, refusalShortcut, type Analysis, type Shortcut } from './path.js';
 export { checkInvariants, invariantFailures } from './invariants.js';
 export { solve, questionsOf } from './solver.js';
 export { techniquesUpTo, TIERS, LADDER, parseTier } from './tiers.js';
-export { typesFor } from './generate.js';
+export { typesFor, REFUSE_SHARE } from './generate.js';
 
 /**
  * docs/42 §1–2: generate, then accept the way Tatham does. A candidate is kept
@@ -28,11 +28,10 @@ export interface Generated {
 export const MAX_ATTEMPTS = 60;
 
 /**
- * Par floor by tier. Raw and Coddled can't reach docs/41's five: one watcher's list, the
- * culprit's account and the scene settle a three-suspect board (docs/41's own Raw example is four
- * with the motive). See docs/42 Built.
+ * Par floor by tier. docs/41 rule 16 says 4 to 5 at Raw (decided 2026-09-28: two watchers, each
+ * clearing one rival), and Coddled is brought to 4 or more the same way. See docs/42.
  */
-export const PAR_FLOOR: Record<TierIndex, number> = { 0: 3, 1: 3, 2: PAR_TARGET[0], 3: PAR_TARGET[0], 4: PAR_TARGET[0], 5: PAR_TARGET[0] };
+export const PAR_FLOOR: Record<TierIndex, number> = { 0: 4, 1: 4, 2: PAR_TARGET[0], 3: PAR_TARGET[0], 4: PAR_TARGET[0], 5: PAR_TARGET[0] };
 
 export function pickType(seed: number, tier: TierIndex): CaseType {
   const rng = new Rng((seed * 2654435761) >>> 0);
@@ -53,6 +52,9 @@ export function reject(c: BoardCase, a: Analysis): string | null {
     if (w.max !== undefined && r.routes.length > w.max) return `rival ${r.id} has ${r.routes.length} routes`;
   }
   if (!a.interaction.ok) return `interaction: ${[...a.interaction.loners, ...a.interaction.settles].join(', ')}`;
+  // Decided 2026-09-28: "confront every liar, name whoever refuses" must not beat par.
+  const sc = refusalShortcut(c, a.par, a.par - 1);
+  if (!sc.fails && !sc.capped) return `the refusal shortcut takes ${sc.cost}, under par ${a.par}`;
   return null;
 }
 
@@ -66,7 +68,7 @@ export function generateBoard(
   for (let attempt = 0; attempt < max; attempt++) {
     const c = buildCase(seed, tier, type, attempt);
     if (!c) {
-      opts.onReject?.('truth');
+      opts.onReject?.(`truth: ${lastVeto}`);
       continue;
     }
     const pre = invariantFailures(checkInvariants(c));

@@ -33,6 +33,7 @@ The designer named four failures:
 
    Slots are whole hours, such as 7, 8, 9 and 10. The board is suspects × hours, and each cell holds one place. The largest board is 5 × 4 = 20 cells, small enough to draw as the in-game grid.
 2. **Places are where people are at night:** home, a bar or speakeasy, a restaurant, a theatre, a club, or work during working hours (a dentist until eight, a bartender all night). Transit is only ever something you pass through. Nobody spends an hour at a kiosk.
+   - *Decided 2026-09-28:* **the evenings must vary.** Deal theatres, picture houses, restaurants and workplaces as well as homes and bars. No two people give the same reason for a move. The culprit and the innocent liar never claim the same place at the same hour.
 3. **People move for reasons, and not often.** A typical evening has one or two moves, each with a reason that gets said: "I closed up at eight and went for a drink."
 
 ### Accounts: whole, with company
@@ -45,20 +46,23 @@ The designer named four failures:
 
 7. **Every lie collides with something true.** A lie claims a place at an hour, and at least one truthful account or watcher at that place and hour doesn't include the liar. No lie is a gap, and no lie is undetectable.
 8. **The culprit lies about the crime hour,** and about the means if needed. They never confess. Put to them, they refuse or tell a second lie, and the second lie collides too. One exception: in a case that isn't a murder, at Raw through Poached, the culprit may crack after a second lie breaks. A nephew who pawned a watch isn't a killer.
-9. **One innocent may lie (from Poached up),** about one hour, to hide a secret: a card game, an affair, a debt. Put to them, they admit it, and the admission places them truthfully. That keeps lying from being a tell.
+9. **One innocent may lie (from Poached up),** about one hour, to hide a secret: a card game, an affair, a debt. Put to them, they admit it, and name someone who can say so. That keeps lying from being a tell.
+   - *Decided 2026-09-28 (after reading seed 3 at Medium):* **an admission is checked, not believed.** The culprit's second lie looks just like it. So the admission names company or a watched place, and the check is what places them. "Nothing collides, so it's true" holds only once a claim can be checked and has been.
+   - *Decided 2026-09-28:* **refusing isn't a tell either.** When the secret is worse than the suspicion, an innocent refuses as the culprit does, and a list or another account clears them instead. The solver never treats a refusal as evidence. A player who confronts every liar and names whoever refuses must not beat par.
+   - *Decided 2026-09-28:* **an innocent lie is only dealt when it matters.** Nothing else may place the liar at that hour, so until the lie is resolved they're still a rival.
 10. **Two people lie together only at Hard-boiled,** as the tier's signature: a matched pair of stories that agree with each other and collide with a watcher.
 
 ### Means take time
 
 11. **Every weapon has an origin:** a place and an hour when it could be picked up. Chloral sits on a landlady's shelf or in a dentist's cabinet. A gun belongs to someone, and it's in a drawer until somebody takes it.
 12. **The culprit was at the origin before the crime.** At least one innocent was too, and that innocent is the rival the player has to rule out. The scene tells the player where the weapon came from, for example by a label on the bottle or a gun that's registered to someone.
-13. **Weapons act on real time.** Chloral takes twenty minutes to an hour, so it went into the drink before he was found asleep. A gun is fired where it's heard. The coroner's window covers one or two hours, and the scene or a sighting of the victim alive narrows it.
+13. **Weapons act on real time.** Chloral takes twenty minutes to an hour, so it went into the drink before he was found asleep. A gun is fired where it's heard. The coroner's window covers one or two hours, and the scene or a sighting of the victim alive narrows it. The office says the window in the board's own hours ("at nine or ten o'clock"), and never names an hour the board doesn't have.
 
 ### The solve
 
 14. **The answer is unique.** After every lie is resolved, exactly one person had access to the means **and** has no true account for the crime hour. The generator checks this with a solver on the small board. Motive matters for the report, but several people have one (Clue-style), so it never settles who.
 15. **Every clue interacts.** Each clue shares a person, place or hour with at least one other clue, and no clue settles the case alone.
-16. **The designed path is 5 to 9 questions,** because one question returns a whole account or a whole watcher's list. Par is that path. The night's budget is par + 3 at Raw, down to par + 1 at Hard-boiled.
+16. **The designed path is 5 to 9 questions** (4 to 5 at Raw), because one question returns a whole account or a whole watcher's list. Par is that path. The night's budget is par + 3 at Raw, down to par + 1 at Hard-boiled.
 17. **Low tiers are wide, high tiers narrow.** At Raw every rival falls two ways, for example two watchers or a watcher plus an account. At Hard-boiled each rival falls one way.
 
 ### Where to start
@@ -87,7 +91,7 @@ The designer named four failures:
 
 | tier | what's new |
 |---|---|
-| Raw | Accounts and one watcher. The culprit's lie collides with the watcher. Time of death given exactly. |
+| Raw | Accounts and **two watchers, each clearing one rival** (decided 2026-09-28; one watcher made Raw a three-question night). The culprit's lie collides with a watcher. Time of death given exactly. |
 | Coddled | Means with lead time: who could have got the weapon? |
 | Poached | One innocent liar with a secret. |
 | Soft-boiled | Time of death is a window. The last sighting of the victim alive narrows it. |
@@ -97,6 +101,8 @@ The designer named four failures:
 ## Worked example: seed 3, the Sirkin case, at Medium
 
 *The same victim, people and places as the old seed 3, rebuilt on the small board.*
+
+*Note, 2026-09-28: as written, this example predates the decisions above. Here Hargrove sees Vitale in the back room, so Vitale's lie never matters. His admission is taken on his word. He and Marchetti are together at seven and at ten. And Mrs. Rafferty's "nobody but me" makes it rate Raw. The repaired version is `seed3Repaired` (`npm run board -- --fixture seed3-repaired`): Hargrove can't see the back room, Vitale names Shoes, who deals the game, Marchetti works the switchboard until eight, and Mrs. Rafferty goes to bed at half past eight. It rates Medium, with par 7. See the note at the top of `docs/golden/small-board-seed3.md`.*
 
 **The givens (the office).** Hauck, the client, is Sirkin's sister-in-law. Sirkin, a buildings inspector, was found dead in his walk-up over the drugstore on Grand Street at half past eleven, by Crowninshield. The police called it a fall. The coroner says chloral in a drink, dead between nine and ten. Hauck points at Steinbach, who blamed Sirkin for his ruin.
 

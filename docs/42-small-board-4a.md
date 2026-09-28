@@ -202,7 +202,7 @@ It also runs invariant checks, and none may fail:
 
 ### Deviations, and why
 
-1. **Par at Raw and Coddled is 3–4, not 5–9.** With one watcher, three suspects and width 2, the watcher's list clears both rivals and breaks the lie, so the scene, the list and the culprit's account settle it. docs/41's own Raw example is four with the motive. The accept floor is 3 at Raw and Coddled, and 5 above.
+1. **Par at Raw and Coddled is 3–4, not 5–9.** With one watcher, three suspects and width 2, the watcher's list clears both rivals and breaks the lie, so the scene, the list and the culprit's account settle it. docs/41's own Raw example is four with the motive. The accept floor is 3 at Raw and Coddled, and 5 above. *(Superseded: two watchers now, and the floor is 4. See Decisions applied.)*
 2. **Lost items are built at Raw to Poached only.**
    - A window needs an honest last sighting of the thing away from the scene.
    - A pet has one: the neighbour kept him for an hour, and the office names her.
@@ -211,25 +211,97 @@ It also runs invariant checks, and none may fail:
 4. **Company-only witnesses must be named before they can be asked,** by a list, an account's company, or the office. Once named, they're taken as truthful (rule 10). Nobody can ask for a person they've never heard of, and the goldens reach Mr. Pulaski this way.
 5. **Rule 15's "shares an hour" is vacuous,** because every whole account covers every hour. The check is stricter: every question on the path must feed a deduction that uses another question, and no single question may settle who.
 6. **Walks** count changes of place starting from the office. A person is found at their last hour's place, or at home when that place is the scene.
-7. **The generator's evenings use homes, bars, clubs and an all-night Automat.** Work places and theatres exist in the types and the opening-hours invariant, and the seed 3 fixture has a surgery, but no generated case uses one yet.
+7. **The generator's evenings use homes, bars, clubs and an all-night Automat.** Work places and theatres exist in the types and the opening-hours invariant, and the seed 3 fixture has a surgery, but no generated case uses one yet. *(Superseded: see Decisions applied, decision 4.)*
 
 ### Where I think docs/41's rules go wrong
 
 1. **A refusal is a tell.** Rule 9 has innocents always admit, and rule 8 has the culprit never admit. So from Poached up, a player can confront each caught liar and name the one who refuses.
    - Measured on 60 seeds a tier, that beats par by a median of 1–2 questions (up to 3).
    - It skips the tier's signature step, usually the rivals' clearing.
-   - The fix is the designer's choice. For example, an innocent with a worse secret also refuses, and something else has to place them.
+   - The fix is the designer's choice. For example, an innocent with a worse secret also refuses, and something else has to place them. *(Decided that way: see Decisions applied, decision 1.)*
 2. **Below Poached, only the culprit lies,** so any caught lie names them. At Coddled, a player who knows the ladder can skip the access question (it saves at most one).
 3. **"Nothing collides, so it's true"** (the lost watch) needs a closed world. It's only sound once the company has been asked.
 4. **Rule 7's "a list lacks the liar" and Medium's "somewhere nobody watches" pull against each other in the golden.** A landlady who says "nobody but me" is a watcher. For Medium, the house must be unwatched at that hour.
-5. **The innocent liar is only a real rival if nothing else places them.** In both goldens a list already does, so their confrontation is decoration. The generator puts the innocent liar somewhere unwatched, so only the admission places them.
+5. **The innocent liar is only a real rival if nothing else places them.** In both goldens a list already does, so their confrontation is decoration. The generator puts the innocent liar somewhere unwatched, so only the admission places them. *(Decided, and now an invariant: see decision 2.)*
 
 ### What's open
 
 - **4b:** the book, the pages, the UI, and a blind LLM playtest (`npm run play`). A solver's par isn't a player's.
 - The prose is templates:
   - reasons, second lies and admissions are one-liners;
-  - the culprit and the innocent liar often claim the same bar at the same hour, which reads alike across seeds (small cases from Soft-boiled vary it with the neighbour's house).
-- Work places and theatres in generated evenings (work only during its hours, "closed up at eight").
+  - the culprit and the innocent liar often claim the same bar at the same hour, which reads alike across seeds (small cases from Soft-boiled vary it with the neighbour's house). *(Fixed: see decision 4.)*
+- Work places and theatres in generated evenings (work only during its hours, "closed up at eight"). *(Done: see decision 4.)*
 - Lost items above Poached, if the designer wants them, need an honest last-sighting device.
-- Rules problems 1 and 2 above need a decision before 4b. Until then, the Tatham ratings assume a player who doesn't use those shortcuts.
+- Rules problems 1 and 2 above need a decision before 4b. Until then, the Tatham ratings assume a player who doesn't use those shortcuts. *(Problem 1 is decided. Problem 2, "below Poached a caught lie names the culprit", is still open.)*
+
+## Decisions applied
+
+*2026-09-28, branch `board-decisions`. This applies the four decisions marked "Decided 2026-09-28" in docs/41, plus two flaws found reading `npm run board -- --seed 3 --tier medium`. Nothing in `src/game`, `src/ui` or the decks changed.*
+
+1. **Refusing isn't a tell.**
+   - An innocent liar either admits or refuses. A refuser is cleared by the keeper of the place they were really at (a list, `ukeeper`), who comes on at the lied hour.
+   - The solver never uses a refusal. `solve(…, { tell: true })` exists only to measure the shortcut: catch every liar, put it to each of them, and name the one who won't own up. `refusalShortcut` in `path.ts` computes it.
+   - Acceptance rejects any case where the shortcut costs less than par. The sweep reports its median and maximum gain.
+   - The refusing share is `REFUSE_SHARE` in `generate.ts`, tuned by the sweep:
+     - Poached: 0.4, small cases only. In a Poached murder a refusal leaves the confrontation nothing to do, so the case rates Coddled. In a small case the barman then doesn't see the handover, and the culprit's crack is the only word on where the thing is.
+     - Soft-boiled and Medium: 0.5.
+     - Hard-boiled: always. With one route per rival, an admission's check costs a question the shortcut skips, so every admitting case let the shortcut win by one. The pair's liar covers for the culprit and refuses too.
+2. **An innocent lie is dealt only when it matters.**
+   - The new `lieMatters` invariant: nothing places the liar at the lied hour but its resolution, which is the admission and its check, or for a refuser the one list that clears them. Without the resolution the liar stays uncleared (solver, crime hour known), and the liar had access.
+   - The generator rejects anything else. For example, nobody else may be at the liar's secret place at that hour.
+3. **Raw: two watchers, each clearing one rival.**
+   - Raw now has the venue's watcher and a second one at the rooming house (a landlady) or, in small cases, a night shift or a second venue. One innocent is at each at the crime hour, and the culprit's lie claims one of them.
+   - Each rival's second route is a company-only regular at the same place.
+   - Par is 4 at Raw (the floor is now 4).
+   - Coddled uses the same means. The rival sits at the second watched place, and the culprit claims the other, so par is 4 and the case still rates Coddled.
+4. **Varied evenings.**
+   - The night venue is a bar, club, restaurant or picture house or theatre (`VENUES`).
+   - The murder origin at Coddled and Medium can be a workplace open only in working hours: a dental surgery (the dentist is a suspect and works until it shuts), a pharmacy or a pawnshop, with the desk as its watcher.
+   - Small cases at Raw and Coddled can use a night shift (the exchange, a bakery, a night desk).
+   - The secret places include the back row of a picture house and a print shop's night shift.
+   - Reasons for moves are drawn once per case from pools by the kind of place (`REASONS`). The `distinctReasons` invariant compares them with names, places, hours and pronouns stripped.
+   - The culprit and the innocent liar never claim the same place at the same hour, the second lie included. The one exception is the office's own party, which it hands over as a given. `liarsApart` checks this. To make it possible, a murder with an innocent liar gives the means two hours at its origin, which puts the crime at ten from Soft-boiled up, and the two visit at different hours.
+   - Places print when they shut ("open until nine") or nothing, never a range. The Automat is "open all night" and no longer "open 7–10".
+5. **An admission is checked, not believed** (from the reading of seed 3 at Medium).
+   - An admission carries no board facts. It names the person who was with them (`Confrontation.names`), and only that person can then be asked.
+   - That person's account places them. They're at their own rooms (`offBoard`) except at the lied hour, so nothing else names them.
+   - The solver takes up company-only witnesses as they're named, admissions included. `admissionChecked` checks all of this.
+6. **The window fits the board** (same reading).
+   - The office now says the window in board hours ("at nine or ten o'clock"), not "between nine and eleven".
+   - `Givens.window` records what it says, and `windowFits` checks that it matches the crime's window and lies on the board.
+
+**The fixtures.** `seed3Repaired` now meets every rule and rates Medium with par 7, the golden's own count. `lostWatchRepaired` is new: it meets every rule and rates Poached, with par 8 and Szabo refusing. The notes at the top of both goldens record what the solver found and whether the repair matches.
+
+**The sweep** (`npm run board-sweep -- --tier all --n 200`, seeds 1–200):
+
+| tier | generated | tries | par median [range] | rated at tier | routes per rival, mean (1 : 2 : 3 : 4+) |
+|---|---|---|---|---|---|
+| Raw | 100% | 1.0 | 4 [4–4] | 100% | 2.92 (0 : 94 : 242 : 64) |
+| Coddled | 100% | 1.1 | 4 [4–4] | 100% | 2.45 (0 : 110 : 90 : 0) |
+| Poached | 100% | 1.4 | 7 [5–7] | 100% | 1.50 (200 : 200 : 0 : 0) |
+| Soft-boiled | 100% | 2.2 | 7 [5–7] | 100% | 1.50 (200 : 200 : 0 : 0) |
+| Medium | 100% | 1.8 | 6 [5–8] | 100% | 1.50 (200 : 200 : 0 : 0) |
+| Hard-boiled | 100% | 1.6 | 6 [6–6] | 100% | 1.00 (600 : 0 : 0 : 0) |
+
+| tier | shortcut gain, median / max | shortcut names nobody | liars refuse : admit | place kinds dealt | duplicate reasons | culprit and liar, same place and hour | invariant failures |
+|---|---|---|---|---|---|---|---|
+| Raw | 0 / 0 | 0 | — | home 146, bar 68, club 30, restaurant 62, theatre 68, work 26 | 0 | 0 | 0 |
+| Coddled | 0 / 0 | 0 | — | home 74, bar 69, club 126, restaurant 108, theatre 103, work 120 | 0 | 0 | 0 |
+| Poached | 0 / 0 | 46 | 46 : 154 | home 200, bar 67, club 117, restaurant 91, theatre 94, work 31 | 0 | 0 | 0 |
+| Soft-boiled | 0 / 0 | 89 | 89 : 111 | home 200, bar 55, club 124, restaurant 89, theatre 98, work 34 | 0 | 0 | 0 |
+| Medium | 0 / 0 | 127 | 127 : 73 | home 377, bar 76, club 129, restaurant 78, theatre 87, work 53 | 0 | 0 | 0 |
+| Hard-boiled | none (it names nobody in every case) | 200 | 124 : 0 | home 400, bar 66, club 121, restaurant 65, theatre 105, work 43 | 0 | 0 | 0 |
+
+- **How to read the shortcut columns.**
+  - Where more than one liar refuses, the shortcut names nobody.
+  - Where it can name someone, it never costs less than par.
+  - At Raw and Coddled only the culprit lies, so the shortcut is "catch the lie and put it to them". That ties par, since the confrontation costs what the second watcher's list does.
+- **Worth reading:**
+  - `npm run board -- --seed 2 --tier raw`: a canary, a saloon, and a night desk, with two watchers who each clear one rival.
+  - `npm run board -- --seed 1 --tier poached --type murder`: Quill admits and names Rosenbaum, and Rosenbaum's account clears her.
+  - `npm run board -- --seed 4 --tier poached`: Mosley refuses, the usher at the Palace clears her, and Feeney's crack says where the dog is.
+- **Still open:**
+  - Coddled par is 4 at every seed, at the bottom of "about 4 to 6".
+  - Rules problem 2 (below Poached, a caught lie names the culprit) is undecided.
+  - Hard-boiled has no admissions.
+  - At Soft-boiled and up, a murder with an innocent liar always happens at ten.

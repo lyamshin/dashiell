@@ -1,7 +1,7 @@
 import type { Account, BoardCase, Hour, PersonId, PlaceId, WatchList } from './types.js';
 import { TIER_NAMES } from './types.js';
 import type { Analysis } from './path.js';
-import { minimalSets } from './path.js';
+import { minimalSets, refusalShortcut } from './path.js';
 import { fmtHour, key, questionById, questionsOf, solve } from './solver.js';
 import { techniquesUpTo, TIERS, LADDER } from './tiers.js';
 import { checkInvariants, invariantFailures } from './invariants.js';
@@ -42,7 +42,14 @@ export function renderCase(c: BoardCase, a: Analysis): string {
   for (const p of c.places) {
     const w = c.lists.filter((l) => l.place === p.id).map((l) => pname(l.watcher));
     const used = hours.some((h) => Object.values(c.board.rows).some((r) => r[h] === p.id));
-    line(`  ${p.name} (${p.kind}${p.kind !== 'home' ? `, open ${p.open[0]}–${p.open[1]}` : ''})${p.scene ? ' [the scene]' : ''}${w.length ? ` [watched by ${w.join(', ')}]` : ''}${used ? '' : ' [off the board: only a lie goes there]'}`);
+    line(`  ${p.name} (${p.kind}${openText(p.open)})${p.scene ? ' [the scene]' : ''}${w.length ? ` [watched by ${w.join(', ')}]` : ''}${p.offBoard ? ' [off the board: a witness’s own rooms]' : used ? '' : ' [off the board: only a lie goes there]'}`);
+  }
+  // A board hour is the hour from that o'clock. Say when a place shuts, not a range that reads
+  // as if the all-night Automat closed at ten.
+  function openText(o: [Hour, Hour]): string {
+    const from = o[0] > (hours[0] as Hour) ? ` from ${fmtHour(o[0])}` : '';
+    const till = o[1] < (hours[hours.length - 1] as Hour) ? ` until ${fmtHour(o[1] + 1)}` : '';
+    return from || till ? `, open${from}${till}` : '';
   }
 
   rule('The true board');
@@ -94,6 +101,11 @@ export function renderCase(c: BoardCase, a: Analysis): string {
       const es = l.entries[h];
       if (!es) {
         rows.push(`    ${String(h).padStart(2)}  (can't say)`);
+        continue;
+      }
+      const pl = place(l.place);
+      if (pl && (h < pl.open[0] || h > pl.open[1])) {
+        rows.push(`    ${String(h).padStart(2)}  Closed. Nobody.`);
         continue;
       }
       const names = es.map((e) => ('person' in e ? pname(e.person) : `somebody ${e.look} I didn't know`));
@@ -148,6 +160,14 @@ export function renderCase(c: BoardCase, a: Analysis): string {
   line(`  Rated ${a.rating === null ? 'unsolvable' : TIER_NAMES[a.rating]} (Tatham: the lowest tier whose techniques finish). Built for ${TIER_NAMES[c.tier]}, whose new technique is ${newAt}.`);
   line(`  Budget: par ${a.par} + ${TIERS[c.tier].slack} = ${a.budget}.`);
   line(`  Interaction: ${a.interaction.ok ? 'every clue joins another; no single question settles who' : `loners ${a.interaction.loners.join(', ') || 'none'}; settles alone ${a.interaction.settles.join(', ') || 'none'}`}.`);
+  if (Number.isFinite(a.par)) {
+    const sc = refusalShortcut(c, a.par);
+    line(
+      `  Refusal shortcut (put it to every liar, name whoever won't own up): ${
+        sc.fails ? 'names nobody, since more than one refuses' : `${sc.capped ? 'more than ' + (sc.cost! - 1) : sc.cost} questions, a gain of ${sc.capped ? 'at most ' : ''}${sc.gain} on par`
+      }.`,
+    );
+  }
   const inv = invariantFailures(checkInvariants(c));
   line(`  Invariants: ${inv.length === 0 ? 'all hold' : ''}`);
   for (const x of inv) line(`    ✗ ${x}`);

@@ -170,6 +170,8 @@ export function seed3(): BoardCase {
       facts: [],
       access: [],
       pointer: 'steinbach',
+      // "Between nine and ten": the nine o'clock hour, on the board.
+      window: [9],
     },
     lies: [
       { person: 'marchetti', hour: 9, kind: 'culprit', truth: 'walkup', claim: 'rafferty' },
@@ -190,19 +192,128 @@ export const SEED3_GOLDEN_PATH = [
 ];
 
 /**
- * The smallest repair that makes seed 3 a Medium case: Mrs. Rafferty went up to bed at half past
- * eight, so her list stops at eight and only her side remark ("she went out at a quarter to nine")
- * breaks Marchetti's "home all evening".
+ * Seed 3 repaired to the rules as they stand (docs/41, with the decisions of 2026-09-28):
+ * - Mrs. Rafferty went up to bed at half past eight, so her list stops at eight and only her side
+ *   remark ("she went out at a quarter to nine") breaks Marchetti's "home all evening". It rates
+ *   Medium.
+ * - An innocent lie only when it matters: Hargrove can't see into the back room, which is its own
+ *   place, so nothing but Vitale's admission and its check places him at nine. He says he was out
+ *   front, which Hargrove's list breaks.
+ * - An admission is checked, not believed: Vitale names Shoes, who deals the game, and Shoes'
+ *   account places him.
+ * - The culprit and the innocent liar never claim one place at one hour: Marchetti is on the
+ *   switchboard at the exchange until eight (a workplace in working hours), and Vitale goes home at
+ *   ten instead of back to the bar.
+ * The golden path's seven questions, with Shoes for the golden's "put it to Vitale", is par again.
  */
 export function seed3Repaired(): BoardCase {
   const c = seed3();
   c.id = 'golden-seed3-repaired';
-  const r = c.lists.find((l) => l.watcher === 'rafferty');
-  if (r) {
-    delete r.entries[9];
-    delete r.entries[10];
-    const side = r.remarks[0];
-    if (side) side.text = 'Miss Marchetti went out, a quarter to nine, in her good coat, just as I went up to bed. I heard her come in after eleven.';
-  }
+  c.places.push(
+    { id: 'exchange', name: 'the telephone exchange on Spring Street', short: 'the exchange', kind: 'work', open: [7, 7], street: 'Spring Street' },
+    { id: 'backroom', name: 'the back room at the Velvet Room, through a door behind the bar', short: 'the back room', kind: 'club', open: [7, 10], street: 'Elizabeth Street' },
+  );
+  c.people.push({ id: 'shoes', name: 'a man called Shoes', short: 'Shoes', role: 'company', description: 'deals the Friday game in the back room', foundAt: 'backroom' });
+  c.board.rows = rows(HOURS, {
+    marchetti: ['exchange', 'rafferty', 'walkup', 'velvet'],
+    steinbach: ['rafferty', 'velvet', 'velvet', 'velvet'],
+    vitale: ['rafferty', 'velvet', 'backroom', 'vitale-home'],
+    crowninshield: ['surgery', 'surgery', 'velvet', 'velvet'],
+    sirkin: ['walkup', 'velvet', 'walkup', 'walkup'],
+    shoes: ['backroom', 'backroom', 'backroom', 'backroom'],
+  });
+  c.board.reasons = {
+    marchetti: { 8: 'came off the switchboard at eight and went home', 9: 'went out at a quarter to nine, in her good coat, with the chloral in her bag', 10: 'a nightcap' },
+    steinbach: { 8: 'went out for a drink after his lesson' },
+    vitale: { 8: 'a drink', 9: 'through to the back room for the Friday game', 10: 'went home, cleaned out' },
+    crowninshield: { 9: 'closed the surgery at half past eight and went for a drink' },
+    sirkin: { 8: 'his rye at the Velvet Room', 9: 'left before nine: he had company coming' },
+  };
+  c.accounts = [
+    account('marchetti', {
+      7: ['exchange', [], 'on the switchboard till eight'],
+      8: ['rafferty', [], 'came home at eight'],
+      9: ['rafferty', [], 'in my room, with a book'],
+      10: ['velvet', ['steinbach', 'crowninshield'], 'about ten I went over for a nightcap'],
+    }),
+    account('steinbach', {
+      7: ['rafferty', ['vitale'], 'a lesson in my room'],
+      8: ['velvet', ['vitale', 'sirkin'], 'went out for a drink after the lesson'],
+      9: ['velvet', ['crowninshield']],
+      10: ['velvet', ['crowninshield', 'marchetti'], 'stayed till closing'],
+    }),
+    account('vitale', {
+      7: ['rafferty', ['steinbach'], 'went up to see Steinbach about what he owes'],
+      8: ['velvet', ['steinbach', 'sirkin'], 'one drink'],
+      9: ['velvet', [], 'out front, nursing a beer'],
+      10: ['vitale-home', [], 'went home; I keep hours'],
+    }),
+    account(
+      'crowninshield',
+      {
+        7: ['surgery', []],
+        8: ['surgery', [], 'till half past eight'],
+        9: ['velvet', ['steinbach'], 'shut the surgery and came for a drink'],
+        10: ['velvet', ['steinbach', 'marchetti']],
+      },
+      [{ text: 'I left at eleven and stopped at Sirkin’s with the money I owed. The door was open.', facts: [], side: false }],
+    ),
+    account('shoes', {
+      7: ['backroom', []],
+      8: ['backroom', []],
+      9: ['backroom', ['vitale'], 'the Friday game'],
+      10: ['backroom', []],
+    }),
+  ];
+  c.lists = [
+    list(
+      'hargrove',
+      'velvet',
+      { 8: ['sirkin', 'steinbach', 'vitale'], 9: ['steinbach', 'crowninshield'], 10: ['steinbach', 'crowninshield', 'marchetti'] },
+      [{ text: 'Sirkin left before nine, said he had company coming. What goes on behind the back-room door is Shoes’ business, not mine.', facts: [], side: false }],
+    ),
+    list(
+      'rafferty',
+      'rafferty',
+      { 7: ['steinbach', 'vitale'], 8: ['marchetti'] },
+      [
+        {
+          text: 'Miss Marchetti came in from the exchange at eight, and went out again at a quarter to nine, in her good coat, just as I went up to bed. I heard her come in after eleven.',
+          facts: [
+            { k: 'notAt', p: 'marchetti', h: 9, place: 'rafferty' },
+            { k: 'notAt', p: 'marchetti', h: 10, place: 'rafferty' },
+          ],
+          side: true,
+        },
+        { text: 'The chloral on the hall shelf was there at supper and gone when I went up to bed.', facts: [], side: false },
+      ],
+    ),
+  ];
+  c.confrontations = [
+    {
+      person: 'vitale',
+      hour: 9,
+      response: 'admit',
+      text: 'All right. There’s a game in the back room on Fridays. I was at that table from nine until ten, losing to a man called Shoes. Ask him.',
+      facts: [],
+      names: ['shoes'],
+    },
+    ...c.confrontations.filter((k) => k.person === 'marchetti'),
+  ];
+  c.lies = [
+    { person: 'marchetti', hour: 9, kind: 'culprit', truth: 'walkup', claim: 'rafferty' },
+    { person: 'vitale', hour: 9, kind: 'secret', truth: 'backroom', claim: 'velvet' },
+  ];
   return c;
 }
+
+/** The golden path on the repaired case: the golden's seven, with Shoes for the check. */
+export const SEED3_REPAIRED_PATH = [
+  'search:table',
+  'list:rafferty',
+  'list:hargrove',
+  'account:vitale',
+  'confront:vitale@9',
+  'account:shoes',
+  'account:marchetti',
+];

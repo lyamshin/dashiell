@@ -174,6 +174,8 @@ export function lostWatch(): BoardCase {
       ],
       access: ['oskar'],
       pointer: 'pulaski',
+      // Wound at nine, gone by eleven: the nine and ten o'clock hours, both on the board.
+      window: [9, 10],
     },
     lies: [
       { person: 'oskar', hour: 10, kind: 'culprit', truth: 'flat', claim: 'shamrock' },
@@ -182,6 +184,123 @@ export function lostWatch(): BoardCase {
       { person: 'szabo', hour: 11, kind: 'secret', truth: 'shamrock', claim: 'szabo-home' },
     ],
   };
+}
+
+/**
+ * The lost watch repaired to the rules as they stand (docs/41, with the decisions of 2026-09-28):
+ * - Szabo lies about one hour (ten), not three.
+ * - An innocent lie only when it matters: the Thursday game is in the Shamrock's back room, which
+ *   Mulcahy can't see, so no list places Szabo at ten. He was at the Lyric with Mrs. Gilchrist at
+ *   nine and says he stayed; her account, which the office confirms, breaks it.
+ * - Refusing isn't a tell: Szabo's secret is worse to him than the suspicion, so he refuses, as
+ *   Oskar does. Kasper, who deals the game, clears him instead: Mulcahy saw Kasper out front at
+ *   eight, so he can be asked, and his account is the only thing that places Szabo at ten.
+ * - Mulcahy sees Oskar go to Lou's booth but not what changed hands, so where the watch is now
+ *   comes from Oskar's crack (rule 8), and the case still needs Poached's confrontation.
+ * - The culprit and the innocent liar never claim one place at one hour: Szabo is never at the
+ *   Shamrock's front room, where Oskar spends the evening.
+ * The janitor's blind spot stays: it's the golden's, and the decisions don't touch it.
+ */
+export function lostWatchRepaired(): BoardCase {
+  const c = lostWatch();
+  c.id = 'golden-lost-watch-repaired';
+  c.places.push({ id: 'backroom', name: 'the back room at the Shamrock, where Kasper deals on Thursdays', short: 'the back room', kind: 'club', open: [8, 11], street: 'Avenue B' });
+  c.people.push({ id: 'kasper', name: 'Kasper', short: 'Kasper', role: 'company', description: 'deals the Thursday game in the Shamrock’s back room', foundAt: 'backroom' });
+  const szabo = c.people.find((p) => p.id === 'szabo');
+  if (szabo) szabo.foundAt = 'szabo-home';
+  c.board.rows = rows(HOURS, {
+    oskar: ['shamrock', 'shamrock', 'flat', 'shamrock'],
+    pulaski: ['flat', 'pulaskis', 'pulaskis', 'pulaskis'],
+    szabo: ['flat', 'lyric', 'backroom', 'szabo-home'],
+    gilchrist: ['flat', 'lyric', 'lyric', 'lyric'],
+    mrpulaski: ['pulaskis', 'pulaskis', 'pulaskis', 'pulaskis'],
+    kasper: ['shamrock', 'backroom', 'backroom', 'backroom'],
+    watch: ['flat', 'flat', 'flat', 'shamrock'],
+  });
+  c.board.reasons = {
+    oskar: { 10: 'went up to the flat for ten minutes', 11: 'back to the Shamrock, straight to Lou’s booth' },
+    pulaski: { 9: 'back across the hall after cards' },
+    szabo: { 9: 'the pictures, to keep Adele company', 10: 'slipped out of the picture for the game', 11: 'home to bed, cleaned out' },
+    gilchrist: { 9: 'to the pictures with Adele' },
+    kasper: { 9: 'opened the game in the back room' },
+  };
+  c.accounts = [
+    account('oskar', {
+      8: ['shamrock', ['kasper']],
+      9: ['shamrock', []],
+      10: ['shamrock', [], 'the Shamrock till gone midnight; ask Mulcahy'],
+      11: ['shamrock', []],
+    }),
+    account(
+      'pulaski',
+      {
+        8: ['flat', ['szabo', 'gilchrist']],
+        9: ['pulaskis', ['mrpulaski'], 'home across the hall, with Mr. Pulaski and the radio'],
+        10: ['pulaskis', ['mrpulaski']],
+        11: ['pulaskis', ['mrpulaski']],
+      },
+      [{ text: 'We heard the Brandauer door go, once, about ten.', facts: [], side: false }],
+    ),
+    account('szabo', {
+      8: ['flat', ['pulaski', 'gilchrist']],
+      9: ['lyric', ['gilchrist'], 'the pictures, to keep Adele company'],
+      10: ['lyric', ['gilchrist'], 'sat through the whole picture'],
+      11: ['szabo-home', [], 'home to bed'],
+    }),
+    account('gilchrist', {
+      8: ['flat', ['pulaski', 'szabo']],
+      9: ['lyric', ['szabo'], 'the pictures with Adele'],
+      10: ['lyric', []],
+      11: ['lyric', [], 'out at eleven'],
+    }),
+    account('mrpulaski', {
+      8: ['pulaskis', []],
+      9: ['pulaskis', ['pulaski']],
+      10: ['pulaskis', ['pulaski']],
+      11: ['pulaskis', ['pulaski']],
+    }),
+    account('kasper', {
+      8: ['shamrock', ['oskar'], 'a beer out front before the game'],
+      9: ['backroom', [], 'opened the game in the back room'],
+      10: ['backroom', ['szabo']],
+      11: ['backroom', []],
+    }),
+  ];
+  // The janitor watches the scene's stair, so his "nobody else" at ten would clear everyone but
+  // Oskar at once, Szabo's lie included. He was down at the boiler at ten.
+  const dombrowski = c.lists.find((l) => l.watcher === 'dombrowski');
+  if (dombrowski) {
+    delete dombrowski.entries[10];
+    dombrowski.remarks = [{ text: 'Ten o’clock I was down with the boiler; it wants feeding. I couldn’t tell you who went up.', facts: [], side: false }];
+  }
+  const mulcahy = c.lists.find((l) => l.watcher === 'mulcahy');
+  if (mulcahy) {
+    mulcahy.entries = list('mulcahy', 'shamrock', { 8: ['oskar', 'kasper'], 9: ['oskar'], 10: [], 11: ['oskar'] }).entries;
+    mulcahy.remarks = [{ text: 'Eleven: Oskar back, straight to Lou’s booth. What went across the table I couldn’t see. Kasper had a beer at eight and went through to the back.', facts: [], side: false }];
+  }
+  c.confrontations = [
+    {
+      person: 'oskar',
+      hour: 10,
+      response: 'crack',
+      text: '“I went up for my key. I’d left it on the hook.” — “Your aunt left the door on the latch because you’d lost your key.” — “Lou was going to have my legs. It’s only in hock, in Lou’s waistcoat. I’ll get it back Saturday.”',
+      facts: [],
+      gives: { whereNow: true, why: true },
+      secondLie: { text: 'I went up for my key', collidesWith: 'the client: the door was on the latch because he’d lost his key' },
+    },
+    {
+      person: 'szabo',
+      hour: 10,
+      response: 'refuse',
+      text: '“I sat through the picture. Ask anybody.” (His wife thinks he gave up cards for money. That’s worse to him than a missing watch.)',
+      facts: [],
+    },
+  ];
+  c.lies = [
+    { person: 'oskar', hour: 10, kind: 'culprit', truth: 'flat', claim: 'shamrock' },
+    { person: 'szabo', hour: 10, kind: 'secret', truth: 'backroom', claim: 'lyric' },
+  ];
+  return c;
 }
 
 export const LOST_WATCH_GOLDEN_PATH = [

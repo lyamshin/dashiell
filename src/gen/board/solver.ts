@@ -19,16 +19,24 @@ import { TIERS, type Technique } from './tiers.js';
  * the office, and reasons with the named techniques it's allowed. It's sound
  * under the rules the player is taught (docs/41 rules 5–10): watchers and
  * company-only witnesses tell the truth; a lie always collides; two people lie
- * together only at Hard-boiled; an innocent put to it admits.
+ * together only at Hard-boiled.
  *
  * It never uses "only the culprit lies", "a refusal is a tell" or "nothing
- * collided, so it's true": see the Built section of docs/42.
+ * collided, so it's true": see the Built section of docs/42. Decided
+ * 2026-09-28: a refusal is never evidence (innocents refuse too), and an
+ * admission clears nobody on the liar's own word. It names someone, and that
+ * person's account is the check.
  */
 
 export interface SolveOptions {
   techniques: ReadonlySet<Technique>;
   /** Take the crime hour(s) as known (route counting). */
   forceHours?: Hour[];
+  /**
+   * The refusal shortcut, for measuring it only: once every liar is caught and put to it, name
+   * the one who didn't own up. Unsound (innocents refuse too); the sweep checks it never beats par.
+   */
+  tell?: boolean;
 }
 
 export interface Step {
@@ -229,51 +237,65 @@ export function solve(c: BoardCase, held: Iterable<string>, opts: SolveOptions):
   const pendingConfront: { k: Confrontation; q: string }[] = [];
 
   // You can only ask someone you've heard of. Suspects, watchers and places are known from the
-  // office; a company-only witness has to be named first, by a list, an account, or the office.
+  // office; a company-only witness has to be named first, by a list, an account, an admission,
+  // or the office. Their accounts are taken up as they're named.
   const named = new Set<PersonId>(c.givens.known ?? []);
+  const namedBy = new Map<PersonId, string>();
+  const name = (p: PersonId, by: string) => {
+    if (named.has(p)) return;
+    named.add(p);
+    namedBy.set(p, by);
+  };
   const nameFrom = (q: string) => {
     const [kind, rest] = q.split(':') as [string, string];
     if (kind === 'list') {
       const l = c.lists.find((x) => x.watcher === rest);
-      for (const es of Object.values(l?.entries ?? {})) for (const e of es) if ('person' in e) named.add(e.person);
+      for (const es of Object.values(l?.entries ?? {})) for (const e of es) if ('person' in e) name(e.person, q);
     } else if (kind === 'account') {
       const a = c.accounts.find((x) => x.person === rest);
-      for (const cl of Object.values(a?.claims ?? {})) for (const p of cl.company) named.add(p);
+      for (const cl of Object.values(a?.claims ?? {})) for (const p of cl.company) name(p, q);
     }
   };
-  for (const q of heldSet) if (!q.startsWith('account:') || !ctx.company.has(q.slice(8))) nameFrom(q);
-  for (let grew = true; grew; ) {
-    grew = false;
-    for (const q of heldSet) {
-      const p = q.slice(8);
-      if (q.startsWith('account:') && ctx.company.has(p) && named.has(p) && !met.has(p)) {
-        met.set(p, q);
+  const isCompanyAccount = (q: string) => q.startsWith('account:') && ctx.company.has(q.slice(8));
+  for (const q of heldSet) if (!isCompanyAccount(q)) nameFrom(q);
+  const taken = new Set<string>();
+  const takeUpCompany = (): void => {
+    for (let grew = true; grew; ) {
+      grew = false;
+      for (const q of heldSet) {
+        const p = q.slice(8);
+        if (!isCompanyAccount(q) || taken.has(q) || !named.has(p)) continue;
+        taken.add(q);
         nameFrom(q);
+        const by = namedBy.get(p);
+        // Asked because an admission named them: the check joins the confrontation.
+        take(q, by?.startsWith('confront:') ? new Set([q, by]) : new Set([q]));
+        changed = true;
         grew = true;
       }
     }
-  }
-  met.clear();
+  };
 
-  for (const q of heldSet) {
-    if (q.startsWith('account:') && ctx.company.has(q.slice(8)) && !named.has(q.slice(8))) continue;
+  for (const q of heldSet) if (!isCompanyAccount(q)) take(q, new Set([q]));
+  takeUpCompany();
+
+  function take(q: string, qDeps: Deps): void {
     const [kind, rest] = q.split(':') as [string, string];
     if (kind === 'search') {
       const f = c.finds.find((x) => x.id === rest) as Find | undefined;
-      if (!f) continue;
-      const d = new Set([q]);
-      applyGives(f.gives, d);
-      for (const fact of f.facts) addFact(fact, d, 'read-off');
+      if (!f) return;
+      applyGives(f.gives, qDeps);
+      for (const fact of f.facts) addFact(fact, qDeps, 'read-off');
     } else if (kind === 'list') {
       const l = c.lists.find((x) => x.watcher === rest);
-      if (!l) continue;
+      if (!l) return;
       heldLists.push({ list: l, q });
       for (const r of l.remarks) remarks.push({ r, q, extra: none });
     } else if (kind === 'account') {
       const a = c.accounts.find((x) => x.person === rest);
-      if (!a) continue;
+      if (!a) return;
       met.set(a.person, q);
-      for (const r of a.remarks) remarks.push({ r, q, extra: none });
+      for (const r of a.remarks) remarks.push({ r, q, extra: qDeps });
       const truthful = ctx.company.has(a.person);
       for (const h of ctx.hours) {
         const cl = a.claims[h];
@@ -282,8 +304,8 @@ export function solve(c: BoardCase, held: Iterable<string>, opts: SolveOptions):
         if (truthful) {
           // A company-only witness is taken as true (rule 10: nobody lies for anyone below Hard-boiled,
           // and they have nothing of their own to hide).
-          status.set(key(a.person, h), { s: 'trusted', tech: 'read-off', by: 'company witness', deps: new Set([q]) });
-          trustClaim(a.person, h, cl, new Set([q]));
+          status.set(key(a.person, h), { s: 'trusted', tech: 'read-off', by: 'company witness', deps: new Set(qDeps) });
+          trustClaim(a.person, h, cl, qDeps);
         }
       }
     } else if (kind === 'confront') {
@@ -421,13 +443,18 @@ export function solve(c: BoardCase, held: Iterable<string>, opts: SolveOptions):
     // Confrontation: their line against the line that breaks it.
     for (const { k, q } of pendingConfront) {
       const kk = key(k.person, k.hour);
-      if (confronted.has(kk) || !T.has('confrontation')) continue;
+      // The shortcut player puts it to people at any tier.
+      if (confronted.has(kk) || !(T.has('confrontation') || opts.tell)) continue;
       const st = status.get(kk);
       if (!st || st.s !== 'broken') continue;
       const d = union(st.deps, [q]);
       confronted.set(kk, k.response);
-      note('confrontation', `${n(k.person)}, put to it about ${k.hour}: ${k.response}`, d);
-      for (const f of k.facts) addFact(f, d, 'confrontation');
+      const names = k.names ?? [];
+      note('confrontation', `${n(k.person)}, put to it about ${k.hour}: ${k.response}${names.length ? `, and names ${names.map(n).join(' and ')} to check it by` : ''}`, d);
+      // An admission is a claim like any other: it places nobody until the person it names is asked.
+      if (k.response !== 'admit') for (const f of k.facts) addFact(f, d, 'confrontation');
+      for (const p of names) name(p, q);
+      takeUpCompany();
       applyGives(k.gives, d);
       changed = true;
     }
@@ -506,7 +533,20 @@ export function solve(c: BoardCase, held: Iterable<string>, opts: SolveOptions):
   const left = ctx.suspects.filter((p) => !cleared.has(p));
   let who: PersonId | undefined;
   let when: Hour | undefined;
-  if (left.length === 1) {
+  if (opts.tell) {
+    // The shortcut: every liar caught and put to it; name the one who didn't own up.
+    const liars = [...new Set(c.lies.map((l) => l.person))].filter((p) => ctx.suspects.includes(p));
+    const allPut = c.lies.every((l) => status.get(key(l.person, l.hour))?.s === 'broken' && confronted.has(key(l.person, l.hour)));
+    const holdouts = liars.filter((p) => c.lies.some((l) => l.person === p && confronted.get(key(p, l.hour)) !== 'admit'));
+    if (allPut && holdouts.length === 1) {
+      const cand = holdouts[0] as PersonId;
+      const free = possible.filter((h) => !placedAway(cand, h));
+      const atScene = free.find((h) => at.get(key(cand, h))?.place === scene);
+      who = cand;
+      const hoursLeft = atScene !== undefined ? [atScene] : free;
+      if (hoursLeft.length === 1) when = hoursLeft[0];
+    }
+  } else if (left.length === 1) {
     const cand = left[0] as PersonId;
     const free = possible.filter((h) => !placedAway(cand, h));
     const atScene = free.find((h) => at.get(key(cand, h))?.place === scene);
@@ -521,7 +561,7 @@ export function solve(c: BoardCase, held: Iterable<string>, opts: SolveOptions):
     }
   }
 
-  const how = meansDeps !== null && (!T.has('access') || (who !== undefined && accessYes.has(who)));
+  const how = meansDeps !== null && (opts.tell || !T.has('access') || (who !== undefined && accessYes.has(who)));
   const small = c.type !== 'murder';
   const done = who !== undefined && when !== undefined && how && (!small || (whereNow && why));
 

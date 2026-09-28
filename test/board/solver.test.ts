@@ -37,14 +37,38 @@ describe('the solver', () => {
     expect([...solve(c, q, { techniques: techniquesUpTo(1) }).accessNo]).toEqual(['crowninshield']);
   });
 
-  it('confrontation: an innocent admits and is placed; without the technique he stays open', () => {
-    const c = find(2, (k) => k.lies.some((l) => l.kind === 'secret'));
+  const admitting = (k: BoardCase) => k.confrontations.some((x) => x.response === 'admit' && k.lies.some((l) => l.kind === 'secret' && l.person === x.person));
+
+  it('confrontation: an innocent admits and names someone, whose account places them; without the technique they stay open', () => {
+    const c = find(2, admitting);
     const lie = c.lies.find((l) => l.kind === 'secret')!;
     const q = all(c);
     const with2 = solve(c, q, { techniques: techniquesUpTo(2) });
     const with1 = solve(c, q, { techniques: techniquesUpTo(1) });
     expect(with2.cleared.has(lie.person)).toBe(true);
     expect(with1.cleared.has(lie.person)).toBe(false);
+  });
+
+  it('an admission clears nobody on the liar’s word: without the check, the liar stays open', () => {
+    const c = find(2, admitting);
+    const lie = c.lies.find((l) => l.kind === 'secret')!;
+    const k = c.confrontations.find((x) => x.person === lie.person)!;
+    expect(k.facts).toEqual([]);
+    const witness = k.names![0]!;
+    const s = solve(c, all(c).filter((q) => q !== `account:${witness}`), { techniques: techniquesUpTo(2), forceHours: [lie.hour] });
+    expect(s.confronted.get(key(lie.person, lie.hour))).toBe('admit');
+    expect(s.cleared.has(lie.person)).toBe(false);
+  });
+
+  it('an innocent’s refusal is never evidence: the keeper’s list clears them, and nothing else does', () => {
+    const c = find(3, (k) => k.confrontations.some((x) => x.response === 'refuse' && k.lies.some((l) => l.kind === 'secret' && l.person === x.person)));
+    const lie = c.lies.find((l) => l.kind === 'secret')!;
+    const T = techniquesUpTo(3);
+    const keeper = c.lists.find((l) => (l.entries[lie.hour] ?? []).some((e) => 'person' in e && e.person === lie.person))!;
+    expect(solve(c, all(c).filter((q) => q !== `list:${keeper.watcher}`), { techniques: T, forceHours: [lie.hour] }).cleared.has(lie.person)).toBe(false);
+    // Two refuse, so the shortcut can't name anybody, and the sound solver still does.
+    expect(solve(c, all(c), { techniques: T, tell: true }).who).toBeUndefined();
+    expect(solve(c, all(c), { techniques: T }).who).toBe(c.crime.culprit);
   });
 
   it('time window: the last sighting of the victim away from the scene narrows two hours to one', () => {
