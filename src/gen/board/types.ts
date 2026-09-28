@@ -60,6 +60,11 @@ export interface Place {
   scene?: boolean;
   /** The street it's on, for side remarks ("I passed her on Grand Street"). */
   street: string;
+  /**
+   * A company-only witness's own rooms, where nobody else goes: somewhere for them to be before
+   * and after the hour they matter. Not one of rule 1's places.
+   */
+  offBoard?: boolean;
 }
 
 /** The truth: every board person's place at every hour, and why they moved. */
@@ -162,13 +167,25 @@ export interface Lie {
 export interface Confrontation {
   person: PersonId;
   hour: Hour;
-  /** admit: an innocent, placed truthfully. refuse / second-lie: a culprit. crack: a small-case culprit at Raw–Poached. */
+  /**
+   * - admit: an innocent owns up, and names someone to check it by;
+   * - refuse: the culprit, or (decided 2026-09-28) an innocent whose secret is worse than the
+   *   suspicion. Never evidence either way;
+   * - second-lie: the culprit tries another place, which collides too;
+   * - crack: a small-case culprit at Raw–Poached.
+   */
   response: 'admit' | 'refuse' | 'second-lie' | 'crack';
   text: string;
+  /**
+   * Board facts the confrontation settles. An admission settles none on the liar's own word
+   * (decided 2026-09-28): it names someone to check, and the check places them.
+   */
   facts: Fact[];
+  /** Company-only witnesses the admission names, who can then be asked. */
+  names?: PersonId[];
   gives?: Gives;
   /** The second lie, and what it collides with. */
-  secondLie?: { text: string; collidesWith: string };
+  secondLie?: { text: string; collidesWith: string; place?: PlaceId };
 }
 
 export interface Crime {
@@ -198,6 +215,8 @@ export interface Givens {
   pointer?: PersonId;
   /** Company-only witnesses the office names (a neighbour who feeds the dog). Others must be named by a list or an account first. */
   known?: PersonId[];
+  /** The hours the office's window names, as the text says them. They must be board hours. */
+  window?: Hour[];
 }
 
 export interface BoardCase {

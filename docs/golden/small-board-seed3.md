@@ -1,5 +1,13 @@
 # Golden: the small board, seed 3 at Medium
 
+> **Note, 2026-09-28 (after build 4a and the designer's decisions).** The prose below is kept as written. The solver found it wrong in two ways:
+> - **Par was really 4, not 7.** Hargrove's list already puts Vitale in the back room at nine, so asking Vitale and putting it to him clears nobody new, and Marchetti's refusal adds nothing the report needs.
+> - **It rated Raw, not Medium.** Mrs. Rafferty's "nine and ten, nobody but me" is a list, and it breaks Marchetti's "home" by plain collision, so the side remark never matters.
+>
+> It also breaks rules decided since: Vitale's lie never matters (Hargrove places him), his admission is taken on his word, and he and Marchetti are both at Rafferty's at seven and the Velvet Room at ten.
+>
+> **The repaired fixture** (`seed3Repaired` in `src/gen/board/fixtures/seed3.ts`; `npm run board -- --fixture seed3-repaired`) makes these changes. Mrs. Rafferty goes up to bed at half past eight. The back room is its own place, which Hargrove can't see. Vitale says he was out front at nine, names Shoes, who deals the game, when he admits it, and goes home at ten. Marchetti is on the switchboard at the exchange until eight. **Repaired, it matches the golden again:** it rates Medium, par is seven (the golden's seven, with Shoes' account as the check on Vitale's admission), and the rivals are Vitale and Steinbach.
+
 *2026-09-28. This is the night from `docs/41-small-board.md`, written as it would read, page by page, along the designed path. The voice is `seed3-camp.md`. Each page has one job: it carries one fact, or one list, or one account, and the prose wraps it. Choice lists are shown as the book would show them: people first, then topics. Stars carry reasons.*
 
 *The designed path is seven questions and four walks. The report also asks why, and the motive is in Sirkin's file box, so a player who reads the case well spends eight questions. The night's budget is nine.*

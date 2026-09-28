@@ -1,5 +1,19 @@
 # Golden: the small board, a lost watch at Poached
 
+> **Note, 2026-09-28 (after build 4a and the designer's decisions).** The prose below is kept as written. The solver found it wrong:
+> - **The watch path never asks Mr. Pulaski,** so nothing clears Mrs. Pulaski. It clears her because nothing collides with her account, and only her husband could collide with it. With him added, par is 5, not 6.
+> - **It rates Raw,** because Szabo falls to two lists and his confrontation is never needed.
+> - **It contradicts its own truth table.** Mulcahy's eleven o'clock leaves Szabo out, and Szabo's "home to bed at nine" lies about three hours.
+>
+> It also breaks rules decided since: Mulcahy places Szabo at the lied hours, so his lie never matters, and his admission is taken on his word.
+>
+> **The repaired fixture** (`lostWatchRepaired` in `src/gen/board/fixtures/lost-watch.ts`; `npm run board -- --fixture lost-watch-repaired`) makes these changes:
+> - The Thursday game is in the Shamrock's back room, which Mulcahy can't see.
+> - Szabo is at the Lyric at nine and lies about ten only. He refuses, as Oskar does, and Kasper, who deals the game, clears him. Mulcahy saw Kasper out front at eight.
+> - Dombrowski is at the boiler at ten, and Mulcahy doesn't see what changes hands, so where the watch is comes from Oskar's crack.
+>
+> **Repaired, it doesn't match the golden's numbers:** it rates Poached, but par is 8, not 6, and Szabo refuses where the golden has him admit.
+
 *2026-09-28. This checks that `docs/41-small-board.md` holds for a case that isn't a murder. For a lost item, the report asks who took it, when, where it is now, and why. Poached is 4 suspects, 4 hours and 3 places besides the scene, with one innocent liar.*
 
 ## The case

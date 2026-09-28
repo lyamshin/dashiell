@@ -42,6 +42,40 @@ export interface Analysis {
   full: Solved;
 }
 
+export interface Shortcut {
+  /** Two or more liars refuse, so "name whoever refuses" names nobody. */
+  fails: boolean;
+  /** The fewest questions for the shortcut (a lower bound when `capped`). */
+  cost: number | null;
+  /** Par minus the shortcut's cost: above zero, the shortcut beats par. */
+  gain: number | null;
+  capped: boolean;
+}
+
+/**
+ * Decided 2026-09-28: the refusal shortcut. Catch every liar, put it to each, and name whoever
+ * refuses. It must never beat par. `maxK` bounds the search; past it the cost is reported as a
+ * bound. Motive searches aren't counted, as in par.
+ */
+export function refusalShortcut(c: BoardCase, par: number, maxK = par + 2): Shortcut {
+  const T = techniquesUpTo(c.tier);
+  const motive = motiveFind(c);
+  const pool = questionsOf(c)
+    .map((q) => q.id)
+    .filter((id) => id !== motive);
+  const holdouts = new Set(c.lies.filter((l) => c.confrontations.find((k) => k.person === l.person && k.hour === l.hour)?.response !== 'admit').map((l) => l.person));
+  if (holdouts.size !== 1) return { fails: true, cost: null, gain: null, capped: false };
+  const goal = (held: string[]) => {
+    const s = solve(c, held, { techniques: T, tell: true });
+    return s.done && s.who === c.crime.culprit;
+  };
+  if (!goal(pool)) return { fails: true, cost: null, gain: null, capped: false };
+  const sets = minimalSets(pool, [], goal, maxK, true);
+  if (sets.length === 0) return { fails: false, cost: maxK + 1, gain: par - (maxK + 1), capped: true };
+  const cost = (sets[0] as string[]).length;
+  return { fails: false, cost, gain: par - cost, capped: false };
+}
+
 const LIMIT_PAR = 11;
 
 function motiveFind(c: BoardCase): string | undefined {
@@ -298,7 +332,9 @@ function orderPath(
           ? Object.values(c.lists.find((l) => l.watcher === rest)?.entries ?? {}).some((es) => es.some((e) => 'person' in e && e.person === qq.subject))
           : kind === 'account'
             ? Object.values(c.accounts.find((a) => a.person === rest)?.claims ?? {}).some((cl) => cl.company.includes(qq.subject))
-            : false;
+            : kind === 'confront'
+              ? c.confrontations.some((k) => `${k.person}@${k.hour}` === rest && (k.names ?? []).includes(qq.subject))
+              : false;
       if (names) mask |= 1 << j;
     });
     return mask;

@@ -5,6 +5,7 @@ import {
   generateBoard,
   invariantFailures,
   questionsOf,
+  refusalShortcut,
   solve,
   techniquesUpTo,
   TIERS,
@@ -38,7 +39,8 @@ describe.each(TIER_LIST)('tier %i', (tier) => {
       const c = g!.kase;
       expect(c.people.filter((p) => p.role === 'suspect')).toHaveLength(spec.suspects);
       expect(c.board.hours).toHaveLength(spec.hours);
-      expect(c.places.filter((p) => !p.scene)).toHaveLength(spec.places);
+      // A company witness's own rooms, where nobody else goes, aren't one of rule 1's places.
+      expect(c.places.filter((p) => !p.scene && !p.offBoard)).toHaveLength(spec.places);
       const used = new Set(Object.values(c.board.rows).flatMap((r) => Object.values(r)));
       for (const p of c.places) expect(used.has(p.id)).toBe(true);
     }
@@ -137,5 +139,68 @@ describe('case types', () => {
   it('analyse is stable on a generated case', () => {
     const g = generateBoard(5, 3)!;
     expect(analyse(g.kase).par).toBe(g.analysis.par);
+  });
+});
+
+describe('the designer’s decisions of 2026-09-28', () => {
+  const all = TIER_LIST.flatMap((t) => SEEDS.map((s) => generateBoard(s, t)!));
+
+  it('refusing isn’t a tell: “name whoever refuses” never beats par', () => {
+    for (const g of all) {
+      const sc = refusalShortcut(g.kase, g.analysis.par);
+      if (!sc.fails) expect(sc.gain as number).toBeLessThanOrEqual(0);
+    }
+  });
+
+  it('innocent liars both refuse and admit, and an admission names someone to check it by', () => {
+    const answers = new Set<string>();
+    for (const g of all) {
+      for (const k of g.kase.confrontations) {
+        if (!g.kase.lies.some((l) => l.kind === 'secret' && l.person === k.person)) continue;
+        answers.add(k.response);
+        if (k.response === 'admit') {
+          expect(k.facts).toEqual([]);
+          expect(k.names?.length).toBe(1);
+        }
+      }
+    }
+    expect(answers).toEqual(new Set(['admit', 'refuse']));
+  });
+
+  it('Raw: two watchers, each clearing one rival', () => {
+    for (const g of all.filter((x) => x.kase.tier === 0)) {
+      const c = g.kase;
+      expect(c.lists).toHaveLength(2);
+      const cleared = c.lists.map((l) =>
+        g.analysis.rivals.filter((r) => solve(c, [`list:${l.watcher}`], { techniques: techniquesUpTo(0), forceHours: [c.crime.hour] }).cleared.has(r.id)).map((r) => r.id),
+      );
+      expect(cleared.map((x) => x.length)).toEqual([1, 1]);
+      expect(cleared[0]).not.toEqual(cleared[1]);
+      expect(g.analysis.par).toBeGreaterThanOrEqual(4);
+      expect(g.analysis.par).toBeLessThanOrEqual(5);
+    }
+  });
+
+  it('Coddled: par 4 or more, and still Coddled', () => {
+    for (const g of all.filter((x) => x.kase.tier === 1)) {
+      expect(g.analysis.par).toBeGreaterThanOrEqual(4);
+      expect(g.analysis.rating).toBe(1);
+    }
+  });
+
+  it('varied evenings: theatres, restaurants and workplaces as well as homes and bars', () => {
+    const kinds = new Set<string>(all.flatMap((g) => g.kase.places.filter((p) => !p.scene).map((p) => p.kind)));
+    for (const k of ['home', 'bar', 'restaurant', 'theatre', 'work']) expect(kinds.has(k)).toBe(true);
+    // Somebody works until the place shuts, and the reading says when it shuts, not "open 7–10".
+    expect(all.some((g) => g.kase.places.some((p) => p.kind === 'work' && p.open[1] < (g.kase.board.hours.at(-1) as number)))).toBe(true);
+    for (const g of all.slice(0, 12)) expect(renderCase(g.kase, g.analysis)).not.toMatch(/open \d+–\d+/);
+  });
+
+  it('the office gives the window in the board’s own hours', () => {
+    for (const g of all) {
+      expect(g.kase.givens.window).toEqual(g.kase.crime.window);
+      for (const h of g.kase.crime.window) expect(g.kase.board.hours).toContain(h);
+      expect(g.kase.givens.text.join(' ')).not.toMatch(/between \w+ and \w+/);
+    }
   });
 });
