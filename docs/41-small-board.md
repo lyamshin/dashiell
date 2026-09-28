@@ -44,7 +44,7 @@ The designer named four failures:
 ### Lies
 
 7. **Every lie collides with something true.** A lie claims a place at an hour, and at least one truthful account or watcher at that place and hour doesn't include the liar. No lie is a gap, and no lie is undetectable.
-8. **The culprit lies about the crime hour,** and about the means if needed. They never confess. Put to them, they refuse or tell a second lie, and the second lie collides too.
+8. **The culprit lies about the crime hour,** and about the means if needed. They never confess. Put to them, they refuse or tell a second lie, and the second lie collides too. One exception: in a case that isn't a murder, at Raw through Poached, the culprit may crack after a second lie breaks. A nephew who pawned a watch isn't a killer.
 9. **One innocent may lie (from Poached up),** about one hour, to hide a secret: a card game, an affair, a debt. Put to them, they admit it, and the admission places them truthfully. That keeps lying from being a tell.
 10. **Two people lie together only at Hard-boiled,** as the tier's signature: a matched pair of stories that agree with each other and collide with a watcher.
 
@@ -115,7 +115,7 @@ The designer named four failures:
 | | 7 | 8 | 9 | 10 |
 |---|---|---|---|---|
 | **Marchetti** | Rafferty's (home) | Rafferty's | **Sirkin's walk-up** | the Velvet Room |
-| Steinbach | Rafferty's (a lesson in his room) | the Velvet Room | the Velvet Room | Rafferty's |
+| Steinbach | Rafferty's (a lesson in his room) | the Velvet Room | the Velvet Room | the Velvet Room |
 | Vitale | Rafferty's (collecting from Steinbach) | the Velvet Room | the Velvet Room, **in the back room at cards** | the Velvet Room |
 | Crowninshield | her surgery | her surgery | the Velvet Room | the Velvet Room |
 | *Sirkin* | *his walk-up* | *the Velvet Room* | *his walk-up* | *dying* |
@@ -127,13 +127,13 @@ The designer named four failures:
 | | says | true? |
 |---|---|---|
 | Marchetti | "Home in my room all evening. About ten I went over to the Velvet Room for a nightcap." | **Lie at 9.** Rafferty heard her go out at a quarter to nine, and she's on nobody's list at nine. |
-| Steinbach | "A lesson at home at seven, then the Velvet Room with Vitale and Sirkin at eight. I stayed. Home by ten." | true |
+| Steinbach | "A lesson at home at seven, then the Velvet Room with Vitale and Sirkin at eight. I stayed till closing." | true |
 | Vitale | "Steinbach's at seven, the Velvet Room at eight, **home at nine**, back to the Velvet Room at ten." | **Lie at 9**, to hide the card game. Put Hargrove's list to him and he admits it. |
 | Crowninshield | "Surgery till half past eight, then the Velvet Room. I left at eleven and stopped at Sirkin's with the money I owed. The door was open." | true |
 
 **The watchers' lists:**
 - **Hargrove,** the Velvet Room: "Eight: Sirkin, Steinbach, Vitale. Sirkin left before nine. Nine: Steinbach, the dentist, and Vitale went through to the back room. Nobody else. Ten: Steinbach and the dentist, Vitale back out front, and Marchetti came in late, about ten. Nobody else."
-- **Rafferty,** her house: "Seven: my two lodgers, Marchetti and Steinbach, and Vitale came up to see Steinbach. Eight: only Marchetti, in her room; the men had gone out. She went out herself at a quarter to nine. Nine: nobody but me. Ten: Steinbach came in. Nobody else. And the chloral off my hall shelf was there at supper and gone by morning."
+- **Rafferty,** her house: "Seven: my two lodgers, Marchetti and Steinbach, and Vitale came up to see Steinbach. Eight: only Marchetti, in her room; the men had gone out. She went out herself at a quarter to nine. Nine and ten: nobody but me. She came back after eleven. And the chloral off my hall shelf was there at supper and gone by morning."
 
 **The designed path** (seven questions; par 7, budget 8 at Medium):
 
