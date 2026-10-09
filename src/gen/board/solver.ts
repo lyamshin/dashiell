@@ -77,6 +77,10 @@ export interface Solved {
   log: Step[];
   used: Set<Technique>;
   contradictions: string[];
+  /** 4b: every placement worked out (`p@h` → the place, and the questions it rests on), for the grid. */
+  placed: Map<string, { place: PlaceId; deps: string[]; tech: Technique }>;
+  /** 4b: every "not there" worked out (`p@h` → place → the questions it rests on), for the grid. */
+  notPlaced: Map<string, Map<PlaceId, string[]>>;
 }
 
 export const key = (p: PersonId, h: Hour): string => `${p}@${h}`;
@@ -592,6 +596,13 @@ export function solve(c: BoardCase, held: Iterable<string>, opts: SolveOptions):
     log,
     used,
     contradictions,
+    // Built only when read: the sweep's inner loop never does.
+    get placed() {
+      return new Map([...at].map(([k, v]) => [k, { place: v.place, deps: [...v.deps], tech: v.tech }]));
+    },
+    get notPlaced() {
+      return new Map([...notAt].map(([k, m]) => [k, new Map([...m].map(([pl, v]) => [pl, [...v.deps]]))]));
+    },
   };
 }
 

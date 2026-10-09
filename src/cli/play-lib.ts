@@ -42,6 +42,7 @@ import { EMPTY_REPORT, TOLD_CHOICES, type Report, type RunState, type Told } fro
 import { HELP_LINES, HELP_NOTE, LIE_RULE, LIE_RULE_NOTE } from '../game/voice-data.js';
 import { TEACH_LINES, TEACH_TITLE } from '../game/guidance.js';
 import { renderTruthSheet } from '../sheet/truthSheet.js';
+import { isBoardCall, runBoardPlay } from './board-play-lib.js';
 
 const WIDTH = 76;
 const RULE = '─'.repeat(WIDTH);
@@ -1183,6 +1184,8 @@ export function replaySave(text: string): { kase: Case; view: CaseView; state: R
 }
 
 export function runPlay(argv: string[], io: PlayIo): PlayResult {
+  // docs/43: a board night (`--engine board`, or a board save) plays on its own engine.
+  if (isBoardCall(argv, io)) return runBoardPlay(argv, io);
   const a = parseArgv(argv);
   const path = a.values.get('save');
   try {

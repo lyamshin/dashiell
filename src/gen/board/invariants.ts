@@ -2,7 +2,7 @@ import type { BoardCase, Hour, PersonId, PlaceId } from './types.js';
 import { fmtHour, key, questionsOf, solve } from './solver.js';
 import { techniquesUpTo } from './tiers.js';
 import { hadAccess, type Analysis } from './path.js';
-import { isErrand } from './content.js';
+import { isErrand, reasonFits } from './content.js';
 import { pointed } from './pointers.js';
 
 /**
@@ -35,6 +35,10 @@ export interface InvariantReport {
   listsComplete: string[];
   /** 4a.2: an errand (dropping something off, a quick word) lasts an hour at most, told or true. */
   errandsShort: string[];
+  /** 4b: a reason that says how long it lasts fits the stint ("for two hours", "to bed"). */
+  reasonsFit: string[];
+  /** 4b: two errands to one house in one hour only when the second went along with the first. */
+  errandsApart: string[];
   /** 4a.2: a lie claims somewhere the liar would plausibly be. */
   liesPlausible: string[];
   /** 4a.2: an account's reasons are the truth's, except at the lied hour. */
@@ -59,6 +63,8 @@ export const INVARIANT_NAMES: (keyof InvariantReport)[] = [
   'windowFits',
   'listsComplete',
   'errandsShort',
+  'reasonsFit',
+  'errandsApart',
   'liesPlausible',
   'reasonsMatch',
   'pathMotivated',
@@ -88,6 +94,8 @@ export function checkInvariants(c: BoardCase, a?: Pick<Analysis, 'path' | 'sugge
     windowFits: [],
     listsComplete: [],
     errandsShort: [],
+    reasonsFit: [],
+    errandsApart: [],
     liesPlausible: [],
     reasonsMatch: [],
     pathMotivated: [],
@@ -322,6 +330,33 @@ export function checkInvariants(c: BoardCase, a?: Pick<Analysis, 'path' | 'sugge
       if (why && isErrand(why) && n > 1) r.errandsShort.push(`${acc.person} says "${why}" at ${h}, and claims ${n} hours there`);
     }
   }
+
+  // 4b: a reason's own length fits the stint, told or true.
+  const lastHour = hours[hours.length - 1] as Hour;
+  for (const [p, rs] of Object.entries(c.board.reasons)) {
+    for (const [hs, why] of Object.entries(rs)) {
+      const h = Number(hs);
+      const n = runFrom((x) => at(p, x), h);
+      if (!reasonFits(why, n, h + n - 1 >= lastHour)) r.reasonsFit.push(`${p} ${why} at ${h}, and stays ${n} hours`);
+    }
+  }
+  for (const acc of c.accounts) {
+    for (const h of hours) {
+      const why = acc.claims[h]?.reason;
+      const n = runFrom((x) => acc.claims[x]?.place, h);
+      if (why && !reasonFits(why, n, h + n - 1 >= lastHour)) r.reasonsFit.push(`${acc.person} says "${why}" at ${h}, and claims ${n} hours there`);
+    }
+  }
+  // 4b: two errands to one house in one hour read as a coincidence; the second goes along.
+  const errands = new Map<string, string[]>();
+  for (const [p, rs] of Object.entries(c.board.reasons)) {
+    for (const [hs, why] of Object.entries(rs)) {
+      if (!isErrand(why) || /\balong with\b|\bwith \w+$|\bcompany as far as\b/.test(why)) continue;
+      const k = `${at(p, Number(hs))}@${hs}`;
+      errands.set(k, [...(errands.get(k) ?? []), p]);
+    }
+  }
+  for (const [k, ps] of errands) if (ps.length > 1) r.errandsApart.push(`${ps.join(' and ')} each go on an errand to ${k}`);
 
   // 4a.2: a lie claims somewhere the liar would plausibly be: a bar, club, restaurant or theatre;
   // their own home; their work in its hours; or a home in the company of somebody who lives there.

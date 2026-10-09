@@ -68,3 +68,23 @@ Branch `legible-play`. What changed is logged in docs/40 "Built". These were fou
 - **The picker files other people's own word under the one being confronted.** Marchetti's picker lists "own word: the Velvet Room, 7:00–7:30 (Hauck)" under "7:00 · she says the Velvet Room". Somebody else's story is no fact against hers.
 - **A Raw ready-made put that rests on a chain says only one link.** Seed 11: "Put it to Rafferty: Abramowitz saw Fairbanks at the Garibaldi at eight o'clock…". That breaks Rafferty's story only through Fairbanks's own account, and the label doesn't say how.
 - **The closing overstates the time to spare.** Seed 3, played by hand and filed with seven calls left, closes with "the night's last hour to spare".
+
+## Small board, 4b (docs/43), 2026-10-08
+Branch `small-board-4b`. Found reading six board nights in full (`npm run read -- --engine board`: Raw 2 murder, Coddled 8 lost item, Poached 4, Soft-boiled 3 murder, Medium 1 lost pet, Hard-boiled 1 murder) and playing Raw 5 and Medium 7 through `npm run play`.
+
+- **Fixed here.**
+  - The generator's reasons said more than the board: "to get off her feet for two hours" for one hour, "turned in early" with a move after it. Two people ran errands to one rooming house in one hour from the same party. Nobody had a reason to be at somebody else's home at the first hour, and a second person at the numbers room went there "to dance".
+  - The barman's handover remark named the thief, which settled who in one line.
+  - The client spoke of themselves in the third person: "She and Hargrove haven’t spoken", "stood at Prentiss’s elbow", "nine or ten o’clock, Bernstein says". The relation line ran backwards ("Coffin was my landlady"), and the finder's clause dangled.
+  - A trade's look card off duty: an order pad in an apron at the pictures; a cab driver's thermos with no cab. The same look card was dealt to two people, so its payoff came twice. "Purse" and "the way a man stands" were said of whoever was there.
+  - "Duchess were"; "home at Weisglass’s rooms" said by Weisglass; "with Abramowitz" right after "to meet Abramowitz"; "Then at eleven I came off shift at eleven"; two "So …" thoughts in a row.
+  - Putting any line from the same answer landed (Tillman's own eleven o'clock, against Hargrove's home, because Tillman's remark was in the same evening). Now a line has to touch the claim. The picker's short list held only the breaker; it now holds everything at that hour.
+  - A face on a list ("somebody with a cane") with no cane ever described; then the face named before its owner had been met.
+  - A star named a watcher not yet met ("ask Feldman who was there", from the office).
+  - "On the latch", "the wireless", "didn’t miss a beat", "the call was gone" (a call as the game's cost), and a prop clock at a murder scene, where clocks are evidence.
+- **Open.**
+  - People come to the door "in stocking feet" twice on one page (seed 1, Hard-boiled: Corrigan and Petrosino). The home doing cards need more spread, or a rule against two of a kind on a page.
+  - Props are said "at {place}" in the sentence right after the arrival names the place ("A brass spittoon stood at the foot of the bar at the Velvet Room").
+  - The office's lines come as three quotations in a row on lost-thing nights (what's gone, the party, the way in). It reads as one speech, but long.
+  - The card room and the print shop are "unwatched" when nobody refuses there, yet the arrival can mention the night shift's presses and the man who runs the game ("Nobody was paid to notice, so nobody did").
+  - A small case's culprit cracks on the first put, so a player who catches the lie has the confession (docs/43 Built).

@@ -1,0 +1,261 @@
+/*
+ * docs/43 §4: the board's grid, in the notebook. Suspects down, hours across,
+ * one column for the means. It fits a 375 px phone with four hours and five
+ * people: fixed layout, short place labels, no sideways scroll.
+ *
+ * The marks: plain italics for what somebody says of themselves, upright ink
+ * for what somebody else says of them, a tick where the two agree, the accent
+ * and a cross where they collide, and the faint pencil for the player's own.
+ */
+
+.bgrid-wrap {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.bgrid {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 0.74rem;
+  line-height: 1.25;
+  margin: 0.2rem 0 0.4rem;
+}
+
+.bgrid th,
+.bgrid td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0;
+  text-align: left;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.bgrid thead th {
+  font-weight: 400;
+  color: var(--ink-faint);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.2rem;
+}
+
+.bgrid .bgrid-name {
+  width: 24%;
+  font-weight: 400;
+  padding: 0.25rem 0.3rem 0.25rem 0;
+  overflow-wrap: anywhere;
+}
+
+.bgrid thead .bgrid-means,
+.bgrid td.bgrid-means {
+  width: 12%;
+  text-align: center;
+}
+
+.bgrid-hour--crime {
+  color: var(--accent) !important;
+  font-weight: 700 !important;
+  border-bottom: 2px solid var(--accent) !important;
+}
+
+.bgrid-hour--maybe {
+  color: var(--amber) !important;
+}
+
+.bgrid td.is-crime {
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+
+.bgrid-btn {
+  display: block;
+  width: 100%;
+  min-height: 2.2rem;
+  padding: 0.2rem 0.2rem;
+  background: none;
+  border: 0;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.bgrid-btn:focus-visible {
+  outline: 1px solid var(--accent);
+}
+
+.bgrid .is-says .bgrid-btn,
+.bgrid-key .is-says {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.bgrid .is-seen .bgrid-btn,
+.bgrid-key .is-seen {
+  color: var(--ink);
+}
+
+.bgrid .is-confirmed .bgrid-btn,
+.bgrid-key .is-confirmed {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.bgrid .is-collision .bgrid-btn,
+.bgrid-key .is-collision {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.bgrid .is-pencil .bgrid-btn,
+.bgrid-key .is-pencil {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.bgrid .is-empty .bgrid-btn {
+  color: var(--ink-faint);
+}
+
+.bgrid td.bgrid-means.is-yes {
+  color: var(--accent);
+}
+
+.bgrid td.bgrid-means.is-no,
+.bgrid td.bgrid-means.is-unknown {
+  color: var(--ink-faint);
+}
+
+.bgrid-row--company .bgrid-name {
+  font-style: italic;
+}
+
+.bgrid-detail {
+  padding: 0.3rem 0.4rem 0.5rem !important;
+  background: var(--paper-edge);
+  white-space: normal;
+}
+
+.bgrid-detail-head {
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.2rem;
+}
+
+.bgrid-line {
+  margin: 0.1rem 0;
+  font-size: 0.74rem;
+}
+
+.bgrid-line.collides {
+  border-left: 2px solid var(--accent);
+  padding-left: 0.4rem;
+}
+
+.bgrid-pencil {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+  margin-top: 0.35rem;
+}
+
+.bgrid-pencil-label {
+  font-size: 0.66rem;
+  color: var(--ink-faint);
+}
+
+.bgrid-pencil .chip {
+  font-size: 0.7rem;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  min-height: 1.8rem;
+}
+
+.bgrid-pencil .chip.on {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.bgrid-key {
+  font-size: 0.68rem;
+  color: var(--ink-faint);
+  margin: 0.2rem 0 0.4rem;
+}
+
+.nb-stands {
+  margin: 0 0 0.6rem;
+  padding-left: 1.1rem;
+  font-size: 0.82rem;
+}
+
+.nb-stands li {
+  margin: 0.15rem 0;
+}
+
+.board-picker .picker-sec {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.board-picker .choice--fact .label {
+  flex: 1 1 auto;
+}
+
+.choices--board .choice-group--ask {
+  margin-left: 0.8rem;
+  padding-left: 0.6rem;
+  border-left: 2px solid var(--rule);
+}
+
+.leaf p.prose--chapter {
+  text-transform: none;
+}
+
+/* A place label stays whole; the column is wide enough for eight letters at this size. */
+.bgrid-btn {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0.2rem 0.1rem;
+}
+
+@media (max-width: 480px) {
+  .bgrid {
+    font-size: 0.64rem;
+  }
+  .bgrid .bgrid-name {
+    width: 21%;
+  }
+  .bgrid thead .bgrid-means,
+  .bgrid td.bgrid-means {
+    width: 10%;
+  }
+}
+
+/* A star's reason and a place's note go on their own line under the label, not squeezed beside it. */
+.choices--board .choice {
+  flex-wrap: wrap;
+}
+
+.choices--board .choice .label {
+  flex: 1 1 auto;
+}
+
+.choices--board .choice .aside {
+  flex: 1 1 100%;
+  order: 3;
+}
+
+.board-picker .note {
+  font-style: normal;
+  font-size: 0.78rem;
+}
