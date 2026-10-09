@@ -40,6 +40,8 @@ import {
   writeOffice,
   writeRecap,
   writeRepeat,
+  writeReport,
+  writeReturn,
   writeSearch,
   writeTurn,
   writer,
@@ -92,7 +94,7 @@ export function stepBoard(d: BoardDeal, run: BoardRun, input: string): StepResul
   if (verb === 'file') {
     next.reportOpen = true;
     const w = writer(d, run, next, n);
-    w.blocks.push({ kind: 'prose', text: 'I sat down with the form.', voice: 'narrator' });
+    writeReport(w);
     return { run: finish(w, next, { job: 'nothing', cost: 0 }), page: next.log[n] as Page };
   }
   if (run.reportOpen) return fail('The report form is out. File it.');
@@ -111,16 +113,17 @@ export function stepBoard(d: BoardDeal, run: BoardRun, input: string): StepResul
       next.at = OFFICE;
       next.used = run.used + 1;
       const w = writer(d, run, next, n);
-      w.blocks.push({ kind: 'prose', text: 'I went back up to the office. It had kept my chair warm for nobody.', voice: 'establish' });
+      writeReturn(w);
       return { run: finish(w, next, { job: 'arrive', cost: 1, head: 'the office' }), page: next.log[n] as Page };
     }
     if (!knownPlaces(c, run).has(place)) return fail(`I don’t know a place called ${place}.`);
     next.at = place;
     next.used = run.used + 1;
     next.visits[place] = (run.visits[place] ?? 0) + 1;
+    // Visited before the page is written, so its hand-off reads the stars from inside the room.
+    if (!next.visited.includes(place)) next.visited.push(place);
     const w = writer(d, run, next, n);
     writeArrive(w, place);
-    if (!next.visited.includes(place)) next.visited.push(place);
     return { run: finish(w, next, { job: 'arrive', cost: 1 }), page: next.log[n] as Page };
   }
 
@@ -231,6 +234,10 @@ function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>[
       places: [...w.places].filter(Boolean),
       ...(turn ? { turn: true } : {}),
       ...(w.callback ? { callback: true } : {}),
+      ...(w.sheet ? { sheet: w.sheet } : {}),
+      ...(w.beats.length ? { beats: [...w.beats] } : {}),
+      ...(w.thought ? { thought: w.thought } : {}),
+      ...(w.hand.reuses ? { repeats: w.hand.reuses } : {}),
     },
   };
   next.spent = [...next.spent, ...w.hand.spent];

@@ -17,6 +17,8 @@ export interface VenueDef {
   job: string;
   /** For a night shift: what the person who works there does. */
   workerJob?: string;
+  /** docs/44: a stage, not a screen. It has plays and shows, never pictures. */
+  stage?: boolean;
 }
 
 export const VENUES: VenueDef[] = [
@@ -31,7 +33,7 @@ export const VENUES: VenueDef[] = [
   { name: 'the Grand Street chop house', short: 'the chop house', street: 'Grand Street', kind: 'restaurant', job: 'the head waiter' },
   { name: 'the Orpheum, a picture house with continuous shows till midnight', short: 'the Orpheum', street: 'Second Avenue', kind: 'theatre', job: 'the usher' },
   { name: 'the Bijou, a picture house on Clinton Street', short: 'the Bijou', street: 'Clinton Street', kind: 'theatre', job: 'the ticket seller' },
-  { name: 'the Thalia, a Yiddish theatre on the Bowery', short: 'the Thalia', street: 'the Bowery', kind: 'theatre', job: 'the house manager' },
+  { name: 'the Thalia, a Yiddish theatre on the Bowery', short: 'the Thalia', street: 'the Bowery', kind: 'theatre', job: 'the house manager', stage: true },
 ];
 
 /**

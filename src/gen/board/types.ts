@@ -105,6 +105,8 @@ export interface Place {
   street: string;
   /** 4b: which pool entry it came from (`venue:3`, `rooming:1`, `flat`), so the book can describe it. */
   key?: string;
+  /** docs/44: a theatre with a stage, not a screen: plays and shows, never pictures. */
+  stage?: boolean;
   /**
    * A company-only witness's own rooms, where nobody else goes: somewhere for them to be before
    * and after the hour they matter. Not one of rule 1's places.
@@ -256,7 +258,7 @@ export interface Crime {
  * can put it in the client's mouth without parsing the sentence. `text` is the plain line.
  */
 export interface GivenLine {
-  kind: 'relation' | 'found' | 'clock' | 'venue' | 'pointer' | 'gone' | 'party' | 'means' | 'window' | 'keeper';
+  kind: 'relation' | 'found' | 'clock' | 'venue' | 'pointer' | 'gone' | 'party' | 'means' | 'window' | 'keeper' | 'aside';
   /** The pool entry it came from: a clock's id, a small case's means, the pointer's kind. */
   id: string;
   text: string;

@@ -117,6 +117,24 @@ function drawNames(rng: Rng, n: number, avoid: string, maleAt = -1): Named[] {
   return out;
 }
 
+/**
+ * docs/44: no two people in a case share a first name (the golden had two Kathleens). A repeat is
+ * drawn again from its own community's names, on a stream of its own, so nothing else moves.
+ */
+function uniqueGiven(names: Named[], rng: Rng): void {
+  const seen = new Set<string>();
+  for (const n of names) {
+    if (seen.has(n.given)) {
+      const pool = NAME_POOLS.find((x) => x.family.includes(n.family));
+      const mine = (pool ? (n.female ? pool.given.female : pool.given.male) : []).filter((g) => !seen.has(g));
+      const any = NAME_POOLS.flatMap((x) => (n.female ? x.given.female : x.given.male)).filter((g) => !seen.has(g));
+      const from = mine.length > 0 ? mine : any;
+      if (from.length > 0) n.given = rng.pick(from);
+    }
+    seen.add(n.given);
+  }
+}
+
 const pron = (n: { female: boolean }) =>
   n.female ? { they: 'she', them: 'her', their: 'her' } : { they: 'he', them: 'him', their: 'his' };
 
@@ -133,6 +151,13 @@ function tpl(text: string, vars: Record<string, string>): string {
     if (lower !== k && vars[lower] !== undefined) return cap(vars[lower] as string);
     return m;
   });
+}
+
+/** The first pronoun of a reason's template, said as the person's name: "{they} lost {their} job" → "Feeney lost {their} job". */
+function namedFirst(text: string, name: string): string {
+  const m = /\{(they|them|their)\}/.exec(text);
+  if (!m) return text;
+  return text.slice(0, m.index) + (m[1] === 'their' ? `${name}’s` : name) + text.slice(m.index + m[0].length);
 }
 
 const idOfName = (n: Named) => n.family.toLowerCase().replace(/[^a-z]/g, '');
@@ -196,6 +221,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   const refuses = hasL && variant !== 'pair' && !(tier === 2 && murder) && rng.chance(REFUSE_SHARE[tier]);
   const admits = hasL && variant !== 'pair' && !refuses;
   const names = drawNames(rng, tags.length + 9, `${venue.name} ${rooming.name} ${u.name} ${second?.name ?? ''} ${work?.name ?? ''}`, murder ? tags.length : -1);
+  uniqueGiven(names, new Rng(mix(seed, tier, CASE_TYPES.indexOf(type), attempt, 0x6e)));
   const nm = (i: number) => names[i] as Named;
   const n0 = tags.length;
   const suspectNames = tags.map((_, i) => nm(i));
@@ -244,12 +270,12 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     const sc = rng.pick(K.LOST_SCENES);
     places.push({ id: S, name: `the ${clientName.family} ${sc.tail}`, short: `the ${clientName.family} flat`, kind: 'home', open: all, scene: true, street: sc.street, key: `lost:${K.LOST_SCENES.indexOf(sc)}` });
   }
-  places.push({ id: B, name: venue.name, short: venue.short, kind: venue.kind, open: all, street: venue.street, key: `venue:${K.VENUES.indexOf(venue)}` });
+  places.push({ id: B, name: venue.name, short: venue.short, kind: venue.kind, open: all, street: venue.street, key: `venue:${K.VENUES.indexOf(venue)}`, ...(venue.stage ? { stage: true } : {}) });
   if (work && worker) {
     const owner = (nameOf(worker) as Named).family;
     places.push({ id: X, name: work.name.replace('{owner}', owner), short: work.short.replace('{owner}', owner), kind: 'work', open: [h0, Math.max(...avail)], street: work.street, key: `work:${K.WORKPLACES.indexOf(work)}` });
   } else if (second) {
-    places.push({ id: X, name: second.name, short: second.short, kind: second.kind, open: all, street: second.street, key: K.NIGHT_SHIFTS.includes(second) ? `shift:${K.NIGHT_SHIFTS.indexOf(second)}` : `venue:${K.VENUES.indexOf(second)}` });
+    places.push({ id: X, name: second.name, short: second.short, kind: second.kind, open: all, street: second.street, key: K.NIGHT_SHIFTS.includes(second) ? `shift:${K.NIGHT_SHIFTS.indexOf(second)}` : `venue:${K.VENUES.indexOf(second)}`, ...(second.stage ? { stage: true } : {}) });
   } else {
     places.push({ id: X, name: rooming.name, short: rooming.short, kind: 'home', open: all, street: rooming.street, key: `rooming:${K.ROOMING.indexOf(rooming)}` });
   }
@@ -546,6 +572,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   const murderMotives = rng.shuffle(K.MOTIVES);
   const restSmall = smallPool.filter((m) => m !== cMotive && !m.holder);
   const motiveKind = new Map<PersonId, string>();
+  const motiveNamed = new Map<PersonId, string>();
   const thingVars = (n: Named): Record<string, string> => ({
     thing: thing.short,
     pet: thing.short,
@@ -581,6 +608,8 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     } else {
       const m = id === C ? cMotive : restSmall[otherIdx++ % Math.max(restSmall.length, 1)];
       motive = m ? tpl(m.text, thingVars(n)) : '';
+      // docs/44: the same reason with the person's name in it, for the client's aside.
+      if (m) motiveNamed.set(id, tpl(namedFirst(m.text, n.family), thingVars(n)));
       motiveKind.set(id, m?.kind ?? 'money');
       motiveId = m ? `s${K.SMALL_MOTIVES.indexOf(m)}` : '';
     }
@@ -1078,6 +1107,20 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       { ...who, ...thingVars, P: pointerP.short, pthey: pron(pointerN).they, pthem: pron(pointerN).them, ptheir: pron(pointerN).their, motive: pointerP.motive as string, behaviour: behaviour ?? '' },
       tpl(pk.text, { Client: clientName.family, P: pointerP.short, motive: pointerP.motive as string, behaviour: behaviour ?? '' }),
     );
+    // docs/44: the report asks why, so the office says it in passing. The client's aside gives the
+    // reason of everybody the pointer line didn't, the culprit's among them and nobody's singled out.
+    // Nothing points from it (it adds no pointer), so the path and par don't move.
+    const saidWhy = pk.kind === 'motive' || pk.kind === 'gossip' ? pointer : undefined;
+    const asides = suspects.filter((p) => p !== saidWhy && motiveNamed.has(p));
+    if (asides.length > 0) {
+      const named = asides.map((p) => motiveNamed.get(p) as string);
+      const av: Record<string, string> = { ...who, ...thingVars, n: String(asides.length) };
+      asides.forEach((p, i) => {
+        av[`p${i}`] = personOf(p).short;
+        av[`m${i}`] = named[i] as string;
+      });
+      say('aside', 'motives', av, `${clientName.family} says, in passing: ${named.join('; ')}.`);
+    }
     for (const p of g) givensFacts.push({ k: 'at', p, h: h0, place: S });
     if (mode === 'party') for (const p of boardPeople) if (!guests.has(p)) givensFacts.push({ k: 'notAt', p, h: h0, place: S });
   }
@@ -1171,6 +1214,24 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       (reasons[p] as Record<Hour, string>)[h0] = why;
       const cl = accountOf(p).claims[h0];
       if (cl && cl.place === pl && !cl.reason) cl.reason = why;
+    }
+  }
+
+  // docs/44: a stage has plays and shows, never pictures.
+  for (const pl of places) {
+    if (!pl.stage) continue;
+    const fix = (t: string) => t.replace(`went to ${pl.short} to see the new picture`, `went to ${pl.short} to see the new play`);
+    for (const p of Object.keys(reasons)) {
+      for (const h of hours) {
+        const r = reasons[p]?.[h];
+        if (r && rows[p]?.[h] === pl.id) (reasons[p] as Record<Hour, string>)[h] = fix(r);
+      }
+    }
+    for (const a of accounts) {
+      for (const h of hours) {
+        const cl = a.claims[h];
+        if (cl?.reason && cl.place === pl.id) cl.reason = fix(cl.reason);
+      }
     }
   }
 
