@@ -6,6 +6,7 @@ import type {
   Find,
   Gives,
   Hour,
+  Other,
   PersonId,
   PlaceId,
   Question,
@@ -90,6 +91,7 @@ interface Ctx {
   company: Set<PersonId>;
   names: Map<string, string>;
   questions: Map<string, Question>;
+  others: Map<string, Other>;
 }
 
 const CTX = new WeakMap<BoardCase, Ctx>();
@@ -144,7 +146,8 @@ function ctxOf(c: BoardCase): Ctx {
   for (const p of c.people) names.set(p.id, p.short);
   for (const p of c.places) names.set(p.id, p.short);
   const questions = new Map(questionsOf(c).map((q) => [q.id, q]));
-  const ctx: Ctx = { c, hours: c.board.hours, suspects, boardPeople, looks, company, names, questions };
+  const others = new Map((c.others ?? []).map((o) => [o.id, o]));
+  const ctx: Ctx = { c, hours: c.board.hours, suspects, boardPeople, looks, company, names, questions, others };
   CTX.set(c, ctx);
   return ctx;
 }
@@ -343,8 +346,13 @@ export function solve(c: BoardCase, held: Iterable<string>, opts: SolveOptions):
         const named = new Set<PersonId>();
         const faces: string[] = [];
         const faceDeps: string[] = [q];
+        // 4a.2: somebody the watcher couldn't name might be anyone, so "nobody else" doesn't hold
+        // at that hour. Somebody named who isn't on the board (Pardo, the client) changes nothing.
+        let stranger = false;
         for (const e of entries) {
-          if ('person' in e) {
+          if ('other' in e) {
+            if (!ctx.others.get(e.other)?.known) stranger = true;
+          } else if ('person' in e) {
             named.add(e.person);
             addAt(e.person, h, list.place, new Set([q]), 'read-off');
           } else {
@@ -361,7 +369,7 @@ export function solve(c: BoardCase, held: Iterable<string>, opts: SolveOptions):
           }
         }
         for (const x of ctx.boardPeople) {
-          if (named.has(x) || unseen.has(x)) continue;
+          if (stranger || named.has(x) || unseen.has(x)) continue;
           if (faces.length === 0) addNot(x, h, list.place, new Set(faceDeps), faceDeps.length > 1 ? 'face' : 'read-off');
           else if (T.has('face') && met.has(x) && !faces.includes(ctx.looks.get(x) ?? '')) {
             addNot(x, h, list.place, new Set([...faceDeps, met.get(x) as string]), 'face');

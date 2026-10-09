@@ -12,7 +12,7 @@ import {
   typesFor,
   type TierIndex,
 } from '../../src/gen/board/index.js';
-import { PAR_FLOOR } from '../../src/gen/board/index.js';
+import { givensSignature, PAR_FLOOR, pointed, type BoardCase, type CaseType } from '../../src/gen/board/index.js';
 import { renderCase } from '../../src/gen/board/render.js';
 import { moves } from '../../src/gen/board/generate.js';
 import { PAR_TARGET } from '../../src/gen/board/tiers.js';
@@ -29,8 +29,8 @@ describe.each(TIER_LIST)('tier %i', (tier) => {
     expect(cases.every((g) => g !== null)).toBe(true);
   });
 
-  it('holds every invariant', () => {
-    for (const g of cases) expect(invariantFailures(checkInvariants(g!.kase))).toEqual([]);
+  it('holds every invariant, the path’s motivation included', () => {
+    for (const g of cases) expect(invariantFailures(checkInvariants(g!.kase, g!.analysis))).toEqual([]);
   });
 
   it('is the size docs/41 rule 1 says', () => {
@@ -201,6 +201,145 @@ describe('the designer’s decisions of 2026-09-28', () => {
       expect(g.kase.givens.window).toEqual(g.kase.crime.window);
       for (const h of g.kase.crime.window) expect(g.kase.board.hours).toContain(h);
       expect(g.kase.givens.text.join(' ')).not.toMatch(/between \w+ and \w+/);
+    }
+  });
+});
+
+describe('4a.2: the designer’s reading of seed 4 (Poached) and seed 2 (Raw)', () => {
+  // Thirty seeds of each type, at a one-hour tier (Poached builds all three) and a windowed one.
+  const byType = new Map<string, BoardCase[]>();
+  for (const [tier, types] of [
+    [2, ['murder', 'lost-item', 'lost-pet']],
+    [3, ['murder', 'lost-pet']],
+  ] as [TierIndex, CaseType[]][]) {
+    for (const type of types) {
+      byType.set(
+        `${type}@${tier}`,
+        Array.from({ length: 30 }, (_, i) => generateBoard(i + 1, tier, { type })!.kase),
+      );
+    }
+  }
+
+  it('every case type has at least four setups on each of the three axes', () => {
+    for (const [k, cases] of byType) {
+      const axes = { means: new Set<string>(), clock: new Set<string>(), pointer: new Set<string>(), all: new Set<string>() };
+      for (const c of cases) {
+        axes.means.add(c.setup!.means);
+        axes.clock.add(c.setup!.clock);
+        axes.pointer.add(c.setup!.pointer);
+        axes.all.add(`${c.setup!.means}/${c.setup!.clock}/${c.setup!.pointer}`);
+      }
+      expect(axes.means.size, `${k} means`).toBeGreaterThanOrEqual(4);
+      expect(axes.clock.size, `${k} clocks`).toBeGreaterThanOrEqual(4);
+      expect(axes.pointer.size, `${k} pointers`).toBeGreaterThanOrEqual(4);
+      expect(axes.all.size, `${k} setups`).toBeGreaterThanOrEqual(20);
+    }
+  });
+
+  it('no two seeds’ givens match word for word, names aside', () => {
+    const seen = new Map<string, string>();
+    for (const [k, cases] of byType) {
+      for (const c of cases) {
+        const sig = givensSignature(c);
+        expect(seen.get(sig), `${k} seed ${c.seed}`).toBeUndefined();
+        seen.set(sig, `${k} seed ${c.seed}`);
+      }
+    }
+  });
+
+  it('motives fit the crime: a small case’s culprit sells it, and the motive says why they need the money', () => {
+    for (const [k, cases] of byType) {
+      if (k.startsWith('murder')) continue;
+      for (const c of cases) {
+        const why = c.crime.why;
+        expect(why).toMatch(/owes|rent|lost (his|her) job/);
+        expect(why).toMatch(/fetches|pawn|worth|in kind/);
+        expect(c.crime.whereNow?.place).toBe('bar');
+      }
+    }
+  });
+
+  it('the fence, the client telling the room, and a companion nobody can name are all on the lists', () => {
+    let fence = 0;
+    let stranger = 0;
+    for (const cases of byType.values()) {
+      for (const c of cases) {
+        expect(checkInvariants(c).listsComplete).toEqual([]);
+        for (const o of c.others ?? []) {
+          const listed = c.lists.some((l) => Object.values(l.entries).some((es) => es.some((e) => 'other' in e && e.other === o.id)));
+          expect(listed, `${c.id}: ${o.name}`).toBe(true);
+          if (o.id === 'fence') fence++;
+          if (!o.known) stranger++;
+        }
+      }
+    }
+    expect(fence).toBeGreaterThan(0);
+    expect(stranger).toBeGreaterThan(0);
+  });
+
+  it('a stranger on a list means "nobody else" doesn’t hold at that hour', () => {
+    const c = [...byType.values()].flat().find((k) => k.others?.some((o) => !o.known))!;
+    const o = c.others!.find((x) => !x.known)!;
+    const l = c.lists.find((x) => Object.values(x.entries).some((es) => es.some((e) => 'other' in e && e.other === o.id)))!;
+    const h = Number(Object.keys(o.at).find((x) => l.entries[Number(x)] !== undefined));
+    // Somebody not on that list at that hour can't be ruled out of the place by it: an account
+    // that claims the place then doesn't collide. Take the stranger off, and it does.
+    const T = techniquesUpTo(c.tier);
+    const claimant = c.people.find((p) => p.role === 'suspect' && !(l.entries[h] ?? []).some((e) => 'person' in e && e.person === p.id))!;
+    const fake = (withStranger: boolean) => {
+      const k: BoardCase = structuredClone(c);
+      k.accounts.find((a) => a.person === claimant.id)!.claims[h] = { place: l.place, company: [] };
+      if (!withStranger) {
+        const kl = k.lists.find((x) => x.watcher === l.watcher)!;
+        kl.entries[h] = kl.entries[h]!.filter((e) => !('other' in e));
+      }
+      return solve(k, [`list:${l.watcher}`, `account:${claimant.id}`], { techniques: T }).status.get(`${claimant.id}@${h}`)?.s;
+    };
+    expect(fake(true)).toBeUndefined();
+    expect(fake(false)).toBe('broken');
+    expect(renderCase(c, analyse(c))).toContain('I didn’t know');
+  });
+
+  it('errands last an hour, lies claim plausible places, and accounts give the truth’s reasons', () => {
+    for (const cases of byType.values()) {
+      for (const c of cases) {
+        const r = checkInvariants(c);
+        expect(r.errandsShort).toEqual([]);
+        expect(r.liesPlausible).toEqual([]);
+        expect(r.reasonsMatch).toEqual([]);
+      }
+    }
+  });
+
+  it('nobody claims an hour at a home they don’t live in, alone', () => {
+    for (const cases of byType.values()) {
+      for (const c of cases) {
+        for (const l of c.lies) {
+          const pl = c.places.find((p) => p.id === l.claim)!;
+          if (pl.kind !== 'home') continue;
+          const who = c.people.find((p) => p.id === l.person)!;
+          const comp = c.accounts.find((a) => a.person === l.person)!.claims[l.hour]!.company;
+          expect(who.home === l.claim || comp.some((x) => c.people.find((p) => p.id === x)?.home === l.claim), `${c.id}: ${l.person} at ${l.claim}`).toBe(true);
+        }
+      }
+    }
+  });
+
+  it('every step of the path and every suggestion is pointed to by something already held, and says so', () => {
+    for (const cases of byType.values()) {
+      for (const c of cases) {
+        const a = analyse(c, { routes: false });
+        expect(checkInvariants(c, a).pathMotivated).toEqual([]);
+        a.path.forEach((s, i) => {
+          const before = a.path.slice(0, i).map((x) => x.q);
+          expect(pointed(c, s.q, before)).toBe(true);
+          if (i > 0) expect(s.why).toMatch(/\((step \d+|the office)\)|^The office|^Start at the scene/);
+          if (s.pointedBy !== 'givens') expect(before).toContain(s.pointedBy);
+        });
+        // A watcher is suggested only once something points at their place.
+        a.suggested.forEach((s, i) => expect(pointed(c, s.q, a.suggested.slice(0, i).map((x) => x.q))).toBe(true));
+        expect(a.suggested.map((s) => s.why).join(' ')).not.toMatch(/a watcher\b|the rest of the people/);
+      }
     }
   });
 });

@@ -17,7 +17,7 @@ export function account(
 export function list(
   watcher: PersonId,
   place: PlaceId,
-  entries: Record<Hour, (PersonId | { look: string })[]>,
+  entries: Record<Hour, (PersonId | { look: string } | { other: string })[]>,
   remarks: Remark[] = [],
   unseen?: PersonId[],
 ): WatchList {

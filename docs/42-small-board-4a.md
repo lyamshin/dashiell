@@ -305,3 +305,54 @@ It also runs invariant checks, and none may fail:
   - Rules problem 2 (below Poached, a caught lie names the culprit) is undecided.
   - Hard-boiled has no admissions.
   - At Soft-boiled and up, a murder with an innocent liar always happens at ten.
+
+## 4a.2
+
+*2026-10-08, branch `board-4a2`. The designer read seed 4 at Poached (a dachshund) and seed 2 at Raw (a canary), and four flaws showed. Each is fixed in the generator, and each has an invariant or a sweep metric. Nothing in `src/game`, `src/ui` or the decks changed.*
+
+1. **Setups repeated.** Every case now draws three things from pools (`content.ts`), recorded in `BoardCase.setup`:
+   - **How it went missing, or how the victim was reached.** A small case has eight ways in, in three shapes with different access: the office's own gathering (the door on the latch for a lodger, a broken lock, the key under the mat, a window that won't latch); the client telling the room at the venue for two hours (access is whoever the barman saw then); and a locked flat whose spare key hangs at the neighbour's (access is whoever was in there before the theft). A murder has four rooming-house means (chloral, the landlady's revolver, a carving knife, laudanum), each with its own scene and police verdict, plus the workplaces at Coddled and Medium (a photographer's cyanide is new).
+   - **What fixes the hour.** Six one-hour clocks for small cases (a dog, a knocked clock, a radio programme, a delivery boy, the el, a church bell), four window lines, three ways the neighbour has the pet, and fifteen murder clock lines by means and tier (the coroner, the supper sent up, a telephone call, a broken watch, the el, a cry, the police surgeon, and so on).
+   - **Why the client points.** Motives come by kind, and the pointer line either states it or wraps it (a threat in the street, a letter in his desk, the woman downstairs, or something the person did that the office saw).
+   - **Motives fit the crime.** A small case's culprit always sells the thing, and the motive says why they need the money and what it fetches ("three weeks behind on the rent, and has been heard to say what a dachshund with papers fetches"). The fence fits the motive: owing Lou means Lou has it.
+   - The sweep counts distinct setups per type, and fails if two seeds' givens match word for word with people's names taken out (`givensSignature`).
+2. **Lists left people out.** People the case puts at a place who aren't rows of the board are `BoardCase.others`, and watchers list them: the fence at the venue all night, the client telling the room, and an innocent liar's companion. A companion the keeper can't name is listed as such ("Sweeney and two men off the docks I didn't know"), and then that hour's "nobody else" doesn't hold: the solver draws no exclusions from it. **`listsComplete`** checks every list against the board and the others.
+3. **Evenings that didn't make sense.**
+   - An hour at someone else's home is an errand ("dropped a parcel off"); two or more is a visit ("went to sit with a sick friend"). **`errandsShort`** checks both the truth and every account.
+   - A lie claims a venue, the liar's own home, their work in its hours, or a home in the company of someone who lives there (the Hard-boiled pair). People now carry `home` and `works`. **`liesPlausible`** checks lies and second lies. Feeney's "ten o'clock at Rafferty's, alone" can't happen any more: an innocent liar who covers with the rooming house now lodges there.
+   - An account gives the truth's reason for every true move. A move that's only a move because of a lie gives the reason for the stint it rejoins, or "went back to" when the account has been there already. The culprit's move away from the scene now has a real reason, which both the truth and the account say. **`reasonsMatch`**.
+4. **The path and the suggestions didn't follow from what the player knew.** `pointers.ts` says what points at each question: the office (the scene, the guests, the lodger, the finder, the one the client points at, the venue where the victim drank, where the spare key hangs), the scene search (where a murder's means came from), an account (every place it claims and everyone in its company), a list (everyone on it), a remark, or an admission (the person it names).
+   - Par, the rating, the refusal shortcut and the routes count only questions a player can be pointed to. The designed path is ordered so that each step is pointed to by an earlier step or the office.
+   - The suggested order is built the same way: the scene, then the finder, then watchers once something names their place, then the people the answers name. A refusing liar's keeper is reached through the venue watcher's remark that she goes on there most nights, which names the place without placing her.
+   - `npm run board` prints each step's reason, naming the step that points to it: "Fairbanks says he was at the Orpheum at ten (step 2): ask Brauer who was there."
+   - **`pathMotivated`** checks the path and the suggestions. It needs the analysis, so `checkInvariants(c, a)` takes it; without it the check is skipped.
+
+**Fixture adjustments**, all forced by the new invariants:
+- Both goldens' people now say where they live (`home`, `works`), which the goldens give in prose. Nothing else changes for `liesPlausible`.
+- `reasonsMatch`: in the repaired seed 3 and the repaired lost watch, the truth table and the accounts paraphrased each other ("one drink" against "a drink"). They now use the same words. Vitale's and Szabo's truths no longer say "cleaned out", which was their secrets talking.
+- `listsComplete`: the repaired lost watch puts Lou in his booth at the Shamrock, where the watch went, so Mulcahy now lists him.
+- Seed 3's unrepaired path is the same four questions in the order the player is pointed: the table, Mrs. Rafferty (the label), Marchetti (on her list), then Hargrove (Marchetti says the Velvet Room at ten). Both repaired goldens keep their par: 7 and 8.
+
+**The sweep** (`npm run board-sweep -- --tier all --n 200`, seeds 1–200):
+
+| tier | generated | tries | par median [range] | rated at tier | murder setups | lost-item setups | lost-pet setups | givens matching | invariant failures |
+|---|---|---|---|---|---|---|---|---|---|
+| Raw | 100% | 1.7 | 4 [4–4] | 100% | 56 of 91 (means 4, clocks 9, pointers 7) | 45 of 55 (8, 6, 6) | 49 of 54 (8, 6, 6) | 0 | 0 |
+| Coddled | 100% | 2.3 | 4 [4–4] | 100% | 75 of 91 (8, 9, 7) | 52 of 55 (8, 6, 6) | 44 of 54 (8, 6, 6) | 0 | 0 |
+| Poached | 100% | 2.8 | 7 [5–7] | 100% | 54 of 91 (4, 9, 7) | 47 of 55 (8, 6, 6) | 47 of 54 (8, 6, 6) | 0 | 0 |
+| Soft-boiled | 100% | 4.9 | 7 [5–7] | 100% | 59 of 91 (4, 5, 7) | — | 72 of 109 (8, 4, 6) | 0 | 0 |
+| Medium | 100% | 2.1 | 6 [5–8] | 100% | 65 of 91 (8, 5, 7) | — | 75 of 109 (8, 4, 6) | 0 | 0 |
+| Hard-boiled | 100% | 2.2 | 6 [6–7] | 100% | 58 of 91 (4, 5, 7) | — | 76 of 109 (8, 4, 6) | 0 | 0 |
+
+The refusal shortcut still never beats par, and there are still no duplicate reasons and no culprit and liar in one place at one hour.
+
+**Worth reading:**
+- `npm run board -- --seed 1 --tier poached --type murder`: chloral off the Delmonico rooms' shelf. The victim's usual bar and the label on the bottle each send you to a watcher, and Winslow's admission names Donnelly, whose account clears him.
+- `npm run board -- --seed 4 --tier poached`: the designer's dachshund again. Now it's the key under the mat after a card party, Sweeney's secret companions are on the card room's list as men the keeper didn't know, and the usher's remark at the Orpheum is what sends you to the card room.
+- `npm run board -- --seed 8 --tier coddled`: a cigarette case. The client told the room at the Velvet Room where the key was, so the barman's list (which has her on it) is the access question.
+
+**Still open:**
+- A murder's means at Raw, Poached, Soft-boiled and Hard-boiled come from the four rooming-house means. Workplaces stay at Coddled and Medium, as before.
+- An outsider whom nothing names (alone all night somewhere unwatched) is never suggested. The access list clears them, so they're never needed, but the player never meets them either.
+- Accounts list board people as company, not `others`. The stranger at the Palace is on the usher's list but not in the account of someone else who sat there.
+- Soft-boiled needs about five attempts a seed (it was two). Lost items are still built at Raw to Poached only.

@@ -17,10 +17,11 @@ export function seed3(): BoardCase {
     type: 'murder',
     client: 'hauck',
     people: [
-      { id: 'marchetti', name: 'Miss Marchetti', short: 'Marchetti', role: 'suspect', description: 'a switchboard operator; lodges at Rafferty’s', foundAt: 'rafferty', motive: 'Sirkin had a file on her: selling subscribers’ calls to a newspaperman' },
-      { id: 'steinbach', name: 'Mr. Steinbach', short: 'Steinbach', role: 'suspect', description: 'a piano teacher; lodges at Rafferty’s', foundAt: 'velvet', motive: 'Sirkin closed his school' },
-      { id: 'vitale', name: 'Vitale', short: 'Vitale', role: 'suspect', description: 'a bookmaker', foundAt: 'velvet', motive: 'a favour gone sour', secret: 'the Friday card game in the back room; his wife thinks he gave it up at Easter' },
-      { id: 'crowninshield', name: 'Dr. Crowninshield', short: 'the dentist', role: 'suspect', description: 'a dentist; owed Sirkin $4,000', foundAt: 'velvet', motive: 'owed him $4,000' },
+      // 4a.2: where each lives and works, for `liesPlausible` (the golden says it in prose).
+      { id: 'marchetti', name: 'Miss Marchetti', short: 'Marchetti', role: 'suspect', description: 'a switchboard operator; lodges at Rafferty’s', foundAt: 'rafferty', motive: 'Sirkin had a file on her: selling subscribers’ calls to a newspaperman', female: true, home: 'rafferty' },
+      { id: 'steinbach', name: 'Mr. Steinbach', short: 'Steinbach', role: 'suspect', description: 'a piano teacher; lodges at Rafferty’s', foundAt: 'velvet', motive: 'Sirkin closed his school', female: false, home: 'rafferty' },
+      { id: 'vitale', name: 'Vitale', short: 'Vitale', role: 'suspect', description: 'a bookmaker', foundAt: 'velvet', motive: 'a favour gone sour', secret: 'the Friday card game in the back room; his wife thinks he gave it up at Easter', female: false, home: 'vitale-home' },
+      { id: 'crowninshield', name: 'Dr. Crowninshield', short: 'the dentist', role: 'suspect', description: 'a dentist; owed Sirkin $4,000', foundAt: 'velvet', motive: 'owed him $4,000', female: true, works: 'surgery' },
       { id: 'sirkin', name: 'Isidore Sirkin', short: 'Sirkin', role: 'victim', description: 'a buildings inspector', foundAt: 'walkup' },
       { id: 'hauck', name: 'Ilse Hauck', short: 'Hauck', role: 'client', description: 'Sirkin’s sister-in-law', foundAt: 'velvet' },
       { id: 'rafferty', name: 'Mrs. Rafferty', short: 'Mrs. Rafferty', role: 'watcher', description: 'the landlady, on a kitchen chair at the foot of her stairs', foundAt: 'rafferty' },
@@ -222,29 +223,32 @@ export function seed3Repaired(): BoardCase {
     sirkin: ['walkup', 'velvet', 'walkup', 'walkup'],
     shoes: ['backroom', 'backroom', 'backroom', 'backroom'],
   });
+  // 4a.2 (`reasonsMatch`): an account's reasons are the truth's. The golden paraphrased them
+  // between the truth table and the accounts ("one drink" against "a drink"); they now say the
+  // same words. Vitale's truth no longer says "cleaned out", which was his secret talking.
   c.board.reasons = {
-    marchetti: { 8: 'came off the switchboard at eight and went home', 9: 'went out at a quarter to nine, in her good coat, with the chloral in her bag', 10: 'a nightcap' },
+    marchetti: { 8: 'came off the switchboard at eight and went home', 9: 'went out at a quarter to nine, in her good coat, with the chloral in her bag', 10: 'about ten I went over for a nightcap' },
     steinbach: { 8: 'went out for a drink after his lesson' },
-    vitale: { 8: 'a drink', 9: 'through to the back room for the Friday game', 10: 'went home, cleaned out' },
+    vitale: { 8: 'a drink', 9: 'through to the back room for the Friday game', 10: 'went home; I keep hours' },
     crowninshield: { 9: 'closed the surgery at half past eight and went for a drink' },
     sirkin: { 8: 'his rye at the Velvet Room', 9: 'left before nine: he had company coming' },
   };
   c.accounts = [
     account('marchetti', {
       7: ['exchange', [], 'on the switchboard till eight'],
-      8: ['rafferty', [], 'came home at eight'],
+      8: ['rafferty', [], 'came off the switchboard at eight and went home'],
       9: ['rafferty', [], 'in my room, with a book'],
       10: ['velvet', ['steinbach', 'crowninshield'], 'about ten I went over for a nightcap'],
     }),
     account('steinbach', {
       7: ['rafferty', ['vitale'], 'a lesson in my room'],
-      8: ['velvet', ['vitale', 'sirkin'], 'went out for a drink after the lesson'],
+      8: ['velvet', ['vitale', 'sirkin'], 'went out for a drink after his lesson'],
       9: ['velvet', ['crowninshield']],
       10: ['velvet', ['crowninshield', 'marchetti'], 'stayed till closing'],
     }),
     account('vitale', {
       7: ['rafferty', ['steinbach'], 'went up to see Steinbach about what he owes'],
-      8: ['velvet', ['steinbach', 'sirkin'], 'one drink'],
+      8: ['velvet', ['steinbach', 'sirkin'], 'a drink'],
       9: ['velvet', [], 'out front, nursing a beer'],
       10: ['vitale-home', [], 'went home; I keep hours'],
     }),
@@ -253,7 +257,7 @@ export function seed3Repaired(): BoardCase {
       {
         7: ['surgery', []],
         8: ['surgery', [], 'till half past eight'],
-        9: ['velvet', ['steinbach'], 'shut the surgery and came for a drink'],
+        9: ['velvet', ['steinbach'], 'closed the surgery at half past eight and went for a drink'],
         10: ['velvet', ['steinbach', 'marchetti']],
       },
       [{ text: 'I left at eleven and stopped at Sirkin’s with the money I owed. The door was open.', facts: [], side: false }],

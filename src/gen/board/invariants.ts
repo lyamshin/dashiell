@@ -1,7 +1,9 @@
-import type { BoardCase, Hour, PersonId } from './types.js';
+import type { BoardCase, Hour, PersonId, PlaceId } from './types.js';
 import { fmtHour, key, questionsOf, solve } from './solver.js';
 import { techniquesUpTo } from './tiers.js';
-import { hadAccess } from './path.js';
+import { hadAccess, type Analysis } from './path.js';
+import { isErrand } from './content.js';
+import { pointed } from './pointers.js';
 
 /**
  * docs/42 §5: the checks no case may fail. Each returns a list of failures;
@@ -29,6 +31,16 @@ export interface InvariantReport {
   liarsApart: string[];
   /** The office's window is said in board hours, and matches the crime's. */
   windowFits: string[];
+  /** 4a.2: everyone the case puts at a watched place at an hour is on that watcher's list. */
+  listsComplete: string[];
+  /** 4a.2: an errand (dropping something off, a quick word) lasts an hour at most, told or true. */
+  errandsShort: string[];
+  /** 4a.2: a lie claims somewhere the liar would plausibly be. */
+  liesPlausible: string[];
+  /** 4a.2: an account's reasons are the truth's, except at the lied hour. */
+  reasonsMatch: string[];
+  /** 4a.2: every step of the designed path and the suggested order is pointed to by an earlier one or a given. */
+  pathMotivated: string[];
 }
 
 export const INVARIANT_NAMES: (keyof InvariantReport)[] = [
@@ -45,9 +57,21 @@ export const INVARIANT_NAMES: (keyof InvariantReport)[] = [
   'distinctReasons',
   'liarsApart',
   'windowFits',
+  'listsComplete',
+  'errandsShort',
+  'liesPlausible',
+  'reasonsMatch',
+  'pathMotivated',
 ];
 
-export function checkInvariants(c: BoardCase): InvariantReport {
+/** Where people are plausibly found with no reason but their own (4a.2). */
+const PUBLIC = new Set(['bar', 'club', 'restaurant', 'theatre']);
+
+/**
+ * `a`, the case's analysis, is needed only for `pathMotivated`; without it that check is skipped
+ * (the generator's pre-check, before there's a path).
+ */
+export function checkInvariants(c: BoardCase, a?: Pick<Analysis, 'path' | 'suggested'>): InvariantReport {
   const r: InvariantReport = {
     noGaps: [],
     everyLieCollides: [],
@@ -62,6 +86,11 @@ export function checkInvariants(c: BoardCase): InvariantReport {
     distinctReasons: [],
     liarsApart: [],
     windowFits: [],
+    listsComplete: [],
+    errandsShort: [],
+    liesPlausible: [],
+    reasonsMatch: [],
+    pathMotivated: [],
   };
   const hours = c.board.hours;
   const place = new Map(c.places.map((p) => [p.id, p]));
@@ -245,6 +274,126 @@ export function checkInvariants(c: BoardCase): InvariantReport {
       const pl = k.person === c.crime.culprit ? k.secondLie?.place : undefined;
       if (pl && la.claims[k.hour]?.place === pl) r.liarsApart.push(`${c.crime.culprit}'s second lie and ${lp} both claim ${pl} at ${k.hour}`);
     }
+  }
+
+  // 4a.2: the lists leave nobody out. Everyone the case puts at a watched place at an hour the
+  // watcher covers is on the list: board people (or their face), and the people who aren't rows
+  // (the fence, the client telling the room, a companion the watcher can't name).
+  const others = c.others ?? [];
+  for (const l of c.lists) {
+    const unseen = new Set(l.unseen ?? []);
+    for (const h of hours) {
+      const es = l.entries[h];
+      if (!es) continue;
+      const named = new Set(es.flatMap((e) => ('person' in e ? [e.person] : [])));
+      const faces = es.filter((e) => 'look' in e).length;
+      const missing = boardPeople.filter((p) => at(p, h) === l.place && !unseen.has(p) && !named.has(p));
+      if (missing.length > faces) r.listsComplete.push(`${l.watcher}'s list at ${h} leaves out ${missing.join(', ')}`);
+      const listed = new Set(es.flatMap((e) => ('other' in e ? [e.other] : [])));
+      for (const o of others) if (o.at[h] === l.place && !listed.has(o.id)) r.listsComplete.push(`${l.watcher}'s list at ${h} leaves out ${o.name}`);
+      for (const id of listed) {
+        const o = others.find((x) => x.id === id);
+        if (!o) r.listsComplete.push(`${l.watcher}'s list at ${h} names ${id}, whom the case never places`);
+        else if (o.at[h] !== l.place) r.listsComplete.push(`${l.watcher}'s list at ${h} has ${o.name}, who wasn't there`);
+      }
+    }
+  }
+
+  // 4a.2: an errand lasts an hour at most, in the truth and in what anyone says.
+  const runFrom = (get: (h: Hour) => PlaceId | undefined, h: Hour) => {
+    let n = 0;
+    for (const x of hours) {
+      if (x < h) continue;
+      if (get(x) !== get(h)) break;
+      n++;
+    }
+    return n;
+  };
+  for (const [p, rs] of Object.entries(c.board.reasons)) {
+    for (const [hs, why] of Object.entries(rs)) {
+      const h = Number(hs);
+      if (isErrand(why) && runFrom((x) => at(p, x), h) > 1) r.errandsShort.push(`${p} ${why} at ${h}, and stays ${runFrom((x) => at(p, x), h)} hours`);
+    }
+  }
+  for (const acc of c.accounts) {
+    for (const h of hours) {
+      const why = acc.claims[h]?.reason;
+      const n = runFrom((x) => acc.claims[x]?.place, h);
+      if (why && isErrand(why) && n > 1) r.errandsShort.push(`${acc.person} says "${why}" at ${h}, and claims ${n} hours there`);
+    }
+  }
+
+  // 4a.2: a lie claims somewhere the liar would plausibly be: a bar, club, restaurant or theatre;
+  // their own home; their work in its hours; or a home in the company of somebody who lives there.
+  const personOf = (p: PersonId) => c.people.find((x) => x.id === p);
+  const plausible = (p: PersonId, pl: PlaceId, h: Hour, comp: PersonId[]) => {
+    const where = place.get(pl);
+    if (!where) return false;
+    const who = personOf(p);
+    if (PUBLIC.has(where.kind)) return true;
+    if (who?.home === pl) return true;
+    if (who?.works === pl && h >= where.open[0] && h <= where.open[1]) return true;
+    return where.kind === 'home' && comp.some((x) => personOf(x)?.home === pl);
+  };
+  for (const l of c.lies) {
+    const comp = c.accounts.find((x) => x.person === l.person)?.claims[l.hour]?.company ?? [];
+    if (!plausible(l.person, l.claim, l.hour, comp)) r.liesPlausible.push(`${l.person} claims ${l.claim} at ${l.hour}, where they'd have no reason to be`);
+  }
+  for (const k of c.confrontations) {
+    const pl = k.secondLie?.place;
+    if (pl && !plausible(k.person, pl, k.hour, [])) r.liesPlausible.push(`${k.person}'s second lie claims ${pl} at ${k.hour}, where they'd have no reason to be`);
+  }
+
+  // 4a.2: an account's reasons are the truth's, except at the lied hour. A move the person really
+  // made gives the truth's reason. A move that's a move only because of a lie (they rejoin a place
+  // after claiming somewhere else) gives the reason for the stint it rejoins, or "went back" when
+  // the account has already been there. A true move the account claims isn't left without one.
+  const backRe = /^(went back to|came back to|looked in at .* again)/;
+  for (const acc of c.accounts) {
+    const p = acc.person;
+    const rs = c.board.reasons[p] ?? {};
+    hours.forEach((h, i) => {
+      if (lieKeys.has(key(p, h)) || i === 0) return;
+      const cl = acc.claims[h];
+      if (!cl || cl.place !== at(p, h)) return;
+      const prevClaim = acc.claims[hours[i - 1] as Hour]?.place;
+      const claimsMove = prevClaim !== undefined && prevClaim !== cl.place;
+      // A reason with no move is a remark ("stayed till closing"), not a reason for moving.
+      if (!claimsMove) return;
+      const trulyMoved = at(p, hours[i - 1] as Hour) !== at(p, h);
+      let s = i;
+      while (s > 0 && at(p, hours[s - 1] as Hour) === at(p, h)) s--;
+      const stintWhy = rs[hours[s] as Hour];
+      const why = cl.reason;
+      if (trulyMoved) {
+        const truth = rs[h];
+        if (why !== undefined && truth !== undefined && why !== truth) r.reasonsMatch.push(`${p} at ${h} says "${why}"; the truth is "${truth}"`);
+        if (why === undefined && truth !== undefined) r.reasonsMatch.push(`${p} at ${h} claims a move with no reason; the truth is "${truth}"`);
+        return;
+      }
+      if (why === undefined) return;
+      const saidBefore = hours.slice(s, i).some((x) => acc.claims[x]?.place === cl.place);
+      if (saidBefore) {
+        if (!backRe.test(why)) r.reasonsMatch.push(`${p} at ${h} rejoins ${cl.place} saying "${why}", not that they went back`);
+      } else if (stintWhy !== undefined && why !== stintWhy) r.reasonsMatch.push(`${p} at ${h} says "${why}"; the truth is "${stintWhy}"`);
+    });
+  }
+
+  // 4a.2: the designed path and the suggested order ask only what something already held points
+  // at: an earlier step, or the office.
+  if (a) {
+    const seq = (qs: string[], what: string) =>
+      qs.forEach((q, i) => {
+        if (!pointed(c, q, qs.slice(0, i))) r.pathMotivated.push(`${what} ${i + 1} (${q}) is pointed to by nothing before it`);
+      });
+    seq(
+      a.path.map((s) => s.q),
+      'step',
+    );
+    seq(
+      a.suggested.map((s) => s.q),
+      'suggestion',
+    );
   }
   return r;
 }
