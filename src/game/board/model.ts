@@ -91,6 +91,8 @@ export interface BoardRun {
   traits?: Record<PersonId, { short: string; pay: string[] }>;
   /** M13's props, on the board: something in a place set up on the first visit, paid off later there. */
   props?: Record<PlaceId, { short: string; pay: string[] }>;
+  /** docs/44: the street's own role, set up on the night's first walk and paid off on a later one. */
+  street?: { short: string; pay: string[] };
 }
 
 /** A dealt night: the case and its analysis. */

@@ -256,6 +256,17 @@ export interface Page {
     turn?: boolean;
     /** The page paid off something set up earlier tonight (M13's callback). */
     callback?: boolean;
+    /** docs/44: the sheet the page was laid out on, and the beats it filled, in order. */
+    sheet?: string;
+    beats?: string[];
+    /** docs/44: the page's thought, and the held lines (or questions) it ties the new fact to. */
+    thought?: { text: string; refs: string[] };
+    /** docs/44: cards dealt again tonight because nothing fresh fitted. */
+    repeats?: number;
+    /** docs/44: the hand-off's words, so the next page needn't give the reason again. */
+    handoff?: string;
+    /** docs/44: the recap's clauses (the notebook said aloud), which may name people more than twice. */
+    recap?: string;
   };
 }
 

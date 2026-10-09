@@ -107,13 +107,14 @@ export function spokenAccount(c: BoardCase, a: Account, _manner: Manner, rot = 0
       // The office's own gathering: everybody there knows what it was.
       s = `I was at ${party.client}’s at ${hourWord(r.from)}, for the ${party.occasion}${long ? `, till ${hourWord(r.to + 1)}` : ''}`;
     } else if (i === 0 && !reason) {
-      s = `I was ${where} ${long ? (toEnd ? 'all evening' : `from ${hourWord(r.from)} till ${hourWord(r.to + 1)}`) : `at ${hourWord(r.from)}`}`;
+      // docs/44: "till ten" and then "at ten I went" says ten twice; the run says its own last hour.
+      s = `I was ${where} ${long ? (toEnd ? 'all evening' : `from ${hourWord(r.from)} through ${hourWord(r.to)}`) : `at ${hourWord(r.from)}`}`;
     } else if (i === 0) {
-      s = `At ${hourWord(r.from)} I ${reason}${long ? (toEnd ? ', and I was there all evening' : `, and stayed till ${hourWord(r.to + 1)}`) : ''}`;
+      s = `At ${hourWord(r.from)} I ${reason}${long ? (toEnd ? ', and I was there all evening' : `, and stayed through ${hourWord(r.to)}`) : ''}`;
     } else {
       // "came off shift at eleven" says the hour already: the opener doesn't say it again.
       const open = reason && reason.includes(`at ${hourWord(r.from)}`) ? 'Then' : opener(r.from, i, rot);
-      s = `${open} I ${reason ?? `was ${where}`}${long ? (toEnd ? ', and stayed the rest of the evening' : `, and stayed till ${hourWord(r.to + 1)}`) : ''}`;
+      s = `${open} I ${reason ?? `was ${where}`}${long ? (toEnd ? ', and stayed the rest of the evening' : `, and stayed through ${hourWord(r.to)}`) : ''}`;
     }
     // Company: said with the run when it held the whole run, an hour at a time when it didn't.
     if (same) {
@@ -179,13 +180,24 @@ export function spokenList(c: BoardCase, l: WatchList, rot = 0): string[] {
     if (g && g.hs[g.hs.length - 1] === h - 1 && entryKey(g.es) === entryKey(es)) g.hs.push(h);
     else groups.push({ hs: [h], es });
   }
+  const told = new Set<string>();
   groups.forEach((g, i) => {
     const when = g.hs.length === 1 ? (i === 0 ? `${cap(hourWord(g.hs[0] as Hour))} o’clock` : cap(hourWord(g.hs[0] as Hour))) : `${cap(andList(g.hs.map(hourWord)))}`;
     if (g.es.length === 0) {
       out.push(`${when}, nobody${landlady ? ' but me' : always.size ? ' else' : ''}.`);
       return;
     }
-    const names = g.es.map((e) => entryName(c, e));
+    const names = g.es.map((e) => {
+      // docs/44: a standing fact is said once ("Mr. Prentiss telling the room about his key"), then "still at it".
+      if ('other' in e) {
+        const full = entryName(c, e);
+        const head = full.replace(/ (telling|complaining) .*$/, '');
+        if (head !== full && told.has(e.other)) return `${head}, still ${/complaining/.test(full) ? 'complaining' : 'telling it'}`;
+        told.add(e.other);
+        return full;
+      }
+      return entryName(c, e);
+    });
     const whole = g.hs.every((h) => listExhaustive(c, l, h));
     out.push(`${when}, ${andList(names)}.${whole ? ` ${nobodyElse(i + rot)}.` : ''}`);
   });

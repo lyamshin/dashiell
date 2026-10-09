@@ -17,6 +17,8 @@ import peopleJson from '../../../content/board/people.json';
 import tellingJson from '../../../content/board/telling.json';
 import confrontJson from '../../../content/board/confront.json';
 import nightJson from '../../../content/board/night.json';
+import connectiveJson from '../../../content/board/connective.json';
+import stillJson from '../../../content/board/still.json';
 
 /** A board card: an old deck's card shape, with its family. */
 export interface BoardCard {
@@ -37,6 +39,8 @@ export const BOARD_CARDS: BoardCard[] = [
   ...(tellingJson as BoardCard[]),
   ...(confrontJson as BoardCard[]),
   ...(nightJson as BoardCard[]),
+  ...(connectiveJson as BoardCard[]),
+  ...(stillJson as BoardCard[]),
 ];
 
 const BY_FAMILY = new Map<string, BoardCard[]>();
@@ -67,6 +71,12 @@ export class Hand {
   /** Spent on this page, in order. */
   readonly spent: string[] = [];
   private jokes = 0;
+  /** docs/44: cards dealt again tonight because nothing fresh fitted. */
+  reuses = 0;
+  /** The last board card dealt. */
+  private lastId = '';
+  /** Card text a page may not use tonight (a Yiddish theatre has no pictures). */
+  avoid: RegExp | null = null;
 
   constructor(seed: number, page: number, spent: readonly string[]) {
     this.rng = new Rng(((seed * 2654435761) ^ (page * 40503 + 0x9e37)) >>> 0);
@@ -112,7 +122,7 @@ export class Hand {
    * true. Cards whose slots can't all be filled are passed over. Null when
    * nothing fits.
    */
-  draw(family: string, want: Want = {}, slots: Slots = {}, opts: { widen?: boolean; plain?: boolean; need?: boolean } = {}): string | null {
+  draw(family: string, want: Want = {}, slots: Slots = {}, opts: { widen?: boolean; plain?: boolean; need?: boolean; fresh?: boolean; joke?: boolean } = {}): string | null {
     const pool = familyCards(family);
     if (pool.length === 0) return null;
     const keys = Object.keys(want).filter((k) => want[k] !== undefined);
@@ -122,15 +132,18 @@ export class Hand {
       rungs.push(keys.slice(0, n));
     }
     if (rungs.length === 0) rungs.push([]);
-    const plainOnly = opts.plain === true || !this.mayJoke;
+    const plainOnly = opts.plain === true || (!this.mayJoke && !(opts.joke && this.jokes === 0));
     for (const pass of plainOnly && opts.need ? [true, false] : [plainOnly]) {
       for (const rung of rungs) {
-        const fits = pool.filter((c) => rung.every((k) => tagFits(c, k, want[k] as string)) && (!pass || !c.joke));
+        const fits = pool.filter((c) => rung.every((k) => tagFits(c, k, want[k] as string)) && (!pass || !c.joke) && !(this.avoid && this.avoid.test(c.text)));
         const filled = fits.map((c) => ({ c, text: fill(c as unknown as Card, slots) })).filter((x): x is { c: BoardCard; text: string } => x.text !== null);
         if (filled.length === 0) continue;
         const fresh = filled.filter((x) => !this.spentSet.has(x.c.id));
+        if (fresh.length === 0 && opts.fresh) continue;
         const from = fresh.length > 0 ? fresh : filled;
         const pick = from[this.rng.int(from.length)] as { c: BoardCard; text: string };
+        if (fresh.length === 0) this.reuses++;
+        this.lastId = pick.c.id;
         this.note(pick.c.id);
         if (pick.c.joke) this.jokes++;
         return pick.text;
@@ -140,22 +153,22 @@ export class Hand {
   }
 
   /** The card itself, for one whose exports the page wants (the office's prop). */
-  drawCard(family: string, want: Want = {}, slots: Slots = {}): { card: BoardCard; text: string } | null {
-    const before = this.spent.length;
-    const text = this.draw(family, want, slots, { widen: true });
+  drawCard(family: string, want: Want = {}, slots: Slots = {}, opts: { widen?: boolean; plain?: boolean; fresh?: boolean; joke?: boolean } = { widen: true }): { card: BoardCard; text: string } | null {
+    const text = this.draw(family, want, slots, opts);
     if (text === null) return null;
-    const id = this.spent[before] as string;
+    const id = this.lastId;
     return { card: BOARD_CARDS.find((c) => c.id === id) as BoardCard, text };
   }
 
   /** Deal from one of the old decks, by a plain match on its tags. */
   drawOld(deck: DeckName, match: (c: Card) => boolean, slots: Slots = {}, plain = false): { card: Card; text: string } | null {
-    const pool = (DECKS[deck] ?? []).filter((c) => match(c) && (!(plain || !this.mayJoke) || !c.joke));
+    const pool = (DECKS[deck] ?? []).filter((c) => match(c) && (!(plain || !this.mayJoke) || !c.joke) && !(this.avoid && this.avoid.test(c.text)));
     const filled = pool.map((c) => ({ card: c, text: fill(c, slots) })).filter((x): x is { card: Card; text: string } => x.text !== null);
     const fresh = filled.filter((x) => !this.spentSet.has(x.card.id));
     const from = fresh.length > 0 ? fresh : filled;
     if (from.length === 0) return null;
     const pick = from[this.rng.int(from.length)] as { card: Card; text: string };
+    if (fresh.length === 0) this.reuses++;
     this.note(pick.card.id);
     if (pick.card.joke) this.jokes++;
     return pick;

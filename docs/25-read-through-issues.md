@@ -88,3 +88,29 @@ Branch `small-board-4b`. Found reading six board nights in full (`npm run read -
   - The office's lines come as three quotations in a row on lost-thing nights (what's gone, the party, the way in). It reads as one speech, but long.
   - The card room and the print shop are "unwatched" when nobody refuses there, yet the arrival can mention the night shift's presses and the man who runs the game ("Nobody was paid to notice, so nobody did").
   - A small case's culprit cracks on the first put, so a player who catches the lie has the confession (docs/43 Built).
+
+## Board connective tissue (docs/44), 2026-10-09
+Branch `board-connective`. Found reading four board nights in full (`npm run read -- --engine board`: Medium 1 lost pet beside the golden, Raw 2 murder, Poached 3 lost item, Hard-boiled 1 murder), and at 375 px in the book.
+
+- **Fixed here.**
+  - A hand-off said "That pointed me at Abramowitz" on a page where nothing had. "That …" frames now come only when the page itself pointed.
+  - The arrival's why was said again, word for word, on the next page. Now the next page says only who I'd come for.
+  - The hand-off ran into the page's closing joke ("…he was at the Automat. One hand came unfolded…"). They are separate paragraphs now.
+  - A reaction landed after the answer it was reacting to. The reaction comes before the job on every sheet.
+  - "Mrs. Rafferty had her Rafferty’s at seven"; "Mrs. Nagy’s rooms on East Fourth Street was quiet"; "The Delmonico rooms was twenty minutes"; "uptown of the office".
+  - "A reason isn’t a hand on the bottle" for a revolver.
+  - "So far only Bledsoe’s" when a face on a list might be hers. The own-word lines now claim nothing.
+  - A club's doorkeeper staged "wiping a glass that was already dry". A watcher's staging now follows the job.
+  - A handover thought and the recap named the thing under the coat before anything said whose it was.
+  - "The landlady at Mrs. Nagy’s would know who’d been in to hear it" at a murder: the frame belonged to the told-the-room case.
+  - From 4b's open list: a prop said "at {place}" right after the arrival named the place.
+- **Open.**
+  - People still come to the door "in stocking feet" more than once a night (4b's item).
+  - "Thin and a little bent at the shoulders from the machine" for a milliner: the seamstress look card is the milliner's archetype.
+  - The Bijou's ticket seller is described standing at the back with a torch, like an usher. The job key groups ushers and ticket sellers.
+  - A search page is still short (about 140 words), and so is a Raw list. See docs/44.
+- **Round two, from the coordinator's read of the golden's night (fixed).**
+  - Names said four and five times a page ("Ashby" ×5 on page 6, "Prentiss" all over pages 1–3). Now twice at most, with the rest as pronouns or roles where that's clear.
+  - "Corrigan on Stuyvesant Street at eleven, going fast, no hat" said three times running. The thought now points at the street, and the next page opens "So, Corrigan."
+  - "Mrs. Cheatham, at the Delmonico rooms, minds Duchess when I’m out." stood with no lead-in. Every office quote now has one, and the aside runs as talk with a beat.
+  - Found on the reread: Mrs. Cheatham "opened the door the width of a face" a page after she'd opened the door. A person met on the way in isn't staged at the door again.

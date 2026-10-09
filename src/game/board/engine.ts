@@ -18,6 +18,7 @@ import { isOver } from '../clock.js';
 import type { Page } from '../types.js';
 import type { Weather } from '../voice/roll.js';
 import { boardChoices, pageStars, type BoardStar } from './choices.js';
+import { thinNames } from './names.js';
 import { collisionsOf, judgeLine, knownPeople, knownPlaces, linesHeld, peopleAt, solveRun } from './knowledge.js';
 import {
   OFFICE,
@@ -40,6 +41,8 @@ import {
   writeOffice,
   writeRecap,
   writeRepeat,
+  writeReport,
+  writeReturn,
   writeSearch,
   writeTurn,
   writer,
@@ -92,7 +95,7 @@ export function stepBoard(d: BoardDeal, run: BoardRun, input: string): StepResul
   if (verb === 'file') {
     next.reportOpen = true;
     const w = writer(d, run, next, n);
-    w.blocks.push({ kind: 'prose', text: 'I sat down with the form.', voice: 'narrator' });
+    writeReport(w);
     return { run: finish(w, next, { job: 'nothing', cost: 0 }), page: next.log[n] as Page };
   }
   if (run.reportOpen) return fail('The report form is out. File it.');
@@ -111,16 +114,17 @@ export function stepBoard(d: BoardDeal, run: BoardRun, input: string): StepResul
       next.at = OFFICE;
       next.used = run.used + 1;
       const w = writer(d, run, next, n);
-      w.blocks.push({ kind: 'prose', text: 'I went back up to the office. It had kept my chair warm for nobody.', voice: 'establish' });
+      writeReturn(w);
       return { run: finish(w, next, { job: 'arrive', cost: 1, head: 'the office' }), page: next.log[n] as Page };
     }
     if (!knownPlaces(c, run).has(place)) return fail(`I don’t know a place called ${place}.`);
     next.at = place;
     next.used = run.used + 1;
     next.visits[place] = (run.visits[place] ?? 0) + 1;
+    // Visited before the page is written, so its hand-off reads the stars from inside the room.
+    if (!next.visited.includes(place)) next.visited.push(place);
     const w = writer(d, run, next, n);
     writeArrive(w, place);
-    if (!next.visited.includes(place)) next.visited.push(place);
     return { run: finish(w, next, { job: 'arrive', cost: 1 }), page: next.log[n] as Page };
   }
 
@@ -203,6 +207,18 @@ function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>[
     next.turn = n;
     turn = true;
   }
+  // docs/39 §4: a name twice at most a page. The answer itself (an account, a watcher's list) is left whole.
+  const thoughtAt = w.thought ? w.blocks.findIndex((b) => b.kind === 'prose' && b.text.includes(w.thought?.text ?? '\u0000')) : -1;
+  thinNames(
+    c,
+    w.blocks,
+    (b) => b.kind === 'prose' && ((b.voice === 'answer' && (o.job === 'account' || o.job === 'list')) || (b.voice === 'recap' && b.text === w.recap)),
+    (b) => b.kind === 'prose' && b.voice === 'answer' && o.job === 'list',
+  );
+  if (w.thought && thoughtAt >= 0) {
+    const b = w.blocks[thoughtAt];
+    if (b?.kind === 'prose') w.thought = { ...w.thought, text: b.text };
+  }
   if (!next.reportOpen && isOver(next.used, budgetCalls(w.d))) {
     next.reportOpen = true;
     w.blocks.push({
@@ -231,6 +247,12 @@ function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>[
       places: [...w.places].filter(Boolean),
       ...(turn ? { turn: true } : {}),
       ...(w.callback ? { callback: true } : {}),
+      ...(w.sheet ? { sheet: w.sheet } : {}),
+      ...(w.beats.length ? { beats: [...w.beats] } : {}),
+      ...(w.thought ? { thought: w.thought } : {}),
+      ...(w.handoff ? { handoff: w.handoff } : {}),
+      ...(w.recap ? { recap: w.recap } : {}),
+      ...(w.hand.reuses ? { repeats: w.hand.reuses } : {}),
     },
   };
   next.spent = [...next.spent, ...w.hand.spent];

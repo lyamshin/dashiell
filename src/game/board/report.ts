@@ -149,7 +149,9 @@ function closingOf(d: BoardDeal, run: BoardRun, outcome: Outcome): string[] {
   if (outcome === 'solved') {
     out.push(run.used <= par ? `It took me ${run.used} calls. A better detective would have needed the same, and there aren’t many of those about.` : `It took me ${run.used} calls. A better detective would have done it in ${par}.`);
   }
-  if (run.prop?.pay?.length) out.push(hand.rng.pick(run.prop.pay));
+  // The office's prop, paid off, unless the report page already paid it off with this line.
+  const fresh = (run.prop?.pay ?? []).filter((l) => !run.spent.includes(`pay:${l.slice(0, 40)}`));
+  if (fresh.length) out.push(hand.rng.pick(fresh));
   return out;
 }
 
