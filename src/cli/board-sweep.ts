@@ -1,6 +1,7 @@
 import {
   checkInvariants,
   generateBoard,
+  givensSignature,
   invariantFailures,
   parseTier,
   refusalShortcut,
@@ -20,7 +21,9 @@ import { ignoreBrokenPipe, parseArgs } from './args.js';
  * case-type mix, and the invariants, which no accepted case may fail. A second
  * table covers the designer's decisions of 2026-09-28: the refusal shortcut's
  * gain on par, how innocent liars answer, the place kinds dealt, duplicate
- * reasons, and the culprit and the liar claiming one place at one hour.
+ * reasons, and the culprit and the liar claiming one place at one hour. A
+ * third (4a.2) counts distinct setups per case type, and seeds whose office
+ * text matches another's word for word, names aside (which must be none).
  */
 
 ignoreBrokenPipe();
@@ -44,6 +47,8 @@ const KINDS = ['home', 'bar', 'club', 'restaurant', 'theatre', 'work'];
 
 const rows: string[][] = [];
 const rows2: string[][] = [];
+const rows3: string[][] = [];
+let sameGivensTotal = 0;
 let invariantFailuresTotal = 0;
 let shortcutWins = 0;
 for (const tier of tiers) {
@@ -70,6 +75,9 @@ for (const tier of tiers) {
   const kinds = new Map<string, number>();
   let dupReasons = 0;
   let samePlace = 0;
+  const setups = new Map<CaseType, { all: Set<string>; means: Set<string>; clock: Set<string>; pointer: Set<string> }>();
+  const signatures = new Map<string, number>();
+  let sameGivens = 0;
   for (let seed = from; seed < from + n; seed++) {
     const c0 = buildCase(seed, tier, pickType(seed, tier), 0);
     if (c0 && invariantFailures(checkInvariants(c0)).length === 0) {
@@ -80,7 +88,23 @@ for (const tier of tiers) {
     if (!g) continue;
     ok++;
     attempts += g.attempts;
-    const report = checkInvariants(g.kase);
+    const report = checkInvariants(g.kase, g.analysis);
+    // 4a.2: setups, and the office's text with names taken out.
+    const st = g.kase.setup;
+    if (st) {
+      const per = setups.get(g.kase.type) ?? { all: new Set<string>(), means: new Set<string>(), clock: new Set<string>(), pointer: new Set<string>() };
+      per.all.add(`${st.means}/${st.clock}/${st.pointer}`);
+      per.means.add(st.means);
+      per.clock.add(st.clock);
+      per.pointer.add(st.pointer);
+      setups.set(g.kase.type, per);
+    }
+    const sig = givensSignature(g.kase);
+    const twin = signatures.get(sig);
+    if (twin !== undefined) {
+      sameGivens++;
+      process.stderr.write(`seed ${seed} ${TIER_NAMES[tier]}: the office's text matches seed ${twin}'s, names aside\n`);
+    } else signatures.set(sig, seed);
     const inv = invariantFailures(report);
     if (inv.length > 0) {
       invFail++;
@@ -133,6 +157,12 @@ for (const tier of tiers) {
     String(dupReasons),
     String(samePlace),
   ]);
+  const setupCell = (t: CaseType) => {
+    const s = setups.get(t);
+    return s ? `${s.all.size} (means ${s.means.size}, clock ${s.clock.size}, pointer ${s.pointer.size})` : '—';
+  };
+  sameGivensTotal += sameGivens;
+  rows3.push([TIER_NAMES[tier], setupCell('murder'), setupCell('lost-item'), setupCell('lost-pet'), String(sameGivens)]);
 }
 
 const table = (head: string[], body: string[][]) => {
@@ -147,9 +177,12 @@ process.stdout.write('\n');
 process.stdout.write(
   table(['tier', 'refusal shortcut gain med / max', 'shortcut names nobody', 'innocent liars refuse : admit', 'place kinds dealt', 'duplicate reasons', 'culprit & liar same place, hour'], rows2),
 );
+process.stdout.write('\n');
+process.stdout.write(table(['tier', 'murder setups (distinct means, clocks, pointers)', 'lost-item setups', 'lost-pet setups', 'givens matching another seed’s, names aside'], rows3));
 process.stdout.write(
-  `\nseeds ${from}–${from + n - 1}. Invariants checked on every accepted case: no gaps, every lie collides, unique answer, lead time, places open, no lingering at transit, truthful lists and accounts, one-hour innocent lies, an innocent lie only when it matters, admissions checked, distinct reasons, the culprit and the liar apart, the window in board hours.\n`,
+  `\nseeds ${from}–${from + n - 1}. Invariants checked on every accepted case: no gaps, every lie collides, unique answer, lead time, places open, no lingering at transit, truthful lists and accounts, one-hour innocent lies, an innocent lie only when it matters, admissions checked, distinct reasons, the culprit and the liar apart, the window in board hours, lists complete, errands short, lies plausible, reasons match, the path and suggestions motivated.\n`,
 );
 if (invariantFailuresTotal > 0) process.stdout.write(`INVARIANT FAILURES: ${invariantFailuresTotal}\n`);
 if (shortcutWins > 0) process.stdout.write(`REFUSAL SHORTCUT BEATS PAR: ${shortcutWins}\n`);
-if (invariantFailuresTotal > 0 || shortcutWins > 0) process.exit(1);
+if (sameGivensTotal > 0) process.stdout.write(`GIVENS MATCHING WORD FOR WORD: ${sameGivensTotal}\n`);
+if (invariantFailuresTotal > 0 || shortcutWins > 0 || sameGivensTotal > 0) process.exit(1);

@@ -9,6 +9,7 @@ export * from './types.js';
 export { analyse, refusalShortcut, type Analysis, type Shortcut } from './path.js';
 export { checkInvariants, invariantFailures } from './invariants.js';
 export { solve, questionsOf } from './solver.js';
+export { closure, pointed, pointerIndex } from './pointers.js';
 export { techniquesUpTo, TIERS, LADDER, parseTier } from './tiers.js';
 export { typesFor, REFUSE_SHARE } from './generate.js';
 
@@ -41,7 +42,7 @@ export function pickType(seed: number, tier: TierIndex): CaseType {
 }
 
 export function reject(c: BoardCase, a: Analysis): string | null {
-  const inv = invariantFailures(checkInvariants(c));
+  const inv = invariantFailures(checkInvariants(c, a));
   if (inv.length > 0) return `invariant: ${inv[0]}`;
   if (!a.solvable) return 'unsolvable at its tier';
   if (a.rating !== c.tier) return `rates ${a.rating}`;
@@ -56,6 +57,22 @@ export function reject(c: BoardCase, a: Analysis): string | null {
   const sc = refusalShortcut(c, a.par, a.par - 1);
   if (!sc.fails && !sc.capped) return `the refusal shortcut takes ${sc.cost}, under par ${a.par}`;
   return null;
+}
+
+/**
+ * 4a.2: the office's text with people's names taken out. No two seeds' givens may match word for
+ * word apart from names; the sweep and the tests compare these.
+ */
+export function givensSignature(c: BoardCase): string {
+  const tokens = new Set<string>();
+  for (const p of c.people) {
+    tokens.add(p.name);
+    tokens.add(p.short);
+    for (const w of p.name.split(/[\s,]+/)) if (/^[A-Z][a-z’']+$/.test(w) && !['Mr', 'Mrs', 'Miss'].includes(w)) tokens.add(w);
+  }
+  let s = c.givens.text.join(' ');
+  for (const t of [...tokens].sort((a, b) => b.length - a.length)) s = s.split(t).join('{who}');
+  return s;
 }
 
 export function generateBoard(

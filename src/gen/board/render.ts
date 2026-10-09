@@ -25,6 +25,7 @@ export function renderCase(c: BoardCase, a: Analysis): string {
   };
 
   line(`${c.id}: ${TIER_NAMES[c.tier]} (tier ${c.tier}), ${c.type}${c.variant ? `, ${c.variant} variant` : ''}`);
+  if (c.setup) line(`Setup: the means ${c.setup.means}; the clock ${c.setup.clock}; the client points for ${c.setup.pointer}.`);
 
   rule('The givens (the office, free)');
   for (const t of c.givens.text) line(`  ${t}`);
@@ -108,8 +109,9 @@ export function renderCase(c: BoardCase, a: Analysis): string {
         rows.push(`    ${String(h).padStart(2)}  Closed. Nobody.`);
         continue;
       }
-      const names = es.map((e) => ('person' in e ? pname(e.person) : `somebody ${e.look} I didn't know`));
-      rows.push(`    ${String(h).padStart(2)}  ${names.length ? `${names.join(', ')}. Nobody else.` : 'Nobody.'}`);
+      const names = es.map((e) => ('person' in e ? pname(e.person) : 'other' in e ? (c.others?.find((o) => o.id === e.other)?.name ?? e.other) : `somebody ${e.look} I didn't know`));
+      const said = names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}` : (names[0] ?? '');
+      rows.push(`    ${String(h).padStart(2)}  ${names.length ? `${said}. Nobody else.` : 'Nobody.'}`);
     }
     if (l.unseen?.length) rows.push(`        (can't see ${l.unseen.map(pname).join(', ')})`);
     for (const r of l.remarks) rows.push(`        “${r.text}”${r.side ? ' [side remark]' : ''}`);
@@ -140,6 +142,7 @@ export function renderCase(c: BoardCase, a: Analysis): string {
   rule(`The designed path: par ${a.par} questions${a.motive ? ' + 1 motive search' : ''}, ${a.walks} walks; budget ${a.budget}`);
   a.path.forEach((s, i) => {
     line(`  ${i + 1}. ${s.label}  (at ${plname(s.at)})${s.techniques.length ? `  [${s.techniques.join(', ')}]` : ''}`);
+    line(`       why: ${s.why}`);
     for (const g of s.gives) line(`       · ${g}`);
     if (s.connects.length) line(`       joins ${s.connects.join(', ')}`);
     if (s.removes.length) line(`       rules out ${s.removes.map(pname).join(', ')}`);
@@ -147,7 +150,10 @@ export function renderCase(c: BoardCase, a: Analysis): string {
   if (a.motive) line(`  +. ${questionById(c, a.motive)?.label ?? a.motive}  (why)`);
 
   rule('The suggested order (rule 18)');
-  a.suggested.forEach((s, i) => line(`  ${i + 1}. ${s.label} — ${s.why}`));
+  a.suggested.forEach((s, i) => {
+    line(`  ${i + 1}. ${s.label}`);
+    line(`       why: ${s.why}`);
+  });
 
   rule('Rivals and their routes (crime hour known)');
   for (const r of a.rivals) {
@@ -168,7 +174,7 @@ export function renderCase(c: BoardCase, a: Analysis): string {
       }.`,
     );
   }
-  const inv = invariantFailures(checkInvariants(c));
+  const inv = invariantFailures(checkInvariants(c, Number.isFinite(a.par) ? a : undefined));
   line(`  Invariants: ${inv.length === 0 ? 'all hold' : ''}`);
   for (const x of inv) line(`    ✗ ${x}`);
   return out.join('\n');

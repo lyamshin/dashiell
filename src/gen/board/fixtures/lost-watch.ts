@@ -18,10 +18,11 @@ export function lostWatch(): BoardCase {
     type: 'lost-item',
     client: 'brandauer',
     people: [
-      { id: 'oskar', name: 'Oskar Brandauer', short: 'Oskar', role: 'suspect', description: 'the nephew, a clerk who plays the horses; lodges with his aunt', foundAt: 'shamrock', motive: 'owes Lou, a bookmaker' },
-      { id: 'pulaski', name: 'Mrs. Pulaski', short: 'Mrs. Pulaski', role: 'suspect', description: 'across the hall; has envied the watch for years', foundAt: 'pulaskis', motive: '“wasted on a widow”' },
-      { id: 'szabo', name: 'Lenny Szabo', short: 'Szabo', role: 'suspect', description: 'a card-party guest from two streets over', foundAt: 'shamrock', secret: 'he promised his wife he’d given up cards for money' },
-      { id: 'gilchrist', name: 'Mrs. Gilchrist', short: 'Mrs. Gilchrist', role: 'suspect', description: 'a card-party guest', foundAt: 'lyric' },
+      // 4a.2: where each lives, for `liesPlausible` (the golden says it in prose).
+      { id: 'oskar', name: 'Oskar Brandauer', short: 'Oskar', role: 'suspect', description: 'the nephew, a clerk who plays the horses; lodges with his aunt', foundAt: 'shamrock', motive: 'owes Lou, a bookmaker', female: false, home: 'flat' },
+      { id: 'pulaski', name: 'Mrs. Pulaski', short: 'Mrs. Pulaski', role: 'suspect', description: 'across the hall; has envied the watch for years', foundAt: 'pulaskis', motive: '“wasted on a widow”', female: true, home: 'pulaskis' },
+      { id: 'szabo', name: 'Lenny Szabo', short: 'Szabo', role: 'suspect', description: 'a card-party guest from two streets over', foundAt: 'shamrock', secret: 'he promised his wife he’d given up cards for money', female: false, home: 'szabo-home' },
+      { id: 'gilchrist', name: 'Mrs. Gilchrist', short: 'Mrs. Gilchrist', role: 'suspect', description: 'a card-party guest', foundAt: 'lyric', female: true },
       { id: 'watch', name: 'the gold watch', short: 'the watch', role: 'victim', description: 'her late husband’s gold watch, under a glass dome on the parlour mantel', foundAt: 'flat', object: true },
       { id: 'brandauer', name: 'Mrs. Adele Brandauer', short: 'Mrs. Brandauer', role: 'client', description: 'the widow', foundAt: 'flat' },
       { id: 'dombrowski', name: 'Dombrowski', short: 'Dombrowski', role: 'watcher', description: 'the janitor, in the lobby by the only stair', foundAt: 'flat' },
@@ -217,13 +218,18 @@ export function lostWatchRepaired(): BoardCase {
     kasper: ['shamrock', 'backroom', 'backroom', 'backroom'],
     watch: ['flat', 'flat', 'flat', 'shamrock'],
   });
+  // 4a.2 (`reasonsMatch`): an account's reasons are the truth's. The golden paraphrased them; they
+  // now say the same words, and Szabo's truth no longer says "cleaned out", which was his secret.
   c.board.reasons = {
     oskar: { 10: 'went up to the flat for ten minutes', 11: 'back to the Shamrock, straight to Lou’s booth' },
-    pulaski: { 9: 'back across the hall after cards' },
-    szabo: { 9: 'the pictures, to keep Adele company', 10: 'slipped out of the picture for the game', 11: 'home to bed, cleaned out' },
-    gilchrist: { 9: 'to the pictures with Adele' },
+    pulaski: { 9: 'home across the hall, with Mr. Pulaski and the radio' },
+    szabo: { 9: 'the pictures, to keep Adele company', 10: 'slipped out of the picture for the game', 11: 'home to bed' },
+    gilchrist: { 9: 'the pictures with Adele' },
     kasper: { 9: 'opened the game in the back room' },
   };
+  // 4a.2 (`listsComplete`): the case puts Lou in his booth at the Shamrock, where the watch went,
+  // so Mulcahy lists him.
+  c.others = [{ id: 'lou', name: 'Lou the bookmaker in his booth', at: { 8: 'shamrock', 9: 'shamrock', 10: 'shamrock', 11: 'shamrock' }, known: true }];
   c.accounts = [
     account('oskar', {
       8: ['shamrock', ['kasper']],
@@ -275,7 +281,7 @@ export function lostWatchRepaired(): BoardCase {
   }
   const mulcahy = c.lists.find((l) => l.watcher === 'mulcahy');
   if (mulcahy) {
-    mulcahy.entries = list('mulcahy', 'shamrock', { 8: ['oskar', 'kasper'], 9: ['oskar'], 10: [], 11: ['oskar'] }).entries;
+    mulcahy.entries = list('mulcahy', 'shamrock', { 8: ['oskar', 'kasper', { other: 'lou' }], 9: ['oskar', { other: 'lou' }], 10: [{ other: 'lou' }], 11: ['oskar', { other: 'lou' }] }).entries;
     mulcahy.remarks = [{ text: 'Eleven: Oskar back, straight to Lou’s booth. What went across the table I couldn’t see. Kasper had a beer at eight and went through to the back.', facts: [], side: false }];
   }
   c.confrontations = [

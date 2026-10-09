@@ -48,6 +48,45 @@ export interface Person {
   secret?: string;
   /** The lost thing is a thing, not a person: no account, no list entry. */
   object?: boolean;
+  /** For pronouns in the reading ("Feeney says he was…"). */
+  female?: boolean;
+  /** Where they live, when it's a place in the case (a lodger's rooming house, the culprit's flat). */
+  home?: PlaceId;
+  /** Where they work, when it's a place in the case; they're plausibly there in its open hours. */
+  works?: PlaceId;
+}
+
+/**
+ * Somebody the case puts at a place who isn't a row of the board (4a.2): the fence the lost
+ * thing went to, the client telling the room, an innocent liar's companion. A watcher lists them
+ * like anyone else; one they can't name is listed as such ("and a man I didn't know").
+ */
+export interface Other {
+  id: string;
+  /** What the watcher calls them: "Pardo, who buys things", "a man I didn't know". */
+  name: string;
+  /** The hours they were there, and where. */
+  at: Record<Hour, PlaceId>;
+  /** False when the watcher can't name them. Then the list isn't exhaustive at that hour. */
+  known: boolean;
+}
+
+/** 4a.2: the three things a case's setup varies, by id, for the sweep's variety count. */
+export interface Setup {
+  /** How it went missing, or how the victim was reached: the means and its access. */
+  means: string;
+  /** What fixes the hour. */
+  clock: string;
+  /** Why the client points where they do. */
+  pointer: string;
+}
+
+/** Something the office names, which points the player at a place or a person (4a.2). */
+export interface GivenPoint {
+  kind: 'place' | 'person';
+  ref: string;
+  /** The plain reason: "Lanza told the room at the Shamrock about the key". */
+  text: string;
 }
 
 export interface Place {
@@ -107,6 +146,8 @@ export interface Remark {
    */
   side: boolean;
   gives?: Gives;
+  /** Places and people the remark names without placing anyone (gossip: "she goes on to the Palace"). */
+  mentions?: { places?: PlaceId[]; people?: PersonId[]; why?: string };
 }
 
 /** Rule 4: asked "Where were you tonight?", everyone gives the whole evening, with company. */
@@ -116,7 +157,7 @@ export interface Account {
   remarks: Remark[];
 }
 
-export type ListEntry = { person: PersonId } | { look: string };
+export type ListEntry = { person: PersonId } | { look: string } | { other: string };
 
 /** Rule 6: a watcher lists everyone they saw each hour, and says "nobody else". */
 export interface WatchList {
@@ -142,7 +183,7 @@ export interface Find {
 }
 
 export interface Means {
-  kind: 'chloral' | 'gun' | 'item' | 'pet';
+  kind: 'chloral' | 'poison' | 'gun' | 'blade' | 'item' | 'pet';
   name: string;
   /** Where it could be picked up (rule 11). For a lost thing, the scene itself. */
   origin: PlaceId;
@@ -217,6 +258,8 @@ export interface Givens {
   known?: PersonId[];
   /** The hours the office's window names, as the text says them. They must be board hours. */
   window?: Hour[];
+  /** Places and people the office's text names, with why (4a.2: what motivates a question). */
+  points?: GivenPoint[];
 }
 
 export interface BoardCase {
@@ -238,6 +281,10 @@ export interface BoardCase {
   /** Hard-boiled variant, when there is one. */
   variant?: 'pair' | 'face';
   client: PersonId;
+  /** People at watched places who aren't rows of the board (4a.2). */
+  others?: Other[];
+  /** The setup's three choices (4a.2). */
+  setup?: Setup;
 }
 
 export type QuestionKind = 'search' | 'list' | 'account' | 'confront';

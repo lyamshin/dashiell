@@ -27,7 +27,10 @@ describe('golden: seed 3 at Medium', () => {
     // steps 4–5) clears nobody new, and Marchetti's refusal (step 7) adds nothing the report needs.
     expect(a.par).toBe(4);
     expect(a.motive).toBe('search:filebox');
-    expect(a.path.map((s) => s.q)).toEqual(['search:table', 'list:hargrove', 'list:rafferty', 'account:marchetti']);
+    // 4a.2: in the order the player is pointed. The label sends you to Rafferty's, her list names
+    // Marchetti, and Marchetti's "the Velvet Room at ten" sends you to Hargrove.
+    expect(a.path.map((s) => s.q)).toEqual(['search:table', 'list:rafferty', 'account:marchetti', 'list:hargrove']);
+    expect(a.path.map((s) => s.pointedBy)).toEqual(['givens', 'search:table', 'list:rafferty', 'account:marchetti']);
     const without = SEED3_GOLDEN_PATH.filter((q) => !['account:vitale', 'confront:vitale@9', 'confront:marchetti@9'].includes(q));
     expect(solve(c, without, { techniques: techniquesUpTo(c.tier) }).done).toBe(true);
   });
@@ -69,7 +72,7 @@ describe('golden: seed 3 repaired to the decisions of 2026-09-28', () => {
   const a = analyse(c);
 
   it('holds every invariant', () => {
-    expect(invariantFailures(checkInvariants(c))).toEqual([]);
+    expect(invariantFailures(checkInvariants(c, a))).toEqual([]);
   });
 
   it('par is 7 again, the golden’s count: Vitale’s lie matters, and Shoes checks his admission', () => {
@@ -147,7 +150,7 @@ describe('golden: the lost watch repaired to the decisions of 2026-09-28', () =>
   const a = analyse(c);
 
   it('holds every invariant, and rates Poached', () => {
-    expect(invariantFailures(checkInvariants(c))).toEqual([]);
+    expect(invariantFailures(checkInvariants(c, a))).toEqual([]);
     expect(a.rating).toBe(2);
   });
 
@@ -158,6 +161,14 @@ describe('golden: the lost watch repaired to the decisions of 2026-09-28', () =>
     const T = techniquesUpTo(2);
     const all = questionsOf(c).map((q) => q.id);
     expect(solve(c, all.filter((q) => q !== 'account:kasper'), { techniques: T }).cleared.has('szabo')).toBe(false);
+  });
+
+  it('Mulcahy lists Lou, whom the case puts in his booth; leave him out and the list is incomplete (4a.2)', () => {
+    const cut = lostWatchRepaired();
+    const m = cut.lists.find((l) => l.watcher === 'mulcahy')!;
+    for (const h of Object.keys(m.entries)) m.entries[Number(h)] = m.entries[Number(h)]!.filter((e) => !('other' in e));
+    expect(checkInvariants(cut).listsComplete).toHaveLength(4);
+    expect(renderCase(c, a)).toContain('Lou the bookmaker in his booth');
   });
 
   it('the refusal shortcut names nobody: two of them won’t own up', () => {

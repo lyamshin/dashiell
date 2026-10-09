@@ -1,6 +1,7 @@
 import type { BoardCase, Hour, PersonId, PlaceId, Question, TierIndex } from './types.js';
 import { key, questionsOf, solve, type Solved, type Step } from './solver.js';
 import { TIERS, techniquesUpTo, type Technique } from './tiers.js';
+import { closure, GIVENS, pointerIndex, reasonFor } from './pointers.js';
 
 /**
  * docs/42 §2: par, the designed path, rivals and their routes, the Tatham
@@ -18,6 +19,10 @@ export interface PathStep {
   techniques: Technique[];
   /** Rivals this step finishes clearing. */
   removes: PersonId[];
+  /** 4a.2: why a detective asks this now, naming the earlier step (or the office) that points at it. */
+  why: string;
+  /** The earlier step that points at it, or `givens`. */
+  pointedBy: string;
 }
 
 export interface Rival {
@@ -66,7 +71,7 @@ export function refusalShortcut(c: BoardCase, par: number, maxK = par + 2): Shor
   const holdouts = new Set(c.lies.filter((l) => c.confrontations.find((k) => k.person === l.person && k.hour === l.hour)?.response !== 'admit').map((l) => l.person));
   if (holdouts.size !== 1) return { fails: true, cost: null, gain: null, capped: false };
   const goal = (held: string[]) => {
-    const s = solve(c, held, { techniques: T, tell: true });
+    const s = solve(c, closure(c, held), { techniques: T, tell: true });
     return s.done && s.who === c.crime.culprit;
   };
   if (!goal(pool)) return { fails: true, cost: null, gain: null, capped: false };
@@ -133,53 +138,43 @@ export function minimalSets(
   return out;
 }
 
-/** Rule 18: the scene; whoever found him or last saw him; the watchers where he was and at the origin; the people they name. */
+/**
+ * Rule 18, with 4a.2's rule that every suggestion is pointed to by something the player already
+ * holds: the scene first; then whoever found him; then the watchers at the places the victim was
+ * and where the means came from, each once something names the place; then the people the lists
+ * and accounts name. Each reason says what points to it.
+ */
 export function suggestedOrder(c: BoardCase): { q: string; label: string; why: string }[] {
-  const qs = questionsOf(c);
-  const byId = new Map(qs.map((q) => [q.id, q]));
-  const out: { q: string; label: string; why: string }[] = [];
-  const seen = new Set<string>();
-  const push = (id: string | undefined, why: string) => {
-    if (!id || seen.has(id) || !byId.has(id)) return;
-    seen.add(id);
-    out.push({ q: id, label: (byId.get(id) as Question).label, why });
-  };
-  const meansFind = c.finds.find((f) => f.gives.means);
-  push(meansFind ? `search:${meansFind.id}` : undefined, 'start where it happened: the time, the means, and where the means came from');
-  const finder = c.crime.finder;
-  if (finder && finder !== c.client) {
-    const w = c.lists.find((l) => l.watcher === finder);
-    push(w ? `list:${finder}` : `account:${finder}`, 'who found him');
-  }
-  // Last seen alive: the latest hour before the crime that a list or account puts the victim somewhere.
+  const idx = pointerIndex(c);
+  const qs = questionsOf(c).filter((q) => q.kind !== 'confront');
   const v = c.crime.victim;
-  let lastList: string | undefined;
-  let lastHour = -Infinity;
-  for (const l of c.lists) {
-    for (const [hs, es] of Object.entries(l.entries)) {
-      const h = Number(hs);
-      if (h < c.crime.hour && h > lastHour && es.some((e) => 'person' in e && e.person === v)) {
-        lastHour = h;
-        lastList = `list:${l.watcher}`;
-      }
+  const victimPlaces = new Set(c.board.hours.filter((h) => h < c.crime.hour).map((h) => c.board.rows[v]?.[h]).filter((p): p is PlaceId => !!p && p !== c.crime.scene));
+  const meansFind = c.finds.find((f) => f.gives.means);
+  const prio = (q: Question): number => {
+    if (meansFind && q.id === `search:${meansFind.id}`) return 0;
+    if (q.kind === 'account' && q.subject === c.crime.finder) return 1;
+    if (q.kind === 'list') return victimPlaces.has(q.at) ? 2 : q.at === c.means.origin ? 3 : 4;
+    if (q.kind === 'account') return c.people.find((p) => p.id === q.subject)?.role === 'suspect' ? 5 : 6;
+    return 7;
+  };
+  const asked: string[] = [];
+  const out: { q: string; label: string; why: string }[] = [];
+  // Questions in the order they first became pointed to, so ties go to what came up first.
+  const since = new Map<string, number>();
+  for (;;) {
+    for (const q of qs) {
+      if (since.has(q.id) || asked.includes(q.id)) continue;
+      const by = idx.by.get(q.id);
+      if (by && (by.has(GIVENS) || asked.some((a) => by.has(a)))) since.set(q.id, since.size);
     }
+    const open = qs.filter((q) => since.has(q.id) && !asked.includes(q.id));
+    if (open.length === 0) break;
+    open.sort((a, b) => prio(a) - prio(b) || (since.get(a.id) as number) - (since.get(b.id) as number));
+    const q = open[0] as Question;
+    const r = reasonFor(c, q.id, asked, (i) => `suggestion ${i + 1}`);
+    out.push({ q: q.id, label: q.label, why: r?.text ?? 'nothing points here' });
+    asked.push(q.id);
   }
-  push(lastList, 'who saw him last');
-  const victimPlaces = new Set(c.board.hours.map((h) => c.board.rows[v]?.[h]).filter(Boolean) as PlaceId[]);
-  for (const l of c.lists) if (victimPlaces.has(l.place) && l.place !== c.crime.scene) push(`list:${l.watcher}`, 'the watcher where he was tonight');
-  for (const l of c.lists) if (l.place === c.means.origin) push(`list:${l.watcher}`, 'the watcher where the means came from');
-  for (const l of c.lists) push(`list:${l.watcher}`, 'a watcher');
-  for (const l of c.lists) {
-    for (const h of c.board.hours) {
-      for (const e of l.entries[h] ?? []) {
-        if ('person' in e && c.people.find((p) => p.id === e.person)?.role === 'suspect') {
-          push(`account:${e.person}`, `named on ${c.people.find((p) => p.id === l.watcher)?.short}'s list`);
-        }
-      }
-    }
-  }
-  for (const a of c.accounts) push(`account:${a.person}`, 'the rest of the people');
-  for (const f of c.finds) push(`search:${f.id}`, 'a search');
   return out;
 }
 
@@ -219,8 +214,9 @@ export function analyse(c: BoardCase, opts: AnalyseOptions = {}): Analysis {
 
   // Par: the fewest questions to the report. Order the pool by the suggested order so the search
   // meets the natural sets first.
+  // 4a.2: only what the player can be pointed to counts, so the goal reads the set's closure.
   const ordered = [...pool].sort((a, b) => (rank.get(a) ?? 99) - (rank.get(b) ?? 99));
-  const goal = (held: string[]) => solve(c, held, { techniques: T }).done;
+  const goal = (held: string[]) => solve(c, closure(c, held), { techniques: T }).done;
   const sets = minimalSets(ordered, [], goal, LIMIT_PAR, true);
   if (sets.length === 0) return empty;
 
@@ -240,7 +236,9 @@ export function analyse(c: BoardCase, opts: AnalyseOptions = {}): Analysis {
   if (opts.routes !== false) {
     const meansQ = c.finds.find((f) => f.gives.means);
     const base = meansQ ? [`search:${meansQ.id}`] : [];
-    const rpool = pool.filter((q) => !base.includes(q));
+    // A route is a way the rival falls; it only counts if something in the case points at it.
+    const reachable = new Set(closure(c, all));
+    const rpool = pool.filter((q) => !base.includes(q) && reachable.has(q));
     for (const r of rivals) {
       const g = (held: string[]) =>
         solve(c, held, { techniques: T, forceHours: [c.crime.hour] }).cleared.has(r);
@@ -272,9 +270,12 @@ export function analyse(c: BoardCase, opts: AnalyseOptions = {}): Analysis {
   };
 }
 
-/** Tatham: the lowest tier whose techniques finish the case with every question asked. */
+/** Tatham: the lowest tier whose techniques finish the case with every question a player can be pointed to asked. */
 export function rate(c: BoardCase): TierIndex | null {
-  const all = questionsOf(c).map((q) => q.id);
+  const all = closure(
+    c,
+    questionsOf(c).map((q) => q.id),
+  );
   for (let t = 0; t <= 5; t++) if (solve(c, all, { techniques: techniquesUpTo(t) }).done) return t as TierIndex;
   return null;
 }
@@ -319,27 +320,19 @@ function orderPath(
     }
     return mask;
   });
-  // A company-only witness can be asked only once someone in the set has named them.
+  // 4a.2: every question is asked only once something already held points at it (the office,
+  // or an earlier answer naming its place or person). A company-only witness is the old case.
+  const idx = pointerIndex(c);
+  const free: boolean[] = set.map((q) => idx.by.get(q)?.has(GIVENS) ?? false);
   const anyOf: number[] = set.map((q) => {
-    const qq = qs.get(q) as Question;
-    if (qq.kind !== 'account' || c.people.find((p) => p.id === qq.subject)?.role !== 'company') return 0;
-    if (c.givens.known?.includes(qq.subject)) return 0;
+    const by = idx.by.get(q);
     let mask = 0;
     set.forEach((other, j) => {
-      const [kind, rest] = other.split(':') as [string, string];
-      const names =
-        kind === 'list'
-          ? Object.values(c.lists.find((l) => l.watcher === rest)?.entries ?? {}).some((es) => es.some((e) => 'person' in e && e.person === qq.subject))
-          : kind === 'account'
-            ? Object.values(c.accounts.find((a) => a.person === rest)?.claims ?? {}).some((cl) => cl.company.includes(qq.subject))
-            : kind === 'confront'
-              ? c.confrontations.some((k) => `${k.person}@${k.hour}` === rest && (k.names ?? []).includes(qq.subject))
-              : false;
-      if (names) mask |= 1 << j;
+      if (other !== q && by?.has(other)) mask |= 1 << j;
     });
     return mask;
   });
-  const ok = (j: number, mask: number) => ((need[j] as number) & mask) === need[j] && (anyOf[j] === 0 || ((anyOf[j] as number) & mask) !== 0);
+  const ok = (j: number, mask: number) => ((need[j] as number) & mask) === need[j] && (free[j] || ((anyOf[j] as number) & mask) !== 0);
   const FULL = (1 << n) - 1;
   // best[mask][last]: fewest walks to finish from here. last = n means the office.
   const best: number[][] = Array.from({ length: 1 << n }, () => new Array(n + 1).fill(Infinity));
@@ -401,6 +394,14 @@ function describePath(
     const cleared = new Set(s.cleared.keys());
     const removes = rivals.filter((r) => cleared.has(r) && !prevCleared.has(r));
     const qq = byId.get(q) as Question;
+    const r = reasonFor(c, q, order.slice(0, i));
+    let why = r?.text ?? 'Nothing points here.';
+    // A confrontation: their line against the line that breaks it.
+    if (qq.kind === 'confront') {
+      const st = s.status.get(key(qq.subject, qq.hour as Hour));
+      const breakers = (st?.deps ?? []).filter((d) => d !== `account:${qq.subject}` && d !== q && order.indexOf(d) >= 0 && order.indexOf(d) < i).map((d) => `step ${order.indexOf(d) + 1}`);
+      if (r && breakers.length) why = why.replace(/: put it to /, `, and ${breakers.join(' and ')} ${breakers.length > 1 ? 'say' : 'says'} otherwise: put it to `);
+    }
     steps.push({
       q,
       label: qq.label,
@@ -409,6 +410,8 @@ function describePath(
       connects: [...connects].map((d) => `step ${order.indexOf(d) + 1}`),
       techniques: [...new Set(fresh.map((x) => x.tech))],
       removes,
+      why,
+      pointedBy: r?.by ?? '',
     });
     prevLog = new Set(s.log.map((x) => x.text));
     prevCleared = cleared;
