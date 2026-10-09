@@ -63,6 +63,7 @@ import { TEACH_LINES, TEACH_TITLE, teachOn } from '../game/guidance.js';
 import { renderTruthSheet } from '../sheet/truthSheet.js';
 import { createWeatherLayer, loadWeatherOn, saveWeatherOn } from './weather.js';
 import './weather.css';
+import { mountBoard } from './board-book.js';
 
 type Screen =
   | { kind: 'title' }
@@ -123,6 +124,15 @@ function plainChoice(c: OfferedChoice): OfferedChoice {
 
 export function mount(root: HTMLElement): void {
   const store = safeStore();
+  // docs/43: `?engine=board` is the book on the small board, an engine of its own.
+  try {
+    if (new URLSearchParams(window.location.search).get('engine') === 'board') {
+      mountBoard(root, store);
+      return;
+    }
+  } catch {
+    /* no URL to read: the game as it is */
+  }
   /**
    * The rewrite (docs/35), behind a flag: `?engine=v2` deals and pages every
    * case opened from this page the v2 way, and the flag rides along in the

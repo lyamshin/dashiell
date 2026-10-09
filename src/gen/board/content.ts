@@ -111,6 +111,8 @@ export interface UDef {
   secret: string;
   /** Why an honest person goes there. */
   honest: string;
+  /** 4b: more honest reasons, for a second person there or the first hour. Never the place's own kind's pool. */
+  more: string[];
   /** Who keeps the place, when an innocent refuses and the place has to speak for them. */
   keeper: string;
   /** Who the secret was with, as the keeper lists them: somebody they can't name (4a.2). */
@@ -119,12 +121,12 @@ export interface UDef {
 
 /** Unwatched places: where a secret goes, or a person who was alone. */
 export const UNWATCHED: UDef[] = [
-  { name: 'the card room over the Bowery garage', short: 'the card room', street: 'Forsyth Street', kind: 'club', secret: 'a card game {they} swore off at Easter', honest: 'went up to the card room to do the books', keeper: 'the man who runs the game', companion: 'two men off the docks I didn’t know' },
-  { name: 'the back of Sokol’s bakery on Rivington Street, where the numbers are taken', short: 'Sokol’s back room', street: 'Rivington Street', kind: 'club', secret: 'playing the numbers, sworn off at Easter', honest: 'went round to Sokol’s for coffee with Sokol', keeper: 'the man who takes the slips' },
-  { name: 'the back office of the Eagle Social Club', short: 'the Eagle club office', street: 'Eldridge Street', kind: 'club', secret: 'a meeting with a man who lends money', honest: 'went to the Eagle club office to write letters', keeper: 'the club steward', companion: 'a man from uptown I didn’t know' },
-  { name: 'the Automat on Delancey Street, open all night', short: 'the Automat', street: 'Delancey Street', kind: 'restaurant', secret: 'a meeting {they} promised at home never to have', honest: 'went to the Automat for coffee and a newspaper', keeper: 'the cashier in the change booth', companion: 'somebody at the same table I didn’t know' },
-  { name: 'the back row of the Palace, a picture house on Delancey Street', short: 'the Palace', street: 'Delancey Street', kind: 'theatre', secret: 'an evening with someone {they} is not married to', honest: 'went to the Palace to sit through the double bill', keeper: 'the usher', companion: 'somebody in the next seat I didn’t know' },
-  { name: 'the print shop on Centre Street, which runs a night shift', short: 'the print shop', street: 'Centre Street', kind: 'work', secret: 'printing handbills for the union, which {their} boss would fire {them} for', honest: 'went in to the print shop to set type for the morning', keeper: 'the foreman', companion: 'two union men I didn’t know' },
+  { name: 'the card room over the Bowery garage', short: 'the card room', street: 'Forsyth Street', kind: 'club', secret: 'a card game {they} swore off at Easter', honest: 'went up to the card room to do the books', more: ['went up to the card room to watch the game and not play', 'went up to the card room to collect what {they} was owed'], keeper: 'the man who runs the game', companion: 'two men off the docks I didn’t know' },
+  { name: 'the back of Sokol’s bakery on Rivington Street, where the numbers are taken', short: 'Sokol’s back room', street: 'Rivington Street', kind: 'club', secret: 'playing the numbers, sworn off at Easter', honest: 'went round to Sokol’s for coffee with Sokol', more: ['went round to Sokol’s to sit in the warm by the ovens', 'went round to Sokol’s to buy the morning’s rolls the night before'], keeper: 'the man who takes the slips' },
+  { name: 'the back office of the Eagle Social Club', short: 'the Eagle club office', street: 'Eldridge Street', kind: 'club', secret: 'a meeting with a man who lends money', honest: 'went to the Eagle club office to write letters', more: ['went to the Eagle club office to pay {their} dues', 'went to the Eagle club office for the committee meeting'], keeper: 'the club steward', companion: 'a man from uptown I didn’t know' },
+  { name: 'the Automat on Delancey Street, open all night', short: 'the Automat', street: 'Delancey Street', kind: 'restaurant', secret: 'a meeting {they} promised at home never to have', honest: 'went to the Automat for coffee and a newspaper', more: ['went to the Automat for a plate of beans', 'went to the Automat to sit somewhere warm for a nickel'], keeper: 'the cashier in the change booth', companion: 'somebody at the same table I didn’t know' },
+  { name: 'the back row of the Palace, a picture house on Delancey Street', short: 'the Palace', street: 'Delancey Street', kind: 'theatre', secret: 'an evening with someone {they} is not married to', honest: 'went to the Palace to sit through the double bill', more: ['went to the Palace for the newsreel and the cartoon', 'went to the Palace because the picture had Ronald Colman in it'], keeper: 'the usher', companion: 'somebody in the next seat I didn’t know' },
+  { name: 'the print shop on Centre Street, which runs a night shift', short: 'the print shop', street: 'Centre Street', kind: 'work', secret: 'printing handbills for the union, which {their} boss would fire {them} for', honest: 'went in to the print shop to set type for the morning', more: ['went in to the print shop to run off the church bulletin', 'went in to the print shop to sweep up for a dollar'], keeper: 'the foreman', companion: 'two union men I didn’t know' },
 ];
 
 /**
@@ -133,19 +135,34 @@ export const UNWATCHED: UDef[] = [
  * `{them}` and `{their}` the mover; `{h}` the hour.
  */
 export const REASONS: Record<string, string[]> = {
-  bar: ['went over to {p} for a drink', 'met a friend at {p}', 'wanted company, so went to {p}', 'went down to {p} to hear the piano', 'had a standing date at {p}', 'went to {p} to settle a bet', 'stopped in at {p} to get warm', 'went to {p} to hear the fight on the wireless'],
+  bar: ['went over to {p} for a drink', 'met a friend at {p}', 'wanted company, so went to {p}', 'went down to {p} to hear the piano', 'had a standing date at {p}', 'went to {p} to settle a bet', 'stopped in at {p} to get warm', 'went to {p} to hear the fight on the radio'],
   club: ['went to {p} to dance', 'went to {p}, where the band was new', 'met some people at {p}', 'went down to {p} to hear the trumpet', 'had a table at {p}', 'went to {p}, because a friend was on the door'],
   restaurant: ['went to {p} for supper', 'hadn’t eaten, so went to {p}', 'met {their} sister at {p} for supper', 'went to {p} for coffee and pie', 'went to {p} to read the late paper over a plate of soup', 'went to {p} for a glass of tea'],
   theatre: ['went to the second show at {p}', 'had a ticket for {p}', 'went to {p} to see the new picture', 'went to {p} to get off {their} feet for two hours', 'went to {p}, because a friend was in the show'],
   work: ['went on shift at {p}', 'started {their} shift at {p}', 'was called in to {p} to cover a shift', 'went in to {p} early, for the overtime'],
-  home: ['went home', 'went home to bed', 'went home to listen to the wireless', 'went home to iron a shirt for the morning', 'went back to {their} room to write letters', 'went home to change', 'went home, because {their} feet hurt', 'turned in early'],
+  home: ['went home', 'went home to bed', 'went home to listen to the radio', 'went home to iron a shirt for the morning', 'went back to {their} room to write letters', 'went home to change', 'went home, because {their} feet hurt', 'turned in early'],
   /** An errand at somebody else's home: an hour at most (4a.2). */
   errand: ['went up to {p} to see a lodger about money', 'went to {p} to collect a debt', 'dropped a parcel off at {p}', 'went round to {p} to borrow a collar stud', 'went round to {p} to return a borrowed umbrella', 'took a letter round to a lodger at {p}'],
   /** A real visit at somebody else's home, which can last the evening. */
   visit: ['called on a friend who lodges at {p}', 'went to {p} to sit with a sick friend', 'went to {p} for a game of pinochle with a lodger', 'went to {p} to help a friend write letters home'],
+  /**
+   * 4b: going along with somebody on their errand. Two errands to one house in one hour read as a
+   * coincidence; the second person who came from the same place went with the first.
+   */
+  along: ['went along with {x} to {p}', 'walked round to {p} with {x}', 'kept {x} company as far as {p}'],
   party: ['left the party early', 'left the party when the cards went badly', 'left the party when the gin ran out', 'left the party to get some air'],
   closed: ['closed up at {h}', 'came off shift at {h}', 'locked up at {h}'],
 };
+
+/**
+ * 4b: a reason that says how long it lasts fits only a stint that long. "To get off her feet for
+ * two hours" is two hours or more; "to bed" or "turned in" is the rest of the evening.
+ */
+export function reasonFits(reason: string, len: number, toEnd: boolean): boolean {
+  if (/\bfor two hours\b/.test(reason)) return len >= 2;
+  if (/\bto bed\b|\bturned in\b/.test(reason)) return toEnd;
+  return true;
+}
 
 /**
  * 4a.2: an errand lasts an hour at most. These are the errand reasons as patterns, so the
@@ -154,12 +171,12 @@ export const REASONS: Record<string, string[]> = {
 export function isErrand(reason: string): boolean {
   return ERRAND_PATTERNS.some((re) => re.test(reason));
 }
-const ERRAND_PATTERNS: RegExp[] = [...(REASONS.errand as string[]), ...WORKPLACES.flatMap((w) => w.visit)].map(
+const ERRAND_PATTERNS: RegExp[] = [...(REASONS.errand as string[]), ...(REASONS.along as string[]), ...WORKPLACES.flatMap((w) => w.visit)].map(
   (t) =>
     new RegExp(
       t
         .replace(/[.*+?^$()|[\]\\]/g, '\\$&')
-        .replace(/\{p\}/g, '.+')
+        .replace(/\{[px]\}/g, '.+')
         .replace(/\{(they|them|their)\}/g, '\\w+'),
     ),
 );
@@ -276,7 +293,7 @@ export const PROGRAMMES = ['the Eveready Hour', 'the A&P Gypsies', 'the Happines
  * Vars: {Client}/{client}, {cthey}/{ctheir}, {resident}/{rtheir}, {venue}, {h0}, {h2}, {x}, {Keeper}/{keeper}, {occasion}.
  */
 export const SMALL_MEANS: { id: string; mode: 'party' | 'told' | 'spare'; resident?: boolean; office: string; origin: string; scene: string }[] = [
-  { id: 'latch-key', mode: 'party', resident: true, office: '{resident} lodges there and has lost {rtheir} key again, so the door was left on the latch.', origin: 'the door, left on the latch for {resident}, which everybody at the {occasion} knew', scene: 'The door is on the latch; no marks on it.' },
+  { id: 'latch-key', mode: 'party', resident: true, office: '{resident} lodges there and has lost {rtheir} key again, so the door was left unlocked.', origin: 'the door, left unlocked for {resident}, which everybody at the {occasion} knew', scene: 'The door is unlocked; no marks on it.' },
   { id: 'broken-lock', mode: 'party', office: 'The lock has been broken since Tuesday, and {client} showed the whole table the locksmith’s card.', origin: 'the broken lock, which everybody at the {occasion} was shown', scene: 'The lock’s tongue is still taped back; no marks on the door.' },
   { id: 'mat', mode: 'party', office: '{Client} went out after the guests and left the key under the mat for {ctheir} sister, as {cthey} told the table {cthey} would.', origin: 'the key under the mat, which everybody at the {occasion} heard about', scene: 'The key is back under the mat; no marks on the door.' },
   { id: 'window', mode: 'party', office: 'The parlour window onto the fire escape won’t latch; {client} showed everybody at the table, laughing.', origin: 'the parlour window that won’t latch, which everybody at the {occasion} was shown', scene: 'The parlour window is up six inches, and there’s soot on the sill.' },
@@ -291,7 +308,7 @@ export const OCCASIONS = [
   { says: 'for cards', noun: 'card party' },
   { says: 'for a birthday supper', noun: 'supper' },
   { says: 'for the burial society’s meeting', noun: 'meeting' },
-  { says: 'to hear the fight on the wireless', noun: 'fight party' },
+  { says: 'to hear the fight on the radio', noun: 'fight party' },
   { says: 'for a christening supper', noun: 'christening supper' },
 ];
 

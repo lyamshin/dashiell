@@ -46,6 +46,12 @@ import { describeDials, dialsOf } from '../gen/shape.js';
 ignoreBrokenPipe();
 
 const { flags, values } = parseArgs(process.argv.slice(2));
+
+// docs/43: `--engine board` reads a night on the small board, its own way.
+if (values.get('engine') === 'board') {
+  const { readBoard } = await import('./board-read.js');
+  process.stdout.write(`${readBoard(values, flags)}\n`);
+} else {
 const seed = Number(values.get('seed') ?? 1);
 const difficulty = Number(values.get('difficulty') ?? 2);
 const pageLimit = values.has('pages') ? Number(values.get('pages')) : Infinity;
@@ -210,3 +216,4 @@ out.push(
 );
 
 process.stdout.write(out.join('\n') + '\n');
+}

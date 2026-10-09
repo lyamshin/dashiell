@@ -237,6 +237,26 @@ export interface Page {
   beats?: BeatTrace[];
   /** M13: the sheets the page was written from, and whether it paid a role off. */
   sheets?: SheetUse[];
+  /**
+   * docs/43, the board engine only: what the page was for, the question it
+   * answered, and the lines it told, so the board's correspondence check can
+   * hold every hour and name on it to what the player held. Absent in v1 and v2.
+   */
+  board?: {
+    job: 'office' | 'arrive' | 'account' | 'list' | 'search' | 'motive' | 'confront' | 'recap' | 'repeat' | 'nothing';
+    q?: string;
+    /** Line ids (`claim:p@h`, `list:w@h`, …) the page tells. */
+    told: string[];
+    /** The board hours the page may name. */
+    hours: number[];
+    /** People and places the page may name, besides those present. */
+    people: string[];
+    places: string[];
+    /** The turn (the first lie caught) fell on this page. */
+    turn?: boolean;
+    /** The page paid off something set up earlier tonight (M13's callback). */
+    callback?: boolean;
+  };
 }
 
 /** M13: one sheet a page used. */

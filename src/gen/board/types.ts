@@ -44,6 +44,10 @@ export interface Person {
   foundAt: PlaceId;
   /** Why they might have done it. Several people have one; it never settles who. */
   motive?: string;
+  /** 4b: which pool entry the motive came from (`m3`, `s7`), so the book can voice it. */
+  motiveId?: string;
+  /** 4b: the job alone, as the description begins: "a switchboard operator". */
+  job?: string;
   /** What an innocent liar is hiding. */
   secret?: string;
   /** The lost thing is a thing, not a person: no account, no list entry. */
@@ -99,6 +103,8 @@ export interface Place {
   scene?: boolean;
   /** The street it's on, for side remarks ("I passed her on Grand Street"). */
   street: string;
+  /** 4b: which pool entry it came from (`venue:3`, `rooming:1`, `flat`), so the book can describe it. */
+  key?: string;
   /**
    * A company-only witness's own rooms, where nobody else goes: somewhere for them to be before
    * and after the hour they matter. Not one of rule 1's places.
@@ -245,9 +251,23 @@ export interface Crime {
   finder?: PersonId;
 }
 
+/**
+ * 4b: one line of the office, by what it says, with the values it was filled from, so the book
+ * can put it in the client's mouth without parsing the sentence. `text` is the plain line.
+ */
+export interface GivenLine {
+  kind: 'relation' | 'found' | 'clock' | 'venue' | 'pointer' | 'gone' | 'party' | 'means' | 'window' | 'keeper';
+  /** The pool entry it came from: a clock's id, a small case's means, the pointer's kind. */
+  id: string;
+  text: string;
+  vars: Record<string, string>;
+}
+
 export interface Givens {
   /** The office, in plain lines. */
   text: string[];
+  /** 4b: the same lines, by kind, with their values. Absent on the hand-built fixtures. */
+  lines?: GivenLine[];
   /** Hard facts the client hands over for free. */
   facts: Fact[];
   /** People known to have access without a board visit (a lodger at the scene). */
