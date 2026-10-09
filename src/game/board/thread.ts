@@ -109,7 +109,8 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
           const where = own ? `${pa.his} place` : at(c, pl, here) === 'here' ? 'here' : placeName(c, pl);
           const safe = hs.filter((h) => !windowOf(c).includes(h) && a.claims[h]?.place === pl);
           return out(`${A} had said ${P} was with ${pa.him} ${where === 'here' ? 'here' : `at ${where}`} at ${hourWord(h0)}`, [`claim:${a.person}@${h0}`], {
-            ...(safe.length > 0 ? { face: `${A} says you were with ${pa.him} ${where === 'here' ? 'here' : `at ${where}`} ${hoursSaid(c, safe)}.` } : {}),
+            // To their face, only a watcher's word: "Coffin has you here at nine." Another suspect's would be one more name, and a story set against a story.
+            ...(safe.length > 0 && personOf(c, a.person)?.role === 'watcher' ? { face: `${A} says you were with ${pa.him} ${where === 'here' ? 'here' : `at ${where}`} ${hoursSaid(c, safe)}.` } : {}),
             hours: [h0],
             people: [p, a.person],
             places: [pl],
@@ -273,13 +274,15 @@ export function placeThread(c: BoardCase, before: Pick<BoardRun, 'asked'>, place
   qs.sort((a, b) => Number(starred.includes(b.id)) - Number(starred.includes(a.id)) || order(a.kind) - order(b.kind));
   const out: Pointer[] = [];
   const seen = new Set<string>();
+  const asked = new Set<string>();
   const take = (src: string, q: string) => {
-    if (out.length >= 2) return;
+    if (out.length >= 2 || asked.has(q)) return;
     const p = pointerSaid(c, src, q, here);
     if (!p || !p.clause || seen.has(p.clause)) return;
     // Two pointers from the office say the same office twice: one is enough.
     if (src === GIVENS && out.some((x) => x.src === GIVENS)) return;
     seen.add(p.clause);
+    asked.add(q);
     out.push(p);
   };
   // The star's own reason first: the latest thing held that points into this room.

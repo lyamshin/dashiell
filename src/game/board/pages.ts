@@ -105,6 +105,10 @@ export interface Writer {
   sheet?: string;
   beats: string[];
   thought?: { text: string; refs: string[] };
+  /** The hand-off's words, so the next page needn't give the reason again. */
+  handoff?: string;
+  /** The recap's clauses: the notebook said aloud, which has to name people. */
+  recap?: string;
 }
 
 export function writer(d: BoardDeal, before: BoardRun, run: BoardRun, page: number): Writer {
@@ -252,6 +256,11 @@ function stageKind(c: BoardCase, id: PlaceId): string {
   return k;
 }
 
+/** One more kind of card a draw mustn't deal, on top of what the page already avoids. */
+function alsoAvoid(base: RegExp | null, more: RegExp): RegExp {
+  return base ? new RegExp(`${base.source}|${more.source}`, 'i') : more;
+}
+
 /** A theatre with a stage has no pictures: a card that says otherwise isn't dealt there. */
 function stageGuard(w: Writer, place: PlaceId): void {
   w.hand.avoid = placeOf(w.c, place)?.stage ? /\bpictures?\b|\bscreen\b|\bnewsreel\b/i : null;
@@ -378,7 +387,13 @@ function closeWith(w: Writer, p: PersonId | undefined, family: string, want: Rec
     put(w, 'close', pay, 'thought');
     return;
   }
+  // A name twice at most a page: a close that would say it a third time isn't dealt.
+  const named = slots.name;
+  const already = named ? Object.values(w.parts).flat().reduce((n, x) => n + (x?.text.match(new RegExp(`\\b${esc(named)}\\b`, 'g')) ?? []).length, 0) : 0;
+  const avoid = w.hand.avoid;
+  if (already >= 2) w.hand.avoid = alsoAvoid(avoid, /\{[Nn]ame\}/);
   put(w, 'close', w.hand.draw(family, want, slots, { widen: true, joke: true }), 'thought');
+  w.hand.avoid = avoid;
 }
 
 /* ------------------------------------------------------------------ *
@@ -391,6 +406,13 @@ function whyHere(w: Writer, q: string, kind: string, slots: Record<string, strin
   license(w, ptr);
   // Straight after walking in, the arrival has said why already: say only that this is who (or what) I came for.
   const last = w.before.log[w.before.log.length - 1]?.board;
+  // The last page's hand-off named them: the reason is said; just turn to them.
+  const subject = q.split(':')[1] ?? '';
+  const named = personOf(w.c, subject)?.short;
+  if (last?.handoff && named && last.handoff.includes(named)) {
+    put(w, 'why', w.hand.draw('why', { kind: 'short' }, withCaps(slots), { plain: true }) ?? `So, ${named}.`, 'narrator');
+    return ptr;
+  }
   // Said already tonight (the arrival joined it with others): don't say it twice.
   const saidBefore = !!ptr.clause && w.before.log.some((pg) => pg.blocks.some((b) => b.kind === 'prose' && b.text.includes(cap(ptr.clause))));
   if (((last?.job === 'arrive' && w.before.at === w.run.at) || saidBefore) && ptr.src !== 'presence') {
@@ -399,8 +421,11 @@ function whyHere(w: Writer, q: string, kind: string, slots: Record<string, strin
     return ptr;
   }
   if (ptr.clause) {
-    const k = ptr.src === 'presence' ? 'presence' : kind;
+    // The pointer names them already: a frame that names them again says it twice.
+    const k = ptr.src === 'presence' ? 'presence' : named && ptr.clause.includes(named) && (kind === 'account' || kind === 'check') ? `${kind}-named` : kind;
     put(w, 'why', w.hand.draw('why', { kind: k }, withCaps({ ...slots, src: ptr.clause }), { plain: true }) ?? `${cap(ptr.clause)}.`, 'narrator');
+    // The reason is in the narration now: the ask needn't say it to their face as well.
+    return { ...ptr, face: undefined } as Pointer;
   }
   return ptr;
 }
@@ -447,8 +472,16 @@ function handOff(w: Writer, always = false): void {
   }
   w.places.add(at);
   const avoid = w.hand.avoid;
-  if (!fromHere) w.hand.avoid = /^That\b/;
-  put(w, 'handoff', w.hand.draw('handoff', { kind: k, away }, withCaps(slots), { plain: true }), 'thought');
+  if (!fromHere) w.hand.avoid = alsoAvoid(avoid, /^That\b/);
+  // A name twice at most a page (docs/39 §4): a hand-off that would say it a third time is left to the star.
+  const named = slots.name;
+  if (named) {
+    const already = Object.values(w.parts).flat().reduce((n, x) => n + (x?.text.match(new RegExp(`\\b${esc(named)}\\b`, 'g')) ?? []).length, 0);
+    if (already >= 2) return;
+  }
+  const said = w.hand.draw('handoff', { kind: k, away }, withCaps(slots), { plain: true });
+  put(w, 'handoff', said, 'thought');
+  if (said) w.handoff = said;
   w.hand.avoid = avoid;
 }
 
@@ -486,6 +519,8 @@ const CIRCUMSTANCES = ['behind-on-rent', 'flush', 'hungover', 'bruised', 'sleepl
 function inClientMouth(c: BoardCase, text: string): string {
   const cl = clientOf(c);
   const me = cl.short;
+  // The dead man, in the client's mouth, is "he" once the office has named him.
+  if (isMurder(c)) text = text.replace(new RegExp(`^${victimOf(c).short}\\b`), 'He');
   return text
     .replace(new RegExp(`\\band ${me} haven’t\\b`), 'and I haven’t')
     .replace(new RegExp(`\\basked ${me}\\b`), 'asked me')
@@ -513,6 +548,8 @@ export function writeOffice(w: Writer): void {
   const pthem = gone?.pthem ?? 'it';
   let asked = { when: false, who: false };
   let chair = false;
+  const aside = lines.some((g) => g.kind === 'aside');
+  let pointerTold = false;
   // docs/44: one quoted line a paragraph. Between them, the detective's own questions and the chair.
   for (const g of lines) {
     // The client's own line, in the client's mouth: "nine or ten, I’d say", "he telephoned me".
@@ -535,11 +572,24 @@ export function writeOffice(w: Writer): void {
     for (const p of c.people) if (g.text.includes(p.short)) w.people.add(p.id);
     if (g.kind === 'aside') {
       // The report asks why: the client's aside gives every reason the pointer didn't, in passing.
+      // It runs as talk: two at a time, the second with an "And", and a beat between. The one the
+      // client pointed at has had their reason said with the pointer, so they aren't named again.
       const n = Number(v.n ?? 0);
+      const pointed = c.givens.pointer ? nameOf(c, c.givens.pointer) : '';
       const said: string[] = [];
-      for (let i = 0; i < n; i++) said.push(`${cap(inClientMouth(c, v[`m${i}`] ?? ''))}.`);
-      const text = w.hand.draw('aside', {}, withCaps({ ...base, said: said.join(' ') }), { widen: true, plain: true }) ?? `“${said.join(' ')}”`;
-      put(w, 'job', text, 'exchange');
+      for (let i = 0; i < n; i++) if (!(pointerTold && v[`p${i}`] === pointed)) said.push(`${cap(inClientMouth(c, v[`m${i}`] ?? ''))}.`);
+      if (said.length === 0) continue;
+      const groups = said.length <= 2 ? [said] : [said.slice(0, 2), said.slice(2)];
+      const talk = (g: string[]) => g.map((x, i) => (i === 0 ? x : `And ${x}`)).join(' ');
+      const cs = withCaps({ ...base, ...who(c, c.client) });
+      groups.forEach((g, gi) => {
+        if (gi === 0) {
+          put(w, 'job', w.hand.draw('aside', {}, withCaps({ ...cs, said: talk(g) }), { widen: true, plain: true }) ?? `“${talk(g)}”`, 'exchange');
+        } else {
+          const beat = w.hand.draw('aside-beat', {}, cs, { widen: true, plain: true });
+          put(w, 'job', `${beat ?? ''} “${talk(g)}”`, 'exchange');
+        }
+      });
       continue;
     }
     // The detective's questions, where a speech would want one.
@@ -553,11 +603,23 @@ export function writeOffice(w: Writer): void {
     }
     let kind: string = g.kind;
     if (g.kind === 'clock' && !isMurder(c)) kind = 'small-clock';
+    // A pointer said for what they did, not why: their reason follows in the same breath ("And he lost his job on Friday…").
+    let pointerAlso = '';
+    if (g.kind === 'pointer' && g.id === 'behaviour' && c.givens.pointer && aside) {
+      const pp = personOf(c, c.givens.pointer);
+      const reason = pp?.motive ? inClientMouth(c, pp.motive) : '';
+      if (reason) pointerAlso = ` And ${reason}.`;
+    }
     const want = g.kind === 'pointer' || g.kind === 'gone' || g.kind === 'means' || g.kind === 'keeper' ? { kind, id: g.id } : { kind };
-    const text = c.givens.lines ? w.hand.draw('setup', want, withCaps(v), { need: true }) : null;
+    let text = c.givens.lines ? w.hand.draw('setup', want, withCaps(v), { need: true }) : null;
+    if (text && pointerAlso && /”$/.test(text)) {
+      text = `${text.slice(0, -1)}${pointerAlso}”`;
+      pointerTold = true;
+    }
     put(w, 'job', text ?? `“${g.text}”`, g.kind === 'found' ? 'narrator' : 'exchange');
     // The chair, once the client has said who they are and what's wrong.
-    if (!chair && (g.kind === 'gone' || g.kind === 'found') && !/\bchair\b/.test(entrance?.text ?? '')) {
+    const sat = /\bchair\b|\bsitting\b|\bsat\b/.test(`${entrance?.text ?? ''} ${(w.parts.job ?? []).map((x) => x.text).join(' ')}`);
+    if (!chair && (g.kind === 'gone' || g.kind === 'found') && !sat) {
       chair = true;
       put(w, 'job', w.hand.draw('office-chair', {}, withCaps({ ...base, ...who(c, c.client) }), { widen: true }), 'act');
     }
@@ -699,7 +761,11 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   if (sentences.length > 0) put(w, 'arrival', sentences.join(' '), 'presence');
   else if (!pl.scene) put(w, 'arrival', `There was nobody there to ask.`, 'presence');
   // Why here: the pointers to what waits in this room, from what's held, the starred one first.
-  const ptrs = pl.scene && first ? [] : placeThread(c, w.before, place, starredSteps(w.d, w.before), place);
+  const lastHand = w.before.log[w.before.log.length - 1]?.board?.handoff;
+  const handed = !!lastHand && lastHand.includes(pl.short);
+  const ptrs = (pl.scene && first) || handed ? [] : placeThread(c, w.before, place, starredSteps(w.d, w.before), place);
+  const sameSubject = (clause: string, before: string) => sameSubjectIn(c, clause, before);
+  if (handed) put(w, 'why', w.hand.draw('why', { kind: 'short-place' }, withCaps({ place: pl.short }), { plain: true }) ?? `So, ${pl.short}.`, 'narrator');
   for (const p of ptrs) license(w, p);
   if (ptrs.length > 0) {
     // Two lines from one list run together: "Mrs. Tramonti’s list had Lathrop there at nine, and Mulcahy at eight and nine."
@@ -710,7 +776,7 @@ export function writeArrive(w: Writer, place: PlaceId): void {
       ? `${p0.clause}, and ${p1.clause.slice(head.length).replace(/ at the [^,]+? at /, ' at ').replace(new RegExp(` at ${esc(pl.short)} at `), ' at ')}`
       : p1 && said && p1.src === p0.src && p1.clause.startsWith(said)
         ? `${p0.clause}, and that ${p1.clause.slice(said.length)}`
-        : ptrs.map((p, i) => (i === 0 ? p.clause : cap(p.clause))).join('. ');
+        : ptrs.map((p, i) => (i === 0 ? p.clause : cap(sameSubject(p.clause, p0.clause)))).join('. ');
     put(w, 'why', w.hand.draw('why', { kind: 'arrive' }, withCaps({ src, place: pl.short }), { plain: true }) ?? `${cap(src)}.`, 'narrator');
   } else if (pl.scene && !first) {
     put(w, 'why', w.hand.draw('why', { kind: 'scene', type: isMurder(c) ? 'murder' : 'small' }, withCaps({ victim: vict.short, thing: vict.short, client: clientOf(c).short, place: 'here' }), { plain: true }), 'narrator');
@@ -742,6 +808,17 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   w.places.add(place);
   lay(w, 'arrival');
   w.hand.avoid = null;
+}
+
+/** A second pointer that opens on somebody the first just named opens on "he" or "she" instead. */
+function sameSubjectIn(c: BoardCase, clause: string, before: string): string {
+  for (const p of c.people) {
+    if (p.object || !clause.startsWith(`${p.short} `) || !before.includes(p.short)) continue;
+    const others = c.people.filter((x) => x !== p && !x.object && x.female === p.female && before.includes(x.short));
+    if (others.length) return clause;
+    return `${pronOf(c, p.id).he}${clause.slice(p.short.length)}`;
+  }
+  return clause;
 }
 
 function oldWatch(w: Writer, job: string, name: string): string | null {
@@ -781,15 +858,26 @@ function stageAndAsk(w: Writer, p: PersonId, job: 'account' | 'check' | 'list' |
   const look = setUp(w, p);
   // Somebody met on an earlier page has moved, or hasn't: where they are now, before I sit down.
   const seenBefore = personOf(c, p)?.role !== 'watcher' && w.before.log.some((pg) => pg.at === w.run.at && pg.board?.job === 'arrive') && !(w.before.log[w.before.log.length - 1]?.board?.job === 'arrive' && w.before.at === w.run.at);
-  if (seenBefore) put(w, 'staging', w.hand.draw('still', { kind: stageKind(c, w.run.at) }, s), 'act');
+  // The why has named them already: where they are now would be the second name before a word is asked.
+  const namedInWhy = (w.parts.why ?? []).some((x) => x.text.includes(nameOf(c, p)));
+  if (seenBefore && !namedInWhy) put(w, 'staging', w.hand.draw('still', { kind: stageKind(c, w.run.at) }, s), 'act');
   // A watcher is staged by the job: a club's doorkeeper isn't behind a bar.
   const watcher = personOf(c, p)?.role === 'watcher';
   const sk = stageKind(c, w.run.at);
   const kind = watcher && sk === 'bar' && jobKey(personOf(c, p)?.description ?? '') !== 'bartender' ? 'any' : sk;
+  // Met on the way in: they've already opened the door to me.
+  const metHere = w.before.log.some((pg) => pg.at === w.run.at && pg.board?.job === 'arrive');
+  const avoidStage = w.hand.avoid;
+  if (metHere) w.hand.avoid = alsoAvoid(avoidStage, /\bdoor\b/);
   put(w, 'staging', w.hand.draw('staging', { kind, who: watcher ? 'watcher' : 'person', manner }, s), 'act');
+  w.hand.avoid = avoidStage;
   putOn(w, 'staging', look, 'act');
   const face = ptr?.face && job === 'account' ? ptr.face : undefined;
+  // "Mr. Ashby." to his face is a name too: not when the why has said it.
+  const avoid = w.hand.avoid;
+  if (namedInWhy) w.hand.avoid = alsoAvoid(avoid, /\{Title\}/);
   put(w, 'ask', w.hand.draw('ask', { job, face: face ? 'yes' : 'no' }, withCaps({ ...s, reason: face })), 'exchange');
+  w.hand.avoid = avoid;
   put(w, 'reaction', w.hand.draw('reaction', { job: job === 'check' ? 'account' : job, manner }, s), 'act');
 }
 
@@ -801,8 +889,7 @@ export function writeAccount(w: Writer, p: PersonId): void {
   const q = `account:${p}`;
   const s = withCaps(who(c, p));
   const check = (sourceOfQ(c, w.before.asked, q) ?? '').startsWith('confront:');
-  whyHere(w, q, check ? 'check' : 'account', s);
-  const ptr = threadFor(c, w.before, q, w.run.at);
+  const ptr = whyHere(w, q, check ? 'check' : 'account', s);
   stageAndAsk(w, p, check ? 'check' : 'account', ptr);
   const said = spokenAccount(c, a, mannerOf(c, p), c.seed % 4);
   put(w, 'job', `“${said.join(' ')}”`, 'answer');
@@ -912,7 +999,7 @@ export function writeSearch(w: Writer, findId: string): void {
     const pr = pronOf(c, c.crime.culprit);
     const tie = known
       ? `${top?.short} I had already, from ${sourceOfName(w, c.crime.culprit)}. Now I had ${pr.his} reason too, in ${vict.short}’s own hand.`
-      : `${top?.short} was a name I hadn’t heard tonight, but ${vict.short} had heard it often enough to write it down.`;
+      : `${top?.short} was a name I hadn’t heard tonight, but it had been in a box at ${placeName(c, f.place)} all along.`;
     think(
       w,
       q,
@@ -1053,7 +1140,13 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
   put(w, 'staging', w.hand.draw('put-stage', {}, s), 'act');
   // Said to their face: "Tillman passed you on Avenue B", not "passed Hargrove".
   const toYou = (t: string) => t.replace(new RegExp(`\\b(passed|had|put|saw) ${nameOf(c, p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'g'), '$1 you');
-  const breaker = toYou(`${cap(breakSaid(c, line, p, w.run.asked))}.${(j.with ?? []).length > 0 ? ` ${cap(andList((j.with ?? []).map((x) => breakSaid(c, x, p, w.run.asked))))}.` : ''}`);
+  // Two people who give each other for company are said once: "Rosenbaum and Broadnax had each other at the Blue Lantern at ten o’clock."
+  const other = (j.with ?? [])[0];
+  const mutual =
+    (j.with ?? []).length === 1 && other && line.kind === 'claim' && other.kind === 'claim' && line.place === other.place && line.hour === other.hour && line.about.includes(other.speaker as string) && other.about.includes(line.speaker as string);
+  const breaker = mutual
+    ? `${nameOf(c, line.speaker as string)} and ${nameOf(c, other.speaker as string)} had each other at ${placeName(c, line.place as string)} at ${oclock(line.hour as Hour)}.`
+    : toYou(`${cap(breakSaid(c, line, p, w.run.asked))}.${(j.with ?? []).length > 0 ? ` ${cap(andList((j.with ?? []).map((x) => breakSaid(c, x, p, w.run.asked))))}.` : ''}`);
   put(w, 'ask', w.hand.draw('put', {}, withCaps({ ...s, claim: claimLine, breaker }), { widen: true, plain: true }) ?? `“You told me ${claimLine},” I said. “${breaker}”`, 'exchange');
   w.hours.add(h);
   w.people.add(p);
@@ -1099,7 +1192,7 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
     done(
       'admit-close',
       y
-        ? [`That was a hole, and ${pr.he} knew it, and I wasn’t sure yet it was the one I wanted. An owned-up story is only as good as whoever’s in it with you. If ${nameOf(c, y)} said ${placeName(c, lie.truth)} at ${hourWord(h)}, then ${nameOf(c, p)} had been there, not ${claimWhere === 'home' ? 'home' : `at ${claimWhere}`}.`]
+        ? [`That was a hole, and ${pr.he} knew it, and I wasn’t sure yet it was the one I wanted. An owned-up story is only as good as whoever’s in it with you. If it held, ${pr.he} had been at ${placeName(c, lie.truth)} at ${hourWord(h)}, not ${claimWhere === 'home' ? 'home' : `at ${claimWhere}`}.`]
         : [`${nameOf(c, p)} owned up to ${placeName(c, lie.truth)} at ${hourWord(h)}. Nobody had said so but ${pr.him}.`],
       lineRef,
     );
@@ -1297,7 +1390,7 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
     out.push(
       cracked || !hh
         ? { key: 'where', text: `${cap(v)} ${/^the \w+s$/.test(v) ? 'were' : 'was'} ${c.crime.whereNow.text}.`, hours: [], people: [c.crime.victim], places: [c.crime.whereNow.place] }
-        : { key: 'where', text: `And something under a coat went to ${holder} at ${placeName(c, c.crime.whereNow.place)} at ${hh}.`, hours: hh === 'eleven' ? [11] : hh === 'ten' ? [10] : [], people: [], places: [c.crime.whereNow.place] },
+        : { key: 'where', text: `And whatever it was had gone to ${holder} at ${placeName(c, c.crime.whereNow.place)} at ${hh}.`, hours: hh === 'eleven' ? [11] : hh === 'ten' ? [10] : [], people: [], places: [c.crime.whereNow.place] },
     );
   }
   return out;
@@ -1319,6 +1412,7 @@ export function writeRecap(w: Writer, starsLine: string | null): void {
     for (const p of cl.places) w.places.add(p);
   }
   put(w, 'job', clauses.map((x) => x.text).join(' '), 'recap');
+  w.recap = (w.parts.job ?? [])[0]?.text;
   if (starsLine) put(w, 'handoff', starsLine, 'recap');
   lay(w, 'recap');
 }
@@ -1340,6 +1434,7 @@ export function writeTurn(w: Writer): void {
     for (const p of cl.places) w.places.add(p);
   }
   put(w, 'job', `Here’s what I had. ${clauses.map((x) => x.text).join(' ')}`, 'recap');
+  w.recap = (w.parts.job ?? [])[0]?.text;
   // What next: the one caught, put to it now, or the first star first.
   const caught = collisionsOfRun(w)[0];
   const steps = starredSteps(w.d, w.run).filter((q) => !q.startsWith('confront:'));

@@ -122,9 +122,69 @@ Callback pages (this script's count, which leaves out the office and the report)
 
 The browser, at 375 px, with `?engine=board&seed=1&t=4&type=lost-pet`: the office (1,777 px of prose) and Coffin's list scroll inside the page. There's no sideways scroll, and the choices sit below the prose.
 
+## Round two: names, clues, the office (review of PR #66)
+
+The coordinator read the golden's night on the branch and sent back three things.
+
+### 1. A name twice at most a page (docs/39 §4)
+
+Pages said "Ashby" five times and "Prentiss" everywhere. Now `names.ts` thins every page after it's laid out:
+
+- **The rule.** A person keeps their name at the first mention and the last. A mention in between becomes "he" or "she" when that is clear, or their role ("the house manager", "my client", "the dead man", and at Hard-boiled "the man in the grey fedora"). When neither would be clear, the name stays.
+- **What "clear" means.** The last person of that pronoun named before it, within ten sentences, is the same person, and:
+  - nobody else of that pronoun is named in the sentence;
+  - a sentence that opens on "he" follows one about the same person;
+  - no watcher's list stands between the two mentions;
+  - the pronoun isn't the subject of its own clause ("Alfano had him", never "Alfano had Alfano").
+
+  A speech's own "he said" is always the speaker.
+- **What's left alone.** Speech is never rewritten, but it counts. A witness's list, a person's own account and the recap's clauses (the notebook said aloud) are exempt: they have to name people. The turn is a chapter of its own.
+- **Fewer names at the source:**
+  - A why frame that would name them again is swapped for one that doesn't ("Coffin’s list had Ashby here at eleven, and I wanted the rest of that evening").
+  - "Where they are now" and "Mr. Ashby." to their face are dropped when the why has just named them.
+  - A hand-off or a close that would be the third mention isn't dealt; the star still shows the way.
+  - Only a watcher's word is said to a face.
+  - The client who points at somebody gives their reason in the same breath ("He stood at my elbow at the Thalia the whole time. And he and I haven’t spoken since the business over the coal bill"), so the aside needn't name them again.
+  - Two people who vouch for each other are said once.
+  - A thought that settles who is the elimination alone.
+- **The measure.** `board-prose.ts` counts pages naming somebody three or more times, speech included, outside the exempt blocks. Before this round it was 133–250 pages a tier; now it's **0** at every tier. It's tested too, along with a pronoun thinned only when it's clear.
+
+### 2. A clue said at most twice a night
+
+"Corrigan on Stuyvesant Street at eleven, going fast, no hat" was said in Ashby's answer, in the thought, and again in page 7's opener.
+
+- **The thought points at the link.** It now reads "The part worth keeping came last. Stuyvesant Street was where Prentiss kept Duchess."
+- **The collision gives the bare fact:** "Ashby passed her on Stuyvesant Street at eleven."
+- **A why-here after a hand-off is short.** When the last page's hand-off named the person or the place, the next page just turns to them: "So, Corrigan." or "Which brought me to the Thalia."
+- **The handover is said once.** The recap no longer says "under a coat" a third time ("And whatever it was had gone to Pardo"), and no coat answer card says it either.
+- **The measure.** It counts any remark or find whose wording turns up in more than two paragraphs of a night, outside the notebook. The wording is a three-word run with two content words, not the office's own words, the means' or anybody's name. Before this round it was 4–28 a tier; now it's **0**.
+
+### 3. The office
+
+- **Every quoted line has a lead-in or a "he said".** That includes the keeper's ("“Mrs. Cheatham minds Duchess when I’m out,” he said. “She has rooms at the Delmonico rooms.”"), the party's, the ways in and the clocks.
+- **The aside runs as talk:** two reasons at a time, the second with an "And", then a beat ("He wasn’t finished. People who have been up all night with a list never are.") and the rest.
+- **The chair isn't offered** when the client has already sat down.
+
+### Measures after round two
+
+`npx tsx scripts/board-prose.ts`, 30 nights a tier:
+
+| tier | words a page, median [p10–p90] | why-here or walk | thought names an earlier fact | callbacks | lint, corr., plain | cards twice, sentences twice | pages naming somebody 3+ times (main → #66 → now) | clues said 3+ times (main → #66 → now) |
+|---|---|---|---|---|---|---|---|---|
+| Raw | 184 [55–300] | 100% | 100% | 70% | 0, 0, 0 | 0, 0 | 39 → 133 → **0** | 0 → 10 → **0** |
+| Coddled | 179 [56–303] | 100% | 100% | 71% | 0, 0, 0 | 0, 0 | 55 → 140 → **0** | 0 → 14 → **0** |
+| Poached | 169 [113–302] | 100% | 100% | 73% | 0, 0, 0 | 0, 0 | 62 → 220 → **0** | 0 → 4 → **0** |
+| Soft-boiled | 173 [114–312] | 100% | 100% | 72% | 0, 0, 0 | 0, 0 | 59 → 216 → **0** | 0 → 12 → **0** |
+| Medium | 170 [109–293] | 100% | 100% | 73% | 0, 0, 0 | 0, 0 | 74 → 250 → **0** | 0 → 28 → **0** |
+| Hard-boiled | 175 [107–306] | 100% | 100% | 71% | 0, 0, 0 | 0, 0 | 40 → 231 → **0** | 0 → 9 → **0** |
+
+- Fewer names and no restated clues cost 5–18 words a page against PR #66.
+- `board-measure --seeds 50` is unchanged on every puzzle column, and its callback pages are still 62–75%.
+
 ## What's open
 
-- **Words a page:** median 175–193, against 200–300. The golden's own night is about 190 by the same count. More would come from a richer search page (the golden's page 3 is 156 words, too) and lists at Raw.
+- **Words a page:** median 170–184 after round two (175–193 before it), against 200–300. The golden’s own night is about 190 by the same count. More would come from a richer search page (the golden’s page 3 is 156 words, too) and lists at Raw.
+- **Name thinning is a heuristic.** It keeps a name wherever a pronoun might be misread, so a page can read name, pronoun, name. The rewrites at the source (frames, hand-offs, the aside) do most of the work.
 - **The aside names every suspect's reason.** That's at least two and up to four in the office. It's a long speech at Hard-boiled (five suspects), but it's honest: nobody is singled out.
 - **Reaction cards are a judgement call.** They're drawn by manner alone, but "looked at me for a while first" reads as nerves to some ears. The pool is shared, so it can't be a tell, but it may feel like one.
 - **Distances are a sketch.** The map of streets is real; the minutes are a walk's, while the clock moves a call's worth (about 35 minutes).

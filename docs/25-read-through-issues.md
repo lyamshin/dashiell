@@ -109,3 +109,8 @@ Branch `board-connective`. Found reading four board nights in full (`npm run rea
   - "Thin and a little bent at the shoulders from the machine" for a milliner: the seamstress look card is the milliner's archetype.
   - The Bijou's ticket seller is described standing at the back with a torch, like an usher. The job key groups ushers and ticket sellers.
   - A search page is still short (about 140 words), and so is a Raw list. See docs/44.
+- **Round two, from the coordinator's read of the golden's night (fixed).**
+  - Names said four and five times a page ("Ashby" ×5 on page 6, "Prentiss" all over pages 1–3). Now twice at most, with the rest as pronouns or roles where that's clear.
+  - "Corrigan on Stuyvesant Street at eleven, going fast, no hat" said three times running. The thought now points at the street, and the next page opens "So, Corrigan."
+  - "Mrs. Cheatham, at the Delmonico rooms, minds Duchess when I’m out." stood with no lead-in. Every office quote now has one, and the aside runs as talk with a beat.
+  - Found on the reread: Mrs. Cheatham "opened the door the width of a face" a page after she'd opened the door. A person met on the way in isn't staged at the door again.

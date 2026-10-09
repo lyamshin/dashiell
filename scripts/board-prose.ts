@@ -15,14 +15,23 @@
  * - **reader lint, plain terms and correspondence**: findings over the oracle's
  *   and the wanderer's nights (target 0);
  * - **repeats**: a card dealt twice in a night, and a sentence of six words or
- *   more narrated twice in a night, outside speech, the answers and the recaps (target 0).
+ *   more narrated twice in a night, outside speech, the answers and the recaps (target 0);
+ * - **names over two** (docs/39 §4): pages where somebody is named more than
+ *   twice, speech included, outside a witness's list, a person's own account
+ *   and the recap's clauses (the notebook said aloud); the turn's chapter
+ *   counts as a page of its own (target 0);
+ * - **clues restated**: a remark or a find whose wording (a three-word run
+ *   with two content words in it, not the office's own words, the means' or
+ *   anybody's name) turns up in more than two paragraphs of a night, outside
+ *   the notebook (target 0).
  */
 
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
 import { lintBoardRun, boardPlayerText } from '../src/game/board/lint.js';
 import { dealBoard, tierName, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle, playWanderer } from '../src/game/board/oracle.js';
-import type { Page } from '../src/game/types.js';
+import type { Block, Page } from '../src/game/types.js';
+import { namesOverTwo } from '../src/game/board/names.js';
 // @ts-expect-error — plain JavaScript module, no declarations.
 import { findJargon, loadPlainTerms } from './plain-terms.mjs';
 
@@ -71,9 +80,52 @@ function namesOf(run: BoardRun, d: ReturnType<typeof dealBoard>): string[] {
   return [...out].filter((x) => x.length >= 3);
 }
 
+const STOP = new Set('the a an and or but of to in on at by for with from was were had has have his her him he she it its i me my we you your they them their there here that this then than so as not no nobody somebody something anybody anything what who when where which if into out up down over about after before just only all one two three said says like be been is are did do does would could went came got door opened turned back each whoever'.split(' '));
+const HOURS = new Set(['seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'o’clock', 'midnight']);
+
+function tokens(t: string): string[] {
+  return t
+    .toLowerCase()
+    .replace(/[“”"]/g, ' ')
+    .split(/[^a-z’'-]+/)
+    .filter(Boolean);
+}
+
+/** A clue's distinctive wording: its three-word runs with a content word in them. */
+function cluesOf(d: ReturnType<typeof dealBoard>): { id: string; grams: Set<string> }[] {
+  const c = d.kase;
+  const names = new Set<string>();
+  for (const p of c.people) for (const w of tokens(p.short)) names.add(w);
+  for (const p of c.places) for (const w of tokens(`${p.short} ${p.street} ${p.name}`)) names.add(w);
+  // The means and the thing are named all night; the office's own words aren't a clue restated.
+  for (const w of tokens(`${c.means.name} ${c.means.originText}`)) names.add(w);
+  const office = gramsOf(c.givens.text.join(' '));
+  const texts: { id: string; text: string }[] = [];
+  for (const a of c.accounts) a.remarks.forEach((r, i) => texts.push({ id: `remark:${a.person}#${i}`, text: r.text }));
+  for (const l of c.lists) l.remarks.forEach((r, i) => texts.push({ id: `remark:${l.watcher}#${i}`, text: r.text }));
+  for (const f of c.finds) texts.push({ id: `find:${f.id}`, text: f.text });
+  return texts.map(({ id, text }) => {
+    const ws = tokens(text);
+    const grams = new Set<string>();
+    for (let i = 0; i + 2 < ws.length; i++) {
+      const g = ws.slice(i, i + 3);
+      const content = g.filter((w) => w.length >= 3 && !STOP.has(w) && !names.has(w) && !HOURS.has(w)).length;
+      if (content >= 2 && !office.has(g.join(' '))) grams.add(g.join(' '));
+    }
+    return { id, grams };
+  });
+}
+
+function gramsOf(t: string): Set<string> {
+  const ws = tokens(t);
+  const out = new Set<string>();
+  for (let i = 0; i + 2 < ws.length; i++) out.add(ws.slice(i, i + 3).join(' '));
+  return out;
+}
+
 const rows: string[] = [];
-rows.push('| tier | nights | pages | words a page, median [p10–p90] | why-here or walk | job pages with a thought naming an earlier fact | callbacks | lint (reader) | correspondence | plain terms | cards twice | sentences twice |');
-rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|');
+rows.push('| tier | nights | pages | words a page, median [p10–p90] | why-here or walk | job pages with a thought naming an earlier fact | callbacks | lint (reader) | correspondence | plain terms | cards twice | sentences twice | pages naming somebody 3+ times | clues said 3+ times |');
+rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
 const examples: string[] = [];
 for (const tier of tiers) {
   const types = typesFor(tier) as CaseType[];
@@ -90,6 +142,8 @@ for (const tier of tiers) {
   let jargon = 0;
   let cardsTwice = 0;
   let sentTwice = 0;
+  let namePages = 0;
+  let cluesThrice = 0;
   for (let s = 1; s <= N; s++) {
     const type = types[s % types.length] as CaseType;
     const d = dealBoard(s, tier, type);
@@ -132,7 +186,23 @@ for (const tier of tiers) {
         }
       }
       cardsTwice += (b as { repeats?: number } | undefined)?.repeats ?? 0;
+      const exempt = (blk: Block) => blk.kind === 'prose' && ((blk.voice === 'answer' && (b?.job === 'account' || b?.job === 'list')) || (blk.voice === 'recap' && blk.text === (b as { recap?: string } | undefined)?.recap));
+      const over = namesOverTwo(d.kase, p.blocks, exempt);
+      if (over.length) {
+        namePages++;
+        if (examples.length < 80) examples.push(`names: ${tierName(tier)} ${type} seed ${s} p${i + 1}: ${over.join(', ')}`);
+        if (args.includes('--names-text') && examples.length < 80) examples.push(p.blocks.filter((x) => x.kind === 'prose' && !exempt(x)).map((x) => (x.kind === 'prose' ? `    | ${x.text}` : '')).join('\n'));
+      }
     });
+    // Clues: each remark's or find's wording, by the paragraphs it turns up in.
+    const paras = run.log.flatMap((p, pi) => p.blocks.flatMap((blk) => (blk.kind === 'prose' ? [{ pi, g: gramsOf(blk.text) }] : [])));
+    for (const cl of cluesOf(d)) {
+      const hits = paras.filter((x) => [...cl.grams].some((y) => x.g.has(y)));
+      if (hits.length > 2) {
+        cluesThrice++;
+        if (examples.length < 80) examples.push(`clue ×${hits.length}: ${tierName(tier)} ${type} seed ${s}: ${cl.id} [${hits.map((x) => `p${x.pi + 1} “${[...cl.grams].find((y) => x.g.has(y))}”`).join(', ')}]`);
+      }
+    }
     for (const [sent, n] of sentences) {
       if (n > 1) {
         sentTwice += n - 1;
@@ -154,7 +224,7 @@ for (const tier of tiers) {
   }
   if (show) examples.push(`words by job, ${tierName(tier)}: ${[...byJob.entries()].map(([k, v]) => `${k} ${quantile(v, 0.5)} (${v.length})`).join(', ')}`);
   rows.push(
-    `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${jargon} | ${cardsTwice} | ${sentTwice} |`,
+    `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${jargon} | ${cardsTwice} | ${sentTwice} | ${namePages} | ${cluesThrice} |`,
   );
 }
 process.stdout.write(`${rows.join('\n')}\n`);

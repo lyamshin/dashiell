@@ -8,6 +8,7 @@ import { SHEETS } from '../src/game/board/sheets.js';
 import { pageStars } from '../src/game/board/choices.js';
 import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { walkBetween } from '../src/game/board/walk.js';
+import { namesOverTwo, thinNames } from '../src/game/board/names.js';
 import type { Page } from '../src/game/types.js';
 
 /**
@@ -192,6 +193,47 @@ describe('board: the walk', () => {
         }
       }
     }
+  });
+});
+
+describe('board: a name twice at most a page (docs/39 §4)', () => {
+  it.each(cases)('nobody is named more than twice on a page, outside a list or an account: tier $tier, $type', ({ tier, type }) => {
+    for (let s = 1; s <= SEEDS; s++) {
+      const d = dealBoard(s, tier, type);
+      for (const p of playBoardOracle(d).run.log) {
+        const exempt = (b: Page['blocks'][number]) =>
+          b.kind === 'prose' && ((b.voice === 'answer' && (p.board?.job === 'account' || p.board?.job === 'list')) || (b.voice === 'recap' && b.text === p.board?.recap));
+        expect(namesOverTwo(d.kase, p.blocks, exempt), `seed ${s} page ${p.n + 1}`).toEqual([]);
+      }
+    }
+  });
+
+  it('thins a third mention to a pronoun only when it is clear', () => {
+    const d = dealBoard(12, 1, 'murder');
+    const blocks: Page['blocks'] = [
+      { kind: 'prose', voice: 'narrator', text: 'I’d come for Whitfield, and he was here. I sat one seat over.' },
+      { kind: 'prose', voice: 'exchange', text: '“Mr. Whitfield. Where were you tonight?” Whitfield said he would tell me once.' },
+    ];
+    thinNames(d.kase, blocks, () => false);
+    expect(blocks[1]?.kind === 'prose' ? blocks[1].text : '').toContain('He said he would tell me once.');
+  });
+});
+
+describe('board: a clue is said at most twice a night', () => {
+  it('the side remark is pointed at, not repeated: the thought gives the street, not the words', () => {
+    const run = playBoardOracle(dealBoard(1, 4, 'lost-pet')).run;
+    const all = run.log.map((p) => prose(p)).join('\n');
+    expect((all.match(/going fast, no hat/g) ?? []).length).toBe(1);
+    expect(all).toContain('The part worth keeping came last. Stuyvesant Street was where Prentiss kept Duchess.');
+    expect((all.match(/under a coat/g) ?? []).length).toBeLessThanOrEqual(2);
+  });
+
+  it('after a hand-off that named them, the next page just turns to them', () => {
+    const run = playBoardOracle(dealBoard(1, 4, 'lost-pet')).run;
+    const i = run.log.findIndex((p) => p.board?.handoff?.includes('Corrigan'));
+    expect(i).toBeGreaterThan(0);
+    const next = run.log[i + 1] as Page;
+    expect(prose(next).split('\n')[0]).toBe('So, Corrigan.');
   });
 });
 

@@ -263,6 +263,10 @@ export interface Page {
     thought?: { text: string; refs: string[] };
     /** docs/44: cards dealt again tonight because nothing fresh fitted. */
     repeats?: number;
+    /** docs/44: the hand-off's words, so the next page needn't give the reason again. */
+    handoff?: string;
+    /** docs/44: the recap's clauses (the notebook said aloud), which may name people more than twice. */
+    recap?: string;
   };
 }
 

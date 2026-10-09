@@ -18,6 +18,7 @@ import { isOver } from '../clock.js';
 import type { Page } from '../types.js';
 import type { Weather } from '../voice/roll.js';
 import { boardChoices, pageStars, type BoardStar } from './choices.js';
+import { thinNames } from './names.js';
 import { collisionsOf, judgeLine, knownPeople, knownPlaces, linesHeld, peopleAt, solveRun } from './knowledge.js';
 import {
   OFFICE,
@@ -206,6 +207,18 @@ function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>[
     next.turn = n;
     turn = true;
   }
+  // docs/39 §4: a name twice at most a page. The answer itself (an account, a watcher's list) is left whole.
+  const thoughtAt = w.thought ? w.blocks.findIndex((b) => b.kind === 'prose' && b.text.includes(w.thought?.text ?? '\u0000')) : -1;
+  thinNames(
+    c,
+    w.blocks,
+    (b) => b.kind === 'prose' && ((b.voice === 'answer' && (o.job === 'account' || o.job === 'list')) || (b.voice === 'recap' && b.text === w.recap)),
+    (b) => b.kind === 'prose' && b.voice === 'answer' && o.job === 'list',
+  );
+  if (w.thought && thoughtAt >= 0) {
+    const b = w.blocks[thoughtAt];
+    if (b?.kind === 'prose') w.thought = { ...w.thought, text: b.text };
+  }
   if (!next.reportOpen && isOver(next.used, budgetCalls(w.d))) {
     next.reportOpen = true;
     w.blocks.push({
@@ -237,6 +250,8 @@ function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>[
       ...(w.sheet ? { sheet: w.sheet } : {}),
       ...(w.beats.length ? { beats: [...w.beats] } : {}),
       ...(w.thought ? { thought: w.thought } : {}),
+      ...(w.handoff ? { handoff: w.handoff } : {}),
+      ...(w.recap ? { recap: w.recap } : {}),
       ...(w.hand.reuses ? { repeats: w.hand.reuses } : {}),
     },
   };

@@ -109,7 +109,8 @@ export function shortOther(name: string): string {
 export function remarkSaid(c: BoardCase, l: Line): string {
   const sp = l.speaker as PersonId;
   const m = /^Walking over to (.+?) at (\w+) I passed (\S+) on (.+?), (.+?)\.$/.exec(l.text.replace(/^[^:]+: “/, '').replace(/”$/, ''));
-  if (m) return `${nameOf(c, sp)} passed ${m[3]} on ${m[4]} at ${m[2]}, ${m[5]}, walking over to ${m[1]}`;
+  // The remark's own words ("going fast, no hat") are its speaker's: the thought points at it, it doesn't say it again.
+  if (m) return `${nameOf(c, sp)} passed ${m[3]} on ${m[4]} at ${m[2]}`;
   const k = /^I had (.+?) at my place at (\w+)/.exec(l.text.replace(/^[^:]+: “/, ''));
   if (k) return `${nameOf(c, sp)} had ${k[1]} at ${pronOf(c, sp).his} place at ${k[2]}`;
   return l.text.replace(/^[^:]+: /, '').replace(/[.”]+$/, '').replace(/^“/, '');
@@ -179,6 +180,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   };
   const before_ = linesHeld(c, before);
   const heldBefore = new Set(before_.map((l) => l.id));
+  // People a sentence has already placed this page: a later one needn't place them again.
+  const covered = new Set<PersonId>();
   const heldBeforeQs = new Set(solverHeld(before));
   const win = b.possibleHours.length ? b.possibleHours : c.crime.window;
   const winFirst = (hs: Hour[]) => [...hs].sort((u, v) => Number(win.includes(v)) - Number(win.includes(u)) || u - v);
@@ -191,7 +194,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     if (!br) continue;
     const p = col.person;
     caught.add(`${p}@${col.hour}`);
-    const said = breakSaid(c, br, p, run.asked);
+    // The line that breaks it is about them: once named, they're "her" in it ("Ashby passed her on Stuyvesant Street").
+    const said = breakSaid(c, br, p, run.asked).replace(new RegExp(`\\b(had|passed|put|saw) ${nameOf(c, p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`), `$1 ${pronOf(c, p).him}`);
     const people = [p, ...br.about, ...(br.speaker ? [br.speaker] : []), ...c.people.filter((y) => !y.object && said.includes(y.short)).map((y) => y.id)];
     const two = x.pick('two-stories', [
       'One of them was wrong.',
@@ -227,11 +231,15 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       }
     }
     const best = [...bySrc.entries()].sort((u, v) => Number(v[1].hs.some((h) => win.includes(h))) - Number(u[1].hs.some((h) => win.includes(h))) || v[1].hs.length - u[1].hs.length)[0];
-    if (best) {
+    // The one who said so is placed by this evening in turn: that's the same agreement, not a second one.
+    if (best) for (const y of c.people) if (best[0].startsWith(`${y.short} `)) covered.add(y.id);
+    if (best && !(a.who !== undefined && b.who === undefined) && !(t.sentences.length > 0 && t.sentences.some((x) => x.includes(best[0].replace(/ had( said)?$/, ''))))) {
       const [src, g] = best;
+      const namedSoFar = new Set<string>();
       const bits = g.hs.slice(0, 2).map((h, i) => {
         const cl = ac?.claims[h];
-        const comp = (cl?.company ?? []).map((y) => nameOf(c, y));
+        const comp = (cl?.company ?? []).map((y) => nameOf(c, y)).filter((y) => !src.startsWith(`${y} `) && !namedSoFar.has(y));
+        for (const y of comp) namedSoFar.add(y);
         const own = personOf(c, rest)?.home === cl?.place && cl?.place !== here;
         return `${own ? 'home' : where(c, g.place[i] as PlaceId, here)} at ${hourWord(h)}${comp.length ? `, with ${andList(comp)}` : ''}`;
       });
@@ -242,15 +250,17 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const text =
         t.sentences.length === 0
           ? `So ${andList(bits)}, which was what ${src}. ${held ? x.pick('one-holds', ['One evening that held, at an hour that mattered, where I could check it.', 'That much of it stood up, and it stood up where I could check it.', 'At an hour that mattered, somebody else’s word was under it.']) : x.pick('one-holds-early', ['That part of the evening, at least, had somebody else’s word under it.', 'So far as it went, it stood up.'])}`
-          : `The rest held where I could check it: ${src.replace(/ had( said)?$/, '')} had ${pr.him} ${andList(
+          : `The rest held where I could check it: ${src.replace(/ had( said)?$/, '')} had ${pr.him} ${(namedSoFar.clear(), andList)(
               g.hs.slice(0, 2).map((h, i) => {
                 const cl = ac?.claims[h];
-                const comp = (cl?.company ?? []).map((y) => nameOf(c, y));
+                // The source is the one saying so: "with" names only the others, and anybody named already isn't named again.
+                const comp = (cl?.company ?? []).map((y) => nameOf(c, y)).filter((y) => !src.startsWith(`${y} `) && !t.sentences.some((x) => x.includes(y)) && !namedSoFar.has(y));
+                for (const y of comp) namedSoFar.add(y);
                 return `${atWhere(c, g.place[i] as PlaceId, here)} at ${hourWord(h)}${comp.length ? `, with ${andList(comp)}` : ''}`;
               }),
             )}, same as ${pr.he} said.`;
       add(
-        text,
+        text.replace(/(\w), (with [^,]+) and (here|at|home)\b/, '$1, $2, and $3'),
         g.refs,
         { hours: g.hs.slice(0, 2), people: [rest, ...ppl, ...c.people.filter((y) => src.startsWith(`${y.short} `)).map((y) => y.id)], places: g.place },
       );
@@ -267,11 +277,12 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       if (caught.has(`${sp}@${ln.hour}`)) continue;
       if ((l?.entries[ln.hour] ?? []).some((e) => 'person' in e && e.person === sp) && !agreed.some((y) => y.p === sp)) agreed.push({ p: sp, h: ln.hour, id: ln.id });
     }
+    for (const y of agreed) covered.add(y.p);
     if (agreed.length && l) {
       const one = agreed[0] as { p: PersonId; h: Hour };
       add(
         agreed.length === 1
-          ? `${nameOf(c, l.watcher)} had ${nameOf(c, one.p)} ${atWhere(c, l.place, here)} at ${hourWord(one.h)}, same as ${pronOf(c, one.p).he} said.`
+          ? `${nameOf(c, l.watcher)} had ${t.sentences.some((x) => x.includes(nameOf(c, one.p))) ? pronOf(c, one.p).him : nameOf(c, one.p)} ${atWhere(c, l.place, here)} at ${hourWord(one.h)}, same as ${pronOf(c, one.p).he} said.`
           : `${nameOf(c, l.watcher)} had ${andList(agreed.map((y) => `${nameOf(c, y.p)} at ${hourWord(y.h)}`))}, same as they’d said.`,
         agreed.map((y) => y.id),
         { hours: agreed.map((y) => y.h), people: agreed.map((y) => y.p), places: [l?.place ?? ''] },
@@ -308,8 +319,10 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const hh = m?.[2] ?? m?.[3];
       const tail = /, ([^,]+, [^,.]+)\.$/.exec(r.text)?.[1];
       const who = c.people.find((p) => p.short === name);
+      void tail;
+      void hh;
       add(
-        `The part worth keeping came last: ${name} on ${street} at ${hh}${tail ? `, ${tail}` : ''}. ${isMurder(c) ? `${street} was where ${victimOf(c).short} lived.` : `${street} was where ${clientOf(c).short} kept ${victimOf(c).short}.`}`,
+        `The part worth keeping came last. ${isMurder(c) ? `${street} was where ${victimOf(c).short} lived.` : `${street} was where ${clientOf(c).short} kept ${victimOf(c).short}.`}`,
         ['givens:gone'],
         { people: [c.client, c.crime.victim, ...(who ? [who.id] : [])], places: [c.crime.scene], hours: r.facts.map((f) => f.h) },
       );
@@ -317,7 +330,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   }
 
   // 6. Who had the way in: new from this page, said by name and hour.
-  if (kind === 'list' || kind === 'account') {
+  if ((kind === 'list' || (kind === 'account' && t.sentences.length === 0)) && !(a.who !== undefined && b.who === undefined)) {
     const yes = suspectsOf(c).filter((p) => a.accessYes.has(p) && !b.accessYes.has(p));
     const no = suspectsOf(c).filter((p) => a.accessNo.has(p) && !b.accessNo.has(p));
     if (yes.length + no.length > 0) {
@@ -346,7 +359,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     const hs = a.possibleHours.length === 1 ? a.possibleHours : win;
     const groups = new Map<string, { src: string; items: { p: PersonId; place: PlaceId; h: Hour }[]; refs: string[] }>();
     for (const p of suspectsOf(c)) {
-      if (kind === 'account' && p === rest) continue;
+      if ((kind === 'account' && p === rest) || covered.has(p)) continue;
       for (const h of hs) {
         const k = `${p}@${h}`;
         const now = a.placed.get(k);
@@ -371,7 +384,11 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         r.ps.push(y.p);
         runs.set(`${y.place}@${y.h}`, r);
       }
-      const bits = [...runs.values()].map((r) => `${andList(r.ps.map((y) => nameOf(c, y)))} ${atWhere(c, r.place, here)} at ${hourWord(r.h)}`);
+      // Somebody the thought has just been about is "him" here, when they're the only one placed.
+      const lastSaid = t.sentences[t.sentences.length - 1] ?? '';
+      const only = g.items.length === 1 ? g.items[0]?.p : undefined;
+      const sameSex = only ? suspectsOf(c).filter((y) => y !== only && personOf(c, y)?.female === personOf(c, only)?.female && lastSaid.includes(nameOf(c, y))) : [];
+      const bits = [...runs.values()].map((r) => `${only && lastSaid.startsWith(`${nameOf(c, only)} `) && sameSex.length === 0 ? pronOf(c, only).him : andList(r.ps.map((y) => nameOf(c, y)))} ${atWhere(c, r.place, here)} at ${hourWord(r.h)}`);
       add(`That put ${andList(bits)}, with ${g.src} under ${g.items.length > 1 ? 'both' : 'it'}.`.replace('under both', g.items.length > 2 ? 'under all of them' : 'under both'), g.refs.length ? g.refs : ['givens:clock'], {
         hours: g.items.map((y) => y.h),
         people: g.items.map((y) => y.p),
@@ -433,7 +450,21 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         ppl.push(p, ...sourcePeople(by));
         pls.push(pl.place);
       }
-      const ps = [...placedBy.entries()].map(([k, g]) => `${andList(g.who.map((y) => nameOf(c, y)))} ${g.who.length > 1 ? 'were' : 'was'} ${atWhere(c, g.place, here)}, with ${k.split('|')[1]}`);
+      const entries = [...placedBy.entries()];
+      const ps: string[] = [];
+      const done = new Set<string>();
+      for (const [k, g] of entries) {
+        if (done.has(k)) continue;
+        // "Fairbanks was at the Shamrock, with Bellucci’s word. Bellucci was at the Shamrock, with Fairbanks’s word": one sentence.
+        const [, src] = k.split('|') as [string, string];
+        const mate = g.who.length === 1 ? entries.find(([k2, g2]) => k2 !== k && g2.place === g.place && g2.who.length === 1 && src === `${nameOf(c, g2.who[0] as PersonId)}’s word` && k2.split('|')[1] === `${nameOf(c, g.who[0] as PersonId)}’s word`) : undefined;
+        if (mate) {
+          done.add(mate[0]);
+          ps.push(`${nameOf(c, g.who[0] as PersonId)} and ${nameOf(c, mate[1].who[0] as PersonId)} were ${atWhere(c, g.place, here)}, each with the other’s word`);
+          continue;
+        }
+        ps.push(`${andList(g.who.map((y) => nameOf(c, y)))} ${g.who.length > 1 ? 'were' : 'was'} ${atWhere(c, g.place, here)}, with ${src}`);
+      }
       if (ps.length) lines.push(`At ${hourWord(hc)} ${ps.join('. ')}.`);
       if (noWay.length) {
         lines.push(`${cap(andList(noWay.map((y) => nameOf(c, y))))} ${accessPhrase(c, false, true)}.`);
@@ -464,7 +495,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const same = said.every((s) => s.replace(/ at \w+$/, '') === (said[0] ?? '').replace(/ at \w+$/, ''));
       const what = same && said.length > 1 ? `${(said[0] ?? '').replace(/ at \w+$/, '')} at ${andList(hs.map(hourWord))}` : andList(said);
       add(
-        `The ${hs.length > 1 ? 'hours' : 'hour'} that mattered ${hs.length > 1 ? 'were' : 'was'} ${andList(hs.map(hourWord))}, and for ${hs.length > 1 ? 'those' : 'that'} ${nameOf(c, rest)} said ${what}. ${x.pick('own-word', ['I wrote it down and left it standing, for now.', 'Whether anything else I held touched it, I’d have to see.', `That was ${nameOf(c, rest)}’s word for it, and I took it down as said.`])}`,
+        `The ${hs.length > 1 ? 'hours' : 'hour'} that mattered ${hs.length > 1 ? 'were' : 'was'} ${andList(hs.map(hourWord))}, and for ${hs.length > 1 ? 'those' : 'that'} ${t.sentences.length > 0 ? pronOf(c, rest).he : nameOf(c, rest)} said ${what}. ${x.pick('own-word', ['I wrote it down and left it standing, for now.', 'Whether anything else I held touched it, I’d have to see.', `That was ${pronOf(c, rest).his} word for it, and I took it down as said.`])}`,
         clockRef,
         { hours: hs, people: [rest], places: hs.map((h) => accountOf(c, rest)?.claims[h]?.place ?? '') },
       );
