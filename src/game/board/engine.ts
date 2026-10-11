@@ -11,12 +11,11 @@
  * - `recap`: go over what I have, free;
  * - `file`: take out the report form, free.
  *
- * The clock is v1's: the night's calls spread across midnight to eight.
+ * The clock (`clock.ts`): the night's calls spread across midnight to eight.
  */
 
-import { isOver } from '../clock.js';
-import type { Page } from '../types.js';
-import type { Weather } from '../voice/roll.js';
+import { isOver } from './clock.js';
+import type { Page, Weather } from './types.js';
 import { boardChoices, pageStars, type BoardStar } from './choices.js';
 import { thinNames } from './names.js';
 import { collisionsOf, judgeLine, knownPeople, knownPlaces, linesHeld, peopleAt, solveRun } from './knowledge.js';
@@ -232,12 +231,7 @@ function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>[
     blocks: w.blocks,
     cost: o.cost,
     cardsUsed: [...w.hand.spent],
-    found: o.q ? [o.q] : [],
     at: next.at,
-    gaps: [],
-    plain: 0,
-    image: 0,
-    imageMotifs: [],
     board: {
       job: o.job,
       ...(o.q ? { q: o.q } : {}),

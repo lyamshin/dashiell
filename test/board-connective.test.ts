@@ -9,7 +9,7 @@ import { pageStars } from '../src/game/board/choices.js';
 import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { walkBetween } from '../src/game/board/walk.js';
 import { namesOverTwo, thinNames } from '../src/game/board/names.js';
-import type { Page } from '../src/game/types.js';
+import type { Page } from '../src/game/board/types.js';
 
 /**
  * docs/44: the connective tissue. Every page opens on why the detective is

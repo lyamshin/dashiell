@@ -50,12 +50,11 @@ a note, a chalk mark is a mark, the benches are in the square, the fence
 borders the lot. Judge each use by what it means in its sentence.
 
 **The list is data.** `content/plain-terms.json` holds every banned term with
-the plain words to use instead and the literal senses it allows. `npm run
-decks` fails on any card that uses one, and `test/plain-terms.test.ts` holds
-everything the generator and the engine write to it: briefings, clue
-sentences, dossiers, the notebook and every rendered page, over forty seeds,
-three difficulties and all three case types. A new term goes in the list
-when somebody finds it on a page. See `docs/21-plain-terms-notes.md`.
+the plain words to use instead and the literal senses it allows.
+`test/plain-terms.test.ts` fails on any card the board can deal that uses
+one, and `test/board-engine.test.ts` holds every page of the oracle's and the
+wanderer's nights to it, at every tier and case type. A new term goes in the
+list when somebody finds it on a page. See `docs/21-plain-terms-notes.md`.
 
 ## 1. Cadence
 

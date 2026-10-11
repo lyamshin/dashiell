@@ -7,22 +7,21 @@
  * docs/40 §4, "Wording feedback feeds the decks". A playtester quotes a line
  * off a page of `npm run play`; this replays their save and says, for every
  * place the words appear in the night's pages, which page (numbered as the
- * play CLI numbers them) and what wrote them:
+ * play CLI numbers them), what the page was for, and what wrote the words:
  *
- *   - a deck card: its id and deck file, and the card's own text, slots and all;
- *   - a sheet: its id and which part of it (a hole's frame, a line, a close);
+ *   - a card: its id and file (`content/board/…`, or one of the four old
+ *     decks in `content/decks/`), and the card's own text, slots and all;
  *   - an engine template: the const or function in src/ that holds the words;
- *   - (or a phrase from the other content files: place names, the lexicon);
+ *   - (or a phrase from the lexicon);
  *   - or, honestly, "no source found", with the nearest candidates.
  *
  * Matching is forgiving: curly and straight quotes are one, so are the dashes,
  * whitespace and case are ignored, and "..." in a quote skips words. A source's
  * text is made a pattern (its fixed words literal, its slots lazy wildcards)
  * and matched against the page; it is the source when its fixed words cover
- * enough of the quote. The page's own records come first: the cards it spent
- * (`Page.cardsUsed`, including the `line:` keys of sheet lines) and the sheets
- * it used (`Page.sheets`); every deck, sheet and string literal in src/ is the
- * fallback.
+ * enough of the quote. The page's own records come first: the cards it dealt
+ * (`Page.cardsUsed`, including the `pay:` keys of callback lines); every card
+ * and string literal in src/ is the fallback.
  *
  * Never reachable from `npm run play`: blind testers must not see sources.
  * Nothing in src/cli imports this file (test/trace-line.test.ts holds it).
@@ -31,20 +30,20 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import ts from 'typescript';
 import { replaySave } from '../src/cli/play-lib.js';
-import { renderPageBody } from '../src/game/transcript.js';
-import type { Page } from '../src/game/types.js';
+import { pageBodyText } from '../src/game/board/text.js';
+import type { Page } from '../src/game/board/types.js';
 
 /* ------------------------------------------------------------ the types */
 
-export type SourceKind = 'deck' | 'sheet' | 'engine' | 'content';
+export type SourceKind = 'deck' | 'engine' | 'content';
 
 export interface TraceSource {
   kind: SourceKind;
-  /** Deck: the card id. Sheet: the sheet id. Engine: `const NAME` or `function name`. Content: the JSON path. */
+  /** Deck: the card id. Engine: `const NAME` or `function name`. Content: the JSON path. */
   id: string;
   /** Repo-relative file. */
   file: string;
-  /** Which part of it: `text`, `exports.prop.pay[1]`, `parts[2].text (hole: look)`, `close.plain[0]`. Empty for engine. */
+  /** Which part of it: `text`, `exports.prop.pay[1]`. Empty for engine. */
   where: string;
   /** Engine only: the line in the file. */
   line?: number;
@@ -54,7 +53,7 @@ export interface TraceSource {
 
 export interface TraceCandidate {
   source: TraceSource;
-  /** The page's own records name it (a card it spent, a sheet it used, a sheet line it said). */
+  /** The page's own records name it (a card it dealt, a callback line it said). */
   usedOnPage: boolean;
   /** The share of the quote its fixed words cover, 0 to 1. */
   cover: number;
@@ -71,15 +70,15 @@ export interface TraceHit {
   page: number;
   /** The rendered sentence(s) the quote sits in. */
   onPage: string;
-  /** The planned beats whose words hold the quote: `thought (touches)`. */
-  beats: string[];
+  /** What the page was for, and the sheet it was laid out on: `account (sheet account-run)`. */
+  job: string;
   /** Best first; empty when nothing matched well enough. */
   sources: TraceCandidate[];
   /** Only when `sources` is empty: the closest things there are. */
   nearest: TraceCandidate[];
   /**
-   * A card or sheet the page used whose text holds the whole quote in one of
-   * its slots (a telling's `{told}`): the frame the words were put in.
+   * A card the page dealt whose text holds the whole quote in one of its
+   * slots (`{said}`, `{src}`): the frame the words were put in.
    */
   frame?: TraceCandidate;
 }
@@ -213,11 +212,9 @@ function regexOf(p: Pattern, loose: boolean): RegExp {
 interface Entry {
   source: TraceSource;
   pattern: Pattern;
-  /** For a deck card, the id `Page.cardsUsed` would carry. */
+  /** For a card, the id `Page.cardsUsed` would carry. */
   cardId?: string;
-  /** For a sheet, its id (`Page.sheets`). */
-  sheetId?: string;
-  /** The dealer's key for a sheet line or a card's pay line (`line:…`). */
+  /** The hand's key for a card's callback line (`pay:…`). */
   lineKey?: string;
   words?: Set<string>;
 }
@@ -225,14 +222,9 @@ interface Entry {
 const ROOT = new URL('../', import.meta.url);
 const SLOT_RE = /\{[^{}\s]+\}/g;
 
-/** The same key `src/game/scene/sheet-pages.ts` gives a sheet line in the dealer's memory. */
-export function lineKey(template: string): string {
-  let h = 2166136261;
-  for (let i = 0; i < template.length; i++) {
-    h ^= template.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return `line:${(h >>> 0).toString(36)}`;
+/** The key the board's hand notes a callback line under (`src/game/board/pages.ts`). */
+export function lineKey(payLine: string): string {
+  return `pay:${payLine.slice(0, 40)}`;
 }
 
 function readJson(rel: string): unknown {
@@ -261,80 +253,52 @@ function leaves(value: unknown, path: string, skip: ReadonlySet<string>, out: { 
   }
 }
 
-const CARD_SKIP = new Set(['id', 'deck', 'status', 'tags', 'motifs', 'notes', 'kind', 'weather', 'cut', 'avoidNear']);
-const SHEET_SKIP = new Set([
-  'id', 'name', 'notes', 'hole', 'deck', 'bind', 'form', 'of', 'if', 'says', 'tags', 'when', 'weight', 'roles', 'kind', '$comment',
-]);
+const CARD_SKIP = new Set(['id', 'deck', 'family', 'status', 'tags', 'motifs', 'notes', 'kind', 'weather', 'cut', 'avoidNear', 'joke']);
 
 function words(s: string): Set<string> {
   return new Set(norm(s.replace(SLOT_RE, ' ')).match(/[a-z']{3,}/g) ?? []);
 }
 
+/** The card files: the board's own families, and the four old decks it still deals from. */
+const CARD_DIRS = ['content/board/', 'content/decks/'];
+
 function deckEntries(): Entry[] {
   const out: Entry[] = [];
-  for (const f of readdirSync(new URL('content/decks/', ROOT)).filter((n) => n.endsWith('.json')).sort()) {
-    const file = `content/decks/${f}`;
-    const cards = readJson(file);
-    if (!Array.isArray(cards)) continue;
-    for (const card of cards as { id?: string; text?: string; cut?: string }[]) {
-      if (typeof card.id !== 'string') continue;
-      const found: { path: string; text: string }[] = [];
-      leaves(card, '', CARD_SKIP, found);
-      // A card with a `cut` is often said only up to it ("reading a folded newspaper.").
-      if (typeof card.cut === 'string' && typeof card.text === 'string') {
-        const at = card.text.indexOf(card.cut);
-        if (at >= 0) found.push({ path: 'text (up to its cut)', text: `${card.text.slice(0, at + card.cut.length).replace(/[,;:\s]+$/, '')}.` });
-      }
-      for (const { path, text } of found) {
-        const pattern = patternOf(slotted(text));
-        if (!pattern) continue;
-        out.push({
-          source: { kind: 'deck', id: card.id, file, where: path, text },
-          pattern,
-          cardId: card.id,
-          ...(path.includes('.pay[') ? { lineKey: lineKey(text) } : {}),
-        });
-      }
-    }
-  }
-  return out;
-}
-
-function sheetEntries(): Entry[] {
-  const out: Entry[] = [];
-  for (const f of readdirSync(new URL('content/sheets/', ROOT)).filter((n) => n.endsWith('.json')).sort()) {
-    const file = `content/sheets/${f}`;
-    const data = readJson(file) as { sheets?: { id: string; parts?: { hole?: string }[] }[] };
-    for (const sheet of data.sheets ?? []) {
-      const found: { path: string; text: string }[] = [];
-      leaves(sheet, '', SHEET_SKIP, found);
-      for (const { path, text } of found) {
-        const pattern = patternOf(slotted(text));
-        if (!pattern) continue;
-        const part = /^parts\[(\d+)\]/.exec(path);
-        const hole = part ? sheet.parts?.[Number(part[1])]?.hole : undefined;
-        out.push({
-          source: { kind: 'sheet', id: sheet.id, file, where: hole ? `${path} (hole: ${hole})` : path, text },
-          pattern,
-          sheetId: sheet.id,
-          lineKey: lineKey(text),
-        });
+  for (const dir of CARD_DIRS) {
+    for (const f of readdirSync(new URL(dir, ROOT)).filter((n) => n.endsWith('.json')).sort()) {
+      const file = `${dir}${f}`;
+      const cards = readJson(file);
+      if (!Array.isArray(cards)) continue;
+      for (const card of cards as { id?: string; text?: string; cut?: string }[]) {
+        if (typeof card.id !== 'string') continue;
+        const found: { path: string; text: string }[] = [];
+        leaves(card, '', CARD_SKIP, found);
+        // A card with a `cut` is often said only up to it ("reading a folded newspaper.").
+        if (typeof card.cut === 'string' && typeof card.text === 'string') {
+          const at = card.text.indexOf(card.cut);
+          if (at >= 0) found.push({ path: 'text (up to its cut)', text: `${card.text.slice(0, at + card.cut.length).replace(/[,;:\s]+$/, '')}.` });
+        }
+        for (const { path, text } of found) {
+          const pattern = patternOf(slotted(text));
+          if (!pattern) continue;
+          out.push({
+            source: { kind: 'deck', id: card.id, file, where: path, text },
+            pattern,
+            cardId: card.id,
+            ...(path.includes('.pay[') ? { lineKey: lineKey(text) } : {}),
+          });
+        }
       }
     }
   }
   return out;
 }
 
-const OTHER_CONTENT = ['content/lexicon.json', 'content/plain-terms.json', 'content/books.json'];
+const OTHER_CONTENT = ['content/lexicon.json'];
 
 function contentEntries(): Entry[] {
   const out: Entry[] = [];
-  const files = [
-    ...OTHER_CONTENT,
-    ...readdirSync(new URL('content/places/', ROOT))
-      .filter((n) => n.endsWith('.json'))
-      .map((n) => `content/places/${n}`),
-  ];
+  const files = [...OTHER_CONTENT];
   for (const file of files) {
     let data: unknown;
     try {
@@ -459,7 +423,7 @@ function engineEntries(): Entry[] {
 
 let ALL: Entry[] | null = null;
 function allEntries(): Entry[] {
-  if (!ALL) ALL = [...deckEntries(), ...sheetEntries(), ...engineEntries(), ...contentEntries()];
+  if (!ALL) ALL = [...deckEntries(), ...engineEntries(), ...contentEntries()];
   return ALL;
 }
 
@@ -573,27 +537,28 @@ function matchEntry(entry: Entry, page: string, q: Span, used: Used): Scored | n
 
 interface Used {
   cards: Set<string>;
-  sheets: Set<string>;
   lines: Set<string>;
 }
 
+/**
+ * The page's records: card ids, the `pay:` keys of callback lines, and the
+ * `key#n` of a line the engine picked from a list of its own (which the
+ * engine entries find by their words).
+ */
 function usedOf(page: Page): Used {
   const cards = new Set<string>();
-  const sheets = new Set<string>((page.sheets ?? []).map((s) => s.id));
   const lines = new Set<string>();
   for (const id of page.cardsUsed) {
-    if (id.startsWith('line:')) lines.add(id);
-    else if (id.startsWith('sheet:')) sheets.add(id.slice('sheet:'.length).split('#')[0] as string);
-    else if (!id.startsWith('beat:')) cards.add(id);
+    if (id.startsWith('pay:')) lines.add(id);
+    else if (!id.includes('#')) cards.add(id);
   }
-  return { cards, sheets, lines };
+  return { cards, lines };
 }
 
-/** 1 when the page's records name this very line, 0.7 its card or sheet, 0 else. */
+/** 1 when the page's records name this very line or card, 0.5 a callback card whose line isn't the one said, 0 else. */
 function usedMark(e: Entry, used: Used): number {
   if (e.lineKey && used.lines.has(e.lineKey)) return 1;
   if (e.cardId && used.cards.has(e.cardId)) return e.lineKey ? 0.5 : 1;
-  if (e.sheetId && used.sheets.has(e.sheetId)) return 0.7;
   return 0;
 }
 
@@ -700,11 +665,11 @@ function sentenceAround(n: Norm, original: string, q: Span): string {
  * Throws when the save cannot be read; an empty list when no page holds it.
  */
 export function traceLine(saveText: string, quote: string): TraceHit[] {
-  const { view, state } = replaySave(saveText);
+  const { run } = replaySave(saveText);
   let nq = norm(quote);
   const hits: TraceHit[] = [];
-  const pages = state.log.map((page) => {
-    const original = renderPageBody(page, view);
+  const pages = run.log.map((page) => {
+    const original = pageBodyText(page);
     return { page, original, n: normalize(original) };
   });
   let spansByPage = pages.map((p) => findQuote(p.n.text, nq));
@@ -721,9 +686,7 @@ export function traceLine(saveText: string, quote: string): TraceHit[] {
     const spans = spansByPage[i] ?? [];
     if (spans.length === 0) return;
     const used = usedOf(page);
-    const beats = (page.beats ?? [])
-      .filter((b) => b.text && b.rendered && norm(b.text).includes(nq.replace(/\s*\.\.\.\s*/g, ' ').split(' ').slice(0, 6).join(' ')))
-      .map((b) => (b.tag ? `${b.kind} (${b.tag})` : b.kind));
+    const job = `${page.board.job}${page.board.sheet ? ` (sheet ${page.board.sheet})` : ''}`;
     for (const q of spans) {
       // The page's own records first; everything else only if they do not answer.
       const own = entries.filter((e) => usedMark(e, used) > 0);
@@ -747,7 +710,7 @@ export function traceLine(saveText: string, quote: string): TraceHit[] {
       hits.push({
         page: page.n + 1,
         onPage: sentenceAround(n, original, q),
-        beats: [...new Set(beats)],
+        job,
         sources: sources.map(strip),
         nearest: sources.length === 0 ? nearestOf(scored, nq, used) : [],
         ...(frame && sources.length > 0 ? { frame: strip(frame) } : {}),
@@ -762,9 +725,7 @@ export function traceLine(saveText: string, quote: string): TraceHit[] {
 function label(s: TraceSource): string {
   switch (s.kind) {
     case 'deck':
-      return `deck card ${s.id}${s.where === 'text' ? '' : `, ${s.where}`} (${s.file})`;
-    case 'sheet':
-      return `sheet ${s.id}, ${s.where} (${s.file})`;
+      return `card ${s.id}${s.where === 'text' ? '' : `, ${s.where}`} (${s.file})`;
     case 'engine':
       return `engine ${s.id} (${s.file}:${s.line})`;
     case 'content':
@@ -781,9 +742,8 @@ export function formatHits(hits: readonly TraceHit[]): string {
   const out: string[] = [];
   for (const hit of hits) {
     if (hit.sources.length === 0) {
-      out.push(`page ${hit.page} · no source found`);
+      out.push(`page ${hit.page} (${hit.job}) · no source found`);
       out.push(`  on the page: "${hit.onPage}"`);
-      if (hit.beats.length > 0) out.push(`  beat: ${hit.beats.join(', ')}`);
       if (hit.nearest.length === 0) out.push('  nothing near it either.');
       for (const c of hit.nearest) {
         out.push(`  nearest: ${label(c.source)}${c.usedOnPage ? ' [used on this page]' : ''} — ${c.note ?? ''}`);
@@ -795,7 +755,7 @@ export function formatHits(hits: readonly TraceHit[]): string {
     const [first, ...rest] = hit.sources as [TraceCandidate, ...TraceCandidate[]];
     const tag = (c: TraceCandidate): string =>
       [c.usedOnPage ? 'used on this page' : '', c.within ? '' : 'part of the quote'].filter(Boolean).join(', ');
-    out.push(`page ${hit.page} · ${label(first.source)}${tag(first) ? ` [${tag(first)}]` : ''}`);
+    out.push(`page ${hit.page} (${hit.job}) · ${label(first.source)}${tag(first) ? ` [${tag(first)}]` : ''}`);
     out.push(`  source: "${shown(first.source.text)}"`);
     for (const c of rest) {
       out.push(`  ${c.part ? 'and' : 'or'}: ${label(c.source)}${tag(c) ? ` [${tag(c)}]` : ''}`);
@@ -805,7 +765,6 @@ export function formatHits(hits: readonly TraceHit[]): string {
       out.push(`  said inside a slot of: ${label(hit.frame.source)}`);
       out.push(`    source: "${shown(hit.frame.source.text, 300)}"`);
     }
-    if (hit.beats.length > 0) out.push(`  beat: ${hit.beats.join(', ')}`);
     out.push(`  on the page: "${hit.onPage}"`);
     out.push('');
   }

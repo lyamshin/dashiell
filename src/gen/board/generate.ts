@@ -1,5 +1,5 @@
-import { Rng } from '../rng.js';
-import { NAME_POOLS } from '../data/names.js';
+import { Rng } from './rng.js';
+import { NAME_POOLS } from './names.js';
 import * as K from './content.js';
 import type {
   Account,

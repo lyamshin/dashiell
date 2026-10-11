@@ -1,4 +1,4 @@
-import { Rng } from '../rng.js';
+import { Rng } from './rng.js';
 import type { BoardCase, CaseType, TierIndex } from './types.js';
 import { buildCase, lastVeto, typesFor } from './generate.js';
 import { analyse, rate, refusalShortcut, type Analysis } from './path.js';

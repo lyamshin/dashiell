@@ -1,15 +1,17 @@
 /**
- * docs/43: the book on the small board, behind `?engine=board`.
+ * docs/43: the book on the small board.
  *
- * The same paper as v1 and v2 (book.css: the spread, the running head and its
- * clock, the choices' buttons, the pager, the weather, the hover cards, the
- * report and the verdict page), run on the board engine (`src/game/board/`).
- * A page lists the people here; a name opens their topics; "Put it to …"
- * opens the picker under them. The notebook's page is the board: the grid,
- * then everything held, by whose word.
+ * The paper (book.css: the spread, the running head and its clock, the
+ * choices' buttons, the pager, the weather, the hover cards, the report and
+ * the verdict page), run on the board engine (`src/game/board/`). A page
+ * lists the people here; a name opens their topics; "Put it to …" opens the
+ * picker under them. The notebook's page is the board: the grid, then
+ * everything held, by whose word.
+ *
+ * The URL says which night: `?seed=4&t=2[&type=lost-pet]`.
  */
 
-import { clockStrip, usedByPage } from '../game/clock.js';
+import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { boardGrid, cellText, type BoardCell, type BoardGrid } from '../game/board/grid.js';
@@ -31,14 +33,11 @@ import {
   type TierIndex,
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
-import { boardFields, curtainOfBoard, reportFrom, scoreBoard, storyOfBoard, type FieldKey } from '../game/board/report.js';
+import { boardFields, curtainOfBoard, reportFrom, scoreBoard, storyOfBoard, type FieldKey, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE } from '../game/board/teach.js';
-import { costLabel } from '../game/choices.js';
-import { teachOn } from '../game/guidance.js';
-import { fileToProfile, loadProfile } from '../game/profile.js';
-import type { KeyValueStore } from '../game/storage.js';
-import type { CellMark, OfferedChoice, OfferedGroup, Page } from '../game/types.js';
-import type { Verdict } from '../game/scoring.js';
+import { costLabel } from '../game/board/text.js';
+import { fileToProfile, loadProfile, teachOn, type KeyValueStore } from '../game/board/profile.js';
+import type { CellMark, OfferedChoice, OfferedGroup, Page } from '../game/board/types.js';
 import { typesFor } from '../gen/board/index.js';
 import { clear, el } from './dom.js';
 import { attachCard, hideCard, type CardSource } from './hover.js';
@@ -62,12 +61,21 @@ type Screen = { kind: 'title' } | { kind: 'teach' } | { kind: 'book' } | { kind:
 
 const NAME_KEY = 'dashiell:detective';
 
+/** A night the board can deal: a whole seed, a tier, and a case type the tier builds (or none). */
+function dealable(seed: unknown, tier: unknown, type: unknown): boolean {
+  if (!Number.isInteger(seed) || (seed as number) < 1) return false;
+  if (!Number.isInteger(tier) || (tier as number) < 0 || (tier as number) > 5) return false;
+  return type === undefined || type === null || typesFor(tier as TierIndex).includes(type as CaseType);
+}
+
+/** The night on the desk, if there is one. Anything else in the store (an old engine's run, a broken save) is left alone. */
 function loadSaved(store: KeyValueStore): BoardSaved | null {
   try {
     const raw = store.getItem(BOARD_SAVE_KEY);
     if (!raw) return null;
     const v = JSON.parse(raw) as BoardSaved;
-    return v && v.engine === 'board' && Array.isArray(v.commands) ? v : null;
+    if (!v || v.engine !== 'board' || !Array.isArray(v.commands) || !dealable(v.seed, v.tier, v.type)) return null;
+    return { ...v, detective: typeof v.detective === 'string' ? v.detective : 'Dashiell', marks: v.marks && typeof v.marks === 'object' ? v.marks : {} };
   } catch {
     return null;
   }
@@ -100,7 +108,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   const params = (): URLSearchParams => new URLSearchParams(window.location.search);
 
   function writeUrl(): void {
-    const q = saved && screen.kind !== 'title' ? `?engine=board&seed=${saved.seed}&t=${saved.tier}${saved.type ? `&type=${saved.type}` : ''}` : '?engine=board';
+    const q = saved && screen.kind !== 'title' ? `?seed=${saved.seed}&t=${saved.tier}${saved.type ? `&type=${saved.type}` : ''}` : '';
     window.history.replaceState(null, '', `${window.location.pathname}${q}`);
   }
 
@@ -159,8 +167,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     saved = { ...saved, filed: report };
     writeSaved(store, saved);
     const verdict = scoreBoard(d, run, report);
-    const outcome = fileToProfile(store, { tier: run.tier, level: 1, points: verdict.points, asked: verdict.asked, actionsUsed: verdict.actionsUsed, par: verdict.par });
-    const news: TierNews | undefined = outcome.firstClear !== null || outcome.unlocked !== null ? { cleared: run.tier, unlocked: outcome.unlocked, firstClear: outcome.firstClear !== null } : undefined;
+    const outcome = fileToProfile(store, { tier: run.tier, points: verdict.points, asked: verdict.asked, actionsUsed: verdict.actionsUsed, par: verdict.par });
+    const news: TierNews | undefined = outcome.firstClear !== null ? { cleared: run.tier, firstClear: true } : undefined;
     screen = news ? { kind: 'verdict', verdict, news } : { kind: 'verdict', verdict };
     render();
   }
@@ -718,7 +726,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     form.append(
       el('h1', { text: 'DASHIELL' }),
       el('p', { class: 'sub', text: 'A murder, an evening, and eight hours to write it down.' }),
-      el('p', { class: 'tier-rule', text: 'The small board (the new engine, flag only): one question gets a whole evening or a whole list, and every lie runs into something true. Murders, lost pets and lost things.' }),
+      el('p', { class: 'tier-rule', text: 'One question gets a whole evening or a whole list, and every lie runs into something true. Murders, lost pets and lost things.' }),
       el('div', { class: 'name-line' }, el('label', { text: 'The detective' }), name),
     );
     const prior = loadSaved(store);
@@ -747,12 +755,14 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
 
   /* --------------------------------------------------------------- boot */
 
+  // `?seed=4&t=2[&type=lost-pet]` opens that night. Anything else in the URL
+  // (an old engine's `d=` or `engine=`, a type the tier doesn't build) is ignored.
   const p = params();
   const s = Number(p.get('seed'));
-  const t = Number(p.get('t'));
-  if (Number.isInteger(s) && s > 0 && Number.isInteger(t) && t >= 0 && t <= 5) {
-    const ty = p.get('type') as CaseType | null;
-    openCase(s, t as TierIndex, ty ?? undefined, storedName(), true);
+  const t = Number(p.get('t') ?? 0);
+  if (dealable(s, t, undefined)) {
+    const ty = p.get('type');
+    openCase(s, t as TierIndex, ty !== null && dealable(s, t, ty) ? (ty as CaseType) : undefined, storedName(), true);
   } else {
     render();
   }

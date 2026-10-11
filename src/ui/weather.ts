@@ -25,8 +25,8 @@
  * toggle in the pager turns the whole of it off, remembered in the store.
  */
 
-import type { KeyValueStore } from '../game/storage.js';
-import type { Weather } from '../game/voice/roll.js';
+import type { KeyValueStore } from '../game/board/profile.js';
+import type { Weather } from '../game/board/types.js';
 
 /* ------------------------------------------------------------- the switch */
 

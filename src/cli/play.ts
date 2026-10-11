@@ -1,6 +1,6 @@
 /**
  * `npm run play -- <command> … --save <file>`: the book, played blind, in
- * plain text. See docs/37-play-cli.md, or `npm run play -- help`.
+ * plain text. See docs/43-small-board-4b.md, or `npm run play -- help`.
  */
 
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';

@@ -1,20 +1,45 @@
 /**
  * The board night as plain text: a page, its choices, the notebook. Used by
- * `npm run play` and `npm run read` with `--engine board`.
+ * `npm run play` and `npm run read`.
  */
 
-import { wrap } from '../transcript.js';
-import type { OfferedChoice, OfferedGroup, Page } from '../types.js';
+import type { OfferedChoice, OfferedGroup, Page } from './types.js';
 import { boardGridText } from './grid.js';
 import { knownPeople, knownPlaces, linesHeld } from './knowledge.js';
 import { cap, nameOf, personOf, placeName, type BoardDeal, type BoardRun } from './model.js';
 import { recapClauses } from './pages.js';
+
+const WIDTH = 76;
+
+/** Words filled to `width` columns, a paragraph per line of the input. */
+export function wrap(text: string, width = WIDTH, indent = ''): string {
+  const out: string[] = [];
+  for (const paragraph of text.split('\n')) {
+    let line = '';
+    for (const word of paragraph.split(/\s+/).filter((w) => w.length > 0)) {
+      if (line.length === 0) line = word;
+      else if (line.length + 1 + word.length <= width - indent.length) line += ` ${word}`;
+      else {
+        out.push(indent + line);
+        line = word;
+      }
+    }
+    out.push(indent + line);
+  }
+  return out.join('\n');
+}
 
 /** "½ hr", "25 min", "free": the book's own words for a cost. */
 export function minutesText(minutes: number): string {
   if (minutes <= 0) return 'free';
   if (minutes === 30) return '½ hr';
   return `${minutes} min`;
+}
+
+/** What a button in the book says it costs: "25 min", or "20 min (rounded)" for the odd call out. */
+export function costLabel(ch: Pick<OfferedChoice, 'minutes' | 'rounded'>): string {
+  const base = minutesText(ch.minutes);
+  return ch.rounded && ch.minutes > 0 ? `${base} (rounded)` : base;
 }
 
 export function pageBodyText(page: Page): string {

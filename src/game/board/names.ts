@@ -12,7 +12,7 @@
  * turn) starts the count again: it is a page of its own.
  */
 
-import type { Block } from '../types.js';
+import type { Block } from './types.js';
 import type { BoardCase, Person } from './model.js';
 
 interface Who {

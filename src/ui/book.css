@@ -18,22 +18,6 @@
   --amber: #c98a1b;
   --measure: 34rem;
   --gutter: 16px;
-  /*
-   * The grid's places: the one exception to the one colour. A categorical
-   * order, fixed by the place's position in the case and never cycled, run
-   * through the palette validator against this paper (see
-   * docs/19-grid-notes.md). Every chip also carries the place's name, so no
-   * place is ever told apart by colour alone. 0 is the office: neutral.
-   */
-  --place-0: #8b8275;
-  --place-1: #2a78d6;
-  --place-2: #eb6834;
-  --place-3: #1baf7a;
-  --place-4: #eda100;
-  --place-5: #e87ba4;
-  --place-6: #008300;
-  --place-7: #4a3aa7;
-  --place-8: #e34948;
   color-scheme: dark;
 }
 
@@ -47,15 +31,6 @@
     --rule: #3a3833;
     --accent: #d08573;
     --amber: #d9a441;
-    --place-0: #756e63;
-    --place-1: #3987e5;
-    --place-2: #d95926;
-    --place-3: #199e70;
-    --place-4: #c98500;
-    --place-5: #d55181;
-    --place-6: #008300;
-    --place-7: #9085e9;
-    --place-8: #e66767;
   }
 }
 
@@ -68,15 +43,6 @@
   --rule: #3a3833;
   --accent: #d08573;
   --amber: #d9a441;
-  --place-0: #756e63;
-  --place-1: #3987e5;
-  --place-2: #d95926;
-  --place-3: #199e70;
-  --place-4: #c98500;
-  --place-5: #d55181;
-  --place-6: #008300;
-  --place-7: #9085e9;
-  --place-8: #e66767;
 }
 
 * {
@@ -205,54 +171,20 @@ button {
 }
 
 /*
- * The M4 page grammar. Most slots are just prose — the book is a book and the
- * paragraphs do not want labelling. Only three of them look different: what
- * the detective thinks, the one simile a page is allowed, and the record he
- * could not get anybody to say out loud.
+ * The page's voices are just prose — the book is a book and the paragraphs
+ * do not want labelling. The thought is the detective's own voice and reads
+ * as the page, not as an aside. Only the turn's chapter heading looks
+ * different (below).
  */
-.prose--arrival,
-.prose--place,
 .prose--narrator,
-.prose--approach,
 .prose--exchange,
 .prose--find,
-.prose--nothing,
-/* M8: the planned page's beats are prose like any other; the thought is the
-   detective's own voice and reads as the page, not as an aside. */
 .prose--establish,
 .prose--presence,
 .prose--act,
 .prose--thought,
-.prose--bridge,
 .prose--answer {
   color: var(--ink);
-}
-
-.prose--transition {
-  color: var(--ink);
-}
-
-.prose--monologue,
-.prose--ambient,
-.prose--aside {
-  color: var(--ink-soft);
-}
-
-.prose--aside {
-  font-style: italic;
-}
-
-.prose--simile {
-  font-style: italic;
-  color: var(--ink-soft);
-}
-
-/* The clue's own sentence, where no utterance in the deck could carry it. */
-.prose--record {
-  text-indent: 0;
-  margin-left: 1.2em;
-  border-left: 1px solid var(--rule);
-  padding-left: 0.9em;
 }
 
 .note {
@@ -260,44 +192,6 @@ button {
   font-style: italic;
   white-space: pre-line;
   text-indent: 0;
-}
-
-.presence {
-  margin: 1.2rem 0 1rem;
-  text-indent: 0;
-  color: var(--ink-soft);
-  border-top: 1px solid var(--rule);
-  padding-top: 0.7rem;
-  font-size: 0.92em;
-}
-
-.presence ul {
-  margin: 0.3rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.presence li {
-  margin: 0.1rem 0;
-}
-
-.timeline {
-  margin: 0 0 1rem;
-  border-collapse: collapse;
-  font-size: 0.9em;
-  width: 100%;
-  max-width: 22rem;
-}
-
-.timeline td {
-  padding: 0.05rem 0.6rem 0.05rem 0;
-  vertical-align: baseline;
-}
-
-.timeline td:first-child {
-  color: var(--ink-faint);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
 }
 
 /* --------------------------------------------------------- the one colour */
@@ -420,25 +314,9 @@ button {
   font-style: italic;
 }
 
-/* ------------------------------------------------------ M6: the errand */
+/* ------------------------------------------ the turn: a chapter heading */
 
-/* §2. Why he came: first on the page, set apart, in italics. */
-.leaf p.prose--errand {
-  font-style: italic;
-  color: var(--ink-soft);
-  text-indent: 0;
-  margin-bottom: 1.2rem;
-  padding-bottom: 0.9rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-.leaf p.prose--errand + p {
-  text-indent: 0;
-}
-
-/* --------------------------------------------- v2: the book's chapters */
-
-/* docs/35: the book's title and its chapter headings, set like a book's. */
+/* docs/43: the turn, set like a book's chapter heading. */
 .leaf p.prose--chapter {
   text-indent: 0;
   text-align: center;
@@ -466,10 +344,6 @@ button {
   max-width: var(--measure);
 }
 
-.choices--inert {
-  opacity: 0.5;
-}
-
 .choice-group {
   margin: 0 0 0.7rem;
 }
@@ -483,18 +357,13 @@ button {
   margin: 0 0 0.35rem;
 }
 
-.choice-heading .noun {
-  letter-spacing: 0.12em;
-}
-
 .choice-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.3rem;
 }
 
-.choice,
-.who-btn {
+.choice {
   display: inline-flex;
   align-items: baseline;
   gap: 0.45ch;
@@ -511,20 +380,16 @@ button {
 }
 
 .choice:hover:not(:disabled),
-.choice:focus-visible,
-.who-btn:hover:not(:disabled),
-.who-btn:focus-visible {
+.choice:focus-visible {
   border-color: var(--accent);
   outline: none;
 }
 
-.choice:disabled,
-.who-btn:disabled {
+.choice:disabled {
   cursor: default;
 }
 
-.choice .mark,
-.who-btn .mark {
+.choice .mark {
   color: var(--accent);
   font-weight: 700;
 }
@@ -569,12 +434,6 @@ button {
   border-left: 2px solid var(--rule);
 }
 
-.topic-note {
-  font-size: 0.72rem;
-  color: var(--ink-faint);
-  margin: 0.35rem 0 0;
-}
-
 .choice--done .label {
   color: var(--ink-soft);
 }
@@ -585,18 +444,6 @@ button {
 
 .choice--more {
   border-style: dashed;
-}
-
-.who-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin: 0 0 0.7rem;
-}
-
-.who-btn--on {
-  border-color: var(--ink);
-  background: var(--paper-edge);
 }
 
 .pager {
@@ -643,12 +490,6 @@ button {
   .choice {
     display: flex;
     width: 100%;
-    min-height: 44px;
-    align-items: center;
-    font-size: 0.95rem;
-  }
-  /* The names to switch between are short: a row of them, still 44 tall. */
-  .who-btn {
     min-height: 44px;
     align-items: center;
     font-size: 0.95rem;
@@ -716,29 +557,12 @@ button {
   padding-right: 0.4rem;
 }
 
-.nb-clock {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.nb-clock .time {
-  font-size: 1.5rem;
-}
-
 .nb-entry {
   margin: 0 0 0.9rem;
 }
 
 .nb-entry .who {
   display: block;
-}
-
-.nb-entry .role {
-  color: var(--ink-faint);
-  font-style: italic;
 }
 
 .nb-entry ul {
@@ -757,118 +581,8 @@ button {
   color: var(--ink-faint);
 }
 
-.nb-entry li .src {
-  color: var(--ink-faint);
-}
-
-li.contradiction {
-  color: var(--accent);
-}
-
-li.contradiction::before {
-  content: '!\00a0';
-  color: var(--accent);
-}
-
-.nb-account {
-  color: var(--ink-soft);
-  font-style: italic;
-  margin: 0.2rem 0 0 0.9rem;
-}
-
-.nb-place {
-  margin: 0 0 0.7rem;
-}
-
-.nb-place .meta,
-.nb-place .objects {
-  color: var(--ink-faint);
-  display: block;
-}
-
-/*
- * The record (M4 A.1). The clue's own sentence, verbatim, under the person or
- * the room it came from. This is the authoritative copy of the case and the
- * reason the left-hand page is free to dramatize.
- */
-.nb-record {
-  margin: 0.25rem 0 0.4rem 0.9rem;
-  padding-left: 0.6rem;
-  border-left: 1px solid var(--rule);
-  color: var(--ink);
-}
-
-/*
- * The dossier (M5 §4). What has been learned about somebody, by the layer it
- * was learned at: on sight, volunteered, from others, out of the documents. A
- * layer with nothing in it is not drawn at all.
- */
-.nb-layer {
-  margin: 0.15rem 0 0.15rem 0.9rem;
-  color: var(--ink);
-}
-
-.nb-layer .layer {
-  color: var(--ink-faint);
-  font-variant: small-caps;
-  letter-spacing: 0.04em;
-}
-
-/* A third party: a name the case owns, and nobody you can go and see. */
-.nb-mention {
-  margin: 0.15rem 0 0.3rem 1.4rem;
-  color: var(--ink-faint);
-}
-
-.nb-place.unvisited {
-  color: var(--ink-faint);
-}
-
-.nb-leads {
-  margin: 0 0 0.8rem;
-}
-
-.nb-leads ul {
-  margin: 0.2rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.nb-leads .where {
-  color: var(--ink-faint);
-}
-
-.lead {
-  background: none;
-  border: 0;
-  padding: 0.05rem 0;
-  text-align: left;
-  color: var(--accent);
-  cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  font: inherit;
-}
-
-.lead .cost {
-  color: var(--ink-faint);
-  text-decoration: none;
-}
-
-.nb-established dt {
-  color: var(--ink-faint);
-  float: left;
-  clear: left;
-  margin-right: 0.5ch;
-}
-
-.nb-established dd {
-  margin: 0 0 0.2rem;
-}
-
 /* ---------------------------------------------------- the notebook's tab */
 
-.tab,
 .nb-back,
 .nb-link {
   display: none;
@@ -901,24 +615,6 @@ li.contradiction::before {
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent);
-    cursor: pointer;
-  }
-  .tab {
-    display: none;
-    position: fixed;
-    right: 0;
-    top: 40%;
-    z-index: 5;
-    background: var(--paper);
-    border: 1px solid var(--rule);
-    border-right: 0;
-    border-radius: 3px 0 0 3px;
-    padding: 0.7rem 0.35rem;
-    writing-mode: vertical-rl;
-    font-size: 0.66rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
     cursor: pointer;
   }
 }
@@ -1020,62 +716,10 @@ li.contradiction::before {
   color: var(--accent);
 }
 
-/* M7: the tier, its one rule, and the ladder of tiers under the button. */
-
-.title-page .tier-now {
-  font-size: 1.3rem;
-  margin: 0 0 0.3rem;
-}
-
 .tier-rule {
   color: var(--ink-soft);
   font-style: italic;
   margin: 0 0 1.8rem;
-}
-
-.controls .fixed {
-  display: block;
-  padding: 0.25rem 0;
-  border-bottom: 1px solid transparent;
-}
-
-.controls .fixed[hidden],
-.controls select[hidden] {
-  display: none;
-}
-
-.ladder {
-  list-style: none;
-  margin: 2.4rem auto 0;
-  padding: 0.6rem 0 0;
-  border-top: 1px solid var(--rule);
-  max-width: 22rem;
-  font-size: 0.86rem;
-  text-align: left;
-}
-
-.ladder-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.2rem 0;
-}
-
-.ladder-row .ladder-status {
-  color: var(--ink-faint);
-  text-align: right;
-}
-
-.ladder-row.current .ladder-name {
-  color: var(--accent);
-}
-
-.ladder-row.locked {
-  color: var(--ink-faint);
-}
-
-.ladder-row.locked .ladder-status {
-  font-style: italic;
 }
 
 .title-page .resume {
@@ -1086,12 +730,6 @@ li.contradiction::before {
 
 .title-page .resume p {
   margin: 0 0 0.6rem;
-}
-
-.title-page .stats {
-  margin-top: 1.2rem;
-  font-size: 0.8rem;
-  color: var(--ink-faint);
 }
 
 .tier-news {
@@ -1257,8 +895,7 @@ li.contradiction::before {
   margin-top: 1.4rem;
 }
 
-.ending-story h3,
-.ending-curtain h3 {
+.ending-story h3 {
   font-size: 0.8rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -1285,15 +922,6 @@ li.contradiction::before {
   max-width: 100%;
   color: var(--ink-soft);
   margin: 0;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
 }
 
 /* docs/39 §5: the teaching page, before the office. */

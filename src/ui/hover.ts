@@ -3,12 +3,17 @@
  *
  * One card on the page at a time. A mouse shows it on hover and hides it on
  * leave; a keyboard shows it on focus; a finger shows it on a tap and hides it
- * on a tap anywhere else. What goes on the card is the notebook's business
- * (`personCard`, `placeHoverCard`); this file only puts it on the paper.
+ * on a tap anywhere else. What goes on the card is the book's business
+ * (`board-book.ts`); this file only puts it on the paper.
  */
 
-import type { HoverCard } from '../game/notebook.js';
 import { el } from './dom.js';
+
+/** A name's card: who or what it is, in a line or two. */
+export interface HoverCard {
+  title: string;
+  lines: string[];
+}
 
 export type CardSource = () => HoverCard | null;
 

@@ -19,10 +19,9 @@
  * add up to, never a verdict.
  */
 
-import type { Card } from '../voice/cards.js';
-import type { Block } from '../types.js';
-import { tidyPunctuation } from '../voice/prose.js';
-import { minutesAfter } from '../clock.js';
+import { tidyPunctuation, type Card } from './cards.js';
+import type { Block, ProseVoice } from './types.js';
+import { minutesAfter } from './clock.js';
 import type { Line } from './knowledge.js';
 import {
   accountOf,
@@ -77,7 +76,7 @@ export { breakSaid };
  * The writer.
  * ------------------------------------------------------------------ */
 
-type Voice = 'establish' | 'presence' | 'exchange' | 'thought' | 'find' | 'chapter' | 'recap' | 'answer' | 'act' | 'narrator' | 'errand';
+type Voice = ProseVoice;
 
 interface Part {
   text: string;

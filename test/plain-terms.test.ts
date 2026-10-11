@@ -1,23 +1,15 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import type { Difficulty } from '../src/gen/index.js';
 // @ts-expect-error — plain JavaScript module, no declarations.
 import { findJargon, loadPlainTerms } from '../scripts/plain-terms.mjs';
-import { CASE_TYPES, playerText } from './plain-helpers.js';
 
 /**
  * "Say what it is" (docs/style-guide.md, docs/21-plain-terms-notes.md).
  *
- * Every string a player can read — the briefing, every clue sentence, every
- * dossier line, the notebook, each page an oracle run renders through the
- * transcript tool, the verdict — for 40 seeds at difficulties 1 to 3 and every
- * case type, run through the banned-terms list in `content/plain-terms.json`.
- * `npm run decks` holds the decks to the same list; this holds the generator's
- * and the engine's own sentences to it, and the decks as the engine deals them.
- *
- * A deck the list names as pending another pass's rewrite may still carry a
- * banned term; a hit that lies inside the words of one of that deck's own
- * offending cards is counted and excused, and nothing else is.
+ * The banned-terms list in `content/plain-terms.json` is data, and it knows
+ * the terms the designer named. Every card the board can deal is held to it
+ * here, words and callbacks; the nights themselves are held to it in
+ * test/board-engine.test.ts, over the oracle's and the wanderer's pages.
  */
 
 interface Hit {
@@ -29,36 +21,17 @@ interface Hit {
 const list = loadPlainTerms();
 const find = (text: string): Hit[] => findJargon(text, list) as Hit[];
 
-/** The slot-free pieces of pending-deck cards that carry a banned term. */
-const pendingFragments: string[] = (() => {
-  const pending = new Set<string>(list.pendingDecks?.decks ?? []);
+/** Every string a player could read off a card: its text, and what it exports for a later line. */
+function cardStrings(card: Record<string, unknown>): string[] {
   const out: string[] = [];
-  const dir = new URL('../content/decks/', import.meta.url);
-  for (const file of readdirSync(dir)) {
-    if (!pending.has(file.replace(/\.json$/, ''))) continue;
-    const cards = JSON.parse(readFileSync(new URL(file, dir), 'utf8')) as Record<string, unknown>[];
-    for (const card of cards) {
-      for (const field of ['text', 'recall', 'recallAction']) {
-        const text = card[field];
-        if (typeof text !== 'string') continue;
-        for (const piece of text.split(/\{[^}]+\}/)) {
-          const clean = piece.replace(/\s+/g, ' ').trim();
-          if (find(clean).length > 0) out.push(clean.toLowerCase());
-        }
-      }
-    }
+  if (typeof card.text === 'string') out.push(card.text);
+  const exports = card.exports as Record<string, { text?: string; short?: string; pay?: string[] }> | undefined;
+  for (const ex of Object.values(exports ?? {})) {
+    if (ex.text) out.push(ex.text);
+    if (ex.short) out.push(ex.short);
+    out.push(...(ex.pay ?? []));
   }
   return out;
-})();
-
-function excused(text: string, hit: Hit): boolean {
-  const lower = text.toLowerCase();
-  for (const frag of pendingFragments) {
-    for (let at = lower.indexOf(frag); at >= 0; at = lower.indexOf(frag, at + 1)) {
-      if (at <= hit.index && hit.index < at + frag.length) return true;
-    }
-  }
-  return false;
 }
 
 describe('plain terms: no banned genre term in anything a player reads', () => {
@@ -96,30 +69,21 @@ describe('plain terms: no banned genre term in anything a player reads', () => {
     for (const s of literal) expect(find(s), s).toEqual([]);
   });
 
-  for (const type of CASE_TYPES) {
-    // M14: the mundane three are Hard-boiled logic games, slower to deal and
-    // play, so they are read over fewer seeds.
-    const seeds = ['lost-pet', 'lost-item', 'affair'].includes(type) ? 12 : 40;
-    it(`finds none in ${seeds} seeds × 3 difficulties of ${type} cases`, () => {
-      const found: string[] = [];
-      let pending = 0;
-      for (const difficulty of [1, 2, 3] as Difficulty[]) {
-        for (let seed = 1; seed <= seeds; seed++) {
-          for (const { where, text } of playerText(seed, difficulty, type)) {
-            for (const hit of find(text)) {
-              if (excused(text, hit)) {
-                pending++;
-                continue;
-              }
-              const around = text.slice(Math.max(0, hit.index - 40), hit.index + hit.match.length + 40);
-              found.push(`${type} d${difficulty} seed ${seed} ${where}: "${hit.match}" (${hit.term}) …${around}…`);
-            }
-          }
+  it('finds none in any card the board deals: content/board and the four old decks', () => {
+    const found: string[] = [];
+    let cards = 0;
+    for (const dir of ['content/board', 'content/decks']) {
+      const url = new URL(`../${dir}/`, import.meta.url);
+      for (const file of readdirSync(url).filter((f) => f.endsWith('.json'))) {
+        const data = JSON.parse(readFileSync(new URL(file, url), 'utf8')) as Record<string, unknown>[];
+        for (const card of data) {
+          if (card.status === 'cut') continue;
+          cards++;
+          for (const s of cardStrings(card)) for (const h of find(s)) found.push(`${dir}/${file} ${String(card.id)}: "${h.match}" (${h.term})`);
         }
       }
-      // Only the pending decks' own cards may carry a term, and only until
-      // their rewrite lands; `pending` counts those, and is not a failure.
-      expect(found.slice(0, 20), `${found.length} hits (${pending} excused as pending)`).toEqual([]);
-    }, 600_000);
-  }
+    }
+    expect(cards).toBeGreaterThan(1000);
+    expect(found).toEqual([]);
+  });
 });

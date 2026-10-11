@@ -5,9 +5,10 @@
  * slang or trade word that hides what a sentence means from a reader who has
  * never read Hammett, with the plain words to use instead and the literal
  * senses that are allowed. This module reads the list and finds the terms in
- * a piece of text. It is plain JavaScript so that both `npm run decks`
- * (scripts/validate-decks.mjs) and the generated-text test
- * (test/plain-terms.test.ts) use the same code on the same list.
+ * a piece of text. It is plain JavaScript so that the tests (the cards in
+ * test/plain-terms.test.ts, the nights in test/board-engine.test.ts) and the
+ * measures (scripts/board-measure.ts, scripts/board-prose.ts) use the same
+ * code on the same list.
  *
  * A term matches when any of its `patterns` matches, case-insensitively, and
  * the match is not inside a match of one of its `allow` patterns. `allow` is
