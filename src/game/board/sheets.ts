@@ -59,7 +59,8 @@ export const SHEETS: Sheet[] = [
   { id: 'put', job: 'put', paras: [['why', 'staging'], ['ask'], ['reaction', 'job'], ['thought'], ['handoff'], ['close']] },
 
   // The victim or the thing.
-  { id: 'motive', job: 'motive', paras: [['why', 'staging'], ['ask'], ['job'], ['thought'], ['close']] },
+  // docs/47 B9: the reaction comes before the answer, never after it (Medium 14's #5).
+  { id: 'motive', job: 'motive', paras: [['why', 'staging'], ['ask', 'reaction'], ['job'], ['thought'], ['close']] },
 
   // The turn (golden page 7): the chapter, the recap, and what next.
   { id: 'turn', job: 'turn', paras: [['staging'], ['job'], ['handoff'], ['close']] },

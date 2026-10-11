@@ -38,6 +38,7 @@ import { dealBoard, tierName, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle, playReader, playWanderer } from '../src/game/board/oracle.js';
 import type { Block, Page } from '../src/game/board/types.js';
 import { namesOverTwo } from '../src/game/board/names.js';
+import { proseIssues, type ProseIssue } from '../src/game/board/prose-lint.js';
 // @ts-expect-error — plain JavaScript module, no declarations.
 import { findJargon, loadPlainTerms } from './plain-terms.mjs';
 
@@ -130,8 +131,8 @@ function gramsOf(t: string): Set<string> {
 }
 
 const rows: string[] = [];
-rows.push('| tier | nights | pages | words a page, median [p10–p90] | why-here or walk | job pages with a thought naming an earlier fact | callbacks | lint (reader) | correspondence | thoughts over their level | plain terms | cards twice | sentences twice | pages naming somebody 3+ times | clues said 3+ times |');
-rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
+rows.push('| tier | nights | pages | words a page, median [p10–p90] | why-here or walk | job pages with a thought naming an earlier fact | callbacks | lint (reader) | correspondence | thoughts over their level | plain terms | cards twice | sentences twice | pages naming somebody 3+ times | clues said 3+ times | place names bolted on | banned phrases | pages with 2+ signposts | gags paid off 3+ times | a pet called “it” |');
+rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
 const examples: string[] = [];
 for (const tier of tiers) {
   const types = typesFor(tier) as CaseType[];
@@ -151,6 +152,7 @@ for (const tier of tiers) {
   let sentTwice = 0;
   let namePages = 0;
   let cluesThrice = 0;
+  const r3: Record<ProseIssue['rule'], number> = { 'place-tag': 0, phrase: 0, signpost: 0, gag: 0, pet: 0 };
   for (let s = 1; s <= N; s++) {
     const type = types[s % types.length] as CaseType;
     const d = dealBoard(s, tier, type);
@@ -169,7 +171,8 @@ for (const tier of tiers) {
       if (i > 0) {
         after++;
         const beats = (b as { beats?: string[] } | undefined)?.beats ?? [];
-        if (beats.includes('why') || beats.includes('walk')) threaded++;
+        // docs/47 C13: a page whose reason the page before said (its hand-off, or the arrival in this room) carries it.
+        if (beats.includes('why') || beats.includes('walk') || (b as { carried?: boolean } | undefined)?.carried) threaded++;
         else if (examples.length < 40) examples.push(`no why/walk: ${tierName(tier)} ${type} seed ${s} p${i + 1} (${b?.job})`);
         if (b?.callback) callbacks++;
       }
@@ -228,11 +231,16 @@ for (const tier of tiers) {
         jargon += hits.length;
         if (hits.length && examples.length < 60) examples.push(`jargon ${tierName(tier)} ${type} seed ${s}: ${hits[0]?.term} "${hits[0]?.match}"`);
       }
+      // docs/47 C14: place names bolted on, banned phrases, signposts a page, running gags, a pet called "it".
+      for (const issue of proseIssues(d, r)) {
+        r3[issue.rule]++;
+        if (examples.length < 120) examples.push(`${issue.rule} ${tierName(tier)} ${type} seed ${s} p${issue.page + 1}: ${issue.detail}`);
+      }
     }
   }
   if (show) examples.push(`words by job, ${tierName(tier)}: ${[...byJob.entries()].map(([k, v]) => `${k} ${quantile(v, 0.5)} (${v.length})`).join(', ')}`);
   rows.push(
-    `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${level} | ${jargon} | ${cardsTwice} | ${sentTwice} | ${namePages} | ${cluesThrice} |`,
+    `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${level} | ${jargon} | ${cardsTwice} | ${sentTwice} | ${namePages} | ${cluesThrice} | ${r3['place-tag']} | ${r3.phrase} | ${r3.signpost} | ${r3.gag} | ${r3.pet} |`,
   );
 }
 process.stdout.write(`${rows.join('\n')}\n`);

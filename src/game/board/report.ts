@@ -416,7 +416,7 @@ export function storyOfBoard(d: BoardDeal): string[] {
         ? `At ${oclock(atOrigin)} ${short} was at ${placeName(c, c.means.origin)}, and took ${c.means.originText.replace(/, there from .*$/, '').replace(/, open from .*$/, '').replace(new RegExp(` (?:at|from) ${placeName(c, c.means.origin).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`), '')}.`
         : `${cap(short)} took ${c.means.originText} while it sat there to be taken.`,
     );
-    out.push(`At ${oclock(c.crime.hour)} ${pr.he} went round to ${placeName(c, c.crime.scene)}, and ${v.short} let ${pr.him} in. ${meansMoment(c.means.kind, v.short)}`);
+    out.push(`At ${oclock(c.crime.hour)} ${pr.he} went round to ${placeName(c, c.crime.scene)}, and ${v.short} let ${pr.him} in. ${meansMoment(c.means.kind, v.short, c.means.name.replace(/^(a|an) /, ''), c.finds.find((f) => f.gives.means)?.text ?? '')}`);
     const after = c.board.hours.find((h) => h > c.crime.hour);
     if (after !== undefined) out.push(`By ${oclock(after)} ${pr.he} was at ${placeName(c, row[after] ?? '')}, as if ${pr.he} had never left.`);
   } else {
@@ -429,10 +429,12 @@ export function storyOfBoard(d: BoardDeal): string[] {
   return out;
 }
 
-function meansMoment(kind: string, victim: string): string {
+function meansMoment(kind: string, victim: string, means = 'it', scene = ''): string {
   if (kind === 'gun') return `${cap(victim)} was shot across his own table.`;
   if (kind === 'blade') return `When ${victim} turned his back, that was the end of it.`;
-  return `It went into ${victim}’s drink, and ${victim} never knew.`;
+  // The scene's own cup, said (Poached 5's #32: the cocoa was planted and never cashed; Hard-boiled 8's #26: "It").
+  const vessel = /\bcocoa\b/i.test(scene) ? 'cocoa' : /\brye\b/i.test(scene) ? 'rye' : 'drink';
+  return `The ${means} went into his ${vessel}, and ${victim} never tasted it.`;
 }
 
 /** A motive said of tonight, told as a story afterwards: "he is three weeks behind" → "he was". */

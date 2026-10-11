@@ -1081,7 +1081,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     const clock = rng.pick(clocks);
     clockId = clock.id;
     // docs/47 B9: what she heard fits the room the detective finds: no glass breaks, the glasses are whole.
-    const sound = md.kind === 'gun' ? 'a shot' : md.kind === 'blade' ? 'a fall' : 'him laughing with somebody, and then nothing';
+    const sound = md.kind === 'gun' ? 'a shot' : md.kind === 'blade' ? 'a fall' : 'him laugh with somebody and then go quiet';
     const clockVars = { ...hourVars, means: md.name.replace(/^a /, ''), delay: delayText(md.delay), sound, kind: md.kind, windowed: windowed ? 'yes' : 'no' };
     say('clock', clock.id, clockVars, tpl(clock.text, clockVars));
     // Where he'd been: it sends the player to that watcher (rule 18, and 4a.2's pointers).

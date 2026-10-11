@@ -141,15 +141,18 @@ function atWhere(c: BoardCase, pl: PlaceId, here: PlaceId): string {
 }
 
 /** How the means was had, said of one person: "heard about the key", "been at Rafferty’s while the chloral was on the shelf". */
-function accessPhrase(c: BoardCase, yes: boolean, again = false): string {
+function accessPhrase(c: BoardCase, yes: boolean, again = false, here?: PlaceId): string {
   const mode = c.setup?.means ?? '';
   const party = c.givens.lines?.find((g) => g.kind === 'party')?.vars;
-  const origin = placeName(c, c.means.origin);
+  // docs/47 C13: "here" in the room itself, not the place's name a third time in a paragraph.
+  const at = here === c.means.origin ? 'here' : `at ${placeName(c, c.means.origin)}`;
+  const inAt = here === c.means.origin ? 'in here' : `in at ${placeName(c, c.means.origin)}`;
   // `again`: the same fact a second time tonight, in other words (the elimination recaps it).
   if (isMurder(c)) {
     const m = c.means.name.replace(/^(a|an) /, '');
     if (again) return yes ? `could have had the ${m}` : `had no way to the ${m}`;
-    return yes ? `had been at ${origin} while the ${m} was there` : `was never at ${origin} while the ${m} was there`;
+    // Plain speech, not the board read aloud ("while the laudanum was there", Poached 5's #27).
+    return yes ? `had been ${at} earlier, when the ${m} was there for the taking` : `hadn’t been ${at} while it was there to take`;
   }
   if (party) return yes ? (again ? `had been at the ${party.occasion} to learn the way in` : `was at the ${party.occasion}`) : again ? `never learnt the way in` : `wasn’t at the ${party.occasion}`;
   if (/^told/.test(mode)) {
@@ -158,7 +161,7 @@ function accessPhrase(c: BoardCase, yes: boolean, again = false): string {
     return yes ? `heard ${clientOf(c).short} tell the room about the ${thing}` : `never heard ${clientOf(c).short} tell the room`;
   }
   if (again) return yes ? `could have had the spare key` : `had no way to the spare key`;
-  return yes ? `had been in at ${origin} while the spare key was there` : `was never in at ${origin} while the spare key was there`;
+  return yes ? `had been ${inAt} earlier, when the spare key was there for the taking` : `hadn’t been ${inAt} while it was there to take`;
 }
 
 /* ------------------------------------------------------------------ *
@@ -222,7 +225,10 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     caught.add(`${p}@${col.hour}`);
     if (br.kind === 'list' && br.q === q && br.place !== undefined) listSaid.add(`${br.place}@${col.hour}`);
     // The line that breaks it is about them: once named, they're "her" in it ("Ashby passed her on Stuyvesant Street").
-    const said = breakSaid(c, br, p, run.asked).replace(new RegExp(`\\b(had|passed|put|saw) ${nameOf(c, p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`), `$1 ${pronOf(c, p).him}`);
+    const said = breakSaid(c, br, p, run.asked)
+      .replace(new RegExp(`\\b(had|passed|put|saw) ${nameOf(c, p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`), `$1 ${pronOf(c, p).him}`)
+      // In the room itself the list is "here", not the place's name again (docs/47 C13).
+      .replace(` at ${placeName(c, here)} at `, br.place === here ? ' here at ' : ` at ${placeName(c, here)} at `);
     const people = [p, ...br.about, ...(br.speaker ? [br.speaker] : []), ...c.people.filter((y) => !y.object && said.includes(y.short)).map((y) => y.id)];
     const two = x.pick('two-stories', [
       'One of them was wrong.',
@@ -375,9 +381,9 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         parts.push(`${gs.map(([h, ps], i) => (i === 0 ? `${andList(ps.map((y) => nameOf(c, y)))} heard about ${thing} at ${hourWord(h)}` : `${andList(ps.map((y) => nameOf(c, y)))} at ${hourWord(h)}`)).join(', and ')}.`);
         hs.push(...gs.map(([h]) => h));
       } else if (yes.length > 0) {
-        parts.push(`${andList(yes.map((p) => nameOf(c, p)))} ${accessPhrase(c, true).replace(/^was\b/, yes.length > 1 ? 'were' : 'was')}.`);
+        parts.push(`${andList(yes.map((p) => nameOf(c, p)))} ${accessPhrase(c, true, false, here).replace(/^was\b/, yes.length > 1 ? 'were' : 'was')}.`);
       }
-      if (no.length > 0) parts.push(`${andList(no.map((p) => nameOf(c, p)))} ${accessPhrase(c, false).replace(/^was\b/, no.length > 1 ? 'were' : 'was').replace(/^wasn’t\b/, no.length > 1 ? 'weren’t' : 'wasn’t')}.`);
+      if (no.length > 0) parts.push(`${andList(no.map((p) => nameOf(c, p)))} ${accessPhrase(c, false, false, here).replace(/^was\b/, no.length > 1 ? 'were' : 'was').replace(/^wasn’t\b/, no.length > 1 ? 'weren’t' : 'wasn’t')}.`);
       add(parts.map((y) => cap(y)).join(' '), ['givens:means'], { people: [...yes, ...no, c.client], hours: hs, places: [c.means.origin] });
     }
   }
@@ -400,7 +406,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         if (srcQ === q && listSaid.has(`${now.place}@${h}`)) break;
         // Whose word it is, as a person: the keeper of this page's list, or whoever else said so (docs/47 C13:
         // "and Ellery would swear to it", not "with the list under both").
-        const src = srcQ === q && kind === 'list' ? nameOf(c, rest) : sourceName(c, srcQ).replace(/’s (list|story|word)$/, '');
+        // This page's own account is "he": its speaker is named on the page already (docs/39 §4).
+        const src = srcQ === q && kind === 'list' ? nameOf(c, rest) : srcQ === q && kind === 'account' ? `=self:${rest}` : sourceName(c, srcQ).replace(/’s (list|story|word)$/, '');
         const g = groups.get(src) ?? { src, items: [], refs: [] };
         g.items.push({ p, place: now.place, h });
         g.refs.push(...now.deps.filter((d) => heldBeforeQs.has(d)));
@@ -421,7 +428,10 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const only = g.items.length === 1 ? g.items[0]?.p : undefined;
       const sameSex = only ? suspectsOf(c).filter((y) => y !== only && personOf(c, y)?.female === personOf(c, only)?.female && lastSaid.includes(nameOf(c, y))) : [];
       const bits = [...runs.values()].map((r) => `${only && lastSaid.startsWith(`${nameOf(c, only)} `) && sameSex.length === 0 ? pronOf(c, only).him : andList(r.ps.map((y) => nameOf(c, y)))} ${atWhere(c, r.place, here)} at ${hourWord(r.h)}`);
-      const swear = x.pick('swear', [`and ${g.src} would swear to it`, `and ${g.src} would say so to anybody`, `on ${g.src}’s word`]);
+      const self = g.src.startsWith('=self:') ? g.src.slice(6) : undefined;
+      const swear = self
+        ? x.pick('swear-self', [`on ${pronOf(c, self).his} word`, `and ${pronOf(c, self).he} would swear to it`])
+        : x.pick('swear', [`and ${g.src} would swear to it`, `and ${g.src} would say so to anybody`, `on ${g.src}’s word`]);
       add(`That put ${andList(bits)}, ${swear}.`, g.refs.length ? g.refs : ['givens:clock'], {
         hours: g.items.map((y) => y.h),
         people: g.items.map((y) => y.p),
@@ -485,7 +495,9 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const said = hs.map((h) => claimSaid(c, rest, h));
       const same = said.every((s) => s.replace(/ at \w+$/, '') === (said[0] ?? '').replace(/ at \w+$/, ''));
       // docs/47 C13: the hour said once ("For ten, the hour that mattered, he said Moe’s"), not "ten … Moe’s at ten".
-      const what = same ? (said[0] ?? '').replace(/ at \w+$/, '') : andList(said);
+      // "home" said where home is, so the thought keeps its place in the night (docs/44's measure).
+      const homeAt = accountOf(c, rest)?.claims[hs[0] as Hour]?.place ?? '';
+      const what = same ? ((said[0] ?? '').startsWith('home') && homeAt ? (homeAt === here ? `home, here at ${placeName(c, homeAt)}` : `home at ${placeName(c, homeAt)}`) : (said[0] ?? '').replace(/ at \w+$/, '')) : andList(said);
       add(
         `For ${andList(hs.map(hourWord))}, the ${hs.length > 1 ? 'hours' : 'hour'} that mattered, ${t.sentences.length > 0 ? pronOf(c, rest).he : nameOf(c, rest)} said ${what}. ${x.pick('own-word', [
           'I wrote it down and left it standing, for now.',
@@ -517,12 +529,13 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         const empty = hs.filter((h) => (l.entries[h] ?? []).length === 0).map(hourWord);
         if (empty.length) parts.push(one ? 'nobody' : `nobody at ${andList(empty)}`);
         const ppl = hs.flatMap((h) => (l.entries[h] ?? []).flatMap((e) => ('person' in e ? [e.person] : [])));
-        // "here", not "in this room" (a landlady watches a stair, not a room: Hard-boiled 8's #14).
-        const there = where(c, l.place, here) === 'here' ? 'here' : `at ${placeName(c, l.place)}`;
+        // Not "in this room" (a landlady watches a stair, not a room: Hard-boiled 8's #14). Here, the
+        // keeper's list is about here and needn't say so; elsewhere it says where.
+        const there = where(c, l.place, here) === 'here' ? '' : `at ${placeName(c, l.place)}`;
         const when = andList(hs.map(hourWord));
         // Named in this thought already, the keeper's list is "the list" (docs/39 §4).
         const W = t.sentences.some((y) => y.includes(nameOf(c, l.watcher))) ? 'the list' : nameOf(c, l.watcher);
-        const listed = `${parts.join(', and ')}${one ? ' ' : ', '}${there}`;
+        const listed = `${andList(parts)}${there ? `${one ? ' ' : ', '}${there}` : ''}`;
         const had = `${W} had ${listed}`;
         // A night has several lists: the frame turns over so no sentence is said twice.
         const framed = x.pick('list-hours', [

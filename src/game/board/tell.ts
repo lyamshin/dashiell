@@ -163,7 +163,10 @@ export function spokenAccount(c: BoardCase, a: Account, _manner: Manner, rot0 = 
       const withSomebody = who.length === 0 && /\bwith [A-Z]/.test(reason ?? '');
       // Alone: a short tag when it's the evening's one hour alone; otherwise said once, after (docs/47 C13).
       const alone = who.length === 0 && !withSomebody ? (aloneOnce && runs.length > 1 ? (ALONE_TAG[rot % ALONE_TAG.length] as string) : '') : '';
-      out.push(`${s}${named || withSomebody ? '' : who.length ? `, with ${andList(who)}` : alone}.`);
+      // "back to my room to write letters, with Abramowitz and Thorndike" put them in the room: in a
+      // rooming house they were about the house (Hard-boiled 8).
+      const house = who.length > 0 && /\bmy room\b/.test(s) && !!c.places.find((x) => x.id === r.place)?.key?.startsWith('rooming') ? ' about the house' : '';
+      out.push(`${s}${named || withSomebody ? '' : who.length ? `, with ${andList(who)}${house}` : alone}.`);
     } else {
       out.push(`${s}.`);
       // Hours with the same company run together: "at seven and eight it was just me".
@@ -242,7 +245,10 @@ export function spokenList(c: BoardCase, l: WatchList, rot = 0): string[] {
   groups.forEach((g, i) => {
     const when = g.hs.length === 1 ? (i === 0 ? `${cap(hourWord(g.hs[0] as Hour))} o’clock` : cap(hourWord(g.hs[0] as Hour))) : `${cap(andList(g.hs.map(hourWord)))}`;
     if (g.es.length === 0) {
-      out.push(`${when}, nobody${landlady ? ' but me' : always.size ? ' else' : ''}.`);
+      // "Eight o’clock, just Benny" when the one who's always there was all there was (Medium 14's #12).
+      const regulars = others.filter((o) => always.has(o.id)).map((o) => /^(Lou|Pardo|Benny)\b/.exec(o.name)?.[1]);
+      const named = regulars.length > 0 && regulars.every(Boolean) ? (regulars as string[]) : [];
+      out.push(landlady ? `${when}, nobody but me.` : named.length ? `${when}, just ${andList(named)}.` : `${when}, nobody${always.size ? ' else' : ''}.`);
       return;
     }
     const names = g.es.map((e) => {

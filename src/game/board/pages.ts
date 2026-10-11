@@ -163,6 +163,7 @@ function putOn(w: Writer, beat: Beat, text: string | null | undefined, voice: Vo
  * to read as one.
  */
 function lay(w: Writer, job: SheetJob): void {
+  if (job !== 'arrival' && job !== 'office' && job !== 'return' && job !== 'turn') placeNewcomers(w);
   const sheets = sheetsFor(job);
   const sheet = sheets[sheets.length > 1 ? w.hand.rng.int(sheets.length) : 0];
   if (!sheet) return;
@@ -196,6 +197,41 @@ function lay(w: Writer, job: SheetJob): void {
     for (const p of w.parts[b] ?? []) w.blocks.push({ kind: 'prose', text: p.text, voice: p.voice });
   }
   w.parts = {};
+}
+
+/**
+ * docs/47 B8: nobody is talkable before a page has put them in the room. Somebody this page's
+ * answer named who is in this room (an admission's witness, a companion on a list) is placed here,
+ * in a line, on the page that names them: "Ashby, it turned out, was three rows back with her hat
+ * over her eyes." Somebody whose evening ended elsewhere had come back.
+ */
+function placeNewcomers(w: Writer): void {
+  const c = w.c;
+  const here = w.run.at;
+  if (here === OFFICE || w.before.at !== here) return;
+  const was = new Set(peopleAt(c, w.before, here));
+  const fresh = peopleAt(c, w.run, here).filter((p) => !was.has(p) && personOf(c, p)?.role === 'company');
+  const last = c.board.hours[c.board.hours.length - 1] as Hour;
+  for (const p of fresh) {
+    const pr = pronOf(c, p);
+    const back = c.board.rows[p]?.[last] !== undefined && c.board.rows[p]?.[last] !== here;
+    const spot: Record<string, string> = {
+      theatre: `three rows back with ${pr.his} hat over ${pr.his} eyes`,
+      bar: 'at the far end of the bar, nursing something',
+      restaurant: 'at a table by the wall, behind a menu',
+      home: 'in the front room, in the good chair',
+      work: 'at the far bench, keeping busy',
+      back: 'in the corner, out of the light',
+      office: 'by the door',
+      any: 'over by the wall',
+    };
+    const kind = placeOf(c, here)?.kind === 'theatre' ? 'theatre' : stageKind(c, here);
+    const at = spot[kind] ?? (spot.any as string);
+    // Named twice on the page already (an admission says the name and says it again): "my witness".
+    const who = namesFit(w, `${nameOf(c, p)}`) ? nameOf(c, p) : 'my witness';
+    put(w, 'thought', `It turned out ${who} ${back ? 'had come back in and ' : ''}was ${at}.`, 'presence');
+    w.people.add(p);
+  }
 }
 
 function esc(s: string): string {
@@ -377,7 +413,10 @@ function payOff(w: Writer, p?: PersonId): string | null {
   const prop = w.run.props?.[w.run.at];
   if (prop) roles.push({ key: `prop:${w.run.at}`, pay: prop.pay });
   for (const r of roles) {
-    const fresh = r.pay.map((l) => ({ l, id: `pay:${l.slice(0, 40)}` })).filter((x) => !w.hand.used(x.id));
+    const all = r.pay.map((l) => ({ l, id: `pay:${l.slice(0, 40)}` }));
+    // docs/47 C13: a running gag lands at most twice a night (the short-legged chair four times was three too many).
+    if (all.filter((x) => w.hand.used(x.id)).length >= GAG_MAX) continue;
+    const fresh = all.filter((x) => !w.hand.used(x.id));
     if (fresh.length === 0) continue;
     const x = fresh[w.hand.rng.int(fresh.length)] as { l: string; id: string };
     w.hand.note(x.id);
@@ -387,6 +426,9 @@ function payOff(w: Writer, p?: PersonId): string | null {
   }
   return null;
 }
+
+/** docs/47 C13: how many times a night one running gag (a prop, a trait, the street) may be paid off. */
+export const GAG_MAX = 2;
 
 /** The page's close: a callback when there's a role to pay off, or a close card (the joke, if it's still free). */
 function closeWith(w: Writer, p: PersonId | undefined, family: string, want: Record<string, string | undefined>, slots: Record<string, string | undefined>): void {
@@ -634,9 +676,15 @@ export function writeOffice(w: Writer): void {
       .replace(new RegExp(`\\b${me} is out\\b`), 'I’m out');
     const v: Record<string, string | undefined> = { ...base, ...g.vars, line };
     if (v.where) v.whereFrom = v.where.replace(/^(in|on) /, '');
+    // The client's own watch: "my late husband’s gold watch", not "a late husband’s" (Raw 11's #23).
+    if (v.thingName) v.thingName = v.thingName.replace(/^a late husband’s\b/, 'my late husband’s');
     // "found in his own walk-up", not "found in Dandridge’s walk-up" of Dandridge (Poached 5's #1).
     if (g.kind === 'found' && v.scene && isMurder(c)) v.scene = v.scene.replace(new RegExp(`^${esc(victimOf(c).short)}’s `), 'his own ');
     if (g.kind === 'pointer' && v.motive) v.motive = inClientMouth(c, v.motive);
+    // "Winslow owed him the rent on a shop", not "He owed Dandridge the rent…", two different men (Poached 5's #2).
+    if (g.kind === 'pointer' && v.motive && v.P && isMurder(c) && /^(he|she) /.test(v.motive)) {
+      v.motive = v.motive.replace(/^(he|she) /, `${v.P} `).replace(new RegExp(`\\b${esc(victimOf(c).short)}\\b`), 'him');
+    }
     if (g.kind === 'pointer' && v.behaviour) v.behaviour = v.behaviour.replace(new RegExp(`\\b${cl.short}’s\\b`, 'g'), 'my');
     if (v.pthey) v.Pthey = cap(v.pthey);
     if (g.kind === 'means' && v.resident) {
@@ -652,7 +700,14 @@ export function writeOffice(w: Writer): void {
       const n = Number(v.n ?? 0);
       const pointed = c.givens.pointer ? nameOf(c, c.givens.pointer) : '';
       const said: string[] = [];
-      for (let i = 0; i < n; i++) if (!(pointerTold && v[`p${i}`] === pointed)) said.push(`${cap(inClientMouth(c, v[`m${i}`] ?? ''))}.`);
+      for (let i = 0; i < n; i++) {
+        if (pointerTold && v[`p${i}`] === pointed) continue;
+        // Somebody named for the first time is said with their trade (Medium 14's #24: "And Pickering, the milliner").
+        const who = c.people.find((x) => x.role === 'suspect' && x.short === v[`p${i}`]);
+        let m = inClientMouth(c, v[`m${i}`] ?? '');
+        if (who?.job) m = m.replace(new RegExp(`\\b${esc(who.short)}\\b`), `${who.short}, ${who.job},`);
+        said.push(`${cap(m)}.`);
+      }
       if (said.length === 0) continue;
       const groups = said.length <= 2 ? [said] : [said.slice(0, 2), said.slice(2)];
       const talk = (g: string[]) => g.map((x, i) => (i === 0 ? x : `And ${x}`)).join(' ');
@@ -737,7 +792,9 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId): void {
   let line: string | null = null;
   const role = w.run.street;
   if (role && w.hand.jokeFree && w.hand.rng.int(10) < 6) {
-    const fresh = role.pay.map((l) => ({ l, id: `pay:${l.slice(0, 40)}` })).filter((x) => !w.hand.used(x.id));
+    const all = role.pay.map((l) => ({ l, id: `pay:${l.slice(0, 40)}` }));
+    const spent = all.filter((x) => w.hand.used(x.id)).length >= GAG_MAX;
+    const fresh = spent ? [] : all.filter((x) => !w.hand.used(x.id));
     const x = fresh.length ? (fresh[w.hand.rng.int(fresh.length)] as { l: string; id: string }) : undefined;
     if (x) {
       w.hand.note(x.id);
@@ -866,7 +923,13 @@ export function writeArrive(w: Writer, place: PlaceId): void {
     const [p0, p1] = ptrs as [Pointer, Pointer | undefined];
     const head = /^(.+?’s list had )/.exec(p0.clause)?.[1];
     const said = /^(.+? had said )/.exec(p0.clause)?.[1];
-    const src = p1 && head && p1.src === p0.src && p1.clause.startsWith(head)
+    // "Grasso had said she was here at seven, with Abramowitz", not "…here at seven, and that
+    // Abramowitz was with her here at seven" (Hard-boiled 8's #18).
+    const m0 = /^.+? had said (?:he|she) was (here|at .+?) at (\w+)$/.exec(p0.clause);
+    const m1 = p1 && said && p1.src === p0.src ? new RegExp(`^${esc(said)}(.+?) was with (?:him|her) (here|at .+?) at (\\w+)$`).exec(p1.clause) : null;
+    const src = m0 && m1 && m0[1] === m1[2] && m0[2] === m1[3]
+      ? `${p0.clause}, with ${m1[1]}`
+      : p1 && head && p1.src === p0.src && p1.clause.startsWith(head)
       ? `${p0.clause}, and ${p1.clause.slice(head.length).replace(/ at the [^,]+? at /, ' at ').replace(new RegExp(` at ${esc(pl.short)} at `), ' at ')}`
       : p1 && said && p1.src === p0.src && p1.clause.startsWith(said)
         ? `${p0.clause}, and that ${p1.clause.slice(said.length)}`
@@ -1160,7 +1223,7 @@ export function writeSearch(w: Writer, findId: string): void {
     } else {
       // Raw 11's #14: "whoever it was" once a page is plenty, and the key is where the office said it was.
       const key = SPARE_KEY[mode]?.at.replace('{x}', origin) ?? `at ${origin}`;
-      lead = `Somebody had used a key, and the spare one lived ${key}.`;
+      lead = `So the key that let them in was the spare, and the spare lived ${key}.`;
     }
     refs = ['givens:means'];
   }
@@ -1296,7 +1359,7 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
     done(
       'admit-close',
       y
-        ? [`That was a hole, and ${nameOf(c, p)} knew it, and I wasn’t sure yet it was the one I wanted. An owned-up story is only as good as whoever’s in it with you. If it held, ${pr.he} had been at ${placeName(c, lie.truth)} at ${hourWord(h)}, not ${claimWhere === 'home' ? 'home' : `at ${claimWhere}`}.`]
+        ? [`That was a hole in ${nameOf(c, p)}’s story, all right. I wasn’t sure yet it was the one I was looking for. An owned-up story is only as good as whoever’s in it with you. If it held, ${pr.he} had been at ${placeName(c, lie.truth)} at ${hourWord(h)}, not ${claimWhere === 'home' ? 'home' : `at ${claimWhere}`}.`]
         : [`${nameOf(c, p)} owned up to ${placeName(c, lie.truth)} at ${hourWord(h)}. Nobody had said so but ${pr.him}.`],
       lineRef,
     );
