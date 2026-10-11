@@ -1,7 +1,7 @@
 import type { Account, BoardCase, Hour, PersonId, PlaceId, WatchList } from './types.js';
 import { TIER_NAMES } from './types.js';
 import type { Analysis } from './path.js';
-import { minimalSets, refusalShortcut } from './path.js';
+import { breaksAt, innocentLie, minimalSets, refusalShortcut } from './path.js';
 import { fmtHour, key, questionById, questionsOf, solve } from './solver.js';
 import { techniquesUpTo, TIERS, LADDER } from './tiers.js';
 import { checkInvariants, invariantFailures } from './invariants.js';
@@ -137,6 +137,15 @@ export function renderCase(c: BoardCase, a: Analysis): string {
     line(`    collides with: ${breaks.length ? breaks.join('  |  ') : 'NOTHING'}`);
     const k2 = c.confrontations.find((x) => x.person === l.person && x.hour === l.hour);
     if (k2) line(`    put to it (${k2.response}): ${k2.text}${k2.secondLie ? `  [the second lie collides with ${k2.secondLie.collidesWith}]` : ''}`);
+  }
+  // Decided 2026-10-11: two broken stories at one hour, and which one the designed path meets first.
+  const inn = innocentLie(c);
+  if (inn) {
+    const order = a.path.map((s) => s.q);
+    const i = breaksAt(c, order, T, inn.person, inn.hour);
+    const k = breaksAt(c, order, T, c.crime.culprit, c.crime.hour);
+    const at = (n: number) => (Number.isFinite(n) ? `step ${n}` : 'never');
+    line(`  Two broken stories at ${fmtHour(c.crime.hour)}. The case leads with the ${c.lead ?? 'innocent'} liar's; the path breaks ${pname(inn.person)}'s at ${at(i)} and ${pname(c.crime.culprit)}'s at ${at(k)}.`);
   }
 
   rule(`The designed path: par ${a.par} questions${a.motive ? ' + 1 motive search' : ''}, ${a.walks} walks; budget ${a.budget}`);

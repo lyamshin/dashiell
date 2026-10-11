@@ -728,6 +728,10 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   // Who's here, and what they're doing.
   const here = peopleAt(c, w.run, place);
   const sentences: string[] = [];
+  // Back in a room: nobody does the same thing twice tonight. Whoever has no fresh line left is
+  // "still there", together, in one sentence at the end.
+  const stillThere: string[] = [];
+  const freshOnly = first ? {} : { fresh: true };
   let watcherLine: string | null = null;
   let looked = false;
   for (const p of here) {
@@ -743,7 +747,12 @@ export function writeArrive(w: Writer, place: PlaceId): void {
     }
     if (person.role === 'watcher') {
       const job = jobKey(person.description);
-      sentences.push(w.hand.draw('doing', { job }, s, { plain: true }) ?? `${person.short} was there, ${person.description}.`);
+      const doingW = w.hand.draw('doing', { job }, s, { plain: true, ...freshOnly });
+      if (doingW === null && !first) {
+        stillThere.push(person.short);
+        continue;
+      }
+      sentences.push(doingW ?? `${person.short} was there, ${person.description}.`);
       const met = w.before.visited.includes(place);
       if (!met) {
         const look = !looked ? lookAt(w, p) : null;
@@ -757,16 +766,23 @@ export function writeArrive(w: Writer, place: PlaceId): void {
     }
     const k = kind === 'unwatched' ? 'back' : kind === 'rooming' || kind === 'flat' || kind === 'rooms' ? 'home' : kind === 'shift' ? 'work' : kind;
     // Hard-boiled's face: everybody's look is plain on first sight, so a face on a list can be matched.
-    if (c.variant === 'face' && person.role === 'suspect' && person.look) {
+    // Decided 2026-10-11: the pair has one too, the culprit's friend at the bar.
+    if ((c.variant === 'face' || c.variant === 'pair') && person.role === 'suspect' && person.look) {
       s.name = `${person.short}, ${person.look},`;
       s.Name = s.name;
     }
-    const doing = w.hand.draw('doing', { kind: k }, s, { plain: true }) ?? `${person.short} was there.`;
+    const drawn = w.hand.draw('doing', { kind: k }, s, { plain: true, ...freshOnly });
+    if (drawn === null && !first) {
+      stillThere.push(person.short);
+      continue;
+    }
+    const doing = drawn ?? `${person.short} was there.`;
     // One first look a page, at the first suspect met here: more is a parade.
     const look = first && person.role === 'suspect' && !looked ? lookAt(w, p) : null;
     if (look) looked = true;
     sentences.push(look ? `${doing} ${look}` : doing);
   }
+  if (stillThere.length > 0) sentences.push(`${cap(andList(stillThere))} ${stillThere.length > 1 ? 'were' : 'was'} still there.`);
   if (sentences.length > 0) put(w, 'arrival', sentences.join(' '), 'presence');
   else if (!pl.scene) put(w, 'arrival', `There was nobody there to ask.`, 'presence');
   // Why here: the pointers to what waits in this room, from what's held, the starred one first.
@@ -1225,7 +1241,7 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
     done(
       'admit-close',
       y
-        ? [`That was a hole, and ${pr.he} knew it, and I wasn’t sure yet it was the one I wanted. An owned-up story is only as good as whoever’s in it with you. If it held, ${pr.he} had been at ${placeName(c, lie.truth)} at ${hourWord(h)}, not ${claimWhere === 'home' ? 'home' : `at ${claimWhere}`}.`]
+        ? [`That was a hole, and ${nameOf(c, p)} knew it, and I wasn’t sure yet it was the one I wanted. An owned-up story is only as good as whoever’s in it with you. If it held, ${pr.he} had been at ${placeName(c, lie.truth)} at ${hourWord(h)}, not ${claimWhere === 'home' ? 'home' : `at ${claimWhere}`}.`]
         : [`${nameOf(c, p)} owned up to ${placeName(c, lie.truth)} at ${hourWord(h)}. Nobody had said so but ${pr.him}.`],
       lineRef,
     );

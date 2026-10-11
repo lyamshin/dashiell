@@ -10,7 +10,8 @@ import {
   type TierIndex,
 } from '../gen/board/index.js';
 import { buildCase } from '../gen/board/generate.js';
-import { rate } from '../gen/board/path.js';
+import { breaksAt, innocentLie, rate } from '../gen/board/path.js';
+import { techniquesUpTo } from '../gen/board/tiers.js';
 import { pickType } from '../gen/board/index.js';
 import { PAR_TARGET } from '../gen/board/tiers.js';
 import { ignoreBrokenPipe, parseArgs } from './args.js';
@@ -21,7 +22,8 @@ import { ignoreBrokenPipe, parseArgs } from './args.js';
  * case-type mix, and the invariants, which no accepted case may fail. A second
  * table covers the designer's decisions of 2026-09-28: the refusal shortcut's
  * gain on par, how innocent liars answer, the place kinds dealt, duplicate
- * reasons, and the culprit and the liar claiming one place at one hour. A
+ * reasons, the culprit and the liar claiming one place at one hour, and
+ * (decided 2026-10-11) whose broken story the designed path meets first. A
  * third (4a.2) counts distinct setups per case type, and seeds whose office
  * text matches another's word for word, names aside (which must be none).
  */
@@ -75,6 +77,10 @@ for (const tier of tiers) {
   const kinds = new Map<string, number>();
   let dupReasons = 0;
   let samePlace = 0;
+  // Decided 2026-10-11: nights with two liars, and whose story the designed path breaks first.
+  let two = 0;
+  let innocentFirst = 0;
+  let sameStep = 0;
   const setups = new Map<CaseType, { all: Set<string>; means: Set<string>; clock: Set<string>; pointer: Set<string> }>();
   const signatures = new Map<string, number>();
   let sameGivens = 0;
@@ -132,6 +138,16 @@ for (const tier of tiers) {
       else refused++;
     }
     for (const p of g.kase.places) if (!p.scene && !p.offBoard) kinds.set(p.kind, (kinds.get(p.kind) ?? 0) + 1);
+    const inn = innocentLie(g.kase);
+    if (inn) {
+      const order = g.analysis.path.map((x) => x.q);
+      const T = techniquesUpTo(tier);
+      const i = breaksAt(g.kase, order, T, inn.person, inn.hour);
+      const k = breaksAt(g.kase, order, T, g.kase.crime.culprit, g.kase.crime.hour);
+      two++;
+      if (i < k) innocentFirst++;
+      else if (i === k) sameStep++;
+    }
   }
   invariantFailuresTotal += invFail;
   const routeHist = [1, 2, 3, 4].map((k) => `${k}:${routes.filter((x) => (k === 4 ? x >= 4 : x === k)).length}`).join(' ');
@@ -156,6 +172,7 @@ for (const tier of tiers) {
     KINDS.filter((k) => kinds.has(k)).map((k) => `${k} ${kinds.get(k)}`).join(', '),
     String(dupReasons),
     String(samePlace),
+    two ? `${pct(innocentFirst, two)} (${pct(sameStep, two)})` : '—',
   ]);
   const setupCell = (t: CaseType) => {
     const s = setups.get(t);
@@ -175,12 +192,12 @@ process.stdout.write(
 );
 process.stdout.write('\n');
 process.stdout.write(
-  table(['tier', 'refusal shortcut gain med / max', 'shortcut names nobody', 'innocent liars refuse : admit', 'place kinds dealt', 'duplicate reasons', 'culprit & liar same place, hour'], rows2),
+  table(['tier', 'refusal shortcut gain med / max', 'shortcut names nobody', 'innocent liars refuse : admit', 'place kinds dealt', 'duplicate reasons', 'culprit & liar same place, hour', 'innocent’s story first on the path (same step)'], rows2),
 );
 process.stdout.write('\n');
 process.stdout.write(table(['tier', 'murder setups (distinct means, clocks, pointers)', 'lost-item setups', 'lost-pet setups', 'givens matching another seed’s, names aside'], rows3));
 process.stdout.write(
-  `\nseeds ${from}–${from + n - 1}. Invariants checked on every accepted case: no gaps, every lie collides, unique answer, lead time, places open, no lingering at transit, truthful lists and accounts, one-hour innocent lies, an innocent lie only when it matters, admissions checked, distinct reasons, the culprit and the liar apart, the window in board hours, lists complete, errands short, reasons that fit their stint, no two errands to one house in one hour, lies plausible, reasons match, the path and suggestions motivated.\n`,
+  `\nseeds ${from}–${from + n - 1}. Invariants checked on every accepted case: no gaps, every lie collides, unique answer, lead time, places open, no lingering at transit, truthful lists and accounts, one-hour innocent lies, an innocent lie only when it matters, admissions checked, distinct reasons, the culprit and the liar apart, the window in board hours, lists complete, errands short, reasons that fit their stint, no two errands to one house in one hour, lies plausible, reasons match, the path and suggestions motivated, two broken stories at the crime hour.\n`,
 );
 if (invariantFailuresTotal > 0) process.stdout.write(`INVARIANT FAILURES: ${invariantFailuresTotal}\n`);
 if (shortcutWins > 0) process.stdout.write(`REFUSAL SHORTCUT BEATS PAR: ${shortcutWins}\n`);

@@ -125,8 +125,11 @@ describe('board: the thought', () => {
         const run = playBoardOracle(d).run;
         const culprit = d.kase.people.find((p) => p.id === d.kase.crime.culprit)?.short ?? '';
         for (const p of run.log.filter((x) => x.board?.q === 'search:papers')) {
-          expect(prose(p), `tier ${tier} seed ${s}`).not.toMatch(/on top\b(?!,)/);
-          expect(prose(p), `tier ${tier} seed ${s}`).not.toContain(culprit);
+          // The hand-off says where the night goes next, which is sometimes the culprit's own story
+          // (decided 2026-10-11: the path leads with it on two nights in five). The papers don't.
+          const papers = prose(p).replace(p.board?.handoff ?? '\u0000', '');
+          expect(papers, `tier ${tier} seed ${s}`).not.toMatch(/on top\b(?!,)/);
+          expect(papers, `tier ${tier} seed ${s}`).not.toContain(culprit);
         }
         expect(linesHeld(d.kase, run).find((l) => l.id === 'find:papers')?.text ?? '').not.toContain(culprit);
       }

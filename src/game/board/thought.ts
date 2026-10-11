@@ -203,12 +203,16 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   // At fact level, only when both lines are on this page.
   const fresh = collisionsOf(c, run).filter((col) => b.status.get(`${col.person}@${col.hour}`)?.s !== 'broken');
   const caught = new Set<string>();
+  // This page's own list, said whole beside a lie it breaks ("Shapiro had Tramonti and Lindemann at
+  // the Odessa at ten"): who it puts there then needn't be said again.
+  const listSaid = new Set<string>();
   for (const col of fresh.slice(0, 2)) {
     const br = col.breakers[0];
     if (!br) continue;
     if (fact && !(col.claim.q === q && br.q === q)) continue;
     const p = col.person;
     caught.add(`${p}@${col.hour}`);
+    if (br.kind === 'list' && br.q === q && br.place !== undefined) listSaid.add(`${br.place}@${col.hour}`);
     // The line that breaks it is about them: once named, they're "her" in it ("Ashby passed her on Stuyvesant Street").
     const said = breakSaid(c, br, p, run.asked).replace(new RegExp(`\\b(had|passed|put|saw) ${nameOf(c, p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`), `$1 ${pronOf(c, p).him}`);
     const people = [p, ...br.about, ...(br.speaker ? [br.speaker] : []), ...c.people.filter((y) => !y.object && said.includes(y.short)).map((y) => y.id)];
@@ -292,15 +296,19 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     for (const ln of before_) {
       if (ln.kind !== 'claim' || ln.place !== l?.place || ln.hour === undefined) continue;
       const sp = ln.speaker as PersonId;
-      if (caught.has(`${sp}@${ln.hour}`)) continue;
+      // Somebody this page catches lying is the page's news; where their story agrees can wait (docs/39 §4).
+      if ([...caught].some((k) => k.startsWith(`${sp}@`))) continue;
       if ((l?.entries[ln.hour] ?? []).some((e) => 'person' in e && e.person === sp) && !agreed.some((y) => y.p === sp)) agreed.push({ p: sp, h: ln.hour, id: ln.id });
     }
     for (const y of agreed) covered.add(y.p);
     if (agreed.length && l) {
       const one = agreed[0] as { p: PersonId; h: Hour };
+      // "Him" only when the sentence before named them and nobody else it could be.
+      const lastSaid = t.sentences[t.sentences.length - 1] ?? '';
+      const clear = lastSaid.includes(nameOf(c, one.p)) && !c.people.some((y) => y.id !== one.p && !y.object && y.female === personOf(c, one.p)?.female && lastSaid.includes(y.short));
       add(
         agreed.length === 1
-          ? `${nameOf(c, l.watcher)} had ${t.sentences.some((x) => x.includes(nameOf(c, one.p))) ? pronOf(c, one.p).him : nameOf(c, one.p)} ${atWhere(c, l.place, here)} at ${hourWord(one.h)}, same as ${pronOf(c, one.p).he} said.`
+          ? `${nameOf(c, l.watcher)} had ${clear ? pronOf(c, one.p).him : nameOf(c, one.p)} ${atWhere(c, l.place, here)} at ${hourWord(one.h)}, same as ${pronOf(c, one.p).he} said.`
           : `${nameOf(c, l.watcher)} had ${andList(agreed.map((y) => `${nameOf(c, y.p)} at ${hourWord(y.h)}`))}, same as they’d said.`,
         agreed.map((y) => y.id),
         { hours: agreed.map((y) => y.h), people: agreed.map((y) => y.p), places: [l?.place ?? ''] },
@@ -335,7 +343,10 @@ export function thoughtOf(x: ThoughtCtx): Thought {
 
   function wayIn(): void {
   if (!fact && (kind === 'list' || (kind === 'account' && t.sentences.length === 0)) && !settles) {
-    const yes = suspectsOf(c).filter((p) => a.accessYes.has(p) && !b.accessYes.has(p));
+    // Somebody this page catches saying "home", where the means was kept, had it to hand: that goes
+    // without saying, and their name has been said twice already (docs/39 §4).
+    const atHome = (p: PersonId) => [...caught].some((k) => k.startsWith(`${p}@`)) && personOf(c, p)?.home === c.means.origin;
+    const yes = suspectsOf(c).filter((p) => a.accessYes.has(p) && !b.accessYes.has(p) && !atHome(p));
     const no = suspectsOf(c).filter((p) => a.accessNo.has(p) && !b.accessNo.has(p));
     if (yes.length + no.length > 0) {
       const firstAt = (p: PersonId): Hour | undefined => c.means.available.find((h) => a.placed.get(`${p}@${h}`)?.place === c.means.origin);
@@ -372,7 +383,9 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         const others = now.deps.filter((d) => d !== `account:${p}`);
         if (others.length === 0) continue;
         const srcQ = others.includes(q) ? q : (others.find((d) => heldBeforeQs.has(d)) ?? (others[0] as string));
-        const src = sourceName(c, srcQ).replace(/’s (list|story)$/, '’s word');
+        if (srcQ === q && listSaid.has(`${now.place}@${h}`)) break;
+        // This page's own list is "the list": its keeper is named on the page already (docs/39 §4).
+        const src = srcQ === q && kind === 'list' ? 'the list' : sourceName(c, srcQ).replace(/’s (list|story)$/, '’s word');
         const g = groups.get(src) ?? { src, items: [], refs: [] };
         g.items.push({ p, place: now.place, h });
         g.refs.push(...now.deps.filter((d) => heldBeforeQs.has(d)));
@@ -548,12 +561,13 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         const ppl = hs.flatMap((h) => (l.entries[h] ?? []).flatMap((e) => ('person' in e ? [e.person] : [])));
         const there = where(c, l.place, here) === 'here' ? 'in this room' : `at ${placeName(c, l.place)}`;
         const when = andList(hs.map(hourWord));
-        const W = nameOf(c, l.watcher);
+        // Named in this thought already, the keeper's list is "the list" (docs/39 §4).
+        const W = t.sentences.some((y) => y.includes(nameOf(c, l.watcher))) ? 'the list' : nameOf(c, l.watcher);
         const listed = `${parts.join(', and ')}${one ? ' ' : ', '}${there}`;
         const had = `${W} had ${listed}`;
         // A night has several lists: the frame turns over so no sentence is said twice.
         const framed = x.pick('list-hours', [
-          `The ${one ? 'hour' : 'hours'} that mattered ${one ? 'was' : 'were'} ${when}. ${had}.`,
+          `The ${one ? 'hour' : 'hours'} that mattered ${one ? 'was' : 'were'} ${when}. ${cap(had)}.`,
           `For ${when}, the ${one ? 'hour' : 'hours'} that mattered, ${had}.`,
           `At ${when}, when it counted, ${had}.`,
           `I wrote down what ${W} had at ${when}, the ${one ? 'hour' : 'hours'} that mattered: ${listed}.`,

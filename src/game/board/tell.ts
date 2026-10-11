@@ -121,7 +121,9 @@ export function spokenAccount(c: BoardCase, a: Account, _manner: Manner, rot = 0
       const who = (comps[0]?.who ?? []).map(nm);
       // "went to the Automat to meet Abramowitz" says who was there already.
       const named = who.length > 0 && who.every((x) => s.includes(x));
-      out.push(`${s}${named ? '' : `, ${who.length ? `with ${andList(who)}` : 'on my own'}`}.`);
+      // "went round to Sokol's for coffee with Sokol" has company already: not "on my own" after it.
+      const withSomebody = who.length === 0 && /\bwith [A-Z]/.test(reason ?? '');
+      out.push(`${s}${named || withSomebody ? '' : `, ${who.length ? `with ${andList(who)}` : 'on my own'}`}.`);
     } else {
       out.push(`${s}.`);
       // Hours with the same company run together: "at seven and eight it was just me".

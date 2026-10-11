@@ -247,6 +247,24 @@ describe('board: the refusal shortcut and the wanderer', () => {
     expect(rate(4)).toBeLessThan(0.2);
     expect(rate(5)).toBeLessThan(0.2);
   });
+
+  it('decided 2026-10-11: from Poached up “the first liar you catch did it” does no better than anybody with access, plus ten points', () => {
+    let n = 0;
+    let first = 0;
+    let access = 0;
+    for (const tier of [2, 3, 4, 5] as TierIndex[]) {
+      for (const type of typesFor(tier)) {
+        for (let s = 1; s <= 8; s++) {
+          const d = dealBoard(s, tier, type);
+          n++;
+          if (playReader(d, s, { guess: 'first' }).ok) first++;
+          if (playReader(d, s, { guess: 'access' }).ok) access++;
+        }
+      }
+    }
+    expect(first / n).toBeLessThanOrEqual(access / n + 0.1);
+    expect(first / n).toBeLessThanOrEqual(0.5);
+  });
 });
 
 describe('board: the grid is the board', () => {
@@ -315,7 +333,9 @@ describe('board: the play CLI', () => {
       }
     }
     // docs/46 §3: the report asks what breaks their story. `report <name>` lists the lines; breaks counts down them.
-    const form = runPlay(['report', 'Fairbanks', '--save', save], io);
+    // The night's own answers, by id (the boards are dealt, not hand-written).
+    const culprit = d.kase.people.find((x) => x.id === d.kase.crime.culprit)?.short as string;
+    const form = runPlay(['report', culprit, '--save', save], io);
     expect(form.code).toBe(0);
     expect(form.out).toContain('What breaks their story (breaks):');
     expect(form.out).toContain('A hunch');
@@ -324,7 +344,7 @@ describe('board: the play CLI', () => {
     const n = breakOptions(d, o2.run, d.kase.crime.culprit).findIndex((x) => x.value === truth.breaks) + 1;
     const wn = whereByOptions(d, o2.run).findIndex((x) => x.value === truth.whereBy) + 1;
     expect(n).toBeGreaterThan(0);
-    const filed = runPlay(['file', `who=Fairbanks; breaks=${n}; when=10; where=Benny; whereBy=${wn}; why=Fairbanks`, '--save', save], io);
+    const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=${n}; when=${d.kase.crime.hour}; where=${truth.where}; whereBy=${wn}; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('THE VERDICT');
     expect(filed.out).toContain('4 out of 4.');
@@ -347,7 +367,8 @@ describe('board: the play CLI', () => {
       } else if (cmd.startsWith('ask ')) runPlay(['do', d.kase.people.find((x) => x.id === cmd.split(' ')[1])?.short as string, '--save', save], io);
       expect(runPlay(['do', cmd, '--save', save], io).code, cmd).toBe(0);
     }
-    const filed = runPlay(['file', 'who=Fairbanks; breaks=hunch; when=10; where=Benny; whereBy=hunch; why=Fairbanks', '--save', save], io);
+    const where = truthReport(d).where;
+    const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=hunch; when=${d.kase.crime.hour}; where=${where}; whereBy=hunch; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('right, but you couldn’t have known');
     expect(filed.out).toContain('3 out of 4.');

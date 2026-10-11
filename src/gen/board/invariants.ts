@@ -45,6 +45,12 @@ export interface InvariantReport {
   reasonsMatch: string[];
   /** 4a.2: every step of the designed path and the suggested order is pointed to by an earlier one or a given. */
   pathMotivated: string[];
+  /**
+   * Decided 2026-10-11 (docs/41 rule 9): from Poached up the innocent liar lies about the
+   * crime hour too, and the designed path breaks both stories, so telling them apart is the
+   * deduction and not a lie skipped.
+   */
+  twoStories: string[];
 }
 
 export const INVARIANT_NAMES: (keyof InvariantReport)[] = [
@@ -68,6 +74,7 @@ export const INVARIANT_NAMES: (keyof InvariantReport)[] = [
   'liesPlausible',
   'reasonsMatch',
   'pathMotivated',
+  'twoStories',
 ];
 
 /** Where people are plausibly found with no reason but their own (4a.2). */
@@ -99,6 +106,7 @@ export function checkInvariants(c: BoardCase, a?: Pick<Analysis, 'path' | 'sugge
     liesPlausible: [],
     reasonsMatch: [],
     pathMotivated: [],
+    twoStories: [],
   };
   const hours = c.board.hours;
   const place = new Map(c.places.map((p) => [p.id, p]));
@@ -412,6 +420,21 @@ export function checkInvariants(c: BoardCase, a?: Pick<Analysis, 'path' | 'sugge
         if (!backRe.test(why)) r.reasonsMatch.push(`${p} at ${h} rejoins ${cl.place} saying "${why}", not that they went back`);
       } else if (stintWhy !== undefined && why !== stintWhy) r.reasonsMatch.push(`${p} at ${h} says "${why}"; the truth is "${stintWhy}"`);
     });
+  }
+
+  // Decided 2026-10-11: two broken stories at one hour. From Poached up an innocent who lies, lies
+  // about the crime hour, and the designed path breaks their story as well as the culprit's.
+  const innocentLies = c.lies.filter((l) => l.person !== c.crime.culprit);
+  if (c.tier >= 2) for (const l of innocentLies) if (l.hour !== c.crime.hour) r.twoStories.push(`${l.person} lies about ${l.hour}, not the crime hour ${c.crime.hour}`);
+  if (a && c.tier >= 2 && innocentLies.length > 0) {
+    const st = solve(
+      c,
+      a.path.map((x) => x.q),
+      { techniques: techniquesUpTo(c.tier) },
+    ).status;
+    for (const l of [...innocentLies, ...c.lies.filter((x) => x.person === c.crime.culprit)]) {
+      if (st.get(key(l.person, l.hour))?.s !== 'broken') r.twoStories.push(`the designed path never breaks ${l.person}'s story at ${l.hour}`);
+    }
   }
 
   // 4a.2: the designed path and the suggested order ask only what something already held points
