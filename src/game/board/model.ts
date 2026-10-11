@@ -171,6 +171,12 @@ export interface Pron {
 
 export function pronOf(c: BoardCase, id: PersonId): Pron {
   const p = personOf(c, id);
+  // docs/47 B9: a lost pet is "he" or "she", as the office says it; only a thing is "it".
+  if (p?.object && c.type === 'lost-pet') {
+    const they = c.givens.lines?.find((g) => g.kind === 'gone')?.vars.pthey;
+    if (they === 'she') return { he: 'she', him: 'her', his: 'her', He: 'She', His: 'Her', self: 'herself' };
+    if (they === 'he') return { he: 'he', him: 'him', his: 'his', He: 'He', His: 'His', self: 'himself' };
+  }
   if (p?.object) return { he: 'it', him: 'it', his: 'its', He: 'It', His: 'Its', self: 'itself' };
   return p?.female ? { he: 'she', him: 'her', his: 'her', He: 'She', His: 'Her', self: 'herself' } : { he: 'he', him: 'him', his: 'his', He: 'He', His: 'His', self: 'himself' };
 }

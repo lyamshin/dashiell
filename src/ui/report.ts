@@ -76,7 +76,7 @@ export function renderVerdict(verdict: Verdict, onAgain: () => void, endings: En
   }
   wrap.append(table);
 
-  wrap.append(el('p', { class: 'score', text: `${pointsText(verdict.points)} out of ${verdict.asked}.` }));
+  wrap.append(el('p', { class: 'score', text: verdict.scoreLine ?? `${pointsText(verdict.points)} out of ${verdict.asked}.` }));
   for (const line of verdict.plain) wrap.append(el('p', { class: 'score-plain', text: line }));
   for (const paragraph of verdict.closing) {
     const p = el('p');

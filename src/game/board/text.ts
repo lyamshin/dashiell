@@ -29,17 +29,19 @@ export function wrap(text: string, width = WIDTH, indent = ''): string {
   return out.join('\n');
 }
 
-/** "½ hr", "25 min", "free": the book's own words for a cost. */
-export function minutesText(minutes: number): string {
-  if (minutes <= 0) return 'free';
-  if (minutes === 30) return '½ hr';
-  return `${minutes} min`;
+/**
+ * docs/47 A1: a cost is said in calls, the night's one unit. Every question,
+ * search, walk and put is one call; the clock strip shows what the calls add
+ * up to. "1 call", or "free".
+ */
+export function callsText(calls: number): string {
+  if (calls <= 0) return 'free';
+  return calls === 1 ? '1 call' : `${calls} calls`;
 }
 
-/** What a button in the book says it costs: "25 min", or "20 min (rounded)" for the odd call out. */
-export function costLabel(ch: Pick<OfferedChoice, 'minutes' | 'rounded'>): string {
-  const base = minutesText(ch.minutes);
-  return ch.rounded && ch.minutes > 0 ? `${base} (rounded)` : base;
+/** What a button in the book says it costs: "1 call", or "free". */
+export function costLabel(ch: Pick<OfferedChoice, 'minutes'>): string {
+  return callsText(ch.minutes > 0 ? 1 : 0);
 }
 
 export function pageBodyText(page: Page): string {
@@ -55,8 +57,7 @@ export function pageBodyText(page: Page): string {
 
 export function costText(ch: OfferedChoice): string {
   if (ch.done) return 'free ✓';
-  const m = minutesText(ch.minutes);
-  return ch.rounded ? `${m} (rounded)` : m;
+  return costLabel(ch);
 }
 
 /** Every choice, numbered, people first and then their topics, as the book draws them. */

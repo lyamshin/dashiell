@@ -43,12 +43,6 @@ export function callMinutes(d: BoardDeal, run: Pick<BoardRun, 'used'>): number {
   return minutesAfter(run.used + 1, b) - minutesAfter(run.used, b);
 }
 
-/** The usual minutes of a call tonight, for "(rounded)" on the odd one out. */
-function usualMinutes(d: BoardDeal): number {
-  const b = budgetCalls(d);
-  return Math.round(480 / b / 5) * 5;
-}
-
 export interface BoardStar {
   q: string;
   why: string;
@@ -102,7 +96,6 @@ export function boardChoices(d: BoardDeal, run: BoardRun): OfferedGroup[] {
   const c = d.kase;
   if (run.filed || run.reportOpen) return [];
   const mins = callMinutes(d, run);
-  const usual = usualMinutes(d);
   const stars = pageStars(d, run);
   const starOf = (command: string) => stars.find((s) => s.command === command);
   const choice = (command: string, label: string, done = false, free = false): OfferedChoice => {
@@ -114,7 +107,6 @@ export function boardChoices(d: BoardDeal, run: BoardRun): OfferedGroup[] {
       lead: s !== undefined,
       done,
       ...(s ? { why: s.why } : {}),
-      ...(!done && !free && mins !== usual ? { rounded: true as const } : {}),
     };
   };
   const groups: OfferedGroup[] = [];
@@ -130,7 +122,8 @@ export function boardChoices(d: BoardDeal, run: BoardRun): OfferedGroup[] {
         if (person.role === 'suspect') topics.push(choice(`ask ${p} motive`, motiveLabel(d), run.asked.includes(`motive:${p}`)));
         if (pickerFor(d, run, p) !== null) {
           const s = starOf(`picker ${p}`);
-          topics.push({ command: `picker ${p}`, label: `Put it to ${person.short}`, minutes: 0, lead: s !== undefined, done: false, ...(s ? { why: s.why } : {}), note: 'opens the claims' });
+          // docs/47 A6: opening the picker is free to look; the put itself is the call.
+          topics.push({ command: `picker ${p}`, label: `Put it to ${person.short}`, minutes: 0, lead: s !== undefined, done: false, ...(s ? { why: s.why } : {}) });
         }
       }
       groups.push({ kind: 'ask', heading: `Ask ${person.short} about`, personId: p, choices: topics });
@@ -140,7 +133,8 @@ export function boardChoices(d: BoardDeal, run: BoardRun): OfferedGroup[] {
       groups.push({
         kind: 'search',
         heading: 'Search',
-        choices: finds.map((f) => choice(`search ${f.id}`, cap(f.what), run.asked.includes(`search:${f.id}`))),
+        // docs/47 B7: the papers say what they're for, so a letter in the office doesn't make them sound searched.
+        choices: finds.map((f) => ({ ...choice(`search ${f.id}`, cap(f.what), run.asked.includes(`search:${f.id}`)), ...(f.gives.why ? { note: isMurder(c) ? 'who had what against him' : 'who had what against it' } : {}) })),
       });
     }
   }

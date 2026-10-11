@@ -35,9 +35,8 @@ import {
   WHERE_BY_LABEL,
   boardFields,
   hoursThatMattered,
-  breakOptions,
+  breakOptionsShown,
   curtainOfBoard,
-  pointsText,
   reportFrom,
   scoreBoard,
   storyOfBoard,
@@ -189,9 +188,14 @@ function pageChoicesText(night: Night): string {
     }
     out.push(itemLine(it.n, it.choice, costText(it.choice)));
   }
-  out.push('', wrap('A star marks one worth taking now and says what points there, never what the answer will show; the stars thin out as the tiers go up. ✓ is done already, and free to read again. Choosing somebody costs nothing: their topics open, and "back" shuts them.'));
+  // docs/47 A3: the key to the marks, once, on the first page.
+  if (night.run.log.length === 1) out.push('', wrap(CHOICE_KEY));
   return out.join('\n');
 }
+
+/** The key to a page's marks, said once, on the first page (docs/47 A3). */
+const CHOICE_KEY =
+  'Every question, search, walk and put costs one call; the clock moves with the calls. A star means it’s worth doing next, and says why. A tick means done, and free to read again. Choosing somebody costs nothing: their topics open, and "back" shuts them.';
 
 function topicItems(night: Night, person: string): Item[] {
   const g = boardChoices(night.d, night.run).find((x) => x.kind === 'ask' && x.personId === person);
@@ -202,7 +206,7 @@ function topicItems(night: Night, person: string): Item[] {
 function topicText(night: Night, person: string): string {
   const items = topicItems(night, person);
   const out = [`ASK ${nameOf(night.d.kase, person).toUpperCase()} ABOUT`, ''];
-  for (const it of items) out.push(itemLine(it.n, it.choice, it.choice.command.startsWith('picker') ? 'opens' : costText(it.choice)));
+  for (const it of items) out.push(itemLine(it.n, it.choice, it.choice.command.startsWith('picker') ? 'free to look' : costText(it.choice)));
   out.push('', itemLine(items.length + 1, { command: 'back', label: 'Back to the page', minutes: 0, lead: false, done: false }, 'free'));
   return out.join('\n');
 }
@@ -227,19 +231,24 @@ function pickerItems(night: Night, pk: Picker): { n: number; command: string; la
 
 function pickerText(night: Night, pk: Picker): string {
   const c = night.d.kase;
-  const out = [`PUT IT TO ${nameOf(c, pk.person).toUpperCase()}`, '', wrap(`${pk.help} Each costs ${pk.minutes} min. If it breaks nothing, the time is gone all the same, and I’ll say why.`)];
+  const out = [`PUT IT TO ${nameOf(c, pk.person).toUpperCase()}`, '', wrap(`${pk.help} Looking is free; reading one to ${pronWord(night, pk.person)} costs a call. If it breaks nothing, the call is gone all the same, and I’ll say why.`)];
   const items = pickerItems(night, pk);
   const picking = pk.ready.length === 0 && night.save.claim !== null;
+  const his = pronWord(night, pk.person, 'his');
   out.push('');
-  out.push(pk.ready.length > 0 ? 'Their line, and the line that breaks it:' : picking ? `Against “${pk.claims.find((x) => x.hour === night.save.claim)?.label}”, read ${pronWord(night, pk.person)}:` : 'Which of their claims?');
-  for (const it of items) out.push(itemLine(it.n, { command: it.command, label: it.label, minutes: 0, lead: false, done: false }, it.claim !== undefined ? 'free' : `${pk.minutes} min`) + (it.source ? `\n          (${it.source})` : ''));
-  out.push('', itemLine(items.length + 1, { command: 'back', label: picking ? 'Back to the claims' : 'Put nothing to them', minutes: 0, lead: false, done: false }, 'free'));
+  out.push(pk.ready.length > 0 ? `${cap(his)} line, and the line that breaks it:` : picking ? `Against “${pk.claims.find((x) => x.hour === night.save.claim)?.label}”, read ${pronWord(night, pk.person)}:` : `Which of ${his} claims?`);
+  for (const it of items) out.push(itemLine(it.n, { command: it.command, label: it.label, minutes: 0, lead: false, done: false }, it.claim !== undefined ? 'free' : '1 call') + (it.source ? `\n          (${it.source})` : ''));
+  out.push('', itemLine(items.length + 1, { command: 'back', label: picking ? 'Back to the claims' : `Put nothing to ${pronWord(night, pk.person)}`, minutes: 0, lead: false, done: false }, 'free'));
   return out.join('\n');
 }
 
-function pronWord(night: Night, p: string): string {
-  return night.d.kase.people.find((x) => x.id === p)?.female ? 'her' : 'him';
+/** "her" or "him" ("his" or "her" for the possessive), for the person the picker is about (docs/47 A6). */
+function pronWord(night: Night, p: string, form: 'him' | 'his' = 'him'): string {
+  const female = night.d.kase.people.find((x) => x.id === p)?.female;
+  return female ? 'her' : form;
 }
+
+const cap = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
 
 /* ------------------------------------------------------------ the form */
 
@@ -249,9 +258,18 @@ function hoursWord(night: Night): string {
   return hs.length > 1 ? `${hs.slice(0, -1).join(', ')} or ${hs[hs.length - 1]}` : (hs[0] ?? '');
 }
 
-/** A numbered list of line options, and the hunch after them. */
-function lineList(opts: LineOption[]): string[] {
-  const out = opts.map((o, i) => wrap(o.label, WIDTH - 7).split('\n').map((l, j) => (j === 0 ? `   ${String(i + 1).padStart(2)}. ${l}` : `       ${l}`)).join('\n'));
+/**
+ * A numbered list of line options, and the hunch after them. docs/47 A4: with `heads`, the lines
+ * that touch the named person's story come first under the one heading, the rest under the other.
+ */
+function lineList(opts: LineOption[], heads?: { touching: string; rest: string }): string[] {
+  const out: string[] = [];
+  const touching = opts.filter((o) => o.touches).length;
+  opts.forEach((o, i) => {
+    if (heads && i === 0 && touching > 0) out.push(wrap(heads.touching, WIDTH, '   '));
+    if (heads && i === touching && i < opts.length) out.push(wrap(touching > 0 ? heads.rest : heads.rest.replace(/^Other /, ''), WIDTH, '   '));
+    out.push(wrap(o.label, WIDTH - 7).split('\n').map((l, j) => (j === 0 ? `   ${String(i + 1).padStart(2)}. ${l}` : `       ${l}`)).join('\n'));
+  });
   out.push(`   ${String(opts.length + 1).padStart(2)}. ${HUNCH}`);
   return out;
 }
@@ -259,7 +277,7 @@ function lineList(opts: LineOption[]): string[] {
 function reportText(night: Night, path: string, who: string | null = null): string {
   const c = night.d.kase;
   const murder = c.type === 'murder';
-  const out = ['THE REPORT', '', wrap(night.run.used >= budgetCalls(night.d) ? (murder ? 'Eight o’clock, and the DA’s man is standing over the desk. Whatever is on the page is what gets filed.' : 'Eight o’clock, and the client is at the door wanting an answer.') : 'Filing is final. Leave a line blank and it goes in as I don’t know.'), ''];
+  const out = ['THE REPORT', '', wrap(night.run.used >= budgetCalls(night.d) ? 'The calls are spent. Whatever is on the page is what gets filed; leave a line blank and it goes in as I don’t know.' : 'Filing is final. Leave a line blank and it goes in as I don’t know.'), ''];
   const field = (f: ReturnType<typeof boardFields>[number]) => {
     out.push(`${f.label} (${f.key}):`);
     f.options.forEach((o, i) => out.push(`   ${String(i + 1).padStart(2)}. ${o.label}`));
@@ -270,8 +288,8 @@ function reportText(night: Night, path: string, who: string | null = null): stri
     if (f.key === 'who') {
       out.push(`${BREAKS_LABEL} (breaks):`);
       if (who) {
-        out.push(wrap(`The lines I hold that name ${nameOf(c, who)} or fall at ${hoursWord(night)}, and a hunch:`, WIDTH, '   '));
-        out.push(...lineList(breakOptions(night.d, night.run, who)));
+        const N = nameOf(c, who);
+        out.push(...lineList(breakOptionsShown(night.d, night.run, who), { touching: `Lines that touch ${N}’s own story at ${hoursWord(night)}:`, rest: `Other lines I hold that name ${N} or fall at ${hoursWord(night)}:` }));
       } else {
         out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists the lines I hold that name them or fall at ${hoursWord(night)}. Or breaks=hunch.`, WIDTH, '   '));
       }
@@ -284,7 +302,11 @@ function reportText(night: Night, path: string, who: string | null = null): stri
     }
   }
   const keys = murder ? 'who=…; breaks=…; when=…; how=…; why=…' : 'who=…; breaks=…; when=…; where=…; whereBy=…; why=…';
-  out.push(wrap(`File it with: npm run play -- file "${keys}" --save ${path} — an answer is its number or enough of its words; breaks counts down the list for whoever you name. A line left out is I don’t know, and a line question left out is a hunch.`));
+  out.push(
+    wrap(
+      `File it with: npm run play -- file "${keys}" --save ${path}. An answer is its number or enough of its words. For breaks, give the number from that person’s list (report <name> shows it). Leave a line out and it goes in as “I don’t know”; leave breaks${murder ? '' : ' or whereBy'} out and it goes in as a hunch.`,
+    ),
+  );
   return out.join('\n');
 }
 
@@ -331,7 +353,7 @@ function parseReport(night: Night, text: string): BoardReport {
       continue;
     }
     if (key === 'breaks' && !answers.who) fail('Name who first: breaks counts down the lines that name them.');
-    const opts = key === 'breaks' ? breakOptions(night.d, night.run, answers.who as string) : whereByOptions(night.d, night.run);
+    const opts = key === 'breaks' ? breakOptionsShown(night.d, night.run, answers.who as string) : whereByOptions(night.d, night.run);
     if (/^\d+$/.test(v)) {
       const n = Number(v);
       if (n === opts.length + 1) {
@@ -356,10 +378,12 @@ function verdictText(night: Night): string {
   const v = scoreBoard(night.d, night.run, night.run.filed as BoardReport);
   const out = ['THE VERDICT', ''];
   for (const f of v.fields) {
-    const ls = wrap(`${f.label}: ${f.given}${f.correct ? (f.half ? '  ½ — right, but you couldn’t have known' : '  ✓') : `  ✗ — it was ${f.truth}`}`, WIDTH - 6).split('\n');
-    out.push([`  ${ls[0]}`, ...ls.slice(1).map((l) => `      ${l}`)].join('\n'));
+    // A line asked under an answer sits under it, indented: it counts with that answer (docs/47 A2).
+    const pad = f.line ? '      ' : '  ';
+    const ls = wrap(`${f.label}: ${f.given}${f.correct ? (f.half ? '  ½ — right, but you couldn’t have known' : '  ✓') : `  ✗ — it was ${f.truth}`}`, WIDTH - pad.length - 4).split('\n');
+    out.push([`${pad}${ls[0]}`, ...ls.slice(1).map((l) => `${pad}    ${l}`)].join('\n'));
   }
-  out.push('', `${pointsText(v.points)} out of ${v.asked}.`, ...v.plain.map((p) => wrap(p)), '');
+  out.push('', wrap(v.scoreLine), ...v.plain.map((p) => wrap(p)), '');
   for (const p of v.closing) out.push(wrap(p.replace(/\*\*/g, '')), '');
   out.push(wrap('`story` tells what really happened; `curtain` shows the true board, the path and the lies.'));
   return out.join('\n');
@@ -434,10 +458,12 @@ function commit(io: PlayIo, path: string, night: Night, events: Event[], changes
   return { ...night, save, run, pages };
 }
 
-function titleText(save: BoardSave): string {
+function titleText(save: BoardSave, type: CaseType): string {
+  // The case's own kind: a stolen watch isn't a murder (docs/47, Raw 11's #25).
+  const what = type === 'murder' ? 'A murder' : type === 'lost-pet' ? 'A missing pet' : 'A theft';
   return [
     'DASHIELL',
-    'A murder, an evening, and eight hours to write it down.',
+    `${what}, an evening, and eight hours to write it down.`,
     '',
     wrap(`${tierName(save.tier as 0)}. One question gets a whole evening or a whole list, and every lie runs into something true. Murders, lost pets and lost things.`),
   ].join('\n');
@@ -463,7 +489,7 @@ function cmdNew(io: PlayIo, values: Map<string, string>, flags: Set<string>): st
   const night = deal(save);
   store(io, path as string, save);
   const teach = flags.has('no-teach') ? [] : [teachText(), '', DOUBLE, ''];
-  return [titleText(save), '', `case ${seed} · ${tierName(tier as 0)} · the small board`, '', DOUBLE, '', ...teach, lookText(night, path as string)].join('\n');
+  return [titleText(save, night.d.kase.type), '', `case ${seed} · ${tierName(tier as 0)} · the small board`, '', DOUBLE, '', ...teach, lookText(night, path as string)].join('\n');
 }
 
 function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
@@ -481,7 +507,7 @@ function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
       return lookText(night, path);
     }
     const items = pickerItems(night, pk);
-    if (v === 'back' || v === String(items.length + 1) || v === 'put nothing to them') {
+    if (v === 'back' || v === String(items.length + 1) || /^put nothing to (them|her|him)$/.test(v)) {
       night = commit(io, path, night, [], s.claim !== null && pk.ready.length === 0 ? { claim: null } : { picker: null, claim: null });
       return lookText(night, path);
     }
@@ -532,23 +558,27 @@ function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
 
 function cmdPencil(io: PlayIo, raw: string | undefined, path: string): string {
   let night = load(io, path);
-  const m = /^(\S+(?: \S+)?)\s+(\d{1,2})\s+(at|not|clear)\s*(.*)$/i.exec((raw ?? '').trim());
-  if (!m) fail('pencil "<Name> <hour> at|not|clear [place]", e.g. pencil "Feldman 10 at Rafferty’s".');
+  // docs/47 A5: the hour as the grid says it ("ten") or as a number ("10"), with or without "o’clock".
+  const HOURS: Record<string, number> = { five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12 };
+  const m = /^(\S+(?: \S+)?)\s+(\d{1,2}|five|six|seven|eight|nine|ten|eleven|twelve)(?:\s+o[’']clock)?\s+(at|not|clear)\s*(.*)$/i.exec((raw ?? '').trim());
+  if (!m) fail('pencil "<Name> <hour> at|not|clear [place]", e.g. pencil "Feldman ten at Rafferty’s" or pencil "Feldman 10 at Rafferty’s".');
   const [, who, hs, act, pl] = m as RegExpExecArray;
   const c = night.d.kase;
   const person = c.people.find((p) => fold(p.short) === fold(who as string) || fold(p.name) === fold(who as string));
   if (!person) fail(`Nobody on the board called ${who}.`);
-  const h = Number(hs);
-  if (!c.board.hours.includes(h)) fail(`The hours are ${c.board.hours.join(', ')}.`);
+  const h = /^\d+$/.test(hs as string) ? Number(hs) : (HOURS[(hs as string).toLowerCase()] as number);
+  if (!c.board.hours.includes(h)) fail(`The hours are ${c.board.hours.map((x) => hourWord(x)).join(', ')}.`);
   let place: string | undefined;
   if (act !== 'clear') {
     const codes = placeCodes(c);
-    const hit = c.places.find((p) => fold(p.short) === fold(pl ?? '') || fold(codes[p.id] ?? '') === fold(pl ?? '') || (fold(p.short).includes(fold(pl ?? '')) && (pl ?? '').length > 2));
+    const want = fold(pl ?? '').replace(/^the /, '');
+    const hit = c.places.find((p) => fold(p.short).replace(/^the /, '') === want || fold(codes[p.id] ?? '') === want || (fold(p.short).includes(want) && want.length > 2));
     if (!hit) fail(`No place called "${pl}".`);
     place = (hit as { id: string }).id;
   }
   night = commit(io, path, night, [{ mark: { person: (person as { id: string }).id, hour: h, action: act as 'at' | 'not' | 'clear', ...(place ? { place } : {}) } }]);
-  return boardGridText(c, night.run);
+  const said = act === 'clear' ? `Rubbed out ${nameOf(c, (person as { id: string }).id)} at ${hourWord(h)}.` : `Pencilled: ${nameOf(c, (person as { id: string }).id)} ${act === 'not' ? 'not at' : 'at'} ${placeName(c, place as string)} at ${hourWord(h)}. It shows as ~ on the grid.`;
+  return `${said}\n\n${boardGridText(c, night.run)}`;
 }
 
 function helpText(): string {
@@ -558,7 +588,7 @@ function helpText(): string {
     'COMMANDS',
     '  new --seed N --tier 0..5 [--type murder|lost-item|lost-pet] [--name <detective>] [--no-teach] --save F',
     '  look · do <n|words> · page <n> · notebook · grid',
-    '  pencil "<Name> <hour> at|not|clear [place]" · confront <Name>',
+    '  pencil "<Name> <hour> at|not|clear [place]" (pencil "Feldman ten at Rafferty’s") · confront <Name>',
     '  report [<Name>] (with a name, the lines that could break their story)',
     '  file "who=…; breaks=…; when=…; how=…; why=…"',
     '       (a lost thing: where=…; whereBy=… instead of how=…; breaks=hunch for a hunch)',

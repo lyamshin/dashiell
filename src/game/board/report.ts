@@ -42,6 +42,7 @@ import {
   type PersonId,
 } from './model.js';
 import { withCaps } from './pages.js';
+import { motiveForm, whyOrder } from './motives.js';
 
 export type FieldKey = 'who' | 'when' | 'how' | 'why' | 'where' | 'breaks' | 'whereBy';
 
@@ -72,6 +73,11 @@ export interface Verdict {
   points: number;
   /** How many the report asked. `points` out of this. */
   asked: number;
+  /**
+   * docs/47 A2: the score, saying what's scored, so it matches the ticks: "4 out of 4: who (and the
+   * line that breaks the story), when, how and why."
+   */
+  scoreLine: string;
   outcome: Outcome;
   actionsUsed: number;
   par: number;
@@ -117,13 +123,16 @@ export function boardFields(d: BoardDeal): FieldSpec[] {
   const c = d.kase;
   const people = suspectsOf(c).map((p) => ({ value: p, label: personOf(c, p)?.name ?? p }));
   const hours = c.board.hours.map((h) => ({ value: String(h), label: `${cap(hourWord(h))} o’clock` }));
-  const why = suspectsOf(c).map((p) => ({ value: p, label: cap(personOf(c, p)?.motive ?? p) }));
+  // docs/47 B7: the reasons in an order of their own, and without the suspect's pronoun.
+  const why = whyOrder(c, suspectsOf(c)).map((p) => ({ value: p, label: motiveForm(c, p) }));
+  // docs/47 B9: a lost pet is "him" or "her" on the form too.
+  const it = c.type === 'lost-pet' ? pronOf(c, c.crime.victim) : { he: 'it', him: 'it' };
   const out: FieldSpec[] = [
-    { key: 'who', label: isMurder(c) ? 'Who did it' : 'Who took it', options: people },
-    { key: 'when', label: isMurder(c) ? 'When' : 'When it went', options: hours },
+    { key: 'who', label: isMurder(c) ? 'Who did it' : `Who took ${it.him}`, options: people },
+    { key: 'when', label: isMurder(c) ? 'When' : `When ${it.he} went`, options: hours },
   ];
   if (isMurder(c)) out.push({ key: 'how', label: 'How', options: meansOptions(d) });
-  else out.push({ key: 'where', label: 'Where it is now', options: whereOptions(d) });
+  else out.push({ key: 'where', label: `Where ${it.he} is now`, options: whereOptions(d) });
   out.push({ key: 'why', label: 'Why', options: why });
   return out;
 }
@@ -175,6 +184,12 @@ export function reportFrom(d: BoardDeal, answers: Partial<Record<FieldKey, strin
 export interface LineOption {
   value: string;
   label: string;
+  /**
+   * docs/47 A4: the line touches the named person's own story at the hours that mattered: it says
+   * where they were then, or who was at the place they claimed then. The form lists these first,
+   * marked; it never says whether they break it.
+   */
+  touches?: boolean;
 }
 
 /** What a line question says for no line at all. */
@@ -197,10 +212,23 @@ export function hoursThatMattered(d: BoardDeal): Hour[] {
 export function breakOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>, who: PersonId | null): LineOption[] {
   const c = d.kase;
   const hours = new Set(hoursThatMattered(d));
+  const own = who !== null && run.asked.includes(`account:${who}`) ? accountOf(c, who) : undefined;
+  // docs/47 A4: a line touches their story when it says where they were at an hour that mattered,
+  // or who was at the place they claimed then.
+  const touches = (l: Line): boolean => who !== null && l.hour !== undefined && hours.has(l.hour) && (l.about.includes(who) || (!!own && l.place !== undefined && l.place === own.claims[l.hour]?.place));
   return linesHeld(c, run)
     .filter((l) => l.kind !== 'find' && (who === null || l.speaker !== who))
     .filter((l) => (l.hour !== undefined && hours.has(l.hour)) || (who !== null && l.about.includes(who)))
-    .map((l) => ({ value: l.id, label: l.text }));
+    .map((l) => ({ value: l.id, label: l.text, ...(touches(l) ? { touches: true } : {}) }));
+}
+
+/**
+ * The same lines as the form shows them (docs/47 A4): the ones that touch the named person's
+ * story at the hours that mattered first, then the rest. `breaks=N` counts down this order.
+ */
+export function breakOptionsShown(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>, who: PersonId | null): LineOption[] {
+  const all = breakOptions(d, run, who);
+  return [...all.filter((o) => o.touches), ...all.filter((o) => !o.touches)];
 }
 
 /** A small case's crack, held: the culprit said where it went when it was put to them. */
@@ -313,19 +341,37 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
   const plain: string[] = [];
   if (who.half) plain.push('Right, but you couldn’t have known: half credit on who.');
   if (scored.some((f) => f.key === 'where' && f.half)) plain.push('Where it is now was right, but not on the line that put it there: half credit on where.');
+  const what = scored.map((f) => (f.key === 'who' ? 'who (and the line that breaks the story)' : f.key === 'where' ? 'where (and what puts it there)' : f.key));
+  const scoreLine = `${pointsText(points)} out of ${asked}: ${andList(what)}.`;
   return {
     points,
     asked,
+    scoreLine,
     outcome,
     fields,
     actionsUsed: run.used,
     par: parCalls(d),
     plain,
-    closing: closingOf(d, run, outcome),
+    closing: closingOf(d, run, outcome, scored.some((f) => f.key === 'where' && f.correct)),
   };
 }
 
-function closingOf(d: BoardDeal, run: BoardRun, outcome: Outcome): string[] {
+/**
+ * docs/47 C13: the lost thing comes home when the report found it. "By nine Fritz was back in his
+ * basket by the stove, smelling of the chop house and not a bit sorry."
+ */
+function homecoming(d: BoardDeal): string | null {
+  const c = d.kase;
+  if (isMurder(c) || !c.crime.whereNow) return null;
+  const v = victimOf(c);
+  const at = placeName(c, c.crime.whereNow.place);
+  const where = v.description;
+  if (c.type === 'lost-pet') return `By nine ${v.short} was back ${where}, smelling of ${at} and not a bit sorry.`;
+  const plural = /^the \w+s$/.test(v.short);
+  return `By nine ${v.short} ${plural ? 'were' : 'was'} back ${where}, and ${clientOf(c).short} had stopped looking at the place where ${plural ? 'they weren’t' : 'it wasn’t'}.`;
+}
+
+function closingOf(d: BoardDeal, run: BoardRun, outcome: Outcome, whereRight = false): string[] {
   const c = d.kase;
   const hand = new Hand(run.seed * 31 + 7, 999, run.spent);
   const cl = clientOf(c);
@@ -334,6 +380,8 @@ function closingOf(d: BoardDeal, run: BoardRun, outcome: Outcome): string[] {
   const out: string[] = [];
   const end = hand.draw('ending', { outcome, type }, slots, { widen: true });
   if (end) out.push(end);
+  const home = whereRight && (outcome === 'solved' || outcome === 'lucky' || outcome === 'thin') ? homecoming(d) : null;
+  if (home) out.push(home);
   const par = parCalls(d);
   if (outcome === 'solved') {
     out.push(run.used <= par ? `It took me ${run.used} calls. A better detective would have needed the same, and there aren’t many of those about.` : `It took me ${run.used} calls. A better detective would have done it in ${par}.`);
@@ -456,11 +504,15 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
   for (const l of c.lies) {
     const k = c.confrontations.find((x) => x.person === l.person && x.hour === l.hour);
     const why = l.kind === 'culprit' || l.kind === 'pair' && l.person === c.crime.culprit ? 'to hide the crime' : l.kind === 'pair' ? 'to cover for a friend' : `to hide ${personOf(c, l.person)?.secret ?? 'something'}`;
-    out.push(`- ${nameOf(c, l.person)} said ${placeName(c, l.claim)} at ${hourWord(l.hour)}; ${pronOf(c, l.person).he} was at ${placeName(c, l.truth)}, ${why}. Put to it: ${k?.response === 'admit' ? 'owned up' : k?.response === 'second-lie' ? 'a second story' : k?.response === 'crack' ? 'cracked' : 'refused'}.`);
+    const would = k?.response === 'admit' ? 'owned up' : k?.response === 'second-lie' ? 'a second story' : k?.response === 'crack' ? 'cracked' : 'refused';
+    // Medium 14: "Put to it: refused" read as a put the player never made. Say whether it was.
+    const put = !run || run.asked.includes(`confront:${l.person}@${l.hour}`) ? `Put to it: ${would}.` : `Never put to ${pronOf(c, l.person).him}; put, it would have been: ${would}.`;
+    out.push(`- ${nameOf(c, l.person)} said ${placeName(c, l.claim)} at ${hourWord(l.hour)}; ${pronOf(c, l.person).he} was at ${placeName(c, l.truth)}, ${why}. ${put}`);
   }
   out.push('');
   out.push(`THE PATH (par ${d.analysis.par} questions${d.analysis.motive ? ' and the motive search' : ''}, ${d.analysis.walks} walks)`);
-  d.analysis.path.forEach((s, i) => out.push(`${i + 1}. ${s.label}. ${s.why.replace(/\s*\(step \d+\)/g, '')}`));
+  // "who was at Kowalski’s tonight?", not "tonight?." (Raw 11's #27).
+  d.analysis.path.forEach((s, i) => out.push(`${i + 1}. ${s.label}${/[?.!]$/.test(s.label) ? '' : '.'} ${s.why.replace(/\s*\(step \d+\)/g, '').replace(/\s*\(the office\):/g, ' (the office said so):')}`));
   if (d.analysis.motive) out.push(`+. ${questionById(c, d.analysis.motive)?.label ?? ''}.`);
   return out.join('\n');
 }

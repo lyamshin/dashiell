@@ -19,6 +19,7 @@ import confrontJson from '../../../content/board/confront.json';
 import nightJson from '../../../content/board/night.json';
 import connectiveJson from '../../../content/board/connective.json';
 import stillJson from '../../../content/board/still.json';
+import walkJson from '../../../content/board/walk.json';
 
 /** A board card: an old deck's card shape, with its family. */
 export interface BoardCard {
@@ -41,6 +42,7 @@ export const BOARD_CARDS: BoardCard[] = [
   ...(nightJson as BoardCard[]),
   ...(connectiveJson as BoardCard[]),
   ...(stillJson as BoardCard[]),
+  ...(walkJson as BoardCard[]),
 ];
 
 const BY_FAMILY = new Map<string, BoardCard[]>();

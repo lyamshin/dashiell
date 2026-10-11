@@ -25,7 +25,7 @@ import { minimalSets } from '../../gen/board/path.js';
 import { GIVENS, pointerIndex } from '../../gen/board/pointers.js';
 import { questionsOf } from '../../gen/board/solver.js';
 import type { Question } from '../../gen/board/types.js';
-import { knownPeople, solveHeld, solveRun } from './knowledge.js';
+import { knownPeople, linesHeld, solveHeld, solveRun } from './knowledge.js';
 import { cap, isMurder, nameOf, placeName, pronOf, solverHeld, type BoardCase, type BoardDeal, type BoardRun, type PersonId } from './model.js';
 
 export interface Star {
@@ -151,6 +151,31 @@ export function starredSteps(d: BoardDeal, run: Pick<BoardRun, 'asked'> & Partia
  * The reason, in a few plain words.
  * ------------------------------------------------------------------ */
 
+/**
+ * docs/47 B10: the reason that matters about somebody, from what's held. Somebody else's word has
+ * them at one place the hour before an hour that mattered and at another place then: so they were
+ * out on the street at that hour, and may have passed something. Neither place is the scene.
+ */
+export function movedAt(c: BoardCase, run: Pick<BoardRun, 'asked'>, p: PersonId): { from: string; to: string; h: number } | null {
+  const at = new Map<number, string>();
+  for (const l of linesHeld(c, { asked: run.asked, puts: [] })) {
+    if (l.speaker === p || !l.about.includes(p) || l.place === undefined || l.hour === undefined) continue;
+    if (l.kind !== 'list' && l.kind !== 'claim' && l.kind !== 'given') continue;
+    if (!at.has(l.hour)) at.set(l.hour, l.place);
+  }
+  for (const h of c.givens.window ?? c.crime.window) {
+    const a = at.get(h - 1);
+    const b = at.get(h);
+    if (a && b && a !== b && a !== c.crime.scene && b !== c.crime.scene) return { from: a, to: b, h };
+  }
+  return null;
+}
+
+/** "Pickering walked from the Delmonico rooms to the chop house at ten". */
+export function movedSaid(c: BoardCase, p: PersonId, mv: { from: string; to: string; h: number }): string {
+  return `${nameOf(c, p)} walked from ${placeName(c, mv.from)} to ${placeName(c, mv.to)} at ${hourWords(mv.h)}`;
+}
+
 /** "ask Brauer who was there", "ask Lindemann where she was", "search the table", "put it to Hargrove". */
 export function actionWords(c: BoardCase, q: Question): string {
   const p = c.people.find((x) => x.id === q.subject);
@@ -188,6 +213,12 @@ export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: stri
   }
   const by = pointerIndex(c).by.get(qid);
   if (!by) return '';
+  // docs/47 B10: the reason that matters first. Somebody out on the street at an hour that mattered
+  // may have passed something; that, not who they were with an hour before, is why to ask.
+  if (q.kind === 'account') {
+    const mv = movedAt(c, run, q.subject);
+    if (mv) return `${movedSaid(c, q.subject, mv)} — ask what ${pronOf(c, q.subject).he} passed`;
+  }
   let why: string | undefined;
   for (let i = run.asked.length - 1; i >= 0 && why === undefined; i--) why = by.get(run.asked[i] as string);
   why ??= by.get(GIVENS);

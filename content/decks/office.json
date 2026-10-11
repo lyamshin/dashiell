@@ -2,7 +2,7 @@
   {
     "id": "off-001",
     "deck": "office",
-    "text": "The landlord's note sat on the blotter, unopened since Tuesday; we had an understanding. The radiator had lost its fight with the cold and was lying there.",
+    "text": "The landlady’s note sat on the blotter, unopened since Tuesday; we had an understanding. The radiator had lost its fight with the cold and was lying there.",
     "tags": {
       "circumstance": "behind-on-rent",
       "weather": "cold"
@@ -18,7 +18,7 @@
         "short": "the radiator",
         "kind": "machine",
         "pay": [
-          "The radiator knocked once, as if it had been paid too."
+          "The office radiator had lost its fight with the cold hours ago. At least one of us had been paid to keep going."
         ]
       }
     },
@@ -27,7 +27,7 @@
   {
     "id": "off-002",
     "deck": "office",
-    "text": "Rent was three weeks gone. The envelope wasn't going to pay itself by sitting on the desk. I lit a cigarette off the lamp and let the smoke do the worrying.",
+    "text": "Rent was three weeks gone. The envelope wasn’t going to pay itself by sitting on the desk. I lit a cigarette off the lamp and let the smoke do the worrying.",
     "tags": {
       "circumstance": "behind-on-rent",
       "weather": "any"
@@ -42,7 +42,7 @@
         "short": "the rent envelope",
         "kind": "paper",
         "pay": [
-          "The rent envelope hadn’t moved from the desk. It had heard the money, though. I could tell."
+          "The rent envelope on my desk could stop worrying. For once I had something to put in it."
         ]
       }
     },
@@ -51,7 +51,7 @@
   {
     "id": "off-003",
     "deck": "office",
-    "text": "The landlady's bill was folded under the telephone. I'd see it every time the thing didn't ring. I decided not to open it until it did.",
+    "text": "The landlady’s bill was folded under the telephone. I’d see it every time the thing didn’t ring. I decided not to open it until it did.",
     "tags": {
       "circumstance": "behind-on-rent",
       "weather": "any"
@@ -66,7 +66,7 @@
         "short": "the telephone",
         "kind": "machine",
         "pay": [
-          "The telephone still hadn’t rung. It didn’t need to now. The trouble had taken the stairs."
+          "The office telephone never had rung tonight. It hadn’t needed to. The trouble had taken the stairs."
         ]
       }
     },
@@ -92,7 +92,7 @@
         "short": "the cold",
         "kind": "thing",
         "pay": [
-          "The cold was still coming in round the sash to collect. I told it to take a number."
+          "The cold would still be coming in round the office sash to collect. It could take a number."
         ]
       }
     },
@@ -118,7 +118,7 @@
         "short": "the rent envelope",
         "kind": "paper",
         "pay": [
-          "The rent envelope was still looking out of its little window. For once I had something to show it."
+          "The rent envelope on my desk would still be looking out of its little window. For once I had something to show it."
         ]
       }
     },
@@ -127,7 +127,7 @@
   {
     "id": "off-006",
     "deck": "office",
-    "text": "I had money in the desk drawer for once. I'd opened the drawer twice to make sure, and once more just to visit.",
+    "text": "I had money in the desk drawer for once. I’d opened the drawer twice to make sure, and once more just to visit.",
     "tags": {
       "circumstance": "flush",
       "weather": "any"
@@ -141,7 +141,7 @@
         "short": "the desk drawer",
         "kind": "furniture",
         "pay": [
-          "I put the new money in the desk drawer with the old. The drawer had never had company before."
+          "The new money would go in the desk drawer with the old. The drawer had never had company before."
         ]
       }
     },
@@ -150,7 +150,7 @@
   {
     "id": "off-007",
     "deck": "office",
-    "text": "The whiskey in the bottom drawer was the good kind, bought and not borrowed. I poured one and didn't count what was left.",
+    "text": "The whiskey in the bottom drawer was the good kind, bought and not borrowed. I poured one and didn’t count what was left.",
     "tags": {
       "circumstance": "flush",
       "weather": "any"
@@ -164,7 +164,7 @@
         "short": "the good whiskey",
         "kind": "drink",
         "pay": [
-          "I didn’t offer the good whiskey in the bottom drawer. It was the first night, and it was the good kind."
+          "There was still the good whiskey in my bottom drawer. Whatever else the night had been, it wasn’t going to end dry."
         ]
       }
     },
@@ -190,7 +190,7 @@
         "short": "the radiator",
         "kind": "machine",
         "pay": [
-          "The radiator knocked twice, pleased with itself. It could tell there was more money in the room."
+          "The office radiator always knows when there’s money about. It would be knocking till morning, pleased with itself."
         ]
       }
     },
@@ -199,7 +199,7 @@
   {
     "id": "off-009",
     "deck": "office",
-    "text": "New bills sat stiff in my coat pocket, smelling of the bank, my favorite smell. Moonlight came in flat across the blotter, and for once I didn't mind what it showed.",
+    "text": "New bills sat stiff in my coat pocket, smelling of the bank, my favorite smell. Moonlight came in flat across the blotter, and for once I didn’t mind what it showed.",
     "tags": {
       "circumstance": "flush",
       "weather": "clear"
@@ -216,7 +216,7 @@
         "short": "the moonlight",
         "kind": "light",
         "pay": [
-          "The moonlight had moved across the blotter while we talked. It had the sense not to interrupt."
+          "By now the moonlight would be off my blotter and gone. It had kept out of the conversation, which I appreciated."
         ]
       }
     },
@@ -240,7 +240,7 @@
         "short": "the clock over the safe",
         "kind": "clock",
         "pay": [
-          "The clock over the safe went on ticking. My head kept time with it, a little behind and a lot louder."
+          "My head was still keeping time with the clock over the office safe, a little behind and a lot louder."
         ]
       }
     },
@@ -249,7 +249,7 @@
   {
     "id": "off-011",
     "deck": "office",
-    "text": "The coffee I'd made was cold by the time I remembered it. I drank it anyway; it was lighter than holding my head.",
+    "text": "The coffee I’d made was cold by the time I remembered it. I drank it anyway; it was lighter than holding my head.",
     "tags": {
       "circumstance": "hungover",
       "weather": "any"
@@ -263,7 +263,7 @@
         "short": "the coffee",
         "kind": "drink",
         "pay": [
-          "The coffee had gone the rest of the way cold. I finished it anyway. I’d started it, and I’m a professional."
+          "The coffee on my desk would have gone the rest of the way cold by now. I’d finish it anyway. I’d started it, and I’m a professional."
         ]
       }
     },
@@ -272,7 +272,7 @@
   {
     "id": "off-012",
     "deck": "office",
-    "text": "Last night's cigarette sat half-smoked in the ashtray, and my stomach asked to be excused from the room. I cracked the window and let the rain-smell in instead.",
+    "text": "Last night’s cigarette sat half-smoked in the ashtray, and my stomach asked to be excused from the room. I cracked the window and let the rain-smell in instead.",
     "tags": {
       "circumstance": "hungover",
       "weather": "rain"
@@ -289,7 +289,7 @@
         "short": "last night’s cigarette",
         "kind": "thing",
         "pay": [
-          "Last night’s cigarette was still in the ashtray. Neither of us had moved much."
+          "Last night’s cigarette would still be in my ashtray, half-smoked. One of us had got through the night without moving."
         ]
       }
     },
@@ -314,7 +314,7 @@
         "short": "the telephone",
         "kind": "machine",
         "pay": [
-          "The telephone kept quiet through all of it. It’s the most tactful thing I own."
+          "My telephone had kept quiet all night, as far as I knew. It’s the most tactful thing I own."
         ]
       }
     },
@@ -340,7 +340,7 @@
         "short": "the frost",
         "kind": "glass",
         "pay": [
-          "The frost had got halfway across the window while we talked. It was making better progress than I was."
+          "By now the frost would be all the way across my office window. It had made better progress than I had."
         ]
       }
     },
@@ -364,7 +364,7 @@
         "short": "the mirror",
         "kind": "glass",
         "pay": [
-          "I didn’t look in the mirror over the washbasin. One of us had had a long night, and it wasn’t the mirror."
+          "The mirror over my washbasin could wait for morning. One of us had had a long night, and it wasn’t the mirror."
         ]
       }
     },
@@ -410,7 +410,7 @@
         "short": "my jaw",
         "kind": "face",
         "pay": [
-          "The low lamp was still being kind to my jaw. It’s the only thing in this city that is."
+          "My jaw had found yet another color nobody sells paint in. I was starting a collection."
         ]
       }
     },
@@ -419,7 +419,7 @@
   {
     "id": "off-022",
     "deck": "office",
-    "text": "I hadn't slept since the night before the night before. The clock over the door had stopped pretending that mattered to it. I let it keep its own count.",
+    "text": "I hadn’t slept since the night before the night before. The clock over the door had stopped pretending that mattered to it. I let it keep its own count.",
     "tags": {
       "circumstance": "sleepless",
       "weather": "any"
@@ -434,7 +434,7 @@
         "short": "the clock over the door",
         "kind": "clock",
         "pay": [
-          "The clock over the door went on keeping its own count. I had started one of my own."
+          "The clock over my office door would still be keeping its own count. I had one of my own going now."
         ]
       }
     },
@@ -458,7 +458,7 @@
         "short": "the lamp",
         "kind": "light",
         "pay": [
-          "The lamp had kept us both company. It was the best listener in the room, and I include me."
+          "The office lamp was the best listener I’d had all night, and I include me."
         ]
       }
     },
@@ -467,7 +467,7 @@
   {
     "id": "off-024",
     "deck": "office",
-    "text": "The tenants below had gone home, and the building's quiet had moved in and made itself comfortable. Through the window the sky had gone perfectly clear. I hadn't looked up in a while.",
+    "text": "The tenants below had gone home, and the building’s quiet had moved in and made itself comfortable. Through the window the sky had gone perfectly clear. I hadn’t looked up in a while.",
     "tags": {
       "circumstance": "sleepless",
       "weather": "clear"
@@ -484,7 +484,7 @@
         "short": "the building’s quiet",
         "kind": "sound",
         "pay": [
-          "The building’s quiet had moved over to make room for us. It didn’t look happy about it."
+          "The quiet in my building would have moved back in the minute I left. It never did like company."
         ]
       }
     },
@@ -493,7 +493,7 @@
   {
     "id": "off-025",
     "deck": "office",
-    "text": "Sleep was a stranger I'd stopped waiting up for. The window showed my reflection and the dark behind it; the dark looked better rested.",
+    "text": "Sleep was a stranger I’d stopped waiting up for. The window showed my reflection and the dark behind it; the dark looked better rested.",
     "tags": {
       "circumstance": "sleepless",
       "weather": "any"
@@ -508,7 +508,7 @@
         "short": "my reflection",
         "kind": "glass",
         "pay": [
-          "My reflection was still in the window. It looked no better rested than before, but it looked employed."
+          "My reflection, wherever there was dark glass, looked no better rested than before. But it looked employed."
         ]
       }
     },
@@ -532,7 +532,7 @@
         "short": "the stairs",
         "kind": "stair",
         "pay": [
-          "The stairs outside had gone quiet again. They’d done their bit for the night."
+          "The office stairs had done their bit for the night. They’d brought me the case."
         ]
       }
     },
@@ -541,7 +541,7 @@
   {
     "id": "off-027",
     "deck": "office",
-    "text": "The retainer was still folded in my breast pocket. I'd checked for it twice on the walk up, which wasn't like me. I put it in the drawer, where it would keep its shape better than I would.",
+    "text": "The retainer was still folded in my breast pocket. I’d checked for it twice on the walk up, which wasn’t like me. I put it in the drawer, where it would keep its shape better than I would.",
     "tags": {
       "circumstance": "just-paid",
       "weather": "any"
@@ -556,7 +556,7 @@
         "short": "the drawer",
         "kind": "furniture",
         "pay": [
-          "The new money went into the drawer beside the old. It was getting crowded in there, and I didn’t mind."
+          "The new money would go in the drawer beside the old. It was getting crowded in there, and I didn’t mind."
         ]
       }
     },
@@ -582,7 +582,7 @@
         "short": "my cigarette",
         "kind": "habit",
         "pay": [
-          "My cigarette had burned down to my fingers while we talked. A man with a bank account would have noticed sooner."
+          "My cigarette had burned down to my fingers again. A man with a bank account would have noticed sooner."
         ]
       }
     },
@@ -591,7 +591,7 @@
   {
     "id": "off-029",
     "deck": "office",
-    "text": "I'd paid the landlady on my way up, and she'd counted it on the landing in front of me. The stairs felt shorter for it. The office looked the same as always, which was its own kind of relief.",
+    "text": "I’d paid the landlady on my way up, and she’d counted it on the landing in front of me. The stairs felt shorter for it. The office looked the same as always, which was its own kind of relief.",
     "tags": {
       "circumstance": "just-paid",
       "weather": "any"
@@ -606,7 +606,7 @@
         "short": "the stairs",
         "kind": "stair",
         "pay": [
-          "The stairs would feel shorter going down, too. That’s what paying the rent does for a building."
+          "The office stairs would still be a little shorter when I climbed them next. Paid rent does that to a building."
         ]
       }
     },
@@ -615,7 +615,7 @@
   {
     "id": "off-030",
     "deck": "office",
-    "text": "The fee sat on the blotter where I'd dropped it, more money than the desk usually saw in a month. I left the lamp burning longer than I needed, so the two of them could get acquainted.",
+    "text": "The fee sat on the blotter where I’d dropped it, more money than the desk usually saw in a month. I left the lamp burning longer than I needed, so the two of them could get acquainted.",
     "tags": {
       "circumstance": "just-paid",
       "weather": "any"
@@ -630,7 +630,7 @@
         "short": "the fee",
         "kind": "paper",
         "pay": [
-          "The fee on the blotter had company now. The lamp could make the introductions."
+          "The fee on my blotter would have company soon. The lamp could make the introductions."
         ]
       }
     },
@@ -656,7 +656,7 @@
         "short": "the street lamps",
         "kind": "light",
         "pay": [
-          "Outside, the street lamps were still sharp as far as the corner. It was a clear night to be out in, which was lucky, because I was going to be."
+          "It had stayed a clear night, the street lamps sharp to every corner. I’d seen most of the corners."
         ]
       }
     },
@@ -691,7 +691,7 @@
   {
     "id": "off-033",
     "deck": "office",
-    "text": "More money in the drawer than bills on the desk. The telephone company and the landlady were paid, and some was left over. I didn't know what people did with that.",
+    "text": "More money in the drawer than bills on the desk. The telephone company and the landlady were paid, and some was left over. I didn’t know what people did with that.",
     "tags": {
       "circumstance": "flush",
       "weather": "any"
@@ -707,7 +707,7 @@
         "short": "the money in the drawer",
         "kind": "paper",
         "pay": [
-          "There was more money in the drawer now. I still didn’t know what people did with it. I was prepared to find out."
+          "There’d be more money in the drawer now. I still didn’t know what people did with it. I was prepared to find out."
         ]
       }
     },
@@ -759,7 +759,7 @@
         "short": "the shade",
         "kind": "light",
         "pay": [
-          "I left the shade down. The moon could hear about it in the morning, with everybody else."
+          "The shade in my office was still down. The moon could hear about it in the morning, with everybody else."
         ]
       }
     },
@@ -768,7 +768,7 @@
   {
     "id": "off-036",
     "deck": "office",
-    "text": "My head ached from the night before. I'd sent two aspirin after it, and they hadn't found it yet. The fog outside made the street lamp a smudge, and my eyes were grateful.",
+    "text": "My head ached from the night before. I’d sent two aspirin after it, and they hadn’t found it yet. The fog outside made the street lamp a smudge, and my eyes were grateful.",
     "tags": {
       "circumstance": "hungover",
       "weather": "fog"
@@ -811,7 +811,7 @@
         "short": "the glass of water",
         "kind": "hands",
         "pay": [
-          "My two fingers were still in the glass of water. I’d shaken on the job with the other hand."
+          "My two fingers had swollen up again since the glass of water. I’d shaken on the job with the other hand."
         ]
       }
     },
@@ -889,7 +889,7 @@
         "short": "the rain",
         "kind": "water",
         "pay": [
-          "The rain was still at the window, going on about something. Now there were two of us with something to say."
+          "The rain was still going on about something. Now there were two of us with something to say."
         ]
       }
     },
@@ -898,7 +898,7 @@
   {
     "id": "off-043",
     "deck": "office",
-    "text": "The last client had paid in full, and I owed nobody. Feet on the desk, I enjoyed it carefully, like holding somebody else's baby. Outside, a clear, still night.",
+    "text": "The last client had paid in full, and I owed nobody. Feet on the desk, I enjoyed it carefully, like holding somebody else’s baby. Outside, a clear, still night.",
     "tags": {
       "circumstance": "just-paid",
       "weather": "clear"
@@ -915,7 +915,7 @@
         "short": "my feet",
         "kind": "posture",
         "pay": [
-          "I took my feet off the desk. Somebody was paying me to use them."
+          "My feet had been off the desk all night. Somebody was paying me to use them."
         ]
       }
     },
@@ -941,7 +941,7 @@
         "short": "the fog",
         "kind": "water",
         "pay": [
-          "The fog was still up to the second-floor windows. I’d be going out in it soon, and it knew."
+          "The fog had stayed up at the second-floor windows all night. I’d been out in it, and it knew."
         ]
       }
     },

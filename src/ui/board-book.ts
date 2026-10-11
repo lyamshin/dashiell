@@ -22,7 +22,6 @@ import {
   dealBoard,
   deadlineWords,
   hourWord,
-  isMurder,
   nameOf,
   personOf,
   placeName,
@@ -34,7 +33,7 @@ import {
   type TierIndex,
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
-import { BREAKS_LABEL, HUNCH, WHERE_BY_LABEL, boardFields, breakOptions, curtainOfBoard, hoursThatMattered, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
+import { BREAKS_LABEL, HUNCH, WHERE_BY_LABEL, boardFields, breakOptionsShown, curtainOfBoard, hoursThatMattered, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE } from '../game/board/teach.js';
 import { costLabel } from '../game/board/text.js';
 import { fileToProfile, loadProfile, teachOn, type KeyValueStore } from '../game/board/profile.js';
@@ -354,7 +353,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       class: `choice${ch.lead ? ' choice--lead' : ''}${ch.done ? ' choice--done' : ''}${extra}`,
       type: 'button',
       'data-command': ch.command,
-      'aria-label': [ch.label, ch.lead && ch.why ? `worth taking now: ${ch.why}` : '', ch.done ? 'already done' : '', ch.minutes > 0 ? `${ch.minutes} minutes` : 'free', ch.note ?? ''].filter(Boolean).join(', '),
+      'aria-label': [ch.label, ch.lead && ch.why ? `worth taking now: ${ch.why}` : '', ch.done ? 'already done' : '', ch.command.startsWith('picker') ? 'free to look' : costLabel(ch), ch.note ?? ''].filter(Boolean).join(', '),
     });
     if (ch.lead) b.append(el('span', { class: 'mark', 'aria-hidden': 'true', text: '*' }));
     const label = el('span', { class: 'label', text: ch.label });
@@ -362,7 +361,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     b.append(label);
     if (ch.note) b.append(el('span', { class: 'aside', text: ch.note }));
     if (ch.lead && ch.why) b.append(el('span', { class: 'aside why', text: ch.why }));
-    b.append(el('span', { class: 'mins', text: ch.command.startsWith('picker') ? (pickerOpen ? 'close' : 'opens') : costLabel(ch) }));
+    b.append(el('span', { class: 'mins', text: ch.command.startsWith('picker') ? (pickerOpen ? 'close' : 'free to look') : ch.done ? 'free' : costLabel(ch) }));
     b.addEventListener('click', onClick);
     return b;
   }
@@ -458,13 +457,17 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   function pickerNode(pk: Picker): HTMLElement {
     const c = (d as BoardDeal).kase;
     const box = el('div', { class: 'confront-picker board-picker', role: 'group', 'aria-label': `Put it to ${nameOf(c, pk.person)}` });
-    box.append(el('p', { class: 'note', text: `${pk.help} Each costs ${pk.minutes} min. If it breaks nothing, the time is gone all the same, and the page says why.` }));
+    // docs/47 A6: the person's own pronouns, never "their" for one woman; costs in calls.
+    const female = personOf(c, pk.person)?.female === true;
+    const him = female ? 'her' : 'him';
+    const his = female ? 'her' : 'his';
+    box.append(el('p', { class: 'note', text: `${pk.help} Looking is free; reading one to ${him} costs a call. If it breaks nothing, the call is gone all the same, and the page says why.` }));
     if (pk.ready.length > 0) {
       const sec = el('section', { class: 'picker-sec' });
-      sec.append(el('h4', { class: 'picker-head', text: 'Their line, and the line that breaks it' }));
+      sec.append(el('h4', { class: 'picker-head', text: `${his[0]?.toUpperCase()}${his.slice(1)} line, and the line that breaks it` }));
       for (const r of pk.ready) {
         const b = el('button', { class: 'choice choice--fact', type: 'button', 'data-command': r.command, text: r.label });
-        b.append(el('span', { class: 'mins', text: `${pk.minutes} min` }));
+        b.append(el('span', { class: 'mins', text: '1 call' }));
         b.addEventListener('click', () => command(r.command));
         sec.append(b);
       }
@@ -488,10 +491,10 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       return box;
     }
     const sec = el('section', { class: 'picker-sec' });
-    sec.append(el('h4', { class: 'picker-head', text: `Against “${claim.label}”, read ${personOf(c, pk.person)?.female ? 'her' : 'him'}:` }));
+    sec.append(el('h4', { class: 'picker-head', text: `Against “${claim.label}”, read ${him}:` }));
     for (const l of claim.lines) {
       const b = el('button', { class: 'choice choice--fact', type: 'button', 'data-command': l.command });
-      b.append(el('span', { class: 'label', text: l.label }), el('span', { class: 'fact-src', text: l.source }), el('span', { class: 'mins', text: `${pk.minutes} min` }));
+      b.append(el('span', { class: 'label', text: l.label }), el('span', { class: 'fact-src', text: l.source }), el('span', { class: 'mins', text: '1 call' }));
       b.addEventListener('click', () => command(l.command));
       sec.append(b);
     }
@@ -540,7 +543,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const form = el('form', { class: 'report' });
     form.append(
       el('h2', { text: 'The report' }),
-      el('p', { class: 'note', text: r.used >= budgetCalls(d as BoardDeal) ? (isMurder((d as BoardDeal).kase) ? 'Eight o’clock, and the DA’s man is standing over the desk. Whatever is on the page is what gets filed.' : 'Eight o’clock, and the client is at the door wanting an answer.') : 'Filing is final. Leave a line blank and it goes in as I don’t know.' }),
+      el('p', { class: 'note', text: r.used >= budgetCalls(d as BoardDeal) ? 'The calls are spent. Whatever is on the page is what gets filed; leave a line blank and it goes in as I don’t know.' : 'Filing is final. Leave a line blank and it goes in as I don’t know.' }),
     );
     const dd = d as BoardDeal;
     const selects = new Map<FieldKey, HTMLSelectElement>();
@@ -549,7 +552,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const hs = hoursThatMattered(dd).map((h) => hourWord(h));
     const hours = hs.length > 1 ? `${hs.slice(0, -1).join(', ')} or ${hs[hs.length - 1]}` : (hs[0] ?? '');
     /** A line question: the lines it offers as a list to pick one from, and a hunch. */
-    const lineField = (key: 'breaks' | 'whereBy', label: string, options: () => LineOption[], note: () => string) => {
+    const lineField = (key: 'breaks' | 'whereBy', label: string, options: () => LineOption[], note: () => string, group: () => string = () => '') => {
       const box = el('fieldset', { class: 'field field--lines' });
       box.append(el('legend', { text: label }));
       const hint = el('p', { class: 'line-hint' });
@@ -558,11 +561,16 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       const fill = () => {
         hint.textContent = note();
         clear(list);
-        [...options(), { value: '', label: HUNCH }].forEach((o, i) => {
+        const opts: LineOption[] = options();
+        // docs/47 A4: the lines that touch the named person's own story come first, under a heading.
+        const touching = opts.filter((o) => o.touches).length;
+        [...opts, { value: '', label: HUNCH }].forEach((o, i) => {
+          if (key === 'breaks' && touching > 0 && i === 0) list.append(el('p', { class: 'line-group', text: group() }));
+          if (key === 'breaks' && touching > 0 && i === touching && i < opts.length) list.append(el('p', { class: 'line-group', text: 'Other lines I hold:' }));
           const id = `rf-${key}-${i}`;
           const input = el('input', { type: 'radio', name: key, value: o.value, id });
           if (o.value === '') input.checked = true;
-          list.append(el('label', { class: `line-option${o.value === '' ? ' line-option--hunch' : ''}`, for: id }, input, el('span', { text: o.label })));
+          list.append(el('label', { class: `line-option${o.value === '' ? ' line-option--hunch' : ''}${(o as LineOption).touches ? ' line-option--touches' : ''}`, for: id }, input, el('span', { text: o.label })));
         });
       };
       fill();
@@ -581,8 +589,9 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         const refill = lineField(
           'breaks',
           BREAKS_LABEL,
-          () => breakOptions(dd, r, who()),
+          () => breakOptionsShown(dd, r, who()),
           () => (who() ? `The lines I hold that name ${nameOf(dd.kase, who() as string)} or fall at ${hours}.` : `Name them first. Until then, the lines I hold at ${hours}.`),
+          () => (who() ? `Lines that touch ${nameOf(dd.kase, who() as string)}’s own story at ${hours}:` : ''),
         );
         s.addEventListener('change', refill);
       }
@@ -678,7 +687,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     table.append(el('thead', {}, head));
     const tbody = el('tbody');
     for (const r of g.rows) {
-      const tr = el('tr', { class: r.company ? 'bgrid-row--company' : '' });
+      const tr = el('tr', { class: r.victim ? 'bgrid-row--victim' : r.company ? 'bgrid-row--company' : '' });
       tr.append(el('th', { scope: 'row', class: 'bgrid-name', text: r.name }));
       for (const h of g.hours) {
         const cell = r.cells[h] as BoardCell;
@@ -693,7 +702,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         td.append(b);
         tr.append(td);
       }
-      tr.append(el('td', { class: `bgrid-means is-${r.means === '?' ? 'unknown' : r.means}`, title: r.meansWhy ?? '', text: r.means === '?' ? '·' : r.means }));
+      tr.append(el('td', { class: `bgrid-means is-${r.means === '?' ? 'unknown' : r.means || 'none'}`, title: r.meansWhy ?? '', text: r.means === '?' ? '·' : r.means }));
       tbody.append(tr);
       // The open cell's lines and the pencil, under its row.
       if (openCell && openCell.startsWith(`${r.id}@`)) {

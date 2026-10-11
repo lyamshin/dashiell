@@ -100,7 +100,7 @@ export const SCENE_HOMES: { tail: string; street: string }[] = [
 
 export const LOST_SCENES: { tail: string; street: string }[] = [
   { tail: 'flat on the third floor of 40 Avenue B', street: 'Avenue B' },
-  { tail: 'parlour floor on Stuyvesant Street', street: 'Stuyvesant Street' },
+  { tail: 'parlor floor on Stuyvesant Street', street: 'Stuyvesant Street' },
   { tail: 'flat over the delicatessen on Second Avenue', street: 'Second Avenue' },
 ];
 
@@ -136,17 +136,21 @@ export const UNWATCHED: UDef[] = [
  * no two people give the same reason (decided 2026-09-28). `{p}` is the place; `{they}`,
  * `{them}` and `{their}` the mover; `{h}` the hour.
  */
+// docs/47 B9: a reason never brings in somebody the lists don't have ("met my sister" at a table
+// the head waiter says held two people and nobody else), and never says the opposite of another
+// hour of the same evening ("hadn't eaten" at ten after supper at eight). Whoever was with them is
+// said by name, after the reason. The texts changed in place, so every draw picks as it did.
 export const REASONS: Record<string, string[]> = {
-  bar: ['went over to {p} for a drink', 'met a friend at {p}', 'wanted company, so went to {p}', 'went down to {p} to hear the piano', 'had a standing date at {p}', 'went to {p} to settle a bet', 'stopped in at {p} to get warm', 'went to {p} to hear the fight on the radio'],
-  club: ['went to {p} to dance', 'went to {p}, where the band was new', 'met some people at {p}', 'went down to {p} to hear the trumpet', 'had a table at {p}', 'went to {p}, because a friend was on the door'],
-  restaurant: ['went to {p} for supper', 'hadn’t eaten, so went to {p}', 'met {their} sister at {p} for supper', 'went to {p} for coffee and pie', 'went to {p} to read the late paper over a plate of soup', 'went to {p} for a glass of tea'],
+  bar: ['went over to {p} for a drink', 'went to {p} to see who was in', 'wanted company, so went to {p}', 'went down to {p} to hear the piano', 'went to {p}, as most nights', 'went to {p} to settle a bet', 'stopped in at {p} to get warm', 'went to {p} to hear the fight on the radio'],
+  club: ['went to {p} to dance', 'went to {p}, where the band was new', 'went to {p} to see who was about', 'went down to {p} to hear the trumpet', 'had a table at {p}', 'went to {p}, because a friend was on the door'],
+  restaurant: ['went to {p} for supper', 'couldn’t settle, so went to {p} for coffee', 'went to {p} for the blue-plate supper', 'went to {p} for coffee and pie', 'went to {p} to read the late paper over a plate of soup', 'went to {p} for a glass of tea'],
   theatre: ['went to the second show at {p}', 'had a ticket for {p}', 'went to {p} to see the new picture', 'went to {p} to get off {their} feet for two hours', 'went to {p}, because a friend was in the show'],
   work: ['went on shift at {p}', 'started {their} shift at {p}', 'was called in to {p} to cover a shift', 'went in to {p} early, for the overtime'],
   home: ['went home', 'went home to bed', 'went home to listen to the radio', 'went home to iron a shirt for the morning', 'went back to {their} room to write letters', 'went home to change', 'went home, because {their} feet hurt', 'turned in early'],
   /** An errand at somebody else's home: an hour at most (4a.2). */
-  errand: ['went up to {p} to see a lodger about money', 'went to {p} to collect a debt', 'dropped a parcel off at {p}', 'went round to {p} to borrow a collar stud', 'went round to {p} to return a borrowed umbrella', 'took a letter round to a lodger at {p}'],
+  errand: ['went up to {p} to see about some money owed', 'went to {p} to collect a debt', 'dropped a parcel off at {p}', 'went round to {p} to borrow a collar stud', 'went round to {p} to return a borrowed umbrella', 'took a letter round to {p}'],
   /** A real visit at somebody else's home, which can last the evening. */
-  visit: ['called on a friend who lodges at {p}', 'went to {p} to sit with a sick friend', 'went to {p} for a game of pinochle with a lodger', 'went to {p} to help a friend write letters home'],
+  visit: ['went up to {p} to pay a call', 'went to {p} for the company', 'went to {p} for a game of pinochle', 'went to {p} to help write letters home'],
   /**
    * 4b: going along with somebody on their errand. Two errands to one house in one hour read as a
    * coincidence; the second person who came from the same place went with the first.
@@ -263,7 +267,7 @@ export const LOOKS = [
 ];
 
 export const ITEMS = [
-  { name: 'a late husband’s gold watch', short: 'the watch', where: 'under a glass dome on the parlour mantel', empty: 'The glass dome on the mantel is empty.', weigh: 'took the watch out from under its dome and weighed it in {their} hand' },
+  { name: 'a late husband’s gold watch', short: 'the watch', where: 'under a glass dome on the parlor mantel', empty: 'The glass dome on the mantel is empty.', weigh: 'took the watch out from under its dome and weighed it in {their} hand' },
   { name: 'a pearl brooch', short: 'the brooch', where: 'in the dish on the dresser', empty: 'The dish on the dresser is empty.', weigh: 'held the brooch up to the lamp to see if the pearls were real' },
   { name: 'a silver cigarette case', short: 'the cigarette case', where: 'on the sideboard', empty: 'There’s a clean square in the dust on the sideboard.', weigh: 'turned the cigarette case over to read the hallmark' },
   { name: 'a set of silver spoons', short: 'the spoons', where: 'in the velvet box in the sideboard drawer', empty: 'The velvet box in the sideboard drawer is empty.', weigh: 'counted the spoons out loud' },
@@ -279,8 +283,9 @@ export const PETS = [
 /** Who has the lost thing now; `kinds` are the venues they sit in, every night. */
 export const HOLDERS = [
   { id: 'Lou', who: 'Lou, a bookmaker who takes bets in the back booth', listed: 'Lou the bookmaker in his back booth', kinds: ['bar', 'club', 'restaurant'] },
-  { id: 'Pardo', who: 'a man called Pardo, who buys things and asks nothing', listed: 'Pardo who buys things', kinds: ['bar', 'club', 'restaurant', 'theatre'] },
-  { id: 'runner', who: 'a pawnbroker’s runner called Benny, who sits there late', listed: 'Benny the pawnbroker’s runner', kinds: ['bar', 'club', 'restaurant', 'theatre'] },
+  // docs/47: the name first, so a watcher who has said "Pardo" all night doesn't then say "a man called Pardo".
+  { id: 'Pardo', who: 'Pardo, a man who buys things and asks nothing', listed: 'Pardo who buys things', kinds: ['bar', 'club', 'restaurant', 'theatre'] },
+  { id: 'runner', who: 'Benny, a pawnbroker’s runner who sits there late', listed: 'Benny the pawnbroker’s runner', kinds: ['bar', 'club', 'restaurant', 'theatre'] },
 ];
 
 /** Radio programmes that fix an hour (4a.2). */
@@ -298,12 +303,20 @@ export const SMALL_MEANS: { id: string; mode: 'party' | 'told' | 'spare'; reside
   { id: 'latch-key', mode: 'party', resident: true, office: '{resident} lodges there and has lost {rtheir} key again, so the door was left unlocked.', origin: 'the door, left unlocked for {resident}, which everybody at the {occasion} knew', scene: 'The door is unlocked; no marks on it.' },
   { id: 'broken-lock', mode: 'party', office: 'The lock has been broken since Tuesday, and {client} showed the whole table the locksmith’s card.', origin: 'the broken lock, which everybody at the {occasion} was shown', scene: 'The lock’s tongue is still taped back; no marks on the door.' },
   { id: 'mat', mode: 'party', office: '{Client} went out after the guests and left the key under the mat for {ctheir} sister, as {cthey} told the table {cthey} would.', origin: 'the key under the mat, which everybody at the {occasion} heard about', scene: 'The key is back under the mat; no marks on the door.' },
-  { id: 'window', mode: 'party', office: 'The parlour window onto the fire escape won’t latch; {client} showed everybody at the table, laughing.', origin: 'the parlour window that won’t latch, which everybody at the {occasion} was shown', scene: 'The parlour window is up six inches, and there’s soot on the sill.' },
+  { id: 'window', mode: 'party', office: 'The parlor window onto the fire escape won’t latch; {client} showed everybody at the table, laughing.', origin: 'the parlor window that won’t latch, which everybody at the {occasion} was shown', scene: 'The parlor window is up six inches, and there’s soot on the sill.' },
   { id: 'told-mat', mode: 'told', office: '{Client} sat in {venue} from {h0} until {h2}, telling anybody who’d listen that {cthey} was off to {ctheir} sister’s for the night and the key was under the mat.', origin: 'the key under the mat, which {client} told the room at {venue} about', scene: 'The key is back under the mat; no marks on the door.' },
-  { id: 'told-window', mode: 'told', office: '{Client} sat in {venue} from {h0} until {h2}, complaining to anybody who’d listen that {ctheir} parlour window won’t latch, and that {cthey} was off to {ctheir} sister’s for the night.', origin: 'the parlour window that won’t latch, which {client} told the room at {venue} about', scene: 'The parlour window is up six inches, and there’s soot on the sill.' },
-  { id: 'spare-nail', mode: 'spare', office: '{Client} was at {ctheir} sister’s all evening, and the flat was locked. {Keeper} keeps the spare key on a nail in the hall at {x}, where anybody who comes in can see it. It was back on its nail by morning.', origin: 'the spare key on the nail in the hall at {x}', scene: 'No marks on the door or the window: whoever came in had a key.' },
-  { id: 'spare-tin', mode: 'spare', office: '{Client} was at the pictures all evening, and the flat was locked. The spare key lives in the sugar tin on {keeper}’s kitchen shelf at {x}, and everybody who drops in there knows it.', origin: 'the spare key in the sugar tin at {x}', scene: 'The door was locked again behind whoever it was; no marks on it.' },
+  { id: 'told-window', mode: 'told', office: '{Client} sat in {venue} from {h0} until {h2}, complaining to anybody who’d listen that {ctheir} parlor window won’t latch, and that {cthey} was off to {ctheir} sister’s for the night.', origin: 'the parlor window that won’t latch, which {client} told the room at {venue} about', scene: 'The parlor window is up six inches, and there’s soot on the sill.' },
+  // docs/47 B9: the spare key is where it is in one set of words all night (`SPARE_KEY`), and nothing
+  // says it came back: nobody returned it, so no line implies somebody did.
+  { id: 'spare-nail', mode: 'spare', office: '{Client} was at {ctheir} sister’s all evening, and the flat was locked. {Keeper} keeps the spare key on a nail in the hall at {x}, where anybody who comes in can see it.', origin: 'the spare key on the nail in the hall at {x}', scene: 'No marks on the door or the window: whoever came in had a key.' },
+  { id: 'spare-tin', mode: 'spare', office: '{Client} was at the pictures all evening, and the flat was locked. The spare key lives in the sugar tin on the kitchen shelf at {x}, and everybody who drops in there knows it.', origin: 'the spare key in the sugar tin at {x}', scene: 'The door was locked again behind whoever it was; no marks on it.' },
 ];
+
+/** docs/47 B9: where the spare key lives, by setup, as every line says it: "in the sugar tin at Kowalski’s". */
+export const SPARE_KEY: Record<string, { at: string; still: string }> = {
+  'spare-nail': { at: 'on the nail in the hall at {x}', still: 'on its nail' },
+  'spare-tin': { at: 'in the sugar tin at {x}', still: 'in its tin' },
+};
 
 /** What the gathering was, in a party setup. */
 export const OCCASIONS = [
@@ -317,7 +330,7 @@ export const OCCASIONS = [
 /** What fixes the hour in a small case, one hour (Raw–Poached). Vars: {hc}, {programme}, {dog}. */
 export const SMALL_CLOCKS: { id: string; text: string }[] = [
   { id: 'dog', text: 'The {dog} next door went off at {hc} o’clock, the way it does when somebody’s on the stairs.' },
-  { id: 'clock', text: 'Whoever it was knocked the parlour clock off the shelf, and it stopped at ten past {hc}.' },
+  { id: 'clock', text: 'Whoever it was knocked the parlor clock off the shelf, and it stopped at ten past {hc}.' },
   { id: 'radio', text: 'The woman upstairs heard feet on the stairs in the middle of {programme}, which runs from {hc} o’clock.' },
   { id: 'delivery', text: 'The boy from the delicatessen came up with an order at a quarter past {hc} and passed somebody on the dark stairs, going down in a hurry.' },
   { id: 'el', text: 'The man below heard the door go just after the {hc} o’clock el went by; he sets his watch by it.' },
@@ -334,9 +347,9 @@ export const WINDOW_LINES: { id: string; text: string }[] = [
 
 /** The neighbour who has the pet for an hour (the last sighting away from the scene). */
 export const KEEPERS: { id: string; intro: string }[] = [
-  { id: 'looks-in', intro: '{Keeper}, a neighbour at {x}, looks in on {pet} of an evening.' },
+  { id: 'looks-in', intro: '{Keeper}, a neighbor at {x}, looks in on {pet} of an evening.' },
   { id: 'minds', intro: '{Keeper}, at {x}, minds {pet} when {client} is out.' },
-  { id: 'borrows', intro: '{Keeper}, a neighbour at {x}, borrows {pet} most evenings.' },
+  { id: 'borrows', intro: '{Keeper}, a neighbor at {x}, borrows {pet} most evenings.' },
 ];
 
 /**
@@ -344,7 +357,7 @@ export const KEEPERS: { id: string; intro: string }[] = [
  * `shelf` is the landlady's own words for where it was kept.
  */
 export const ROOMING_MEANS: { id: string; kind: 'chloral' | 'poison' | 'gun' | 'blade'; name: string; shelf: string; origin: string; scene: string; what: string; police: string; delay: [number, number] }[] = [
-  { id: 'chloral', kind: 'chloral', name: 'chloral', shelf: 'the chloral on my hall shelf', origin: 'the chloral bottle off the hall shelf at {x}', scene: 'Two glasses; one smells sweet and chemical. Under the table an empty bottle, labelled from {x}. The lodgers keep it on the hall shelf. He drank with somebody he knew.', what: 'the table', police: 'a fall', delay: [20, 60] },
+  { id: 'chloral', kind: 'chloral', name: 'chloral', shelf: 'the chloral on my hall shelf', origin: 'the chloral bottle off the hall shelf at {x}', scene: 'Two glasses; one smells sweet and chemical. Under the table an empty bottle, labelled from {x}. The lodgers keep it on the hall shelf. He drank with somebody he knew.', what: 'the table', police: 'his heart', delay: [20, 60] },
   { id: 'revolver', kind: 'gun', name: 'a revolver', shelf: 'the revolver in the hall-stand drawer', origin: 'the landlady’s late husband’s revolver, from the hall-stand drawer at {x}', scene: 'A revolver under the chair, one chamber fired. It belongs in the hall-stand drawer at {x}. He was shot from across his own table.', what: 'the floor', police: 'a robbery gone wrong', delay: [0, 0] },
   { id: 'knife', kind: 'blade', name: 'a carving knife', shelf: 'the carving knife in my kitchen drawer', origin: 'the carving knife from the kitchen drawer at {x}', scene: 'A carving knife on the floor by the door, with the mark burnt into the handle that every knife in the kitchen at {x} has. He opened the door to somebody and turned his back.', what: 'the floor', police: 'the work of a burglar he disturbed', delay: [0, 0] },
   { id: 'laudanum', kind: 'poison', name: 'laudanum', shelf: 'the laudanum in my medicine cupboard', origin: 'the laudanum from the medicine cupboard at {x}', scene: 'A cup of cocoa gone cold, bitter at the bottom. Beside it a brown bottle with a chemist’s label made out to {x}. Somebody made him cocoa.', what: 'the table', police: 'his heart', delay: [20, 60] },
@@ -369,7 +382,7 @@ export const MURDER_CLOCKS: { id: string; kinds: string[]; windowed: boolean; te
   { id: 'radios', kinds: ['gun'], windowed: true, text: 'Shot at {a} or {b} o’clock. Nobody heard it over the radios.' },
   { id: 'surgeon', kinds: ['chloral', 'poison', 'gun', 'blade'], windowed: true, text: 'The police surgeon puts it at {a} or {b} o’clock, by the warmth of him.' },
   { id: 'clock', kinds: ['chloral', 'poison', 'gun', 'blade'], windowed: true, text: 'His mantel clock was knocked over and stopped at five past, but it was never right: {a} or {b} o’clock, {client} says.' },
-  { id: 'dozed', kinds: ['chloral', 'poison', 'gun', 'blade'], windowed: true, text: 'The woman upstairs heard {sound} at {a} or {b} o’clock; she’d dozed off over the radio and can’t say which.' },
+  { id: 'dozed', kinds: ['chloral', 'poison', 'gun', 'blade'], windowed: true, text: 'The woman across the landing heard {sound} at {a} or {b} o’clock; she’d dozed off over the radio and can’t say which.' },
 ];
 
 /** The client, in a murder: who they were to him. */

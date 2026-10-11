@@ -34,7 +34,7 @@
         "short": "the folded hands",
         "kind": "hands",
         "pay": [
-          "One hand came unfolded, did something small, and went back. I’ve seen banks spend less carefully."
+          "One of those folded hands came unfolded, did something small, and went back. I’ve seen banks spend less carefully."
         ]
       }
     },
@@ -179,7 +179,7 @@
         "short": "the fingertips",
         "kind": "hands",
         "pay": [
-          "The flat fingertips were drumming on nothing, a line at a time. Somewhere a letter was getting written whether anybody wanted it or not."
+          "The flat fingertips were typing on nothing, a line at a time. Nobody was dictating."
         ]
       }
     },
@@ -331,7 +331,7 @@
   {
     "id": "chr-282",
     "deck": "character",
-    "text": "Thin and a little bent at the shoulders from the machine, {he} wore clothes better made than anything {he} could have bought, and they hadn’t been.",
+    "text": "Thin, and bent at the shoulders from years over a sewing machine, {he} wore clothes too good to have been bought. {He}’d made every stitch.",
     "tags": {
       "role": "arch-seamstress",
       "kind": "look"
@@ -342,7 +342,7 @@
         "short": "the clothes",
         "kind": "clothes",
         "pay": [
-          "My coat came from a store. You could tell from across the room, and somebody had."
+          "I buttoned my coat. It came off a rack, and in that company it knew it."
         ]
       }
     },
@@ -888,7 +888,7 @@
   {
     "id": "chr-574",
     "deck": "character",
-    "text": "The uniform coat had the theatre’s name on the collar, and the cap had been reshaped by a hundred hot nights.",
+    "text": "The uniform coat had the theater’s name on the collar, and the cap had been reshaped by a hundred hot nights.",
     "tags": {
       "role": "ticket-taker",
       "kind": "look"
@@ -1033,7 +1033,7 @@
   {
     "id": "chr-665",
     "deck": "character",
-    "text": "Neat and grey and precise, {he} wrote everything down, and I had the feeling I’d be written down too before long.",
+    "text": "Neat and gray and precise, {he} wrote everything down, and I had the feeling I’d be written down too before long.",
     "tags": {
       "role": "druggist",
       "kind": "look"

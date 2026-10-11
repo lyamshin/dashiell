@@ -10,6 +10,7 @@
  */
 
 import { GIVENS, pointerIndex } from '../../gen/board/pointers.js';
+import { SPARE_KEY } from '../../gen/board/content.js';
 import { accountOf, confrontationOf, listOf } from './knowledge.js';
 import {
   andList,
@@ -177,7 +178,8 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
 
   if (qk === 'search') {
     const f = c.finds.find((x) => x.id === qrest);
-    if (f?.gives.why) return out(`the report wanted a why, and a man’s papers are where he keeps the people who wanted something from him`, ['givens:found'], { places: [f.place] });
+    // Said as a detective would, never as the form asks it ("the report wanted a why", Poached 5's #11).
+    if (f?.gives.why) return out(`a man’s papers are where he keeps the people who wanted something from him`, ['givens:found'], { places: [f.place] });
     if (isMurder(c)) return out(`${victimOf(c).short} had died ${at(c, c.crime.scene, here)}`, ['givens:found'], { people: [c.crime.victim], places: [c.crime.scene] });
     return out(`${victimOf(c).short} had gone from ${at(c, c.crime.scene, here)}`, ['givens:gone'], { places: [c.crime.scene] });
   }
@@ -228,10 +230,11 @@ function givenPlace(c: BoardCase, L: PlaceId, here: PlaceId): Pointer {
   const means = lines.find((g) => g.kind === 'means');
   const mode = c.setup?.means ?? '';
   if (/^told/.test(mode)) {
-    const what = mode === 'told-window' ? `${cp.his} parlour window` : `${cp.his} key`;
+    const what = mode === 'told-window' ? `${cp.his} parlor window` : `${cp.his} key`;
     return base(`${cl} had sat ${at(c, L, here)} telling the room about ${what}`, ['givens:means'], { people: [c.client] });
   }
-  if (/^spare/.test(mode)) return base(`the spare key hung ${at(c, L, here)}`, ['givens:means']);
+  // docs/47 B9: the key is where the office said, in the office's words: a nail, or a sugar tin.
+  if (/^spare/.test(mode)) return base(`the spare key lived ${(SPARE_KEY[mode]?.at ?? 'at {x}').replace(/ at \{x\}$/, '')} ${at(c, L, here)}`, ['givens:means']);
   if (lines.some((g) => g.kind === 'venue') && isMurder(c)) return base(`${victimOf(c).short} had been ${at(c, L, here)} earlier in the evening`, ['givens:venue'], { people: [c.crime.victim] });
   const f = c.givens.facts.find((x) => x.k === 'at' && x.place === L);
   if (f) return base(`${cl} had put ${nameOf(c, f.p)} ${at(c, L, here)} at ${hourWord(f.h)}`, ['givens:facts'], { hours: [f.h], people: [f.p, c.client] });

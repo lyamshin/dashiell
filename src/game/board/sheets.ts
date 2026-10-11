@@ -37,7 +37,7 @@ export const SHEETS: Sheet[] = [
 
   // Arriving (golden pages 2, 4, 8, 12).
   { id: 'arrival-walk-first', job: 'arrival', paras: [['walk'], ['arrival'], ['why'], ['thought'], ['close']] },
-  { id: 'arrival-why-first', job: 'arrival', paras: [['why', 'walk'], ['arrival'], ['thought'], ['close']] },
+  // (docs/47: no "why first" arrival: its "here" came before the walk that brought me there.)
   { id: 'arrival-room', job: 'arrival', paras: [['walk'], ['arrival'], ['why', 'thought'], ['close']] },
 
   // "Where were you tonight?" (golden pages 6, 7, 9).
@@ -65,7 +65,7 @@ export const SHEETS: Sheet[] = [
   { id: 'turn', job: 'turn', paras: [['staging'], ['job'], ['handoff'], ['close']] },
 
   // The report (golden page 14).
-  { id: 'report', job: 'report', paras: [['staging', 'why'], ['close']] },
+  { id: 'report', job: 'report', paras: [['staging', 'why'], ['thought'], ['close']] },
 
   // A question asked already, read back; going over what I have; back to the office.
   { id: 'repeat', job: 'repeat', paras: [['why'], ['job']] },

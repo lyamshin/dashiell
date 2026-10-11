@@ -82,6 +82,12 @@ export interface Walk {
   dir: string;
   /** "ten minutes", "a quarter of an hour", "twenty-five minutes". */
   said: string;
+  /**
+   * docs/47 A1: the distance without a minute count, since the clock moves a call's worth whatever
+   * the walk: "a couple of blocks", "a few blocks", "a good walk", "a long walk"; "round the corner" when near.
+   */
+  far: string;
+  near: boolean;
   from: string;
   to: string;
   street: string;
@@ -103,7 +109,9 @@ export function walkBetween(c: BoardCase, from: PlaceId, to: PlaceId): Walk {
   const dir = ns && ew ? `${ns} and ${ew}` : ns || ew || 'round the corner';
   const n = NUM[minutes / 5] ?? `${minutes}`;
   const said = minutes === 15 ? 'a quarter of an hour' : minutes === 30 ? 'half an hour' : `${n} minutes`;
-  return { minutes, dir, said, from: name(c, from), to: name(c, to), street: b.street };
+  const near = dir === 'round the corner' || minutes <= 5;
+  const far = near ? 'round the corner' : minutes <= 10 ? 'a couple of blocks' : minutes <= 15 ? 'a few blocks' : minutes <= 20 ? 'a fair few blocks' : minutes <= 30 ? 'a good walk' : 'a long walk';
+  return { minutes, dir, said, far, near, from: name(c, from), to: name(c, to), street: b.street };
 }
 
 function name(c: BoardCase, id: PlaceId): string {

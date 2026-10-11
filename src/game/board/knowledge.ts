@@ -30,6 +30,7 @@ import {
   type PersonId,
   type PlaceId,
 } from './model.js';
+import { papersLine, whyOrder } from './motives.js';
 
 /** One thing the player holds, at the grain a confrontation reads it. */
 export interface Line {
@@ -85,7 +86,9 @@ export function confrontationOf(c: BoardCase, p: PersonId, h: Hour): Confrontati
 export function entryName(c: BoardCase, e: ListEntry): string {
   if ('person' in e) return nameOf(c, e.person);
   if ('other' in e) return c.others?.find((o) => o.id === e.other)?.name ?? e.other;
-  return `somebody ${e.look} I didn’t know`;
+  // docs/47 B9: the watcher saw a coat, not a face. "I didn't know" said of somebody they'd named an
+  // hour before was a contradiction (Hard-boiled 8); a back to the room isn't.
+  return `somebody ${e.look}, back to the room, I couldn’t swear who`;
 }
 
 /** Whether a watcher's hour is exhaustive: no stranger the watcher couldn't name. */
@@ -110,7 +113,8 @@ export function listText(c: BoardCase, l: WatchList, h: Hour): string {
   const where = placeName(c, l.place);
   if (shutAt(c, l.place, h)) return `${nameOf(c, l.watcher)}: ${where} was shut at ${oclock(h)}.`;
   if (es.length === 0) return `${nameOf(c, l.watcher)}: nobody at ${where} at ${oclock(h)}.`;
-  const names = es.map((e) => entryName(c, e));
+  // In the notebook a regular is his name: "Pardo", not "Pardo who buys things" eight times a night (Raw 11's #11).
+  const names = es.map((e) => entryName(c, e).replace(/^(Lou|Pardo|Benny)\b.*$/, '$1'));
   return `${nameOf(c, l.watcher)}: at ${where} at ${oclock(h)}, ${andList(names)}${listExhaustive(c, l, h) ? ', and nobody else' : ''}.`;
 }
 
@@ -158,8 +162,9 @@ export function linesHeld(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>): 
     } else if (kind === 'search') {
       const f = c.finds.find((x) => x.id === rest);
       if (!f) continue;
-      // docs/46 §2: above Raw the papers put nobody's page on top, in the notebook as on the page.
-      const text = f.gives.why && c.tier > 0 ? 'A page on each of them, and a reason on every page.' : f.text;
+      // docs/47 B7: the papers put nobody's page on top, and say every page's grievance by name,
+      // in the notebook as on the page.
+      const text = f.gives.why ? `A page on each of them. ${whyOrder(c, suspectsOf(c)).map((p) => papersLine(c, p)).join(' ')}` : f.text;
       out.push({ id: `find:${rest}`, q, kind: 'find', place: f.place, about: [], text: `${cap(f.what)} at ${placeName(c, f.place)}: ${text}` });
     } else if (kind === 'confront') {
       const [p, hs] = rest.split('@') as [string, string];
@@ -227,6 +232,9 @@ export function knownPeople(c: BoardCase, run: Pick<BoardRun, 'asked' | 'visited
     } else if (kind === 'confront') {
       const [p, hs] = rest.split('@') as [string, string];
       for (const y of confrontationOf(c, p, Number(hs))?.names ?? []) add(y);
+    } else if (kind === 'search') {
+      // docs/47 B7: the papers name every suspect, a page each.
+      if (c.finds.find((f) => f.id === rest)?.gives.why) for (const p of suspectsOf(c)) add(p);
     }
   }
   // Everyone met in a room: suspects and watchers are there to be seen.
@@ -397,7 +405,7 @@ export function judgeLine(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>, p
     const spSt = s.status.get(`${sp}@${h}`);
     const spCl = accountOf(c, sp)?.claims[h];
     if (spCl?.company.includes(p)) return { landed: false, why: `${nameOf(c, sp)} had ${who} with ${pronOf(c, sp).him} at ${oclock(h)}. That agreed with ${pr.him}.` };
-    if (spCl && spCl.place !== claim.place) return { landed: false, why: `${nameOf(c, sp)} had ${pronOf(c, sp).self} at ${placeName(c, spCl.place)} at ${oclock(h)}. That said nothing about who was at ${where}.` };
+    if (spCl && spCl.place !== claim.place) return { landed: false, why: `${nameOf(c, sp)} says ${pronOf(c, sp).he} was at ${placeName(c, spCl.place)} at ${oclock(h)}. That said nothing about who was at ${where}.` };
     if (spSt?.s !== 'trusted') return { landed: false, why: `That was ${nameOf(c, sp)}’s word against ${who}’s, and nothing under ${nameOf(c, sp)}’s yet. A story has to stand up before it can knock another one down.` };
   }
   if (line.kind === 'remark' || line.kind === 'given') return { landed: false, why: `It didn’t put ${who} anywhere at ${oclock(h)} but where ${pr.he} said.` };

@@ -11,6 +11,7 @@ import { walkBetween } from '../src/game/board/walk.js';
 import { namesOverTwo, thinNames } from '../src/game/board/names.js';
 import { levelIssues } from '../src/game/board/lint.js';
 import { linesHeld } from '../src/game/board/knowledge.js';
+import { boardFields } from '../src/game/board/report.js';
 import type { Page } from '../src/game/board/types.js';
 
 /**
@@ -35,14 +36,18 @@ function prose(p: Page, voice?: string): string {
 }
 
 describe('board: the thread', () => {
-  it.each(cases)('every page after the office has a why or a walk: tier $tier, $type', ({ tier, type }) => {
+  it.each(cases)('every page after the office has a why or a walk, or carries the one the page before said: tier $tier, $type', ({ tier, type }) => {
     for (let s = 1; s <= SEEDS; s++) {
       const d = dealBoard(s, tier, type);
       for (const run of [playBoardOracle(d).run, playWanderer(d, s).run] as BoardRun[]) {
         run.log.forEach((p, i) => {
           if (i === 0) return;
           const beats = p.board?.beats ?? [];
-          expect(beats.includes('why') || beats.includes('walk'), `seed ${s} page ${i + 1} (${p.board?.job}): ${beats.join(', ')}`).toBe(true);
+          // docs/47 C13: a page right after the arrival in its room, or after a hand-off that named
+          // who it's about, carries that reason instead of a signpost ("So, Moe’s.").
+          const prev = run.log[i - 1];
+          const carried = p.board?.carried === true && !!prev && (prev.board?.job === 'arrive' || !!prev.board?.handoff || prev.at === p.at || (prev.board?.beats ?? []).includes('why'));
+          expect(beats.includes('why') || beats.includes('walk') || carried, `seed ${s} page ${i + 1} (${p.board?.job}): ${beats.join(', ')}`).toBe(true);
         });
       }
     }
@@ -118,22 +123,38 @@ describe('board: the thought', () => {
     }
   });
 
-  it('above Raw the papers put nobody’s page on top, on the page or in the notebook', () => {
+  it('the papers name every grievance, a page each, and put nobody on top, on the page and in the notebook (docs/47 B7)', () => {
     for (let s = 1; s <= 4; s++) {
-      for (const tier of [1, 2, 3, 4, 5] as TierIndex[]) {
+      for (const tier of [0, 1, 2, 3, 4, 5] as TierIndex[]) {
         const d = dealBoard(s, tier, 'murder');
         const run = playBoardOracle(d).run;
-        const culprit = d.kase.people.find((p) => p.id === d.kase.crime.culprit)?.short ?? '';
+        const suspects = d.kase.people.filter((p) => p.role === 'suspect');
         for (const p of run.log.filter((x) => x.board?.q === 'search:papers')) {
-          // The hand-off says where the night goes next, which is sometimes the culprit's own story
-          // (decided 2026-10-11: the path leads with it on two nights in five). The papers don't.
+          // The hand-off says where the night goes next; the papers themselves name everybody once.
           const papers = prose(p).replace(p.board?.handoff ?? '\u0000', '');
-          expect(papers, `tier ${tier} seed ${s}`).not.toMatch(/on top\b(?!,)/);
-          expect(papers, `tier ${tier} seed ${s}`).not.toContain(culprit);
+          expect(papers, `tier ${tier} seed ${s}`).not.toMatch(/on top\b(?!,)|the one on top/i);
+          for (const x of suspects) expect(papers, `tier ${tier} seed ${s}: ${x.short}`).toContain(`${x.short}: `);
         }
-        expect(linesHeld(d.kase, run).find((l) => l.id === 'find:papers')?.text ?? '').not.toContain(culprit);
+        const nb = linesHeld(d.kase, run).find((l) => l.id === 'find:papers')?.text ?? '';
+        for (const x of suspects) expect(nb, `tier ${tier} seed ${s} notebook`).toContain(`${x.short}: `);
       }
     }
+  });
+
+  it('the why list says each reason without the suspect’s pronoun, in an order of its own (docs/47 B7)', () => {
+    let reordered = 0;
+    for (let s = 1; s <= 12; s++) {
+      for (const tier of [2, 5] as TierIndex[]) {
+        const d = dealBoard(s, tier, 'murder');
+        const fields = boardFields(d);
+        const who = fields.find((f) => f.key === 'who')?.options.map((o) => o.value) ?? [];
+        const why = fields.find((f) => f.key === 'why')?.options ?? [];
+        expect(why.map((o) => o.value).sort()).toEqual([...who].sort());
+        if (why.map((o) => o.value).join() !== who.join()) reordered++;
+        for (const o of why) expect(o.label, o.label).not.toMatch(/\b(her|she|hers|herself)\b/);
+      }
+    }
+    expect(reordered).toBe(24);
   });
 
   it('the level lint catches a thought that oversteps: "that left", "only … left", "cleared", who did it', () => {
@@ -291,7 +312,7 @@ describe('board: a clue is said at most twice a night', () => {
     expect((all.match(/under a coat/g) ?? []).length).toBeLessThanOrEqual(2);
   });
 
-  it('after a hand-off that named them, the next page just turns to them', () => {
+  it('after a hand-off that named them, the next page turns to them without a signpost (docs/47 C13)', () => {
     let seen = 0;
     for (let s = 1; s <= 6; s++) {
       for (const tier of [0, 1, 2] as TierIndex[]) {
@@ -302,10 +323,10 @@ describe('board: a clue is said at most twice a night', () => {
           const who = next?.board?.q?.startsWith('account:') ? d.kase.people.find((x) => x.id === next.board?.q?.slice(8)) : undefined;
           if (!who || !p.board?.handoff?.includes(who.short) || next?.board?.job !== 'account' || p.board.job === 'arrive') return;
           seen++;
-          // "So, Corrigan." or another short turn to them: the reason isn't said again.
-          const first = (prose(next).split('\n')[0] ?? '').split(/(?<=\.)\s/)[0] ?? '';
-          expect(first).toContain(who.short);
-          expect(first.split(/\s+/).length, first).toBeLessThanOrEqual(5);
+          // The reason was the hand-off's: this page carries it, and says neither it nor "So, Corrigan." again.
+          expect(next.board?.carried, prose(next)).toBe(true);
+          expect(next.board?.beats ?? []).not.toContain('why');
+          expect(prose(next)).not.toMatch(/^(So, |Which brought me to |Next, |On to )/);
         });
       }
     }

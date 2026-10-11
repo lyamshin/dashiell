@@ -246,6 +246,7 @@ function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>[
       ...(w.thought ? { thought: w.thought } : {}),
       ...(w.handoff ? { handoff: w.handoff } : {}),
       ...(w.recap ? { recap: w.recap } : {}),
+      ...(w.carried ? { carried: true } : {}),
       ...(w.hand.reuses ? { repeats: w.hand.reuses } : {}),
     },
   };
