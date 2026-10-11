@@ -117,6 +117,8 @@ export interface Writer {
    * "Alfano it was.", "Mrs. Kowalski was the one I’d come for").
    */
   carried?: boolean;
+  /** docs/47 B8: whoever this page's answer put in the room has been placed in a line. */
+  placed?: boolean;
 }
 
 export function writer(d: BoardDeal, before: BoardRun, run: BoardRun, page: number): Writer {
@@ -208,7 +210,8 @@ function lay(w: Writer, job: SheetJob): void {
 function placeNewcomers(w: Writer): void {
   const c = w.c;
   const here = w.run.at;
-  if (here === OFFICE || w.before.at !== here) return;
+  if (here === OFFICE || w.before.at !== here || w.placed) return;
+  w.placed = true;
   const was = new Set(peopleAt(c, w.before, here));
   const fresh = peopleAt(c, w.run, here).filter((p) => !was.has(p) && personOf(c, p)?.role === 'company');
   const last = c.board.hours[c.board.hours.length - 1] as Hour;
@@ -602,6 +605,8 @@ function think(w: Writer, q: string, extra: Thought | null = null): Thought {
     put(w, 'thought', text, 'thought');
     w.thought = { text: tidy(text), refs: [...new Set(t.refs)] };
   }
+  // Whoever this answer put in the room is placed now, before the hand-off counts names (docs/47 B8).
+  placeNewcomers(w);
   return t;
 }
 
@@ -681,10 +686,8 @@ export function writeOffice(w: Writer): void {
     // "found in his own walk-up", not "found in Dandridge’s walk-up" of Dandridge (Poached 5's #1).
     if (g.kind === 'found' && v.scene && isMurder(c)) v.scene = v.scene.replace(new RegExp(`^${esc(victimOf(c).short)}’s `), 'his own ');
     if (g.kind === 'pointer' && v.motive) v.motive = inClientMouth(c, v.motive);
-    // "Winslow owed him the rent on a shop", not "He owed Dandridge the rent…", two different men (Poached 5's #2).
-    if (g.kind === 'pointer' && v.motive && v.P && isMurder(c) && /^(he|she) /.test(v.motive)) {
-      v.motive = v.motive.replace(/^(he|she) /, `${v.P} `).replace(new RegExp(`\\b${esc(victimOf(c).short)}\\b`), 'him');
-    }
+    // (Poached 5's #2, "He owed Dandridge the rent on a shop, and he was calling it in", two different
+    // men in one sentence, is mended in the motive itself: "…and it was being called in".)
     if (g.kind === 'pointer' && v.behaviour) v.behaviour = v.behaviour.replace(new RegExp(`\\b${cl.short}’s\\b`, 'g'), 'my');
     if (v.pthey) v.Pthey = cap(v.pthey);
     if (g.kind === 'means' && v.resident) {
@@ -930,7 +933,7 @@ export function writeArrive(w: Writer, place: PlaceId): void {
     const src = m0 && m1 && m0[1] === m1[2] && m0[2] === m1[3]
       ? `${p0.clause}, with ${m1[1]}`
       : p1 && head && p1.src === p0.src && p1.clause.startsWith(head)
-      ? `${p0.clause}, and ${p1.clause.slice(head.length).replace(/ at the [^,]+? at /, ' at ').replace(new RegExp(` at ${esc(pl.short)} at `), ' at ')}`
+      ? `${p0.clause}, and ${p1.clause.slice(head.length).replace(/ at the [^,]+? at /, ' at ').replace(new RegExp(` at ${esc(pl.short)} at `), ' at ').replace(p0.places[0] ? new RegExp(` at ${esc(placeName(c, p0.places[0]))} at `) : /$^/, ' at ')}`
       : p1 && said && p1.src === p0.src && p1.clause.startsWith(said)
         ? `${p0.clause}, and that ${p1.clause.slice(said.length)}`
         : ptrs.map((p, i) => (i === 0 ? p.clause : cap(sameSubject(p.clause, p0.clause)))).join('. ');
@@ -1040,7 +1043,9 @@ function stageAndAsk(w: Writer, p: PersonId, job: 'account' | 'check' | 'list' |
   const face = ptr?.face && job === 'account' ? ptr.face : undefined;
   // "Mr. Ashby." to his face is a name too: not when the why has said it.
   const avoid = w.hand.avoid;
-  if (namedInWhy) w.hand.avoid = alsoAvoid(avoid, /\{Title\}/);
+  // An evening with a side remark in it will name them again in the thought (the collision it makes): no "Mr. Stannard." to their face as well (docs/39 §4).
+  const remarks = job === 'account' && (accountOf(c, p)?.remarks.length ?? 0) > 0;
+  if (namedInWhy || remarks) w.hand.avoid = alsoAvoid(avoid, /\{Title\}/);
   put(w, 'ask', w.hand.draw('ask', { job, face: face ? 'yes' : 'no' }, withCaps({ ...s, reason: face })), 'exchange');
   w.hand.avoid = avoid;
   put(w, 'reaction', w.hand.draw('reaction', { job: job === 'check' ? 'account' : job, manner }, s), 'act');

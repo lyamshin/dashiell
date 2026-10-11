@@ -232,10 +232,9 @@ export function knownPeople(c: BoardCase, run: Pick<BoardRun, 'asked' | 'visited
     } else if (kind === 'confront') {
       const [p, hs] = rest.split('@') as [string, string];
       for (const y of confrontationOf(c, p, Number(hs))?.names ?? []) add(y);
-    } else if (kind === 'search') {
-      // docs/47 B7: the papers name every suspect, a page each.
-      if (c.finds.find((f) => f.id === rest)?.gives.why) for (const p of suspectsOf(c)) add(p);
     }
+    // (docs/47 B7: the papers name every suspect, a page each, but a name on a page isn't somebody
+    // the night has met: nobody joins the notebook, the grid or the walks from the papers alone.)
   }
   // Everyone met in a room: suspects and watchers are there to be seen.
   for (const pl of run.visited) {

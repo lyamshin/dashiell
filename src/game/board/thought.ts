@@ -407,7 +407,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         // Whose word it is, as a person: the keeper of this page's list, or whoever else said so (docs/47 C13:
         // "and Ellery would swear to it", not "with the list under both").
         // This page's own account is "he": its speaker is named on the page already (docs/39 §4).
-        const src = srcQ === q && kind === 'list' ? nameOf(c, rest) : srcQ === q && kind === 'account' ? `=self:${rest}` : sourceName(c, srcQ).replace(/’s (list|story|word)$/, '');
+        const src = srcQ === q && kind === 'list' ? `=list:${rest}` : srcQ === q && kind === 'account' ? `=self:${rest}` : sourceName(c, srcQ).replace(/’s (list|story|word)$/, '');
         const g = groups.get(src) ?? { src, items: [], refs: [] };
         g.items.push({ p, place: now.place, h });
         g.refs.push(...now.deps.filter((d) => heldBeforeQs.has(d)));
@@ -428,10 +428,14 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const only = g.items.length === 1 ? g.items[0]?.p : undefined;
       const sameSex = only ? suspectsOf(c).filter((y) => y !== only && personOf(c, y)?.female === personOf(c, only)?.female && lastSaid.includes(nameOf(c, y))) : [];
       const bits = [...runs.values()].map((r) => `${only && lastSaid.startsWith(`${nameOf(c, only)} `) && sameSex.length === 0 ? pronOf(c, only).him : andList(r.ps.map((y) => nameOf(c, y)))} ${atWhere(c, r.place, here)} at ${hourWord(r.h)}`);
+      // This page's own speaker or keeper is named on the page already: "by her count", "on his word" (docs/39 §4).
       const self = g.src.startsWith('=self:') ? g.src.slice(6) : undefined;
+      const keeper = g.src.startsWith('=list:') ? g.src.slice(6) : undefined;
       const swear = self
         ? x.pick('swear-self', [`on ${pronOf(c, self).his} word`, `and ${pronOf(c, self).he} would swear to it`])
-        : x.pick('swear', [`and ${g.src} would swear to it`, `and ${g.src} would say so to anybody`, `on ${g.src}’s word`]);
+        : keeper
+          ? `by ${pronOf(c, keeper).his} count`
+          : x.pick('swear', [`and ${g.src} would swear to it`, `and ${g.src} would say so to anybody`, `on ${g.src}’s word`]);
       add(`That put ${andList(bits)}, ${swear}.`, g.refs.length ? g.refs : ['givens:clock'], {
         hours: g.items.map((y) => y.h),
         people: g.items.map((y) => y.p),

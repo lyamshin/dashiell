@@ -23,7 +23,7 @@ const FORMS: Record<string, string> = {
   m1: 'He had been squeezing them for years',
   m2: 'He knew where they were in 1921',
   m3: 'They owed him four hundred dollars',
-  m4: 'They owed him the rent on a shop, and he was calling it in',
+  m4: 'They owed him the rent on a shop, and it was being called in',
   m5: 'He closed their business',
   m6: 'He threw them out of a lease',
   m7: 'He testified against their brother',

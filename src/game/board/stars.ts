@@ -208,7 +208,7 @@ export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: stri
   }
   if (q.kind === 'search') {
     const f = c.finds.find((x) => x.id === q.subject);
-    if (f?.gives.why) return isMurder(c) ? 'who had a reason? his papers' : 'who had a reason?';
+    if (f?.gives.why) return 'who had what against him';
     return isMurder(c) ? 'start where he died' : 'start where it went missing';
   }
   const by = pointerIndex(c).by.get(qid);

@@ -134,7 +134,11 @@ export function boardChoices(d: BoardDeal, run: BoardRun): OfferedGroup[] {
         kind: 'search',
         heading: 'Search',
         // docs/47 B7: the papers say what they're for, so a letter in the office doesn't make them sound searched.
-        choices: finds.map((f) => ({ ...choice(`search ${f.id}`, cap(f.what), run.asked.includes(`search:${f.id}`)), ...(f.gives.why ? { note: isMurder(c) ? 'who had what against him' : 'who had what against it' } : {}) })),
+        choices: finds.map((f) => {
+          const ch = choice(`search ${f.id}`, cap(f.what), run.asked.includes(`search:${f.id}`));
+          // A starred search says why on its star; an unstarred one says it here.
+          return f.gives.why && !ch.lead ? { ...ch, note: 'who had what against him' } : ch;
+        }),
       });
     }
   }

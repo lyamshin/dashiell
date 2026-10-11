@@ -213,7 +213,7 @@ export const MOTIVES: { kind: string; text: string }[] = [
   { kind: 'blackmail', text: '{victim} had been squeezing {them} for years' },
   { kind: 'blackmail', text: '{victim} knew where {they} was in 1921' },
   { kind: 'debt', text: '{they} owed {victim} four hundred dollars' },
-  { kind: 'debt', text: '{they} owed {victim} the rent on a shop, and he was calling it in' },
+  { kind: 'debt', text: '{they} owed {victim} the rent on a shop, and it was being called in' },
   { kind: 'ruin', text: '{victim} closed {their} business' },
   { kind: 'ruin', text: '{victim} threw {them} out of a lease' },
   { kind: 'revenge', text: '{victim} testified against {their} brother' },
