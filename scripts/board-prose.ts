@@ -30,6 +30,20 @@
  *   with two content words in it, not the office's own words, the means' or
  *   anybody's name) turns up in more than two paragraphs of a night, outside
  *   the notebook (target 0).
+ *
+ * docs/47 C14, over the oracle's, the wanderer's and the reader's nights (`prose-lint.ts`, target 0 each):
+ *
+ * - **place names bolted on**: "hung in the hall at the Delmonico rooms" after the paragraph named
+ *   it, or one place three times in a paragraph of narration;
+ * - **banned phrases**: the board read aloud ("with the list under both", "had himself at"), quest-log
+ *   signposts ("Which brought me to", "So, Moe’s.", "The next place worth the walk"), game talk ("the
+ *   report wants"), and British spellings in a New York voice;
+ * - **pages with 2+ signposts**: more than one where-next sentence on a page;
+ * - **gags paid off 3+ times**: one prop, trait or street paid off more than twice a night;
+ * - **a pet called "it"**: "who took it", "it went at ten", on a page or on the form.
+ *
+ * "why-here or walk" counts a page whose reason the page before said (its hand-off, or the arrival
+ * in this room) as carrying it (`Page.board.carried`): docs/47 cut the signposts that said it again.
  */
 
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';

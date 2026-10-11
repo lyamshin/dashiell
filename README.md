@@ -19,7 +19,8 @@ pets and lost things, at six tiers from Raw to Hard-boiled. From Raw up the
 book helps less (docs/46): the stars thin out and stop at where to go, the
 detective's thoughts set two lines side by side and leave the conclusion to
 you, and the report asks for the name and the line that breaks their story.
-The right name on a hunch counts half.
+The right name on a hunch counts half. Every question, search, walk and put
+costs one call, and the clock shows what the calls add up to (docs/47).
 
 The engines before the board (v1 and v2) were deleted in docs/45; docs 01–40
 describe them and are kept as history.
