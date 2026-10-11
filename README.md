@@ -15,7 +15,11 @@ each get a whole answer. Ask anybody where they were tonight and you get the
 whole evening, with company; ask a barman, a landlady or an usher who was in,
 and you get everybody, hour by hour. Every lie runs into something true, and
 "Put it to …" reads a person the line that breaks their story. Murders, lost
-pets and lost things, at six tiers from Raw to Hard-boiled.
+pets and lost things, at six tiers from Raw to Hard-boiled. From Raw up the
+book helps less (docs/46): the stars thin out and stop at where to go, the
+detective's thoughts set two lines side by side and leave the conclusion to
+you, and the report asks for the name and the line that breaks their story.
+The right name on a hunch counts half.
 
 The engines before the board (v1 and v2) were deleted in docs/45; docs 01–40
 describe them and are kept as history.

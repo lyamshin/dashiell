@@ -1,6 +1,6 @@
 /** The verdict page: the report scored, the closing, and what the ending can open. */
 
-import type { Verdict } from '../game/board/report.js';
+import { pointsText, type Verdict } from '../game/board/report.js';
 import { TIER_NAMES, type TierIndex } from '../gen/board/types.js';
 import { el } from './dom.js';
 
@@ -65,17 +65,19 @@ export function renderVerdict(verdict: Verdict, onAgain: () => void, endings: En
 
   const table = el('div', { class: 'verdict' });
   for (const f of verdict.fields) {
-    const row = el('div', { class: `verdict-row${f.correct ? '' : ' wrong'}` });
+    // docs/46 §3: a line asked under an answer (what breaks their story) sits under it, set as a line.
+    const row = el('div', { class: `verdict-row${f.correct ? (f.half ? ' half' : '') : ' wrong'}${f.line ? ' verdict-row--line' : ''}` });
     row.append(
-      el('span', {}, f.label),
-      el('span', { class: 'given' }, f.correct ? f.given : `${f.given} — it was ${f.truth}`),
-      el('span', { class: 'mark', text: f.correct ? '✓' : '✗' }),
+      el('span', { class: 'label' }, f.label),
+      el('span', { class: 'given' }, f.correct ? (f.half ? `${f.given} — right, but you couldn’t have known` : f.given) : `${f.given} — it was ${f.truth}`),
+      el('span', { class: 'mark', text: f.correct ? (f.half ? '½' : '✓') : '✗' }),
     );
     table.append(row);
   }
   wrap.append(table);
 
-  wrap.append(el('p', { class: 'score', text: `${verdict.points} out of ${verdict.asked}.` }));
+  wrap.append(el('p', { class: 'score', text: `${pointsText(verdict.points)} out of ${verdict.asked}.` }));
+  for (const line of verdict.plain) wrap.append(el('p', { class: 'score-plain', text: line }));
   for (const paragraph of verdict.closing) {
     const p = el('p');
     // The only formatting in a closing line is a bold sentence.

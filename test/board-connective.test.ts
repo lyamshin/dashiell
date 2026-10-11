@@ -9,6 +9,8 @@ import { pageStars } from '../src/game/board/choices.js';
 import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { walkBetween } from '../src/game/board/walk.js';
 import { namesOverTwo, thinNames } from '../src/game/board/names.js';
+import { levelIssues } from '../src/game/board/lint.js';
+import { linesHeld } from '../src/game/board/knowledge.js';
 import type { Page } from '../src/game/board/types.js';
 
 /**
@@ -60,14 +62,16 @@ describe('board: the thread', () => {
         const [kind, rest] = (star?.q ?? '').split(':') as [string, string];
         const who = d.kase.people.find((p) => p.id === rest.split('@')[0]);
         const text = prose(page);
-        if ((kind === 'account' || kind === 'confront') && who) expect(text).toContain(who.short);
+        // docs/46 §1: at Medium a star is a walk, and the hand-off says only where to go.
+        if (tier === 4) expect(text.toLowerCase(), `tier ${tier} ${type}`).toContain((d.kase.places.find((p) => `go ${p.id}` === star?.command)?.short ?? '\u0000').toLowerCase());
+        else if ((kind === 'account' || kind === 'confront') && who) expect(text).toContain(who.short);
       }
     }
   });
 });
 
 describe('board: the thought', () => {
-  it.each(cases)('every job page thinks, by name, about something held before: tier $tier, $type', ({ tier, type }) => {
+  it.each(cases)('every job page thinks, by name, about something held before (below Hard-boiled): tier $tier, $type', ({ tier, type }) => {
     for (let s = 1; s <= SEEDS; s++) {
       const d = dealBoard(s, tier, type);
       const names = [...d.kase.people.map((p) => p.short), ...d.kase.places.flatMap((p) => [p.short, p.street])];
@@ -78,29 +82,85 @@ describe('board: the thought', () => {
           const t = p.board.thought;
           expect(t, `seed ${s} ${p.board.q}`).toBeDefined();
           expect(t?.refs.length, `seed ${s} ${p.board.q}`).toBeGreaterThan(0);
-          expect(names.some((n) => t?.text.includes(n) && earlier.includes(n)), `seed ${s} ${p.board.q}: ${t?.text}`).toBe(true);
+          // docs/46 §2: at fact level (Hard-boiled) the thought stays on its own page.
+          if (tier < 5) expect(names.some((n) => t?.text.includes(n) && earlier.includes(n)), `seed ${s} ${p.board.q}: ${t?.text}`).toBe(true);
         }
         earlier += prose(p);
       }
     }
   });
 
-  it('at Hard-boiled the last step is the player’s', () => {
+  it('only Raw walks the elimination to its last step; above it no thought says who is left', () => {
+    let walked = 0;
     for (let s = 1; s <= 6; s++) {
-      for (const type of typesFor(5)) {
-        const run = playBoardOracle(dealBoard(s, 5, type)).run;
-        for (const p of run.log) expect(prose(p)).not.toMatch(/That left one person/);
+      for (const tier of [0, 1, 2, 3, 4, 5] as TierIndex[]) {
+        for (const type of typesFor(tier)) {
+          const run = playBoardOracle(dealBoard(s, tier, type)).run;
+          const said = run.log.some((p) => /That left one person|That left \w+, and the clock/.test(prose(p)));
+          if (tier === 0) walked += said ? 1 : 0;
+          else expect(said, `tier ${tier} ${type} seed ${s}`).toBe(false);
+        }
+      }
+    }
+    expect(walked).toBeGreaterThan(0);
+  });
+
+  it('above Raw, the page that settles who reads like any other: no elimination, and the report doesn’t say it’s done', () => {
+    for (let s = 1; s <= 4; s++) {
+      for (const tier of [1, 2, 3, 4] as TierIndex[]) {
+        for (const type of typesFor(tier)) {
+          const d = dealBoard(s, tier, type);
+          const run = playBoardOracle(d).run;
+          const report = run.log[run.log.length - 1] as Page;
+          expect(prose(report), `tier ${tier} ${type} seed ${s}`).not.toMatch(/Every line had an answer|nothing on it I couldn’t fill in|I could fill in all of it|Not every line on it/);
+        }
       }
     }
   });
 
-  it('at Medium the page that settles it may walk the elimination', () => {
-    let walked = 0;
-    for (let s = 1; s <= 6; s++) {
-      const run = playBoardOracle(dealBoard(s, 4, 'lost-pet')).run;
-      if (run.log.some((p) => /That left one person/.test(prose(p)))) walked++;
+  it('above Raw the papers put nobody’s page on top, on the page or in the notebook', () => {
+    for (let s = 1; s <= 4; s++) {
+      for (const tier of [1, 2, 3, 4, 5] as TierIndex[]) {
+        const d = dealBoard(s, tier, 'murder');
+        const run = playBoardOracle(d).run;
+        const culprit = d.kase.people.find((p) => p.id === d.kase.crime.culprit)?.short ?? '';
+        for (const p of run.log.filter((x) => x.board?.q === 'search:papers')) {
+          expect(prose(p), `tier ${tier} seed ${s}`).not.toMatch(/on top\b(?!,)/);
+          expect(prose(p), `tier ${tier} seed ${s}`).not.toContain(culprit);
+        }
+        expect(linesHeld(d.kase, run).find((l) => l.id === 'find:papers')?.text ?? '').not.toContain(culprit);
+      }
     }
-    expect(walked).toBeGreaterThan(0);
+  });
+
+  it('the level lint catches a thought that oversteps: "that left", "only … left", "cleared", who did it', () => {
+    const over = ['That left one person who had heard about the key.', 'Only Corrigan was left with no true account.', 'That cleared Feeney.', 'So Corrigan took it, and nobody else could have.'];
+    for (const [tier, type] of [[4, 'lost-pet'], [0, 'lost-pet']] as [TierIndex, CaseType][]) {
+      const d = dealBoard(1, tier, type);
+      const run = playBoardOracle(d).run;
+      const culprit = d.kase.people.find((p) => p.id === d.kase.crime.culprit)?.short ?? '';
+      for (const text of over) {
+        const said = text.replace('Corrigan', culprit);
+        const page = run.log[3] as Page;
+        const bent = { ...run, log: run.log.map((p) => (p === page ? { ...p, board: { ...(p.board as NonNullable<Page['board']>), thought: { text: said, refs: [] } } } : p)) };
+        // Above walk level it's caught; at Raw (walk) the elimination is the thought's to walk.
+        expect(levelIssues(d, bent).length, `${tier}: ${said}`).toBe(tier === 0 ? 0 : 1);
+      }
+    }
+  });
+
+  it('at Hard-boiled a thought ties to nothing but its own page and the office', () => {
+    for (let s = 1; s <= 6; s++) {
+      for (const type of typesFor(5)) {
+        const d = dealBoard(s, 5, type);
+        const run = playBoardOracle(d).run;
+        expect(levelIssues(d, run), `seed ${s} ${type}`).toEqual([]);
+        for (const p of run.log) {
+          const refs = p.board?.thought?.refs ?? [];
+          for (const r of refs) expect(r.startsWith('givens') || (p.board?.told ?? []).includes(r) || r.startsWith((p.board?.q ?? '\u0000').replace(/^account:/, 'claim:').replace(/^search:/, 'find:')) || r === p.board?.q, `seed ${s} ${type} ${p.board?.q}: ${r}`).toBe(true);
+        }
+      }
+    }
   });
 
   it('never names the thing that went under the coat before the board says whose it was', () => {
@@ -229,11 +289,24 @@ describe('board: a clue is said at most twice a night', () => {
   });
 
   it('after a hand-off that named them, the next page just turns to them', () => {
-    const run = playBoardOracle(dealBoard(1, 4, 'lost-pet')).run;
-    const i = run.log.findIndex((p) => p.board?.handoff?.includes('Corrigan'));
-    expect(i).toBeGreaterThan(0);
-    const next = run.log[i + 1] as Page;
-    expect(prose(next).split('\n')[0]).toBe('So, Corrigan.');
+    let seen = 0;
+    for (let s = 1; s <= 6; s++) {
+      for (const tier of [0, 1, 2] as TierIndex[]) {
+        const d = dealBoard(s, tier, 'lost-pet');
+        const run = playBoardOracle(d).run;
+        run.log.forEach((p, i) => {
+          const next = run.log[i + 1];
+          const who = next?.board?.q?.startsWith('account:') ? d.kase.people.find((x) => x.id === next.board?.q?.slice(8)) : undefined;
+          if (!who || !p.board?.handoff?.includes(who.short) || next?.board?.job !== 'account' || p.board.job === 'arrive') return;
+          seen++;
+          // "So, Corrigan." or another short turn to them: the reason isn't said again.
+          const first = (prose(next).split('\n')[0] ?? '').split(/(?<=\.)\s/)[0] ?? '';
+          expect(first).toContain(who.short);
+          expect(first.split(/\s+/).length, first).toBeLessThanOrEqual(5);
+        });
+      }
+    }
+    expect(seen).toBeGreaterThan(0);
   });
 });
 

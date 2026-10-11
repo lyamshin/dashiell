@@ -4,6 +4,12 @@
  * happened" (the crime only), and the curtain: the true board, the path and
  * the lies.
  *
+ * docs/46 §3: after "who", the report asks what breaks their story: one of
+ * the lines held that names them or falls at the hour that mattered, or a
+ * hunch. A lost thing's "where it is now" asks which line put it there. The
+ * right name on the right line is solved; the right name on a hunch or the
+ * wrong line is right, but you couldn't have known, and counts half.
+ *
  * The verdict (`Verdict`) is what the book's verdict page and the play CLI
  * print.
  */
@@ -14,7 +20,7 @@ import { minimalSets } from '../../gen/board/path.js';
 import { techniquesUpTo } from '../../gen/board/tiers.js';
 import { questionsOf, solve } from '../../gen/board/solver.js';
 import { Hand } from './decks.js';
-import { accountOf } from './knowledge.js';
+import { accountOf, collisionsOf, confrontationOf, judgeLine, linesHeld, type Line } from './knowledge.js';
 import {
   andList,
   cap,
@@ -37,10 +43,14 @@ import {
 } from './model.js';
 import { withCaps } from './pages.js';
 
-export type FieldKey = 'who' | 'when' | 'how' | 'why' | 'where';
+export type FieldKey = 'who' | 'when' | 'how' | 'why' | 'where' | 'breaks' | 'whereBy';
 
-/** How a filed report came out: everything right, the right person only, the wrong one, or nobody named. */
-export type Outcome = 'solved' | 'wrong-man' | 'thin' | 'cold';
+/**
+ * How a filed report came out: everything right on the right lines (solved), the right name on a
+ * hunch (lucky: right, but you couldn't have known), the right name on its line and some of the
+ * rest wrong (thin), the wrong one, or nobody named.
+ */
+export type Outcome = 'solved' | 'lucky' | 'thin' | 'wrong-man' | 'cold';
 
 export interface FieldResult {
   key: FieldKey;
@@ -49,20 +59,37 @@ export interface FieldResult {
   truth: string;
   correct: boolean;
   answered: boolean;
+  /** Right, but the line under it was a hunch or the wrong one: it counts half. */
+  half?: boolean;
+  /** A line asked for under another answer (what breaks their story, what puts it there). It scores through that answer, not on its own. */
+  line?: boolean;
 }
 
 /** The report, scored. */
 export interface Verdict {
   fields: FieldResult[];
+  /** Whole and half points: "3½ out of 4". */
   points: number;
   /** How many the report asked. `points` out of this. */
   asked: number;
   outcome: Outcome;
   actionsUsed: number;
   par: number;
+  /** Said plainly under the score: what counted half, and why. */
+  plain: string[];
   /** The closing page, in the book's voice. Paragraphs. */
   closing: string[];
 }
+
+/** "3", "3½", "½". */
+export function pointsText(points: number): string {
+  const whole = Math.floor(points);
+  return points - whole >= 0.5 ? `${whole === 0 ? '' : whole}½` : String(whole);
+}
+
+/** The report's new questions, as the form asks them. */
+export const BREAKS_LABEL = 'What breaks their story';
+export const WHERE_BY_LABEL = 'What puts it there';
 
 export interface FieldSpec {
   key: FieldKey;
@@ -111,12 +138,16 @@ function truthOf(d: BoardDeal, k: FieldKey): string {
   return h ? `holder:${h.id}` : 'scene';
 }
 
-export function truthReport(d: BoardDeal): BoardReport {
+/** The true report. With a run, it cites the lines that run holds: what breaks the story, and what put the thing where it is. */
+export function truthReport(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'>): BoardReport {
+  const breaks = run ? (heldBreakers(d, run)[0]?.id ?? null) : null;
+  const whereBy = run && !isMurder(d.kase) ? (heldWhereBy(d, run)[0]?.value ?? null) : null;
   return {
     who: truthOf(d, 'who'),
     when: Number(truthOf(d, 'when')),
     why: truthOf(d, 'why'),
-    ...(isMurder(d.kase) ? { how: truthOf(d, 'how') } : { where: truthOf(d, 'where') }),
+    ...(isMurder(d.kase) ? { how: truthOf(d, 'how') } : { where: truthOf(d, 'where'), whereBy }),
+    breaks,
   };
 }
 
@@ -131,29 +162,165 @@ export function reportFrom(d: BoardDeal, answers: Partial<Record<FieldKey, strin
     who: answers.who ?? null,
     when: answers.when ? Number(answers.when) : null,
     why: answers.why ?? null,
-    ...(isMurder(d.kase) ? { how: answers.how ?? null } : { where: answers.where ?? null }),
+    ...(isMurder(d.kase) ? { how: answers.how ?? null } : { where: answers.where ?? null, whereBy: answers.whereBy ?? null }),
+    breaks: answers.breaks ?? null,
   };
 }
 
+/* ------------------------------------------------------------------ *
+ * docs/46 §3: what breaks their story, and what put it there.
+ * ------------------------------------------------------------------ */
+
+/** One line the report offers: its id, and the line as the notebook says it. */
+export interface LineOption {
+  value: string;
+  label: string;
+}
+
+/** What a line question says for no line at all. */
+export const HUNCH = 'A hunch';
+
+/**
+ * The hours that mattered, as the form says them: the office's window. Never
+ * the hour worked out from it, which is the player's to work out (docs/46 §2).
+ */
+export function hoursThatMattered(d: BoardDeal): Hour[] {
+  return d.kase.givens.window ?? d.kase.crime.window;
+}
+
+/**
+ * What "What breaks their story?" offers for whoever is named: the lines held
+ * that name them or fall at the hours that mattered (the office's window),
+ * never their own, in the order they came. With nobody named, only the lines
+ * at those hours.
+ */
+export function breakOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>, who: PersonId | null): LineOption[] {
+  const c = d.kase;
+  const hours = new Set(hoursThatMattered(d));
+  return linesHeld(c, run)
+    .filter((l) => l.kind !== 'find' && (who === null || l.speaker !== who))
+    .filter((l) => (l.hour !== undefined && hours.has(l.hour)) || (who !== null && l.about.includes(who)))
+    .map((l) => ({ value: l.id, label: l.text }));
+}
+
+/** A small case's crack, held: the culprit said where it went when it was put to them. */
+function crackHeld(d: BoardDeal, run: Pick<BoardRun, 'asked'>): LineOption | null {
+  const c = d.kase;
+  const k = c.confrontations.find((x) => x.response === 'crack' && x.gives?.whereNow && run.asked.includes(`confront:${x.person}@${x.hour}`));
+  if (!k) return null;
+  const said = /“All right\. I took it\.[^”]*”/.exec(k.text)?.[0] ?? '“All right. I took it.”';
+  return { value: `crack:${k.person}@${k.hour}`, label: `${nameOf(c, k.person)}, put to it: ${said}` };
+}
+
+/** What "What puts it there?" offers, for a lost thing: every remark and find held, and a crack. */
+export function whereByOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>): LineOption[] {
+  const out: LineOption[] = linesHeld(d.kase, run)
+    .filter((l) => l.kind === 'remark' || l.kind === 'find')
+    .map((l) => ({ value: l.id, label: l.text }));
+  const crack = crackHeld(d, run);
+  if (crack) out.push(crack);
+  return out;
+}
+
+/** The remark a remark line came from (`remark:<q>#<i>`). */
+function remarkOf(d: BoardDeal, lineId: string): { gives?: { whereNow?: boolean } } | undefined {
+  const m = /^remark:(list|account):(.+)#(\d+)$/.exec(lineId);
+  if (!m) return undefined;
+  const [, kind, who, i] = m as unknown as [string, string, string, string];
+  const rs = kind === 'list' ? d.kase.lists.find((l) => l.watcher === who)?.remarks : accountOf(d.kase, who)?.remarks;
+  return rs?.[Number(i)];
+}
+
+/**
+ * The lines held that break the culprit's story: at the hour of one of their
+ * lies, a line the break rests on (the collision the grid shows), a line that
+ * lands when it's put to them, or the list that breaks a second story.
+ */
+export function heldBreakers(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>): Line[] {
+  const c = d.kase;
+  const p = c.crime.culprit;
+  const lines = linesHeld(c, run);
+  const out: Line[] = [];
+  const add = (l: Line) => {
+    if (!out.some((x) => x.id === l.id)) out.push(l);
+  };
+  const cols = collisionsOf(c, run, p);
+  for (const lie of c.lies.filter((l) => l.person === p)) {
+    const h = lie.hour;
+    for (const b of cols.find((x) => x.hour === h)?.breakers ?? []) add(b);
+    for (const l of lines) if (l.hour === h && l.speaker !== p && l.kind !== 'find' && judgeLine(c, run, p, h, l).landed) add(l);
+    const k = confrontationOf(c, p, h);
+    if (k?.secondLie?.place && run.asked.includes(`confront:${p}@${h}`)) {
+      for (const l of lines) if (l.kind === 'list' && l.hour === h && l.place === k.secondLie.place && !l.about.includes(p)) add(l);
+    }
+  }
+  return out;
+}
+
+/** The held lines that put a lost thing where it is: the handover the watcher saw, or the culprit's crack. */
+export function heldWhereBy(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>): LineOption[] {
+  return whereByOptions(d, run).filter((o) => o.value.startsWith('crack:') || !!remarkOf(d, o.value)?.gives?.whereNow);
+}
+
+/** The designed path's questions, as a run that asked them: where the true lines come from when the player held none. */
+function pathRun(d: BoardDeal): Pick<BoardRun, 'asked' | 'puts'> {
+  return { asked: [...d.analysis.path.map((s) => s.q), ...(d.analysis.motive ? [d.analysis.motive] : [])], puts: [] };
+}
+
+/** The line that breaks the culprit's story, as the notebook says it: the player's own if they held one, else the designed path's. */
+export function trueBreakerText(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'>): string {
+  const l = (run ? heldBreakers(d, run)[0] : undefined) ?? heldBreakers(d, pathRun(d))[0];
+  return l?.text ?? 'nothing on the night’s path';
+}
+
+/** The line that put the lost thing where it is: the player's own if they held one, else the designed path's. */
+export function trueWhereByText(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'>): string {
+  const o = (run ? heldWhereBy(d, run)[0] : undefined) ?? heldWhereBy(d, pathRun(d))[0];
+  return o?.label ?? 'nothing on the night’s path';
+}
+
+function lineLabel(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>, id: string | null | undefined, opts: LineOption[]): string {
+  if (!id) return HUNCH;
+  return opts.find((o) => o.value === id)?.label ?? linesHeld(d.kase, run).find((l) => l.id === id)?.text ?? id;
+}
+
 export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Verdict {
-  const fields: FieldResult[] = boardFields(d).map((f) => {
+  const scored: FieldResult[] = boardFields(d).map((f) => {
     const g = given(report, f.key);
     const t = truthOf(d, f.key);
     const label = (v: string | null) => (v === null ? 'I don’t know' : (f.options.find((o) => o.value === v)?.label ?? v));
     return { key: f.key, label: f.label, given: label(g), truth: label(t), correct: g !== null && g === t, answered: g !== null };
   });
-  const points = fields.filter((f) => f.correct).length;
-  const asked = fields.length;
-  const who = fields[0] as FieldResult;
-  const outcome: Outcome = !who.answered ? 'cold' : !who.correct ? 'wrong-man' : points === asked ? 'solved' : 'thin';
-  const par = parCalls(d);
+  const who = scored[0] as FieldResult;
+  // What breaks their story: one of the lines held that breaks the culprit's. A hunch or the wrong line halves who.
+  const breaksOk = !!report.breaks && heldBreakers(d, run).some((l) => l.id === report.breaks);
+  if (who.correct && !breaksOk) who.half = true;
+  const fields: FieldResult[] = [
+    who,
+    { key: 'breaks', label: BREAKS_LABEL, given: lineLabel(d, run, report.breaks, breakOptions(d, run, report.who)), truth: trueBreakerText(d, run), correct: who.correct && breaksOk, answered: true, line: true },
+  ];
+  for (const f of scored.slice(1)) {
+    fields.push(f);
+    if (f.key !== 'where') continue;
+    // Where it is now: which line put it there. A hunch or the wrong line halves where.
+    const ok = !!report.whereBy && heldWhereBy(d, run).some((o) => o.value === report.whereBy);
+    if (f.correct && !ok) f.half = true;
+    fields.push({ key: 'whereBy', label: WHERE_BY_LABEL, given: lineLabel(d, run, report.whereBy, whereByOptions(d, run)), truth: trueWhereByText(d, run), correct: f.correct && ok, answered: true, line: true });
+  }
+  const points = scored.reduce((n, f) => n + (f.correct ? (f.half ? 0.5 : 1) : 0), 0);
+  const asked = scored.length;
+  const outcome: Outcome = !who.answered ? 'cold' : !who.correct ? 'wrong-man' : who.half ? 'lucky' : points === asked ? 'solved' : 'thin';
+  const plain: string[] = [];
+  if (who.half) plain.push('Right, but you couldn’t have known: half credit on who.');
+  if (scored.some((f) => f.key === 'where' && f.half)) plain.push('Where it is now was right, but not on the line that put it there: half credit on where.');
   return {
     points,
     asked,
     outcome,
     fields,
     actionsUsed: run.used,
-    par,
+    par: parCalls(d),
+    plain,
     closing: closingOf(d, run, outcome),
   };
 }
@@ -243,9 +410,36 @@ function breakerOf(d: BoardDeal): string {
  * Behind the curtain: the true board, the path and the lies.
  * ------------------------------------------------------------------ */
 
-export function curtainOfBoard(d: BoardDeal): string {
+/**
+ * The curtain. Given the night and what was filed, it also sets the true
+ * breaking line beside the player's (docs/46 §3), and for a lost thing the
+ * line that put it where it is.
+ */
+export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'>, filed?: BoardReport): string {
   const c = d.kase;
   const out: string[] = [];
+  const culprit = c.crime.culprit;
+  const lie = c.lies.find((l) => l.person === culprit && l.hour === c.crime.hour) ?? c.lies.find((l) => l.person === culprit);
+  out.push('WHAT BROKE THE STORY');
+  if (lie) out.push(`${nameOf(c, culprit)} said ${personOf(c, culprit)?.home === lie.claim ? 'home' : placeName(c, lie.claim)} at ${hourWord(lie.hour)}.`);
+  out.push(`  What broke it: ${trueBreakerText(d, run)}`);
+  if (filed && run) {
+    const mine = filed.breaks ? (linesHeld(c, run).find((l) => l.id === filed.breaks)?.text ?? filed.breaks) : `${HUNCH.toLowerCase()}.`;
+    const ok = filed.who === culprit && !!filed.breaks && heldBreakers(d, run).some((l) => l.id === filed.breaks);
+    out.push(`  You filed:     ${filed.who && filed.who !== culprit ? `${nameOf(c, filed.who)}, on ` : ''}${mine}${ok ? '  ✓' : '  ✗'}`);
+  }
+  if (!isMurder(c)) {
+    out.push('');
+    out.push('WHAT PUT IT THERE');
+    out.push(`${cap(victimOf(c).short)} ended up ${c.crime.whereNow?.text ?? 'where it ended up'}.`);
+    out.push(`  What said so: ${trueWhereByText(d, run)}`);
+    if (filed && run) {
+      const mine = filed.whereBy ? (whereByOptions(d, run).find((o) => o.value === filed.whereBy)?.label ?? filed.whereBy) : `${HUNCH.toLowerCase()}.`;
+      const ok = !!filed.whereBy && heldWhereBy(d, run).some((o) => o.value === filed.whereBy);
+      out.push(`  You filed:    ${mine}${ok ? '  ✓' : '  ✗'}`);
+    }
+  }
+  out.push('');
   const hours = c.board.hours;
   const rows = [...suspectsOf(c), ...c.people.filter((p) => p.role === 'company').map((p) => p.id), ...(isMurder(c) ? [c.crime.victim] : [])];
   const w0 = Math.max(...rows.map((id) => nameOf(c, id).length)) + 3;

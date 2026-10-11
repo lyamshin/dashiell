@@ -51,6 +51,13 @@ export interface BoardReport {
   why: PersonId | null;
   /** Lost item or pet: where it is now. */
   where?: string | null;
+  /**
+   * docs/46 §3: what breaks their story, as the id of a line held (`Line.id`). Null or left out
+   * is a hunch. Recorded so a measure can tell a name worked out from a name guessed.
+   */
+  breaks?: string | null;
+  /** docs/46 §3, a lost thing: which line put it where it is now (a held line's id, or `crack:p@h`). Null is a hunch. */
+  whereBy?: string | null;
 }
 
 export interface BoardRun {
@@ -210,6 +217,21 @@ export function victimWord(c: BoardCase): string {
 
 export function tierName(t: TierIndex): string {
   return TIER_NAMES[t];
+}
+
+/**
+ * docs/46 §2: how far a thought may go.
+ * - walk (Raw): everything, the elimination to its last step included;
+ * - link (Coddled to Medium): collisions, agreements, the link to the scene,
+ *   the way in; never who is cleared, who is left or how many remain;
+ * - fact (Hard-boiled): this page's fact said again in the voice, and a
+ *   collision only when both its lines are on this page.
+ * The turn and "Go over what I have" follow the same level.
+ */
+export type ThoughtLevel = 'walk' | 'link' | 'fact';
+
+export function thoughtLevel(c: Pick<BoardCase, 'tier'>): ThoughtLevel {
+  return c.tier === 0 ? 'walk' : c.tier === 5 ? 'fact' : 'link';
 }
 
 /* ------------------------------------------------------------------ *

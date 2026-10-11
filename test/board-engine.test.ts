@@ -6,10 +6,10 @@ import { boardGrid } from '../src/game/board/grid.js';
 import { collisionsOf, linesHeld } from '../src/game/board/knowledge.js';
 import { lintBoardRun, boardPlayerText } from '../src/game/board/lint.js';
 import { budgetCalls, dealBoard, parCalls, type BoardRun } from '../src/game/board/model.js';
-import { playBoardOracle, playWanderer, refusalShortcutCalls } from '../src/game/board/oracle.js';
+import { playBoardOracle, playReader, playWanderer, refusalShortcutCalls } from '../src/game/board/oracle.js';
 import { pageStars } from '../src/game/board/choices.js';
 import { isOpen } from '../src/game/board/stars.js';
-import { scoreBoard, truthReport } from '../src/game/board/report.js';
+import { breakOptions, scoreBoard, truthReport, whereByOptions } from '../src/game/board/report.js';
 import { firstPerson } from '../src/game/board/tell.js';
 import { REASONS } from '../src/gen/board/content.js';
 import { runPlay, type PlayIo } from '../src/cli/play-lib.js';
@@ -34,8 +34,14 @@ describe('board: the oracle walks the designed path through the engine', () => {
       expect(o.ok, `seed ${s}: ${o.reason}`).toBe(true);
       expect(o.run.used).toBe(parCalls(d));
       expect(parCalls(d)).toBeLessThan(budgetCalls(d));
-      const v = scoreBoard(d, o.run, truthReport(d));
+      // docs/46 §3: solved is the right name on the line that breaks the story.
+      const v = scoreBoard(d, o.run, truthReport(d, o.run));
       expect(v.points).toBe(v.asked);
+      expect(v.outcome).toBe('solved');
+      // The same name on a hunch is right, but you couldn't have known: half on who.
+      const hunch = scoreBoard(d, o.run, { ...truthReport(d, o.run), breaks: null });
+      expect(hunch.outcome).toBe('lucky');
+      expect(hunch.points).toBe(v.asked - 0.5);
     }
   });
 });
@@ -86,15 +92,47 @@ describe('board: stars follow what the player holds', () => {
     }
   });
 
-  it('Hard-boiled stars only the designed path’s first two steps', () => {
-    for (let s = 1; s <= 4; s++) {
-      const d = dealBoard(s, 5, 'murder');
-      const first2 = d.analysis.path.slice(0, 2).map((x) => x.q);
-      const o = playBoardOracle(d);
-      let run = newBoardRun(d);
-      for (const cmd of ['', ...o.commands]) {
-        if (cmd) run = stepBoard(d, run, cmd).run;
-        for (const st of pageStars(d, run)) expect(first2).toContain(st.q);
+  it('thin by tier (docs/46 §1): one way at Coddled, one a page from Poached, only walks at Medium, the scene on page one at Hard-boiled', () => {
+    for (const { tier, type } of cases) {
+      for (let s = 1; s <= 4; s++) {
+        const d = dealBoard(s, tier, type);
+        // Along the oracle's route and the reader's (every star, else the first choice).
+        for (const commands of [playBoardOracle(d).commands, playReader(d, s).commands]) {
+          let run = newBoardRun(d);
+          let pageOne = true;
+          for (const cmd of ['', ...commands]) {
+            if (cmd) {
+              run = stepBoard(d, run, cmd).run;
+              pageOne = false;
+            }
+            if (run.reportOpen) break;
+            const stars = pageStars(d, run);
+            if (tier >= 2) expect(stars.length, `tier ${tier} seed ${s}`).toBeLessThanOrEqual(1);
+            // "Put it to …" is starred only at Raw and Coddled.
+            if (tier >= 2) for (const st of stars) expect(st.q.startsWith('confront:'), `tier ${tier} seed ${s}: ${st.q}`).toBe(false);
+            // Medium: where to go, never which question to ask.
+            if (tier === 4) for (const st of stars) expect(st.command.startsWith('go '), `seed ${s}: ${st.command}`).toBe(true);
+            // Hard-boiled: one star, the scene, on page one. None after.
+            if (tier === 5) {
+              if (pageOne) expect(stars.map((x) => x.command)).toEqual([`go ${d.kase.crime.scene}`]);
+              else expect(stars).toEqual([]);
+            }
+          }
+        }
+      }
+    }
+  });
+
+  it('a star names the pointer, never what the answer will show, who it clears or who is left', () => {
+    for (const { tier, type } of cases) {
+      for (let s = 1; s <= 3; s++) {
+        const d = dealBoard(s, tier, type);
+        let run = newBoardRun(d);
+        for (const cmd of ['', ...playBoardOracle(d).commands]) {
+          if (cmd) run = stepBoard(d, run, cmd).run;
+          if (run.reportOpen) break;
+          for (const st of pageStars(d, run)) expect(st.why, `tier ${tier} seed ${s}`).not.toMatch(/\bclear|\bleft\b|\bdid it\b|\bguilty\b|\bbreaks?\b|\bwill (show|say|tell)\b|\blying\b|\blie\b/i);
+        }
       }
     }
   });
@@ -179,7 +217,7 @@ describe('board: the refusal shortcut and the wanderer', () => {
     }
   });
 
-  it('the wanderer rarely solves from Poached up', () => {
+  it('the wanderer rarely files solved from Poached up: the name with the line that breaks the story (docs/46 §4)', () => {
     let n = 0;
     let solved = 0;
     for (const tier of [2, 3, 4, 5] as TierIndex[]) {
@@ -189,7 +227,25 @@ describe('board: the refusal shortcut and the wanderer', () => {
         if (playWanderer(d, s).ok) solved++;
       }
     }
-    expect(solved / n).toBeLessThan(0.35);
+    expect(solved / n).toBeLessThan(0.1);
+  });
+
+  it('the reader (every star, else the first choice) is handed the name at Raw and not from Poached up (docs/46 §4)', () => {
+    const rate = (tier: TierIndex) => {
+      let ok = 0;
+      let n = 0;
+      for (const type of typesFor(tier)) {
+        for (let s = 1; s <= 6; s++) {
+          n++;
+          if (playReader(dealBoard(s, tier, type), s).ok) ok++;
+        }
+      }
+      return ok / n;
+    };
+    expect(rate(0)).toBeGreaterThan(0.9);
+    expect(rate(2)).toBeLessThan(0.5);
+    expect(rate(4)).toBeLessThan(0.2);
+    expect(rate(5)).toBeLessThan(0.2);
   });
 });
 
@@ -258,10 +314,47 @@ describe('board: the play CLI', () => {
         expect(runPlay(['do', cmd, '--save', save], io).code, cmd).toBe(0);
       }
     }
-    const filed = runPlay(['file', 'who=Fairbanks; when=10; where=Benny; why=Fairbanks', '--save', save], io);
-    expect(filed.code).toBe(0);
+    // docs/46 §3: the report asks what breaks their story. `report <name>` lists the lines; breaks counts down them.
+    const form = runPlay(['report', 'Fairbanks', '--save', save], io);
+    expect(form.code).toBe(0);
+    expect(form.out).toContain('What breaks their story (breaks):');
+    expect(form.out).toContain('A hunch');
+    const o2 = playBoardOracle(d);
+    const truth = truthReport(d, o2.run);
+    const n = breakOptions(d, o2.run, d.kase.crime.culprit).findIndex((x) => x.value === truth.breaks) + 1;
+    const wn = whereByOptions(d, o2.run).findIndex((x) => x.value === truth.whereBy) + 1;
+    expect(n).toBeGreaterThan(0);
+    const filed = runPlay(['file', `who=Fairbanks; breaks=${n}; when=10; where=Benny; whereBy=${wn}; why=Fairbanks`, '--save', save], io);
+    expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('THE VERDICT');
+    expect(filed.out).toContain('4 out of 4.');
+    // The save records the line, so a measure can tell deduced from guessed.
+    expect(JSON.parse(files.get(save) as string).events.at(-1).file.breaks).toBe(truth.breaks);
     expect(runPlay(['story', '--save', save], io).out.length).toBeGreaterThan(100);
+    expect(runPlay(['curtain', '--save', save], io).out).toContain('WHAT BROKE THE STORY');
+  });
+
+  it('files the right name on a hunch as right, but you couldn’t have known: half on who', () => {
+    const save = 'hunch.json';
+    expect(runPlay(['new', '--seed', '4', '--tier', '2', '--save', save, '--no-teach'], io).code).toBe(0);
+    const d = dealBoard(4, 2);
+    // The same route, by the engine's own commands: a put goes through its picker.
+    for (const cmd of playBoardOracle(d).commands) {
+      if (cmd.startsWith('put ')) {
+        const [, p, h] = cmd.split(' ') as [string, string, string];
+        const opened = runPlay(['confront', d.kase.people.find((x) => x.id === p)?.short as string, '--save', save], io);
+        if (opened.out.includes('Which of their claims?')) runPlay(['do', `claim ${h}`, '--save', save], io);
+      } else if (cmd.startsWith('ask ')) runPlay(['do', d.kase.people.find((x) => x.id === cmd.split(' ')[1])?.short as string, '--save', save], io);
+      expect(runPlay(['do', cmd, '--save', save], io).code, cmd).toBe(0);
+    }
+    const filed = runPlay(['file', 'who=Fairbanks; breaks=hunch; when=10; where=Benny; whereBy=hunch; why=Fairbanks', '--save', save], io);
+    expect(filed.code, filed.out).toBe(0);
+    expect(filed.out).toContain('right, but you couldn’t have known');
+    expect(filed.out).toContain('3 out of 4.');
+    expect(filed.out).toContain('half credit on who');
+    const curtain = runPlay(['curtain', '--save', save], io).out;
+    expect(curtain).toMatch(/What broke it: .+/);
+    expect(curtain).toContain('You filed:     a hunch.');
   });
 });
 

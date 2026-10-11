@@ -128,7 +128,14 @@ describe('trace-line', () => {
 
   it('traces an engine line to the function that holds it', () => {
     // The papers' search writes one of a few lines of its own; one is on the page.
-    const lines = ['Everybody in that box had a reason. Only one of them was on top.', 'I put the page in my pocket. A reason is half of what the report asks, and the easy half.'];
+    // (Above Raw the papers put nobody on top, docs/46 §2, and say one of three lines of their own.)
+    const lines = [
+      'Everybody in that box had a reason. Only one of them was on top.',
+      'I put the page in my pocket. A reason is half of what the report asks, and the easy half.',
+      'A reason is half of what the report asks, and the easy half.',
+      'A grudge on paper is a long way from the',
+      'had a reason. A reason isn’t a hand on the',
+    ];
     const where = PAGES.flatMap((p) => lines.filter((l) => p.text.includes(l)).map((l) => ({ ...p, l })))[0];
     expect(where, 'no papers line on these pages').toBeDefined();
     const w = where as NonNullable<typeof where>;

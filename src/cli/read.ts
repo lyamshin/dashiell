@@ -15,7 +15,7 @@ import { boardChoices } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { budgetCalls, dealBoard, deadlineWords, parCalls, tierName, type BoardRun } from '../game/board/model.js';
 import { playBoardOracle, playWanderer } from '../game/board/oracle.js';
-import { curtainOfBoard, scoreBoard, storyOfBoard, truthReport } from '../game/board/report.js';
+import { curtainOfBoard, pointsText, scoreBoard, storyOfBoard, truthReport } from '../game/board/report.js';
 import { choicesText, notebookText, pageBodyText, wrap } from '../game/board/text.js';
 import { ignoreBrokenPipe, parseArgs } from './args.js';
 
@@ -41,6 +41,8 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
       if (r.error) process.stderr.write(`(${cmd}: ${r.error})\n`);
       run = r.run;
     }
+    // The true report, on whatever lines this route holds.
+    report = truthReport(d, run);
   } else if (flags.has('random')) {
     const p = playWanderer(d, seed);
     run = p.run;
@@ -50,6 +52,7 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
     const p = playBoardOracle(d);
     run = p.run;
     commands = p.commands;
+    report = p.report;
     if (!p.ok) process.stderr.write(`(the oracle: ${p.reason})\n`);
   }
   // Replay to know each page's state for its choices.
@@ -77,14 +80,15 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
   out.push(notebookText(d, run));
   out.push('');
   const v = scoreBoard(d, run, report);
-  out.push(`THE VERDICT: ${v.points} of ${v.asked} (${v.outcome}); ${run.used} calls against par ${v.par}.`);
-  for (const f of v.fields) out.push(`  ${f.label}: ${f.given}${f.correct ? ' ✓' : ` ✗ (it was ${f.truth})`}`);
+  out.push(`THE VERDICT: ${pointsText(v.points)} of ${v.asked} (${v.outcome}); ${run.used} calls against par ${v.par}.`);
+  for (const f of v.fields) out.push(`  ${f.label}: ${f.given}${f.correct ? (f.half ? ' ½ (right, but you couldn’t have known)' : ' ✓') : ` ✗ (it was ${f.truth})`}`);
+  for (const p of v.plain) out.push(wrap(p));
   for (const p of v.closing) out.push(wrap(p));
   out.push('');
   out.push('WHAT REALLY HAPPENED');
   for (const p of storyOfBoard(d)) out.push(wrap(p));
   out.push('');
-  if (flags.has('curtain')) out.push(curtainOfBoard(d));
+  if (flags.has('curtain')) out.push(curtainOfBoard(d, run, report));
   const words = run.log.reduce((n, p) => n + p.blocks.reduce((m, b) => m + (b.kind === 'prose' || b.kind === 'note' ? b.text.split(/\s+/).length : 0), 0), 0);
   out.push(`${run.log.length} pages · ${words} words · ${Math.round(words / Math.max(1, run.log.length))} a page · ${run.used} calls`);
   return out.join('\n');

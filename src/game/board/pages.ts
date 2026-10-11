@@ -56,6 +56,7 @@ import {
   pronOf,
   solverHeld,
   suspectsOf,
+  thoughtLevel,
   victimOf,
   type BoardCase,
   type BoardDeal,
@@ -64,7 +65,7 @@ import {
   type PersonId,
   type PlaceId,
 } from './model.js';
-import { sourceName, starPlace, starredSteps } from './stars.js';
+import { sourceName, starPlace, starredSteps, walksOnly } from './stars.js';
 import { sheetsFor, type Beat, type SheetJob } from './sheets.js';
 import { placeThread, sourceOf as sourceOfQ, threadFor, type Pointer } from './thread.js';
 import { breakSaid, claimSaid, shortOther, thoughtOf, type Thought } from './thought.js';
@@ -432,7 +433,9 @@ function whyHere(w: Writer, q: string, kind: string, slots: Record<string, strin
 /**
  * The hand-off: what this page makes the detective want next. It is the
  * page's first star, said in his voice, so it always agrees with the starred
- * choice. No star (Hard-boiled, after the first two steps), no hand-off.
+ * choice. No star (Hard-boiled after page one, Medium in the room the next
+ * step is in), no hand-off. At Medium the star is a walk, so the hand-off
+ * says only where to go (docs/46 §1).
  */
 function handOff(w: Writer, always = false): void {
   const c = w.c;
@@ -449,6 +452,14 @@ function handOff(w: Writer, always = false): void {
   const away = at !== w.run.at ? 'yes' : 'no';
   const slots: Record<string, string | undefined> = { place: placeName(c, at) };
   let k = kind;
+  if (walksOnly(c)) {
+    if (away === 'no') return;
+    w.places.add(at);
+    const said = w.hand.draw('handoff', { kind: 'go', away }, withCaps(slots), { plain: true });
+    put(w, 'handoff', said, 'thought');
+    if (said) w.handoff = said;
+    return;
+  }
   if (kind === 'account' || kind === 'list') {
     const p = personOf(c, rest);
     if (!p) return;
@@ -486,8 +497,7 @@ function handOff(w: Writer, always = false): void {
 
 /** The thought: the engine's, after the job. Recorded for the measure, and licensed for the lint. */
 function think(w: Writer, q: string, extra: Thought | null = null): Thought {
-  const lastStep = w.c.tier <= 4;
-  const t = thoughtOf({ c: w.c, before: w.before, run: w.run, q, here: w.run.at, lastStep, pick: (k, ls) => w.hand.pick(k, ls) });
+  const t = thoughtOf({ c: w.c, before: w.before, run: w.run, q, here: w.run.at, level: thoughtLevel(w.c), pick: (k, ls) => w.hand.pick(k, ls) });
   if (extra) {
     t.sentences.unshift(...extra.sentences);
     t.refs.push(...extra.refs);
@@ -951,7 +961,8 @@ export function writeList(w: Writer, watcher: PersonId): void {
   // A second story told earlier, and this list is where it said: they aren't on it.
   const extra: string[] = [];
   const refs: string[] = [];
-  for (const putx of w.run.puts.filter((x) => x.landed && !x.again)) {
+  // The second story was an earlier page: at fact level the grid shows the collision, the thought doesn't.
+  for (const putx of thoughtLevel(c) === 'fact' ? [] : w.run.puts.filter((x) => x.landed && !x.again)) {
     const k = confrontationOf(c, putx.person, putx.hour);
     if (k?.secondLie?.place !== l.place) continue;
     const es = l.entries[putx.hour] ?? [];
@@ -991,7 +1002,27 @@ export function writeSearch(w: Writer, findId: string): void {
   w.told.add(`find:${findId}`);
   if (f.gives.why) {
     const top = personOf(c, c.crime.culprit);
-    put(w, 'job', w.hand.draw('find-papers', {}, withCaps({ top: top?.short, motive: top?.motive }), { widen: true, need: true }) ?? f.text, 'find');
+    // docs/46 §2: above Raw the papers don't put anybody's page on top. A page on top is the book naming who.
+    if (thoughtLevel(c) !== 'walk') {
+      put(w, 'job', w.hand.draw('find-papers', { top: 'none' }, {}, { need: true }) ?? 'He had a page on every one of them, and a reason on every page.', 'find');
+      w.people.add(c.crime.victim);
+      const m = c.means.name.replace(/^(a|an) /, '');
+      const V = vict.short;
+      think(
+        w,
+        q,
+        thoughtOnly(
+          [w.hand.pick('papers-even', [`Everybody in ${V}’s box had a reason. A reason isn’t a hand on the ${m}, and the report wants both.`, `A reason is half of what the report asks, and the easy half. Everybody in ${V}’s box had one.`, `I put ${V}’s pages back in their box. A grudge on paper is a long way from the ${m}.`])],
+          ['givens:found'],
+          { people: [c.crime.victim] },
+        ),
+      );
+      handOff(w);
+      closeWith(w, undefined, 'search-close', {}, {});
+      lay(w, 'search');
+      return;
+    }
+    put(w, 'job', w.hand.draw('find-papers', { top: 'named' }, withCaps({ top: top?.short, motive: top?.motive }), { widen: true, need: true }) ?? f.text, 'find');
     w.people.add(c.crime.culprit);
     w.people.add(c.crime.victim);
     const known = knownPeople(c, w.before).has(c.crime.culprit);
@@ -999,10 +1030,12 @@ export function writeSearch(w: Writer, findId: string): void {
     const tie = known
       ? `${top?.short} I had already, from ${sourceOfName(w, c.crime.culprit)}. Now I had ${pr.his} reason too, in ${vict.short}’s own hand.`
       : `${top?.short} was a name I hadn’t heard tonight, but it had been in a box at ${placeName(c, f.place)} all along.`;
+    // At fact level the thought stays on this page: no tie back to where the name came from.
+    const fact = thoughtLevel(c) === 'fact';
     think(
       w,
       q,
-      thoughtOnly([w.hand.pick('papers-thought', [`A reason isn’t a hand on the ${c.means.name.replace(/^(a|an) /, '')}. But it was a reason, and it was on top.`, 'Everybody in that box had a reason. Only one of them was on top.', 'I put the page in my pocket. A reason is half of what the report asks, and the easy half.']), tie], ['givens:found'], { people: [c.crime.culprit, c.crime.victim] }),
+      thoughtOnly([w.hand.pick('papers-thought', [`A reason isn’t a hand on the ${c.means.name.replace(/^(a|an) /, '')}. But it was a reason, and it was on top.`, 'Everybody in that box had a reason. Only one of them was on top.', 'I put the page in my pocket. A reason is half of what the report asks, and the easy half.']), ...(fact ? [] : [tie])], ['givens:found'], { people: [c.crime.culprit, c.crime.victim] }),
     );
     handOff(w);
     closeWith(w, undefined, 'search-close', {}, {});
@@ -1110,7 +1143,8 @@ export function writeMotive(w: Writer, p: PersonId): void {
     refs.push('givens:pointer');
   }
   w.people.add(c.client);
-  if (w.run.asked.includes(`account:${p}`)) {
+  // At fact level the thought doesn't reach back to their evening, an earlier page.
+  if (w.run.asked.includes(`account:${p}`) && thoughtLevel(c) !== 'fact') {
     const hc = crimeHourKnown(c, w.run);
     const hs = hc !== null ? [hc] : (c.givens.window ?? c.crime.window);
     sentences.push(`For ${andList(hs.map(hourWord))}, ${pronOf(c, p).he} had told me ${andList(hs.map((h) => claimSaid(c, p, h)))}.`);
@@ -1270,7 +1304,8 @@ export function writeReport(w: Writer): void {
   const s = solveRun(c, w.run);
   const at = w.run.at;
   put(w, 'staging', w.hand.draw('report-stage', { kind: stageKind(c, at) }, withCaps({ place: at === OFFICE ? 'the office' : placeName(c, at) }), { plain: true }) ?? 'I sat down with the form.', 'act');
-  put(w, 'why', w.hand.draw('report-why', { done: s.done ? 'yes' : 'no' }, {}, { plain: true }), 'narrator');
+  // Whether what's held is enough is the player's to say above a walk (docs/46 §2): the form gets no hint.
+  put(w, 'why', w.hand.draw('report-why', { done: thoughtLevel(c) !== 'walk' ? 'open' : s.done ? 'yes' : 'no' }, {}, { plain: true }), 'narrator');
   // The office's prop, paid off: the night began there.
   const prop = w.run.prop;
   const fresh = prop?.pay.filter((l) => !w.hand.used(`pay:${l.slice(0, 40)}`)) ?? [];
@@ -1297,18 +1332,39 @@ export interface Clause {
   places: PlaceId[];
 }
 
-/** What the notebook adds up to, clause by clause. Never a verdict: placed, said, couldn't say. */
+/**
+ * What the notebook adds up to, clause by clause. Never a verdict: placed,
+ * said, couldn't say. docs/46 §2: at link level the hour stops at the link
+ * (the office's two hours and the sighting), and at fact level it's only what's
+ * held and what's open, with nothing joined to anything.
+ */
 export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
   const c = d.kase;
+  const level = thoughtLevel(c);
+  if (level === 'fact') return factClauses(d, run);
   const s = solveHeld(c, solverHeld(run));
   const out: Clause[] = [];
   const hc = s.possibleHours.length === 1 ? (s.possibleHours[0] as Hour) : null;
   const what = isMurder(c) ? 'It happened' : 'It went';
-  out.push(
-    hc !== null
-      ? { key: 'when', text: `${what} at ${oclock(hc)}.`, hours: [hc], people: [], places: [] }
-      : { key: 'when', text: `${what} at ${hourWord(s.possibleHours[0] as Hour)} or ${oclock(s.possibleHours[1] as Hour)}, and I didn’t know which yet.`, hours: [...s.possibleHours], people: [], places: [] },
-  );
+  const office = c.givens.window ?? c.crime.window;
+  // Narrowed from the office's two hours by a sighting: above a walk, the two side by side.
+  const gone = hc !== null && office.length > 1 && level === 'link' ? office.filter((h) => h !== hc).map((h) => ({ h, x: s.placed.get(`${c.crime.victim}@${h}`) })).find((y) => y.x && y.x.place !== c.crime.scene) : undefined;
+  if (gone?.x) {
+    const v = victimOf(c).short;
+    const two = `${hourWord(office[0] as Hour)} or ${hourWord(office[1] as Hour)}`;
+    out.push({
+      key: 'when',
+      text: isMurder(c) ? `The office had given me ${two}, and ${v} was at ${placeName(c, gone.x.place)} at ${hourWord(gone.h)}, alive.` : `The office had given me ${two}, and at ${hourWord(gone.h)} ${v} was at ${placeName(c, gone.x.place)}.`,
+      hours: [...office],
+      people: [c.crime.victim],
+      places: [gone.x.place],
+    });
+  } else
+    out.push(
+      hc !== null
+        ? { key: 'when', text: `${what} at ${oclock(hc)}.`, hours: [hc], people: [], places: [] }
+        : { key: 'when', text: `${what} at ${hourWord(s.possibleHours[0] as Hour)} or ${oclock(s.possibleHours[1] as Hour)}, and I didn’t know which yet.`, hours: [...s.possibleHours], people: [], places: [] },
+    );
   const meansHeld = run.asked.some((q) => q.startsWith('search:') && c.finds.find((f) => `search:${f.id}` === q)?.gives.means);
   if (meansHeld && isMurder(c)) {
     out.push({ key: 'means', text: `The ${c.means.name.replace(/^(a|an) /, '')} came from ${placeName(c, c.means.origin)}, so whoever used it had been there first.`, hours: [], people: [], places: [c.means.origin] });
@@ -1336,7 +1392,9 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
     }
     if (bits.length) out.push({ key: 'access', text: `${cap(bits.join('; '))}.`, hours: [], people: suspectsOf(c).filter((p) => s.accessYes.has(p) || s.accessNo.has(p)), places: [c.means.origin] });
   }
-  const hs = hc !== null ? [hc] : [...s.possibleHours];
+  // Above a walk, when the office gave two hours, every clause is about both: which one it was is the player's to say.
+  const twoHours = level === 'link' && office.length > 1;
+  const hs = twoHours ? [...office] : hc !== null ? [hc] : [...s.possibleHours];
   for (const p of suspectsOf(c)) {
     const placed = hs.map((h) => ({ h, x: s.placed.get(`${p}@${h}`) })).filter((y) => y.x && y.x.place !== c.crime.scene && y.x.deps.some((dq) => dq !== `account:${p}`));
     const st = hs.map((h) => ({ h, st: s.status.get(`${p}@${h}`) })).find((y) => y.st?.s === 'broken');
@@ -1369,6 +1427,29 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
       continue;
     }
     const pl = placed[0];
+    if (twoHours) {
+      const P = nameOf(c, p);
+      if (pl?.x) {
+        // Placed at one of the two hours or both, by somebody else's word.
+        const bys = [...new Set(placed.map((y) => y.x?.deps.find((dq) => dq !== `account:${p}`) as string))];
+        const same = placed.length > 1 && placed.every((y) => y.x?.place === pl.x?.place);
+        const at = same ? `${placeName(c, pl.x.place)} at ${andList(placed.map((y) => hourWord(y.h)))}` : andList(placed.map((y) => `${placeName(c, y.x?.place ?? '')} at ${hourWord(y.h)}`));
+        const words = bys.map((by) => sourceName(c, by).replace(/’s (list|story)$/, '’s word'));
+        out.push({
+          key: `placed:${p}`,
+          text: `${P} was at ${at}, with ${andList(words)} under ${words.length > 1 ? 'them' : 'it'}.`,
+          hours: placed.map((y) => y.h),
+          people: [p, ...bys.flatMap((by) => sourcePeople(by))],
+          places: placed.map((y) => y.x?.place ?? ''),
+        });
+      } else if (!run.asked.includes(`account:${p}`)) {
+        out.push({ key: `open:${p}`, text: `Nobody had told me where ${P} was at ${hourWord(hs[0] as Hour)} or ${hourWord(hs[1] as Hour)}, including ${P}.`, hours: [...hs], people: [p], places: [] });
+      } else {
+        const said = hs.map((h) => `${placeName(c, accountOf(c, p)?.claims[h]?.place ?? '')} at ${hourWord(h)}`);
+        out.push({ key: `own:${p}`, text: `${P} said ${andList(said)}, and nobody else had said so yet.`, hours: [...hs], people: [p], places: hs.map((h) => accountOf(c, p)?.claims[h]?.place ?? '') });
+      }
+      continue;
+    }
     if (pl?.x && placed.length === hs.length) {
       const by = pl.x.deps.find((dq) => dq !== `account:${p}`) as string;
       out.push({ key: `placed:${p}`, text: `${nameOf(c, p)} was at ${placeName(c, pl.x.place)} at ${hourWord(pl.h)}, with ${sourceName(c, by).replace(/’s (list|story)$/, '’s word')} under it.`, hours: [pl.h], people: [p, ...sourcePeople(by)], places: [pl.x.place] });
@@ -1392,6 +1473,40 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
         : { key: 'where', text: `And whatever it was had gone to ${holder} at ${placeName(c, c.crime.whereNow.place)} at ${hh}.`, hours: hh === 'eleven' ? [11] : hh === 'ten' ? [10] : [], people: [], places: [c.crime.whereNow.place] },
     );
   }
+  return out;
+}
+
+/**
+ * docs/46 §2, fact level (Hard-boiled): what's held and what's open, and
+ * nothing joined to anything. The office's hours, where the means came from,
+ * whose evenings and lists I had, what anybody said when it was put to them,
+ * and whose evenings I still didn't have.
+ */
+function factClauses(d: BoardDeal, run: BoardRun): Clause[] {
+  const c = d.kase;
+  const out: Clause[] = [];
+  const office = c.givens.window ?? c.crime.window;
+  out.push({ key: 'when', text: office.length > 1 ? `The office had given me ${hourWord(office[0] as Hour)} or ${oclock(office[1] as Hour)}.` : `The office had given me ${oclock(office[0] as Hour)}.`, hours: [...office], people: [], places: [] });
+  const meansHeld = run.asked.some((q) => q.startsWith('search:') && c.finds.find((f) => `search:${f.id}` === q)?.gives.means);
+  if (meansHeld && isMurder(c)) out.push({ key: 'means', text: `The ${c.means.name.replace(/^(a|an) /, '')} had come from ${placeName(c, c.means.origin)}.`, hours: [], people: [], places: [c.means.origin] });
+  const evenings = run.asked.filter((q) => q.startsWith('account:')).map((q) => q.slice(8));
+  const lists = run.asked.filter((q) => q.startsWith('list:')).map((q) => q.slice(5));
+  const bits: string[] = [];
+  if (evenings.length) bits.push(`${evenings.length > 1 ? 'evenings' : 'an evening'} from ${andList(evenings.map((p) => nameOf(c, p)))}`);
+  if (lists.length) bits.push(`${lists.length > 1 ? 'lists' : 'a list'} from ${andList(lists.map((p) => nameOf(c, p)))}`);
+  if (bits.length) out.push({ key: 'held', text: `I had ${bits.join(', and ')}.`, hours: [], people: [...evenings, ...lists], places: [] });
+  for (const putx of run.puts.filter((x) => x.landed && !x.again)) {
+    const k = confrontationOf(c, putx.person, putx.hour);
+    if (!k) continue;
+    const name = nameOf(c, putx.person);
+    const again = run.puts.some((x) => x.person === putx.person && x.hour === putx.hour && x.again && x.landed);
+    if (k.response === 'second-lie' && k.secondLie?.place) out.push({ key: `second:${putx.person}`, text: again ? `Put to it, ${name} had a second story, ${placeName(c, k.secondLie.place)}, and when that was put back ${pronOf(c, putx.person).he} wouldn’t say more.` : `Put to it, ${name} had a second story: ${placeName(c, k.secondLie.place)}.`, hours: [], people: [putx.person], places: [k.secondLie.place] });
+    else if (k.response !== 'crack' && k.response !== 'admit') out.push({ key: `refused:${putx.person}`, text: `Put to it, ${name} wouldn’t say where ${pronOf(c, putx.person).he} had been instead.`, hours: [], people: [putx.person], places: [] });
+  }
+  const open = suspectsOf(c).filter((p) => !evenings.includes(p));
+  const owners = open.map((p) => `${nameOf(c, p)}’s`);
+  const orList = owners.length > 1 ? `${owners.slice(0, -1).join(', ')} or ${owners[owners.length - 1]}` : (owners[0] ?? '');
+  if (open.length) out.push({ key: 'open', text: `I didn’t have ${orList} evening${open.length > 1 ? 's' : ''} yet.`, hours: [], people: open, places: [] });
   return out;
 }
 
@@ -1434,15 +1549,18 @@ export function writeTurn(w: Writer): void {
   }
   put(w, 'job', `Here’s what I had. ${clauses.map((x) => x.text).join(' ')}`, 'recap');
   w.recap = (w.parts.job ?? [])[0]?.text;
-  // What next: the one caught, put to it now, or the first star first.
+  // What next, by the stars (docs/46 §1): "put it to them now" only where a put is starred
+  // (Raw and Coddled); from Poached up, the one star; at Medium, only where to go; none at Hard-boiled.
   const caught = collisionsOfRun(w)[0];
   const steps = starredSteps(w.d, w.run).filter((q) => !q.startsWith('confront:'));
   const next = steps[0];
   if (caught) {
     const name = nameOf(c, caught);
-    w.people.add(caught);
     let first = '';
-    if (next) {
+    if (next && walksOnly(c)) {
+      first = `get over to ${placeName(c, starPlace(c, next))}`;
+      w.places.add(starPlace(c, next));
+    } else if (next) {
       const [k, rest] = next.split(':') as [string, string];
       const p = personOf(c, rest);
       if (k === 'account' && p && knownPeople(c, w.run).has(rest)) first = `find out first what ${p.short} had to say for ${pronOf(c, rest).self}`;
@@ -1451,7 +1569,10 @@ export function writeTurn(w: Writer): void {
       if (p && knownPeople(c, w.run).has(rest)) w.people.add(rest);
       w.places.add(starPlace(c, next));
     }
-    put(w, 'handoff', first ? `I could put it to ${name} now. Or I could ${first}.` : `I could put it to ${name} now.`, 'recap');
+    if (c.tier <= 1) {
+      w.people.add(caught);
+      put(w, 'handoff', first ? `I could put it to ${name} now. Or I could ${first}.` : `I could put it to ${name} now.`, 'recap');
+    } else if (first) put(w, 'handoff', `Before I did anything about it, I wanted to ${first.replace(/ first$/, '').replace(/^find out first /, 'find out ')}.`, 'recap');
   }
   put(w, 'close', w.hand.draw('turn-close', {}, {}, { widen: true, joke: true }), 'recap');
   lay(w, 'turn');

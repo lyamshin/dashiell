@@ -35,7 +35,7 @@ import {
   type PlaceId,
 } from './model.js';
 import { breakSaid } from './pages.js';
-import { starPlace, starReason, starredSteps } from './stars.js';
+import { starPlace, starReason, starredSteps, walksOnly } from './stars.js';
 
 /** The minutes the next call moves the clock: what a label says and the engine charges. */
 export function callMinutes(d: BoardDeal, run: Pick<BoardRun, 'used'>): number {
@@ -56,17 +56,23 @@ export interface BoardStar {
   command: string;
 }
 
-/** The page's stars: at most three, each on the choice that takes its step from where the detective stands. */
+/**
+ * The page's stars: at most three, each on the choice that takes its step
+ * from where the detective stands. At Medium a star is only ever a walk
+ * (docs/46 §1): it says where to go, and why, never what to ask there.
+ */
 export function pageStars(d: BoardDeal, run: BoardRun): BoardStar[] {
   const c = d.kase;
   const out: BoardStar[] = [];
   const here = new Set(peopleAt(c, run, run.at));
   const places = knownPlaces(c, run);
+  const walks = walksOnly(c);
   for (const q of starredSteps(d, run)) {
     if (out.length >= 3) break;
     const [kind, rest] = q.split(':') as [string, string];
     let command: string | null = null;
-    if (kind === 'account' || kind === 'list') {
+    if (walks) command = null;
+    else if (kind === 'account' || kind === 'list') {
       if (here.has(rest)) command = `ask ${rest} ${kind === 'list' ? 'list' : 'evening'}`;
     } else if (kind === 'search') {
       const f = c.finds.find((x) => x.id === rest);
@@ -81,7 +87,7 @@ export function pageStars(d: BoardDeal, run: BoardRun): BoardStar[] {
       command = `go ${at}`;
       if (out.some((s) => s.command === command)) continue;
     }
-    out.push({ q, why: starReason(c, run, q), command });
+    out.push({ q, why: starReason(c, run, q, walks), command });
   }
   return out;
 }
@@ -147,7 +153,10 @@ export function boardChoices(d: BoardDeal, run: BoardRun): OfferedGroup[] {
     if (run.visited.includes(p) || p === OFFICE) return ch;
     // Who the player knows of who's there tonight, or why the place is known at all.
     const there = c.people.filter((x) => x.foundAt === p && people.has(x.id) && (x.role === 'suspect' || x.role === 'company')).map((x) => x.short);
-    return { ...ch, note: there.length > 0 ? `${andList(there)} ${there.length > 1 ? 'are' : 'is'} there` : (known.get(p) ?? 'not been') };
+    const note = there.length > 0 ? `${andList(there)} ${there.length > 1 ? 'are' : 'is'} there` : (known.get(p) ?? 'not been');
+    // A star's reason that says the same as the note says it once.
+    if (ch.why && ch.why.toLowerCase().startsWith(note.toLowerCase())) return ch;
+    return { ...ch, note };
   });
   // Stars first; then the rest. More than four places fold under "Other places".
   go.sort((a, b) => Number(b.lead) - Number(a.lead));

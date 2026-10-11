@@ -1,12 +1,22 @@
 /**
- * docs/43 "Done means", measured: `npx tsx scripts/board-measure.ts [--seeds 50] [--tiers 0,1,2,3,4,5]`
+ * docs/43 "Done means" and docs/46 §4, measured: `npx tsx scripts/board-measure.ts [--seeds 50] [--tiers 0,1,2,3,4,5]`
  *
  * For each tier and each case type it builds, over the seeds:
- * - the oracle's route (the designed path through the engine): solved, and at par;
+ * - the oracle's route (the designed path through the engine): solved with the
+ *   line that breaks the story, and at par (must be 100%);
  * - the refusal shortcut through the engine: never under par;
- * - the wanderer (random reasonable choices): how often it solves;
+ * - the wanderer (random reasonable choices): how often it files who right (as
+ *   before), and how often it files solved, with the line (picked at random from
+ *   what the form offers; target under 10% from Poached up). "citing" is the same
+ *   wanderer citing the line its collision showed, for the record;
+ * - the reader (every star, else the first choice; files the name the book
+ *   handed it, else the form's first choices): solved, which must fall by tier.
+ *   "naming a liar" is the same reader filing a liar the book caught when it was
+ *   handed no name, for the record;
  * - the reader lint and the plain-terms check over the oracle's and the wanderer's pages;
  * - first-level choices a page (median and most).
+ *
+ * Then the same by tier, all case types together.
  */
 
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
@@ -14,7 +24,8 @@ import { boardChoices } from '../src/game/board/choices.js';
 import { stepBoard, newBoardRun } from '../src/game/board/engine.js';
 import { lintBoardRun, boardPlayerText } from '../src/game/board/lint.js';
 import { dealBoard, parCalls, tierName, type BoardRun } from '../src/game/board/model.js';
-import { confessionCalls, playBoardOracle, playWanderer, refusalShortcutCalls } from '../src/game/board/oracle.js';
+import { confessionCalls, playBoardOracle, playReader, playWanderer, refusalShortcutCalls } from '../src/game/board/oracle.js';
+import { scoreBoard } from '../src/game/board/report.js';
 // @ts-expect-error — plain JavaScript module, no declarations.
 import { findJargon, loadPlainTerms } from './plain-terms.mjs';
 
@@ -37,18 +48,37 @@ function firstLevel(groups: ReturnType<typeof boardChoices>): number {
   return n;
 }
 
+interface Tally {
+  n: number;
+  oracle: number;
+  under: number;
+  whoRight: number;
+  wander: number;
+  citing: number;
+  reader: number;
+  readerLiar: number;
+}
+const blank = (): Tally => ({ n: 0, oracle: 0, under: 0, whoRight: 0, wander: 0, citing: 0, reader: 0, readerLiar: 0 });
+
 const rows: string[] = [];
-rows.push('| tier | type | n | oracle solves | at par | par calls median [range] | shortcut under par | shortcut names nobody | confession route under par | wanderer solves | lint issues | plain-terms hits | choices a page median / max | callback pages |');
-rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
+rows.push('| tier | type | n | oracle solved, with the line | at par | par calls median [range] | shortcut under par | shortcut names nobody | confession route under par | wanderer files who right | wanderer files solved | wanderer solved, citing its collision | reader files solved | reader naming a liar, solved | lint issues | plain-terms hits | choices a page median / max | callback pages |');
+rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
+const byTier = new Map<TierIndex, Tally>();
 const examples: string[] = [];
 for (const tier of tiers) {
+  const t = byTier.get(tier) ?? blank();
+  byTier.set(tier, t);
   for (const type of typesFor(tier) as CaseType[]) {
     let solved = 0;
     let atPar = 0;
     const pars: number[] = [];
     let under = 0;
     let nobody = 0;
+    let whoRight = 0;
     let wander = 0;
+    let citing = 0;
+    let readerLiar = 0;
+    let reader = 0;
     let confess = 0;
     let lint = 0;
     let jargon = 0;
@@ -57,6 +87,7 @@ for (const tier of tiers) {
     let callbacks = 0;
     for (let s = 1; s <= N; s++) {
       const d = dealBoard(s, tier, type);
+      const culprit = d.kase.crime.culprit;
       const o = playBoardOracle(d);
       const par = parCalls(d);
       pars.push(par);
@@ -72,13 +103,18 @@ for (const tier of tiers) {
       const cf = confessionCalls(d);
       if (cf !== null && cf < par) confess++;
       const w = playWanderer(d, s);
+      if (w.report.who === culprit) whoRight++;
       if (w.ok) wander++;
+      if (w.alt && scoreBoard(d, w.run, w.alt).outcome === 'solved') citing++;
+      const r = playReader(d, s);
+      if (playReader(d, s, { liar: true }).ok) readerLiar++;
+      if (r.ok) reader++;
       for (const run of [o.run, w.run] as BoardRun[]) {
         const issues = lintBoardRun(d, run);
         lint += issues.length;
         if (issues.length && examples.length < 24) examples.push(`lint ${tierName(tier)} ${type} seed ${s} p${(issues[0]?.page ?? 0) + 1}: ${issues[0]?.rule} ${issues[0]?.detail}`);
-        for (const t of boardPlayerText(run)) {
-          const hits = findJargon(t, terms) as { term: string; match: string }[];
+        for (const text of boardPlayerText(run)) {
+          const hits = findJargon(text, terms) as { term: string; match: string }[];
           jargon += hits.length;
           if (hits.length && examples.length < 30) examples.push(`jargon ${tierName(tier)} ${type} seed ${s}: ${hits[0]?.term} "${hits[0]?.match}"`);
         }
@@ -89,18 +125,32 @@ for (const tier of tiers) {
         if (p.board.callback) callbacks++;
       }
       // Choices a page, along the oracle's route.
-      let r = newBoardRun(d);
-      counts.push(firstLevel(boardChoices(d, r)));
+      let rr = newBoardRun(d);
+      counts.push(firstLevel(boardChoices(d, rr)));
       for (const cmd of o.commands) {
-        r = stepBoard(d, r, cmd).run;
-        if (!r.reportOpen) counts.push(firstLevel(boardChoices(d, r)));
+        rr = stepBoard(d, rr, cmd).run;
+        if (!rr.reportOpen) counts.push(firstLevel(boardChoices(d, rr)));
       }
     }
     pars.sort((a, b) => a - b);
     counts.sort((a, b) => a - b);
     const pct = (k: number) => `${Math.round((100 * k) / N)}%`;
-    rows.push(`| ${tierName(tier)} | ${type} | ${N} | ${pct(solved)} | ${pct(atPar)} | ${pars[Math.floor(N / 2)]} [${pars[0]}–${pars[N - 1]}] | ${under} | ${nobody} | ${confess} | ${pct(wander)} | ${lint} | ${jargon} | ${counts[Math.floor(counts.length / 2)]} / ${counts[counts.length - 1]} | ${Math.round((100 * callbacks) / Math.max(1, pages))}% |`);
+    rows.push(
+      `| ${tierName(tier)} | ${type} | ${N} | ${pct(solved)} | ${pct(atPar)} | ${pars[Math.floor(N / 2)]} [${pars[0]}–${pars[N - 1]}] | ${under} | ${nobody} | ${confess} | ${pct(whoRight)} | ${pct(wander)} | ${pct(citing)} | ${pct(reader)} | ${pct(readerLiar)} |${lint} | ${jargon} | ${counts[Math.floor(counts.length / 2)]} / ${counts[counts.length - 1]} | ${Math.round((100 * callbacks) / Math.max(1, pages))}% |`,
+    );
+    t.n += N;
+    t.oracle += solved;
+    t.under += under;
+    t.whoRight += whoRight;
+    t.wander += wander;
+    t.citing += citing;
+    t.reader += reader;
+    t.readerLiar += readerLiar;
   }
 }
 process.stdout.write(`${rows.join('\n')}\n`);
+const pt = (k: number, n: number) => `${Math.round((100 * k) / Math.max(1, n))}%`;
+const sum: string[] = ['', '| tier | nights | oracle solved, with the line | wanderer files who right | wanderer files solved | wanderer solved, citing its collision | refusal shortcut under par | reader files solved | reader naming a liar, solved |', '|---|---|---|---|---|---|---|---|---|'];
+for (const [tier, t] of byTier) sum.push(`| ${tierName(tier)} | ${t.n} | ${pt(t.oracle, t.n)} | ${pt(t.whoRight, t.n)} | ${pt(t.wander, t.n)} | ${pt(t.citing, t.n)} | ${t.under} | ${pt(t.reader, t.n)} | ${pt(t.readerLiar, t.n)} |`);
+process.stdout.write(`${sum.join('\n')}\n`);
 if (examples.length) process.stdout.write(`\n${examples.join('\n')}\n`);
