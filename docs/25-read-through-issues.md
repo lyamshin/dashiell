@@ -114,3 +114,17 @@ Branch `board-connective`. Found reading four board nights in full (`npm run rea
   - "Corrigan on Stuyvesant Street at eleven, going fast, no hat" said three times running. The thought now points at the street, and the next page opens "So, Corrigan."
   - "Mrs. Cheatham, at the Delmonico rooms, minds Duchess when I’m out." stood with no lead-in. Every office quote now has one, and the aside runs as talk with a beat.
   - Found on the reread: Mrs. Cheatham "opened the door the width of a face" a page after she'd opened the door. A person met on the way in isn't staged at the door again.
+
+## Playtest round 3 (docs/47), 2026-10-11
+Branch `round3-fixes`. Four blind testers (Raw 11 lost item, Poached 5 murder, Medium 14 lost pet, Hard-boiled 8 murder) and 120 line edits; docs/47 says what was fixed. Left over:
+
+- **"grey"** in the Hard-boiled faces ("in a grey fedora"). The look sits in the watchers' list entries, so the spelling is in the puzzle hash; change it in a round that regenerates.
+- **The breaks list is marked, not cut.** The lines that touch the named person's story come first; the rest stay, because a shorter list would make the wanderer's random line better than chance.
+- **The grid narrows the window from the victim's row,** against docs/46 §2. For the designer to confirm.
+- **Medium's turn** says "I wanted to get over to Thorndike’s flat" when the next star has no reason that matters.
+- **"I went to the Odessa, a café…"** opens about half the arrive cards, right after a walk that has just said I got there (Hard-boiled 8 #18).
+- **The face variant** prints every suspect's look before their doing card on first sight; three to a room reads as a parade.
+- **Doing cards against the evening:** "finishing a late supper" at seven in the morning, after an account's supper at eight. The soup was fixed card by card; a rule would tag such cards against the night's reasons.
+- **Name thinning** can make a collision's breaker "He" after a sentence about somebody else ("Shapiro said the Bijou at nine. He had Colquitt and Kreuzer here").
+- **Callbacks** fell 1–5 points with the cap of two payoffs a gag.
+- **Poached 5 #17** (an arrival joins two of one person's lines, one about another hour) and **Hard-boiled 8 #15** (the turn's heading and recap) were left as designed.

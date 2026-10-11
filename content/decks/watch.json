@@ -94,7 +94,7 @@
   {
     "id": "wch-010",
     "deck": "watch",
-    "text": "A doorman's whole trade was knowing who belonged, and {watcher} knew, or asked.",
+    "text": "A doorman’s whole trade was knowing who belonged, and {watcher} knew, or asked.",
     "tags": {
       "watcher": "doorman"
     },
@@ -114,7 +114,7 @@
   {
     "id": "wch-012",
     "deck": "watch",
-    "text": "Whoever passed {watcher}'s door got looked over on the way in, and {watcher} judged them on the way out.",
+    "text": "Whoever passed {watcher}’s door got looked over on the way in, and {watcher} judged them on the way out.",
     "joke": true,
     "tags": {
       "watcher": "doorman"
@@ -135,7 +135,7 @@
   {
     "id": "wch-020",
     "deck": "watch",
-    "text": "Nothing moved through the place that {watcher} didn't notice from behind the counter.",
+    "text": "Nothing moved through the place that {watcher} didn’t notice from behind the counter.",
     "tags": {
       "watcher": "counterman"
     },
@@ -256,7 +256,7 @@
   {
     "id": "wch-038",
     "deck": "watch",
-    "text": "Nothing happened on the stairs that {watcher} didn't hear about, usually while it was still happening.",
+    "text": "Nothing happened on the stairs that {watcher} didn’t hear about, usually while it was still happening.",
     "joke": true,
     "tags": {
       "watcher": "landlady"
@@ -277,7 +277,7 @@
   {
     "id": "wch-040",
     "deck": "watch",
-    "text": "A landlady kept track of tenants' comings and goings as a matter of business, and {watcher} made it a pleasure as well.",
+    "text": "A landlady kept track of tenants’ comings and goings as a matter of business, and {watcher} made it a pleasure as well.",
     "joke": true,
     "tags": {
       "watcher": "landlady"
@@ -319,7 +319,7 @@
   {
     "id": "wch-056",
     "deck": "watch",
-    "text": "Nothing much happened in that store that {watcher} didn't ring up or recommend a powder for.",
+    "text": "Nothing much happened in that store that {watcher} didn’t ring up or recommend a powder for.",
     "joke": true,
     "tags": {
       "watcher": "druggist"
@@ -340,7 +340,7 @@
   {
     "id": "wch-058",
     "deck": "watch",
-    "text": "A druggist's counter saw the whole neighborhood eventually, and {watcher} had seen most of it.",
+    "text": "A druggist’s counter saw the whole neighborhood eventually, and {watcher} had seen most of it.",
     "tags": {
       "watcher": "druggist"
     },
@@ -391,7 +391,7 @@
   {
     "id": "wch-063",
     "deck": "watch",
-    "text": "Nobody kept watch there, and nobody ever had.",
+    "text": "Nobody kept watch there. It wasn’t that kind of place.",
     "tags": {
       "watcher": "none"
     },
@@ -421,7 +421,7 @@
   {
     "id": "wch-066",
     "deck": "watch",
-    "text": "Nobody was paid to notice, so nobody did.",
+    "text": "Nobody in the place was paid to notice who came and went, so nobody had.",
     "tags": {
       "watcher": "none"
     },
@@ -482,7 +482,7 @@
   {
     "id": "wch-072",
     "deck": "watch",
-    "text": "No clerk, no doorman, nobody behind a counter: nobody saw who came.",
+    "text": "No clerk, no doorman, nobody watching the stairs: nobody saw who came.",
     "tags": {
       "watcher": "none"
     },

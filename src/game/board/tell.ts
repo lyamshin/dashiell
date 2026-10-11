@@ -67,11 +67,35 @@ function runsOf(hours: Hour[], claims: Record<Hour, Claim>): Run[] {
   return out;
 }
 
-/** How a person opens an hour: "At nine", "Nine o’clock", "By nine". Never the same twice running. */
+/**
+ * How a person opens an hour: "At nine", "Nine o’clock", "Around nine". Never the same twice running,
+ * and (docs/47 C13) turned by the speaker as well as the night, so five accounts don't all open their
+ * second hour on "Come nine".
+ */
 function opener(h: Hour, i: number, rot: number): string {
-  const forms = [`At ${hourWord(h)}`, `${cap(hourWord(h))} o’clock`, `Then at ${hourWord(h)}`, `Come ${hourWord(h)},`];
+  const forms = [`At ${hourWord(h)}`, `${cap(hourWord(h))} o’clock`, `Then at ${hourWord(h)}`, `Come ${hourWord(h)},`, `Around ${hourWord(h)}`];
   return forms[(i + rot) % forms.length] as string;
 }
+
+/** A turn of the speaker's own, from the night's: two people don't open alike. */
+function speakerRot(c: BoardCase, p: PersonId, rot: number): number {
+  let h = rot;
+  for (const ch of `${c.id}|${p}`) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  return h % 1000;
+}
+
+/** "seven", "seven or ten", "seven, eight or ten". */
+function orList(xs: string[]): string {
+  return xs.length > 1 ? `${xs.slice(0, -1).join(', ')} or ${xs[xs.length - 1]}` : (xs[0] ?? '');
+}
+
+/**
+ * docs/47 C13: being alone said once an account, not tacked onto every hour ("…, on my own" four
+ * times). One hour alone keeps a short tag; several are said together at the end.
+ */
+const ALONE_TAG = [', on my own', ', by myself', ', alone'];
+const ALONE_ALL = ['I was on my own all evening.', 'Nobody was with me, any of it.', 'All of it on my own.'];
+const ALONE_SOME = ['Nobody was with me at {hs}.', 'At {hs} I was on my own.', 'I had nobody with me at {hs}.'];
 
 export type Manner = 'plain' | 'terse' | 'careful';
 
@@ -80,7 +104,7 @@ export type Manner = 'plain' | 'terse' | 'careful';
  * with them and why they moved. `others` is the company said by name; a
  * person alone says so.
  */
-export function spokenAccount(c: BoardCase, a: Account, _manner: Manner, rot = 0): string[] {
+export function spokenAccount(c: BoardCase, a: Account, _manner: Manner, rot0 = 0): string[] {
   const p = a.person;
   const female = personOf(c, p)?.female === true;
   const hours = c.board.hours;
@@ -89,6 +113,15 @@ export function spokenAccount(c: BoardCase, a: Account, _manner: Manner, rot = 0
   const out: string[] = [];
   const nm = (x: PersonId) => nameOf(c, x);
   const party = c.givens.lines?.find((g) => g.kind === 'party')?.vars;
+  const rot = speakerRot(c, p, rot0);
+  // The runs spent alone, said once (docs/47 C13): which they are, before any is told.
+  const aloneRuns = runs.filter((r) => {
+    for (let h = r.from; h <= r.to; h++) if ((a.claims[h]?.company ?? []).length > 0) return false;
+    return !/\bwith [A-Z]/.test(r.reason ?? '');
+  });
+  const aloneOnce = aloneRuns.length === 1 || (runs.length === 1 && aloneRuns.length === 1);
+  // Supper said at one hour, "couldn't eat" at another: an evening that eats twice says so (docs/47 B9).
+  let ate = false;
   runs.forEach((r, i) => {
     const comps = [] as { h: Hour; who: PersonId[] }[];
     for (let h = r.from; h <= r.to; h++) comps.push({ h, who: a.claims[h]?.company ?? [] });
@@ -98,7 +131,12 @@ export function spokenAccount(c: BoardCase, a: Account, _manner: Manner, rot = 0
     const short = placeName(c, r.place);
     const stem = short.replace(/^the /, '').split(' ')[0] ?? short;
     const says = (t: string) => t.includes(short) || (stem.length >= 4 && t.includes(stem)) || /\bhome\b|\bmy room\b/.test(t);
-    const reason0 = r.reason ? firstPerson(r.reason, female) : undefined;
+    let reason0 = r.reason ? firstPerson(r.reason, female) : undefined;
+    // The office's gathering is called what it was: a burial society's meeting isn't "the party".
+    if (reason0 && party?.occasion) reason0 = reason0.replace(/\bthe party\b/g, `the ${party.occasion}`);
+    // Supper once a night: a second meal the same evening is coffee (docs/47 B9).
+    if (reason0 && ate) reason0 = reason0.replace(/ for (the blue-plate )?supper\b/, ' for coffee');
+    if (reason0 && /\bsupper\b|\bplate of\b|\bpie\b|\bbeans\b/.test(reason0)) ate = true;
     const reason = reason0 && !says(reason0) ? `${reason0}, ${where.replace(/^at /, 'at ')}` : reason0;
     const toEnd = r.to === last;
     const long = r.to > r.from;
@@ -123,7 +161,12 @@ export function spokenAccount(c: BoardCase, a: Account, _manner: Manner, rot = 0
       const named = who.length > 0 && who.every((x) => s.includes(x));
       // "went round to Sokol's for coffee with Sokol" has company already: not "on my own" after it.
       const withSomebody = who.length === 0 && /\bwith [A-Z]/.test(reason ?? '');
-      out.push(`${s}${named || withSomebody ? '' : `, ${who.length ? `with ${andList(who)}` : 'on my own'}`}.`);
+      // Alone: a short tag when it's the evening's one hour alone; otherwise said once, after (docs/47 C13).
+      const alone = who.length === 0 && !withSomebody ? (aloneOnce && runs.length > 1 ? (ALONE_TAG[rot % ALONE_TAG.length] as string) : '') : '';
+      // "back to my room to write letters, with Abramowitz and Thorndike" put them in the room: in a
+      // rooming house they were about the house (Hard-boiled 8).
+      const house = who.length > 0 && /\bmy room\b/.test(s) && !!c.places.find((x) => x.id === r.place)?.key?.startsWith('rooming') ? ' about the house' : '';
+      out.push(`${s}${named || withSomebody ? '' : who.length ? `, with ${andList(who)}${house}` : alone}.`);
     } else {
       out.push(`${s}.`);
       // Hours with the same company run together: "at seven and eight it was just me".
@@ -141,6 +184,16 @@ export function spokenAccount(c: BoardCase, a: Account, _manner: Manner, rot = 0
       out.push(`${cap(bits.join('; '))}.`);
     }
   });
+  // Several hours alone, or the whole evening: said once, at the end.
+  if (aloneRuns.length > 0 && (aloneRuns.length === runs.length || !aloneOnce || runs.length === 1)) {
+    if (aloneRuns.length === runs.length) out.push(ALONE_ALL[rot % ALONE_ALL.length] as string);
+    else {
+      const hs = aloneRuns.flatMap((r) => Array.from({ length: r.to - r.from + 1 }, (_, k) => hourWord(r.from + k)));
+      const t = ALONE_SOME[rot % ALONE_SOME.length] as string;
+      // "Nobody was with me at eight or eleven", but "At eight and eleven I was on my own".
+      out.push(t.replace('{hs}', /^Nobody|^I had nobody/.test(t) ? orList(hs) : andList(hs)));
+    }
+  }
   for (const r of a.remarks) out.push(r.text);
   return out;
 }
@@ -170,7 +223,13 @@ export function spokenList(c: BoardCase, l: WatchList, rot = 0): string[] {
   for (const o of others) {
     always.add(o.id);
     const plural = /^(two|three|a couple)\b/i.test(o.name);
-    out.push(`${cap(o.name)} ${plural ? 'were' : 'was'} there ${hours.length === c.board.hours.length ? `all evening, ${hours.length > 2 ? 'every hour of it' : 'both hours'}` : 'the whole time I was on'}.`);
+    const span = hours.length === c.board.hours.length ? `all evening, ${hours.length > 2 ? 'every hour of it' : 'both hours'}` : 'the whole time I was on';
+    // "Pardo was there all evening. He buys things." (Raw 11's #11), not "Pardo who buys things was there".
+    const who = /^(\w+) who (.+)$/.exec(o.name);
+    const booth = /^(.+?) in (his|her) (.+)$/.exec(o.name);
+    if (who) out.push(`${who[1]} was there ${span}. He ${who[2]}.`);
+    else if (booth) out.push(`${cap(booth[1] as string)} was in ${booth[2]} ${booth[3]} ${span}.`);
+    else out.push(`${cap(o.name)} ${plural ? 'were' : 'was'} there ${span}.`);
   }
   const shut = hours.filter((h) => shutAt(c, l.place, h));
   const open = hours.filter((h) => !shutAt(c, l.place, h));
@@ -186,7 +245,10 @@ export function spokenList(c: BoardCase, l: WatchList, rot = 0): string[] {
   groups.forEach((g, i) => {
     const when = g.hs.length === 1 ? (i === 0 ? `${cap(hourWord(g.hs[0] as Hour))} o’clock` : cap(hourWord(g.hs[0] as Hour))) : `${cap(andList(g.hs.map(hourWord)))}`;
     if (g.es.length === 0) {
-      out.push(`${when}, nobody${landlady ? ' but me' : always.size ? ' else' : ''}.`);
+      // "Eight o’clock, just Benny" when the one who's always there was all there was (Medium 14's #12).
+      const regulars = others.filter((o) => always.has(o.id)).map((o) => /^(Lou|Pardo|Benny)\b/.exec(o.name)?.[1]);
+      const named = regulars.length > 0 && regulars.every(Boolean) ? (regulars as string[]) : [];
+      out.push(landlady ? `${when}, nobody but me.` : named.length ? `${when}, just ${andList(named)}.` : `${when}, nobody${always.size ? ' else' : ''}.`);
       return;
     }
     const names = g.es.map((e) => {

@@ -10,7 +10,7 @@
  */
 
 import type { CellMark } from './types.js';
-import { linesHeld, accountOf, solveRun, knownPeople } from './knowledge.js';
+import { linesHeld, accountOf, solveRun, knownPeople, knownPlaces } from './knowledge.js';
 import { cap, hourWord, isMurder, nameOf, personOf, placeName, suspectsOf, type BoardCase, type BoardRun, type Hour, type PersonId, type PlaceId } from './model.js';
 import { sourceName } from './stars.js';
 
@@ -35,9 +35,11 @@ export interface BoardRow {
   id: PersonId;
   name: string;
   company: boolean;
+  /** docs/47 A5: the dead man's row, or the lost pet's: where somebody's word puts them, hour by hour. */
+  victim?: boolean;
   cells: Record<number, BoardCell>;
-  /** Could get the means: yes, no, or not known yet. */
-  means: 'yes' | 'no' | '?';
+  /** Could get the means: yes, no, or not known yet. Empty on the victim's row. */
+  means: 'yes' | 'no' | '?' | '';
   meansWhy?: string;
 }
 
@@ -88,11 +90,17 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
   const known = knownPeople(c, run);
   const lines = linesHeld(c, run);
   const codes = placeCodes(c);
+  // docs/47 A5: the dead man, or the lost pet, has a row of his own: where somebody's word put him.
+  const victim = personOf(c, c.crime.victim);
+  const victimRow = isMurder(c) || c.type === 'lost-pet';
   const ids = [
+    ...(victimRow && victim ? [victim.id] : []),
     ...suspectsOf(c).filter((p) => known.has(p)),
     ...c.people.filter((p) => p.role === 'company' && known.has(p.id)).map((p) => p.id),
   ];
   const placed = s.placed;
+  /** A held line from somebody else that puts them at that place at that hour: a second source. */
+  const support = (id: PersonId, h: Hour, place: PlaceId) => lines.find((l) => l.hour === h && l.place === place && l.speaker !== id && l.about.includes(id) && l.kind !== 'find');
   const rows: BoardRow[] = ids.map((id) => {
     const cells: Record<number, BoardCell> = {};
     const acc = run.asked.includes(`account:${id}`) ? accountOf(c, id) : undefined;
@@ -103,7 +111,10 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
       if (says) cell.says = says;
       const p = placed.get(k);
       const others = p ? p.deps.filter((d) => d !== `account:${id}`) : [];
-      if (p && others.length > 0) cell.seen = { place: p.place, by: sourceName(c, others[0] as string) };
+      // Seen only on somebody else's held word for that place and hour, never on the solver's say alone,
+      // so ✓ means two sources agree (docs/47 A5).
+      const by = p && others.length > 0 ? support(id, h, p.place) : undefined;
+      if (p && by) cell.seen = { place: p.place, by: by.q === 'givens' ? 'the office' : sourceName(c, by.q) };
       const st = s.status.get(k);
       if (st?.s === 'broken') cell.collision = true;
       else if (says && cell.seen && cell.seen.place === says) cell.confirmed = true;
@@ -123,10 +134,11 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
       if (run.marks[id]?.[String(h)]) cell.pencil = run.marks[id]?.[String(h)];
       cells[h] = cell;
     }
-    // The means.
-    let means: BoardRow['means'] = '?';
+    // The means: the same for everybody on the grid who could have had it, a lodger or a regular as
+    // much as a suspect (docs/47 A5). The victim's row has none.
+    let means: BoardRow['means'] = id === c.crime.victim ? '' : '?';
     let meansWhy: string | undefined;
-    if (suspectsOf(c).includes(id)) {
+    if (id !== c.crime.victim) {
       const yes = c.givens.access.includes(id) || c.means.available.some((h) => placed.get(`${id}@${h}`)?.place === c.means.origin);
       const no = !c.givens.access.includes(id) && c.means.available.every((h) => {
         const x = placed.get(`${id}@${h}`);
@@ -141,11 +153,19 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
         meansWhy = `${nameOf(c, id)} was never at ${placeName(c, c.means.origin)} while it was there.`;
       }
     }
-    return { id, name: nameOf(c, id), company: personOf(c, id)?.role === 'company', cells, means, ...(meansWhy ? { meansWhy } : {}) };
+    const isVictim = id === c.crime.victim;
+    return { id, name: isVictim && isMurder(c) ? `${nameOf(c, id)} †` : nameOf(c, id), company: personOf(c, id)?.role === 'company', ...(isVictim ? { victim: true } : {}), cells, means, ...(meansWhy ? { meansWhy } : {}) };
   });
-  // docs/46 §2: the grid marks the hours the office gave. When a sighting narrows two to one, that's
-  // the player's to see; the thought sets the two side by side and stops there.
-  const window = c.tier === 0 ? [...s.possibleHours] : [...(c.givens.window ?? c.crime.window)];
+  // docs/46 §2 marked the hours the office gave and left the narrowing to the player. docs/47 A5: the
+  // victim's row shows the sighting, so the grid narrows with it: an hour the victim's row puts him
+  // somewhere other than the scene is no longer one it could have been. The thought still stops at the link.
+  const office = c.givens.window ?? c.crime.window;
+  const vrow = rows.find((r) => r.victim);
+  const away = (h: Hour) => {
+    const seen = vrow?.cells[h]?.seen;
+    return !!seen && seen.place !== c.crime.scene;
+  };
+  const window = c.tier === 0 ? [...s.possibleHours] : office.filter((h) => !away(h)).length > 0 ? office.filter((h) => !away(h)) : [...office];
   return {
     hours,
     rows,
@@ -163,16 +183,17 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
 /** One cell in a few characters: `Odessa✓`, `"Odessa"✗`, `[Sokol]`, `~Odessa` (pencil). */
 export function cellText(g: BoardGrid, cell: BoardCell): string {
   const code = (p: PlaceId) => g.codes[p] ?? p;
+  // docs/47 A5: the pencil shows beside whatever else the cell holds, never under it.
+  const pencil = cell.pencil?.at ? `~${code(cell.pencil.at)}` : cell.pencil?.notAt?.length ? `~not ${code(cell.pencil.notAt[0] as string)}` : '';
+  let base = '';
   if (cell.collision) {
     const tail = cell.admitted ? `→${code(cell.admitted)}` : cell.second ? `→"${code(cell.second)}"` : '';
-    return `"${code(cell.says ?? '')}"✗${tail}`;
-  }
-  if (cell.confirmed && cell.says) return `${code(cell.says)}✓`;
-  if (cell.seen) return `[${code(cell.seen.place)}]`;
-  if (cell.says) return `"${code(cell.says)}"`;
-  if (cell.pencil?.at) return `~${code(cell.pencil.at)}`;
-  if (cell.pencil?.notAt?.length) return `~not ${code(cell.pencil.notAt[0] as string)}`;
-  return '·';
+    base = `"${code(cell.says ?? '')}"✗${tail}`;
+  } else if (cell.confirmed && cell.says) base = `${code(cell.says)}✓`;
+  else if (cell.seen) base = `[${code(cell.seen.place)}]`;
+  else if (cell.says) base = `"${code(cell.says)}"`;
+  if (base && pencil) return `${base} ${pencil}`;
+  return base || pencil || '·';
 }
 
 export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visited' | 'marks'>): string {
@@ -194,7 +215,9 @@ export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'
   out.push('');
   out.push(`"X" says so ${''}·  [X] somebody else puts them there  ·  X✓ both  ·  "X"✗ collides  ·  →Y owned up  ·  ~X your pencil`);
   out.push(`${g.crimeHour !== null ? `! the hour it happened` : `? the hours it could have been`}  ·  means: ${g.meansLabel}`);
-  out.push(`Places: ${Object.entries(g.codes).map(([id, code]) => `${code} = ${placeName(c, id)}`).join('; ')}`);
+  // docs/47 B8: the key names only the places the night has named.
+  const known = knownPlaces(c, run);
+  out.push(`Places: ${Object.entries(g.codes).filter(([id]) => known.has(id) || id === c.crime.scene).map(([id, code]) => `${code} = ${placeName(c, id)}`).join('; ')}`);
   const coll = g.rows.flatMap((r) => g.hours.filter((h) => r.cells[h]?.collision).map((h) => ({ r, h })));
   if (coll.length > 0) {
     out.push('');

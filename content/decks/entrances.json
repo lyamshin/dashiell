@@ -2,7 +2,7 @@
   {
     "id": "ent-011",
     "deck": "entrances",
-    "text": "{name} stood in the doorway, cap on, deciding if I was worth coming in for. Narrowly.",
+    "text": "A man stood in the doorway, cap on, deciding if I was worth coming in for. Narrowly.",
     "tags": {
       "temper": "enigma",
       "class": "working",
@@ -18,7 +18,7 @@
   {
     "id": "ent-012",
     "deck": "entrances",
-    "text": "{name} didn't sit until I told her to. She needed help, she said. That was the speech.",
+    "text": "My visitor didn’t sit until I told her to. She needed help, she said. That was the speech.",
     "tags": {
       "temper": "enigma",
       "class": "working",
@@ -31,7 +31,7 @@
   {
     "id": "ent-013",
     "deck": "entrances",
-    "text": "{name} came in, coat buttoned against the cold, and asked straight off what it would cost. I liked her.",
+    "text": "A woman came in, coat buttoned against the cold, and asked straight off what it would cost. I liked her.",
     "tags": {
       "temper": "plain",
       "class": "working",
@@ -48,7 +48,7 @@
   {
     "id": "ent-014",
     "deck": "entrances",
-    "text": "{name} wiped his boots on the mat from habit, not respect. Nobody respects my floor.",
+    "text": "My visitor wiped his boots on the mat from habit, not respect. Nobody respects my floor.",
     "tags": {
       "temper": "plain",
       "class": "working",
@@ -61,7 +61,7 @@
   {
     "id": "ent-016",
     "deck": "entrances",
-    "text": "{name} came in already explaining, hat in his hands, talking faster than the stairs should have left him breath for.",
+    "text": "A man came in already explaining, hat in his hands, talking faster than the stairs should have left him breath for.",
     "tags": {
       "temper": "yap",
       "class": "working",
@@ -78,7 +78,7 @@
   {
     "id": "ent-017",
     "deck": "entrances",
-    "text": "{name} talked the whole walk to the chair. Her sister, her landlord, and eventually the reason she'd come.",
+    "text": "My visitor talked the whole walk to the chair: her sister, her landlord, and eventually the reason she’d come.",
     "tags": {
       "temper": "yap",
       "class": "working",
@@ -91,7 +91,7 @@
   {
     "id": "ent-020",
     "deck": "entrances",
-    "text": "{name} knocked twice and waited to be asked in, like somebody's mother was listening.",
+    "text": "My visitor knocked twice and waited to be asked in, as if somebody’s mother was listening.",
     "tags": {
       "temper": "plain",
       "class": "working",
@@ -106,7 +106,7 @@
   {
     "id": "ent-031",
     "deck": "entrances",
-    "text": "{name} came in exactly on the hour, said his name, and waited for me to catch up.",
+    "text": "A man came in exactly on the hour, as if he’d booked it, and waited for me to catch up.",
     "tags": {
       "temper": "enigma",
       "class": "professional",
@@ -119,7 +119,7 @@
   {
     "id": "ent-032",
     "deck": "entrances",
-    "text": "{name} set a card on the desk instead of introducing herself. It was engraved. I felt underdressed.",
+    "text": "My visitor set an engraved card on the desk before she said a word. I felt underdressed.",
     "tags": {
       "temper": "enigma",
       "class": "professional",
@@ -134,7 +134,7 @@
   {
     "id": "ent-033",
     "deck": "entrances",
-    "text": "{name} hung his own coat and sat like somebody who'd waited in better rooms and billed for it.",
+    "text": "My visitor hung up his own coat and sat like a man who’d waited in better rooms and billed for it.",
     "tags": {
       "temper": "plain",
       "class": "professional",
@@ -149,7 +149,7 @@
   {
     "id": "ent-034",
     "deck": "entrances",
-    "text": "{name} carried a folder under her arm and the look of somebody used to being believed.",
+    "text": "A woman came in with a folder under her arm and the look of somebody used to being believed.",
     "tags": {
       "temper": "plain",
       "class": "professional",
@@ -164,7 +164,7 @@
   {
     "id": "ent-036",
     "deck": "entrances",
-    "text": "{name} was already diagnosing the room, the stairs, and my evident lack of a secretary, before he sat down.",
+    "text": "My visitor was already diagnosing the room, the stairs and my lack of a secretary before he sat down.",
     "tags": {
       "temper": "yap",
       "class": "professional",
@@ -179,7 +179,7 @@
   {
     "id": "ent-037",
     "deck": "entrances",
-    "text": "{name} talked through the whole business of getting seated: her gloves, her appointment book, and finally the reason for coming.",
+    "text": "A woman came in talking, and kept it up through the whole business of getting seated: her gloves, her appointment book, and finally the reason for coming.",
     "tags": {
       "temper": "yap",
       "class": "professional",
@@ -192,7 +192,7 @@
   {
     "id": "ent-040",
     "deck": "entrances",
-    "text": "{name} came up the stairs unhurried, as if the hour happened to other people.",
+    "text": "My visitor came in unhurried, as if the hour happened to other people.",
     "tags": {
       "temper": "plain",
       "class": "professional",
@@ -207,7 +207,7 @@
   {
     "id": "ent-042",
     "deck": "entrances",
-    "text": "{name} came in, pushed the door to, and stayed next to it with both hands in the coat pockets until I pointed at the chair.",
+    "text": "My visitor came in, pushed the door to, and stood beside it with both hands in the coat pockets until I pointed at the chair.",
     "tags": {
       "temper": "enigma",
       "class": "working",
@@ -224,7 +224,7 @@
   {
     "id": "ent-044",
     "deck": "entrances",
-    "text": "{name} knocked once, came in, and gave me a name and nothing else to go with it.",
+    "text": "My visitor knocked once, came in, and sat down like somebody who’d been rehearsing it on the stairs.",
     "tags": {
       "temper": "enigma",
       "class": "professional",
@@ -240,7 +240,7 @@
   {
     "id": "ent-046",
     "deck": "entrances",
-    "text": "{name} came in talking about the stairs, how many and how dark, and was still counting them sitting down. I'd never dared.",
+    "text": "My visitor came in talking about the stairs, how many and how dark, and was still counting them sitting down. I’d never dared.",
     "tags": {
       "temper": "yap",
       "class": "working",
@@ -256,7 +256,7 @@
   {
     "id": "ent-048",
     "deck": "entrances",
-    "text": "{name} came in with an apology for the hour and a second one for the first, and was well into a third before sitting down.",
+    "text": "My visitor came in with an apology for the hour and a second one for the first, and was well into a third before sitting down.",
     "tags": {
       "temper": "yap",
       "class": "professional",

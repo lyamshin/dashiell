@@ -34,7 +34,7 @@
   {"id": "bcf-405", "family": "admit-words", "tags": {"place": "unwatched:5"}, "text": "“All right. I wasn’t at {claim}. I was at the print shop, running off handbills for the union with {witness}. If the boss hears about it, I’m finished. Ask {wthem}.”"},
   {"id": "bcf-406", "family": "admit-words", "tags": {"place": "any"}, "text": "“All right. I wasn’t at {claim}. I was at {truth}, with {witness}. Ask {wthem}, and I’d thank you not to spread it.”"},
   {"id": "bcf-1001", "family": "put", "tags": {}, "text": "“You told me {claim},” I said to {name}. “{breaker}”"},
-  {"id": "bcf-1002", "family": "put", "tags": {}, "text": "I sat down across from {name}. “You said {claim}. {breaker}”"},
+  {"id": "bcf-1002", "family": "put", "tags": {}, "text": "I looked at {name} over the notebook. “You said {claim}. {breaker}”"},
   {"id": "bcf-1003", "family": "put", "tags": {}, "text": "“Let me read you something back,” I said. “You told me {claim}. {breaker}”"},
   {"id": "bcf-1004", "family": "put", "tags": {}, "text": "I opened the notebook where {name} could see it. “{Claim}, you said. {breaker}”"},
   {"id": "bcf-1005", "family": "put", "tags": {}, "text": "“You told me {claim},” I said. “I wrote it down. {breaker}”"},
@@ -92,5 +92,5 @@
   {"id": "bcf-1703", "family": "held-close", "tags": {}, "text": "Nothing in it touched {name}’s evening. I put it down to experience, which is where most of my evenings go.", "joke": true},
   {"id": "bcf-1704", "family": "held-close", "tags": {}, "text": "None of it touched anything {he}’d told me. The clock had moved on regardless."},
   {"id": "bcf-1705", "family": "held-close", "tags": {}, "text": "It went past {him} without touching. Time doesn’t come back for a second try."},
-  {"id": "bcf-1706", "family": "held-close", "tags": {}, "text": "{name}’s story stood where it was. I’d spent the time and had nothing to show for it but the walk."}
+  {"id": "bcf-1706", "family": "held-close", "tags": {}, "text": "{name}’s story stood where it was. I’d spent the time and had nothing to show for it but a page of my own handwriting."}
 ]

@@ -35,7 +35,7 @@ function roleOf(p: Person, c?: BoardCase): string | undefined {
     const j = p.description.split(/,| at /)[0]?.trim();
     return j && /^the /.test(j) ? j : undefined;
   }
-  if (p.role === 'company' && /^a neighbour\b/.test(p.description)) return 'the neighbour';
+  if (p.role === 'company' && /^a neighbou?r\b/.test(p.description)) return 'the neighbor';
   return undefined;
 }
 
@@ -224,7 +224,7 @@ export function thinNames(c: BoardCase, blocks: Block[], exempt: (b: Block) => b
 /** "the Prentiss parlour", "Corrigan’s flat": a place called after somebody isn't a mention of them. */
 function placeLikeRe(names: string[]): RegExp {
   const alt = names.map((n) => esc(n.replace(/^Mrs\. /, ''))).join('|');
-  return new RegExp(`\\b[Tt]he (?:${alt})\\b(?: [a-z]+)?|\\b(?:Mrs\\. )?(?:${alt})’s (?:flat|place|rooms|parlour|door)\\b`, 'g');
+  return new RegExp(`\\b[Tt]he (?:${alt})\\b(?: [a-z]+)?|\\b(?:Mrs\\. )?(?:${alt})’s (?:flat|place|rooms|parlou?r|door)\\b`, 'g');
 }
 
 /** Names said more than twice on a page, outside the exempt blocks, counting speech: for the measure and the tests. */

@@ -715,14 +715,14 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     people.push({ id: W, name: `${companyName.given} ${companyName.family}`, short: companyName.family, role: 'company', description: companyDesc(pl, true), foundAt: pl, female: companyName.female, ...companyHome(pl) });
   }
   if (company.includes(W2)) people.push({ id: W2, name: `${company2Name.given} ${company2Name.family}`, short: company2Name.family, role: 'company', description: companyDesc(X, false), foundAt: X, female: company2Name.female, ...companyHome(X) });
-  if (company.includes(KP)) people.push({ id: KP, name: `Mrs. ${keeperName.family}`, short: `Mrs. ${keeperName.family}`, role: 'company', description: `a neighbour at ${xPlace.short}`, foundAt: X, female: true, home: X });
+  if (company.includes(KP)) people.push({ id: KP, name: `Mrs. ${keeperName.family}`, short: `Mrs. ${keeperName.family}`, role: 'company', description: `a neighbor at ${xPlace.short}`, foundAt: X, female: true, home: X });
   if (company.includes(Y) && L) {
     people.push({ id: Y, name: `${yName.given} ${yName.family}`, short: yName.family, role: 'company', description: `was with ${(namedOf.get(L) as Named).family} at ${u.short}; nobody else knows it`, foundAt: (people.find((x) => x.id === L)?.foundAt ?? B), female: yName.female, home: YH });
   }
   function companyDesc(pl: PlaceId, first: boolean): string {
     if (pl === U) return `keeps ${u.short}`;
     const p = placeById.get(pl) as Place;
-    if (p.kind === 'home') return `a lodger at ${p.short}, who sat up in the parlour`;
+    if (p.kind === 'home') return `a lodger at ${p.short}, who sat up in the parlor`;
     if (p.kind === 'work') return `works the next bench at ${p.short}`;
     if (p.kind === 'theatre') return `a regular at ${p.short}, who sits through every show twice`;
     return first ? `a regular at ${p.short}` : `a regular at ${p.short}, at the same table every night`;
@@ -991,7 +991,8 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       origin: `${work.shelf} at ${xPlace.short}, open from ${fmtHour(h0)} until ${fmtHour(Math.max(...avail) + 1)}`,
       scene: `${kind === 'chloral' ? 'Two glasses; one smells sweet and chemical. ' : ''}${work.label.replace('{place}', xPlace.short)}`,
       what: kind === 'gun' ? 'the floor' : 'the table',
-      police: kind === 'gun' ? 'a robbery gone wrong' : kind === 'chloral' ? 'a fall' : 'his heart',
+      // docs/47 B9: he's found in his chair, so the police say his heart, not a fall.
+      police: kind === 'gun' ? 'a robbery gone wrong' : 'his heart',
       delay,
     };
   } else if (murder && rm) {
@@ -1002,7 +1003,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       watcher: xw,
       place: X,
       entries: entriesAt(X),
-      remarks: md ? [{ text: `${cap(md.shelf)} was there at ${fmtHour(h0)}. I didn’t look again.`, facts: [], side: false }] : mode === 'spare' && landlady ? [{ text: `The spare key for the ${clientName.family} flat was on its nail at ${fmtHour(h0)}, and on its nail in the morning.`, facts: [], side: false }] : [],
+      remarks: md ? [{ text: `${cap(md.shelf)} was there at ${fmtHour(h0)}. I didn’t look again.`, facts: [], side: false }] : mode === 'spare' && landlady ? [{ text: `The spare key for the ${clientName.family} flat was ${K.SPARE_KEY[sm?.id ?? '']?.still ?? 'there'} at ${fmtHour(h0)}. I didn’t look again.`, facts: [], side: false }] : [],
     });
   }
   if (refuses) {
@@ -1043,7 +1044,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     const c = personOf(C);
     finds.push({ id: 'papers', place: S, what: 'his papers', text: `A page on each of them. The one on top: ${c.short}; ${c.motive}.`, gives: { why: true }, facts: [] });
   } else {
-    finds.push({ id: 'scene', place: S, what: 'the parlour', text: `${thing.empty} ${tpl((sm as (typeof K.SMALL_MEANS)[number]).scene, smVars)}`, gives: { means: true }, facts: [] });
+    finds.push({ id: 'scene', place: S, what: 'the parlor', text: `${thing.empty} ${tpl((sm as (typeof K.SMALL_MEANS)[number]).scene, smVars)}`, gives: { means: true }, facts: [] });
   }
 
   // --- The office -------------------------------------------------------------------------------------
@@ -1075,11 +1076,12 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     say('relation', 'relation', { ...who, victim: v.short, victimFull: v.name, relation: rel }, `${clientName.family}, the client, is ${v.name}’s ${rel}.`);
     const finderWhy = rng.pick(K.FINDER_WHY);
     const foundVars = { ...who, victim: v.short, job: v.description, scene: (placeById.get(S) as Place).name, sceneShort: (placeById.get(S) as Place).short, found: `half past ${fmtHour(hL + 1)}`, finder: finderName, finderWhy, police: md.police };
-    say('found', 'found', foundVars, `${v.short}, ${v.description}, was found dead in ${foundVars.scene} at ${foundVars.found}, by ${finderName}, ${finderWhy}. The police called it ${md.police}.`);
+    say('found', 'found', foundVars, `${v.short}, ${v.description}, was found dead in ${foundVars.scene.replace(new RegExp(`^${v.short}’s `), 'his own ')} at ${foundVars.found}, by ${finderName}, ${finderWhy}. The police called it ${md.police}.`);
     const clocks = K.MURDER_CLOCKS.filter((x) => x.windowed === windowed && x.kinds.includes(md.kind));
     const clock = rng.pick(clocks);
     clockId = clock.id;
-    const sound = md.kind === 'gun' ? 'a shot' : md.kind === 'blade' ? 'a fall' : 'a glass break';
+    // docs/47 B9: what she heard fits the room the detective finds: no glass breaks, the glasses are whole.
+    const sound = md.kind === 'gun' ? 'a shot' : md.kind === 'blade' ? 'a fall' : 'him laugh with somebody and then go quiet';
     const clockVars = { ...hourVars, means: md.name.replace(/^a /, ''), delay: delayText(md.delay), sound, kind: md.kind, windowed: windowed ? 'yes' : 'no' };
     say('clock', clock.id, clockVars, tpl(clock.text, clockVars));
     // Where he'd been: it sends the player to that watcher (rule 18, and 4a.2's pointers).
@@ -1114,12 +1116,13 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     }
     say('means', def.id, { ...smVars, ...thingVars }, tpl(def.office, smVars));
     if (mode === 'told') points.push({ kind: 'place', ref: B, text: `${clientName.family} told the room at ${venue.short}` });
-    if (mode === 'spare') points.push({ kind: 'place', ref: X, text: `the spare key hangs at ${xPlace.short}` });
+    if (mode === 'spare') points.push({ kind: 'place', ref: X, text: `the spare key is ${(K.SPARE_KEY[(sm as (typeof K.SMALL_MEANS)[number]).id]?.at ?? 'at {x}').replace('{x}', 'there').replace(/ at there$/, ' there')}` });
     if (resident) points.push({ kind: 'person', ref: resident, text: `${personOf(resident).short} lodges at the flat` });
     if (windowed) {
       const wl = rng.pick(K.WINDOW_LINES);
       clockId = wl.id;
-      say('window', wl.id, { ...hourVars, ...thingVars }, tpl(wl.text, hourVars));
+      // docs/47 B9: a lost pet went as "he" or "she" (text only; nothing drawn changes).
+      say('window', wl.id, { ...hourVars, ...thingVars }, tpl(wl.text, hourVars).replace(/^It went\b/, pet ? (pet.male ? 'He went' : 'She went') : 'It went'));
       if (pet) {
         const kp = rng.pick(K.KEEPERS);
         const kv = { Keeper: `Mrs. ${keeperName.family}`, x: xPlace.short, pet: pet.short, client: clientName.family };

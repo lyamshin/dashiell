@@ -9,7 +9,7 @@ import { budgetCalls, dealBoard, parCalls, type BoardRun } from '../src/game/boa
 import { playBoardOracle, playReader, playWanderer, refusalShortcutCalls } from '../src/game/board/oracle.js';
 import { pageStars } from '../src/game/board/choices.js';
 import { isOpen } from '../src/game/board/stars.js';
-import { breakOptions, scoreBoard, truthReport, whereByOptions } from '../src/game/board/report.js';
+import { breakOptionsShown, scoreBoard, truthReport, whereByOptions } from '../src/game/board/report.js';
 import { firstPerson } from '../src/game/board/tell.js';
 import { REASONS } from '../src/gen/board/content.js';
 import { runPlay, type PlayIo } from '../src/cli/play-lib.js';
@@ -325,7 +325,7 @@ describe('board: the play CLI', () => {
         const name = d.kase.people.find((x) => x.id === p)?.short as string;
         const opened = runPlay(['confront', name, '--save', save], io);
         expect(opened.code).toBe(0);
-        if (opened.out.includes('Which of their claims?')) expect(runPlay(['do', `claim ${h}`, '--save', save], io).code).toBe(0);
+        if (/Which of (her|his) claims\?/.test(opened.out)) expect(runPlay(['do', `claim ${h}`, '--save', save], io).code).toBe(0);
         const r = runPlay(['do', cmd, '--save', save], io);
         expect(r.code, r.out).toBe(0);
       } else {
@@ -341,13 +341,13 @@ describe('board: the play CLI', () => {
     expect(form.out).toContain('A hunch');
     const o2 = playBoardOracle(d);
     const truth = truthReport(d, o2.run);
-    const n = breakOptions(d, o2.run, d.kase.crime.culprit).findIndex((x) => x.value === truth.breaks) + 1;
+    const n = breakOptionsShown(d, o2.run, d.kase.crime.culprit).findIndex((x) => x.value === truth.breaks) + 1;
     const wn = whereByOptions(d, o2.run).findIndex((x) => x.value === truth.whereBy) + 1;
     expect(n).toBeGreaterThan(0);
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=${n}; when=${d.kase.crime.hour}; where=${truth.where}; whereBy=${wn}; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('THE VERDICT');
-    expect(filed.out).toContain('4 out of 4.');
+    expect(filed.out).toContain('4 out of 4: who (and the line that breaks the story)');
     // The save records the line, so a measure can tell deduced from guessed.
     expect(JSON.parse(files.get(save) as string).events.at(-1).file.breaks).toBe(truth.breaks);
     expect(runPlay(['story', '--save', save], io).out.length).toBeGreaterThan(100);
@@ -363,7 +363,7 @@ describe('board: the play CLI', () => {
       if (cmd.startsWith('put ')) {
         const [, p, h] = cmd.split(' ') as [string, string, string];
         const opened = runPlay(['confront', d.kase.people.find((x) => x.id === p)?.short as string, '--save', save], io);
-        if (opened.out.includes('Which of their claims?')) runPlay(['do', `claim ${h}`, '--save', save], io);
+        if (/Which of (her|his) claims\?/.test(opened.out)) runPlay(['do', `claim ${h}`, '--save', save], io);
       } else if (cmd.startsWith('ask ')) runPlay(['do', d.kase.people.find((x) => x.id === cmd.split(' ')[1])?.short as string, '--save', save], io);
       expect(runPlay(['do', cmd, '--save', save], io).code, cmd).toBe(0);
     }
@@ -371,7 +371,7 @@ describe('board: the play CLI', () => {
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=hunch; when=${d.kase.crime.hour}; where=${where}; whereBy=hunch; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('right, but you couldn’t have known');
-    expect(filed.out).toContain('3 out of 4.');
+    expect(filed.out).toContain('3 out of 4: who (and the line that breaks the story)');
     expect(filed.out).toContain('half credit on who');
     const curtain = runPlay(['curtain', '--save', save], io).out;
     expect(curtain).toMatch(/What broke it: .+/);

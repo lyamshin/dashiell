@@ -229,6 +229,11 @@
   font-style: italic;
 }
 
+/* docs/47 A5: the dead man's row, or the lost pet's. */
+.bgrid-row--victim .bgrid-name {
+  color: var(--ink-soft);
+}
+
 .bgrid-detail {
   padding: 0.3rem 0.4rem 0.5rem !important;
   background: var(--paper-edge);
@@ -423,6 +428,19 @@
 .report label.line-option--hunch {
   font-style: italic;
   color: var(--ink-soft);
+}
+
+/* docs/47 A4: the lines that touch the named person's own story, first, under their heading. */
+.report .line-group {
+  margin: 0.45rem 0 0.15rem;
+  font-size: 0.78rem;
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+.report label.line-option--touches {
+  border-left: 2px solid var(--accent);
 }
 
 @media (max-width: 600px) {
