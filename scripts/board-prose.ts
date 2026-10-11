@@ -9,7 +9,13 @@
  *   pointer that sent the detective, or on the walk there (target 100%);
  * - **thought**: the share of job pages (an account, a list, a search, a put, a
  *   motive) whose thought names an earlier fact: a person, place or street
- *   already on an earlier page, and a held line it cites (target 100%);
+ *   already on an earlier page, and a held line it cites (target 100% below
+ *   Hard-boiled; at Hard-boiled the thought stays on its own page, docs/46 §2);
+ * - **thoughts over their level** (docs/46 §2, the lint's `level` rule): above
+ *   Raw, a thought, turn or "Go over what I have" before the report that says
+ *   "that left", "only … left", "cleared", how many remain or who did it; at
+ *   Hard-boiled, a thought tied to an earlier page. Over the oracle's, the
+ *   wanderer's and the reader's nights (target 0);
  * - **callbacks**: the share of pages after the office that pay off a role set
  *   up earlier tonight (target about 70%);
  * - **reader lint, plain terms and correspondence**: findings over the oracle's
@@ -29,7 +35,7 @@
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
 import { lintBoardRun, boardPlayerText } from '../src/game/board/lint.js';
 import { dealBoard, tierName, type BoardRun } from '../src/game/board/model.js';
-import { playBoardOracle, playWanderer } from '../src/game/board/oracle.js';
+import { playBoardOracle, playReader, playWanderer } from '../src/game/board/oracle.js';
 import type { Block, Page } from '../src/game/board/types.js';
 import { namesOverTwo } from '../src/game/board/names.js';
 // @ts-expect-error — plain JavaScript module, no declarations.
@@ -124,8 +130,8 @@ function gramsOf(t: string): Set<string> {
 }
 
 const rows: string[] = [];
-rows.push('| tier | nights | pages | words a page, median [p10–p90] | why-here or walk | job pages with a thought naming an earlier fact | callbacks | lint (reader) | correspondence | plain terms | cards twice | sentences twice | pages naming somebody 3+ times | clues said 3+ times |');
-rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
+rows.push('| tier | nights | pages | words a page, median [p10–p90] | why-here or walk | job pages with a thought naming an earlier fact | callbacks | lint (reader) | correspondence | thoughts over their level | plain terms | cards twice | sentences twice | pages naming somebody 3+ times | clues said 3+ times |');
+rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
 const examples: string[] = [];
 for (const tier of tiers) {
   const types = typesFor(tier) as CaseType[];
@@ -139,6 +145,7 @@ for (const tier of tiers) {
   let callbacks = 0;
   let reader = 0;
   let corr = 0;
+  let level = 0;
   let jargon = 0;
   let cardsTwice = 0;
   let sentTwice = 0;
@@ -209,9 +216,10 @@ for (const tier of tiers) {
         if (examples.length < 60) examples.push(`twice: ${tierName(tier)} ${type} seed ${s}: ${sent.slice(0, 100)}`);
       }
     }
-    for (const r of [run, playWanderer(d, s).run] as BoardRun[]) {
+    for (const r of [run, playWanderer(d, s).run, playReader(d, s).run] as BoardRun[]) {
       for (const issue of lintBoardRun(d, r)) {
         if (issue.rule === 'hour' || issue.rule === 'name' || issue.rule === 'whole') corr++;
+        else if (issue.rule === 'level') level++;
         else reader++;
         if (examples.length < 60) examples.push(`lint ${tierName(tier)} ${type} seed ${s} p${issue.page + 1}: ${issue.rule} ${issue.detail}`);
       }
@@ -224,7 +232,7 @@ for (const tier of tiers) {
   }
   if (show) examples.push(`words by job, ${tierName(tier)}: ${[...byJob.entries()].map(([k, v]) => `${k} ${quantile(v, 0.5)} (${v.length})`).join(', ')}`);
   rows.push(
-    `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${jargon} | ${cardsTwice} | ${sentTwice} | ${namePages} | ${cluesThrice} |`,
+    `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${level} | ${jargon} | ${cardsTwice} | ${sentTwice} | ${namePages} | ${cluesThrice} |`,
   );
 }
 process.stdout.write(`${rows.join('\n')}\n`);

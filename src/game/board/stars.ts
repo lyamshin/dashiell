@@ -1,15 +1,24 @@
 /**
- * docs/43 §3: stars follow the motivated path.
+ * docs/43 §3 and docs/46 §1: stars point, they don't answer.
  *
  * A star marks a question the player has been pointed to by something they
  * hold (4a.2's pointers), on the cheapest way from what they hold to the
- * report. Nothing is starred that what's held doesn't point at, the client is
- * never starred, and there are at most three a page.
+ * report: a choice that would give them a fact they don't hold. Its reason
+ * names the pointer ("Coffin has Ashby here at eleven"), never what the
+ * answer will show, who it clears or who is left. The client is never
+ * starred, and there are at most three a page.
  *
- * By tier:
- * - Raw and Coddled: generous. Every open step of every cheapest way on.
- * - Poached to Medium: the open steps of one cheapest way on.
- * - Hard-boiled: only the designed path's first two steps, while they're open.
+ * By tier (docs/46 §1):
+ * - Raw: every open step of every cheapest way on.
+ * - Coddled: the open steps of one cheapest way on.
+ * - Poached, Soft-boiled: at most one, the nearest open step.
+ * - Medium: only where to go: the walk to the nearest open step, never the
+ *   question to ask when you get there.
+ * - Hard-boiled: one star, the scene, on page one. None after.
+ *
+ * "Put it to …" is starred only at Raw and Coddled, where the pair comes
+ * ready-made. From Poached up the grid shows the collision, and putting it is
+ * the player's own idea.
  */
 
 import { minimalSets } from '../../gen/board/path.js';
@@ -93,24 +102,49 @@ export function isOpen(c: BoardCase, run: Pick<BoardRun, 'asked'>, q: string): b
   return by.has(GIVENS) || run.asked.some((a) => by.has(a));
 }
 
-/** The steps a star may go on tonight, best first. */
-export function starredSteps(d: BoardDeal, run: Pick<BoardRun, 'asked'>): string[] {
+/** Whether a tier stars where to go only (Medium): the walk, never the question. */
+export function walksOnly(c: BoardCase): boolean {
+  return c.tier === 4;
+}
+
+/**
+ * The steps a star may go on tonight, best first (docs/46 §1). `at` is where
+ * the detective stands, for "the nearest"; `log` says whether this is still
+ * page one, for Hard-boiled's one star.
+ */
+export function starredSteps(d: BoardDeal, run: Pick<BoardRun, 'asked'> & Partial<Pick<BoardRun, 'at' | 'log'>>): string[] {
   const c = d.kase;
   if (c.tier === 5) {
-    // Hard-boiled: only the designed path's first two steps.
-    return d.analysis.path.slice(0, 2).map((s) => s.q).filter((q) => isOpen(c, run, q));
+    // Hard-boiled: the scene, on page one. None after.
+    if ((run.log?.length ?? 0) > 1 || run.asked.length > 0) return [];
+    const scene = d.analysis.path.find((s) => s.q.startsWith('search:'))?.q;
+    return scene && isOpen(c, run, scene) ? [scene] : [];
   }
   const rest = completions(d, run);
   if (rest.length === 0) return [];
   const pathRank = new Map(d.analysis.path.map((s, i) => [s.q, i]));
-  const order = (qs: string[]) => [...qs].sort((a, b) => (pathRank.get(a) ?? 50) - (pathRank.get(b) ?? 50));
-  if (c.tier <= 1) {
-    // Generous: every open step of every cheapest way on, the commonest first.
+  const byPath = (a: string, b: string) => (pathRank.get(a) ?? 50) - (pathRank.get(b) ?? 50);
+  if (c.tier === 0) {
+    // Raw: every open step of every cheapest way on, the commonest first.
     const count = new Map<string, number>();
     for (const s of rest) for (const q of s) count.set(q, (count.get(q) ?? 0) + 1);
-    return [...count.keys()].filter((q) => isOpen(c, run, q)).sort((a, b) => (count.get(b) as number) - (count.get(a) as number) || (pathRank.get(a) ?? 50) - (pathRank.get(b) ?? 50));
+    return [...count.keys()].filter((q) => isOpen(c, run, q)).sort((a, b) => (count.get(b) as number) - (count.get(a) as number) || byPath(a, b));
   }
-  return order(rest[0] as string[]).filter((q) => isOpen(c, run, q));
+  if (c.tier === 1) {
+    // Coddled: the open steps of one cheapest way on.
+    return [...(rest[0] as string[])].sort(byPath).filter((q) => isOpen(c, run, q));
+  }
+  // Poached up: one star, the nearest open step of any cheapest way, and never a put.
+  const count = new Map<string, number>();
+  for (const s of rest) for (const q of s) count.set(q, (count.get(q) ?? 0) + 1);
+  const open = [...count.keys()].filter((q) => !q.startsWith('confront:') && isOpen(c, run, q));
+  const here = (q: string) => (run.at !== undefined && starPlace(c, q) === run.at ? 0 : 1);
+  open.sort((a, b) => here(a) - here(b) || (count.get(b) as number) - (count.get(a) as number) || byPath(a, b));
+  const best = open[0];
+  if (best === undefined) return [];
+  // Medium: only where to go. When the nearest step is in this room, no star at all.
+  if (walksOnly(c) && here(best) === 0) return [];
+  return [best];
 }
 
 /* ------------------------------------------------------------------ *
@@ -129,11 +163,17 @@ export function actionWords(c: BoardCase, q: Question): string {
 
 /**
  * Why a step is starred: what points at it, the latest thing held that does
- * (or the office), and what to do about it.
+ * (or the office), and what to do about it. Never what the answer will show.
+ * As a walk (Medium), what to do is only where to go: "Coffin has Ashby at
+ * the Thalia at eleven — go to the Thalia".
  */
-export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: string): string {
+export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: string, walk = false): string {
   const q = questionsOf(c).find((x) => x.id === qid);
   if (!q) return '';
+  if (walk) {
+    const ptr = starReason(c, run, qid).split(' — ')[0] ?? '';
+    return `${cap(ptr)} — go to ${placeName(c, q.at)}`;
+  }
   if (q.kind === 'confront') {
     const [p, hs] = q.subject === undefined ? ['', ''] : [q.subject, String(q.hour)];
     const st = solveRun(c, run).status.get(`${p}@${hs}`);

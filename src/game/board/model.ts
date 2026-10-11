@@ -219,6 +219,21 @@ export function tierName(t: TierIndex): string {
   return TIER_NAMES[t];
 }
 
+/**
+ * docs/46 §2: how far a thought may go.
+ * - walk (Raw): everything, the elimination to its last step included;
+ * - link (Coddled to Medium): collisions, agreements, the link to the scene,
+ *   the way in; never who is cleared, who is left or how many remain;
+ * - fact (Hard-boiled): this page's fact said again in the voice, and a
+ *   collision only when both its lines are on this page.
+ * The turn and "Go over what I have" follow the same level.
+ */
+export type ThoughtLevel = 'walk' | 'link' | 'fact';
+
+export function thoughtLevel(c: Pick<BoardCase, 'tier'>): ThoughtLevel {
+  return c.tier === 0 ? 'walk' : c.tier === 5 ? 'fact' : 'link';
+}
+
 /* ------------------------------------------------------------------ *
  * Par and the night's budget (docs/43 §6).
  * ------------------------------------------------------------------ */

@@ -9,8 +9,10 @@
  *   before), and how often it files solved, with the line (picked at random from
  *   what the form offers; target under 10% from Poached up). "citing" is the same
  *   wanderer citing the line its collision showed, for the record;
- * - the reader (every star, else the first choice; files what the book told it):
- *   solved, which must fall by tier;
+ * - the reader (every star, else the first choice; files the name the book
+ *   handed it, else the form's first choices): solved, which must fall by tier.
+ *   "naming a liar" is the same reader filing a liar the book caught when it was
+ *   handed no name, for the record;
  * - the reader lint and the plain-terms check over the oracle's and the wanderer's pages;
  * - first-level choices a page (median and most).
  *
@@ -54,12 +56,12 @@ interface Tally {
   wander: number;
   citing: number;
   reader: number;
-  readerWho: number;
+  readerLiar: number;
 }
-const blank = (): Tally => ({ n: 0, oracle: 0, under: 0, whoRight: 0, wander: 0, citing: 0, reader: 0, readerWho: 0 });
+const blank = (): Tally => ({ n: 0, oracle: 0, under: 0, whoRight: 0, wander: 0, citing: 0, reader: 0, readerLiar: 0 });
 
 const rows: string[] = [];
-rows.push('| tier | type | n | oracle solved, with the line | at par | par calls median [range] | shortcut under par | shortcut names nobody | confession route under par | wanderer files who right | wanderer files solved | wanderer solved, citing its collision | reader files who right | reader files solved | lint issues | plain-terms hits | choices a page median / max | callback pages |');
+rows.push('| tier | type | n | oracle solved, with the line | at par | par calls median [range] | shortcut under par | shortcut names nobody | confession route under par | wanderer files who right | wanderer files solved | wanderer solved, citing its collision | reader files solved | reader naming a liar, solved | lint issues | plain-terms hits | choices a page median / max | callback pages |');
 rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
 const byTier = new Map<TierIndex, Tally>();
 const examples: string[] = [];
@@ -75,7 +77,7 @@ for (const tier of tiers) {
     let whoRight = 0;
     let wander = 0;
     let citing = 0;
-    let readerWho = 0;
+    let readerLiar = 0;
     let reader = 0;
     let confess = 0;
     let lint = 0;
@@ -105,7 +107,7 @@ for (const tier of tiers) {
       if (w.ok) wander++;
       if (w.alt && scoreBoard(d, w.run, w.alt).outcome === 'solved') citing++;
       const r = playReader(d, s);
-      if (r.report.who === culprit) readerWho++;
+      if (playReader(d, s, { liar: true }).ok) readerLiar++;
       if (r.ok) reader++;
       for (const run of [o.run, w.run] as BoardRun[]) {
         const issues = lintBoardRun(d, run);
@@ -134,7 +136,7 @@ for (const tier of tiers) {
     counts.sort((a, b) => a - b);
     const pct = (k: number) => `${Math.round((100 * k) / N)}%`;
     rows.push(
-      `| ${tierName(tier)} | ${type} | ${N} | ${pct(solved)} | ${pct(atPar)} | ${pars[Math.floor(N / 2)]} [${pars[0]}–${pars[N - 1]}] | ${under} | ${nobody} | ${confess} | ${pct(whoRight)} | ${pct(wander)} | ${pct(citing)} | ${pct(readerWho)} | ${pct(reader)} | ${lint} | ${jargon} | ${counts[Math.floor(counts.length / 2)]} / ${counts[counts.length - 1]} | ${Math.round((100 * callbacks) / Math.max(1, pages))}% |`,
+      `| ${tierName(tier)} | ${type} | ${N} | ${pct(solved)} | ${pct(atPar)} | ${pars[Math.floor(N / 2)]} [${pars[0]}–${pars[N - 1]}] | ${under} | ${nobody} | ${confess} | ${pct(whoRight)} | ${pct(wander)} | ${pct(citing)} | ${pct(reader)} | ${pct(readerLiar)} |${lint} | ${jargon} | ${counts[Math.floor(counts.length / 2)]} / ${counts[counts.length - 1]} | ${Math.round((100 * callbacks) / Math.max(1, pages))}% |`,
     );
     t.n += N;
     t.oracle += solved;
@@ -143,12 +145,12 @@ for (const tier of tiers) {
     t.wander += wander;
     t.citing += citing;
     t.reader += reader;
-    t.readerWho += readerWho;
+    t.readerLiar += readerLiar;
   }
 }
 process.stdout.write(`${rows.join('\n')}\n`);
 const pt = (k: number, n: number) => `${Math.round((100 * k) / Math.max(1, n))}%`;
-const sum: string[] = ['', '| tier | nights | oracle solved, with the line | wanderer files who right | wanderer files solved | wanderer solved, citing its collision | refusal shortcut under par | reader files who right | reader files solved |', '|---|---|---|---|---|---|---|---|---|'];
-for (const [tier, t] of byTier) sum.push(`| ${tierName(tier)} | ${t.n} | ${pt(t.oracle, t.n)} | ${pt(t.whoRight, t.n)} | ${pt(t.wander, t.n)} | ${pt(t.citing, t.n)} | ${t.under} | ${pt(t.readerWho, t.n)} | ${pt(t.reader, t.n)} |`);
+const sum: string[] = ['', '| tier | nights | oracle solved, with the line | wanderer files who right | wanderer files solved | wanderer solved, citing its collision | refusal shortcut under par | reader files solved | reader naming a liar, solved |', '|---|---|---|---|---|---|---|---|---|'];
+for (const [tier, t] of byTier) sum.push(`| ${tierName(tier)} | ${t.n} | ${pt(t.oracle, t.n)} | ${pt(t.whoRight, t.n)} | ${pt(t.wander, t.n)} | ${pt(t.citing, t.n)} | ${t.under} | ${pt(t.reader, t.n)} | ${pt(t.readerLiar, t.n)} |`);
 process.stdout.write(`${sum.join('\n')}\n`);
 if (examples.length) process.stdout.write(`\n${examples.join('\n')}\n`);

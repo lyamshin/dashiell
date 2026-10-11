@@ -301,46 +301,80 @@ function filedFrom(d: BoardDeal, run: BoardRun, rng: Rng, pick: { person: Person
  * docs/46 §4: the reader. It follows every star and otherwise takes the first
  * choice a page offers (the first person's first topic not yet asked, the
  * first search, the first place), until the night runs out. It reads instead
- * of deducing, so it files what the book told it: the name a thought walked
- * it to, if one did; otherwise whoever the book caught lying (one of them, at
- * random), on the line the book set against them. The rest as the wanderer.
+ * of deducing, so it files the name the book handed it: the one a thought
+ * walked it to ("That left one person who…", "That left Feeney"), or the one
+ * a star or the turn sent it to put it to ("I could put it to Feeney now"),
+ * on the line the book set against them. Handed no name, it does what it
+ * does everywhere else and takes the form's first choices.
+ *
+ * `liar`: the same reader, but handed no name it names a liar the book
+ * caught, at random, on the line set against them: "the liar did it", which
+ * the rules say isn't so from Poached up. For the record, not the target.
  */
-export function playReader(d: BoardDeal, seed: number): Played {
+export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean } = {}): Played {
   const c = d.kase;
   const rng = new Rng((seed * 2654435761 + 97) >>> 0);
   let run = newBoardRun(d);
   const commands: string[] = [];
+  const sentTo: PersonId[] = [];
   const budget = budgetCalls(d);
   for (let guard = 0; guard < 80 && !run.reportOpen && run.used < budget; guard++) {
-    const cmd = readerNext(d, run);
-    if (!cmd) break;
-    const r = stepBoard(d, run, cmd);
+    const next = readerNext(d, run);
+    if (!next) break;
+    const r = stepBoard(d, run, next.command);
     if (r.error) break;
-    commands.push(cmd);
+    commands.push(next.command);
+    if (next.starred && next.command.startsWith('put ')) sentTo.push(next.command.split(' ')[1] as PersonId);
     run = r.run;
   }
-  // The name the book walked it to: the elimination's last step, or "That left X".
-  const told = toldWho(d, run);
   const caught = collisionsOf(c, run).filter((x) => suspectsOf(c).includes(x.person));
-  const pick = told ? (caught.find((x) => x.person === told) ?? { person: told, hour: c.crime.hour }) : caught.length > 0 ? (rng.pick(caught) as { person: PersonId; hour: Hour }) : null;
+  // The name the book handed it: walked to, or sent to put it to.
+  const told = toldWho(d, run) ?? sentTo[0] ?? turnSaid(d, run);
+  let pick: { person: PersonId; hour: Hour } | null = told ? (caught.find((x) => x.person === told) ?? { person: told, hour: c.crime.hour }) : null;
+  if (!pick && opts.liar && caught.length > 0) pick = rng.pick(caught) as { person: PersonId; hour: Hour };
   const base = filedFrom(d, run, rng, pick);
-  // The line the book set against them: the line it put to them, if it landed; else the collision's.
-  const put = pick ? run.puts.find((x) => x.person === pick.person && x.hour === pick.hour && x.landed && !x.again) : undefined;
-  const col = pick ? collisionsOf(c, run, pick.person).find((x) => x.hour === pick.hour) : undefined;
-  const report: BoardReport = {
-    ...base,
-    breaks: put?.line ?? col?.breakers[0]?.id ?? null,
-    ...(isMurder(c) ? {} : { whereBy: heldWhereBy(d, run)[0]?.value ?? null }),
-  };
+  let breaks: string | null;
+  if (pick) {
+    // The line the book set against them: the line it put to them, if it landed; else the collision's.
+    const put = run.puts.find((x) => x.person === pick.person && x.hour === pick.hour && x.landed && !x.again);
+    breaks = put?.line ?? collisionsOf(c, run, pick.person).find((x) => x.hour === pick.hour)?.breakers[0]?.id ?? null;
+  } else {
+    // Handed nothing: the form's first name, and the first line it offers for them.
+    base.who = boardFields(d)[0]?.options[0]?.value ?? null;
+    base.why = base.who;
+    breaks = breakOptions(d, run, base.who)[0]?.value ?? null;
+  }
+  const report: BoardReport = { ...base, breaks, ...(isMurder(c) ? {} : { whereBy: heldWhereBy(d, run)[0]?.value ?? null }) };
   run = stepBoard(d, run, 'file').run;
   const v = scoreBoard(d, run, report);
   return { run, commands, ok: v.outcome === 'solved', report };
 }
 
+/** The person the turn sent it to put it to: "I could put it to Feeney now." */
+function turnSaid(d: BoardDeal, run: BoardRun): PersonId | null {
+  for (const page of run.log) {
+    if (!page.board?.turn) continue;
+    const text = page.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join('\n');
+    const m = /I could put it to (.+?) now\./.exec(text);
+    const hit = m ? d.kase.people.find((p) => p.role === 'suspect' && p.short === m[1]) : undefined;
+    if (hit) return hit.id;
+  }
+  return null;
+}
+
 /** The reader's next command: the page's first star, or else its first choice. */
-function readerNext(d: BoardDeal, run: BoardRun): string | null {
+function readerNext(d: BoardDeal, run: BoardRun): { command: string; starred: boolean } | null {
   const star = pageStars(d, run)[0];
-  if (star) return star.command.startsWith('picker ') ? pickerCommand(d, run, star.command.slice(7), star.q) : star.command;
+  if (star) {
+    const command = star.command.startsWith('picker ') ? pickerCommand(d, run, star.command.slice(7), star.q) : star.command;
+    return command ? { command, starred: true } : null;
+  }
+  const first = firstChoice(d, run);
+  return first ? { command: first, starred: false } : null;
+}
+
+/** The first thing a page offers that does something: the first person's first topic not yet asked, then searches, then places. */
+function firstChoice(d: BoardDeal, run: BoardRun): string | null {
   for (const g of boardChoices(d, run)) {
     if (g.kind === 'free') continue;
     for (const ch of [...g.choices, ...(g.more ?? [])]) {
@@ -356,14 +390,23 @@ function readerNext(d: BoardDeal, run: BoardRun): string | null {
   return null;
 }
 
-/** What the picker's first choice puts: the ready-made pair (the starred hour's, if a star sent it), or the first claim's first line. */
+/**
+ * What the picker's first choice puts: the ready-made pair (the starred
+ * hour's, if a star sent it), or the first claim's first line. A put already
+ * made is passed over for the next one.
+ */
 function pickerCommand(d: BoardDeal, run: BoardRun, p: PersonId, q?: string): string | null {
   const pk = pickerFor(d, run, p);
   if (!pk) return null;
+  const made = new Set(run.puts.map((x) => `put ${x.person} ${x.hour} ${x.line}${x.again ? ' again' : ''}`));
   const hour = q?.startsWith('confront:') ? q.split('@')[1] : undefined;
-  if (pk.ready.length > 0) return (pk.ready.find((r) => hour !== undefined && r.command.startsWith(`put ${p} ${hour} `)) ?? pk.ready[0])?.command ?? null;
-  const claim = pk.claims.find((x) => hour !== undefined && String(x.hour) === hour) ?? pk.claims[0];
-  return claim?.lines[0]?.command ?? null;
+  if (pk.ready.length > 0) {
+    const ready = [...pk.ready.filter((r) => hour !== undefined && r.command.startsWith(`put ${p} ${hour} `)), ...pk.ready];
+    return ready.find((r) => !made.has(r.command))?.command ?? null;
+  }
+  const claims = [...pk.claims.filter((x) => hour !== undefined && String(x.hour) === hour), ...pk.claims];
+  for (const cl of claims) for (const l of cl.lines) if (!made.has(l.command)) return l.command;
+  return null;
 }
 
 /** Whom the night's thoughts named as the one left, if they did. */

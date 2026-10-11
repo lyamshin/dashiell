@@ -20,11 +20,11 @@
 import { machineryIn, verdictsIn } from './reader-lint.js';
 import type { Page } from './types.js';
 import { accountOf, listOf, peopleAt } from './knowledge.js';
-import { hourWord, nameOf, placeName, type BoardDeal, type BoardRun } from './model.js';
+import { hourWord, nameOf, placeName, thoughtLevel, type BoardDeal, type BoardRun } from './model.js';
 
 export interface BoardLintIssue {
   page: number;
-  rule: 'machinery' | 'verdict' | 'slot' | 'hour' | 'name' | 'whole' | 'quote';
+  rule: 'machinery' | 'verdict' | 'slot' | 'hour' | 'name' | 'whole' | 'quote' | 'level';
   detail: string;
 }
 
@@ -111,10 +111,71 @@ export function lintBoardRun(d: BoardDeal, run: BoardRun): BoardLintIssue[] {
       }
     }
   });
+  // docs/46 §2: the thought's level.
+  out.push(...levelIssues(d, run));
   return out;
 }
 
 /** Every word a player reads on a board night, for the plain-terms check. */
 export function boardPlayerText(run: BoardRun): string[] {
   return run.log.map(pageText);
+}
+
+/* ------------------------------------------------------------------ *
+ * docs/46 §2: thoughts stop at the link.
+ * ------------------------------------------------------------------ */
+
+/** What a thought above walk level may never say: who's cleared, who's left, how many remain. */
+export const OVERSTEP: { name: string; re: RegExp }[] = [
+  { name: 'that left', re: /\bthat left\b/i },
+  { name: 'only … left', re: /\bonly\b[^.?!]*\bleft\b(?! (?:the|his|her|my|at|for|it|them|him|by|before|after|early|alone|over))/i },
+  { name: 'cleared', re: /\bclear(?:ed|s)\b/i },
+  { name: 'who’s left', re: /\bwho[’']s left\b|\b(?:one|two|three|four|five|nobody) (?:was |were )?left\b(?! (?:the|his|her|my|at|for|it|them|him|by|before|after|early|alone|over))/i },
+  { name: 'how many remain', re: /\b(?:one|two|three|four|five) (?:people|names|of them) (?:left|to go|remained|still in it)\b/i },
+];
+
+/** A sentence that says who did it: their name and a verdict in one breath. */
+const DID_IT = /\b(?:did it|done it|killed (?:him|her)|took (?:it|him|her)|was the one|had to be|must have|nobody else could|guilty|the one who)\b/i;
+
+/** The question a thought's ref came from: a line's, a question's own id, or the office's. */
+function refQuestion(ref: string): string {
+  if (ref.startsWith('givens')) return 'givens';
+  const [kind, rest = ''] = ref.split(':') as [string, string];
+  if (kind === 'claim') return `account:${rest.split('@')[0]}`;
+  if (kind === 'list') return `list:${rest.split('@')[0]}`;
+  if (kind === 'find') return `search:${rest}`;
+  if (kind === 'admit' || kind === 'second') return `confront:${rest}`;
+  if (kind === 'remark') return ref.slice('remark:'.length).replace(/#\d+$/, '');
+  return ref;
+}
+
+/**
+ * The level lint. Above walk level (Coddled up) no thought, turn or "Go over
+ * what I have" before the report says "that left", "only … left", "cleared",
+ * how many remain, or who did it. At fact level (Hard-boiled) a thought ties
+ * to nothing but this page's own lines and the office.
+ */
+export function levelIssues(d: BoardDeal, run: BoardRun): BoardLintIssue[] {
+  const c = d.kase;
+  const level = thoughtLevel(c);
+  if (level === 'walk') return [];
+  const out: BoardLintIssue[] = [];
+  const culprit = nameOf(c, c.crime.culprit);
+  run.log.forEach((p, i) => {
+    const b = p.board;
+    if (!b || b.job === 'nothing') return;
+    const texts = [b.thought?.text ?? '', ...p.blocks.filter((x) => x.kind === 'prose' && (x.voice === 'recap' || x.voice === 'thought')).map((x) => (x.kind === 'prose' ? x.text : ''))].filter(Boolean);
+    for (const t of new Set(texts)) {
+      for (const { name, re } of OVERSTEP) {
+        const m = re.exec(t);
+        if (m) out.push({ page: i, rule: 'level', detail: `${name}: “…${t.slice(Math.max(0, m.index - 40), m.index + 40)}…”` });
+      }
+      for (const s of t.split(/(?<=[.!?])\s+/)) if (s.includes(culprit) && DID_IT.test(s)) out.push({ page: i, rule: 'level', detail: `names who did it: “${s.slice(0, 100)}”` });
+    }
+    if (level === 'fact' && b.thought) {
+      const mine = new Set([b.q ?? '', 'givens']);
+      for (const r of b.thought.refs) if (!mine.has(refQuestion(r)) && !(b.told ?? []).includes(r)) out.push({ page: i, rule: 'level', detail: `ties to an earlier page: ${r}` });
+    }
+  });
+  return out;
 }

@@ -122,7 +122,8 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
           const m = /^Walking over to (.+?) at (\w+) I passed (\S+) on (.+?), (.+?)\.$/.exec(rm?.text ?? '');
           if (m) {
             const h = rm?.facts[0]?.h as Hour;
-            return out(`${A} had passed ${P} on ${m[4]} at ${m[2]}, ${m[5]}`, [`remark:account:${a.person}#${r}`], { hours: [h], people: [p, a.person] });
+            // The remark's own words ("going fast, no hat") are its speaker's: a clue is said at most twice a night (docs/44).
+            return out(`${A} had passed ${P} on ${m[4]} at ${m[2]}`, [`remark:account:${a.person}#${r}`], { hours: [h], people: [p, a.person] });
           }
           return out(`${A} had mentioned ${P}`, [`remark:account:${a.person}#${r}`], { people: [p, a.person] });
         }
