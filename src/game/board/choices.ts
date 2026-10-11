@@ -14,8 +14,8 @@
  * the engine charges (docs/38).
  */
 
-import { minutesAfter } from '../clock.js';
-import type { OfferedChoice, OfferedGroup } from '../types.js';
+import { minutesAfter } from './clock.js';
+import type { OfferedChoice, OfferedGroup } from './types.js';
 import { candidateLines, collisionsOf, confrontationOf, judgeLine, knownPeople, knownPlaces, linesHeld, listOf, peopleAt, type Line } from './knowledge.js';
 import {
   OFFICE,

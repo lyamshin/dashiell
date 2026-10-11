@@ -1,12 +1,12 @@
 /**
- * docs/43 §1: the third engine, `board`. The book on the small board.
+ * docs/43 §1: the engine, `board`. The book on the small board.
  *
  * The case is `src/gen/board/` (docs/41, docs/42): suspects × whole hours, and
  * the few things a detective can ask for — a whole account, a whole watcher's
  * list, one search, one confrontation. This file holds the run's own data and
  * the plain lookups every other file of the engine uses.
  *
- * Nothing here touches the DOM, and nothing in v1 or v2 knows it exists.
+ * Nothing here touches the DOM.
  */
 
 import { analyse, generateBoard, type Analysis } from '../../gen/board/index.js';
@@ -14,12 +14,12 @@ import type { BoardCase, CaseType, Hour, Person, PersonId, Place, PlaceId, TierI
 import { TIER_NAMES } from '../../gen/board/types.js';
 import { fmtHour } from '../../gen/board/solver.js';
 import { TIERS } from '../../gen/board/tiers.js';
-import type { CellMark, Page } from '../types.js';
-import type { Weather } from '../voice/roll.js';
+import type { CellMark, Page } from './types.js';
+import type { Weather } from './types.js';
 
 export type { BoardCase, Hour, Person, PersonId, Place, PlaceId, TierIndex, CaseType };
 
-/** Where a board night is kept in the browser: apart from v1 and v2's run. */
+/** Where a board night is kept in the browser. */
 export const BOARD_SAVE_KEY = 'dashiell:board-run';
 
 /** The office is a place of its own, off the board. */
@@ -70,7 +70,7 @@ export interface BoardRun {
   /** Places walked into, in order of first visit. */
   visited: PlaceId[];
   log: Page[];
-  /** The player's pencil on the board, as on v1's grid. Free, never a fact. */
+  /** The player's pencil on the board. Free, never a fact. */
   marks: Record<PersonId, Record<string, CellMark>>;
   reportOpen: boolean;
   filed?: BoardReport;
@@ -219,7 +219,7 @@ export function tierName(t: TierIndex): string {
 /**
  * Par in calls: the designed path's questions, the motive search a murder's
  * report needs on top, and the walks the path takes from the office. Every
- * question and every walk is a call, as in v1 and v2.
+ * question and every walk is a call.
  */
 export function parCalls(d: BoardDeal): number {
   return d.analysis.par + (d.analysis.motive ? 1 : 0) + d.analysis.walks;

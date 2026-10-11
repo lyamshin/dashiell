@@ -10,7 +10,7 @@
  *   and files whoever it caught lying. It should rarely solve from Poached up.
  */
 
-import { Rng } from '../../gen/rng.js';
+import { Rng } from '../../gen/board/rng.js';
 import { minimalSets } from '../../gen/board/path.js';
 import { closure, pointerIndex } from '../../gen/board/pointers.js';
 import { questionsOf, solve } from '../../gen/board/solver.js';

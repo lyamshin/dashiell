@@ -30,7 +30,7 @@ import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.
 import { lintBoardRun, boardPlayerText } from '../src/game/board/lint.js';
 import { dealBoard, tierName, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle, playWanderer } from '../src/game/board/oracle.js';
-import type { Block, Page } from '../src/game/types.js';
+import type { Block, Page } from '../src/game/board/types.js';
 import { namesOverTwo } from '../src/game/board/names.js';
 // @ts-expect-error — plain JavaScript module, no declarations.
 import { findJargon, loadPlainTerms } from './plain-terms.mjs';

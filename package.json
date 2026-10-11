@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Dashiell — noir murder mystery roguelike. Milestone 3: the book.",
+  "description": "Dashiell — a noir deduction game in the shape of a bound book, on the small board.",
   "engines": {
     "node": ">=20"
   },
@@ -12,16 +12,12 @@
     "build": "vite build",
     "preview": "vite preview",
     "case": "tsx src/cli/case.ts",
-    "batch": "tsx src/cli/batch.ts",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "read": "tsx src/cli/read.ts",
     "play": "tsx src/cli/play.ts",
     "trace": "tsx scripts/trace-line.ts",
-    "story": "tsx src/cli/story.ts",
-    "decks": "node scripts/validate-decks.mjs",
     "deploy": "sh scripts/deploy.sh",
-    "board": "tsx src/cli/board.ts",
     "board-sweep": "tsx src/cli/board-sweep.ts"
   },
   "devDependencies": {

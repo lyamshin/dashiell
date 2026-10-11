@@ -4,8 +4,8 @@
  * happened" (the crime only), and the curtain: the true board, the path and
  * the lies.
  *
- * The verdict is v1's shape (`Verdict`), so the book's own verdict page
- * draws it.
+ * The verdict (`Verdict`) is what the book's verdict page and the play CLI
+ * print.
  */
 
 import { ROOMING_MEANS, WORKPLACES, HOLDERS } from '../../gen/board/content.js';
@@ -13,7 +13,6 @@ import { questionById, key } from '../../gen/board/solver.js';
 import { minimalSets } from '../../gen/board/path.js';
 import { techniquesUpTo } from '../../gen/board/tiers.js';
 import { questionsOf, solve } from '../../gen/board/solver.js';
-import type { Verdict, FieldResult, Outcome } from '../scoring.js';
 import { Hand } from './decks.js';
 import { accountOf } from './knowledge.js';
 import {
@@ -39,6 +38,31 @@ import {
 import { withCaps } from './pages.js';
 
 export type FieldKey = 'who' | 'when' | 'how' | 'why' | 'where';
+
+/** How a filed report came out: everything right, the right person only, the wrong one, or nobody named. */
+export type Outcome = 'solved' | 'wrong-man' | 'thin' | 'cold';
+
+export interface FieldResult {
+  key: FieldKey;
+  label: string;
+  given: string;
+  truth: string;
+  correct: boolean;
+  answered: boolean;
+}
+
+/** The report, scored. */
+export interface Verdict {
+  fields: FieldResult[];
+  points: number;
+  /** How many the report asked. `points` out of this. */
+  asked: number;
+  outcome: Outcome;
+  actionsUsed: number;
+  par: number;
+  /** The closing page, in the book's voice. Paragraphs. */
+  closing: string[];
+}
 
 export interface FieldSpec {
   key: FieldKey;
@@ -116,7 +140,7 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
     const g = given(report, f.key);
     const t = truthOf(d, f.key);
     const label = (v: string | null) => (v === null ? 'I don’t know' : (f.options.find((o) => o.value === v)?.label ?? v));
-    return { key: f.key as never, label: f.label, given: label(g), truth: label(t), correct: g !== null && g === t, answered: g !== null };
+    return { key: f.key, label: f.label, given: label(g), truth: label(t), correct: g !== null && g === t, answered: g !== null };
   });
   const points = fields.filter((f) => f.correct).length;
   const asked = fields.length;
@@ -124,7 +148,6 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
   const outcome: Outcome = !who.answered ? 'cold' : !who.correct ? 'wrong-man' : points === asked ? 'solved' : 'thin';
   const par = parCalls(d);
   return {
-    column: [],
     points,
     asked,
     outcome,
@@ -132,7 +155,6 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
     actionsUsed: run.used,
     par,
     closing: closingOf(d, run, outcome),
-    gaps: [],
   };
 }
 

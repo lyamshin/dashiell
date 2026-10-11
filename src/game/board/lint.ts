@@ -3,9 +3,8 @@
  * board. Read over a whole night, page by page, as a player reads it:
  *
  * - **machinery:** the book's own words never in the prose (grid, rule, lead,
- *   beat, …), as v1's reader lint has them;
- * - **verdict:** never "cleared", "out of it", "crossed off" (from Poached
- *   up, as v1; on the board, at every tier);
+ *   beat, …), as `reader-lint.ts` has them;
+ * - **verdict:** never "cleared", "out of it", "crossed off", at any tier;
  * - **slots:** no `{slot}` left unfilled, no "undefined";
  * - **hours:** every hour a page names (at nine, ten o'clock, till eleven) is
  *   one the page's own lines license;
@@ -18,8 +17,8 @@
  * Pure: it reads the night and returns what it found.
  */
 
-import { machineryIn, verdictsIn } from '../reader-lint.js';
-import type { Page } from '../types.js';
+import { machineryIn, verdictsIn } from './reader-lint.js';
+import type { Page } from './types.js';
 import { accountOf, listOf, peopleAt } from './knowledge.js';
 import { hourWord, nameOf, placeName, type BoardDeal, type BoardRun } from './model.js';
 

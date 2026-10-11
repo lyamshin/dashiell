@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { KeyValueStore } from '../../src/game/storage.js';
+import type { KeyValueStore } from '../../src/game/board/profile.js';
 import {
   effectsFor,
   loadWeatherOn,

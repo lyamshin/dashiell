@@ -9,7 +9,7 @@
  * mark is read off the held lines and the solver on them, never the truth.
  */
 
-import type { CellMark } from '../types.js';
+import type { CellMark } from './types.js';
 import { linesHeld, accountOf, solveRun, knownPeople } from './knowledge.js';
 import { cap, hourWord, isMurder, nameOf, personOf, placeName, suspectsOf, type BoardCase, type BoardRun, type Hour, type PersonId, type PlaceId } from './model.js';
 import { sourceName } from './stars.js';

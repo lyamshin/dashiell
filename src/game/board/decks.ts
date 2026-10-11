@@ -1,16 +1,16 @@
 /**
  * docs/43 §8: the board's own card families, and the hand that deals them.
  *
- * The new families live in `content/board/` beside the old decks, in the same
- * shape (id, tags, text, `joke`), and are dealt the same way: a card read
- * tonight isn't dealt again tonight, a page tells about one joke, and a hole
- * with nothing that fits widens to the next key before it goes empty. The old
- * decks the board can use as they are (the office, the watcher's clause, the
- * look of a trade) are dealt through the same hand.
+ * The families live in `content/board/`, in the old decks' shape (id, tags,
+ * text, `joke`), and are dealt the old way: a card read tonight isn't dealt
+ * again tonight, a page tells about one joke, and a hole with nothing that
+ * fits widens to the next key before it goes empty. The four old decks the
+ * board uses as they are (`cards.ts`: the office, the client's entrance, the
+ * watcher's clause, the look of a trade) are dealt through the same hand.
  */
 
-import { Rng } from '../../gen/rng.js';
-import { DECKS, fill, type Card, type DeckName, type Slots } from '../voice/cards.js';
+import { Rng } from '../../gen/board/rng.js';
+import { DECKS, fill, type Card, type DeckName, type Slots } from './cards.js';
 import officeJson from '../../../content/board/office.json';
 import placesJson from '../../../content/board/places.json';
 import peopleJson from '../../../content/board/people.json';

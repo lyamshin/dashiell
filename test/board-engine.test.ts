@@ -232,7 +232,7 @@ describe('board: the play CLI', () => {
   const io: PlayIo = { read: (p) => files.get(p) ?? null, write: (p, d) => void files.set(p, d) };
   it('plays a night by number and files it, showing nothing of the truth before', () => {
     const save = 'board.json';
-    const first = runPlay(['new', '--seed', '4', '--tier', '2', '--engine', 'board', '--save', save, '--no-teach'], io);
+    const first = runPlay(['new', '--seed', '4', '--tier', '2', '--save', save, '--no-teach'], io);
     expect(first.code).toBe(0);
     expect(first.out).toContain('WHAT NEXT');
     const d = dealBoard(4, 2);
@@ -265,12 +265,34 @@ describe('board: the play CLI', () => {
   });
 });
 
-describe('board: v1 and v2 are untouched by the flag', () => {
-  it('a save without the board flag plays the old engine', () => {
+describe('board: the only engine', () => {
+  it('a save from the engines before the board is refused plainly, and left as it was', () => {
+    const v1 = JSON.stringify({ game: 'dashiell-play', version: 1, seed: 3, tier: 4, level: 2, events: [{ do: 'go the third floor' }] });
+    const v2 = JSON.stringify({ game: 'dashiell-play', version: 1, seed: 3, tier: 4, level: 2, engine: 'v2', events: [] });
+    const files = new Map<string, string>([
+      ['v1.json', v1],
+      ['v2.json', v2],
+      ['junk.json', 'not json'],
+    ]);
+    const io: PlayIo = { read: (p) => files.get(p) ?? null, write: (p, d) => void files.set(p, d) };
+    for (const [path, was] of [['v1.json', v1], ['v2.json', v2], ['junk.json', 'not json']] as const) {
+      for (const cmd of ['look', 'notebook', 'grid', 'report']) {
+        const r = runPlay([cmd, '--save', path], io);
+        expect(r.code, `${cmd} ${path}`).toBe(1);
+        expect(r.out, `${cmd} ${path}`).toMatch(/engine that’s gone|isn’t a save/);
+      }
+      expect(runPlay(['do', '1', '--save', path], io).code).toBe(1);
+      expect(files.get(path)).toBe(was);
+    }
+  });
+
+  it('takes no engine flag: a new night is a board night', () => {
     const files = new Map<string, string>();
     const io: PlayIo = { read: (p) => files.get(p) ?? null, write: (p, d) => void files.set(p, d) };
-    const r = runPlay(['new', '--seed', '3', '--tier', '4', '--engine', 'v2', '--save', 'v2.json', '--no-teach'], io);
-    expect(r.code).toBe(0);
-    expect(JSON.parse(files.get('v2.json') as string).engine).toBe('v2');
+    const r = runPlay(['new', '--seed', '3', '--tier', '4', '--save', 'n.json', '--no-teach'], io);
+    expect(r.code, r.out).toBe(0);
+    expect(JSON.parse(files.get('n.json') as string).engine).toBe('board');
+    expect(r.out).not.toMatch(/flag only|new engine/);
+    expect(runPlay(['new', '--seed', '3', '--tier', '5', '--type', 'lost-item', '--save', 'x.json'], io).code).toBe(1);
   });
 });

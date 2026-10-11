@@ -1,54 +1,31 @@
 /**
- * docs/37 — the book, played blind, one choice at a time, in plain text.
+ * docs/43: `npm run play`, the night played blind, one choice at a time, in
+ * plain text:
  *
- * `npm run play` is for playtesters (people or agents) who must see exactly
- * what a player of the book sees and nothing of the truth: the page, the
- * running head (the clock and the calls left), the choices the page offers
- * with what each costs and the lead's star, the notebook, "Where they were",
- * the pencil, the "Put it to …" picker, the report form, and — only once the
- * report is filed — the verdict, the closing, what really happened and the
- * curtain.
+ *   new --seed N --tier 0..5 [--type murder|lost-item|lost-pet] [--name Dashiell] [--no-teach] --save F
+ *   look · do <n|words> · page <n> · notebook · grid · pencil "<Name> <hour> at|not|clear [place]"
+ *   confront <Name> · report · file "who=…; when=…; how=…; why=…; where=…" · story · curtain · help
  *
- * Nothing here prints the oracle's route, the solver, par, word counts, gap
- * diagnostics, the truth sheet or the story before the report is in.
+ * A page lists the people here (choosing one opens their topics, free),
+ * then what to search and where to go. "Put it to X" opens the picker: at
+ * Raw and Coddled the pairs ready-made, from Poached up the claim and then
+ * the line. Nothing printed before filing shows the truth, par, the path or
+ * the solver.
  *
- * The save file holds what the player did and nothing the case knows: the
- * deal (seed, tier, level, engine, name) and the list of choices, pencil
- * marks, links and the filed report, in order. Every command replays it
- * through the same `stepInput` the book uses, so the night on the page is the
- * night the book would have written.
- *
- * All the work is in `runPlay`, which returns the text rather than printing
- * it, so the test can drive it in-process; `src/cli/play.ts` is the shell.
+ * A save is the deal and every event, replayed on each command. A save from
+ * the engines before the board is refused, plainly.
  */
 
-import { generateCase, type Case } from '../gen/index.js';
-import { LADDERS, type Level } from '../gen/shape.js';
-import type { Id, Tick } from '../gen/types.js';
-import { choicesFor, costLabel, freeStep, stableChoices, type Choice, type ChoiceGroup } from '../game/choices.js';
-import { clockStrip, minutesPerAction, shortByPage, usedByPage } from '../game/clock.js';
-import { buildView, gameBudget, type CaseView } from '../game/derive.js';
-import { applyLink, applyMark, gridFrom, type MarkAction } from '../game/grid.js';
-import { renderGridText } from '../game/grid-text.js';
-import { displayName } from '../game/m9.js';
-import { pronounOf } from '../game/voice/cast.js';
-import { caseOptions, levelFor, shapeOf, type TierKey } from '../game/profile.js';
-import { fileReport, newRun, stepInput } from '../game/reducer.js';
-import { columnFor, fieldsFor, withAnswer } from '../game/report-form.js';
-import { scoreReport, type Verdict } from '../game/scoring.js';
-import { storyOf, storyParagraphs } from '../game/story.js';
-import { renderNotebookText, renderPageBody, wrap } from '../game/transcript.js';
-import { EMPTY_REPORT, TOLD_CHOICES, type Report, type RunState, type Told } from '../game/types.js';
-import { HELP_LINES, HELP_NOTE, LIE_RULE, LIE_RULE_NOTE } from '../game/voice-data.js';
-import { TEACH_LINES, TEACH_TITLE } from '../game/guidance.js';
-import { renderTruthSheet } from '../sheet/truthSheet.js';
-import { isBoardCall, runBoardPlay } from './board-play-lib.js';
-
-const WIDTH = 76;
-const RULE = '─'.repeat(WIDTH);
-const DOUBLE = '═'.repeat(WIDTH);
-const UNKNOWN = 'I don’t know';
-const MUNDANE = ['lost-pet', 'lost-item', 'affair'];
+import { parseTier, typesFor, type CaseType } from '../gen/board/index.js';
+import { clockStrip, usedByPage } from '../game/board/clock.js';
+import { boardChoices, pickerFor, type Picker } from '../game/board/choices.js';
+import { newBoardRun, stepBoard } from '../game/board/engine.js';
+import { boardGridText, placeCodes } from '../game/board/grid.js';
+import { BOARD_TEACH_LINES, BOARD_TEACH_TITLE, BOARD_RULES } from '../game/board/teach.js';
+import { OFFICE, budgetCalls, dealBoard, deadlineWords, nameOf, placeName, tierName, type BoardDeal, type BoardReport, type BoardRun } from '../game/board/model.js';
+import { boardFields, curtainOfBoard, reportFrom, scoreBoard, storyOfBoard, type FieldKey } from '../game/board/report.js';
+import { costText, notebookText, pageBodyText, wrap } from '../game/board/text.js';
+import type { OfferedChoice, OfferedGroup } from '../game/board/types.js';
 
 /* ------------------------------------------------------------------ io */
 
@@ -63,1182 +40,510 @@ export interface PlayResult {
   code: number;
 }
 
-/* ---------------------------------------------------------------- save */
+const WIDTH = 76;
+const RULE = '─'.repeat(WIDTH);
+const DOUBLE = '═'.repeat(WIDTH);
 
-type PlayEvent =
-  | { do: string }
-  | { mark: { personId: Id; tick: number; action: MarkAction } }
-  | { link: { key: string; personId: Id | null } }
-  | { file: Report };
+type Event = { do: string } | { mark: { person: string; hour: number; action: 'at' | 'not' | 'clear'; place?: string } } | { file: BoardReport };
 
-export interface PlaySave {
+export interface BoardSave {
   game: 'dashiell-play';
   version: 1;
+  engine: 'board';
   seed: number;
-  tier: TierKey;
-  level: Level;
-  engine?: 'v2';
+  tier: number;
+  type?: CaseType;
   detective: string;
-  /** Everything the player did, in order. Replayed on every command. */
-  events: PlayEvent[];
-  /** Whose "Put it to …" picker is open, if one is. Not a page; free. */
-  picker: Id | null;
-  /**
-   * docs/39 §1: from Poached up the picker opens on the facts about them at
-   * the half hours their account covers; "Everything else in the notebook"
-   * opens the rest. Free; shut again with the picker.
-   */
-  pickerAll?: boolean;
-  /**
-   * docs/40 §3 (v2): whose topics are open. A page lists the people in the
-   * room; choosing one opens what to ask them. Free, and not a page.
-   */
-  person?: Id | null;
-  /** An affair's report, filled in, while the client waits to be told something. */
-  pendingReport: Report | null;
+  events: Event[];
+  /** Whose topics are open. Free; not a page. */
+  person: string | null;
+  /** Whose picker is open, and from Poached up the claim's hour picked. */
+  picker: string | null;
+  claim: number | null;
 }
+
+class Fail extends Error {}
+const fail = (m: string): never => {
+  throw new Fail(m);
+};
 
 interface Night {
-  save: PlaySave;
-  kase: Case;
-  view: CaseView;
-  state: RunState;
-  /** The state each page was written in, by page index: the menu of a free page is laid out from the page before's. */
-  pages: RunState[];
+  save: BoardSave;
+  d: BoardDeal;
+  run: BoardRun;
+  /** The run as each page left it, for its choices. */
+  pages: BoardRun[];
 }
 
-/** The last few cases dealt in this process, so a test's many commands deal each once. */
-const dealt = new Map<string, { kase: Case; view: CaseView }>();
-
-function deal(save: PlaySave): Night {
-  const key = JSON.stringify([save.seed, save.tier, save.level, save.engine ?? null, save.detective]);
-  let hit = dealt.get(key);
-  if (!hit) {
-    const kase = generateCase(save.seed, {
-      ...caseOptions({ tier: save.tier, level: save.level, ...(save.engine ? { engine: save.engine } : {}) }),
-      detectiveName: save.detective,
-    });
-    hit = { kase, view: buildView(kase) };
-    if (dealt.size >= 4) dealt.delete(dealt.keys().next().value as string);
-    dealt.set(key, hit);
-  }
-  const { kase, view } = hit;
-  let state = newRun(view, { detectiveName: save.detective });
-  const pages: RunState[] = [state];
+function deal(save: BoardSave): Night {
+  const d = dealBoard(save.seed, save.tier as 0, save.type);
+  let run = newBoardRun(d, { detectiveName: save.detective, ...(save.type ? { type: save.type } : {}) });
+  const pages: BoardRun[] = [run];
   for (const e of save.events) {
-    state = apply(state, view, e);
-    pages[state.log.length - 1] = state;
+    run = apply(d, run, e);
+    pages[run.log.length - 1] = run;
   }
-  return { save, kase, view, state, pages };
+  return { save, d, run, pages };
 }
 
-function apply(state: RunState, view: CaseView, e: PlayEvent): RunState {
-  if ('do' in e) return stepInput(state, e.do, view).state;
-  if ('mark' in e) return applyMark(state, e.mark.personId, e.mark.tick as Tick, e.mark.action);
-  if ('link' in e) return applyLink(state, e.link.key, e.link.personId);
-  return fileReport(state, e.file);
+function apply(d: BoardDeal, run: BoardRun, e: Event): BoardRun {
+  if ('do' in e) return stepBoard(d, run, e.do).run;
+  if ('mark' in e) return markRun(run, e.mark);
+  return { ...run, reportOpen: true, filed: e.file };
 }
 
-class PlayError extends Error {}
-
-function fail(message: string): never {
-  throw new PlayError(message);
-}
-
-/* ---------------------------------------------------------------- args */
-
-interface Args {
-  command: string;
-  arg: string | undefined;
-  values: Map<string, string>;
-}
-
-function parseArgv(argv: string[]): Args {
-  const values = new Map<string, string>();
-  const positional: string[] = [];
-  for (let i = 0; i < argv.length; i++) {
-    const token = argv[i] as string;
-    if (token.startsWith('--')) {
-      const next = argv[i + 1];
-      if (next !== undefined && !next.startsWith('--')) {
-        values.set(token.slice(2), next);
-        i++;
-      } else values.set(token.slice(2), '');
-      continue;
-    }
-    positional.push(token);
-  }
-  return { command: positional[0] ?? 'help', arg: positional.slice(1).join(' ') || undefined, values };
-}
-
-/* -------------------------------------------------------------- words */
-
-function minutesText(minutes: number): string {
-  if (minutes <= 0) return 'free';
-  if (minutes === 30) return '½ hr';
-  return `${minutes} min`;
-}
-
-const fold = (s: string): string =>
-  s
-    .toLowerCase()
-    .replace(/[’']/g, "'")
-    .replace(/^\*\s*/, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-
-function deadlineOf(view: CaseView): string | undefined {
-  return MUNDANE.includes(view.kase.act.type) ? `${view.client.surname} wants an answer at eight` : undefined;
-}
-
-/** The notebook's header line: the case, and what it was dealt at. */
-function caseLine(kase: Case): string {
-  if (kase.shape !== undefined && kase.ladder !== undefined) {
-    return `case ${kase.seed} · ${kase.shape.name} · ${kase.ladder.name}${kase.engine === 'v2' ? ` · v2 · ${kase.v2?.book.title ?? ''}` : ''}`;
-  }
-  return `case ${kase.seed} · difficulty ${kase.difficulty}`;
+function markRun(run: BoardRun, m: { person: string; hour: number; action: 'at' | 'not' | 'clear'; place?: string }): BoardRun {
+  const marks = { ...run.marks, [m.person]: { ...(run.marks[m.person] ?? {}) } };
+  const cell = { ...(marks[m.person]?.[String(m.hour)] ?? {}) };
+  if (m.action === 'clear') delete (marks[m.person] as Record<string, unknown>)[String(m.hour)];
+  else if (m.action === 'at' && m.place) (marks[m.person] as Record<string, unknown>)[String(m.hour)] = { ...cell, at: m.place };
+  else if (m.action === 'not' && m.place) (marks[m.person] as Record<string, unknown>)[String(m.hour)] = { ...cell, notAt: [...(cell.notAt ?? []), m.place] };
+  return { ...run, marks };
 }
 
 /* ------------------------------------------------------------ the page */
 
-/** The running head: the place, the time, the page, and the strip of calls under them. */
-function runningHead(night: Night, index: number): string {
-  const { view, state } = night;
-  const budget = gameBudget(view.kase);
-  const used = usedByPage(state.log, index);
-  const strip = clockStrip(used, budget, deadlineOf(view), shortByPage(state.log, index));
-  const place = state.log[index]?.head ?? view.kase.neighborhood;
-  const right = `${strip.time} · page ${index + 1} of ${state.log.length}`;
+function head(night: Night, i: number): string {
+  const { d, run } = night;
+  const strip = clockStrip(usedByPage(run.log, i), budgetCalls(d), deadlineWords(d.kase));
+  const place = run.log[i]?.head ?? '';
+  const right = `${strip.time} · page ${i + 1} of ${run.log.length}`;
   const notches = strip.notches.map((n) => (n === 'spent' ? 'x' : n === 'next' ? 'o' : '.')).join('');
-  return [
-    `${place}${' '.repeat(Math.max(2, WIDTH - place.length - right.length))}${right}`,
-    `[${notches}] ${strip.left}`,
-    RULE,
-  ].join('\n');
+  return [`${place}${' '.repeat(Math.max(2, WIDTH - place.length - right.length))}${right}`, `[${notches}] ${strip.left}`, RULE].join('\n');
 }
 
-function pageText(night: Night, index: number): string {
-  const page = night.state.log[index];
-  if (!page) return '';
-  return `${runningHead(night, index)}\n\n${renderPageBody(page, night.view)}`;
+function pageText(night: Night, i: number): string {
+  const page = night.run.log[i];
+  return page ? `${head(night, i)}\n\n${pageBodyText(page)}` : '';
 }
 
-/* --------------------------------------------------------- the choices */
-
-interface Numbered {
+interface Item {
   n: number;
-  choice: Choice;
-  group: ChoiceGroup;
+  choice: OfferedChoice;
+  group: OfferedGroup;
+  /** A person's row on the page: opens their topics. */
+  person?: string;
 }
 
-/**
- * Every choice on the page, numbered in the order the book draws them. After
- * a free page (docs/38), a choice keeps the number it had on the page before,
- * and anything new is numbered after everything that was there, so "do 7"
- * means the same button it meant a page ago.
- */
-function numbered(groups: readonly ChoiceGroup[], before?: ReadonlyMap<string, number>, people?: (id: Id) => string): Numbered[] {
-  const out: Numbered[] = [];
-  const items: { group: ChoiceGroup; choice: Choice }[] = [];
-  for (const group of groups) {
-    if (people && group.kind === 'ask' && group.personId) {
-      // docs/40 §3: one line a person; their topics open behind it, free.
-      items.push({ group, choice: personEntry(group, people(group.personId)) });
+function itemLine(n: number, c: OfferedChoice, cost: string): string {
+  const mark = c.lead ? '* ' : '  ';
+  const label = `${c.label}${c.done ? ' ✓' : ''}${c.note ? ` — ${c.note}` : ''}${c.lead && c.why ? ` — ${c.why}` : ''}`;
+  const num = `${String(n).padStart(4)}. `;
+  const room = WIDTH - num.length - mark.length - cost.length - 2;
+  const lines = wrap(label, room).split('\n');
+  return [`${num}${mark}${(lines[0] ?? '').padEnd(room)}  ${cost}`, ...lines.slice(1).map((l) => `${' '.repeat(num.length + mark.length)}${l}`)].join('\n');
+}
+
+/** The page's numbered items: a line a person, then searches, walks and the free row. */
+function pageItems(night: Night): Item[] {
+  const groups = boardChoices(night.d, night.run);
+  const out: Item[] = [];
+  let n = 1;
+  for (const g of groups) {
+    if (g.kind === 'ask') {
+      const star = g.choices.find((c) => c.lead);
+      out.push({ n: n++, group: g, person: g.personId as string, choice: { command: `person ${g.personId}`, label: nameOf(night.d.kase, g.personId as string), minutes: 0, lead: !!star, done: false, ...(star?.why ? { why: star.why } : {}) } });
       continue;
     }
-    // docs/40 §3: "Put it to …" is among the person's topics, except right
-    // after a fact landed, when "Put another fact to …" waits on the page.
-    if (people && group.kind === 'confront' && !group.follow) continue;
-    if (group.kind === 'confront') {
-      // The one button that opens the picker. Free: it writes no page.
-      items.push({
-        group,
-        choice: { command: `confront ${group.personId ?? ''}`, label: group.heading, minutes: 0, lead: false, done: false },
-      });
-      continue;
-    }
-    for (const choice of [...group.choices, ...(group.more ?? [])]) items.push({ group, choice });
+    for (const c of [...g.choices, ...(g.more ?? [])]) out.push({ n: n++, group: g, choice: c });
   }
-  if (!before) return items.map((it, i) => ({ n: i + 1, ...it }));
-  let next = Math.max(0, ...before.values()) + 1;
-  const taken = new Set<number>();
-  for (const it of items) {
-    const had = before.get(it.choice.command);
-    if (had !== undefined && !taken.has(had)) {
-      taken.add(had);
-      out.push({ n: had, ...it });
-    } else out.push({ n: -1, ...it });
-  }
-  for (const o of out) if (o.n < 0) o.n = next++;
   return out;
 }
 
-/** docs/40 §3: a person, as one choice on the page: their name, the star and its reason if a topic of theirs has one. */
-function personEntry(group: ChoiceGroup, name: string): Choice {
-  const all = [...group.choices, ...(group.more ?? [])];
-  const starred = all.find((c) => c.lead);
-  return {
-    command: `talk ${group.personId ?? ''}`,
-    label: name,
-    minutes: 0,
-    lead: starred !== undefined,
-    done: false,
-    ...(starred?.why ? { why: starred.why } : {}),
-  };
-}
-
-/**
- * The page's choices as the book lays them out, and their numbers: from the
- * last page that cost something or moved the detective, each free page after
- * it keeps the one before's layout (`stableChoices`) and its numbers.
- */
-function menuOf(night: Night): { groups: ChoiceGroup[]; items: Numbered[] } {
-  const { view, pages } = night;
-  const last = pages.length - 1;
-  let k = last;
-  while (k > 0 && pages[k] !== undefined && freeStep(pages[k] as RunState)) k--;
-  const at = (i: number): RunState => (i === last ? night.state : ((pages[i] ?? night.state) as RunState));
-  const people = view.kase.engine === 'v2' ? (id: Id): string => displayName(view, night.state, id) : undefined;
-  let groups = choicesFor(view, at(k));
-  let items = numbered(groups, undefined, people);
-  for (let i = k + 1; i <= last; i++) {
-    groups = stableChoices(view, at(i), groups);
-    items = numbered(groups, new Map(items.map((it) => [it.choice.command, it.n])), people);
-  }
-  return { groups, items };
-}
-
-function itemLine(n: number, c: Choice, extra = '', costText?: string): string {
-  const mark = c.lead ? '* ' : '  ';
-  // docs/40 §2: a star says why, in a few words, beside the label.
-  const why = c.lead && c.why ? ` — ${c.why}` : '';
-  const label = `${c.label}${c.done ? ' ✓' : ''}${c.note ? ` — ${c.note}` : ''}${why}${extra}`;
-  const num = `${String(n).padStart(4)}. `;
-  const cost = costText ?? costLabel(c);
-  const room = WIDTH - num.length - mark.length - cost.length - 2;
-  const lines = wrap(label, room).split('\n');
-  const first = `${num}${mark}${(lines[0] ?? '').padEnd(room)}  ${cost}`;
-  return [first, ...lines.slice(1).map((l) => `${' '.repeat(num.length + mark.length)}${l}`)].join('\n');
-}
-
-function choicesText(night: Night): string {
-  const { view, state } = night;
-  const { groups, items } = menuOf(night);
-  const out: string[] = ['WHAT NEXT', ''];
-  const asks = groups.filter((g) => g.kind === 'ask');
-  if (view.kase.engine === 'v2') return peopleFirstText(night, items);
-  if (asks.length > 1) {
-    // §1.2: the book shows one person's topics at a time, behind a row of
-    // names; here every one of them is listed. The star is the book's.
-    const names = asks.map((g) => `${g.choices.some((c) => c.lead) ? '*' : ''}${displayName(view, state, g.personId as Id)}`);
-    out.push(wrap(`In the room to talk to: ${names.join(' · ')}`), '');
-  }
-  let lastGroup: ChoiceGroup | null = null;
-  let lastHeading = '';
-  for (const item of items) {
-    const g = item.group;
-    if (g !== lastGroup) {
-      // The confront button carries its own words; the free rows share one heading.
-      const heading =
-        g.kind === 'confront' || g.kind === 'put'
-          ? ''
-          : g.kind === 'ask' && g.personId
-            ? `Ask ${displayName(view, state, g.personId)} about:`
-            : g.heading.length > 0
-              ? `${g.heading}:`
-              : 'Free:';
-      if (heading === '' || heading !== lastHeading) {
-        if (lastGroup !== null && !(g.kind === 'put' && lastGroup.kind === 'put')) out.push('');
-        if (heading !== '') out.push(heading);
-      }
-      lastHeading = heading;
-      lastGroup = g;
-    }
-    if (g.kind === 'confront') {
-      const fresh = g.choices.find((c) => !c.done);
-      const cost = fresh ? minutesText(fresh.minutes) : 'free';
-      const focused = g.choices.filter((c) => c.focus).length;
-      const whose = g.personId ? displayName(view, state, g.personId) : 'them';
-      const list =
-        focused > 0
-          ? `opens the ${focused} ${focused === 1 ? 'fact' : 'facts'} about ${whose} at the hours of ${whose}’s own story, and everything else in the notebook one step further`
-          : `opens the list of ${g.choices.length} ${g.choices.length === 1 ? 'fact' : 'facts'} in the notebook`;
-      out.push(
-        itemLine(item.n, item.choice, ` (${list}; ${cost === 'free' ? 'a fact costs nothing' : `each fact costs ${cost}`})`),
-      );
-      continue;
-    }
-    const more = g.more ?? [];
-    if (more.length > 0 && item.choice === more[0]) out.push('    Other topics:');
-    out.push(itemLine(item.n, item.choice));
-  }
-  out.push(
-    '',
-    wrap(
-      view.kase.engine === 'v2'
-        ? 'A star is a lead worth taking now (never more than three). ✓ is done already, and free to do again.'
-        : 'A star is an open lead. ✓ is done already, and free to do again.',
-    ),
-  );
-  return out.join('\n');
-}
-
-/**
- * docs/40 §3, v2: the page lists the people in the room — one line each,
- * their topics behind it — then what to search and where to go.
- */
-function peopleFirstText(night: Night, items: readonly Numbered[]): string {
-  const { view } = night;
+function pageChoicesText(night: Night): string {
+  const items = pageItems(night);
   const out: string[] = ['WHAT NEXT'];
-  let lastKind = '';
-  for (const item of items) {
-    const g = item.group;
-    const kind = g.kind === 'ask' ? 'ask' : g.kind === 'free' || g.kind === 'recap' ? 'free' : `${g.kind}|${g.personId ?? ''}`;
-    if (kind !== lastKind) {
+  let last = '';
+  for (const it of items) {
+    const kind = it.group.kind;
+    if (kind !== last) {
       out.push('');
-      if (g.kind === 'ask') out.push('Talk to (choosing somebody opens what to ask them; that is free):');
-      else if (g.kind === 'search' || g.kind === 'go') out.push(`${g.heading}:`);
-      else if (g.kind === 'free' || g.kind === 'recap') out.push('Free:');
-      lastKind = kind;
+      out.push(kind === 'ask' ? 'Talk to (choosing somebody opens what to ask them; that is free):' : kind === 'free' ? 'Free:' : `${it.group.heading}:`);
+      last = kind;
     }
-    if (g.kind === 'ask') {
-      const all = [...g.choices, ...(g.more ?? [])];
-      const fresh = all.find((c) => !c.done && c.minutes > 0);
-      const topics = `${all.length} ${all.length === 1 ? 'topic' : 'topics'}`;
-      out.push(itemLine(item.n, item.choice, '', fresh ? topics : `${topics}, free`));
+    if (it.person) {
+      const g = it.group;
+      out.push(itemLine(it.n, it.choice, `${g.choices.length} ${g.choices.length === 1 ? 'topic' : 'topics'}`));
       continue;
     }
-    if (g.kind === 'confront') {
-      out.push(itemLine(item.n, item.choice, ` (${PUT_HELP(view, g)})`));
-      continue;
-    }
-    out.push(itemLine(item.n, item.choice));
+    out.push(itemLine(it.n, it.choice, costText(it.choice)));
   }
-  const people = items.some((i) => i.group.kind === 'ask');
-  out.push(
-    '',
-    wrap(
-      `A star is worth taking now (never more than three), and says why. ✓ is done already, and free to do again.${people ? ' Choosing somebody costs nothing: their topics open, and "back" shuts them.' : ''}`,
-    ),
-  );
+  out.push('', wrap('A star is worth taking now (never more than three), and says why. ✓ is done already, and free to read again. Choosing somebody costs nothing: their topics open, and "back" shuts them.'));
   return out.join('\n');
 }
 
-/** docs/40 §1: what "Put it to …" is for, in one sentence and an example. */
-function PUT_HELP(view: CaseView, g: ChoiceGroup): string {
-  const person = g.personId ? view.personById.get(g.personId) : undefined;
-  const she = pronounOf(person);
-  const her = she === 'she' ? 'her' : 'his';
-  const them = she === 'she' ? 'her' : 'him';
-  return `pick something you know that ${her} story can’t live with. Say, somebody who saw ${them} somewhere else at an hour ${she} named`;
+function topicItems(night: Night, person: string): Item[] {
+  const g = boardChoices(night.d, night.run).find((x) => x.kind === 'ask' && x.personId === person);
+  if (!g) return [];
+  return g.choices.map((c, i) => ({ n: i + 1, choice: c, group: g }));
 }
 
-/** docs/40 §3, v2: one person's topics, opened from the page. */
-function topicGroup(night: Night): ChoiceGroup | null {
-  const id = night.save.person;
-  if (!id || night.view.kase.engine !== 'v2') return null;
-  return menuOf(night).groups.find((g) => g.kind === 'ask' && g.personId === id) ?? null;
-}
-
-interface TopicList {
-  items: Numbered[];
-  back: number;
-}
-
-function topicList(night: Night, group: ChoiceGroup): TopicList {
-  const items: Numbered[] = [];
-  let n = 1;
-  for (const c of [...group.choices, ...(group.more ?? [])]) items.push({ n: n++, choice: c, group });
-  const put = menuOf(night).groups.find((g) => g.kind === 'confront' && g.personId === group.personId);
-  if (put) {
-    items.push({
-      n: n++,
-      group: put,
-      choice: { command: `confront ${put.personId ?? ''}`, label: put.heading, minutes: 0, lead: false, done: false },
-    });
-  }
-  return { items, back: n };
-}
-
-function topicText(night: Night, group: ChoiceGroup): string {
-  const { view, state } = night;
-  const whose = group.personId ? displayName(view, state, group.personId) : 'them';
-  const person = group.personId ? view.personById.get(group.personId) : undefined;
-  const she = pronounOf(person);
-  const out: string[] = [`ASK ${whose.toUpperCase()} ABOUT`, ''];
-  const { items, back } = topicList(night, group);
-  for (const item of items) {
-    if (item.group.kind === 'confront') {
-      out.push('', itemLine(item.n, item.choice, ` (${PUT_HELP(view, item.group)})`));
-      continue;
-    }
-    out.push(itemLine(item.n, item.choice));
-  }
-  out.push('', itemLine(back, { command: 'back', label: 'Back to the page', minutes: 0, lead: false, done: false }));
-  if ((group.unknown ?? []).length > 0) {
-    out.push('', wrap(`${whose} doesn’t know by name: ${(group.unknown ?? []).join(', ')}. It’s in the notebook.`));
-  }
-  const named = items.find((i) => i.choice.nameCost)?.choice;
-  if (named) {
-    out.push('', wrap(`“${costLabel(named)}”: a name ${she} turns out not to know costs five minutes, not a call, and goes in the notebook all the same.`));
-  }
+function topicText(night: Night, person: string): string {
+  const items = topicItems(night, person);
+  const out = [`ASK ${nameOf(night.d.kase, person).toUpperCase()} ABOUT`, ''];
+  for (const it of items) out.push(itemLine(it.n, it.choice, it.choice.command.startsWith('picker') ? 'opens' : costText(it.choice)));
+  out.push('', itemLine(items.length + 1, { command: 'back', label: 'Back to the page', minutes: 0, lead: false, done: false }, 'free'));
   return out.join('\n');
 }
 
 /* ----------------------------------------------------------- the picker */
 
-function pickerGroup(night: Night): ChoiceGroup | null {
-  const id = night.save.picker;
-  if (!id) return null;
-  return choicesFor(night.view, night.state).find((g) => g.kind === 'confront' && g.personId === id) ?? null;
+function pickerItems(night: Night, pk: Picker): { n: number; command: string; label: string; source?: string; claim?: number }[] {
+  const out: { n: number; command: string; label: string; source?: string; claim?: number }[] = [];
+  let n = 1;
+  if (pk.ready.length > 0) {
+    for (const r of pk.ready) out.push({ n: n++, command: r.command, label: r.label });
+    return out;
+  }
+  const cl = night.save.claim === null ? null : pk.claims.find((x) => x.hour === night.save.claim);
+  if (!cl) {
+    for (const x of pk.claims) out.push({ n: n++, command: `claim ${x.hour}`, label: `${nameOf(night.d.kase, pk.person)} says ${x.label}`, claim: x.hour });
+    return out;
+  }
+  for (const l of cl.lines) out.push({ n: n++, command: l.command, label: l.label, source: l.source });
+  return out;
 }
 
-function pickerText(night: Night, group: ChoiceGroup): string {
-  const { view, state } = night;
-  const whose = group.personId ? displayName(view, state, group.personId) : 'them';
-  const fresh = group.choices.find((c) => !c.done);
-  const cost = fresh ? minutesText(fresh.minutes) : 'free';
-  const out: string[] = [group.heading.toUpperCase(), ''];
-  out.push(
-    wrap(
-      group.follow
-        ? `Which other fact do you read ${whose}? It costs nothing. If it does not touch what ${whose} told you, that is the end of it for now, and the story stands.`
-        : view.kase.engine === 'v2'
-          ? `${PUT_HELP(view, group).replace(/^p/, 'P')}. ${cost === 'free' ? 'It costs nothing.' : `Each costs ${cost}.`} If it breaks nothing, the time is gone all the same, and I’ll say why.`
-          : `Which fact do you read ${whose}? ${cost === 'free' ? 'It costs nothing.' : `Each costs ${cost}.`} If it does not touch what ${whose} told you, the time is gone all the same.`,
-    ),
-  );
-  if ((group.reference ?? []).length > 0) {
-    out.push('', `What ${whose} told me:`);
-    for (const line of group.reference ?? []) out.push(wrap(line, WIDTH, '    '));
-  }
-  const { shown, rest } = pickerLists(night, group);
-  const focused = shown.length < group.choices.length || group.choices.some((c) => c.focus);
-  if (focused && shown.length > 0) {
-    out.push('', wrap(`The facts about ${whose} at the half hours ${whose}’s own story covers, by the half hour:`));
-  }
-  let heading: string | undefined;
-  let n = 1;
-  let first = true;
-  for (const c of shown) {
-    if (first || c.section !== heading) {
-      heading = c.section;
-      out.push('', heading ?? '');
-      first = false;
-    }
-    out.push(itemLine(n++, c as Choice, c.source ? ` (${c.source})` : ''));
-  }
-  if (group.choices.length === 0) out.push('', 'Nothing in the notebook about them yet.');
-  else if (shown.length === 0) out.push('', `Nothing in the notebook about ${whose} at those half hours.`);
-  if (rest > 0) {
-    out.push('', itemLine(n++, { command: '', label: `Everything else in the notebook (${rest} more)`, minutes: 0, lead: false, done: false }));
-  }
-  out.push('', itemLine(n, { command: '', label: 'Put nothing to them', minutes: 0, lead: false, done: false }));
+function pickerText(night: Night, pk: Picker): string {
+  const c = night.d.kase;
+  const out = [`PUT IT TO ${nameOf(c, pk.person).toUpperCase()}`, '', wrap(`${pk.help} Each costs ${pk.minutes} min. If it breaks nothing, the time is gone all the same, and I’ll say why.`)];
+  const items = pickerItems(night, pk);
+  const picking = pk.ready.length === 0 && night.save.claim !== null;
+  out.push('');
+  out.push(pk.ready.length > 0 ? 'Their line, and the line that breaks it:' : picking ? `Against “${pk.claims.find((x) => x.hour === night.save.claim)?.label}”, read ${pronWord(night, pk.person)}:` : 'Which of their claims?');
+  for (const it of items) out.push(itemLine(it.n, { command: it.command, label: it.label, minutes: 0, lead: false, done: false }, it.claim !== undefined ? 'free' : `${pk.minutes} min`) + (it.source ? `\n          (${it.source})` : ''));
+  out.push('', itemLine(items.length + 1, { command: 'back', label: picking ? 'Back to the claims' : 'Put nothing to them', minutes: 0, lead: false, done: false }, 'free'));
   return out.join('\n');
 }
 
-/**
- * The facts the picker shows, in order, and how many more are behind
- * "Everything else in the notebook": from Poached up the picker opens on the
- * focused facts (docs/39 §1); once opened wide, or at Raw and Coddled, it
- * shows every one.
- */
-function pickerLists(night: Night, group: ChoiceGroup): { shown: ChoiceGroup['choices']; rest: number } {
-  const focus = group.choices.filter((c) => c.focus);
-  if (focus.length === 0 || night.save.pickerAll) return { shown: group.choices, rest: 0 };
-  return { shown: focus, rest: group.choices.length - focus.length };
+function pronWord(night: Night, p: string): string {
+  return night.d.kase.people.find((x) => x.id === p)?.female ? 'her' : 'him';
 }
 
 /* ------------------------------------------------------------ the form */
 
-function reportNote(night: Night): string {
-  const { view, state } = night;
-  return state.actionsUsed >= gameBudget(view.kase)
-    ? MUNDANE.includes(view.kase.act.type)
-      ? `Eight o’clock, and ${view.client.surname} is at the door wanting an answer. Whatever is on the page is what gets said.`
-      : 'Eight o’clock, and the DA’s man is standing over the desk. Whatever is on the page is what gets filed.'
-    : 'Filing is final. Leave a line blank and it goes in as I don’t know.';
-}
-
-function reportText(night: Night, savePath: string): string {
-  const { view } = night;
-  const out: string[] = ['THE REPORT', DOUBLE, '', wrap(reportNote(night)), ''];
-  for (const spec of fieldsFor(view)) {
-    out.push(`${spec.key} — ${spec.label}`);
-    spec.options.forEach((o, i) => out.push(wrap(o.label, WIDTH, '').split('\n').map((l, j) => (j === 0 ? `${String(i + 1).padStart(6)}. ${l}` : `        ${l}`)).join('\n')));
-    out.push(`        (left out: ${UNKNOWN})`, '');
-  }
-  const column = columnFor(view);
-  if (column.length > 0) {
-    const checker = MUNDANE.includes(view.kase.act.type) ? 'I check each myself' : 'the DA checks each';
-    out.push('Where everybody was when it happened');
-    out.push(wrap(`At the half hour it happened, by the hour above. One line a person; ${checker}.`, WIDTH, '  '));
-    out.push(`  One line each for: ${column.map((c) => c.label).join(', ')}`);
-    out.push(`  Each one of: ${(column[0]?.options ?? []).map((o) => o.label).join(' · ')}`);
-    out.push(`        (left out: ${UNKNOWN})`, '');
-  }
-  const example = [
-    ...fieldsFor(view).map((f) => `${f.key}=…`),
-    ...column.slice(0, 1).map((c) => `${c.label}=…`),
-  ].join('; ');
-  out.push(
-    wrap(
-      `To file it: npm run play -- file "${example}" --save ${savePath}. An answer is an option's number or its words; a line left out is ${UNKNOWN}.`,
-    ),
-  );
-  return out.join('\n');
-}
-
-function matchOption(options: { value: string; label: string }[], raw: string, what: string): string | null {
-  const v = fold(raw);
-  if (v === '' || v === '?' || v === fold(UNKNOWN) || v === "i don't know") return null;
-  if (/^\d+$/.test(v)) {
-    const hit = options[Number(v) - 1];
-    if (hit) return hit.value;
-  }
-  const bare = (s: string): string => fold(s).replace(/^(the|a|an) /, '');
-  const exact = options.filter(
-    (o) => fold(o.label) === v || fold(o.value) === v || bare(o.label) === bare(v) || fold(o.label.split(' — ')[0] ?? '') === v,
-  );
-  if (exact.length === 1) return (exact[0] as { value: string }).value;
-  const words = new RegExp(`(^|[^a-z0-9])${v.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}($|[^a-z0-9])`);
-  const partial = options.filter((o) => words.test(fold(o.label)));
-  if (partial.length === 1) return (partial[0] as { value: string }).value;
-  fail(
-    `${partial.length > 1 ? 'More than one' : 'None'} of the options for ${what} fits "${raw}". The options:\n${options
-      .map((o, i) => `  ${i + 1}. ${o.label}`)
-      .join('\n')}`,
-  );
-}
-
-function parseReport(night: Night, text: string): Report {
-  const { view } = night;
-  const fields = fieldsFor(view);
-  const column = columnFor(view);
-  let report: Report = { ...EMPTY_REPORT };
-  const col: Record<string, string | null> = {};
-  for (const c of column) col[c.personId] = null;
-  for (const part of text.split(';').map((p) => p.trim()).filter((p) => p.length > 0)) {
-    const eq = part.indexOf('=');
-    if (eq < 0) fail(`"${part}" is not key=answer.`);
-    const key = fold(part.slice(0, eq)).replace(/^column /, '');
-    const value = part.slice(eq + 1).trim();
-    if (key === 'told') {
-      if (view.kase.act.type !== 'affair') fail('Only an affair asks what I tell the client.');
-      if (!(TOLD_CHOICES as string[]).includes(fold(value))) fail(`told is one of ${TOLD_CHOICES.join(', ')}.`);
-      report = { ...report, told: fold(value) as Told };
-      continue;
-    }
-    const field = fields.find((f) => f.key === key || fold(f.label) === key);
-    if (field) {
-      report = withAnswer(report, field.key, matchOption(field.options, value, field.label));
-      continue;
-    }
-    const line = column.find((c) => fold(c.label) === key);
-    if (line) {
-      col[line.personId] = matchOption(line.options, value, line.label);
-      continue;
-    }
-    fail(
-      `The form has no line "${part.slice(0, eq).trim()}". It asks: ${[
-        ...fields.map((f) => f.key),
-        ...column.map((c) => c.label),
-      ].join(', ')}.`,
-    );
-  }
-  if (column.length > 0) report = { ...report, column: col };
-  return report;
-}
-
-/* ------------------------------------------------- after it is filed */
-
-function tellText(night: Night): string {
-  const client = night.view.client;
-  const his = client.gender === 'f' ? 'her' : 'his';
-  return [
-    `WHAT I TELL ${client.surname.toUpperCase()}`,
-    DOUBLE,
-    '',
-    wrap(
-      `${client.surname} was waiting on my stairs with ${his} hat in ${his} hands, which is where people keep their hats when they are afraid of the answer. The report was written. What I said out loud was up to me.`,
-    ),
-    '',
-    '   1. The truth, all of it — Where, when, and with whom, and what it was.',
-    '   2. A kinder half of it — Enough to sleep on. Not the name.',
-    '   3. Nothing at all — I found nothing. I keep the smaller half of the fee.',
-    '',
-    'The report is scored on the facts. This changes only what happens next.',
-  ].join('\n');
-}
-
-function verdictOf(night: Night): Verdict {
-  return scoreReport(night.view, night.state, night.state.filed as Report);
-}
-
-function verdictText(night: Night, savePath: string): string {
-  const verdict = verdictOf(night);
-  const out: string[] = ['THE VERDICT', DOUBLE, ''];
-  for (const f of verdict.fields) {
-    out.push(wrap(`${f.correct ? '✓' : '✗'} ${f.label}: ${f.correct ? f.given : `${f.given} — it was ${f.truth}`}`, WIDTH, ''));
-  }
-  if (verdict.column.length > 0) {
-    out.push('', `Where they were at ${verdict.columnTime ?? 'the hour'}:`);
-    for (const c of verdict.column) {
-      out.push(`  ${c.correct ? '✓' : '✗'} ${c.name}: ${c.correct ? c.given : `${c.given} — it was ${c.truth}`}`);
-    }
-  }
-  out.push('', `${verdict.points} out of ${verdict.asked}.`, '');
-  for (const paragraph of verdict.closing) out.push(wrap(paragraph), '');
-  out.push(
-    'The closing page offers two more:',
-    `  What really happened      npm run play -- story --save ${savePath}`,
-    `  Look behind the curtain   npm run play -- curtain --save ${savePath}`,
-  );
-  return out.join('\n');
-}
-
-function storyText(night: Night): string {
-  const report = night.state.filed as Report;
-  const out = ['WHAT REALLY HAPPENED', DOUBLE, ''];
-  for (const p of storyParagraphs(storyOf(night.kase, [], report.told))) out.push(wrap(p), '');
-  return out.join('\n');
-}
-
-function curtainText(night: Night): string {
-  const verdict = verdictOf(night);
-  const out = ['BEHIND THE CURTAIN', DOUBLE, ''];
-  if (verdict.proofs && verdict.proofs.length > 0) {
-    out.push('How it could be known', '');
-    for (const { label, proof } of verdict.proofs) {
-      out.push(wrap(`${label}. ${proof.what}${proof.hypothesis ? ' It takes trying one answer and seeing it fail.' : ''}`));
-      proof.rules.forEach((r, i) => out.push(wrap(`${i + 1}. ${r}`, WIDTH, '    ')));
-      out.push('');
-    }
-    out.push('The whole sheet', '');
-  }
-  out.push(renderTruthSheet(night.kase));
-  return out.join('\n');
-}
-
-/* ------------------------------------------------------------- views */
-
-/** What the book shows right now. */
-function lookText(night: Night, savePath: string): string {
-  const { state } = night;
-  if (state.filed) return verdictText(night, savePath);
-  if (night.save.pendingReport) return tellText(night);
-  const page = pageText(night, state.log.length - 1);
-  if (state.reportOpen) {
-    return `${page}\n\n${DOUBLE}\n\n${reportText(night, savePath)}`;
-  }
-  const picker = pickerGroup(night);
-  if (picker) return `${page}\n\n${DOUBLE}\n\n${pickerText(night, picker)}`;
-  const topics = topicGroup(night);
-  if (topics) return `${page}\n\n${DOUBLE}\n\n${topicText(night, topics)}`;
-  return `${page}\n\n${DOUBLE}\n\n${choicesText(night)}`;
-}
-
-function titleText(save: Pick<PlaySave, 'tier' | 'level' | 'engine'> | null): string {
-  const out: string[] = ['DASHIELL', '', 'A murder, an evening, and eight hours to write it down.', ''];
-  if (save?.engine) {
-    out.push(wrap('The new engine (v2): the puzzle is built first, and the night is told as a book around it. Murders and lost pets.'), '');
-  }
-  if (save) {
-    const shape = shapeOf(save.tier);
-    out.push(`${shape.name}, at ${LADDERS[levelFor(save.tier, save.level)].name}`, shape.rule);
-    if (save.tier !== 0 && save.tier !== 1) out.push(LIE_RULE);
+function reportText(night: Night, path: string): string {
+  const out = ['THE REPORT', '', wrap(night.run.used >= budgetCalls(night.d) ? (night.d.kase.type === 'murder' ? 'Eight o’clock, and the DA’s man is standing over the desk. Whatever is on the page is what gets filed.' : 'Eight o’clock, and the client is at the door wanting an answer.') : 'Filing is final. Leave a line blank and it goes in as I don’t know.'), ''];
+  for (const f of boardFields(night.d)) {
+    out.push(`${f.label} (${f.key}):`);
+    f.options.forEach((o, i) => out.push(`   ${String(i + 1).padStart(2)}. ${o.label}`));
     out.push('');
   }
-  out.push(
-    wrap(
-      `Every page ends in choices: ask, search, go. Each one says what it costs of the night, and a lead is marked with a star. The DA files at eight whether you have or not. A clean report opens the next tier. ${LIE_RULE}`,
-    ),
-  );
+  out.push(wrap(`File it with: npm run play -- file "who=…; when=…; ${night.d.kase.type === 'murder' ? 'how' : 'where'}=…; why=…" --save ${path} — an answer is its number or enough of its words. A line left out is I don’t know.`));
   return out.join('\n');
 }
 
-function helpText(night: Night | null, savePath: string | undefined): string {
-  const out: string[] = [titleText(night?.save ?? null), '', 'THE BOOK’S HELP PAGE', DOUBLE, ''];
-  for (const l of HELP_LINES) {
-    const gloss = wrap(l.gloss, WIDTH - 36).split('\n');
-    out.push(`    ${l.command.padEnd(31)} ${gloss[0] ?? ''}`, ...gloss.slice(1).map((g) => `${' '.repeat(36)}${g}`));
+function parseReport(night: Night, text: string): BoardReport {
+  const fields = boardFields(night.d);
+  const answers: Partial<Record<FieldKey, string | null>> = {};
+  for (const part of text.split(';').map((x) => x.trim()).filter(Boolean)) {
+    const m = /^(\w+)\s*=\s*(.+)$/.exec(part);
+    if (!m) fail(`Can’t read "${part}". Write key=answer.`);
+    const key = (m as RegExpExecArray)[1] as FieldKey;
+    const raw = ((m as RegExpExecArray)[2] as string).trim();
+    const f = fields.find((x) => x.key === key);
+    if (!f) fail(`The form doesn’t ask "${key}". It asks: ${fields.map((x) => x.key).join(', ')}.`);
+    const spec = f as (typeof fields)[number];
+    const v = fold(raw);
+    if (/^\d+$/.test(v) && spec.options[Number(v) - 1] && !(key === 'when' && spec.options.some((o) => o.value === v))) {
+      answers[key] = (spec.options[Number(v) - 1] as { value: string }).value;
+      continue;
+    }
+    const hits = spec.options.filter((o) => fold(o.label) === v || fold(o.value) === v || fold(o.label).includes(v));
+    if (hits.length !== 1) fail(hits.length === 0 ? `"${raw}" isn’t one of the ${key} options.` : `"${raw}" fits more than one ${key} option.`);
+    answers[key] = (hits[0] as { value: string }).value;
   }
-  out.push('', wrap(HELP_NOTE), '', wrap(`${LIE_RULE} ${LIE_RULE_NOTE}`));
-  if (night) {
-    const budget = gameBudget(night.kase);
-    out.push(
-      '',
-      wrap(
-        `Tonight: ${budget} calls between midnight and eight, about ${minutesPerAction(budget)} minutes a call. Every call is one call; the clock keeps to five-minute marks and still ends at eight, so a call marked “(rounded)” moves it five minutes less or more than the usual. ${clockStrip(night.state.actionsUsed, budget, deadlineOf(night.view)).left}`,
-      ),
-    );
-  }
-  const s = savePath ?? '<file>';
-  out.push(
-    '',
-    'THIS TOOL',
-    DOUBLE,
-    '',
-    wrap(
-      `The book has no text box: every page ends in choices, and this tool prints them numbered, with what each costs. Pick one by its number, or by its words exactly as printed.${
-        night?.save.engine === 'v2'
-          ? ' A page lists the people in the room: choosing one opens what to ask them, for nothing, and "back" shuts it. A star says why it is worth taking. A question about a name costs a call, or five minutes if they turn out not to know the name.'
-          : ''
-      }`,
-    ),
-    '',
-    `  npm run play -- new --seed N --tier 0..5 [--level 1..4] [--engine v2] [--no-teach] --save ${s}`,
-    `  npm run play -- look --save ${s}              the page and its choices again`,
-    `  npm run play -- do "<number or words>" --save ${s}`,
-    `  npm run play -- page <n> --save ${s}          turn back to an earlier page`,
-    `  npm run play -- notebook --save ${s}`,
-    `  npm run play -- grid --save ${s}              "Where they were"`,
-    `  npm run play -- pencil "<Name> <hour> at|not|clear [place]" --save ${s}`,
-    `  npm run play -- link ["<n> <Name>|none"] --save ${s}   a stranger's sighting`,
-    `  npm run play -- confront "<Name>" --save ${s}  then do a fact's number`,
-    `  npm run play -- report --save ${s}            the form's questions`,
-    `  npm run play -- file "who=…; when=…; …" --save ${s}`,
-    `  npm run play -- story --save ${s}             after filing only`,
-    `  npm run play -- curtain --save ${s}           after filing only`,
-  );
+  return reportFrom(night.d, answers);
+}
+
+const fold = (s: string): string => s.toLowerCase().replace(/[’']/g, "'").replace(/^\*\s*/, '').replace(/\s+/g, ' ').replace(/ o'clock$/, '').trim();
+
+function verdictText(night: Night): string {
+  const v = scoreBoard(night.d, night.run, night.run.filed as BoardReport);
+  const out = ['THE VERDICT', ''];
+  for (const f of v.fields) out.push(`  ${f.label}: ${f.given}${f.correct ? '  ✓' : `  ✗ — it was ${f.truth}`}`);
+  out.push('', `${v.points} out of ${v.asked}.`, '');
+  for (const p of v.closing) out.push(wrap(p.replace(/\*\*/g, '')), '');
+  out.push(wrap('`story` tells what really happened; `curtain` shows the true board, the path and the lies.'));
   return out.join('\n');
 }
 
 /* ------------------------------------------------------------ commands */
 
-function load(io: PlayIo, path: string | undefined): Night {
-  if (!path) fail('Say which save: --save <file>.');
-  const text = io.read(path);
-  if (text === null) fail(`No save at ${path}. Start one with: npm run play -- new --seed N --tier T --save ${path}`);
-  let save: PlaySave;
-  try {
-    save = JSON.parse(text) as PlaySave;
-  } catch {
-    fail(`${path} is not a save this tool wrote.`);
+function lookText(night: Night, path: string): string {
+  const { run, save } = night;
+  if (run.filed) return verdictText(night);
+  const body = pageText(night, run.log.length - 1);
+  if (run.reportOpen) return `${body}\n\n${DOUBLE}\n\n${reportText(night, path)}`;
+  if (save.picker) {
+    const pk = pickerFor(night.d, run, save.picker);
+    if (pk) return `${body}\n\n${DOUBLE}\n\n${pickerText(night, pk)}`;
   }
-  if (save.game !== 'dashiell-play') fail(`${path} is not a save this tool wrote.`);
-  return deal(save);
+  if (save.person) return `${body}\n\n${DOUBLE}\n\n${topicText(night, save.person)}`;
+  return `${body}\n\n${DOUBLE}\n\n${pageChoicesText(night)}`;
 }
 
-function store(io: PlayIo, path: string, save: PlaySave): void {
+/**
+ * A save's text as a save this tool wrote, or a plain error: not JSON, not a
+ * save, or a night from the engines before the board (which have no
+ * `engine: 'board'`), which can't be played any more.
+ */
+export function parseSave(text: string): BoardSave {
+  let save: BoardSave;
+  try {
+    save = JSON.parse(text) as BoardSave;
+  } catch {
+    return fail('That file isn’t a save `npm run play` wrote.');
+  }
+  if (!save || save.game !== 'dashiell-play') fail('That file isn’t a save `npm run play` wrote.');
+  if (save.engine !== 'board') fail('That save is a night from an engine that’s gone. Start a new one: npm run play -- new --seed N --tier T --save F');
+  const tier = save.tier as number;
+  if (!Number.isInteger(save.seed) || save.seed < 1 || !Number.isInteger(tier) || tier < 0 || tier > 5 || !Array.isArray(save.events)) fail('That save is damaged: its seed, tier or events don’t read.');
+  if (save.type !== undefined && !typesFor(tier as 0).includes(save.type)) fail('That save is damaged: the board builds no such case at its tier.');
+  return save;
+}
+
+/** A save replayed: the deal, the run as it stands, and the run as each page left it. For tools (`npm run trace`). */
+export function replaySave(text: string): { save: BoardSave; d: BoardDeal; run: BoardRun; pages: BoardRun[] } {
+  try {
+    const night = deal(parseSave(text));
+    return { save: night.save, d: night.d, run: night.run, pages: night.pages };
+  } catch (e) {
+    if (e instanceof Fail) throw new Error(e.message);
+    throw e;
+  }
+}
+
+function load(io: PlayIo, path: string | undefined): Night {
+  if (!path) fail('Say which save: --save <file>.');
+  const text = io.read(path as string);
+  if (text === null) fail(`No save at ${path}.`);
+  return deal(parseSave(text as string));
+}
+
+function store(io: PlayIo, path: string, save: BoardSave): void {
   io.write(path, `${JSON.stringify(save, null, 1)}\n`);
 }
 
-function requirePlaying(night: Night): void {
-  if (night.state.filed) fail('The report is filed; the night is over. `look` shows the verdict again.');
-  if (night.save.pendingReport) fail(`The report is written, and ${night.view.client.surname} is waiting to be told something: do 1, 2 or 3.`);
-}
-
-/** One more thing done: saved, replayed, and the page it lands on. */
-function commit(io: PlayIo, path: string, night: Night, events: PlayEvent[], changes: Partial<PlaySave> = {}): Night {
-  const save: PlaySave = { ...night.save, ...changes, events: [...night.save.events, ...events] };
-  let state = night.state;
+function commit(io: PlayIo, path: string, night: Night, events: Event[], changes: Partial<BoardSave> = {}): Night {
+  const save = { ...night.save, ...changes, events: [...night.save.events, ...events] };
+  let run = night.run;
   const pages = [...night.pages];
   for (const e of events) {
-    state = apply(state, night.view, e);
-    pages[state.log.length - 1] = state;
+    run = apply(night.d, run, e);
+    pages[run.log.length - 1] = run;
   }
   store(io, path, save);
-  return { ...night, save, state, pages };
+  return { ...night, save, run, pages };
 }
 
-function cmdNew(io: PlayIo, a: Args): string {
-  const path = a.values.get('save');
-  if (!path) fail('Say where to keep the night: --save <file>.');
-  const seed = Number(a.values.get('seed'));
-  if (!Number.isInteger(seed) || seed < 1) fail('--seed is a whole number, 1 or more.');
-  const t = a.values.get('tier');
-  const tier: TierKey | null =
-    t === 'over-easy' ? 'over-easy' : t !== undefined && /^[0-5]$/.test(t) ? (Number(t) as TierKey) : null;
-  if (tier === null) fail('--tier is 0, 1, 2, 3, 4, 5 or over-easy.');
-  const l = a.values.get('level') ?? '2';
-  if (!/^[1-4]$/.test(l)) fail('--level is 1, 2, 3 or 4.');
-  const engineFlag = a.values.get('engine');
-  if (engineFlag !== undefined && engineFlag !== 'v2') fail('--engine is v2, or left out.');
-  const save: PlaySave = {
-    game: 'dashiell-play',
-    version: 1,
-    seed,
-    tier,
-    level: levelFor(tier, Number(l) as Level),
-    ...(engineFlag === 'v2' ? { engine: 'v2' as const } : {}),
-    detective: a.values.get('name') || 'Dashiell',
-    events: [],
-    picker: null,
-    pendingReport: null,
-  };
-  const night = deal(save);
-  store(io, path, save);
-  // docs/39 §5: the teaching page, before the office. This tool keeps no
-  // profile, so every night it deals is a first night; --no-teach skips it.
-  const teach = a.values.has('no-teach') ? [] : [teachText(), '', DOUBLE, ''];
-  return [titleText(save), '', caseLine(night.kase), '', DOUBLE, '', ...teach, lookText(night, path)].join('\n');
+function titleText(save: BoardSave): string {
+  return [
+    'DASHIELL',
+    'A murder, an evening, and eight hours to write it down.',
+    '',
+    wrap(`${tierName(save.tier as 0)}. One question gets a whole evening or a whole list, and every lie runs into something true. Murders, lost pets and lost things.`),
+  ].join('\n');
 }
 
-/** docs/39 §5: four lines in the detective's voice, before the office. */
 function teachText(): string {
-  const out = [TEACH_TITLE.toUpperCase(), ''];
-  for (const line of TEACH_LINES) out.push(wrap(line), '');
+  const out = [BOARD_TEACH_TITLE.toUpperCase(), ''];
+  for (const l of BOARD_TEACH_LINES) out.push(wrap(l), '');
   out.push(wrap('(Shown on a first night. `new --no-teach` leaves it out.)'));
   return out.join('\n');
 }
 
-function resolveChoice(items: readonly Numbered[], raw: string): Numbered | null {
-  const v = fold(raw);
-  if (/^\d+$/.test(v)) return items.find((i) => i.n === Number(v)) ?? null;
-  const byCommand = items.filter((i) => fold(i.choice.command) === v);
-  if (byCommand.length >= 1) return byCommand[0] as Numbered;
-  const byLabel = items.filter((i) => fold(i.choice.label) === v);
-  if (byLabel.length === 1) return byLabel[0] as Numbered;
-  if (byLabel.length > 1) fail(`More than one choice reads "${raw}": use its number.`);
-  return null;
-}
-
-function cmdDo(io: PlayIo, a: Args, path: string): string {
-  let night = load(io, path);
-  const raw = a.arg;
-  if (raw === undefined) fail('do what? A choice\'s number, or its words.');
-  if (night.state.filed) fail('The report is filed; the night is over. `look` shows the verdict again.');
-
-  // An affair: what I tell the client, the last thing the night asks.
-  if (night.save.pendingReport) {
-    const v = fold(raw);
-    const told: Told | undefined =
-      v === '1' || v.startsWith('the truth') || v === 'truth'
-        ? 'truth'
-        : v === '2' || v.startsWith('a kinder half') || v === 'half'
-          ? 'half'
-          : v === '3' || v.startsWith('nothing') ? 'nothing' : undefined;
-    if (!told) fail('Tell them 1, 2 or 3.');
-    const report = { ...night.save.pendingReport, told };
-    night = commit(io, path, night, [{ file: report }], { pendingReport: null });
-    return verdictText(night, path);
-  }
-
-  if (night.state.reportOpen) {
-    fail(`The report form is open, and there is nothing else to do tonight. See it with: npm run play -- report --save ${path}`);
-  }
-
-  const { groups, items } = menuOf(night);
-  const picker = pickerGroup(night);
-  if (picker) {
-    const { shown, rest } = pickerLists(night, picker);
-    const facts: Numbered[] = shown.map((c, i) => ({ n: i + 1, choice: c as Choice, group: picker }));
-    const wide = rest > 0 ? facts.length + 1 : -1;
-    const nothing = facts.length + (rest > 0 ? 2 : 1);
-    const v = fold(raw);
-    if (v === String(nothing) || v === 'put nothing to them') {
-      night = commit(io, path, night, [], { picker: null, pickerAll: false });
-      return lookText(night, path);
-    }
-    if (v === String(wide) || v.startsWith('everything else')) {
-      night = commit(io, path, night, [], { pickerAll: true });
-      return lookText(night, path);
-    }
-    const hit = resolveChoice(facts, raw);
-    if (hit) return take(io, path, night, hit.choice.command);
-    // A fact behind "Everything else", by its words.
-    const hidden = /^\d+$/.test(v) ? null : resolveChoice(picker.choices.map((c) => ({ n: 0, choice: c as Choice, group: picker })), raw);
-    if (hidden) return take(io, path, night, hidden.choice.command);
-    // Anything else on the page can still be chosen by its words.
-    const other = /^\d+$/.test(v) ? null : resolveChoice(items, raw);
-    if (!other) fail(`No fact ${raw} in the list. \`look\` shows it again.`);
-    return chosen(io, path, night, other);
-  }
-
-  // docs/40 §3: somebody's topics are open.
-  const topics = topicGroup(night);
-  if (topics) {
-    const { items: listed, back } = topicList(night, topics);
-    const v = fold(raw);
-    if (v === String(back) || v === 'back' || v === 'back to the page') {
-      return lookText(commit(io, path, night, [], { person: null }), path);
-    }
-    const inList = resolveChoice(listed, raw);
-    if (inList) {
-      if (inList.group.kind === 'confront') {
-        return lookText(commit(io, path, night, [], { person: null, picker: inList.group.personId ?? null, pickerAll: false }), path);
-      }
-      return take(io, path, night, inList.choice.command);
-    }
-    if (/^\d+$/.test(v)) fail(`No topic ${raw} in the list. \`look\` shows it again; "back" shuts it.`);
-  }
-  let hit = resolveChoice(items, raw);
-  if (!hit && view(night).kase.engine === 'v2') {
-    // Any person's topic, by its words, from the page itself.
-    const all = groups
-      .filter((g) => g.kind === 'ask')
-      .flatMap((g) => [...g.choices, ...(g.more ?? [])].map((c) => ({ n: 0, choice: c, group: g })));
-    const topic = /^\d+$/.test(fold(raw)) ? null : resolveChoice(all, raw);
-    if (topic) return take(io, path, night, topic.choice.command);
-  }
-  if (!hit) {
-    // A fact put straight to somebody by its words: the picker opened and
-    // the fact taken, in one.
-    const facts = groups
-      .filter((g) => g.kind === 'confront')
-      .flatMap((g) => g.choices.map((c) => ({ n: 0, choice: c as Choice, group: g })));
-    hit = /^\d+$/.test(fold(raw)) ? null : resolveChoice(facts, raw);
-    if (hit) return take(io, path, night, hit.choice.command);
-  }
-  if (!hit) fail(`Nothing on this page is "${raw}". \`look\` shows the choices again.`);
-  return chosen(io, path, night, hit);
-}
-
-function view(night: Night): CaseView {
-  return night.view;
-}
-
-function chosen(io: PlayIo, path: string, night: Night, hit: Numbered): string {
-  if (hit.group.kind === 'ask' && hit.choice.command.startsWith('talk ')) {
-    // docs/40 §3: their topics open. Free; not a page.
-    return lookText(commit(io, path, night, [], { person: hit.group.personId ?? null, picker: null, pickerAll: false }), path);
-  }
-  if (hit.group.kind === 'confront') {
-    const opened = commit(io, path, night, [], { picker: hit.group.personId ?? null, pickerAll: false, person: null });
-    return lookText(opened, path);
-  }
-  if (hit.choice.command === 'notebook') return renderNotebookText(night.view, night.state, { book: true });
-  return take(io, path, night, hit.choice.command);
-}
-
-function take(io: PlayIo, path: string, night: Night, command: string): string {
-  const next = commit(io, path, night, [{ do: command }], { picker: null, pickerAll: false, person: null });
-  return lookText(next, path);
-}
-
-function cmdConfront(io: PlayIo, a: Args, path: string): string {
-  const night = load(io, path);
-  requirePlaying(night);
-  if (night.state.reportOpen) fail('The report form is open; nobody is left to put anything to.');
-  const name = fold(a.arg ?? '');
-  if (name === 'off' || name === 'nothing') return lookText(commit(io, path, night, [], { picker: null, pickerAll: false }), path);
-  const groups = choicesFor(night.view, night.state).filter((g) => g.kind === 'confront');
-  const hit = groups.find((g) => {
-    const person = night.view.personById.get(g.personId as Id);
-    const shown = fold(displayName(night.view, night.state, g.personId as Id));
-    return shown === name || (person !== undefined && shown.includes(fold(person.surname)) && fold(person.surname) === name);
-  });
-  if (!hit) {
-    const offered = groups.map((g) => displayName(night.view, night.state, g.personId as Id));
-    fail(
-      offered.length === 0
-        ? 'There is nobody here to put anything to.'
-        : `Nobody here by that name to put anything to. This page offers: ${offered.join(', ')}.`,
-    );
-  }
-  return lookText(commit(io, path, night, [], { picker: hit.personId ?? null, pickerAll: false }), path);
-}
-
-function gridPeople(night: Night): { id: Id; name: string }[] {
-  const grid = gridFrom(night.view, night.state);
-  return [...grid.rows, ...grid.fixtures].map((r) => ({ id: r.personId, name: r.name }));
-}
-
-function findRow(night: Night, raw: string, victimOk = true): Id {
-  const v = fold(raw);
-  const grid = gridFrom(night.view, night.state);
-  const rows = [...grid.rows, ...grid.fixtures].filter((r) => victimOk || r.kind !== 'victim');
-  const hit = rows.filter((r) => {
-    const name = fold(r.name);
-    return name === v || name.split(' ').pop() === v;
-  });
-  if (hit.length !== 1) {
-    fail(`"${raw}" is not a row on the grid. The rows: ${rows.map((r) => r.name).join(', ')}.`);
-  }
-  return (hit[0] as { personId: Id }).personId;
-}
-
-function cmdPencil(io: PlayIo, a: Args, path: string): string {
-  const night = load(io, path);
-  requirePlaying(night);
-  const spec = (a.arg ?? '').trim();
-  const m = /^(.+?)\s+(\d{1,2})(?::(\d\d))?\s*(?:pm)?\s+(at|not|clear)\b\s*(.*)$/i.exec(spec);
-  if (!m) fail('Pencil reads "<Name> <hour> at <place>", "<Name> <hour> not <place>" or "<Name> <hour> clear", e.g. "Grasso 9:30 at the suite".');
-  const personId = findRow(night, m[1] as string);
-  const h = Number(m[2]);
-  const tick = (h - 6) * 2 + (m[3] === '30' ? 1 : 0);
-  if (!(tick >= 0 && tick <= 11) || (m[3] !== undefined && m[3] !== '00' && m[3] !== '30')) {
-    fail('The grid runs from 6 to 11:30, on the half hour.');
-  }
-  const verb = (m[4] as string).toLowerCase();
-  let action: MarkAction;
-  if (verb === 'clear') action = { kind: 'clear' };
-  else {
-    const grid = gridFrom(night.view, night.state);
-    const want = fold(m[5] ?? '').replace(/^at /, '');
-    const bare = (s: string): string => fold(s).replace(/^the /, '');
-    const place = grid.places.find(
-      (p) => bare(p.shortName) === bare(want) || fold(p.abbrev) === want || fold(p.label) === want,
-    );
-    if (!place) fail(`"${m[5] ?? ''}" is not a column's place. The places: ${grid.places.map((p) => p.shortName).join(', ')}.`);
-    action = { kind: verb === 'at' ? 'at' : 'not', placeId: place.id };
-  }
-  const next = commit(io, path, night, [{ mark: { personId, tick, action } }]);
-  return `(pencilled: ${spec}. Free; never a fact.)\n\n${renderGridText(next.view, next.state)}`;
-}
-
-/**
- * Playtest round 2: a stranger's sighting is one line a run (the same face,
- * the same witness, one place, half hours in a row), not one line a half
- * hour, and linking it links the whole run.
- */
-interface SightingRun {
-  keys: string[];
-  text: string;
-  placeId: Id;
-  from: Tick;
-  to: Tick;
-  linkedTo?: Id;
-}
-
-function sightingRuns(night: Night): SightingRun[] {
-  const grid = gridFrom(night.view, night.state);
-  const out: SightingRun[] = [];
-  for (const d of grid.descriptions) {
-    const last = out[out.length - 1];
-    const lastKey = last?.keys[last.keys.length - 1];
-    if (
-      last &&
-      lastKey !== undefined &&
-      lastKey.split('|')[0] === d.key.split('|')[0] &&
-      last.placeId === d.placeId &&
-      last.text === d.text &&
-      d.tick === last.to + 1 &&
-      (last.linkedTo ?? null) === (d.linkedTo ?? null)
-    ) {
-      last.keys.push(d.key);
-      last.to = d.tick;
-      continue;
-    }
-    out.push({ keys: [d.key], text: d.text, placeId: d.placeId, from: d.tick, to: d.tick, ...(d.linkedTo ? { linkedTo: d.linkedTo } : {}) });
-  }
-  return out;
-}
-
-function runWhen(night: Night, r: SightingRun): string {
-  const grid = gridFrom(night.view, night.state);
-  const a = grid.ticks[r.from]?.clock ?? '';
-  const b = grid.ticks[r.to]?.clock ?? '';
-  return r.from === r.to ? a : `${a.replace(/ PM$/, '')}–${b}`;
-}
-
-function cmdLink(io: PlayIo, a: Args, path: string): string {
-  const night = load(io, path);
-  requirePlaying(night);
-  const grid = gridFrom(night.view, night.state);
-  const list = sightingRuns(night);
-  const spec = (a.arg ?? '').trim();
-  const who = (id: Id | undefined): string => (id ? (gridPeople(night).find((p) => p.id === id)?.name ?? '') : '');
-  const placeOf = (id: Id): string => grid.places.find((p) => p.id === id)?.shortName ?? '';
-  if (spec === '') {
-    if (list.length === 0) return 'No stranger’s sighting in the notebook to put a name to.';
-    const out = ['STRANGERS SEEN', ''];
-    list.forEach((r, i) => {
-      const linked = r.linkedTo ? ` → ${who(r.linkedTo)} (my link, not a fact)` : '';
-      out.push(wrap(`${i + 1}. Somebody who fits ${r.text} · ${runWhen(night, r)} · at ${placeOf(r.placeId)}${linked}`, WIDTH, ''));
-    });
-    out.push('', wrap(`That was …: npm run play -- link "<n> <Name>" --save ${path}, or "<n> none" to rub it out. Your link, not a fact. Free. The report is where a wrong one costs.`));
-    return out.join('\n');
-  }
-  const m = /^(\d+)\s+(.+)$/.exec(spec);
-  const r = m ? list[Number(m[1]) - 1] : undefined;
-  if (!m || !r) fail('link reads "<n> <Name>" or "<n> none"; `link` alone lists the sightings.');
-  const rubOut = fold(m[2] as string) === 'none';
-  const personId = rubOut ? null : findRow(night, m[2] as string, false);
-  // applyLink rubs out a link made to the same person again, so a run already
-  // on that row is left as it is.
-  if (personId === null || r.linkedTo !== personId) commit(io, path, night, r.keys.map((key) => ({ link: { key, personId } })));
-  const what = `${r.text} · ${runWhen(night, r)} · at ${placeOf(r.placeId)}`;
-  return wrap(
-    rubOut
-      ? `Rubbed out: ${what}${r.linkedTo ? ` (was ${who(r.linkedTo)})` : ''}. Nobody's name is on it now.`
-      : `Linked: ${what} → ${who(personId ?? undefined)}. My link, in pencil, not a fact. \`grid\` shows it on ${who(personId ?? undefined)}'s row; \`link\` lists the sightings again.`,
-  );
-}
-
-function cmdFile(io: PlayIo, a: Args, path: string): string {
-  let night = load(io, path);
-  requirePlaying(night);
-  const report = parseReport(night, a.arg ?? '');
-  // The notebook's "File the report": the typewriter first, if the form is not out yet.
-  if (!night.state.reportOpen) night = commit(io, path, night, [{ do: 'file' }], { picker: null });
-  if (night.view.kase.act.type === 'affair' && report.told === undefined) {
-    night = commit(io, path, night, [], { pendingReport: report });
-    return tellText(night);
-  }
-  night = commit(io, path, night, [{ file: report }]);
-  return verdictText(night, path);
-}
-
-/**
- * A save's night, replayed: the case, the view and the state every page was
- * written in. For tools that read a save (`scripts/trace-line.ts`); nothing
- * `runPlay` offers reaches it.
- */
-export function replaySave(text: string): { kase: Case; view: CaseView; state: RunState; pages: RunState[] } {
-  const save = JSON.parse(text) as PlaySave;
-  if (save.game !== 'dashiell-play') throw new Error('not a save `npm run play` wrote');
+function cmdNew(io: PlayIo, values: Map<string, string>, flags: Set<string>): string {
+  const path = values.get('save');
+  if (!path) fail('Say where to keep the night: --save <file>.');
+  const seed = Number(values.get('seed'));
+  if (!Number.isInteger(seed) || seed < 1) fail('--seed is a whole number, 1 or more.');
+  const tier = parseTier(values.get('tier'));
+  if (tier === null) fail('--tier is 0 to 5.');
+  const type = values.get('type') as CaseType | undefined;
+  if (type !== undefined && !typesFor(tier as 0).includes(type)) fail(`--type: the board builds ${typesFor(tier as 0).join(', ')} at this tier.`);
+  const save: BoardSave = { game: 'dashiell-play', version: 1, engine: 'board', seed, tier: tier as number, ...(type ? { type } : {}), detective: values.get('name') || 'Dashiell', events: [], person: null, picker: null, claim: null };
   const night = deal(save);
-  return { kase: night.kase, view: night.view, state: night.state, pages: night.pages };
+  store(io, path as string, save);
+  const teach = flags.has('no-teach') ? [] : [teachText(), '', DOUBLE, ''];
+  return [titleText(save), '', `case ${seed} · ${tierName(tier as 0)} · the small board`, '', DOUBLE, '', ...teach, lookText(night, path as string)].join('\n');
+}
+
+function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
+  let night = load(io, path);
+  if (raw === undefined) fail('do what? A choice’s number, or its words.');
+  if (night.run.filed) fail('The report is filed; the night is over. `look` shows the verdict again.');
+  if (night.run.reportOpen) fail('The report form is out: `report` shows it, `file` files it.');
+  const v = fold(raw as string);
+  const s = night.save;
+  // The picker.
+  if (s.picker) {
+    const pk = pickerFor(night.d, night.run, s.picker);
+    if (!pk) {
+      night = commit(io, path, night, [], { picker: null, claim: null });
+      return lookText(night, path);
+    }
+    const items = pickerItems(night, pk);
+    if (v === 'back' || v === String(items.length + 1) || v === 'put nothing to them') {
+      night = commit(io, path, night, [], s.claim !== null && pk.ready.length === 0 ? { claim: null } : { picker: null, claim: null });
+      return lookText(night, path);
+    }
+    const hit = /^\d+$/.test(v) ? items.find((i) => i.n === Number(v)) : items.find((i) => fold(i.label) === v || fold(i.command) === v);
+    if (!hit) fail(`No choice "${raw}" in the picker.`);
+    const h = hit as (typeof items)[number];
+    if (h.claim !== undefined) {
+      night = commit(io, path, night, [], { claim: h.claim });
+      return lookText(night, path);
+    }
+    night = commit(io, path, night, [{ do: h.command }], { picker: null, claim: null, person: null });
+    return lookText(night, path);
+  }
+  // A person's topics.
+  if (s.person) {
+    const items = topicItems(night, s.person);
+    if (v === 'back' || v === String(items.length + 1) || v === 'back to the page') {
+      night = commit(io, path, night, [], { person: null });
+      return lookText(night, path);
+    }
+    const hit = /^\d+$/.test(v) ? items.find((i) => i.n === Number(v)) : items.find((i) => fold(i.choice.label) === v || fold(i.choice.command) === v);
+    if (!hit) fail(`No topic "${raw}". \`do back\` shuts the topics.`);
+    const c = (hit as Item).choice;
+    if (c.command.startsWith('picker ')) {
+      night = commit(io, path, night, [], { picker: c.command.slice(7), claim: null });
+      return lookText(night, path);
+    }
+    night = commit(io, path, night, [{ do: c.command }], { person: null });
+    return lookText(night, path);
+  }
+  const items = pageItems(night);
+  const hit = /^\d+$/.test(v) ? items.find((i) => i.n === Number(v)) : items.find((i) => fold(i.choice.label) === v || fold(i.choice.command) === v);
+  if (!hit) fail(`No choice "${raw}" on this page.`);
+  const it = hit as Item;
+  if (it.person) {
+    night = commit(io, path, night, [], { person: it.person });
+    return lookText(night, path);
+  }
+  if (it.choice.command === 'file') {
+    night = commit(io, path, night, [{ do: 'file' }]);
+    return lookText(night, path);
+  }
+  const r = stepBoard(night.d, night.run, it.choice.command);
+  if (r.error) fail(r.error);
+  night = commit(io, path, night, [{ do: it.choice.command }], { person: null, picker: null, claim: null });
+  return lookText(night, path);
+}
+
+function cmdPencil(io: PlayIo, raw: string | undefined, path: string): string {
+  let night = load(io, path);
+  const m = /^(\S+(?: \S+)?)\s+(\d{1,2})\s+(at|not|clear)\s*(.*)$/i.exec((raw ?? '').trim());
+  if (!m) fail('pencil "<Name> <hour> at|not|clear [place]", e.g. pencil "Feldman 10 at Rafferty’s".');
+  const [, who, hs, act, pl] = m as RegExpExecArray;
+  const c = night.d.kase;
+  const person = c.people.find((p) => fold(p.short) === fold(who as string) || fold(p.name) === fold(who as string));
+  if (!person) fail(`Nobody on the board called ${who}.`);
+  const h = Number(hs);
+  if (!c.board.hours.includes(h)) fail(`The hours are ${c.board.hours.join(', ')}.`);
+  let place: string | undefined;
+  if (act !== 'clear') {
+    const codes = placeCodes(c);
+    const hit = c.places.find((p) => fold(p.short) === fold(pl ?? '') || fold(codes[p.id] ?? '') === fold(pl ?? '') || (fold(p.short).includes(fold(pl ?? '')) && (pl ?? '').length > 2));
+    if (!hit) fail(`No place called "${pl}".`);
+    place = (hit as { id: string }).id;
+  }
+  night = commit(io, path, night, [{ mark: { person: (person as { id: string }).id, hour: h, action: act as 'at' | 'not' | 'clear', ...(place ? { place } : {}) } }]);
+  return boardGridText(c, night.run);
+}
+
+function helpText(): string {
+  const out = ['HOW IT PLAYS', ''];
+  for (const l of BOARD_RULES) out.push(wrap(l), '');
+  out.push(
+    'COMMANDS',
+    '  new --seed N --tier 0..5 [--type murder|lost-item|lost-pet] [--name <detective>] [--no-teach] --save F',
+    '  look · do <n|words> · page <n> · notebook · grid',
+    '  pencil "<Name> <hour> at|not|clear [place]" · confront <Name>',
+    '  report · file "who=…; when=…; how=… (or where=…); why=…"',
+    '  story · curtain (after filing)',
+  );
+  return out.join('\n');
 }
 
 export function runPlay(argv: string[], io: PlayIo): PlayResult {
-  // docs/43: a board night (`--engine board`, or a board save) plays on its own engine.
-  if (isBoardCall(argv, io)) return runBoardPlay(argv, io);
-  const a = parseArgv(argv);
-  const path = a.values.get('save');
+  const values = new Map<string, string>();
+  const flags = new Set<string>();
+  const pos: string[] = [];
+  for (let i = 0; i < argv.length; i++) {
+    const t = argv[i] as string;
+    if (t.startsWith('--')) {
+      const next = argv[i + 1];
+      if (next !== undefined && !next.startsWith('--')) {
+        values.set(t.slice(2), next);
+        i++;
+      } else flags.add(t.slice(2));
+    } else pos.push(t);
+  }
+  const command = pos[0] ?? 'help';
+  const arg = pos.slice(1).join(' ') || undefined;
+  const path = values.get('save') as string;
   try {
-    switch (a.command) {
+    switch (command) {
       case 'new':
-        return { out: cmdNew(io, a), code: 0 };
+        return { out: cmdNew(io, values, flags), code: 0 };
       case 'look':
-        return { out: lookText(load(io, path), path as string), code: 0 };
+        return { out: lookText(load(io, path), path), code: 0 };
       case 'do':
-        return { out: cmdDo(io, a, path as string), code: 0 };
+        return { out: cmdDo(io, arg, path), code: 0 };
       case 'page': {
         const night = load(io, path);
-        const n = Number(a.arg);
-        if (!Number.isInteger(n) || n < 1 || n > night.state.log.length) fail(`page 1 to ${night.state.log.length}.`);
-        const last = n === night.state.log.length;
-        return { out: last ? lookText(night, path as string) : `${pageText(night, n - 1)}\n\n(A page turned back to.)`, code: 0 };
+        const n = Number(arg);
+        if (!Number.isInteger(n) || n < 1 || n > night.run.log.length) fail(`page 1 to ${night.run.log.length}.`);
+        return { out: n === night.run.log.length ? lookText(night, path) : `${pageText(night, n - 1)}\n\n(A page turned back to.)`, code: 0 };
       }
       case 'notebook': {
         const night = load(io, path);
-        return { out: `${caseLine(night.kase)}\n\n${renderNotebookText(night.view, night.state, { book: true })}`, code: 0 };
+        return { out: notebookText(night.d, night.run), code: 0 };
       }
       case 'grid': {
         const night = load(io, path);
-        return { out: renderGridText(night.view, night.state), code: 0 };
+        return { out: boardGridText(night.d.kase, night.run), code: 0 };
       }
       case 'pencil':
-        return { out: cmdPencil(io, a, path as string), code: 0 };
-      case 'link':
-        return { out: cmdLink(io, a, path as string), code: 0 };
-      case 'confront':
-        return { out: cmdConfront(io, a, path as string), code: 0 };
+        return { out: cmdPencil(io, arg, path), code: 0 };
+      case 'confront': {
+        let night = load(io, path);
+        const who = night.d.kase.people.find((p) => fold(p.short) === fold(arg ?? ''));
+        if (!who) fail(`Nobody here called ${arg}.`);
+        if (!pickerFor(night.d, night.run, (who as { id: string }).id)) fail(`Nothing I hold collides with ${(who as { short: string }).short}’s story.`);
+        night = commit(io, path, night, [], { picker: (who as { id: string }).id, claim: null, person: null });
+        return { out: lookText(night, path), code: 0 };
+      }
       case 'report': {
         const night = load(io, path);
-        if (night.state.filed) return { out: verdictText(night, path as string), code: 0 };
-        return { out: reportText(night, path as string), code: 0 };
+        return { out: night.run.filed ? verdictText(night) : reportText(night, path), code: 0 };
       }
-      case 'file':
-        return { out: cmdFile(io, a, path as string), code: 0 };
+      case 'file': {
+        let night = load(io, path);
+        if (night.run.filed) fail('Filed already.');
+        const report = parseReport(night, arg ?? '');
+        if (!night.run.reportOpen) night = commit(io, path, night, [{ do: 'file' }]);
+        night = commit(io, path, night, [{ file: report }]);
+        return { out: verdictText(night), code: 0 };
+      }
       case 'story':
       case 'curtain': {
         const night = load(io, path);
-        if (!night.state.filed) fail('Not until the report is filed.');
-        return { out: a.command === 'story' ? storyText(night) : curtainText(night), code: 0 };
+        if (!night.run.filed) fail('Not until the report is filed.');
+        return { out: command === 'story' ? storyOfBoard(night.d).map((p) => wrap(p)).join('\n\n') : curtainOfBoard(night.d), code: 0 };
       }
-      case 'help': {
-        const night = path && io.read(path) !== null ? load(io, path) : null;
-        return { out: helpText(night, path), code: 0 };
-      }
+      case 'help':
+        return { out: helpText(), code: 0 };
       default:
-        fail(`No command "${a.command}". Try: npm run play -- help`);
+        return fail(`No command "${command}". Try: npm run play -- help`);
     }
-  } catch (err) {
-    if (err instanceof PlayError) return { out: err.message, code: 1 };
-    throw err;
+  } catch (e) {
+    if (e instanceof Fail) return { out: e.message, code: 1 };
+    throw e;
   }
 }
+
+export { OFFICE, placeName };
