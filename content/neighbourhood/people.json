@@ -1,0 +1,1527 @@
+{
+  "people": [
+    {
+      "id": "rafferty",
+      "first": "Nora",
+      "last": "Rafferty",
+      "honorific": "Mrs.",
+      "gender": "f",
+      "age": "60s",
+      "job": "the landlady",
+      "home": "raffertys",
+      "works": { "place": "raffertys", "open": 19, "close": 24 },
+      "manner": "plain",
+      "doing": [
+        "darning a lodger’s sock on the first landing",
+        "counting the umbrellas on their hooks",
+        "pouring tea nobody asked for",
+        "writing in the rent book in pencil and going over it in ink"
+      ],
+      "looks": [
+        { "setting": "raffertys", "text": "A broad woman in widow’s black and a gray cardigan, in a kitchen chair on the first landing, with a sock stretched over a darning egg." },
+        { "setting": "any", "text": "A ring of keys at her belt the size of a saucer, and she knows each key by the sound it makes." },
+        { "setting": "any", "text": "Reading glasses pushed up into her gray hair, where she forgets them, and finds them, and forgets them again." }
+      ],
+      "voice": {
+        "ask": [
+          "Sit down, then, and mind the basket. You want my evening, you’ll have it, and it’s the same as every evening, God help me.",
+          "My evening? I’ll give it to you the way Mr. Rafferty, God rest him, gave the news: all of it, slowly, with a pause for tea."
+        ],
+        "deflect": [
+          "That’s one for the priest, not the landlady.",
+          "Now what would a widow on a landing know about that?"
+        ],
+        "nobodyElse": [
+          "And that’s the lot. If there’d been another one on my stairs, I’d have his name and his mother’s maiden name.",
+          "Nobody else. Nobody gets past the basket."
+        ],
+        "hours": {
+          "7": "Seven, I take my chair and the mending, and the house knows I’m on.",
+          "8": "Eight, I’ve the tea on and a sock on the egg and one ear on the door.",
+          "9": "Nine’s the quiet hour. You can hear a lodger think, if he does.",
+          "10": "Ten’s the rule. After ten I’m not a landlady, I’m a customs house.",
+          "11": "Eleven, I start listening for the late ones, the way you’d listen for rain."
+        },
+        "refuse": [
+          "I’ve kept a respectable house for thirty-one years, and I’ll not have it questioned on my own landing.",
+          "You can put that to the Sacred Heart in the hall. He’s heard worse from me."
+        ],
+        "ownUp": [
+          "Ah, well. Mr. Rafferty always said I’d a face that couldn’t keep a thing past the second cup. Here it is."
+        ]
+      },
+      "ties": [
+        { "to": "gutman", "kind": "lodger", "line": "Miss Gutman pays on a Friday, early, in an envelope with her name on it, and I’d frame it if I didn’t need it." },
+        { "to": "mabry", "kind": "lodger", "line": "Mr. Mabry comes in at four with his shoes in his hand so as not to wake me. I’m awake. It’s nice of him anyway." },
+        { "to": "nowak", "kind": "lodger", "line": "Agnes is three weeks behind and cries when I mention it, so I’ve stopped mentioning it and started writing it down." },
+        { "to": "szabo", "kind": "lodger", "line": "Mrs. Szabo carried a wardrobe up four flights on her own the day she came. I’ve never had a lodger I’d sooner have on the stairs, or argue with less." }
+      ],
+      "secrets": [
+        { "text": "She lets the attic to a man with his name on no paper anywhere, for cash, and tells the lodgers he’s her nephew from Cork.", "place": "raffertys" },
+        { "text": "She steams open the lodgers’ letters over the kettle on wet evenings, when she says the damp gets into the glue anyway.", "place": "raffertys" }
+      ],
+      "asVictim": {
+        "why": "She knows everything that’s gone up her stairs in thirty-one years, and some of it would rather she didn’t.",
+        "foundWith": "her ring of keys in her lap and a darning egg still in one hand."
+      }
+    },
+    {
+      "id": "wojcik",
+      "first": "Stanislaw",
+      "last": "Wojcik",
+      "honorific": null,
+      "gender": "m",
+      "age": "50s",
+      "job": "the janitor",
+      "home": "lipskys",
+      "works": { "place": "lipskys", "open": 19, "close": 24 },
+      "manner": "terse",
+      "doing": [
+        "sitting on the areaway steps with his pipe",
+        "shoveling coal into the boiler",
+        "answering the fourth floor by banging a pipe with a wrench",
+        "sweeping a stoop he swept an hour ago"
+      ],
+      "looks": [
+        { "setting": "lipskys", "text": "A square man in a cardigan and a cloth cap on the areaway steps, so still with his pipe that you notice the smoke before the man." },
+        { "setting": "any", "text": "Coal dust in the creases of his knuckles that no soap on Orchard Street has ever got out." },
+        { "setting": "any", "text": "A ring of keys on a bootlace round his neck, worn under his undershirt where nobody can borrow them." }
+      ],
+      "voice": {
+        "ask": [
+          "Same as every night. It’s a short story. You can stand for it.",
+          "Where was I. On the steps. You want it by the hour, I give it by the hour."
+        ],
+        "deflect": [
+          "I fix radiators. I don’t fix that.",
+          "That’s upstairs business. I’m a cellar man."
+        ],
+        "nobodyElse": [
+          "Nobody else. A rat. A rat doesn’t count.",
+          "That’s all. Nobody gets up that stoop without stepping on my shadow."
+        ],
+        "hours": {
+          "7": "Seven, I bank the boiler for the night. She sulks. Then she settles.",
+          "8": "Eight, I sit. Pipe. Steps. Street.",
+          "9": "Nine, the fourth floor bangs on the pipe. I bang back. That’s our conversation.",
+          "10": "Ten, I sweep the stoop. It doesn’t need it. I need it.",
+          "11": "Eleven, I look at the fire one more time, and then I look at the street one more time."
+        },
+        "refuse": [
+          "No. I said what I said. I’m a janitor, not a radio.",
+          "I don’t answer that one. You can stand there till spring."
+        ],
+        "ownUp": [
+          "So. I tell you once, and then we don’t talk about it."
+        ]
+      },
+      "ties": [
+        { "to": "krantz", "kind": "employer", "line": "Mrs. Krantz pays me twelve dollars a week and the coal. Most weeks, the coal." },
+        { "to": "sobel", "kind": "feud", "line": "Mrs. Sobel says I give her half a scuttle. I give her what the boiler gives. She can take it up with the boiler." },
+        { "to": "pinsky", "kind": "friend", "line": "Meyer and me play checkers on the stoop Sundays. He cheats. I let him. Who else is he going to beat?" }
+      ],
+      "secrets": [
+        { "text": "He sells the building’s coal by the sack to the undertaker over the Peacock, out the cellar door on Saturday nights, which is why the fourth floor is cold.", "place": "lipskys" }
+      ],
+      "asVictim": {
+        "why": "He has a key to every flat in the building and a long memory for who goes into which.",
+        "foundWith": "his pipe gone cold in one pocket and a stub of chalk from the coal tally in the other."
+      }
+    },
+    {
+      "id": "sokol",
+      "first": "Abraham",
+      "last": "Sokol",
+      "honorific": null,
+      "gender": "m",
+      "age": "40s",
+      "job": "the barman",
+      "home": "sokols",
+      "works": { "place": "sokols", "open": 19, "close": 2 },
+      "manner": "plain",
+      "doing": [
+        "counting glasses onto a towel",
+        "wiping flour off the gin bottles",
+        "looking in on the ovens through the door marked FLOUR",
+        "slicing rye for a free lunch nobody eats"
+      ],
+      "looks": [
+        { "setting": "sokols", "text": "A barrel of a man in a baker’s white shirt with the sleeves rolled, flour to the elbows and gin to the wrists." },
+        { "setting": "any", "text": "Eyes red at the rims from being up since four, every day, for nineteen years." },
+        { "setting": "any", "text": "A row of old burns across the back of one hand, in stripes, from an oven rack that got him in 1911." }
+      ],
+      "voice": {
+        "ask": [
+          "Pull up a stool. I’ve been up since four, so if I fall asleep in the middle, wake me at the next hour.",
+          "My evening? Same as my morning, with gin where the flour goes. All right. From seven."
+        ],
+        "deflect": [
+          "I bake bread and I pour drinks. Everything else, I let rise on its own.",
+          "Not a question for a barman. That’s for a barman’s lawyer, and I can’t afford one."
+        ],
+        "nobodyElse": [
+          "That’s everybody. I counted the glasses twice.",
+          "Nobody else. If there was, there’s a glass I can’t account for, and there isn’t."
+        ],
+        "hours": {
+          "7": "Seven, I take the last tray out and unlock the door that says flour. One job stops, the other one starts.",
+          "8": "Eight’s the regulars. I pour before they ask. It saves them the strain.",
+          "9": "Nine, I count the glasses the first time. Count at nine, you know where you stand at two.",
+          "10": "Ten, I set the sponge for tomorrow’s rye between customers. Nobody’s ever complained the gin smelled of yeast.",
+          "11": "Eleven, the place goes quiet, and in a quiet bar you hear everything, whether you want it or not."
+        },
+        "refuse": [
+          "No. You want that, come back at four in the morning and ask the dough.",
+          "I said what I said, with flour on my hands, which is how you know it’s honest."
+        ],
+        "ownUp": [
+          "You caught me with my hands in the bowl. Here’s how it was."
+        ]
+      },
+      "ties": [
+        { "to": "fishel", "kind": "owes", "line": "Sid lent me for the new oven, and now he sits in my back booth for nothing and calls it interest." },
+        { "to": "greco", "kind": "old-flame", "line": "Assunta and I walked out in nineteen-nine. She said my bread was heavy. A hard thing to hear from a woman who cooks with that much lard." }
+      ],
+      "secrets": [
+        { "text": "He keeps Assunta Greco’s letters from nineteen-nine in a tin at the bottom of the flour bin, under the flour.", "place": "sokols" }
+      ],
+      "asVictim": {
+        "why": "He owes Fishel for the oven, and he knows which of his customers owe Fishel more.",
+        "foundWith": "flour to the elbows and a glass towel over his shoulder."
+      }
+    },
+    {
+      "id": "szabo",
+      "first": "Ruby",
+      "last": "Szabo",
+      "honorific": "Mrs.",
+      "gender": "f",
+      "age": "40s",
+      "job": "the doorkeeper",
+      "home": "raffertys",
+      "works": { "place": "peacock", "open": 19, "close": 3 },
+      "manner": "terse",
+      "doing": [
+        "looking through the slot in the steel door",
+        "knitting a muffler with no end in sight",
+        "eating a pickle out of a paper bag on her stool",
+        "explaining to a large man why he is going home"
+      ],
+      "looks": [
+        { "setting": "peacock", "text": "A big woman on a stool behind the steel door, in a beaded dress and a man’s overcoat, with forearms like a stevedore’s." },
+        { "setting": "any", "text": "A nose that was broken once and set by somebody in a hurry, and a pair of pearl earrings to make up for it." },
+        { "setting": "any", "text": "Big hands folded in her lap, the knuckles flattened by a career she doesn’t discuss." }
+      ],
+      "voice": {
+        "ask": [
+          "My night. Fine. It was short and I was standing up for it.",
+          "Where was I. On that door. Where else does a door go?"
+        ],
+        "deflect": [
+          "I’ve thrown bigger questions than that down a flight of stairs.",
+          "Ask me something with a weight class."
+        ],
+        "nobodyElse": [
+          "Nobody else. I’d remember. I don’t like enough faces to forget any.",
+          "That’s the lot. Anybody else came to my slot, he’s still out on the sidewalk."
+        ],
+        "hours": {
+          "7": "Seven, the slot opens and I eat my supper off a plate on my knee. Nobody worth turning away comes at seven.",
+          "8": "Eight, the dinner crowd. Dinner crowd’s easy. They only want to sit down.",
+          "9": "Nine, the music starts and the faces get worse.",
+          "10": "Ten’s when the uptown people come down slumming. I make them wait. It’s good for them.",
+          "11": "Eleven, I eat my pickle. Everybody who knows me knows not to knock during the pickle."
+        },
+        "refuse": [
+          "No. And I’ve said no to men twice your size, on worse stairs.",
+          "You’re knocking on the wrong door."
+        ],
+        "ownUp": [
+          "Two falls out of three. You got the first. Here’s the rest."
+        ]
+      },
+      "ties": [
+        { "to": "rafferty", "kind": "landlady", "line": "Mrs. Rafferty is the only landlady on the East Side who didn’t ask me what I used to do. She asked if I could carry a wardrobe." },
+        { "to": "marsh", "kind": "friend", "line": "Lola’s all right. She sells cigarettes to people I let in, and buys things off people I shouldn’t have." },
+        { "to": "doyle", "kind": "feud", "line": "Doyle had my brother sent up for a year over a crap game. He still tips his hat to me in the street. One day I’ll take the hat." }
+      ],
+      "secrets": [
+        { "text": "On Mondays, when the Peacock is dark, she wrestles one bout in a hood at the card room over the garage, as the Masked Countess, for twenty dollars.", "place": "cardroom" }
+      ],
+      "asVictim": {
+        "why": "She has turned away half the East Side at that slot, and some of them took it personally.",
+        "foundWith": "her knitting in her lap and the key to the steel door on a string round her wrist."
+      }
+    },
+    {
+      "id": "pinsky",
+      "first": "Meyer",
+      "last": "Pinsky",
+      "honorific": null,
+      "gender": "m",
+      "age": "60s",
+      "job": "the usher",
+      "home": "lipskys",
+      "works": { "place": "lyric", "open": 19, "close": 24 },
+      "manner": "careful",
+      "doing": [
+        "marking crosses on his seating chart",
+        "mouthing the third act from the back of the house",
+        "sweeping sunflower shells out of the gallery",
+        "pointing his flashlight at a man who is talking"
+      ],
+      "looks": [
+        { "setting": "lyric", "text": "A small old man in a maroon uniform with brass buttons, two of them from a different uniform." },
+        { "setting": "any", "text": "A white mustache waxed to points so fine they quiver when he disapproves." },
+        { "setting": "any", "text": "His seating chart under one arm on a clipboard, the way other men carry a newspaper." }
+      ],
+      "voice": {
+        "ask": [
+          "The whole evening? Like the play, then: three acts, no intermission, and you’ll forgive me if I do the voices.",
+          "Sit. Not there, that’s a good seat. Here. Now, from the overture."
+        ],
+        "deflect": [
+          "That, my friend, is not in the script.",
+          "Forty years in the theater teaches a man one thing: when you don’t know your line, look at the floor."
+        ],
+        "nobodyElse": [
+          "And nobody else. Every cross on the chart has a face, and I’ve given you every face.",
+          "That’s the house. A small house, but an honest one."
+        ],
+        "hours": {
+          "7": "Seven, I open the doors and take up the chart. Every seat sold, a cross. I’m very good at crosses.",
+          "8": "Eight, the curtain goes up, and I go to the back of the house, where an usher belongs and an actor once didn’t.",
+          "9": "Nine, the second act. I could do it in my sleep, and some nights I think I have.",
+          "10": "Ten, I go round with the flashlight and wake the ones who only came in for the warm.",
+          "11": "Eleven, they go home, and I go round picking up gloves. Nobody ever comes back for a glove."
+        },
+        "refuse": [
+          "Some lines an actor improves by cutting. I’m cutting that one.",
+          "No. An usher shows people to their seats. He doesn’t show them his."
+        ],
+        "ownUp": [
+          "The curtain comes down, the actor takes off the beard. Here is the truth."
+        ]
+      },
+      "ties": [
+        { "to": "wojcik", "kind": "friend", "line": "Stanislaw plays checkers the way he stokes a boiler: slowly, and he thinks he’s winning." },
+        { "to": "belkin", "kind": "rival", "line": "Lazar Belkin took the rabbi from me in nineteen-twelve. I’ve shown people to their seats to watch him do it ever since." },
+        { "to": "moskin", "kind": "in-law", "line": "Tillie married my sister’s boy, and then she unmarried him. I kept her. He was never much of a nephew." }
+      ],
+      "secrets": [
+        { "text": "He has written a play in four acts, and after the house empties he reads it aloud from the stage to the empty seats, doing all the parts.", "place": "lyric" }
+      ],
+      "asVictim": {
+        "why": "He has watched the Lyric from the back of the house for forty years, and he could tell you who sat with whom.",
+        "foundWith": "his seating chart under one arm and his flashlight still on, pointing at the floor."
+      }
+    },
+    {
+      "id": "demos",
+      "first": "Constantine",
+      "last": "Demos",
+      "honorific": null,
+      "gender": "m",
+      "age": "50s",
+      "job": "the head waiter",
+      "home": "lipskys",
+      "works": { "place": "steinmetz", "open": 17, "close": 1 },
+      "manner": "careful",
+      "doing": [
+        "writing covers in the book at his stand",
+        "folding napkins into shapes nobody asked for",
+        "seating a man who would rather have stood",
+        "holding a fork up to the light"
+      ],
+      "looks": [
+        { "setting": "steinmetz", "text": "A tall man in a tailcoat gone green at the seams, standing at a book on a stand by the door like a bishop at a lectern." },
+        { "setting": "any", "text": "Hair parted dead center and flattened with something that smells of violets." },
+        { "setting": "any", "text": "A white napkin over one forearm even off duty; he says he feels undressed without it." }
+      ],
+      "voice": {
+        "ask": [
+          "Certainly, sir. Allow me to show you to my evening. This way.",
+          "My evening, sir, was conducted with the dignity of the house. I’ll take you through the courses."
+        ],
+        "deflect": [
+          "I couldn’t say, sir. A head waiter sees everything and remembers only the gratuity.",
+          "That would be a matter for the management, sir, and the management is in Florida."
+        ],
+        "nobodyElse": [
+          "And that, sir, is every cover. I don’t lose covers.",
+          "No one else, sir. Not in my room. Not without my say-so."
+        ],
+        "hours": {
+          "7": "Seven, sir: the early covers. People who dine at seven are not interesting, but they tip.",
+          "8": "Eight, the full room, and one stands at the stand like a traffic policeman in a tailcoat.",
+          "9": "Nine, the theater crowd, who want everything at once and the bill before it.",
+          "10": "Ten, the room thins and I count the napkins. One learns a great deal from napkins.",
+          "11": "Eleven, the late ones. I seat them near the kitchen. They never notice, and I never mention it."
+        },
+        "refuse": [
+          "I regret, sir, that particular dish is not available this evening.",
+          "No, sir. That table is reserved."
+        ],
+        "ownUp": [
+          "Very well, sir. I’ll bring you the bill, itemized."
+        ]
+      },
+      "ties": [
+        { "to": "greco", "kind": "feud", "line": "Mrs. Greco runs that kitchen like a fortress and treats the dining room like the enemy. I am the dining room." },
+        { "to": "russo", "kind": "owes", "line": "I owe Carmine Russo for a straight that turned out to be crooked. I pay him on Tuesdays out of my gratuities, and he counts it in front of me." }
+      ],
+      "secrets": [
+        { "text": "He pawns his good tailcoat at Wexler’s on Mondays and redeems it on Fridays, and sends the difference to a wife in Baltimore nobody on Grand Street has heard of.", "place": "wexlers" }
+      ],
+      "asVictim": {
+        "why": "He owes Russo for a crooked straight, and he has written down the name and the hour of everybody who ever ate at Steinmetz’s.",
+        "foundWith": "the book of covers under his arm and a napkin in his breast pocket, folded into a swan."
+      }
+    },
+    {
+      "id": "gutman",
+      "first": "Pearl",
+      "last": "Gutman",
+      "honorific": "Miss",
+      "gender": "f",
+      "age": "20s",
+      "job": "the dentist’s receptionist",
+      "home": "raffertys",
+      "works": { "place": "surgery", "open": 9, "close": 21 },
+      "manner": "plain",
+      "doing": [
+        "adding up the day’s fees in the cash book",
+        "writing appointment cards in her best hand",
+        "telling a man with a toothache to sit down and be brave",
+        "polishing the bell"
+      ],
+      "looks": [
+        { "setting": "surgery", "text": "A small, bright girl in a white smock behind a desk with a brass bell on it, her pencil already raised before you’ve spoken." },
+        { "setting": "any", "text": "A bob she cut herself with the surgery scissors, a little shorter on the left." },
+        { "setting": "any", "text": "Teeth so perfect people assume the doctor did them; she was born with them, and she’ll tell you." }
+      ],
+      "voice": {
+        "ask": [
+          "Oh, I can do better than that. I can do it by the clock, the way I do the book.",
+          "Sit down, it won’t hurt. That’s what I tell all of them. Now: seven."
+        ],
+        "deflect": [
+          "I’d have to look in the book, and the book’s locked, and the doctor has the key.",
+          "That’s between you and your dentist."
+        ],
+        "nobodyElse": [
+          "And nobody else. Everybody rings the bell, even the ones who hate the bell.",
+          "That’s the lot. I’d know. I know people by their teeth."
+        ],
+        "hours": {
+          "7": "Seven’s the last appointments, the ones who couldn’t get off work, with their toothaches and their lunch pails.",
+          "8": "Eight, I do the day’s book, and the waiting room watches me do it.",
+          "9": "Nine, I lock the cash box and put the cover on the typewriter, and that’s my day.",
+          "10": "Ten, I put my feet in hot water and read somebody else’s movie magazine.",
+          "11": "Eleven, I’m asleep, or I’m lying there doing tomorrow’s book in my head."
+        },
+        "refuse": [
+          "No, I won’t say. The doctor says I have a mouth on me, and this is me closing it.",
+          "I’ve said all I’m saying. You can make another appointment."
+        ],
+        "ownUp": [
+          "Oh, fine. I’ll tell you, but you have to let me tell it right, from the beginning."
+        ]
+      },
+      "ties": [
+        { "to": "rafferty", "kind": "landlady", "line": "Mrs. Rafferty treats me like a daughter, which is lovely, and means I can’t come in after ten without a reason she likes." },
+        { "to": "hirsch", "kind": "employer", "line": "Dr. Hirsch is the best dentist on Clinton Street, and she knows it, and she tells me so on Fridays instead of a raise." },
+        { "to": "lieb", "kind": "old-flame", "line": "Oscar Lieb took me dancing twice and talked about his uncle’s shop the whole time. I know the price of every ring in that window." }
+      ],
+      "secrets": [
+        { "text": "She keeps a second little book of what the patients say under the gas, and some of it is worth more than the fillings.", "place": "surgery" }
+      ],
+      "asVictim": {
+        "why": "She keeps a little book of what people say under the gas, and one of them has read it.",
+        "foundWith": "the appointment book in her handbag and a pencil behind her ear, sharpened at both ends."
+      }
+    },
+    {
+      "id": "wexler",
+      "first": "Ignatz",
+      "last": "Wexler",
+      "honorific": null,
+      "gender": "m",
+      "age": "60s",
+      "job": "the pawnbroker",
+      "home": "wexlers",
+      "works": { "place": "wexlers", "open": 8, "close": 22 },
+      "manner": "careful",
+      "doing": [
+        "weighing a ring on the jeweler’s scales",
+        "writing a ticket in a slow, square hand",
+        "looking at a coat’s lining before its outside",
+        "counting the day’s takings into a cigar box, twice"
+      ],
+      "looks": [
+        { "setting": "wexlers", "text": "A thin old man behind brass bars in a black skullcap and sleeve garters, with a jeweler’s loupe in one eye that he forgets to take out when he looks at people." },
+        { "setting": "any", "text": "A gold watch chain across his vest, with a different watch on the end of it every time you see him." },
+        { "setting": "any", "text": "Fingertips stained gray from tickets and newsprint and other people’s silver." }
+      ],
+      "voice": {
+        "ask": [
+          "My evening. Let me look at it first, the way I look at anything a man hands me. Hm. All right. It’s worth telling.",
+          "Sit. I give you the evening, you give me nothing, and I write you no ticket. A bargain."
+        ],
+        "deflect": [
+          "That, I wouldn’t lend two dollars on.",
+          "A pawnbroker doesn’t ask where a thing came from. He asks how much. You’re asking the wrong question of the wrong man."
+        ],
+        "nobodyElse": [
+          "Nobody else. Everybody who comes to the cage gets a ticket or a no, and I’ve given you the tickets and the no’s.",
+          "That’s all. I remember faces the way other men remember debts."
+        ],
+        "hours": {
+          "7": "Seven, the working men come with their Sunday suits, to get the money for Monday.",
+          "8": "Eight, the women come with the rings, and I am very kind, and I give them two dollars.",
+          "9": "Nine, I write up the day. Every ticket a line, and every line a story I don’t ask about.",
+          "10": "Ten, I lock the cage, and I sit in it anyway. Where else would I sit? It’s my chair.",
+          "11": "Eleven, I count the back room. You’d be surprised how often a coat goes missing from a room full of coats nobody wants."
+        },
+        "refuse": [
+          "No. Some things I take in pledge, and some things I don’t take at any price.",
+          "That, I keep in the back room, with the coats."
+        ],
+        "ownUp": [
+          "So. A man can only keep a thing so long before the interest is worth more than the thing."
+        ]
+      },
+      "ties": [
+        { "to": "lieb", "kind": "employee", "line": "Oscar is my wife’s sister’s boy. I gave him a job so she would stop asking. Now she asks why I don’t pay him." },
+        { "to": "belkin", "kind": "owed", "line": "Belkin pledges his mother’s ring on Mondays and redeems it on Fridays. Last Friday, he didn’t. Forty dollars, and a ring I can’t sell, because everybody knows whose it is." },
+        { "to": "fishel", "kind": "rival", "line": "Sid Fishel buys from the same people I do, without a ticket and without a license, and he calls it competition." }
+      ],
+      "secrets": [
+        { "text": "He keeps a drawer of things he took in without tickets from men who never came back, and he wears their watches on his chain one at a time, a week each.", "place": "wexlers" }
+      ],
+      "asVictim": {
+        "why": "Half the East Side has something in his window, and the other half wants it back without paying.",
+        "foundWith": "his loupe still in one eye and a blank pledge ticket in his fist."
+      }
+    },
+    {
+      "id": "fishel",
+      "first": "Sidney",
+      "last": "Fishel",
+      "honorific": null,
+      "gender": "m",
+      "age": "50s",
+      "job": "the bookmaker",
+      "home": "excelsior",
+      "works": { "place": "sokols", "open": 19, "close": 2 },
+      "manner": "terse",
+      "doing": [
+        "writing odds on the back of a menu",
+        "not drinking a cup of coffee",
+        "weighing a wristwatch in his palm without looking at it",
+        "reading the racing results with his lips moving"
+      ],
+      "looks": [
+        { "setting": "sokols", "text": "A heavy man in a good gray suit gone shiny at the knees, in the back booth behind the flour sacks, with a pencil and a cup of cold coffee." },
+        { "setting": "any", "text": "A diamond pinky ring a size too small, so that the finger has grown around it." },
+        { "setting": "any", "text": "A pearl-gray fedora he never takes off indoors, because, he says, it’s worth more than the indoors." }
+      ],
+      "voice": {
+        "ask": [
+          "You want my night. I’ll give you odds it’s duller than you think. Even money. Sit.",
+          "Short version. I sat. People came to me. That’s the business."
+        ],
+        "deflect": [
+          "I don’t take bets on that.",
+          "I’d need to see a form sheet before I said anything about anybody."
+        ],
+        "nobodyElse": [
+          "Nobody else. Book’s closed.",
+          "That’s the field. No other runners."
+        ],
+        "hours": {
+          "7": "Seven, the book opens. First race of the night, you might say.",
+          "8": "Eight, the working men come for a dollar on tomorrow. I give them a pencil and some hope.",
+          "9": "Nine, I order a coffee. I don’t drink it. It’s company.",
+          "10": "Ten, the big money comes, if it comes. It comes in small bills, and nervous.",
+          "11": "Eleven, I add it up. Then I add it up again, because the first time it always comes out in my favor."
+        },
+        "refuse": [
+          "No bet.",
+          "You’re asking me to make a price on that. I don’t make a price on that."
+        ],
+        "ownUp": [
+          "You’ve seen my card. I’ll show you the rest of the hand."
+        ]
+      },
+      "ties": [
+        { "to": "sokol", "kind": "owed", "line": "Abe owes me four hundred for the oven. I take it out in booth." },
+        { "to": "wexler", "kind": "rival", "line": "Wexler gives a man a ticket and two dollars. I give him five and no questions. Who’s the crook?" },
+        { "to": "russo", "kind": "feud", "line": "Carmine runs a table that leans, and he took two of my best customers to lean on it." },
+        { "to": "nowak", "kind": "owed", "line": "Agnes owes me eleven on a horse called Mother’s Pride. I don’t chase girls for eleven dollars. I let them chase themselves." }
+      ],
+      "secrets": [
+        { "text": "He pays the alderman’s clerk to keep the police off Sokol’s, and charges Sokol for the same favor twice.", "place": "sokols" }
+      ],
+      "asVictim": {
+        "why": "He’s holding everybody’s money on tomorrow’s races, and a dead bookmaker pays nobody.",
+        "foundWith": "his gray fedora still on and a racing sheet folded to the third race."
+      }
+    },
+    {
+      "id": "marsh",
+      "first": "Lola",
+      "last": "Marsh",
+      "honorific": "Miss",
+      "gender": "f",
+      "age": "30s",
+      "job": "the cigarette girl",
+      "home": "lipskys",
+      "works": { "place": "peacock", "open": 20, "close": 3 },
+      "manner": "plain",
+      "doing": [
+        "working the tables with her tray",
+        "looking at every wrist she passes",
+        "making change faster than a bank",
+        "fixing her lipstick in the back of a cigarette case"
+      ],
+      "looks": [
+        { "setting": "peacock", "text": "A woman with a tray of cigarettes on a strap round her neck, in a short spangled dress and a smile she puts on with the lipstick." },
+        { "setting": "any", "text": "A row of bangles up one arm that clink when she makes change, and two wristwatches on the other, neither of them hers." },
+        { "setting": "any", "text": "A fur stole that is mostly rabbit and partly confidence." }
+      ],
+      "voice": {
+        "ask": [
+          "Cigars, cigarettes, alibis. What’ll it be, honey? Oh, the evening. Sure.",
+          "My night? Honey, I walked it in heels. Every step’s still in my feet."
+        ],
+        "deflect": [
+          "I sell cigarettes. Questions are next door.",
+          "You want that, you’ll have to buy a pack first. Two packs."
+        ],
+        "nobodyElse": [
+          "That’s everybody, honey. I’d have sold them something.",
+          "Nobody. Me and the tray, and the tray doesn’t talk."
+        ],
+        "hours": {
+          "7": "Seven, I’m fixing my face. Takes an hour. Takes longer every year.",
+          "8": "Eight, I fill the tray. Luckies on top, the rest underneath.",
+          "9": "Nine, I start on the room. You smile at the men and you look at the wrists.",
+          "10": "Ten, my feet start talking. I don’t listen. I can’t afford to.",
+          "11": "Eleven, I count the tray. What’s gone tells me what kind of night it’s been."
+        },
+        "refuse": [
+          "Sorry, honey. That one’s not on the tray.",
+          "No sale."
+        ],
+        "ownUp": [
+          "Fine, honey. You got me, and you didn’t even have to buy a pack."
+        ]
+      },
+      "ties": [
+        { "to": "szabo", "kind": "friend", "line": "Ruby looks out for me. Ruby looks out for everybody, through a slot, with a face like a shut door." },
+        { "to": "mabry", "kind": "old-flame", "line": "Earl writes me a song every time we break up. He’s got a whole act now." },
+        { "to": "krantz", "kind": "owes", "line": "I’m two months behind with Mrs. Krantz, and she sends the janitor up to look sad at my door." },
+        { "to": "lieb", "kind": "owed", "line": "Oscar owes me twenty for a cigarette case that turned out to be his uncle’s. I gave the case back. He didn’t give the twenty." }
+      ],
+      "secrets": [
+        { "text": "She’s still married, as far as she knows, to a man in Hoboken, and when he turns up at the Peacock she pays him to go away again.", "place": "peacock" }
+      ],
+      "asVictim": {
+        "why": "She has bought things off half the thieves on Chrystie Street, and she remembers which half.",
+        "foundWith": "her cigarette tray still on its strap and a wristwatch tucked in her stocking top."
+      }
+    },
+    {
+      "id": "hirsch",
+      "first": "Miriam",
+      "last": "Hirsch",
+      "honorific": "Dr.",
+      "gender": "f",
+      "age": "40s",
+      "job": "the dentist",
+      "home": "excelsior",
+      "works": { "place": "surgery", "open": 9, "close": 21 },
+      "manner": "careful",
+      "doing": [
+        "sharpening instruments on a little stone",
+        "reading a journal with her spectacles pushed up on her forehead",
+        "explaining to a grown man that it will only pinch",
+        "smoking one cigarette very slowly at a window"
+      ],
+      "looks": [
+        { "setting": "surgery", "text": "A tall woman in a white coat with the sleeves turned back twice, precisely, and a dental mirror in her breast pocket like a fountain pen." },
+        { "setting": "any", "text": "Steel-rimmed spectacles that she looks over, not through, when she doesn’t believe you." },
+        { "setting": "any", "text": "Very clean hands with very short nails, and a gold wedding band she wears on a chain round her neck instead of on the hand." }
+      ],
+      "voice": {
+        "ask": [
+          "Of course. Open wide. I mean the notebook. From seven, then, and stop me if anything hurts.",
+          "I keep good records. You’ll find my evening as precise as a filling, and about as much fun."
+        ],
+        "deflect": [
+          "That isn’t a dental question, and I don’t give opinions outside the mouth.",
+          "You’re probing, and I don’t see why I should sit still for it."
+        ],
+        "nobodyElse": [
+          "No one else. I’d have noticed. I notice teeth.",
+          "That’s all. I don’t care for company in the evening. They want to show me their molars."
+        ],
+        "hours": {
+          "7": "At seven I’m usually thinking about supper and not getting it.",
+          "8": "Eight, I start to want a cigarette, and I make myself wait till nine. Discipline.",
+          "9": "Nine, I have the cigarette. One. I make it last like a good filling.",
+          "10": "Ten, I like an argument. They’re harder to come by than cigarettes.",
+          "11": "Eleven, I’m reading something I won’t admit to. Medical journals, I tell people."
+        },
+        "refuse": [
+          "No. I don’t answer that, and I don’t need gas to keep from it.",
+          "This consultation is over."
+        ],
+        "ownUp": [
+          "I suppose it’s better out than in. That’s what I tell everybody."
+        ]
+      },
+      "ties": [
+        { "to": "gutman", "kind": "employee", "line": "Pearl keeps the book like a jailer and the waiting room like a church. I’d pay her more if I had it, and some weeks I tell her so." },
+        { "to": "russo", "kind": "owes", "line": "Carmine Russo has my marker for three hundred dollars, and he pats his breast pocket whenever he sees me." },
+        { "to": "lowenthal", "kind": "friend", "line": "Bea Lowenthal and I have had Sunday lunch for ten years. She has never once asked me to look at her teeth." }
+      ],
+      "secrets": [
+        { "text": "She plays poker at the card room over the garage, which she swore off at Easter in front of witnesses.", "place": "cardroom" },
+        { "text": "She sells the gold from old fillings to Wexler by the pennyweight, and doesn’t mention it to the patients it came out of.", "place": "wexlers" }
+      ],
+      "asVictim": {
+        "why": "She owes Russo three hundred dollars and has stopped paying him, on principle.",
+        "foundWith": "her spectacles folded in her breast pocket beside the dental mirror."
+      }
+    },
+    {
+      "id": "lieb",
+      "first": "Oscar",
+      "last": "Lieb",
+      "honorific": null,
+      "gender": "m",
+      "age": "20s",
+      "job": "the pawnbroker’s clerk",
+      "home": "wexlers",
+      "works": { "place": "wexlers", "open": 8, "close": 22 },
+      "manner": "plain",
+      "doing": [
+        "writing pledge tickets for his uncle",
+        "trying on a coat from the back room",
+        "polishing a trombone nobody will redeem",
+        "telling a customer what his own watch is worth"
+      ],
+      "looks": [
+        { "setting": "wexlers", "text": "A thin young man in sleeve garters behind the counter, in a waistcoat cut for somebody broader." },
+        { "setting": "any", "text": "Clothes better than his wages and each a different size, as if he’d been dressed by several generous uncles." },
+        { "setting": "any", "text": "A silk scarf with somebody else’s monogram on it, worn with the monogram tucked in." }
+      ],
+      "voice": {
+        "ask": [
+          "Sure, I’ll tell you. I tell everybody everything. That’s my trouble, my uncle says.",
+          "My night? Nothing much. Ask me about anybody’s watch, though. Now that’s interesting."
+        ],
+        "deflect": [
+          "Couldn’t tell you. My uncle tells me what to know, and he didn’t tell me that.",
+          "Look, I just write the tickets."
+        ],
+        "nobodyElse": [
+          "Nobody else. Just me and about four hundred coats.",
+          "That’s everybody. I’d have noticed. I notice clothes."
+        ],
+        "hours": {
+          "7": "Seven, I’m always starving. A fellow stuck behind a counter all day gets an appetite for everything.",
+          "8": "Eight, I start thinking about what to wear. I’ve got a lot to choose from. Don’t ask.",
+          "9": "Nine’s too early for anything good and too late for anything respectable.",
+          "10": "Ten’s when a fellow’s clothes start doing the talking, if he picked the right ones.",
+          "11": "Eleven’s my hour. A fellow’s got to have one."
+        },
+        "refuse": [
+          "Nope. That one I’m keeping, ticket and all.",
+          "Ask my uncle. He’s the one with the license."
+        ],
+        "ownUp": [
+          "Look, don’t tell my uncle. Here’s the honest version. It’s shorter."
+        ]
+      },
+      "ties": [
+        { "to": "gutman", "kind": "old-flame", "line": "Pearl’s sore because I talked about the shop. What else have I got to talk about? I’m in it twelve hours a day." },
+        { "to": "wexler", "kind": "employer", "line": "Uncle Ignatz pays me eleven dollars a week and calls it an education." },
+        { "to": "amato", "kind": "friend", "line": "Vinnie drives me home at half fare because I tell him who’s pawned what. He says it’s for his education too." },
+        { "to": "marsh", "kind": "owes", "line": "I owe Lola twenty dollars over a cigarette case. It was a misunderstanding, and she understands it perfectly." }
+      ],
+      "secrets": [
+        { "text": "He wears the unredeemed pledges out at night, a dead man’s tuxedo when he can get it, and goes dancing at the Peacock in it.", "place": "peacock" }
+      ],
+      "asVictim": {
+        "why": "He talks about everybody’s pledges to anybody who’ll listen, and some of those pledges were never meant to be talked about.",
+        "foundWith": "a tuxedo two sizes too big, with a pledge ticket still pinned inside the lapel."
+      }
+    },
+    {
+      "id": "russo",
+      "first": "Carmine",
+      "last": "Russo",
+      "honorific": null,
+      "gender": "m",
+      "age": "40s",
+      "job": "the card-room keeper",
+      "home": "excelsior",
+      "works": { "place": "cardroom", "open": 20, "close": 4 },
+      "manner": "terse",
+      "doing": [
+        "dealing himself a hand of solitaire",
+        "counting a stack of bills by the edge",
+        "adding an ashtray to the table",
+        "sitting with his back to the wall"
+      ],
+      "looks": [
+        { "setting": "cardroom", "text": "A neat dark man in shirtsleeves and a green eyeshade, at the head of the table with his back to the wall." },
+        { "setting": "any", "text": "Soft white hands that are always shuffling a deck, even in church, his mother-in-law says." },
+        { "setting": "any", "text": "A pinstripe suit pressed to a knife edge, and one gold tooth that shows when he wins." }
+      ],
+      "voice": {
+        "ask": [
+          "Sure. Cut the deck. I’ll deal you the evening.",
+          "My night’s a short hand. I’ll show it face up."
+        ],
+        "deflect": [
+          "I don’t play that game.",
+          "That’s a side bet. I don’t take side bets."
+        ],
+        "nobodyElse": [
+          "Nobody else at the table.",
+          "That’s the hand. No more cards."
+        ],
+        "hours": {
+          "7": "Seven, I eat. A man shouldn’t deal hungry. He gets generous.",
+          "8": "Eight, I like to be sitting down with my back to a wall. Any wall.",
+          "9": "Nine, I watch. I always watch at nine. It’s when people get brave.",
+          "10": "Ten, everybody I know starts needing a loan. I give it. I remember it.",
+          "11": "Eleven, I count. Money, mostly. Sometimes sheep."
+        },
+        "refuse": [
+          "Fold.",
+          "I’m out. Deal around me."
+        ],
+        "ownUp": [
+          "You called. I’ll show."
+        ]
+      },
+      "ties": [
+        { "to": "demos", "kind": "owed", "line": "Gus is good for it. Gus is slow for it, but he’s good." },
+        { "to": "hirsch", "kind": "owed", "line": "The doctor plays poker the way she pulls teeth: no hesitation, no mercy, and no idea when to stop." },
+        { "to": "fishel", "kind": "feud", "line": "Sid thinks every dollar on the East Side is a dollar he lost. Some of them, he did. To me." },
+        { "to": "greco", "kind": "in-law", "line": "My mother-in-law crosses herself when I come to Sunday dinner, and then she gives me the biggest plate. That’s family." }
+      ],
+      "secrets": [
+        { "text": "The decks at the card room are shaved, and he shaves them himself, in the closet where the spare decks are kept.", "place": "cardroom" }
+      ],
+      "asVictim": {
+        "why": "He holds markers on half the neighborhood, and a marker dies with the man who holds it.",
+        "foundWith": "a fresh deck in his breast pocket, still in its band, and his green eyeshade in his hand."
+      }
+    },
+    {
+      "id": "belkin",
+      "first": "Lazar",
+      "last": "Belkin",
+      "honorific": null,
+      "gender": "m",
+      "age": "50s",
+      "job": "the leading man",
+      "home": "excelsior",
+      "works": { "place": "lyric", "open": 19, "close": 24 },
+      "manner": "plain",
+      "doing": [
+        "practicing a death scene in a shop window",
+        "signing a program nobody asked him to sign",
+        "eating herring in a dressing gown",
+        "telling a story about Odessa in 1899"
+      ],
+      "looks": [
+        { "setting": "lyric", "text": "A large, handsome ruin of a man in a velvet-collared coat, with a silver-topped cane he doesn’t need and uses for pointing." },
+        { "setting": "any", "text": "Hair dyed a black that nature never tried, and greasepaint still in the creases by his ears." },
+        { "setting": "any", "text": "A ring on every finger but one, and a pale band of skin on that one." }
+      ],
+      "voice": {
+        "ask": [
+          "My evening! Ah. Sit. As I give everything to my public: from the beginning, with feeling.",
+          "Where was Belkin tonight? Everywhere a man of the theater should be, my friend. In order, then."
+        ],
+        "deflect": [
+          "Belkin does not dignify that. Belkin has played kings.",
+          "I’m an artist. Ask me about art."
+        ],
+        "nobodyElse": [
+          "Alone. A great actor is always alone, even in a crowd. Especially in a crowd.",
+          "No one else. Only Belkin, and Belkin’s thoughts."
+        ],
+        "hours": {
+          "7": "Seven is when a man of the theater begins to feel his public waiting for him, wherever he is.",
+          "8": "Eight o’clock, my friend, is a curtain, whether or not there is a curtain.",
+          "9": "Nine, I grow thoughtful. Ask anyone. It’s very becoming.",
+          "10": "Ten, I am at my best. I have been told so by critics, two of them sober.",
+          "11": "Eleven, I begin to feel my age, and I refuse it, as I refuse all bad notices."
+        },
+        "refuse": [
+          "Belkin has nothing further to say. Belkin exits.",
+          "No. I have played Lear in Yiddish. I can play a man who doesn’t answer."
+        ],
+        "ownUp": [
+          "The last act. Hold the curtain. Here is the truth, and I’ll try not to overplay it."
+        ]
+      },
+      "ties": [
+        { "to": "pinsky", "kind": "rival", "line": "Pinsky believes he’d have been a great rabbi. He is a great usher, and I tell him so, and somehow it doesn’t help." },
+        { "to": "wexler", "kind": "owes", "line": "Wexler has my mother’s ring in his window, where the whole Bowery can see it. He puts it there for that." },
+        { "to": "moskin", "kind": "employee", "line": "Tillie Moskin is the best ingénue on Second Avenue, and she wants my part. My part is a rabbi of sixty. She is twenty-four. That’s ambition." },
+        { "to": "krantz", "kind": "owes", "line": "I borrowed from Mrs. Krantz to get the ring back from Wexler, and then the money was needed elsewhere. That’s the theater." }
+      ],
+      "secrets": [
+        { "text": "When he’s short, he pledges the Lyric’s own silver candlesticks at Wexler’s and has them back on the stage before anybody counts them.", "place": "wexlers" }
+      ],
+      "asVictim": {
+        "why": "He owes Wexler, owes Mrs. Krantz, and stands between Tillie Moskin and the part she wants.",
+        "foundWith": "his greasepaint still on and a program in his coat pocket, signed to himself."
+      }
+    },
+    {
+      "id": "moskin",
+      "first": "Tillie",
+      "last": "Moskin",
+      "honorific": "Miss",
+      "gender": "f",
+      "age": "20s",
+      "job": "the ingénue",
+      "home": "lipskys",
+      "works": { "place": "lyric", "open": 19, "close": 24 },
+      "manner": "plain",
+      "doing": [
+        "running her lines into a hand mirror",
+        "eating a knish in full costume",
+        "reading Variety for parts uptown",
+        "taking off greasepaint with cold cream"
+      ],
+      "looks": [
+        { "setting": "lyric", "text": "A slim young woman in a peasant girl’s shawl and red skirt, with stage rouge on cheeks that don’t need it." },
+        { "setting": "any", "text": "Big dark eyes that she knows how to use, and uses." },
+        { "setting": "any", "text": "A copy of Variety rolled in her coat pocket, folded open at the uptown casting news." }
+      ],
+      "voice": {
+        "ask": [
+          "Oh, my evening. Let me do it properly. You have to set the scene, or it doesn’t play.",
+          "Sure, ask me anything. I’m rehearsing for being famous, so I might as well practice my interviews."
+        ],
+        "deflect": [
+          "That isn’t my line. I don’t do lines that aren’t mine.",
+          "Ask me again when I’m on Broadway. I’ll have a man who answers that."
+        ],
+        "nobodyElse": [
+          "Just me. A girl alone in the big city. You could put it on a poster.",
+          "Nobody else. Not even an audience, and believe me, I looked."
+        ],
+        "hours": {
+          "7": "Seven’s my nervous hour. Every actress has one, and mine’s at seven.",
+          "8": "Eight, I’m always hungry, and I never eat. You can’t, at eight. You might need to look tragic later.",
+          "9": "Nine, I start feeling like somebody. It wears off by midnight, like the rouge.",
+          "10": "Ten’s when I think about uptown. Everybody on Second Avenue thinks about uptown at ten.",
+          "11": "Eleven, I’m tired, and I won’t admit it, because tired is for the chorus."
+        },
+        "refuse": [
+          "No. I’m not playing that scene.",
+          "I don’t do that part. Get somebody else to read it."
+        ],
+        "ownUp": [
+          "Curtain up. Here’s what really happened, and I don’t come out of it as well as the heroine."
+        ]
+      },
+      "ties": [
+        { "to": "pinsky", "kind": "in-law", "line": "Uncle Meyer still calls me his niece. I divorced his nephew, not him." },
+        { "to": "belkin", "kind": "employer", "line": "Mr. Belkin pays me nineteen a week and lets me die in his arms in the third act. He thinks the nineteen is the generous part." },
+        { "to": "amato", "kind": "old-flame", "line": "Vinnie and me went steady all last summer. Then I got a part. He still won’t take my fare, which is either love or bad business." }
+      ],
+      "secrets": [
+        { "text": "She meets a producer from uptown in the curtained booth at Steinmetz’s, where nobody from Second Avenue would be seen eating, and she hasn’t told Belkin she’s been offered a part.", "place": "steinmetz" }
+      ],
+      "asVictim": {
+        "why": "She’s leaving the Lyric for uptown and taking the company’s best notices with her.",
+        "foundWith": "an uptown contract in her handbag, unsigned, and a stick of greasepaint."
+      }
+    },
+    {
+      "id": "mabry",
+      "first": "Earl",
+      "last": "Mabry",
+      "honorific": null,
+      "gender": "m",
+      "age": "30s",
+      "job": "the bandleader",
+      "home": "raffertys",
+      "works": { "place": "peacock", "open": 20, "close": 3 },
+      "manner": "plain",
+      "doing": [
+        "writing a tune on the back of a menu",
+        "oiling the valves of his cornet",
+        "tapping out a tempo on the table with two fingers",
+        "eating pie at four in the morning"
+      ],
+      "looks": [
+        { "setting": "peacock", "text": "A lean man in a tuxedo with the tie undone, and a cornet under one arm that he holds as if somebody might ask for it back." },
+        { "setting": "any", "text": "A pencil mustache trimmed so thin it looks drawn on, and might have been." },
+        { "setting": "any", "text": "A callus on his upper lip from the mouthpiece, which he touches when he’s thinking." }
+      ],
+      "voice": {
+        "ask": [
+          "Sure. Let me count it off for you. One, two, a-one two three four: seven o’clock.",
+          "My night? I’ll play it straight, no improvising. Takes the fun out, but you asked."
+        ],
+        "deflect": [
+          "I don’t read that kind of music.",
+          "That’s not in my key."
+        ],
+        "nobodyElse": [
+          "Nobody else. Solo.",
+          "Just me. No band, no singer, no applause."
+        ],
+        "hours": {
+          "7": "Seven, I warm up my lip. Wherever I am, the lip comes too.",
+          "8": "Eight’s a slow hour. Slow tempo. I like a slow eight.",
+          "9": "Nine’s when the night picks up the beat, whether you’re ready or not.",
+          "10": "Ten, I start hearing tunes in everything: car horns, the el, a woman laughing two streets off.",
+          "11": "Eleven’s the hour for the last good tune. After that everybody’s playing for tips."
+        },
+        "refuse": [
+          "No. That’s a number I don’t play.",
+          "I’ll sit this one out."
+        ],
+        "ownUp": [
+          "Take it from the top, and I’ll play it the way it was written."
+        ]
+      },
+      "ties": [
+        { "to": "rafferty", "kind": "landlady", "line": "Mrs. Rafferty feeds me pie at four in the morning and lectures me with her mouth full. Best room I ever had." },
+        { "to": "marsh", "kind": "old-flame", "line": "Lola and me were a number for two years. She still sings the bridge wrong to annoy me." },
+        { "to": "lowenthal", "kind": "rival", "line": "Miss Lowenthal tells every kid on Orchard Street that jazz will ruin their wrists. Half of them are in my audience by sixteen." },
+        { "to": "teitel", "kind": "friend", "line": "Sol Teitel keeps the loudest ties on Orchard Street under a cloth for me. He’s the only man below Fourteenth Street who understands a bandleader." }
+      ],
+      "secrets": [
+        { "text": "He sells his tunes for cash, no name on them, to a man from Tin Pan Alley who meets him at a table by the oven wall at Sokol’s, and then hears them on the radio under somebody else’s name.", "place": "sokols" }
+      ],
+      "asVictim": {
+        "why": "He knows which uptown bandleader’s hits are really his, and he’s started saying so.",
+        "foundWith": "his cornet in its case and a page of music in his inside pocket with no title on it."
+      }
+    },
+    {
+      "id": "greco",
+      "first": "Assunta",
+      "last": "Greco",
+      "honorific": "Mrs.",
+      "gender": "f",
+      "age": "50s",
+      "job": "the cook",
+      "home": "excelsior",
+      "works": { "place": "steinmetz", "open": 11, "close": 22 },
+      "manner": "terse",
+      "doing": [
+        "scrubbing a pot as if it had insulted her",
+        "tasting the gravy off a wooden spoon",
+        "crossing herself when the fat spits",
+        "carrying a covered pot out the alley door"
+      ],
+      "looks": [
+        { "setting": "steinmetz", "text": "A short, wide woman in a black dress and a white apron, with forearms that have stirred a great deal and a wooden spoon she points with." },
+        { "setting": "any", "text": "A gold crucifix on a chain, and a burn on the inside of her wrist the shape of a ladle’s rim." },
+        { "setting": "any", "text": "Black hair in a net, going white at the front in a streak she calls her medal." }
+      ],
+      "voice": {
+        "ask": [
+          "My night. I was on my feet. Write that down first.",
+          "Ask. I answer. Then I go home and sit down, and God help the man who asks me anything after that."
+        ],
+        "deflect": [
+          "You want to know that, you ask the saints. They see everything and they don’t cook.",
+          "Not my business. My business is the stove."
+        ],
+        "nobodyElse": [
+          "Nobody. Me. That’s enough.",
+          "Nobody else. I don’t need company. I have the stove."
+        ],
+        "hours": {
+          "7": "Seven, my feet start to hurt. They hurt till Sunday.",
+          "8": "Eight, I want my supper. A cook never eats her own supper. Ask any cook.",
+          "9": "Nine, my Rosa and the babies come into my head, and I get cross with whoever is closest.",
+          "10": "Ten, the day should be over, and the day doesn’t listen.",
+          "11": "Eleven, I pray a little. Mostly for my feet."
+        },
+        "refuse": [
+          "No. You want that, you go to confession and ask the priest what I told him.",
+          "I said no. I say no to the head waiter forty times a night. I can say it to you."
+        ],
+        "ownUp": [
+          "Va bene. I tell you, and then I go home."
+        ]
+      },
+      "ties": [
+        { "to": "sokol", "kind": "old-flame", "line": "Abe Sokol asked me to marry him once, over a tray of rolls. The rolls were better than the question." },
+        { "to": "demos", "kind": "feud", "line": "Demos talks to the customers like they’re dukes and to me like I’m the stove." },
+        { "to": "sobel", "kind": "friend", "line": "Yetta Sobel brought all five of mine into the world. Thursdays I feed her, and she cheats at pinochle like a saint." },
+        { "to": "russo", "kind": "in-law", "line": "Carmine married my Rosa and gave her a fur coat and a card room. I’d have settled for the coat." }
+      ],
+      "secrets": [
+        { "text": "She carries the last of the soup home in a covered pot for her daughter’s family and crosses it off the slate herself, which is why there is never any soup.", "place": "steinmetz" }
+      ],
+      "asVictim": {
+        "why": "She knows what goes into everything at Steinmetz’s, and what goes out the alley door.",
+        "foundWith": "a covered pot of soup, still warm, and her wooden spoon in her apron pocket."
+      }
+    },
+    {
+      "id": "krantz",
+      "first": "Bertha",
+      "last": "Krantz",
+      "honorific": "Mrs.",
+      "gender": "f",
+      "age": "50s",
+      "job": "the rent collector",
+      "home": "excelsior",
+      "works": null,
+      "manner": "careful",
+      "doing": [
+        "writing in a rent book with a fountain pen",
+        "counting bills with a rubber thumb",
+        "looking at a banister as if it owed her money",
+        "drinking lemon tea with the lemon left in"
+      ],
+      "looks": [
+        { "setting": "any", "text": "A stout woman in gray, buttoned to the throat, carrying a leather satchel with a brass lock on it." },
+        { "setting": "any", "text": "A pince-nez on a black ribbon, which she puts on to read a rent book and takes off to read a face." },
+        { "setting": "lipskys", "text": "A stout woman in the hall reading the names on the mailboxes as if they were a list of debts, which to her they are." }
+      ],
+      "voice": {
+        "ask": [
+          "My evening is in order. Everything I do is in order. You may have it in order.",
+          "I’ll answer you the way I answer everything: in writing, if you like, and in ink."
+        ],
+        "deflect": [
+          "That isn’t in the book.",
+          "I collect rents. I don’t collect gossip; it doesn’t pay on the first."
+        ],
+        "nobodyElse": [
+          "No one else. I prefer it that way. People in company tend to want extensions.",
+          "Nobody. Write it down: nobody."
+        ],
+        "hours": {
+          "7": "Seven, a boiled egg and a slice of toast. Thirty years. It’s cheaper than variety.",
+          "8": "Eight, I do the arithmetic. It is never in my favor and never wrong.",
+          "9": "Nine is a good hour for rent: people are fed, and home, and feeling guilty.",
+          "10": "Ten, I think about the first of the month. I always think about the first of the month.",
+          "11": "Eleven, I wind my watch. Mr. Krantz used to wind it for me. Now I do it, and it keeps better time."
+        },
+        "refuse": [
+          "That account is closed.",
+          "No. You may put that in your book, and I will put it in mine."
+        ],
+        "ownUp": [
+          "Let us balance the books, then."
+        ]
+      },
+      "ties": [
+        { "to": "wojcik", "kind": "employee", "line": "Wojcik is a good janitor when he’s awake, which is mostly when I’m in the building." },
+        { "to": "doyle", "kind": "old-flame", "line": "Francis Doyle courted me for a year in nineteen-four and then married the alderman’s niece. He’s been an alderman’s clerk ever since. I call that justice." },
+        { "to": "marsh", "kind": "owed", "line": "Miss Marsh is two months behind and tells me the money’s tied up in stock. Her stock is a tray of cigarettes." },
+        { "to": "belkin", "kind": "owed", "line": "Mr. Belkin borrowed a hundred dollars from me in a voice that made it sound like a favor to me." }
+      ],
+      "secrets": [
+        { "text": "She keeps two rent books for the Orchard Street building, one for her late husband’s estate and one for herself, and the third floor pays into the second.", "place": "lipskys" }
+      ],
+      "asVictim": {
+        "why": "Half the tenants on Orchard Street owe her, and the other half are about to.",
+        "foundWith": "her satchel locked and still in her hand, and the key on a ribbon round her neck."
+      }
+    },
+    {
+      "id": "doyle",
+      "first": "Francis",
+      "last": "Doyle",
+      "honorific": null,
+      "gender": "m",
+      "age": "40s",
+      "job": "the alderman’s clerk",
+      "home": "excelsior",
+      "works": null,
+      "manner": "plain",
+      "doing": [
+        "shaking hands with a man who didn’t offer his",
+        "handing out cigars with the alderman’s name on the band",
+        "writing a name in a little black book",
+        "eating a free lunch somebody else is paying for"
+      ],
+      "looks": [
+        { "setting": "any", "text": "A florid man in a derby and a checked waistcoat, with a carnation in his buttonhole that the alderman pays for." },
+        { "setting": "any", "text": "A right hand already out and reaching for yours from across the room." },
+        { "setting": "any", "text": "A little black notebook in his waistcoat pocket, held shut with a rubber band, which he pats when he says he’ll see what he can do." }
+      ],
+      "voice": {
+        "ask": [
+          "My friend! Of course. Between you and me and the alderman, I’ve nothing to hide, and I’ll prove it at length.",
+          "Where was I? Serving the public, my friend, as always. Let me tell you how."
+        ],
+        "deflect": [
+          "Now that’s a question for the alderman, and the alderman’s a busy man.",
+          "I’ll see what I can do. Which is to say, no."
+        ],
+        "nobodyElse": [
+          "Nobody else, on my honor, and my honor’s registered with the county.",
+          "Alone, my friend. A rare thing for me. Nobody to shake hands with."
+        ],
+        "hours": {
+          "7": "Seven, I’m a public servant still. The public doesn’t stop needing things at six.",
+          "8": "Eight’s a good hour for a favor. People have eaten. They’re grateful.",
+          "9": "Nine, it’s November on my mind. A man in my line always has November on his mind.",
+          "10": "Ten, I start remembering who I promised what. It’s a long list. I keep it short by forgetting.",
+          "11": "Eleven, I’m tired of being liked. It’s harder work than people think."
+        },
+        "refuse": [
+          "I can’t comment on that, my friend. I’m not authorized, and I’m not inclined.",
+          "No comment. Write that down; it’s the most honest thing I’ve said all week."
+        ],
+        "ownUp": [
+          "Off the record, then. Everything’s off the record with me, ask anyone."
+        ]
+      },
+      "ties": [
+        { "to": "szabo", "kind": "feud", "line": "Ruby Szabo blames me for her brother. Her brother blames the dice. I’m with the brother." },
+        { "to": "krantz", "kind": "old-flame", "line": "Bertha would have made a fine wife for a man with nerves of iron. I went into politics instead; it’s quieter." },
+        { "to": "teitel", "kind": "owed", "line": "Teitel owes me ten dollars for his pushcart license, and a little gratitude, and I’d settle for the ten." },
+        { "to": "amato", "kind": "feud", "line": "Amato drives like he votes: wherever he likes. I had his license looked at. Civic duty." }
+      ],
+      "secrets": [
+        { "text": "He collects an envelope from the Peacock every Friday for the alderman, and the alderman gets half of what’s in it.", "place": "peacock" },
+        { "text": "He rents the empty flat on the sixth floor of the Excelsior as a Mr. Smith, for meetings the alderman doesn’t know about.", "place": "excelsior" }
+      ],
+      "asVictim": {
+        "why": "He has kept a little black book of favors for twenty years, and every name in it would like the book back.",
+        "foundWith": "a carnation in his buttonhole and his little black book in his waistcoat, the rubber band still round it."
+      }
+    },
+    {
+      "id": "lowenthal",
+      "first": "Beatrice",
+      "last": "Lowenthal",
+      "honorific": "Miss",
+      "gender": "f",
+      "age": "30s",
+      "job": "the piano teacher",
+      "home": "lipskys",
+      "works": null,
+      "manner": "careful",
+      "doing": [
+        "correcting an exercise book in red pencil",
+        "winding a metronome",
+        "playing a nocturne very slowly with the soft pedal down",
+        "drinking tea from a cup with a saucer, always the saucer"
+      ],
+      "looks": [
+        { "setting": "lipskys", "text": "A thin, straight-backed woman in a gray dress with a white collar, sitting at an upright piano with the lid shut." },
+        { "setting": "any", "text": "Hair in a tight bun with a pencil through it, which she uses, and a second pencil, which she forgets." },
+        { "setting": "any", "text": "Long fingers that tap out scales on whatever’s in front of them: a table, a banister, your sleeve." }
+      ],
+      "voice": {
+        "ask": [
+          "Certainly. I shall be brief and in tempo.",
+          "My evening was quiet, and I could be quiet about it, but since you ask, here it is."
+        ],
+        "deflect": [
+          "That is not a question I was brought up to answer.",
+          "I teach the piano. I don’t teach that."
+        ],
+        "nobodyElse": [
+          "No one else. I prefer an empty room. It doesn’t play wrong notes.",
+          "Alone, and glad of it."
+        ],
+        "hours": {
+          "7": "Seven is the hour every child on Orchard Street practices badly at once. You can hear it from anywhere.",
+          "8": "Eight, I make tea. A proper cup, with a saucer, whatever else is happening.",
+          "9": "Nine is for music I play for myself. Slow music. Nobody needs to hear it.",
+          "10": "Ten I go to bed, generally. ‘Generally’ is a word I use a great deal.",
+          "11": "Eleven is far too late for anything decent, and I say so to anybody who’s up."
+        },
+        "refuse": [
+          "I don’t care to discuss it, and I won’t be made to.",
+          "No. I can be very firm with a child of eight. I can be firmer with you."
+        ],
+        "ownUp": [
+          "Since we are being honest, and apparently we are, I shall play it as written."
+        ]
+      },
+      "ties": [
+        { "to": "hirsch", "kind": "friend", "line": "Miriam fixed my front tooth for nothing in nineteen-sixteen. I have been paying her back in Sunday lunches ever since, and we are nowhere near square." },
+        { "to": "mabry", "kind": "rival", "line": "Mr. Mabry tells my pupils that scales are for fish. Three of them have taken up the cornet." },
+        { "to": "nowak", "kind": "owed", "line": "Agnes Nowak owes me for nine lessons and has learned, as far as I can tell, one." }
+      ],
+      "secrets": [
+        { "text": "She plays piano at the Peacock two nights a week in a red wig, as Bunny LaRue, and her pupils’ mothers would die.", "place": "peacock" }
+      ],
+      "asVictim": {
+        "why": "She has a sharp tongue, and one of the people it has been sharp with knows about the red wig in her music case.",
+        "foundWith": "her music case, with a red wig folded inside it on top of the Czerny."
+      }
+    },
+    {
+      "id": "amato",
+      "first": "Vincent",
+      "last": "Amato",
+      "honorific": null,
+      "gender": "m",
+      "age": "30s",
+      "job": "the cab driver",
+      "home": "lipskys",
+      "works": null,
+      "manner": "plain",
+      "doing": [
+        "sleeping in his cab with his cap over his face",
+        "eating a sandwich on the running board",
+        "polishing the radiator cap with his sleeve",
+        "arguing with a horse cab about the right of way"
+      ],
+      "looks": [
+        { "setting": "any", "text": "A stocky man in a leather jacket and a chauffeur’s cap pushed back, moving a toothpick from one side of his mouth to the other to show he’s thinking." },
+        { "setting": "any", "text": "Hands black to the wrist from the engine, and a clean handkerchief in his top pocket for the passengers." },
+        { "setting": "any", "text": "A St. Christopher medal on a chain round his neck and another on the dashboard of his cab, in case one of them is off duty." }
+      ],
+      "voice": {
+        "ask": [
+          "Where to? Ha. Sorry. Habit. Go ahead, ask.",
+          "My night? I’ll give it to you like a fare: the long way, and you don’t argue with the meter."
+        ],
+        "deflect": [
+          "I just drive. People get in, people get out. I don’t look in the mirror.",
+          "Couldn’t say. My eyes were on the road, and the road was empty."
+        ],
+        "nobodyElse": [
+          "Nobody in the back. Flag up.",
+          "Just me. Not a fare all night, and you can tell my mother."
+        ],
+        "hours": {
+          "7": "Seven’s the worst hour for a cab. Everybody’s late, and everybody thinks it’s my fault. I take seven off when I can.",
+          "8": "Eight, I eat. Most men eat sitting at a table. I’m not most men.",
+          "9": "Nine’s dead. Nine’s always dead. You could roll a bowling ball down Delancey at nine.",
+          "10": "Ten, the shows let out and everybody wants Brooklyn. Nobody wants Brooklyn at any other hour.",
+          "11": "Eleven, I think about quitting. Every night at eleven I think about it, and every morning I’ve forgotten."
+        },
+        "refuse": [
+          "No. That fare I’m not taking.",
+          "Meter’s off. I’m not saying."
+        ],
+        "ownUp": [
+          "Flag down. Here’s the real route."
+        ]
+      },
+      "ties": [
+        { "to": "lieb", "kind": "friend", "line": "Oscar knows everybody’s business by their watch. Good kid. Talks too much in the back seat." },
+        { "to": "moskin", "kind": "old-flame", "line": "Tillie and me went steady all last summer. Then she got a part. I still don’t take her fare. I can’t help it." },
+        { "to": "doyle", "kind": "feud", "line": "Doyle had my hack license pulled for a week because I wouldn’t drive his cousin for nothing. A week is a lot of fares." }
+      ],
+      "secrets": [
+        { "text": "Some nights he runs crates up from the river for Sokol with his flag down, and unloads them through the bakery door.", "place": "sokols" }
+      ],
+      "asVictim": {
+        "why": "He has driven everybody on the East Side somewhere they’d rather nobody knew about.",
+        "foundWith": "his cap and a trip sheet in his pocket with every fare written down in pencil."
+      }
+    },
+    {
+      "id": "sobel",
+      "first": "Yetta",
+      "last": "Sobel",
+      "honorific": "Mrs.",
+      "gender": "f",
+      "age": "60s",
+      "job": "the midwife",
+      "home": "lipskys",
+      "works": null,
+      "manner": "plain",
+      "doing": [
+        "telling somebody what they weighed at birth",
+        "knitting a baby’s cap of no particular size",
+        "drinking tea from a glass with a lump of sugar in her teeth",
+        "complaining to the janitor through the radiator"
+      ],
+      "looks": [
+        { "setting": "any", "text": "A tiny old woman in a black shawl, carrying a doctor’s bag older than most of the people she brought into the world." },
+        { "setting": "any", "text": "Spectacles on a chain, and a face that has seen everybody on Orchard Street at their very first and is not impressed by their since." },
+        { "setting": "lipskys", "text": "A small woman in a second-floor kitchen doorway, in a hairnet and felt slippers, holding a glass of tea in a saucer." }
+      ],
+      "voice": {
+        "ask": [
+          "Sit, sit. I delivered half this street. I can deliver an evening.",
+          "You want to know where I was? Pull up a chair. It’s not a short story; I’m an old woman."
+        ],
+        "deflect": [
+          "I’ve delivered nine hundred babies. Not one of them asked me that.",
+          "That, I don’t know, and at my age, what I don’t know, I don’t need."
+        ],
+        "nobodyElse": [
+          "Nobody. Me and my feet.",
+          "Nobody else, and I’d know. I know everybody. I was there when they arrived."
+        ],
+        "hours": {
+          "7": "Seven, I eat a little something. A midwife eats when she can, because the babies don’t ask.",
+          "8": "Eight, my feet go up, wherever I am. They’ve earned it.",
+          "9": "Nine, I knit. Caps for babies not born yet. I have a feeling about who’s next.",
+          "10": "Ten, I think about my late husband, may he rest. He’s resting. He was always good at it.",
+          "11": "Eleven, I should be asleep, and I tell the whole street to be asleep, and the whole street hasn’t listened to me since the day it was born."
+        },
+        "refuse": [
+          "No. I’ve kept more secrets than the priest and the rabbi together, and I won’t start telling at my age.",
+          "That one stays in the bag."
+        ],
+        "ownUp": [
+          "Well. It comes out eventually. They always do."
+        ]
+      },
+      "ties": [
+        { "to": "wojcik", "kind": "feud", "line": "Wojcik heats the building like it’s his money. It’s not his money. It’s barely his building." },
+        { "to": "greco", "kind": "friend", "line": "Assunta feeds me Thursdays. I delivered her five, so she figures she’s still paying." },
+        { "to": "teitel", "kind": "in-law", "line": "Solomon sells neckties off a cart and thinks he’s a merchant prince. My daughter married his son, so I nod." }
+      ],
+      "secrets": [
+        { "text": "She reads coffee grounds for a quarter at a back table in Sokol’s, and her rabbi thinks she’s at her sister’s.", "place": "sokols" }
+      ],
+      "asVictim": {
+        "why": "She knows the real birthday of everybody on Orchard Street, and the real father of a few.",
+        "foundWith": "her doctor’s bag, and in it a half-knitted baby’s cap and a list of names in Yiddish."
+      }
+    },
+    {
+      "id": "nowak",
+      "first": "Agnes",
+      "last": "Nowak",
+      "honorific": "Miss",
+      "gender": "f",
+      "age": "20s",
+      "job": "the switchboard operator",
+      "home": "raffertys",
+      "works": null,
+      "manner": "careful",
+      "doing": [
+        "painting her nails a red her landlady disapproves of",
+        "saying ‘Number, please’ in her sleep",
+        "counting out change for a horse she likes",
+        "writing a letter home to Scranton"
+      ],
+      "looks": [
+        { "setting": "any", "text": "Pale under a cloche hat, with a red mark across the top of her head from the headset that her hair doesn’t quite hide." },
+        { "setting": "any", "text": "Nails painted red and bitten, both." },
+        { "setting": "raffertys", "text": "A girl in a kimono halfway up the second flight with her shoes in her hand, stopped as if somebody had called her name." }
+      ],
+      "voice": {
+        "ask": [
+          "Number, please. Sorry. I mean, what would you like to know? I’ll put you through.",
+          "I don’t mind telling you. I’m very good at times; it’s my whole job."
+        ],
+        "deflect": [
+          "I’m sorry, that line’s busy.",
+          "I’m not supposed to listen in, so I don’t know anything."
+        ],
+        "nobodyElse": [
+          "Nobody, and I’m disconnecting.",
+          "That’s all. Nobody on the line."
+        ],
+        "hours": {
+          "7": "Seven, I still hear the switchboard in my ears. It takes till eight to stop.",
+          "8": "Eight’s when I feel lucky. I don’t know why. It’s cost me a fortune.",
+          "9": "Nine’s for Scranton. You’d be amazed how much I think about Scranton for somebody who left it.",
+          "10": "Ten I’m supposed to be in. Rule four. I know rule four by heart.",
+          "11": "Eleven, I wish I was asleep and I wish I was dancing, both at once."
+        },
+        "refuse": [
+          "I’m sorry, I can’t connect you.",
+          "No. Please. I can’t."
+        ],
+        "ownUp": [
+          "I’ll tell you. Only please don’t tell Mrs. Rafferty; she’s got a page for me already."
+        ]
+      },
+      "ties": [
+        { "to": "rafferty", "kind": "landlady", "line": "Mrs. Rafferty’s writing it down. I’ve seen the book. My name’s got its own page." },
+        { "to": "fishel", "kind": "owes", "line": "I owe Mr. Fishel eleven dollars on a horse called Mother’s Pride. Mother’s Pride is a liar." },
+        { "to": "lowenthal", "kind": "owes", "line": "I owe Miss Lowenthal for nine lessons. She says I play like I haven’t paid. I haven’t." }
+      ],
+      "secrets": [
+        { "text": "She goes dancing at the Peacock on the nights she tells Mrs. Rafferty she’s working the late shift at the exchange.", "place": "peacock" }
+      ],
+      "asVictim": {
+        "why": "She listens in at the switchboard, and somebody found out what she heard.",
+        "foundWith": "her shoes in her hand and a dance card from the Peacock in her coat pocket."
+      }
+    },
+    {
+      "id": "teitel",
+      "first": "Solomon",
+      "last": "Teitel",
+      "honorific": null,
+      "gender": "m",
+      "age": "60s",
+      "job": "the pushcart man",
+      "home": "lipskys",
+      "works": null,
+      "manner": "plain",
+      "doing": [
+        "arranging neckties on his cart by color, then by price, then by color again",
+        "haggling with a customer who has already paid",
+        "eating a baked potato from a street stove",
+        "tying a tarpaulin over his cart for the night"
+      ],
+      "looks": [
+        { "setting": "lipskys", "text": "An old man in two overcoats, the outer one open and the inner one buttoned, with a dozen neckties hung over one arm for display." },
+        { "setting": "any", "text": "A necktie of his own so loud it seems to be shouting for the others." },
+        { "setting": "any", "text": "A white beard trimmed square, and fingerless gloves from which he can produce change faster than you can see it." }
+      ],
+      "voice": {
+        "ask": [
+          "For you, a special price: the whole evening, free. Nobody gets that from Teitel. Listen.",
+          "Sit, sit. My night you can have, and a tie to go with it."
+        ],
+        "deflect": [
+          "That, I don’t sell.",
+          "What do I know? I sell neckties. A necktie doesn’t ask where a man’s been."
+        ],
+        "nobodyElse": [
+          "Nobody. Not a customer. Not a policeman.",
+          "Nobody else. I’d have tried to sell them something."
+        ],
+        "hours": {
+          "7": "Seven, I count the day. It never takes long.",
+          "8": "Eight, my wife starts saying, Solomon, you’ll catch your death. Forty years she says it. Forty years I’m alive.",
+          "9": "Nine, business. I think about it; it doesn’t think about me.",
+          "10": "Ten, a man my age should be in bed. I tell everybody. Nobody listens to a necktie man.",
+          "11": "Eleven, I remember my mother, may she rest, who never once told me to sell neckties."
+        },
+        "refuse": [
+          "No sale. Not at any price.",
+          "That, I keep under the cloth."
+        ],
+        "ownUp": [
+          "Nu, all right. For you, the truth, wholesale."
+        ]
+      },
+      "ties": [
+        { "to": "doyle", "kind": "owes", "line": "Doyle got me my pushcart license for ten dollars and a vote. He’s had the vote. He’s still waiting for the ten." },
+        { "to": "sobel", "kind": "in-law", "line": "Yetta Sobel is my son’s mother-in-law, which means she’s been right about everything since nineteen-twenty." },
+        { "to": "mabry", "kind": "friend", "line": "Mr. Mabry buys a tie off my cart every Saturday and wears it once. He says a bandleader can’t be seen twice in a tie. God bless the bandleader." }
+      ],
+      "secrets": [
+        { "text": "He sits in on the late game at the card room over the garage, with the rent money, on nights he tells his wife he’s minding the cart.", "place": "cardroom" }
+      ],
+      "asVictim": {
+        "why": "He has held the best corner on Orchard Street for thirty years against all comers, and some of the comers are still waiting.",
+        "foundWith": "a dozen neckties over one arm and his pushcart license, folded small, in his inside pocket."
+      }
+    }
+  ]
+}
