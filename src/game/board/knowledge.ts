@@ -158,7 +158,9 @@ export function linesHeld(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>): 
     } else if (kind === 'search') {
       const f = c.finds.find((x) => x.id === rest);
       if (!f) continue;
-      out.push({ id: `find:${rest}`, q, kind: 'find', place: f.place, about: [], text: `${cap(f.what)} at ${placeName(c, f.place)}: ${f.text}` });
+      // docs/46 §2: above Raw the papers put nobody's page on top, in the notebook as on the page.
+      const text = f.gives.why && c.tier > 0 ? 'A page on each of them, and a reason on every page.' : f.text;
+      out.push({ id: `find:${rest}`, q, kind: 'find', place: f.place, about: [], text: `${cap(f.what)} at ${placeName(c, f.place)}: ${text}` });
     } else if (kind === 'confront') {
       const [p, hs] = rest.split('@') as [string, string];
       const h = Number(hs);

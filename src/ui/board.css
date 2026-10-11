@@ -456,7 +456,8 @@
   font-style: italic;
 }
 
-.score-plain {
+.leaf p.score-plain {
   margin: -0.6rem 0 1rem;
   font-style: italic;
+  text-indent: 0;
 }

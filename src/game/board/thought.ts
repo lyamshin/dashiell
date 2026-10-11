@@ -536,24 +536,27 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         const byName = new Map<string, Hour[]>();
         for (const h of hs) for (const e of l.entries[h] ?? []) byName.set(said(e), [...(byName.get(said(e)) ?? []), h]);
         const groups = new Map<string, string[]>();
+        // One hour: the names alone ("Rafferty and Lou in this room"). Two: by hour, both first.
+        const one = hs.length === 1;
         for (const [n, at] of byName) {
-          const k = at.length === hs.length && hs.length > 1 ? (hs.length === 2 ? 'at both' : 'at all of them') : `at ${andList(at.map(hourWord))}`;
+          const k = one ? '' : at.length === hs.length ? (hs.length === 2 ? 'at both' : 'at all of them') : `at ${andList(at.map(hourWord))}`;
           groups.set(k, [...(groups.get(k) ?? []), n]);
         }
-        const parts = [...groups.entries()].sort((u, v) => Number(v[0].startsWith('at both') || v[0].startsWith('at all')) - Number(u[0].startsWith('at both') || u[0].startsWith('at all'))).map(([k, ns]) => `${andList(ns)} ${k}`);
+        const parts = [...groups.entries()].sort((u, v) => Number(v[0].startsWith('at both') || v[0].startsWith('at all')) - Number(u[0].startsWith('at both') || u[0].startsWith('at all'))).map(([k, ns]) => (k ? `${andList(ns)} ${k}` : andList(ns)));
         const empty = hs.filter((h) => (l.entries[h] ?? []).length === 0).map(hourWord);
-        if (empty.length) parts.push(`nobody at ${andList(empty)}`);
+        if (empty.length) parts.push(one ? 'nobody' : `nobody at ${andList(empty)}`);
         const ppl = hs.flatMap((h) => (l.entries[h] ?? []).flatMap((e) => ('person' in e ? [e.person] : [])));
         const there = where(c, l.place, here) === 'here' ? 'in this room' : `at ${placeName(c, l.place)}`;
         const when = andList(hs.map(hourWord));
         const W = nameOf(c, l.watcher);
-        const had = `${W} had ${parts.join(', and ')}, ${there}`;
+        const listed = `${parts.join(', and ')}${one ? ' ' : ', '}${there}`;
+        const had = `${W} had ${listed}`;
         // A night has several lists: the frame turns over so no sentence is said twice.
         const framed = x.pick('list-hours', [
-          `The ${hs.length > 1 ? 'hours' : 'hour'} that mattered ${hs.length > 1 ? 'were' : 'was'} ${when}. ${had}.`,
-          `For ${when}, the ${hs.length > 1 ? 'hours' : 'hour'} that mattered, ${had}.`,
+          `The ${one ? 'hour' : 'hours'} that mattered ${one ? 'was' : 'were'} ${when}. ${had}.`,
+          `For ${when}, the ${one ? 'hour' : 'hours'} that mattered, ${had}.`,
           `At ${when}, when it counted, ${had}.`,
-          `I wrote down what ${W} had at ${when}, the ${hs.length > 1 ? 'hours' : 'hour'} that mattered: ${parts.join(', and ')}, ${there}.`,
+          `I wrote down what ${W} had at ${when}, the ${one ? 'hour' : 'hours'} that mattered: ${listed}.`,
         ]);
         add(framed, clockRef, { hours: hs, people: [l.watcher, ...ppl], places: [l.place] });
       }

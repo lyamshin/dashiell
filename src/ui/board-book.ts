@@ -15,7 +15,7 @@ import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { boardGrid, cellText, type BoardCell, type BoardGrid } from '../game/board/grid.js';
-import { knownPeople, knownPlaces, linesHeld, solveRun } from '../game/board/knowledge.js';
+import { knownPeople, knownPlaces, linesHeld } from '../game/board/knowledge.js';
 import {
   BOARD_SAVE_KEY,
   budgetCalls,
@@ -34,7 +34,7 @@ import {
   type TierIndex,
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
-import { BREAKS_LABEL, HUNCH, WHERE_BY_LABEL, boardFields, breakOptions, curtainOfBoard, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
+import { BREAKS_LABEL, HUNCH, WHERE_BY_LABEL, boardFields, breakOptions, curtainOfBoard, hoursThatMattered, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE } from '../game/board/teach.js';
 import { costLabel } from '../game/board/text.js';
 import { fileToProfile, loadProfile, teachOn, type KeyValueStore } from '../game/board/profile.js';
@@ -546,7 +546,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const selects = new Map<FieldKey, HTMLSelectElement>();
     const lines = new Map<FieldKey, () => string | null>();
     // docs/46 §3: the hours that mattered, as the notebook has them.
-    const hs = solveRun(dd.kase, r).possibleHours.map((h) => hourWord(h));
+    const hs = hoursThatMattered(dd).map((h) => hourWord(h));
     const hours = hs.length > 1 ? `${hs.slice(0, -1).join(', ')} or ${hs[hs.length - 1]}` : (hs[0] ?? '');
     /** A line question: the lines it offers as a list to pick one from, and a hunch. */
     const lineField = (key: 'breaks' | 'whereBy', label: string, options: () => LineOption[], note: () => string) => {

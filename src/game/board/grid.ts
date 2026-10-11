@@ -143,7 +143,9 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
     }
     return { id, name: nameOf(c, id), company: personOf(c, id)?.role === 'company', cells, means, ...(meansWhy ? { meansWhy } : {}) };
   });
-  const window = [...s.possibleHours];
+  // docs/46 §2: the grid marks the hours the office gave. When a sighting narrows two to one, that's
+  // the player's to see; the thought sets the two side by side and stops there.
+  const window = c.tier === 0 ? [...s.possibleHours] : [...(c.givens.window ?? c.crime.window)];
   return {
     hours,
     rows,

@@ -27,13 +27,14 @@ import { boardChoices, pickerFor, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { boardGridText, placeCodes } from '../game/board/grid.js';
 import { BOARD_TEACH_LINES, BOARD_TEACH_TITLE, BOARD_RULES } from '../game/board/teach.js';
-import { solveRun } from '../game/board/knowledge.js';
+
 import { OFFICE, budgetCalls, dealBoard, deadlineWords, hourWord, nameOf, placeName, tierName, type BoardDeal, type BoardReport, type BoardRun } from '../game/board/model.js';
 import {
   BREAKS_LABEL,
   HUNCH,
   WHERE_BY_LABEL,
   boardFields,
+  hoursThatMattered,
   breakOptions,
   curtainOfBoard,
   pointsText,
@@ -188,7 +189,7 @@ function pageChoicesText(night: Night): string {
     }
     out.push(itemLine(it.n, it.choice, costText(it.choice)));
   }
-  out.push('', wrap('A star is worth taking now (never more than three), and says why. ✓ is done already, and free to read again. Choosing somebody costs nothing: their topics open, and "back" shuts them.'));
+  out.push('', wrap('A star marks one worth taking now and says what points there, never what the answer will show; the stars thin out as the tiers go up. ✓ is done already, and free to read again. Choosing somebody costs nothing: their topics open, and "back" shuts them.'));
   return out.join('\n');
 }
 
@@ -244,7 +245,7 @@ function pronWord(night: Night, p: string): string {
 
 /** The hours that mattered, as the notebook has them: "ten", "nine or ten". */
 function hoursWord(night: Night): string {
-  const hs = solveRun(night.d.kase, night.run).possibleHours.map((h) => hourWord(h));
+  const hs = hoursThatMattered(night.d).map((h) => hourWord(h));
   return hs.length > 1 ? `${hs.slice(0, -1).join(', ')} or ${hs[hs.length - 1]}` : (hs[0] ?? '');
 }
 

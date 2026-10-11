@@ -20,7 +20,7 @@ import { minimalSets } from '../../gen/board/path.js';
 import { techniquesUpTo } from '../../gen/board/tiers.js';
 import { questionsOf, solve } from '../../gen/board/solver.js';
 import { Hand } from './decks.js';
-import { accountOf, collisionsOf, confrontationOf, judgeLine, linesHeld, solveRun, type Line } from './knowledge.js';
+import { accountOf, collisionsOf, confrontationOf, judgeLine, linesHeld, type Line } from './knowledge.js';
 import {
   andList,
   cap,
@@ -181,14 +181,22 @@ export interface LineOption {
 export const HUNCH = 'A hunch';
 
 /**
+ * The hours that mattered, as the form says them: the office's window. Never
+ * the hour worked out from it, which is the player's to work out (docs/46 §2).
+ */
+export function hoursThatMattered(d: BoardDeal): Hour[] {
+  return d.kase.givens.window ?? d.kase.crime.window;
+}
+
+/**
  * What "What breaks their story?" offers for whoever is named: the lines held
- * that name them or fall at the hours that mattered (the crime hour once it's
- * known, else the office's window), never their own, in the order they came.
- * With nobody named, only the lines at those hours.
+ * that name them or fall at the hours that mattered (the office's window),
+ * never their own, in the order they came. With nobody named, only the lines
+ * at those hours.
  */
 export function breakOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>, who: PersonId | null): LineOption[] {
   const c = d.kase;
-  const hours = new Set(solveRun(c, run).possibleHours);
+  const hours = new Set(hoursThatMattered(d));
   return linesHeld(c, run)
     .filter((l) => l.kind !== 'find' && (who === null || l.speaker !== who))
     .filter((l) => (l.hour !== undefined && hours.has(l.hour)) || (who !== null && l.about.includes(who)))
@@ -304,7 +312,7 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
   const outcome: Outcome = !who.answered ? 'cold' : !who.correct ? 'wrong-man' : who.half ? 'lucky' : points === asked ? 'solved' : 'thin';
   const plain: string[] = [];
   if (who.half) plain.push('Right, but you couldn’t have known: half credit on who.');
-  if (scored.some((f) => f.key === 'where' && f.half)) plain.push('Where it is now was right, but nothing you held put it there: half credit on where.');
+  if (scored.some((f) => f.key === 'where' && f.half)) plain.push('Where it is now was right, but not on the line that put it there: half credit on where.');
   return {
     points,
     asked,

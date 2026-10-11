@@ -153,7 +153,10 @@ export function boardChoices(d: BoardDeal, run: BoardRun): OfferedGroup[] {
     if (run.visited.includes(p) || p === OFFICE) return ch;
     // Who the player knows of who's there tonight, or why the place is known at all.
     const there = c.people.filter((x) => x.foundAt === p && people.has(x.id) && (x.role === 'suspect' || x.role === 'company')).map((x) => x.short);
-    return { ...ch, note: there.length > 0 ? `${andList(there)} ${there.length > 1 ? 'are' : 'is'} there` : (known.get(p) ?? 'not been') };
+    const note = there.length > 0 ? `${andList(there)} ${there.length > 1 ? 'are' : 'is'} there` : (known.get(p) ?? 'not been');
+    // A star's reason that says the same as the note says it once.
+    if (ch.why && ch.why.toLowerCase().startsWith(note.toLowerCase())) return ch;
+    return { ...ch, note };
   });
   // Stars first; then the rest. More than four places fold under "Other places".
   go.sort((a, b) => Number(b.lead) - Number(a.lead));

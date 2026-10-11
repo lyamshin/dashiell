@@ -10,6 +10,7 @@ import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { walkBetween } from '../src/game/board/walk.js';
 import { namesOverTwo, thinNames } from '../src/game/board/names.js';
 import { levelIssues } from '../src/game/board/lint.js';
+import { linesHeld } from '../src/game/board/knowledge.js';
 import type { Page } from '../src/game/board/types.js';
 
 /**
@@ -113,6 +114,21 @@ describe('board: the thought', () => {
           const report = run.log[run.log.length - 1] as Page;
           expect(prose(report), `tier ${tier} ${type} seed ${s}`).not.toMatch(/Every line had an answer|nothing on it I couldn’t fill in|I could fill in all of it|Not every line on it/);
         }
+      }
+    }
+  });
+
+  it('above Raw the papers put nobody’s page on top, on the page or in the notebook', () => {
+    for (let s = 1; s <= 4; s++) {
+      for (const tier of [1, 2, 3, 4, 5] as TierIndex[]) {
+        const d = dealBoard(s, tier, 'murder');
+        const run = playBoardOracle(d).run;
+        const culprit = d.kase.people.find((p) => p.id === d.kase.crime.culprit)?.short ?? '';
+        for (const p of run.log.filter((x) => x.board?.q === 'search:papers')) {
+          expect(prose(p), `tier ${tier} seed ${s}`).not.toMatch(/on top\b(?!,)/);
+          expect(prose(p), `tier ${tier} seed ${s}`).not.toContain(culprit);
+        }
+        expect(linesHeld(d.kase, run).find((l) => l.id === 'find:papers')?.text ?? '').not.toContain(culprit);
       }
     }
   });
