@@ -15,12 +15,13 @@ import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { boardGrid, cellText, type BoardCell, type BoardGrid } from '../game/board/grid.js';
-import { knownPeople, knownPlaces, linesHeld } from '../game/board/knowledge.js';
+import { knownPeople, knownPlaces, linesHeld, solveRun } from '../game/board/knowledge.js';
 import {
   BOARD_SAVE_KEY,
   budgetCalls,
   dealBoard,
   deadlineWords,
+  hourWord,
   isMurder,
   nameOf,
   personOf,
@@ -33,7 +34,7 @@ import {
   type TierIndex,
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
-import { boardFields, curtainOfBoard, reportFrom, scoreBoard, storyOfBoard, type FieldKey, type Verdict } from '../game/board/report.js';
+import { BREAKS_LABEL, HUNCH, WHERE_BY_LABEL, boardFields, breakOptions, curtainOfBoard, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE } from '../game/board/teach.js';
 import { costLabel } from '../game/board/text.js';
 import { fileToProfile, loadProfile, teachOn, type KeyValueStore } from '../game/board/profile.js';
@@ -249,7 +250,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     }
     if (screen.kind === 'verdict') {
       leaf.append(
-        renderVerdict(screen.verdict, () => toTitle(), { story: storyOfBoard(d as BoardDeal), truthSheet: () => curtainOfBoard(d as BoardDeal) }, screen.news),
+        renderVerdict(screen.verdict, () => toTitle(), { story: storyOfBoard(d as BoardDeal), truthSheet: () => curtainOfBoard(d as BoardDeal, r, r.filed) }, screen.news),
       );
       page.append(leaf);
       return page;
@@ -541,20 +542,59 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       el('h2', { text: 'The report' }),
       el('p', { class: 'note', text: r.used >= budgetCalls(d as BoardDeal) ? (isMurder((d as BoardDeal).kase) ? 'Eight o’clock, and the DA’s man is standing over the desk. Whatever is on the page is what gets filed.' : 'Eight o’clock, and the client is at the door wanting an answer.') : 'Filing is final. Leave a line blank and it goes in as I don’t know.' }),
     );
+    const dd = d as BoardDeal;
     const selects = new Map<FieldKey, HTMLSelectElement>();
-    for (const f of boardFields(d as BoardDeal)) {
+    const lines = new Map<FieldKey, () => string | null>();
+    // docs/46 §3: the hours that mattered, as the notebook has them.
+    const hs = solveRun(dd.kase, r).possibleHours.map((h) => hourWord(h));
+    const hours = hs.length > 1 ? `${hs.slice(0, -1).join(', ')} or ${hs[hs.length - 1]}` : (hs[0] ?? '');
+    /** A line question: the lines it offers as a list to pick one from, and a hunch. */
+    const lineField = (key: 'breaks' | 'whereBy', label: string, options: () => LineOption[], note: () => string) => {
+      const box = el('fieldset', { class: 'field field--lines' });
+      box.append(el('legend', { text: label }));
+      const hint = el('p', { class: 'line-hint' });
+      const list = el('div', { class: 'line-options', role: 'radiogroup', 'aria-label': label });
+      box.append(hint, list);
+      const fill = () => {
+        hint.textContent = note();
+        clear(list);
+        [...options(), { value: '', label: HUNCH }].forEach((o, i) => {
+          const id = `rf-${key}-${i}`;
+          const input = el('input', { type: 'radio', name: key, value: o.value, id });
+          if (o.value === '') input.checked = true;
+          list.append(el('label', { class: `line-option${o.value === '' ? ' line-option--hunch' : ''}`, for: id }, input, el('span', { text: o.label })));
+        });
+      };
+      fill();
+      lines.set(key, () => (list.querySelector('input:checked') as HTMLInputElement | null)?.value || null);
+      form.append(box);
+      return fill;
+    };
+    for (const f of boardFields(dd)) {
       const s = el('select', { name: f.key });
       s.append(el('option', { value: '' }, 'I don’t know'));
       for (const o of f.options) s.append(el('option', { value: o.value }, o.label));
       selects.set(f.key, s);
       form.append(el('div', { class: 'field' }, el('label', { text: f.label }), s));
+      if (f.key === 'who') {
+        const who = () => s.value || null;
+        const refill = lineField(
+          'breaks',
+          BREAKS_LABEL,
+          () => breakOptions(dd, r, who()),
+          () => (who() ? `The lines I hold that name ${nameOf(dd.kase, who() as string)} or fall at ${hours}.` : `Name them first. Until then, the lines I hold at ${hours}.`),
+        );
+        s.addEventListener('change', refill);
+      }
+      if (f.key === 'where') lineField('whereBy', WHERE_BY_LABEL, () => whereByOptions(dd, r), () => 'The remarks and finds I hold, and anything put to them.');
     }
     form.append(el('div', { class: 'after' }, el('button', { class: 'open-case', type: 'submit', text: 'File it' })));
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const answers: Partial<Record<FieldKey, string | null>> = {};
       for (const [k, s] of selects) answers[k] = s.value || null;
-      file(reportFrom(d as BoardDeal, answers));
+      for (const [k, v] of lines) answers[k] = v();
+      file(reportFrom(dd, answers));
     });
     return form;
   }

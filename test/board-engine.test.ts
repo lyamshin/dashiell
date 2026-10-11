@@ -34,8 +34,14 @@ describe('board: the oracle walks the designed path through the engine', () => {
       expect(o.ok, `seed ${s}: ${o.reason}`).toBe(true);
       expect(o.run.used).toBe(parCalls(d));
       expect(parCalls(d)).toBeLessThan(budgetCalls(d));
-      const v = scoreBoard(d, o.run, truthReport(d));
+      // docs/46 §3: solved is the right name on the line that breaks the story.
+      const v = scoreBoard(d, o.run, truthReport(d, o.run));
       expect(v.points).toBe(v.asked);
+      expect(v.outcome).toBe('solved');
+      // The same name on a hunch is right, but you couldn't have known: half on who.
+      const hunch = scoreBoard(d, o.run, { ...truthReport(d, o.run), breaks: null });
+      expect(hunch.outcome).toBe('lucky');
+      expect(hunch.points).toBe(v.asked - 0.5);
     }
   });
 });

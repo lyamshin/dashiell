@@ -358,3 +358,105 @@
   font-style: normal;
   font-size: 0.78rem;
 }
+
+/* ------------------------------------------- the report: what breaks it */
+
+/*
+ * docs/46 §3: the report asks what breaks their story, and for a lost thing
+ * what puts it there. The lines held are a list to pick one from, set like
+ * the picker's lines, with a hunch at the foot.
+ */
+.report .field--lines {
+  border: 0;
+  margin: 0 0 1.1rem;
+  padding: 0;
+  min-width: 0;
+}
+
+.report .field--lines legend {
+  padding: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.2rem;
+}
+
+.report .line-hint {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.report .line-options {
+  display: flex;
+  flex-direction: column;
+  max-width: 34rem;
+  border-top: 1px solid color-mix(in srgb, var(--ink-faint) 45%, transparent);
+}
+
+.report label.line-option {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0.35rem 0.4rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink-faint) 45%, transparent);
+  font-size: 0.88rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.report label.line-option:hover {
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+}
+
+.report label.line-option input {
+  flex: none;
+  accent-color: var(--accent);
+}
+
+.report label.line-option--hunch {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 600px) {
+  .report label.line-option {
+    min-height: 44px;
+    align-items: center;
+  }
+}
+
+/* On the verdict, the line sits under its answer: the label above, the line beneath. */
+.verdict-row--line {
+  grid-template-columns: 1fr 1.2rem;
+  font-size: 0.84rem;
+  padding-left: 0.8rem;
+  border-left: 2px solid var(--rule);
+  margin: 0.1rem 0 0.35rem;
+}
+
+.verdict-row--line .label {
+  grid-column: 1 / -1;
+  color: var(--ink-faint);
+}
+
+.verdict-row--line .given {
+  text-align: left;
+}
+
+.verdict-row.half .mark,
+.verdict-row.half .given {
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.score-plain {
+  margin: -0.6rem 0 1rem;
+  font-style: italic;
+}

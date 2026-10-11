@@ -51,6 +51,13 @@ export interface BoardReport {
   why: PersonId | null;
   /** Lost item or pet: where it is now. */
   where?: string | null;
+  /**
+   * docs/46 §3: what breaks their story, as the id of a line held (`Line.id`). Null or left out
+   * is a hunch. Recorded so a measure can tell a name worked out from a name guessed.
+   */
+  breaks?: string | null;
+  /** docs/46 §3, a lost thing: which line put it where it is now (a held line's id, or `crack:p@h`). Null is a hunch. */
+  whereBy?: string | null;
 }
 
 export interface BoardRun {
