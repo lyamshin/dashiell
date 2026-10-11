@@ -200,6 +200,11 @@ export function lostWatch(): BoardCase {
  *   comes from Oskar's crack (rule 8), and the case still needs Poached's confrontation.
  * - The culprit and the innocent liar never claim one place at one hour: Szabo is never at the
  *   Shamrock's front room, where Oskar spends the evening.
+ * - Decided 2026-10-11 (docs/41 rule 9, two broken stories at one hour): Szabo's own story is what sends
+ *   you to Kasper. Kasper deals in the back room from eight, so Mulcahy never sees him; Szabo owns
+ *   to a nightcap there at eleven, with Kasper, and only lies about ten. So the path breaks
+ *   Szabo's story as well as Oskar's before Kasper clears him (it used to reach Kasper through
+ *   Mulcahy and clear Szabo without his story ever being asked), and par is 9.
  * The janitor's blind spot stays: it's the golden's, and the decisions don't touch it.
  */
 export function lostWatchRepaired(): BoardCase {
@@ -212,10 +217,10 @@ export function lostWatchRepaired(): BoardCase {
   c.board.rows = rows(HOURS, {
     oskar: ['shamrock', 'shamrock', 'flat', 'shamrock'],
     pulaski: ['flat', 'pulaskis', 'pulaskis', 'pulaskis'],
-    szabo: ['flat', 'lyric', 'backroom', 'szabo-home'],
+    szabo: ['flat', 'lyric', 'backroom', 'backroom'],
     gilchrist: ['flat', 'lyric', 'lyric', 'lyric'],
     mrpulaski: ['pulaskis', 'pulaskis', 'pulaskis', 'pulaskis'],
-    kasper: ['shamrock', 'backroom', 'backroom', 'backroom'],
+    kasper: ['backroom', 'backroom', 'backroom', 'backroom'],
     watch: ['flat', 'flat', 'flat', 'shamrock'],
   });
   // 4a.2 (`reasonsMatch`): an account's reasons are the truth's. The golden paraphrased them; they
@@ -223,16 +228,15 @@ export function lostWatchRepaired(): BoardCase {
   c.board.reasons = {
     oskar: { 10: 'went up to the flat for ten minutes', 11: 'back to the Shamrock, straight to Lou’s booth' },
     pulaski: { 9: 'home across the hall, with Mr. Pulaski and the radio' },
-    szabo: { 9: 'the pictures, to keep Adele company', 10: 'slipped out of the picture for the game', 11: 'home to bed' },
+    szabo: { 9: 'the pictures, to keep Adele company', 10: 'went through to the back room for a nightcap' },
     gilchrist: { 9: 'the pictures with Adele' },
-    kasper: { 9: 'opened the game in the back room' },
   };
   // 4a.2 (`listsComplete`): the case puts Lou in his booth at the Shamrock, where the watch went,
   // so Mulcahy lists him.
   c.others = [{ id: 'lou', name: 'Lou the bookmaker in his booth', at: { 8: 'shamrock', 9: 'shamrock', 10: 'shamrock', 11: 'shamrock' }, known: true }];
   c.accounts = [
     account('oskar', {
-      8: ['shamrock', ['kasper']],
+      8: ['shamrock', []],
       9: ['shamrock', []],
       10: ['shamrock', [], 'the Shamrock till gone midnight; ask Mulcahy'],
       11: ['shamrock', []],
@@ -251,7 +255,7 @@ export function lostWatchRepaired(): BoardCase {
       8: ['flat', ['pulaski', 'gilchrist']],
       9: ['lyric', ['gilchrist'], 'the pictures, to keep Adele company'],
       10: ['lyric', ['gilchrist'], 'sat through the whole picture'],
-      11: ['szabo-home', [], 'home to bed'],
+      11: ['backroom', ['kasper'], 'went through to the back room for a nightcap'],
     }),
     account('gilchrist', {
       8: ['flat', ['pulaski', 'szabo']],
@@ -266,10 +270,10 @@ export function lostWatchRepaired(): BoardCase {
       11: ['pulaskis', ['pulaski']],
     }),
     account('kasper', {
-      8: ['shamrock', ['oskar'], 'a beer out front before the game'],
-      9: ['backroom', [], 'opened the game in the back room'],
+      8: ['backroom', [], 'opened the game in the back room'],
+      9: ['backroom', []],
       10: ['backroom', ['szabo']],
-      11: ['backroom', []],
+      11: ['backroom', ['szabo']],
     }),
   ];
   // The janitor watches the scene's stair, so his "nobody else" at ten would clear everyone but
@@ -281,8 +285,8 @@ export function lostWatchRepaired(): BoardCase {
   }
   const mulcahy = c.lists.find((l) => l.watcher === 'mulcahy');
   if (mulcahy) {
-    mulcahy.entries = list('mulcahy', 'shamrock', { 8: ['oskar', 'kasper', { other: 'lou' }], 9: ['oskar', { other: 'lou' }], 10: [{ other: 'lou' }], 11: ['oskar', { other: 'lou' }] }).entries;
-    mulcahy.remarks = [{ text: 'Eleven: Oskar back, straight to Lou’s booth. What went across the table I couldn’t see. Kasper had a beer at eight and went through to the back.', facts: [], side: false }];
+    mulcahy.entries = list('mulcahy', 'shamrock', { 8: ['oskar', { other: 'lou' }], 9: ['oskar', { other: 'lou' }], 10: [{ other: 'lou' }], 11: ['oskar', { other: 'lou' }] }).entries;
+    mulcahy.remarks = [{ text: 'Eleven: Oskar back, straight to Lou’s booth. What went across the table I couldn’t see.', facts: [], side: false }];
   }
   c.confrontations = [
     {

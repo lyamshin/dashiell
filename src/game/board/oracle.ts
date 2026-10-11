@@ -13,7 +13,7 @@
  */
 
 import { Rng } from '../../gen/board/rng.js';
-import { minimalSets } from '../../gen/board/path.js';
+import { hadAccess, minimalSets } from '../../gen/board/path.js';
 import { closure, pointerIndex } from '../../gen/board/pointers.js';
 import { questionsOf, solve } from '../../gen/board/solver.js';
 import { techniquesUpTo } from '../../gen/board/tiers.js';
@@ -307,17 +307,31 @@ function filedFrom(d: BoardDeal, run: BoardRun, rng: Rng, pick: { person: Person
  * on the line the book set against them. Handed no name, it does what it
  * does everywhere else and takes the form's first choices.
  *
- * `liar`: the same reader, but handed no name it names a liar the book
- * caught, at random, on the line set against them: "the liar did it", which
- * the rules say isn't so from Poached up. For the record, not the target.
+ * Handed no name, three shortcut players file instead (`guess`), for the
+ * measure (decided 2026-10-11, docs/41 rule 9):
+ * - `first`: the first liar it caught, on the line set against them: "the
+ *   liar did it", which the rules say isn't so from Poached up. Two caught on
+ *   one page are a coin flip;
+ * - `last`: the last liar it caught, the mirror of `first`: if the innocent's
+ *   lie always came first, naming the second liar would be the shortcut;
+ * - `liar`: a liar it caught, at random (docs/46's version);
+ * - `access`: anybody who had the means, at random (the truth's access), on
+ *   the line set against them if it caught them, else a hunch. The floor the
+ *   first two are held to.
  */
-export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean } = {}): Played {
+export type ReaderGuess = 'first' | 'last' | 'liar' | 'access';
+
+export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean; guess?: ReaderGuess } = {}): Played {
   const c = d.kase;
   const rng = new Rng((seed * 2654435761 + 97) >>> 0);
+  const guess: ReaderGuess | undefined = opts.guess ?? (opts.liar ? 'liar' : undefined);
   let run = newBoardRun(d);
   const commands: string[] = [];
   const sentTo: PersonId[] = [];
   const budget = budgetCalls(d);
+  // The liars in the order it caught them: each page's new collisions, a page at a time.
+  const order: { person: PersonId; hour: Hour }[][] = [];
+  const seen = new Set<PersonId>();
   for (let guard = 0; guard < 80 && !run.reportOpen && run.used < budget; guard++) {
     const next = readerNext(d, run);
     if (!next) break;
@@ -326,12 +340,30 @@ export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean } 
     commands.push(next.command);
     if (next.starred && next.command.startsWith('put ')) sentTo.push(next.command.split(' ')[1] as PersonId);
     run = r.run;
+    if (guess === 'first' || guess === 'last') {
+      const fresh = collisionsOf(c, run).filter((x) => suspectsOf(c).includes(x.person) && !seen.has(x.person));
+      const page: { person: PersonId; hour: Hour }[] = [];
+      for (const x of fresh) if (!page.some((y) => y.person === x.person)) page.push({ person: x.person, hour: x.hour });
+      for (const x of page) seen.add(x.person);
+      if (page.length > 0) order.push(page);
+    }
   }
   const caught = collisionsOf(c, run).filter((x) => suspectsOf(c).includes(x.person));
   // The name the book handed it: walked to, or sent to put it to.
   const told = toldWho(d, run) ?? sentTo[0] ?? turnSaid(d, run);
   let pick: { person: PersonId; hour: Hour } | null = told ? (caught.find((x) => x.person === told) ?? { person: told, hour: c.crime.hour }) : null;
-  if (!pick && opts.liar && caught.length > 0) pick = rng.pick(caught) as { person: PersonId; hour: Hour };
+  if (!pick && guess === 'liar' && caught.length > 0) pick = rng.pick(caught) as { person: PersonId; hour: Hour };
+  if (!pick && (guess === 'first' || guess === 'last') && order.length > 0) {
+    const p = rng.pick(order[guess === 'first' ? 0 : order.length - 1] as { person: PersonId; hour: Hour }[]);
+    pick = caught.find((x) => x.person === p.person) ?? p;
+  }
+  if (!pick && guess === 'access') {
+    const had = suspectsOf(c).filter((p) => hadAccess(c, p));
+    if (had.length > 0) {
+      const p = rng.pick(had);
+      pick = caught.find((x) => x.person === p) ?? { person: p, hour: c.crime.hour };
+    }
+  }
   const base = filedFrom(d, run, rng, pick);
   let breaks: string | null;
   if (pick) {

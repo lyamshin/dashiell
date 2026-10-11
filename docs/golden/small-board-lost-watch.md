@@ -13,6 +13,8 @@
 > - Dombrowski is at the boiler at ten, and Mulcahy doesn't see what changes hands, so where the watch is comes from Oskar's crack.
 >
 > **Repaired, it doesn't match the golden's numbers:** it rates Poached, but par is 8, not 6, and Szabo refuses where the golden has him admit.
+>
+> **Note, 2026-10-11 (docs/41 rule 9, two broken stories at one hour).** The path used to reach Kasper through Mulcahy and clear Szabo without ever asking Szabo where he was, so the only lie it met was Oskar's. Now Kasper deals in the back room from eight and Mulcahy never sees him; Szabo owns to a nightcap there at eleven, with Kasper, and lies only about ten. His own story is what sends you to Kasper, so the path breaks it (at Kasper's step) before Oskar's. Par is 9.
 
 *2026-09-28. This checks that `docs/41-small-board.md` holds for a case that isn't a murder. For a lost item, the report asks who took it, when, where it is now, and why. Poached is 4 suspects, 4 hours and 3 places besides the scene, with one innocent liar.*
 

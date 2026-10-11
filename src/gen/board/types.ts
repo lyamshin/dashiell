@@ -307,6 +307,13 @@ export interface BoardCase {
   others?: Other[];
   /** The setup's three choices (4a.2). */
   setup?: Setup;
+  /**
+   * Decided 2026-10-11 (docs/41 rule 9): with two liars at the crime hour, whose broken story the
+   * designed path meets first, where the walks allow it: the innocent liar's on three nights in
+   * five, the culprit's on the rest, so the first lie caught doesn't name who did it. Absent: the
+   * innocent's.
+   */
+  lead?: 'innocent' | 'culprit';
 }
 
 export type QuestionKind = 'search' | 'list' | 'account' | 'confront';

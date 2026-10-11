@@ -29,7 +29,8 @@ function roleOf(p: Person, c?: BoardCase): string | undefined {
   if (p.role === 'client') return 'my client';
   if (p.role === 'victim' && c?.type === 'murder') return 'the dead man';
   // Hard-boiled's faces: everybody's look is said on first sight, so "the man in the grey fedora" is them.
-  if (c?.variant === 'face' && p.role === 'suspect' && p.look) return `the ${p.female ? 'woman' : 'man'} ${p.look}`;
+  // (The pair has a face too, decided 2026-10-11: the culprit's friend at the bar.)
+  if ((c?.variant === 'face' || c?.variant === 'pair') && p.role === 'suspect' && p.look) return `the ${p.female ? 'woman' : 'man'} ${p.look}`;
   if (p.role === 'watcher') {
     const j = p.description.split(/,| at /)[0]?.trim();
     return j && /^the /.test(j) ? j : undefined;

@@ -78,6 +78,13 @@ const ROLES: Record<TierIndex, Tag[]> = {
  */
 export const REFUSE_SHARE: Record<TierIndex, number> = { 0: 0, 1: 0, 2: 0.4, 3: 0.5, 4: 0.5, 5: 1 };
 
+/**
+ * Decided 2026-10-11 (docs/41 rule 9): the share of nights with two liars whose designed path meets
+ * the innocent liar's broken story first (`BoardCase.lead`). Over half, so "the first liar you catch
+ * did it" loses; not all, so "the second one did" doesn't always win. Tuned by the measure.
+ */
+export const INNOCENT_LEADS = 0.6;
+
 /** Which types each tier can build. A lost item has no honest last sighting to narrow a window. */
 export function typesFor(tier: TierIndex): CaseType[] {
   return tier >= 3 ? ['murder', 'lost-pet'] : [...CASE_TYPES];
@@ -260,6 +267,12 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   const U = 'u';
   const H = 'h';
   const YH = 'yhome';
+  // Decided 2026-10-11: whose broken story the path meets first (`BoardCase.lead`), drawn on a
+  // stream of its own so nothing else moves. The night is built for it where it can be: the one who
+  // leads claims the room the office sends you to first (the bar, or the house where the spare key
+  // hangs), and the other claims the second.
+  const lead: 'innocent' | 'culprit' | undefined = hasL && tier >= 2 ? (new Rng(mix(seed, tier, CASE_TYPES.indexOf(type), attempt, 0x1e)).chance(INNOCENT_LEADS) ? 'innocent' : 'culprit') : undefined;
+  const firstRoom: PlaceId = mode === 'spare' ? X : B;
   const pet = type === 'lost-pet' ? rng.pick(K.PETS) : undefined;
   const item = type === 'lost-item' ? rng.pick(K.ITEMS) : undefined;
   const thing = (pet ?? item) as { name: string; short: string; where: string; empty: string };
@@ -348,16 +361,21 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     if (murder) {
       if (worker === C) for (const h of avail) a.set(h, X);
       else a.set(pick(avail), X);
-      if (!work && !secretLiar && rng.chance(0.5) && tier < 4) {
+      // Decided 2026-10-11: with an innocent liar too, the culprit may lodge where the means was,
+      // so either of the two can be the one who says "home in my room".
+      if (!work && rng.chance(0.5) && tier < 4) {
         lodges.add(C);
         base = X;
       }
       if (tier >= 4) base = H;
     } else {
-      if (mode === 'spare' && !secretLiar && tier < 4 && rng.chance(0.4)) {
+      // The same in a small case, with an innocent liar, whatever the way in.
+      const lodgeC = secretLiar ? tier < 4 && xRooming && rng.chance(0.5) : mode === 'spare' && tier < 4 && rng.chance(0.4);
+      if (lodgeC) {
         lodges.add(C);
         base = X;
-      } else smallAccess(C, a, avail);
+      }
+      if (!lodgeC || (secretLiar && mode !== 'spare')) smallAccess(C, a, avail);
       if (base !== X) base = tier >= 4 ? H : pick(visitX ? [B, X] : [B]);
       // With an innocent liar, the culprit hears it at one hour and is gone the next, so the liar
       // can hear it apart from them.
@@ -367,12 +385,21 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       }
     }
     a.set(hc, S);
-    if (hc < hL) a.set(hc + 1, murder && tier >= 4 ? H : B);
+    // After it, the venue; from Medium up, home. Decided 2026-10-11: a lodger beside an innocent
+    // liar goes home too.
+    if (hc < hL) a.set(hc + 1, murder && tier >= 4 ? H : murder && secretLiar && lodges.has(C) ? X : B);
     // Between the origin and the crime, somewhere they can be seen.
     for (const h of hours) {
       if (h <= h0 || h >= hc || a.has(h)) continue;
       const opts = (murder ? (tier >= 4 ? [X, B, H] : [X, B]) : tier >= 4 ? [H] : visitX ? [B, X] : [B]).filter((p) => open(p, h));
       a.set(h, pick(opts.length ? opts : [B]));
+    }
+    // A lodger at the origin is out for an hour while it's there to be had, so the innocent liar
+    // can have been there apart from them.
+    if (secretLiar && lodges.has(C) && origin === X && avail.every((h) => (a.get(h) ?? base) === X)) {
+      const out = avail.find((h) => !a.has(h) && h > h0) ?? avail.find((h) => !a.has(h));
+      if (out === undefined) return veto('the lodger is never out while the means is there');
+      a.set(out, B);
     }
     rows[C] = evening(a, base, B);
   }
@@ -419,7 +446,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   const rAtHc = tier === 1 && open(X, hc) ? X : B;
   // An innocent liar lodges at the rooming house sometimes, so a cover story there is a lie about
   // their own home (4a.2: a lie claims somewhere the liar would plausibly be).
-  const lLodges = !!L && xRooming && variant !== 'pair' && rng.chance(0.5);
+  const lLodges = !!L && xRooming && variant !== 'pair' && !lodges.has(C) && rng.chance(0.5);
   for (const { t, id, k } of others) {
     const a = new Map<Hour, PlaceId>();
     let base: PlaceId = B;
@@ -454,14 +481,18 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       }
     } else if (t === 'N') {
       // The outsider never goes where the way in was learnt.
-      const bases = (murder ? [U, B] : [U, ...(visitX ? [X] : []), B]).filter((p) => p !== origin);
+      // Decided 2026-10-11: a refuser's secret place is named by nobody's story but their own.
+      const bases = (murder ? [U, B] : [U, ...(visitX ? [X] : []), B]).filter((p) => p !== origin && !(refuses && p === U));
       base = pick(bases);
       if (tier === 1) {
         a.set(hc, U);
         base = U;
       } else if (tier === 4) {
         // The side remark's speaker: walked over to the venue at the crime hour.
-        a.set(hc - 1, open(X, hc - 1) && X !== origin ? X : U);
+        // (Not at a refuser's secret place: only their own story may name it.)
+        const away = open(X, hc - 1) && (X !== origin || !avail.includes(hc - 1)) ? X : U;
+        if (refuses && away === U) return veto('the side remark’s speaker has nowhere to walk over from');
+        a.set(hc - 1, away);
         a.set(hc, B);
       } else a.set(hc, hbAt(t, k) ?? B);
     } else if (t === 'L') {
@@ -484,6 +515,9 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
         if (!murder && !lLodges) base = pick(visitX ? [B, X] : [B]);
         a.set(hc, U);
         if (windowed) a.set(hc - 1, U);
+        // Decided 2026-10-11: a refuser's own story names the place they were really at, an hour
+        // either side of the lie, so it's their story that sends you to its keeper.
+        else if (refuses && hc === hL && !a.has(hc - 1)) a.set(hc - 1, U);
       }
     }
     rows[id] = evening(a, base, B);
@@ -548,12 +582,18 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   if (tier === 1 && N && withAt(U, hc, N).length > 0) return veto('the outsider had company');
   // Decided 2026-09-28: nothing but the resolution places the innocent liar at the lied hour.
   if (L && variant !== 'pair' && withAt(U, hc, L).some((x) => x !== Y)) return veto('somebody else at the secret place');
+  // Decided 2026-10-11: a refuser's secret place is in nobody's story but their own, so their
+  // broken story is what sends you to its keeper.
+  if (refuses && L && hours.some((h) => withAt(U, h, L).length > 0)) return veto('somebody else at a refuser’s secret place');
   if (tier >= 4 && withAt(H, hc, C).length > 0) return veto('somebody at the culprit’s flat');
   // Rule 12: at least one innocent at the origin before the crime.
   if (murder && tier >= 1 && !suspects.some((p) => p !== C && avail.some((h) => at(p, h) === X))) return veto('no innocent at the origin');
   // Hard-boiled face: somebody innocent at the bar at the crime hour to be the face.
-  const faceOf = variant === 'face' ? suspects.find((p) => p !== C && at(p, hc) === B) : undefined;
-  if (variant === 'face' && (!faceOf || withAt(B, hc, faceOf).length > 0)) return veto('no face');
+  // Decided 2026-10-11: in the pair, the barman knows the culprit's friend only by face. So their
+  // own story is what puts a name to the face at the bar, and the two broken stories are met
+  // together or the friend's first, never the culprit's alone.
+  const faceOf = variant === 'face' ? suspects.find((p) => p !== C && at(p, hc) === B) : variant === 'pair' ? L : undefined;
+  if (variant && (!faceOf || at(faceOf, hc) !== B || withAt(B, hc, faceOf).length > 0)) return veto('no face');
 
   // --- People (needed for pronouns in the reasons) ------------------------------------------------
   const people: Person[] = [];
@@ -622,7 +662,11 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       ...(job ? { job } : {}),
       ...(motiveId ? { motiveId } : {}),
       look: looks[i] as string,
-      foundAt: last === S ? (tier >= 4 && murder ? H : B) : last,
+      // From Medium up the culprit has a flat of their own, and is found there after midnight; a
+      // thief too, the thing sold. Decided 2026-10-11: beside an innocent liar, a killer who lodges
+      // has gone home by then too, so the first room isn't where everybody waits. (A thief who
+      // lodges is still at the bar, where the thing changed hands.)
+      foundAt: id === C && tier >= 4 ? H : id === C && murder && secretLiar && lodges.has(C) ? X : last === S ? B : last,
       motive,
       female: n.female,
       ...(lodges.has(id) ? { home: X } : residentAtScene.includes(id) ? { home: S } : id === C && tier >= 4 ? { home: H } : {}),
@@ -795,7 +839,9 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     let cands = [B, X].filter((pl) => checkable(pl, hc) && plausible(C, pl, hc));
     if (tier === 1 && cands.some((pl) => pl !== rAtHc)) cands = cands.filter((pl) => pl !== rAtHc);
     if (cands.length === 0) return veto('nowhere checkable and plausible for the culprit to claim');
-    cClaim = pick(cands);
+    const lCovers = (cc: PlaceId) => !!L && [B, X].some((pl) => pl !== cc && checkable(pl, hc) && plausible(L, pl, hc));
+    const fits = secretLiar && lead ? cands.filter((pl) => (pl === firstRoom) === (lead === 'culprit') && lCovers(pl)) : [];
+    cClaim = pick(fits.length > 0 ? fits : cands);
   }
   lies.push({ person: C, hour: hc, kind: variant === 'pair' ? 'pair' : 'culprit', truth: S, claim: cClaim });
   claimOverride.set(`${C}@${hc}`, {
@@ -814,6 +860,10 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       const cover = pick(cands);
       lies.push({ person: L, hour: hc, kind: 'secret', truth: U, claim: cover });
       claimOverride.set(`${L}@${hc}`, { place: cover, company: [] });
+      // Decided 2026-10-11: after midnight a refuser is back where they say they were, so you find
+      // them in the room whose own list breaks their story, and not beside the keeper whose list
+      // clears them without it. (One who owns up is still where they were, with their company.)
+      if (refuses) personOf(L).foundAt = cover;
     }
   }
 
@@ -868,6 +918,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     }
   }
   const accountOf = (p: PersonId) => accounts.find((a) => a.person === p) as Account;
+  if (refuses && L && !hours.some((h) => h !== hc && accountOf(L).claims[h]?.place === U)) return veto('the refuser’s story never names where they were');
   // Medium: the side remark. The outsider walked over at the crime hour and passed the culprit.
   if (tier === 4 && N) {
     const sceneStreet = (placeById.get(S) as Place).street;
@@ -920,17 +971,10 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       gives: { whereNow: true, why: true },
     });
   }
-  // A refusing innocent is cleared by the keeper of the place they were really at. Something has to
-  // send the player there without placing them (4a.2): the barman knows where they go.
-  if (refuses && L) {
-    const lN = namedOf.get(L) as Named;
-    barRemarks.push({
-      text: `${lN.family}? ${cap(pron(lN).they)} goes on to ${u.short} most nights, if it’s ${lN.family} you’re after.`,
-      facts: [],
-      side: false,
-      mentions: { places: [U], people: [L], why: `${barkeepName.family} says ${lN.family} goes on to ${u.short} most nights` },
-    });
-  }
+  // A refusing innocent is cleared by the keeper of the place they were really at. Decided
+  // 2026-10-11: what sends the player there is the refuser's own story, which has them there an hour
+  // either side of the lie (4a.2's barman's remark, "she goes on to the Palace most nights", sent
+  // you there without it, and so their broken story was never needed).
   lists.push({ watcher: barkeep, place: B, entries: entriesAt(B), remarks: barRemarks });
 
   // --- The means ------------------------------------------------------------------------------------
@@ -1273,6 +1317,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     client,
     ...(otherList.length ? { others: otherList } : {}),
     setup,
+    ...(lead ? { lead } : {}),
   };
   return c;
 }

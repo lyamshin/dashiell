@@ -3,6 +3,8 @@ import { seed3, seed3Repaired, SEED3_GOLDEN_PATH, SEED3_REPAIRED_PATH } from '..
 import { lostWatch, lostWatchRepaired, LOST_WATCH_GOLDEN_PATH } from '../../src/gen/board/fixtures/lost-watch.js';
 import { analyse, checkInvariants, invariantFailures, questionsOf, refusalShortcut, solve, techniquesUpTo } from '../../src/gen/board/index.js';
 import { renderCase } from '../../src/gen/board/render.js';
+import { breaksAt } from '../../src/gen/board/path.js';
+import { pointerIndex } from '../../src/gen/board/pointers.js';
 
 /**
  * docs/42 §3: the two hand-built goldens as fixtures. Where the solver and a
@@ -155,12 +157,22 @@ describe('golden: the lost watch repaired to the decisions of 2026-09-28', () =>
   });
 
   it('Szabo refuses, and only Kasper’s account clears him; Oskar’s crack says where the watch is', () => {
-    expect(a.par).toBe(8);
+    expect(a.par).toBe(9);
     expect(a.path.map((s) => s.q)).toContain('account:kasper');
     expect(a.path.map((s) => s.q)).toContain('confront:oskar@10');
     const T = techniquesUpTo(2);
     const all = questionsOf(c).map((q) => q.id);
     expect(solve(c, all.filter((q) => q !== 'account:kasper'), { techniques: T }).cleared.has('szabo')).toBe(false);
+  });
+
+  it('decided 2026-10-11: Szabo’s own story sends you to Kasper, so the path breaks it before Oskar’s', () => {
+    const order = a.path.map((s) => s.q);
+    expect(order.indexOf('account:szabo')).toBeGreaterThanOrEqual(0);
+    expect(order.indexOf('account:szabo')).toBeLessThan(order.indexOf('account:kasper'));
+    const T = techniquesUpTo(2);
+    expect(breaksAt(c, order, T, 'szabo', 10)).toBeLessThan(breaksAt(c, order, T, 'oskar', 10));
+    // Nobody but Szabo names Kasper: Mulcahy never sees him out front.
+    expect([...(pointerIndex(c).by.get('account:kasper')?.keys() ?? [])]).toEqual(['account:szabo']);
   });
 
   it('Mulcahy lists Lou, whom the case puts in his booth; leave him out and the list is incomplete (4a.2)', () => {

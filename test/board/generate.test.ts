@@ -16,6 +16,8 @@ import { givensSignature, PAR_FLOOR, pointed, type BoardCase, type CaseType } fr
 import { renderCase } from '../../src/gen/board/render.js';
 import { moves } from '../../src/gen/board/generate.js';
 import { PAR_TARGET } from '../../src/gen/board/tiers.js';
+import { breaksAt, innocentLie } from '../../src/gen/board/path.js';
+import { pointerIndex } from '../../src/gen/board/pointers.js';
 
 /** docs/42 §1–2 and §5, on a small sweep: every tier, a dozen seeds. */
 
@@ -339,6 +341,87 @@ describe('4a.2: the designer’s reading of seed 4 (Poached) and seed 2 (Raw)', 
         // A watcher is suggested only once something points at their place.
         a.suggested.forEach((s, i) => expect(pointed(c, s.q, a.suggested.slice(0, i).map((x) => x.q))).toBe(true));
         expect(a.suggested.map((s) => s.why).join(' ')).not.toMatch(/a watcher\b|the rest of the people/);
+      }
+    }
+  });
+});
+
+describe('decided 2026-10-11: two broken stories at one hour (docs/41 rule 9)', () => {
+  const HIGH: TierIndex[] = [2, 3, 4, 5];
+  const all = HIGH.flatMap((t) => Array.from({ length: 20 }, (_, i) => generateBoard(i + 1, t)!));
+
+  it('from Poached up the innocent liar lies about the crime hour, and the designed path breaks both stories', () => {
+    for (const g of all) {
+      const c = g.kase;
+      const innocent = innocentLie(c);
+      expect(innocent, c.id).toBeDefined();
+      expect(innocent?.hour, c.id).toBe(c.crime.hour);
+      expect(checkInvariants(c, g.analysis).twoStories, c.id).toEqual([]);
+    }
+  });
+
+  it('the path meets the innocent liar’s story no later than the culprit’s on most nights, and the culprit’s first on some', () => {
+    // The sweep (200 seeds a tier) has the innocent's first on 61–72% of nights; twenty seeds are a sample.
+    for (const t of HIGH) {
+      const nights = all.filter((g) => g.kase.tier === t);
+      let first = 0;
+      let same = 0;
+      let culpritFirst = 0;
+      for (const g of nights) {
+        const c = g.kase;
+        const inn = innocentLie(c)!;
+        const order = g.analysis.path.map((s) => s.q);
+        const T = techniquesUpTo(t);
+        const i = breaksAt(c, order, T, inn.person, inn.hour);
+        const k = breaksAt(c, order, T, c.crime.culprit, c.crime.hour);
+        if (i < k) first++;
+        if (i === k) same++;
+        if (k < i) culpritFirst++;
+      }
+      expect((first + same) / nights.length, `tier ${t}`).toBeGreaterThanOrEqual(0.5);
+      expect(first / nights.length, `tier ${t}`).toBeGreaterThanOrEqual(0.4);
+      expect(culpritFirst, `tier ${t}`).toBeGreaterThan(0);
+    }
+  });
+
+  it('a refuser’s own story is all that names the place they really were, and they’re found where they claimed', () => {
+    let refusers = 0;
+    for (const g of all) {
+      const c = g.kase;
+      const lie = c.lies.find((l) => l.kind === 'secret');
+      const k = lie && c.confrontations.find((x) => x.person === lie.person && x.hour === lie.hour);
+      if (!lie || k?.response !== 'refuse') continue;
+      refusers++;
+      const keeper = c.lists.find((l) => l.place === lie.truth);
+      expect(keeper, c.id).toBeDefined();
+      expect([...(pointerIndex(c).by.get(`list:${keeper!.watcher}`)?.keys() ?? [])], c.id).toEqual([`account:${lie.person}`]);
+      expect(c.people.find((p) => p.id === lie.person)?.foundAt, c.id).toBe(lie.claim);
+      expect(g.analysis.path.map((s) => s.q), c.id).toContain(`account:${lie.person}`);
+    }
+    expect(refusers).toBeGreaterThan(0);
+  });
+
+  it('in the Hard-boiled pair the barman knows the culprit’s friend only by face', () => {
+    let pairs = 0;
+    for (const g of all) {
+      const c = g.kase;
+      if (c.variant !== 'pair') continue;
+      pairs++;
+      const friend = c.lies.find((l) => l.kind === 'pair' && l.person !== c.crime.culprit)!;
+      const bar = c.lists.find((l) => l.place === friend.truth)!;
+      const look = c.people.find((p) => p.id === friend.person)?.look;
+      expect(bar.entries[c.crime.hour], c.id).toContainEqual({ look });
+      expect(g.analysis.path.map((s) => s.q), c.id).toContain(`account:${friend.person}`);
+    }
+    expect(pairs).toBeGreaterThan(0);
+  });
+
+  it('Raw and Coddled have one liar, and lead with nobody', () => {
+    for (const t of [0, 1] as TierIndex[]) {
+      for (const s of SEEDS) {
+        const c = generateBoard(s, t)!.kase;
+        expect(c.lies).toHaveLength(1);
+        expect(c.lead).toBeUndefined();
       }
     }
   });

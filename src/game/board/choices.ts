@@ -158,9 +158,12 @@ export function boardChoices(d: BoardDeal, run: BoardRun): OfferedGroup[] {
     if (ch.why && ch.why.toLowerCase().startsWith(note.toLowerCase())) return ch;
     return { ...ch, note };
   });
-  // Stars first; then the rest. More than four places fold under "Other places".
+  // Stars first; then the rest. More than four places fold under "Other places", and more than
+  // three once the room holds five people to ask (decided 2026-10-11: the innocent liar is back in
+  // the room they claimed, which can make a crowded bar), so a page stays about eight choices.
   go.sort((a, b) => Number(b.lead) - Number(a.lead));
-  const shown = go.filter((g, i) => g.lead || i < 3);
+  const crowd = groups.filter((g) => g.kind === 'ask').length >= 5 ? 2 : 3;
+  const shown = go.filter((g, i) => g.lead || i < crowd);
   const more = go.filter((g) => !shown.includes(g));
   groups.push({ kind: 'go', heading: 'Go to', choices: shown, ...(more.length > 0 ? { more } : {}) });
   const free: OfferedChoice[] = [];

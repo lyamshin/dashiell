@@ -149,7 +149,7 @@ Vite on this branch, at desktop (the 800 px pane) and at 375 px: the teach page'
 
 ### What's open
 
-- **"The liar did it" still works** from Poached to Medium for a player who names the one liar they've met: 35–78% with the stars, more without them (above). The fix is the generator's: put the innocent liar's lie where a player meets it as early as the culprit's, or make the innocent liar's own evening needed. The spec's reader target holds; that one would not.
+- **"The liar did it" still works** from Poached to Medium for a player who names the one liar they've met: 35–78% with the stars, more without them (above). The fix is the generator's: put the innocent liar's lie where a player meets it as early as the culprit's, or make the innocent liar's own evening needed. The spec's reader target holds; that one would not. *(Taken up 2026-10-11 as docs/41 rule 9, "two broken stories at one hour", branch `two-liars`.)*
 - **The wanderer citing its collision** solves 7–19% from Poached to Medium: the line question can't stop a player who files a caught liar on the line the grid showed; only the coin flip between two liars does. Under 10% holds for the wanderer as the spec has it (a line picked, not read off the grid).
 - **Coddled is still handed the name** (the put star and the turn's "put it to X now", with one liar); §5 keeps it so.
 - **Medium's walk star appears when the room's work is done**, so its appearing says the room has nothing more on the cheapest way. Starring the next room all the time would send a star-follower out of every room before it asked anything.
