@@ -407,7 +407,8 @@ export function storyOfBoard(d: BoardDeal): string[] {
   const row = c.board.rows[p] ?? {};
   const atOrigin = c.means.available.find((h) => row[h] === c.means.origin);
   const lie = c.lies.find((l) => l.person === p);
-  const claim = lie ? placeName(c, lie.claim) : undefined;
+  // "home", not "Thorndike’s flat", of Thorndike (Medium 14's #29).
+  const claim = lie ? (personOf(c, p)?.home === lie.claim ? 'home' : placeName(c, lie.claim)) : undefined;
   const motive = personOf(c, p)?.motive;
   if (isMurder(c)) {
     out.push(`${name} did it. The reason was an old one: ${motive}.`);
@@ -425,7 +426,7 @@ export function storyOfBoard(d: BoardDeal): string[] {
     out.push(`At ${oclock(c.crime.hour)} ${pr.he} let ${pr.self} into ${placeName(c, c.crime.scene)} and came out with ${v.short}.`);
     if (c.crime.whereNow) out.push(`${cap(v.short)} ended up ${c.crime.whereNow.text}.`);
   }
-  if (claim && lie) out.push(`Asked, ${pr.he} said ${pr.he} had been at ${claim} at ${hourWord(lie.hour)}. ${breakerOf(d)}`);
+  if (claim && lie) out.push(`Asked, ${pr.he} said ${pr.he} had been ${claim === 'home' ? 'home' : `at ${claim}`} at ${hourWord(lie.hour)}. ${breakerOf(d)}`);
   return out;
 }
 

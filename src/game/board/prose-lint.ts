@@ -67,7 +67,7 @@ function narration(p: Page): { text: string; voice: string }[] {
 }
 
 function count(text: string, word: string): number {
-  return (text.match(new RegExp(`(?<![\\w’])${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w’])`, 'g')) ?? []).length;
+  return (text.match(new RegExp(`(?<![\\w’])${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w’])`, 'gi')) ?? []).length;
 }
 
 export function proseIssues(d: BoardDeal, run: BoardRun): ProseIssue[] {
@@ -84,7 +84,7 @@ export function proseIssues(d: BoardDeal, run: BoardRun): ProseIssue[] {
         const sentences = para.text.split(/(?<=[.!?])\s+/);
         sentences.forEach((s, k) => {
           if (k === 0 || !new RegExp(`\\bat ${pl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[,.]?$`).test(s.trim())) return;
-          if (sentences.slice(0, k).some((x) => x.includes(pl)) && /\b(hung|stood|sat|was|were|lay|leaned|ticked|knocked)\b/.test(s) && !/^(It was|I |From|Getting|The walk|[A-Z]\w+ (was|lay) )/.test(s)) out.push({ page: i, rule: 'place-tag', detail: s.trim() });
+          if (sentences.slice(0, k).some((x) => x.toLowerCase().includes(pl.toLowerCase())) && /\b(hung|stood|sat|was|were|lay|leaned|ticked|knocked)\b/.test(s) && !/^(It was|I |From|Getting|The walk|[A-Z]\w+ (was|lay) )/.test(s)) out.push({ page: i, rule: 'place-tag', detail: s.trim() });
         });
       }
     }

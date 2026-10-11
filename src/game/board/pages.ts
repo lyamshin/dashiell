@@ -473,6 +473,8 @@ function whyHere(w: Writer, q: string, kind: string, slots: Record<string, strin
   const saidBefore = !!ptr.clause && w.before.log.some((pg) => pg.blocks.some((b) => b.kind === 'prose' && b.text.includes(cap(ptr.clause))));
   if (((last?.job === 'arrive' && w.before.at === w.run.at) || saidBefore) && ptr.src !== 'presence') {
     w.carried = true;
+    // The one the testers kept ("I hadn’t come for the furniture. I’d come for Alfano."), once a night at most.
+    if (named && w.hand.jokeFree) put(w, 'why', w.hand.draw('why', { kind: 'carried' }, withCaps(slots), { plain: true, fresh: true }), 'narrator');
     return ptr;
   }
   if (ptr.clause) {
@@ -575,8 +577,11 @@ function handOff(w: Writer, always = false): void {
 
 /** Whether a sentence added to the page keeps everybody's name to twice a page or fewer (docs/39 §4). */
 function namesFit(w: Writer, text: string): boolean {
-  const all = [...Object.values(w.parts).flat().map((x) => x?.text ?? ''), text].join(' ');
-  return w.c.people.every((p) => p.object || (all.match(new RegExp(`\\b${esc(p.short)}\\b`, 'g')) ?? []).length <= 2);
+  // A list or an account has to name people, and doesn't count (docs/39 §4's exemption).
+  const all = [...Object.values(w.parts).flat().filter((x) => x?.voice !== 'answer').map((x) => x?.text ?? ''), text].join(' ');
+  const count = (p: { short: string }) => (all.match(new RegExp(`\\b${esc(p.short)}\\b`, 'g')) ?? []).length;
+  // Only the people the new words name: somebody else said three times already isn't this sentence's doing.
+  return w.c.people.every((p) => p.object || !new RegExp(`\\b${esc(p.short)}\\b`).test(text) || count(p) <= 2);
 }
 
 /** The thought: the engine's, after the job. Recorded for the measure, and licensed for the lint. */

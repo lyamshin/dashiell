@@ -1076,7 +1076,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     say('relation', 'relation', { ...who, victim: v.short, victimFull: v.name, relation: rel }, `${clientName.family}, the client, is ${v.name}’s ${rel}.`);
     const finderWhy = rng.pick(K.FINDER_WHY);
     const foundVars = { ...who, victim: v.short, job: v.description, scene: (placeById.get(S) as Place).name, sceneShort: (placeById.get(S) as Place).short, found: `half past ${fmtHour(hL + 1)}`, finder: finderName, finderWhy, police: md.police };
-    say('found', 'found', foundVars, `${v.short}, ${v.description}, was found dead in ${foundVars.scene} at ${foundVars.found}, by ${finderName}, ${finderWhy}. The police called it ${md.police}.`);
+    say('found', 'found', foundVars, `${v.short}, ${v.description}, was found dead in ${foundVars.scene.replace(new RegExp(`^${v.short}’s `), 'his own ')} at ${foundVars.found}, by ${finderName}, ${finderWhy}. The police called it ${md.police}.`);
     const clocks = K.MURDER_CLOCKS.filter((x) => x.windowed === windowed && x.kinds.includes(md.kind));
     const clock = rng.pick(clocks);
     clockId = clock.id;
