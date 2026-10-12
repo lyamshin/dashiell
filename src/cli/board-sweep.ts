@@ -15,6 +15,9 @@ import { techniquesUpTo } from '../gen/board/tiers.js';
 import { pickType } from '../gen/board/index.js';
 import { PAR_TARGET } from '../gen/board/tiers.js';
 import { ignoreBrokenPipe, parseArgs } from './args.js';
+import { isWorld, worldCtx } from '../gen/board/world/index.js';
+import { castOf, dealBoard } from '../game/board/model.js';
+import type { BoardCase } from '../gen/board/types.js';
 
 /**
  * docs/42 §5: `npm run board-sweep -- --tier T --n 200` (or `--tier all`).
@@ -33,9 +36,16 @@ const { values } = parseArgs(process.argv.slice(2));
 const n = Number(values.get('n') ?? 200);
 const from = Number(values.get('from') ?? 1);
 const tierArg = values.get('tier') ?? 'all';
+// docs/48 §4: `--world neighbourhood` casts every night from the bible, and adds the variety table.
+const worldArg = values.get('world');
+if (worldArg !== undefined && !isWorld(worldArg)) {
+  process.stderr.write(`No world called "${worldArg}". Try --world neighbourhood.\n`);
+  process.exit(1);
+}
+const ctx = worldArg ? worldCtx(worldArg) : undefined;
 const tiers: TierIndex[] = tierArg === 'all' ? [0, 1, 2, 3, 4, 5] : [parseTier(tierArg)].filter((t): t is TierIndex => t !== null);
 if (!Number.isInteger(n) || n < 1 || tiers.length === 0) {
-  process.stderr.write('usage: npm run board-sweep -- --tier <tier|all> [--n 200] [--from 1]\n');
+  process.stderr.write('usage: npm run board-sweep -- --tier <tier|all> [--n 200] [--from 1] [--world neighbourhood]\n');
   process.exit(1);
 }
 
@@ -50,6 +60,8 @@ const KINDS = ['home', 'bar', 'club', 'restaurant', 'theatre', 'work'];
 const rows: string[][] = [];
 const rows2: string[][] = [];
 const rows3: string[][] = [];
+const rows4: string[][] = [];
+let culpritRepeats = 0;
 let sameGivensTotal = 0;
 let invariantFailuresTotal = 0;
 let shortcutWins = 0;
@@ -84,14 +96,16 @@ for (const tier of tiers) {
   const setups = new Map<CaseType, { all: Set<string>; means: Set<string>; clock: Set<string>; pointer: Set<string> }>();
   const signatures = new Map<string, number>();
   let sameGivens = 0;
+  const nights: BoardCase[] = [];
   for (let seed = from; seed < from + n; seed++) {
-    const c0 = buildCase(seed, tier, pickType(seed, tier), 0);
+    const c0 = buildCase(seed, tier, pickType(seed, tier), 0, ctx);
     if (c0 && invariantFailures(checkInvariants(c0)).length === 0) {
       cands++;
       if (rate(c0) === tier) candHit++;
     }
-    const g = generateBoard(seed, tier);
+    const g = generateBoard(seed, tier, ctx ? { world: ctx } : {});
     if (!g) continue;
+    nights.push(g.kase);
     ok++;
     attempts += g.attempts;
     const report = checkInvariants(g.kase, g.analysis);
@@ -180,6 +194,11 @@ for (const tier of tiers) {
   };
   sameGivensTotal += sameGivens;
   rows3.push([TIER_NAMES[tier], setupCell('murder'), setupCell('lost-item'), setupCell('lost-pet'), String(sameGivens)]);
+  if (ctx) {
+    const v = variety(tier, nights);
+    culpritRepeats += v.repeats;
+    rows4.push(v.row);
+  }
 }
 
 const table = (head: string[], body: string[][]) => {
@@ -196,10 +215,83 @@ process.stdout.write(
 );
 process.stdout.write('\n');
 process.stdout.write(table(['tier', 'murder setups (distinct means, clocks, pointers)', 'lost-item setups', 'lost-pet setups', 'givens matching another seed’s, names aside'], rows3));
+if (ctx) {
+  process.stdout.write('\n');
+  process.stdout.write(
+    table(
+      ['tier', 'distinct casts (suspect sets)', 'culprits / wronged used', 'culprit twice running, by seed', 'with continuity: culprit twice running', 'wronged again within ten nights (twice running)', 'places used in 60 nights', 'people used in 60 nights (missing)', 'all used by night'],
+      rows4,
+    ),
+  );
+}
 process.stdout.write(
   `\nseeds ${from}–${from + n - 1}. Invariants checked on every accepted case: no gaps, every lie collides, unique answer, lead time, places open, no lingering at transit, truthful lists and accounts, one-hour innocent lies, an innocent lie only when it matters, admissions checked, distinct reasons, the culprit and the liar apart, the window in board hours, lists complete, errands short, reasons that fit their stint, no two errands to one house in one hour, lies plausible, reasons match, the path and suggestions motivated, two broken stories at the crime hour.\n`,
 );
 if (invariantFailuresTotal > 0) process.stdout.write(`INVARIANT FAILURES: ${invariantFailuresTotal}\n`);
 if (shortcutWins > 0) process.stdout.write(`REFUSAL SHORTCUT BEATS PAR: ${shortcutWins}\n`);
-if (sameGivensTotal > 0) process.stdout.write(`GIVENS MATCHING WORD FOR WORD: ${sameGivensTotal}\n`);
-if (invariantFailuresTotal > 0 || shortcutWins > 0 || sameGivensTotal > 0) process.exit(1);
+if (sameGivensTotal > 0) process.stdout.write(`GIVENS MATCHING WORD FOR WORD: ${sameGivensTotal}${ctx ? ' (the same few blocks every night: reported, not failed)' : ''}\n`);
+if (culpritRepeats > 0) process.stdout.write(`CULPRIT TWICE RUNNING WITH CONTINUITY: ${culpritRepeats}\n`);
+if (invariantFailuresTotal > 0 || shortcutWins > 0 || (sameGivensTotal > 0 && !ctx) || culpritRepeats > 0) process.exit(1);
+
+/**
+ * docs/48 §4, variety: the nights by seed (casts, culprits, the wronged), and a player's run of nights
+ * dealt with continuity, as the book deals them: each night from the seed after the last, keeping the
+ * last culprit and the last ten wronged off it.
+ */
+function variety(tier: TierIndex, byseed: BoardCase[]): { row: string[]; repeats: number } {
+  const casts = new Set(byseed.map((c) => c.people.filter((p) => p.role === 'suspect').map((p) => p.world).sort().join('+')));
+  const culprits = new Set(byseed.map((c) => castOf(c).culprit));
+  const wronged = new Set(byseed.map((c) => castOf(c).victim));
+  let rawRepeats = 0;
+  for (let i = 1; i < byseed.length; i++) if (castOf(byseed[i] as BoardCase).culprit === castOf(byseed[i - 1] as BoardCase).culprit) rawRepeats++;
+  const seq: BoardCase[] = [];
+  const recent = { culprits: [] as string[], victims: [] as string[] };
+  let s = from;
+  for (let k = 0; k < byseed.length; k++) {
+    const d = dealBoard(s, tier, undefined, { world: worldArg as string, avoid: { culprits: recent.culprits.slice(-1), victims: recent.victims.slice(-10) } });
+    seq.push(d.kase);
+    const kc = castOf(d.kase);
+    if (kc.culprit) recent.culprits.push(kc.culprit);
+    if (kc.victim) recent.victims.push(kc.victim);
+    s = d.kase.seed + 1;
+  }
+  let repeats = 0;
+  let again = 0;
+  let twice = 0;
+  for (let i = 1; i < seq.length; i++) {
+    const k = castOf(seq[i] as BoardCase);
+    if (k.culprit === castOf(seq[i - 1] as BoardCase).culprit) repeats++;
+    if (k.victim === castOf(seq[i - 1] as BoardCase).victim) twice++;
+    if (seq.slice(Math.max(0, i - 10), i).some((x) => castOf(x).victim === k.victim)) again++;
+  }
+  const bible = (ctx as NonNullable<typeof ctx>).bible;
+  const placesIn = (c: BoardCase) => c.places.flatMap((p) => (p.world ? [p.world] : []));
+  const peopleIn = (c: BoardCase) => c.people.flatMap((p) => (p.world ? [p.world] : []));
+  const first60 = seq.slice(0, 60);
+  const pl = new Set(first60.flatMap(placesIn));
+  const pe = new Set(first60.flatMap(peopleIn));
+  const missing = bible.people.filter((p) => !pe.has(p.id)).map((p) => p.id);
+  // The night by which everything had been used, in the whole run.
+  const seenP = new Set<string>();
+  const seenQ = new Set<string>();
+  let by = '—';
+  seq.forEach((c, i) => {
+    for (const x of placesIn(c)) seenP.add(x);
+    for (const x of peopleIn(c)) seenQ.add(x);
+    if (by === '—' && seenP.size === bible.places.length && seenQ.size === bible.people.length) by = String(i + 1);
+  });
+  return {
+    repeats,
+    row: [
+      TIER_NAMES[tier],
+      `${casts.size} of ${byseed.length}`,
+      `${culprits.size} / ${wronged.size}`,
+      String(rawRepeats),
+      String(repeats),
+      `${again} (${twice} running)`,
+      `${pl.size} of ${bible.places.length}`,
+      `${pe.size} of ${bible.people.length}${missing.length ? ` (${missing.join(', ')})` : ''}`,
+      by,
+    ],
+  };
+}

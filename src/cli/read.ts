@@ -18,8 +18,9 @@ import { playBoardOracle, playWanderer } from '../game/board/oracle.js';
 import { curtainOfBoard, pointsText, scoreBoard, storyOfBoard, truthReport } from '../game/board/report.js';
 import { choicesText, notebookText, pageBodyText, wrap } from '../game/board/text.js';
 import { ignoreBrokenPipe, parseArgs } from './args.js';
+import { isWorld } from '../gen/board/world/index.js';
 
-const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain]\n';
+const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--world neighbourhood]\n';
 
 export function readBoard(values: Map<string, string>, flags: Set<string>): string {
   const seed = Number(values.get('seed') ?? 1);
@@ -27,7 +28,9 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
   const type = values.get('type') as CaseType | undefined;
   if (!Number.isInteger(seed) || tier === null || (type !== undefined && !CASE_TYPES.includes(type))) throw new Error(USAGE);
   if (type !== undefined && !typesFor(tier).includes(type)) throw new Error(`The board builds ${typesFor(tier).join(', ')} at this tier.\n`);
-  const d = dealBoard(seed, tier, type);
+  const world = values.get('world');
+  if (world !== undefined && !isWorld(world)) throw new Error(`No world called "${world}". Try --world neighbourhood.\n`);
+  const d = dealBoard(seed, tier, type, world ? { world } : {});
   const c = d.kase;
   let run: BoardRun;
   let commands: string[];

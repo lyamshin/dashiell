@@ -71,6 +71,8 @@ export interface Page {
     recap?: string;
     /** docs/47 C13: the page's reason was said on the page before, so it isn't said again here. */
     carried?: boolean;
+    /** docs/48 §4: on a night from the neighbourhood, what the arrival and the staging said, for the bible's share. */
+    said?: { arrival: string; staging: string };
   };
 }
 

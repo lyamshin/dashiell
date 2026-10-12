@@ -248,6 +248,7 @@ function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>[
       ...(w.recap ? { recap: w.recap } : {}),
       ...(w.carried ? { carried: true } : {}),
       ...(w.hand.reuses ? { repeats: w.hand.reuses } : {}),
+      ...(c.world && (w.said.arrival || w.said.staging) ? { said: { arrival: (w.said.arrival ?? []).join(' '), staging: (w.said.staging ?? []).join(' ') } } : {}),
     },
   };
   next.spent = [...next.spent, ...w.hand.spent];

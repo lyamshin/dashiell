@@ -13,6 +13,7 @@
  */
 
 import { OFFICE, placeOf, type BoardCase, type PlaceId } from './model.js';
+import { worldMinutes } from './world.js';
 
 /** East–west position of a north–south street, in short blocks east of Mulberry Street. */
 const X: Record<string, number> = {
@@ -70,7 +71,8 @@ export function spot(c: BoardCase, id: PlaceId): { x: number; y: number; street:
   if (id === OFFICE) return { x: 0, y: 0, street: 'Mulberry Street' };
   const p = placeOf(c, id);
   const street = p?.street ?? '';
-  const h = hash(`${p?.name ?? id}`);
+  // docs/48: a place of the neighbourhood sits in the same spot every night, whoever's rooms it holds.
+  const h = hash(`${p?.world ?? p?.name ?? id}`);
   if (street in X) return { x: X[street] as number, y: (h % 7) - 2, street };
   if (street in Y) return { x: (h % 15) + 1, y: Y[street] as number, street };
   return { x: (h % 15) + 1, y: (h >> 4) % 7 - 2, street };
@@ -103,7 +105,9 @@ export function walkBetween(c: BoardCase, from: PlaceId, to: PlaceId): Walk {
   const dy = b.y - a.y;
   // A short block east–west is about a minute and a half; north–south nearer two.
   const raw = Math.abs(dx) * 1.5 + Math.abs(dy) * 2;
-  const minutes = Math.max(5, Math.min(40, Math.round(raw / 5) * 5));
+  // docs/48 §1: between two places of the neighbourhood, the bible's own minutes.
+  const own = worldMinutes(c, from, to);
+  const minutes = Math.max(5, Math.min(40, Math.round((own ?? raw) / 5) * 5));
   const ew = Math.abs(dx) >= 2 ? (dx > 0 ? 'east' : 'west') : '';
   const ns = Math.abs(dy) >= 2 ? (dy > 0 ? 'uptown' : 'downtown') : '';
   const dir = ns && ew ? `${ns} and ${ew}` : ns || ew || 'round the corner';

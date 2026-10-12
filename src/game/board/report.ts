@@ -14,7 +14,8 @@
  * print.
  */
 
-import { ROOMING_MEANS, WORKPLACES, HOLDERS } from '../../gen/board/content.js';
+import { ROOMING_MEANS, WORKPLACES } from '../../gen/board/content.js';
+import { holdersOf } from './world.js';
 import { questionById, key } from '../../gen/board/solver.js';
 import { minimalSets } from '../../gen/board/path.js';
 import { techniquesUpTo } from '../../gen/board/tiers.js';
@@ -114,7 +115,7 @@ function meansOptions(d: BoardDeal): { value: string; label: string }[] {
 /** Where a lost thing could be: with whoever buys such things, in the places the night has. */
 function whereOptions(d: BoardDeal): { value: string; label: string }[] {
   const c = d.kase;
-  const out: { value: string; label: string }[] = HOLDERS.map((h) => ({ value: `holder:${h.id}`, label: cap(h.listed) }));
+  const out: { value: string; label: string }[] = holdersOf(c).map((h) => ({ value: `holder:${h.id}`, label: cap(h.listed) }));
   out.push({ value: 'scene', label: `Still at ${placeName(c, c.crime.scene)}` });
   return out;
 }
@@ -143,7 +144,7 @@ function truthOf(d: BoardDeal, k: FieldKey): string {
   if (k === 'when') return String(c.crime.hour);
   if (k === 'how') return c.means.name;
   if (k === 'why') return c.crime.culprit;
-  const h = HOLDERS.find((x) => c.crime.whereNow?.text.includes(x.who.split(',')[0] as string));
+  const h = holdersOf(c).find((x) => c.crime.whereNow?.text.includes(x.who.split(',')[0] as string));
   return h ? `holder:${h.id}` : 'scene';
 }
 

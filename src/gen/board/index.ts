@@ -4,6 +4,9 @@ import { buildCase, lastVeto, typesFor } from './generate.js';
 import { analyse, rate, refusalShortcut, type Analysis } from './path.js';
 import { checkInvariants, invariantFailures } from './invariants.js';
 import { PAR_TARGET, TIERS } from './tiers.js';
+import type { WorldCtx } from './world/cast.js';
+
+export type { WorldCtx } from './world/cast.js';
 
 export * from './types.js';
 export { analyse, refusalShortcut, type Analysis, type Shortcut } from './path.js';
@@ -78,12 +81,12 @@ export function givensSignature(c: BoardCase): string {
 export function generateBoard(
   seed: number,
   tier: TierIndex,
-  opts: { type?: CaseType; maxAttempts?: number; onReject?: (why: string) => void } = {},
+  opts: { type?: CaseType; maxAttempts?: number; onReject?: (why: string) => void; world?: WorldCtx } = {},
 ): Generated | null {
   const type = opts.type ?? pickType(seed, tier);
   const max = opts.maxAttempts ?? MAX_ATTEMPTS;
   for (let attempt = 0; attempt < max; attempt++) {
-    const c = buildCase(seed, tier, type, attempt);
+    const c = buildCase(seed, tier, type, attempt, opts.world);
     if (!c) {
       opts.onReject?.(`truth: ${lastVeto}`);
       continue;

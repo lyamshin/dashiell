@@ -14,6 +14,7 @@ import type { BoardCase, CaseType, Hour, Person, PersonId, Place, PlaceId, TierI
 import { TIER_NAMES } from '../../gen/board/types.js';
 import { fmtHour } from '../../gen/board/solver.js';
 import { TIERS } from '../../gen/board/tiers.js';
+import { worldCtx } from '../../gen/board/world/index.js';
 import type { CellMark, Page } from './types.js';
 import type { Weather } from './types.js';
 
@@ -111,21 +112,65 @@ export interface BoardDeal {
 const DEALT = new Map<string, BoardDeal>();
 
 /**
+ * docs/48 §2: a night cast from a world, and who to keep off it. The culprit of the last night isn't
+ * the culprit tonight, and nobody wronged (killed, or robbed) in the last ten nights is wronged
+ * again (`recentCast` in the profile keeps them).
+ */
+export interface DealWorld {
+  world?: string;
+  avoid?: { culprits?: string[]; victims?: string[] };
+}
+
+/** The bible ids a night's culprit and wronged party (the dead man, or the owner) were cast from. */
+export function castOf(c: BoardCase): { culprit?: string; victim?: string } {
+  const culprit = personOf(c, c.crime.culprit)?.world;
+  const wronged = c.type === 'murder' ? personOf(c, c.crime.victim)?.world : personOf(c, c.client)?.world;
+  return { ...(culprit ? { culprit } : {}), ...(wronged ? { victim: wronged } : {}) };
+}
+
+/** Does a night keep its continuity: a fresh culprit, and nobody wronged lately wronged again. */
+export function keepsContinuity(c: BoardCase, avoid: DealWorld['avoid']): boolean {
+  if (!avoid) return true;
+  const k = castOf(c);
+  return !(k.culprit && avoid.culprits?.includes(k.culprit)) && !(k.victim && avoid.victims?.includes(k.victim));
+}
+
+/**
  * Deal the case for a seed and tier, as `npm run board` would. The generator
  * accepts every seed at every tier (docs/42's sweep); a seed it can't build
  * moves on to the next one, so a night always opens.
+ *
+ * docs/48: with a world, the night is cast from its bible, and a seed whose
+ * cast breaks the continuity moves on to the next one too, so the seed the
+ * night carries (and the link that shares it) is always the night itself.
  */
-export function dealBoard(seed: number, tier: TierIndex, type?: CaseType): BoardDeal {
-  const key = `${seed}|${tier}|${type ?? ''}`;
+export function dealBoard(seed: number, tier: TierIndex, type?: CaseType, w: DealWorld = {}): BoardDeal {
+  const key = `${seed}|${tier}|${type ?? ''}|${w.world ?? ''}|${JSON.stringify(w.avoid ?? {})}`;
   const hit = DEALT.get(key);
   if (hit) return hit;
-  for (let s = seed; s < seed + 50; s++) {
-    const g = generateBoard(s, tier, type ? { type } : {});
-    if (g) {
-      const deal = { kase: g.kase, analysis: g.analysis };
-      if (DEALT.size > 12) DEALT.delete(DEALT.keys().next().value as string);
-      DEALT.set(key, deal);
-      return deal;
+  const ctx = w.world ? worldCtx(w.world) : undefined;
+  const made = new Map<number, ReturnType<typeof generateBoard>>();
+  const make = (s: number) => {
+    if (!made.has(s)) made.set(s, generateBoard(s, tier, { ...(type ? { type } : {}), ...(ctx ? { world: ctx } : {}) }));
+    return made.get(s) ?? null;
+  };
+  // Continuity as far as the bible allows it: the whole of it over the next sixteen seeds, then the
+  // last few nights' wronged only, then the last night's, then a fresh culprit only, which is never
+  // let go while one is anywhere in reach. A small bible runs out of victims first.
+  const v = w.avoid?.victims ?? [];
+  const levels: (DealWorld['avoid'] | undefined)[] = w.avoid
+    ? [w.avoid, { ...w.avoid, victims: v.slice(-5) }, { ...w.avoid, victims: v.slice(-2) }, { ...w.avoid, victims: v.slice(-1) }, { culprits: w.avoid.culprits ?? [] }, undefined]
+    : [undefined];
+  for (const avoid of levels) {
+    const span = avoid && avoid.victims?.length ? 16 : 50;
+    for (let s = seed; s < seed + span; s++) {
+      const g = make(s);
+      if (g && keepsContinuity(g.kase, avoid)) {
+        const deal = { kase: g.kase, analysis: g.analysis };
+        if (DEALT.size > 12) DEALT.delete(DEALT.keys().next().value as string);
+        DEALT.set(key, deal);
+        return deal;
+      }
     }
   }
   throw new Error(`no board case near seed ${seed} at tier ${tier}`);

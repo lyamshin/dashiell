@@ -19,6 +19,14 @@ export const BOARD_TEACH_LINES: readonly string[] = [
   'A name’s no good to me without the line that breaks it.',
 ];
 
+/** docs/48 §3: the map line, on a night from the neighbourhood. */
+export const WORLD_MAP_LINE = 'Same few blocks every night. You’ll get to know them.';
+
+/** The teach page's lines for a night: the five, and the map line when it's cast from a world. */
+export function teachLines(world?: string): readonly string[] {
+  return world ? [...BOARD_TEACH_LINES, WORLD_MAP_LINE] : BOARD_TEACH_LINES;
+}
+
 /** The book's help, for the play CLI and the title page: how a board night plays. */
 export const BOARD_RULES: readonly string[] = [
   'Every page ends in choices: who to talk to, what to search, where to go. Each says what it costs of the night. A star marks one worth taking now and says what points there, never what the answer will show; the stars thin out as the tiers go up. The office is free.',

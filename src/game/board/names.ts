@@ -114,7 +114,7 @@ export function thinNames(c: BoardCase, blocks: Block[], exempt: (b: Block) => b
         return `\u0001${masks.length - 1}\u0002`;
       });
       let inQ = false;
-      for (const part of text.split(/(?<!\bMrs?\.)(?<=[.!?][”’]?)\s+/)) {
+      for (const part of text.split(/(?<!\b(?:Mrs?|Dr)\.)(?<=[.!?][”’]?)\s+/)) {
         sentences.push({ block: i, text: part, quoteAtStart: inQ });
         for (const ch of part) {
           if (ch === '“') inQ = true;

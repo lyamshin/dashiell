@@ -120,7 +120,7 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
         const r = a.remarks.findIndex((x) => x.facts.some((f) => f.p === p) || (x.mentions?.people ?? []).includes(p));
         if (r >= 0) {
           const rm = a.remarks[r];
-          const m = /^Walking over to (.+?) at (\w+) I passed (\S+) on (.+?), (.+?)\.$/.exec(rm?.text ?? '');
+          const m = /^Walking over to (.+?) at (\w+) I passed ((?:Mrs\.|Miss|Dr\.) \S+|\S+) on (.+?), (.+?)\.$/.exec(rm?.text ?? '');
           if (m) {
             const h = rm?.facts[0]?.h as Hour;
             // The remark's own words ("going fast, no hat") are its speaker's: a clue is said at most twice a night (docs/44).
