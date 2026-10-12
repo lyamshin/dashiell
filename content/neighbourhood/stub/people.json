@@ -1,0 +1,176 @@
+{
+  "people": [
+    {
+      "id": "rafferty", "first": "Nora", "last": "Rafferty", "honorific": "Mrs.", "gender": "f", "age": "60s",
+      "job": "the landlady", "home": "raffertys", "works": null,
+      "manner": "careful",
+      "doing": ["sitting in her chair at the foot of the stairs with her knitting", "counting the rent book with a wet thumb", "listening to the stairs"],
+      "looks": [{ "setting": "raffertys", "text": "She had a shawl over a shawl and eyes that had heard every excuse for late rent and believed one." }],
+      "voice": {
+        "ask": ["“Where was I? Where I always am, which is in this chair.”"],
+        "deflect": ["“I don’t keep a list of who’s sorry, only who’s paid.”"],
+        "nobodyElse": ["Nobody else. I’d have heard the third stair."],
+        "hours": { "8": "Eight’s when I do the rent book, and I do it here." },
+        "refuse": ["“That’s between me and the Sacred Heart.”"],
+        "ownUp": ["“All right. I wasn’t in my chair. Don’t tell the lodgers.”"]
+      },
+      "ties": [
+        { "to": "steinbach", "kind": "landlady", "line": "He pays on the Friday, which is more than I can say for his piano." },
+        { "to": "hauck", "kind": "landlady", "line": "Mrs. Hauck is a good lodger. She sews, and she doesn’t sing." },
+        { "to": "sokol", "kind": "friend", "line": "Abe Sokol sends a jug round on my birthday and I don’t ask what’s in it." }
+      ],
+      "secrets": [{ "text": "a drop of Sokol’s gin of an evening, which she has told the priest is cough mixture", "place": "sokols" }],
+      "asVictim": { "why": "she holds the rent book, and the rent book holds half the street", "foundWith": "the rent book open on her knee" }
+    },
+    {
+      "id": "sokol", "first": "Abe", "last": "Sokol", "honorific": null, "gender": "m", "age": "50s",
+      "job": "the barman", "home": "sokols", "works": { "place": "sokols", "open": 19, "close": 2 },
+      "manner": "terse",
+      "doing": ["wiping a glass that was already dry", "ringing up around the cat", "reading the racing page with his lips moving"],
+      "looks": [{ "setting": "sokols", "text": "He had forearms like a pair of hams and a moustache that did most of his talking." }],
+      "voice": {
+        "ask": ["“Behind the bar. Ask the bar.”"],
+        "deflect": ["“I pour. I don’t listen.”"],
+        "nobodyElse": ["That’s the lot. I’d know a new face before it got its hat off."],
+        "hours": { "11": "Eleven I change the barrel, and the whole room tells me how to do it." },
+        "refuse": ["“No.”"],
+        "ownUp": ["“All right. I stepped out.”"]
+      },
+      "ties": [
+        { "to": "vitale", "kind": "employer", "line": "Vitale has the back booth because somebody has to, and he pays for the soup." },
+        { "to": "rafferty", "kind": "friend", "line": "Nora Rafferty is the only woman on Mott Street who can drink me under my own bar." }
+      ],
+      "secrets": [{ "text": "the gin comes up from the river in milk cans", "place": "sokols" }],
+      "asVictim": { "why": "he knows who drinks where, and what they said", "foundWith": "a bar cloth in his fist" }
+    },
+    {
+      "id": "steinbach", "first": "Otto", "last": "Steinbach", "honorific": null, "gender": "m", "age": "40s",
+      "job": "a piano teacher", "home": "raffertys", "works": null,
+      "manner": "plain",
+      "doing": ["playing scales on the edge of the table", "reading a score with his glasses pushed up"],
+      "looks": [{ "setting": "any", "text": "He had long hands and a short temper, and the hands were the only part of him that was patient." }],
+      "voice": {
+        "ask": ["“Tonight? A lesson, and then I needed a drink, which is what lessons are for.”"],
+        "deflect": ["“I teach the piano. I don’t teach people what to do.”"],
+        "nobodyElse": ["Nobody else."],
+        "hours": { "7": "Seven is the Lipschitz boy, who plays like he’s being paid by the wrong note." },
+        "refuse": ["“I’ve said where I was.”"],
+        "ownUp": ["“All right. I wasn’t where I said. I was somewhere I’m ashamed of.”"]
+      },
+      "ties": [
+        { "to": "rafferty", "kind": "lodger", "line": "She is a good landlady. She hates the piano, but she is a good landlady." },
+        { "to": "sirkin", "kind": "owes", "line": "I owe him the rent on the studio, and he reminds me in the street." }
+      ],
+      "secrets": [{ "text": "he plays for a dance hall on Saturdays, which his pupils’ mothers must never hear", "place": "sokols" }],
+      "asVictim": { "why": "he owes everybody on the block a little, and the little adds up", "foundWith": "a metronome still ticking" }
+    },
+    {
+      "id": "marchetti", "first": "Lucia", "last": "Marchetti", "honorific": "Miss", "gender": "f", "age": "20s",
+      "job": "a switchboard operator", "home": "ludlow", "works": null,
+      "manner": "terse",
+      "doing": ["filing her nails as if they owed her money", "reading a movie magazine upside down to see if it helped"],
+      "looks": [{ "setting": "any", "text": "She had the headset dent in her hair still, and a voice that said “Number, please” even when it said hello." }],
+      "voice": {
+        "ask": ["“I’ll tell you once. I talk for a living, I don’t do it for free.”"],
+        "deflect": ["“I connect people. What they say is their business.”"],
+        "nobodyElse": ["Nobody else."],
+        "hours": {},
+        "refuse": ["“You can hold the line, mister. I’m done.”"],
+        "ownUp": ["“Fine. I wasn’t home. Ask the man I was with, and then forget his name.”"]
+      },
+      "ties": [
+        { "to": "sirkin", "kind": "old-flame", "line": "Sol Sirkin bought me a bracelet once and asked for it back the next week." },
+        { "to": "crowninshield", "kind": "friend", "line": "The dentist fixed my tooth for nothing and never once mentioned it, which is a kind of miracle." }
+      ],
+      "secrets": [{ "text": "she meets a married man at Sokol’s on Thursdays", "place": "sokols" }],
+      "asVictim": { "why": "she hears every call on the exchange, and somebody said too much", "foundWith": "her headset still round her neck" }
+    },
+    {
+      "id": "vitale", "first": "Nunzio", "last": "Vitale", "honorific": null, "gender": "m", "age": "30s",
+      "job": "a bookmaker", "home": "ludlow", "works": { "place": "sokols", "open": 20, "close": 1 },
+      "manner": "careful",
+      "doing": ["writing very small numbers in a very small book", "eating soup without taking his hat off"],
+      "looks": [{ "setting": "sokols", "text": "He had a pencil behind each ear, in case one of them lost." }],
+      "voice": {
+        "ask": ["“I’ll tell you where I was, and you’ll write it down, and we’ll both be happy.”"],
+        "deflect": ["“I take bets. I don’t take sides.”"],
+        "nobodyElse": ["Nobody else."],
+        "hours": { "9": "Nine’s when the results come in from Jamaica, and I don’t move for nine." },
+        "refuse": ["“I don’t think I’ll answer that one. Call it a long shot.”"],
+        "ownUp": ["“All right, I was at a game. Ask who dealt, and keep my mother out of it.”"]
+      },
+      "ties": [
+        { "to": "sokol", "kind": "employee", "line": "Sokol lets me have the booth. I let him have a little of what crosses it." },
+        { "to": "sirkin", "kind": "feud", "line": "Sirkin wrote up my mother’s building for the stairs. My mother’s building has always had those stairs." }
+      ],
+      "secrets": [{ "text": "a card game he swore off at Easter", "place": "sokols" }],
+      "asVictim": { "why": "half the block owes him on a horse", "foundWith": "his little book, with the last page torn out" }
+    },
+    {
+      "id": "sirkin", "first": "Sol", "last": "Sirkin", "honorific": null, "gender": "m", "age": "50s",
+      "job": "a buildings inspector", "home": "ludlow", "works": null,
+      "manner": "plain",
+      "doing": ["writing in a black notebook with the stub of a pencil", "looking at the ceiling as if it had failed him"],
+      "looks": [{ "setting": "any", "text": "He had the look of a man who had measured your stairs and found them wanting." }],
+      "voice": {
+        "ask": ["“I was where a man goes when he has worked all day, which is nowhere interesting.”"],
+        "deflect": ["“I inspect buildings. People are not my department.”"],
+        "nobodyElse": ["Nobody else."],
+        "hours": {},
+        "refuse": ["“I have nothing further.”"],
+        "ownUp": ["“All right. I was not where I said. It is not a building matter.”"]
+      },
+      "ties": [
+        { "to": "steinbach", "kind": "owed", "line": "Steinbach owes me the rent on that studio, and pays me in chords." },
+        { "to": "hauck", "kind": "in-law", "line": "My brother married her. My brother did a lot of things without asking me." },
+        { "to": "vitale", "kind": "feud", "line": "Vitale thinks a staircase is a matter of opinion." },
+        { "to": "marchetti", "kind": "old-flame", "line": "Miss Marchetti and I had an understanding, and then we had a misunderstanding." },
+        { "to": "crowninshield", "kind": "owed", "line": "The dentist owes me four thousand dollars and a filling." }
+      ],
+      "secrets": [{ "text": "he takes envelopes to pass a fire escape", "place": "sokols" }],
+      "asVictim": { "why": "he had a file on every building on the block, and a page on everybody in them", "foundWith": "his black notebook, and a page torn out of it" }
+    },
+    {
+      "id": "hauck", "first": "Elsa", "last": "Hauck", "honorific": "Mrs.", "gender": "f", "age": "40s",
+      "job": "a seamstress", "home": "raffertys", "works": null,
+      "manner": "careful",
+      "doing": ["letting out a waistband by lamplight", "threading a needle on the third try"],
+      "looks": [{ "setting": "any", "text": "She had pins in her collar and a tape measure round her neck like a mayor’s chain." }],
+      "voice": {
+        "ask": ["“I sew, mister. Where I was is mostly a chair.”"],
+        "deflect": ["“I mind my own seams.”"],
+        "nobodyElse": ["Nobody else."],
+        "hours": {},
+        "refuse": ["“I won’t say. You can write that down too.”"],
+        "ownUp": ["“Very well. I went out. I am entitled to go out.”"]
+      },
+      "ties": [
+        { "to": "rafferty", "kind": "lodger", "line": "Mrs. Rafferty has been kind to me since my husband passed, in her way, which is loudly." },
+        { "to": "sirkin", "kind": "in-law", "line": "Sol is my husband’s brother, God rest my husband, and God help Sol." }
+      ],
+      "secrets": [{ "text": "she has been taking in piecework for a shop that pays under the table", "place": "raffertys" }],
+      "asVictim": { "why": "she knows whose hems are let out and why", "foundWith": "a needle still in her hand" }
+    },
+    {
+      "id": "crowninshield", "first": "Edith", "last": "Crowninshield", "honorific": "Dr.", "gender": "f", "age": "40s",
+      "job": "a dentist", "home": "ludlow", "works": null,
+      "manner": "plain",
+      "doing": ["looking at her own teeth in the back of a spoon", "doing sums on a napkin"],
+      "looks": [{ "setting": "any", "text": "She smelled faintly of oil of cloves, and smiled like somebody who knows what’s under a smile." }],
+      "voice": {
+        "ask": ["“My evening? Open wide, and I’ll tell you.”"],
+        "deflect": ["“I pull teeth. I don’t pull confidences.”"],
+        "nobodyElse": ["Nobody else."],
+        "hours": {},
+        "refuse": ["“I don’t believe I will.”"],
+        "ownUp": ["“Yes, all right. I lied. It was about money, which is the dull kind of lie.”"]
+      },
+      "ties": [
+        { "to": "marchetti", "kind": "friend", "line": "Lucia Marchetti has a good molar and a bad taste in men." },
+        { "to": "sirkin", "kind": "owes", "line": "I owe Sirkin four thousand dollars, and he has never let me forget a cent of it." }
+      ],
+      "secrets": [{ "text": "she plays the numbers with her receptionist’s wages", "place": "sokols" }],
+      "asVictim": { "why": "half the street has her fillings, and some of them haven’t paid", "foundWith": "a dental mirror on the floor beside her" }
+    }
+  ]
+}

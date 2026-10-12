@@ -1,0 +1,74 @@
+{
+  "places": [
+    {
+      "id": "sokols",
+      "name": "Sokol’s",
+      "kind": "bar",
+      "street": "Rivington Street",
+      "number": 71,
+      "hours": { "open": 19, "close": 2 },
+      "watcher": {
+        "person": "sokol",
+        "counts": "I pour every drink in this place myself, and I don’t pour for a face I don’t know.",
+        "sees": "the whole bar from the taps, and the street door in the mirror",
+        "blind": "the back room, once the curtain’s drawn"
+      },
+      "minutes": { "raffertys": 10, "ludlow": 5 },
+      "arrivals": [
+        { "band": "early", "weather": "any", "text": "Sokol’s was down six steps from Rivington Street and still full of the people who had nowhere better to be. The seltzer bottles stood along the back bar like a choir that had given up." },
+        { "band": "mid", "weather": "rain", "text": "The rain had driven the last of Rivington Street down the six steps into Sokol’s, and they were steaming quietly at the bar, too wet to leave and too dry to sing." },
+        { "band": "late", "weather": "any", "text": "Sokol’s had the chairs up on half the tables. The other half had men under them who hadn’t noticed." }
+      ],
+      "details": [
+        { "id": "seltzer", "kind": "prop", "text": "A row of blue seltzer bottles stood on the back bar, every one of them half full." },
+        { "id": "slate", "kind": "habit", "text": "The slate over the taps said SOUP, with the soup crossed off." },
+        { "id": "cat", "kind": "gag", "text": "The cat was asleep on the cash register again, and Sokol was ringing up around her." }
+      ],
+      "hides": ["the back room"]
+    },
+    {
+      "id": "raffertys",
+      "name": "Mrs. Rafferty’s rooming house",
+      "kind": "home",
+      "street": "Mott Street",
+      "number": 23,
+      "hours": null,
+      "watcher": {
+        "person": "rafferty",
+        "counts": "Nobody gets up my stairs without going round my chair, and nobody’s tried it twice.",
+        "sees": "the stair and the street door",
+        "blind": "the back hall, where the coal goes in"
+      },
+      "minutes": { "sokols": 10, "ludlow": 15 },
+      "arrivals": [
+        { "band": "early", "weather": "any", "text": "Mrs. Rafferty’s was four floors of lodgers and one landlady, and the landlady was the part that counted. The hall smelled of cabbage and floor polish, in that order." },
+        { "band": "late", "weather": "cold", "text": "The hall at Mrs. Rafferty’s was colder than the street, which she said was good for the character." }
+      ],
+      "details": [
+        { "id": "chloral", "kind": "prop", "text": "A brown bottle of chloral stood on the hall shelf, for Mrs. Rafferty’s nerves, with her name on the label in her own hand." },
+        { "id": "chair", "kind": "habit", "text": "Her chair sat square at the foot of the stairs, and it had worn two pale marks into the linoleum." },
+        { "id": "canary", "kind": "gag", "text": "The canary in the hall sang only when somebody owed rent, and it was singing." }
+      ],
+      "hides": []
+    },
+    {
+      "id": "ludlow",
+      "name": "the Ludlow Street flats",
+      "kind": "home",
+      "street": "Ludlow Street",
+      "number": 12,
+      "hours": null,
+      "watcher": null,
+      "minutes": { "sokols": 5, "raffertys": 15 },
+      "arrivals": [
+        { "band": "early", "weather": "any", "text": "Twelve Ludlow Street was five floors of flats and nobody watching any of them. The street door didn’t lock, and hadn’t since the Coolidge administration." },
+        { "band": "mid", "weather": "rain", "text": "The rain came down the light well at Twelve Ludlow Street and talked to itself on every landing." }
+      ],
+      "details": [
+        { "id": "dumbwaiter", "kind": "prop", "text": "A dumbwaiter stood in the hall with a sign on it that said BROKEN in three languages." },
+        { "id": "radio", "kind": "habit", "text": "Somebody on the third floor had a radio going, low, all night." }
+      ],
+      "hides": []
+    }
+  ]
+}
