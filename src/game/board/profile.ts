@@ -31,6 +31,12 @@ export interface Profile {
   runs: number;
   /** Full-credit reports. */
   wins: number;
+  /**
+   * docs/48 §2, continuity: on nights from the neighbourhood, the bible ids of the last culprits and
+   * of the last people wronged (the dead man, or the owner), most recent last. The next night keeps
+   * the last culprit and the last ten wronged off its cast, as far as the bible allows.
+   */
+  recent?: { culprits: string[]; victims: string[] };
 }
 
 export function emptyProfile(): Profile {
@@ -44,6 +50,8 @@ export interface RunResult {
   asked: number;
   actionsUsed: number;
   par: number;
+  /** docs/48: who the night cast as the culprit and the wronged, by bible id, on a night from a world. */
+  cast?: { culprit?: string; victim?: string };
 }
 
 export interface RecordOutcome {
@@ -58,6 +66,7 @@ export interface RecordOutcome {
 export function recordRun(profile: Profile, result: RunResult): RecordOutcome {
   const won = result.asked > 0 && result.points === result.asked;
   const next: Profile = { ...profile, cleared: [...profile.cleared], best: { ...profile.best }, runs: profile.runs + 1, wins: profile.wins + (won ? 1 : 0) };
+  if (result.cast) next.recent = remember(profile.recent, result.cast);
   if (!won) return { profile: next, won, firstClear: null };
   const tier = result.tier;
   const firstClear = profile.cleared.includes(tier) ? null : tier;
@@ -84,7 +93,32 @@ export function sanitizeProfile(value: unknown): Profile {
   const count = (x: unknown): number => (typeof x === 'number' && Number.isFinite(x) && x >= 0 ? Math.floor(x) : 0);
   out.runs = count(v.runs);
   out.wins = Math.min(count(v.wins), out.runs);
+  if (typeof v.recent === 'object' && v.recent !== null) {
+    const ids = (x: unknown) => (Array.isArray(x) ? x.filter((y): y is string => typeof y === 'string').slice(-RECENT) : []);
+    const r = v.recent as Record<string, unknown>;
+    out.recent = { culprits: ids(r.culprits), victims: ids(r.victims) };
+  }
   return out;
+}
+
+/** How many nights the profile remembers who was cast. */
+const RECENT = 10;
+
+function remember(recent: Profile['recent'], cast: NonNullable<RunResult['cast']>): NonNullable<Profile['recent']> {
+  const r = recent ?? { culprits: [], victims: [] };
+  return {
+    culprits: [...r.culprits, ...(cast.culprit ? [cast.culprit] : [])].slice(-RECENT),
+    victims: [...r.victims, ...(cast.victim ? [cast.victim] : [])].slice(-RECENT),
+  };
+}
+
+/**
+ * docs/48 §2: who to keep off the next night from the neighbourhood: the last culprit (never twice
+ * running) and the last ten people wronged.
+ */
+export function continuityOf(profile: Pick<Profile, 'recent'>): { culprits: string[]; victims: string[] } | undefined {
+  if (!profile.recent) return undefined;
+  return { culprits: profile.recent.culprits.slice(-1), victims: profile.recent.victims.slice(-RECENT) };
 }
 
 export function loadProfile(store: KeyValueStore): Profile {

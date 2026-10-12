@@ -26,7 +26,8 @@ import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { boardGridText, placeCodes } from '../game/board/grid.js';
-import { BOARD_TEACH_LINES, BOARD_TEACH_TITLE, BOARD_RULES } from '../game/board/teach.js';
+import { BOARD_TEACH_TITLE, BOARD_RULES, teachLines } from '../game/board/teach.js';
+import { isWorld } from '../gen/board/world/index.js';
 
 import { OFFICE, budgetCalls, dealBoard, deadlineWords, hourWord, nameOf, placeName, tierName, type BoardDeal, type BoardReport, type BoardRun } from '../game/board/model.js';
 import {
@@ -73,6 +74,8 @@ export interface BoardSave {
   seed: number;
   tier: number;
   type?: CaseType;
+  /** docs/48: the world the night was cast from, when it isn't the dealt cast. */
+  world?: string;
   detective: string;
   events: Event[];
   /** Whose topics are open. Free; not a page. */
@@ -96,7 +99,7 @@ interface Night {
 }
 
 function deal(save: BoardSave): Night {
-  const d = dealBoard(save.seed, save.tier as 0, save.type);
+  const d = dealBoard(save.seed, save.tier as 0, save.type, save.world ? { world: save.world } : {});
   let run = newBoardRun(d, { detectiveName: save.detective, ...(save.type ? { type: save.type } : {}) });
   const pages: BoardRun[] = [run];
   for (const e of save.events) {
@@ -421,6 +424,7 @@ export function parseSave(text: string): BoardSave {
   const tier = save.tier as number;
   if (!Number.isInteger(save.seed) || save.seed < 1 || !Number.isInteger(tier) || tier < 0 || tier > 5 || !Array.isArray(save.events)) fail('That save is damaged: its seed, tier or events don’t read.');
   if (save.type !== undefined && !typesFor(tier as 0).includes(save.type)) fail('That save is damaged: the board builds no such case at its tier.');
+  if (save.world !== undefined && !isWorld(save.world)) fail('That save is damaged: it was cast from a world this book doesn’t have.');
   return save;
 }
 
@@ -469,9 +473,9 @@ function titleText(save: BoardSave, type: CaseType): string {
   ].join('\n');
 }
 
-function teachText(): string {
+function teachText(world?: string): string {
   const out = [BOARD_TEACH_TITLE.toUpperCase(), ''];
-  for (const l of BOARD_TEACH_LINES) out.push(wrap(l), '');
+  for (const l of teachLines(world)) out.push(wrap(l), '');
   out.push(wrap('(Shown on a first night. `new --no-teach` leaves it out.)'));
   return out.join('\n');
 }
@@ -485,11 +489,13 @@ function cmdNew(io: PlayIo, values: Map<string, string>, flags: Set<string>): st
   if (tier === null) fail('--tier is 0 to 5.');
   const type = values.get('type') as CaseType | undefined;
   if (type !== undefined && !typesFor(tier as 0).includes(type)) fail(`--type: the board builds ${typesFor(tier as 0).join(', ')} at this tier.`);
-  const save: BoardSave = { game: 'dashiell-play', version: 1, engine: 'board', seed, tier: tier as number, ...(type ? { type } : {}), detective: values.get('name') || 'Dashiell', events: [], person: null, picker: null, claim: null };
+  const world = values.get('world');
+  if (world !== undefined && !isWorld(world)) fail('--world: the one world there is is neighbourhood.');
+  const save: BoardSave = { game: 'dashiell-play', version: 1, engine: 'board', seed, tier: tier as number, ...(type ? { type } : {}), ...(world ? { world } : {}), detective: values.get('name') || 'Dashiell', events: [], person: null, picker: null, claim: null };
   const night = deal(save);
   store(io, path as string, save);
-  const teach = flags.has('no-teach') ? [] : [teachText(), '', DOUBLE, ''];
-  return [titleText(save, night.d.kase.type), '', `case ${seed} · ${tierName(tier as 0)} · the small board`, '', DOUBLE, '', ...teach, lookText(night, path as string)].join('\n');
+  const teach = flags.has('no-teach') ? [] : [teachText(save.world), '', DOUBLE, ''];
+  return [titleText(save, night.d.kase.type), '', `case ${seed} · ${tierName(tier as 0)} · the small board${save.world ? ' · the neighborhood' : ''}`, '', DOUBLE, '', ...teach, lookText(night, path as string)].join('\n');
 }
 
 function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
@@ -586,7 +592,7 @@ function helpText(): string {
   for (const l of BOARD_RULES) out.push(wrap(l), '');
   out.push(
     'COMMANDS',
-    '  new --seed N --tier 0..5 [--type murder|lost-item|lost-pet] [--name <detective>] [--no-teach] --save F',
+    '  new --seed N --tier 0..5 [--type murder|lost-item|lost-pet] [--world neighbourhood] [--name <detective>] [--no-teach] --save F',
     '  look · do <n|words> · page <n> · notebook · grid',
     '  pencil "<Name> <hour> at|not|clear [place]" (pencil "Feldman ten at Rafferty’s") · confront <Name>',
     '  report [<Name>] (with a name, the lines that could break their story)',

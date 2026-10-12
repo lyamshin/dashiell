@@ -55,6 +55,9 @@ export function familyCards(family: string): BoardCard[] {
 /** A tag wanted: a value, or any of several. A card's `any` matches everything. */
 export type Want = Record<string, string | undefined>;
 
+/** docs/48 §3: the bible's own lines for a draw (`world.ts`), told which of them the hand dealt. */
+export type WorldDeck = ((family: string, want: Want, slots: Slots) => BoardCard[]) & { picked?: (card: BoardCard) => void };
+
 function tagFits(card: BoardCard, name: string, want: string): boolean {
   const have = card.tags[name];
   // A card that doesn't say is for another key: an arrival for a kind isn't an arrival for every place.
@@ -79,6 +82,14 @@ export class Hand {
   private lastId = '';
   /** Card text a page may not use tonight (a Yiddish theatre has no pictures). */
   avoid: RegExp | null = null;
+  /**
+   * docs/48 §3: on a night from the neighbourhood, the bible's own lines for a draw, dealt before
+   * the families (`world.ts`). A bible line not yet read tonight wins; once they're all read, the
+   * families fill in.
+   */
+  world?: WorldDeck;
+  /** The last bible card dealt, for `drawCard`. */
+  private lastWorld: BoardCard | null = null;
 
   constructor(seed: number, page: number, spent: readonly string[]) {
     this.rng = new Rng(((seed * 2654435761) ^ (page * 40503 + 0x9e37)) >>> 0);
@@ -125,6 +136,23 @@ export class Hand {
    * nothing fits.
    */
   draw(family: string, want: Want = {}, slots: Slots = {}, opts: { widen?: boolean; plain?: boolean; need?: boolean; fresh?: boolean; joke?: boolean } = {}): string | null {
+    this.lastWorld = null;
+    if (this.world) {
+      const plain = opts.plain === true || (!this.mayJoke && !(opts.joke && this.jokes === 0));
+      const ours = this.world(family, want, slots)
+        .filter((c) => (!plain || !c.joke) && !(this.avoid && this.avoid.test(c.text)) && !this.spentSet.has(c.id))
+        .map((c) => ({ c, text: fill(c as unknown as Card, slots) }))
+        .filter((x): x is { c: BoardCard; text: string } => x.text !== null);
+      if (ours.length > 0) {
+        const pick = ours[this.rng.int(ours.length)] as { c: BoardCard; text: string };
+        this.lastId = pick.c.id;
+        this.lastWorld = pick.c;
+        this.note(pick.c.id);
+        this.world.picked?.(pick.c);
+        if (pick.c.joke) this.jokes++;
+        return pick.text;
+      }
+    }
     const pool = familyCards(family);
     if (pool.length === 0) return null;
     const keys = Object.keys(want).filter((k) => want[k] !== undefined);
@@ -159,7 +187,7 @@ export class Hand {
     const text = this.draw(family, want, slots, opts);
     if (text === null) return null;
     const id = this.lastId;
-    return { card: BOARD_CARDS.find((c) => c.id === id) as BoardCard, text };
+    return { card: this.lastWorld ?? (BOARD_CARDS.find((c) => c.id === id) as BoardCard), text };
   }
 
   /** Deal from one of the old decks, by a plain match on its tags. */

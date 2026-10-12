@@ -64,3 +64,162 @@ One helper agent writes the first draft of the bible to this spec against `docs/
 - The bible exists and reads in voice; the generator casts from it; all measures hold.
 - A "Built" section here, the leftovers in docs/25.
 - A PR, not merged, and a short reading list for the designer: three nights to play.
+
+## Built (2026-10-11)
+
+Branch `neighbourhood`. The dealt cast is still the default. The bible is behind `?world=neighbourhood` in the book and `--world neighbourhood` in `read`, `play`, `case`, `board-sweep`, `board-measure` and `board-prose`. Dealt nights come out exactly as main deals them: the boards and every page of the oracle's, the wanderer's and the reader's runs hash the same as main's.
+
+### §1 The loader, `src/gen/board/world/`
+
+- **`load.ts`** parses the two files and checks them. A bible that fails stops with every problem, each naming its entry ("people/doyle: tie to krantz has no tie back"). It checks:
+  - ids, places and people that refer to each other, and minutes that are symmetric;
+  - mutual ties, with the kind read the bible's way round (`owes` and `owed` are each other's back);
+  - unique first names and jobs;
+  - that watchers live or work where they watch, and that each gag is at one place only;
+  - that every kind of place the generator needs is there (`coverage`): two watched night places, a watched home with a means, a workplace with hours, a watcher and a means, somewhere unwatched or a back room, and private flats with three residents, one of them a man.
+- **`types.ts`** reads `hours` the bible's way (`close` before `open` runs past midnight, `null` is a home), and maps the voice's hour lines onto the board's hours.
+- **`means.ts`** reads a detail as tonight's means: chloral, laudanum, a revolver, a knife, cyanide or rat poison.
+- **The stub bible,** `content/neighbourhood/stub/` (3 places, 8 people), parses but fails `coverage` by design. The test says what it's missing.
+- **Fixes to the bible,** all of them clear cases:
+  - plain-terms hits: areaway, dry-goods, numbers slips, stevedore, marker, mouthpiece, hack license;
+  - machinery words: "rule four", "Ten's the rule", "picks up the beat";
+  - six doing lines in the present tense inside the narration's past ("at a man who is talking" is now "was talking").
+
+  The README notes the areaway.
+
+### §2 Casting a night, `cast.ts` and `motives.ts`, with hooks in `generate.ts`
+
+- **The cast fills the generator's own slots** from the bible:
+  - the venue (a watched place open all evening);
+  - the second place: the workplace whose cabinet holds the means, when its hours fit; otherwise a watched home with a means; on a small case, a second venue or a watched home;
+  - the scene: the victim's flat in an unwatched building;
+  - somewhere unwatched: the card room, or a back room inside a watched place ("the back booth behind the flour sacks at Sokol's", "the undertaker's cellar, through the coal hole at the Peacock"). It has to be a room you can be at, not a drawer or "behind the velvet curtain";
+  - the culprit's flat at Medium and up;
+  - the admitter's witness's rooms.
+- **Suspects** are people who live, work or drink at those places. Each role's rules on lodging and working are kept, so homes and works agree with the board.
+- **Fixed people:** watchers belong to their places. The fence is fixed per venue: Fishel at Sokol's and Miss Marsh at the Peacock; anywhere else, one of the pool's three, always the same one at that place.
+- **Means** come only from the places' details.
+- **Reasons come from ties,** in this order:
+  - the person's own tie to the dead man or the owner, with the bible's line as what they say;
+  - a grudge on behalf of somebody they're close to ("Doyle was squeezing Teitel, her in-law, for money Teitel didn't have"). When the one in between is in the case too, it is said without the name ("her in-law");
+  - on a small case, a debt of their own to somebody outside the case;
+  - on a murder, last, the dead man's hold on them: a secret from their own list, at their own place, never a place in play.
+- **Suspects are picked for their ties to the dead man** where the bible has them.
+- **The puzzle is untouched:** every invariant, the lead time, the rating and the two broken stories at one hour. The sweep runs the same invariant list on every world night.
+- **Continuity,** `model.ts` and `profile.ts`:
+  - The profile keeps the last ten culprits and wronged (the dead man or the owner) as `recent`.
+  - `dealBoard` steps the seed until the night keeps them. It tries no culprit twice running and no wronged within ten, and then relaxes the wronged a step at a time.
+  - The culprit is never relaxed while any seed keeps it. The generator stays a pure function of seed, tier, type and world.
+  - The book passes the profile's `recent` when a night is opened fresh.
+
+### §3 Prose from the bible first, `src/game/board/world.ts`
+
+- **The hand takes the bible's lines first,** through a hook in `decks.ts` (`Hand.world`); the decks fill what's left. The bible's lines used:
+  - **arrivals,** by band and weather;
+  - **details:** props, habits for staging, gags paid off at most twice a night;
+  - **watchers:** what they can see and how they count;
+  - **looks,** by setting;
+  - **doing lines,** only where the person lives or works;
+  - **manners;**
+  - **voice lines:** the ask, the deflection, the refusal, the owning up, the "nobody else" at the end of a list, and one hour line framing an account (only for an hour the page already tells);
+  - **what the dead man was found with.**
+- **Accounts stay engine-written.**
+- **A back room inside a place** gets the board's words for a room with no name on it, and only those lines of the place's own that are about that room. The bar's stuffed peacock stays in the bar.
+- **A person's last line** ("Counting bills with a rubber thumb: that was the last I saw of her") is their own doing line. It is said only where they live or work, and never when the page already said they were doing it.
+- **The teach page** has the map line: "Same few blocks every night. You'll get to know them."
+
+### §4 Measures, the neighbourhood against the dealt cast
+
+**The sweep** (200 nights a tier, seeds 1–200). Both casts:
+
+- 200/200 generated at every tier, with 0 invariant failures;
+- the same par ranges;
+- 0 duplicate reasons, and 0 nights with the culprit and the liar at one place and hour.
+
+Givens matching another seed's word for word: 3 neighbourhood nights, 0 dealt. On the same few blocks that's reported, not failed.
+
+**Variety** (neighbourhood only):
+
+| tier | distinct casts | culprits / wronged used | culprit twice running, by seed | with continuity | wronged within ten (twice running) | places in 60 nights | people in 60 nights |
+|---|---|---|---|---|---|---|---|
+| Raw | 99 of 200 | 13 / 6 | 25 | 0 | 186 (0) | 7 of 10 | 20 of 24 |
+| Coddled | 79 | 13 / 6 | 35 | 0 | 186 (0) | 10 | 22 |
+| Poached | 105 | 12 / 6 | 35 | 0 | 184 (0) | 9 | 20 |
+| Soft-boiled | 102 | 13 / 6 | 27 | 0 | 178 (0) | 9 | 21 |
+| Medium | 107 | 6 / 6 | 55 | 0 | 183 (0) | 10 | 22 |
+| Hard-boiled | 115 | 6 / 6 | 67 | 0 | 182 (0) | 8 | 21 |
+
+**The target isn't met: 79–115 distinct casts, against 150.** The cause is the bible's shape, not the casting:
+
+- The Excelsior is its only unwatched building, so it is every night's scene. Its six residents outside the fences are every night's wronged.
+- Its three men are the only murder victims.
+- At Medium and up the culprit needs an unwatched flat of their own, so the same six are the only culprits.
+- Gutman, Wexler and Miss Marsh are rarely cast: two watchers of workplaces and a fence.
+
+What would get there, in the bible:
+
+- a second private building, or two or three unwatched flats over shops, with five or six more residents;
+- more ties, now 2–4 a person (3.3 on average), especially among people who don't live at the Excelsior;
+- women as victims, which needs "him" taken out of the scene and office cards.
+
+Continuity holds where it can: no culprit twice running, and no wronged twice running. "Within ten" can't be kept with six wronged; the dealer relaxes it and says so.
+
+**`board-measure`** (50 seeds a type, by tier), neighbourhood / dealt:
+
+| tier | wanderer files who right | wanderer solved | refusal shortcut under par | reader, a liar at random | reader, the last liar | innocent liar's story first (same step) | callback pages |
+|---|---|---|---|---|---|---|---|
+| Raw | 52% / 55% | 3% / 6% | 19 / 19 | 100% / 100% | 100% / 100% | — | 63% / 64% |
+| Coddled | 50% / 49% | 8% / 8% | 11 / 19 | 100% / 100% | 100% / 100% | — | 64% / 67% |
+| Poached | 39% / 44% | 3% / 3% | 0 / 0 | 34% / 37% | 46% / 39% | 61% (0%) / 57% (0%) | 48% / 68% |
+| Soft-boiled | 39% / 37% | 1% / 5% | 0 / 0 | 47% / 46% | 60% / 64% | 59% (0%) / 68% (0%) | 51% / 68% |
+| Medium | 27% / 26% | 1% / 0% | 0 / 1 | 41% / 45% | 57% / 60% | 70% (0%) / 74% (0%) | 47% / 69% |
+| Hard-boiled | 20% / 16% | 2% / 1% | 0 / 0 | 0% / 0% | 0% / 0% | 59% (28%) / 63% (22%) | 55% / 70% |
+
+- On both casts: the oracle solves 100% at par, the reader files 0% at Poached and up, and lint and plain-terms hits are 0.
+- The puzzle columns are within the spread of 50 seeds.
+- **Callback pages fell, from 64–70% to 47–64%.** A person's last line is their own doing, and it's now said only where they live or work. Elsewhere the page closes without one, rather than "polishing a trombone nobody will redeem" in the undertaker's cellar. The fix is in the bible: `doing` lines tagged by setting, as looks are, with two or three for anywhere.
+
+**`board-prose`** (30 nights a tier). Reader lint, correspondence, plain terms, cards twice, sentences twice, clues three times, banned phrases, signposts, gags and pets are 0 on both casts. The neighbourhood has three hits:
+
+- two Medium lost-pet list pages name a suspect three times. The fence (Fishel) is a third man in the collision line, so the second mention can't become "he";
+- one Soft-boiled page says "the Lyric" three times, in the board's own confirmation ("So the Lyric at nine, with Doyle and the Lyric at eight…").
+
+All three come from engine lines shared with dealt nights. Words a page run about 15% longer than dealt (median 186–220 against 160–180), from the bible's arrivals.
+
+**The share of arrival, look and staging text from the bible:**
+
+| tier | all three | arrivals and looks | staging |
+|---|---|---|---|
+| Raw | 66% | 75% | 38% |
+| Coddled | 69% | 77% | 42% |
+| Poached | 61% | 69% | 38% |
+| Soft-boiled | 61% | 68% | 43% |
+| Medium | 65% | 73% | 42% |
+| Hard-boiled | 66% | 73% | 43% |
+
+**That's under the 70% target.** Three reasons:
+
+- Staging carries the board's own sentences around the bible's ("I hadn't come for the furniture. I'd come for Sokol.").
+- A back room gets the board's arrival.
+- People away from home and work get the board's doing cards.
+
+An earlier cut read 75–78%, with bible lines where they didn't belong: the Peacock's dance floor described in the undertaker's cellar, a pawnshop clerk's doing line in a nightclub. Hide arrivals and setting-tagged doing lines in the bible would close the gap.
+
+### Read
+
+One night per tier in full, plus two Medium nights with overlapping casts and a Poached night with a back room. Every one was solved at par by the oracle's route. The commands are `npm run read -- --seed N --tier T --type X --world neighbourhood --no-choices`.
+
+- **Raw, seed 1, murder:** clean, and the bible's arrivals and voices carry it.
+- **Coddled, seed 2, lost pet:** reads well. The Lyric's fence is the generic "Benny the pawnbroker's runner". A doing line in the present tense ("at a man who is talking") is fixed in the bible.
+- **Poached, seed 4, murder:** the liar-with-a-witness reads naturally. The back room was "the alley door to the yard" with a gambling-room arrival; doors are no longer hides.
+- **Soft-boiled, seed 3, murder:** it holds, but the back room's keeper (Mabry, from ten) gets the board's watcher lines ("ran out of fingers before he ran out of night") for a one-hour list, and a "behind the counter" doing card in a cellar.
+- **Medium, seeds 5 and 8, murder:** Mrs. Krantz, Miss Lowenthal and Dr. Hirsch are in both. They read the same across the two nights (looks, voices, manners), and each night breaks on a different walk seen on East Houston Street. Page 2 is the same Excelsior paragraph both nights, and the watchers' standing lines are word for word.
+- **Hard-boiled, seed 4, murder (pair):** solid. A prop that repeated the arrival (the wooden wedge in the door, twice on one page) is fixed.
+- **Poached, seed 1, murder, with a back room:** found the host's dance floor in the undertaker's cellar, a pawnshop clerk's doing line in it, and a last line repeating the page's first. All three are fixed, with tests.
+
+### Not done
+
+See docs/25, "The neighbourhood". The two that matter for the designer are both in the bible:
+
+- **variety:** more unwatched homes, residents and ties;
+- **share and callbacks:** doing lines by setting, and an arrival for each back room.

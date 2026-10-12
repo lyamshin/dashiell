@@ -19,6 +19,7 @@ import { knownPeople, knownPlaces, linesHeld } from '../game/board/knowledge.js'
 import {
   BOARD_SAVE_KEY,
   budgetCalls,
+  castOf,
   dealBoard,
   deadlineWords,
   hourWord,
@@ -34,9 +35,10 @@ import {
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
 import { BREAKS_LABEL, HUNCH, WHERE_BY_LABEL, boardFields, breakOptionsShown, curtainOfBoard, hoursThatMattered, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
-import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE } from '../game/board/teach.js';
+import { BOARD_RULES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
 import { costLabel } from '../game/board/text.js';
-import { fileToProfile, loadProfile, teachOn, type KeyValueStore } from '../game/board/profile.js';
+import { continuityOf, fileToProfile, loadProfile, teachOn, type KeyValueStore } from '../game/board/profile.js';
+import { isWorld } from '../gen/board/world/index.js';
 import type { CellMark, OfferedChoice, OfferedGroup, Page } from '../game/board/types.js';
 import { typesFor } from '../gen/board/index.js';
 import { clear, el } from './dom.js';
@@ -51,6 +53,8 @@ interface BoardSaved {
   seed: number;
   tier: TierIndex;
   type?: CaseType;
+  /** docs/48: the world the night was cast from (`?world=neighbourhood`), when it isn't the dealt cast. */
+  world?: string;
   detective: string;
   commands: string[];
   marks: Record<string, Record<string, CellMark>>;
@@ -74,7 +78,7 @@ function loadSaved(store: KeyValueStore): BoardSaved | null {
     const raw = store.getItem(BOARD_SAVE_KEY);
     if (!raw) return null;
     const v = JSON.parse(raw) as BoardSaved;
-    if (!v || v.engine !== 'board' || !Array.isArray(v.commands) || !dealable(v.seed, v.tier, v.type)) return null;
+    if (!v || v.engine !== 'board' || !Array.isArray(v.commands) || !dealable(v.seed, v.tier, v.type) || (v.world !== undefined && !isWorld(v.world))) return null;
     return { ...v, detective: typeof v.detective === 'string' ? v.detective : 'Dashiell', marks: v.marks && typeof v.marks === 'object' ? v.marks : {} };
   } catch {
     return null;
@@ -106,9 +110,13 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   let spread: HTMLElement | null = null;
 
   const params = (): URLSearchParams => new URLSearchParams(window.location.search);
+  // docs/48: `?world=neighbourhood` casts the nights opened from here from the bible.
+  const w0 = params().get('world');
+  let world: string | undefined = isWorld(w0) ? w0 : undefined;
 
   function writeUrl(): void {
-    const q = saved && screen.kind !== 'title' ? `?seed=${saved.seed}&t=${saved.tier}${saved.type ? `&type=${saved.type}` : ''}` : '';
+    const w = saved && screen.kind !== 'title' ? saved.world : world;
+    const q = saved && screen.kind !== 'title' ? `?seed=${saved.seed}&t=${saved.tier}${saved.type ? `&type=${saved.type}` : ''}${w ? `&world=${w}` : ''}` : w ? `?world=${w}` : '';
     window.history.replaceState(null, '', `${window.location.pathname}${q}`);
   }
 
@@ -122,11 +130,19 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
 
   /* ------------------------------------------------------------ playing */
 
-  function openCase(seed: number, tier: TierIndex, type: CaseType | undefined, name: string, resume: boolean): void {
-    d = dealBoard(seed, tier, type);
+  /**
+   * Open a night. `fresh` is a night picked on the title page: from the neighbourhood it keeps the
+   * profile's continuity (no culprit twice running, nobody wronged twice in ten nights), stepping on
+   * to the next seed that does, and the seed it lands on is the night's (and the link's).
+   */
+  function openCase(seed: number, tier: TierIndex, type: CaseType | undefined, name: string, resume: boolean, w: string | undefined = world, fresh = false): void {
+    const avoid = fresh && w ? continuityOf(loadProfile(store)) : undefined;
+    d = dealBoard(seed, tier, type, w ? { world: w, ...(avoid ? { avoid } : {}) } : {});
+    if (w) seed = d.kase.seed;
+    world = w;
     const prior = resume ? loadSaved(store) : null;
-    const same = prior && prior.seed === seed && prior.tier === tier && (prior.type ?? null) === (type ?? null);
-    saved = same ? prior : { engine: 'board', seed, tier, ...(type ? { type } : {}), detective: name, commands: [], marks: {} };
+    const same = prior && prior.seed === seed && prior.tier === tier && (prior.type ?? null) === (type ?? null) && (prior.world ?? null) === (w ?? null);
+    saved = same ? prior : { engine: 'board', seed, tier, ...(type ? { type } : {}), ...(w ? { world: w } : {}), detective: name, commands: [], marks: {} };
     run = newBoardRun(d, { detectiveName: saved.detective, ...(type ? { type } : {}) });
     for (const cmd of saved.commands) run = stepBoard(d, run, cmd).run;
     run = { ...run, marks: saved.marks };
@@ -167,7 +183,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     saved = { ...saved, filed: report };
     writeSaved(store, saved);
     const verdict = scoreBoard(d, run, report);
-    const outcome = fileToProfile(store, { tier: run.tier, points: verdict.points, asked: verdict.asked, actionsUsed: verdict.actionsUsed, par: verdict.par });
+    const outcome = fileToProfile(store, { tier: run.tier, points: verdict.points, asked: verdict.asked, actionsUsed: verdict.actionsUsed, par: verdict.par, ...(d.kase.world ? { cast: castOf(d.kase) } : {}) });
     const news: TierNews | undefined = outcome.firstClear !== null ? { cleared: run.tier, firstClear: true } : undefined;
     screen = news ? { kind: 'verdict', verdict, news } : { kind: 'verdict', verdict };
     render();
@@ -236,7 +252,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (screen.kind === 'teach') {
       const teach = el('div', { class: 'teach', role: 'region', 'aria-label': BOARD_TEACH_TITLE });
       teach.append(el('h2', { class: 'teach-title', text: BOARD_TEACH_TITLE }));
-      for (const line of BOARD_TEACH_LINES) teach.append(el('p', { class: 'teach-line', text: line }));
+      for (const line of teachLines(d?.kase.world)) teach.append(el('p', { class: 'teach-line', text: line }));
       const go = el('button', { class: 'plain-button teach-go', type: 'button', text: 'Up the stairs to the office' });
       go.addEventListener('click', () => {
         screen = { kind: 'book' };
@@ -781,7 +797,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const prior = loadSaved(store);
     if (prior && !prior.filed) {
       const back = el('button', { class: 'plain-button', type: 'button', text: 'Go back to it' });
-      back.addEventListener('click', () => openCase(prior.seed, prior.tier, prior.type, prior.detective, true));
+      back.addEventListener('click', () => openCase(prior.seed, prior.tier, prior.type, prior.detective, true, prior.world));
       form.append(el('div', { class: 'resume' }, el('p', { text: `Case ${prior.seed} is still open on the desk: ${tierName(prior.tier)}, the small board.` }), back));
     }
     form.append(
@@ -796,7 +812,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       } catch {
         /* forgets the name */
       }
-      openCase(Number(seed.value) || 1, Number(tier.value) as TierIndex, (type.value || undefined) as CaseType | undefined, name.value.trim() || 'Dashiell', true);
+      openCase(Number(seed.value) || 1, Number(tier.value) as TierIndex, (type.value || undefined) as CaseType | undefined, name.value.trim() || 'Dashiell', true, world, true);
     });
     wrap.append(form);
     return wrap;
@@ -804,7 +820,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
 
   /* --------------------------------------------------------------- boot */
 
-  // `?seed=4&t=2[&type=lost-pet]` opens that night. Anything else in the URL
+  // `?seed=4&t=2[&type=lost-pet][&world=neighbourhood]` opens that night. Anything else in the URL
   // (an old engine's `d=` or `engine=`, a type the tier doesn't build) is ignored.
   const p = params();
   const s = Number(p.get('seed'));

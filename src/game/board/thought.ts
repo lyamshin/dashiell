@@ -111,6 +111,8 @@ export function shortOther(name: string): string {
     .replace(/, back to the room, I couldn’t swear who$/, ', back to the room')
     .replace(/ (telling|complaining) .*$/, '')
     .replace(/^(Lou|Pardo|Benny)\b.*$/, '$1')
+    // docs/48: a fence from the neighbourhood is "Fishel the bookmaker" once, then Fishel.
+    .replace(/^((?:Mrs\.|Miss|Dr\.) )?([A-Z][^\s,]+) the [a-z].*$/, '$1$2')
     .replace(/^a man called (\w+).*$/, '$1')
     .replace(/^a pawnbroker’s runner called (\w+).*$/, '$1');
 }
@@ -122,7 +124,7 @@ export function shortOther(name: string): string {
  */
 export function remarkSaid(c: BoardCase, l: Line): string {
   const sp = l.speaker as PersonId;
-  const m = /^Walking over to (.+?) at (\w+) I passed (\S+) on (.+?), (.+?)\.$/.exec(l.text.replace(/^[^:]+: “/, '').replace(/”$/, ''));
+  const m = /^Walking over to (.+?) at (\w+) I passed ((?:Mrs\.|Miss|Dr\.) \S+|\S+) on (.+?), (.+?)\.$/.exec(l.text.replace(/^[^:]+: “/, '').replace(/”$/, ''));
   // The remark's own words ("going fast, no hat") are its speaker's: the thought points at it, it doesn't say it again.
   if (m) return `${nameOf(c, sp)} passed ${m[3]} on ${m[4]} at ${m[2]}`;
   const k = /^I had (.+?) at my place at (\w+)/.exec(l.text.replace(/^[^:]+: “/, ''));
@@ -342,7 +344,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     const street = c.places.find((p) => p.id === c.crime.scene)?.street;
     for (const r of ac?.remarks ?? []) {
       if (!street || !r.text.includes(` on ${street}`)) continue;
-      const m = /I passed (\S+) on .+? at (\w+)|at (\w+) I passed (\S+) on/.exec(r.text);
+      const m = /I passed ((?:Mrs\.|Miss|Dr\.) \S+|\S+) on .+? at (\w+)|at (\w+) I passed ((?:Mrs\.|Miss|Dr\.) \S+|\S+) on/.exec(r.text);
       const name = m?.[1] ?? m?.[4];
       const hh = m?.[2] ?? m?.[3];
       const tail = /, ([^,]+, [^,.]+)\.$/.exec(r.text)?.[1];

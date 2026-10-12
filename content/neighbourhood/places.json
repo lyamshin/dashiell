@@ -25,7 +25,7 @@
         { "id": "raffertys-chloral", "kind": "prop", "text": "A brown bottle of chloral on the hall shelf, under the picture of the Sacred Heart, for lodgers who can’t sleep, which is all of them." },
         { "id": "raffertys-revolver", "kind": "prop", "text": "The late Mr. Rafferty’s revolver, in the hall-stand drawer under the winter gloves, unloaded, she says, which is what everybody says." },
         { "id": "raffertys-basket", "kind": "prop", "text": "The mending basket, set square across the top of the first flight, so that coming up the stairs means asking it to move." },
-        { "id": "raffertys-rules", "kind": "prop", "text": "A card of house rules by the door, where rule four, In By Ten, has been underlined so often the pencil went through." },
+        { "id": "raffertys-rules", "kind": "prop", "text": "A card of house rules by the door, where number four, In By Ten, has been underlined so often the pencil went through." },
         { "id": "raffertys-umbrellas", "kind": "prop", "text": "A row of umbrella hooks in the hall, each with a lodger’s name inked over it, and one with no name that nobody will explain." },
         { "id": "raffertys-tea", "kind": "habit", "text": "A pot of tea stewing on the back of the stove at all hours, offered to everybody, and always too strong to refuse politely." },
         { "id": "raffertys-cat", "kind": "gag", "text": "Parnell, a ginger cat, asleep on a different stair every time anybody comes in, as if he were keeping count for her." }
@@ -41,24 +41,24 @@
       "hours": null,
       "watcher": {
         "person": "wojcik",
-        "counts": "I sit on the areaway steps with my pipe from supper till bed, and every pair of shoes that goes up that stoop goes past my nose.",
-        "sees": "the street door and the stoop, from the areaway steps",
+        "counts": "I sit on the cellar steps with my pipe from supper till bed, and every pair of shoes that goes up that stoop goes past my nose.",
+        "sees": "the street door and the stoop, from the cellar steps",
         "blind": "the stairs inside, once you’re past the first turn"
       },
       "minutes": { "raffertys": 5, "sokols": 5, "peacock": 10, "lyric": 15, "steinmetz": 5, "surgery": 10, "wexlers": 10, "cardroom": 5, "excelsior": 15 },
       "arrivals": [
-        { "band": "early", "weather": "any", "text": "The flats over Lipsky’s were five floors of brick on Orchard Street, with the dry-goods shop shut up at the bottom behind iron shutters. After midnight the pushcarts stood along the curb under their tarpaulins, waiting for morning. Down in the areaway under the stoop a pipe glowed and went dark: the janitor was still on his steps, or had left the pipe to do it for him." },
+        { "band": "early", "weather": "any", "text": "The flats over Lipsky’s were five floors of brick on Orchard Street, with the cloth shop shut up at the bottom behind iron shutters. After midnight the pushcarts stood along the curb under their tarpaulins, waiting for morning. Down by the cellar steps under the stoop a pipe glowed and went dark: the janitor was still on his steps, or had left the pipe to do it for him." },
         { "band": "mid", "weather": "any", "text": "The tenement over Lipsky’s was dark from the stoop to the roof, except one kitchen on the third floor where somebody was ironing a shirt for the morning. The shop window below had a card in it, EVERYTHING MUST GO, which had been saying so since the war." },
-        { "band": "late", "weather": "any", "text": "The flats over Lipsky’s were waking from the top down, a light on the fifth floor, then the fourth. In the street the first pushcart man was already untying his tarpaulin. In the dry-goods window a dressmaker’s dummy wore a hat it had been wearing since spring, and wore it well." },
+        { "band": "late", "weather": "any", "text": "The flats over Lipsky’s were waking from the top down, a light on the fifth floor, then the fourth. In the street the first pushcart man was already untying his tarpaulin. In the cloth shop’s window a dressmaker’s dummy wore a hat it had been wearing since spring, and wore it well." },
         { "band": "mid", "weather": "cold", "text": "Every radiator in the flats over Lipsky’s had gone cold, and somebody on the fourth floor was banging one with a shoe, a message the janitor could read from the cellar and was choosing not to. Frost had made ferns on the shop window, over a bolt of blue serge marked down twice." },
-        { "band": "mid", "weather": "rain", "text": "The fire escapes over Lipsky’s were letting the rain down in strings into the areaway, where the janitor had laid a plank across the puddle to his door. Up the stoop, the hall had a row of tin mailboxes with names in five different hands, two of them crossed out, and a wet umbrella dripping on every landing." },
+        { "band": "mid", "weather": "rain", "text": "The fire escapes over Lipsky’s were letting the rain down in strings into the yard by the cellar steps, where the janitor had laid a plank across the puddle to his door. Up the stoop, the hall had a row of tin mailboxes with names in five different hands, two of them crossed out, and a wet umbrella dripping on every landing." },
         { "band": "early", "weather": "clear", "text": "It was a clear night over Orchard Street, the kind that shows you every washing line strung between the buildings, and the tenement over Lipsky’s had more than its share. A whole family’s shirts hung out over the street on a pulley, white as a surrender, waiting for a sun that wasn’t due till six." }
       ],
       "details": [
         { "id": "lipskys-boiler", "kind": "gag", "text": "The boiler in the cellar, which the janitor speaks of as a difficult woman, and which knocks on the pipes whenever her name comes up." },
         { "id": "lipskys-pipe", "kind": "habit", "text": "The janitor knocks his pipe out on the stoop rail so often the rail has a dent in it the shape of the bowl." },
         { "id": "lipskys-mailboxes", "kind": "prop", "text": "A row of tin mailboxes in the hall, with the names in five different hands and two crossed out." },
-        { "id": "lipskys-shutters", "kind": "prop", "text": "The iron shutters on the dry-goods shop, which come down at seven with a crash the whole street hears and go up at eight with another." },
+        { "id": "lipskys-shutters", "kind": "prop", "text": "The iron shutters on the cloth shop, which come down at seven with a crash the whole street hears and go up at eight with another." },
         { "id": "lipskys-coal", "kind": "prop", "text": "The coal bin in the cellar, padlocked, with a chalk tally on the wall of whose scuttle got what, and two of the tallies rubbed out by a thumb." },
         { "id": "lipskys-dummy", "kind": "prop", "text": "A dressmaker’s dummy in the shop window, in a hat, which has been wished good evening more than once." },
         { "id": "lipskys-poison", "kind": "prop", "text": "A tin of rat poison on the cellar shelf, with a skull on the label and a coffee ring on the skull." },
@@ -95,7 +95,7 @@
         { "id": "sokols-radio", "kind": "prop", "text": "A radio on the shelf behind the bar, turned low so the music won’t get into the bread." },
         { "id": "sokols-rye", "kind": "prop", "text": "A back shelf of bottles with good labels and the same rye in all of them." },
         { "id": "sokols-breadknife", "kind": "prop", "text": "A bread knife on the bakery counter as long as a man’s forearm, kept sharp enough to slice a roll without waking it." },
-        { "id": "sokols-cigarbox", "kind": "prop", "text": "A cigar box under the till for numbers slips, which the barman calls receipts." }
+        { "id": "sokols-cigarbox", "kind": "prop", "text": "A cigar box under the till for lottery slips, which the barman calls receipts." }
       ],
       "hides": ["the back booth behind the flour sacks", "the bakery cellar", "the alley door to the yard"]
     },

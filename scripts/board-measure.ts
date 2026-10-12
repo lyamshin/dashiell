@@ -42,6 +42,8 @@ const val = (k: string) => {
 };
 const N = Number(val('seeds') ?? 50);
 const tiers = (val('tiers') ?? '0,1,2,3,4,5').split(',').map(Number) as TierIndex[];
+// docs/48 §4: `--world neighbourhood` measures nights cast from the bible.
+const world = val('world');
 const terms = loadPlainTerms();
 
 /** First-level choices on a page: each person, each search, each place shown, the fold, the free row. */
@@ -115,7 +117,7 @@ for (const tier of tiers) {
     let pages = 0;
     let callbacks = 0;
     for (let s = 1; s <= N; s++) {
-      const d = dealBoard(s, tier, type);
+      const d = dealBoard(s, tier, type, world ? { world } : {});
       const culprit = d.kase.crime.culprit;
       const o = playBoardOracle(d);
       const par = parCalls(d);

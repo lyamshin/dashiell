@@ -39,7 +39,7 @@
           "7": "Seven, I take my chair and the mending, and the house knows I’m on.",
           "8": "Eight, I’ve the tea on and a sock on the egg and one ear on the door.",
           "9": "Nine’s the quiet hour. You can hear a lodger think, if he does.",
-          "10": "Ten’s the rule. After ten I’m not a landlady, I’m a customs house.",
+          "10": "Ten’s the hour. After ten I’m not a landlady, I’m a customs house.",
           "11": "Eleven, I start listening for the late ones, the way you’d listen for rain."
         },
         "refuse": [
@@ -77,13 +77,13 @@
       "works": { "place": "lipskys", "open": 19, "close": 24 },
       "manner": "terse",
       "doing": [
-        "sitting on the areaway steps with his pipe",
+        "sitting on the cellar steps with his pipe",
         "shoveling coal into the boiler",
         "answering the fourth floor by banging a pipe with a wrench",
-        "sweeping a stoop he swept an hour ago"
+        "sweeping a stoop he had swept an hour ago"
       ],
       "looks": [
-        { "setting": "lipskys", "text": "A square man in a cardigan and a cloth cap on the areaway steps, so still with his pipe that you notice the smoke before the man." },
+        { "setting": "lipskys", "text": "A square man in a cardigan and a cloth cap on the cellar steps, so still with his pipe that you notice the smoke before the man." },
         { "setting": "any", "text": "Coal dust in the creases of his knuckles that no soap on Orchard Street has ever got out." },
         { "setting": "any", "text": "A ring of keys on a bootlace round his neck, worn under his undershirt where nobody can borrow them." }
       ],
@@ -205,10 +205,10 @@
         "looking through the slot in the steel door",
         "knitting a muffler with no end in sight",
         "eating a pickle out of a paper bag on her stool",
-        "explaining to a large man why he is going home"
+        "explaining to a large man why he was going home"
       ],
       "looks": [
-        { "setting": "peacock", "text": "A big woman on a stool behind the steel door, in a beaded dress and a man’s overcoat, with forearms like a stevedore’s." },
+        { "setting": "peacock", "text": "A big woman on a stool behind the steel door, in a beaded dress and a man’s overcoat, with forearms like a dockworker’s." },
         { "setting": "any", "text": "A nose that was broken once and set by somebody in a hurry, and a pair of pearl earrings to make up for it." },
         { "setting": "any", "text": "Big hands folded in her lap, the knuckles flattened by a career she doesn’t discuss." }
       ],
@@ -268,7 +268,7 @@
         "marking crosses on his seating chart",
         "mouthing the third act from the back of the house",
         "sweeping sunflower shells out of the gallery",
-        "pointing his flashlight at a man who is talking"
+        "pointing his flashlight at a man who was talking"
       ],
       "looks": [
         { "setting": "lyric", "text": "A small old man in a maroon uniform with brass buttons, two of them from a different uniform." },
@@ -684,7 +684,7 @@
       },
       "ties": [
         { "to": "gutman", "kind": "employee", "line": "Pearl keeps the book like a jailer and the waiting room like a church. I’d pay her more if I had it, and some weeks I tell her so." },
-        { "to": "russo", "kind": "owes", "line": "Carmine Russo has my marker for three hundred dollars, and he pats his breast pocket whenever he sees me." },
+        { "to": "russo", "kind": "owes", "line": "Carmine Russo has my IOU for three hundred dollars, and he pats his breast pocket whenever he sees me." },
         { "to": "lowenthal", "kind": "friend", "line": "Bea Lowenthal and I have had Sunday lunch for ten years. She has never once asked me to look at her teeth." }
       ],
       "secrets": [
@@ -711,7 +711,7 @@
         "writing pledge tickets for his uncle",
         "trying on a coat from the back room",
         "polishing a trombone nobody will redeem",
-        "telling a customer what his own watch is worth"
+        "telling a customer what his own watch was worth"
       ],
       "looks": [
         { "setting": "wexlers", "text": "A thin young man in sleeve garters behind the counter, in a waistcoat cut for somebody broader." },
@@ -820,7 +820,7 @@
         { "text": "The decks at the card room are shaved, and he shaves them himself, in the closet where the spare decks are kept.", "place": "cardroom" }
       ],
       "asVictim": {
-        "why": "He holds markers on half the neighborhood, and a marker dies with the man who holds it.",
+        "why": "He holds IOUs on half the neighborhood, and an IOU dies with the man who holds it.",
         "foundWith": "a fresh deck in his breast pocket, still in its band, and his green eyeshade in his hand."
       }
     },
@@ -971,7 +971,7 @@
       "looks": [
         { "setting": "peacock", "text": "A lean man in a tuxedo with the tie undone, and a cornet under one arm that he holds as if somebody might ask for it back." },
         { "setting": "any", "text": "A pencil mustache trimmed so thin it looks drawn on, and might have been." },
-        { "setting": "any", "text": "A callus on his upper lip from the mouthpiece, which he touches when he’s thinking." }
+        { "setting": "any", "text": "A callus on his upper lip from the cornet, which he touches when he’s thinking." }
       ],
       "voice": {
         "ask": [
@@ -989,7 +989,7 @@
         "hours": {
           "7": "Seven, I warm up my lip. Wherever I am, the lip comes too.",
           "8": "Eight’s a slow hour. Slow tempo. I like a slow eight.",
-          "9": "Nine’s when the night picks up the beat, whether you’re ready or not.",
+          "9": "Nine’s when the night picks up the tempo, whether you’re ready or not.",
           "10": "Ten, I start hearing tunes in everything: car horns, the el, a woman laughing two streets off.",
           "11": "Eleven’s the hour for the last good tune. After that everybody’s playing for tips."
         },
@@ -1158,7 +1158,7 @@
         "shaking hands with a man who didn’t offer his",
         "handing out cigars with the alderman’s name on the band",
         "writing a name in a little black book",
-        "eating a free lunch somebody else is paying for"
+        "eating a free lunch somebody else was paying for"
       ],
       "looks": [
         { "setting": "any", "text": "A florid man in a derby and a checked waistcoat, with a carnation in his buttonhole that the alderman pays for." },
@@ -1324,7 +1324,7 @@
       "ties": [
         { "to": "lieb", "kind": "friend", "line": "Oscar knows everybody’s business by their watch. Good kid. Talks too much in the back seat." },
         { "to": "moskin", "kind": "old-flame", "line": "Tillie and me went steady all last summer. Then she got a part. I still don’t take her fare. I can’t help it." },
-        { "to": "doyle", "kind": "feud", "line": "Doyle had my hack license pulled for a week because I wouldn’t drive his cousin for nothing. A week is a lot of fares." }
+        { "to": "doyle", "kind": "feud", "line": "Doyle had my cab license pulled for a week because I wouldn’t drive his cousin for nothing. A week is a lot of fares." }
       ],
       "secrets": [
         { "text": "Some nights he runs crates up from the river for Sokol with his flag down, and unloads them through the bakery door.", "place": "sokols" }
@@ -1436,7 +1436,7 @@
           "7": "Seven, I still hear the switchboard in my ears. It takes till eight to stop.",
           "8": "Eight’s when I feel lucky. I don’t know why. It’s cost me a fortune.",
           "9": "Nine’s for Scranton. You’d be amazed how much I think about Scranton for somebody who left it.",
-          "10": "Ten I’m supposed to be in. Rule four. I know rule four by heart.",
+          "10": "Ten I’m supposed to be in. Number four on the card. I know number four by heart.",
           "11": "Eleven, I wish I was asleep and I wish I was dancing, both at once."
         },
         "refuse": [
@@ -1473,7 +1473,7 @@
       "manner": "plain",
       "doing": [
         "arranging neckties on his cart by color, then by price, then by color again",
-        "haggling with a customer who has already paid",
+        "haggling with a customer who had already paid",
         "eating a baked potato from a street stove",
         "tying a tarpaulin over his cart for the night"
       ],

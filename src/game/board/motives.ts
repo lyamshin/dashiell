@@ -65,7 +65,8 @@ function nightVars(c: BoardCase): Record<string, string> {
 /** The report form's why for a suspect: their reason, without their pronoun. */
 export function motiveForm(c: BoardCase, p: PersonId): string {
   const who = personOf(c, p);
-  const t = who?.motiveId ? FORMS[who.motiveId] : undefined;
+  // docs/48: a reason from the bible brings its own form.
+  const t = who?.motiveForm ?? (who?.motiveId ? FORMS[who.motiveId] : undefined);
   if (!t) return cap(who?.motive ?? p);
   const out = fill(t, nightVars(c));
   return /\{\w+\}/.test(out) ? cap(who?.motive ?? p) : out;
@@ -74,7 +75,7 @@ export function motiveForm(c: BoardCase, p: PersonId): string {
 /** The murder's papers, a line a suspect: "Reinhardt: a court transcript: his own testimony against her brother." */
 export function papersLine(c: BoardCase, p: PersonId): string {
   const who = personOf(c, p);
-  const t = who?.motiveId ? PAPERS[who.motiveId] : undefined;
+  const t = who?.motivePapers ?? (who?.motiveId ? PAPERS[who.motiveId] : undefined);
   const pr = pronOf(c, p);
   if (!t || !isMurder(c)) return `${nameOf(c, p)}: ${who?.motive ?? ''}.`;
   return `${nameOf(c, p)}: ${fill(t, { he: pr.he, his: pr.his, him: pr.him })}.`;

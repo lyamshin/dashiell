@@ -58,6 +58,14 @@ export interface Person {
   home?: PlaceId;
   /** Where they work, when it's a place in the case; they're plausibly there in its open hours. */
   works?: PlaceId;
+  /** docs/48: the bible's id for them, on a night cast from the neighbourhood. */
+  world?: string;
+  /** docs/48: their reason as the report's why list says it, without their pronoun. */
+  motiveForm?: string;
+  /** docs/48: what the dead man's papers held on them (`{he}`, `{his}`, `{him}` are theirs). */
+  motivePapers?: string;
+  /** docs/48: their reason in their own words, from the bible's tie. */
+  motiveSays?: string;
 }
 
 /**
@@ -112,6 +120,8 @@ export interface Place {
    * and after the hour they matter. Not one of rule 1's places.
    */
   offBoard?: boolean;
+  /** docs/48: the bible's id for the place (or the building it's in), on a night cast from the neighbourhood. */
+  world?: string;
 }
 
 /** The truth: every board person's place at every hour, and why they moved. */
@@ -314,6 +324,8 @@ export interface BoardCase {
    * innocent's.
    */
   lead?: 'innocent' | 'culprit';
+  /** docs/48: the bible the night was cast from ("neighbourhood"). Absent: the dealt cast. */
+  world?: string;
 }
 
 export type QuestionKind = 'search' | 'list' | 'account' | 'confront';

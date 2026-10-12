@@ -3,6 +3,7 @@ import { renderCase } from '../gen/board/render.js';
 import { seed3, seed3Repaired } from '../gen/board/fixtures/seed3.js';
 import { lostWatch, lostWatchRepaired } from '../gen/board/fixtures/lost-watch.js';
 import { ignoreBrokenPipe, parseArgs } from './args.js';
+import { isWorld, worldCtx } from '../gen/board/world/index.js';
 
 /**
  * docs/42 §4: `npm run case -- --seed N --tier T [--type murder|lost-item|lost-pet]`
@@ -15,7 +16,7 @@ ignoreBrokenPipe();
 const { flags, values } = parseArgs(process.argv.slice(2));
 const usage =
   'usage: npm run case -- --seed <integer> --tier raw|coddled|poached|soft-boiled|medium|hard-boiled|0..5 ' +
-  '[--type murder|lost-item|lost-pet] [--json]\n' +
+  '[--type murder|lost-item|lost-pet] [--world neighbourhood] [--json]\n' +
   '       npm run case -- --fixture seed3|seed3-repaired|lost-watch|lost-watch-repaired\n';
 
 const FIXTURES: Record<string, () => BoardCase> = { seed3, 'seed3-repaired': seed3Repaired, 'lost-watch': lostWatch, 'lost-watch-repaired': lostWatchRepaired };
@@ -43,8 +44,13 @@ if (type !== undefined && !typesFor(tier).includes(type)) {
   process.stderr.write(`The board builds ${typesFor(tier).join(', ')} at this tier (a lost item has no last sighting to narrow a window).\n`);
   process.exit(1);
 }
+const world = values.get('world');
+if (world !== undefined && !isWorld(world)) {
+  process.stderr.write(`No world called "${world}". Try --world neighbourhood.\n`);
+  process.exit(1);
+}
 const reasons: string[] = [];
-const g = generateBoard(seed, tier, { ...(type ? { type } : {}), onReject: (w) => reasons.push(w) });
+const g = generateBoard(seed, tier, { ...(type ? { type } : {}), ...(world ? { world: worldCtx(world) } : {}), onReject: (w) => reasons.push(w) });
 if (!g) {
   process.stderr.write(`no case for seed ${seed} at this tier after ${reasons.length} attempts. Last reasons:\n  ${reasons.slice(-5).join('\n  ')}\n`);
   process.exit(2);

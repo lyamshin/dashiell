@@ -72,6 +72,7 @@ import { breakSaid, claimSaid, eliminationOf, shortOther, thoughtOf, type Though
 import { walkBetween } from './walk.js';
 import { papersLine, whyOrder } from './motives.js';
 import { SPARE_KEY } from '../../gen/board/content.js';
+import { worldAccountVoice, worldDeck, worldFoundWith, worldListVoice, worldLook, worldManner, worldStaging } from './world.js';
 
 export { breakSaid };
 
@@ -111,6 +112,8 @@ export interface Writer {
   handoff?: string;
   /** The recap's clauses: the notebook said aloud, which has to name people. */
   recap?: string;
+  /** docs/48 §4: what the arrival and staging beats said, before names were thinned, for the bible's share. */
+  said: Partial<Record<Beat, string[]>>;
   /**
    * docs/47 C13: the page's reason was said on the page before (its hand-off named who or where,
    * or the arrival in this room said why), so this page doesn't say it again ("So, Moe’s.",
@@ -122,12 +125,16 @@ export interface Writer {
 }
 
 export function writer(d: BoardDeal, before: BoardRun, run: BoardRun, page: number): Writer {
+  const hand = new Hand(run.seed * 7 + run.tier, page, run.spent);
+  // docs/48 §3: a night from the neighbourhood deals the bible's own lines first.
+  const deck = worldDeck(d, run);
+  if (deck) hand.world = deck;
   return {
     d,
     c: d.kase,
     run,
     before,
-    hand: new Hand(run.seed * 7 + run.tier, page, run.spent),
+    hand,
     blocks: [],
     told: new Set(),
     hours: new Set(),
@@ -135,6 +142,7 @@ export function writer(d: BoardDeal, before: BoardRun, run: BoardRun, page: numb
     places: new Set(),
     parts: {},
     beats: [],
+    said: {},
   };
 }
 
@@ -198,6 +206,7 @@ function lay(w: Writer, job: SheetJob): void {
     w.beats.push(b);
     for (const p of w.parts[b] ?? []) w.blocks.push({ kind: 'prose', text: p.text, voice: p.voice });
   }
+  for (const b of Object.keys(w.parts) as Beat[]) w.said[b] = [...(w.said[b] ?? []), ...(w.parts[b] ?? []).map((p) => p.text)];
   w.parts = {};
 }
 
@@ -260,7 +269,7 @@ function who(c: BoardCase, p: PersonId): Record<string, string | undefined> {
   const pr = pronOf(c, p);
   const short = nameOf(c, p);
   const female = personOf(c, p)?.female === true;
-  const title = /^Mrs\.|^Mr\./.test(short) ? short : female ? undefined : `Mr. ${short}`;
+  const title = /^Mrs\.|^Mr\.|^Miss |^Dr\. /.test(short) ? short : female ? undefined : `Mr. ${short}`;
   return { name: short, he: pr.he, him: pr.him, his: pr.his, title };
 }
 
@@ -316,8 +325,8 @@ function stageGuard(w: Writer, place: PlaceId): void {
 /** A watcher's job, from the case's description: "the bartender at the Velvet Room" → `bartender`. */
 export function jobKey(desc: string): string {
   const d = desc.toLowerCase();
-  if (d.includes('bartender')) return 'bartender';
-  if (d.includes('doorkeeper')) return 'doorkeeper';
+  if (d.includes('bartender') || d.includes('barman') || d.includes('barkeep')) return 'bartender';
+  if (d.includes('doorkeeper') || d.includes('doorman')) return 'doorkeeper';
   if (d.includes('head waiter')) return 'waiter';
   if (d.includes('change booth')) return 'booth';
   if (d.includes('cashier')) return 'cashier';
@@ -371,6 +380,8 @@ function archetypeOf(desc: string): string | undefined {
 function lookAt(w: Writer, p: PersonId): string | null {
   const who_ = personOf(w.c, p);
   if (!who_) return null;
+  const own = worldLook(w.c, w.run, w.hand, p);
+  if (own !== undefined) return own;
   const arch = archetypeOf(who_.job ?? who_.description);
   if (!arch) return null;
   const pr = pronOf(w.c, p);
@@ -795,7 +806,7 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId): void {
   const slots = withCaps({ dest, from: fromName, far: wk.far, way: wk.near ? undefined : wk.dir, street: wk.street, place: dest });
   let frame = w.hand.draw('walk-way', { matters: matters ? 'yes' : 'no', near: wk.near ? 'yes' : 'no' }, slots, { plain: true }) ?? (wk.near ? `${cap(dest)} was round the corner.` : `It was ${wk.far} to ${dest}, ${wk.dir}.`);
   // "The Delmonico rooms were", not "was".
-  if (/\brooms$/i.test(dest)) frame = frame.replace(new RegExp(`(${esc(cap(dest))}|${esc(dest)}) was\\b`), '$1 were');
+  if (/\brooms$|^the flats\b/i.test(dest)) frame = frame.replace(new RegExp(`(${esc(cap(dest))}|${esc(dest)}) was\\b`), '$1 were');
   // A later walk may pay the street's role off; the first sets it up.
   let line: string | null = null;
   const role = w.run.street;
@@ -844,7 +855,7 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   if (first) {
     const arrive = w.hand.draw('arrive', { kind, key: pl.key }, slots, { need: true }) ?? `I went to ${pl.name}.`;
     // M13's prop: something in the room a later page here can call back to.
-    const prop = w.hand.drawCard('prop', { kind }, slots);
+    const prop = w.hand.drawCard('prop', { kind }, w.hand.world ? { ...slots, arrived: arrive } : slots);
     const ex = prop?.card.exports?.prop;
     if (prop && ex?.pay?.length) w.run.props = { ...(w.run.props ?? {}), [place]: { short: ex.short, pay: ex.pay } };
     // The arrival has just named the place: the prop needn't say "at the Thalia" again (docs/25, 4b open).
@@ -856,6 +867,8 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   const vict = victimOf(c);
   if (pl.scene && first) {
     if (isMurder(c)) put(w, 'arrival', w.hand.draw('scene-body', { means: c.means.kind }, withCaps({ victim: vict.short }), { need: true, widen: true }), 'establish');
+    // docs/48 §3: and what the bible says he'd be found with.
+    if (isMurder(c)) putOn(w, 'arrival', worldFoundWith(c), 'establish');
     else put(w, 'arrival', w.hand.draw('scene-empty', { kind: c.type === 'lost-pet' ? 'pet' : 'item' }, withCaps({ client: clientOf(c).short, thing: vict.short }), { need: true, widen: true }), 'establish');
   }
   // Who's here, and what they're doing.
@@ -1017,7 +1030,7 @@ const MANNERS: Manner[] = ['plain', 'plain', 'terse', 'careful'];
 export function mannerOf(c: BoardCase, p: PersonId): Manner {
   let h = 0;
   for (const ch of `${c.id}|${p}`) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
-  return MANNERS[h % MANNERS.length] as Manner;
+  return worldManner(c, p) ?? (MANNERS[h % MANNERS.length] as Manner);
 }
 
 /**
@@ -1042,7 +1055,9 @@ function stageAndAsk(w: Writer, p: PersonId, job: 'account' | 'check' | 'list' |
   const metHere = w.before.log.some((pg) => pg.at === w.run.at && pg.board?.job === 'arrive');
   const avoidStage = w.hand.avoid;
   if (metHere) w.hand.avoid = alsoAvoid(avoidStage, /\bdoor\b/);
-  put(w, 'staging', w.hand.draw('staging', { kind, who: watcher ? 'watcher' : 'person', manner }, s), 'act');
+  // docs/48 §3: the bible first (what they're doing, the place's own habit); the deck fills what's left.
+  const own = worldStaging(c, w.run, w.hand, p);
+  put(w, 'staging', own ?? w.hand.draw('staging', { kind, who: watcher ? 'watcher' : 'person', manner }, s), 'act');
   w.hand.avoid = avoidStage;
   putOn(w, 'staging', look, 'act');
   const face = ptr?.face && job === 'account' ? ptr.face : undefined;
@@ -1067,7 +1082,15 @@ export function writeAccount(w: Writer, p: PersonId): void {
   const ptr = whyHere(w, q, check ? 'check' : 'account', s);
   stageAndAsk(w, p, check ? 'check' : 'account', ptr);
   const said = spokenAccount(c, a, mannerOf(c, p), c.seed % 4);
-  put(w, 'job', `“${said.join(' ')}”`, 'answer');
+  // docs/48 §3: the evening is the engine's, exactly; how they open and close it is their own.
+  const v = worldAccountVoice(c, w.hand, p);
+  // Their line for an hour goes after the part of the evening that tells that hour.
+  const told = [...said];
+  if (v.coda) {
+    const at = told.findIndex((x) => new RegExp(`\\b${hourWord(v.codaHour as Hour)}\\b`, 'i').test(x));
+    told.splice(at < 0 ? told.length : at + 1, 0, v.coda);
+  }
+  put(w, 'job', `“${[v.open, ...told].filter(Boolean).join(' ')}”`, 'answer');
   for (const h of c.board.hours) {
     w.told.add(`claim:${p}@${h}`);
     w.hours.add(h);
@@ -1101,7 +1124,8 @@ export function writeList(w: Writer, watcher: PersonId): void {
   const s = withCaps({ ...who(c, watcher), job: jobWords(personOf(c, watcher)?.description ?? '') });
   whyHere(w, q, 'list', s);
   stageAndAsk(w, watcher, 'list', null, { job: s.job });
-  const said = spokenList(c, l, c.seed % 4);
+  // docs/48 §3: in the watcher's own words at either end.
+  const said = worldListVoice(c, w.hand, watcher, spokenList(c, l, c.seed % 4), c.board.hours.filter((h) => l.entries[h] !== undefined), l.remarks.length);
   put(w, 'job', `“${said.join(' ')}”`, 'answer');
   // The handover: what was under the coat is the question anybody would ask, and the answer says no more than the watcher saw.
   if (l.remarks.some((r) => r.gives?.whereNow)) {
@@ -1421,6 +1445,10 @@ function crackWhy(c: BoardCase, p: PersonId): string {
   let s = head
     .replace(/^(he|she) is\b/, 'I’m')
     .replace(/^(he|she) owes\b/, 'I owe')
+    // docs/48: a reason from the bible starts the same way.
+    .replace(/^(he|she) has\b/, 'I’ve')
+    .replace(/^(he|she) says\b/, 'I say')
+    .replace(/^(he|she) works\b/, 'I work')
     .replace(/^(he|she) lost\b/, 'I lost');
   s = female ? s.replace(/\bher\b/g, 'my') : s.replace(/\bhis\b/g, 'my');
   return `${cap(s)}.`;

@@ -53,6 +53,8 @@ import { playBoardOracle, playReader, playWanderer } from '../src/game/board/ora
 import type { Block, Page } from '../src/game/board/types.js';
 import { namesOverTwo } from '../src/game/board/names.js';
 import { proseIssues, type ProseIssue } from '../src/game/board/prose-lint.js';
+import { isWorld, worldBible } from '../src/gen/board/world/index.js';
+import { bibleShare } from '../src/game/board/world.js';
 // @ts-expect-error — plain JavaScript module, no declarations.
 import { findJargon, loadPlainTerms } from './plain-terms.mjs';
 
@@ -64,6 +66,11 @@ const val = (k: string) => {
 const N = Number(val('nights') ?? 30);
 const tiers = (val('tiers') ?? '0,1,2,3,4,5').split(',').map(Number) as TierIndex[];
 const show = args.includes('--show');
+// docs/48 §4: `--world neighbourhood` reads nights cast from the bible, and adds the bible's share.
+const world = val('world');
+if (world !== undefined && !isWorld(world)) throw new Error(`No world called "${world}".`);
+const bible = world ? worldBible(world) : undefined;
+const rows2: string[] = [];
 const terms = loadPlainTerms();
 
 const JOBS = new Set(['account', 'list', 'search', 'confront', 'motive']);
@@ -167,11 +174,35 @@ for (const tier of tiers) {
   let namePages = 0;
   let cluesThrice = 0;
   const r3: Record<ProseIssue['rule'], number> = { 'place-tag': 0, phrase: 0, signpost: 0, gag: 0, pet: 0 };
+  const share = { arrival: { bible: 0, total: 0 }, staging: { bible: 0, total: 0 } };
+  let worldGags = 0;
   for (let s = 1; s <= N; s++) {
     const type = types[s % types.length] as CaseType;
-    const d = dealBoard(s, tier, type);
+    const d = dealBoard(s, tier, type, world ? { world } : {});
     const o = playBoardOracle(d);
     const run = o.run;
+    if (bible) {
+      for (const p of run.log) {
+        if (p.board?.job === 'office' || !p.board?.said) continue;
+        for (const k of ['arrival', 'staging'] as const) {
+          const x = bibleShare(bible, p.board.said[k]);
+          share[k].bible += x.bible;
+          share[k].total += x.total;
+        }
+      }
+      // A running gag lands at most twice a night.
+      const night = run.log.flatMap((p) => p.blocks.flatMap((b) => (b.kind === 'prose' ? [b.text] : [])));
+      for (const pl of bible.places) {
+        for (const g of pl.details.filter((x) => x.kind === 'gag')) {
+          const key = g.text.slice(0, 40);
+          const n = night.filter((t) => t.includes(key)).length;
+          if (n > 2) {
+            worldGags++;
+            if (examples.length < 120) examples.push(`world gag ×${n}: ${tierName(tier)} ${type} seed ${s}: ${key}`);
+          }
+        }
+      }
+    }
     const names = namesOf(run, d);
     const seenText: string[] = [];
     const sentences = new Map<string, number>();
@@ -204,7 +235,7 @@ for (const tier of tiers) {
       for (const blk of p.blocks) {
         if (blk.kind !== 'prose' || blk.voice === 'answer' || blk.voice === 'recap' || blk.voice === 'chapter') continue;
         // Speech reads facts back (a put quotes the line that breaks the story): only the narration counts.
-        for (const sent of blk.text.replace(/“[^”]*”/g, ' ').split(/(?<!\bMrs?\.)(?<=[.!?][”’]?)\s+/)) {
+        for (const sent of blk.text.replace(/“[^”]*”/g, ' ').split(/(?<!\b(?:Mrs?|Dr)\.)(?<=[.!?][”’]?)\s+/)) {
           if (words(sent) < 6) continue;
           sentences.set(sent, (sentences.get(sent) ?? 0) + 1);
         }
@@ -252,10 +283,19 @@ for (const tier of tiers) {
       }
     }
   }
+  if (bible) {
+    const all = share.arrival.bible + share.staging.bible;
+    const tot = share.arrival.total + share.staging.total;
+    rows2.push(`| ${tierName(tier)} | ${pct(all, tot)} | ${pct(share.arrival.bible, share.arrival.total)} | ${pct(share.staging.bible, share.staging.total)} | ${worldGags} |`);
+  }
   if (show) examples.push(`words by job, ${tierName(tier)}: ${[...byJob.entries()].map(([k, v]) => `${k} ${quantile(v, 0.5)} (${v.length})`).join(', ')}`);
   rows.push(
     `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${level} | ${jargon} | ${cardsTwice} | ${sentTwice} | ${namePages} | ${cluesThrice} | ${r3['place-tag']} | ${r3.phrase} | ${r3.signpost} | ${r3.gag} | ${r3.pet} |`,
   );
 }
 process.stdout.write(`${rows.join('\n')}\n`);
+if (bible) {
+  process.stdout.write('\n| tier | arrival, look and staging from the bible | arrivals and looks on the way in | staging | a gag 3+ times a night |\n|---|---|---|---|---|\n');
+  process.stdout.write(`${rows2.join('\n')}\n`);
+}
 if (show && examples.length) process.stdout.write(`\n${examples.join('\n')}\n`);
