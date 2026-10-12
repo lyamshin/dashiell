@@ -128,3 +128,20 @@ Branch `round3-fixes`. Four blind testers (Raw 11 lost item, Poached 5 murder, M
 - **Name thinning** can make a collision's breaker "He" after a sentence about somebody else ("Shapiro said the Bijou at nine. He had Colquitt and Kreuzer here").
 - **Callbacks** fell 1–5 points with the cap of two payoffs a gag.
 - **Poached 5 #17** (an arrival joins two of one person's lines, one about another hour) and **Hard-boiled 8 #15** (the turn's heading and recap) were left as designed.
+
+## The neighbourhood (docs/48), 2026-10-11
+Branch `neighbourhood`, the engine half: nights cast from the bible behind `--world neighbourhood` and `?world=neighbourhood`. I read one night per tier, two Medium nights with overlapping casts, and a Poached night with a back room. Left over:
+
+- **Variety is short of docs/48 §4:** 79–115 distinct casts in 200 nights, against 150. The bible has one unwatched building, so the Excelsior is every night's scene. Its six residents are every night's wronged, and the culprits from Medium up. Docs/48's Built section says what the bible needs.
+- **The bible's share is 61–69%,** against 70%. **Callback pages fell** from 64–70% to 47–64%. Both come from the same rules: a person's doing lines (and so their last line) belong where they live or work, and a back room gets the board's arrival. The fix is in the bible: `doing` by setting, as looks are, and an arrival for each back room.
+- **The Excelsior's arrival on page 2** is the same paragraph most nights. The bible has one arrival per band, and the scene is always visited early. It needs four to six early ones, or a second building.
+- **Watchers' standing lines** ("I seat every table myself…", "I sit on the cellar steps…") are word for word every night they're met. A second `counts` line per watcher would help.
+- **A back room's keeper** (somebody who works at the place, minding the room from the hour that mattered) gets the board's watcher cards: "ran out of fingers before he ran out of night" for a one-hour list, "who'd been there all night", and "behind the counter" in a cellar.
+- **Engine lines on neighbourhood nights,** the same code as dealt nights:
+  - "I wanted to know what she'd passed on the way" for somebody whose account then has no passing remark;
+  - "while it was there to take" with no noun before it;
+  - "So the Lyric at nine, with Doyle and the Lyric at eight" (one place-tag hit in 389 pages);
+  - two Medium lost-pet list pages that name a suspect three times. The fence is a third man in the collision line, so the second mention can't be "he".
+- **Fences:** only Sokol's (Fishel) and the Peacock (Miss Marsh) have their own. The Lyric, Steinmetz's and the rest get one of the pool's three ("Benny the pawnbroker's runner"), fixed per place, which sits oddly beside Wexler's pawnshop.
+- **Female victims** aren't cast, because the scene and office cards say "him". Women are clients, owners, suspects and culprits.
+- **`play` doesn't keep continuity:** the profile's recent culprits are the book's. The CLI deals by seed.
