@@ -17,11 +17,13 @@
  *
  * A card in `content/board/situated.json` is written for one key. Realization
  * tries the gap’s own key first, then lets fields go in docs/51’s order
- * (position, after, tier band, manner, place kind, before) until a card fits;
- * the slot, the page kind and the put's outcome are the floor, and below the
- * floor the old deck's card stays. No card is dealt twice a night (the hand's
- * spent list), and the night's seed, the page and the gap pick among the ones
- * that fit.
+ * (position, after, tier band, manner, place kind, before) until a card fits.
+ * The place kind is let go only as far as its family (a bar for a club), and
+ * the slot, the page kind, the place's family and the put's outcome are the
+ * floor: below it the old deck's card stays. No card is dealt twice a night
+ * (the hand's spent list), and the night's seed, the page and the gap pick
+ * among the ones that fit. The rhythm may trade the card for another of its
+ * key, or of a key that keeps its place kind and what came before.
  *
  * What the deck may fill is marked by the writer (`Item.sit`): a card from a
  * family, as it was dealt, or a hand-written aside. Never a fact, a bible line,

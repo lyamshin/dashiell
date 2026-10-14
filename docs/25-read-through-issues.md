@@ -212,3 +212,28 @@ Branch `planner-2`. I read three nights in full: the neighbourhood at Medium (se
 - **`board-measure`'s callback-pages column** moved one point on Raw lost-item and Raw lost-pet. Seed 22's page 7 dealt another walk card after an earlier page's trades.
 - **The suite takes about 50 s at three workers** (it was about 40). The rhythm's two-mend search, four stuck runs a page at most, is most of it.
 - **Choice labels** (`choices.ts`) still aren't planned.
+
+## The situated deck (docs/51), 2026-10-15
+Branch `situated-deck`. I read two nights in full with the deck on: the golden's, and the neighbourhood at Poached (seed 52). I also read a tenth of every batch, and two blind readers judged twenty pages. Docs/51's Built section has the measures. Left over:
+
+- **List smell went up at Raw and Hard-boiled** (oracle, dealt: 14 → 23 and 40 → 60), and in the neighbourhood at Hard-boiled. It went down at Poached, Soft-boiled and Medium. The why-here's reason and its card are two medium sentences where the old card was one. The rhythm may not join them (the blind read caught the semicolon seam), and some high-tier keys have only a few cards, all of one length, to trade. Ways to mend it:
+  - shorter why-here cards at high tier;
+  - a why-here card that opens on a clause the reason can lead into with ", and";
+  - letting the rhythm trade the staging after the why-here.
+- **Some keys have one card, and it's dealt every night.** "I kept my questions behind my teeth until I was further in than the doormat" is the one card for why-here · arrival · flat · high and nearby keys. The no-card-twice rule holds within a night, not across nights. A second batch over the commonest full keys would spread them: the arrival why-heres and closes at rooming houses, flats and unwatched places.
+- **Places the key can't see.**
+  - A theater's watcher may be an usher, a ticket seller or a house manager.
+  - A club may be a cellar or over a garage.
+  - A rooming house may or may not have somebody posted.
+  - The person may be in the lobby, not the seats.
+
+  The writers wrote to the place kind, and the read cut what it caught (the cellar clubs, the usher, "keeps its own count"). One slip in the read: a staging seated me "in the row in front" of somebody the arrival had put in the lobby. The old deck's "I sat one seat over" has the same fault. A `requires` for a watcher's job, a cellar or a seat would close it; so would a place's own flags in the bible.
+- **Phrases can repeat across keys on one night.** Two cards that both "found something to sit on" fell on consecutive pages of the golden's night. The near-duplicate cut is over the whole card (70% of its words), not a phrase. A night-level check on four-word runs in the narration would catch it.
+- **An unwatched place's why-here can say nobody keeps the door**, and the watcher line ("There was nobody on duty…") then says it again. Either the why-here cards at unwatched places should drop it, or the watcher line should be the deck's.
+- **The hand-off is the deck's only at Medium,** where it is a reason and a card. The family hand-offs (who or where next) are left alone. They are info, and the stars must agree with them.
+- **Gloss · motive · narrows has one card.** One such gap turned up in 300 nights a tier.
+- **Board-reading lines are a habit.** Ten motive glosses said "it squared with the office" before the read cut them. The brief now says so. A lint for "the office" as a source, outside the office page, would hold it.
+- **The blind read was taken before its two fixes.** Those were the seam and the two cut cards, from pair 16, which both readers gave to the old deck. A second read after the next batch would say whether 80% holds.
+- **A pointer clause the deck keeps reads badly in the engine's own words:** "Duchess had gone from at the Grasso flat.", "Hanrahan had died at Hanrahan’s place." (`thread.ts`). The lead is the reason as the thread says it, so the deck can't mend it. It was there before (inside the old why card).
+- **The deck is 677 KB** (129 KB gzipped), and the book's script goes from 896 KB to 1,577 KB (264 KB to 396 KB gzipped). Dropping `source` from the shipped file, and keeping it in `model/data/situated-written.jsonl`, would save about a fifth. Loading the deck on its own, after the first page, would keep it off the first paint.
+- **Docs/52 (bones and flesh)** puts the situated deck after voicing, as texture. `situate` runs in `planSection` before the rhythm. When the planner moves onto propositions, it moves with the texture pass.
