@@ -1,0 +1,169 @@
+/**
+ * docs/52: bones and flesh. Every fact unit carries its propositions; the
+ * planner composes on them; the plain page says them and reads back to them;
+ * every voicing reads back to the composite it said.
+ */
+import { afterEach, describe, expect, it } from 'vitest';
+import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
+import { dealBoard, type BoardRun } from '../src/game/board/model.js';
+import { newBoardRun } from '../src/game/board/engine.js';
+import { playBoardOracle, playWanderer } from '../src/game/board/oracle.js';
+import { newBudget, planSection, type Item, type PlanCtx } from '../src/game/board/plan/index.js';
+import { PROP_KINDS, SHAPES, type Composite, type Prop } from '../src/game/board/bones/types.js';
+import { canon } from '../src/game/board/bones/extract.js';
+import { plainComposite, plainPage, roundTrip } from '../src/game/board/bones/plain.js';
+import { VOICED, voicedTally } from '../src/game/board/bones/reread.js';
+import { slotsOf, useVoicings, voicings, type Voicing } from '../src/game/board/bones/voice.js';
+import type { Beat } from '../src/game/board/sheets.js';
+
+const worlds = [undefined, 'neighbourhood'] as const;
+const nights: { tier: TierIndex; type: CaseType; world?: 'neighbourhood' }[] = [];
+for (const world of worlds) for (const tier of [0, 1, 2, 3, 4, 5] as TierIndex[]) for (const type of typesFor(tier) as CaseType[]) nights.push({ tier, type, ...(world ? { world } : {}) });
+
+function oracle(s: number, tier: TierIndex, type: CaseType, world?: 'neighbourhood'): { run: BoardRun; d: ReturnType<typeof dealBoard> } {
+  const d = dealBoard(s, tier, type, world ? { world } : {});
+  return { run: playBoardOracle(d).run, d };
+}
+
+const walk = (x: Composite, f: (y: Composite) => void): void => {
+  f(x);
+  for (const y of x.parts ?? []) walk(y, f);
+};
+
+afterEach(() => {
+  VOICED.check = false;
+  useVoicings(null);
+});
+
+describe('docs/52 §1: the bones', () => {
+  it.each(nights)('every fact unit carries its propositions, of the closed set, in the engine’s own ids: tier $tier, $type, $world', ({ tier, type, world }) => {
+    const { run, d } = oracle(1, tier, type, world);
+    const c = d.kase;
+    const people = new Set(c.people.map((p) => p.id));
+    const places = new Set([...c.places.map((p) => p.id), 'office']);
+    for (const p of run.log) {
+      for (const u of p.board?.units ?? []) {
+        if (u.kind !== 'fact') continue;
+        const bones = u.bones ?? [];
+        const ps = bones.flatMap((b) => b.props);
+        expect(ps.length, `p${p.n + 1}: ${u.text.slice(0, 80)}`).toBeGreaterThan(0);
+        for (const b of bones) walk(b, (x) => expect(SHAPES as readonly string[]).toContain(x.shape));
+        for (const x of ps) {
+          expect(PROP_KINDS).toContain(x.k);
+          const o = x as Record<string, unknown>;
+          for (const k of ['person', 'watcher', 'speaker', 'victim', 'client', 'witness', 'finder']) if (typeof o[k] === 'string' && o[k] !== '*') expect(people.has(o[k] as string), `${x.k}.${k} ${String(o[k])}`).toBe(true);
+          for (const k of ['place', 'via', 'claimed']) if (typeof o[k] === 'string') expect(places.has(o[k] as string), `${x.k}.${k} ${String(o[k])}`).toBe(true);
+          if (typeof o.hour === 'number') expect(o.hour).toBeGreaterThanOrEqual(7);
+        }
+      }
+    }
+  });
+});
+
+describe('docs/52 §3: the plain page, and the round trip', () => {
+  it.each(nights)('every plain page reads back to its bones, in order: tier $tier, $type, $world', ({ tier, type, world }) => {
+    for (let s = 1; s <= 2; s++) {
+      const d = dealBoard(s, tier, type, world ? { world } : {});
+      for (const run of [playBoardOracle(d).run, playWanderer(d, s).run]) {
+        for (const p of run.log) {
+          const r = roundTrip(d.kase, p);
+          expect(r.error ?? '', `seed ${s} p${p.n + 1}`).toBe('');
+          expect(r.read, `seed ${s} p${p.n + 1}`).toEqual(r.bones);
+        }
+      }
+    }
+  });
+
+  it('the golden’s page 8, plainly: every fact, no voice, a pronoun for the clause before’s subject', () => {
+    const { run, d } = oracle(1, 4, 'lost-pet');
+    const blocks = plainPage(d.kase, run.log[7] as (typeof run.log)[number]);
+    expect(blocks.map((b) => b.text)).toEqual([
+      'Ashby said he was at the Automat at eight and nine, alone. He said he was at the Delmonico rooms at ten, with Mrs. Cheatham. He said he was at the Thalia at eleven, with Feeney. He said he passed Corrigan on Stuyvesant Street at eleven on the way to the Thalia.',
+      'Coffin’s list put Ashby at the Thalia at eleven, with Feeney, as he had said, but Stuyvesant Street was the street of the Prentiss flat.',
+    ]);
+  });
+
+  it('never a pronoun another of that sex in the clause before could be: the name', () => {
+    const c = dealBoard(1, 4, 'lost-pet').kase;
+    const comp: Composite = {
+      shape: 'PAIR',
+      join: 'and',
+      props: [],
+      parts: [
+        { shape: 'COLLISION-PAIR', props: [{ k: 'COLLIDES', person: 'abramowitz', place: 'bar', hour: 11, with: { k: 'list', who: 'barkeep' } }] },
+        { shape: 'REACTION', props: [{ k: 'REFUSE', person: 'abramowitz', hour: 11 }] },
+      ],
+    };
+    // Coffin (a man) is named in the clause before: "he" could be either.
+    expect(plainComposite(c, comp)).toBe('Abramowitz said he was at the Thalia at eleven, which collided with Coffin’s list, and Abramowitz would not say where he was at eleven.');
+    const alone: Composite = { ...comp, parts: [{ shape: 'COLLISION-PAIR', props: [{ k: 'COLLIDES', person: 'abramowitz', place: 'bar', hour: 11, with: { k: 'given' } }] }, comp.parts?.[1] as Composite] };
+    expect(plainComposite(c, alone)).toBe('Abramowitz said he was at the Thalia at eleven, which collided with the office, and he would not say where he was at eleven.');
+  });
+});
+
+describe('docs/52 §4: the voicings', () => {
+  const PLACEHOLDER = /\{[A-Za-z][\w-]*\}/g;
+
+  it('every voicing is of a shape in the closed set, and its own words name no person, place, hour or digit', () => {
+    const c = dealBoard(1, 4, 'lost-pet').kase;
+    const names = [...c.people.map((p) => p.short), ...c.places.map((p) => p.short)];
+    for (const v of voicings()) {
+      expect(SHAPES as readonly string[], v.id).toContain(v.shape);
+      const words = v.template.replace(PLACEHOLDER, ' ');
+      expect(words, v.id).not.toMatch(/\d|\b(?:seven|eight|nine|ten|eleven|twelve|midnight)\b/i);
+      for (const n of names) expect(words.includes(n), `${v.id}: ${n}`).toBe(false);
+      expect(slotsOf(v.template).length, v.id).toBeGreaterThan(0);
+    }
+  });
+
+  it.each(nights.filter((x) => x.tier % 2 === 0 || x.world === undefined))('every voiced composite reads back to its bones: tier $tier, $type, $world', ({ tier, type, world }) => {
+    VOICED.check = true;
+    const before = voicedTally();
+    for (let s = 1; s <= 2; s++) {
+      const d = dealBoard(s, tier, type, world ? { world } : {});
+      playBoardOracle(d);
+      playWanderer(d, s);
+    }
+    const after = voicedTally();
+    expect(after.misses.slice(before.misses.length)).toEqual([]);
+    expect(after.voicedOk - before.voicedOk).toBe(after.voiced - before.voiced);
+  });
+
+  it('a voicing that drops a fact fails the round trip', () => {
+    const dropped = voicings().map((v): Voicing => (v.id === 'confirmed/list' ? { ...v, template: '{watcher} had {them} {at}, same as {he} said.' } : v));
+    useVoicings(dropped);
+    VOICED.check = true;
+    const before = voicedTally();
+    for (const { tier, type, world } of nights) {
+      const d = dealBoard(1, tier, type, world ? { world } : {});
+      playBoardOracle(d);
+    }
+    const after = voicedTally();
+    const misses = after.misses.slice(before.misses.length).filter((m) => m.includes('confirmed/list:'));
+    expect(misses.length).toBeGreaterThan(0);
+  });
+
+  it('where no voicing fits, the composite is said plainly, and still reads back', () => {
+    useVoicings([]);
+    const d = dealBoard(1, 4, 'lost-pet');
+    const c = d.kase;
+    const ctx: PlanCtx = { c, budget: newBudget(), pick: (_k, ls) => ls[0] as string, level: 'link', int: () => 0, run: { ...newBoardRun(d), at: 'bar' } };
+    const col: Item = {
+      kind: 'fact',
+      beat: 'thought',
+      voice: 'thought',
+      text: '(the writer’s own words)',
+      relation: 'collides',
+      tag: 'thought:collision',
+      carries: ['x'],
+      about: ['corrigan'],
+      props: [{ k: 'COLLIDES', person: 'corrigan', place: 'h', hour: 11, with: { k: 'REMARK', speaker: 'ashby', saw: 'corrigan', how: 'passed', where: 'Stuyvesant Street', hour: 11 } } as Prop],
+      flesh: { two: 'One of them was wrong.', twos: ['One of them was wrong.'] },
+    };
+    const out = planSection({ thought: [col] } as Partial<Record<Beat, Item[]>>, [['thought']], ctx, 0);
+    expect(out.blocks[0]?.kind === 'prose' ? out.blocks[0].text : '').toBe('Corrigan said she was at Corrigan’s flat at eleven, which collided with this: Ashby said he passed Corrigan on Stuyvesant Street at eleven.');
+    const u = out.units[0];
+    expect(u?.kind === 'fact' ? u.bones?.[0]?.voicing : '').toBe('plain');
+    expect(u?.kind === 'fact' ? (u.bones ?? []).flatMap((b) => b.props).map(canon) : []).toEqual((col.props ?? []).map(canon));
+  });
+});

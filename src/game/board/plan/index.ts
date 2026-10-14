@@ -7,27 +7,32 @@
  *
  * The page writers (`pages.ts`) fill beats with items: facts, with what the
  * engine knows about each (new, confirms, collides, narrows; who; where;
- * when), and texture, with its card. The sheet (`sheets.ts`) says which beats
- * come in what order and which share a paragraph. The planner then decides
- * how many sentences, in what order, with what joins, and what each person is
- * called, in four operations:
+ * when) and the propositions it says (docs/52), and texture, with its card.
+ * The sheet (`sheets.ts`) says which beats come in what order and which share
+ * a paragraph. The planner then decides how many sentences, in what order,
+ * with what joins, and what each person is called.
  *
- * - **aggregation** (`aggregate.ts`): facts that share a predicate become one sentence;
- * - **connectives** (`connect.ts`): the join says what the fact does, from the logic;
+ * docs/52's order: bones → compose → voicing → textures → the reference and
+ * rhythm pass.
+ *
+ * - **composition on the bones** (`../bones/compose.ts`): aggregation, the
+ *   connectives and Planner 2's thought, run on propositions; each composite
+ *   is said in its voicing (`../bones/voice.ts`, `content/board/voicings.json`)
+ *   or in the writer's own words;
+ * - **textures** (`situated.ts`, `situate`): the situated deck fills the gaps,
+ *   the one place texture attaches;
  * - **rhythm** (`rhythm.ts`): sentence lengths vary, a joke ends short, paragraphs follow beats;
  * - **reference** (`refer.ts`): what a person is called follows what the last sentence was about.
  *
- * And, between the connectives and the rhythm, Planner 2's **composition** (`compose.ts`): the
- * thought's facts joined by what they do to each other, so a thought of N facts reads as at most
- * ceil(N/2) sentences, not a list.
+ * What comes out is the skeleton (`Unit[]`): fact units, locked, each with its
+ * bones (`Unit.bones`: the composites, their propositions, the voicing), and
+ * gap units, each with its card default. Realization concatenates them, a
+ * paragraph to a block; the plain page (`../bones/plain.ts`) says the same
+ * bones with no voice.
  *
- * What comes out is the skeleton (`Unit[]`): fact units, locked, and gap
- * units, each with its card default. Realization concatenates them, a
- * paragraph to a block.
- *
- * `PLAN.ops = false` runs the same items through with none of the four
- * operations: the page as it read before the planner, word for word. The
- * measures use it for "before".
+ * `PLAN.ops = false` runs the same items through with none of the planner's
+ * operations: the page as it read before docs/49, word for word, in the
+ * writers' own words. The measures use it for "before".
  */
 
 import type { Block } from '../types.js';
@@ -42,7 +47,7 @@ import { rhythm } from './rhythm.js';
 import { refer, stripMarks } from './refer.js';
 import { situate, type SituCtx } from './situated.js';
 
-export type { Item, Unit, Relation, GapSlot, Join, Agg, PageBudget } from './types.js';
+export type { Item, Unit, Relation, GapSlot, PageBudget } from './types.js';
 export { sentencesOf, wordsIn, bandOf, markedSentences, openingOf } from './sentences.js';
 export { markPronoun, stripMarks } from './refer.js';
 export { SITUATED, type SituCtx } from './situated.js';
@@ -149,7 +154,8 @@ export function planSection(
   }
   // Each paragraph is a list of items now.
   let paraItems: Item[][] = groups.map((g) => g.flat());
-  // docs/51: the gaps' situations, and the situated deck, before the rhythm and the reference.
+  // docs/51, docs/52 §4: textures attach after the voicing, here and only here: the gaps'
+  // situations, and the situated deck. Then the reference and the rhythm.
   if (PLAN.ops) situate(paraItems, ctx, firstBlock);
   if (PLAN.ops) {
     paraItems = rhythm(paraItems, ctx);

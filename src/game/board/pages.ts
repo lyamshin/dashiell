@@ -816,9 +816,6 @@ function think(w: Writer, q: string, extra: Thought | null = null): Thought {
         carries: x.refs.length ? x.refs : [`thought:${x.rule}`],
         ...(x.hours.length === 1 ? { hour: x.hours[0] } : {}),
         ...(x.places.length === 1 && x.places[0] ? { place: x.places[0] } : {}),
-        ...(x.core ? { core: x.core } : {}),
-        ...(x.joins ? { joins: x.joins } : {}),
-        ...(x.agg ? { agg: x.agg } : {}),
         ...(x.props ? { props: x.props } : {}),
         ...(x.flesh ? { flesh: x.flesh } : {}),
         ...(x.opener ? { opener: x.opener } : {}),
@@ -1470,7 +1467,6 @@ export function writeList(w: Writer, watcher: PersonId): void {
         props: x.props,
         // docs/52: the watcher's own words for the hour and its people, for the planner's "and nobody else".
         ...(x.hour && text === x.text ? { flesh: { ...x.hour } } : {}),
-        ...(x.hour && text === x.text ? { agg: { key: 'list-hour', data: { ...x.hour }, hour: x.hours[0] } } : {}),
       };
     }),
     true,
@@ -1876,7 +1872,7 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
  * facts (exempt from the name count, as a list or an account has to name people), their own voice
  * lines inside the quotation are gaps.
  */
-function answer(w: Writer, lines: { text: string; gap?: boolean; about?: string[]; carries?: string[]; place?: string; agg?: Item['agg']; props?: Prop[]; flesh?: Record<string, unknown> }[], list = false): void {
+function answer(w: Writer, lines: { text: string; gap?: boolean; about?: string[]; carries?: string[]; place?: string; props?: Prop[]; flesh?: Record<string, unknown> }[], list = false): void {
   const kept = lines.filter((x) => x.text);
   kept.forEach((x, i) => {
     const text = `${i === 0 ? '“' : ''}${x.text}${i === kept.length - 1 ? '”' : ''}`;
@@ -1887,7 +1883,6 @@ function answer(w: Writer, lines: { text: string; gap?: boolean; about?: string[
         about: x.about ?? [],
         carries: x.carries ?? [],
         ...(x.place ? { place: x.place } : {}),
-        ...(x.agg ? { agg: x.agg } : {}),
         ...(x.props ? { props: x.props } : {}),
         ...(x.flesh ? { flesh: x.flesh } : {}),
         speech: true,
@@ -2257,7 +2252,6 @@ function recapFacts(w: Writer, clauses: Clause[], lead?: string): void {
       runOn: i > 0 || ownLead,
       props: cl.props,
       tag: `clause:${cl.key.split(':')[0]}`,
-      agg: { key: `clause:${cl.key.split(':')[0]}`, data: { clause: cl } },
     }),
   );
   if (clauses.length === 0 && lead) fact(w, 'job', lead, 'recap', { carries: [], exempt: true });

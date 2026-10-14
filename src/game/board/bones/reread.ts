@@ -26,7 +26,7 @@ import { accessPhrase, shortOther } from './phrase.js';
 import { roleOf } from '../plan/refer.js';
 import { maskPlaces } from '../plan/measure.js';
 import { canon } from './extract.js';
-import { lexicon, type Lexicon } from './plain.js';
+import { lexicon, parsePlain, type Lexicon } from './plain.js';
 import type { Composite, Entry, Id, Prop, Src } from './types.js';
 import { fill, voicingById } from './voice.js';
 
@@ -479,6 +479,16 @@ export function rereadVoiced(comp: Composite & { said?: string; args?: Record<st
   const id = comp.voicing;
   const text = comp.said;
   if (!id || id === 'flesh' || text === undefined) return { ok: true };
+  // Said plainly (no voicing fitted): the plain page's own parser reads it back.
+  if (id === 'plain') {
+    try {
+      const got = parsePlain(v.c, [{ kind: 'prose', text, voice: 'narrator' }]).map(canon).sort();
+      const want = comp.props.map(canon).sort();
+      return got.length === want.length && got.every((g, i) => g === want[i]) ? { ok: true } : { ok: false, why: `plain: read ${got.join(' ')}` };
+    } catch (e) {
+      return { ok: false, why: `plain: ${(e as Error).message}` };
+    }
+  }
   const vo = voicingById(id);
   if (!vo) return { ok: false, why: `no voicing ${id}` };
   const lx = lexicon(v.c);

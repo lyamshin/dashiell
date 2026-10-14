@@ -36,7 +36,7 @@
  */
 
 import { andList, hourWord, isMurder, nameOf, oclock, personOf, placeName, pronOf, victimOf, clientOf, type BoardCase, type Hour, type PersonId, type PlaceId } from '../model.js';
-import { listExhaustive, listOf, solveRun } from '../knowledge.js';
+import { solveRun } from '../knowledge.js';
 import type { Item, PageBudget } from '../plan/types.js';
 import type { PlanCtx } from '../plan/index.js';
 import { markPronoun } from '../plan/refer.js';
@@ -44,7 +44,8 @@ import { herIsObject } from '../plan/measure.js';
 import { sentencesOf, wordsIn } from '../plan/sentences.js';
 import { accessPhrase, atWhere, claimSaid, shortOther, where } from './phrase.js';
 import type { Composite, Prop, Shape, Src } from './types.js';
-import { fill, fitting, voicingById, type Voicing } from './voice.js';
+import { fill, fitting, type Voicing } from './voice.js';
+import { plainComposite } from './plain.js';
 
 /** The longest sentence composition makes. */
 const LONGEST = 40;
@@ -153,16 +154,30 @@ function held(it: Item): Held {
   return it.comp as Held;
 }
 
+/** The voicings of a shape that fit the flags, the speaker's manner and the tier band, most specific first. */
+function choose(shape: Shape, flags: string[], ctx: PlanCtx): Voicing[] {
+  return fitting(shape, new Set(flags), { manner: shape === 'LIST-HOUR' ? 'watcher' : undefined, tierBand: ctx.c.tier <= 1 ? 'low' : ctx.c.tier <= 3 ? 'mid' : 'high' });
+}
+
 /**
- * Say a composite in a voicing: the shape's voicings that fit the flags, filled. `id` names one when
- * the composer has chosen already (a trade's alternative). Nothing fits: the composite keeps the
- * words it had.
+ * Say a composite in a voicing: the shape's voicings that fit the flags, filled. Nothing fits: the
+ * plain rendering (docs/52 §4, "voicing → plain fallback").
  */
-function voice(it: Item, comp: Held, flags: string[], args: Record<string, string>, ctx: PlanCtx): string | null {
-  const vs = fitting(comp.shape, new Set(flags), { manner: comp.shape === 'LIST-HOUR' ? 'watcher' : undefined, tierBand: ctx.c.tier <= 1 ? 'low' : ctx.c.tier <= 3 ? 'mid' : 'high' });
-  const v = vs[0];
-  if (!v) return null;
+function voice(it: Item, comp: Held, flags: string[], args: Record<string, string>, ctx: PlanCtx): string {
+  const v = choose(comp.shape, flags, ctx)[0];
+  if (!v) return sayPlain(it, comp, ctx);
   return sayWith(it, comp, v, args);
+}
+
+/** The composite said plainly, where no voicing fits it. */
+function sayPlain(it: Item, comp: Held, ctx: PlanCtx): string {
+  const text = plainComposite(ctx.c, comp);
+  comp.voicing = 'plain';
+  comp.args = undefined;
+  comp.said = text;
+  it.comp = comp;
+  it.text = text;
+  return text;
 }
 
 function sayWith(it: Item, comp: Held, v: Voicing, args: Record<string, string>): string {
@@ -194,10 +209,16 @@ function merge(a: Item, b: Item, comp: Held, text: string, join?: string): void 
   a.props = [...(a.props ?? []), ...(b.props ?? [])];
 }
 
-/** Say two side by side with a join: "{a}, and {b}", "{a}; {b}", "{a}, but {b}". */
-function sayPair(a: Item, b: Item, join: 'and' | 'semi' | 'but', shape: Shape = 'PAIR'): { comp: Held; text: string } {
+/** Say two side by side with a join: "{a}, and {b}", "{a}; {b}", "{a}, but {b}" (plainly, where no voicing has the join). */
+function sayPair(a: Item, b: Item, join: 'and' | 'semi' | 'but', ctx: PlanCtx, shape: Shape = 'PAIR'): { comp: Held; text: string } {
   const comp = pairOf(shape, held(a), held(b), join);
-  const v = (shape === 'ADMIT-CHECK' ? voicingById('admit-check/but') : voicingById(`pair/${join}`)) as Voicing;
+  const v = choose(shape, [join], ctx)[0];
+  if (!v) {
+    const text = plainComposite(ctx.c, comp);
+    comp.voicing = 'plain';
+    comp.said = text;
+    return { comp, text };
+  }
   const args = { a: a.text.replace(/\.$/, ''), b: lowerFirst(b.text) };
   const text = fill(v.template, args);
   comp.voicing = v.id;
@@ -237,20 +258,19 @@ function collisionArgs(c: BoardCase, col: Extract<Prop, { k: 'COLLIDES' }>, here
   let sp: PersonId | undefined;
   let wPlace: PlaceId | undefined;
   if (w.k === 'LIST') {
+    // The list as the proposition has it: who was on it, whether that was everybody, the faces known.
     wPlace = w.place;
-    const lst = listOf(c, w.watcher);
-    const es = lst?.entries[w.hour] ?? [];
-    const names = es
-      .map((e) => ('person' in e ? nameOf(c, e.person) : 'other' in e ? (c.others?.find((o) => o.id === e.other)?.name ?? '') : `somebody ${e.look}`))
+    const names = w.people
+      .map((e) => (e.startsWith('other:') ? (c.others?.find((o) => o.id === e.slice(6))?.name ?? '') : e.startsWith('look:') ? `somebody ${e.slice(5)}` : nameOf(c, e)))
       .filter(Boolean)
       .map((n) => shortOther(n));
-    const faces = es.flatMap((e) => ('look' in e && w.faces?.[e.look] ? [`${e.look.replace(/^(in|with) an? /, 'the ')} was ${nameOf(c, w.faces[e.look] as PersonId)}’s`] : []));
+    const faces = w.people.flatMap((e) => (e.startsWith('look:') && w.faces?.[e.slice(5)] ? [`${e.slice(5).replace(/^(in|with) an? /, 'the ')} was ${nameOf(c, w.faces[e.slice(5)] as PersonId)}’s`] : []));
     const faceTail = faces.length ? `; ${faces.join('; ')}` : '';
     const at = placeName(c, w.place);
-    const onIt = es.some((e) => 'person' in e && e.person === p);
+    const onIt = w.people.includes(p);
     if (onIt) said0 = `${nameOf(c, w.watcher)} had ${nameOf(c, p)} at ${at} at ${oclock(w.hour)}`;
     else if (names.length === 0) said0 = `${nameOf(c, w.watcher)} had nobody at ${at} at ${oclock(w.hour)}`;
-    else said0 = `${nameOf(c, w.watcher)} had ${andList(names)} at ${at} at ${oclock(w.hour)}${lst && listExhaustive(c, lst, w.hour) ? ', and nobody else' : ''}${faceTail}`;
+    else said0 = `${nameOf(c, w.watcher)} had ${andList(names)} at ${at} at ${oclock(w.hour)}${w.whole ? ', and nobody else' : ''}${faceTail}`;
   } else if (w.k === 'CLAIM') {
     sp = w.person;
     wPlace = w.place;
@@ -433,16 +453,21 @@ export function aggregate(items: Item[], ctx: PlanCtx): Item[] {
     const fl = it.flesh as { when?: string; names?: string; whole?: boolean; nobody?: string } | undefined;
     if (it.kind === 'fact' && fl?.when !== undefined && fl.whole) {
       const tail = /at all/.test(fl.nobody ?? '') ? 'nobody else at all' : /that hour/.test(fl.nobody ?? '') ? 'nobody else that hour' : 'nobody else';
-      const nu: Item = { ...it, joined: 'nobody else' };
-      const comp: Held = { shape: 'LIST-HOUR', props: [...(it.props ?? [])] };
-      const said = fill((voicingById('list-hour/nobody') as Voicing).template, { when: fl.when, names: fl.names ?? '', nobody: tail });
-      comp.voicing = 'list-hour/nobody';
-      comp.args = { when: fl.when, names: fl.names ?? '', nobody: tail };
-      comp.said = said;
-      nu.comp = comp;
-      nu.text = inQuotes(it.text, said);
-      out.push(nu);
-      continue;
+      // (Inside somebody's answer the fallback is their own words, not the plain page's narration.)
+      const v = choose('LIST-HOUR', [], ctx)[0];
+      if (v) {
+        const nu: Item = { ...it, joined: 'nobody else' };
+        const comp: Held = { shape: 'LIST-HOUR', props: [...(it.props ?? [])] };
+        const args = { when: fl.when, names: fl.names ?? '', nobody: tail };
+        const said = fill(v.template, args);
+        comp.voicing = v.id;
+        comp.args = args;
+        comp.said = said;
+        nu.comp = comp;
+        nu.text = inQuotes(it.text, said);
+        out.push(nu);
+        continue;
+      }
     }
     out.push(it);
   }
@@ -616,7 +641,11 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       const listy = what.includes(',') || / at (?:seven|eight|nine|ten|eleven|twelve|midnight)\b/.test(what);
       const comp = held(it);
       comp.shape = 'OWN-WORD';
-      const vs = fitting('OWN-WORD', new Set(['hours', ...(listy ? ['listy'] : [])]));
+      const vs = choose('OWN-WORD', ['hours', ...(listy ? ['listy'] : [])], ctx);
+      if (vs.length === 0) {
+        sayPlain(it, comp, ctx);
+        return;
+      }
       const argsFor = (x: string) => ({ hs: andList(hs.map((h) => hourWord(h as Hour))), hourword: hs.length > 1 ? 'hours' : 'hour', who: x, what });
       const forms = vs.map((v) => fill(v.template, argsFor(who)));
       // Not a shape an earlier page said word for word, with the name or with "he".
@@ -658,8 +687,8 @@ export function connect(items: Item[], ctx: PlanCtx): void {
         it.joined = 'self';
         comp.join = 'self';
         // Where "he" would be read as somebody else, the same fact without them in it.
-        const v = fitting('PLACED-SET', new Set(['self', 'plain']))[0] as Voicing;
-        it.alts = () => [{ text: fill(v.template, { runs: runsSaid }), take: () => ((comp.voicing = v.id), (comp.said = fill(v.template, { runs: runsSaid }))) }];
+        const v = choose('PLACED-SET', ['self', 'plain'], ctx)[0];
+        if (v) it.alts = () => [{ text: fill(v.template, { runs: runsSaid }), take: () => ((comp.voicing = v.id), (comp.said = fill(v.template, { runs: runsSaid }))) }];
       } else if (fl.keeper) {
         voice(it, comp, ['count'], { his: pr(c, fl.keeper).his, runs: runsSaid }, ctx);
         it.joined = 'count';
@@ -840,21 +869,21 @@ function confirmPair(segs: Seg[], ctx: PlanCtx): void {
     const lat = atWhere(c, (ls[0] as Extract<Prop, { k: 'CONFIRMS' }>).place, here);
     const comp: Held = { shape: 'CONFIRMED-WITH', props: [...(L.props ?? []), ...(P.props ?? [])], parts: [held(L), held(P)] };
     const confirmed = L.text.replace(/\.$/, '');
-    let v: Voicing;
+    let v: Voicing | undefined;
     let args: Record<string, string>;
     if (sameAll && one) {
       // "had him here too, with Teitel": "too" said it already; otherwise "and with him Mrs. Blau".
-      v = fitting('CONFIRMED-WITH', new Set([L.joined === 'too' ? 'too' : 'same']))[0] as Voicing;
+      v = choose('CONFIRMED-WITH', [L.joined === 'too' ? 'too' : 'same'], ctx)[0];
       args = { confirmed, others: names.join(' and '), him: pr(c, one.person).him };
     } else {
-      v = fitting('CONFIRMED-WITH', new Set(['apart']))[0] as Voicing;
+      v = choose('CONFIRMED-WITH', ['apart'], ctx)[0];
       const bits = [...runs.values()].map((r) => `${andList(r.ps.map((y) => nameOf(c, y)))}${atWhere(c, r.place, here) === lat ? '' : ` ${atWhere(c, r.place, here)}`} at ${HOURS[r.h] ?? String(r.h)}`);
       args = { confirmed, placed: bits.join(' and ') };
     }
-    const text = fill(v.template, args);
+    const text = v ? fill(v.template, args) : plainComposite(c, comp);
     if (wordsIn(plain(text)) > LONGEST) continue;
-    comp.voicing = v.id;
-    comp.args = args;
+    comp.voicing = v?.id ?? 'plain';
+    if (v) comp.args = args;
     comp.said = text;
     merge(L, P, comp, text, 'with');
     (segs[i] as Seg).glosses.push(...(segs[i + 1] as Seg).glosses);
@@ -888,12 +917,12 @@ function accessAttach(segs: Seg[], ctx: PlanCtx): void {
     else if (new RegExp(`^(?:By [^,]+, )?${nm} (?:was|were|had)\\b`).test(plain(t)) && sameSexIn(c, a.one, t).length === 0 && joined(t) === 0) form = 'and-he';
     if (!form) continue;
     const comp: Held = { shape: 'ATTACH', props: [...(F.props ?? []), ...(W.props ?? [])], parts: [held(F), held(W)], join: form };
-    const v = fitting('ATTACH', new Set([form]))[0] as Voicing;
+    const v = choose('ATTACH', [form], ctx)[0];
     const args = { host: t.replace(/\.$/, ''), of: a.of, he: pr(c, a.one).he };
-    const text = fill(v.template, args);
+    const text = v ? fill(v.template, args) : plainComposite(c, comp);
     if (wordsIn(plain(text)) > LONGEST) continue;
-    comp.voicing = v.id;
-    comp.args = args;
+    comp.voicing = v?.id ?? 'plain';
+    if (v) comp.args = args;
     comp.said = text;
     merge(F, W, comp, text, 'who');
     // Said where they're named, it's no longer said where it was.
@@ -909,7 +938,7 @@ function heldBut(segs: Seg[], ctx: PlanCtx): void {
     const B = (segs[i + 1] as Seg).fact;
     if (ruleOf(A) !== 'agree' || ruleOf(B) !== 'hours' || A.composed || B.composed) continue;
     if (ctx.budget.but > 0 || !single(A.text) || !single(B.text) || /^(?:So|But)\b/.test(B.text)) continue;
-    const { comp, text } = sayPair(A, B, 'but');
+    const { comp, text } = sayPair(A, B, 'but', ctx);
     if (wordsIn(plain(text)) > LONGEST) continue;
     merge(A, B, comp, text, 'but');
     ctx.budget.but++;
@@ -934,17 +963,17 @@ function sideBySide(segs: Seg[], ctx: PlanCtx, n: number): void {
     let join: string | undefined;
     // A collision keeps a clause of its own (docs/49 §2): after it, only a semicolon.
     if (ruleOf(A) === 'collision') {
-      if ((budget.semi ?? 0) === 0 && !/;/.test(A.text + B.text) && joined(B.text) === 0) [made, join] = [sayPair(A, B, 'semi'), 'semi'];
+      if ((budget.semi ?? 0) === 0 && !/;/.test(A.text + B.text) && joined(B.text) === 0) [made, join] = [sayPair(A, B, 'semi', ctx), 'semi'];
     } else if (/^That was a hole in\b/.test(plain(A.text)) && /^If it held\b/.test(plain(B.text)) && budget.but === 0) {
       // The hole, and the story owned up to in its place: "but if it held, …".
-      [made, join] = [sayPair(A, B, 'but', 'ADMIT-CHECK'), 'but'];
+      [made, join] = [sayPair(A, B, 'but', ctx, 'ADMIT-CHECK'), 'but'];
     } else if (ruleOf(B) === 'street' && A.relation === 'confirms' && budget.but === 0 && joined(A.text) === 0) {
       // A confirmed evening, and the thing worth keeping after it: "but".
-      [made, join] = [sayPair(A, B, 'but'), 'but'];
+      [made, join] = [sayPair(A, B, 'but', ctx), 'but'];
     } else if (joined(A.text) + joined(B.text) === 0 && runsOn(B.text, ctx.c)) {
-      made = sayPair(A, B, 'and');
+      made = sayPair(A, B, 'and', ctx);
     } else if ((budget.semi ?? 0) === 0 && joined(A.text) + joined(B.text) <= 2 && !/;/.test(A.text + B.text) && (runsOn(B.text, ctx.c) || ruleOf(B) === 'street' || ruleOf(B) === 'hours')) {
-      [made, join] = [sayPair(A, B, 'semi'), 'semi'];
+      [made, join] = [sayPair(A, B, 'semi', ctx), 'semi'];
     }
     if (!made || wordsIn(plain(made.text)) > LONGEST) return null;
     // The plainest join first: fewest joins already in the two, a semicolon last, then the shorter.

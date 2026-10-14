@@ -16,7 +16,8 @@
  * Choice: the shape's voicings that fit the manner, the tier band and the
  * flags; the most specific wins; several of one `pick` key are chosen among by
  * the hand's least-recently-used rule (`ctx.pick`). Nothing fits: the plain
- * rendering (`plain.ts`) is the fallback.
+ * rendering (`plain.ts`) is the fallback (inside somebody's answer, their own
+ * words).
  *
  * Build 1's set is minimal: one voicing per shape, manner and form, taken from
  * the planner's own phrasings (docs/49), so the voiced page reads as
