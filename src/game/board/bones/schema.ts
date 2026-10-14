@@ -63,6 +63,7 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
       if (has('shut')) return [['hour']];
       if (has('always')) return [['who'], ...(has('does') ? [['does']] : []), ...(has('post') ? [['post']] : [])];
       if (has('empty')) return has('regular') ? [['hours'], ['names']] : [['hours']];
+      if (has('thought')) return [['hours'], ['listed'], ...(has('unnamed') ? [['watcher']] : [])];
       if (has('hour')) return [['hours'], ['names']];
       return [['when'], ['names'], ['nobody']];
     case 'REMARK':
@@ -74,7 +75,33 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
     case 'HANDOVER':
       if (has('seen')) return [['hour'], ['holder']];
       if (has('recap')) return has('known') ? [['thing'], ['holder'], ['at']] : [['holder'], ['at'], ['hour']];
+      if (has('thought')) return [['scene'], ['place'], ['hour'], ['holder']];
+      if (has('crack')) return [['thing'], ['holder'], ...(has('away') ? [['at']] : [])];
       return [];
+    case 'LEFT':
+      return has('open') ? [['person'], ['from'], ['to']] : [['access'], ['hour'], ...(has('seen') ? [['street']] : [])];
+    case 'MOTIVE-SET':
+      if (has('own')) return [['person']];
+      if (has('office') || has('not-office')) return [['client']];
+      if (has('papers') && has('tied')) return [['means'], ['origin']];
+      return [];
+    case 'OFFICE':
+      if (has('relation')) return [['clientFull'], ['victimFull'], ['relation']];
+      if (has('found')) return [['victim'], ['finder'], ['scene']];
+      if (has('means')) return has('told-mat') || has('told-window') ? [['venue'], ['h0'], ['h2']] : has('spare-nail') || has('spare-tin') ? [['keeper'], ['x']] : has('latch-key') ? [['resident']] : [];
+      if (has('clock') || has('window') || has('small-clock')) return [['line']];
+      if (has('pointer')) return [['p'], has('behaviour') ? ['behaviour'] : ['motive']];
+      if (has('venue')) return [['venue']];
+      if (has('gone')) return has('pet') ? [['thing'], ['where', 'whereFrom']] : [['thingName'], ['where']];
+      if (has('party')) return [['guests']];
+      if (has('told-mat') || has('told-window')) return [['venue'], ['h0'], ['h2']];
+      if (has('spare-nail') || has('spare-tin')) return [['keeper'], ['x']];
+      if (has('latch-key')) return [['resident']];
+      if (has('keeper')) return [['keeper'], ['thing', 'pthem']];
+      if (has('aside')) return [['said']];
+      return [];
+    case 'PRESENT':
+      return [['where'], ...(has('named') ? [['person']] : [])];
     case 'CONFIRMED':
       if (has('agree')) return [['spans'], ['src']];
       if (has('rest')) return [['by'], ['spans'], ['him', 'name']];
@@ -85,10 +112,14 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
       return has('apart') ? [['confirmed'], ['placed']] : [['confirmed'], ['others']];
     case 'COLLISION-PAIR':
       if (has('recap')) return [['person'], ...(has('home') ? [] : [['place']]), ['hour'], ['src']];
+      if (has('hole') || has('second-refused')) return [['person']];
+      if (has('still')) return [['person'], ['hour'], ['src']];
+      if (has('second-list')) return [['person'], ['at'], ['hour'], ['watcher']];
       return has('two') || has('colon') ? [['claim'], ['breaker'], ['two']] : [['claim'], ['breaker']];
     case 'OWN-WORD':
       if (has('recap')) return [['owns']];
       if (has('recap-one')) return [['person'], ['said']];
+      if (has('told')) return [['person'], ['hours'], ['said']];
       return [['hs'], ['who'], ['what']];
     case 'PLACED-SET':
       if (has('swear')) return [['bits'], ['swear']];
@@ -97,9 +128,11 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
       if (has('count')) return [['his'], ['runs']];
       if (has('recap')) return [['by'], ['groups']];
       if (has('recap-one')) return [['person'], ['at'], ['src']];
+      if (has('elim')) return [['people'], ['place'], ...(has('first') ? [['hour']] : []), ...(has('mutual') ? [] : [['src']])];
       return [];
     case 'ACCESS-SET': {
       if (has('recap')) return [...(has('yes') ? [['people']] : []), ...(has('no') ? [['none']] : [])];
+      if (has('elim')) return [['none'], ['access']];
       const out: string[][] = [];
       if (has('yes')) out.push(['yes']);
       if (has('no')) out.push(has('agg') ? ['nobody'] : ['no']);
@@ -120,11 +153,31 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
     case 'WINDOW-MEANS':
       if (has('when')) return [has('hour') && !has('office') ? ['hour'] : ['hours'], ...(has('office') ? [['client']] : [])];
       if (has('means')) return [['means'], ['origin']];
+      if (has('scene')) return [['hours'], ...(has('murder-said') ? [['means']] : has('told') ? [['client'], ['origin']] : has('party') ? [['occasion']] : has('spare') ? [['key']] : [])];
+      if (has('find')) {
+        if (has('gun') || has('blade')) return [['origin'], ['victim'], ['hours']];
+        if (has('poison')) return [['means'], ['origin'], ['delay'], ['victim']];
+        if (has('party')) return [['occasion'], ['scene'], ['hour'], ['client']];
+        if (has('told')) return [['client'], ['origin'], ['from'], ['till']];
+        if (has('spare')) return [['key']];
+      }
       return [];
     case 'REACTION':
       if (has('owned')) return [['person'], ['place'], ...(has('witness') ? [['witness']] : [])];
       if (has('second')) return [['person'], ['place']];
       if (has('refused')) return [['person']];
+      if (has('if-held')) return [['person'], ['place'], ['hour'], ...(has('home') ? [] : [['claimed']])];
+      if (has('owned-hour')) return [['person'], ['place'], ['hour']];
+      if (has('second-thought')) return [['place'], ['hour'], ...(has('met') ? [['watcher']] : [])];
+      if (has('refuse-thought')) return [['person'], ['hour'], ...(has('home') ? [] : [['claimed']])];
+      if (has('held')) {
+        const out: string[][] = has('other-place') ? [] : [['person']];
+        if (['agreed', 'strangers', 'elsewhere', 'company', 'other-place', 'untrusted'].some(has)) out.push(['by']);
+        if (has('elsewhere') || has('other-place')) out.push(['place']);
+        if (has('other-place')) out.push(['where']);
+        if (['agreed', 'strangers', 'company', 'other-place', 'nowhere'].some(has) || (has('untouched') && !has('hourless'))) out.push(['hour']);
+        return out;
+      }
       return [];
     case 'HOLD':
       if (has('missing')) return [['people']];
@@ -144,25 +197,25 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'Somebody’s own word confirmed by another line. agree (so | which): {spans} "here at eleven, with Feeney", {src} "Coffin had". rest (same | held): {by} the source, {him}/{he} the person, {spans}; held adds {name}. list (same | too | many): {watcher}, {them}/{name}/{him}, {at} "here" | "at the Thalia", {hour}, {there}; many: {pairs} "A at ten and B at eleven".',
   },
   'LIST-HOUR': {
-    args: { hours: 'hours', hour: 'hour', names: T, who: T, does: T, post: T, when: T, nobody: T },
+    args: { hours: 'hours', hour: 'hour', names: T, who: T, does: T, post: T, watcher: 'person', listed: T, when: T, nobody: T },
     speech: true,
-    doc: 'A watcher’s list, an hour (or a run of hours with the same people) at a time, in the watcher’s mouth. hour: at {hours}, {names} (the people, as the watcher calls them: "Feeney, Corrigan and Mr. Prentiss telling the room about his key"); whole: and nobody else (the voicing says so in its own words); part: the voicing says nothing about anybody else. first: the list’s first hour ({hours:oclock} reads well); next: a later one. one | many: one person or several. empty: nobody at {hours} (landlady: nobody but me; regular: just {names}, the one who’s always there; else: nobody else; bare: nobody). always: {who} was there every hour the watcher kept (all: the whole evening; shift: the whole time the watcher was on), {post} where ("in his back booth"), {does} what they do ("He buys things"); plural: {who} is two people. shut: the place shut at {hour}, and nobody after.',
+    doc: 'A watcher’s list, an hour (or a run of hours with the same people) at a time, in the watcher’s mouth. hour: at {hours}, {names} (the people, as the watcher calls them: "Feeney, Corrigan and Mr. Prentiss telling the room about his key"); whole: and nobody else (the voicing says so in its own words); part: the voicing says nothing about anybody else. first: the list’s first hour ({hours:oclock} reads well); next: a later one. one | many: one person or several. empty: nobody at {hours} (landlady: nobody but me; regular: just {names}, the one who’s always there; else: nobody else; bare: nobody). always: {who} was there every hour the watcher kept (all: the whole evening; shift: the whole time the watcher was on), {post} where ("in his back booth"), {does} what they do ("He buys things"); plural: {who} is two people. shut: the place shut at {hour}, and nobody after. thought (the detective’s, not the watcher’s): the hours that mattered were {hours} (one | two), and {watcher} had {listed} ("Feeney and Ashby at both, and Pardo at eleven", "Feeney, Ashby and Pardo, at the Thalia"); named: {watcher} was named in the thought already, so the voicing says "the list" instead, and has no {watcher}.',
   },
   UNSPOKEN: {
     args: { people: 'people', person: 'person', hours: 'hours' },
     doc: 'Nobody, them included, had told me where these people were at these hours (the notebook said aloud). one: one {person} (with {person:they}, "he" or "she"); many: several {people} ("they"). hour | two: one hour or the office’s two (say them with {hours:or}).',
   },
   'ACCESS-SET': {
-    args: { yes: T, no: T, nobody: T, short: T, people: 'people', none: 'people', origin: 'place', means: T, client: 'person', occasion: T },
-    doc: 'Who had the way in, and who hadn’t. Thought (legacy): {yes}, {no}, {nobody} {short}. Recap: {people} had it, {none} hadn’t; murder: had been at {origin} while the {means} was there; told: were at {origin} while {client} told the room; party: were at the {occasion}; spare: had been in at {origin} when the spare key was there. Flags: yes, no, and the kind (murder | told | party | spare).',
+    args: { yes: T, no: T, nobody: T, short: T, people: 'people', none: 'people', origin: 'place', means: T, client: 'person', occasion: T, access: T },
+    doc: 'Who had the way in, and who hadn’t. Thought (legacy): {yes}, {no}, {nobody} {short}. Recap: {people} had it, {none} hadn’t; murder: had been at {origin} while the {means} was there; told: were at {origin} while {client} told the room; party: were at the {occasion}; spare: had been in at {origin} when the spare key was there. Flags: yes, no, and the kind (murder | told | party | spare). Raw’s elimination (elim, no): {none} {access} ("had no way to the rat poison", "never learnt the way in").',
   },
   'WINDOW-ALIVE': {
     args: { client: T, opts: T, victim: T, place: T, at: T, hour: T, him: T, narrowed: T, narrowword: T },
     doc: 'The office’s two hours, and the victim (or the pet) seen at one of them. {client} had said {opts}; {victim} was at {place} / {at} at {hour}. At a walk the hour left: {narrowed}. Flags: one | two, murder | small, walk, so.',
   },
   'COLLISION-PAIR': {
-    args: { claim: T, breaker: T, two: T, person: 'person', place: 'place', hour: 'hour', src: T },
-    doc: 'Somebody’s claim and the line that breaks it. Thought: {claim} "Abramowitz said the Thalia at eleven", {breaker} the line, {two} the closing line. Flags: but | two | colon. Recap: {person} had told me {place} (or "home") at {hour}, and {src} said otherwise. Flags: recap, home.',
+    args: { claim: T, breaker: T, two: T, person: 'person', place: 'place', hour: 'hour', src: T, at: 'at', watcher: 'person' },
+    doc: 'Somebody’s claim and the line that breaks it. Thought: {claim} "Abramowitz said the Thalia at eleven", {breaker} the line, {two} the closing line. Flags: but | two | colon. Recap: {person} had told me {place} at {hour}, and {src} said otherwise (home: "home", no {place}). After a put: hole: that was a hole in {person}’s story (where and when are the put’s, folded); second-refused: {person}’s second story had a list against it now, and {person:they} had nothing in its place; still: {person}’s {hour} o’clock still had {src} ("Coffin’s list", "Ashby’s own evening", "the office") against it; second-list (on a list page): {person}’s second story had {person:them} {at} at {hour}, and {watcher} didn’t have {person:them}.',
   },
   'ADMIT-CHECK': {
     args: { a: T, b: T },
@@ -174,45 +227,45 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'One stretch of a person’s own evening, in their mouth, first person. run: from {from} (to {to}) at {where} ("home", "at the Automat", "at work, at the Lyric", "home at Rafferty’s"), or doing {reason} (their own words, first person, already saying where: "went to the Automat for a plate of beans"; the voicing puts "I" before it); {with} is who was with them, said as a tail (", with Feeney", ", on my own", or nothing: put it straight after the place or the reason). Flags: first | next (the evening’s first stretch, or a later one); reason | place (a reason, or only where); one | span | end (one hour; from {from} through {to}; from {from} to the end of the evening: "all evening" at first, "the rest of the evening" later, folded, no {to}); timed: the reason already says the hour, so no {from}. party: at {client}’s for the {occasion}, from {from} (span: through {to}). alone: nobody was with them at {hours} (all: the whole evening, folded; some: say {hours} or {hours:or}). company: {bits}, who was with them at which hours of one stretch ("Abramowitz was there at eight; at nine it was just me").',
   },
   'MOTIVE-SET': {
-    args: { person: 'person', client: 'person', victim: 'person', means: T, origin: 'place', said: T },
-    doc: 'Somebody’s reason. own: that was {person}’s reason, in their own words. office: it was what {client} had said in the office. not-office: {client} hadn’t mentioned it. papers: the papers held a reason on everybody (tied: but the {means} was at {origin}).',
+    args: { person: 'person', client: 'person', victim: 'person', means: T, origin: 'place' },
+    doc: 'Somebody’s reason, in the detective’s thought. own: that was {person}’s reason, in {person:their} own words. office: it was what {client} had said in the office, near enough (whose reason is folded: the sentence before named them). not-office: {client} hadn’t mentioned it. papers (after the papers): everybody in {victim}’s box had a reason (tied: but the {means} was at {origin}, and a reason isn’t a way to it; even: but a reason isn’t a hand on the {means}).',
   },
   HANDOVER: {
     args: { holder: 'people', place: 'at', hour: 'hour', scene: 'place', thing: 'person', at: 'place' },
     doc: 'The thing’s last move, to somebody who isn’t on the board. seen (a watcher’s remark, in the watcher’s mouth): at {hour} somebody came in with something under a coat and went straight to {holder}, and it changed hands; the watcher was watching the coat, not the face. coat (the watcher’s answer to what was under the coat; alive | small): no slots, all folded. thought: whatever went out of {scene}, something came in {place} under a coat at {hour} and went to {holder}. recap: whatever it was had gone to {holder} at {at} at {hour}. crack: {thing} was with {holder}, here (who hadn’t looked up) or away ({at}).',
   },
   'PLACED-SET': {
-    args: { bits: T, swear: T, he: T, runs: T, his: T, by: T, groups: T, person: 'person', at: T, src: T },
-    doc: 'People placed at an hour on somebody else’s word. Thought (legacy): {bits} "Wehrle and Mulcahy here at ten" with {swear}; self: {he} put {bits}; count: by {his} count, {runs}; recap (several): {by} had {groups}. Recap (recap-one): {person} was at {at} ("the Thalia at ten and eleven", "the Thalia at ten and the Lyric at eleven"); {src} said so ("Coffin", "Coffin and Ashby", "the office").',
+    args: { bits: T, swear: T, he: T, runs: T, his: T, by: T, groups: T, person: 'person', at: T, src: T, people: 'people', place: 'at', hour: 'hour' },
+    doc: 'People placed at an hour on somebody else’s word. Thought (legacy): {bits} "Wehrle and Mulcahy here at ten" with {swear}; self: {he} put {bits}; count: by {his} count, {runs}; recap (several): {by} had {groups}. Raw’s elimination (elim): at {hour}, {people} was/were {place} ("here", "at the Thalia"), and {src} said so (first: the passage’s first, with the hour; next: a later one, the hour folded; one | many | mutual: mutual says "each said so of the other", no {src}). Recap (recap-one): {person} was at {at} ("the Thalia at ten and eleven", "the Thalia at ten and the Lyric at eleven"); {src} said so ("Coffin", "Coffin and Ashby", "the office").',
   },
   'OWN-WORD': {
-    args: { hs: T, hourword: T, who: T, what: T, owns: T, person: 'person', said: T },
-    doc: 'The hours that mattered, on somebody’s word alone. hours: for {hs}, the {hourword} that mattered, {who} said {what}. recap: {owns}, and nobody else had said so yet; recap-one: {person} said {said} ("home at nine and ten", "the Thalia at ten"), and nobody else had said so yet.',
+    args: { hs: T, hourword: T, who: T, what: T, owns: T, person: 'person', said: T, hours: 'hours' },
+    doc: 'The hours that mattered, on somebody’s word alone. hours: for {hs}, the {hourword} that mattered, {who} said {what}. recap: {owns}, and nobody else had said so yet; recap-one: {person} said {said} ("home at nine and ten", "the Thalia at ten"), and nobody else had said so yet. told (the motive page): for {hours}, {person:they} had told me {said}.',
   },
   STREET: {
     args: { street: T, victim: T, client: T },
     doc: 'A remark put somebody on the scene’s street: the part worth keeping, and what {street} is (murder: where {victim} lived; small: where {client} kept {victim}). Flags: one | two (one sentence, or two).',
   },
   'WINDOW-MEANS': {
-    args: { hours: 'hours', client: 'person', victim: 'person', means: T, origin: 'place', delay: T, kept: T, occasion: T, scene: 'place', venue: 'place', key: T, what: T, hour: 'hour' },
-    doc: 'The window and the way in. when: the office’s hours ({client} had said {hours:or}), or the hour it happened ({hour}), or two hours and I didn’t know which. means: the {means} came from {origin}. find (after the search): murder: the {means} came from {origin}, and (gun, knife) since {victim} died at {hours:or}, whoever used it had been there before, or (poison) since it takes {delay}, whoever brought it had been there earlier; small: told: somebody who’d heard {client} at {venue} between {hours} ; party: the people at the {occasion} in {scene}; spare: the spare key, which lived {key}. scene (on arrival at a small case’s scene): if it went at {hours:or}, whoever took it knew the way in.',
+    args: { hours: 'hours', hour: 'hour', client: 'person', victim: 'person', means: T, origin: 'place', delay: T, occasion: T, scene: 'place', key: T, from: 'hour', till: 'hour' },
+    doc: 'The window and the way in, in the detective’s thought or the notebook. when (the notebook): hour: it happened at {hour} (small: {victim:they} went); two: at {hours:or}, and I didn’t know which; office: {client} had said {hours:or} (hour: {hours}). means: the {means} came from {origin} (link: so whoever used it had been there first; fact: only that). scene (on the way into the scene, the office’s window and what it means): murder: if it happened at {hours:or}, it happened in this room, so {victim:they}’d let whoever did it in; murder-said: … whoever did it had walked in with the {means} already in hand; told: if {victim:they} went at {hours:or}, anybody who’d heard {client} at {origin} had known the way in; party: … everybody at the {occasion} had known the way in; spare: … whoever took {victim:them} had a key, and the spare key lives {key}. find (after the search; the page’s "So" may be put before it, so it must read as a plain statement): gun | blade: the gun (the knife) came from {origin}, and since {victim} died at {hours:or}, whoever used it had been there before that, to take it; poison: the {means} came from {origin}, and since it takes {delay}, whoever brought it to {victim} had been there earlier; party: the people who knew the way in were the ones at the {occasion} in {scene} at {hour}, whose names {client} had given me; told: somebody who’d heard {client} at {origin} between {from} and {till}, which made {origin} the place to start counting; spare: the key was the spare, and the spare lived {key}.',
   },
   LEFT: {
-    args: { hour: 'hour', access: T, street: T },
-    doc: 'Raw’s elimination, its last step: that left one person who {access}, with no true account for {hour} (seen: and who’d been seen on {street} at {hour}).',
+    args: { person: 'person', from: 'hour', to: 'hour', access: T, hour: 'hour', street: T },
+    doc: 'Raw’s elimination (the walk, Raw only: "that left" is allowed here). open: that left {person}, and the clock still open between {from} and {to}. last (the elimination’s last step): that left one person who {access} ("had heard about the window"), with no true account for {hour} (seen: and who’d been seen on {street} at {hour}).',
   },
   FIND: {
     args: { found: T, origin: 'place', victim: 'person', empty: T, thing: 'person' },
     doc: 'What a search turned up. {found} is the case’s own description; the voicing may frame it. Flags: the means (murder | told-mat | told-window | spare-tin | ...).',
   },
   REACTION: {
-    args: { person: 'person', place: 'place', claimed: T, hour: 'hour', witness: 'person', said: T },
-    doc: 'What somebody said when their line was put to them, and what I made of it. The notebook (recap): owned: {person} owned up to {place} (witness: with {witness}; unchecked: and {witness} could say whether that was so; alone: nobody with them); second: put to it, {person} had a second story, {place} (again: and when that was put back, wouldn’t say more); refused: {person} wouldn’t say where {person:they} had been instead.',
+    args: { person: 'person', place: 'place', claimed: 'place', hour: 'hour', witness: 'person', by: 'person', where: 'place', watcher: 'person' },
+    doc: 'What somebody said when their line was put to them, and what I made of it. The notebook: owned: {person} owned up to {place} (witness: with {witness}; unchecked: and {witness} could say whether that was so; alone); second: put to it, {person} had a second story, {place} (again: that didn’t hold either, and they wouldn’t say more); refused: {person} wouldn’t say where {person:they} had been instead. The thought after a put: if-held: if it held, {person:they} had been at {place} at {hour}, not at {claimed} (home: not home); owned-hour: {person} owned up to {place} at {hour}, and nobody had said so but {person:them}; second-thought: a second story, and {place} at {hour} was a place somebody was paid to watch, so {watcher} would know (met) or whoever kept the room there would (unmet); refuse-thought (the page’s "But" may go before it): if {person:they} wasn’t at {claimed} (home: home) at {hour}, somebody saw {person:them} where {person:they} was, and if nobody had, that would say something too. held (a put that didn’t land; the flag after it is why): untouched: nothing in it touched where {person} said {person:they} was (hour: at {hour}; hourless: no hour); agreed: {by} had {person} there at {hour}, which agreed with them; strangers: {by} had people there at {hour} nobody could name, and one could have been {person}; elsewhere: {by} could only say who was at {place}, and {person} hadn’t said they were there; face: a face nobody could put a name to isn’t a name (it might have been {person}’s); company: {by} had {person} with {by:them} at {hour}; other-place: {by} says {by:they} was at {place} at {hour}, which said nothing about who was at {where}; untrusted: that was {by}’s word against {person}’s, and nothing under {by}’s yet; nowhere: it didn’t put {person} anywhere at {hour} but where they said; second-time: it didn’t touch where {person} said {person:they} was the second time.',
   },
   OFFICE: {
-    args: { client: 'person', line: T, said: T },
+    args: { client: T, clientFull: T, cHe: T, cHis: T, he: T, his: T, p: T, pthey: T, pthem: T, motive: T, behaviour: T, line: T, venue: T, where: T, whereFrom: T, relation: T, keeper: T, x: T, victim: T, victimFull: T, job: T, finder: T, finderWhy: T, scene: T, found: T, police: T, thing: T, thingName: T, breed: T, says: T, guests: T, h0: T, h2: T, resident: T, rtheir: T, said: T },
     speech: true,
-    doc: 'A line of the office, in the client’s mouth.',
+    doc: 'A line of the office, the client’s (or, for found, the detective’s narration of what the client said). The arguments are the case’s own words for the line, by kind: relation ({clientFull}, {victimFull}’s {relation}); found ({Victim} was {job}; {finder}, {finderWhy}, found the body in {scene} at {found}; the police called it {police}); clock | window | small-clock ({line}, the client’s own words for when, said whole inside the quotation); pointer, by why ({P}, and {Motive}, or {Pthey} {behaviour}); venue ({venue}); gone (pet: {thing}, my {breed}, from {whereFrom} / lives {where}; item: {thingName}, kept {where}); party (people in at {h0} {says}: {Guests}, nobody else); means, by the way in (told-mat | told-window: sat in {venue} from {h0} until {h2}; spare-nail | spare-tin: {Keeper}, at {x}; latch-key: {Resident}, {rtheir} key); keeper ({Keeper} minds {thing}, at {x}); aside (first | more: {Said}, the client’s afterthoughts, a quotation; {He}, {his} are the client’s). {client} is the client’s name, {cHe} and {cHis} the client’s he and his.',
   },
   REMARK: {
     args: { via: 'place', hour: 'hour', saw: 'person', street: T, from: 'hour', means: T, still: T, keep: T, back: 'hour' },

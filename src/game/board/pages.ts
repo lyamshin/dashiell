@@ -924,6 +924,16 @@ function partsOf(t: Thought): ThoughtPart[] {
 
 const CIRCUMSTANCES = ['behind-on-rent', 'flush', 'hungover', 'bruised', 'sleepless', 'just-paid'];
 
+/** docs/52 build 2: a card's slots as a voicing's arguments: the words, nothing undefined. */
+function stringArgs(v: Record<string, string | undefined>): Record<string, string> {
+  return Object.fromEntries(Object.entries(v).filter((e): e is [string, string] => typeof e[1] === 'string'));
+}
+
+/** Words said in the same breath, inside the closing quotation mark when the line ends on one. */
+export function afterQuote(text: string, also: string): string {
+  return /”$/.test(text) ? `${text.slice(0, -1)}${also}”` : `${text}${also}`;
+}
+
 /** A line about somebody, put in the client's own mouth: "asked me what it was worth", "she and I haven’t spoken". */
 function inClientMouth(c: BoardCase, text: string): string {
   const cl = clientOf(c);
@@ -1012,12 +1022,9 @@ export function writeOffice(w: Writer): void {
       const cs = withCaps({ ...base, ...who(c, c.client) });
       groups.forEach((g, gi) => {
         const props = givenProps(c, g0, { aside: whose[gi] ?? [] });
-        if (gi === 0) {
-          fact(w, 'job', w.hand.draw('aside', {}, withCaps({ ...cs, said: talk(g) }), { widen: true, plain: true }) ?? `“${talk(g)}”`, 'exchange', { about: asideAbout, carries: ['givens:aside'], props });
-        } else {
-          const beat = w.hand.draw('aside-beat', {}, cs, { widen: true, plain: true });
-          fact(w, 'job', `${beat ?? ''} “${talk(g)}”`, 'exchange', { about: asideAbout, carries: ['givens:aside'], props });
-        }
+        // docs/52 build 2: the aside, a composite of the office (OFFICE `aside`), in a voicing of its own.
+        const spec: SaySpec = { shape: 'OFFICE', flags: ['aside', gi === 0 ? 'first' : 'more'], args: stringArgs({ ...cs, said: talk(g) }) };
+        fact(w, 'job', sayFirst(c, spec) ?? `“${talk(g)}”`, 'exchange', { about: asideAbout, carries: ['givens:aside'], props, say: spec });
       });
       continue;
     }
@@ -1041,20 +1048,23 @@ export function writeOffice(w: Writer): void {
       const reason = pp?.motive ? inClientMouth(c, pp.motive) : '';
       if (reason) pointerAlso = ` And ${reason}.`;
     }
-    const want = g.kind === 'pointer' || g.kind === 'gone' || g.kind === 'means' || g.kind === 'keeper' ? { kind, id: g.id } : { kind };
-    let text = c.givens.lines ? w.hand.draw('setup', want, withCaps(v), { need: true }) : null;
-    if (text && pointerAlso && /”$/.test(text)) {
-      text = `${text.slice(0, -1)}${pointerAlso}”`;
-      pointerTold = true;
-    }
+    const flags = g.kind === 'pointer' || g.kind === 'gone' || g.kind === 'means' || g.kind === 'keeper' ? [kind, g.id] : [kind];
+    const args = stringArgs(withCaps(v));
     // docs/49: the scene's pronouns are the dead man's ("found dead in his own flat … by Bidwell, who
     // heard his radio still going"), for the planner to say as him where "his" could be the finder's.
-    if (PLAN.ops && text && g.kind === 'found' && isMurder(c)) {
+    if (PLAN.ops && g.kind === 'found' && isMurder(c)) {
       const vic = victimOf(c).id;
       const pron = pronOf(c, vic).he === 'she' ? /\b(she|her|She|Her)\b/g : /\b(he|his|him|He|His|Him)\b/g;
-      text = text.replace(pron, (m) => `${m}${markPronoun(c, vic)}`);
+      for (const [k, x] of Object.entries(args)) if (typeof x === 'string') args[k] = x.replace(pron, (m) => `${m}${markPronoun(c, vic)}`);
     }
+    // docs/52 build 2: the office's line, a composite (OFFICE, by kind), said in a voicing; the
+    // pointer's reason, when it's said in the same breath, after it.
+    const spec: SaySpec = { shape: 'OFFICE', flags, args };
+    let text = c.givens.lines ? sayFirst(c, spec) : null;
+    if (pointerAlso) pointerTold = true;
+    if (text && pointerAlso) text = afterQuote(text, pointerAlso);
     fact(w, 'job', text ?? `“${g.text}”`, g.kind === 'found' ? 'narrator' : 'exchange', {
+      ...(c.givens.lines ? { say: spec, ...(pointerAlso ? { sayAfter: pointerAlso } : {}) } : {}),
       about: c.people.filter((x) => !x.object && g.text.includes(x.short)).map((x) => x.id),
       carries: [`givens:${g.kind}`],
       // docs/52: the office's line by kind; a pointer says its reason unless it says what they did, alone.

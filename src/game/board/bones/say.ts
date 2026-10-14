@@ -62,7 +62,7 @@ export interface Picked {
  */
 export function sayFirst(c: BoardCase, spec: { shape: Shape; flags: readonly string[]; args: Args; manner?: string }): string | null {
   const band = c.tier <= 1 ? 'low' : c.tier <= 3 ? 'mid' : 'high';
-  const v = fitting(spec.shape, new Set(spec.flags), { manner: spec.manner, tierBand: band })[0];
+  const v = fitting(spec.shape, new Set(spec.flags), { manner: spec.manner, tierBand: band }, spec.args)[0];
   return v ? fill(v.template, spec.args, c) : null;
 }
 
@@ -83,7 +83,7 @@ export function preview(
   args: Args,
   ctx: { c: BoardCase; hand?: VoiceHand; said?: ReadonlySet<string> },
 ): Picked | null {
-  const all = fitting(shape, new Set(flags), o);
+  const all = fitting(shape, new Set(flags), o, args);
   if (all.length === 0) return null;
   const render = (v: Voicing) => fill(v.template, args, ctx.c);
   const hand = ctx.hand;

@@ -88,7 +88,8 @@ function check(vs: Voicing[]): string[] {
     const must = mustSay(v);
     for (const alts of must) if (!alts.some((k) => slotsOf(v.template).includes(k))) bad(`says nothing for ${alts.map((k) => `{${k}}`).join(' or ')}: that drops a fact`);
     const words = v.template.replace(/\{[^}]*\}/g, ' ');
-    if (/\d|\b(?:seven|eight|nine|ten|eleven|twelve|midnight)\b/i.test(words)) bad('an hour or a digit of its own');
+    // (A count isn't an hour: "ten feet away", as the page lint takes it.)
+    if (/\d|\b(?:seven|eight|nine|ten|eleven|twelve|midnight)\b(?!\s+(?:dollars|calls|minutes|years|days|weeks|months|of|people|men|women|feet|steps|flights|cents|times|lodgers|rooms|floors|blocks|hours))/i.test(words)) bad('an hour or a digit of its own');
     for (const n of names) if (new RegExp(`\\b${n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(words)) bad(`a name of its own: ${n}`);
     if (/["']/.test(words.replace(/[A-Za-z]'[A-Za-z]/g, ''))) bad('a straight quotation mark');
     if (/[A-Za-z]'[A-Za-z]/.test(words)) bad('a straight apostrophe (use ’)');
@@ -101,7 +102,7 @@ function check(vs: Voicing[]): string[] {
     if (/\bclear(?:ed|s)\b|\bout of it\b|\bcrossed (?:\w+ )?off\b/i.test(filled)) bad('a verdict word');
     if (LEVEL_SHAPES.has(v.shape)) {
       for (const o of OVERSTEP) if (o.re.test(filled)) bad(`over the thought's level: ${o.name}`);
-      if (DID_IT.test(filled)) bad('says who did it');
+      if (DID_IT.test(filled.replace(/\bwhoever (?:did it|took it)\b/g, ''))) bad('says who did it');
     }
   }
   return out;

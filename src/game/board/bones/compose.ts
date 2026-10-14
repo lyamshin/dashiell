@@ -481,7 +481,10 @@ export function sayAll(items: Item[], ctx: PlanCtx): void {
     comp.manner = s.manner;
     sample(comp, it, ctx);
     it.comp = comp;
-    if (it.speech) it.text = inQuotes(it.text, p.text);
+    // (The office's pointer's reason, said in the same breath: inside the voicing's closing quotation mark.)
+    const said = it.sayAfter ? (/”$/.test(p.text) ? `${p.text.slice(0, -1)}${it.sayAfter}”` : `${p.text}${it.sayAfter}`) : p.text;
+    if (it.speech) it.text = inQuotes(it.text, said);
+    else if (it.sayAfter) it.text = said;
     else if (it.opener) {
       it.flesh = { ...(it.flesh ?? {}), bare: p.text };
       it.text = `${it.opener} ${lowerFirst(p.text)}`;

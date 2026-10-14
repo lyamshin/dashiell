@@ -103,6 +103,8 @@ export interface Item {
    * fallback where none fits.
    */
   say?: SaySpec;
+  /** docs/52 build 2: words said in the same breath after the voicing (inside its closing quotation mark): the office's pointer's reason. */
+  sayAfter?: string;
 }
 
 /** docs/52 build 2: a composite to be voiced. */

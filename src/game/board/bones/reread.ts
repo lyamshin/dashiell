@@ -25,10 +25,10 @@ import type { Unit } from '../plan/types.js';
 import { accessPhrase, shortOther } from './phrase.js';
 import { roleOf } from '../plan/refer.js';
 import { maskPlaces } from '../plan/measure.js';
-import { canon } from './extract.js';
+import { canon, meansProp } from './extract.js';
 import { lexicon, parsePlain, type Lexicon } from './plain.js';
 import type { Composite, Entry, Id, Prop, Shape, Src } from './types.js';
-import { SCHEMA, type ArgType } from './schema.js';
+import { SCHEMA, mustSay, type ArgType } from './schema.js';
 import { fill, voicingById } from './voice.js';
 
 export const VOICED: { check: boolean } = { check: false };
@@ -504,6 +504,9 @@ function personR(c: BoardCase, s: string): Id {
     return !!r && (r === t || r === lc(t) || `T${r.slice(1)}` === t || (r[0] as string).toUpperCase() + r.slice(1) === t);
   });
   if (byRole) return byRole.id;
+  // The lost thing, at the head of a sentence: "The watch".
+  const thing = c.people.find((p) => p.object && p.short.toLowerCase() === t.toLowerCase());
+  if (thing) return thing.id;
   return personV(c, t.replace(/^(?:He|She|Him|Her|His|It|Its)(?=⁣)/, (m) => m.toLowerCase()));
 }
 
@@ -844,6 +847,162 @@ READ.CONFIRMED = (a, _flags, comp, v, lx) => {
   return confirmedSpans(r, comp, v, lx);
 };
 
+/* ------------------------------------------------------------------ *
+ * Build 2: the thought's own composites, read back.
+ * ------------------------------------------------------------------ */
+
+/**
+ * A list's hours that mattered, as the thought says them: "Feeney and Ashby at both, and Pardo at
+ * eleven, at the Thalia", "nobody at ten", "Rafferty and Lou here": who the list had at which hour.
+ */
+function listedR(c: BoardCase, lx: Lexicon, s: string, hours: number[], v: VCtx): { place: PlaceId; at: Map<number, string[]> } {
+  const E = entryAlt(c);
+  let rest = s.trim();
+  let place = v.here;
+  const loc = new RegExp(`(?:,? )at (${lx.re.PL})$`).exec(rest);
+  if (loc && !/ at (?:both|all of them)$/.test(rest)) {
+    place = placeV(c, loc[1] as string, v);
+    rest = rest.slice(0, loc.index);
+  }
+  const at = new Map<number, string[]>(hours.map((h) => [h, []]));
+  const names = (t: string) => listV(t, E.re).map((n) => E.of.get(n) as string);
+  if (hours.length === 1) {
+    if (rest !== 'nobody') at.set(hours[0] as number, names(rest));
+    return { place, at };
+  }
+  const NS = `(?:${E.re})(?:(?:, | and )(?:${E.re}))*`;
+  const HS = `(?:${lx.re.H})(?:(?:, | and )(?:${lx.re.H}))*`;
+  const part = new RegExp(`^(nobody|${NS}) at (both|all of them|${HS})(?:, and |, | and |$)`);
+  while (rest.length) {
+    const m = part.exec(rest);
+    if (!m) throw new Error(`voiced: can't read "${rest}" as a list's hours`);
+    const hs = m[2] === 'both' || m[2] === 'all of them' ? hours : hoursV(lx, m[2] as string);
+    if (m[1] !== 'nobody') for (const h of hs) at.set(h, [...(at.get(h) ?? []), ...names(m[1] as string)]);
+    rest = rest.slice((m[0] as string).length);
+  }
+  return { place, at };
+}
+
+const listHourSpoken = READ['LIST-HOUR'] as Reader;
+READ['LIST-HOUR'] = (a, flags, comp, v, lx) => {
+  if (!flags.has('thought')) return listHourSpoken(a, flags, comp, v, lx);
+  const hours = a.hours as number[];
+  // "the list": the page's own list, named in the thought already.
+  const watcher = flags.has('named') ? (comp.props.find((x) => x.k === 'LIST') as P<'LIST'>).watcher : (a.watcher as Id);
+  const { place, at } = listedR(v.c, lx, a.listed as string, hours, v);
+  return [{ k: 'WINDOW', hours }, ...hours.map((h) => ({ k: 'LIST', watcher, place, hour: h, people: at.get(h) ?? [] }) as Prop)];
+};
+
+const placedSet = READ['PLACED-SET'] as Reader;
+READ['PLACED-SET'] = (a, flags, comp, v, lx) => {
+  if (!flags.has('elim')) return placedSet(a, flags, comp, v, lx);
+  const people = a.people as string[];
+  // The passage says the hour once, in its first sentence.
+  const hour = (a.hour as number | undefined) ?? (comp.props[0] as P<'PLACED'>).hour;
+  const like = (comp.props[0] as P<'PLACED'>).by;
+  if (flags.has('mutual')) {
+    const [x, y] = people as [Id, Id];
+    return [
+      { k: 'PLACED', person: x, place: a.place as Id, hour, by: { k: like.k, who: y } as Src },
+      { k: 'PLACED', person: y, place: a.place as Id, hour, by: { k: like.k, who: x } as Src },
+    ];
+  }
+  const src = (a.src as string).trim();
+  const by: Src = src === 'the office' ? { k: 'given' } : src === 'what the room said' ? { k: 'find' } : srcFold(v.c, src, like);
+  return people.map((p) => ({ k: 'PLACED', person: p, place: a.place as Id, hour, by }) as Prop);
+};
+
+READ.LEFT = (a, flags) => {
+  if (flags.has('open')) return [{ k: 'LEFT', people: [a.person as Id], hours: [a.from as number, a.to as number] }];
+  if (!(a.access as string)?.trim()) throw new Error('voiced: left with what way in?');
+  return [{ k: 'LEFT', hours: [a.hour as number], ...(flags.has('seen') ? { seen: true } : {}) }];
+};
+
+const windowMeans = READ['WINDOW-MEANS'] as Reader;
+READ['WINDOW-MEANS'] = (a, flags, comp, v, lx) => {
+  const c = v.c;
+  // The way in a small case's scene says: the office's way, as the case keeps it (who knew is folded).
+  const means = (): Prop => meansProp(c);
+  if (flags.has('scene')) return [{ k: 'WINDOW', hours: a.hours as number[] }, ...(flags.has('murder') || flags.has('murder-said') ? [] : [means()])];
+  if (flags.has('find')) {
+    if (flags.has('gun') || flags.has('blade')) return [{ k: 'MEANS', how: 'origin', place: a.origin as Id }, { k: 'WINDOW', hours: a.hours as number[] }];
+    if (flags.has('poison')) return [{ k: 'MEANS', how: 'origin', place: a.origin as Id }];
+    return [means()];
+  }
+  return windowMeans(a, flags, comp, v, lx);
+};
+
+READ['MOTIVE-SET'] = (a, flags, comp) => {
+  if (flags.has('own')) return [{ k: 'MOTIVE', person: a.person as Id }];
+  // Whose reason is the sentence before's, folded.
+  const who = (comp.props[0] as P<'MOTIVE'>).person;
+  if (flags.has('office')) return [{ k: 'MOTIVE', person: who, said: 'office' }];
+  if (flags.has('not-office')) return [{ k: 'MOTIVE', person: who, said: 'not-office' }];
+  if (flags.has('papers')) return [{ k: 'MOTIVE', person: '*' }, ...(flags.has('tied') ? [{ k: 'MEANS', how: 'origin', place: a.origin as Id } as Prop] : [])];
+  throw new Error('voiced: whose reason?');
+};
+
+const ownWord = READ['OWN-WORD'] as Reader;
+READ['OWN-WORD'] = (a, flags, comp, v, lx) => {
+  if (!flags.has('told')) return ownWord(a, flags, comp, v, lx);
+  const person = a.person as Id;
+  const got = placesAtR(v.c, lx, a.said as string, v, person);
+  const hs = a.hours as number[];
+  if (got.map((x) => x.hour).join() !== hs.join()) throw new Error('voiced: which hours?');
+  return got.map((x) => ({ k: 'CLAIM', person, place: x.place, hour: x.hour }) as Prop);
+};
+
+const collisionPair = READ['COLLISION-PAIR'] as Reader;
+READ['COLLISION-PAIR'] = (a, flags, comp, v, lx) => {
+  const x = comp.props[0] as P<'COLLIDES'>;
+  const person = a.person as Id | undefined;
+  // After a put, "a hole in her story" and "her second story had a list against it": whose is said; where, when and against what are the put's own, folded.
+  if (flags.has('hole')) return [{ ...x, person: person as Id }];
+  if (flags.has('second-refused')) return [{ ...x, person: person as Id }, ...comp.props.slice(1).filter((y) => y.k === 'REFUSE').map((y) => ({ ...(y as P<'REFUSE'>), person: person as Id }))];
+  if (flags.has('still')) return [{ k: 'COLLIDES', person: person as Id, place: x.place, hour: a.hour as number, with: srcR(v.c, a.src as string) }];
+  if (flags.has('second-list')) return [{ k: 'COLLIDES', person: person as Id, place: a.at as Id, hour: a.hour as number, second: true, with: { k: 'list', who: a.watcher as Id } }];
+  return collisionPair(a, flags, comp, v, lx);
+};
+
+const HELD_BY = ['agreed', 'strangers', 'elsewhere', 'company', 'other-place', 'untrusted'];
+const reaction = READ.REACTION as Reader;
+READ.REACTION = (a, flags, comp, v, lx) => {
+  const c = v.c;
+  const person = a.person as Id;
+  if (flags.has('if-held')) return [{ k: 'ADMIT', person, place: a.place as Id, hour: a.hour as number, claimed: flags.has('home') ? (personOf(c, person)?.home as Id) : (a.claimed as Id) }];
+  if (flags.has('owned-hour')) return [{ k: 'ADMIT', person, place: a.place as Id, hour: a.hour as number }];
+  if (flags.has('second-thought')) {
+    // Whose second story: the put's own person, folded (the sentence names the place and the hour).
+    const who = (comp.props[0] as P<'SECOND'>).person;
+    return [
+      { k: 'SECOND', person: who, place: a.place as Id, hour: a.hour as number },
+      { k: 'POINTER', from: 'second', to: flags.has('met') ? (a.watcher as Id) : (a.place as Id), why: 'watcher' },
+    ];
+  }
+  if (flags.has('refuse-thought')) return [{ k: 'REFUSE', person, hour: a.hour as number }];
+  if (flags.has('held')) {
+    const code = HELD_BY.find((k) => flags.has(k)) ?? ['face', 'nowhere', 'untouched'].find((k) => flags.has(k));
+    const x = comp.props[0] as P<'HELD'>;
+    // An hour the reason doesn't say is the put's, folded.
+    // (Whose put it was is folded where the reason only says what the line was about.)
+    return [{ k: 'HELD', person: person ?? x.person, hour: (a.hour as number | undefined) ?? x.hour, why: (code ?? 'untouched') as P<'HELD'>['why'], ...(code && HELD_BY.includes(code) ? { by: a.by as Id } : {}), ...(code === 'elsewhere' || code === 'other-place' ? { place: a.place as Id } : {}) }];
+  }
+  return reaction(a, flags, comp, v, lx);
+};
+
+/**
+ * The office's lines are the case's own words (the client's line for when, the pointer's reason, the
+ * scene as found), and a voicing frames them: every one the line's kind says must be read back,
+ * whole; what they say is the line's own propositions, by kind (`givenProps`).
+ */
+READ.OFFICE = (a, flags, comp) => {
+  const must = mustSay({ shape: 'OFFICE', requires: [...flags], template: '' });
+  for (const alts of must) if (!alts.some((k) => typeof a[k] === 'string' && (a[k] as string).trim().length > 0)) throw new Error(`voiced: the office's line says no {${alts.join('|')}}`);
+  return comp.props;
+};
+
+READ.PRESENT = (a, flags, comp, v) => [{ k: 'PRESENT', person: flags.has('witness') ? (comp.props[0] as P<'PRESENT'>).person : (a.person as Id), place: v.here }];
+
 /** Build 2: a shape's reader, registered by the module that writes its arguments (`readers.ts`). */
 export function registerReader(shape: Shape, r: Reader): void {
   READ[shape] = r;
@@ -865,7 +1024,9 @@ function rereadTyped(comp: Composite, vo: { id: string; template: string; requir
         if (!type) throw new Error(`voiced: ${vo.id} names {${k}}, which ${comp.shape} hasn't`);
         const reads = vals.map((x) => readTyped(v.c, lx, v, type, x));
         // A slot said twice says the same thing twice ("{p}" and "{p:them}" are one person).
-        if (reads.some((x) => JSON.stringify(x) !== JSON.stringify(reads[0]))) throw new Error(`voiced: {${k}} is two things`);
+        // (Words said twice may be said once with a capital: "{Pthey}" and "{pthey}".)
+        const same = (x: Read) => (typeof x === 'string' ? lc(x) : JSON.stringify(x));
+        if (reads.some((x) => same(x) !== same(reads[0] as Read))) throw new Error(`voiced: {${k}} is two things`);
         a[k] = reads[0] as Read;
       }
       const got = r(a, flags, comp, v, lx).map(canon).sort();

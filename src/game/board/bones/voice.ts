@@ -84,14 +84,19 @@ export function specificity(v: Voicing): number {
   return (v.requires?.length ?? 0) + (v.manner ? 1 : 0) + (v.tierBand ? 1 : 0);
 }
 
-/** The voicings of a shape that fit, the most specific of them. */
-export function fitting(shape: Shape, flags: ReadonlySet<string>, o: { manner?: string; tierBand?: string } = {}): Voicing[] {
+/**
+ * The voicings of a shape that fit, the most specific of them. Given the arguments, a voicing that
+ * names one the composite hasn't doesn't fit (the old decks' rule: a card is dealt only when every
+ * slot can be filled).
+ */
+export function fitting(shape: Shape, flags: ReadonlySet<string>, o: { manner?: string; tierBand?: string } = {}, args?: Args): Voicing[] {
   const out = (BY_SHAPE.get(shape) ?? []).filter(
     (v) =>
       (v.manner === undefined || v.manner === o.manner) &&
       (v.tierBand === undefined || v.tierBand === o.tierBand) &&
       (v.requires ?? []).every((r) => flags.has(r)) &&
-      !(v.forbids ?? []).some((f) => flags.has(f)),
+      !(v.forbids ?? []).some((f) => flags.has(f)) &&
+      (!args || slotsOf(v.template).every((k) => args[k] !== undefined || args[(k[0] as string).toUpperCase() + k.slice(1)] !== undefined)),
   );
   const best = Math.max(-1, ...out.map(specificity));
   return out.filter((v) => specificity(v) === best);
