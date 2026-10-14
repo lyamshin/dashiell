@@ -6,6 +6,7 @@ out/
 .env
 .claude/
 .golden-pages/
+skeletons*.jsonl
 # docs/50: the tiny model. The venv, checkpoints and the corpus text are rebuilt
 # (model/README.md); the tokenizer, the fixtures, the counts and the export are committed.
 model/.venv/

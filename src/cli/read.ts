@@ -6,7 +6,8 @@
  * verdict and what really happened. `--random` takes the wanderer's route
  * instead; `--route "go bar; ask barkeep list; …"` plays exactly those
  * commands. `--no-choices` leaves out each page's choices; `--curtain` adds
- * the true board, the path and the lies.
+ * the true board, the path and the lies. `--skeleton` prints, after each page,
+ * the units it was realized from (docs/49 §3), one JSON object a line.
  */
 
 import { CASE_TYPES, parseTier, typesFor, type CaseType } from '../gen/board/index.js';
@@ -20,7 +21,7 @@ import { choicesText, notebookText, pageBodyText, wrap } from '../game/board/tex
 import { ignoreBrokenPipe, parseArgs } from './args.js';
 import { isWorld } from '../gen/board/world/index.js';
 
-const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--world neighbourhood]\n';
+const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--world neighbourhood]\n';
 
 export function readBoard(values: Map<string, string>, flags: Set<string>): string {
   const seed = Number(values.get('seed') ?? 1);
@@ -73,6 +74,11 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
     out.push(`${page.head.padEnd(40)}${strip.time} · page ${i + 1} · ${strip.left}`);
     out.push('─'.repeat(76));
     out.push(pageBodyText(page));
+    // docs/49 §3: the skeleton the page was realized from, a unit a line.
+    if (flags.has('skeleton')) {
+      out.push('');
+      for (const u of page.board?.units ?? []) out.push(JSON.stringify({ page: i + 1, ...u }));
+    }
     const st = states[i];
     if (st && !flags.has('no-choices') && i < run.log.length - 1) {
       out.push('');

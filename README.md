@@ -62,6 +62,7 @@ npm run read -- --seed 7 --tier 2                  # the oracle's night, page by
 npm run read -- --seed 7 --tier 2 --type lost-pet  # a case type the tier builds
 npm run read -- --seed 7 --tier 2 --random         # the wanderer's night
 npm run read -- --seed 7 --tier 2 --curtain        # and the true board after it
+npm run read -- --seed 7 --tier 2 --skeleton       # and each page's skeleton, as JSONL (docs/49)
 npm run case -- --seed 7 --tier 2                  # the case itself: truth, board, path
 npm run trace -- night.json "a line off a page"    # what wrote these words
 ```
@@ -73,7 +74,8 @@ npx vitest run --minWorkers=1 --maxWorkers=3   # the suite
 npm run typecheck                              # tsc --noEmit
 npm run board-sweep -- --tier all --n 60       # the generator's rates and invariants
 npx tsx scripts/board-measure.ts --seeds 50    # the puzzle, measured
-npx tsx scripts/board-prose.ts                 # the prose, measured
+npx tsx scripts/board-prose.ts                 # the prose, measured (--plan off: without the microplanner)
+npx tsx scripts/skeletons.ts --n 300 --tier all # the skeletons, a JSONL corpus (docs/49, docs/50)
 npm run model:sample                           # the tiny model (docs/50): twenty samples
 npm run model:bench                            # and its speed, ms per gap
 ```
@@ -83,6 +85,7 @@ Layout:
 ```
 src/gen/board/    the case generator: the board, the solver, the path. Pure.
 src/game/board/   the engine: a command in, a page out. Pure, no DOM.
+src/game/board/plan/   the microplanner (docs/49): the skeleton between the beats and the page.
 src/ui/           the book: the only code that touches the document.
 src/cli/          play, read, case, board-sweep.
 content/board/    the board's card families.
