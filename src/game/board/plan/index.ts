@@ -36,6 +36,8 @@ import type { BoardCase, BoardRun } from '../model.js';
 import type { Item, Unit } from './types.js';
 import type { PageBudget } from './types.js';
 import { aggregate, bonesOf, compose, connect } from '../bones/compose.js';
+import { VOICED, checkVoiced } from '../bones/reread.js';
+import type { Composite } from '../bones/types.js';
 import { rhythm } from './rhythm.js';
 import { refer, stripMarks } from './refer.js';
 import { situate, type SituCtx } from './situated.js';
@@ -103,6 +105,19 @@ export function planSection(
   if (PLAN.ops) connect(order.flatMap((o) => o.beats.flatMap((b) => byBeat[b] ?? [])), ctx);
   // docs/49, Planner 2: the thought's facts joined by what they do to each other.
   if (PLAN.ops && byBeat.thought) byBeat.thought = compose(byBeat.thought, ctx);
+  // docs/52: the round trip on the voiced composites, when it's asked for.
+  if (PLAN.ops && VOICED.check) {
+    for (const xs of Object.values(byBeat)) {
+      for (const it of xs ?? []) {
+        const speaker = /^(?:list|claim):([^@]+)@/.exec(it.carries?.[0] ?? '')?.[1];
+        const walk = (x: Composite) => {
+          checkVoiced(x, { c: ctx.c, here: ctx.run?.at ?? '', ...(speaker ? { speaker } : {}) });
+          for (const y of x.parts ?? []) walk(y);
+        };
+        if (it.comp) walk(it.comp);
+      }
+    }
+  }
   // Paragraphs: a beat alone in its paragraph gives each of its items a paragraph of its own (an
   // item that runs on stays with the one before); beats that share a paragraph run together when
   // they're short enough to read as one.
@@ -171,7 +186,7 @@ function toUnit(x: Item, para: number): Unit {
       carries: [...new Set(x.carries ?? [])],
       ...(x.joined ? { join: x.joined } : {}),
       ...((x.n ?? 1) > 1 ? { facts: x.n } : {}),
-      ...(bonesOf(x) ? { bones: bonesOf(x) } : {}),
+      ...(bonesOf(x, VOICED.check) ? { bones: bonesOf(x, VOICED.check) } : {}),
     };
   }
   const sit = x.sit?.key ? { key: x.sit.key, ...(x.sit.card ? { card: x.sit.card } : {}), ...(x.sit.who ? { who: x.sit.who } : {}), ...(x.sit.lead ? { lead: stripMarks(x.sit.lead) } : {}), ...(x.sit.tail ? { tail: stripMarks(x.sit.tail) } : {}) } : {};

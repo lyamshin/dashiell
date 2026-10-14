@@ -1003,18 +1003,23 @@ export function compose(items: Item[], ctx: PlanCtx): Item[] {
   return out;
 }
 
-/** The skeleton's bones for a fact item: its composite, without the planner's working notes. */
-export function bonesOf(it: Item): Composite[] | undefined {
+/**
+ * The skeleton's bones for a fact item: its composite, without the planner's working notes (`said`,
+ * the words the voicing gave it before the reference and the rhythm, is kept when the round trip
+ * asks for it).
+ */
+export function bonesOf(it: Item, keepSaid = false): Composite[] | undefined {
   if (it.kind !== 'fact') return undefined;
-  const strip = (x: Composite): Composite => ({
+  const strip = (x: Composite & { said?: string }): Composite => ({
     shape: x.shape,
     props: x.props,
     ...(x.parts ? { parts: x.parts.map(strip) } : {}),
     ...(x.join ? { join: x.join } : {}),
     ...(x.voicing ? { voicing: x.voicing } : {}),
+    ...(keepSaid && x.said !== undefined ? { said: x.said } : {}),
   });
   if (it.comp) return [strip(it.comp)];
-  if (it.props) return [strip(leafOf(it))];
+  if (it.props) return [strip({ ...leafOf(it), said: it.text })];
   return undefined;
 }
 

@@ -46,7 +46,7 @@ import {
 import { sourceName } from './stars.js';
 import type { Agg, Join, Relation } from './plan/types.js';
 import type { Prop, Src } from './bones/types.js';
-import { claimProp, entryOf, lineProp, srcOfQ } from './bones/extract.js';
+import { breakerProp, claimProp, entryOf, srcOfQ } from './bones/extract.js';
 import { accessPhrase, atWhere, breakSaid, claimSaid, keptAt, remarkSaid, shortOther, where } from './bones/phrase.js';
 
 export { breakSaid, claimSaid, keptAt, remarkSaid, shortOther };
@@ -209,7 +209,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       rel: 'collides',
       rule: 'collision',
       // docs/52: the claim and the line that breaks it, in full; the closing line is the writer's.
-      props: [{ k: 'COLLIDES', person: p, place: accountOf(c, p)?.claims[col.hour]?.place ?? '', hour: col.hour, with: lineProp(c, br, run.asked) }],
+      props: [{ k: 'COLLIDES', person: p, place: accountOf(c, p)?.claims[col.hour]?.place ?? '', hour: col.hour, with: breakerProp(c, br, p, run.asked) }],
       flesh: { two, twos },
       // docs/49 §2: the claim, the line that breaks it, and what the planner may join them with.
       // (Two people who both say the same place at the same hour collide on who was with whom: "but"

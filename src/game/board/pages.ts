@@ -76,7 +76,7 @@ import { worldAccountVoice, worldDeck, worldFoundWith, worldListVoice, worldLook
 import { PLAN, chapterUnit, markPronoun, newBudget, planSection, stripMarks, type GapSlot, type Item, type Relation, type SituCtx, type Unit } from './plan/index.js';
 import type { PageBudget } from './plan/types.js';
 import type { Prop } from './bones/types.js';
-import { claimProp, findProps, givenProps, lineProps, meansProp as meansPropOf, srcOfQ } from './bones/extract.js';
+import { breakerProp, claimProp, findProps, givenProps, lineProps, meansProp as meansPropOf, srcOfQ } from './bones/extract.js';
 
 export { breakSaid };
 
@@ -1733,7 +1733,7 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
     carries: [`claim:${p}@${h}`, line.id, ...(j.with ?? []).map((x) => x.id)],
     // docs/52: their line (or their second story), against each line put to them.
     props: [line, ...(j.with ?? [])].map(
-      (x) => ({ k: 'COLLIDES', person: p, place: again ? (confrontationOf(c, p, h)?.secondLie?.place ?? '') : (accountOf(c, p)?.claims[h]?.place ?? ''), hour: h, ...(again ? { second: true } : {}), with: lineProps(c, x, w.run.asked)[0] ?? srcOfQ(x.q) }) as Prop,
+      (x) => ({ k: 'COLLIDES', person: p, place: again ? (confrontationOf(c, p, h)?.secondLie?.place ?? '') : (accountOf(c, p)?.claims[h]?.place ?? ''), hour: h, ...(again ? { second: true } : {}), with: lineProps(c, x).length ? breakerProp(c, x, p, w.run.asked) : srcOfQ(x.q) }) as Prop,
     ),
   });
   w.hours.add(h);
@@ -1756,7 +1756,11 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
   if (!j.landed) {
     const how = w.hand.draw('react', { response: 'held' }, s, { widen: true });
     react(w, p, how ?? `${nameOf(c, p)} heard me out.`, '“That doesn’t touch anything I told you.”', `held:${p}@${h}`, 'new', sit(w, how), [{ k: 'HELD', person: p, hour: h }]);
-    done('held-close', j.why ? [{ text: j.why, props: [{ k: 'HELD', person: p, hour: h, why: j.code ?? 'untouched', ...(line.speaker ? { by: line.speaker } : {}), ...(line.place ? { place: line.place } : {}) }] }] : [], lineRef);
+    // docs/52: the reason, and whose line and which place it names (where it names them).
+    const code = j.code ?? 'untouched';
+    const names = ['agreed', 'strangers', 'elsewhere', 'company', 'other-place', 'untrusted'].includes(code);
+    const at = code === 'elsewhere' || code === 'other-place';
+    done('held-close', j.why ? [{ text: j.why, props: [{ k: 'HELD', person: p, hour: h, why: code, ...(names && line.speaker ? { by: line.speaker } : {}), ...(at && line.place ? { place: line.place } : {}) }] }] : [], lineRef);
     return;
   }
   const k = confrontationOf(c, p, h);

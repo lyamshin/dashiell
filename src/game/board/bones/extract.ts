@@ -46,9 +46,11 @@ export function listProp(c: BoardCase, watcher: PersonId, h: Hour, o: { whole?: 
   const l = listOf(c, watcher) as WatchList;
   const es = l.entries[h] ?? [];
   if (shutAt(c, l.place, h)) return { k: 'LIST', watcher, place: l.place, hour: h, people: [], shut: true };
+  // Whether that was everybody is said only when it was (a stranger on the list says the rest).
   const whole = o.whole === 'auto' ? listExhaustive(c, l, h) : o.whole;
   const faces = facesFor(c, es, o.asked);
-  return { k: 'LIST', watcher, place: l.place, hour: h, people: es.map(entryOf), ...(whole !== undefined ? { whole } : {}), ...(faces ? { faces } : {}) } as Prop;
+  // (An empty hour is "nobody": that it was everybody goes without saying.)
+  return { k: 'LIST', watcher, place: l.place, hour: h, people: es.map(entryOf), ...(whole && es.length ? { whole: true } : {}), ...(faces ? { faces } : {}) } as Prop;
 }
 
 /** Somebody's own word for an hour: where (when said), and with whom (when said). */
@@ -115,9 +117,24 @@ export function lineProps(c: BoardCase, l: Line, asked?: readonly string[]): Pro
   return [];
 }
 
-/** The line a source and an hour name, as one proposition (a collision's breaker). */
+/** The line a source and an hour name, as one proposition. */
 export function lineProp(c: BoardCase, l: Line, asked?: readonly string[]): Prop {
   return lineProps(c, l, asked)[0] as Prop;
+}
+
+/**
+ * A line as it's said against somebody's claim (`breakSaid`): a list that has them on it says only
+ * that; a remark says whom it passed, where and when, not where its speaker was going.
+ */
+export function breakerProp(c: BoardCase, l: Line, p: PersonId, asked?: readonly string[]): Prop {
+  const x = lineProp(c, l, asked);
+  if (x.k === 'LIST' && x.people.includes(p)) return { k: 'LIST', watcher: x.watcher, place: x.place, hour: x.hour, people: [p] };
+  if (x.k === 'REMARK') {
+    const { via: _via, ...rest } = x;
+    void _via;
+    return rest;
+  }
+  return x;
 }
 
 /** What a search gave: what was searched, and the way in (the means and where it came from) or everybody's reason. */
@@ -142,11 +159,22 @@ export function meansProp(c: BoardCase): Prop {
   return { k: 'MEANS', how: 'spare', place: c.means.origin };
 }
 
+/**
+ * The office's way in, as its line says it: the lodger whose key is lost, or who keeps the spare key
+ * (the line's own values, by name).
+ */
+export function meansLineProp(c: BoardCase, g: GivenLine): Prop {
+  const x = meansProp(c) as Extract<Prop, { k: 'MEANS' }>;
+  const name = g.vars.resident || (/\{Keeper\}|keeps the spare|spare key lives/.test(g.text) || /^spare/.test(g.id) ? g.vars.keeper : '');
+  const who = name ? c.people.find((p) => p.short === name)?.id : undefined;
+  return who ? { ...x, who } : x;
+}
+
 /** The office's guests at its party, as the client's list: who was there, and nobody else. */
 function partyProp(c: BoardCase): Prop {
   const h0 = c.board.hours[0] as Hour;
   const guests = c.givens.facts.filter((f) => f.k === 'at' && f.h === h0 && f.place === c.crime.scene).map((f) => f.p);
-  return { k: 'LIST', watcher: c.client, place: c.crime.scene, hour: h0, people: guests, whole: true };
+  return { k: 'LIST', watcher: c.client, place: c.crime.scene, hour: h0, people: guests, ...(guests.length ? { whole: true } : {}) };
 }
 
 /**
@@ -175,7 +203,7 @@ export function givenProps(c: BoardCase, g: GivenLine, o: { motive?: boolean; as
     case 'party':
       return [partyProp(c)];
     case 'means':
-      return [meansProp(c)];
+      return [meansLineProp(c, g)];
     case 'keeper': {
       const kp = c.givens.known?.[0];
       return kp ? [{ k: 'POINTER', from: 'office', to: kp, why: 'keeper' }] : [];

@@ -98,8 +98,11 @@ export type Prop =
   | { k: 'FOUND'; victim: Id; place: Id; finder?: Id }
   /** The office: the thing (or the pet) gone from where it was kept. */
   | { k: 'GONE'; thing: Id; place: Id }
-  /** The way in: where the means was had (a murder's origin; the room told about the key; the party; the spare key), and the hours. */
-  | { k: 'MEANS'; how: 'origin' | 'told' | 'party' | 'spare'; place: Id; hours?: number[] };
+  /**
+   * The way in: where the means was had (a murder's origin; the room told about the key; the party;
+   * the spare key), and the hours; `who`, the lodger whose key it was, or who keeps the spare.
+   */
+  | { k: 'MEANS'; how: 'origin' | 'told' | 'party' | 'spare'; place: Id; hours?: number[]; who?: Id };
 
 export type PropKind = Prop['k'];
 export const PROP_KINDS: readonly PropKind[] = [

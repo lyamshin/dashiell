@@ -295,7 +295,7 @@ export function spokenListLines(c: BoardCase, l: WatchList, rot = 0): SaidLine[]
       const regulars = others.filter((o) => always.has(o.id)).map((o) => /^(Lou|Pardo|Benny)\b/.exec(o.name)?.[1]);
       const named = regulars.length > 0 && regulars.every(Boolean) ? (regulars as string[]) : [];
       const regs = named.length ? others.filter((o) => always.has(o.id)).map((o) => `other:${o.id}`) : [];
-      out.push({ text: landlady ? `${when}, nobody but me.` : named.length ? `${when}, just ${andList(named)}.` : `${when}, nobody${always.size ? ' else' : ''}.`, hours: [...g.hs], props: g.hs.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: regs, whole: true }) as Prop) });
+      out.push({ text: landlady ? `${when}, nobody but me.` : named.length ? `${when}, just ${andList(named)}.` : `${when}, nobody${always.size ? ' else' : ''}.`, hours: [...g.hs], props: g.hs.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: regs, ...(regs.length ? { whole: true } : {}) }) as Prop) });
       return;
     }
     const names = g.es.map((e) => {
