@@ -98,16 +98,16 @@ describe('docs/51: the key and the fallback', () => {
 });
 
 describe('docs/51: every gap the deck may fill has its situation', () => {
-  it.each(nights.filter((x) => x.tier % 2 === 1))('keys the same gaps the same way, on or off: tier $tier, $type, $world', ({ tier, type, world }) => {
+  // (On and off, the gaps keyed on a page can differ after the first card the deck deals: the page's
+  // rhythm trades and the hand's later draws aren't the same. The office, dealt first, is the same.)
+  it.each(nights.filter((x) => x.tier % 2 === 1))('keys every gap it may fill, on or off: tier $tier, $type, $world', ({ tier, type, world }) => {
     const on = play(true, 3, tier, type, world);
     const off = play(false, 3, tier, type, world);
-    on.forEach((r, k) => {
-      const o = off[k] as BoardRun;
-      expect(r.log.length).toBe(o.log.length);
-      r.log.forEach((p, i) => {
-        const q = o.log[i] as Page;
-        const keys = (x: Page) => (x.board?.units ?? []).filter((u) => u.kind === 'gap' && u.key).map((u) => (u.kind === 'gap' ? u.key : ''));
-        expect(keys(p), `p${i + 1}`).toEqual(keys(q));
+    const keys = (x: Page) => (x.board?.units ?? []).filter((u) => u.kind === 'gap' && u.key).map((u) => (u.kind === 'gap' ? u.key : ''));
+    expect(keys(on[0]?.log[0] as Page)).toEqual(keys(off[0]?.log[0] as Page));
+    expect(keys(on[0]?.log[0] as Page).length).toBeGreaterThan(0);
+    [...on, ...off].forEach((r) => {
+      r.log.forEach((p) => {
         for (const u of p.board?.units ?? []) {
           if (u.kind !== 'gap' || !u.key) continue;
           const kk = parseKey(u.key);

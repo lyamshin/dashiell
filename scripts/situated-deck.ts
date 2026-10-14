@@ -264,7 +264,8 @@ if (cmd === 'batches') {
     kept.splice(kept.indexOf(c), 1);
   }
   const deck: SitCard[] = kept.map(({ stratum: _s, slot: _l, batch: _b, ...c }) => c);
-  writeFileSync(DECK, `${JSON.stringify(deck, null, 1)}\n`);
+  // One card a line: the deck ships in the book's bundle.
+  writeFileSync(DECK, `[\n${deck.map((c) => JSON.stringify(c)).join(',\n')}\n]\n`);
   // The report.
   const out: string[] = [];
   out.push(`${written.length} written, ${cut.size} cut, ${deck.length} kept (${deck.filter((c) => c.joke).length} jokes) → ${DECK}`);

@@ -223,30 +223,33 @@ if (SAMPLE > 0) {
 }
 
 // `--add-missing 5`: after the engine changes under a sample already being written (docs/51 was
-// sampled before Planner 2 merged), up to N more gaps for each stratum the sample hasn't got,
-// appended with the next ids, and the strata's shares written again.
+// sampled before Planner 2 merged), more gaps for each stratum the sample has fewer than N of,
+// appended with the next ids (never a gap it has already), and, with `--shares`, the strata's
+// shares written again. More nights (`--nights 120`) find more of a rare stratum.
 const ADD = val('add-missing') !== undefined ? Number(val('add-missing')) : 0;
 if (ADD > 0) {
   const have = readFileSync(OUT, 'utf8')
     .split('\n')
     .filter((l) => l.trim())
     .map((l) => JSON.parse(l) as Gap & { id: string });
-  const got = new Set(have.map((g) => g.stratum));
+  const where = (g: Gap) => `${g.night}#${g.page}.${g.unit}`;
+  const taken = new Set(have.map(where));
   let next = have.length + 1;
   const added: string[] = [];
   for (const [k] of strata) {
-    if (got.has(k)) continue;
-    const pagesSeen = new Set<string>();
+    let n = have.filter((g) => g.stratum === k).length;
+    const pagesSeen = new Set(have.filter((g) => g.stratum === k).map((g) => `${g.night}#${g.page}`));
     for (const g of gaps.filter((x) => x.stratum === k)) {
-      if (added.filter((l) => l.includes(`"stratum":"${k}"`)).length >= ADD) break;
-      if (pagesSeen.has(`${g.night}#${g.page}`)) continue;
+      if (n >= ADD) break;
+      if (taken.has(where(g)) || pagesSeen.has(`${g.night}#${g.page}`)) continue;
       pagesSeen.add(`${g.night}#${g.page}`);
       added.push(JSON.stringify({ id: `g${String(next++).padStart(4, '0')}`, ...g }));
+      n++;
     }
   }
   writeFileSync(OUT, `${[...have.map((g) => JSON.stringify(g)), ...added].join('\n')}\n`);
   const total = gaps.length;
-  writeFileSync(OUT.replace(/gaps-sample\.jsonl$/, 'gaps-strata.json'), `${JSON.stringify(Object.fromEntries(strata.map(([k, n]) => [k, Number((n / total).toFixed(5))])), null, 1)}\n`);
-  process.stdout.write(`\n${OUT}: ${added.length} gaps added for the strata it hadn't got.\n`);
+  if (args.includes('--shares')) writeFileSync(OUT.replace(/gaps-sample\.jsonl$/, 'gaps-strata.json'), `${JSON.stringify(Object.fromEntries(strata.map(([k, n]) => [k, Number((n / total).toFixed(5))])), null, 1)}\n`);
+  process.stdout.write(`\n${OUT}: ${added.length} gaps added for the strata it had fewer than ${ADD} of.\n`);
 }
 void tierName;
