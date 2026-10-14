@@ -90,7 +90,9 @@ function check(vs: Voicing[]): string[] {
     const words = v.template.replace(/\{[^}]*\}/g, ' ');
     // (A count isn't an hour: "ten feet away", as the page lint takes it.)
     if (/\d|\b(?:seven|eight|nine|ten|eleven|twelve|midnight)\b(?!\s+(?:dollars|calls|minutes|years|days|weeks|months|of|people|men|women|feet|steps|flights|cents|times|lodgers|rooms|floors|blocks|hours))/i.test(words)) bad('an hour or a digit of its own');
-    for (const n of names) if (new RegExp(`\\b${n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(words)) bad(`a name of its own: ${n}`);
+    // (A voicing keyed to one place, "unwatched:3", may say it in its own words: the key folds it.)
+    const keyed = (v.requires ?? []).some((r) => r.includes(':'));
+    if (!keyed) for (const n of names) if (new RegExp(`\\b${n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(words)) bad(`a name of its own: ${n}`);
     if (/["']/.test(words.replace(/[A-Za-z]'[A-Za-z]/g, ''))) bad('a straight quotation mark');
     if (/[A-Za-z]'[A-Za-z]/.test(words)) bad('a straight apostrophe (use ’)');
     if (/—|–| - /.test(words)) bad('a dash');
@@ -100,7 +102,9 @@ function check(vs: Voicing[]): string[] {
     for (const b of BANNED) if (b.re.test(filled)) bad(`banned: ${b.name}`);
     for (const m of MACHINERY) if (m.re.test(filled)) bad(`machinery: ${m.name}`);
     if (/\bclear(?:ed|s)\b|\bout of it\b|\bcrossed (?:\w+ )?off\b/i.test(filled)) bad('a verdict word');
-    if (LEVEL_SHAPES.has(v.shape)) {
+    // (What somebody says when it's put to them is theirs, not the detective's thought: "I took it" is a crack.)
+    const spoken = (v.requires ?? []).some((r) => /-said$|^admit$|^put$/.test(r));
+    if (LEVEL_SHAPES.has(v.shape) && !spoken) {
       for (const o of OVERSTEP) if (o.re.test(filled)) bad(`over the thought's level: ${o.name}`);
       if (DID_IT.test(filled.replace(/\bwhoever (?:did it|took it)\b/g, ''))) bad('says who did it');
     }

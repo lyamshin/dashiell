@@ -1001,6 +1001,69 @@ READ.OFFICE = (a, flags, comp) => {
   return comp.props;
 };
 
+/** A put's or a reaction's own words, read back: what they must say is there, and it's theirs; what it says is the put's, folded. */
+function folded(comp: Composite, checks: [boolean, string][]): Prop[] {
+  for (const [ok, why] of checks) if (!ok) throw new Error(`voiced: ${why}`);
+  return comp.props;
+}
+const said = (x: Read | undefined): boolean => typeof x === 'string' && x.trim().length > 0;
+
+READ.FIND = (_a, _flags, comp) => comp.props;
+
+const motiveSet = READ['MOTIVE-SET'] as Reader;
+READ['MOTIVE-SET'] = (a, flags, comp, v) => {
+  if (!flags.has('papers-list')) return motiveSet(a, flags, comp, v, lexicon(v.c));
+  // "Mrs. Blau: a bundle of her letters…": each page's name, before its colon.
+  const lines = a.lines as string;
+  return v.c.people.filter((p) => !p.object && new RegExp(`(?:^|[.”] )${esc(p.short)}: `).test(lines)).map((p) => ({ k: 'MOTIVE', person: p.id }) as Prop);
+};
+
+const putPair = READ['COLLISION-PAIR'] as Reader;
+READ['COLLISION-PAIR'] = (a, flags, comp, v, lx) => {
+  if (!flags.has('put')) return putPair(a, flags, comp, v, lx);
+  const x = comp.props[0] as P<'COLLIDES'>;
+  const claim = lc((a.claim as string) ?? '');
+  const at = /^(.+) at (seven|eight|nine|ten|eleven|twelve)$/.exec(claim);
+  const place = at?.[1] === 'home' ? personOf(v.c, x.person)?.home : at ? c2place(v.c, at[1] as string) : undefined;
+  return folded(comp, [
+    [!!at && place === x.place && HOURWORDS[at[2] as string] === x.hour, `the put says "${a.claim}", not their line`],
+    [said(a.breaker), 'the put says no line against it'],
+    [a.person === undefined || a.person === x.person, 'the put is to somebody else'],
+  ]);
+};
+
+function c2place(c: BoardCase, name: string): PlaceId | undefined {
+  return c.places.find((p) => placeName(c, p.id).toLowerCase() === name.toLowerCase())?.id;
+}
+
+const reactionThought = READ.REACTION as Reader;
+READ.REACTION = (a, flags, comp, v, lx) => {
+  const c = v.c;
+  const x = comp.props[0] as Prop;
+  const who = (x as { person?: Id }).person;
+  const mine = a.person === undefined || a.person === who;
+  if (flags.has('held-said')) return folded(comp, [[mine, 'whose put?']]);
+  if (flags.has('admit')) {
+    const ad = x as P<'ADMIT'>;
+    return folded(comp, [
+      [mine, 'whose admission?'],
+      [said(a.claim) && c2place(c, a.claim as string) === ad.claimed, `not where they said: "${a.claim}"`],
+      [a.truth === undefined || c2place(c, a.truth as string) === ad.place, `not where they were: "${a.truth}"`],
+      [a.witness === undefined ? !ad.witness || [...flags].some((f) => f.includes(':')) : a.witness === ad.witness, 'not their witness'],
+    ]);
+  }
+  if (flags.has('refuse-said')) {
+    const pair = comp.props.find((y) => y.k === 'CLAIM') as P<'CLAIM'> | undefined;
+    return folded(comp, [[mine, 'whose refusal?'], [!pair || a.partner === pair.company?.[0], 'not their partner']]);
+  }
+  if (flags.has('second-said')) return [{ k: 'SECOND', person: who as Id, place: a.place as Id }];
+  if (flags.has('crack-said')) {
+    const sec = comp.props.find((y) => y.k === 'SECOND') as P<'SECOND'> | undefined;
+    return folded(comp, [[mine, 'whose crack?'], [said(a.holder) && said(a.why), 'a crack that doesn’t say with whom, or why'], [!sec || a.place === sec.place, 'not their second story']]);
+  }
+  return reactionThought(a, flags, comp, v, lx);
+};
+
 READ.PRESENT = (a, flags, comp, v) => [{ k: 'PRESENT', person: flags.has('witness') ? (comp.props[0] as P<'PRESENT'>).person : (a.person as Id), place: v.here }];
 
 /** Build 2: a shape's reader, registered by the module that writes its arguments (`readers.ts`). */

@@ -463,7 +463,7 @@ export function sayAll(items: Item[], ctx: PlanCtx): void {
     const comp: Held = { shape: s.shape, props: [...(it.props ?? [])] };
     const p = pickFor(s.shape, s.flags, s.args, ctx, s.manner);
     if (!p) {
-      if (it.speech) it.comp = { ...comp, voicing: 'flesh', said: it.text } as Held;
+      if (it.speech || s.keep) it.comp = { ...comp, voicing: 'flesh', said: it.text } as Held;
       else {
         sayPlain(it, comp, ctx);
         if (it.opener) {

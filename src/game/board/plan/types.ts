@@ -113,6 +113,8 @@ export interface SaySpec {
   flags: string[];
   args: Args;
   manner?: string;
+  /** Where no voicing fits, keep the writer's own words (the case's description of a find), not the plain page's. */
+  keep?: boolean;
 }
 
 /** The skeleton: what the page is made of, in order. */
