@@ -189,6 +189,11 @@ if (cmd === 'batches') {
       .replace(/\{(\w+)\}/gi, (_m, t: string) => FILL[t.toLowerCase()] as string)
       .replace(/^(“?)([a-z])/, (_m, q: string, a: string) => q + a.toUpperCase())
       .replace(/([.!?]”?\s+“?)([a-z])/g, (_m, a: string, b: string) => a + b.toUpperCase());
+    // {they} is he or she: "{they} were" says "he were" (unless it's "if he were").
+    if (/(?<!\bif )\{they\}(?:’re|’ve|\s+(?:were|are|have|do|don’t|weren’t|aren’t|haven’t)\b)/i.test(text)) {
+      why('agreement: {they} takes a verb for he or she');
+      continue;
+    }
     const bare = text.replace(/\{\w+\}/g, ' ');
     if (/\b(?:he|she|him|her|his|hers|himself|herself)\b/i.test(bare)) {
       why('pronoun: a bare he, she, him, her or his');
