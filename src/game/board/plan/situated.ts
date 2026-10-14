@@ -333,8 +333,8 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
       const others = new Set(items.filter((x) => x !== it).flatMap((x) => sentencesOf(stripMarks(x.text)).map(norm)));
       const fresh = (text: string) => sentencesOf(stripMarks(text)).every((t) => !others.has(norm(t)) && !(ctx.said && ctx.said.has(stripMarks(t))));
       const rng = new Rng(seedOf(s.seed, salt * 1000 + ordinal));
-      let dealt = false;
-      for (let level = 0; level <= DROPS.length && !dealt; level++) {
+      /** The cards that fit at a level, filled. */
+      const fitting = (level: number): { c: SitCard; text: string }[] => {
         const pool = index()[level]?.get(project(key, level)) ?? [];
         const ok: { c: SitCard; text: string }[] = [];
         for (const c of pool) {
@@ -347,6 +347,10 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
           if (text === null || !fresh(text)) continue;
           ok.push({ c, text });
         }
+        return ok;
+      };
+      for (let level = 0; level <= DROPS.length; level++) {
+        const ok = fitting(level);
         if (ok.length === 0) continue;
         // The page's joke, where it was one: a situated joke if one fits here; otherwise the old card stays.
         const jokes = ok.filter((x) => x.c.joke);
@@ -358,7 +362,18 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
         const sit = it.sit;
         sit.card = pick.c.id;
         it.text = compose(sit.lead, pick.text, sit.tail);
-        const same = from.filter((x) => x !== pick && !!x.c.joke === !!pick.c.joke);
+        // What the rhythm may trade it for: the cards of its own level, and of the levels below it as
+        // far as the place kind and what came before (they stay), so it has cards of another length
+        // to choose from (the rhythm picks among them at random).
+        const seen = new Set([pick.c.id]);
+        const same: { c: SitCard; text: string }[] = [];
+        for (let l = level; l <= Math.max(level, DROPS.indexOf('place')); l++) {
+          for (const x of l === level ? from : fitting(l)) {
+            if (seen.has(x.c.id) || !!x.c.joke !== !!pick.c.joke) continue;
+            seen.add(x.c.id);
+            same.push(x);
+          }
+        }
         it.alts =
           same.length > 0
             ? () =>
@@ -372,7 +387,7 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
                     },
                   }))
             : undefined;
-        dealt = true;
+        break;
       }
     }
   });
