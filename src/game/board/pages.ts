@@ -298,7 +298,18 @@ function situOf(w: Writer, job: SheetJob): SituCtx {
     swap: (a, b) => w.hand.swap(a, b),
     placeName: w.run.at === OFFICE ? 'the office' : placeOf(c, w.run.at)?.short,
     weather: w.run.weather,
+    ...(theatreAvoid(c, w.run.at) ? { avoid: theatreAvoid(c, w.run.at) as RegExp } : {}),
   };
+}
+
+/**
+ * docs/51: a theater with a stage has no pictures, and a picture house no plays: a situated card
+ * written for one kind isn't dealt in the other (`stageGuard`, for the old decks, is the first half).
+ */
+function theatreAvoid(c: BoardCase, at: PlaceId): RegExp | undefined {
+  const pl = at === OFFICE ? undefined : placeOf(c, at);
+  if (pl?.kind !== 'theatre') return undefined;
+  return pl.stage ? /\bpictures?\b|\bscreen\b|\bnewsreel\b|\bfilm\b|\bprojector\b/i : /\bplays?\b|\bacts?\b|\bactors?\b|\bcast\b|\bperformance\b|\brehears\w*|\bplaybill\b|\bscene\b|\bfootlights\b|\bwings\b|\bcue\b/i;
 }
 
 /** The narrated sentences of six words or more said on the pages before this one (docs/44's "sentences twice"). */

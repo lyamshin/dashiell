@@ -5968,12 +5968,6 @@
   "source": "dealt/26/3/murder/wanderer#8.20"
  },
  {
-  "id": "sit-1966",
-  "key": "close|turn|club|none|high|narrows|none|none|last",
-  "text": "The cellar air was warm and blue with smoke, and the low ceiling sat over all of it, keeping it in.",
-  "source": "dealt/20/4/murder/reader#9.20"
- },
- {
   "id": "sit-1984",
   "key": "close|turn|club|none|high|narrows|none|none|last",
   "text": "Somebody had turned the lights down another notch. In a club that means the evening is over and the night has started.",
@@ -6329,31 +6323,6 @@
   "key": "close|turn|club|none|high|new|none|none|last",
   "text": "The man at the piano lit a cigarette off the last one and didn’t miss a note.",
   "source": "neighbourhood/3/4/lost-pet/oracle#8.23"
- },
- {
-  "id": "sit-2330",
-  "key": "close|turn|club|none|high|new|none|none|last",
-  "text": "The ceiling down there is low enough to make a tall man careful, and everybody in the place had learned to stoop without noticing.",
-  "source": "neighbourhood/9/4/lost-pet/reader#12.24"
- },
- {
-  "id": "sit-2289",
-  "key": "close|turn|club|none|low|new|none|none|last",
-  "text": "I let the noise of the room get between me and my notebook for a minute. That’s what the noise down there is for.",
-  "source": "dealt/11/0/lost-pet/oracle#6.21"
- },
- {
-  "id": "sit-2306",
-  "key": "close|turn|club|none|low|new|none|none|last",
-  "text": "Glasses were stacking up at the end of the bar faster than anybody was washing them, which is how you tell the time in a cellar.",
-  "source": "neighbourhood/7/1/lost-item/wanderer#9.23"
- },
- {
-  "id": "sit-2322",
-  "key": "close|turn|club|none|low|new|none|none|last",
-  "text": "The cellar walls sweated a little in the heat of everybody’s breath, and so, for that matter, did I.",
-  "joke": true,
-  "source": "dealt/31/0/lost-item/oracle#6.22"
  },
  {
   "id": "sit-2298",
@@ -11069,5 +11038,3631 @@
   "key": "reaction|search|scene-murder|terse|mid|none|new|none|middle",
   "text": "Not a word while I worked, and no movement but breathing.",
   "source": "neighbourhood/26/3/murder/oracle#3.1"
+ },
+ {
+  "id": "sit-1621",
+  "key": "reaction|search|scene-murder|terse|mid|none|new|none|middle",
+  "text": "{They} stayed in the doorway while I worked and said nothing at all, which in that room was the decent thing.",
+  "source": "neighbourhood/10/3/murder/reader#3.1"
+ },
+ {
+  "id": "sit-0848",
+  "key": "staging|account|bar|careful|high|none|new|none|first",
+  "text": "I found a place at the bar beside {them} and waited for the barman to drift off before I said a word.",
+  "source": "dealt/12/4/murder/wanderer#6.1"
+ },
+ {
+  "id": "sit-0850",
+  "key": "staging|account|bar|careful|low|none|new|none|first",
+  "text": "I set my hat on the bar between us and gave {them} my name and my trade, slowly, so neither would need saying twice.",
+  "source": "dealt/35/1/lost-pet/wanderer#8.1"
+ },
+ {
+  "id": "sit-0888",
+  "key": "staging|account|bar|careful|low|none|new|none|middle",
+  "text": "The stool at {their} elbow was free. I asked if it was spoken for before I sat on it.",
+  "source": "dealt/18/1/murder/oracle#7.1"
+ },
+ {
+  "id": "sit-0822",
+  "key": "staging|account|bar|careful|mid|none|new|none|first",
+  "text": "I went down the bar to {role} and said good evening, and waited for one back before I went any further.",
+  "source": "dealt/29/3/lost-pet/reader#7.0"
+ },
+ {
+  "id": "sit-0853",
+  "key": "staging|account|bar|careful|mid|none|new|none|middle",
+  "text": "I came along the bar without hurrying and stopped a polite distance off.",
+  "source": "neighbourhood/18/3/murder/wanderer#3.1"
+ },
+ {
+  "id": "sit-0811",
+  "key": "staging|account|bar|plain|high|none|new|none|first",
+  "text": "I came up beside {them} at the bar and gave my name and my business.",
+  "source": "dealt/31/4/lost-pet/reader#12.1"
+ },
+ {
+  "id": "sit-0860",
+  "key": "staging|account|bar|plain|high|none|new|none|middle",
+  "text": "I took the place at the bar beside {them} and nodded, the way you nod to a stranger who isn’t going to stay one.",
+  "source": "dealt/34/4/murder/oracle#8.1"
+ },
+ {
+  "id": "sit-0819",
+  "key": "staging|account|bar|plain|low|none|new|none|first",
+  "text": "I found the gap at the bar beside {them} and stood in it, close enough to talk without the room hearing.",
+  "source": "dealt/23/0/lost-pet/wanderer#11.1"
+ },
+ {
+  "id": "sit-0878",
+  "key": "staging|account|bar|plain|low|none|new|none|middle",
+  "text": "I put my back to the room and an elbow on the bar beside {them}.",
+  "source": "dealt/1/1/lost-item/wanderer#4.1"
+ },
+ {
+  "id": "sit-0817",
+  "key": "staging|account|bar|plain|mid|none|new|none|first",
+  "text": "I waited for the barman to finish pouring, then went down the bar to {them} and said who I was.",
+  "source": "neighbourhood/18/3/murder/wanderer#6.1"
+ },
+ {
+  "id": "sit-0858",
+  "key": "staging|account|bar|plain|mid|none|new|none|middle",
+  "text": "There was room at the bar on {their} left, and I filled it without making a business of it.",
+  "source": "dealt/22/2/lost-item/reader#5.1"
+ },
+ {
+  "id": "sit-0838",
+  "key": "staging|account|bar|terse|high|none|new|none|first",
+  "text": "I stood at {their} shoulder until {they} looked round.",
+  "source": "dealt/31/4/lost-pet/oracle#9.1"
+ },
+ {
+  "id": "sit-0876",
+  "key": "staging|account|bar|terse|high|none|new|none|middle",
+  "text": "I didn’t bother with a stool. I stood at the bar beside {them} and kept it short.",
+  "source": "dealt/24/4/murder/oracle#9.1"
+ },
+ {
+  "id": "sit-0873",
+  "key": "staging|account|bar|terse|low|none|new|none|first",
+  "text": "I went down the bar to {them} with my hat already in my hand, which saves a sentence.",
+  "joke": true,
+  "source": "dealt/20/1/lost-pet/wanderer#4.1"
+ },
+ {
+  "id": "sit-0824",
+  "key": "staging|account|bar|terse|mid|none|new|none|first",
+  "text": "{They} watched me come the length of the bar and didn’t move over, so I stood.",
+  "source": "dealt/36/2/murder/reader#14.1"
+ },
+ {
+  "id": "sit-0846",
+  "key": "staging|account|bar|terse|mid|none|new|none|middle",
+  "text": "One word of greeting each way, and I took the stool at {their} elbow.",
+  "source": "dealt/27/3/lost-pet/wanderer#8.1"
+ },
+ {
+  "id": "sit-0869",
+  "key": "staging|account|club|careful|high|none|new|none|first",
+  "text": "I crossed the room between the tables and asked {role} if I might sit.",
+  "source": "dealt/21/5/lost-pet/oracle#7.0"
+ },
+ {
+  "id": "sit-0828",
+  "key": "staging|account|club|careful|low|none|new|none|first",
+  "text": "The light was poor, so I came close enough to be seen properly before I said anything.",
+  "source": "neighbourhood/4/0/lost-item/wanderer#11.0"
+ },
+ {
+  "id": "sit-0859",
+  "key": "staging|account|club|careful|mid|none|new|none|first",
+  "text": "I drew a chair over from another table and waited to be told I could sit in it.",
+  "source": "dealt/23/2/lost-pet/reader#7.0"
+ },
+ {
+  "id": "sit-0880",
+  "key": "staging|account|club|careful|mid|none|new|none|middle",
+  "text": "Across the little table from {them}, I kept my voice just under the noise of the room.",
+  "source": "dealt/40/2/lost-item/wanderer#3.1"
+ },
+ {
+  "id": "sit-0827",
+  "key": "staging|account|club|plain|high|none|new|none|first",
+  "text": "I found {them} at a table near the wall and sat down across from {them}.",
+  "source": "neighbourhood/24/4/murder/reader#7.1"
+ },
+ {
+  "id": "sit-0877",
+  "key": "staging|account|club|plain|high|none|new|none|middle",
+  "text": "I edged between two tables and took the empty chair beside {them}.",
+  "source": "dealt/26/4/murder/oracle#9.1"
+ },
+ {
+  "id": "sit-0836",
+  "key": "staging|account|club|plain|low|none|new|none|first",
+  "text": "The table was small and the room was loud, so I sat close and said my name twice.",
+  "source": "neighbourhood/23/0/lost-pet/wanderer#11.1"
+ },
+ {
+  "id": "sit-0857",
+  "key": "staging|account|club|plain|low|none|new|none|middle",
+  "text": "Once I’d sat down across from {them}, my hat went on my knee, where it couldn’t get in anybody’s way.",
+  "source": "dealt/29/1/lost-pet/wanderer#7.1"
+ },
+ {
+  "id": "sit-0842",
+  "key": "staging|account|club|plain|mid|none|new|none|first",
+  "text": "I worked my way through the smoke to the table where {role} sat, and took the other chair.",
+  "source": "dealt/19/2/lost-item/reader#13.0"
+ },
+ {
+  "id": "sit-0832",
+  "key": "staging|account|club|terse|high|none|new|none|first",
+  "text": "I sat down at {their} table. {They} let me.",
+  "source": "neighbourhood/34/4/murder/oracle#7.1"
+ },
+ {
+  "id": "sit-0875",
+  "key": "staging|account|club|terse|high|none|new|none|middle",
+  "text": "I took the chair across from {them} and said my name over the noise, once.",
+  "source": "dealt/23/4/lost-pet/wanderer#3.1"
+ },
+ {
+  "id": "sit-0870",
+  "key": "staging|account|club|terse|mid|none|new|none|first",
+  "text": "I put a hand on the empty chair at {their} table, and {they} nodded at it.",
+  "source": "dealt/31/3/lost-pet/reader#7.0"
+ },
+ {
+  "id": "sit-0886",
+  "key": "staging|account|club|terse|mid|none|new|none|middle",
+  "text": "I stood where {they} could see me without turning {their} head, and said my name.",
+  "source": "dealt/3/3/lost-pet/reader#9.1"
+ },
+ {
+  "id": "sit-0806",
+  "key": "staging|account|flat|careful|high|none|new|none|first",
+  "text": "{They} showed me to a chair in the front room, and I sat on the edge of it, the way you do in somebody’s home.",
+  "source": "dealt/24/4/murder/oracle#6.1"
+ },
+ {
+  "id": "sit-0805",
+  "key": "staging|account|flat|plain|high|none|new|none|first",
+  "text": "I took the kitchen chair {they} pointed me to, and {they} took the one across.",
+  "source": "dealt/20/5/murder/oracle#8.0"
+ },
+ {
+  "id": "sit-0810",
+  "key": "staging|account|flat|terse|high|none|new|none|first",
+  "text": "{They} didn’t ask me to sit, so I stood by the stove with my hat in my hand.",
+  "source": "dealt/38/4/murder/reader#11.0"
+ },
+ {
+  "id": "sit-0849",
+  "key": "staging|account|restaurant|careful|high|none|new|none|first",
+  "text": "I sat down across the table from {them} and waited for the waiter to leave us be.",
+  "source": "neighbourhood/30/5/murder/oracle#10.1"
+ },
+ {
+  "id": "sit-0852",
+  "key": "staging|account|restaurant|careful|low|none|new|none|first",
+  "text": "I asked whether I might join {them}, sat only when {they} said I might, and put my hat under the chair.",
+  "source": "dealt/4/1/lost-item/reader#6.1"
+ },
+ {
+  "id": "sit-0863",
+  "key": "staging|account|restaurant|careful|mid|none|new|none|first",
+  "text": "I found {role} at a corner table and took the chair opposite, slowly, the way you sit down at somebody else’s table.",
+  "source": "neighbourhood/23/2/lost-pet/wanderer#13.0"
+ },
+ {
+  "id": "sit-0825",
+  "key": "staging|account|restaurant|plain|high|none|new|none|first",
+  "text": "I took the chair across the table from {them} and put my hat down by the salt.",
+  "source": "dealt/8/4/murder/wanderer#6.1"
+ },
+ {
+  "id": "sit-0855",
+  "key": "staging|account|restaurant|plain|high|none|new|none|middle",
+  "text": "There was a free chair at {their} table, and I asked for it.",
+  "source": "dealt/5/5/lost-pet/oracle#8.1"
+ },
+ {
+  "id": "sit-0814",
+  "key": "staging|account|restaurant|plain|low|none|new|none|first",
+  "text": "I went between the tables to {them}, gave my name, and sat when {they} nodded at the chair.",
+  "source": "dealt/34/0/lost-item/reader#9.1"
+ },
+ {
+  "id": "sit-0856",
+  "key": "staging|account|restaurant|plain|low|none|new|none|middle",
+  "text": "Opposite {them} was a free chair, and I let the waiter go by before I sat in it.",
+  "source": "dealt/33/0/murder/oracle#7.1"
+ },
+ {
+  "id": "sit-0829",
+  "key": "staging|account|restaurant|plain|mid|none|new|none|first",
+  "text": "I pulled out the chair across the table and sat in it as if I’d been asked.",
+  "joke": true,
+  "source": "dealt/30/3/murder/oracle#13.1"
+ },
+ {
+  "id": "sit-0865",
+  "key": "staging|account|restaurant|plain|mid|none|new|none|middle",
+  "text": "I asked the waiter for coffee I didn’t want and carried it over to {their} table.",
+  "source": "neighbourhood/17/2/lost-pet/wanderer#8.1"
+ },
+ {
+  "id": "sit-0847",
+  "key": "staging|account|restaurant|terse|high|none|new|none|first",
+  "text": "I sat down across from {them} without asking. {They} didn’t object.",
+  "source": "dealt/30/4/murder/oracle#7.1"
+ },
+ {
+  "id": "sit-0845",
+  "key": "staging|account|restaurant|terse|low|none|new|none|first",
+  "text": "I took the other chair at {their} table and kept the opening short.",
+  "source": "neighbourhood/8/0/lost-pet/wanderer#8.1"
+ },
+ {
+  "id": "sit-0871",
+  "key": "staging|account|restaurant|terse|low|none|new|none|middle",
+  "text": "I stood by {their} table until {they} pushed the other chair out with a foot.",
+  "source": "dealt/11/1/lost-pet/reader#5.1"
+ },
+ {
+  "id": "sit-0881",
+  "key": "staging|account|restaurant|terse|mid|none|new|none|first",
+  "text": "{They} looked up from the table as I sat down, and that was the greeting.",
+  "source": "dealt/2/2/lost-pet/wanderer#4.1"
+ },
+ {
+  "id": "sit-0882",
+  "key": "staging|account|restaurant|terse|mid|none|new|none|middle",
+  "text": "I sat across from {them} with both hands flat on the table, where we could both see them.",
+  "source": "neighbourhood/8/3/murder/wanderer#8.1"
+ },
+ {
+  "id": "sit-0809",
+  "key": "staging|account|rooming|careful|high|none|new|none|first",
+  "text": "We talked on the landing under the one bulb, standing a careful distance apart.",
+  "source": "dealt/7/4/lost-pet/oracle#5.1"
+ },
+ {
+  "id": "sit-0821",
+  "key": "staging|account|rooming|careful|high|none|new|none|middle",
+  "text": "We talked in the hall, with {them} on the bottom stair and me against the banister.",
+  "source": "dealt/35/5/lost-pet/reader#12.1"
+ },
+ {
+  "id": "sit-0866",
+  "key": "staging|account|rooming|careful|low|none|new|none|first",
+  "text": "We talked in the front hall, and I kept my voice down for the sake of the doors along it.",
+  "source": "dealt/8/0/lost-pet/wanderer#8.1"
+ },
+ {
+  "id": "sit-0885",
+  "key": "staging|account|rooming|careful|low|none|new|none|middle",
+  "text": "{They} came down to talk, slowly, and I waited in the hall until {they} had got all the way.",
+  "source": "dealt/8/0/lost-pet/reader#11.1"
+ },
+ {
+  "id": "sit-0831",
+  "key": "staging|account|rooming|careful|mid|none|new|none|first",
+  "text": "I found {role} in the hall and asked for a few minutes, and said I didn’t mind standing, since the hall gave me no choice.",
+  "source": "dealt/21/3/lost-pet/reader#8.0"
+ },
+ {
+  "id": "sit-0839",
+  "key": "staging|account|rooming|careful|mid|none|new|none|middle",
+  "text": "{They} chose the chair nearest the door, so I took the one farthest from it, which seemed to suit {them}.",
+  "source": "dealt/32/3/murder/wanderer#12.1"
+ },
+ {
+  "id": "sit-0803",
+  "key": "staging|account|rooming|plain|high|none|new|none|first",
+  "text": "We talked on the stairs, with {them} a step above me.",
+  "source": "dealt/25/5/lost-pet/wanderer#9.1"
+ },
+ {
+  "id": "sit-0815",
+  "key": "staging|account|rooming|plain|high|none|new|none|middle",
+  "text": "{They} showed me into the front parlor, where nobody ever sits, and we sat.",
+  "source": "dealt/33/5/lost-pet/reader#9.1"
+ },
+ {
+  "id": "sit-0844",
+  "key": "staging|account|rooming|plain|low|none|new|none|first",
+  "text": "{They} came out onto the landing to talk, and I climbed the last few stairs to meet {them}.",
+  "source": "dealt/3/1/murder/wanderer#11.1"
+ },
+ {
+  "id": "sit-0868",
+  "key": "staging|account|rooming|plain|low|none|new|none|middle",
+  "text": "We sat side by side on the stairs, like two lodgers locked out, and I gave my name.",
+  "source": "dealt/27/0/murder/reader#10.1"
+ },
+ {
+  "id": "sit-0807",
+  "key": "staging|account|rooming|plain|mid|none|new|none|first",
+  "text": "The hall was narrow, so I stood in it sideways and introduced myself over the banister.",
+  "source": "dealt/18/3/murder/oracle#7.1"
+ },
+ {
+  "id": "sit-0830",
+  "key": "staging|account|rooming|plain|mid|none|new|none|middle",
+  "text": "I took the hard chair by the door and left {them} the bed, which is the custom in a rented room.",
+  "source": "dealt/3/2/murder/reader#11.1"
+ },
+ {
+  "id": "sit-0823",
+  "key": "staging|account|rooming|terse|high|none|new|none|first",
+  "text": "I gave my name from the bottom of the stairs, and {they} came down far enough to hear it.",
+  "source": "dealt/9/5/lost-pet/reader#10.0"
+ },
+ {
+  "id": "sit-0854",
+  "key": "staging|account|rooming|terse|high|none|new|none|middle",
+  "text": "We stood in the hall. {They} didn’t offer a chair and I didn’t ask for one.",
+  "source": "neighbourhood/31/5/lost-pet/reader#7.1"
+ },
+ {
+  "id": "sit-0874",
+  "key": "staging|account|rooming|terse|low|none|new|none|first",
+  "text": "I found {role} on the landing and stood one stair down, where we were of a height.",
+  "source": "dealt/3/1/murder/wanderer#10.0"
+ },
+ {
+  "id": "sit-0812",
+  "key": "staging|account|rooming|terse|mid|none|new|none|first",
+  "text": "I said who I was, short, and {they} nodded me into the hall.",
+  "source": "dealt/15/3/lost-pet/wanderer#4.1"
+ },
+ {
+  "id": "sit-0883",
+  "key": "staging|account|rooming|terse|mid|none|new|none|middle",
+  "text": "I sat down a stair above {them} and kept the opening to my name.",
+  "source": "dealt/5/2/lost-pet/wanderer#11.1"
+ },
+ {
+  "id": "sit-0864",
+  "key": "staging|account|theatre|careful|high|none|new|none|first",
+  "text": "I sat down in the row in front of {them} and turned round, slowly, with an arm along the seat back.",
+  "source": "dealt/28/4/murder/wanderer#9.1"
+ },
+ {
+  "id": "sit-0879",
+  "key": "staging|account|theatre|careful|high|none|new|none|middle",
+  "text": "I came along {their} row and stopped two seats short, which is where manners put you in a theater.",
+  "source": "dealt/6/4/murder/wanderer#3.1"
+ },
+ {
+  "id": "sit-0843",
+  "key": "staging|account|theatre|careful|low|none|new|none|first",
+  "text": "I came down the aisle to {role}’s row and asked, before I sat, whether the seat beside was spoken for.",
+  "source": "dealt/21/1/murder/wanderer#11.0"
+ },
+ {
+  "id": "sit-0840",
+  "key": "staging|account|theatre|careful|mid|none|new|none|first",
+  "text": "I lowered myself into the seat beside {them} and waited for it to finish creaking before I said anything.",
+  "source": "dealt/25/2/lost-item/reader#7.1"
+ },
+ {
+  "id": "sit-0884",
+  "key": "staging|account|theatre|careful|mid|none|new|none|middle",
+  "text": "I came along the row sideways, apologizing to the empty seats, and sat down beside {them}.",
+  "joke": true,
+  "source": "dealt/14/2/lost-pet/wanderer#7.1"
+ },
+ {
+  "id": "sit-0837",
+  "key": "staging|account|theatre|plain|high|none|new|none|first",
+  "text": "I went along the row and sat down beside {them}.",
+  "source": "dealt/33/5/lost-pet/oracle#13.1"
+ },
+ {
+  "id": "sit-0861",
+  "key": "staging|account|theatre|plain|high|none|new|none|middle",
+  "text": "I found {them} near the front and took the seat across the aisle.",
+  "source": "dealt/1/5/lost-pet/oracle#5.1"
+ },
+ {
+  "id": "sit-0816",
+  "key": "staging|account|theatre|plain|low|none|new|none|first",
+  "text": "I came down the side aisle, said my name, and sat where we could both see the empty stage.",
+  "source": "dealt/40/1/lost-item/oracle#6.1"
+ },
+ {
+  "id": "sit-0862",
+  "key": "staging|account|theatre|plain|low|none|new|none|middle",
+  "text": "I put my hat on the seat in front and sat down beside {them}.",
+  "source": "dealt/35/0/lost-pet/reader#9.1"
+ },
+ {
+  "id": "sit-0818",
+  "key": "staging|account|theatre|plain|mid|none|new|none|first",
+  "text": "I sat down in {their} row with my knees against the seat in front, which is how theaters like you.",
+  "joke": true,
+  "source": "dealt/25/2/lost-item/reader#6.1"
+ },
+ {
+  "id": "sit-0833",
+  "key": "staging|account|theatre|plain|mid|none|new|none|middle",
+  "text": "I took the seat beside {them} and said my name to the stage, which was easier on both of us.",
+  "source": "dealt/9/3/lost-pet/wanderer#10.1"
+ },
+ {
+  "id": "sit-0841",
+  "key": "staging|account|theatre|terse|high|none|new|none|first",
+  "text": "One seat along from {them} was empty, so I sat in it and gave my name.",
+  "source": "dealt/9/4/lost-pet/reader#11.1"
+ },
+ {
+  "id": "sit-0835",
+  "key": "staging|account|theatre|terse|low|none|new|none|first",
+  "text": "I stood in the aisle at the end of {their} row until {they} moved over a seat.",
+  "source": "dealt/14/0/lost-pet/wanderer#7.1"
+ },
+ {
+  "id": "sit-0872",
+  "key": "staging|account|theatre|terse|low|none|new|none|middle",
+  "text": "For a while the two of us just sat there and looked at the curtain.",
+  "source": "dealt/21/0/murder/oracle#9.1"
+ },
+ {
+  "id": "sit-0867",
+  "key": "staging|account|theatre|terse|mid|none|new|none|first",
+  "text": "I went down the aisle to {them}, and {they} lifted a coat off the seat beside without being asked.",
+  "source": "dealt/5/3/lost-pet/wanderer#5.1"
+ },
+ {
+  "id": "sit-0851",
+  "key": "staging|account|theatre|terse|mid|none|new|none|middle",
+  "text": "I sat in the row behind and spoke to the back of {their} head, which seemed to suit {them}.",
+  "source": "dealt/37/2/lost-item/wanderer#4.1"
+ },
+ {
+  "id": "sit-0820",
+  "key": "staging|account|unwatched|careful|high|none|new|none|first",
+  "text": "There was a spare chair, and I asked {role} before I sat in it.",
+  "source": "dealt/19/5/lost-pet/oracle#10.0"
+ },
+ {
+  "id": "sit-0813",
+  "key": "staging|account|unwatched|careful|mid|none|new|none|first",
+  "text": "I asked {role} if {they} could spare a few minutes, and waited for a yes before I sat down.",
+  "source": "dealt/17/3/lost-pet/oracle#8.0"
+ },
+ {
+  "id": "sit-0804",
+  "key": "staging|account|unwatched|plain|high|none|new|none|first",
+  "text": "I found something to sit on near {role} and sat on it.",
+  "source": "neighbourhood/13/4/lost-pet/reader#9.0"
+ },
+ {
+  "id": "sit-0887",
+  "key": "staging|account|unwatched|plain|high|none|new|none|middle",
+  "text": "I stood across from {them} with my hands in my pockets and said my name.",
+  "source": "dealt/10/5/murder/wanderer#6.1"
+ },
+ {
+  "id": "sit-0808",
+  "key": "staging|account|unwatched|plain|mid|none|new|none|first",
+  "text": "I went straight over to {role} and sat down where {they} could see my hands.",
+  "source": "dealt/12/2/murder/reader#8.0"
+ },
+ {
+  "id": "sit-0834",
+  "key": "staging|account|unwatched|terse|high|none|new|none|first",
+  "text": "I went over to {role} and said my name, and got a nod for it.",
+  "source": "dealt/35/4/lost-pet/oracle#7.0"
+ },
+ {
+  "id": "sit-0826",
+  "key": "staging|account|unwatched|terse|mid|none|new|none|first",
+  "text": "I came across to {role} and kept it short: my name, my trade, and a chair if there was one.",
+  "source": "dealt/27/3/lost-pet/oracle#10.0"
+ },
+ {
+  "id": "sit-2787",
+  "key": "staging|admission-check|unwatched|careful|high|none|new|none|first",
+  "text": "I asked {them} for a few minutes and stood where I wouldn’t be in anybody’s way.",
+  "source": "dealt/19/4/lost-pet/oracle#14.1"
+ },
+ {
+  "id": "sit-2796",
+  "key": "staging|admission-check|unwatched|careful|high|none|new|none|first",
+  "text": "I came over slowly and said good evening before I said anything else.",
+  "source": "neighbourhood/16/4/murder/oracle#13.1"
+ },
+ {
+  "id": "sit-2785",
+  "key": "staging|admission-check|unwatched|careful|mid|none|new|none|first",
+  "text": "I waited until {they} had a hand free, then stepped up and said my name.",
+  "source": "dealt/40/2/lost-item/oracle#9.1"
+ },
+ {
+  "id": "sit-2794",
+  "key": "staging|admission-check|unwatched|careful|mid|none|new|none|first",
+  "text": "I stopped a polite distance off and gave my name, and {they} took a moment over it.",
+  "source": "neighbourhood/35/2/lost-pet/oracle#10.1"
+ },
+ {
+  "id": "sit-2789",
+  "key": "staging|admission-check|unwatched|careful|mid|none|new|none|middle",
+  "text": "I said good evening and waited to be asked closer, which took a little while.",
+  "source": "neighbourhood/16/2/lost-item/oracle#10.1"
+ },
+ {
+  "id": "sit-2798",
+  "key": "staging|admission-check|unwatched|careful|mid|none|new|none|middle",
+  "text": "I didn’t sit until {they} did, and {they} took {their} time choosing where.",
+  "source": "neighbourhood/27/2/murder/oracle#10.1"
+ },
+ {
+  "id": "sit-2786",
+  "key": "staging|admission-check|unwatched|plain|high|none|new|none|first",
+  "text": "I went over to {them} and said my name and my business, in that order.",
+  "source": "dealt/15/4/lost-pet/oracle#12.1"
+ },
+ {
+  "id": "sit-2795",
+  "key": "staging|admission-check|unwatched|plain|high|none|new|none|first",
+  "text": "I found {them} easily enough and stood by while {they} finished with whatever {they} had in hand.",
+  "source": "dealt/30/4/murder/oracle#13.1"
+ },
+ {
+  "id": "sit-2790",
+  "key": "staging|admission-check|unwatched|plain|high|none|new|none|middle",
+  "text": "I found {them} and stood where we could talk without raising our voices.",
+  "source": "neighbourhood/29/4/lost-pet/oracle#14.1"
+ },
+ {
+  "id": "sit-2783",
+  "key": "staging|admission-check|unwatched|plain|mid|none|new|none|first",
+  "text": "I put my hat on the nearest flat surface and said who I was.",
+  "source": "dealt/27/3/lost-pet/reader#13.1"
+ },
+ {
+  "id": "sit-2792",
+  "key": "staging|admission-check|unwatched|plain|mid|none|new|none|first",
+  "text": "{They} stayed where {they} was and let me come the rest of the way.",
+  "source": "neighbourhood/20/2/lost-pet/oracle#10.1"
+ },
+ {
+  "id": "sit-2799",
+  "key": "staging|admission-check|unwatched|plain|mid|none|new|none|first",
+  "text": "I said good evening and got one back, which is a better start than most.",
+  "source": "dealt/30/2/murder/oracle#13.1"
+ },
+ {
+  "id": "sit-2791",
+  "key": "staging|admission-check|unwatched|plain|mid|none|new|none|middle",
+  "text": "I sat down across from {them}, near enough to talk and far enough to be polite.",
+  "source": "neighbourhood/28/2/lost-item/oracle#13.1"
+ },
+ {
+  "id": "sit-2788",
+  "key": "staging|admission-check|unwatched|terse|high|none|new|none|first",
+  "text": "I went over and said my name. {They} said nothing back.",
+  "source": "dealt/17/4/lost-pet/oracle#12.1"
+ },
+ {
+  "id": "sit-2797",
+  "key": "staging|admission-check|unwatched|terse|high|none|new|none|first",
+  "text": "I stood across from {them} and kept the opening to a nod.",
+  "source": "dealt/1/4/lost-pet/oracle#14.1"
+ },
+ {
+  "id": "sit-2784",
+  "key": "staging|admission-check|unwatched|terse|mid|none|new|none|first",
+  "text": "I went straight to {them}, gave my name, and didn’t decorate it.",
+  "source": "neighbourhood/32/2/lost-pet/reader#13.1"
+ },
+ {
+  "id": "sit-2793",
+  "key": "staging|admission-check|unwatched|terse|mid|none|new|none|first",
+  "text": "I didn’t sit, and {they} didn’t ask me to, which suited us both.",
+  "source": "dealt/36/2/murder/oracle#10.1"
+ },
+ {
+  "id": "sit-2800",
+  "key": "staging|admission-check|unwatched|terse|mid|none|new|none|first",
+  "text": "A nod from me, a nod from {them}, and we were acquainted.",
+  "joke": true,
+  "source": "dealt/20/3/murder/reader#14.1"
+ },
+ {
+  "id": "sit-1381",
+  "key": "staging|list|bar|careful|high|none|new|none|first",
+  "text": "I put my hat on the bar where {role} would see it, and {they} came along in {their} own time.",
+  "source": "dealt/13/4/lost-pet/reader#7.0"
+ },
+ {
+  "id": "sit-1396",
+  "key": "staging|list|bar|careful|low|none|new|none|first",
+  "text": "I took a stool at the quiet end and let {role} finish with the customer in front of {them}.",
+  "source": "dealt/39/1/murder/reader#5.1"
+ },
+ {
+  "id": "sit-1376",
+  "key": "staging|list|bar|careful|mid|none|new|none|first",
+  "text": "I waited until {role} had set down the last glass of the round before I asked for a word.",
+  "source": "dealt/1/3/lost-pet/oracle#8.0"
+ },
+ {
+  "id": "sit-1397",
+  "key": "staging|list|bar|careful|mid|none|new|none|middle",
+  "text": "I stood at the end of the bar nearest the till, where {role} would have to pass sooner or later.",
+  "source": "dealt/3/2/murder/reader#6.1"
+ },
+ {
+  "id": "sit-1351",
+  "key": "staging|list|bar|plain|high|none|new|none|first",
+  "text": "I went to the bar and caught {role}’s eye on the second try.",
+  "source": "dealt/6/5/murder/oracle#10.0"
+ },
+ {
+  "id": "sit-1359",
+  "key": "staging|list|bar|plain|low|none|new|none|first",
+  "text": "I raised a finger at {role}, and {they} came over drying {their} hands.",
+  "source": "dealt/10/1/lost-item/reader#6.0"
+ },
+ {
+  "id": "sit-1398",
+  "key": "staging|list|bar|plain|low|none|new|none|middle",
+  "text": "I waited for a lull at the bar, which came sooner than I expected, and made the most of it.",
+  "source": "neighbourhood/21/1/murder/reader#8.1"
+ },
+ {
+  "id": "sit-1347",
+  "key": "staging|list|bar|plain|mid|none|new|none|first",
+  "text": "I stood at the rail with my hat pushed back and let {role} come to me.",
+  "source": "dealt/33/2/murder/oracle#6.1"
+ },
+ {
+  "id": "sit-1362",
+  "key": "staging|list|bar|plain|mid|none|new|none|middle",
+  "text": "I took the end stool, where {role} had to pass every few minutes, and caught {them} on the way by.",
+  "source": "neighbourhood/29/3/lost-pet/oracle#8.1"
+ },
+ {
+  "id": "sit-1382",
+  "key": "staging|list|bar|terse|high|none|new|none|first",
+  "text": "I found a space at the bar and waited for {role}.",
+  "source": "dealt/14/5/murder/reader#6.1"
+ },
+ {
+  "id": "sit-1378",
+  "key": "staging|list|bar|terse|low|none|new|none|first",
+  "text": "I got {role}’s attention with a nod, and {they} came down the bar without hurrying.",
+  "source": "dealt/34/0/lost-item/wanderer#5.1"
+ },
+ {
+  "id": "sit-1408",
+  "key": "staging|list|bar|terse|low|none|new|none|middle",
+  "text": "I rapped the bar once with a knuckle, and {role} came over.",
+  "source": "dealt/35/1/lost-pet/reader#5.1"
+ },
+ {
+  "id": "sit-1405",
+  "key": "staging|list|bar|terse|mid|none|new|none|first",
+  "text": "There was room at the bar and {role} was behind it, which was all the invitation I needed.",
+  "source": "dealt/15/3/lost-pet/reader#8.0"
+ },
+ {
+  "id": "sit-1370",
+  "key": "staging|list|club|careful|low|none|new|none|first",
+  "text": "I stood beside {role} by the door and introduced myself quietly, so it wouldn’t carry into the room.",
+  "source": "dealt/8/0/lost-pet/oracle#6.0"
+ },
+ {
+  "id": "sit-1410",
+  "key": "staging|list|club|careful|mid|none|new|none|first",
+  "text": "I stood with {role} at the door and waited until {they} had a hand free of it.",
+  "source": "dealt/40/2/lost-item/oracle#11.0"
+ },
+ {
+  "id": "sit-1388",
+  "key": "staging|list|club|plain|high|none|new|none|first",
+  "text": "I said good evening to {role} at the door, the way you do when you mean to stay a while.",
+  "source": "dealt/23/4/lost-pet/oracle#11.1"
+ },
+ {
+  "id": "sit-1393",
+  "key": "staging|list|club|plain|high|none|new|none|middle",
+  "text": "I stood beside {role} at the door, out of the way of anybody coming in.",
+  "source": "dealt/2/5/murder/reader#6.1"
+ },
+ {
+  "id": "sit-1367",
+  "key": "staging|list|club|plain|low|none|new|none|first",
+  "text": "I found {role} by the door on a stool that had been sat on for years, and said my name.",
+  "source": "dealt/40/0/lost-item/reader#6.0"
+ },
+ {
+  "id": "sit-1400",
+  "key": "staging|list|club|plain|low|none|new|none|middle",
+  "text": "The door was quiet for the moment, and I used the moment, standing where {role} could keep an eye on both of us.",
+  "source": "dealt/25/0/lost-item/reader#5.1"
+ },
+ {
+  "id": "sit-1383",
+  "key": "staging|list|club|plain|mid|none|new|none|first",
+  "text": "Between knocks, I asked {role} for a few minutes and got them, standing up.",
+  "source": "dealt/9/2/murder/oracle#6.1"
+ },
+ {
+  "id": "sit-1379",
+  "key": "staging|list|club|terse|high|none|new|none|first",
+  "text": "I stood by the door and waited for {role} to look at me.",
+  "source": "neighbourhood/2/4/murder/oracle#7.1"
+ },
+ {
+  "id": "sit-1384",
+  "key": "staging|list|club|terse|high|none|new|none|middle",
+  "text": "I said my name to {role}, low, so it stayed by the door.",
+  "source": "dealt/18/5/murder/oracle#6.1"
+ },
+ {
+  "id": "sit-1371",
+  "key": "staging|list|club|terse|low|none|new|none|first",
+  "text": "I got a nod from {role} at the door and stood where I wouldn’t block it.",
+  "source": "dealt/16/0/lost-item/reader#5.1"
+ },
+ {
+  "id": "sit-1372",
+  "key": "staging|list|club|terse|mid|none|new|none|first",
+  "text": "{They} had the door and I had the wall beside it, and we talked across the gap.",
+  "source": "neighbourhood/28/2/lost-item/reader#10.0"
+ },
+ {
+  "id": "sit-1375",
+  "key": "staging|list|restaurant|careful|high|none|new|none|first",
+  "text": "I waited at the register until {role} had counted out somebody’s change, then said my name.",
+  "source": "dealt/3/5/lost-pet/oracle#12.0"
+ },
+ {
+  "id": "sit-1403",
+  "key": "staging|list|restaurant|careful|high|none|new|none|middle",
+  "text": "I stood by the coat rack, out of the waiters’ way, until {role} came to see what I wanted.",
+  "source": "neighbourhood/20/4/murder/wanderer#7.1"
+ },
+ {
+  "id": "sit-1354",
+  "key": "staging|list|restaurant|careful|low|none|new|none|first",
+  "text": "I waited until {role} could leave {their} post, and we talked at the nearest empty table.",
+  "source": "dealt/20/0/lost-pet/oracle#8.0"
+ },
+ {
+  "id": "sit-1374",
+  "key": "staging|list|restaurant|careful|mid|none|new|none|first",
+  "text": "I stood at the end of the counter and let {role} finish what {they} was doing before I said a word.",
+  "source": "neighbourhood/3/3/lost-pet/oracle#8.0"
+ },
+ {
+  "id": "sit-1377",
+  "key": "staging|list|restaurant|plain|high|none|new|none|first",
+  "text": "I went up to {role} at the front and said who I was.",
+  "source": "dealt/26/5/murder/wanderer#10.1"
+ },
+ {
+  "id": "sit-1394",
+  "key": "staging|list|restaurant|plain|high|none|new|none|middle",
+  "text": "I said a quiet word to {role}, and {they} stopped what {they} was doing to hear the rest.",
+  "source": "dealt/30/4/murder/reader#6.1"
+ },
+ {
+  "id": "sit-1352",
+  "key": "staging|list|restaurant|plain|low|none|new|none|first",
+  "text": "I went up to {role} with my hat in my hand and said I wanted a word, not a table.",
+  "source": "dealt/3/1/murder/reader#8.0"
+ },
+ {
+  "id": "sit-1392",
+  "key": "staging|list|restaurant|plain|low|none|new|none|middle",
+  "text": "At the front of the house I asked {role} for a little of {their} time.",
+  "source": "dealt/4/1/lost-item/oracle#5.1"
+ },
+ {
+  "id": "sit-1365",
+  "key": "staging|list|restaurant|plain|mid|none|new|none|first",
+  "text": "I caught {role}’s eye across the room and waited by the kitchen door until {they} came.",
+  "source": "dealt/28/2/lost-item/reader#6.0"
+ },
+ {
+  "id": "sit-1391",
+  "key": "staging|list|restaurant|terse|high|none|new|none|first",
+  "text": "I went up to {role} and said I had a question or two about the evening.",
+  "source": "dealt/32/5/murder/oracle#10.0"
+ },
+ {
+  "id": "sit-1356",
+  "key": "staging|list|restaurant|terse|low|none|new|none|first",
+  "text": "I stood where {role} would have to notice me, and {they} did.",
+  "source": "dealt/40/1/lost-item/oracle#8.0"
+ },
+ {
+  "id": "sit-1409",
+  "key": "staging|list|restaurant|terse|low|none|new|none|middle",
+  "text": "I went over to {role} and stood there until it was my turn.",
+  "source": "dealt/32/0/lost-pet/wanderer#11.1"
+ },
+ {
+  "id": "sit-1387",
+  "key": "staging|list|restaurant|terse|mid|none|new|none|first",
+  "text": "I gave {role} my name and no reason to hurry.",
+  "source": "dealt/39/2/murder/reader#10.0"
+ },
+ {
+  "id": "sit-1389",
+  "key": "staging|list|rooming|careful|high|none|new|none|first",
+  "text": "{They} came out to see who was on {their} stairs, and I said my name before {they} had to ask.",
+  "source": "dealt/30/4/murder/reader#11.0"
+ },
+ {
+  "id": "sit-1369",
+  "key": "staging|list|rooming|careful|low|none|new|none|first",
+  "text": "I found {role} in {their} parlor off the hall and stood in the doorway until I was asked in.",
+  "source": "dealt/37/0/lost-item/oracle#8.0"
+ },
+ {
+  "id": "sit-1411",
+  "key": "staging|list|rooming|careful|low|none|new|none|middle",
+  "text": "In the front hall, I asked {role} if {they} would sit down with me a minute.",
+  "source": "dealt/37/0/lost-item/wanderer#3.1"
+ },
+ {
+  "id": "sit-1349",
+  "key": "staging|list|rooming|careful|mid|none|new|none|first",
+  "text": "I went down the hall to {role}’s door and knocked the way a lodger knocks when the rent is paid.",
+  "joke": true,
+  "source": "dealt/9/2/murder/oracle#12.0"
+ },
+ {
+  "id": "sit-1407",
+  "key": "staging|list|rooming|careful|mid|none|new|none|middle",
+  "text": "{They} took me into the front parlor and sat with {their} back to the window, where {they} could still hear the stairs.",
+  "source": "dealt/18/2/murder/reader#6.1"
+ },
+ {
+  "id": "sit-1357",
+  "key": "staging|list|rooming|plain|high|none|new|none|first",
+  "text": "I found {role} in the hall and said my name.",
+  "source": "dealt/4/4/murder/wanderer#8.1"
+ },
+ {
+  "id": "sit-1404",
+  "key": "staging|list|rooming|plain|high|none|new|none|middle",
+  "text": "{They} talked to me in the hall, with one eye on the front door.",
+  "source": "dealt/4/5/murder/oracle#6.1"
+ },
+ {
+  "id": "sit-1345",
+  "key": "staging|list|rooming|plain|low|none|new|none|first",
+  "text": "{They} kept a chair in the hall by the front door, and I took the bottom stair across from it.",
+  "source": "dealt/28/0/lost-item/wanderer#9.0"
+ },
+ {
+  "id": "sit-1364",
+  "key": "staging|list|rooming|plain|low|none|new|none|middle",
+  "text": "I found {role} in the kitchen at the back of the house and was given a chair by the stove.",
+  "source": "dealt/4/0/lost-item/reader#5.1"
+ },
+ {
+  "id": "sit-1342",
+  "key": "staging|list|rooming|plain|mid|none|new|none|first",
+  "text": "{They} was locking the front door for the night and stopped with the key still in it to hear me.",
+  "source": "dealt/29/2/lost-pet/oracle#5.1"
+ },
+ {
+  "id": "sit-1380",
+  "key": "staging|list|rooming|plain|mid|none|new|none|middle",
+  "text": "{They} asked me into the front room and pointed me at a chair with a cushion that had seen better tenants.",
+  "joke": true,
+  "source": "dealt/32/3/murder/wanderer#13.1"
+ },
+ {
+  "id": "sit-1386",
+  "key": "staging|list|rooming|terse|high|none|new|none|first",
+  "text": "A word in the hall with {role} was all I was going to get, so I made it a short one.",
+  "source": "dealt/10/5/murder/oracle#9.0"
+ },
+ {
+  "id": "sit-1350",
+  "key": "staging|list|rooming|terse|low|none|new|none|first",
+  "text": "{They} heard me on the stairs and was in the hall before I reached the bottom.",
+  "source": "dealt/18/1/murder/wanderer#8.1"
+ },
+ {
+  "id": "sit-1399",
+  "key": "staging|list|rooming|terse|low|none|new|none|middle",
+  "text": "I said my name in the hall, {role} said {their} own, and that was the courtesies done.",
+  "source": "dealt/15/0/murder/reader#5.1"
+ },
+ {
+  "id": "sit-1361",
+  "key": "staging|list|rooming|terse|mid|none|new|none|first",
+  "text": "I caught {role} on the stairs, going up, and {they} stopped on the landing to hear me.",
+  "source": "dealt/38/2/lost-pet/wanderer#13.0"
+ },
+ {
+  "id": "sit-1385",
+  "key": "staging|list|theatre|careful|high|none|new|none|first",
+  "text": "I waited in the lobby until {role} was free, and then a little longer, since {they} seemed to like things done in order.",
+  "source": "neighbourhood/36/4/murder/wanderer#8.1"
+ },
+ {
+  "id": "sit-1360",
+  "key": "staging|list|theatre|careful|low|none|new|none|first",
+  "text": "I came up to {role} in the lobby and said my name quietly, as if the show were still on.",
+  "source": "dealt/29/1/lost-pet/reader#8.0"
+ },
+ {
+  "id": "sit-1355",
+  "key": "staging|list|theatre|careful|mid|none|new|none|first",
+  "text": "I came over to {role} with my hat off and stood until {they} was ready for me.",
+  "source": "dealt/27/2/murder/oracle#12.0"
+ },
+ {
+  "id": "sit-1373",
+  "key": "staging|list|theatre|plain|high|none|new|none|first",
+  "text": "I tracked down {role} and stood beside {them}, out of the way of the doors.",
+  "source": "dealt/1/5/lost-pet/oracle#6.1"
+ },
+ {
+  "id": "sit-1401",
+  "key": "staging|list|theatre|plain|high|none|new|none|middle",
+  "text": "{They} was free for a moment, so I went over and said who I was.",
+  "source": "dealt/27/4/lost-pet/reader#7.1"
+ },
+ {
+  "id": "sit-1348",
+  "key": "staging|list|theatre|plain|low|none|new|none|first",
+  "text": "I kept my voice at theater pitch when I found {role}, out of habit.",
+  "source": "dealt/4/1/lost-item/wanderer#6.1"
+ },
+ {
+  "id": "sit-1358",
+  "key": "staging|list|theatre|plain|mid|none|new|none|first",
+  "text": "In the lobby {role} was counting something, so I waited until the count came out right.",
+  "source": "dealt/32/2/lost-pet/reader#8.0"
+ },
+ {
+  "id": "sit-1406",
+  "key": "staging|list|theatre|plain|mid|none|new|none|middle",
+  "text": "I caught {role} between jobs and asked for some of {their} time, and a little of {their} memory.",
+  "source": "dealt/21/2/murder/wanderer#5.1"
+ },
+ {
+  "id": "sit-1395",
+  "key": "staging|list|theatre|terse|high|none|new|none|first",
+  "text": "I said who I was to {role} in the lobby, once, and watched {them} file it away.",
+  "source": "dealt/6/4/murder/oracle#7.1"
+ },
+ {
+  "id": "sit-1368",
+  "key": "staging|list|theatre|terse|low|none|new|none|first",
+  "text": "I stood at {role}’s elbow and said I needed a word.",
+  "source": "dealt/8/1/lost-pet/reader#8.0"
+ },
+ {
+  "id": "sit-1402",
+  "key": "staging|list|theatre|terse|low|none|new|none|middle",
+  "text": "{They} put down what {they} had in hand when I came over.",
+  "source": "dealt/14/0/lost-pet/wanderer#6.1"
+ },
+ {
+  "id": "sit-1390",
+  "key": "staging|list|theatre|terse|mid|none|new|none|first",
+  "text": "I caught {role} at the top of the aisle and gave my name short.",
+  "source": "dealt/19/3/lost-pet/reader#8.0"
+ },
+ {
+  "id": "sit-1366",
+  "key": "staging|list|unwatched|careful|high|none|new|none|first",
+  "text": "I waited at {role}’s elbow to be noticed, which with some people is a slow business.",
+  "source": "dealt/20/4/murder/reader#14.0"
+ },
+ {
+  "id": "sit-1353",
+  "key": "staging|list|unwatched|careful|mid|none|new|none|first",
+  "text": "I came up to {role} and said good evening, and gave {them} time to place me.",
+  "source": "dealt/32/3/murder/oracle#12.0"
+ },
+ {
+  "id": "sit-1344",
+  "key": "staging|list|unwatched|plain|high|none|new|none|first",
+  "text": "I found {role} and put my card down where {they} could read it.",
+  "source": "dealt/14/5/murder/oracle#14.0"
+ },
+ {
+  "id": "sit-1343",
+  "key": "staging|list|unwatched|plain|mid|none|new|none|first",
+  "text": "I went up to {role} and stood where {they} could watch the place and me at once.",
+  "source": "dealt/10/2/lost-item/oracle#11.0"
+ },
+ {
+  "id": "sit-1363",
+  "key": "staging|list|unwatched|terse|high|none|new|none|first",
+  "text": "I stood in front of {role} until {they} looked up.",
+  "source": "dealt/24/5/murder/oracle#14.0"
+ },
+ {
+  "id": "sit-1346",
+  "key": "staging|list|unwatched|terse|mid|none|new|none|first",
+  "text": "I took my hat off to {role}, and {they} nodded at it.",
+  "source": "dealt/2/3/murder/reader#12.0"
+ },
+ {
+  "id": "sit-1723",
+  "key": "staging|motive|bar|careful|high|none|new|none|first",
+  "text": "The stool beside {them} was free. I sat, and let a moment go by before I spoke.",
+  "source": "dealt/6/5/murder/wanderer#14.1"
+ },
+ {
+  "id": "sit-1735",
+  "key": "staging|motive|bar|careful|low|none|new|none|first",
+  "text": "I drew up a stool beside {them} and turned it so we were facing, not side by side.",
+  "source": "dealt/7/0/lost-item/wanderer#3.1"
+ },
+ {
+  "id": "sit-1701",
+  "key": "staging|motive|bar|careful|mid|none|new|none|first",
+  "text": "I found a quieter stretch of the bar and asked {them} to join me there.",
+  "source": "neighbourhood/37/2/lost-item/wanderer#14.1"
+ },
+ {
+  "id": "sit-1756",
+  "key": "staging|motive|bar|careful|mid|none|new|none|middle",
+  "text": "I came round to {their} side of the bar and spoke low, as if it were a private matter, which it was.",
+  "source": "neighbourhood/21/2/murder/wanderer#6.1"
+ },
+ {
+  "id": "sit-1697",
+  "key": "staging|motive|bar|plain|high|none|new|none|first",
+  "text": "I ordered for both of us and sat down at the bar beside {them}.",
+  "source": "dealt/31/4/lost-pet/wanderer#9.1"
+ },
+ {
+  "id": "sit-1734",
+  "key": "staging|motive|bar|plain|low|none|new|none|first",
+  "text": "I took the stool at {their} elbow, which had just come free, and turned to face {them}.",
+  "source": "dealt/13/0/lost-item/wanderer#6.1"
+ },
+ {
+  "id": "sit-1693",
+  "key": "staging|motive|bar|plain|mid|none|new|none|first",
+  "text": "I moved down the bar until I was beside {them}, and stayed there.",
+  "source": "neighbourhood/22/2/lost-item/reader#14.1"
+ },
+ {
+  "id": "sit-1755",
+  "key": "staging|motive|bar|plain|mid|none|new|none|middle",
+  "text": "I stood at the bar beside {them}, both of us facing the mirror, and talked to {their} reflection.",
+  "source": "dealt/1/3/lost-pet/wanderer#4.1"
+ },
+ {
+  "id": "sit-1712",
+  "key": "staging|motive|bar|terse|high|none|new|none|first",
+  "text": "I sat beside {them} at the bar and didn’t dress it up.",
+  "source": "dealt/34/4/murder/reader#10.1"
+ },
+ {
+  "id": "sit-1741",
+  "key": "staging|motive|bar|terse|low|none|new|none|first",
+  "text": "I put my hat on the bar and myself on the stool beside {them}.",
+  "joke": true,
+  "source": "neighbourhood/30/0/murder/reader#12.1"
+ },
+ {
+  "id": "sit-1710",
+  "key": "staging|motive|bar|terse|mid|none|new|none|first",
+  "text": "I came down the bar and stood at {their} shoulder until there was room to sit.",
+  "source": "dealt/36/2/murder/wanderer#9.1"
+ },
+ {
+  "id": "sit-1730",
+  "key": "staging|motive|club|careful|high|none|new|none|first",
+  "text": "I sat at {their} table, angled away from the room, so it would look like nothing much.",
+  "source": "neighbourhood/18/4/murder/wanderer#4.1"
+ },
+ {
+  "id": "sit-1738",
+  "key": "staging|motive|club|careful|low|none|new|none|first",
+  "text": "I pulled out the chair across from {them} slowly, so it didn’t scrape, and sat.",
+  "source": "neighbourhood/8/1/lost-pet/reader#9.1"
+ },
+ {
+  "id": "sit-1731",
+  "key": "staging|motive|club|careful|mid|none|new|none|first",
+  "text": "I found {them} at a table near the back and asked if the chair across was free.",
+  "source": "dealt/40/2/lost-item/reader#11.1"
+ },
+ {
+  "id": "sit-1746",
+  "key": "staging|motive|club|careful|mid|none|new|none|middle",
+  "text": "Across the little table, I leaned in toward {them}, since the room was too loud for anything else.",
+  "source": "dealt/33/3/lost-pet/wanderer#3.1"
+ },
+ {
+  "id": "sit-1705",
+  "key": "staging|motive|club|plain|high|none|new|none|first",
+  "text": "I took the empty chair at {their} table and set my hat on my knee.",
+  "source": "dealt/30/5/murder/reader#8.1"
+ },
+ {
+  "id": "sit-1728",
+  "key": "staging|motive|club|plain|low|none|new|none|first",
+  "text": "At {their} table I sat close enough to be heard over the room.",
+  "source": "neighbourhood/40/0/lost-item/wanderer#9.1"
+ },
+ {
+  "id": "sit-1733",
+  "key": "staging|motive|club|plain|mid|none|new|none|first",
+  "text": "I went between the tables to {them} and sat in the chair nobody was using.",
+  "source": "dealt/9/2/murder/wanderer#7.1"
+ },
+ {
+  "id": "sit-1725",
+  "key": "staging|motive|club|terse|high|none|new|none|first",
+  "text": "I sat down at {their} table without much ceremony.",
+  "source": "neighbourhood/21/5/lost-pet/reader#7.1"
+ },
+ {
+  "id": "sit-1747",
+  "key": "staging|motive|club|terse|low|none|new|none|first",
+  "text": "I took the chair across from {them} and kept quiet a moment.",
+  "source": "dealt/9/0/murder/wanderer#12.1"
+ },
+ {
+  "id": "sit-1737",
+  "key": "staging|motive|club|terse|mid|none|new|none|first",
+  "text": "In the smoke at {their} table, I sat across from {them} and waited for {them} to look up.",
+  "source": "dealt/37/3/lost-pet/wanderer#14.1"
+ },
+ {
+  "id": "sit-1726",
+  "key": "staging|motive|flat|careful|high|none|new|none|first",
+  "text": "{They} gave me the chair by the window and took the one nearer the door.",
+  "source": "neighbourhood/9/5/lost-pet/wanderer#14.1"
+ },
+ {
+  "id": "sit-1719",
+  "key": "staging|motive|flat|plain|high|none|new|none|first",
+  "text": "We sat down at the kitchen table, under the one good light in the place.",
+  "source": "dealt/7/5/lost-pet/reader#6.1"
+ },
+ {
+  "id": "sit-1718",
+  "key": "staging|motive|flat|terse|high|none|new|none|first",
+  "text": "{They} nodded at a chair and stayed on {their} feet.",
+  "source": "dealt/40/4/murder/reader#14.1"
+ },
+ {
+  "id": "sit-1706",
+  "key": "staging|motive|restaurant|careful|high|none|new|none|first",
+  "text": "The waiter came and went, and then I took the chair across from {them}.",
+  "source": "neighbourhood/16/5/murder/reader#8.1"
+ },
+ {
+  "id": "sit-1752",
+  "key": "staging|motive|restaurant|careful|high|none|new|none|middle",
+  "text": "I took the chair across the table and kept my voice below the clatter from the kitchen.",
+  "source": "neighbourhood/40/4/murder/wanderer#4.1"
+ },
+ {
+  "id": "sit-1716",
+  "key": "staging|motive|restaurant|careful|low|none|new|none|first",
+  "text": "I asked if I might join {them}, and {they} considered it, and said yes.",
+  "source": "neighbourhood/27/0/murder/wanderer#3.1"
+ },
+ {
+  "id": "sit-1714",
+  "key": "staging|motive|restaurant|careful|mid|none|new|none|first",
+  "text": "I sat down opposite {them} and moved the salt from between us.",
+  "source": "dealt/30/3/murder/wanderer#6.1"
+ },
+ {
+  "id": "sit-1695",
+  "key": "staging|motive|restaurant|plain|high|none|new|none|first",
+  "text": "I took the seat across from {them} and ordered coffee, which gave us both something to look at.",
+  "source": "neighbourhood/38/4/murder/wanderer#7.1"
+ },
+ {
+  "id": "sit-1759",
+  "key": "staging|motive|restaurant|plain|high|none|new|none|middle",
+  "text": "I sat down at {their} table and put my hat on the empty chair.",
+  "source": "neighbourhood/21/4/lost-pet/wanderer#6.1"
+ },
+ {
+  "id": "sit-1698",
+  "key": "staging|motive|restaurant|plain|low|none|new|none|first",
+  "text": "I sat down across from {them} and turned my cup upside down, so nobody would come and fill it.",
+  "source": "dealt/5/1/lost-pet/wanderer#8.1"
+ },
+ {
+  "id": "sit-1760",
+  "key": "staging|motive|restaurant|plain|low|none|new|none|middle",
+  "text": "Across from {them}, I waited for a lull in the room.",
+  "source": "dealt/17/0/lost-pet/wanderer#4.1"
+ },
+ {
+  "id": "sit-1699",
+  "key": "staging|motive|restaurant|plain|mid|none|new|none|first",
+  "text": "I found {them} at a table by the wall and asked if I could sit.",
+  "source": "dealt/2/2/lost-pet/wanderer#8.1"
+ },
+ {
+  "id": "sit-1729",
+  "key": "staging|motive|restaurant|terse|high|none|new|none|first",
+  "text": "I took the chair opposite {them} and let the place be noisy for both of us.",
+  "source": "neighbourhood/22/4/murder/wanderer#3.1"
+ },
+ {
+  "id": "sit-1713",
+  "key": "staging|motive|restaurant|terse|low|none|new|none|first",
+  "text": "I sat down across the table from {them} and got a nod, which was plenty.",
+  "source": "dealt/25/1/lost-item/wanderer#3.1"
+ },
+ {
+  "id": "sit-1727",
+  "key": "staging|motive|restaurant|terse|mid|none|new|none|first",
+  "text": "I sat at {their} table with my coat still on, which kept it short for both of us.",
+  "source": "neighbourhood/22/3/murder/wanderer#4.1"
+ },
+ {
+  "id": "sit-1700",
+  "key": "staging|motive|rooming|careful|high|none|new|none|first",
+  "text": "I asked if there was somewhere we could sit, and {they} found two chairs in the front parlor.",
+  "source": "dealt/21/5/lost-pet/reader#6.1"
+ },
+ {
+  "id": "sit-1751",
+  "key": "staging|motive|rooming|careful|high|none|new|none|middle",
+  "text": "We talked in {their} room with the door open a hand’s width, which is how a respectable house likes it.",
+  "source": "neighbourhood/34/5/murder/wanderer#12.1"
+ },
+ {
+  "id": "sit-1732",
+  "key": "staging|motive|rooming|careful|low|none|new|none|first",
+  "text": "{They} offered me the only chair, and I took the end of the bed instead, which seemed to settle {them}.",
+  "source": "dealt/8/0/lost-pet/reader#10.1"
+ },
+ {
+  "id": "sit-1740",
+  "key": "staging|motive|rooming|careful|mid|none|new|none|first",
+  "text": "I sat down on the hall bench, and after a moment {they} sat down at the other end of it.",
+  "source": "neighbourhood/33/2/murder/reader#12.1"
+ },
+ {
+  "id": "sit-1757",
+  "key": "staging|motive|rooming|careful|mid|none|new|none|middle",
+  "text": "I asked for somewhere quieter than the hall, and we ended up on the back stairs, which suited us both.",
+  "source": "dealt/32/3/murder/wanderer#11.1"
+ },
+ {
+  "id": "sit-1692",
+  "key": "staging|motive|rooming|plain|high|none|new|none|first",
+  "text": "I found {them} on the landing, and we talked there by the window.",
+  "source": "neighbourhood/25/5/lost-pet/wanderer#9.1"
+ },
+ {
+  "id": "sit-1749",
+  "key": "staging|motive|rooming|plain|high|none|new|none|middle",
+  "text": "We sat in the kitchen with the kettle on, because that’s where a rooming house does its talking.",
+  "source": "dealt/30/5/murder/wanderer#7.1"
+ },
+ {
+  "id": "sit-1694",
+  "key": "staging|motive|rooming|plain|low|none|new|none|first",
+  "text": "{They} came down to the hall to see me, and we talked by the coat hooks, standing.",
+  "source": "dealt/3/0/murder/wanderer#8.1"
+ },
+ {
+  "id": "sit-1703",
+  "key": "staging|motive|rooming|plain|mid|none|new|none|first",
+  "text": "I sat on the stairs a step below {them}, which put us about level.",
+  "source": "dealt/22/3/murder/wanderer#12.1"
+ },
+ {
+  "id": "sit-1711",
+  "key": "staging|motive|rooming|terse|high|none|new|none|first",
+  "text": "We talked on the landing, standing up, with {their} door shut behind {them}.",
+  "source": "dealt/1/5/lost-pet/reader#10.1"
+ },
+ {
+  "id": "sit-1736",
+  "key": "staging|motive|rooming|terse|low|none|new|none|first",
+  "text": "{They} let me into {their} room and pointed at the bed to sit on.",
+  "source": "dealt/17/0/lost-pet/wanderer#6.1"
+ },
+ {
+  "id": "sit-1739",
+  "key": "staging|motive|rooming|terse|mid|none|new|none|first",
+  "text": "{They} kept me in the hall and kept it short, and I matched {them}.",
+  "source": "neighbourhood/34/3/murder/wanderer#8.1"
+ },
+ {
+  "id": "sit-1715",
+  "key": "staging|motive|theatre|careful|high|none|new|none|first",
+  "text": "I sat down in the seat beside {them} and turned a little, so we weren’t both talking to the stage.",
+  "source": "dealt/27/4/lost-pet/reader#9.1"
+ },
+ {
+  "id": "sit-1709",
+  "key": "staging|motive|theatre|careful|low|none|new|none|first",
+  "text": "I took the seat beside {them} and let the empty house settle round us before I spoke.",
+  "source": "neighbourhood/22/0/lost-item/reader#10.1"
+ },
+ {
+  "id": "sit-1704",
+  "key": "staging|motive|theatre|careful|mid|none|new|none|first",
+  "text": "I came along the row and asked if I might sit, and {they} moved {their} coat to say yes.",
+  "source": "dealt/21/2/murder/reader#12.1"
+ },
+ {
+  "id": "sit-1754",
+  "key": "staging|motive|theatre|careful|mid|none|new|none|middle",
+  "text": "The seat beside {them} had been built by somebody who never sat through a second act, and I sat in it anyway.",
+  "joke": true,
+  "source": "neighbourhood/4/2/lost-item/wanderer#12.1"
+ },
+ {
+  "id": "sit-1702",
+  "key": "staging|motive|theatre|plain|high|none|new|none|first",
+  "text": "Beside {them}, I stretched my legs into the empty row in front.",
+  "source": "dealt/28/4/murder/wanderer#15.1"
+ },
+ {
+  "id": "sit-1745",
+  "key": "staging|motive|theatre|plain|high|none|new|none|middle",
+  "text": "I took the aisle seat at the end of {their} row and talked along it.",
+  "source": "neighbourhood/32/4/murder/wanderer#4.1"
+ },
+ {
+  "id": "sit-1696",
+  "key": "staging|motive|theatre|plain|low|none|new|none|first",
+  "text": "I found {them} in the back row and sat down beside {them}.",
+  "source": "dealt/19/0/lost-item/reader#10.1"
+ },
+ {
+  "id": "sit-1748",
+  "key": "staging|motive|theatre|plain|low|none|new|none|middle",
+  "text": "I perched on the arm of the seat beside {them}, which theaters frown on, and kept my voice down.",
+  "source": "neighbourhood/16/1/lost-item/wanderer#5.1"
+ },
+ {
+  "id": "sit-1708",
+  "key": "staging|motive|theatre|plain|mid|none|new|none|first",
+  "text": "In the seat beside {them}, I looked where {they} was looking, which was nowhere in particular.",
+  "source": "dealt/18/3/murder/wanderer#5.1"
+ },
+ {
+  "id": "sit-1758",
+  "key": "staging|motive|theatre|plain|mid|none|new|none|middle",
+  "text": "A single light still burned over the stage, and I sat down beside {them} in what reached us of it.",
+  "source": "neighbourhood/35/3/lost-pet/wanderer#5.1"
+ },
+ {
+  "id": "sit-1722",
+  "key": "staging|motive|theatre|terse|high|none|new|none|first",
+  "text": "I sat down beside {them}. Neither of us looked at the other.",
+  "source": "dealt/9/4/lost-pet/wanderer#10.1"
+ },
+ {
+  "id": "sit-1724",
+  "key": "staging|motive|theatre|terse|low|none|new|none|first",
+  "text": "With my hat in my lap, I sat beside {them} and waited.",
+  "source": "neighbourhood/37/1/lost-item/reader#10.1"
+ },
+ {
+  "id": "sit-1720",
+  "key": "staging|motive|theatre|terse|mid|none|new|none|first",
+  "text": "The row was empty except for {them}, so I sat down beside {them} and kept it quiet.",
+  "source": "dealt/27/2/murder/reader#14.1"
+ },
+ {
+  "id": "sit-1742",
+  "key": "staging|motive|unwatched|careful|high|none|new|none|first",
+  "text": "I found {them} and asked, carefully, if we could talk somewhere out of the way.",
+  "source": "dealt/19/4/lost-pet/reader#13.1"
+ },
+ {
+  "id": "sit-1750",
+  "key": "staging|motive|unwatched|careful|low|none|new|none|first",
+  "text": "I waited for {them} to set down what {they} was holding, then came closer.",
+  "source": "neighbourhood/24/1/murder/wanderer#5.1"
+ },
+ {
+  "id": "sit-1707",
+  "key": "staging|motive|unwatched|careful|mid|none|new|none|first",
+  "text": "I stood near {them} with my hat in my hands and waited until {they} was ready.",
+  "source": "neighbourhood/27/2/murder/wanderer#11.1"
+ },
+ {
+  "id": "sit-1717",
+  "key": "staging|motive|unwatched|plain|high|none|new|none|first",
+  "text": "I went over to {them} and stood where we could talk.",
+  "source": "dealt/18/4/murder/wanderer#9.1"
+ },
+ {
+  "id": "sit-1744",
+  "key": "staging|motive|unwatched|plain|low|none|new|none|first",
+  "text": "I came over to {them} and leaned where I wouldn’t be in the way of anything.",
+  "source": "neighbourhood/27/1/murder/wanderer#11.1"
+ },
+ {
+  "id": "sit-1721",
+  "key": "staging|motive|unwatched|plain|mid|none|new|none|first",
+  "text": "I sat down across from {them} where the light was, so {they} could see who {they} was talking to.",
+  "source": "dealt/32/2/lost-pet/reader#11.1"
+ },
+ {
+  "id": "sit-1753",
+  "key": "staging|motive|unwatched|terse|high|none|new|none|first",
+  "text": "I went over and stood by {them}. That was the opening.",
+  "source": "dealt/15/4/lost-pet/wanderer#15.1"
+ },
+ {
+  "id": "sit-1761",
+  "key": "staging|motive|unwatched|terse|low|none|new|none|first",
+  "text": "I came up beside {them} and waited to be looked at.",
+  "source": "dealt/9/1/murder/wanderer#4.1"
+ },
+ {
+  "id": "sit-1743",
+  "key": "staging|motive|unwatched|terse|mid|none|new|none|first",
+  "text": "I found {them}, and {they} didn’t make me ask twice for a minute.",
+  "source": "dealt/6/3/murder/wanderer#6.1"
+ },
+ {
+  "id": "sit-1914",
+  "key": "staging|office|office|careful|high|new|narrows|none|middle",
+  "text": "{They} sat down in the client’s chair a little at a time, and I waited until all of {them} had arrived.",
+  "joke": true,
+  "source": "dealt/30/5/murder/oracle#1.4"
+ },
+ {
+  "id": "sit-1932",
+  "key": "staging|office|office|careful|high|new|narrows|none|middle",
+  "text": "I brought the chair round to face the desk, and {they} sat in it the way you sit in church.",
+  "source": "dealt/16/5/murder/oracle#1.4"
+ },
+ {
+  "id": "sit-1950",
+  "key": "staging|office|office|careful|high|new|narrows|none|middle",
+  "text": "{They} took the chair, and I opened my notebook to a clean page.",
+  "source": "neighbourhood/26/5/murder/oracle#1.4"
+ },
+ {
+  "id": "sit-1906",
+  "key": "staging|office|office|careful|high|new|new|none|middle",
+  "text": "I moved the chair an inch nearer the lamp, and {they} sat down in it without hurrying.",
+  "source": "neighbourhood/5/5/lost-pet/oracle#1.3"
+ },
+ {
+  "id": "sit-1924",
+  "key": "staging|office|office|careful|high|new|new|none|middle",
+  "text": "{They} sat. I uncapped my pen and waited.",
+  "source": "dealt/37/5/lost-pet/oracle#1.3"
+ },
+ {
+  "id": "sit-1942",
+  "key": "staging|office|office|careful|high|new|new|none|middle",
+  "text": "I moved yesterday’s papers off the chair, and {they} waited until I had finished before sitting down.",
+  "source": "neighbourhood/7/4/lost-pet/reader#1.3"
+ },
+ {
+  "id": "sit-1912",
+  "key": "staging|office|office|careful|low|new|narrows|none|middle",
+  "text": "I set the chair square to the desk, and {they} sat down and straightened {their} coat before anything else.",
+  "source": "dealt/27/1/murder/reader#1.4"
+ },
+ {
+  "id": "sit-1930",
+  "key": "staging|office|office|careful|low|new|narrows|none|middle",
+  "text": "I pulled the notebook over and wrote the date at the top of a page, and {they} watched me do it and then sat.",
+  "source": "dealt/3/1/murder/oracle#1.4"
+ },
+ {
+  "id": "sit-1948",
+  "key": "staging|office|office|careful|low|new|narrows|none|middle",
+  "text": "I found a pencil with a point on it, which took two drawers, and {they} sat down across the desk to wait for me.",
+  "joke": true,
+  "source": "dealt/39/0/murder/reader#1.4"
+ },
+ {
+  "id": "sit-1900",
+  "key": "staging|office|office|careful|low|new|new|none|middle",
+  "text": "{They} chose the chair across the desk and drew it in a little, and I let the quiet sit with us.",
+  "source": "neighbourhood/38/0/lost-pet/reader#1.3"
+ },
+ {
+  "id": "sit-1918",
+  "key": "staging|office|office|careful|low|new|new|none|middle",
+  "text": "I took {their} coat and hung it on the stand beside mine, where it raised the tone, and {they} sat.",
+  "joke": true,
+  "source": "dealt/2/1/lost-pet/wanderer#1.3"
+ },
+ {
+  "id": "sit-1936",
+  "key": "staging|office|office|careful|low|new|new|none|middle",
+  "text": "I said to take whatever chair {they} liked, and {they} took the one I’d have picked, which was the only one.",
+  "joke": true,
+  "source": "neighbourhood/26/0/lost-pet/reader#1.3"
+ },
+ {
+  "id": "sit-1954",
+  "key": "staging|office|office|careful|low|new|new|none|middle",
+  "text": "I came round and shut the door behind {them}, so the stairs wouldn’t hear, and {they} sat down.",
+  "source": "neighbourhood/40/1/lost-item/wanderer#1.3"
+ },
+ {
+  "id": "sit-1910",
+  "key": "staging|office|office|careful|mid|new|narrows|none|middle",
+  "text": "{They} sat when I asked, and I moved the ashtray over to {their} side of the desk, in case.",
+  "source": "neighbourhood/12/3/murder/reader#1.4"
+ },
+ {
+  "id": "sit-1928",
+  "key": "staging|office|office|careful|mid|new|narrows|none|middle",
+  "text": "I let {them} settle into the chair in {their} own time, and laid my pencil across a clean page.",
+  "source": "neighbourhood/36/2/murder/reader#1.4"
+ },
+ {
+  "id": "sit-1946",
+  "key": "staging|office|office|careful|mid|new|narrows|none|middle",
+  "text": "{They} took the chair and drew it closer to the desk, and I leaned forward to meet it halfway.",
+  "source": "neighbourhood/20/3/murder/reader#1.4"
+ },
+ {
+  "id": "sit-1904",
+  "key": "staging|office|office|careful|mid|new|new|none|middle",
+  "text": "I came round the desk and held the chair while {they} sat, then went back to my side and waited.",
+  "source": "neighbourhood/37/3/lost-pet/reader#1.3"
+ },
+ {
+  "id": "sit-1922",
+  "key": "staging|office|office|careful|mid|new|new|none|middle",
+  "text": "I shut the window on the street so we could hear ourselves, and {they} sat down across the desk.",
+  "source": "neighbourhood/40/2/lost-item/wanderer#1.3"
+ },
+ {
+  "id": "sit-1940",
+  "key": "staging|office|office|careful|mid|new|new|none|middle",
+  "text": "I turned up the lamp, and {they} sat down in the light of it, and I opened the notebook.",
+  "source": "neighbourhood/19/2/lost-item/oracle#1.3"
+ },
+ {
+  "id": "sit-1903",
+  "key": "staging|office|office|plain|high|new|narrows|none|middle",
+  "text": "{They} took the chair across the desk, and I took mine.",
+  "source": "neighbourhood/30/5/murder/reader#1.4"
+ },
+ {
+  "id": "sit-1921",
+  "key": "staging|office|office|plain|high|new|narrows|none|middle",
+  "text": "I nodded at the chair, and {they} sat down in it and waited for me to catch up.",
+  "source": "dealt/8/5/murder/oracle#1.4"
+ },
+ {
+  "id": "sit-1939",
+  "key": "staging|office|office|plain|high|new|narrows|none|middle",
+  "text": "{They} sat down, and I pulled a pad across the desk.",
+  "source": "neighbourhood/30/4/murder/reader#1.4"
+ },
+ {
+  "id": "sit-1905",
+  "key": "staging|office|office|plain|high|new|new|none|middle",
+  "text": "{They} sat, and I sat, and the lamp did its best for both of us.",
+  "joke": true,
+  "source": "neighbourhood/17/4/lost-pet/wanderer#1.3"
+ },
+ {
+  "id": "sit-1923",
+  "key": "staging|office|office|plain|high|new|new|none|middle",
+  "text": "Once {they} was in the chair, I sat back and listened.",
+  "source": "neighbourhood/27/4/lost-pet/reader#1.3"
+ },
+ {
+  "id": "sit-1941",
+  "key": "staging|office|office|plain|high|new|new|none|middle",
+  "text": "I got up, gave {them} the chair, and sat on the corner of the desk.",
+  "source": "dealt/27/5/lost-pet/wanderer#1.3"
+ },
+ {
+  "id": "sit-1913",
+  "key": "staging|office|office|plain|low|new|narrows|none|middle",
+  "text": "{They} sat down across the desk, and I offered coffee, and {they} took one look at the pot and said no.",
+  "joke": true,
+  "source": "neighbourhood/3/1/murder/wanderer#1.4"
+ },
+ {
+  "id": "sit-1931",
+  "key": "staging|office|office|plain|low|new|narrows|none|middle",
+  "text": "{They} sat down across from me, and I turned to a clean page, which is always the easy part.",
+  "source": "neighbourhood/33/0/murder/reader#1.4"
+ },
+ {
+  "id": "sit-1949",
+  "key": "staging|office|office|plain|low|new|narrows|none|middle",
+  "text": "I shifted the telephone to make room on the desk, and {they} sat down and put {their} elbows where it had been.",
+  "source": "neighbourhood/6/1/murder/oracle#1.4"
+ },
+ {
+  "id": "sit-1901",
+  "key": "staging|office|office|plain|low|new|new|none|middle",
+  "text": "I moved the lamp so we could see each other without squinting, and {they} sat down.",
+  "source": "dealt/17/0/lost-pet/reader#1.3"
+ },
+ {
+  "id": "sit-1919",
+  "key": "staging|office|office|plain|low|new|new|none|middle",
+  "text": "I pushed the blotter back to give {them} a corner of the desk, and {they} sat down and leaned on it.",
+  "source": "neighbourhood/25/0/lost-item/oracle#1.3"
+ },
+ {
+  "id": "sit-1937",
+  "key": "staging|office|office|plain|low|new|new|none|middle",
+  "text": "I poured two coffees from the pot on the ring and gave {them} the one without the chip, and {they} sat.",
+  "source": "neighbourhood/22/0/lost-item/reader#1.3"
+ },
+ {
+  "id": "sit-1955",
+  "key": "staging|office|office|plain|low|new|new|none|middle",
+  "text": "{They} took the chair, and I took out my notebook, and we were in business.",
+  "source": "dealt/17/1/lost-pet/wanderer#1.3"
+ },
+ {
+  "id": "sit-1911",
+  "key": "staging|office|office|plain|mid|new|narrows|none|middle",
+  "text": "{They} sat down in the client’s chair, and I sat back in mine and let {them} start.",
+  "source": "dealt/16/3/murder/reader#1.4"
+ },
+ {
+  "id": "sit-1929",
+  "key": "staging|office|office|plain|mid|new|narrows|none|middle",
+  "text": "I swung the chair round from the wall for {them}, and {they} sat, and I got my pencil out.",
+  "source": "dealt/16/3/murder/oracle#1.4"
+ },
+ {
+  "id": "sit-1947",
+  "key": "staging|office|office|plain|mid|new|narrows|none|middle",
+  "text": "{They} sat down and looked round the office once, the way people do, and then looked at me.",
+  "source": "dealt/12/3/murder/wanderer#1.4"
+ },
+ {
+  "id": "sit-1902",
+  "key": "staging|office|office|plain|mid|new|new|none|middle",
+  "text": "I brought the chair nearer the desk with my foot, which is the kind of host I am, and {they} sat down.",
+  "joke": true,
+  "source": "neighbourhood/5/2/lost-pet/wanderer#1.3"
+ },
+ {
+  "id": "sit-1920",
+  "key": "staging|office|office|plain|mid|new|new|none|middle",
+  "text": "I hung my hat on the stand to show I was staying, and {they} sat down across the desk.",
+  "joke": true,
+  "source": "neighbourhood/2/2/lost-pet/reader#1.3"
+ },
+ {
+  "id": "sit-1938",
+  "key": "staging|office|office|plain|mid|new|new|none|middle",
+  "text": "I turned my chair to face {them} square, and {they} sat down across the desk.",
+  "source": "dealt/5/3/lost-pet/reader#1.3"
+ },
+ {
+  "id": "sit-1956",
+  "key": "staging|office|office|plain|mid|new|new|none|middle",
+  "text": "{They} sat down, and I leaned back until my chair warned me, and listened.",
+  "joke": true,
+  "source": "neighbourhood/28/2/lost-item/oracle#1.3"
+ },
+ {
+  "id": "sit-1916",
+  "key": "staging|office|office|terse|high|new|narrows|none|middle",
+  "text": "{They} took the chair without being asked twice, and I got out a pencil.",
+  "source": "dealt/38/4/murder/reader#1.4"
+ },
+ {
+  "id": "sit-1934",
+  "key": "staging|office|office|terse|high|new|narrows|none|middle",
+  "text": "{They} sat down across the desk with a nod, and I let the nod do for both of us.",
+  "source": "dealt/38/4/murder/wanderer#1.4"
+ },
+ {
+  "id": "sit-1952",
+  "key": "staging|office|office|terse|high|new|narrows|none|middle",
+  "text": "I said to sit down, and {they} did, straight off.",
+  "source": "dealt/38/4/murder/oracle#1.4"
+ },
+ {
+  "id": "sit-1909",
+  "key": "staging|office|office|terse|high|new|new|none|middle",
+  "text": "{They} sat down, and I let {them} start.",
+  "source": "dealt/9/5/lost-pet/wanderer#1.3"
+ },
+ {
+  "id": "sit-1927",
+  "key": "staging|office|office|terse|high|new|new|none|middle",
+  "text": "{They} pulled the chair to the desk and sat in it without a word.",
+  "source": "neighbourhood/33/4/lost-pet/reader#1.3"
+ },
+ {
+  "id": "sit-1945",
+  "key": "staging|office|office|terse|high|new|new|none|middle",
+  "text": "I waved at the chair, and {they} sat down in it.",
+  "source": "dealt/19/4/lost-pet/reader#1.3"
+ },
+ {
+  "id": "sit-1917",
+  "key": "staging|office|office|terse|low|new|narrows|none|middle",
+  "text": "{They} sat on the edge of the chair with {their} hat still on, and I didn’t make anything of it.",
+  "source": "dealt/6/1/murder/oracle#1.4"
+ },
+ {
+  "id": "sit-1935",
+  "key": "staging|office|office|terse|low|new|narrows|none|middle",
+  "text": "{They} took the chair and kept {their} coat on, so I skipped the coffee.",
+  "source": "dealt/6/1/murder/reader#1.4"
+ },
+ {
+  "id": "sit-1953",
+  "key": "staging|office|office|terse|low|new|narrows|none|middle",
+  "text": "Both of {their} hands went flat on the desk when {they} sat, and I put my pencil between them.",
+  "source": "dealt/6/1/murder/wanderer#1.4"
+ },
+ {
+  "id": "sit-1908",
+  "key": "staging|office|office|terse|low|new|new|none|middle",
+  "text": "From the chair, {they} looked at me until I picked up a pencil.",
+  "source": "neighbourhood/19/1/lost-item/reader#1.3"
+ },
+ {
+  "id": "sit-1926",
+  "key": "staging|office|office|terse|low|new|new|none|middle",
+  "text": "I moved my hat off the chair, and {they} sat down where it had been.",
+  "source": "neighbourhood/28/1/lost-item/oracle#1.3"
+ },
+ {
+  "id": "sit-1944",
+  "key": "staging|office|office|terse|low|new|new|none|middle",
+  "text": "{They} sat down, and I lined my pencil up with the edge of the blotter, which is as close as I get to ceremony.",
+  "joke": true,
+  "source": "neighbourhood/19/1/lost-item/wanderer#1.3"
+ },
+ {
+  "id": "sit-1915",
+  "key": "staging|office|office|terse|mid|new|narrows|none|middle",
+  "text": "I didn’t fuss with the chair, and {they} didn’t fuss with sitting in it.",
+  "source": "dealt/18/2/murder/reader#1.4"
+ },
+ {
+  "id": "sit-1933",
+  "key": "staging|office|office|terse|mid|new|narrows|none|middle",
+  "text": "{They} sat. I got the notebook open and kept quiet.",
+  "source": "dealt/36/2/murder/wanderer#1.4"
+ },
+ {
+  "id": "sit-1951",
+  "key": "staging|office|office|terse|mid|new|narrows|none|middle",
+  "text": "Across the desk, {they} sat and waited for me to be ready, which didn’t take long.",
+  "source": "dealt/28/3/murder/oracle#1.4"
+ },
+ {
+  "id": "sit-1907",
+  "key": "staging|office|office|terse|mid|new|new|none|middle",
+  "text": "Without being asked, {they} sat down across the desk, and I got out the notebook without being asked either.",
+  "source": "dealt/35/2/lost-pet/oracle#1.3"
+ },
+ {
+  "id": "sit-1925",
+  "key": "staging|office|office|terse|mid|new|new|none|middle",
+  "text": "I kicked the wastebasket clear of the chair. {They} sat down in it and waited, hat on, while I hunted for a pencil that wrote.",
+  "source": "neighbourhood/34/2/lost-item/reader#1.3"
+ },
+ {
+  "id": "sit-1943",
+  "key": "staging|office|office|terse|mid|new|new|none|middle",
+  "text": "I took my feet off the desk, which is as near as I come to standing up for people, and {they} sat.",
+  "joke": true,
+  "source": "dealt/23/3/lost-pet/wanderer#1.3"
+ },
+ {
+  "id": "sit-2466",
+  "key": "staging|put|bar|careful|high|none|collides|refused|first",
+  "text": "I waited until the barman found something to do at the far end, and then I leaned on the bar beside {them}.",
+  "source": "neighbourhood/10/4/murder/reader#9.1"
+ },
+ {
+  "id": "sit-2459",
+  "key": "staging|put|bar|careful|mid|none|collides|cracked|first",
+  "text": "I drew my stool in and turned it toward {them} a little, so that whatever came of this could stay between the two of us.",
+  "source": "dealt/4/2/lost-item/oracle#13.1"
+ },
+ {
+  "id": "sit-2473",
+  "key": "staging|put|bar|careful|mid|none|collides|refused|first",
+  "text": "I let the noise of the bar come up around us before I leaned in. A quiet room carries.",
+  "source": "dealt/4/2/lost-item/reader#15.1"
+ },
+ {
+  "id": "sit-2464",
+  "key": "staging|put|bar|plain|high|none|collides|held|first",
+  "text": "I stayed on my feet, close at {their} elbow, with my back to the rest of the room.",
+  "source": "neighbourhood/34/5/murder/reader#9.1"
+ },
+ {
+  "id": "sit-2454",
+  "key": "staging|put|bar|plain|low|none|collides|cracked|first",
+  "text": "I caught the barman’s eye and shook my head, and the barman took the hint and found work at the other end.",
+  "source": "dealt/13/0/lost-item/wanderer#5.1"
+ },
+ {
+  "id": "sit-2442",
+  "key": "staging|put|bar|plain|mid|none|collides|cracked|first",
+  "text": "I hooked the next stool out with my foot and sat on it, near enough that I wouldn’t need to raise my voice over the bar.",
+  "source": "dealt/29/2/lost-pet/oracle#10.1"
+ },
+ {
+  "id": "sit-2457",
+  "key": "staging|put|bar|terse|high|none|collides|held|first",
+  "text": "I came down the length of the bar and stood at {their} shoulder until {they} turned.",
+  "source": "dealt/19/5/lost-pet/wanderer#11.1"
+ },
+ {
+  "id": "sit-2475",
+  "key": "staging|put|bar|terse|mid|none|collides|cracked|first",
+  "text": "I took the stool beside {them} and laid my hands flat on the bar, where {they} could see them.",
+  "source": "dealt/31/2/lost-item/oracle#13.1"
+ },
+ {
+  "id": "sit-2478",
+  "key": "staging|put|bar|terse|mid|none|collides|refused|first",
+  "text": "I didn’t wait to be asked. I took the stool on {their} left and swung it round to face {them}.",
+  "source": "dealt/24/3/murder/reader#15.1"
+ },
+ {
+  "id": "sit-2474",
+  "key": "staging|put|club|careful|high|none|collides|held|first",
+  "text": "I waited for the room to get loud again, then pulled my chair round beside {them}, close enough to be heard under it.",
+  "source": "dealt/16/5/murder/reader#9.1"
+ },
+ {
+  "id": "sit-2463",
+  "key": "staging|put|club|careful|low|none|collides|cracked|first",
+  "text": "I sat down at {their} table with my hat on my knee and my back to the room, and let {them} see I meant to stay.",
+  "source": "dealt/7/1/lost-item/wanderer#10.1"
+ },
+ {
+  "id": "sit-2451",
+  "key": "staging|put|club|plain|high|none|collides|held|first",
+  "text": "I took the chair across the little table and moved the ashtray out from between us.",
+  "source": "dealt/18/5/murder/reader#9.1"
+ },
+ {
+  "id": "sit-2467",
+  "key": "staging|put|club|terse|high|none|collides|held|first",
+  "text": "I pulled a chair up to {their} table, uninvited, and sat in it.",
+  "source": "neighbourhood/21/5/lost-pet/reader#8.1"
+ },
+ {
+  "id": "sit-2460",
+  "key": "staging|put|flat|careful|high|none|collides|refused|first",
+  "text": "I stayed on my feet in {their} front room with my hat in my hand, the way you stand in a room you may be asked to leave.",
+  "source": "dealt/17/4/lost-pet/reader#14.1"
+ },
+ {
+  "id": "sit-2470",
+  "key": "staging|put|flat|terse|high|none|collides|landed|first",
+  "text": "Nobody offered me a chair, so I picked one and turned it round to face {them}.",
+  "source": "dealt/37/4/lost-pet/reader#14.1"
+ },
+ {
+  "id": "sit-2449",
+  "key": "staging|put|flat|terse|high|none|collides|refused|first",
+  "text": "I shut {their} door behind me and stood with my back against it.",
+  "source": "dealt/15/4/lost-pet/reader#14.1"
+ },
+ {
+  "id": "sit-2455",
+  "key": "staging|put|restaurant|careful|high|none|collides|held|first",
+  "text": "I let the waiter go by with a tray before I sat down across the table from {them}, and I kept my voice to the width of it.",
+  "source": "dealt/32/5/murder/reader#9.1"
+ },
+ {
+  "id": "sit-2465",
+  "key": "staging|put|restaurant|careful|mid|none|collides|refused|first",
+  "text": "I moved the sugar and the salt aside, which opened up a stretch of tablecloth between us and gave my hands something to do.",
+  "source": "dealt/39/2/murder/reader#15.1"
+ },
+ {
+  "id": "sit-2447",
+  "key": "staging|put|restaurant|plain|high|none|collides|held|first",
+  "text": "I sat down opposite {them} and put my hat on the empty chair.",
+  "source": "dealt/28/5/murder/reader#9.1"
+ },
+ {
+  "id": "sit-2476",
+  "key": "staging|put|restaurant|plain|high|none|collides|refused|first",
+  "text": "I pulled out the chair across from {them} and sat before the waiter could come over with a menu and a hopeful look.",
+  "source": "neighbourhood/21/4/lost-pet/reader#12.1"
+ },
+ {
+  "id": "sit-2477",
+  "key": "staging|put|restaurant|plain|low|none|collides|cracked|first",
+  "text": "I sat down across the table and turned my cup over on its saucer, so the waiter would know to leave us be.",
+  "source": "neighbourhood/32/1/lost-pet/reader#10.1"
+ },
+ {
+  "id": "sit-2482",
+  "key": "staging|put|restaurant|plain|mid|none|collides|cracked|first",
+  "text": "There was a table at the back with nobody near it. I asked {them} to come and sit at it with me.",
+  "source": "dealt/10/2/lost-item/oracle#7.1"
+ },
+ {
+  "id": "sit-2468",
+  "key": "staging|put|restaurant|plain|mid|none|collides|refused|first",
+  "text": "At {their} table I took the empty chair and waited for the clatter from the kitchen to give us some cover.",
+  "source": "dealt/30/3/murder/reader#13.1"
+ },
+ {
+  "id": "sit-2471",
+  "key": "staging|put|restaurant|terse|high|none|collides|refused|first",
+  "text": "The waiter took one look as I sat down across from {them}, and went the other way.",
+  "source": "neighbourhood/22/4/murder/reader#9.1"
+ },
+ {
+  "id": "sit-2480",
+  "key": "staging|put|restaurant|terse|low|none|collides|cracked|first",
+  "text": "I sat and pushed the menu back to the middle of the table. I hadn’t come to order.",
+  "source": "dealt/8/1/lost-pet/wanderer#7.1"
+ },
+ {
+  "id": "sit-2446",
+  "key": "staging|put|rooming|careful|high|none|collides|held|first",
+  "text": "I asked {them} for a minute somewhere the stairs couldn’t hear, and we stood at the dark end of the hall.",
+  "source": "neighbourhood/31/5/lost-pet/reader#13.1"
+ },
+ {
+  "id": "sit-2458",
+  "key": "staging|put|rooming|careful|high|none|collides|refused|first",
+  "text": "The hall was narrow and the walls were thin. I stood close and pitched my voice under what the landlady could hear.",
+  "source": "dealt/33/5/lost-pet/reader#14.1"
+ },
+ {
+  "id": "sit-2443",
+  "key": "staging|put|rooming|careful|mid|none|collides|refused|first",
+  "text": "I took my hat off at the foot of the stairs and waited for a door somewhere above us to finish closing.",
+  "source": "neighbourhood/6/2/murder/reader#13.1"
+ },
+ {
+  "id": "sit-2440",
+  "key": "staging|put|rooming|plain|high|none|collides|held|first",
+  "text": "I stood with {them} in the hall under its one bulb, hat in hand.",
+  "source": "neighbourhood/25/5/lost-pet/reader#12.1"
+ },
+ {
+  "id": "sit-2444",
+  "key": "staging|put|rooming|plain|high|none|collides|refused|first",
+  "text": "I sat down on the bottom stair, which put me lower than {them}, and I let it.",
+  "source": "dealt/15/5/lost-pet/reader#14.1"
+ },
+ {
+  "id": "sit-2441",
+  "key": "staging|put|rooming|plain|mid|none|collides|refused|first",
+  "text": "The landlady’s door stood open a crack down the hall. I walked us along until it was out of earshot.",
+  "source": "neighbourhood/27/2/murder/reader#13.1"
+ },
+ {
+  "id": "sit-2453",
+  "key": "staging|put|rooming|terse|mid|none|collides|refused|first",
+  "text": "I stopped {them} at the turn of the stairs, one step below, and kept my hand off the rail.",
+  "source": "dealt/8/3/murder/wanderer#11.1"
+ },
+ {
+  "id": "sit-2479",
+  "key": "staging|put|theatre|careful|high|none|collides|held|first",
+  "text": "I took the seat beside {them} and kept my eyes on the empty stage while I got my words in order.",
+  "source": "dealt/23/5/lost-pet/reader#8.1"
+ },
+ {
+  "id": "sit-2456",
+  "key": "staging|put|theatre|careful|high|none|collides|refused|first",
+  "text": "The usher’s torch was working the far aisle. I waited until it turned away, then sat down one seat over from {them}.",
+  "source": "dealt/28/4/murder/reader#9.1"
+ },
+ {
+  "id": "sit-2472",
+  "key": "staging|put|theatre|careful|mid|none|collides|cracked|first",
+  "text": "I came down the aisle and sat in the row in front, turned round with an arm along the seat back.",
+  "source": "neighbourhood/4/2/lost-item/oracle#11.1"
+ },
+ {
+  "id": "sit-2461",
+  "key": "staging|put|theatre|careful|mid|none|collides|refused|first",
+  "text": "I found the seat behind {them} and leaned forward over its back, close enough to talk without the house hearing.",
+  "source": "dealt/21/2/murder/reader#13.1"
+ },
+ {
+  "id": "sit-2448",
+  "key": "staging|put|theatre|plain|high|none|collides|held|first",
+  "text": "In the next seat over, I put my hat on my knees and said nothing for a moment.",
+  "source": "dealt/20/5/murder/reader#9.1"
+ },
+ {
+  "id": "sit-2462",
+  "key": "staging|put|theatre|plain|high|none|collides|refused|first",
+  "text": "There were rows of empty seats to choose from. I took the one beside {them}.",
+  "source": "dealt/10/4/murder/reader#9.1"
+ },
+ {
+  "id": "sit-2469",
+  "key": "staging|put|theatre|plain|low|none|collides|cracked|first",
+  "text": "I sat down beside {them}, and the seat folded under me with a bang that turned every head in the house but the one I wanted.",
+  "joke": true,
+  "source": "neighbourhood/1/1/lost-item/reader#10.1"
+ },
+ {
+  "id": "sit-2445",
+  "key": "staging|put|theatre|plain|mid|none|collides|cracked|first",
+  "text": "I asked {them} out to the lobby, where the light was better and the seats weren’t listening.",
+  "source": "neighbourhood/25/2/lost-item/reader#14.1"
+ },
+ {
+  "id": "sit-2452",
+  "key": "staging|put|theatre|terse|high|none|collides|held|first",
+  "text": "I stood in the aisle at the end of {their} row until {they} looked up.",
+  "source": "neighbourhood/9/5/lost-pet/reader#8.1"
+ },
+ {
+  "id": "sit-2439",
+  "key": "staging|put|unwatched|careful|high|none|collides|admitted|first",
+  "text": "There was nobody on the door to mind us. I pulled a chair across and sat down facing {them}, close.",
+  "source": "dealt/36/4/murder/oracle#12.1"
+ },
+ {
+  "id": "sit-2436",
+  "key": "staging|put|unwatched|careful|mid|none|collides|admitted|first",
+  "text": "Nobody keeps a door in a room like that, so nobody came to ask why I sat down so near {them}.",
+  "source": "neighbourhood/14/3/murder/reader#13.1"
+ },
+ {
+  "id": "sit-2437",
+  "key": "staging|put|unwatched|plain|high|none|collides|admitted|first",
+  "text": "I found something to sit on, dragged it over, and sat down where {they} couldn’t look past me.",
+  "source": "dealt/32/4/murder/oracle#12.1"
+ },
+ {
+  "id": "sit-2435",
+  "key": "staging|put|unwatched|plain|mid|none|collides|admitted|first",
+  "text": "I looked round once for anybody listening. There wasn’t anybody, which is the whole point of the place, so I sat down.",
+  "source": "neighbourhood/4/3/murder/oracle#9.1"
+ },
+ {
+  "id": "sit-2450",
+  "key": "staging|put|unwatched|terse|high|none|collides|admitted|first",
+  "text": "I came round and stood where {they} would have to look at me.",
+  "source": "dealt/11/4/lost-pet/oracle#14.1"
+ },
+ {
+  "id": "sit-2438",
+  "key": "staging|put|unwatched|terse|mid|none|collides|admitted|first",
+  "text": "I shut the door behind me, which nobody in a room like that ever troubles to do.",
+  "source": "neighbourhood/9/3/lost-pet/reader#12.1"
+ },
+ {
+  "id": "sit-1064",
+  "key": "staging|report|bar|none|high|none|none|none|first",
+  "text": "I took the stool nearest the wall and laid the form on the bar, out of reach of the barman’s rag.",
+  "source": "dealt/35/4/lost-pet/wanderer#17.0"
+ },
+ {
+  "id": "sit-1096",
+  "key": "staging|report|bar|none|high|none|none|none|first",
+  "text": "I asked the barman for a coffee and the loan of a pencil, and got the pencil.",
+  "joke": true,
+  "source": "dealt/21/4/lost-pet/oracle#15.0"
+ },
+ {
+  "id": "sit-1055",
+  "key": "staging|report|bar|none|low|none|none|none|first",
+  "text": "I carried the form to a table where the light from the bar just reached, and sat down with my back to the room for once.",
+  "source": "dealt/18/1/murder/reader#12.0"
+ },
+ {
+  "id": "sit-1087",
+  "key": "staging|report|bar|none|low|none|none|none|first",
+  "text": "The bar had thinned out to the regulars and the furniture. I took my place among the furniture, with the form.",
+  "joke": true,
+  "source": "neighbourhood/19/1/lost-item/wanderer#11.0"
+ },
+ {
+  "id": "sit-1117",
+  "key": "staging|report|bar|none|low|none|none|none|first",
+  "text": "I pushed a row of empty glasses down the bar and laid out the form where they had been.",
+  "source": "dealt/24/1/murder/wanderer#11.0"
+ },
+ {
+  "id": "sit-1051",
+  "key": "staging|report|bar|none|mid|none|none|none|first",
+  "text": "I sat at the dark end of the bar with the form and a pencil, and let the barman think I was doing my accounts.",
+  "source": "dealt/24/3/murder/reader#16.0"
+ },
+ {
+  "id": "sit-1083",
+  "key": "staging|report|bar|none|mid|none|none|none|first",
+  "text": "The barman wiped a place on the bar for me without being asked. I set the form down in it and nodded my thanks.",
+  "source": "neighbourhood/29/3/lost-pet/wanderer#14.0"
+ },
+ {
+  "id": "sit-1113",
+  "key": "staging|report|bar|none|mid|none|none|none|first",
+  "text": "I sat down at the bar with my hat pushed back and the form flat under my hand, the way you hold down the last card you’ve got.",
+  "source": "dealt/31/2/lost-item/wanderer#16.0"
+ },
+ {
+  "id": "sit-1065",
+  "key": "staging|report|club|none|high|none|none|none|first",
+  "text": "I found a table under the stairs, out of everybody’s traffic, and spread the form out on it.",
+  "source": "neighbourhood/19/5/lost-pet/reader#15.0"
+ },
+ {
+  "id": "sit-1097",
+  "key": "staging|report|club|none|high|none|none|none|first",
+  "text": "The club had gone quiet except for glasses being stacked somewhere. I took a table by the wall and got out the form.",
+  "source": "neighbourhood/40/5/murder/wanderer#16.0"
+ },
+ {
+  "id": "sit-1073",
+  "key": "staging|report|club|none|low|none|narrows|none|first",
+  "text": "I sat down with the form, and before I wrote a word I went over the night once more, slowly, from the top.",
+  "source": "dealt/28/0/lost-item/wanderer#12.0"
+ },
+ {
+  "id": "sit-1105",
+  "key": "staging|report|club|none|low|none|narrows|none|first",
+  "text": "I laid the form face down on the table and thought it through first. You don’t put a thing in writing until you’ve walked it twice.",
+  "source": "neighbourhood/39/0/murder/oracle#10.0"
+ },
+ {
+  "id": "sit-1058",
+  "key": "staging|report|club|none|low|none|none|none|first",
+  "text": "Somebody had left a chair upturned on a table. I set it on its feet, sat in it, and laid the form where the ashtray had been.",
+  "source": "neighbourhood/24/1/murder/oracle#9.0"
+ },
+ {
+  "id": "sit-1090",
+  "key": "staging|report|club|none|low|none|none|none|first",
+  "text": "The smoke still hung under the low ceiling, and I sat down in the thick of it with the form and my pencil.",
+  "source": "dealt/13/1/lost-item/oracle#9.0"
+ },
+ {
+  "id": "sit-1060",
+  "key": "staging|report|club|none|mid|none|none|none|first",
+  "text": "I took the table farthest from the door, put my hat on the other chair, and smoothed the form out under the lamp.",
+  "source": "dealt/3/3/lost-pet/wanderer#14.0"
+ },
+ {
+  "id": "sit-1092",
+  "key": "staging|report|club|none|mid|none|none|none|first",
+  "text": "I found a table that didn’t rock, which in a club is a discovery in itself, and sat down to the form.",
+  "joke": true,
+  "source": "dealt/40/2/lost-item/oracle#13.0"
+ },
+ {
+  "id": "sit-1044",
+  "key": "staging|report|flat|none|high|none|none|none|first",
+  "text": "I sat at the corner of somebody else’s kitchen table with the form, and tried hard not to make myself at home.",
+  "source": "dealt/15/5/lost-pet/oracle#14.0"
+ },
+ {
+  "id": "sit-1076",
+  "key": "staging|report|flat|none|high|none|none|none|first",
+  "text": "I made a space among the cups on the table and laid out the form.",
+  "source": "neighbourhood/9/4/lost-pet/oracle#14.0"
+ },
+ {
+  "id": "sit-1106",
+  "key": "staging|report|flat|none|high|none|none|none|first",
+  "text": "I kept my coat on, sat on the edge of a hard chair and got the form out.",
+  "source": "neighbourhood/22/5/murder/wanderer#16.0"
+ },
+ {
+  "id": "sit-1066",
+  "key": "staging|report|restaurant|none|high|none|none|none|first",
+  "text": "I took a table by the window and asked for coffee, and wrote nothing at all until it came.",
+  "source": "neighbourhood/37/4/lost-pet/wanderer#16.0"
+ },
+ {
+  "id": "sit-1098",
+  "key": "staging|report|restaurant|none|high|none|none|none|first",
+  "text": "The chairs were going up on the tables around me. I kept mine down and got out the form.",
+  "source": "dealt/33/4/lost-pet/wanderer#16.0"
+ },
+ {
+  "id": "sit-1071",
+  "key": "staging|report|restaurant|none|low|none|narrows|none|first",
+  "text": "I sat over a cold cup with the form beside it, and took the night apart once more before I put anything down.",
+  "source": "neighbourhood/34/0/lost-item/oracle#9.0"
+ },
+ {
+  "id": "sit-1103",
+  "key": "staging|report|restaurant|none|low|none|narrows|none|first",
+  "text": "I asked for a clean table and nothing on it, and sat there going over the night in order before I wrote.",
+  "source": "dealt/20/0/lost-pet/oracle#9.0"
+ },
+ {
+  "id": "sit-1050",
+  "key": "staging|report|restaurant|none|low|none|none|none|first",
+  "text": "I let the waiter clear the table and then spread the form across the whole of it, which the waiter took personally.",
+  "joke": true,
+  "source": "dealt/2/0/lost-pet/wanderer#12.0"
+ },
+ {
+  "id": "sit-1082",
+  "key": "staging|report|restaurant|none|low|none|none|none|first",
+  "text": "Behind the swing door the kitchen was scraping its pans. I sat near it with the form, at a table nobody would want.",
+  "source": "neighbourhood/23/0/lost-pet/reader#12.0"
+ },
+ {
+  "id": "sit-1112",
+  "key": "staging|report|restaurant|none|low|none|none|none|first",
+  "text": "I ordered a bowl of soup to be decent about the table, and wrote around it.",
+  "source": "neighbourhood/15/0/murder/oracle#10.0"
+ },
+ {
+  "id": "sit-1053",
+  "key": "staging|report|restaurant|none|mid|none|none|none|first",
+  "text": "I took the table nearest the coffee urn, for the warmth, and set the form down beside the cruet.",
+  "source": "neighbourhood/28/3/murder/reader#15.0"
+ },
+ {
+  "id": "sit-1085",
+  "key": "staging|report|restaurant|none|mid|none|none|none|first",
+  "text": "A waiter brought a pot of coffee without being asked. I chose to read that as a vote of confidence and got out the form.",
+  "source": "neighbourhood/17/2/lost-pet/oracle#14.0"
+ },
+ {
+  "id": "sit-1115",
+  "key": "staging|report|restaurant|none|mid|none|none|none|first",
+  "text": "I sat down at a table still laid for somebody’s supper, moved the place setting to one side, and made room for the form.",
+  "source": "dealt/30/3/murder/oracle#14.0"
+ },
+ {
+  "id": "sit-1054",
+  "key": "staging|report|rooming|none|high|none|none|none|first",
+  "text": "The landlady let me have the kitchen table, on condition I didn’t smoke at it. I got out the form and didn’t.",
+  "source": "dealt/12/5/murder/wanderer#16.0"
+ },
+ {
+  "id": "sit-1086",
+  "key": "staging|report|rooming|none|high|none|none|none|first",
+  "text": "I sat on the hall chair under the coat hooks and wrote on the form against the crown of my hat.",
+  "source": "dealt/15/5/lost-pet/reader#15.0"
+ },
+ {
+  "id": "sit-1116",
+  "key": "staging|report|rooming|none|high|none|none|none|first",
+  "text": "The parlor was dim and smelled of other people’s suppers. I sat down in it anyway, with the form.",
+  "source": "neighbourhood/25/4/lost-pet/wanderer#16.0"
+ },
+ {
+  "id": "sit-1062",
+  "key": "staging|report|rooming|none|low|none|narrows|none|first",
+  "text": "Under the hall light, with the form on my knee, I went back over the night once more before the pencil touched it.",
+  "source": "neighbourhood/38/0/lost-pet/wanderer#12.0"
+ },
+ {
+  "id": "sit-1094",
+  "key": "staging|report|rooming|none|low|none|narrows|none|first",
+  "text": "I took the form up to the landing, where the light was better, and went through it all again in my head first.",
+  "source": "dealt/36/0/murder/oracle#10.0"
+ },
+ {
+  "id": "sit-1049",
+  "key": "staging|report|rooming|none|low|none|none|none|first",
+  "text": "Somebody coughed behind a door upstairs and then thought better of it. I sat on the stairs and got out the form.",
+  "source": "neighbourhood/2/1/lost-pet/oracle#9.0"
+ },
+ {
+  "id": "sit-1081",
+  "key": "staging|report|rooming|none|low|none|none|none|first",
+  "text": "I found a step halfway up the stairs that didn’t creak, and sat on it with the form.",
+  "source": "neighbourhood/12/0/murder/reader#13.0"
+ },
+ {
+  "id": "sit-1111",
+  "key": "staging|report|rooming|none|low|none|none|none|first",
+  "text": "The landlady brought me a cup of tea I hadn’t asked for and watched until I drank some. Then I got out the form.",
+  "source": "dealt/8/0/lost-pet/reader#12.0"
+ },
+ {
+  "id": "sit-1048",
+  "key": "staging|report|rooming|none|mid|none|none|none|first",
+  "text": "I sat on the bottom step with the form on a borrowed tray, and the house went on creaking quietly over my head.",
+  "source": "neighbourhood/38/2/lost-pet/wanderer#15.0"
+ },
+ {
+  "id": "sit-1080",
+  "key": "staging|report|rooming|none|mid|none|none|none|first",
+  "text": "I asked the landlady for a table and was given a corner of one, between the bread box and the cat.",
+  "joke": true,
+  "source": "neighbourhood/5/2/lost-pet/reader#16.0"
+ },
+ {
+  "id": "sit-1110",
+  "key": "staging|report|rooming|none|mid|none|none|none|first",
+  "text": "The hall had a hard chair and a poor light, and both of them kept me awake. I did the form out there.",
+  "source": "neighbourhood/29/2/lost-pet/wanderer#15.0"
+ },
+ {
+  "id": "sit-1057",
+  "key": "staging|report|scene-lost|none|high|none|none|none|first",
+  "text": "I sat down in the room {thing} had gone from and wrote on the form against the arm of the chair.",
+  "source": "neighbourhood/39/5/lost-pet/wanderer#15.0"
+ },
+ {
+  "id": "sit-1089",
+  "key": "staging|report|scene-lost|none|high|none|none|none|first",
+  "text": "I sat at the table in {place} and wrote it out, with the lamp pulled close and my hat on the floor.",
+  "source": "neighbourhood/3/5/lost-pet/wanderer#15.0"
+ },
+ {
+  "id": "sit-1075",
+  "key": "staging|report|scene-lost|none|low|none|narrows|none|first",
+  "text": "With the form in my lap, I looked a long while at the empty place in the flat before I went over it all again.",
+  "source": "dealt/38/0/lost-pet/wanderer#12.0"
+ },
+ {
+  "id": "sit-1063",
+  "key": "staging|report|scene-lost|none|low|none|none|none|first",
+  "text": "It seemed right to do the paperwork where the trouble started, so I sat down in the front room and got on with it.",
+  "source": "dealt/22/1/lost-item/wanderer#11.0"
+ },
+ {
+  "id": "sit-1095",
+  "key": "staging|report|scene-lost|none|low|none|none|none|first",
+  "text": "The flat was quiet the way a place is quiet with something missing from it. I sat down in it with the form.",
+  "source": "neighbourhood/8/1/lost-pet/wanderer#11.0"
+ },
+ {
+  "id": "sit-1056",
+  "key": "staging|report|scene-lost|none|mid|none|none|none|first",
+  "text": "I took the chair by the door, so I could see the whole room while I wrote, and got out the form.",
+  "source": "neighbourhood/37/3/lost-pet/reader#15.0"
+ },
+ {
+  "id": "sit-1088",
+  "key": "staging|report|scene-lost|none|mid|none|none|none|first",
+  "text": "I sat at the kitchen table with my hat beside the form and a glass of water I’d run for myself.",
+  "source": "neighbourhood/27/3/lost-pet/wanderer#14.0"
+ },
+ {
+  "id": "sit-1118",
+  "key": "staging|report|scene-lost|none|mid|none|none|none|first",
+  "text": "Before I wrote a word, I looked round the flat once more, as if {thing} might have turned up while I was out.",
+  "source": "neighbourhood/37/2/lost-item/wanderer#16.0"
+ },
+ {
+  "id": "sit-1061",
+  "key": "staging|report|scene-murder|none|high|none|none|none|first",
+  "text": "I didn’t sit down in that room. I took the form out to the hall and wrote it there, standing.",
+  "source": "dealt/38/5/murder/reader#16.0"
+ },
+ {
+  "id": "sit-1093",
+  "key": "staging|report|scene-murder|none|high|none|none|none|first",
+  "text": "I did the form at the kitchen table, with my back to the room where it had happened.",
+  "source": "neighbourhood/36/4/murder/wanderer#16.0"
+ },
+ {
+  "id": "sit-1074",
+  "key": "staging|report|scene-murder|none|low|none|narrows|none|first",
+  "text": "I sat by the door with the form on my knee and let the quiet of the place help me count the night over.",
+  "source": "neighbourhood/27/0/murder/wanderer#13.0"
+ },
+ {
+  "id": "sit-1070",
+  "key": "staging|report|scene-murder|none|low|none|none|none|first",
+  "text": "I took my hat off, because of where I was, and sat down with the form on a hard chair in the hall.",
+  "source": "dealt/30/0/murder/wanderer#13.0"
+ },
+ {
+  "id": "sit-1102",
+  "key": "staging|report|scene-murder|none|low|none|none|none|first",
+  "text": "I found a chair by the window, away from where it had happened, and wrote slowly, without looking up much.",
+  "source": "neighbourhood/30/0/murder/wanderer#13.0"
+ },
+ {
+  "id": "sit-1067",
+  "key": "staging|report|scene-murder|none|mid|none|none|none|first",
+  "text": "I sat down on a kitchen chair with my hat in my lap, turned the lamp low, and opened out the form.",
+  "source": "neighbourhood/18/3/murder/reader#16.0"
+ },
+ {
+  "id": "sit-1099",
+  "key": "staging|report|scene-murder|none|mid|none|none|none|first",
+  "text": "The place was quiet, and I left it that way. I sat down with the form and wrote slowly.",
+  "source": "neighbourhood/30/2/murder/reader#16.0"
+ },
+ {
+  "id": "sit-1059",
+  "key": "staging|report|theatre|none|high|none|none|none|first",
+  "text": "I sat in the back row with the form on the seat in front, folded down to make a desk.",
+  "source": "dealt/22/5/murder/reader#16.0"
+ },
+ {
+  "id": "sit-1091",
+  "key": "staging|report|theatre|none|high|none|none|none|first",
+  "text": "The house lights were half down. I found a seat under one that still worked and got out the form.",
+  "source": "dealt/29/4/lost-pet/reader#16.0"
+ },
+ {
+  "id": "sit-1068",
+  "key": "staging|report|theatre|none|low|none|narrows|none|first",
+  "text": "I sat in the empty rows with the form and ran the night through once more, scene by scene, before I wrote.",
+  "source": "neighbourhood/26/0/lost-pet/oracle#9.0"
+ },
+ {
+  "id": "sit-1100",
+  "key": "staging|report|theatre|none|low|none|narrows|none|first",
+  "text": "I took a seat on the aisle, out of everybody’s way, and went over the night before I let myself write down any of it.",
+  "source": "dealt/2/0/lost-pet/oracle#9.0"
+ },
+ {
+  "id": "sit-1047",
+  "key": "staging|report|theatre|none|low|none|none|none|first",
+  "text": "The usher lent me a seat and a little of the torch, and I got out the form.",
+  "source": "dealt/4/1/lost-item/reader#11.0"
+ },
+ {
+  "id": "sit-1079",
+  "key": "staging|report|theatre|none|low|none|none|none|first",
+  "text": "I sat down in the lobby on a bench meant for people waiting to go in, and got out the form.",
+  "source": "dealt/36/1/murder/reader#11.0"
+ },
+ {
+  "id": "sit-1109",
+  "key": "staging|report|theatre|none|low|none|none|none|first",
+  "text": "I sat in an empty row with my hat on the next seat and the form on my knee, playing to a house of nobody.",
+  "joke": true,
+  "source": "neighbourhood/38/1/lost-pet/reader#11.0"
+ },
+ {
+  "id": "sit-1052",
+  "key": "staging|report|theatre|none|mid|none|none|none|first",
+  "text": "There was a ticket stub on the floor by my shoe. I tucked it in my hatband for luck and got out the form.",
+  "source": "neighbourhood/36/2/murder/wanderer#16.0"
+ },
+ {
+  "id": "sit-1084",
+  "key": "staging|report|theatre|none|mid|none|none|none|first",
+  "text": "I took a seat behind a pillar, which nobody ever wants, and spread the form across my knees.",
+  "source": "dealt/5/3/lost-pet/reader#14.0"
+ },
+ {
+  "id": "sit-1114",
+  "key": "staging|report|theatre|none|mid|none|none|none|first",
+  "text": "I sat a few rows back from the bare stage, with the form in my lap and the work light for company.",
+  "source": "neighbourhood/38/3/murder/wanderer#15.0"
+ },
+ {
+  "id": "sit-1046",
+  "key": "staging|report|unwatched|none|high|none|none|none|first",
+  "text": "The light in the corner was bad and the quiet was good, so that was where I took the form.",
+  "source": "neighbourhood/30/4/murder/oracle#14.0"
+ },
+ {
+  "id": "sit-1078",
+  "key": "staging|report|unwatched|none|high|none|none|none|first",
+  "text": "I pulled up whatever was nearest to sit on and got the form out under the one light.",
+  "source": "dealt/11/4/lost-pet/oracle#16.0"
+ },
+ {
+  "id": "sit-1108",
+  "key": "staging|report|unwatched|none|high|none|none|none|first",
+  "text": "The room was empty, which suited the paperwork. I sat down and spread the form out in front of me.",
+  "source": "neighbourhood/19/4/lost-pet/reader#16.0"
+ },
+ {
+  "id": "sit-1069",
+  "key": "staging|report|unwatched|none|low|none|none|none|first",
+  "text": "At the empty table, with the form in front of me, I listened to the room being quiet. Rooms like that only manage it at the very end of the night.",
+  "source": "dealt/33/1/murder/wanderer#11.0"
+ },
+ {
+  "id": "sit-1101",
+  "key": "staging|report|unwatched|none|low|none|none|none|first",
+  "text": "There was a bulb on a cord and a chair under it. I took both and got out the form.",
+  "source": "neighbourhood/40/1/lost-item/wanderer#11.0"
+ },
+ {
+  "id": "sit-1045",
+  "key": "staging|report|unwatched|none|mid|none|none|none|first",
+  "text": "With nobody on the door to send me off, I made myself at home with the form and a stub of pencil.",
+  "source": "neighbourhood/24/3/murder/oracle#13.0"
+ },
+ {
+  "id": "sit-1077",
+  "key": "staging|report|unwatched|none|mid|none|none|none|first",
+  "text": "I found a flat surface and did the form standing up. It keeps the answers short.",
+  "source": "neighbourhood/20/2/lost-pet/wanderer#15.0"
+ },
+ {
+  "id": "sit-1107",
+  "key": "staging|report|unwatched|none|mid|none|none|none|first",
+  "text": "Somebody had left a chair facing the wall. I turned it round, sat in it, and opened out the form.",
+  "source": "neighbourhood/25/2/lost-item/wanderer#15.0"
+ },
+ {
+  "id": "sit-1072",
+  "key": "staging|report|work|none|low|none|none|none|first",
+  "text": "I sat at the end of a work counter, out of the way of anybody still on, and laid the form flat.",
+  "source": "dealt/27/1/murder/wanderer#11.0"
+ },
+ {
+  "id": "sit-1104",
+  "key": "staging|report|work|none|low|none|none|none|first",
+  "text": "The place kept working around me, the way some places do all night. I found a stool out of the way and got out the form.",
+  "source": "dealt/27/1/murder/reader#11.0"
+ },
+ {
+  "id": "sit-0893",
+  "key": "staging|search|scene-lost|none|high|none|new|none|first",
+  "text": "I stood in the middle of the flat and turned slowly, once round, before I touched anything.",
+  "source": "dealt/9/4/lost-pet/oracle#3.0"
+ },
+ {
+  "id": "sit-0905",
+  "key": "staging|search|scene-lost|none|high|none|new|none|first",
+  "text": "I went round the walls of the flat, then the windows, then the door.",
+  "source": "neighbourhood/23/5/lost-pet/oracle#3.0"
+ },
+ {
+  "id": "sit-0917",
+  "key": "staging|search|scene-lost|none|high|none|new|none|first",
+  "text": "I took the flat a room at a time, and didn’t leave one until I’d seen every corner of it.",
+  "source": "dealt/19/5/lost-pet/reader#3.0"
+ },
+ {
+  "id": "sit-0929",
+  "key": "staging|search|scene-lost|none|high|none|new|none|first",
+  "text": "I let the room settle round me, and then I started looking.",
+  "source": "dealt/13/5/lost-pet/reader#3.0"
+ },
+ {
+  "id": "sit-0941",
+  "key": "staging|search|scene-lost|none|high|none|new|none|first",
+  "text": "Whatever had been moved, and whatever hadn’t: I went over the flat with an eye for both.",
+  "source": "dealt/39/5/lost-pet/oracle#3.0"
+ },
+ {
+  "id": "sit-0953",
+  "key": "staging|search|scene-lost|none|high|none|new|none|first",
+  "text": "I started with the lock and the windows, since nothing leaves a flat any other way, and then went over the rest.",
+  "source": "dealt/33/5/lost-pet/oracle#3.0"
+ },
+ {
+  "id": "sit-0965",
+  "key": "staging|search|scene-lost|none|high|none|new|none|first",
+  "text": "A missing thing leaves a hole in a room. I went looking for the edges of it.",
+  "source": "neighbourhood/9/4/lost-pet/wanderer#14.0"
+ },
+ {
+  "id": "sit-0890",
+  "key": "staging|search|scene-lost|none|low|none|new|none|first",
+  "text": "I went over the flat slowly, touching nothing at first, so I wouldn’t move anything I might want to look at twice.",
+  "source": "neighbourhood/1/1/lost-item/wanderer#8.0"
+ },
+ {
+  "id": "sit-0902",
+  "key": "staging|search|scene-lost|none|low|none|new|none|first",
+  "text": "I got down on one knee by the door, which my knee had views on, and worked outward from there.",
+  "joke": true,
+  "source": "neighbourhood/22/1/lost-item/reader#3.0"
+ },
+ {
+  "id": "sit-0914",
+  "key": "staging|search|scene-lost|none|low|none|new|none|first",
+  "text": "I put on every light in the flat. A place gives up more when it has no dark corners to keep things in.",
+  "source": "neighbourhood/29/1/lost-pet/reader#3.0"
+ },
+ {
+  "id": "sit-0926",
+  "key": "staging|search|scene-lost|none|low|none|new|none|first",
+  "text": "I went round the walls first and then across the middle, the way you’d mow a lawn, if anybody on this side of town had one.",
+  "joke": true,
+  "source": "dealt/2/1/lost-pet/reader#3.0"
+ },
+ {
+  "id": "sit-0938",
+  "key": "staging|search|scene-lost|none|low|none|new|none|first",
+  "text": "I didn’t open anything at first. I stood and looked until I knew where everything in the room belonged.",
+  "source": "neighbourhood/14/1/lost-pet/reader#3.0"
+ },
+ {
+  "id": "sit-0950",
+  "key": "staging|search|scene-lost|none|low|none|new|none|first",
+  "text": "I went over the place the way a thief would have, looking for the quickest way in and the easiest thing to carry.",
+  "source": "neighbourhood/13/1/lost-item/reader#3.0"
+ },
+ {
+  "id": "sit-0962",
+  "key": "staging|search|scene-lost|none|low|none|new|none|first",
+  "text": "I walked the flat from end to end with my notebook shut. The notebook comes later.",
+  "source": "neighbourhood/38/0/lost-pet/reader#3.0"
+ },
+ {
+  "id": "sit-0891",
+  "key": "staging|search|scene-lost|none|mid|none|new|none|first",
+  "text": "I checked the door first, the lock and the frame and the hinges, and then turned round to face the room.",
+  "source": "neighbourhood/25/3/lost-pet/reader#3.0"
+ },
+ {
+  "id": "sit-0903",
+  "key": "staging|search|scene-lost|none|mid|none|new|none|first",
+  "text": "I let my eyes get used to the room before I moved. Then I went over it, shelf by shelf and chair by chair.",
+  "source": "dealt/32/2/lost-pet/oracle#3.0"
+ },
+ {
+  "id": "sit-0915",
+  "key": "staging|search|scene-lost|none|mid|none|new|none|first",
+  "text": "I went over the floor before the furniture. Floors don’t get tidied as often as people think.",
+  "source": "dealt/1/3/lost-pet/oracle#3.0"
+ },
+ {
+  "id": "sit-0927",
+  "key": "staging|search|scene-lost|none|mid|none|new|none|first",
+  "text": "I looked hardest at the places where something ought to have been, and then at everything else.",
+  "source": "neighbourhood/32/2/lost-pet/wanderer#4.0"
+ },
+ {
+  "id": "sit-0939",
+  "key": "staging|search|scene-lost|none|mid|none|new|none|first",
+  "text": "I went through the flat the way a landlord goes through one when you’re leaving, slowly and expecting the worst.",
+  "joke": true,
+  "source": "dealt/40/2/lost-item/reader#3.0"
+ },
+ {
+  "id": "sit-0951",
+  "key": "staging|search|scene-lost|none|mid|none|new|none|first",
+  "text": "I opened nothing and moved nothing until I had the whole place by heart from the doorway.",
+  "source": "neighbourhood/26/2/lost-pet/reader#3.0"
+ },
+ {
+  "id": "sit-0963",
+  "key": "staging|search|scene-lost|none|mid|none|new|none|first",
+  "text": "I went round the flat once as a stranger would see it, and once as the person who lived in it.",
+  "source": "neighbourhood/1/3/lost-pet/wanderer#10.0"
+ },
+ {
+  "id": "sit-0897",
+  "key": "staging|search|scene-murder|careful|high|none|new|none|first",
+  "text": "I took my hat off and stood inside the door until I had the whole room in my head, and only then began to look closely.",
+  "source": "neighbourhood/20/4/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0909",
+  "key": "staging|search|scene-murder|careful|high|none|new|none|first",
+  "text": "I went over the place slowly, a yard at a time, the way you’d read a letter in a hand you didn’t know.",
+  "source": "neighbourhood/8/5/murder/wanderer#8.0"
+ },
+ {
+  "id": "sit-0921",
+  "key": "staging|search|scene-murder|careful|high|none|new|none|first",
+  "text": "I touched nothing for the first while. I only looked, from the doorway, at a room that had been {their} own.",
+  "source": "neighbourhood/32/4/murder/oracle#4.1"
+ },
+ {
+  "id": "sit-0933",
+  "key": "staging|search|scene-murder|careful|high|none|new|none|first",
+  "text": "I started with the corners, where nobody tidies, and worked in toward the middle of the room.",
+  "source": "dealt/10/5/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0945",
+  "key": "staging|search|scene-murder|careful|high|none|new|none|first",
+  "text": "I left the lamp where it stood and went over the room in its light, so I’d see the place the way {they} last saw it.",
+  "source": "neighbourhood/12/5/murder/oracle#3.0"
+ },
+ {
+  "id": "sit-0957",
+  "key": "staging|search|scene-murder|careful|high|none|new|none|first",
+  "text": "I went round the room once with my hands in my pockets, and once more with them out.",
+  "source": "neighbourhood/28/5/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0896",
+  "key": "staging|search|scene-murder|careful|low|none|new|none|first",
+  "text": "The door first, then the walls, then the floor and the furniture and whatever was on it or in it. I went slowly.",
+  "source": "dealt/18/0/murder/wanderer#9.0"
+ },
+ {
+  "id": "sit-0908",
+  "key": "staging|search|scene-murder|careful|low|none|new|none|first",
+  "text": "I put the overhead light on, which is no kindness to a room, and went over everything it showed me.",
+  "source": "neighbourhood/36/1/murder/oracle#3.0"
+ },
+ {
+  "id": "sit-0920",
+  "key": "staging|search|scene-murder|careful|low|none|new|none|first",
+  "text": "Nothing went into the notebook until I’d seen the whole of the room, from the door inward.",
+  "source": "dealt/30/1/murder/wanderer#5.0"
+ },
+ {
+  "id": "sit-0932",
+  "key": "staging|search|scene-murder|careful|low|none|new|none|first",
+  "text": "There’s a way to look at a room where somebody died: slowly, as if it might still be lived in. I looked at it that way.",
+  "source": "neighbourhood/3/0/murder/oracle#3.0"
+ },
+ {
+  "id": "sit-0944",
+  "key": "staging|search|scene-murder|careful|low|none|new|none|first",
+  "text": "I went through {their} things carefully, the way you’d want a stranger to go through yours.",
+  "source": "dealt/18/0/murder/reader#4.1"
+ },
+ {
+  "id": "sit-0956",
+  "key": "staging|search|scene-murder|careful|low|none|new|none|first",
+  "text": "I worked through the place a piece at a time, and put each thing back exactly where it had been before I went on.",
+  "source": "dealt/27/0/murder/wanderer#9.1"
+ },
+ {
+  "id": "sit-0968",
+  "key": "staging|search|scene-murder|careful|low|none|new|none|first",
+  "text": "I stood still long enough to hear the room. Then I went over it high and low, the drawers and the shelves and the floor.",
+  "source": "dealt/9/0/murder/reader#7.0"
+ },
+ {
+  "id": "sit-0898",
+  "key": "staging|search|scene-murder|careful|mid|none|new|none|first",
+  "text": "I put my handkerchief over my fingers before I touched anything, and went over the room one wall at a time.",
+  "source": "dealt/18/3/murder/reader#4.1"
+ },
+ {
+  "id": "sit-0910",
+  "key": "staging|search|scene-murder|careful|mid|none|new|none|first",
+  "text": "I went over it the long way, every surface and every drawer, with the patience the place deserved.",
+  "source": "dealt/18/3/murder/oracle#4.1"
+ },
+ {
+  "id": "sit-0922",
+  "key": "staging|search|scene-murder|careful|mid|none|new|none|first",
+  "text": "Before I touched anything, I looked at the room the way {they} would have seen it from the door, coming home.",
+  "source": "dealt/8/3/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0934",
+  "key": "staging|search|scene-murder|careful|mid|none|new|none|first",
+  "text": "I went over the place slowly, and then again, because the first time round you only see what you expect.",
+  "source": "dealt/16/3/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0946",
+  "key": "staging|search|scene-murder|careful|mid|none|new|none|first",
+  "text": "I set my hat down by the door, out of the way, and took the room a section at a time, top to bottom.",
+  "source": "neighbourhood/18/2/murder/reader#4.1"
+ },
+ {
+  "id": "sit-0958",
+  "key": "staging|search|scene-murder|careful|mid|none|new|none|first",
+  "text": "I let my eyes go round the room once before my hands did, and then I went in close.",
+  "source": "neighbourhood/15/2/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0889",
+  "key": "staging|search|scene-murder|plain|high|none|new|none|first",
+  "text": "I gave the room my time, all of it, and every part of the room got some.",
+  "source": "dealt/2/4/murder/oracle#3.0"
+ },
+ {
+  "id": "sit-0901",
+  "key": "staging|search|scene-murder|plain|high|none|new|none|first",
+  "text": "I looked round the room {they} had lived in, and then I looked closer.",
+  "source": "neighbourhood/20/5/murder/oracle#4.1"
+ },
+ {
+  "id": "sit-0913",
+  "key": "staging|search|scene-murder|plain|high|none|new|none|first",
+  "text": "I turned the light up and went over the place, beginning where I stood.",
+  "source": "neighbourhood/12/4/murder/oracle#3.0"
+ },
+ {
+  "id": "sit-0925",
+  "key": "staging|search|scene-murder|plain|high|none|new|none|first",
+  "text": "I worked my way round the room the long way, and didn’t skip the dull parts.",
+  "source": "neighbourhood/28/4/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0937",
+  "key": "staging|search|scene-murder|plain|high|none|new|none|first",
+  "text": "I went through the place the plain way, one thing after another.",
+  "source": "neighbourhood/32/5/murder/reader#4.1"
+ },
+ {
+  "id": "sit-0949",
+  "key": "staging|search|scene-murder|plain|high|none|new|none|first",
+  "text": "It wasn’t a big place, and I went over every bit of it.",
+  "source": "neighbourhood/10/4/murder/oracle#4.1"
+ },
+ {
+  "id": "sit-0961",
+  "key": "staging|search|scene-murder|plain|high|none|new|none|first",
+  "text": "I took off my hat and began with what was in front of me.",
+  "source": "neighbourhood/24/5/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0894",
+  "key": "staging|search|scene-murder|plain|low|none|new|none|first",
+  "text": "I went over the room the way I go over any room, and tried not to think about whose it was until I’d finished.",
+  "source": "neighbourhood/33/1/murder/oracle#4.1"
+ },
+ {
+  "id": "sit-0906",
+  "key": "staging|search|scene-murder|plain|low|none|new|none|first",
+  "text": "It was an ordinary room, which made it worse. I went over it the ordinary way, end to end and back.",
+  "source": "neighbourhood/18/1/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0918",
+  "key": "staging|search|scene-murder|plain|low|none|new|none|first",
+  "text": "I went round once just looking, and the second time I opened things.",
+  "source": "neighbourhood/18/0/murder/oracle#4.1"
+ },
+ {
+  "id": "sit-0930",
+  "key": "staging|search|scene-murder|plain|low|none|new|none|first",
+  "text": "I went through the room drawer by drawer and shelf by shelf, and then I got down and looked at the floor.",
+  "source": "dealt/36/1/murder/reader#9.0"
+ },
+ {
+  "id": "sit-0942",
+  "key": "staging|search|scene-murder|plain|low|none|new|none|first",
+  "text": "{Their} coat was still on the hook by the door. I left it there and went over the rest of the room.",
+  "source": "dealt/36/0/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0954",
+  "key": "staging|search|scene-murder|plain|low|none|new|none|first",
+  "text": "I drew the curtain back a little for the light from the street, and went over the room by it.",
+  "source": "neighbourhood/21/0/murder/wanderer#3.0"
+ },
+ {
+  "id": "sit-0966",
+  "key": "staging|search|scene-murder|plain|low|none|new|none|first",
+  "text": "I went over everything at eye level first, then everything lower, then got down on my knees for the rest.",
+  "source": "dealt/24/1/murder/oracle#3.0"
+ },
+ {
+  "id": "sit-0892",
+  "key": "staging|search|scene-murder|plain|mid|none|new|none|first",
+  "text": "There was a clock somewhere in the room, still going. I went over the place to the sound of it.",
+  "source": "neighbourhood/2/3/murder/oracle#3.0"
+ },
+ {
+  "id": "sit-0904",
+  "key": "staging|search|scene-murder|plain|mid|none|new|none|first",
+  "text": "I went round the room once by the walls and once through the middle, and kept my hands to myself the first time.",
+  "source": "neighbourhood/36/2/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0916",
+  "key": "staging|search|scene-murder|plain|mid|none|new|none|first",
+  "text": "I moved through the room the way you move through somebody else’s house, quietly, and looked at everything.",
+  "source": "neighbourhood/28/3/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0928",
+  "key": "staging|search|scene-murder|plain|mid|none|new|none|first",
+  "text": "The room still looked lived in, which is the hardest kind to search. I went over it slowly.",
+  "source": "dealt/4/3/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0940",
+  "key": "staging|search|scene-murder|plain|mid|none|new|none|first",
+  "text": "I took the room in order: the door, the chair, the table, the shelves, the floor. It’s dull work, and it’s the work.",
+  "source": "neighbourhood/21/2/murder/oracle#4.1"
+ },
+ {
+  "id": "sit-0952",
+  "key": "staging|search|scene-murder|plain|mid|none|new|none|first",
+  "text": "I didn’t sit down. I went over the room on my feet, a piece at a time, from end to end.",
+  "source": "neighbourhood/30/2/murder/oracle#4.1"
+ },
+ {
+  "id": "sit-0964",
+  "key": "staging|search|scene-murder|plain|mid|none|new|none|first",
+  "text": "I looked at the room for a long minute before I went into it. Then I went in and looked at everything.",
+  "source": "neighbourhood/6/3/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0899",
+  "key": "staging|search|scene-murder|terse|high|none|new|none|first",
+  "text": "Slowly, saying nothing, I went over the place.",
+  "source": "dealt/6/4/murder/wanderer#6.1"
+ },
+ {
+  "id": "sit-0911",
+  "key": "staging|search|scene-murder|terse|high|none|new|none|first",
+  "text": "I started at the door and missed nothing I could help.",
+  "source": "neighbourhood/36/4/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0923",
+  "key": "staging|search|scene-murder|terse|high|none|new|none|first",
+  "text": "I went over it once for the shape of things, and once for the things.",
+  "source": "neighbourhood/34/4/murder/oracle#4.1"
+ },
+ {
+  "id": "sit-0935",
+  "key": "staging|search|scene-murder|terse|high|none|new|none|first",
+  "text": "I started low, along the baseboards, and worked my way up the walls.",
+  "source": "dealt/26/4/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0947",
+  "key": "staging|search|scene-murder|terse|high|none|new|none|first",
+  "text": "I went through all of it, and touched as little as I could.",
+  "source": "neighbourhood/22/4/murder/reader#4.1"
+ },
+ {
+  "id": "sit-0959",
+  "key": "staging|search|scene-murder|terse|high|none|new|none|first",
+  "text": "I gave the room a long look before I gave it my hands.",
+  "source": "neighbourhood/4/4/murder/wanderer#6.0"
+ },
+ {
+  "id": "sit-0900",
+  "key": "staging|search|scene-murder|terse|low|none|new|none|first",
+  "text": "I searched it the way you search your own pockets for a key, everywhere once and the likely places twice.",
+  "source": "dealt/15/0/murder/reader#9.0"
+ },
+ {
+  "id": "sit-0912",
+  "key": "staging|search|scene-murder|terse|low|none|new|none|first",
+  "text": "I didn’t hurry. A room like that has already waited, and it can wait for me.",
+  "source": "dealt/3/0/murder/wanderer#10.0"
+ },
+ {
+  "id": "sit-0924",
+  "key": "staging|search|scene-murder|terse|low|none|new|none|first",
+  "text": "The room was still and close. I went over it a corner at a time.",
+  "source": "neighbourhood/21/1/murder/oracle#3.0"
+ },
+ {
+  "id": "sit-0936",
+  "key": "staging|search|scene-murder|terse|low|none|new|none|first",
+  "text": "Slowly and in order, I went to work on it, the way the job is meant to be done and seldom is.",
+  "source": "dealt/33/0/murder/reader#3.0"
+ },
+ {
+  "id": "sit-0948",
+  "key": "staging|search|scene-murder|terse|low|none|new|none|first",
+  "text": "I went round the walls first, then the middle, then the floor on my knees.",
+  "source": "dealt/3/0/murder/oracle#3.0"
+ },
+ {
+  "id": "sit-0960",
+  "key": "staging|search|scene-murder|terse|low|none|new|none|first",
+  "text": "Every inch of the room got a look, as if I’d be asked about each one later.",
+  "source": "dealt/33/0/murder/wanderer#10.0"
+ },
+ {
+  "id": "sit-0895",
+  "key": "staging|search|scene-murder|terse|mid|none|new|none|first",
+  "text": "I didn’t sit, and I didn’t hurry. I went over the place.",
+  "source": "dealt/2/3/murder/reader#4.1"
+ },
+ {
+  "id": "sit-0907",
+  "key": "staging|search|scene-murder|terse|mid|none|new|none|first",
+  "text": "One look round from where I stood, and then I got down to it.",
+  "source": "neighbourhood/39/2/murder/oracle#3.0"
+ },
+ {
+  "id": "sit-0919",
+  "key": "staging|search|scene-murder|terse|mid|none|new|none|first",
+  "text": "I worked from the door to the window, and back again by a different way.",
+  "source": "neighbourhood/26/3/murder/oracle#3.0"
+ },
+ {
+  "id": "sit-0931",
+  "key": "staging|search|scene-murder|terse|mid|none|new|none|first",
+  "text": "I kept to the edges of the room at first, and looked.",
+  "source": "dealt/34/3/murder/reader#4.1"
+ },
+ {
+  "id": "sit-0943",
+  "key": "staging|search|scene-murder|terse|mid|none|new|none|first",
+  "text": "With the lamp in my hand, I went over it close, a little at a time.",
+  "source": "dealt/26/3/murder/wanderer#13.0"
+ },
+ {
+  "id": "sit-0955",
+  "key": "staging|search|scene-murder|terse|mid|none|new|none|first",
+  "text": "I took the room slowly, top to bottom, and said nothing to anybody.",
+  "source": "dealt/28/3/murder/reader#4.1"
+ },
+ {
+  "id": "sit-0967",
+  "key": "staging|search|scene-murder|terse|mid|none|new|none|first",
+  "text": "It was a quiet room. I went over it quietly, from the door to the far wall.",
+  "source": "dealt/2/3/murder/oracle#3.0"
+ },
+ {
+  "id": "sit-1843",
+  "key": "staging|turn|bar|none|high|none|narrows|none|first",
+  "text": "I stayed on my stool and let the bar get on without me for a while.",
+  "source": "neighbourhood/20/5/murder/reader#7.13"
+ },
+ {
+  "id": "sit-1861",
+  "key": "staging|turn|bar|none|high|none|narrows|none|first",
+  "text": "I put my elbows on the bar and my chin on my fists, and went back over the hours.",
+  "source": "neighbourhood/10/4/murder/oracle#7.14"
+ },
+ {
+  "id": "sit-1879",
+  "key": "staging|turn|bar|none|high|none|narrows|none|first",
+  "text": "The mirror behind the bar showed me a tired face and a notebook full of evenings. I looked at the notebook.",
+  "source": "neighbourhood/37/5/lost-pet/oracle#10.14"
+ },
+ {
+  "id": "sit-1897",
+  "key": "staging|turn|bar|none|high|none|narrows|none|first",
+  "text": "I hooked a heel on the rail, shut my eyes for a moment, and went back to the beginning of the night.",
+  "source": "neighbourhood/23/4/lost-pet/oracle#7.14"
+ },
+ {
+  "id": "sit-1834",
+  "key": "staging|turn|bar|none|low|none|narrows|none|first",
+  "text": "Down the bar somebody laughed at a joke I’d missed. I let it go by and went back over what I had, hour by hour.",
+  "source": "neighbourhood/19/0/lost-item/reader#6.12"
+ },
+ {
+  "id": "sit-1852",
+  "key": "staging|turn|bar|none|low|none|narrows|none|first",
+  "text": "I moved down to the empty end of the bar, where nobody would talk to me, and laid the evening out in order.",
+  "source": "dealt/7/0/lost-item/oracle#6.13"
+ },
+ {
+  "id": "sit-1870",
+  "key": "staging|turn|bar|none|low|none|narrows|none|first",
+  "text": "I sat still on my stool and set the night out in a row, hour after hour, the way a barman lines up clean glasses.",
+  "source": "dealt/34/0/lost-item/wanderer#5.15"
+ },
+ {
+  "id": "sit-1888",
+  "key": "staging|turn|bar|none|low|none|narrows|none|first",
+  "text": "I didn’t move from the bar. I sat there and put every story I had side by side, to see which edges met.",
+  "source": "neighbourhood/39/1/murder/oracle#8.12"
+ },
+ {
+  "id": "sit-1835",
+  "key": "staging|turn|bar|none|mid|none|narrows|none|first",
+  "text": "The barman left me alone, which is the best thing a barman can do for you. I used it to think.",
+  "source": "dealt/28/3/murder/reader#7.12"
+ },
+ {
+  "id": "sit-1853",
+  "key": "staging|turn|bar|none|mid|none|narrows|none|first",
+  "text": "I took out the notebook and turned back to the first page, and read forward from there as if I’d never seen it.",
+  "source": "dealt/13/2/lost-item/reader#6.11"
+ },
+ {
+  "id": "sit-1871",
+  "key": "staging|turn|bar|none|mid|none|narrows|none|first",
+  "text": "I sat with my back to the bar and my hat tipped forward, and went through it all again from the start.",
+  "source": "neighbourhood/27/3/lost-pet/oracle#8.17"
+ },
+ {
+  "id": "sit-1889",
+  "key": "staging|turn|bar|none|mid|none|narrows|none|first",
+  "text": "Before anything else I wanted a minute alone with the evening. The far end of the bar gave me one.",
+  "source": "dealt/16/3/murder/reader#7.12"
+ },
+ {
+  "id": "sit-1842",
+  "key": "staging|turn|club|none|high|none|narrows|none|first",
+  "text": "I leaned on the wall at the foot of the stairs and counted back through the night.",
+  "source": "dealt/9/5/lost-pet/oracle#7.12"
+ },
+ {
+  "id": "sit-1860",
+  "key": "staging|turn|club|none|high|none|narrows|none|first",
+  "text": "The room went on without me. I sat still in the middle of it and went back over the evening.",
+  "source": "neighbourhood/21/5/lost-pet/reader#6.13"
+ },
+ {
+  "id": "sit-1896",
+  "key": "staging|turn|club|none|high|none|narrows|none|first",
+  "text": "I took a table nobody wanted and sat at it with the notebook shut.",
+  "source": "dealt/20/4/murder/oracle#7.13"
+ },
+ {
+  "id": "sit-1837",
+  "key": "staging|turn|club|none|low|none|narrows|none|first",
+  "text": "There’s no quiet in a club like that, so I made some: a corner table, my back to the room, the notebook open.",
+  "source": "neighbourhood/39/0/murder/reader#7.12"
+ },
+ {
+  "id": "sit-1855",
+  "key": "staging|turn|club|none|low|none|narrows|none|first",
+  "text": "I sat in the corner under the stairs, with feet going over my head, and went through the evening the slow way.",
+  "source": "dealt/8/0/lost-pet/wanderer#5.11"
+ },
+ {
+  "id": "sit-1873",
+  "key": "staging|turn|club|none|low|none|narrows|none|first",
+  "text": "I let the room turn without me and went round the night once more on my own.",
+  "source": "dealt/7/1/lost-item/reader#6.14"
+ },
+ {
+  "id": "sit-1891",
+  "key": "staging|turn|club|none|low|none|narrows|none|first",
+  "text": "I sat down at an empty table, pushed the ashtray to one side, and spread the whole evening out in my head.",
+  "source": "neighbourhood/38/1/lost-pet/oracle#6.12"
+ },
+ {
+  "id": "sit-1848",
+  "key": "staging|turn|club|none|mid|none|narrows|none|first",
+  "text": "The smoke hung low, and so did I. I sat back in a corner and went through what I had.",
+  "joke": true,
+  "source": "neighbourhood/6/3/murder/oracle#7.12"
+ },
+ {
+  "id": "sit-1866",
+  "key": "staging|turn|club|none|mid|none|narrows|none|first",
+  "text": "I found a quiet table, which in a club is only quiet by comparison, and opened the notebook at the beginning.",
+  "source": "dealt/23/2/lost-pet/reader#7.9"
+ },
+ {
+  "id": "sit-1884",
+  "key": "staging|turn|club|none|mid|none|narrows|none|first",
+  "text": "I stood by the stairs with my coat over my arm and put the night back in order, one hour after another.",
+  "source": "neighbourhood/5/2/lost-pet/oracle#6.12"
+ },
+ {
+  "id": "sit-1847",
+  "key": "staging|turn|flat|none|high|none|narrows|none|first",
+  "text": "I stood at the window a minute with my back to the room and went back over it.",
+  "source": "neighbourhood/32/4/murder/oracle#9.15"
+ },
+ {
+  "id": "sit-1865",
+  "key": "staging|turn|flat|none|high|none|narrows|none|first",
+  "text": "I stood in the kitchen doorway a while, saying nothing, and let the evening sort itself out.",
+  "source": "neighbourhood/34/4/murder/oracle#11.14"
+ },
+ {
+  "id": "sit-1883",
+  "key": "staging|turn|flat|none|high|none|narrows|none|first",
+  "text": "I sat on the edge of the nearest chair and went through it all again in my head.",
+  "source": "dealt/38/4/murder/reader#11.11"
+ },
+ {
+  "id": "sit-1839",
+  "key": "staging|turn|restaurant|none|high|none|narrows|none|first",
+  "text": "I kept my table and turned the whole night over again, slowly, like a coat I was thinking of buying.",
+  "joke": true,
+  "source": "neighbourhood/40/4/murder/oracle#8.14"
+ },
+ {
+  "id": "sit-1857",
+  "key": "staging|turn|restaurant|none|high|none|narrows|none|first",
+  "text": "I sat on at the table, alone with my notebook, and thought.",
+  "source": "neighbourhood/14/5/murder/reader#7.14"
+ },
+ {
+  "id": "sit-1875",
+  "key": "staging|turn|restaurant|none|high|none|narrows|none|first",
+  "text": "The waiter went past twice and then gave up on me. I was busy counting.",
+  "source": "neighbourhood/37/4/lost-pet/wanderer#12.15"
+ },
+ {
+  "id": "sit-1893",
+  "key": "staging|turn|restaurant|none|high|none|narrows|none|first",
+  "text": "I moved to the counter, where nobody sits for long, and went back through it.",
+  "source": "neighbourhood/29/5/lost-pet/oracle#10.14"
+ },
+ {
+  "id": "sit-1833",
+  "key": "staging|turn|restaurant|none|low|none|narrows|none|first",
+  "text": "I pushed my chair back from the table and let the noise of the room go on without me while I lined up the hours.",
+  "source": "neighbourhood/40/1/lost-item/oracle#6.15"
+ },
+ {
+  "id": "sit-1851",
+  "key": "staging|turn|restaurant|none|low|none|narrows|none|first",
+  "text": "The steam off the kitchen had misted the window. I sat by it and went through my evenings one at a time.",
+  "source": "neighbourhood/6/0/murder/reader#7.12"
+ },
+ {
+  "id": "sit-1869",
+  "key": "staging|turn|restaurant|none|low|none|narrows|none|first",
+  "text": "I folded my hands on the tablecloth like a man saying grace, and went back to the start of the night.",
+  "source": "neighbourhood/35/0/lost-pet/oracle#8.10"
+ },
+ {
+  "id": "sit-1887",
+  "key": "staging|turn|restaurant|none|low|none|narrows|none|first",
+  "text": "I sat with my hat on the chair beside me and walked through the evening again without leaving the table.",
+  "source": "neighbourhood/15/0/murder/reader#8.12"
+ },
+ {
+  "id": "sit-1845",
+  "key": "staging|turn|restaurant|none|mid|none|narrows|none|first",
+  "text": "The place was emptying around me. I let it, and went back to the first page.",
+  "source": "neighbourhood/3/2/murder/reader#7.12"
+ },
+ {
+  "id": "sit-1863",
+  "key": "staging|turn|restaurant|none|mid|none|narrows|none|first",
+  "text": "I turned my chair to face the wall, which is rude in a restaurant and useful everywhere else, and thought.",
+  "joke": true,
+  "source": "neighbourhood/11/2/lost-pet/reader#6.12"
+ },
+ {
+  "id": "sit-1881",
+  "key": "staging|turn|restaurant|none|mid|none|narrows|none|first",
+  "text": "I sat over the tablecloth and drew the night on it with a fingernail, hour by hour, where nobody could read it.",
+  "source": "neighbourhood/24/3/murder/reader#7.13"
+ },
+ {
+  "id": "sit-1899",
+  "key": "staging|turn|restaurant|none|mid|none|narrows|none|first",
+  "text": "I stayed at the table and went back through the evening, setting each story beside the others to see where they rubbed.",
+  "source": "dealt/40/3/murder/reader#7.12"
+ },
+ {
+  "id": "sit-1841",
+  "key": "staging|turn|rooming|none|high|none|narrows|none|first",
+  "text": "I sat down on the stairs, halfway up, and went over it.",
+  "source": "neighbourhood/33/5/lost-pet/reader#11.13"
+ },
+ {
+  "id": "sit-1859",
+  "key": "staging|turn|rooming|none|high|none|narrows|none|first",
+  "text": "The hall light buzzed. I stood under it and went through the hours once more.",
+  "source": "neighbourhood/25/4/lost-pet/reader#7.12"
+ },
+ {
+  "id": "sit-1877",
+  "key": "staging|turn|rooming|none|high|none|narrows|none|first",
+  "text": "I stopped on the landing with my hand on the rail and let it all come round again.",
+  "source": "dealt/17/5/lost-pet/oracle#6.13"
+ },
+ {
+  "id": "sit-1895",
+  "key": "staging|turn|rooming|none|high|none|narrows|none|first",
+  "text": "I sat on the bottom step, where the draft from the front door came in, and thought it over.",
+  "source": "neighbourhood/8/4/murder/reader#7.13"
+ },
+ {
+  "id": "sit-1849",
+  "key": "staging|turn|rooming|none|low|none|narrows|none|first",
+  "text": "I leaned on the post at the foot of the stairs and laid the night out in my head, hour by hour and face by face.",
+  "source": "dealt/27/0/murder/oracle#9.10"
+ },
+ {
+  "id": "sit-1867",
+  "key": "staging|turn|rooming|none|low|none|narrows|none|first",
+  "text": "Upstairs a door shut. I waited for the house to settle, and then went back over the night from the start.",
+  "source": "neighbourhood/33/0/murder/wanderer#12.11"
+ },
+ {
+  "id": "sit-1885",
+  "key": "staging|turn|rooming|none|low|none|narrows|none|first",
+  "text": "The hall had a chair nobody ever sat in. I sat in it and put the evenings I had end to end.",
+  "source": "neighbourhood/33/0/murder/reader#9.10"
+ },
+ {
+  "id": "sit-1836",
+  "key": "staging|turn|rooming|none|mid|none|narrows|none|first",
+  "text": "I stood in the hall with my hat in my hand and went through it again, quietly, so as not to wake the house.",
+  "source": "neighbourhood/8/3/murder/oracle#7.14"
+ },
+ {
+  "id": "sit-1854",
+  "key": "staging|turn|rooming|none|mid|none|narrows|none|first",
+  "text": "The landlady’s door was shut for once. I took the quiet while it lasted and went over the hours.",
+  "source": "dealt/30/2/murder/reader#9.12"
+ },
+ {
+  "id": "sit-1872",
+  "key": "staging|turn|rooming|none|mid|none|narrows|none|first",
+  "text": "I sat on the stairs with my elbows on my knees and went back through the night, a step at a time.",
+  "source": "dealt/26/3/murder/reader#7.12"
+ },
+ {
+  "id": "sit-1890",
+  "key": "staging|turn|rooming|none|mid|none|narrows|none|first",
+  "text": "I leaned against the wall by the mailboxes and sorted out what I had.",
+  "source": "dealt/2/2/lost-pet/oracle#8.9"
+ },
+ {
+  "id": "sit-1844",
+  "key": "staging|turn|theatre|none|high|none|narrows|none|first",
+  "text": "I sat down in the last row and let the evening play through once more.",
+  "source": "dealt/12/5/murder/reader#7.12"
+ },
+ {
+  "id": "sit-1862",
+  "key": "staging|turn|theatre|none|high|none|narrows|none|first",
+  "text": "I stood at the back of the house and went over it, slowly.",
+  "source": "dealt/12/5/murder/oracle#7.10"
+ },
+ {
+  "id": "sit-1880",
+  "key": "staging|turn|theatre|none|high|none|narrows|none|first",
+  "text": "I found an empty seat on the aisle, sat, and thought.",
+  "source": "dealt/29/5/lost-pet/wanderer#11.15"
+ },
+ {
+  "id": "sit-1898",
+  "key": "staging|turn|theatre|none|high|none|narrows|none|first",
+  "text": "Out in the lobby, under the lights, I stopped and went back through the hours.",
+  "source": "dealt/29/5/lost-pet/oracle#10.12"
+ },
+ {
+  "id": "sit-1838",
+  "key": "staging|turn|theatre|none|low|none|narrows|none|first",
+  "text": "I sat in an empty row and ran the evening through again, the way they run a play that isn’t working yet.",
+  "joke": true,
+  "source": "dealt/12/1/murder/reader#7.10"
+ },
+ {
+  "id": "sit-1856",
+  "key": "staging|turn|theatre|none|low|none|narrows|none|first",
+  "text": "I leaned in the lobby doorway, between the house and the street, and laid the hours out one after another.",
+  "source": "dealt/12/1/murder/wanderer#10.10"
+ },
+ {
+  "id": "sit-1874",
+  "key": "staging|turn|theatre|none|low|none|narrows|none|first",
+  "text": "The stage was bare. I took a seat facing it and put the night back together in front of me, hour by hour.",
+  "source": "neighbourhood/8/0/lost-pet/oracle#6.15"
+ },
+ {
+  "id": "sit-1892",
+  "key": "staging|turn|theatre|none|low|none|narrows|none|first",
+  "text": "I stood under the exit sign, where nobody ever stops, and stopped, and went back through what I had.",
+  "source": "dealt/34/1/lost-item/reader#6.14"
+ },
+ {
+  "id": "sit-1840",
+  "key": "staging|turn|theatre|none|mid|none|narrows|none|first",
+  "text": "I sat with my hat on my knees in a seat that had seen better plays, and thought it through.",
+  "joke": true,
+  "source": "neighbourhood/39/3/lost-pet/oracle#7.12"
+ },
+ {
+  "id": "sit-1858",
+  "key": "staging|turn|theatre|none|mid|none|narrows|none|first",
+  "text": "The house was dark but for the work light. I sat in what there was of it and went over the evening again.",
+  "source": "neighbourhood/13/2/lost-item/reader#7.14"
+ },
+ {
+  "id": "sit-1876",
+  "key": "staging|turn|theatre|none|mid|none|narrows|none|first",
+  "text": "I went and stood in the side aisle, out of the usher’s way, and put the night in order.",
+  "source": "dealt/12/3/murder/oracle#8.10"
+ },
+ {
+  "id": "sit-1894",
+  "key": "staging|turn|theatre|none|mid|none|narrows|none|first",
+  "text": "The back row is where the latecomers sit. I sat there and caught up with myself.",
+  "source": "neighbourhood/39/3/lost-pet/wanderer#6.17"
+ },
+ {
+  "id": "sit-1846",
+  "key": "staging|turn|unwatched|none|high|none|narrows|none|first",
+  "text": "Nobody was watching that room, which suited me. I stood in it and went back over the night.",
+  "source": "dealt/18/4/murder/oracle#11.12"
+ },
+ {
+  "id": "sit-1864",
+  "key": "staging|turn|unwatched|none|high|none|narrows|none|first",
+  "text": "Where I was seemed as good a place as any, so I stayed put and gave the evening another look.",
+  "source": "dealt/13/4/lost-pet/oracle#10.12"
+ },
+ {
+  "id": "sit-1882",
+  "key": "staging|turn|unwatched|none|high|none|narrows|none|first",
+  "text": "I stopped by the door and went over it once more.",
+  "source": "dealt/40/4/murder/reader#11.10"
+ },
+ {
+  "id": "sit-1832",
+  "key": "staging|turn|unwatched|none|mid|none|narrows|none|first",
+  "text": "I pulled a chair into the corner, sat on it backward with my arms along the top, and thought.",
+  "source": "dealt/15/2/murder/oracle#8.9"
+ },
+ {
+  "id": "sit-1850",
+  "key": "staging|turn|unwatched|none|mid|none|narrows|none|first",
+  "text": "I stood under the one bulb in the room and turned the evening over, like a coin I wasn’t sure of.",
+  "source": "dealt/12/2/murder/oracle#8.11"
+ },
+ {
+  "id": "sit-1868",
+  "key": "staging|turn|unwatched|none|mid|none|narrows|none|first",
+  "text": "Nobody keeps that room, so nobody minded me stopping in the middle of it to think.",
+  "source": "neighbourhood/10/3/murder/reader#8.13"
+ },
+ {
+  "id": "sit-1886",
+  "key": "staging|turn|unwatched|none|mid|none|narrows|none|first",
+  "text": "I sat on the edge of a table nobody used and went through the hours again with my eyes shut.",
+  "source": "dealt/33/2/murder/oracle#8.11"
+ },
+ {
+  "id": "sit-0233",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "A church clock somewhere struck, and I didn’t stop to count.",
+  "source": "dealt/8/5/murder/reader#2.1"
+ },
+ {
+  "id": "sit-0239",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "The pushcarts were chained together along the curb for the night, under their tarps, like horses put up in a stable.",
+  "source": "dealt/22/4/murder/reader#2.1"
+ },
+ {
+  "id": "sit-0245",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "Up on the elevated a train went over with every window lit and nobody at any of them.",
+  "source": "neighbourhood/4/5/murder/wanderer#2.1"
+ },
+ {
+  "id": "sit-0251",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "A streetcar bell rang a street or so over, once, as if it had remembered something.",
+  "source": "dealt/7/5/lost-pet/reader#2.1"
+ },
+ {
+  "id": "sit-0257",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "A rat crossed the sidewalk ahead of me, in no hurry, with somewhere to be.",
+  "source": "dealt/30/4/murder/reader#2.1"
+ },
+ {
+  "id": "sit-0263",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "Every stoop on the block was empty. In the daytime you can’t get past them for grandmothers.",
+  "joke": true,
+  "source": "dealt/5/4/lost-pet/reader#2.1"
+ },
+ {
+  "id": "sit-0269",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "A sign painter’s ladder was still up against a wall, with half a word finished at the top of it.",
+  "source": "dealt/13/4/lost-pet/wanderer#6.1"
+ },
+ {
+  "id": "sit-0275",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "I passed a lunch wagon with its windows steamed up and one customer inside, eating as if somebody might come and take the plate away.",
+  "source": "neighbourhood/6/5/murder/wanderer#14.1"
+ },
+ {
+  "id": "sit-0281",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "Somebody had chalked a hopscotch on the sidewalk. I walked round it, out of respect.",
+  "source": "dealt/20/5/murder/reader#2.1"
+ },
+ {
+  "id": "sit-0287",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "The candy store on the corner still had its light on, and nobody inside but a cat asleep on the counter.",
+  "source": "dealt/5/4/lost-pet/oracle#2.1"
+ },
+ {
+  "id": "sit-0293",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "Over a pawnshop door the gold balls hung dead still, and the window under them was full of other people’s rings.",
+  "source": "dealt/28/5/murder/oracle#2.1"
+ },
+ {
+  "id": "sit-0299",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "A window was open high up, and somebody in it was playing a fiddle very softly, so as not to wake the rest.",
+  "source": "neighbourhood/14/4/murder/wanderer#2.1"
+ },
+ {
+  "id": "sit-0305",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "A train went over on the elevated and shook a little dust down on me, by way of hello.",
+  "joke": true,
+  "source": "neighbourhood/32/5/murder/oracle#2.1"
+ },
+ {
+  "id": "sit-0311",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "A drugstore had its big colored jars lit in the window, red and green, for nobody.",
+  "source": "neighbourhood/29/4/lost-pet/wanderer#6.1"
+ },
+ {
+  "id": "sit-0317",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "Under a lamp, a pair of old men were arguing in a language I didn’t have. They stopped while I passed and picked it up again behind me.",
+  "source": "dealt/32/4/murder/wanderer#14.1"
+ },
+ {
+  "id": "sit-0323",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "The shop signs changed language every block or so. None of them was lit.",
+  "source": "neighbourhood/12/5/murder/wanderer#3.1"
+ },
+ {
+  "id": "sit-0329",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "A synagogue door was shut, with a small light burning somewhere inside, and I touched my hat going by without quite knowing why.",
+  "source": "dealt/25/5/lost-pet/oracle#2.1"
+ },
+ {
+  "id": "sit-0335",
+  "key": "walk|arrival|street|none|high|none|new|none|first",
+  "text": "Steam came up out of a grating in the street and hung there, with nowhere better to go.",
+  "source": "dealt/32/5/murder/reader#2.1"
+ },
+ {
+  "id": "sit-0230",
+  "key": "walk|arrival|street|none|high|none|none|none|first",
+  "text": "A patrolman was trying shop doors along the block, one after another, and gave me a look that tried me too.",
+  "source": "dealt/7/4/lost-pet/wanderer#6.1"
+ },
+ {
+  "id": "sit-0236",
+  "key": "walk|arrival|street|none|high|none|none|none|first",
+  "text": "Somewhere up a tenement a baby was crying, and somewhere else a window came down to keep it out.",
+  "source": "dealt/35/5/lost-pet/oracle#11.1"
+ },
+ {
+  "id": "sit-0242",
+  "key": "walk|arrival|street|none|high|none|none|none|first",
+  "text": "A cab went by slowly with its flag up, hoping, and I let it hope.",
+  "source": "neighbourhood/20/5/murder/reader#5.1"
+ },
+ {
+  "id": "sit-0248",
+  "key": "walk|arrival|street|none|high|none|none|none|first",
+  "text": "The fire escapes laid ladders of shadow down the front of every building I passed.",
+  "source": "neighbourhood/39/5/lost-pet/oracle#9.1"
+ },
+ {
+  "id": "sit-0254",
+  "key": "walk|arrival|street|none|high|none|none|none|first",
+  "text": "My footsteps came back at me off the shutters on both sides of the street, so I wasn’t walking alone, exactly.",
+  "source": "dealt/16/4/murder/reader#12.1"
+ },
+ {
+  "id": "sit-0260",
+  "key": "walk|arrival|street|none|high|none|none|none|first",
+  "text": "A bakery cellar breathed warm bread up through its grating, and I slowed down more than I needed to.",
+  "source": "dealt/8/5/murder/wanderer#10.1"
+ },
+ {
+  "id": "sit-0266",
+  "key": "walk|arrival|street|none|high|none|none|none|first",
+  "text": "Somebody was asleep sitting up in a doorway, with a newspaper for a blanket, and I went by on my toes.",
+  "source": "dealt/23/5/lost-pet/wanderer#14.1"
+ },
+ {
+  "id": "sit-0272",
+  "key": "walk|arrival|street|none|high|none|none|none|first",
+  "text": "Washing hung across the alley between the buildings, shirts and sheets left out all night to think things over.",
+  "joke": true,
+  "source": "neighbourhood/13/5/lost-pet/wanderer#9.1"
+ },
+ {
+  "id": "sit-0278",
+  "key": "walk|arrival|street|none|high|none|none|none|first",
+  "text": "The lamp on the corner buzzed and flickered and made up its mind to stay on.",
+  "source": "dealt/32/5/murder/wanderer#10.1"
  }
 ]

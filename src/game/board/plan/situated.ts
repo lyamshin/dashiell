@@ -189,6 +189,8 @@ export interface SituCtx {
   placeName?: string;
   /** The night's weather: a card that says it's raining requires `rain`. */
   weather?: string;
+  /** Card text not to deal here (a theater's stage, a picture house's screen). */
+  avoid?: RegExp;
 }
 
 /** What a filled card is filled with, for one gap. */
@@ -338,6 +340,7 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
         for (const c of pool) {
           if (s.used(c.id) || !fits(c, cond)) continue;
           if (c.joke && !mayJoke) continue;
+          if (s.avoid && s.avoid.test(c.text)) continue;
           // {place} at most once a paragraph: a place said twice already is the name bolted on (docs/47 C14).
           if (/\{place\}/i.test(c.text) && s.placeName && para.includes(s.placeName)) continue;
           const text = fillCard(c.text, tokens);
