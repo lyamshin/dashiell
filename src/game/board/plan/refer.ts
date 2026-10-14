@@ -394,7 +394,7 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       // Theirs again later in the sentence, and nobody else of that sex in it: this one waits for the
       // name the last one becomes ("…under her breath, with one eye open: that was the last I saw of
       // Mrs. Rafferty").
-      const last = s.mentions.find((x) => x !== m && x.kind === 'pronoun' && x.who === w && x.at > m.at && /: that was the last I saw of (?:him|her)⁣?\d*⁤?\.$/.test(s.narr.slice(0, x.at + x.len + 1)));
+      const last = s.mentions.find((x) => x !== m && x.kind === 'pronoun' && x.who === w && x.at > m.at && /: (?:that was the last I saw of|I didn’t (?:interrupt|disturb)) (?:him|her)⁣?\d*⁤?\.$/.test(s.narr.slice(0, x.at + x.len + 1)));
       if (!frozen && last && !s.mentions.some((x) => x.who !== w && x.who.female === w.female && x.kind !== 'speech')) {
         last.wantName = true;
         continue;

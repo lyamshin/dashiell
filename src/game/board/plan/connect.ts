@@ -21,11 +21,14 @@ import { andList, hourWord, nameOf, pronOf, type Hour } from '../model.js';
 import type { Item } from './types.js';
 import type { PlanCtx } from './index.js';
 import { markPronoun } from './refer.js';
+import { clearAfter } from './compose.js';
 
 export interface PageBudget {
   but: number;
   so: number;
   joins: number;
+  /** docs/49, Planner 2: semicolons the planner has put between two facts on the page. */
+  semi?: number;
 }
 
 function cap(s: string): string {
@@ -75,8 +78,9 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       const d = a.data as { p: string; claim: string; breaker: string; twos: string[]; two: string; subtle?: boolean };
       const one = `${d.claim}, but ${d.breaker}.`;
       // One sentence only when its pronouns stay clear: "Steinbach said home, but Mrs. Mulcahy says
-      // she was…" has two women before the "she".
-      const clash = sameSexIn(ctx, d.p, d.breaker).length > 0 && /\b(?:he|she|him|her|his)\b/.test(d.breaker.replace(/⁣\d+⁤/g, ''));
+      // she was…" has two women before the "she". (An object after the breaker's own subject is
+      // clear: "but Mrs. Blau passed her on East Houston Street".)
+      const clash = !clearAfter(ctx.c, d.p, d.breaker);
       if (b.but === 0 && words(one) <= 26 && !/;/.test(d.breaker) && !clash && !d.subtle) {
         it.text = one;
         it.joined = 'but';

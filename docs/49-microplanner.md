@@ -301,3 +301,170 @@ They're fixed, with the reference rules above. Before the merge:
 ### Open
 
 See docs/25, "The microplanner".
+
+## Planner 2 (2026-10-15)
+
+Branch `planner-2`. The planner (#78) helped, but `npm run read -- --seed 5 --tier 4 --type murder --world neighbourhood --no-choices` still read like a list on pages 5–7. Five things were wrong, and they're fixed in general, not on that night.
+
+### 1. The thought joins its facts (`compose.ts`)
+
+A new operation between the connectives and the rhythm. It takes the thought beat's facts and joins them by what they do to each other, so a thought of N facts is at most ceil(N/2) sentences:
+
+- **Two people one list confirms are one sentence:** "Mrs. Szabo had Glick here at ten, same as he said, and with him Mrs. Blau." With "too" in it already: "…and Pinsky had him here too, with Doyle."
+- **Who could get at the means is said of the person,** where another fact names them at the end of its sentence ("…and with him Mrs. Blau, who hadn’t been at…"), or opens on them ("…was here at ten, and she hadn’t been at…"). Only when the access fact is about one person.
+- **The window narrowed is one sentence:** "Mrs. Greco had said nine or ten, and Belkin was here at nine, alive." At Raw it gets its "so": "…and Belkin was still alive here at nine, so it was ten." Above Raw it stays side by side. Docs/46 §2 took "So it went at ten" out of the link level, and the report asks when, so "so it was ten" there would answer one of its four questions. (The example in the brief had the "so" on a Medium page; docs/46 wins.)
+- **An evening that held and the hour that mattered on their word alone** are one sentence with the page's "but": "So the Peacock at seven, with Mrs. Blau, which was what Mrs. Szabo had, but for ten, the hour that mattered, he said home." The aside after the agreement ("So far as it went, it stood up.") is what the "but" says, and goes.
+- **The street's lead and its link** are one sentence: "The part worth keeping came last: East Houston Street was where Belkin lived." After a confirmed evening it takes the "but".
+- **A collision's two lines** are one sentence when the page's "but" has gone: "She said home at ten, and Mrs. Blau passed her on East Houston Street at ten: one of them was wrong." The "but" form fires more often too. An object after the breaker's own subject is clear ("but Mrs. Blau passed her"), so only a subject or a possessive after somebody of the same sex sends it to two lines.
+- **Who could and who couldn't** is one sentence, the exception with the "but" when it's free: "Feeney and Corrigan heard about the key at eight, and Abramowitz at nine, but Ashby never heard Prentiss tell the room."
+- **The rest join side by side** where the second opens on a clause of its own: ", and", or a semicolon once a page. The plainest pair is joined first, never past forty words. A collision keeps a clause of its own (docs/49 §2): after it, only a semicolon.
+- **The engine's own two-sentence facts are one sentence:**
+  - the search leads ("…, and since rat poison takes twenty minutes to an hour to do its work, whoever brought it to Belkin had been there earlier, to get it");
+  - the papers' lines;
+  - the told and party leads;
+  - the second story;
+  - an admission's hole and its story: "That was a hole in his story, all right, but if it held, he had been at the Automat at eleven."
+
+  The walk's elimination is a fact a placement now, so the planner can join them.
+- **What a unit carries never changes.** A joined unit carries what both carried, and says how many of the writer's facts it holds (`Unit.facts`, a new optional field in the skeleton). The rhythm never parts a thought's fact again.
+
+Page 7, before and after, on the same case. (With women found dead, item 5, the night is cast again; its page 7 is below.)
+
+> **Before:** Mrs. Blau hadn’t been at the flats over Lipsky’s while it was there to take. Mrs. Szabo had Glick here at ten, same as he said. By her count, Mrs. Blau was here at ten. Mrs. Greco had said nine or ten. Belkin was at the Peacock at nine, alive.
+>
+> **After:** She had Glick here at ten, same as he said, and with him Mrs. Blau, who hadn’t been at the flats over Lipsky’s while the rat poison was on the cellar shelf. Mrs. Greco had said nine or ten, and Belkin was here at nine, alive.
+
+Four facts in two sentences. "She" is Mrs. Szabo, whose list the paragraph before quotes. The page closes on "Explaining to a large man why he was going home: I didn’t disturb Mrs. Szabo." (item 4).
+
+With women found dead, seed 5 is Mrs. Krantz's murder, and its page 7 reads:
+
+> Teitel had told me here at ten, and Pinsky had him here too, with Doyle, who hadn’t been at the flats over Lipsky’s while the rat poison was on the cellar shelf. Russo had said nine or ten, and Mrs. Krantz was here at nine, alive.
+
+### 2. The means, by name
+
+"Hadn’t been at X while it was there to take" now says the means and where it was kept, read from the origin (`keptAt` in `thought.ts`):
+- "while the rat poison was on the cellar shelf";
+- "while the chloral was on the hall shelf";
+- "in the hall-stand drawer";
+- "in the surgery cabinet".
+
+In a small case it's the thing: "while the spare key was there to take".
+
+### 3. A voice line for an hour frames the account
+
+Somebody's bible line for an hour ("Seven, I add up the week") goes before the account when the hour is the evening's first. Otherwise it goes after the account, before anything passed on the way. It's never inside the account, and never for an hour the account gives a reason for (`hoursWithReason` in `tell.ts`).
+- Glick's "At seven I went to the flats over Lipsky’s to help write letters home, and stayed through nine" gives seven, eight and nine a reason. None of his three hour lines is said.
+- Teitel's "I was home at the flats over Lipsky’s from seven through nine" gives none, so "Seven, I count the day. It never takes long." opens his evening.
+
+### 4. Closes that stay
+
+"…: that was the last I saw of X" is said only where the page's own job ends the visit. A question page doesn't know if the next page is in this room, and in play nobody does. So it closes on them still at it: "Counting bills with a rubber thumb: I didn’t disturb her."
+- The pronoun is last, as before, so the planner can still say the name there when it must.
+- No page says "the last I saw of" now. The report is the only page whose job ends the visit, and it closes on its own cards.
+- The rhythm keeps a traded close's plain alternatives, so a third name at the close can still be traded away.
+
+### 5. Women found dead
+
+`WOMEN_VICTIMS` is on. A dead woman is "she" and "her" everywhere: the generator, the office, the pages, the notebook, the stars, the curtain.
+
+- **The generator:**
+  - the victim is pushed with her own sex;
+  - `ofDead` says the dead's own lines as theirs: the reasons on the way home, "her heart", the scene and the find ("Somebody made her cocoa"), "her papers", "heard her laugh", the clocks ("She telephoned me…"), "She’d been at Sokol’s… her usual", the pointers ("swore at her") and why the finder came;
+  - beside somebody of the same sex, a world night says the dead by name: "Russo, who swore at Mrs. Greco in the street", not "swore at her" after "Mrs. Pomerantz points at Russo";
+  - the finder "found her";
+  - a neighbourhood owner is "the owner", not "a widow".
+- **The book:**
+  - the client's mouth says "She";
+  - the office's "her own flat";
+  - "A woman’s papers are where she keeps…";
+  - "where she died" in the notebook and the stars;
+  - "who had what against her";
+  - the papers' fallback;
+  - "the dead woman" in the names, the curtain's board and the book's card;
+  - "into the cocoa" when the one let in is of the same sex.
+
+A dead man's lines read as they did. A dealt night's dead are men, so dealt boards are as before: seeds 1–40, every tier and type, hash the same (`57ede58c…`).
+
+`npm run board-sweep -- --world neighbourhood --tier all --n 200`: 200/200 at every tier, 0 invariant failures. Distinct casts are 160, 166, 178, 175, 180 and 186. Women found dead, of 91 murders a tier: 51, 46, 57, 51, 49 and 50.
+
+### The rhythm, for list smell
+
+List smell had to be under 15% of pages in both worlds. The thought's composition did a third of that. The rest is the rhythm's:
+
+- **Two people's lines are one sentence** when each opens on its own name: "Amato was jingling the change in his pocket like a meter running, and Miss Nowak was counting out change for a horse she likes." When a pronoun would read as the first person's, they're joined the other way round, or not at all.
+- **A semicolon for the detective's reasoning** (an aside, a why), never "and": "I hadn’t come for the furniture; I’d come for Mrs. Cheatham."
+  - A joined why names one person at most.
+  - Where I sit and a why that points at nobody may join: "I found somewhere to sit and took out the form; it was my name at the bottom…".
+  - Two semicolons a page at most.
+- **More seams to part a long sentence at:**
+  - a short lead before a clause ("Under it somebody had written…", "Somewhere a radio was…");
+  - a contraction or a possessive opening a clause;
+  - a tail of "which", "just", "with", "past" or "the kind of", fourteen words at most ("…the name. Just a loop of string over a nail…");
+  - a place's own colon list ("…waking to it floor by floor. A window going up, a baby starting…").
+
+  Three fragments a page at most.
+- **Two mends together,** where one alone only moves the run: a join that makes a long sentence beside two long ones, then a parting of one of those. The search rolls none of the page's dice.
+- **No mend that leaves a pronoun two people could be.** A join changes which sentence comes before a pronoun, so the measure's count is taken before and after.
+- **The engine's pronoun marks are no part of the words** when the rhythm tests a sentence. "He⁣3⁤ had" used to fail every test for a clause.
+- **More cards to trade for:** the arrival's card and an unpaid prop carry their alternatives, and the asides after an hour said have short and long ones.
+- **A list's entries read out** (the papers' "Mrs. Blau: a bundle of her letters…") break a run as speech does, in the measure and the rhythm. They're the papers' rhythm, not the narrator's. On #78's pages that alone takes 5–15 pages a tier off the count. The "before" below is measured the same way.
+
+### The measures, before → after
+
+`npx tsx scripts/board-prose.ts [--world neighbourhood]`, 30 nights a tier, the oracle's route.
+- **Before** is main at `ecdfce1`, measured with today's definitions: list entries break a run, and joins count "He put…", "had him here too", ", who hadn’t been…" and a "so" inside its sentence. With #78's definitions main's joins were 0.7–0.9.
+- **The new column** is the thought's: the sentences its facts take, per fact, and the share of thought paragraphs whose N facts take at most ceil(N/2) sentences (all of them, and those with two facts or more).
+- **The neighbourhood's "after"** is cast with women found dead, so its nights aren't the "before" nights.
+
+**Dealt**
+
+| tier | words a page, median | sentences per fact unit | list smell, pages | pronoun ambiguity (oracle / all three) | joins a page [share 1–3] | thought: fact sentences per fact [paragraphs within ceil(N/2); with 2+ facts] | restated pointer |
+|---|---|---|---|---|---|---|---|
+| Raw | 182 → 179 | 1.59 → 1.54 | 79 of 280 → 17 of 280 | 0 / 0 → 0 / 0 | 1.0 [74%] → 1.1 [91%] | 1.33 [36%; 0%] → 0.93 [86%; 85%] | 0 → 0 |
+| Coddled | 181 → 175 | 1.52 → 1.45 | 81 of 276 → 14 of 276 | 0 / 0 → 0 / 0 | 0.9 [64%] → 1.1 [84%] | 1.28 [35%; 0%] → 0.75 [100%; 100%] | 0 → 0 |
+| Poached | 171 → 170 | 1.51 → 1.46 | 101 of 398 → 42 of 398 | 0 / 0 → 0 / 0 | 0.9 [72%] → 1.2 [91%] | 1.21 [43%; 0%] → 0.78 [95%; 87%] | 0 → 0 |
+| Soft-boiled | 170 → 169 | 1.50 → 1.43 | 98 of 383 → 33 of 383 | 0 / 0 → 0 / 0 | 0.9 [71%] → 1.1 [88%] | 1.32 [34%; 0%] → 0.78 [90%; 74%] | 0 → 0 |
+| Medium | 166 → 166 | 1.46 → 1.38 | 132 of 439 → 61 of 439 | 0 / 0 → 0 / 0 | 0.9 [67%] → 1.2 [85%] | 1.35 [31%; 0%] → 0.78 [87%; 72%] | 0 → 0 |
+| Hard-boiled | 161 → 160 | 1.43 → 1.38 | 134 of 435 → 47 of 435 | 0 / 0 → 0 / 0 | 0.1 [14%] → 0.3 [25%] | 1.24 [77%; —] → 1.00 [100%; —] | 0 → 0 |
+
+**The neighbourhood**
+
+| tier | words a page, median | sentences per fact unit | list smell, pages | pronoun ambiguity (oracle / all three) | joins a page [share 1–3] | thought: fact sentences per fact [paragraphs within ceil(N/2); with 2+ facts] | restated pointer |
+|---|---|---|---|---|---|---|---|
+| Raw | 214 → 215 | 1.77 → 1.72 | 124 of 280 → 31 of 280 | 0 / 0 → 0 / 0 | 1.1 [74%] → 1.2 [91%] | 1.38 [34%; 0%] → 0.91 [87%; 88%] | 0 → 0 |
+| Coddled | 212 → 207 | 1.65 → 1.58 | 107 of 276 → 28 of 276 | 0 / 0 → 0 / 0 | 0.9 [66%] → 1.1 [86%] | 1.31 [34%; 0%] → 0.75 [100%; 100%] | 0 → 0 |
+| Poached | 188 → 188 | 1.54 → 1.52 | 160 of 407 → 48 of 407 | 0 / 0 → 0 / 0 | 0.9 [73%] → 1.2 [95%] | 1.16 [43%; 0%] → 0.78 [92%; 80%] | 0 → 0 |
+| Soft-boiled | 191 → 189 | 1.54 → 1.47 | 142 of 387 → 49 of 385 | 0 / 0 → 0 / 0 | 0.8 [68%] → 1.1 [87%] | 1.31 [36%; 0%] → 0.81 [88%; 71%] | 0 → 0 |
+| Medium | 194 → 190 | 1.48 → 1.41 | 165 of 427 → 63 of 437 | 0 / 0 → 0 / 0 | 1.0 [69%] → 1.3 [85%] | 1.38 [34%; 0%] → 0.78 [87%; 73%] | 0 → 0 |
+| Hard-boiled | 194 → 191 | 1.51 → 1.46 | 183 of 435 → 43 of 435 | 0 / 0 → 0 / 0 | 0.1 [14%] → 0.2 [25%] | 1.25 [75%; —] → 1.00 [100%; —] | 0 → 0 |
+
+- **Every lint is 0 after, in both worlds:** reader lint, correspondence, thoughts over their level, plain terms, cards twice, sentences twice, names three times, clues three times, place names bolted on, banned phrases, signposts, gags, "it". So are pronoun ambiguity, on all three routes, and restated pointers.
+- **List smell is under 15% of pages** at every tier in both worlds: 5–14% dealt, 10–14% in the neighbourhood. Before it was 25–31% and 37–44%.
+- **The thought:** 86–100% of its paragraphs (dealt) and 87–100% (the neighbourhood) are within ceil(N/2), against 31–43% before. With two facts or more it's 71–100%. What misses is two long facts: a collision and the rest of somebody's evening, or a collision and the handover. As one sentence they'd be past forty words, and a collision keeps a sentence of its own.
+- **Joins a page are 1.1–1.2 dealt and 1.1–1.3 in the neighbourhood,** with 84–95% of pages with facts in 1–3. Hard-boiled is 0.2–0.3 by docs/46: at fact level the thought says the fact plain.
+- **Sentences per fact unit fell by 0.02–0.08.** They're 1.38–1.72, not 1.2. Docs/25 has what's left: the office's lines, the finds, the papers' entries.
+- **Words a page fell by up to 6.** An agreement's aside goes when its "but" says it, and a collision's two lines are one sentence. Dealt Soft-boiled is now 169, under 170, with Medium and Hard-boiled.
+- **`board-measure` is unchanged** in every puzzle column on 50 seeds a tier and type. The callback-pages column moved one point on two rows (Raw lost-item 66% → 65%, Raw lost-pet 67% → 66%). Seed 22's page 7 dealt another walk card after an earlier page's trades.
+- **`skeletons.ts`** still realizes every page from its units.
+
+### Read in full
+
+- **The neighbourhood, seed 5, Medium, murder.** Read before the gender pass, and again recast with Mrs. Krantz found dead. Fixed while reading:
+  - "Waxing the points of the usher’s mustache…: the usher was still at it" (the staying close's pronoun is last now);
+  - "I buttoned my coat… and In that company" (a lead's capital after a join);
+  - a third "Sokol" at a close with no plain card left to trade for.
+- **The golden's night** (seed 1, Medium, lost pet, dealt). What changed:
+  - "So it was somebody who’d heard Prentiss… and had come here after, which made the Thalia the place to start counting."
+  - "I went up to the Delmonico rooms over the fish market; they were named after the grand restaurant uptown, and the only thing they had in common with it was fish."
+  - "I hadn’t come for the furniture; I’d come for Mrs. Cheatham."
+  - Coffin's page: "…but Ashby never heard Prentiss tell the room. By Coffin’s count, Feeney and Ashby were here at eleven, and whatever went out of the Prentiss flat, something came in here under a coat at twelve and went to Pardo." It was a chain of semicolons until the plainest pair was joined first.
+  - Ashby's page: "So here at eleven, with Feeney, which was what Coffin had, but the part worth keeping came last: Stuyvesant Street was where Prentiss kept Duchess."
+- **The neighbourhood, seed 4, Poached, murder** (Mrs. Greco found dead). Fixed while reading:
+  - "Mrs. Pomerantz points at Russo, who swore at her" (at Mrs. Pomerantz?) now names the dead;
+  - "Mrs. Greco let her in. The rat poison went into her cocoa" now says "the cocoa".
+
+  Left: "Doyle was shaking hands with a man who didn’t offer his. He had a little black notebook…". The look's "He" comes after a nameless man, as it did before this branch. The measure doesn't count a nameless antecedent a sentence back.
+
+### Open
+
+See docs/25, "Planner 2".

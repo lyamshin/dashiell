@@ -8,7 +8,7 @@ import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.
 import { dealBoard, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle, playReader, playWanderer } from '../src/game/board/oracle.js';
 import { PLAN, newBudget, planSection, realize, type Item, type PlanCtx } from '../src/game/board/plan/index.js';
-import { factSentences, joinsIn, listSmell, pronounAmbiguity, restatedPointer } from '../src/game/board/plan/measure.js';
+import { factSentences, joinsIn, listSmell, pronounAmbiguity, restatedPointer, thoughtParagraphs } from '../src/game/board/plan/measure.js';
 import { markPronoun } from '../src/game/board/plan/refer.js';
 import { bandOf } from '../src/game/board/plan/sentences.js';
 import type { Beat } from '../src/game/board/sheets.js';
@@ -242,5 +242,60 @@ describe('docs/49 §2: rhythm', () => {
     const bands = out.join(' ').split(/(?<=\.)\s+/).map(bandOf);
     for (let i = 2; i < bands.length; i++) expect(bands[i] === bands[i - 1] && bands[i] === bands[i - 2]).toBe(false);
     expect(out[1]).toBe('The loose stair rod rattled whenever anybody used the stair. Like a remark nobody had asked for.');
+  });
+});
+
+/* ------------------------------------------------------------------ *
+ * docs/49, Planner 2: the thought's facts joined by what they do.
+ * ------------------------------------------------------------------ */
+
+describe('docs/49 Planner 2: composition', () => {
+  it('two people one list confirms are one sentence, who could get at the means is said of the person, and the window is one sentence', () => {
+    const coffin = id('Coffin');
+    const ashby = id('Ashby');
+    const feeney = id('Feeney');
+    const out = plan(
+      {
+        thought: [
+          fact('thought', 'Ashby hadn’t been at the Delmonico rooms while the key was there to take.', [ashby], { relation: 'narrows', tag: 'thought:way-in', agg: { key: 'way-in', data: { who: [ashby], one: ashby, of: 'hadn’t been at the Delmonico rooms while the key was there to take' } } }),
+          fact('thought', 'Coffin had Feeney here at eleven, same as she said.', [feeney], { relation: 'confirms', tag: 'thought:list-agree', runOn: true, agg: { key: 'list-agree', data: { watcher: coffin, at: 'here', agreed: [{ p: feeney, h: 11 }], clear: false } } }),
+          fact('thought', 'By his count, Ashby was here at eleven.', [ashby], { tag: 'thought:placed', runOn: true, agg: { key: 'placed', data: { keeper: coffin, bits: ['Ashby here at eleven'], runs: [{ names: 'Ashby', n: 1, at: 'here', h: 11 }] } } }),
+          fact('thought', 'Prentiss had said ten or eleven. At ten Duchess was here.', [id('Prentiss')], { relation: 'narrows', tag: 'thought:window', runOn: true, agg: { key: 'window', data: { one: 'Prentiss had said ten or eleven, and at ten Duchess was here.', so: false } } }),
+        ],
+      },
+      [['thought']],
+    );
+    expect(out[0]).toBe('Coffin had Feeney here at eleven, same as she said, and with her Ashby, who hadn’t been at the Delmonico rooms while the key was there to take. Prentiss had said ten or eleven, and at ten Duchess was here.');
+  });
+
+  it('an evening that held, and the hour that mattered on their word alone, are one sentence with the "but"; the aside after the agreement goes', () => {
+    const ashby = id('Ashby');
+    const out = plan(
+      {
+        thought: [
+          fact('thought', 'So the Automat at eight, which was what Coffin had.', [ashby], { relation: 'confirms', tag: 'thought:agree' }),
+          { ...gap('thought', 'So far as it went, it stood up.'), slot: 'gloss', voice: 'thought', runOn: true },
+          fact('thought', 'For eleven, the hour that mattered, he said the Thalia.', [ashby], { tag: 'thought:hours', runOn: true }),
+          { ...gap('thought', 'I let it stand.'), slot: 'gloss', voice: 'thought', runOn: true },
+        ],
+      },
+      [['thought']],
+    );
+    // ("he" after Coffin could be Coffin: the name.)
+    expect(out[0]).toBe('So the Automat at eight, which was what Coffin had, but for eleven, the hour that mattered, Ashby said the Thalia. I let it stand.');
+  });
+
+  it('a thought of N facts takes at most ceil(N/2) sentences, but for a collision’s own sentence and two long facts', () => {
+    let paras = 0;
+    let within = 0;
+    for (const { tier, type, world } of nights.filter((x) => x.tier !== 5)) {
+      for (const p of oracle(4, tier, type, world).log) {
+        for (const tp of thoughtParagraphs(p.board?.units ?? [])) {
+          paras++;
+          if (tp.s <= Math.ceil(tp.n / 2)) within++;
+        }
+      }
+    }
+    expect(within / paras).toBeGreaterThan(0.8);
   });
 });
