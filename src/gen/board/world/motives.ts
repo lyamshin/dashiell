@@ -17,7 +17,8 @@
  * A night's reasons are never word for word alike.
  *
  * `{they}`, `{them}`, `{their}` are the suspect; `{victim}` and `{client}` the
- * other end; `{thing}` the lost thing; `{T}` the one in between.
+ * other end; `{thing}` the lost thing; `{T}` the one in between. The forms are
+ * written for a dead man; `ofVictim` says them of a dead woman.
  */
 
 import type { BiblePerson, TieKind } from './types.js';
@@ -49,6 +50,22 @@ export const MURDER_TIE: Record<TieKind, MotiveForm[]> = {
   feud: [{ kind: 'revenge', text: '{they} and {victim} had been at each other’s throats for years', form: 'At his throat for years', papers: 'a complaint he’d made against {him}, in triplicate' }],
   friend: [{ kind: 'blackmail', text: '{victim} knew things about {them} only an old friend would', form: 'His old friend, and he knew things about them', papers: 'a sealed envelope with {his} name on it' }],
 };
+
+/**
+ * A murder's reason said of a dead woman: the forms' bare he, him and his are the dead man's, and
+ * become hers. `{he}`, `{his}` and `{him}` are the suspect's, and stay.
+ */
+export function ofVictim(t: string, female: boolean): string {
+  if (!female) return t;
+  return t
+    .replace(/(?<![{\w])He\b(?!\})/g, 'She')
+    .replace(/(?<![{\w])His\b(?!\})/g, 'Her')
+    .replace(/(?<![{\w])himself\b/g, 'herself')
+    .replace(/(?<![{\w])him\b(?!\})/g, 'her')
+    .replace(/(?<![{\w])his\b(?!\})/g, 'her')
+    .replace(/(?<![{\w])he\b(?!\})/g, 'she')
+    .replace(/\bdead man\b/g, 'dead woman');
+}
 
 /** A murder's reason through somebody in between, by what the dead man was to them. */
 export function murderVia(k2: TieKind): MotiveForm {
@@ -133,7 +150,22 @@ export function motivesFor(
   o: { secrets?: { placeName: (id: string) => string | undefined; noSecret?: boolean } } = {},
 ): Motive[] {
   const out: Motive[] = [];
-  const push = (m: Motive) => {
+  // A dead woman's reasons say "her" where the forms say "him"; a tie line of the bible's is hers already.
+  const her = murder && wronged.gender === 'f';
+  const g = (t: string) => ofVictim(t, her);
+  const gendered = (m: Motive): Motive =>
+    her
+      ? {
+          ...m,
+          text: g(m.text),
+          form: g(m.form),
+          ...(m.papers ? { papers: g(m.papers) } : {}),
+          says: m.id.startsWith('tie:') ? m.says : g(m.says),
+          ...(m.anon ? { anon: { ...m.anon, text: g(m.anon.text), form: g(m.anon.form), ...(m.anon.papers ? { papers: g(m.anon.papers) } : {}), says: g(m.anon.says) } } : {}),
+        }
+      : m;
+  const push = (m0: Motive) => {
+    const m = gendered(m0);
     if (!taken.has(m.form) && !out.some((x) => x.form === m.form)) out.push(m);
   };
   const direct = s.ties.find((t) => t.to === wronged.id);

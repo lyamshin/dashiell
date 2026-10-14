@@ -19,8 +19,11 @@ export type WorldWeather = 'rain' | 'cold' | 'clear' | 'any';
 export interface BibleWatcher {
   /** The person kept there all night by the job. */
   person: string;
-  /** How they count: "I tear every ticket in half personally." */
-  counts: string;
+  /**
+   * How they keep count, in their own words: three standing lines, each a different angle on how
+   * they see ("I tear every ticket in half personally"). One is said the first time I meet them.
+   */
+  counts: string[];
   /** What they can see: "the stair". */
   sees: string;
   /** What they can't: "not the hall". */
@@ -30,6 +33,22 @@ export interface BibleWatcher {
 export interface BibleArrival {
   band: Band;
   weather: WorldWeather;
+  text: string;
+}
+
+/**
+ * Somewhere inside a place a person can spend an hour unseen (the back booth, the cellar, the
+ * wings), with its own arrival, said when a night's unwatched place is this room.
+ */
+export interface BibleHide {
+  name: string;
+  /** One paragraph, for any hour and weather: what the room is, and one thing to notice. */
+  arrival: string;
+}
+
+/** Something somebody would be found doing, and where: a place's id, or "any" for anywhere. */
+export interface BibleDoing {
+  setting: string;
   text: string;
 }
 
@@ -52,8 +71,8 @@ export interface BiblePlace {
   minutes: Record<string, number>;
   arrivals: BibleArrival[];
   details: BibleDetail[];
-  /** What hides here: the back room, the card table, the fence's booth. */
-  hides: string[];
+  /** What hides here: the back room, the booth, the cellar, each with its arrival. */
+  hides: BibleHide[];
 }
 
 export type TieKind = 'lodger' | 'landlady' | 'owes' | 'owed' | 'old-flame' | 'in-law' | 'rival' | 'feud' | 'friend' | 'employer' | 'employee';
@@ -106,7 +125,8 @@ export interface BiblePerson {
   home: string;
   works: { place: string; open: number; close: number } | null;
   manner: WorldManner;
-  doing: string[];
+  /** What they'd be found doing, by setting, as looks are: "darning a lodger’s sock on the first landing". */
+  doing: BibleDoing[];
   looks: { setting: string; text: string }[];
   voice: BibleVoice;
   ties: BibleTie[];
