@@ -164,9 +164,14 @@ if (cmd === 'check') {
       });
       process.stdout.write(`## ${v.id}  ${v.template}\n`);
       if (fits.length === 0) process.stdout.write('   (no composite on these nights fits it)\n');
+      if (/^(?:PAIR|ATTACH|ADMIT-CHECK|CONFIRMED-WITH)$/.test(v.shape)) {
+        // (A join's words are its parts': the page's round trip, `scripts/roundtrip.ts`, reads them.)
+        for (const x of fits.slice(0, per)) process.stdout.write(`   --- ${fill(v.template, x.args, x.c).replace(/⁣\d+⁤/g, '')}\n`);
+        continue;
+      }
       for (const x of fits.slice(0, per)) {
         const said = fill(v.template, x.args, x.c).replace(/⁣\d+⁤/g, '');
-        const r = rereadVoiced({ shape: x.shape as Shape, props: x.props as never, voicing: v.id, said: fill(v.template, x.args, x.c), args: x.args as never }, { c: x.c, here: '', ...(x.speaker ? { speaker: x.speaker } : {}) });
+        const r = rereadVoiced({ shape: x.shape as Shape, props: x.props as never, voicing: v.id, said: fill(v.template, x.args, x.c), args: x.args as never }, { c: x.c, here: x.here, ...(x.speaker ? { speaker: x.speaker } : {}) });
         if (r.ok) ok++;
         else bad++;
         process.stdout.write(`   ${r.ok ? 'ok ' : 'BAD'} ${said}${r.ok ? '' : `\n       ${r.why}\n       bones: ${(x.props as never[]).map((p) => canon(p)).join(' ')}`}\n`);

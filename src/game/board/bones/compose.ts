@@ -212,7 +212,7 @@ function voice(it: Item, comp: Held, flags: string[], args: Args, ctx: PlanCtx, 
 function sample(comp: Held, it: Item | undefined, ctx: PlanCtx): void {
   if (!SAMPLES.on || !comp.args || !comp.voicing) return;
   const speaker = it ? speakerOf(it, ctx.c) : undefined;
-  SAMPLES.list.push({ shape: comp.shape, flags: comp.flags ?? [], args: comp.args, ...(comp.manner ? { manner: comp.manner } : {}), props: comp.props, said: comp.said ?? '', voicing: comp.voicing, c: ctx.c, ...(speaker ? { speaker } : {}) });
+  SAMPLES.list.push({ shape: comp.shape, flags: comp.flags ?? [], args: comp.args, ...(comp.manner ? { manner: comp.manner } : {}), props: comp.props, said: comp.said ?? '', voicing: comp.voicing, c: ctx.c, ...(speaker ? { speaker } : {}), here: ctx.run?.at ?? '' });
 }
 
 /** The composite said plainly, where no voicing fits it. */
@@ -1066,7 +1066,7 @@ function sideBySide(segs: Seg[], ctx: PlanCtx, n: number): void {
     // A collision keeps a clause of its own (docs/49 §2): after it, only a semicolon.
     if (ruleOf(A) === 'collision') {
       if ((budget.semi ?? 0) === 0 && !/;/.test(A.text + B.text) && joined(B.text) === 0) [made, join] = [sayPair(A, B, 'semi', ctx), 'semi'];
-    } else if (/^That was a hole in\b/.test(plain(A.text)) && /^If it held\b/.test(plain(B.text)) && budget.but === 0) {
+    } else if ((A.comp as Held | undefined)?.flags?.includes('hole') && (B.comp as Held | undefined)?.flags?.includes('if-held') && budget.but === 0) {
       // The hole, and the story owned up to in its place: "but if it held, …".
       [made, join] = [sayPair(A, B, 'but', ctx, 'ADMIT-CHECK'), 'but'];
     } else if (ruleOf(B) === 'street' && A.relation === 'confirms' && budget.but === 0 && joined(A.text) === 0) {

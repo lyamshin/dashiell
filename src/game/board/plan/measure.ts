@@ -236,7 +236,7 @@ export function pronounAmbiguity(c: BoardCase, blocks: readonly Block[]): string
 
 /** docs/49 §2's joins, as the page says them. */
 export const JOINS: { name: string; re: RegExp }[] = [
-  { name: 'but', re: /(?:^|[.!?]\s+)But\b|, but\b/ },
+  { name: 'but', re: /(?:^|[.!?]\s+)But\b|[,;] but\b/ },
   { name: 'so', re: /(?:^|[.!?]\s+)So\b/ },
   // Planner 2: a narrowing's "so" inside its sentence, "…in this room, so he’d let whoever did it in" (not "so far", "so that").
   { name: 'so (clause)', re: /, so (?!far\b|that\b|much\b|many\b|long\b)/ },

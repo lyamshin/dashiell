@@ -316,7 +316,7 @@ const UNARGS: Record<string, Unargs> = {
   'placed-set/count': (a, _comp, v, lx) => runsV(a.runs as string, { k: 'list', who: personV(v.c, a.his as string) }, v, lx),
   'placed-set/recap': (a, comp, v, lx) => {
     const c = v.c;
-    const bys = listV(a.by as string, `${lx.re.NAME}|the office|what the room said`);
+    const bys = listV(srcWords(a.by as string), `${lx.re.NAME}|the office|what the room said`);
     const out: Prop[] = [];
     const AT = `(?:${lx.re.PL}) at (?:${lx.re.H})(?:(?:, | and )(?:${lx.re.H}))*`;
     const re = new RegExp(`^((?:${lx.re.NAME})(?:(?:, | and )(?:${lx.re.NAME}))*) at ((?:${AT})(?:(?:, | and )(?:${AT}))*?)(?:, | and |$)(?=$|${lx.re.NAME})`);
@@ -547,7 +547,8 @@ function placesIn(c: BoardCase, lx: Lexicon, text: string, who: Id): { id: Place
     if (id) out.push({ id, at: m.index ?? 0 });
   }
   const home = personOf(c, who)?.home;
-  for (const m of text.matchAll(/\bhome\b|\bmy room\b/g)) if (home) out.push({ id: home, at: m.index ?? 0 });
+  // "went home", "turned in early, home", "back to my room": home as where they went, not "letters home".
+  for (const m of text.matchAll(/(?:\b(?:went|came|got|stayed|headed|walked|was|back|at) |, |^)home\b|\bmy room\b/gi)) if (home) out.push({ id: home, at: m.index ?? 0 });
   if (out.length === 0) {
     // A place said by its own name, the way the account's whole-evening check takes it ("round to Sokol’s").
     for (const p of c.places) {
@@ -564,8 +565,8 @@ function placeIdOf(c: BoardCase, name: string): PlaceId | undefined {
 }
 
 /** The people a phrase names, the places called after somebody aside ("Corrigan’s flat" isn't Corrigan). */
-function peopleIn(c: BoardCase, text: string, but: Id[] = []): Id[] {
-  const t = maskPlaces(c, text);
+function peopleIn(c: BoardCase, text: string, but: Id[] = [], inPlaces = false): Id[] {
+  const t = inPlaces ? text : maskPlaces(c, text);
   return c.people.filter((p) => !p.object && !but.includes(p.id) && p.short.length > 2 && new RegExp(`\\b${esc(p.short)}\\b`).test(t)).map((p) => p.id);
 }
 
@@ -650,7 +651,8 @@ const READ: Partial<Record<Shape, Reader>> = {
     let company = withR(c, lx, a.with as string | undefined);
     if (company === undefined && flags.has('alone')) company = [];
     if (reason !== undefined && !flags.has('aside')) {
-      const named = peopleIn(c, reason, [who]);
+      // (Company the reason names, "to meet Abramowitz", "to Dr. Hirsch’s surgery": named, the writer's flag, counts a place called after them.)
+      const named = peopleIn(c, reason, [who], flags.has('named'));
       if (named.length) company = [...(company ?? []), ...named];
     }
     return hours.map((h) => ({ k: 'CLAIM', person: who, place, hour: h, ...(company ? { company } : {}) }) as Prop);
@@ -723,6 +725,11 @@ READ.HANDOVER = (a, flags, comp, v) => {
   if (flags.has('crack')) return [{ k: 'HANDOVER', to: ((a.holder as string[]) ?? [])[0] as string, place: flags.has('here') ? v.here : (a.at as Id), thing: a.thing as Id }];
   throw new Error('voiced: what kind of handover?');
 };
+
+/** Whose word, as a sentence may open on it: "The office" is the office. */
+function srcWords(s: string): string {
+  return s.trim().replace(/^The office\b/, 'the office').replace(/^What the room said\b/, 'what the room said');
+}
 
 /** Whose word a line is, by what a page calls it: "Coffin’s list", "Ashby’s story", "Weisglass’s word", "the office". */
 function srcR(c: BoardCase, s: string): Src {
@@ -798,7 +805,7 @@ READ['PLACED-SET'] = (a, flags, comp, v, lx) => {
   if (flags.has('recap-one')) {
     const person = a.person as Id;
     const want = comp.props as P<'PLACED'>[];
-    const bys = listV(r.src as string, `${lx.re.NAME}|the office|what the room said`);
+    const bys = listV(srcWords(r.src as string), `${lx.re.NAME}|the office|what the room said`);
     const out = placesAtR(v.c, lx, r.at as string, v, person).map((x) => ({ k: 'PLACED', person, place: x.place, hour: x.hour, by: want.find((y) => y.person === person && y.hour === x.hour)?.by ?? { k: 'given' } }) as Prop);
     const names = new Set(out.map((x) => ((x as P<'PLACED'>).by.k === 'given' ? 'the office' : (x as P<'PLACED'>).by.k === 'find' ? 'what the room said' : nameOf(v.c, (x as P<'PLACED'>).by.who as Id))));
     if (bys.some((b) => !names.has(b)) || [...names].some((n) => !bys.includes(n))) throw new Error('voiced: whose word?');
@@ -907,7 +914,7 @@ READ['PLACED-SET'] = (a, flags, comp, v, lx) => {
       { k: 'PLACED', person: y, place: a.place as Id, hour, by: { k: like.k, who: x } as Src },
     ];
   }
-  const src = (a.src as string).trim();
+  const src = srcWords((a.src as string).trim());
   const by: Src = src === 'the office' ? { k: 'given' } : src === 'what the room said' ? { k: 'find' } : srcFold(v.c, src, like);
   return people.map((p) => ({ k: 'PLACED', person: p, place: a.place as Id, hour, by }) as Prop);
 };
@@ -1082,7 +1089,9 @@ function rereadTyped(comp: Composite, vo: { id: string; template: string; requir
   if (!r) return { ok: false, why: `no reading for ${vo.id}` };
   const schema = SCHEMA[comp.shape].args;
   const want = comp.props.map(canon).sort();
-  const flags = new Set(vo.requires ?? []);
+  // The voicing's flags, and the composite's own form (what the writer knew: the reason names the
+  // company, "named"; a "with" that isn't company, "aside"), where the words are to be read.
+  const flags = new Set([...(vo.requires ?? []), ...((comp as { flags?: string[] }).flags ?? [])]);
   let last = `${vo.id}: the words don't fit the template`;
   for (const raw of splitsAll(vo.template, text)) {
     try {

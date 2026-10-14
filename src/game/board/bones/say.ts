@@ -42,7 +42,7 @@ export interface VoiceHand {
  * The composites voiced, for the tools (`scripts/voicings.ts samples`): shape, flags, arguments,
  * manner, propositions and the words, when `on`.
  */
-export const SAMPLES: { on: boolean; list: { shape: string; flags: string[]; args: Args; manner?: string; props: unknown[]; said: string; voicing: string; c: BoardCase; speaker?: string }[] } = { on: false, list: [] };
+export const SAMPLES: { on: boolean; list: { shape: string; flags: string[]; args: Args; manner?: string; props: unknown[]; said: string; voicing: string; c: BoardCase; speaker?: string; here: string }[] } = { on: false, list: [] };
 
 /** docs/52 §6, voicing variety: every choice, with how many fitted and whether one was said again while another was still unsaid. */
 export const VARIETY: { on: boolean; picks: { id: string; key: string; shape: string; pool: number; again: boolean; unsaidLeft: boolean }[] } = { on: false, picks: [] };
