@@ -251,7 +251,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         const compIds = (cl?.company ?? []).filter((y) => !src.startsWith(`${nameOf(c, y)} `) && !namedSoFar.has(nameOf(c, y)));
         const comp = compIds.map((y) => nameOf(c, y));
         for (const y of comp) namedSoFar.add(y);
-        if (t.sentences.length === 0) for (const x of hs) confirms.push({ k: 'CONFIRMS', person: rest, place: g.place[g.hs.indexOf(x)] as PlaceId, hour: x, company: compIds, by: g.by });
+        // (Company is said only where somebody is named: whoever says so isn't, and that isn't "alone".)
+        if (t.sentences.length === 0) for (const x of hs) confirms.push({ k: 'CONFIRMS', person: rest, place: g.place[g.hs.indexOf(x)] as PlaceId, hour: x, ...(compIds.length ? { company: compIds } : {}), by: g.by });
         const own = personOf(c, rest)?.home === cl?.place && cl?.place !== here;
         bitParts.push({ at: own ? 'home' : where(c, g.place[i] as PlaceId, here), hs: andList(hs.map(hourWord)), comp: andList(comp) });
         return `${own ? 'home' : where(c, g.place[i] as PlaceId, here)} at ${andList(hs.map(hourWord))}${comp.length ? `, with ${andList(comp)}` : ''}`;
@@ -271,7 +272,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
             const compIds = (cl?.company ?? []).filter((y) => !src.startsWith(`${nameOf(c, y)} `) && !t.sentences.some((x) => x.includes(nameOf(c, y))) && !namedSoFar.has(nameOf(c, y)));
             const comp = compIds.map((y) => nameOf(c, y));
             for (const y of comp) namedSoFar.add(y);
-            confirms.push({ k: 'CONFIRMS', person: rest, place: g.place[i] as PlaceId, hour: h, company: compIds, by: g.by });
+            confirms.push({ k: 'CONFIRMS', person: rest, place: g.place[i] as PlaceId, hour: h, ...(compIds.length ? { company: compIds } : {}), by: g.by });
             return { at: atWhere(c, g.place[i] as PlaceId, here), h, comp: andList(comp) };
           }));
       const text = first

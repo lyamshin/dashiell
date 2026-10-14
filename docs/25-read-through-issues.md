@@ -237,3 +237,20 @@ Branch `situated-deck`. I read two nights in full with the deck on: the golden's
 - **A pointer clause the deck keeps reads badly in the engine's own words:** "Duchess had gone from at the Grasso flat.", "Hanrahan had died at Hanrahan’s place." (`thread.ts`). The lead is the reason as the thread says it, so the deck can't mend it. It was there before (inside the old why card).
 - **The deck is 677 KB** (129 KB gzipped), and the book's script goes from 896 KB to 1,577 KB (264 KB to 396 KB gzipped). Dropping `source` from the shipped file, and keeping it in `model/data/situated-written.jsonl`, would save about a fifth. Loading the deck on its own, after the first page, would keep it off the first paint.
 - **Docs/52 (bones and flesh)** puts the situated deck after voicing, as texture. `situate` runs in `planSection` before the rhythm. When the planner moves onto propositions, it moves with the texture pass.
+
+## Bones and flesh, build 1 (docs/52), 2026-10-15
+Branch `bones-1`. I read three nights in full, in voice and plainly: the golden's, and the neighbourhood at Medium (seed 5) and at Poached (seed 4). Docs/52's Built section has the measures. Left over:
+
+- **The writers' own words are still the flesh for 70% of composites:** the answers, the office, the finds, the puts, the reactions, the notebook's single clauses and the pages' own thoughts. `voicings.json` covers only what the planner rephrased (49 voicings, 12 shapes). Build 2 moves the rest into voicings, by shape and manner (`tell.ts`'s account and list grammar is the biggest piece).
+- **The voiced round trip on the writers' words is a check on people, not a parse.** It asks whether everybody the bones name is named and nobody else is. Hours and places aren't held, because an answer says them as "all evening", "home", "my place". A reader for `tell.ts`'s grammar would make it whole.
+- **One bible line names somebody its bones don't:** Miss Nowak's admission, "Only please don’t tell Mrs. Rafferty; she’s got a page for me already." It is texture inside a fact (10 units on 30 nights a tier). Either the bones grow a mention, or the line moves to a gap.
+- **NARROWS is in the set and never said.** Raw's window is one hour, and above Raw the level says the window and the sighting side by side. If a walk ever gets a two-hour window, the window's "so" voicings are there.
+- **The plain page:**
+  - "Coffin had only Feeney at the Thalia at ten" reads stronger than the voice's "Ten, Feeney, and nobody else": Pardo, there all evening, is said in a clause of his own.
+  - A pair's join is the voiced composite's, so the plain page has "…, as he had said, but Stuyvesant Street was the street of the Prentiss flat", where the plain facts don't contrast.
+  - A page that is all texture (a walk, an arrival) is "Nothing new.". Who is in the room is texture, not bones.
+- **The why-here's fold makes one-card keys more visible.** "…, so I stayed in the doorway with my hat off until I was asked in" turns up on night after night (docs/51's leftover, one card for its key).
+- **List smell is still over 10% at Medium** (10.0% dealt, 14.2% in the neighbourhood) and in the neighbourhood at Raw (11.8%) and Coddled (10.5%). Most remaining runs are three pieces of an arrival's texture.
+- **The same phrasings live in two places.** `thought.ts` still writes the pre-planner sentences, which `PLAN.ops = false` (docs/49's "before") uses, and `voicings.json` says them with the planner on. `breakSaid` (for the put's card) and the composer's breaker from propositions are two builds of one phrasing. Once the "before" measure retires, the writers can stop writing sentences for the planner's shapes.
+- **Only the hours that mattered pick their voicing with the hand's dice** (`own-word/for` or `/said`, as Planner 2's "hours-form" did). Build 2's larger set will move more picks into realization, and the night's later draws will move with them.
+- **`bones/reread.ts` ships in the book,** though only the round trip uses it. The script went up 51 KB (16 KB gzipped) for the bones, the plain grammar and its reader; the check could be a hook the script installs.

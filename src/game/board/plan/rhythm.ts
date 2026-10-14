@@ -85,6 +85,9 @@ function opensOnClause(b: string): boolean {
   return ws.slice(1, 7).some((x) => VERB.test(x) || /^[a-z]+ed$/.test(x));
 }
 
+/** A situated card that is something I did, for the why-here's fold (docs/52): its subject and its act. */
+const FOLD_ACT = /^I (?:went|stood|stayed|kept my (?:voice|questions)|took|found|let|loosened|hung|nodded|waved|followed|crossed|came|walked|got out|sat|pulled|asked if|made my way|slipped|edged|eased|knocked|stepped)\b/;
+
 /** Words a short lead of place or time opens on, before a clause's subject. */
 const LEAD = /^(?:For|In|On|Under|Over|At|Behind|Above|Below|Through|Outside|Inside|Across|Along|Beside|Near|Upstairs|Downstairs|Somewhere|Overhead|Down|Up)$/;
 
@@ -327,6 +330,33 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
       return () => {
         Object.assign(ia, before);
         para.splice(b.i, 0, ib);
+      };
+    });
+  }
+  // docs/52: a why-here's reason and the situated card after it, one sentence, where the card is
+  // what I did about it ("Coffin’s list had Ashby here at eleven, so I went over to him past the
+  // seats"): the reason is the cause, and "so" says so. (Never "and" or a semicolon: the blind read
+  // took those for a seam, docs/51.)
+  for (const s of [trio[0], trio[1], trio[2]]) {
+    out.push(() => {
+      const it = itemOf(s);
+      const lead = it.sit?.lead;
+      if (it.kind !== 'gap' || it.slot !== 'why-here' || !lead || !it.sit?.card || it.sit.tail || !it.text.startsWith(`${lead} `)) return null;
+      const card = it.text.slice(lead.length + 1);
+      const l = lead.replace(/⁣\d+⁤/g, '');
+      if (sentencesOf(l).length !== 1 || sentencesOf(card).length !== 1 || !/[a-z’)]\.$/.test(l) || /[;:“”]/.test(l + card)) return null;
+      // The reason is something somebody said or a list had (past tense), and the card is something I
+      // did on the strength of it: going in, standing, keeping my voice down. Not a wish, a want, a
+      // state of mind: "…, so I wished rooms could talk" is a non sequitur.
+      if (!/\b(?:had|said|passed|was|were)\b/.test(l) || /\b(?:are|is|keeps|keep)\b/.test(l)) return null;
+      if (!FOLD_ACT.test(card) || /\bso\b/i.test(card) || wordsIn(l) + wordsIn(card) > 34) return null;
+      const old = it.text;
+      it.text = `${lead.slice(0, -1)}, so ${card}`;
+      const alts = it.alts;
+      it.alts = undefined;
+      return () => {
+        it.text = old;
+        it.alts = alts;
       };
     });
   }

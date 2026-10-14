@@ -342,28 +342,51 @@ const CLAUSES: Clause[] = [
   // Somebody's own word: "Ashby said he was at the Automat at eight and nine, alone."
   {
     kinds: ['CLAIM'],
+    // One place at several hours with the same company; or, where the place isn't said, who was
+    // with them hour by hour ("with Abramowitz at eight, alone at nine and with Ashby at ten").
     joins: (a, b, run) => {
       const x = a as P<'CLAIM'>;
       const y = b as P<'CLAIM'>;
-      return x.person === y.person && x.place === y.place && same(x.company, y.company) && later(b, run);
+      if (x.person !== y.person || !later(b, run)) return false;
+      if (x.place === undefined && y.place === undefined) return x.company !== undefined && y.company !== undefined;
+      return x.place === y.place && same(x.company, y.company);
     },
     say: (ps, c, ref) => {
       const x = ps[0] as P<'CLAIM'>;
       const who = S(c, ref, x.person);
       const at = hs(ps.map((y) => (y as P<'CLAIM'>).hour));
       const comp = x.company === undefined ? '' : x.company.length ? `, with ${ns(c, x.company)}` : ', alone';
-      if (x.place === undefined) return { text: `${who} said ${he(c, x.person)} was ${x.company?.length ? `with ${ns(c, x.company)}` : 'alone'} at ${at}`, subject: x.person };
+      if (x.place === undefined) {
+        // Hours with the same company run together: "alone at nine and eleven".
+        const spans: { company: Id[]; hours: number[] }[] = [];
+        for (const y of ps as P<'CLAIM'>[]) {
+          const last = spans[spans.length - 1];
+          if (last && same(last.company, y.company)) last.hours.push(y.hour);
+          else spans.push({ company: y.company ?? [], hours: [y.hour] });
+        }
+        return { text: `${who} said ${he(c, x.person)} was ${andList(spans.map((sp) => `${sp.company.length ? `with ${ns(c, sp.company)}` : 'alone'} at ${hs(sp.hours)}`))}`, subject: x.person };
+      }
       return { text: `${who} said ${he(c, x.person)} was at ${placeName(c, x.place)} at ${at}${comp}`, subject: x.person };
     },
-    re: (l) => `^(${l.re.NAME}|${l.re.PRON}) said ${l.re.PRON} was (?:at (${l.re.PL}) at (${l.re.HS})(?:, with (${l.re.NS})|, (alone))?|with (${l.re.NS}) at (${l.re.HS})|(alone) at (${l.re.HS}))$`,
+    re: (l) => `^(${l.re.NAME}|${l.re.PRON}) said ${l.re.PRON} was (?:at (${l.re.PL}) at (${l.re.HS})(?:, with (${l.re.NS})|, (alone))?|((?:with (?:${l.re.NS})|alone) at (?:${l.re.HS})(?:(?:, | and )(?:with (?:${l.re.NS})|alone) at (?:${l.re.HS}))*))$`,
     read: (m, { lx, ref }) => {
       const p = subj(lx, ref, m[1] as string);
       if (m[2]) {
         const company = m[4] ? names(lx, m[4]) : m[5] ? [] : undefined;
         return { props: hours(lx, m[3] as string).map((h) => ({ k: 'CLAIM', person: p, place: place(lx, m[2] as string), hour: h, ...(company ? { company } : {}) }) as Prop), subject: p };
       }
-      const company = m[6] ? names(lx, m[6]) : [];
-      return { props: hours(lx, (m[7] ?? m[9]) as string).map((h) => ({ k: 'CLAIM', person: p, hour: h, company }) as Prop), subject: p };
+      const span = new RegExp(`^(?:with (${lx.re.NS})|alone) at (${lx.re.HS})(?:, | and |$)`);
+      const out: Prop[] = [];
+      let rest = m[6] as string;
+      while (rest.length) {
+        // (An "and" may join two names or two spans: the longest span that leaves the rest readable.)
+        const k = span.exec(rest);
+        if (!k) throw new Error(`plain: can't read "${rest}" as company`);
+        const company = k[1] ? names(lx, k[1]) : [];
+        for (const h of hours(lx, k[2] as string)) out.push({ k: 'CLAIM', person: p, hour: h, company });
+        rest = rest.slice((k[0] as string).length);
+      }
+      return { props: out, subject: p };
     },
   },
   // A watcher's hours: "Coffin had only Feeney and Ashby at the Thalia at eleven."
@@ -699,9 +722,9 @@ const CLAUSES: Clause[] = [
     kinds: ['PRESENT'],
     say: (ps, c, ref) => {
       const x = ps[0] as P<'PRESENT'>;
-      return { text: `${S(c, ref, x.person)} was in the room at ${placeName(c, x.place)}`, subject: x.person };
+      return { text: `${S(c, ref, x.person)} turned out to be at ${placeName(c, x.place)}`, subject: x.person };
     },
-    re: (l) => `^(${l.re.NAME}|${l.re.PRON}) was in the room at (${l.re.PL})$`,
+    re: (l) => `^(${l.re.NAME}|${l.re.PRON}) turned out to be at (${l.re.PL})$`,
     read: (m, { lx, ref }) => {
       const p = subj(lx, ref, m[1] as string);
       return { props: [{ k: 'PRESENT', person: p, place: place(lx, m[2] as string) }], subject: p };

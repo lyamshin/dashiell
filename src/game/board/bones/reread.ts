@@ -142,17 +142,17 @@ function srcFold(c: BoardCase, name: string, like?: Src): Src {
 }
 
 /** "here at eleven, with Feeney", "home at eight and nine", "at the Thalia at ten" (a run of them). */
-function spansV(c: BoardCase, lx: Lexicon, s: string, v: VCtx, who: Id): { place: PlaceId; hours: number[]; company: Id[] }[] {
+function spansV(c: BoardCase, lx: Lexicon, s: string, v: VCtx, who: Id): { place: PlaceId; hours: number[]; company?: Id[] }[] {
   const AT = `(?:[Hh]ere|[Hh]ome|(?:[Aa]t )?(?:${lx.re.PL}))`;
   const one = new RegExp(`^(${AT}) at ((?:${lx.re.H})(?:(?:, | and )(?:${lx.re.H}))*)(?:, with ((?:${lx.re.NAME})(?:(?:, | and )(?:${lx.re.NAME}))*))?(?:,? and at ((?:${lx.re.H}))(?:, with ((?:${lx.re.NAME})(?:(?:, | and )(?:${lx.re.NAME}))*))?)?(?:,? and |, |$)`);
-  const out: { place: PlaceId; hours: number[]; company: Id[] }[] = [];
+  const out: { place: PlaceId; hours: number[]; company?: Id[] }[] = [];
   let rest = s.trim();
   while (rest.length) {
     const m = one.exec(rest);
     if (!m) throw new Error(`voiced: can't read "${rest}" as places and hours`);
     const place = placeV(c, m[1] as string, v, who);
-    out.push({ place, hours: listV(m[2] as string, lx.re.H).map(hourV), company: m[3] ? namesV(c, lx, m[3]) : [] });
-    if (m[4]) out.push({ place, hours: [hourV(m[4])], company: m[5] ? namesV(c, lx, m[5]) : [] });
+    out.push({ place, hours: listV(m[2] as string, lx.re.H).map(hourV), ...(m[3] ? { company: namesV(c, lx, m[3]) } : {}) });
+    if (m[4]) out.push({ place, hours: [hourV(m[4])], ...(m[5] ? { company: namesV(c, lx, m[5]) } : {}) });
     rest = rest.slice((m[0] as string).length);
   }
   return out;
@@ -239,14 +239,14 @@ type Unargs = (a: Record<string, string>, comp: Composite, v: VCtx, lx: Lexicon)
 const confirmedSpans: Unargs = (a, comp, v, lx) => {
   const x = comp.props[0] as P<'CONFIRMS'>;
   const by = srcFold(v.c, (a.src ?? '').replace(/ had( said)?$/, ''), x.by);
-  return spansV(v.c, lx, a.spans as string, v, x.person).flatMap((sp) => sp.hours.map((h) => ({ k: 'CONFIRMS', person: x.person, place: sp.place, hour: h, company: sp.company, by }) as Prop));
+  return spansV(v.c, lx, a.spans as string, v, x.person).flatMap((sp) => sp.hours.map((h) => ({ k: 'CONFIRMS', person: x.person, place: sp.place, hour: h, ...(sp.company ? { company: sp.company } : {}), by }) as Prop));
 };
 
 const confirmedRest: Unargs = (a, comp, v, lx) => {
   const x = comp.props[0] as P<'CONFIRMS'>;
   const who = personV(v.c, a.him as string);
   const by = srcFold(v.c, a.by as string, x.by);
-  return spansV(v.c, lx, a.spans as string, v, who).flatMap((sp) => sp.hours.map((h) => ({ k: 'CONFIRMS', person: who, place: sp.place, hour: h, company: sp.company, by }) as Prop));
+  return spansV(v.c, lx, a.spans as string, v, who).flatMap((sp) => sp.hours.map((h) => ({ k: 'CONFIRMS', person: who, place: sp.place, hour: h, ...(sp.company ? { company: sp.company } : {}), by }) as Prop));
 };
 
 const UNARGS: Record<string, Unargs> = {
