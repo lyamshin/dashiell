@@ -44,7 +44,7 @@ import {
   type ThoughtLevel,
 } from './model.js';
 import { sourceName } from './stars.js';
-import type { Relation } from './plan/types.js';
+import type { Relation, SaySpec } from './plan/types.js';
 import type { Prop, Src } from './bones/types.js';
 import { breakerProp, claimProp, entryOf, srcOfQ } from './bones/extract.js';
 import { accessPhrase, atWhere, breakSaid, claimSaid, keptAt, remarkSaid, shortOther, where } from './bones/phrase.js';
@@ -88,6 +88,8 @@ export interface ThoughtPart {
   flesh?: Record<string, unknown>;
   /** docs/52: an opening "So" or "But", the page's join, said only when it's free (`flesh.bare` is the sentence without it). */
   opener?: 'So' | 'But';
+  /** docs/52 build 2: the sentence as a composite to be voiced (its shape, flags and arguments). */
+  say?: SaySpec;
 }
 
 function blank(): Thought {

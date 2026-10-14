@@ -38,6 +38,89 @@ export const FORMS: Record<ArgType, string[]> = {
 
 const T = 'text' as const;
 
+/**
+ * The slots a voicing must name, by its shape and the flags it asks for: each entry is a set of
+ * alternatives, one of which must be there ("{him} or {name}"). A voicing that names none of an
+ * entry's drops a fact (the round trip would fail it too, but only on a night that says that form).
+ */
+export function mustSay(v: { shape: Shape; requires?: string[]; template: string }): string[][] {
+  const r = new Set(v.requires ?? []);
+  const has = (k: string) => r.has(k);
+  switch (v.shape) {
+    case 'CLAIM-SPAN': {
+      if (has('solo')) return has('all') ? [] : [['hours']];
+      if (has('company')) return [['bits']];
+      const out: string[][] = [];
+      if (has('party')) out.push(['client'], ['occasion']);
+      else if (has('reason')) out.push(['reason']);
+      else if (has('place')) out.push(['where']);
+      if (!(has('first') && has('end')) && !has('timed') && !(has('party') && has('end'))) out.push(['from']);
+      if (has('span')) out.push(['to']);
+      if (!has('alone') && !has('bare')) out.push(['with']);
+      return out;
+    }
+    case 'LIST-HOUR':
+      if (has('shut')) return [['hour']];
+      if (has('always')) return [['who'], ...(has('does') ? [['does']] : []), ...(has('post') ? [['post']] : [])];
+      if (has('empty')) return has('regular') ? [['hours'], ['names']] : [['hours']];
+      if (has('hour')) return [['hours'], ['names']];
+      return [['when'], ['names'], ['nobody']];
+    case 'REMARK':
+      if (has('passed')) return [['via'], ['hour'], ['saw'], ['street']];
+      if (has('had')) return [['saw'], ['hour'], ['keep'], ['back']];
+      if (has('there')) return [['means'], ['still'], ['hour']];
+      if (has('shift')) return [['from']];
+      return [];
+    case 'HANDOVER':
+      if (has('seen')) return [['hour'], ['holder']];
+      return [];
+    case 'CONFIRMED':
+      if (has('agree')) return [['spans'], ['src']];
+      if (has('rest')) return [['by'], ['spans'], ['him', 'name']];
+      if (has('many')) return [['watcher'], ['pairs']];
+      if (has('list')) return [['watcher'], ['them', 'name', 'him'], ['at'], ['hour']];
+      return [];
+    case 'CONFIRMED-WITH':
+      return has('apart') ? [['confirmed'], ['placed']] : [['confirmed'], ['others']];
+    case 'COLLISION-PAIR':
+      if (has('recap')) return [['person'], ['place'], ['hour'], ['src']];
+      return has('two') || has('colon') ? [['claim'], ['breaker'], ['two']] : [['claim'], ['breaker']];
+    case 'OWN-WORD':
+      if (has('recap')) return [['owns']];
+      if (has('one')) return [['person'], ['place'], ['hours']];
+      return [['hs'], ['who'], ['what']];
+    case 'PLACED-SET':
+      if (has('swear')) return [['bits'], ['swear']];
+      if (has('self') && has('plain')) return [['runs']];
+      if (has('self')) return [['he'], ['bits']];
+      if (has('count')) return [['his'], ['runs']];
+      if (has('recap')) return [['by'], ['groups']];
+      if (has('one')) return [['person'], ['place'], ['hours'], ['src']];
+      return [];
+    case 'ACCESS-SET': {
+      if (has('recap')) return [...(has('yes') ? [['people']] : []), ...(has('no') ? [['none']] : [])];
+      const out: string[][] = [];
+      if (has('yes')) out.push(['yes']);
+      if (has('no')) out.push(has('agg') ? ['nobody'] : ['no']);
+      if (has('agg')) out.push(['short']);
+      return out;
+    }
+    case 'ATTACH':
+      return [['host'], ['of'], ...(has('and-he') ? [['he']] : [])];
+    case 'WINDOW-ALIVE':
+      return [['client'], ['opts'], ['victim'], ['place', 'at'], ['hour'], ...(has('walk') ? [['narrowed', 'narrowword']] : [])];
+    case 'STREET':
+      return [['street'], ['victim'], ...(has('small') ? [['client']] : [])];
+    case 'ADMIT-CHECK':
+    case 'PAIR':
+      return [['a'], ['b']];
+    case 'UNSPOKEN':
+      return [['people'], ['hours']];
+    default:
+      return [];
+  }
+}
+
 export const SCHEMA: Record<Shape, ShapeSchema> = {
   'CONFIRMED-WITH': {
     args: { confirmed: T, others: T, him: T, placed: T },
@@ -48,9 +131,9 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'Somebody’s own word confirmed by another line. agree (so | which): {spans} "here at eleven, with Feeney", {src} "Coffin had". rest (same | held): {by} the source, {him}/{he} the person, {spans}; held adds {name}. list (same | too | many): {watcher}, {them}/{name}/{him}, {at} "here" | "at the Thalia", {hour}, {there}; many: {pairs} "A at ten and B at eleven".',
   },
   'LIST-HOUR': {
-    args: { hours: 'hours', hour: 'hour', names: 'people', other: 'people', who: T, when: T, nobody: T },
+    args: { hours: 'hours', hour: 'hour', names: T, who: T, does: T, post: T, when: T, nobody: T },
     speech: true,
-    doc: 'A watcher’s list, an hour (or a run of hours with the same people) at a time, in the watcher’s mouth. hour: {hours} and {names} (the people, as the watcher calls them); whole: and nobody else came in (the voicing says so in its own words); part: the voicing says nothing about anybody else. first: the first hour of the list (the voicing may say "{hours:oclock}"); next: a later one. empty: nobody at {hours} (landlady: "nobody but me"; regular: just {names}, the one who’s always there). always: {other} was there every hour the watcher kept (all: the whole evening; shift: from when the watcher came on), and {who} what they do, when the list says ("He buys things."). shut: the place shut at {hour}, nobody after. Legacy (aggregated): {when}, {names}, {nobody}.',
+    doc: 'A watcher’s list, an hour (or a run of hours with the same people) at a time, in the watcher’s mouth. hour: at {hours}, {names} (the people, as the watcher calls them: "Feeney, Corrigan and Mr. Prentiss telling the room about his key"); whole: and nobody else (the voicing says so in its own words); part: the voicing says nothing about anybody else. first: the list’s first hour ({hours:oclock} reads well); next: a later one. one | many: one person or several. empty: nobody at {hours} (landlady: nobody but me; regular: just {names}, the one who’s always there; else: nobody else; bare: nobody). always: {who} was there every hour the watcher kept (all: the whole evening; shift: the whole time the watcher was on), {post} where ("in his back booth"), {does} what they do ("He buys things"); plural: {who} is two people. shut: the place shut at {hour}, and nobody after.',
   },
   UNSPOKEN: {
     args: { people: 'people', hours: 'hours' },
@@ -83,7 +166,7 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
   },
   HANDOVER: {
     args: { holder: 'people', place: 'at', hour: 'hour', scene: 'place', thing: 'person', at: 'place' },
-    doc: 'The thing’s last move, to somebody who isn’t on the board. thought: whatever went out of {scene}, something came in {place} under a coat at {hour} and went to {holder}. recap: whatever it was had gone to {holder} at {at} at {hour}. crack: {thing} was with {holder}, here (who hadn’t looked up) or away ({place}). coat: the watcher’s answer to what was under the coat (alive | small).',
+    doc: 'The thing’s last move, to somebody who isn’t on the board. seen (a watcher’s remark, in the watcher’s mouth): at {hour} somebody came in with something under a coat and went straight to {holder}, and it changed hands; the watcher was watching the coat, not the face. coat (the watcher’s answer to what was under the coat; alive | small): no slots, all folded. thought: whatever went out of {scene}, something came in {place} under a coat at {hour} and went to {holder}. recap: whatever it was had gone to {holder} at {at} at {hour}. crack: {thing} was with {holder}, here (who hadn’t looked up) or away ({at}).',
   },
   'PLACED-SET': {
     args: { bits: T, swear: T, he: T, runs: T, his: T, by: T, groups: T, person: 'person', place: 'place', hours: 'hours', src: T },
@@ -119,9 +202,9 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'A line of the office, in the client’s mouth.',
   },
   REMARK: {
-    args: { via: 'place', hour: 'hour', saw: 'person', street: T, from: 'hour', means: T, keep: T, back: 'hour' },
+    args: { via: 'place', hour: 'hour', saw: 'person', street: T, from: 'hour', means: T, still: T, keep: T, back: 'hour' },
     speech: true,
-    doc: 'Something a person or a watcher mentions besides. passed: on the way to {via} at {hour} they passed {saw} on {street}, in a hurry, no hat. had: they had {saw} (the pet) at their place at {hour}, {keep}, and put it back just before {back}. there: {means} was there at {hour}, and they didn’t look again. shift: the watcher came on at {from}; before that they can’t say.',
+    doc: 'Something a person or a watcher mentions besides, in their mouth. passed: walking over to {via} at {hour} they passed {saw} on {street}, going fast, no hat. had: they had {saw} (the pet: {saw:them} is him or her) at their place at {hour}, {keep} ("for her supper"), and put {saw:them} back in the flat just before {back}. there: {means} ("the rat poison on the cellar shelf") was {still} ("there", "on its nail") at {hour}, and they didn’t look again. shift: the watcher came on at {from}; before that they can’t say.',
   },
   PRESENT: {
     args: { person: 'person', where: T },

@@ -72,9 +72,10 @@ import { breakSaid, claimSaid, eliminationOf, shortOther, thoughtOf, type Though
 import { walkBetween } from './walk.js';
 import { papersLine, whyOrder } from './motives.js';
 import { SPARE_KEY } from '../../gen/board/content.js';
-import { worldAccountVoice, worldDeck, worldFoundWith, worldListVoice, worldLook, worldManner, worldStaging } from './world.js';
+import { worldAccountVoice, worldDeck, worldFoundWith, worldListLines, worldLook, worldManner, worldStaging } from './world.js';
+import { sayFirst } from './bones/say.js';
 import { PLAN, chapterUnit, markPronoun, newBudget, planSection, stripMarks, type GapSlot, type Item, type Relation, type SituCtx, type Unit } from './plan/index.js';
-import type { PageBudget } from './plan/types.js';
+import type { PageBudget, SaySpec } from './plan/types.js';
 import type { Prop } from './bones/types.js';
 import type { VoiceHand } from './bones/say.js';
 import { breakerProp, claimProp, findProps, givenProps, lineProps, meansProp as meansPropOf, srcOfQ } from './bones/extract.js';
@@ -834,6 +835,7 @@ function think(w: Writer, q: string, extra: Thought | null = null): Thought {
         ...(x.places.length === 1 && x.places[0] ? { place: x.places[0] } : {}),
         ...(x.props ? { props: x.props } : {}),
         ...(x.flesh ? { flesh: x.flesh } : {}),
+        ...(x.say ? { say: x.say } : {}),
         ...(x.opener ? { opener: x.opener } : {}),
         tag: `thought:${x.rule}`,
         runOn: i > 0,
@@ -1427,6 +1429,7 @@ export function writeAccount(w: Writer, p: PersonId): void {
             about: [...new Set([p, ...(x.remark !== undefined ? (x.people ?? []) : x.hours.flatMap((h) => a.claims[h as Hour]?.company ?? []))])],
             carries: x.remark !== undefined ? [`remark:account:${p}#${x.remark}`] : x.hours.map((h) => `claim:${p}@${h}`),
             props: x.props,
+            ...(x.say ? { say: x.say } : {}),
           },
     ),
   );
@@ -1464,27 +1467,31 @@ export function writeList(w: Writer, watcher: PersonId): void {
   whyHere(w, q, 'list', s);
   stageAndAsk(w, watcher, 'list', null, { job: s.job });
   // docs/48 §3: in the watcher's own words at either end.
-  const lines = spokenListLines(c, l, c.seed % 4);
-  const said = worldListVoice(c, w.hand, watcher, lines.map((x) => x.text), c.board.hours.filter((h) => l.entries[h] !== undefined), l.remarks.length);
-  // docs/49: a line a fact (the hours it tells); the watcher's own opening line a gap. A line the
-  // watcher says their own way keeps their words, and isn't aggregated.
-  const opened = said.length === lines.length + 1;
+  const lines = spokenListLines(c, l, c.seed % 4, mannerOf(c, watcher));
+  // docs/52 build 2: the watcher's own last "nobody else", from the bible: the line it ends is said
+  // without one (its `part` voicing), then theirs, in their own words (the writer's flesh).
+  const listed = lines.filter((x) => x.remark === undefined);
+  const lastLine = listed[listed.length - 1];
+  const own = worldListLines(c, w.hand, watcher, c.board.hours.filter((h) => l.entries[h] !== undefined), !!lastLine?.say?.flags.includes('whole'));
+  if (own.nobody && lastLine?.say) {
+    const part = { ...lastLine.say, flags: lastLine.say.flags.map((f) => (f === 'whole' ? 'part' : f)) };
+    lastLine.text = `${sayFirst(c, part) ?? lastLine.text} ${own.nobody}`;
+    lastLine.say = undefined;
+  }
+  // docs/49: a line a fact (the hours it tells); the watcher's own opening line a gap.
   answer(
     w,
-    said.map((text, i) => {
-      const x = lines[opened ? i - 1 : i];
-      if (!x) return { text, gap: true };
+    [...(own.open ? [{ text: own.open, gap: true }] : []), ...lines.map((x) => {
       const ppl = x.remark !== undefined ? (x.people ?? []) : x.hours.flatMap((h) => (l.entries[h as Hour] ?? []).flatMap((e) => ('person' in e ? [e.person] : [])));
       return {
-        text,
+        text: x.text,
         about: [watcher, ...ppl],
         carries: x.remark !== undefined ? [`remark:list:${watcher}#${x.remark}`] : x.hours.map((h) => `list:${watcher}@${h}`),
         place: l.place,
         props: x.props,
-        // docs/52: the watcher's own words for the hour and its people, for the planner's "and nobody else".
-        ...(x.hour && text === x.text ? { flesh: { ...x.hour } } : {}),
+        ...(x.say ? { say: x.say } : {}),
       };
-    }),
+    })],
     true,
   );
   // The handover: what was under the coat is the question anybody would ask, and the answer says no more than the watcher saw.
@@ -1888,7 +1895,7 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
  * facts (exempt from the name count, as a list or an account has to name people), their own voice
  * lines inside the quotation are gaps.
  */
-function answer(w: Writer, lines: { text: string; gap?: boolean; about?: string[]; carries?: string[]; place?: string; props?: Prop[]; flesh?: Record<string, unknown> }[], list = false): void {
+function answer(w: Writer, lines: { text: string; gap?: boolean; about?: string[]; carries?: string[]; place?: string; props?: Prop[]; flesh?: Record<string, unknown>; say?: SaySpec }[], list = false): void {
   const kept = lines.filter((x) => x.text);
   kept.forEach((x, i) => {
     const text = `${i === 0 ? '“' : ''}${x.text}${i === kept.length - 1 ? '”' : ''}`;
@@ -1901,6 +1908,7 @@ function answer(w: Writer, lines: { text: string; gap?: boolean; about?: string[
         ...(x.place ? { place: x.place } : {}),
         ...(x.props ? { props: x.props } : {}),
         ...(x.flesh ? { flesh: x.flesh } : {}),
+        ...(x.say ? { say: x.say } : {}),
         speech: true,
         exempt: true,
         runOn: run,

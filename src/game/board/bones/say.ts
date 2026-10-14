@@ -37,6 +37,12 @@ export interface VoiceHand {
   int(n: number): number;
 }
 
+/**
+ * The composites voiced, for the tools (`scripts/voicings.ts samples`): shape, flags, arguments,
+ * manner, propositions and the words, when `on`.
+ */
+export const SAMPLES: { on: boolean; list: { shape: string; flags: string[]; args: Args; manner?: string; props: unknown[]; said: string; voicing: string; c: BoardCase; speaker?: string }[] } = { on: false, list: [] };
+
 /** docs/52 §6, voicing variety: every choice, with how many fitted and whether one was said again while another was still unsaid. */
 export const VARIETY: { on: boolean; picks: { id: string; shape: string; pool: number; again: boolean; unsaidLeft: boolean }[] } = { on: false, picks: [] };
 
@@ -47,6 +53,16 @@ export interface Picked {
   others: { v: Voicing; text: string }[];
   /** Note the use with the hand (the chooser's preview doesn't). */
   commit: () => string;
+}
+
+/**
+ * A composite in its first voicing, with no hand: the words a writer keeps as its line before the
+ * planner chooses (tools, tests, the notebook). Null where no voicing fits.
+ */
+export function sayFirst(c: BoardCase, spec: { shape: Shape; flags: readonly string[]; args: Args; manner?: string }): string | null {
+  const band = c.tier <= 1 ? 'low' : c.tier <= 3 ? 'mid' : 'high';
+  const v = fitting(spec.shape, new Set(spec.flags), { manner: spec.manner, tierBand: band })[0];
+  return v ? fill(v.template, spec.args, c) : null;
 }
 
 /** The narrated sentences of a text, as `said` holds them. */

@@ -39,13 +39,14 @@ import { andList, hourWord, isMurder, nameOf, oclock, personOf, placeName, pronO
 import { solveRun } from '../knowledge.js';
 import type { Item, PageBudget } from '../plan/types.js';
 import type { PlanCtx } from '../plan/index.js';
+import { speakerOf } from '../plan/speaker.js';
 import { markPronoun } from '../plan/refer.js';
 import { herIsObject } from '../plan/measure.js';
 import { sentencesOf, wordsIn } from '../plan/sentences.js';
 import { accessPhrase, atWhere, claimSaid, shortOther, where } from './phrase.js';
 import type { Composite, Prop, Shape, Src } from './types.js';
 import { fitting, type Args, type Voicing } from './voice.js';
-import { preview, type Picked } from './say.js';
+import { preview, SAMPLES, type Picked } from './say.js';
 import { plainComposite } from './plain.js';
 
 /** The longest sentence composition makes. */
@@ -116,6 +117,9 @@ export interface Held extends Composite {
   args?: Args;
   /** docs/52 build 2: the hand's record of the voicing's use (`v:<id>#<n>`), given back if it's voiced again. */
   noted?: string;
+  /** docs/52 build 2: the flags and the manner it was voiced by (the tools' samples). */
+  flags?: string[];
+  manner?: string;
 }
 
 /** The shape a writer's fact is, by what it says and where (its flesh is the writer's own words). */
@@ -185,9 +189,18 @@ export function spend(comp: Held, p: Picked, ctx: PlanCtx): void {
  * fits: the plain rendering (docs/52 §4, "voicing → plain fallback").
  */
 function voice(it: Item, comp: Held, flags: string[], args: Args, ctx: PlanCtx, manner?: string): string {
+  comp.flags = flags;
+  comp.manner = manner;
   const p = pickFor(comp.shape, flags, args, ctx, manner);
   if (!p) return sayPlain(it, comp, ctx);
   return sayWith(it, comp, p, args, ctx);
+}
+
+/** The tools' samples: the composite as voiced, with what it was voiced from. */
+function sample(comp: Held, it: Item, ctx: PlanCtx): void {
+  if (!SAMPLES.on || !comp.args || !comp.voicing) return;
+  const speaker = speakerOf(it, ctx.c);
+  SAMPLES.list.push({ shape: comp.shape, flags: comp.flags ?? [], args: comp.args, ...(comp.manner ? { manner: comp.manner } : {}), props: comp.props, said: comp.said ?? '', voicing: comp.voicing, c: ctx.c, ...(speaker ? { speaker } : {}) });
 }
 
 /** The composite said plainly, where no voicing fits it. */
@@ -206,6 +219,7 @@ function sayWith(it: Item, comp: Held, p: Picked, args: Args, ctx: PlanCtx): str
   comp.voicing = p.v.id;
   comp.args = args;
   comp.said = p.text;
+  sample(comp, it, ctx);
   it.comp = comp;
   it.text = p.text;
   return p.text;
@@ -457,6 +471,9 @@ export function sayAll(items: Item[], ctx: PlanCtx): void {
     comp.voicing = p.v.id;
     comp.args = s.args;
     comp.said = p.text;
+    comp.flags = s.flags;
+    comp.manner = s.manner;
+    sample(comp, it, ctx);
     it.comp = comp;
     if (it.speech) it.text = inQuotes(it.text, p.text);
     else if (it.opener) {
@@ -533,26 +550,8 @@ export function aggregate(items: Item[], ctx: PlanCtx): Item[] {
       out.push(it);
       continue;
     }
-    // A watcher's hour and its "nobody else": one sentence.
-    const fl = it.flesh as { when?: string; names?: string; whole?: boolean; nobody?: string } | undefined;
-    if (it.kind === 'fact' && fl?.when !== undefined && fl.whole) {
-      const tail = /at all/.test(fl.nobody ?? '') ? 'nobody else at all' : /that hour/.test(fl.nobody ?? '') ? 'nobody else that hour' : 'nobody else';
-      // (Inside somebody's answer the fallback is their own words, not the plain page's narration.)
-      const args = { when: fl.when, names: fl.names ?? '', nobody: tail };
-      const v = pickFor('LIST-HOUR', [], args, ctx, 'watcher');
-      if (v) {
-        const nu: Item = { ...it, joined: 'nobody else' };
-        const comp: Held = { shape: 'LIST-HOUR', props: [...(it.props ?? [])] };
-        spend(comp, v, ctx);
-        comp.voicing = v.v.id;
-        comp.args = args;
-        comp.said = v.text;
-        nu.comp = comp;
-        nu.text = inQuotes(it.text, v.text);
-        out.push(nu);
-        continue;
-      }
-    }
+    // (A watcher's hour and its "nobody else" is one composite now, LIST-HOUR `whole`, voiced whole
+    // by the watcher's voicings: docs/52 build 2.)
     out.push(it);
   }
   return out;

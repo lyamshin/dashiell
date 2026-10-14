@@ -457,6 +457,18 @@ export function worldAccountVoice(c: BoardCase, hand: Hand, p: PersonId, reasone
  * they kept (they're at their post all night, so it may name the post), and say their last "nobody
  * else" their own way.
  */
+export function worldListLines(c: BoardCase, hand: Hand, watcher: PersonId, hours: number[], lastWhole: boolean): { open?: string; nobody?: string } {
+  const b = bibleOf(c);
+  const bp = biblePerson(c, watcher);
+  if (!b || !bp) return {};
+  const post = b.places.find((x) => x.watcher?.person === bp.id || bp.works?.place === x.id);
+  const own = new Set(post ? [post.id] : []);
+  const open = hourLine(c, b, bp, hand, hours.slice(0, 1), hours, own);
+  // docs/52 build 2: the last hour's "nobody else", said their way (the line before it is said without one).
+  const nobody = lastWhole ? fresh1(hand, bp.voice.nobodyElse.map((l, i) => ({ l, id: `nb:${bp.id}:nobody:${i}` })).filter((x) => safeVoice(c, b, bp, x.l, { own }) && clean(x.l) && /\b(nobody|lot|everybody|all|no one)\b/i.test(x.l))) : undefined;
+  return { ...(open ? { open } : {}), ...(nobody ? { nobody } : {}) };
+}
+
 export function worldListVoice(c: BoardCase, hand: Hand, watcher: PersonId, said: string[], hours: number[], remarks = 0): string[] {
   const b = bibleOf(c);
   const bp = biblePerson(c, watcher);

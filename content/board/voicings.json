@@ -1,5 +1,21 @@
 [
-  {"id": "list-hour/nobody", "shape": "LIST-HOUR", "manner": "watcher", "template": "{when}, {names}, and {nobody}."},
+  {"id": "list/hour-whole-first", "shape": "LIST-HOUR", "requires": ["hour", "whole", "first"], "template": "{Hours:oclock}, {names}. Nobody else."},
+  {"id": "list/hour-whole-next", "shape": "LIST-HOUR", "requires": ["hour", "whole", "next"], "template": "{Hours}, {names}. Nobody else."},
+  {"id": "list/hour-part-first", "shape": "LIST-HOUR", "requires": ["hour", "part", "first"], "template": "{Hours:oclock}, {names}."},
+  {"id": "list/hour-part-next", "shape": "LIST-HOUR", "requires": ["hour", "part", "next"], "template": "{Hours}, {names}."},
+  {"id": "list/empty-landlady", "shape": "LIST-HOUR", "requires": ["empty", "landlady"], "template": "{Hours}, nobody but me."},
+  {"id": "list/empty-regular", "shape": "LIST-HOUR", "requires": ["empty", "regular"], "template": "{Hours}, just {names}."},
+  {"id": "list/empty-else", "shape": "LIST-HOUR", "requires": ["empty", "else"], "template": "{Hours}, nobody else."},
+  {"id": "list/empty-bare", "shape": "LIST-HOUR", "requires": ["empty", "bare"], "template": "{Hours}, nobody."},
+  {"id": "list/always-all", "shape": "LIST-HOUR", "requires": ["always", "all"], "forbids": ["does", "post", "plural"], "template": "{Who} was there all evening, every hour of it."},
+  {"id": "list/always-all-plural", "shape": "LIST-HOUR", "requires": ["always", "all", "plural"], "template": "{Who} were there all evening, every hour of it."},
+  {"id": "list/always-all-does", "shape": "LIST-HOUR", "requires": ["always", "all", "does"], "template": "{Who} was there all evening, every hour of it. {Does}."},
+  {"id": "list/always-all-post", "shape": "LIST-HOUR", "requires": ["always", "all", "post"], "template": "{Who} was {post} all evening, every hour of it."},
+  {"id": "list/always-shift", "shape": "LIST-HOUR", "requires": ["always", "shift"], "forbids": ["does", "post", "plural"], "template": "{Who} was there the whole time I was on."},
+  {"id": "list/always-shift-plural", "shape": "LIST-HOUR", "requires": ["always", "shift", "plural"], "template": "{Who} were there the whole time I was on."},
+  {"id": "list/always-shift-does", "shape": "LIST-HOUR", "requires": ["always", "shift", "does"], "template": "{Who} was there the whole time I was on. {Does}."},
+  {"id": "list/always-shift-post", "shape": "LIST-HOUR", "requires": ["always", "shift", "post"], "template": "{Who} was {post} the whole time I was on."},
+  {"id": "list/shut", "shape": "LIST-HOUR", "requires": ["shut"], "template": "We shut at {hour}. Nobody after that."},
 
   {"id": "confirmed/so", "shape": "CONFIRMED", "requires": ["agree", "so"], "template": "So {spans}, which was what {src}."},
   {"id": "confirmed/which", "shape": "CONFIRMED", "requires": ["agree", "which"], "template": "{Spans}, which was what {src}."},
@@ -58,5 +74,34 @@
 
   {"id": "pair/and", "shape": "PAIR", "requires": ["and"], "template": "{a}, and {b}"},
   {"id": "pair/semi", "shape": "PAIR", "requires": ["semi"], "template": "{a}; {b}"},
-  {"id": "pair/but", "shape": "PAIR", "requires": ["but"], "template": "{a}, but {b}"}
+  {"id": "pair/but", "shape": "PAIR", "requires": ["but"], "template": "{a}, but {b}"},
+
+  {"id": "claim/first-place-one", "shape": "CLAIM-SPAN", "requires": ["run", "first", "place", "one"], "template": "I was {where} at {from}{with}."},
+  {"id": "claim/first-place-span", "shape": "CLAIM-SPAN", "requires": ["run", "first", "place", "span"], "template": "I was {where} from {from} through {to}{with}."},
+  {"id": "claim/first-place-end", "shape": "CLAIM-SPAN", "requires": ["run", "first", "place", "end"], "template": "I was {where} all evening{with}."},
+  {"id": "claim/first-reason-one", "shape": "CLAIM-SPAN", "requires": ["run", "first", "reason", "one"], "template": "At {from} I {reason}{with}."},
+  {"id": "claim/first-reason-span", "shape": "CLAIM-SPAN", "requires": ["run", "first", "reason", "span"], "template": "At {from} I {reason}, and stayed through {to}{with}."},
+  {"id": "claim/first-reason-end", "shape": "CLAIM-SPAN", "requires": ["run", "first", "reason", "end"], "template": "At {from} I {reason}, and I was there all evening{with}."},
+  {"id": "claim/next-reason-one", "shape": "CLAIM-SPAN", "requires": ["run", "next", "reason", "one"], "forbids": ["timed"], "template": "At {from} I {reason}{with}."},
+  {"id": "claim/next-reason-span", "shape": "CLAIM-SPAN", "requires": ["run", "next", "reason", "span"], "forbids": ["timed"], "template": "Then at {from} I {reason}, and stayed through {to}{with}."},
+  {"id": "claim/next-reason-end", "shape": "CLAIM-SPAN", "requires": ["run", "next", "reason", "end"], "forbids": ["timed"], "template": "Come {from}, I {reason}, and stayed the rest of the evening{with}."},
+  {"id": "claim/next-timed-one", "shape": "CLAIM-SPAN", "requires": ["run", "next", "reason", "one", "timed"], "template": "Then I {reason}{with}."},
+  {"id": "claim/next-timed-span", "shape": "CLAIM-SPAN", "requires": ["run", "next", "reason", "span", "timed"], "template": "Then I {reason}, and stayed through {to}{with}."},
+  {"id": "claim/next-timed-end", "shape": "CLAIM-SPAN", "requires": ["run", "next", "reason", "end", "timed"], "template": "Then I {reason}, and stayed the rest of the evening{with}."},
+  {"id": "claim/next-place-one", "shape": "CLAIM-SPAN", "requires": ["run", "next", "place", "one"], "template": "At {from} I was {where}{with}."},
+  {"id": "claim/next-place-span", "shape": "CLAIM-SPAN", "requires": ["run", "next", "place", "span"], "template": "{From} o’clock I was {where}, and stayed through {to}{with}."},
+  {"id": "claim/next-place-end", "shape": "CLAIM-SPAN", "requires": ["run", "next", "place", "end"], "template": "Around {from} I was {where}, and stayed the rest of the evening{with}."},
+  {"id": "claim/party-one", "shape": "CLAIM-SPAN", "requires": ["party", "one"], "template": "I was at {client}’s at {from}, for the {occasion}{with}."},
+  {"id": "claim/party-span", "shape": "CLAIM-SPAN", "requires": ["party", "span"], "template": "I was at {client}’s from {from} through {to}, for the {occasion}{with}."},
+  {"id": "claim/party-end", "shape": "CLAIM-SPAN", "requires": ["party", "end"], "template": "I was at {client}’s all evening, for the {occasion}{with}."},
+  {"id": "claim/solo-all", "shape": "CLAIM-SPAN", "requires": ["solo", "all"], "template": "I was on my own all evening."},
+  {"id": "claim/solo-some", "shape": "CLAIM-SPAN", "requires": ["solo", "some"], "template": "Nobody was with me at {hours:or}."},
+  {"id": "claim/company", "shape": "CLAIM-SPAN", "requires": ["company"], "template": "{Bits}."},
+
+  {"id": "remark/passed", "shape": "REMARK", "requires": ["passed"], "template": "Walking over to {via} at {hour} I passed {saw} on {street}, going fast, no hat."},
+  {"id": "remark/had", "shape": "REMARK", "requires": ["had"], "template": "I had {saw} at my place at {hour}, {keep}, and put {saw:them} back in the flat just before {back}."},
+  {"id": "remark/there", "shape": "REMARK", "requires": ["there"], "template": "{Means} was {still} at {hour}. I didn’t look again."},
+  {"id": "remark/shift", "shape": "REMARK", "requires": ["shift"], "template": "I came on at {from}. Before that I couldn’t tell you."},
+
+  {"id": "handover/seen", "shape": "HANDOVER", "requires": ["seen"], "template": "{Hour}: somebody came in with something under a coat and went straight to {holder}, and it changed hands. I was watching the coat, not the face."}
 ]

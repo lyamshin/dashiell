@@ -474,6 +474,11 @@ function* splitsAll(template: string, text: string): Generator<Record<string, st
       yield* go(i + 1, text.length, add(text.slice(at)));
       return;
     }
+    // Two slots side by side ("{from}{with}"): every place the first may end.
+    if (/^\{[A-Za-z][\w-]*(?::[a-z]+)?\}$/.test(next)) {
+      for (let j = at; j <= text.length; j++) yield* go(i + 1, j, add(text.slice(at, j)));
+      return;
+    }
     for (let j = text.indexOf(next, at); j >= 0; j = text.indexOf(next, j + 1)) yield* go(i + 1, j, add(text.slice(at, j)));
   }
   yield* go(0, 0, {});
@@ -530,7 +535,181 @@ const cap = (s: string): string => (s ? (s[0] as string).toUpperCase() + s.slice
 /** A shape's reader: its typed arguments, read back, to propositions. `flags` are the voicing's own (`requires`). */
 type Reader = (a: Record<string, Read>, flags: ReadonlySet<string>, comp: Composite, v: VCtx, lx: Lexicon) => Prop[];
 
-const READ: Partial<Record<Shape, Reader>> = {};
+/** The places a phrase names, and where: "went up to the wings at the Lyric", "home", "my room". */
+function placesIn(c: BoardCase, lx: Lexicon, text: string, who: Id): { id: PlaceId; at: number }[] {
+  const out: { id: PlaceId; at: number }[] = [];
+  for (const m of text.matchAll(new RegExp(`(?<![\\w’])(?:${lx.re.PL})(?![\\w’])`, 'g'))) {
+    const id = placeIdOf(c, m[0]);
+    if (id) out.push({ id, at: m.index ?? 0 });
+  }
+  const home = personOf(c, who)?.home;
+  for (const m of text.matchAll(/\bhome\b|\bmy room\b/g)) if (home) out.push({ id: home, at: m.index ?? 0 });
+  if (out.length === 0) {
+    // A place said by its own name, the way the account's whole-evening check takes it ("round to Sokol’s").
+    for (const p of c.places) {
+      const stem = placeName(c, p.id).replace(/^the /, '').split(' ')[0] ?? '';
+      const at = stem.length >= 4 ? text.indexOf(stem) : -1;
+      if (at >= 0) out.push({ id: p.id, at });
+    }
+  }
+  return out.sort((a, b) => a.at - b.at);
+}
+
+function placeIdOf(c: BoardCase, name: string): PlaceId | undefined {
+  return c.places.find((x) => placeName(c, x.id) === name || placeName(c, x.id).toLowerCase() === name.toLowerCase())?.id;
+}
+
+/** The people a phrase names, the places called after somebody aside ("Corrigan’s flat" isn't Corrigan). */
+function peopleIn(c: BoardCase, text: string, but: Id[] = []): Id[] {
+  const t = maskPlaces(c, text);
+  return c.people.filter((p) => !p.object && !but.includes(p.id) && p.short.length > 2 && new RegExp(`\\b${esc(p.short)}\\b`).test(t)).map((p) => p.id);
+}
+
+/** "home", "home at Rafferty’s", "at work, at the Lyric", "at the Automat": where, from an account's own phrase. */
+function whereR(c: BoardCase, lx: Lexicon, s: string, who: Id): PlaceId {
+  const t = s.trim();
+  if (t === 'home') {
+    const h = personOf(c, who)?.home;
+    if (!h) throw new Error('voiced: whose home?');
+    return h;
+  }
+  const m = new RegExp(`^(?:home at |at work, at |at )(${lx.re.PL})$`).exec(t);
+  if (!m) throw new Error(`voiced: no place in "${s}"`);
+  return placeIdOf(c, m[1] as string) as PlaceId;
+}
+
+/** A tail of company: ", with Feeney and Ashby (about the house)", ", on my own", or nothing. */
+function withR(c: BoardCase, lx: Lexicon, s: string | undefined): Id[] | undefined {
+  if (s === undefined || s === '') return undefined;
+  if (/^, (?:on my own|by myself|alone)$/.test(s)) return [];
+  const m = /^, with (.+?)(?: about the house)?$/.exec(s);
+  if (!m) throw new Error(`voiced: no company in "${s}"`);
+  return namesV(c, lx, m[1] as string);
+}
+
+/** "Abramowitz was there at eight; at nine it was just me": who was with them, hour by hour. */
+function bitsR(c: BoardCase, lx: Lexicon, s: string): { h: number; who: Id[] }[] {
+  const out: { h: number; who: Id[] }[] = [];
+  for (const part of s.split('; ')) {
+    const t = part.trim();
+    let m = new RegExp(`^[Aa]t ((?:${lx.re.H})(?:(?:, | and )(?:${lx.re.H}))*) it was just me$`).exec(t);
+    if (m) {
+      for (const h of hoursV(lx, m[1] as string)) out.push({ h, who: [] });
+      continue;
+    }
+    m = new RegExp(`^(.+) (?:was|were) there at ((?:${lx.re.H})(?:(?:, | and )(?:${lx.re.H}))*)$`).exec(t);
+    if (!m) throw new Error(`voiced: no company in "${t}"`);
+    const who = namesV(c, lx, m[1] as string);
+    for (const h of hoursV(lx, m[2] as string)) out.push({ h, who });
+  }
+  return out;
+}
+
+/** The hours of a stretch of an evening, from its first and last (or the voicing's fold: the evening's first hour, its last). */
+function stretch(c: BoardCase, a: Record<string, Read>, flags: ReadonlySet<string>, reason?: string): number[] {
+  const hs = c.board.hours;
+  let from = a.from as number | undefined;
+  if (from === undefined && flags.has('timed') && reason) from = hoursV(lexicon(c), (/\bat ((?:seven|eight|nine|ten|eleven|twelve))\b/.exec(reason)?.[1] ?? '')).at(0);
+  if (from === undefined && flags.has('first')) from = hs[0];
+  if (from === undefined) throw new Error('voiced: from when?');
+  const to = flags.has('end') ? (hs[hs.length - 1] as number) : flags.has('span') ? (a.to as number | undefined) : from;
+  if (to === undefined) throw new Error('voiced: till when?');
+  const out: number[] = [];
+  for (let h = from; h <= to; h++) out.push(h);
+  return out;
+}
+
+const READ: Partial<Record<Shape, Reader>> = {
+  /**
+   * A stretch of somebody's own evening, in their mouth: where (their phrase for it, or their reason,
+   * which names it), the hours, and with whom where they say so: by the tail, in the reason, or
+   * folded ("by myself" in the voicing's own words, flag `alone`).
+   */
+  'CLAIM-SPAN': (a, flags, comp, v, lx) => {
+    const c = v.c;
+    const who = v.speaker ?? (comp.props[0] as P<'CLAIM'>).person;
+    if (flags.has('solo')) {
+      const hours = flags.has('all') ? c.board.hours : (a.hours as number[] | undefined);
+      if (!hours) throw new Error('voiced: alone when?');
+      return hours.map((h) => ({ k: 'CLAIM', person: who, hour: h, company: [] }) as Prop);
+    }
+    if (flags.has('company')) return bitsR(c, lx, a.bits as string).map((x) => ({ k: 'CLAIM', person: who, hour: x.h, company: x.who }) as Prop);
+    const reason = a.reason as string | undefined;
+    const hours = stretch(c, a, flags, reason);
+    let place: PlaceId | undefined;
+    if (flags.has('party')) {
+      if (a.client !== c.client) throw new Error('voiced: not the client’s');
+      place = c.crime.scene;
+    } else if (reason !== undefined) place = placesIn(c, lx, reason, who).at(-1)?.id;
+    else if (a.where !== undefined) place = whereR(c, lx, a.where as string, who);
+    if (!place) throw new Error('voiced: where?');
+    let company = withR(c, lx, a.with as string | undefined);
+    if (company === undefined && flags.has('alone')) company = [];
+    if (reason !== undefined && !flags.has('aside')) {
+      const named = peopleIn(c, reason, [who]);
+      if (named.length) company = [...(company ?? []), ...named];
+    }
+    return hours.map((h) => ({ k: 'CLAIM', person: who, place, hour: h, ...(company ? { company } : {}) }) as Prop);
+  },
+};
+
+/** A watcher's own list: who keeps it, where, and the hours they kept. */
+function listOfSpeaker(v: VCtx, comp: Composite): { watcher: Id; place: PlaceId; hours: number[] } {
+  const watcher = v.speaker ?? (comp.props[0] as P<'LIST'>).watcher;
+  const l = listOf(v.c, watcher);
+  if (!l) throw new Error('voiced: whose list?');
+  return { watcher, place: l.place, hours: v.c.board.hours.filter((h) => l.entries[h as never] !== undefined) };
+}
+
+/** Somebody who isn't a row of the board, by the words a watcher says them in ("Lou the bookmaker", "Pardo"). */
+function otherR(c: BoardCase, who: string): string {
+  const t = who.trim().toLowerCase();
+  const o = (c.others ?? []).find((x) => x.name.toLowerCase().startsWith(t) || shortOther(x.name).toLowerCase() === t);
+  if (!o) throw new Error(`voiced: nobody "${who}"`);
+  return `other:${o.id}`;
+}
+
+READ['LIST-HOUR'] = (a, flags, comp, v) => {
+  const { watcher, place, hours } = listOfSpeaker(v, comp);
+  const E = entryAlt(v.c);
+  const people = (s: string) => listV(s, E.re).map((n) => E.of.get(n) as string);
+  if (flags.has('always')) return hours.map((h) => ({ k: 'LIST', watcher, place, hour: h, people: [otherR(v.c, a.who as string)] }) as Prop);
+  if (flags.has('shut')) return hours.filter((h) => h >= (a.hour as number)).map((h) => ({ k: 'LIST', watcher, place, hour: h, people: [], shut: true }) as Prop);
+  const hs = a.hours as number[] | undefined;
+  if (!hs) throw new Error('voiced: when?');
+  if (flags.has('empty')) {
+    const regs = flags.has('regular') ? people(a.names as string) : [];
+    return hs.map((h) => ({ k: 'LIST', watcher, place, hour: h, people: regs, ...(regs.length ? { whole: true } : {}) }) as Prop);
+  }
+  const ps = people(a.names as string);
+  return hs.map((h) => ({ k: 'LIST', watcher, place, hour: h, people: ps, ...(flags.has('whole') ? { whole: true } : {}) }) as Prop);
+};
+
+READ.REMARK = (a, flags, comp, v) => {
+  const c = v.c;
+  const speaker = v.speaker ?? ((comp.props[0] as P<'REMARK'>).speaker ?? (comp.props[0] as P<'SHIFT'>).watcher);
+  if (flags.has('shift')) return [{ k: 'SHIFT', watcher: speaker, from: a.from as number }];
+  if (flags.has('passed')) return [{ k: 'REMARK', speaker, saw: a.saw as Id, how: 'passed', where: (a.street as string).trim(), hour: a.hour as number, via: a.via as Id }];
+  if (flags.has('had')) {
+    if (a.back !== (a.hour as number) + 1) throw new Error('voiced: put back when?');
+    const where = (personOf(c, speaker)?.home ?? personOf(c, speaker)?.foundAt) as string;
+    return [{ k: 'REMARK', speaker, saw: a.saw as Id, how: 'had', where, hour: a.hour as number }];
+  }
+  if (flags.has('there')) {
+    if (!(a.means as string)?.trim() || !(a.still as string)?.trim()) throw new Error('voiced: what was there?');
+    const l = listOf(c, speaker);
+    return [{ k: 'REMARK', speaker, saw: 'means', how: 'there', where: l?.place ?? '', hour: a.hour as number }];
+  }
+  throw new Error('voiced: what kind of remark?');
+};
+
+READ.HANDOVER = (a, flags, comp, v) => {
+  if (flags.has('seen')) {
+    const { place } = listOfSpeaker(v, comp);
+    return [{ k: 'HANDOVER', to: ((a.holder as string[]) ?? [])[0] as string, place, hour: a.hour as number }];
+  }
+  throw new Error('voiced: what kind of handover?');
+};
 
 /** Build 2: a shape's reader, registered by the module that writes its arguments (`readers.ts`). */
 export function registerReader(shape: Shape, r: Reader): void {

@@ -10,9 +10,13 @@
  * out a timetable.
  */
 
-import type { Account, Claim, Hour, ListEntry, PersonId, PlaceId, WatchList } from '../../gen/board/types.js';
+import type { Account, Claim, Hour, ListEntry, PersonId, PlaceId, Remark, WatchList } from '../../gen/board/types.js';
 import { entryName, listExhaustive, shutAt } from './knowledge.js';
 import type { Prop } from './bones/types.js';
+import type { SaySpec } from './plan/types.js';
+import type { Args } from './bones/voice.js';
+import { sayFirst } from './bones/say.js';
+import { plainComposite } from './bones/plain.js';
 import { entryOf, remarkProps } from './bones/extract.js';
 import { andList, cap, hourWord, nameOf, oclock, personOf, placeName, type BoardCase } from './model.js';
 
@@ -81,34 +85,21 @@ export function hoursWithReason(c: BoardCase, a: Account): Set<Hour> {
 }
 
 /**
- * How a person opens an hour: "At nine", "Nine o’clock", "Around nine". Never the same twice running,
- * and (docs/47 C13) turned by the speaker as well as the night, so five accounts don't all open their
- * second hour on "Come nine".
+ * A turn of the speaker's own, from the night's: two people don't open alike. (How a person opens
+ * an hour, "At nine", "Come nine,", is the voicing's now: docs/52 build 2.)
  */
-function opener(h: Hour, i: number, rot: number): string {
-  const forms = [`At ${hourWord(h)}`, `${cap(hourWord(h))} o’clock`, `Then at ${hourWord(h)}`, `Come ${hourWord(h)},`, `Around ${hourWord(h)}`];
-  return forms[(i + rot) % forms.length] as string;
-}
-
-/** A turn of the speaker's own, from the night's: two people don't open alike. */
 function speakerRot(c: BoardCase, p: PersonId, rot: number): number {
   let h = rot;
   for (const ch of `${c.id}|${p}`) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
   return h % 1000;
 }
 
-/** "seven", "seven or ten", "seven, eight or ten". */
-function orList(xs: string[]): string {
-  return xs.length > 1 ? `${xs.slice(0, -1).join(', ')} or ${xs[xs.length - 1]}` : (xs[0] ?? '');
-}
-
 /**
  * docs/47 C13: being alone said once an account, not tacked onto every hour ("…, on my own" four
- * times). One hour alone keeps a short tag; several are said together at the end.
+ * times). One hour alone keeps a short tag; several are said together at the end (a voicing of its
+ * own: CLAIM-SPAN `solo`).
  */
 const ALONE_TAG = [', on my own', ', by myself', ', alone'];
-const ALONE_ALL = ['I was on my own all evening.', 'Nobody was with me, any of it.', 'All of it on my own.'];
-const ALONE_SOME = ['Nobody was with me at {hs}.', 'At {hs} I was on my own.', 'I had nobody with me at {hs}.'];
 
 export type Manner = 'plain' | 'terse' | 'careful';
 
@@ -117,6 +108,7 @@ export type Manner = 'plain' | 'terse' | 'careful';
  * microplanner can make each line a fact unit of its own.
  */
 export interface SaidLine {
+  /** The line as its first voicing says it (the planner chooses again, least recently used tonight). */
   text: string;
   hours: Hour[];
   remark?: number;
@@ -126,6 +118,8 @@ export interface SaidLine {
   hour?: { when: string; names: string; whole: boolean; nobody: string };
   /** docs/52: what the line says, as propositions: the hours it tells, where, and with whom where it says so. */
   props: Prop[];
+  /** docs/52 build 2: the line as a composite to be voiced (`content/board/voicings.json`). */
+  say?: SaySpec;
 }
 
 /**
@@ -137,8 +131,17 @@ export function spokenAccount(c: BoardCase, a: Account, manner: Manner, rot0 = 0
   return spokenAccountLines(c, a, manner, rot0).map((x) => x.text);
 }
 
-/** The same account, a line at a time, with the hours each line tells (docs/49). */
-export function spokenAccountLines(c: BoardCase, a: Account, _manner: Manner, rot0 = 0): SaidLine[] {
+/** A line's words: its first voicing, or plainly where none fits. */
+function lineText(c: BoardCase, spec: SaySpec, props: Prop[]): string {
+  return sayFirst(c, spec) ?? plainComposite(c, { shape: spec.shape, props });
+}
+
+/**
+ * The same account, a line at a time, with the hours each line tells (docs/49). docs/52 build 2:
+ * the writer no longer says the lines. It hands each over as a CLAIM-SPAN composite (where, when,
+ * why in their own words, with whom), and a voicing in the speaker's manner says it.
+ */
+export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot0 = 0): SaidLine[] {
   const p = a.person;
   const female = personOf(c, p)?.female === true;
   const hours = c.board.hours;
@@ -154,6 +157,7 @@ export function spokenAccountLines(c: BoardCase, a: Account, _manner: Manner, ro
     return !/\bwith [A-Z]/.test(r.reason ?? '');
   });
   const aloneOnce = aloneRuns.length === 1 || (runs.length === 1 && aloneRuns.length === 1);
+  const push = (spec: SaySpec, hs: Hour[], props: Prop[]) => out.push({ text: lineText(c, spec, props), hours: hs, props, say: spec });
   // Supper said at one hour, "couldn't eat" at another: an evening that eats twice says so (docs/47 B9).
   let ate = false;
   runs.forEach((r, i) => {
@@ -175,37 +179,36 @@ export function spokenAccountLines(c: BoardCase, a: Account, _manner: Manner, ro
     const reason = reason0 && !says(reason0) ? `${reason0}, ${where.replace(/^at /, 'at ')}` : reason0;
     const toEnd = r.to === last;
     const long = r.to > r.from;
-    let s: string;
-    if (i === 0 && party && r.place === c.crime.scene && !reason) {
-      // The office's own gathering: everybody there knows what it was.
-      s = `I was at ${party.client}’s at ${hourWord(r.from)}, for the ${party.occasion}${long ? `, till ${hourWord(r.to + 1)}` : ''}`;
-    } else if (i === 0 && !reason) {
-      // docs/44: "till ten" and then "at ten I went" says ten twice; the run says its own last hour.
-      s = `I was ${where} ${long ? (toEnd ? 'all evening' : `from ${hourWord(r.from)} through ${hourWord(r.to)}`) : `at ${hourWord(r.from)}`}`;
-    } else if (i === 0) {
-      s = `At ${hourWord(r.from)} I ${reason}${long ? (toEnd ? ', and I was there all evening' : `, and stayed through ${hourWord(r.to)}`) : ''}`;
-    } else {
-      // "came off shift at eleven" says the hour already: the opener doesn't say it again.
-      const open = reason && reason.includes(`at ${hourWord(r.from)}`) ? 'Then' : opener(r.from, i, rot);
-      s = `${open} I ${reason ?? `was ${where}`}${long ? (toEnd ? ', and stayed the rest of the evening' : `, and stayed through ${hourWord(r.to)}`) : ''}`;
-    }
+    // The composite: which stretch of the evening it is, and how it's told.
+    const span = long ? (toEnd ? 'end' : 'span') : 'one';
+    const isParty = i === 0 && !!party && r.place === c.crime.scene && !reason;
+    // "came off shift at eleven" says the hour already: the voicing doesn't say it again.
+    const timed = !!reason && i > 0 && reason.includes(`at ${hourWord(r.from)}`);
+    const flags = isParty ? ['party', 'first', span] : ['run', i === 0 ? 'first' : 'next', reason ? 'reason' : 'place', span, ...(timed ? ['timed'] : [])];
+    const args: Args = {
+      from: { t: 'hour', h: r.from },
+      to: { t: 'hour', h: r.to },
+      ...(isParty ? { client: { t: 'person', id: c.client }, occasion: party?.occasion ?? '' } : reason ? { reason } : { where }),
+    };
     // Company: said with the run when it held the whole run, an hour at a time when it didn't.
     if (same) {
       const who = (comps[0]?.who ?? []).map(nm);
       // "went to the Automat to meet Abramowitz" says who was there already.
-      const named = who.length > 0 && who.every((x) => s.includes(x));
+      const named = who.length > 0 && who.every((x) => (reason ?? '').includes(x));
       // "went round to Sokol's for coffee with Sokol" has company already: not "on my own" after it.
       const withSomebody = who.length === 0 && /\bwith [A-Z]/.test(reason ?? '');
       // Alone: a short tag when it's the evening's one hour alone; otherwise said once, after (docs/47 C13).
       const alone = who.length === 0 && !withSomebody ? (aloneOnce && runs.length > 1 ? (ALONE_TAG[rot % ALONE_TAG.length] as string) : '') : '';
       // "back to my room to write letters, with Abramowitz and Thorndike" put them in the room: in a
       // rooming house they were about the house (Hard-boiled 8).
-      const house = who.length > 0 && /\bmy room\b/.test(s) && !!c.places.find((x) => x.id === r.place)?.key?.startsWith('rooming') ? ' about the house' : '';
+      const house = who.length > 0 && /\bmy room\b/.test(reason ?? '') && !!c.places.find((x) => x.id === r.place)?.key?.startsWith('rooming') ? ' about the house' : '';
       // docs/52: where, for every hour of the run; with whom, where the line says it (by name, or alone).
-      const says = named || who.length > 0 || alone !== '';
-      out.push({ text: `${s}${named || withSomebody ? '' : who.length ? `, with ${andList(who)}${house}` : alone}.`, hours: runHours, props: runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h, ...(says ? { company: [...(a.claims[h]?.company ?? [])] } : {}) }) as Prop) });
+      const said = named || who.length > 0 || alone !== '';
+      const tail = named || withSomebody ? '' : who.length ? `, with ${andList(who)}${house}` : alone;
+      const company = named ? 'named' : withSomebody ? 'aside' : who.length ? 'with' : alone ? 'alone' : 'bare';
+      push({ shape: 'CLAIM-SPAN', flags: [...flags, company], args: { ...args, with: tail }, manner }, runHours, runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h, ...(said ? { company: [...(a.claims[h]?.company ?? [])] } : {}) }) as Prop));
     } else {
-      out.push({ text: `${s}.`, hours: runHours, props: runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h }) as Prop) });
+      push({ shape: 'CLAIM-SPAN', flags: [...flags, 'bare'], args: { ...args, with: '' }, manner }, runHours, runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h }) as Prop));
       // Hours with the same company run together: "at seven and eight it was just me".
       const spans: { hs: Hour[]; who: PersonId[] }[] = [];
       for (const x of comps) {
@@ -213,28 +216,28 @@ export function spokenAccountLines(c: BoardCase, a: Account, _manner: Manner, ro
         if (last && key(last.who) === key(x.who)) last.hs.push(x.h);
         else spans.push({ hs: [x.h], who: x.who });
       }
-      const bits = spans.map((x) => {
-        const who = x.who.map(nm);
-        const at = andList(x.hs.map(hourWord));
-        return who.length ? `${andList(who)} ${who.length > 1 ? 'were' : 'was'} there at ${at}` : `at ${at} it was just me`;
-      });
-      out.push({ text: `${cap(bits.join('; '))}.`, hours: runHours, props: runHours.map((h) => ({ k: 'CLAIM', person: p, hour: h, company: [...(a.claims[h]?.company ?? [])] }) as Prop) });
+      push({ shape: 'CLAIM-SPAN', flags: ['company'], args: { bits: companyBits(c, spans) }, manner }, runHours, runHours.map((h) => ({ k: 'CLAIM', person: p, hour: h, company: [...(a.claims[h]?.company ?? [])] }) as Prop));
     }
   });
   // Several hours alone, or the whole evening: said once, at the end.
   if (aloneRuns.length > 0 && (aloneRuns.length === runs.length || !aloneOnce || runs.length === 1)) {
     const alone = aloneRuns.flatMap((r) => Array.from({ length: r.to - r.from + 1 }, (_, k) => r.from + k));
     const aloneProps = alone.map((h) => ({ k: 'CLAIM', person: p, hour: h, company: [] }) as Prop);
-    if (aloneRuns.length === runs.length) out.push({ text: ALONE_ALL[rot % ALONE_ALL.length] as string, hours: alone, props: aloneProps });
-    else {
-      const hs = alone.map(hourWord);
-      const t = ALONE_SOME[rot % ALONE_SOME.length] as string;
-      // "Nobody was with me at eight or eleven", but "At eight and eleven I was on my own".
-      out.push({ text: t.replace('{hs}', /^Nobody|^I had nobody/.test(t) ? orList(hs) : andList(hs)), hours: alone, props: aloneProps });
-    }
+    push({ shape: 'CLAIM-SPAN', flags: ['solo', aloneRuns.length === runs.length ? 'all' : 'some'], args: { hours: { t: 'hours', hs: alone } }, manner }, alone, aloneProps);
   }
-  a.remarks.forEach((r, i) => out.push({ text: r.text, hours: r.facts.map((f) => f.h), remark: i, people: [...r.facts.map((f) => f.p), ...(r.mentions?.people ?? [])], props: remarkProps(c, p, r) }));
+  a.remarks.forEach((r, i) => out.push(remarkLine(c, p, r, i, manner)));
   return out;
+}
+
+/** Who was with them at which hours of one stretch: "Abramowitz was there at eight; at nine it was just me". */
+export function companyBits(c: BoardCase, spans: { hs: number[]; who: string[] }[]): string {
+  return spans
+    .map((x) => {
+      const who = x.who.map((y) => nameOf(c, y));
+      const at = andList(x.hs.map((h) => hourWord(h as Hour)));
+      return who.length ? `${andList(who)} ${who.length > 1 ? 'were' : 'was'} there at ${at}` : `at ${at} it was just me`;
+    })
+    .join('; ');
 }
 
 function key(xs: readonly string[]): string {
@@ -255,27 +258,63 @@ export function spokenList(c: BoardCase, l: WatchList, rot = 0): string[] {
   return spokenListLines(c, l, rot).map((x) => x.text);
 }
 
-/** The same list, a line at a time, with the hours each line tells (docs/49). */
-export function spokenListLines(c: BoardCase, l: WatchList, rot = 0): SaidLine[] {
+/**
+ * docs/52 build 2: a remark, as a composite to be voiced (REMARK, or the handover a watcher saw):
+ * the generator's remarks are a closed few, and their arguments are the remark's own facts. A remark
+ * the voicings don't know is said in the speaker's own words.
+ */
+export function remarkLine(c: BoardCase, speaker: PersonId, r: Remark, i: number, manner: Manner, l?: WatchList): SaidLine {
+  const props = remarkProps(c, speaker, r, l);
+  const base = { hours: r.facts.map((f) => f.h), remark: i, people: [...r.facts.map((f) => f.p), ...(r.mentions?.people ?? [])], props };
+  const x = props[0];
+  let spec: SaySpec | undefined;
+  const t = r.text;
+  if (x?.k === 'HANDOVER') {
+    const fence = x.to;
+    spec = { shape: 'HANDOVER', flags: ['seen'], args: { hour: { t: 'hour', h: x.hour ?? c.crime.hour + 1 }, holder: { t: 'people', ids: [fence] } }, manner };
+  } else if (x?.k === 'REMARK' && x.how === 'passed' && x.via) {
+    spec = { shape: 'REMARK', flags: ['passed'], args: { via: { t: 'place', id: x.via }, hour: { t: 'hour', h: x.hour }, saw: { t: 'person', id: x.saw }, street: x.where }, manner };
+  } else if (x?.k === 'REMARK' && x.how === 'had') {
+    const keep = /, (for (?:her|his|its) [^,]+), and put\b/.exec(t)?.[1] ?? '';
+    if (keep) spec = { shape: 'REMARK', flags: ['had'], args: { saw: { t: 'person', id: x.saw }, hour: { t: 'hour', h: x.hour }, keep, back: { t: 'hour', h: x.hour + 1 } }, manner };
+  } else if (x?.k === 'REMARK' && x.how === 'there') {
+    const m = /^(.+?) was (.+?) at (?:seven|eight|nine|ten|eleven|twelve)\. I didn’t look again\.$/.exec(t);
+    if (m) spec = { shape: 'REMARK', flags: ['there'], args: { means: lc1(m[1] as string), still: m[2] as string, hour: { t: 'hour', h: x.hour } }, manner };
+  } else if (x?.k === 'SHIFT') {
+    spec = { shape: 'REMARK', flags: ['shift'], args: { from: { t: 'hour', h: x.from } }, manner };
+  }
+  if (!spec) return { text: r.text, ...base };
+  return { text: sayFirst(c, spec) ?? r.text, ...base, say: spec };
+}
+
+const lc1 = (s: string): string => (/^(?:The|A|An|My|His|Her)\b/.test(s) ? (s[0] as string).toLowerCase() + s.slice(1) : s);
+
+/**
+ * The same list, a line at a time, with the hours each line tells (docs/49). docs/52 build 2: each
+ * line a LIST-HOUR composite (the hours, the people as the watcher calls them, whether that was
+ * everybody), said in a voicing of the watcher's manner.
+ */
+export function spokenListLines(c: BoardCase, l: WatchList, rot = 0, manner: Manner = 'plain'): SaidLine[] {
   const hours = c.board.hours.filter((h) => l.entries[h] !== undefined);
   const out: SaidLine[] = [];
   const watcher = personOf(c, l.watcher);
   const landlady = /landlady/.test(watcher?.description ?? '');
+  const push = (spec: SaySpec, hs: Hour[], props: Prop[], extra: Partial<SaidLine> = {}) => out.push({ text: lineText(c, spec, props), hours: hs, props, say: spec, ...extra });
   // Somebody there at every hour the watcher kept (the fence in his booth) is said once, first.
   const always = new Set<string>();
   const others = (c.others ?? []).filter((o) => hours.length > 1 && hours.every((h) => (l.entries[h] ?? []).some((e) => 'other' in e && e.other === o.id)));
   for (const o of others) {
     always.add(o.id);
-    const plural = /^(two|three|a couple)\b/i.test(o.name);
-    const span = hours.length === c.board.hours.length ? `all evening, ${hours.length > 2 ? 'every hour of it' : 'both hours'}` : 'the whole time I was on';
+    const all = hours.length === c.board.hours.length;
     // "Pardo was there all evening. He buys things." (Raw 11's #11), not "Pardo who buys things was there".
     const who = /^(\w+) who (.+)$/.exec(o.name);
     const booth = /^(.+?) in (his|her) (.+)$/.exec(o.name);
+    const plural = /^(two|three|a couple)\b/i.test(o.name);
+    const name = who ? (who[1] as string) : booth ? cap(booth[1] as string) : cap(o.name);
+    const args: Args = { who: name, ...(who ? { does: `He ${who[2]}` } : {}), ...(booth ? { post: `in ${booth[2]} ${booth[3]}` } : {}) };
     // docs/52: somebody there at every hour the watcher kept.
     const props = hours.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: [`other:${o.id}`] }) as Prop);
-    if (who) out.push({ text: `${who[1]} was there ${span}. He ${who[2]}.`, hours: [...hours], props });
-    else if (booth) out.push({ text: `${cap(booth[1] as string)} was in ${booth[2]} ${booth[3]} ${span}.`, hours: [...hours], props });
-    else out.push({ text: `${cap(o.name)} ${plural ? 'were' : 'was'} there ${span}.`, hours: [...hours], props });
+    push({ shape: 'LIST-HOUR', flags: ['always', all ? 'all' : 'shift', ...(who ? ['does'] : []), ...(booth ? ['post'] : []), ...(plural ? ['plural'] : [])], args, manner }, [...hours], props);
   }
   const shut = hours.filter((h) => shutAt(c, l.place, h));
   const open = hours.filter((h) => !shutAt(c, l.place, h));
@@ -289,13 +328,15 @@ export function spokenListLines(c: BoardCase, l: WatchList, rot = 0): SaidLine[]
   }
   const told = new Set<string>();
   groups.forEach((g, i) => {
-    const when = g.hs.length === 1 ? (i === 0 ? `${cap(hourWord(g.hs[0] as Hour))} o’clock` : cap(hourWord(g.hs[0] as Hour))) : `${cap(andList(g.hs.map(hourWord)))}`;
+    const hs: Args = { hours: { t: 'hours', hs: [...g.hs] } };
+    const at = i === 0 ? 'first' : 'next';
     if (g.es.length === 0) {
       // "Eight o’clock, just Benny" when the one who's always there was all there was (Medium 14's #12).
       const regulars = others.filter((o) => always.has(o.id)).map((o) => /^(Lou|Pardo|Benny)\b/.exec(o.name)?.[1]);
       const named = regulars.length > 0 && regulars.every(Boolean) ? (regulars as string[]) : [];
       const regs = named.length ? others.filter((o) => always.has(o.id)).map((o) => `other:${o.id}`) : [];
-      out.push({ text: landlady ? `${when}, nobody but me.` : named.length ? `${when}, just ${andList(named)}.` : `${when}, nobody${always.size ? ' else' : ''}.`, hours: [...g.hs], props: g.hs.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: regs, ...(regs.length ? { whole: true } : {}) }) as Prop) });
+      const kind = landlady ? 'landlady' : named.length ? 'regular' : always.size ? 'else' : 'bare';
+      push({ shape: 'LIST-HOUR', flags: ['empty', kind, at], args: { ...hs, ...(named.length ? { names: andList(named) } : {}) }, manner }, [...g.hs], g.hs.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: regs, ...(regs.length ? { whole: true } : {}) }) as Prop));
       return;
     }
     const names = g.es.map((e) => {
@@ -311,15 +352,15 @@ export function spokenListLines(c: BoardCase, l: WatchList, rot = 0): SaidLine[]
     });
     const whole = g.hs.every((h) => listExhaustive(c, l, h));
     const nobody = nobodyElse(i + rot);
-    out.push({
-      text: `${when}, ${andList(names)}.${whole ? ` ${nobody}.` : ''}`,
-      hours: [...g.hs],
-      hour: { when, names: andList(names), whole, nobody },
-      props: g.hs.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: g.es.map(entryOf), ...(whole ? { whole: true } : {}) }) as Prop),
-    });
+    push(
+      { shape: 'LIST-HOUR', flags: ['hour', whole ? 'whole' : 'part', at, ...(g.es.length > 1 ? ['many'] : ['one'])], args: { ...hs, names: andList(names) }, manner },
+      [...g.hs],
+      g.hs.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: g.es.map(entryOf), ...(whole ? { whole: true } : {}) }) as Prop),
+      { hour: { when: g.hs.length === 1 ? (i === 0 ? `${cap(hourWord(g.hs[0] as Hour))} o’clock` : cap(hourWord(g.hs[0] as Hour))) : cap(andList(g.hs.map(hourWord))), names: andList(names), whole, nobody } },
+    );
   });
-  if (shut.length > 0) out.push({ text: `We shut at ${hourWord(shut[0] as Hour)}. Nobody after that.`, hours: [...shut], props: shut.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: [], shut: true }) as Prop) });
-  l.remarks.forEach((r, i) => out.push({ text: r.text, hours: r.facts.map((f) => f.h), remark: i, people: [...r.facts.map((f) => f.p), ...(r.mentions?.people ?? [])], props: remarkProps(c, l.watcher, r, l) }));
+  if (shut.length > 0) push({ shape: 'LIST-HOUR', flags: ['shut'], args: { hour: { t: 'hour', h: shut[0] as Hour } }, manner }, [...shut], shut.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: [], shut: true }) as Prop));
+  l.remarks.forEach((r, i) => out.push(remarkLine(c, l.watcher, r, i, manner, l)));
   return out;
 }
 

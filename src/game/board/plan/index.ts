@@ -47,6 +47,8 @@ import type { VoiceHand } from '../bones/say.js';
 import { rhythm } from './rhythm.js';
 import { refer, stripMarks } from './refer.js';
 import { situate, type SituCtx } from './situated.js';
+import { speakerOf } from './speaker.js';
+export { speakerOf } from './speaker.js';
 
 export type { Item, Unit, Relation, GapSlot, PageBudget } from './types.js';
 export { sentencesOf, wordsIn, bandOf, markedSentences, openingOf } from './sentences.js';
@@ -178,18 +180,6 @@ export function planSection(
     void i;
   });
   return { units, blocks, beats };
-}
-
-/**
- * Whose words a fact is, for what its voicing folds: the account's or the list's own person, the
- * one who mentioned something besides, the one who owned up or wouldn't, and the client in the office.
- */
-export function speakerOf(it: Item, c: BoardCase): string | undefined {
-  const q = it.carries?.[0] ?? '';
-  const m = /^(?:list|claim|motive|admit|second|crack|refused|held):([^@#]+)/.exec(q) ?? /^remark:(?:account|list):([^#]+)#/.exec(q);
-  if (m) return m[1];
-  if (q.startsWith('givens:') && it.beat === 'job' && it.voice === 'exchange') return c.client;
-  return undefined;
 }
 
 function toUnit(x: Item, para: number): Unit {
