@@ -356,7 +356,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (!p) return null;
     const known = knownPeople(c, run as BoardRun).has(id);
     if (!known) return { title: p.short, lines: ['Not in the notebook yet.'] };
-    const role = p.role === 'client' ? `My client: ${p.description}.` : p.role === 'victim' ? `${p.description[0]?.toUpperCase()}${p.description.slice(1)}. The dead man.` : `${p.description[0]?.toUpperCase()}${p.description.slice(1)}.`;
+    const role = p.role === 'client' ? `My client: ${p.description}.` : p.role === 'victim' ? `${p.description[0]?.toUpperCase()}${p.description.slice(1)}. The dead ${p.female ? 'woman' : 'man'}.` : `${p.description[0]?.toUpperCase()}${p.description.slice(1)}.`;
     const lines = [role];
     if ((run as BoardRun).asked.includes(`account:${id}`)) lines.push('Their own evening is in the notebook.');
     return { title: p.name, lines };

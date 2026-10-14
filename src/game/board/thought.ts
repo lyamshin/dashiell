@@ -182,8 +182,9 @@ function accessPhrase(c: BoardCase, yes: boolean, again = false, here?: PlaceId)
   if (isMurder(c)) {
     const m = c.means.name.replace(/^(a|an) /, '');
     if (again) return yes ? `could have had the ${m}` : `had no way to the ${m}`;
-    // Plain speech, not the board read aloud ("while the laudanum was there", Poached 5's #27).
-    return yes ? `had been ${at} earlier, when the ${m} was there for the taking` : `hadn’t been ${at} while it was there to take`;
+    // Plain speech, not the board read aloud ("while the laudanum was there", Poached 5's #27). The
+    // no says the means and where it was kept, never "while it was there to take" (docs/49, Planner 2).
+    return yes ? `had been ${at} earlier, when the ${m} was there for the taking` : `hadn’t been ${at} while the ${m} was ${keptAt(c)}`;
   }
   if (party) return yes ? (again ? `had been at the ${party.occasion} to learn the way in` : `was at the ${party.occasion}`) : again ? `never learnt the way in` : `wasn’t at the ${party.occasion}`;
   if (/^told/.test(mode)) {
@@ -192,7 +193,17 @@ function accessPhrase(c: BoardCase, yes: boolean, again = false, here?: PlaceId)
     return yes ? `heard ${clientOf(c).short} tell the room about the ${thing}` : `never heard ${clientOf(c).short} tell the room`;
   }
   if (again) return yes ? `could have had the spare key` : `had no way to the spare key`;
-  return yes ? `had been ${inAt} earlier, when the spare key was there for the taking` : `hadn’t been ${inAt} while it was there to take`;
+  return yes ? `had been ${inAt} earlier, when the spare key was there for the taking` : `hadn’t been ${inAt} while the spare key was there to take`;
+}
+
+/**
+ * Where tonight's means was kept, from its origin: "on the cellar shelf", "in the hall-stand drawer",
+ * "in the medicine cupboard". "There to take" when the origin doesn't say.
+ */
+export function keptAt(c: BoardCase): string {
+  const m = /\b(?:on|in|off|from)\s+(?:the|my|a)\s+((?:[\w’-]+\s+){0,2}?(shelf|shelves|drawer|cupboard|cabinet|case|darkroom|hook|nail|safe|desk|chest))\b/.exec(c.means.originText);
+  if (!m) return 'there to take';
+  return `${/^(?:shelf|shelves|hook|nail)$/.test(m[2] as string) ? 'on' : 'in'} the ${m[1]}`;
 }
 
 /* ------------------------------------------------------------------ *
@@ -355,7 +366,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const pr = P(rest);
       // First, the golden's "So … which was what Coffin had." After a lie caught, the same from the other side.
       const first = t.sentences.length === 0;
-      const gloss = first ? (held ? x.pick('one-holds', ['One evening that held, at an hour that mattered, where I could check it.', 'That much of it stood up, and it stood up where I could check it.', 'At an hour that mattered, somebody else could vouch for it.']) : x.pick('one-holds-early', ['That part of the evening, at least, somebody else could vouch for.', 'So far as it went, it stood up.'])) : undefined;
+      const gloss = first ? (held ? x.pick('one-holds', ['One evening that held, at an hour that mattered, where I could check it.', 'That much of it stood up, and it stood up where I could check it.', 'At an hour that mattered, somebody else could vouch for it.', 'That much held.']) : x.pick('one-holds-early', ['That part of the evening, at least, somebody else could vouch for.', 'So far as it went, it stood up.', 'That much held.'])) : undefined;
       const restParts = first
         ? []
         : (namedSoFar.clear(),
@@ -438,11 +449,15 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const who = c.people.find((p) => p.short === name);
       void tail;
       void hh;
-      add(
-        `The part worth keeping came last. ${isMurder(c) ? `${street} was where ${victimOf(c).short} lived.` : `${street} was where ${clientOf(c).short} kept ${victimOf(c).short}.`}`,
-        ['givens:gone'],
-        { rule: 'street', people: [c.client, c.crime.victim, ...(who ? [who.id] : [])], places: [c.crime.scene], hours: r.facts.map((f) => f.h) },
-      );
+      const link = isMurder(c) ? `${street} was where ${victimOf(c).short} lived.` : `${street} was where ${clientOf(c).short} kept ${victimOf(c).short}.`;
+      add(`The part worth keeping came last. ${link}`, ['givens:gone'], {
+        rule: 'street',
+        people: [c.client, c.crime.victim, ...(who ? [who.id] : [])],
+        places: [c.crime.scene],
+        hours: r.facts.map((f) => f.h),
+        // docs/49, Planner 2: the lead and the link, for the planner to say as one.
+        agg: { key: 'street', data: { lead: 'The part worth keeping came last', link } },
+      });
     }
   }
 
@@ -476,8 +491,15 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       // docs/49: who could and the exception, for the planner to say in one sentence ("…, and Vogel hadn’t.").
       const neg = accessPhrase(c, false, false, here);
       const short = /^hadn’t\b/.test(neg) ? 'hadn’t' : /^wasn’t\b/.test(neg) ? (no.length > 1 ? 'weren’t' : 'wasn’t') : /^never heard\b/.test(neg) ? 'never did' : undefined;
-      const wayIn = yes.length > 0 && no.length > 0 && short && parts.length === 2 && !/, and /.test(parts[0] as string) ? { key: 'way-in', data: { yes: cap(parts[0] as string), no: andList(no.map((p) => nameOf(c, p))), short } } : undefined;
-      add(parts.map((y) => cap(y)).join(' '), ['givens:means'], { rel: 'narrows', rule: 'way-in', people: [...yes, ...no, c.client], hours: hs, places: [c.means.origin], ...(wayIn ? { agg: wayIn } : {}) });
+      // docs/49, Planner 2: who it's about, and, for one person alone, what it says of them without
+      // their name ("hadn’t been at Rafferty’s while the chloral was on the hall shelf"), so the
+      // planner can say it of them where another fact names them.
+      const one = yes.length + no.length === 1 ? (yes[0] ?? no[0]) : undefined;
+      const said = parts.map((y) => cap(y)).join(' ');
+      const of = one !== undefined && said.startsWith(`${nameOf(c, one)} `) && parts.length === 1 && !/[.!?] [A-Z]/.test(said.replace(/\b(?:Mrs?|Dr|St)\. /g, '')) ? said.slice(nameOf(c, one).length + 1).replace(/\.$/, '') : undefined;
+      const both = yes.length > 0 && no.length > 0 && short && parts.length === 2 && !/, and /.test(parts[0] as string) ? { yes: cap(parts[0] as string), no: andList(no.map((p) => nameOf(c, p))), short } : {};
+      const wayIn = { key: 'way-in', data: { ...both, who: [...yes, ...no], ...(one !== undefined && of ? { one, of } : {}) } };
+      add(said, ['givens:means'], { rel: 'narrows', rule: 'way-in', people: [...yes, ...no, c.client], hours: hs, places: [c.means.origin], agg: wayIn });
     }
   }
   }
@@ -567,9 +589,22 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const v = victimOf(c);
       const opts = `${hourWord(b.possibleHours[0] as Hour)} or ${hourWord(b.possibleHours[1] as Hour)}`;
       const sighting = isMurder(c) ? `${v.short} was at ${placeName(c, seen.x.place)} at ${hourWord(seen.h)}, alive.` : `At ${hourWord(seen.h)} ${v.short} was ${atWhere(c, seen.x.place, here)}.`;
-      const then = !walk ? '' : isMurder(c) ? ` So whatever happened to him happened at ${oclock(h1)}.` : ` So it went at ${oclock(h1)}.`;
+      const then = !walk ? '' : isMurder(c) ? ` So whatever happened to ${P(c.crime.victim).him} happened at ${oclock(h1)}.` : ` So it went at ${oclock(h1)}.`;
+      // docs/49, Planner 2: the window and the sighting as one sentence, and at a walk its "so" ("Belkin
+      // was still alive at nine, so it was ten"). Above a walk the two stay side by side (docs/46 §2).
+      const at = atWhere(c, seen.x.place, here);
+      const one = isMurder(c)
+        ? `${clientOf(c).short} had said ${opts}, and ${v.short} was ${walk ? 'still alive ' : ''}${at} at ${hourWord(seen.h)}${walk ? `, so it was ${hourWord(h1)}` : ', alive'}.`
+        : `${clientOf(c).short} had said ${opts}, and at ${hourWord(seen.h)} ${v.short} was ${walk ? 'still ' : ''}${at}${walk ? `, so it went at ${hourWord(h1)}` : ''}.`;
       // The client said the hours, not "the office" (Medium 14's #9).
-      add(`${clientOf(c).short} had said ${opts}. ${sighting}${then}`, ['givens:clock'], { rel: 'narrows', rule: 'window', hours: [seen.h, ...(walk ? [h1] : []), ...b.possibleHours], people: [c.crime.victim, c.client], places: [seen.x.place] });
+      add(`${clientOf(c).short} had said ${opts}. ${sighting}${then}`, ['givens:clock'], {
+        rel: 'narrows',
+        rule: 'window',
+        hours: [seen.h, ...(walk ? [h1] : []), ...b.possibleHours],
+        people: [c.crime.victim, c.client],
+        places: [seen.x.place],
+        agg: { key: 'window', data: { one, so: walk } },
+      });
     }
   }
 
@@ -607,6 +642,12 @@ export function thoughtOf(x: ThoughtCtx): Thought {
           'I didn’t believe it or disbelieve it. I wrote it down.',
           'I took it down the way it was given.',
           'I put it with the rest and didn’t argue with it yet.',
+          // (Planner 2: short ones and long ones, for the rhythm to trade for.)
+          'I let it stand.',
+          'I wrote it down as said.',
+          'I took it as given.',
+          'I wrote it down the way it came and left it to stand or fall with whatever else turned up tonight.',
+          'It went in the notebook as given, and it could stay there until something I trusted more said otherwise.',
         ]);
       add(
         `For ${andList(hs.map(hourWord))}, the ${hs.length > 1 ? 'hours' : 'hour'} that mattered, ${t.sentences.length > 0 ? P(rest).he : nameOf(c, rest)} said ${what}. ${own}`,
@@ -641,7 +682,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         const had = `${W} had ${listed}`;
         // A night has several lists: the frame turns over so no sentence is said twice.
         const framed = x.pick('list-hours', [
-          `The ${one ? 'hour' : 'hours'} that mattered ${one ? 'was' : 'were'} ${when}. ${cap(had)}.`,
+          `The ${one ? 'hour' : 'hours'} that mattered ${one ? 'was' : 'were'} ${when}, and ${had}.`,
           `For ${when}, the ${one ? 'hour' : 'hours'} that mattered, ${had}.`,
           `At ${when}, when it counted, ${had}.`,
           `I wrote down what ${W} had at ${when}, the ${one ? 'hour' : 'hours'} that mattered: ${listed}.`,
@@ -721,7 +762,9 @@ export function eliminationOf(c: BoardCase, run: BoardRun, here: PlaceId, heldBe
       }
       if (lines.length) {
         t.sentences.push(lines.join(' '));
-        t.parts?.push({ text: lines.join(' '), relation: 'narrows', rule: 'elimination', refs: [...refs.filter((r) => heldBeforeQs.has(r)), 'givens:means'], hours: [hc], people: [...ppl], places: [...pls] });
+        // docs/49, Planner 2: each placement a fact of its own, for the planner to join.
+        const parts = PLAN.ops ? lines.flatMap((l) => l.split(/(?<=\.) (?=[A-Z])(?<!\b(?:Mrs?|Dr|St)\. )/)) : [lines.join(' ')];
+        for (const x of parts) t.parts?.push({ text: x, relation: 'narrows', rule: 'elimination', refs: [...refs.filter((r) => heldBeforeQs.has(r)), 'givens:means'], hours: [hc], people: [...ppl], places: [...pls] });
         t.refs.push(...refs.filter((r) => heldBeforeQs.has(r)), 'givens:means');
         t.hours.push(hc);
         t.people.push(...ppl);

@@ -150,7 +150,7 @@ Branch `neighbourhood`, the engine half: nights cast from the bible behind `--wo
 
 Branch `bible-2`. Done: variety (159–192 distinct casts), the share (74–77%), arrivals enough that page 2 varies, three standing lines a watcher, a fence at every night place, doing lines by setting, an arrival for every back room, and everything but the engine ready for women found dead. Left over:
 
-- **Women found dead wait on a gender pass in the engine.** `WOMEN_VICTIMS` in `src/gen/board/world/cast.ts` is `false`, so the dead are the five men of the two buildings. The bible, the board's cards, the reasons and the shelf's words carry a dead woman already; these engine lines don't. With the switch on, about half the murders have a dead woman, and Medium 2 read "heard him laugh with somebody", "he’d let whoever did it in", "a man’s papers are where he keeps…", "went into his cocoa". Several are in files the microplanner is working in, so the pass lands after it. The root is the first; with it, the rest want a victim pronoun:
+- **Women found dead wait on a gender pass in the engine.** *Done in docs/49's Planner 2: every line below says the dead's own pronouns, and `WOMEN_VICTIMS` is on.* `WOMEN_VICTIMS` in `src/gen/board/world/cast.ts` is `false`, so the dead are the five men of the two buildings. The bible, the board's cards, the reasons and the shelf's words carry a dead woman already; these engine lines don't. With the switch on, about half the murders have a dead woman, and Medium 2 read "heard him laugh with somebody", "he’d let whoever did it in", "a man’s papers are where he keeps…", "went into his cocoa". Several are in files the microplanner is working in, so the pass lands after it. The root is the first; with it, the rest want a victim pronoun:
   - `src/gen/board/generate.ts:780`: the victim is pushed with `female: false`. On a world night it wants `(cast.victim as BiblePerson).gender === 'f'`.
   - `src/gen/board/generate.ts:880` ("went home: he had company coming", "his usual at"), `:1112` (`police: 'his heart'` for a workplace's means), `:1162` (`what: 'his papers'`), `:1203` (`'him laugh with somebody and then go quiet'`), `:1208` ("He’d been at … earlier in the evening, his usual.").
   - `src/gen/board/content.ts:229–230` (`MURDER_POINTERS`: "swore at him", "in his desk"), `:373–384` (`MURDER_CLOCKS`: "He telephoned", "heard him laughing", "His watch broke", "heard him cry out", "the warmth of him", "His mantel clock"), `:401` (`FINDER_WHY`: "who heard his radio still going"). `ROOMING_MEANS` (`:360–363`) is said of her already, by the cast.
@@ -158,7 +158,7 @@ Branch `bible-2`. Done: variety (159–192 distinct casts), the share (74–77%)
   - `src/game/board/pages.ts:659` (the dead in the client's mouth is "He"), `:982` ("he’d let whoever did it in"), `:1197` (the papers' fallback, "He had a page on every one of them"). `:703` ("his own flat") doesn't fire for a woman, whose flat is "the Kahane flat".
   - `src/game/board/thread.ts:182` ("a man’s papers are where he keeps…"), `knowledge.ts:253` and `stars.ts:212` ("where he died"), `report.ts:439` ("went into his {vessel}") and `:505` ("† the dead man"), `names.ts:30` ("the dead man"), `src/ui/board-book.ts:359` ("The dead man.").
   - When those land, set `WOMEN_VICTIMS = true`: the test "finds women dead only when WOMEN_VICTIMS says so" then wants more than five dead women in 30 Soft-boiled murders, and docs/48's Bible 2 table has the numbers to expect in brackets.
-- **A small case's owner is "a widow" or "a widower"** (`generate.ts:793`), which Miss Kahane (twenty-odd and unmarried) and Kaminsky aren't.
+- **A small case's owner is "a widow" or "a widower"** (`generate.ts:793`), which Miss Kahane (twenty-odd and unmarried) and Kaminsky aren't. *Planner 2: a neighbourhood owner is "the owner".*
 - **A reason through somebody in between is ambiguous in the client's mouth:** "He had been at war with Miss Kahane, his old flame", where "he" is the dead man (`pages.ts:659`) and "his" the suspect. The form is `motives.ts`'s `{victim} had been at war with {T}, {their} {rel}`; it would read better with the suspect's name on the relation ("Kaminsky’s old flame"), which needs `anon`'s patterns changed with it.
 - **A look after a habit about somebody else** reads as theirs: "The barman counts the glasses onto a towel at closing… He had a little black notebook" (Doyle's look, Medium 2 p7), "There was sawdust on the floor… He had a right hand already out" (Medium 10 p7). The page says the look by pronoun after the place's staging line.
 - **Every place and person within 60 nights isn't met:** Raw has no unwatched place or workplace, Hard-boiled no workplace murders, the workplaces' watchers come only with workplace murders, and a fence is only counted on nights they keep a back room (the sweep counts a case's people, and the fence a thing goes to isn't one). Docs/48's Bible 2 section has the table.
@@ -168,7 +168,7 @@ Branch `bible-2`. Done: variety (159–192 distinct casts), the share (74–77%)
 ## The microplanner (docs/49), 2026-10-14
 Branch `microplanner`. I read four nights in full: the golden's, a Hard-boiled one, and the neighbourhood at Medium and Poached, the neighbourhood ones again after Bible 2 merged. Docs/49's Built section has the measures. With the planner on, two of Bible 2's leftovers are gone: "a look after a habit about somebody else", and `board-prose`'s four hits. Left over:
 
-- **Sentences per fact unit** are 1.43–1.59 dealt and 1.48–1.77 in the neighbourhood, against a target of 1.2 or less (before: 1.55–1.93). The extra sentences sit in facts the planner doesn't rewrite:
+- **Sentences per fact unit** *(Planner 2: 1.38–1.54 and 1.41–1.72)* are 1.43–1.59 dealt and 1.48–1.77 in the neighbourhood, against a target of 1.2 or less (before: 1.55–1.93). The extra sentences sit in facts the planner doesn't rewrite:
   - the client's lines in the office (2.6 sentences a unit);
   - a find (3.0);
   - the office's account of the scene (3.1);
@@ -176,21 +176,39 @@ Branch `microplanner`. I read four nights in full: the golden's, a Hard-boiled o
   - the confrontation's admission.
 
   The content says each of them in several sentences. To get closer to 1.2, write finds and the office's givens in one or two sentences, or mark which of their sentences are texture so they can be gaps.
-- **List smell** is on 28–34% of the oracle's pages dealt and 41–48% in the neighbourhood (before: 71–78% and 74–85%). What's left:
+- **List smell** *(Planner 2: 5–14% and 10–14%)* is on 28–34% of the oracle's pages dealt and 41–48% in the neighbourhood (before: 71–78% and 74–85%). What's left:
   - three medium cards in a row across gaps (staging, why-here, close) with no card of another length in the hand to trade for;
   - a find's or a recap's own three sentences;
   - runs of thoughts.
 
   More short and long cards in the connective deck would give the rhythm something to trade.
-- **Joins a page** are 0.7–0.9 (before: 1.0–1.3), and 61–74% of pages with facts have one to three. Docs/49 asks for 1–3 a page. Hard-boiled is 0.1 by docs/46.
+- **Joins a page** *(Planner 2: 1.1–1.3 below Hard-boiled)* are 0.7–0.9 (before: 1.0–1.3), and 61–74% of pages with facts have one to three. Docs/49 asks for 1–3 a page. Hard-boiled is 0.1 by docs/46.
 - **Words a page:** dealt Medium and Hard-boiled medians are 166 and 161, under 170 (before: 166 and 159).
 - **The two-sentence window keeps a name where a reader would take the subject.** "Abramowitz had told me the Thalia at eleven, and Coffin’s list said otherwise. … I took the chair beside Abramowitz." Centering by grammatical role (a subject over a possessive) would allow "him", but docs/49's rule says two people in the last two sentences.
 - **Choice labels** (`choices.ts`) still say "Dr. Hirsch says she was at Sokol’s…" after "Miss Moskin says…". They aren't planned.
 - **The arrival's why card comes after the arrival.** "I found the bakery cellar at Sokol’s… That settled where I was going." reads late. It did before too.
 - **A world staging card can stage somebody else.** "The barman counts the glasses onto a towel at closing…" comes before Dr. Hirsch's look, where the deck's card would have seated me with her.
 - **`opensOnClause` is loose.** It takes "never" and "still" for verbs, so a parting at ", and" can leave a clause without a verb. The one case seen was fixed at the source.
-- **Bible 2's gender pass can go ahead.** Its engine lines in `pages.ts` and `thread.ts` were held for this branch. With the planner on, the office's account of the scene marks the dead person's pronouns of their own sex ("she", "her" for a woman), so once the pass changes the words (the office's hard-coded "his own" among them), the planner says them right.
+- **Bible 2's gender pass can go ahead.** *Done in docs/49's Planner 2.* Its engine lines in `pages.ts` and `thread.ts` were held for this branch. With the planner on, the office's account of the scene marks the dead person's pronouns of their own sex ("she", "her" for a woman), so once the pass changes the words (the office's hard-coded "his own" among them), the planner says them right.
 - **The golden's page 6 still has things the engine can't do:**
   - a beat inside the answer ("He thought of something.");
   - an ask in direct speech on most account pages;
   - a second line of staging in the why-here.
+
+## Planner 2 (docs/49), 2026-10-15
+Branch `planner-2`. I read three nights in full: the neighbourhood at Medium (seed 5, before the gender pass and again recast with a dead woman), the golden's, and the neighbourhood at Poached (seed 4, a dead woman). Docs/49's Planner 2 section has the measures. Left over:
+
+- **Two long facts in a thought stay two sentences.** A collision and the rest of somebody's evening, or a collision and the handover, would be past forty words as one. A collision keeps a sentence of its own (docs/49 §2), with only a semicolon after it. They're most of what misses ceil(N/2): 71–100% of the thought paragraphs with two facts or more are within it.
+- **For the designer:**
+  - At the link level a narrowing stays side by side: "Mrs. Greco had said nine or ten, and Belkin was here at nine, alive." The brief's "so it was ten" is said at Raw only, because docs/46 §2 keeps the hour for the report to ask.
+  - A list's entries read out (the papers') break a run of list smell, as speech does.
+- **Sentences per fact unit are 1.38–1.72,** not 1.2. What's left is the office's lines, the finds and the papers' entries, which the content writes as several sentences.
+- **Words a page:** dealt Soft-boiled (169), Medium (166) and Hard-boiled (160) are under 170. Composition takes an agreement's aside when its "but" says it.
+- **Hard-boiled joins are 0.2–0.3** by docs/46: at fact level the thought says the fact plain.
+- **The staying close has two forms,** "I didn’t interrupt him" and "I didn’t disturb him", so a night with four or five pay-offs says each twice. A third and fourth with the pronoun last would help. "That was the last I saw of" is now never said. The report is the only page whose job ends the visit, and it has no pay-off. A book that knew the next command was a walk could say it, but that page is written before the walk is chosen.
+- **A male client is named in his first line:** "“My name is Carmine Russo,” Russo said." The "he" after the office's "My visitor" has nobody before it to be read as. It was so before this branch (the golden's "“It’s Duchess,” Prentiss said.").
+- **A look after a nameless man:** "Doyle was shaking hands with a man who didn’t offer his. He had a little black notebook…". The measure doesn't count a nameless antecedent a sentence back, so nothing flags it. It was so before.
+- **Semicolons** are two a page at most, plus one a thought. Read for them as a tic over more nights.
+- **`board-measure`'s callback-pages column** moved one point on Raw lost-item and Raw lost-pet. Seed 22's page 7 dealt another walk card after an earlier page's trades.
+- **The suite takes about 50 s at three workers** (it was about 40). The rhythm's two-mend search, four stuck runs a page at most, is most of it.
+- **Choice labels** (`choices.ts`) still aren't planned.

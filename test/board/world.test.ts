@@ -13,12 +13,14 @@ import { bibleProblems, parseBible } from '../../src/gen/board/world/load.js';
 import { castPool, fenceOf, fencePeople, WOMEN_VICTIMS } from '../../src/gen/board/world/cast.js';
 import { motivesFor, ofVictim } from '../../src/gen/board/world/motives.js';
 import { worldBible, worldCtx } from '../../src/gen/board/world/index.js';
-import { boardOpen, hoursOnBoard } from '../../src/gen/board/world/types.js';
+import { boardOpen, hoursOnBoard, voiceHour } from '../../src/gen/board/world/types.js';
 import { castOf, dealBoard, keepsContinuity } from '../../src/game/board/model.js';
 import { playBoardOracle, playWanderer } from '../../src/game/board/oracle.js';
 import { lintBoardRun } from '../../src/game/board/lint.js';
 import { proseIssues } from '../../src/game/board/prose-lint.js';
-import { boardFields, truthReport, scoreBoard } from '../../src/game/board/report.js';
+import { boardFields, truthReport, scoreBoard, storyOfBoard, curtainOfBoard } from '../../src/game/board/report.js';
+import { accountOf } from '../../src/game/board/knowledge.js';
+import { hoursWithReason, spokenAccountLines } from '../../src/game/board/tell.js';
 import { bibleShare, biblePerson } from '../../src/game/board/world.js';
 import { mannerOf } from '../../src/game/board/pages.js';
 import { walkBetween } from '../../src/game/board/walk.js';
@@ -428,7 +430,8 @@ describe('the prose draws on the bible first', () => {
         for (const p of r.log) {
           const prose = p.blocks.flatMap((b) => (b.kind === 'prose' ? [b.text.replace(/\s+/g, ' ')] : []));
           for (const t of prose) {
-            const m = /^(.+): that was the last I saw of (?:him|her)\.$/.exec(t);
+            // (docs/49, Planner 2: a question page closes on them still at it, "I didn’t interrupt her".)
+            const m = /^(.+): (?:that was the last I saw of|I didn’t (?:interrupt|disturb)) .+\.$/.exec(t);
             if (!m) continue;
             const line = (m[1] as string).toLowerCase();
             const who = d.kase.people.find((x) => x.world && biblePerson(d.kase, x.id)?.doing.some((y) => y.text.toLowerCase().replace(/\.$/, '') === line));
@@ -444,6 +447,64 @@ describe('the prose draws on the bible first', () => {
       }
     }
     expect(closes).toBeGreaterThan(0);
+  });
+
+  it('says somebody’s line for an hour only around their account, never inside it, and never for an hour the account gives a reason for (Planner 2)', () => {
+    let lines = 0;
+    for (let s = 1; s <= 12; s++) {
+      for (const tier of [2, 4] as TierIndex[]) {
+        const d = dealBoard(s, tier, 'murder', { world: 'neighbourhood' });
+        for (const p of playBoardOracle(d).run.log.filter((x) => x.board?.job === 'account')) {
+          const who = (p.board?.q ?? '').slice('account:'.length);
+          const bp = biblePerson(d.kase, who);
+          const a = accountOf(d.kase, who);
+          const answer = p.blocks.find((b) => b.kind === 'prose' && b.voice === 'answer');
+          if (!bp || !a || answer?.kind !== 'prose') continue;
+          const reasoned = hoursWithReason(d.kase, a);
+          const said = spokenAccountLines(d.kase, a, mannerOf(d.kase, who), d.kase.seed % 4).filter((x) => x.remark === undefined);
+          const first = answer.text.indexOf((said[0]?.text ?? '').slice(0, 20));
+          const last = answer.text.indexOf((said[said.length - 1]?.text ?? '').slice(0, 20));
+          for (const [h, l] of Object.entries(bp.voice.hours)) {
+            const at = answer.text.indexOf(l.replace(/^[“"]|[”"]$/g, '').slice(0, 30));
+            if (at < 0) continue;
+            lines++;
+            expect(reasoned.has(voiceHour(h) as never), `${d.kase.id} p${p.n}: ${l}`).toBe(false);
+            expect(at < first || at > last, `${d.kase.id} p${p.n}: ${l}`).toBe(true);
+          }
+        }
+      }
+    }
+    expect(lines).toBeGreaterThan(0);
+  });
+
+  it('closes a question page on somebody still at it, never on the last I saw of them (Planner 2)', () => {
+    for (const world of [undefined, 'neighbourhood'] as const) {
+      for (let s = 1; s <= 6; s++) {
+        for (const tier of TIERS) {
+          const d = dealBoard(s, tier, typesFor(tier)[s % typesFor(tier).length], world ? { world } : {});
+          for (const r of [playBoardOracle(d).run, playWanderer(d, s).run]) {
+            for (const p of r.log) for (const b of p.blocks) if (b.kind === 'prose') expect(b.text, `${d.kase.id} p${p.n}`).not.toMatch(/\blast I saw of\b/);
+          }
+        }
+      }
+    }
+  });
+
+  it('says a dead woman as her everywhere: the office, the pages, the notebook and the curtain (Planner 2)', () => {
+    let nights = 0;
+    for (let s = 1; s <= 30 && nights < 4; s++) {
+      const d = dealBoard(s, 4, 'murder', { world: 'neighbourhood' });
+      const v = d.kase.people.find((x) => x.id === d.kase.crime.victim);
+      if (!v?.female) continue;
+      nights++;
+      const run = playBoardOracle(d).run;
+      const text = [...d.kase.givens.text, ...d.kase.finds.map((f) => `${f.what}. ${f.text}`), ...run.log.flatMap((p) => p.blocks.flatMap((b) => (b.kind === 'prose' ? [b.text] : []))), ...storyOfBoard(d), curtainOfBoard(d, run)].join(' ');
+      for (const bad of [/\bthe dead man\b/, /\bwhere he died\b/, /\ba man’s papers\b/, /\bhis heart\b/, /\bby the warmth of him\b/, /\bfound him\b/, /\bhis usual\b/, /\bHe’d been at\b/, /\bmade him cocoa\b/, /\binto his (?:cocoa|rye|drink)\b/, /\bhis own (?:flat|table|rooms|place)\b/, /\bswore at him\b/, /\bHis papers\b/]) {
+        expect(text, `${d.kase.id}: ${bad}`).not.toMatch(bad);
+      }
+      expect(text).toMatch(/\b(?:she|her)\b/);
+    }
+    expect(nights).toBe(4);
   });
 
   it('files a world night’s report at par, with the right reason', () => {

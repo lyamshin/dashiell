@@ -73,7 +73,7 @@ export function pointerIndex(c: BoardCase): PointerIndex {
   const client = pn(c.client);
   for (const g of c.givens.points ?? []) (g.kind === 'place' ? addPlace : addPerson)(GIVENS, g.ref, g.text);
   addPlace(GIVENS, scene, 'the office sends you to the scene');
-  if (c.crime.finder && c.crime.finder !== c.client) addPerson(GIVENS, c.crime.finder, `${pn(c.crime.finder)} found him`);
+  if (c.crime.finder && c.crime.finder !== c.client) addPerson(GIVENS, c.crime.finder, `${pn(c.crime.finder)} found ${c.people.find((x) => x.id === c.crime.victim)?.female ? 'her' : 'him'}`);
   if (c.givens.pointer) addPerson(GIVENS, c.givens.pointer, `${client} points at ${pn(c.givens.pointer)}`);
   for (const p of c.givens.access) addPerson(GIVENS, p, `the office says ${pn(p)} lives at ${pl(scene)}`);
   for (const p of c.givens.known ?? []) addPerson(GIVENS, p, `the office names ${pn(p)}`);

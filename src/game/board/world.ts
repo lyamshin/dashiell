@@ -432,18 +432,24 @@ function hourLine(c: BoardCase, b: Bible, bp: BiblePerson, hand: Hand, hours: nu
 /**
  * docs/48 §3: a person's own words around their account, which stays the engine's so every hour
  * and name is exact. They open it their way (an `ask` line that names no place, hour or person), and
- * close on their line for an hour of the evening, which the bible writes as a mood or a habit, never a
- * place or company. The hour is any of the evening's, never the one that matters by design.
+ * frame it with their line for an hour of the evening, which the bible writes as a mood or a habit,
+ * never a place or company. The hour is any of the evening's, never the one that matters by design.
+ *
+ * Planner 2: never an hour the account gives a reason for (`reasoned`): "At seven I went to the flats
+ * over Lipsky’s to help write letters home… Seven, I add up the week" says two things of seven. The
+ * page says it before the account or after it, never inside it.
  */
-export function worldAccountVoice(c: BoardCase, hand: Hand, p: PersonId): { open?: string; coda?: string; codaHour?: number } {
+export function worldAccountVoice(c: BoardCase, hand: Hand, p: PersonId, reasoned: ReadonlySet<number> = new Set()): { open?: string; coda?: string; codaHour?: number } {
   const b = bibleOf(c);
   const bp = biblePerson(c, p);
   if (!b || !bp) return {};
   // An account page tells every hour of the evening, so an opener may name one ("From seven, then").
   const open = fresh1(hand, bp.voice.ask.map((l, i) => ({ l, id: `nb:${bp.id}:ask:${i}` })).filter((x) => safeVoice(c, b, bp, x.l, { hours: true }) && clean(x.l, c.board.hours)));
-  const h = c.board.hours[hand.rng.int(c.board.hours.length)] as number;
-  const coda = hourLine(c, b, bp, hand, [h], c.board.hours);
-  return { ...(open ? { open } : {}), ...(coda ? { coda, codaHour: h } : {}) };
+  const free = c.board.hours.filter((h) => !reasoned.has(h));
+  const k = hand.rng.int(Math.max(1, free.length));
+  const h = free[k];
+  const coda = h === undefined ? undefined : hourLine(c, b, bp, hand, [h], c.board.hours);
+  return { ...(open ? { open } : {}), ...(coda && h !== undefined ? { coda, codaHour: h } : {}) };
 }
 
 /**

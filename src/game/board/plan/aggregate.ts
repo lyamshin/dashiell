@@ -137,7 +137,7 @@ export function aggregate(items: Item[], ctx: PlanCtx): Item[] {
     }
     // Who could get at it, and the exception last: "Hauck and Rosenbaum had been here earlier, when the
     // laudanum was there for the taking, and Vogel hadn’t."
-    if (it.agg?.key === 'way-in') {
+    if (it.agg?.key === 'way-in' && (it.agg.data as { yes?: string }).yes !== undefined) {
       const d = it.agg.data as { yes: string; no: string; short: string };
       const one = `${d.yes.replace(/\.$/, '')}, and ${d.no} ${d.short}.`;
       if (!/;/.test(d.yes) && one.split(/\s+/).length <= 30) {

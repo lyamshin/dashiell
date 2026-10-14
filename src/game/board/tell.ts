@@ -68,6 +68,17 @@ function runsOf(hours: Hour[], claims: Record<Hour, Claim>): Run[] {
 }
 
 /**
+ * docs/49, Planner 2: the hours a person's account gives a reason for ("At seven I went to the flats
+ * over Lipsky’s to help write letters home, and stayed through nine" gives seven, eight and nine).
+ * A voice line about an hour of theirs is never said for one of these: it would contradict the reason.
+ */
+export function hoursWithReason(c: BoardCase, a: Account): Set<Hour> {
+  const out = new Set<Hour>();
+  for (const r of runsOf(c.board.hours, a.claims)) if (r.reason) for (let h = r.from; h <= r.to; h++) out.add(h as Hour);
+  return out;
+}
+
+/**
  * How a person opens an hour: "At nine", "Nine o’clock", "Around nine". Never the same twice running,
  * and (docs/47 C13) turned by the speaker as well as the night, so five accounts don't all open their
  * second hour on "Come nine".

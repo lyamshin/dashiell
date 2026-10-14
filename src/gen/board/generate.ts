@@ -166,6 +166,17 @@ function uniqueGiven(names: Named[], rng: Rng): void {
 const pron = (n: { female: boolean }) =>
   n.female ? { they: 'she', them: 'her', their: 'her' } : { they: 'he', them: 'him', their: 'his' };
 
+/**
+ * Bible 2's gender pass (docs/49, Planner 2): a line that speaks of the dead only ("he had company
+ * coming", "by the warmth of him", "Somebody made him cocoa") said of whoever the dead are. A dead man's
+ * lines read as they always did, so a dealt night (whose dead are men) is word for word as before.
+ */
+function ofDead(text: string, dead: { female: boolean }): string {
+  if (!dead.female) return text;
+  const to: Record<string, string> = { he: 'she', him: 'her', his: 'her', himself: 'herself', He: 'She', His: 'Her', Him: 'Her' };
+  return text.replace(/\b(he|him|his|himself|He|His|Him)\b/g, (w) => to[w] ?? w);
+}
+
 function fill(text: string, n: { female: boolean }): string {
   const p = pron(n);
   return text.replace(/\{they\}/g, p.they).replace(/\{them\}/g, p.them).replace(/\{their\}/g, p.their);
@@ -777,7 +788,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     });
   });
   if (murder) {
-    people.push({ id: V, name: `${fullOf(victimName)}`, short: shortOf(victimName), role: 'victim', description: cast ? (cast.victim as BiblePerson).job : rng.pick(K.VICTIM_JOBS), foundAt: S, female: false, ...(cast ? { world: (cast.victim as BiblePerson).id } : {}) });
+    people.push({ id: V, name: `${fullOf(victimName)}`, short: shortOf(victimName), role: 'victim', description: cast ? (cast.victim as BiblePerson).job : rng.pick(K.VICTIM_JOBS), foundAt: S, female: victimName.female, ...(cast ? { world: (cast.victim as BiblePerson).id } : {}) });
   } else {
     people.push({ id: V, name: thing.name, short: thing.short, role: 'victim', description: thing.where, foundAt: S, object: true });
   }
@@ -790,7 +801,8 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     name: clientName.title ?? `${clientName.female ? 'Mrs.' : 'Mr.'} ${fullOf(clientName)}`,
     short: shortOf(clientName),
     role: 'client',
-    description: murder ? `${shortOf(victimName)}’s ${clientName.female ? relation.female : relation.male}` : type === 'lost-pet' ? 'the owner' : `the owner, ${clientName.female ? 'a widow' : 'a widower'}`,
+    // (A neighbourhood owner is who the bible says, not "a widow": Miss Kahane is twenty-odd and unmarried.)
+    description: murder ? `${shortOf(victimName)}’s ${clientName.female ? relation.female : relation.male}` : type === 'lost-pet' || cast ? 'the owner' : `the owner, ${clientName.female ? 'a widow' : 'a widower'}`,
     foundAt: S,
     female: clientName.female,
     ...(cast ? { world: cast.client.id } : {}),
@@ -877,7 +889,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   let errandClash = false;
   function reasonFor(p: PersonId, from: PlaceId, to: PlaceId, h: Hour, len: number, truth = false): string {
     const pl = placeById.get(to) as Place;
-    if (p === V && murder) return to === S ? 'went home: he had company coming' : `his usual at ${pl.short}`;
+    if (p === V && murder) return ofDead(to === S ? 'went home: he had company coming' : `his usual at ${pl.short}`, victimName);
     // The culprit's own move to the scene is never said; it's here for the designer.
     if (to === S) return p === C ? `went round to ${murder ? shortOf(victimName) + '’s' : 'the flat'}` : 'the party';
     const vars = { p: pl.short, h: fmtHour(h) };
@@ -1106,14 +1118,14 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
       name: work.meansName,
       shelf: work.shelf,
       origin: `${work.shelf} at ${xPlace.short}, open from ${fmtHour(h0)} until ${fmtHour(Math.max(...avail) + 1)}`,
-      scene: `${kind === 'chloral' ? 'Two glasses; one smells sweet and chemical. ' : ''}${work.label.replace('{place}', xPlace.short)}`,
+      scene: ofDead(`${kind === 'chloral' ? 'Two glasses; one smells sweet and chemical. ' : ''}${work.label.replace('{place}', xPlace.short)}`, victimName),
       what: kind === 'gun' ? 'the floor' : 'the table',
       // docs/47 B9: he's found in his chair, so the police say his heart, not a fall.
-      police: kind === 'gun' ? 'a robbery gone wrong' : 'his heart',
+      police: kind === 'gun' ? 'a robbery gone wrong' : ofDead('his heart', victimName),
       delay,
     };
   } else if (murder && rm) {
-    md = { ...rm, origin: rm.origin.replace(/\{x\}/g, rooming.short) + `, there from ${fmtHour(avail[0] as Hour)}`, scene: rm.scene.replace(/\{x\}/g, rooming.short) };
+    md = { ...rm, origin: rm.origin.replace(/\{x\}/g, rooming.short) + `, there from ${fmtHour(avail[0] as Hour)}`, scene: ofDead(rm.scene.replace(/\{x\}/g, rooming.short), victimName), police: ofDead(rm.police, victimName) };
   }
   if (xWatched) {
     lists.push({
@@ -1159,7 +1171,7 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   if (md) {
     finds.push({ id: 'scene', place: S, what: md.what, text: md.scene, gives: { means: true }, facts: [] });
     const c = personOf(C);
-    finds.push({ id: 'papers', place: S, what: 'his papers', text: `A page on each of them. The one on top: ${c.short}; ${c.motive}.`, gives: { why: true }, facts: [] });
+    finds.push({ id: 'papers', place: S, what: ofDead('his papers', victimName), text: `A page on each of them. The one on top: ${c.short}; ${c.motive}.`, gives: { why: true }, facts: [] });
   } else {
     finds.push({ id: 'scene', place: S, what: 'the parlor', text: `${thing.empty} ${tpl((sm as (typeof K.SMALL_MEANS)[number]).scene, smVars)}`, gives: { means: true }, facts: [] });
   }
@@ -1193,25 +1205,29 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
     const v = personOf(V);
     const rel = clientName.female ? relation.female : relation.male;
     say('relation', 'relation', { ...who, victim: v.short, victimFull: v.name, relation: rel }, `${shortOf(clientName)}, the client, is ${v.name}’s ${rel}.`);
-    const finderWhy = rng.pick(K.FINDER_WHY);
+    // (On a world night, beside somebody of the dead's own sex, the dead are said by name: "Doyle,
+    // who heard Mrs. Greco's radio still going", not "Mrs. Blau, who heard her radio".)
+    const besideDead = (text: string, other: { female: boolean } | undefined) =>
+      cast && other && other.female === victimName.female ? text.replace(/\bhim\b/g, shortOf(victimName)).replace(/\bhis\b/g, `${shortOf(victimName)}’s`) : ofDead(text, victimName);
+    const finderWhy = besideDead(rng.pick(K.FINDER_WHY), namedOf.get(finder));
     const foundVars = { ...who, victim: v.short, job: v.description, scene: (placeById.get(S) as Place).name, sceneShort: (placeById.get(S) as Place).short, found: `half past ${fmtHour(hL + 1)}`, finder: finderName, finderWhy, police: md.police };
-    say('found', 'found', foundVars, `${v.short}, ${v.description}, was found dead in ${foundVars.scene.replace(new RegExp(`^${v.short}’s `), 'his own ')} at ${foundVars.found}, by ${finderName}, ${finderWhy}. The police called it ${md.police}.`);
+    say('found', 'found', foundVars, `${v.short}, ${v.description}, was found dead in ${foundVars.scene.replace(new RegExp(`^${v.short}’s `), ofDead('his own ', victimName))} at ${foundVars.found}, by ${finderName}, ${finderWhy}. The police called it ${md.police}.`);
     const clocks = K.MURDER_CLOCKS.filter((x) => x.windowed === windowed && x.kinds.includes(md.kind));
     const clock = rng.pick(clocks);
     clockId = clock.id;
     // docs/47 B9: what she heard fits the room the detective finds: no glass breaks, the glasses are whole.
-    const sound = md.kind === 'gun' ? 'a shot' : md.kind === 'blade' ? 'a fall' : 'him laugh with somebody and then go quiet';
+    const sound = md.kind === 'gun' ? 'a shot' : md.kind === 'blade' ? 'a fall' : ofDead('him laugh with somebody and then go quiet', victimName);
     const clockVars = { ...hourVars, means: md.name.replace(/^a /, ''), delay: delayText(md.delay), sound, kind: md.kind, windowed: windowed ? 'yes' : 'no' };
-    say('clock', clock.id, clockVars, tpl(clock.text, clockVars));
+    say('clock', clock.id, clockVars, tpl(ofDead(clock.text, victimName), clockVars));
     // Where he'd been: it sends the player to that watcher (rule 18, and 4a.2's pointers).
     if (hours.some((h) => h < hc && at(V, h) === B)) {
-      say('venue', 'venue', { ...who, venue: venue.short, victim: v.short }, `He’d been at ${venue.short} earlier in the evening, his usual.`);
+      say('venue', 'venue', { ...who, venue: venue.short, victim: v.short }, ofDead(`He’d been at ${venue.short} earlier in the evening, his usual.`, victimName));
       points.push({ kind: 'place', ref: B, text: `${v.short} had been at ${venue.short} earlier` });
     }
     const pk = rng.pick(K.MURDER_POINTERS);
     pointerKind = pk.kind === 'motive' ? (motiveKind.get(pointer) as string) : pk.kind;
     const pv = { Client: shortOf(clientName), P: pointerP.short, pthem: pron(pointerN).them, motive: pointerP.motive as string };
-    say('pointer', pk.kind, { ...who, P: pointerP.short, pthey: pron(pointerN).they, pthem: pron(pointerN).them, ptheir: pron(pointerN).their, motive: pv.motive, victim: v.short }, tpl(pk.text, pv));
+    say('pointer', pk.kind, { ...who, P: pointerP.short, pthey: pron(pointerN).they, pthem: pron(pointerN).them, ptheir: pron(pointerN).their, motive: pv.motive, victim: v.short }, tpl(besideDead(pk.text, clientName), pv));
   } else {
     const def = sm as (typeof K.SMALL_MEANS)[number];
     const g = [...guests];
