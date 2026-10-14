@@ -32,6 +32,7 @@ export interface VoiceHand {
   uses(id: string): number;
   note(id: string): void;
   swap(prev: string, next: string): void;
+  forget(id: string): void;
   readonly mayJoke: boolean;
   joke(): void;
   int(n: number): number;

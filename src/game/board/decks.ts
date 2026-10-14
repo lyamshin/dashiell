@@ -111,6 +111,14 @@ export class Hand {
     return -1;
   }
 
+  /** docs/52 §4: give back an id spent on this page (a voicing whose composite went into another). */
+  forget(id: string): void {
+    const i = this.spent.indexOf(id);
+    if (i < 0) return;
+    this.spent.splice(i, 1);
+    this.spentSet.delete(id);
+  }
+
   /** docs/52 §4: how many times tonight an id has been spent (`id`, or `id#n`). */
   uses(id: string): number {
     const hit = (x: string) => x === id || x.startsWith(`${id}#`);

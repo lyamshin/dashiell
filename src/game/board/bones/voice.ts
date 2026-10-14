@@ -22,7 +22,8 @@
  *   `{p:role}` the role where the night has one ("the house manager"), the
  *   name where it hasn't;
  * - an hour: `{h}` "ten", `{h:oclock}` "ten o’clock";
- * - hours and people: `{hs}` "eight, nine and ten", `{hs:or}` "ten or eleven".
+ * - hours and people: `{hs}` "eight, nine and ten", `{hs:or}` "ten or eleven"; people
+ *   `{ps:poss}` "Russo’s and Glick’s", `{ps:orposs}` "Russo’s or Glick’s".
  *
  * Choice (`say.ts`): the shape's voicings that fit the manner, the tier band
  * and the flags; the most specific wins; among those, least recently used
@@ -145,8 +146,8 @@ export function renderTyped(c: BoardCase, x: Typed, form?: string): string {
       return nameOf(c, x.id);
     }
     case 'people': {
-      const ns = x.ids.map((e) => entrySaid(c, e));
-      return form === 'or' ? orList(ns) : andList(ns);
+      const ns = x.ids.map((e) => entrySaid(c, e)).map((n) => (form === 'poss' || form === 'orposs' ? `${n}’s` : n));
+      return form === 'or' || form === 'orposs' ? orList(ns) : andList(ns);
     }
     case 'hour':
       return form === 'oclock' ? oclock(x.h as Hour) : hourWord(x.h as Hour);

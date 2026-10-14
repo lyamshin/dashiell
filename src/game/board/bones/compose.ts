@@ -177,6 +177,12 @@ export function pickFor(shape: Shape, flags: readonly string[], args: Args, ctx:
   return preview(shape, flags, { manner, tierBand: tierBand(ctx) }, args, ctx);
 }
 
+/** Give back the voicing an item spent, when it goes into another composite. */
+function unspend(it: Item, ctx: PlanCtx): void {
+  const n = (it.comp as Held | undefined)?.noted;
+  if (n && ctx.hand) ctx.hand.forget(n);
+}
+
 /** Spend a voicing on a composite: a composite voiced again gives back the use it had. */
 export function spend(comp: Held, p: Picked, ctx: PlanCtx): void {
   const key = p.commit();
@@ -507,6 +513,7 @@ export function aggregate(items: Item[], ctx: PlanCtx): Item[] {
       }
       if (run.length > 1) {
         for (const x of run.slice(1)) used.add(x);
+        for (const x of run) unspend(x, ctx);
         const ps = run.map((x) => placedClause(x, c) as { who: string; at: string });
         // One place and hour for all of them is said once: "Kavanagh and Renfro at the Velvet Room at eleven".
         const byAt = new Map<string, string[]>();
@@ -527,6 +534,7 @@ export function aggregate(items: Item[], ctx: PlanCtx): Item[] {
         run.push(items[k] as Item);
       }
       if (run.length > 1) {
+        for (const x of run) unspend(x, ctx);
         const os = run.map((x) => ownClause(x, c) as { who: string; said: string });
         const nu: Item = { ...it, about: [...new Set(run.flatMap((x) => x.about ?? []))], carries: run.flatMap((x) => x.carries ?? []), props: run.flatMap((x) => x.props ?? []), joined: 'aggregated' };
         const comp: Held = { shape: 'OWN-WORD', props: [...(nu.props ?? [])] };

@@ -281,6 +281,7 @@ function voiceHand(h: Hand): VoiceHand {
     uses: (id) => h.uses(id),
     note: (id) => h.note(id),
     swap: (a, b) => h.swap(a, b),
+    forget: (id) => h.forget(id),
     get mayJoke() {
       return h.mayJoke;
     },
@@ -2013,6 +2014,8 @@ export interface Clause {
   places: PlaceId[];
   /** docs/52: what the clause says, as propositions. */
   props: Prop[];
+  /** docs/52 build 2: the clause as a composite, for the page to voice (`text` is the notebook's). */
+  say?: SaySpec;
 }
 
 /**
@@ -2048,16 +2051,17 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
       people: [c.crime.victim, c.client],
       places: [gone.x.place],
       props: [{ k: 'WINDOW', hours: [...office] }, { k: 'ALIVE', victim: c.crime.victim, place: gone.x.place, hour: gone.h }],
+      say: { shape: 'WINDOW-ALIVE', flags: ['one', isMurder(c) ? 'murder' : 'small'], args: { client: cl, opts: two, victim: v, place: placeName(c, gone.x.place), at: `at ${placeName(c, gone.x.place)}`, hour: hourWord(gone.h) } },
     });
   } else
     out.push(
       hc !== null
-        ? { key: 'when', text: `${what} at ${oclock(hc)}.`, hours: [hc], people: [], places: [], props: [{ k: 'WINDOW', hours: [hc] }] }
-        : { key: 'when', text: `${what} at ${hourWord(s.possibleHours[0] as Hour)} or ${oclock(s.possibleHours[1] as Hour)}, and I didn’t know which yet.`, hours: [...s.possibleHours], people: [], places: [], props: [{ k: 'WINDOW', hours: [s.possibleHours[0] as Hour, s.possibleHours[1] as Hour] }] },
+        ? { key: 'when', text: `${what} at ${oclock(hc)}.`, hours: [hc], people: [], places: [], props: [{ k: 'WINDOW', hours: [hc] }], say: { shape: 'WINDOW-MEANS', flags: ['when', 'hour', isMurder(c) ? 'murder' : 'small'], args: { hour: { t: 'hour', h: hc }, victim: { t: 'person', id: c.crime.victim } } } }
+        : { key: 'when', text: `${what} at ${hourWord(s.possibleHours[0] as Hour)} or ${oclock(s.possibleHours[1] as Hour)}, and I didn’t know which yet.`, hours: [...s.possibleHours], people: [], places: [], props: [{ k: 'WINDOW', hours: [s.possibleHours[0] as Hour, s.possibleHours[1] as Hour] }], say: { shape: 'WINDOW-MEANS', flags: ['when', 'two', isMurder(c) ? 'murder' : 'small'], args: { hours: { t: 'hours', hs: [s.possibleHours[0] as Hour, s.possibleHours[1] as Hour] }, victim: { t: 'person', id: c.crime.victim } } } },
     );
   const meansHeld = run.asked.some((q) => q.startsWith('search:') && c.finds.find((f) => `search:${f.id}` === q)?.gives.means);
   if (meansHeld && isMurder(c)) {
-    out.push({ key: 'means', text: `The ${c.means.name.replace(/^(a|an) /, '')} came from ${placeName(c, c.means.origin)}, so whoever used it had been there first.`, hours: [], people: [], places: [c.means.origin], props: [{ k: 'MEANS', how: 'origin', place: c.means.origin }] });
+    out.push({ key: 'means', text: `The ${c.means.name.replace(/^(a|an) /, '')} came from ${placeName(c, c.means.origin)}, so whoever used it had been there first.`, hours: [], people: [], places: [c.means.origin], props: [{ k: 'MEANS', how: 'origin', place: c.means.origin }], say: { shape: 'WINDOW-MEANS', flags: ['means', 'link'], args: { means: c.means.name.replace(/^(a|an) /, ''), origin: { t: 'place', id: c.means.origin } } } });
   }
   if (c.tier >= 1 && (s.accessYes.size > 0 || s.accessNo.size > 0)) {
     const yes = named.filter((p) => s.accessYes.has(p)).map((p) => nameOf(c, p));
@@ -2081,6 +2085,9 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
       if (yes.length) bits.push(`${andList(yes)} had been in at ${at} earlier, when the spare key was there for the taking`);
       if (no.length) bits.push(`${andList(no)} hadn’t`);
     }
+    const yesIds = named.filter((p) => s.accessYes.has(p));
+    const noIds = named.filter((p) => s.accessNo.has(p));
+    const kind = isMurder(c) ? 'murder' : party ? 'party' : told ? 'told' : 'spare';
     if (bits.length)
       out.push({
         key: 'access',
@@ -2088,7 +2095,12 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
         hours: [],
         people: named.filter((p) => s.accessYes.has(p) || s.accessNo.has(p)),
         places: [c.means.origin],
-        props: [...named.filter((p) => s.accessYes.has(p)).map((p) => ({ k: 'ACCESS', person: p, had: true }) as Prop), ...named.filter((p) => s.accessNo.has(p)).map((p) => ({ k: 'ACCESS', person: p, had: false }) as Prop)],
+        props: [...yesIds.map((p) => ({ k: 'ACCESS', person: p, had: true }) as Prop), ...noIds.map((p) => ({ k: 'ACCESS', person: p, had: false }) as Prop)],
+        say: {
+          shape: 'ACCESS-SET',
+          flags: ['recap', kind, ...(yesIds.length ? ['yes', yesIds.length > 1 ? 'many' : 'one'] : []), ...(noIds.length ? ['no', noIds.length > 1 ? 'nones' : 'none'] : [])],
+          args: { people: { t: 'people', ids: yesIds }, none: { t: 'people', ids: noIds }, origin: { t: 'place', id: c.means.origin }, means: c.means.name.replace(/^(a|an) /, ''), client: { t: 'person', id: c.client }, occasion: party?.occasion ?? '' },
+        },
       });
   }
   // Above a walk, when the office gave two hours, every clause is about both: which one it was is the player's to say.
@@ -2114,6 +2126,7 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
         people: [p, ...sourcePeople(by)],
         places: [cl?.place ?? ''],
         props: [{ k: 'COLLIDES', person: p, place: cl?.place ?? '', hour: st.h, with: by ? srcOfQ(by) : { k: 'given' } }],
+        say: { shape: 'COLLISION-PAIR', flags: ['recap', personOf(c, p)?.home === cl?.place ? 'home' : 'away'], args: { person: { t: 'person', id: p }, place: { t: 'place', id: cl?.place ?? '' }, hour: { t: 'hour', h: st.h }, src: by ? sourceName(c, by) : 'what I had' } },
       });
       const k = c.confrontations.find((x) => x.person === p && x.hour === st.h);
       if (k && run.asked.includes(`confront:${p}@${st.h}`)) {
@@ -2121,7 +2134,7 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
         if (k.response === 'admit' && lie) {
           const y = (k.names ?? [])[0];
           const checked = y ? run.asked.includes(`account:${y}`) : false;
-          out.push({ key: `admit:${p}`, text: `${nameOf(c, p)} owned up to ${placeName(c, lie.truth)}${y ? `, with ${nameOf(c, y)}` : ''}${y && !checked ? `, and ${nameOf(c, y)} could say whether that was so` : ''}.`, hours: [], people: [p, ...(y ? [y] : [])], places: [lie.truth], props: [{ k: 'ADMIT', person: p, place: lie.truth, ...(y ? { witness: y } : {}) }] });
+          out.push({ key: `admit:${p}`, text: `${nameOf(c, p)} owned up to ${placeName(c, lie.truth)}${y ? `, with ${nameOf(c, y)}` : ''}${y && !checked ? `, and ${nameOf(c, y)} could say whether that was so` : ''}.`, hours: [], people: [p, ...(y ? [y] : [])], places: [lie.truth], props: [{ k: 'ADMIT', person: p, place: lie.truth, ...(y ? { witness: y } : {}) }], say: { shape: 'REACTION', flags: ['owned', ...(y ? ['witness', checked ? 'checked' : 'unchecked'] : ['alone'])], args: { person: { t: 'person', id: p }, place: { t: 'place', id: lie.truth }, ...(y ? { witness: { t: 'person', id: y } } : {}) } } });
         } else if (k.response === 'second-lie' && k.secondLie?.place) {
           const again = run.puts.some((x) => x.person === p && x.hour === st.h && x.again && x.landed);
           out.push({
@@ -2133,9 +2146,10 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
             people: [p],
             places: [k.secondLie.place],
             props: [{ k: 'SECOND', person: p, place: k.secondLie.place }, ...(again ? [{ k: 'REFUSE', person: p } as Prop] : [])],
+            say: { shape: 'REACTION', flags: ['second', again ? 'again' : 'once'], args: { person: { t: 'person', id: p }, place: { t: 'place', id: k.secondLie.place } } },
           });
         } else if (k.response !== 'crack') {
-          out.push({ key: `refused:${p}`, text: `${nameOf(c, p)} wouldn’t say where ${pronOf(c, p).he} had been instead.`, hours: [], people: [p], places: [], props: [{ k: 'REFUSE', person: p }] });
+          out.push({ key: `refused:${p}`, text: `${nameOf(c, p)} wouldn’t say where ${pronOf(c, p).he} had been instead.`, hours: [], people: [p], places: [], props: [{ k: 'REFUSE', person: p }], say: { shape: 'REACTION', flags: ['refused'], args: { person: { t: 'person', id: p } } } });
         }
       }
       continue;
@@ -2155,6 +2169,7 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
           people: [p, ...bys.flatMap((by) => sourcePeople(by))],
           places: placed.map((y) => y.x?.place ?? ''),
           props: placed.map((y) => ({ k: 'PLACED', person: p, place: y.x?.place ?? '', hour: y.h, by: srcOfQ(y.x?.deps.find((dq) => dq !== `account:${p}`) as string) }) as Prop),
+          say: { shape: 'PLACED-SET', flags: ['recap-one'], args: { person: { t: 'person', id: p }, at, src: andList([...new Set(bys.map((q) => sourceName(c, q).replace(/’s (list|story|word)$/, '')))]) } },
         });
       } else if (!run.asked.includes(`account:${p}`)) {
         open.push(p);
@@ -2162,17 +2177,17 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
         // "Home at nine and ten", not "Thorndike’s flat at nine and Thorndike’s flat at ten" (Medium 14's #29).
         const wh = hs.map((h) => claimSaid(c, p, h).replace(/ at \w+$/, ''));
         const said = wh.every((x) => x === wh[0]) ? `${wh[0]} at ${andList(hs.map(hourWord))}` : andList(hs.map((h) => claimSaid(c, p, h)));
-        out.push({ key: `own:${p}`, text: `${P} said ${said}, and nobody else had said so yet.`, hours: [...hs], people: [p], places: hs.map((h) => accountOf(c, p)?.claims[h]?.place ?? ''), props: hs.map((h) => claimProp(c, p, h, { place: true, company: false })) });
+        out.push({ key: `own:${p}`, text: `${P} said ${said}, and nobody else had said so yet.`, hours: [...hs], people: [p], places: hs.map((h) => accountOf(c, p)?.claims[h]?.place ?? ''), props: hs.map((h) => claimProp(c, p, h, { place: true, company: false })), say: { shape: 'OWN-WORD', flags: ['recap-one'], args: { person: { t: 'person', id: p }, said } } });
       }
       continue;
     }
     if (pl?.x && placed.length === hs.length) {
       const by = pl.x.deps.find((dq) => dq !== `account:${p}`) as string;
-      out.push({ key: `placed:${p}`, text: `${nameOf(c, p)} was at ${placeName(c, pl.x.place)} at ${hourWord(pl.h)}; ${saidSo([by])}.`, hours: [pl.h], people: [p, ...sourcePeople(by)], places: [pl.x.place], props: [{ k: 'PLACED', person: p, place: pl.x.place, hour: pl.h, by: srcOfQ(by) }] });
+      out.push({ key: `placed:${p}`, text: `${nameOf(c, p)} was at ${placeName(c, pl.x.place)} at ${hourWord(pl.h)}; ${saidSo([by])}.`, hours: [pl.h], people: [p, ...sourcePeople(by)], places: [pl.x.place], props: [{ k: 'PLACED', person: p, place: pl.x.place, hour: pl.h, by: srcOfQ(by) }], say: { shape: 'PLACED-SET', flags: ['recap-one'], args: { person: { t: 'person', id: p }, at: `${placeName(c, pl.x.place)} at ${hourWord(pl.h)}`, src: sourceName(c, by).replace(/’s (list|story|word)$/, '') } } });
     } else if (hc !== null && !run.asked.includes(`account:${p}`)) {
       open.push(p);
     } else if (hc !== null) {
-      out.push({ key: `own:${p}`, text: `${nameOf(c, p)} said ${claimSaid(c, p, hc)}, and nobody else had said so yet.`, hours: [hc], people: [p], places: [accountOf(c, p)?.claims[hc]?.place ?? ''], props: [claimProp(c, p, hc, { place: true, company: false })] });
+      out.push({ key: `own:${p}`, text: `${nameOf(c, p)} said ${claimSaid(c, p, hc)}, and nobody else had said so yet.`, hours: [hc], people: [p], places: [accountOf(c, p)?.claims[hc]?.place ?? ''], props: [claimProp(c, p, hc, { place: true, company: false })], say: { shape: 'OWN-WORD', flags: ['recap-one'], args: { person: { t: 'person', id: p }, said: claimSaid(c, p, hc) } } });
     }
   }
   const ohs = twoHours ? [...office] : hc !== null ? [hc] : [];
@@ -2188,6 +2203,7 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
       people: [...open],
       places: [],
       props: [{ k: 'UNSPOKEN', people: [...open], hours: [...ohs] }],
+      say: { shape: 'UNSPOKEN', flags: [one ? 'one' : 'many', ohs.length > 1 ? 'two' : 'hour'], args: { ...(one ? { person: { t: 'person', id: one } } : { people: { t: 'people', ids: [...open] } }), hours: { t: 'hours', hs: [...ohs] } } },
     });
   }
   if (!isMurder(c) && s.whereNow && c.crime.whereNow) {
@@ -2199,8 +2215,8 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
     const hh = /^(\w+):/.exec(remark?.text ?? '')?.[1]?.toLowerCase();
     out.push(
       cracked || !hh
-        ? { key: 'where', text: `${cap(v)} ${/^the \w+s$/.test(v) ? 'were' : 'was'} ${c.crime.whereNow.text}.`, hours: [], people: [c.crime.victim], places: [c.crime.whereNow.place], props: [{ k: 'HANDOVER', to: 'other:fence', place: c.crime.whereNow.place, thing: c.crime.victim }] }
-        : { key: 'where', text: `And whatever it was had gone to ${holder} at ${placeName(c, c.crime.whereNow.place)} at ${hh}.`, hours: hh === 'eleven' ? [11] : hh === 'ten' ? [10] : [], people: [], places: [c.crime.whereNow.place], props: [{ k: 'HANDOVER', to: 'other:fence', place: c.crime.whereNow.place, hour: c.crime.hour + 1 }] },
+        ? { key: 'where', text: `${cap(v)} ${/^the \w+s$/.test(v) ? 'were' : 'was'} ${c.crime.whereNow.text}.`, hours: [], people: [c.crime.victim], places: [c.crime.whereNow.place], props: [{ k: 'HANDOVER', to: 'other:fence', place: c.crime.whereNow.place, thing: c.crime.victim }], say: { shape: 'HANDOVER', flags: ['recap', 'known', /^the \w+s$/.test(v) ? 'plural' : 'single'], args: { thing: { t: 'person', id: c.crime.victim }, holder: { t: 'people', ids: ['other:fence'] }, at: { t: 'place', id: c.crime.whereNow.place } } } }
+        : { key: 'where', text: `And whatever it was had gone to ${holder} at ${placeName(c, c.crime.whereNow.place)} at ${hh}.`, hours: hh === 'eleven' ? [11] : hh === 'ten' ? [10] : [], people: [], places: [c.crime.whereNow.place], props: [{ k: 'HANDOVER', to: 'other:fence', place: c.crime.whereNow.place, hour: c.crime.hour + 1 }], say: { shape: 'HANDOVER', flags: ['recap', 'unknown'], args: { holder: { t: 'people', ids: ['other:fence'] }, at: { t: 'place', id: c.crime.whereNow.place }, hour: { t: 'hour', h: c.crime.hour + 1 } } } },
     );
   }
   return out;
@@ -2217,15 +2233,15 @@ function factClauses(d: BoardDeal, run: BoardRun): Clause[] {
   const out: Clause[] = [];
   const office = c.givens.window ?? c.crime.window;
   const cl = clientOf(c).short;
-  out.push({ key: 'when', text: office.length > 1 ? `${cl} had said ${hourWord(office[0] as Hour)} or ${oclock(office[1] as Hour)}.` : `${cl} had said ${oclock(office[0] as Hour)}.`, hours: [...office], people: [c.client], places: [], props: [{ k: 'WINDOW', hours: [...office] }] });
+  out.push({ key: 'when', text: office.length > 1 ? `${cl} had said ${hourWord(office[0] as Hour)} or ${oclock(office[1] as Hour)}.` : `${cl} had said ${oclock(office[0] as Hour)}.`, hours: [...office], people: [c.client], places: [], props: [{ k: 'WINDOW', hours: [...office] }], say: { shape: 'WINDOW-MEANS', flags: ['when', 'office', office.length > 1 ? 'two' : 'hour'], args: { client: { t: 'person', id: c.client }, hours: { t: 'hours', hs: [...office] } } } });
   const meansHeld = run.asked.some((q) => q.startsWith('search:') && c.finds.find((f) => `search:${f.id}` === q)?.gives.means);
-  if (meansHeld && isMurder(c)) out.push({ key: 'means', text: `The ${c.means.name.replace(/^(a|an) /, '')} had come from ${placeName(c, c.means.origin)}.`, hours: [], people: [], places: [c.means.origin], props: [{ k: 'MEANS', how: 'origin', place: c.means.origin }] });
+  if (meansHeld && isMurder(c)) out.push({ key: 'means', text: `The ${c.means.name.replace(/^(a|an) /, '')} had come from ${placeName(c, c.means.origin)}.`, hours: [], people: [], places: [c.means.origin], props: [{ k: 'MEANS', how: 'origin', place: c.means.origin }], say: { shape: 'WINDOW-MEANS', flags: ['means', 'fact'], args: { means: c.means.name.replace(/^(a|an) /, ''), origin: { t: 'place', id: c.means.origin } } } });
   const evenings = run.asked.filter((q) => q.startsWith('account:')).map((q) => q.slice(8));
   const lists = run.asked.filter((q) => q.startsWith('list:')).map((q) => q.slice(5));
   const bits: string[] = [];
   if (evenings.length) bits.push(`${evenings.length > 1 ? 'evenings' : 'an evening'} from ${andList(evenings.map((p) => nameOf(c, p)))}`);
   if (lists.length) bits.push(`${lists.length > 1 ? 'lists' : 'a list'} from ${andList(lists.map((p) => nameOf(c, p)))}`);
-  if (bits.length) out.push({ key: 'held', text: `I had ${bits.join(', and ')}.`, hours: [], people: [...evenings, ...lists], places: [], props: [{ k: 'HOLD', evenings: [...evenings], lists: [...lists] }] });
+  if (bits.length) out.push({ key: 'held', text: `I had ${bits.join(', and ')}.`, hours: [], people: [...evenings, ...lists], places: [], props: [{ k: 'HOLD', evenings: [...evenings], lists: [...lists] }], say: { shape: 'HOLD', flags: ['hold', evenings.length > 1 ? 'evenings' : evenings.length ? 'evening' : 'no-evening', lists.length > 1 ? 'lists' : lists.length ? 'list' : 'no-list'], args: { evenings: { t: 'people', ids: [...evenings] }, lists: { t: 'people', ids: [...lists] } } } });
   for (const putx of run.puts.filter((x) => x.landed && !x.again)) {
     const k = confrontationOf(c, putx.person, putx.hour);
     if (!k) continue;
@@ -2239,15 +2255,16 @@ function factClauses(d: BoardDeal, run: BoardRun): Clause[] {
         people: [putx.person],
         places: [k.secondLie.place],
         props: [{ k: 'SECOND', person: putx.person, place: k.secondLie.place }, ...(again ? [{ k: 'REFUSE', person: putx.person } as Prop] : [])],
+        say: { shape: 'REACTION', flags: ['second', again ? 'again' : 'once'], args: { person: { t: 'person', id: putx.person }, place: { t: 'place', id: k.secondLie.place } } },
       });
-    else if (k.response !== 'crack' && k.response !== 'admit') out.push({ key: `refused:${putx.person}`, text: `Put to it, ${name} wouldn’t say where ${pronOf(c, putx.person).he} had been instead.`, hours: [], people: [putx.person], places: [], props: [{ k: 'REFUSE', person: putx.person }] });
+    else if (k.response !== 'crack' && k.response !== 'admit') out.push({ key: `refused:${putx.person}`, text: `Put to it, ${name} wouldn’t say where ${pronOf(c, putx.person).he} had been instead.`, hours: [], people: [putx.person], places: [], props: [{ k: 'REFUSE', person: putx.person }], say: { shape: 'REACTION', flags: ['refused'], args: { person: { t: 'person', id: putx.person } } } });
   }
   // docs/47 B8: only the people the night has named.
   const known = knownPeople(c, run);
   const open = suspectsOf(c).filter((p) => !evenings.includes(p) && known.has(p));
   const owners = open.map((p) => `${nameOf(c, p)}’s`);
   const orList = owners.length > 1 ? `${owners.slice(0, -1).join(', ')} or ${owners[owners.length - 1]}` : (owners[0] ?? '');
-  if (open.length) out.push({ key: 'open', text: `I didn’t have ${orList} evening${open.length > 1 ? 's' : ''} yet.`, hours: [], people: open, places: [], props: [{ k: 'MISSING', people: [...open] }] });
+  if (open.length) out.push({ key: 'open', text: `I didn’t have ${orList} evening${open.length > 1 ? 's' : ''} yet.`, hours: [], people: open, places: [], props: [{ k: 'MISSING', people: [...open] }], say: { shape: 'HOLD', flags: ['missing', open.length > 1 ? 'many' : 'one'], args: { people: { t: 'people', ids: [...open] } } } });
   return out;
 }
 
@@ -2276,6 +2293,7 @@ function recapFacts(w: Writer, clauses: Clause[], lead?: string): void {
       runOn: i > 0 || ownLead,
       props: cl.props,
       tag: `clause:${cl.key.split(':')[0]}`,
+      ...(cl.say && !(i === 0 && lead && !ownLead) ? { say: cl.say } : {}),
     }),
   );
   if (clauses.length === 0 && lead) fact(w, 'job', lead, 'recap', { carries: [], exempt: true });

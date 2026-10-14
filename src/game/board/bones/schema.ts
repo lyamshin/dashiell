@@ -28,7 +28,7 @@ export interface ShapeSchema {
 /** The forms a typed argument takes in a template: `{p:they}`, `{h:oclock}`, `{hs:or}`. */
 export const FORMS: Record<ArgType, string[]> = {
   person: ['they', 'them', 'their', 'role', 'name'],
-  people: ['or'],
+  people: ['or', 'poss', 'orposs'],
   hour: ['oclock'],
   hours: ['or', 'oclock'],
   place: [],
@@ -73,6 +73,7 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
       return [];
     case 'HANDOVER':
       if (has('seen')) return [['hour'], ['holder']];
+      if (has('recap')) return has('known') ? [['thing'], ['holder'], ['at']] : [['holder'], ['at'], ['hour']];
       return [];
     case 'CONFIRMED':
       if (has('agree')) return [['spans'], ['src']];
@@ -83,11 +84,11 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
     case 'CONFIRMED-WITH':
       return has('apart') ? [['confirmed'], ['placed']] : [['confirmed'], ['others']];
     case 'COLLISION-PAIR':
-      if (has('recap')) return [['person'], ['place'], ['hour'], ['src']];
+      if (has('recap')) return [['person'], ...(has('home') ? [] : [['place']]), ['hour'], ['src']];
       return has('two') || has('colon') ? [['claim'], ['breaker'], ['two']] : [['claim'], ['breaker']];
     case 'OWN-WORD':
       if (has('recap')) return [['owns']];
-      if (has('one')) return [['person'], ['place'], ['hours']];
+      if (has('recap-one')) return [['person'], ['said']];
       return [['hs'], ['who'], ['what']];
     case 'PLACED-SET':
       if (has('swear')) return [['bits'], ['swear']];
@@ -95,7 +96,7 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
       if (has('self')) return [['he'], ['bits']];
       if (has('count')) return [['his'], ['runs']];
       if (has('recap')) return [['by'], ['groups']];
-      if (has('one')) return [['person'], ['place'], ['hours'], ['src']];
+      if (has('recap-one')) return [['person'], ['at'], ['src']];
       return [];
     case 'ACCESS-SET': {
       if (has('recap')) return [...(has('yes') ? [['people']] : []), ...(has('no') ? [['none']] : [])];
@@ -115,7 +116,19 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
     case 'PAIR':
       return [['a'], ['b']];
     case 'UNSPOKEN':
-      return [['people'], ['hours']];
+      return [has('one') ? ['person'] : ['people'], ['hours']];
+    case 'WINDOW-MEANS':
+      if (has('when')) return [has('hour') && !has('office') ? ['hour'] : ['hours'], ...(has('office') ? [['client']] : [])];
+      if (has('means')) return [['means'], ['origin']];
+      return [];
+    case 'REACTION':
+      if (has('owned')) return [['person'], ['place'], ...(has('witness') ? [['witness']] : [])];
+      if (has('second')) return [['person'], ['place']];
+      if (has('refused')) return [['person']];
+      return [];
+    case 'HOLD':
+      if (has('missing')) return [['people']];
+      return [...(has('evening') || has('evenings') ? [['evenings']] : []), ...(has('list') || has('lists') ? [['lists']] : [])];
     default:
       return [];
   }
@@ -136,8 +149,8 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'A watcher’s list, an hour (or a run of hours with the same people) at a time, in the watcher’s mouth. hour: at {hours}, {names} (the people, as the watcher calls them: "Feeney, Corrigan and Mr. Prentiss telling the room about his key"); whole: and nobody else (the voicing says so in its own words); part: the voicing says nothing about anybody else. first: the list’s first hour ({hours:oclock} reads well); next: a later one. one | many: one person or several. empty: nobody at {hours} (landlady: nobody but me; regular: just {names}, the one who’s always there; else: nobody else; bare: nobody). always: {who} was there every hour the watcher kept (all: the whole evening; shift: the whole time the watcher was on), {post} where ("in his back booth"), {does} what they do ("He buys things"); plural: {who} is two people. shut: the place shut at {hour}, and nobody after.',
   },
   UNSPOKEN: {
-    args: { people: 'people', hours: 'hours' },
-    doc: 'Nobody, them included, had told me where these people were at these hours (the notebook said aloud). one: one person ({people:they} may be used); many: several. Say the hours with {hours:or}.',
+    args: { people: 'people', person: 'person', hours: 'hours' },
+    doc: 'Nobody, them included, had told me where these people were at these hours (the notebook said aloud). one: one {person} (with {person:they}, "he" or "she"); many: several {people} ("they"). hour | two: one hour or the office’s two (say them with {hours:or}).',
   },
   'ACCESS-SET': {
     args: { yes: T, no: T, nobody: T, short: T, people: 'people', none: 'people', origin: 'place', means: T, client: 'person', occasion: T },
@@ -169,12 +182,12 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'The thing’s last move, to somebody who isn’t on the board. seen (a watcher’s remark, in the watcher’s mouth): at {hour} somebody came in with something under a coat and went straight to {holder}, and it changed hands; the watcher was watching the coat, not the face. coat (the watcher’s answer to what was under the coat; alive | small): no slots, all folded. thought: whatever went out of {scene}, something came in {place} under a coat at {hour} and went to {holder}. recap: whatever it was had gone to {holder} at {at} at {hour}. crack: {thing} was with {holder}, here (who hadn’t looked up) or away ({at}).',
   },
   'PLACED-SET': {
-    args: { bits: T, swear: T, he: T, runs: T, his: T, by: T, groups: T, person: 'person', place: 'place', hours: 'hours', src: T },
-    doc: 'People placed at an hour on somebody else’s word. Thought (legacy): {bits} "Wehrle and Mulcahy here at ten" with {swear}; self: {he} put {bits}; count: by {his} count, {runs}; recap (several): {by} had {groups}. Recap (one): {person} was at {place} at {hours}; {src} said so.',
+    args: { bits: T, swear: T, he: T, runs: T, his: T, by: T, groups: T, person: 'person', at: T, src: T },
+    doc: 'People placed at an hour on somebody else’s word. Thought (legacy): {bits} "Wehrle and Mulcahy here at ten" with {swear}; self: {he} put {bits}; count: by {his} count, {runs}; recap (several): {by} had {groups}. Recap (recap-one): {person} was at {at} ("the Thalia at ten and eleven", "the Thalia at ten and the Lyric at eleven"); {src} said so ("Coffin", "Coffin and Ashby", "the office").',
   },
   'OWN-WORD': {
-    args: { hs: T, hourword: T, who: T, what: T, owns: T, person: 'person', place: T, hours: 'hours' },
-    doc: 'The hours that mattered, on somebody’s word alone. hours: for {hs}, the {hourword} that mattered, {who} said {what}. recap: {owns}, and nobody else had said so yet; one: {person} said {place} at {hours}, and nobody else had.',
+    args: { hs: T, hourword: T, who: T, what: T, owns: T, person: 'person', said: T },
+    doc: 'The hours that mattered, on somebody’s word alone. hours: for {hs}, the {hourword} that mattered, {who} said {what}. recap: {owns}, and nobody else had said so yet; recap-one: {person} said {said} ("home at nine and ten", "the Thalia at ten"), and nobody else had said so yet.',
   },
   STREET: {
     args: { street: T, victim: T, client: T },
@@ -194,7 +207,7 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
   },
   REACTION: {
     args: { person: 'person', place: 'place', claimed: T, hour: 'hour', witness: 'person', said: T },
-    doc: 'What somebody said when their line was put to them, and what I made of it. if-held: if it held, {person:they} had been at {place} at {hour}, not {claimed}. owned: {person} owned up to {place} at {hour}, and nobody had said so but them. said: their own words ({said}).',
+    doc: 'What somebody said when their line was put to them, and what I made of it. The notebook (recap): owned: {person} owned up to {place} (witness: with {witness}; unchecked: and {witness} could say whether that was so; alone: nobody with them); second: put to it, {person} had a second story, {place} (again: and when that was put back, wouldn’t say more); refused: {person} wouldn’t say where {person:they} had been instead.',
   },
   OFFICE: {
     args: { client: 'person', line: T, said: T },
