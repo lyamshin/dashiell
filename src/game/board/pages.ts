@@ -2068,7 +2068,10 @@ export function writeReport(w: Writer): void {
   const el = walkedElimination(w, true);
   if (el) {
     license(w, el);
-    fact(w, 'thought', el.sentences.join(' '), 'thought', { relation: 'narrows', about: el.people, carries: el.refs, props: (el.parts ?? []).flatMap((x) => x.props ?? []) });
+    // docs/52 build 2: each step of it a composite of its own, voiced (as the page after the settling one says it).
+    const parts = el.parts ?? [];
+    if (PLAN.ops && parts.length > 1) parts.forEach((x, i) => fact(w, 'thought', x.text, 'thought', { relation: 'narrows', about: el.people, carries: el.refs, props: x.props ?? [], runOn: i > 0, ...(x.say ? { say: x.say } : {}) }));
+    else fact(w, 'thought', el.sentences.join(' '), 'thought', { relation: 'narrows', about: el.people, carries: el.refs, props: parts.flatMap((x) => x.props ?? []) });
   }
   // The office's prop, paid off: the night began there.
   const prop = w.run.prop;
@@ -2414,7 +2417,12 @@ export function writeTurn(w: Writer): void {
   const el = walkedElimination(w, true);
   if (el) {
     license(w, el);
-    fact(w, 'job', `Here’s what I had. ${el.sentences.join(' ')}`, 'recap', { relation: 'narrows', about: el.people, carries: el.refs, exempt: true, props: (el.parts ?? []).flatMap((x) => x.props ?? []) });
+    const parts = el.parts ?? [];
+    if (PLAN.ops && parts.length > 1) {
+      // docs/52 build 2: the lead a gap, and each step of the elimination a composite of its own, voiced.
+      put(w, 'job', 'Here’s what I had.', 'recap', { exempt: true });
+      parts.forEach((x) => fact(w, 'job', x.text, 'recap', { relation: 'narrows', about: el.people, carries: el.refs, exempt: true, props: x.props ?? [], runOn: true, ...(x.say ? { say: x.say } : {}) }));
+    } else fact(w, 'job', `Here’s what I had. ${el.sentences.join(' ')}`, 'recap', { relation: 'narrows', about: el.people, carries: el.refs, exempt: true, props: parts.flatMap((x) => x.props ?? []) });
   } else {
     const clauses = recapClauses(w.d, w.run);
     for (const cl of clauses) {

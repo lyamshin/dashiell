@@ -203,9 +203,9 @@ function voice(it: Item, comp: Held, flags: string[], args: Args, ctx: PlanCtx, 
 }
 
 /** The tools' samples: the composite as voiced, with what it was voiced from. */
-function sample(comp: Held, it: Item, ctx: PlanCtx): void {
+function sample(comp: Held, it: Item | undefined, ctx: PlanCtx): void {
   if (!SAMPLES.on || !comp.args || !comp.voicing) return;
-  const speaker = speakerOf(it, ctx.c);
+  const speaker = it ? speakerOf(it, ctx.c) : undefined;
   SAMPLES.list.push({ shape: comp.shape, flags: comp.flags ?? [], args: comp.args, ...(comp.manner ? { manner: comp.manner } : {}), props: comp.props, said: comp.said ?? '', voicing: comp.voicing, c: ctx.c, ...(speaker ? { speaker } : {}) });
 }
 
@@ -287,7 +287,8 @@ function sayPair(a: Item, b: Item, join: 'and' | 'semi' | 'but', ctx: PlanCtx, s
   comp.voicing = p.v.id;
   comp.args = args;
   comp.said = p.text;
-  return { comp, text: p.text, commit: () => spend(comp, p, ctx) };
+  comp.flags = [join];
+  return { comp, text: p.text, commit: () => (spend(comp, p, ctx), sample(comp, undefined, ctx)) };
 }
 
 /* ------------------------------------------------------------------ *
@@ -741,6 +742,7 @@ export function connect(items: Item[], ctx: PlanCtx): void {
         sayPlain(it, comp, ctx);
         return;
       }
+      comp.flags = ['hours', ...(listy ? ['listy'] : [])];
       sayWith(it, comp, v, args, ctx);
       it.alts = altsFor(comp, v, ctx);
       return;
@@ -967,6 +969,8 @@ function confirmPair(segs: Seg[], ctx: PlanCtx): void {
     comp.voicing = v?.v.id ?? 'plain';
     if (v) comp.args = args;
     comp.said = text;
+    comp.flags = sameAll && one ? [L.joined === 'too' ? 'too' : 'same'] : ['apart'];
+    sample(comp, undefined, ctx);
     merge(L, P, comp, text, 'with');
     (segs[i] as Seg).glosses.push(...(segs[i + 1] as Seg).glosses);
     segs.splice(i + 1, 1);
@@ -1004,9 +1008,11 @@ function accessAttach(segs: Seg[], ctx: PlanCtx): void {
     const text = v ? v.text : plainComposite(c, comp);
     if (wordsIn(plain(text)) > LONGEST) continue;
     if (v) spend(comp, v, ctx);
+    comp.flags = [form];
     comp.voicing = v?.v.id ?? 'plain';
     if (v) comp.args = args;
     comp.said = text;
+    sample(comp, undefined, ctx);
     merge(F, W, comp, text, 'who');
     // Said where they're named, it's no longer said where it was.
     segs.splice(k, 1);
