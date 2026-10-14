@@ -164,7 +164,18 @@ function mendable(it: Item): boolean {
  * (a why, an aside, a hand-off), where "and" would say they follow from each other.
  */
 function joins(it: Item): boolean {
-  return it.kind === 'fact' || it.slot === 'arrival' || it.slot === 'walk' || it.slot === 'staging' || it.slot === 'reaction' || it.slot === 'close' || it.slot === 'ask';
+  // (A collision is its two lines and its one join: "and" inside it would say one follows from the other.)
+  if (it.kind === 'fact') return it.relation !== 'collides';
+  return it.slot === 'arrival' || it.slot === 'walk' || it.slot === 'staging' || it.slot === 'reaction' || it.slot === 'close' || it.slot === 'ask';
+}
+
+/** Whether joining `a` to `b` would put somebody of the same sex as `b`'s pronoun's person before it. */
+function clash(ctx: PlanCtx, a: string, b: string, ib: Item): boolean {
+  const pron = /\b(he|him|his|she|her)\b/i.exec(b.replace(/⁣\d+⁤/g, ''));
+  if (!pron) return false;
+  const female = /^(she|her)$/i.test(pron[1] as string);
+  const mine = new Set(ib.about ?? []);
+  return ctx.c.people.some((p) => !p.object && !!p.female === female && !mine.has(p.id) && a.includes(p.short));
 }
 
 type Try = () => (() => void) | null;
@@ -184,6 +195,8 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
       const ia = itemOf(a);
       const ib = itemOf(b);
       if (!mendable(ia) || !mendable(ib) || !joins(ia) || !joins(ib)) return null;
+      // Two people of one sex in one sentence, and a pronoun after them, is a pronoun for either.
+      if (ia !== ib && clash(ctx, a.text, b.text, ib)) return null;
       const joined = joinable(a.text, b.text);
       if (!joined) return null;
       if (a.i === b.i) {

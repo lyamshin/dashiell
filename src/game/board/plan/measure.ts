@@ -180,6 +180,10 @@ export function pronounAmbiguity(c: BoardCase, blocks: readonly Block[]): string
           if (head) local.delete(head);
         }
         let cands = local;
+        // Named after it in its own sentence, and nobody else of that sex in it: "From her post Mrs.
+        // Rafferty could see the stairs."
+        const after = new Set(here.filter((x) => x.at > at && sexOf.get(x.id) === female).map((x) => x.id));
+        if (local.size === 0 && after.size === 1) continue;
         if (local.size === 0 && !entries) {
           cands = new Set<string>();
           for (const ns of prior.slice(-1)) for (const x of ns) if (sexOf.get(x.id) === female) cands.add(x.id);
@@ -229,23 +233,39 @@ export function factSentences(units: readonly Unit[]): { sentences: number; unit
 
 const STOP = new Set('the a an and or but of to in on at by for with from was were had has have his her him he she it its i me my we you your they them their there here that this then than so as not no nobody somebody something anybody anything what who when where which if into out up down over about after before just only all one two three said says like be been is are did do does would could went came got'.split(' '));
 
-/** Three-word runs with two content words: what a restatement would share. */
-function grams(text: string): Set<string> {
+/** Three-word runs with two content words that aren't names: what a restatement would share. */
+function grams(text: string, names: ReadonlySet<string>): Set<string> {
   const ws = text.toLowerCase().replace(/[“”"]/g, ' ').split(/[^a-z’'-]+/).filter(Boolean);
   const out = new Set<string>();
   for (let i = 0; i + 2 < ws.length; i++) {
     const g = ws.slice(i, i + 3);
-    if (g.filter((w) => w.length >= 3 && !STOP.has(w)).length >= 2) out.add(g.join(' '));
+    if (g.filter((w) => w.length >= 3 && !STOP.has(w) && !names.has(w.replace(/’s$/, ''))).length >= 2) out.add(g.join(' '));
   }
   return out;
 }
 
-/** The why-here of `page` saying again what the hand-off of `prev` said. */
-export function restatedPointer(prev: Page | undefined, page: Page): string | null {
+/**
+ * The why-here of `page` saying again what the hand-off of `prev` said: the same pointer (the same
+ * person or place, and the same hour, three of them between the two), or the same words that
+ * aren't names. A frame both happen to use ("that was worth the walk") isn't a pointer said twice.
+ */
+export function restatedPointer(c: BoardCase, prev: Page | undefined, page: Page): string | null {
   const hand = (prev?.board?.units ?? []).filter((u) => u.kind === 'gap' && u.slot === 'hand-off').map((u) => u.text).join(' ');
   const why = (page.board?.units ?? []).filter((u) => u.kind === 'gap' && u.slot === 'why-here').map((u) => u.text).join(' ');
   if (!hand || !why) return null;
-  const a = grams(hand);
-  const shared = [...grams(why)].filter((g) => a.has(g));
+  const has = (t: string, x: string) => new RegExp(`\\b${esc(x)}\\b`).test(t);
+  const people = c.people.filter((p) => !p.object && has(hand, p.short) && has(why, p.short)).map((p) => p.short);
+  const places = c.places.filter((p) => has(hand, p.short) && has(why, p.short)).map((p) => p.short);
+  const hours = ['seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'].filter((h) => has(hand, h) && has(why, h));
+  if (hours.length > 0 && people.length + places.length > 0 && people.length + places.length + hours.length >= 3) return `${[...people, ...places, ...hours].join(', ')}: ${why.slice(0, 80)}`;
+  const names = new Set<string>();
+  for (const p of c.people) for (const w of p.short.toLowerCase().split(/[^a-z’'-]+/)) if (w) names.add(w);
+  for (const p of c.places) for (const w of `${p.short} ${p.name} ${p.street}`.toLowerCase().split(/[^a-z’'-]+/)) if (w) names.add(w.replace(/’s$/, ''));
+  for (const w of FRAME) names.add(w);
+  const a = grams(hand, names);
+  const shared = [...grams(why, names)].filter((g) => a.has(g));
   return shared.length ? `“${shared[0]}”: ${why.slice(0, 80)}` : null;
 }
+
+/** The words of the frames a why-here or a hand-off is said in, not of the pointer. */
+const FRAME = ['worth', 'walk', 'reason', 'enough', 'wanted', 'next', 'rest', 'evening', 'look', 'thread', 'pull', 'settled', 'going', 'where', 'went', 'meant', 'ask', 'asked', 'question', 'hear', 'tell'];

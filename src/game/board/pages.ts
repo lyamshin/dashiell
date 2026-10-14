@@ -1522,7 +1522,7 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
   const claimLine = again ? `${placeName(c, confrontationOf(c, p, h)?.secondLie?.place ?? '')} at ${hourWord(h)}` : claimSaid(c, p, h);
   // Why: their line and what's held against it.
   const src = line.q === 'givens' ? 'the office' : sourceName(c, line.q).replace(/’s story$/, '’s own evening');
-  put(w, 'why', w.hand.draw('why', { kind: 'put' }, withCaps({ ...s, src: `${nameOf(c, p)} had told me ${claimLine}, and ${src} said otherwise`, claim: claimLine }), { plain: true }), 'narrator');
+  put(w, 'why', w.hand.draw('why', { kind: 'put' }, withCaps({ ...s, src: `${nameOf(c, p)} had told me ${claimLine}, and ${src} said otherwise`, claim: claimLine }), { plain: true }), 'narrator', { about: [p] });
   put(w, 'staging', w.hand.draw('put-stage', {}, s), 'act', { about: [p] });
   // Said to their face: "Tillman passed you on Avenue B", not "passed Hargrove".
   const toYou = (t: string) => t.replace(new RegExp(`\\b(passed|had|put|saw) ${nameOf(c, p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'g'), '$1 you');

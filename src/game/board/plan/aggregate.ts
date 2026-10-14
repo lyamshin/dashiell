@@ -92,9 +92,12 @@ export function aggregate(items: Item[], ctx: PlanCtx): Item[] {
       if (run.length > 1) {
         const lead = /^Here’s what I had\. /.test(it.text) ? 'Here’s what I had. ' : '';
         const ps = run.map((x) => placed(x) as { who: string; at: string });
+        // One place and hour for all of them is said once: "Kavanagh and Renfro at the Velvet Room at eleven".
+        const byAt = new Map<string, string[]>();
+        for (const x of ps) byAt.set(x.at, [...(byAt.get(x.at) ?? []), x.who]);
         out.push({
           ...it,
-          text: `${lead}${p0.by} had ${andList(ps.map((x) => `${x.who} at ${x.at}`))}.`,
+          text: `${lead}${p0.by} had ${andList([...byAt.entries()].map(([at, who]) => `${andList(who)} at ${at}`))}.`,
           about: [...new Set(run.flatMap((x) => x.about ?? []))],
           carries: run.flatMap((x) => x.carries ?? []),
           joined: 'aggregated',

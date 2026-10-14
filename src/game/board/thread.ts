@@ -207,7 +207,10 @@ function givenPointer(c: BoardCase, p: PersonId, here: PlaceId): Pointer {
   if (c.givens.pointer === p) {
     const pl = lines.find((g) => g.kind === 'pointer');
     const behaviour = pl?.vars.behaviour;
-    if (behaviour) return base(`${cl} had pointed me at ${P}, who ${behaviour.replace(new RegExp(`\\b${cl}’s\\b`, 'g'), pm(c, c.client, 'his'))}`, ['givens:pointer'], { people: [p, c.client] });
+    // docs/49: a bare "she" or "him" in what they did is the dead man's, or the pet's, marked so.
+    const vp = pronOf(c, c.crime.victim);
+    const theirs = new RegExp(`\\b(${[vp.he, vp.him, vp.his].join('|')})\\b(?!\u2063)`, 'g');
+    if (behaviour) return base(`${cl} had pointed me at ${P}, who ${behaviour.replace(theirs, (m: string) => `${m}${markPronoun(c, c.crime.victim)}`).replace(new RegExp(`\\b${cl}’s\\b`, 'g'), pm(c, c.client, 'his'))}`, ['givens:pointer'], { people: [p, c.client] });
     return base(`${cl} had pointed me at ${P}`, ['givens:pointer'], { people: [p, c.client] });
   }
   if (c.crime.finder === p) return base(`${P} had found ${victimOf(c).short}`, ['givens:found'], { people: [p, c.crime.victim] });

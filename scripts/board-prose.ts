@@ -254,7 +254,7 @@ for (const tier of tiers) {
         joinCount += js;
         if (js >= 1 && js <= 3) joinInBand++;
       }
-      const r = restatedPointer(run.log[i - 1], p);
+      const r = restatedPointer(d.kase, run.log[i - 1], p);
       if (r) {
         restated++;
         if (examples3.length < 200) examples3.push(`restated ${tierName(tier)} ${type} seed ${s} p${i + 1}: ${r}`);

@@ -231,6 +231,12 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
     }
     if (local.size >= 2) return false;
     if (local.size === 1) return local.has(w);
+    // A pronoun the writer put before its name, in a sentence that names nobody else of that sex:
+    // "From her post Mrs. Rafferty could see the stairs."
+    if (written) {
+      const after = new Set(s.mentions.filter((m) => m.kind === 'name' && m.at > at && m.who.female === w.female).map((m) => m.who));
+      if (after.size === 1 && after.has(w)) return true;
+    }
     const win = new Set<Who>();
     for (const k of narrIdx.slice(-1)) for (const n of (sents[k] as Sent).named) if (n.who.female === w.female) win.add(n.who);
     if (win.size >= 2) return false;
