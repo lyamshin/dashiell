@@ -28,6 +28,7 @@ import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { boardGridText, placeCodes } from '../game/board/grid.js';
 import { BOARD_TEACH_TITLE, BOARD_RULES, teachLines } from '../game/board/teach.js';
 import { isWorld } from '../gen/board/world/index.js';
+import { SITUATED } from '../game/board/plan/situated.js';
 
 import { OFFICE, budgetCalls, dealBoard, deadlineWords, hourWord, nameOf, placeName, tierName, type BoardDeal, type BoardReport, type BoardRun } from '../game/board/model.js';
 import {
@@ -76,6 +77,8 @@ export interface BoardSave {
   type?: CaseType;
   /** docs/48: the world the night was cast from, when it isn't the dealt cast. */
   world?: string;
+  /** docs/51: false when the night was opened with the old decks only (`new --situated 0`). */
+  situated?: false;
   detective: string;
   events: Event[];
   /** Whose topics are open. Free; not a page. */
@@ -99,6 +102,8 @@ interface Night {
 }
 
 function deal(save: BoardSave): Night {
+  // docs/51: the deck the night was opened with, every time it's replayed.
+  SITUATED.on = save.situated !== false;
   const d = dealBoard(save.seed, save.tier as 0, save.type, save.world ? { world: save.world } : {});
   let run = newBoardRun(d, { detectiveName: save.detective, ...(save.type ? { type: save.type } : {}) });
   const pages: BoardRun[] = [run];
@@ -491,7 +496,7 @@ function cmdNew(io: PlayIo, values: Map<string, string>, flags: Set<string>): st
   if (type !== undefined && !typesFor(tier as 0).includes(type)) fail(`--type: the board builds ${typesFor(tier as 0).join(', ')} at this tier.`);
   const world = values.get('world');
   if (world !== undefined && !isWorld(world)) fail('--world: the one world there is is neighbourhood.');
-  const save: BoardSave = { game: 'dashiell-play', version: 1, engine: 'board', seed, tier: tier as number, ...(type ? { type } : {}), ...(world ? { world } : {}), detective: values.get('name') || 'Dashiell', events: [], person: null, picker: null, claim: null };
+  const save: BoardSave = { game: 'dashiell-play', version: 1, engine: 'board', seed, tier: tier as number, ...(type ? { type } : {}), ...(world ? { world } : {}), ...(values.get('situated') === '0' ? { situated: false as const } : {}), detective: values.get('name') || 'Dashiell', events: [], person: null, picker: null, claim: null };
   const night = deal(save);
   store(io, path as string, save);
   const teach = flags.has('no-teach') ? [] : [teachText(save.world), '', DOUBLE, ''];

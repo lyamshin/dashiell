@@ -57,6 +57,15 @@
  *
  * `--plan off` measures the same nights with the microplanner's four operations off: the pages as
  * they read before docs/49, word for word, for the "before" column.
+ *
+ * docs/51, the situated deck, along the oracle's route:
+ *
+ * - **situated share**: of the gaps the deck may fill (texture dealt from a family, as dealt; not a
+ *   fact, a bible line, a pay-off, a first look or a gap that carries a reason), the share it filled
+ *   (target ≥ 80%); and the same over every gap in the deck's eight slots;
+ * - how far each card had to let its key go (the exact key, or one, two, … fields let go).
+ *
+ * `--situated 0` measures the same nights with the old decks only, for the "before" column.
  */
 
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
@@ -69,6 +78,7 @@ import { proseIssues, type ProseIssue } from '../src/game/board/prose-lint.js';
 import { isWorld, worldBible } from '../src/gen/board/world/index.js';
 import { bibleShare } from '../src/game/board/world.js';
 import { PLAN } from '../src/game/board/plan/index.js';
+import { SITUATED, DROPS, parseKey, project, situatedDeck } from '../src/game/board/plan/situated.js';
 import { factSentences, joinsIn, listSmell, pronounAmbiguity, restatedPointer } from '../src/game/board/plan/measure.js';
 // @ts-expect-error — plain JavaScript module, no declarations.
 import { findJargon, loadPlainTerms } from './plain-terms.mjs';
@@ -82,6 +92,9 @@ const N = Number(val('nights') ?? 30);
 const tiers = (val('tiers') ?? '0,1,2,3,4,5').split(',').map(Number) as TierIndex[];
 const show = args.includes('--show');
 if (val('plan') === 'off') PLAN.ops = false;
+if (val('situated') === '0') SITUATED.on = false;
+const SIT_SLOTS = new Set(['why-here', 'walk', 'staging', 'ask', 'reaction', 'close', 'hand-off', 'gloss']);
+const cardKey = new Map(situatedDeck().map((c) => [c.id, parseKey(c.key)]));
 // docs/48 §4: `--world neighbourhood` reads nights cast from the bible, and adds the bible's share.
 const world = val('world');
 if (world !== undefined && !isWorld(world)) throw new Error(`No world called "${world}".`);
@@ -175,6 +188,9 @@ const rows3: string[] = [];
 rows3.push('| tier | sentences per fact unit | list smell, pages (oracle) | pronoun ambiguity (oracle) | joins a page with facts, mean [share with 1–3] | restated pointer | list smell, pages (all three) | pronoun ambiguity (all three) |');
 rows3.push('|---|---|---|---|---|---|---|---|');
 const examples3: string[] = [];
+const rows4: string[] = [];
+rows4.push(`| tier | gaps the deck may fill | filled | situated share | share of every gap in its eight slots | exact key | ${DROPS.map((_, i) => `${i + 1} let go`).join(' | ')} |`);
+rows4.push(`|---|---|---|---|---|---|${DROPS.map(() => '---').join('|')}|`);
 for (const tier of tiers) {
   const types = typesFor(tier) as CaseType[];
   const counts: number[] = [];
@@ -207,6 +223,11 @@ for (const tier of tiers) {
   let smellAll = 0;
   let ambiguousAll = 0;
   let worldGags = 0;
+  // docs/51.
+  let situable = 0;
+  let situated = 0;
+  let eight = 0;
+  const levels = DROPS.map(() => 0).concat([0]);
   for (let s = 1; s <= N; s++) {
     const type = types[s % types.length] as CaseType;
     const d = dealBoard(s, tier, type, world ? { world } : {});
@@ -237,6 +258,20 @@ for (const tier of tiers) {
     // docs/49 §4, along the oracle's route.
     run.log.forEach((p, i) => {
       const units = p.board?.units ?? [];
+      for (const u of units) {
+        if (u.kind !== 'gap') continue;
+        if (SIT_SLOTS.has(u.slot)) eight++;
+        if (!u.key) continue;
+        situable++;
+        if (!u.card) continue;
+        situated++;
+        const want = parseKey(u.key);
+        const have = cardKey.get(u.card);
+        if (have) {
+          const at = [0, 1, 2, 3, 4, 5, 6].find((l) => project(want, l) === project(have, l)) ?? DROPS.length;
+          levels[at] = (levels[at] ?? 0) + 1;
+        }
+      }
       const fs = factSentences(units);
       factSent += fs.sentences;
       factUnits += fs.units;
@@ -353,6 +388,7 @@ for (const tier of tiers) {
     rows2.push(`| ${tierName(tier)} | ${pct(all, tot)} | ${pct(share.arrival.bible, share.arrival.total)} | ${pct(share.staging.bible, share.staging.total)} | ${worldGags} |`);
   }
   if (show) examples.push(`words by job, ${tierName(tier)}: ${[...byJob.entries()].map(([k, v]) => `${k} ${quantile(v, 0.5)} (${v.length})`).join(', ')}`);
+  rows4.push(`| ${tierName(tier)} | ${situable} | ${situated} | ${pct(situated, situable)} | ${pct(situated, eight)} | ${levels.map((n) => pct(n, situated)).join(' | ')} |`);
   rows3.push(
     `| ${tierName(tier)} | ${factUnits ? (factSent / factUnits).toFixed(2) : '—'} | ${smellPages} of ${pages} | ${ambiguous} | ${joinPages ? (joinCount / joinPages).toFixed(1) : '—'} [${pct(joinInBand, joinPages)}] | ${restated} | ${smellAll} | ${ambiguousAll} |`,
   );
@@ -362,6 +398,7 @@ for (const tier of tiers) {
 }
 process.stdout.write(`${rows.join('\n')}\n`);
 process.stdout.write(`\n${rows3.join('\n')}\n`);
+process.stdout.write(`\n${rows4.join('\n')}\n`);
 if (bible) {
   process.stdout.write('\n| tier | arrival, look and staging from the bible | arrivals and looks on the way in | staging | a gag 3+ times a night |\n|---|---|---|---|---|\n');
   process.stdout.write(`${rows2.join('\n')}\n`);

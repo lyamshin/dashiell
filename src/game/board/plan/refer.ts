@@ -90,7 +90,7 @@ function cap(s: string): string {
 }
 
 /** "the house manager", "my client", "the dead man": a role clear enough to stand for a name. */
-function roleOf(c: BoardCase, id: string): string | undefined {
+export function roleOf(c: BoardCase, id: string): string | undefined {
   const p = c.people.find((x) => x.id === id);
   if (!p) return undefined;
   if (p.role === 'client') return 'my client';
