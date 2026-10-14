@@ -389,7 +389,13 @@ function placeNewcomers(w: Writer): void {
     const at = spot[kind] ?? (spot.any as string);
     // Named twice on the page already (an admission says the name and says it again): "my witness".
     const who = namesFit(w, `${nameOf(c, p)}`) ? nameOf(c, p) : `my witness${markPronoun(c, p)}`;
-    fact(w, 'thought', `It turned out ${who} ${back ? 'had come back in and ' : ''}was ${at}.`, 'presence', { about: [p], place: here, carries: [`here:${p}`], props: [{ k: 'PRESENT', person: p, place: here }] });
+    fact(w, 'thought', `It turned out ${who} ${back ? 'had come back in and ' : ''}was ${at}.`, 'presence', {
+      about: [p],
+      place: here,
+      carries: [`here:${p}`],
+      props: [{ k: 'PRESENT', person: p, place: here }],
+      say: { shape: 'PRESENT', flags: [back ? 'back' : 'first', who === nameOf(c, p) ? 'named' : 'witness'], args: { person: { t: 'person', id: p }, where: at } },
+    });
     w.people.add(p);
   }
 }
@@ -838,6 +844,7 @@ function think(w: Writer, q: string, extra: Thought | null = null): Thought {
         ...(x.flesh ? { flesh: x.flesh } : {}),
         ...(x.say ? { say: x.say } : {}),
         ...(x.opener ? { opener: x.opener } : {}),
+        ...(x.say ? { say: x.say } : {}),
         tag: `thought:${x.rule}`,
         runOn: i > 0,
       });
@@ -875,6 +882,8 @@ interface Gloss {
 interface Said {
   text: string;
   props: Prop[];
+  /** docs/52 build 2: the sentence as a composite to be voiced. */
+  say?: SaySpec;
   /** The opening join, and the sentence said without it (when the page's join has gone). */
   opener?: 'So' | 'But';
   bare?: string;
@@ -895,7 +904,7 @@ function thoughtOnly(sentences: (Said | Gloss)[], refs: string[], o: { hours?: H
         hours: o.hours ?? [],
         people: o.people ?? [],
         places: o.places ?? [],
-        ...('gloss' in x ? {} : { props: x.props, ...(x.opener ? { opener: x.opener, flesh: { bare: x.bare } } : {}) }),
+        ...('gloss' in x ? {} : { props: x.props, ...(x.opener ? { opener: x.opener, flesh: { bare: x.bare } } : {}), ...(x.say ? { say: x.say } : {}) }),
       }) as ThoughtPart,
   );
   return { sentences: sentences.map((x) => ('gloss' in x ? x.gloss : x.text)), refs, hours: o.hours ?? [], people: o.people ?? [], places: o.places ?? [], parts };
@@ -1294,7 +1303,18 @@ export function writeArrive(w: Writer, place: PlaceId): void {
         : party
           ? `If ${it.he} went at ${andList(hs).replace(' and ', ' or ')}, ${it.he} went after the ${party.occasion}, so everybody at the ${party.occasion} had known the way in.`
           : `If ${it.he} went at ${andList(hs).replace(' and ', ' or ')}, whoever took ${it.him} had a key, and the spare key lives ${key}.`;
-    fact(w, 'thought', t, 'thought', { carries: ['givens:window', 'givens:means'], about: isMurder(c) ? [c.crime.victim] : [c.client], place, props: [{ k: 'WINDOW', hours: [...(c.givens.window ?? c.crime.window)] }, ...(isMurder(c) ? [] : [meansPropOf(c)])] });
+    const kind = isMurder(c) ? (officeSaid ? 'murder-said' : 'murder') : /^told/.test(mode) && venue ? 'told' : party ? 'party' : 'spare';
+    fact(w, 'thought', t, 'thought', {
+      carries: ['givens:window', 'givens:means'],
+      about: isMurder(c) ? [c.crime.victim] : [c.client],
+      place,
+      props: [{ k: 'WINDOW', hours: [...(c.givens.window ?? c.crime.window)] }, ...(isMurder(c) ? [] : [meansPropOf(c)])],
+      say: {
+        shape: 'WINDOW-MEANS',
+        flags: ['scene', kind],
+        args: { hours: { t: 'hours', hs: [...(c.givens.window ?? c.crime.window)] }, victim: { t: 'person', id: c.crime.victim }, means: m, client: { t: 'person', id: c.client }, origin: { t: 'place', id: c.means.origin }, occasion: party?.occasion ?? '', key },
+      },
+    });
     // The joke after it is the detective's aside, not the fact (docs/49, Planner 2).
     if (!isMurder(c) && /^told/.test(mode) && venue) put(w, 'thought', 'That was a room, more or less. It was a big room.', 'thought', { slot: 'gloss', runOn: true });
     for (const h of c.givens.window ?? c.crime.window) w.hours.add(h);
@@ -1500,10 +1520,14 @@ export function writeList(w: Writer, watcher: PersonId): void {
     const what = c.type === 'lost-pet' ? 'pet' : 'item';
     put(w, 'job', w.hand.draw('coat-q', {}, {}, { widen: true, plain: true }), 'exchange', { slot: 'ask' });
     const r = l.remarks.findIndex((x) => x.gives?.whereNow);
-    fact(w, 'job', w.hand.draw('coat-a', { what }, withCaps({ ...s }), { plain: true }), 'answer', {
+    // docs/52 build 2: what was under the coat, a composite of its own (HANDOVER `coat`), in the watcher's voicing.
+    const coat: SaySpec = { shape: 'HANDOVER', flags: ['coat', what === 'pet' ? 'alive' : 'small'], args: {}, manner: mannerOf(c, watcher) };
+    fact(w, 'job', `“${sayFirst(c, coat) ?? 'Something.'}”`, 'answer', {
       about: [watcher],
       carries: [`remark:list:${watcher}#${r}`],
       props: [{ k: 'HANDOVER', to: 'other:fence', place: l.place, hour: c.crime.hour + 1, what: what === 'pet' ? 'alive' : 'small' }],
+      speech: true,
+      say: coat,
     });
   }
   for (const h of c.board.hours) {
@@ -1533,6 +1557,7 @@ export function writeList(w: Writer, watcher: PersonId): void {
     extra.push({
       text: `${nameOf(c, putx.person)}’s second story had ${markedPron(c, putx.person).him} ${l.place === w.run.at ? 'here' : `at ${placeName(c, l.place)}`} at ${oclock(putx.hour)}. ${nameOf(c, l.watcher)} didn’t have ${markedPron(c, putx.person).him}.`,
       props: [{ k: 'COLLIDES', person: putx.person, place: l.place, hour: putx.hour, second: true, with: { k: 'list', who: l.watcher } }],
+      say: { shape: 'COLLISION-PAIR', flags: ['second-list'], args: { person: { t: 'person', id: putx.person }, at: { t: 'at', id: l.place, here: w.run.at }, hour: { t: 'hour', h: putx.hour }, watcher: { t: 'person', id: l.watcher } } },
     });
     refs.push(`second:${putx.person}@${putx.hour}`);
     w.hours.add(putx.hour);
@@ -1595,6 +1620,7 @@ export function writeSearch(w: Writer, findId: string): void {
               ? w.hand.pick('papers-tied', [`Everybody in ${V}’s box had a reason, but fewer of them had been at ${origin} to get the ${m}.`, `A reason is the easy half, but the other half was a way to the ${m}, which was at ${origin}.`, `I put the pages back in their box: a grudge on paper is a long way from ${origin} and the ${m}.`])
               : w.hand.pick('papers-even', [`Everybody in ${V}’s box had a reason, but a reason isn’t a hand on the ${m}.`, `A reason is the easy half, and everybody in ${V}’s box had one.`, `I put ${V}’s pages back in their box: a grudge on paper is a long way from the ${m}.`]),
             props: [{ k: 'MOTIVE', person: '*' }, ...(tied ? [{ k: 'MEANS', how: 'origin', place: c.means.origin } as Prop] : [])],
+            say: { shape: 'MOTIVE-SET', flags: ['papers', tied ? 'tied' : 'even'], args: { victim: { t: 'person', id: c.crime.victim }, means: m, ...(tied ? { origin: { t: 'place', id: c.means.origin } } : {}) } },
           },
         ],
         tied ? ['givens:found', `find:${c.finds.find((f) => f.gives.means)?.id ?? 'scene'}`] : ['givens:found'],
@@ -1618,6 +1644,7 @@ export function writeSearch(w: Writer, findId: string): void {
   let body: string;
   let refs: string[];
   const props: Prop[] = [];
+  let say: SaySpec | undefined;
   if (isMurder(c)) {
     const m = c.means.name.replace(/^(a|an) /, '');
     // docs/49, Planner 2: one fact, one sentence, the place named once.
@@ -1629,6 +1656,11 @@ export function writeSearch(w: Writer, findId: string): void {
           : `the ${m} came from ${origin}, and since ${m} takes ${c.means.delay[1] >= 60 ? 'twenty minutes to an hour' : 'a few minutes'} to do its work, whoever brought it to ${vict.short} had been there earlier, to get it.`;
     props.push({ k: 'MEANS', how: 'origin', place: c.means.origin });
     if (c.means.kind === 'gun' || c.means.kind === 'blade') props.push({ k: 'WINDOW', hours: [...(c.givens.window ?? c.crime.window)] });
+    say = {
+      shape: 'WINDOW-MEANS',
+      flags: ['find', c.means.kind === 'gun' ? 'gun' : c.means.kind === 'blade' ? 'blade' : 'poison'],
+      args: { means: m, origin: { t: 'place', id: c.means.origin }, victim: { t: 'person', id: c.crime.victim }, hours: { t: 'hours', hs: [...(c.givens.window ?? c.crime.window)] }, delay: c.means.delay[1] >= 60 ? 'twenty minutes to an hour' : 'a few minutes' },
+    };
     refs = ['givens:clock', 'givens:found'];
     for (const h of c.givens.window ?? c.crime.window) w.hours.add(h);
   } else {
@@ -1638,19 +1670,23 @@ export function writeSearch(w: Writer, findId: string): void {
     if (party) {
       body = `whoever it was knew the way in, and the people who knew were the ones at the ${party.occasion} in ${placeName(c, c.crime.scene)} at ${party.h0}, whose names ${clientOf(c).short} had given me.`;
       w.hours.add(hs[0] as Hour);
+      say = { shape: 'WINDOW-MEANS', flags: ['find', 'party'], args: { occasion: party.occasion ?? '', scene: { t: 'place', id: c.crime.scene }, hour: { t: 'hour', h: hs[0] as Hour }, client: { t: 'person', id: c.client } } };
     } else if (/^told/.test(mode)) {
       body = `it was somebody who’d heard ${clientOf(c).short} at ${vars.venue ?? placeName(c, c.means.origin)} between ${vars.h0} and ${vars.h2} and had come here after, which made ${vars.venue ?? placeName(c, c.means.origin)} the place to start counting.`;
       for (const h of hs) w.hours.add(h);
       w.hours.add(Math.max(...hs) + 1);
+      if (!vars.venue || vars.venue === placeName(c, c.means.origin))
+        say = { shape: 'WINDOW-MEANS', flags: ['find', 'told'], args: { client: { t: 'person', id: c.client }, origin: { t: 'place', id: c.means.origin }, from: { t: 'hour', h: Math.min(...hs) as Hour }, till: { t: 'hour', h: (Math.max(...hs) + 1) as Hour } } };
     } else {
       // Raw 11's #14: "whoever it was" once a page is plenty, and the key is where the office said it was.
       const key = SPARE_KEY[mode]?.at.replace('{x}', origin) ?? `at ${origin}`;
       body = `the key that let them in was the spare, and the spare lived ${key}.`;
+      say = { shape: 'WINDOW-MEANS', flags: ['find', 'spare'], args: { key, origin: { t: 'place', id: c.means.origin } } };
     }
     props.push(meansPropOf(c));
     refs = ['givens:means'];
   }
-  think(w, q, thoughtOnly([{ text: `So ${body}`, bare: cap(body), props, opener: 'So' }], refs, { places: [c.means.origin] }));
+  think(w, q, thoughtOnly([{ text: `So ${body}`, bare: cap(body), props, opener: 'So', ...(say ? { say } : {}) }], refs, { places: [c.means.origin] }));
   handOff(w);
   closeWith(w, undefined, 'search-close', {}, {});
   lay(w, 'search');
@@ -1694,15 +1730,15 @@ export function writeMotive(w: Writer, p: PersonId): void {
   const aside = c.givens.lines?.find((g) => g.kind === 'aside');
   const inAside = !!aside && Object.entries(aside.vars).some(([k, v]) => /^p\d+$/.test(k) && v === person.short);
   const pointerSaid = c.givens.pointer === p && /motive|gossip/.test(c.setup?.pointer ?? '');
-  const sentences: (Said | Gloss)[] = [{ text: `That was ${person.short}’s reason, in ${markedPron(c, p).his} own words.`, props: [{ k: 'MOTIVE', person: p }] }];
+  const sentences: (Said | Gloss)[] = [{ text: `That was ${person.short}’s reason, in ${markedPron(c, p).his} own words.`, props: [{ k: 'MOTIVE', person: p }], say: { shape: 'MOTIVE-SET', flags: ['own'], args: { person: { t: 'person', id: p } } } }];
   const refs: string[] = [];
   // docs/47 C13: said as a detective thinks it, never as the form asks it ("the report wants both").
   const notHour = w.hand.pick('reason-hour', ['A reason isn’t an hour, though.', 'Plenty of people have a reason. Fewer have the hour to go with it.', 'A reason is the easy half.']);
   if (inAside || pointerSaid) {
-    sentences.push({ text: `It was what ${cl.short} had said in the office, near enough.`, props: [{ k: 'MOTIVE', person: p, said: 'office' }] }, { gloss: notHour });
+    sentences.push({ text: `It was what ${cl.short} had said in the office, near enough.`, props: [{ k: 'MOTIVE', person: p, said: 'office' }], say: { shape: 'MOTIVE-SET', flags: ['office'], args: { client: { t: 'person', id: c.client } } } }, { gloss: notHour });
     refs.push(pointerSaid ? 'givens:pointer' : 'givens:aside');
   } else {
-    sentences.push({ text: `${cl.short} hadn’t mentioned it.`, props: [{ k: 'MOTIVE', person: p, said: 'not-office' }] }, { gloss: notHour });
+    sentences.push({ text: `${cl.short} hadn’t mentioned it.`, props: [{ k: 'MOTIVE', person: p, said: 'not-office' }], say: { shape: 'MOTIVE-SET', flags: ['not-office'], args: { client: { t: 'person', id: c.client } } } }, { gloss: notHour });
     refs.push('givens:pointer');
   }
   w.people.add(c.client);
@@ -1710,7 +1746,7 @@ export function writeMotive(w: Writer, p: PersonId): void {
   if (w.run.asked.includes(`account:${p}`) && thoughtLevel(c) !== 'fact') {
     const hc = crimeHourKnown(c, w.run);
     const hs = hc !== null ? [hc] : (c.givens.window ?? c.crime.window);
-    sentences.push({ text: `For ${andList(hs.map(hourWord))}, ${markedPron(c, p).he} had told me ${andList(hs.map((h) => claimSaid(c, p, h)))}.`, props: hs.map((h) => claimProp(c, p, h, { place: true, company: false })) });
+    sentences.push({ text: `For ${andList(hs.map(hourWord))}, ${markedPron(c, p).he} had told me ${andList(hs.map((h) => claimSaid(c, p, h)))}.`, props: hs.map((h) => claimProp(c, p, h, { place: true, company: false })), say: { shape: 'OWN-WORD', flags: ['told'], args: { person: { t: 'person', id: p }, hours: { t: 'hours', hs: [...hs] }, said: andList(hs.map((h) => claimSaid(c, p, h))) } } });
     refs.push(...hs.map((h) => `claim:${p}@${h}`));
     for (const h of hs) w.hours.add(h);
     for (const h of hs) w.places.add(accountOf(c, p)?.claims[h]?.place ?? '');
@@ -1724,6 +1760,22 @@ export function writeMotive(w: Writer, p: PersonId): void {
 /* ------------------------------------------------------------------ *
  * Put it to them.
  * ------------------------------------------------------------------ */
+
+/**
+ * docs/52 build 2: why a put didn't land, as a composite (REACTION `held`): whose line it was, what
+ * it said, and the reason's code. Null where the reason isn't one of the judge's own.
+ */
+function heldSay(c: BoardCase, p: PersonId, h: Hour, j: Judgement, line: Line): SaySpec | null {
+  if (!j.why) return null;
+  const code = j.code ?? 'second-time';
+  const args: SaySpec['args'] = { person: { t: 'person', id: p }, hour: { t: 'hour', h } };
+  if (line.speaker) args.by = { t: 'person', id: line.speaker as PersonId };
+  if (line.place) args.place = { t: 'place', id: line.place as PlaceId };
+  const cl = accountOf(c, p)?.claims[h];
+  if (cl) args.where = { t: 'place', id: cl.place };
+  const hourless = code === 'untouched' && !/ at (?:seven|eight|nine|ten|eleven|twelve) o’clock\.$/.test(j.why);
+  return { shape: 'REACTION', flags: ['held', code, ...(hourless ? ['hourless'] : [])], args };
+}
 
 export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Judgement, again: boolean): void {
   const { c } = w;
@@ -1780,7 +1832,7 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
     const code = j.code ?? 'untouched';
     const names = ['agreed', 'strangers', 'elsewhere', 'company', 'other-place', 'untrusted'].includes(code);
     const at = code === 'elsewhere' || code === 'other-place';
-    done('held-close', j.why ? [{ text: j.why, props: [{ k: 'HELD', person: p, hour: h, why: code, ...(names && line.speaker ? { by: line.speaker } : {}), ...(at && line.place ? { place: line.place } : {}) }] }] : [], lineRef);
+    done('held-close', j.why ? [{ text: j.why, props: [{ k: 'HELD', person: p, hour: h, why: code, ...(names && line.speaker ? { by: line.speaker } : {}), ...(at && line.place ? { place: line.place } : {}) }], ...(heldSay(c, p, h, j, line) ? { say: heldSay(c, p, h, j, line) as SaySpec } : {}) }] : [], lineRef);
     return;
   }
   const k = confrontationOf(c, p, h);
@@ -1794,7 +1846,7 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
     react(w, p, how ?? '', w.hand.draw('refuse-words', { who: 'culprit' }, s, { widen: true }) ?? '“I’ve told you where I was.”', `refused:${p}@${h}`, 'new', howSit, [{ k: 'REFUSE', person: p, hour: h }]);
     const second = confrontationOf(c, p, h)?.secondLie?.place ?? '';
     const keeper = c.lists.find((l) => l.place === second)?.watcher;
-    done('refuse-close', [{ text: `${nameOf(c, p)}’s second story had a list against it now, and ${pr.he} had nothing to put in its place.`, props: [{ k: 'COLLIDES', person: p, place: second, hour: h, second: true, with: { k: 'list', ...(keeper ? { who: keeper } : {}) } }, { k: 'REFUSE', person: p, hour: h }] }, { gloss: aside(w, 'silence', ['Silence isn’t a confession. It isn’t an evening either.', 'Silence isn’t an evening.', 'Saying nothing isn’t a confession, and it isn’t an evening either.']) }], lineRef);
+    done('refuse-close', [{ text: `${nameOf(c, p)}’s second story had a list against it now, and ${pr.he} had nothing to put in its place.`, props: [{ k: 'COLLIDES', person: p, place: second, hour: h, second: true, with: { k: 'list', ...(keeper ? { who: keeper } : {}) } }, { k: 'REFUSE', person: p, hour: h }], say: { shape: 'COLLISION-PAIR', flags: ['second-refused'], args: { person: { t: 'person', id: p } } } }, { gloss: aside(w, 'silence', ['Silence isn’t a confession. It isn’t an evening either.', 'Silence isn’t an evening.', 'Saying nothing isn’t a confession, and it isn’t an evening either.']) }], lineRef);
     return;
   }
   if (k.response === 'admit' && lie) {
@@ -1811,11 +1863,11 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
       'admit-close',
       y
         ? [
-            { text: `That was a hole in ${nameOf(c, p)}’s story, all right.`, props: [{ k: 'COLLIDES', person: p, place: lie.claim, hour: h, with: srcOfQ(line.q) }] },
+            { text: `That was a hole in ${nameOf(c, p)}’s story, all right.`, props: [{ k: 'COLLIDES', person: p, place: lie.claim, hour: h, with: srcOfQ(line.q) }], say: { shape: 'COLLISION-PAIR', flags: ['hole'], args: { person: { t: 'person', id: p } } } },
             { gloss: aside(w, 'owned-up', ['I wasn’t sure yet it was the one I was looking for. An owned-up story is only as good as whoever’s in it with you.', 'An owned-up story is only as good as whoever’s in it with you.', 'I wasn’t sure yet it was the one I wanted.', 'Whether it was the hole I was looking for, I couldn’t say yet. A story like that leans on whoever’s in it with you.']) },
-            { text: `If it held, ${pr.he} had been at ${placeName(c, lie.truth)} at ${hourWord(h)}, not ${claimWhere === 'home' ? 'home' : `at ${claimWhere}`}.`, props: [{ k: 'ADMIT', person: p, place: lie.truth, hour: h, claimed: lie.claim }] },
+            { text: `If it held, ${pr.he} had been at ${placeName(c, lie.truth)} at ${hourWord(h)}, not ${claimWhere === 'home' ? 'home' : `at ${claimWhere}`}.`, props: [{ k: 'ADMIT', person: p, place: lie.truth, hour: h, claimed: lie.claim }], say: { shape: 'REACTION', flags: ['if-held', claimWhere === 'home' ? 'home' : 'away'], args: { person: { t: 'person', id: p }, place: { t: 'place', id: lie.truth }, hour: { t: 'hour', h }, claimed: { t: 'place', id: lie.claim } } } },
           ]
-        : [{ text: `${nameOf(c, p)} owned up to ${placeName(c, lie.truth)} at ${hourWord(h)}. Nobody had said so but ${pr.him}.`, props: [{ k: 'ADMIT', person: p, place: lie.truth, hour: h }] }],
+        : [{ text: `${nameOf(c, p)} owned up to ${placeName(c, lie.truth)} at ${hourWord(h)}. Nobody had said so but ${pr.him}.`, props: [{ k: 'ADMIT', person: p, place: lie.truth, hour: h }], say: { shape: 'REACTION', flags: ['owned-hour'], args: { person: { t: 'person', id: p }, place: { t: 'place', id: lie.truth }, hour: { t: 'hour', h } } } }],
       lineRef,
     );
     return;
@@ -1829,7 +1881,7 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
     const met = watcher ? knownPeople(c, w.run).has(watcher) : false;
     done(
       'second-close',
-      [{ text: `A second story, and ${alt} at ${hourWord(h)} was a place with somebody paid to watch it, so ${met && watcher ? `${nameOf(c, watcher)} would know` : `whoever kept the room there would know`}.`, props: [{ k: 'SECOND', person: p, place: k.secondLie.place, hour: h }, { k: 'POINTER', from: 'second', to: met && watcher ? watcher : k.secondLie.place, why: 'watcher' }] }],
+      [{ text: `A second story, and ${alt} at ${hourWord(h)} was a place with somebody paid to watch it, so ${met && watcher ? `${nameOf(c, watcher)} would know` : `whoever kept the room there would know`}.`, props: [{ k: 'SECOND', person: p, place: k.secondLie.place, hour: h }, { k: 'POINTER', from: 'second', to: met && watcher ? watcher : k.secondLie.place, why: 'watcher' }], say: { shape: 'REACTION', flags: ['second-thought', met && watcher ? 'met' : 'unmet'], args: { person: { t: 'person', id: p }, place: { t: 'place', id: k.secondLie.place }, hour: { t: 'hour', h }, ...(met && watcher ? { watcher: { t: 'person', id: watcher } } : {}) } } }],
       lineRef,
     );
     if (met && watcher) w.people.add(watcher);
@@ -1856,6 +1908,7 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
           bare: `${victimOf(c).short} was with ${shortOther(holder).replace(/,.*$/, '')}, ${holderHere ? 'who was sitting ten feet away and hadn’t looked up once' : `at ${placeName(c, c.crime.whereNow?.place ?? '')}`}.`,
           opener: 'So',
           props: [{ k: 'HANDOVER', to: 'other:fence', place: c.crime.whereNow?.place ?? '', thing: c.crime.victim }],
+          say: { shape: 'HANDOVER', flags: ['crack', holderHere ? 'here' : 'away'], args: { thing: { t: 'person', id: c.crime.victim }, holder: { t: 'people', ids: ['other:fence'] }, at: { t: 'place', id: c.crime.whereNow?.place ?? '' } } },
         },
         { gloss: `That was what ${clientOf(c).short} had paid for.` },
       ],
@@ -1878,13 +1931,14 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
   done(
     'refuse-close',
     [
-      { text: `${nameOf(c, p)}’s ${hourWord(h)} o’clock still had ${src} against it, and nothing new beside it.`, props: [{ k: 'COLLIDES', person: p, place: lie?.claim ?? accountOf(c, p)?.claims[h]?.place ?? '', hour: h, with: srcOfQ(line.q) }] },
+      { text: `${nameOf(c, p)}’s ${hourWord(h)} o’clock still had ${src} against it, and nothing new beside it.`, props: [{ k: 'COLLIDES', person: p, place: lie?.claim ?? accountOf(c, p)?.claims[h]?.place ?? '', hour: h, with: srcOfQ(line.q) }], say: { shape: 'COLLISION-PAIR', flags: ['still'], args: { person: { t: 'person', id: p }, hour: { t: 'hour', h }, src } } },
       { gloss: aside(w, 'refusal', ['A refusal isn’t a confession.', 'Saying nothing isn’t saying it.', 'A refusal is only a refusal, whoever makes it.']) },
       {
         text: `But if ${pr.he} wasn’t ${claimed} at ${hourWord(h)}, somebody saw ${pr.him} where ${pr.he} was, and if nobody had, that would say something too.`,
         bare: `If ${pr.he} wasn’t ${claimed} at ${hourWord(h)}, somebody saw ${pr.him} where ${pr.he} was, and if nobody had, that would say something too.`,
         opener: 'But',
         props: [{ k: 'REFUSE', person: p, hour: h }],
+        say: { shape: 'REACTION', flags: ['refuse-thought', claimed === 'home' ? 'home' : 'away'], args: { person: { t: 'person', id: p }, hour: { t: 'hour', h }, claimed: { t: 'place', id: lie?.claim ?? accountOf(c, p)?.claims[h]?.place ?? '' } } },
       },
     ],
     lineRef,

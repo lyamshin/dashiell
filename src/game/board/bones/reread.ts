@@ -709,6 +709,15 @@ READ.HANDOVER = (a, flags, comp, v) => {
     const { place } = listOfSpeaker(v, comp);
     return [{ k: 'HANDOVER', to: ((a.holder as string[]) ?? [])[0] as string, place, hour: a.hour as number }];
   }
+  // What was under the coat: the watcher's handover, the line before, said again only as what it was
+  // (alive, or small). Who it went to, where and when are that line's, folded.
+  if (flags.has('coat')) {
+    const { place } = listOfSpeaker(v, comp);
+    return [{ k: 'HANDOVER', to: 'other:fence', place, hour: v.c.crime.hour + 1, what: flags.has('alive') ? 'alive' : 'small' }];
+  }
+  if (flags.has('thought')) return [{ k: 'HANDOVER', to: ((a.holder as string[]) ?? [])[0] as string, place: a.place as Id, hour: a.hour as number }];
+  // A crack: the thing is with the holder, here (sitting ten feet away) or at a place said.
+  if (flags.has('crack')) return [{ k: 'HANDOVER', to: ((a.holder as string[]) ?? [])[0] as string, place: flags.has('here') ? v.here : (a.at as Id), thing: a.thing as Id }];
   throw new Error('voiced: what kind of handover?');
 };
 

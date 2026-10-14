@@ -130,7 +130,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     const m = markPronoun(c, p);
     return { he: pr.he + m, him: pr.him + m, his: pr.his + m, He: pr.He + m, His: pr.His + m };
   };
-  const add = (s: string, refs: string[], o: { hours?: Hour[]; people?: PersonId[]; places?: PlaceId[]; rel?: Relation; rule?: string; gloss?: string; props?: Prop[]; flesh?: Record<string, unknown> } = {}) => {
+  const add = (s: string, refs: string[], o: { hours?: Hour[]; people?: PersonId[]; places?: PlaceId[]; rel?: Relation; rule?: string; gloss?: string; props?: Prop[]; flesh?: Record<string, unknown>; say?: SaySpec } = {}) => {
     t.sentences.push(s);
     t.refs.push(...refs);
     t.hours.push(...(o.hours ?? []));
@@ -147,6 +147,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       places: [...(o.places ?? [])],
       ...(o.props ? { props: o.props } : {}),
       ...(o.flesh ? { flesh: o.flesh } : {}),
+      ...(o.say ? { say: o.say } : {}),
     });
   };
   const before_ = linesHeld(c, before);
@@ -468,6 +469,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       add(`Whatever went out of ${placeName(c, c.crime.scene)}, something came in ${l?.place === here ? 'here' : `at ${placeName(c, l?.place ?? '')}`} under a coat at ${hh} and went to ${shortOther(holder)}.`, ['givens:gone'], {
         rule: 'handover',
         props: [{ k: 'HANDOVER', to: `other:${(c.others ?? []).find((o) => o.id === 'fence')?.id ?? 'somebody'}`, place: l?.place ?? '', ...(HOUR[hh] !== undefined ? { hour: HOUR[hh] as Hour } : {}) }],
+        ...(HOUR[hh] !== undefined && l ? { say: { shape: 'HANDOVER' as const, flags: ['thought'], args: { scene: { t: 'place' as const, id: c.crime.scene }, place: { t: 'at' as const, id: l.place, here }, hour: { t: 'hour' as const, h: HOUR[hh] as Hour }, holder: { t: 'people' as const, ids: [`other:${(c.others ?? []).find((o) => o.id === 'fence')?.id ?? 'somebody'}`] } } } } : {}),
         places: [c.crime.scene, l?.place ?? ''],
         hours: HOUR[hh] !== undefined ? [HOUR[hh] as Hour] : [],
       });
@@ -504,7 +506,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   if (walk && a.who === undefined && a.possibleHours.length > 1 && a.cleared.size > b.cleared.size) {
     const left = suspectsOf(c).filter((p) => !a.cleared.has(p));
     if (left.length === 1) {
-      add(`That left ${andList(left.map((p) => nameOf(c, p)))}, and the clock still open between ${hourWord(a.possibleHours[0] as Hour)} and ${hourWord(a.possibleHours[a.possibleHours.length - 1] as Hour)}.`, ['givens:clock'], { rel: 'narrows', rule: 'left', people: left, hours: a.possibleHours, props: [{ k: 'LEFT', people: left, hours: [a.possibleHours[0] as Hour, a.possibleHours[a.possibleHours.length - 1] as Hour] }] });
+      const [h0, h1] = [a.possibleHours[0] as Hour, a.possibleHours[a.possibleHours.length - 1] as Hour];
+      add(`That left ${andList(left.map((p) => nameOf(c, p)))}, and the clock still open between ${hourWord(h0)} and ${hourWord(h1)}.`, ['givens:clock'], { rel: 'narrows', rule: 'left', people: left, hours: a.possibleHours, props: [{ k: 'LEFT', people: left, hours: [h0, h1] }], say: { shape: 'LEFT', flags: ['open', 'one'], args: { person: { t: 'person', id: left[0] as PersonId }, from: { t: 'hour', h: h0 }, to: { t: 'hour', h: h1 } } } });
     }
   }
 
@@ -587,7 +590,15 @@ export function thoughtOf(x: ThoughtCtx): Thought {
           `At ${when}, when it counted, ${had}.`,
           `I wrote down what ${W} had at ${when}, the ${one ? 'hour' : 'hours'} that mattered: ${listed}.`,
         ]);
-        add(framed, clockRef, { rule: 'hours', hours: hs, people: [l.watcher, ...ppl], places: [l.place], props: [{ k: 'WINDOW', hours: [...hs] }, ...hs.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: (l.entries[h] ?? []).map(entryOf) }) as Prop)] });
+        add(framed, clockRef, {
+          rule: 'hours',
+          hours: hs,
+          people: [l.watcher, ...ppl],
+          places: [l.place],
+          props: [{ k: 'WINDOW', hours: [...hs] }, ...hs.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: (l.entries[h] ?? []).map(entryOf) }) as Prop)],
+          // docs/52 build 2: the list's own hours that mattered, a composite of its own.
+          say: { shape: 'LIST-HOUR', flags: ['thought', one ? 'one' : 'two', W === 'the list' ? 'named' : 'unnamed'], args: { hours: { t: 'hours', hs: [...hs] }, watcher: { t: 'person', id: l.watcher }, listed } },
+        });
       }
     }
   }
@@ -637,6 +648,8 @@ export function eliminationOf(c: BoardCase, run: BoardRun, here: PlaceId, heldBe
       const ps: string[] = [];
       // docs/52: each placement's propositions, beside its words.
       const pps: Prop[][] = [];
+      // docs/52 build 2: and each as a composite to be voiced.
+      const says: SaySpec[] = [];
       const placedAt = (p: PersonId): Prop => {
         const pl = a.placed.get(`${p}@${hc}`);
         const by = pl?.deps.find((d) => d !== `account:${p}` && !d.startsWith('confront:')) ?? pl?.deps.find((d) => d !== `account:${p}`) ?? '';
@@ -648,23 +661,26 @@ export function eliminationOf(c: BoardCase, run: BoardRun, here: PlaceId, heldBe
         // "Fairbanks was at the Shamrock, with Bellucci’s word. Bellucci was at the Shamrock, with Fairbanks’s word": one sentence.
         const [, src] = k.split('|') as [string, string];
         const mate = g.who.length === 1 ? entries.find(([k2, g2]) => k2 !== k && g2.place === g.place && g2.who.length === 1 && src === `${nameOf(c, g2.who[0] as PersonId)}’s word` && k2.split('|')[1] === `${nameOf(c, g.who[0] as PersonId)}’s word`) : undefined;
+        const at = (ps.length === 0 ? 'first' : 'next') as string;
         if (mate) {
           done.add(mate[0]);
           ps.push(`${nameOf(c, g.who[0] as PersonId)} and ${nameOf(c, mate[1].who[0] as PersonId)} were ${atWhere(c, g.place, here)}, and each said so of the other`);
           pps.push([placedAt(g.who[0] as PersonId), placedAt(mate[1].who[0] as PersonId)]);
+          says.push({ shape: 'PLACED-SET', flags: ['elim', at, 'mutual'], args: { people: { t: 'people', ids: [g.who[0] as PersonId, mate[1].who[0] as PersonId] }, place: { t: 'at', id: g.place, here }, hour: { t: 'hour', h: hc } } });
           continue;
         }
         // "and Alfano said so", not "with Alfano’s word" (docs/47 C13).
         ps.push(`${andList(g.who.map((y) => nameOf(c, y)))} ${g.who.length > 1 ? 'were' : 'was'} ${atWhere(c, g.place, here)}, and ${src.replace(/’s word$/, '')} said so`);
         pps.push(g.who.map(placedAt));
+        says.push({ shape: 'PLACED-SET', flags: ['elim', at, g.who.length > 1 ? 'many' : 'one'], args: { people: { t: 'people', ids: [...g.who] }, place: { t: 'at', id: g.place, here }, hour: { t: 'hour', h: hc }, src: src.replace(/’s word$/, '') } });
       }
       // Each a sentence of its own, with its propositions (docs/52).
-      const said: { text: string; props: Prop[] }[] = [];
-      ps.forEach((x, i) => said.push({ text: i === 0 ? `At ${hourWord(hc)} ${x}.` : `${x}.`, props: pps[i] as Prop[] }));
+      const said: { text: string; props: Prop[]; say?: SaySpec }[] = [];
+      ps.forEach((x, i) => said.push({ text: i === 0 ? `At ${hourWord(hc)} ${x}.` : `${x}.`, props: pps[i] as Prop[], say: says[i] as SaySpec }));
       if (ps.length) lines.push(`At ${hourWord(hc)} ${ps.join('. ')}.`);
       if (noWay.length) {
         lines.push(`${cap(andList(noWay.map((y) => nameOf(c, y))))} ${accessPhrase(c, false, true)}.`);
-        said.push({ text: lines[lines.length - 1] as string, props: noWay.map((y) => ({ k: 'ACCESS', person: y, had: false }) as Prop) });
+        said.push({ text: lines[lines.length - 1] as string, props: noWay.map((y) => ({ k: 'ACCESS', person: y, had: false }) as Prop), say: { shape: 'ACCESS-SET', flags: ['elim', 'no', noWay.length > 1 ? 'nones' : 'none'], args: { none: { t: 'people', ids: [...noWay] }, access: accessPhrase(c, false, true) } } });
         ppl.push(...noWay);
       }
       {
@@ -672,13 +688,13 @@ export function eliminationOf(c: BoardCase, run: BoardRun, here: PlaceId, heldBe
         const street = c.places.find((p) => p.id === c.crime.scene)?.street;
         const seen = street && linesHeld(c, run).some((l) => l.kind === 'remark' && l.text.includes(` on ${street}`) && l.about.includes(a.who as PersonId));
         lines.push(`That left one person who ${accessPhrase(c, true, true)}, with no true account for ${hourWord(hc)}${seen ? `, and who’d been seen on ${street} at ${hourWord(hc)}` : ''}.`);
-        said.push({ text: lines[lines.length - 1] as string, props: [{ k: 'LEFT', hours: [hc], ...(seen ? { seen: true } : {}) }] });
+        said.push({ text: lines[lines.length - 1] as string, props: [{ k: 'LEFT', hours: [hc], ...(seen ? { seen: true } : {}) }], say: { shape: 'LEFT', flags: ['last', seen ? 'seen' : 'unseen'], args: { access: accessPhrase(c, true, true), hour: { t: 'hour', h: hc }, ...(seen && street ? { street } : {}) } } });
       }
       if (lines.length) {
         t.sentences.push(lines.join(' '));
         // docs/49, Planner 2: each placement a fact of its own, for the planner to join.
         const parts = PLAN.ops ? said : [{ text: lines.join(' '), props: said.flatMap((x) => x.props) }];
-        for (const x of parts) t.parts?.push({ text: x.text, relation: 'narrows', rule: 'elimination', refs: [...refs.filter((r) => heldBeforeQs.has(r)), 'givens:means'], hours: [hc], people: [...ppl], places: [...pls], props: x.props });
+        for (const x of parts) t.parts?.push({ text: x.text, relation: 'narrows', rule: 'elimination', refs: [...refs.filter((r) => heldBeforeQs.has(r)), 'givens:means'], hours: [hc], people: [...ppl], places: [...pls], props: x.props, ...('say' in x && x.say ? { say: x.say } : {}) });
         t.refs.push(...refs.filter((r) => heldBeforeQs.has(r)), 'givens:means');
         t.hours.push(hc);
         t.people.push(...ppl);
