@@ -1,0 +1,2831 @@
+{
+  "model": "model/export",
+  "constrained": false,
+  "gaps": 400,
+  "sampling": {
+    "temperature": 0.8,
+    "topP": 0.9
+  },
+  "seconds": 168,
+  "passFirst": 0.1475,
+  "passAfterResample": 0.26,
+  "accepted": 104,
+  "kinds": {
+    "card": 0,
+    "verbatim": 1,
+    "run8": 14,
+    "new": 89
+  },
+  "recalled": 0.14423076923076922,
+  "rejections": {
+    "name": 427,
+    "hour": 105,
+    "empty": 81,
+    "length": 76,
+    "quotes": 69,
+    "end": 2,
+    "repeat": 1
+  },
+  "rows": [
+    {
+      "page": "ight. My office was a room over a tailor’s on Mulberry Street, with my name on the door in gold leaf that was coming off one letter at a time. The coffee I’d made was cold by the time I remembered it.",
+      "card": "I drank it anyway; it was lighter than holding my head.",
+      "model": "(card default; tried: “I was at Doyle’s at eight, for the meeting, with Amato and Russo.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: eight; name: Doyle; name: Amato; name: Russo"
+    },
+    {
+      "page": "d on the rent, and has been heard to say what a Pomeranian with papers fetches.” ¶ “I’ll pay,” Schilling said, and did: ten dollars, folded small. “Who, and where Duchess is now. That’s all I want.” ¶",
+      "card": "I took the money and my coat, and turned off the lamp.",
+      "model": "(card default; tried: “Fritz bit Coffin, a milliner, at Easter, and she swore she’d see the back of him.”)",
+      "kind": "card default",
+      "firstTry": "name: Coffin"
+    },
+    {
+      "page": "dance hall upstairs was letting out, and the street was full of people saying goodnight at length. ¶ The Schilling flat on the third floor of 40 Avenue B was neat as a pin and twice as sharp about it.",
+      "card": "There were lace mats on every chair back and photographs on every wall, looking down at me as if I’d come in with my boots on.",
+      "model": "(card default; tried: Dandridge was on the floor, face down.)",
+      "kind": "card default",
+      "firstTry": "name: Dandridge"
+    },
+    {
+      "page": "I went over the parlor, and then the door, and then the parlor again. ¶ Schilling kept out of my way, the way people keep out of the way of a doctor. ¶ The cushion by the radiator was empty.",
+      "card": "There wasn’t a mark on the door or the window.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " in had a key. ¶ So the key that let them in was the spare, and the spare lived on the nail in the hall at the Delmonico rooms. ¶ Alfano could tell me her own evening, and she was at the chop house. ¶",
+      "card": "The china shepherdess went on minding her doily.",
+      "model": "The landlady at the chop house would have seen everybody who came in.",
+      "kind": "run8",
+      "firstTry": "name: Zeldin"
+    },
+    {
+      "page": "ary pace, downtown and west to the Delmonico rooms, a couple of blocks, and wrote it down. An hour only holds so many walks like that. The dance hall crowd would have finished saying goodnight by now.",
+      "card": "It had taken them long enough, but they’d done it properly.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "ed at my shoes before my face, to see what they’d do to the stairs. Bernstein was in the front room with a book, one finger in it to keep the place. ¶ The spare key lived on the nail in the hall here.",
+      "card": "That settled where I was going.",
+      "model": "The stairs creaked under it and the key was locked, the way people look up when they’re paying for your time.",
+      "kind": "run8",
+      "firstTry": "empty"
+    },
+    {
+      "page": "e street was empty and clear and very quiet, and my heels were the loudest thing on it. ¶ The Grand Street chop house had served steaks to three generations of men whose doctors had told them to stop.",
+      "card": "The doctors were right, and so were the steaks.",
+      "model": "The dog was not in his room.",
+      "kind": "new",
+      "firstTry": "length: 33 words (5–32)"
+    },
+    {
+      "page": "lf. ¶ Mulcahy stood by the reservation book at the door with a pencil, crossing out tables nobody would want now. Margolis sat with her coat on and her plate pushed away, finishing a glass of seltzer.",
+      "card": "She smelled of gasoline and cold coffee and kept her gloves on indoors, the fingertips cut out of them.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "ok the chair opposite Alfano and kept my hands where she could see them, on the tablecloth. ¶ “Mrs. Callahan has you at the Delmonico rooms at eight. Fill in the rest of the evening for me, in order.”",
+      "card": "She put down what she was holding and gave me her attention.",
+      "model": "(card default; tried: “Ask about Havemeyer,” she said.)",
+      "kind": "card default",
+      "firstTry": "name: Havemeyer"
+    },
+    {
+      "page": "d home at ten. Mrs. Callahan had Bernstein and Doyle at the Delmonico rooms at ten o’clock, and nobody else. One of them was wrong. ¶ It turned out Shapiro was at a table by the wall, behind a menu. ¶",
+      "card": "The samovar went on steaming at the end of the counter, the only thing in the room in no hurry at all.",
+      "model": "(card default; tried: Relief guaranteed.)",
+      "kind": "card default",
+      "firstTry": "length: 2 words (5–32)"
+    },
+    {
+      "page": "ulcahy had Alfano here at nine, same as she said. That put Margolis here at ten, by her count. Whatever went out of the Schilling flat, something came in here under a coat at eleven and went to Lou. ¶",
+      "card": "I could have used a glass from the samovar.",
+      "model": "(card default; tried: It turned out Pickering was in the corner, out of the light.)",
+      "kind": "card default",
+      "firstTry": "name: Pickering"
+    },
+    {
+      "page": "s. Callahan said so. That left one person who could have had the spare key, with no true account for ten. ¶ The coffee on my desk would have gone the rest of the way cold by now. I’d finish it anyway.",
+      "card": "I’d started it, and I’m a professional.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "ight. My office was a room over a tailor’s on Mulberry Street, with my name on the door in gold leaf that was coming off one letter at a time. My ribs hurt when I breathed deep, so I breathed shallow.",
+      "card": "Rain ran down the window in the lamplight, and I sat and listened to it and did not move much.",
+      "model": "The room was a room with a gas jet over it, a bar down one side and a dozen stools over a newspaper.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "s for morning, like a gentleman. My visitor wiped his boots on the mat from habit, not respect. Nobody respects my floor. ¶ “It’s Mimi,” Hargrove said. “My Persian. She’s gone from the window seat.” ¶",
+      "card": "I offered him the chair.",
+      "model": "“The man with a file on a horse?”",
+      "kind": "new",
+      "firstTry": "length: 3 words (5–32)"
+    },
+    {
+      "page": "ome. ¶ Nobody in the place was paid to notice who came and went, so nobody had. ¶ If she went at ten, the flat had been empty, and anybody who’d heard Hargrove at the Velvet Room had known the way in.",
+      "card": "That was a room, more or less.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " Hargrove’s parlor from the door to the far wall, slowly. ¶ Hargrove sat on the arm of a chair and watched me go over his own parlor like a stranger’s. ¶ The window seat was empty but for white hairs.",
+      "card": "The key was back under the mat, and there wasn’t a mark on the door.",
+      "model": "The dead man was open, a little by the table, the table and not much want to look at a man.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "head with one glass eye looked out over the bottles, having seen it all and liked none of it. ¶ Quill was polishing a glass that was already clean, which is what bartenders do instead of watching you.",
+      "card": "He had a pleasant, forgettable face, which in that trade is the whole trick, and eyes that went to the door every time it opened, and came back.",
+      "model": "(card default; tried: Hargrove had a stool at the end of the bar and was looking at the mirror behind it, which looked back.)",
+      "kind": "card default",
+      "firstTry": "name: Hargrove"
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Quill. ¶ I waited for a gap in his night, and when one came I stepped into it.",
+      "card": "I asked him to count the night for me, face by face.",
+      "model": "It was a long way people do when they don’t want to look at a room.",
+      "kind": "run8",
+      "firstTry": "name: Mrs.; name: Bellucci; name: Caruso (capitalised)"
+    },
+    {
+      "page": "Quill’s list had Pickering here at eight. I wanted the rest of it in her own words. I leaned on the bar next to her and ordered nothing, which got noticed.",
+      "card": "Thin, and bent at the shoulders from years over a sewing machine, she wore clothes too good to have been bought.",
+      "model": "(card default; tried: “I was at the Bijou at seven, with Winslow, Marchetti and Dandridge.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: seven; name: Bijou; name: Winslow; name: Marchetti; name: Dandridge"
+    },
+    {
+      "page": "my own.” ¶ Pickering said the Velvet Room at ten. Quill had Lou here at ten o’clock, and nobody else. One of them was wrong. ¶ I buttoned my coat. It came off a rack, and in that company it knew it. ¶",
+      "card": "I went over it once more, the way you go over a bill you know is wrong.",
+      "model": "(card default; tried: Kreuzer was there at eight; Brennan and Reinhardt were there at nine; at ten it was just me.”)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: eight; name: Kreuzer; name: Brennan; name: Reinhardt"
+    },
+    {
+      "page": "Kowalski’s lay a couple of blocks east. A policeman on his round tried a shop door, found it locked, and looked almost disappointed. ¶ I went to Mrs. Kowalski’s boarding house on Orchard Street.",
+      "card": "It was a narrow brick house with a scrubbed stoop and a smell of beet soup that had got into the walls and settled.",
+      "model": "(card default; tried: The hall was dark, a kitchen under the frosted door, and the smell of clove oil, and on the stairs were wet, a lamps and a smell of clove oil stove in the door when it came up for)",
+      "kind": "card default",
+      "firstTry": "end: does not finish a sentence; length: 39 words (5–32)"
+    },
+    {
+      "page": "ng and Colquitt. Nobody else at all. Ten, Havemeyer and Colquitt. Nobody else, that hour.” ¶ Mrs. Kowalski had Pickering here at nine, same as she said. That put Havemeyer here at ten, by her count. ¶",
+      "card": "I wiped my feet, late.",
+      "model": "(card default; tried: I wrote it down.)",
+      "kind": "card default",
+      "firstTry": "length: 4 words (5–32)"
+    },
+    {
+      "page": "berry Street was dark except for the desk lamp, and the street under the window had gone quiet. I gave up on bed around eleven and made my peace with the desk chair, which had never once let me sleep.",
+      "card": "The stairs outside creaked twice, some tenant getting home.",
+      "model": "(card default; tried: “The usual.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": "people in at eight,” she said, “for a birthday supper. Cheatham and Petrosino. Nobody else came.” ¶ “Sirkin lodges with me, and her key is lost again,” my client said, “so I left the door unlocked.” ¶",
+      "card": "“When did this happen, as near as you can say?”",
+      "model": "(card default; tried: “Mrs. Tramonti borrows her most evenings,” she said.)",
+      "kind": "card default",
+      "firstTry": "name: Mrs.; name: Tramonti"
+    },
+    {
+      "page": "ged, holding Duchess’s dish as if it might be wanted any minute. ¶ Nobody minded who came and went. ¶ If she went at ten, she went after the supper, and everybody at the supper had known the way in. ¶",
+      "card": "I stood still a moment and let the place get used to me.",
+      "model": "(card default; tried: A light was worn to the roof, but the bell over the hall smelled of wet parlors and dripping onto the fourth floor, and the smell of the landlady who lives across the hall steps so that everybody who comes in.)",
+      "kind": "card default",
+      "firstTry": "length: 41 words (5–32)"
+    },
+    {
+      "page": "I asked Coffin to wait in the hall, and went over the parlor by myself. ¶ She told me twice where everything usually was. I let her.",
+      "card": "It was her flat, and it was the only thing she could do.",
+      "model": "(card default; tried: “Eight o’clock, Marchetti.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 3 words (5–32); hour: Eight; name: Marchetti"
+    },
+    {
+      "page": "w were the ones at the supper in the Coffin flat at eight. Coffin had given me their names. ¶ Sirkin’s evening was still a blank in my notebook, and she was at Mrs. Nagy’s. ¶ I read the sampler again.",
+      "card": "It was asking a lot.",
+      "model": "Every seat sold a man’s hands on the desk, and the price of a box of rolls were already straight back.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": " was a couple of blocks downtown and east, and I took it at a good clip. A lit window hung in the fog above me with nothing holding it up. ¶ Mrs. Nagy’s, on East Fourth Street, was quiet at this hour.",
+      "card": "The hall smelled of paprika and floor wax, and a lamp had been left on at the turn of the stair.",
+      "model": "The hall smelled of clove oil, and a smell of clove oil, and the stairs went by nothing in the dark.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Sirkin. ¶ I got as near to her as manners allowed and said my name.",
+      "card": "Young and tidy and a little tired, she still had the mark of the headset band pressed into her hair.",
+      "model": "(card default; tried: “Seven o’clock, Abramowitz and Ainsworth.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: Seven; name: Abramowitz; name: Ainsworth"
+    },
+    {
+      "page": "me. Eleven o’clock I went in to the print shop to set type for the morning, by myself.” ¶ For ten, the hour that mattered, Sirkin said home, here at Mrs. Nagy’s. I took it down the way it was given. ¶",
+      "card": "The one to ask was the foreman at the print shop, who’d been there all night.",
+      "model": "(card default; tried: That was a hole in Dandridge’s story, all right.)",
+      "kind": "card default",
+      "firstTry": "name: Dandridge"
+    },
+    {
+      "page": "g stood by the wall, and rocked whenever anything touched it. ¶ Callahan was at a desk on a raised step at the end of the room, where she could see everybody and everybody could see her seeing them. ¶",
+      "card": "Whoever runs the floor at night keeps the book of who came on and who went off.",
+      "model": "(card default; tried: Callahan had said she was here at ten.)",
+      "kind": "card default",
+      "firstTry": "hour: ten; name: Callahan"
+    },
+    {
+      "page": "Callahan saw me coming before I’d decided to come. That’s the job. ¶ I asked her to take me through the night, hour by hour, everybody in the place.",
+      "card": "She went through it the way you’d count change, carefully and out loud.",
+      "model": "(card default; tried: “Ten o’clock, Broadnax and two union men I didn’t know.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: Ten; name: Broadnax"
+    },
+    {
+      "page": "n. I came on at ten. Before that I couldn’t tell you.” ¶ Sirkin said home at ten. The foreman had her here at ten o’clock. They couldn’t both be true, and Callahan had no reason to be the wrong one. ¶",
+      "card": "I didn’t sit in the chair with the short leg.",
+      "model": "(card default; tried: Nobody had gone over the floor at Mulcahy’s place yet, and a room keeps things people forget to mention.)",
+      "kind": "card default",
+      "firstTry": "name: Mulcahy"
+    },
+    {
+      "page": "eum lay a few blocks east. A policeman on his round tried a shop door, found it locked, and looked almost disappointed. ¶ I went in at the Orpheum, a picture house with continuous shows till midnight.",
+      "card": "The last show had let out, the screen was a big gray blank, and the rows were full of peanut shells and dropped programs.",
+      "model": "I went up to the hotel.",
+      "kind": "new",
+      "firstTry": "hour: nine; name: Mulcahy; name: Sweeney; name: Kowalski"
+    },
+    {
+      "page": " her place at nine. It was a thread, and I meant to pull it. Nobody gets into a theater without going past the front of the house, and the front of the house was Mulcahy. ¶ I stood still and listened.",
+      "card": "Places tell you things if you let them finish.",
+      "model": "(card default; tried: The man was listening.)",
+      "kind": "card default",
+      "firstTry": "length: 4 words (5–32)"
+    },
+    {
+      "page": "e rest of the evening. Weisglass was there at nine; at ten it was just me; Weisglass and Petrosino were there at eleven.” ¶ So the Coffin flat at eight, with Petrosino, which was what Coffin had said.",
+      "card": "So far as it went, it stood up.",
+      "model": "(card default; tried: For ten, the hour that mattered, she said home, here at Rafferty’s.)",
+      "kind": "card default",
+      "firstTry": "hour: ten; name: Rafferty"
+    },
+    {
+      "page": "I asked Mulcahy for a minute, and she gave me one, and kept an eye on the room the whole of it. I asked her to count the night for me, face by face. ¶ She answered at once.",
+      "card": "It was all there, the way it always is with somebody whose job is to notice.",
+      "model": "(card default; tried: “At seven I went to Kowalski’s to see about some money owed, with Weisglass and Rosenbaum.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: seven; name: Kowalski; name: Weisglass; name: Rosenbaum"
+    },
+    {
+      "page": "osino and Pardo here at ten o’clock, and nobody else. Two stories about her at the same hour, and only one of them could stand. ¶ The thumb with the callus was twitching for a stub. I didn’t have one.",
+      "card": "I rarely have a ticket for anything.",
+      "model": "I had a lot of people, and two men who weren’t about to get, so I got in, and I got out of the night.",
+      "kind": "new",
+      "firstTry": "name: Margolis"
+    },
+    {
+      "page": "Cheatham had told me the Orpheum at ten, and Mulcahy’s list said otherwise. It was time she heard about the other one. I found her page in my notebook and kept my thumb in it. ¶",
+      "card": "“Let me read you something back,” I said.",
+      "model": "(card default; tried: “I was at Callahan’s at eight, for the card party, with Broadnax and Tillman.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: eight; name: Callahan; name: Broadnax; name: Tillman"
+    },
+    {
+      "page": "ght. My office was a room at the top of the stairs on Mulberry Street, with a desk, a lamp and a coat stand that had outlasted two tenants. Money sat in the office for once instead of a promise of it.",
+      "card": "I lit a cigarette slowly, like a man with a bank account.",
+      "model": "A dead man who has something to hide knocks for him on the street.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "wly, like a man with a bank account. The cold stayed outside the glass where it belonged. ¶ Feet on the stairs, four flights of them, taken slowly. Nobody climbs four flights at midnight for the view.",
+      "card": "A man stood in the doorway, cap on, deciding if I was worth coming in for.",
+      "model": "A man came in and knocked him.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "d come down with the dark and meant to stay, and people were walking fast with their collars up and their opinions to themselves. ¶ I went up to Rosenbaum’s two rooms over the bakery on Hester Street.",
+      "card": "Two rooms, a front and a back, with the police gone and the clock on the shelf still ticking, as if nobody had told it.",
+      "model": "(card default; tried: Hanrahan stood at the register end of the bar with his arms folded, as if the till might try something.)",
+      "kind": "card default",
+      "firstTry": "name: Hanrahan"
+    },
+    {
+      "page": "as still where they’d found the body, in the chair by the table, as if waiting for something that had come. ¶ Colquitt, my client, was already there, keeping one eye on the door and the other on me. ¶",
+      "card": "Nobody kept a list of who came and went, on paper or in their head.",
+      "model": "(card default; tried: If he went at ten, the flat had been empty, and anybody who’d heard Shapiro at the Bijou had known the way in.)",
+      "kind": "card default",
+      "firstTry": "hour: ten; name: Shapiro; name: Bijou"
+    },
+    {
+      "page": "I went over the table. ¶ Colquitt didn’t come in. I didn’t ask him to. ¶",
+      "card": "There were two glasses on the table.",
+      "model": "(card default; tried: “Ten o’clock, Zeldin and somebody at the same table I didn’t know.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: Ten; name: Zeldin"
+    },
+    {
+      "page": "se. The other smelled of rye and something sweet and chemical, like a hospital left out in the sun. Under the table, where it had rolled, was an empty brown bottle with a paper label from Mrs. Nagy’s.",
+      "card": "The lodgers there keep it on the hall shelf.",
+      "model": "(card default; tried: Havemeyer had been at Dandridge’s at eight, for the meeting.)",
+      "kind": "card default",
+      "firstTry": "hour: eight; name: Havemeyer; name: Dandridge"
+    },
+    {
+      "page": "I wanted to read them properly. I went through the papers with the lamp pulled close, the way you read a will you aren’t in. ¶ There was a page in there for everybody with a grudge, in a careful hand.",
+      "card": "Every one of them had a reason, and every reason was written down.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "something brown in small careful sips. Ellery was on a stool with her hat pushed back, turning a coin over and over on the bar. ¶ A bartender who stands behind a bar all night knows who drank at it. ¶",
+      "card": "I found somewhere to stand that wasn’t in anybody’s way.",
+      "model": "(card default; tried: At seven I went to Mrs.)",
+      "kind": "card default",
+      "firstTry": "hour: seven; name: Mrs.; name: Mrs (capitalised)"
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Mosley. I put a coin on the bar so she would have a reason to come over.",
+      "card": "She came over and left the coin where it was.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " ten, by her count. Colquitt had said nine or ten. Rosenbaum was at Hanley’s at nine, alive. ¶ Whitfield was right here, and his evening was still a blank in my notebook. ¶ Somebody came in behind me.",
+      "card": "The eyes went to the door and came back, and I was glad to see I’d been promoted to furniture.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "he rest of the evening. Ellery and Rosenbaum were there at eight and nine; at ten it was just me.” ¶ Whitfield said Hanley’s at ten. Mosley had Bledsoe and Ellery here at ten o’clock, and nobody else.",
+      "card": "One of them was wrong.",
+      "model": "(card default; tried: Fairbanks, Winslow and Rosenbaum were at the fight party and knew the way in; Weisglass wasn’t.)",
+      "kind": "card default",
+      "firstTry": "name: Fairbanks; name: Winslow; name: Rosenbaum; name: Weisglass"
+    },
+    {
+      "page": "said he was here at seven. That was reason enough for the walk. Nobody comes or goes in a rooming house without the landlady knowing, and Mrs. Nagy had the look of a landlady who made a point of it. ¶",
+      "card": "A clock in the hall was keeping time for nobody in particular.",
+      "model": "(card default; tried: Nobody gets into a theater without the head waiter deciding where, and Bidwell had been doing the deciding.)",
+      "kind": "card default",
+      "firstTry": "name: Bidwell"
+    },
+    {
+      "page": "r a gap in Mrs. Nagy’s night, and when one came I stepped into it. I asked Mrs. Nagy who’d been here tonight, and said I’d take it untidy, the way it happened. ¶ She seemed pleased somebody had asked.",
+      "card": "Nobody ever asks the one who sees everybody.",
+      "model": "(card default; tried: “I was at Lanza’s at eight, for the fight party, with Pickering and Thorndike.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: eight; name: Lanza; name: Pickering; name: Thorndike"
+    },
+    {
+      "page": "the wall, turning his hat round and round in his hands. ¶ Mrs. Nagy’s list had Salerno at Mrs. Nagy’s at eight. It was a thread, and I meant to pull it. ¶ No one was posted to see who came and went. ¶",
+      "card": "The place was out of the night, and so, for a while, was I.",
+      "model": "(card default; tried: Pickering was there ahead of me, hat in his hands, turning the brim.)",
+      "kind": "card default",
+      "firstTry": "name: Pickering"
+    },
+    {
+      "page": " had no reason to be the wrong one. The rest held where I could check it: Mosley had him at Hanley’s at seven, with Ellery, same as he said. ¶ I read the old cough syrup sign again. Relief guaranteed.",
+      "card": "I’d have settled for less.",
+      "model": "(card default; tried: I was at Mrs.)",
+      "kind": "card default",
+      "firstTry": "length: 4 words (5–32); name: Mrs.; name: Mrs (capitalised)"
+    },
+    {
+      "page": "Salerno had told me home at ten, and Mrs. Nagy’s list said otherwise. It was time to say so to his face. I turned back to him with my notebook open, which is never good news for anybody. ¶",
+      "card": "“One thing,” I said to him.",
+      "model": "(card default; tried: “Where was I?)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 3 words (5–32)"
+    },
+    {
+      "page": "Sokol’s, in the back, putting a nickel on a number. I swore I’d stopped. Ashby was there. Ask him.” ¶ That was a hole in Salerno’s story, all right. I wasn’t sure yet it was the one I was looking for.",
+      "card": "An owned-up story is only as good as whoever’s in it with you.",
+      "model": "(card default; tried: If he went at ten or eleven, whoever took it had a key, and the spare key lives in the sugar tin at Rafferty’s.)",
+      "kind": "card default",
+      "firstTry": "hour: ten; name: Rafferty"
+    },
+    {
+      "page": "ed checking. Ashby didn’t offer me anywhere to sit, so I leaned on the wall beside him and let the wall take the weight. ¶ I asked him where he’d spent the night, plainly, the way you’d ask anybody. ¶",
+      "card": "He minded a little, then decided it was cheaper not to.",
+      "model": "(card default; tried: “Seven o’clock, Broadnax and Hochstetter.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: Seven; name: Broadnax; name: Hochstetter"
+    },
+    {
+      "page": "hen decided it was cheaper not to. ¶ “I was home from seven through nine, on my own. Come ten, I went to Sokol’s back room to meet Salerno.” ¶ That put Salerno here at ten, and he would swear to it. ¶",
+      "card": "I wrote it down and underlined nothing.",
+      "model": "(card default; tried: For eleven, the hour that mattered, Mrs.)",
+      "kind": "card default",
+      "firstTry": "hour: eleven; name: Mrs.; name: Mrs (capitalised)"
+    },
+    {
+      "page": "I found a chair at Sokol’s back room and sat down with the form. Whatever I wrote down, I’d have to be able to say whose word it stood on. ¶ My cigarette had burned down to my fingers again.",
+      "card": "A man with a bank account would have noticed sooner.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "Midnight. The office was where I’d left it, at the top of four flights on Mulberry Street, which is the only thing about it you could count on. Rent was three weeks gone.",
+      "card": "The envelope wasn’t going to pay itself by sitting on the desk.",
+      "model": "Either it was a stage of the rent owing, and the rent collector, and every word that the desks are paid to.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": " the smoke do the worrying. ¶ The stairs creaked all the way up, and then somebody stood outside my door long enough to change their mind and change it back. My visitor didn’t sit until I told her to.",
+      "card": "She needed help, she said.",
+      "model": "She didn’t think anything, or maybe it was.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": ". The sky was clear and the city was still up under it, with a lit window on every other floor and a radio arguing in one of them. ¶ I went up to Obermann’s two rooms over the bakery on Hester Street.",
+      "card": "The bakery downstairs had its ovens going, and the warm smell of bread came up through the floorboards, which didn’t seem right, and wasn’t anybody’s fault.",
+      "model": "(card default; tried: Pickering showed me in and stood by the place where Mimi belonged, holding Mimi’s dish as if it might be wanted any minute.)",
+      "kind": "card default",
+      "firstTry": "name: Pickering; name: Mimi (capitalised); name: Mimi’s (capitalised)"
+    },
+    {
+      "page": "in the chair with the head back and the mouth a little open, the way people sleep when they’re too tired to care how they look. ¶ Rosenbaum was there ahead of me, hat in her hands, turning the brim. ¶",
+      "card": "It was the kind of place nobody kept an eye on.",
+      "model": "(card default; tried: Cheatham had said he was here at eight and eleven.)",
+      "kind": "card default",
+      "firstTry": "hour: eight; name: Cheatham"
+    },
+    {
+      "page": "I bent over the table and took it a piece at a time, from one edge to the other. ¶ Rosenbaum didn’t come in. I didn’t ask her to. ¶",
+      "card": "There were two glasses on the table.",
+      "model": "(card default; tried: “Brauer has you at the Velvet Room at eight.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: eight; name: Brauer; name: Velvet; name: Room (capitalised)"
+    },
+    {
+      "page": "se. The other smelled of rye and something sweet and chemical, like a hospital left out in the sun. Under the table, where it had rolled, was an empty brown bottle with a paper label from Mrs. Nagy’s.",
+      "card": "The lodgers there keep it on the hall shelf.",
+      "model": "(card default; tried: Whitfield had been at Fairbanks’s at eight, for the meeting.)",
+      "kind": "card default",
+      "firstTry": "hour: eight; name: Whitfield; name: Fairbanks"
+    },
+    {
+      "page": "om him, so I went through them. I went through the papers with the lamp pulled close, the way you read a will you aren’t in. ¶ There was a page in there for everybody with a grudge, in a careful hand.",
+      "card": "Every one of them had a reason, and every reason was written down.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "lars, in his hand. ¶ A reason is the easy half. The other half was a way to the chloral, and that was at Mrs. Nagy’s. ¶ Rosenbaum had pointed me at Doyle, and that was worth the walk to the Kit Kat. ¶",
+      "card": "The calendar by the stove was still on last month.",
+      "model": "(card default; tried: I hadn’t looked properly at the floor at Grasso’s place.)",
+      "kind": "card default",
+      "firstTry": "name: Grasso"
+    },
+    {
+      "page": "tes. A row of paper lanterns was strung across the room, faded from red to pink by years of smoke. ¶ Lefkowitz was on a chair tipped back against the door frame, chewing a toothpick down to splinters.",
+      "card": "Heavy in the coat and light on his feet, he had the door swung wide before I’d reached for it, and shut again before I’d decided anything.",
+      "model": "(card default; tried: Zeldin sat at a table by the wall, with a beer going flat in front of him.)",
+      "kind": "card default",
+      "firstTry": "name: Zeldin"
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Doyle. I sat down one stool away from him, which gave him room to decide about me.",
+      "card": "Thin, and bent at the shoulders from years over a sewing machine, he wore clothes too good to have been bought.",
+      "model": "(card default; tried: “I was at Sokol’s at seven, with Quill.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: seven; name: Sokol; name: Quill"
+    },
+    {
+      "page": " nine or ten.” ¶ For nine and ten, the hours that mattered, Doyle said the Eagle club office at nine and the Kit Kat at ten. That was his word for it, and I took it down as said. ¶ I buttoned my coat.",
+      "card": "It came off a rack, and in that company it knew it.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " had been here to see who came and went. ¶ I asked him for a minute, and he gave me one, and kept an eye on the room the whole of it. I asked him who he’d seen come and go since the evening started. ¶",
+      "card": "He started at the top of the evening and went down it like a column of figures.",
+      "model": "(card default; tried: “Tell me about Havemeyer,” I said to her.)",
+      "kind": "card default",
+      "firstTry": "name: Havemeyer"
+    },
+    {
+      "page": " been at Mrs. Nagy’s while it was there to take. Rosenbaum had said nine or ten. Obermann was at the Kit Kat at nine, alive. ¶ I could feel the door behind me, ready to swing wide the moment I turned.",
+      "card": "It’s nice to be wanted gone that efficiently.",
+      "model": "(card default; tried: At ten it was just me; Grasso was there at eleven.”)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: ten; name: Grasso"
+    },
+    {
+      "page": "ry here at seven, eight and ten, and I wanted the rest of that evening. I took out my pencil, which makes some people nervous and makes the rest feel important. ¶ I asked her where she’d been tonight.",
+      "card": "All of it, in order.",
+      "model": "(card default; tried: “I was at the Velvet Room at eight, with Lindemann.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: eight; name: Velvet; name: Room (capitalised); name: Lindemann"
+    },
+    {
+      "page": " a table at the Kit Kat, with Vitale. Walking over to the Kit Kat at ten I passed Bellucci on Hester Street, going fast, no hat.” ¶ So here at ten and seven, with Vitale, which was what Lefkowitz had.",
+      "card": "One evening that held, at an hour that mattered, where I could check it.",
+      "model": "(card default; tried: That was a hole in Alfano’s story, all right.)",
+      "kind": "card default",
+      "firstTry": "name: Alfano"
+    },
+    {
+      "page": " went next. I sat down where she could see me, and didn’t hurry. She had fingertips gone flat from typing all day, and was dressed for an office in a good plain way that no office would ever notice. ¶",
+      "card": "I asked her to tell me her evening, from the beginning, and not to leave out the dull parts.",
+      "model": "(card default; tried: “I was at the Shamrock at seven, with Quill and Bellucci.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: seven; name: Shamrock; name: Quill; name: Bellucci"
+    },
+    {
+      "page": "was out and doing a thorough job of it, every railing and every step picked out in white. ¶ The back office of the Eagle Social Club was where the club did the business it didn’t do in the front room.",
+      "card": "There were a lot of chairs for an office, and not much paper.",
+      "model": "I went to the chop house for a minute and had anything to do with it.",
+      "kind": "run8",
+      "firstTry": ""
+    },
+    {
+      "page": " wall. ¶ Callahan was at the steward’s desk, sorting the club’s letters into pigeonholes. ¶ A club steward knows every member by the back of the head, and every visitor by the fact that she doesn’t. ¶",
+      "card": "I gave the place a minute to show me what it had.",
+      "model": "The door was locked, with the lamp on and his coat buttoned.",
+      "kind": "new",
+      "firstTry": "quotes: unbalanced; length: 3 words (5–32)"
+    },
+    {
+      "page": "le sat on a gas ring on the shelf, gone cold. ¶ Bellucci was at the sink with her sleeves rolled up, and dried her hands slowly before she turned round. ¶ No one was posted to see who came and went. ¶",
+      "card": "I found somewhere to stand that wasn’t in anybody’s way.",
+      "model": "(card default; tried: Pickering had said he was here at nine and ten, and that Grasso was with him at Rafferty’s at nine.)",
+      "kind": "card default",
+      "firstTry": "hour: nine; name: Pickering; name: Grasso; name: Rafferty"
+    },
+    {
+      "page": ". Two stories about her at the same hour, and only one of them could stand. The rest held where I could check it: Vitale had her at Mrs. Nagy’s at eight and at Mrs. Nagy’s at nine, same as she said. ¶",
+      "card": "The kettle on the gas ring was cold.",
+      "model": "(card default; tried: Mrs. Bledsoe had told me home at eleven, and Demos’s list said otherwise.)",
+      "kind": "card default",
+      "firstTry": "hour: eleven; name: Mrs.; name: Bledsoe; name: Demos"
+    },
+    {
+      "page": "ight. The office on Mulberry Street had one lamp, one chair worth sitting in and one detective, and the detective was in the worst repair of the three. More money in the drawer than bills on the desk.",
+      "card": "The telephone company and the landlady were paid, and some was left over.",
+      "model": "The dead man was his own way he was in the city.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "hone company and the landlady were paid, and some was left over. I didn’t know what people did with that. ¶ The street door banged downstairs, and somebody started up. I put my feet down off the desk.",
+      "card": "It’s the only preparation I make.",
+      "model": "The windows were two way and an old buildings and an hour on display.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "headed uptown and east for Shapiro’s place, a fair few blocks away. The rain had the street to itself and was making the most of it. ¶ I climbed to Shapiro’s flat on the top floor of 12 Ludlow Street.",
+      "card": "Each flight was a little darker than the one under it, and at the top there was a door with the light still on behind it.",
+      "model": "(card default; tried: Fairbanks was in the lobby, reading the bills for next week as if they might change.)",
+      "kind": "card default",
+      "firstTry": "name: Fairbanks"
+    },
+    {
+      "page": "ead back and the mouth a little open, the way people sleep when they’re too tired to care how they look. ¶ Hargrove was there, with a cup of something she hadn’t touched and her coat still buttoned. ¶",
+      "card": "Nobody minded who came and went.",
+      "model": "(card default; tried: Crowninshield had said he was here at nine and eleven, and that Bidwell was with him here at ten.)",
+      "kind": "card default",
+      "firstTry": "hour: nine; name: Crowninshield; name: Bidwell"
+    },
+    {
+      "page": "I went over Shapiro’s table slowly, touching nothing I didn’t have to. ¶ I worked slowly. Hargrove waited in the hall, and the stairs creaked every time she shifted her weight. ¶",
+      "card": "There were two glasses on the table.",
+      "model": "(card default; tried: Mrs. Rafferty’s list had Pickering here at seven, eight and nine.)",
+      "kind": "card default",
+      "firstTry": "hour: seven; name: Mrs.; name: Rafferty; name: Pickering"
+    },
+    {
+      "page": "other smelled of rye and something sweet and chemical, like a hospital left out in the sun. Under the table, where it had rolled, was an empty brown bottle with a paper label from the Delmonico rooms.",
+      "card": "The lodgers there keep it on the hall shelf.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " time. Shapiro kept the papers in a box file, and I sat down with it under the lamp. ¶ There was a page on everybody with a grudge, typed and clipped together, and every page said what the grudge was.",
+      "card": "They’d been kept square, so that nobody got top billing.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "signature on it. Hanrahan: the lease on a shop, the rent owing, and a carbon of his letter calling it in. ¶ I put Shapiro’s pages back in their box. A grudge on paper is a long way from the chloral. ¶",
+      "card": "The empty birdcage hung in its corner.",
+      "model": "(card default; tried: I asked Ellery where she’d been tonight, and who with, hour by hour.)",
+      "kind": "card default",
+      "firstTry": "name: Ellery"
+    },
+    {
+      "page": "t come for the furniture. I’d come for Mrs. Quill. I went over to her and waited until she had a moment, which took a moment. ¶ “Who was in tonight?” I said. “You’d know. Knowing is most of your job.”",
+      "card": "She counted it off on her fingers, and ran out of fingers before she ran out of night.",
+      "model": "(card default; tried: I didn’t believe anything.)",
+      "kind": "card default",
+      "firstTry": "length: 4 words (5–32)"
+    },
+    {
+      "page": "all shelf was there at seven. I didn’t look again.” ¶ I wrote down what Mrs. Quill had at nine and ten, the hours that mattered: Ruggiero at both, Lindemann and Tramonti at nine and Hanrahan at ten. ¶",
+      "card": "I wiped my feet, late.",
+      "model": "(card default; tried: I had an evening from Mrs.)",
+      "kind": "card default",
+      "firstTry": "name: Mrs.; name: Mrs (capitalised)"
+    },
+    {
+      "page": "t. Pitt Street was running with water, curb to curb. ¶ Broadnax’s flat on Pitt Street was two rooms and a kitchen at the top of the stairs, behind a doormat that had given up saying welcome years ago.",
+      "card": "A gramophone with a big tin horn stood in the corner, with a record still on it.",
+      "model": "(card default; tried: I went to the Tramonti parlor floor on Stuyvesant Street.)",
+      "kind": "card default",
+      "firstTry": "name: Tramonti; name: Stuyvesant; name: Street (capitalised)"
+    },
+    {
+      "page": " She had fingertips gone flat from typing all day, and was dressed for an office in a good plain way that no office would ever notice. ¶ Mrs. Quill’s list had Broadnax at the Delmonico rooms at eight.",
+      "card": "It was a thread, and I meant to pull it.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " Shapiro. Around ten I had a game of gin at home, with Lindemann.” ¶ For nine and ten, the hours that mattered, Broadnax said the Thalia at nine and home at ten. I took it down the way it was given. ¶",
+      "card": "The flat fingertips were typing on nothing, a line at a time.",
+      "model": "(card default; tried: For ten, the hour that mattered, Mrs.)",
+      "kind": "card default",
+      "firstTry": "hour: ten; name: Mrs.; name: Mrs (capitalised)"
+    },
+    {
+      "page": "The Thalia was a good walk uptown and west. Water ran down the gutters in a hurry, carrying a newspaper with it. ¶ I went in at the Thalia, a Yiddish theater on the Bowery.",
+      "card": "The play was over, but the stage still had its painted village up, a little wooden town waiting under one work light for the next performance.",
+      "model": "(card default; tried: After midnight it was the only thing you could do for, and you are the stage people who has opinions about.)",
+      "kind": "card default",
+      "firstTry": "hour: midnight"
+    },
+    {
+      "page": "he seats. ¶ Lanza stood at the back of the house with a flashlight, pointed at the floor, ready. Lindemann, in a grey fedora, was in the lobby, reading the bills for next week as if they might change.",
+      "card": "He smelled of gasoline and cold coffee and kept his gloves on indoors, the fingertips cut out of them.",
+      "model": "(card default; tried: Brauer had said she was here at seven, with Crowninshield.)",
+      "kind": "card default",
+      "firstTry": "hour: seven; name: Brauer; name: Crowninshield"
+    },
+    {
+      "page": "Lanza saw me coming before I’d decided to come. That’s the job. I asked her who she’d seen come and go since the evening started. ¶",
+      "card": "She looked at the door, as if the night were written on it, and started.",
+      "model": "(card default; tried: “Eight o’clock, Zeldin, Mosley and Obermann.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: Eight; name: Zeldin; name: Mosley; name: Obermann"
+    },
+    {
+      "page": " and Ruggiero were there at eight; Tramonti and Ruggiero were there at nine. Come ten, I went round to Broadnax’s for a game of gin.” ¶ For ten, the hour that mattered, Lindemann said Broadnax’s flat.",
+      "card": "That was his word for it, and I took it down as said.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "Getting to Sokol’s back room meant a few blocks east. A newspaper went by in the gutter. It might have been the same one.",
+      "card": "It was making better time than I was.",
+      "model": "(card default; tried: I went to the Grasso parlor floor on Stuyvesant Street.)",
+      "kind": "card default",
+      "firstTry": "name: Grasso; name: Stuyvesant; name: Street (capitalised)"
+    },
+    {
+      "page": "ressed into his hair. ¶ Lindemann had said Tramonti was with him at the Delmonico rooms at nine, and that was worth the walk. ¶ No clerk, no doorman, nobody watching the stairs: nobody saw who came. ¶",
+      "card": "There was one light, and everybody had arranged to be just outside it.",
+      "model": "(card default; tried: “Sirkin has you at the chop house at nine.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: nine; name: Sirkin"
+    },
+    {
+      "page": " the hour that mattered, Tramonti said Sokol’s back room. It went in the notebook in his own words. ¶ It turned out Zeldin was in the corner, out of the light. ¶ My hat had left a mark in my hair too.",
+      "card": "Nobody was paying me by the hour for mine.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "Tramonti had said Zeldin was with him here at ten. I wanted to hear the other side of it. I sat down near her, in a corner nobody else was using. ¶",
+      "card": "I asked her for her evening, in order, the way you’d ask for a receipt.",
+      "model": "(card default; tried: “I was at the Shamrock at seven, with Tillman.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: seven; name: Shamrock; name: Tillman"
+    },
+    {
+      "page": "ight. My office was a room over a tailor’s on Mulberry Street, with my name on the door in gold leaf that was coming off one letter at a time. The coffee I’d made was cold by the time I remembered it.",
+      "card": "I drank it anyway; it was lighter than holding my head.",
+      "model": "(card default; tried: “I was at Doyle’s at eight, for the meeting, with Amato and Russo.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: eight; name: Doyle; name: Amato; name: Russo"
+    },
+    {
+      "page": " after midnight smelled of dill and coal smoke, and the dill was coming from the Belvedere, where the pickle barrels stood along the shop front under chained-down lids, getting on with it in the dark.",
+      "card": "Above them the flats went up five floors, a light here and there, and somewhere a radio was playing a song about the moon to somebody trying to sleep.",
+      "model": "From the pickle barrels were still down.",
+      "kind": "new",
+      "firstTry": "hour: seven; name: Miss K; name: Kahane; name: Miss (capitalised); name: Moskin"
+    },
+    {
+      "page": "ent over the parlor, and then the door, and then the parlor again. ¶ Mrs. Pomerantz kept out of my way, the way people keep out of the way of a doctor. ¶ The window seat was empty but for white hairs.",
+      "card": "There wasn’t a mark on the door or the window.",
+      "model": "I had the house before I’d finished the job again.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "t. ¶ From his post Wojcik could see the street door and the stoop, from the cellar steps. “I sit on the cellar steps with my pipe, and every pair of shoes that goes up that stoop goes past my nose.” ¶",
+      "card": "I gave the place a minute to show me what it had.",
+      "model": "(card default; tried: For nine and ten, the hours that mattered, Glick said the bakery yard at Sokol’s at ten and the Peacock at eleven.)",
+      "kind": "card default",
+      "firstTry": "hour: nine; name: Glick; name: Sokol; name: Peacock"
+    },
+    {
+      "page": "s were the loudest thing on it. ¶ The Lyric had emptied as far as a theater ever empties, which isn’t far: programs on the seats, somebody’s glove, a bag of sunflower seeds spilled in the twelfth row.",
+      "card": "Up in the ventilator over the gallery, the pigeons were rehearsing.",
+      "model": "The lobby was a row of wet, six floors and a row of piled hair, the kind of odicysters, for men.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": " back by the second act. Miss Lowenthal had hair in a tight bun with a pencil through it, which she uses, and a second pencil, which she forgets. ¶ “Wojcik has you at the flats over Lipsky’s at eight.",
+      "card": "Where were you the rest of the evening?",
+      "model": "(card default; tried: “Certainly.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 1 words (5–32)"
+    },
+    {
+      "page": "o’clock I had a ticket for the Lyric, and stayed the rest of the evening. Belkin was there at nine; at ten it was just me.” ¶ So home at eight, with Russo, Amato and Teitel, which was what Wojcik had.",
+      "card": "That part of the evening, at least, somebody else could vouch for.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " Shapiro the wardrobe mistress was there all evening, every hour of it. Eight o’clock, Belkin. Nobody else. Nine, Miss Lowenthal and Belkin. Nobody else at all. Ten, Russo and Belkin. And nobody else.",
+      "card": "Every cross on the chart has a face, and I’ve given you every face.",
+      "model": "(card default; tried: Wojcik had Miss Lowenthal here at eight, same as he said.)",
+      "kind": "card default",
+      "firstTry": "hour: eight; name: Miss L; name: Wojcik; name: Miss (capitalised); name: Lowenthal"
+    },
+    {
+      "page": "hat was under the coat?” ¶ “Something that didn’t care to be carried. It moved.” ¶ Miss Lowenthal said the Lyric at ten. Pinsky had Russo, Belkin and Mrs. Shapiro here at ten o’clock, and nobody else.",
+      "card": "One of them was wrong.",
+      "model": "(card default; tried: Whatever went out of the Glick flat, something came in here under a coat at eleven and went to Fishel.)",
+      "kind": "card default",
+      "firstTry": "hour: eleven; name: Glick; name: Fishel"
+    },
+    {
+      "page": "ight. My office was a room over a tailor’s on Mulberry Street, with my name on the door in gold leaf that was coming off one letter at a time. My ribs hurt when I breathed deep, so I breathed shallow.",
+      "card": "Rain ran down the window in the lamplight, and I sat and listened to it and did not move much.",
+      "model": "The room was a room with a gas jet over it, a bar down one side and a dozen stools over a newspaper.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "orning, like a gentleman. My visitor wiped his boots on the mat from habit, not respect. Nobody respects my floor. ¶ “It’s Fritz,” Russo said. “My dachshund. He’s gone from his basket by the stove.” ¶",
+      "card": "I offered him the chair.",
+      "model": "(card default; tried: “Who’d want him?”)",
+      "kind": "card default",
+      "firstTry": "length: 3 words (5–32)"
+    },
+    {
+      "page": "was a block of private flats on East Houston Street, six floors with its name over the door in gold script, and a lobby with a mirror, a potted palm and nobody at the desk, because there isn’t a desk.",
+      "card": "Everybody who lives there has a key to the front door.",
+      "model": "It was a long room with a book in it, which is a warm room keeps.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "n every kitchen, and on the third floor a smell of gas the tenants have been mentioning to each other since spring. ¶ Russo had left everything just as it was, so that Fritz would know the way home. ¶",
+      "card": "Nobody in the place was paid to notice who came and went, so nobody had.",
+      "model": "(card default; tried: If it went at ten, the flat had been empty, and anybody who’d heard Mrs.)",
+      "kind": "card default",
+      "firstTry": "hour: ten; name: Mrs.; name: Mrs (capitalised)"
+    },
+    {
+      "page": "I went over Russo’s parlor from the door to the far wall, slowly. ¶ Russo sat on the arm of a chair and watched me go over his own parlor like a stranger’s. ¶ The basket by the stove was empty.",
+      "card": "The key was back under the mat, and the door hadn’t a mark on it.",
+      "model": "(card default; tried: I was at the Lyric, with Mrs.)",
+      "kind": "card default",
+      "firstTry": "name: Mrs.; name: Lyric; name: Mrs (capitalised)"
+    },
+    {
+      "page": "t the key back after, which is manners of a kind. ¶ So whoever it was knew the way in, and the people who knew were the ones at the supper in the Russo flat at eight. Russo had given me their names. ¶",
+      "card": "I wrote down what I’d found and where, before I could start remembering it differently.",
+      "model": "(card default; tried: I could sympathize.)",
+      "kind": "card default",
+      "firstTry": "length: 3 words (5–32)"
+    },
+    {
+      "page": "ric. It was a few blocks, and I took all of it. A newsstand had its shutters down and the morning papers stacked outside in tied bundles, the day’s bad news already in them and waiting to be untied. ¶",
+      "card": "Only the lobby of the playhouse was lit, where the cleaners had started on the brass and stopped for a glass of tea.",
+      "model": "(card default; tried: Mrs. Blau had pointed me at Mrs.)",
+      "kind": "card default",
+      "firstTry": "name: Mrs.; name: Blau; name: Mrs (capitalised)"
+    },
+    {
+      "page": "nder it somebody had written, in pencil, and twelfth. There were pigeons in the ventilator over the gallery, who coo in the quiet parts. ¶ Pinsky was mouthing the third act from the back of the aisle.",
+      "card": "He had a white mustache waxed to points so fine they quiver when he disapproves.",
+      "model": "(card default; tried: Mrs. Ostrow had said she was here at eleven.)",
+      "kind": "card default",
+      "firstTry": "hour: eleven; name: Mrs.; name: Ostrow"
+    },
+    {
+      "page": " second show at the Lyric, by myself.” ¶ So the Russo flat at eight, with Miss Nowak, which was what Russo had said. So far as it went, it stood up. For ten, the hour that mattered, he said the Lyric.",
+      "card": "That was his word for it, and I took it down as said.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "Pinsky was pointing his flashlight at a man who was talking. I asked him for everybody he’d seen tonight, in order, and nobody left out because he liked them. ¶ He seemed pleased somebody had asked.",
+      "card": "Nobody ever asks the one who sees everybody.",
+      "model": "(card default; tried: “I was at Vitale’s at eight, for the fight party, with Whitfield and Thorndike.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: eight; name: Vitale; name: Whitfield; name: Thorndike"
+    },
+    {
+      "page": "d an actor once didn’t. Mrs. Shapiro the wardrobe mistress was there all evening, every hour of it. Eight o’clock, nobody else. Nine, Miss Nowak. Nobody else at all. Ten, nobody else. And nobody else.",
+      "card": "Every cross on the chart has a face, and I’ve given you every face.",
+      "model": "(card default; tried: Wojcik had Mrs. Krantz here at nine, same as he said.)",
+      "kind": "card default",
+      "firstTry": "hour: nine; name: Mrs.; name: Wojcik; name: Mrs (capitalised); name: Krantz"
+    },
+    {
+      "page": "berry Street was dark except for the desk lamp, and the street under the window had gone quiet. I gave up on bed around eleven and made my peace with the desk chair, which had never once let me sleep.",
+      "card": "The stairs outside creaked twice, some tenant getting home.",
+      "model": "(card default; tried: “The usual.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": "me.” ¶ “The parlor window onto the fire escape won’t latch,” he said. “I showed everybody at the table. I laughed about it.” He wasn’t laughing now. ¶ “When did this happen, as near as you can say?” ¶",
+      "card": "He had it worked out, the way people do when they can’t sleep.",
+      "model": "“I don’t think so,” he said.",
+      "kind": "new",
+      "firstTry": "name: Miss L; name: Miss (capitalised); name: Leggett (capitalised)"
+    },
+    {
+      "page": "was a block of private flats on East Houston Street, six floors with its name over the door in gold script, and a lobby with a mirror, a potted palm and nobody at the desk, because there isn’t a desk.",
+      "card": "Everybody who lives there has a key to the front door.",
+      "model": "Inside, the players come up for the morning without taking them from.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "ll of gas the tenants have been mentioning to each other since spring. ¶ Russo showed me in and stood by the place where Duchess belonged, holding Duchess’s dish as if it might be wanted any minute. ¶",
+      "card": "Nobody minded who came and went.",
+      "model": "(card default; tried: If he went at ten or eleven, whoever took her had a key, and the spare key lives in the sugar tin at Rafferty’s.)",
+      "kind": "card default",
+      "firstTry": "hour: ten; name: Rafferty"
+    },
+    {
+      "page": "I asked Russo to wait in the hall, and went over the parlor by myself. ¶ He told me twice where everything usually was. I let him.",
+      "card": "It was his flat, and it was the only thing he could do.",
+      "model": "(card default; tried: “My evening?)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": "t of habit. Miss Kahane was counting union dues into a cocoa tin. Mrs. Greco was telling her beads with flour still on her hands. ¶ Miss Nowak had been at Russo’s at eight, for the christening supper.",
+      "card": "It was a thread, and I meant to pull it.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " pull it. From his post Sokol could see the bar, the four tables and the door through from the bakery. “I count glasses. Every glass that goes out comes back, and I know whose hand it came back in.” ¶",
+      "card": "The glasses behind the bar caught the light and did nothing else with it.",
+      "model": "(card default; tried: So the Glick flat at eight, with Russo and Teitel, which was what Russo had said.)",
+      "kind": "card default",
+      "firstTry": "hour: eight; name: Glick; name: Russo; name: Teitel"
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Miss Nowak. The barman counts the glasses onto a towel at closing, and when one is short he knows whose it was.",
+      "card": "She had nails painted red and bitten, both.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "Sokol saw me coming before I’d decided to come. That’s the job. I asked him for everybody he’d seen tonight, in order, and nobody left out because he liked them. ¶",
+      "card": "He counted it off on his fingers, and ran out of fingers before he ran out of night.",
+      "model": "(card default; tried: “Seven o’clock, Marchetti, Wehrle and Bledsoe.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: Seven; name: Marchetti; name: Wehrle; name: Bledsoe"
+    },
+    {
+      "page": "very hour of it. Eight o’clock, nobody else. Nine, Dr. Hirsch. Nobody else at all. Ten, Miss Kahane and Mrs. Greco. Nobody else, that hour. Eleven, Miss Nowak, Miss Kahane and Mrs. Greco. Nobody else.",
+      "card": "If there was, there’s a glass I can’t account for, and there isn’t.",
+      "model": "(card default; tried: “Something that moved.”)",
+      "kind": "card default",
+      "firstTry": "length: 3 words (5–32); repeat: ““Something that moved.””"
+    },
+    {
+      "page": "he rails swayed at once. A wooden chair with one short leg stood by the wall, and rocked whenever anything touched it. ¶ Dr. Hirsch was reading a journal with her spectacles pushed up on her forehead.",
+      "card": "She had very clean hands with very short nails, and a gold wedding band she wears on a chain round her neck instead of on the hand.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "stening supper, with Miss Nowak and Mrs. Greco. Nine o’clock I left the christening supper to get some air and went to Sokol’s to settle a bet, and stayed through ten. Nine, I have the cigarette. One.",
+      "card": "I make it last like a good filling.",
+      "model": "(card default; tried: I remember it.”)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 3 words (5–32)"
+    },
+    {
+      "page": "sch had told me Sokol’s at ten, and Sokol’s list said otherwise. I wanted to hear what she made of the pair of them. I turned back to her with my notebook open, which is never good news for anybody. ¶",
+      "card": "“One thing,” I said to her.",
+      "model": "(card default; tried: “My evening!)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": "e two of them, so I went to see if it held. I said who I was, and she took it about as well as people do. She had a copy of Variety rolled in her coat pocket, folded open at the uptown casting news. ¶",
+      "card": "I asked her for her evening, all of it, and kept the other story in my pocket.",
+      "model": "“You are the house,” I said.",
+      "kind": "new",
+      "firstTry": "quotes: unbalanced; name: Peacock; name: Belkin"
+    },
+    {
+      "page": "gray at the top, which was how I knew the morning had started without me. ¶ The milk wagon was two streets off and I could hear every bottle on it, which tells you how quiet the rooming house had got.",
+      "card": "The hall smelled of soda bread and floor polish; the landlady polishes before she sleeps, so the morning finds it done.",
+      "model": "I didn’t find any of it.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "ere was the late Mr. Rafferty’s revolver, in the hall-stand drawer under the winter gloves, unloaded, she says, which is what everybody says. ¶ Mrs. Rafferty was counting the umbrellas on their hooks.",
+      "card": "She had reading glasses pushed up into her gray hair, where she forgets them, and finds them, and forgets them again.",
+      "model": "She had a table near the empty dance floor and was turning a glass slowly round and round by its stem.",
+      "kind": "run8",
+      "firstTry": "name: Mrs.; name: Shapiro"
+    },
+    {
+      "page": "Miss Kahane. Nobody else. Nine, Miss Nowak, Miss Kahane and Mrs. Greco. Nobody else at all. Ten and eleven, nobody but me.” ¶ Miss Nowak said home at ten. Mrs. Rafferty had nobody here at ten o’clock.",
+      "card": "Two stories about her at the same hour, and only one of them could stand.",
+      "model": "(card default; tried: The rest held where I could check it: Miss Moskin had him at the Peacock at seven, with Amato and Teitel, same as he said.)",
+      "kind": "card default",
+      "firstTry": "hour: seven; name: Miss M; name: Moskin; name: Peacock; name: Amato; name: Teitel"
+    },
+    {
+      "page": "at down on the stairs with the form, which is where I do my best paperwork. It was my name at the bottom, so it had better be my reasons above it. ¶ The office stairs had done their bit for the night.",
+      "card": "They’d brought me the case.",
+      "model": "The night was only thing on the third floor.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "ght. My office was a room at the top of the stairs on Mulberry Street, with a desk, a lamp and a coat stand that had outlasted two tenants. Money sat in the office for once instead of a promise of it.",
+      "card": "I lit a cigarette slowly, like a man with a bank account.",
+      "model": "A dead man who has something to hide knocks for him on the street.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "wly, like a man with a bank account. The cold stayed outside the glass where it belonged. ¶ Feet on the stairs, four flights of them, taken slowly. Nobody climbs four flights at midnight for the view.",
+      "card": "My visitor didn’t sit until I told her to.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "up and their opinions to themselves. ¶ Steam heat is the whole reason anybody pays what they pay to live in the Excelsior’s flats, and against the cold the lobby was warm enough to make your nose run.",
+      "card": "A row of brass mailboxes with little windows showed who had letters and who had bills.",
+      "model": "(card default; tried: In the office it was still a little scheck of her arms, a short, low-becked man of a round-corner day, white-white, and white-carmed, with a leather t)",
+      "kind": "card default",
+      "firstTry": "end: does not finish a sentence"
+    },
+    {
+      "page": "o the second floor and plain wood after that, where the builder ran out of marble or interest. ¶ Belkin was in the chair by the table, head down on folded arms, like somebody asleep over the accounts.",
+      "card": "He had his greasepaint still on and a program in his coat pocket, signed to himself.",
+      "model": "(card default; tried: Mrs. Krantz had said she was here at nine and ten.)",
+      "kind": "card default",
+      "firstTry": "hour: nine; name: Mrs.; name: Krantz"
+    },
+    {
+      "page": "I wanted to read them properly. I went through the papers with the lamp pulled close, the way you read a will you aren’t in. ¶ There was a page in there for everybody with a grudge, in a careful hand.",
+      "card": "Every one of them had a reason, and every reason was written down.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "rybody in Belkin’s box had a reason. Fewer of them had been at the flats over Lipsky’s to get the rat poison. ¶ The one to ask was the janitor at the flats over Lipsky’s, who’d been there all night. ¶",
+      "card": "I went over it once more, in case I’d been hasty.",
+      "model": "(card default; tried: Mrs. Sobel had said she was here at seven, and that Miss Moskin was with her at the flats over Lipsky’s at seven.)",
+      "kind": "card default",
+      "firstTry": "hour: seven; name: Mrs.; name: Sobel; name: Miss (capitalised); name: Moskin; name: Lipsky"
+    },
+    {
+      "page": "t. ¶ From his post Wojcik could see the street door and the stoop, from the cellar steps. “I sit on the cellar steps with my pipe, and every pair of shoes that goes up that stoop goes past my nose.” ¶",
+      "card": "The place was out of the night, and so, for a while, was I.",
+      "model": "(card default; tried: Russo, in a camel coat, was finishing a late supper at the kitchen table, with a napkin still tucked into his collar.)",
+      "kind": "card default",
+      "firstTry": "name: Russo"
+    },
+    {
+      "page": "Wojcik’s list had Teitel here at seven and nine. I wanted to hear the other side of it. ¶ He was folding a necktie into a pocket square for a man who hadn’t asked.",
+      "card": "He had a white beard trimmed square, and fingerless gloves from which he can produce change faster than you can see it.",
+      "model": "He sat at the end of the bar with one hand on his knees, saying: “Where were you tonight?”",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "old, with the R gone from OYSTERS. There was sawdust on the floor, fresh at noon and swept into the corners at closing, where it waits for morning. ¶ Demos was writing covers in the book at his stand.",
+      "card": "He had hair parted dead center and flattened with something that smells of violets.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " had Miss Kahane at the flats over Lipsky’s at eight, and that was worth the walk. ¶ From his post Demos could see the whole dining room, from his stand by the door. “A gentleman orders the chop, sir.",
+      "card": "A man with something on his mind orders the soup.",
+      "model": "(card default; tried: The woman with a great deal.”)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced"
+    },
+    {
+      "page": " was smoothing his hair with both palms, as if it might have moved. ¶ I asked him to give me the night the way only the head waiter could: every face, every hour. He seemed pleased somebody had asked.",
+      "card": "Nobody ever asks the one who sees everybody.",
+      "model": "(card default; tried: “My night?)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": "t once while I was under one, which felt personal. ¶ The costume room under the Lyric’s stage was racks and racks of other people: peasants and rabbis, a czar, three brides and a dragon in two halves.",
+      "card": "A sewing machine stood under the only light with a wedding dress half mended across it, beside a box of buttons and a cold glass of tea.",
+      "model": "The waiting room had not died.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "of the costume room at the Lyric and sat down with it. I read the night back to myself, from the office to here, and started at the top of the form. ¶ My cigarette had burned down to my fingers again.",
+      "card": "A man with a bank account would have noticed sooner.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "Midnight. The office was where I’d left it, at the top of four flights on Mulberry Street, which is the only thing about it you could count on. Rent was three weeks gone.",
+      "card": "The envelope wasn’t going to pay itself by sitting on the desk.",
+      "model": "Either it was a stage of the rent owing, and the rent collector, and every word that the desks are paid to.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": " the smoke do the worrying. ¶ The stairs creaked all the way up, and then somebody stood outside my door long enough to change their mind and change it back. My visitor didn’t sit until I told her to.",
+      "card": "She needed help, she said.",
+      "model": "She didn’t think anything, or maybe it was.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "I bent over the table and took it a piece at a time, from one edge to the other. ¶ Mrs. Sobel didn’t come in. I didn’t ask her to. ¶",
+      "card": "There were two glasses on the table, and one of them smelled sweet and chemical.",
+      "model": "(card default; tried: “Eight’s the regulars.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 3 words (5–32); hour: Eight"
+    },
+    {
+      "page": "om him, so I went through them. I went through the papers with the lamp pulled close, the way you read a will you aren’t in. ¶ There was a page in there for everybody with a grudge, in a careful hand.",
+      "card": "Every one of them had a reason, and every reason was written down.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " ¶ A reason is the easy half. The other half was a way to the chloral, and that was at Dr. Hirsch’s surgery. ¶ Glick had been here earlier in the evening, and that was worth the walk to Steinmetz’s. ¶",
+      "card": "I put the room back the way I found it, which is more than whoever came before me had done.",
+      "model": "(card default; tried: The one to ask was the undertaker’s cellar at the Lyric, who’d been there all night.)",
+      "kind": "card default",
+      "firstTry": "name: Lyric"
+    },
+    {
+      "page": "and swept into the corners at closing, where it waits for morning. She had very clean hands with very short nails, and a gold wedding band she wears on a chain round her neck instead of on the hand. ¶",
+      "card": "I asked her for her evening, in order, the way you’d ask for a receipt.",
+      "model": "(card default; tried: “I was at the Odessa at seven, with Steinbach and Hochstetter.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: seven; name: Odessa; name: Steinbach; name: Hochstetter"
+    },
+    {
+      "page": "ind the cage was Wexler’s back room, where the pledges nobody came back for go to wait: coats on rails to the ceiling, a sewing machine, and a stack of wedding photographs in frames, face to the wall.",
+      "card": "It smelled of mothballs and old tobacco, and when the el went by every coat on the rails swayed at once.",
+      "model": "A coffee can do it, and the janitor who do it badly.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "¶ Dr. Hirsch had said Mrs. Ostrow was with her at Dr. Hirsch’s surgery at eight. It was reason enough to look. Nobody minded who came and went. ¶ It was the sort of room people say they were never in.",
+      "card": "I made a note that I was.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "’s at ten. Miss Moskin says she was at Steinmetz’s at ten o’clock, with Dr. Hirsch. One of them was wrong. ¶ The bulb on its cord gave the place all the light it was going to get, which wasn’t much. ¶",
+      "card": "I stopped where I was and went over it again, slowly, the way you reread a letter from the bank.",
+      "model": "The coroner’s note was on the floor where the key had kept its advertisements on the street.",
+      "kind": "new",
+      "firstTry": "name: Lieb"
+    },
+    {
+      "page": "he chair beside her without asking. I’d stopped being company. ¶ “You told me Steinmetz’s at ten,” I said. “I wrote it down. Miss Moskin and Dr. Hirsch had each other at Steinmetz’s at ten o’clock.” ¶",
+      "card": "She closed her eyes for a second, like somebody hearing a bill read out that she’d known was coming.",
+      "model": "(card default; tried: “You might ask about Mrs. Krantz,” he said.)",
+      "kind": "card default",
+      "firstTry": "name: Mrs.; name: Mrs (capitalised); name: Krantz"
+    },
+    {
+      "page": "ything. I wasn’t at Steinmetz’s. I was at the back room at Wexler’s, with Miss Nowak. Ask her.” ¶ That was a hole in Mrs. Ostrow’s story, all right. I wasn’t sure yet it was the one I was looking for.",
+      "card": "An owned-up story is only as good as whoever’s in it with you.",
+      "model": "If I did it held, he had an answer.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "t held. Miss Nowak was saying ‘Number, please’ to nobody, out of habit. She was pale under a cloche hat, with a red mark across the top of her head from the headset that her hair doesn’t quite hide. ¶",
+      "card": "I asked her for her evening, all of it, and kept the other story in my pocket.",
+      "model": "(card default; tried: “Mrs. Pomerantz borrows him most evenings,” he said.)",
+      "kind": "card default",
+      "firstTry": "name: Mrs.; name: Pomerantz"
+    },
+    {
+      "page": "oesn’t quite hide. ¶ I asked her for her evening, all of it, and kept the other story in my pocket. ¶ She took a moment to put the evening in order before she handed it over. ¶ “Number, please. Sorry.",
+      "card": "I mean, what would you like to know?",
+      "model": "(card default; tried: At eight I went to Sokol’s for coffee and pie, and stayed through nine.)",
+      "kind": "card default",
+      "firstTry": "hour: eight; name: Sokol"
+    },
+    {
+      "page": "f it, every railing and every step picked out in white. ¶ The milkman had been to the Excelsior and left a bottle outside every door on every floor, and nobody in the building had seen him come or go.",
+      "card": "That’s the kind of building it is: no doorman, no janitor in sight, and a landlord who lives uptown and sends a man on the first of the month.",
+      "model": "(card default; tried: Miss Kahane, Miss Nowak and Teitel were at the meeting and knew the way in; Mabry wasn’t.)",
+      "kind": "card default",
+      "firstTry": "name: Miss K; name: Kahane; name: Miss (capitalised); name: Nowak; name: Teitel; name: Mabry"
+    },
+    {
+      "page": "looks worse. ¶ Mrs. Krantz was winding her watch at the kitchen table, slowly, like a duty. She was a stout woman in gray, buttoned to the throat, carrying a leather satchel with a brass lock on it. ¶",
+      "card": "Nobody kept a list of who came and went, on paper or in their head.",
+      "model": "“You’re a spy egg,” she said.",
+      "kind": "new",
+      "firstTry": "length: 4 words (5–32)"
+    },
+    {
+      "page": "spare it. Where were you, and who was with you?” Mrs. Krantz counted back through the evening under her breath before saying any of it out loud. ¶ “My evening is in order. Everything I do is in order.",
+      "card": "You may have it in order.",
+      "model": "(card default; tried: Ask her.”)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": "ight. The office on Mulberry Street had one lamp, one chair worth sitting in and one detective, and the detective was in the worst repair of the three. More money in the drawer than bills on the desk.",
+      "card": "The telephone company and the landlady were paid, and some was left over.",
+      "model": "The dead man was his own way he was in the city.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "hone company and the landlady were paid, and some was left over. I didn’t know what people did with that. ¶ The street door banged downstairs, and somebody started up. I put my feet down off the desk.",
+      "card": "It’s the only preparation I make.",
+      "model": "The windows were two way and an old buildings and an hour on display.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "I went over Kaminsky’s table slowly, touching nothing I didn’t have to. ¶ I worked slowly. Amato waited in the hall, and the stairs creaked every time he shifted his weight. ¶",
+      "card": "There were two glasses on the table.",
+      "model": "(card default; tried: Russo was there at seven; Belkin and Kaminsky were there at eight; Glick and Mrs.)",
+      "kind": "card default",
+      "firstTry": "hour: seven; name: Mrs.; name: Russo; name: Belkin; name: Kaminsky; name: Glick; name: Mrs (capitalised)"
+    },
+    {
+      "page": "lse. The other smelled of rye and something sweet and chemical, like a hospital left out in the sun. Under the table, where it had rolled, was an empty brown bottle with a paper label from Rafferty’s.",
+      "card": "The lodgers there keep it on the hall shelf.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "time. Kaminsky kept the papers in a box file, and I sat down with it under the lamp. ¶ There was a page on everybody with a grudge, typed and clipped together, and every page said what the grudge was.",
+      "card": "They’d been kept square, so that nobody got top billing.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "y said. There was a pot of tea stewing on the back of the stove at all hours, offered to everybody, and always too strong to refuse politely. ¶ Mrs. Rafferty was counting the umbrellas on their hooks.",
+      "card": "She had reading glasses pushed up into her gray hair, where she forgets them, and finds them, and forgets them again.",
+      "model": "(card default; tried: Reinhardt had been at Mrs.)",
+      "kind": "card default",
+      "firstTry": "name: Mrs.; name: Reinhardt; name: Mrs (capitalised)"
+    },
+    {
+      "page": "ould see the front door, the stairs and every landing to the top. “I sit on the first landing with the mending till the last one’s in, and nobody gets up my stairs without stepping over the basket.” ¶",
+      "card": "The stairs had opinions about my weight and shared them all the way up.",
+      "model": "(card default; tried: I said.)",
+      "kind": "card default",
+      "firstTry": "length: 2 words (5–32)"
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Mrs. Rafferty. ¶ She was saying a decade of the rosary under her breath, with one eye open.",
+      "card": "I asked her who’d been in tonight, everybody, hour by hour.",
+      "model": "I didn’t have the best.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "ning with water, curb to curb. ¶ Behind its own front door the Excelsior was asleep: a good door, with a brass knob and a wooden wedge holding it open an inch for some tenant who keeps losing his key.",
+      "card": "The lobby mirror gave me back a man who needed a shave and a better coat.",
+      "model": "(card default; tried: Kreuzer stood in the doorway of the parlor and looked at the place where Mimi ought to be, which is a thing you can do for a long time without it helping.)",
+      "kind": "card default",
+      "firstTry": "name: Kreuzer; name: Mimi (capitalised)"
+    },
+    {
+      "page": "kitchen, and on the third floor a smell of gas the tenants have been mentioning to each other since spring. ¶ Russo, in a fur collar, was eating his mother-in-law’s cooking cold out of a covered dish.",
+      "card": "He had soft white hands that are always shuffling a deck, even in church, his mother-in-law says.",
+      "model": "(card default; tried: Mabry had said Mrs.)",
+      "kind": "card default",
+      "firstTry": "length: 4 words (5–32); name: Mrs.; name: Mabry; name: Mrs (capitalised)"
+    },
+    {
+      "page": "he rest of the evening. At nine it was just me; Miss Nowak was there at ten.” ¶ For nine and ten, the hours that mattered, Russo said home, here at Russo’s flat. I took it down the way it was given. ¶",
+      "card": "Sitting with his back to the wall: that was the last I saw of him.",
+      "model": "(card default; tried: I said.)",
+      "kind": "card default",
+      "firstTry": "length: 2 words (5–32)"
+    },
+    {
+      "page": "Sokol’s was a couple of blocks uptown and west. Water ran down the gutters in a hurry, carrying a newspaper with it. ¶ The bakery half of Sokol’s had woken up and the bar half had gone to bed.",
+      "card": "The ovens had the shop warm enough to steam the window, and the first trays of rolls were coming out.",
+      "model": "The lobby was empty and narrow and a tall glass of harders.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "een years. Miss Nowak, in a green hat, was saying ‘Number, please’ to nobody, out of habit. ¶ Kaminsky had been here earlier in the evening. Russo had said Miss Nowak was with him at his place at ten.",
+      "card": "That was reason enough for the walk.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "Sokol was humming a song from the old country into a glass while he dried it. “Who was in tonight?” I said.",
+      "card": "“All of them, hour by hour, and who you didn’t know.”",
+      "model": "(card default; tried: “All of it.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 3 words (5–32)"
+    },
+    {
+      "page": "Nowak had a fresh glass in front of her and the look of somebody who’d meant to stop at the last one. ¶ She was counting out change for a horse she likes. She had nails painted red and bitten, both. ¶",
+      "card": "I asked her where she’d been tonight, and who with, hour by hour.",
+      "model": "She had a good coat and a lace handkerchief in her hand, and the look of somebody who was looking at it.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "ils painted red and bitten, both. ¶ I asked her where she’d been tonight, and who with, hour by hour. She took a moment to put the evening in order before she handed it over. ¶ “Number, please. Sorry.",
+      "card": "I mean, what would you like to know?",
+      "model": "(card default; tried: At eight I went to Sokol’s for the blue-plate supper, with Mrs.)",
+      "kind": "card default",
+      "firstTry": "hour: eight; name: Mrs.; name: Sokol; name: Mrs (capitalised)"
+    },
+    {
+      "page": "Getting to the curtained booth at the back at Steinmetz’s meant a couple of blocks downtown and east. A newspaper went by in the gutter. It might have been the same one.",
+      "card": "It was making better time than I was.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "nhole that the alderman pays for. ¶ Miss Nowak had said Doyle was with her at her place at nine, and that was worth the walk. ¶ No clerk, no doorman, nobody watching the stairs: nobody saw who came. ¶",
+      "card": "I gave the place a minute to show me what it had.",
+      "model": "(card default; tried: “I was at the Velvet Room at eight, with Bledsoe.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: eight; name: Velvet; name: Room (capitalised); name: Bledsoe"
+    },
+    {
+      "page": "e. I’d like your evening, if you can spare it. Where were you, and who was with you?” ¶ He answered straight off, the way people do with an evening they’ve only just finished. ¶ “My friend! Of course.",
+      "card": "Between you and me and the alderman, I’ve nothing to hide, and I’ll prove it at length.",
+      "model": "(card default; tried: Tonight I was at the Lyric at eight, with Mrs.)",
+      "kind": "card default",
+      "firstTry": "hour: eight; name: Mrs.; name: Lyric; name: Mrs (capitalised)"
+    },
+    {
+      "page": "Doyle had said Tierney was with him here at ten, so I went over. ¶ Tierney was singing under his breath about a girl from Galway. He had a green bow tie and a voice like a priest at a christening.",
+      "card": "I asked him to walk me through his night, every stop of it.",
+      "model": "(card default; tried: “My friend!)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": "Doyle was there at ten. Nine, the theater crowd, wanting half a dozen and the check before they’ve sat down.” ¶ For ten, the hour that mattered, he said the curtained booth at the back at Steinmetz’s.",
+      "card": "It went in the notebook in his own words.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "wo chairs and a window on Mulberry Street, and the window was the only one of them with a view. I gave up on bed around eleven and made my peace with the desk chair, which had never once let me sleep.",
+      "card": "The stairs outside creaked twice, some tenant getting home.",
+      "model": "(card default; tried: “When?”)",
+      "kind": "card default",
+      "firstTry": "length: 1 words (5–32)"
+    },
+    {
+      "page": "s how people knock when they’ve made up their minds. My visitor was already diagnosing the room, the stairs and my lack of a secretary before he sat down. ¶ “It’s a silver cigarette case,” Doyle said.",
+      "card": "“It was on the sideboard, where it always is, and now it isn’t.”",
+      "model": "(card default; tried: “I sat down in the back row with it.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced"
+    },
+    {
+      "page": "the Doyle flat was a good walk. A trolley went by with three people on it, all of them asleep, and the conductor looking as if he’d like to be. ¶ I went to the Doyle parlor floor on Stuyvesant Street.",
+      "card": "The house was old and proud of it, with a carpet on the stairs held down by brass rods, and every rod shone.",
+      "model": "The dentist was in the middle of the room, where the police had left it for the Thursday card party.",
+      "kind": "new",
+      "firstTry": "length: 3 words (5–32)"
+    },
+    {
+      "page": "sked Doyle to wait in the hall, and went over the parlor by myself. ¶ Doyle kept out of my way, the way people keep out of the way of a doctor. ¶ There was a clean square in the dust on the sideboard.",
+      "card": "The door had been locked again behind whoever it was, and there wasn’t a mark on it.",
+      "model": "The stairs creaked every time it came down through the street.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "Whoever it was had a key. ¶ So the key that let them in was the spare, and the spare lived in the sugar tin at Kowalski’s. ¶ Marchetti hadn’t told me his evening yet, and he was at the Blue Lantern. ¶",
+      "card": "The aspidistra in the corner hadn’t moved, which is the great thing about aspidistras.",
+      "model": "(card default; tried: “I was at Petrosino’s at eight, for the card party, with Sweeney and Bledsoe.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: eight; name: Petrosino; name: Sweeney; name: Bledsoe"
+    },
+    {
+      "page": "nd and round by its stem. Wehrle had a table near the empty bandstand and was tapping the time of a song nobody was playing. ¶ Whoever keeps the door knows who came through it. That’s the whole job. ¶",
+      "card": "I stood still a moment and let the place get used to me.",
+      "model": "(card default; tried: Not hot ones.)",
+      "kind": "card default",
+      "firstTry": "length: 3 words (5–32)"
+    },
+    {
+      "page": "t nine, with Wehrle, Ellery and Shapiro, which was what Mrs. Kowalski had. That part of the evening, at least, somebody else could vouch for. For ten, the hour that mattered, he said the Blue Lantern.",
+      "card": "I didn’t believe it or disbelieve it.",
+      "model": "(card default; tried: The door opened.)",
+      "kind": "card default",
+      "firstTry": "length: 3 words (5–32)"
+    },
+    {
+      "page": "I didn’t believe it or disbelieve it. I wrote it down. ¶ It turned out Lefkowitz was at the far end of the bar, nursing something. ¶ Winslow had been there all evening with nothing to do but notice. ¶",
+      "card": "The globe was still turning overhead, throwing light at a dance floor that had stopped asking for it.",
+      "model": "(card default; tried: If it held, he had been at the card room over Feingold’s garage at ten, not at the Orpheum.)",
+      "kind": "card default",
+      "firstTry": "hour: ten; name: Feingold; name: Orpheum"
+    },
+    {
+      "page": "ock, and nobody else. They couldn’t both be true, and Winslow had no reason to be the wrong one. Whatever went out of the Doyle flat, something came in here under a coat at eleven and went to Benny. ¶",
+      "card": "I could feel the door behind me, ready to swing wide the moment I turned.",
+      "model": "(card default; tried: The floor at Feldman’s place hadn’t been gone over yet.)",
+      "kind": "card default",
+      "firstTry": "name: Feldman"
+    },
+    {
+      "page": "ere, and Winslow said so. Ellery was at Kowalski’s, and Mrs. Kowalski said so. That left one person who could have had the spare key, with no true account for ten. ¶ I could put it to Marchetti now. ¶",
+      "card": "That was everything I had, and it wasn’t enough yet.",
+      "model": "The doctor had come from here, and that was worth the walk.",
+      "kind": "run8",
+      "firstTry": "length: 3 words (5–32)"
+    },
+    {
+      "page": "I sat down with the form and a pencil. Every question on it had an answer, and every answer had a name and an hour behind it. ¶ The office stairs had done their bit for the night.",
+      "card": "They’d brought me the case.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "ice was a desk, two chairs and a window on Mulberry Street, and the window was the only one of them with a view. I’d paid the landlady on my way up, and she’d counted it on the landing in front of me.",
+      "card": "The stairs felt shorter for it.",
+      "model": "(card default; tried: “Somebody has taken my dachshund,” Hauck said, and then, because I didn’t know, “My Pomeranian.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; name: Hauck; name: Pomeranian (capitalised)"
+    },
+    {
+      "page": "old, and asked straight off what it would cost. I liked her. ¶ “It’s a silver cigarette case,” Shapiro said. “It was on the sideboard, where it always is, and now it isn’t.” ¶ I offered her the chair.",
+      "card": "She sat on the front half of it, which is the half I keep for clients.",
+      "model": "It was a long flat for a long time, with a long memory for a client who has paid for it.",
+      "kind": "new",
+      "firstTry": "length: 4 words (5–32)"
+    },
+    {
+      "page": "t meant a couple of blocks east. My shoes had let the rain in two blocks back, and now they were just carrying it around for me. ¶ I went up to the Shapiro flat over the delicatessen on Second Avenue.",
+      "card": "A narrow stair, a landing with one door on it, and on the door a nameplate that somebody had polished thin.",
+      "model": "(card default; tried: Kessler showed me in and stood by the place where Mimi belonged, holding Duchess’s dish as if it might be wanted any minute.)",
+      "kind": "card default",
+      "firstTry": "name: Kessler; name: Mimi (capitalised); name: Duchess’s (capitalised)"
+    },
+    {
+      "page": "at ten, the flat had been empty, and anybody who’d heard Shapiro at the Bijou had known the way in. That was a room, more or less. It was a big room. ¶ I stood in the doorway a while before I went in.",
+      "card": "Rooms like that don’t like to be rushed.",
+      "model": "The red touring car was still going, but it was enough for a minute.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "I went over the parlor, and then the door, and then the parlor again. ¶ Shapiro told me twice where everything usually was. I let her.",
+      "card": "It was her flat, and it was the only thing she could do.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "after. That made the Bijou the place to start counting. ¶ The ticket seller at the Bijou would have seen everybody who came in. ¶ The china shepherdess had kept her painted patience through all of it.",
+      "card": "I was running low on mine.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Ruggiero. I asked her for a minute, and she gave me one, and kept an eye on the room the whole of it. ¶",
+      "card": "I asked her who she’d seen come and go since the evening started.",
+      "model": "(card default; tried: “Seven o’clock, Grasso, Kessler and Steinbach.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: Seven; name: Grasso; name: Kessler; name: Steinbach"
+    },
+    {
+      "page": "ng came in here under a coat at eleven and went to Benny. I wrote down what Ruggiero had at ten, the hour that mattered: Benny. ¶ The thumb with the callus was twitching for a stub. I didn’t have one.",
+      "card": "I rarely have a ticket for anything.",
+      "model": "The other half did not count it.",
+      "kind": "new",
+      "firstTry": "empty"
+    },
+    {
+      "page": "lock, and nobody else. They couldn’t both be true, and Ruggiero had no reason to be the wrong one. ¶ I buttoned my coat. It came off a rack, and in that company it knew it. ¶ I stopped and took stock.",
+      "card": "Something had come loose, and I wanted to see what it was fastened to.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "oskowitz’s, a Romanian restaurant four steps down on Second Avenue, was still serving at this hour, because on Second Avenue nobody goes home until they’ve argued about something over a plate of food.",
+      "card": "The garlic in the air was thick enough to lean on.",
+      "model": "A man with something worse orders nothing, and asks for somebody else.",
+      "kind": "run8",
+      "firstTry": ""
+    },
+    {
+      "page": "e coats with a menu under his arm, in case anybody wanted one at this hour. Grasso sat at a table by the mirror with a glass of tea, drinking it the old way, through a lump of sugar held in her teeth.",
+      "card": "She had a pianist’s back, bolt upright, and hands that seemed to be waiting to be counted in.",
+      "model": "(card default; tried: Prentiss had said he was here at nine.)",
+      "kind": "card default",
+      "firstTry": "hour: nine; name: Prentiss"
+    },
+    {
+      "page": "I went over to where Vogel could see the whole room, which was where he always was. “You’ve been here all night,” I said. “Who came in, and when?” ¶",
+      "card": "He seemed pleased somebody had asked.",
+      "model": "(card default; tried: “I couldn’t say.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 3 words (5–32)"
+    },
+    {
+      "page": "Midnight. My office was a room at the top of the stairs on Mulberry Street, with a desk, a lamp and a coat stand that had outlasted two tenants. The landlady’s bill was folded under the telephone.",
+      "card": "I’d see it every time the thing didn’t ring.",
+      "model": "I went back to the house for the morning.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "e it every time the thing didn’t ring. I decided not to open it until it did. ¶ Somebody was coming up. At this hour it’s either trouble or a client, and in my experience they climb at the same speed.",
+      "card": "My visitor came in unhurried, as if the hour happened to other people.",
+      "model": "The only thing you noticed was on the first floor, and the street door was open.",
+      "kind": "new",
+      "firstTry": "empty"
+    },
+    {
+      "page": "w blocks uptown and east, and I took it at a good clip. The fog had swallowed the far end of the street and was in no hurry to give it back. ¶ I went to the Broadnax parlor floor on Stuyvesant Street.",
+      "card": "The house was old and proud of it, with a carpet on the stairs held down by brass rods, and every rod shone.",
+      "model": "(card default; tried: The door was unlocked.)",
+      "kind": "card default",
+      "firstTry": "length: 4 words (5–32)"
+    },
+    {
+      "page": " Broadnax stood in the hall with his hands in his pockets, so as not to touch anything, which was more than whoever came before me had managed. ¶ There was a clean square in the dust on the sideboard.",
+      "card": "The door had been locked again behind whoever it was, and there wasn’t a mark on it.",
+      "model": "The coroner’s note came over his shoulder, and ran down the door.",
+      "kind": "new",
+      "firstTry": "length: 4 words (5–32)"
+    },
+    {
+      "page": "s had a key. ¶ So the key that let them in was the spare, and the spare lived in the sugar tin at Rafferty’s. ¶ Somebody at Rafferty’s would have kept count of faces, and that would be the landlady. ¶",
+      "card": "The china shepherdess had kept her painted patience through all of it.",
+      "model": "(card default; tried: Mrs. Pomerantz had said Miss Nowak was with her at the Peacock at nine, and that was worth the walk.)",
+      "kind": "card default",
+      "firstTry": "hour: nine; name: Mrs.; name: Pomerantz; name: Miss (capitalised); name: Nowak; name: Peacock"
+    },
+    {
+      "page": "ere the stair was never out of sight. She had a big ring of keys at her waist and reading glasses pushed up into her hair, and looked at my shoes before my face, to see what they’d do to the stairs. ¶",
+      "card": "A landlady knows every lodger by the sound of their step on the stair, and who came in late by the sound of them trying not to make one.",
+      "model": "The knocks open door, the knocks once and finds them again, and the room was the whole point.",
+      "kind": "new",
+      "firstTry": "name: Ruggiero"
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Mrs. Rafferty. I went over to her and waited until she had a moment, which took a moment. ¶",
+      "card": "I asked her who’d been in tonight, everybody, hour by hour.",
+      "model": "(card default; tried: Eight o’clock, Ainsworth, Sweeney and Cheatham.)",
+      "kind": "card default",
+      "firstTry": "hour: Eight; name: Ainsworth; name: Sweeney; name: Cheatham"
+    },
+    {
+      "page": " and Zeldin had been in here earlier, when the spare key was there for the taking. Margolis hadn’t been in here while it was there to take. For ten, the hour that mattered, Mrs. Rafferty had nobody. ¶",
+      "card": "I wiped my feet, late.",
+      "model": "(card default; tried: I could put it to Weisglass now.)",
+      "kind": "card default",
+      "firstTry": "name: Weisglass"
+    },
+    {
+      "page": "ffee, holding it in both hands for the warmth. ¶ Mrs. Rafferty’s list had Zeldin at Rafferty’s at eight. That was reason enough for the walk. ¶ Nobody kept watch there. It wasn’t that kind of place. ¶",
+      "card": "I gave the place a minute to show me what it had.",
+      "model": "The papers had come in.",
+      "kind": "new",
+      "firstTry": "length: 4 words (5–32)"
+    },
+    {
+      "page": "t ten. Mrs. Rafferty had nobody at Rafferty’s at ten o’clock. One of them was wrong. ¶ Somebody leaned on the chair with the short leg, and it told the whole room about it. ¶ I stopped and took stock.",
+      "card": "Something had come loose, and I wanted to see what it was fastened to.",
+      "model": "The stairs creaked every time it needed a smoke.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "ge. Nobody was with me at eight, nine or eleven.” ¶ That put Zeldin here at ten, and he would swear to it. ¶ The doorkeeper at the Kit Kat would have seen everybody who came in. ¶ I wrote it all down.",
+      "card": "My handwriting at that hour looks like a spider fell in the ink, but I can read it, mostly.",
+      "model": "I could put it to her now.",
+      "kind": "verbatim",
+      "firstTry": "empty"
+    },
+    {
+      "page": "he corner, and there it was. A foghorn was going down on the river, long and low, like somebody with only the one thing to say. ¶ I went up the outside stair to the Kit Kat, a speakeasy over a garage.",
+      "card": "The garage underneath was shut for the night, but the room still smelled of motor oil under the perfume and the cigarettes.",
+      "model": "(card default; tried: Tillman was on the floor, face down.)",
+      "kind": "card default",
+      "firstTry": "name: Tillman"
+    },
+    {
+      "page": "Mosley’s list had Weisglass here at eight and eleven. I wanted the rest of it in her own words. I leaned on the bar next to her and ordered nothing, which got noticed. ¶",
+      "card": "I asked her to tell me her evening, from the beginning, and not to leave out the dull parts.",
+      "model": "(card default; tried: “I was at the Orpheum at seven, with Ashby and Bellucci.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: seven; name: Orpheum; name: Ashby; name: Bellucci"
+    },
+    {
+      "page": "t of the evening. At ten it was just me; Rosenbaum and Margolis were there at eleven.” ¶ Weisglass said the Kit Kat at ten. Mosley had Rosenbaum, Margolis and Lou here at ten o’clock, and nobody else.",
+      "card": "Two stories about her at the same hour, and only one of them could stand.",
+      "model": "(card default; tried: Cheatham had said nine or ten, and at nine Duchess was at the Kit Kat.)",
+      "kind": "card default",
+      "firstTry": "hour: nine; name: Cheatham; name: Duchess (capitalised); name: Kit; name: Kat"
+    },
+    {
+      "page": " at the back of the Kit Kat with the form and a glass of water I hadn’t asked for. A name wants a line under it, and a line wants somebody’s word under that. I went down the form one line at a time. ¶",
+      "card": "The office telephone never had rung tonight.",
+      "model": "(card default; tried: I said.)",
+      "kind": "card default",
+      "firstTry": "length: 2 words (5–32)"
+    },
+    {
+      "page": "Midnight. I was in my office on Mulberry Street, going over the month’s bills by the desk lamp. Flush enough to run the radiator all night, and the radiator, sensing money, actually worked.",
+      "card": "The cold stayed on its side of the glass.",
+      "model": "I was at the desk with the time I had an hour.",
+      "kind": "new",
+      "firstTry": "name: Amato"
+    },
+    {
+      "page": "and gone, and that’s all they did.” ¶ The dead man was a landlord. At half past eleven, Wehrle, who’d come round to collect a debt, found the body in his own flat on the top floor of 12 Ludlow Street.",
+      "card": "The police had a look and called it his heart.",
+      "model": "(card default; tried: The one who found the body was Whitfield, who’d come round to collect a debt.)",
+      "kind": "card default",
+      "firstTry": "name: Whitfield"
+    },
+    {
+      "page": "I went over the table. ¶ Feeney stayed by the door. People in a room with the dead stand where they can leave. ¶",
+      "card": "There were two glasses on the table.",
+      "model": "(card default; tried: Abramowitz had been at the Delmonico rooms earlier, when the spare key was there for the taking.)",
+      "kind": "card default",
+      "firstTry": "name: Abramowitz; name: Delmonico"
+    },
+    {
+      "page": "lse. The other smelled of rye and something sweet and chemical, like a hospital left out in the sun. Under the table, where it had rolled, was an empty brown bottle with a paper label from Kowalski’s.",
+      "card": "The lodgers there keep it on the hall shelf.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "le who wanted something from him, and I wanted to read them properly. I went through Tillman’s papers, one folder at a time. ¶ There was a page in there for everybody with a grudge, in a careful hand.",
+      "card": "Every one of them had a reason, and every reason was written down.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "ed dollars, in his hand. ¶ I put the pages back in their box. A grudge on paper is a long way from Kowalski’s and the chloral. ¶ Quill was at the Odessa, and I didn’t have a word of his evening yet. ¶",
+      "card": "The empty birdcage hung in its corner.",
+      "model": "The bartender had been there all night, and would know who came and went.",
+      "kind": "run8",
+      "firstTry": "quotes: unbalanced"
+    },
+    {
+      "page": " and Bidwell had been here earlier, when the chloral was there for the taking. Wehrle hadn’t been here while it was there to take. That put Bidwell here at nine, by her count. ¶ I wiped my feet, late.",
+      "card": "It didn’t do much for me, but the stairs appreciated it.",
+      "model": "It was where the second floor had been, to take it.",
+      "kind": "new",
+      "firstTry": "length: 4 words (5–32)"
+    },
+    {
+      "page": "Mrs. Kowalski’s list had Winslow here at seven. I wanted to hear the other side of it. I said who I was, and he took it about as well as people do.",
+      "card": "Thin, and bent at the shoulders from years over a sewing machine, he wore clothes too good to have been bought.",
+      "model": "(card default; tried: “I was at my corner from eight through nine.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: eight"
+    },
+    {
+      "page": "r coffee and a newspaper. At ten I went home. Nobody was with me at nine or ten.” ¶ Winslow said home at ten. Mrs. Kowalski had nobody here at ten o’clock. One of them was wrong. ¶ I buttoned my coat.",
+      "card": "It came off a rack, and in that company it knew it.",
+      "model": "(card default; tried: I said.)",
+      "kind": "card default",
+      "firstTry": "length: 2 words (5–32)"
+    },
+    {
+      "page": "t eight. Mrs. Kowalski’s list had Quill at Kowalski’s at eight. It was a thread, and I meant to pull it. Nobody leaves a place like that without paying Moretti, and he looks at every face that pays. ¶",
+      "card": "The room had the late quiet of a place that stays open because nobody ever told it to close.",
+      "model": "(card default; tried: I was at the Bijou, with Lefkowitz and Bellucci.)",
+      "kind": "card default",
+      "firstTry": "name: Bijou; name: Lefkowitz; name: Bellucci"
+    },
+    {
+      "page": "I waited for a gap in Moretti’s night, and when one came I stepped into it. I asked him who’d been here tonight, and said I’d take it untidy, the way it happened. ¶ He answered at once.",
+      "card": "It was all there, the way it always is with somebody whose job is to notice.",
+      "model": "The other half was quiet, and thought it was that it was the only thing I had got to do it for it.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "Moretti’s list had Quill here at seven and nine, so I went over. I took out my pencil, which makes some people nervous and makes the rest feel important. ¶ I asked him where he’d been tonight.",
+      "card": "All of it, in order.",
+      "model": "(card default; tried: “At seven I went up to the Delmonico rooms to see about some money owed, with Reinhardt and Thorndike.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: seven; name: Delmonico; name: Reinhardt; name: Thorndike"
+    },
+    {
+      "page": "e. They couldn’t both be true, and Moretti had no reason to be the wrong one. ¶ The cashier in the change booth at the Automat would have seen everybody who came in. ¶ The door opened. It was neither.",
+      "card": "It hardly ever is, which is how bookmakers stay in business.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "er to the Automat. A coal cart was making its first round, and the man on it had a scarf wound up to his eyes and no intention of talking. ¶ I went into the Automat on Delancey Street, open all night.",
+      "card": "It was a long bright room of little glass doors, each with a sandwich or a slice of pie behind it, and a nickel would open any one of them.",
+      "model": "(card default; tried: “Where were you tonight?”)",
+      "kind": "card default",
+      "firstTry": "length: 4 words (5–32)"
+    },
+    {
+      "page": "¶ Colquitt was in the change booth, stacking nickels into columns of exactly twenty. ¶ Whoever sits in the change booth sees every hand that comes to the glass for nickels, and the faces above them. ¶",
+      "card": "I read the old cough syrup sign again.",
+      "model": "Everybody who comes in, and I sees everybody who comes in, which means he sees the evening from the door.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "lock, Winslow and somebody at the same table I didn’t know. I came on at ten. Before that I couldn’t tell you.” ¶ That put Winslow here at ten, by her count. ¶ The tin sign was still promising relief.",
+      "card": "It had been promising it for years.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "ble with the form, where the light was worst. I read the night back to myself, from the office to here, and started at the top of the form. ¶ The office radiator always knows when there’s money about.",
+      "card": "It would be knocking till morning, pleased with itself.",
+      "model": "It was the only thing you didn’t have to do with it.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "Midnight. My office was a desk, two chairs and a window on Mulberry Street, and the window was the only one of them with a view. The coffee I’d made was cold by the time I remembered it.",
+      "card": "I drank it anyway; it was lighter than holding my head.",
+      "model": "(card default; tried: “It’s Mimi,” she said, “or somebody has taken it, which is worse.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; name: Mimi (capitalised)"
+    },
+    {
+      "page": " been a pawnbroker, and was found dead in his own two rooms over the bakery on Hester Street at half past eleven. The one who found the body was Reinhardt, who heard his radio still going and knocked.",
+      "card": "The police wrote it down as his heart.",
+      "model": "(card default; tried: “The usual.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": " shutters down and the morning papers stacked outside in tied bundles, the day’s bad news already in them and waiting to be untied. ¶ I went up to Sweeney’s two rooms over the bakery on Hester Street.",
+      "card": "Two rooms, a front and a back, with the police gone and the clock on the shelf still ticking, as if nobody had told it.",
+      "model": "(card default; tried: Lathrop sat in the back row with his hat on his knees, as if he had just come in or was just going.)",
+      "kind": "card default",
+      "firstTry": "name: Lathrop"
+    },
+    {
+      "page": "ing he hadn’t touched and his coat still buttoned. ¶ Nobody kept watch there. It wasn’t that kind of place. ¶ If it happened at nine or ten, it happened in this room, and he’d let whoever did it in. ¶",
+      "card": "The place had the stillness of somewhere something has happened, and it wasn’t saying what.",
+      "model": "(card default; tried: For ten, the hour that mattered, Corrigan said home, here at the Delmonico rooms.)",
+      "kind": "card default",
+      "firstTry": "hour: ten; name: Corrigan; name: Delmonico"
+    },
+    {
+      "page": "I went over the table. ¶ Brennan didn’t come in. I didn’t ask him to. ¶",
+      "card": "There were two glasses on the table, and one of them smelled sweet and chemical.",
+      "model": "(card default; tried: “Seven o’clock, Petrosino, Ellery and Dandridge.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: Seven; name: Petrosino; name: Ellery; name: Dandridge"
+    },
+    {
+      "page": "pensary shelf. ¶ So the chloral came from Weiss’s pharmacy, and chloral takes twenty minutes to an hour to do its work. Whoever brought it to Sweeney had been at Weiss’s pharmacy earlier, to get it. ¶",
+      "card": "The radiator was still knocking.",
+      "model": "(card default; tried: Whoever brought it to Crowninshield had been at the Thalia earlier, to get it.)",
+      "kind": "card default",
+      "firstTry": "name: Crowninshield; name: Thalia"
+    },
+    {
+      "page": "hrough the papers with the lamp pulled close, the way you read a will you aren’t in. ¶ There was a page on everybody with a grudge, typed and clipped together, and every page said what the grudge was.",
+      "card": "They’d been kept square, so that nobody got top billing.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "of a lease. ¶ I put the pages back in their box. A grudge on paper is a long way from Weiss’s pharmacy and the chloral. ¶ Brennan had pointed me at Ashby, and that was worth the walk to Moskowitz’s. ¶",
+      "card": "The radiator knocked twice and went quiet, like a neighbor who’d thought better of it.",
+      "model": "I asked him to give me the night the night the way only the landlady could: every face, every hour.",
+      "kind": "run8",
+      "firstTry": "name: Steinbach"
+    },
+    {
+      "page": "up. A cat on a step watched me go by and decided I was nobody’s business, which is the most a cat will do for you. ¶ I went down to Moskowitz’s, a Romanian restaurant four steps down on Second Avenue.",
+      "card": "The place smelled of garlic and grilled meat, there was a basket of bread on every table, and the piano in the corner had a cloth over it for the night.",
+      "model": "(card default; tried: The rest held where I could check it: Mrs.)",
+      "kind": "card default",
+      "firstTry": "name: Mrs."
+    },
+    {
+      "page": "¶ Kavanagh stood by the reservation book at the door with a pencil, crossing out tables nobody would want now. Salerno was finishing a plate of something with the care of somebody who had paid for it.",
+      "card": "Young and tidy and a little tired, she still had the mark of the headset band pressed into her hair.",
+      "model": "Everybody who ate here tonight had to stop at the register, and nobody gets past the table without her knowing why.",
+      "kind": "run8",
+      "firstTry": "hour: nine; name: Steinbach"
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Ashby. I asked if the seat was taken.",
+      "card": "She looked at it for a while before saying it wasn’t.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "Hester Street was where Sweeney lived. ¶ Reinhardt had walked from Moskowitz’s to the Eagle club office at nine. I wanted to know what she’d passed on the way. ¶ My hat had left a mark in my hair too.",
+      "card": "Nobody was paying me by the hour for mine.",
+      "model": "It was what it needed to do.",
+      "kind": "new",
+      "firstTry": "hour: eight; name: Sweeney; name: Bijou; name: Weisglass"
+    },
+    {
+      "page": "ed on the door. A wooden chair with one short leg stood by the wall, and rocked whenever anything touched it. ¶ Reinhardt was on a hard chair by the wall, turning her hat round and round in her hands.",
+      "card": "Round and pleasant and dressed a little too well for a cigar store, she kept her eyes on the door, in case it was the police or a winner.",
+      "model": "(card default; tried: Nobody gets up a drink in a place like that without the one who pours it looking at the night, and Ellery looks at everybody twice.)",
+      "kind": "card default",
+      "firstTry": "name: Ellery"
+    },
+    {
+      "page": "d so. Prentiss hadn’t told me where she was at nine or ten, and nobody else had either. ¶ Before I did anything about it, I wanted to know what Prentiss had passed on the way to Moskowitz’s at nine. ¶",
+      "card": "That was everything I had, and it wasn’t enough yet.",
+      "model": "(card default; tried: Not hot ones.)",
+      "kind": "card default",
+      "firstTry": "length: 3 words (5–32)"
+    },
+    {
+      "page": " since I sat down. “All right. I wasn’t at Moskowitz’s. I was at the Eagle club office, with Steinbach. Ask her, and I’d thank you not to spread it.” ¶ That was a hole in Reinhardt’s story, all right.",
+      "card": "I wasn’t sure yet it was the one I was looking for.",
+      "model": "(card default; tried: If it held, she had been at the print shop at ten, not at the Bijou.)",
+      "kind": "card default",
+      "firstTry": "hour: ten; name: Bijou"
+    },
+    {
+      "page": "ned-up story is only as good as whoever’s in it with you. If it held, she had been at the Eagle club office at ten, not at Moskowitz’s. ¶ It turned out Steinbach was in the corner, out of the light. ¶",
+      "card": "I didn’t sit in the chair with the short leg.",
+      "model": "(card default; tried: Nobody sits down in a restaurant without the head waiter deciding where, and Crowninshield had been doing the deciding.)",
+      "kind": "card default",
+      "firstTry": "name: Crowninshield"
+    },
+    {
+      "page": "Reinhardt had named Steinbach: the Eagle club office at ten, the two of them. Whether that held was the next question. I kept my voice down.",
+      "card": "She kept her eyes on me.",
+      "model": "(card default; tried: “All right.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": "ay, and the streetlamps hadn’t heard about it yet. ¶ Prentiss’s flat on Cannon Street was two rooms and a kitchen at the top of the stairs, behind a doormat that had given up saying welcome years ago.",
+      "card": "A gramophone with a big tin horn stood in the corner, with a record still on it.",
+      "model": "(card default; tried: I went up to Donnelly’s walk-up over the drugstore on Grand Street.)",
+      "kind": "card default",
+      "firstTry": "name: Donnelly; name: Grand (capitalised); name: Street (capitalised)"
+    },
+    {
+      "page": "e corner, with a record still on it. ¶ Prentiss answered the door in her stocking feet, with the lamp behind her. ¶ Salerno had passed Prentiss on Hester Street at ten. That settled where I was going.",
+      "card": "There was nobody on duty, and nobody to ask who had been by.",
+      "model": "The papers were on the floor, where the spare lived.",
+      "kind": "new",
+      "firstTry": "length: 3 words (5–32)"
+    },
+    {
+      "page": "Prentiss kept me standing in the hall, which told me how long the visit was going to be. ¶ I asked her to walk me through her night, every stop of it. ¶ She kept it short.",
+      "card": "Some people do with everybody.",
+      "model": "(card default; tried: “Seven o’clock, Weisglass, Rosenbaum and Ellery.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: Seven; name: Weisglass; name: Rosenbaum; name: Ellery"
+    },
+    {
+      "page": "owitz’s for coffee, with Ashby and Sweeney. Around ten I went home to listen to the radio. Nobody was with me at seven or ten.” ¶ Prentiss said home at ten. Salerno passed her on Hester Street at ten.",
+      "card": "Two stories about her at the same hour, and only one of them could stand.",
+      "model": "(card default; tried: The rest held where I could check it: Steinbach had him at the Coffin flat at eight, with Alfano, and at the Thalia at nine, with Bledsoe, same as he said.)",
+      "kind": "card default",
+      "firstTry": "hour: eight; name: Steinbach; name: Coffin; name: Alfano; name: Thalia; name: Bledsoe"
+    },
+    {
+      "page": "ght. My office was two rooms at the top of a walk-up on Mulberry Street, and the second room was mostly for show. The mirror over the washbasin showed more of the night before than I wanted explained.",
+      "card": "I turned the lamp away from it.",
+      "model": "I looked at the floor at the door.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "trouble or a client, and in my experience they climb at the same speed. My visitor came in with an apology for the hour and a second one for the first, and was well into a third before sitting down. ¶",
+      "card": "He didn’t wait to be asked.",
+      "model": "The police had found him at the desk rather than that, as he said the face was the first time that I’d rather not to get it out.",
+      "kind": "new",
+      "firstTry": "name: Mrs."
+    },
+    {
+      "page": "locks away. My shoes had let the rain in two blocks back, and now they were just carrying it around for me. ¶ Lindemann’s flat on the top floor of 12 Ludlow Street was as high up as the building went.",
+      "card": "The police had been and gone, and left the place with its lamp lit and its door shut, like a shop on a holiday.",
+      "model": "(card default; tried: Sirkin was still up, with the look of somebody who had been about to go to bed for an hour.)",
+      "kind": "card default",
+      "firstTry": "name: Sirkin"
+    },
+    {
+      "page": "wing. ¶ Lindemann was still where they’d found the body, in the chair by the table, as if waiting for something that had come. ¶ Abramowitz was there ahead of me, hat in his hands, turning the brim. ¶",
+      "card": "Nobody in the place was paid to notice who came and went, so nobody had.",
+      "model": "(card default; tried: “I was at Mrs. Nagy’s at seven, with Ellery and Winslow.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: seven; name: Mrs.; name: Mrs (capitalised); name: Nagy; name: Ellery; name: Winslow"
+    },
+    {
+      "page": "I went over Lindemann’s table slowly, touching nothing I didn’t have to. ¶ I worked slowly. Abramowitz waited in the hall, and the stairs creaked every time he shifted his weight. ¶",
+      "card": "There were two glasses on the table.",
+      "model": "(card default; tried: He buys things.)",
+      "kind": "card default",
+      "firstTry": "length: 3 words (5–32)"
+    },
+    {
+      "page": "se. The other smelled of rye and something sweet and chemical, like a hospital left out in the sun. Under the table, where it had rolled, was an empty brown bottle with a paper label from Mrs. Nagy’s.",
+      "card": "The lodgers there keep it on the hall shelf.",
+      "model": "(card default; tried: Ellery had died here, and that was worth the walk.)",
+      "kind": "card default",
+      "firstTry": "name: Ellery"
+    },
+    {
+      "page": "em one at a time. The papers were in a box under the bed, the kind of box people keep for the things they’d rather not file. ¶ There was a page in there for everybody with a grudge, in a careful hand.",
+      "card": "Every one of them had a reason, and every reason was written down.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": ". Pickering: one line, where he was in 1921, and an address. Shapiro: the order that closed her business, with his signature on it. ¶ A reason is the easy half. Everybody in Lindemann’s box had one. ¶",
+      "card": "I didn’t touch the empty birdcage.",
+      "model": "The one to ask was the one.",
+      "kind": "new",
+      "firstTry": "name: Shamrock"
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Mrs. Nagy. I waited for a gap in Mrs. Nagy’s night, and when one came I stepped into it. ¶",
+      "card": "I asked her who’d been here tonight, and said I’d take it untidy, the way it happened.",
+      "model": "(card default; tried: Somebody at Doyle’s place.)",
+      "kind": "card default",
+      "firstTry": "length: 4 words (5–32); name: Doyle"
+    },
+    {
+      "page": "t seven. I didn’t look again.” ¶ I wrote down what Mrs. Nagy had at nine and ten, the hours that mattered: Pickering at both, Kreuzer and Petrosino at nine and Hurwitz at ten. ¶ I wiped my feet, late.",
+      "card": "It didn’t do much for me, but the stairs appreciated it.",
+      "model": "It was what I had told me.",
+      "kind": "new",
+      "firstTry": "name: Mrs."
+    },
+    {
+      "page": "I walked downtown and west to Moe’s. It was a few blocks, and I took all of it. The cat from the step was on a different step now.",
+      "card": "Even the cat had somewhere to be.",
+      "model": "(card default; tried: Weisglass was there at seven; Bledsoe and Wehrle were there at eight.)",
+      "kind": "card default",
+      "firstTry": "hour: seven; name: Weisglass; name: Bledsoe; name: Wehrle"
+    },
+    {
+      "page": "apiro was there at seven; Kreuzer and Pickering were there at eight and nine. Around ten I went round to Shapiro’s for a game of gin.” ¶ For ten, the hour that mattered, Petrosino said Shapiro’s flat.",
+      "card": "I put it with the rest and didn’t argue with it yet.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "ying a newspaper with it. ¶ The print shop on Centre Street, which runs a night shift, printed what the city would read at breakfast, and the presses made sure nobody in the building slept through it.",
+      "card": "You had to shout to say good evening, so nobody did.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "trosino had said Kreuzer was with him at Mrs. Nagy’s at nine. That settled where I was going. ¶ It was the kind of place nobody kept an eye on. ¶ It was the sort of room people say they were never in.",
+      "card": "I made a note that I was.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " stayed through nine, with Petrosino and Pickering. Ten o’clock I went in to the print shop to set type for the morning, with Rafferty.” ¶ For ten, the hour that mattered, Kreuzer said the print shop.",
+      "card": "Whether anything else I held touched it, I’d have to see.",
+      "model": "(card default; tried: Nobody had gone over the table at Dandridge’s place yet, and a room keeps things people forget to mention.)",
+      "kind": "card default",
+      "firstTry": "name: Dandridge"
+    },
+    {
+      "page": "r that mattered, Kreuzer said the print shop. Whether anything else I held touched it, I’d have to see. ¶ It turned out Rafferty was in the corner, out of the light. ¶ The door opened. It was neither.",
+      "card": "It hardly ever is, which is how bookmakers stay in business.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " pulled up a chair across from her. It was that sort of room: everybody pulled up a chair and nobody asked whose. ¶ “Where were you tonight?” I said. “All of it. I’ve got time, and I hope you have.” ¶",
+      "card": "She answered straight off, the way people do with an evening they’ve only just finished.",
+      "model": "(card default; tried: “I haven’t forgotten what my family did to Mrs. Winslow, his friend.”)",
+      "kind": "card default",
+      "firstTry": "name: Mrs.; name: Mrs (capitalised); name: Winslow"
+    },
+    {
+      "page": "nly just finished. ¶ “I was at work, at the print shop all evening. At seven, eight and nine it was just me; Kreuzer was there at ten.” ¶ For ten, the hour that mattered, Rafferty said the print shop.",
+      "card": "It went in the notebook in her own words.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "piro, in a fur collar, was still up, with the look of somebody who had been about to go to bed for an hour. She was neat in a way that took effort: every button done, the collar pinned, the hair flat.",
+      "card": "The hands stayed folded until she needed one, and then only the one.",
+      "model": "(card default; tried: Mrs. Rafferty’s list had Amato at the flats over Lipsky’s at seven, and that was worth the walk to the Lyric.)",
+      "kind": "card default",
+      "firstTry": "hour: seven; name: Mrs.; name: Rafferty; name: Amato; name: Lipsky; name: Lyric"
+    },
+    {
+      "page": "tayed folded until she needed one, and then only the one. ¶ Petrosino had said Shapiro was with him here at ten. That was reason enough for the walk. ¶ There was no one to notice who passed through. ¶",
+      "card": "I took it all in, which didn’t take long, and then took it in again.",
+      "model": "“That’s where the watch lives,” I said, “and I always does.”",
+      "kind": "new",
+      "firstTry": "name: Prentiss; name: Kit; name: Kat"
+    },
+    {
+      "page": "wo chairs and a window on Mulberry Street, and the window was the only one of them with a view. I gave up on bed around eleven and made my peace with the desk chair, which had never once let me sleep.",
+      "card": "The stairs outside creaked twice, some tenant getting home.",
+      "model": "(card default; tried: “When?”)",
+      "kind": "card default",
+      "firstTry": "length: 1 words (5–32)"
+    },
+    {
+      "page": "how people knock when they’ve made up their minds. My visitor was already diagnosing the room, the stairs and my lack of a secretary before he sat down. ¶ “It’s a set of silver spoons,” Kaminsky said.",
+      "card": "“It was in the velvet box in the sideboard drawer, where it always is, and now it isn’t.”",
+      "model": "(card default; tried: “Sit down.”)",
+      "kind": "card default",
+      "firstTry": "length: 2 words (5–32)"
+    },
+    {
+      "page": "king as if he’d like to be. ¶ The Belvedere had no doorman, no janitor and no lock on the street door worth the name, just a loop of string over a nail that everybody in the building knew how to lift.",
+      "card": "The hall was narrow and brown and went straight up into the dark, five flights, with a gas jet turned low on every landing like a night-light in a nursery.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "I asked Kaminsky to wait in the hall, and went over the parlor by myself. ¶ He kept out of my way, the way people keep out of the way of a doctor. ¶ The velvet box in the sideboard drawer was empty.",
+      "card": "The parlor window was up six inches, and there was soot on the sill from the fire escape.",
+      "model": "I was there, with a glass of tea gone cold.",
+      "kind": "new",
+      "firstTry": "name: Miss K; name: Kahane"
+    },
+    {
+      "page": "ock, west. I made a note of it: tonight was going to be about who could walk where in an hour. A trolley went by, with the same people asleep on it for all I knew, going round again for the company. ¶",
+      "card": "Down in the cellar club it was the last set, for the serious drinkers, and the band had slowed to match them.",
+      "model": "(card default; tried: Mrs. Pomerantz had said Miss Moskin was with him at the flats over Lipsky’s at eight.)",
+      "kind": "card default",
+      "firstTry": "hour: eight; name: Mrs.; name: Pomerantz; name: Miss (capitalised); name: Moskin; name: Lipsky"
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Mrs. Szabo. ¶ She was knitting a muffler with no end in sight.",
+      "card": "I asked her who she’d seen come and go since the evening started.",
+      "model": "She had a lady in it with a spoon that was the only part that nobody had asked her to play.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "ght. I asked her who she’d seen come and go since the evening started. ¶ Mrs. Szabo went through it the way you’d count change, carefully and out loud. ¶ “Eight, the dinner crowd. Dinner crowd’s easy.",
+      "card": "They only want to sit down.",
+      "model": "(card default; tried: Nine, Miss Nowak, Mrs.)",
+      "kind": "card default",
+      "firstTry": "length: 4 words (5–32); hour: Nine; name: Miss N; name: Miss (capitalised); name: Nowak; name: Mrs (capitalised)"
+    },
+    {
+      "page": "you. ¶ “Mrs. Szabo has you here at nine. Now tell me the rest of it, from the beginning.” ¶ She thought about it the way you’d think about a step in the dark, and then took it. ¶ “I keep good records.",
+      "card": "You’ll find my evening as precise as a filling, and about as much fun.",
+      "model": "I don’t like to learn.",
+      "kind": "new",
+      "firstTry": "length: 4 words (5–32)"
+    },
+    {
+      "page": "d either. And whatever it was had gone to Marsh, the cigarette girl at the Peacock at eleven. ¶ I could put it to Dr. Hirsch now. Or I could find out first from the usher at the Lyric who’d been in. ¶",
+      "card": "Every story was somebody’s, and not all of them could be true at once.",
+      "model": "The coroner’s note was in the corner, out of the light.",
+      "kind": "run8",
+      "firstTry": "hour: eleven; name: Mrs.; name: Mrs (capitalised)"
+    },
+    {
+      "page": "the most a cat will do for you. ¶ The Lyric had emptied as far as a theater ever empties, which isn’t far: programs on the seats, somebody’s glove, a bag of sunflower seeds spilled in the twelfth row.",
+      "card": "Up in the ventilator over the gallery, the pigeons were rehearsing.",
+      "model": "The shop was a long room with a table and a plate of tea gone cold.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "ice was a desk, two chairs and a window on Mulberry Street, and the window was the only one of them with a view. I’d paid the landlady on my way up, and she’d counted it on the landing in front of me.",
+      "card": "The stairs felt shorter for it.",
+      "model": "(card default; tried: “Somebody has taken my dachshund,” Hauck said, and then, because I didn’t know, “My Pomeranian.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; name: Hauck; name: Pomeranian (capitalised)"
+    },
+    {
+      "page": "respect. Nobody respects my floor. ¶ “It’s my late husband’s gold watch,” Glick said. “It was under a glass dome on the parlor mantel, where it always is, and now it isn’t.” ¶ I offered him the chair.",
+      "card": "He sat on the front half of it, which is the half I keep for clients.",
+      "model": "It didn’t look at a much, and then he didn’t take it untidy, which is what he thought about it.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "he Belvedere was taking it badly: the gutter over the door ran straight onto the stoop, and the tenants had laid an old door across two bricks to walk on, so that coming home was like boarding a ship.",
+      "card": "Inside, wet umbrellas stood open on the stairs to dry, one to a step, five flights up.",
+      "model": "Inside, the bar down a few blocks.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "I went over the parlor, and then the door, and then the parlor again. ¶ Glick told me twice where everything usually was. I let him.",
+      "card": "It was his flat, and it was the only thing he could do.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " empty. ¶ Closing a chop house of the old kind takes an hour, and Steinmetz’s was in the middle of it: the chairs going up table by table, slowly, so as not to hurry anybody who might still order pie.",
+      "card": "The head waiter stood at his stand by the door, writing the last covers in his book in ink.",
+      "model": "(card default; tried: Amato had said Miss Kahane was with him here at nine, and that was worth the walk.)",
+      "kind": "card default",
+      "firstTry": "hour: nine; name: Miss K; name: Amato; name: Miss (capitalised); name: Kahane"
+    },
+    {
+      "page": "hat it had heard. There was a rack of bone-handled steak knives by the kitchen door, counted out at noon and counted back at closing, more or less. ¶ Demos was writing covers in the book at his stand.",
+      "card": "He had hair parted dead center and flattened with something that smells of violets.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Teitel. There was sawdust on the floor, fresh at noon and swept into the corners at closing, where it waits for morning.",
+      "card": "He had a white beard trimmed square, and fingerless gloves from which he can produce change faster than you can see it.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " faster than you can see it. ¶ I asked him to tell me his evening, from the beginning, and not to leave out the dull parts. Teitel nodded, as if it were a fair question, and maybe it was. ¶ “Sit, sit.",
+      "card": "My night you can have, and a tie to go with it.",
+      "model": "(card default; tried: Miss Nowak and Miss Lowenthal were there at seven; Miss Nowak was there at eight; Miss Kahane was there at nine.)",
+      "kind": "card default",
+      "firstTry": "hour: seven; name: Miss N; name: Nowak; name: Miss (capitalised); name: Lowenthal; name: Kahane"
+    },
+    {
+      "page": "Demos was seating a man who would rather have stood. I asked him for everybody he’d seen tonight, in order, and nobody left out because he liked them. ¶ He seemed pleased somebody had asked.",
+      "card": "Nobody ever asks the one who sees everybody.",
+      "model": "(card default; tried: “My evening!)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": "one else, sir. Not in my room. Not without my say-so. Eleven: somebody came in with something under a coat and went straight to Tierney, and it changed hands. I was watching the coat, not the face.” ¶",
+      "card": "“Under the coat,” I said.",
+      "model": "(card default; tried: So the Doyle flat at eight, with Mabry and Kaminsky, which was what Mrs.)",
+      "kind": "card default",
+      "firstTry": "hour: eight; name: Mrs.; name: Doyle; name: Mabry; name: Kaminsky; name: Mrs (capitalised)"
+    },
+    {
+      "page": " who wasn’t coming out in this. ¶ The Lyric had emptied as far as a theater ever empties, which isn’t far: programs on the seats, somebody’s glove, a bag of sunflower seeds spilled in the twelfth row.",
+      "card": "Up in the ventilator over the gallery, the pigeons were rehearsing.",
+      "model": "The lobby was a row of wet hats, the kind of a pinned to the temples, the room going down to the window.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "r seeds out of one palm and putting the shells in the other. Miss Moskin was eating a knish in full costume. ¶ Teitel had said he was here at nine. Demos’s list had Mrs. Ostrow at Steinmetz’s at nine.",
+      "card": "That settled where I was going.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "Midnight. My office was a room at the top of the stairs on Mulberry Street, with a desk, a lamp and a coat stand that had outlasted two tenants. The landlady’s bill was folded under the telephone.",
+      "card": "I’d see it every time the thing didn’t ring.",
+      "model": "I went back to the house for the morning.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "e it every time the thing didn’t ring. I decided not to open it until it did. ¶ Somebody was coming up. At this hour it’s either trouble or a client, and in my experience they climb at the same speed.",
+      "card": "My visitor came in unhurried, as if the hour happened to other people.",
+      "model": "The only thing you noticed was on the first floor, and the street door was open.",
+      "kind": "new",
+      "firstTry": "empty"
+    },
+    {
+      "page": "n no hurry to give it back. ¶ The Belvedere had no doorman, no janitor and no lock on the street door worth the name, just a loop of string over a nail that everybody in the building knew how to lift.",
+      "card": "The hall was narrow and brown and went straight up into the dark, five flights, with a gas jet turned low on every landing like a night-light in a nursery.",
+      "model": "A fellow’s the side, of a corner you had been to the house, to keep it from the street, or not the own night.",
+      "kind": "new",
+      "firstTry": "empty"
+    },
+    {
+      "page": "y. ¶ Mrs. Blau stood in the hall with her hands in her pockets, so as not to touch anything, which was more than whoever came before me had managed. ¶ The velvet box in the sideboard drawer was empty.",
+      "card": "The key was back under the mat, and there wasn’t a mark on the door.",
+      "model": "It had been broken once and gone cold, so that it had it had kept it just the long memory for me to take the rumble to the rail.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Sokol. He was wiping flour off the gin bottles. ¶",
+      "card": "“I need the whole night,” I said.",
+      "model": "(card default; tried: So it was somebody who’d heard Salerno at the chop house between eight and ten, and had come here after.)",
+      "kind": "card default",
+      "firstTry": "hour: eight; name: Salerno"
+    },
+    {
+      "page": "I need the whole night,” I said. “Everybody who was here, hour by hour, and anybody you didn’t know.” Sokol went through it the way you’d count change, carefully and out loud. ¶ “Eight’s the regulars.",
+      "card": "I pour before they ask.",
+      "model": "(card default; tried: Nine, Doyle, Doyle and Mrs.)",
+      "kind": "card default",
+      "firstTry": "hour: Nine; name: Mrs.; name: Doyle; name: Mrs (capitalised)"
+    },
+    {
+      "page": "rest of that evening. He was eating a baked potato out of his coat pocket. Teitel had a white beard trimmed square, and fingerless gloves from which he can produce change faster than you can see it. ¶",
+      "card": "“Tell me where you were tonight,” I said.",
+      "model": "(card default; tried: I said.)",
+      "kind": "card default",
+      "firstTry": "length: 2 words (5–32)"
+    },
+    {
+      "page": " faster than you can see it. ¶ “Tell me where you were tonight,” I said. “Every hour, and anybody who can say so.” ¶ He told it the way you give somebody directions, landmark by landmark. ¶ “Sit, sit.",
+      "card": "My night you can have, and a tie to go with it.",
+      "model": "(card default; tried: At seven I went to the flats over Lipsky’s to see about some money owed, with Miss Nowak and Glick.)",
+      "kind": "card default",
+      "firstTry": "hour: seven; name: Miss N; name: Lipsky; name: Miss (capitalised); name: Nowak; name: Glick"
+    },
+    {
+      "page": "The card room over Feingold’s garage was round the corner. The fog was still at the end of whatever street I was on. It followed me better than I follow people. ¶",
+      "card": "The card room over the garage was down to one table, four players and a pot nobody mentioned.",
+      "model": "(card default; tried: Kaminsky had told me home at ten, and Mrs.)",
+      "kind": "card default",
+      "firstTry": "hour: ten; name: Mrs.; name: Kaminsky; name: Mrs (capitalised)"
+    },
+    {
+      "page": "Dr. Hirsch was reading a journal with her spectacles pushed up on her forehead. ¶ “Sokol has you at Sokol’s at eight. Fill in the rest of the evening for me, in order.”",
+      "card": "She thought about it the way you’d think about a step in the dark, and then took it.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "Dr. Hirsch had told me Sokol’s at ten, and Sokol’s list said otherwise. I wanted to hear what she would say to that. I turned back to her with my notebook open, which is never good news for anybody. ¶",
+      "card": "“Let me read you something back,” I said.",
+      "model": "(card default; tried: “My evening!)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": "Dr. Hirsch had named Belkin: the card room over Feingold’s garage at ten, the two of them. An owned-up story needs somebody to stand behind it. He was practicing a death scene in the nearest mirror.",
+      "card": "He had a ring on every finger but one, and a pale band of skin on that one.",
+      "model": "He had a reason for a week, and he had never heard it alone.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "me at eight, nine or eleven.” ¶ That put Dr. Hirsch here at ten, and he would swear to it. ¶ The janitor at the flats over Lipsky’s sees every face that comes through the door. I wanted all of them. ¶",
+      "card": "Signing a program nobody asked him to sign: that was the last I saw of him.",
+      "model": "(card default; tried: I said.)",
+      "kind": "card default",
+      "firstTry": "length: 2 words (5–32)"
+    },
+    {
+      "page": "pers stacked outside in tied bundles, the day’s bad news already in them and waiting to be untied. ¶ The flats over Lipsky’s were waking from the top down, a light on the fifth floor, then the fourth.",
+      "card": "In the street the first pushcart man was already untying his tarpaulin.",
+      "model": "On the receptionist’s was dark.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "Wojcik was answering the fourth floor by banging a pipe with a wrench. “Who was in tonight?” I said.",
+      "card": "“All of them, hour by hour, and who you didn’t know.”",
+      "model": "(card default; tried: “All of it.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 3 words (5–32)"
+    },
+    {
+      "page": "rsch. Nobody else at all. Ten and eleven, nobody.” ¶ Teitel said home at ten. The janitor had nobody here at ten o’clock. One of them was wrong. Wojcik had Dr. Hirsch here at nine, same as she said. ¶",
+      "card": "Shoveling coal into the boiler: that was the last I saw of him.",
+      "model": "(card default; tried: Miss Kahane had said ten or eleven, and at ten Mimi was at the Lyric.)",
+      "kind": "card default",
+      "firstTry": "hour: ten; name: Miss K; name: Kahane; name: Mimi (capitalised); name: Lyric"
+    },
+    {
+      "page": "I sat on a hard chair in the hall with the form on my knee. A name wants a line under it, and a line wants somebody’s word under that. I went down the form one line at a time. ¶",
+      "card": "The office telephone never had rung tonight.",
+      "model": "(card default; tried: “Seven o’clock, Renfro and Reinhardt.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: Seven; name: Renfro; name: Reinhardt"
+    },
+    {
+      "page": "Midnight. I was in my office on Mulberry Street, going over the month’s bills by the desk lamp. Flush enough to run the radiator all night, and the radiator, sensing money, actually worked.",
+      "card": "The cold stayed on its side of the glass.",
+      "model": "I was at the desk with the time I had an hour.",
+      "kind": "new",
+      "firstTry": "name: Amato"
+    },
+    {
+      "page": "l they did.” ¶ The dead man was the card-room keeper. At half past eleven, Miss Lowenthal, who’d come to return a borrowed book, found the body in his own flat in the Excelsior on East Houston Street.",
+      "card": "The police had a look and called it his heart.",
+      "model": "The one to ask was the best I was there.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "f gas the tenants have been mentioning to each other since spring. ¶ Russo was in the chair with the head to one side, like somebody dozing over the evening paper, except that nobody dozes that still.",
+      "card": "He had a fresh deck in his breast pocket, still in its band, and his green eyeshade in his hand.",
+      "model": "(card default; tried: Mrs. Blau had been drinking with a glass of tea, the old way, through a lump of sugar held in his teeth.)",
+      "kind": "card default",
+      "firstTry": "name: Mrs.; name: Blau"
+    },
+    {
+      "page": "the door, gloves in her hand. ¶ Nobody minded who came and went. ¶ If it happened at nine or ten, it happened in this room, and whoever did it had walked in here with the rat poison already in hand. ¶",
+      "card": "I found somewhere to stand that wasn’t in anybody’s way.",
+      "model": "The coroner’s note was still in his hand.",
+      "kind": "new",
+      "firstTry": "hour: ten; name: Teitel; name: Duchess (capitalised); name: Lipsky"
+    },
+    {
+      "page": "I went over the table. ¶ Mrs. Greco stayed by the door. People in a room with the dead stand where they can leave. ¶",
+      "card": "A cup of cocoa gone cold, bitter at the bottom.",
+      "model": "(card default; tried: I said.)",
+      "kind": "card default",
+      "firstTry": "length: 2 words (5–32)"
+    },
+    {
+      "page": "ople who wanted something from him, and I wanted to read them properly. I went through Russo’s papers, one folder at a time. ¶ There was a page in there for everybody with a grudge, in a careful hand.",
+      "card": "Every one of them had a reason, and every reason was written down.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "l owing. ¶ I put the pages back in their box. A grudge on paper is a long way from the flats over Lipsky’s and the rat poison. ¶ The one to ask was the barman at Sokol’s, who’d been there all night. ¶",
+      "card": "I wrote down what I’d found and where, before I could start remembering it differently.",
+      "model": "(card default; tried: “When was this?”)",
+      "kind": "card default",
+      "firstTry": "length: 3 words (5–32)"
+    },
+    {
+      "page": ", which is the most a cat will do for you. ¶ The bar behind Sokol’s bakery was shut, which there means the chairs were up and the barman was still at it, drying glasses and counting them onto a towel.",
+      "card": "In the front the ovens were coming back up for the morning.",
+      "model": "The chop house looked the second time, which in a restaurant without a place to be, which is what a thing you can do for.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "r tables and the door through from the bakery. “A man drinks the same thing on the same stool every night of his life. When the stool is empty, I notice. When a stranger sits on it, I notice twice.” ¶",
+      "card": "I stood still and listened.",
+      "model": "(card default; tried: So the flats over Lipsky’s at seven, with Mabry and Miss Moskin, which was what Russo had said.)",
+      "kind": "card default",
+      "firstTry": "hour: seven; name: Miss M; name: Lipsky; name: Mabry; name: Miss (capitalised); name: Moskin; name: Russo"
+    },
+    {
+      "page": "o since the evening started. ¶ He answered at once. It was all there, the way it always is with somebody whose job is to notice. ¶ “Seven, I take the last tray out and unlock the door that says flour.",
+      "card": "One job stops, the other one starts.",
+      "model": "(card default; tried: Eight o’clock, Zeldin, Bidwell and Alfano.)",
+      "kind": "card default",
+      "firstTry": "hour: Eight; name: Zeldin; name: Bidwell; name: Alfano"
+    },
+    {
+      "page": "esh. Doyle and Russo were there at eight and nine; at ten it was just me.” ¶ Kaminsky said Sokol’s at ten. Sokol had Doyle and Dr. Hirsch here at ten o’clock, and nobody else. One of them was wrong. ¶",
+      "card": "Shadowboxing in a corner, very quietly, so as not to bother anybody: that was the last I saw of him.",
+      "model": "(card default; tried: The door opened.)",
+      "kind": "card default",
+      "firstTry": "length: 3 words (5–32)"
+    },
+    {
+      "page": "hard Street has ever got out. Miss Lowenthal was playing a nocturne very slowly with the soft pedal down. ¶ Sokol’s list had Miss Lowenthal at Sokol’s at seven. Kaminsky had said he was here at seven.",
+      "card": "It was a thread, and I meant to pull it.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "Wojcik met me at the foot of the stairs, which is where he met everybody. “Who was in tonight?” I said.",
+      "card": "“All of them, hour by hour, and who you didn’t know.”",
+      "model": "(card default; tried: “All of it.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 3 words (5–32)"
+    },
+    {
+      "page": "up to his eyes and no intention of talking. ¶ The stock room behind the Peacock’s bar was crates of ginger ale stacked to the ceiling and, behind the ginger ale, crates of what the ginger ale was for.",
+      "card": "There was one chair, one bulb and a calendar from a funeral supply company with a different coffin for every month, and somebody had drawn a mustache on March.",
+      "model": "The room was a man who would rather be seen seen everybody who came in, and had a bar close enough to look at the mirror behind it.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "oks drawn on, and might have been. ¶ Mabry had the room from the hour that mattered, and not before. Before that, he said, it was anybody’s. ¶ I read the old cough syrup sign again. Relief guaranteed.",
+      "card": "I’d have settled for less.",
+      "model": "He was reading the bills for next week as if they might change.",
+      "kind": "run8",
+      "firstTry": ""
+    },
+    {
+      "page": "Midnight. My office was a desk, two chairs and a window on Mulberry Street, and the window was the only one of them with a view. The coffee I’d made was cold by the time I remembered it.",
+      "card": "I drank it anyway; it was lighter than holding my head.",
+      "model": "(card default; tried: “It’s Mimi,” she said, “or somebody has taken it, which is worse.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; name: Mimi (capitalised)"
+    },
+    {
+      "page": "¶ Doyle had been the alderman’s clerk, and was found dead in his own flat in the Excelsior on East Houston Street at half past eleven. The one who found the body was Amato, who’d come to settle a bet.",
+      "card": "The police wrote it down as his heart.",
+      "model": "(card default; tried: “The usual.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": "fter midnight East Houston Street was trolley wires and wet light, and the Excelsior’s front door was the only one on the block with a brass kick plate polished by tenants’ shoes instead of a janitor.",
+      "card": "Inside, the stairs went up into the dark from a lobby lamp nobody owns, past landings where every door had its tenant’s name in a little brass frame.",
+      "model": "The next day was over, the janitor was still warm, like somebody was in a game of a woman who had seen him in.",
+      "kind": "new",
+      "firstTry": "hour: midnight"
+    },
+    {
+      "page": "oor and plain wood after that, where the builder ran out of marble or interest. ¶ Doyle sat in the chair with both hands in the lap. If you didn’t know, you’d have said asleep, and lowered your voice.",
+      "card": "He had a carnation in his buttonhole and his little black book in his waistcoat, the rubber band still round it.",
+      "model": "(card default; tried: “You mean?”)",
+      "kind": "card default",
+      "firstTry": "length: 2 words (5–32)"
+    },
+    {
+      "page": "I went over the table. ¶ Belkin didn’t come in. I didn’t ask him to. ¶",
+      "card": "There were two glasses on the table.",
+      "model": "He looked at me for a moment.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "lse. The other smelled of rye and something sweet and chemical, like a hospital left out in the sun. Under the table, where it had rolled, was an empty brown bottle with a paper label from Rafferty’s.",
+      "card": "The lodgers there keep it on the hall shelf.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "hrough the papers with the lamp pulled close, the way you read a will you aren’t in. ¶ There was a page on everybody with a grudge, typed and clipped together, and every page said what the grudge was.",
+      "card": "They’d been kept square, so that nobody got top billing.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "or you. ¶ Closing a chop house of the old kind takes an hour, and Steinmetz’s was in the middle of it: the chairs going up table by table, slowly, so as not to hurry anybody who might still order pie.",
+      "card": "The head waiter stood at his stand by the door, writing the last covers in his book in ink.",
+      "model": "(card default; tried: Doyle had said Mrs.)",
+      "kind": "card default",
+      "firstTry": "length: 4 words (5–32); name: Mrs.; name: Doyle; name: Mrs (capitalised)"
+    },
+    {
+      "page": "ver what it had heard. There was the swinging door to the kitchen, with a porthole in it greased over so the dining room can’t see what goes into the chops. ¶ Demos was holding a fork up to the light.",
+      "card": "He had hair parted dead center and flattened with something that smells of violets.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " eight; Teitel was there at nine. Then at ten I went to Steinmetz’s for coffee and pie, with Teitel.” ¶ For nine and ten, the hours that mattered, Amato said Rafferty’s at nine and Steinmetz’s at ten.",
+      "card": "I wrote it down and left it standing, for now.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "Demos had been here all night to see who came and went. ¶ I went over to where he could see the whole room, which was where he always was. I asked him who’d been in tonight, everybody, hour by hour. ¶",
+      "card": "He looked at the door, as if the night were written on it, and started.",
+      "model": "(card default; tried: “Seven o’clock, Coffin, Reinhardt and Salerno.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: Seven; name: Coffin; name: Reinhardt; name: Salerno"
+    },
+    {
+      "page": "Demos’s list had Miss Nowak here at eight. I wanted to hear the other side of it. She was counting out change for a horse she likes.",
+      "card": "She had nails painted red and bitten, both.",
+      "model": "(card default; tried: “Certainly.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 1 words (5–32)"
+    },
+    {
+      "page": "Miss Nowak had said Teitel was with her here at eight. That was reason enough to ask. He was eating a baked potato out of his coat pocket.",
+      "card": "He had a necktie of his own so loud it seems to be shouting for the others.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "I walked east to Mrs. Krantz’s flat. It was a couple of blocks, and I took all of it. The cat from the step was on a different step now.",
+      "card": "Even the cat had somewhere to be.",
+      "model": "(card default; tried: Doyle had said Miss Nowak was with her here at seven, and that was worth the walk.)",
+      "kind": "card default",
+      "firstTry": "hour: seven; name: Miss N; name: Doyle; name: Miss (capitalised); name: Nowak"
+    },
+    {
+      "page": "s a stout woman in gray, buttoned to the throat, carrying a leather satchel with a brass lock on it. ¶ Teitel had passed Mrs. Krantz on East Houston Street at ten. That was reason enough for the walk.",
+      "card": "It was the kind of place nobody kept an eye on.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " Nine is a good hour for rent: people are fed, and home, and feeling guilty. Nobody was with me at seven, nine or ten.” ¶ Mrs. Krantz said home at ten. Teitel passed her on East Houston Street at ten.",
+      "card": "One of them was wrong.",
+      "model": "(card default; tried: The rest held where I could check it: Miss Kahane had her at the Krantz flat at eight, with Mrs.)",
+      "kind": "card default",
+      "firstTry": "hour: eight; name: Miss K; name: Kahane; name: Krantz; name: Mrs (capitalised)"
+    },
+    {
+      "page": "Mabry was writing a tune on the back of an envelope. “You’ve been here all night,” I said. “Who came in, and when?” ¶",
+      "card": "He seemed pleased somebody had asked.",
+      "model": "(card default; tried: “All right.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": "ght. My office was two rooms at the top of a walk-up on Mulberry Street, and the second room was mostly for show. The mirror over the washbasin showed more of the night before than I wanted explained.",
+      "card": "I turned the lamp away from it.",
+      "model": "I looked at the floor at the door.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "trouble or a client, and in my experience they climb at the same speed. My visitor came in with an apology for the hour and a second one for the first, and was well into a third before sitting down. ¶",
+      "card": "She didn’t wait to be asked.",
+      "model": "(card default; tried: Mrs. Greco had died here.)",
+      "kind": "card default",
+      "firstTry": "name: Mrs.; name: Greco"
+    },
+    {
+      "page": "or me. ¶ Rain came down East Houston Street at a slant, and the Excelsior’s awning, green canvas with the name on the scallops, was holding a pond of it that let go every time the wind got underneath.",
+      "card": "The lobby mat had given up, and the tiles were wet all the way to the foot of the stairs, where the marble begins and the wiping stops.",
+      "model": "It was a good flat for the night.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "ce was paid to notice who came and went, so nobody had. ¶ If it happened at nine or ten, it happened in this room, and he’d let whoever did it in. ¶ I kept my hands in my pockets for the first minute.",
+      "card": "A room should be looked at before it’s touched.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "I went over Belkin’s table slowly, touching nothing I didn’t have to. ¶ I worked slowly. Mrs. Krantz waited in the hall, and the stairs creaked every time she shifted her weight. ¶",
+      "card": "A cup of cocoa gone cold, bitter at the bottom.",
+      "model": "(card default; tried: Teitel had said Miss Lowenthal was with him at Sokol’s at seven, and that was worth the walk.)",
+      "kind": "card default",
+      "firstTry": "hour: seven; name: Miss L; name: Teitel; name: Miss (capitalised); name: Lowenthal; name: Sokol"
+    },
+    {
+      "page": "em one at a time. The papers were in a box under the bed, the kind of box people keep for the things they’d rather not file. ¶ There was a page in there for everybody with a grudge, in a careful hand.",
+      "card": "Every one of them had a reason, and every reason was written down.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "beside it. Miss Kahane: a complaint he’d made against her, in triplicate. Amato: a page on his old flame, with his name at the bottom. ¶ A reason is the easy half. Everybody in Belkin’s box had one. ¶",
+      "card": "That was all the room had to tell me, and it had told it without being asked twice.",
+      "model": "A woman with a cane, was eating a sandwich at the kitchen table, like a man in a funeral.",
+      "kind": "run8",
+      "firstTry": ""
+    },
+    {
+      "page": "me go by and decided I was nobody’s business, which is the most a cat will do for you. ¶ The bakery cellar under Sokol’s was flour, coal and a row of sourdough crocks with cloths over them, breathing.",
+      "card": "The ceiling was the oven floor, warm to the hand, and a bulb on a cord lit a stool and an upturned crate with a bottle on it that wasn’t vanilla.",
+      "model": "A bulb hung over the light with a cloth over it, one arm drawn up to the street, and a calendar from the delicatessen on the door to the wall.",
+      "kind": "run8",
+      "firstTry": ""
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Mrs. Sobel. She was knitting a baby’s cap of no particular size. ¶",
+      "card": "I asked her for her evening, in order, the way you’d ask for a receipt.",
+      "model": "(card default; tried: “My evening.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": "cular size. ¶ I asked her for her evening, in order, the way you’d ask for a receipt. She told it the way you give somebody directions, landmark by landmark. ¶ “Sit, sit. I delivered half this street.",
+      "card": "I can deliver an evening.",
+      "model": "(card default; tried: I have the spoons.)",
+      "kind": "card default",
+      "firstTry": "length: 4 words (5–32)"
+    },
+    {
+      "page": "e at ten, and I wanted the rest of that evening. ¶ He was weighing a wristwatch in his palm without looking at it. He had a diamond pinky ring a size too small, so that the finger has grown around it.",
+      "card": "I asked him where he’d been tonight.",
+      "model": "(card default; tried: “I was home at the flats over Lipsky’s from seven through eight.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; hour: seven; name: Lipsky"
+    },
+    {
+      "page": "obel was there at ten. Eight, the working men come for a dollar on tomorrow. I give them a pencil and some hope.” ¶ For nine and ten, the hours that mattered, Fishel said the bakery cellar at Sokol’s.",
+      "card": "I wrote it down and left it standing, for now.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "I set off east for the Peacock. It was a couple of blocks. The cat from the step was on a different step now.",
+      "card": "Even the cat had somewhere to be.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "ember. I don’t like enough faces to forget any.” ¶ I wrote down what Mrs. Szabo had at nine and ten, the hours that mattered: Mrs. Blau and Belkin at nine and somebody in a sailor’s pea coat at ten. ¶",
+      "card": "Explaining to a large man why he was going home: that was the last I saw of her.",
+      "model": "(card default; tried: The table at the Peacock would have a reason.)",
+      "kind": "card default",
+      "firstTry": "name: Peacock"
+    },
+    {
+      "page": "d Amato were there at seven and eight; Mrs. Sobel and Amato were there at nine. At ten I went round to Miss Kahane’s for a game of gin.” ¶ For ten, the hour that mattered, she said Miss Kahane’s flat.",
+      "card": "I didn’t believe it or disbelieve it.",
+      "model": "(card default; tried: Mrs. Pomerantz said home at eleven.)",
+      "kind": "card default",
+      "firstTry": "hour: eleven; name: Mrs.; name: Pomerantz"
+    },
+    {
+      "page": "y’s, east, with my collar up. Water ran down the gutters in a hurry, carrying a newspaper with it. ¶ The flats over Lipsky’s were waking from the top down, a light on the fifth floor, then the fourth.",
+      "card": "In the street the first pushcart man was already untying his tarpaulin.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "Midnight. I was in the office on Mulberry Street with my feet on the desk and the radio turned down low. The rent was two weeks late, and the landlady had stopped knocking about it, which was worse.",
+      "card": "Outside the window the night was clear, the street lamps sharp as far as the corner.",
+      "model": "(card default; tried: “The usual.)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    },
+    {
+      "page": "rtner. As of tonight I’m nobody’s.” ¶ Mosley was a moneylender. At half past eleven, Margolis, who’d come round to collect a debt, found the body in his own walk-up over the drugstore on Grand Street.",
+      "card": "The police had a look and called it his heart.",
+      "model": "(card default; tried: The one who found the body was Doyle, who’d come round to collect a debt.)",
+      "kind": "card default",
+      "firstTry": "name: Doyle"
+    },
+    {
+      "page": "ox under the bed, the kind of box people keep for the things they’d rather not file. ¶ There was a page on everybody with a grudge, typed and clipped together, and every page said what the grudge was.",
+      "card": "They’d been kept square, so that nobody got top billing.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " had a reason. Fewer of them had been at the Delmonico rooms to get the laudanum. ¶ Schilling was at the Kit Kat, and I didn’t have a word of his evening yet. ¶ The calendar went on saying last month.",
+      "card": "In that room, it might as well.",
+      "model": "(card default; tried: The floor at the Kit Kat would be in.)",
+      "kind": "card default",
+      "firstTry": "name: Kit; name: Kat"
+    },
+    {
+      "page": "they’d do to the stairs. Stannard was at the sink with his sleeves rolled up, and dried his hands slowly before he turned round. ¶ The laudanum had come from here. That was reason enough for the walk.",
+      "card": "A landlady who sits on her stairs knows who used them.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "s a few blocks to Mosley’s place, uptown and east. I made a note of it: tonight was going to be about who could walk where in an hour. The dance hall crowd would have finished saying goodnight by now.",
+      "card": "It had taken them long enough, but they’d done it properly.",
+      "model": "A man who took his pipe out and knocked him on the street.",
+      "kind": "new",
+      "firstTry": "hour: seven; name: Miss L; name: Lieb; name: Miss (capitalised); name: Lowenthal; name: Mrs (capitalised)"
+    },
+    {
+      "page": "osley threw me out of a lease,” he said. “I did everything right. It didn’t matter. It never does, with a man like that.” ¶ That was Stannard’s reason, in his own words. Rosenbaum hadn’t mentioned it.",
+      "card": "A reason is the easy half.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "uptown and west. A cat on a step watched me go by and decided I was nobody’s business, which is the most a cat will do for you. ¶ I went up the outside stair to the Kit Kat, a speakeasy over a garage.",
+      "card": "The garage underneath was shut for the night, but the room still smelled of motor oil under the perfume and the cigarettes.",
+      "model": "(card default; tried: Donnelly was on the floor, face up, with one arm flung out and the eyes on the ceiling.)",
+      "kind": "card default",
+      "firstTry": "name: Donnelly"
+    },
+    {
+      "page": "e stair was never out of sight. Stannard was finishing a late supper at the kitchen table, with a napkin still tucked into his collar. ¶ The laudanum had come from here, and that was worth the walk. ¶",
+      "card": "I read the sign about the bath again.",
+      "model": "(card default; tried: I said.)",
+      "kind": "card default",
+      "firstTry": "length: 2 words (5–32)"
+    },
+    {
+      "page": "Midnight. The office on Mulberry Street had one lamp, one chair worth sitting in and one detective, and the detective was in the worst repair of the three. I had money in the desk drawer for once.",
+      "card": "I’d opened the drawer twice to make sure, and once more just to visit.",
+      "model": "The second time I could put in the paper with my left hand.",
+      "kind": "new",
+      "firstTry": "hour: eleven; name: Marchetti; name: Donnelly; name: Shamrock"
+    },
+    {
+      "page": "tonight I’m nobody’s.” ¶ Quill was an alderman’s clerk. At half past eleven, Kreuzer, who heard his radio still going and knocked, found the body in his own two rooms over the bakery on Hester Street.",
+      "card": "The police had a look and called it his heart.",
+      "model": "(card default; tried: The one who found the body was Whitfield, who’d come round to collect a debt.)",
+      "kind": "card default",
+      "firstTry": "name: Whitfield"
+    },
+    {
+      "page": "I bent over the table and took it a piece at a time, from one edge to the other. ¶ Tramonti didn’t come in. I didn’t ask him to. ¶",
+      "card": "There were two glasses on the table, and one of them smelled sweet and chemical.",
+      "model": "“You can tell me his evening,” he said.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "ng from him, and I wanted to read them properly. Quill kept the papers in a box file, and I sat down with it under the lamp. ¶ There was a page in there for everybody with a grudge, in a careful hand.",
+      "card": "Every one of them had a reason, and every reason was written down.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "r that closed his business, with his signature on it. Kreuzer: a column of payments, every month for years, and his name at the top. Bidwell: a notice to quit, from when he threw her out of a lease. ¶",
+      "card": "I put the pages back in their box.",
+      "model": "(card default; tried: Everybody in Russo’s box had a reason.)",
+      "kind": "card default",
+      "firstTry": "name: Russo"
+    },
+    {
+      "page": " reason to get up tomorrow. A wooden chair with one short leg stood by the wall, and rocked whenever anything touched it. ¶ Kreuzer looked up when I came in, and then looked as if he wished he hadn’t.",
+      "card": "Thin, and bent at the shoulders from years over a sewing machine, he wore clothes too good to have been bought.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " he hadn’t. Thin, and bent at the shoulders from years over a sewing machine, he wore clothes too good to have been bought. He’d made every stitch. ¶ Kreuzer had found Quill. That was reason enough. ¶",
+      "card": "Nobody there was paid to keep track of anybody.",
+      "model": "(card default; tried: If he went at ten or eleven, the flat had been empty, and anybody who’d heard Donnelly at the Kit Kat had known the way in.)",
+      "kind": "card default",
+      "firstTry": "hour: ten; name: Donnelly; name: Kit; name: Kat"
+    },
+    {
+      "page": "ss about it. ¶ Steinbach was tidying the shelves behind the counter, turning every label to face the front. ¶ The chloral had come from here. That settled where I was going. ¶ The pen was still going.",
+      "card": "Whatever I’d done so far, it was in a book now, spelled right.",
+      "model": "My flashlight was folded under the clothes, a man’s hand, and he wasn’t placed.",
+      "kind": "new",
+      "firstTry": ""
+    },
+    {
+      "page": "n order. ¶ Tramonti, my client, was already there, keeping one eye on the door and the other on me. ¶ This was where Quill had died. Everything else would be somebody’s story, and the room wouldn’t. ¶",
+      "card": "I took it all in, which didn’t take long, and then took it in again.",
+      "model": "(card default; tried: He had died here.)",
+      "kind": "card default",
+      "firstTry": "length: 4 words (5–32)"
+    },
+    {
+      "page": "Sokol’s back room lay a couple of blocks uptown and east. The rain was letting up as the sky went gray, as if it had only come out to keep the night company. ¶ Back at Sokol’s back room.",
+      "card": "Nothing had moved but the clock.",
+      "model": "(card default; tried: Glick had died here.)",
+      "kind": "card default",
+      "firstTry": "length: 4 words (5–32); name: Glick"
+    },
+    {
+      "page": "I found a chair at Sokol’s back room and sat down with the form. A name wants a line under it, and a line wants somebody’s word under that. I went down the form one line at a time. ¶",
+      "card": "The new money would go in the desk drawer with the old.",
+      "model": "(card default; tried: I mentioned Margolis to Doyle and let the quiet do some of the asking.)",
+      "kind": "card default",
+      "firstTry": "name: Margolis; name: Doyle"
+    },
+    {
+      "page": "Midnight. My office was two rooms at the top of a walk-up on Mulberry Street, and the second room was mostly for show. My head kept its own time, behind the clock over the safe and louder.",
+      "card": "I put the lamp low and thanked it.",
+      "model": "(card default; tried: I liked it.)",
+      "kind": "card default",
+      "firstTry": "length: 3 words (5–32)"
+    },
+    {
+      "page": "n her pockets. ¶ Nobody kept a list of who came and went, on paper or in their head. ¶ If it happened at ten, it happened in this room, and he’d let whoever did it in. ¶ Nobody offered to take my hat.",
+      "card": "I hadn’t expected anybody to.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "e who wanted something from him, and I went through them one at a time. I went through Doyle’s papers, one folder at a time. ¶ There was a page in there for everybody with a grudge, in a careful hand.",
+      "card": "Every one of them had a reason, and every reason was written down.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": " and his name at the top. ¶ I put the pages back in their box. A grudge on paper is a long way from Rafferty’s and the revolver. ¶ The usher at the Orpheum sees every face that comes through the door.",
+      "card": "I wanted all of them.",
+      "model": "(card default; tried: Nobody gets a drink in a restaurant without the head waiter deciding, and Havemeyer looks at everybody twice.)",
+      "kind": "card default",
+      "firstTry": "name: Havemeyer"
+    },
+    {
+      "page": "Rafferty’s was a fair few blocks uptown and west, near enough for anybody to walk it there and back inside the hour. I made a note of that. The fog was still at the end of whatever street I was on.",
+      "card": "It followed me better than I follow people.",
+      "model": "(card default; tried: Ruggiero had said he was here at seven, with Crowninshield.)",
+      "kind": "card default",
+      "firstTry": "hour: seven; name: Ruggiero; name: Crowninshield"
+    },
+    {
+      "page": " and east, and I was at the Orpheum. The street was as empty as a street gets, which in this city is never quite empty. ¶ I went in at the Orpheum, a picture house with continuous shows till midnight.",
+      "card": "The last show had let out, the screen was a big gray blank, and the rows were full of peanut shells and dropped programs.",
+      "model": "The windows were dark and red and white.",
+      "kind": "new",
+      "firstTry": "hour: seven; name: Mulcahy; name: Marchetti"
+    },
+    {
+      "page": "I hadn’t come for the furniture. I’d come for Grasso. ¶ I kept my voice down.",
+      "card": "She kept her eyes on me.",
+      "model": "(card default; tried: )",
+      "kind": "card default",
+      "firstTry": "empty"
+    },
+    {
+      "page": "y voice down. She kept her eyes on me. Young and tidy and a little tired, she still had the mark of the headset band pressed into her hair. I asked her where she’d been tonight. All of it, in order. ¶",
+      "card": "She looked at me for a while first, as if deciding what sort of question it was.",
+      "model": "(card default; tried: “My evening!)",
+      "kind": "card default",
+      "firstTry": "quotes: unbalanced; length: 2 words (5–32)"
+    }
+  ]
+}

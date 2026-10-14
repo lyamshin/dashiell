@@ -8,8 +8,13 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { TinyLM, type ModelHeader } from '../src/game/board/model/index.js';
 
-/** `public/model/`, or `MODEL_DIR` to read another export. */
-export const EXPORT_DIR = process.env.MODEL_DIR ?? join('public', 'model');
+/** `model/export/`, or `MODEL_DIR` (or a script's `--model DIR`) to read another export. */
+export const EXPORT_DIR = process.env.MODEL_DIR ?? argDir() ?? join('model', 'export');
+
+function argDir(): string | undefined {
+  const i = process.argv.indexOf('--model');
+  return i >= 0 ? process.argv[i + 1] : undefined;
+}
 
 export function modelHeader(dir = EXPORT_DIR): ModelHeader {
   return JSON.parse(readFileSync(join(dir, 'dashiell.json'), 'utf8')) as ModelHeader;

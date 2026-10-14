@@ -1,0 +1,64 @@
+{
+  "vocab": 6000,
+  "sources": {
+    "goldens": {
+      "train_lines": 42,
+      "train_tokens": 9812,
+      "val_lines": 7,
+      "val_tokens": 1830,
+      "chars_per_token": 4.09,
+      "unk": 0
+    },
+    "cards": {
+      "train_lines": 1609,
+      "train_tokens": 37359,
+      "val_lines": 91,
+      "val_tokens": 1989,
+      "chars_per_token": 4.01,
+      "unk": 0
+    },
+    "bible": {
+      "train_lines": 1225,
+      "train_tokens": 33953,
+      "val_lines": 76,
+      "val_tokens": 1858,
+      "chars_per_token": 3.81,
+      "unk": 0
+    },
+    "pd": {
+      "train_lines": 3982,
+      "train_tokens": 940056,
+      "val_lines": 228,
+      "val_tokens": 55619,
+      "chars_per_token": 3.78,
+      "unk": 0
+    },
+    "nights": {
+      "train_lines": 21817,
+      "train_tokens": 1767763,
+      "val_lines": 1172,
+      "val_tokens": 276098,
+      "chars_per_token": 4.27,
+      "unk": 0
+    }
+  },
+  "stage1": {
+    "tokens": 940056,
+    "share": {
+      "pd": 1.0
+    }
+  },
+  "stage2": {
+    "name": "stage2c2",
+    "tokens": 3226593,
+    "golden_bible_repeats": 11,
+    "cards_repeats": 1,
+    "share": {
+      "goldens": 0.0335,
+      "cards": 0.0116,
+      "bible": 0.1158,
+      "pd": 0.2913,
+      "nights": 0.5479
+    }
+  }
+}

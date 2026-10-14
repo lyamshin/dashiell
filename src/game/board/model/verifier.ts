@@ -154,12 +154,22 @@ const ALLOWED_CAPS = new Set(
   'I I’d I’m I’ll I’ve I’d’ve God Lord OK Sunday Monday Tuesday Wednesday Thursday Friday Saturday January February March April May June July August September October November December Christmas Easter American Irish Italian Jewish German Polish Russian Yiddish English'.split(' '),
 );
 
-/** The sentences of a run of prose: split after . ! ? (and a closing quote). */
+/** A word whose full stop doesn't end a sentence: an honorific, a saint, an initial. */
+const ABBREVIATION = /(?:^|[\s“‘(])(?:Mr|Mrs|Ms|Dr|St|Jr|Sr|Mt|Messrs|[A-Z])\.$/;
+
+/** The sentences of a run of prose: split after . ! ? (and a closing quote), but not after "Mrs." or "J.". */
 export function sentencesOf(text: string): string[] {
-  return text
-    .split(/(?<=[.!?][”’"]?)\s+/)
-    .map((s) => s.trim())
-    .filter(Boolean);
+  const out: string[] = [];
+  let cur = '';
+  for (const piece of text.split(/(?<=[.!?][”’"]?)\s+/)) {
+    cur = cur ? `${cur} ${piece}` : piece;
+    if (!ABBREVIATION.test(cur)) {
+      if (cur.trim()) out.push(cur.trim());
+      cur = '';
+    }
+  }
+  if (cur.trim()) out.push(cur.trim());
+  return out;
 }
 
 const norm = (s: string): string =>

@@ -1,7 +1,15 @@
 """
-docs/50 §2: pretrain the tiny model as a language model on the corpus.
+docs/50 §2 and §7: pretrain the tiny model as a language model on the corpus.
 
-  python model/train.py --name pre1 [--layers 6] [--minutes 18] [--init model/checkpoints/pre0.pt]
+  python model/train.py --name pd1 --data stage1 --select pd [--layers 6] [--minutes 18]
+  python model/train.py --name mix1 --data stage2 --init model/checkpoints/pd1.pt --select goldens,bible,pd
+
+Two stages (docs/50 §7): stage 1 is plain period prose (model/data/stage1.bin),
+stage 2 the game mix (stage2.bin), both written by model/prepare.py. Every eval
+scores each source's held-out lines on its own (model/data/<source>.val.bin,
+the same windows every time) and logs them all; the run keeps the checkpoint
+with the best mean over the --select sources, and stops when that mean hasn't
+improved for --patience evals.
 
 House rules for this Mac (M1 Pro, 16 GB, shared with other work):
   - four CPU threads (torch.set_num_threads(4)); MPS for the matmuls when it's there;
@@ -25,6 +33,7 @@ import numpy as np
 import torch
 
 from gpt import GPT, Config
+from tokenizer import SOURCES
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
@@ -51,6 +60,9 @@ def wait_for_quiet(limit=6.0):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--name", required=True)
+    ap.add_argument("--data", default="stage2", help="the training stream: model/data/<data>.bin (stage1, stage2)")
+    ap.add_argument("--select", default="goldens,bible,pd", help="the held-out sources whose mean loss picks the checkpoint and stops the run")
+    ap.add_argument("--eval-windows", type=int, default=384, help="at most this many context windows of each source's held-out lines")
     ap.add_argument("--layers", type=int, default=6)
     ap.add_argument("--width", type=int, default=256)
     ap.add_argument("--heads", type=int, default=4)
@@ -78,8 +90,14 @@ def main():
         wait_for_quiet()
     device = a.device or ("mps" if torch.backends.mps.is_available() else "cpu")
 
-    train = np.memmap(os.path.join(DATA, "train.bin"), dtype=np.uint16, mode="r")
-    val = np.memmap(os.path.join(DATA, "val.bin"), dtype=np.uint16, mode="r")
+    train = np.memmap(os.path.join(DATA, a.data + ".bin"), dtype=np.uint16, mode="r")
+    vals = {}
+    for s in SOURCES:
+        p = os.path.join(DATA, s + ".val.bin")
+        if os.path.exists(p) and os.path.getsize(p) > 0:
+            vals[s] = np.fromfile(p, dtype=np.uint16)
+    select = [s for s in a.select.split(",") if s]
+    assert all(s in vals for s in select), "no held-out lines for %s" % select
 
     if a.init:
         ck = torch.load(a.init, map_location="cpu")
@@ -94,12 +112,15 @@ def main():
         step0 = 0
     with open(os.path.join(HERE, "tokenizer.json"), encoding="utf-8") as f:
         tj = json.load(f)
+    if a.init and "tokenizer" in ck:
+        same = ck["tokenizer"]["chars"] == tj["chars"] and ck["tokenizer"]["merges"] == tj["merges"]
+        assert same, "the checkpoint was trained with another tokenizer"
     cfg.vocab = len(tj["specials"]) + len(tj["chars"]) + len(tj["merges"])
     assert model.tok.weight.shape[0] == cfg.vocab, "the tokenizer and the model disagree on the vocabulary"
     model.to(device)
     opt = model.optimizer(a.lr, a.weight_decay)
     n_params = model.params()
-    print("%s: %d params (%.2fM), %s, device %s, %d train tokens, %d held-out" % (a.name, n_params, n_params / 1e6, cfg.dict(), device, len(train), len(val)), flush=True)
+    print("%s: %d params (%.2fM), %s, device %s, %s: %d train tokens; held out %s" % (a.name, n_params, n_params / 1e6, cfg.dict(), device, a.data, len(train), {k: len(v) for k, v in vals.items()}), flush=True)
 
     def batch(data, rng=np.random):
         ix = rng.randint(0, len(data) - cfg.ctx - 1, size=a.batch)
@@ -107,17 +128,32 @@ def main():
         y = torch.from_numpy(np.stack([data[i + 1 : i + 1 + cfg.ctx].astype(np.int64) for i in ix]))
         return x.to(device), y.to(device)
 
-    # The held-out batches are the same every eval, so the curve is comparable step to step.
-    vrng = np.random.RandomState(7)
-    vbatches = [batch(val, vrng) for _ in range(a.eval_batches)]
+    # Each source's held-out stream cut into whole windows, the same every eval (spread evenly over the
+    # stream when there are more than --eval-windows), so the curve is comparable step to step.
+    vbatches = {}
+    for s, v in vals.items():
+        n = max(1, (len(v) - 1) // cfg.ctx)
+        starts = [i * cfg.ctx for i in range(n)] if (len(v) - 1) >= cfg.ctx else [0]
+        if len(starts) > a.eval_windows:
+            starts = [starts[int(j * len(starts) / a.eval_windows)] for j in range(a.eval_windows)]
+        T = min(cfg.ctx, len(v) - 1)
+        xs = np.stack([v[i : i + T].astype(np.int64) for i in starts])
+        ys = np.stack([v[i + 1 : i + 1 + T].astype(np.int64) for i in starts])
+        vbatches[s] = [(torch.from_numpy(xs[j : j + a.batch]).to(device), torch.from_numpy(ys[j : j + a.batch]).to(device)) for j in range(0, len(starts), a.batch)]
 
     @torch.no_grad()
     def evaluate():
         model.eval()
-        ls = [model(x, y)[1].item() for x, y in vbatches]
+        per = {}
+        for s, bs in vbatches.items():
+            tot, n = 0.0, 0
+            for x, y in bs:
+                tot += model(x, y)[1].item() * x.numel()
+                n += x.numel()
+            per[s] = tot / n
         tr = [model(*batch(train))[1].item() for _ in range(a.eval_batches // 2)]
         model.train()
-        return float(np.mean(tr)), float(np.mean(ls))
+        return float(np.mean(tr)), float(np.mean([per[s] for s in select])), per
 
     def lr_at(it):
         if it < a.warmup:
@@ -128,7 +164,7 @@ def main():
     os.makedirs(CKPT, exist_ok=True)
     os.makedirs(RUNS, exist_ok=True)
     log = open(os.path.join(RUNS, a.name + ".jsonl"), "w")
-    log.write(json.dumps({"run": a.name, "params": n_params, "config": cfg.dict(), "device": device, "args": vars(a), "train_tokens": len(train), "val_tokens": len(val)}) + "\n")
+    log.write(json.dumps({"run": a.name, "params": n_params, "config": cfg.dict(), "device": device, "args": vars(a), "train_tokens": len(train), "val_tokens": {k: len(v) for k, v in vals.items()}}) + "\n")
     best = float("inf")
     best_state = None
     lr_scale = 1.0
@@ -140,12 +176,12 @@ def main():
     while True:
         step = step0 + it
         if it % a.eval_every == 0:
-            tr, vl = evaluate()
+            tr, vl, per = evaluate()
             mins = (time.time() - t0) / 60
-            rec = {"step": step, "train": round(tr, 4), "val": round(vl, 4), "minutes": round(mins, 2), "lr": lr_at(it) * lr_scale, "load": load1()}
+            rec = {"step": step, "train": round(tr, 4), "val": round(vl, 4), "by_source": {k: round(v, 4) for k, v in per.items()}, "minutes": round(mins, 2), "lr": lr_at(it) * lr_scale, "load": load1()}
             log.write(json.dumps(rec) + "\n")
             log.flush()
-            print("step %6d  train %.4f  held-out %.4f  %.1f min  load %.1f" % (step, tr, vl, mins, rec["load"]), flush=True)
+            print("step %6d  train %.4f  held-out %.4f (%s)  %.1f min  load %.1f" % (step, tr, vl, " ".join("%s %.3f" % (k, v) for k, v in per.items()), mins, rec["load"]), flush=True)
             if not math.isfinite(vl) or (best_state is not None and vl > best + 1.0):
                 # A blow-up (the first MPS run went from 0.46 to 4e5 between two evals): go back to
                 # the best weights, a fresh optimizer, half the learning rate.
@@ -164,7 +200,7 @@ def main():
                 bad = 0
                 best_state = {k: v.detach().to("cpu").clone() for k, v in model.state_dict().items()}
                 sd = {k: v.to(dtype=torch.float16) for k, v in best_state.items()}
-                torch.save({"config": cfg.dict(), "model": sd, "step": step, "val": vl, "train": tr}, os.path.join(CKPT, a.name + ".pt"))
+                torch.save({"config": cfg.dict(), "model": sd, "step": step, "val": vl, "val_by_source": per, "select": select, "data": a.data, "train": tr, "tokenizer": tj}, os.path.join(CKPT, a.name + ".pt"))
             else:
                 bad += 1
             if bad >= a.patience:

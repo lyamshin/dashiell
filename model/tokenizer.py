@@ -8,7 +8,8 @@ by `python model/tokenizer.py parity`). Change one, change the other.
 
 Ids:
   0 .. 63            special tokens (0 <|eot|>, 1 <|unk|>, 2 <|gap|>, 3 <|sep|>,
-                     the rest reserved for phase 2's slot, tier, kind and manner)
+                     4 <|endgap|>, then phase 2b's slots, tiers, place kinds and
+                     manners, named below (docs/50 §8); 38 .. 63 spare)
   64 .. 64+C-1       the base characters, in `chars` order
   64+C ..            one per merge, in rank order
 
@@ -27,8 +28,9 @@ merges), then the lowest-ranked adjacent pair is merged, every occurrence from
 left to right, until no adjacent pair has a rank.
 
 Usage:
-  python model/tokenizer.py train  [--vocab 6000]   train on model/data/train.txt → model/tokenizer.json
-  python model/tokenizer.py parity [--n 500]        write model/data/tok-parity.jsonl from val.txt
+  python model/tokenizer.py train  [--vocab 6000]   train on every source's training lines, once each
+                                                    (model/data/<source>.train.txt) → model/tokenizer.json
+  python model/tokenizer.py parity [--n 500]        write model/data/tok-parity.jsonl from the held-out lines
 """
 
 import argparse
@@ -43,7 +45,20 @@ DATA = os.path.join(HERE, "data")
 TOKENIZER_PATH = os.path.join(HERE, "tokenizer.json")
 
 N_SPECIAL = 64
-SPECIALS = ["<|eot|>", "<|unk|>", "<|gap|>", "<|sep|>"] + ["<|r%d|>" % i for i in range(4, N_SPECIAL)]
+# docs/50 §8, the gap format: src/game/board/model/gapformat.ts has the same names at the same ids.
+GAP_SLOTS = ["why-here", "walk", "staging", "ask", "reaction", "close", "hand-off"]
+GAP_TIERS = ["raw", "coddled", "poached", "soft-boiled", "medium", "hard-boiled"]
+GAP_KINDS = ["bar", "club", "restaurant", "theatre", "rooming", "scene-murder", "scene-lost", "work", "shift", "unwatched", "flat", "rooms", "home", "office", "sheet", "street"]
+GAP_MANNERS = ["plain", "terse", "careful", "none"]
+SPECIALS = (
+    ["<|eot|>", "<|unk|>", "<|gap|>", "<|sep|>", "<|endgap|>"]
+    + ["<|slot:%s|>" % x for x in GAP_SLOTS]
+    + ["<|tier:%s|>" % x for x in GAP_TIERS]
+    + ["<|kind:%s|>" % x for x in GAP_KINDS]
+    + ["<|manner:%s|>" % x for x in GAP_MANNERS]
+)
+SPECIALS += ["<|r%d|>" % i for i in range(len(SPECIALS), N_SPECIAL)]
+assert len(SPECIALS) == N_SPECIAL
 EOT, UNK, GAP, SEP = 0, 1, 2, 3
 APOSTROPHES = ("'", "’")
 
@@ -244,6 +259,20 @@ def read_lines(path):
         return [l.rstrip("\n") for l in f if l.strip()]
 
 
+# The corpus's sources (scripts/model-corpus.ts), in the order the corpus keeps a shared line.
+SOURCES = ["goldens", "cards", "bible", "pd", "nights"]
+
+
+def source_lines(split, sources=SOURCES):
+    """Every line of `split` ("train" or "val"), source by source: [(source, line)]."""
+    out = []
+    for s in sources:
+        p = os.path.join(DATA, "%s.%s.txt" % (s, split))
+        if os.path.exists(p):
+            out.extend((s, l) for l in read_lines(p))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["train", "parity"])
@@ -251,13 +280,14 @@ def main():
     ap.add_argument("--n", type=int, default=500)
     a = ap.parse_args()
     if a.cmd == "train":
-        tok = train(read_lines(os.path.join(DATA, "train.txt")), a.vocab)
+        # Each training line once: the goldens and the bible are weighted later, in prepare.py.
+        tok = train([l for _, l in source_lines("train")], a.vocab)
         tok.save()
         print("vocab %d → %s" % (tok.size, TOKENIZER_PATH))
     else:
         tok = Tokenizer.load()
-        lines = read_lines(os.path.join(DATA, "val.txt"))
         # Every held-out source, spread evenly, plus lines that test the edges.
+        lines = [l for _, l in source_lines("val")]
         step = max(1, len(lines) // a.n)
         pick = lines[::step][: a.n - 8]
         pick += [

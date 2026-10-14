@@ -2,42 +2,110 @@
   "nights": 2000,
   "nightsFailed": 0,
   "cardsSkipped": 246,
+  "nightsDedupe": {
+    "pages": 24704,
+    "distinctPages": 24136,
+    "bytes": 24008998,
+    "sentences": 364052,
+    "distinctSentences": 77748,
+    "distinctSentenceBytes": 5831328,
+    "keptPages": 20674,
+    "keptBytes": 6285114,
+    "keptSentences": 99906,
+    "glueRepeats": 22158
+  },
+  "goldensHeldOut": [
+    "board-connective.md: Prentiss’s flat was the parlour floor of a house on Stuyvesa",
+    "board-connective.md: I sat down across from him. He moved his cup an inch toward ",
+    "seed3-night.md: The precinct had looked at Sweeney. I wanted to look at the ",
+    "seed3-people.md: Midnight. Two rooms over a Chinese laundry on Mulberry Stree",
+    "seed3-testimony.md: Rafferty ran the house. If a key had gone anywhere tonight, ",
+    "sheets-arrival.md: The speakeasy was an illegal bar under a hat shop, down six ",
+    "small-board-seed3.md: I went over the table. One glass had rye in the bottom and s"
+  ],
+  "pd": {
+    "kept": [
+      {
+        "file": "fiction/hammett-red-harvest-1929.txt",
+        "paragraphs": 2703,
+        "kept": 2581,
+        "bytes": 331926
+      },
+      {
+        "file": "fiction/hammett-dain-curse-1929.txt",
+        "paragraphs": 2117,
+        "kept": 2046,
+        "bytes": 382026
+      },
+      {
+        "file": "fiction/hammett-maltese-falcon-1930.txt",
+        "paragraphs": 2338,
+        "kept": 2241,
+        "bytes": 380073
+      },
+      {
+        "file": "fiction/hammett-continental-op-stories-1923-1930.txt",
+        "paragraphs": 11076,
+        "kept": 10644,
+        "bytes": 1699000
+      },
+      {
+        "file": "fiction/hecht-thousand-one-afternoons-chicago-1922.txt",
+        "paragraphs": 1806,
+        "kept": 1482,
+        "bytes": 430715
+      },
+      {
+        "file": "fiction/daly-white-circle-1926.txt",
+        "paragraphs": 1578,
+        "kept": 1360,
+        "bytes": 345559
+      },
+      {
+        "file": "period/wpa-guide-new-york-city-1939.txt",
+        "paragraphs": 4598,
+        "kept": 514,
+        "bytes": 263922
+      }
+    ],
+    "leftOut": [
+      "fiction/lardner-you-know-me-al-1916.txt",
+      "period/evening-world-1920-selected-pages.txt",
+      "period/evening-world-1921-selected-pages.txt",
+      "period/evening-world-1922-selected-pages.txt"
+    ],
+    "chunks": 4210
+  },
   "counts": {
     "goldens": {
-      "lines": 49,
-      "unique": 49,
-      "bytes": 49093,
-      "train": 47,
-      "val": 2
+      "train": 42,
+      "trainBytes": 41396,
+      "val": 7,
+      "valBytes": 7697
     },
     "cards": {
-      "lines": 1700,
-      "unique": 1700,
-      "bytes": 160056,
       "train": 1609,
-      "val": 91
+      "trainBytes": 151847,
+      "val": 91,
+      "valBytes": 8147
     },
     "bible": {
-      "lines": 818,
-      "unique": 817,
-      "bytes": 79573,
-      "train": 763,
-      "val": 54
+      "train": 1225,
+      "trainBytes": 132672,
+      "val": 76,
+      "valBytes": 7135
+    },
+    "pd": {
+      "train": 3982,
+      "trainBytes": 3666665,
+      "val": 228,
+      "valBytes": 216530
     },
     "nights": {
-      "lines": 25934,
-      "unique": 25277,
-      "bytes": 24904643,
-      "train": 24080,
-      "val": 1197
+      "train": 20641,
+      "trainBytes": 6281833,
+      "val": 1172,
+      "valBytes": 1180877
     }
-  },
-  "train": {
-    "lines": 26499,
-    "bytes": 23987361
-  },
-  "val": {
-    "lines": 1344,
-    "bytes": 1206004
   }
 }

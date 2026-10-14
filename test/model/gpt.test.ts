@@ -1,11 +1,11 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { generate, matmulT, ModelRng, gapSeed, EOT } from '../../src/game/board/model/index.js';
 import { loadModel, modelHeader } from '../../scripts/model-load.js';
 
 /**
  * docs/50 §2: the TypeScript forward pass runs the network `model/gpt.py`
- * trained, on the int8 export in `public/model/`. `model/export.py` writes the
+ * trained, on the int8 export in `model/export/`. `model/export.py` writes the
  * logits the int8 model gives after a held-out line (`model/data/fwd-parity.json`,
  * computed in PyTorch, float32); these must match.
  */
@@ -32,9 +32,14 @@ function maxDiff(got: Float32Array, want: number[], stride: number): number {
 
 describe('the export', () => {
   it('is at most 8 MB, int8 matrices and a JSON header', () => {
-    const bytes = readFileSync('public/model/dashiell.bin').length + readFileSync('public/model/dashiell.json').length;
+    const bytes = readFileSync('model/export/dashiell.bin').length + readFileSync('model/export/dashiell.json').length;
     expect(bytes).toBeLessThanOrEqual(8 * 1024 * 1024);
     expect(header.tensors.filter((t) => t.dtype === 'int8').length).toBe(2 + 4 * header.config.layers);
+  });
+
+  it('lives in model/export/, not public/, so the built book doesn’t carry it', () => {
+    expect(existsSync('public/model')).toBe(false);
+    expect(existsSync('model/export/dashiell.bin')).toBe(true);
   });
 
   it('is the export the fixture was computed on', () => {
