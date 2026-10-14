@@ -94,8 +94,15 @@ export class Hand {
   /** The night's spent ids before this page, in the order they were spent. */
   private readonly night: readonly string[];
 
+  /**
+   * docs/52 build 2: the voicings' own dice, apart from the cards': which voicing a fact takes doesn't
+   * depend on what texture the page dealt (the situated deck on or off says the same facts).
+   */
+  readonly voiceRng: Rng;
+
   constructor(seed: number, page: number, spent: readonly string[]) {
     this.rng = new Rng(((seed * 2654435761) ^ (page * 40503 + 0x9e37)) >>> 0);
+    this.voiceRng = new Rng(((seed * 2246822519) ^ (page * 3266489917 + 0x51ed)) >>> 0);
     this.spentSet = new Set(spent);
     this.night = spent;
   }

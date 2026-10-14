@@ -67,6 +67,27 @@ export function lintVoicings(vs: readonly Voicing[]): string[] {
     if (/[A-Za-z]'[A-Za-z]/.test(words)) bad('a straight apostrophe (use ’)');
     if (/—|–| - /.test(words)) bad('a dash');
     if (/[{}]/.test(v.template.replace(/\{[A-Za-z][\w-]*(?::[a-z]+)?\}/g, ''))) bad('a brace that isn’t a slot');
+    // A pronoun for somebody first named only as an owner ("{Person}’s story put {person:them}") has
+    // no subject to hang on: in the notebook, which the reference pass leaves alone, it can be anybody.
+    // (And anywhere in the thought, the old pronoun slots: "{name}’s own word put {him} here".)
+    // A he or him needs a name before it in its own sentence, not only an owner's ("{name}’s own word put {him}").
+    if (!SCHEMA[v.shape].speech) {
+      for (const sent of v.template.split(/(?<=[.!?:;])\s+/)) {
+        const m = /\{(?:him|he|He|[A-Za-z]+:them|[A-Za-z]+:they)\}/.exec(sent);
+        if (!m) continue;
+        const before = sent.slice(0, m.index);
+        const subject = /\{(?:[Nn]ame|[Pp]erson|[Bb]y|[Ww]atcher|[Ww]ho|[Cc]lient|[Vv]ictim|[Ww]itness|[Pp]eople|[Ss]rc|[Cc]laim|[Bb]reaker|[Hh]ost|[Cc]onfirmed|[Bb]its|[Rr]uns|[Ss]pans)\}(?!’s)/.test(before);
+        if (!subject && /\{[A-Za-z]+\}’s/.test(before)) bad('a pronoun hangs on a name said only as an owner');
+      }
+    }
+    const notebook = v.shape === 'UNSPOKEN' || v.shape === 'HOLD' || (v.requires ?? []).some((r) => ['recap', 'recap-one', 'owned', 'second', 'refused'].includes(r));
+    if (notebook) {
+      for (const m of v.template.matchAll(/\{([A-Za-z][\w-]*):(?:they|them|their)\}/g)) {
+        const k = (m[1] as string).toLowerCase();
+        const first = new RegExp(`\\{${k}(?::name)?\\}(’s)?`, 'i').exec(v.template);
+        if (first && first[1] && first.index < (m.index ?? 0)) bad(`{${k}:…} hangs on {${k}}’s, an owner, not a subject`);
+      }
+    }
     const filled = v.template.replace(/\{[^}]*\}/g, 'Ashby');
     for (const h of findJargon(filled, terms) as { term: string; match: string }[]) bad(`plain terms: "${h.match}" (${h.term})`);
     for (const b of BANNED) if (b.re.test(filled)) bad(`banned: ${b.name}`);

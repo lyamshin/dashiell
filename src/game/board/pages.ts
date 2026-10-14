@@ -286,7 +286,7 @@ function voiceHand(h: Hand): VoiceHand {
       return h.mayJoke;
     },
     joke: () => h.joke(),
-    int: (n) => h.rng.int(n),
+    int: (n) => h.voiceRng.int(n),
   };
 }
 

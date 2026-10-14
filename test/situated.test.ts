@@ -127,7 +127,10 @@ describe('docs/51: every gap the deck may fill has its situation', () => {
 });
 
 describe('docs/51: the same facts, situated on or off', () => {
-  it.each(nights.filter((x) => x.tier % 2 === 0))('every page tells the same lines, in the same fact units, and only gaps change: tier $tier, $type, $world', ({ tier, type, world }) => {
+  // (docs/52 build 2: a fact's words are a voicing, and the rhythm may trade one for another of another
+  // length, or join two facts, around texture the deck dealt: the same lines, in the same order, with
+  // the same propositions, though not always in the same units.)
+  it.each(nights.filter((x) => x.tier % 2 === 0))('every page tells the same lines and the same propositions, and only gaps change: tier $tier, $type, $world', ({ tier, type, world }) => {
     const on = play(true, 2, tier, type, world);
     const off = play(false, 2, tier, type, world);
     on.forEach((r, k) => {
@@ -135,7 +138,7 @@ describe('docs/51: the same facts, situated on or off', () => {
       expect(r.log.length).toBe(o.log.length);
       r.log.forEach((p, i) => {
         const q = o.log[i] as Page;
-        const facts = (x: Page) => (x.board?.units ?? []).filter((u) => u.kind === 'fact').map((u) => (u.kind === 'fact' ? [u.carries, u.relation] : []));
+        const facts = (x: Page) => (x.board?.units ?? []).flatMap((u) => (u.kind === 'fact' ? [...u.carries, ...(u.bones ?? []).flatMap((b) => b.props).map((pr) => JSON.stringify(pr))] : []));
         expect(facts(p), `p${i + 1}`).toEqual(facts(q));
         for (const f of ['job', 'q', 'told', 'hours', 'people', 'places', 'turn', 'callback'] as const) expect(p.board?.[f], `p${i + 1} ${f}`).toEqual(q.board?.[f]);
         expect(p.board?.thought?.refs, `p${i + 1}`).toEqual(q.board?.thought?.refs);
