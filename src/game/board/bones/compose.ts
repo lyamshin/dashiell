@@ -46,7 +46,7 @@ import { sentencesOf, wordsIn } from '../plan/sentences.js';
 import { accessPhrase, atWhere, claimSaid, shortOther, where } from './phrase.js';
 import type { Composite, Prop, Shape, Src } from './types.js';
 import { fitting, type Args, type Voicing } from './voice.js';
-import { preview, SAMPLES, type Picked } from './say.js';
+import { preview, SAMPLES, unpick, type Picked } from './say.js';
 import { plainComposite } from './plain.js';
 
 /** The longest sentence composition makes. */
@@ -180,13 +180,19 @@ export function pickFor(shape: Shape, flags: readonly string[], args: Args, ctx:
 /** Give back the voicing an item spent, when it goes into another composite. */
 function unspend(it: Item, ctx: PlanCtx): void {
   const n = (it.comp as Held | undefined)?.noted;
-  if (n && ctx.hand) ctx.hand.forget(n);
+  if (n && ctx.hand) {
+    ctx.hand.forget(n);
+    unpick(n);
+  }
 }
 
 /** Spend a voicing on a composite: a composite voiced again gives back the use it had. */
 export function spend(comp: Held, p: Picked, ctx: PlanCtx): void {
   const key = p.commit();
-  if (comp.noted && comp.noted !== key && ctx.hand) ctx.hand.swap(comp.noted, key);
+  if (comp.noted && comp.noted !== key && ctx.hand) {
+    ctx.hand.swap(comp.noted, key);
+    unpick(comp.noted);
+  }
   if (key) comp.noted = key;
 }
 

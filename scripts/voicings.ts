@@ -12,13 +12,18 @@
  *     each voicing in `new.json` said over real composites it fits, and read back (the round trip).
  *   npx tsx scripts/voicings.ts coverage [--file new.json] [--nights 4]
  *     every form the nights say, by shape and manner: how many voicings fit it.
+ *   npx tsx scripts/voicings.ts variety [--nights 30]
+ *     docs/52 §6, voicing variety, along the oracle's route, both worlds: the nights where a voicing
+ *     was said again while another that fitted was still unsaid (target 0), and how often a voicing
+ *     was said again at all, where three or more fitted.
  */
 
 import { readFileSync } from 'node:fs';
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
 import { dealBoard, type BoardCase } from '../src/game/board/model.js';
 import { playBoardOracle, playWanderer } from '../src/game/board/oracle.js';
-import { SAMPLES } from '../src/game/board/bones/say.js';
+import { SAMPLES, VARIETY } from '../src/game/board/bones/say.js';
+import { tierName } from '../src/game/board/model.js';
 import { fill, fitting, formsOf, slotsOf, useVoicings, voicings, type Voicing } from '../src/game/board/bones/voice.js';
 import { FORMS, SCHEMA, mustSay } from '../src/game/board/bones/schema.js';
 import { SHAPES, type Shape } from '../src/game/board/bones/types.js';
@@ -146,7 +151,8 @@ if (cmd === 'check') {
 } else if (cmd === 'samples') {
   const shape = val('shape');
   const n = Number(val('n') ?? 10);
-  const list = collect(Number(val('nights') ?? 4)).filter((x) => (!shape || x.shape === shape) && (!val('manner') || x.manner === val('manner')));
+  const shapes = shape ? shape.split(',') : undefined;
+  const list = collect(Number(val('nights') ?? 4)).filter((x) => (!shapes || shapes.includes(x.shape)) && (!val('manner') || x.manner === val('manner')));
   const byForm = new Map<string, typeof list>();
   for (const x of list) byForm.set(formKey(x), [...(byForm.get(formKey(x)) ?? []), x]);
   const forms = [...byForm.entries()].sort((a, b) => b[1].length - a[1].length);
@@ -161,6 +167,39 @@ if (cmd === 'check') {
     process.stdout.write('\n');
   }
   void shown;
+} else if (cmd === 'variety') {
+  const n = Number(val('nights') ?? 30);
+  const rows = ['| world | tier | nights | voicings chosen | said again while another fitting one was unsaid | nights with that | said again, where three or more fitted |', '|---|---|---|---|---|---|---|'];
+  let bad = 0;
+  for (const world of [undefined, 'neighbourhood'] as const) {
+    for (const tier of [0, 1, 2, 3, 4, 5] as TierIndex[]) {
+      const types = typesFor(tier) as CaseType[];
+      let picks = 0;
+      let early = 0;
+      let nights = 0;
+      let again3 = 0;
+      let pool3 = 0;
+      for (let s = 1; s <= n; s++) {
+        VARIETY.on = true;
+        VARIETY.picks = [];
+        const d = dealBoard(s, tier, types[s % types.length] as CaseType, world ? { world } : {});
+        playBoardOracle(d);
+        VARIETY.on = false;
+        picks += VARIETY.picks.length;
+        const e = VARIETY.picks.filter((x) => x.unsaidLeft).length;
+        early += e;
+        if (e > 0) nights++;
+        for (const x of VARIETY.picks) if (x.pool >= 3) {
+          pool3++;
+          if (x.again) again3++;
+        }
+      }
+      bad += nights;
+      rows.push(`| ${world ?? 'dealt'} | ${tierName(tier)} | ${n} | ${picks} | ${early} | ${nights} of ${n} | ${again3} of ${pool3} (${pool3 ? ((100 * again3) / pool3).toFixed(1) : '—'}%) |`);
+    }
+  }
+  process.stdout.write(`${rows.join('\n')}\n`);
+  if (bad) process.exitCode = 1;
 } else if (cmd === 'show' || cmd === 'coverage') {
   const vs = merged();
   useVoicings(vs);

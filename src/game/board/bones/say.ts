@@ -45,7 +45,14 @@ export interface VoiceHand {
 export const SAMPLES: { on: boolean; list: { shape: string; flags: string[]; args: Args; manner?: string; props: unknown[]; said: string; voicing: string; c: BoardCase; speaker?: string }[] } = { on: false, list: [] };
 
 /** docs/52 §6, voicing variety: every choice, with how many fitted and whether one was said again while another was still unsaid. */
-export const VARIETY: { on: boolean; picks: { id: string; shape: string; pool: number; again: boolean; unsaidLeft: boolean }[] } = { on: false, picks: [] };
+export const VARIETY: { on: boolean; picks: { id: string; key: string; shape: string; pool: number; again: boolean; unsaidLeft: boolean }[] } = { on: false, picks: [] };
+
+/** A use given back (a composite voiced again, or folded into another): it isn't one of the night's choices. */
+export function unpick(key: string): void {
+  if (!VARIETY.on) return;
+  const i = VARIETY.picks.findIndex((x) => x.key === key);
+  if (i >= 0) VARIETY.picks.splice(i, 1);
+}
 
 export interface Picked {
   v: Voicing;
@@ -107,8 +114,8 @@ export function preview(
     others,
     commit: () => {
       const again = last(v) >= 0;
-      if (VARIETY.on) VARIETY.picks.push({ id: v.id, shape, pool: all.length, again, unsaidLeft: again && all.some((x) => last(x) < 0) });
       const key = `v:${v.id}#${hand.uses(`v:${v.id}`) + 1}`;
+      if (VARIETY.on) VARIETY.picks.push({ id: v.id, key, shape, pool: all.length, again, unsaidLeft: again && all.some((x) => last(x) < 0) });
       hand.note(key);
       if (v.joke) hand.joke();
       return key;
