@@ -77,7 +77,9 @@ Export: `npm run read -- … --skeleton` prints the units as JSONL after each pa
 
 ## Built (2026-10-14)
 
-Branch `microplanner`. The planner is on. `PLAN.ops` in `src/game/board/plan/index.ts` turns it off, and off, every page of the oracle's, the wanderer's and the reader's nights is byte for byte main's. That was checked on seeds 1–12, every tier and type, both worlds: 14,436 pages. The "before" columns below are measured that way (`board-prose --plan off`). On, the boards hash the same as main's, and so does every page's board: the lines it tells, the held lines its thought cites, its hours, people, places and job. 12,524 of the 14,436 pages read differently.
+Branch `microplanner`, with main merged in (Bible 2 and the tiny model). The planner is on. `PLAN.ops` in `src/game/board/plan/index.ts` turns it off, and off, every page of the oracle's, the wanderer's and the reader's nights is byte for byte main's. That was checked on seeds 1–12, every tier and type, both worlds: 14,424 pages. The "before" columns below are measured that way (`board-prose --plan off`).
+
+On, the boards hash the same as main's. So does every page's board (the lines it tells, the held lines its thought cites, its hours, places and job) with one exception: on 2 pages the people it may name differ. The planner's trades roll the page's dice, so a later card on the page can differ. 12,507 of the 14,424 pages read differently.
 
 ### Where it sits
 
@@ -118,10 +120,16 @@ Branch `microplanner`. The planner is on. `PLAN.ops` in `src/game/board/plan/ind
 **Reference** (`refer.ts`)
 - **Centering.** The first mention is the name. After that it's a pronoun, when the person was the last of their sex mentioned within two sentences and nobody else came in between. Otherwise it's the name again, or the role: "my client", "the dead man", "the dentist", "the usher" (when only one usher is on the page).
 - **The designer's cap: two names a page.** It counts names said in speech and names nothing can change later (a hand-off, a list's "Mr.").
-- **Never a pronoun with two people of its sex before it** in its sentence or in the sentence before (the measure's own window). An engine pronoun that fails is said as the name or the role. A pronoun after somebody nameless of its sex in its own sentence is theirs: "Somebody at the next table… got his own tie."
+- **Never a pronoun with two people of its sex before it** in its sentence or in the sentence before (the measure's own window). An engine pronoun that fails is said as the name or the role.
+- **Somebody without a name holds a pronoun too.**
+  - After somebody nameless of its sex in its own sentence ("a large man", "a stranger", "the janitor"), the pronoun is theirs: "Somebody at the next table… got his own tie."
+  - On a murder, "the body" is the dead man: "found the body in his own flat".
+  - A sentence in the room that opens on a job and no name, "The barman counts the glasses onto a towel at closing…", takes the next sentence's pronoun. So the look after it says the name: "Belkin had hair dyed a black…". This was Bible 2's leftover, "a look after a habit about somebody else".
 - **Cataphora.** "From his post Sokol could see the bar…" keeps the name the pronoun hangs on, unless the pronoun already reads back to somebody before it.
 - **The thought keeps the names it ties back by** (docs/44), except at Hard-boiled, where it ties back to nothing (docs/46).
-- **When a third mention can't be helped,** a card that says the name is traded for one of its alternatives that doesn't.
+- **A pronoun can wait for the name at the end of its sentence:** "Saying a decade of the rosary under her breath, with one eye open: that was the last I saw of Mrs. Rafferty."
+- **The role is better than a name that would read as a place:** "the landlady’s", not "Mrs. Rafferty’s".
+- **When a third mention can't be helped,** a card that says the name is traded for one of its alternatives that doesn't. As a last resort, a pay-off close is traded for a plain close of its family.
 
 ### What changed in the writers (planner on only)
 
@@ -132,13 +140,15 @@ Branch `microplanner`. The planner is on. `PLAN.ops` in `src/game/board/plan/ind
 - **The skeleton's `about`:** a remark is about the people it places, and an arrival's last-I-saw line is about its person.
 - **A card traded for another keeps the look that was put after it.**
 - **The papers name the dead man as "the dead man"** on a page where "his" could be the suspect's.
+- **The office's account of the scene marks its pronouns as the dead man's.** That gives "Bidwell, who heard the dead man’s radio still going and knocked" after Bible 2's "found dead in his own flat … by Bidwell".
+- **One place at two hours is said once in the rest of an evening that held:** "at the flats over Lipsky’s at eight, with Mrs. Greco, and at nine".
 
 ### The skeleton
 
 `Unit` is in `src/game/board/plan/types.ts`. Each page carries its units in `page.board.units`. `npm run read -- … --skeleton` prints them as JSONL after each page, and `scripts/skeletons.ts` writes the corpus (`skeletons*.jsonl`, git-ignored). It checks every page as it goes: the units, a paragraph at a time, are the page's prose word for word. The tests check it too, on every tier and type in both worlds. At 20 nights a tier:
 
-- dealt, all three routes: 4,896 pages, 45,761 units, 32,093 of them gaps;
-- the neighbourhood, the oracle's route: 1,482 pages, 15,450 units, 10,424 of them gaps.
+- dealt, all three routes: 4,896 pages, 45,898 units, 32,230 of them gaps;
+- the neighbourhood, the oracle's route: 1,479 pages, 15,500 units, 10,444 of them gaps.
 
 The golden's night, page 8, as emitted:
 
@@ -159,35 +169,38 @@ The golden's night, page 8, as emitted:
 
 ### Measures, before → after
 
-`npx tsx scripts/board-prose.ts [--world neighbourhood] [--plan off]`: 30 nights a tier, along the oracle's route unless a column says all three routes. Every earlier lint is 0 after, in both worlds: reader lint, correspondence, thoughts over their level, plain terms, cards twice, sentences twice, names three times, clues three times, place names bolted on, banned phrases, signposts, gags, "it". Before, the neighbourhood had three of them that weren't 0: one place name bolted on (Soft-boiled), two pages naming somebody three times (Medium) and one restated pointer (Soft-boiled).
+`npx tsx scripts/board-prose.ts [--world neighbourhood] [--plan off]`: 30 nights a tier, along the oracle's route unless a column says all three routes. Every earlier lint is 0 after, in both worlds: reader lint, correspondence, thoughts over their level, plain terms, cards twice, sentences twice, names three times, clues three times, place names bolted on, banned phrases, signposts, gags, "it". Before, the neighbourhood had four hits (Bible 2's leftover):
+- place names bolted on: Raw 1, Medium 1;
+- a page naming somebody three times: Medium 1;
+- a sentence said twice: Hard-boiled 1.
 
 **Dealt**
 
 | tier | words a page, median | sentences per fact unit | list smell, pages | pronoun ambiguity (oracle / all three) | joins a page [share 1–3] | restated pointer |
 |---|---|---|---|---|---|---|
-| Raw | 180 → 183 | 1.84 → 1.59 | 218 → 81 of 280 | 25 / 110 → 0 / 0 | 1.3 [74%] → 0.9 [74%] | 0 → 0 |
-| Coddled | 180 → 181 | 1.73 → 1.53 | 207 → 84 of 276 | 20 / 74 → 0 / 0 | 1.0 [64%] → 0.7 [62%] | 0 → 0 |
-| Poached | 172 → 172 | 1.71 → 1.52 | 293 → 110 of 398 | 43 / 142 → 0 / 0 | 1.1 [72%] → 0.7 [63%] | 0 → 0 |
-| Soft-boiled | 169 → 169 | 1.66 → 1.51 | 286 → 109 of 383 | 41 / 155 → 0 / 0 | 1.1 [70%] → 0.7 [63%] | 0 → 0 |
-| Medium | 166 → 167 | 1.56 → 1.47 | 321 → 148 of 439 | 58 / 199 → 0 / 0 | 1.2 [67%] → 0.8 [61%] | 0 → 0 |
-| Hard-boiled | 160 → 161 | 1.59 → 1.45 | 307 → 150 of 435 | 29 / 128 → 0 / 0 | 0.1 [12%] → 0.1 [12%] | 0 → 0 |
+| Raw | 180 → 182 | 1.83 → 1.59 | 219 → 89 of 280 | 25 / 111 → 0 / 0 | 1.3 [74%] → 0.9 [74%] | 0 → 0 |
+| Coddled | 180 → 181 | 1.72 → 1.52 | 207 → 91 of 276 | 21 / 77 → 0 / 0 | 1.0 [64%] → 0.7 [62%] | 0 → 0 |
+| Poached | 172 → 171 | 1.70 → 1.51 | 292 → 111 of 398 | 46 / 151 → 0 / 0 | 1.1 [72%] → 0.7 [63%] | 0 → 0 |
+| Soft-boiled | 170 → 170 | 1.65 → 1.50 | 283 → 113 of 383 | 42 / 158 → 0 / 0 | 1.1 [70%] → 0.7 [63%] | 0 → 0 |
+| Medium | 166 → 166 | 1.55 → 1.46 | 320 → 147 of 439 | 59 / 201 → 0 / 0 | 1.2 [67%] → 0.8 [61%] | 0 → 0 |
+| Hard-boiled | 159 → 161 | 1.58 → 1.43 | 308 → 148 of 435 | 28 / 126 → 0 / 0 | 0.1 [12%] → 0.1 [12%] | 0 → 0 |
 
 **The neighbourhood**
 
 | tier | words a page, median | sentences per fact unit | list smell, pages | pronoun ambiguity (oracle / all three) | joins a page [share 1–3] | restated pointer |
 |---|---|---|---|---|---|---|
-| Raw | 220 → 220 | 1.93 → 1.77 | 214 → 81 of 280 | 26 / 118 → 0 / 0 | 1.3 [75%] → 0.9 [75%] | 0 → 0 |
-| Coddled | 213 → 215 | 1.78 → 1.62 | 207 → 97 of 276 | 17 / 75 → 0 / 0 | 1.1 [67%] → 0.8 [67%] | 0 → 0 |
-| Poached | 186 → 184 | 1.71 → 1.56 | 306 → 136 of 408 | 55 / 156 → 0 / 0 | 1.1 [73%] → 0.7 [63%] | 0 → 0 |
-| Soft-boiled | 195 → 194 | 1.67 → 1.56 | 277 → 124 of 389 | 50 / 170 → 0 / 0 | 1.1 [69%] → 0.7 [61%] | 1 → 0 |
-| Medium | 191 → 189 | 1.58 → 1.50 | 282 → 136 of 436 | 64 / 210 → 0 / 0 | 1.2 [67%] → 0.8 [62%] | 0 → 0 |
-| Hard-boiled | 192 → 192 | 1.63 → 1.52 | 324 → 179 of 435 | 52 / 150 → 0 / 0 | 0.1 [12%] → 0.1 [12%] | 0 → 0 |
+| Raw | 215 → 214 | 1.93 → 1.77 | 237 → 134 of 280 | 24 / 114 → 0 / 0 | 1.3 [74%] → 0.9 [74%] | 0 → 0 |
+| Coddled | 212 → 212 | 1.80 → 1.65 | 214 → 114 of 276 | 25 / 84 → 0 / 0 | 1.1 [66%] → 0.7 [66%] | 0 → 0 |
+| Poached | 193 → 188 | 1.70 → 1.54 | 304 → 170 of 407 | 45 / 152 → 0 / 0 | 1.1 [73%] → 0.7 [61%] | 0 → 0 |
+| Soft-boiled | 197 → 191 | 1.66 → 1.54 | 295 → 157 of 387 | 53 / 175 → 0 / 0 | 1.0 [67%] → 0.7 [61%] | 0 → 0 |
+| Medium | 196 → 194 | 1.56 → 1.48 | 317 → 180 of 427 | 51 / 203 → 0 / 0 | 1.2 [69%] → 0.8 [65%] | 0 → 0 |
+| Hard-boiled | 195 → 194 | 1.61 → 1.51 | 336 → 198 of 435 | 54 / 192 → 0 / 0 | 0.1 [12%] → 0.1 [12%] | 0 → 0 |
 
 - **Pronoun ambiguity, restated pointers and names a page hold at 0,** on all three routes. The tests check this on every tier and type in both worlds.
-- **List smell is down by 45–63%,** from 65–78% of pages to 28–41%. It isn't 0.
-- **Sentences per fact unit are down by 0.08–0.25.** They aren't at 1.2.
+- **List smell is down by 41–62%.** Dealt it went from 71–78% of pages to 28–34%; in the neighbourhood, from 74–85% to 41–48%. It isn't 0.
+- **Sentences per fact unit are down by 0.08–0.24.** They aren't at 1.2.
 - **Joins fell.** One "but" and one "So" a page, and the held-rest line no longer adds "same as she said". About two pages in three with facts still have one to three joins. Hard-boiled has none by design: at fact level the thought says the fact plain (docs/46).
-- **Words a page didn't move.** Dealt Soft-boiled, Medium and Hard-boiled are under 170, as they were before.
+- **Words a page didn't move.** Dealt Medium and Hard-boiled are under 170, as they were before.
 - **"Thought naming an earlier fact" at Hard-boiled** is 96% dealt and 98% neighbourhood, against 100% off. At Hard-boiled the planner doesn't hold the thought's names back, so a name there can become "he". Docs/46 §2 doesn't ask a Hard-boiled thought to tie back, and the column's target is 100% below Hard-boiled only.
 
 ### The golden's page 6, and the engine's
@@ -262,6 +275,16 @@ The golden (`docs/golden/board-connective.md`) folds each arrival into the page 
   - the papers ran two of four entries together with a semicolon;
   - "Dandridge’d" (a pronoun's contraction kept on a name);
   - "Here’s what I had, and Bernstein had said…" (a lead joined to a fact).
+The two neighbourhood nights were read again after Bible 2 merged. It recast them (Mrs. Greco and Glick; Kaminsky and Mabry). That read turned up:
+- the scene's "his" after a male finder;
+- "The barman counts the glasses… He had…";
+- "He said the flats at nine and the Peacock at ten for nine and ten";
+- a second "So" traded in as a gloss;
+- two people's texture run into one sentence;
+- the place said three times by the rest of an evening.
+
+They're fixed, with the reference rules above. Before the merge:
+
 - **The neighbourhood at Medium** (seed 5, murder). Fixed:
   - "From his post Sokol…" lost its name to "he";
   - "He was at Sokol’s at nine" after a sentence naming Belkin and Dr. Hirsch;

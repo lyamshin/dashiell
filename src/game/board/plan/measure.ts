@@ -142,13 +142,27 @@ const PRONOUN = /\b(he|him|his|himself|she|her|hers|herself)\b/gi;
  * Somebody nameless before a pronoun in its own sentence, and nobody named: the pronoun is theirs
  * ("Somebody at the next table gave a seltzer bottle a squeeze and got his own tie").
  */
-const INDEFINITE = /\b(?:[Ss]omebody|[Ss]omeone|[Nn]obody|[Aa]nybody|[Ee]verybody|[Oo]ne of the \w+|(?:[Aa]n?|[Tt]he) (?:[a-z]+ )?(?:kid|cop|waiter|cabby|drunk|tenant|lodger))\b/;
-const INDEFINITE_HE = /\b(?:[Aa]n?|[Tt]he) (?:[a-z]+ )?(?:man|fellow|boy|policeman)\b/;
-const INDEFINITE_SHE = /\b(?:[Aa]n?|[Tt]he) (?:[a-z]+ )?(?:woman|girl|lady)\b/;
+/** Jobs a place's own lines speak of without a name ("The barman counts the glasses…"): either sex, or one. */
+const ROLES_ANY = 'usher|doorkeeper|bartender|clerk|cook|owner|manager';
+const ROLES_HE = 'barman|doorman|policeman|landlord|milkman|watchman|janitor|porter|driver|cabby|waiter|cop';
+const ROLES_SHE = 'landlady|waitress';
+const INDEFINITE = new RegExp(`\\b(?:[Ss]omebody|[Ss]omeone|[Nn]obody|[Aa]nybody|[Ee]verybody|[Oo]ne of the \\w+|(?:[Aa]n?|[Tt]he) (?:[a-z]+ )?(?:kid|drunk|tenant|lodger|stranger|${ROLES_ANY}))\\b`);
+const INDEFINITE_HE = new RegExp(`\\b(?:[Aa]n?|[Tt]he) (?:[a-z]+ )?(?:man|fellow|boy|${ROLES_HE})\\b`);
+const INDEFINITE_SHE = new RegExp(`\\b(?:[Aa]n?|[Tt]he) (?:[a-z]+ )?(?:woman|girl|lady|${ROLES_SHE})\\b`);
+const ROLE_OPENS_HE = new RegExp(`^The (?:[a-z]+ )?(?:${ROLES_ANY}|${ROLES_HE})\\b`);
+const ROLE_OPENS_SHE = new RegExp(`^The (?:[a-z]+ )?(?:${ROLES_ANY}|${ROLES_SHE})\\b`);
 
 /** Whether `before` has somebody nameless a pronoun of that sex could be theirs ("a large man … his"). */
 export function indefiniteFor(before: string, female: boolean): boolean {
   return INDEFINITE.test(before) || (female ? INDEFINITE_SHE : INDEFINITE_HE).test(before);
+}
+
+/**
+ * Whether a sentence opens on somebody by their job and no name, of that sex: "The barman counts the
+ * glasses onto a towel at closing…". A pronoun opening the next sentence is read as theirs.
+ */
+export function opensOnRole(text: string, female: boolean): boolean {
+  return (female ? ROLE_OPENS_SHE : ROLE_OPENS_HE).test(text.trimStart());
 }
 /** A list entry's heading: "Hargrove: …", "Mrs. Nagy: …". */
 const ENTRY = /^(?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?[A-Z][\w’]+: /;
@@ -196,7 +210,7 @@ export function pronounAmbiguity(c: BoardCase, blocks: readonly Block[]): string
         // Rafferty could see the stairs."
         const after = new Set(here.filter((x) => x.at > at && sexOf.get(x.id) === female).map((x) => x.id));
         if (local.size === 0 && after.size === 1) continue;
-        if (local.size === 0 && indefiniteFor(narr.slice(from, at), female) && !here.some((x) => x.at >= from && x.at < at)) continue;
+        if (local.size === 0 && indefiniteFor(narr.slice(from, at), female) && !here.some((x) => x.at >= from && x.at < at && sexOf.get(x.id) === female)) continue;
         if (local.size === 0 && !entries) {
           cands = new Set<string>();
           for (const ns of prior.slice(-1)) for (const x of ns) if (sexOf.get(x.id) === female) cands.add(x.id);

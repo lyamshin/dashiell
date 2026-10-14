@@ -31,7 +31,7 @@ import { pronOf, type BoardCase } from '../model.js';
 import type { Item } from './types.js';
 import type { PlanCtx } from './index.js';
 import { sentencesOf } from './sentences.js';
-import { clauseHead, herIsObject, indefiniteFor, maskPlaces, narrationOf } from './measure.js';
+import { clauseHead, herIsObject, indefiniteFor, maskPlaces, narrationOf, opensOnRole } from './measure.js';
 
 /** The engine's mark on a pronoun it wrote: whom it means, by their place in the case's people. */
 export function markPronoun(c: BoardCase, id: string): string {
@@ -67,6 +67,8 @@ interface Mention {
   titled: boolean;
   /** What it becomes, when the planner changes it. */
   rep?: string;
+  /** A pronoun before it in its sentence hangs on it: the name, not the role. */
+  wantName?: boolean;
 }
 
 interface Sent {
@@ -188,7 +190,7 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       const at = x.index ?? 0;
       let who: Who | undefined;
       if (x[3] !== undefined) who = byIdx.get(Number(x[3]));
-      else if (indefiniteFor(s.narr.slice(0, at), female) && !s.mentions.some((y) => y.kind === 'name' && y.at < at)) continue;
+      else if (indefiniteFor(s.narr.slice(0, at), female) && !s.mentions.some((y) => y.kind === 'name' && y.at < at && y.who.female === female)) continue;
       else {
         // A card's pronoun is the one person of that sex it was dealt about. (A fact the engine wrote marks
         // its own; one about several people, unmarked, could mean any of them, or nobody in it.)
@@ -204,6 +206,9 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       const who = byIdx.get(Number(x[1]));
       if (who) s.mentions.push({ who, at: x.index ?? 0, len: 0, kind: 'role', form: 'unknown', listy: false, titled: false });
     }
+    // "The body", on a murder, is the dead man: "found the body in his own flat".
+    const dead = c.type === 'murder' ? ws.find((y) => y.id === c.crime.victim) : undefined;
+    if (dead) for (const x of s.narr.matchAll(/\bthe body\b/g)) s.mentions.push({ who: dead, at: x.index ?? 0, len: 0, kind: 'role', form: 'unknown', listy: false, titled: false });
     s.mentions.sort((a, b) => a.at - b.at);
   }
 
@@ -217,6 +222,13 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   /** Narration sentences so far: the one before is a pronoun's window. */
   const narrIdx: number[] = [];
 
+  /**
+   * A sentence in the room that opens on somebody by their job and names nobody of that sex ("The
+   * barman counts the glasses onto a towel at closing…"): a pronoun after it is read as theirs. (Not
+   * a hand-off's "The janitor at the flats would know who’d been in": he isn't here.)
+   */
+  const roleOpens = (x: Sent, female: boolean): boolean =>
+    (items[x.item] as Item).slot !== 'hand-off' && opensOnRole(x.narr, female) && !x.mentions.some((m) => m.kind !== 'speech' && m.who.female === female);
   /** Names a pronoun before them hangs on ("From her post Mrs. Rafferty…"): they stay names. */
   const anchors = new Set<Mention>();
   /** Would a pronoun for `w` at `at` in sentence `si` be read as `w`, and as nobody else? */
@@ -233,9 +245,20 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         local.delete(hw);
       }
     }
+    // Just after somebody said without a name, a role or "the body", a few words before it: theirs
+    // ("found the body in his own flat").
+    const near = [...s.named.map((n) => ({ who: n.who, at: n.at, role: false })), ...s.mentions.filter((m) => m.kind === 'role').map((m) => ({ who: m.who, at: m.at, role: true }))]
+      .filter((n) => n.at < at && n.who.female === w.female)
+      .sort((a, b) => b.at - a.at)[0];
+    if (near && near.role && near.who === w && s.narr.slice(near.at, at).split(/\s+/).length <= 5) return true;
     if (local.size >= 2) return false;
     if (local.size === 1) return local.has(w);
     const backward = (): boolean => {
+      // The sentence before opened on somebody by their job, without a name, and named nobody of
+      // that sex: a pronoun now is read as theirs ("The barman counts the glasses onto a towel at
+      // closing… He had a little black notebook" was Doyle's look).
+      const before = narrIdx.length ? (sents[narrIdx[narrIdx.length - 1] as number] as Sent) : undefined;
+      if (before && roleOpens(before, w.female)) return false;
       const win = new Set<Who>();
       for (const k of narrIdx.slice(-1)) for (const n of (sents[k] as Sent).named) if (n.who.female === w.female) win.add(n.who);
       if (win.size >= 2) return false;
@@ -266,6 +289,16 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       }
     }
     return false;
+  };
+  /**
+   * Nobody else of `w`'s sex for a pronoun at `at` to be read as, by the measure's window: named
+   * before it in its sentence, or in the sentence before, or a job without a name opening that one.
+   */
+  const unclaimed = (s: Sent, at: number, w: Who): boolean => {
+    if (s.named.some((n) => n.at < at && n.who.female === w.female && n.who !== w)) return false;
+    const prev = narrIdx.length ? (sents[narrIdx[narrIdx.length - 1] as number] as Sent) : undefined;
+    if ((prev?.named ?? []).some((n) => n.who.female === w.female && n.who !== w)) return false;
+    return !(prev && roleOpens(prev, w.female));
   };
   /** Two people of one sex as pronouns in one sentence ("She had her at Kowalski’s") read as anybody's. */
   const otherPronoun = (s: Sent, w: Who): boolean =>
@@ -358,8 +391,25 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         note(false);
         continue;
       }
-      if (n >= 2 && w.role && !frozen) {
+      // Theirs again later in the sentence, and nobody else of that sex in it: this one waits for the
+      // name the last one becomes ("…under her breath, with one eye open: that was the last I saw of
+      // Mrs. Rafferty").
+      const last = s.mentions.find((x) => x !== m && x.kind === 'pronoun' && x.who === w && x.at > m.at && /: that was the last I saw of (?:him|her)⁣?\d*⁤?\.$/.test(s.narr.slice(0, x.at + x.len + 1)));
+      if (!frozen && last && !s.mentions.some((x) => x.who !== w && x.who.female === w.female && x.kind !== 'speech')) {
+        last.wantName = true;
+        continue;
+      }
+      // (The role as soon as the cap is pressed, counting the names still to come: "who heard the dead
+      // man’s radio", when the client will name him again. A role that would read as a place, "Mrs.
+      // Rafferty’s", is better than the name.)
+      const placeLike = m.form === 'poss' && c.places.some((pl) => `${w.short}’s`.endsWith(pl.short));
+      if (!m.wantName && (n >= 2 || (pressed && introduced.has(w.idx)) || placeLike) && w.role && !frozen) {
         m.rep = roleFor(w, m.form);
+        note(false);
+      } else if (n >= 2 && !frozen && it.kind === 'gap' && it.slot === 'close' && unclaimed(s, m.at, w)) {
+        // The page's last line, about whom the page is about, where the name would be a third time
+        // and nobody else of that sex is near enough to take the pronoun: it stays ("Counting out
+        // change for a horse she likes: that was the last I saw of her.").
         note(false);
       } else {
         m.rep = m.form === 'poss' ? `${w.short}’s` : w.short;

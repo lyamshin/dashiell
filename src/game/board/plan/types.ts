@@ -83,7 +83,8 @@ export interface Item {
    * Texture only: other cards that fitted the same draw as well, for the rhythm. `take` makes the
    * trade with the hand (the card given back is free to be dealt again tonight).
    */
-  alts?: () => { text: string; take: () => void }[];
+  /** `lastResort`: only for a name a third time (`referWithTrades`), never for the rhythm. */
+  alts?: () => { text: string; take: () => void; lastResort?: boolean }[];
 }
 
 /** A join the logic allows, and what it does to the fact's sentences. */

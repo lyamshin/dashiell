@@ -183,6 +183,15 @@ describe('docs/49 §2: reference', () => {
     expect(out[1]).toBe('Somebody at the next table squeezed a seltzer bottle and got his own tie.');
   });
 
+  it('a sentence opening on somebody by their job takes the pronoun after it: the look says the name', () => {
+    const ashby = id('Ashby');
+    const out = plan(
+      { arrival: [gap('arrival', 'The barman counts the glasses onto a towel at closing.'), { ...gap('arrival', `He${markPronoun(c, ashby)} had clothes too good to have been bought.`, [ashby]), runOn: true }] },
+      [['arrival']],
+    );
+    expect(out[0]).toBe('The barman counts the glasses onto a towel at closing. Ashby had clothes too good to have been bought.');
+  });
+
   it('a name a third time, where a pronoun won’t do, is the role', () => {
     const coffin = id('Coffin');
     const ashby = id('Ashby');

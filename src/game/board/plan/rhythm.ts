@@ -23,6 +23,7 @@
 
 import type { Item } from './types.js';
 import type { PlanCtx } from './index.js';
+import { indefiniteFor } from './measure.js';
 import { bandOf, openingOf, sentencesOf, wordsIn, type Band } from './sentences.js';
 
 interface S {
@@ -181,6 +182,8 @@ function clash(ctx: PlanCtx, a: string, b: string, ib: Item): boolean {
   const pron = /\b(he|him|his|she|her)\b/i.exec(b.replace(/⁣\d+⁤/g, ''));
   if (!pron) return false;
   const female = /^(she|her)$/i.test(pron[1] as string);
+  // "…pointing his flashlight at a man who was talking, and he had a white mustache": the man's?
+  if (indefiniteFor(a, female)) return true;
   const mine = new Set(ib.about ?? []);
   return ctx.c.people.some((p) => !p.object && !!p.female === female && !mine.has(p.id) && a.includes(p.short));
 }
@@ -203,7 +206,10 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
       const ib = itemOf(b);
       if (!mendable(ia) || !mendable(ib) || !joins(ia) || !joins(ib)) return null;
       // Two people of one sex in one sentence, and a pronoun after them, is a pronoun for either.
-      if (ia !== ib && clash(ctx, a.text, b.text, ib)) return null;
+      if (ia !== ib ? clash(ctx, a.text, b.text, ib) : indefiniteFor(a.text, /^(?:she|her)\b/i.test(/\b(he|him|his|she|her)\b/i.exec(b.text)?.[1] ?? '')) && /\b(he|him|his|she|her)\b/i.test(b.text)) return null;
+      // Two people's texture isn't one sentence ("He had a white mustache…, and Teitel was folding a
+      // necktie…").
+      if (ia !== ib && ia.kind === 'gap' && (ia.about ?? []).length > 0 && (ib.about ?? []).length > 0 && !(ia.about ?? []).some((x) => (ib.about ?? []).includes(x))) return null;
       const joined = joinable(a.text, b.text);
       if (!joined) return null;
       if (a.i === b.i) {
@@ -241,11 +247,15 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
   for (const s of [trio[1], trio[2], trio[0]]) {
     const it = itemOf(s);
     if (!it.alts || !mendable(it)) continue;
-    const options = it.alts();
+    const options = it.alts().filter((o) => !o.lastResort);
     const start = ctx.int && options.length ? ctx.int(options.length) : 0;
     for (let n = 0; n < options.length; n++) {
       const o = options[(start + n) % options.length] as { text: string; take: () => void };
       if (sentencesOf(o.text).every((x) => bandOf(x) === s.band)) continue;
+      // Not a second sentence on the page opening on "So" or "But" ("So here at seven… So far as it
+      // went, it stood up.").
+      const opener = /^(So|But)\b/.exec(o.text)?.[1];
+      if (opener && paras.flat().some((x) => x !== it && new RegExp(`(?:^|[.!?]\\s+)${opener}\\b`).test(x.text.replace(/“[^”]*”/g, ' ')))) continue;
       out.push(() => {
         const old = it.text;
         const alts = it.alts;

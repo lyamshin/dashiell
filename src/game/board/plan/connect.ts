@@ -114,7 +114,13 @@ export function connect(items: Item[], ctx: PlanCtx): void {
     }
     if (a?.key === 'agree-rest') {
       const d = a.data as { p: string; src: string; parts: { at: string; h: number; hs?: number[]; comp: string }[] };
-      const bits = andList(d.parts.map((y) => `${y.at} at ${andList((y.hs ?? [y.h]).map((h) => hourWord(h as Hour)))}${y.comp ? `, with ${y.comp}` : ''}`)).replace(/(\w), (with [^,]+) and (here|at|home)\b/, '$1, $2, and $3');
+      const [q0, q1] = d.parts;
+      // One place at two hours with different company is said once: "at the flats over Lipsky’s at
+      // eight, with Mrs. Greco, and at nine".
+      const bits =
+        q0 && q1 && d.parts.length === 2 && q0.at === q1.at
+          ? `${q0.at} at ${hourWord(q0.h as Hour)}${q0.comp ? `, with ${q0.comp},` : ''} and at ${hourWord(q1.h as Hour)}${q1.comp ? `, with ${q1.comp}` : ''}`
+          : andList(d.parts.map((y) => `${y.at} at ${andList((y.hs ?? [y.h]).map((h) => hourWord(h as Hour)))}${y.comp ? `, with ${y.comp}` : ''}`)).replace(/(\w), (with [^,]+) and (here|at|home)\b/, '$1, $2, and $3');
       const p = pr(ctx, d.p);
       // After a collision that named somebody of their sex, "same as she said" could be either
       // of them: the evening is theirs by name, and the join is the holding.
@@ -152,7 +158,8 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       const d = a.data as { p: string; hs: string; n: number; what: string; named: boolean };
       const who = d.named ? nameOf(ctx.c, d.p) : pr(ctx, d.p).he;
       const hours = `the ${d.n > 1 ? 'hours' : 'hour'} that mattered`;
-      const shapes = [(x: string) => `For ${d.hs}, ${hours}, ${x} said ${d.what}.`, ...(d.what.includes(",") ? [] : [(x: string) => `${cap(x)} said ${d.what} for ${d.hs}, ${hours}.`])];
+      // (Not "He said the flats at nine and the Peacock at ten for nine and ten": hours said twice.)
+      const shapes = [(x: string) => `For ${d.hs}, ${hours}, ${x} said ${d.what}.`, ...(d.what.includes(',') || / at (?:seven|eight|nine|ten|eleven|twelve|midnight)\b/.test(d.what) ? [] : [(x: string) => `${cap(x)} said ${d.what} for ${d.hs}, ${hours}.`])];
       const forms = shapes.map((f) => f(who));
       // Not a shape an earlier page said word for word, with the name or with "he".
       const fresh = shapes.filter((f) => ![nameOf(ctx.c, d.p), pronOf(ctx.c, d.p).he].some((x) => ctx.said?.has(f(x))));

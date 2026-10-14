@@ -535,7 +535,12 @@ export const GAG_MAX = 2;
 function closeWith(w: Writer, p: PersonId | undefined, family: string, want: Record<string, string | undefined>, slots: Record<string, string | undefined>): void {
   const pay = payOff(w, p);
   if (pay) {
-    put(w, 'close', pay, 'thought', { alts: payAlts(w, pay), ...(p ? { about: [p] } : {}) });
+    // docs/49: where the pay-off would say their name a third time, a plain close of the family.
+    const own = payAlts(w, pay);
+    const payId = w.lastPay?.id;
+    const plain = PLAN.ops && payId ? w.hand.options(family, want, slots, /\{[Nn]ame\}|\{[Hh]e\}|\{[Hh]is\}|\{[Hh]im\}/) : [];
+    const alts: Item['alts'] = own || plain.length ? () => [...(own ? own() : []), ...plain.filter((o) => !w.hand.used(o.id)).map((o) => ({ text: tidy(o.text), take: () => w.hand.swap(payId as string, o.id), lastResort: true }))] : undefined;
+    put(w, 'close', pay, 'thought', { alts, ...(p ? { about: [p] } : {}) });
     return;
   }
   // A name twice at most a page: a close that would say it a third time isn't dealt.
@@ -912,6 +917,13 @@ export function writeOffice(w: Writer): void {
     if (text && pointerAlso && /”$/.test(text)) {
       text = `${text.slice(0, -1)}${pointerAlso}”`;
       pointerTold = true;
+    }
+    // docs/49: the scene's pronouns are the dead man's ("found dead in his own flat … by Bidwell, who
+    // heard his radio still going"), for the planner to say as him where "his" could be the finder's.
+    if (PLAN.ops && text && g.kind === 'found' && isMurder(c)) {
+      const vic = victimOf(c).id;
+      const pron = pronOf(c, vic).he === 'she' ? /\b(she|her|She|Her)\b/g : /\b(he|his|him|He|His|Him)\b/g;
+      text = text.replace(pron, (m) => `${m}${markPronoun(c, vic)}`);
     }
     fact(w, 'job', text ?? `“${g.text}”`, g.kind === 'found' ? 'narrator' : 'exchange', {
       about: c.people.filter((x) => !x.object && g.text.includes(x.short)).map((x) => x.id),

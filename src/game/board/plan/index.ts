@@ -182,7 +182,10 @@ function referWithTrades(paras: Item[][], ctx: PlanCtx): void {
       const cards = [b.item, ...paras.flat().filter((x) => x !== b.item && (x.text.includes(p.short) || ((x.about ?? []).includes(p.id) && pronoun.test(x.text))))];
       for (const it of cards) {
         if (!it.alts || trades.some((t) => t.it === it)) continue;
-        const alt = it.alts().find((o) => !pronoun.test(o.text) && !o.text.includes(p.short));
+        const os = it.alts();
+        const ok = (o: { text: string }) => !pronoun.test(o.text) && !o.text.includes(p.short);
+        // Its own kind first (another pay-off, another card of the draw), a plain one last.
+        const alt = os.find((o) => !o.lastResort && ok(o)) ?? os.find(ok);
         if (alt) {
           trades.push({ it, text: alt.text, take: alt.take });
           break;

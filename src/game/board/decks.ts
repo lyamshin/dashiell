@@ -193,6 +193,23 @@ export class Hand {
    */
   last: { id: string; text: string; joke: boolean; others: { id: string; text: string }[] } | null = null;
 
+  /**
+   * docs/49: the fresh plain cards a draw of `family` could deal, without dealing one (no roll, nothing
+   * noted): the planner's last resort when a line it was handed can't be said without a name a third
+   * time. The deck's cards only, the first rung of `want` that has any.
+   */
+  options(family: string, want: Want = {}, slots: Slots = {}, avoid?: RegExp): { id: string; text: string }[] {
+    const pool = familyCards(family);
+    const keys = Object.keys(want).filter((k) => want[k] !== undefined);
+    for (let n = keys.length; n >= 0; n--) {
+      const rung = keys.slice(0, n);
+      const fits = pool.filter((c) => rung.every((k) => tagFits(c, k, want[k] as string)) && !c.joke && !this.spentSet.has(c.id) && !(this.avoid && this.avoid.test(c.text)) && !(avoid && avoid.test(c.text)));
+      const filled = fits.map((c) => ({ id: c.id, text: fill(c as unknown as Card, slots) })).filter((x): x is { id: string; text: string } => x.text !== null);
+      if (filled.length > 0) return filled;
+    }
+    return [];
+  }
+
   /** Take `next` instead of `prev`: `prev` is free to be dealt again tonight. */
   swap(prev: string, next: string): void {
     if (this.spentSet.has(prev) && this.spent.includes(prev)) {

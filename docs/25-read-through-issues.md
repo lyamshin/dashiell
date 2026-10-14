@@ -166,9 +166,9 @@ Branch `bible-2`. Done: variety (159–192 distinct casts), the share (74–77%)
 - **The engine's grammar for a plural lost thing:** "That’s where the spoons lives", "The spoons … is gone" (Coddled 9).
 
 ## The microplanner (docs/49), 2026-10-14
-Branch `microplanner`. I read four nights in full: the golden's, a Hard-boiled one, and the neighbourhood at Medium and Poached. Docs/49's Built section has the measures. Left over:
+Branch `microplanner`. I read four nights in full: the golden's, a Hard-boiled one, and the neighbourhood at Medium and Poached, the neighbourhood ones again after Bible 2 merged. Docs/49's Built section has the measures. With the planner on, two of Bible 2's leftovers are gone: "a look after a habit about somebody else", and `board-prose`'s four hits. Left over:
 
-- **Sentences per fact unit** are 1.45–1.59 dealt and 1.50–1.77 in the neighbourhood, against a target of 1.2 or less (before: 1.56–1.93). The extra sentences sit in facts the planner doesn't rewrite:
+- **Sentences per fact unit** are 1.43–1.59 dealt and 1.48–1.77 in the neighbourhood, against a target of 1.2 or less (before: 1.55–1.93). The extra sentences sit in facts the planner doesn't rewrite:
   - the client's lines in the office (2.6 sentences a unit);
   - a find (3.0);
   - the office's account of the scene (3.1);
@@ -176,19 +176,20 @@ Branch `microplanner`. I read four nights in full: the golden's, a Hard-boiled o
   - the confrontation's admission.
 
   The content says each of them in several sentences. To get closer to 1.2, write finds and the office's givens in one or two sentences, or mark which of their sentences are texture so they can be gaps.
-- **List smell** is on 28–34% of the oracle's pages dealt and 29–41% in the neighbourhood (before: 71–78% and 65–76%). What's left:
+- **List smell** is on 28–34% of the oracle's pages dealt and 41–48% in the neighbourhood (before: 71–78% and 74–85%). What's left:
   - three medium cards in a row across gaps (staging, why-here, close) with no card of another length in the hand to trade for;
   - a find's or a recap's own three sentences;
   - runs of thoughts.
 
   More short and long cards in the connective deck would give the rhythm something to trade.
-- **Joins a page** are 0.7–0.9 (before: 1.0–1.3), and 61–75% of pages with facts have one to three. Docs/49 asks for 1–3 a page. Hard-boiled is 0.1 by docs/46.
-- **Words a page:** dealt Soft-boiled, Medium and Hard-boiled medians are 161–169, under 170, as they were before.
+- **Joins a page** are 0.7–0.9 (before: 1.0–1.3), and 61–74% of pages with facts have one to three. Docs/49 asks for 1–3 a page. Hard-boiled is 0.1 by docs/46.
+- **Words a page:** dealt Medium and Hard-boiled medians are 166 and 161, under 170 (before: 166 and 159).
 - **The two-sentence window keeps a name where a reader would take the subject.** "Abramowitz had told me the Thalia at eleven, and Coffin’s list said otherwise. … I took the chair beside Abramowitz." Centering by grammatical role (a subject over a possessive) would allow "him", but docs/49's rule says two people in the last two sentences.
 - **Choice labels** (`choices.ts`) still say "Dr. Hirsch says she was at Sokol’s…" after "Miss Moskin says…". They aren't planned.
 - **The arrival's why card comes after the arrival.** "I found the bakery cellar at Sokol’s… That settled where I was going." reads late. It did before too.
 - **A world staging card can stage somebody else.** "The barman counts the glasses onto a towel at closing…" comes before Dr. Hirsch's look, where the deck's card would have seated me with her.
 - **`opensOnClause` is loose.** It takes "never" and "still" for verbs, so a parting at ", and" can leave a clause without a verb. The one case seen was fixed at the source.
+- **Bible 2's gender pass can go ahead.** Its engine lines in `pages.ts` and `thread.ts` were held for this branch. With the planner on, the office's account of the scene marks the dead person's pronouns of their own sex ("she", "her" for a woman), so once the pass changes the words (the office's hard-coded "his own" among them), the planner says them right.
 - **The golden's page 6 still has things the engine can't do:**
   - a beat inside the answer ("He thought of something.");
   - an ask in direct speech on most account pages;
