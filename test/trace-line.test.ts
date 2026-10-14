@@ -126,11 +126,11 @@ describe('trace-line', () => {
     expect(tried, 'no callback line on these pages').toBeGreaterThan(0);
   });
 
-  it('traces an engine line to the function that holds it', () => {
-    // The papers' search writes one of a few lines of its own; one is on the page.
+  it('traces a voiced line to its voicing in content/board/voicings.json', () => {
+    // The papers' search says one of a few lines of its own; one is on the page.
     // (Above Raw the papers put nobody on top, docs/46 §2, and say one of three lines of their own.)
     // (docs/47 B7: every page has its grievance by name, and the thought sets them against the way to the means.)
-    // (docs/49, Planner 2: each is one sentence now.)
+    // (docs/52 build 2: those lines are voicings now, MOTIVE-SET `papers`, and the page records which.)
     const lines = [
       'had a reason, but fewer of them had been at',
       'A reason is the easy half, but the other half was a way to the',
@@ -144,10 +144,10 @@ describe('trace-line', () => {
     const w = where as NonNullable<typeof where>;
     const hits = traceLine(w.save, typed(w.l)).filter((h) => h.page === w.page.n + 1);
     const top = hits[0]?.sources[0];
-    expect(top?.source.kind, formatHits(hits)).toBe('engine');
-    expect(top?.source.file).toBe('src/game/board/pages.ts');
-    expect(top?.source.id).toMatch(/^function \w+/);
-    expect(top?.source.line).toBeGreaterThan(0);
+    expect(top?.source.kind, formatHits(hits)).toBe('deck');
+    expect(top?.source.file).toBe('content/board/voicings.json');
+    expect(top?.source.id).toMatch(/^motive-set\/papers-/);
+    expect(top?.usedOnPage).toBe(true);
   });
 
   it('is forgiving of how a line is quoted, and honest when it is not there', () => {

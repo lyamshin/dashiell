@@ -550,6 +550,8 @@ function usedOf(page: Page): Used {
   const lines = new Set<string>();
   for (const id of page.cardsUsed) {
     if (id.startsWith('pay:')) lines.add(id);
+    // docs/52 build 2: a voicing said on the page, `v:<id>#<n>`, is its entry in voicings.json.
+    else if (id.startsWith('v:')) cards.add(id.slice(2).replace(/#\d+$/, ''));
     else if (!id.includes('#')) cards.add(id);
   }
   return { cards, lines };

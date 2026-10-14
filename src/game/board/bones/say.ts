@@ -115,7 +115,8 @@ export function preview(
     commit: () => {
       const again = last(v) >= 0;
       const key = `v:${v.id}#${hand.uses(`v:${v.id}`) + 1}`;
-      if (VARIETY.on) VARIETY.picks.push({ id: v.id, key, shape, pool: all.length, again, unsaidLeft: again && all.some((x) => last(x) < 0) });
+      // (Unsaid means unsaid and sayable: a joke the page has no room for, or a sentence said tonight already, isn't.)
+      if (VARIETY.on) VARIETY.picks.push({ id: v.id, key, shape, pool: pool.length, again, unsaidLeft: again && pool.some((x) => last(x) < 0) });
       hand.note(key);
       if (v.joke) hand.joke();
       return key;

@@ -307,7 +307,8 @@ describe('board: a clue is said at most twice a night', () => {
   it('the side remark is pointed at, not repeated: the thought gives the street, not the words', () => {
     const run = playBoardOracle(dealBoard(1, 4, 'lost-pet')).run;
     const all = run.log.map((p) => prose(p)).join('\n');
-    expect((all.match(/going fast, no hat/g) ?? []).length).toBe(1);
+    // (docs/52 build 2: the remark is said in one of its voicings, but said once.)
+    expect((all.match(/\bno hat\b|without a hat/g) ?? []).length).toBe(1);
     // (docs/49, Planner 2: the street's lead and its link are one sentence, after the agreement's "but".)
     expect(all).toMatch(/[Tt]he part worth keeping came last: Stuyvesant Street was where Prentiss kept Duchess\./);
     expect((all.match(/under a coat/g) ?? []).length).toBeLessThanOrEqual(2);

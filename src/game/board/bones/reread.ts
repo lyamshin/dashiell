@@ -1064,7 +1064,12 @@ READ.REACTION = (a, flags, comp, v, lx) => {
   return reactionThought(a, flags, comp, v, lx);
 };
 
-READ.PRESENT = (a, flags, comp, v) => [{ k: 'PRESENT', person: flags.has('witness') ? (comp.props[0] as P<'PRESENT'>).person : (a.person as Id), place: v.here }];
+READ.PRESENT = (a, _flags, _comp, v) => {
+  // "my witness", marked with whom it means, or the name.
+  const m = /^my witness⁣(\d+)⁤$/.exec((a.who as string).trim());
+  const person = m ? (v.c.people[Number(m[1])]?.id as Id) : personR(v.c, a.who as string);
+  return [{ k: 'PRESENT', person, place: v.here }];
+};
 
 /** Build 2: a shape's reader, registered by the module that writes its arguments (`readers.ts`). */
 export function registerReader(shape: Shape, r: Reader): void {

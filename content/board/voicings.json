@@ -589,10 +589,8 @@
   {"id": "left/last", "shape": "LEFT", "requires": ["last", "unseen"], "template": "That left one person who {access}, with no true account for {hour}."},
   {"id": "left/last-seen", "shape": "LEFT", "requires": ["last", "seen"], "template": "That left one person who {access}, with no true account for {hour}, and who’d been seen on {street} at {hour}."},
 
-  {"id": "present/first", "shape": "PRESENT", "requires": ["first", "named"], "template": "It turned out {person} was {where}."},
-  {"id": "present/back", "shape": "PRESENT", "requires": ["back", "named"], "template": "It turned out {person} had come back in and was {where}."},
-  {"id": "present/first-witness", "shape": "PRESENT", "requires": ["first", "witness"], "template": "It turned out my witness was {where}."},
-  {"id": "present/back-witness", "shape": "PRESENT", "requires": ["back", "witness"], "template": "It turned out my witness had come back in and was {where}."},
+  {"id": "present/first", "shape": "PRESENT", "requires": ["first"], "template": "It turned out {who} was {where}."},
+  {"id": "present/back", "shape": "PRESENT", "requires": ["back"], "template": "It turned out {who} had come back in and was {where}."},
 
   {"id": "motive-set/papers-tied-1", "shape": "MOTIVE-SET", "requires": ["papers", "tied"], "template": "Everybody in {victim}’s box had a reason, but fewer of them had been at {origin} to get the {means}."},
   {"id": "motive-set/papers-tied-2", "shape": "MOTIVE-SET", "requires": ["papers", "tied"], "template": "A reason is the easy half, but the other half was a way to the {means}, which was at {origin}."},

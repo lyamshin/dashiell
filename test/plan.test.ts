@@ -213,21 +213,24 @@ describe('docs/49 §2: reference', () => {
 });
 
 describe('docs/49 §2: aggregation and connectives', () => {
-  it('a watcher’s hour and its "nobody else" are one sentence', () => {
+  it('a watcher’s hour and its "nobody else" are one composite, said in a voicing of the watcher’s manner', () => {
+    // docs/52 build 2: the writer hands the hour over (LIST-HOUR `whole`); the voicing says "nobody else" its own way.
     const out = plan(
       {
         job: [
           fact('job', '“Ten, Feeney. Nobody else.”', [id('Feeney')], {
             exempt: true,
+            speech: true,
             carries: ['list:barkeep@10'],
             props: [{ k: 'LIST', watcher: 'barkeep', place: 'bar', hour: 10, people: ['feeney'], whole: true }],
-            flesh: { when: 'Ten', names: 'Feeney', whole: true, nobody: 'Nobody else' },
+            say: { shape: 'LIST-HOUR', flags: ['hour', 'whole', 'next', 'one'], args: { hours: { t: 'hours', hs: [10] }, names: 'Feeney' }, manner: 'terse' },
           }),
         ],
       },
       [['job']],
     );
-    expect(out[0]).toBe('“Ten, Feeney, and nobody else.”');
+    expect(out[0]).toMatch(/^“.*\b[Tt]en\b.*Feeney.*”$/);
+    expect(out[0]).toMatch(/\bnobody\b|\bno one\b|\bthe lot\b|\beverybody\b|\bThat’s all\b|\bthat’s it\b/i);
   });
 
   it('a collision takes the page’s one "but"; the second goes without', () => {

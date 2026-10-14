@@ -394,7 +394,7 @@ function placeNewcomers(w: Writer): void {
       place: here,
       carries: [`here:${p}`],
       props: [{ k: 'PRESENT', person: p, place: here }],
-      say: { shape: 'PRESENT', flags: [back ? 'back' : 'first', who === nameOf(c, p) ? 'named' : 'witness'], args: { person: { t: 'person', id: p }, where: at } },
+      say: { shape: 'PRESENT', flags: [back ? 'back' : 'first'], args: { who, where: at } },
     });
     w.people.add(p);
   }
