@@ -1,7 +1,7 @@
 /**
  * docs/49 §3: the skeletons, as a corpus for the tiny model (docs/50).
  *
- * `npx tsx scripts/skeletons.ts --n 300 --tier all [--world neighbourhood] [--routes oracle,wanderer,reader] [--out file.jsonl]`
+ * `npx tsx scripts/skeletons.ts --n 300 --tier all [--world neighbourhood] [--routes oracle,wanderer,reader] [--out file.jsonl] [--situated 0]`
  *
  * One JSON object a line, one line a page: the night (seed, tier, type,
  * world), the page's number and job, its units in order (fact units locked,
@@ -20,6 +20,7 @@ import { dealBoard, tierName, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle, playReader, playWanderer } from '../src/game/board/oracle.js';
 import { realize } from '../src/game/board/plan/index.js';
 import { isWorld } from '../src/gen/board/world/index.js';
+import { SITUATED } from '../src/game/board/plan/situated.js';
 
 const args = process.argv.slice(2);
 const val = (k: string) => {
@@ -36,6 +37,8 @@ const tiers: TierIndex[] = tierArg === 'all' ? [0, 1, 2, 3, 4, 5] : tierArg.spli
 const world = val('world');
 if (world !== undefined && !isWorld(world)) throw new Error(`No world called "${world}".`);
 const routes = (val('routes') ?? 'oracle').split(',');
+// docs/51: each gap the situated deck may fill carries its situation (`key`); `--situated 0` writes the old decks' pages.
+SITUATED.on = val('situated') !== '0';
 const out = val('out') ?? (world ? `skeletons-${world}.jsonl` : 'skeletons.jsonl');
 
 const lines: string[] = [];

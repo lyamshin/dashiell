@@ -89,6 +89,14 @@ export interface Item {
    */
   /** `lastResort`: only for a name a third time (`referWithTrades`), never for the rhythm. */
   alts?: () => { text: string; take: () => void; lastResort?: boolean }[];
+  /**
+   * docs/51: texture the situated deck may fill. Present only on a card the writer dealt from a
+   * family as it was dealt (or a hand-written aside): `lead` is what stays before the card (a
+   * why-here's reason), `tail` what stays after it (a first look put on the staging), `joke` whether
+   * the card dealt was the page's joke. The planner adds `key`, the gap's situation, and `card`, the
+   * situated card that filled it.
+   */
+  sit?: { lead?: string; tail?: string; joke?: boolean; key?: string; card?: string; who?: string };
 }
 
 /** A join the logic allows, and what it does to the fact's sentences. */
@@ -129,4 +137,12 @@ export type Unit =
       beat: Beat;
       para: number;
       voice: ProseVoice;
+      /** docs/51: the situation of a gap the situated deck may fill, and the card that filled it. */
+      key?: string;
+      card?: string;
+      /** docs/51: whom the card's tokens mean ({they}, {role}). */
+      who?: string;
+      /** docs/51: what stays either side of the card (a why-here's reason, a first look). */
+      lead?: string;
+      tail?: string;
     };

@@ -20,8 +20,9 @@ import { curtainOfBoard, pointsText, scoreBoard, storyOfBoard, truthReport } fro
 import { choicesText, notebookText, pageBodyText, wrap } from '../game/board/text.js';
 import { ignoreBrokenPipe, parseArgs } from './args.js';
 import { isWorld } from '../gen/board/world/index.js';
+import { SITUATED } from '../game/board/plan/situated.js';
 
-const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--world neighbourhood]\n';
+const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--world neighbourhood] [--situated 0]\n';
 
 export function readBoard(values: Map<string, string>, flags: Set<string>): string {
   const seed = Number(values.get('seed') ?? 1);
@@ -31,6 +32,8 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
   if (type !== undefined && !typesFor(tier).includes(type)) throw new Error(`The board builds ${typesFor(tier).join(', ')} at this tier.\n`);
   const world = values.get('world');
   if (world !== undefined && !isWorld(world)) throw new Error(`No world called "${world}". Try --world neighbourhood.\n`);
+  // docs/51: `--situated 0` reads the night with the old decks only.
+  SITUATED.on = values.get('situated') !== '0';
   const d = dealBoard(seed, tier, type, world ? { world } : {});
   const c = d.kase;
   let run: BoardRun;

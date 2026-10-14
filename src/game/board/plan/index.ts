@@ -39,10 +39,12 @@ import { connect, type PageBudget } from './connect.js';
 import { compose } from './compose.js';
 import { rhythm } from './rhythm.js';
 import { refer, stripMarks } from './refer.js';
+import { situate, type SituCtx } from './situated.js';
 
 export type { Item, Unit, Relation, GapSlot, Join, Agg } from './types.js';
 export { sentencesOf, wordsIn, bandOf, markedSentences, openingOf } from './sentences.js';
 export { markPronoun, stripMarks } from './refer.js';
+export { SITUATED, type SituCtx } from './situated.js';
 
 /** The planner's switch. Off, the four operations are skipped and the page reads as it did before docs/49. */
 export const PLAN: { ops: boolean } = { ops: true };
@@ -63,6 +65,8 @@ export interface PlanCtx {
   earlier?: string;
   /** The page's own shuffle, for the planner's choices among cards that fit. */
   int?: (n: number) => number;
+  /** docs/51: the page's situation, for keying its gaps and dealing the situated deck. */
+  situ?: SituCtx;
 }
 
 export function newBudget(): PageBudget {
@@ -131,6 +135,8 @@ export function planSection(
   }
   // Each paragraph is a list of items now.
   let paraItems: Item[][] = groups.map((g) => g.flat());
+  // docs/51: the gaps' situations, and the situated deck, before the rhythm and the reference.
+  if (PLAN.ops) situate(paraItems, ctx, firstBlock);
   if (PLAN.ops) {
     paraItems = rhythm(paraItems, ctx);
     referWithTrades(paraItems, ctx);
@@ -168,7 +174,8 @@ function toUnit(x: Item, para: number): Unit {
       ...((x.n ?? 1) > 1 ? { facts: x.n } : {}),
     };
   }
-  return { kind: 'gap', slot: x.slot ?? 'gloss', text: x.text, beat: x.beat, para, voice: x.voice };
+  const sit = x.sit?.key ? { key: x.sit.key, ...(x.sit.card ? { card: x.sit.card } : {}), ...(x.sit.who ? { who: x.sit.who } : {}), ...(x.sit.lead ? { lead: stripMarks(x.sit.lead) } : {}), ...(x.sit.tail ? { tail: stripMarks(x.sit.tail) } : {}) } : {};
+  return { kind: 'gap', slot: x.slot ?? 'gloss', text: x.text, beat: x.beat, para, voice: x.voice, ...sit };
 }
 
 /**
