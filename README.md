@@ -74,6 +74,8 @@ npm run typecheck                              # tsc --noEmit
 npm run board-sweep -- --tier all --n 60       # the generator's rates and invariants
 npx tsx scripts/board-measure.ts --seeds 50    # the puzzle, measured
 npx tsx scripts/board-prose.ts                 # the prose, measured
+npm run model:sample                           # the tiny model (docs/50): twenty samples
+npm run model:bench                            # and its speed, ms per gap
 ```
 
 Layout:
@@ -86,4 +88,7 @@ src/cli/          play, read, case, board-sweep.
 content/board/    the board's card families.
 content/decks/    the four older decks the board still deals from.
 content/plain-terms.json   the words a page may not use.
+model/            the tiny model's corpus, tokenizer and training (docs/50; model/README.md).
+src/game/board/model/   its inference in plain TypeScript. Nothing in the book uses it yet.
+public/model/     its int8 export.
 ```

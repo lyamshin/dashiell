@@ -6,3 +6,14 @@ out/
 .env
 .claude/
 .golden-pages/
+# docs/50: the tiny model. The venv, checkpoints and the corpus text are rebuilt
+# (model/README.md); the tokenizer, the fixtures, the counts and the export are committed.
+model/.venv/
+model/checkpoints/
+model/data/raw/
+model/data/*.txt
+model/data/val.src
+model/data/*.bin
+model/data/build.log
+model/runs/*.log
+__pycache__/

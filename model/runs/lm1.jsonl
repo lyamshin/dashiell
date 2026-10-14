@@ -1,0 +1,23 @@
+{"run": "lm1", "params": 6326784, "config": {"vocab": 6000, "ctx": 256, "layers": 6, "heads": 4, "width": 256, "dropout": 0.1}, "device": "mps", "args": {"name": "lm1", "layers": 6, "width": 256, "heads": 4, "ctx": 256, "dropout": 0.1, "batch": 32, "lr": 0.001, "min_lr": 0.0001, "warmup": 200, "iters": 4400, "weight_decay": 0.1, "eval_every": 250, "eval_batches": 40, "patience": 6, "minutes": 18.0, "init": null, "device": null, "no_wait": false}, "train_tokens": 5396610, "val_tokens": 271440}
+{"step": 0, "train": 8.7279, "val": 8.728, "minutes": 0.06, "lr": 5e-06, "load": 2.42}
+{"step": 250, "train": 2.8737, "val": 2.8928, "minutes": 0.97, "lr": 0.0009996853171547794, "load": 1.95}
+{"step": 500, "train": 1.1465, "val": 1.182, "minutes": 1.88, "lr": 0.0009887175604818205, "load": 1.8}
+{"step": 750, "train": 0.6438, "val": 0.7051, "minutes": 2.81, "lr": 0.0009624530151414893, "load": 3.22}
+{"step": 1000, "train": 0.5089, "val": 0.5583, "minutes": 3.73, "lr": 0.0009218074484421977, "load": 2.17}
+{"step": 1250, "train": 0.4903, "val": 0.4914, "minutes": 4.64, "lr": 0.0008681980515339464, "load": 1.49}
+{"step": 1500, "train": 0.4435, "val": 0.458, "minutes": 5.55, "lr": 0.0008034940261286299, "load": 0.93}
+{"step": 1750, "train": 0.3974, "val": 0.4245, "minutes": 6.46, "lr": 0.0007299514109438834, "load": 1.74}
+{"step": 2000, "train": 0.4073, "val": 0.4031, "minutes": 7.38, "lr": 0.0006501344202803415, "load": 1.93}
+{"step": 2250, "train": 0.3588, "val": 0.3858, "minutes": 8.29, "lr": 0.0005668260374243467, "load": 2.57}
+{"step": 2500, "train": 0.3527, "val": 0.368, "minutes": 9.21, "lr": 0.00048293098022072144, "load": 3.4}
+{"step": 2750, "train": 0.3399, "val": 0.3576, "minutes": 10.13, "lr": 0.00040137442212017494, "load": 3.21}
+{"step": 3000, "train": 0.3161, "val": 0.3506, "minutes": 11.05, "lr": 0.0003250000000000001, "load": 3.24}
+{"step": 3250, "train": 0.3268, "val": 0.3378, "minutes": 11.97, "lr": 0.0002564706649248456, "load": 2.02}
+{"step": 3500, "train": 0.3189, "val": 0.3306, "minutes": 12.89, "lr": 0.00019817583288938664, "load": 2.62}
+{"step": 3750, "train": 0.2976, "val": 0.3255, "minutes": 13.83, "lr": 0.00015214807292292565, "load": 3.5}
+{"step": 4000, "train": 0.3009, "val": 0.3203, "minutes": 14.76, "lr": 0.00011999223739623665, "load": 3.0}
+{"step": 4250, "train": 0.277, "val": 0.3177, "minutes": 15.68, "lr": 0.00010282950554804084, "load": 2.65}
+{"step": 4500, "train": 0.2754, "val": 0.3154, "minutes": 16.62, "lr": 0.0001, "load": 4.4}
+{"step": 4750, "train": 0.3053, "val": 0.3136, "minutes": 17.55, "lr": 0.0001, "load": 3.35}
+{"step": 5000, "train": 0.299, "val": 0.3121, "minutes": 18.47, "lr": 0.0001, "load": 2.72}
+{"done": true, "best_val": 0.3121, "steps": 5000, "minutes": 18.47, "blowups": 0}

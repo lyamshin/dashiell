@@ -18,7 +18,10 @@
     "play": "tsx src/cli/play.ts",
     "trace": "tsx scripts/trace-line.ts",
     "deploy": "sh scripts/deploy.sh",
-    "board-sweep": "tsx src/cli/board-sweep.ts"
+    "board-sweep": "tsx src/cli/board-sweep.ts",
+    "model:sample": "tsx scripts/model-sample.ts",
+    "model:bench": "tsx scripts/model-bench.ts",
+    "model:corpus": "tsx scripts/model-corpus.ts"
   },
   "devDependencies": {
     "playwright-core": "^1.63.0",
