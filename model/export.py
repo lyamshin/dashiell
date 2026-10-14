@@ -1,7 +1,7 @@
 """
 docs/50 §2: export a checkpoint to int8, one binary and a JSON header.
 
-  python model/export.py model/checkpoints/<run>.pt [--out public/model]
+  python model/export.py model/checkpoints/<run>.pt [--out model/export]
 
 Every matrix (the token and position embeddings, qkv, proj, up, down) is stored
 as int8 with one float32 scale per row (symmetric: the row's largest |w| maps
@@ -11,7 +11,7 @@ shape and byte offsets; the binary, `dashiell.bin`, is the tensors back to
 back, each start aligned to 4 bytes. `src/game/board/model/gpt.ts` reads both.
 
 It also writes `model/data/fwd-parity.json` (or, exporting anywhere but
-public/model/, `fwd-parity.json` beside the export): a held-out line's ids and the
+model/export/, `fwd-parity.json` beside the export): a held-out line's ids and the
 int8 model's logits after them, computed here in float32, for the TypeScript
 forward pass to match (`test/model-gpt.test.ts`). And it reports the held-out
 loss of the float weights and of the int8 ones, on the same batches.
@@ -72,8 +72,9 @@ def dequantized_state(model, packed):
 
 
 @torch.no_grad()
-def held_out_loss(model, ctx, n=40, batch=16):
-    val = np.memmap(os.path.join(DATA, "val.bin"), dtype=np.uint16, mode="r")
+def held_out_loss(model, ctx, source, n=40, batch=16):
+    """The held-out loss on one source's lines (model/data/<source>.val.bin), on the same windows every time."""
+    val = np.memmap(os.path.join(DATA, source + ".val.bin"), dtype=np.uint16, mode="r")
     rng = np.random.RandomState(11)
     ix = rng.randint(0, len(val) - ctx - 1, size=n * batch)
     losses = []
@@ -88,7 +89,7 @@ def held_out_loss(model, ctx, n=40, batch=16):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("checkpoint")
-    ap.add_argument("--out", default=os.path.join(ROOT, "public", "model"))
+    ap.add_argument("--out", default=os.path.join(HERE, "export"), help="model/export/ by default: outside public/, so the built book doesn't carry it")
     ap.add_argument("--name", default="dashiell")
     a = ap.parse_args()
     torch.set_num_threads(4)
@@ -129,12 +130,15 @@ def main():
 
     with open(os.path.join(HERE, "tokenizer.json"), encoding="utf-8") as f:
         tj = json.load(f)
+    if "tokenizer" in ck:
+        assert ck["tokenizer"]["merges"] == tj["merges"], "the checkpoint was trained with another tokenizer"
     run = os.path.splitext(os.path.basename(a.checkpoint))[0]
-    float_loss = held_out_loss(model, cfg.ctx)
     qmodel = GPT(cfg)
     qmodel.load_state_dict(dequantized_state(model, packed))
     qmodel.eval()
-    int8_loss = held_out_loss(qmodel, cfg.ctx)
+    # Two sources, so the header says what int8 costs on the engine's pages and on plain prose.
+    float_loss = {s: round(held_out_loss(model, cfg.ctx, s), 4) for s in ("nights", "pd")}
+    int8_loss = {s: round(held_out_loss(qmodel, cfg.ctx, s), 4) for s in ("nights", "pd")}
     header = {
         "format": "dashiell-tiny-lm",
         "version": 1,
@@ -143,7 +147,7 @@ def main():
         "tensors": entries,
         "bytes": len(blob),
         "sha256": hashlib.sha256(bytes(blob)).hexdigest(),
-        "trained": {"run": run, "step": ck.get("step"), "params": model.params(), "val_loss_float": round(float_loss, 4), "val_loss_int8": round(int8_loss, 4)},
+        "trained": {"run": run, "step": ck.get("step"), "params": model.params(), "val_loss_float": float_loss, "val_loss_int8": int8_loss},
     }
     os.makedirs(a.out, exist_ok=True)
     bin_path = os.path.join(a.out, a.name + ".bin")
@@ -155,7 +159,7 @@ def main():
         f.write("\n")
 
     # The forward-pass fixture: a held-out line, the int8 model's logits after it (float32 here).
-    line = next(l for l in read_lines(os.path.join(DATA, "val.txt")) if len(tok.encode(l)) >= 100)
+    line = next(l for l in read_lines(os.path.join(DATA, "nights.val.txt")) if len(tok.encode(l)) >= 100)
     ids = [0] + tok.encode(line)[:100]
     with torch.no_grad():
         logits = qmodel(torch.tensor([ids]))[0][0, -1].numpy()
@@ -170,8 +174,8 @@ def main():
         "mid": 40,
         "logits_mid": [round(float(logits_mid[i]), 5) for i in range(0, cfg.vocab, 37)],
     }
-    # The fixture goes with the export the tests read (public/model/); an export elsewhere keeps its own.
-    default_out = os.path.abspath(a.out) == os.path.abspath(os.path.join(ROOT, "public", "model"))
+    # The fixture goes with the export the tests read (model/export/); an export elsewhere keeps its own.
+    default_out = os.path.abspath(a.out) == os.path.abspath(os.path.join(HERE, "export"))
     fixture_path = os.path.join(DATA if default_out else a.out, "fwd-parity.json")
     with open(fixture_path, "w", encoding="utf-8") as f:
         json.dump(fixture, f)

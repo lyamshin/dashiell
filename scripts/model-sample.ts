@@ -26,7 +26,7 @@ const seed = arg('seed', 1);
 const lm = loadModel();
 const h = modelHeader();
 const out: string[] = [];
-out.push(`${n} samples · ${h.trained?.run ?? '?'} (step ${String(h.trained?.step ?? '?')}, held-out loss ${String(h.trained?.val_loss_int8 ?? '?')}) · temperature ${temperature}, top-p ${topP}, up to ${tokens} tokens`);
+out.push(`${n} samples · ${h.trained?.run ?? '?'} (step ${String(h.trained?.step ?? '?')}, held-out loss ${JSON.stringify(h.trained?.val_loss_int8 ?? "?")}) · temperature ${temperature}, top-p ${topP}, up to ${tokens} tokens`);
 let ms = 0;
 let generated = 0;
 let sentences = 0;

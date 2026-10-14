@@ -1,0 +1,93 @@
+{
+  "checkpoint": "mix3.pt",
+  "step": 9000,
+  "tokenizer": "checkpoint",
+  "by_source": {
+    "goldens": {
+      "lines": 2,
+      "excluded": 5,
+      "tokens": 723,
+      "chars": 2953,
+      "loss": 2.9121,
+      "bits_per_char": 1.0286
+    },
+    "cards": {
+      "lines": 91,
+      "excluded": 0,
+      "tokens": 1898,
+      "chars": 7936,
+      "loss": 2.4199,
+      "bits_per_char": 0.835
+    },
+    "bible": {
+      "lines": 76,
+      "excluded": 0,
+      "tokens": 1782,
+      "chars": 6907,
+      "loss": 3.4923,
+      "bits_per_char": 1.2999
+    },
+    "pd": {
+      "lines": 228,
+      "excluded": 0,
+      "tokens": 55391,
+      "chars": 209801,
+      "loss": 4.1998,
+      "bits_per_char": 1.5997
+    },
+    "nights": {
+      "lines": 1169,
+      "excluded": 3,
+      "tokens": 274772,
+      "chars": 1150497,
+      "loss": 1.1356,
+      "bits_per_char": 0.3913
+    }
+  },
+  "novel_sentences": {
+    "train_text": [
+      "(phase 1) model/data/train.txt",
+      "model/data/goldens.train.txt",
+      "model/data/cards.train.txt",
+      "model/data/bible.train.txt",
+      "model/data/pd.train.txt",
+      "model/data/nights.train.txt"
+    ],
+    "by_source": {
+      "goldens": {
+        "sentences": 42,
+        "tokens": 589,
+        "loss": 3.2201,
+        "bits_per_char": 1.1242
+      },
+      "cards": {
+        "sentences": 81,
+        "tokens": 1367,
+        "loss": 2.3588,
+        "bits_per_char": 0.802
+      },
+      "bible": {
+        "sentences": 85,
+        "tokens": 1318,
+        "loss": 3.6704,
+        "bits_per_char": 1.3725
+      },
+      "pd": {
+        "sentences": 2000,
+        "tokens": 36796,
+        "loss": 4.1057,
+        "bits_per_char": 1.5294
+      },
+      "nights": {
+        "sentences": 2000,
+        "tokens": 33973,
+        "loss": 0.7895,
+        "bits_per_char": 0.2575
+      }
+    },
+    "all": {
+      "sentences": 4208,
+      "loss": 2.5371
+    }
+  }
+}

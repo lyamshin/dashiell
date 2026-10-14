@@ -1,10 +1,10 @@
 /**
- * docs/50 §2: the pretraining corpus for the tiny model, one page per line.
+ * docs/50 §2 and §7: the pretraining corpus for the tiny model, one page per line.
  *
- * `npx tsx scripts/model-corpus.ts [--nights 2000] [--out model/data]`
+ * `npx tsx scripts/model-corpus.ts [--nights 2000] [--out model/data] [--cap 1]`
  *
- * Four sources, each cleaned to plain text, paragraphs joined by " ¶ ", one
- * page (or one card, or one golden section) per line:
+ * Five sources, each cleaned to plain text, paragraphs joined by " ¶ ", one
+ * page (or one card, one golden section, one chunk of a book) per line:
  *
  * - **goldens** (`docs/golden/`): the hand-written pages. Where a golden quotes
  *   its pages (`> …`), the quotes; where it is prose (`seed3-opening*.md`), the
@@ -24,15 +24,21 @@
  *   pages' prose blocks), over both worlds and every tier, the case types each
  *   tier builds in turn, two nights in three on the oracle's route and one on
  *   the wanderer's. The chapter heading and the bracketed notes are left out,
- *   as they are not prose.
+ *   as they are not prose. **Deduped** (phase 2a): the engine deals the same
+ *   cards night after night, and phase 1's model learned them by heart; so
+ *   the training nights keep one copy of each page and one copy of each
+ *   sentence (`dedupeNights`).
+ * - **public domain** (`corpus/raw/`): Hammett, Daly, Hecht and the WPA guide's
+ *   running prose, brought to the book's characters (`model-corpus-pd.ts`).
  *
  * Writes `model/data/raw/` (each source as it came, the nights tagged
- * world/tier/seed/type/route), `model/data/train.txt` and `model/data/val.txt`
- * (all four, exact duplicate lines dropped; held out: one night in twenty, by
- * seed, and one line in twenty of the rest, by hash), `model/data/val.src`
- * (the source of each held-out line), and
- * `model/data/corpus.json` (the counts). The text files are gitignored and
- * rebuilt by this script; the counts are committed.
+ * world/tier/seed/type/route), `model/data/<source>.train.txt` and
+ * `<source>.val.txt` for each source (exact duplicate lines dropped across
+ * sources; held out: one night in twenty, by seed, whole; one line in twenty
+ * of the cards, the bible and the public domain, by hash; seven of the 49
+ * golden sections), and `model/data/corpus.json` (the counts). How the sources
+ * are weighted into the two training stages is `model/prepare.py`'s. The text
+ * files are gitignored and rebuilt by this script; the counts are committed.
  */
 
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
@@ -42,6 +48,8 @@ import type { TierIndex } from '../src/gen/board/types.js';
 import { dealBoard } from '../src/game/board/model.js';
 import { playBoardOracle, playWanderer } from '../src/game/board/oracle.js';
 import type { Page } from '../src/game/board/types.js';
+import { sentencesOf } from '../src/game/board/model/verifier.js';
+import { cleanVocabulary, PD_LEFT_OUT, pdChunks } from './model-corpus-pd.js';
 
 const PARA = ' ¶ ';
 
@@ -81,8 +89,8 @@ function joinParas(paras: string[]): string {
 const GOLDEN_SKIP = new Set(['GAP.md', 'REPORT.md', 'rounds.md', 'seed3-current.txt']);
 const NOT_PAGES = /rules|notes|^##+ what |how a sheet|questions|the beats/i;
 
-function goldenLines(dir: string): string[] {
-  const out: string[] = [];
+function goldenLines(dir: string): { file: string; line: string }[] {
+  const out: { file: string; line: string }[] = [];
   for (const f of readdirSync(dir).sort()) {
     if (GOLDEN_SKIP.has(f) || !f.endsWith('.md')) continue;
     const text = readFileSync(join(dir, f), 'utf8');
@@ -134,7 +142,7 @@ function goldenLines(dir: string): string[] {
       flush();
       // A card id in brackets ("[pam-101, short form of establish]") marks where a card went.
       const line = joinParas(paras.map((p) => curl(p.replace(/\s*\*?\[[a-z]{2,4}-\d+[^\]]*\]\*?/g, ''))));
-      if (line.split(' ').length >= 8) out.push(line);
+      if (line.split(' ').length >= 8) out.push({ file: f, line });
     }
   }
   return out;
@@ -316,7 +324,111 @@ function nightLines(n: number): { lines: string[]; nights: number; failed: numbe
   return { lines, nights, failed, tagged };
 }
 
+/* -------------------------------------------------------------- the dedupe */
+
+/** A deterministic shuffle (splitmix32 from a seed). */
+function shuffled<T>(xs: readonly T[], seed: number): T[] {
+  const out = [...xs];
+  let st = seed >>> 0;
+  const next = (): number => {
+    st = (st + 0x9e3779b9) >>> 0;
+    let z = st;
+    z = Math.imul(z ^ (z >>> 16), 0x21f0aaad) >>> 0;
+    z = Math.imul(z ^ (z >>> 15), 0x735a2d97) >>> 0;
+    return ((z ^ (z >>> 15)) >>> 0) / 4294967296;
+  };
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(next() * (i + 1));
+    [out[i], out[j]] = [out[j] as T, out[i] as T];
+  }
+  return out;
+}
+
+/** Sentences of three words or fewer ("Midnight.", "I said.", "Nobody else.") are glue, kept wherever they fall. */
+export const GLUE_WORDS = 3;
+
+export interface DedupeStats {
+  pages: number;
+  distinctPages: number;
+  bytes: number;
+  sentences: number;
+  distinctSentences: number;
+  distinctSentenceBytes: number;
+  keptPages: number;
+  keptBytes: number;
+  keptSentences: number;
+  /** Glue sentences kept although seen before. */
+  glueRepeats: number;
+}
+
+/**
+ * The engine's pages, one copy of each: exact duplicate pages dropped, then,
+ * in a seeded order, every sentence of four words or more kept the first time
+ * it comes up and cut from every later page (a paragraph or a page left empty
+ * is dropped). The first page to hold a card's sentence keeps it in place;
+ * later pages keep what is theirs (the lists, the accounts, the names), with
+ * the glue between.
+ */
+export function dedupeNights(pages: readonly string[], seed = 50, cap = 1): { lines: string[]; stats: DedupeStats } {
+  const all = new Map<string, number>();
+  let sentences = 0;
+  for (const p of pages)
+    for (const par of p.split(PARA))
+      for (const s of sentencesOf(par)) {
+        all.set(s, (all.get(s) ?? 0) + 1);
+        sentences++;
+      }
+  const distinct = [...new Set(pages)];
+  const seen = new Map<string, number>();
+  const lines: string[] = [];
+  let keptSentences = 0;
+  let glueRepeats = 0;
+  for (const page of shuffled(distinct, seed)) {
+    const paras: string[] = [];
+    for (const par of page.split(PARA)) {
+      const keep: string[] = [];
+      for (const s of sentencesOf(par)) {
+        const glue = words(s) <= GLUE_WORDS;
+        const k = seen.get(s) ?? 0;
+        if (glue || k < cap) {
+          if (glue && k > 0) glueRepeats++;
+          keep.push(s);
+          seen.set(s, k + 1);
+        }
+      }
+      if (keep.length) {
+        paras.push(keep.join(' '));
+        keptSentences += keep.length;
+      }
+    }
+    if (paras.length) lines.push(paras.join(PARA));
+  }
+  const bytes = (ls: Iterable<string>): number => {
+    let b = 0;
+    for (const l of ls) b += Buffer.byteLength(l, 'utf8') + 1;
+    return b;
+  };
+  return {
+    lines,
+    stats: {
+      pages: pages.length,
+      distinctPages: distinct.length,
+      bytes: bytes(pages),
+      sentences,
+      distinctSentences: all.size,
+      distinctSentenceBytes: bytes(all.keys()),
+      keptPages: lines.length,
+      keptBytes: bytes(lines),
+      keptSentences,
+      glueRepeats,
+    },
+  };
+}
+
 /* --------------------------------------------------------------------- main */
+
+type Source = 'goldens' | 'cards' | 'bible' | 'pd' | 'nights';
+export const SOURCES: Source[] = ['goldens', 'cards', 'bible', 'pd', 'nights'];
 
 function main(): void {
   const n = Number(arg('nights', '2000'));
@@ -326,63 +438,66 @@ function main(): void {
   const goldens = goldenLines('docs/golden');
   const cards = cardLines(['content/board', 'content/decks']);
   const bible = bibleLines('content/neighbourhood');
+  const vocab = cleanVocabulary('corpus/raw', [...goldens.map((g) => g.line), ...cards.lines, ...bible]);
+  const pd = pdChunks('corpus/raw', vocab);
   const nights = nightLines(n);
 
-  writeFileSync(join(out, 'raw', 'goldens.txt'), `${goldens.join('\n')}\n`);
+  writeFileSync(join(out, 'raw', 'goldens.tsv'), `${goldens.map((g) => `${g.file}\t${g.line}`).join('\n')}\n`);
   writeFileSync(join(out, 'raw', 'cards.txt'), `${cards.lines.join('\n')}\n`);
   writeFileSync(join(out, 'raw', 'bible.txt'), `${bible.join('\n')}\n`);
+  writeFileSync(join(out, 'raw', 'pd.tsv'), `${pd.chunks.map((c) => `${c.file}\t${c.text}`).join('\n')}\n`);
   // The nights keep their tag (world/tier/seed/type/route) so the split can hold out whole nights.
   writeFileSync(join(out, 'raw', 'nights.tsv'), `${nights.tagged.join('\n')}\n`);
 
-  // Held out: one night in twenty (seed % 20 == 0, every world and tier), and one line in
-  // twenty of the other sources by hash. A held-out line that is also in training is dropped
-  // from the held-out set, so the held-out loss is on text the model never saw.
-  const isHeld = (src: string, line: string, tag?: string): boolean =>
-    tag !== undefined ? Number(tag.split('/')[2]) % 20 === 0 : hash(`${src}:${line}`) % 20 === 0;
-  const train: string[] = [];
-  const val: string[] = [];
+  // Held out: one night in twenty, by seed (every world and tier), as in phase 1; one card, bible
+  // line and public-domain chunk in twenty, by hash; and of the goldens, phase 1's one in twenty
+  // plus about one in eleven more (seven sections in all, from six files), so there is enough of
+  // the designer's own prose to score. A line in two sources is kept once, in the first.
+  const heldGolden = (l: string): boolean => hash(`goldens:${l}`) % 20 === 0 || hash(`golden-slice:${l}`) % 11 === 0;
+  const heldByHash = (src: string, l: string): boolean => hash(`${src}:${l}`) % 20 === 0;
+  const nightHeld = (tag: string): boolean => Number(tag.split('/')[2]) % 20 === 0;
+
+  const split = Object.fromEntries(SOURCES.map((s) => [s, { train: [] as string[], val: [] as string[] }])) as Record<Source, { train: string[]; val: string[] }>;
   const seen = new Set<string>();
-  const counts: Record<string, { lines: number; unique: number; bytes: number; train: number; val: number }> = {};
-  const sources: [string, string[], (string | undefined)[]][] = [
-    ['goldens', goldens, []],
-    ['cards', cards.lines, []],
-    ['bible', bible, []],
-    ['nights', nights.lines, nights.tagged.map((t) => t.split('\t')[0])],
-  ];
-  const heldPending: string[] = [];
-  const heldSource: string[] = [];
-  for (const [name, lines, tags] of sources) {
-    const c = { lines: lines.length, unique: 0, bytes: 0, train: 0, val: 0 };
-    lines.forEach((l, i) => {
-      if (seen.has(l)) return;
-      seen.add(l);
-      c.unique++;
-      c.bytes += Buffer.byteLength(l, 'utf8') + 1;
-      if (isHeld(name, l, tags[i])) {
-        heldPending.push(l);
-        heldSource.push(name);
-        c.val++;
-      } else {
-        train.push(l);
-        c.train++;
-      }
-    });
-    counts[name] = c;
+  const add = (src: Source, l: string, held: boolean): void => {
+    if (seen.has(l)) return;
+    seen.add(l);
+    split[src][held ? 'val' : 'train'].push(l);
+  };
+  for (const g of goldens) add('goldens', g.line, heldGolden(g.line));
+  for (const l of cards.lines) add('cards', l, heldByHash('cards', l));
+  for (const l of bible) add('bible', l, heldByHash('bible', l));
+  for (const c of pd.chunks) add('pd', c.text, heldByHash('pd', c.text));
+  // The nights: held-out nights whole, as the engine deals them (less any page a training night
+  // also has); the training nights deduped.
+  const trainPages: string[] = [];
+  nights.tagged.forEach((t, i) => {
+    const line = nights.lines[i] as string;
+    if (nightHeld(t.split('\t')[0] as string)) add('nights', line, true);
+    else trainPages.push(line);
+  });
+  const trainPageSet = new Set(trainPages);
+  split.nights.val = split.nights.val.filter((l) => !trainPageSet.has(l));
+  // --cap N keeps up to N copies of each sentence instead of one (an experiment: docs/50 §7).
+  const dd = dedupeNights(trainPages, 50, Number(arg('cap', '1')));
+  split.nights.train = dd.lines.filter((l) => !seen.has(l));
+
+  const bytes = (ls: string[]): number => ls.reduce((s, l) => s + Buffer.byteLength(l, 'utf8') + 1, 0);
+  const counts: Record<string, { train: number; trainBytes: number; val: number; valBytes: number }> = {};
+  for (const src of SOURCES) {
+    const sv = split[src];
+    writeFileSync(join(out, `${src}.train.txt`), `${sv.train.join('\n')}\n`);
+    writeFileSync(join(out, `${src}.val.txt`), `${sv.val.join('\n')}\n`);
+    counts[src] = { train: sv.train.length, trainBytes: bytes(sv.train), val: sv.val.length, valBytes: bytes(sv.val) };
   }
-  // Exact duplicates are already gone (seen), so nothing held out is in training.
-  val.push(...heldPending);
-  writeFileSync(join(out, 'train.txt'), `${train.join('\n')}\n`);
-  writeFileSync(join(out, 'val.txt'), `${val.join('\n')}\n`);
-  // Which source each held-out line came from, line for line: model/evaluate.py scores them apart.
-  writeFileSync(join(out, 'val.src'), `${heldSource.join('\n')}\n`);
-  const bytes = (ls: string[]) => ls.reduce((s, l) => s + Buffer.byteLength(l, 'utf8') + 1, 0);
   const summary = {
     nights: nights.nights,
     nightsFailed: nights.failed,
     cardsSkipped: cards.skipped,
+    nightsDedupe: dd.stats,
+    goldensHeldOut: goldens.filter((g) => heldGolden(g.line)).map((g) => `${g.file}: ${g.line.slice(0, 60)}`),
+    pd: { kept: pd.stats, leftOut: PD_LEFT_OUT, chunks: pd.chunks.length },
     counts,
-    train: { lines: train.length, bytes: bytes(train) },
-    val: { lines: val.length, bytes: bytes(val) },
   };
   writeFileSync(join(out, 'corpus.json'), `${JSON.stringify(summary, null, 2)}\n`);
   process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);

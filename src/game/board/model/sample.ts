@@ -99,6 +99,8 @@ export interface GenerateOptions extends SampleOptions {
   maxTokens: number;
   /** Stop after this token (it is kept). Default: <|eot|>. */
   stop?: (id: number) => boolean;
+  /** Tokens never to draw (1 = banned): `gapBans`, docs/50 §7. */
+  ban?: Uint8Array;
 }
 
 /**
@@ -116,6 +118,7 @@ export function generate(lm: TinyLM, prompt: readonly number[], o: GenerateOptio
     // The specials but <|eot|> never come up: their logits go to -Infinity (the buffer is ours
     // until the next feed).
     for (let b = EOT + 1; b < N_SPECIAL; b++) logits[b] = -Infinity;
+    if (o.ban) for (let b = N_SPECIAL; b < logits.length; b++) if (o.ban[b] === 1) logits[b] = -Infinity;
     const id = sampleToken(logits, o, rng);
     out.push(id);
     all.push(id);

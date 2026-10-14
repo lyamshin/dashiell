@@ -32,7 +32,7 @@ export interface TensorEntry {
   scales?: number;
 }
 
-/** `public/model/dashiell.json`. */
+/** `model/export/dashiell.json`. */
 export interface ModelHeader {
   format: 'dashiell-tiny-lm';
   version: number;
@@ -247,6 +247,18 @@ export class TinyLM {
   /** Forget the cache: the next `feed` starts at position 0. */
   reset(): void {
     this.n = 0;
+  }
+
+  /**
+   * Roll the cache back to its first `n` positions, as if nothing after them
+   * had been fed (docs/50 §8, the page cache: a gap's prompt and draft are
+   * fed after the page so far, then rolled back, and the page goes on). The
+   * keys and values before `n` don't depend on anything after it, so this is
+   * exact, and free.
+   */
+  truncate(n: number): void {
+    if (!(n >= 0 && n <= this.n)) throw new Error(`model: can't roll the cache back to ${n} (it holds ${this.n})`);
+    this.n = n;
   }
 
   private ensure(T: number): void {
