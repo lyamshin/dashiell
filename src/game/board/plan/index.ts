@@ -40,9 +40,10 @@ import type { Beat } from '../sheets.js';
 import type { BoardCase, BoardRun } from '../model.js';
 import type { Item, Unit } from './types.js';
 import type { PageBudget } from './types.js';
-import { aggregate, bonesOf, compose, connect } from '../bones/compose.js';
+import { aggregate, bonesOf, compose, connect, sayAll } from '../bones/compose.js';
 import { VOICED, checkVoiced } from '../bones/reread.js';
 import type { Composite } from '../bones/types.js';
+import type { VoiceHand } from '../bones/say.js';
 import { rhythm } from './rhythm.js';
 import { refer, stripMarks } from './refer.js';
 import { situate, type SituCtx } from './situated.js';
@@ -73,6 +74,8 @@ export interface PlanCtx {
   int?: (n: number) => number;
   /** docs/51: the page's situation, for keying its gaps and dealing the situated deck. */
   situ?: SituCtx;
+  /** docs/52 §4, build 2: the page's hand, for the voicings' least-recently-used rule and the page's joke. */
+  hand?: VoiceHand;
 }
 
 export function newBudget(): PageBudget {
@@ -96,6 +99,8 @@ export function planSection(
   firstBlock: number,
 ): { units: Unit[]; blocks: Block[]; beats: Beat[] } {
   const byBeat: Partial<Record<Beat, Item[]>> = {};
+  // docs/52 build 2: the writers' composites said in their voicings, before anything is joined.
+  for (const xs of Object.values(items)) sayAll(xs ?? [], ctx);
   for (const [b, xs] of Object.entries(items) as [Beat, Item[]][]) byBeat[b] = PLAN.ops ? aggregate(xs, ctx) : xs;
   // The beats in the sheet's order, then any the sheet hasn't room for, at the end.
   const order: { beats: Beat[] }[] = [];
@@ -110,19 +115,6 @@ export function planSection(
   if (PLAN.ops) connect(order.flatMap((o) => o.beats.flatMap((b) => byBeat[b] ?? [])), ctx);
   // docs/49, Planner 2: the thought's facts joined by what they do to each other.
   if (PLAN.ops && byBeat.thought) byBeat.thought = compose(byBeat.thought, ctx);
-  // docs/52: the round trip on the voiced composites, when it's asked for.
-  if (PLAN.ops && VOICED.check) {
-    for (const xs of Object.values(byBeat)) {
-      for (const it of xs ?? []) {
-        const speaker = /^(?:list|claim):([^@]+)@/.exec(it.carries?.[0] ?? '')?.[1];
-        const walk = (x: Composite) => {
-          checkVoiced(x, { c: ctx.c, here: ctx.run?.at ?? '', ...(speaker ? { speaker } : {}) });
-          for (const y of x.parts ?? []) walk(y);
-        };
-        if (it.comp) walk(it.comp);
-      }
-    }
-  }
   // Paragraphs: a beat alone in its paragraph gives each of its items a paragraph of its own (an
   // item that runs on stays with the one before); beats that share a paragraph run together when
   // they're short enough to read as one.
@@ -161,6 +153,18 @@ export function planSection(
     paraItems = rhythm(paraItems, ctx);
     referWithTrades(paraItems, ctx);
   }
+  // docs/52: the round trip on the voiced composites, when it's asked for: after the rhythm, which
+  // may have traded a voicing for another of another length.
+  if (VOICED.check) {
+    for (const it of paraItems.flat()) {
+      const speaker = speakerOf(it, ctx.c);
+      const walk = (x: Composite) => {
+        checkVoiced(x, { c: ctx.c, here: ctx.run?.at ?? '', ...(speaker ? { speaker } : {}) });
+        for (const y of x.parts ?? []) walk(y);
+      };
+      if (it.comp) walk(it.comp);
+    }
+  }
   // The engine's marks on its pronouns are the planner's; the page never sees them.
   for (const ps of paraItems) for (const x of ps) x.text = stripMarks(x.text);
   const units: Unit[] = [];
@@ -174,6 +178,18 @@ export function planSection(
     void i;
   });
   return { units, blocks, beats };
+}
+
+/**
+ * Whose words a fact is, for what its voicing folds: the account's or the list's own person, the
+ * one who mentioned something besides, the one who owned up or wouldn't, and the client in the office.
+ */
+export function speakerOf(it: Item, c: BoardCase): string | undefined {
+  const q = it.carries?.[0] ?? '';
+  const m = /^(?:list|claim|motive|admit|second|crack|refused|held):([^@#]+)/.exec(q) ?? /^remark:(?:account|list):([^#]+)#/.exec(q);
+  if (m) return m[1];
+  if (q.startsWith('givens:') && it.beat === 'job' && it.voice === 'exchange') return c.client;
+  return undefined;
 }
 
 function toUnit(x: Item, para: number): Unit {

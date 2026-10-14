@@ -27,7 +27,8 @@ import { roleOf } from '../plan/refer.js';
 import { maskPlaces } from '../plan/measure.js';
 import { canon } from './extract.js';
 import { lexicon, parsePlain, type Lexicon } from './plain.js';
-import type { Composite, Entry, Id, Prop, Src } from './types.js';
+import type { Composite, Entry, Id, Prop, Shape, Src } from './types.js';
+import { SCHEMA, type ArgType } from './schema.js';
 import { fill, voicingById } from './voice.js';
 
 export const VOICED: { check: boolean } = { check: false };
@@ -448,30 +449,121 @@ function streetV(a: Record<string, string>, v: VCtx): Prop[] {
  * The checks.
  * ------------------------------------------------------------------ */
 
-/** Every way a template's slots can take the words (literal pieces fixed, slots between them). */
-function* splits(template: string, text: string): Generator<Record<string, string>> {
-  const parts = template.split(/(\{[A-Za-z][\w-]*\})/).filter((x) => x !== '');
-  function* go(i: number, at: number, acc: Record<string, string>): Generator<Record<string, string>> {
+/**
+ * Every way a template's slots can take the words (literal pieces fixed, slots between them). A slot
+ * named twice (`{p}` and `{p:them}`) gives each of its readings, in order.
+ */
+function* splitsAll(template: string, text: string): Generator<Record<string, string[]>> {
+  const parts = template.split(/(\{[A-Za-z][\w-]*(?::[a-z]+)?\})/).filter((x) => x !== '');
+  function* go(i: number, at: number, acc: Record<string, string[]>): Generator<Record<string, string[]>> {
     if (i === parts.length) {
-      if (at === text.length) yield { ...acc };
+      if (at === text.length) yield acc;
       return;
     }
     const part = parts[i] as string;
-    const slot = /^\{([A-Za-z][\w-]*)\}$/.exec(part);
+    const slot = /^\{([A-Za-z][\w-]*)(?::[a-z]+)?\}$/.exec(part);
     if (!slot) {
       if (text.startsWith(part, at)) yield* go(i + 1, at + part.length, acc);
       return;
     }
     const k = slot[1] as string;
     const key = (k[0] as string).toLowerCase() + k.slice(1);
+    const add = (val: string) => ({ ...acc, [key]: [...(acc[key] ?? []), val] });
     const next = parts[i + 1];
     if (next === undefined) {
-      yield* go(i + 1, text.length, { ...acc, [key]: text.slice(at) });
+      yield* go(i + 1, text.length, add(text.slice(at)));
       return;
     }
-    for (let j = text.indexOf(next, at); j >= 0; j = text.indexOf(next, j + 1)) yield* go(i + 1, j, { ...acc, [key]: text.slice(at, j) });
+    for (let j = text.indexOf(next, at); j >= 0; j = text.indexOf(next, j + 1)) yield* go(i + 1, j, add(text.slice(at, j)));
   }
   yield* go(0, 0, {});
+}
+
+/** The same, a slot's first reading only (the build-1 voicings name each slot once). */
+function* splits(template: string, text: string): Generator<Record<string, string>> {
+  for (const a of splitsAll(template, text)) yield Object.fromEntries(Object.entries(a).map(([k, v]) => [k, v[0] as string]));
+}
+
+/* ------------------------------------------------------------------ *
+ * Build 2: typed arguments, read back by type.
+ * ------------------------------------------------------------------ */
+
+/** A typed slot's words, read back: a person's id, a list's entries, an hour, hours, a place's id, or the words. */
+export type Read = string | string[] | number | number[];
+
+function personR(c: BoardCase, s: string): Id {
+  const t = s.trim();
+  // A role ("the house manager", "my client") is a name the night has for one person.
+  const byRole = c.people.find((p) => {
+    const r = roleOf(c, p.id);
+    return !!r && (r === t || r === lc(t) || `T${r.slice(1)}` === t || (r[0] as string).toUpperCase() + r.slice(1) === t);
+  });
+  if (byRole) return byRole.id;
+  return personV(c, t.replace(/^(?:He|She|Him|Her|His|It|Its)(?=⁣)/, (m) => m.toLowerCase()));
+}
+
+function readTyped(c: BoardCase, lx: Lexicon, v: VCtx, type: ArgType, raw: string): Read {
+  const s = raw.trim();
+  switch (type) {
+    case 'person':
+      return personR(c, s);
+    case 'people': {
+      const E = entryAlt(c);
+      return listV(s.replace(/^(?:[a-z])/, (m) => m), `${E.re}|${MARK}`).map((x) => E.of.get(x) ?? (E.of.get(cap(x)) as string) ?? personR(c, x));
+    }
+    case 'hour':
+      return hourV(s);
+    case 'hours':
+      return listV(s.replace(/ o’clock$/, ''), `(?:${lx.re.H})`).map(hourV);
+    case 'place':
+      return placeV(c, s, v);
+    case 'at':
+      if (!/^(?:[Hh]ere|[Aa]t )/.test(s)) throw new Error(`voiced: not "here" or "at …": "${s}"`);
+      return placeV(c, s, v);
+    case 'text':
+      return raw;
+  }
+}
+
+const cap = (s: string): string => (s ? (s[0] as string).toUpperCase() + s.slice(1) : s);
+
+/** A shape's reader: its typed arguments, read back, to propositions. `flags` are the voicing's own (`requires`). */
+type Reader = (a: Record<string, Read>, flags: ReadonlySet<string>, comp: Composite, v: VCtx, lx: Lexicon) => Prop[];
+
+const READ: Partial<Record<Shape, Reader>> = {};
+
+/** Build 2: a shape's reader, registered by the module that writes its arguments (`readers.ts`). */
+export function registerReader(shape: Shape, r: Reader): void {
+  READ[shape] = r;
+}
+
+/** The typed reading of a voiced composite: every way its template splits the words, each slot read by its type. */
+function rereadTyped(comp: Composite, vo: { id: string; template: string; requires?: string[] }, text: string, v: VCtx, lx: Lexicon): { ok: boolean; why?: string } {
+  const r = READ[comp.shape];
+  if (!r) return { ok: false, why: `no reading for ${vo.id}` };
+  const schema = SCHEMA[comp.shape].args;
+  const want = comp.props.map(canon).sort();
+  const flags = new Set(vo.requires ?? []);
+  let last = `${vo.id}: the words don't fit the template`;
+  for (const raw of splitsAll(vo.template, text)) {
+    try {
+      const a: Record<string, Read> = {};
+      for (const [k, vals] of Object.entries(raw)) {
+        const type = schema[k];
+        if (!type) throw new Error(`voiced: ${vo.id} names {${k}}, which ${comp.shape} hasn't`);
+        const reads = vals.map((x) => readTyped(v.c, lx, v, type, x));
+        // A slot said twice says the same thing twice ("{p}" and "{p:them}" are one person).
+        if (reads.some((x) => JSON.stringify(x) !== JSON.stringify(reads[0]))) throw new Error(`voiced: {${k}} is two things`);
+        a[k] = reads[0] as Read;
+      }
+      const got = r(a, flags, comp, v, lx).map(canon).sort();
+      if (got.length === want.length && got.every((g, i) => g === want[i])) return { ok: true };
+      last = `${vo.id}: read ${got.join(' ')}`;
+    } catch (e) {
+      last = `${vo.id}: ${(e as Error).message}`;
+    }
+  }
+  return { ok: false, why: last };
 }
 
 /** A composite's own words (as its voicing said them) read back to propositions; null when no reading fits. */
@@ -531,7 +623,8 @@ export function rereadVoiced(comp: Composite & { said?: string; args?: Record<st
     return { ok: true };
   }
   const un = UNARGS[id];
-  if (!un) return { ok: false, why: `no reading for ${id}` };
+  // Build 2: a voicing over typed arguments is read back by type, through its shape's reader.
+  if (!un) return rereadTyped(comp, vo, text, v, lx);
   // A voicing may reorder its arguments: the same propositions, in any order.
   const want = comp.props.map(canon).sort();
   let last = '';

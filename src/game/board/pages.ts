@@ -76,6 +76,7 @@ import { worldAccountVoice, worldDeck, worldFoundWith, worldListVoice, worldLook
 import { PLAN, chapterUnit, markPronoun, newBudget, planSection, stripMarks, type GapSlot, type Item, type Relation, type SituCtx, type Unit } from './plan/index.js';
 import type { PageBudget } from './plan/types.js';
 import type { Prop } from './bones/types.js';
+import type { VoiceHand } from './bones/say.js';
 import { breakerProp, claimProp, findProps, givenProps, lineProps, meansProp as meansPropOf, srcOfQ } from './bones/extract.js';
 
 export { breakSaid };
@@ -256,7 +257,7 @@ function lay(w: Writer, job: SheetJob): void {
   // docs/48 §4: what the arrival and the staging said, before the planner touched a name.
   for (const b of Object.keys(w.parts) as Beat[]) w.said[b] = [...(w.said[b] ?? []), ...(w.parts[b] ?? []).map((p) => stripMarks(p.text))];
   // docs/49: the microplanner lays the beats out by the sheet, and says them.
-  const planned = planSection(w.parts, sheet.paras, { c: w.c, budget: w.budget, pick: (k, ls) => w.hand.pick(k, ls), level: thoughtLevel(w.c), run: w.run, said: saidTonight(w), earlier: earlierProse(w), int: (n) => w.hand.rng.int(n), situ: situOf(w, job) }, w.blocks.length);
+  const planned = planSection(w.parts, sheet.paras, { c: w.c, budget: w.budget, pick: (k, ls) => w.hand.pick(k, ls), level: thoughtLevel(w.c), run: w.run, said: saidTonight(w), earlier: earlierProse(w), int: (n) => w.hand.rng.int(n), situ: situOf(w, job), hand: voiceHand(w.hand) }, w.blocks.length);
   w.beats.push(...planned.beats);
   w.blocks.push(...planned.blocks);
   w.units.push(...planned.units);
@@ -270,6 +271,21 @@ function lay(w: Writer, job: SheetJob): void {
     if (b?.kind === 'prose') w.recap = b.text;
   }
   w.parts = {};
+}
+
+/** docs/52 §4, build 2: the page's hand, as the voicings' chooser sees it. */
+function voiceHand(h: Hand): VoiceHand {
+  return {
+    lastUse: (id) => h.lastUse(id),
+    uses: (id) => h.uses(id),
+    note: (id) => h.note(id),
+    swap: (a, b) => h.swap(a, b),
+    get mayJoke() {
+      return h.mayJoke;
+    },
+    joke: () => h.joke(),
+    int: (n) => h.rng.int(n),
+  };
 }
 
 /** docs/51: the page's situation, for the situated deck: what kind of page, where, whose, and how a put went. */

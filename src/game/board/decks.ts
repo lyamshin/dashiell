@@ -91,9 +91,30 @@ export class Hand {
   /** The last bible card dealt, for `drawCard`. */
   private lastWorld: BoardCard | null = null;
 
+  /** The night's spent ids before this page, in the order they were spent. */
+  private readonly night: readonly string[];
+
   constructor(seed: number, page: number, spent: readonly string[]) {
     this.rng = new Rng(((seed * 2654435761) ^ (page * 40503 + 0x9e37)) >>> 0);
     this.spentSet = new Set(spent);
+    this.night = spent;
+  }
+
+  /**
+   * docs/52 §4: when tonight an id was last spent (`id`, or `id#n` for its n-th use): its place in
+   * the night's spent list, or -1 when it never was. The voicings' least-recently-used rule.
+   */
+  lastUse(id: string): number {
+    const hit = (x: string) => x === id || x.startsWith(`${id}#`);
+    for (let i = this.spent.length - 1; i >= 0; i--) if (hit(this.spent[i] as string)) return this.night.length + i;
+    for (let i = this.night.length - 1; i >= 0; i--) if (hit(this.night[i] as string)) return i;
+    return -1;
+  }
+
+  /** docs/52 §4: how many times tonight an id has been spent (`id`, or `id#n`). */
+  uses(id: string): number {
+    const hit = (x: string) => x === id || x.startsWith(`${id}#`);
+    return this.night.filter(hit).length + this.spent.filter(hit).length;
   }
 
   private held = false;

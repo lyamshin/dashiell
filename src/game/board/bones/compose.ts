@@ -44,7 +44,8 @@ import { herIsObject } from '../plan/measure.js';
 import { sentencesOf, wordsIn } from '../plan/sentences.js';
 import { accessPhrase, atWhere, claimSaid, shortOther, where } from './phrase.js';
 import type { Composite, Prop, Shape, Src } from './types.js';
-import { fill, fitting, type Voicing } from './voice.js';
+import { fitting, type Args, type Voicing } from './voice.js';
+import { preview, type Picked } from './say.js';
 import { plainComposite } from './plain.js';
 
 /** The longest sentence composition makes. */
@@ -109,14 +110,17 @@ export function clearAfter(c: BoardCase, p: string, breaker: string): boolean {
  * Composites, and saying them.
  * ------------------------------------------------------------------ */
 
-/** A composite as the planner holds it while composing: what it said, with which arguments. */
-interface Held extends Composite {
+/** A composite as the planner holds it while composing: what it said, with which arguments, and the use it spent. */
+export interface Held extends Composite {
   said?: string;
-  args?: Record<string, string>;
+  args?: Args;
+  /** docs/52 build 2: the hand's record of the voicing's use (`v:<id>#<n>`), given back if it's voiced again. */
+  noted?: string;
 }
 
 /** The shape a writer's fact is, by what it says and where (its flesh is the writer's own words). */
 export function shapeOf(it: Item): Shape {
+  if (it.say) return it.say.shape;
   const rule = ruleOf(it);
   const ks = (it.props ?? []).map((p) => p.k);
   const has = (k: Prop['k']) => ks.includes(k);
@@ -154,19 +158,36 @@ function held(it: Item): Held {
   return it.comp as Held;
 }
 
-/** The voicings of a shape that fit the flags, the speaker's manner and the tier band, most specific first. */
-function choose(shape: Shape, flags: string[], ctx: PlanCtx): Voicing[] {
-  return fitting(shape, new Set(flags), { manner: shape === 'LIST-HOUR' ? 'watcher' : undefined, tierBand: ctx.c.tier <= 1 ? 'low' : ctx.c.tier <= 3 ? 'mid' : 'high' });
+/** low (Raw, Coddled), mid (Poached, Soft-boiled), high (Medium, Hard-boiled). */
+export function tierBand(ctx: PlanCtx): 'low' | 'mid' | 'high' {
+  return ctx.c.tier <= 1 ? 'low' : ctx.c.tier <= 3 ? 'mid' : 'high';
+}
+
+/** The voicings of a shape that fit the flags, the speaker's manner and the tier band, the most specific of them. */
+export function choose(shape: Shape, flags: string[], ctx: PlanCtx, manner?: string): Voicing[] {
+  return fitting(shape, new Set(flags), { manner, tierBand: tierBand(ctx) });
+}
+
+/** docs/52 build 2: the voicing a composite would take (least recently used tonight), not yet spent. */
+export function pickFor(shape: Shape, flags: readonly string[], args: Args, ctx: PlanCtx, manner?: string): Picked | null {
+  return preview(shape, flags, { manner, tierBand: tierBand(ctx) }, args, ctx);
+}
+
+/** Spend a voicing on a composite: a composite voiced again gives back the use it had. */
+export function spend(comp: Held, p: Picked, ctx: PlanCtx): void {
+  const key = p.commit();
+  if (comp.noted && comp.noted !== key && ctx.hand) ctx.hand.swap(comp.noted, key);
+  if (key) comp.noted = key;
 }
 
 /**
- * Say a composite in a voicing: the shape's voicings that fit the flags, filled. Nothing fits: the
- * plain rendering (docs/52 §4, "voicing → plain fallback").
+ * Say a composite in a voicing: the shape's voicings that fit the flags, least recently used. Nothing
+ * fits: the plain rendering (docs/52 §4, "voicing → plain fallback").
  */
-function voice(it: Item, comp: Held, flags: string[], args: Record<string, string>, ctx: PlanCtx): string {
-  const v = choose(comp.shape, flags, ctx)[0];
-  if (!v) return sayPlain(it, comp, ctx);
-  return sayWith(it, comp, v, args);
+function voice(it: Item, comp: Held, flags: string[], args: Args, ctx: PlanCtx, manner?: string): string {
+  const p = pickFor(comp.shape, flags, args, ctx, manner);
+  if (!p) return sayPlain(it, comp, ctx);
+  return sayWith(it, comp, p, args, ctx);
 }
 
 /** The composite said plainly, where no voicing fits it. */
@@ -180,14 +201,37 @@ function sayPlain(it: Item, comp: Held, ctx: PlanCtx): string {
   return text;
 }
 
-function sayWith(it: Item, comp: Held, v: Voicing, args: Record<string, string>): string {
-  const text = fill(v.template, args);
-  comp.voicing = v.id;
+function sayWith(it: Item, comp: Held, p: Picked, args: Args, ctx: PlanCtx): string {
+  spend(comp, p, ctx);
+  comp.voicing = p.v.id;
   comp.args = args;
-  comp.said = text;
+  comp.said = p.text;
   it.comp = comp;
-  it.text = text;
-  return text;
+  it.text = p.text;
+  return p.text;
+}
+
+/**
+ * docs/52 build 2: the rhythm's trades for a voiced composite: the others that fitted as well and
+ * haven't been said tonight, each spent only when the rhythm takes it.
+ */
+export function altsFor(comp: Held, p: Picked, ctx: PlanCtx): Item['alts'] {
+  const hand = ctx.hand;
+  if (!hand || p.others.length === 0) return undefined;
+  return () =>
+    p.others
+      .filter((o) => hand.lastUse(`v:${o.v.id}`) < 0)
+      .map((o) => ({
+        text: o.text,
+        take: () => {
+          const key = `v:${o.v.id}#${hand.uses(`v:${o.v.id}`) + 1}`;
+          if (comp.noted) hand.swap(comp.noted, key);
+          else hand.note(key);
+          comp.noted = key;
+          comp.voicing = o.v.id;
+          comp.said = o.text;
+        },
+      }));
 }
 
 /** Two composites, one sentence: the parts' bones in order, under a join. */
@@ -210,21 +254,20 @@ function merge(a: Item, b: Item, comp: Held, text: string, join?: string): void 
 }
 
 /** Say two side by side with a join: "{a}, and {b}", "{a}; {b}", "{a}, but {b}" (plainly, where no voicing has the join). */
-function sayPair(a: Item, b: Item, join: 'and' | 'semi' | 'but', ctx: PlanCtx, shape: Shape = 'PAIR'): { comp: Held; text: string } {
+function sayPair(a: Item, b: Item, join: 'and' | 'semi' | 'but', ctx: PlanCtx, shape: Shape = 'PAIR'): { comp: Held; text: string; commit: () => void } {
   const comp = pairOf(shape, held(a), held(b), join);
-  const v = choose(shape, [join], ctx)[0];
-  if (!v) {
+  const args = { a: a.text.replace(/\.$/, ''), b: lowerFirst(b.text) };
+  const p = pickFor(shape, [join], args, ctx);
+  if (!p) {
     const text = plainComposite(ctx.c, comp);
     comp.voicing = 'plain';
     comp.said = text;
-    return { comp, text };
+    return { comp, text, commit: () => undefined };
   }
-  const args = { a: a.text.replace(/\.$/, ''), b: lowerFirst(b.text) };
-  const text = fill(v.template, args);
-  comp.voicing = v.id;
+  comp.voicing = p.v.id;
   comp.args = args;
-  comp.said = text;
-  return { comp, text };
+  comp.said = p.text;
+  return { comp, text: p.text, commit: () => spend(comp, p, ctx) };
 }
 
 /* ------------------------------------------------------------------ *
@@ -385,6 +428,47 @@ function inQuotes(old: string, said: string): string {
   return `${old.startsWith('“') ? '“' : ''}${said}${old.endsWith('”') ? '”' : ''}`;
 }
 
+/**
+ * docs/52 build 2: the writers' composites, voiced. A fact the writer handed over as a composite
+ * (`Item.say`: its shape, flags, typed arguments and the speaker's manner) is said in a voicing of
+ * its shape, least recently used tonight; where none fits, a person's answer keeps its own words and
+ * the narration is said plainly. An answer's line keeps its quotation marks; a fact that opens on
+ * the page's "So" or "But" (`Item.opener`) is voiced bare, and the join is put before it (`connect`
+ * keeps it or doesn't).
+ */
+export function sayAll(items: Item[], ctx: PlanCtx): void {
+  for (const it of items) {
+    if (it.kind !== 'fact' || !it.say || it.comp) continue;
+    const s = it.say;
+    const comp: Held = { shape: s.shape, props: [...(it.props ?? [])] };
+    const p = pickFor(s.shape, s.flags, s.args, ctx, s.manner);
+    if (!p) {
+      if (it.speech) it.comp = { ...comp, voicing: 'flesh', said: it.text } as Held;
+      else {
+        sayPlain(it, comp, ctx);
+        if (it.opener) {
+          it.flesh = { ...(it.flesh ?? {}), bare: it.text };
+          it.text = `${it.opener} ${lowerFirst(it.text)}`;
+        }
+      }
+      continue;
+    }
+    spend(comp, p, ctx);
+    comp.voicing = p.v.id;
+    comp.args = s.args;
+    comp.said = p.text;
+    it.comp = comp;
+    if (it.speech) it.text = inQuotes(it.text, p.text);
+    else if (it.opener) {
+      it.flesh = { ...(it.flesh ?? {}), bare: p.text };
+      it.text = `${it.opener} ${lowerFirst(p.text)}`;
+    } else {
+      it.text = p.text;
+      it.alts = altsFor(comp, p, ctx);
+    }
+  }
+}
+
 export function aggregate(items: Item[], ctx: PlanCtx): Item[] {
   const c = ctx.c;
   const hc = crimeHour(ctx);
@@ -454,17 +538,17 @@ export function aggregate(items: Item[], ctx: PlanCtx): Item[] {
     if (it.kind === 'fact' && fl?.when !== undefined && fl.whole) {
       const tail = /at all/.test(fl.nobody ?? '') ? 'nobody else at all' : /that hour/.test(fl.nobody ?? '') ? 'nobody else that hour' : 'nobody else';
       // (Inside somebody's answer the fallback is their own words, not the plain page's narration.)
-      const v = choose('LIST-HOUR', [], ctx)[0];
+      const args = { when: fl.when, names: fl.names ?? '', nobody: tail };
+      const v = pickFor('LIST-HOUR', [], args, ctx, 'watcher');
       if (v) {
         const nu: Item = { ...it, joined: 'nobody else' };
         const comp: Held = { shape: 'LIST-HOUR', props: [...(it.props ?? [])] };
-        const args = { when: fl.when, names: fl.names ?? '', nobody: tail };
-        const said = fill(v.template, args);
-        comp.voicing = v.id;
+        spend(comp, v, ctx);
+        comp.voicing = v.v.id;
         comp.args = args;
-        comp.said = said;
+        comp.said = v.text;
         nu.comp = comp;
-        nu.text = inQuotes(it.text, said);
+        nu.text = inQuotes(it.text, v.text);
         out.push(nu);
         continue;
       }
@@ -641,27 +725,14 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       const listy = what.includes(',') || / at (?:seven|eight|nine|ten|eleven|twelve|midnight)\b/.test(what);
       const comp = held(it);
       comp.shape = 'OWN-WORD';
-      const vs = choose('OWN-WORD', ['hours', ...(listy ? ['listy'] : [])], ctx);
-      if (vs.length === 0) {
+      const args = { hs: andList(hs.map((h) => hourWord(h as Hour))), hourword: hs.length > 1 ? 'hours' : 'hour', who, what };
+      const v = pickFor('OWN-WORD', ['hours', ...(listy ? ['listy'] : [])], args, ctx);
+      if (!v) {
         sayPlain(it, comp, ctx);
         return;
       }
-      const argsFor = (x: string) => ({ hs: andList(hs.map((h) => hourWord(h as Hour))), hourword: hs.length > 1 ? 'hours' : 'hour', who: x, what });
-      const forms = vs.map((v) => fill(v.template, argsFor(who)));
-      // Not a shape an earlier page said word for word, with the name or with "he".
-      const fresh = vs.filter((v) => ![nameOf(c, p), pronOf(c, p).he].some((x) => ctx.said?.has(fill(v.template, argsFor(x)))));
-      const v = fresh.length === 1 ? (fresh[0] as Voicing) : (vs[forms.indexOf(ctx.pick('hours-form', forms))] as Voicing);
-      sayWith(it, comp, v, argsFor(who));
-      it.alts = () =>
-        vs
-          .filter((x) => x !== v)
-          .map((x) => ({
-            text: fill(x.template, argsFor(who)),
-            take: () => {
-              comp.voicing = x.id;
-              comp.said = fill(x.template, argsFor(who));
-            },
-          }));
+      sayWith(it, comp, v, args, ctx);
+      it.alts = altsFor(comp, v, ctx);
       return;
     }
     if (rule === 'placed') {
@@ -687,8 +758,8 @@ export function connect(items: Item[], ctx: PlanCtx): void {
         it.joined = 'self';
         comp.join = 'self';
         // Where "he" would be read as somebody else, the same fact without them in it.
-        const v = choose('PLACED-SET', ['self', 'plain'], ctx)[0];
-        if (v) it.alts = () => [{ text: fill(v.template, { runs: runsSaid }), take: () => ((comp.voicing = v.id), (comp.said = fill(v.template, { runs: runsSaid }))) }];
+        const v = pickFor('PLACED-SET', ['self', 'plain'], { runs: runsSaid }, ctx);
+        if (v) it.alts = () => [{ text: v.text, take: () => (spend(comp, v, ctx), (comp.voicing = v.v.id), (comp.args = { runs: runsSaid }), (comp.said = v.text)) }];
       } else if (fl.keeper) {
         voice(it, comp, ['count'], { his: pr(c, fl.keeper).his, runs: runsSaid }, ctx);
         it.joined = 'count';
@@ -869,20 +940,21 @@ function confirmPair(segs: Seg[], ctx: PlanCtx): void {
     const lat = atWhere(c, (ls[0] as Extract<Prop, { k: 'CONFIRMS' }>).place, here);
     const comp: Held = { shape: 'CONFIRMED-WITH', props: [...(L.props ?? []), ...(P.props ?? [])], parts: [held(L), held(P)] };
     const confirmed = L.text.replace(/\.$/, '');
-    let v: Voicing | undefined;
+    let v: Picked | null;
     let args: Record<string, string>;
     if (sameAll && one) {
       // "had him here too, with Teitel": "too" said it already; otherwise "and with him Mrs. Blau".
-      v = choose('CONFIRMED-WITH', [L.joined === 'too' ? 'too' : 'same'], ctx)[0];
       args = { confirmed, others: names.join(' and '), him: pr(c, one.person).him };
+      v = pickFor('CONFIRMED-WITH', [L.joined === 'too' ? 'too' : 'same'], args, ctx);
     } else {
-      v = choose('CONFIRMED-WITH', ['apart'], ctx)[0];
       const bits = [...runs.values()].map((r) => `${andList(r.ps.map((y) => nameOf(c, y)))}${atWhere(c, r.place, here) === lat ? '' : ` ${atWhere(c, r.place, here)}`} at ${HOURS[r.h] ?? String(r.h)}`);
       args = { confirmed, placed: bits.join(' and ') };
+      v = pickFor('CONFIRMED-WITH', ['apart'], args, ctx);
     }
-    const text = v ? fill(v.template, args) : plainComposite(c, comp);
+    const text = v ? v.text : plainComposite(c, comp);
     if (wordsIn(plain(text)) > LONGEST) continue;
-    comp.voicing = v?.id ?? 'plain';
+    if (v) spend(comp, v, ctx);
+    comp.voicing = v?.v.id ?? 'plain';
     if (v) comp.args = args;
     comp.said = text;
     merge(L, P, comp, text, 'with');
@@ -917,11 +989,12 @@ function accessAttach(segs: Seg[], ctx: PlanCtx): void {
     else if (new RegExp(`^(?:By [^,]+, )?${nm} (?:was|were|had)\\b`).test(plain(t)) && sameSexIn(c, a.one, t).length === 0 && joined(t) === 0) form = 'and-he';
     if (!form) continue;
     const comp: Held = { shape: 'ATTACH', props: [...(F.props ?? []), ...(W.props ?? [])], parts: [held(F), held(W)], join: form };
-    const v = choose('ATTACH', [form], ctx)[0];
     const args = { host: t.replace(/\.$/, ''), of: a.of, he: pr(c, a.one).he };
-    const text = v ? fill(v.template, args) : plainComposite(c, comp);
+    const v = pickFor('ATTACH', [form], args, ctx);
+    const text = v ? v.text : plainComposite(c, comp);
     if (wordsIn(plain(text)) > LONGEST) continue;
-    comp.voicing = v?.id ?? 'plain';
+    if (v) spend(comp, v, ctx);
+    comp.voicing = v?.v.id ?? 'plain';
     if (v) comp.args = args;
     comp.said = text;
     merge(F, W, comp, text, 'who');
@@ -938,8 +1011,9 @@ function heldBut(segs: Seg[], ctx: PlanCtx): void {
     const B = (segs[i + 1] as Seg).fact;
     if (ruleOf(A) !== 'agree' || ruleOf(B) !== 'hours' || A.composed || B.composed) continue;
     if (ctx.budget.but > 0 || !single(A.text) || !single(B.text) || /^(?:So|But)\b/.test(B.text)) continue;
-    const { comp, text } = sayPair(A, B, 'but', ctx);
+    const { comp, text, commit } = sayPair(A, B, 'but', ctx);
     if (wordsIn(plain(text)) > LONGEST) continue;
+    commit();
     merge(A, B, comp, text, 'but');
     ctx.budget.but++;
     ctx.budget.joins++;
@@ -955,11 +1029,11 @@ function sideBySide(segs: Seg[], ctx: PlanCtx, n: number): void {
   const target = Math.ceil(n / 2);
   const sentences = () => segs.reduce((k, s) => k + sentencesOf(plain(s.fact.text)).length, 0);
   /** How two side by side would go, and what it costs: the joins already in them, and the length. */
-  const option = (i: number): { comp: Held; text: string; join?: string; cost: number } | null => {
+  const option = (i: number): { comp: Held; text: string; join?: string; cost: number; commit: () => void } | null => {
     const A = (segs[i] as Seg).fact;
     const B = (segs[i + 1] as Seg).fact;
     if (!single(A.text) || !single(B.text) || /^(?:So|But)\b/.test(plain(B.text)) || ruleOf(B) === 'collision') return null;
-    let made: { comp: Held; text: string } | undefined;
+    let made: { comp: Held; text: string; commit: () => void } | undefined;
     let join: string | undefined;
     // A collision keeps a clause of its own (docs/49 §2): after it, only a semicolon.
     if (ruleOf(A) === 'collision') {
@@ -980,13 +1054,14 @@ function sideBySide(segs: Seg[], ctx: PlanCtx, n: number): void {
     return { ...made, ...(join ? { join } : {}), cost: (joined(A.text) + joined(B.text)) * 20 + (join === 'semi' ? 30 : 0) + wordsIn(plain(made.text)) };
   };
   while (sentences() > target) {
-    let best: { i: number; comp: Held; text: string; join?: string; cost: number } | null = null;
+    let best: { i: number; comp: Held; text: string; join?: string; cost: number; commit: () => void } | null = null;
     for (let i = 0; i + 1 < segs.length; i++) {
       const o = option(i);
       if (o && (!best || o.cost < best.cost)) best = { i, ...o };
     }
     if (!best) return;
-    const { i, comp, text, join } = best;
+    const { i, comp, text, join, commit } = best;
+    commit();
     const A = (segs[i] as Seg).fact;
     const B = (segs[i + 1] as Seg).fact;
     if (join === 'but') {
