@@ -100,17 +100,34 @@ const ALONE_SOME = ['Nobody was with me at {hs}.', 'At {hs} I was on my own.', '
 export type Manner = 'plain' | 'terse' | 'careful';
 
 /**
+ * docs/49: one line of an answer, and the facts it carries (the hours it tells; a remark), so the
+ * microplanner can make each line a fact unit of its own.
+ */
+export interface SaidLine {
+  text: string;
+  hours: Hour[];
+  remark?: number;
+  /** A list's hour: who, when, and whether "nobody else" was said, for aggregation. */
+  hour?: { when: string; names: string; whole: boolean; nobody: string };
+}
+
+/**
  * A whole account, as the person says it. Every hour is in it, with who was
  * with them and why they moved. `others` is the company said by name; a
  * person alone says so.
  */
-export function spokenAccount(c: BoardCase, a: Account, _manner: Manner, rot0 = 0): string[] {
+export function spokenAccount(c: BoardCase, a: Account, manner: Manner, rot0 = 0): string[] {
+  return spokenAccountLines(c, a, manner, rot0).map((x) => x.text);
+}
+
+/** The same account, a line at a time, with the hours each line tells (docs/49). */
+export function spokenAccountLines(c: BoardCase, a: Account, _manner: Manner, rot0 = 0): SaidLine[] {
   const p = a.person;
   const female = personOf(c, p)?.female === true;
   const hours = c.board.hours;
   const runs = runsOf(hours, a.claims);
   const last = hours[hours.length - 1] as Hour;
-  const out: string[] = [];
+  const out: SaidLine[] = [];
   const nm = (x: PersonId) => nameOf(c, x);
   const party = c.givens.lines?.find((g) => g.kind === 'party')?.vars;
   const rot = speakerRot(c, p, rot0);
@@ -125,6 +142,7 @@ export function spokenAccount(c: BoardCase, a: Account, _manner: Manner, rot0 = 
   runs.forEach((r, i) => {
     const comps = [] as { h: Hour; who: PersonId[] }[];
     for (let h = r.from; h <= r.to; h++) comps.push({ h, who: a.claims[h]?.company ?? [] });
+    const runHours = comps.map((x) => x.h);
     const same = comps.every((x) => key(x.who) === key(comps[0]?.who ?? []));
     const where = wherePhrase(c, p, r.place);
     // A reason that doesn't say where ("turned in early") takes the place after it.
@@ -166,9 +184,9 @@ export function spokenAccount(c: BoardCase, a: Account, _manner: Manner, rot0 = 
       // "back to my room to write letters, with Abramowitz and Thorndike" put them in the room: in a
       // rooming house they were about the house (Hard-boiled 8).
       const house = who.length > 0 && /\bmy room\b/.test(s) && !!c.places.find((x) => x.id === r.place)?.key?.startsWith('rooming') ? ' about the house' : '';
-      out.push(`${s}${named || withSomebody ? '' : who.length ? `, with ${andList(who)}${house}` : alone}.`);
+      out.push({ text: `${s}${named || withSomebody ? '' : who.length ? `, with ${andList(who)}${house}` : alone}.`, hours: runHours });
     } else {
-      out.push(`${s}.`);
+      out.push({ text: `${s}.`, hours: runHours });
       // Hours with the same company run together: "at seven and eight it was just me".
       const spans: { hs: Hour[]; who: PersonId[] }[] = [];
       for (const x of comps) {
@@ -181,20 +199,21 @@ export function spokenAccount(c: BoardCase, a: Account, _manner: Manner, rot0 = 
         const at = andList(x.hs.map(hourWord));
         return who.length ? `${andList(who)} ${who.length > 1 ? 'were' : 'was'} there at ${at}` : `at ${at} it was just me`;
       });
-      out.push(`${cap(bits.join('; '))}.`);
+      out.push({ text: `${cap(bits.join('; '))}.`, hours: runHours });
     }
   });
   // Several hours alone, or the whole evening: said once, at the end.
   if (aloneRuns.length > 0 && (aloneRuns.length === runs.length || !aloneOnce || runs.length === 1)) {
-    if (aloneRuns.length === runs.length) out.push(ALONE_ALL[rot % ALONE_ALL.length] as string);
+    const alone = aloneRuns.flatMap((r) => Array.from({ length: r.to - r.from + 1 }, (_, k) => r.from + k));
+    if (aloneRuns.length === runs.length) out.push({ text: ALONE_ALL[rot % ALONE_ALL.length] as string, hours: alone });
     else {
-      const hs = aloneRuns.flatMap((r) => Array.from({ length: r.to - r.from + 1 }, (_, k) => hourWord(r.from + k)));
+      const hs = alone.map(hourWord);
       const t = ALONE_SOME[rot % ALONE_SOME.length] as string;
       // "Nobody was with me at eight or eleven", but "At eight and eleven I was on my own".
-      out.push(t.replace('{hs}', /^Nobody|^I had nobody/.test(t) ? orList(hs) : andList(hs)));
+      out.push({ text: t.replace('{hs}', /^Nobody|^I had nobody/.test(t) ? orList(hs) : andList(hs)), hours: alone });
     }
   }
-  for (const r of a.remarks) out.push(r.text);
+  a.remarks.forEach((r, i) => out.push({ text: r.text, hours: r.facts.map((f) => f.h), remark: i }));
   return out;
 }
 
@@ -213,8 +232,13 @@ function key(xs: readonly string[]): string {
  * there for are left to their own remark ("I came on at ten").
  */
 export function spokenList(c: BoardCase, l: WatchList, rot = 0): string[] {
+  return spokenListLines(c, l, rot).map((x) => x.text);
+}
+
+/** The same list, a line at a time, with the hours each line tells (docs/49). */
+export function spokenListLines(c: BoardCase, l: WatchList, rot = 0): SaidLine[] {
   const hours = c.board.hours.filter((h) => l.entries[h] !== undefined);
-  const out: string[] = [];
+  const out: SaidLine[] = [];
   const watcher = personOf(c, l.watcher);
   const landlady = /landlady/.test(watcher?.description ?? '');
   // Somebody there at every hour the watcher kept (the fence in his booth) is said once, first.
@@ -227,9 +251,9 @@ export function spokenList(c: BoardCase, l: WatchList, rot = 0): string[] {
     // "Pardo was there all evening. He buys things." (Raw 11's #11), not "Pardo who buys things was there".
     const who = /^(\w+) who (.+)$/.exec(o.name);
     const booth = /^(.+?) in (his|her) (.+)$/.exec(o.name);
-    if (who) out.push(`${who[1]} was there ${span}. He ${who[2]}.`);
-    else if (booth) out.push(`${cap(booth[1] as string)} was in ${booth[2]} ${booth[3]} ${span}.`);
-    else out.push(`${cap(o.name)} ${plural ? 'were' : 'was'} there ${span}.`);
+    if (who) out.push({ text: `${who[1]} was there ${span}. He ${who[2]}.`, hours: [...hours] });
+    else if (booth) out.push({ text: `${cap(booth[1] as string)} was in ${booth[2]} ${booth[3]} ${span}.`, hours: [...hours] });
+    else out.push({ text: `${cap(o.name)} ${plural ? 'were' : 'was'} there ${span}.`, hours: [...hours] });
   }
   const shut = hours.filter((h) => shutAt(c, l.place, h));
   const open = hours.filter((h) => !shutAt(c, l.place, h));
@@ -248,7 +272,7 @@ export function spokenList(c: BoardCase, l: WatchList, rot = 0): string[] {
       // "Eight o’clock, just Benny" when the one who's always there was all there was (Medium 14's #12).
       const regulars = others.filter((o) => always.has(o.id)).map((o) => /^(Lou|Pardo|Benny)\b/.exec(o.name)?.[1]);
       const named = regulars.length > 0 && regulars.every(Boolean) ? (regulars as string[]) : [];
-      out.push(landlady ? `${when}, nobody but me.` : named.length ? `${when}, just ${andList(named)}.` : `${when}, nobody${always.size ? ' else' : ''}.`);
+      out.push({ text: landlady ? `${when}, nobody but me.` : named.length ? `${when}, just ${andList(named)}.` : `${when}, nobody${always.size ? ' else' : ''}.`, hours: [...g.hs] });
       return;
     }
     const names = g.es.map((e) => {
@@ -263,10 +287,11 @@ export function spokenList(c: BoardCase, l: WatchList, rot = 0): string[] {
       return entryName(c, e);
     });
     const whole = g.hs.every((h) => listExhaustive(c, l, h));
-    out.push(`${when}, ${andList(names)}.${whole ? ` ${nobodyElse(i + rot)}.` : ''}`);
+    const nobody = nobodyElse(i + rot);
+    out.push({ text: `${when}, ${andList(names)}.${whole ? ` ${nobody}.` : ''}`, hours: [...g.hs], hour: { when, names: andList(names), whole, nobody } });
   });
-  if (shut.length > 0) out.push(`We shut at ${hourWord(shut[0] as Hour)}. Nobody after that.`);
-  for (const r of l.remarks) out.push(r.text);
+  if (shut.length > 0) out.push({ text: `We shut at ${hourWord(shut[0] as Hour)}. Nobody after that.`, hours: [...shut] });
+  l.remarks.forEach((r, i) => out.push({ text: r.text, hours: r.facts.map((f) => f.h), remark: i }));
   return out;
 }
 

@@ -53,6 +53,23 @@ const PAPERS: Record<string, string> = {
   m8: 'a wedding invitation nobody ever used; he jilted {his} sister a week before the wedding',
 };
 
+/**
+ * docs/49: the same lines as the microplanner says them. In the dead man's papers a bare "he" is the
+ * dead man, and on a man's page it sits beside the man's own "him": the dead man is said as his
+ * role, so no pronoun on the page could be either of them.
+ */
+const PAPERS_PLANNED: Record<string, string> = {
+  m0: 'a file the dead man had kept on {him}, thick enough to matter',
+  m1: 'a column of payments, every month for years, and {his} name at the top',
+  m2: 'one line, where {he} was in 1921, and an address',
+  m3: 'an IOU for four hundred dollars, in {his} hand',
+  m4: 'the lease on a shop, the rent owing, and a carbon of the dead man’s letter calling it in',
+  m5: 'the order that closed {his} business, with the dead man’s signature on it',
+  m6: 'a notice to quit, from when the dead man threw {him} out of a lease',
+  m7: 'a court transcript, the dead man’s own testimony against {his} brother',
+  m8: 'a wedding invitation nobody ever used; the dead man jilted {his} sister a week before the wedding',
+};
+
 function fill(t: string, vars: Record<string, string>): string {
   return t.replace(/\{(\w+)\}/g, (_m, k: string) => vars[k] ?? `{${k}}`);
 }
@@ -73,9 +90,11 @@ export function motiveForm(c: BoardCase, p: PersonId): string {
 }
 
 /** The murder's papers, a line a suspect: "Reinhardt: a court transcript: his own testimony against her brother." */
-export function papersLine(c: BoardCase, p: PersonId): string {
+export function papersLine(c: BoardCase, p: PersonId, planned = false): string {
   const who = personOf(c, p);
-  const t = who?.motivePapers ?? (who?.motiveId ? PAPERS[who.motiveId] : undefined);
+  // The dead man as his role only where his "he" could be read as theirs: on a man's page.
+  const role = planned && !!who?.female === !!victimOf(c).female;
+  const t = who?.motivePapers ?? (who?.motiveId ? (role ? PAPERS_PLANNED : PAPERS)[who.motiveId]?.replace(/the dead man/g, victimOf(c).female ? 'the dead woman' : 'the dead man') : undefined);
   const pr = pronOf(c, p);
   if (!t || !isMurder(c)) return `${nameOf(c, p)}: ${who?.motive ?? ''}.`;
   return `${nameOf(c, p)}: ${fill(t, { he: pr.he, his: pr.his, him: pr.him })}.`;

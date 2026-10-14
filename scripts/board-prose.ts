@@ -44,6 +44,19 @@
  *
  * "why-here or walk" counts a page whose reason the page before said (its hand-off, or the arrival
  * in this room) as carrying it (`Page.board.carried`): docs/47 cut the signposts that said it again.
+ *
+ * docs/49 §4, the microplanner's (`plan/measure.ts`), along the oracle's route; the two that are
+ * lints (list smell, pronoun ambiguity) over the oracle's, the wanderer's and the reader's nights too:
+ *
+ * - **sentences per fact unit** (target ≤ 1.2);
+ * - **list smell**: pages with three narration sentences in a row in one length band, or opening on
+ *   the same two words (target 0);
+ * - **pronoun ambiguity**: a pronoun with two possible referents in the last two sentences (target 0);
+ * - **joins a page**: the connectives that say what a fact does, on pages with facts (report; 1–3);
+ * - **restated pointer**: a why-here saying again the page before's hand-off (target 0).
+ *
+ * `--plan off` measures the same nights with the microplanner's four operations off: the pages as
+ * they read before docs/49, word for word, for the "before" column.
  */
 
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
@@ -55,6 +68,8 @@ import { namesOverTwo } from '../src/game/board/names.js';
 import { proseIssues, type ProseIssue } from '../src/game/board/prose-lint.js';
 import { isWorld, worldBible } from '../src/gen/board/world/index.js';
 import { bibleShare } from '../src/game/board/world.js';
+import { PLAN } from '../src/game/board/plan/index.js';
+import { factSentences, joinsIn, listSmell, pronounAmbiguity, restatedPointer } from '../src/game/board/plan/measure.js';
 // @ts-expect-error — plain JavaScript module, no declarations.
 import { findJargon, loadPlainTerms } from './plain-terms.mjs';
 
@@ -66,6 +81,7 @@ const val = (k: string) => {
 const N = Number(val('nights') ?? 30);
 const tiers = (val('tiers') ?? '0,1,2,3,4,5').split(',').map(Number) as TierIndex[];
 const show = args.includes('--show');
+if (val('plan') === 'off') PLAN.ops = false;
 // docs/48 §4: `--world neighbourhood` reads nights cast from the bible, and adds the bible's share.
 const world = val('world');
 if (world !== undefined && !isWorld(world)) throw new Error(`No world called "${world}".`);
@@ -155,6 +171,10 @@ const rows: string[] = [];
 rows.push('| tier | nights | pages | words a page, median [p10–p90] | why-here or walk | job pages with a thought naming an earlier fact | callbacks | lint (reader) | correspondence | thoughts over their level | plain terms | cards twice | sentences twice | pages naming somebody 3+ times | clues said 3+ times | place names bolted on | banned phrases | pages with 2+ signposts | gags paid off 3+ times | a pet called “it” |');
 rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
 const examples: string[] = [];
+const rows3: string[] = [];
+rows3.push('| tier | sentences per fact unit | list smell, pages (oracle) | pronoun ambiguity (oracle) | joins a page with facts, mean [share with 1–3] | restated pointer | list smell, pages (all three) | pronoun ambiguity (all three) |');
+rows3.push('|---|---|---|---|---|---|---|---|');
+const examples3: string[] = [];
 for (const tier of tiers) {
   const types = typesFor(tier) as CaseType[];
   const counts: number[] = [];
@@ -175,6 +195,17 @@ for (const tier of tiers) {
   let cluesThrice = 0;
   const r3: Record<ProseIssue['rule'], number> = { 'place-tag': 0, phrase: 0, signpost: 0, gag: 0, pet: 0 };
   const share = { arrival: { bible: 0, total: 0 }, staging: { bible: 0, total: 0 } };
+  // docs/49 §4.
+  let factSent = 0;
+  let factUnits = 0;
+  let smellPages = 0;
+  let ambiguous = 0;
+  let joinPages = 0;
+  let joinCount = 0;
+  let joinInBand = 0;
+  let restated = 0;
+  let smellAll = 0;
+  let ambiguousAll = 0;
   let worldGags = 0;
   for (let s = 1; s <= N; s++) {
     const type = types[s % types.length] as CaseType;
@@ -201,6 +232,39 @@ for (const tier of tiers) {
             if (examples.length < 120) examples.push(`world gag ×${n}: ${tierName(tier)} ${type} seed ${s}: ${key}`);
           }
         }
+      }
+    }
+    // docs/49 §4, along the oracle's route.
+    run.log.forEach((p, i) => {
+      const units = p.board?.units ?? [];
+      const fs = factSentences(units);
+      factSent += fs.sentences;
+      factUnits += fs.units;
+      const sm = listSmell(p.blocks);
+      if (sm.band.length || sm.opening.length) {
+        smellPages++;
+        if (examples3.length < 200) examples3.push(`smell ${tierName(tier)} ${type} seed ${s} p${i + 1}: ${[...sm.band, ...sm.opening][0]}`);
+      }
+      const amb = pronounAmbiguity(d.kase, p.blocks);
+      ambiguous += amb.length;
+      for (const a of amb) if (examples3.length < 200) examples3.push(`pronoun ${tierName(tier)} ${type} seed ${s} p${i + 1}: ${a}`);
+      if (fs.units > 0 && p.board?.job !== 'office' && p.board?.job !== 'nothing') {
+        const js = joinsIn(units).length;
+        joinPages++;
+        joinCount += js;
+        if (js >= 1 && js <= 3) joinInBand++;
+      }
+      const r = restatedPointer(run.log[i - 1], p);
+      if (r) {
+        restated++;
+        if (examples3.length < 200) examples3.push(`restated ${tierName(tier)} ${type} seed ${s} p${i + 1}: ${r}`);
+      }
+    });
+    for (const r of [run, playWanderer(d, s).run, playReader(d, s).run] as BoardRun[]) {
+      for (const p of r.log) {
+        const sm = listSmell(p.blocks);
+        if (sm.band.length || sm.opening.length) smellAll++;
+        ambiguousAll += pronounAmbiguity(d.kase, p.blocks).length;
       }
     }
     const names = namesOf(run, d);
@@ -289,13 +353,18 @@ for (const tier of tiers) {
     rows2.push(`| ${tierName(tier)} | ${pct(all, tot)} | ${pct(share.arrival.bible, share.arrival.total)} | ${pct(share.staging.bible, share.staging.total)} | ${worldGags} |`);
   }
   if (show) examples.push(`words by job, ${tierName(tier)}: ${[...byJob.entries()].map(([k, v]) => `${k} ${quantile(v, 0.5)} (${v.length})`).join(', ')}`);
+  rows3.push(
+    `| ${tierName(tier)} | ${factUnits ? (factSent / factUnits).toFixed(2) : '—'} | ${smellPages} of ${pages} | ${ambiguous} | ${joinPages ? (joinCount / joinPages).toFixed(1) : '—'} [${pct(joinInBand, joinPages)}] | ${restated} | ${smellAll} | ${ambiguousAll} |`,
+  );
   rows.push(
     `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${level} | ${jargon} | ${cardsTwice} | ${sentTwice} | ${namePages} | ${cluesThrice} | ${r3['place-tag']} | ${r3.phrase} | ${r3.signpost} | ${r3.gag} | ${r3.pet} |`,
   );
 }
 process.stdout.write(`${rows.join('\n')}\n`);
+process.stdout.write(`\n${rows3.join('\n')}\n`);
 if (bible) {
   process.stdout.write('\n| tier | arrival, look and staging from the bible | arrivals and looks on the way in | staging | a gag 3+ times a night |\n|---|---|---|---|---|\n');
   process.stdout.write(`${rows2.join('\n')}\n`);
 }
 if (show && examples.length) process.stdout.write(`\n${examples.join('\n')}\n`);
+if (args.includes('--show-plan') && examples3.length) process.stdout.write(`\n${examples3.join('\n')}\n`);

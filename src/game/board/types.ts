@@ -4,6 +4,8 @@
  * replayed as it is.
  */
 
+import type { Unit } from './plan/types.js';
+
 /** The night's sky, rolled with the deal. The book's weather layer draws it. */
 export type Weather = 'clear' | 'rain' | 'fog' | 'cold';
 
@@ -73,6 +75,8 @@ export interface Page {
     carried?: boolean;
     /** docs/48 §4: on a night from the neighbourhood, what the arrival and the staging said, for the bible's share. */
     said?: { arrival: string; staging: string };
+    /** docs/49 §3: the skeleton the page was realized from: fact units, locked, and gap units with their card defaults. */
+    units?: Unit[];
   };
 }
 

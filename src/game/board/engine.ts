@@ -18,6 +18,7 @@ import { isOver } from './clock.js';
 import type { Page, Weather } from './types.js';
 import { boardChoices, pageStars, type BoardStar } from './choices.js';
 import { thinNames } from './names.js';
+import { PLAN, linkGaps } from './plan/index.js';
 import { collisionsOf, judgeLine, knownPeople, knownPlaces, linesHeld, peopleAt, solveRun } from './knowledge.js';
 import {
   OFFICE,
@@ -207,16 +208,20 @@ function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>[
     turn = true;
   }
   // docs/39 §4: a name twice at most a page. The answer itself (an account, a watcher's list) is left whole.
-  const thoughtAt = w.thought ? w.blocks.findIndex((b) => b.kind === 'prose' && b.text.includes(w.thought?.text ?? '\u0000')) : -1;
-  thinNames(
-    c,
-    w.blocks,
-    (b) => b.kind === 'prose' && ((b.voice === 'answer' && (o.job === 'account' || o.job === 'list')) || (b.voice === 'recap' && b.text === w.recap)),
-    (b) => b.kind === 'prose' && b.voice === 'answer' && o.job === 'list',
-  );
-  if (w.thought && thoughtAt >= 0) {
-    const b = w.blocks[thoughtAt];
-    if (b?.kind === 'prose') w.thought = { ...w.thought, text: b.text };
+  // docs/49: the microplanner's reference does this as it lays the page out; with its operations
+  // off, the page is thinned as it was before.
+  if (!PLAN.ops) {
+    const thoughtAt = w.thought ? w.blocks.findIndex((b) => b.kind === 'prose' && b.text.includes(w.thought?.text ?? '\u0000')) : -1;
+    thinNames(
+      c,
+      w.blocks,
+      (b) => b.kind === 'prose' && ((b.voice === 'answer' && (o.job === 'account' || o.job === 'list')) || (b.voice === 'recap' && b.text === w.recap)),
+      (b) => b.kind === 'prose' && b.voice === 'answer' && o.job === 'list',
+    );
+    if (w.thought && thoughtAt >= 0) {
+      const b = w.blocks[thoughtAt];
+      if (b?.kind === 'prose') w.thought = { ...w.thought, text: b.text };
+    }
   }
   if (!next.reportOpen && isOver(next.used, budgetCalls(w.d))) {
     next.reportOpen = true;
@@ -249,6 +254,7 @@ function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>[
       ...(w.carried ? { carried: true } : {}),
       ...(w.hand.reuses ? { repeats: w.hand.reuses } : {}),
       ...(c.world && (w.said.arrival || w.said.staging) ? { said: { arrival: (w.said.arrival ?? []).join(' '), staging: (w.said.staging ?? []).join(' ') } } : {}),
+      ...(w.units.length ? { units: linkGaps(w.units) } : {}),
     },
   };
   next.spent = [...next.spent, ...w.hand.spent];

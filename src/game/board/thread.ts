@@ -12,6 +12,7 @@
 import { GIVENS, pointerIndex } from '../../gen/board/pointers.js';
 import { SPARE_KEY } from '../../gen/board/content.js';
 import { accountOf, confrontationOf, listOf } from './knowledge.js';
+import { markPronoun } from './plan/refer.js';
 import {
   andList,
   cap,
@@ -43,6 +44,11 @@ export interface Pointer {
   hours: Hour[];
   people: PersonId[];
   places: PlaceId[];
+}
+
+/** docs/49: a pronoun as the thread writes it, marked with whom it means, for the planner's reference. */
+function pm(c: BoardCase, p: PersonId, form: 'he' | 'him' | 'his'): string {
+  return `${pronOf(c, p)[form]}${markPronoun(c, p)}`;
 }
 
 /** The source the star showed for `q`: the latest thing held that points at it, or the office. */
@@ -107,11 +113,11 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
           const h0 = [...hs].sort((x, y) => Number(windowOf(c).includes(y)) - Number(windowOf(c).includes(x)) || x - y)[0] as Hour;
           const pl = a.claims[h0]?.place as PlaceId;
           const own = personOf(c, a.person)?.home === pl;
-          const where = own ? `${pa.his} place` : at(c, pl, here) === 'here' ? 'here' : placeName(c, pl);
+          const where = own ? `${pm(c, a.person, 'his')} place` : at(c, pl, here) === 'here' ? 'here' : placeName(c, pl);
           const safe = hs.filter((h) => !windowOf(c).includes(h) && a.claims[h]?.place === pl);
-          return out(`${A} had said ${P} was with ${pa.him} ${where === 'here' ? 'here' : `at ${where}`} at ${hourWord(h0)}`, [`claim:${a.person}@${h0}`], {
+          return out(`${A} had said ${P} was with ${pm(c, a.person, 'him')} ${where === 'here' ? 'here' : `at ${where}`} at ${hourWord(h0)}`, [`claim:${a.person}@${h0}`], {
             // To their face, only a watcher's word: "Coffin has you here at nine." Another suspect's would be one more name, and a story set against a story.
-            ...(safe.length > 0 && personOf(c, a.person)?.role === 'watcher' ? { face: `${A} says you were with ${pa.him} ${where === 'here' ? 'here' : `at ${where}`} ${hoursSaid(c, safe)}.` } : {}),
+            ...(safe.length > 0 && personOf(c, a.person)?.role === 'watcher' ? { face: `${A} says you were with ${pa.him} ${where === 'here' ? 'here' : `at ${where.replace(/\u2063\d+\u2064/g, '')}`} ${hoursSaid(c, safe)}.` } : {}),
             hours: [h0],
             people: [p, a.person],
             places: [pl],
@@ -160,7 +166,7 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
       const hs = c.board.hours.filter((h) => a?.claims[h]?.place === L);
       if (a && hs.length > 0) {
         const A = nameOf(c, a.person);
-        return out(`${A} had said ${pronOf(c, a.person).he} was ${at(c, L, here)} ${hoursSaid(c, hs)}`, hs.map((h) => `claim:${a.person}@${h}`), { hours: hs, people: [a.person], places: [L] });
+        return out(`${A} had said ${pm(c, a.person, 'he')} was ${at(c, L, here)} ${hoursSaid(c, hs)}`, hs.map((h) => `claim:${a.person}@${h}`), { hours: hs, people: [a.person], places: [L] });
       }
       if (a) return out(`${nameOf(c, a.person)} had mentioned ${placeName(c, L)}`, [], { people: [a.person], places: [L] });
     }
@@ -170,7 +176,7 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
       const h = Number(hs) as Hour;
       const k = confrontationOf(c, x, h);
       const X = nameOf(c, x);
-      if (k?.secondLie?.place === L) return out(`${X}’s second story had ${pronOf(c, x).him} ${at(c, L, here)} at ${hourWord(h)}`, [`second:${x}@${h}`], { hours: [h], people: [x], places: [L] });
+      if (k?.secondLie?.place === L) return out(`${X}’s second story had ${pm(c, x, 'him')} ${at(c, L, here)} at ${hourWord(h)}`, [`second:${x}@${h}`], { hours: [h], people: [x], places: [L] });
       return out(`${X} had owned up to ${placeName(c, L)}`, [`admit:${x}@${h}`], { people: [x], places: [L] });
     }
     if (src === GIVENS) return givenPlace(c, L, here);
@@ -196,13 +202,12 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
 function givenPointer(c: BoardCase, p: PersonId, here: PlaceId): Pointer {
   const P = nameOf(c, p);
   const cl = clientOf(c).short;
-  const cp = pronOf(c, c.client);
   const base = (clause: string, refs: string[], extra: Partial<Pointer> = {}): Pointer => ({ src: GIVENS, clause, refs, hours: [], people: [p], places: [], ...extra });
   const lines = c.givens.lines ?? [];
   if (c.givens.pointer === p) {
     const pl = lines.find((g) => g.kind === 'pointer');
     const behaviour = pl?.vars.behaviour;
-    if (behaviour) return base(`${cl} had pointed me at ${P}, who ${behaviour.replace(new RegExp(`\\b${cl}’s\\b`, 'g'), cp.his)}`, ['givens:pointer'], { people: [p, c.client] });
+    if (behaviour) return base(`${cl} had pointed me at ${P}, who ${behaviour.replace(new RegExp(`\\b${cl}’s\\b`, 'g'), pm(c, c.client, 'his'))}`, ['givens:pointer'], { people: [p, c.client] });
     return base(`${cl} had pointed me at ${P}`, ['givens:pointer'], { people: [p, c.client] });
   }
   if (c.crime.finder === p) return base(`${P} had found ${victimOf(c).short}`, ['givens:found'], { people: [p, c.crime.victim] });
@@ -224,13 +229,12 @@ function givenPointer(c: BoardCase, p: PersonId, here: PlaceId): Pointer {
 /** The office, pointing at a place. */
 function givenPlace(c: BoardCase, L: PlaceId, here: PlaceId): Pointer {
   const cl = clientOf(c).short;
-  const cp = pronOf(c, c.client);
   const base = (clause: string, refs: string[], extra: Partial<Pointer> = {}): Pointer => ({ src: GIVENS, clause, refs, hours: [], people: [], places: [L], ...extra });
   const lines = c.givens.lines ?? [];
   const means = lines.find((g) => g.kind === 'means');
   const mode = c.setup?.means ?? '';
   if (/^told/.test(mode)) {
-    const what = mode === 'told-window' ? `${cp.his} parlor window` : `${cp.his} key`;
+    const what = mode === 'told-window' ? `${pm(c, c.client, 'his')} parlor window` : `${pm(c, c.client, 'his')} key`;
     return base(`${cl} had sat ${at(c, L, here)} telling the room about ${what}`, ['givens:means'], { people: [c.client] });
   }
   // docs/47 B9: the key is where the office said, in the office's words: a nail, or a sugar tin.

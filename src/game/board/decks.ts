@@ -137,6 +137,7 @@ export class Hand {
    */
   draw(family: string, want: Want = {}, slots: Slots = {}, opts: { widen?: boolean; plain?: boolean; need?: boolean; fresh?: boolean; joke?: boolean } = {}): string | null {
     this.lastWorld = null;
+    this.last = null;
     if (this.world) {
       const plain = opts.plain === true || (!this.mayJoke && !(opts.joke && this.jokes === 0));
       const ours = this.world(family, want, slots)
@@ -176,10 +177,29 @@ export class Hand {
         this.lastId = pick.c.id;
         this.note(pick.c.id);
         if (pick.c.joke) this.jokes++;
+        // docs/49: what else this draw could have dealt, for the microplanner's rhythm.
+        this.last = { id: pick.c.id, text: pick.text, joke: !!pick.c.joke, others: fresh.filter((x) => x.c.id !== pick.c.id && !!x.c.joke === !!pick.c.joke).map((x) => ({ id: x.c.id, text: x.text })) };
         return pick.text;
       }
     }
     return null;
+  }
+
+  /**
+   * docs/49: the last card the families dealt, and the other fresh cards that fitted the same draw
+   * as well (same family, same tags, the same joke or none): the microplanner may take one of
+   * them instead, for the page's rhythm. Never a card from the bible (its picks have their own
+   * bookkeeping), and never one dealt tonight.
+   */
+  last: { id: string; text: string; joke: boolean; others: { id: string; text: string }[] } | null = null;
+
+  /** Take `next` instead of `prev`: `prev` is free to be dealt again tonight. */
+  swap(prev: string, next: string): void {
+    if (this.spentSet.has(prev) && this.spent.includes(prev)) {
+      this.spentSet.delete(prev);
+      this.spent.splice(this.spent.indexOf(prev), 1);
+    }
+    this.note(next);
   }
 
   /** The card itself, for one whose exports the page wants (the office's prop). */
@@ -210,6 +230,10 @@ export class Hand {
     const from = fresh.length > 0 ? fresh : lines.map((l, i) => ({ l, id: `${key}#${i}` }));
     const x = from[this.rng.int(from.length)] as { l: string; id: string };
     this.note(x.id);
+    this.picks.set(x.l, { id: x.id, others: lines.map((l, i) => ({ l, id: `${key}#${i}` })).filter((y) => y.id !== x.id) });
     return x.l;
   }
+
+  /** docs/49: what each hand-written line picked on this page could have been instead, for the rhythm. */
+  readonly picks = new Map<string, { id: string; others: { l: string; id: string }[] }>();
 }
