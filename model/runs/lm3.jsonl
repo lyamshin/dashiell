@@ -1,0 +1,23 @@
+{"run": "lm3", "params": 6326784, "config": {"vocab": 6000, "ctx": 256, "layers": 6, "heads": 4, "width": 256, "dropout": 0.1}, "device": "mps", "args": {"name": "lm3", "layers": 6, "width": 256, "heads": 4, "ctx": 256, "dropout": 0.1, "batch": 32, "lr": 0.0001, "min_lr": 1e-05, "warmup": 50, "iters": 4300, "weight_decay": 0.1, "eval_every": 250, "eval_batches": 40, "patience": 10, "minutes": 18.0, "init": "model/checkpoints/lm1.pt", "device": null, "no_wait": false}, "train_tokens": 5396610, "val_tokens": 271440}
+{"step": 5000, "train": 0.2873, "val": 0.3121, "minutes": 0.06, "lr": 2e-06, "load": 4.36}
+{"step": 5250, "train": 0.2756, "val": 0.3117, "minutes": 0.99, "lr": 9.950912237670157e-05, "load": 4.52}
+{"step": 5500, "train": 0.2864, "val": 0.3123, "minutes": 1.92, "lr": 9.753327226723689e-05, "load": 3.35}
+{"step": 5750, "train": 0.2693, "val": 0.3086, "minutes": 2.87, "lr": 9.410900258374877e-05, "load": 5.04}
+{"step": 6000, "train": 0.2686, "val": 0.3086, "minutes": 3.79, "lr": 8.935292272334964e-05, "load": 2.96}
+{"step": 6250, "train": 0.2957, "val": 0.3067, "minutes": 4.71, "lr": 8.342699528139629e-05, "load": 2.78}
+{"step": 6500, "train": 0.2816, "val": 0.3052, "minutes": 5.63, "lr": 7.653302060955789e-05, "load": 2.31}
+{"step": 6750, "train": 0.2724, "val": 0.3053, "minutes": 6.54, "lr": 6.890576474687264e-05, "load": 2.02}
+{"step": 7000, "train": 0.2964, "val": 0.3043, "minutes": 7.47, "lr": 6.080496474385916e-05, "load": 5.75}
+{"step": 7250, "train": 0.268, "val": 0.3038, "minutes": 8.41, "lr": 5.250648362878135e-05, "load": 4.88}
+{"step": 7500, "train": 0.274, "val": 0.3033, "minutes": 9.36, "lr": 4.429291622308217e-05, "load": 4.5}
+{"step": 7750, "train": 0.2715, "val": 0.3017, "minutes": 10.3, "lr": 3.6443965713674355e-05, "load": 3.98}
+{"step": 8000, "train": 0.2607, "val": 0.3004, "minutes": 11.23, "lr": 2.9226918696377267e-05, "load": 4.25}
+{"step": 8250, "train": 0.2769, "val": 0.301, "minutes": 12.16, "lr": 2.288754305147115e-05, "load": 3.8}
+{"step": 8500, "train": 0.2748, "val": 0.3002, "minutes": 13.1, "lr": 1.764171861330023e-05, "load": 3.72}
+{"step": 8750, "train": 0.2621, "val": 0.2997, "minutes": 14.03, "lr": 1.3668085641433464e-05, "load": 3.18}
+{"step": 9000, "train": 0.2713, "val": 0.299, "minutes": 14.96, "lr": 1.1101961440880354e-05, "load": 3.29}
+{"step": 9250, "train": 0.2542, "val": 0.2988, "minutes": 15.88, "lr": 1.003073229356397e-05, "load": 2.54}
+{"step": 9500, "train": 0.2522, "val": 0.2984, "minutes": 16.8, "lr": 1e-05, "load": 3.41}
+{"step": 9750, "train": 0.2793, "val": 0.2981, "minutes": 17.73, "lr": 1e-05, "load": 4.32}
+{"step": 10000, "train": 0.2744, "val": 0.2981, "minutes": 18.67, "lr": 1e-05, "load": 4.29}
+{"done": true, "best_val": 0.299, "steps": 10000, "minutes": 18.67, "blowups": 0}

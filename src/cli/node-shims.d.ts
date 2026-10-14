@@ -12,10 +12,17 @@ declare module 'node:fs' {
   export function readFileSync(path: string | URL, encoding: string): string;
   /** The tests and `npm run trace` read the card files. */
   export function readdirSync(path: string | URL): string[];
+  /** docs/50: the tiny model's export, as bytes. */
+  export function readFileSync(path: string | URL): Uint8Array;
+}
+
+declare module 'node:path' {
+  export function join(...parts: string[]): string;
 }
 
 declare const process: {
   argv: string[];
+  env: Record<string, string | undefined>;
   exitCode: number | undefined;
   exit(code?: number): never;
   stdout: {

@@ -1,0 +1,7 @@
+{"run": "pre2", "params": 6326784, "config": {"vocab": 6000, "ctx": 256, "layers": 6, "heads": 4, "width": 256, "dropout": 0.1}, "device": "mps", "args": {"name": "pre2", "layers": 6, "width": 256, "heads": 4, "ctx": 256, "dropout": 0.1, "batch": 32, "lr": 0.0006, "min_lr": 3e-05, "warmup": 100, "iters": 4300, "weight_decay": 0.1, "eval_every": 250, "eval_batches": 40, "patience": 6, "minutes": 18.0, "init": "model/checkpoints/pre1.pt", "device": null, "no_wait": false}, "train_tokens": 5398221, "val_tokens": 271604}
+{"step": 2000, "train": 0.4279, "val": 0.459, "minutes": 0.06, "lr": 5.999999999999999e-06, "load": 2.24}
+{"step": 2250, "train": 0.429, "val": 0.4348, "minutes": 0.97, "lr": 0.0005982079798195741, "load": 2.43}
+{"step": 2500, "train": 0.3998, "val": 0.4137, "minutes": 1.88, "lr": 0.0005873382496490501, "load": 1.55}
+{"step": 2750, "train": 0.356, "val": 0.4004, "minutes": 2.8, "lr": 0.0005669728871488137, "load": 1.53}
+{"step": 3000, "train": 0.3616, "val": 0.3882, "minutes": 3.73, "lr": 0.0005378219725033884, "load": 2.23}
+{"step": 3250, "train": 0.3786, "val": 0.3779, "minutes": 4.65, "lr": 0.0005009019122142645, "load": 2.79}

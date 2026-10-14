@@ -9,28 +9,38 @@
       "hours": null,
       "watcher": {
         "person": "rafferty",
-        "counts": "I sit on the first landing with the mending from seven till the last one’s in, and nobody gets up my stairs without stepping over the basket.",
+        "counts": [
+          "I sit on the first landing with the mending till the last one’s in, and nobody gets up my stairs without stepping over the basket.",
+          "Every lodger I have climbs those stairs his own way, and I know them all by it: two at a time, or stopping on the fourth for breath, or in his stocking feet thinking I’m asleep.",
+          "I don’t need to look up. The front door has a voice of its own, and it tells me when it’s been opened by somebody who doesn’t pay rent here."
+        ],
         "sees": "the front door, the stairs and every landing to the top",
         "blind": "behind the lodgers’ doors, which she calls their own business"
       },
-      "minutes": { "lipskys": 5, "sokols": 10, "peacock": 10, "lyric": 15, "steinmetz": 10, "surgery": 15, "wexlers": 5, "cardroom": 10, "excelsior": 20 },
+      "minutes": { "lipskys": 5, "sokols": 10, "peacock": 10, "lyric": 15, "steinmetz": 10, "surgery": 15, "wexlers": 5, "cardroom": 10, "excelsior": 20, "belvedere": 10 },
       "arrivals": [
-        { "band": "early", "weather": "any", "text": "Rafferty’s was a rooming house on Eldridge Street, four floors of lodgers over one landlady, in a row of houses that leaned on each other like men walking home from a wedding. After midnight the hall light was still burning, because the card by the door said In By Ten and somebody had to be up to see who broke it. On the first landing stood a kitchen chair, a mending basket and a clear view of the door." },
+        { "band": "early", "weather": "any", "text": "Rafferty’s was a rooming house on Eldridge Street, four floors of lodgers over one landlady, in a row of houses that leaned on each other like men walking home from a wedding. After midnight the hall light was still burning, because the card of house rules by the door is particular about the hour, and somebody has to be up to see who breaks it. On the first landing stood a kitchen chair, a mending basket and a clear view of the door." },
+        { "band": "early", "weather": "rain", "text": "Rain was coming down Eldridge Street in sheets, and Rafferty’s had a lamp lit in the fanlight over the door for lodgers caught out in it. Inside the door, a tin tray for wet shoes held a row of them, toes to the wall, like lodgers sent to stand in the corner." },
+        { "band": "early", "weather": "cold", "text": "Cold had got into Eldridge Street and was trying every door, and Rafferty’s had laid a stocking full of sand along the bottom of its own against the draft. Behind it the rooming house was close and warm and smelled of kerosene, and the coats hung three deep on the hall stand, with the hats on top like a row of heads." },
         { "band": "mid", "weather": "any", "text": "Rafferty’s had gone to sleep the way rooming houses do: one radiator knocking, one lodger coughing, and a kettle somewhere at the back that never quite goes off the boil. The stair carpet was worn pale down the middle, a path laid by everybody who ever came home later than they said." },
-        { "band": "late", "weather": "any", "text": "The milk wagon was two streets off and I could hear every bottle on it, which tells you how quiet the rooming house had got. The hall smelled of soda bread and floor polish; the landlady polishes before she sleeps, so the morning finds it done. Every door upstairs had a brass number on it, and every number shone." },
         { "band": "mid", "weather": "cold", "text": "Rafferty’s had its storm door up for the winter and its gas turned low, and the warmest place in the rooming house was the hall, because that’s where the landlady sits. A rag rug at the foot of the stairs took the slush off your shoes whether you meant to wipe them or not." },
+        { "band": "late", "weather": "any", "text": "The milk wagon was two streets off and I could hear every bottle on it, which tells you how quiet the rooming house had got. The hall smelled of soda bread and floor polish; the landlady polishes before she sleeps, so the morning finds it done. Every door upstairs had a brass number on it, and every number shone." },
         { "band": "late", "weather": "rain", "text": "The skylight over Rafferty’s stairwell was letting the rain into a bucket on the top landing, with a newspaper under the bucket and a second newspaper under the first. The rest of the rooming house was dry and accounted for, including the umbrellas in the hall, each on its own hook with a lodger’s name inked above it." }
       ],
       "details": [
         { "id": "raffertys-chloral", "kind": "prop", "text": "A brown bottle of chloral on the hall shelf, under the picture of the Sacred Heart, for lodgers who can’t sleep, which is all of them." },
         { "id": "raffertys-revolver", "kind": "prop", "text": "The late Mr. Rafferty’s revolver, in the hall-stand drawer under the winter gloves, unloaded, she says, which is what everybody says." },
         { "id": "raffertys-basket", "kind": "prop", "text": "The mending basket, set square across the top of the first flight, so that coming up the stairs means asking it to move." },
-        { "id": "raffertys-rules", "kind": "prop", "text": "A card of house rules by the door, where number four, In By Ten, has been underlined so often the pencil went through." },
+        { "id": "raffertys-rules", "kind": "prop", "text": "A card of house rules by the door, where number four, about the hour you come in, has been underlined so often the pencil went through." },
         { "id": "raffertys-umbrellas", "kind": "prop", "text": "A row of umbrella hooks in the hall, each with a lodger’s name inked over it, and one with no name that nobody will explain." },
         { "id": "raffertys-tea", "kind": "habit", "text": "A pot of tea stewing on the back of the stove at all hours, offered to everybody, and always too strong to refuse politely." },
         { "id": "raffertys-cat", "kind": "gag", "text": "Parnell, a ginger cat, asleep on a different stair every time anybody comes in, as if he were keeping count for her." }
       ],
-      "hides": ["the attic room she says is empty", "the coal cellar under the stoop", "the hall-stand drawer"]
+      "hides": [
+        { "name": "the attic room she says is empty", "arrival": "The attic at Rafferty’s was up a ladder past the top landing, under a slope of roof you had to bow to. The room the house calls empty had a cot made up with hospital corners, a pair of man’s boots under it and a calendar from Cork on the wall with the days crossed off." },
+        { "name": "the coal cellar under the stoop", "arrival": "The coal cellar at Rafferty’s ran under the stoop, low enough to make a tall man humble, with a chute from the street and a heap of coal shining under it like something spilled. Somebody had set an upturned bucket by the heap for a seat, and on the bucket was a cigarette end that nobody in that house would admit to." },
+        { "name": "the back kitchen", "arrival": "The back kitchen at Rafferty’s was all stove: a black range with a teapot on the back of it, a table scrubbed white, and a coal company’s calendar with the Fridays ringed in red pencil. It was the warmest room in the house, and the only one whose door shut properly." }
+      ]
     },
     {
       "id": "lipskys",
@@ -41,30 +51,40 @@
       "hours": null,
       "watcher": {
         "person": "wojcik",
-        "counts": "I sit on the cellar steps with my pipe from supper till bed, and every pair of shoes that goes up that stoop goes past my nose.",
+        "counts": [
+          "I sit on the cellar steps with my pipe, and every pair of shoes that goes up that stoop goes past my nose.",
+          "I know the tenants by their shoes. Faces, I don’t look at. A face can lie. A shoe has been where it’s been.",
+          "The stoop has five steps, and the fourth one rings when you stand on it. I don’t fix it."
+        ],
         "sees": "the street door and the stoop, from the cellar steps",
         "blind": "the stairs inside, once you’re past the first turn"
       },
-      "minutes": { "raffertys": 5, "sokols": 5, "peacock": 10, "lyric": 15, "steinmetz": 5, "surgery": 10, "wexlers": 10, "cardroom": 5, "excelsior": 15 },
+      "minutes": { "raffertys": 5, "sokols": 5, "peacock": 10, "lyric": 15, "steinmetz": 5, "surgery": 10, "wexlers": 10, "cardroom": 5, "excelsior": 15, "belvedere": 5 },
       "arrivals": [
         { "band": "early", "weather": "any", "text": "The flats over Lipsky’s were five floors of brick on Orchard Street, with the cloth shop shut up at the bottom behind iron shutters. After midnight the pushcarts stood along the curb under their tarpaulins, waiting for morning. Down by the cellar steps under the stoop a pipe glowed and went dark: the janitor was still on his steps, or had left the pipe to do it for him." },
+        { "band": "early", "weather": "clear", "text": "It was a clear night over Orchard Street, the kind that shows you every washing line strung between the buildings, and the tenement over Lipsky’s had more than its share. A whole family’s shirts hung out over the street on a pulley, white as a surrender, waiting for a sun that wasn’t due till six." },
+        { "band": "early", "weather": "rain", "text": "Rain came down Orchard Street hard enough to bounce, and the pushcarts along the curb had their tarpaulins tied down over tomorrow’s stock like sheeted furniture in a shut house. The iron awning over the stoop of the flats over Lipsky’s dripped onto the third step exactly, so that everybody who went in after midnight went in with one wet shoulder." },
         { "band": "mid", "weather": "any", "text": "The tenement over Lipsky’s was dark from the stoop to the roof, except one kitchen on the third floor where somebody was ironing a shirt for the morning. The shop window below had a card in it, EVERYTHING MUST GO, which had been saying so since the war." },
-        { "band": "late", "weather": "any", "text": "The flats over Lipsky’s were waking from the top down, a light on the fifth floor, then the fourth. In the street the first pushcart man was already untying his tarpaulin. In the cloth shop’s window a dressmaker’s dummy wore a hat it had been wearing since spring, and wore it well." },
-        { "band": "mid", "weather": "cold", "text": "Every radiator in the flats over Lipsky’s had gone cold, and somebody on the fourth floor was banging one with a shoe, a message the janitor could read from the cellar and was choosing not to. Frost had made ferns on the shop window, over a bolt of blue serge marked down twice." },
         { "band": "mid", "weather": "rain", "text": "The fire escapes over Lipsky’s were letting the rain down in strings into the yard by the cellar steps, where the janitor had laid a plank across the puddle to his door. Up the stoop, the hall had a row of tin mailboxes with names in five different hands, two of them crossed out, and a wet umbrella dripping on every landing." },
-        { "band": "early", "weather": "clear", "text": "It was a clear night over Orchard Street, the kind that shows you every washing line strung between the buildings, and the tenement over Lipsky’s had more than its share. A whole family’s shirts hung out over the street on a pulley, white as a surrender, waiting for a sun that wasn’t due till six." }
+        { "band": "mid", "weather": "cold", "text": "Every radiator in the flats over Lipsky’s had gone cold, and somebody on the fourth floor was banging one with a shoe, a message the janitor could read from the cellar and was choosing not to. Frost had made ferns on the shop window, over a bolt of blue serge marked down twice." },
+        { "band": "late", "weather": "any", "text": "The flats over Lipsky’s were waking from the top down, a light on the fifth floor, then the fourth. In the street the first pushcart man was already untying his tarpaulin. In the cloth shop’s window a dressmaker’s dummy wore a hat it had been wearing since spring, and wore it well." },
+        { "band": "late", "weather": "cold", "text": "Morning came up gray over Orchard Street and found the flats over Lipsky’s frosted to the sills, with a woman on the third floor scraping a peephole in her kitchen window with a spoon. Below her the cloth shop’s shutters were still down, and the first pushcart of the day was being dragged past them by a man in two scarves." }
       ],
       "details": [
         { "id": "lipskys-boiler", "kind": "gag", "text": "The boiler in the cellar, which the janitor speaks of as a difficult woman, and which knocks on the pipes whenever her name comes up." },
         { "id": "lipskys-pipe", "kind": "habit", "text": "The janitor knocks his pipe out on the stoop rail so often the rail has a dent in it the shape of the bowl." },
         { "id": "lipskys-mailboxes", "kind": "prop", "text": "A row of tin mailboxes in the hall, with the names in five different hands and two crossed out." },
-        { "id": "lipskys-shutters", "kind": "prop", "text": "The iron shutters on the cloth shop, which come down at seven with a crash the whole street hears and go up at eight with another." },
+        { "id": "lipskys-shutters", "kind": "prop", "text": "The iron shutters on the cloth shop, which come down at suppertime with a crash the whole street hears and go up in the morning with another." },
         { "id": "lipskys-coal", "kind": "prop", "text": "The coal bin in the cellar, padlocked, with a chalk tally on the wall of whose scuttle got what, and two of the tallies rubbed out by a thumb." },
         { "id": "lipskys-dummy", "kind": "prop", "text": "A dressmaker’s dummy in the shop window, in a hat, which has been wished good evening more than once." },
         { "id": "lipskys-poison", "kind": "prop", "text": "A tin of rat poison on the cellar shelf, with a skull on the label and a coffee ring on the skull." },
         { "id": "lipskys-roof", "kind": "prop", "text": "The roof door at the top of the stairs, propped open with a brick summer and winter, because nobody has told the brick it’s winter." }
       ],
-      "hides": ["the cellar behind the boiler", "the roof", "the shop’s back room, through the cellar"]
+      "hides": [
+        { "name": "the cellar behind the boiler", "arrival": "Behind the boiler at Lipsky’s there was a space the width of a man and the length of a coffin, warm as an oven and black with coal dust. Somebody had hung a calendar from 1923 on the bricks there, and a picture of a bathing beauty, both of them turned to the wall." },
+        { "name": "the roof", "arrival": "The roof of the flats over Lipsky’s was tar paper and chimney pots, with washing lines strung between them and one bedsheet left out, standing stiff in the wind like a sail. From the parapet you could see down Orchard Street all the way to the river, and nobody down there could see you." },
+        { "name": "the shop’s back room, through the cellar", "arrival": "The back room of Lipsky’s cloth shop was bolts of cloth stacked to the ceiling in the dark, serge and gabardine and a pink satin nobody would ever buy, with a cutting table in the middle and a tailor’s dummy without a head standing guard. It smelled of mothballs, and you came in through the cellar, bent double, or not at all." }
+      ]
     },
     {
       "id": "sokols",
@@ -75,17 +95,24 @@
       "hours": { "open": 19, "close": 2 },
       "watcher": {
         "person": "sokol",
-        "counts": "I count glasses. Every glass that goes out comes back, and I know whose hand it came back in.",
+        "counts": [
+          "I count glasses. Every glass that goes out comes back, and I know whose hand it came back in.",
+          "I don’t look up when the door goes. I look up when it doesn’t, because then somebody is standing in it deciding.",
+          "A man drinks the same thing on the same stool every night of his life. When the stool is empty, I notice. When a stranger sits on it, I notice twice."
+        ],
         "sees": "the bar, the four tables and the door through from the bakery",
         "blind": "the back booth behind the flour sacks"
       },
-      "minutes": { "raffertys": 10, "lipskys": 5, "peacock": 10, "lyric": 15, "steinmetz": 10, "surgery": 10, "wexlers": 15, "cardroom": 5, "excelsior": 10 },
+      "minutes": { "raffertys": 10, "lipskys": 5, "peacock": 10, "lyric": 15, "steinmetz": 10, "surgery": 10, "wexlers": 15, "cardroom": 5, "excelsior": 10, "belvedere": 5 },
       "arrivals": [
         { "band": "early", "weather": "any", "text": "Sokol’s sold bread at the front and gin at the back. After midnight you went through the dark bakery, past ovens still warm and racks of tomorrow’s rolls rising under cloths, to a door with FLOUR painted on it. Behind the door were six stools, four tables and a radio playing dance music low, so it wouldn’t get into the bread." },
-        { "band": "mid", "weather": "any", "text": "The bar behind Sokol’s bakery was shut, which there means the chairs were up and the barman was still at it, drying glasses and counting them onto a towel. In the front the ovens were coming back up for the morning. The whole place smelled of yeast and gin, which is the smell of a man with two jobs and no sleep." },
-        { "band": "late", "weather": "any", "text": "The bakery half of Sokol’s had woken up and the bar half had gone to bed. The ovens had the shop warm enough to steam the window, and the first trays of rolls were coming out. The door marked FLOUR was shut, with a sack of real flour leaning on it as an alibi." },
+        { "band": "early", "weather": "any", "text": "Sokol’s bakery window had a card in it, lettered by hand, RYE PUMPERNICKEL CHALLAH FRIDAYS, and behind the card the shop was dark except for the glow under the oven doors. Through the back, past the door marked FLOUR, you could hear the radio and the clink of somebody being poured a second one before he’d asked for it." },
+        { "band": "early", "weather": "rain", "text": "The bakery window at Sokol’s was running with rain, and behind the glass sat a row of braided loaves that had been there since Friday as decoration. Through the back, the bar had a line of wet hats on the hooks, steaming. Somebody had set a pail under the leak by the back booth, and the man in the booth had moved it six inches toward somebody else." },
         { "band": "early", "weather": "cold", "text": "Cold drives a man to Sokol’s, the warmest bar below Houston Street, because the bakery ovens are on the other side of the wall and the barman doesn’t charge for them. Men came in for the heat and stayed for the gin. Every stool along the oven wall was taken, and the stools by the door had coats on them instead of customers." },
-        { "band": "early", "weather": "rain", "text": "The bakery window at Sokol’s was running with rain, and behind the glass sat a row of braided loaves that had been there since Friday as decoration. Through the back, the bar had a line of wet hats on the hooks, steaming. Somebody had set a pail under the leak by the back booth, and the man in the booth had moved it six inches toward somebody else." }
+        { "band": "mid", "weather": "any", "text": "The bar behind Sokol’s bakery was shut, which there means the chairs were up and the barman was still at it, drying glasses and counting them onto a towel. In the front the ovens were coming back up for the morning. The whole place smelled of yeast and gin, which is the smell of a man with two jobs and no sleep." },
+        { "band": "mid", "weather": "rain", "text": "The rain on Rivington Street had chased everybody off the sidewalks and into doorways, and Sokol’s doorway had more than its share, three men and a dog under the bakery’s awning, none of them going anywhere. Through the back, the bar was down to its stragglers and a bucket by the door full of umbrellas." },
+        { "band": "late", "weather": "any", "text": "The bakery half of Sokol’s had woken up and the bar half had gone to bed. The ovens had the shop warm enough to steam the window, and the first trays of rolls were coming out. The door marked FLOUR was shut, with a sack of real flour leaning on it as an alibi." },
+        { "band": "late", "weather": "cold", "text": "Cold morning on Rivington Street, and the warmest square yard on it was the grating outside Sokol’s, where the oven heat came up through the bars and three cats and a newsboy stood on it together. Inside, the bakery half was rolling out the morning; the bar half was a row of stools upside down on the bar." }
       ],
       "details": [
         { "id": "sokols-flour-door", "kind": "prop", "text": "The door from the bakery to the bar, with FLOUR painted on it, which has fooled nobody for years." },
@@ -97,7 +124,11 @@
         { "id": "sokols-breadknife", "kind": "prop", "text": "A bread knife on the bakery counter as long as a man’s forearm, kept sharp enough to slice a roll without waking it." },
         { "id": "sokols-cigarbox", "kind": "prop", "text": "A cigar box under the till for lottery slips, which the barman calls receipts." }
       ],
-      "hides": ["the back booth behind the flour sacks", "the bakery cellar", "the alley door to the yard"]
+      "hides": [
+        { "name": "the back booth behind the flour sacks", "arrival": "The back booth at Sokol’s was a table and two benches walled off by flour sacks stacked to the ceiling, so that whoever sat there was in the bar and not in it. Somebody with a gift for it had stacked the sacks to leave a gap exactly the width of an eye." },
+        { "name": "the bakery cellar", "arrival": "The bakery cellar under Sokol’s was flour, coal and a row of sourdough crocks with cloths over them, breathing. The ceiling was the oven floor, warm to the hand, and a bulb on a cord lit a stool and an upturned crate with a bottle on it that wasn’t vanilla." },
+        { "name": "the bakery yard", "arrival": "The yard behind Sokol’s was a square of wet cobbles between the bakery’s back wall and three others, with a flour shed in one corner and a stack of bread trays as high as a man in another. The oven chimney came down the wall there, and the bricks round it were warm, so there was a cat on every warm one." }
+      ]
     },
     {
       "id": "peacock",
@@ -108,17 +139,24 @@
       "hours": { "open": 19, "close": 3 },
       "watcher": {
         "person": "szabo",
-        "counts": "Every face comes to my slot first. I don’t like most of them, so the ones I let in, I remember.",
+        "counts": [
+          "Every face comes to my slot first. I don’t like most of them, so the ones I let in, I remember.",
+          "I listen to the knock before I open the slot. A friend knocks twice and waits. A policeman knocks like he owns the door. A man with something to hide knocks once and starts talking.",
+          "There’s one way in and one way out, and I’m sitting in both of them."
+        ],
         "sees": "the street door through the slot, and the stairs down",
         "blind": "the dance floor, once you’re through the curtain"
       },
-      "minutes": { "raffertys": 10, "lipskys": 10, "sokols": 10, "lyric": 10, "steinmetz": 15, "surgery": 15, "wexlers": 5, "cardroom": 10, "excelsior": 20 },
+      "minutes": { "raffertys": 10, "lipskys": 10, "sokols": 10, "lyric": 10, "steinmetz": 15, "surgery": 15, "wexlers": 5, "cardroom": 10, "excelsior": 20, "belvedere": 15 },
       "arrivals": [
         { "band": "early", "weather": "any", "text": "The Peacock was a cellar club under Kornblum & Sons, Funeral Directors, on Chrystie Street. You went down an outside stair beside the undertaker’s window, past a coffin on display with its lid up and the price folded discreetly on the pillow, to a steel door with a slot in it. After midnight the band was still going, and you could feel the bass drum through the door before you heard it." },
-        { "band": "mid", "weather": "any", "text": "Down in the cellar club it was the last set, for the serious drinkers, and the band had slowed to match them. Smoke hung under the low ceiling like a second ceiling. Through the velvet curtain at the foot of the stairs, four couples on the dance floor were holding each other up." },
-        { "band": "late", "weather": "any", "text": "With the band gone home, the Peacock looked like what it was: a low cellar with a damp ceiling and the chairs upside down on the tables, smelling of gin and of lilies, the lilies coming down through the floorboards from the undertaker’s. The steel door was bolted. The slot opened anyway when I knocked, which told me the doorkeeper didn’t go home either." },
+        { "band": "early", "weather": "any", "text": "Chrystie Street was dark from end to end except the undertaker’s window, where a lamp burned all night over a coffin with its lid up, and the stair beside it down to the Peacock, where light came up through the slot in the steel door and lay across the sidewalk in a thin bar. Down there the band was playing a slow one, the kind couples lean on." },
+        { "band": "early", "weather": "rain", "text": "Water ran down the outside stair to the Peacock and pooled at the steel door, where somebody had put down a mat that said WELCOME, stolen from a place that meant it. Inside, the cellar club was warm and loud, and every coat on the hooks was dripping onto the coat below it." },
         { "band": "early", "weather": "cold", "text": "There was frost on the outside stair, and at the bottom of it the only warm cellar on Chrystie Street; the undertaker next door keeps his cold on purpose. The band played in their coats till the second set. A woman with a tray of cigarettes moved between the tables, selling Luckies and looking at every wrist she passed." },
-        { "band": "early", "weather": "rain", "text": "Water ran down the outside stair to the Peacock and pooled at the steel door, where somebody had put down a mat that said WELCOME, stolen from a place that meant it. Inside, the cellar club was warm and loud, and every coat on the hooks was dripping onto the coat below it." }
+        { "band": "mid", "weather": "any", "text": "Down in the cellar club it was the last set, for the serious drinkers, and the band had slowed to match them. Smoke hung under the low ceiling like a second ceiling. Through the velvet curtain at the foot of the stairs, four couples on the dance floor were holding each other up." },
+        { "band": "mid", "weather": "cold", "text": "In the cold the Peacock held its warmth the way a cellar does, and the last set was playing to a room that had stopped dancing and started leaning. Coats were back on at every table near the stairs, collars up, where the draft came down from the street each time the slot opened." },
+        { "band": "late", "weather": "any", "text": "With the band gone home, the Peacock looked like what it was: a low cellar with a damp ceiling and the chairs upside down on the tables, smelling of gin and of lilies, the lilies coming down through the floorboards from the undertaker’s. The steel door was bolted. The slot opened anyway when I knocked, which told me the doorkeeper didn’t go home either." },
+        { "band": "late", "weather": "rain", "text": "It was raining on Chrystie Street as if it had been told to keep it up till morning. The Peacock’s outside stair had turned into a gutter, and somebody had laid planks down the steps to the steel door, which was shut. From inside, faint as a radio in another flat, came one piano, playing for nobody." }
       ],
       "details": [
         { "id": "peacock-bird", "kind": "gag", "text": "A stuffed peacock by the bar, molting, with one glass eye; the other was lost in a bet in 1924, and nobody will say who won it." },
@@ -130,7 +168,11 @@
         { "id": "peacock-icepick", "kind": "prop", "text": "An ice pick on the bar beside the block of ice they chip for highballs, with tape wound round the handle for a better grip." },
         { "id": "peacock-coffin", "kind": "prop", "text": "A coffin on display in the undertaker’s window beside the stair, lid up, with the price folded on the pillow." }
       ],
-      "hides": ["behind the velvet curtain", "the undertaker’s cellar, through the coal hole", "the bottom layer of the cigarette tray"]
+      "hides": [
+        { "name": "the undertaker’s cellar, through the coal hole", "arrival": "The undertaker’s cellar was through a coal hole in the Peacock’s back wall, into a long, cold, whitewashed room where the funeral parlor keeps what it keeps. There were trestles, a hand truck and a row of folding chairs for mourners, and the band came through the wall faint and cheerful, like a party nobody down here had been asked to." },
+        { "name": "the band room under the stairs", "arrival": "The band room at the Peacock was a cupboard under the stairs with ideas above itself: an upright piano with three dead keys, a row of hooks with the band’s street coats on them, and a mirror with a bulb either side, one of them working. Every instrument case on the floor stood open, like a mouth waiting to be fed." },
+        { "name": "the stock room behind the bar", "arrival": "The stock room behind the Peacock’s bar was crates of ginger ale stacked to the ceiling and, behind the ginger ale, crates of what the ginger ale was for. There was one chair, one bulb and a calendar from a funeral supply company with a different coffin for every month, and somebody had drawn a mustache on March." }
+      ]
     },
     {
       "id": "lyric",
@@ -141,17 +183,24 @@
       "hours": { "open": 19, "close": 24 },
       "watcher": {
         "person": "pinsky",
-        "counts": "I seat by the chart. Every seat sold is a cross, every cross has a face, and I could draw you the face.",
+        "counts": [
+          "I seat by the chart. Every seat sold is a cross, every cross has a face, and I could draw you the face.",
+          "From the back of the aisle I see the back of every head in the place, and the back of a head tells you more than a face: who leans, who doesn’t laugh, who keeps turning round to look at the doors.",
+          "Nobody comes in late past me. They wait at the doors for the end of the scene like everybody else, and while they wait, I look at them."
+        ],
         "sees": "the whole house, from the back of the center aisle",
         "blind": "the boxes upstairs, and backstage, which is the actors’ business"
       },
-      "minutes": { "raffertys": 15, "lipskys": 15, "sokols": 15, "peacock": 10, "steinmetz": 20, "surgery": 25, "wexlers": 15, "cardroom": 10, "excelsior": 15 },
+      "minutes": { "raffertys": 15, "lipskys": 15, "sokols": 15, "peacock": 10, "steinmetz": 20, "surgery": 25, "wexlers": 15, "cardroom": 10, "excelsior": 15, "belvedere": 15 },
       "arrivals": [
         { "band": "early", "weather": "any", "text": "The Lyric was a Yiddish playhouse on Second Avenue, all gold paint and red plush, with clouds on the ceiling touched up by somebody who had never seen a cloud. After midnight the house lights were down and one work light stood on the stage among the scenery for the third act: a rabbi’s study, with books painted on the shelves and one real chair." },
-        { "band": "mid", "weather": "any", "text": "Only the lobby of the playhouse was lit, where the cleaners had started on the brass and stopped for a glass of tea. The poster by the doors still said THE RABBI’S DAUGHTER, ELEVENTH TRIUMPHANT WEEK, and under it somebody had written, in pencil, and twelfth." },
-        { "band": "late", "weather": "any", "text": "The Lyric had emptied as far as a theater ever empties, which isn’t far: programs on the seats, somebody’s glove, a bag of sunflower seeds spilled in the twelfth row. Up in the ventilator over the gallery, the pigeons were rehearsing." },
+        { "band": "early", "weather": "any", "text": "The Lyric had let out, and Second Avenue in front of it had the look of a party after the guests have gone: programs in the gutter, a hat on a hydrant, and the café across the street full of actors explaining the play to each other. In the lobby the lights were down to one chandelier, and the brass rail round the box office was still warm from hands." },
+        { "band": "early", "weather": "rain", "text": "Rain was coming down on Second Avenue, and the last crowd had long since run for the streetcars, leaving the Lyric’s lobby full of wet footprints all going one way. The marquee was dark. Under it a man was selling roasted chestnuts from a cart to nobody, out of habit, with an umbrella tied to the handle." },
         { "band": "early", "weather": "cold", "text": "With the cold outside, the Lyric had kept its doors shut and its house warm, and the audience’s smell stayed behind after them: wet wool, oranges and one cigar. The fire curtain was down. On it, painted, a lady in a toga was handing a lyre to a man who didn’t seem to want it." },
-        { "band": "mid", "weather": "rain", "text": "Over the doors of the Lyric the marquee was dripping rain onto Second Avenue letter by letter. In the lobby the carpet had a dark wet path from the doors to the center aisle, and somebody had laid newspapers across it, this week’s reviews on top, the good ones." }
+        { "band": "mid", "weather": "any", "text": "Only the lobby of the playhouse was lit, where the cleaners had started on the brass and stopped for a glass of tea. The poster by the doors still said THE RABBI’S DAUGHTER, ELEVENTH TRIUMPHANT WEEK, and under it somebody had written, in pencil, and twelfth." },
+        { "band": "mid", "weather": "rain", "text": "Over the doors of the Lyric the marquee was dripping rain onto Second Avenue letter by letter. In the lobby the carpet had a dark wet path from the doors to the center aisle, and somebody had laid newspapers across it, this week’s reviews on top, the good ones." },
+        { "band": "late", "weather": "any", "text": "The Lyric had emptied as far as a theater ever empties, which isn’t far: programs on the seats, somebody’s glove, a bag of sunflower seeds spilled in the twelfth row. Up in the ventilator over the gallery, the pigeons were rehearsing." },
+        { "band": "late", "weather": "cold", "text": "The Lyric’s doors were chained for the night, and the cold had frosted the glass of the poster cases, so that THE RABBI’S DAUGHTER looked out at Second Avenue through a fog of her own. Inside, the boiler was knocking itself awake for the matinee, and a cleaning woman’s pail stood in the lobby with the mop in it at attention." }
       ],
       "details": [
         { "id": "lyric-chart", "kind": "prop", "text": "The usher’s seating chart on a clipboard, every seat sold a pencil cross." },
@@ -163,7 +212,11 @@
         { "id": "lyric-flashlight", "kind": "prop", "text": "The usher’s flashlight, pointed at the floor and never at a face, unless the face is talking." },
         { "id": "lyric-seeds", "kind": "habit", "text": "Sunflower-seed shells in the gallery aisles, swept up every night and back by the second act." }
       ],
-      "hides": ["the boxes upstairs", "the wings", "the costume room under the stage"]
+      "hides": [
+        { "name": "the boxes upstairs", "arrival": "The boxes at the Lyric were four little balconies of gilt and red plush hung either side of the stage, each with six gold chairs and a curtain you could draw. From inside one you could see the whole stage and half the audience, and with the curtain drawn the audience couldn’t see you, which is what the boxes are mostly for." },
+        { "name": "the wings", "arrival": "The wings at the Lyric were dark and narrow and full of rope, with painted scenery leaning against the brick, a rabbi’s study on one side and a Russian village on the other. A stool stood in the prompt corner with a newspaper on it, and the whole place smelled of greasepaint and dust that had been applauded." },
+        { "name": "the costume room under the stage", "arrival": "The costume room under the Lyric’s stage was racks and racks of other people: peasants and rabbis, a czar, three brides and a dragon in two halves. A sewing machine stood under the only light with a wedding dress half mended across it, beside a box of buttons and a cold glass of tea." }
+      ]
     },
     {
       "id": "steinmetz",
@@ -174,17 +227,23 @@
       "hours": { "open": 11, "close": 1 },
       "watcher": {
         "person": "demos",
-        "counts": "I seat every table myself, and I write the covers in the book with the time beside them. Nobody sits in my room without my say-so.",
+        "counts": [
+          "I seat every table myself, and I write the covers in the book with the time beside them. Nobody sits in my room without my say-so.",
+          "A gentleman orders the chop, sir. A man with something on his mind orders the soup. A man with something worse orders nothing and asks for the check.",
+          "I watch the door in the mirror over the bar. One sees who comes in without being seen to look, which is the whole of the profession."
+        ],
         "sees": "the whole dining room, from his stand by the door",
         "blind": "the kitchen past the swinging door, which is the cook’s country"
       },
-      "minutes": { "raffertys": 10, "lipskys": 5, "sokols": 10, "peacock": 15, "lyric": 20, "surgery": 10, "wexlers": 15, "cardroom": 10, "excelsior": 10 },
+      "minutes": { "raffertys": 10, "lipskys": 5, "sokols": 10, "peacock": 15, "lyric": 20, "surgery": 10, "wexlers": 15, "cardroom": 10, "excelsior": 10, "belvedere": 5 },
       "arrivals": [
         { "band": "early", "weather": "any", "text": "Steinmetz’s was a chop house on Grand Street with sawdust on the floor, white cloths on the tables and a slate by the door with the specials chalked on it. After midnight it had the late crowd: men off the newspaper trucks, a table of musicians, and a couple sharing one steak and not speaking. The head waiter had seated each of them as if they’d booked." },
+        { "band": "early", "weather": "any", "text": "Steinmetz’s had its name in gold on the window, CHOPS STEAKS OYSTERS, lit from below by the lamps on the oyster bar, and behind it a long room going quietly about the last orders of the night. The waiters wore white aprons to the ankle, which made them look as if they were standing in buckets, and the tables near the door were already stripped to the wood." },
+        { "band": "early", "weather": "rain", "text": "The chop house windows had steamed solid against the rain, so you went in blind and found out who was there after. The coat rack was full and dripping into an umbrella stand made from an elephant’s foot, which the owner swears is a cow’s." },
         { "band": "mid", "weather": "any", "text": "Closing a chop house of the old kind takes an hour, and Steinmetz’s was in the middle of it: the chairs going up table by table, slowly, so as not to hurry anybody who might still order pie. The head waiter stood at his stand by the door, writing the last covers in his book in ink. The sawdust had been swept into the corners to think over what it had heard." },
-        { "band": "late", "weather": "any", "text": "The front of Steinmetz’s was dark, but the kitchen door at the back stood propped open on the alley, letting out steam and the sound of a pot being scrubbed by somebody with opinions about it. The chop house window still said CHOPS STEAKS OYSTERS in gold, with the R gone from OYSTERS." },
         { "band": "mid", "weather": "cold", "text": "The oyster bar at Steinmetz’s stays open late when it’s cold, because the oysters keep themselves. The radiators under the chop house windows were the old kind, hot enough to brand you, and the regulars knew which tables to avoid. Over the bar hung a framed menu from 1911, signed by a heavyweight nobody remembers." },
-        { "band": "early", "weather": "rain", "text": "The chop house windows had steamed solid against the rain, so you went in blind and found out who was there after. The coat rack was full and dripping into an umbrella stand made from an elephant’s foot, which the owner swears is a cow’s." }
+        { "band": "late", "weather": "any", "text": "The front of Steinmetz’s was dark, but the kitchen door at the back stood propped open on the alley, letting out steam and the sound of a pot being scrubbed by somebody with opinions about it. The chop house window still said CHOPS STEAKS OYSTERS in gold, with the R gone from OYSTERS." },
+        { "band": "late", "weather": "rain", "text": "Rain had driven the night’s last customers out of Steinmetz’s and the morning’s first ones hadn’t come. The chop house’s awning was sagging with a lake of water, which a waiter was poking up from underneath with a broom handle to watch it go over the edge in one piece, and then doing it again." }
       ],
       "details": [
         { "id": "steinmetz-soup", "kind": "gag", "text": "The slate by the door with the specials chalked on it, where the soup is crossed off at whatever hour you come in." },
@@ -195,7 +254,11 @@
         { "id": "steinmetz-porthole", "kind": "prop", "text": "The swinging door to the kitchen, with a porthole in it greased over so the dining room can’t see what goes into the chops." },
         { "id": "steinmetz-booth", "kind": "prop", "text": "One curtained booth at the back, for parties who don’t want to be a party." }
       ],
-      "hides": ["the curtained booth at the back", "the kitchen, past the swinging door", "the alley behind the kitchen"]
+      "hides": [
+        { "name": "the curtained booth at the back", "arrival": "The curtained booth at the back of Steinmetz’s was a table for four behind green velvet on brass rings, with its own lamp, its own coat hook and its own bell to ring for service, so that nobody ever need see who was behind it. A menu on the table had been folded into a little boat, and then a second, smaller boat." },
+        { "name": "the kitchen, past the swinging door", "arrival": "Past the swinging door the kitchen at Steinmetz’s was a long, low, hot room of black ranges and copper pans, with steam hanging under the ceiling and a floor mopped so often it had gone soft. A row of chops waited on a marble slab under a cloth like patients, and a cleaver stood up in the block by the door where somebody had left it." },
+        { "name": "the alley behind the kitchen", "arrival": "The alley behind Steinmetz’s was ash cans and crates and a puddle that never dries, lit by the kitchen door when it opened and by nothing when it didn’t. Somebody had made a bench out of an oyster crate and a plank, and the cobbles round it were thick with cigarette ends, where the kitchen does its thinking." }
+      ]
     },
     {
       "id": "surgery",
@@ -206,16 +269,22 @@
       "hours": { "open": 9, "close": 21 },
       "watcher": {
         "person": "gutman",
-        "counts": "Everybody signs the book and everybody rings the bell, and the bell’s louder than the book, so I go by the bell.",
+        "counts": [
+          "Everybody signs the book and everybody rings the bell, and the bell’s louder than the book, so I go by the bell.",
+          "I can tell a patient from a visitor on the stairs. A patient comes up slow and holds his jaw. A visitor comes up quick and holds his hat.",
+          "I may forget a name, but I write the name down. The face I keep."
+        ],
         "sees": "the waiting room and the stairs up from the street",
         "blind": "the surgery itself, behind the frosted door"
       },
-      "minutes": { "raffertys": 15, "lipskys": 10, "sokols": 10, "peacock": 15, "lyric": 25, "steinmetz": 10, "wexlers": 20, "cardroom": 15, "excelsior": 5 },
+      "minutes": { "raffertys": 15, "lipskys": 10, "sokols": 10, "peacock": 15, "lyric": 25, "steinmetz": 10, "wexlers": 20, "cardroom": 15, "excelsior": 5, "belvedere": 5 },
       "arrivals": [
         { "band": "early", "weather": "any", "text": "Dr. Hirsch’s surgery was one flight up over the bank on Clinton Street, behind a door of frosted glass with DENTIST on it in gold, in case anybody came up by mistake. After midnight the bank was dark and the stairs smelled of clove oil. A desk lamp was on in the waiting room, where somebody was still doing the day’s books." },
-        { "band": "mid", "weather": "any", "text": "The dentist’s rooms over the bank were dark except the frosted door, which glowed a little from the streetlamp behind it. The waiting room had six chairs, a rubber plant and a table of magazines, and the rubber plant looked the most patient." },
-        { "band": "late", "weather": "any", "text": "The bank on Clinton Street was taking its shutters down for the day, and the surgery over it was still locked. Through the glass of the street door you could see the stairs going up, scrubbed white, to the frosted door at the top, waiting for its first toothache." },
+        { "band": "early", "weather": "rain", "text": "Clinton Street was shining with rain, and in the doorway of the bank a man was asleep under a newspaper. Up the side stair to Dr. Hirsch’s surgery, the frosted glass glowed from a lamp left on behind it, and the smell of clove oil had come down the stairs to meet the rain halfway." },
         { "band": "early", "weather": "cold", "text": "The surgery over the bank is kept warm for the patients, and in the cold the warmth stays after they’ve gone, along with the smell of clove oil and coal gas. On the receptionist’s desk the appointment book lay open beside the bell, and the bell had a square of felt under it, which told you somebody had complained." },
+        { "band": "mid", "weather": "any", "text": "The dentist’s rooms over the bank were dark except the frosted door, which glowed a little from the streetlamp behind it. The waiting room had six chairs, a rubber plant and a table of magazines, and the rubber plant looked the most patient." },
+        { "band": "mid", "weather": "cold", "text": "The cold had got into the stairwell up to the dentist’s rooms over the bank, and the frosted door at the top had a breath of mist on it from the warm side. A notice was pinned to the frame in a neat round hand, PLEASE RING, and under it, in another hand, LOUDER." },
+        { "band": "late", "weather": "any", "text": "The bank on Clinton Street was taking its shutters down for the day, and the surgery over it was still locked. Through the glass of the street door you could see the stairs going up, scrubbed white, to the frosted door at the top, waiting for its first toothache." },
         { "band": "late", "weather": "rain", "text": "The bank’s brass doors were shining wet, and up the side stair the dentist’s waiting room had an umbrella stand full of umbrellas nobody came back for: people with toothaches forget everything, and people without them don’t come back." }
       ],
       "details": [
@@ -227,7 +296,11 @@
         { "id": "surgery-cloves", "kind": "habit", "text": "The smell of clove oil, which gets into the stairs, the bank downstairs and everybody’s handkerchief." },
         { "id": "surgery-plate", "kind": "prop", "text": "A brass plate at the street door, DR. M. HIRSCH, DENTIST, polished every morning until the bank’s plate beside it looks shabby." }
       ],
-      "hides": ["the surgery behind the frosted door", "the cabinet of brown bottles", "the back stair down to the bank’s yard"]
+      "hides": [
+        { "name": "the surgery behind the frosted door", "arrival": "The surgery itself was a white room with one chair in it, the big one, leather, that tips back, with a brass basin on a stand beside it and a tray of instruments under a cloth. A lamp on a jointed arm hung over the chair, and the window looked out on a brick wall six feet away, so the patients have nothing to look at but the doctor." },
+        { "name": "the plaster room at the back", "arrival": "The plaster room at the back of the surgery was a narrow room with a sink, a workbench white with dust and a shelf of plaster jaws in rows, every one of them grinning. A set of new teeth for somebody was drying on a sheet of newspaper, smiling up at the ceiling." },
+        { "name": "the back stair down to the bank’s yard", "arrival": "The back stair from the surgery went down two flights of bare wood to a door into the bank’s yard, and was used, as far as anybody could tell, for one cigarette a night and nothing else. There was a chair on the half landing and a saucer of ash beside it, and through the window the backs of four buildings and their washing." }
+      ]
     },
     {
       "id": "wexlers",
@@ -238,17 +311,23 @@
       "hours": { "open": 8, "close": 22 },
       "watcher": {
         "person": "wexler",
-        "counts": "Everybody who comes to my cage gets a ticket or a no. I keep the stubs, and I remember the no’s better.",
+        "counts": [
+          "Everybody who comes to my cage gets a ticket or a no. I keep the stubs, and I remember the no’s better.",
+          "I look at what a man brings before I look at the man. A ring tells me he’s married, a watch tells me he’s desperate, and a coat tells me if he’s coming back for it.",
+          "The bell over the door rings once for a customer and twice for a man who changed his mind on the step. I count both."
+        ],
         "sees": "the shop and the street door, from behind his cage",
         "blind": "the back room, where the unredeemed coats hang"
       },
-      "minutes": { "raffertys": 5, "lipskys": 10, "sokols": 15, "peacock": 5, "lyric": 15, "steinmetz": 15, "surgery": 20, "cardroom": 15, "excelsior": 25 },
+      "minutes": { "raffertys": 5, "lipskys": 10, "sokols": 15, "peacock": 5, "lyric": 15, "steinmetz": 15, "surgery": 20, "cardroom": 15, "excelsior": 25, "belvedere": 15 },
       "arrivals": [
         { "band": "early", "weather": "any", "text": "Wexler’s was a pawnshop on the Bowery under three brass balls, two of them still gilded. After midnight the shop was shut, with a steel grille across the window and, behind it, everything the neighborhood had needed money more than: wedding rings, a trombone, a christening cup. A light burned at the back, where the pawnbroker lived among the unredeemed." },
+        { "band": "early", "weather": "rain", "text": "Rain ran off the el tracks over the Bowery in strings, and under them Wexler’s window was the one lit thing on the block, its pledges laid out under the lamp like a jeweler’s with a past. The grille was down, and a man stood in the doorway out of the wet, looking in at a watch on a card in the window as if it might still be his." },
         { "band": "mid", "weather": "any", "text": "The Bowery at that hour was all doorways and el pillars, and the pawnshop window was the brightest thing on the block, because the pawnbroker leaves a lamp on over the jewelry to discourage the people it would encourage. Under the lamp a tray of wedding rings lay sorted by size, which is as near as the Bowery comes to a jeweler." },
-        { "band": "late", "weather": "any", "text": "The el was running full over the Bowery, shaking the dust off the three brass balls outside Wexler’s. The grille was still down. Inside, the pawnbroker was already in his cage with a glass of tea, waiting for the people who pawn things on their way to work." },
+        { "band": "mid", "weather": "rain", "text": "On the Bowery the rain comes down twice, once from the sky and once off the el tracks, and the pawnshop doorway was the only dry place on the block. A card in Wexler’s window said UMBRELLAS 15¢, PLEDGED BY GENTLEMEN WHO DID NOT NEED THEM AT THE TIME." },
         { "band": "mid", "weather": "cold", "text": "Every overcoat on the Bowery seemed to be in the pawnshop window, pledged in summer by men who believed it would stay summer, each with its ticket pinned to the lapel, and the men somewhere outside in the cold. Inside, the cage had a little stove in it, for the pawnbroker, and the shop had none, for the customers." },
-        { "band": "mid", "weather": "rain", "text": "On the Bowery the rain comes down twice, once from the sky and once off the el tracks, and the pawnshop doorway was the only dry place on the block. A card in Wexler’s window said UMBRELLAS 15¢, PLEDGED BY GENTLEMEN WHO DID NOT NEED THEM AT THE TIME." }
+        { "band": "late", "weather": "any", "text": "The el was running full over the Bowery, shaking the dust off the three brass balls outside Wexler’s. The grille was still down. Inside, the pawnbroker was already in his cage with a glass of tea, waiting for the people who pawn things on their way to work." },
+        { "band": "late", "weather": "cold", "text": "Morning came in cold on the Bowery, and a line had formed already outside the pawnshop under the three brass balls: three men with their collars up and a woman with a sewing machine in a baby carriage, waiting for the grille to go up. In the window every overcoat had its ticket fluttering in the draft from the door." }
       ],
       "details": [
         { "id": "wexlers-revolver", "kind": "prop", "text": "A revolver in the locked pledge case, its ticket tied to the trigger guard and a box of cartridges in the drawer beneath, ticketed separately." },
@@ -259,7 +338,11 @@
         { "id": "wexlers-backroom", "kind": "prop", "text": "The back room, where the unredeemed coats hang in rows, and a tuba and a barber’s chair share a corner with the clerk’s cot." },
         { "id": "wexlers-scales", "kind": "habit", "text": "Jeweler’s scales under a glass bell on the counter, which the pawnbroker trusts more than anyone who has ever stood in front of them." }
       ],
-      "hides": ["the back room among the unredeemed coats", "the locked pledge case", "the drawer under the counter"]
+      "hides": [
+        { "name": "the back room among the unredeemed coats", "arrival": "Through a curtain behind the cage was Wexler’s back room, where the pledges nobody came back for go to wait: coats on rails to the ceiling, a sewing machine, and a stack of wedding photographs in frames, face to the wall. It smelled of mothballs and old tobacco, and when the el went by every coat on the rails swayed at once." },
+        { "name": "the cellar under the shop, among the pledged furniture", "arrival": "The cellar under Wexler’s was where furniture goes when its owners go somewhere smaller: bedsteads, a piano with no lid, a parlor sofa with a ticket pinned to the arm and a dozen kitchen chairs stacked like a puzzle. A bulb lit the stairs and not much after them, and the floor was dry, which on the Bowery is a boast." },
+        { "name": "the little room behind the cage", "arrival": "The little room behind the cage at Wexler’s was a desk, a safe and a spirit stove for tea, in a space just wide enough for one thin man to turn round in. The ledger lay shut on the desk with a pair of spectacles on it, under a calendar from a jeweler’s in Amsterdam with a windmill for every month." }
+      ]
     },
     {
       "id": "cardroom",
@@ -269,13 +352,16 @@
       "number": 168,
       "hours": { "open": 20, "close": 4 },
       "watcher": null,
-      "minutes": { "raffertys": 10, "lipskys": 5, "sokols": 5, "peacock": 10, "lyric": 10, "steinmetz": 10, "surgery": 15, "wexlers": 15, "excelsior": 10 },
+      "minutes": { "raffertys": 10, "lipskys": 5, "sokols": 5, "peacock": 10, "lyric": 10, "steinmetz": 10, "surgery": 15, "wexlers": 15, "excelsior": 10, "belvedere": 10 },
       "arrivals": [
         { "band": "early", "weather": "any", "text": "The card room was over Feingold’s garage on Allen Street, up an outside wooden stair that swayed when the el went by, which was every few minutes. Inside was one long room, one long table in green baize, and a lamp hung low so the cards got the light and the faces didn’t. After midnight the game was going, and nobody looked up, which is the house rule." },
-        { "band": "mid", "weather": "any", "text": "The card room over the garage was down to one table, four players and a pot nobody mentioned. The el had stopped for the night, and the room was quiet enough to hear a card being thought about. The windows were painted black on the inside, so the morning wouldn’t get ideas." },
-        { "band": "late", "weather": "any", "text": "The card room had shut for the night: the lamp off, the chairs pushed in, and the ashtrays not emptied by anybody, ever. The smell of the garage came up through the floor, oil and rubber, and met the smell of the night coming down." },
+        { "band": "early", "weather": "any", "text": "Feingold’s garage on Allen Street was shut and dark, its doors chained, with REPAIRS TIRES GASOLINE painted over them, and up the outside wooden stair to the card room was a door with a peephole and no sign at all. The el went over, the stair swayed, and the door at the top stayed shut, because nobody up there was going to get up to open it." },
+        { "band": "early", "weather": "rain", "text": "The card room’s outside stair was slick with the rain coming down through the el tracks over Allen Street, and it leaned toward the street as if it meant to leave. Inside, the players had kept their hats on; the roof leaks over the window table, and nobody sits at the window table." },
         { "band": "early", "weather": "cold", "text": "One oil stove and the tempers of the players were heating the card room over the garage against the cold, and the stove was losing. One man had kept his overcoat on and was playing in his muffler, and winning, so nobody said anything about the muffler." },
-        { "band": "early", "weather": "rain", "text": "The card room’s outside stair was slick with the rain coming down through the el tracks over Allen Street, and it leaned toward the street as if it meant to leave. Inside, the players had kept their hats on; the roof leaks over the window table, and nobody sits at the window table." }
+        { "band": "mid", "weather": "any", "text": "The card room over the garage was down to one table, four players and a pot nobody mentioned. The el had stopped for the night, and the room was quiet enough to hear a card being thought about. The windows were painted black on the inside, so the morning wouldn’t get ideas." },
+        { "band": "mid", "weather": "rain", "text": "The rain had come through the el tracks over Allen Street and found the card room’s outside stair, which was taking it badly, every step a puddle. Up top the players had hung their wet coats over the backs of their chairs, and the room steamed like a laundry, and smelled like a laundry that took bets." },
+        { "band": "late", "weather": "any", "text": "The card room had shut for the night: the lamp off, the chairs pushed in, and the ashtrays not emptied by anybody, ever. The smell of the garage came up through the floor, oil and rubber, and met the smell of the night coming down." },
+        { "band": "late", "weather": "cold", "text": "The card room over the garage was cold and empty at that hour, the oil stove out and frost on the inside of the black windows, where somebody had scraped one corner clear for a look at the street. A hand of five had been left face down on the baize, squared up neatly, as if somebody meant to come back and play it." }
       ],
       "details": [
         { "id": "cardroom-baize", "kind": "prop", "text": "A long table in green baize, worn white in front of the dealer’s chair." },
@@ -287,7 +373,11 @@
         { "id": "cardroom-pistol", "kind": "prop", "text": "A pistol in the drawer of the cash box, which the man who runs the game calls the house rules." },
         { "id": "cardroom-ashtrays", "kind": "habit", "text": "Ashtrays that are never emptied, only added to, so that there are eleven of them now." }
       ],
-      "hides": ["the closet where the spare decks are kept", "the garage below, among the cars", "the cash box under the dealer’s chair"]
+      "hides": [
+        { "name": "the back room where the spare decks are kept", "arrival": "The back room at the card room was a cupboard with a window, painted black like the rest, with shelves of new decks still in their bands, a box of poker chips, a spare lamp and a cot for whoever loses his last dollar too late to go home. On the shelf over the cot lay a razor that had been used on something that wasn’t a beard." },
+        { "name": "the garage below, among the cars", "arrival": "The garage under the card room was dark and smelled of oil, with three cars asleep in it under tarpaulins and a fourth with its engine out on the floor in pieces, laid in order like a puzzle somebody meant to finish. When the el went over, every wrench on the wall rang a little." },
+        { "name": "the landing at the top of the outside stair", "arrival": "The landing at the top of the card room’s outside stair was four boards and a rail between the door and a long drop to the garage yard, with the el going by close enough to read its advertisements. A coffee can nailed to the rail held cigarette ends, and the boards were worn pale in front of the door, where men stand deciding whether to go in." }
+      ]
     },
     {
       "id": "excelsior",
@@ -297,12 +387,16 @@
       "number": 186,
       "hours": null,
       "watcher": null,
-      "minutes": { "raffertys": 20, "lipskys": 15, "sokols": 10, "peacock": 20, "lyric": 15, "steinmetz": 10, "surgery": 5, "wexlers": 25, "cardroom": 10 },
+      "minutes": { "raffertys": 20, "lipskys": 15, "sokols": 10, "peacock": 20, "lyric": 15, "steinmetz": 10, "surgery": 5, "wexlers": 25, "cardroom": 10, "belvedere": 10 },
       "arrivals": [
         { "band": "early", "weather": "any", "text": "The Excelsior was a block of private flats on East Houston Street, six floors with its name over the door in gold script, and a lobby with a mirror, a potted palm and nobody at the desk, because there isn’t a desk. Everybody who lives there has a key to the front door. After midnight the lobby light was on, because it’s nobody’s job to turn it off." },
-        { "band": "mid", "weather": "any", "text": "Behind its own front door the Excelsior was asleep: a good door, with a brass knob and a wooden wedge holding it open an inch for some tenant who keeps losing his key. The lobby mirror gave me back a man who needed a shave and a better coat. Nobody watches this door; that’s what the tenants pay for." },
-        { "band": "late", "weather": "any", "text": "The milkman had been to the Excelsior and left a bottle outside every door on every floor, and nobody in the building had seen him come or go. That’s the kind of building it is: no doorman, no janitor in sight, and a landlord who lives uptown and sends a man on the first of the month." },
+        { "band": "early", "weather": "any", "text": "The Excelsior stood on East Houston Street between a bank and a bakery, six floors of yellow brick with its name over the door and a lamp either side, the kind of building that puts on a necktie for the street. The lobby was tiled in black and white like a checkerboard, and somebody’s galoshes stood by the door in the middle of a game." },
+        { "band": "early", "weather": "any", "text": "After midnight East Houston Street was trolley wires and wet light, and the Excelsior’s front door was the only one on the block with a brass kick plate polished by tenants’ shoes instead of a janitor. Inside, the stairs went up into the dark from a lobby lamp nobody owns, past landings where every door had its tenant’s name in a little brass frame." },
+        { "band": "early", "weather": "rain", "text": "Rain came down East Houston Street at a slant, and the Excelsior’s awning, green canvas with the name on the scallops, was holding a pond of it that let go every time the wind got underneath. The lobby mat had given up, and the tiles were wet all the way to the foot of the stairs, where the marble begins and the wiping stops." },
         { "band": "early", "weather": "cold", "text": "Steam heat is the whole reason anybody pays what they pay to live in the Excelsior’s flats, and against the cold the lobby was warm enough to make your nose run. A row of brass mailboxes with little windows showed who had letters and who had bills. Upstairs a phonograph was playing the same record for the third time, to somebody who didn’t care for it." },
+        { "band": "mid", "weather": "any", "text": "Behind its own front door the Excelsior was asleep: a good door, with a brass knob and a wooden wedge holding it open an inch for some tenant who keeps losing his key. The lobby mirror gave me back a man who needed a shave and a better coat. Nobody watches this door; that’s what the tenants pay for." },
+        { "band": "mid", "weather": "cold", "text": "Cold makes a fine building finer, and the Excelsior was warm from the cellar up, the steam knocking in the radiators like a slow and polite visitor. Frost had made a fern on the glass of the street door, round the gold letters, and the brass mailboxes in the lobby were too cold to touch." },
+        { "band": "late", "weather": "any", "text": "The milkman had been to the Excelsior and left a bottle outside every door on every floor, and nobody in the building had seen him come or go. That’s the kind of building it is: no doorman, no janitor in sight, and a landlord who lives uptown and sends a man on the first of the month." },
         { "band": "late", "weather": "rain", "text": "Rain on East Houston Street, which is wide enough to rain on properly. The lobby of the Excelsior had a rubber mat inside the door and a sign above it asking tenants please to use it, with the please underlined twice, which tells you how that was going." }
       ],
       "details": [
@@ -314,7 +408,47 @@
         { "id": "excelsior-dumbwaiter", "kind": "prop", "text": "A dumbwaiter in the back hall for coal and parcels, with a bell on every floor that nobody answers." },
         { "id": "excelsior-gas", "kind": "prop", "text": "A gas ring in every kitchen, and on the third floor a smell of gas the tenants have been mentioning to each other since spring." }
       ],
-      "hides": ["the back hall by the dumbwaiter", "the roof", "the empty flat on the sixth floor"]
+      "hides": [
+        { "name": "the back hall by the dumbwaiter", "arrival": "The back hall at the Excelsior ran behind the stairs to the dumbwaiter shaft, a narrow passage of brown linoleum with a coal bin, three ash cans and a bicycle that belongs to nobody who will admit it. The dumbwaiter’s rope hung in its shaft, and from somewhere above came the sound of a bell on a floor where nobody answers it." },
+        { "name": "the roof", "arrival": "The Excelsior’s roof was tar and gravel behind a parapet with the building’s name in iron letters on the street side, backwards from here, and a water tank on legs like a wooden giant. Somebody had carried up two kitchen chairs and a pot of geraniums, and one chair faced the river and the other faced the first chair." },
+        { "name": "the empty flat on the sixth floor", "arrival": "The empty flat on the sixth floor of the Excelsior was empty the way a hotel room is empty: a made bed, a chair, a wardrobe with three hangers and an ashtray washed and set upside down to dry. The card in the brass frame on the door said SMITH, in pencil, and the window shade was down to the sill." }
+      ]
+    },
+    {
+      "id": "belvedere",
+      "name": "the Belvedere",
+      "kind": "home",
+      "street": "Ludlow Street",
+      "number": 117,
+      "hours": null,
+      "watcher": null,
+      "minutes": { "raffertys": 10, "lipskys": 5, "sokols": 5, "peacock": 15, "lyric": 15, "steinmetz": 5, "surgery": 5, "wexlers": 15, "cardroom": 10, "excelsior": 10 },
+      "arrivals": [
+        { "band": "early", "weather": "any", "text": "The Belvedere was five floors of red brick on Ludlow Street with its name cut in stone over the door, BELVEDERE, which means a beautiful view; every window in it looks at another window. Brodsky’s pickle store took up the ground floor, shut for the night behind a wooden shutter, and the street door beside it stood open on a hall where somebody had left the light on, as somebody always does." },
+        { "band": "early", "weather": "any", "text": "Ludlow Street after midnight smelled of dill and coal smoke, and the dill was coming from the Belvedere, where the pickle barrels stood along the shop front under chained-down lids, getting on with it in the dark. Above them the flats went up five floors, a light here and there, and somewhere a radio was playing a song about the moon to somebody trying to sleep." },
+        { "band": "early", "weather": "any", "text": "The Belvedere had no doorman, no janitor and no lock on the street door worth the name, just a loop of string over a nail that everybody in the building knew how to lift. The hall was narrow and brown and went straight up into the dark, five flights, with a gas jet turned low on every landing like a night-light in a nursery." },
+        { "band": "early", "weather": "rain", "text": "Rain on Ludlow Street, and the Belvedere was taking it badly: the gutter over the door ran straight onto the stoop, and the tenants had laid an old door across two bricks to walk on, so that coming home was like boarding a ship. Inside, wet umbrellas stood open on the stairs to dry, one to a step, five flights up." },
+        { "band": "early", "weather": "cold", "text": "It was cold on Ludlow Street and colder in the Belvedere, which has a stove in every kitchen and heat nowhere else. The hall smelled of brine from the shop and coal from the stoves, and on every landing a kitchen door stood open an inch for whatever warmth the stairs could spare, so the whole building listened to itself." },
+        { "band": "mid", "weather": "any", "text": "By that hour the Belvedere had gone dark from the pickle store to the roof, every flat but one, where a kitchen light was on and a kettle was beginning to think about it. The stairs creaked under nobody at all, the way old stairs do at night, settling the day’s accounts." },
+        { "band": "mid", "weather": "rain", "text": "The rain had found every leak in the Belvedere, and the tenants had found every leak a pot. You could hear them all the way up the stairs, tin and enamel and one good china bowl, each ringing its own note, so that the building played a tune in the dark that nobody had asked for." },
+        { "band": "late", "weather": "any", "text": "Morning on Ludlow Street starts with the pickle man, who comes in from Brooklyn on the first car and rolls his barrels out onto the sidewalk with a sound like thunder in the next county. The Belvedere above him was waking to it floor by floor: a window going up, a baby starting, somebody’s alarm clock being argued with." },
+        { "band": "late", "weather": "cold", "text": "Frost on Ludlow Street, and the Belvedere’s windows were iced on the inside, where the tenants had breathed on them all night. The pickle barrels out front had a skin of ice on the brine, and the pickle man, just arrived, was breaking it with a ladle and saying something about the weather in two languages." }
+      ],
+      "details": [
+        { "id": "belvedere-tube", "kind": "gag", "text": "A speaking tube by the street door with a brass whistle for every floor, which hasn’t carried a word since 1911, and which every visitor blows into anyway." },
+        { "id": "belvedere-barrels", "kind": "prop", "text": "Pickle barrels along the shop front, chained shut for the night, with a sign on the lid, DO NOT TOUCH, that has never once worked." },
+        { "id": "belvedere-string", "kind": "prop", "text": "The street door’s lock, broken since Purim, and a loop of string over a nail that does the lock’s work for it." },
+        { "id": "belvedere-stairs", "kind": "prop", "text": "Five flights of stairs worn into a dip in the middle of every tread, with a gas jet turned low on each landing." },
+        { "id": "belvedere-doors", "kind": "habit", "text": "Kitchen doors left open an inch onto the landings on cold nights, so the whole building hears everybody’s business and calls it heat." },
+        { "id": "belvedere-tub", "kind": "prop", "text": "A bathtub in every kitchen with a board across it, which is the kitchen table until Friday." },
+        { "id": "belvedere-carriage", "kind": "prop", "text": "A baby carriage in the hall with no baby in it and a sack of potatoes instead, which has stood there so long the tenants steer round it in the dark." },
+        { "id": "belvedere-rent", "kind": "prop", "text": "A slot in the pickle store’s side door with LANDLORD painted over it, where the rent goes in on Saturdays and nothing ever comes back out." }
+      ],
+      "hides": [
+        { "name": "the roof", "arrival": "The Belvedere’s roof was tar paper and chimneys and a pigeon coop of somebody’s, with the birds asleep in rows like a choir between hymns. From the parapet you could see Ludlow Street both ways and the Williamsburg Bridge strung with lights over the rooftops, and along the wall stood somebody’s tomato plants in tins, staked with umbrella ribs." },
+        { "name": "the pickle cellar under the shop", "arrival": "The pickle cellar under the Belvedere was barrels in rows, sweating in the dark, and a smell of dill and vinegar and garlic so strong it got into your clothes and stayed for the week. A ladder came down from a trap in the shop floor, and on a bench by the ladder were a lantern and a jar with a fork in it, which is how the help has its lunch." },
+        { "name": "the yard out back, among the empty barrels", "arrival": "The yard behind the Belvedere was a square of mud and broken flagstones between four walls, with the empty pickle barrels stacked against one of them in a pyramid taller than a man. Washing lines crossed it overhead from every floor, and somebody’s union suit hung frozen on one of them at attention." }
+      ]
     }
   ]
 }

@@ -1,0 +1,52 @@
+{
+  "checkpoint": "lm3.pt",
+  "step": 9000,
+  "by_source": {
+    "bible": {
+      "lines": 54,
+      "tokens": 1165,
+      "loss": 3.5432
+    },
+    "cards": {
+      "lines": 91,
+      "tokens": 1869,
+      "loss": 2.339
+    },
+    "goldens": {
+      "lines": 2,
+      "tokens": 489,
+      "loss": 4.0975
+    },
+    "nights": {
+      "lines": 1197,
+      "tokens": 241556,
+      "loss": 0.2501
+    }
+  },
+  "all": 0.2894,
+  "novel_sentences": {
+    "sentences": 1500,
+    "of": 19903,
+    "tokens": 23370,
+    "loss": 1.0103,
+    "perplexity": 2.75,
+    "by_source": {
+      "bible": {
+        "sentences": 55,
+        "loss": 4.5202
+      },
+      "cards": {
+        "sentences": 83,
+        "loss": 2.8594
+      },
+      "goldens": {
+        "sentences": 42,
+        "loss": 4.5443
+      },
+      "nights": {
+        "sentences": 1320,
+        "loss": 0.6434
+      }
+    }
+  }
+}

@@ -36,7 +36,7 @@ import * as K from '../content.js';
 import type { Rng } from '../rng.js';
 import type { CaseType, Hour, TierIndex } from '../types.js';
 import { meansOfDetail, type MeansKey } from './means.js';
-import { motivesFor, type Motive } from './motives.js';
+import { motivesFor, ofVictim, type Motive } from './motives.js';
 import { boardOpen, shortName, worksOpen, type Bible, type BiblePerson, type BiblePlace, type TieKind } from './types.js';
 
 export interface WorldCtx {
@@ -121,6 +121,15 @@ export interface Cast {
 }
 
 const VENUE_KINDS = new Set(['bar', 'club', 'restaurant', 'theatre']);
+
+/**
+ * docs/48 Bible 2: may a woman be found dead? The bible, the board's cards, the reasons (`ofVictim`)
+ * and the shelf's words already say a dead woman as one, but the engine's own lines still say "him":
+ * docs/25, "Bible 2", lists every file and line, starting with the victim's `female: false` in
+ * `generate.ts`. Off until that gender pass lands; until then only men are found dead, and women
+ * are clients, owners, suspects and culprits.
+ */
+export const WOMEN_VICTIMS = false;
 
 /** A bible place's name as the generator says it: whole the first time, short after. */
 export function placeWords(p: BiblePlace): { name: string; short: string } {
@@ -214,6 +223,9 @@ const U_KINDS: { re: RegExp; keeper: string; companion?: string; honest: string;
   { re: /kitchen|curtained booth/, keeper: 'the cook', companion: 'somebody at the next table I didn’t know', honest: 'went to {p} for a late plate', more: ['went to {p} for soup and a quiet word', 'went to {p} to settle a bill'] },
   { re: /coats|pledge|counter|cage/, keeper: 'the clerk', companion: 'a man from uptown I didn’t know', honest: 'went round to {p} to see about a pledge', more: ['went round to {p} to look at a coat', 'went round to {p} to ask about a ring'] },
   { re: /surgery|frosted|cabinet/, keeper: 'the dentist', companion: 'a man with his jaw tied up I didn’t know', honest: 'went round to {p} about a tooth', more: ['went round to {p} to pay a bill', 'went round to {p} about a loose filling'] },
+  { re: /plaster/, keeper: 'the dentist', companion: 'a man with his jaw tied up I didn’t know', honest: 'went round to {p} about a set of teeth', more: ['went round to {p} to pay for a plate', 'went round to {p} about a new tooth'] },
+  { re: /band room|dressing room/, keeper: 'the band', companion: 'a drummer I didn’t know', honest: 'went back to {p} to see the band between sets', more: ['went back to {p} to borrow a cigarette off the band', 'went back to {p} to ask for a song'] },
+  { re: /cellar|storeroom|stock room|coal hole/, keeper: 'the porter', companion: 'somebody sitting on a crate I didn’t know', honest: 'went down to {p} for a quiet drink out of the way', more: ['went down to {p} to fetch something for somebody', 'went down to {p} to cool off'] },
 ];
 
 /** A hide somebody can spend an hour in: a back room, a booth, a cellar, the wings. Not a drawer or a tray. */
@@ -238,7 +250,7 @@ function uWords(text: string): (typeof U_KINDS)[number] {
 export function fenceOf(b: Bible, venue: BiblePlace): HolderDef {
   const watcher = venue.watcher?.person;
   const there = b.people.filter((p) => p.works?.place === venue.id && p.id !== watcher);
-  const buys = there.find((p) => /\bfence\b|\bbuys\b|\bbought\b|bookmaker|bookie|receiver/i.test(`${p.job} ${p.asVictim.why} ${p.doing.join(' ')}`));
+  const buys = there.find((p) => /\bfence\b|\bbuys\b|\bbought\b|bookmaker|bookie|receiver/i.test(`${p.job} ${p.asVictim.why} ${p.doing.map((d) => d.text).join(' ')}`));
   if (buys) {
     const n = nameOf(buys);
     const job = buys.job.replace(/^an? /, 'the ');
@@ -354,9 +366,10 @@ function tryCast(w: WorldCtx, i: CastIn): { cast: Cast } | { veto: string } {
   let V: BiblePerson | undefined;
   let client: BiblePerson | undefined;
   if (murder) {
-    // docs/48 leftovers: the board's scene cards are written for a dead man.
-    V = pick(pool.filter((p) => p.gender === 'm' && !avoidV.has(p.id) && unwatchedHome(p.home)));
-    if (!V) return { veto: 'no man in the pool lives somewhere nobody watches' };
+    V = pick(pool.filter((p) => (WOMEN_VICTIMS || p.gender === 'm') && !avoidV.has(p.id) && unwatchedHome(p.home)));
+    if (!V) return { veto: 'nobody in the pool lives somewhere nobody watches' };
+    // The shelf's words are written for a dead man ("Somebody made him cocoa"); a dead woman's are hers.
+    if (rm && V.gender === 'f') rm = { ...rm, scene: ofVictim(rm.scene, true), police: ofVictim(rm.police, true) };
   } else {
     client = pick(pool.filter((p) => !avoidV.has(p.id) && unwatchedHome(p.home)));
     if (!client) return { veto: 'no owner lives somewhere nobody watches' };
@@ -503,7 +516,7 @@ function tryCast(w: WorldCtx, i: CastIn): { cast: Cast } | { veto: string } {
       if (!pl || busy.has(pl.id) || pl.kind === 'home') continue;
       if (i.refuses && !keeperAt(pl, p)) continue;
       if (!pl.watcher) return { text: s.text, place: pl };
-      const rooms = pl.hides.filter(roomHide);
+      const rooms = pl.hides.map((h) => h.name).filter(roomHide);
       if (rooms.length > 0) return { text: s.text, place: pl, hide: rng.pick(rooms) };
     }
     return undefined;
@@ -522,10 +535,10 @@ function tryCast(w: WorldCtx, i: CastIn): { cast: Cast } | { veto: string } {
     uHide = secret.hide;
   } else if (tier >= 1) {
     // Hard-boiled's pair has somebody keep the place all evening, so it has to be somebody's work.
-    const spots = b.places.filter((p) => !busy.has(p.id) && p.kind !== 'home' && (!p.watcher || p.hides.some(roomHide)) && (i.variant !== 'pair' || !!keeperAt(p)));
+    const spots = b.places.filter((p) => !busy.has(p.id) && p.kind !== 'home' && (!p.watcher || p.hides.some((h) => roomHide(h.name))) && (i.variant !== 'pair' || !!keeperAt(p)));
     U = pick(spots);
     if (!U) return { veto: 'nowhere unwatched' };
-    if (U.watcher) uHide = rng.pick(U.hides.filter(roomHide));
+    if (U.watcher) uHide = rng.pick(U.hides.map((h) => h.name).filter(roomHide));
     busy.add(U.id);
   }
   // The dead man's leverage is somewhere off tonight's map: a secret at a place in play would point
@@ -594,9 +607,17 @@ function tryCast(w: WorldCtx, i: CastIn): { cast: Cast } | { veto: string } {
     YH = place.get(y.home);
   }
   if (murder) {
-    // The client: somebody with a tie to the dead man, warm if it can be.
-    const warm = (p: BiblePerson) => ['in-law', 'friend', 'old-flame', 'landlady', 'lodger', 'employer', 'employee'].includes(tieOf(p, V as BiblePerson)?.kind ?? '');
-    client = takeOne((p) => warm(p) && offMap(p)) ?? takeOne((p) => !!tieOf(p, V as BiblePerson) && offMap(p)) ?? takeOne(offMap);
+    // The client: somebody with a tie to the dead man, warm if it can be; a debt will do; else a
+    // neighbor in the same building. Never one a suspect's reason runs through ("he had been at war
+    // with Kaminsky’s old flame", said by the old flame), and never a sworn enemy.
+    const tie = (p: BiblePerson) => tieOf(p, V as BiblePerson)?.kind ?? '';
+    const free = (p: BiblePerson) => offMap(p) && !motives.some((m) => m?.via === p.id);
+    const warm = (p: BiblePerson) => ['in-law', 'friend', 'old-flame', 'landlady', 'lodger', 'employer', 'employee'].includes(tie(p));
+    client =
+      takeOne((p) => warm(p) && free(p)) ??
+      takeOne((p) => ['owes', 'owed'].includes(tie(p)) && free(p)) ??
+      takeOne((p) => !tie(p) && p.home === S.id && free(p)) ??
+      takeOne((p) => !tie(p) && free(p));
     if (!client) return { veto: 'no client' };
   }
   const fence = murder ? (K.HOLDERS[0] as HolderDef) : fenceOf(b, B);
@@ -653,8 +674,9 @@ function tryCast(w: WorldCtx, i: CastIn): { cast: Cast } | { veto: string } {
     ...(secondDef?.stage ? { stage: true } : {}),
   };
   const owner = nameOf(wronged);
+  // A dead woman's flat is "the Krantz flat": the office says a dead man's as "his own flat".
   placeNames.S = murder
-    ? { name: `${owner.short}’s flat ${within(S)}`, short: `${owner.short}’s place`, street: S.street, key: `scene:nb:${S.id}`, world: S.id }
+    ? { name: wronged.gender === 'f' ? `the ${owner.family} flat ${within(S)}` : `${owner.short}’s flat ${within(S)}`, short: `${owner.short}’s place`, street: S.street, key: `scene:nb:${S.id}`, world: S.id }
     : { name: `the ${owner.family} flat ${within(S)}`, short: `the ${owner.family} flat`, street: S.street, key: `lost:nb:${S.id}`, world: S.id };
   if (H) {
     const c = nameOf(suspects[tags.indexOf('C')] as BiblePerson);

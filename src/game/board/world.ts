@@ -125,14 +125,20 @@ function clean(text: string, hours: readonly number[] = []): boolean {
 }
 
 /**
- * Is what somebody's doing something they'd be doing here? The bible's lines are their habits at
- * home and at work; anywhere else the board's own cards for the place say it.
+ * What somebody's doing here: the bible tags each line with where it happens, a place or "any".
+ * In a back room, a line of the place's own only when it's about that room. In a building of flats
+ * each flat is its own place, and a line about home is said only in their own.
  */
-function fitsHere(c: BoardCase, run: Pick<BoardRun, 'at'>, bp: BiblePerson): boolean {
-  const here = placeOf(c, run.at)?.world;
-  // In the back room of the place they work, they aren't at the work their lines are about.
-  if (inHide(c, run.at)) return false;
-  return here === bp.home || here === bp.works?.place;
+function doingHere(c: BoardCase, run: Pick<BoardRun, 'at'>, bp: BiblePerson): { text: string; i: number }[] {
+  const here = biblePlace(c, run.at);
+  const own = c.people.find((x) => x.world === bp.id)?.home === run.at;
+  return bp.doing.flatMap((d, i) => {
+    if (d.setting === 'any') return [{ text: d.text, i }];
+    if (!here || d.setting !== here.id) return [];
+    if (inHide(c, run.at)) return inThisRoom(c, run.at, d.text) ? [{ text: d.text, i }] : [];
+    if (here.kind === 'home' && !here.watcher && !own) return [];
+    return [{ text: d.text, i }];
+  });
 }
 
 /**
@@ -173,7 +179,7 @@ function paidOff(spent: (id: string) => boolean, x: string, female: boolean): bo
 function spendDoing(c: BoardCase, run: BoardRun, bp: BiblePerson, i: number): void {
   const p = c.people.find((x) => x.world === bp.id)?.id;
   const t = p !== undefined ? run.traits?.[p] : undefined;
-  const x = bp.doing[i];
+  const x = bp.doing[i]?.text;
   if (p === undefined || !t || x === undefined) return;
   const line = payLine(x, bp.gender === 'f');
   if (t.pay.includes(line)) run.traits = { ...run.traits, [p]: { ...t, pay: t.pay.filter((l) => l !== line) } };
@@ -279,9 +285,14 @@ export function worldDeck(d: BoardDeal, run: BoardRun): WorldDeck | undefined {
     switch (family) {
       case 'arrive': {
         const pl = c.places.find((p) => p.key === want.key);
-        // A back room inside somebody else's place: the board's own words for a room with no name on it,
-        // not one of its places ("A gambling room doesn’t advertise" is the board's gambling room).
-        if (pl && inHide(c, pl.id)) return BOARD_CARDS.filter((x) => x.family === 'arrive' && x.tags.kind === 'unwatched' && !x.tags.key);
+        // A back room inside somebody else's place: the room's own arrival, or the board's words for a
+        // room with no name on it ("A gambling room doesn’t advertise" is the board's gambling room).
+        if (pl && inHide(c, pl.id)) {
+          const host = biblePlace(c, pl.id);
+          const h = host?.hides.find((x) => x.name === (pl.key ?? '').split('#')[1]);
+          if (host && h && clean(h.arrival) && !unseenWatcher(c, pl, h.arrival)) return [card(`${host.id}:hide:${host.hides.indexOf(h)}`, family, h.arrival)];
+          return BOARD_CARDS.filter((x) => x.family === 'arrive' && x.tags.kind === 'unwatched' && !x.tags.key);
+        }
         const bp = pl ? biblePlace(c, pl.id) : undefined;
         if (!bp) return [];
         const ok = bp.arrivals.filter((a) => clean(a.text) && !unseenWatcher(c, pl as BoardCase['places'][number], a.text));
@@ -302,7 +313,9 @@ export function worldDeck(d: BoardDeal, run: BoardRun): WorldDeck | undefined {
         const p = byName(c, slots.name);
         const bp = p ? biblePerson(c, p) : undefined;
         if (!bp) return [];
-        return bp.doing.filter((x) => safeVoice(c, b, bp, x) && clean(x) && fitsHere(c, run, bp) && !paidOff((id) => run.spent.includes(id), x, bp.gender === 'f')).map((x) => card(`${bp.id}:doing:${bp.doing.indexOf(x)}`, family, doingSentence(x)));
+        return doingHere(c, run, bp)
+          .filter((x) => safeVoice(c, b, bp, x.text) && clean(x.text) && !paidOff((id) => run.spent.includes(id), x.text, bp.gender === 'f'))
+          .map((x) => card(`${bp.id}:doing:${x.i}`, family, doingSentence(x.text)));
       }
       case 'watcher': {
         const p = byName(c, slots.name);
@@ -311,9 +324,10 @@ export function worldDeck(d: BoardDeal, run: BoardRun): WorldDeck | undefined {
         // Somebody who keeps the unwatched place only when it mattered isn't a watcher of the bible's.
         if (bp && !pl && personOf(c, p as PersonId)?.id === 'ukeeper') return [card(`${bp.id}:keeper`, family, `{Name} had the room from the hour that mattered, and not before. Before that, {he} said, it was anybody’s.`)];
         if (!bp || !pl?.watcher || !clean(pl.watcher.sees)) return [];
-        // How they count, in their own words, unless it names an hour the page doesn't tell.
-        const counts = clean(pl.watcher.counts) ? ` ${spoken(pl.watcher.counts)}` : '';
-        return [card(`${pl.id}:watcher`, family, `From {his} post {name} could see ${pl.watcher.sees.replace(/\.$/, '')}.${counts}`)];
+        // How they count, in their own words, one of their three, unless it names an hour the page doesn't tell.
+        const sees = `From {his} post {name} could see ${pl.watcher.sees.replace(/\.$/, '')}.`;
+        const counts = pl.watcher.counts.flatMap((x, i) => (clean(x) ? [card(`${pl.id}:watcher:${i}`, family, `${sees} ${spoken(x)}`)] : []));
+        return counts.length > 0 ? counts : [card(`${pl.id}:watcher`, family, sees)];
       }
       case 'motive': {
         // Their reason in their own words: the bible's line for the tie it runs through.
@@ -385,10 +399,10 @@ export function worldLook(c: BoardCase, run: BoardRun, hand: Hand, p: PersonId):
   // Looked at once a night. A later page about them may close on what they were doing the last I saw
   // (their own `doing`), which is how the board's callbacks land.
   const b = bibleOf(c);
-  // Their `doing` is what they do at home and at work: anywhere else it isn't the last I saw of them.
+  // Their `doing` here, or anywhere: a line for somewhere else isn't the last I saw of them.
   const female = bp.gender === 'f';
-  const pay = b && fitsHere(c, run, bp)
-    ? bp.doing.filter((x, i) => safeVoice(c, b, bp, x) && clean(x) && /^[a-z]/.test(x) && !hand.used(`nb:${bp.id}:doing:${i}`)).map((x) => payLine(x, female))
+  const pay = b
+    ? doingHere(c, run, bp).filter((x) => safeVoice(c, b, bp, x.text) && clean(x.text) && /^[a-z]/.test(x.text) && !hand.used(`nb:${bp.id}:doing:${x.i}`)).map((x) => payLine(x.text, female))
     : [];
   run.traits = { ...(run.traits ?? {}), [p]: { short: `${bp.last}’s look`, pay } };
   // "She had…" after a line about what she's doing; by name after a line about the room ("There were
@@ -473,10 +487,10 @@ export function worldStaging(c: BoardCase, run: BoardRun, hand: Hand, p: PersonI
   const theirs: { text: string; id: string }[] = [];
   if (bp) {
     const name = personOf(c, p)?.short ?? bp.last;
-    bp.doing.forEach((x, i) => {
-      if (!safeVoice(c, b, bp, x) || !clean(x) || !fitsHere(c, run, bp) || paidOff((id) => hand.used(id), x, bp.gender === 'f')) return;
-      theirs.push({ text: doingSentence(x).replace('{Name}', name), id: `nb:${bp.id}:doing:${i}` });
-    });
+    for (const x of doingHere(c, run, bp)) {
+      if (!safeVoice(c, b, bp, x.text) || !clean(x.text) || paidOff((id) => hand.used(id), x.text, bp.gender === 'f')) continue;
+      theirs.push({ text: doingSentence(x.text).replace('{Name}', name), id: `nb:${bp.id}:doing:${x.i}` });
+    }
   }
   const mine = theirs.filter((x) => !hand.used(x.id) && !(hand.avoid && hand.avoid.test(x.text)));
   if (mine.length > 0 && hand.rng.int(10) < 7) {
@@ -543,14 +557,15 @@ function bibleFragments(b: Bible): string[] {
   for (const p of b.places) {
     for (const a of p.arrivals) add(a.text);
     for (const d of p.details) add(d.text);
+    for (const h of p.hides) add(h.arrival);
     if (p.watcher) {
-      add(p.watcher.counts);
+      for (const l of p.watcher.counts) add(l);
       add(p.watcher.sees);
     }
   }
   for (const p of b.people) {
     for (const l of p.looks) add(l.text);
-    for (const d of p.doing) add(d);
+    for (const d of p.doing) add(d.text);
     add(p.asVictim.foundWith);
     for (const lines of [p.voice.ask, p.voice.deflect, p.voice.nobodyElse, p.voice.refuse, p.voice.ownUp, Object.values(p.voice.hours)]) for (const l of lines) add(l);
   }
