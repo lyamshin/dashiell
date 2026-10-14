@@ -47,6 +47,7 @@ import {
 import { sourceName } from './stars.js';
 import type { Agg, Join, Relation } from './plan/types.js';
 import { markPronoun } from './plan/refer.js';
+import { PLAN } from './plan/index.js';
 
 export interface Thought {
   sentences: string[];
@@ -274,7 +275,12 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     caught.add(`${p}@${col.hour}`);
     if (br.kind === 'list' && br.q === q && br.place !== undefined) listSaid.add(`${br.place}@${col.hour}`);
     // The line that breaks it is about them: once named, they're "her" in it ("Ashby passed her on Stuyvesant Street").
-    const said = breakSaid(c, br, p, run.asked)
+    const said0 = breakSaid(c, br, p, run.asked);
+    // docs/49: "Miss Moskin said Sokol’s at ten. Dr. Hirsch says she was at Sokol’s…": the "she" could
+    // be either woman. Their own account, without a pronoun in it.
+    const sp = br.kind === 'claim' ? (br.speaker as PersonId) : undefined;
+    const ownAccount = PLAN.ops && sp && sp !== p && pronOf(c, sp).he === pronOf(c, p).he ? said0.replace(`${nameOf(c, sp)} says ${pronOf(c, sp).he} was at `, `${nameOf(c, sp)}’s own account was `) : said0;
+    const said = ownAccount
       .replace(new RegExp(`\\b(had|passed|put|saw) ${nameOf(c, p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`), `$1 ${P(p).him}`)
       // In the room itself the list is "here", not the place's name again (docs/47 C13).
       .replace(` at ${placeName(c, here)} at `, br.place === here ? ' here at ' : ` at ${placeName(c, here)} at `);
@@ -294,7 +300,9 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       rel: 'collides',
       rule: 'collision',
       // docs/49 §2: the claim, the line that breaks it, and what the planner may join them with.
-      agg: { key: 'collision', alone: true, data: { p, claim: `${nameOf(c, p)} said ${claimSaid(c, p, col.hour)}`, breaker: said, twos, two } },
+      // (Two people who both say the same place at the same hour collide on who was with whom: "but"
+      // would hide it, and "One of them was wrong." says it.)
+      agg: { key: 'collision', alone: true, data: { p, claim: `${nameOf(c, p)} said ${claimSaid(c, p, col.hour)}`, breaker: said, twos, two, subtle: !!sp && accountOf(c, sp)?.claims[col.hour]?.place === accountOf(c, p)?.claims[col.hour]?.place } },
       hours: [col.hour],
       people,
       places: [accountOf(c, p)?.claims[col.hour]?.place ?? '', ...(br.place ? [br.place] : [])],
@@ -331,6 +339,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       // "Kowalski’s at eight, with …, and Kowalski’s at nine".
       const two = g.hs.slice(0, 2);
       const samePlace = two.length === 2 && g.place[0] === g.place[1] && key2(ac?.claims[two[0] as Hour]?.company) === key2(ac?.claims[two[1] as Hour]?.company);
+      const bitParts: { at: string; hs: string; comp: string }[] = [];
       const bits = (samePlace ? [two] : two.map((h) => [h])).map((hs) => {
         const h = hs[0] as Hour;
         const i = g.hs.indexOf(h);
@@ -338,6 +347,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         const comp = (cl?.company ?? []).map((y) => nameOf(c, y)).filter((y) => !src.startsWith(`${y} `) && !namedSoFar.has(y));
         for (const y of comp) namedSoFar.add(y);
         const own = personOf(c, rest)?.home === cl?.place && cl?.place !== here;
+        bitParts.push({ at: own ? 'home' : where(c, g.place[i] as PlaceId, here), hs: andList(hs.map(hourWord)), comp: andList(comp) });
         return `${own ? 'home' : where(c, g.place[i] as PlaceId, here)} at ${andList(hs.map(hourWord))}${comp.length ? `, with ${andList(comp)}` : ''}`;
       });
       const ppl = g.hs.flatMap((h) => ac?.claims[h]?.company ?? []);
@@ -371,7 +381,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
           places: g.place,
           ...(gloss !== undefined && fixComma(text).endsWith(` ${gloss}`) ? { gloss } : {}),
           agg: first
-            ? { key: 'agree', data: { p: rest, bits: andList(bits), src } }
+            ? { key: 'agree', data: { p: rest, bits: andList(bits), src, parts: bitParts } }
             : { key: 'agree-rest', data: { p: rest, src: src.replace(/ had( said)?$/, ''), parts: restParts.map((y) => ({ at: y.at, h: y.h, comp: y.comp })) } },
         },
       );
@@ -463,7 +473,11 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         parts.push(`${andList(yes.map((p) => nameOf(c, p)))} ${accessPhrase(c, true, false, here).replace(/^was\b/, yes.length > 1 ? 'were' : 'was')}.`);
       }
       if (no.length > 0) parts.push(`${andList(no.map((p) => nameOf(c, p)))} ${accessPhrase(c, false, false, here).replace(/^was\b/, no.length > 1 ? 'were' : 'was').replace(/^wasn’t\b/, no.length > 1 ? 'weren’t' : 'wasn’t')}.`);
-      add(parts.map((y) => cap(y)).join(' '), ['givens:means'], { rel: 'narrows', rule: 'way-in', people: [...yes, ...no, c.client], hours: hs, places: [c.means.origin] });
+      // docs/49: who could and the exception, for the planner to say in one sentence ("…, and Vogel hadn’t.").
+      const neg = accessPhrase(c, false, false, here);
+      const short = /^hadn’t\b/.test(neg) ? 'hadn’t' : /^wasn’t\b/.test(neg) ? (no.length > 1 ? 'weren’t' : 'wasn’t') : /^never heard\b/.test(neg) ? 'never did' : undefined;
+      const wayIn = yes.length > 0 && no.length > 0 && short && parts.length === 2 && !/, and /.test(parts[0] as string) ? { key: 'way-in', data: { yes: cap(parts[0] as string), no: andList(no.map((p) => nameOf(c, p))), short } } : undefined;
+      add(parts.map((y) => cap(y)).join(' '), ['givens:means'], { rel: 'narrows', rule: 'way-in', people: [...yes, ...no, c.client], hours: hs, places: [c.means.origin], ...(wayIn ? { agg: wayIn } : {}) });
     }
   }
   }

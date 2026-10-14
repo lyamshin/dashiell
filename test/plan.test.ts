@@ -6,7 +6,7 @@
 import { describe, expect, it } from 'vitest';
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
 import { dealBoard, type BoardRun } from '../src/game/board/model.js';
-import { playBoardOracle, playWanderer } from '../src/game/board/oracle.js';
+import { playBoardOracle, playReader, playWanderer } from '../src/game/board/oracle.js';
 import { PLAN, newBudget, planSection, realize, type Item, type PlanCtx } from '../src/game/board/plan/index.js';
 import { factSentences, joinsIn, listSmell, pronounAmbiguity, restatedPointer } from '../src/game/board/plan/measure.js';
 import { markPronoun } from '../src/game/board/plan/refer.js';
@@ -99,6 +99,9 @@ describe('docs/49 §4: the measures', () => {
         expect(js.filter((j) => j === 'so').length, `seed ${s} p${i + 1}`).toBeLessThanOrEqual(1);
       });
     }
+    // Off the oracle's route too: the wanderer's and the reader's pages.
+    const d = dealBoard(1, tier, type, world ? { world } : {});
+    for (const run of [playWanderer(d, 1).run, playReader(d, 1).run]) run.log.forEach((p, i) => expect(pronounAmbiguity(d.kase, p.blocks), `p${i + 1}`).toEqual([]));
   });
 
   it('fewer pages read like a list, and the facts take fewer sentences, than with the planner off', () => {
@@ -161,6 +164,23 @@ describe('docs/49 §2: reference', () => {
     );
     expect(out[1]).toBe('I sat one seat over, and Ashby looked up.');
     void coffin;
+  });
+
+  it('somebody else in between, of either sex, and the name comes back', () => {
+    const feeney = id('Feeney');
+    const out = plan(
+      { arrival: [gap('arrival', 'Feeney sat in an aisle seat.', [feeney]), gap('arrival', 'Ashby was in the lobby.', [id('Ashby')])], why: [gap('why', 'Feeney had her coat on her knees.', [feeney])] },
+      [['arrival'], ['why']],
+    );
+    expect(out[out.length - 1]).toBe('Feeney had her coat on her knees.');
+  });
+
+  it('a pronoun after somebody nameless in its own sentence is theirs', () => {
+    const out = plan(
+      { arrival: [gap('arrival', 'Coffin and Ashby were at the back.', [id('Coffin')])], close: [{ ...gap('close', 'Somebody at the next table squeezed a seltzer bottle and got his own tie.', [id('Ashby')]), slot: 'close' }] },
+      [['arrival'], ['close']],
+    );
+    expect(out[1]).toBe('Somebody at the next table squeezed a seltzer bottle and got his own tie.');
   });
 
   it('a name a third time, where a pronoun won’t do, is the role', () => {

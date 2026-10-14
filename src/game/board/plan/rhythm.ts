@@ -66,16 +66,21 @@ function opensOnClause(b: string): boolean {
 
 /** Two sentences said as one: "…, and he…", "…, but …". Null when they won't go. */
 function joinable(a: string, b: string): string | null {
-  // Entries of a list ("Hargrove: an IOU…") run on with a semicolon.
+  // Entries of a list ("Hargrove: an IOU…") stay entries: two run on with a semicolon and the rest
+  // not reads as a slip.
   const entry = /^(?:Mrs\. |Mr\. |Miss |Dr\. )?[A-Z][\w’]+: /;
-  if (entry.test(a) && entry.test(b) && /\.$/.test(a) && !/;/.test(a) && !/;/.test(b)) return `${a.slice(0, -1)}; ${b}`;
+  if (entry.test(a) || entry.test(b)) return null;
   if (!/[a-z’)]\.$/.test(a) || /[“”"]/.test(a) || /[“”"]/.test(b)) return null;
   // A sentence with a semicolon or a colon in it is built already; it takes no more.
   if (/[;:]/.test(a) || /[;:]/.test(b)) return null;
   if (wordsIn(a) + wordsIn(b) > 30) return null;
+  // A lead ("Here’s what I had.") stands on its own.
+  if (wordsIn(a) < 5) return null;
   if (/^But\b/.test(b) && !/, but /.test(a)) return `${a.slice(0, -1)}, but ${b.slice(4)}`;
-  // One "and" a sentence is plenty.
+  // One "and" a sentence is plenty: "…as manners allowed and said my name, and she had nails red
+  // and bitten" is three.
   if (/, and /.test(a) || /, and /.test(b) || /\bbut\b/.test(b)) return null;
+  if ((`${a} ${b}`.match(/ and /g) ?? []).length > 1) return null;
   if (!opensOnClause(b)) return null;
   return `${a.slice(0, -1)}, and ${lowerFirst(b)}`;
 }
@@ -83,6 +88,8 @@ function joinable(a: string, b: string): string | null {
 /** Seams in one sentence to part it at: "; ", ", but …", ", and he…", ", and the…". */
 function partings(s: string, tail = false, colon = true): [string, string][] {
   if (/[“”"]/.test(s)) return [];
+  // An entry of a list ("Teitel: an IOU in his hand, and a note of what was still owing.") is one entry.
+  if (/^(?:Mrs\. |Mr\. |Miss |Dr\. )?[A-Z][\w’]+: /.test(s)) return [];
   const out: [string, string][] = [];
   // What's seen may end on its last touch alone, the way the corpus does: "…the stair. Like a
   // remark nobody had asked for." "…hid the street. Which suited me."
@@ -211,7 +218,7 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
       }
       // Two facts side by side become one, and so do two pieces of one kind of texture: a ends its
       // item, b opens the next.
-      const same = (ia.kind === 'fact' && ib.kind === 'fact') || (ia.kind === 'gap' && ib.kind === 'gap');
+      const same = (ia.kind === 'fact' && ib.kind === 'fact') || (ia.kind === 'gap' && ib.kind === 'gap' && ia.slot === ib.slot);
       if (!same || b.i !== a.i + 1 || b.k !== 0 || a.k !== sentencesOf(ia.text).length - 1) return null;
       const before = { ...ia };
       const para = paras[a.p] as Item[];
@@ -258,6 +265,9 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
   for (const s of [trio[1], trio[2], trio[0]]) {
     const it = itemOf(s);
     if (!mendable(it)) continue;
+    // A collision is never parted: its join is its point ("They couldn’t both be true, and I knew
+    // which one I’d bet on.").
+    if (it.kind === 'fact' && it.relation === 'collides') continue;
     const seen = it.kind === 'gap' && (it.slot === 'arrival' || it.slot === 'walk' || it.slot === 'staging' || it.slot === 'reaction' || it.slot === 'close');
     // (A colon in a piece of texture is the writer's: "Counting bills with a rubber thumb: that was the last I saw of her.")
     for (const parted of partings(s.text, seen && budget.fragments < 2, it.kind === 'fact')) {

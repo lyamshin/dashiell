@@ -72,12 +72,12 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       .map((x) => x.text)
       .join(' ');
     if (a?.key === 'collision') {
-      const d = a.data as { p: string; claim: string; breaker: string; twos: string[]; two: string };
+      const d = a.data as { p: string; claim: string; breaker: string; twos: string[]; two: string; subtle?: boolean };
       const one = `${d.claim}, but ${d.breaker}.`;
       // One sentence only when its pronouns stay clear: "Steinbach said home, but Mrs. Mulcahy says
       // she was…" has two women before the "she".
       const clash = sameSexIn(ctx, d.p, d.breaker).length > 0 && /\b(?:he|she|him|her|his)\b/.test(d.breaker.replace(/⁣\d+⁤/g, ''));
-      if (b.but === 0 && words(one) <= 26 && !/;/.test(d.breaker) && !clash) {
+      if (b.but === 0 && words(one) <= 26 && !/;/.test(d.breaker) && !clash && !d.subtle) {
         it.text = one;
         it.joined = 'but';
         b.but++;
@@ -94,8 +94,14 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       return;
     }
     if (a?.key === 'agree') {
-      const d = a.data as { p: string; bits: string; src: string };
-      if (b.so === 0) {
+      const d = a.data as { p: string; bits: string; src: string; parts?: { at: string; hs: string; comp: string }[] };
+      // One place at two hours with different company is said once: "the Lyric at nine, with Doyle,
+      // and at eight", not "the Lyric at nine, with Doyle and the Lyric at eight".
+      const [p0, p1] = d.parts ?? [];
+      if (p0 && p1 && d.parts?.length === 2 && p0.at === p1.at) d.bits = `${p0.at} at ${p0.hs}${p0.comp ? `, with ${p0.comp},` : ''} and at ${p1.hs}${p1.comp ? `, with ${p1.comp}` : ''}`;
+      // Not "So" before a line that opens on it ("So far as it went, it stood up.").
+      const next = items[i + 1];
+      if (b.so === 0 && !(next && /^So\b/.test(next.text))) {
         it.text = `So ${d.bits}, which was what ${d.src}.`;
         it.joined = 'so';
         b.so++;
@@ -146,7 +152,7 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       const d = a.data as { p: string; hs: string; n: number; what: string; named: boolean };
       const who = d.named ? nameOf(ctx.c, d.p) : pr(ctx, d.p).he;
       const hours = `the ${d.n > 1 ? 'hours' : 'hour'} that mattered`;
-      const shapes = [(x: string) => `For ${d.hs}, ${hours}, ${x} said ${d.what}.`, (x: string) => `${cap(x)} said ${d.what} for ${d.hs}, ${hours}.`];
+      const shapes = [(x: string) => `For ${d.hs}, ${hours}, ${x} said ${d.what}.`, ...(d.what.includes(",") ? [] : [(x: string) => `${cap(x)} said ${d.what} for ${d.hs}, ${hours}.`])];
       const forms = shapes.map((f) => f(who));
       // Not a shape an earlier page said word for word, with the name or with "he".
       const fresh = shapes.filter((f) => ![nameOf(ctx.c, d.p), pronOf(ctx.c, d.p).he].some((x) => ctx.said?.has(f(x))));

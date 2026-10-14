@@ -138,6 +138,18 @@ export function herIsObject(after: string, before = ''): boolean {
 }
 
 const PRONOUN = /\b(he|him|his|himself|she|her|hers|herself)\b/gi;
+/**
+ * Somebody nameless before a pronoun in its own sentence, and nobody named: the pronoun is theirs
+ * ("Somebody at the next table gave a seltzer bottle a squeeze and got his own tie").
+ */
+const INDEFINITE = /\b(?:[Ss]omebody|[Ss]omeone|[Nn]obody|[Aa]nybody|[Ee]verybody|[Oo]ne of the \w+|(?:[Aa]n?|[Tt]he) (?:[a-z]+ )?(?:kid|cop|waiter|cabby|drunk|tenant|lodger))\b/;
+const INDEFINITE_HE = /\b(?:[Aa]n?|[Tt]he) (?:[a-z]+ )?(?:man|fellow|boy|policeman)\b/;
+const INDEFINITE_SHE = /\b(?:[Aa]n?|[Tt]he) (?:[a-z]+ )?(?:woman|girl|lady)\b/;
+
+/** Whether `before` has somebody nameless a pronoun of that sex could be theirs ("a large man … his"). */
+export function indefiniteFor(before: string, female: boolean): boolean {
+  return INDEFINITE.test(before) || (female ? INDEFINITE_SHE : INDEFINITE_HE).test(before);
+}
 /** A list entry's heading: "Hargrove: …", "Mrs. Nagy: …". */
 const ENTRY = /^(?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?[A-Z][\w’]+: /;
 const ENTRY_SEAM = /; (?=(?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?[A-Z][\w’]+: )/g;
@@ -184,6 +196,7 @@ export function pronounAmbiguity(c: BoardCase, blocks: readonly Block[]): string
         // Rafferty could see the stairs."
         const after = new Set(here.filter((x) => x.at > at && sexOf.get(x.id) === female).map((x) => x.id));
         if (local.size === 0 && after.size === 1) continue;
+        if (local.size === 0 && indefiniteFor(narr.slice(from, at), female) && !here.some((x) => x.at >= from && x.at < at)) continue;
         if (local.size === 0 && !entries) {
           cands = new Set<string>();
           for (const ns of prior.slice(-1)) for (const x of ns) if (sexOf.get(x.id) === female) cands.add(x.id);

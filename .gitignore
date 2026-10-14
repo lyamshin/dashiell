@@ -6,3 +6,4 @@ out/
 .env
 .claude/
 .golden-pages/
+skeletons*.jsonl

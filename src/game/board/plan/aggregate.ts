@@ -78,18 +78,26 @@ function own(it: Item): { who: string; said: string } | null {
 export function aggregate(items: Item[], ctx: PlanCtx): Item[] {
   const hc = crimeHour(ctx);
   const out: Item[] = [];
+  /** Placements already said in an earlier one's sentence. */
+  const used = new Set<Item>();
   for (let i = 0; i < items.length; i++) {
     const it = items[i] as Item;
-    // The notebook's placements on one person's word: one sentence.
+    if (used.has(it)) continue;
+    // The notebook's placements on one person's word: one sentence, wherever they come in the
+    // notebook ("Teitel was at the Peacock at nine; Mrs. Szabo said so. … Russo was at the Peacock
+    // at nine; Mrs. Szabo said so." is "Mrs. Szabo had Teitel and Russo at the Peacock at nine.").
     const p0 = placed(it);
     if (p0) {
       const run = [it];
       for (let k = i + 1; k < items.length && run.length < MOST; k++) {
-        const q = placed(items[k] as Item);
-        if (!q || q.by !== p0.by || !sameSide([...hoursOf(it), ...hoursOf(items[k] as Item)], hc)) break;
-        run.push(items[k] as Item);
+        const x = items[k] as Item;
+        if (!x.agg?.key.startsWith('clause:')) break;
+        const q = placed(x);
+        if (!q || q.by !== p0.by || !sameSide([...hoursOf(it), ...hoursOf(x)], hc)) continue;
+        run.push(x);
       }
       if (run.length > 1) {
+        for (const x of run.slice(1)) used.add(x);
         const lead = /^Here’s what I had\. /.test(it.text) ? 'Here’s what I had. ' : '';
         const ps = run.map((x) => placed(x) as { who: string; at: string });
         // One place and hour for all of them is said once: "Kavanagh and Renfro at the Velvet Room at eleven".
@@ -102,7 +110,6 @@ export function aggregate(items: Item[], ctx: PlanCtx): Item[] {
           carries: run.flatMap((x) => x.carries ?? []),
           joined: 'aggregated',
         });
-        i += run.length - 1;
         continue;
       }
     }
@@ -125,6 +132,16 @@ export function aggregate(items: Item[], ctx: PlanCtx): Item[] {
           joined: 'aggregated',
         });
         i += run.length - 1;
+        continue;
+      }
+    }
+    // Who could get at it, and the exception last: "Hauck and Rosenbaum had been here earlier, when the
+    // laudanum was there for the taking, and Vogel hadn’t."
+    if (it.agg?.key === 'way-in') {
+      const d = it.agg.data as { yes: string; no: string; short: string };
+      const one = `${d.yes.replace(/\.$/, '')}, and ${d.no} ${d.short}.`;
+      if (!/;/.test(d.yes) && one.split(/\s+/).length <= 30) {
+        out.push({ ...it, text: one, joined: 'aggregated' });
         continue;
       }
     }

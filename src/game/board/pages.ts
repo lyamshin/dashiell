@@ -217,8 +217,12 @@ function putOn(w: Writer, beat: Beat, text: string | null | undefined, voice: Vo
   if (!text) return;
   const ps = w.parts[beat];
   const last = ps?.[ps.length - 1];
-  if (last) last.text = tidy(`${last.text} ${text}`);
-  else put(w, beat, text, voice);
+  if (last) {
+    last.text = tidy(`${last.text} ${text}`);
+    // A card traded for another keeps what was put on after it (the look after the staging).
+    const was = last.alts;
+    if (was) last.alts = () => was().map((o) => ({ ...o, text: tidy(`${o.text} ${text}`) }));
+  } else put(w, beat, text, voice);
 }
 
 /**
@@ -563,6 +567,14 @@ function whyHere(w: Writer, q: string, kind: string, slots: Record<string, strin
     w.carried = true;
     return ptr;
   }
+  // docs/49: the turn's what-next ("I wanted to know what Miss Moskin had passed on the way to
+  // Sokol’s at nine") is a hand-off too, for the person it names: their page doesn't say it again.
+  // (A place it names keeps its why: the turn said where, not why.)
+  const turnHand = PLAN.ops && last?.turn ? (last.units ?? []).filter((u) => u.kind === 'gap' && u.slot === 'hand-off').map((u) => stripMarks(u.text)).join(' ') : '';
+  if (named && turnHand.includes(named)) {
+    w.carried = true;
+    return ptr;
+  }
   // Said already tonight (the arrival joined it with others): don't say it twice.
   const saidBefore = !!ptr.clause && w.before.log.some((pg) => pg.blocks.some((b) => b.kind === 'prose' && b.text.includes(stripMarks(cap(ptr.clause)))));
   if (((last?.job === 'arrive' && w.before.at === w.run.at) || saidBefore) && ptr.src !== 'presence') {
@@ -620,9 +632,11 @@ function handOff(w: Writer, always = false): void {
       w.places.add(mv.to);
       w.hours.add(mv.h);
     } else {
-      const ptr = threadFor(c, w.run, q, at);
+      // docs/49: the pointer as said from where I stand, not from where it sends me ("Prentiss had sat
+      // here telling the room", said in the Delmonico rooms of the Thalia); and the place once.
+      const ptr = threadFor(c, w.run, q, PLAN.ops ? w.run.at : at);
       if (ptr.clause && ptr.src !== 'presence') {
-        said = `${cap(ptr.clause)}, and that was worth the walk to ${placeName(c, at)}.`;
+        said = PLAN.ops && stripMarks(ptr.clause).includes(placeName(c, at)) ? `${cap(ptr.clause)}, and that was worth the walk.` : `${cap(ptr.clause)}, and that was worth the walk to ${placeName(c, at)}.`;
         if (namesFit(w, said)) license(w, ptr);
         else said = null;
       }
@@ -945,7 +959,9 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId): void {
   let frame = w.hand.draw('walk-way', { matters: matters ? 'yes' : 'no', near: wk.near ? 'yes' : 'no' }, slots, { plain: true }) ?? (wk.near ? `${cap(dest)} was round the corner.` : `It was ${wk.far} to ${dest}, ${wk.dir}.`);
   const frameDrawn = w.hand.last;
   // "The Delmonico rooms were", not "was".
-  const were = (t: string) => (/\brooms$|^the flats\b/i.test(dest) ? t.replace(new RegExp(`(${esc(cap(dest))}|${esc(dest)}) was\\b`), '$1 were') : t);
+  // (With the planner on, only where the rooms are what the sentence is about: "From there to the
+  // Delmonico rooms was a long walk" is a walk.)
+  const were = (t: string) => (/\brooms$|^the flats\b/i.test(dest) ? t.replace(new RegExp(`${PLAN.ops ? '^' : ''}(${esc(cap(dest))}|${esc(dest)}) was\\b`), '$1 were') : t);
   frame = were(frame);
   // A later walk may pay the street's role off; the first sets it up.
   let line: string | null = null;
@@ -1139,7 +1155,9 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   }
   if (callback) {
     const pay = payOff(w, again);
-    put(w, 'close', pay, 'thought', { alts: payAlts(w, pay) });
+    // (docs/49: somebody's own last-I-saw line is about them, for the planner's "him".)
+    const theirs = PLAN.ops && again !== undefined && !!pay && (w.run.traits?.[again]?.pay ?? []).includes(pay);
+    put(w, 'close', pay, 'thought', { alts: payAlts(w, pay), ...(theirs ? { about: [again] } : {}) });
   }
   if (!(w.parts.close ?? []).length) put(w, 'close', w.hand.draw('arrive-close', { kind: pl.scene && first ? 'scene' : stageKind(c, place) }, withCaps({ place: pl.short }), { joke: true }), 'thought');
   w.places.add(place);
@@ -1251,7 +1269,7 @@ export function writeAccount(w: Writer, p: PersonId): void {
         ? { text: x.voice, gap: true }
         : {
             text: x.text,
-            about: [p, ...x.hours.flatMap((h) => a.claims[h as Hour]?.company ?? [])],
+            about: [...new Set([p, ...(x.remark !== undefined ? (x.people ?? []) : x.hours.flatMap((h) => a.claims[h as Hour]?.company ?? []))])],
             carries: x.remark !== undefined ? [`remark:account:${p}#${x.remark}`] : x.hours.map((h) => `claim:${p}@${h}`),
           },
     ),
@@ -1300,7 +1318,7 @@ export function writeList(w: Writer, watcher: PersonId): void {
     said.map((text, i) => {
       const x = lines[opened ? i - 1 : i];
       if (!x) return { text, gap: true };
-      const ppl = x.hours.flatMap((h) => (l.entries[h as Hour] ?? []).flatMap((e) => ('person' in e ? [e.person] : [])));
+      const ppl = x.remark !== undefined ? (x.people ?? []) : x.hours.flatMap((h) => (l.entries[h as Hour] ?? []).flatMap((e) => ('person' in e ? [e.person] : [])));
       return {
         text,
         about: [watcher, ...ppl],
@@ -1473,7 +1491,8 @@ export function writeMotive(w: Writer, p: PersonId): void {
   const q = `motive:${p}`;
   const ptr = threadFor(c, w.before, `account:${p}`, w.run.at);
   license(w, ptr);
-  put(w, 'why', w.hand.draw('why', { kind: 'motive' }, withCaps({ ...s, src: ptr.clause || `${person.short} was in the room` }), { plain: true }), 'narrator');
+  // (docs/49: the card's "how he felt" is theirs, whoever else its pointer names.)
+  put(w, 'why', w.hand.draw('why', { kind: 'motive' }, withCaps({ ...s, src: ptr.clause || `${person.short} was in the room` }), { plain: true }), 'narrator', PLAN.ops ? { about: [p] } : {});
   const look = setUp(w, p);
   put(w, 'staging', w.hand.draw('staging', { kind: stageKind(c, w.run.at), who: 'person', manner: mannerOf(c, p) }, s), 'act', { about: [p] });
   putOn(w, 'staging', look, 'act');
@@ -1976,14 +1995,17 @@ function sourcePeople(q: string | undefined): PersonId[] {
  * the whole of it exempt from the name count (it has to name people).
  */
 function recapFacts(w: Writer, clauses: Clause[], lead?: string): void {
+  // docs/49: the lead ("Here’s what I had.") carries no fact: a gap of its own, before them.
+  const ownLead = PLAN.ops && !!lead && clauses.length > 0;
+  if (ownLead) put(w, 'job', lead, 'recap', { exempt: true });
   clauses.forEach((cl, i) =>
-    fact(w, 'job', i === 0 && lead ? `${lead} ${cl.text}` : cl.text, 'recap', {
+    fact(w, 'job', i === 0 && lead && !ownLead ? `${lead} ${cl.text}` : cl.text, 'recap', {
       relation: /^(when|open)/.test(cl.key) ? 'narrows' : 'new',
       about: cl.people,
       carries: [`clause:${cl.key}`],
       ...(cl.hours.length === 1 ? { hour: cl.hours[0] } : {}),
       exempt: true,
-      runOn: i > 0,
+      runOn: i > 0 || ownLead,
       agg: { key: `clause:${cl.key.split(':')[0]}`, data: { clause: cl } },
     }),
   );
@@ -2057,10 +2079,9 @@ export function writeTurn(w: Writer): void {
       if (p && knownPeople(c, w.run).has(rest)) w.people.add(rest);
       w.places.add(starPlace(c, next));
     }
-    if (c.tier <= 1) {
-      w.people.add(caught);
-      put(w, 'handoff', first ? `I could put it to ${name} now. Or I could ${first}.` : `I could put it to ${name} now.`, 'recap', { keepNames: true });
-    } else if (first) put(w, 'handoff', `Before I did anything about it, I wanted to ${first.replace(/ first$/, '').replace(/^find out first /, 'find out ')}.`, 'recap', { keepNames: true });
+    const said = c.tier <= 1 ? (first ? `I could put it to ${name} now. Or I could ${first}.` : `I could put it to ${name} now.`) : first ? `Before I did anything about it, I wanted to ${first.replace(/ first$/, '').replace(/^find out first /, 'find out ')}.` : undefined;
+    if (c.tier <= 1) w.people.add(caught);
+    put(w, 'handoff', said, 'recap', { keepNames: true });
   }
   put(w, 'close', w.hand.draw('turn-close', {}, {}, { widen: true, joke: true }), 'recap');
   lay(w, 'turn');

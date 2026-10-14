@@ -31,7 +31,7 @@ import { pronOf, type BoardCase } from '../model.js';
 import type { Item } from './types.js';
 import type { PlanCtx } from './index.js';
 import { sentencesOf } from './sentences.js';
-import { clauseHead, herIsObject, maskPlaces, narrationOf } from './measure.js';
+import { clauseHead, herIsObject, indefiniteFor, maskPlaces, narrationOf } from './measure.js';
 
 /** The engine's mark on a pronoun it wrote: whom it means, by their place in the case's people. */
 export function markPronoun(c: BoardCase, id: string): string {
@@ -105,7 +105,7 @@ function roleOf(c: BoardCase, id: string): string | undefined {
   return undefined;
 }
 
-function peopleOf(c: BoardCase): Who[] {
+function peopleOf(c: BoardCase, text: string): Who[] {
   const ws: Who[] = [];
   c.people.forEach((p, idx) => {
     if (p.short.length <= 2) return;
@@ -113,9 +113,10 @@ function peopleOf(c: BoardCase): Who[] {
     const role = roleOf(c, p.id);
     ws.push({ idx, id: p.id, short: p.short, female: pronOf(c, p.id).he === 'she', ...(role ? { role } : {}) });
   });
-  // A role two people share stands for neither.
+  // A role two people on the page share stands for neither ("the usher" at the Orpheum is
+  // Obermann, when the Palace's usher isn't on the page).
   const n = new Map<string, number>();
-  for (const w of ws) if (w.role) n.set(w.role, (n.get(w.role) ?? 0) + 1);
+  for (const w of ws) if (w.role && text.includes(w.short)) n.set(w.role, (n.get(w.role) ?? 0) + 1);
   for (const w of ws) if (w.role && (n.get(w.role) ?? 0) > 1) delete w.role;
   return ws;
 }
@@ -134,7 +135,7 @@ function pronounWord(w: Who, form: Form): string {
  */
 export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string }[] {
   const c = ctx.c;
-  const ws = peopleOf(c);
+  const ws = peopleOf(c, paras.flat().map((x) => x.text).join(' '));
   const breaks: { item: Item; who: string }[] = [];
   if (ws.length === 0) return breaks;
   const byIdx = new Map(ws.map((w) => [w.idx, w]));
@@ -187,6 +188,7 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       const at = x.index ?? 0;
       let who: Who | undefined;
       if (x[3] !== undefined) who = byIdx.get(Number(x[3]));
+      else if (indefiniteFor(s.narr.slice(0, at), female) && !s.mentions.some((y) => y.kind === 'name' && y.at < at)) continue;
       else {
         // A card's pronoun is the one person of that sex it was dealt about. (A fact the engine wrote marks
         // its own; one about several people, unmarked, could mean any of them, or nobody in it.)
@@ -215,6 +217,8 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   /** Narration sentences so far: the one before is a pronoun's window. */
   const narrIdx: number[] = [];
 
+  /** Names a pronoun before them hangs on ("From her post Mrs. Rafferty…"): they stay names. */
+  const anchors = new Set<Mention>();
   /** Would a pronoun for `w` at `at` in sentence `si` be read as `w`, and as nobody else? */
   const resolves = (si: number, at: number, w: Who, form: Form, written = false): boolean => {
     const s = sents[si] as Sent;
@@ -231,27 +235,37 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
     }
     if (local.size >= 2) return false;
     if (local.size === 1) return local.has(w);
-    // A pronoun the writer put before its name, in a sentence that names nobody else of that sex:
-    // "From her post Mrs. Rafferty could see the stairs."
+    const backward = (): boolean => {
+      const win = new Set<Who>();
+      for (const k of narrIdx.slice(-1)) for (const n of (sents[k] as Sent).named) if (n.who.female === w.female) win.add(n.who);
+      if (win.size >= 2) return false;
+      // The sentence before kept them as a pronoun, and nobody else of that sex: the pronoun goes on
+      // ("Doyle had her at the flat at eight, with Mrs. Krantz. … the last I saw of her."). A name
+      // said in passing doesn't take the page from whoever it's been about.
+      const prev = narrIdx.length ? (sents[narrIdx[narrIdx.length - 1] as number] as Sent) : undefined;
+      const chained = [...new Set((prev?.mentions ?? []).filter((m) => m.kind === 'pronoun' && m.rep === undefined && m.who.female === w.female).map((m) => m.who))];
+      if (chained.length === 1 && !(prev?.named ?? []).some((n) => n.who === w)) return chained[0] === w;
+      if (win.size === 1) return win.has(w);
+      // Nobody of that sex named near it: it's whoever of that sex the page last spoke of (never the
+      // subject of its own clause, when it's an object).
+      const head = form === 'obj' ? ws.find((y) => y.id === clauseHead(s.narr, s.named.map((n) => ({ id: n.who.id, at: n.at })), at)) : undefined;
+      const prior = (chain.get(w.female) ?? []).filter((y) => y !== head);
+      return prior[prior.length - 1] === w;
+    };
+    if (backward()) return true;
+    // A pronoun the writer put before its name, in a sentence that names nobody else of that sex,
+    // with nothing before it to be read as: "From her post Mrs. Rafferty could see the stairs." (One
+    // that reads back to them already, "I didn’t waste Fishel’s time. He looked like somebody who
+    // kept count of it, and Fishel had a fedora…", hangs on nothing after it.)
     if (written) {
       const after = new Set(s.mentions.filter((m) => m.kind === 'name' && m.at > at && m.who.female === w.female).map((m) => m.who));
-      if (after.size === 1 && after.has(w)) return true;
+      if (after.size === 1 && after.has(w)) {
+        // The name it hangs on stays a name.
+        for (const m of s.mentions) if (m.kind === 'name' && m.at > at && m.who === w) anchors.add(m);
+        return true;
+      }
     }
-    const win = new Set<Who>();
-    for (const k of narrIdx.slice(-1)) for (const n of (sents[k] as Sent).named) if (n.who.female === w.female) win.add(n.who);
-    if (win.size >= 2) return false;
-    // The sentence before kept them as a pronoun, and nobody else of that sex: the pronoun goes on
-    // ("Doyle had her at the flat at eight, with Mrs. Krantz. … the last I saw of her."). A name
-    // said in passing doesn't take the page from whoever it's been about.
-    const prev = narrIdx.length ? (sents[narrIdx[narrIdx.length - 1] as number] as Sent) : undefined;
-    const chained = [...new Set((prev?.mentions ?? []).filter((m) => m.kind === 'pronoun' && m.rep === undefined && m.who.female === w.female).map((m) => m.who))];
-    if (chained.length === 1 && !(prev?.named ?? []).some((n) => n.who === w)) return chained[0] === w;
-    if (win.size === 1) return win.has(w);
-    // Nobody of that sex named near it: it's whoever of that sex the page last spoke of (never the
-    // subject of its own clause, when it's an object).
-    const head = form === 'obj' ? ws.find((y) => y.id === clauseHead(s.narr, s.named.map((n) => ({ id: n.who.id, at: n.at })), at)) : undefined;
-    const prior = (chain.get(w.female) ?? []).filter((y) => y !== head);
-    return prior[prior.length - 1] === w;
+    return false;
   };
   /** Two people of one sex as pronouns in one sentence ("She had her at Kowalski’s") read as anybody's. */
   const otherPronoun = (s: Sent, w: Who): boolean =>
@@ -313,9 +327,13 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
           introduced.add(w.idx);
           continue;
         }
-        // Who the narration was about a sentence or two ago, with nobody of that sex in between.
-        const recent = (chain.get(w.female) ?? []).slice(-1)[0] === w && here - (lastAtOf.get(w.female) ?? -10) <= 2;
-        const canPron = introduced.has(w.idx) && !it.keepNames && !m.listy && m.form !== 'unknown' && !otherPronoun(s, w) && resolves(si, m.at, w, m.form);
+        // Who the narration was about a sentence or two ago, with nobody else in between: "Mrs. Krantz
+        // had a table near the bandstand. Russo sat on the bench. Wojcik’s list had her…" has Russo
+        // in between.
+        const last = lastAtOf.get(w.female) ?? -10;
+        const between = narrIdx.slice(Math.max(0, last + 1)).some((k) => (sents[k] as Sent).mentions.some((x) => x.kind !== 'speech' && x.who !== w));
+        const recent = (chain.get(w.female) ?? []).slice(-1)[0] === w && here - last <= 2 && !between;
+        const canPron = introduced.has(w.idx) && !anchors.has(m) && !it.keepNames && !m.listy && m.form !== 'unknown' && !otherPronoun(s, w) && resolves(si, m.at, w, m.form);
         // The thought ties back by name (docs/44): when nothing else in it names somebody or somewhere
         // from an earlier page, a name there turns to a pronoun only when the cap asks it to.
         const link = it.kind === 'fact' && it.voice === 'thought' && !tiedElsewhere(w);
@@ -362,7 +380,17 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       const before = t.slice(0, m.at);
       const start = m.at === 0 || /[“—]\s*$/.test(before);
       const rep = start ? cap(m.rep as string) : (m.rep as string);
-      t = before + rep + t.slice(m.at + m.len);
+      let after = t.slice(m.at + m.len);
+      // A pronoun's contraction said out with a name: "he’d let" is "Dandridge had let", "she’ll" is "Ruth will".
+      if (m.kind === 'pronoun' && !/^(?:he|him|his|she|her)$/i.test(rep)) {
+        after = after
+          .replace(/^’d (been|had|let|got|gone|done|seen|known|come|made|put|left|kept|told|said|found|heard|taken|given|\w+ed)\b/, ' had $1')
+          .replace(/^’d\b/, ' would')
+          .replace(/^’ll\b/, ' will')
+          .replace(/^’s (been)\b/, ' has $1')
+          .replace(/^’s\b/, ' was');
+      }
+      t = before + rep + after;
     }
     return t;
   };

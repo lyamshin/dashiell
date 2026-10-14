@@ -107,6 +107,8 @@ export interface SaidLine {
   text: string;
   hours: Hour[];
   remark?: number;
+  /** A remark's people: whom it places, or names (docs/49: the skeleton's `about`). */
+  people?: string[];
   /** A list's hour: who, when, and whether "nobody else" was said, for aggregation. */
   hour?: { when: string; names: string; whole: boolean; nobody: string };
 }
@@ -213,7 +215,7 @@ export function spokenAccountLines(c: BoardCase, a: Account, _manner: Manner, ro
       out.push({ text: t.replace('{hs}', /^Nobody|^I had nobody/.test(t) ? orList(hs) : andList(hs)), hours: alone });
     }
   }
-  a.remarks.forEach((r, i) => out.push({ text: r.text, hours: r.facts.map((f) => f.h), remark: i }));
+  a.remarks.forEach((r, i) => out.push({ text: r.text, hours: r.facts.map((f) => f.h), remark: i, people: [...r.facts.map((f) => f.p), ...(r.mentions?.people ?? [])] }));
   return out;
 }
 
@@ -291,7 +293,7 @@ export function spokenListLines(c: BoardCase, l: WatchList, rot = 0): SaidLine[]
     out.push({ text: `${when}, ${andList(names)}.${whole ? ` ${nobody}.` : ''}`, hours: [...g.hs], hour: { when, names: andList(names), whole, nobody } });
   });
   if (shut.length > 0) out.push({ text: `We shut at ${hourWord(shut[0] as Hour)}. Nobody after that.`, hours: [...shut] });
-  l.remarks.forEach((r, i) => out.push({ text: r.text, hours: r.facts.map((f) => f.h), remark: i }));
+  l.remarks.forEach((r, i) => out.push({ text: r.text, hours: r.facts.map((f) => f.h), remark: i, people: [...r.facts.map((f) => f.p), ...(r.mentions?.people ?? [])] }));
   return out;
 }
 

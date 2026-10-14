@@ -180,7 +180,6 @@ function referWithTrades(paras: Item[][], ctx: PlanCtx): void {
       const pronoun = p.female ? /\b(?:she|her|hers|herself)\b/i : /\b(?:he|him|his|himself)\b/i;
       // The card that said the name, or any card on the page that spoke of them, by name or not.
       const cards = [b.item, ...paras.flat().filter((x) => x !== b.item && (x.text.includes(p.short) || ((x.about ?? []).includes(p.id) && pronoun.test(x.text))))];
-      if ((globalThis as { __traceRefer?: boolean }).__traceRefer) console.log('BREAK', b.who, cards.map((x) => `${x.kind}/${x.slot}/${x.alts ? x.alts().length : '-'}: ${x.text.slice(0, 60)}`));
       for (const it of cards) {
         if (!it.alts || trades.some((t) => t.it === it)) continue;
         const alt = it.alts().find((o) => !pronoun.test(o.text) && !o.text.includes(p.short));
