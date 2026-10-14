@@ -1,1 +1,3678 @@
-[]
+[
+ {
+  "id": "sit-0535",
+  "key": "ask|account|bar|careful|high|none|new|none|first",
+  "text": "“Where were you tonight, and who with?” I said, and told {them} I’d sooner have it right than have it twice.",
+  "source": "neighbourhood/27/4/lost-pet/oracle#7.1"
+ },
+ {
+  "id": "sit-0465",
+  "key": "ask|account|bar|careful|high|none|new|none|middle",
+  "text": "I asked {them} for the evening, start to finish, and said I didn’t mind waiting while {they} got the order straight.",
+  "source": "neighbourhood/20/5/murder/oracle#11.2"
+ },
+ {
+  "id": "sit-0484",
+  "key": "ask|account|bar|careful|low|none|new|none|middle",
+  "text": "I asked where {they}’d been tonight, every place in turn, and who had been at each one with {them}. I said I’d write as slowly as {they} talked.",
+  "source": "neighbourhood/33/1/murder/wanderer#3.2"
+ },
+ {
+  "id": "sit-0450",
+  "key": "ask|account|bar|careful|mid|none|new|none|middle",
+  "text": "I waited for our end of the bar to go quiet. Then I asked {them} for the evening in order, with the company in it.",
+  "source": "dealt/35/2/lost-pet/wanderer#8.2"
+ },
+ {
+  "id": "sit-0514",
+  "key": "ask|account|bar|plain|high|none|new|none|first",
+  "text": "“Tonight,” I said. “Where were you, and who were you with?”",
+  "source": "neighbourhood/34/5/murder/oracle#10.1"
+ },
+ {
+  "id": "sit-0448",
+  "key": "ask|account|bar|plain|high|none|new|none|middle",
+  "text": "I asked {them} where the evening had gone, and who had gone with it.",
+  "source": "neighbourhood/37/5/lost-pet/wanderer#4.2"
+ },
+ {
+  "id": "sit-0464",
+  "key": "ask|account|bar|plain|low|none|new|none|middle",
+  "text": "“I need your whole evening,” I said, “every place you stopped and everybody who was there with you. Start wherever it starts.”",
+  "source": "neighbourhood/26/0/lost-pet/oracle#5.2"
+ },
+ {
+  "id": "sit-0496",
+  "key": "ask|account|bar|plain|mid|none|new|none|first",
+  "text": "I asked {them} straight out where {they}’d been tonight, and with whom, and said the drink was on me either way.",
+  "source": "neighbourhood/23/3/lost-pet/reader#7.1"
+ },
+ {
+  "id": "sit-0455",
+  "key": "ask|account|bar|plain|mid|none|new|none|middle",
+  "text": "“Let’s have your evening,” I said. “Where you went, and who you found there.”",
+  "source": "dealt/24/3/murder/wanderer#4.2"
+ },
+ {
+  "id": "sit-0530",
+  "key": "ask|account|bar|terse|high|none|new|none|first",
+  "text": "I kept the question short, for both our sakes. “Where were you tonight?”",
+  "source": "dealt/15/4/lost-pet/oracle#7.1"
+ },
+ {
+  "id": "sit-0461",
+  "key": "ask|account|bar|terse|high|none|new|none|middle",
+  "text": "I asked {them} for the evening and its company, and braced myself for the short version.",
+  "source": "dealt/31/5/lost-pet/oracle#10.1"
+ },
+ {
+  "id": "sit-0481",
+  "key": "ask|account|bar|terse|low|none|new|none|middle",
+  "text": "I asked for the whole evening, every stop and every face at it, and told {them} a short answer would do if it was a full one.",
+  "source": "neighbourhood/19/1/lost-item/wanderer#10.2"
+ },
+ {
+  "id": "sit-0507",
+  "key": "ask|account|bar|terse|mid|none|new|none|first",
+  "text": "“I won’t keep you long,” I said. “Where were you tonight, and who saw you there?”",
+  "source": "dealt/39/3/lost-pet/oracle#7.1"
+ },
+ {
+  "id": "sit-0470",
+  "key": "ask|account|bar|terse|mid|none|new|none|middle",
+  "text": "I asked where {they}’d spent the evening and who with. I didn’t dress the question up; {they} didn’t look like somebody who tipped for that.",
+  "joke": true,
+  "source": "dealt/11/2/lost-pet/reader#6.2"
+ },
+ {
+  "id": "sit-0529",
+  "key": "ask|account|club|careful|high|none|new|none|first",
+  "text": "I waited for a lull in the noise, then asked {them} where {they}’d been tonight, and let the quiet carry it.",
+  "source": "dealt/21/5/lost-pet/oracle#7.1"
+ },
+ {
+  "id": "sit-0477",
+  "key": "ask|account|club|careful|high|none|new|none|middle",
+  "text": "“Start where your evening started,” I said, “and walk me through it, with names if anybody was there.”",
+  "source": "neighbourhood/39/5/lost-pet/reader#6.2"
+ },
+ {
+  "id": "sit-0488",
+  "key": "ask|account|club|careful|low|none|new|none|middle",
+  "text": "I asked {them} where {they}’d been tonight from the beginning, and who had been with {them} at every stop. The night wasn’t going anywhere, and neither was I.",
+  "source": "neighbourhood/22/0/lost-item/oracle#5.2"
+ },
+ {
+  "id": "sit-0519",
+  "key": "ask|account|club|careful|mid|none|new|none|first",
+  "text": "“Tell me about tonight,” I said, under the noise. “Every place you were, and who was there.”",
+  "source": "dealt/34/3/murder/reader#8.2"
+ },
+ {
+  "id": "sit-0475",
+  "key": "ask|account|club|careful|mid|none|new|none|middle",
+  "text": "I leaned in so I wouldn’t have to raise my voice, and asked for {their} evening in order, and the company {they}’d kept through it.",
+  "source": "neighbourhood/5/3/lost-pet/reader#12.2"
+ },
+ {
+  "id": "sit-0533",
+  "key": "ask|account|club|plain|high|none|new|none|first",
+  "text": "I asked {them} where {they}’d spent the night so far, and who with.",
+  "source": "dealt/37/4/lost-pet/oracle#11.1"
+ },
+ {
+  "id": "sit-0456",
+  "key": "ask|account|club|plain|high|none|new|none|middle",
+  "text": "I said over the noise, “Where’ve you been tonight, and who with?”",
+  "source": "neighbourhood/14/4/murder/wanderer#8.2"
+ },
+ {
+  "id": "sit-0472",
+  "key": "ask|account|club|plain|low|none|new|none|middle",
+  "text": "I asked {them} to give me the whole evening: each place in order, and the people {they}’d been with at each. Nothing fancy, just the run of it.",
+  "source": "neighbourhood/7/1/lost-item/oracle#6.2"
+ },
+ {
+  "id": "sit-0486",
+  "key": "ask|account|club|plain|mid|none|new|none|middle",
+  "text": "“I’m asking about tonight,” I said. “Where were you, and who’d say so?”",
+  "source": "dealt/3/3/lost-pet/wanderer#11.2"
+ },
+ {
+  "id": "sit-0463",
+  "key": "ask|account|club|terse|high|none|new|none|middle",
+  "text": "I put it plainly, the way I guessed {they}’d want it. “Where were you tonight?”",
+  "source": "neighbourhood/4/4/murder/reader#12.2"
+ },
+ {
+  "id": "sit-0498",
+  "key": "ask|account|club|terse|low|none|new|none|middle",
+  "text": "“Give me the evening,” I said, “all of it: where you were, who was with you, and in what order.”",
+  "source": "dealt/25/0/lost-item/wanderer#9.1"
+ },
+ {
+  "id": "sit-0512",
+  "key": "ask|account|club|terse|mid|none|new|none|first",
+  "text": "I asked {them} where {they}’d been since the evening started, and who with, leaning in so neither of us had to shout.",
+  "source": "neighbourhood/5/3/lost-pet/reader#10.1"
+ },
+ {
+  "id": "sit-0492",
+  "key": "ask|account|club|terse|mid|none|new|none|middle",
+  "text": "“Just the evening,” I said. “Where, and who with, and I’ll do the writing.”",
+  "source": "dealt/31/3/lost-pet/reader#9.2"
+ },
+ {
+  "id": "sit-0479",
+  "key": "ask|account|flat|careful|high|none|new|none|first",
+  "text": "I asked {them} where {they}’d been tonight, and said I would wait for the exact version.",
+  "source": "dealt/14/4/murder/wanderer#14.1"
+ },
+ {
+  "id": "sit-0454",
+  "key": "ask|account|flat|careful|high|none|new|none|middle",
+  "text": "“Tonight,” I said. “Where you went and who you saw, in the order it happened, and take your time.”",
+  "source": "dealt/19/4/lost-pet/wanderer#5.2"
+ },
+ {
+  "id": "sit-0499",
+  "key": "ask|account|flat|plain|high|none|new|none|first",
+  "text": "I asked where {they}’d been tonight, and whether anybody had been along for it.",
+  "source": "dealt/19/5/lost-pet/oracle#13.1"
+ },
+ {
+  "id": "sit-0453",
+  "key": "ask|account|flat|plain|high|none|new|none|middle",
+  "text": "“Where were you tonight?” I said, and when that had settled, I asked who with.",
+  "source": "dealt/27/5/lost-pet/oracle#13.1"
+ },
+ {
+  "id": "sit-0489",
+  "key": "ask|account|flat|terse|high|none|new|none|first",
+  "text": "I asked {them} to account for the evening, every part of it, and for whoever had shared it.",
+  "source": "dealt/7/4/lost-pet/oracle#14.1"
+ },
+ {
+  "id": "sit-0458",
+  "key": "ask|account|flat|terse|high|none|new|none|middle",
+  "text": "I asked {them} for the evening, as short as {they} liked, so long as it had the places and the people in it.",
+  "source": "dealt/26/4/murder/reader#15.1"
+ },
+ {
+  "id": "sit-0525",
+  "key": "ask|account|restaurant|careful|high|none|new|none|first",
+  "text": "I asked {them} where {they}’d been this evening, and who with. Then I let {them} think, which careful people do anyway.",
+  "source": "dealt/11/4/lost-pet/oracle#11.1"
+ },
+ {
+  "id": "sit-0452",
+  "key": "ask|account|restaurant|careful|high|none|new|none|middle",
+  "text": "“Tell me about your evening,” I said, “the places and the people, and get it right. The coffee will wait.”",
+  "source": "neighbourhood/14/5/murder/reader#7.2"
+ },
+ {
+  "id": "sit-0467",
+  "key": "ask|account|restaurant|careful|low|none|new|none|middle",
+  "text": "I asked {them} to go through the evening from the start, place by place, naming whoever was at each. I said corrections were welcome, and so were pauses.",
+  "source": "neighbourhood/23/1/lost-pet/reader#6.2"
+ },
+ {
+  "id": "sit-0524",
+  "key": "ask|account|restaurant|careful|mid|none|new|none|first",
+  "text": "I moved the sugar bowl from between us and asked {them} where {they}’d been tonight, and in whose company.",
+  "source": "neighbourhood/9/2/murder/wanderer#6.2"
+ },
+ {
+  "id": "sit-0468",
+  "key": "ask|account|restaurant|careful|mid|none|new|none|middle",
+  "text": "“Your evening,” I said, “in order, if you’d be so kind, and whoever was with you.”",
+  "source": "dealt/39/2/murder/reader#12.2"
+ },
+ {
+  "id": "sit-0517",
+  "key": "ask|account|restaurant|plain|high|none|new|none|first",
+  "text": "Over the plates, I asked {them} where tonight had gone and whose company {they}’d spent it in.",
+  "source": "neighbourhood/37/4/lost-pet/oracle#7.1"
+ },
+ {
+  "id": "sit-0446",
+  "key": "ask|account|restaurant|plain|high|none|new|none|middle",
+  "text": "I asked {them} how {they}’d spent the evening and in whose company.",
+  "source": "dealt/14/4/murder/reader#9.2"
+ },
+ {
+  "id": "sit-0449",
+  "key": "ask|account|restaurant|plain|low|none|new|none|middle",
+  "text": "“Tell me where you’ve been tonight,” I said, “start to finish, and who was with you at each place.”",
+  "source": "dealt/20/0/lost-pet/reader#5.2"
+ },
+ {
+  "id": "sit-0501",
+  "key": "ask|account|restaurant|plain|mid|none|new|none|first",
+  "text": "I waited for the waiter to pass, then asked where {they}’d been tonight and who with.",
+  "source": "neighbourhood/9/3/lost-pet/reader#7.1"
+ },
+ {
+  "id": "sit-0462",
+  "key": "ask|account|restaurant|plain|mid|none|new|none|middle",
+  "text": "I asked {them} for the evening: where {they}’d been, who’d been there, and what order it came in.",
+  "source": "dealt/10/2/lost-item/wanderer#10.2"
+ },
+ {
+  "id": "sit-0528",
+  "key": "ask|account|restaurant|terse|high|none|new|none|first",
+  "text": "I asked where {they}’d spent the evening. I kept it to that.",
+  "source": "dealt/25/5/lost-pet/oracle#10.1"
+ },
+ {
+  "id": "sit-0478",
+  "key": "ask|account|restaurant|terse|high|none|new|none|middle",
+  "text": "“One question,” I said. “Where were you this evening, and with whom?”",
+  "source": "dealt/30/4/murder/oracle#7.2"
+ },
+ {
+  "id": "sit-0471",
+  "key": "ask|account|restaurant|terse|low|none|new|none|middle",
+  "text": "I asked {them} to give me the evening, every stop and who was at it, and said a word a stop would do.",
+  "source": "neighbourhood/13/0/lost-item/reader#11.2"
+ },
+ {
+  "id": "sit-0483",
+  "key": "ask|account|restaurant|terse|mid|none|new|none|middle",
+  "text": "“I’ll be quick,” I said, “if you will. Where did the evening take you, and who came along?”",
+  "source": "neighbourhood/3/2/murder/reader#7.2"
+ },
+ {
+  "id": "sit-0510",
+  "key": "ask|account|rooming|careful|high|none|new|none|first",
+  "text": "I asked {them} where {they}’d been tonight, and said I’d like it exact.",
+  "source": "neighbourhood/15/4/lost-pet/wanderer#15.1"
+ },
+ {
+  "id": "sit-0441",
+  "key": "ask|account|rooming|careful|high|none|new|none|middle",
+  "text": "I asked {them} to tell me the evening as near as {they} could get it, and who had been part of it.",
+  "source": "neighbourhood/23/4/lost-pet/oracle#10.1"
+ },
+ {
+  "id": "sit-0534",
+  "key": "ask|account|rooming|careful|low|none|new|none|first",
+  "text": "I asked {them} for the whole evening, slowly: every place {they}’d been, and everybody who’d been there too. I had nowhere to be but here.",
+  "source": "dealt/24/0/murder/reader#12.1"
+ },
+ {
+  "id": "sit-0476",
+  "key": "ask|account|rooming|careful|low|none|new|none|middle",
+  "text": "“I’d like your evening from the start,” I said, “where you were and who was with you, and take as long as you like getting it straight.”",
+  "source": "dealt/6/0/murder/reader#12.2"
+ },
+ {
+  "id": "sit-0502",
+  "key": "ask|account|rooming|careful|mid|none|new|none|first",
+  "text": "I asked {them} where {they}’d spent the evening, at home or out, and whether anybody had spent it alongside {them}.",
+  "source": "dealt/23/3/lost-pet/reader#8.1"
+ },
+ {
+  "id": "sit-0445",
+  "key": "ask|account|rooming|careful|mid|none|new|none|middle",
+  "text": "I asked, low, where {they}’d been tonight and who with; walls in a house like this are thin, and I wanted the answer to myself.",
+  "source": "dealt/20/2/lost-pet/wanderer#4.2"
+ },
+ {
+  "id": "sit-0504",
+  "key": "ask|account|rooming|plain|high|none|new|none|first",
+  "text": "I asked {them} how the evening had gone, from the start, and who {they}’d passed it with.",
+  "source": "neighbourhood/33/5/lost-pet/oracle#6.2"
+ },
+ {
+  "id": "sit-0440",
+  "key": "ask|account|rooming|plain|high|none|new|none|middle",
+  "text": "“Where were you this evening,” I said, “in the house or out of it?”",
+  "source": "neighbourhood/3/5/lost-pet/reader#9.2"
+ },
+ {
+  "id": "sit-0526",
+  "key": "ask|account|rooming|plain|low|none|new|none|first",
+  "text": "I asked {them} to tell me the whole evening, where {they}’d been and who with, and not to skip the parts spent at home.",
+  "source": "neighbourhood/3/0/murder/reader#12.1"
+ },
+ {
+  "id": "sit-0447",
+  "key": "ask|account|rooming|plain|low|none|new|none|middle",
+  "text": "“Tell me about tonight,” I said, “every place you were from start to finish, and anybody you were with.”",
+  "source": "dealt/28/1/lost-item/wanderer#8.2"
+ },
+ {
+  "id": "sit-0494",
+  "key": "ask|account|rooming|plain|mid|none|new|none|first",
+  "text": "“Let’s start with tonight,” I said. “Where did you spend it, and who spent it with you?”",
+  "source": "dealt/22/2/lost-item/reader#8.1"
+ },
+ {
+  "id": "sit-0442",
+  "key": "ask|account|rooming|plain|mid|none|new|none|middle",
+  "text": "I asked {them} to tell me tonight from the start: where {they} went, and who {they} went with.",
+  "source": "neighbourhood/24/2/murder/oracle#13.2"
+ },
+ {
+  "id": "sit-0523",
+  "key": "ask|account|rooming|terse|high|none|new|none|first",
+  "text": "“Where were you tonight?” I said, and left the question there on its own.",
+  "source": "neighbourhood/35/5/lost-pet/wanderer#12.1"
+ },
+ {
+  "id": "sit-0460",
+  "key": "ask|account|rooming|terse|high|none|new|none|middle",
+  "text": "I asked {them} where {they}’d been tonight, and nothing more for the moment.",
+  "source": "dealt/23/5/lost-pet/oracle#5.2"
+ },
+ {
+  "id": "sit-0493",
+  "key": "ask|account|rooming|terse|low|none|new|none|middle",
+  "text": "I asked {them} to give me the evening plainly, each place and who was in it, start to finish. I didn’t need it pretty.",
+  "source": "neighbourhood/27/0/murder/reader#12.2"
+ },
+ {
+  "id": "sit-0520",
+  "key": "ask|account|rooming|terse|mid|none|new|none|first",
+  "text": "“Your evening,” I said. “Where you went and who you saw, and short is fine.”",
+  "source": "dealt/10/2/lost-item/reader#8.1"
+ },
+ {
+  "id": "sit-0466",
+  "key": "ask|account|rooming|terse|mid|none|new|none|middle",
+  "text": "I asked {them} where {they}’d spent the evening and with whom. Then I shut up, which is most of asking.",
+  "source": "dealt/15/3/lost-pet/wanderer#4.2"
+ },
+ {
+  "id": "sit-0531",
+  "key": "ask|account|theatre|careful|high|none|new|none|first",
+  "text": "I asked {them}, low, the way you talk in a theater, where {they}’d been tonight and who with.",
+  "source": "neighbourhood/29/4/lost-pet/oracle#9.1"
+ },
+ {
+  "id": "sit-0459",
+  "key": "ask|account|theatre|careful|high|none|new|none|middle",
+  "text": "“Where were you tonight?” I said, and told {them} to get it straight first; nobody here was waiting on a cue.",
+  "source": "dealt/27/4/lost-pet/reader#8.2"
+ },
+ {
+  "id": "sit-0515",
+  "key": "ask|account|theatre|careful|low|none|new|none|first",
+  "text": "I asked {them} to take me through the evening the way a program does, in order, with everybody who was in it listed.",
+  "source": "dealt/25/1/lost-item/wanderer#10.1"
+ },
+ {
+  "id": "sit-0473",
+  "key": "ask|account|theatre|careful|low|none|new|none|middle",
+  "text": "“I need the whole of your evening,” I said quietly, “every place and everybody in it, in the right order, and there’s no hurry.”",
+  "source": "neighbourhood/2/0/lost-pet/oracle#5.2"
+ },
+ {
+  "id": "sit-0511",
+  "key": "ask|account|theatre|careful|mid|none|new|none|first",
+  "text": "I asked {them} to give me tonight from the start, and to put in everybody who’d shared any of it.",
+  "source": "neighbourhood/13/3/lost-pet/oracle#9.1"
+ },
+ {
+  "id": "sit-0480",
+  "key": "ask|account|theatre|careful|mid|none|new|none|middle",
+  "text": "I asked for the evening in order, and who {they}’d shared it with, and said a slow answer suited me fine.",
+  "source": "neighbourhood/35/3/lost-pet/wanderer#7.2"
+ },
+ {
+  "id": "sit-0522",
+  "key": "ask|account|theatre|plain|high|none|new|none|first",
+  "text": "I asked {them} where {they}’d been tonight. Then, since it was a theater, I asked who else had been in the cast.",
+  "joke": true,
+  "source": "neighbourhood/1/4/lost-pet/oracle#13.1"
+ },
+ {
+  "id": "sit-0451",
+  "key": "ask|account|theatre|plain|high|none|new|none|middle",
+  "text": "I asked {them} where {they}’d spent the evening, and with whom.",
+  "source": "neighbourhood/31/4/lost-pet/oracle#11.2"
+ },
+ {
+  "id": "sit-0443",
+  "key": "ask|account|theatre|plain|low|none|new|none|middle",
+  "text": "I asked {them} to start at the beginning of the evening and keep going until now, naming anyone {they}’d been with along the way.",
+  "source": "neighbourhood/11/1/lost-pet/wanderer#7.2"
+ },
+ {
+  "id": "sit-0508",
+  "key": "ask|account|theatre|plain|mid|none|new|none|first",
+  "text": "I asked where {they}’d been tonight and who with, and kept my voice down to theater size.",
+  "source": "neighbourhood/35/3/lost-pet/reader#10.2"
+ },
+ {
+  "id": "sit-0457",
+  "key": "ask|account|theatre|plain|mid|none|new|none|middle",
+  "text": "I said, “Where were you this evening, and who with? Just the plain run of it.”",
+  "source": "neighbourhood/13/3/lost-pet/reader#15.2"
+ },
+ {
+  "id": "sit-0527",
+  "key": "ask|account|theatre|terse|high|none|new|none|first",
+  "text": "I asked {them} where {they}’d been tonight, and didn’t pad the question.",
+  "source": "neighbourhood/25/4/lost-pet/oracle#12.1"
+ },
+ {
+  "id": "sit-0469",
+  "key": "ask|account|theatre|terse|high|none|new|none|middle",
+  "text": "I asked {them} for the evening in as few words as {they} cared to use: places, and people.",
+  "source": "dealt/22/5/murder/wanderer#11.2"
+ },
+ {
+  "id": "sit-0482",
+  "key": "ask|account|theatre|terse|low|none|new|none|middle",
+  "text": "“Your whole evening, please,” I said, “where you went, in order, and who was with you, and short answers are fine.”",
+  "source": "dealt/34/1/lost-item/oracle#5.2"
+ },
+ {
+  "id": "sit-0518",
+  "key": "ask|account|theatre|terse|mid|none|new|none|first",
+  "text": "I asked {them} for tonight, where and with whom, and then stopped talking.",
+  "source": "dealt/19/3/lost-pet/oracle#7.1"
+ },
+ {
+  "id": "sit-0474",
+  "key": "ask|account|theatre|terse|mid|none|new|none|middle",
+  "text": "I said, “Where were you tonight, and who with? I don’t need the scenery.”",
+  "source": "dealt/17/2/lost-pet/reader#5.2"
+ },
+ {
+  "id": "sit-0503",
+  "key": "ask|account|unwatched|careful|high|none|new|none|first",
+  "text": "I asked {them} where {they}’d been this evening, and to be exact about it.",
+  "source": "dealt/40/4/murder/reader#11.1"
+ },
+ {
+  "id": "sit-0491",
+  "key": "ask|account|unwatched|careful|high|none|new|none|middle",
+  "text": "“Tell me where you were tonight,” I said. “Slowly is fine; I’d rather have it once and right.”",
+  "source": "neighbourhood/29/4/lost-pet/reader#14.1"
+ },
+ {
+  "id": "sit-0506",
+  "key": "ask|account|unwatched|careful|low|none|new|none|middle",
+  "text": "I asked {them} for the evening, all of it, place by place and everybody {they}’d been with at each, and told {them} not to hurry on my account.",
+  "source": "neighbourhood/40/1/lost-item/wanderer#3.2"
+ },
+ {
+  "id": "sit-0532",
+  "key": "ask|account|unwatched|careful|mid|none|new|none|first",
+  "text": "I asked where {they}’d been tonight and with whom. I said the details mattered more to me than the speed.",
+  "source": "neighbourhood/12/3/murder/wanderer#13.1"
+ },
+ {
+  "id": "sit-0485",
+  "key": "ask|account|unwatched|careful|mid|none|new|none|middle",
+  "text": "“Your evening,” I said, “as exactly as you can give it: where, and with whom.”",
+  "source": "neighbourhood/14/3/murder/wanderer#15.1"
+ },
+ {
+  "id": "sit-0495",
+  "key": "ask|account|unwatched|plain|high|none|new|none|first",
+  "text": "I asked {them} what {they}’d done with the evening so far, and who’d been there for it.",
+  "source": "dealt/1/4/lost-pet/reader#14.1"
+ },
+ {
+  "id": "sit-0444",
+  "key": "ask|account|unwatched|plain|high|none|new|none|middle",
+  "text": "I asked {them} where {they}’d got to tonight, and whether anybody had got there too.",
+  "source": "dealt/32/4/murder/oracle#11.1"
+ },
+ {
+  "id": "sit-0521",
+  "key": "ask|account|unwatched|plain|low|none|new|none|first",
+  "text": "I asked {them} to run through the evening for me: where {they}’d started, where {they}’d been since, and who had been along at each turn.",
+  "source": "dealt/29/1/lost-pet/wanderer#10.2"
+ },
+ {
+  "id": "sit-0505",
+  "key": "ask|account|unwatched|plain|low|none|new|none|middle",
+  "text": "“Tell me about your evening,” I said, “from the start, wherever you were, and whoever was there with you.”",
+  "source": "neighbourhood/19/1/lost-item/wanderer#5.2"
+ },
+ {
+  "id": "sit-0509",
+  "key": "ask|account|unwatched|plain|mid|none|new|none|first",
+  "text": "I asked {them} plainly where {they}’d been tonight, and who could say so besides {them}.",
+  "source": "dealt/12/2/murder/wanderer#13.1"
+ },
+ {
+  "id": "sit-0490",
+  "key": "ask|account|unwatched|plain|mid|none|new|none|middle",
+  "text": "“Where did tonight take you,” I said, “and who went along?”",
+  "source": "dealt/28/2/lost-item/reader#8.1"
+ },
+ {
+  "id": "sit-0497",
+  "key": "ask|account|unwatched|terse|high|none|new|none|first",
+  "text": "I asked for the evening, places and company, and made the question about as long as the answer looked likely to be.",
+  "source": "dealt/35/4/lost-pet/reader#7.1"
+ },
+ {
+  "id": "sit-0487",
+  "key": "ask|account|unwatched|terse|high|none|new|none|middle",
+  "text": "I asked {them} where {they}’d been tonight, and who with: two questions, both short.",
+  "source": "neighbourhood/40/5/murder/oracle#7.2"
+ },
+ {
+  "id": "sit-0516",
+  "key": "ask|account|unwatched|terse|low|none|new|none|middle",
+  "text": "“All of tonight, please,” I said. “Each place, in order, and who was there, and you can keep it short.”",
+  "source": "dealt/15/1/murder/wanderer#4.2"
+ },
+ {
+  "id": "sit-0513",
+  "key": "ask|account|unwatched|terse|mid|none|new|none|first",
+  "text": "I asked {them} where {they}’d been tonight and who with. It’s a short question, and I’ve never found a longer one that works better.",
+  "source": "neighbourhood/7/2/lost-item/oracle#8.1"
+ },
+ {
+  "id": "sit-0500",
+  "key": "ask|account|unwatched|terse|mid|none|new|none|middle",
+  "text": "I asked where the evening had found {them}, and who else it had found there.",
+  "source": "neighbourhood/33/3/lost-pet/wanderer#10.2"
+ },
+ {
+  "id": "sit-2722",
+  "key": "ask|admission-check|unwatched|careful|high|none|new|none|middle",
+  "text": "I asked {them} where {they}’d been tonight, beginning to end, and gave {them} all the time {they} wanted to get it right.",
+  "source": "dealt/21/4/lost-pet/oracle#9.2"
+ },
+ {
+  "id": "sit-2728",
+  "key": "ask|admission-check|unwatched|careful|high|none|new|none|middle",
+  "text": "“Tell me your evening,” I said, “as carefully as you like, because I’m in no rush.”",
+  "source": "neighbourhood/20/4/murder/oracle#11.2"
+ },
+ {
+  "id": "sit-2734",
+  "key": "ask|admission-check|unwatched|careful|high|none|new|none|middle",
+  "text": "I asked where {they}’d spent the evening and who {they}’d spent it with, and let {them} take it at {their} own pace.",
+  "source": "dealt/5/4/lost-pet/oracle#12.2"
+ },
+ {
+  "id": "sit-2719",
+  "key": "ask|admission-check|unwatched|careful|mid|none|new|none|middle",
+  "text": "I said, “Where were you this evening? Start at the start, and put the people in where they belong.”",
+  "source": "neighbourhood/9/3/lost-pet/reader#13.2"
+ },
+ {
+  "id": "sit-2725",
+  "key": "ask|admission-check|unwatched|careful|mid|none|new|none|middle",
+  "text": "I asked {them} to take me through tonight in order, every place and every person, and not to hurry it.",
+  "source": "neighbourhood/25/2/lost-item/oracle#9.2"
+ },
+ {
+  "id": "sit-2731",
+  "key": "ask|admission-check|unwatched|careful|mid|none|new|none|middle",
+  "text": "I asked {them} how the evening had gone, from the beginning, and who had been there for it. I said exact was better than quick.",
+  "source": "dealt/16/2/lost-item/oracle#13.2"
+ },
+ {
+  "id": "sit-2737",
+  "key": "ask|admission-check|unwatched|careful|mid|none|new|none|middle",
+  "text": "“I’d like your evening, slowly,” I said, “where you were, and whether anybody was with you.”",
+  "source": "dealt/24/2/murder/oracle#10.2"
+ },
+ {
+  "id": "sit-2721",
+  "key": "ask|admission-check|unwatched|plain|high|none|new|none|middle",
+  "text": "I asked {them} for tonight, plainly: the places, and the people at them.",
+  "source": "neighbourhood/19/4/lost-pet/reader#15.2"
+ },
+ {
+  "id": "sit-2727",
+  "key": "ask|admission-check|unwatched|plain|high|none|new|none|middle",
+  "text": "I said, “So where were you tonight, and was there anybody with you?”",
+  "source": "dealt/25/4/lost-pet/oracle#14.2"
+ },
+ {
+  "id": "sit-2733",
+  "key": "ask|admission-check|unwatched|plain|high|none|new|none|middle",
+  "text": "I asked {them} for {their} evening, plain and in order.",
+  "source": "dealt/25/4/lost-pet/reader#15.2"
+ },
+ {
+  "id": "sit-2739",
+  "key": "ask|admission-check|unwatched|plain|high|none|new|none|middle",
+  "text": "“Tell me about tonight,” I said, “where you went, and who you were with.”",
+  "source": "dealt/36/4/murder/oracle#13.2"
+ },
+ {
+  "id": "sit-2718",
+  "key": "ask|admission-check|unwatched|plain|mid|none|new|none|middle",
+  "text": "I asked where {they}’d spent the evening, start to finish, and whether anyone had kept {them} company.",
+  "source": "neighbourhood/20/2/lost-pet/oracle#10.2"
+ },
+ {
+  "id": "sit-2724",
+  "key": "ask|admission-check|unwatched|plain|mid|none|new|none|middle",
+  "text": "“Your evening,” I said. “Where it went, and who it went with.”",
+  "source": "neighbourhood/14/3/murder/oracle#13.2"
+ },
+ {
+  "id": "sit-2730",
+  "key": "ask|admission-check|unwatched|plain|mid|none|new|none|middle",
+  "text": "I asked {them} to tell me the evening the way it happened, place after place, with whoever was there.",
+  "source": "dealt/26/2/lost-pet/oracle#13.2"
+ },
+ {
+  "id": "sit-2736",
+  "key": "ask|admission-check|unwatched|plain|mid|none|new|none|middle",
+  "text": "“I’m after your evening,” I said, “where you were, start to finish, and anybody who was there too.”",
+  "source": "dealt/17/3/lost-pet/oracle#10.2"
+ },
+ {
+  "id": "sit-2723",
+  "key": "ask|admission-check|unwatched|terse|high|none|new|none|middle",
+  "text": "“Tonight,” I said. “Start to finish, and who was there.”",
+  "source": "dealt/17/4/lost-pet/oracle#12.2"
+ },
+ {
+  "id": "sit-2729",
+  "key": "ask|admission-check|unwatched|terse|high|none|new|none|middle",
+  "text": "I asked {them} where {they}’d been tonight, in as few words as {they} liked.",
+  "source": "dealt/11/4/lost-pet/oracle#15.2"
+ },
+ {
+  "id": "sit-2735",
+  "key": "ask|admission-check|unwatched|terse|high|none|new|none|middle",
+  "text": "“Just tonight,” I said. “Where you were, and who could say so.”",
+  "source": "neighbourhood/1/4/lost-pet/oracle#11.2"
+ },
+ {
+  "id": "sit-2720",
+  "key": "ask|admission-check|unwatched|terse|mid|none|new|none|middle",
+  "text": "I asked {them} for the evening in order, where {they}’d been and who with, and kept the question as plain as a nail.",
+  "source": "neighbourhood/21/2/murder/oracle#10.2"
+ },
+ {
+  "id": "sit-2726",
+  "key": "ask|admission-check|unwatched|terse|mid|none|new|none|middle",
+  "text": "“Your evening, please,” I said. “The places and the company, and that’s all.”",
+  "source": "neighbourhood/30/2/murder/reader#14.2"
+ },
+ {
+  "id": "sit-2732",
+  "key": "ask|admission-check|unwatched|terse|mid|none|new|none|middle",
+  "text": "I asked where {they}’d been tonight and who’d been with {them}, and let {them} answer as briefly as {they} cared to.",
+  "source": "neighbourhood/15/2/murder/oracle#10.2"
+ },
+ {
+  "id": "sit-2738",
+  "key": "ask|admission-check|unwatched|terse|mid|none|new|none|middle",
+  "text": "“I only need the evening,” I said, “where you spent it, and with whom.”",
+  "source": "neighbourhood/30/2/murder/oracle#13.2"
+ },
+ {
+  "id": "sit-0671",
+  "key": "ask|list|bar|careful|high|none|new|none|middle",
+  "text": "I asked {them} who had been in tonight, and when. I said I’d take it as exact as {they} cared to make it.",
+  "source": "dealt/24/5/murder/reader#6.2"
+ },
+ {
+  "id": "sit-0709",
+  "key": "ask|list|bar|careful|low|none|new|none|first",
+  "text": "“I’d like everybody who came in tonight,” I said, “in the order they came, with the time against each, and anybody you didn’t know as well.”",
+  "source": "dealt/38/1/lost-pet/reader#6.1"
+ },
+ {
+  "id": "sit-0696",
+  "key": "ask|list|bar|careful|low|none|new|none|middle",
+  "text": "I asked {them} to go back over the night from opening, every face at the bar and when it arrived, strangers included.",
+  "source": "dealt/39/1/murder/reader#5.2"
+ },
+ {
+  "id": "sit-0710",
+  "key": "ask|list|bar|careful|mid|none|new|none|first",
+  "text": "I asked who’d come through the door tonight, and when. I said {they} could take {their} time; the glasses would keep.",
+  "source": "dealt/1/3/lost-pet/oracle#8.1"
+ },
+ {
+  "id": "sit-0675",
+  "key": "ask|list|bar|careful|mid|none|new|none|middle",
+  "text": "“Who was in tonight,” I asked, “and, as near as you can get it, when?”",
+  "source": "dealt/29/3/lost-pet/oracle#8.1"
+ },
+ {
+  "id": "sit-0704",
+  "key": "ask|list|bar|plain|high|none|new|none|first",
+  "text": "I asked {them} who’d been in tonight and when, and leaned on the bar to wait.",
+  "source": "dealt/7/4/lost-pet/reader#9.1"
+ },
+ {
+  "id": "sit-0638",
+  "key": "ask|list|bar|plain|high|none|new|none|middle",
+  "text": "“Who came in tonight,” I said, “and when did they come?”",
+  "source": "neighbourhood/20/5/murder/reader#6.2"
+ },
+ {
+  "id": "sit-0685",
+  "key": "ask|list|bar|plain|low|none|new|none|first",
+  "text": "I asked {them} to give me the night from behind the bar: who came in, when each one came, and anybody {they} hadn’t seen before.",
+  "source": "dealt/10/1/lost-item/reader#6.1"
+ },
+ {
+  "id": "sit-0630",
+  "key": "ask|list|bar|plain|low|none|new|none|middle",
+  "text": "“Run me through tonight,” I said. “Everybody who came in, when they came, and any face you didn’t know.”",
+  "source": "dealt/1/0/lost-item/oracle#6.1"
+ },
+ {
+  "id": "sit-0661",
+  "key": "ask|list|bar|plain|mid|none|new|none|first",
+  "text": "I asked who’d been in tonight, at the bar or out of sight of it, and when each had come.",
+  "source": "neighbourhood/20/2/lost-pet/oracle#6.1"
+ },
+ {
+  "id": "sit-0627",
+  "key": "ask|list|bar|plain|mid|none|new|none|middle",
+  "text": "“Who’s been in tonight?” I asked, and told {them} I’d want the times as well as the faces.",
+  "source": "neighbourhood/21/2/murder/reader#6.2"
+ },
+ {
+  "id": "sit-0679",
+  "key": "ask|list|bar|terse|high|none|new|none|middle",
+  "text": "I asked {them} who’d been in tonight, and when, and kept it at that.",
+  "source": "dealt/22/4/murder/oracle#6.2"
+ },
+ {
+  "id": "sit-0672",
+  "key": "ask|list|bar|terse|low|none|new|none|middle",
+  "text": "“Everybody who came in tonight,” I said, “and when, and the ones you didn’t know too.”",
+  "source": "dealt/34/0/lost-item/wanderer#5.2"
+ },
+ {
+  "id": "sit-0713",
+  "key": "ask|list|bar|terse|mid|none|new|none|first",
+  "text": "I asked for the night’s faces in order, and when each had turned up.",
+  "source": "dealt/15/3/lost-pet/oracle#8.1"
+ },
+ {
+  "id": "sit-0705",
+  "key": "ask|list|bar|terse|mid|none|new|none|middle",
+  "text": "“Who’s been in since opening,” I said, “and when?”",
+  "source": "dealt/38/3/murder/reader#6.2"
+ },
+ {
+  "id": "sit-0702",
+  "key": "ask|list|club|careful|low|none|new|none|first",
+  "text": "I asked {them} who had come in tonight, everybody from the first to the last, with the time each arrived and anybody {they} didn’t know by name.",
+  "source": "dealt/7/1/lost-item/oracle#6.1"
+ },
+ {
+  "id": "sit-0682",
+  "key": "ask|list|club|careful|low|none|new|none|middle",
+  "text": "“I need the room tonight,” I said, “everybody who came through that door, when they came, and the strangers as well as the regulars.”",
+  "source": "dealt/8/0/lost-pet/wanderer#4.2"
+ },
+ {
+  "id": "sit-0707",
+  "key": "ask|list|club|careful|mid|none|new|none|middle",
+  "text": "I asked who’d been in tonight and when, and said I’d rather {they} took a minute than guessed.",
+  "source": "dealt/40/2/lost-item/oracle#11.1"
+ },
+ {
+  "id": "sit-0668",
+  "key": "ask|list|club|plain|high|none|new|none|middle",
+  "text": "I asked {them} who {they}’d let in tonight, and when.",
+  "source": "dealt/2/5/murder/reader#6.2"
+ },
+ {
+  "id": "sit-0693",
+  "key": "ask|list|club|plain|low|none|new|none|first",
+  "text": "“Who came in tonight?” I asked {them}, and said I’d want all of them, in order, with the times, and the faces {they} didn’t know.",
+  "source": "dealt/11/0/lost-pet/reader#6.1"
+ },
+ {
+  "id": "sit-0677",
+  "key": "ask|list|club|plain|low|none|new|none|middle",
+  "text": "I asked {them} to tell me everybody who’d been in tonight, start to finish, with the time against each, regulars and strangers both.",
+  "source": "dealt/40/0/lost-item/wanderer#3.2"
+ },
+ {
+  "id": "sit-0686",
+  "key": "ask|list|club|plain|mid|none|new|none|middle",
+  "text": "“Who’s been through the door tonight,” I asked, “and when?”",
+  "source": "dealt/14/3/murder/wanderer#6.2"
+ },
+ {
+  "id": "sit-0708",
+  "key": "ask|list|club|terse|high|none|new|none|first",
+  "text": "I put it short: who’d been in tonight, and when?",
+  "source": "neighbourhood/9/4/lost-pet/oracle#7.1"
+ },
+ {
+  "id": "sit-0640",
+  "key": "ask|list|club|terse|high|none|new|none|middle",
+  "text": "“Names and times,” I said. “Whoever came in tonight.”",
+  "source": "neighbourhood/21/5/lost-pet/oracle#7.1"
+ },
+ {
+  "id": "sit-0690",
+  "key": "ask|list|club|terse|low|none|new|none|first",
+  "text": "I asked {them} for everybody who’d come in tonight, and when, strangers too, and said a name and a time apiece would do.",
+  "source": "neighbourhood/39/0/murder/oracle#9.1"
+ },
+ {
+  "id": "sit-0643",
+  "key": "ask|list|club|terse|low|none|new|none|middle",
+  "text": "“Every face tonight,” I said, “in order, with the times, and the ones you didn’t know.”",
+  "source": "neighbourhood/17/0/lost-pet/reader#5.2"
+ },
+ {
+  "id": "sit-0674",
+  "key": "ask|list|club|terse|mid|none|new|none|first",
+  "text": "I asked {them} who’d come through the door tonight and when, and stood out of the way while {they} thought.",
+  "source": "neighbourhood/5/3/lost-pet/reader#11.1"
+ },
+ {
+  "id": "sit-0649",
+  "key": "ask|list|club|terse|mid|none|new|none|middle",
+  "text": "“Who was in tonight, and about when?” I asked {them}.",
+  "source": "neighbourhood/38/2/lost-pet/oracle#6.1"
+ },
+ {
+  "id": "sit-0694",
+  "key": "ask|list|restaurant|careful|high|none|new|none|first",
+  "text": "I asked {them} who had come in tonight, and when, and said exact would suit me fine.",
+  "source": "dealt/28/5/murder/oracle#9.1"
+ },
+ {
+  "id": "sit-0634",
+  "key": "ask|list|restaurant|careful|high|none|new|none|middle",
+  "text": "“Who was in tonight, and when?” I asked, and let {them} take it at {their} own speed.",
+  "source": "neighbourhood/21/4/lost-pet/oracle#8.2"
+ },
+ {
+  "id": "sit-0651",
+  "key": "ask|list|restaurant|careful|low|none|new|none|first",
+  "text": "I asked {them} to give me every table tonight: who sat at it, when they came in, and anybody {they} didn’t know.",
+  "source": "neighbourhood/35/1/lost-pet/oracle#8.1"
+ },
+ {
+  "id": "sit-0628",
+  "key": "ask|list|restaurant|careful|low|none|new|none|middle",
+  "text": "“From the first customer to the last,” I said, “who came in tonight, and when, and any face you hadn’t seen before.”",
+  "source": "neighbourhood/20/1/lost-pet/oracle#8.1"
+ },
+ {
+  "id": "sit-0658",
+  "key": "ask|list|restaurant|careful|mid|none|new|none|first",
+  "text": "I asked who’d been in tonight and when, and said I’d trust {their} memory over the bill spike.",
+  "source": "neighbourhood/9/3/lost-pet/reader#8.1"
+ },
+ {
+  "id": "sit-0641",
+  "key": "ask|list|restaurant|careful|mid|none|new|none|middle",
+  "text": "I asked {them} to run over the night’s customers for me, with the times, in the order they came.",
+  "source": "neighbourhood/28/3/murder/reader#6.2"
+ },
+ {
+  "id": "sit-0711",
+  "key": "ask|list|restaurant|plain|high|none|new|none|first",
+  "text": "I asked {them} which faces had come in tonight, and when.",
+  "source": "dealt/3/4/lost-pet/reader#7.1"
+ },
+ {
+  "id": "sit-0670",
+  "key": "ask|list|restaurant|plain|high|none|new|none|middle",
+  "text": "I asked {them} which tables had filled tonight, and with whom, and when.",
+  "source": "dealt/33/4/lost-pet/wanderer#12.1"
+ },
+ {
+  "id": "sit-0712",
+  "key": "ask|list|restaurant|plain|low|none|new|none|first",
+  "text": "I asked {them} to tell me the night by its customers: who came in, about when, and whether {they} knew them all.",
+  "source": "dealt/2/1/lost-pet/oracle#8.1"
+ },
+ {
+  "id": "sit-0650",
+  "key": "ask|list|restaurant|plain|low|none|new|none|middle",
+  "text": "I asked {them} to walk me round the tables as they’d filled tonight, who and when, from the first to the last.",
+  "source": "dealt/7/1/lost-item/reader#8.1"
+ },
+ {
+  "id": "sit-0700",
+  "key": "ask|list|restaurant|plain|mid|none|new|none|first",
+  "text": "“Who came in tonight, and when?” I asked, and nodded at the tables so {they}’d know I meant all of them.",
+  "source": "dealt/8/3/murder/reader#9.1"
+ },
+ {
+  "id": "sit-0683",
+  "key": "ask|list|restaurant|plain|mid|none|new|none|middle",
+  "text": "I asked {them} who {they}’d seen come in tonight and when, regulars and all.",
+  "source": "dealt/15/2/murder/oracle#6.2"
+ },
+ {
+  "id": "sit-0687",
+  "key": "ask|list|restaurant|terse|high|none|new|none|middle",
+  "text": "I asked {them} for tonight’s customers and when they came.",
+  "source": "dealt/10/5/murder/reader#6.2"
+ },
+ {
+  "id": "sit-0657",
+  "key": "ask|list|restaurant|terse|low|none|new|none|middle",
+  "text": "I asked {them} to name everybody who’d eaten or drunk or only looked in tonight, with the times, and the strangers too.",
+  "source": "dealt/32/0/lost-pet/wanderer#11.2"
+ },
+ {
+  "id": "sit-0714",
+  "key": "ask|list|restaurant|terse|mid|none|new|none|first",
+  "text": "I asked who’d been in tonight, and when, and kept it down to what {they} could answer between orders.",
+  "source": "dealt/30/3/murder/wanderer#10.1"
+ },
+ {
+  "id": "sit-0699",
+  "key": "ask|list|restaurant|terse|mid|none|new|none|middle",
+  "text": "“Tonight’s customers,” I said. “Who came, and about when.”",
+  "source": "dealt/24/2/murder/reader#6.2"
+ },
+ {
+  "id": "sit-0695",
+  "key": "ask|list|rooming|careful|high|none|new|none|middle",
+  "text": "I asked {them} who had come in at the front door tonight, and when.",
+  "source": "dealt/6/5/murder/oracle#6.2"
+ },
+ {
+  "id": "sit-0666",
+  "key": "ask|list|rooming|careful|low|none|new|none|middle",
+  "text": "“I want everybody who came in or out of the house tonight,” I said, “lodgers and visitors, with the time for each, as near as you can make it.”",
+  "source": "dealt/37/0/lost-item/wanderer#3.2"
+ },
+ {
+  "id": "sit-0681",
+  "key": "ask|list|rooming|careful|mid|none|new|none|first",
+  "text": "I asked who’d been up and down the stairs tonight, and when, and said {they} could take {their} time over it.",
+  "source": "dealt/20/3/murder/oracle#9.1"
+ },
+ {
+  "id": "sit-0655",
+  "key": "ask|list|rooming|careful|mid|none|new|none|middle",
+  "text": "I asked {them} who had been in the house tonight, coming or going, and when.",
+  "source": "dealt/17/2/lost-pet/wanderer#12.2"
+ },
+ {
+  "id": "sit-0697",
+  "key": "ask|list|rooming|plain|high|none|new|none|first",
+  "text": "“Who’s been in the house tonight,” I said, “and when?”",
+  "source": "dealt/18/4/murder/wanderer#15.1"
+ },
+ {
+  "id": "sit-0646",
+  "key": "ask|list|rooming|plain|high|none|new|none|middle",
+  "text": "I asked {them} who’d been by tonight, and when.",
+  "source": "dealt/24/5/murder/oracle#6.2"
+ },
+ {
+  "id": "sit-0664",
+  "key": "ask|list|rooming|plain|low|none|new|none|first",
+  "text": "I asked {them} to tell me the house’s whole night: who came in, who went out, when, and anyone {they} didn’t know.",
+  "source": "dealt/20/0/lost-pet/reader#8.1"
+ },
+ {
+  "id": "sit-0635",
+  "key": "ask|list|rooming|plain|low|none|new|none|middle",
+  "text": "I asked {them} to go through the house for me, lodgers and callers both, and tell me who came in tonight and when.",
+  "source": "dealt/28/1/lost-item/wanderer#9.2"
+ },
+ {
+  "id": "sit-0645",
+  "key": "ask|list|rooming|plain|mid|none|new|none|first",
+  "text": "I asked who’d come in off the street tonight, and when.",
+  "source": "dealt/26/3/murder/oracle#7.1"
+ },
+ {
+  "id": "sit-0629",
+  "key": "ask|list|rooming|plain|mid|none|new|none|middle",
+  "text": "I asked {them} which faces had passed the door tonight, lodgers or not, and when.",
+  "source": "neighbourhood/2/2/lost-pet/oracle#8.1"
+ },
+ {
+  "id": "sit-0684",
+  "key": "ask|list|rooming|terse|high|none|new|none|first",
+  "text": "I asked {them} which lodgers and callers had been in tonight, and when.",
+  "source": "neighbourhood/34/4/murder/oracle#9.1"
+ },
+ {
+  "id": "sit-0667",
+  "key": "ask|list|rooming|terse|high|none|new|none|middle",
+  "text": "I asked {them} who’d used the front door and the stairs tonight, and when.",
+  "source": "neighbourhood/12/4/murder/reader#6.2"
+ },
+ {
+  "id": "sit-0653",
+  "key": "ask|list|rooming|terse|low|none|new|none|first",
+  "text": "“Everybody in and out tonight,” I said, “lodger or caller, and when.”",
+  "source": "neighbourhood/19/1/lost-item/reader#8.1"
+ },
+ {
+  "id": "sit-0633",
+  "key": "ask|list|rooming|terse|low|none|new|none|middle",
+  "text": "I asked {them} to name me everybody who’d come in tonight, the time with each, strangers included, and said short was fine.",
+  "source": "neighbourhood/28/1/lost-item/reader#5.2"
+ },
+ {
+  "id": "sit-0642",
+  "key": "ask|list|rooming|terse|mid|none|new|none|first",
+  "text": "I asked {them} who {they}’d seen on the stairs tonight, and when, and left {them} to it.",
+  "source": "neighbourhood/34/3/murder/oracle#9.1"
+ },
+ {
+  "id": "sit-0632",
+  "key": "ask|list|rooming|terse|mid|none|new|none|middle",
+  "text": "One question for the house: who came in tonight, and when?",
+  "source": "neighbourhood/39/2/murder/wanderer#3.2"
+ },
+ {
+  "id": "sit-0691",
+  "key": "ask|list|theatre|careful|high|none|new|none|first",
+  "text": "I asked {them} who had been in the seats tonight, and when, as exactly as {they} cared to.",
+  "source": "neighbourhood/39/4/lost-pet/wanderer#6.1"
+ },
+ {
+  "id": "sit-0636",
+  "key": "ask|list|theatre|careful|high|none|new|none|middle",
+  "text": "“Who came in tonight?” I said, and added that I’d take the times as well, if {they} had them.",
+  "source": "dealt/17/4/lost-pet/wanderer#7.2"
+ },
+ {
+  "id": "sit-0644",
+  "key": "ask|list|theatre|careful|low|none|new|none|first",
+  "text": "I asked {them} to take me through tonight seat by seat: who came in, when each arrived, and any face {they} didn’t know.",
+  "source": "neighbourhood/17/0/lost-pet/oracle#8.1"
+ },
+ {
+  "id": "sit-0631",
+  "key": "ask|list|theatre|careful|low|none|new|none|middle",
+  "text": "“Start with the first ticket,” I said, “and give me everybody who came in after it, and when, and any you couldn’t name.”",
+  "source": "neighbourhood/13/1/lost-item/reader#8.1"
+ },
+ {
+  "id": "sit-0669",
+  "key": "ask|list|theatre|careful|mid|none|new|none|first",
+  "text": "I asked {them} who’d been in tonight and when, and said I’d write it in the order {they} gave it.",
+  "source": "dealt/27/2/murder/oracle#12.1"
+ },
+ {
+  "id": "sit-0637",
+  "key": "ask|list|theatre|careful|mid|none|new|none|middle",
+  "text": "I asked who’d come down the aisles tonight, and when, as near as {they} could put it.",
+  "source": "neighbourhood/39/3/lost-pet/wanderer#6.2"
+ },
+ {
+  "id": "sit-0662",
+  "key": "ask|list|theatre|plain|high|none|new|none|middle",
+  "text": "I asked {them} who’d been in to see the show tonight, and when.",
+  "source": "dealt/33/5/lost-pet/wanderer#10.1"
+ },
+ {
+  "id": "sit-0673",
+  "key": "ask|list|theatre|plain|low|none|new|none|first",
+  "text": "“Tell me who came in tonight,” I said, “all of them, with about when, and whether you knew them.”",
+  "source": "dealt/30/0/murder/oracle#9.1"
+ },
+ {
+  "id": "sit-0665",
+  "key": "ask|list|theatre|plain|low|none|new|none|middle",
+  "text": "I asked {them} for everybody who’d come in tonight, by the clock, the strangers along with the regulars.",
+  "source": "dealt/35/0/lost-pet/oracle#8.1"
+ },
+ {
+  "id": "sit-0678",
+  "key": "ask|list|theatre|plain|mid|none|new|none|first",
+  "text": "I asked who had been in tonight, and when, from the front row to the back.",
+  "source": "dealt/7/2/lost-item/reader#6.1"
+ },
+ {
+  "id": "sit-0680",
+  "key": "ask|list|theatre|plain|mid|none|new|none|middle",
+  "text": "“Who’s been in tonight,” I said, “and times too, if you have them?”",
+  "source": "dealt/6/2/murder/oracle#6.2"
+ },
+ {
+  "id": "sit-0698",
+  "key": "ask|list|theatre|terse|high|none|new|none|middle",
+  "text": "I asked {them} for the night’s faces and the times that went with them.",
+  "source": "dealt/29/4/lost-pet/oracle#13.2"
+ },
+ {
+  "id": "sit-0706",
+  "key": "ask|list|theatre|terse|low|none|new|none|first",
+  "text": "I asked {them} who’d taken a seat tonight, and when, and whether any of them were strangers.",
+  "source": "dealt/8/1/lost-pet/oracle#8.1"
+ },
+ {
+  "id": "sit-0663",
+  "key": "ask|list|theatre|terse|low|none|new|none|middle",
+  "text": "“Start at the doors opening,” I said, “and tell me who came in, and when.”",
+  "source": "dealt/21/1/murder/wanderer#5.2"
+ },
+ {
+  "id": "sit-0692",
+  "key": "ask|list|theatre|terse|mid|none|new|none|middle",
+  "text": "I asked {them} who’d been in tonight, and when, the short way.",
+  "source": "dealt/19/3/lost-pet/reader#8.1"
+ },
+ {
+  "id": "sit-0701",
+  "key": "ask|list|unwatched|careful|high|none|new|none|first",
+  "text": "I asked {them} to think back over the night and tell me who {they}’d seen here, and when.",
+  "source": "dealt/27/4/lost-pet/oracle#11.1"
+ },
+ {
+  "id": "sit-0689",
+  "key": "ask|list|unwatched|careful|high|none|new|none|middle",
+  "text": "I asked {them} who had come and gone tonight while {they} was here, as exactly as {they} could.",
+  "source": "dealt/28/4/murder/reader#14.1"
+ },
+ {
+  "id": "sit-0688",
+  "key": "ask|list|unwatched|careful|mid|none|new|none|first",
+  "text": "“Nobody keeps a door here, I know,” I said, “but who did you see tonight, and when?”",
+  "source": "dealt/5/2/lost-pet/oracle#11.1"
+ },
+ {
+  "id": "sit-0676",
+  "key": "ask|list|unwatched|careful|mid|none|new|none|middle",
+  "text": "I asked {them} who {they}’d noticed tonight, and when, and said a careful guess was worth more to me than none.",
+  "source": "dealt/29/2/lost-pet/reader#11.1"
+ },
+ {
+  "id": "sit-0652",
+  "key": "ask|list|unwatched|plain|high|none|new|none|first",
+  "text": "I asked {them} who’d been around tonight, and when {they}’d seen them.",
+  "source": "dealt/1/5/lost-pet/oracle#13.1"
+ },
+ {
+  "id": "sit-0648",
+  "key": "ask|list|unwatched|plain|high|none|new|none|middle",
+  "text": "“Who was in here tonight,” I said, “that you saw?”",
+  "source": "neighbourhood/30/5/murder/oracle#12.1"
+ },
+ {
+  "id": "sit-0639",
+  "key": "ask|list|unwatched|plain|mid|none|new|none|first",
+  "text": "I asked {them} who {they}’d had for company in here tonight, known or not, and when.",
+  "source": "neighbourhood/16/3/murder/oracle#12.1"
+ },
+ {
+  "id": "sit-0647",
+  "key": "ask|list|unwatched|plain|mid|none|new|none|middle",
+  "text": "I asked {them} which faces {they}’d noticed tonight, strangers too, and roughly when.",
+  "source": "neighbourhood/36/3/murder/oracle#12.1"
+ },
+ {
+  "id": "sit-0656",
+  "key": "ask|list|unwatched|terse|high|none|new|none|first",
+  "text": "I asked {them} for any face {they}’d seen tonight, with a time to it.",
+  "source": "neighbourhood/16/5/murder/oracle#12.1"
+ },
+ {
+  "id": "sit-0660",
+  "key": "ask|list|unwatched|terse|high|none|new|none|middle",
+  "text": "“Tonight,” I said. “Who did you see, and when?”",
+  "source": "neighbourhood/7/4/lost-pet/reader#14.1"
+ },
+ {
+  "id": "sit-0654",
+  "key": "ask|list|unwatched|terse|mid|none|new|none|first",
+  "text": "I asked {them} who’d been in here tonight and when, and made it short to match.",
+  "source": "dealt/40/3/murder/oracle#12.1"
+ },
+ {
+  "id": "sit-0659",
+  "key": "ask|list|unwatched|terse|mid|none|new|none|middle",
+  "text": "“Anybody in here tonight,” I said, “and when?”",
+  "source": "neighbourhood/25/3/lost-pet/reader#11.1"
+ },
+ {
+  "id": "sit-0703",
+  "key": "ask|list|work|careful|low|none|new|none|middle",
+  "text": "I asked {them} who had come in while {they} was working tonight, every one, with the time, and anybody {they} didn’t know.",
+  "source": "dealt/6/1/murder/reader#8.1"
+ },
+ {
+  "id": "sit-1793",
+  "key": "ask|motive|bar|careful|high|none|new|none|middle",
+  "text": "I asked {them} how {they} felt about the whole business, and said {they} could take as long as {they} needed to put it right.",
+  "source": "dealt/35/4/lost-pet/reader#13.2"
+ },
+ {
+  "id": "sit-1806",
+  "key": "ask|motive|bar|careful|low|none|new|none|middle",
+  "text": "I asked {them} to tell me plainly what {thing} was to {them}, and whether anybody in this owed {them} anything, or the other way round.",
+  "source": "dealt/37/1/lost-item/wanderer#8.2"
+ },
+ {
+  "id": "sit-1770",
+  "key": "ask|motive|bar|careful|mid|none|new|none|middle",
+  "text": "I asked {them} where {they} stood in all this, and said I’d rather have the true shape of it than a quick one.",
+  "source": "dealt/8/2/lost-pet/reader#14.2"
+ },
+ {
+  "id": "sit-1827",
+  "key": "ask|motive|bar|careful|mid|none|new|none|middle",
+  "text": "I asked whether there was any bad blood between {them} and anybody in this, and said I’d wait for the careful version.",
+  "source": "dealt/1/3/lost-pet/wanderer#5.2"
+ },
+ {
+  "id": "sit-1768",
+  "key": "ask|motive|bar|plain|high|none|new|none|middle",
+  "text": "I asked {them} what {they}’d thought of the dead man.",
+  "requires": [
+   "murder"
+  ],
+  "source": "dealt/34/4/murder/wanderer#13.2"
+ },
+ {
+  "id": "sit-1825",
+  "key": "ask|motive|bar|plain|high|none|new|none|middle",
+  "text": "I asked {them} straight out what any of it was to {them}.",
+  "source": "dealt/22/4/murder/wanderer#14.2"
+ },
+ {
+  "id": "sit-1804",
+  "key": "ask|motive|bar|plain|low|none|new|none|middle",
+  "text": "I asked {them} how {they} stood with everybody in this: who {they} liked, who {they} didn’t, and who owed what to whom.",
+  "source": "neighbourhood/26/1/lost-pet/wanderer#3.2"
+ },
+ {
+  "id": "sit-1763",
+  "key": "ask|motive|bar|plain|mid|none|new|none|middle",
+  "text": "“Had you any reason to care about any of this,” I asked, “one way or the other?”",
+  "source": "dealt/1/3/lost-pet/wanderer#4.2"
+ },
+ {
+  "id": "sit-1820",
+  "key": "ask|motive|bar|plain|mid|none|new|none|middle",
+  "text": "“The dead man,” I said. “What was there between you two?”",
+  "requires": [
+   "murder"
+  ],
+  "source": "dealt/3/2/murder/wanderer#12.2"
+ },
+ {
+  "id": "sit-1785",
+  "key": "ask|motive|bar|terse|high|none|new|none|middle",
+  "text": "I asked {them} if any of this was personal.",
+  "source": "neighbourhood/28/4/murder/wanderer#13.2"
+ },
+ {
+  "id": "sit-1811",
+  "key": "ask|motive|bar|terse|low|none|new|none|middle",
+  "text": "I asked {them} for {their} side of it, the whole of it, and said a short version would do as long as nothing was left out.",
+  "source": "dealt/4/0/lost-item/wanderer#11.2"
+ },
+ {
+  "id": "sit-1782",
+  "key": "ask|motive|bar|terse|mid|none|new|none|middle",
+  "text": "I asked {them} what the business meant to {them}, in as many words as {they} wanted to spend.",
+  "source": "dealt/24/3/murder/wanderer#6.2"
+ },
+ {
+  "id": "sit-1800",
+  "key": "ask|motive|club|careful|high|none|new|none|middle",
+  "text": "I asked {them}, as carefully as I could, how things had stood between {them} and the dead man.",
+  "requires": [
+   "murder"
+  ],
+  "source": "neighbourhood/2/4/murder/reader#8.2"
+ },
+ {
+  "id": "sit-1810",
+  "key": "ask|motive|club|careful|low|none|new|none|middle",
+  "text": "I asked {them} to go slowly and tell me what {thing} had been to {them}, before tonight and since.",
+  "source": "dealt/28/0/lost-item/wanderer#7.2"
+ },
+ {
+  "id": "sit-1787",
+  "key": "ask|motive|club|careful|mid|none|new|none|middle",
+  "text": "I asked {them} how {they} had felt about the people in this, one at a time if {they} liked.",
+  "source": "neighbourhood/5/3/lost-pet/reader#13.2"
+ },
+ {
+  "id": "sit-1775",
+  "key": "ask|motive|club|plain|high|none|new|none|middle",
+  "text": "I asked {them} what {they} had against anybody in this, if anything.",
+  "source": "dealt/26/4/murder/wanderer#9.2"
+ },
+ {
+  "id": "sit-1798",
+  "key": "ask|motive|club|plain|low|none|new|none|middle",
+  "text": "“I want to know how you feel about all this,” I said, “the people in it, and {thing}, and anything owing between you.”",
+  "source": "dealt/29/1/lost-pet/wanderer#6.2"
+ },
+ {
+  "id": "sit-1803",
+  "key": "ask|motive|club|plain|mid|none|new|none|middle",
+  "text": "I asked {them} who in all this {they} liked and who {they} didn’t, and why.",
+  "source": "neighbourhood/1/2/lost-item/wanderer#9.2"
+ },
+ {
+  "id": "sit-1796",
+  "key": "ask|motive|club|terse|high|none|new|none|middle",
+  "text": "I asked {them} what it was to {them}, and nothing else.",
+  "source": "neighbourhood/2/4/murder/reader#10.2"
+ },
+ {
+  "id": "sit-1815",
+  "key": "ask|motive|club|terse|low|none|new|none|middle",
+  "text": "“Bad blood,” I said. “Any, with anybody in this, and what it was over.”",
+  "source": "neighbourhood/34/0/lost-item/wanderer#3.2"
+ },
+ {
+  "id": "sit-1807",
+  "key": "ask|motive|club|terse|mid|none|new|none|middle",
+  "text": "I asked {them} whether {they} had any stake in this, and if so, what kind.",
+  "source": "dealt/31/3/lost-pet/wanderer#5.2"
+ },
+ {
+  "id": "sit-1795",
+  "key": "ask|motive|flat|careful|high|none|new|none|middle",
+  "text": "I asked {them} what {thing} was to {them}, and waited while {they} chose the words.",
+  "source": "dealt/5/4/lost-pet/wanderer#10.2"
+ },
+ {
+  "id": "sit-1791",
+  "key": "ask|motive|flat|plain|high|none|new|none|middle",
+  "text": "I asked {them} how {they} felt about {thing}, plain as that.",
+  "source": "dealt/31/5/lost-pet/wanderer#7.2"
+ },
+ {
+  "id": "sit-1790",
+  "key": "ask|motive|flat|terse|high|none|new|none|middle",
+  "text": "“What was the dead man to you?” I asked.",
+  "requires": [
+   "murder"
+  ],
+  "source": "dealt/18/5/murder/wanderer#15.2"
+ },
+ {
+  "id": "sit-1774",
+  "key": "ask|motive|restaurant|careful|high|none|new|none|middle",
+  "text": "I asked {them} where {they} stood in this business, and let {them} take the long way to the answer if {they} needed it.",
+  "source": "dealt/3/4/lost-pet/reader#9.2"
+ },
+ {
+  "id": "sit-1831",
+  "key": "ask|motive|restaurant|careful|high|none|new|none|middle",
+  "text": "I asked {them} what {they} had thought of the people in this, and whether any of it was personal.",
+  "source": "dealt/32/5/murder/wanderer#12.2"
+ },
+ {
+  "id": "sit-1780",
+  "key": "ask|motive|restaurant|careful|low|none|new|none|middle",
+  "text": "“Take your time,” I said. “What was {thing} to you, and who else in this did you have feelings about, one way or another?”",
+  "source": "dealt/40/1/lost-item/reader#10.2"
+ },
+ {
+  "id": "sit-1781",
+  "key": "ask|motive|restaurant|careful|mid|none|new|none|middle",
+  "text": "I asked {them} to tell me, as exactly as {they} could, what {they} had riding on any of this.",
+  "source": "neighbourhood/26/2/lost-pet/wanderer#3.2"
+ },
+ {
+  "id": "sit-1764",
+  "key": "ask|motive|restaurant|plain|high|none|new|none|middle",
+  "text": "I asked {them} what {they} made of {thing}, and of the people in this.",
+  "source": "dealt/5/5/lost-pet/reader#7.2"
+ },
+ {
+  "id": "sit-1821",
+  "key": "ask|motive|restaurant|plain|high|none|new|none|middle",
+  "text": "I asked {them} how {they}’d got on with the dead man.",
+  "requires": [
+   "murder"
+  ],
+  "source": "neighbourhood/8/5/murder/reader#8.2"
+ },
+ {
+  "id": "sit-1769",
+  "key": "ask|motive|restaurant|plain|low|none|new|none|middle",
+  "text": "“Tell me how you stand with everybody in this,” I said, “friends, enemies, and anyone you owe or who owes you.”",
+  "source": "neighbourhood/1/0/lost-item/reader#10.2"
+ },
+ {
+  "id": "sit-1826",
+  "key": "ask|motive|restaurant|plain|low|none|new|none|middle",
+  "text": "I asked {them} to tell me what this business was to {them}, all of it, the people and {thing} and anything else that came into it.",
+  "source": "neighbourhood/14/1/lost-pet/reader#10.2"
+ },
+ {
+  "id": "sit-1771",
+  "key": "ask|motive|restaurant|plain|mid|none|new|none|middle",
+  "text": "I asked whether there was anything between {them} and anybody in this, money or a grudge or anything at all.",
+  "source": "neighbourhood/9/2/murder/wanderer#7.2"
+ },
+ {
+  "id": "sit-1828",
+  "key": "ask|motive|restaurant|plain|mid|none|new|none|middle",
+  "text": "I asked {them} plainly what {their} stake in it was, if {they} had one.",
+  "source": "neighbourhood/32/3/murder/wanderer#4.2"
+ },
+ {
+  "id": "sit-1799",
+  "key": "ask|motive|restaurant|terse|high|none|new|none|middle",
+  "text": "I asked {them} how {they} felt about it all, and left it short.",
+  "source": "dealt/27/5/lost-pet/wanderer#3.2"
+ },
+ {
+  "id": "sit-1784",
+  "key": "ask|motive|restaurant|terse|low|none|new|none|middle",
+  "text": "I asked {them} whether {they}’d had any quarrel with the dead man, and if so, what about, short as {they} liked.",
+  "requires": [
+   "murder"
+  ],
+  "source": "neighbourhood/27/0/murder/wanderer#4.2"
+ },
+ {
+  "id": "sit-1801",
+  "key": "ask|motive|restaurant|terse|mid|none|new|none|middle",
+  "text": "“How did you get along with the dead man?” I asked.",
+  "requires": [
+   "murder"
+  ],
+  "source": "dealt/12/2/murder/wanderer#6.2"
+ },
+ {
+  "id": "sit-1767",
+  "key": "ask|motive|rooming|careful|high|none|new|none|middle",
+  "text": "I asked {them} what the dead man had been to {them}, and gave {them} room to say it carefully.",
+  "requires": [
+   "murder"
+  ],
+  "source": "dealt/2/4/murder/wanderer#13.2"
+ },
+ {
+  "id": "sit-1824",
+  "key": "ask|motive|rooming|careful|high|none|new|none|middle",
+  "text": "I asked {them} whether anything in this had touched {them} before tonight, and waited for {them} to choose where to begin.",
+  "source": "dealt/37/5/lost-pet/wanderer#10.2"
+ },
+ {
+  "id": "sit-1802",
+  "key": "ask|motive|rooming|careful|low|none|new|none|middle",
+  "text": "“Tell me how you felt about the dead man,” I said, “and about the people around that business, as fully as you can manage.”",
+  "requires": [
+   "murder"
+  ],
+  "source": "neighbourhood/21/0/murder/reader#11.2"
+ },
+ {
+  "id": "sit-1808",
+  "key": "ask|motive|rooming|careful|mid|none|new|none|middle",
+  "text": "I asked {them}, slowly, whether anyone in this had ever done {them} a bad turn, or been done one.",
+  "source": "neighbourhood/6/2/murder/reader#12.2"
+ },
+ {
+  "id": "sit-1762",
+  "key": "ask|motive|rooming|plain|high|none|new|none|middle",
+  "text": "“What do you think of it all?” I asked.",
+  "source": "neighbourhood/13/5/lost-pet/wanderer#3.2"
+ },
+ {
+  "id": "sit-1819",
+  "key": "ask|motive|rooming|plain|high|none|new|none|middle",
+  "text": "I asked {them} whether {they} had any feelings about this business, good or bad.",
+  "source": "neighbourhood/16/5/murder/wanderer#5.2"
+ },
+ {
+  "id": "sit-1765",
+  "key": "ask|motive|rooming|plain|low|none|new|none|middle",
+  "text": "I asked {them} to give me {their} side: how {they} felt about everybody in this, and about {thing}, and why.",
+  "source": "neighbourhood/2/1/lost-pet/wanderer#6.2"
+ },
+ {
+  "id": "sit-1822",
+  "key": "ask|motive|rooming|plain|low|none|new|none|middle",
+  "text": "“Tell me what you think of all this,” I said, “everybody in it, and whether any of it keeps you up nights.”",
+  "source": "neighbourhood/5/0/lost-pet/reader#10.2"
+ },
+ {
+  "id": "sit-1776",
+  "key": "ask|motive|rooming|plain|mid|none|new|none|middle",
+  "text": "I asked {them} how {they} had felt about the dead man, then waited.",
+  "requires": [
+   "murder"
+  ],
+  "source": "neighbourhood/15/2/murder/reader#12.2"
+ },
+ {
+  "id": "sit-1783",
+  "key": "ask|motive|rooming|terse|high|none|new|none|middle",
+  "text": "I asked {them} what {thing} meant to {them}, if anything.",
+  "source": "dealt/15/5/lost-pet/reader#10.2"
+ },
+ {
+  "id": "sit-1805",
+  "key": "ask|motive|rooming|terse|low|none|new|none|middle",
+  "text": "I asked {them} for {their} side of things, everybody in it and what was owed where, and said {they} could keep it brief.",
+  "source": "neighbourhood/24/0/murder/wanderer#5.2"
+ },
+ {
+  "id": "sit-1809",
+  "key": "ask|motive|rooming|terse|mid|none|new|none|middle",
+  "text": "“Any reason to care how this comes out?” I asked.",
+  "source": "dealt/13/2/lost-item/wanderer#6.2"
+ },
+ {
+  "id": "sit-1786",
+  "key": "ask|motive|theatre|careful|high|none|new|none|middle",
+  "text": "“Before tonight,” I said, “what did you think of the dead man?”",
+  "requires": [
+   "murder"
+  ],
+  "source": "neighbourhood/6/4/murder/reader#8.2"
+ },
+ {
+  "id": "sit-1777",
+  "key": "ask|motive|theatre|careful|low|none|new|none|middle",
+  "text": "I asked {them} what {they} thought of everybody in this business, and of {thing}, from the beginning and as carefully as {they} liked.",
+  "source": "neighbourhood/2/0/lost-pet/wanderer#3.2"
+ },
+ {
+  "id": "sit-1773",
+  "key": "ask|motive|theatre|careful|mid|none|new|none|middle",
+  "text": "I asked {them} whether there was any history between {them} and the dead man, and asked {them} to be exact about it.",
+  "requires": [
+   "murder"
+  ],
+  "source": "neighbourhood/38/3/murder/wanderer#6.2"
+ },
+ {
+  "id": "sit-1830",
+  "key": "ask|motive|theatre|careful|mid|none|new|none|middle",
+  "text": "I asked {them} who in this {they} had feelings about, and what kind, and said slow was fine.",
+  "source": "neighbourhood/35/3/lost-pet/reader#14.2"
+ },
+ {
+  "id": "sit-1772",
+  "key": "ask|motive|theatre|plain|high|none|new|none|middle",
+  "text": "I asked {them} what {they} thought of everybody tangled up in this.",
+  "source": "neighbourhood/39/4/lost-pet/reader#9.2"
+ },
+ {
+  "id": "sit-1829",
+  "key": "ask|motive|theatre|plain|high|none|new|none|middle",
+  "text": "I asked {them} whether the dead man had been friend, enemy, or neither.",
+  "requires": [
+   "murder"
+  ],
+  "source": "dealt/34/5/murder/wanderer#8.2"
+ },
+ {
+  "id": "sit-1766",
+  "key": "ask|motive|theatre|plain|low|none|new|none|middle",
+  "text": "“Let’s have your side,” I said. “How you feel about everybody in this, and why, and whether money comes into it.”",
+  "source": "neighbourhood/35/0/lost-pet/wanderer#7.2"
+ },
+ {
+  "id": "sit-1823",
+  "key": "ask|motive|theatre|plain|low|none|new|none|middle",
+  "text": "I asked {them} to tell me plainly how {they}’d felt about the dead man, and about anybody else mixed up in it.",
+  "requires": [
+   "murder"
+  ],
+  "source": "dealt/39/0/murder/wanderer#7.2"
+ },
+ {
+  "id": "sit-1778",
+  "key": "ask|motive|theatre|plain|mid|none|new|none|middle",
+  "text": "I asked {them} what {they} had riding on this, if anything, and who {they} had it in for, if anybody.",
+  "source": "neighbourhood/4/2/lost-item/wanderer#4.2"
+ },
+ {
+  "id": "sit-1794",
+  "key": "ask|motive|theatre|terse|high|none|new|none|middle",
+  "text": "“How do you feel about all this?” I asked.",
+  "source": "dealt/9/4/lost-pet/wanderer#7.2"
+ },
+ {
+  "id": "sit-1797",
+  "key": "ask|motive|theatre|terse|low|none|new|none|middle",
+  "text": "I asked {them} for the short version of how {they} stood with everybody in this, owed and owing included.",
+  "source": "neighbourhood/20/0/lost-pet/reader#10.2"
+ },
+ {
+  "id": "sit-1789",
+  "key": "ask|motive|theatre|terse|mid|none|new|none|middle",
+  "text": "I asked {them} what {they}’d had against the dead man, if anything, and didn’t dress it up.",
+  "requires": [
+   "murder"
+  ],
+  "source": "neighbourhood/38/3/murder/wanderer#7.2"
+ },
+ {
+  "id": "sit-1812",
+  "key": "ask|motive|unwatched|careful|high|none|new|none|middle",
+  "text": "I asked {them} whether {they} had any quarrel with anybody in this, and said {they} could be as careful as {they} liked.",
+  "source": "neighbourhood/32/4/murder/reader#14.2"
+ },
+ {
+  "id": "sit-1816",
+  "key": "ask|motive|unwatched|careful|low|none|new|none|middle",
+  "text": "I asked {them} to tell me everything that stood between {them} and the dead man, and anybody else in this, and to take what time it needed.",
+  "requires": [
+   "murder"
+  ],
+  "source": "neighbourhood/9/1/murder/wanderer#4.2"
+ },
+ {
+  "id": "sit-1779",
+  "key": "ask|motive|unwatched|careful|mid|none|new|none|middle",
+  "text": "“I’d like to know where you stand in this,” I said, “as exactly as you can put it.”",
+  "source": "neighbourhood/14/3/murder/reader#12.2"
+ },
+ {
+  "id": "sit-1788",
+  "key": "ask|motive|unwatched|plain|high|none|new|none|middle",
+  "text": "I asked {them} how {they} felt about any of this.",
+  "source": "dealt/4/5/murder/wanderer#11.2"
+ },
+ {
+  "id": "sit-1814",
+  "key": "ask|motive|unwatched|plain|low|none|new|none|middle",
+  "text": "I asked {them} to tell me who in this {they} liked, who {they} didn’t, and what {they} made of {thing}.",
+  "source": "neighbourhood/19/1/lost-item/wanderer#6.2"
+ },
+ {
+  "id": "sit-1792",
+  "key": "ask|motive|unwatched|plain|mid|none|new|none|middle",
+  "text": "“Tell me straight,” I said. “Is there anything in this you care about, or anybody?”",
+  "source": "dealt/32/2/lost-pet/reader#11.2"
+ },
+ {
+  "id": "sit-1817",
+  "key": "ask|motive|unwatched|terse|high|none|new|none|middle",
+  "text": "I asked {them} if {they} had a grudge in this, and against whom.",
+  "source": "dealt/15/4/lost-pet/wanderer#15.2"
+ },
+ {
+  "id": "sit-1818",
+  "key": "ask|motive|unwatched|terse|low|none|new|none|middle",
+  "text": "“Who in this do you have feelings about,” I asked, “and what are they? Keep it short if you like.”",
+  "source": "neighbourhood/31/1/lost-item/wanderer#5.2"
+ },
+ {
+  "id": "sit-1813",
+  "key": "ask|motive|unwatched|terse|mid|none|new|none|middle",
+  "text": "I asked {them} if anybody in this had wronged {them}, or been wronged by {them}, and stopped there.",
+  "source": "dealt/6/3/murder/wanderer#6.2"
+ },
+ {
+  "id": "sit-2234",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "“Who’d want to,” I said, “out of everybody you know?”",
+  "source": "dealt/8/1/lost-pet/reader#1.6"
+ },
+ {
+  "id": "sit-2236",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "I asked who might have had a reason, and moved the lamp aside so nothing stood between us but the question.",
+  "source": "neighbourhood/39/0/murder/oracle#1.7"
+ },
+ {
+  "id": "sit-2238",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "“All right,” I said. “Now, who had a reason?”",
+  "source": "neighbourhood/4/1/lost-item/wanderer#1.7"
+ },
+ {
+  "id": "sit-2240",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "I asked for names: anybody with a grudge, a debt, or a reason of any kind.",
+  "source": "neighbourhood/30/0/murder/oracle#1.6"
+ },
+ {
+  "id": "sit-2242",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "“Who had a reason?” I asked, and picked up my pencil, which was all the encouragement I had to offer.",
+  "source": "neighbourhood/13/0/lost-item/reader#1.6"
+ },
+ {
+  "id": "sit-2244",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "I asked who would want to, and said a name was all I needed for now; the reasons could come along behind it.",
+  "source": "dealt/14/1/lost-pet/wanderer#1.6"
+ },
+ {
+  "id": "sit-2246",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "“Now the hard part,” I said. “Who’d want to?”",
+  "source": "dealt/32/1/lost-pet/oracle#1.6"
+ },
+ {
+  "id": "sit-2248",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "I said, “Anybody with a grudge, against you or anyone close to this?”",
+  "source": "neighbourhood/35/0/lost-pet/wanderer#1.7"
+ },
+ {
+  "id": "sit-2250",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "“Who’d want to?” I said, which is the question that pays the rent.",
+  "joke": true,
+  "source": "dealt/38/0/lost-pet/oracle#1.7"
+ },
+ {
+  "id": "sit-2252",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "I asked who would want to, and kept my hands flat on the desk while I waited for a name.",
+  "source": "dealt/13/0/lost-item/reader#1.8"
+ },
+ {
+  "id": "sit-2254",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "“Let’s have names,” I said. “Who’d want to, and why?”",
+  "source": "dealt/8/1/lost-pet/wanderer#1.6"
+ },
+ {
+  "id": "sit-2256",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "I asked who might have a reason. There’s always somebody with one, and usually a small crowd.",
+  "joke": true,
+  "source": "dealt/32/1/lost-pet/reader#1.6"
+ },
+ {
+  "id": "sit-2258",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "“Who do you think?” I asked; people who climb my stairs at this hour usually bring a name with them.",
+  "source": "dealt/37/1/lost-item/wanderer#1.7"
+ },
+ {
+  "id": "sit-2260",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "“Who’s got a reason?” I said, and turned the lamp so it wasn’t in anybody’s eyes.",
+  "source": "neighbourhood/8/1/lost-pet/oracle#1.6"
+ },
+ {
+  "id": "sit-2262",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "“Who would do a thing like this?” I asked, and kept my voice level for the both of us.",
+  "source": "neighbourhood/40/1/lost-item/wanderer#1.8"
+ },
+ {
+  "id": "sit-2264",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "“Enemies,” I said, “or friends who’d gone sour: who would want to?”",
+  "source": "neighbourhood/13/0/lost-item/oracle#1.6"
+ },
+ {
+  "id": "sit-2266",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "I asked the plain question: who had a reason, and who had wanted to?",
+  "source": "neighbourhood/11/0/lost-pet/reader#1.7"
+ },
+ {
+  "id": "sit-2268",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "“Somebody had a reason,” I said, “or thought so. Who?”",
+  "source": "dealt/1/1/lost-item/wanderer#1.7"
+ },
+ {
+  "id": "sit-2270",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "I said, “Who’d gain by it, or get even by it?”",
+  "source": "dealt/19/0/lost-item/oracle#1.8"
+ },
+ {
+  "id": "sit-2272",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "I asked who’d have wanted to, and told my client not to be polite about it.",
+  "source": "neighbourhood/2/1/lost-pet/reader#1.7"
+ },
+ {
+  "id": "sit-2274",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "I asked who would want this, and said I had all night if it took that long.",
+  "source": "neighbourhood/22/1/lost-item/reader#1.7"
+ },
+ {
+  "id": "sit-2276",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "I asked whether anybody came to mind, anybody at all, with a reason to want this.",
+  "source": "dealt/17/1/lost-pet/reader#1.7"
+ },
+ {
+  "id": "sit-2278",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "“Go through everybody you know,” I said, “and stop at the first one who’d want to.”",
+  "source": "dealt/26/0/lost-pet/wanderer#1.7"
+ },
+ {
+  "id": "sit-2280",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "I asked who had a reason. My client had clearly asked it already on the way over, and probably on every stair.",
+  "joke": true,
+  "source": "neighbourhood/35/1/lost-pet/reader#1.6"
+ },
+ {
+  "id": "sit-2282",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "I wrote the hour down and underlined it twice. Then I asked about the people: anybody at all who might have wanted this, friend or otherwise.",
+  "source": "dealt/11/0/lost-pet/wanderer#1.7"
+ },
+ {
+  "id": "sit-2284",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "“Now the people,” I said. “Anybody who’d have wanted this, even somebody you’d be ashamed to suspect out loud.”",
+  "source": "dealt/22/0/lost-item/reader#1.7"
+ },
+ {
+  "id": "sit-2286",
+  "key": "ask|office|office|none|low|narrows|new|none|middle",
+  "text": "I asked who came to mind in the small hours, when you lie awake and the faces come round whether you call them or not.",
+  "source": "neighbourhood/11/1/lost-pet/wanderer#1.6"
+ },
+ {
+  "id": "sit-2235",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "“If you had to put money on somebody,” I said, “who would it be?”",
+  "source": "dealt/7/2/lost-item/oracle#1.7"
+ },
+ {
+  "id": "sit-2237",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "I asked for anybody who might have wanted this, and said the list could run as long or as short as it liked.",
+  "source": "neighbourhood/37/2/lost-item/wanderer#1.8"
+ },
+ {
+  "id": "sit-2239",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "“Who wanted this to happen?” I said, and sat back to give the question some room.",
+  "source": "neighbourhood/38/2/lost-pet/oracle#1.7"
+ },
+ {
+  "id": "sit-2241",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "I asked who had something to gain by it, and who had something against my client, and whether they were the same somebody.",
+  "source": "dealt/40/2/lost-item/wanderer#1.7"
+ },
+ {
+  "id": "sit-2243",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "“When you ask yourself who’d do this,” I said, “whose face turns up first?”",
+  "source": "dealt/16/2/lost-item/reader#1.7"
+ },
+ {
+  "id": "sit-2245",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "I asked whether anybody had been wanting this, and told my client to say the name first and decide later whether it was unkind.",
+  "source": "dealt/22/2/lost-item/wanderer#1.8"
+ },
+ {
+  "id": "sit-2247",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "“Somebody had their reasons,” I said, and held the notebook open. “Whose?”",
+  "source": "neighbourhood/32/2/lost-pet/oracle#1.7"
+ },
+ {
+  "id": "sit-2249",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "I asked who had wanted this, plainly, and let the hour sit on the desk between us while my client thought it over.",
+  "source": "neighbourhood/13/2/lost-item/reader#1.7"
+ },
+ {
+  "id": "sit-2251",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "“Who’d be pleased tonight,” I said, “that this happened?”",
+  "source": "dealt/31/2/lost-item/oracle#1.6"
+ },
+ {
+  "id": "sit-2253",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "I asked who had been wishing for this lately. Everybody wishes for something; I wanted the ones who’d said so out loud.",
+  "source": "neighbourhood/25/2/lost-item/oracle#1.7"
+ },
+ {
+  "id": "sit-2255",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "“Start with whoever you’d least like me to look at,” I said. “Who is it?”",
+  "source": "neighbourhood/4/2/lost-item/reader#1.8"
+ },
+ {
+  "id": "sit-2257",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "“Who’s been envious, or owed money, or wronged?” I said, and any of the three would do.",
+  "source": "dealt/19/2/lost-item/oracle#1.7"
+ },
+ {
+  "id": "sit-2259",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "I turned to a clean page and asked who had a reason to want this, close to home or not.",
+  "source": "dealt/1/2/lost-item/reader#1.7"
+ },
+ {
+  "id": "sit-2261",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "“Who would do this?” I asked, quietly, the way you ask anything in a building with thin walls.",
+  "source": "neighbourhood/16/2/lost-item/reader#1.7"
+ },
+ {
+  "id": "sit-2263",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "I asked for anybody who’d stood to gain by it, and anybody who’d simply wanted to watch my client lose.",
+  "source": "dealt/14/2/lost-pet/reader#1.7"
+ },
+ {
+  "id": "sit-2265",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "“Give me somebody to go and look at,” I said. “Somebody with a reason.”",
+  "source": "neighbourhood/13/2/lost-item/oracle#1.7"
+ },
+ {
+  "id": "sit-2267",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "I asked who had it in for anybody in this, and how far back the bad feeling went.",
+  "source": "neighbourhood/17/2/lost-pet/wanderer#1.7"
+ },
+ {
+  "id": "sit-2269",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "“Never mind who you like,” I said. “Who wanted this?”",
+  "source": "dealt/37/2/lost-item/oracle#1.8"
+ },
+ {
+  "id": "sit-2271",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "I asked whether a face had come to mind yet, and whose it was.",
+  "source": "dealt/2/2/lost-pet/wanderer#1.7"
+ },
+ {
+  "id": "sit-2273",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "“There’s always somebody who wanted this,” I said. “Who is it this time?”",
+  "source": "neighbourhood/22/2/lost-item/wanderer#1.7"
+ },
+ {
+  "id": "sit-2275",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "I asked about quarrels, debts and old scores, and which of them had a face attached.",
+  "source": "dealt/28/2/lost-item/wanderer#1.8"
+ },
+ {
+  "id": "sit-2277",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "“If anybody hated anybody in this,” I said, “I’d like to know who, and what about.”",
+  "source": "dealt/2/2/lost-pet/oracle#1.7"
+ },
+ {
+  "id": "sit-2279",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "I asked where trouble might have come from: a neighbor, a friend, a relation, anybody who wanted something badly enough.",
+  "source": "neighbourhood/7/2/lost-item/wanderer#1.7"
+ },
+ {
+  "id": "sit-2281",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "I asked who had been wanting this, and told my client that wanting isn’t a crime yet, so a name costs nothing.",
+  "source": "dealt/4/2/lost-item/wanderer#1.7"
+ },
+ {
+  "id": "sit-2283",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "“Who wanted this badly enough to do something about it?” I said, and let the question stand.",
+  "source": "dealt/18/2/murder/reader#1.7"
+ },
+ {
+  "id": "sit-2285",
+  "key": "ask|office|office|none|mid|narrows|new|none|middle",
+  "text": "I asked who might have wanted this, starting with whoever my client least liked thinking about.",
+  "source": "dealt/32/2/lost-pet/wanderer#1.7"
+ },
+ {
+  "id": "sit-0539",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "“Has anybody got a time for it?” I asked.",
+  "source": "neighbourhood/14/4/murder/wanderer#1.4"
+ },
+ {
+  "id": "sit-0545",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "“When did this happen,” I said, “as close as you can put it?”",
+  "source": "dealt/33/5/lost-pet/reader#1.6"
+ },
+ {
+  "id": "sit-0551",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "I asked when, and how anybody came to know it.",
+  "source": "dealt/29/4/lost-pet/reader#1.5"
+ },
+ {
+  "id": "sit-0557",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "“Do you know when, near enough?” I said, and waited.",
+  "source": "dealt/34/5/murder/wanderer#1.4"
+ },
+ {
+  "id": "sit-0563",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "I asked for the time of it, or the nearest anybody could get.",
+  "source": "dealt/13/5/lost-pet/reader#1.4"
+ },
+ {
+  "id": "sit-0569",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "“When was this, as best anybody knows?” I asked.",
+  "source": "neighbourhood/40/4/murder/reader#1.5"
+ },
+ {
+  "id": "sit-0575",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "I asked when it happened. Nobody ever knows exactly, but somebody always knows roughly.",
+  "source": "neighbourhood/31/5/lost-pet/reader#1.5"
+ },
+ {
+  "id": "sit-0581",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "“Is there a time on any of this?” I asked.",
+  "source": "neighbourhood/26/5/murder/reader#1.5"
+ },
+ {
+  "id": "sit-0587",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "I asked what time it had happened, if anybody had it.",
+  "source": "dealt/34/4/murder/wanderer#1.4"
+ },
+ {
+  "id": "sit-0593",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "“Is there a clock in this anywhere?” I asked.",
+  "source": "dealt/36/4/murder/oracle#1.4"
+ },
+ {
+  "id": "sit-0599",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "I asked about the time, and whose clock it was.",
+  "source": "neighbourhood/23/4/lost-pet/reader#1.6"
+ },
+ {
+  "id": "sit-0605",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "“Does anybody know when?” I asked, and got the notebook ready.",
+  "source": "neighbourhood/4/5/murder/reader#1.5"
+ },
+ {
+  "id": "sit-0611",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "I asked when, and waited while my client found it.",
+  "source": "neighbourhood/6/4/murder/reader#1.5"
+ },
+ {
+  "id": "sit-0617",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "“What time did this happen, roughly?” I asked.",
+  "source": "dealt/18/5/murder/reader#1.4"
+ },
+ {
+  "id": "sit-0623",
+  "key": "ask|office|office|none|high|new|narrows|none|middle",
+  "text": "I asked how far into the evening it had happened.",
+  "source": "neighbourhood/36/4/murder/reader#1.4"
+ },
+ {
+  "id": "sit-0537",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "“Is there anybody who’d want this?” I asked my client.",
+  "source": "neighbourhood/18/5/murder/oracle#1.7"
+ },
+ {
+  "id": "sit-0543",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "I asked who would have wanted this, and kept quiet after.",
+  "source": "neighbourhood/21/4/lost-pet/oracle#1.9"
+ },
+ {
+  "id": "sit-0549",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "“Who would want this?” I said, meaning anybody at all.",
+  "source": "dealt/14/5/murder/oracle#1.8"
+ },
+ {
+  "id": "sit-0555",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "I asked for a name, if my client had one.",
+  "source": "neighbourhood/39/5/lost-pet/wanderer#1.8"
+ },
+ {
+  "id": "sit-0561",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "“Somebody wanted this,” I said. “Who comes to mind?”",
+  "source": "neighbourhood/24/5/murder/oracle#1.7"
+ },
+ {
+  "id": "sit-0567",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "I asked who bore anybody in this a grudge.",
+  "source": "neighbourhood/27/5/lost-pet/reader#1.9"
+ },
+ {
+  "id": "sit-0573",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "“Who’d do this?” I asked, and left it at that.",
+  "source": "neighbourhood/40/5/murder/reader#1.7"
+ },
+ {
+  "id": "sit-0579",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "I asked who would come out ahead because of this.",
+  "source": "neighbourhood/3/5/lost-pet/wanderer#1.7"
+ },
+ {
+  "id": "sit-0585",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "“Any enemies I ought to know about?” I asked.",
+  "source": "dealt/20/5/murder/oracle#1.8"
+ },
+ {
+  "id": "sit-0591",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "I asked who had wanted this, and didn’t dress it up.",
+  "source": "dealt/26/5/murder/wanderer#1.8"
+ },
+ {
+  "id": "sit-0597",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "“Who comes to your mind?” I asked, and waited for a name.",
+  "source": "neighbourhood/36/4/murder/wanderer#1.7"
+ },
+ {
+  "id": "sit-0603",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "I asked whether anybody had a reason to want this.",
+  "source": "dealt/9/4/lost-pet/reader#1.8"
+ },
+ {
+  "id": "sit-0609",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "“Who had cause?” I asked, in as few words as I had.",
+  "source": "dealt/22/5/murder/reader#1.7"
+ },
+ {
+  "id": "sit-0615",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "I put it simply, and asked who would want this.",
+  "source": "dealt/17/5/lost-pet/wanderer#1.8"
+ },
+ {
+  "id": "sit-0621",
+  "key": "ask|office|office|none|high|new|new|none|middle",
+  "text": "“Who’d want this, of the people you know?” I asked.",
+  "source": "neighbourhood/14/4/murder/reader#1.7"
+ },
+ {
+  "id": "sit-0538",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "I asked when it had happened, as close as anybody could put it, and who had done the putting.",
+  "source": "dealt/37/0/lost-item/oracle#1.6"
+ },
+ {
+  "id": "sit-0544",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "“Let’s get the time straight before we get anything else straight,” I said. “When was this?”",
+  "source": "neighbourhood/27/1/murder/reader#1.4"
+ },
+ {
+  "id": "sit-0550",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "I asked for the hour, or the nearest thing to it, and said I’d take a guess if a guess was all there was.",
+  "source": "neighbourhood/10/0/lost-item/oracle#1.5"
+ },
+ {
+  "id": "sit-0556",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "“When did this happen, near enough, and who says so?” I asked, and uncapped my pen.",
+  "source": "dealt/37/1/lost-item/wanderer#1.5"
+ },
+ {
+  "id": "sit-0562",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "I asked when it happened, and told my client to take it slowly, because people know more about a time than they think they do.",
+  "source": "dealt/23/0/lost-pet/reader#1.5"
+ },
+ {
+  "id": "sit-0568",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "“Start me at the time,” I said. “When did this happen, as best anybody can tell?”",
+  "source": "neighbourhood/17/0/lost-pet/reader#1.5"
+ },
+ {
+  "id": "sit-0574",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "I asked when it was, near enough to write down, and held the notebook flat on my knee while my client remembered.",
+  "source": "neighbourhood/19/1/lost-item/wanderer#1.5"
+ },
+ {
+  "id": "sit-0580",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "“Do you have a time for it, from anybody at all?” I asked, and found my pencil.",
+  "source": "dealt/15/1/murder/wanderer#1.4"
+ },
+ {
+  "id": "sit-0586",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "I asked how late in the evening it had happened, and whether anybody had looked at a clock when it did.",
+  "source": "neighbourhood/17/0/lost-pet/wanderer#1.5"
+ },
+ {
+  "id": "sit-0592",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "“Before we get anywhere near who,” I said, “tell me when, as close as you can make it.”",
+  "source": "neighbourhood/31/0/lost-item/reader#1.5"
+ },
+ {
+  "id": "sit-0598",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "I asked what time it had happened. The nearer the better, I said, but I’d take an hour either side.",
+  "source": "dealt/7/0/lost-item/reader#1.5"
+ },
+ {
+  "id": "sit-0604",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "I asked when it had happened, and how anybody knew: what they heard, or saw, or found afterwards.",
+  "source": "dealt/22/0/lost-item/reader#1.5"
+ },
+ {
+  "id": "sit-0610",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "“Can you put a time on it?” I asked, and said roughly would do; roughly is usually all anybody has.",
+  "source": "neighbourhood/32/0/lost-pet/wanderer#1.5"
+ },
+ {
+  "id": "sit-0616",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "I asked for the time of it, the closest anybody had, and wrote the question at the top of a fresh page.",
+  "source": "dealt/39/1/murder/wanderer#1.5"
+ },
+ {
+  "id": "sit-0622",
+  "key": "ask|office|office|none|low|new|narrows|none|middle",
+  "text": "“What time was this?” I asked, and told my client not to hurry it.",
+  "source": "dealt/14/1/lost-pet/reader#1.4"
+ },
+ {
+  "id": "sit-0541",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "I asked who might have wanted this. Anybody with a quarrel, a debt or a long memory, I said, and I didn’t mind if the list ran long.",
+  "source": "dealt/6/1/murder/reader#1.8"
+ },
+ {
+  "id": "sit-0547",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "“Now tell me who,” I said. “Anybody who wanted this, whether they ever said so or not.”",
+  "source": "dealt/3/0/murder/wanderer#1.7"
+ },
+ {
+  "id": "sit-0553",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "I asked who had a reason to want this, and said a reason didn’t have to be a good one, or even a sensible one, for me to want to hear it.",
+  "source": "neighbourhood/27/0/murder/oracle#1.7"
+ },
+ {
+  "id": "sit-0559",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "“Who stood to gain by this,” I asked, “or had something to settle, or just didn’t like the people in it?”",
+  "source": "dealt/18/1/murder/wanderer#1.7"
+ },
+ {
+  "id": "sit-0565",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "I asked who my client would look at first, if it were my client doing the looking.",
+  "source": "dealt/18/0/murder/oracle#1.8"
+ },
+ {
+  "id": "sit-0571",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "I asked for anybody with a reason, however small, and anybody who’d been heard to say something they’d now like to have back.",
+  "source": "dealt/21/0/murder/wanderer#1.7"
+ },
+ {
+  "id": "sit-0577",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "“Who would want this?” I asked, and said not to leave anybody off for being a friend.",
+  "source": "neighbourhood/15/1/murder/wanderer#1.7"
+ },
+ {
+  "id": "sit-0583",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "I asked who had been wanting this, and whether it was the sort of wanting people say out loud or the kind they keep in a drawer.",
+  "source": "dealt/27/0/murder/reader#1.7"
+ },
+ {
+  "id": "sit-0589",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "I asked who had a reason to want this, family, friends or strangers, and said I’d sort the good reasons from the bad later.",
+  "source": "dealt/3/0/murder/reader#1.7"
+ },
+ {
+  "id": "sit-0595",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "“Who’d want this?” I asked, and said to give me everybody; the crossing off was my job.",
+  "source": "neighbourhood/9/1/murder/reader#1.7"
+ },
+ {
+  "id": "sit-0601",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "I asked whether anybody had quarreled with anybody in this lately, or been owed, or been made a fool of.",
+  "source": "neighbourhood/9/0/murder/reader#1.7"
+ },
+ {
+  "id": "sit-0607",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "“Is there somebody who’d want this,” I asked, “somebody you’ve thought of already and talked yourself out of?”",
+  "source": "dealt/39/0/murder/reader#1.8"
+ },
+ {
+  "id": "sit-0613",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "I asked who would have wanted this, and looked at the window instead of my client, so the thinking could happen in private.",
+  "source": "neighbourhood/12/0/murder/wanderer#1.7"
+ },
+ {
+  "id": "sit-0619",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "I asked who had cause. People in this neighborhood keep their causes a long time, and I said I’d hear the old ones as well as the new.",
+  "source": "neighbourhood/39/1/murder/wanderer#1.8"
+ },
+ {
+  "id": "sit-0625",
+  "key": "ask|office|office|none|low|new|new|none|middle",
+  "text": "“Who wanted this?” I asked, and said a name with a reason behind it would be worth more to me than a name alone.",
+  "source": "neighbourhood/21/0/murder/reader#1.7"
+ },
+ {
+  "id": "sit-0536",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "“When did this happen?” I asked, and wet the end of the pencil.",
+  "source": "neighbourhood/26/3/murder/wanderer#1.4"
+ },
+ {
+  "id": "sit-0542",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "I asked what time this had been, and who’d been in a position to know.",
+  "source": "neighbourhood/28/2/lost-item/reader#1.6"
+ },
+ {
+  "id": "sit-0548",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "“Do we know when this was?” I asked, and turned up the lamp.",
+  "source": "neighbourhood/24/2/murder/reader#1.4"
+ },
+ {
+  "id": "sit-0554",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "I asked when it happened. If anybody heard or saw anything, it would have a time on it.",
+  "source": "dealt/12/2/murder/reader#1.4"
+ },
+ {
+  "id": "sit-0560",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "“What time, roughly?” I asked, and said roughly would be plenty to start.",
+  "source": "neighbourhood/34/3/murder/oracle#1.4"
+ },
+ {
+  "id": "sit-0566",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "I asked when, near enough to write down.",
+  "source": "dealt/39/3/lost-pet/oracle#1.5"
+ },
+ {
+  "id": "sit-0572",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "“Put a time on it for me,” I said, “if you can.”",
+  "source": "neighbourhood/33/2/murder/reader#1.4"
+ },
+ {
+  "id": "sit-0578",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "I asked what time it had happened, and whether that was a guess or something firmer.",
+  "source": "neighbourhood/2/2/lost-pet/reader#1.6"
+ },
+ {
+  "id": "sit-0584",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "“Have you any idea when?” I asked, and turned to a clean page.",
+  "source": "neighbourhood/13/2/lost-item/reader#1.5"
+ },
+ {
+  "id": "sit-0590",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "I asked about the time. Clients always know it better than they think.",
+  "source": "dealt/5/3/lost-pet/oracle#1.5"
+ },
+ {
+  "id": "sit-0596",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "“When was it?” I said, and told my client whatever there was would do.",
+  "source": "dealt/31/2/lost-item/oracle#1.4"
+ },
+ {
+  "id": "sit-0602",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "I asked when this had happened, and whose word the time rested on.",
+  "source": "dealt/11/2/lost-pet/wanderer#1.4"
+ },
+ {
+  "id": "sit-0608",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "I asked what part of the evening this was.",
+  "source": "dealt/2/2/lost-pet/wanderer#1.5"
+ },
+ {
+  "id": "sit-0614",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "“Any notion of the time it happened?” I asked.",
+  "source": "neighbourhood/19/2/lost-item/oracle#1.5"
+ },
+ {
+  "id": "sit-0620",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "I asked when, and said near enough would do; nobody I meet ever has it to the minute.",
+  "source": "dealt/36/2/murder/oracle#1.5"
+ },
+ {
+  "id": "sit-0626",
+  "key": "ask|office|office|none|mid|new|narrows|none|middle",
+  "text": "“When, more or less?” I asked, and waited with the notebook open on my knee.",
+  "source": "dealt/31/3/lost-pet/wanderer#1.4"
+ },
+ {
+  "id": "sit-0540",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "“Who would want this?” I asked, and let my client take it slowly.",
+  "source": "neighbourhood/4/3/murder/wanderer#1.7"
+ },
+ {
+  "id": "sit-0546",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "I asked whether anybody had a reason, and whether my client had heard it from them or about them.",
+  "source": "dealt/36/2/murder/wanderer#1.8"
+ },
+ {
+  "id": "sit-0552",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "“Anybody with a reason, even a small one?” I asked.",
+  "source": "neighbourhood/21/2/murder/oracle#1.7"
+ },
+ {
+  "id": "sit-0558",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "I asked who’d have wanted this, and told my client not to spare anybody’s feelings, including my client’s own.",
+  "source": "dealt/26/3/murder/reader#1.7"
+ },
+ {
+  "id": "sit-0564",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "“Who was angry, or owed money, or wanted something they couldn’t have?” I asked.",
+  "source": "dealt/21/3/lost-pet/wanderer#1.8"
+ },
+ {
+  "id": "sit-0570",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "I asked who would want this, and whether my client had ever said the name out loud before tonight.",
+  "source": "neighbourhood/9/2/murder/reader#1.7"
+ },
+ {
+  "id": "sit-0576",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "“Do you know anybody who’d want this?” I asked, and kept my face out of it.",
+  "source": "neighbourhood/8/3/murder/reader#1.7"
+ },
+ {
+  "id": "sit-0582",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "I asked about bad blood: who had it, and with whom.",
+  "source": "dealt/33/2/murder/wanderer#1.7"
+ },
+ {
+  "id": "sit-0588",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "“Who’d want this?” I asked, and my pencil waited with me.",
+  "source": "neighbourhood/30/3/murder/oracle#1.7"
+ },
+ {
+  "id": "sit-0594",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "I asked who stood to gain, and who just stood to enjoy it.",
+  "source": "dealt/28/3/murder/wanderer#1.8"
+ },
+ {
+  "id": "sit-0600",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "“Who’s the first person you thought of,” I asked, “on the stairs coming up?”",
+  "source": "dealt/21/2/murder/wanderer#1.7"
+ },
+ {
+  "id": "sit-0606",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "I asked who in my client’s life would want this, and said I didn’t need a reason yet, only a direction.",
+  "source": "neighbourhood/8/3/murder/wanderer#1.7"
+ },
+ {
+  "id": "sit-0612",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "“Name me somebody who’d want this,” I said, “if there is anybody.”",
+  "source": "dealt/16/3/murder/oracle#1.8"
+ },
+ {
+  "id": "sit-0618",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "“Who would you put first,” I asked, “if you had to make a list?”",
+  "source": "dealt/24/3/murder/reader#1.7"
+ },
+ {
+  "id": "sit-0624",
+  "key": "ask|office|office|none|mid|new|new|none|middle",
+  "text": "“Who had something against anybody in this?” I asked, and settled back to listen.",
+  "source": "dealt/27/2/murder/reader#1.7"
+ },
+ {
+  "id": "sit-2815",
+  "key": "close|account|bar|none|high|collides|none|none|last",
+  "text": "The bartender put a clean glass in front of me that I hadn’t asked for. I let it stand there.",
+  "source": "dealt/39/4/lost-pet/reader#14.10"
+ },
+ {
+  "id": "sit-2816",
+  "key": "close|account|bar|none|low|collides|none|none|last",
+  "text": "{They} went back to the bar, and I went back to my notebook, and for a minute we were both very busy with nothing.",
+  "source": "neighbourhood/39/1/murder/wanderer#7.10"
+ },
+ {
+  "id": "sit-2809",
+  "key": "close|account|bar|none|mid|collides|none|none|last",
+  "text": "Down the bar a glass went down hard on the wood, and everybody looked round but the two of us.",
+  "source": "dealt/4/2/lost-item/wanderer#12.8"
+ },
+ {
+  "id": "sit-2811",
+  "key": "close|account|club|none|high|collides|none|none|last",
+  "text": "Somebody behind me pulled a cork, and it was the most cheerful sound in the room by a distance.",
+  "source": "dealt/26/4/murder/reader#11.10"
+ },
+ {
+  "id": "sit-2808",
+  "key": "close|account|club|none|low|collides|none|none|last",
+  "text": "I shut the notebook on two evenings that wouldn’t lie flat together, and the smoke went on drifting overhead as if nothing had been said.",
+  "source": "neighbourhood/24/1/murder/oracle#8.10"
+ },
+ {
+  "id": "sit-2807",
+  "key": "close|account|club|none|mid|collides|none|none|last",
+  "text": "The street door opened, let a little of the night in, and thought better of it.",
+  "source": "dealt/14/3/murder/wanderer#11.9"
+ },
+ {
+  "id": "sit-2813",
+  "key": "close|account|flat|none|high|collides|none|none|last",
+  "text": "I closed the notebook. The flat went on being a flat around us, which is all you can ask of one.",
+  "source": "neighbourhood/7/4/lost-pet/wanderer#9.11"
+ },
+ {
+  "id": "sit-2802",
+  "key": "close|account|restaurant|none|high|collides|none|none|last",
+  "text": "Somebody came by with the coffeepot, looked at my face, and kept going.",
+  "source": "neighbourhood/22/4/murder/oracle#8.12"
+ },
+ {
+  "id": "sit-2818",
+  "key": "close|account|restaurant|none|high|collides|none|none|last",
+  "text": "Somebody set a coffee down at my elbow without being asked. It was the kindest thing anybody had done for me all night.",
+  "joke": true,
+  "source": "dealt/14/4/murder/wanderer#8.10"
+ },
+ {
+  "id": "sit-2805",
+  "key": "close|account|restaurant|none|low|collides|none|none|last",
+  "text": "In the kitchen somebody dropped a lid, and nobody at the tables turned round. They’d all heard worse tonight, and so had I.",
+  "source": "neighbourhood/27/0/murder/reader#7.10"
+ },
+ {
+  "id": "sit-2804",
+  "key": "close|account|restaurant|none|mid|collides|none|none|last",
+  "text": "I wrote the evening down the way it was served to me, and left the sums for later.",
+  "source": "dealt/15/2/murder/wanderer#15.6"
+ },
+ {
+  "id": "sit-2810",
+  "key": "close|account|rooming|none|mid|collides|none|none|last",
+  "text": "Upstairs a door shut, and the whole house listened to it, the way a rooming house listens to everything.",
+  "source": "dealt/34/3/murder/wanderer#14.9"
+ },
+ {
+  "id": "sit-2806",
+  "key": "close|account|theatre|none|high|collides|none|none|last",
+  "text": "Down the aisle a seat folded itself up with a bang, and the bang went round the house twice.",
+  "source": "neighbourhood/36/4/murder/oracle#8.12"
+ },
+ {
+  "id": "sit-2814",
+  "key": "close|account|theatre|none|low|collides|none|none|last",
+  "text": "I put the notebook away. The empty seats sat in their rows and kept their opinions to themselves, which is more than any audience ever managed.",
+  "joke": true,
+  "source": "dealt/21/1/murder/wanderer#11.6"
+ },
+ {
+  "id": "sit-2803",
+  "key": "close|account|theatre|none|mid|collides|none|none|last",
+  "text": "An usher’s flashlight went along a row behind us and found nothing worth stopping for.",
+  "source": "neighbourhood/25/2/lost-item/reader#10.11"
+ },
+ {
+  "id": "sit-2812",
+  "key": "close|account|unwatched|none|high|collides|none|none|last",
+  "text": "The door stayed shut while we talked. In a room like that, it’s the most you can ask.",
+  "source": "neighbourhood/5/4/lost-pet/reader#10.11"
+ },
+ {
+  "id": "sit-2801",
+  "key": "close|account|unwatched|none|mid|collides|none|none|last",
+  "text": "I wrote it all down and blew on the page, which never dries anything any faster but makes me feel useful.",
+  "source": "neighbourhood/14/3/murder/wanderer#15.11"
+ },
+ {
+  "id": "sit-2817",
+  "key": "close|account|unwatched|none|mid|collides|none|none|last",
+  "text": "The place was nearly empty by then, and the empty part was winning.",
+  "joke": true,
+  "source": "neighbourhood/33/2/murder/reader#8.9"
+ },
+ {
+  "id": "sit-2680",
+  "key": "close|account|bar|none|high|confirms|none|none|last",
+  "text": "The bartender wiped the wood in front of me, though it was clean already.",
+  "source": "neighbourhood/23/4/lost-pet/wanderer#14.11"
+ },
+ {
+  "id": "sit-2685",
+  "key": "close|account|bar|none|low|confirms|none|none|last",
+  "text": "I ordered a beer to be polite. It wasn’t much and it wasn’t good, and it was still the best thing to happen to me since supper.",
+  "joke": true,
+  "source": "neighbourhood/14/0/lost-pet/wanderer#11.12"
+ },
+ {
+  "id": "sit-2675",
+  "key": "close|account|bar|none|mid|confirms|none|none|last",
+  "text": "Down the bar somebody asked what time it was, and got told, and didn’t look as if it helped.",
+  "source": "dealt/8/2/lost-pet/wanderer#8.10"
+ },
+ {
+  "id": "sit-2692",
+  "key": "close|account|bar|none|mid|confirms|none|none|last",
+  "text": "I put the notebook back in my coat and let the bar have its quiet back.",
+  "source": "dealt/32/3/murder/wanderer#9.10"
+ },
+ {
+  "id": "sit-2682",
+  "key": "close|account|club|none|high|confirms|none|none|last",
+  "text": "Somebody went past with a tray held high over the heads, and the glasses on it never touched.",
+  "source": "neighbourhood/4/4/murder/reader#12.12"
+ },
+ {
+  "id": "sit-2687",
+  "key": "close|account|club|none|low|confirms|none|none|last",
+  "text": "The smoke had hung under the ceiling so long it had a lease, and nobody was going to argue with it at this hour.",
+  "joke": true,
+  "source": "dealt/35/0/lost-pet/wanderer#7.9"
+ },
+ {
+  "id": "sit-2684",
+  "key": "close|account|club|none|mid|confirms|none|none|last",
+  "text": "I stayed a minute longer than I needed to, because my feet were in favor of it and nobody asked me to move.",
+  "source": "neighbourhood/5/3/lost-pet/reader#12.12"
+ },
+ {
+  "id": "sit-2688",
+  "key": "close|account|flat|none|high|confirms|none|none|last",
+  "text": "A pipe knocked somewhere in the walls, and the flat went quiet again after it.",
+  "source": "dealt/8/4/murder/wanderer#15.12"
+ },
+ {
+  "id": "sit-2686",
+  "key": "close|account|restaurant|none|high|confirms|none|none|last",
+  "text": "The coffee in the urn had been on since supper, and the whole room smelled of it.",
+  "source": "neighbourhood/40/4/murder/reader#12.12"
+ },
+ {
+  "id": "sit-2674",
+  "key": "close|account|restaurant|none|low|confirms|none|none|last",
+  "text": "Somebody behind the counter began turning chairs up on the far tables, one at a time, not hurrying us.",
+  "source": "dealt/34/0/lost-item/reader#11.8"
+ },
+ {
+  "id": "sit-2691",
+  "key": "close|account|restaurant|none|low|confirms|none|none|last",
+  "text": "Somebody had left a pickle on a plate at the table beside mine. I ate it, because I was brought up not to waste.",
+  "joke": true,
+  "source": "dealt/1/1/lost-item/reader#9.9"
+ },
+ {
+  "id": "sit-2676",
+  "key": "close|account|restaurant|none|mid|confirms|none|none|last",
+  "text": "The kitchen door swung to and fro behind somebody and let out a breath of onions and steam.",
+  "source": "neighbourhood/9/2/murder/reader#14.11"
+ },
+ {
+  "id": "sit-2693",
+  "key": "close|account|restaurant|none|mid|confirms|none|none|last",
+  "text": "I sat on with the menu card in front of me and read the prices twice, to keep my eyes busy.",
+  "source": "dealt/34/2/lost-item/wanderer#10.8"
+ },
+ {
+  "id": "sit-2681",
+  "key": "close|account|rooming|none|low|confirms|none|none|last",
+  "text": "Somebody on the floor above was walking the length of a room and back, the way people do when they can’t sleep and can’t afford to go out.",
+  "source": "dealt/29/0/lost-pet/wanderer#11.9"
+ },
+ {
+  "id": "sit-2690",
+  "key": "close|account|rooming|none|mid|confirms|none|none|last",
+  "text": "I put the pencil away quietly. In a rooming house every small noise belongs to everybody.",
+  "source": "dealt/35/3/lost-pet/wanderer#10.11"
+ },
+ {
+  "id": "sit-2683",
+  "key": "close|account|theatre|none|high|confirms|none|none|last",
+  "text": "I wrote it down and capped the pen, and for a moment it was very quiet in there.",
+  "source": "neighbourhood/5/4/lost-pet/oracle#7.13"
+ },
+ {
+  "id": "sit-2678",
+  "key": "close|account|theatre|none|low|confirms|none|none|last",
+  "text": "I sat back. Theater seats are built for people who expect to be entertained, and I gave that up around the second act of my career.",
+  "joke": true,
+  "source": "dealt/22/0/lost-item/reader#11.8"
+ },
+ {
+  "id": "sit-2695",
+  "key": "close|account|theatre|none|low|confirms|none|none|last",
+  "text": "The house was mostly dark, with a little light over the exits, and the seats in rows like people waiting to be told something.",
+  "source": "neighbourhood/18/0/murder/reader#8.10"
+ },
+ {
+  "id": "sit-2679",
+  "key": "close|account|theatre|none|mid|confirms|none|none|last",
+  "text": "Somewhere in the dark at the back of the house somebody dropped something heavy and said so.",
+  "source": "dealt/2/3/murder/reader#8.10"
+ },
+ {
+  "id": "sit-2689",
+  "key": "close|account|unwatched|none|high|confirms|none|none|last",
+  "text": "The chair I was in had been sat in by a great many people. It didn’t remember any of them.",
+  "source": "neighbourhood/29/4/lost-pet/oracle#12.12"
+ },
+ {
+  "id": "sit-2677",
+  "key": "close|account|unwatched|none|mid|confirms|none|none|last",
+  "text": "I stayed where I was a minute, in a room nobody minds, with nobody minding me.",
+  "source": "neighbourhood/2/2/lost-pet/oracle#10.11"
+ },
+ {
+  "id": "sit-2694",
+  "key": "close|account|unwatched|none|mid|confirms|none|none|last",
+  "text": "The place had the hush of a room that is only ever used for one thing, and wasn’t being used for it now.",
+  "source": "neighbourhood/1/3/lost-pet/reader#10.12"
+ },
+ {
+  "id": "sit-2943",
+  "key": "close|account|flat|none|high|narrows|none|none|last",
+  "text": "I closed the notebook, and the flat went back to the small noises flats make when nobody is talking.",
+  "source": "neighbourhood/16/4/murder/oracle#9.13"
+ },
+ {
+  "id": "sit-2941",
+  "key": "close|account|rooming|none|high|narrows|none|none|last",
+  "text": "Out in the hall the stair light clicked off, and somebody on the landing clicked it back on.",
+  "source": "dealt/19/4/lost-pet/wanderer#15.10"
+ },
+ {
+  "id": "sit-2944",
+  "key": "close|account|rooming|none|high|narrows|none|none|last",
+  "text": "A tenant came down the stairs, saw us, and went back up for something forgotten.",
+  "source": "dealt/35/4/lost-pet/wanderer#14.8"
+ },
+ {
+  "id": "sit-2946",
+  "key": "close|account|rooming|none|high|narrows|none|none|last",
+  "text": "The house ticked and settled around us. Old houses keep later hours than the people in them.",
+  "source": "dealt/31/4/lost-pet/wanderer#12.9"
+ },
+ {
+  "id": "sit-2948",
+  "key": "close|account|rooming|none|high|narrows|none|none|last",
+  "text": "Somewhere above us a bed creaked, and then the house was still again.",
+  "source": "neighbourhood/33/4/lost-pet/wanderer#10.11"
+ },
+ {
+  "id": "sit-2950",
+  "key": "close|account|rooming|none|high|narrows|none|none|last",
+  "text": "I wrote it down. The hall light buzzed over us as if it had something to add.",
+  "source": "dealt/7/4/lost-pet/wanderer#9.9"
+ },
+ {
+  "id": "sit-2942",
+  "key": "close|account|rooming|none|mid|narrows|none|none|last",
+  "text": "A door along the hall opened an inch and closed again, which in a rooming house is how you say good night.",
+  "joke": true,
+  "source": "dealt/17/3/lost-pet/wanderer#13.10"
+ },
+ {
+  "id": "sit-2945",
+  "key": "close|account|rooming|none|mid|narrows|none|none|last",
+  "text": "Somebody’s alarm clock was ticking behind a door down the hall, loud enough to count by.",
+  "source": "dealt/35/3/lost-pet/wanderer#9.9"
+ },
+ {
+  "id": "sit-2947",
+  "key": "close|account|rooming|none|mid|narrows|none|none|last",
+  "text": "{They} stood in the doorway a moment longer, as if the hall might want {them} for something else.",
+  "source": "neighbourhood/27/3/lost-pet/wanderer#9.11"
+ },
+ {
+  "id": "sit-2949",
+  "key": "close|account|rooming|none|mid|narrows|none|none|last",
+  "text": "My feet had found the one warm board in the hall, and I let them keep it a while.",
+  "source": "dealt/27/3/lost-pet/wanderer#14.11"
+ },
+ {
+  "id": "sit-2638",
+  "key": "close|account|bar|none|high|new|none|none|last",
+  "text": "I stayed on my stool and let the night go by outside without me for a while.",
+  "source": "neighbourhood/10/4/murder/wanderer#15.14"
+ },
+ {
+  "id": "sit-2643",
+  "key": "close|account|bar|none|low|new|none|none|last",
+  "text": "Somebody at the far end of the bar was telling a long story to the bartender, who had heard it before and was letting it run.",
+  "source": "neighbourhood/21/1/murder/reader#7.13"
+ },
+ {
+  "id": "sit-2639",
+  "key": "close|account|bar|none|mid|new|none|none|last",
+  "text": "It had got late in the way bars get late, quietly, one empty stool at a time.",
+  "source": "neighbourhood/19/2/lost-item/wanderer#13.14"
+ },
+ {
+  "id": "sit-2633",
+  "key": "close|account|club|none|high|new|none|none|last",
+  "text": "Somebody by the door said good night to everybody, and nobody answered.",
+  "source": "neighbourhood/3/4/lost-pet/wanderer#13.12"
+ },
+ {
+  "id": "sit-2642",
+  "key": "close|account|club|none|low|new|none|none|last",
+  "text": "I stayed put a while. The street would still be out there when I was ready for it, and I wasn’t ready yet.",
+  "source": "neighbourhood/8/1/lost-pet/oracle#7.14"
+ },
+ {
+  "id": "sit-2637",
+  "key": "close|account|club|none|mid|new|none|none|last",
+  "text": "Somebody near the back laughed at a joke I hadn’t heard and wouldn’t have liked.",
+  "source": "neighbourhood/28/2/lost-item/wanderer#9.14"
+ },
+ {
+  "id": "sit-2629",
+  "key": "close|account|flat|none|high|new|none|none|last",
+  "text": "I wrote it down as given and put the pencil behind my ear, where it does its best thinking.",
+  "joke": true,
+  "source": "neighbourhood/21/5/lost-pet/oracle#10.10"
+ },
+ {
+  "id": "sit-2648",
+  "key": "close|account|flat|none|high|new|none|none|last",
+  "text": "The flat was warm and close, and the window had gone black with the night pressed up against it.",
+  "source": "neighbourhood/11/5/lost-pet/wanderer#8.12"
+ },
+ {
+  "id": "sit-2634",
+  "key": "close|account|restaurant|none|high|new|none|none|last",
+  "text": "I wrote it down, and the notebook went back in my coat, and that was all the ceremony there was.",
+  "source": "dealt/33/4/lost-pet/reader#11.12"
+ },
+ {
+  "id": "sit-2644",
+  "key": "close|account|restaurant|none|low|new|none|none|last",
+  "text": "Somebody two tables over was eating soup as if it were the last of it in the city, and maybe it was.",
+  "joke": true,
+  "source": "neighbourhood/15/1/murder/wanderer#7.13"
+ },
+ {
+  "id": "sit-2635",
+  "key": "close|account|restaurant|none|mid|new|none|none|last",
+  "text": "I wrote it down while somebody in the kitchen sang half a song, the same half, over and over.",
+  "source": "neighbourhood/17/2/lost-pet/wanderer#11.14"
+ },
+ {
+  "id": "sit-2628",
+  "key": "close|account|rooming|none|high|new|none|none|last",
+  "text": "Out in the hall somebody coughed, and the house waited to see if it would happen again.",
+  "source": "neighbourhood/15/5/lost-pet/wanderer#11.10"
+ },
+ {
+  "id": "sit-2647",
+  "key": "close|account|rooming|none|high|new|none|none|last",
+  "text": "The stairs creaked once above us with nobody on them. Rooming houses do that.",
+  "source": "neighbourhood/9/5/lost-pet/wanderer#11.10"
+ },
+ {
+  "id": "sit-2645",
+  "key": "close|account|rooming|none|low|new|none|none|last",
+  "text": "Somewhere above us a tenant was frying something at an hour when nothing should be fried, and the smell came down the stairs to tell us about it.",
+  "joke": true,
+  "source": "neighbourhood/20/0/lost-pet/wanderer#4.12"
+ },
+ {
+  "id": "sit-2646",
+  "key": "close|account|rooming|none|mid|new|none|none|last",
+  "text": "I wrote it in the notebook, and down in the hall the street door opened for somebody coming in late.",
+  "source": "dealt/6/2/murder/wanderer#13.10"
+ },
+ {
+  "id": "sit-2631",
+  "key": "close|account|theatre|none|high|new|none|none|last",
+  "text": "Somebody in the back row was asleep with a hat over the face, and had paid good money for it.",
+  "joke": true,
+  "source": "neighbourhood/9/5/lost-pet/oracle#8.11"
+ },
+ {
+  "id": "sit-2650",
+  "key": "close|account|theatre|none|high|new|none|none|last",
+  "text": "It was late enough now that I could feel the night in my knees.",
+  "source": "neighbourhood/31/4/lost-pet/reader#13.14"
+ },
+ {
+  "id": "sit-2636",
+  "key": "close|account|theatre|none|low|new|none|none|last",
+  "text": "The house smelled of oranges and old velvet, which is what every theater smells of by the end of the night.",
+  "source": "neighbourhood/35/0/lost-pet/wanderer#8.15"
+ },
+ {
+  "id": "sit-2640",
+  "key": "close|account|theatre|none|mid|new|none|none|last",
+  "text": "The last of the house lights were going down a bank at a time, as if somebody were putting the place to bed.",
+  "source": "dealt/37/2/lost-item/wanderer#6.12"
+ },
+ {
+  "id": "sit-2630",
+  "key": "close|account|unwatched|none|high|new|none|none|last",
+  "text": "I stayed in my chair a while. My feet had stopped complaining, and I didn’t want to start them up again.",
+  "source": "neighbourhood/12/5/murder/oracle#13.10"
+ },
+ {
+  "id": "sit-2649",
+  "key": "close|account|unwatched|none|high|new|none|none|last",
+  "text": "A draft came in under the door and went out the same way.",
+  "source": "neighbourhood/27/5/lost-pet/oracle#12.11"
+ },
+ {
+  "id": "sit-2641",
+  "key": "close|account|unwatched|none|low|new|none|none|last",
+  "text": "I wrote it down by a light that had never been meant for reading, and my eyes let me know about it.",
+  "source": "neighbourhood/21/1/murder/wanderer#5.11"
+ },
+ {
+  "id": "sit-2632",
+  "key": "close|account|unwatched|none|mid|new|none|none|last",
+  "text": "Somebody had left a newspaper on the chair beside mine, folded small, with a pencil mark beside a horse.",
+  "source": "neighbourhood/35/3/lost-pet/reader#7.15"
+ },
+ {
+  "id": "sit-2865",
+  "key": "close|admission-check|unwatched|none|high|new|none|none|last",
+  "text": "{They} picked up where {they}’d left off, as if I’d been a draft through the room.",
+  "source": "dealt/36/4/murder/oracle#13.8"
+ },
+ {
+  "id": "sit-2867",
+  "key": "close|admission-check|unwatched|none|high|new|none|none|last",
+  "text": "I thanked {them}, and {they} nodded without looking up.",
+  "source": "dealt/7/4/lost-pet/oracle#9.7"
+ },
+ {
+  "id": "sit-2869",
+  "key": "close|admission-check|unwatched|none|high|new|none|none|last",
+  "text": "The room went back to minding its own business, which is all it’s for.",
+  "source": "dealt/24/4/murder/oracle#13.7"
+ },
+ {
+  "id": "sit-2871",
+  "key": "close|admission-check|unwatched|none|high|new|none|none|last",
+  "text": "Nobody had looked up when I came over, and nobody looked up while we talked.",
+  "source": "dealt/25/4/lost-pet/reader#15.7"
+ },
+ {
+  "id": "sit-2873",
+  "key": "close|admission-check|unwatched|none|high|new|none|none|last",
+  "text": "The light in there was the kind that doesn’t care who it falls on.",
+  "source": "dealt/11/4/lost-pet/oracle#15.7"
+ },
+ {
+  "id": "sit-2875",
+  "key": "close|admission-check|unwatched|none|high|new|none|none|last",
+  "text": "I wrote it down and let {them} get back to it.",
+  "source": "dealt/5/4/lost-pet/oracle#12.7"
+ },
+ {
+  "id": "sit-2877",
+  "key": "close|admission-check|unwatched|none|high|new|none|none|last",
+  "text": "Somewhere a chair scraped, and then the room was as quiet as before.",
+  "source": "dealt/1/4/lost-pet/oracle#14.7"
+ },
+ {
+  "id": "sit-2864",
+  "key": "close|admission-check|unwatched|none|mid|new|none|none|last",
+  "text": "{They} went back to {their} business, and I let {them} have it back without a fuss.",
+  "source": "dealt/8/2/lost-pet/oracle#10.10"
+ },
+ {
+  "id": "sit-2866",
+  "key": "close|admission-check|unwatched|none|mid|new|none|none|last",
+  "text": "I put the notebook away. In a room nobody keeps watch over, what people tell you is all you get.",
+  "source": "dealt/32/2/lost-pet/reader#13.7"
+ },
+ {
+  "id": "sit-2868",
+  "key": "close|admission-check|unwatched|none|mid|new|none|none|last",
+  "text": "The door opened and shut behind somebody, and nobody turned to see who.",
+  "source": "dealt/33/3/lost-pet/oracle#9.10"
+ },
+ {
+  "id": "sit-2870",
+  "key": "close|admission-check|unwatched|none|mid|new|none|none|last",
+  "text": "I sat back and let the room forget about me, which it managed quickly and without regret.",
+  "joke": true,
+  "source": "dealt/16/2/lost-item/oracle#13.9"
+ },
+ {
+  "id": "sit-2872",
+  "key": "close|admission-check|unwatched|none|mid|new|none|none|last",
+  "text": "Somebody had a cigarette going in the corner, and the smoke drifted over to see what we were saying.",
+  "source": "dealt/20/3/murder/oracle#13.7"
+ },
+ {
+  "id": "sit-2874",
+  "key": "close|admission-check|unwatched|none|mid|new|none|none|last",
+  "text": "{They} turned back to the table as if I had never come over. It wasn’t rudeness; it was the custom of the house.",
+  "source": "dealt/16/3/murder/oracle#13.7"
+ },
+ {
+  "id": "sit-2876",
+  "key": "close|admission-check|unwatched|none|mid|new|none|none|last",
+  "text": "I wrote it down, and for a minute neither of us had anything else to say, which suited us both.",
+  "source": "dealt/36/2/murder/oracle#10.8"
+ },
+ {
+  "id": "sit-2878",
+  "key": "close|admission-check|unwatched|none|mid|new|none|none|last",
+  "text": "The talk at the other tables had gone low and private, the way it does when the night is past caring.",
+  "source": "dealt/16/3/murder/reader#14.7"
+ },
+ {
+  "id": "sit-1196",
+  "key": "close|arrival|scene-lost|none|high|new|none|none|last",
+  "text": "The flat had the hush that comes after something has gone out of it.",
+  "source": "neighbourhood/33/4/lost-pet/reader#2.7"
+ },
+ {
+  "id": "sit-1202",
+  "key": "close|arrival|scene-lost|none|high|new|none|none|last",
+  "text": "The flat was still in the way a held breath is still.",
+  "source": "neighbourhood/1/4/lost-pet/reader#2.7"
+ },
+ {
+  "id": "sit-1208",
+  "key": "close|arrival|scene-lost|none|high|new|none|none|last",
+  "text": "Outside, a late streetcar went by and rang its bell at nobody.",
+  "source": "dealt/27/4/lost-pet/reader#2.7"
+ },
+ {
+  "id": "sit-1214",
+  "key": "close|arrival|scene-lost|none|high|new|none|none|last",
+  "text": "I let the room be quiet for a bit. It had earned that much.",
+  "source": "neighbourhood/39/4/lost-pet/oracle#2.7"
+ },
+ {
+  "id": "sit-1220",
+  "key": "close|arrival|scene-lost|none|high|new|none|none|last",
+  "text": "The place where {thing} belonged was still there, which is the cruel thing about places.",
+  "source": "neighbourhood/15/5/lost-pet/oracle#2.7"
+ },
+ {
+  "id": "sit-1226",
+  "key": "close|arrival|scene-lost|none|high|new|none|none|last",
+  "text": "A floorboard spoke when I shifted my weight, so I stopped shifting my weight.",
+  "joke": true,
+  "source": "neighbourhood/35/4/lost-pet/reader#2.7"
+ },
+ {
+  "id": "sit-1232",
+  "key": "close|arrival|scene-lost|none|high|new|none|none|last",
+  "text": "Somewhere below a door shut, and the stairs passed the sound up one step at a time.",
+  "source": "neighbourhood/15/5/lost-pet/wanderer#5.7"
+ },
+ {
+  "id": "sit-1238",
+  "key": "close|arrival|scene-lost|none|high|new|none|none|last",
+  "text": "The street noise stopped at the door, as if it knew better than to come in.",
+  "source": "dealt/1/5/lost-pet/wanderer#2.7"
+ },
+ {
+  "id": "sit-1244",
+  "key": "close|arrival|scene-lost|none|high|new|none|none|last",
+  "text": "I looked at the room the way you look at a sentence with a word gone out of it.",
+  "source": "neighbourhood/31/5/lost-pet/wanderer#2.7"
+ },
+ {
+  "id": "sit-1250",
+  "key": "close|arrival|scene-lost|none|high|new|none|none|last",
+  "text": "I kept my coat on. It wasn’t my room to get comfortable in.",
+  "source": "neighbourhood/31/4/lost-pet/reader#2.7"
+ },
+ {
+  "id": "sit-1256",
+  "key": "close|arrival|scene-lost|none|high|new|none|none|last",
+  "text": "A tap dripped somewhere at the back, patient as a landlord.",
+  "joke": true,
+  "source": "dealt/1/5/lost-pet/oracle#2.7"
+ },
+ {
+  "id": "sit-1262",
+  "key": "close|arrival|scene-lost|none|high|new|none|none|last",
+  "text": "I didn’t sit. Something gone makes a room into a waiting room, and nobody sits easy in one of those.",
+  "source": "dealt/31/5/lost-pet/reader#2.7"
+ },
+ {
+  "id": "sit-1194",
+  "key": "close|arrival|scene-lost|none|low|new|none|none|last",
+  "text": "I said I was sorry about {thing}. It isn’t much, but it’s what there is to say in a doorway, and I said it plainly.",
+  "source": "neighbourhood/35/1/lost-pet/reader#2.7"
+ },
+ {
+  "id": "sit-1200",
+  "key": "close|arrival|scene-lost|none|low|new|none|none|last",
+  "text": "There’s a quiet that comes with being let into somebody’s home at this hour. It sits down beside you and doesn’t say much, and it doesn’t leave.",
+  "source": "dealt/23/0/lost-pet/oracle#2.7"
+ },
+ {
+  "id": "sit-1206",
+  "key": "close|arrival|scene-lost|none|low|new|none|none|last",
+  "text": "The radiator ticked as it cooled, and the room smelled of furniture polish and the end of a long evening.",
+  "source": "neighbourhood/10/0/lost-item/reader#2.7"
+ },
+ {
+  "id": "sit-1212",
+  "key": "close|arrival|scene-lost|none|low|new|none|none|last",
+  "text": "It was a home, which is harder to look at than a crime. You can at least write a crime down.",
+  "source": "dealt/2/0/lost-pet/wanderer#9.6"
+ },
+ {
+  "id": "sit-1218",
+  "key": "close|arrival|scene-lost|none|low|new|none|none|last",
+  "text": "Somebody in the building had a radio going low, a dance tune coming up through the floor with the dancing taken out of it.",
+  "source": "dealt/2/1/lost-pet/oracle#2.7"
+ },
+ {
+  "id": "sit-1224",
+  "key": "close|arrival|scene-lost|none|low|new|none|none|last",
+  "text": "The light from the street came in at the window and lay on the floor in a long pale square, not looking at anything in particular.",
+  "source": "neighbourhood/8/1/lost-pet/wanderer#2.7"
+ },
+ {
+  "id": "sit-1230",
+  "key": "close|arrival|scene-lost|none|low|new|none|none|last",
+  "text": "My feet had walked me all that way without a word of complaint, which made me suspicious of them.",
+  "joke": true,
+  "source": "dealt/25/1/lost-item/reader#2.7"
+ },
+ {
+  "id": "sit-1236",
+  "key": "close|arrival|scene-lost|none|low|new|none|none|last",
+  "text": "It was late, and the flat had that look rooms get when they expected everybody to be in bed hours ago.",
+  "source": "dealt/38/0/lost-pet/oracle#2.7"
+ },
+ {
+  "id": "sit-1242",
+  "key": "close|arrival|scene-lost|none|low|new|none|none|last",
+  "text": "I took the room in a corner at a time, starting with the corner farthest from the empty place, which is either cowardice or method.",
+  "joke": true,
+  "source": "dealt/10/1/lost-item/wanderer#2.7"
+ },
+ {
+  "id": "sit-1248",
+  "key": "close|arrival|scene-lost|none|low|new|none|none|last",
+  "text": "The rooms were warm, and the warmth still smelled faintly of a supper long since eaten.",
+  "source": "neighbourhood/13/1/lost-item/reader#2.7"
+ },
+ {
+  "id": "sit-1254",
+  "key": "close|arrival|scene-lost|none|low|new|none|none|last",
+  "text": "The window gave back the lamp and a tired man in a hat, and I didn’t ask either of them anything.",
+  "source": "neighbourhood/4/1/lost-item/wanderer#2.7"
+ },
+ {
+  "id": "sit-1260",
+  "key": "close|arrival|scene-lost|none|low|new|none|none|last",
+  "text": "I noticed I’d taken my hat off without deciding to. Some rooms do that to a man, and this was one of them.",
+  "source": "dealt/20/1/lost-pet/wanderer#6.6"
+ },
+ {
+  "id": "sit-1266",
+  "key": "close|arrival|scene-lost|none|low|new|none|none|last",
+  "text": "Somebody had turned the hall light low for the night, and a thin line of it lay along the bottom of the door.",
+  "source": "dealt/25/0/lost-item/oracle#2.7"
+ },
+ {
+  "id": "sit-1195",
+  "key": "close|arrival|scene-lost|none|mid|new|none|none|last",
+  "text": "I stood a minute just inside the door, hat in hand, and let the flat get its breath back.",
+  "source": "neighbourhood/34/2/lost-item/oracle#2.7"
+ },
+ {
+  "id": "sit-1201",
+  "key": "close|arrival|scene-lost|none|mid|new|none|none|last",
+  "text": "The flat smelled faintly of somebody else’s supper and somebody else’s soap, which is what every home smells of to a visitor.",
+  "source": "dealt/32/2/lost-pet/wanderer#3.7"
+ },
+ {
+  "id": "sit-1207",
+  "key": "close|arrival|scene-lost|none|mid|new|none|none|last",
+  "text": "It had gone very quiet out on the street. Even the night seemed to have stopped to look.",
+  "source": "dealt/25/3/lost-pet/reader#2.7"
+ },
+ {
+  "id": "sit-1213",
+  "key": "close|arrival|scene-lost|none|mid|new|none|none|last",
+  "text": "I gave my eyes a minute in the lamplight. They aren’t as young as they let on.",
+  "joke": true,
+  "source": "dealt/19/2/lost-item/reader#2.7"
+ },
+ {
+  "id": "sit-1219",
+  "key": "close|arrival|scene-lost|none|mid|new|none|none|last",
+  "text": "The empty place had the kind of quiet that makes people talk in whispers without knowing why.",
+  "source": "neighbourhood/31/3/lost-pet/oracle#2.7"
+ },
+ {
+  "id": "sit-1225",
+  "key": "close|arrival|scene-lost|none|mid|new|none|none|last",
+  "text": "The building settled with a creak somewhere above us, the sound old houses make when they’ve had a long day too.",
+  "source": "dealt/4/2/lost-item/reader#2.7"
+ },
+ {
+  "id": "sit-1231",
+  "key": "close|arrival|scene-lost|none|mid|new|none|none|last",
+  "text": "I put my hat on the chair nearest the door, which is where I always put it, in case I need to leave in a hurry and look dignified doing it.",
+  "joke": true,
+  "source": "neighbourhood/21/3/lost-pet/oracle#2.7"
+ },
+ {
+  "id": "sit-1237",
+  "key": "close|arrival|scene-lost|none|mid|new|none|none|last",
+  "text": "Through the window the roofs went on into the dark, every one of them keeping its own business to itself.",
+  "source": "neighbourhood/19/2/lost-item/oracle#2.7"
+ },
+ {
+  "id": "sit-1243",
+  "key": "close|arrival|scene-lost|none|mid|new|none|none|last",
+  "text": "I stood where I was and breathed quietly, the way you do in somebody else’s home when there’s been bad news.",
+  "source": "neighbourhood/11/3/lost-pet/reader#2.7"
+ },
+ {
+  "id": "sit-1249",
+  "key": "close|arrival|scene-lost|none|mid|new|none|none|last",
+  "text": "A truck went by in the street below, and the glass in the window hummed for a while after it had gone.",
+  "source": "dealt/15/3/lost-pet/reader#2.7"
+ },
+ {
+  "id": "sit-1255",
+  "key": "close|arrival|scene-lost|none|mid|new|none|none|last",
+  "text": "I wanted to say something useful. I said nothing, which in a doorway at this hour is often the same thing.",
+  "source": "dealt/17/3/lost-pet/reader#2.7"
+ },
+ {
+  "id": "sit-1261",
+  "key": "close|arrival|scene-lost|none|mid|new|none|none|last",
+  "text": "I unbuttoned my coat but kept it on, which is as far as I go in a stranger’s home on a night like this.",
+  "source": "neighbourhood/26/2/lost-pet/wanderer#4.7"
+ },
+ {
+  "id": "sit-1267",
+  "key": "close|arrival|scene-lost|none|mid|new|none|none|last",
+  "text": "The flat had the look of a place that had been told something it hadn’t wanted to hear, and was still taking it in.",
+  "source": "dealt/33/3/lost-pet/reader#2.7"
+ },
+ {
+  "id": "sit-1197",
+  "key": "close|arrival|scene-murder|none|high|new|none|none|last",
+  "text": "It was a small room for so much quiet.",
+  "source": "dealt/22/4/murder/wanderer#4.8"
+ },
+ {
+  "id": "sit-1203",
+  "key": "close|arrival|scene-murder|none|high|new|none|none|last",
+  "text": "The quiet in there wasn’t the restful kind. It was the kind that waits.",
+  "source": "dealt/10/5/murder/wanderer#2.8"
+ },
+ {
+  "id": "sit-1209",
+  "key": "close|arrival|scene-murder|none|high|new|none|none|last",
+  "text": "The window had the night pressed flat against it, black and patient.",
+  "source": "neighbourhood/18/5/murder/reader#2.8"
+ },
+ {
+  "id": "sit-1215",
+  "key": "close|arrival|scene-murder|none|high|new|none|none|last",
+  "text": "I let my breath out slowly, and the room let it pass without comment.",
+  "source": "dealt/36/5/murder/oracle#2.8"
+ },
+ {
+  "id": "sit-1221",
+  "key": "close|arrival|scene-murder|none|high|new|none|none|last",
+  "text": "Outside, the city went on with its night as if it hadn’t heard.",
+  "source": "neighbourhood/26/5/murder/reader#2.8"
+ },
+ {
+  "id": "sit-1227",
+  "key": "close|arrival|scene-murder|none|high|new|none|none|last",
+  "text": "My coat felt heavier in there. Coats do, in rooms like that.",
+  "source": "neighbourhood/40/5/murder/oracle#2.8"
+ },
+ {
+  "id": "sit-1233",
+  "key": "close|arrival|scene-murder|none|high|new|none|none|last",
+  "text": "I said nothing for a while. In a room like that, nothing is the first thing you owe anybody.",
+  "source": "dealt/2/5/murder/wanderer#3.8"
+ },
+ {
+  "id": "sit-1239",
+  "key": "close|arrival|scene-murder|none|high|new|none|none|last",
+  "text": "I’ve never got used to that particular silence, and I hope I never do.",
+  "source": "neighbourhood/40/5/murder/wanderer#7.8"
+ },
+ {
+  "id": "sit-1245",
+  "key": "close|arrival|scene-murder|none|high|new|none|none|last",
+  "text": "The building creaked as it cooled, the way buildings do when everybody in them ought to be asleep.",
+  "source": "neighbourhood/16/4/murder/reader#2.8"
+ },
+ {
+  "id": "sit-1251",
+  "key": "close|arrival|scene-murder|none|high|new|none|none|last",
+  "text": "Far off a streetcar rang its bell, and the sound came in thin and late, the way news does.",
+  "source": "dealt/20/5/murder/oracle#2.8"
+ },
+ {
+  "id": "sit-1257",
+  "key": "close|arrival|scene-murder|none|high|new|none|none|last",
+  "text": "I’ve stood in a good many rooms like that one. It never turns into a habit.",
+  "source": "dealt/22/5/murder/wanderer#12.8"
+ },
+ {
+  "id": "sit-1263",
+  "key": "close|arrival|scene-murder|none|high|new|none|none|last",
+  "text": "The night outside had gone very still, as if it were standing in the doorway with me.",
+  "source": "dealt/32/5/murder/oracle#2.8"
+ },
+ {
+  "id": "sit-1199",
+  "key": "close|arrival|scene-murder|none|low|new|none|none|last",
+  "text": "Somewhere in the building a radio was playing dance music, very low, for somebody who didn’t know yet.",
+  "source": "neighbourhood/27/0/murder/wanderer#12.8"
+ },
+ {
+  "id": "sit-1205",
+  "key": "close|arrival|scene-murder|none|low|new|none|none|last",
+  "text": "A room with a death in it goes on being a room, chairs and all, and that’s the hard part to look at.",
+  "source": "dealt/6/0/murder/reader#2.8"
+ },
+ {
+  "id": "sit-1211",
+  "key": "close|arrival|scene-murder|none|low|new|none|none|last",
+  "text": "I looked once, properly, the way you owe the dead, and then I made myself look at the room.",
+  "source": "neighbourhood/36/1/murder/wanderer#5.8"
+ },
+ {
+  "id": "sit-1217",
+  "key": "close|arrival|scene-murder|none|low|new|none|none|last",
+  "text": "There’s a cold that comes into a room after a death that has nothing to do with the weather, and it was in this one.",
+  "source": "neighbourhood/33/1/murder/reader#2.8"
+ },
+ {
+  "id": "sit-1223",
+  "key": "close|arrival|scene-murder|none|low|new|none|none|last",
+  "text": "I took my notebook out and didn’t open it yet. Some rooms you look at first, and write down after.",
+  "source": "neighbourhood/9/1/murder/reader#2.8"
+ },
+ {
+  "id": "sit-1229",
+  "key": "close|arrival|scene-murder|none|low|new|none|none|last",
+  "text": "Everything in the room had been somebody’s, and now it was nobody’s yet, waiting to be told whose.",
+  "source": "dealt/24/0/murder/reader#2.8"
+ },
+ {
+  "id": "sit-1235",
+  "key": "close|arrival|scene-murder|none|low|new|none|none|last",
+  "text": "Downstairs somebody laughed, and the laugh came up through the floor and stopped short at the door, as if it had seen.",
+  "source": "dealt/3/0/murder/wanderer#5.8"
+ },
+ {
+  "id": "sit-1241",
+  "key": "close|arrival|scene-murder|none|low|new|none|none|last",
+  "text": "Small things in a room go on looking ordinary afterwards, a hat on its hook or a pair of shoes by the door, and that’s what gets you.",
+  "source": "neighbourhood/6/1/murder/oracle#2.8"
+ },
+ {
+  "id": "sit-1247",
+  "key": "close|arrival|scene-murder|none|low|new|none|none|last",
+  "text": "The light was poor in there, and I was glad of it, and a little ashamed of being glad.",
+  "source": "dealt/15/0/murder/wanderer#3.7"
+ },
+ {
+  "id": "sit-1253",
+  "key": "close|arrival|scene-murder|none|low|new|none|none|last",
+  "text": "My own heartbeat sounded loud in there. I didn’t mind; it’s no bad thing to be reminded which side of the door you’re on.",
+  "source": "dealt/27/1/murder/reader#2.8"
+ },
+ {
+  "id": "sit-1259",
+  "key": "close|arrival|scene-murder|none|low|new|none|none|last",
+  "text": "The room was keeping very still, the way a witness does who hasn’t yet decided what to say.",
+  "source": "neighbourhood/6/0/murder/wanderer#4.8"
+ },
+ {
+  "id": "sit-1265",
+  "key": "close|arrival|scene-murder|none|low|new|none|none|last",
+  "text": "I counted the chairs out of habit. It gave my eyes something to do besides the one place they kept going back to.",
+  "source": "dealt/18/0/murder/oracle#2.8"
+ },
+ {
+  "id": "sit-1198",
+  "key": "close|arrival|scene-murder|none|mid|new|none|none|last",
+  "text": "It was a plain room with plain things in it, and one thing in it that wasn’t plain at all.",
+  "source": "neighbourhood/20/3/murder/oracle#2.8"
+ },
+ {
+  "id": "sit-1204",
+  "key": "close|arrival|scene-murder|none|mid|new|none|none|last",
+  "text": "I stood there long enough to be sure I was in the room, and not just looking at it.",
+  "source": "neighbourhood/15/2/murder/wanderer#3.8"
+ },
+ {
+  "id": "sit-1210",
+  "key": "close|arrival|scene-murder|none|mid|new|none|none|last",
+  "text": "It was the hour when even good rooms look tired, and this one had stopped being a good room.",
+  "source": "neighbourhood/16/3/murder/wanderer#2.8"
+ },
+ {
+  "id": "sit-1216",
+  "key": "close|arrival|scene-murder|none|mid|new|none|none|last",
+  "text": "I took a breath and let the room be what it was for a minute, before I started asking it things.",
+  "source": "dealt/38/3/murder/reader#2.8"
+ },
+ {
+  "id": "sit-1222",
+  "key": "close|arrival|scene-murder|none|mid|new|none|none|last",
+  "text": "I stood with my back to the door and let my eyes go slowly round, wall by wall, and back again.",
+  "source": "dealt/6/3/murder/reader#2.8"
+ },
+ {
+  "id": "sit-1228",
+  "key": "close|arrival|scene-murder|none|mid|new|none|none|last",
+  "text": "I stood where I was. My feet ached, and for once I didn’t mention it, even to myself.",
+  "source": "neighbourhood/30/3/murder/oracle#2.8"
+ },
+ {
+  "id": "sit-1234",
+  "key": "close|arrival|scene-murder|none|mid|new|none|none|last",
+  "text": "Whoever lived here had liked things a certain way, and the room was still trying to keep them like that.",
+  "source": "dealt/36/2/murder/reader#2.8"
+ },
+ {
+  "id": "sit-1240",
+  "key": "close|arrival|scene-murder|none|mid|new|none|none|last",
+  "text": "Nobody was saying anything, and the quiet had settled into the room as if it had been asked to stay.",
+  "source": "neighbourhood/36/2/murder/wanderer#2.8"
+ },
+ {
+  "id": "sit-1246",
+  "key": "close|arrival|scene-murder|none|mid|new|none|none|last",
+  "text": "The ceiling light hummed to itself, the only thing in the room that hadn’t noticed.",
+  "source": "dealt/20/3/murder/reader#2.8"
+ },
+ {
+  "id": "sit-1252",
+  "key": "close|arrival|scene-murder|none|mid|new|none|none|last",
+  "text": "It was very late, and the room had the look a room gets when the evening in it has ended badly and nobody can bring themselves to tidy.",
+  "source": "dealt/36/2/murder/wanderer#2.8"
+ },
+ {
+  "id": "sit-1258",
+  "key": "close|arrival|scene-murder|none|mid|new|none|none|last",
+  "text": "On a night like that you notice the small sounds, a tap, a floorboard, your own coat, and I noticed every one.",
+  "source": "neighbourhood/6/2/murder/wanderer#13.8"
+ },
+ {
+  "id": "sit-1264",
+  "key": "close|arrival|scene-murder|none|mid|new|none|none|last",
+  "text": "I didn’t sit down, though there were chairs. Some rooms you stand up in, like a church.",
+  "source": "neighbourhood/10/3/murder/wanderer#2.8"
+ },
+ {
+  "id": "sit-0014",
+  "key": "close|arrival|bar|none|high|none|none|none|last",
+  "text": "I took off my hat, and the room went on as if I hadn’t.",
+  "source": "dealt/39/5/lost-pet/wanderer#4.9"
+ },
+ {
+  "id": "sit-0041",
+  "key": "close|arrival|bar|none|high|none|none|none|last",
+  "text": "The bartender looked at me the way bartenders look at everybody, which is to say once.",
+  "source": "dealt/40/5/murder/reader#15.5"
+ },
+ {
+  "id": "sit-0068",
+  "key": "close|arrival|bar|none|high|none|none|none|last",
+  "text": "Somebody at the end of the bar laughed, and then thought about it, and stopped.",
+  "source": "dealt/7/4/lost-pet/reader#8.10"
+ },
+ {
+  "id": "sit-0094",
+  "key": "close|arrival|bar|none|high|none|none|none|last",
+  "text": "The smoke hung low, and the talk hung lower.",
+  "source": "neighbourhood/30/4/murder/reader#5.11"
+ },
+ {
+  "id": "sit-0013",
+  "key": "close|arrival|bar|none|low|none|none|none|last",
+  "text": "I took the stool nearest the end. It wobbled, but it wobbled honestly, which is more than you can say for most furniture in a bar.",
+  "joke": true,
+  "source": "neighbourhood/4/1/lost-item/wanderer#3.9"
+ },
+ {
+  "id": "sit-0040",
+  "key": "close|arrival|bar|none|low|none|none|none|last",
+  "text": "It was warm in there and smelled of beer and coats, and after the street it was the nicest thing that had happened to me in hours.",
+  "source": "neighbourhood/16/0/lost-item/reader#4.9"
+ },
+ {
+  "id": "sit-0067",
+  "key": "close|arrival|bar|none|low|none|none|none|last",
+  "text": "I put my elbows on the bar, where a great many elbows had been before mine, and none of them had done the wood any good.",
+  "joke": true,
+  "source": "dealt/31/1/lost-item/reader#4.8"
+ },
+ {
+  "id": "sit-0093",
+  "key": "close|arrival|bar|none|low|none|none|none|last",
+  "text": "Nobody looked round when I came in, which in a bar at this hour is as good as a welcome.",
+  "source": "dealt/13/0/lost-item/wanderer#9.8"
+ },
+ {
+  "id": "sit-0012",
+  "key": "close|arrival|bar|none|mid|none|none|none|last",
+  "text": "It took my eyes a minute to find the room in that light, and the room was in no hurry to be found.",
+  "source": "neighbourhood/19/2/lost-item/oracle#6.11"
+ },
+ {
+  "id": "sit-0039",
+  "key": "close|arrival|bar|none|mid|none|none|none|last",
+  "text": "There was a stool free at the bar. There usually is, at this end of the night.",
+  "source": "dealt/21/3/lost-pet/reader#4.10"
+ },
+ {
+  "id": "sit-0066",
+  "key": "close|arrival|bar|none|mid|none|none|none|last",
+  "text": "Glasses clinked somewhere down the bar, quiet and steady, like somebody keeping the books.",
+  "source": "dealt/29/3/lost-pet/reader#6.11"
+ },
+ {
+  "id": "sit-0092",
+  "key": "close|arrival|bar|none|mid|none|none|none|last",
+  "text": "I set my hat on the bar beside me. I’ve lost better hats in better bars, and I’m not proud.",
+  "joke": true,
+  "source": "neighbourhood/20/2/lost-pet/reader#4.10"
+ },
+ {
+  "id": "sit-0019",
+  "key": "close|arrival|club|none|high|none|none|none|last",
+  "text": "The room was warm and close and low, and my coat felt out of place in it.",
+  "source": "neighbourhood/39/5/lost-pet/reader#12.5"
+ },
+ {
+  "id": "sit-0046",
+  "key": "close|arrival|club|none|high|none|none|none|last",
+  "text": "I stood at the edge of things for a minute, the way you stand at the edge of cold water.",
+  "source": "neighbourhood/4/5/murder/oracle#5.9"
+ },
+ {
+  "id": "sit-0073",
+  "key": "close|arrival|club|none|high|none|none|none|last",
+  "text": "Smoke and talk, and under it all the door, with the night waiting on the other side.",
+  "source": "neighbourhood/24/4/murder/reader#5.10"
+ },
+ {
+  "id": "sit-0099",
+  "key": "close|arrival|club|none|high|none|none|none|last",
+  "text": "Nobody in a place like that asks your business. They look at your shoes and decide.",
+  "source": "dealt/16/5/murder/wanderer#2.9"
+ },
+ {
+  "id": "sit-0020",
+  "key": "close|arrival|club|none|low|none|none|none|last",
+  "text": "I found a spot by the wall where I could see the door and the room both, which is the only seat I ever want.",
+  "source": "neighbourhood/23/0/lost-pet/reader#4.8"
+ },
+ {
+  "id": "sit-0047",
+  "key": "close|arrival|club|none|low|none|none|none|last",
+  "text": "It was the kind of place where the drinks get smaller as the night gets longer, and the night had got very long.",
+  "joke": true,
+  "source": "neighbourhood/13/0/lost-item/oracle#4.8"
+ }
+]

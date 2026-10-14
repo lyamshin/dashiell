@@ -19,7 +19,7 @@
  *   - **the tokens**: only `{they} {them} {their} {role} {place} {thing} {means}`, and only ones
  *     its gap had; never a bare he, she, him, her or his (the referent goes through the tokens);
  *   - **the page's lints**: a where-next signpost (two a page is a quest log), a name and a
- *     verdict (`did it`, `must have`), "on the way out";
+ *     verdict (`did it`, `must have`), "on the way out", a pet called "it";
  *   - **copies**: 70% or more of its words shared with the card its gap had, or with any card of
  *     the old decks;
  *   - **near-duplicates**: 70% or more of its words shared with an earlier card of the same
@@ -145,6 +145,15 @@ if (cmd === 'batches') {
   const cut = new Map<string, string>();
   const kept: (SitCard & { stratum: string; slot: string; batch: number })[] = [];
   const byStratum = new Map<string, Set<string>[]>();
+  // A writer's check sees the batches written before theirs, for the near-duplicates.
+  if (cmd === 'check' && existsSync(WRITTEN)) {
+    const mine = new Set(written.map((w) => w.id));
+    for (const w of readJsonl<{ id: string; text: string }>(WRITTEN)) {
+      const g = gaps.get(w.id);
+      if (!g || mine.has(w.id)) continue;
+      byStratum.set(g.stratum, [...(byStratum.get(g.stratum) ?? []), words(w.text)]);
+    }
+  }
   const seen = new Set<string>();
   for (const w of written) {
     const g = gaps.get(w.id);
@@ -196,6 +205,11 @@ if (cmd === 'batches') {
     }
     if (DID_IT.test(plain) || /\bon the way out\b/i.test(plain) || /\bwhere I’d left (?:him|her)\b/i.test(plain)) {
       why('lint: a verdict or a banned turn');
+      continue;
+    }
+    // A lost pet is "he" or "she" (docs/47 B9): "who took it" only where it's a thing.
+    if (/\b(?:[Ii]t went (?:at|missing)|who took it\b|[Ww]here it is now|whoever took it\b|get it back\b)/.test(plain) && !(w.requires ?? []).includes('lost-item')) {
+      why('lint: a pet called “it”');
       continue;
     }
     const ws = words(text);

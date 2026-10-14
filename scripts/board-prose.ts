@@ -1,5 +1,5 @@
 /**
- * docs/44: the board's prose, measured. `npx tsx scripts/board-prose.ts [--nights 30] [--tiers 0,1,2,3,4,5] [--show]`
+ * docs/44: the board's prose, measured. `npx tsx scripts/board-prose.ts [--nights 30] [--from 1] [--tiers 0,1,2,3,4,5] [--show] [--plan off] [--situated 0]`
  *
  * Over N nights a tier, mixing the case types the tier builds (seed s takes the
  * tier's types in turn), along the oracle's route (what `npm run read` shows):
@@ -89,6 +89,8 @@ const val = (k: string) => {
   return i >= 0 ? args[i + 1] : undefined;
 };
 const N = Number(val('nights') ?? 30);
+// docs/51: `--from 41` measures nights the situated deck’s sample (seeds 1–40) never saw.
+const FROM = Number(val('from') ?? 1);
 const tiers = (val('tiers') ?? '0,1,2,3,4,5').split(',').map(Number) as TierIndex[];
 const show = args.includes('--show');
 if (val('plan') === 'off') PLAN.ops = false;
@@ -228,7 +230,7 @@ for (const tier of tiers) {
   let situated = 0;
   let eight = 0;
   const levels = DROPS.map(() => 0).concat([0]);
-  for (let s = 1; s <= N; s++) {
+  for (let s = FROM; s < FROM + N; s++) {
     const type = types[s % types.length] as CaseType;
     const d = dealBoard(s, tier, type, world ? { world } : {});
     const o = playBoardOracle(d);
