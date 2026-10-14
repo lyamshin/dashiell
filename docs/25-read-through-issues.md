@@ -145,3 +145,22 @@ Branch `neighbourhood`, the engine half: nights cast from the bible behind `--wo
 - **Fences:** only Sokol's (Fishel) and the Peacock (Miss Marsh) have their own. The Lyric, Steinmetz's and the rest get one of the pool's three ("Benny the pawnbroker's runner"), fixed per place, which sits oddly beside Wexler's pawnshop.
 - **Female victims** aren't cast, because the scene and office cards say "him". Women are clients, owners, suspects and culprits.
 - **`play` doesn't keep continuity:** the profile's recent culprits are the book's. The CLI deals by seed.
+
+### Bible 2 (docs/48), 2026-10-14
+
+Branch `bible-2`. Done: variety (160–186 distinct casts), the share (74–78%), arrivals enough that page 2 varies, three standing lines a watcher, a fence at every night place, doing lines by setting, an arrival for every back room, and women found dead. Left over:
+
+- **The engine's own lines still say "him" of the dead.** With `WOMEN_VICTIMS` on (`src/gen/board/world/cast.ts`), about half the murders have a dead woman. The bible, the board's cards, the reasons and the shelf's words carry her; these engine lines don't (Medium 2 reads "heard him laugh with somebody", "he’d let whoever did it in", "a man’s papers are where he keeps…", "went into his cocoa"). The root is the first; with it, the rest want a victim pronoun:
+  - `src/gen/board/generate.ts:780`: the victim is pushed with `female: false`. On a world night it wants `(cast.victim as BiblePerson).gender === 'f'`.
+  - `src/gen/board/generate.ts:880` ("went home: he had company coming", "his usual at"), `:1112` (`police: 'his heart'` for a workplace's means), `:1162` (`what: 'his papers'`), `:1203` (`'him laugh with somebody and then go quiet'`), `:1208` ("He’d been at … earlier in the evening, his usual.").
+  - `src/gen/board/content.ts:229–230` (`MURDER_POINTERS`: "swore at him", "in his desk"), `:373–384` (`MURDER_CLOCKS`: "He telephoned", "heard him laughing", "His watch broke", "heard him cry out", "the warmth of him", "His mantel clock"), `:401` (`FINDER_WHY`: "who heard his radio still going"). `ROOMING_MEANS` (`:360–363`) is said of her already, by the cast.
+  - `src/gen/board/pointers.ts:76` ("found him").
+  - `src/game/board/pages.ts:659` (the dead in the client's mouth is "He"), `:982` ("he’d let whoever did it in"), `:1197` (the papers' fallback, "He had a page on every one of them"). `:703` ("his own flat") doesn't fire for a woman, whose flat is "the Kahane flat".
+  - `src/game/board/thread.ts:182` ("a man’s papers are where he keeps…"), `knowledge.ts:253` and `stars.ts:212` ("where he died"), `report.ts:439` ("went into his {vessel}") and `:505` ("† the dead man"), `names.ts:30` ("the dead man"), `src/ui/board-book.ts:359` ("The dead man.").
+  - Until those land, `WOMEN_VICTIMS = false` casts only men, as before.
+- **A small case's owner is "a widow" or "a widower"** (`generate.ts:793`), which Miss Kahane (twenty-odd and unmarried) and Kaminsky aren't.
+- **A reason through somebody in between is ambiguous in the client's mouth:** "He had been at war with Miss Kahane, his old flame", where "he" is the dead man (`pages.ts:659`) and "his" the suspect. The form is `motives.ts`'s `{victim} had been at war with {T}, {their} {rel}`; it would read better with the suspect's name on the relation ("Kaminsky’s old flame"), which needs `anon`'s patterns changed with it.
+- **A look after a habit about somebody else** reads as theirs: "The barman counts the glasses onto a towel at closing… He had a little black notebook" (Doyle's look, Medium 2 p7), "There was sawdust on the floor… He had a right hand already out" (Medium 10 p7). The page says the look by pronoun after the place's staging line.
+- **Every place and person within 60 nights isn't met:** Raw has no unwatched place or workplace, Hard-boiled no workplace murders, the workplaces' watchers come only with workplace murders, and a fence is only counted on nights they keep a back room (the sweep counts a case's people, and the fence a thing goes to isn't one). Docs/48's Bible 2 section has the table.
+- **`board-prose` has four hits,** all engine lines: a place said three times in a paragraph by the confirmation line (Medium 16, Soft-boiled 28), a name three times on a lost-pet list page (Medium 13), a thought said twice (Hard-boiled 14).
+- **The engine's grammar for a plural lost thing:** "That’s where the spoons lives", "The spoons … is gone" (Coddled 9).

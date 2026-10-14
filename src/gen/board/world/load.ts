@@ -12,6 +12,7 @@
  * - ties are mutual, with the other end's kind (a lodger's landlady);
  * - no two people share a first name or a job;
  * - a watcher lives or works where they watch, and a gag lives at one place;
+ * - doing lines and looks name a place or "any", and every hide has a name and an arrival;
  * - the places cover what the generator casts a night from (`coverage`).
  */
 
@@ -82,7 +83,8 @@ export function bibleProblems(placesJson: unknown, peopleJson: unknown, opts: { 
       else {
         if (!isStr(w.person)) err(`${at}.watcher`, 'names nobody');
         else if (!personIds.has(w.person)) err(`${at}.watcher`, `"${w.person}" is not a person`);
-        for (const k of ['counts', 'sees', 'blind']) if (!isStr(w[k])) err(`${at}.watcher`, `has no ${k}`);
+        for (const k of ['sees', 'blind']) if (!isStr(w[k])) err(`${at}.watcher`, `has no ${k}`);
+        if (!Array.isArray(w.counts) || w.counts.length === 0 || w.counts.some((x) => !isStr(x))) err(`${at}.watcher.counts`, 'wants a list of standing lines in their own words');
       }
     }
     if (!isObj(raw.minutes)) err(`${at}.minutes`, 'wants a table of minutes to every other place');
@@ -107,7 +109,15 @@ export function bibleProblems(placesJson: unknown, peopleJson: unknown, opts: { 
         seen.add(d.id);
       });
     }
-    if (!Array.isArray(raw.hides) || raw.hides.some((h) => !isStr(h))) err(`${at}.hides`, 'wants a list of strings');
+    if (!Array.isArray(raw.hides)) err(`${at}.hides`, 'wants a list');
+    else {
+      const names = new Set<string>();
+      raw.hides.forEach((h, j) => {
+        if (!isObj(h) || !isStr(h.name) || !isStr(h.arrival)) return err(`${at}.hides[${j}]`, 'wants { name, arrival }');
+        if (names.has(h.name)) err(`${at}.hides[${j}]`, `"${h.name}" is named twice`);
+        names.add(h.name);
+      });
+    }
   });
 
   // --- People ---------------------------------------------------------------------------------
@@ -130,7 +140,12 @@ export function bibleProblems(placesJson: unknown, peopleJson: unknown, opts: { 
       else if (!placeIds.has(w.place)) err(`${at}.works`, `"${w.place}" is not a place`);
     }
     if (!WORLD_MANNERS.includes(raw.manner as never)) err(at, `manner "${String(raw.manner)}" is not one of ${WORLD_MANNERS.join(', ')}`);
-    if (!Array.isArray(raw.doing) || raw.doing.length === 0 || raw.doing.some((d) => !isStr(d))) err(`${at}.doing`, 'wants at least one line');
+    if (!Array.isArray(raw.doing) || raw.doing.length === 0) err(`${at}.doing`, 'wants at least one');
+    else
+      raw.doing.forEach((d, j) => {
+        if (!isObj(d) || !isStr(d.setting) || !isStr(d.text)) return err(`${at}.doing[${j}]`, 'wants { setting, text }');
+        if (d.setting !== 'any' && !placeIds.has(d.setting)) err(`${at}.doing[${j}]`, `setting "${d.setting}" is not a place or "any"`);
+      });
     if (!Array.isArray(raw.looks) || raw.looks.length === 0) err(`${at}.looks`, 'wants at least one');
     else
       raw.looks.forEach((l, j) => {

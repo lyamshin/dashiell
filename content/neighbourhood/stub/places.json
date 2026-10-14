@@ -9,7 +9,7 @@
       "hours": { "open": 19, "close": 2 },
       "watcher": {
         "person": "sokol",
-        "counts": "I pour every drink in this place myself, and I don’t pour for a face I don’t know.",
+        "counts": ["I pour every drink in this place myself, and I don’t pour for a face I don’t know."],
         "sees": "the whole bar from the taps, and the street door in the mirror",
         "blind": "the back room, once the curtain’s drawn"
       },
@@ -24,7 +24,7 @@
         { "id": "slate", "kind": "habit", "text": "The slate over the taps said SOUP, with the soup crossed off." },
         { "id": "cat", "kind": "gag", "text": "The cat was asleep on the cash register again, and Sokol was ringing up around her." }
       ],
-      "hides": ["the back room"]
+      "hides": [{ "name": "the back room", "arrival": "The back room at Sokol’s was a table, two chairs and a curtain, and the curtain was drawn." }]
     },
     {
       "id": "raffertys",
@@ -35,7 +35,7 @@
       "hours": null,
       "watcher": {
         "person": "rafferty",
-        "counts": "Nobody gets up my stairs without going round my chair, and nobody’s tried it twice.",
+        "counts": ["Nobody gets up my stairs without going round my chair, and nobody’s tried it twice."],
         "sees": "the stair and the street door",
         "blind": "the back hall, where the coal goes in"
       },

@@ -4,7 +4,7 @@
       "id": "rafferty", "first": "Nora", "last": "Rafferty", "honorific": "Mrs.", "gender": "f", "age": "60s",
       "job": "the landlady", "home": "raffertys", "works": null,
       "manner": "careful",
-      "doing": ["sitting in her chair at the foot of the stairs with her knitting", "counting the rent book with a wet thumb", "listening to the stairs"],
+      "doing": [{ "setting": "raffertys", "text": "sitting in her chair at the foot of the stairs with her knitting" }, { "setting": "raffertys", "text": "counting the rent book with a wet thumb" }, { "setting": "raffertys", "text": "listening to the stairs" }],
       "looks": [{ "setting": "raffertys", "text": "She had a shawl over a shawl and eyes that had heard every excuse for late rent and believed one." }],
       "voice": {
         "ask": ["“Where was I? Where I always am, which is in this chair.”"],
@@ -26,7 +26,7 @@
       "id": "sokol", "first": "Abe", "last": "Sokol", "honorific": null, "gender": "m", "age": "50s",
       "job": "the barman", "home": "sokols", "works": { "place": "sokols", "open": 19, "close": 2 },
       "manner": "terse",
-      "doing": ["wiping a glass that was already dry", "ringing up around the cat", "reading the racing page with his lips moving"],
+      "doing": [{ "setting": "sokols", "text": "wiping a glass that was already dry" }, { "setting": "sokols", "text": "ringing up around the cat" }, { "setting": "sokols", "text": "reading the racing page with his lips moving" }],
       "looks": [{ "setting": "sokols", "text": "He had forearms like a pair of hams and a moustache that did most of his talking." }],
       "voice": {
         "ask": ["“Behind the bar. Ask the bar.”"],
@@ -47,7 +47,7 @@
       "id": "steinbach", "first": "Otto", "last": "Steinbach", "honorific": null, "gender": "m", "age": "40s",
       "job": "a piano teacher", "home": "raffertys", "works": null,
       "manner": "plain",
-      "doing": ["playing scales on the edge of the table", "reading a score with his glasses pushed up"],
+      "doing": [{ "setting": "raffertys", "text": "playing scales on the edge of the table" }, { "setting": "raffertys", "text": "reading a score with his glasses pushed up" }],
       "looks": [{ "setting": "any", "text": "He had long hands and a short temper, and the hands were the only part of him that was patient." }],
       "voice": {
         "ask": ["“Tonight? A lesson, and then I needed a drink, which is what lessons are for.”"],
@@ -68,7 +68,7 @@
       "id": "marchetti", "first": "Lucia", "last": "Marchetti", "honorific": "Miss", "gender": "f", "age": "20s",
       "job": "a switchboard operator", "home": "ludlow", "works": null,
       "manner": "terse",
-      "doing": ["filing her nails as if they owed her money", "reading a movie magazine upside down to see if it helped"],
+      "doing": [{ "setting": "ludlow", "text": "filing her nails as if they owed her money" }, { "setting": "ludlow", "text": "reading a movie magazine upside down to see if it helped" }],
       "looks": [{ "setting": "any", "text": "She had the headset dent in her hair still, and a voice that said “Number, please” even when it said hello." }],
       "voice": {
         "ask": ["“I’ll tell you once. I talk for a living, I don’t do it for free.”"],
@@ -89,7 +89,7 @@
       "id": "vitale", "first": "Nunzio", "last": "Vitale", "honorific": null, "gender": "m", "age": "30s",
       "job": "a bookmaker", "home": "ludlow", "works": { "place": "sokols", "open": 20, "close": 1 },
       "manner": "careful",
-      "doing": ["writing very small numbers in a very small book", "eating soup without taking his hat off"],
+      "doing": [{ "setting": "ludlow", "text": "writing very small numbers in a very small book" }, { "setting": "ludlow", "text": "eating soup without taking his hat off" }],
       "looks": [{ "setting": "sokols", "text": "He had a pencil behind each ear, in case one of them lost." }],
       "voice": {
         "ask": ["“I’ll tell you where I was, and you’ll write it down, and we’ll both be happy.”"],
@@ -110,7 +110,7 @@
       "id": "sirkin", "first": "Sol", "last": "Sirkin", "honorific": null, "gender": "m", "age": "50s",
       "job": "a buildings inspector", "home": "ludlow", "works": null,
       "manner": "plain",
-      "doing": ["writing in a black notebook with the stub of a pencil", "looking at the ceiling as if it had failed him"],
+      "doing": [{ "setting": "ludlow", "text": "writing in a black notebook with the stub of a pencil" }, { "setting": "ludlow", "text": "looking at the ceiling as if it had failed him" }],
       "looks": [{ "setting": "any", "text": "He had the look of a man who had measured your stairs and found them wanting." }],
       "voice": {
         "ask": ["“I was where a man goes when he has worked all day, which is nowhere interesting.”"],
@@ -134,7 +134,7 @@
       "id": "hauck", "first": "Elsa", "last": "Hauck", "honorific": "Mrs.", "gender": "f", "age": "40s",
       "job": "a seamstress", "home": "raffertys", "works": null,
       "manner": "careful",
-      "doing": ["letting out a waistband by lamplight", "threading a needle on the third try"],
+      "doing": [{ "setting": "raffertys", "text": "letting out a waistband by lamplight" }, { "setting": "raffertys", "text": "threading a needle on the third try" }],
       "looks": [{ "setting": "any", "text": "She had pins in her collar and a tape measure round her neck like a mayor’s chain." }],
       "voice": {
         "ask": ["“I sew, mister. Where I was is mostly a chair.”"],
@@ -155,7 +155,7 @@
       "id": "crowninshield", "first": "Edith", "last": "Crowninshield", "honorific": "Dr.", "gender": "f", "age": "40s",
       "job": "a dentist", "home": "ludlow", "works": null,
       "manner": "plain",
-      "doing": ["looking at her own teeth in the back of a spoon", "doing sums on a napkin"],
+      "doing": [{ "setting": "ludlow", "text": "looking at her own teeth in the back of a spoon" }, { "setting": "ludlow", "text": "doing sums on a napkin" }],
       "looks": [{ "setting": "any", "text": "She smelled faintly of oil of cloves, and smiled like somebody who knows what’s under a smile." }],
       "voice": {
         "ask": ["“My evening? Open wide, and I’ll tell you.”"],

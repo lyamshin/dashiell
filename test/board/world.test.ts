@@ -10,7 +10,7 @@ import stubPlaces from '../../content/neighbourhood/stub/places.json';
 import stubPeople from '../../content/neighbourhood/stub/people.json';
 import { checkInvariants, generateBoard, invariantFailures, typesFor, type BoardCase, type TierIndex } from '../../src/gen/board/index.js';
 import { bibleProblems, parseBible } from '../../src/gen/board/world/load.js';
-import { castPool, fencePeople } from '../../src/gen/board/world/cast.js';
+import { castPool, fenceOf, fencePeople } from '../../src/gen/board/world/cast.js';
 import { worldBible, worldCtx } from '../../src/gen/board/world/index.js';
 import { boardOpen, hoursOnBoard } from '../../src/gen/board/world/types.js';
 import { castOf, dealBoard, keepsContinuity } from '../../src/game/board/model.js';
@@ -76,6 +76,64 @@ describe('the bible: loading it, and refusing a bad one', () => {
     expect(problems.some((x) => x.includes('kind "speakeasy"'))).toBe(true);
     expect(problems.some((x) => x.includes('home "nowhere" is not a place'))).toBe(true);
     expect(problems.some((x) => x.includes('kind "cousin"'))).toBe(true);
+  });
+
+  it('names the entry when a doing line, a back room or a watcher’s standing lines are the wrong shape', () => {
+    const places = clone(placesJson) as unknown as { places: { id: string; watcher: { counts: unknown } | null; hides: unknown[] }[] };
+    const people = clone(peopleJson) as unknown as { people: { id: string; doing: unknown[] }[] };
+    const watched = places.places.find((x) => x.watcher) as { id: string; watcher: { counts: unknown }; hides: unknown[] };
+    watched.watcher.counts = 'one line, not a list';
+    watched.hides = ['the back room'];
+    const p = people.people[0] as { id: string; doing: unknown[] };
+    p.doing = [{ setting: 'atlantis', text: 'swimming' }, 'darning a sock'];
+    const problems = bibleProblems(places, people);
+    expect(problems.some((x) => x.startsWith(`places[${watched.id}].watcher.counts`))).toBe(true);
+    expect(problems.some((x) => x.startsWith(`places[${watched.id}].hides[0]`) && x.includes('{ name, arrival }'))).toBe(true);
+    expect(problems.some((x) => x.startsWith(`people[${p.id}].doing[0]`) && x.includes('"atlantis"'))).toBe(true);
+    expect(problems.some((x) => x.startsWith(`people[${p.id}].doing[1]`) && x.includes('{ setting, text }'))).toBe(true);
+  });
+
+  it('is deep enough to cast from: arrivals for every hour and weather, back rooms, three standing lines a watcher, doing lines by setting', () => {
+    for (const p of bible.places) {
+      const flats = p.kind === 'home' && !p.watcher;
+      expect(p.arrivals.length, p.id).toBeGreaterThanOrEqual(flats ? 8 : 6);
+      for (const band of ['early', 'mid', 'late']) expect(p.arrivals.some((a) => a.band === band && (a.weather === 'any' || a.weather === 'clear')), `${p.id} ${band}`).toBe(true);
+      for (const w of ['rain', 'cold']) expect(p.arrivals.some((a) => a.weather === w), `${p.id} ${w}`).toBe(true);
+      expect(p.hides.length, p.id).toBeGreaterThan(0);
+      for (const h of p.hides) expect(h.arrival.length, `${p.id} ${h.name}`).toBeGreaterThan(80);
+      // A back room is the night's unwatched place when its watcher isn't in the case: its arrival can't speak of them.
+      const w = bible.people.find((x) => x.id === p.watcher?.person);
+      const job = w?.job.split(/\s+/).pop() ?? '∅';
+      for (const h of p.hides) expect(new RegExp(`\\b(${job}|${w?.last ?? '∅'})\\b(?![’']s)`, 'i').test(h.arrival), `${p.id} ${h.name}`).toBe(false);
+      if (p.watcher) expect(new Set(p.watcher.counts).size, p.id).toBe(3);
+    }
+    for (const p of bible.people) {
+      expect(p.doing.length, p.id).toBeGreaterThanOrEqual(4);
+      expect(p.doing.filter((d) => d.setting !== p.home).length, p.id).toBeGreaterThanOrEqual(2);
+    }
+  });
+
+  it('has two buildings nobody watches, each at least half women, and a fence of its own at every night place', () => {
+    const flats = bible.places.filter((p) => p.kind === 'home' && !p.watcher);
+    expect(flats.length).toBeGreaterThanOrEqual(2);
+    for (const f of flats) {
+      const live = bible.people.filter((p) => p.home === f.id);
+      expect(live.length, f.id).toBeGreaterThanOrEqual(5);
+      expect(live.filter((p) => p.gender === 'f').length * 2, f.id).toBeGreaterThanOrEqual(live.length);
+    }
+    for (const v of bible.places.filter((p) => ['bar', 'club', 'restaurant', 'theatre'].includes(p.kind))) {
+      const f = fenceOf(bible, v);
+      expect(f.person, v.id).toBeDefined();
+      expect(bible.people.find((p) => p.id === f.person)?.works?.place, v.id).toBe(v.id);
+    }
+  });
+
+  it('ties everybody to four or more on average, of every kind, and everybody in the pool to three others in it', () => {
+    const pool = new Set(castPool(bible).map((p) => p.id));
+    const ends = bible.people.reduce((n, p) => n + p.ties.length, 0);
+    expect(ends / bible.people.length).toBeGreaterThanOrEqual(4);
+    expect(new Set(bible.people.flatMap((p) => p.ties.map((t) => t.kind))).size).toBe(11);
+    for (const p of bible.people.filter((x) => pool.has(x.id))) expect(p.ties.filter((t) => pool.has(t.to)).length, p.id).toBeGreaterThanOrEqual(3);
   });
 
   it('reads clock hours as the board’s: past midnight, a working day, and a place that never shuts', () => {
@@ -214,9 +272,13 @@ describe('the prose draws on the bible first', () => {
     for (const { d, run } of runs) {
       let bible_ = 0;
       let total = 0;
+      const been = new Set<string>();
       for (const p of run.log) {
         if (p.board?.job !== 'arrive' || !p.board.said) continue;
-        // A back room inside somebody else's place: the place's own arrival is its front door.
+        // The first time in: going back says "Back at Sokol’s", not the arrival again.
+        if (been.has(p.at)) continue;
+        been.add(p.at);
+        // A back room inside somebody else's place has an arrival of its own (the test below).
         if (d.kase.places.find((x) => x.id === p.at)?.key?.includes('#')) continue;
         expect(bible.places.some((pl) => pl.arrivals.some((a) => p.board?.said?.arrival.includes(a.text))), `${d.kase.id} p${p.n}`).toBe(true);
       }
@@ -266,6 +328,53 @@ describe('the prose draws on the bible first', () => {
     }
   });
 
+  it('walks into a back room on its own arrival', () => {
+    let rooms = 0;
+    for (let s = 1; s <= 12; s++) {
+      const d = dealBoard(s, 4, 'murder', { world: 'neighbourhood' });
+      const back = d.kase.places.find((x) => x.key?.includes('#'));
+      if (!back) continue;
+      const host = bible.places.find((x) => x.id === back.world);
+      const hide = host?.hides.find((h) => h.name === back.key?.split('#')[1]);
+      // The first time in.
+      const p = playWanderer(d, s).run.log.find((x) => x.at === back.id && x.board?.job === 'arrive' && x.board.said);
+      if (!p?.board?.said) continue;
+      rooms++;
+      expect(p.board.said.arrival.includes(hide?.arrival ?? '∅'), `${d.kase.id} p${p.n}: ${back.name}`).toBe(true);
+    }
+    expect(rooms).toBeGreaterThan(0);
+  });
+
+  it('finds women dead as well as men, and says her reasons as hers', () => {
+    const dead = new Map<string, number>();
+    for (let s = 1; s <= 30; s++) {
+      const d = dealBoard(s, 3, 'murder', { world: 'neighbourhood' });
+      const v = biblePerson(d.kase, d.kase.crime.victim);
+      dead.set(v?.gender ?? '?', (dead.get(v?.gender ?? '?') ?? 0) + 1);
+      if (v?.gender !== 'f') continue;
+      expect(d.kase.places.find((p) => p.scene)?.name, d.kase.id).toMatch(new RegExp(`^the ${v.last} flat`));
+      for (const p of d.kase.people.filter((x) => x.role === 'suspect')) {
+        expect(p.motiveForm ?? '', `${d.kase.id} ${p.id}`).not.toMatch(/(?<![{\w])(him|his|He|His)\b(?!\})|dead man/);
+        expect(p.motivePapers ?? '', `${d.kase.id} ${p.id}`).not.toMatch(/(?<![{\w])(he|him|his)\b(?!\})|dead man/);
+      }
+    }
+    expect(dead.get('f') ?? 0).toBeGreaterThan(5);
+    expect(dead.get('m') ?? 0).toBeGreaterThan(5);
+  });
+
+  it('has a watcher stand three ways across the nights, not one', () => {
+    const said = new Map<string, Set<string>>();
+    for (let s = 1; s <= 40; s++) {
+      const d = dealBoard(s, 2, undefined, { world: 'neighbourhood' });
+      for (const p of playBoardOracle(d).run.log) {
+        const pl = bible.places.find((x) => x.id === d.kase.places.find((y) => y.id === p.at)?.world);
+        const text = p.blocks.flatMap((b) => (b.kind === 'prose' ? [b.text.replace(/\s+/g, ' ')] : [])).join(' ');
+        for (const l of pl?.watcher?.counts ?? []) if (text.includes(l.slice(0, 40))) (said.get(pl?.id as string) ?? said.set(pl?.id as string, new Set()).get(pl?.id as string))?.add(l);
+      }
+    }
+    expect([...said.values()].some((x) => x.size >= 2)).toBe(true);
+  });
+
   it('says nothing of a place’s front room in the back room of it', () => {
     let hides = 0;
     for (let s = 1; s <= 8; s++) {
@@ -289,7 +398,8 @@ describe('the prose draws on the bible first', () => {
     expect(hides).toBeGreaterThan(0);
   });
 
-  it('closes on what somebody was doing only where they live or work, and never on what the page already said they were doing', () => {
+  it('closes on what somebody was doing only where the bible has them doing it, and never on what the page already said they were doing', () => {
+    let closes = 0;
     for (const { d } of runs) {
       for (const r of [playBoardOracle(d).run, playWanderer(d, d.kase.seed).run, playWanderer(d, d.kase.seed + 1).run]) {
         const night = r.log.flatMap((p) => p.blocks.flatMap((b) => (b.kind === 'prose' ? [b.text] : []))).join(' ').replace(/\s+/g, ' ');
@@ -299,16 +409,19 @@ describe('the prose draws on the bible first', () => {
             const m = /^(.+): that was the last I saw of (?:him|her)\.$/.exec(t);
             if (!m) continue;
             const line = (m[1] as string).toLowerCase();
-            const who = d.kase.people.find((x) => x.world && biblePerson(d.kase, x.id)?.doing.some((y) => y.toLowerCase().replace(/\.$/, '') === line));
+            const who = d.kase.people.find((x) => x.world && biblePerson(d.kase, x.id)?.doing.some((y) => y.text.toLowerCase().replace(/\.$/, '') === line));
             if (!who) continue;
+            closes++;
             const bp = biblePerson(d.kase, who.id);
+            const doing = bp?.doing.find((y) => y.text.toLowerCase().replace(/\.$/, '') === line);
             const here = d.kase.places.find((x) => x.id === p.at)?.world;
-            expect(here === bp?.home || here === bp?.works?.place, `${d.kase.id} p${p.n}: ${t}`).toBe(true);
+            expect(doing?.setting === 'any' || doing?.setting === here, `${d.kase.id} p${p.n}: ${t}`).toBe(true);
             expect(night.toLowerCase().split(line).length - 1, `${d.kase.id} p${p.n}: ${t}`).toBe(1);
           }
         }
       }
     }
+    expect(closes).toBeGreaterThan(0);
   });
 
   it('files a world night’s report at par, with the right reason', () => {

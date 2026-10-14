@@ -223,3 +223,70 @@ See docs/25, "The neighbourhood". The two that matter for the designer are both 
 
 - **variety:** more unwatched homes, residents and ties;
 - **share and callbacks:** doing lines by setting, and an arrival for each back room.
+
+Both are done in Bible 2, below.
+
+## Bible 2 (2026-10-14)
+
+Branch `bible-2`. The first bible's shape held the game back: one unwatched building, so the Excelsior was every night's scene and its three men every night's dead; one arrival per band, so page 2 repeated; one standing line per watcher; two fences; doing lines only at home or work. This pass deepens the bible, and grows its schema where it had to.
+
+### What the bible has now
+
+- **Eleven places, thirty-three people.** The new place is **the Belvedere**, five floors of cold-water flats over Brodsky's pickle store on Ludlow Street, with no doorman, no janitor and a loop of string for a lock. Its six residents are Mrs. Ostrow (the matchmaker), Miss Kahane (the union organizer), Glick (the insurance agent), Mrs. Pomerantz (the wigmaker), Kaminsky (the prizefighter) and Mrs. Blau (the spiritualist): four women, two men. Mrs. Shapiro moves into the Excelsior, which is now four women and four men.
+- **A fence of its own at every night place:** Mrs. Shapiro (the wardrobe mistress) at the Lyric, Tierney (the oyster opener) at Steinmetz's and Margolis (the mechanic) at the card room, with Fishel and Miss Marsh. The card room is never a night's venue, so Margolis stays in the pool.
+- **Arrivals:** 86, up from 52. Every place has an `any` arrival for each band, and rain and cold ones: seven or eight in all, and nine at the Excelsior and the Belvedere, three of them early. Three lines of the first bible that named an hour ("In By Ten", "come down at seven") could never be said; they're reworded.
+- **Back rooms:** every `hides` entry is `{ name, arrival }`, 33 in all, and every one is a room you can stand in (the hall-stand drawer, the pledge case and the cigarette tray's bottom layer became the back kitchen, the little room behind the cage and the stock room behind the bar). No back room's arrival speaks of the place's watcher, who isn't in the case on a night it's used.
+- **Watchers** have three standing lines each (`watcher.counts` is a list): where they sit, what they read people by, what nobody gets past.
+- **Doing lines** are `{ setting, text }`, 188 in all, five to seven a person, at least two away from home.
+- **Ties:** 194 ends, 5.9 a person (4 to 8), all eleven kinds, and everybody in the pool tied to at least three others in it. The twelve who can be found dead are each tied to five or six others in the pool, so the same three suspects don't follow them.
+- **Women are found dead too** (`WOMEN_VICTIMS` in `cast.ts`). The board's 58 cards that said "him" of the dead (the office's setup and questions, the body, the finds, the papers) now name the dead or say it without a pronoun, on dealt nights too. A dead woman's reasons say "her" (`ofVictim` in `motives.ts`), and so do the shelf's words ("Somebody made her cocoa"); her flat is "the Kahane flat", so the office's "his own flat" doesn't fire. The engine's own lines still say "him": docs/25 has the list.
+
+### The loader and the prose
+
+- `load.ts` checks the new shapes and names the entry: a doing line's setting is a place or `any`; a hide is `{ name, arrival }`, its name unique in the place; `counts` is a list.
+- `world.ts` (the bible's reader in the book) says a doing line only at its setting: in a building of flats only in their own flat, in a back room only if it's about the room. A back room walks in on its own arrival. A watcher's standing line is one of their three. The share counts hide arrivals, the three standing lines and the doing lines.
+- `cast.ts`: the client is a warm tie, then a debt, then a neighbor from the same building; never a feud, and never somebody a suspect's reason runs through ("he had been at war with Kaminsky’s old flame", said by the old flame). The new back rooms have their own reasons for being there (a cellar, a band room, the plaster room).
+
+### Measures, before → after
+
+**The sweep** (200 nights a tier): 200/200 at every tier, 0 invariant failures, the same par ranges, 0 duplicate reasons, 0 nights with the culprit and the liar at one place and hour.
+
+| tier | distinct casts | culprits / wronged used | wronged again within ten | places in 60 nights | people in 60 nights | dead women / men |
+|---|---|---|---|---|---|---|
+| Raw | 99 → **160** | 13 / 6 → 21 / 12 | 186 → 10 | 7 of 10 → 8 of 11 | 20 of 24 → 27 of 33 | 0 / 91 → 51 / 40 |
+| Coddled | 79 → **166** | 13 / 6 → 21 / 12 | 186 → 14 | 10 → 11 | 22 → 29 | 0 / 91 → 46 / 45 |
+| Poached | 105 → **178** | 12 / 6 → 20 / 12 | 184 → 21 | 9 → 11 | 20 → 28 | 0 / 91 → 57 / 34 |
+| Soft-boiled | 102 → **175** | 13 / 6 → 20 / 12 | 178 → 15 | 9 → 11 | 21 → 29 | 0 / 91 → 51 / 40 |
+| Medium | 107 → **180** | 6 / 6 → 12 / 12 | 183 → 12 | 10 → 11 | 22 → 30 | 0 / 91 → 49 / 42 |
+| Hard-boiled | 115 → **186** | 6 / 6 → 12 / 12 | 182 → 14 | 8 → 9 | 21 → 29 | 0 / 91 → 50 / 41 |
+
+No culprit twice running, and no wronged twice running, with continuity. The scene is the Excelsior about half the nights and the Belvedere the other half. Over 40 Medium murders, page 2 says eight different arrivals, none more than ten times, and every watcher met says more than one of their three lines.
+
+**Not met: every place and person within 60 nights.** What's missing is the engine's shape, not the bible's:
+
+- Raw has no unwatched place and no workplace, so the card room, the surgery and Wexler's never appear there. Hard-boiled has no workplace murders, so the surgery and Wexler's appear only as back rooms, without their watchers.
+- Gutman and Wexler, the workplaces' watchers, are cast only when their workplace is the night's second place (Coddled and Medium murders).
+- A fence appears in a small case as who the thing went to, which isn't one of the case's people, and the sweep counts only those. Fishel, Miss Marsh, Mrs. Shapiro and Tierney are counted only on nights they keep a back room.
+
+**`board-prose`** (30 nights a tier), the share of arrival, look and staging text from the bible:
+
+| tier | all three | arrivals and looks | staging |
+|---|---|---|---|
+| Raw | 66% → **74%** | 75% → 85% | 38% → 40% |
+| Coddled | 69% → **75%** | 77% → 85% | 42% → 45% |
+| Poached | 61% → **75%** | 69% → 84% | 38% → 48% |
+| Soft-boiled | 61% → **75%** | 68% → 85% | 43% → 50% |
+| Medium | 65% → **78%** | 73% → 87% | 42% → 52% |
+| Hard-boiled | 66% → **77%** | 73% → 85% | 43% → 51% |
+
+Callback pages are 62–68%. Reader lint, correspondence, plain terms, cards twice, clues three times, banned phrases, signposts, gags and pets are 0. Four hits, all from engine lines on these nights' casts, as the first bible's three were:
+
+- a place said three times in a paragraph by the board's confirmation and collision lines ("So Rafferty’s at nine, with Mrs. Pomerantz and Rafferty’s at eight": Medium 16, Soft-boiled 28);
+- a name three times on a Medium lost-pet list page (Belkin, with the fence a third man in the collision line: Medium 13);
+- a thought said twice in a night ("For nine, the hour that mattered, he said the costume room at the Lyric": Hard-boiled 14).
+
+### Read
+
+- **Medium, seed 2, murder (Miss Kahane, the union organizer, dead in the Belvedere):** the bible's side reads right: her flat, her body, her papers ("a complaint she’d made against him"), her reasons, the cocoa. The engine's own lines still say "him" (docs/25).
+- **Medium, seed 10, murder (Belkin, with the costume room under the Lyric as the back room):** the back room's own arrival, Kaminsky's chorus secret owned up in it, and the new standing lines at Steinmetz's. Fixed from it: a client feuding with the dead man and called his "neighbor", and a reason that ran through the client herself.
+- **Coddled, seed 9, lost item (Mrs. Blau's spoons):** the Lyric's new fence takes the spoons ("went straight to Shapiro"), and Pinsky stands his new way. Fixed from these: two `any` doing lines that only fit one place ("haggling with a customer" in a card room at six in the morning, "holding a fork up to the light").
