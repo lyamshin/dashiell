@@ -31,6 +31,7 @@ import {
   type PlaceId,
 } from './model.js';
 import { papersLine, whyOrder } from './motives.js';
+import type { HeldWhy } from './bones/types.js';
 
 /** One thing the player holds, at the grain a confrontation reads it. */
 export interface Line {
@@ -357,6 +358,8 @@ export interface Judgement {
   landed: boolean;
   /** When it doesn't: one plain line saying why, in the detective's voice. */
   why?: string;
+  /** docs/52: the same reason, as the bones say it (`HELD.why`). */
+  code?: HeldWhy;
   /** When it does: the other lines the break rests on, said with it ("and Lindemann says the same"). */
   with?: Line[];
 }
@@ -387,28 +390,28 @@ export function judgeLine(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>, p
     }
   }
   // Why it doesn't: in terms of the rules, from the line and what they claim.
-  if (!claim) return { landed: false, why: `Nothing in it touched where ${who} said ${pr.he} was.` };
+  if (!claim) return { landed: false, code: 'untouched', why: `Nothing in it touched where ${who} said ${pr.he} was.` };
   const where = placeName(c, claim.place);
   if (line.kind === 'list') {
     const l = listOf(c, line.speaker as PersonId);
     const es = l?.entries[h] ?? [];
-    if (es.some((e) => 'person' in e && e.person === p)) return { landed: false, why: `${nameOf(c, line.speaker as PersonId)} had ${who} there at ${oclock(h)}. That agreed with ${pr.him}.` };
+    if (es.some((e) => 'person' in e && e.person === p)) return { landed: false, code: 'agreed', why: `${nameOf(c, line.speaker as PersonId)} had ${who} there at ${oclock(h)}. That agreed with ${pr.him}.` };
     if (l && !listExhaustive(c, l, h)) {
-      return { landed: false, why: `${nameOf(c, line.speaker as PersonId)} had people there at ${oclock(h)} ${l.watcher === line.speaker ? 'whose names' : 'whose names'} nobody knew. One of them could have been ${who}.` };
+      return { landed: false, code: 'strangers', why: `${nameOf(c, line.speaker as PersonId)} had people there at ${oclock(h)} ${l.watcher === line.speaker ? 'whose names' : 'whose names'} nobody knew. One of them could have been ${who}.` };
     }
-    if (l && l.place !== claim.place) return { landed: false, why: `${nameOf(c, line.speaker as PersonId)} could only say who was at ${placeName(c, l.place)}. ${who} hadn’t said ${pr.he} was there.` };
-    if (es.some((e) => 'look' in e)) return { landed: false, why: `A face nobody could put a name to isn’t a name. It might have been ${who}’s, and it might not.` };
+    if (l && l.place !== claim.place) return { landed: false, code: 'elsewhere', why: `${nameOf(c, line.speaker as PersonId)} could only say who was at ${placeName(c, l.place)}. ${who} hadn’t said ${pr.he} was there.` };
+    if (es.some((e) => 'look' in e)) return { landed: false, code: 'face', why: `A face nobody could put a name to isn’t a name. It might have been ${who}’s, and it might not.` };
   }
   if (line.kind === 'claim') {
     const sp = line.speaker as PersonId;
     const spSt = s.status.get(`${sp}@${h}`);
     const spCl = accountOf(c, sp)?.claims[h];
-    if (spCl?.company.includes(p)) return { landed: false, why: `${nameOf(c, sp)} had ${who} with ${pronOf(c, sp).him} at ${oclock(h)}. That agreed with ${pr.him}.` };
-    if (spCl && spCl.place !== claim.place) return { landed: false, why: `${nameOf(c, sp)} says ${pronOf(c, sp).he} was at ${placeName(c, spCl.place)} at ${oclock(h)}. That said nothing about who was at ${where}.` };
-    if (spSt?.s !== 'trusted') return { landed: false, why: `That was ${nameOf(c, sp)}’s word against ${who}’s, and nothing under ${nameOf(c, sp)}’s yet. A story has to stand up before it can knock another one down.` };
+    if (spCl?.company.includes(p)) return { landed: false, code: 'company', why: `${nameOf(c, sp)} had ${who} with ${pronOf(c, sp).him} at ${oclock(h)}. That agreed with ${pr.him}.` };
+    if (spCl && spCl.place !== claim.place) return { landed: false, code: 'other-place', why: `${nameOf(c, sp)} says ${pronOf(c, sp).he} was at ${placeName(c, spCl.place)} at ${oclock(h)}. That said nothing about who was at ${where}.` };
+    if (spSt?.s !== 'trusted') return { landed: false, code: 'untrusted', why: `That was ${nameOf(c, sp)}’s word against ${who}’s, and nothing under ${nameOf(c, sp)}’s yet. A story has to stand up before it can knock another one down.` };
   }
-  if (line.kind === 'remark' || line.kind === 'given') return { landed: false, why: `It didn’t put ${who} anywhere at ${oclock(h)} but where ${pr.he} said.` };
-  return { landed: false, why: `Nothing in it touched where ${who} said ${pr.he} was at ${oclock(h)}.` };
+  if (line.kind === 'remark' || line.kind === 'given') return { landed: false, code: 'nowhere', why: `It didn’t put ${who} anywhere at ${oclock(h)} but where ${pr.he} said.` };
+  return { landed: false, code: 'untouched', why: `Nothing in it touched where ${who} said ${pr.he} was at ${oclock(h)}.` };
 }
 
 /* ------------------------------------------------------------------ *

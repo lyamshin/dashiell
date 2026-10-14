@@ -6,6 +6,7 @@
 import { describe, expect, it } from 'vitest';
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
 import { dealBoard, type BoardRun } from '../src/game/board/model.js';
+import { newBoardRun } from '../src/game/board/engine.js';
 import { playBoardOracle, playReader, playWanderer } from '../src/game/board/oracle.js';
 import { PLAN, newBudget, planSection, realize, type Item, type PlanCtx } from '../src/game/board/plan/index.js';
 import { factSentences, joinsIn, listSmell, pronounAmbiguity, restatedPointer, thoughtParagraphs } from '../src/game/board/plan/measure.js';
@@ -13,6 +14,7 @@ import { markPronoun } from '../src/game/board/plan/refer.js';
 import { bandOf } from '../src/game/board/plan/sentences.js';
 import type { Beat } from '../src/game/board/sheets.js';
 import type { Page } from '../src/game/board/types.js';
+import type { Prop } from '../src/game/board/bones/types.js';
 
 const worlds = [undefined, 'neighbourhood'] as const;
 const nights: { tier: TierIndex; type: CaseType; world?: 'neighbourhood' }[] = [];
@@ -136,9 +138,10 @@ const d = dealBoard(1, 4, 'lost-pet');
 const c = d.kase;
 const id = (short: string) => c.people.find((p) => p.short === short)?.id as string;
 
+/** The page is at the Thalia, with nothing asked yet. */
 function ctxOf(): PlanCtx {
   let k = 0;
-  return { c, budget: newBudget(), pick: (_key, ls) => ls[k++ % ls.length] as string, level: 'link', int: () => 0 };
+  return { c, budget: newBudget(), pick: (_key, ls) => ls[k++ % ls.length] as string, level: 'link', int: () => 0, run: { ...newBoardRun(d), at: 'bar' } };
 }
 
 function plan(items: Partial<Record<Beat, Item[]>>, paras: Beat[][]): string[] {
@@ -212,7 +215,16 @@ describe('docs/49 §2: reference', () => {
 describe('docs/49 §2: aggregation and connectives', () => {
   it('a watcher’s hour and its "nobody else" are one sentence', () => {
     const out = plan(
-      { job: [fact('job', '“Ten, Feeney. Nobody else.”', [id('Feeney')], { exempt: true, agg: { key: 'list-hour', data: { when: 'Ten', names: 'Feeney', whole: true, nobody: 'Nobody else' } } })] },
+      {
+        job: [
+          fact('job', '“Ten, Feeney. Nobody else.”', [id('Feeney')], {
+            exempt: true,
+            carries: ['list:barkeep@10'],
+            props: [{ k: 'LIST', watcher: 'barkeep', place: 'bar', hour: 10, people: ['feeney'], whole: true }],
+            flesh: { when: 'Ten', names: 'Feeney', whole: true, nobody: 'Nobody else' },
+          }),
+        ],
+      },
       [['job']],
     );
     expect(out[0]).toBe('“Ten, Feeney, and nobody else.”');
@@ -220,13 +232,25 @@ describe('docs/49 §2: aggregation and connectives', () => {
 
   it('a collision takes the page’s one "but"; the second goes without', () => {
     const corrigan = id('Corrigan');
-    const ashby = id('Ashby');
-    const col = (claim: string, breaker: string) =>
-      fact('thought', `${claim}. ${breaker}. One of them was wrong.`, [corrigan], { relation: 'collides', agg: { key: 'collision', alone: true, data: { p: corrigan, claim, breaker, twos: ['One of them was wrong.'], two: 'One of them was wrong.' } } });
-    const out = plan({ thought: [col('Corrigan said home at eleven', 'Ashby passed her on Stuyvesant Street at eleven'), { ...col('Corrigan said home at ten', 'Coffin had nobody here at ten'), runOn: true }] }, [['thought']]);
+    const col = (hour: number, w: Prop) =>
+      fact('thought', '(the writer’s own words)', [corrigan], {
+        relation: 'collides',
+        tag: 'thought:collision',
+        props: [{ k: 'COLLIDES', person: corrigan, place: 'h', hour, with: w }],
+        flesh: { two: 'One of them was wrong.', twos: ['One of them was wrong.'] },
+      });
+    const out = plan(
+      {
+        thought: [
+          col(11, { k: 'REMARK', speaker: 'ashby', saw: corrigan, how: 'passed', where: 'Stuyvesant Street', hour: 11 }),
+          { ...col(10, { k: 'LIST', watcher: 'barkeep', place: 'bar', hour: 10, people: [] }), runOn: true },
+        ],
+      },
+      [['thought']],
+    );
     expect(out[0]).toMatch(/^Corrigan said home at eleven, but Ashby passed her on Stuyvesant Street at eleven\./);
-    expect(out[0]).toMatch(/Coffin had nobody here at ten\. One of them was wrong\.$/);
-    void ashby;
+    // (Without the "but", Planner 2 says the second as one sentence, its join after a colon.)
+    expect(out[0]).toMatch(/Corrigan said home at ten, and Coffin had nobody here at ten o’clock: one of them was wrong\.$/);
   });
 });
 
@@ -257,15 +281,23 @@ describe('docs/49 Planner 2: composition', () => {
     const out = plan(
       {
         thought: [
-          fact('thought', 'Ashby hadn’t been at the Delmonico rooms while the key was there to take.', [ashby], { relation: 'narrows', tag: 'thought:way-in', agg: { key: 'way-in', data: { who: [ashby], one: ashby, of: 'hadn’t been at the Delmonico rooms while the key was there to take' } } }),
-          fact('thought', 'Coffin had Feeney here at eleven, same as she said.', [feeney], { relation: 'confirms', tag: 'thought:list-agree', runOn: true, agg: { key: 'list-agree', data: { watcher: coffin, at: 'here', agreed: [{ p: feeney, h: 11 }], clear: false } } }),
-          fact('thought', 'By his count, Ashby was here at eleven.', [ashby], { tag: 'thought:placed', runOn: true, agg: { key: 'placed', data: { keeper: coffin, bits: ['Ashby here at eleven'], runs: [{ names: 'Ashby', n: 1, at: 'here', h: 11 }] } } }),
-          fact('thought', 'Prentiss had said ten or eleven. At ten Duchess was here.', [id('Prentiss')], { relation: 'narrows', tag: 'thought:window', runOn: true, agg: { key: 'window', data: { one: 'Prentiss had said ten or eleven, and at ten Duchess was here.', so: false } } }),
+          fact('thought', '(the writer’s own words)', [ashby], { relation: 'narrows', tag: 'thought:way-in', props: [{ k: 'ACCESS', person: ashby, had: false }] }),
+          fact('thought', '(the writer’s own words)', [feeney], { relation: 'confirms', tag: 'thought:list-agree', runOn: true, props: [{ k: 'CONFIRMS', person: feeney, place: 'bar', hour: 11, by: { k: 'list', who: coffin } }], flesh: { clear: false } }),
+          fact('thought', '(the writer’s own words)', [ashby], { tag: 'thought:placed', runOn: true, props: [{ k: 'PLACED', person: ashby, place: 'bar', hour: 11, by: { k: 'list', who: coffin } }], flesh: { keeper: coffin, swear: 'by his count' } }),
+          fact('thought', '(the writer’s own words)', [id('Prentiss')], {
+            relation: 'narrows',
+            tag: 'thought:window',
+            runOn: true,
+            props: [
+              { k: 'WINDOW', hours: [10, 11] },
+              { k: 'ALIVE', victim: 'pet', place: 'neighbours', hour: 10 },
+            ],
+          }),
         ],
       },
       [['thought']],
     );
-    expect(out[0]).toBe('Coffin had Feeney here at eleven, same as she said, and with her Ashby, who hadn’t been at the Delmonico rooms while the key was there to take. Prentiss had said ten or eleven, and at ten Duchess was here.');
+    expect(out[0]).toBe('Coffin had Feeney here at eleven, same as she said, and with her Ashby, who never heard Prentiss tell the room. Prentiss had said ten or eleven, and at ten Duchess was at the Delmonico rooms.');
   });
 
   it('an evening that held, and the hour that mattered on their word alone, are one sentence with the "but"; the aside after the agreement goes', () => {
@@ -273,9 +305,17 @@ describe('docs/49 Planner 2: composition', () => {
     const out = plan(
       {
         thought: [
-          fact('thought', 'So the Automat at eight, which was what Coffin had.', [ashby], { relation: 'confirms', tag: 'thought:agree' }),
-          { ...gap('thought', 'So far as it went, it stood up.'), slot: 'gloss', voice: 'thought', runOn: true },
-          fact('thought', 'For eleven, the hour that mattered, he said the Thalia.', [ashby], { tag: 'thought:hours', runOn: true }),
+          fact('thought', '(the writer’s own words)', [ashby], { relation: 'confirms', tag: 'thought:agree', props: [{ k: 'CONFIRMS', person: ashby, place: 'u', hour: 8, company: [], by: { k: 'list', who: id('Coffin') } }], flesh: { merged: false } }),
+          { ...gap('thought', 'That much held.'), slot: 'gloss', voice: 'thought', runOn: true },
+          fact('thought', '(the writer’s own words)', [ashby], {
+            tag: 'thought:hours',
+            runOn: true,
+            props: [
+              { k: 'WINDOW', hours: [11] },
+              { k: 'CLAIM', person: ashby, place: 'bar', hour: 11 },
+            ],
+            flesh: { named: false },
+          }),
           { ...gap('thought', 'I let it stand.'), slot: 'gloss', voice: 'thought', runOn: true },
         ],
       },

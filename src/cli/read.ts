@@ -8,6 +8,8 @@
  * commands. `--no-choices` leaves out each page's choices; `--curtain` adds
  * the true board, the path and the lies. `--skeleton` prints, after each page,
  * the units it was realized from (docs/49 §3), one JSON object a line.
+ * `--plain` prints each page's plain page instead (docs/52 §3): every fact it
+ * says, a sentence a composite, no voice and no texture.
  */
 
 import { CASE_TYPES, parseTier, typesFor, type CaseType } from '../gen/board/index.js';
@@ -21,8 +23,9 @@ import { choicesText, notebookText, pageBodyText, wrap } from '../game/board/tex
 import { ignoreBrokenPipe, parseArgs } from './args.js';
 import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
+import { plainPage } from '../game/board/bones/plain.js';
 
-const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--world neighbourhood] [--situated 0]\n';
+const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--plain] [--world neighbourhood] [--situated 0]\n';
 
 export function readBoard(values: Map<string, string>, flags: Set<string>): string {
   const seed = Number(values.get('seed') ?? 1);
@@ -76,7 +79,11 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
     out.push('═'.repeat(76));
     out.push(`${page.head.padEnd(40)}${strip.time} · page ${i + 1} · ${strip.left}`);
     out.push('─'.repeat(76));
-    out.push(pageBodyText(page));
+    // docs/52 §3: the plain page, every fact and no voice.
+    if (flags.has('plain')) {
+      const plain = plainPage(c, page);
+      out.push(plain.length ? pageBodyText({ ...page, blocks: plain }) : '(Nothing new.)');
+    } else out.push(pageBodyText(page));
     // docs/49 §3: the skeleton the page was realized from, a unit a line.
     if (flags.has('skeleton')) {
       out.push('');

@@ -40,6 +40,7 @@ import { costLabel } from '../game/board/text.js';
 import { continuityOf, fileToProfile, loadProfile, teachOn, type KeyValueStore } from '../game/board/profile.js';
 import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
+import { plainPage } from '../game/board/bones/plain.js';
 import type { CellMark, OfferedChoice, OfferedGroup, Page } from '../game/board/types.js';
 import { typesFor } from '../gen/board/index.js';
 import { clear, el } from './dom.js';
@@ -116,11 +117,14 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   let world: string | undefined = isWorld(w0) ? w0 : undefined;
   // docs/51: `?situated=0` writes the pages from here on with the old decks only, for comparison.
   SITUATED.on = params().get('situated') !== '0';
+  // docs/52 §3: `?plain=1` shows each page's plain page: every fact it says, and no voice.
+  const PLAIN = params().get('plain') === '1';
 
   function writeUrl(): void {
     const w = saved && screen.kind !== 'title' ? saved.world : world;
     const q0 = saved && screen.kind !== 'title' ? `?seed=${saved.seed}&t=${saved.tier}${saved.type ? `&type=${saved.type}` : ''}${w ? `&world=${w}` : ''}` : w ? `?world=${w}` : '';
-    const q = SITUATED.on ? q0 : `${q0 ? `${q0}&` : '?'}situated=0`;
+    const q1 = SITUATED.on ? q0 : `${q0 ? `${q0}&` : '?'}situated=0`;
+    const q = PLAIN ? `${q1 ? `${q1}&` : '?'}plain=1` : q1;
     window.history.replaceState(null, '', `${window.location.pathname}${q}`);
   }
 
@@ -309,10 +313,12 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     return head;
   }
 
-  /** A page's blocks as paper, every name in it carrying its card. */
+  /** A page's blocks as paper, every name in it carrying its card (with `?plain=1`, its plain page). */
   function pageNodes(p: Page): HTMLElement[] {
     const out: HTMLElement[] = [];
-    for (const b of p.blocks) {
+    const plain = PLAIN ? plainPage((d as BoardDeal).kase, p) : null;
+    if (plain && plain.length === 0) return [el('p', { class: 'note', text: 'Nothing new.' })];
+    for (const b of plain ?? p.blocks) {
       if (b.kind === 'prose') {
         const node = el('p', { class: `prose--${b.voice}` });
         node.append(withNames(b.text));
