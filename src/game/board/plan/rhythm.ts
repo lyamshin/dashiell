@@ -24,7 +24,7 @@
 import type { Item } from './types.js';
 import type { PlanCtx } from './index.js';
 import { LIST_ENTRY, indefiniteFor, pronounAmbiguity } from './measure.js';
-import { LOWER } from './compose.js';
+import { LOWER } from '../bones/compose.js';
 import type { Block, ProseVoice } from '../types.js';
 import { bandOf, openingOf, sentencesOf, wordsIn, type Band } from './sentences.js';
 
@@ -280,7 +280,7 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
       const pointsAt = (t: string) => ctx.c.people.some((p) => !p.object && t.includes(p.short)) || ctx.c.places.some((p) => t.includes(p.short));
       const same = (ia.kind === 'fact' && ib.kind === 'fact') || (ia.kind === 'gap' && ib.kind === 'gap' && (ia.slot === ib.slot || (ia.slot === 'staging' && ib.slot === 'why-here' && !pointsAt(ib.text))));
       if (!same || b.i !== a.i + 1 || b.k !== 0 || a.k !== sentencesOf(ia.text).length - 1) return null;
-      const before = { ...ia, n: ia.n, carries: ia.carries, about: ia.about, relation: ia.relation, joined: ia.joined };
+      const before = { ...ia, n: ia.n, carries: ia.carries, about: ia.about, relation: ia.relation, joined: ia.joined, comp: ia.comp };
       const para = paras[a.p] as Item[];
       const xs = sentencesOf(ia.text);
       const ys = sentencesOf(ib.text);
@@ -289,6 +289,8 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
       ia.carries = [...new Set([...(ia.carries ?? []), ...(ib.carries ?? [])])];
       ia.about = [...new Set([...(ia.about ?? []), ...(ib.about ?? [])])];
       if (ia.kind === 'fact') ia.n = (ia.n ?? 1) + (ib.n ?? 1);
+      // docs/52: two facts in one sentence are a pair of composites, joined by the rhythm.
+      if (ia.kind === 'fact' && ia.comp && ib.comp) ia.comp = { shape: 'PAIR', props: [...ia.comp.props, ...ib.comp.props], parts: [ia.comp, ib.comp], join: 'rhythm' };
       if (ib.relation && ib.relation !== 'new' && ia.relation === 'new') ia.relation = ib.relation;
       ia.joined = ia.joined ?? ib.joined;
       para.splice(b.i, 1);

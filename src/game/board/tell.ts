@@ -12,6 +12,8 @@
 
 import type { Account, Claim, Hour, ListEntry, PersonId, PlaceId, WatchList } from '../../gen/board/types.js';
 import { entryName, listExhaustive, shutAt } from './knowledge.js';
+import type { Prop } from './bones/types.js';
+import { entryOf, remarkProps } from './bones/extract.js';
 import { andList, cap, hourWord, nameOf, oclock, personOf, placeName, type BoardCase } from './model.js';
 
 /* ------------------------------------------------------------------ *
@@ -122,6 +124,8 @@ export interface SaidLine {
   people?: string[];
   /** A list's hour: who, when, and whether "nobody else" was said, for aggregation. */
   hour?: { when: string; names: string; whole: boolean; nobody: string };
+  /** docs/52: what the line says, as propositions: the hours it tells, where, and with whom where it says so. */
+  props: Prop[];
 }
 
 /**
@@ -197,9 +201,11 @@ export function spokenAccountLines(c: BoardCase, a: Account, _manner: Manner, ro
       // "back to my room to write letters, with Abramowitz and Thorndike" put them in the room: in a
       // rooming house they were about the house (Hard-boiled 8).
       const house = who.length > 0 && /\bmy room\b/.test(s) && !!c.places.find((x) => x.id === r.place)?.key?.startsWith('rooming') ? ' about the house' : '';
-      out.push({ text: `${s}${named || withSomebody ? '' : who.length ? `, with ${andList(who)}${house}` : alone}.`, hours: runHours });
+      // docs/52: where, for every hour of the run; with whom, where the line says it (by name, or alone).
+      const says = named || who.length > 0 || alone !== '';
+      out.push({ text: `${s}${named || withSomebody ? '' : who.length ? `, with ${andList(who)}${house}` : alone}.`, hours: runHours, props: runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h, ...(says ? { company: [...(a.claims[h]?.company ?? [])] } : {}) }) as Prop) });
     } else {
-      out.push({ text: `${s}.`, hours: runHours });
+      out.push({ text: `${s}.`, hours: runHours, props: runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h }) as Prop) });
       // Hours with the same company run together: "at seven and eight it was just me".
       const spans: { hs: Hour[]; who: PersonId[] }[] = [];
       for (const x of comps) {
@@ -212,21 +218,22 @@ export function spokenAccountLines(c: BoardCase, a: Account, _manner: Manner, ro
         const at = andList(x.hs.map(hourWord));
         return who.length ? `${andList(who)} ${who.length > 1 ? 'were' : 'was'} there at ${at}` : `at ${at} it was just me`;
       });
-      out.push({ text: `${cap(bits.join('; '))}.`, hours: runHours });
+      out.push({ text: `${cap(bits.join('; '))}.`, hours: runHours, props: runHours.map((h) => ({ k: 'CLAIM', person: p, hour: h, company: [...(a.claims[h]?.company ?? [])] }) as Prop) });
     }
   });
   // Several hours alone, or the whole evening: said once, at the end.
   if (aloneRuns.length > 0 && (aloneRuns.length === runs.length || !aloneOnce || runs.length === 1)) {
     const alone = aloneRuns.flatMap((r) => Array.from({ length: r.to - r.from + 1 }, (_, k) => r.from + k));
-    if (aloneRuns.length === runs.length) out.push({ text: ALONE_ALL[rot % ALONE_ALL.length] as string, hours: alone });
+    const aloneProps = alone.map((h) => ({ k: 'CLAIM', person: p, hour: h, company: [] }) as Prop);
+    if (aloneRuns.length === runs.length) out.push({ text: ALONE_ALL[rot % ALONE_ALL.length] as string, hours: alone, props: aloneProps });
     else {
       const hs = alone.map(hourWord);
       const t = ALONE_SOME[rot % ALONE_SOME.length] as string;
       // "Nobody was with me at eight or eleven", but "At eight and eleven I was on my own".
-      out.push({ text: t.replace('{hs}', /^Nobody|^I had nobody/.test(t) ? orList(hs) : andList(hs)), hours: alone });
+      out.push({ text: t.replace('{hs}', /^Nobody|^I had nobody/.test(t) ? orList(hs) : andList(hs)), hours: alone, props: aloneProps });
     }
   }
-  a.remarks.forEach((r, i) => out.push({ text: r.text, hours: r.facts.map((f) => f.h), remark: i, people: [...r.facts.map((f) => f.p), ...(r.mentions?.people ?? [])] }));
+  a.remarks.forEach((r, i) => out.push({ text: r.text, hours: r.facts.map((f) => f.h), remark: i, people: [...r.facts.map((f) => f.p), ...(r.mentions?.people ?? [])], props: remarkProps(c, p, r) }));
   return out;
 }
 
@@ -264,9 +271,11 @@ export function spokenListLines(c: BoardCase, l: WatchList, rot = 0): SaidLine[]
     // "Pardo was there all evening. He buys things." (Raw 11's #11), not "Pardo who buys things was there".
     const who = /^(\w+) who (.+)$/.exec(o.name);
     const booth = /^(.+?) in (his|her) (.+)$/.exec(o.name);
-    if (who) out.push({ text: `${who[1]} was there ${span}. He ${who[2]}.`, hours: [...hours] });
-    else if (booth) out.push({ text: `${cap(booth[1] as string)} was in ${booth[2]} ${booth[3]} ${span}.`, hours: [...hours] });
-    else out.push({ text: `${cap(o.name)} ${plural ? 'were' : 'was'} there ${span}.`, hours: [...hours] });
+    // docs/52: somebody there at every hour the watcher kept.
+    const props = hours.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: [`other:${o.id}`] }) as Prop);
+    if (who) out.push({ text: `${who[1]} was there ${span}. He ${who[2]}.`, hours: [...hours], props });
+    else if (booth) out.push({ text: `${cap(booth[1] as string)} was in ${booth[2]} ${booth[3]} ${span}.`, hours: [...hours], props });
+    else out.push({ text: `${cap(o.name)} ${plural ? 'were' : 'was'} there ${span}.`, hours: [...hours], props });
   }
   const shut = hours.filter((h) => shutAt(c, l.place, h));
   const open = hours.filter((h) => !shutAt(c, l.place, h));
@@ -285,7 +294,8 @@ export function spokenListLines(c: BoardCase, l: WatchList, rot = 0): SaidLine[]
       // "Eight o’clock, just Benny" when the one who's always there was all there was (Medium 14's #12).
       const regulars = others.filter((o) => always.has(o.id)).map((o) => /^(Lou|Pardo|Benny)\b/.exec(o.name)?.[1]);
       const named = regulars.length > 0 && regulars.every(Boolean) ? (regulars as string[]) : [];
-      out.push({ text: landlady ? `${when}, nobody but me.` : named.length ? `${when}, just ${andList(named)}.` : `${when}, nobody${always.size ? ' else' : ''}.`, hours: [...g.hs] });
+      const regs = named.length ? others.filter((o) => always.has(o.id)).map((o) => `other:${o.id}`) : [];
+      out.push({ text: landlady ? `${when}, nobody but me.` : named.length ? `${when}, just ${andList(named)}.` : `${when}, nobody${always.size ? ' else' : ''}.`, hours: [...g.hs], props: g.hs.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: regs, whole: true }) as Prop) });
       return;
     }
     const names = g.es.map((e) => {
@@ -301,10 +311,15 @@ export function spokenListLines(c: BoardCase, l: WatchList, rot = 0): SaidLine[]
     });
     const whole = g.hs.every((h) => listExhaustive(c, l, h));
     const nobody = nobodyElse(i + rot);
-    out.push({ text: `${when}, ${andList(names)}.${whole ? ` ${nobody}.` : ''}`, hours: [...g.hs], hour: { when, names: andList(names), whole, nobody } });
+    out.push({
+      text: `${when}, ${andList(names)}.${whole ? ` ${nobody}.` : ''}`,
+      hours: [...g.hs],
+      hour: { when, names: andList(names), whole, nobody },
+      props: g.hs.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: g.es.map(entryOf), ...(whole ? { whole: true } : {}) }) as Prop),
+    });
   });
-  if (shut.length > 0) out.push({ text: `We shut at ${hourWord(shut[0] as Hour)}. Nobody after that.`, hours: [...shut] });
-  l.remarks.forEach((r, i) => out.push({ text: r.text, hours: r.facts.map((f) => f.h), remark: i, people: [...r.facts.map((f) => f.p), ...(r.mentions?.people ?? [])] }));
+  if (shut.length > 0) out.push({ text: `We shut at ${hourWord(shut[0] as Hour)}. Nobody after that.`, hours: [...shut], props: shut.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: [], shut: true }) as Prop) });
+  l.remarks.forEach((r, i) => out.push({ text: r.text, hours: r.facts.map((f) => f.h), remark: i, people: [...r.facts.map((f) => f.p), ...(r.mentions?.people ?? [])], props: remarkProps(c, l.watcher, r, l) }));
   return out;
 }
 

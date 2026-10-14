@@ -34,14 +34,13 @@ import type { Block } from '../types.js';
 import type { Beat } from '../sheets.js';
 import type { BoardCase, BoardRun } from '../model.js';
 import type { Item, Unit } from './types.js';
-import { aggregate } from './aggregate.js';
-import { connect, type PageBudget } from './connect.js';
-import { compose } from './compose.js';
+import type { PageBudget } from './types.js';
+import { aggregate, bonesOf, compose, connect } from '../bones/compose.js';
 import { rhythm } from './rhythm.js';
 import { refer, stripMarks } from './refer.js';
 import { situate, type SituCtx } from './situated.js';
 
-export type { Item, Unit, Relation, GapSlot, Join, Agg } from './types.js';
+export type { Item, Unit, Relation, GapSlot, Join, Agg, PageBudget } from './types.js';
 export { sentencesOf, wordsIn, bandOf, markedSentences, openingOf } from './sentences.js';
 export { markPronoun, stripMarks } from './refer.js';
 export { SITUATED, type SituCtx } from './situated.js';
@@ -172,6 +171,7 @@ function toUnit(x: Item, para: number): Unit {
       carries: [...new Set(x.carries ?? [])],
       ...(x.joined ? { join: x.joined } : {}),
       ...((x.n ?? 1) > 1 ? { facts: x.n } : {}),
+      ...(bonesOf(x) ? { bones: bonesOf(x) } : {}),
     };
   }
   const sit = x.sit?.key ? { key: x.sit.key, ...(x.sit.card ? { card: x.sit.card } : {}), ...(x.sit.who ? { who: x.sit.who } : {}), ...(x.sit.lead ? { lead: stripMarks(x.sit.lead) } : {}), ...(x.sit.tail ? { tail: stripMarks(x.sit.tail) } : {}) } : {};

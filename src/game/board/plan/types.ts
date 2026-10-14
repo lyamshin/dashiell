@@ -15,6 +15,16 @@
 
 import type { Beat } from '../sheets.js';
 import type { ProseVoice } from '../types.js';
+import type { Composite, Prop } from '../bones/types.js';
+
+/** docs/49 §2: what the page has spent of its joins: one "so" chain, one "but", and Planner 2's semicolons. */
+export interface PageBudget {
+  but: number;
+  so: number;
+  joins: number;
+  /** docs/49, Planner 2: semicolons the planner has put between two facts on the page. */
+  semi?: number;
+}
 
 /** What a fact does on its page. */
 export type Relation = 'new' | 'confirms' | 'collides' | 'narrows';
@@ -97,6 +107,17 @@ export interface Item {
    * situated card that filled it.
    */
   sit?: { lead?: string; tail?: string; joke?: boolean; key?: string; card?: string; who?: string };
+  /** docs/52: a fact's bones, the propositions it says, from the engine's own knowledge (`bones/extract.ts`). */
+  props?: Prop[];
+  /**
+   * docs/52: what the writer drew or knew for the planner's voicing of it: a collision's closing
+   * line, a placement's "and Ellery would swear to it", whether the sentence before named them.
+   */
+  flesh?: Record<string, unknown>;
+  /** docs/52: an opening "So" or "But" the writer's own words carry, said only when the page's join is free. */
+  opener?: 'So' | 'But';
+  /** docs/52: the composite the planner made of it, and how it was said. */
+  comp?: Composite;
 }
 
 /** A join the logic allows, and what it does to the fact's sentences. */
@@ -125,6 +146,8 @@ export type Unit =
       join?: string;
       /** docs/49, Planner 2: how many of the writer's facts the unit says, when the planner joined several. */
       facts?: number;
+      /** docs/52: the bones, as composites: the propositions the unit says, how they were joined, and the voicing. */
+      bones?: Composite[];
     }
   | {
       kind: 'gap';

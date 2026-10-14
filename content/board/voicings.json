@@ -1,0 +1,62 @@
+[
+  {"id": "list-hour/nobody", "shape": "LIST-HOUR", "manner": "watcher", "template": "{when}, {names}, and {nobody}."},
+
+  {"id": "confirmed/so", "shape": "CONFIRMED", "requires": ["agree", "so"], "template": "So {spans}, which was what {src}."},
+  {"id": "confirmed/which", "shape": "CONFIRMED", "requires": ["agree", "which"], "template": "{Spans}, which was what {src}."},
+  {"id": "confirmed/rest", "shape": "CONFIRMED", "requires": ["rest", "same"], "template": "The rest held where I could check it: {by} had {him} {spans}, same as {he} said."},
+  {"id": "confirmed/rest-held", "shape": "CONFIRMED", "requires": ["rest", "held"], "template": "The rest of {name}’s evening held where I could check it: {by} had {him} {spans}."},
+  {"id": "confirmed/list", "shape": "CONFIRMED", "requires": ["list", "same"], "template": "{watcher} had {them} {at} at {hour}, same as {he} said."},
+  {"id": "confirmed/list-too", "shape": "CONFIRMED", "requires": ["list", "too"], "template": "{name} had told me {at} at {hour}, and {watcher} had {him} {there} too."},
+  {"id": "confirmed/list-many", "shape": "CONFIRMED", "requires": ["list", "many"], "template": "{watcher} had {pairs}, same as they’d said."},
+
+  {"id": "confirmed-with/with", "shape": "CONFIRMED-WITH", "requires": ["too"], "template": "{confirmed}, with {others}."},
+  {"id": "confirmed-with/with-him", "shape": "CONFIRMED-WITH", "requires": ["same"], "template": "{confirmed}, and with {him} {others}."},
+  {"id": "confirmed-with/and", "shape": "CONFIRMED-WITH", "requires": ["apart"], "template": "{confirmed}, and {placed}."},
+
+  {"id": "collision/two", "shape": "COLLISION-PAIR", "requires": ["two"], "template": "{claim}. {Breaker}. {two}"},
+  {"id": "collision/but", "shape": "COLLISION-PAIR", "requires": ["but"], "template": "{claim}, but {breaker}."},
+  {"id": "collision/colon", "shape": "COLLISION-PAIR", "requires": ["colon"], "template": "{claim}, and {breaker}: {two}"},
+
+  {"id": "own-word/for", "shape": "OWN-WORD", "requires": ["hours"], "pick": "hours-form", "template": "For {hs}, the {hourword} that mattered, {who} said {what}."},
+  {"id": "own-word/said", "shape": "OWN-WORD", "requires": ["hours"], "forbids": ["listy"], "pick": "hours-form", "template": "{Who} said {what} for {hs}, the {hourword} that mattered."},
+  {"id": "own-word/recap", "shape": "OWN-WORD", "requires": ["recap"], "template": "{owns}, and nobody else had said so yet."},
+
+  {"id": "placed-set/swear", "shape": "PLACED-SET", "requires": ["swear"], "template": "That put {bits}, {swear}."},
+  {"id": "placed-set/self", "shape": "PLACED-SET", "requires": ["self"], "template": "{He} put {bits}."},
+  {"id": "placed-set/self-plain", "shape": "PLACED-SET", "requires": ["self", "plain"], "template": "{Runs}, by the same account."},
+  {"id": "placed-set/count", "shape": "PLACED-SET", "requires": ["count"], "template": "By {his} count, {runs}."},
+  {"id": "placed-set/recap", "shape": "PLACED-SET", "requires": ["recap"], "template": "{by} had {groups}."},
+
+  {"id": "access-set/two", "shape": "ACCESS-SET", "requires": ["yes", "no"], "template": "{Yes}. {No}."},
+  {"id": "access-set/yes", "shape": "ACCESS-SET", "requires": ["yes"], "forbids": ["no"], "template": "{Yes}."},
+  {"id": "access-set/no", "shape": "ACCESS-SET", "requires": ["no"], "forbids": ["yes"], "template": "{No}."},
+  {"id": "access-set/and", "shape": "ACCESS-SET", "requires": ["yes", "no", "agg"], "template": "{Yes}, and {nobody} {short}."},
+  {"id": "access-set/and-but", "shape": "ACCESS-SET", "requires": ["yes", "no", "agg", "but"], "template": "{Yes}, but {nobody} {short}."},
+  {"id": "access-set/but", "shape": "ACCESS-SET", "requires": ["yes", "no", "one", "but"], "template": "{Yes}, but {no}."},
+  {"id": "access-set/semi", "shape": "ACCESS-SET", "requires": ["yes", "no", "one", "semi"], "template": "{Yes}; {no}."},
+
+  {"id": "attach/who", "shape": "ATTACH", "requires": ["who"], "template": "{host}, who {of}."},
+  {"id": "attach/and", "shape": "ATTACH", "requires": ["and-he"], "template": "{host}, and {he} {of}."},
+
+  {"id": "window-alive/two-murder", "shape": "WINDOW-ALIVE", "requires": ["two", "murder"], "template": "{client} had said {opts}. {victim} was at {place} at {hour}, alive."},
+  {"id": "window-alive/two-murder-so", "shape": "WINDOW-ALIVE", "requires": ["two", "murder", "walk", "so"], "template": "{client} had said {opts}. {victim} was at {place} at {hour}, alive. So whatever happened to {him} happened at {narrowed}."},
+  {"id": "window-alive/two-murder-walk", "shape": "WINDOW-ALIVE", "requires": ["two", "murder", "walk"], "template": "{client} had said {opts}. {victim} was at {place} at {hour}, alive. Whatever happened to {him} happened at {narrowed}."},
+  {"id": "window-alive/two-small", "shape": "WINDOW-ALIVE", "requires": ["two", "small"], "template": "{client} had said {opts}. At {hour} {victim} was {at}."},
+  {"id": "window-alive/two-small-so", "shape": "WINDOW-ALIVE", "requires": ["two", "small", "walk", "so"], "template": "{client} had said {opts}. At {hour} {victim} was {at}. So it went at {narrowed}."},
+  {"id": "window-alive/two-small-walk", "shape": "WINDOW-ALIVE", "requires": ["two", "small", "walk"], "template": "{client} had said {opts}. At {hour} {victim} was {at}. It went at {narrowed}."},
+  {"id": "window-alive/one-murder", "shape": "WINDOW-ALIVE", "requires": ["one", "murder"], "template": "{client} had said {opts}, and {victim} was {at} at {hour}, alive."},
+  {"id": "window-alive/one-murder-so", "shape": "WINDOW-ALIVE", "requires": ["one", "murder", "walk", "so"], "template": "{client} had said {opts}, and {victim} was still alive {at} at {hour}, so it was {narrowword}."},
+  {"id": "window-alive/one-small", "shape": "WINDOW-ALIVE", "requires": ["one", "small"], "template": "{client} had said {opts}, and at {hour} {victim} was {at}."},
+  {"id": "window-alive/one-small-so", "shape": "WINDOW-ALIVE", "requires": ["one", "small", "walk", "so"], "template": "{client} had said {opts}, and at {hour} {victim} was still {at}, so it went at {narrowword}."},
+
+  {"id": "street/two-murder", "shape": "STREET", "requires": ["two", "murder"], "template": "The part worth keeping came last. {street} was where {victim} lived."},
+  {"id": "street/two-small", "shape": "STREET", "requires": ["two", "small"], "template": "The part worth keeping came last. {street} was where {client} kept {victim}."},
+  {"id": "street/one-murder", "shape": "STREET", "requires": ["one", "murder"], "template": "The part worth keeping came last: {street} was where {victim} lived."},
+  {"id": "street/one-small", "shape": "STREET", "requires": ["one", "small"], "template": "The part worth keeping came last: {street} was where {client} kept {victim}."},
+
+  {"id": "admit-check/but", "shape": "ADMIT-CHECK", "requires": ["but"], "template": "{a}, but {b}"},
+
+  {"id": "pair/and", "shape": "PAIR", "requires": ["and"], "template": "{a}, and {b}"},
+  {"id": "pair/semi", "shape": "PAIR", "requires": ["semi"], "template": "{a}; {b}"},
+  {"id": "pair/but", "shape": "PAIR", "requires": ["but"], "template": "{a}, but {b}"}
+]
