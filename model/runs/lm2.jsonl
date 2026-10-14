@@ -1,0 +1,9 @@
+{"run": "lm2", "params": 6326784, "config": {"vocab": 6000, "ctx": 256, "layers": 6, "heads": 4, "width": 256, "dropout": 0.1}, "device": "mps", "args": {"name": "lm2", "layers": 6, "width": 256, "heads": 4, "ctx": 256, "dropout": 0.1, "batch": 32, "lr": 0.0003, "min_lr": 1e-05, "warmup": 100, "iters": 4300, "weight_decay": 0.1, "eval_every": 250, "eval_batches": 40, "patience": 6, "minutes": 18.0, "init": "model/checkpoints/lm1.pt", "device": null, "no_wait": false}, "train_tokens": 5396610, "val_tokens": 271440}
+{"step": 5000, "train": 0.2873, "val": 0.3121, "minutes": 0.06, "lr": 2.9999999999999997e-06, "load": 4.07}
+{"step": 5250, "train": 0.2918, "val": 0.3276, "minutes": 0.99, "lr": 0.0002990882704345202, "load": 4.04}
+{"step": 5500, "train": 0.3023, "val": 0.3275, "minutes": 1.91, "lr": 0.0002935580568389904, "load": 3.39}
+{"step": 5750, "train": 0.2814, "val": 0.322, "minutes": 2.83, "lr": 0.0002831967320581684, "load": 4.44}
+{"step": 6000, "train": 0.2818, "val": 0.3228, "minutes": 3.76, "lr": 0.0002683655649578643, "load": 4.58}
+{"step": 6250, "train": 0.3075, "val": 0.3194, "minutes": 4.7, "lr": 0.00024958167463532755, "load": 4.76}
+{"step": 6500, "train": 0.2918, "val": 0.3143, "minutes": 5.63, "lr": 0.00022749999999999997, "load": 4.55}
+{"done": true, "best_val": 0.3121, "steps": 6500, "minutes": 5.63, "blowups": 0}

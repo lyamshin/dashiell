@@ -1,0 +1,43 @@
+{
+  "nights": 2000,
+  "nightsFailed": 0,
+  "cardsSkipped": 246,
+  "counts": {
+    "goldens": {
+      "lines": 49,
+      "unique": 49,
+      "bytes": 49093,
+      "train": 47,
+      "val": 2
+    },
+    "cards": {
+      "lines": 1700,
+      "unique": 1700,
+      "bytes": 160056,
+      "train": 1609,
+      "val": 91
+    },
+    "bible": {
+      "lines": 818,
+      "unique": 817,
+      "bytes": 79573,
+      "train": 763,
+      "val": 54
+    },
+    "nights": {
+      "lines": 25934,
+      "unique": 25277,
+      "bytes": 24904643,
+      "train": 24080,
+      "val": 1197
+    }
+  },
+  "train": {
+    "lines": 26499,
+    "bytes": 23987361
+  },
+  "val": {
+    "lines": 1344,
+    "bytes": 1206004
+  }
+}
