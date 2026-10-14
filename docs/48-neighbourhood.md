@@ -239,7 +239,7 @@ Branch `bible-2`. The first bible's shape held the game back: one unwatched buil
 - **Watchers** have three standing lines each (`watcher.counts` is a list): where they sit, what they read people by, what nobody gets past.
 - **Doing lines** are `{ setting, text }`, 188 in all, five to seven a person, at least two away from home.
 - **Ties:** 194 ends, 5.9 a person (4 to 8), all eleven kinds, and everybody in the pool tied to at least three others in it. The twelve who can be found dead are each tied to five or six others in the pool, so the same three suspects don't follow them.
-- **Women are found dead too** (`WOMEN_VICTIMS` in `cast.ts`). The board's 58 cards that said "him" of the dead (the office's setup and questions, the body, the finds, the papers) now name the dead or say it without a pronoun, on dealt nights too. A dead woman's reasons say "her" (`ofVictim` in `motives.ts`), and so do the shelf's words ("Somebody made her cocoa"); her flat is "the Kahane flat", so the office's "his own flat" doesn't fire. The engine's own lines still say "him": docs/25 has the list.
+- **Women found dead: ready, and switched off.** The board's 58 cards that said "him" of the dead (the office's setup and questions, the body, the finds, the papers) now name the dead or say it without a pronoun, on dealt nights too. A dead woman's reasons say "her" (`ofVictim` in `motives.ts`), and so do the shelf's words ("Somebody made her cocoa"); her flat is "the Kahane flat", so the office's "his own flat" doesn't fire. The engine's own lines still say "him" (docs/25, "Bible 2", has every file and line), and they're in files the microplanner is working in, so `WOMEN_VICTIMS` in `cast.ts` is `false` until that gender pass lands. Until then the dead are the five men of the two buildings, and women are clients, owners, suspects and culprits.
 
 ### The loader and the prose
 
@@ -249,18 +249,18 @@ Branch `bible-2`. The first bible's shape held the game back: one unwatched buil
 
 ### Measures, before → after
 
-**The sweep** (200 nights a tier): 200/200 at every tier, 0 invariant failures, the same par ranges, 0 duplicate reasons, 0 nights with the culprit and the liar at one place and hour.
+**The sweep** (200 nights a tier), as it ships, with `WOMEN_VICTIMS` off, and in brackets with it on: 200/200 at every tier, 0 invariant failures, the same par ranges, 0 duplicate reasons, 0 nights with the culprit and the liar at one place and hour, either way.
 
-| tier | distinct casts | culprits / wronged used | wronged again within ten | places in 60 nights | people in 60 nights | dead women / men |
+| tier | distinct casts | culprits / wronged used | wronged again within ten | dead women / men | places in 60 nights | people in 60 nights |
 |---|---|---|---|---|---|---|
-| Raw | 99 → **160** | 13 / 6 → 21 / 12 | 186 → 10 | 7 of 10 → 8 of 11 | 20 of 24 → 27 of 33 | 0 / 91 → 51 / 40 |
-| Coddled | 79 → **166** | 13 / 6 → 21 / 12 | 186 → 14 | 10 → 11 | 22 → 29 | 0 / 91 → 46 / 45 |
-| Poached | 105 → **178** | 12 / 6 → 20 / 12 | 184 → 21 | 9 → 11 | 20 → 28 | 0 / 91 → 57 / 34 |
-| Soft-boiled | 102 → **175** | 13 / 6 → 20 / 12 | 178 → 15 | 9 → 11 | 21 → 29 | 0 / 91 → 51 / 40 |
-| Medium | 107 → **180** | 6 / 6 → 12 / 12 | 183 → 12 | 10 → 11 | 22 → 30 | 0 / 91 → 49 / 42 |
-| Hard-boiled | 115 → **186** | 6 / 6 → 12 / 12 | 182 → 14 | 8 → 9 | 21 → 29 | 0 / 91 → 50 / 41 |
+| Raw | 99 → **159** (160) | 13 / 6 → 21 / 12 | 186 → 35 (10) | 0 / 91 (51 / 40) | 7 of 10 → 8 of 11 | 20 of 24 → 27 of 33 |
+| Coddled | 79 → **163** (166) | 13 / 6 → 21 / 12 | 186 → 22 (14) | 0 / 91 (46 / 45) | 10 → 11 | 22 → 29 |
+| Poached | 105 → **168** (178) | 12 / 6 → 19 / 12 | 184 → 35 (21) | 0 / 91 (57 / 34) | 9 → 11 | 20 → 29 (28) |
+| Soft-boiled | 102 → **170** (175) | 13 / 6 → 19 / 12 | 178 → 34 (15) | 0 / 91 (51 / 40) | 9 → 11 | 21 → 29 |
+| Medium | 107 → **171** (180) | 6 / 6 → 12 / 12 | 183 → 46 (12) | 0 / 91 (49 / 42) | 10 → 11 | 22 → 30 |
+| Hard-boiled | 115 → **192** (186) | 6 / 6 → 12 / 12 | 182 → 49 (14) | 0 / 91 (50 / 41) | 8 → 9 | 21 → 29 |
 
-No culprit twice running, and no wronged twice running, with continuity. The scene is the Excelsior about half the nights and the Belvedere the other half. Over 40 Medium murders, page 2 says eight different arrivals, none more than ten times, and every watcher met says more than one of their three lines.
+Twelve wronged either way: a lost thing's owner can be anybody in the two buildings; with the switch off the dead are their five men (Russo, Belkin, Doyle, Glick, Kaminsky), against three before. No culprit twice running, and no wronged twice running, with continuity. The scene is the Excelsior about half the nights and the Belvedere the other half. Over 40 Medium murders (switch on), page 2 says eight different arrivals, none more than ten times, and every watcher met says more than one of their three lines.
 
 **Not met: every place and person within 60 nights.** What's missing is the engine's shape, not the bible's:
 
@@ -268,25 +268,25 @@ No culprit twice running, and no wronged twice running, with continuity. The sce
 - Gutman and Wexler, the workplaces' watchers, are cast only when their workplace is the night's second place (Coddled and Medium murders).
 - A fence appears in a small case as who the thing went to, which isn't one of the case's people, and the sweep counts only those. Fishel, Miss Marsh, Mrs. Shapiro and Tierney are counted only on nights they keep a back room.
 
-**`board-prose`** (30 nights a tier), the share of arrival, look and staging text from the bible:
+**`board-prose`** (30 nights a tier), the share of arrival, look and staging text from the bible, switch off (on):
 
 | tier | all three | arrivals and looks | staging |
 |---|---|---|---|
-| Raw | 66% → **74%** | 75% → 85% | 38% → 40% |
-| Coddled | 69% → **75%** | 77% → 85% | 42% → 45% |
-| Poached | 61% → **75%** | 69% → 84% | 38% → 48% |
-| Soft-boiled | 61% → **75%** | 68% → 85% | 43% → 50% |
-| Medium | 65% → **78%** | 73% → 87% | 42% → 52% |
-| Hard-boiled | 66% → **77%** | 73% → 85% | 43% → 51% |
+| Raw | 66% → **74%** (74%) | 75% → 85% (85%) | 38% → 39% (40%) |
+| Coddled | 69% → **75%** (75%) | 77% → 85% (85%) | 42% → 45% (45%) |
+| Poached | 61% → **75%** (75%) | 69% → 84% (84%) | 38% → 48% (48%) |
+| Soft-boiled | 61% → **76%** (75%) | 68% → 85% (85%) | 43% → 52% (50%) |
+| Medium | 65% → **77%** (78%) | 73% → 86% (87%) | 42% → 52% (52%) |
+| Hard-boiled | 66% → **77%** (77%) | 73% → 85% (85%) | 43% → 51% (51%) |
 
-Callback pages are 62–68%. Reader lint, correspondence, plain terms, cards twice, clues three times, banned phrases, signposts, gags and pets are 0. Four hits, all from engine lines on these nights' casts, as the first bible's three were:
+Callback pages are 62–68%. Reader lint, correspondence, plain terms, cards twice, clues three times, banned phrases, signposts, gags and pets are 0. Four hits either way, all from engine lines on these nights' casts, the same three rules as the first bible's three hits:
 
-- a place said three times in a paragraph by the board's confirmation and collision lines ("So Rafferty’s at nine, with Mrs. Pomerantz and Rafferty’s at eight": Medium 16, Soft-boiled 28);
-- a name three times on a Medium lost-pet list page (Belkin, with the fence a third man in the collision line: Medium 13);
-- a thought said twice in a night ("For nine, the hour that mattered, he said the costume room at the Lyric": Hard-boiled 14).
+- a place said three times in a paragraph by the board's collision and confirmation lines ("So Rafferty’s at nine, with Mrs. Krantz and Rafferty’s at eight": Raw 24, Medium 18; switch on, Soft-boiled 28 and Medium 16);
+- a name three times on a Medium lost-pet list page (Belkin, with the fence a third man in the collision line: Medium 13, either way);
+- a thought said twice in a night ("For ten, the hour that mattered, he said the curtained booth at the back at Steinmetz’s": Hard-boiled 20; switch on, Hard-boiled 14).
 
 ### Read
 
-- **Medium, seed 2, murder (Miss Kahane, the union organizer, dead in the Belvedere):** the bible's side reads right: her flat, her body, her papers ("a complaint she’d made against him"), her reasons, the cocoa. The engine's own lines still say "him" (docs/25).
+- **Medium, seed 2, murder, read with the switch on (Miss Kahane, the union organizer, dead in the Belvedere):** the bible's side reads right: her flat, her body, her papers ("a complaint she’d made against him"), her reasons, the cocoa. The engine's own lines still say "him" (docs/25).
 - **Medium, seed 10, murder (Belkin, with the costume room under the Lyric as the back room):** the back room's own arrival, Kaminsky's chorus secret owned up in it, and the new standing lines at Steinmetz's. Fixed from it: a client feuding with the dead man and called his "neighbor", and a reason that ran through the client herself.
 - **Coddled, seed 9, lost item (Mrs. Blau's spoons):** the Lyric's new fence takes the spoons ("went straight to Shapiro"), and Pinsky stands his new way. Fixed from these: two `any` doing lines that only fit one place ("haggling with a customer" in a card room at six in the morning, "holding a fork up to the light").

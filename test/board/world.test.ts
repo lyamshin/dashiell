@@ -10,7 +10,8 @@ import stubPlaces from '../../content/neighbourhood/stub/places.json';
 import stubPeople from '../../content/neighbourhood/stub/people.json';
 import { checkInvariants, generateBoard, invariantFailures, typesFor, type BoardCase, type TierIndex } from '../../src/gen/board/index.js';
 import { bibleProblems, parseBible } from '../../src/gen/board/world/load.js';
-import { castPool, fenceOf, fencePeople } from '../../src/gen/board/world/cast.js';
+import { castPool, fenceOf, fencePeople, WOMEN_VICTIMS } from '../../src/gen/board/world/cast.js';
+import { motivesFor, ofVictim } from '../../src/gen/board/world/motives.js';
 import { worldBible, worldCtx } from '../../src/gen/board/world/index.js';
 import { boardOpen, hoursOnBoard } from '../../src/gen/board/world/types.js';
 import { castOf, dealBoard, keepsContinuity } from '../../src/game/board/model.js';
@@ -330,22 +331,24 @@ describe('the prose draws on the bible first', () => {
 
   it('walks into a back room on its own arrival', () => {
     let rooms = 0;
-    for (let s = 1; s <= 12; s++) {
+    for (let s = 1; s <= 40 && rooms < 3; s++) {
       const d = dealBoard(s, 4, 'murder', { world: 'neighbourhood' });
       const back = d.kase.places.find((x) => x.key?.includes('#'));
       if (!back) continue;
       const host = bible.places.find((x) => x.id === back.world);
       const hide = host?.hides.find((h) => h.name === back.key?.split('#')[1]);
-      // The first time in.
-      const p = playWanderer(d, s).run.log.find((x) => x.at === back.id && x.board?.job === 'arrive' && x.board.said);
-      if (!p?.board?.said) continue;
-      rooms++;
-      expect(p.board.said.arrival.includes(hide?.arrival ?? '∅'), `${d.kase.id} p${p.n}: ${back.name}`).toBe(true);
+      // The first time in, on whichever route goes there.
+      for (const run of [playBoardOracle(d).run, playWanderer(d, s).run]) {
+        const p = run.log.find((x) => x.at === back.id && x.board?.job === 'arrive' && x.board.said);
+        if (!p?.board?.said) continue;
+        rooms++;
+        expect(p.board.said.arrival.includes(hide?.arrival ?? '∅'), `${d.kase.id} p${p.n}: ${back.name}`).toBe(true);
+      }
     }
     expect(rooms).toBeGreaterThan(0);
   });
 
-  it('finds women dead as well as men, and says her reasons as hers', () => {
+  it('finds women dead only when WOMEN_VICTIMS says so, and then says her reasons as hers', () => {
     const dead = new Map<string, number>();
     for (let s = 1; s <= 30; s++) {
       const d = dealBoard(s, 3, 'murder', { world: 'neighbourhood' });
@@ -358,8 +361,27 @@ describe('the prose draws on the bible first', () => {
         expect(p.motivePapers ?? '', `${d.kase.id} ${p.id}`).not.toMatch(/(?<![{\w])(he|him|his)\b(?!\})|dead man/);
       }
     }
-    expect(dead.get('f') ?? 0).toBeGreaterThan(5);
+    // docs/25, Bible 2: off until the engine's own lines can say "her".
+    if (WOMEN_VICTIMS) expect(dead.get('f') ?? 0).toBeGreaterThan(5);
+    else expect(dead.get('f') ?? 0).toBe(0);
     expect(dead.get('m') ?? 0).toBeGreaterThan(5);
+  });
+
+  it('says a dead woman’s reasons as hers, ready for the day she can be found', () => {
+    const pool = castPool(bible);
+    let said = 0;
+    for (const wronged of pool.filter((p) => p.gender === 'f')) {
+      for (const s of pool.filter((p) => p !== wronged)) {
+        for (const m of motivesFor(bible.people, s, wronged, true, new Set(), (p) => p.last, { secrets: { placeName: (id) => bible.places.find((x) => x.id === id)?.name } })) {
+          said++;
+          expect(m.form, `${s.id} → ${wronged.id}`).not.toMatch(/(?<![{\w])(him|his|He|His)\b(?!\})|dead man/);
+          expect(m.papers ?? '', `${s.id} → ${wronged.id}`).not.toMatch(/(?<![{\w])(he|him|his)\b(?!\})|dead man/);
+        }
+      }
+    }
+    expect(said).toBeGreaterThan(50);
+    expect(ofVictim('He owed them money, and he knew it', true)).toBe('She owed them money, and she knew it');
+    expect(ofVictim('a tally of what {he} owed him', true)).toBe('a tally of what {he} owed her');
   });
 
   it('has a watcher stand three ways across the nights, not one', () => {

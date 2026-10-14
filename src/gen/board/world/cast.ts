@@ -123,11 +123,13 @@ export interface Cast {
 const VENUE_KINDS = new Set(['bar', 'club', 'restaurant', 'theatre']);
 
 /**
- * docs/48: women are cast as the dead too. The bible, the board's cards and the reasons say a dead
- * woman as one; a handful of the engine's own lines still say "him" (docs/25, "The neighbourhood").
- * False casts only men, as the first bible did.
+ * docs/48 Bible 2: may a woman be found dead? The bible, the board's cards, the reasons (`ofVictim`)
+ * and the shelf's words already say a dead woman as one, but the engine's own lines still say "him":
+ * docs/25, "Bible 2", lists every file and line, starting with the victim's `female: false` in
+ * `generate.ts`. Off until that gender pass lands; until then only men are found dead, and women
+ * are clients, owners, suspects and culprits.
  */
-export const WOMEN_VICTIMS = true;
+export const WOMEN_VICTIMS = false;
 
 /** A bible place's name as the generator says it: whole the first time, short after. */
 export function placeWords(p: BiblePlace): { name: string; short: string } {
