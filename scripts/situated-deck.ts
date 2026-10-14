@@ -22,8 +22,10 @@
  *     verdict (`did it`, `must have`), "on the way out", a pet called "it";
  *   - **copies**: 70% or more of its words shared with the card its gap had, or with any card of
  *     the old decks;
- *   - **near-duplicates**: 70% or more of its words shared with an earlier card of the same
- *     (slot, page kind, before);
+ *   - **near-duplicates**: 70% or more of its words (Jaccard, over word sets) shared with an
+ *     earlier card of the same (slot, page kind, before), or of any key (two keys can fall on one
+ *     night);
+ *   - **agreement**: `{they} were` and the like (it becomes "he were");
  *   - **the read**: `model/data/situated-cuts.json`, the cards the lead cut by hand, with why;
  *   - **jokes**: no more than one card in ten.
  *   It prints what was written, cut (by why) and kept, a slot at a time, and the coverage of each
@@ -225,6 +227,11 @@ if (cmd === 'batches') {
     const peers = byStratum.get(g.stratum) ?? [];
     if (peers.some((o) => overlap(ws, o) >= 0.7)) {
       why('near-duplicate in its (slot, page kind, before)');
+      continue;
+    }
+    // (And anywhere in the deck: two cards of different keys can fall on one night.)
+    if (kept.some((o) => overlap(ws, words(o.text)) >= 0.7)) {
+      why('near-duplicate of a card of another key');
       continue;
     }
     peers.push(ws);

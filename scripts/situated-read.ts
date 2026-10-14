@@ -6,7 +6,7 @@
  * `npx tsx scripts/situated-read.ts --out DIR [--pairs 20] [--seed 51]`
  *   writes `DIR/read.md` (the pairs, as "Version 1" and "Version 2") and `DIR/key.json` (which
  *   version is which). Pages are taken across both worlds, every tier and every kind of page, along
- *   the oracle's route, and only where the two versions differ.
+ *   the oracle's route (the wanderer's for a motive or a put), and only where the two versions differ.
  *
  * `npx tsx scripts/situated-read.ts --score DIR/key.json --answers A.json [B.json …]`
  *   scores readers' answers (`{"1": "1"|"2", …}`, the version preferred in each pair): how often
@@ -17,7 +17,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
 import { dealBoard, tierName } from '../src/game/board/model.js';
-import { playBoardOracle } from '../src/game/board/oracle.js';
+import { playBoardOracle, playWanderer } from '../src/game/board/oracle.js';
 import { SITUATED } from '../src/game/board/plan/situated.js';
 import { Rng } from '../src/gen/board/rng.js';
 import type { Page } from '../src/game/board/types.js';
@@ -59,9 +59,10 @@ function prose(p: Page): string {
   return p.blocks.filter((b) => b.kind === 'prose').map((b) => b.text).join('\n\n');
 }
 
-function night(on: boolean, s: number, tier: TierIndex, type: CaseType, world?: string): Page[] {
+function night(on: boolean, s: number, tier: TierIndex, type: CaseType, world: string | undefined, wander: boolean): Page[] {
   SITUATED.on = on;
-  const log = playBoardOracle(dealBoard(s, tier, type, world ? { world } : {})).run.log;
+  const d = dealBoard(s, tier, type, world ? { world } : {});
+  const log = (wander ? playWanderer(d, s) : playBoardOracle(d)).run.log;
   SITUATED.on = true;
   return log;
 }
@@ -89,8 +90,10 @@ for (const [job, n] of plan) {
     const tier = (pairs.length % 6) as TierIndex;
     const types = typesFor(tier) as CaseType[];
     const type = types[rng.int(types.length)] as CaseType;
-    const on = night(true, s, tier, type, world);
-    const off = night(false, s, tier, type, world);
+    // (The oracle's route seldom asks a motive or puts a line that misses: the wanderer's does.)
+    const wander = job === 'motive' || job === 'confront';
+    const on = night(true, s, tier, type, world, wander);
+    const off = night(false, s, tier, type, world, wander);
     const idx = on.map((p, i) => i).filter((i) => (job === 'turn' ? on[i]?.board?.turn : on[i]?.board?.job === job) && prose(on[i] as Page) !== prose(off[i] as Page));
     if (idx.length === 0) continue;
     const i = idx[rng.int(idx.length)] as number;

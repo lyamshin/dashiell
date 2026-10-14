@@ -22,5 +22,8 @@
  "g2306": "assumes a cellar club: one club is over a garage",
  "g2322": "assumes a cellar club: one club is over a garage",
  "g2481": "assumes a cellar club: one club is over a garage",
- "g1878": "assumes a cellar club: one club is over a garage"
+ "g1878": "assumes a cellar club: one club is over a garage",
+ "g1320": "near-duplicate of g0178 across strata (the theater hat), both can fall on one night",
+ "g0145": "asserts a fact: a rooming house need not keep a count (some have nobody posted)",
+ "g0151": "assumes an usher: a theater may have a ticket seller or a house manager"
 }
