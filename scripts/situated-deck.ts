@@ -36,6 +36,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { verifyGap } from '../src/game/board/model/verifier.js';
+import { verdictsIn } from '../src/game/board/reader-lint.js';
 import { BOARD_CARDS } from '../src/game/board/decks.js';
 import { DECKS } from '../src/game/board/cards.js';
 import { Rng } from '../src/gen/board/rng.js';
@@ -212,6 +213,12 @@ if (cmd === 'batches') {
     }
     if (DID_IT.test(plain) || /\bon the way out\b/i.test(plain) || /\bwhere I’d left (?:him|her)\b/i.test(plain)) {
       why('lint: a verdict or a banned turn');
+      continue;
+    }
+    // The reader lint's verdicts, with the person said by name, as the planner may say them ("I let Brennan go").
+    const named = text.replace(/\{(?:they|them|role)\}/gi, 'Brennan').replace(/\{their\}/gi, 'Brennan’s');
+    if (verdictsIn(named, ['Brennan']).length > 0) {
+      why(`lint: a verdict once the name is said (${verdictsIn(named, ['Brennan'])[0]})`);
       continue;
     }
     // A lost pet is "he" or "she" (docs/47 B9): "who took it" only where it's a thing.

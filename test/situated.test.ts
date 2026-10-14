@@ -9,6 +9,7 @@ import { playBoardOracle, playWanderer } from '../src/game/board/oracle.js';
 import { verifyGap } from '../src/game/board/model/verifier.js';
 import { DROPS, KEY_FIELDS, SITUATED, SIT_PAGES, SIT_SLOTS, fillCard, fits, keyString, parseKey, project, situatedDeck, useDeck, type SitCard } from '../src/game/board/plan/situated.js';
 import { lintBoardRun } from '../src/game/board/lint.js';
+import { verdictsIn } from '../src/game/board/reader-lint.js';
 import { proseIssues } from '../src/game/board/prose-lint.js';
 import { pronounAmbiguity } from '../src/game/board/plan/measure.js';
 import { namesOverTwo } from '../src/game/board/names.js';
@@ -61,6 +62,8 @@ describe('docs/51: the deck as shipped', () => {
       expect(text, c.id).not.toMatch(/[{}]/);
       const v = verifyGap(text.replace(/^(“?)([a-z])/, (_m, q: string, a: string) => q + a.toUpperCase()), { minWords: 8, maxWords: 40, maxSentences: 2 });
       expect(v.reasons, `${c.id}: ${c.text}`).toEqual([]);
+      // The reader lint's verdicts, with the person said by name as the planner may say them.
+      expect(verdictsIn(c.text.replace(/\{(?:they|them|role)\}/gi, 'Brennan'), ['Brennan']), c.id).toEqual([]);
     }
   });
 

@@ -25,5 +25,9 @@
  "g1878": "assumes a cellar club: one club is over a garage",
  "g1320": "near-duplicate of g0178 across strata (the theater hat), both can fall on one night",
  "g0145": "asserts a fact: a rooming house need not keep a count (some have nobody posted)",
- "g0151": "assumes an usher: a theater may have a ticket seller or a house manager"
+ "g0151": "assumes an usher: a theater may have a ticket seller or a house manager",
+ "g1108": "says the room was empty: on a report page the people of the night can still be in it",
+ "g1962": "says the people had gone: the turn falls with the watcher and the night still in the room",
+ "g1487": "obscure: a part I wouldn’t have to carry round in pieces (both blind readers marked it down)",
+ "g0843": "the seat beside, with nothing after it (both blind readers marked it down)"
 }

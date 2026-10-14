@@ -206,6 +206,9 @@ function mendable(it: Item): boolean {
  * (a why, an aside, a hand-off), where "and" would say they follow from each other.
  */
 function joins(it: Item): 'and' | 'semi' | false {
+  // docs/51: a reason and the situated card after it are two thoughts, not one ("…telling the room
+  // about his parlor window; the kitchen door swung…" read as a non sequitur in the blind read).
+  if (it.sit?.card && it.sit.lead) return false;
   // (A collision is its two lines and its one join: "and" inside it would say one follows from the other.)
   if (it.kind === 'fact') return it.relation !== 'collides' ? 'and' : false;
   if (it.slot === 'arrival' || it.slot === 'walk' || it.slot === 'staging' || it.slot === 'reaction' || it.slot === 'close' || it.slot === 'ask') return 'and';
