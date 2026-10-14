@@ -77,6 +77,10 @@ export interface Item {
   runOn?: boolean;
   /** The join the planner gave it, for the skeleton and the measure. */
   joined?: string;
+  /** docs/49, Planner 2: how many of the writer's facts it says, when the planner joined several (1 when unset). */
+  n?: number;
+  /** docs/49, Planner 2: facts the planner joined into one sentence on purpose: the rhythm never parts it again. */
+  composed?: boolean;
   /** The writer's own bookkeeping: which rule or line said it. */
   tag?: string;
   /**
@@ -119,6 +123,8 @@ export type Unit =
       voice: ProseVoice;
       carries: string[];
       join?: string;
+      /** docs/49, Planner 2: how many of the writer's facts the unit says, when the planner joined several. */
+      facts?: number;
     }
   | {
       kind: 'gap';

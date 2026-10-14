@@ -17,6 +17,10 @@
  * - **rhythm** (`rhythm.ts`): sentence lengths vary, a joke ends short, paragraphs follow beats;
  * - **reference** (`refer.ts`): what a person is called follows what the last sentence was about.
  *
+ * And, between the connectives and the rhythm, Planner 2's **composition** (`compose.ts`): the
+ * thought's facts joined by what they do to each other, so a thought of N facts reads as at most
+ * ceil(N/2) sentences, not a list.
+ *
  * What comes out is the skeleton (`Unit[]`): fact units, locked, and gap
  * units, each with its card default. Realization concatenates them, a
  * paragraph to a block.
@@ -32,6 +36,7 @@ import type { BoardCase, BoardRun } from '../model.js';
 import type { Item, Unit } from './types.js';
 import { aggregate } from './aggregate.js';
 import { connect, type PageBudget } from './connect.js';
+import { compose } from './compose.js';
 import { rhythm } from './rhythm.js';
 import { refer, stripMarks } from './refer.js';
 import { situate, type SituCtx } from './situated.js';
@@ -97,6 +102,8 @@ export function planSection(
   }
   for (const b of Object.keys(byBeat) as Beat[]) if (!placed.has(b) && (byBeat[b] ?? []).length > 0) order.push({ beats: [b] });
   if (PLAN.ops) connect(order.flatMap((o) => o.beats.flatMap((b) => byBeat[b] ?? [])), ctx);
+  // docs/49, Planner 2: the thought's facts joined by what they do to each other.
+  if (PLAN.ops && byBeat.thought) byBeat.thought = compose(byBeat.thought, ctx);
   // Paragraphs: a beat alone in its paragraph gives each of its items a paragraph of its own (an
   // item that runs on stays with the one before); beats that share a paragraph run together when
   // they're short enough to read as one.
@@ -164,6 +171,7 @@ function toUnit(x: Item, para: number): Unit {
       voice: x.voice,
       carries: [...new Set(x.carries ?? [])],
       ...(x.joined ? { join: x.joined } : {}),
+      ...((x.n ?? 1) > 1 ? { facts: x.n } : {}),
     };
   }
   const sit = x.sit?.key ? { key: x.sit.key, ...(x.sit.card ? { card: x.sit.card } : {}), ...(x.sit.who ? { who: x.sit.who } : {}), ...(x.sit.lead ? { lead: stripMarks(x.sit.lead) } : {}), ...(x.sit.tail ? { tail: stripMarks(x.sit.tail) } : {}) } : {};

@@ -2,7 +2,7 @@
  * docs/51 §1 and §3.1: the gaps the situated deck fills, their situations, and the sample the
  * deck is written from.
  *
- * `npx tsx scripts/situated-gaps.ts [--nights 40] [--sample 3000] [--out model/data/gaps-sample.jsonl] [--keys 15]`
+ * `npx tsx scripts/situated-gaps.ts [--nights 40] [--sample 3000 | --add-missing 5] [--out model/data/gaps-sample.jsonl] [--keys 15]`
  *
  * Plays N nights a tier in both worlds along all three routes (the oracle's, the wanderer's and the
  * reader's), with the situated deck off, and keys every gap the deck may fill (`plan/situated.ts`).
@@ -17,7 +17,7 @@
  * not to copy), whom the tokens mean and which tokens there are.
  */
 
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
 import { dealBoard, placeOf, pronOf, tierName, type BoardRun } from '../src/game/board/model.js';
@@ -220,5 +220,33 @@ if (SAMPLE > 0) {
   // Each stratum's share of all the gaps, for the deck's coverage (common over 0.5%, rare under).
   writeFileSync(OUT.replace(/gaps-sample\.jsonl$/, 'gaps-strata.json'), `${JSON.stringify(Object.fromEntries(strata.map(([k, n]) => [k, Number((n / total).toFixed(5))])), null, 1)}\n`);
   process.stdout.write(`\n${OUT}: ${picked.length} gaps, ${new Set(picked.map((g) => g.stratum)).size} strata, ${new Set(picked.map((g) => g.key)).size} full keys.\n`);
+}
+
+// `--add-missing 5`: after the engine changes under a sample already being written (docs/51 was
+// sampled before Planner 2 merged), up to N more gaps for each stratum the sample hasn't got,
+// appended with the next ids, and the strata's shares written again.
+const ADD = val('add-missing') !== undefined ? Number(val('add-missing')) : 0;
+if (ADD > 0) {
+  const have = readFileSync(OUT, 'utf8')
+    .split('\n')
+    .filter((l) => l.trim())
+    .map((l) => JSON.parse(l) as Gap & { id: string });
+  const got = new Set(have.map((g) => g.stratum));
+  let next = have.length + 1;
+  const added: string[] = [];
+  for (const [k] of strata) {
+    if (got.has(k)) continue;
+    const pagesSeen = new Set<string>();
+    for (const g of gaps.filter((x) => x.stratum === k)) {
+      if (added.filter((l) => l.includes(`"stratum":"${k}"`)).length >= ADD) break;
+      if (pagesSeen.has(`${g.night}#${g.page}`)) continue;
+      pagesSeen.add(`${g.night}#${g.page}`);
+      added.push(JSON.stringify({ id: `g${String(next++).padStart(4, '0')}`, ...g }));
+    }
+  }
+  writeFileSync(OUT, `${[...have.map((g) => JSON.stringify(g)), ...added].join('\n')}\n`);
+  const total = gaps.length;
+  writeFileSync(OUT.replace(/gaps-sample\.jsonl$/, 'gaps-strata.json'), `${JSON.stringify(Object.fromEntries(strata.map(([k, n]) => [k, Number((n / total).toFixed(5))])), null, 1)}\n`);
+  process.stdout.write(`\n${OUT}: ${added.length} gaps added for the strata it hadn't got.\n`);
 }
 void tierName;

@@ -41,7 +41,7 @@ describe('docs/51: the deck as shipped', () => {
   const deck = situatedDeck();
   it('has unique ids, keys that parse, and only the flags the dealer reads', () => {
     expect(new Set(deck.map((c) => c.id)).size).toBe(deck.length);
-    const flags = new Set(['quote-before', 'woman', 'man', 'leaving', 'rain', 'fog', 'cold', 'clear', 'murder', 'lost-pet', 'lost-item']);
+    const flags = new Set(['quote-before', 'woman', 'man', 'leaving', 'rain', 'fog', 'cold', 'clear', 'murder', 'lost-pet', 'lost-item', 'dead-man', 'dead-woman']);
     for (const c of deck) {
       const k = parseKey(c.key);
       expect(keyString(k), c.id).toBe(c.key);

@@ -53,7 +53,10 @@
  *   the same two words (target 0);
  * - **pronoun ambiguity**: a pronoun with two possible referents in the last two sentences (target 0);
  * - **joins a page**: the connectives that say what a fact does, on pages with facts (report; 1–3);
- * - **restated pointer**: a why-here saying again the page before's hand-off (target 0).
+ * - **restated pointer**: a why-here saying again the page before's hand-off (target 0);
+ * - **thought sentences** (Planner 2): the sentences a thought's facts take, per fact, and the share
+ *   of thought paragraphs whose N facts take at most ceil(N/2) sentences (all of them; and of those
+ *   with two facts or more).
  *
  * `--plan off` measures the same nights with the microplanner's four operations off: the pages as
  * they read before docs/49, word for word, for the "before" column.
@@ -79,7 +82,7 @@ import { isWorld, worldBible } from '../src/gen/board/world/index.js';
 import { bibleShare } from '../src/game/board/world.js';
 import { PLAN } from '../src/game/board/plan/index.js';
 import { SITUATED, DROPS, parseKey, project, situatedDeck } from '../src/game/board/plan/situated.js';
-import { factSentences, joinsIn, listSmell, pronounAmbiguity, restatedPointer } from '../src/game/board/plan/measure.js';
+import { factSentences, joinsIn, listSmell, pronounAmbiguity, restatedPointer, thoughtParagraphs } from '../src/game/board/plan/measure.js';
 // @ts-expect-error — plain JavaScript module, no declarations.
 import { findJargon, loadPlainTerms } from './plain-terms.mjs';
 
@@ -187,8 +190,8 @@ rows.push('| tier | nights | pages | words a page, median [p10–p90] | why-here
 rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
 const examples: string[] = [];
 const rows3: string[] = [];
-rows3.push('| tier | sentences per fact unit | list smell, pages (oracle) | pronoun ambiguity (oracle) | joins a page with facts, mean [share with 1–3] | restated pointer | list smell, pages (all three) | pronoun ambiguity (all three) |');
-rows3.push('|---|---|---|---|---|---|---|---|');
+rows3.push('| tier | sentences per fact unit | list smell, pages (oracle) | pronoun ambiguity (oracle) | joins a page with facts, mean [share with 1–3] | restated pointer | list smell, pages (all three) | pronoun ambiguity (all three) | thought: fact sentences per fact [paragraphs within ceil(N/2); of those with 2+ facts] |');
+rows3.push('|---|---|---|---|---|---|---|---|---|');
 const examples3: string[] = [];
 const rows4: string[] = [];
 rows4.push(`| tier | gaps the deck may fill | filled | situated share | share of every gap in its eight slots | exact key | ${DROPS.map((_, i) => `${i + 1} let go`).join(' | ')} |`);
@@ -230,6 +233,13 @@ for (const tier of tiers) {
   let situated = 0;
   let eight = 0;
   const levels = DROPS.map(() => 0).concat([0]);
+  // docs/49, Planner 2: the thought's sentences against its facts.
+  let thFacts = 0;
+  let thSent = 0;
+  let thParas = 0;
+  let thWithin = 0;
+  let thParas2 = 0;
+  let thWithin2 = 0;
   for (let s = FROM; s < FROM + N; s++) {
     const type = types[s % types.length] as CaseType;
     const d = dealBoard(s, tier, type, world ? { world } : {});
@@ -290,6 +300,18 @@ for (const tier of tiers) {
         joinPages++;
         joinCount += js;
         if (js >= 1 && js <= 3) joinInBand++;
+      }
+      for (const tp of thoughtParagraphs(units)) {
+        thFacts += tp.n;
+        thSent += tp.s;
+        thParas++;
+        const ok = tp.s <= Math.ceil(tp.n / 2);
+        if (ok) thWithin++;
+        if (tp.n >= 2) {
+          thParas2++;
+          if (ok) thWithin2++;
+        }
+        if (!ok && examples3.length < 400) examples3.push(`thought ${tierName(tier)} ${type} seed ${s} p${i + 1}: ${tp.n} facts in ${tp.s}: ${units.filter((u) => u.beat === 'thought' && u.voice === 'thought').map((u) => u.text).join(' ').slice(0, 300)}`);
       }
       const r = restatedPointer(d.kase, run.log[i - 1], p);
       if (r) {
@@ -392,7 +414,7 @@ for (const tier of tiers) {
   if (show) examples.push(`words by job, ${tierName(tier)}: ${[...byJob.entries()].map(([k, v]) => `${k} ${quantile(v, 0.5)} (${v.length})`).join(', ')}`);
   rows4.push(`| ${tierName(tier)} | ${situable} | ${situated} | ${pct(situated, situable)} | ${pct(situated, eight)} | ${levels.map((n) => pct(n, situated)).join(' | ')} |`);
   rows3.push(
-    `| ${tierName(tier)} | ${factUnits ? (factSent / factUnits).toFixed(2) : '—'} | ${smellPages} of ${pages} | ${ambiguous} | ${joinPages ? (joinCount / joinPages).toFixed(1) : '—'} [${pct(joinInBand, joinPages)}] | ${restated} | ${smellAll} | ${ambiguousAll} |`,
+    `| ${tierName(tier)} | ${factUnits ? (factSent / factUnits).toFixed(2) : '—'} | ${smellPages} of ${pages} | ${ambiguous} | ${joinPages ? (joinCount / joinPages).toFixed(1) : '—'} [${pct(joinInBand, joinPages)}] | ${restated} | ${smellAll} | ${ambiguousAll} | ${thFacts ? (thSent / thFacts).toFixed(2) : '—'} [${pct(thWithin, thParas)}; ${pct(thWithin2, thParas2)}] |`,
   );
   rows.push(
     `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${level} | ${jargon} | ${cardsTwice} | ${sentTwice} | ${namePages} | ${cluesThrice} | ${r3['place-tag']} | ${r3.phrase} | ${r3.signpost} | ${r3.gag} | ${r3.pet} |`,

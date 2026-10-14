@@ -44,14 +44,21 @@ export function pageSentences(blocks: readonly Block[]): { text: string; speech:
   return out;
 }
 
-/** Runs of three in the narration: in one band, or opening on the same two words. */
+/** An entry of a list a page reads out, the papers' "Mrs. Blau: a bundle of her letters…". */
+export const LIST_ENTRY = /^(?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?[A-Z][\w’]+(?: [A-Z][\w’]+)?: /;
+
+/**
+ * Runs of three in the narration: in one band, or opening on the same two words. A list's entries
+ * read out ("Mrs. Blau: a bundle of her letters…") are the list's, as speech is the speaker's: they
+ * break a run, and aren't one (Planner 2).
+ */
 export function listSmell(blocks: readonly Block[]): { band: string[]; opening: string[] } {
   const ss = pageSentences(blocks);
   const band: string[] = [];
   const opening: string[] = [];
   let run: { text: string; band: Band; open: string }[] = [];
   for (const s of ss) {
-    if (s.speech) {
+    if (s.speech || LIST_ENTRY.test(s.text)) {
       run = [];
       continue;
     }
@@ -120,6 +127,10 @@ export function namesAt(c: BoardCase, text: string): { id: string; at: number }[
 /** The subject of the clause at `at`, when a name heads it: "Hauck passed her" can't be Hauck. */
 export function clauseHead(text: string, names: { id: string; at: number }[], at: number): string | undefined {
   const head = text.slice(0, at);
+  // A clause of somebody nameless's own before the pronoun ("signing a program nobody asked him to
+  // sign"): its subject is theirs, and the pronoun can be the name before it (Planner 2).
+  const lastName = names.filter((x) => x.at < at).pop();
+  if (lastName && /\b(?:nobody|somebody|everybody|anybody|who)\s+\S+\s*$/.test(text.slice(lastName.at, at))) return undefined;
   const cut = Math.max(head.lastIndexOf(','), head.lastIndexOf(';'), head.lastIndexOf(':'), head.lastIndexOf('“'), head.lastIndexOf(' and '), head.lastIndexOf(' that '), head.lastIndexOf(' said '));
   const from = cut < 0 ? 0 : cut + 1;
   const n = names.filter((x) => x.at >= from && x.at < at)[0];
@@ -227,12 +238,17 @@ export function pronounAmbiguity(c: BoardCase, blocks: readonly Block[]): string
 export const JOINS: { name: string; re: RegExp }[] = [
   { name: 'but', re: /(?:^|[.!?]\s+)But\b|, but\b/ },
   { name: 'so', re: /(?:^|[.!?]\s+)So\b/ },
+  // Planner 2: a narrowing's "so" inside its sentence, "…in this room, so he’d let whoever did it in" (not "so far", "so that").
+  { name: 'so (clause)', re: /, so (?!far\b|that\b|much\b|many\b|long\b)/ },
   { name: 'which was what', re: /\bwhich was what\b/ },
-  { name: 'same as said', re: /\bsame as (?:he|she|they|[A-Z][\w.’]*(?: [A-Z][\w’]*)?)(?:’d)? said\b/ },
+  { name: 'same as said', re: /\bsame as (?:he|she|they|[A-Z][\w.’]*(?: [A-Z][\w’]*)?)(?:’d)? said\b|\bhad (?:him|her) (?:here|there) too\b/ },
+  // Planner 2: who could get at the means, said of the person ("…and with him Mrs. Blau, who hadn’t been…").
+  { name: 'who', re: /, who (?:had|hadn’t|heard|never|was|wasn’t)\b/ },
   { name: 'would swear', re: /\bwould swear to it\b|\bwould say so to anybody\b|\bon (?:his|her|[A-Z][\w.’]*(?: [A-Z][\w’]*)?’s) word\b|\b[Bb]y (?:his|her|[A-Z][\w.’]*(?: [A-Z][\w’]*)?’s|the [a-z ]+’s) count\b/ },
   { name: 'one wrong', re: /\bOne of them was wrong\b|\bonly one of them could stand\b|\bcouldn’t both be true\b|\bonly one could stand\b/ },
   { name: 'that left', re: /\bThat left\b|\bwhich cleared\b/ },
-  { name: 'that put', re: /\bThat put\b/ },
+  // (docs/49's connectives say "That put" as the one who gave their word: "He put Tillman here at ten".)
+  { name: 'that put', re: /\b(?:That|He|She) put\b/ },
 ];
 
 /** The joins in a page's fact units (the narration of them). */
@@ -244,6 +260,27 @@ export function joinsIn(units: readonly Unit[]): string[] {
     for (const j of JOINS) if (j.re.test(narr)) out.push(j.name);
   }
   return out;
+}
+
+/**
+ * docs/49, Planner 2: the thought's paragraphs, each with how many facts it says (`n`, counting the
+ * writer's facts a joined unit holds), the sentences those facts take (`s`), and every sentence in
+ * it, the detective's asides included (`all`). The target: `s` at most ceil(n/2).
+ */
+export function thoughtParagraphs(units: readonly Unit[]): { n: number; s: number; all: number }[] {
+  const by = new Map<number, { n: number; s: number; all: number }>();
+  for (const u of units) {
+    if (u.beat !== 'thought' || u.voice !== 'thought') continue;
+    const x = by.get(u.para) ?? { n: 0, s: 0, all: 0 };
+    const k = sentencesOf(u.text).length;
+    x.all += k;
+    if (u.kind === 'fact') {
+      x.n += u.facts ?? 1;
+      x.s += k;
+    }
+    by.set(u.para, x);
+  }
+  return [...by.values()].filter((x) => x.n > 0);
 }
 
 /** Sentences the fact units take, and how many fact units there are. */

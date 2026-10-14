@@ -250,7 +250,7 @@ export function knownPlaces(c: BoardCase, run: Pick<BoardRun, 'asked' | 'visited
     if (!p || p === OFFICE || out.has(p) || !c.places.some((x) => x.id === p)) return;
     out.set(p, why);
   };
-  add(c.crime.scene, isMurder(c) ? 'where he died' : 'where it went missing');
+  add(c.crime.scene, isMurder(c) ? `where ${pronOf(c, c.crime.victim).he} died` : 'where it went missing');
   for (const g of c.givens.points ?? []) if (g.kind === 'place') add(g.ref, g.text);
   for (const f of c.givens.facts) if (f.k === 'at') add(f.place, 'the office');
   const people = knownPeople(c, run);

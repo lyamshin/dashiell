@@ -130,13 +130,14 @@ describe('trace-line', () => {
     // The papers' search writes one of a few lines of its own; one is on the page.
     // (Above Raw the papers put nobody on top, docs/46 §2, and say one of three lines of their own.)
     // (docs/47 B7: every page has its grievance by name, and the thought sets them against the way to the means.)
+    // (docs/49, Planner 2: each is one sentence now.)
     const lines = [
-      'had a reason. Fewer of them had been at',
-      'A reason is the easy half. The other half was a way to the',
-      'I put the pages back in their box. A grudge on paper is a long way from',
-      'A grudge on paper is a long way from the',
-      'had a reason. A reason isn’t a hand on the',
-      'A reason is the easy half. Everybody in',
+      'had a reason, but fewer of them had been at',
+      'A reason is the easy half, but the other half was a way to the',
+      'I put the pages back in their box: a grudge on paper is a long way from',
+      'a grudge on paper is a long way from the',
+      'had a reason, but a reason isn’t a hand on the',
+      'A reason is the easy half, and everybody in',
     ];
     const where = PAGES.flatMap((p) => lines.filter((l) => p.text.includes(l)).map((l) => ({ ...p, l })))[0];
     expect(where, 'no papers line on these pages').toBeDefined();

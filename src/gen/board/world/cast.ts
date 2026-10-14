@@ -124,12 +124,11 @@ const VENUE_KINDS = new Set(['bar', 'club', 'restaurant', 'theatre']);
 
 /**
  * docs/48 Bible 2: may a woman be found dead? The bible, the board's cards, the reasons (`ofVictim`)
- * and the shelf's words already say a dead woman as one, but the engine's own lines still say "him":
- * docs/25, "Bible 2", lists every file and line, starting with the victim's `female: false` in
- * `generate.ts`. Off until that gender pass lands; until then only men are found dead, and women
- * are clients, owners, suspects and culprits.
+ * and the shelf's words say a dead woman as one, and since docs/49's Planner 2 so do the engine's own
+ * lines (the generator's `ofDead`, the office, the thread, the stars, the notebook and the curtain).
+ * On: about half the neighbourhood's murders have a dead woman. Dealt nights' dead are men, as before.
  */
-export const WOMEN_VICTIMS = false;
+export const WOMEN_VICTIMS = true;
 
 /** A bible place's name as the generator says it: whole the first time, short after. */
 export function placeWords(p: BiblePlace): { name: string; short: string } {

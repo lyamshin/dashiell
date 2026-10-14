@@ -1266,7 +1266,8 @@
   "key": "ask|motive|bar|plain|high|none|new|none|middle",
   "text": "I asked {them} what {they}’d thought of the dead man.",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "dealt/34/4/murder/wanderer#13.2"
  },
@@ -1293,7 +1294,8 @@
   "key": "ask|motive|bar|plain|mid|none|new|none|middle",
   "text": "“The dead man,” I said. “What was there between you two?”",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "dealt/3/2/murder/wanderer#12.2"
  },
@@ -1320,7 +1322,8 @@
   "key": "ask|motive|club|careful|high|none|new|none|middle",
   "text": "I asked {them}, as carefully as I could, how things had stood between {them} and the dead man.",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "neighbourhood/2/4/murder/reader#8.2"
  },
@@ -1389,7 +1392,8 @@
   "key": "ask|motive|flat|terse|high|none|new|none|middle",
   "text": "“What was the dead man to you?” I asked.",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "dealt/18/5/murder/wanderer#15.2"
  },
@@ -1428,7 +1432,8 @@
   "key": "ask|motive|restaurant|plain|high|none|new|none|middle",
   "text": "I asked {them} how {they}’d got on with the dead man.",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "neighbourhood/8/5/murder/reader#8.2"
  },
@@ -1467,7 +1472,8 @@
   "key": "ask|motive|restaurant|terse|low|none|new|none|middle",
   "text": "I asked {them} whether {they}’d had any quarrel with the dead man, and if so, what about, short as {they} liked.",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "neighbourhood/27/0/murder/wanderer#4.2"
  },
@@ -1476,7 +1482,8 @@
   "key": "ask|motive|restaurant|terse|mid|none|new|none|middle",
   "text": "“How did you get along with the dead man?” I asked.",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "dealt/12/2/murder/wanderer#6.2"
  },
@@ -1485,7 +1492,8 @@
   "key": "ask|motive|rooming|careful|high|none|new|none|middle",
   "text": "I asked {them} what the dead man had been to {them}, and gave {them} room to say it carefully.",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "dealt/2/4/murder/wanderer#13.2"
  },
@@ -1500,7 +1508,8 @@
   "key": "ask|motive|rooming|careful|low|none|new|none|middle",
   "text": "“Tell me how you felt about the dead man,” I said, “and about the people around that business, as fully as you can manage.”",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "neighbourhood/21/0/murder/reader#11.2"
  },
@@ -1539,7 +1548,8 @@
   "key": "ask|motive|rooming|plain|mid|none|new|none|middle",
   "text": "I asked {them} how {they} had felt about the dead man, then waited.",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "neighbourhood/15/2/murder/reader#12.2"
  },
@@ -1566,7 +1576,8 @@
   "key": "ask|motive|theatre|careful|high|none|new|none|middle",
   "text": "“Before tonight,” I said, “what did you think of the dead man?”",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "neighbourhood/6/4/murder/reader#8.2"
  },
@@ -1581,7 +1592,8 @@
   "key": "ask|motive|theatre|careful|mid|none|new|none|middle",
   "text": "I asked {them} whether there was any history between {them} and the dead man, and asked {them} to be exact about it.",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "neighbourhood/38/3/murder/wanderer#6.2"
  },
@@ -1602,7 +1614,8 @@
   "key": "ask|motive|theatre|plain|high|none|new|none|middle",
   "text": "I asked {them} whether the dead man had been friend, enemy, or neither.",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "dealt/34/5/murder/wanderer#8.2"
  },
@@ -1617,7 +1630,8 @@
   "key": "ask|motive|theatre|plain|low|none|new|none|middle",
   "text": "I asked {them} to tell me plainly how {they}’d felt about the dead man, and about anybody else mixed up in it.",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "dealt/39/0/murder/wanderer#7.2"
  },
@@ -1644,7 +1658,8 @@
   "key": "ask|motive|theatre|terse|mid|none|new|none|middle",
   "text": "I asked {them} what {they}’d had against the dead man, if anything, and didn’t dress it up.",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "neighbourhood/38/3/murder/wanderer#7.2"
  },
@@ -1659,7 +1674,8 @@
   "key": "ask|motive|unwatched|careful|low|none|new|none|middle",
   "text": "I asked {them} to tell me everything that stood between {them} and the dead man, and anybody else in this, and to take what time it needed.",
   "requires": [
-   "murder"
+   "murder",
+   "dead-man"
   ],
   "source": "neighbourhood/9/1/murder/wanderer#4.2"
  },
@@ -3674,5 +3690,1996 @@
   "text": "It was the kind of place where the drinks get smaller as the night gets longer, and the night had got very long.",
   "joke": true,
   "source": "neighbourhood/13/0/lost-item/oracle#4.8"
+ },
+ {
+  "id": "sit-0074",
+  "key": "close|arrival|club|none|low|none|none|none|last",
+  "text": "The smoke had gathered up under the ceiling for the night and showed no sign of wanting to go home.",
+  "source": "dealt/33/1/murder/wanderer#6.8"
+ },
+ {
+  "id": "sit-0100",
+  "key": "close|arrival|club|none|low|none|none|none|last",
+  "text": "I kept my hat on. In a place like that, taking it off looks like a promise to stay.",
+  "source": "dealt/16/1/lost-item/oracle#4.8"
+ },
+ {
+  "id": "sit-0022",
+  "key": "close|arrival|club|none|mid|none|none|none|last",
+  "text": "Somebody at a table in the dark laughed once, short, the kind of laugh that looks round first to see who heard it.",
+  "source": "dealt/19/2/lost-item/wanderer#3.11"
+ },
+ {
+  "id": "sit-0049",
+  "key": "close|arrival|club|none|mid|none|none|none|last",
+  "text": "The door shut behind me, soft and heavy, the way a door shuts when it has been paid to keep quiet.",
+  "source": "dealt/34/3/murder/reader#5.10"
+ },
+ {
+  "id": "sit-0076",
+  "key": "close|arrival|club|none|mid|none|none|none|last",
+  "text": "Glass knocked on glass somewhere along the bar, and the room went back to its own business, which didn’t include me.",
+  "source": "neighbourhood/14/3/murder/reader#5.9"
+ },
+ {
+  "id": "sit-0102",
+  "key": "close|arrival|club|none|mid|none|none|none|last",
+  "text": "Nobody looked twice at me. In a club at that hour, everybody has long since decided who they’re looking at.",
+  "source": "dealt/37/3/lost-pet/reader#4.10"
+ },
+ {
+  "id": "sit-0003",
+  "key": "close|arrival|flat|none|high|none|none|none|last",
+  "text": "The lamp was turned low, the way people turn it when they’ve stopped expecting anybody.",
+  "source": "dealt/29/4/lost-pet/wanderer#7.5"
+ },
+ {
+  "id": "sit-0030",
+  "key": "close|arrival|flat|none|high|none|none|none|last",
+  "text": "Through the wall a neighbor coughed, turned over, and gave the building back its quiet.",
+  "source": "dealt/28/4/murder/oracle#12.7"
+ },
+ {
+  "id": "sit-0057",
+  "key": "close|arrival|flat|none|high|none|none|none|last",
+  "text": "I stood on the mat with my hat in my hand, which is as far into a stranger’s evening as I go without being asked.",
+  "source": "neighbourhood/34/4/murder/wanderer#6.8"
+ },
+ {
+  "id": "sit-0083",
+  "key": "close|arrival|flat|none|high|none|none|none|last",
+  "text": "The radiator ticked as it cooled, the only thing in the flat with anything to say just then.",
+  "source": "neighbourhood/1/4/lost-pet/reader#6.7"
+ },
+ {
+  "id": "sit-0109",
+  "key": "close|arrival|flat|none|high|none|none|none|last",
+  "text": "It was a flat like a thousand others in this city, with a whole life folded small to fit in it.",
+  "source": "neighbourhood/15/4/lost-pet/wanderer#3.8"
+ },
+ {
+  "id": "sit-0010",
+  "key": "close|arrival|restaurant|none|high|none|none|none|last",
+  "text": "Somewhere at the back, plates were being stacked by somebody who knew exactly how much noise a plate can make.",
+  "source": "dealt/28/5/murder/reader#5.9"
+ },
+ {
+  "id": "sit-0037",
+  "key": "close|arrival|restaurant|none|high|none|none|none|last",
+  "text": "The kitchen door swung behind somebody and let out a breath of onions and hot fat before it thought better of it.",
+  "source": "neighbourhood/24/5/murder/wanderer#7.8"
+ },
+ {
+  "id": "sit-0064",
+  "key": "close|arrival|restaurant|none|high|none|none|none|last",
+  "text": "A cup rattled in its saucer at one of the far tables, and for a while that was the loudest thing in the room.",
+  "source": "dealt/10/5/murder/reader#13.5"
+ },
+ {
+  "id": "sit-0090",
+  "key": "close|arrival|restaurant|none|high|none|none|none|last",
+  "text": "My stomach took an interest in the place before the rest of me did. I told it we were working.",
+  "joke": true,
+  "source": "dealt/28/5/murder/reader#15.5"
+ },
+ {
+  "id": "sit-0116",
+  "key": "close|arrival|restaurant|none|high|none|none|none|last",
+  "text": "A tiredness comes over a dining room at the end of the night, and the tablecloths feel it first.",
+  "source": "dealt/5/5/lost-pet/reader#12.5"
+ },
+ {
+  "id": "sit-0006",
+  "key": "close|arrival|restaurant|none|low|none|none|none|last",
+  "text": "The air was warm and smelled of the evening’s cooking gone cold, which is a smell with some regret in it.",
+  "source": "dealt/26/1/lost-pet/oracle#4.8"
+ },
+ {
+  "id": "sit-0033",
+  "key": "close|arrival|restaurant|none|low|none|none|none|last",
+  "text": "Somebody in the kitchen was singing to the dishes, a few words and then only the tune, and then not even that.",
+  "source": "dealt/6/0/murder/wanderer#2.10"
+ },
+ {
+  "id": "sit-0060",
+  "key": "close|arrival|restaurant|none|low|none|none|none|last",
+  "text": "I took my hat off. A dining room makes you do that, even one that has stopped serving.",
+  "source": "neighbourhood/22/1/lost-item/oracle#7.9"
+ },
+ {
+  "id": "sit-0086",
+  "key": "close|arrival|restaurant|none|low|none|none|none|last",
+  "text": "The lamps were still lit over every table, the empty ones too, as if somebody might yet come in wanting soup.",
+  "source": "neighbourhood/23/0/lost-pet/reader#7.10"
+ },
+ {
+  "id": "sit-0112",
+  "key": "close|arrival|restaurant|none|low|none|none|none|last",
+  "text": "A chair scraped somewhere, and a waiter said something low in the kitchen, and somebody else laughed at it.",
+  "source": "neighbourhood/15/1/murder/reader#4.9"
+ },
+ {
+  "id": "sit-0016",
+  "key": "close|arrival|restaurant|none|mid|none|none|none|last",
+  "text": "The tables nearest the door were already bare, and the rest had the rumpled look of a long evening that had been eaten off.",
+  "source": "dealt/28/2/lost-item/oracle#4.10"
+ },
+ {
+  "id": "sit-0043",
+  "key": "close|arrival|restaurant|none|mid|none|none|none|last",
+  "text": "The salt cellars stood filled on every table, each as full as the next, ready for a day that hadn’t started yet.",
+  "source": "neighbourhood/26/2/lost-pet/wanderer#2.10"
+ },
+ {
+  "id": "sit-0070",
+  "key": "close|arrival|restaurant|none|mid|none|none|none|last",
+  "text": "Nobody hurried in there. The whole room moved at the pace of people who have eaten and have nowhere better to be.",
+  "source": "neighbourhood/9/2/murder/reader#9.11"
+ },
+ {
+  "id": "sit-0096",
+  "key": "close|arrival|restaurant|none|mid|none|none|none|last",
+  "text": "Over by the kitchen somebody was counting forks back into a drawer, and losing count, and starting again.",
+  "source": "dealt/39/2/murder/wanderer#15.5"
+ },
+ {
+  "id": "sit-0004",
+  "key": "close|arrival|rooming|none|high|none|none|none|last",
+  "text": "Behind one of the doors upstairs, a bed creaked as somebody turned over and gave up on sleep for the second time.",
+  "source": "dealt/28/4/murder/wanderer#6.8"
+ },
+ {
+  "id": "sit-0031",
+  "key": "close|arrival|rooming|none|high|none|none|none|last",
+  "text": "Every door along the hall was shut, and each of them managed to be shut in a way of its own.",
+  "source": "dealt/19/4/lost-pet/wanderer#7.7"
+ },
+ {
+  "id": "sit-0058",
+  "key": "close|arrival|rooming|none|high|none|none|none|last",
+  "text": "The pipes knocked somewhere in the walls, the house talking in its sleep.",
+  "source": "dealt/9/4/lost-pet/wanderer#5.7"
+ },
+ {
+  "id": "sit-0084",
+  "key": "close|arrival|rooming|none|high|none|none|none|last",
+  "text": "A cough came down the stairwell from a long way up, and then the long quiet after it, which was worse.",
+  "source": "neighbourhood/3/5/lost-pet/oracle#4.11"
+ },
+ {
+  "id": "sit-0110",
+  "key": "close|arrival|rooming|none|high|none|none|none|last",
+  "text": "A rooming house at night is a stack of separate silences, one to a door, and none of them yours.",
+  "source": "neighbourhood/23/4/lost-pet/wanderer#8.8"
+ },
+ {
+  "id": "sit-0008",
+  "key": "close|arrival|rooming|none|low|none|none|none|last",
+  "text": "I kept to the wall side of the stairs, where the treads complain least. Rooming houses listen on every landing.",
+  "source": "neighbourhood/27/1/murder/oracle#8.10"
+ },
+ {
+  "id": "sit-0035",
+  "key": "close|arrival|rooming|none|low|none|none|none|last",
+  "text": "The banister had been worn smooth by hands, and none of them, by the feel of it, had been in a hurry.",
+  "source": "neighbourhood/9/0/murder/reader#8.9"
+ },
+ {
+  "id": "sit-0062",
+  "key": "close|arrival|rooming|none|low|none|none|none|last",
+  "text": "The hall clock had a loud tick for so small a clock, as though it were making up for something.",
+  "source": "neighbourhood/3/0/murder/wanderer#3.9"
+ },
+ {
+  "id": "sit-0088",
+  "key": "close|arrival|rooming|none|low|none|none|none|last",
+  "text": "The hall smelled of soap and coal and a great many suppers, laid on over the years like coats of paint.",
+  "source": "dealt/20/1/lost-pet/reader#7.10"
+ },
+ {
+  "id": "sit-0114",
+  "key": "close|arrival|rooming|none|low|none|none|none|last",
+  "text": "Somewhere above, somebody was snoring with real conviction, the only one in the house getting any good out of the night.",
+  "joke": true,
+  "source": "neighbourhood/33/0/murder/oracle#8.9"
+ },
+ {
+  "id": "sit-0001",
+  "key": "close|arrival|rooming|none|mid|none|none|none|last",
+  "text": "The landing light was turned down to the least it could give, and it was giving exactly that.",
+  "source": "dealt/37/3/lost-pet/reader#9.7"
+ },
+ {
+  "id": "sit-0028",
+  "key": "close|arrival|rooming|none|mid|none|none|none|last",
+  "text": "Every door had a number on it, and behind every number somebody was keeping hours of their own.",
+  "source": "neighbourhood/16/2/lost-item/oracle#11.7"
+ },
+ {
+  "id": "sit-0055",
+  "key": "close|arrival|rooming|none|mid|none|none|none|last",
+  "text": "Somewhere upstairs a tap ran, stopped, and ran again, as if whoever it was couldn’t settle on anything.",
+  "source": "dealt/2/2/lost-pet/reader#7.7"
+ },
+ {
+  "id": "sit-0081",
+  "key": "close|arrival|rooming|none|mid|none|none|none|last",
+  "text": "The stair carpet was worn pale down the middle, where every tenant in the house had come home the same way.",
+  "source": "neighbourhood/19/3/lost-pet/reader#4.6"
+ },
+ {
+  "id": "sit-0107",
+  "key": "close|arrival|rooming|none|mid|none|none|none|last",
+  "text": "It was the hour when a rooming house stops being a house and becomes a row of locked doors with people asleep behind them.",
+  "source": "dealt/30/2/murder/reader#7.8"
+ },
+ {
+  "id": "sit-0018",
+  "key": "close|arrival|scene-lost|none|high|none|none|none|last",
+  "text": "Nothing in the flat had been put right yet. People hold off tidying, in case it turns out to matter.",
+  "source": "neighbourhood/29/5/lost-pet/reader#13.4"
+ },
+ {
+  "id": "sit-0045",
+  "key": "close|arrival|scene-lost|none|high|none|none|none|last",
+  "text": "Somebody had turned the lamp up for my coming, which at that hour, in a place like that, counts as hope.",
+  "source": "neighbourhood/35/5/lost-pet/reader#10.5"
+ },
+ {
+  "id": "sit-0072",
+  "key": "close|arrival|scene-lost|none|high|none|none|none|last",
+  "text": "The rooms were warm and lit and ordinary, which is the hard part of a loss: everything else stays exactly where it was.",
+  "source": "neighbourhood/23/5/lost-pet/reader#14.5"
+ },
+ {
+  "id": "sit-0098",
+  "key": "close|arrival|scene-lost|none|high|none|none|none|last",
+  "text": "The place went on with its small noises, the pipes and the stairs and the street, as if it had never heard of {thing}.",
+  "source": "dealt/37/5/lost-pet/reader#11.5"
+ },
+ {
+  "id": "sit-0025",
+  "key": "close|arrival|scene-lost|none|low|none|none|none|last",
+  "text": "I took the place in again from the doorway. A second look costs nothing, and I was on a budget.",
+  "joke": true,
+  "source": "dealt/34/1/lost-item/wanderer#10.5"
+ },
+ {
+  "id": "sit-0052",
+  "key": "close|arrival|scene-lost|none|low|none|none|none|last",
+  "text": "The flat had the waiting look of a place where somebody keeps straightening things that don’t need straightening.",
+  "source": "neighbourhood/26/1/lost-pet/wanderer#9.5"
+ },
+ {
+  "id": "sit-0079",
+  "key": "close|arrival|scene-lost|none|low|none|none|none|last",
+  "text": "It was a smaller place than it looked from the street. Rooms are, once something has gone out of them.",
+  "source": "neighbourhood/35/1/lost-pet/wanderer#6.5"
+ },
+ {
+  "id": "sit-0105",
+  "key": "close|arrival|scene-lost|none|low|none|none|none|last",
+  "text": "Somewhere in the building a door closed, and everybody in the flat looked up, and then pretended they hadn’t.",
+  "source": "neighbourhood/17/1/lost-pet/wanderer#10.4"
+ },
+ {
+  "id": "sit-0017",
+  "key": "close|arrival|scene-lost|none|mid|none|none|none|last",
+  "text": "Whatever else had changed, the flat still smelled of the people who lived in it: soap, coffee, the stove.",
+  "source": "neighbourhood/34/2/lost-item/wanderer#7.5"
+ },
+ {
+  "id": "sit-0044",
+  "key": "close|arrival|scene-lost|none|mid|none|none|none|last",
+  "text": "I kept my hands in my coat pockets. It wasn’t my home, and there was nothing in it yet I had any right to touch.",
+  "source": "neighbourhood/20/2/lost-pet/reader#13.5"
+ },
+ {
+  "id": "sit-0071",
+  "key": "close|arrival|scene-lost|none|mid|none|none|none|last",
+  "text": "I stood just inside and gave the flat a minute to be a home, before it had to go back to being the place where something went.",
+  "source": "dealt/32/2/lost-pet/wanderer#13.5"
+ },
+ {
+  "id": "sit-0097",
+  "key": "close|arrival|scene-lost|none|mid|none|none|none|last",
+  "text": "A home keeps its own hours, and this one had stayed up, the way people stay up for somebody who’s late.",
+  "source": "neighbourhood/31/3/lost-pet/wanderer#8.5"
+ },
+ {
+  "id": "sit-0009",
+  "key": "close|arrival|scene-murder|none|high|none|none|none|last",
+  "text": "Nobody had opened a window. Nobody had wanted to be the first to touch anything.",
+  "source": "neighbourhood/16/4/murder/wanderer#12.5"
+ },
+ {
+  "id": "sit-0036",
+  "key": "close|arrival|scene-murder|none|high|none|none|none|last",
+  "text": "It was quieter in there than a room has any right to be with living people standing in it.",
+  "source": "dealt/14/5/murder/reader#11.4"
+ },
+ {
+  "id": "sit-0063",
+  "key": "close|arrival|scene-murder|none|high|none|none|none|last",
+  "text": "The lamp had been left burning, and it lit the room the way, I supposed, it had lit every ordinary evening before this one.",
+  "source": "neighbourhood/2/5/murder/reader#10.5"
+ },
+ {
+  "id": "sit-0089",
+  "key": "close|arrival|scene-murder|none|high|none|none|none|last",
+  "text": "I went in slowly and took my hat off, the way you go into a church after the service has started.",
+  "source": "dealt/36/5/murder/reader#9.4"
+ },
+ {
+  "id": "sit-0115",
+  "key": "close|arrival|scene-murder|none|high|none|none|none|last",
+  "text": "Everything in the room still looked as though it belonged to somebody, and none of it knew yet that it didn’t.",
+  "source": "neighbourhood/8/5/murder/reader#11.5"
+ },
+ {
+  "id": "sit-0024",
+  "key": "close|arrival|scene-murder|none|low|none|none|none|last",
+  "text": "Through the walls the building went on with its night, a cough, a door, a pipe, and none of it came in.",
+  "source": "dealt/30/1/murder/reader#9.5"
+ },
+ {
+  "id": "sit-0051",
+  "key": "close|arrival|scene-murder|none|low|none|none|none|last",
+  "text": "I didn’t hurry. Nothing in that room was going anywhere, and none of it wanted rushing.",
+  "source": "neighbourhood/3/0/murder/reader#9.5"
+ },
+ {
+  "id": "sit-0078",
+  "key": "close|arrival|scene-murder|none|low|none|none|none|last",
+  "text": "I stood a while inside the door and let my eyes go round the room slowly, the way you read a letter you didn’t want.",
+  "source": "neighbourhood/27/1/murder/reader#9.5"
+ },
+ {
+  "id": "sit-0104",
+  "key": "close|arrival|scene-murder|none|low|none|none|none|last",
+  "text": "The dead man’s small belongings were everywhere I looked, and every one of them was still waiting to be picked up and used.",
+  "requires": [
+   "murder",
+   "dead-man"
+  ],
+  "source": "dealt/24/0/murder/wanderer#7.5"
+ },
+ {
+  "id": "sit-0021",
+  "key": "close|arrival|scene-murder|none|mid|none|none|none|last",
+  "text": "I said nothing for a while, and neither did anybody, and the quiet did the talking for all of us.",
+  "source": "dealt/2/3/murder/wanderer#10.5"
+ },
+ {
+  "id": "sit-0048",
+  "key": "close|arrival|scene-murder|none|mid|none|none|none|last",
+  "text": "My own breathing was the loudest thing in there, and I kept it down, the way you lower your voice without being told.",
+  "source": "neighbourhood/27/2/murder/wanderer#12.5"
+ },
+ {
+  "id": "sit-0075",
+  "key": "close|arrival|scene-murder|none|mid|none|none|none|last",
+  "text": "Strangers had been in and out of the room all night, and it had the trampled patience of a place tired of being looked at.",
+  "source": "dealt/18/2/murder/wanderer#12.4"
+ },
+ {
+  "id": "sit-0101",
+  "key": "close|arrival|scene-murder|none|mid|none|none|none|last",
+  "text": "I found I was standing very straight, the way you stand at a graveside, and I let myself stay that way.",
+  "source": "neighbourhood/10/3/murder/reader#14.5"
+ },
+ {
+  "id": "sit-0011",
+  "key": "close|arrival|theatre|none|high|none|none|none|last",
+  "text": "The rows of seats went back into the dark, and somewhere in them a seat let itself up with a soft knock.",
+  "source": "dealt/12/5/murder/reader#11.4"
+ },
+ {
+  "id": "sit-0038",
+  "key": "close|arrival|theatre|none|high|none|none|none|last",
+  "text": "It smelled of dust and warm plush and a great many coats, the smell a theater keeps after its people go home.",
+  "source": "neighbourhood/1/4/lost-pet/wanderer#9.10"
+ },
+ {
+  "id": "sit-0065",
+  "key": "close|arrival|theatre|none|high|none|none|none|last",
+  "text": "A theater after the show is the emptiest room in the city, and it knows it.",
+  "source": "dealt/20/5/murder/reader#15.5"
+ },
+ {
+  "id": "sit-0091",
+  "key": "close|arrival|theatre|none|high|none|none|none|last",
+  "text": "The exit light over the side door was the only thing in the place still lit with any conviction.",
+  "source": "dealt/12/5/murder/reader#5.9"
+ },
+ {
+  "id": "sit-0117",
+  "key": "close|arrival|theatre|none|high|none|none|none|last",
+  "text": "I stood at the back, behind the last row, where you can see the whole room and nobody turns round to see you.",
+  "source": "dealt/38/5/murder/wanderer#4.9"
+ },
+ {
+  "id": "sit-0007",
+  "key": "close|arrival|theatre|none|low|none|none|none|last",
+  "text": "My shoes made no sound on the aisle carpet, which in my line of work is a mixed blessing.",
+  "joke": true,
+  "source": "neighbourhood/32/0/lost-pet/oracle#7.8"
+ },
+ {
+  "id": "sit-0034",
+  "key": "close|arrival|theatre|none|low|none|none|none|last",
+  "text": "I took my hat off out of habit. Rows of empty seats make everybody feel late for something.",
+  "source": "dealt/38/0/lost-pet/oracle#7.10"
+ },
+ {
+  "id": "sit-0061",
+  "key": "close|arrival|theatre|none|low|none|none|none|last",
+  "text": "There were rows and rows of folded seats, every one of them still facing something that had stopped happening.",
+  "source": "dealt/27/1/murder/wanderer#2.10"
+ },
+ {
+  "id": "sit-0087",
+  "key": "close|arrival|theatre|none|low|none|none|none|last",
+  "text": "Up in the dark of the ceiling something ticked as it cooled, the lights or the pipes, I couldn’t say which.",
+  "source": "neighbourhood/34/1/lost-item/oracle#7.8"
+ },
+ {
+  "id": "sit-0113",
+  "key": "close|arrival|theatre|none|low|none|none|none|last",
+  "text": "I had the old feeling of having come in after the good part, with everybody else already knowing how it ends.",
+  "joke": true,
+  "source": "dealt/25/1/lost-item/wanderer#8.9"
+ },
+ {
+  "id": "sit-0015",
+  "key": "close|arrival|theatre|none|mid|none|none|none|last",
+  "text": "Somebody had swept the aisles and missed the same corner everybody misses.",
+  "source": "neighbourhood/30/3/murder/oracle#8.10"
+ },
+ {
+  "id": "sit-0042",
+  "key": "close|arrival|theatre|none|mid|none|none|none|last",
+  "text": "The quiet in a theater after hours is a particular kind. It remembers a crowd, and it isn’t over it yet.",
+  "source": "neighbourhood/13/3/lost-pet/wanderer#2.11"
+ },
+ {
+  "id": "sit-0069",
+  "key": "close|arrival|theatre|none|mid|none|none|none|last",
+  "text": "A draft came down the center aisle from somewhere and went along the rows, lifting the corner of a dropped program.",
+  "source": "dealt/18/2/murder/oracle#8.10"
+ },
+ {
+  "id": "sit-0095",
+  "key": "close|arrival|theatre|none|mid|none|none|none|last",
+  "text": "I waited at the head of the aisle for my eyes to find the room, and they took their time about it.",
+  "source": "neighbourhood/35/3/lost-pet/wanderer#4.11"
+ },
+ {
+  "id": "sit-0005",
+  "key": "close|arrival|unwatched|none|high|none|none|none|last",
+  "text": "I stood with my back to the wall. It’s a habit, and in places like that it’s a good one.",
+  "source": "neighbourhood/27/5/lost-pet/wanderer#10.7"
+ },
+ {
+  "id": "sit-0032",
+  "key": "close|arrival|unwatched|none|high|none|none|none|last",
+  "text": "I listened for footsteps and heard my own, going on a little after I’d stopped.",
+  "source": "dealt/7/5/lost-pet/oracle#8.8"
+ },
+ {
+  "id": "sit-0059",
+  "key": "close|arrival|unwatched|none|high|none|none|none|last",
+  "text": "There was nothing much to look at, which in a place like that is always the first thing worth noticing.",
+  "source": "dealt/23/4/lost-pet/wanderer#13.7"
+ },
+ {
+  "id": "sit-0085",
+  "key": "close|arrival|unwatched|none|high|none|none|none|last",
+  "text": "A place like that keeps nobody’s name. It keeps the smell of a great many cigarettes and not one of the people who smoked them.",
+  "source": "dealt/21/4/lost-pet/wanderer#7.6"
+ },
+ {
+  "id": "sit-0111",
+  "key": "close|arrival|unwatched|none|high|none|none|none|last",
+  "text": "My shadow went on ahead of me and got there first, which is the only way I ever get anywhere first.",
+  "joke": true,
+  "source": "dealt/13/5/lost-pet/wanderer#8.8"
+ },
+ {
+  "id": "sit-0023",
+  "key": "close|arrival|unwatched|none|low|none|none|none|last",
+  "text": "It was a place for people who want to be somewhere without being anywhere in particular, and I knew the feeling.",
+  "source": "neighbourhood/19/1/lost-item/wanderer#4.8"
+ },
+ {
+  "id": "sit-0050",
+  "key": "close|arrival|unwatched|none|low|none|none|none|last",
+  "text": "I didn’t sit. In a place like that, a chair can turn out to belong to somebody who isn’t there yet.",
+  "source": "dealt/29/1/lost-pet/wanderer#3.7"
+ },
+ {
+  "id": "sit-0077",
+  "key": "close|arrival|unwatched|none|low|none|none|none|last",
+  "text": "I gave the place the once-over you give a room you can’t afford, and it gave me about the same back.",
+  "joke": true,
+  "source": "neighbourhood/15/1/murder/wanderer#3.8"
+ },
+ {
+  "id": "sit-0103",
+  "key": "close|arrival|unwatched|none|low|none|none|none|last",
+  "text": "I looked round once, slowly, and counted the ways in and out. There were more than I liked.",
+  "source": "dealt/24/1/murder/wanderer#3.8"
+ },
+ {
+  "id": "sit-0002",
+  "key": "close|arrival|unwatched|none|mid|none|none|none|last",
+  "text": "Somewhere close by the city was still going, a truck, a horn, a dog with opinions, and none of it looked in.",
+  "source": "neighbourhood/7/3/lost-pet/wanderer#6.8"
+ },
+ {
+  "id": "sit-0029",
+  "key": "close|arrival|unwatched|none|mid|none|none|none|last",
+  "text": "It was late enough that even a place like that had run out of reasons to be busy.",
+  "source": "dealt/17/3/lost-pet/oracle#7.6"
+ },
+ {
+  "id": "sit-0056",
+  "key": "close|arrival|unwatched|none|mid|none|none|none|last",
+  "text": "There was a bare sort of quiet about the place, the quiet of somewhere people come to and leave without a word.",
+  "source": "neighbourhood/17/2/lost-pet/wanderer#15.8"
+ },
+ {
+  "id": "sit-0082",
+  "key": "close|arrival|unwatched|none|mid|none|none|none|last",
+  "text": "I put my hands in my coat pockets and left them there. It’s the polite thing in a place where everything belongs to somebody you can’t see.",
+  "source": "neighbourhood/29/3/lost-pet/reader#10.7"
+ },
+ {
+  "id": "sit-0108",
+  "key": "close|arrival|unwatched|none|mid|none|none|none|last",
+  "text": "Whoever came here came for their own reasons and took them away again, and the place was none the wiser.",
+  "source": "dealt/6/3/murder/wanderer#4.8"
+ },
+ {
+  "id": "sit-0027",
+  "key": "close|arrival|work|none|high|none|none|none|last",
+  "text": "A place of work has its own quiet after hours, with the day’s noise put away in the drawers along with everything else.",
+  "source": "dealt/24/4/murder/wanderer#8.8"
+ },
+ {
+  "id": "sit-0054",
+  "key": "close|arrival|work|none|high|none|none|none|last",
+  "text": "Everything in the place had its spot and was in it, which made me feel like the one thing out of order.",
+  "source": "dealt/40/4/murder/wanderer#5.8"
+ },
+ {
+  "id": "sit-0026",
+  "key": "close|arrival|work|none|low|none|none|none|last",
+  "text": "There was one good lamp lit, and everything near it looked like work, and everything outside it looked like waiting.",
+  "source": "neighbourhood/6/1/murder/wanderer#4.8"
+ },
+ {
+  "id": "sit-0053",
+  "key": "close|arrival|work|none|low|none|none|none|last",
+  "text": "It was quiet the way a place is quiet when it will be loud again in a few hours, and knows it.",
+  "source": "dealt/6/1/murder/wanderer#4.8"
+ },
+ {
+  "id": "sit-0080",
+  "key": "close|arrival|work|none|low|none|none|none|last",
+  "text": "The day’s work still hung in the air, the way it does anywhere people earn their wages on their feet.",
+  "source": "neighbourhood/33/1/murder/wanderer#5.8"
+ },
+ {
+  "id": "sit-0106",
+  "key": "close|arrival|work|none|low|none|none|none|last",
+  "text": "I stood where callers stand, though I hadn’t come for anything they sell and couldn’t have paid for it.",
+  "joke": true,
+  "source": "neighbourhood/6/1/murder/reader#4.8"
+ },
+ {
+  "id": "sit-2952",
+  "key": "close|list|theatre|none|low|collides|none|none|last",
+  "text": "{They} went back to the doors before I’d put the notebook away. In a theater somebody always has to be standing at the back.",
+  "source": "dealt/15/0/murder/reader#11.7"
+ },
+ {
+  "id": "sit-2951",
+  "key": "close|list|unwatched|none|mid|collides|none|none|last",
+  "text": "{They} went back to what {they}’d been doing before I came, and the place went back to having nobody in charge of it.",
+  "source": "neighbourhood/22/3/murder/reader#12.7"
+ },
+ {
+  "id": "sit-2953",
+  "key": "close|list|unwatched|none|mid|collides|none|none|last",
+  "text": "I wrote the hours down in {their} order and not mine. People remember a night the way they lived it, and it’s best taken that way.",
+  "source": "neighbourhood/4/2/lost-item/oracle#7.7"
+ },
+ {
+  "id": "sit-2954",
+  "key": "close|list|unwatched|none|mid|collides|none|none|last",
+  "text": "When {they} had done, {they} looked at me as if it were my turn to say something. It wasn’t, and I didn’t.",
+  "source": "neighbourhood/4/2/lost-item/reader#7.7"
+ },
+ {
+  "id": "sit-2955",
+  "key": "close|list|unwatched|none|mid|collides|none|none|last",
+  "text": "{They} had kept count well, for somebody nobody pays to keep count, and I said so.",
+  "source": "neighbourhood/22/3/murder/oracle#12.7"
+ },
+ {
+  "id": "sit-2963",
+  "key": "close|list|restaurant|none|low|confirms|none|none|last",
+  "text": "{They} glanced past me at a table that wanted something, which in a restaurant is how a conversation ends.",
+  "source": "dealt/18/0/murder/wanderer#7.9"
+ },
+ {
+  "id": "sit-2962",
+  "key": "close|list|theatre|none|mid|confirms|none|none|last",
+  "text": "I thanked {them}. {They} nodded once, the nod a theater gives anybody who has paid and is still standing about.",
+  "source": "dealt/27/2/murder/wanderer#9.9"
+ },
+ {
+  "id": "sit-2956",
+  "key": "close|list|restaurant|none|high|narrows|none|none|last",
+  "text": "Behind {them} the kitchen was putting the night away pot by pot, and nobody in there was asking anybody anything.",
+  "source": "dealt/40/4/murder/wanderer#13.9"
+ },
+ {
+  "id": "sit-2957",
+  "key": "close|list|restaurant|none|mid|narrows|none|none|last",
+  "text": "I wrote the hours down one under another, and the page looked tidier than the night had been.",
+  "source": "dealt/30/3/murder/wanderer#10.10"
+ },
+ {
+  "id": "sit-2958",
+  "key": "close|list|theatre|none|high|narrows|none|none|last",
+  "text": "Somewhere back in the dark rows a seat creaked up on its own, and {they} didn’t even turn round.",
+  "source": "dealt/38/4/murder/wanderer#13.10"
+ },
+ {
+  "id": "sit-2861",
+  "key": "close|list|bar|none|low|new|none|none|last",
+  "text": "{They} took up a glass and a cloth again, as if a bar can’t be left a minute without somebody polishing it.",
+  "source": "dealt/35/1/lost-pet/wanderer#10.13"
+ },
+ {
+  "id": "sit-2860",
+  "key": "close|list|bar|none|mid|new|none|none|last",
+  "text": "I thanked {them}, and {they} nodded, and was looking past me at the door before the nod was done.",
+  "source": "dealt/8/2/lost-pet/wanderer#12.14"
+ },
+ {
+  "id": "sit-2853",
+  "key": "close|list|club|none|low|new|none|none|last",
+  "text": "{They} was looking past my shoulder before I’d finished writing. In a club, somebody always has to watch the stairs.",
+  "source": "neighbourhood/7/1/lost-item/wanderer#9.14"
+ },
+ {
+  "id": "sit-2855",
+  "key": "close|list|club|none|mid|new|none|none|last",
+  "text": "I wrote it all down while the room went on drinking around us, as if lists were something that happened to other people.",
+  "joke": true,
+  "source": "neighbourhood/28/2/lost-item/wanderer#14.14"
+ },
+ {
+  "id": "sit-2851",
+  "key": "close|list|restaurant|none|high|new|none|none|last",
+  "text": "{They} gave me the night the way a good waiter brings the check: added up, and no remarks.",
+  "joke": true,
+  "source": "dealt/33/4/lost-pet/wanderer#12.14"
+ },
+ {
+  "id": "sit-2856",
+  "key": "close|list|restaurant|none|low|new|none|none|last",
+  "text": "I closed the notebook. Across the room somebody asked for more coffee, and was told, kindly, that there wasn’t any.",
+  "source": "neighbourhood/15/0/murder/wanderer#11.10"
+ },
+ {
+  "id": "sit-2852",
+  "key": "close|list|restaurant|none|mid|new|none|none|last",
+  "text": "{They} went back to the room the moment I was done. A dining room doesn’t stop being a dining room for my sake.",
+  "source": "neighbourhood/32/2/lost-pet/wanderer#11.17"
+ },
+ {
+  "id": "sit-2862",
+  "key": "close|list|rooming|none|high|new|none|none|last",
+  "text": "{They} glanced up at the ceiling when a door shut somewhere upstairs, counting, I think, without meaning to.",
+  "source": "dealt/34/5/murder/wanderer#14.10"
+ },
+ {
+  "id": "sit-2854",
+  "key": "close|list|rooming|none|low|new|none|none|last",
+  "text": "{They} watched me write it all down, to be sure I spelled the tenants properly.",
+  "joke": true,
+  "source": "dealt/15/0/murder/wanderer#11.11"
+ },
+ {
+  "id": "sit-2858",
+  "key": "close|list|theatre|none|high|new|none|none|last",
+  "text": "When we were done, {they} turned back toward the empty rows, as if the seats might fill again if nobody kept an eye on them.",
+  "source": "neighbourhood/23/5/lost-pet/wanderer#13.14"
+ },
+ {
+  "id": "sit-2859",
+  "key": "close|list|theatre|none|low|new|none|none|last",
+  "text": "I wrote it down in the half dark, which is how I write most things, by feel and by habit.",
+  "source": "neighbourhood/35/1/lost-pet/wanderer#10.14"
+ },
+ {
+  "id": "sit-2857",
+  "key": "close|list|theatre|none|mid|new|none|none|last",
+  "text": "{They} gave me the night in the order it came, and I thanked {them} for it. Most people give it in the order they remember it.",
+  "source": "dealt/7/2/lost-item/wanderer#14.10"
+ },
+ {
+  "id": "sit-2849",
+  "key": "close|list|unwatched|none|high|new|none|none|last",
+  "text": "{They} went back to {their} own business, which in a place like that is the only kind anybody asks about.",
+  "source": "neighbourhood/4/4/murder/oracle#11.8"
+ },
+ {
+  "id": "sit-2863",
+  "key": "close|list|unwatched|none|high|new|none|none|last",
+  "text": "I put the pencil away. The place didn’t seem to have noticed I was there, which suited us both.",
+  "source": "neighbourhood/2/4/murder/reader#13.8"
+ },
+ {
+  "id": "sit-2850",
+  "key": "close|list|unwatched|none|mid|new|none|none|last",
+  "text": "{They} didn’t ask why I wanted it. In a place like that, nobody asks why about anything.",
+  "source": "neighbourhood/28/3/murder/reader#12.7"
+ },
+ {
+  "id": "sit-2617",
+  "key": "close|motive|bar|none|high|confirms|none|none|last",
+  "text": "Down the bar somebody ordered another, and the barman poured it without a word, and that was all the business done for a while.",
+  "source": "dealt/31/4/lost-pet/reader#11.9"
+ },
+ {
+  "id": "sit-2615",
+  "key": "close|motive|bar|none|low|confirms|none|none|last",
+  "text": "I thanked {them}. People don’t often get thanked for a grudge, and {they} didn’t seem to know where to put it.",
+  "source": "dealt/4/0/lost-item/wanderer#11.9"
+ },
+ {
+  "id": "sit-2605",
+  "key": "close|motive|bar|none|mid|confirms|none|none|last",
+  "text": "I put the notebook away. A reason doesn’t want hurrying; it has usually been waiting years for somebody to ask.",
+  "source": "neighbourhood/22/2/lost-item/reader#14.9"
+ },
+ {
+  "id": "sit-2623",
+  "key": "close|motive|bar|none|mid|confirms|none|none|last",
+  "text": "Old grievances keep well in this city. It’s the damp; nothing here ever quite dries out.",
+  "joke": true,
+  "source": "neighbourhood/15/3/lost-pet/wanderer#10.9"
+ },
+ {
+  "id": "sit-2614",
+  "key": "close|motive|club|none|high|confirms|none|none|last",
+  "text": "The room went on around us the whole time without caring, which is the great comfort of a public place.",
+  "source": "neighbourhood/9/4/lost-pet/reader#9.9"
+ },
+ {
+  "id": "sit-2618",
+  "key": "close|motive|club|none|low|confirms|none|none|last",
+  "text": "{They} said it the way you say a thing you’ve said a good many times to yourself, worn smooth from handling.",
+  "source": "neighbourhood/3/1/murder/wanderer#8.9"
+ },
+ {
+  "id": "sit-2611",
+  "key": "close|motive|club|none|mid|confirms|none|none|last",
+  "text": "I let a little time go by. It’s cheap at that hour, and people will talk into it if you leave it lying about.",
+  "source": "neighbourhood/28/2/lost-item/reader#11.9"
+ },
+ {
+  "id": "sit-2620",
+  "key": "close|motive|flat|none|high|confirms|none|none|last",
+  "text": "I wrote it down in {their} words. Mine would only have made it sound worse, or better.",
+  "source": "neighbourhood/35/4/lost-pet/reader#13.9"
+ },
+ {
+  "id": "sit-2613",
+  "key": "close|motive|restaurant|none|high|confirms|none|none|last",
+  "text": "{They} said it more to the table than to me, which is how most true things get said, and most of the other kind.",
+  "source": "dealt/33/4/lost-pet/wanderer#13.8"
+ },
+ {
+  "id": "sit-2606",
+  "key": "close|motive|restaurant|none|low|confirms|none|none|last",
+  "text": "{They} reached for {their} cup, found it empty, and kept hold of it anyway.",
+  "source": "dealt/29/0/lost-pet/reader#10.9"
+ },
+ {
+  "id": "sit-2624",
+  "key": "close|motive|restaurant|none|low|confirms|none|none|last",
+  "text": "A grudge is like a pawn ticket. People keep it in a coat pocket for years and swear they’ve forgotten it’s there.",
+  "joke": true,
+  "source": "dealt/16/0/lost-item/reader#10.9"
+ },
+ {
+  "id": "sit-2612",
+  "key": "close|motive|restaurant|none|mid|confirms|none|none|last",
+  "text": "Over by the kitchen a waiter was laying tables for a day nobody in the room was thinking about yet.",
+  "source": "dealt/13/3/lost-pet/wanderer#13.8"
+ },
+ {
+  "id": "sit-2604",
+  "key": "close|motive|rooming|none|high|confirms|none|none|last",
+  "text": "Somewhere overhead a radio was playing to itself, and for a while we both listened to that instead of each other.",
+  "source": "neighbourhood/21/5/lost-pet/wanderer#10.8"
+ },
+ {
+  "id": "sit-2622",
+  "key": "close|motive|rooming|none|high|confirms|none|none|last",
+  "text": "Up the stairs a door opened and shut, and we both waited for the house to settle before either of us moved.",
+  "source": "dealt/33/5/lost-pet/reader#10.8"
+ },
+ {
+  "id": "sit-2619",
+  "key": "close|motive|rooming|none|low|confirms|none|none|last",
+  "text": "{They} looked at me as if I’d asked to see a scar. In a way, I suppose I had.",
+  "source": "neighbourhood/5/0/lost-pet/reader#10.9"
+ },
+ {
+  "id": "sit-2621",
+  "key": "close|motive|rooming|none|mid|confirms|none|none|last",
+  "text": "I didn’t argue with it. A grievance is a person’s own property, like a coat, and it isn’t my place to say it doesn’t fit.",
+  "source": "dealt/9/3/lost-pet/wanderer#7.8"
+ },
+ {
+  "id": "sit-2608",
+  "key": "close|motive|theatre|none|high|confirms|none|none|last",
+  "text": "A seat folded itself up somewhere in the dark with a knock, and we both jumped a little and pretended we hadn’t.",
+  "source": "neighbourhood/7/4/lost-pet/reader#9.9"
+ },
+ {
+  "id": "sit-2626",
+  "key": "close|motive|theatre|none|high|confirms|none|none|last",
+  "text": "Down the aisle an usher’s flashlight wandered along the rows, looking for nobody in particular.",
+  "source": "neighbourhood/10/5/murder/reader#8.8"
+ },
+ {
+  "id": "sit-2610",
+  "key": "close|motive|theatre|none|low|confirms|none|none|last",
+  "text": "{They} watched me write it down, the way people watch their own name being spelled at a counter.",
+  "source": "neighbourhood/23/1/lost-pet/reader#10.9"
+ },
+ {
+  "id": "sit-2607",
+  "key": "close|motive|theatre|none|mid|confirms|none|none|last",
+  "text": "That was all {they} had to say about it, and {they} said so by not saying anything more.",
+  "source": "neighbourhood/25/2/lost-item/reader#13.9"
+ },
+ {
+  "id": "sit-2625",
+  "key": "close|motive|theatre|none|mid|confirms|none|none|last",
+  "text": "In the half dark it was hard to see {their} face, and I didn’t try very hard. Some answers you listen to with your eyes shut.",
+  "source": "neighbourhood/14/2/lost-pet/reader#12.9"
+ },
+ {
+  "id": "sit-2616",
+  "key": "close|motive|unwatched|none|high|confirms|none|none|last",
+  "text": "I said I was sorry to have asked. I wasn’t, quite, and {they} knew it, and we left it there.",
+  "source": "dealt/29/5/lost-pet/wanderer#7.8"
+ },
+ {
+  "id": "sit-2609",
+  "key": "close|motive|unwatched|none|mid|confirms|none|none|last",
+  "text": "{They} had a way of saying it that made it sound smaller than it was, or bigger. I set it down at its own size.",
+  "source": "neighbourhood/32/2/lost-pet/reader#11.9"
+ },
+ {
+  "id": "sit-2627",
+  "key": "close|motive|unwatched|none|mid|confirms|none|none|last",
+  "text": "The place was so quiet while we talked that I could hear my own pencil, and so, I think, could {they}.",
+  "source": "neighbourhood/29/2/lost-pet/reader#11.9"
+ },
+ {
+  "id": "sit-2653",
+  "key": "close|motive|bar|none|high|new|none|none|last",
+  "text": "{They} looked relieved to have said it, or tired of having said it. At that hour the two look much the same.",
+  "source": "dealt/22/4/murder/wanderer#14.7"
+ },
+ {
+  "id": "sit-2672",
+  "key": "close|motive|bar|none|high|new|none|none|last",
+  "text": "Behind the bar a glass was set upside down on the towel, then another, the night being put away a glass at a time.",
+  "source": "neighbourhood/20/5/murder/reader#8.8"
+ },
+ {
+  "id": "sit-2669",
+  "key": "close|motive|bar|none|low|new|none|none|last",
+  "text": "Neither of us said anything for a bit. In a bar, that passes for a long conversation.",
+  "joke": true,
+  "source": "neighbourhood/36/1/murder/wanderer#7.9"
+ },
+ {
+  "id": "sit-2660",
+  "key": "close|motive|bar|none|mid|new|none|none|last",
+  "text": "{They} sat back, done with it, the way you sit back from a meal you didn’t much enjoy but finished anyway.",
+  "source": "dealt/36/2/murder/wanderer#15.8"
+ },
+ {
+  "id": "sit-2655",
+  "key": "close|motive|club|none|high|new|none|none|last",
+  "text": "Somewhere behind us somebody dropped a glass, and the whole room stopped for half a breath, and then forgot it.",
+  "source": "neighbourhood/4/4/murder/reader#8.8"
+ },
+ {
+  "id": "sit-2668",
+  "key": "close|motive|club|none|low|new|none|none|last",
+  "text": "There’s no polite way to ask somebody what they’ve got against somebody else. I’d used the least rude way I know.",
+  "source": "dealt/24/0/murder/wanderer#10.8"
+ },
+ {
+  "id": "sit-2667",
+  "key": "close|motive|club|none|mid|new|none|none|last",
+  "text": "{They} didn’t ask what I’d do with it. People seldom do, and most nights I don’t know myself.",
+  "source": "dealt/37/3/lost-pet/wanderer#14.8"
+ },
+ {
+  "id": "sit-2665",
+  "key": "close|motive|flat|none|high|new|none|none|last",
+  "text": "{They} gave me a look that asked whether we were done. We were, for the moment, and I said so.",
+  "source": "neighbourhood/6/5/murder/wanderer#13.7"
+ },
+ {
+  "id": "sit-2652",
+  "key": "close|motive|restaurant|none|high|new|none|none|last",
+  "text": "A tray of dishes went by behind us on its way to the kitchen, and we both watched it go rather than look at each other.",
+  "source": "neighbourhood/8/5/murder/reader#8.8"
+ },
+ {
+  "id": "sit-2671",
+  "key": "close|motive|restaurant|none|high|new|none|none|last",
+  "text": "Grudges are cheap to keep and dear to get rid of, and most people on this street have one put by somewhere.",
+  "source": "dealt/36/4/murder/reader#8.8"
+ },
+ {
+  "id": "sit-2659",
+  "key": "close|motive|restaurant|none|low|new|none|none|last",
+  "text": "I closed the notebook. {They} watched it close as if something {they}’d carried for years had gone in there with it.",
+  "source": "neighbourhood/8/0/lost-pet/reader#10.8"
+ },
+ {
+  "id": "sit-2651",
+  "key": "close|motive|restaurant|none|mid|new|none|none|last",
+  "text": "{They} went quiet after that, the plain quiet that comes when a person has said more than {they} meant to, or exactly as much.",
+  "source": "neighbourhood/9/2/murder/reader#15.8"
+ },
+ {
+  "id": "sit-2670",
+  "key": "close|motive|restaurant|none|mid|new|none|none|last",
+  "text": "Nobody in this city is short of a reason. It’s the one thing we all have plenty of, after rent.",
+  "joke": true,
+  "source": "neighbourhood/11/2/lost-pet/reader#15.8"
+ },
+ {
+  "id": "sit-2657",
+  "key": "close|motive|rooming|none|high|new|none|none|last",
+  "text": "{They} kept {their} voice down to say it. In a rooming house you learn to say everything at the volume of the walls.",
+  "source": "neighbourhood/25/5/lost-pet/wanderer#10.8"
+ },
+ {
+  "id": "sit-2664",
+  "key": "close|motive|rooming|none|low|new|none|none|last",
+  "text": "It came out flat and easy, the way things do that have been said over a good many suppers.",
+  "source": "neighbourhood/33/0/murder/reader#11.8"
+ },
+ {
+  "id": "sit-2662",
+  "key": "close|motive|rooming|none|mid|new|none|none|last",
+  "text": "It’s the small grudges that last, I find. The big ones burn out, and the small ones get handed down with the furniture.",
+  "source": "dealt/24/2/murder/reader#12.8"
+ },
+ {
+  "id": "sit-2656",
+  "key": "close|motive|theatre|none|high|new|none|none|last",
+  "text": "There was nothing at all up front, stage or screen, and we both looked at it for a while as if there might be.",
+  "source": "neighbourhood/36/4/murder/reader#10.9"
+ },
+ {
+  "id": "sit-2658",
+  "key": "close|motive|theatre|none|low|new|none|none|last",
+  "text": "I closed the notebook quietly. In a theater, even after hours, nobody wants to be the loudest thing in the room.",
+  "source": "neighbourhood/18/0/murder/wanderer#12.9"
+ },
+ {
+  "id": "sit-2654",
+  "key": "close|motive|theatre|none|mid|new|none|none|last",
+  "text": "{They} looked at the empty seats while {they} said it, and the seats listened politely, the way empty seats do.",
+  "source": "neighbourhood/13/2/lost-item/reader#14.8"
+ },
+ {
+  "id": "sit-2673",
+  "key": "close|motive|theatre|none|mid|new|none|none|last",
+  "text": "Whatever {they} felt about it, {they} had felt it a long time. You could hear the years in it, if nothing else.",
+  "source": "dealt/21/2/murder/wanderer#10.8"
+ },
+ {
+  "id": "sit-2663",
+  "key": "close|motive|unwatched|none|high|new|none|none|last",
+  "text": "That kind of thing doesn’t go away. It just gets folded smaller and carried in a different pocket.",
+  "source": "neighbourhood/34/4/murder/reader#14.9"
+ },
+ {
+  "id": "sit-2666",
+  "key": "close|motive|unwatched|none|low|new|none|none|last",
+  "text": "I let it sit between us a while. Neither of us reached for it.",
+  "source": "neighbourhood/24/1/murder/wanderer#5.9"
+ },
+ {
+  "id": "sit-2661",
+  "key": "close|motive|unwatched|none|mid|new|none|none|last",
+  "text": "{They} said it plainly, and I wrote it down plainly. There’s no other way to keep a thing like that.",
+  "source": "neighbourhood/14/3/murder/reader#12.9"
+ },
+ {
+  "id": "sit-0971",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "I held the door for my client, then went through it myself, which is the order manners and business agree on.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/16/5/murder/wanderer#1.11"
+ },
+ {
+  "id": "sit-0974",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "I wrote down what I’d been given on the back of an envelope, put the envelope in my hat, and put the hat on.",
+  "source": "dealt/37/4/lost-pet/oracle#1.14"
+ },
+ {
+  "id": "sit-0977",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "I put the money away and the notebook where I could reach it, and turned the lamp out on my way to the door.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/36/5/murder/wanderer#1.10"
+ },
+ {
+  "id": "sit-0980",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "Then I took my hat and went down into the street, where the night had been waiting for somebody to start.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/28/5/murder/oracle#1.10"
+ },
+ {
+  "id": "sit-0983",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "There’s a moment, taking a case, when the room seems to get smaller. I didn’t stay in it long.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/5/5/lost-pet/reader#1.13"
+ },
+ {
+  "id": "sit-0986",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "I put on my coat. It was the same coat it had been all evening, but it was a working coat now.",
+  "source": "dealt/30/5/murder/reader#1.11"
+ },
+ {
+  "id": "sit-0989",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "I saw my client down the stairs, a landing at a time, and neither of us said anything worth the breath.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/19/4/lost-pet/oracle#1.13"
+ },
+ {
+  "id": "sit-0992",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "Downstairs the street door stuck, the way it always does, and I put my shoulder to it like a man starting a shift.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/7/5/lost-pet/oracle#1.13"
+ },
+ {
+  "id": "sit-0995",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "There wasn’t much in the office worth locking up, so I locked it carefully.",
+  "requires": [
+   "leaving"
+  ],
+  "joke": true,
+  "source": "dealt/8/4/murder/wanderer#1.10"
+ },
+ {
+  "id": "sit-0998",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "Then there was nothing for it but the stairs, and the street, and the long way round to everybody.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/15/5/lost-pet/wanderer#1.13"
+ },
+ {
+  "id": "sit-1001",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "I shook my client’s hand at the door. It was a short, firm handshake, the kind that expects to be paid back in news.",
+  "source": "neighbourhood/8/5/murder/wanderer#1.11"
+ },
+ {
+  "id": "sit-1004",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "Somewhere off toward the river the el went by, and I went down the stairs in time with it.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/31/5/lost-pet/wanderer#1.13"
+ },
+ {
+  "id": "sit-1007",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "My coat was where I’d thrown it. I put it on and buttoned it all the way, the way you dress for work, not weather.",
+  "source": "dealt/24/5/murder/reader#1.10"
+ },
+ {
+  "id": "sit-1010",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "The street door let me out into the dark, and the dark took me without asking where I meant to go.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/14/4/murder/reader#1.10"
+ },
+ {
+  "id": "sit-1013",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "Everything I needed for the night went into my coat pockets, with room to spare.",
+  "source": "dealt/15/5/lost-pet/reader#1.13"
+ },
+ {
+  "id": "sit-1016",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "I looked at the chair my client had sat in. It had done its part of the work, and now it was my turn.",
+  "source": "neighbourhood/23/4/lost-pet/wanderer#1.14"
+ },
+ {
+  "id": "sit-1019",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "I stood at the window a moment before I went, looking down at the street, which looked back up and waited.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/38/4/murder/wanderer#1.10"
+ },
+ {
+  "id": "sit-1022",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "The stairs going down were the same stairs I’d come up, only now somebody was paying for them.",
+  "requires": [
+   "leaving"
+  ],
+  "joke": true,
+  "source": "neighbourhood/24/5/murder/oracle#1.10"
+ },
+ {
+  "id": "sit-1025",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "I let my client go down first, and waited until the street door shut below before I followed.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/7/5/lost-pet/oracle#1.13"
+ },
+ {
+  "id": "sit-1028",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "There’s a kind of quiet after somebody pays you, and I stood in it a moment before I went.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/3/5/lost-pet/wanderer#1.12"
+ },
+ {
+  "id": "sit-1031",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "Then I was on the stairs, and then in the street, and the case was the only company I had.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/6/5/murder/reader#1.10"
+ },
+ {
+  "id": "sit-1034",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "I pulled the door shut behind me and heard the latch take. It’s a sound I like; it means I’m working.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/8/4/murder/oracle#1.10"
+ },
+ {
+  "id": "sit-1037",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "My knee made a remark as I got up. I ignored it, the way I ignore most good advice.",
+  "joke": true,
+  "source": "dealt/34/5/murder/wanderer#1.10"
+ },
+ {
+  "id": "sit-1040",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "I said I’d start at once. It’s what I always say, and on a night like that it was even true.",
+  "source": "neighbourhood/20/5/murder/wanderer#1.11"
+ },
+ {
+  "id": "sit-1043",
+  "key": "close|office|office|none|high|new|none|none|last",
+  "text": "I took the money with a nod. In my line you don’t say thank you; you say you’ll find out.",
+  "source": "neighbourhood/25/5/lost-pet/wanderer#1.13"
+ },
+ {
+  "id": "sit-0969",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "My client stood at the door a moment longer than needed, the way people do who have just handed their trouble to a stranger.",
+  "source": "dealt/17/0/lost-pet/wanderer#1.12"
+ },
+ {
+  "id": "sit-0972",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "I went down the stairs with my client’s trouble in one pocket and the money in the other, to see which got heavier.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/32/0/lost-pet/reader#1.11"
+ },
+ {
+  "id": "sit-0975",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "Before I went I straightened my tie in the dark window, for the night’s sake more than mine.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/27/1/murder/reader#1.10"
+ },
+ {
+  "id": "sit-0978",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "I counted the money once in front of my client, which is rude, and once on the stairs, which is business.",
+  "requires": [
+   "leaving"
+  ],
+  "joke": true,
+  "source": "dealt/28/1/lost-item/oracle#1.11"
+ },
+ {
+  "id": "sit-0981",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "There’s no better feeling than money on a desk at that hour, and no worse one than what it’s for.",
+  "source": "dealt/34/0/lost-item/oracle#1.10"
+ },
+ {
+  "id": "sit-0984",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "I waited until my client’s steps had gone all the way down, and then I started down after them.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/11/0/lost-pet/oracle#1.11"
+ },
+ {
+  "id": "sit-0987",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "I put my coat on over the creases of the day, and went down to see what the night had for me.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/35/1/lost-pet/wanderer#1.10"
+ },
+ {
+  "id": "sit-0990",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "The light on the landing was out again. I went down by touch and by memory, and memory did most of the work.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/13/0/lost-item/wanderer#1.12"
+ },
+ {
+  "id": "sit-0993",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "I told my client to go home and try to sleep. Neither of us believed it, but it’s the thing to say.",
+  "source": "neighbourhood/38/1/lost-pet/oracle#1.11"
+ },
+ {
+  "id": "sit-0996",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "Then I went, because the night was going whether I went with it or not.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/23/1/lost-pet/oracle#1.11"
+ },
+ {
+  "id": "sit-0999",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "I shut the desk drawer on the bills and the bottle and the rest of my troubles, and took the new one with me.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/33/0/murder/oracle#1.11"
+ },
+ {
+  "id": "sit-1002",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "I put out the lamp, and the dark came in from the window and sat down in the good chair.",
+  "source": "dealt/28/0/lost-item/wanderer#1.11"
+ },
+ {
+  "id": "sit-1005",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "I followed my client down, a flight behind, so we wouldn’t have to find things to say on the landings.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/2/0/lost-pet/wanderer#1.12"
+ },
+ {
+  "id": "sit-1008",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "Out in the street the lamps were burning for nobody, and I walked into the light of the first one.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/18/1/murder/wanderer#1.10"
+ },
+ {
+  "id": "sit-1011",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "I tucked the money into my inside pocket and buttoned the coat over it, which is as near as I come to a bank.",
+  "joke": true,
+  "source": "dealt/37/0/lost-item/wanderer#1.12"
+ },
+ {
+  "id": "sit-1014",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "I wrote down what I’d been told while it was still warm, before the stairs could shake any of it loose.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/24/1/murder/wanderer#1.10"
+ },
+ {
+  "id": "sit-1017",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "I put the notebook in my breast pocket, over the heart, where people keep whatever is worrying them.",
+  "source": "dealt/18/0/murder/reader#1.11"
+ },
+ {
+  "id": "sit-1020",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "I went down and out, and behind me the office settled back into the dark as if nobody had ever asked it anything.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/34/0/lost-item/wanderer#1.10"
+ },
+ {
+  "id": "sit-1023",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "My client had a long way home and I had a longer night, and we parted at the street door without comparing.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/34/1/lost-item/wanderer#1.11"
+ },
+ {
+  "id": "sit-1026",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "I turned the lamp down to a glow, in case anybody else came up the stairs tonight, and went down them myself.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/4/1/lost-item/oracle#1.11"
+ },
+ {
+  "id": "sit-1029",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "There’s an hour of the night when the city stops being a city and becomes a list of doors, and I had my share to knock on.",
+  "source": "dealt/12/1/murder/wanderer#1.9"
+ },
+ {
+  "id": "sit-1032",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "The money was real and the trouble was real, and I put them both in my coat and went to work.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/26/0/lost-pet/oracle#1.11"
+ },
+ {
+  "id": "sit-1035",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "My client said thank you at the door. I said not yet, and meant it kindly.",
+  "source": "neighbourhood/7/1/lost-item/reader#1.11"
+ },
+ {
+  "id": "sit-1038",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "I took the stairs two at a time for the first flight and one at a time after that. Enthusiasm only goes so far.",
+  "requires": [
+   "leaving"
+  ],
+  "joke": true,
+  "source": "dealt/37/0/lost-item/oracle#1.12"
+ },
+ {
+  "id": "sit-1041",
+  "key": "close|office|office|none|low|new|none|none|last",
+  "text": "The building was asleep below me, floor by floor, and I went down through it quietly, the way you leave a party early.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/13/0/lost-item/reader#1.12"
+ },
+ {
+  "id": "sit-0970",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "Down in the street I stood a moment under a lamp, getting my bearings, and then the night and I set off together.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/27/3/lost-pet/wanderer#1.14"
+ },
+ {
+  "id": "sit-0973",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "The office would keep. It had been keeping for years, mostly on credit.",
+  "joke": true,
+  "source": "dealt/2/2/lost-pet/reader#1.12"
+ },
+ {
+  "id": "sit-0976",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I checked my pockets for a pencil, the notebook, the money and my nerve, and found three of the four.",
+  "joke": true,
+  "source": "neighbourhood/16/2/lost-item/reader#1.12"
+ },
+ {
+  "id": "sit-0979",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I took my hat off the stand. It has been with me longer than most clients, and it has never once asked for its money back.",
+  "joke": true,
+  "source": "neighbourhood/31/3/lost-pet/reader#1.13"
+ },
+ {
+  "id": "sit-0982",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I took a last look at the desk, the lamp and the stain on the ceiling, and went out to earn them.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/21/3/lost-pet/reader#1.13"
+ },
+ {
+  "id": "sit-0985",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I took the coat off the hook and the hat off the stand, and the office was empty before I’d reached the door.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/2/3/murder/oracle#1.10"
+ },
+ {
+  "id": "sit-0988",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I didn’t look at the clock as I went. I knew what it would say, and there was no arguing with it.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/30/2/murder/reader#1.10"
+ },
+ {
+  "id": "sit-0991",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "The landlady’s door was shut as I went down past it, and I went past quietly, from long habit.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/8/2/lost-pet/reader#1.13"
+ },
+ {
+  "id": "sit-0994",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "Out on the stoop I lit a cigarette, mostly for the light, and stood a moment with the case before I walked.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/7/3/lost-pet/wanderer#1.13"
+ },
+ {
+  "id": "sit-0997",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I went down into the street with what I’d been told going round in my head like a tune I couldn’t place.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/32/3/murder/wanderer#1.10"
+ },
+ {
+  "id": "sit-1000",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "My client went off up the street, and I stood on the step until the footsteps were gone, and went the other way.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/4/2/lost-item/wanderer#1.12"
+ },
+ {
+  "id": "sit-1003",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "The night smelled of the river and coal smoke and somebody’s late supper, and I went out into all of it.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/6/3/murder/oracle#1.10"
+ },
+ {
+  "id": "sit-1006",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I let the door close on the office with the lamp still lit. Somebody ought to be in, even if it’s only the lamp.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/35/3/lost-pet/oracle#1.13"
+ },
+ {
+  "id": "sit-1009",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I went down past the other doors on my landing, all dark and all locked, all minding their own business.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/8/3/murder/wanderer#1.10"
+ },
+ {
+  "id": "sit-1012",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I buttoned my coat over the money and went down. The stairs were dark, and I knew them better than I know most people.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/13/3/lost-pet/wanderer#1.14"
+ },
+ {
+  "id": "sit-1015",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I put the chair back against the wall, where it lives, and let the office have its quiet back.",
+  "source": "neighbourhood/26/3/murder/wanderer#1.10"
+ },
+ {
+  "id": "sit-1018",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I took my hat and the stairs, and both of them a little faster than usual.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/15/3/lost-pet/wanderer#1.14"
+ },
+ {
+  "id": "sit-1021",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I picked up my hat, and the night picked me up, and we went down the stairs together.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/33/3/lost-pet/reader#1.13"
+ },
+ {
+  "id": "sit-1024",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "The case was mine now. I put my hat on over it and went to find out how heavy it was.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/17/2/lost-pet/reader#1.12"
+ },
+ {
+  "id": "sit-1027",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "Below in the street somebody whistled for a cab and didn’t get one, and I went down to try my luck on foot.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/24/2/murder/reader#1.10"
+ },
+ {
+  "id": "sit-1030",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I left the window the way it was and the bills the way they were, and took nothing but the case and my hat.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "dealt/12/2/murder/oracle#1.10"
+ },
+ {
+  "id": "sit-1033",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I said I’d be in touch. My client nodded as if that settled something, and I hoped, going down, that it had.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/29/3/lost-pet/wanderer#1.13"
+ },
+ {
+  "id": "sit-1036",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "It’s an odd thing, to be handed somebody’s worst night and told to bring it back finished. I put my hat on and went.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/38/3/murder/oracle#1.10"
+ },
+ {
+  "id": "sit-1039",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "I put the fee in my wallet and the wallet in my coat, and stood a moment in the doorway with all of it.",
+  "source": "dealt/9/2/murder/wanderer#1.10"
+ },
+ {
+  "id": "sit-1042",
+  "key": "close|office|office|none|mid|new|none|none|last",
+  "text": "There’s always a minute, after the door shuts on a client, when the office feels bigger than it is. I didn’t wait for it to pass.",
+  "requires": [
+   "leaving"
+  ],
+  "source": "neighbourhood/28/2/lost-item/reader#1.13"
+ },
+ {
+  "id": "sit-2897",
+  "key": "close|put|bar|none|low|narrows|none|cracked|last",
+  "text": "{They} let out a breath {they} seemed to have been holding since the start of the evening.",
+  "source": "dealt/1/0/lost-item/wanderer#9.8"
+ },
+ {
+  "id": "sit-2892",
+  "key": "close|put|bar|none|mid|narrows|none|cracked|last",
+  "text": "The room went on around us with its glasses and its talk, and never knew what had just been said in it.",
+  "source": "neighbourhood/40/2/lost-item/reader#14.7"
+ },
+ {
+  "id": "sit-2900",
+  "key": "close|put|bar|none|mid|narrows|none|cracked|last",
+  "text": "I closed the notebook. {They} watched it shut as if it were {their} own book, and I’d read the last page out loud.",
+  "source": "neighbourhood/22/2/lost-item/oracle#13.7"
+ },
+ {
+  "id": "sit-2894",
+  "key": "close|put|club|none|low|narrows|none|cracked|last",
+  "text": "{They} sat back and looked at the ceiling, emptied out, the way people look when the worst part is the part just finished.",
+  "source": "neighbourhood/8/1/lost-pet/reader#10.7"
+ },
+ {
+  "id": "sit-2902",
+  "key": "close|put|club|none|low|narrows|none|cracked|last",
+  "text": "I let {them} sit. There’s nothing useful to say right after, and I’ve learned not to say it.",
+  "source": "dealt/7/1/lost-item/wanderer#10.8"
+ },
+ {
+  "id": "sit-2895",
+  "key": "close|put|club|none|mid|narrows|none|cracked|last",
+  "text": "Somewhere behind us somebody laughed at something, and it sounded a long way off.",
+  "source": "dealt/40/2/lost-item/reader#12.7"
+ },
+ {
+  "id": "sit-2903",
+  "key": "close|put|club|none|mid|narrows|none|cracked|last",
+  "text": "It was out now, and there was no putting it back. {They} seemed to know that better than I did.",
+  "source": "neighbourhood/1/2/lost-item/oracle#13.7"
+ },
+ {
+  "id": "sit-2896",
+  "key": "close|put|restaurant|none|low|narrows|none|cracked|last",
+  "text": "{They} looked smaller after, the way a coat looks smaller on its hook than it did on the person.",
+  "source": "dealt/8/1/lost-pet/wanderer#7.8"
+ },
+ {
+  "id": "sit-2904",
+  "key": "close|put|restaurant|none|low|narrows|none|cracked|last",
+  "text": "{They} put both hands flat on the table, as if to keep it from going anywhere else tonight.",
+  "source": "dealt/2/0/lost-pet/wanderer#7.8"
+ },
+ {
+  "id": "sit-2899",
+  "key": "close|put|restaurant|none|mid|narrows|none|cracked|last",
+  "text": "I wrote it down slowly and got it right. Some things you only get to write down once.",
+  "source": "neighbourhood/11/2/lost-pet/oracle#13.7"
+ },
+ {
+  "id": "sit-2898",
+  "key": "close|put|theatre|none|low|narrows|none|cracked|last",
+  "text": "The empty seats had heard all of it and would tell nobody, which is the best thing about a theater after hours.",
+  "source": "dealt/32/1/lost-pet/reader#10.7"
+ },
+ {
+  "id": "sit-2893",
+  "key": "close|put|theatre|none|mid|narrows|none|cracked|last",
+  "text": "Neither of us said anything for a while. A thing like that wants a minute of quiet after it, the way a slammed door does.",
+  "source": "neighbourhood/14/2/lost-pet/reader#14.7"
+ },
+ {
+  "id": "sit-2901",
+  "key": "close|put|theatre|none|mid|narrows|none|cracked|last",
+  "text": "{They} didn’t ask what I’d do now. People who have just said a thing like that are seldom curious about the rest.",
+  "source": "neighbourhood/13/2/lost-item/oracle#11.8"
+ },
+ {
+  "id": "sit-2769",
+  "key": "close|put|bar|none|high|new|none|held|last",
+  "text": "I put the notebook away. I’d asked the wrong question politely, which is still asking the wrong question.",
+  "source": "neighbourhood/34/5/murder/reader#9.6"
+ },
+ {
+  "id": "sit-2776",
+  "key": "close|put|bar|none|high|new|none|refused|last",
+  "text": "I let the silence stand where {they} had put it. Some people refuse from fear and some from pride, and the two sound the same.",
+  "source": "neighbourhood/26/4/murder/reader#9.8"
+ },
+ {
+  "id": "sit-2771",
+  "key": "close|put|bar|none|mid|new|none|refused|last",
+  "text": "In a bar a refusal gets lost in the noise, so I wrote this one down where I could find it again.",
+  "source": "dealt/28/3/murder/wanderer#14.9"
+ },
+ {
+  "id": "sit-2767",
+  "key": "close|put|club|none|high|new|none|held|last",
+  "text": "{They} went back to what {they} had been doing, and I went back to my notebook to see where I’d gone wrong.",
+  "source": "neighbourhood/19/5/lost-pet/wanderer#13.6"
+ },
+ {
+  "id": "sit-2775",
+  "key": "close|put|club|none|high|new|none|refused|last",
+  "text": "{They} folded {their} arms, and that was the end of it. A shut door looks the same from outside whatever is behind it.",
+  "source": "neighbourhood/24/4/murder/reader#9.8"
+ },
+ {
+  "id": "sit-2779",
+  "key": "close|put|club|none|mid|new|none|refused|last",
+  "text": "I wrote down that {they} wouldn’t say, and how {they} said it, which was the whole of what I got.",
+  "source": "dealt/33/3/lost-pet/reader#12.8"
+ },
+ {
+  "id": "sit-2780",
+  "key": "close|put|flat|none|high|new|none|held|last",
+  "text": "I thanked {them} anyway. A question that misses costs whoever asks it more than whoever answers.",
+  "source": "neighbourhood/8/4/murder/wanderer#16.7"
+ },
+ {
+  "id": "sit-2777",
+  "key": "close|put|flat|none|high|new|none|landed|last",
+  "text": "I wrote the second story under the first, in the same pencil and the same hand. The pencil doesn’t take sides.",
+  "source": "dealt/7/4/lost-pet/reader#16.6"
+ },
+ {
+  "id": "sit-2768",
+  "key": "close|put|flat|none|high|new|none|refused|last",
+  "text": "{They} looked past me at nothing in particular and kept looking at it until I’d gone back to my notebook.",
+  "source": "neighbourhood/35/4/lost-pet/reader#14.8"
+ },
+ {
+  "id": "sit-2765",
+  "key": "close|put|restaurant|none|high|new|none|held|last",
+  "text": "There’s nothing like reading somebody the wrong page to make you feel your age.",
+  "joke": true,
+  "source": "dealt/26/5/murder/reader#9.6"
+ },
+ {
+  "id": "sit-2774",
+  "key": "close|put|restaurant|none|high|new|none|refused|last",
+  "text": "No is a whole answer, in its way. It just doesn’t come with a place or an hour attached.",
+  "source": "neighbourhood/40/4/murder/reader#11.8"
+ },
+ {
+  "id": "sit-2782",
+  "key": "close|put|restaurant|none|mid|new|none|held|last",
+  "text": "{They} didn’t look pleased about it, or sorry. {They} looked like somebody who had been asked a question meant for somebody else.",
+  "source": "dealt/34/2/lost-item/wanderer#14.7"
+ },
+ {
+  "id": "sit-2770",
+  "key": "close|put|restaurant|none|mid|new|none|refused|last",
+  "text": "I’ve been refused by better people and by worse, and the refusing never tells you which kind you’re talking to.",
+  "source": "neighbourhood/8/3/murder/wanderer#11.9"
+ },
+ {
+  "id": "sit-2762",
+  "key": "close|put|rooming|none|high|new|none|held|last",
+  "text": "That one had gone wide, and we both watched it go. {They} was kind enough not to say so.",
+  "source": "neighbourhood/25/5/lost-pet/reader#12.6"
+ },
+ {
+  "id": "sit-2763",
+  "key": "close|put|rooming|none|high|new|none|refused|last",
+  "text": "{They} had the right to keep it, and kept it. I had the right to wonder, and did.",
+  "source": "neighbourhood/3/5/lost-pet/reader#14.8"
+ },
+ {
+  "id": "sit-2781",
+  "key": "close|put|rooming|none|mid|new|none|held|last",
+  "text": "It was a fair question put to the wrong person, and I let it go back in the notebook where it came from.",
+  "source": "dealt/32/3/murder/wanderer#14.7"
+ },
+ {
+  "id": "sit-2764",
+  "key": "close|put|rooming|none|mid|new|none|refused|last",
+  "text": "{They} didn’t look away, and didn’t look sorry, and didn’t say a word more. People manage that for all sorts of reasons.",
+  "source": "dealt/6/2/murder/reader#13.8"
+ },
+ {
+  "id": "sit-2766",
+  "key": "close|put|theatre|none|high|new|none|held|last",
+  "text": "I turned to a fresh page in the notebook. Some questions you only find out are wrong by asking them.",
+  "source": "dealt/12/5/murder/reader#9.6"
+ },
+ {
+  "id": "sit-2772",
+  "key": "close|put|theatre|none|high|new|none|refused|last",
+  "text": "The theater kept its quiet, and {they} kept {their} own, and between the two of them I had nothing to write down.",
+  "source": "dealt/28/4/murder/wanderer#14.8"
+ },
+ {
+  "id": "sit-2778",
+  "key": "close|put|theatre|none|mid|new|none|held|last",
+  "text": "{They} had given me nothing because I’d brought nothing that fit. I wrote the mistake down as mine.",
+  "source": "neighbourhood/39/3/lost-pet/wanderer#13.7"
+ },
+ {
+  "id": "sit-2773",
+  "key": "close|put|theatre|none|mid|new|none|refused|last",
+  "text": "I put the pencil behind my ear. There was nothing to write, and it might as well be comfortable.",
+  "joke": true,
+  "source": "dealt/27/2/murder/reader#15.8"
+ },
+ {
+  "id": "sit-2129",
+  "key": "close|search|scene-lost|none|high|new|none|none|last",
+  "text": "The room had told me what it knew, and then gone back to looking like any other room on the street.",
+  "source": "neighbourhood/29/4/lost-pet/oracle#3.4"
+ },
+ {
+  "id": "sit-2135",
+  "key": "close|search|scene-lost|none|high|new|none|none|last",
+  "text": "I wrote it all down, the empty place included, which takes up more of a page than you’d think.",
+  "source": "neighbourhood/37/5/lost-pet/reader#3.4"
+ },
+ {
+  "id": "sit-2141",
+  "key": "close|search|scene-lost|none|high|new|none|none|last",
+  "text": "Somebody downstairs had a radio on low, and the room and I listened to it for a while without saying anything.",
+  "source": "dealt/15/4/lost-pet/reader#3.4"
+ },
+ {
+  "id": "sit-2147",
+  "key": "close|search|scene-lost|none|high|new|none|none|last",
+  "text": "I said I’d do what I could about {thing}. It’s a promise I make carefully, and keep when I’m let.",
+  "source": "dealt/19/5/lost-pet/reader#3.4"
+ },
+ {
+  "id": "sit-2153",
+  "key": "close|search|scene-lost|none|high|new|none|none|last",
+  "text": "A whole flat of good furniture, and the only spot anybody looked at had nothing in it.",
+  "source": "neighbourhood/7/5/lost-pet/reader#3.4"
+ },
+ {
+  "id": "sit-2159",
+  "key": "close|search|scene-lost|none|high|new|none|none|last",
+  "text": "I put my hat back on. When a room has been gone over, you’ve no more business standing about in it.",
+  "source": "dealt/31/4/lost-pet/oracle#3.4"
+ },
+ {
+  "id": "sit-2165",
+  "key": "close|search|scene-lost|none|high|new|none|none|last",
+  "text": "There’s a sadness to a room that’s been searched, even gently. It looks as if it has been asked to explain itself.",
+  "source": "neighbourhood/25/4/lost-pet/wanderer#6.4"
+ },
+ {
+  "id": "sit-2171",
+  "key": "close|search|scene-lost|none|high|new|none|none|last",
+  "text": "I dusted off my knees. It’s the one part of the job that always gets done thoroughly.",
+  "joke": true,
+  "source": "dealt/29/4/lost-pet/wanderer#10.5"
+ },
+ {
+  "id": "sit-2177",
+  "key": "close|search|scene-lost|none|high|new|none|none|last",
+  "text": "Everything in the room was where it had always been, except the one thing, and the one thing was the point.",
+  "source": "dealt/15/4/lost-pet/oracle#3.4"
+ },
+ {
+  "id": "sit-2130",
+  "key": "close|search|scene-lost|none|low|new|none|none|last",
+  "text": "My client asked if I’d found anything. I said I’d found what was there, which is all a room ever gives you.",
+  "source": "dealt/17/0/lost-pet/oracle#3.5"
+ },
+ {
+  "id": "sit-2136",
+  "key": "close|search|scene-lost|none|low|new|none|none|last",
+  "text": "It’s the small homely things that stay with you after a room like that: a cushion, a cup, a coat on a peg.",
+  "source": "neighbourhood/22/0/lost-item/oracle#3.5"
+ },
+ {
+  "id": "sit-2142",
+  "key": "close|search|scene-lost|none|low|new|none|none|last",
+  "text": "The flat was quiet again, the kind of quiet that settles after somebody has looked under everything.",
+  "source": "neighbourhood/14/1/lost-pet/wanderer#5.5"
+ },
+ {
+  "id": "sit-2148",
+  "key": "close|search|scene-lost|none|low|new|none|none|last",
+  "text": "I had been through the room twice, and it had told me the same thing both times, which is more than I can say for people.",
+  "joke": true,
+  "source": "neighbourhood/26/0/lost-pet/reader#3.5"
+ },
+ {
+  "id": "sit-2154",
+  "key": "close|search|scene-lost|none|low|new|none|none|last",
+  "text": "I stood up from the last corner, and the room looked the same as when I started, only better known to me.",
+  "source": "neighbourhood/40/1/lost-item/oracle#3.5"
+ },
+ {
+  "id": "sit-2160",
+  "key": "close|search|scene-lost|none|low|new|none|none|last",
+  "text": "The empty place drew the eye however I stood, the way a gap in a row of teeth draws the tongue.",
+  "source": "neighbourhood/5/1/lost-pet/oracle#3.5"
+ },
+ {
+  "id": "sit-2166",
+  "key": "close|search|scene-lost|none|low|new|none|none|last",
+  "text": "I made a note of the room as it stood, so I’d know it again if anybody remembered it differently later.",
+  "source": "neighbourhood/11/0/lost-pet/reader#3.5"
+ },
+ {
+  "id": "sit-2172",
+  "key": "close|search|scene-lost|none|low|new|none|none|last",
+  "text": "There was nothing more the room could give me, and I didn’t want to stand in it like a man waiting for change.",
+  "source": "neighbourhood/5/1/lost-pet/reader#3.5"
+ },
+ {
+  "id": "sit-2178",
+  "key": "close|search|scene-lost|none|low|new|none|none|last",
+  "text": "I stood a minute longer than I needed to. A room like that deserves one more look before you stop looking.",
+  "source": "dealt/17/0/lost-pet/reader#3.5"
+ },
+ {
+  "id": "sit-2131",
+  "key": "close|search|scene-lost|none|mid|new|none|none|last",
+  "text": "It was a room kept in good order, and the order had one gap in it that the rest of the room seemed to be standing politely around.",
+  "source": "dealt/38/2/lost-pet/reader#3.5"
+ },
+ {
+  "id": "sit-2137",
+  "key": "close|search|scene-lost|none|mid|new|none|none|last",
+  "text": "Somewhere in the building a clock struck, and I didn’t count the strokes. I knew roughly how late it was, and that was enough.",
+  "source": "neighbourhood/4/2/lost-item/wanderer#8.5"
  }
 ]

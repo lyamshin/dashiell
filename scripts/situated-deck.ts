@@ -141,7 +141,7 @@ if (cmd === 'batches') {
   const ALLOWED = new Set(Object.keys(FILL));
   const SIGNPOST = /\bwas next\b|\bwanted [^.]* next\b|\bnext (?:question|person|place) to\b|\bThe one to ask was\b|\bwas worth the walk\b|\bthe next place\b|\bwas where I wanted to be\b/i;
   const DID_IT = /\b(?:did it|done it|killed (?:him|her)|took (?:it|him|her)|was the one|had to be|must have|nobody else could|guilty|the one who)\b/i;
-  const FLAGS = new Set(['quote-before', 'woman', 'man', 'leaving', 'rain', 'fog', 'cold', 'clear', 'murder', 'lost-pet', 'lost-item']);
+  const FLAGS = new Set(['quote-before', 'woman', 'man', 'leaving', 'rain', 'fog', 'cold', 'clear', 'murder', 'lost-pet', 'lost-item', 'dead-man', 'dead-woman']);
   const cut = new Map<string, string>();
   const kept: (SitCard & { stratum: string; slot: string; batch: number })[] = [];
   const byStratum = new Map<string, Set<string>[]>();
@@ -224,11 +224,13 @@ if (cmd === 'batches') {
     }
     peers.push(ws);
     byStratum.set(g.stratum, peers);
+    // Since Planner 2 the dead can be a woman: "the dead man" requires a dead man.
+    const requires = [...new Set([...(w.requires ?? []), ...(/\bdead man\b/i.test(text) ? ['murder', 'dead-man'] : []), ...(/\bdead woman\b/i.test(text) ? ['murder', 'dead-woman'] : [])])];
     kept.push({
       id: `sit-${w.id.slice(1)}`,
       key: g.key,
       text,
-      ...(w.requires?.length ? { requires: w.requires } : {}),
+      ...(requires.length ? { requires } : {}),
       ...(w.forbids?.length ? { forbids: w.forbids } : {}),
       ...(w.joke ? { joke: true } : {}),
       source: `${g.night}#${g.page}.${g.unit}`,

@@ -321,6 +321,8 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
       if (s.leaving) cond.add('leaving');
       if (s.weather) cond.add(s.weather);
       cond.add(ctx.c.type);
+      // Since Planner 2 the dead can be a woman: a card that says "the dead man" requires one.
+      if (ctx.c.type === 'murder') cond.add(pronOf(ctx.c, ctx.c.crime.victim).he === 'she' ? 'dead-woman' : 'dead-man');
       if (tokens.female === true) cond.add('woman');
       if (tokens.female === false) cond.add('man');
       // A joke only where the page's joke was (the card it replaces), or on a page without one, its close.
