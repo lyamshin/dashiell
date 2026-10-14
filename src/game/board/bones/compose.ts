@@ -46,7 +46,7 @@ import { sentencesOf, wordsIn } from '../plan/sentences.js';
 import { accessPhrase, atWhere, claimSaid, shortOther, where } from './phrase.js';
 import type { Composite, Prop, Shape, Src } from './types.js';
 import { fitting, type Args, type Voicing } from './voice.js';
-import { preview, SAMPLES, unpick, type Picked } from './say.js';
+import { preview, SAMPLES, VARIETY, unpick, type Picked } from './say.js';
 import { plainComposite } from './plain.js';
 
 /** The longest sentence composition makes. */
@@ -234,6 +234,8 @@ function sayWith(it: Item, comp: Held, p: Picked, args: Args, ctx: PlanCtx): str
   sample(comp, it, ctx);
   it.comp = comp;
   it.text = p.text;
+  // docs/52 build 2: the rhythm may trade it for another voicing that fitted as well, of another length.
+  it.alts = it.opener || it.speech ? undefined : altsFor(comp, p, ctx);
   return p.text;
 }
 
@@ -251,8 +253,12 @@ export function altsFor(comp: Held, p: Picked, ctx: PlanCtx): Item['alts'] {
         text: o.text,
         take: () => {
           const key = `v:${o.v.id}#${hand.uses(`v:${o.v.id}`) + 1}`;
-          if (comp.noted) hand.swap(comp.noted, key);
-          else hand.note(key);
+          if (comp.noted) {
+            hand.swap(comp.noted, key);
+            unpick(comp.noted);
+          } else hand.note(key);
+          // (Only a voicing unsaid tonight is offered: the trade is never one said again.)
+          if (VARIETY.on) VARIETY.picks.push({ id: o.v.id, key, shape: comp.shape, pool: p.others.length + 1, again: false, unsaidLeft: false });
           comp.noted = key;
           comp.voicing = o.v.id;
           comp.said = o.text;
