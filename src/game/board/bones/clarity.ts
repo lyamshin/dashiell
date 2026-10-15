@@ -19,7 +19,7 @@
  */
 
 import type { BoardCase } from '../model.js';
-import { hourWord, personOf, placeName, type Hour } from '../model.js';
+import { hourWord, isMurder, personOf, placeName, type Hour } from '../model.js';
 import { stripMarks } from '../plan/refer.js';
 import { sentencesOf } from '../plan/sentences.js';
 import type { Composite, Prop } from './types.js';
@@ -40,7 +40,7 @@ export const OBLIQUE: { name: string; re: RegExp }[] = [
 const POINTING_THERE = /\bthere\b(?! (?:was|were|is|are|had|has|will|would|wasn’t|weren’t|isn’t|aren’t|hadn’t|might|may|must|could|should|seemed|came|went))(?!’s)/i;
 
 /** "the rest of the evening", "all evening": the hours to the evening's end, said without their words. */
-const TO_THE_END = /\b(?:rest of (?:the|my) (?:evening|night)|all evening|all night|whole (?:evening|night)|whole of the evening|entire evening|every hour|each hour|start to finish|end of the evening|evening was over|remainder of the evening|till closing|stayed put|there the whole time|the whole time|all the while|as long as I was|(?:start|beginning) of the evening|throughout the evening|first hour to the last|from the time I came on)\b/i;
+const TO_THE_END = /\b(?:rest of (?:the|my) (?:evening|night)|all evening|all night|whole (?:evening|night)|whole of the evening|entire evening|every hour|each hour|start to finish|end of the evening|evening was over|remainder of the evening|till closing|stayed put|there the whole time|the whole time|all the while|as long as I was|(?:start|beginning) of the evening|throughout the evening|first hour to the last|from the time I came on|(?:shut|closed|locked up)\b[^.;]*\bafter that)\b/i;
 
 const WORDS: Record<string, number> = { seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, midnight: 12 };
 
@@ -127,12 +127,14 @@ export function clarityOf(c: BoardCase, comp: Composite & { said?: string; args?
   // Every place and hour its propositions name, said.
   const ph = comp.props.map(placesAndHours);
   const homes = new Set(comp.props.flatMap((p) => Object.values(p).filter((x): x is string => typeof x === 'string').map((id) => personOf(c, id)?.home).filter((x): x is string => !!x)));
-  const own = speaker ? personOf(c, speaker)?.home : undefined;
+  // (The office's lines are the client's.)
+  const who = speaker ?? (comp.shape === 'OFFICE' ? c.client : undefined);
+  const owns = new Set([who ? personOf(c, who)?.home : undefined, comp.shape === 'OFFICE' && !isMurder(c) ? c.crime.scene : undefined].filter((x): x is string => !!x));
   for (const id of new Set(ph.flatMap((x) => x.places))) {
     // (The detective may leave out the room I'm standing in, when it isn't pointed at: "The cushion by
     // the radiator was empty." So may a speaker, and their own home.)
     if (id === here) continue;
-    if (speech && id === own) continue;
+    if (speech && owns.has(id)) continue;
     const name = placeName(c, id);
     const short = name.replace(/^the /, '').toLowerCase();
     if (lower.includes(short)) continue;
@@ -141,8 +143,11 @@ export function clarityOf(c: BoardCase, comp: Composite & { said?: string; args?
     // somebody's own rooms, with their name in the sentence, "his own rooms" (docs/53: the place, or
     // who lives there).
     const owners = ownersOf(c, id);
-    if (owners.some((o) => lower.includes(`${o.short.toLowerCase()}’s`))) continue;
-    if (owners.some((o) => o.home && sents.some((s) => s.includes(o.short) && /\b(?:his|her) own\b/i.test(s)))) continue;
+    if (owners.some((o) => lower.includes(`${o.short.toLowerCase()}’s`) || new RegExp(`\\b${o.short.replace(/^(?:Mrs\.|Mr\.|Miss|Dr\.) /, '').toLowerCase()}(?:’s)? (?:flat|rooms|place|room)\\b`).test(lower))) continue;
+    // (Somebody off the board the place is called after: "Sokol’s back room" is "Sokol’s".)
+    const whose = /^(?:the )?((?:[A-Z][\w.]* )?[A-Z][\w]*’s)\b/.exec(name)?.[1];
+    if (whose && lower.includes(whose.toLowerCase())) continue;
+    if (owners.some((o) => sents.some((s) => s.includes(o.short) && /\b(?:his|her) own\b/i.test(s)))) continue;
     out.push(`the place not said: ${name}`);
   }
   const all = c.board.hours;
@@ -157,7 +162,7 @@ export function clarityOf(c: BoardCase, comp: Composite & { said?: string; args?
     if (!m) continue;
     const before = s.slice(0, m.index).toLowerCase();
     // (A place the sentence has said, by name, by whose it is or by where in it: "in my medicine cupboard … was there".)
-    if (!c.places.some((p) => before.includes(placeName(c, p.id).replace(/^the /, '').toLowerCase())) && !/\bhome\b|\b(?:in|on|at|under|behind|by|over|into) (?:my|the|his|her|a|its)\b|[a-z]’s\b/.test(before)) out.push(`"there" with no place before it`);
+    if (!c.places.some((p) => before.includes(placeName(c, p.id).replace(/^the /, '').toLowerCase())) && !/\bhome\b|\b(?:in|on|at|under|behind|by|over|into) (?:my|the|his|her|a|its)\b|[a-z]’s\b|\bmy (?:room|rooms|place|flat)\b/.test(before)) out.push(`"there" with no place before it`);
   }
   if (/\bthe list\b/.test(narr) && !/’s list\b/.test(narr)) out.push('"the list", not whose');
   for (const o of OBLIQUE) if (o.re.test(narr || said)) out.push(`oblique: ${o.name}`);

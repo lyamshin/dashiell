@@ -229,6 +229,33 @@ describe('docs/52 §4: the voicings', () => {
     expect(after.voicedOk - before.voicedOk).toBe(after.voiced - before.voiced);
   });
 
+  it.each(nights.filter((x) => x.tier % 2 === 1 || x.world === undefined))('docs/53: every voiced composite is clear (every place and hour said, no pronoun for a place, no oblique tag): tier $tier, $type, $world', ({ tier, type, world }) => {
+    VOICED.check = true;
+    const before = voicedTally();
+    for (let s = 1; s <= 2; s++) {
+      const d = dealBoard(s, tier, type, world ? { world } : {});
+      playBoardOracle(d);
+      playWanderer(d, s);
+    }
+    const after = voicedTally();
+    expect(after.unclear.slice(before.unclear.length).map((u) => `${u.id}: ${u.why.join('; ')}: ${u.said}`)).toEqual([]);
+    expect(after.clear - before.clear).toBe(after.voiced - before.voiced);
+  });
+
+  it('docs/53: the designer’s "too voiced" line fails the clarity check, though it reads back', () => {
+    // Build 1's agreement: "So here at eleven, with Feeney, which was what Coffin had."
+    const old = voicings().map((v): Voicing => (v.shape === 'CONFIRMED' && (v.requires ?? []).includes('agree') ? { ...v, template: (v.requires ?? []).includes('so') ? 'So {spans}, which was what {src}.' : '{Spans}, which was what {src}.' } : v));
+    useVoicings(old);
+    VOICED.check = true;
+    const before = voicedTally();
+    for (const { tier, type, world } of nights) playBoardOracle(dealBoard(1, tier, type, world ? { world } : {}));
+    const after = voicedTally();
+    const unclear = after.unclear.slice(before.unclear.length).filter((u) => u.id.startsWith('confirmed/'));
+    expect(unclear.length).toBeGreaterThan(0);
+    expect(unclear.every((u) => u.why.some((w) => w.includes('which was what X had')))).toBe(true);
+    expect(after.misses.slice(before.misses.length).filter((m) => m.includes('confirmed/'))).toEqual([]);
+  });
+
   it('a voicing that drops a fact fails the round trip', () => {
     const dropped = voicings().map((v): Voicing => (v.id === 'confirmed/list' ? { ...v, template: '{watcher} had {them} {at}, same as {he} said.' } : v));
     useVoicings(dropped);

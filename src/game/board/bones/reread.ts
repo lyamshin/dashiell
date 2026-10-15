@@ -271,7 +271,7 @@ const UNARGS: Record<string, Unargs> = {
   },
   'confirmed/list': (a, _comp, v) => {
     const watcher = personV(v.c, a.watcher as string);
-    return [{ k: 'CONFIRMS', person: personV(v.c, a.them as string), place: placeV(v.c, a.at as string, v), hour: hourV(a.hour as string), by: { k: 'list', who: watcher } }];
+    return [{ k: 'CONFIRMS', person: personV(v.c, (a.them ?? a.person ?? a.name) as string), place: placeV(v.c, a.at as string, v), hour: hourV(a.hour as string), by: { k: 'list', who: watcher } }];
   },
   'confirmed/list-too': (a, _comp, v) => {
     const watcher = personV(v.c, a.watcher as string);

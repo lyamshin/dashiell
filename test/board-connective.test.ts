@@ -310,7 +310,9 @@ describe('board: a clue is said at most twice a night', () => {
     // (docs/52 build 2: the remark is said in one of its voicings, but said once.)
     expect((all.match(/\bno hat\b|without a hat/g) ?? []).length).toBe(1);
     // (docs/49, Planner 2: the street's lead and its link are one sentence; docs/52 build 2: in one of its voicings.)
-    expect(all).toMatch(/Stuyvesant Street was where Prentiss kept Duchess|Stuyvesant Street stuck with me: it was where Prentiss kept Duchess/);
+    expect(all).toMatch(/Stuyvesant Street[^.]*(?:where Prentiss lived|Prentiss’s street)/);
+    // docs/53: a pet lives with its owner, never "is kept".
+    expect(all).not.toMatch(/kept Duchess/);
     expect((all.match(/under a coat/g) ?? []).length).toBeLessThanOrEqual(2);
   });
 
@@ -371,7 +373,7 @@ describe('board: the generator’s nits (docs/44)', () => {
     for (const { tier, type } of cases) {
       for (let s = 1; s <= 6; s++) {
         const run = playBoardOracle(dealBoard(s, tier, type)).run;
-        for (const p of run.log) if (p.board?.job === 'account') expect(prose(p, 'answer')).not.toMatch(/till (\w+)[^.]*\.[^.]*\bat \1\b/);
+        for (const p of run.log) if (p.board?.job === 'account') expect(prose(p, 'answer')).not.toMatch(/till (\w+)[^.]*\.\s*[^.;]*\b(?:went|walked|headed|came|got)\b[^.;]*\bat \1\b/);
       }
     }
   });

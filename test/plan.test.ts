@@ -253,7 +253,7 @@ describe('docs/49 §2: aggregation and connectives', () => {
     );
     expect(out[0]).toMatch(/^Corrigan said home at eleven, but Ashby passed her on Stuyvesant Street at eleven\./);
     // (Without the "but", Planner 2 says the second as one sentence, its join after a colon.)
-    expect(out[0]).toMatch(/Corrigan said home at ten, and Coffin had nobody here at ten o’clock: one of them was wrong\.$/);
+    expect(out[0]).toMatch(/Corrigan said home at ten, and Coffin had nobody at the Thalia at ten o’clock: one of them was wrong\.$/);
   });
 });
 
@@ -277,7 +277,7 @@ describe('docs/49 §2: rhythm', () => {
  * ------------------------------------------------------------------ */
 
 describe('docs/49 Planner 2: composition', () => {
-  it('two people one list confirms are one sentence, who could get at the means is said of the person, and the window is one sentence', () => {
+  it('two people one list confirms are one sentence (docs/53: the list by whose it is, and the place by name), joined to who could get at the means; the window is one sentence', () => {
     const coffin = id('Coffin');
     const ashby = id('Ashby');
     const feeney = id('Feeney');
@@ -300,7 +300,7 @@ describe('docs/49 Planner 2: composition', () => {
       },
       [['thought']],
     );
-    expect(out[0]).toBe('Coffin had Feeney here at eleven, same as she said, and with her Ashby, who never heard Prentiss tell the room. Prentiss had said ten or eleven, and at ten Duchess was at the Delmonico rooms.');
+    expect(out[0]).toBe('Ashby never heard Prentiss tell the room, and Coffin’s list had Feeney at the Thalia at eleven, just like she said, and the same list had Ashby right there with her. Prentiss had said ten or eleven, and at ten Duchess was at the Delmonico rooms.');
   });
 
   it('an evening that held, and the hour that mattered on their word alone, are one sentence with the "but"; the aside after the agreement goes', () => {
@@ -325,7 +325,7 @@ describe('docs/49 Planner 2: composition', () => {
       [['thought']],
     );
     // ("he" after Coffin could be Coffin: the name.)
-    expect(out[0]).toBe('So the Automat at eight, which was what Coffin had, but for eleven, the hour that mattered, Ashby said the Thalia. I let it stand.');
+    expect(out[0]).toBe('So Coffin’s list had Ashby at the Automat at eight, just like Ashby said, but for eleven, the hour that mattered, the milliner said the Thalia, and nobody else had said so. I let it stand.');
   });
 
   it('a thought of N facts takes at most ceil(N/2) sentences, but for a collision’s own sentence and two long facts', () => {
