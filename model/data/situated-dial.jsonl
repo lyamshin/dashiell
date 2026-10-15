@@ -772,6 +772,391 @@
 {"id":"sit-2938","flags":[],"action":"keep","batch":1}
 {"id":"sit-2939","flags":["place","compressed"],"action":"rewrite","batch":1,"before":"There was nothing left here for me to read. I turned toward what was.","text":"There was nothing left in the room for me to read. I turned my mind to the places that still had something to say."}
 {"id":"sit-2940","flags":[],"action":"keep","batch":1}
+{"id":"sit-0373","flags":[],"action":"keep","batch":5}
+{"id":"sit-0430","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"{They} took the time to get it in order, and didn’t apologize for taking it.","text":"{They} took the time to get the evening in order, and didn’t apologize for taking it."}
+{"id":"sit-0369","flags":["compressed"],"action":"rewrite","batch":5,"before":"{They} lined the hours up along the edge of the bar, one at a time, before letting any of them out.","text":"{They} lined the hours up one at a time, like glasses along the bar, before saying any of them out loud."}
+{"id":"sit-0426","flags":[],"action":"keep","batch":5}
+{"id":"sit-0350","flags":[],"action":"keep","batch":5}
+{"id":"sit-0407","flags":[],"action":"keep","batch":5}
+{"id":"sit-0351","flags":[],"action":"keep","batch":5}
+{"id":"sit-0408","flags":["pronoun"],"action":"rewrite","batch":5,"before":"It was a plain question, and {they} gave it a plain hearing.","text":"The question was a plain one, and {they} gave it a plain hearing."}
+{"id":"sit-0358","flags":[],"action":"keep","batch":5}
+{"id":"sit-0415","flags":[],"action":"keep","batch":5}
+{"id":"sit-0342","flags":[],"action":"keep","batch":5}
+{"id":"sit-0399","flags":[],"action":"keep","batch":5}
+{"id":"sit-0371","flags":[],"action":"keep","batch":5}
+{"id":"sit-0428","flags":["compressed"],"action":"rewrite","batch":5,"before":"{They} didn’t waste breath on the way in.","text":"{They} didn’t waste any breath getting started on the answer."}
+{"id":"sit-0380","flags":[],"action":"keep","batch":5}
+{"id":"sit-0437","flags":[],"action":"keep","batch":5}
+{"id":"sit-0359","flags":[],"action":"keep","batch":5}
+{"id":"sit-0416","flags":[],"action":"keep","batch":5}
+{"id":"sit-0386","flags":[],"action":"keep","batch":5}
+{"id":"sit-0372","flags":[],"action":"keep","batch":5}
+{"id":"sit-0429","flags":[],"action":"keep","batch":5}
+{"id":"sit-0377","flags":[],"action":"keep","batch":5}
+{"id":"sit-0434","flags":[],"action":"keep","batch":5}
+{"id":"sit-0360","flags":[],"action":"keep","batch":5}
+{"id":"sit-0417","flags":["rhythm","ellipsis"],"action":"rewrite","batch":5,"before":"No fuss, no questions back. {They} just told it.","text":"{They} didn’t fuss and didn’t ask me why; {they} just told me the evening."}
+{"id":"sit-0361","flags":[],"action":"keep","batch":5}
+{"id":"sit-0418","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"{They} went at it in the order it happened, which is a rarer thing than you’d think.","text":"{They} went through the evening in the order it happened, which is a rarer thing than you’d think."}
+{"id":"sit-0385","flags":["compressed"],"action":"rewrite","batch":5,"before":"{They} looked up at the ceiling for the start of it and found it there.","text":"{They} looked up at the ceiling while {they} found where the evening started, and then began."}
+{"id":"sit-0375","flags":[],"action":"keep","batch":5}
+{"id":"sit-0432","flags":["rhythm"],"action":"rewrite","batch":5,"before":"One shrug, no more. Then the evening, in short pieces.","text":"I got one shrug, and then the evening, in short pieces."}
+{"id":"sit-0390","flags":[],"action":"keep","batch":5}
+{"id":"sit-0388","flags":[],"action":"keep","batch":5}
+{"id":"sit-0343","flags":[],"action":"keep","batch":5}
+{"id":"sit-0400","flags":[],"action":"keep","batch":5}
+{"id":"sit-0344","flags":[],"action":"keep","batch":5}
+{"id":"sit-0401","flags":[],"action":"keep","batch":5}
+{"id":"sit-0345","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"{They} looked at me for as long as it took to decide I wasn’t leaving, and then said it short.","text":"{They} looked at me for as long as it took to decide I wasn’t leaving, and then kept the answer short."}
+{"id":"sit-0402","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"There was no dressing it up with {them}. {They} just said it.","text":"There was no dressing the answer up with {them}. {They} just gave it plain."}
+{"id":"sit-0357","flags":[],"action":"keep","batch":5}
+{"id":"sit-0414","flags":[],"action":"keep","batch":5}
+{"id":"sit-0362","flags":[],"action":"keep","batch":5}
+{"id":"sit-0419","flags":[],"action":"keep","batch":5}
+{"id":"sit-0365","flags":[],"action":"keep","batch":5}
+{"id":"sit-0422","flags":[],"action":"keep","batch":5}
+{"id":"sit-0352","flags":[],"action":"keep","batch":5}
+{"id":"sit-0409","flags":[],"action":"keep","batch":5}
+{"id":"sit-0346","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"{They} thought about it for exactly as long as it deserved, and then started at the top.","text":"{They} thought about the question for exactly as long as it deserved, and then started at the top."}
+{"id":"sit-0403","flags":[],"action":"keep","batch":5}
+{"id":"sit-0356","flags":[],"action":"keep","batch":5}
+{"id":"sit-0413","flags":[],"action":"keep","batch":5}
+{"id":"sit-0387","flags":[],"action":"keep","batch":5}
+{"id":"sit-0374","flags":[],"action":"keep","batch":5}
+{"id":"sit-0431","flags":["pronoun"],"action":"rewrite","batch":5,"before":"{They} sighed. That was the whole of the preamble, and the rest wasn’t much longer.","text":"{They} sighed, and the sigh was the whole of the preamble. The rest wasn’t much longer."}
+{"id":"sit-0383","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"{They} didn’t decorate it. {They} just set it down on the table between us, so to speak.","text":"{They} didn’t decorate the answer; {they} set it down on the table between us like change on a counter."}
+{"id":"sit-0339","flags":[],"action":"keep","batch":5}
+{"id":"sit-0396","flags":[],"action":"keep","batch":5}
+{"id":"sit-0384","flags":[],"action":"keep","batch":5}
+{"id":"sit-0347","flags":[],"action":"keep","batch":5}
+{"id":"sit-0404","flags":[],"action":"keep","batch":5}
+{"id":"sit-0337","flags":[],"action":"keep","batch":5}
+{"id":"sit-0394","flags":[],"action":"keep","batch":5}
+{"id":"sit-0354","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"{They} seemed glad of something to talk about at this hour, even that.","text":"{They} seemed glad of something to talk about at this hour, even a question like mine."}
+{"id":"sit-0411","flags":[],"action":"keep","batch":5}
+{"id":"sit-0338","flags":[],"action":"keep","batch":5}
+{"id":"sit-0395","flags":[],"action":"keep","batch":5}
+{"id":"sit-0368","flags":[],"action":"keep","batch":5}
+{"id":"sit-0425","flags":[],"action":"keep","batch":5}
+{"id":"sit-0389","flags":[],"action":"keep","batch":5}
+{"id":"sit-0364","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"{They} gave it a moment and then gave it to me, plain and short.","text":"{They} let a moment pass and then gave me the evening, plain and short."}
+{"id":"sit-0421","flags":[],"action":"keep","batch":5}
+{"id":"sit-0366","flags":[],"action":"keep","batch":5}
+{"id":"sit-0423","flags":[],"action":"keep","batch":5}
+{"id":"sit-0367","flags":[],"action":"keep","batch":5}
+{"id":"sit-0424","flags":[],"action":"keep","batch":5}
+{"id":"sit-0363","flags":[],"action":"keep","batch":5}
+{"id":"sit-0420","flags":[],"action":"keep","batch":5}
+{"id":"sit-0355","flags":[],"action":"keep","batch":5}
+{"id":"sit-0412","flags":[],"action":"keep","batch":5}
+{"id":"sit-0341","flags":[],"action":"keep","batch":5}
+{"id":"sit-0398","flags":[],"action":"keep","batch":5}
+{"id":"sit-0353","flags":[],"action":"keep","batch":5}
+{"id":"sit-0410","flags":[],"action":"keep","batch":5}
+{"id":"sit-0376","flags":[],"action":"keep","batch":5}
+{"id":"sit-0433","flags":[],"action":"keep","batch":5}
+{"id":"sit-0378","flags":[],"action":"keep","batch":5}
+{"id":"sit-0435","flags":[],"action":"keep","batch":5}
+{"id":"sit-0370","flags":[],"action":"keep","batch":5}
+{"id":"sit-0427","flags":[],"action":"keep","batch":5}
+{"id":"sit-0379","flags":[],"action":"keep","batch":5}
+{"id":"sit-0436","flags":[],"action":"keep","batch":5}
+{"id":"sit-0392","flags":[],"action":"keep","batch":5}
+{"id":"sit-0349","flags":[],"action":"keep","batch":5}
+{"id":"sit-0406","flags":[],"action":"keep","batch":5}
+{"id":"sit-0340","flags":[],"action":"keep","batch":5}
+{"id":"sit-0397","flags":["pronoun"],"action":"rewrite","batch":5,"before":"It came straight off, one hour after another, with no fuss in between.","text":"The hours came straight off, one after another, with no fuss in between."}
+{"id":"sit-0391","flags":[],"action":"keep","batch":5}
+{"id":"sit-0348","flags":[],"action":"keep","batch":5}
+{"id":"sit-0405","flags":[],"action":"keep","batch":5}
+{"id":"sit-0382","flags":["rhythm"],"action":"rewrite","batch":5,"before":"Short answers, and no decoration on any of them.","text":"The answers came short, with no decoration on any of them."}
+{"id":"sit-0439","flags":[],"action":"keep","batch":5}
+{"id":"sit-0393","flags":[],"action":"keep","batch":5}
+{"id":"sit-0381","flags":[],"action":"keep","batch":5}
+{"id":"sit-0438","flags":[],"action":"keep","batch":5}
+{"id":"sit-2744","flags":[],"action":"keep","batch":5}
+{"id":"sit-2750","flags":[],"action":"keep","batch":5}
+{"id":"sit-2756","flags":[],"action":"keep","batch":5}
+{"id":"sit-2741","flags":["pronoun"],"action":"rewrite","batch":5,"before":"It came slowly, like a clerk reading back an order to be sure of every item.","text":"The answer came slowly, like a clerk reading back an order to be sure of every item."}
+{"id":"sit-2747","flags":[],"action":"keep","batch":5}
+{"id":"sit-2753","flags":[],"action":"keep","batch":5}
+{"id":"sit-2759","flags":[],"action":"keep","batch":5}
+{"id":"sit-2743","flags":[],"action":"keep","batch":5}
+{"id":"sit-2749","flags":[],"action":"keep","batch":5}
+{"id":"sit-2755","flags":[],"action":"keep","batch":5}
+{"id":"sit-2761","flags":[],"action":"keep","batch":5}
+{"id":"sit-2740","flags":[],"action":"keep","batch":5}
+{"id":"sit-2746","flags":[],"action":"keep","batch":5}
+{"id":"sit-2752","flags":[],"action":"keep","batch":5}
+{"id":"sit-2758","flags":["pronoun"],"action":"rewrite","batch":5,"before":"It came in an ordinary voice, the one people keep for ordinary things.","text":"What I got was an ordinary voice, the one people keep for ordinary things."}
+{"id":"sit-2745","flags":[],"action":"keep","batch":5}
+{"id":"sit-2757","flags":["rhythm"],"action":"rewrite","batch":5,"before":"Not a breath wasted on the question, or on me.","text":"Not one breath went to waste on the question, or on me."}
+{"id":"sit-2742","flags":[],"action":"keep","batch":5}
+{"id":"sit-2748","flags":[],"action":"keep","batch":5}
+{"id":"sit-2754","flags":[],"action":"keep","batch":5}
+{"id":"sit-2760","flags":[],"action":"keep","batch":5}
+{"id":"sit-0754","flags":[],"action":"keep","batch":5}
+{"id":"sit-0756","flags":[],"action":"keep","batch":5}
+{"id":"sit-0747","flags":[],"action":"keep","batch":5}
+{"id":"sit-0800","flags":[],"action":"keep","batch":5}
+{"id":"sit-0729","flags":[],"action":"keep","batch":5}
+{"id":"sit-0782","flags":[],"action":"keep","batch":5}
+{"id":"sit-0722","flags":[],"action":"keep","batch":5}
+{"id":"sit-0775","flags":[],"action":"keep","batch":5}
+{"id":"sit-0719","flags":[],"action":"keep","batch":5}
+{"id":"sit-0772","flags":[],"action":"keep","batch":5}
+{"id":"sit-0755","flags":[],"action":"keep","batch":5}
+{"id":"sit-0752","flags":[],"action":"keep","batch":5}
+{"id":"sit-0763","flags":[],"action":"keep","batch":5}
+{"id":"sit-0751","flags":[],"action":"keep","batch":5}
+{"id":"sit-0765","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"{They} made me wait while {they} got it in order, and I didn’t mind. In that work, order is most of it.","text":"{They} made me wait while {they} got the night in order, and I didn’t mind. In a job like that, order is most of the work."}
+{"id":"sit-0749","flags":[],"action":"keep","batch":5}
+{"id":"sit-0802","flags":[],"action":"keep","batch":5}
+{"id":"sit-0743","flags":[],"action":"keep","batch":5}
+{"id":"sit-0796","flags":[],"action":"keep","batch":5}
+{"id":"sit-0759","flags":["compressed"],"action":"rewrite","batch":5,"before":"{They} went through it with the memory of somebody paid to know faces: the faces kept, the rest let go.","text":"{They} went through the night with the memory of somebody paid to remember faces and forget everything else."}
+{"id":"sit-0730","flags":[],"action":"keep","batch":5}
+{"id":"sit-0783","flags":[],"action":"keep","batch":5}
+{"id":"sit-0731","flags":[],"action":"keep","batch":5}
+{"id":"sit-0784","flags":[],"action":"keep","batch":5}
+{"id":"sit-0733","flags":[],"action":"keep","batch":5}
+{"id":"sit-0786","flags":[],"action":"keep","batch":5}
+{"id":"sit-0726","flags":[],"action":"keep","batch":5}
+{"id":"sit-0779","flags":[],"action":"keep","batch":5}
+{"id":"sit-0716","flags":[],"action":"keep","batch":5}
+{"id":"sit-0769","flags":["rhythm"],"action":"rewrite","batch":5,"before":"No rushing it. Every face was set down in its place, like the silver.","text":"There was no rushing the answer. Every face got set down in its proper place, like the silver."}
+{"id":"sit-0725","flags":[],"action":"keep","batch":5}
+{"id":"sit-0778","flags":[],"action":"keep","batch":5}
+{"id":"sit-0745","flags":["pronoun"],"action":"rewrite","batch":5,"before":"It came easily, the way you’d tell somebody the soup of the day.","text":"The night came out easily, the way you’d tell somebody the soup of the day."}
+{"id":"sit-0798","flags":[],"action":"keep","batch":5}
+{"id":"sit-0737","flags":[],"action":"keep","batch":5}
+{"id":"sit-0790","flags":[],"action":"keep","batch":5}
+{"id":"sit-0750","flags":[],"action":"keep","batch":5}
+{"id":"sit-0757","flags":[],"action":"keep","batch":5}
+{"id":"sit-0740","flags":[],"action":"keep","batch":5}
+{"id":"sit-0793","flags":[],"action":"keep","batch":5}
+{"id":"sit-0760","flags":[],"action":"keep","batch":5}
+{"id":"sit-0758","flags":["pronoun"],"action":"rewrite","batch":5,"before":"It came slowly, a floor at a time, from the ground up.","text":"The names came slowly, a floor at a time, from the ground up."}
+{"id":"sit-0748","flags":[],"action":"keep","batch":5}
+{"id":"sit-0801","flags":[],"action":"keep","batch":5}
+{"id":"sit-0736","flags":[],"action":"keep","batch":5}
+{"id":"sit-0789","flags":["place"],"action":"rewrite","batch":5,"before":"{They} looked up the stairwell, as if the evening were still up there, and brought it down a step at a time.","text":"{They} looked up the stairwell, as if the evening were still upstairs, and brought it down a step at a time."}
+{"id":"sit-0735","flags":[],"action":"keep","batch":5}
+{"id":"sit-0788","flags":["rhythm"],"action":"rewrite","batch":5,"before":"Straight off, like somebody reading the names off the doors.","text":"Back came the answer straight off, like somebody reading the names off the doors."}
+{"id":"sit-0723","flags":[],"action":"keep","batch":5}
+{"id":"sit-0776","flags":[],"action":"keep","batch":5}
+{"id":"sit-0715","flags":[],"action":"keep","batch":5}
+{"id":"sit-0768","flags":[],"action":"keep","batch":5}
+{"id":"sit-0739","flags":[],"action":"keep","batch":5}
+{"id":"sit-0792","flags":[],"action":"keep","batch":5}
+{"id":"sit-0720","flags":[],"action":"keep","batch":5}
+{"id":"sit-0773","flags":[],"action":"keep","batch":5}
+{"id":"sit-0718","flags":[],"action":"keep","batch":5}
+{"id":"sit-0771","flags":[],"action":"keep","batch":5}
+{"id":"sit-0728","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"Row by row, slowly, {they} went through it.","text":"Row by row, slowly, {they} went through the house."}
+{"id":"sit-0781","flags":[],"action":"keep","batch":5}
+{"id":"sit-0717","flags":[],"action":"keep","batch":5}
+{"id":"sit-0770","flags":[],"action":"keep","batch":5}
+{"id":"sit-0724","flags":[],"action":"keep","batch":5}
+{"id":"sit-0777","flags":[],"action":"keep","batch":5}
+{"id":"sit-0746","flags":[],"action":"keep","batch":5}
+{"id":"sit-0799","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"A nod, and then the whole of it, without any trouble at all.","text":"I got a nod, and then the whole night, without any trouble at all."}
+{"id":"sit-0738","flags":[],"action":"keep","batch":5}
+{"id":"sit-0791","flags":[],"action":"keep","batch":5}
+{"id":"sit-0741","flags":[],"action":"keep","batch":5}
+{"id":"sit-0794","flags":[],"action":"keep","batch":5}
+{"id":"sit-0762","flags":["pronoun"],"action":"rewrite","batch":5,"before":"It came back short, in the low voice a dark house teaches.","text":"What came back was short, in the low voice a dark theater teaches."}
+{"id":"sit-0744","flags":[],"action":"keep","batch":5}
+{"id":"sit-0797","flags":[],"action":"keep","batch":5}
+{"id":"sit-0761","flags":[],"action":"keep","batch":5}
+{"id":"sit-0753","flags":[],"action":"keep","batch":5}
+{"id":"sit-0742","flags":[],"action":"keep","batch":5}
+{"id":"sit-0795","flags":[],"action":"keep","batch":5}
+{"id":"sit-0727","flags":[],"action":"keep","batch":5}
+{"id":"sit-0780","flags":[],"action":"keep","batch":5}
+{"id":"sit-0721","flags":[],"action":"keep","batch":5}
+{"id":"sit-0774","flags":[],"action":"keep","batch":5}
+{"id":"sit-0734","flags":[],"action":"keep","batch":5}
+{"id":"sit-0787","flags":["rhythm"],"action":"rewrite","batch":5,"before":"Short and flat, the way you’d read out a bill.","text":"The reply came short and flat, the way you’d read out a bill."}
+{"id":"sit-0732","flags":[],"action":"keep","batch":5}
+{"id":"sit-0785","flags":[],"action":"keep","batch":5}
+{"id":"sit-0764","flags":[],"action":"keep","batch":5}
+{"id":"sit-0767","flags":[],"action":"keep","batch":5}
+{"id":"sit-0766","flags":[],"action":"keep","batch":5}
+{"id":"sit-2097","flags":[],"action":"keep","batch":5}
+{"id":"sit-2119","flags":[],"action":"keep","batch":5}
+{"id":"sit-2080","flags":[],"action":"keep","batch":5}
+{"id":"sit-2071","flags":[],"action":"keep","batch":5}
+{"id":"sit-2103","flags":[],"action":"keep","batch":5}
+{"id":"sit-2073","flags":["place"],"action":"rewrite","batch":5,"before":"{They} didn’t hesitate much. There was an opinion there, and {they} let me have it.","text":"{They} didn’t hesitate much. {They} had an opinion, and {they} let me have it."}
+{"id":"sit-2090","flags":[],"action":"keep","batch":5}
+{"id":"sit-2120","flags":["pronoun"],"action":"rewrite","batch":5,"before":"{They} said nothing for a moment. When it came, it came short, with the corners left on.","text":"{They} said nothing for a moment. When the answer came, it came short, with the corners left on."}
+{"id":"sit-2084","flags":[],"action":"keep","batch":5}
+{"id":"sit-2121","flags":[],"action":"keep","batch":5}
+{"id":"sit-2115","flags":[],"action":"keep","batch":5}
+{"id":"sit-2114","flags":[],"action":"keep","batch":5}
+{"id":"sit-2089","flags":[],"action":"keep","batch":5}
+{"id":"sit-2102","flags":[],"action":"keep","batch":5}
+{"id":"sit-2110","flags":[],"action":"keep","batch":5}
+{"id":"sit-2111","flags":["rhythm"],"action":"rewrite","batch":5,"before":"Not much warmth in it, and not many words.","text":"The answer came without much warmth, and without many words."}
+{"id":"sit-2124","flags":[],"action":"keep","batch":5}
+{"id":"sit-2108","flags":[],"action":"keep","batch":5}
+{"id":"sit-2109","flags":[],"action":"keep","batch":5}
+{"id":"sit-2088","flags":[],"action":"keep","batch":5}
+{"id":"sit-2107","flags":[],"action":"keep","batch":5}
+{"id":"sit-2092","flags":["rhythm"],"action":"rewrite","batch":5,"before":"Slow to start, slower to finish, and careful all the way through.","text":"The answer was slow to start, slower to finish, and careful all the way through."}
+{"id":"sit-2100","flags":[],"action":"keep","batch":5}
+{"id":"sit-2105","flags":[],"action":"keep","batch":5}
+{"id":"sit-2074","flags":[],"action":"keep","batch":5}
+{"id":"sit-2078","flags":[],"action":"keep","batch":5}
+{"id":"sit-2081","flags":[],"action":"keep","batch":5}
+{"id":"sit-2094","flags":[],"action":"keep","batch":5}
+{"id":"sit-2085","flags":[],"action":"keep","batch":5}
+{"id":"sit-2104","flags":["rhythm","ellipsis"],"action":"rewrite","batch":5,"before":"Nothing at first. Then {they} said it, short and square.","text":"For a moment {they} said nothing; then {they} answered, short and square."}
+{"id":"sit-2076","flags":[],"action":"keep","batch":5}
+{"id":"sit-2113","flags":[],"action":"keep","batch":5}
+{"id":"sit-2118","flags":[],"action":"keep","batch":5}
+{"id":"sit-2072","flags":[],"action":"keep","batch":5}
+{"id":"sit-2075","flags":[],"action":"keep","batch":5}
+{"id":"sit-2086","flags":[],"action":"keep","batch":5}
+{"id":"sit-2083","flags":["rhythm"],"action":"rewrite","batch":5,"before":"A moment’s look at me. Then the answer, short.","text":"I got a moment’s look first, and then a short answer."}
+{"id":"sit-2095","flags":[],"action":"keep","batch":5}
+{"id":"sit-2106","flags":[],"action":"keep","batch":5}
+{"id":"sit-2101","flags":[],"action":"keep","batch":5}
+{"id":"sit-2112","flags":[],"action":"keep","batch":5}
+{"id":"sit-2079","flags":[],"action":"keep","batch":5}
+{"id":"sit-2098","flags":[],"action":"keep","batch":5}
+{"id":"sit-2077","flags":[],"action":"keep","batch":5}
+{"id":"sit-2082","flags":[],"action":"keep","batch":5}
+{"id":"sit-2091","flags":[],"action":"keep","batch":5}
+{"id":"sit-2093","flags":[],"action":"keep","batch":5}
+{"id":"sit-2099","flags":[],"action":"keep","batch":5}
+{"id":"sit-2125","flags":[],"action":"keep","batch":5}
+{"id":"sit-2116","flags":[],"action":"keep","batch":5}
+{"id":"sit-2087","flags":[],"action":"keep","batch":5}
+{"id":"sit-2123","flags":[],"action":"keep","batch":5}
+{"id":"sit-2096","flags":[],"action":"keep","batch":5}
+{"id":"sit-2122","flags":["rhythm"],"action":"rewrite","batch":5,"before":"Not right away. When the answer came, it was short.","text":"The answer didn’t come right away, and when it came, it was short."}
+{"id":"sit-2117","flags":[],"action":"keep","batch":5}
+{"id":"sit-2521","flags":[],"action":"keep","batch":5}
+{"id":"sit-2502","flags":[],"action":"keep","batch":5}
+{"id":"sit-2516","flags":[],"action":"keep","batch":5}
+{"id":"sit-2519","flags":[],"action":"keep","batch":5}
+{"id":"sit-2506","flags":["compressed"],"action":"rewrite","batch":5,"before":"{They} opened {their} mouth to argue, and nothing came out of it. Then {they} gave a small shrug that had the whole night in it.","text":"{They} opened {their} mouth to argue, and nothing came out of it. Then {they} gave a small shrug, the shrug of somebody who’s run out of argument."}
+{"id":"sit-2490","flags":[],"action":"keep","batch":5}
+{"id":"sit-2501","flags":[],"action":"keep","batch":5}
+{"id":"sit-2526","flags":[],"action":"keep","batch":5}
+{"id":"sit-2522","flags":[],"action":"keep","batch":5}
+{"id":"sit-2520","flags":[],"action":"keep","batch":5}
+{"id":"sit-2525","flags":[],"action":"keep","batch":5}
+{"id":"sit-2497","flags":[],"action":"keep","batch":5}
+{"id":"sit-2530","flags":[],"action":"keep","batch":5}
+{"id":"sit-2523","flags":[],"action":"keep","batch":5}
+{"id":"sit-2511","flags":[],"action":"keep","batch":5}
+{"id":"sit-2507","flags":[],"action":"keep","batch":5}
+{"id":"sit-2515","flags":[],"action":"keep","batch":5}
+{"id":"sit-2495","flags":[],"action":"keep","batch":5}
+{"id":"sit-2504","flags":[],"action":"keep","batch":5}
+{"id":"sit-2517","flags":[],"action":"keep","batch":5}
+{"id":"sit-2498","flags":[],"action":"keep","batch":5}
+{"id":"sit-2528","flags":[],"action":"keep","batch":5}
+{"id":"sit-2527","flags":[],"action":"keep","batch":5}
+{"id":"sit-2518","flags":[],"action":"keep","batch":5}
+{"id":"sit-2512","flags":[],"action":"keep","batch":5}
+{"id":"sit-2494","flags":[],"action":"keep","batch":5}
+{"id":"sit-2505","flags":[],"action":"keep","batch":5}
+{"id":"sit-2492","flags":[],"action":"keep","batch":5}
+{"id":"sit-2488","flags":[],"action":"keep","batch":5}
+{"id":"sit-2493","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"{They} looked at me a while, and the friendliness went out of it, quietly.","text":"{They} looked at me a while, and the friendliness went quietly out of the look."}
+{"id":"sit-2489","flags":[],"action":"keep","batch":5}
+{"id":"sit-2529","flags":[],"action":"keep","batch":5}
+{"id":"sit-2503","flags":[],"action":"keep","batch":5}
+{"id":"sit-2500","flags":["compressed"],"action":"rewrite","batch":5,"before":"{They} let it all go by, carefully, and then folded something away behind {their} eyes.","text":"{They} let me say it all without interrupting, and then {their} eyes went as blank as a drawn shade."}
+{"id":"sit-2509","flags":[],"action":"keep","batch":5}
+{"id":"sit-2514","flags":["compressed"],"action":"rewrite","batch":5,"before":"{They} heard me out with perfect attention, and for a moment gave nothing back but more of it.","text":"{They} heard me out with perfect attention, and for a moment that attention was all {they} gave back."}
+{"id":"sit-2496","flags":[],"action":"keep","batch":5}
+{"id":"sit-2510","flags":[],"action":"keep","batch":5}
+{"id":"sit-2513","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"{They} opened {their} mouth, shut it again, and looked at {their} hands for a while as if the rest of it were written there.","text":"{They} opened {their} mouth, shut it again, and looked at {their} hands for a while as if the rest of the story were written there."}
+{"id":"sit-2491","flags":[],"action":"keep","batch":5}
+{"id":"sit-2508","flags":[],"action":"keep","batch":5}
+{"id":"sit-2524","flags":[],"action":"keep","batch":5}
+{"id":"sit-2487","flags":[],"action":"keep","batch":5}
+{"id":"sit-2484","flags":[],"action":"keep","batch":5}
+{"id":"sit-2485","flags":[],"action":"keep","batch":5}
+{"id":"sit-2483","flags":[],"action":"keep","batch":5}
+{"id":"sit-2499","flags":[],"action":"keep","batch":5}
+{"id":"sit-2486","flags":[],"action":"keep","batch":5}
+{"id":"sit-1563","flags":[],"action":"keep","batch":5}
+{"id":"sit-1581","flags":[],"action":"keep","batch":5}
+{"id":"sit-1599","flags":[],"action":"keep","batch":5}
+{"id":"sit-1617","flags":[],"action":"keep","batch":5}
+{"id":"sit-1555","flags":[],"action":"keep","batch":5}
+{"id":"sit-1573","flags":[],"action":"keep","batch":5}
+{"id":"sit-1591","flags":[],"action":"keep","batch":5}
+{"id":"sit-1609","flags":[],"action":"keep","batch":5}
+{"id":"sit-1557","flags":[],"action":"keep","batch":5}
+{"id":"sit-1575","flags":[],"action":"keep","batch":5}
+{"id":"sit-1593","flags":[],"action":"keep","batch":5}
+{"id":"sit-1611","flags":[],"action":"keep","batch":5}
+{"id":"sit-1556","flags":[],"action":"keep","batch":5}
+{"id":"sit-1574","flags":[],"action":"keep","batch":5}
+{"id":"sit-1592","flags":[],"action":"keep","batch":5}
+{"id":"sit-1610","flags":[],"action":"keep","batch":5}
+{"id":"sit-1552","flags":[],"action":"keep","batch":5}
+{"id":"sit-1570","flags":[],"action":"keep","batch":5}
+{"id":"sit-1588","flags":[],"action":"keep","batch":5}
+{"id":"sit-1606","flags":[],"action":"keep","batch":5}
+{"id":"sit-1554","flags":[],"action":"keep","batch":5}
+{"id":"sit-1572","flags":[],"action":"keep","batch":5}
+{"id":"sit-1590","flags":[],"action":"keep","batch":5}
+{"id":"sit-1608","flags":[],"action":"keep","batch":5}
+{"id":"sit-1565","flags":[],"action":"keep","batch":5}
+{"id":"sit-1583","flags":[],"action":"keep","batch":5}
+{"id":"sit-1601","flags":[],"action":"keep","batch":5}
+{"id":"sit-1619","flags":[],"action":"keep","batch":5}
+{"id":"sit-1558","flags":[],"action":"keep","batch":5}
+{"id":"sit-1576","flags":[],"action":"keep","batch":5}
+{"id":"sit-1594","flags":[],"action":"keep","batch":5}
+{"id":"sit-1612","flags":[],"action":"keep","batch":5}
+{"id":"sit-1564","flags":[],"action":"keep","batch":5}
+{"id":"sit-1582","flags":[],"action":"keep","batch":5}
+{"id":"sit-1600","flags":[],"action":"keep","batch":5}
+{"id":"sit-1618","flags":[],"action":"keep","batch":5}
+{"id":"sit-1562","flags":[],"action":"keep","batch":5}
+{"id":"sit-1580","flags":[],"action":"keep","batch":5}
+{"id":"sit-1598","flags":[],"action":"keep","batch":5}
+{"id":"sit-1616","flags":[],"action":"keep","batch":5}
+{"id":"sit-1568","flags":[],"action":"keep","batch":5}
+{"id":"sit-1586","flags":[],"action":"keep","batch":5}
+{"id":"sit-1604","flags":[],"action":"keep","batch":5}
+{"id":"sit-1560","flags":[],"action":"keep","batch":5}
+{"id":"sit-1578","flags":[],"action":"keep","batch":5}
+{"id":"sit-1596","flags":[],"action":"keep","batch":5}
+{"id":"sit-1614","flags":[],"action":"keep","batch":5}
+{"id":"sit-1553","flags":[],"action":"keep","batch":5}
+{"id":"sit-1571","flags":[],"action":"keep","batch":5}
+{"id":"sit-1589","flags":[],"action":"keep","batch":5}
+{"id":"sit-1607","flags":[],"action":"keep","batch":5}
+{"id":"sit-1561","flags":[],"action":"keep","batch":5}
+{"id":"sit-1579","flags":[],"action":"keep","batch":5}
+{"id":"sit-1597","flags":[],"action":"keep","batch":5}
+{"id":"sit-1615","flags":[],"action":"keep","batch":5}
+{"id":"sit-1559","flags":[],"action":"keep","batch":5}
+{"id":"sit-1577","flags":[],"action":"keep","batch":5}
+{"id":"sit-1595","flags":[],"action":"keep","batch":5}
+{"id":"sit-1613","flags":[],"action":"keep","batch":5}
+{"id":"sit-1566","flags":[],"action":"keep","batch":5}
+{"id":"sit-1584","flags":["place"],"action":"rewrite","batch":5,"before":"The doorway was as far as {they} came, and {they} kept quiet there.","text":"{They} came no further than the doorway, and kept quiet the whole time."}
+{"id":"sit-1602","flags":[],"action":"keep","batch":5}
+{"id":"sit-1620","flags":[],"action":"keep","batch":5}
+{"id":"sit-1569","flags":[],"action":"keep","batch":5}
+{"id":"sit-1587","flags":[],"action":"keep","batch":5}
+{"id":"sit-1605","flags":[],"action":"keep","batch":5}
+{"id":"sit-1567","flags":[],"action":"keep","batch":5}
+{"id":"sit-1585","flags":[],"action":"keep","batch":5}
+{"id":"sit-1603","flags":[],"action":"keep","batch":5}
+{"id":"sit-1621","flags":[],"action":"keep","batch":5}
 {"id":"sit-0848","flags":[],"action":"keep","batch":3}
 {"id":"sit-0850","flags":[],"action":"keep","batch":3}
 {"id":"sit-0888","flags":[],"action":"keep","batch":3}
