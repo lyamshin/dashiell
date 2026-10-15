@@ -417,6 +417,622 @@
 {"id":"sit-0612","flags":[],"action":"keep","batch":4}
 {"id":"sit-0618","flags":["ellipsis"],"action":"rewrite","batch":4,"before":"“Who would you put first,” I asked, “if you had to make a list?”","text":"“If you had to make a list of people who’d want this,” I asked, “who would you put first?”"}
 {"id":"sit-0624","flags":[],"action":"keep","batch":4}
+{"id":"sit-2815","flags":["place"],"action":"rewrite","batch":6,"before":"The bartender put a clean glass in front of me that I hadn’t asked for. I let it stand there.","text":"The bartender put a clean glass in front of me that I hadn’t asked for. I left the glass where it stood, empty."}
+{"id":"sit-2816","flags":[],"action":"keep","batch":6}
+{"id":"sit-2809","flags":[],"action":"keep","batch":6}
+{"id":"sit-2811","flags":[],"action":"keep","batch":6}
+{"id":"sit-2807","flags":[],"action":"keep","batch":6}
+{"id":"sit-2813","flags":[],"action":"keep","batch":6}
+{"id":"sit-2802","flags":[],"action":"keep","batch":6}
+{"id":"sit-2818","flags":[],"action":"keep","batch":6}
+{"id":"sit-2805","flags":[],"action":"keep","batch":6}
+{"id":"sit-2804","flags":[],"action":"keep","batch":6}
+{"id":"sit-2810","flags":[],"action":"keep","batch":6}
+{"id":"sit-2806","flags":[],"action":"keep","batch":6}
+{"id":"sit-2814","flags":[],"action":"keep","batch":6}
+{"id":"sit-2803","flags":[],"action":"keep","batch":6}
+{"id":"sit-2812","flags":["pronoun"],"action":"rewrite","batch":6,"before":"The door stayed shut while we talked. In a room like that, it’s the most you can ask.","text":"The door stayed shut while we talked. In a room like that, a shut door is the most you can ask for."}
+{"id":"sit-2801","flags":[],"action":"keep","batch":6}
+{"id":"sit-2817","flags":[],"action":"keep","batch":6}
+{"id":"sit-2680","flags":[],"action":"keep","batch":6}
+{"id":"sit-2685","flags":[],"action":"keep","batch":6}
+{"id":"sit-2675","flags":[],"action":"keep","batch":6}
+{"id":"sit-2692","flags":[],"action":"keep","batch":6}
+{"id":"sit-2682","flags":[],"action":"keep","batch":6}
+{"id":"sit-2687","flags":[],"action":"keep","batch":6}
+{"id":"sit-2684","flags":[],"action":"keep","batch":6}
+{"id":"sit-2688","flags":[],"action":"keep","batch":6}
+{"id":"sit-2686","flags":[],"action":"keep","batch":6}
+{"id":"sit-2674","flags":[],"action":"keep","batch":6}
+{"id":"sit-2691","flags":[],"action":"keep","batch":6}
+{"id":"sit-2676","flags":[],"action":"keep","batch":6}
+{"id":"sit-2693","flags":[],"action":"keep","batch":6}
+{"id":"sit-2681","flags":[],"action":"keep","batch":6}
+{"id":"sit-2690","flags":[],"action":"keep","batch":6}
+{"id":"sit-2683","flags":["place"],"action":"rewrite","batch":6,"before":"I wrote it down and capped the pen, and for a moment it was very quiet in there.","text":"I wrote it down and capped the pen, and for a moment the whole house was very quiet."}
+{"id":"sit-2678","flags":[],"action":"keep","batch":6}
+{"id":"sit-2695","flags":[],"action":"keep","batch":6}
+{"id":"sit-2679","flags":[],"action":"keep","batch":6}
+{"id":"sit-2689","flags":[],"action":"keep","batch":6}
+{"id":"sit-2677","flags":[],"action":"keep","batch":6}
+{"id":"sit-2694","flags":[],"action":"keep","batch":6}
+{"id":"sit-2943","flags":[],"action":"keep","batch":6}
+{"id":"sit-2941","flags":[],"action":"keep","batch":6}
+{"id":"sit-2944","flags":[],"action":"keep","batch":6}
+{"id":"sit-2946","flags":[],"action":"keep","batch":6}
+{"id":"sit-2948","flags":[],"action":"keep","batch":6}
+{"id":"sit-2950","flags":[],"action":"keep","batch":6}
+{"id":"sit-2942","flags":[],"action":"keep","batch":6}
+{"id":"sit-2945","flags":[],"action":"keep","batch":6}
+{"id":"sit-2947","flags":[],"action":"keep","batch":6}
+{"id":"sit-2949","flags":[],"action":"keep","batch":6}
+{"id":"sit-2638","flags":[],"action":"keep","batch":6}
+{"id":"sit-2643","flags":[],"action":"keep","batch":6}
+{"id":"sit-2639","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It had got late in the way bars get late, quietly, one empty stool at a time.","text":"The night had got late the way nights in a bar get late, quietly, one empty stool at a time."}
+{"id":"sit-2633","flags":[],"action":"keep","batch":6}
+{"id":"sit-2642","flags":[],"action":"keep","batch":6}
+{"id":"sit-2637","flags":[],"action":"keep","batch":6}
+{"id":"sit-2629","flags":[],"action":"keep","batch":6}
+{"id":"sit-2648","flags":[],"action":"keep","batch":6}
+{"id":"sit-2634","flags":[],"action":"keep","batch":6}
+{"id":"sit-2644","flags":[],"action":"keep","batch":6}
+{"id":"sit-2635","flags":[],"action":"keep","batch":6}
+{"id":"sit-2628","flags":[],"action":"keep","batch":6}
+{"id":"sit-2647","flags":[],"action":"keep","batch":6}
+{"id":"sit-2645","flags":[],"action":"keep","batch":6}
+{"id":"sit-2646","flags":[],"action":"keep","batch":6}
+{"id":"sit-2631","flags":[],"action":"keep","batch":6}
+{"id":"sit-2650","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was late enough now that I could feel the night in my knees.","text":"The night had worn on far enough that I could feel it in my knees."}
+{"id":"sit-2636","flags":[],"action":"keep","batch":6}
+{"id":"sit-2640","flags":[],"action":"keep","batch":6}
+{"id":"sit-2630","flags":[],"action":"keep","batch":6}
+{"id":"sit-2649","flags":[],"action":"keep","batch":6}
+{"id":"sit-2641","flags":[],"action":"keep","batch":6}
+{"id":"sit-2632","flags":[],"action":"keep","batch":6}
+{"id":"sit-2865","flags":[],"action":"keep","batch":6}
+{"id":"sit-2867","flags":[],"action":"keep","batch":6}
+{"id":"sit-2869","flags":[],"action":"keep","batch":6}
+{"id":"sit-2871","flags":[],"action":"keep","batch":6}
+{"id":"sit-2873","flags":["place"],"action":"rewrite","batch":6,"before":"The light in there was the kind that doesn’t care who it falls on.","text":"The light in the room was the kind that doesn’t care who it falls on."}
+{"id":"sit-2875","flags":["ellipsis"],"action":"rewrite","batch":6,"before":"I wrote it down and let {them} get back to it.","text":"I wrote it down and let {them} go back to the business I’d interrupted."}
+{"id":"sit-2877","flags":[],"action":"keep","batch":6}
+{"id":"sit-2864","flags":[],"action":"keep","batch":6}
+{"id":"sit-2866","flags":[],"action":"keep","batch":6}
+{"id":"sit-2868","flags":[],"action":"keep","batch":6}
+{"id":"sit-2870","flags":[],"action":"keep","batch":6}
+{"id":"sit-2872","flags":[],"action":"keep","batch":6}
+{"id":"sit-2874","flags":[],"action":"keep","batch":6}
+{"id":"sit-2876","flags":[],"action":"keep","batch":6}
+{"id":"sit-2878","flags":[],"action":"keep","batch":6}
+{"id":"sit-1196","flags":[],"action":"keep","batch":6}
+{"id":"sit-1202","flags":[],"action":"keep","batch":6}
+{"id":"sit-1208","flags":[],"action":"keep","batch":6}
+{"id":"sit-1214","flags":[],"action":"keep","batch":6}
+{"id":"sit-1220","flags":[],"action":"keep","batch":6}
+{"id":"sit-1226","flags":[],"action":"keep","batch":6}
+{"id":"sit-1232","flags":[],"action":"keep","batch":6}
+{"id":"sit-1238","flags":[],"action":"keep","batch":6}
+{"id":"sit-1244","flags":[],"action":"keep","batch":6}
+{"id":"sit-1250","flags":[],"action":"keep","batch":6}
+{"id":"sit-1256","flags":[],"action":"keep","batch":6}
+{"id":"sit-1262","flags":[],"action":"keep","batch":6}
+{"id":"sit-1194","flags":[],"action":"keep","batch":6}
+{"id":"sit-1200","flags":[],"action":"keep","batch":6}
+{"id":"sit-1206","flags":[],"action":"keep","batch":6}
+{"id":"sit-1212","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was a home, which is harder to look at than a crime. You can at least write a crime down.","text":"The place was somebody’s home, which is harder to look at than a crime. A crime, at least, you can write down."}
+{"id":"sit-1218","flags":[],"action":"keep","batch":6}
+{"id":"sit-1224","flags":[],"action":"keep","batch":6}
+{"id":"sit-1230","flags":[],"action":"keep","batch":6}
+{"id":"sit-1236","flags":["ellipsis"],"action":"rewrite","batch":6,"before":"It was late, and the flat had that look rooms get when they expected everybody to be in bed hours ago.","text":"The night had got on, and the flat had the look rooms get when they expected everybody to be in bed hours ago."}
+{"id":"sit-1242","flags":[],"action":"keep","batch":6}
+{"id":"sit-1248","flags":[],"action":"keep","batch":6}
+{"id":"sit-1254","flags":[],"action":"keep","batch":6}
+{"id":"sit-1260","flags":[],"action":"keep","batch":6}
+{"id":"sit-1266","flags":[],"action":"keep","batch":6}
+{"id":"sit-1195","flags":[],"action":"keep","batch":6}
+{"id":"sit-1201","flags":[],"action":"keep","batch":6}
+{"id":"sit-1207","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It had gone very quiet out on the street. Even the night seemed to have stopped to look.","text":"The street outside had gone very quiet. Even the night seemed to have stopped to look."}
+{"id":"sit-1213","flags":[],"action":"keep","batch":6}
+{"id":"sit-1219","flags":[],"action":"keep","batch":6}
+{"id":"sit-1225","flags":[],"action":"keep","batch":6}
+{"id":"sit-1231","flags":[],"action":"keep","batch":6}
+{"id":"sit-1237","flags":[],"action":"keep","batch":6}
+{"id":"sit-1243","flags":[],"action":"keep","batch":6}
+{"id":"sit-1249","flags":[],"action":"keep","batch":6}
+{"id":"sit-1255","flags":[],"action":"keep","batch":6}
+{"id":"sit-1261","flags":[],"action":"keep","batch":6}
+{"id":"sit-1267","flags":[],"action":"keep","batch":6}
+{"id":"sit-1197","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was a small room for so much quiet.","text":"The room was small for so much quiet."}
+{"id":"sit-1203","flags":["place","rhythm"],"action":"rewrite","batch":6,"before":"The quiet in there wasn’t the restful kind. It was the kind that waits.","text":"The quiet in the room wasn’t the restful kind. It was the quiet of a room where everybody is waiting for somebody to speak first."}
+{"id":"sit-1209","flags":[],"action":"keep","batch":6}
+{"id":"sit-1215","flags":[],"action":"keep","batch":6}
+{"id":"sit-1221","flags":[],"action":"keep","batch":6}
+{"id":"sit-1227","flags":["place"],"action":"rewrite","batch":6,"before":"My coat felt heavier in there. Coats do, in rooms like that.","text":"My coat felt heavier once I was in the room. Coats do, in rooms like that one."}
+{"id":"sit-1233","flags":[],"action":"keep","batch":6}
+{"id":"sit-1239","flags":["ellipsis"],"action":"rewrite","batch":6,"before":"I’ve never got used to that particular silence, and I hope I never do.","text":"I’ve never got used to the silence in a room where somebody has died, and I hope I never do."}
+{"id":"sit-1245","flags":[],"action":"keep","batch":6}
+{"id":"sit-1251","flags":[],"action":"keep","batch":6}
+{"id":"sit-1257","flags":["pronoun"],"action":"rewrite","batch":6,"before":"I’ve stood in a good many rooms like that one. It never turns into a habit.","text":"I’ve stood in a good many rooms like that one, and standing in them never gets to be a habit."}
+{"id":"sit-1263","flags":[],"action":"keep","batch":6}
+{"id":"sit-1199","flags":[],"action":"keep","batch":6}
+{"id":"sit-1205","flags":[],"action":"keep","batch":6}
+{"id":"sit-1211","flags":[],"action":"keep","batch":6}
+{"id":"sit-1217","flags":[],"action":"keep","batch":6}
+{"id":"sit-1223","flags":[],"action":"keep","batch":6}
+{"id":"sit-1229","flags":[],"action":"keep","batch":6}
+{"id":"sit-1235","flags":[],"action":"keep","batch":6}
+{"id":"sit-1241","flags":[],"action":"keep","batch":6}
+{"id":"sit-1247","flags":["place"],"action":"rewrite","batch":6,"before":"The light was poor in there, and I was glad of it, and a little ashamed of being glad.","text":"The light in that room was poor, and I was glad of it, and a little ashamed of being glad."}
+{"id":"sit-1253","flags":["place","translate"],"action":"rewrite","batch":6,"before":"My own heartbeat sounded loud in there. I didn’t mind; it’s no bad thing to be reminded which side of the door you’re on.","text":"My own heartbeat sounded loud in that room. I didn’t mind; it’s no bad thing to be reminded you’re still among the living."}
+{"id":"sit-1259","flags":[],"action":"keep","batch":6}
+{"id":"sit-1265","flags":[],"action":"keep","batch":6}
+{"id":"sit-1198","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was a plain room with plain things in it, and one thing in it that wasn’t plain at all.","text":"There were plain things in a plain room, and one thing in it that wasn’t plain at all."}
+{"id":"sit-1204","flags":["place"],"action":"rewrite","batch":6,"before":"I stood there long enough to be sure I was in the room, and not just looking at it.","text":"I stood just inside the door long enough to be sure I was in the room, and not just looking at it."}
+{"id":"sit-1210","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was the hour when even good rooms look tired, and this one had stopped being a good room.","text":"At this hour even good rooms look tired, and this one had stopped being a good room."}
+{"id":"sit-1216","flags":[],"action":"keep","batch":6}
+{"id":"sit-1222","flags":[],"action":"keep","batch":6}
+{"id":"sit-1228","flags":[],"action":"keep","batch":6}
+{"id":"sit-1234","flags":["place"],"action":"rewrite","batch":6,"before":"Whoever lived here had liked things a certain way, and the room was still trying to keep them like that.","text":"Whoever lived in this place had liked things a certain way, and the room was still trying to keep them like that."}
+{"id":"sit-1240","flags":[],"action":"keep","batch":6}
+{"id":"sit-1246","flags":[],"action":"keep","batch":6}
+{"id":"sit-1252","flags":["ellipsis"],"action":"rewrite","batch":6,"before":"It was very late, and the room had the look a room gets when the evening in it has ended badly and nobody can bring themselves to tidy.","text":"By then the night was well along, and the room had the look a room gets when the evening in it has ended badly and nobody can bring themselves to tidy."}
+{"id":"sit-1258","flags":[],"action":"keep","batch":6}
+{"id":"sit-1264","flags":[],"action":"keep","batch":6}
+{"id":"sit-0014","flags":[],"action":"keep","batch":6}
+{"id":"sit-0041","flags":[],"action":"keep","batch":6}
+{"id":"sit-0068","flags":[],"action":"keep","batch":6}
+{"id":"sit-0094","flags":[],"action":"keep","batch":6}
+{"id":"sit-0013","flags":[],"action":"keep","batch":6}
+{"id":"sit-0040","flags":["place","pronoun"],"action":"rewrite","batch":6,"before":"It was warm in there and smelled of beer and coats, and after the street it was the nicest thing that had happened to me in hours.","text":"The bar was warm and smelled of beer and coats, and after the street, that warmth was the nicest thing to happen to me in hours."}
+{"id":"sit-0067","flags":[],"action":"keep","batch":6}
+{"id":"sit-0093","flags":[],"action":"keep","batch":6}
+{"id":"sit-0012","flags":[],"action":"keep","batch":6}
+{"id":"sit-0039","flags":[],"action":"keep","batch":6}
+{"id":"sit-0066","flags":[],"action":"keep","batch":6}
+{"id":"sit-0092","flags":[],"action":"keep","batch":6}
+{"id":"sit-0019","flags":[],"action":"keep","batch":6}
+{"id":"sit-0046","flags":[],"action":"keep","batch":6}
+{"id":"sit-0073","flags":["rhythm"],"action":"rewrite","batch":6,"before":"Smoke and talk, and under it all the door, with the night waiting on the other side.","text":"The room was all smoke and talk, and behind it all stood the door, with the night waiting on the other side."}
+{"id":"sit-0099","flags":[],"action":"keep","batch":6}
+{"id":"sit-0020","flags":[],"action":"keep","batch":6}
+{"id":"sit-0047","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was the kind of place where the drinks get smaller as the night gets longer, and the night had got very long.","text":"The club was the kind of place where the drinks get smaller as the night gets longer, and this night had got very long."}
+{"id":"sit-0074","flags":[],"action":"keep","batch":6}
+{"id":"sit-0100","flags":[],"action":"keep","batch":6}
+{"id":"sit-0022","flags":[],"action":"keep","batch":6}
+{"id":"sit-0049","flags":[],"action":"keep","batch":6}
+{"id":"sit-0076","flags":[],"action":"keep","batch":6}
+{"id":"sit-0102","flags":[],"action":"keep","batch":6}
+{"id":"sit-0003","flags":[],"action":"keep","batch":6}
+{"id":"sit-0030","flags":[],"action":"keep","batch":6}
+{"id":"sit-0057","flags":[],"action":"keep","batch":6}
+{"id":"sit-0083","flags":[],"action":"keep","batch":6}
+{"id":"sit-0109","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was a flat like a thousand others in this city, with a whole life folded small to fit in it.","text":"The flat was like a thousand others in this city, with a whole life folded small to fit inside."}
+{"id":"sit-0010","flags":[],"action":"keep","batch":6}
+{"id":"sit-0037","flags":[],"action":"keep","batch":6}
+{"id":"sit-0064","flags":[],"action":"keep","batch":6}
+{"id":"sit-0090","flags":[],"action":"keep","batch":6}
+{"id":"sit-0116","flags":[],"action":"keep","batch":6}
+{"id":"sit-0006","flags":[],"action":"keep","batch":6}
+{"id":"sit-0033","flags":[],"action":"keep","batch":6}
+{"id":"sit-0060","flags":[],"action":"keep","batch":6}
+{"id":"sit-0086","flags":[],"action":"keep","batch":6}
+{"id":"sit-0112","flags":[],"action":"keep","batch":6}
+{"id":"sit-0016","flags":[],"action":"keep","batch":6}
+{"id":"sit-0043","flags":[],"action":"keep","batch":6}
+{"id":"sit-0070","flags":["place"],"action":"rewrite","batch":6,"before":"Nobody hurried in there. The whole room moved at the pace of people who have eaten and have nowhere better to be.","text":"Nobody in the dining room was hurrying. Everyone moved at the pace of people who have eaten and have nowhere better to be."}
+{"id":"sit-0096","flags":[],"action":"keep","batch":6}
+{"id":"sit-0004","flags":[],"action":"keep","batch":6}
+{"id":"sit-0031","flags":[],"action":"keep","batch":6}
+{"id":"sit-0058","flags":[],"action":"keep","batch":6}
+{"id":"sit-0084","flags":[],"action":"keep","batch":6}
+{"id":"sit-0110","flags":[],"action":"keep","batch":6}
+{"id":"sit-0008","flags":[],"action":"keep","batch":6}
+{"id":"sit-0035","flags":[],"action":"keep","batch":6}
+{"id":"sit-0062","flags":[],"action":"keep","batch":6}
+{"id":"sit-0088","flags":[],"action":"keep","batch":6}
+{"id":"sit-0114","flags":[],"action":"keep","batch":6}
+{"id":"sit-0001","flags":[],"action":"keep","batch":6}
+{"id":"sit-0028","flags":[],"action":"keep","batch":6}
+{"id":"sit-0055","flags":[],"action":"keep","batch":6}
+{"id":"sit-0081","flags":[],"action":"keep","batch":6}
+{"id":"sit-0107","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was the hour when a rooming house stops being a house and becomes a row of locked doors with people asleep behind them.","text":"At this hour a rooming house stops being a house and becomes a row of locked doors with people asleep behind them."}
+{"id":"sit-0018","flags":[],"action":"keep","batch":6}
+{"id":"sit-0045","flags":[],"action":"keep","batch":6}
+{"id":"sit-0072","flags":[],"action":"keep","batch":6}
+{"id":"sit-0098","flags":[],"action":"keep","batch":6}
+{"id":"sit-0025","flags":[],"action":"keep","batch":6}
+{"id":"sit-0052","flags":[],"action":"keep","batch":6}
+{"id":"sit-0079","flags":["pronoun","translate"],"action":"rewrite","batch":6,"before":"It was a smaller place than it looked from the street. Rooms are, once something has gone out of them.","text":"The flat looked smaller inside than it had from the street. Rooms shrink a little once something they held has gone missing."}
+{"id":"sit-0105","flags":[],"action":"keep","batch":6}
+{"id":"sit-0017","flags":[],"action":"keep","batch":6}
+{"id":"sit-0044","flags":[],"action":"keep","batch":6}
+{"id":"sit-0071","flags":[],"action":"keep","batch":6}
+{"id":"sit-0097","flags":[],"action":"keep","batch":6}
+{"id":"sit-0009","flags":[],"action":"keep","batch":6}
+{"id":"sit-0036","flags":["place","pronoun"],"action":"rewrite","batch":6,"before":"It was quieter in there than a room has any right to be with living people standing in it.","text":"The room was quieter than a room has any right to be with living people standing in it."}
+{"id":"sit-0063","flags":[],"action":"keep","batch":6}
+{"id":"sit-0089","flags":[],"action":"keep","batch":6}
+{"id":"sit-0115","flags":[],"action":"keep","batch":6}
+{"id":"sit-0024","flags":[],"action":"keep","batch":6}
+{"id":"sit-0051","flags":[],"action":"keep","batch":6}
+{"id":"sit-0078","flags":[],"action":"keep","batch":6}
+{"id":"sit-0104","flags":[],"action":"keep","batch":6}
+{"id":"sit-0021","flags":[],"action":"keep","batch":6}
+{"id":"sit-0048","flags":["place"],"action":"rewrite","batch":6,"before":"My own breathing was the loudest thing in there, and I kept it down, the way you lower your voice without being told.","text":"My own breathing was the loudest thing in the room, and I kept it down, the way you lower your voice without being told."}
+{"id":"sit-0075","flags":[],"action":"keep","batch":6}
+{"id":"sit-0101","flags":[],"action":"keep","batch":6}
+{"id":"sit-0011","flags":[],"action":"keep","batch":6}
+{"id":"sit-0038","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It smelled of dust and warm plush and a great many coats, the smell a theater keeps after its people go home.","text":"The place smelled of dust and warm plush and a great many coats, the smell a theater keeps after its people go home."}
+{"id":"sit-0065","flags":[],"action":"keep","batch":6}
+{"id":"sit-0091","flags":[],"action":"keep","batch":6}
+{"id":"sit-0117","flags":[],"action":"keep","batch":6}
+{"id":"sit-0007","flags":[],"action":"keep","batch":6}
+{"id":"sit-0034","flags":[],"action":"keep","batch":6}
+{"id":"sit-0061","flags":[],"action":"keep","batch":6}
+{"id":"sit-0087","flags":[],"action":"keep","batch":6}
+{"id":"sit-0113","flags":[],"action":"keep","batch":6}
+{"id":"sit-0015","flags":[],"action":"keep","batch":6}
+{"id":"sit-0042","flags":[],"action":"keep","batch":6}
+{"id":"sit-0069","flags":[],"action":"keep","batch":6}
+{"id":"sit-0095","flags":[],"action":"keep","batch":6}
+{"id":"sit-0005","flags":[],"action":"keep","batch":6}
+{"id":"sit-0032","flags":[],"action":"keep","batch":6}
+{"id":"sit-0059","flags":[],"action":"keep","batch":6}
+{"id":"sit-0085","flags":[],"action":"keep","batch":6}
+{"id":"sit-0111","flags":["place"],"action":"rewrite","batch":6,"before":"My shadow went on ahead of me and got there first, which is the only way I ever get anywhere first.","text":"My shadow went on ahead of me across the floor and reached the far wall first, which is the only way I ever get anywhere first."}
+{"id":"sit-0023","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was a place for people who want to be somewhere without being anywhere in particular, and I knew the feeling.","text":"The place was for people who want to be somewhere without being anywhere in particular, and I knew the feeling."}
+{"id":"sit-0050","flags":[],"action":"keep","batch":6}
+{"id":"sit-0077","flags":[],"action":"keep","batch":6}
+{"id":"sit-0103","flags":[],"action":"keep","batch":6}
+{"id":"sit-0002","flags":[],"action":"keep","batch":6}
+{"id":"sit-0029","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was late enough that even a place like that had run out of reasons to be busy.","text":"By then even a place like that had run out of reasons to be busy."}
+{"id":"sit-0056","flags":[],"action":"keep","batch":6}
+{"id":"sit-0082","flags":[],"action":"keep","batch":6}
+{"id":"sit-0108","flags":["place"],"action":"rewrite","batch":6,"before":"Whoever came here came for their own reasons and took them away again, and the place was none the wiser.","text":"Whoever came into a place like this came for their own reasons and took them away again, and the walls were none the wiser."}
+{"id":"sit-0027","flags":[],"action":"keep","batch":6}
+{"id":"sit-0054","flags":[],"action":"keep","batch":6}
+{"id":"sit-0026","flags":[],"action":"keep","batch":6}
+{"id":"sit-0053","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was quiet the way a place is quiet when it will be loud again in a few hours, and knows it.","text":"The place was quiet the way a workplace is quiet when it will be loud again in a few hours, and knows it."}
+{"id":"sit-0080","flags":[],"action":"keep","batch":6}
+{"id":"sit-0106","flags":[],"action":"keep","batch":6}
+{"id":"sit-2952","flags":[],"action":"keep","batch":6}
+{"id":"sit-2951","flags":[],"action":"keep","batch":6}
+{"id":"sit-2953","flags":[],"action":"keep","batch":6}
+{"id":"sit-2954","flags":[],"action":"keep","batch":6}
+{"id":"sit-2955","flags":[],"action":"keep","batch":6}
+{"id":"sit-2963","flags":[],"action":"keep","batch":6}
+{"id":"sit-2962","flags":[],"action":"keep","batch":6}
+{"id":"sit-2956","flags":[],"action":"keep","batch":6}
+{"id":"sit-2957","flags":[],"action":"keep","batch":6}
+{"id":"sit-2958","flags":[],"action":"keep","batch":6}
+{"id":"sit-2861","flags":[],"action":"keep","batch":6}
+{"id":"sit-2860","flags":[],"action":"keep","batch":6}
+{"id":"sit-2853","flags":[],"action":"keep","batch":6}
+{"id":"sit-2855","flags":[],"action":"keep","batch":6}
+{"id":"sit-2851","flags":[],"action":"keep","batch":6}
+{"id":"sit-2856","flags":[],"action":"keep","batch":6}
+{"id":"sit-2852","flags":[],"action":"keep","batch":6}
+{"id":"sit-2862","flags":[],"action":"keep","batch":6}
+{"id":"sit-2854","flags":[],"action":"keep","batch":6}
+{"id":"sit-2858","flags":[],"action":"keep","batch":6}
+{"id":"sit-2859","flags":[],"action":"keep","batch":6}
+{"id":"sit-2857","flags":[],"action":"keep","batch":6}
+{"id":"sit-2849","flags":[],"action":"keep","batch":6}
+{"id":"sit-2863","flags":[],"action":"keep","batch":6}
+{"id":"sit-2850","flags":[],"action":"keep","batch":6}
+{"id":"sit-2617","flags":[],"action":"keep","batch":6}
+{"id":"sit-2615","flags":[],"action":"keep","batch":6}
+{"id":"sit-2605","flags":[],"action":"keep","batch":6}
+{"id":"sit-2623","flags":[],"action":"keep","batch":6}
+{"id":"sit-2614","flags":[],"action":"keep","batch":6}
+{"id":"sit-2618","flags":[],"action":"keep","batch":6}
+{"id":"sit-2611","flags":[],"action":"keep","batch":6}
+{"id":"sit-2620","flags":[],"action":"keep","batch":6}
+{"id":"sit-2613","flags":[],"action":"keep","batch":6}
+{"id":"sit-2606","flags":[],"action":"keep","batch":6}
+{"id":"sit-2624","flags":[],"action":"keep","batch":6}
+{"id":"sit-2612","flags":[],"action":"keep","batch":6}
+{"id":"sit-2604","flags":[],"action":"keep","batch":6}
+{"id":"sit-2622","flags":[],"action":"keep","batch":6}
+{"id":"sit-2619","flags":[],"action":"keep","batch":6}
+{"id":"sit-2621","flags":[],"action":"keep","batch":6}
+{"id":"sit-2608","flags":[],"action":"keep","batch":6}
+{"id":"sit-2626","flags":[],"action":"keep","batch":6}
+{"id":"sit-2610","flags":[],"action":"keep","batch":6}
+{"id":"sit-2607","flags":["pronoun"],"action":"rewrite","batch":6,"before":"That was all {they} had to say about it, and {they} said so by not saying anything more.","text":"{They} had nothing more to say on the subject, and said so by saying nothing at all."}
+{"id":"sit-2625","flags":[],"action":"keep","batch":6}
+{"id":"sit-2616","flags":["place","tag"],"action":"rewrite","batch":6,"before":"I said I was sorry to have asked. I wasn’t, quite, and {they} knew it, and we left it there.","text":"I said I was sorry to have asked. I wasn’t, quite, and {they} could tell, and neither of us said any more about it."}
+{"id":"sit-2609","flags":[],"action":"keep","batch":6}
+{"id":"sit-2627","flags":[],"action":"keep","batch":6}
+{"id":"sit-2653","flags":[],"action":"keep","batch":6}
+{"id":"sit-2672","flags":[],"action":"keep","batch":6}
+{"id":"sit-2669","flags":[],"action":"keep","batch":6}
+{"id":"sit-2660","flags":[],"action":"keep","batch":6}
+{"id":"sit-2655","flags":[],"action":"keep","batch":6}
+{"id":"sit-2668","flags":[],"action":"keep","batch":6}
+{"id":"sit-2667","flags":[],"action":"keep","batch":6}
+{"id":"sit-2665","flags":[],"action":"keep","batch":6}
+{"id":"sit-2652","flags":[],"action":"keep","batch":6}
+{"id":"sit-2671","flags":[],"action":"keep","batch":6}
+{"id":"sit-2659","flags":["place"],"action":"rewrite","batch":6,"before":"I closed the notebook. {They} watched it close as if something {they}’d carried for years had gone in there with it.","text":"I closed the notebook. {They} watched it shut as if something {they}’d carried for years were shut up in it too."}
+{"id":"sit-2651","flags":[],"action":"keep","batch":6}
+{"id":"sit-2670","flags":[],"action":"keep","batch":6}
+{"id":"sit-2657","flags":[],"action":"keep","batch":6}
+{"id":"sit-2664","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It came out flat and easy, the way things do that have been said over a good many suppers.","text":"The answer came out flat and easy, the way things do that have been said over a good many suppers."}
+{"id":"sit-2662","flags":[],"action":"keep","batch":6}
+{"id":"sit-2656","flags":[],"action":"keep","batch":6}
+{"id":"sit-2658","flags":[],"action":"keep","batch":6}
+{"id":"sit-2654","flags":[],"action":"keep","batch":6}
+{"id":"sit-2673","flags":[],"action":"keep","batch":6}
+{"id":"sit-2663","flags":["ellipsis"],"action":"rewrite","batch":6,"before":"That kind of thing doesn’t go away. It just gets folded smaller and carried in a different pocket.","text":"A grudge like that doesn’t go away. It just gets folded smaller and carried in a different pocket."}
+{"id":"sit-2666","flags":["ellipsis"],"action":"rewrite","batch":6,"before":"I let it sit between us a while. Neither of us reached for it.","text":"I let the answer lie between us a while, and neither of us reached to pick it up."}
+{"id":"sit-2661","flags":[],"action":"keep","batch":6}
+{"id":"sit-0971","flags":[],"action":"keep","batch":6}
+{"id":"sit-0974","flags":[],"action":"keep","batch":6}
+{"id":"sit-0977","flags":[],"action":"keep","batch":6}
+{"id":"sit-0980","flags":[],"action":"keep","batch":6}
+{"id":"sit-0983","flags":[],"action":"keep","batch":6}
+{"id":"sit-0986","flags":[],"action":"keep","batch":6}
+{"id":"sit-0989","flags":[],"action":"keep","batch":6}
+{"id":"sit-0992","flags":[],"action":"keep","batch":6}
+{"id":"sit-0995","flags":[],"action":"keep","batch":6}
+{"id":"sit-0998","flags":[],"action":"keep","batch":6}
+{"id":"sit-1001","flags":[],"action":"keep","batch":6}
+{"id":"sit-1004","flags":[],"action":"keep","batch":6}
+{"id":"sit-1007","flags":[],"action":"keep","batch":6}
+{"id":"sit-1010","flags":[],"action":"keep","batch":6}
+{"id":"sit-1013","flags":[],"action":"keep","batch":6}
+{"id":"sit-1016","flags":[],"action":"keep","batch":6}
+{"id":"sit-1019","flags":[],"action":"keep","batch":6}
+{"id":"sit-1022","flags":[],"action":"keep","batch":6}
+{"id":"sit-1025","flags":[],"action":"keep","batch":6}
+{"id":"sit-1028","flags":[],"action":"keep","batch":6}
+{"id":"sit-1031","flags":[],"action":"keep","batch":6}
+{"id":"sit-1034","flags":[],"action":"keep","batch":6}
+{"id":"sit-1037","flags":[],"action":"keep","batch":6}
+{"id":"sit-1040","flags":["pronoun"],"action":"rewrite","batch":6,"before":"I said I’d start at once. It’s what I always say, and on a night like that it was even true.","text":"I said I’d start at once. I always say that, and on a night like this one it was even true."}
+{"id":"sit-1043","flags":[],"action":"keep","batch":6}
+{"id":"sit-0969","flags":[],"action":"keep","batch":6}
+{"id":"sit-0972","flags":[],"action":"keep","batch":6}
+{"id":"sit-0975","flags":[],"action":"keep","batch":6}
+{"id":"sit-0978","flags":[],"action":"keep","batch":6}
+{"id":"sit-0981","flags":[],"action":"keep","batch":6}
+{"id":"sit-0984","flags":[],"action":"keep","batch":6}
+{"id":"sit-0987","flags":[],"action":"keep","batch":6}
+{"id":"sit-0990","flags":[],"action":"keep","batch":6}
+{"id":"sit-0993","flags":[],"action":"keep","batch":6}
+{"id":"sit-0996","flags":[],"action":"keep","batch":6}
+{"id":"sit-0999","flags":[],"action":"keep","batch":6}
+{"id":"sit-1002","flags":[],"action":"keep","batch":6}
+{"id":"sit-1005","flags":[],"action":"keep","batch":6}
+{"id":"sit-1008","flags":[],"action":"keep","batch":6}
+{"id":"sit-1011","flags":[],"action":"keep","batch":6}
+{"id":"sit-1014","flags":[],"action":"keep","batch":6}
+{"id":"sit-1017","flags":[],"action":"keep","batch":6}
+{"id":"sit-1020","flags":[],"action":"keep","batch":6}
+{"id":"sit-1023","flags":[],"action":"keep","batch":6}
+{"id":"sit-1026","flags":[],"action":"keep","batch":6}
+{"id":"sit-1029","flags":[],"action":"keep","batch":6}
+{"id":"sit-1032","flags":[],"action":"keep","batch":6}
+{"id":"sit-1035","flags":[],"action":"keep","batch":6}
+{"id":"sit-1038","flags":[],"action":"keep","batch":6}
+{"id":"sit-1041","flags":[],"action":"keep","batch":6}
+{"id":"sit-0970","flags":[],"action":"keep","batch":6}
+{"id":"sit-0973","flags":[],"action":"keep","batch":6}
+{"id":"sit-0976","flags":[],"action":"keep","batch":6}
+{"id":"sit-0979","flags":[],"action":"keep","batch":6}
+{"id":"sit-0982","flags":[],"action":"keep","batch":6}
+{"id":"sit-0985","flags":[],"action":"keep","batch":6}
+{"id":"sit-0988","flags":[],"action":"keep","batch":6}
+{"id":"sit-0991","flags":[],"action":"keep","batch":6}
+{"id":"sit-0994","flags":[],"action":"keep","batch":6}
+{"id":"sit-0997","flags":[],"action":"keep","batch":6}
+{"id":"sit-1000","flags":[],"action":"keep","batch":6}
+{"id":"sit-1003","flags":[],"action":"keep","batch":6}
+{"id":"sit-1006","flags":[],"action":"keep","batch":6}
+{"id":"sit-1009","flags":[],"action":"keep","batch":6}
+{"id":"sit-1012","flags":[],"action":"keep","batch":6}
+{"id":"sit-1015","flags":[],"action":"keep","batch":6}
+{"id":"sit-1018","flags":[],"action":"keep","batch":6}
+{"id":"sit-1021","flags":[],"action":"keep","batch":6}
+{"id":"sit-1024","flags":[],"action":"keep","batch":6}
+{"id":"sit-1027","flags":[],"action":"keep","batch":6}
+{"id":"sit-1030","flags":[],"action":"keep","batch":6}
+{"id":"sit-1033","flags":[],"action":"keep","batch":6}
+{"id":"sit-1036","flags":[],"action":"keep","batch":6}
+{"id":"sit-1039","flags":[],"action":"keep","batch":6}
+{"id":"sit-1042","flags":[],"action":"keep","batch":6}
+{"id":"sit-2897","flags":[],"action":"keep","batch":6}
+{"id":"sit-2892","flags":[],"action":"keep","batch":6}
+{"id":"sit-2900","flags":[],"action":"keep","batch":6}
+{"id":"sit-2894","flags":[],"action":"keep","batch":6}
+{"id":"sit-2902","flags":["ellipsis"],"action":"rewrite","batch":6,"before":"I let {them} sit. There’s nothing useful to say right after, and I’ve learned not to say it.","text":"I let {them} sit. There’s nothing useful to say just after a thing like that comes out, and I’ve learned not to say it."}
+{"id":"sit-2895","flags":[],"action":"keep","batch":6}
+{"id":"sit-2903","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was out now, and there was no putting it back. {They} seemed to know that better than I did.","text":"The whole story was out now, and there was no putting it back. {They} seemed to know that better than I did."}
+{"id":"sit-2896","flags":[],"action":"keep","batch":6}
+{"id":"sit-2904","flags":[],"action":"keep","batch":6}
+{"id":"sit-2899","flags":[],"action":"keep","batch":6}
+{"id":"sit-2898","flags":[],"action":"keep","batch":6}
+{"id":"sit-2893","flags":[],"action":"keep","batch":6}
+{"id":"sit-2901","flags":[],"action":"keep","batch":6}
+{"id":"sit-2769","flags":[],"action":"keep","batch":6}
+{"id":"sit-2776","flags":[],"action":"keep","batch":6}
+{"id":"sit-2771","flags":[],"action":"keep","batch":6}
+{"id":"sit-2767","flags":[],"action":"keep","batch":6}
+{"id":"sit-2775","flags":[],"action":"keep","batch":6}
+{"id":"sit-2779","flags":[],"action":"keep","batch":6}
+{"id":"sit-2780","flags":[],"action":"keep","batch":6}
+{"id":"sit-2777","flags":[],"action":"keep","batch":6}
+{"id":"sit-2768","flags":[],"action":"keep","batch":6}
+{"id":"sit-2765","flags":[],"action":"keep","batch":6}
+{"id":"sit-2774","flags":[],"action":"keep","batch":6}
+{"id":"sit-2782","flags":[],"action":"keep","batch":6}
+{"id":"sit-2770","flags":[],"action":"keep","batch":6}
+{"id":"sit-2762","flags":["ellipsis"],"action":"rewrite","batch":6,"before":"That one had gone wide, and we both watched it go. {They} was kind enough not to say so.","text":"My question had gone wide, and we both watched it go. {They} was kind enough not to say so."}
+{"id":"sit-2763","flags":["ellipsis"],"action":"rewrite","batch":6,"before":"{They} had the right to keep it, and kept it. I had the right to wonder, and did.","text":"{They} had a right to silence, and kept it. I had the right to wonder, and did."}
+{"id":"sit-2781","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was a fair question put to the wrong person, and I let it go back in the notebook where it came from.","text":"My question was a fair one, put to the wrong person, and I let it go back in the notebook where it came from."}
+{"id":"sit-2764","flags":[],"action":"keep","batch":6}
+{"id":"sit-2766","flags":[],"action":"keep","batch":6}
+{"id":"sit-2772","flags":[],"action":"keep","batch":6}
+{"id":"sit-2778","flags":["compressed"],"action":"rewrite","batch":6,"before":"{They} had given me nothing because I’d brought nothing that fit. I wrote the mistake down as mine.","text":"{They} gave me nothing, because what I’d brought didn’t touch the evening {they} had told me. I wrote the mistake down as mine."}
+{"id":"sit-2773","flags":[],"action":"keep","batch":6}
+{"id":"sit-2129","flags":[],"action":"keep","batch":6}
+{"id":"sit-2135","flags":[],"action":"keep","batch":6}
+{"id":"sit-2141","flags":[],"action":"keep","batch":6}
+{"id":"sit-2147","flags":[],"action":"keep","batch":6}
+{"id":"sit-2153","flags":[],"action":"keep","batch":6}
+{"id":"sit-2159","flags":[],"action":"keep","batch":6}
+{"id":"sit-2165","flags":[],"action":"keep","batch":6}
+{"id":"sit-2171","flags":[],"action":"keep","batch":6}
+{"id":"sit-2177","flags":[],"action":"keep","batch":6}
+{"id":"sit-2130","flags":[],"action":"keep","batch":6}
+{"id":"sit-2136","flags":[],"action":"keep","batch":6}
+{"id":"sit-2142","flags":[],"action":"keep","batch":6}
+{"id":"sit-2148","flags":[],"action":"keep","batch":6}
+{"id":"sit-2154","flags":[],"action":"keep","batch":6}
+{"id":"sit-2160","flags":[],"action":"keep","batch":6}
+{"id":"sit-2166","flags":[],"action":"keep","batch":6}
+{"id":"sit-2172","flags":[],"action":"keep","batch":6}
+{"id":"sit-2178","flags":[],"action":"keep","batch":6}
+{"id":"sit-2131","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was a room kept in good order, and the order had one gap in it that the rest of the room seemed to be standing politely around.","text":"The room was kept in good order, and the order had one gap in it that everything else seemed to be standing politely around."}
+{"id":"sit-2137","flags":[],"action":"keep","batch":6}
+{"id":"sit-2143","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was a small flat to have lost so much from, and it felt smaller for it.","text":"The flat was small to have lost so much from, and it felt smaller for it."}
+{"id":"sit-2149","flags":[],"action":"keep","batch":6}
+{"id":"sit-2155","flags":[],"action":"keep","batch":6}
+{"id":"sit-2161","flags":[],"action":"keep","batch":6}
+{"id":"sit-2167","flags":["pronoun"],"action":"rewrite","batch":6,"before":"Somewhere in the walls a pipe knocked twice, and I looked up. That tells you how the night was going.","text":"A pipe knocked twice somewhere in the walls, and I looked up as if it might be company. The night had me jumpier than I like to admit."}
+{"id":"sit-2173","flags":[],"action":"keep","batch":6}
+{"id":"sit-2179","flags":[],"action":"keep","batch":6}
+{"id":"sit-2126","flags":[],"action":"keep","batch":6}
+{"id":"sit-2132","flags":[],"action":"keep","batch":6}
+{"id":"sit-2138","flags":[],"action":"keep","batch":6}
+{"id":"sit-2144","flags":[],"action":"keep","batch":6}
+{"id":"sit-2150","flags":[],"action":"keep","batch":6}
+{"id":"sit-2156","flags":[],"action":"keep","batch":6}
+{"id":"sit-2162","flags":[],"action":"keep","batch":6}
+{"id":"sit-2168","flags":[],"action":"keep","batch":6}
+{"id":"sit-2174","flags":[],"action":"keep","batch":6}
+{"id":"sit-2180","flags":[],"action":"keep","batch":6}
+{"id":"sit-2128","flags":[],"action":"keep","batch":6}
+{"id":"sit-2134","flags":[],"action":"keep","batch":6}
+{"id":"sit-2140","flags":[],"action":"keep","batch":6}
+{"id":"sit-2146","flags":[],"action":"keep","batch":6}
+{"id":"sit-2152","flags":[],"action":"keep","batch":6}
+{"id":"sit-2158","flags":[],"action":"keep","batch":6}
+{"id":"sit-2164","flags":["place"],"action":"rewrite","batch":6,"before":"Outside, the city went on with its night as if nothing in here had happened. Cities are like that, and mostly it’s a mercy.","text":"Outside, the city went on with its night as if nothing in this room had happened. Cities are like that, and mostly it’s a mercy."}
+{"id":"sit-2170","flags":[],"action":"keep","batch":6}
+{"id":"sit-2176","flags":["ellipsis"],"action":"rewrite","batch":6,"before":"I stood in the middle of it with my notebook, taking an inventory of somebody’s last evening, and I didn’t like the work.","text":"I stood in the middle of the room with my notebook, taking an inventory of somebody’s last evening, and I didn’t like the work."}
+{"id":"sit-2127","flags":[],"action":"keep","batch":6}
+{"id":"sit-2133","flags":[],"action":"keep","batch":6}
+{"id":"sit-2139","flags":["pronoun"],"action":"rewrite","batch":6,"before":"I didn’t hum. I usually hum when I work, and that’s the best way I know to tell you what kind of room it was.","text":"I didn’t hum. I usually hum when I work, and the not humming is the best way I know to tell you what kind of room this was."}
+{"id":"sit-2145","flags":[],"action":"keep","batch":6}
+{"id":"sit-2151","flags":[],"action":"keep","batch":6}
+{"id":"sit-2157","flags":[],"action":"keep","batch":6}
+{"id":"sit-2163","flags":[],"action":"keep","batch":6}
+{"id":"sit-2169","flags":["place"],"action":"rewrite","batch":6,"before":"There wasn’t anything left to do there but be careful, so I was careful a while longer than I needed to be.","text":"There was nothing left to do in the room but be careful, so I was careful a while longer than I needed to be."}
+{"id":"sit-2175","flags":[],"action":"keep","batch":6}
+{"id":"sit-1969","flags":[],"action":"keep","batch":6}
+{"id":"sit-1987","flags":["pronoun"],"action":"rewrite","batch":6,"before":"The stools along the bar had thinned out while I wasn’t looking. It was getting to be the hour when only the serious stay.","text":"The stools along the bar had thinned out while I wasn’t looking. By this hour only the serious drinkers stay."}
+{"id":"sit-2005","flags":[],"action":"keep","batch":6}
+{"id":"sit-1963","flags":[],"action":"keep","batch":6}
+{"id":"sit-1981","flags":[],"action":"keep","batch":6}
+{"id":"sit-1999","flags":["place"],"action":"rewrite","batch":6,"before":"The night had got smaller while I sat there, and I could feel the edges of it now.","text":"The night had got smaller while I sat at the bar, and I could feel the edges of it closing in."}
+{"id":"sit-1959","flags":[],"action":"keep","batch":6}
+{"id":"sit-1977","flags":[],"action":"keep","batch":6}
+{"id":"sit-1995","flags":[],"action":"keep","batch":6}
+{"id":"sit-2013","flags":[],"action":"keep","batch":6}
+{"id":"sit-1984","flags":[],"action":"keep","batch":6}
+{"id":"sit-2002","flags":[],"action":"keep","batch":6}
+{"id":"sit-1967","flags":["place"],"action":"rewrite","batch":6,"before":"Down here there are no windows, so the night only shows on people’s faces. It was showing on mine.","text":"The club had no windows, so the night only showed on people’s faces, and it was showing on mine."}
+{"id":"sit-1985","flags":[],"action":"keep","batch":6}
+{"id":"sit-2003","flags":[],"action":"keep","batch":6}
+{"id":"sit-1973","flags":[],"action":"keep","batch":6}
+{"id":"sit-1991","flags":[],"action":"keep","batch":6}
+{"id":"sit-2009","flags":[],"action":"keep","batch":6}
+{"id":"sit-1970","flags":[],"action":"keep","batch":6}
+{"id":"sit-1988","flags":[],"action":"keep","batch":6}
+{"id":"sit-2006","flags":[],"action":"keep","batch":6}
+{"id":"sit-1968","flags":[],"action":"keep","batch":6}
+{"id":"sit-1986","flags":[],"action":"keep","batch":6}
+{"id":"sit-2004","flags":[],"action":"keep","batch":6}
+{"id":"sit-1961","flags":[],"action":"keep","batch":6}
+{"id":"sit-1979","flags":[],"action":"keep","batch":6}
+{"id":"sit-1997","flags":[],"action":"keep","batch":6}
+{"id":"sit-1964","flags":[],"action":"keep","batch":6}
+{"id":"sit-1982","flags":[],"action":"keep","batch":6}
+{"id":"sit-2000","flags":[],"action":"keep","batch":6}
+{"id":"sit-1960","flags":[],"action":"keep","batch":6}
+{"id":"sit-1978","flags":[],"action":"keep","batch":6}
+{"id":"sit-1996","flags":[],"action":"keep","batch":6}
+{"id":"sit-1974","flags":[],"action":"keep","batch":6}
+{"id":"sit-1992","flags":[],"action":"keep","batch":6}
+{"id":"sit-2010","flags":[],"action":"keep","batch":6}
+{"id":"sit-1958","flags":[],"action":"keep","batch":6}
+{"id":"sit-1976","flags":[],"action":"keep","batch":6}
+{"id":"sit-1994","flags":[],"action":"keep","batch":6}
+{"id":"sit-2012","flags":[],"action":"keep","batch":6}
+{"id":"sit-1965","flags":[],"action":"keep","batch":6}
+{"id":"sit-1983","flags":[],"action":"keep","batch":6}
+{"id":"sit-2001","flags":[],"action":"keep","batch":6}
+{"id":"sit-1980","flags":[],"action":"keep","batch":6}
+{"id":"sit-1998","flags":[],"action":"keep","batch":6}
+{"id":"sit-1971","flags":[],"action":"keep","batch":6}
+{"id":"sit-1989","flags":[],"action":"keep","batch":6}
+{"id":"sit-2007","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It’s a strange quiet, an empty theater. Even with nobody in the seats it sounds as if it’s listening.","text":"An empty theater has a strange quiet. Even with nobody in the seats, the house sounds as if it’s listening."}
+{"id":"sit-1972","flags":[],"action":"keep","batch":6}
+{"id":"sit-1990","flags":[],"action":"keep","batch":6}
+{"id":"sit-2008","flags":["place"],"action":"rewrite","batch":6,"before":"The chairs in there didn’t match. They’d come from different places, like the people who sat in them.","text":"The chairs in the room didn’t match. They’d come from different places, like the people who sat in them."}
+{"id":"sit-1957","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was the kind of room where the door never quite shuts, and the draft is the only regular.","text":"The room was the kind where the door never quite shuts, and the draft is the only regular."}
+{"id":"sit-1975","flags":[],"action":"keep","batch":6}
+{"id":"sit-1993","flags":[],"action":"keep","batch":6}
+{"id":"sit-2011","flags":[],"action":"keep","batch":6}
+{"id":"sit-2295","flags":[],"action":"keep","batch":6}
+{"id":"sit-2312","flags":[],"action":"keep","batch":6}
+{"id":"sit-2328","flags":[],"action":"keep","batch":6}
+{"id":"sit-2287","flags":[],"action":"keep","batch":6}
+{"id":"sit-2304","flags":[],"action":"keep","batch":6}
+{"id":"sit-2320","flags":[],"action":"keep","batch":6}
+{"id":"sit-2336","flags":[],"action":"keep","batch":6}
+{"id":"sit-2292","flags":["place","pronoun"],"action":"rewrite","batch":6,"before":"It was quieter in there than it had been. The talk along the bar had gone down to the size of the hour.","text":"The bar had gone quieter than before, the talk along it down to a murmur, the way talk goes late at night."}
+{"id":"sit-2309","flags":[],"action":"keep","batch":6}
+{"id":"sit-2325","flags":[],"action":"keep","batch":6}
+{"id":"sit-2297","flags":[],"action":"keep","batch":6}
+{"id":"sit-2314","flags":[],"action":"keep","batch":6}
+{"id":"sit-2298","flags":[],"action":"keep","batch":6}
+{"id":"sit-2315","flags":[],"action":"keep","batch":6}
+{"id":"sit-2331","flags":[],"action":"keep","batch":6}
+{"id":"sit-2302","flags":[],"action":"keep","batch":6}
+{"id":"sit-2319","flags":[],"action":"keep","batch":6}
+{"id":"sit-2335","flags":[],"action":"keep","batch":6}
+{"id":"sit-2293","flags":[],"action":"keep","batch":6}
+{"id":"sit-2310","flags":[],"action":"keep","batch":6}
+{"id":"sit-2326","flags":["place"],"action":"rewrite","batch":6,"before":"The tablecloth had a burn in it the size of a nickel. I put my thumb over it and kept it there while I thought.","text":"The tablecloth had a burn in it the size of a nickel. I kept my thumb on the burn while I thought."}
+{"id":"sit-2288","flags":[],"action":"keep","batch":6}
+{"id":"sit-2305","flags":[],"action":"keep","batch":6}
+{"id":"sit-2321","flags":[],"action":"keep","batch":6}
+{"id":"sit-2337","flags":[],"action":"keep","batch":6}
+{"id":"sit-2301","flags":[],"action":"keep","batch":6}
+{"id":"sit-2318","flags":[],"action":"keep","batch":6}
+{"id":"sit-2334","flags":[],"action":"keep","batch":6}
+{"id":"sit-2303","flags":[],"action":"keep","batch":6}
+{"id":"sit-2299","flags":[],"action":"keep","batch":6}
+{"id":"sit-2316","flags":[],"action":"keep","batch":6}
+{"id":"sit-2332","flags":[],"action":"keep","batch":6}
+{"id":"sit-2300","flags":[],"action":"keep","batch":6}
+{"id":"sit-2317","flags":[],"action":"keep","batch":6}
+{"id":"sit-2333","flags":[],"action":"keep","batch":6}
+{"id":"sit-2290","flags":[],"action":"keep","batch":6}
+{"id":"sit-2307","flags":[],"action":"keep","batch":6}
+{"id":"sit-2323","flags":[],"action":"keep","batch":6}
+{"id":"sit-2294","flags":[],"action":"keep","batch":6}
+{"id":"sit-2311","flags":[],"action":"keep","batch":6}
+{"id":"sit-2327","flags":[],"action":"keep","batch":6}
+{"id":"sit-2296","flags":[],"action":"keep","batch":6}
+{"id":"sit-2313","flags":[],"action":"keep","batch":6}
+{"id":"sit-2329","flags":[],"action":"keep","batch":6}
+{"id":"sit-2291","flags":[],"action":"keep","batch":6}
+{"id":"sit-2308","flags":[],"action":"keep","batch":6}
+{"id":"sit-2324","flags":[],"action":"keep","batch":6}
 {"id":"sit-1517","flags":["compressed"],"action":"rewrite","batch":1,"before":"That much sat flush against what I already had, with no gap between them to get a fingernail into.","text":"That part of the story matched what I already had, with no gap between the two to get a fingernail into."}
 {"id":"sit-1490","flags":[],"action":"keep","batch":1}
 {"id":"sit-1526","flags":["pronoun"],"action":"rewrite","batch":1,"before":"It matched. A match is a small thing in this work, and I’ve learned to be grateful for small things.","text":"The account matched what I had. A match is a small thing in this work, and I’ve learned to be grateful for small things."}
@@ -2318,11 +2934,16 @@
 {"id":"sit-2378","flags":[],"action":"keep","batch":2}
 {"id":"sit-2381","flags":["place"],"action":"rewrite","batch":2,"before":"Whoever had lived here had kept the place a certain way. I wanted to learn that way before I went looking for what broke it.","text":"Whoever had lived in the place had kept it a certain way. I wanted to learn that way before I went looking for what broke it."}
 {"id":"sit-2384","flags":["place","pronoun"],"action":"rewrite","batch":2,"before":"The night outside went on as usual. In here it had stopped some time ago.","text":"The night outside went on as usual. In the room, time had stopped a while ago."}
+{"id":"sit-2972","flags":[],"action":"keep","batch":6}
+{"id":"sit-2973","flags":[],"action":"keep","batch":6}
+{"id":"sit-2974","flags":[],"action":"keep","batch":6}
 {"id":"sit-2975","flags":["place"],"action":"rewrite","batch":1,"before":"There was nothing more for me here, and something still waiting there.","text":"There was nothing more for me in this theater, and something still waiting at the other place."}
 {"id":"sit-2976","flags":[],"action":"keep","batch":1}
 {"id":"sit-2977","flags":[],"action":"keep","batch":1}
 {"id":"sit-2978","flags":[],"action":"keep","batch":1}
 {"id":"sit-2979","flags":["place"],"action":"rewrite","batch":1,"before":"I’d been there once already tonight in my head. It was time my feet caught up.","text":"I’d already been to that place once tonight in my head. It was time my feet caught up."}
+{"id":"sit-2980","flags":[],"action":"keep","batch":6}
+{"id":"sit-2981","flags":[],"action":"keep","batch":6}
 {"id":"sit-2982","flags":[],"action":"keep","batch":1}
 {"id":"sit-2983","flags":[],"action":"keep","batch":1}
 {"id":"sit-2984","flags":[],"action":"keep","batch":1}
