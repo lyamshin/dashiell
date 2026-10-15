@@ -566,3 +566,453 @@
 {"id":"bcn-3262","flags":[],"action":"keep","batch":1}
 {"id":"bcn-3263","flags":["pronoun"],"action":"rewrite","batch":1,"before":"That was {name}’s side of it, and {he} hadn’t dressed it up much.","text":"I had {name}’s side of it now, and {he} hadn’t dressed it up much."}
 {"id":"bcn-3264","flags":[],"action":"keep","batch":1}
+{"id":"bst-001","flags":[],"action":"keep","batch":2}
+{"id":"bst-002","flags":[],"action":"keep","batch":2}
+{"id":"bst-003","flags":[],"action":"keep","batch":2}
+{"id":"bst-004","flags":[],"action":"keep","batch":2}
+{"id":"bst-005","flags":[],"action":"keep","batch":2}
+{"id":"bst-011","flags":[],"action":"keep","batch":2}
+{"id":"bst-012","flags":[],"action":"keep","batch":2}
+{"id":"bst-013","flags":[],"action":"keep","batch":2}
+{"id":"bst-014","flags":[],"action":"keep","batch":2}
+{"id":"bst-015","flags":["place"],"action":"rewrite","batch":2,"before":"{Name} was still there, which at that hour in that room is most of what you can ask of anybody.","text":"{Name} was still in the same place, which at that hour in that room is most of what you can ask of anybody."}
+{"id":"bst-021","flags":[],"action":"keep","batch":2}
+{"id":"bst-022","flags":[],"action":"keep","batch":2}
+{"id":"bst-023","flags":[],"action":"keep","batch":2}
+{"id":"bst-024","flags":[],"action":"keep","batch":2}
+{"id":"bst-025","flags":[],"action":"keep","batch":2}
+{"id":"bst-031","flags":["translate"],"action":"rewrite","batch":2,"before":"{Name} had come out onto the landing in {his} slippers, to see what the stairs were saying about {him}.","text":"{Name} had come out onto the landing in {his} slippers, to hear what was being said about {him} on the stairs."}
+{"id":"bst-032","flags":["translate"],"action":"rewrite","batch":2,"before":"{Name} was in the kitchen doorway with a dish towel, which in that house was the same as a coat of arms.","text":"{Name} was in the kitchen doorway with a dish towel, which in that house was as good as a badge."}
+{"id":"bst-033","flags":[],"action":"keep","batch":2}
+{"id":"bst-034","flags":[],"action":"keep","batch":2}
+{"id":"bst-035","flags":[],"action":"keep","batch":2}
+{"id":"bst-041","flags":["compressed"],"action":"rewrite","batch":2,"before":"{Name} hadn’t stopped working, which is the one thing a working man can do with a question.","text":"{Name} hadn’t stopped working, which is how a working man takes a question: without putting anything down."}
+{"id":"bst-042","flags":[],"action":"keep","batch":2}
+{"id":"bst-043","flags":[],"action":"keep","batch":2}
+{"id":"bst-051","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"{Name} had kept to the back, where the light didn’t reach and nobody asked.","text":"{Name} had kept to the back, where the light didn’t reach and nobody asked questions."}
+{"id":"bst-052","flags":[],"action":"keep","batch":2}
+{"id":"bst-053","flags":[],"action":"keep","batch":2}
+{"id":"bst-061","flags":[],"action":"keep","batch":2}
+{"id":"bst-062","flags":[],"action":"keep","batch":2}
+{"id":"bst-063","flags":[],"action":"keep","batch":2}
+{"id":"bst-064","flags":[],"action":"keep","batch":2}
+{"id":"bst-065","flags":[],"action":"keep","batch":2}
+{"id":"bst-066","flags":["translate"],"action":"rewrite","batch":2,"before":"{Name} didn’t get up when I came over, and didn’t ask me to sit, so I did both for {him}.","text":"{Name} didn’t get up when I came over, and didn’t ask me to sit, so I did the asking for {him}, and sat."}
+{"id":"bst-200","flags":[],"action":"keep","batch":2}
+{"id":"bst-201","flags":[],"action":"keep","batch":2}
+{"id":"bst-202","flags":[],"action":"keep","batch":2}
+{"id":"bst-203","flags":[],"action":"keep","batch":2}
+{"id":"bst-204","flags":[],"action":"keep","batch":2}
+{"id":"bst-205","flags":[],"action":"keep","batch":2}
+{"id":"bst-206","flags":[],"action":"keep","batch":2}
+{"id":"bst-207","flags":[],"action":"keep","batch":2}
+{"id":"bst-208","flags":[],"action":"keep","batch":2}
+{"id":"bst-209","flags":[],"action":"keep","batch":2}
+{"id":"bst-210","flags":[],"action":"keep","batch":2}
+{"id":"bst-211","flags":[],"action":"keep","batch":2}
+{"id":"bst-212","flags":[],"action":"keep","batch":2}
+{"id":"bst-213","flags":[],"action":"keep","batch":2}
+{"id":"bst-214","flags":[],"action":"keep","batch":2}
+{"id":"bst-215","flags":[],"action":"keep","batch":2}
+{"id":"bst-216","flags":[],"action":"keep","batch":2}
+{"id":"bst-217","flags":[],"action":"keep","batch":2}
+{"id":"bst-218","flags":[],"action":"keep","batch":2}
+{"id":"bst-219","flags":[],"action":"keep","batch":2}
+{"id":"bst-220","flags":[],"action":"keep","batch":2}
+{"id":"bst-320","flags":["translate"],"action":"rewrite","batch":2,"before":"{He} went round the room the way people do when they’ve had all night to think about it.","text":"{He} went down the list the way people do when they’ve had all night to think about it."}
+{"id":"bst-321","flags":[],"action":"keep","batch":2}
+{"id":"bst-322","flags":["compressed"],"action":"rewrite","batch":2,"before":"{He} looked at the ceiling for the next one, and found it there.","text":"{He} looked up at the ceiling until the next name turned up."}
+{"id":"bst-323","flags":[],"action":"keep","batch":2}
+{"id":"bst-324","flags":[],"action":"keep","batch":2}
+{"id":"bst-325","flags":[],"action":"keep","batch":2}
+{"id":"bst-310","flags":[],"action":"keep","batch":2}
+{"id":"bst-340","flags":[],"action":"keep","batch":2}
+{"id":"bst-341","flags":[],"action":"keep","batch":2}
+{"id":"bst-342","flags":[],"action":"keep","batch":2}
+{"id":"bst-343","flags":[],"action":"keep","batch":2}
+{"id":"bst-344","flags":[],"action":"keep","batch":2}
+{"id":"bst-345","flags":[],"action":"keep","batch":2}
+{"id":"bst-346","flags":[],"action":"keep","batch":2}
+{"id":"bst-347","flags":[],"action":"keep","batch":2}
+{"id":"bst-348","flags":[],"action":"keep","batch":2}
+{"id":"bst-349","flags":[],"action":"keep","batch":2}
+{"id":"bwk-001","flags":[],"action":"keep","batch":2}
+{"id":"bwk-002","flags":[],"action":"keep","batch":2}
+{"id":"bwk-003","flags":[],"action":"keep","batch":2}
+{"id":"bwk-004","flags":[],"action":"keep","batch":2}
+{"id":"bwk-005","flags":[],"action":"keep","batch":2}
+{"id":"bwk-006","flags":[],"action":"keep","batch":2}
+{"id":"bwk-007","flags":[],"action":"keep","batch":2}
+{"id":"bwk-008","flags":[],"action":"keep","batch":2}
+{"id":"bwk-009","flags":[],"action":"keep","batch":2}
+{"id":"bwk-010","flags":[],"action":"keep","batch":2}
+{"id":"bwk-011","flags":[],"action":"keep","batch":2}
+{"id":"bwk-012","flags":[],"action":"keep","batch":2}
+{"id":"bwk-021","flags":[],"action":"keep","batch":2}
+{"id":"bwk-022","flags":[],"action":"keep","batch":2}
+{"id":"bwk-023","flags":[],"action":"keep","batch":2}
+{"id":"bwk-024","flags":[],"action":"keep","batch":2}
+{"id":"bwk-031","flags":[],"action":"keep","batch":2}
+{"id":"bwk-032","flags":[],"action":"keep","batch":2}
+{"id":"bwk-033","flags":[],"action":"keep","batch":2}
+{"id":"bwk-034","flags":[],"action":"keep","batch":2}
+{"id":"bwk-041","flags":[],"action":"keep","batch":2}
+{"id":"bwk-042","flags":[],"action":"keep","batch":2}
+{"id":"bof-001","flags":[],"action":"keep","batch":2}
+{"id":"bof-002","flags":[],"action":"keep","batch":2}
+{"id":"bof-003","flags":[],"action":"keep","batch":2}
+{"id":"bof-004","flags":[],"action":"keep","batch":2}
+{"id":"bof-005","flags":[],"action":"keep","batch":2}
+{"id":"bof-101","flags":["repeat"],"action":"rewrite","batch":2,"before":"Somebody came up the stairs. Nobody comes up those stairs after midnight with good news; the good news waits for morning, like a gentleman.","text":"Somebody came up the stairs. Nobody comes up those stairs this late with good news; the good news waits for morning, like a gentleman."}
+{"id":"bof-102","flags":["repeat"],"action":"rewrite","batch":2,"before":"Feet on the stairs, four flights of them, taken slowly. Nobody climbs four flights at midnight for the view.","text":"Feet on the stairs, four flights of them, taken slowly. Nobody climbs that many stairs at this hour for the view."}
+{"id":"bof-103","flags":[],"action":"keep","batch":2}
+{"id":"bof-104","flags":[],"action":"keep","batch":2}
+{"id":"bof-201","flags":[],"action":"keep","batch":2}
+{"id":"bof-202","flags":[],"action":"keep","batch":2}
+{"id":"bof-203","flags":[],"action":"keep","batch":2}
+{"id":"bof-211","flags":[],"action":"keep","batch":2}
+{"id":"bof-212","flags":[],"action":"keep","batch":2}
+{"id":"bof-221","flags":[],"action":"keep","batch":2}
+{"id":"bof-222","flags":[],"action":"keep","batch":2}
+{"id":"bof-223","flags":[],"action":"keep","batch":2}
+{"id":"bof-231","flags":[],"action":"keep","batch":2}
+{"id":"bof-232","flags":[],"action":"keep","batch":2}
+{"id":"bof-241","flags":[],"action":"keep","batch":2}
+{"id":"bof-242","flags":[],"action":"keep","batch":2}
+{"id":"bof-243","flags":[],"action":"keep","batch":2}
+{"id":"bof-244","flags":[],"action":"keep","batch":2}
+{"id":"bof-245","flags":[],"action":"keep","batch":2}
+{"id":"bof-246","flags":[],"action":"keep","batch":2}
+{"id":"bof-251","flags":[],"action":"keep","batch":2}
+{"id":"bof-252","flags":[],"action":"keep","batch":2}
+{"id":"bof-253","flags":[],"action":"keep","batch":2}
+{"id":"bof-254","flags":[],"action":"keep","batch":2}
+{"id":"bof-261","flags":[],"action":"keep","batch":2}
+{"id":"bof-262","flags":[],"action":"keep","batch":2}
+{"id":"bof-271","flags":[],"action":"keep","batch":2}
+{"id":"bof-272","flags":[],"action":"keep","batch":2}
+{"id":"bof-273","flags":[],"action":"keep","batch":2}
+{"id":"bof-274","flags":[],"action":"keep","batch":2}
+{"id":"bof-275","flags":[],"action":"keep","batch":2}
+{"id":"bof-276","flags":[],"action":"keep","batch":2}
+{"id":"bof-277","flags":[],"action":"keep","batch":2}
+{"id":"bof-278","flags":[],"action":"keep","batch":2}
+{"id":"bof-281","flags":[],"action":"keep","batch":2}
+{"id":"bof-282","flags":[],"action":"keep","batch":2}
+{"id":"bof-291","flags":[],"action":"keep","batch":2}
+{"id":"bof-292","flags":[],"action":"keep","batch":2}
+{"id":"bof-293","flags":[],"action":"keep","batch":2}
+{"id":"bof-301","flags":[],"action":"keep","batch":2}
+{"id":"bof-302","flags":[],"action":"keep","batch":2}
+{"id":"bof-401","flags":[],"action":"keep","batch":2}
+{"id":"bof-402","flags":[],"action":"keep","batch":2}
+{"id":"bof-403","flags":[],"action":"keep","batch":2}
+{"id":"bof-411","flags":[],"action":"keep","batch":2}
+{"id":"bof-412","flags":[],"action":"keep","batch":2}
+{"id":"bof-413","flags":[],"action":"keep","batch":2}
+{"id":"bof-501","flags":[],"action":"keep","batch":2}
+{"id":"bof-502","flags":[],"action":"keep","batch":2}
+{"id":"bof-503","flags":[],"action":"keep","batch":2}
+{"id":"bof-1001","flags":[],"action":"keep","batch":2}
+{"id":"bof-1002","flags":[],"action":"keep","batch":2}
+{"id":"bof-1003","flags":[],"action":"keep","batch":2}
+{"id":"bof-1004","flags":[],"action":"keep","batch":2}
+{"id":"bof-1005","flags":[],"action":"keep","batch":2}
+{"id":"bof-1006","flags":[],"action":"keep","batch":2}
+{"id":"bof-1101","flags":[],"action":"keep","batch":2}
+{"id":"bof-1102","flags":[],"action":"keep","batch":2}
+{"id":"bof-1103","flags":[],"action":"keep","batch":2}
+{"id":"bof-1104","flags":[],"action":"keep","batch":2}
+{"id":"bof-1105","flags":[],"action":"keep","batch":2}
+{"id":"bof-1106","flags":[],"action":"keep","batch":2}
+{"id":"bof-1201","flags":[],"action":"keep","batch":2}
+{"id":"bof-1202","flags":[],"action":"keep","batch":2}
+{"id":"bof-1211","flags":[],"action":"keep","batch":2}
+{"id":"bof-1212","flags":[],"action":"keep","batch":2}
+{"id":"bof-1221","flags":[],"action":"keep","batch":2}
+{"id":"bof-1222","flags":[],"action":"keep","batch":2}
+{"id":"bof-1231","flags":[],"action":"keep","batch":2}
+{"id":"bof-1232","flags":[],"action":"keep","batch":2}
+{"id":"bof-1241","flags":[],"action":"keep","batch":2}
+{"id":"bof-1242","flags":[],"action":"keep","batch":2}
+{"id":"bof-1243","flags":[],"action":"keep","batch":2}
+{"id":"bof-1244","flags":[],"action":"keep","batch":2}
+{"id":"bof-1245","flags":[],"action":"keep","batch":2}
+{"id":"bof-1246","flags":[],"action":"keep","batch":2}
+{"id":"bof-1247","flags":[],"action":"keep","batch":2}
+{"id":"bof-1248","flags":[],"action":"keep","batch":2}
+{"id":"bof-1249","flags":[],"action":"keep","batch":2}
+{"id":"bof-1250","flags":[],"action":"keep","batch":2}
+{"id":"bof-1251","flags":[],"action":"keep","batch":2}
+{"id":"bof-1252","flags":[],"action":"keep","batch":2}
+{"id":"bof-1253","flags":[],"action":"keep","batch":2}
+{"id":"bof-1254","flags":[],"action":"keep","batch":2}
+{"id":"bof-1261","flags":[],"action":"keep","batch":2}
+{"id":"bof-1262","flags":[],"action":"keep","batch":2}
+{"id":"bof-1271","flags":[],"action":"keep","batch":2}
+{"id":"bof-1272","flags":[],"action":"keep","batch":2}
+{"id":"bof-1401","flags":[],"action":"keep","batch":2}
+{"id":"bof-1402","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"“Fifty dollars,” {client} said, and put it on the desk. “Find out who did this to him, and tell me before you tell anybody else.”","text":"“Fifty dollars,” {client} said, and put it on the desk. “Find out who did this, and tell me before you tell anybody else.”"}
+{"id":"bof-1403","flags":[],"action":"keep","batch":2}
+{"id":"bof-1411","flags":[],"action":"keep","batch":2}
+{"id":"bof-1412","flags":[],"action":"keep","batch":2}
+{"id":"bof-1413","flags":[],"action":"keep","batch":2}
+{"id":"bof-1501","flags":[],"action":"keep","batch":2}
+{"id":"bof-1502","flags":[],"action":"keep","batch":2}
+{"id":"bof-1503","flags":[],"action":"keep","batch":2}
+{"id":"bof-1504","flags":[],"action":"keep","batch":2}
+{"id":"bof-1505","flags":[],"action":"keep","batch":2}
+{"id":"bof-1506","flags":[],"action":"keep","batch":2}
+{"id":"bte-001","flags":[],"action":"keep","batch":2}
+{"id":"bte-002","flags":[],"action":"keep","batch":2}
+{"id":"bte-003","flags":[],"action":"keep","batch":2}
+{"id":"bte-004","flags":[],"action":"keep","batch":2}
+{"id":"bte-005","flags":[],"action":"keep","batch":2}
+{"id":"bte-101","flags":["pronoun"],"action":"rewrite","batch":2,"before":"I wrote it down. That was {name}’s evening, in {name}’s words.","text":"I wrote down {name}’s evening, in {name}’s own words."}
+{"id":"bte-102","flags":[],"action":"keep","batch":2}
+{"id":"bte-103","flags":[],"action":"keep","batch":2}
+{"id":"bte-104","flags":[],"action":"keep","batch":2}
+{"id":"bte-201","flags":[],"action":"keep","batch":2}
+{"id":"bte-202","flags":[],"action":"keep","batch":2}
+{"id":"bte-203","flags":[],"action":"keep","batch":2}
+{"id":"bte-204","flags":[],"action":"keep","batch":2}
+{"id":"bte-301","flags":[],"action":"keep","batch":2}
+{"id":"bte-302","flags":[],"action":"keep","batch":2}
+{"id":"bte-303","flags":[],"action":"keep","batch":2}
+{"id":"bte-401","flags":[],"action":"keep","batch":2}
+{"id":"bte-402","flags":[],"action":"keep","batch":2}
+{"id":"bte-411","flags":[],"action":"keep","batch":2}
+{"id":"bte-412","flags":[],"action":"keep","batch":2}
+{"id":"bte-421","flags":[],"action":"keep","batch":2}
+{"id":"bte-422","flags":[],"action":"keep","batch":2}
+{"id":"bte-431","flags":[],"action":"keep","batch":2}
+{"id":"bte-432","flags":[],"action":"keep","batch":2}
+{"id":"bte-501","flags":[],"action":"keep","batch":2}
+{"id":"bte-502","flags":[],"action":"keep","batch":2}
+{"id":"bte-511","flags":[],"action":"keep","batch":2}
+{"id":"bte-512","flags":["pronoun"],"action":"rewrite","batch":2,"before":"That was a reason, and {name} had said it out loud. Saying it out loud doesn’t make it more of a reason, or less.","text":"Now I had {name}’s reason, said out loud. Saying it out loud doesn’t make it more of a reason, or less."}
+{"id":"bte-513","flags":[],"action":"keep","batch":2}
+{"id":"bte-1001","flags":[],"action":"keep","batch":2}
+{"id":"bte-1002","flags":[],"action":"keep","batch":2}
+{"id":"bte-1003","flags":[],"action":"keep","batch":2}
+{"id":"bte-1004","flags":[],"action":"keep","batch":2}
+{"id":"bte-1005","flags":[],"action":"keep","batch":2}
+{"id":"bte-1006","flags":[],"action":"keep","batch":2}
+{"id":"bte-1007","flags":[],"action":"keep","batch":2}
+{"id":"bte-1008","flags":[],"action":"keep","batch":2}
+{"id":"bte-1009","flags":[],"action":"keep","batch":2}
+{"id":"bte-1010","flags":[],"action":"keep","batch":2}
+{"id":"bte-1101","flags":[],"action":"keep","batch":2}
+{"id":"bte-1102","flags":[],"action":"keep","batch":2}
+{"id":"bte-1103","flags":[],"action":"keep","batch":2}
+{"id":"bte-1104","flags":[],"action":"keep","batch":2}
+{"id":"bte-1105","flags":["pronoun"],"action":"rewrite","batch":2,"before":"I wrote it down. It was {name}’s story of {his} night, and so far it was the only one I had.","text":"I wrote down {name}’s story of {his} night. So far it was the only one I had."}
+{"id":"bte-1106","flags":[],"action":"keep","batch":2}
+{"id":"bte-1107","flags":[],"action":"keep","batch":2}
+{"id":"bte-1108","flags":[],"action":"keep","batch":2}
+{"id":"bte-1109","flags":[],"action":"keep","batch":2}
+{"id":"bte-1110","flags":[],"action":"keep","batch":2}
+{"id":"bte-1201","flags":[],"action":"keep","batch":2}
+{"id":"bte-1202","flags":[],"action":"keep","batch":2}
+{"id":"bte-1203","flags":[],"action":"keep","batch":2}
+{"id":"bte-1204","flags":[],"action":"keep","batch":2}
+{"id":"bte-1205","flags":[],"action":"keep","batch":2}
+{"id":"bte-1206","flags":[],"action":"keep","batch":2}
+{"id":"bte-1207","flags":[],"action":"keep","batch":2}
+{"id":"bte-1208","flags":[],"action":"keep","batch":2}
+{"id":"bte-1301","flags":[],"action":"keep","batch":2}
+{"id":"bte-1302","flags":[],"action":"keep","batch":2}
+{"id":"bte-1303","flags":[],"action":"keep","batch":2}
+{"id":"bte-1304","flags":[],"action":"keep","batch":2}
+{"id":"bte-1305","flags":[],"action":"keep","batch":2}
+{"id":"bte-1306","flags":[],"action":"keep","batch":2}
+{"id":"bte-1307","flags":[],"action":"keep","batch":2}
+{"id":"bte-1308","flags":[],"action":"keep","batch":2}
+{"id":"bte-1401","flags":[],"action":"keep","batch":2}
+{"id":"bte-1402","flags":[],"action":"keep","batch":2}
+{"id":"bte-1403","flags":[],"action":"keep","batch":2}
+{"id":"bte-1411","flags":[],"action":"keep","batch":2}
+{"id":"bte-1412","flags":[],"action":"keep","batch":2}
+{"id":"bte-1413","flags":[],"action":"keep","batch":2}
+{"id":"bte-1421","flags":[],"action":"keep","batch":2}
+{"id":"bte-1422","flags":[],"action":"keep","batch":2}
+{"id":"bte-1423","flags":[],"action":"keep","batch":2}
+{"id":"bte-1431","flags":[],"action":"keep","batch":2}
+{"id":"bte-1432","flags":[],"action":"keep","batch":2}
+{"id":"bte-1433","flags":[],"action":"keep","batch":2}
+{"id":"bte-1501","flags":[],"action":"keep","batch":2}
+{"id":"bte-1502","flags":[],"action":"keep","batch":2}
+{"id":"bte-1503","flags":[],"action":"keep","batch":2}
+{"id":"bte-1504","flags":[],"action":"keep","batch":2}
+{"id":"bte-1505","flags":[],"action":"keep","batch":2}
+{"id":"bte-1506","flags":[],"action":"keep","batch":2}
+{"id":"bte-1601","flags":[],"action":"keep","batch":2}
+{"id":"bte-1602","flags":["pronoun"],"action":"rewrite","batch":2,"before":"So that was {name}’s reason. Most people in this city have one in a pocket somewhere.","text":"So now I knew {name}’s reason. Most people in this city have one in a pocket somewhere."}
+{"id":"bte-1603","flags":[],"action":"keep","batch":2}
+{"id":"bte-1604","flags":[],"action":"keep","batch":2}
+{"id":"bte-1605","flags":["pronoun"],"action":"rewrite","batch":2,"before":"That was a reason, plainly given. It went in the notebook like anybody else’s, and weighed what anybody else’s weighs.","text":"The reason was given plainly. It went in the notebook like anybody else’s, and weighed what anybody else’s weighs."}
+{"id":"bte-1606","flags":[],"action":"keep","batch":2}
+{"id":"bte-1701","flags":[],"action":"keep","batch":2}
+{"id":"bte-1702","flags":["place"],"action":"rewrite","batch":2,"before":"There was a page in there for everybody with a grudge, in a careful hand, and {top}’s was the one on top: {motive}.","text":"There was a page in the papers for everybody with a grudge, in a careful hand, and {top}’s was the one on top: {motive}."}
+{"id":"bte-1703","flags":[],"action":"keep","batch":2}
+{"id":"bte-1711","flags":[],"action":"keep","batch":2}
+{"id":"bte-1712","flags":["place"],"action":"rewrite","batch":2,"before":"There was a page in there for everybody with a grudge, in a careful hand. Every one of them had a reason, and every reason was written down.","text":"There was a page in the papers for everybody with a grudge, in a careful hand. Every one of them had a reason, and every reason was written down."}
+{"id":"bte-1713","flags":[],"action":"keep","batch":2}
+{"id":"bcf-001","flags":[],"action":"keep","batch":2}
+{"id":"bcf-002","flags":[],"action":"keep","batch":2}
+{"id":"bcf-003","flags":[],"action":"keep","batch":2}
+{"id":"bcf-101","flags":[],"action":"keep","batch":2}
+{"id":"bcf-102","flags":[],"action":"keep","batch":2}
+{"id":"bcf-111","flags":[],"action":"keep","batch":2}
+{"id":"bcf-112","flags":[],"action":"keep","batch":2}
+{"id":"bcf-121","flags":[],"action":"keep","batch":2}
+{"id":"bcf-122","flags":[],"action":"keep","batch":2}
+{"id":"bcf-131","flags":[],"action":"keep","batch":2}
+{"id":"bcf-141","flags":[],"action":"keep","batch":2}
+{"id":"bcf-142","flags":[],"action":"keep","batch":2}
+{"id":"bcf-201","flags":[],"action":"keep","batch":2}
+{"id":"bcf-202","flags":[],"action":"keep","batch":2}
+{"id":"bcf-211","flags":[],"action":"keep","batch":2}
+{"id":"bcf-212","flags":[],"action":"keep","batch":2}
+{"id":"bcf-221","flags":[],"action":"keep","batch":2}
+{"id":"bcf-301","flags":["compressed"],"action":"rewrite","batch":2,"before":"{name} wouldn’t say. A story that won’t stand up, and nobody willing to hold it: that’s all a refusal is. It doesn’t say why.","text":"{name} wouldn’t say. All a refusal tells you is that the story won’t stand up and nobody will hold it up. It doesn’t tell you why."}
+{"id":"bcf-302","flags":["pronoun"],"action":"rewrite","batch":2,"before":"That was a refusal, and I wrote it down as one. People refuse for all kinds of reasons, and most of them are nobody’s business but their own.","text":"A refusal is a refusal, and I wrote it down as one. People refuse for all kinds of reasons, and most of them are nobody’s business but their own."}
+{"id":"bcf-303","flags":[],"action":"keep","batch":2}
+{"id":"bcf-311","flags":["tag","pronoun"],"action":"rewrite","batch":2,"before":"That was a hole, and {name} had filled it with a name. A name I could ask.","text":"Now the hole in {name}’s story had a name in it. It was a name I could ask."}
+{"id":"bcf-312","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It was a story, and a better one. It would hold if {witness} held it up.","text":"The new story was a better one. It would hold if {witness} held it up."}
+{"id":"bcf-321","flags":["pronoun"],"action":"rewrite","batch":2,"before":"That was a second story. It would have to stand up on its own, and I knew somebody who could tell me if it did.","text":"So now there were two stories. The second would have to stand up on its own, and I knew somebody who could tell me if it did."}
+{"id":"bcf-322","flags":[],"action":"keep","batch":2}
+{"id":"bcf-331","flags":["pronoun","place"],"action":"rewrite","batch":2,"before":"There it was. It always comes out in the end, if you leave it nowhere else to go.","text":"So the truth was out. It always comes out in the end, if you leave it nowhere else to go."}
+{"id":"bcf-341","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It didn’t touch {his} story, and the time was gone all the same.","text":"My question didn’t touch {his} story, and the time was gone all the same."}
+{"id":"bcf-342","flags":["compressed"],"action":"rewrite","batch":2,"before":"I’d read {him} the wrong line. The night doesn’t give those back.","text":"I’d read {him} the wrong line. The night doesn’t give you that time back."}
+{"id":"bcf-400","flags":[],"action":"keep","batch":2}
+{"id":"bcf-401","flags":[],"action":"keep","batch":2}
+{"id":"bcf-402","flags":[],"action":"keep","batch":2}
+{"id":"bcf-403","flags":[],"action":"keep","batch":2}
+{"id":"bcf-404","flags":[],"action":"keep","batch":2}
+{"id":"bcf-405","flags":[],"action":"keep","batch":2}
+{"id":"bcf-406","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1001","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1002","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1003","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1004","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1005","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1006","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1101","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1102","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1103","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1104","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1111","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1112","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1113","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1114","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1121","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1122","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1123","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1124","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1131","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1132","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1133","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1134","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1141","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1142","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1143","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1144","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1201","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1202","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1203","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1204","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1205","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1206","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1211","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1212","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1301","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1302","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1303","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1304","flags":["pronoun","ellipsis"],"action":"rewrite","batch":2,"before":"That was as far as {name} would go. Somebody else would have to put {him} somewhere.","text":"Not another word came out of {name}. Somebody else would have to place {him} for that hour."}
+{"id":"bcf-1305","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1306","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1401","flags":["pronoun"],"action":"rewrite","batch":2,"before":"So that was where {name} had been, if {witness} would say so. I wrote down {witness}’s name and underlined it.","text":"So now I knew where {name} had been, if {witness} would say so. I wrote down {witness}’s name and underlined it."}
+{"id":"bcf-1402","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It was a better story than the first one. It would stand or fall on {witness}.","text":"The second story was better than the first. It would stand or fall on {witness}."}
+{"id":"bcf-1403","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1404","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1405","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1501","flags":["pronoun"],"action":"rewrite","batch":2,"before":"That was {name}’s second story of the night. I wrote it down under the first and left room for a third.","text":"So {name} had a second story for the night. I wrote it down under the first and left room for a third."}
+{"id":"bcf-1502","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1503","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1504","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1505","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1601","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It came out the way these things do: all at once, after a long time of not coming out at all.","text":"The truth came out the way these things do: all at once, after a long time of not coming out at all."}
+{"id":"bcf-1602","flags":["place"],"action":"rewrite","batch":2,"before":"There it was. Most people are glad to put a thing down once they’ve carried it far enough.","text":"The secret was out at last. Most people are glad to put a thing down once they’ve carried it far enough."}
+{"id":"bcf-1603","flags":["pronoun"],"action":"rewrite","batch":2,"before":"I wrote it down. It was a small crime, as crimes go, but nothing is small to the people it happens to.","text":"I wrote it down: a small crime, as crimes go, but nothing is small to the people it happens to."}
+{"id":"bcf-1604","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1701","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It hadn’t touched {his} story at all, and the time was spent all the same.","text":"Nothing I’d said had touched {his} story, and the time was spent all the same."}
+{"id":"bcf-1702","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1703","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1704","flags":[],"action":"keep","batch":2}
+{"id":"bcf-1705","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It went past {him} without touching. Time doesn’t come back for a second try.","text":"What I’d read out went past {him} without touching. Time doesn’t come back for a second try."}
+{"id":"bcf-1706","flags":[],"action":"keep","batch":2}
+{"id":"bnt-001","flags":[],"action":"keep","batch":2}
+{"id":"bnt-002","flags":[],"action":"keep","batch":2}
+{"id":"bnt-003","flags":[],"action":"keep","batch":2}
+{"id":"bnt-004","flags":[],"action":"keep","batch":2}
+{"id":"bnt-101","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I counted it on my fingers, which is where I keep my best work.","text":"I counted the hours on my fingers, which is where I keep my best work."}
+{"id":"bnt-102","flags":[],"action":"keep","batch":2}
+{"id":"bnt-103","flags":[],"action":"keep","batch":2}
+{"id":"bnt-201","flags":[],"action":"keep","batch":2}
+{"id":"bnt-202","flags":[],"action":"keep","batch":2}
+{"id":"bnt-203","flags":[],"action":"keep","batch":2}
+{"id":"bnt-301","flags":[],"action":"keep","batch":2}
+{"id":"bnt-302","flags":[],"action":"keep","batch":2}
+{"id":"bnt-311","flags":[],"action":"keep","batch":2}
+{"id":"bnt-312","flags":[],"action":"keep","batch":2}
+{"id":"bnt-321","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It was most of the answer. Most of an answer is what this city usually settles for, and it settled.","text":"I had most of the answer. Most of an answer is what this city usually settles for, and it settled."}
+{"id":"bnt-322","flags":[],"action":"keep","batch":2}
+{"id":"bnt-331","flags":[],"action":"keep","batch":2}
+{"id":"bnt-332","flags":[],"action":"keep","batch":2}
+{"id":"bnt-341","flags":["compressed"],"action":"rewrite","batch":2,"before":"Eight o’clock came and I had nothing to put on the page. Nothing files itself. It just goes cold.","text":"Eight o’clock came and I had nothing to put on the page. A case doesn’t file itself. It just goes cold."}
+{"id":"bnt-342","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1001","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1002","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1003","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1004","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1005","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1006","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1101","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1102","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1103","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1104","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1105","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1106","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1201","flags":["pronoun"],"action":"rewrite","batch":2,"before":"I went over what I had. It fitted on one page, with room left for a sandwich.","text":"I went over what I had. All of it fitted on one page, with room left for a sandwich."}
+{"id":"bnt-1202","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1203","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1204","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1205","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1206","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1301","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1302","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It was done by daylight. I took {client} through it over coffee, and {client} listened to all of it without once putting the cup down.","text":"The job was done by daylight. I took {client} through it over coffee, and {client} listened to all of it without once putting the cup down."}
+{"id":"bnt-1303","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1304","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1311","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1312","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1313","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It was a small thing, as these things go, but it wasn’t small to {client}, and it was put right.","text":"A small thing, as these things go, but not small to {client}, and it was put right."}
+{"id":"bnt-1314","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1321","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1322","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It was most of the answer, and I filed it as most of an answer. Somebody else would have to find the rest, or nobody would.","text":"I filed most of the answer and called it most of an answer. Somebody else would have to find the rest, or nobody would."}
+{"id":"bnt-1323","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1324","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1331","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1332","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1333","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1334","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1341","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1342","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1343","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1344","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1351","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1352","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1353","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It was the right name, got the wrong way. I’ll take it. I won’t frame it.","text":"The right name, got the wrong way. I’ll take it. I won’t frame it."}
+{"id":"bnt-1354","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1355","flags":[],"action":"keep","batch":2}
+{"id":"bnt-1356","flags":[],"action":"keep","batch":2}
