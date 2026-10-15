@@ -391,6 +391,8 @@ function placeNewcomers(w: Writer): void {
     const who = namesFit(w, `${nameOf(c, p)}`) ? nameOf(c, p) : `my witness${markPronoun(c, p)}`;
     fact(w, 'thought', `It turned out ${who} ${back ? 'had come back in and ' : ''}was ${at}.`, 'presence', {
       about: [p],
+      // (Who turns out to be in the room is introduced, by name: never a pronoun a paragraph could give to somebody else.)
+      keepNames: true,
       place: here,
       carries: [`here:${p}`],
       props: [{ k: 'PRESENT', person: p, place: here }],
