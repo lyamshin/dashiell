@@ -81,7 +81,8 @@ export function proseIssues(d: BoardDeal, run: BoardRun): ProseIssue[] {
       for (const pl of places) {
         const n = count(para.text, pl);
         if (n >= 3) out.push({ page: i, rule: 'place-tag', detail: `${pl} ×${n}: ${para.text.slice(0, 80)}` });
-        const sentences = para.text.split(/(?<=[.!?])\s+/);
+        // (Not at "Mrs." or "Dr.": "…with Mrs. Krantz, and at eight" is one sentence.)
+        const sentences = para.text.split(/(?<!\b(?:Mrs?|Dr)\.)(?<=[.!?])\s+/);
         sentences.forEach((s, k) => {
           if (k === 0 || !new RegExp(`\\bat ${pl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[,.]?$`).test(s.trim())) return;
           if (sentences.slice(0, k).some((x) => x.toLowerCase().includes(pl.toLowerCase())) && /\b(hung|stood|sat|was|were|lay|leaned|ticked|knocked)\b/.test(s) && !/^(It was|I |From|Getting|The walk|[A-Z]\w+ (was|lay) )/.test(s)) out.push({ page: i, rule: 'place-tag', detail: s.trim() });
