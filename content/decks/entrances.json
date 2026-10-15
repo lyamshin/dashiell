@@ -2,7 +2,7 @@
   {
     "id": "ent-011",
     "deck": "entrances",
-    "text": "A man stood in the doorway, cap on, deciding if I was worth coming in for. Narrowly.",
+    "text": "A man stood in the doorway, cap on, deciding if I was worth coming in for. I won, but not by much.",
     "tags": {
       "temper": "enigma",
       "class": "working",
@@ -18,7 +18,7 @@
   {
     "id": "ent-012",
     "deck": "entrances",
-    "text": "My visitor didn’t sit until I told her to. She needed help, she said. That was the speech.",
+    "text": "My visitor didn’t sit until I told her to. She needed help, she said. That was the whole speech.",
     "tags": {
       "temper": "enigma",
       "class": "working",
@@ -240,7 +240,7 @@
   {
     "id": "ent-046",
     "deck": "entrances",
-    "text": "My visitor came in talking about the stairs, how many and how dark, and was still counting them sitting down. I’d never dared.",
+    "text": "My visitor came in talking about the stairs, how many and how dark, and was still counting them sitting down. I’d never had the nerve to count them myself.",
     "tags": {
       "temper": "yap",
       "class": "working",
