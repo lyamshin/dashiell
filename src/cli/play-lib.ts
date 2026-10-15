@@ -253,9 +253,9 @@ function pickerText(night: Night, pk: Picker): string {
   const his = pronWord(night, pk.person, 'his');
   out.push('');
   const she = his === 'her' ? 'she' : his === 'his' ? 'he' : 'they';
-  out.push(pk.ready.length > 0 ? `What ${she} said, and what says otherwise:` : picking ? `Against “${pk.claims.find((x) => x.hour === night.save.claim)?.label}”, read ${pronWord(night, pk.person)}:` : `Which of the things ${she} said?`);
+  out.push(pk.ready.length > 0 ? `What ${she} said, and what says otherwise:` : picking ? `Against “${pk.claims.find((x) => x.hour === night.save.claim)?.label}”, read ${pronWord(night, pk.person)}:` : `Which part of ${his} evening?`);
   for (const it of items) out.push(itemLine(it.n, { command: it.command, label: it.label, minutes: 0, lead: false, done: false }, it.claim !== undefined ? 'free' : '1 call') + (it.source ? `\n          (${it.source})` : ''));
-  out.push('', itemLine(items.length + 1, { command: 'back', label: picking ? 'Back to the claims' : `Put nothing to ${pronWord(night, pk.person)}`, minutes: 0, lead: false, done: false }, 'free'));
+  out.push('', itemLine(items.length + 1, { command: 'back', label: picking ? `Back to ${his} evening` : `Put nothing to ${pronWord(night, pk.person)}`, minutes: 0, lead: false, done: false }, 'free'));
   return out.join('\n');
 }
 
@@ -307,7 +307,7 @@ function reportText(night: Night, path: string, who: string | null = null): stri
         const N = nameOf(c, who);
         out.push(...lineList(breakOptionsShown(night.d, night.run, who), { touching: `What I have about where ${N} said ${pronWord(night, who, 'his') === 'her' ? 'she' : 'he'} was at ${hoursWord(night)}:`, rest: `Anything else I have that names ${N} or is about ${hoursWord(night)}:` }));
       } else {
-        out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists the lines I hold that name them or fall at ${hoursWord(night)}. Or breaks=hunch.`, WIDTH, '   '));
+        out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists what I have that names them, or is about ${hoursWord(night)}. Or breaks=hunch.`, WIDTH, '   '));
       }
       out.push('');
     }
@@ -482,7 +482,7 @@ function titleText(save: BoardSave, type: CaseType): string {
     'DASHIELL',
     `${what}, an evening, and eight hours to write it down.`,
     '',
-    wrap(`${tierName(save.tier as 0)}. One question gets a whole evening or a whole list, and every lie runs into something true. Murders, lost pets and lost things.`),
+    wrap(`${tierName(save.tier as 0)}. Ask anybody where they were and you get the whole evening; ask a barman who came in and you get everybody. Every lie runs into something true. Murders, lost pets and lost things.`),
   ].join('\n');
 }
 
@@ -512,7 +512,7 @@ function cmdNew(io: PlayIo, values: Map<string, string>, flags: Set<string>): st
   const night = deal(save);
   store(io, path as string, save);
   const teach = flags.has('no-teach') ? [] : [teachText(save.world), '', DOUBLE, ''];
-  return [titleText(save, night.d.kase.type), '', `case ${seed} · ${tierName(tier as 0)} · the small board${save.world ? ' · the neighborhood' : ''}`, '', DOUBLE, '', ...teach, lookText(night, path as string)].join('\n');
+  return [titleText(save, night.d.kase.type), '', `case ${seed} · ${tierName(tier as 0)}${save.world ? ' · the neighborhood' : ''}`, '', DOUBLE, '', ...teach, lookText(night, path as string)].join('\n');
 }
 
 function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
@@ -588,7 +588,7 @@ function cmdPencil(io: PlayIo, raw: string | undefined, path: string): string {
   const [, who, hs, act, pl] = m as RegExpExecArray;
   const c = night.d.kase;
   const person = c.people.find((p) => fold(p.short) === fold(who as string) || fold(p.name) === fold(who as string));
-  if (!person) fail(`Nobody on the board called ${who}.`);
+  if (!person) fail(`Nobody in this case called ${who}.`);
   const h = /^\d+$/.test(hs as string) ? Number(hs) : (HOURS[(hs as string).toLowerCase()] as number);
   if (!c.board.hours.includes(h)) fail(`The hours are ${c.board.hours.map((x) => hourWord(x)).join(', ')}.`);
   let place: string | undefined;

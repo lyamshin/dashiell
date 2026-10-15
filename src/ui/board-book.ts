@@ -386,7 +386,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       class: `choice${ch.lead ? ' choice--lead' : ''}${ch.done ? ' choice--done' : ''}${extra}`,
       type: 'button',
       'data-command': ch.command,
-      'aria-label': [ch.label, ch.lead && ch.why ? `worth taking now: ${ch.why}` : '', ch.done ? 'already done' : '', ch.command.startsWith('picker') ? 'free to look' : costLabel(ch), ch.note ?? ''].filter(Boolean).join(', '),
+      'aria-label': [ch.label, ch.lead && ch.why ? `starred: ${ch.why}` : '', ch.done ? 'already done' : '', ch.command.startsWith('picker') ? 'free to look' : costLabel(ch), ch.note ?? ''].filter(Boolean).join(', '),
     });
     if (ch.lead) b.append(el('span', { class: 'mark', 'aria-hidden': 'true', text: '*' }));
     const label = el('span', { class: 'label', text: ch.label });
@@ -416,7 +416,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           type: 'button',
           'data-person': id,
           'aria-expanded': on ? 'true' : 'false',
-          'aria-label': [nameOf((d as BoardDeal).kase, id), star?.why ? `worth taking now: ${star.why}` : '', on ? 'topics open' : `${g.choices.length} topics`, 'free'].filter(Boolean).join(', '),
+          'aria-label': [nameOf((d as BoardDeal).kase, id), star?.why ? `starred: ${star.why}` : '', on ? 'topics open' : `${g.choices.length} topics`, 'free'].filter(Boolean).join(', '),
         });
         if (star) b.append(el('span', { class: 'mark', 'aria-hidden': 'true', text: '*' }));
         b.append(el('span', { class: 'label', text: nameOf((d as BoardDeal).kase, id) }));
@@ -509,7 +509,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const claim = pickerClaim === null ? null : pk.claims.find((x) => x.hour === pickerClaim);
     if (!claim) {
       const sec = el('section', { class: 'picker-sec' });
-      sec.append(el('h4', { class: 'picker-head', text: `Which of ${nameOf(c, pk.person)}’s claims?` }));
+      sec.append(el('h4', { class: 'picker-head', text: `Which part of ${nameOf(c, pk.person)}’s evening?` }));
       for (const x of pk.claims) {
         const b = el('button', { class: 'choice choice--fact', type: 'button', 'data-claim': String(x.hour) });
         b.append(el('span', { class: 'label', text: `${nameOf(c, pk.person)} says ${x.label}` }), el('span', { class: 'mins', text: 'free' }));
@@ -530,7 +530,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       b.addEventListener('click', () => command(l.command));
       sec.append(b);
     }
-    const back = el('button', { class: 'choice choice--more', type: 'button', text: 'Back to the claims' });
+    const back = el('button', { class: 'choice choice--more', type: 'button', text: `Back to ${nameOf(c, pk.person)}’s evening` });
     back.addEventListener('click', () => {
       pickerClaim = null;
       renderInPlace();
@@ -598,7 +598,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         const touching = opts.filter((o) => o.touches).length;
         [...opts, { value: '', label: HUNCH }].forEach((o, i) => {
           if (key === 'breaks' && touching > 0 && i === 0) list.append(el('p', { class: 'line-group', text: group() }));
-          if (key === 'breaks' && touching > 0 && i === touching && i < opts.length) list.append(el('p', { class: 'line-group', text: 'Other lines I hold:' }));
+          if (key === 'breaks' && touching > 0 && i === touching && i < opts.length) list.append(el('p', { class: 'line-group', text: 'Everything else I have:' }));
           const id = `rf-${key}-${i}`;
           const input = el('input', { type: 'radio', name: key, value: o.value, id });
           if (o.value === '') input.checked = true;
@@ -622,12 +622,12 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           'breaks',
           BREAKS_LABEL,
           () => breakOptionsShown(dd, r, who()),
-          () => (who() ? `The lines I hold that name ${nameOf(dd.kase, who() as string)} or fall at ${hours}.` : `Name them first. Until then, the lines I hold at ${hours}.`),
-          () => (who() ? `Lines that touch ${nameOf(dd.kase, who() as string)}’s own story at ${hours}:` : ''),
+          () => (who() ? `What I have that names ${nameOf(dd.kase, who() as string)}, or is about ${hours}.` : `Name them first. Until then, what I have about ${hours}.`),
+          () => (who() ? `What I have about ${nameOf(dd.kase, who() as string)}’s own evening at ${hours}:` : ''),
         );
         s.addEventListener('change', refill);
       }
-      if (f.key === 'where') lineField('whereBy', WHERE_BY_LABEL, () => whereByOptions(dd, r), () => 'The remarks and finds I hold, and anything put to them.');
+      if (f.key === 'where') lineField('whereBy', WHERE_BY_LABEL, () => whereByOptions(dd, r), () => 'What people let drop, what I found, and what they said when I put it to them.');
     }
     form.append(el('div', { class: 'after' }, el('button', { class: 'open-case', type: 'submit', text: 'File it' })));
     form.addEventListener('submit', (e) => {
@@ -645,7 +645,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   function rightPage(): HTMLElement {
     const page = el('aside', { class: 'page page--notebook', 'aria-label': 'Notebook' });
     const c = (d as BoardDeal).kase;
-    page.append(el('header', { class: 'runhead' }, el('span', { text: 'Notebook' }), el('span', { text: `case ${c.seed} · ${tierName(c.tier)} · the small board` })));
+    page.append(el('header', { class: 'runhead' }, el('span', { text: 'Notebook' }), el('span', { text: `case ${c.seed} · ${tierName(c.tier)}` })));
     const body = el('div', { class: 'body', tabindex: '-1' });
     body.append(el('h2', { text: 'Where they were' }), gridNode(boardGrid(c, run as BoardRun)));
     const r = run as BoardRun;
@@ -662,7 +662,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       body.append(el('h2', { text: 'What I have' }));
       const bySource = new Map<string, string[]>();
       for (const l of lines) {
-        const src = l.q.startsWith('list:') ? `What ${nameOf(c, l.q.slice(5))} saw` : l.q.startsWith('account:') ? `What ${nameOf(c, l.q.slice(8))} said` : l.q.startsWith('search:') ? 'Searched' : 'When I faced them';
+        const src = l.q.startsWith('list:') ? `Who ${nameOf(c, l.q.slice(5))} saw` : l.q.startsWith('account:') ? `${nameOf(c, l.q.slice(8))}’s evening` : l.q.startsWith('search:') ? 'What I found' : 'When I faced them with it';
         bySource.set(src, [...(bySource.get(src) ?? []), l.text]);
       }
       for (const [src, ls] of bySource) {
@@ -715,7 +715,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       const maybe = g.crimeHour === null && g.window.includes(h);
       head.append(el('th', { scope: 'col', class: `bgrid-hour${crime ? ' bgrid-hour--crime' : ''}${maybe ? ' bgrid-hour--maybe' : ''}`, title: crime ? 'when it happened' : maybe ? 'it may have happened then' : '', text: `${h}` }));
     }
-    head.append(el('th', { scope: 'col', class: 'bgrid-means', title: g.meansLabel, text: 'means' }));
+    head.append(el('th', { scope: 'col', class: 'bgrid-means', title: meansWords(g.meansLabel), text: meansHead(g.meansLabel) }));
     table.append(el('thead', {}, head));
     const tbody = el('tbody');
     for (const r of g.rows) {
@@ -765,22 +765,40 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const key = el('p', { class: 'bgrid-key' });
     key.append(
       el('span', { class: 'k is-says', text: 'Odessa' }), ' they say so · ',
-      el('span', { class: 'k is-seen', text: 'Odessa' }), ' somebody saw them there · ',
-      el('span', { class: 'k is-confirmed', text: 'Odessa✓' }), ' both · ',
-      el('span', { class: 'k is-collision', text: 'Odessa✗' }), ' doesn’t agree · ',
-      el('span', { class: 'k is-pencil', text: '~Odessa' }), ' your pencil. Tap a cell for the lines behind it.',
+      el('span', { class: 'k is-seen', text: 'Odessa' }), ' somebody else saw them there · ',
+      el('span', { class: 'k is-confirmed', text: 'Odessa✓' }), ' both say so · ',
+      el('span', { class: 'k is-collision', text: 'Odessa✗' }), ' the two don’t agree · ',
+      el('span', { class: 'k is-pencil', text: '~Odessa' }), ' your own guess in pencil. Tap a cell for what was said.',
     );
     wrap.append(key);
-    wrap.append(el('p', { class: 'bgrid-key', text: `${g.crimeHour !== null ? `The marked hour is when it happened.` : g.window.length > 1 ? `It happened at ${g.window.join(' or ')}.` : ''} Means: ${g.meansLabel}. ${Object.entries(g.codes).filter(([id]) => knownPlaces(c, run as BoardRun).has(id) || id === c.crime.scene).map(([id, code]) => `${code}: ${placeName(c, id)}`).join('; ')}.` }));
+    wrap.append(el('p', { class: 'bgrid-key', text: `${g.crimeHour !== null ? `The marked hour is when it happened.` : g.window.length > 1 ? `It happened at ${g.window.join(' or ')}.` : ''} The last column: ${meansWords(g.meansLabel)}? ${Object.entries(g.codes).filter(([id]) => knownPlaces(c, run as BoardRun).has(id) || id === c.crime.scene).map(([id, code]) => `${code}: ${placeName(c, id)}`).join('; ')}.` }));
     return wrap;
+  }
+
+  /** docs/56: the grid's last column in words a player has, not the builders' "means". */
+  function meansWords(label: string): string {
+    return label.replace(/\bknew the way in\b/, 'knew how to get in');
+  }
+
+  function meansHead(label: string): string {
+    return /^could\b/.test(label) ? 'could get it?' : 'knew how?';
+  }
+
+  /** "Corrigan’s list" (the grid's source name) said as what happened: "Corrigan saw them at the Velvet Room". */
+  function seenWords(by: string, place: string): string {
+    const list = /^(.+)’s list$/.exec(by);
+    if (list) return `${list[1]} saw them at ${place}`;
+    const said = /^(.+)’s (?:story|word)$/.exec(by);
+    if (said) return `${said[1]} says they were at ${place}`;
+    return `${by} says they were at ${place}`;
   }
 
   function cellWords(cell: BoardCell): string {
     const c = (d as BoardDeal).kase;
     const bits: string[] = [];
     if (cell.says) bits.push(`says ${placeName(c, cell.says)}`);
-    if (cell.seen) bits.push(`${cell.seen.by} saw them at ${placeName(c, cell.seen.place)}`);
-    if (cell.collision) bits.push('that doesn’t agree');
+    if (cell.seen) bits.push(seenWords(cell.seen.by, placeName(c, cell.seen.place)));
+    if (cell.collision) bits.push('the two don’t agree');
     if (cell.pencil?.at) bits.push(`pencilled at ${placeName(c, cell.pencil.at)}`);
     return bits.join('; ') || 'nothing yet';
   }
@@ -791,10 +809,10 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const wrap = el('div', { class: 'title-page' });
     const form = el('form');
     const name = el('input', { type: 'text', value: storedName(), 'aria-label': 'The detective’s name', autocomplete: 'off' });
-    const seed = el('input', { type: 'number', value: String(1 + Math.floor(Math.random() * 9999)), min: '1', 'aria-label': 'Seed' });
+    const seed = el('input', { type: 'number', value: String(1 + Math.floor(Math.random() * 9999)), min: '1', 'aria-label': 'Case number' });
     const tier = el('select', { 'aria-label': 'Tier', name: 'tier' });
     for (let t = 0; t <= 5; t++) tier.append(el('option', { value: String(t) }, tierName(t as TierIndex)));
-    const type = el('select', { 'aria-label': 'Case', name: 'type' });
+    const type = el('select', { 'aria-label': 'Kind of case', name: 'type' });
     const paintTypes = (): void => {
       const was = type.value;
       clear(type);
@@ -807,17 +825,17 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     form.append(
       el('h1', { text: 'DASHIELL' }),
       el('p', { class: 'sub', text: 'A murder, an evening, and eight hours to write it down.' }),
-      el('p', { class: 'tier-rule', text: 'One question gets a whole evening or a whole list, and every lie runs into something true. Murders, lost pets and lost things.' }),
+      el('p', { class: 'tier-rule', text: 'Ask anybody where they were and you get the whole evening; ask a barman who came in and you get everybody. Every lie runs into something true. Murders, lost pets and lost things.' }),
       el('div', { class: 'name-line' }, el('label', { text: 'The detective' }), name),
     );
     const prior = loadSaved(store);
     if (prior && !prior.filed) {
       const back = el('button', { class: 'plain-button', type: 'button', text: 'Go back to it' });
       back.addEventListener('click', () => openCase(prior.seed, prior.tier, prior.type, prior.detective, true, prior.world));
-      form.append(el('div', { class: 'resume' }, el('p', { text: `Case ${prior.seed} is still open on the desk: ${tierName(prior.tier)}, the small board.` }), back));
+      form.append(el('div', { class: 'resume' }, el('p', { text: `Case ${prior.seed} is still open on the desk: ${tierName(prior.tier)}.` }), back));
     }
     form.append(
-      el('div', { class: 'controls' }, el('div', { class: 'field' }, el('label', { text: 'Tier' }), tier), el('div', { class: 'field' }, el('label', { text: 'Case' }), type), el('div', { class: 'field' }, el('label', { text: 'Seed' }), seed)),
+      el('div', { class: 'controls' }, el('div', { class: 'field' }, el('label', { text: 'Tier' }), tier), el('div', { class: 'field' }, el('label', { text: 'Kind' }), type), el('div', { class: 'field' }, el('label', { text: 'Case number' }), seed)),
       el('button', { class: 'open-case', type: 'submit', text: 'Open the case' }),
     );
     for (const l of BOARD_RULES) form.append(el('p', { class: 'footnote', text: l }));

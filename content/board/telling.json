@@ -14,7 +14,7 @@
   {"id": "bte-204", "family": "list-ask", "tags": {}, "text": "I asked {name} who’d come through tonight. {He} thought about it the way a bank thinks about a loan: carefully, and from the beginning.", "joke": true},
   {"id": "bte-301", "family": "list-close", "tags": {}, "text": "I wrote it down the way {he} said it, hour by hour."},
   {"id": "bte-302", "family": "list-close", "tags": {}, "text": "{He} said it as if {he} were reading it off the back of {his} hand, and maybe {he} was.", "joke": true},
-  {"id": "bte-303", "family": "list-close", "tags": {}, "text": "I wrote it down. A watcher’s list is the one story in this city that nobody bothers to lie about."},
+  {"id": "bte-303", "family": "list-close", "tags": {}, "text": "I wrote it all down. People lie about where they were. Nobody bothers lying about who came through their door."},
   {"id": "bte-401", "family": "search-act", "tags": {"what": "table"}, "text": "I went over the table."},
   {"id": "bte-402", "family": "search-act", "tags": {"what": "table"}, "text": "I went over the table an inch at a time, which is the only speed tables can be gone over at.", "joke": true},
   {"id": "bte-411", "family": "search-act", "tags": {"what": "floor"}, "text": "I went over the floor on my knees. My knees had opinions about it.", "joke": true},
