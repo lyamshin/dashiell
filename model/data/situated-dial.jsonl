@@ -523,7 +523,7 @@
 {"id":"sit-1218","flags":[],"action":"keep","batch":6}
 {"id":"sit-1224","flags":[],"action":"keep","batch":6}
 {"id":"sit-1230","flags":[],"action":"keep","batch":6}
-{"id":"sit-1236","flags":["ellipsis"],"action":"rewrite","batch":6,"before":"It was late, and the flat had that look rooms get when they expected everybody to be in bed hours ago.","text":"The night had got on, and the flat had the look rooms get when they expected everybody to be in bed hours ago."}
+{"id":"sit-1236","flags":[],"action":"keep"}
 {"id":"sit-1242","flags":[],"action":"keep","batch":6}
 {"id":"sit-1248","flags":[],"action":"keep","batch":6}
 {"id":"sit-1254","flags":[],"action":"keep","batch":6}
@@ -568,7 +568,7 @@
 {"id":"sit-1265","flags":[],"action":"keep","batch":6}
 {"id":"sit-1198","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was a plain room with plain things in it, and one thing in it that wasn’t plain at all.","text":"There were plain things in a plain room, and one thing in it that wasn’t plain at all."}
 {"id":"sit-1204","flags":["place"],"action":"rewrite","batch":6,"before":"I stood there long enough to be sure I was in the room, and not just looking at it.","text":"I stood just inside the door long enough to be sure I was in the room, and not just looking at it."}
-{"id":"sit-1210","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was the hour when even good rooms look tired, and this one had stopped being a good room.","text":"At this hour even good rooms look tired, and this one had stopped being a good room."}
+{"id":"sit-1210","flags":[],"action":"keep"}
 {"id":"sit-1216","flags":[],"action":"keep","batch":6}
 {"id":"sit-1222","flags":[],"action":"keep","batch":6}
 {"id":"sit-1228","flags":[],"action":"keep","batch":6}
@@ -635,7 +635,7 @@
 {"id":"sit-0028","flags":[],"action":"keep","batch":6}
 {"id":"sit-0055","flags":[],"action":"keep","batch":6}
 {"id":"sit-0081","flags":[],"action":"keep","batch":6}
-{"id":"sit-0107","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was the hour when a rooming house stops being a house and becomes a row of locked doors with people asleep behind them.","text":"At this hour a rooming house stops being a house and becomes a row of locked doors with people asleep behind them."}
+{"id":"sit-0107","flags":[],"action":"keep"}
 {"id":"sit-0018","flags":[],"action":"keep","batch":6}
 {"id":"sit-0045","flags":[],"action":"keep","batch":6}
 {"id":"sit-0072","flags":[],"action":"keep","batch":6}
@@ -685,7 +685,7 @@
 {"id":"sit-0077","flags":[],"action":"keep","batch":6}
 {"id":"sit-0103","flags":[],"action":"keep","batch":6}
 {"id":"sit-0002","flags":[],"action":"keep","batch":6}
-{"id":"sit-0029","flags":["pronoun"],"action":"rewrite","batch":6,"before":"It was late enough that even a place like that had run out of reasons to be busy.","text":"By then even a place like that had run out of reasons to be busy."}
+{"id":"sit-0029","flags":["compressed"],"action":"rewrite","before":"It was late enough that even a place like that had run out of reasons to be busy.","text":"It was late, and even a place like that had gone quiet for the night."}
 {"id":"sit-0056","flags":[],"action":"keep","batch":6}
 {"id":"sit-0082","flags":[],"action":"keep","batch":6}
 {"id":"sit-0108","flags":["place"],"action":"rewrite","batch":6,"before":"Whoever came here came for their own reasons and took them away again, and the place was none the wiser.","text":"Whoever came into a place like this came for their own reasons and took them away again, and the walls were none the wiser."}
@@ -1045,7 +1045,7 @@
 {"id":"sit-1485","flags":[],"action":"keep","batch":1}
 {"id":"sit-1521","flags":[],"action":"keep","batch":1}
 {"id":"sit-1493","flags":[],"action":"keep","batch":1}
-{"id":"sit-1529","flags":["compressed"],"action":"rewrite","batch":1,"before":"Nobody needed to be wrong about that part. I wrote it down gratefully, and in my good hand.","text":"The two stories agreed on that part, and I didn’t have to pick between them. I wrote it down gratefully, in my good hand."}
+{"id":"sit-1529","flags":["compressed"],"action":"rewrite","before":"Nobody needed to be wrong about that part. I wrote it down gratefully, and in my good hand.","text":"That part held up, and I didn’t have to choose between anybody’s word. I wrote it down gratefully, in my good hand."}
 {"id":"sit-1499","flags":[],"action":"keep","batch":1}
 {"id":"sit-1535","flags":["translate"],"action":"rewrite","batch":1,"before":"A second account like that is a small, warm thing in this work, and I held my hands over it a minute.","text":"A second account that matches is a small, warm thing in this work, like a stove on a cold night, and I let myself enjoy it a minute."}
 {"id":"sit-1506","flags":["translate"],"action":"rewrite","batch":1,"before":"I nodded and wrote. Some answers come with their own receipt.","text":"I nodded and wrote. An answer somebody else has already given me is as good as a receipt."}
@@ -1107,7 +1107,7 @@
 {"id":"sit-1179","flags":["pronoun"],"action":"rewrite","batch":1,"before":"That was {their} evening as {they} told it, and for now it was the only telling I had.","text":"{Their} evening as {they} told it was, for now, the only telling I had."}
 {"id":"sit-1137","flags":[],"action":"keep","batch":1}
 {"id":"sit-1162","flags":[],"action":"keep","batch":1}
-{"id":"sit-1187","flags":[],"action":"keep","batch":1}
+{"id":"sit-1187","flags":["compressed"],"action":"rewrite","before":"Every account starts out as just somebody talking. This one was still at that stage.","text":"So far the account was one person’s word and nothing else. Every account starts out that way."}
 {"id":"sit-1130","flags":[],"action":"keep","batch":1}
 {"id":"sit-1155","flags":[],"action":"keep","batch":1}
 {"id":"sit-1180","flags":[],"action":"keep","batch":1}

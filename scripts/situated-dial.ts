@@ -302,6 +302,9 @@ if (cmd === 'lint') {
     const w = byId.get(gid(l.id));
     if (!w) throw new Error(`not written: ${gid(l.id)}`);
     const entry: AuditLine = { id: l.id, flags: l.flags, action: l.action, ...(batch ? { batch } : {}) };
+    // A line folded in again replaces the last: a keep puts the card's own words back, and only a cut stays cut.
+    w.text = c.text;
+    if (cuts[gid(l.id)]?.startsWith('dial: ')) delete cuts[gid(l.id)];
     if (l.action === 'rewrite') {
       w.text = l.text as string;
       entry.before = c.text;
