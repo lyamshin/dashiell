@@ -774,7 +774,9 @@ function handOff(w: Writer, always = false): void {
   const mover = kind === 'account' && walksOnly(c) ? movedAt(c, w.run, rest) : null;
   if (mover) {
     const pr = markedPron(c, rest);
-    let said: string | null = `${nameOf(c, rest)} had walked from ${placeName(c, mover.from)} to ${placeName(c, mover.to)} at ${hourWord(mover.h)}. I wanted to know who ${pr.he}’d passed on the way.`;
+    // (Said in one of a few ways, so a night that hands off to the same walk twice doesn't say it twice.)
+    const ask = w.hand.pick('handoff-passed', [`I wanted to know who ${pr.he}’d passed on the way.`, `${cap(pr.he)} might have passed somebody on the way, and I wanted to know who.`, `Whoever ${pr.he}’d passed on the way, I wanted to hear about it.`]);
+    let said: string | null = `${nameOf(c, rest)} had walked from ${placeName(c, mover.from)} to ${placeName(c, mover.to)} at ${hourWord(mover.h)}. ${ask}`;
     // A name twice at most a page (docs/39 §4): a reason that would say one a third time isn't said; the star still shows the way.
     if (!namesFit(w, said)) said = `I wanted to know who ${nameOf(c, rest)} had passed on the way over at ${hourWord(mover.h)}.`;
     if (!namesFit(w, said)) said = null;

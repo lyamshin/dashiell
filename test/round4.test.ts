@@ -46,7 +46,7 @@ describe('round 4: the reasoning lines (docs/55 1)', () => {
   it('a hand-off names the person and the question, never the ground', () => {
     const run = night(14, 4, 'lost-pet', MED14);
     const page = prose(run.log[run.log.length - 1] as Page).replace(/\s+/g, ' ');
-    expect(page).toContain('I wanted to know who she’d passed on the way.');
+    expect(page).toMatch(/I wanted to know who she’d passed on the way\.|She might have passed somebody on the way, and I wanted to know who\.|Whoever she’d passed on the way, I wanted to hear about it\./);
     expect(page).not.toMatch(/place behind them|that ground for myself/);
   });
 
