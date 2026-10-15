@@ -46,6 +46,7 @@ import {
   type FieldKey,
   type LineOption,
 } from '../game/board/report.js';
+import { dealtIds, recordRun, sanitizeProfile, seenOf } from '../game/board/profile.js';
 import { costText, notebookText, pageBodyText, wrap } from '../game/board/text.js';
 import type { OfferedChoice, OfferedGroup } from '../game/board/types.js';
 
@@ -86,6 +87,9 @@ export interface BoardSave {
   /** Whose picker is open, and from Poached up the claim's hour picked. */
   picker: string | null;
   claim: number | null;
+  /** docs/55 6: a profile file (`new --profile F`): what its last nights dealt, as the night began; filing adds this night to it. */
+  profile?: string;
+  seen?: { recent: string[]; last: string[] };
 }
 
 class Fail extends Error {}
@@ -105,7 +109,7 @@ function deal(save: BoardSave): Night {
   // docs/51: the deck the night was opened with, every time it's replayed.
   SITUATED.on = save.situated !== false;
   const d = dealBoard(save.seed, save.tier as 0, save.type, save.world ? { world: save.world } : {});
-  let run = newBoardRun(d, { detectiveName: save.detective, ...(save.type ? { type: save.type } : {}) });
+  let run = newBoardRun(d, { detectiveName: save.detective, ...(save.type ? { type: save.type } : {}), ...(save.seen ? { seen: save.seen } : {}) });
   const pages: BoardRun[] = [run];
   for (const e of save.events) {
     run = apply(d, run, e);
@@ -170,7 +174,10 @@ function pageItems(night: Night): Item[] {
   for (const g of groups) {
     if (g.kind === 'ask') {
       const star = g.choices.find((c) => c.lead);
-      out.push({ n: n++, group: g, person: g.personId as string, choice: { command: `person ${g.personId}`, label: nameOf(night.d.kase, g.personId as string), minutes: 0, lead: !!star, done: false, ...(star?.why ? { why: star.why } : {}) } });
+      const name = nameOf(night.d.kase, g.personId as string);
+      // docs/55 4: the row is the person, so the star's "ask Pickering who…" says "ask who…".
+      const why = star?.why?.replace(new RegExp(`\\bask ${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} `), 'ask ');
+      out.push({ n: n++, group: g, person: g.personId as string, choice: { command: `person ${g.personId}`, label: name, minutes: 0, lead: !!star, done: false, ...(why ? { why } : {}) } });
       continue;
     }
     for (const c of [...g.choices, ...(g.more ?? [])]) out.push({ n: n++, group: g, choice: c });
@@ -191,7 +198,8 @@ function pageChoicesText(night: Night): string {
     }
     if (it.person) {
       const g = it.group;
-      out.push(itemLine(it.n, it.choice, `${g.choices.length} ${g.choices.length === 1 ? 'topic' : 'topics'}`));
+      // docs/55 7: "free · 2 questions", not "2 topics" in the cost column (Poached 5).
+      out.push(itemLine(it.n, it.choice, `free · ${g.choices.length} ${g.choices.length === 1 ? 'question' : 'questions'}`));
       continue;
     }
     out.push(itemLine(it.n, it.choice, costText(it.choice)));
@@ -496,7 +504,11 @@ function cmdNew(io: PlayIo, values: Map<string, string>, flags: Set<string>): st
   if (type !== undefined && !typesFor(tier as 0).includes(type)) fail(`--type: the board builds ${typesFor(tier as 0).join(', ')} at this tier.`);
   const world = values.get('world');
   if (world !== undefined && !isWorld(world)) fail('--world: the one world there is is neighbourhood.');
-  const save: BoardSave = { game: 'dashiell-play', version: 1, engine: 'board', seed, tier: tier as number, ...(type ? { type } : {}), ...(world ? { world } : {}), ...(values.get('situated') === '0' ? { situated: false as const } : {}), detective: values.get('name') || 'Dashiell', events: [], person: null, picker: null, claim: null };
+  // docs/55 6: a profile, when given, says what the last nights dealt; this night keeps it.
+  const profilePath = values.get('profile');
+  const prof = profilePath ? sanitizeProfile((() => { try { return JSON.parse(io.read(profilePath) ?? 'null'); } catch { return null; } })()) : null;
+  const seen = prof ? seenOf(prof) : null;
+  const save: BoardSave = { game: 'dashiell-play', version: 1, engine: 'board', seed, tier: tier as number, ...(type ? { type } : {}), ...(world ? { world } : {}), ...(values.get('situated') === '0' ? { situated: false as const } : {}), detective: values.get('name') || 'Dashiell', events: [], person: null, picker: null, claim: null, ...(profilePath ? { profile: profilePath } : {}), ...(seen && (seen.recent.length || seen.last.length) ? { seen } : {}) };
   const night = deal(save);
   store(io, path as string, save);
   const teach = flags.has('no-teach') ? [] : [teachText(save.world), '', DOUBLE, ''];
@@ -597,7 +609,8 @@ function helpText(): string {
   for (const l of BOARD_RULES) out.push(wrap(l), '');
   out.push(
     'COMMANDS',
-    '  new --seed N --tier 0..5 [--type murder|lost-item|lost-pet] [--world neighbourhood] [--name <detective>] [--no-teach] --save F',
+    '  new --seed N --tier 0..5 [--type murder|lost-item|lost-pet] [--world neighbourhood] [--name <detective>] [--no-teach] [--profile P] --save F',
+    '       (--profile P: a profile file; the night prefers what its last ten nights didn’t deal, and filing adds this night to it)',
     '  look · do <n|words> · page <n> · notebook · grid',
     '  pencil "<Name> <hour> at|not|clear [place]" (pencil "Feldman ten at Rafferty’s") · confront <Name>',
     '  report [<Name>] (with a name, the lines that could break their story)',
@@ -668,6 +681,18 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
         const report = parseReport(night, arg ?? '');
         if (!night.run.reportOpen) night = commit(io, path, night, [{ do: 'file' }]);
         night = commit(io, path, night, [{ file: report }]);
+        // docs/55 6: the profile remembers what this night dealt.
+        if (night.save.profile) {
+          const v = scoreBoard(night.d, night.run, report);
+          let old: unknown = null;
+          try {
+            old = JSON.parse(io.read(night.save.profile) ?? 'null');
+          } catch {
+            old = null;
+          }
+          const next = recordRun(sanitizeProfile(old), { tier: night.run.tier, points: v.points, asked: v.asked, actionsUsed: v.actionsUsed, par: v.par, dealt: dealtIds(night.run.spent) }).profile;
+          io.write(night.save.profile, JSON.stringify(next));
+        }
         return { out: verdictText(night), code: 0 };
       }
       case 'story':

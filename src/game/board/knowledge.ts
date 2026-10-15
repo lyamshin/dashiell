@@ -165,7 +165,7 @@ export function linesHeld(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>): 
       if (!f) continue;
       // docs/47 B7: the papers put nobody's page on top, and say every page's grievance by name,
       // in the notebook as on the page.
-      const text = f.gives.why ? `A page on each of them. ${whyOrder(c, suspectsOf(c)).map((p) => papersLine(c, p)).join(' ')}` : f.text;
+      const text = f.gives.why ? `A page on each of them. ${whyOrder(c, suspectsOf(c)).map((p) => papersLine(c, p, true)).join(' ')}` : f.text;
       out.push({ id: `find:${rest}`, q, kind: 'find', place: f.place, about: [], text: `${cap(f.what)} at ${placeName(c, f.place)}: ${text}` });
     } else if (kind === 'confront') {
       const [p, hs] = rest.split('@') as [string, string];

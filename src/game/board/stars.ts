@@ -142,8 +142,8 @@ export function starredSteps(d: BoardDeal, run: Pick<BoardRun, 'asked'> & Partia
   open.sort((a, b) => here(a) - here(b) || (count.get(b) as number) - (count.get(a) as number) || byPath(a, b));
   const best = open[0];
   if (best === undefined) return [];
-  // Medium: only where to go. When the nearest step is in this room, no star at all.
-  if (walksOnly(c) && here(best) === 0) return [];
+  // docs/55 4: Medium stars where to go, and, in the room with the person the step is about, the
+  // question itself (Medium 14 sat across from Pickering with no star on her).
   return [best];
 }
 
@@ -195,10 +195,9 @@ export function actionWords(c: BoardCase, q: Question): string {
 export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: string, walk = false): string {
   const q = questionsOf(c).find((x) => x.id === qid);
   if (!q) return '';
-  if (walk) {
-    const ptr = starReason(c, run, qid).split(' — ')[0] ?? '';
-    return `${cap(ptr)} — go to ${placeName(c, q.at)}`;
-  }
+  // docs/55 4: a walk's star names the person and the question, as any star does: the choice it
+  // sits on (the walk) says where.
+  void walk;
   if (q.kind === 'confront') {
     const [p, hs] = q.subject === undefined ? ['', ''] : [q.subject, String(q.hour)];
     const st = solveRun(c, run).status.get(`${p}@${hs}`);
@@ -217,7 +216,8 @@ export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: stri
   // may have passed something; that, not who they were with an hour before, is why to ask.
   if (q.kind === 'account') {
     const mv = movedAt(c, run, q.subject);
-    if (mv) return `${movedSaid(c, q.subject, mv)} — ask what ${pronOf(c, q.subject).he} passed`;
+    // docs/55 4: the person and the question: "ask Pickering who she passed on the way over at ten".
+    if (mv) return `ask ${nameOf(c, q.subject)} who ${pronOf(c, q.subject).he} passed on the way over at ${hourWords(mv.h)}`;
   }
   let why: string | undefined;
   for (let i = run.asked.length - 1; i >= 0 && why === undefined; i--) why = by.get(run.asked[i] as string);

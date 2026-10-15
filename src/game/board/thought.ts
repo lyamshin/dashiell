@@ -51,6 +51,7 @@ import { accessPhrase, atWhere, breakSaid, claimSaid, keptAt, remarkSaid, shortO
 
 export { breakSaid, claimSaid, keptAt, remarkSaid, shortOther };
 import { markPronoun } from './plan/refer.js';
+import { homeNamed } from './home.js';
 import { PLAN } from './plan/index.js';
 
 export interface Thought {
@@ -121,6 +122,8 @@ export interface ThoughtCtx {
 export function thoughtOf(x: ThoughtCtx): Thought {
   const { c, before, run, q, here } = x;
   const t = blank();
+  // docs/55 1a: whether a list page says who had gone out (`sayGone`), decided once.
+  let goneDecided: boolean | undefined;
   const b = solveHeld(c, solverHeld(before));
   const a = solveHeld(c, solverHeld(run));
   const [kind, rest] = q.split(':') as [string, string];
@@ -311,6 +314,9 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const sp = ln.speaker as PersonId;
       // Somebody this page catches lying is the page's news; where their story agrees can wait (docs/39 §4).
       if ([...caught].some((k) => k.startsWith(`${sp}@`))) continue;
+      // docs/55 1a: somebody the hours sentence will say had been there and gone out is said there, once
+      // (a list can't make a third "Hauck" into "her").
+      if (goneFrom(l).includes(sp)) continue;
       if ((l?.entries[ln.hour] ?? []).some((e) => 'person' in e && e.person === sp) && !agreed.some((y) => y.p === sp)) agreed.push({ p: sp, h: ln.hour, id: ln.id });
     }
     for (const y of agreed) covered.add(y.p);
@@ -415,6 +421,9 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         // Whose word it is, as a person: the keeper of this page's list, or whoever else said so (docs/47 C13:
         // "and Ellery would swear to it", not "with the list under both").
         // This page's own account is "he": its speaker is named on the page already (docs/39 §4).
+        // docs/55 1a: this page's own list at the hours that matter is said whole, with who had gone out
+        // before them (`hoursThatMatter`), not one placed person at a time.
+        if (srcQ === q && kind === 'list' && ownListSays(now.place, h)) break;
         const src = srcQ === q && kind === 'list' ? `=list:${rest}` : srcQ === q && kind === 'account' ? `=self:${rest}` : sourceName(c, srcQ).replace(/’s (list|story|word)$/, '');
         const g = groups.get(src) ?? { src, srcQ, items: [], refs: [] };
         g.items.push({ p, place: now.place, h });
@@ -456,6 +465,42 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         // docs/49: whose word, for the planner to say it as the one who gave it ("He put Tillman here at ten").
       });
     }
+  }
+
+  /**
+   * docs/55 1a: who a list had the hour before the hours that matter and didn't have at any of them:
+   * who had gone out. Persons only, not the dead or the lost.
+   */
+  function goneFrom(l: ReturnType<typeof listOf>): PersonId[] {
+    if (!l) return [];
+    const hs = win.slice(0, 2) as Hour[];
+    const before = ((hs[0] as Hour) - 1) as Hour;
+    if (l.entries[before] === undefined || l.entries[hs[0] as Hour] === undefined) return [];
+    const atAny = new Set(hs.flatMap((h) => (l.entries[h] ?? []).flatMap((e) => ('person' in e ? [e.person] : []))));
+    return (l.entries[before] ?? []).flatMap((e) => ('person' in e && e.person !== c.crime.victim && !atAny.has(e.person) && personOf(c, e.person) && !personOf(c, e.person)?.object ? [e.person] : []));
+  }
+
+  /**
+   * docs/55 1a: whether this list page says who had gone out, decided once, before the placements:
+   * somebody did, and nobody it would name has been named twice already by this thought (a list
+   * can't say a name a third time as "her").
+   */
+  function sayGone(): boolean {
+    if (goneDecided !== undefined) return goneDecided;
+    const l = kind === 'list' ? listOf(c, rest) : undefined;
+    const gone = goneFrom(l);
+    if (!l || gone.length === 0) return (goneDecided = false);
+    const said = t.sentences.join(' ');
+    const named = [...gone, ...(win.slice(0, 2) as Hour[]).flatMap((h) => (l.entries[h] ?? []).flatMap((e) => ('person' in e ? [e.person] : [])))];
+    return (goneDecided = named.every((p) => (said.match(new RegExp(`\\b${nameOf(c, p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'g')) ?? []).length < 2));
+  }
+
+  /** docs/55 1a: whether this page's own list has the hour (at its own place): the hours sentence says it whole. */
+  function ownListSays(place: PlaceId, h: Hour): boolean {
+    if (kind !== 'list') return false;
+    const l = listOf(c, rest);
+    // (Only where somebody had gone out: otherwise the placements say it as they did.)
+    return !!l && l.place === place && l.entries[h] !== undefined && sayGone();
   }
 
   // 8. The handover: something under a coat. Not whose, not what, until the board says.
@@ -528,8 +573,15 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       // docs/47 C13: the hour said once ("For ten, the hour that mattered, he said Moe’s"), not "ten … Moe’s at ten".
       // "home" said where home is, so the thought keeps its place in the night (docs/44's measure).
       const homeAt = accountOf(c, rest)?.claims[hs[0] as Hour]?.place ?? '';
-      const what = same ? ((said[0] ?? '').startsWith('home') && homeAt ? `home at ${placeName(c, homeAt)}` : (said[0] ?? '').replace(/ at \w+$/, '')) : andList(said);
-      const own = x.pick('own-word', [
+      const what = same ? ((said[0] ?? '').startsWith('home') && homeAt && !homeNamed(c, rest) ? `home at ${placeName(c, homeAt)}` : (said[0] ?? '').replace(/ at \w+$/, '')) : andList(said);
+      // docs/55 1c: where a line held already goes against their word at those hours, the aside never
+      // says nothing does (the grid shows the collision even where the thought, at fact level, can't cite it).
+      const crossed = collisionsOf(c, run, rest).some((col) => hs.includes(col.hour));
+      const own = crossed ? x.pick('own-word-crossed', [
+          'I wrote it down next to what else I had for that hour.',
+          'It went in the notebook as said, beside the rest of that hour.',
+          'I took it down as given and set it beside the rest.',
+        ]) : x.pick('own-word', [
           'I wrote it down and left it standing, for now.',
           'Whether anything else I held touched it, I’d have to see.',
           `That was ${P(rest).his} word for it, and I took it down as said.`,
@@ -575,6 +627,10 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         const empty = hs.filter((h) => (l.entries[h] ?? []).length === 0).map(hourWord);
         if (empty.length) parts.push(one ? 'nobody' : `nobody at ${andList(empty)}`);
         const ppl = hs.flatMap((h) => (l.entries[h] ?? []).flatMap((e) => ('person' in e ? [e.person] : [])));
+        // docs/55 1a: who the list had the hour before and didn't have at the hours that matter: who had
+        // gone out ("Steinbach and Bellucci had been there at nine and gone out"), not who stayed.
+        const before = ((hs[0] as Hour) - 1) as Hour;
+        const gone = sayGone() ? goneFrom(l) : [];
         // Not "in this room" (a landlady watches a stair, not a room: Hard-boiled 8's #14). Here, the
         // keeper's list is about here and needn't say so; elsewhere it says where.
         const there = where(c, l.place, here) === 'here' ? '' : `at ${placeName(c, l.place)}`;
@@ -590,14 +646,25 @@ export function thoughtOf(x: ThoughtCtx): Thought {
           `At ${when}, when it counted, ${had}.`,
           `I wrote down what ${W} had at ${when}, the ${one ? 'hour' : 'hours'} that mattered: ${listed}.`,
         ]);
-        add(framed, clockRef, {
+        // One hour, somebody on it: "and nobody else", as the list said it.
+        const whole = gone.length > 0 && one && (l.entries[hs[0] as Hour] ?? []).length > 0;
+        const goneSaid = gone.length ? `${framed.replace(/\.$/, '')}${whole ? ', and nobody else' : ''}; ${andList(gone.map((y) => nameOf(c, y)))} had been there at ${hourWord(before)} and gone out after.` : framed;
+        add(goneSaid, clockRef, {
           rule: 'hours',
-          hours: hs,
-          people: [l.watcher, ...ppl],
+          hours: gone.length ? [...hs, before] : hs,
+          people: [l.watcher, ...ppl, ...gone],
           places: [l.place],
-          props: [{ k: 'WINDOW', hours: [...hs] }, ...hs.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: (l.entries[h] ?? []).map(entryOf) }) as Prop)],
-          // docs/52 build 2: the list's own hours that mattered, a composite of its own.
-          say: { shape: 'LIST-HOUR', flags: ['thought', one ? 'one' : 'two', W === 'the list' ? 'named' : 'unnamed'], args: { hours: { t: 'hours', hs: [...hs] }, watcher: { t: 'person', id: l.watcher }, listed } },
+          props: [
+            { k: 'WINDOW', hours: [...hs] },
+            ...hs.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: (l.entries[h] ?? []).map(entryOf), ...(whole ? { whole: true } : {}) }) as Prop),
+            ...(gone.length ? [{ k: 'LIST', watcher: l.watcher, place: l.place, hour: before, people: [...gone] } as Prop] : []),
+          ],
+          // docs/52 build 2: the list's own hours that mattered, a composite of its own; docs/55 1a: with who had gone out.
+          say: {
+            shape: 'LIST-HOUR',
+            flags: ['thought', one ? 'one' : 'two', W === 'the list' ? 'named' : 'unnamed', ...(gone.length ? ['gone'] : []), ...(whole ? ['whole'] : [])],
+            args: { hours: { t: 'hours', hs: [...hs] }, watcher: { t: 'person', id: l.watcher }, listed, ...(gone.length ? { gone: { t: 'people' as const, ids: [...gone] }, before: { t: 'hour' as const, h: before } } : {}) },
+          },
         });
       }
     }

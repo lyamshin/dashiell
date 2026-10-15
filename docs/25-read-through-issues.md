@@ -295,3 +295,16 @@ Branch `bones-2`. Docs/52's build-2 Built section has the voicings, the checks, 
 
   Each is a voicing or two to cut, not a rule.
 - **Pair 16 of the read:** both readers preferred "had sat here" once the page had said "Sokol’s" three times. Docs/53 keeps the name. A rule that lets the narration say "here" after the place is named in the same paragraph would be the designer's call.
+
+## Round 4 (docs/55), 2026-10-15
+Branch `round4-fixes`. Four blind testers (Raw 11, Poached 5, Medium 14, Hard-boiled 8); docs/55 says what was fixed. Left over:
+
+- **Medium's stars now star the question in the room** (the tester's ask), and Medium's star-following reader names a caught liar more often (board-measure: 45% → 56% at random). Medium now stars as Poached does, with the walk's reason; whether Medium should stop at the walk again is the designer's call.
+- **Joins a page fell at Raw to Poached** (1.1 → 0.7): the list page's placements and an agreement are now one who-went-out sentence the measure doesn't count as a join. Either the measure counts the contrast, or the sentence takes a join of its own.
+- **"My witness"** still stands in where the witness's name would be said a third time (a put page's admission, then "came back in"). The writer counts names before the planner voices the admission, so it can't yet know the name would fit.
+- **A watcher who came on late reads as "nobody at nine"** in the list's hours-that-mattered sentence (Hard-boiled 8's Automat: the cashier came on at ten). The sentence should leave out the hours the list doesn't keep.
+- **The reference pass's look-roles** ("the woman with a bandaged hand", "the man in a sailor’s pea coat") still stand in for a name said a third time, and once for somebody in a sentence that already named her ("Lanza had never said the woman in a green hat was at Rafferty’s").
+- **Two composites, one fact twice:** the scene's "the spare lives in the sugar tin" and the find's say the way in on back-to-back pages (Raw 11 #5, #8); an admission and its check (Poached 5 #20, Medium 14 #14) stay long.
+- **The office's chair, twice:** the client "sat down in the good chair without being asked", then "Mosley sat in it the way you sit in church" (Hard-boiled seed 12): the chair card's check reads the entrance card, not the line that replaced it.
+- **The closer cap** reads a thing-with-feelings close off its first words ("The radiator…"); "I buttoned my coat. It came off a rack…" isn't counted. The share is 34% of pages; Hard-boiled 8 was the heavy night.
+- **The profile's memory is the book's and `--profile`'s;** the oracle, the wanderer and the reader play without one, so the measures are unchanged by it.

@@ -914,7 +914,9 @@ READ['LIST-HOUR'] = (a, flags, comp, v, lx) => {
   // "the list": the page's own list, named in the thought already.
   const watcher = flags.has('named') ? (comp.props.find((x) => x.k === 'LIST') as P<'LIST'>).watcher : (a.watcher as Id);
   const { place, at } = listedR(v.c, lx, a.listed as string, hours, v);
-  return [{ k: 'WINDOW', hours }, ...hours.map((h) => ({ k: 'LIST', watcher, place, hour: h, people: at.get(h) ?? [] }) as Prop)];
+  // docs/55 1a: who had been there the hour before and gone out.
+  const gone = flags.has('gone') ? [{ k: 'LIST', watcher, place, hour: a.before as number, people: a.gone as string[] } as Prop] : [];
+  return [{ k: 'WINDOW', hours }, ...hours.map((h) => ({ k: 'LIST', watcher, place, hour: h, people: at.get(h) ?? [], ...(flags.has('whole') ? { whole: true } : {}) }) as Prop), ...gone];
 };
 
 const placedSet = READ['PLACED-SET'] as Reader;
@@ -1005,7 +1007,7 @@ READ.REACTION = (a, flags, comp, v, lx) => {
       { k: 'POINTER', from: 'second', to: flags.has('met') ? (a.watcher as Id) : (a.place as Id), why: 'watcher' },
     ];
   }
-  if (flags.has('refuse-thought')) return [{ k: 'REFUSE', person, hour: a.hour as number }];
+  if (flags.has('refuse-thought')) return [{ k: 'REFUSE', person, hour: a.hour as number }, ...(flags.has('points') ? [{ k: 'CLAIM', person, place: a.near as Id, hour: a.nearHour as number } as Prop] : [])];
   if (flags.has('held')) {
     const code = HELD_BY.find((k) => flags.has(k)) ?? ['face', 'nowhere', 'untouched'].find((k) => flags.has(k));
     const x = comp.props[0] as P<'HELD'>;
@@ -1095,7 +1097,7 @@ READ.REACTION = (a, flags, comp, v, lx) => {
 
 READ.PRESENT = (a, _flags, _comp, v) => {
   // "my witness", marked with whom it means, or the name.
-  const m = /^my witness⁣(\d+)⁤$/.exec((a.who as string).trim());
+  const m = /^[Mm]y witness⁣(\d+)⁤$/.exec((a.who as string).trim());
   const person = m ? (v.c.people[Number(m[1])]?.id as Id) : personR(v.c, a.who as string);
   return [{ k: 'PRESENT', person, place: v.here }];
 };

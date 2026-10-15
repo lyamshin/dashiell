@@ -42,7 +42,8 @@ is identified by its seed and tier, and the URL says which:
 `?seed=4&t=2&type=lost-pet`. Share the link and you share the night. `?situated=0` writes the pages with the old decks only (docs/51), for comparison; `?plain=1` shows each page's plain page, every fact and no voice (docs/52). The
 night in progress is kept in `localStorage` (`dashiell:board-run`), and so is
 the profile (`dashiell:board-profile`: nights filed, full credit, tiers
-cleared). What the engines before the board kept there is never read.
+cleared, and what the last ten nights dealt, so a new night prefers lines it
+hasn’t shown you lately: docs/55). What the engines before the board kept there is never read.
 
 ## Playing blind in a terminal
 
@@ -50,6 +51,7 @@ cleared). What the engines before the board kept there is never read.
 npm run play -- new --seed 3 --tier 4 --save night.json
 npm run play -- do 2 --save night.json    # one numbered choice, or its words
 npm run play -- help                      # the rules and every command
+npm run play -- new --seed 4 --tier 2 --profile me.json --save n2.json   # a night that remembers the last ten (docs/55)
 ```
 
 For blind playtesters: exactly what the book shows, one choice at a time, and

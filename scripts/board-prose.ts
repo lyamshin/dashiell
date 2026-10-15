@@ -186,8 +186,8 @@ function gramsOf(t: string): Set<string> {
 }
 
 const rows: string[] = [];
-rows.push('| tier | nights | pages | words a page, median [p10–p90] | why-here or walk | job pages with a thought naming an earlier fact | callbacks | lint (reader) | correspondence | thoughts over their level | plain terms | cards twice | sentences twice | pages naming somebody 3+ times | clues said 3+ times | place names bolted on | banned phrases | pages with 2+ signposts | gags paid off 3+ times | a pet called “it” |');
-rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
+rows.push('| tier | nights | pages | words a page, median [p10–p90] | why-here or walk | job pages with a thought naming an earlier fact | callbacks | lint (reader) | correspondence | thoughts over their level | plain terms | cards twice | sentences twice | pages naming somebody 3+ times | clues said 3+ times | place names bolted on | banned phrases | pages with 2+ signposts | gags paid off 3+ times | a pet called “it” | thought against the grid | “it turned out” for somebody there all along | standing after sitting | knocking when inside |');
+rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
 const examples: string[] = [];
 const rows3: string[] = [];
 rows3.push('| tier | sentences per fact unit | list smell, pages (oracle) | pronoun ambiguity (oracle) | joins a page with facts, mean [share with 1–3] | restated pointer | list smell, pages (all three) | pronoun ambiguity (all three) | thought: fact sentences per fact [paragraphs within ceil(N/2); of those with 2+ facts] |');
@@ -214,7 +214,7 @@ for (const tier of tiers) {
   let sentTwice = 0;
   let namePages = 0;
   let cluesThrice = 0;
-  const r3: Record<ProseIssue['rule'], number> = { 'place-tag': 0, phrase: 0, signpost: 0, gag: 0, pet: 0 };
+  const r3: Record<ProseIssue['rule'], number> = { 'place-tag': 0, phrase: 0, signpost: 0, gag: 0, pet: 0, grid: 0, 'turned-out': 0, posture: 0, inside: 0 };
   const share = { arrival: { bible: 0, total: 0 }, staging: { bible: 0, total: 0 } };
   // docs/49 §4.
   let factSent = 0;
@@ -417,7 +417,7 @@ for (const tier of tiers) {
     `| ${tierName(tier)} | ${factUnits ? (factSent / factUnits).toFixed(2) : '—'} | ${smellPages} of ${pages} | ${ambiguous} | ${joinPages ? (joinCount / joinPages).toFixed(1) : '—'} [${pct(joinInBand, joinPages)}] | ${restated} | ${smellAll} | ${ambiguousAll} | ${thFacts ? (thSent / thFacts).toFixed(2) : '—'} [${pct(thWithin, thParas)}; ${pct(thWithin2, thParas2)}] |`,
   );
   rows.push(
-    `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${level} | ${jargon} | ${cardsTwice} | ${sentTwice} | ${namePages} | ${cluesThrice} | ${r3['place-tag']} | ${r3.phrase} | ${r3.signpost} | ${r3.gag} | ${r3.pet} |`,
+    `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${level} | ${jargon} | ${cardsTwice} | ${sentTwice} | ${namePages} | ${cluesThrice} | ${r3['place-tag']} | ${r3.phrase} | ${r3.signpost} | ${r3.gag} | ${r3.pet} | ${r3.grid} | ${r3['turned-out']} | ${r3.posture} | ${r3.inside} |`,
   );
 }
 process.stdout.write(`${rows.join('\n')}\n`);

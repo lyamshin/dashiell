@@ -47,6 +47,7 @@ import type { VoiceHand } from '../bones/say.js';
 import { rhythm } from './rhythm.js';
 import { refer, stripMarks } from './refer.js';
 import { situate, type SituCtx } from './situated.js';
+import { capThingClose } from './closers.js';
 import { speakerOf } from './speaker.js';
 export { speakerOf } from './speaker.js';
 
@@ -154,6 +155,8 @@ export function planSection(
   if (PLAN.ops) {
     paraItems = rhythm(paraItems, ctx);
     referWithTrades(paraItems, ctx);
+    // docs/55 6: about half a night's pages end on a thing having a feeling, at most.
+    if (ctx.run) capThingClose(paraItems, ctx.run.log);
   }
   // docs/52: the round trip on the voiced composites, when it's asked for: after the rhythm, which
   // may have traded a voicing for another of another length.

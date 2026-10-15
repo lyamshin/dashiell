@@ -35,6 +35,7 @@ import {
   type PlaceId,
 } from './model.js';
 import { breakSaid } from './pages.js';
+import { homeNamed } from './home.js';
 import { starPlace, starReason, starredSteps, walksOnly } from './stars.js';
 
 /** The minutes the next call moves the clock: what a label says and the engine charges. */
@@ -65,8 +66,8 @@ export function pageStars(d: BoardDeal, run: BoardRun): BoardStar[] {
     if (out.length >= 3) break;
     const [kind, rest] = q.split(':') as [string, string];
     let command: string | null = null;
-    if (walks) command = null;
-    else if (kind === 'account' || kind === 'list') {
+    void walks;
+    if (kind === 'account' || kind === 'list') {
       if (here.has(rest)) command = `ask ${rest} ${kind === 'list' ? 'list' : 'evening'}`;
     } else if (kind === 'search') {
       const f = c.finds.find((x) => x.id === rest);
@@ -148,13 +149,20 @@ export function boardChoices(d: BoardDeal, run: BoardRun): OfferedGroup[] {
   if (run.at !== OFFICE) places.push(OFFICE);
   const go = places.map((p) => {
     const ch = choice(`go ${p}`, placeName(c, p));
-    if (run.visited.includes(p) || p === OFFICE) return ch;
+    const visited = run.visited.includes(p) || p === OFFICE;
     // Who the player knows of who's there tonight, or why the place is known at all.
     const there = c.people.filter((x) => x.foundAt === p && people.has(x.id) && (x.role === 'suspect' || x.role === 'company')).map((x) => x.short);
-    const note = there.length > 0 ? `${andList(there)} ${there.length > 1 ? 'are' : 'is'} there` : (known.get(p) ?? 'not been');
-    // A star's reason that says the same as the note says it once.
-    if (ch.why && ch.why.toLowerCase().includes(note.toLowerCase())) return ch;
-    return { ...ch, note };
+    const note = visited ? undefined : there.length > 0 ? `${andList(there)} ${there.length > 1 ? 'are' : 'is'} there` : (known.get(p) ?? 'not been');
+    // docs/55 4: a starred walk says its reason once. Its label is the place, so a reason that names
+    // the place again ("The laudanum came from the Delmonico rooms") gives way to the note, and the
+    // note isn't said beside the star as well.
+    if (ch.why) {
+      const [ptr, ...rest] = ch.why.split(' — ');
+      const act = rest.join(' — ');
+      if (act && (ptr ?? '').toLowerCase().includes(placeName(c, p).toLowerCase())) return { ...ch, why: note && note !== 'not been' ? `${note}; ${act}` : act };
+      return ch;
+    }
+    return note ? { ...ch, note } : ch;
   });
   // Stars first; then the rest. More than four places fold under "Other places", and more than
   // three once the room holds five people to ask (decided 2026-10-11: the innocent liar is back in
@@ -208,7 +216,8 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
   for (const col of collisionsOf(c, run, p)) {
     if (landed.has(`${p}@${col.hour}`)) continue;
     const cands = candidateLines(c, run, p, col.hour, lines);
-    const label = `${personOf(c, p)?.home === col.claim.place ? 'home' : placeName(c, col.claim.place ?? '')} at ${hourWord(col.hour)}`;
+    // docs/55 1d: "home" says which place, where the grid calls it by another name ("home, the Delmonico rooms").
+    const label = `${personOf(c, p)?.home === col.claim.place ? (homeNamed(c, p) ? 'home' : `home (${placeName(c, col.claim.place ?? '')})`) : placeName(c, col.claim.place ?? '')} at ${hourWord(col.hour)}`;
     claims.push({ hour: col.hour, label, again: false, lines: cands.map((l) => lineChoice(d, p, col.hour, l, false, run)) });
     const b = col.breakers[0];
     if (b) ready.push({ command: `put ${p} ${col.hour} ${b.id}`, label: `${cap(nameOf(c, p))} says ${label}. ${cap(breakSaid(c, b, p, run.asked))}.` });
