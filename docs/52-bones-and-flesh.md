@@ -297,3 +297,208 @@ All three nights were read twice, in voice and plainly (`--plain`): the golden's
 ### What's open
 
 See docs/25, "Bones and flesh, build 1".
+
+## Built: build 2 (2026-10-15)
+
+Branch `bones-2`, on main with the situated deck's dial (#86) and the old decks' dial (#87) merged in. Everything in it is written to docs/53, the dial, which arrived while the build was under way: the plain sentence is the spine, and a voicing adds at most one broad noir touch to it, at 3–4 of 10.
+
+### §1. Voicings for every shape
+
+- **1,203 voicings over all 24 shapes** (main has 49 over 12).
+  - Every form the nights say has three to six fitting voicings, by manner where it is speech (plain, terse, careful) and by tier band where the level asks.
+  - Of 275 forms on four nights a tier, both worlds, 154 have 3, 74 have 4, 11 have 5 and 34 have 6.
+  - Two have fewer: a PAIR joined with ", and" has two (", and", "; and") and one joined with a semicolon has one. A join's own words are only the join, and "and besides" or "and on top of that" claimed links the facts don't have.
+- **How they were written.** I wrote a brief from docs/53, and seven helpers worked one at a time, a shape group each. Each was given:
+  - the shape's argument schema (`bones/schema.ts`);
+  - real composites with their plain renderings (`voicings.ts samples`);
+  - the tools: `check` for the lint and the dial, `show` for the round trip and the clarity check on real composites, and `coverage` for three to six a form.
+
+  I read at least 10% of every batch (one template in five to one in eight, and their filled sentences) and accepted all seven. Each was over 80% keepable and none was above the dial. A handful of templates I cut or rewrote by hand afterwards, and the blind read's dislikes are below.
+
+| shape | main | kept | rewritten | cut | added | now |
+|---|---|---|---|---|---|---|
+| CLAIM-SPAN | 0 | 121 | 48 | 0 | 15 | 184 |
+| LIST-HOUR | 1 | 81 | 75 | 10 | 13 | 169 |
+| REACTION | 0 | 34 | 87 | 4 | 43 | 164 |
+| OFFICE | 0 | 64 | 39 | 2 | 0 | 103 |
+| WINDOW-MEANS | 0 | 40 | 27 | 1 | 2 | 69 |
+| HANDOVER | 0 | 30 | 31 | 0 | 0 | 61 |
+| ACCESS-SET | 7 | 38 | 19 | 0 | 3 | 60 |
+| FIND | 0 | 22 | 33 | 0 | 0 | 55 |
+| PLACED-SET | 5 | 28 | 20 | 6 | 0 | 48 |
+| COLLISION-PAIR | 3 | 27 | 13 | 10 | 1 | 41 |
+| REMARK | 0 | 36 | 4 | 0 | 0 | 40 |
+| WINDOW-ALIVE | 10 | 0 | 32 | 0 | 4 | 36 |
+| CONFIRMED | 7 | 0 | 29 | 3 | 2 | 31 |
+| HOLD | 0 | 24 | 0 | 0 | 6 | 30 |
+| MOTIVE-SET | 0 | 19 | 7 | 0 | 0 | 26 |
+| OWN-WORD | 3 | 10 | 11 | 3 | 0 | 21 |
+| STREET | 4 | 0 | 16 | 0 | 0 | 16 |
+| CONFIRMED-WITH | 3 | 0 | 9 | 3 | 0 | 9 |
+| LEFT | 0 | 3 | 6 | 0 | 0 | 9 |
+| UNSPOKEN | 0 | 6 | 2 | 0 | 0 | 8 |
+| PRESENT | 0 | 7 | 0 | 0 | 1 | 8 |
+| PAIR | 3 | 4 | 0 | 0 | 2 | 6 |
+| ATTACH | 2 | 4 | 2 | 0 | 0 | 6 |
+| ADMIT-CHECK | 1 | 3 | 0 | 0 | 0 | 3 |
+
+"Kept" is kept from the voicings this branch's first pass wrote before docs/53 arrived. The 49 of build 1 are all rewritten. None of the 1,203 says "which was what", "here" for a place, "where I could check it", "by her count", "the part worth keeping" or "kept Duchess".
+
+- **The arguments the dial needed.** A voicing can only say a fact it has an argument for, so the writers now hand over:
+  - whose list or word it was, by name ({whose}: "Coffin’s list", "Mrs. Cheatham’s account"; the office is the client's account);
+  - the person ({person});
+  - the keeper of a list ({keeper}: "Coffin’s list said …", never "by his count");
+  - the put's own place and hour, on a hole, a refusal, an admission and a held put ("Abramowitz had a hole in his story, the Thalia at eleven");
+  - the party's hour, and the hours the client told the room, on the scene and the find.
+
+  Places are said by name everywhere. The composer's spans and the thread's pointers no longer say "here", though a watcher's own speech may, for the room they're in. "The list" is always somebody's.
+- **The own-words paths are retired.** On the oracle's route, 30 nights a tier, both worlds, 98.1% of composites are said in a voicing (14,201 of 14,473), where main says 25.5% (3,608 of 14,145). None fall back to the plain rendering.
+  - The 272 left in the writers' own words are the neighbourhood bible's (`content/neighbourhood`): a watcher's bible lines, admissions and refusals, said in their own words by docs/48.
+  - The writers still compose their old sentences, but only `PLAN.ops = false` (docs/49's "before", `board-prose --plan off`) shows them. It runs and costs nothing, so it stays.
+
+### §2. Selection
+
+As the first pass built it (`bones/say.ts`). A voicing is chosen from:
+
+- the shape's voicings that fit the composite's flags, the speaker's manner and the tier band, the most specific of them;
+- no joke where the page has told its one;
+- no sentence a page before this one narrated;
+- least recently used tonight, by the page's dice among the unsaid;
+- plain where nothing fits.
+
+The rhythm may trade a voicing for another unsaid one of another length.
+
+- **Variety**, 30 nights a tier, both worlds (`voicings.ts variety`):
+  - **0** voicings were said twice in a night while another that fitted was still unsaid.
+  - Where three or more fitted, a voicing was said again 11 times in 14,264 choices. Those are forms said more often in a night than they have voicings.
+- An agreement whose line is somebody of the person's sex now carries the flag `twosome`, and the voicings with a pronoun for the person forbid it. Without it: "Coffin’s list had Ashby at the Thalia, just like he said."
+
+### §3. Checks
+
+- **The round trip: 100%.** 30 nights a tier, both worlds, all three routes:
+  - 14,733 of 14,733 plain pages (60,912 propositions) read back to their bones;
+  - 41,996 of 41,996 voiced composites read back through their templates.
+- **The clarity check** (`bones/clarity.ts`, beside the round trip): **100%**, 41,996 of 41,996. A voiced composite is clear when:
+  - every place and hour its propositions name is in its words, as the plain rendering says it. A place may also be said as whose it is ("Bledsoe’s" for the Bledsoe flat, "his own rooms" with his name in the sentence). A run of hours may be "from eight through ten" or "between eight and ten", and the end of the evening "the rest of the evening";
+  - there is no "here" in the narration, and no "there" without a place before it in its sentence;
+  - there is no "the list" without whose;
+  - none of docs/53's oblique tags is in it.
+
+  A speaker may leave out the room they're in, or their own home, and the office's lines are the client's. The answer to "what was under the coat" leaves its hour to the line before it.
+
+  `scripts/roundtrip.ts` reports the check, and `test/bones.test.ts` holds every tier, type and world to it. The test also shows that build 1's "So {spans}, which was what {src}" reads back but isn't clear.
+- **The lint** (`scripts/voicing-lint.ts`, `voicings.ts check`) holds every voicing to its shape's schema, to the facts its form must say (`mustSay`, now with the new arguments), and against docs/53's tags, "here" and "the list". 1,203 voicings, no issues.
+
+### §4. Measures, before → after
+
+**Before** is main at `47f10e2` (#87). Thirty nights a tier, the oracle's route except where a column says all three.
+
+- **Joins a page** is now read off the composites (`plan/measure.ts` `joinsIn`), and both builds are counted that way here. The voicings say a join many ways, so the old pattern match on build 1's phrasings ("which was what", "same as he said") can't count them. The page's one "But" and one "So" are still held to the words as well (`test/plan.test.ts`).
+- **The share in 1–3** counts every page with a fact, the office and arrivals included, so it reads lower than build 1's figure.
+
+**Dealt**
+
+| tier | words a page, median | list smell, pages (oracle) | list smell, pages (all three routes) | joins a page with facts [share 1–3] | sentences per fact unit | prose lints |
+|---|---|---|---|---|---|---|
+| Raw | 196 → 196 | 22 → 15 of 280 | 96 → 71 | 0.9 [57%] → 0.9 [64%] | 1.54 → 1.49 | all 0 → all 0 |
+| Coddled | 188 → 196 | 10 → 6 of 276 | 50 → 45 | 0.9 [58%] → 0.8 [54%] | 1.45 → 1.49 | all 0 → all 0 |
+| Poached | 184 → 185 | 20 → 22 of 398 | 72 → 77 | 1.0 [73%] → 0.9 [70%] | 1.46 → 1.49 | all 0 → all 0 |
+| Soft-boiled | 181 → 184 | 20 → 27 of 383 | 69 → 86 | 1.0 [65%] → 1.0 [65%] | 1.44 → 1.47 | all 0 → all 0 |
+| Medium | 175 → 178 | 42 → 34 of 439 | 113 → 103 | 1.1 [63%] → 1.1 [63%] | 1.37 → 1.43 | all 0 → all 0 |
+| Hard-boiled | 172 → 179 | 26 → 31 of 435 | 77 → 75 | 0.1 [11%] → 0.1 [11%] | 1.38 → 1.46 | all 0 → all 0 |
+
+**The neighbourhood**
+
+| tier | words a page, median | list smell, pages (oracle) | list smell, pages (all three routes) | joins a page with facts [share 1–3] | sentences per fact unit | prose lints |
+|---|---|---|---|---|---|---|
+| Raw | 225 → 223 | 33 → 22 of 280 | 135 → 104 | 0.9 [59%] → 0.9 [63%] | 1.72 → 1.63 | all 0 → all 0 |
+| Coddled | 222 → 216 | 28 → 22 of 276 | 95 → 86 | 1.0 [60%] → 0.8 [57%] | 1.58 → 1.55 | all 0 → all 0 |
+| Poached | 200 → 207 | 35 → 35 of 407 | 120 → 115 | 1.1 [75%] → 1.0 [70%] | 1.52 → 1.53 | all 0 → all 0 |
+| Soft-boiled | 199 → 207 | 36 → 36 of 385 | 127 → 129 | 1.0 [65%] → 0.9 [63%] | 1.47 → 1.49 | all 0 → all 0 |
+| Medium | 201 → 205 | 63 → 56 of 437 | 190 → 167 | 1.1 [66%] → 1.0 [64%] | 1.40 → 1.44 | all 0 → all 0 |
+| Hard-boiled | 203 → 210 | 38 → 43 of 435 | 117 → 123 | 0.1 [11%] → 0.1 [11%] | 1.45 → 1.54 | all 0 → all 0 |
+
+- **Every prose lint is 0 before and after, in both worlds.** That covers reader lint, correspondence, thoughts over their level, plain terms, cards twice, sentences twice, names three times, clues three times, place names bolted on, banned phrases, signposts, gags, "it", pronoun ambiguity (all three routes) and restated pointers.
+  - Naming every place cost three of them on the way, and each is fixed: one list's two people at one place said once ("Mrs. Kowalski’s list had Brauer and Brennan at Kowalski’s all evening"); a why-here the last page's hand-off said whole is carried; and the turn's what-next carries the place it names.
+- **List smell** is at or under 10% everywhere but the neighbourhood's Medium, which went from 14.4% to 12.8%. It fell at eight tiers of twelve. Where it rose (dealt Poached, Soft-boiled and Hard-boiled; the neighbourhood's Hard-boiled), it rose by two to seven pages.
+- **Joins a page** didn't move beyond ±0.2. Hard-boiled is 0.1 by docs/46.
+- **Words a page** went up by 0–9, from saying the place, whose word and the hour every time. Every median is inside 170–260.
+- **The dealt boards hash the same before and after:** seeds 1–40, every tier and type, are `b3c9a36e…` dealt and `be1c6127…` in the neighbourhood.
+- **`board-measure`, 50 seeds a tier and type, is the same in every puzzle column.** Only the callback pages' share, a prose column, moves (62–71% → 67–75%).
+
+### §5. The blind read
+
+Twenty pages across both worlds and every tier (`scripts/bones-read.ts`): five accounts, three lists, three puts, two searches, two offices, two motives, two turns and an arrival. Each was written by build 2 and by main from the same night, shown in random order and unlabeled. Two blind readers went one at a time, on the rubric "which page is clearer and still sounds like the game", in that order.
+
+**Build 2 was preferred in 26 of 40 (65%): 13 of 20 by each reader.**
+
+- **Where build 2 won,** it named the place where main said "here" (eight pairs), said whose word a fact stood on, and named the lost thing where main's "She went at ten o’clock" read as the woman just questioned. In one office, main's "Broadnax … found the body in his own walk-up" read as Broadnax's walk-up.
+- **The pairs main won, and why:**
+  - **Pairs 4 and 20 (both readers), and pair 19 (both readers): fixed.**
+    - Pair 4: "Whatever the line showed, it didn’t touch…" made them ask which line.
+    - Pair 20: the careful manner's padding ("first of all", "by my watch", "to be exact").
+    - Pair 19: "the office had her at the Schilling flat"; whose office?
+
+    The voicings are rewritten, and the office is now said as the client's account.
+  - **Pair 2 (both): fixed.** A watcher's "Nobody besides them." after one name.
+  - **Pair 9 (both).** The pages were nearly the same, and main's hand-off ("a room keeps things people forget to mention") had more voice. That card is the old decks', not a voicing.
+  - **Pair 16 (both).** "Had sat at Sokol’s" against "had sat here", on a page already at Sokol's. The readers didn't mind the "here" once the scene was set. Docs/53 keeps the name.
+  - **Pair 7 (one reader).** The office's body, place, hour and finder in one sentence: dense.
+  - **Pair 14 (one reader).** A recap that opened on the place ("Home at eleven, Zeldin had told me…").
+- **The other dislikes:**
+  - two colons in one sentence, a confirmation and the street's link joined. The street's in-sentence voicings no longer use a colon;
+  - a run-on summary of the list hours that mattered (pair 1).
+
+### Read in full
+
+I read three nights in full, in voice and plainly: the golden's night (seed 1, Medium, lost pet, dealt), the neighbourhood at Medium (seed 5, murder) and the neighbourhood at Hard-boiled (seed 3, murder).
+
+- **The designer's page.** The golden's page 8 is the one docs/53 quotes. It now says:
+
+  > So he had told it straight: Coffin’s list had him at the Thalia at eleven, with Feeney; I underlined Stuyvesant Street, because it was where Prentiss lived, and where Duchess went missing.
+
+  And plainly:
+
+  > Coffin’s list put Ashby at the Thalia at eleven, with Feeney, as he had said; Stuyvesant Street was the street of the Prentiss flat.
+
+  The plain page's join is a semicolon now, not build 1's "but". That was docs/25's complaint: the plain facts don't contrast.
+- **Found and fixed:**
+  - The why-here still said "here" ("Coffin’s list had Ashby here at eleven"), from `thread.ts`. Pointers now name the place, and a pointer said to somebody's face keeps "here".
+  - An agreement's "just like he said" after "Coffin’s list" was read as Coffin by the reference pass, which put "the milliner" in twice. That gave rise to the `twosome` flag (§2).
+  - The office's "Every night it was the Thalia" had become "Feldman went to the Thalia every night", a third "Feldman" on the page. The venue voicings say the venue, and the found voicings name the dead once.
+  - The office's gone-pet line "Somebody had walked out of his with her", the reference pass's work on "Prentiss’s", is cut.
+  - The "big room" gloss after the told-way-in scene ("That was a room, more or less; it was a big room") is cut.
+  - Two colons in one sentence (the street's link after an agreement).
+- **Seen and left:**
+  - The reference pass's role names ("the pushcart man", "the milliner") where a name would be said a third time. They're legible, but they read as a quirk when one comes twice in a sentence.
+  - "He had a hole in his story, the Thalia at eleven, and he could see me looking at it, though if the new story was true, he was at the Automat at eleven, not at the Thalia" is long. It's two composites joined, and it's clear.
+  - Hard-boiled reads plain and dry, as docs/46 wants: the thought stays on its page and says the hours that mattered and whose list.
+
+### Two composites, plainly and in three voicings
+
+**The agreement on the golden's page 8** (CONFIRMED, agree, so; whose = Coffin’s list, person = Ashby, spans = the Thalia at eleven, with Feeney):
+
+- Plain: "Coffin’s list put Ashby at the Thalia at eleven, with Feeney, as he had said."
+- `confirmed/so-2`: "So Ashby had told it straight: Coffin’s list had him at the Thalia at eleven, with Feeney." (the page's)
+- `confirmed/so-3`: "So Coffin’s list backed Ashby up: the Thalia at eleven, with Feeney."
+- `confirmed/so-d1`: "So Ashby’s account and Coffin’s list agreed: the Thalia at eleven, with Feeney."
+
+**The collision on the golden's page 10** (COLLISION-PAIR, but; claim = Corrigan said home at eleven, breaker = Ashby passed her on Stuyvesant Street at eleven):
+
+- Plain: "Corrigan said she was at Corrigan’s flat at eleven, which collided with this: Ashby said he passed Corrigan on Stuyvesant Street at eleven."
+- `collision/but-5`: "Corrigan said home at eleven, but Ashby passed her on Stuyvesant Street at eleven. Somebody had it wrong." (the page's, with "She" for Corrigan after her answer)
+- `collision/but-3`: "One thing didn’t fit: Corrigan said home at eleven, but Ashby passed her on Stuyvesant Street at eleven."
+- `collision/but-6`: "Here was the trouble: Corrigan said home at eleven, but Ashby passed her on Stuyvesant Street at eleven."
+
+### Tests
+
+**710** (was 687 on main), all passing, at three workers. `tsc` is clean. New in `test/bones.test.ts`:
+
+- the clarity check on every tier, type and world;
+- build 1's "which was what" line failing it while it still reads back.
+
+The plan tests' sentences are now build 2's. `test/board-connective.test.ts` holds the street line to "where Prentiss lived" and never "kept Duchess".
+
+### What's open
+
+See docs/25, "Bones and flesh, build 2".

@@ -78,7 +78,9 @@ npm run board-sweep -- --tier all --n 60       # the generator's rates and invar
 npx tsx scripts/board-measure.ts --seeds 50    # the puzzle, measured
 npx tsx scripts/board-prose.ts                 # the prose, measured (--plan off: without the microplanner; --situated 0: without the situated deck)
 npx tsx scripts/skeletons.ts --n 300 --tier all # the skeletons, a JSONL corpus (docs/49, docs/50)
-npx tsx scripts/roundtrip.ts --nights 30       # the round trip: plain pages and voicings read back to their propositions (docs/52)
+npx tsx scripts/roundtrip.ts --nights 30       # the round trip: plain pages and voicings read back to their propositions, and the clarity check (docs/52, docs/53)
+npx tsx scripts/voicings.ts check              # the voicings held to their shapes and the dial (also: samples, show, coverage, variety)
+npx tsx scripts/bones-read.ts pick --out DIR   # the blind read, build against build (pick, dump, pair, score)
 npx tsx scripts/voicings.ts check              # the voicings held to their shapes (docs/52 build 2); also samples, show, coverage, variety
 npx tsx scripts/bones-read.ts pick --out DIR   # the blind read, build against build (docs/52 build 2): pick, dump, pair, score
 npx tsx scripts/situated-gaps.ts --nights 40   # the gaps the situated deck fills, by situation (docs/51)

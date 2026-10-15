@@ -277,3 +277,21 @@ Branch `decks-dial`. Docs/54 has the audit, the lint, the measures and the read.
 - **Dead lines:** four banned hand-offs (`bcn-2781`, `2785`–`2787`), eight bible "nobody else" lines without the word the filter wants, eight hour lines with a leaving word, and Miss Nowak's own-up naming Mrs. Rafferty. Make them live or retire them.
 - **Bible hour lines that name a post** are codas on account pages too, where they could contradict the account.
 - **List smell in the neighbourhood** moved by one to three pages at Coddled and Hard-boiled where a split arrival or a rewritten card fell between two medium sentences; it went down everywhere dealt.
+
+## Bones and flesh, build 2 (docs/52, docs/53), 2026-10-15
+Branch `bones-2`. Docs/52's build-2 Built section has the voicings, the checks, the measures and the blind read (65% for build 2). The return page's double place name (above) is taken: on a return the walk says "the same door as before", and the arrival names the place. Left over:
+
+- **The neighbourhood bible's own words** are the last 272 composites a night set not said in a voicing (1.9%): a watcher's bible lines, admissions and refusals (`content/neighbourhood`, docs/48). They are clear, but the clarity check doesn't hold them. Miss Nowak's admission still names Mrs. Rafferty, whom its bones don't name.
+- **Two PAIR joins have fewer than three voicings:** ", and" has two and the semicolon one. A join's own words are only the join, and every other form the helper tried claimed a link the facts didn't have.
+- **ATTACH seldom fires now.** "…, who never heard Prentiss tell the room" hangs on a sentence that ends on the name, and the dial's CONFIRMED-WITH voicings end "right there with her". The way in is said in a sentence of its own instead. That is clear, but the join is lost.
+- **The reference pass's role names** ("the milliner", "the pushcart man") stand in where a name would be said a third time. They're legible, but twice in a sentence they read as a quirk. A voicing could be told the page's name count and choose one without the person.
+- **Joins a page is read off the composites now** (`plan/measure.ts`). The words alone can't count the voicings' joins. Build 1's figures (84–95% in 1–3) came from a pattern match on its own phrasings and aren't comparable.
+- **List smell is over 10% only at the neighbourhood's Medium** (12.8%, down from 14.4%). It rose by two to seven pages at dealt Poached, Soft-boiled and Hard-boiled and at the neighbourhood's Hard-boiled.
+- **The writers still compose their pre-planner sentences** for `PLAN.ops = false` (docs/49's "before"). With the planner on, only the bible's lines reach a page. Once the "before" measure retires, `tell.ts`, `thought.ts` and `pages.ts` can stop writing them, and `bones/reread.ts`'s build-1 readers (`UNARGS`, keyed by voicing id) can go with them.
+- **The blind readers' last dislikes:**
+  - the office's body, place, hour and finder in one sentence (dense);
+  - a run-on summary of a list's hours that mattered;
+  - a recap that opens on the place ("Home at eleven, Zeldin had told me…").
+
+  Each is a voicing or two to cut, not a rule.
+- **Pair 16 of the read:** both readers preferred "had sat here" once the page had said "Sokol’s" three times. Docs/53 keeps the name. A rule that lets the narration say "here" after the place is named in the same paragraph would be the designer's call.
