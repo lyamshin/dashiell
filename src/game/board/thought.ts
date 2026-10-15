@@ -443,7 +443,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const swear = self
         ? x.pick('swear-self', [`on ${P(self).his} word`, `and ${P(self).he} would swear to it`])
         : keeper
-          ? `by ${P(keeper).his} count`
+          ? `on ${nameOf(c, keeper)}’s list`
           : x.pick('swear', [`and ${g.src} would swear to it`, `and ${g.src} would say so to anybody`, `on ${g.src}’s word`]);
       const him = !!only && lastSaid.startsWith(`${nameOf(c, only)} `) && sameSex.length === 0;
       add(`That put ${andList(bits)}, ${swear}.`, g.refs.length ? g.refs : ['givens:clock'], {

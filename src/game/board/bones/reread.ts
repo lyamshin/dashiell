@@ -315,7 +315,7 @@ const UNARGS: Record<string, Unargs> = {
   'placed-set/swear': (a, comp, v, lx) => placedV(a.bits as string, swearSrc(v.c, a.swear as string, comp), v, lx),
   'placed-set/self': (a, _comp, v, lx) => placedV(a.bits as string, { k: 'claim', who: personV(v.c, a.he as string) }, v, lx),
   'placed-set/self-plain': (a, comp, v, lx) => runsV(a.runs as string, (comp.props[0] as P<'PLACED'>).by, v, lx),
-  'placed-set/count': (a, _comp, v, lx) => runsV(a.runs as string, { k: 'list', who: personV(v.c, a.his as string) }, v, lx),
+  'placed-set/count': (a, _comp, v, lx) => runsV(a.runs as string, { k: 'list', who: personV(v.c, (a.keeper ?? a.his) as string) }, v, lx),
   'placed-set/recap': (a, comp, v, lx) => {
     const c = v.c;
     const bys = listV(srcWords(a.by as string), `${lx.re.NAME}|the office|what the room said`);
@@ -395,7 +395,7 @@ function ownWordV(a: Record<string, string>, v: VCtx, lx: Lexicon): Prop[] {
 
 /** Whose word a "That put … , and Ellery would swear to it." is, from the writer's tail. */
 function swearSrc(c: BoardCase, swear: string, comp: Composite): Src {
-  const m = /^(?:on (.+?)’s word|and (.+?) would (?:swear to it|say so to anybody)|on (.+?) word|by (.+?) count)$/.exec(swear);
+  const m = /^(?:on (.+?)’s (?:word|list)|and (.+?) would (?:swear to it|say so to anybody)|on (.+?) word|by (.+?) count)$/.exec(swear);
   if (!m) throw new Error(`voiced: whose word is "${swear}"?`);
   const name = (m[1] ?? m[2] ?? m[3] ?? m[4]) as string;
   const like = (comp.props[0] as P<'PLACED'>).by;
