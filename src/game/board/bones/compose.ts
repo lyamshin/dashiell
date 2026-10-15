@@ -334,6 +334,17 @@ function srcHad(c: BoardCase, by: Src): string {
   return `${nameOf(c, by.who as PersonId)} had said`;
 }
 
+/**
+ * docs/53, the dial: whose word a confirmation is, said as theirs: "Coffin’s list", "Mrs. Cheatham’s
+ * account", "Weisglass’s word", "the office" (never "what Coffin had").
+ */
+export function srcWhose(c: BoardCase, by: Src): string {
+  if (by.k === 'given') return 'the office';
+  if (by.k === 'find') return 'what the room said';
+  const n = nameOf(c, by.who as PersonId);
+  return by.k === 'list' ? `${n}’s list` : by.k === 'admit' ? `${n}’s word` : `${n}’s account`;
+}
+
 /** The name a source goes by in the notebook: "Coffin", "the office", "what the room said". */
 function srcName(c: BoardCase, by: Src): string {
   if (by.k === 'given') return 'the office';
@@ -697,7 +708,7 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       const so = b.so === 0 && !(next && /^So\b/.test(next.text));
       const comp = held(it);
       comp.shape = 'CONFIRMED';
-      voice(it, comp, ['agree', so ? 'so' : 'which'], { spans: bits, src: srcHad(c, by) }, ctx);
+      voice(it, comp, ['agree', so ? 'so' : 'which'], { spans: bits, src: srcHad(c, by), whose: srcWhose(c, by), person: { t: 'person', id: cs[0]?.person as PersonId } }, ctx);
       comp.join = so ? 'so' : 'which';
       it.joined = comp.join;
       if (so) b.so++;
@@ -724,11 +735,11 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       comp.shape = 'CONFIRMED';
       // After a collision that named somebody of their sex, "same as she said" could be either of them.
       if (sameSexIn(c, p, `${before} ${src}`).length > 0) {
-        voice(it, comp, ['rest', 'held'], { name: nameOf(c, p), by: src, him: P.him, spans: bits }, ctx);
+        voice(it, comp, ['rest', 'held'], { name: nameOf(c, p), by: src, whose: srcWhose(c, by), person: { t: 'person', id: p }, him: P.him, spans: bits }, ctx);
         comp.join = 'held';
         it.joined = 'held';
       } else {
-        voice(it, comp, ['rest', 'same'], { by: src, him: P.him, he: P.he, spans: bits }, ctx);
+        voice(it, comp, ['rest', 'same'], { by: src, whose: srcWhose(c, by), person: { t: 'person', id: p }, him: P.him, he: P.he, spans: bits }, ctx);
         comp.join = 'same';
         it.joined = 'same';
       }
@@ -747,11 +758,11 @@ export function connect(items: Item[], ctx: PlanCtx): void {
         const at = atWhere(c, y.place, here);
         const clear = !!(it.flesh as { clear?: boolean } | undefined)?.clear;
         if (pronOf(c, watcher).he === pronOf(c, y.person).he) {
-          voice(it, comp, ['list', 'too'], { name: nameOf(c, y.person), at, hour: hourWord(y.hour as Hour), watcher: W, him: P.him, there: at === 'here' ? 'here' : 'there' }, ctx);
+          voice(it, comp, ['list', 'too'], { name: nameOf(c, y.person), person: { t: 'person', id: y.person }, at, hour: hourWord(y.hour as Hour), watcher: W, him: P.him, there: at === 'here' ? 'here' : 'there' }, ctx);
           comp.join = 'too';
           it.joined = 'too';
         } else {
-          voice(it, comp, ['list', 'same'], { watcher: W, them: clear ? P.him : nameOf(c, y.person), at, hour: hourWord(y.hour as Hour), he: P.he }, ctx);
+          voice(it, comp, ['list', 'same'], { watcher: W, them: clear ? P.him : nameOf(c, y.person), person: { t: 'person', id: y.person }, at, hour: hourWord(y.hour as Hour), he: P.he }, ctx);
           comp.join = 'same';
           it.joined = 'same';
         }
@@ -769,7 +780,7 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       const said = hs.map((h) => claimSaid(c, p, h));
       const same = said.every((s) => s.replace(/ at \w+$/, '') === (said[0] ?? '').replace(/ at \w+$/, ''));
       const homeAt = cl[0]?.place ?? '';
-      const what = same ? ((said[0] ?? '').startsWith('home') && homeAt ? (homeAt === here ? `home, here at ${placeName(c, homeAt)}` : `home at ${placeName(c, homeAt)}`) : (said[0] ?? '').replace(/ at \w+$/, '')) : andList(said);
+      const what = same ? ((said[0] ?? '').startsWith('home') && homeAt ? `home at ${placeName(c, homeAt)}` : (said[0] ?? '').replace(/ at \w+$/, '')) : andList(said);
       const named = !!(it.flesh as { named?: boolean } | undefined)?.named;
       const who = named ? nameOf(c, p) : pr(c, p).he;
       const listy = what.includes(',') || / at (?:seven|eight|nine|ten|eleven|twelve|midnight)\b/.test(what);
@@ -812,7 +823,7 @@ export function connect(items: Item[], ctx: PlanCtx): void {
         const v = pickFor('PLACED-SET', ['self', 'plain'], { runs: runsSaid }, ctx);
         if (v) it.alts = () => [{ text: v.text, take: () => (spend(comp, v, ctx), (comp.voicing = v.v.id), (comp.args = { runs: runsSaid }), (comp.said = v.text)) }];
       } else if (fl.keeper) {
-        voice(it, comp, ['count'], { his: pr(c, fl.keeper).his, runs: runsSaid }, ctx);
+        voice(it, comp, ['count'], { his: pr(c, fl.keeper).his, keeper: { t: 'person', id: fl.keeper }, runs: runsSaid }, ctx);
         it.joined = 'count';
         comp.join = 'count';
       }

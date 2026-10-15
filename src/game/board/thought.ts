@@ -579,8 +579,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         // keeper's list is about here and needn't say so; elsewhere it says where.
         const there = where(c, l.place, here) === 'here' ? '' : `at ${placeName(c, l.place)}`;
         const when = andList(hs.map(hourWord));
-        // Named in this thought already, the keeper's list is "the list" (docs/39 §4).
-        const W = t.sentences.some((y) => y.includes(nameOf(c, l.watcher))) ? 'the list' : nameOf(c, l.watcher);
+        // docs/53, the dial: a list is always somebody's ("Coffin’s list"), never "the list".
+        const W = nameOf(c, l.watcher);
         const listed = `${andList(parts)}${there ? `${one ? ' ' : ', '}${there}` : ''}`;
         const had = `${W} had ${listed}`;
         // A night has several lists: the frame turns over so no sentence is said twice.

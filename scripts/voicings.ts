@@ -46,7 +46,9 @@ function merged(): Voicing[] {
   if (!file) return base;
   const extra = JSON.parse(readFileSync(file, 'utf8')) as Voicing[];
   const ids = new Set(extra.map((v) => v.id));
-  return [...base.filter((v) => !ids.has(v.id)), ...extra];
+  // `--whole`: the file is the whole set for every shape it has (what it leaves out is cut).
+  const shapes = args.includes('--whole') ? new Set(extra.map((v) => v.shape)) : new Set<string>();
+  return [...base.filter((v) => !ids.has(v.id) && !shapes.has(v.shape)), ...extra];
 }
 
 /** Collect the composites of N nights a tier, both worlds, the oracle's and the wanderer's routes. */
@@ -150,8 +152,8 @@ if (cmd === 'check') {
       return { k, n, fit: fit.length };
     });
     rows.sort((a, b) => a.k.localeCompare(b.k));
-    for (const r of rows) process.stdout.write(`${r.fit < 3 ? '!!' : '  '} ${String(r.fit).padStart(2)} voicings  ${String(r.n).padStart(5)}×  ${r.k}\n`);
-    process.stdout.write(`\n${rows.filter((r) => r.fit < 3).length} of ${rows.length} forms have fewer than three.\n`);
+    for (const r of rows) process.stdout.write(`${r.fit < 3 ? '!!' : r.fit > 6 ? '++' : '  '} ${String(r.fit).padStart(2)} voicings  ${String(r.n).padStart(5)}×  ${r.k}\n`);
+    process.stdout.write(`\n${rows.filter((r) => r.fit < 3).length} of ${rows.length} forms have fewer than three, ${rows.filter((r) => r.fit > 6).length} more than six.\n`);
   } else {
     const file = val('file');
     const mine = file ? (JSON.parse(readFileSync(file, 'utf8')) as Voicing[]) : vs;
@@ -177,7 +179,7 @@ if (cmd === 'check') {
         if (r.ok) ok++;
         else bad++;
         // docs/53: and clear, by the dial.
-        const why = clarityOf(x.c, { shape: x.shape as Shape, props: x.props as never, voicing: v.id, said: fill(v.template, x.args, x.c), args: x.args as never }, x.here);
+        const why = clarityOf(x.c, { shape: x.shape as Shape, props: x.props as never, voicing: v.id, said: fill(v.template, x.args, x.c), args: x.args as never }, x.here, x.speaker);
         if (why.length) unclear++;
         process.stdout.write(`   ${r.ok ? 'ok ' : 'BAD'} ${said}${r.ok ? '' : `\n       ${r.why}\n       bones: ${(x.props as never[]).map((p) => canon(p)).join(' ')}`}${why.length ? `\n       unclear: ${why.join('; ')}` : ''}\n`);
       }

@@ -240,14 +240,15 @@ type Unargs = (a: Record<string, string>, comp: Composite, v: VCtx, lx: Lexicon)
 
 const confirmedSpans: Unargs = (a, comp, v, lx) => {
   const x = comp.props[0] as P<'CONFIRMS'>;
-  const by = srcFold(v.c, (a.src ?? '').replace(/ had( said)?$/, ''), x.by);
+  // (docs/53: whose line it was, said as theirs, "Coffin’s list"; or the legacy "Coffin had".)
+  const by = a.whose !== undefined ? srcR(v.c, a.whose) : srcFold(v.c, (a.src ?? '').replace(/ had( said)?$/, ''), x.by);
   return spansV(v.c, lx, a.spans as string, v, x.person).flatMap((sp) => sp.hours.map((h) => ({ k: 'CONFIRMS', person: x.person, place: sp.place, hour: h, ...(sp.company ? { company: sp.company } : {}), by }) as Prop));
 };
 
 const confirmedRest: Unargs = (a, comp, v, lx) => {
   const x = comp.props[0] as P<'CONFIRMS'>;
   const who = personV(v.c, a.him as string);
-  const by = srcFold(v.c, a.by as string, x.by);
+  const by = a.whose !== undefined ? srcR(v.c, a.whose) : srcFold(v.c, a.by as string, x.by);
   return spansV(v.c, lx, a.spans as string, v, who).flatMap((sp) => sp.hours.map((h) => ({ k: 'CONFIRMS', person: who, place: sp.place, hour: h, ...(sp.company ? { company: sp.company } : {}), by }) as Prop));
 };
 
@@ -739,7 +740,7 @@ function srcR(c: BoardCase, s: string): Src {
   const t = s.trim();
   if (/^the office$/i.test(t) || /^what I had$/i.test(t)) return { k: 'given' };
   if (/^what the room said$/i.test(t)) return { k: 'find' };
-  const m = /^(.+)’s (list|story|word|own evening)$/.exec(t);
+  const m = /^(.+)’s (list|story|word|own evening|account|own account)$/.exec(t);
   if (!m) throw new Error(`voiced: whose word is "${s}"?`);
   const who = personV(c, m[1] as string);
   return m[2] === 'list' ? { k: 'list', who } : m[2] === 'word' ? { k: 'admit', who } : { k: 'claim', who };
@@ -816,6 +817,7 @@ READ['PLACED-SET'] = (a, flags, comp, v, lx) => {
   }
   if (r.groups !== undefined) return (UNARGS['placed-set/recap'] as Unargs)(r, comp, v, lx);
   if (r.swear !== undefined) return (UNARGS['placed-set/swear'] as Unargs)(r, comp, v, lx);
+  if (a.keeper !== undefined) return runsV(r.runs as string, { k: 'list', who: a.keeper as Id }, v, lx);
   if (r.his !== undefined) return (UNARGS['placed-set/count'] as Unargs)(r, comp, v, lx);
   if (r.he !== undefined) return (UNARGS['placed-set/self'] as Unargs)(r, comp, v, lx);
   return (UNARGS['placed-set/self-plain'] as Unargs)(r, comp, v, lx);
@@ -848,8 +850,18 @@ READ.HANDOVER = (a, flags, comp, v, lx) => (flags.has('recap') ? handoverRecap(a
 
 READ['WINDOW-ALIVE'] = (a, _flags, _comp, v, lx) => windowV(a as Record<string, string>, v, lx);
 READ.STREET = (a, _flags, _comp, v) => streetV(a as Record<string, string>, v);
-READ.CONFIRMED = (a, _flags, comp, v, lx) => {
-  const r = a as Record<string, string>;
+READ.CONFIRMED = (a, flags, comp, v, lx) => {
+  const r = { ...(a as Record<string, string>) };
+  // docs/53: whose word it was, by name ({person}), stands in for the legacy name and pronoun slots.
+  const x = comp.props[0] as P<'CONFIRMS'>;
+  if (a.person !== undefined && r.pairs === undefined) {
+    if (a.person !== x.person) throw new Error('voiced: whose word was confirmed?');
+    const nm = nameOf(v.c, a.person as Id);
+    r.name ??= nm;
+    r.them ??= nm;
+    r.him ??= nm;
+  }
+  if (r.whose !== undefined && r.by === undefined && flags.has('rest')) r.by = '';
   if (r.pairs !== undefined) return (UNARGS['confirmed/list-many'] as Unargs)(r, comp, v, lx);
   if (r.watcher !== undefined && r.name !== undefined) return (UNARGS['confirmed/list-too'] as Unargs)({ ...r, him: r.him ?? r.name }, comp, v, lx);
   if (r.watcher !== undefined) return (UNARGS['confirmed/list'] as Unargs)({ ...r, them: r.them ?? r.him ?? '' }, comp, v, lx);
@@ -967,6 +979,8 @@ READ['COLLISION-PAIR'] = (a, flags, comp, v, lx) => {
   const x = comp.props[0] as P<'COLLIDES'>;
   const person = a.person as Id | undefined;
   // After a put, "a hole in her story" and "her second story had a list against it": whose is said; where, when and against what are the put's own, folded.
+  // (docs/53: where and when may be said, and then must be the put's own.)
+  if ((flags.has('hole') || flags.has('second-refused') || flags.has('still')) && ((a.place !== undefined && a.place !== x.place) || (a.hour !== undefined && a.hour !== x.hour))) throw new Error('voiced: not the put’s place or hour');
   if (flags.has('hole')) return [{ ...x, person: person as Id }];
   if (flags.has('second-refused')) return [{ ...x, person: person as Id }, ...comp.props.slice(1).filter((y) => y.k === 'REFUSE').map((y) => ({ ...(y as P<'REFUSE'>), person: person as Id }))];
   if (flags.has('still')) return [{ k: 'COLLIDES', person: person as Id, place: x.place, hour: a.hour as number, with: srcR(v.c, a.src as string) }];
@@ -1052,6 +1066,9 @@ READ.REACTION = (a, flags, comp, v, lx) => {
   const x = comp.props[0] as Prop;
   const who = (x as { person?: Id }).person;
   const mine = a.person === undefined || a.person === who;
+  // (docs/53: an hour said is the put's own.)
+  const hourOf = comp.props.map((y) => (y as { hour?: number }).hour).find((h) => h !== undefined);
+  if (a.hour !== undefined && hourOf !== undefined && a.hour !== hourOf && (flags.has('held-said') || flags.has('admit') || flags.has('refuse-said'))) throw new Error('voiced: not the put’s hour');
   if (flags.has('held-said')) return folded(comp, [[mine, 'whose put?']]);
   if (flags.has('admit')) {
     const ad = x as P<'ADMIT'>;
@@ -1201,7 +1218,7 @@ export function checkVoiced(comp: Composite & { said?: string; args?: Record<str
   if (r.ok) T.voicedOk++;
   else if (T.misses.length < 200) T.misses.push(`voiced ${v.c.id}: ${r.why}\n   said: ${comp.said}\n   bones: ${comp.props.map(canon).join(' ')}`);
   // docs/53: and clear, by the dial: every argument in its words, no pronoun for a place, no oblique tag.
-  const why = clarityOf(v.c, comp as Composite & { said?: string; args?: Args; voicing?: string }, v.here);
+  const why = clarityOf(v.c, comp as Composite & { said?: string; args?: Args; voicing?: string }, v.here, v.speaker);
   if (why.length === 0) T.clear++;
   else T.unclear.push({ id: comp.voicing ?? '', why, said: comp.said ?? '' });
 }

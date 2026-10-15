@@ -70,6 +70,9 @@ function hoursSaid(text: string, all: readonly number[]): Set<number> {
     const b = WORDS[m[2] as string] as number;
     for (let h = a; h <= b; h++) out.add(h);
   }
+  for (const m of text.toLowerCase().matchAll(/\bbetween (seven|eight|nine|ten|eleven|twelve)(?: o’clock)? and (seven|eight|nine|ten|eleven|twelve)\b/g)) {
+    for (let h = WORDS[m[1] as string] as number; h <= (WORDS[m[2] as string] as number); h++) out.add(h);
+  }
   // A span said as "stayed through ten" after "at eight": every hour from the first said to the last.
   if (said.length >= 2 && /\b(?:through|till|until|stayed|still there|remained)\b/i.test(text)) for (let h = Math.min(...said); h <= Math.max(...said); h++) out.add(h);
   if (TO_THE_END.test(text)) {
@@ -79,45 +82,85 @@ function hoursSaid(text: string, all: readonly number[]): Set<number> {
   return out;
 }
 
-/** What's unclear in one voiced composite, by docs/53's rule; empty when it's clear. */
-export function clarityOf(c: BoardCase, comp: Composite & { said?: string; args?: Args; voicing?: string }, here?: string): string[] {
+/**
+ * Whether a voicing is somebody's speech (their answer, their remark, what they said when it was put
+ * to them, the client in the office), not the detective's narration. A speaker may leave out the room
+ * they're standing in, or their own home, as anybody would ("Ten, Feeney, and nobody else"), and may
+ * say "here" for the room they're in; never "there" for a place the sentence hasn't named.
+ */
+export function isSpeech(v: { shape: string; manner?: string; template: string; requires?: string[] }): boolean {
+  const r = v.requires ?? [];
+  if (/“/.test(v.template) || v.manner) return true;
+  if (r.includes('thought') || r.includes('recap')) return false;
+  if (v.shape === 'CLAIM-SPAN' || v.shape === 'LIST-HOUR' || v.shape === 'REMARK') return true;
+  if (v.shape === 'HANDOVER') return r.includes('seen') || r.includes('coat');
+  if (v.shape === 'REACTION') return r.some((x) => /-said$|^admit$/.test(x));
+  return false;
+}
+
+/** The people a place is called after ("the Bledsoe flat", "Sokol’s back room"), and whether it's their home. */
+function ownersOf(c: BoardCase, id: string): { short: string; home: boolean }[] {
+  const name = placeName(c, id);
+  return c.people
+    .filter((p) => !p.object)
+    .filter((p) => {
+      const bare = p.short.replace(/^(?:Mrs\.|Mr\.|Miss|Dr\.) /, '');
+      return p.home === id || (bare.length > 2 && name.includes(bare));
+    })
+    .map((p) => ({ short: p.short, home: p.home === id }));
+}
+
+/**
+ * What's unclear in one voiced composite, by docs/53's rule; empty when it's clear. `speaker`: whose
+ * words they are, where they're speech (their own home may go unsaid, or be "home", "my room").
+ */
+export function clarityOf(c: BoardCase, comp: Composite & { said?: string; args?: Args; voicing?: string }, here?: string, speaker?: string): string[] {
   const v = comp.voicing ? voicingById(comp.voicing) : undefined;
   if (!v || comp.said === undefined) return [];
   const out: string[] = [];
   const said = stripMarks(comp.said);
-  const speech = /“/.test(v.template);
-  const narr = speech ? said.replace(/“[^”]*”/g, ' ') : said;
+  const speech = isSpeech(v);
+  // The narration: what's outside the quotation marks, or nothing, where all of it is somebody's speech.
+  const narr = /“/.test(v.template) ? said.replace(/“[^”]*”/g, ' ') : speech ? '' : said;
   const lower = said.toLowerCase();
+  const sents = sentencesOf(said.replace(/[“”]/g, ''));
   // Every place and hour its propositions name, said.
   const ph = comp.props.map(placesAndHours);
   const homes = new Set(comp.props.flatMap((p) => Object.values(p).filter((x): x is string => typeof x === 'string').map((id) => personOf(c, id)?.home).filter((x): x is string => !!x)));
-  // (Somebody's own words may leave out the place they're standing in, or their own home, as anybody
-  // would: "Ten, Feeney, and nobody else." The detective's may leave out the room I'm standing in,
-  // when they don't point at it: "The cushion by the radiator was empty.")
+  const own = speaker ? personOf(c, speaker)?.home : undefined;
   for (const id of new Set(ph.flatMap((x) => x.places))) {
-    if (speech || id === here) continue;
+    // (The detective may leave out the room I'm standing in, when it isn't pointed at: "The cushion by
+    // the radiator was empty." So may a speaker, and their own home.)
+    if (id === here) continue;
+    if (speech && id === own) continue;
     const name = placeName(c, id);
     const short = name.replace(/^the /, '').toLowerCase();
     if (lower.includes(short)) continue;
     if (homes.has(id) && /\bhome\b/.test(lower)) continue;
+    // A place called after somebody may be said as theirs: "the Bledsoe flat" is "Bledsoe’s"; and
+    // somebody's own rooms, with their name in the sentence, "his own rooms" (docs/53: the place, or
+    // who lives there).
+    const owners = ownersOf(c, id);
+    if (owners.some((o) => lower.includes(`${o.short.toLowerCase()}’s`))) continue;
+    if (owners.some((o) => o.home && sents.some((s) => s.includes(o.short) && /\b(?:his|her) own\b/i.test(s)))) continue;
     out.push(`the place not said: ${name}`);
   }
   const all = c.board.hours;
   const hs = hoursSaid(said, all);
-  // (What was under the coat is the answer to a question about the line before it, which said the hour.)
-  const coat = speech && comp.shape === 'HANDOVER' && /\bcoat-|\/coat\b|coat/.test(comp.voicing ?? '') && !/seen/.test(comp.voicing ?? '');
+  // (What was under the coat answers a question about the line before it, which said the hour.)
+  const coat = comp.shape === 'HANDOVER' && (v.requires ?? []).includes('coat');
   if (!coat) for (const h of new Set(ph.flatMap((x) => x.hours))) if (!hs.has(h)) out.push(`the hour not said: ${hourWord(h as Hour)}`);
   // ("Here was the trouble", "Here’s what I had" point at what follows, not at a place.)
   if (/\bhere\b/i.test(narr.replace(/\bHere(?: was| is|’s)\b/g, ''))) out.push('"here" for a place');
-  for (const s of sentencesOf(said.replace(/[“”]/g, ""))) {
+  for (const s of sents) {
     const m = POINTING_THERE.exec(s);
     if (!m) continue;
     const before = s.slice(0, m.index).toLowerCase();
-    // (A place the sentence has said, by name or by where in it: "in my medicine cupboard … was there".)
-    if (!c.places.some((p) => before.includes(placeName(c, p.id).replace(/^the /, '').toLowerCase())) && !/\bhome\b|\b(?:in|on|at|under|behind|by|over|into) (?:my|the|his|her|a|its)\b/.test(before)) out.push(`"there" with no place before it`);
+    // (A place the sentence has said, by name, by whose it is or by where in it: "in my medicine cupboard … was there".)
+    if (!c.places.some((p) => before.includes(placeName(c, p.id).replace(/^the /, '').toLowerCase())) && !/\bhome\b|\b(?:in|on|at|under|behind|by|over|into) (?:my|the|his|her|a|its)\b|[a-z]’s\b/.test(before)) out.push(`"there" with no place before it`);
   }
   if (/\bthe list\b/.test(narr) && !/’s list\b/.test(narr)) out.push('"the list", not whose');
-  for (const o of OBLIQUE) if (o.re.test(narr)) out.push(`oblique: ${o.name}`);
+  for (const o of OBLIQUE) if (o.re.test(narr || said)) out.push(`oblique: ${o.name}`);
   return out;
 }
 
