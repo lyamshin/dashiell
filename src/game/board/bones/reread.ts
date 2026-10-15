@@ -765,7 +765,7 @@ function placesAtR(c: BoardCase, lx: Lexicon, s: string, v: VCtx, who?: Id): { p
 
 READ['WINDOW-MEANS'] = (a, flags, comp) => {
   if (flags.has('when')) {
-    if (flags.has('hour')) return [{ k: 'WINDOW', hours: [a.hour as number] }];
+    if (flags.has('hour') && a.hours === undefined) return [{ k: 'WINDOW', hours: [a.hour as number] }];
     return [{ k: 'WINDOW', hours: a.hours as number[] }];
   }
   if (flags.has('means')) {
