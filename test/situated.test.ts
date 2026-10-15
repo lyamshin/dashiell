@@ -138,7 +138,9 @@ describe('docs/51: the same facts, situated on or off', () => {
       expect(r.log.length).toBe(o.log.length);
       r.log.forEach((p, i) => {
         const q = o.log[i] as Page;
-        const facts = (x: Page) => (x.board?.units ?? []).flatMap((u) => (u.kind === 'fact' ? [...u.carries, ...(u.bones ?? []).flatMap((b) => b.props).map((pr) => JSON.stringify(pr))] : []));
+        // (The lines in order, then the propositions in order: a join may move a unit's edge between them.)
+        const units = (x: Page) => (x.board?.units ?? []).flatMap((u) => (u.kind === 'fact' ? [u] : []));
+        const facts = (x: Page) => [...units(x).flatMap((u) => u.carries), ...units(x).flatMap((u) => (u.bones ?? []).flatMap((b) => b.props).map((pr) => JSON.stringify(pr)))];
         expect(facts(p), `p${i + 1}`).toEqual(facts(q));
         for (const f of ['job', 'q', 'told', 'hours', 'people', 'places', 'turn', 'callback'] as const) expect(p.board?.[f], `p${i + 1} ${f}`).toEqual(q.board?.[f]);
         expect(p.board?.thought?.refs, `p${i + 1}`).toEqual(q.board?.thought?.refs);

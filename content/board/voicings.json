@@ -435,6 +435,7 @@
 
   {"id": "admit-check/but", "shape": "ADMIT-CHECK", "requires": ["but"], "template": "{a}, but {b}"},
   {"id": "admit-check/but-2", "shape": "ADMIT-CHECK", "requires": ["but"], "template": "{a}; but {b}"},
+  {"id": "admit-check/but-3", "shape": "ADMIT-CHECK", "requires": ["but"], "template": "{a}, though {b}"},
 
   {"id": "pair/and", "shape": "PAIR", "requires": ["and"], "template": "{a}, and {b}"},
   {"id": "pair/semi", "shape": "PAIR", "requires": ["semi"], "template": "{a}; {b}"},
