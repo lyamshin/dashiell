@@ -460,6 +460,494 @@
 {"id":"sit-0321","flags":[],"action":"keep","batch":1}
 {"id":"sit-0327","flags":[],"action":"keep","batch":1}
 {"id":"sit-0333","flags":[],"action":"keep","batch":1}
+{"id":"sit-1271","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It wasn’t much to go on, but I’ve gone a long way on less.","text":"A reason like that wasn’t much to go on, but I’ve gone a long way on less."}
+{"id":"sit-1289","flags":[],"action":"keep","batch":2}
+{"id":"sit-1305","flags":[],"action":"keep","batch":2}
+{"id":"sit-1321","flags":[],"action":"keep","batch":2}
+{"id":"sit-1337","flags":[],"action":"keep","batch":2}
+{"id":"sit-1281","flags":[],"action":"keep","batch":2}
+{"id":"sit-1299","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"Whatever I had about {them} so far, I had from the outside. I wanted it from the inside, hour by hour.","text":"Whatever I knew about {them} so far came from other people. I wanted the evening from the inside, hour by hour."}
+{"id":"sit-1315","flags":[],"action":"keep","batch":2}
+{"id":"sit-1331","flags":[],"action":"keep","batch":2}
+{"id":"sit-1277","flags":[],"action":"keep","batch":2}
+{"id":"sit-1295","flags":[],"action":"keep","batch":2}
+{"id":"sit-1311","flags":[],"action":"keep","batch":2}
+{"id":"sit-1327","flags":[],"action":"keep","batch":2}
+{"id":"sit-1275","flags":[],"action":"keep","batch":2}
+{"id":"sit-1293","flags":[],"action":"keep","batch":2}
+{"id":"sit-1309","flags":[],"action":"keep","batch":2}
+{"id":"sit-1325","flags":[],"action":"keep","batch":2}
+{"id":"sit-1341","flags":[],"action":"keep","batch":2}
+{"id":"sit-1283","flags":[],"action":"keep","batch":2}
+{"id":"sit-1301","flags":[],"action":"keep","batch":2}
+{"id":"sit-1317","flags":[],"action":"keep","batch":2}
+{"id":"sit-1333","flags":[],"action":"keep","batch":2}
+{"id":"sit-1282","flags":[],"action":"keep","batch":2}
+{"id":"sit-1300","flags":[],"action":"keep","batch":2}
+{"id":"sit-1316","flags":[],"action":"keep","batch":2}
+{"id":"sit-1332","flags":[],"action":"keep","batch":2}
+{"id":"sit-1285","flags":[],"action":"keep","batch":2}
+{"id":"sit-1269","flags":[],"action":"keep","batch":2}
+{"id":"sit-1287","flags":[],"action":"keep","batch":2}
+{"id":"sit-1303","flags":[],"action":"keep","batch":2}
+{"id":"sit-1319","flags":[],"action":"keep","batch":2}
+{"id":"sit-1335","flags":[],"action":"keep","batch":2}
+{"id":"sit-1274","flags":[],"action":"keep","batch":2}
+{"id":"sit-1292","flags":[],"action":"keep","batch":2}
+{"id":"sit-1308","flags":[],"action":"keep","batch":2}
+{"id":"sit-1324","flags":[],"action":"keep","batch":2}
+{"id":"sit-1340","flags":[],"action":"keep","batch":2}
+{"id":"sit-1279","flags":[],"action":"keep","batch":2}
+{"id":"sit-1297","flags":[],"action":"keep","batch":2}
+{"id":"sit-1313","flags":[],"action":"keep","batch":2}
+{"id":"sit-1329","flags":[],"action":"keep","batch":2}
+{"id":"sit-1268","flags":[],"action":"keep","batch":2}
+{"id":"sit-1286","flags":[],"action":"keep","batch":2}
+{"id":"sit-1302","flags":[],"action":"keep","batch":2}
+{"id":"sit-1318","flags":[],"action":"keep","batch":2}
+{"id":"sit-1334","flags":[],"action":"keep","batch":2}
+{"id":"sit-1273","flags":[],"action":"keep","batch":2}
+{"id":"sit-1291","flags":[],"action":"keep","batch":2}
+{"id":"sit-1307","flags":[],"action":"keep","batch":2}
+{"id":"sit-1323","flags":[],"action":"keep","batch":2}
+{"id":"sit-1339","flags":[],"action":"keep","batch":2}
+{"id":"sit-1276","flags":[],"action":"keep","batch":2}
+{"id":"sit-1294","flags":[],"action":"keep","batch":2}
+{"id":"sit-1310","flags":[],"action":"keep","batch":2}
+{"id":"sit-1326","flags":[],"action":"keep","batch":2}
+{"id":"sit-1270","flags":[],"action":"keep","batch":2}
+{"id":"sit-1288","flags":[],"action":"keep","batch":2}
+{"id":"sit-1304","flags":[],"action":"keep","batch":2}
+{"id":"sit-1336","flags":[],"action":"keep","batch":2}
+{"id":"sit-1272","flags":[],"action":"keep","batch":2}
+{"id":"sit-1290","flags":[],"action":"keep","batch":2}
+{"id":"sit-1306","flags":[],"action":"keep","batch":2}
+{"id":"sit-1322","flags":[],"action":"keep","batch":2}
+{"id":"sit-1338","flags":[],"action":"keep","batch":2}
+{"id":"sit-1278","flags":[],"action":"keep","batch":2}
+{"id":"sit-1296","flags":[],"action":"keep","batch":2}
+{"id":"sit-1312","flags":[],"action":"keep","batch":2}
+{"id":"sit-1328","flags":[],"action":"keep","batch":2}
+{"id":"sit-1280","flags":["place"],"action":"rewrite","batch":2,"before":"Nobody kept the door here, so nobody was going to stop me.","text":"Nobody kept the door of the place, so nobody was going to stop me."}
+{"id":"sit-1298","flags":[],"action":"keep","batch":2}
+{"id":"sit-1314","flags":[],"action":"keep","batch":2}
+{"id":"sit-1330","flags":[],"action":"keep","batch":2}
+{"id":"sit-1284","flags":["tag"],"action":"rewrite","batch":2,"before":"Nobody keeps a place like this, so I kept my own counsel and went over to {them}.","text":"Nobody keeps the door of a place like this, so I didn’t wait for anybody’s say-so and went over to {them}."}
+{"id":"sit-2697","flags":[],"action":"keep","batch":2}
+{"id":"sit-2699","flags":[],"action":"keep","batch":2}
+{"id":"sit-2701","flags":[],"action":"keep","batch":2}
+{"id":"sit-2703","flags":[],"action":"keep","batch":2}
+{"id":"sit-2705","flags":[],"action":"keep","batch":2}
+{"id":"sit-2707","flags":["pronoun","compressed"],"action":"rewrite","batch":2,"before":"Best to come at it cold, with nothing in front of it.","text":"Best to come at the evening cold, as if I’d heard nothing about it."}
+{"id":"sit-2709","flags":[],"action":"keep","batch":2}
+{"id":"sit-2711","flags":[],"action":"keep","batch":2}
+{"id":"sit-2713","flags":[],"action":"keep","batch":2}
+{"id":"sit-2715","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It was a question for {them} now, and only {them}.","text":"The question belonged to {them} now, and only to {them}."}
+{"id":"sit-2717","flags":[],"action":"keep","batch":2}
+{"id":"sit-2696","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I went to hear it from the other side, and to give {them} nothing to steer by.","text":"I went to hear the story from the other side, and to give {them} nothing to steer by."}
+{"id":"sit-2698","flags":[],"action":"keep","batch":2}
+{"id":"sit-2700","flags":[],"action":"keep","batch":2}
+{"id":"sit-2702","flags":[],"action":"keep","batch":2}
+{"id":"sit-2704","flags":["pronoun"],"action":"rewrite","batch":2,"before":"The trick was to come at it like any evening, as though I’d heard nothing at all.","text":"The trick was to treat the evening like any other, as though I’d heard nothing at all."}
+{"id":"sit-2706","flags":[],"action":"keep","batch":2}
+{"id":"sit-2708","flags":[],"action":"keep","batch":2}
+{"id":"sit-2710","flags":[],"action":"keep","batch":2}
+{"id":"sit-2712","flags":[],"action":"keep","batch":2}
+{"id":"sit-2714","flags":[],"action":"keep","batch":2}
+{"id":"sit-2716","flags":[],"action":"keep","batch":2}
+{"id":"sit-0130","flags":[],"action":"keep","batch":2}
+{"id":"sit-0157","flags":[],"action":"keep","batch":2}
+{"id":"sit-0184","flags":[],"action":"keep","batch":2}
+{"id":"sit-0211","flags":[],"action":"keep","batch":2}
+{"id":"sit-0132","flags":[],"action":"keep","batch":2}
+{"id":"sit-0159","flags":[],"action":"keep","batch":2}
+{"id":"sit-0186","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"Behind the bar a glance came my way and went back to the glasses, which in that trade is a welcome. I meant to get my asking done before the place closed on it.","text":"Behind the bar a glance came my way and went back to the glasses, which in that trade is a welcome. I meant to get my asking done before closing time."}
+{"id":"sit-0213","flags":[],"action":"keep","batch":2}
+{"id":"sit-0125","flags":[],"action":"keep","batch":2}
+{"id":"sit-0152","flags":[],"action":"keep","batch":2}
+{"id":"sit-0179","flags":[],"action":"keep","batch":2}
+{"id":"sit-0206","flags":[],"action":"keep","batch":2}
+{"id":"sit-0133","flags":[],"action":"keep","batch":2}
+{"id":"sit-0160","flags":[],"action":"keep","batch":2}
+{"id":"sit-0187","flags":[],"action":"keep","batch":2}
+{"id":"sit-0214","flags":["place"],"action":"rewrite","batch":2,"before":"Nobody in here looked twice at me, which suited me. I had a few looks of my own to take.","text":"Nobody in the room looked twice at me, which suited me. I had a few looks of my own to take."}
+{"id":"sit-0134","flags":[],"action":"keep","batch":2}
+{"id":"sit-0161","flags":[],"action":"keep","batch":2}
+{"id":"sit-0188","flags":[],"action":"keep","batch":2}
+{"id":"sit-0215","flags":[],"action":"keep","batch":2}
+{"id":"sit-0135","flags":[],"action":"keep","batch":2}
+{"id":"sit-0162","flags":[],"action":"keep","batch":2}
+{"id":"sit-0189","flags":[],"action":"keep","batch":2}
+{"id":"sit-0216","flags":[],"action":"keep","batch":2}
+{"id":"sit-0119","flags":[],"action":"keep","batch":2}
+{"id":"sit-0146","flags":[],"action":"keep","batch":2}
+{"id":"sit-0173","flags":[],"action":"keep","batch":2}
+{"id":"sit-0200","flags":[],"action":"keep","batch":2}
+{"id":"sit-0227","flags":[],"action":"keep","batch":2}
+{"id":"sit-0127","flags":[],"action":"keep","batch":2}
+{"id":"sit-0154","flags":[],"action":"keep","batch":2}
+{"id":"sit-0181","flags":[],"action":"keep","batch":2}
+{"id":"sit-0208","flags":[],"action":"keep","batch":2}
+{"id":"sit-0126","flags":[],"action":"keep","batch":2}
+{"id":"sit-0153","flags":[],"action":"keep","batch":2}
+{"id":"sit-0180","flags":[],"action":"keep","batch":2}
+{"id":"sit-0207","flags":[],"action":"keep","batch":2}
+{"id":"sit-0131","flags":[],"action":"keep","batch":2}
+{"id":"sit-0158","flags":["place"],"action":"rewrite","batch":2,"before":"Nobody here was in a hurry, so I didn’t hurry either.","text":"Nobody at the tables was in a hurry, so I didn’t hurry either."}
+{"id":"sit-0185","flags":[],"action":"keep","batch":2}
+{"id":"sit-0212","flags":["compressed"],"action":"rewrite","batch":2,"before":"A spoon rang on a saucer somewhere at the back. I let it stand for a bell and began.","text":"A spoon rang on a saucer somewhere at the back, like the bell for the first round, and I got started."}
+{"id":"sit-0118","flags":[],"action":"keep","batch":2}
+{"id":"sit-0172","flags":[],"action":"keep","batch":2}
+{"id":"sit-0199","flags":[],"action":"keep","batch":2}
+{"id":"sit-0226","flags":[],"action":"keep","batch":2}
+{"id":"sit-0123","flags":[],"action":"keep","batch":2}
+{"id":"sit-0150","flags":[],"action":"keep","batch":2}
+{"id":"sit-0177","flags":[],"action":"keep","batch":2}
+{"id":"sit-0204","flags":[],"action":"keep","batch":2}
+{"id":"sit-0120","flags":[],"action":"keep","batch":2}
+{"id":"sit-0147","flags":[],"action":"keep","batch":2}
+{"id":"sit-0174","flags":[],"action":"keep","batch":2}
+{"id":"sit-0201","flags":[],"action":"keep","batch":2}
+{"id":"sit-0228","flags":[],"action":"keep","batch":2}
+{"id":"sit-0138","flags":[],"action":"keep","batch":2}
+{"id":"sit-0165","flags":[],"action":"keep","batch":2}
+{"id":"sit-0192","flags":[],"action":"keep","batch":2}
+{"id":"sit-0219","flags":[],"action":"keep","batch":2}
+{"id":"sit-0142","flags":[],"action":"keep","batch":2}
+{"id":"sit-0169","flags":[],"action":"keep","batch":2}
+{"id":"sit-0196","flags":[],"action":"keep","batch":2}
+{"id":"sit-0223","flags":[],"action":"keep","batch":2}
+{"id":"sit-0136","flags":[],"action":"keep","batch":2}
+{"id":"sit-0163","flags":[],"action":"keep","batch":2}
+{"id":"sit-0190","flags":[],"action":"keep","batch":2}
+{"id":"sit-0217","flags":[],"action":"keep","batch":2}
+{"id":"sit-0140","flags":[],"action":"keep","batch":2}
+{"id":"sit-0167","flags":[],"action":"keep","batch":2}
+{"id":"sit-0194","flags":[],"action":"keep","batch":2}
+{"id":"sit-0221","flags":["place"],"action":"rewrite","batch":2,"before":"I went in quietly and stayed quiet. Nothing here needed my voice yet.","text":"I went in quietly and stayed quiet. Nothing in the room needed my voice yet."}
+{"id":"sit-0139","flags":[],"action":"keep","batch":2}
+{"id":"sit-0166","flags":[],"action":"keep","batch":2}
+{"id":"sit-0193","flags":[],"action":"keep","batch":2}
+{"id":"sit-0220","flags":[],"action":"keep","batch":2}
+{"id":"sit-0141","flags":[],"action":"keep","batch":2}
+{"id":"sit-0168","flags":[],"action":"keep","batch":2}
+{"id":"sit-0195","flags":[],"action":"keep","batch":2}
+{"id":"sit-0222","flags":[],"action":"keep","batch":2}
+{"id":"sit-0128","flags":[],"action":"keep","batch":2}
+{"id":"sit-0155","flags":[],"action":"keep","batch":2}
+{"id":"sit-0182","flags":[],"action":"keep","batch":2}
+{"id":"sit-0209","flags":[],"action":"keep","batch":2}
+{"id":"sit-0124","flags":[],"action":"keep","batch":2}
+{"id":"sit-0178","flags":[],"action":"keep","batch":2}
+{"id":"sit-0205","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It smelled of peanuts and old velvet, like every theater I’ve ever been asked to leave. I went in anyway.","text":"The place smelled of peanuts and old velvet, like every theater I’ve ever been asked to leave. I went in anyway."}
+{"id":"sit-0129","flags":[],"action":"keep","batch":2}
+{"id":"sit-0156","flags":[],"action":"keep","batch":2}
+{"id":"sit-0183","flags":[],"action":"keep","batch":2}
+{"id":"sit-0210","flags":[],"action":"keep","batch":2}
+{"id":"sit-0121","flags":[],"action":"keep","batch":2}
+{"id":"sit-0148","flags":[],"action":"keep","batch":2}
+{"id":"sit-0175","flags":[],"action":"keep","batch":2}
+{"id":"sit-0202","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I stood just inside a while, getting the lay of it, and then I went to work.","text":"I stood just inside a while, getting the lay of the place, and then I went to work."}
+{"id":"sit-0229","flags":[],"action":"keep","batch":2}
+{"id":"sit-0137","flags":[],"action":"keep","batch":2}
+{"id":"sit-0164","flags":[],"action":"keep","batch":2}
+{"id":"sit-0191","flags":[],"action":"keep","batch":2}
+{"id":"sit-0218","flags":[],"action":"keep","batch":2}
+{"id":"sit-0122","flags":[],"action":"keep","batch":2}
+{"id":"sit-0149","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I found a spot against the wall where I could see the whole of it, and began there.","text":"I found a spot against the wall with the whole room in front of me, and began."}
+{"id":"sit-0176","flags":[],"action":"keep","batch":2}
+{"id":"sit-0203","flags":[],"action":"keep","batch":2}
+{"id":"sit-0144","flags":[],"action":"keep","batch":2}
+{"id":"sit-0171","flags":[],"action":"keep","batch":2}
+{"id":"sit-0198","flags":[],"action":"keep","batch":2}
+{"id":"sit-0225","flags":[],"action":"keep","batch":2}
+{"id":"sit-0143","flags":[],"action":"keep","batch":2}
+{"id":"sit-0170","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I took my hat off, because it was somebody’s place of work, and asked for a minute of it.","text":"I took my hat off, because people were working, and waited to be spared a minute."}
+{"id":"sit-0197","flags":["place"],"action":"rewrite","batch":2,"before":"The work here went on all night whether I came or not. I came, and tried to be quick about it.","text":"The night’s work went on whether I came or not. I came, and tried to be quick about it."}
+{"id":"sit-0224","flags":[],"action":"keep","batch":2}
+{"id":"sit-2531","flags":[],"action":"keep","batch":2}
+{"id":"sit-2546","flags":[],"action":"keep","batch":2}
+{"id":"sit-2561","flags":[],"action":"keep","batch":2}
+{"id":"sit-2576","flags":[],"action":"keep","batch":2}
+{"id":"sit-2532","flags":[],"action":"keep","batch":2}
+{"id":"sit-2547","flags":[],"action":"keep","batch":2}
+{"id":"sit-2562","flags":[],"action":"keep","batch":2}
+{"id":"sit-2533","flags":[],"action":"keep","batch":2}
+{"id":"sit-2548","flags":[],"action":"keep","batch":2}
+{"id":"sit-2563","flags":[],"action":"keep","batch":2}
+{"id":"sit-2535","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"A door like that sees everybody, coming and going.","text":"A club’s door sees everybody, coming in and going out."}
+{"id":"sit-2550","flags":[],"action":"keep","batch":2}
+{"id":"sit-2565","flags":[],"action":"keep","batch":2}
+{"id":"sit-2544","flags":[],"action":"keep","batch":2}
+{"id":"sit-2559","flags":[],"action":"keep","batch":2}
+{"id":"sit-2574","flags":[],"action":"keep","batch":2}
+{"id":"sit-2545","flags":[],"action":"keep","batch":2}
+{"id":"sit-2560","flags":[],"action":"keep","batch":2}
+{"id":"sit-2575","flags":[],"action":"keep","batch":2}
+{"id":"sit-2536","flags":[],"action":"keep","batch":2}
+{"id":"sit-2551","flags":[],"action":"keep","batch":2}
+{"id":"sit-2566","flags":[],"action":"keep","batch":2}
+{"id":"sit-2538","flags":[],"action":"keep","batch":2}
+{"id":"sit-2553","flags":[],"action":"keep","batch":2}
+{"id":"sit-2568","flags":[],"action":"keep","batch":2}
+{"id":"sit-2541","flags":[],"action":"keep","batch":2}
+{"id":"sit-2556","flags":[],"action":"keep","batch":2}
+{"id":"sit-2571","flags":[],"action":"keep","batch":2}
+{"id":"sit-2540","flags":[],"action":"keep","batch":2}
+{"id":"sit-2555","flags":[],"action":"keep","batch":2}
+{"id":"sit-2570","flags":[],"action":"keep","batch":2}
+{"id":"sit-2539","flags":[],"action":"keep","batch":2}
+{"id":"sit-2554","flags":[],"action":"keep","batch":2}
+{"id":"sit-2569","flags":[],"action":"keep","batch":2}
+{"id":"sit-2543","flags":[],"action":"keep","batch":2}
+{"id":"sit-2558","flags":[],"action":"keep","batch":2}
+{"id":"sit-2573","flags":[],"action":"keep","batch":2}
+{"id":"sit-2534","flags":[],"action":"keep","batch":2}
+{"id":"sit-2549","flags":[],"action":"keep","batch":2}
+{"id":"sit-2564","flags":[],"action":"keep","batch":2}
+{"id":"sit-2537","flags":[],"action":"keep","batch":2}
+{"id":"sit-2552","flags":[],"action":"keep","batch":2}
+{"id":"sit-2567","flags":[],"action":"keep","batch":2}
+{"id":"sit-2542","flags":[],"action":"keep","batch":2}
+{"id":"sit-2557","flags":[],"action":"keep","batch":2}
+{"id":"sit-2572","flags":[],"action":"keep","batch":2}
+{"id":"sit-1628","flags":[],"action":"keep","batch":2}
+{"id":"sit-1647","flags":[],"action":"keep","batch":2}
+{"id":"sit-1666","flags":[],"action":"keep","batch":2}
+{"id":"sit-1685","flags":[],"action":"keep","batch":2}
+{"id":"sit-1637","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"Reasons don’t show from across a room. I wanted to hear how all of it sat with {them}, in {their} own words.","text":"Reasons don’t show from across a room. I wanted to hear from {them} how the whole business sat, in {their} own words."}
+{"id":"sit-1656","flags":[],"action":"keep","batch":2}
+{"id":"sit-1675","flags":[],"action":"keep","batch":2}
+{"id":"sit-1623","flags":[],"action":"keep","batch":2}
+{"id":"sit-1642","flags":["tag"],"action":"rewrite","batch":2,"before":"A bar keeps its own counsel. I was hoping {they} wouldn’t.","text":"A bar is good at keeping secrets. I was hoping {they} would be worse at it."}
+{"id":"sit-1661","flags":[],"action":"keep","batch":2}
+{"id":"sit-1680","flags":[],"action":"keep","batch":2}
+{"id":"sit-1632","flags":[],"action":"keep","batch":2}
+{"id":"sit-1651","flags":[],"action":"keep","batch":2}
+{"id":"sit-1670","flags":["place"],"action":"rewrite","batch":2,"before":"I wasn’t there for the gin, whatever the room assumed.","text":"I hadn’t come for the gin, whatever the room assumed."}
+{"id":"sit-1689","flags":[],"action":"keep","batch":2}
+{"id":"sit-1639","flags":[],"action":"keep","batch":2}
+{"id":"sit-1658","flags":[],"action":"keep","batch":2}
+{"id":"sit-1677","flags":[],"action":"keep","batch":2}
+{"id":"sit-1636","flags":[],"action":"keep","batch":2}
+{"id":"sit-1655","flags":[],"action":"keep","batch":2}
+{"id":"sit-1674","flags":[],"action":"keep","batch":2}
+{"id":"sit-1633","flags":[],"action":"keep","batch":2}
+{"id":"sit-1652","flags":[],"action":"keep","batch":2}
+{"id":"sit-1671","flags":[],"action":"keep","batch":2}
+{"id":"sit-1690","flags":[],"action":"keep","batch":2}
+{"id":"sit-1624","flags":[],"action":"keep","batch":2}
+{"id":"sit-1643","flags":[],"action":"keep","batch":2}
+{"id":"sit-1662","flags":[],"action":"keep","batch":2}
+{"id":"sit-1681","flags":[],"action":"keep","batch":2}
+{"id":"sit-1626","flags":[],"action":"keep","batch":2}
+{"id":"sit-1645","flags":[],"action":"keep","batch":2}
+{"id":"sit-1664","flags":[],"action":"keep","batch":2}
+{"id":"sit-1683","flags":[],"action":"keep","batch":2}
+{"id":"sit-1629","flags":[],"action":"keep","batch":2}
+{"id":"sit-1648","flags":[],"action":"keep","batch":2}
+{"id":"sit-1667","flags":[],"action":"keep","batch":2}
+{"id":"sit-1686","flags":[],"action":"keep","batch":2}
+{"id":"sit-1622","flags":[],"action":"keep","batch":2}
+{"id":"sit-1641","flags":[],"action":"keep","batch":2}
+{"id":"sit-1660","flags":[],"action":"keep","batch":2}
+{"id":"sit-1679","flags":[],"action":"keep","batch":2}
+{"id":"sit-1631","flags":[],"action":"keep","batch":2}
+{"id":"sit-1650","flags":[],"action":"keep","batch":2}
+{"id":"sit-1669","flags":[],"action":"keep","batch":2}
+{"id":"sit-1688","flags":[],"action":"keep","batch":2}
+{"id":"sit-1635","flags":[],"action":"keep","batch":2}
+{"id":"sit-1654","flags":[],"action":"keep","batch":2}
+{"id":"sit-1673","flags":[],"action":"keep","batch":2}
+{"id":"sit-1630","flags":["translate"],"action":"rewrite","batch":2,"before":"A theater is good at keeping a straight face.","text":"Half the people in a theater are paid to keep a straight face. I needed an honest one for a few minutes."}
+{"id":"sit-1649","flags":[],"action":"keep","batch":2}
+{"id":"sit-1668","flags":[],"action":"keep","batch":2}
+{"id":"sit-1687","flags":[],"action":"keep","batch":2}
+{"id":"sit-1625","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I wanted to hear how {they} took to all of it, in {their} own voice, before anybody handed {them} something better to say.","text":"I wanted to hear how {they} felt about the whole business, in {their} own voice, before anybody handed {them} something better to say."}
+{"id":"sit-1644","flags":[],"action":"keep","batch":2}
+{"id":"sit-1663","flags":[],"action":"keep","batch":2}
+{"id":"sit-1682","flags":[],"action":"keep","batch":2}
+{"id":"sit-1627","flags":[],"action":"keep","batch":2}
+{"id":"sit-1646","flags":[],"action":"keep","batch":2}
+{"id":"sit-1665","flags":["pronoun"],"action":"rewrite","batch":2,"before":"Feelings spook easier than alibis, so I meant to take it gently.","text":"Feelings spook easier than alibis, so I meant to go gently."}
+{"id":"sit-1684","flags":[],"action":"keep","batch":2}
+{"id":"sit-1638","flags":[],"action":"keep","batch":2}
+{"id":"sit-1657","flags":[],"action":"keep","batch":2}
+{"id":"sit-1676","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It was the sort of room where people come to say things they wouldn’t say elsewhere.","text":"A room like this is where people come to say things they wouldn’t say anywhere else."}
+{"id":"sit-1640","flags":[],"action":"keep","batch":2}
+{"id":"sit-1659","flags":[],"action":"keep","batch":2}
+{"id":"sit-1678","flags":[],"action":"keep","batch":2}
+{"id":"sit-1634","flags":[],"action":"keep","batch":2}
+{"id":"sit-1653","flags":["pronoun"],"action":"rewrite","batch":2,"before":"Nobody had followed me in, and nobody looked likely to. It was as private as the night was going to get.","text":"Nobody had followed me in, and nobody looked likely to. The room was as private as the night was going to get."}
+{"id":"sit-1672","flags":[],"action":"keep","batch":2}
+{"id":"sit-1691","flags":[],"action":"keep","batch":2}
+{"id":"sit-2398","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"There was no sense letting a thing like that wait.","text":"There was no sense letting a difference like that wait."}
+{"id":"sit-2433","flags":[],"action":"keep","batch":2}
+{"id":"sit-2408","flags":[],"action":"keep","batch":2}
+{"id":"sit-2403","flags":[],"action":"keep","batch":2}
+{"id":"sit-2418","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I didn’t like doing it in a bar, with people around. I liked leaving it even less.","text":"I didn’t like raising a difference like that in a bar, with people around. I liked leaving it alone even less."}
+{"id":"sit-2391","flags":["pronoun"],"action":"rewrite","batch":2,"before":"I’d been carrying it since I heard it. It was time to hand it over.","text":"I’d been carrying that difference around since I first heard it. Now I meant to hand it over."}
+{"id":"sit-2426","flags":[],"action":"keep","batch":2}
+{"id":"sit-2400","flags":[],"action":"keep","batch":2}
+{"id":"sit-2397","flags":[],"action":"keep","batch":2}
+{"id":"sit-2432","flags":[],"action":"keep","batch":2}
+{"id":"sit-2410","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I didn’t want to do it in front of the room. The room didn’t give me much choice.","text":"I didn’t want to have it out in front of the whole room. The room didn’t give me much choice."}
+{"id":"sit-2404","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I wanted it straightened out face to face, and before the room got any louder.","text":"I wanted the difference straightened out face to face, and before the room got any louder."}
+{"id":"sit-2416","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I wanted {them} to hear it from me first, plainly, before it got round the room on its own.","text":"I wanted {them} to hear about the trouble from me first, plainly, before word of it got round the room on its own."}
+{"id":"sit-2421","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"There’s no gentle way to do this. I looked for one anyway, the whole way across the floor.","text":"There’s no gentle way to tell somebody their story doesn’t match. I looked for one anyway, the whole way across the floor."}
+{"id":"sit-2407","flags":[],"action":"keep","batch":2}
+{"id":"sit-2414","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I could have let it go until later. Later, in a club, means never.","text":"I could have let the matter wait until later. Later, in a club, means never."}
+{"id":"sit-2417","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It was {their} door, and I was about to make it awkward.","text":"I was on {their} own ground, and about to make the evening awkward for both of us."}
+{"id":"sit-2405","flags":[],"action":"keep","batch":2}
+{"id":"sit-2396","flags":[],"action":"keep","batch":2}
+{"id":"sit-2431","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"Home is where people feel safest, which makes it the worst place to tell them something like this.","text":"Home is where people feel safest, which makes it the worst place to bring them bad news about their own evening."}
+{"id":"sit-2395","flags":[],"action":"keep","batch":2}
+{"id":"sit-2430","flags":["place","ellipsis"],"action":"rewrite","batch":2,"before":"Better here than out on the street, where it carries.","text":"Better to say a thing like that at a table than out on the street, where a voice carries."}
+{"id":"sit-2402","flags":[],"action":"keep","batch":2}
+{"id":"sit-2409","flags":[],"action":"keep","batch":2}
+{"id":"sit-2420","flags":[],"action":"keep","batch":2}
+{"id":"sit-2411","flags":[],"action":"keep","batch":2}
+{"id":"sit-2419","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It wasn’t the sort of thing to say across a crowded room, so I didn’t plan to.","text":"A question like mine isn’t for calling across a crowded room, so I didn’t plan to."}
+{"id":"sit-2401","flags":["place"],"action":"rewrite","batch":2,"before":"There’s a way to say a hard thing politely. I’d been working on it all the way there.","text":"There’s a way to say a hard thing politely. I’d been working on it the whole walk over."}
+{"id":"sit-2390","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I kept it quiet, for the house’s sake.","text":"I kept my voice low, for the house’s sake."}
+{"id":"sit-2425","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"The hall was no place for it, but it was the place I had.","text":"The hall was no place for a talk like this, but it was the place I had."}
+{"id":"sit-2392","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"A house like this hears everything. It was going to hear this too.","text":"A house like this hears everything. It was going to hear what I had to say too."}
+{"id":"sit-2427","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I didn’t look forward to it. I seldom do.","text":"I didn’t look forward to this part of the job. I seldom do."}
+{"id":"sit-2415","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I had it ready word for word by the time I found {them}.","text":"I had what I meant to say ready, word for word, by the time I found {them}."}
+{"id":"sit-2389","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It would have been kinder to wait. It wouldn’t have been any easier.","text":"Waiting would have been kinder, but waiting never made a hard thing any easier to say."}
+{"id":"sit-2424","flags":[],"action":"keep","batch":2}
+{"id":"sit-2393","flags":[],"action":"keep","batch":2}
+{"id":"sit-2428","flags":[],"action":"keep","batch":2}
+{"id":"sit-2399","flags":[],"action":"keep","batch":2}
+{"id":"sit-2434","flags":[],"action":"keep","batch":2}
+{"id":"sit-2412","flags":[],"action":"keep","batch":2}
+{"id":"sit-2394","flags":[],"action":"keep","batch":2}
+{"id":"sit-2429","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It would have been easier somewhere else. Most things are.","text":"Hard news would have been easier to give anywhere but a theater. Most things are."}
+{"id":"sit-2413","flags":[],"action":"keep","batch":2}
+{"id":"sit-2406","flags":[],"action":"keep","batch":2}
+{"id":"sit-2388","flags":["pronoun"],"action":"rewrite","batch":2,"before":"Nobody was watching. That would make it easier on both of us.","text":"Nobody was watching, and a hard talk goes easier on both sides without an audience."}
+{"id":"sit-2423","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It was a short thing to say and a long thing to answer. I meant to give it time.","text":"What I had to put was short to say and long to answer. I meant to give the answer time."}
+{"id":"sit-2387","flags":[],"action":"keep","batch":2}
+{"id":"sit-2422","flags":[],"action":"keep","batch":2}
+{"id":"sit-1429","flags":[],"action":"keep","batch":2}
+{"id":"sit-1455","flags":[],"action":"keep","batch":2}
+{"id":"sit-1481","flags":["pronoun"],"action":"rewrite","batch":2,"before":"Paper doesn’t argue back. That’s what I like about it, and what I don’t.","text":"Paper doesn’t argue back, which is what I like about paper, and what I don’t."}
+{"id":"sit-1426","flags":[],"action":"keep","batch":2}
+{"id":"sit-1452","flags":[],"action":"keep","batch":2}
+{"id":"sit-1478","flags":[],"action":"keep","batch":2}
+{"id":"sit-1417","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I wanted it down on paper before the night could change its mind.","text":"I wanted my answer down on paper before the night could change its mind."}
+{"id":"sit-1443","flags":[],"action":"keep","batch":2}
+{"id":"sit-1469","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"Somebody has to say it in writing. Tonight that was going to be me.","text":"Somebody has to put the answer in writing. Tonight that somebody was going to be me."}
+{"id":"sit-1431","flags":[],"action":"keep","batch":2}
+{"id":"sit-1457","flags":[],"action":"keep","batch":2}
+{"id":"sit-1433","flags":[],"action":"keep","batch":2}
+{"id":"sit-1459","flags":[],"action":"keep","batch":2}
+{"id":"sit-1428","flags":[],"action":"keep","batch":2}
+{"id":"sit-1454","flags":[],"action":"keep","batch":2}
+{"id":"sit-1480","flags":[],"action":"keep","batch":2}
+{"id":"sit-1412","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It wasn’t my flat, so I meant to be quick about it.","text":"The place wasn’t mine, so I meant to be quick with the form."}
+{"id":"sit-1438","flags":[],"action":"keep","batch":2}
+{"id":"sit-1464","flags":[],"action":"keep","batch":2}
+{"id":"sit-1430","flags":[],"action":"keep","batch":2}
+{"id":"sit-1456","flags":[],"action":"keep","batch":2}
+{"id":"sit-1419","flags":[],"action":"keep","batch":2}
+{"id":"sit-1445","flags":[],"action":"keep","batch":2}
+{"id":"sit-1471","flags":[],"action":"keep","batch":2}
+{"id":"sit-1420","flags":[],"action":"keep","batch":2}
+{"id":"sit-1446","flags":[],"action":"keep","batch":2}
+{"id":"sit-1472","flags":[],"action":"keep","batch":2}
+{"id":"sit-1421","flags":[],"action":"keep","batch":2}
+{"id":"sit-1447","flags":[],"action":"keep","batch":2}
+{"id":"sit-1473","flags":[],"action":"keep","batch":2}
+{"id":"sit-1422","flags":[],"action":"keep","batch":2}
+{"id":"sit-1448","flags":[],"action":"keep","batch":2}
+{"id":"sit-1474","flags":[],"action":"keep","batch":2}
+{"id":"sit-1415","flags":[],"action":"keep","batch":2}
+{"id":"sit-1441","flags":[],"action":"keep","batch":2}
+{"id":"sit-1467","flags":[],"action":"keep","batch":2}
+{"id":"sit-1423","flags":["pronoun"],"action":"rewrite","batch":2,"before":"This was where the trouble started. It seemed the right place to finish it.","text":"The trouble had started between these four walls, so they seemed the right place to finish it."}
+{"id":"sit-1449","flags":[],"action":"keep","batch":2}
+{"id":"sit-1475","flags":[],"action":"keep","batch":2}
+{"id":"sit-1435","flags":["place"],"action":"rewrite","batch":2,"before":"Whoever lived here wanted an answer, in writing, signed. That much I could give, and I meant to give it carefully.","text":"Whoever lived in the place wanted an answer, in writing, signed. That much I could give, and I meant to give it carefully."}
+{"id":"sit-1461","flags":[],"action":"keep","batch":2}
+{"id":"sit-1424","flags":[],"action":"keep","batch":2}
+{"id":"sit-1450","flags":[],"action":"keep","batch":2}
+{"id":"sit-1476","flags":[],"action":"keep","batch":2}
+{"id":"sit-1427","flags":[],"action":"keep","batch":2}
+{"id":"sit-1453","flags":[],"action":"keep","batch":2}
+{"id":"sit-1479","flags":["place","pronoun"],"action":"rewrite","batch":2,"before":"It seemed right to set it down here, where it happened, and nowhere easier.","text":"The room where the death happened was the right place for the form. Anywhere easier would have felt wrong."}
+{"id":"sit-1437","flags":["place"],"action":"rewrite","batch":2,"before":"Somebody had died here, and now somebody had to put it on paper. I meant to do it slowly, and without looking away.","text":"A life had ended in the room where I sat, and now somebody had to put the death on paper. I meant to do it slowly, and without looking away."}
+{"id":"sit-1463","flags":[],"action":"keep","batch":2}
+{"id":"sit-1432","flags":["place"],"action":"rewrite","batch":2,"before":"Whatever I wrote here would follow somebody for the rest of their life. I read each question twice.","text":"Whatever I wrote on the form would follow somebody for the rest of their life. I read each question twice."}
+{"id":"sit-1458","flags":[],"action":"keep","batch":2}
+{"id":"sit-1425","flags":[],"action":"keep","batch":2}
+{"id":"sit-1451","flags":[],"action":"keep","batch":2}
+{"id":"sit-1477","flags":[],"action":"keep","batch":2}
+{"id":"sit-1416","flags":[],"action":"keep","batch":2}
+{"id":"sit-1442","flags":[],"action":"keep","batch":2}
+{"id":"sit-1468","flags":[],"action":"keep","batch":2}
+{"id":"sit-1418","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I wanted it set down once, start to finish, in my own hand.","text":"I wanted the whole night set down once, start to finish, in my own hand."}
+{"id":"sit-1444","flags":[],"action":"keep","batch":2}
+{"id":"sit-1470","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"The night was running down, and so was I. Better to write it now, while I could still spell.","text":"The night was running down, and so was I. Better to fill in the form now, while I could still spell."}
+{"id":"sit-1414","flags":[],"action":"keep","batch":2}
+{"id":"sit-1440","flags":[],"action":"keep","batch":2}
+{"id":"sit-1466","flags":[],"action":"keep","batch":2}
+{"id":"sit-1434","flags":[],"action":"keep","batch":2}
+{"id":"sit-1460","flags":[],"action":"keep","batch":2}
+{"id":"sit-1413","flags":[],"action":"keep","batch":2}
+{"id":"sit-1439","flags":[],"action":"keep","batch":2}
+{"id":"sit-1465","flags":[],"action":"keep","batch":2}
+{"id":"sit-1436","flags":[],"action":"keep","batch":2}
+{"id":"sit-1462","flags":[],"action":"keep","batch":2}
+{"id":"sit-2338","flags":[],"action":"keep","batch":2}
+{"id":"sit-2341","flags":[],"action":"keep","batch":2}
+{"id":"sit-2344","flags":[],"action":"keep","batch":2}
+{"id":"sit-2347","flags":[],"action":"keep","batch":2}
+{"id":"sit-2350","flags":["place"],"action":"rewrite","batch":2,"before":"From in here, the street sounded a long way off.","text":"From inside the room, the street sounded a long way off."}
+{"id":"sit-2353","flags":[],"action":"keep","batch":2}
+{"id":"sit-2356","flags":[],"action":"keep","batch":2}
+{"id":"sit-2359","flags":[],"action":"keep","batch":2}
+{"id":"sit-2362","flags":["ellipsis"],"action":"rewrite","batch":2,"before":"I wanted to see it for myself, with my own eyes and nobody’s account in between.","text":"I wanted to see the room for myself, with my own eyes and nobody’s account in between."}
+{"id":"sit-2365","flags":[],"action":"keep","batch":2}
+{"id":"sit-2368","flags":[],"action":"keep","batch":2}
+{"id":"sit-2371","flags":[],"action":"keep","batch":2}
+{"id":"sit-2374","flags":[],"action":"keep","batch":2}
+{"id":"sit-2377","flags":[],"action":"keep","batch":2}
+{"id":"sit-2380","flags":[],"action":"keep","batch":2}
+{"id":"sit-2383","flags":[],"action":"keep","batch":2}
+{"id":"sit-2386","flags":[],"action":"keep","batch":2}
+{"id":"sit-2340","flags":[],"action":"keep","batch":2}
+{"id":"sit-2343","flags":[],"action":"keep","batch":2}
+{"id":"sit-2346","flags":[],"action":"keep","batch":2}
+{"id":"sit-2349","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It isn’t pleasant work, and it isn’t quick. I’ve never found a way to make it either.","text":"Going over a room like this isn’t pleasant work, and it isn’t quick. I’ve never found a way to make it either."}
+{"id":"sit-2352","flags":[],"action":"keep","batch":2}
+{"id":"sit-2355","flags":[],"action":"keep","batch":2}
+{"id":"sit-2358","flags":[],"action":"keep","batch":2}
+{"id":"sit-2361","flags":[],"action":"keep","batch":2}
+{"id":"sit-2364","flags":["place"],"action":"rewrite","batch":2,"before":"Whatever I found here, I’d be carrying it round the rest of the night. I wanted to be sure I carried the right things.","text":"Whatever I found in the room, I’d be carrying round the rest of the night. I wanted to be sure I carried the right things."}
+{"id":"sit-2367","flags":[],"action":"keep","batch":2}
+{"id":"sit-2370","flags":[],"action":"keep","batch":2}
+{"id":"sit-2373","flags":[],"action":"keep","batch":2}
+{"id":"sit-2376","flags":[],"action":"keep","batch":2}
+{"id":"sit-2379","flags":[],"action":"keep","batch":2}
+{"id":"sit-2382","flags":["place"],"action":"rewrite","batch":2,"before":"If there was anything here to find, it had been here all along, waiting for somebody patient enough to notice.","text":"If there was anything in the room to find, it had been waiting all along for somebody patient enough to notice."}
+{"id":"sit-2385","flags":[],"action":"keep","batch":2}
+{"id":"sit-2339","flags":["pronoun"],"action":"rewrite","batch":2,"before":"It never gets any easier, and I’d think less of myself if it did.","text":"Rooms where somebody died never get any easier, and I’d think less of myself if they did."}
+{"id":"sit-2342","flags":[],"action":"keep","batch":2}
+{"id":"sit-2345","flags":["place"],"action":"rewrite","batch":2,"before":"The quiet in here had weight to it.","text":"The quiet in the room had weight to it."}
+{"id":"sit-2348","flags":["place"],"action":"rewrite","batch":2,"before":"I wanted to miss nothing in here, and to leave the place as I found it.","text":"I wanted to miss nothing in the room, and to leave it as I found it."}
+{"id":"sit-2351","flags":[],"action":"keep","batch":2}
+{"id":"sit-2354","flags":[],"action":"keep","batch":2}
+{"id":"sit-2357","flags":[],"action":"keep","batch":2}
+{"id":"sit-2360","flags":[],"action":"keep","batch":2}
+{"id":"sit-2363","flags":["place"],"action":"rewrite","batch":2,"before":"There’d been a life here until recently, and the room hadn’t caught up with the news.","text":"There’d been a life in the place until recently, and the room hadn’t caught up with the news."}
+{"id":"sit-2366","flags":[],"action":"keep","batch":2}
+{"id":"sit-2369","flags":[],"action":"keep","batch":2}
+{"id":"sit-2372","flags":[],"action":"keep","batch":2}
+{"id":"sit-2375","flags":[],"action":"keep","batch":2}
+{"id":"sit-2378","flags":[],"action":"keep","batch":2}
+{"id":"sit-2381","flags":["place"],"action":"rewrite","batch":2,"before":"Whoever had lived here had kept the place a certain way. I wanted to learn that way before I went looking for what broke it.","text":"Whoever had lived in the place had kept it a certain way. I wanted to learn that way before I went looking for what broke it."}
+{"id":"sit-2384","flags":["place","pronoun"],"action":"rewrite","batch":2,"before":"The night outside went on as usual. In here it had stopped some time ago.","text":"The night outside went on as usual. In the room, time had stopped a while ago."}
 {"id":"sit-2975","flags":["place"],"action":"rewrite","batch":1,"before":"There was nothing more for me here, and something still waiting there.","text":"There was nothing more for me in this theater, and something still waiting at the other place."}
 {"id":"sit-2976","flags":[],"action":"keep","batch":1}
 {"id":"sit-2977","flags":[],"action":"keep","batch":1}
