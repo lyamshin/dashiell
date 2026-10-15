@@ -32,7 +32,8 @@ describe('round 4: the reasoning lines (docs/55 1)', () => {
   it('after a watcher’s list, the thought says who had gone out by the hour that mattered', () => {
     const run = night(11, 0, 'lost-item', RAW11.slice(0, 4));
     const page = prose(run.log[run.log.length - 1] as Page);
-    expect(page).toMatch(/Rafferty and\s+Moretti at Kowalski’s and nobody else; Steinbach and Bellucci had been there\s+at nine and gone out/);
+    expect(page).toMatch(/at ten, when the watch went, only Rafferty and\s+Moretti were at Kowalski’s[;.] Steinbach and Bellucci had been (?:there|in)\s+at nine and gone/);
+    expect(page).not.toMatch(/hour that mattered|nobody else|’s list/);
     expect(page).not.toMatch(/it said Rafferty was at Kowalski’s at ten/);
   });
 

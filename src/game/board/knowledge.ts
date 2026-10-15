@@ -113,11 +113,11 @@ export function listText(c: BoardCase, l: WatchList, h: Hour): string {
   const es = l.entries[h] ?? [];
   const where = placeName(c, l.place);
   if (shutAt(c, l.place, h)) return `${nameOf(c, l.watcher)}: ${where} was shut at ${oclock(h)}.`;
-  if (es.length === 0) return `${nameOf(c, l.watcher)}: nobody at ${where} at ${oclock(h)}.`;
+  if (es.length === 0) return `${nameOf(c, l.watcher)}: at ${oclock(h)}, nobody was at ${where}.`;
   // In the notebook a regular is his name: "Pardo", not "Pardo who buys things" eight times a night (Raw 11's #11).
   const names = es.map((e) => entryName(c, e).replace(/^(Lou|Pardo|Benny)\b.*$/, '$1'));
   // docs/53, addendum: "only Feeney and Ashby", never "…, and nobody else".
-  return `${nameOf(c, l.watcher)}: at ${where} at ${oclock(h)}, ${listExhaustive(c, l, h) ? 'only ' : ''}${andList(names)}.`;
+  return `${nameOf(c, l.watcher)}: at ${oclock(h)}, ${listExhaustive(c, l, h) ? 'only ' : ''}${andList(names)} ${names.length > 1 ? 'were' : 'was'} at ${where}.`;
 }
 
 function remarkFacts(r: Remark): Fact[] {
@@ -138,7 +138,7 @@ export function linesHeld(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>): 
       hour: f.h,
       place: f.place,
       about: [f.p],
-      text: `The office: ${nameOf(c, f.p)} was at ${placeName(c, f.place)} at ${oclock(f.h)}.`,
+      text: `${nameOf(c, c.client)}: ${nameOf(c, f.p)} was at ${placeName(c, f.place)} at ${oclock(f.h)}.`,
     });
   });
   for (const q of run.asked) {

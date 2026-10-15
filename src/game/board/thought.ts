@@ -268,7 +268,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const pr = P(rest);
       // First, the golden's "So … which was what Coffin had." After a lie caught, the same from the other side.
       const first = t.sentences.length === 0;
-      const gloss = first ? (held ? x.pick('one-holds', ['One evening that held, at an hour that mattered, where I could check it.', 'That much of it stood up, and it stood up where I could check it.', 'At an hour that mattered, somebody else could vouch for it.', 'That much held.']) : x.pick('one-holds-early', ['That part of the evening, at least, somebody else could vouch for.', 'So far as it went, it stood up.', 'That much held.'])) : undefined;
+      const gloss = first ? (held ? x.pick('one-holds', ['Somebody else could vouch for that much.', 'That much of it stood up.', 'Somebody else had said the same.', 'That much held.']) : x.pick('one-holds-early', ['That part of the evening, at least, somebody else could vouch for.', 'So far as it went, it stood up.', 'That much held.'])) : undefined;
       const restParts = first
         ? []
         : (namedSoFar.clear(),
@@ -646,7 +646,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
           `${W} said that at ${when}, ${why}, ${whole ? 'only ' : ''}${listed}.`,
           `At ${when}, ${why}, ${W} said ${whole ? 'only ' : ''}${listed}.`,
         ]);
-        const goneSaid = gone.length ? `${framed} ${cap(andList(gone.map((y) => nameOf(c, y))))} had been there at ${hourWord(before)} and left.` : framed;
+        const goneSaid = gone.length ? `${framed} ${cap(andList(gone.map((y) => nameOf(c, y))))} had been there at ${hourWord(before)} and gone out after.` : framed;
         add(goneSaid, clockRef, {
           rule: 'hours',
           hours: gone.length ? [...hs, before] : hs,

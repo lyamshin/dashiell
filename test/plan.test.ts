@@ -255,7 +255,7 @@ describe('docs/49 §2: aggregation and connectives', () => {
     );
     expect(out[0]).toMatch(/^Corrigan said home at eleven, but Ashby passed her on Stuyvesant Street at eleven\./);
     // (Without the "but", Planner 2 says the second as one sentence, its join after a colon.)
-    expect(out[0]).toMatch(/Corrigan said home at ten, and Coffin had nobody at the Thalia at ten o’clock: one of them was wrong\.$/);
+    expect(out[0]).toMatch(/Corrigan said home at ten, and Coffin said nobody was at the Thalia at ten o’clock: one of them was wrong\.$/);
   });
 });
 
@@ -302,7 +302,7 @@ describe('docs/49 Planner 2: composition', () => {
       },
       [['thought']],
     );
-    expect(out[0]).toBe('Ashby never heard Prentiss tell the room, and Coffin’s list had Feeney at the Thalia at eleven, just like she said, and the same list had Ashby right there with her. Prentiss had said ten or eleven, and at ten Duchess was at the Delmonico rooms.');
+    expect(out[0]).toBe('Ashby never heard Prentiss tell the room, and Coffin saw Feeney at the Thalia at eleven, just like she said, and the same witness had seen Ashby right there with her. Prentiss had said ten or eleven, and at ten Duchess was at the Delmonico rooms.');
   });
 
   it('an evening that held, and the hour that mattered on their word alone, are one sentence with the "but"; the aside after the agreement goes', () => {
@@ -327,7 +327,7 @@ describe('docs/49 Planner 2: composition', () => {
       [['thought']],
     );
     // ("he" after Coffin could be Coffin: the name.)
-    expect(out[0]).toBe('So Ashby had told it straight: Coffin’s list had him at the Automat at eight, but for eleven, the hour that mattered, Ashby said the Thalia, and nobody else had said so. I let it stand.');
+    expect(out[0]).toBe('So Ashby had told it straight, and Coffin said the same: the Automat at eight, but Ashby said the Thalia at eleven, when Duchess went, and nobody had backed it up. I let it stand.');
   });
 
   it('a thought of N facts takes at most ceil(N/2) sentences, but for a collision’s own sentence and two long facts', () => {

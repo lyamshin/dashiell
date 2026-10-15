@@ -745,6 +745,9 @@ function srcR(c: BoardCase, s: string, like?: Src): Src {
   // of word it was is the composite's own, folded (a watcher's is what they saw; the client's, the office).
   const bare = c.people.find((p) => p.short === t);
   if (bare) return srcFold(c, t, like);
+  // (A watcher by what they are, "the landlady", where the page names them in the next breath.)
+  const byRole = c.people.find((p) => p.role === 'watcher' && roleOf(c, p.id) === t);
+  if (byRole) return { k: 'list', who: byRole.id };
   const m = /^(.+)’s (list|story|word|own evening|account|own account)$/.exec(t);
   if (!m) throw new Error(`voiced: whose word is "${s}"?`);
   const who = personV(c, m[1] as string);

@@ -66,7 +66,7 @@
   {"id": "bpe-617", "family": "motive", "tags": {"id": "s6"}, "text": "“{Thing} was promised to me,” {name} said. “The late Mr. {client} promised it, in front of witnesses, and they’re all dead too.”"},
   {"id": "bpe-618", "family": "motive", "tags": {"id": "s7"}, "text": "“I’ve wanted {thing} since the day {client} brought {pthem} home,” {name} said. “Wanting isn’t taking.”"},
   {"id": "bpe-619", "family": "motive", "tags": {"id": "s8"}, "text": "“I always said {thing} was wasted on {client},” {name} said. “I’ll say it to you. It’s still wasted.”"},
-  {"id": "bpe-620", "family": "motive", "tags": {"id": "s9"}, "text": "“{client} and I haven’t spoken since the business over the coal bill,” {name} said. “And we’re not going to start now.”"},
+  {"id": "bpe-620", "family": "motive", "tags": {"id": "s9"}, "text": "“{client} and I haven’t spoken since the row over the coal bill,” {name} said. “And we’re not going to start now.”"},
   {"id": "bpe-1001", "family": "watcher", "tags": {"job": "bartender"}, "text": "Everybody who drank in the place tonight bought it from {name}, and a bartender remembers a face longer than a name, and a tab longer than either.", "joke": true},
   {"id": "bpe-1002", "family": "watcher", "tags": {"job": "bartender"}, "text": "If anybody came in tonight, {name} poured for them, and {he} doesn’t pour for people {he} hasn’t looked at."},
   {"id": "bpe-1003", "family": "watcher", "tags": {"job": "bartender"}, "text": "From behind a bar you can see the whole room and the door, and {name} had been behind this one since the afternoon."},
@@ -228,6 +228,6 @@
   {"id": "bpe-1434", "family": "motive", "tags": {"id": "s7"}, "text": "“I’ve wanted {thing} since the day {client} brought {pthem} home,” {name} said. “Some people want a motorcar. I wanted {thing}.”", "joke": true},
   {"id": "bpe-1435", "family": "motive", "tags": {"id": "s8"}, "text": "“I’ve always said {thing} was wasted on {client},” {name} said. “I said it to {client}’s face, too, which is more than most people would.”"},
   {"id": "bpe-1436", "family": "motive", "tags": {"id": "s8"}, "text": "“{Thing} was wasted on {client},” {name} said. “I always said so. Some people don’t know what they’ve got.”"},
-  {"id": "bpe-1437", "family": "motive", "tags": {"id": "s9"}, "text": "“{Client} and I haven’t spoken since the business over the coal bill,” {name} said. “I’m speaking to you. That’s not the same thing.”", "joke": true},
+  {"id": "bpe-1437", "family": "motive", "tags": {"id": "s9"}, "text": "“{Client} and I haven’t spoken since the row over the coal bill,” {name} said. “I’m speaking to you. That’s not the same thing.”", "joke": true},
   {"id": "bpe-1438", "family": "motive", "tags": {"id": "s9"}, "text": "“We haven’t spoken since the row over the coal bill,” {name} said. “{Client} and I. You can ask {client} why. I’d like to hear the answer myself.”"}
 ]

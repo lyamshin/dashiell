@@ -166,13 +166,18 @@ function inThisRoom(c: BoardCase, at: PlaceId, text: string): boolean {
 }
 
 /** What they were doing the last I saw of them: their own `doing`, as a page's last line. */
-function payLine(x: string, female: boolean): string {
-  return `${x.charAt(0).toUpperCase()}${x.slice(1).replace(/\.$/, '')}: that was the last I saw of ${female ? 'her' : 'him'}.`;
+function payLine(name: string, x: string): string {
+  // docs/56 A22: said as a sentence about them, not "Counting bills: that was the last I saw of her".
+  return `${name} was still ${x.charAt(0).toLowerCase()}${x.slice(1).replace(/\.$/, '')} when I left.`;
+}
+
+function nameIn(c: BoardCase, bp: BiblePerson): string {
+  return c.people.find((x) => x.world === bp.id)?.short ?? bp.last;
 }
 
 /** The last I saw of them, said already tonight (as `payOff` keeps it): then it isn't what they're doing later. */
-function paidOff(spent: (id: string) => boolean, x: string, female: boolean): boolean {
-  return spent(`pay:${payLine(x, female).slice(0, 40)}`);
+function paidOff(spent: (id: string) => boolean, name: string, x: string): boolean {
+  return spent(`pay:${payLine(name, x).slice(0, 40)}`);
 }
 
 /** Said of them now, it isn't the last I saw of them later: their `doing` line, off their pay lines. */
@@ -181,7 +186,7 @@ function spendDoing(c: BoardCase, run: BoardRun, bp: BiblePerson, i: number): vo
   const t = p !== undefined ? run.traits?.[p] : undefined;
   const x = bp.doing[i]?.text;
   if (p === undefined || !t || x === undefined) return;
-  const line = payLine(x, bp.gender === 'f');
+  const line = payLine(nameIn(c, bp), x);
   if (t.pay.includes(line)) run.traits = { ...run.traits, [p]: { ...t, pay: t.pay.filter((l) => l !== line) } };
 }
 
@@ -314,7 +319,7 @@ export function worldDeck(d: BoardDeal, run: BoardRun): WorldDeck | undefined {
         const bp = p ? biblePerson(c, p) : undefined;
         if (!bp) return [];
         return doingHere(c, run, bp)
-          .filter((x) => safeVoice(c, b, bp, x.text) && clean(x.text) && !paidOff((id) => run.spent.includes(id), x.text, bp.gender === 'f'))
+          .filter((x) => safeVoice(c, b, bp, x.text) && clean(x.text) && !paidOff((id) => run.spent.includes(id), nameIn(c, bp), x.text))
           .map((x) => card(`${bp.id}:doing:${x.i}`, family, doingSentence(x.text)));
       }
       case 'watcher': {
@@ -325,7 +330,8 @@ export function worldDeck(d: BoardDeal, run: BoardRun): WorldDeck | undefined {
         if (bp && !pl && personOf(c, p as PersonId)?.id === 'ukeeper') return [card(`${bp.id}:keeper`, family, `{Name} had only been minding the room for part of the evening. Before that, {he} said, it was anybody’s.`)];
         if (!bp || !pl?.watcher || !clean(pl.watcher.sees)) return [];
         // How they count, in their own words, one of their three, unless it names an hour the page doesn't tell.
-        const sees = `From {his} post {name} could see ${pl.watcher.sees.replace(/\.$/, '')}.`;
+        // (docs/56 A29: what they could see, not "From his post …" every night.)
+        const sees = `{Name} could see ${pl.watcher.sees.replace(/\.$/, '')}.`;
         const counts = pl.watcher.counts.flatMap((x, i) => (clean(x) ? [card(`${pl.id}:watcher:${i}`, family, `${sees} ${spoken(x)}`)] : []));
         return counts.length > 0 ? counts : [card(`${pl.id}:watcher`, family, sees)];
       }
@@ -400,9 +406,8 @@ export function worldLook(c: BoardCase, run: BoardRun, hand: Hand, p: PersonId):
   // (their own `doing`), which is how the board's callbacks land.
   const b = bibleOf(c);
   // Their `doing` here, or anywhere: a line for somewhere else isn't the last I saw of them.
-  const female = bp.gender === 'f';
   const pay = b
-    ? doingHere(c, run, bp).filter((x) => safeVoice(c, b, bp, x.text) && clean(x.text) && /^[a-z]/.test(x.text) && !hand.used(`nb:${bp.id}:doing:${x.i}`)).map((x) => payLine(x.text, female))
+    ? doingHere(c, run, bp).filter((x) => safeVoice(c, b, bp, x.text) && clean(x.text) && /^[a-z]/.test(x.text) && !hand.used(`nb:${bp.id}:doing:${x.i}`)).map((x) => payLine(nameIn(c, bp), x.text))
     : [];
   run.traits = { ...(run.traits ?? {}), [p]: { short: `${bp.last}’s look`, pay } };
   // "She had…" after a line about what she's doing; by name after a line about the room ("There were
@@ -508,7 +513,7 @@ export function worldStaging(c: BoardCase, run: BoardRun, hand: Hand, p: PersonI
   if (bp) {
     const name = personOf(c, p)?.short ?? bp.last;
     for (const x of doingHere(c, run, bp)) {
-      if (!safeVoice(c, b, bp, x.text) || !clean(x.text) || paidOff((id) => hand.used(id), x.text, bp.gender === 'f')) continue;
+      if (!safeVoice(c, b, bp, x.text) || !clean(x.text) || paidOff((id) => hand.used(id), nameIn(c, bp), x.text)) continue;
       theirs.push({ text: doingSentence(x.text).replace('{Name}', name), id: `nb:${bp.id}:doing:${x.i}` });
     }
   }

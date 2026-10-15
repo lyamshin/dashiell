@@ -246,7 +246,7 @@ export const SMALL_MOTIVES: { kind: string; text: string; types: ('lost-item' | 
   { kind: 'claim', text: '{they} says {thing} was promised to {them} by the late Mr. {client}', types: ['lost-item'] },
   { kind: 'want', text: '{they} has wanted {pet} since the day {client} brought {pthem} home', types: ['lost-pet'] },
   { kind: 'want', text: '{they} always said {thing} was wasted on its owner', types: ['lost-item'] },
-  { kind: 'spite', text: '{they} and {client} haven’t spoken since the business over the coal bill', types: ['lost-item', 'lost-pet'] },
+  { kind: 'spite', text: '{they} and {client} haven’t spoken since the row over the coal bill', types: ['lost-item', 'lost-pet'] },
 ];
 
 /** How the client says why they point, in a small case. `behaviour` needs something true of the person. */

@@ -48,7 +48,7 @@ describe('round 3: the interface (docs/47 A)', () => {
     expect(second).not.toContain('A star means it’s worth doing next');
     const o = playBoardOracle(d);
     const v = scoreBoard(d, o.run, o.report);
-    expect(v.scoreLine).toMatch(/^4 out of 4: who \(and the line that breaks the story\), when, (how|where \(and what puts it there\)) and why\.$/);
+    expect(v.scoreLine).toMatch(/^4 out of 4: who \(and what shows they lied\), when, (how|where \(and what puts it there\)) and why\.$/);
   });
 
   it('the breaks list puts the lines that touch the named person’s story first, and keeps every line', () => {

@@ -37,7 +37,7 @@ const FORMS: Record<string, string> = {
   s6: 'Says {thing} was promised to them by the late Mr. {client}',
   s7: 'Has wanted {thing} since the day {client} brought {pthem} home',
   s8: 'Always said {thing} was wasted on its owner',
-  s9: 'Hasn’t spoken to {client} since the business over the coal bill',
+  s9: 'Hasn’t spoken to {client} since the row over the coal bill',
 };
 
 /** The papers' line for a murder's suspect: their grievance, with their name on it. `{he}`/`{his}`/`{him}` are theirs; "he" alone is the dead man. */

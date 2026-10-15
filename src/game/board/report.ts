@@ -118,7 +118,7 @@ function meansOptions(d: BoardDeal): { value: string; label: string }[] {
 /** Where a lost thing could be: with whoever buys such things, in the places the night has. */
 function whereOptions(d: BoardDeal): { value: string; label: string }[] {
   const c = d.kase;
-  const out: { value: string; label: string }[] = holdersOf(c).map((h) => ({ value: `holder:${h.id}`, label: cap(h.listed) }));
+  const out: { value: string; label: string }[] = holdersOf(c).map((h) => ({ value: `holder:${h.id}`, label: cap(h.who.split(',')[0] as string) }));
   out.push({ value: 'scene', label: `Still at ${placeName(c, c.crime.scene)}` });
   return out;
 }

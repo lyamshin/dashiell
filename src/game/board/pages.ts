@@ -70,6 +70,7 @@ import { sheetsFor, type Beat, type SheetJob } from './sheets.js';
 import { placeThread, sourceOf as sourceOfQ, threadFor, type Pointer } from './thread.js';
 import { breakSaid, claimSaid, eliminationOf, shortOther, thoughtOf, type Thought, type ThoughtPart } from './thought.js';
 import { wayKnown } from './bones/phrase.js';
+import { roleOf } from './plan/refer.js';
 import { walkBetween } from './walk.js';
 import { papersLine, whyOrder } from './motives.js';
 import { SPARE_KEY } from '../../gen/board/content.js';
@@ -647,12 +648,10 @@ function payOff(w: Writer, p?: PersonId): string | null {
  */
 function staying(w: Writer, line: string, p: PersonId | undefined): string {
   if (w.leaves || p === undefined) return line;
-  const m = /^(.+): that was the last I saw of (?:him|her)\.$/.exec(line);
+  // docs/56 A22: "Mrs. Szabo went back to counting bills", not "Counting bills: I didn’t interrupt her".
+  const m = /^(.+) was still (.+) when I left\.$/.exec(line);
   if (!m) return line;
-  // (The pronoun last, as the old line had it, so the planner can name them there when it must.)
-  const him = markedPron(w.c, p).him;
-  const forms = [`I didn’t interrupt ${him}`, `I didn’t disturb ${him}`];
-  return `${m[1]}: ${forms[(m[1] as string).length % forms.length]}.`;
+  return `${m[1]} went back to ${m[2]}.`;
 }
 
 /** docs/49: the other lines a gag could have been paid off with, as the rhythm's alternatives. */
@@ -1084,7 +1083,8 @@ export function writeOffice(w: Writer): void {
       if (said.length === 0) continue;
       const groups = said.length <= 2 ? [said] : [said.slice(0, 2), said.slice(2)];
       const whose = said.length <= 2 ? [saidWho] : [saidWho.slice(0, 2), saidWho.slice(2)];
-      const talk = (g: string[]) => g.map((x, i) => (i === 0 ? x : `And ${x}`)).join(' ');
+      // (docs/56: "And there’s Feeney", not "And There’s Feeney": a name keeps its capital, nothing else does.)
+      const talk = (g: string[]) => g.map((x, i) => (i === 0 ? x : `And ${/^(?:There|The|He|She|It|They|A|An|His|Her|Their|That|This|Then|Somebody|Nobody)\b/.test(x) ? `${x.charAt(0).toLowerCase()}${x.slice(1)}` : x}`)).join(' ');
       const cs = withCaps({ ...base, ...who(c, c.client) });
       groups.forEach((g, gi) => {
         const props = givenProps(c, g0, { aside: whose[gi] ?? [] });
@@ -1786,7 +1786,8 @@ export function writeSearch(w: Writer, findId: string): void {
     props.push(meansPropOf(c));
     refs = ['givens:means'];
   }
-  think(w, q, thoughtOnly([{ text: `So ${body}`, bare: cap(body), props, opener: 'So', ...(say ? { say } : {}) }], refs, { places: [c.means.origin] }));
+  // (docs/56 A19: the search's reasoning says itself, without a "So" in front of it.)
+  think(w, q, thoughtOnly([{ text: cap(body), props, ...(say ? { say } : {}) }], refs, { places: [c.means.origin] }));
   handOff(w);
   closeWith(w, undefined, 'search-close', {}, {});
   lay(w, 'search');
@@ -1885,7 +1886,8 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
   const s = withCaps({ ...who(c, p) });
   const claimLine = again ? `${placeName(c, confrontationOf(c, p, h)?.secondLie?.place ?? '')} at ${hourWord(h)}` : claimSaid(c, p, h);
   // Why: their line and what's held against it.
-  const src = sourceName(c, line.q);
+  // (A watcher by what they are, "the landlady": the put names them a line later; docs/39 §4's three names.)
+  const src = line.q.startsWith('list:') ? (roleOf(c, line.q.slice(5)) ?? sourceName(c, line.q)) : sourceName(c, line.q);
   const psrc = `${nameOf(c, p)} had told me ${claimLine}, and ${src} said otherwise`;
   const pwhy = w.hand.draw('why', { kind: 'put' }, withCaps({ ...s, src: psrc, claim: claimLine }), { plain: true });
   put(w, 'why', pwhy, 'narrator', { about: [p], ...sit(w, pwhy, `${cap(psrc)}.`) });
@@ -2373,7 +2375,7 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
         // "Home at nine and ten", not "Thorndike’s flat at nine and Thorndike’s flat at ten" (Medium 14's #29).
         const wh = hs.map((h) => claimSaid(c, p, h).replace(/ at \w+$/, ''));
         const said = wh.every((x) => x === wh[0]) ? `${wh[0]} at ${andList(hs.map(hourWord))}` : andList(hs.map((h) => claimSaid(c, p, h)));
-        out.push({ key: `own:${p}`, text: `${P} said ${said}, and nobody else had said so yet.`, hours: [...hs], people: [p], places: hs.map((h) => accountOf(c, p)?.claims[h]?.place ?? ''), props: hs.map((h) => claimProp(c, p, h, { place: true, company: false })), say: { shape: 'OWN-WORD', flags: ['recap-one'], args: { person: { t: 'person', id: p }, said } } });
+        out.push({ key: `own:${p}`, text: `${P} said ${said}, and nobody had backed it up yet.`, hours: [...hs], people: [p], places: hs.map((h) => accountOf(c, p)?.claims[h]?.place ?? ''), props: hs.map((h) => claimProp(c, p, h, { place: true, company: false })), say: { shape: 'OWN-WORD', flags: ['recap-one'], args: { person: { t: 'person', id: p }, said } } });
       }
       continue;
     }
@@ -2383,7 +2385,7 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
     } else if (hc !== null && !run.asked.includes(`account:${p}`)) {
       open.push(p);
     } else if (hc !== null) {
-      out.push({ key: `own:${p}`, text: `${nameOf(c, p)} said ${claimSaid(c, p, hc)}, and nobody else had said so yet.`, hours: [hc], people: [p], places: [accountOf(c, p)?.claims[hc]?.place ?? ''], props: [claimProp(c, p, hc, { place: true, company: false })], say: { shape: 'OWN-WORD', flags: ['recap-one'], args: { person: { t: 'person', id: p }, said: claimSaid(c, p, hc) } } });
+      out.push({ key: `own:${p}`, text: `${nameOf(c, p)} said ${claimSaid(c, p, hc)}, and nobody had backed it up yet.`, hours: [hc], people: [p], places: [accountOf(c, p)?.claims[hc]?.place ?? ''], props: [claimProp(c, p, hc, { place: true, company: false })], say: { shape: 'OWN-WORD', flags: ['recap-one'], args: { person: { t: 'person', id: p }, said: claimSaid(c, p, hc) } } });
     }
   }
   const ohs = twoHours ? [...office] : hc !== null ? [hc] : [];
@@ -2393,8 +2395,8 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
     out.push({
       key: `open:${open.join(',')}`,
       text: one
-        ? `${nameOf(c, one)} hadn’t told me where ${pronOf(c, one).he} was at ${at}, and nobody else had either.`
-        : `${andList(open.map((p) => nameOf(c, p)))} hadn’t told me where they were at ${at}, and nobody else had either.`,
+        ? `${nameOf(c, one)} hadn’t told me where ${pronOf(c, one).he} was at ${at}, and neither had anybody who’d seen ${pronOf(c, one).him}.`
+        : `${andList(open.map((p) => nameOf(c, p)))} hadn’t told me where they were at ${at}, and neither had anybody who’d seen them.`,
       hours: ohs,
       people: [...open],
       places: [],
@@ -2530,9 +2532,9 @@ export function writeTurn(w: Writer): void {
     const parts = el.parts ?? [];
     if (PLAN.ops && parts.length > 1) {
       // docs/52 build 2: the lead a gap, and each step of the elimination a composite of its own, voiced.
-      put(w, 'job', 'Here’s what I had.', 'recap', { exempt: true });
-      parts.forEach((x) => fact(w, 'job', x.text, 'recap', { relation: 'narrows', about: el.people, carries: el.refs, exempt: true, props: x.props ?? [], runOn: true, ...(x.say ? { say: x.say } : {}) }));
-    } else fact(w, 'job', `Here’s what I had. ${el.sentences.join(' ')}`, 'recap', { relation: 'narrows', about: el.people, carries: el.refs, exempt: true, props: parts.flatMap((x) => x.props ?? []) });
+      // (docs/56 A17: no lead, "Here’s what I had.": the turn starts on its first fact.)
+      parts.forEach((x, i) => fact(w, 'job', x.text, 'recap', { relation: 'narrows', about: el.people, carries: el.refs, exempt: true, props: x.props ?? [], runOn: i > 0, ...(x.say ? { say: x.say } : {}) }));
+    } else fact(w, 'job', el.sentences.join(' '), 'recap', { relation: 'narrows', about: el.people, carries: el.refs, exempt: true, props: parts.flatMap((x) => x.props ?? []) });
   } else {
     const clauses = recapClauses(w.d, w.run);
     for (const cl of clauses) {
@@ -2540,7 +2542,7 @@ export function writeTurn(w: Writer): void {
       for (const p of cl.people) w.people.add(p);
       for (const p of cl.places) w.places.add(p);
     }
-    recapFacts(w, clauses, 'Here’s what I had.');
+    recapFacts(w, clauses);
   }
   w.recap = (w.parts.job ?? []).map((x) => x.text).join(' ');
   // What next, by the stars (docs/46 §1): "put it to them now" only where a put is starred

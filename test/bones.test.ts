@@ -83,7 +83,7 @@ describe('docs/52 §3: the plain page, and the round trip', () => {
     const blocks = plainPage(d.kase, run.log[7] as (typeof run.log)[number]);
     expect(blocks.map((b) => b.text)).toEqual([
       'Ashby said he was at the Automat at eight and nine, alone. He said he was at the Delmonico rooms at ten, with Mrs. Cheatham. He said he was at the Thalia at eleven, with Feeney. He said he passed Corrigan on Stuyvesant Street at eleven on the way to the Thalia.',
-      'Coffin’s list put Ashby at the Thalia at eleven, with Feeney, as he had said; Stuyvesant Street was the street of the Prentiss flat.',
+      'Coffin backed up Ashby: he was at the Thalia at eleven, with Feeney; the Prentiss flat was on Stuyvesant Street.',
     ]);
   });
 
@@ -99,9 +99,10 @@ describe('docs/52 §3: the plain page, and the round trip', () => {
       ],
     };
     // Coffin (a man) is named in the clause before: "he" could be either.
-    expect(plainComposite(c, comp)).toBe('Abramowitz said he was at the Thalia at eleven, which collided with Coffin’s list, and Abramowitz would not say where he was at eleven.');
-    const alone: Composite = { ...comp, parts: [{ shape: 'COLLISION-PAIR', props: [{ k: 'COLLIDES', person: 'abramowitz', place: 'bar', hour: 11, with: { k: 'given' } }] }, comp.parts?.[1] as Composite] };
-    expect(plainComposite(c, alone)).toBe('Abramowitz said he was at the Thalia at eleven, which collided with the office, and he would not say where he was at eleven.');
+    expect(plainComposite(c, comp)).toBe('Abramowitz said he was at the Thalia at eleven, which did not agree with what Coffin said, and Abramowitz would not say where he was at eleven.');
+    // (Nobody else named: the search. The office is the client, by name, and would count.)
+    const alone: Composite = { ...comp, parts: [{ shape: 'COLLISION-PAIR', props: [{ k: 'COLLIDES', person: 'abramowitz', place: 'bar', hour: 11, with: { k: 'find' } }] }, comp.parts?.[1] as Composite] };
+    expect(plainComposite(c, alone)).toBe('Abramowitz said he was at the Thalia at eleven, which did not agree with what the search said, and he would not say where he was at eleven.');
   });
 });
 
@@ -288,7 +289,7 @@ describe('docs/52 §4: the voicings', () => {
       flesh: { two: 'One of them was wrong.', twos: ['One of them was wrong.'] },
     };
     const out = planSection({ thought: [col] } as Partial<Record<Beat, Item[]>>, [['thought']], ctx, 0);
-    expect(out.blocks[0]?.kind === 'prose' ? out.blocks[0].text : '').toBe('Corrigan said she was at Corrigan’s flat at eleven, which collided with this: Ashby said he passed Corrigan on Stuyvesant Street at eleven.');
+    expect(out.blocks[0]?.kind === 'prose' ? out.blocks[0].text : '').toBe('Corrigan said she was at Corrigan’s flat at eleven, which did not agree with this: Ashby said he passed Corrigan on Stuyvesant Street at eleven.');
     const u = out.units[0];
     expect(u?.kind === 'fact' ? u.bones?.[0]?.voicing : '').toBe('plain');
     expect(u?.kind === 'fact' ? (u.bones ?? []).flatMap((b) => b.props).map(canon) : []).toEqual((col.props ?? []).map(canon));

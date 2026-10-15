@@ -168,7 +168,9 @@ function mayPronoun(c: BoardCase, ref: Ref, x: Id): boolean {
   return ref.subject === x && pronounable(c, x) && ![...ref.named].some((y) => y !== x && pronounable(c, y) && female(c, y) === female(c, x));
 }
 
-function srcPeople(s: Src): Id[] {
+function srcPeople(c: BoardCase, s: Src): Id[] {
+  // (docs/53, addendum: the office is said as the client, by name.)
+  if (s.k === 'given') return [c.client];
   return s.who ? [s.who] : [];
 }
 
@@ -189,9 +191,9 @@ export function peopleIn(c: BoardCase, p: Prop): Id[] {
     case 'ALIVE':
       return [p.victim];
     case 'CONFIRMS':
-      return [p.person, ...(p.company ?? []), ...srcPeople(p.by)];
+      return [p.person, ...(p.company ?? []), ...srcPeople(c, p.by)];
     case 'COLLIDES':
-      return [p.person, ...('k' in p.with && (p.with as Prop).k === (p.with as Prop).k.toUpperCase() ? peopleIn(c, p.with as Prop) : srcPeople(p.with as Src))];
+      return [p.person, ...('k' in p.with && (p.with as Prop).k === (p.with as Prop).k.toUpperCase() ? peopleIn(c, p.with as Prop) : srcPeople(c, p.with as Src))];
     case 'LEFT':
       return [...(p.people ?? [])];
     case 'ADMIT':
@@ -209,7 +211,7 @@ export function peopleIn(c: BoardCase, p: Prop): Id[] {
     case 'HANDOVER':
       return p.thing && isPerson(p.thing) ? [p.thing] : [];
     case 'PLACED':
-      return [p.person, ...srcPeople(p.by)];
+      return [p.person, ...srcPeople(c, p.by)];
     case 'PRESENT':
       return [p.person];
     case 'UNSPOKEN':

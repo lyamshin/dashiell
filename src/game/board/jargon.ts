@@ -25,7 +25,7 @@ export interface EngineWord {
 }
 
 const NAME = String.raw`(?:(?:Mrs?\.|Miss|Dr\.) )?(?:[A-Z][\w’-]+(?: [A-Z][\w’-]+)?|\{\w+(?::\w+)?\})`;
-const POSS = String.raw`(?:${NAME}’s|[Hh]is|[Hh]er|[Tt]heir|[Ii]ts|[Ww]hose|\{\w+:(?:their|poss|orposs)\}|the (?:watcher|landlady|usher|barman|janitor|doorman)’s)`;
+const POSS = String.raw`(?:${NAME}’s|[Hh]is|[Hh]er|[Tt]heir|[Ii]ts|[Ww]hose|\{\w+:(?:their|poss|orposs)\}|\{[Tt]heir\}|the (?:watcher|landlady|usher|barman|janitor|doorman)’s)`;
 const H = '(?:seven|eight|nine|ten|eleven|twelve)';
 
 export const ENGINE_WORDS: EngineWord[] = [

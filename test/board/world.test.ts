@@ -430,10 +430,10 @@ describe('the prose draws on the bible first', () => {
         for (const p of r.log) {
           const prose = p.blocks.flatMap((b) => (b.kind === 'prose' ? [b.text.replace(/\s+/g, ' ')] : []));
           for (const t of prose) {
-            // (docs/49, Planner 2: a question page closes on them still at it, "I didn’t interrupt her".)
-            const m = /^(.+): (?:that was the last I saw of|I didn’t (?:interrupt|disturb)) .+\.$/.exec(t);
+            // (docs/49, Planner 2, docs/56 A22: "Mrs. Szabo was still counting bills when I left", or, on a question page, "Mrs. Szabo went back to counting bills".)
+            const m = /(?:^|\. )(?:Mrs\. |Miss |Dr\. |Mr\. )?[A-Z][\w’]+ (?:was still (.+) when I left|went back to (.+))\.$/.exec(t);
             if (!m) continue;
-            const line = (m[1] as string).toLowerCase();
+            const line = ((m[1] ?? m[2]) as string).toLowerCase();
             const who = d.kase.people.find((x) => x.world && biblePerson(d.kase, x.id)?.doing.some((y) => y.text.toLowerCase().replace(/\.$/, '') === line));
             if (!who) continue;
             closes++;
@@ -479,13 +479,13 @@ describe('the prose draws on the bible first', () => {
     expect(lines).toBeGreaterThan(0);
   });
 
-  it('closes a question page on somebody still at it, never on the last I saw of them (Planner 2)', () => {
+  it('closes a question page on somebody still at it ("went back to"), never on the last I saw of them (Planner 2, docs/56 A22)', () => {
     for (const world of [undefined, 'neighbourhood'] as const) {
       for (let s = 1; s <= 6; s++) {
         for (const tier of TIERS) {
           const d = dealBoard(s, tier, typesFor(tier)[s % typesFor(tier).length], world ? { world } : {});
           for (const r of [playBoardOracle(d).run, playWanderer(d, s).run]) {
-            for (const p of r.log) for (const b of p.blocks) if (b.kind === 'prose') expect(b.text, `${d.kase.id} p${p.n}`).not.toMatch(/\blast I saw of\b/);
+            for (const p of r.log) for (const b of p.blocks) if (b.kind === 'prose') expect(b.text, `${d.kase.id} p${p.n}`).not.toMatch(/\bwas still [^.]+ when I left\b/);
           }
         }
       }
