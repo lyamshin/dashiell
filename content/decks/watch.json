@@ -288,7 +288,7 @@
   {
     "id": "wch-041",
     "deck": "watch",
-    "text": "{watcher} kept a room near the entrance and made a habit of the hallway.",
+    "text": "{watcher} kept a room near the entrance and made a habit of watching the hallway.",
     "tags": {
       "watcher": "landlady"
     },
@@ -391,7 +391,7 @@
   {
     "id": "wch-063",
     "deck": "watch",
-    "text": "Nobody kept watch there. It wasn’t that kind of place.",
+    "text": "Nobody was keeping watch, because it wasn’t that kind of place.",
     "tags": {
       "watcher": "none"
     },
@@ -411,7 +411,7 @@
   {
     "id": "wch-065",
     "deck": "watch",
-    "text": "It was the kind of place nobody kept an eye on.",
+    "text": "Nobody kept an eye on a place like that.",
     "tags": {
       "watcher": "none"
     },
