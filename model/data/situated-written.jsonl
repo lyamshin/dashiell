@@ -3,7 +3,7 @@
 {"id": "g0484", "text": "I asked where {they}’d been tonight, every place in turn, and who had been at each one with {them}. I said I’d write as slowly as {they} talked.", "batch": 1}
 {"id": "g0450", "text": "I waited for our end of the bar to go quiet. Then I asked {them} for the evening in order, with the company in it.", "batch": 1}
 {"id": "g0514", "text": "“Tonight,” I said. “Where were you, and who were you with?”", "batch": 1}
-{"id": "g0448", "text": "I asked {them} where the evening had gone, and who had gone with it.", "batch": 1}
+{"id": "g0448", "text": "I asked {them} for every place tonight, in order, and who had been at each one.", "batch": 1}
 {"id": "g0464", "text": "“I need your whole evening,” I said, “every place you stopped and everybody who was there with you. Start wherever it starts.”", "batch": 1}
 {"id": "g0496", "text": "I asked {them} straight out where {they}’d been tonight, and with whom, and said the drink was on me either way.", "batch": 1}
 {"id": "g0455", "text": "“Let’s have your evening,” I said. “Where you went, and who you found there.”", "batch": 1}
@@ -11,8 +11,8 @@
 {"id": "g0461", "text": "I asked {them} for the evening and its company, and braced myself for the short version.", "batch": 1}
 {"id": "g0481", "text": "I asked for the whole evening, every stop and every face at it, and told {them} a short answer would do if it was a full one.", "batch": 1}
 {"id": "g0507", "text": "“I won’t keep you long,” I said. “Where were you tonight, and who saw you there?”", "batch": 1}
-{"id": "g0470", "text": "I asked where {they}’d spent the evening and who with. I didn’t dress the question up; {they} didn’t look like somebody who tipped for that.", "joke": true, "batch": 1}
-{"id": "g0529", "text": "I waited for a lull in the noise, then asked {them} where {they}’d been tonight, and let the quiet carry it.", "batch": 1}
+{"id": "g0470", "text": "I asked where {they}’d spent the evening and who with. I didn’t dress the question up; {they} didn’t look like somebody who pays extra for trimmings.", "joke": true, "batch": 1}
+{"id": "g0529", "text": "I waited for a lull in the noise, then asked {them} where {they}’d been tonight, so I wouldn’t have to shout the question.", "batch": 1}
 {"id": "g0477", "text": "“Start where your evening started,” I said, “and walk me through it, with names if anybody was there.”", "batch": 1}
 {"id": "g0488", "text": "I asked {them} where {they}’d been tonight from the beginning, and who had been with {them} at every stop. The night wasn’t going anywhere, and neither was I.", "batch": 1}
 {"id": "g0519", "text": "“Tell me about tonight,” I said, under the noise. “Every place you were, and who was there.”", "batch": 1}
@@ -36,7 +36,7 @@
 {"id": "g0467", "text": "I asked {them} to go through the evening from the start, place by place, naming whoever was at each. I said corrections were welcome, and so were pauses.", "batch": 1}
 {"id": "g0524", "text": "I moved the sugar bowl from between us and asked {them} where {they}’d been tonight, and in whose company.", "batch": 1}
 {"id": "g0468", "text": "“Your evening,” I said, “in order, if you’d be so kind, and whoever was with you.”", "batch": 1}
-{"id": "g0517", "text": "Over the plates, I asked {them} where tonight had gone and whose company {they}’d spent it in.", "batch": 1}
+{"id": "g0517", "text": "Over the plates, I asked {them} where {they}’d been tonight and whose company {they}’d been in.", "batch": 1}
 {"id": "g0446", "text": "I asked {them} how {they}’d spent the evening and in whose company.", "batch": 1}
 {"id": "g0449", "text": "“Tell me where you’ve been tonight,” I said, “start to finish, and who was with you at each place.”", "batch": 1}
 {"id": "g0501", "text": "I waited for the waiter to pass, then asked where {they}’d been tonight and who with.", "batch": 1}
@@ -47,11 +47,11 @@
 {"id": "g0483", "text": "“I’ll be quick,” I said, “if you will. Where did the evening take you, and who came along?”", "batch": 1}
 {"id": "g0510", "text": "I asked {them} where {they}’d been tonight, and said I’d like it exact.", "batch": 1}
 {"id": "g0441", "text": "I asked {them} to tell me the evening as near as {they} could get it, and who had been part of it.", "batch": 1}
-{"id": "g0534", "text": "I asked {them} for the whole evening, slowly: every place {they}’d been, and everybody who’d been there too. I had nowhere to be but here.", "batch": 1}
+{"id": "g0534", "text": "I asked {them} for the whole evening, slowly: every place {they}’d been, and everybody who’d been with {them}. I had nowhere better to be.", "batch": 1}
 {"id": "g0476", "text": "“I’d like your evening from the start,” I said, “where you were and who was with you, and take as long as you like getting it straight.”", "batch": 1}
 {"id": "g0502", "text": "I asked {them} where {they}’d spent the evening, at home or out, and whether anybody had spent it alongside {them}.", "batch": 1}
 {"id": "g0445", "text": "I asked, low, where {they}’d been tonight and who with; walls in a house like this are thin, and I wanted the answer to myself.", "batch": 1}
-{"id": "g0504", "text": "I asked {them} how the evening had gone, from the start, and who {they}’d passed it with.", "batch": 1}
+{"id": "g0504", "text": "I asked {them} where {they}’d been this evening, from the start, and who {they}’d passed it with.", "batch": 1}
 {"id": "g0440", "text": "“Where were you this evening,” I said, “in the house or out of it?”", "batch": 1}
 {"id": "g0526", "text": "I asked {them} to tell me the whole evening, where {they}’d been and who with, and not to skip the parts spent at home.", "batch": 1}
 {"id": "g0447", "text": "“Tell me about tonight,” I said, “every place you were from start to finish, and anybody you were with.”", "batch": 1}
@@ -63,7 +63,7 @@
 {"id": "g0520", "text": "“Your evening,” I said. “Where you went and who you saw, and short is fine.”", "batch": 1}
 {"id": "g0466", "text": "I asked {them} where {they}’d spent the evening and with whom. Then I shut up, which is most of asking.", "batch": 1}
 {"id": "g0531", "text": "I asked {them}, low, the way you talk in a theater, where {they}’d been tonight and who with.", "batch": 1}
-{"id": "g0459", "text": "“Where were you tonight?” I said, and told {them} to get it straight first; nobody here was waiting on a cue.", "batch": 1}
+{"id": "g0459", "text": "“Where were you tonight?” I said, and told {them} to take a moment and get it straight; nobody in the theater was waiting on a cue.", "batch": 1}
 {"id": "g0515", "text": "I asked {them} to take me through the evening the way a program does, in order, with everybody who was in it listed.", "batch": 1}
 {"id": "g0473", "text": "“I need the whole of your evening,” I said quietly, “every place and everybody in it, in the right order, and there’s no hurry.”", "batch": 1}
 {"id": "g0511", "text": "I asked {them} to give me tonight from the start, and to put in everybody who’d shared any of it.", "batch": 1}
@@ -83,7 +83,7 @@
 {"id": "g0506", "text": "I asked {them} for the evening, all of it, place by place and everybody {they}’d been with at each, and told {them} not to hurry on my account.", "batch": 1}
 {"id": "g0532", "text": "I asked where {they}’d been tonight and with whom. I said the details mattered more to me than the speed.", "batch": 1}
 {"id": "g0485", "text": "“Your evening,” I said, “as exactly as you can give it: where, and with whom.”", "batch": 1}
-{"id": "g0495", "text": "I asked {them} what {they}’d done with the evening so far, and who’d been there for it.", "batch": 1}
+{"id": "g0495", "text": "I asked {them} where {they}’d been so far this evening, and who had kept {them} company along the way.", "batch": 1}
 {"id": "g0444", "text": "I asked {them} where {they}’d got to tonight, and whether anybody had got there too.", "batch": 1}
 {"id": "g0521", "text": "I asked {them} to run through the evening for me: where {they}’d started, where {they}’d been since, and who had been along at each turn.", "batch": 1}
 {"id": "g0505", "text": "“Tell me about your evening,” I said, “from the start, wherever you were, and whoever was there with you.”", "batch": 1}
@@ -92,21 +92,21 @@
 {"id": "g0497", "text": "I asked for the evening, places and company, and made the question about as long as the answer looked likely to be.", "batch": 1}
 {"id": "g0487", "text": "I asked {them} where {they}’d been tonight, and who with: two questions, both short.", "batch": 1}
 {"id": "g0516", "text": "“All of tonight, please,” I said. “Each place, in order, and who was there, and you can keep it short.”", "batch": 1}
-{"id": "g0513", "text": "I asked {them} where {they}’d been tonight and who with. It’s a short question, and I’ve never found a longer one that works better.", "batch": 1}
-{"id": "g0500", "text": "I asked where the evening had found {them}, and who else it had found there.", "batch": 1}
+{"id": "g0513", "text": "I asked {them} where {they}’d been tonight and who with. The question is short, and I’ve never found a longer one that works better.", "batch": 1}
+{"id": "g0500", "text": "“Where were you tonight, and who with?” I asked {them}, as short as that.", "batch": 1}
 {"id": "g2722", "text": "I asked {them} where {they}’d been tonight, beginning to end, and gave {them} all the time {they} wanted to get it right.", "batch": 1}
 {"id": "g2728", "text": "“Tell me your evening,” I said, “as carefully as you like, because I’m in no rush.”", "batch": 1}
 {"id": "g2734", "text": "I asked where {they}’d spent the evening and who {they}’d spent it with, and let {them} take it at {their} own pace.", "batch": 1}
 {"id": "g2719", "text": "I said, “Where were you this evening? Start at the start, and put the people in where they belong.”", "batch": 1}
 {"id": "g2725", "text": "I asked {them} to take me through tonight in order, every place and every person, and not to hurry it.", "batch": 1}
-{"id": "g2731", "text": "I asked {them} how the evening had gone, from the beginning, and who had been there for it. I said exact was better than quick.", "batch": 1}
+{"id": "g2731", "text": "I asked {them} for the evening from the beginning: every place, and who had been with {them} at each. I said exact was better than quick.", "batch": 1}
 {"id": "g2737", "text": "“I’d like your evening, slowly,” I said, “where you were, and whether anybody was with you.”", "batch": 1}
 {"id": "g2721", "text": "I asked {them} for tonight, plainly: the places, and the people at them.", "batch": 1}
 {"id": "g2727", "text": "I said, “So where were you tonight, and was there anybody with you?”", "batch": 1}
 {"id": "g2733", "text": "I asked {them} for {their} evening, plain and in order.", "batch": 1}
 {"id": "g2739", "text": "“Tell me about tonight,” I said, “where you went, and who you were with.”", "batch": 1}
 {"id": "g2718", "text": "I asked where {they}’d spent the evening, start to finish, and whether anyone had kept {them} company.", "batch": 1}
-{"id": "g2724", "text": "“Your evening,” I said. “Where it went, and who it went with.”", "batch": 1}
+{"id": "g2724", "text": "“Your evening,” I said. “Where you spent it, and who you spent it with.”", "batch": 1}
 {"id": "g2730", "text": "I asked {them} to tell me the evening the way it happened, place after place, with whoever was there.", "batch": 1}
 {"id": "g2736", "text": "“I’m after your evening,” I said, “where you were, start to finish, and anybody who was there too.”", "batch": 1}
 {"id": "g2723", "text": "“Tonight,” I said. “Start to finish, and who was there.”", "batch": 1}
@@ -191,25 +191,25 @@
 {"id": "g0706", "text": "I asked {them} who’d taken a seat tonight, and when, and whether any of them were strangers.", "batch": 1}
 {"id": "g0663", "text": "“Start at the doors opening,” I said, “and tell me who came in, and when.”", "batch": 1}
 {"id": "g0692", "text": "I asked {them} who’d been in tonight, and when, the short way.", "batch": 1}
-{"id": "g0701", "text": "I asked {them} to think back over the night and tell me who {they}’d seen here, and when.", "batch": 1}
-{"id": "g0689", "text": "I asked {them} who had come and gone tonight while {they} was here, as exactly as {they} could.", "batch": 1}
+{"id": "g0701", "text": "I asked {them} to think back over the night and tell me who {they}’d seen come and go, and when.", "batch": 1}
+{"id": "g0689", "text": "I asked {them} who had come and gone tonight while {they} was in the place, as exactly as {they} could.", "batch": 1}
 {"id": "g0688", "text": "“Nobody keeps a door here, I know,” I said, “but who did you see tonight, and when?”", "batch": 1}
 {"id": "g0676", "text": "I asked {them} who {they}’d noticed tonight, and when, and said a careful guess was worth more to me than none.", "batch": 1}
 {"id": "g0652", "text": "I asked {them} who’d been around tonight, and when {they}’d seen them.", "batch": 1}
 {"id": "g0648", "text": "“Who was in here tonight,” I said, “that you saw?”", "batch": 1}
-{"id": "g0639", "text": "I asked {them} who {they}’d had for company in here tonight, known or not, and when.", "batch": 1}
+{"id": "g0639", "text": "I asked {them} who {they}’d had for company in the place tonight, known or not, and when.", "batch": 1}
 {"id": "g0647", "text": "I asked {them} which faces {they}’d noticed tonight, strangers too, and roughly when.", "batch": 1}
 {"id": "g0656", "text": "I asked {them} for any face {they}’d seen tonight, with a time to it.", "batch": 1}
 {"id": "g0660", "text": "“Tonight,” I said. “Who did you see, and when?”", "batch": 1}
-{"id": "g0654", "text": "I asked {them} who’d been in here tonight and when, and made it short to match.", "batch": 1}
+{"id": "g0654", "text": "I asked {them} who’d been in the place tonight and when, and kept the question short to suit {them}.", "batch": 1}
 {"id": "g0659", "text": "“Anybody in here tonight,” I said, “and when?”", "batch": 1}
 {"id": "g0703", "text": "I asked {them} who had come in while {they} was working tonight, every one, with the time, and anybody {they} didn’t know.", "batch": 1}
 {"id": "g1793", "text": "I asked {them} how {they} felt about the whole business, and said {they} could take as long as {they} needed to put it right.", "batch": 1}
 {"id": "g1806", "text": "I asked {them} to tell me plainly what {thing} was to {them}, and whether anybody in this owed {them} anything, or the other way round.", "batch": 1}
-{"id": "g1770", "text": "I asked {them} where {they} stood in all this, and said I’d rather have the true shape of it than a quick one.", "batch": 1}
+{"id": "g1770", "text": "I asked {them} how {they} felt about the people in all this, and said I’d rather have a true answer than a quick one.", "batch": 1}
 {"id": "g1827", "text": "I asked whether there was any bad blood between {them} and anybody in this, and said I’d wait for the careful version.", "batch": 1}
 {"id": "g1768", "text": "I asked {them} what {they}’d thought of the dead man.", "requires": ["murder"], "batch": 1}
-{"id": "g1825", "text": "I asked {them} straight out what any of it was to {them}.", "batch": 1}
+{"id": "g1825", "text": "I asked {them} straight out what the business, and the people in it, meant to {them}.", "batch": 1}
 {"id": "g1804", "text": "I asked {them} how {they} stood with everybody in this: who {they} liked, who {they} didn’t, and who owed what to whom.", "batch": 1}
 {"id": "g1763", "text": "“Had you any reason to care about any of this,” I asked, “one way or the other?”", "batch": 1}
 {"id": "g1820", "text": "“The dead man,” I said. “What was there between you two?”", "requires": ["murder"], "batch": 1}
@@ -222,7 +222,7 @@
 {"id": "g1775", "text": "I asked {them} what {they} had against anybody in this, if anything.", "batch": 1}
 {"id": "g1798", "text": "“I want to know how you feel about all this,” I said, “the people in it, and {thing}, and anything owing between you.”", "batch": 1}
 {"id": "g1803", "text": "I asked {them} who in all this {they} liked and who {they} didn’t, and why.", "batch": 1}
-{"id": "g1796", "text": "I asked {them} what it was to {them}, and nothing else.", "batch": 1}
+{"id": "g1796", "text": "I asked {them} what any of the people in this were to {them}, and nothing else.", "batch": 1}
 {"id": "g1815", "text": "“Bad blood,” I said. “Any, with anybody in this, and what it was over.”", "batch": 1}
 {"id": "g1807", "text": "I asked {them} whether {they} had any stake in this, and if so, what kind.", "batch": 1}
 {"id": "g1795", "text": "I asked {them} what {thing} was to {them}, and waited while {they} chose the words.", "batch": 1}
@@ -237,12 +237,12 @@
 {"id": "g1769", "text": "“Tell me how you stand with everybody in this,” I said, “friends, enemies, and anyone you owe or who owes you.”", "batch": 1}
 {"id": "g1826", "text": "I asked {them} to tell me what this business was to {them}, all of it, the people and {thing} and anything else that came into it.", "batch": 1}
 {"id": "g1771", "text": "I asked whether there was anything between {them} and anybody in this, money or a grudge or anything at all.", "batch": 1}
-{"id": "g1828", "text": "I asked {them} plainly what {their} stake in it was, if {they} had one.", "batch": 1}
+{"id": "g1828", "text": "I asked {them} plainly what {their} stake in the business was, if {they} had one.", "batch": 1}
 {"id": "g1799", "text": "I asked {them} how {they} felt about it all, and left it short.", "batch": 1}
 {"id": "g1784", "text": "I asked {them} whether {they}’d had any quarrel with the dead man, and if so, what about, short as {they} liked.", "requires": ["murder"], "batch": 1}
 {"id": "g1801", "text": "“How did you get along with the dead man?” I asked.", "requires": ["murder"], "batch": 1}
 {"id": "g1767", "text": "I asked {them} what the dead man had been to {them}, and gave {them} room to say it carefully.", "requires": ["murder"], "batch": 1}
-{"id": "g1824", "text": "I asked {them} whether anything in this had touched {them} before tonight, and waited for {them} to choose where to begin.", "batch": 1}
+{"id": "g1824", "text": "I asked {them} whether anybody in this had had dealings with {them} before tonight, and waited for {them} to choose where to begin.", "batch": 1}
 {"id": "g1802", "text": "“Tell me how you felt about the dead man,” I said, “and about the people around that business, as fully as you can manage.”", "requires": ["murder"], "batch": 1}
 {"id": "g1808", "text": "I asked {them}, slowly, whether anyone in this had ever done {them} a bad turn, or been done one.", "batch": 1}
 {"id": "g1762", "text": "“What do you think of it all?” I asked.", "batch": 1}
@@ -286,7 +286,7 @@
 {"id": "g2252", "text": "I asked who would want to, and kept my hands flat on the desk while I waited for a name.", "batch": 1}
 {"id": "g2254", "text": "“Let’s have names,” I said. “Who’d want to, and why?”", "batch": 1}
 {"id": "g2256", "text": "I asked who might have a reason. There’s always somebody with one, and usually a small crowd.", "joke": true, "batch": 1}
-{"id": "g2258", "text": "“Who do you think?” I asked; people who climb my stairs at this hour usually bring a name with them.", "batch": 1}
+{"id": "g2258", "text": "“Who do you think would want to?” I asked; people who climb my stairs at this hour usually bring a name with them.", "batch": 1}
 {"id": "g2260", "text": "“Who’s got a reason?” I said, and turned the lamp so it wasn’t in anybody’s eyes.", "batch": 1}
 {"id": "g2262", "text": "“Who would do a thing like this?” I asked, and kept my voice level for the both of us.", "batch": 1}
 {"id": "g2264", "text": "“Enemies,” I said, “or friends who’d gone sour: who would want to?”", "batch": 1}
@@ -297,10 +297,10 @@
 {"id": "g2274", "text": "I asked who would want this, and said I had all night if it took that long.", "batch": 1}
 {"id": "g2276", "text": "I asked whether anybody came to mind, anybody at all, with a reason to want this.", "batch": 1}
 {"id": "g2278", "text": "“Go through everybody you know,” I said, “and stop at the first one who’d want to.”", "batch": 1}
-{"id": "g2280", "text": "I asked who had a reason. My client had clearly asked it already on the way over, and probably on every stair.", "joke": true, "batch": 1}
+{"id": "g2280", "text": "I asked who had a reason. My client had clearly been asking the same thing all the way over, probably on every stair.", "joke": true, "batch": 1}
 {"id": "g2282", "text": "I wrote the hour down and underlined it twice. Then I asked about the people: anybody at all who might have wanted this, friend or otherwise.", "batch": 2}
 {"id": "g2284", "text": "“Now the people,” I said. “Anybody who’d have wanted this, even somebody you’d be ashamed to suspect out loud.”", "batch": 2}
-{"id": "g2286", "text": "I asked who came to mind in the small hours, when you lie awake and the faces come round whether you call them or not.", "batch": 2}
+{"id": "g2286", "text": "I asked who would want this: the faces that come round in the small hours, when you lie awake whether you like it or not.", "batch": 2}
 {"id": "g2235", "text": "“If you had to put money on somebody,” I said, “who would it be?”", "batch": 2}
 {"id": "g2237", "text": "I asked for anybody who might have wanted this, and said the list could run as long or as short as it liked.", "batch": 2}
 {"id": "g2239", "text": "“Who wanted this to happen?” I said, and sat back to give the question some room.", "batch": 2}
@@ -308,7 +308,7 @@
 {"id": "g2243", "text": "“When you ask yourself who’d do this,” I said, “whose face turns up first?”", "batch": 2}
 {"id": "g2245", "text": "I asked whether anybody had been wanting this, and told my client to say the name first and decide later whether it was unkind.", "batch": 2}
 {"id": "g2247", "text": "“Somebody had their reasons,” I said, and held the notebook open. “Whose?”", "batch": 2}
-{"id": "g2249", "text": "I asked who had wanted this, plainly, and let the hour sit on the desk between us while my client thought it over.", "batch": 2}
+{"id": "g2249", "text": "I asked who had wanted this, plainly, and then said nothing while my client thought it over. Silence is the cheapest help I have.", "batch": 2}
 {"id": "g2251", "text": "“Who’d be pleased tonight,” I said, “that this happened?”", "batch": 2}
 {"id": "g2253", "text": "I asked who had been wishing for this lately. Everybody wishes for something; I wanted the ones who’d said so out loud.", "batch": 2}
 {"id": "g2255", "text": "“Start with whoever you’d least like me to look at,” I said. “Who is it?”", "batch": 2}
@@ -319,7 +319,7 @@
 {"id": "g2265", "text": "“Give me somebody to go and look at,” I said. “Somebody with a reason.”", "batch": 2}
 {"id": "g2267", "text": "I asked who had it in for anybody in this, and how far back the bad feeling went.", "batch": 2}
 {"id": "g2269", "text": "“Never mind who you like,” I said. “Who wanted this?”", "batch": 2}
-{"id": "g2271", "text": "I asked whether a face had come to mind yet, and whose it was.", "batch": 2}
+{"id": "g2271", "text": "I asked whether a face had come to mind yet, somebody who’d want this, and whose it was.", "batch": 2}
 {"id": "g2273", "text": "“There’s always somebody who wanted this,” I said. “Who is it this time?”", "batch": 2}
 {"id": "g2275", "text": "I asked about quarrels, debts and old scores, and which of them had a face attached.", "batch": 2}
 {"id": "g2277", "text": "“If anybody hated anybody in this,” I said, “I’d like to know who, and what about.”", "batch": 2}
@@ -336,23 +336,23 @@
 {"id": "g0575", "text": "I asked when it happened. Nobody ever knows exactly, but somebody always knows roughly.", "batch": 2}
 {"id": "g0581", "text": "“Is there a time on any of this?” I asked.", "batch": 2}
 {"id": "g0587", "text": "I asked what time it had happened, if anybody had it.", "batch": 2}
-{"id": "g0593", "text": "“Is there a clock in this anywhere?” I asked.", "batch": 2}
-{"id": "g0599", "text": "I asked about the time, and whose clock it was.", "batch": 2}
+{"id": "g0593", "text": "“Did anybody look at a clock when it happened?” I asked.", "batch": 2}
+{"id": "g0599", "text": "I asked what time it had happened, and whose clock had said so.", "batch": 2}
 {"id": "g0605", "text": "“Does anybody know when?” I asked, and got the notebook ready.", "batch": 2}
-{"id": "g0611", "text": "I asked when, and waited while my client found it.", "batch": 2}
+{"id": "g0611", "text": "I asked when it had happened, and waited while my client worked out the time.", "batch": 2}
 {"id": "g0617", "text": "“What time did this happen, roughly?” I asked.", "batch": 2}
 {"id": "g0623", "text": "I asked how far into the evening it had happened.", "batch": 2}
 {"id": "g0537", "text": "“Is there anybody who’d want this?” I asked my client.", "batch": 2}
 {"id": "g0543", "text": "I asked who would have wanted this, and kept quiet after.", "batch": 2}
 {"id": "g0549", "text": "“Who would want this?” I said, meaning anybody at all.", "batch": 2}
-{"id": "g0555", "text": "I asked for a name, if my client had one.", "batch": 2}
+{"id": "g0555", "text": "I asked for the name of anybody who’d want this, if my client had one.", "batch": 2}
 {"id": "g0561", "text": "“Somebody wanted this,” I said. “Who comes to mind?”", "batch": 2}
 {"id": "g0567", "text": "I asked who bore anybody in this a grudge.", "batch": 2}
 {"id": "g0573", "text": "“Who’d do this?” I asked, and left it at that.", "batch": 2}
 {"id": "g0579", "text": "I asked who would come out ahead because of this.", "batch": 2}
 {"id": "g0585", "text": "“Any enemies I ought to know about?” I asked.", "batch": 2}
 {"id": "g0591", "text": "I asked who had wanted this, and didn’t dress it up.", "batch": 2}
-{"id": "g0597", "text": "“Who comes to your mind?” I asked, and waited for a name.", "batch": 2}
+{"id": "g0597", "text": "“Who comes to your mind,” I asked, “when you think of somebody who’d want this?”", "batch": 2}
 {"id": "g0603", "text": "I asked whether anybody had a reason to want this.", "batch": 2}
 {"id": "g0609", "text": "“Who had cause?” I asked, in as few words as I had.", "batch": 2}
 {"id": "g0615", "text": "I put it simply, and asked who would want this.", "batch": 2}
@@ -376,7 +376,7 @@
 {"id": "g0547", "text": "“Now tell me who,” I said. “Anybody who wanted this, whether they ever said so or not.”", "batch": 2}
 {"id": "g0553", "text": "I asked who had a reason to want this, and said a reason didn’t have to be a good one, or even a sensible one, for me to want to hear it.", "batch": 2}
 {"id": "g0559", "text": "“Who stood to gain by this,” I asked, “or had something to settle, or just didn’t like the people in it?”", "batch": 2}
-{"id": "g0565", "text": "I asked who my client would look at first, if it were my client doing the looking.", "batch": 2}
+{"id": "g0565", "text": "I asked who would want this. If my client were the detective, I said, who would get the first look?", "batch": 2}
 {"id": "g0571", "text": "I asked for anybody with a reason, however small, and anybody who’d been heard to say something they’d now like to have back.", "batch": 2}
 {"id": "g0577", "text": "“Who would want this?” I asked, and said not to leave anybody off for being a friend.", "batch": 2}
 {"id": "g0583", "text": "I asked who had been wanting this, and whether it was the sort of wanting people say out loud or the kind they keep in a drawer.", "batch": 2}
@@ -413,10 +413,10 @@
 {"id": "g0582", "text": "I asked about bad blood: who had it, and with whom.", "batch": 2}
 {"id": "g0588", "text": "“Who’d want this?” I asked, and my pencil waited with me.", "batch": 2}
 {"id": "g0594", "text": "I asked who stood to gain, and who just stood to enjoy it.", "batch": 2}
-{"id": "g0600", "text": "“Who’s the first person you thought of,” I asked, “on the stairs coming up?”", "batch": 2}
+{"id": "g0600", "text": "“Who’s the first person you thought of on the stairs coming up,” I asked, “as somebody who’d want this?”", "batch": 2}
 {"id": "g0606", "text": "I asked who in my client’s life would want this, and said I didn’t need a reason yet, only a direction.", "batch": 2}
 {"id": "g0612", "text": "“Name me somebody who’d want this,” I said, “if there is anybody.”", "batch": 2}
-{"id": "g0618", "text": "“Who would you put first,” I asked, “if you had to make a list?”", "batch": 2}
+{"id": "g0618", "text": "“If you had to make a list of people who’d want this,” I asked, “who would you put first?”", "batch": 2}
 {"id": "g0624", "text": "“Who had something against anybody in this?” I asked, and settled back to listen.", "batch": 2}
 {"id": "g2815", "text": "The bartender put a clean glass in front of me that I hadn’t asked for. I let it stand there.", "batch": 2}
 {"id": "g2816", "text": "{They} went back to the bar, and I went back to my notebook, and for a minute we were both very busy with nothing.", "batch": 2}
