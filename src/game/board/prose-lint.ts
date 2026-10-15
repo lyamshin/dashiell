@@ -32,7 +32,7 @@
 import type { Page } from './types.js';
 import { isMurder, type BoardDeal, type BoardRun } from './model.js';
 import { collisionsOf } from './knowledge.js';
-import { KNOCKED, OWN_WORD_ONLY, STANDING, STOOD, STOOD_UP, UNCONTRADICTED, seatedAfter } from './plan/situated.js';
+import { KNOCKED, OWN_WORD_ONLY, SAT, STANDING, STOOD, STOOD_UP, UNCONTRADICTED, seatedAfter } from './plan/situated.js';
 import { sentencesOf } from './plan/sentences.js';
 import { GAG_MAX } from './pages.js';
 import { boardFields } from './report.js';
@@ -101,6 +101,7 @@ export function proseIssues(d: BoardDeal, run: BoardRun): ProseIssue[] {
     for (const para of narration(p)) {
       for (const s of sentencesOf(para.text)) {
         if (seated && STANDING.test(s) && !STOOD_UP.test(s)) out.push({ page: i, rule: 'posture', detail: s.trim() });
+        else if (seated && SAT.test(s) && !STOOD_UP.test(s)) out.push({ page: i, rule: 'posture', detail: `sat down again: ${s.trim()}` });
         seated = seatedAfter(s, seated);
       }
       const k = inside ? KNOCKED.exec(para.text) : null;

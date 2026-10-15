@@ -77,7 +77,7 @@ import { sayFirst } from './bones/say.js';
 import { PLAN, chapterUnit, markPronoun, newBudget, planSection, stripMarks, type GapSlot, type Item, type Relation, type SituCtx, type Unit } from './plan/index.js';
 import type { PageBudget, SaySpec } from './plan/types.js';
 import type { Prop } from './bones/types.js';
-import { KNOCKED, STANDING, seatedAfter } from './plan/situated.js';
+import { KNOCKED, SAT, STANDING, seatedAfter } from './plan/situated.js';
 import type { VoiceHand } from './bones/say.js';
 import { breakerProp, claimProp, findProps, givenProps, lineProps, meansProp as meansPropOf, srcOfQ } from './bones/extract.js';
 
@@ -161,7 +161,7 @@ export function writer(d: BoardDeal, before: BoardRun, run: BoardRun, page: numb
   };
   // docs/55 2: inside already, no card knocks; sitting already, no card has me standing on the mat.
   if (insideNow(w)) hand.avoid = alsoAvoid(hand.avoid, KNOCKED);
-  if (seatedNow(w)) hand.avoid = alsoAvoid(hand.avoid, STANDING);
+  if (seatedNow(w)) hand.avoid = alsoAvoid(alsoAvoid(hand.avoid, STANDING), SAT);
   return w;
 }
 
@@ -335,7 +335,7 @@ function situOf(w: Writer, job: SheetJob): SituCtx {
 }
 
 /** docs/55 2: texture about going over a room, which a page reading the papers doesn't do. */
-const PAPERS_NOT_ROOM = /\bcorners?\b|\bthe room\b|\bon my feet\b|\bthe floor\b|a yard at a time|end to end|\bI didn’t sit down\b|\bRooms where\b/i;
+const PAPERS_NOT_ROOM = /\bcorners?\b|\b(?:the|a|this) room\b|\bon my feet\b|\bthe floor\b|a yard at a time|end to end|\bI didn’t sit down\b|\bRooms where\b|\bthe doorway\b|\bchairs\b|\bon my knees\b|\beye level\b|\bA place doesn’t\b/i;
 
 /** docs/55 2: I was in this room on the page before: nothing on this page knocks to come in. */
 export function insideNow(w: Writer): boolean {
@@ -1028,6 +1028,9 @@ export function writeOffice(w: Writer): void {
       .replace(new RegExp(`\\b${me}’s\\b`, 'g'), 'my')
       .replace(new RegExp(`\\b${me} is out\\b`), 'I’m out');
     const v: Record<string, string | undefined> = { ...base, ...g.vars, line };
+    // docs/55 2: the pet's place is said without the client's name in it ("in a basket by the stove",
+    // not "in Hauck's basket", which the reference pass makes "my client's"), Medium 14's #1.
+    if (g.kind === 'gone' && v.where) v.where = v.where.replace(new RegExp(`\\b(?:${esc(me)}’s|his|her)\\b`), 'a');
     if (v.where) v.whereFrom = v.where.replace(/^(in|on) /, '');
     // The client's own watch: "my late husband’s gold watch", not "a late husband’s" (Raw 11's #23).
     if (v.thingName) v.thingName = v.thingName.replace(/^a late husband’s\b/, 'my late husband’s');
@@ -1060,7 +1063,9 @@ export function writeOffice(w: Writer): void {
         // Somebody named for the first time is said with their trade (Medium 14's #24: "And Pickering, the milliner").
         const who = c.people.find((x) => x.role === 'suspect' && x.short === v[`p${i}`]);
         let m = inClientMouth(c, v[`m${i}`] ?? '');
-        if (who?.job) m = m.replace(new RegExp(`\\b${esc(who.short)}\\b`), `${who.short}, ${who.job},`);
+        // docs/55 8: "There’s Rafferty, a bus conductor. We haven’t spoken since…", not an apposition in speech (Raw 11's #12).
+        if (who?.job && new RegExp(`^${esc(who.short)} and I haven’t\\b`).test(m)) m = m.replace(new RegExp(`^${esc(who.short)} and I haven’t\\b`), `there’s ${who.short}, ${who.job}. We haven’t`);
+        else if (who?.job) m = m.replace(new RegExp(`\\b${esc(who.short)}\\b`), `${who.short}, ${who.job},`);
         said.push(`${cap(m)}.`);
         saidWho.push(c.people.find((x) => x.short === v[`p${i}`])?.id ?? '');
       }
@@ -1217,6 +1222,8 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   const pl = placeOf(c, place);
   if (!pl) return;
   stageGuard(w, place);
+  // docs/55 2: walking in, I don't sit down yet: the page that asks does that, or doesn't.
+  w.hand.avoid = alsoAvoid(w.hand.avoid, SAT);
   const kind = placeKind(c, place);
   // A later visit: somebody here already has a trait, and the page's last word pays it off.
   const again = first ? undefined : peopleAt(c, w.run, place).find((x) => w.run.traits?.[x]);
@@ -2031,11 +2038,13 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
   // they claimed): "She'd told me the Automat at nine; the Automat might know about ten." Guilty or
   // not, it's read off their own story the same way.
   const claimPlace = lie?.claim ?? accountOf(c, p)?.claims[h]?.place ?? '';
+  const heldList = (pl: PlaceId) => c.lists.some((l) => l.place === pl && w.run.asked.includes(`list:${l.watcher}`));
   const near = c.board.hours
     .filter((hh) => hh !== h)
     .map((hh) => ({ hh: hh as Hour, place: accountOf(c, p)?.claims[hh as Hour]?.place }))
     .filter((x): x is { hh: Hour; place: PlaceId } => !!x.place && x.place !== claimPlace && x.place !== c.crime.scene && c.lists.some((l) => l.place === x.place && l.entries[h] !== undefined))
-    .sort((a, b) => Math.abs(a.hh - h) - Math.abs(b.hh - h) || a.hh - b.hh)[0];
+    // (A list not asked for yet first: it's the one that might say something new about that hour.)
+    .sort((a, b) => Number(heldList(a.place)) - Number(heldList(b.place)) || Math.abs(a.hh - h) - Math.abs(b.hh - h) || a.hh - b.hh)[0];
   const pointsAt = near ? ` ${pr.He} had told me ${placeName(c, near.place)} at ${hourWord(near.hh)}; ${placeName(c, near.place)} might know about ${hourWord(h)}.` : '';
   if (near) {
     w.places.add(near.place);

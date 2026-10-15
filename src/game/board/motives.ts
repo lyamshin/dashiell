@@ -48,7 +48,7 @@ const PAPERS: Record<string, string> = {
   m3: 'an IOU for four hundred dollars, in {his} hand',
   m4: 'the lease on a shop, the rent owing, and a carbon of his letter calling it in',
   m5: 'the order that closed {his} business, with his signature on it',
-  m6: 'a notice to quit, from when he threw {him} out of a lease',
+  m6: 'a notice to quit, from when he put {him} out on the street',
   m7: 'a court transcript, his own testimony against {his} brother',
   m8: 'a wedding invitation nobody ever used; he jilted {his} sister a week before the wedding',
 };
@@ -65,7 +65,7 @@ const PAPERS_PLANNED: Record<string, string> = {
   m3: 'an IOU for four hundred dollars, in {his} hand',
   m4: 'the lease on a shop, the rent owing, and a carbon of the dead man’s letter calling it in',
   m5: 'the order that closed {his} business, with the dead man’s signature on it',
-  m6: 'a notice to quit, from when the dead man threw {him} out of a lease',
+  m6: 'a notice to quit, from when the dead man put {him} out on the street',
   m7: 'a court transcript, the dead man’s own testimony against {his} brother',
   m8: 'a wedding invitation nobody ever used; the dead man jilted {his} sister a week before the wedding',
 };

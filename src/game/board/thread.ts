@@ -121,7 +121,8 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
           const own = personOf(c, a.person)?.home === pl;
           const where = own ? `${pm(c, a.person, 'his')} place` : placeName(c, pl);
           const safe = hs.filter((h) => !windowOf(c).includes(h) && a.claims[h]?.place === pl);
-          return out(`${A} had said ${P} was with ${pm(c, a.person, 'him')} ${where === 'here' ? 'here' : `at ${where}`} at ${hourWord(h0)}`, [`claim:${a.person}@${h0}`], {
+          // docs/55 8: at their own place, "with her at nine" says it (not "with her at Mrs. Whitfield’s place").
+          return out(own ? `${A} had said ${P} was with ${pm(c, a.person, 'him')} at ${hourWord(h0)}` : `${A} had said ${P} was with ${pm(c, a.person, 'him')} ${where === 'here' ? 'here' : `at ${where}`} at ${hourWord(h0)}`, [`claim:${a.person}@${h0}`], {
             // To their face, only a watcher's word: "Coffin has you here at nine." Another suspect's would be one more name, and a story set against a story.
             ...(safe.length > 0 && personOf(c, a.person)?.role === 'watcher' ? { face: `${A} says you were with ${pa.him} ${pl === here && !own ? 'here' : `at ${where.replace(/\u2063\d+\u2064/g, '')}`} ${hoursSaid(c, safe)}.` } : {}),
             hours: [h0],

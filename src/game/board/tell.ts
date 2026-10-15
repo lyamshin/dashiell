@@ -341,6 +341,7 @@ export function spokenListLines(c: BoardCase, l: WatchList, rot = 0, manner: Man
     else groups.push({ hs: [h], es });
   }
   const told = new Set<string>();
+  let saidBesides = false;
   groups.forEach((g, i) => {
     const hs: Args = { hours: { t: 'hours', hs: [...g.hs] } };
     const at = i === 0 ? 'first' : 'next';
@@ -367,7 +368,8 @@ export function spokenListLines(c: BoardCase, l: WatchList, rot = 0, manner: Man
     const whole = g.hs.every((h) => listExhaustive(c, l, h));
     const nobody = nobodyElse(i + rot);
     // docs/55 2: the first hour's "nobody else" says it's besides whoever was there all evening (Raw 11's #18).
-    const besides = whole && i === 0 && alwaysNames.length > 0 && !alwaysNames.some((n) => /^(?:two|three|a couple)\b/i.test(n));
+    const besides = whole && !saidBesides && alwaysNames.length > 0 && !alwaysNames.some((n) => /^(?:two|three|a couple)\b/i.test(n));
+    if (besides) saidBesides = true;
     push(
       { shape: 'LIST-HOUR', flags: ['hour', whole ? 'whole' : 'part', at, ...(g.es.length > 1 ? ['many'] : ['one']), ...(besides ? ['besides'] : [])], args: { ...hs, names: andList(names), ...(besides ? { who: andList(alwaysNames) } : {}) }, manner },
       [...g.hs],

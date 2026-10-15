@@ -401,7 +401,7 @@
   {
     "id": "wch-064",
     "deck": "watch",
-    "text": "There was no one to notice who passed through.",
+    "text": "Nobody kept the stairs here. Whoever came and went did it unseen.",
     "tags": {
       "watcher": "none"
     },
@@ -451,7 +451,7 @@
   {
     "id": "wch-069",
     "deck": "watch",
-    "text": "Nobody kept a list of who came and went, on paper or in their head.",
+    "text": "No doorman, no neighbor on a chair by the window. Nobody here had watched the door.",
     "tags": {
       "watcher": "none"
     },

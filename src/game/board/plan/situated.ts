@@ -64,10 +64,10 @@ export const UNCONTRADICTED = new RegExp(`nothing to put against it|nothing agai
  * hand (until I get up); once I'm inside, I don't knock. The prose lint (`posture`, `inside`) holds
  * the pages to the same words.
  */
-export const SAT = /\bI (?:took|pulled up) (?:a |the |an )?(?:[\w’]+ )?(?:chair|stool|seat)\b|\bI sat (?:down|still|on|in|at)\b|\b[Ww]e sat down\b|\bI took the (?:[\w’]+ )?(?:chair|stool)\b|\bsat down (?:across|opposite|beside|at|on|in)\b/;
+export const SAT = /\bI (?:took|pulled up) (?:a |the |an )?(?:[\w’]+ )?(?:chair|stool|seat)\b|\b(?:I|and) sat (?:down|still|on|in|at)\b|\bsat on it\b|\b[Ww]e sat down\b|\bI took the (?:[\w’]+ )?(?:chair|stool)\b|\bsat down (?:across|opposite|beside|at|on|in)\b/;
 export const STOOD_UP = /\bI (?:got|stood) up\b|\bgot to my feet\b/;
-export const STANDING = /\bI stood (?:on|in|at|by|with|just|there|in the|on the)\b|\bstayed on my feet\b|\bI stayed standing\b|\bon my feet in\b|\bI kept standing\b|\bI stood\.|\bstood on the mat\b/;
-export const KNOCKED = /\bI knocked\b|\bthe door took its time\b|\bknocked and waited\b/;
+export const STANDING = /\b(?:I|and) stood (?:on|in|at|by|with|just|there|in the|on the)\b|\bstayed on my feet\b|\bI stayed standing\b|\bon my feet in\b|\bI kept standing\b|\bI stood\.|\bstood on the mat\b|\bstanding (?:a|in|by|at|on|there)\b/;
+export const KNOCKED = /\bI knocked\b|\bthe door took its time\b|\bknocked and waited\b|\bI shut (?:[\w’]+ |\{their\} )?door behind me\b/;
 
 /** Whether text leaves me seated, from where I was: a sit makes it so, a getting up unmakes it. */
 export function seatedAfter(text: string, was: boolean): boolean {
@@ -362,7 +362,8 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
         place: slot === 'walk' ? 'street' : s.place,
         manner,
         tier: tierBand(s.tier),
-        before: before ? (before.relation ?? 'new') : 'none',
+        // docs/55 1c: a fact that ends on somebody's own word alone ("…and I had nobody else’s word for it") is new, not a confirmation, whatever it opened on.
+        before: before ? (OWN_WORD_ONLY.test(stripMarks(before.text)) ? 'new' : (before.relation ?? 'new')) : 'none',
         after: after ? (after.relation ?? 'new') : 'none',
         put: s.put,
         position: p === 0 ? 'first' : p === n - 1 ? 'last' : 'middle',
@@ -402,7 +403,9 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
           if (c.joke && !mayJoke) continue;
           if (s.avoid && s.avoid.test(c.text)) continue;
           if ((crossed && UNCONTRADICTED.test(c.text)) || (oneWord && STOOD.test(c.text))) continue;
-          if ((seated && STANDING.test(c.text) && !STOOD_UP.test(c.text)) || (s.inside && KNOCKED.test(c.text))) continue;
+          if ((seated && (STANDING.test(c.text) || SAT.test(c.text)) && !STOOD_UP.test(c.text)) || (s.inside && KNOCKED.test(c.text))) continue;
+          // (Walking in, I don't sit down before anybody's been asked anything: that's the asking page's.)
+          if (s.page === 'arrival' && SAT.test(c.text)) continue;
           // {place} at most once a paragraph: a place said twice already is the name bolted on (docs/47 C14).
           if (/\{place\}/i.test(c.text) && s.placeName && para.includes(s.placeName)) continue;
           const text = fillCard(c.text, tokens);
