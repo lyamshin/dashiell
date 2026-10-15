@@ -50,6 +50,38 @@ import type { PlanCtx } from './index.js';
 import { markPronoun, roleOf, stripMarks } from './refer.js';
 import { sentencesOf } from './sentences.js';
 
+/**
+ * docs/55 1c: texture that says a story stood up, or that nothing went against it. Never dealt where
+ * the page's person has a line held against them (the grid shows the collision), nor after a fact
+ * that says only their own word stood for an hour ("and nobody else had said so"). The prose lint
+ * (`prose-lint.ts`, rule `grid`) holds the pages to the same words.
+ */
+export const STOOD = /squared (?:up )?(?:neatly )?with|story squared|squares; there|checked out against|held up when I set it|That part held up|stood up, and I let it stand|no reason to doubt|been held up enough|didn’t have to choose between anybody’s word/i;
+export const UNCONTRADICTED = new RegExp(`nothing to put against it|nothing against it|nothing I held (?:touched|went against) it|${STOOD.source}`, 'i');
+
+/**
+ * docs/55 2: continuity a page keeps. Once I've sat down, I don't stand on the mat with my hat in my
+ * hand (until I get up); once I'm inside, I don't knock. The prose lint (`posture`, `inside`) holds
+ * the pages to the same words.
+ */
+export const SAT = /\bI (?:took|pulled up) (?:a |the |an )?(?:[\w’]+ )?(?:chair|stool|seat)\b|\bI sat (?:down|still|on|in|at)\b|\b[Ww]e sat down\b|\bI took the (?:[\w’]+ )?(?:chair|stool)\b|\bsat down (?:across|opposite|beside|at|on|in)\b/;
+export const STOOD_UP = /\bI (?:got|stood) up\b|\bgot to my feet\b/;
+export const STANDING = /\bI stood (?:on|in|at|by|with|just|there|in the|on the)\b|\bstayed on my feet\b|\bI stayed standing\b|\bon my feet in\b|\bI kept standing\b|\bI stood\.|\bstood on the mat\b/;
+export const KNOCKED = /\bI knocked\b|\bthe door took its time\b|\bknocked and waited\b/;
+
+/** Whether text leaves me seated, from where I was: a sit makes it so, a getting up unmakes it. */
+export function seatedAfter(text: string, was: boolean): boolean {
+  let seated = was;
+  for (const s of sentencesOf(stripMarks(text))) {
+    if (STOOD_UP.test(s)) seated = false;
+    else if (SAT.test(s)) seated = true;
+  }
+  return seated;
+}
+
+/** A fact that says somebody's word stood alone for an hour. */
+export const OWN_WORD_ONLY = /nobody else had (?:said so|backed (?:that|it) up)|nobody else’s word for it|the only word I had|on nobody’s word but|nobody but (?:him|her)self had said/i;
+
 /** The switch. Off, the old decks only. */
 export const SITUATED: { on: boolean } = { on: true };
 
@@ -185,6 +217,8 @@ export interface SituCtx {
   /** Seeds the deal: the night's seed, the tier, the page. */
   seed: readonly [number, number, number];
   used: (id: string) => boolean;
+  /** docs/55 6: 2 when last night dealt the card, 1 when one of the ten before did, 0 when none did. */
+  seenBefore?: (id: string) => number;
   note: (id: string) => void;
   swap: (prev: string, next: string) => void;
   /** The place's short name, for `{place}`. */
@@ -193,6 +227,12 @@ export interface SituCtx {
   weather?: string;
   /** Card text not to deal here (a theater's stage, a picture house's screen). */
   avoid?: RegExp;
+  /** docs/55 1c: the page's person has a line held against them: no texture says their story stood. */
+  crossed?: boolean;
+  /** docs/55 2: I'm already inside this room (the page before was here): nothing knocks. */
+  inside?: boolean;
+  /** docs/55 2: I sat down on the page before, in this room, and haven't got up. */
+  seated?: boolean;
 }
 
 /** What a filled card is filled with, for one gap. */
@@ -264,7 +304,10 @@ function tokensFor(it: Item, ctx: PlanCtx, said: string): Tokens {
     out.their = pr.his + m;
     out.female = pr.he === 'she';
     const role = roleOf(c, who);
-    if (role) out.role = role + m;
+    // docs/55 8: a suspect is asked by name, not by trade ("I asked the sewing-machine operator…", Poached 5's #25).
+    const suspect = c.people.find((x) => x.id === who)?.role === 'suspect';
+    if (suspect) out.role = c.people.find((x) => x.id === who)?.short ?? role;
+    else if (role) out.role = role + m;
   }
   if (s.placeName) out.place = s.placeName;
   if (c.type !== 'murder') out.thing = victimOf(c).short;
@@ -291,9 +334,21 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
   const said = `${ctx.earlier ?? ''}\n${items.map((x) => x.text).join(' ')}`;
   let ordinal = 0;
   let jokeFree = s.jokeFree;
+  // docs/55 2: where I am in the room, as the page goes: seated or not.
+  let seated = s.seated === true;
+  // (A gap the deck fills moves the posture on once it's dealt: at the next item.)
+  let lastGap: Item | null = null;
   paras.forEach((ps, p) => {
     for (const it of ps) {
-      if (it.kind !== 'gap' || !it.sit || !(SIT_SLOTS as readonly string[]).includes(it.slot ?? '')) continue;
+      if (lastGap) {
+        seated = seatedAfter(lastGap.text, seated);
+        lastGap = null;
+      }
+      if (it.kind !== 'gap' || !it.sit || !(SIT_SLOTS as readonly string[]).includes(it.slot ?? '')) {
+        seated = seatedAfter(it.text, seated);
+        continue;
+      }
+      lastGap = it;
       const i = items.indexOf(it);
       const before = items.slice(0, i).reverse().find((x) => x.kind === 'fact');
       const after = items.slice(i + 1).find((x) => x.kind === 'fact');
@@ -332,6 +387,9 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
       // A joke only where the page's joke was (the card it replaces), or on a page without one, its close.
       const mayJoke = it.sit.joke === true || (jokeFree && slot === 'close');
       const para = ps.map((x) => stripMarks(x.text)).join(' ');
+      // docs/55 1c: nothing that says the story stood, where the grid has it broken, or the paragraph has it on one word.
+      const crossed = s.crossed === true;
+      const oneWord = OWN_WORD_ONLY.test(para);
       const others = new Set(items.filter((x) => x !== it).flatMap((x) => sentencesOf(stripMarks(x.text)).map(norm)));
       const fresh = (text: string) => sentencesOf(stripMarks(text)).every((t) => !others.has(norm(t)) && !(ctx.said && ctx.said.has(stripMarks(t))));
       const rng = new Rng(seedOf(s.seed, salt * 1000 + ordinal));
@@ -343,6 +401,8 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
           if (s.used(c.id) || !fits(c, cond)) continue;
           if (c.joke && !mayJoke) continue;
           if (s.avoid && s.avoid.test(c.text)) continue;
+          if ((crossed && UNCONTRADICTED.test(c.text)) || (oneWord && STOOD.test(c.text))) continue;
+          if ((seated && STANDING.test(c.text) && !STOOD_UP.test(c.text)) || (s.inside && KNOCKED.test(c.text))) continue;
           // {place} at most once a paragraph: a place said twice already is the name bolted on (docs/47 C14).
           if (/\{place\}/i.test(c.text) && s.placeName && para.includes(s.placeName)) continue;
           const text = fillCard(c.text, tokens);
@@ -357,7 +417,11 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
         // The page's joke, where it was one: a situated joke if one fits here; otherwise the old card stays.
         const jokes = ok.filter((x) => x.c.joke);
         if (it.sit.joke && jokes.length === 0) continue;
-        const from = it.sit.joke ? jokes : ok;
+        const from0 = it.sit.joke ? jokes : ok;
+        // docs/55 6: what the last nights dealt least, never last night's while another fits.
+        const seenB = s.seenBefore;
+        const least = seenB ? Math.min(...from0.map((x) => seenB(x.c.id))) : 0;
+        const from = seenB ? from0.filter((x) => seenB(x.c.id) === least) : from0;
         const pick = from[rng.int(from.length)] as { c: SitCard; text: string };
         s.note(pick.c.id);
         if (pick.c.joke) jokeFree = false;

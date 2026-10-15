@@ -18,6 +18,7 @@ import { isOver } from './clock.js';
 import type { Page, Weather } from './types.js';
 import { boardChoices, pageStars, type BoardStar } from './choices.js';
 import { thinNames } from './names.js';
+import { nameHomesOnPage, titleClientOnPage } from './home.js';
 import { PLAN, linkGaps } from './plan/index.js';
 import { collisionsOf, judgeLine, knownPeople, knownPlaces, linesHeld, peopleAt, solveRun } from './knowledge.js';
 import {
@@ -51,7 +52,7 @@ import {
 
 const WEATHERS: Weather[] = ['clear', 'rain', 'fog', 'cold'];
 
-export function newBoardRun(d: BoardDeal, opts: { detectiveName?: string; type?: CaseType } = {}): BoardRun {
+export function newBoardRun(d: BoardDeal, opts: { detectiveName?: string; type?: CaseType; seen?: BoardRun['seen'] } = {}): BoardRun {
   const c = d.kase;
   const base: BoardRun = {
     engine: 'board',
@@ -70,6 +71,7 @@ export function newBoardRun(d: BoardDeal, opts: { detectiveName?: string; type?:
     spent: [],
     weather: WEATHERS[(c.seed * 13 + c.tier) % WEATHERS.length] as Weather,
     visits: {},
+    ...(opts.seen && (opts.seen.recent.length || opts.seen.last.length) ? { seen: opts.seen } : {}),
   };
   const w = writer(d, base, base, 0);
   writeOffice(w);
@@ -223,6 +225,12 @@ function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>[
       if (b?.kind === 'prose') w.thought = { ...w.thought, text: b.text };
     }
   }
+  // docs/55 1d: somebody's "home" says which place it is, the first time a page says it.
+  // docs/55 7: the widowed client keeps her "Mrs.". (The recap, the notebook said aloud, is the same block after.)
+  const recapAt = w.recap ? w.blocks.findIndex((b) => b.kind === 'prose' && b.text === w.recap) : -1;
+  if (PLAN.ops) nameHomesOnPage(c, w.blocks, w.units, /^(?:account|list|motive|confront):([^@]+)/.exec(o.q ?? '')?.[1]);
+  if (PLAN.ops) titleClientOnPage(c, w.blocks, w.units);
+  if (recapAt >= 0) w.recap = (w.blocks[recapAt] as { text: string }).text;
   if (!next.reportOpen && isOver(next.used, budgetCalls(w.d))) {
     next.reportOpen = true;
     w.blocks.push({

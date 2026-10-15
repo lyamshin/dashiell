@@ -37,7 +37,7 @@ import { recapClauses } from '../game/board/pages.js';
 import { BREAKS_LABEL, HUNCH, WHERE_BY_LABEL, boardFields, breakOptionsShown, curtainOfBoard, hoursThatMattered, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
 import { costLabel } from '../game/board/text.js';
-import { continuityOf, fileToProfile, loadProfile, teachOn, type KeyValueStore } from '../game/board/profile.js';
+import { continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, type KeyValueStore } from '../game/board/profile.js';
 import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
 import { plainPage } from '../game/board/bones/plain.js';
@@ -61,6 +61,8 @@ interface BoardSaved {
   commands: string[];
   marks: Record<string, Record<string, CellMark>>;
   filed?: BoardReport;
+  /** docs/55 6: what the profile's last nights dealt, as this night began. */
+  seen?: { recent: string[]; last: string[] };
 }
 
 type Screen = { kind: 'title' } | { kind: 'teach' } | { kind: 'book' } | { kind: 'verdict'; verdict: Verdict; news?: TierNews };
@@ -81,7 +83,10 @@ function loadSaved(store: KeyValueStore): BoardSaved | null {
     if (!raw) return null;
     const v = JSON.parse(raw) as BoardSaved;
     if (!v || v.engine !== 'board' || !Array.isArray(v.commands) || !dealable(v.seed, v.tier, v.type) || (v.world !== undefined && !isWorld(v.world))) return null;
-    return { ...v, detective: typeof v.detective === 'string' ? v.detective : 'Dashiell', marks: v.marks && typeof v.marks === 'object' ? v.marks : {} };
+    const seen = v.seen && Array.isArray(v.seen.recent) && Array.isArray(v.seen.last) ? { recent: v.seen.recent.filter((x) => typeof x === 'string'), last: v.seen.last.filter((x) => typeof x === 'string') } : undefined;
+    const { seen: _seen, ...rest } = v;
+    void _seen;
+    return { ...rest, ...(seen ? { seen } : {}), detective: typeof v.detective === 'string' ? v.detective : 'Dashiell', marks: v.marks && typeof v.marks === 'object' ? v.marks : {} };
   } catch {
     return null;
   }
@@ -150,8 +155,10 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     world = w;
     const prior = resume ? loadSaved(store) : null;
     const same = prior && prior.seed === seed && prior.tier === tier && (prior.type ?? null) === (type ?? null) && (prior.world ?? null) === (w ?? null);
-    saved = same ? prior : { engine: 'board', seed, tier, ...(type ? { type } : {}), ...(w ? { world: w } : {}), detective: name, commands: [], marks: {} };
-    run = newBoardRun(d, { detectiveName: saved.detective, ...(type ? { type } : {}) });
+    // docs/55 6: a fresh night remembers what the last ten dealt, and keeps it with the save so a replay deals the same.
+    const seen = same && prior ? prior.seen : seenOf(loadProfile(store));
+    saved = same ? prior : { engine: 'board', seed, tier, ...(type ? { type } : {}), ...(w ? { world: w } : {}), detective: name, commands: [], marks: {}, ...(seen && (seen.recent.length || seen.last.length) ? { seen } : {}) };
+    run = newBoardRun(d, { detectiveName: saved.detective, ...(type ? { type } : {}), ...(saved.seen ? { seen: saved.seen } : {}) });
     for (const cmd of saved.commands) run = stepBoard(d, run, cmd).run;
     run = { ...run, marks: saved.marks };
     if (saved.filed) run = { ...run, reportOpen: true, filed: saved.filed };
@@ -191,7 +198,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     saved = { ...saved, filed: report };
     writeSaved(store, saved);
     const verdict = scoreBoard(d, run, report);
-    const outcome = fileToProfile(store, { tier: run.tier, points: verdict.points, asked: verdict.asked, actionsUsed: verdict.actionsUsed, par: verdict.par, ...(d.kase.world ? { cast: castOf(d.kase) } : {}) });
+    const outcome = fileToProfile(store, { tier: run.tier, points: verdict.points, asked: verdict.asked, actionsUsed: verdict.actionsUsed, par: verdict.par, ...(d.kase.world ? { cast: castOf(d.kase) } : {}), dealt: dealtIds(run.spent) });
     const news: TierNews | undefined = outcome.firstClear !== null ? { cleared: run.tier, firstClear: true } : undefined;
     screen = news ? { kind: 'verdict', verdict, news } : { kind: 'verdict', verdict };
     render();

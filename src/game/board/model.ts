@@ -101,6 +101,12 @@ export interface BoardRun {
   props?: Record<PlaceId, { short: string; pay: string[] }>;
   /** docs/44: the street's own role, set up on the night's first walk and paid off on a later one. */
   street?: { short: string; pay: string[] };
+  /**
+   * docs/55 6: what the profile's last ten nights dealt (cards, voicings, asides), and the last night
+   * alone, as the night began: the hand prefers what none of them dealt. Saved with the night, so a
+   * replay deals what it dealt.
+   */
+  seen?: { recent: string[]; last: string[] };
 }
 
 /** A dealt night: the case and its analysis. */
@@ -305,7 +311,10 @@ export function budgetCalls(d: BoardDeal): number {
 
 /** Who waits at eight: the DA for a murder, the client for a lost thing. */
 export function deadlineWords(c: BoardCase): string | undefined {
-  return isMurder(c) ? undefined : `${clientOf(c).short} wants an answer at eight`;
+  // docs/55 7: a widowed client keeps her "Mrs.".
+  const cl = clientOf(c);
+  const name = cl.female && /\ba widow\b/.test(cl.description) && !/^(?:Mrs|Miss|Dr)\.? /.test(cl.short) ? `Mrs. ${cl.short}` : cl.short;
+  return isMurder(c) ? undefined : `${name} wants an answer at eight`;
 }
 
 /** The questions a run has asked that the solver reads. */

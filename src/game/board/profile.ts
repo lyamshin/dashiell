@@ -37,6 +37,12 @@ export interface Profile {
    * the last culprit and the last ten wronged off its cast, as far as the bible allows.
    */
   recent?: { culprits: string[]; victims: string[] };
+  /**
+   * docs/55 6: what each of the last ten nights dealt (cards, voicings, the hand-written asides),
+   * most recent last. The next night's hand prefers what none of them dealt, and never deals last
+   * night's again while anything else fits.
+   */
+  dealt?: string[][];
 }
 
 export function emptyProfile(): Profile {
@@ -52,6 +58,8 @@ export interface RunResult {
   par: number;
   /** docs/48: who the night cast as the culprit and the wronged, by bible id, on a night from a world. */
   cast?: { culprit?: string; victim?: string };
+  /** docs/55 6: what the night dealt (`dealtIds` of its spent list). */
+  dealt?: string[];
 }
 
 export interface RecordOutcome {
@@ -67,6 +75,7 @@ export function recordRun(profile: Profile, result: RunResult): RecordOutcome {
   const won = result.asked > 0 && result.points === result.asked;
   const next: Profile = { ...profile, cleared: [...profile.cleared], best: { ...profile.best }, runs: profile.runs + 1, wins: profile.wins + (won ? 1 : 0) };
   if (result.cast) next.recent = remember(profile.recent, result.cast);
+  if (result.dealt && result.dealt.length) next.dealt = [...(profile.dealt ?? []), result.dealt].slice(-RECENT);
   if (!won) return { profile: next, won, firstClear: null };
   const tier = result.tier;
   const firstClear = profile.cleared.includes(tier) ? null : tier;
@@ -98,7 +107,25 @@ export function sanitizeProfile(value: unknown): Profile {
     const r = v.recent as Record<string, unknown>;
     out.recent = { culprits: ids(r.culprits), victims: ids(r.victims) };
   }
+  if (Array.isArray(v.dealt)) {
+    const nights = (v.dealt as unknown[]).filter((n): n is unknown[] => Array.isArray(n)).map((n) => n.filter((y): y is string => typeof y === 'string').slice(0, 2000));
+    if (nights.length) out.dealt = nights.slice(-RECENT);
+  }
   return out;
+}
+
+/**
+ * docs/55 6: a night's spent list as the profile keeps it: each card, aside and voicing once (a
+ * voicing's uses, `v:<id>#<n>`, are the voicing).
+ */
+export function dealtIds(spent: readonly string[]): string[] {
+  return [...new Set(spent.map((x) => (x.startsWith('v:') ? x.replace(/#\d+$/, '') : x)))];
+}
+
+/** docs/55 6: what the next night's hand should know: the last ten nights' dealing, and the last night's alone. */
+export function seenOf(profile: Pick<Profile, 'dealt'>): { recent: string[]; last: string[] } {
+  const nights = profile.dealt ?? [];
+  return { recent: [...new Set(nights.flat())], last: [...(nights[nights.length - 1] ?? [])] };
 }
 
 /** How many nights the profile remembers who was cast. */

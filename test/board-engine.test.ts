@@ -110,8 +110,8 @@ describe('board: stars follow what the player holds', () => {
             if (tier >= 2) expect(stars.length, `tier ${tier} seed ${s}`).toBeLessThanOrEqual(1);
             // "Put it to …" is starred only at Raw and Coddled.
             if (tier >= 2) for (const st of stars) expect(st.q.startsWith('confront:'), `tier ${tier} seed ${s}: ${st.q}`).toBe(false);
-            // Medium: where to go, never which question to ask.
-            if (tier === 4) for (const st of stars) expect(st.command.startsWith('go '), `seed ${s}: ${st.command}`).toBe(true);
+            // Medium: where to go, and (docs/55 4) in the room with them, the question itself; never a put.
+            if (tier === 4) for (const st of stars) expect(/^(?:go|ask|search) /.test(st.command), `seed ${s}: ${st.command}`).toBe(true);
             // Hard-boiled: one star, the scene, on page one. None after.
             if (tier === 5) {
               if (pageOne) expect(stars.map((x) => x.command)).toEqual([`go ${d.kase.crime.scene}`]);

@@ -100,11 +100,36 @@ export class Hand {
    */
   readonly voiceRng: Rng;
 
-  constructor(seed: number, page: number, spent: readonly string[]) {
+  /**
+   * docs/55 6: what the last ten nights dealt (`recent`), and the last night alone (`lastNight`), from
+   * the profile. The hand prefers what none of them dealt, and never deals last night's again while
+   * anything else fits: the lines a player remembers ("It came off a rack…") don't come round two
+   * nights running. Empty, the hand deals as it always did.
+   */
+  readonly recent: ReadonlySet<string>;
+  readonly lastNight: ReadonlySet<string>;
+
+  constructor(seed: number, page: number, spent: readonly string[], seen?: { recent?: readonly string[]; last?: readonly string[] }) {
     this.rng = new Rng(((seed * 2654435761) ^ (page * 40503 + 0x9e37)) >>> 0);
     this.voiceRng = new Rng(((seed * 2246822519) ^ (page * 3266489917 + 0x51ed)) >>> 0);
     this.spentSet = new Set(spent);
     this.night = spent;
+    this.recent = new Set(seen?.recent ?? []);
+    this.lastNight = new Set(seen?.last ?? []);
+  }
+
+  /** docs/55 6: of what fits, what last night didn't deal, and of that what the last ten didn't; as much of that as there is. */
+  prefer<T>(xs: T[], id: (x: T) => string): T[] {
+    if (this.recent.size === 0 && this.lastNight.size === 0) return xs;
+    const notLast = xs.filter((x) => !this.lastNight.has(id(x)));
+    const base = notLast.length > 0 ? notLast : xs;
+    const unseen = base.filter((x) => !this.recent.has(id(x)));
+    return unseen.length > 0 ? unseen : base;
+  }
+
+  /** docs/55 6: 2 when last night dealt it, 1 when one of the ten before did, 0 when none did. */
+  seenBefore(id: string): number {
+    return this.lastNight.has(id) ? 2 : this.recent.has(id) ? 1 : 0;
   }
 
   /**
@@ -176,10 +201,13 @@ export class Hand {
     this.last = null;
     if (this.world) {
       const plain = opts.plain === true || (!this.mayJoke && !(opts.joke && this.jokes === 0));
-      const ours = this.world(family, want, slots)
-        .filter((c) => (!plain || !c.joke) && !(this.avoid && this.avoid.test(c.text)) && !this.spentSet.has(c.id))
-        .map((c) => ({ c, text: fill(c as unknown as Card, slots) }))
-        .filter((x): x is { c: BoardCard; text: string } => x.text !== null);
+      const ours = this.prefer(
+        this.world(family, want, slots)
+          .filter((c) => (!plain || !c.joke) && !(this.avoid && this.avoid.test(c.text)) && !this.spentSet.has(c.id))
+          .map((c) => ({ c, text: fill(c as unknown as Card, slots) }))
+          .filter((x): x is { c: BoardCard; text: string } => x.text !== null),
+        (x) => x.c.id,
+      );
       if (ours.length > 0) {
         const pick = ours[this.rng.int(ours.length)] as { c: BoardCard; text: string };
         this.lastId = pick.c.id;
@@ -207,7 +235,7 @@ export class Hand {
         if (filled.length === 0) continue;
         const fresh = filled.filter((x) => !this.spentSet.has(x.c.id));
         if (fresh.length === 0 && opts.fresh) continue;
-        const from = fresh.length > 0 ? fresh : filled;
+        const from = fresh.length > 0 ? this.prefer(fresh, (x) => x.c.id) : filled;
         const pick = from[this.rng.int(from.length)] as { c: BoardCard; text: string };
         if (fresh.length === 0) this.reuses++;
         this.lastId = pick.c.id;
@@ -268,7 +296,7 @@ export class Hand {
     const pool = (DECKS[deck] ?? []).filter((c) => match(c) && (!(plain || !this.mayJoke) || !c.joke) && !(this.avoid && this.avoid.test(c.text)));
     const filled = pool.map((c) => ({ card: c, text: fill(c, slots) })).filter((x): x is { card: Card; text: string } => x.text !== null);
     const fresh = filled.filter((x) => !this.spentSet.has(x.card.id));
-    const from = fresh.length > 0 ? fresh : filled;
+    const from = fresh.length > 0 ? this.prefer(fresh, (x) => x.card.id) : filled;
     if (from.length === 0) return null;
     const pick = from[this.rng.int(from.length)] as { card: Card; text: string };
     if (fresh.length === 0) this.reuses++;
@@ -280,7 +308,7 @@ export class Hand {
   /** One of a few hand-written lines, without repeating tonight. Keyed so the night remembers it. */
   pick(key: string, lines: readonly string[]): string {
     const fresh = lines.map((l, i) => ({ l, id: `${key}#${i}` })).filter((x) => !this.spentSet.has(x.id));
-    const from = fresh.length > 0 ? fresh : lines.map((l, i) => ({ l, id: `${key}#${i}` }));
+    const from = fresh.length > 0 ? this.prefer(fresh, (x) => x.id) : lines.map((l, i) => ({ l, id: `${key}#${i}` }));
     const x = from[this.rng.int(from.length)] as { l: string; id: string };
     this.note(x.id);
     this.picks.set(x.l, { id: x.id, others: lines.map((l, i) => ({ l, id: `${key}#${i}` })).filter((y) => y.id !== x.id) });

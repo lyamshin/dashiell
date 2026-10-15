@@ -67,9 +67,8 @@ describe('board: the thread', () => {
         const [kind, rest] = (star?.q ?? '').split(':') as [string, string];
         const who = d.kase.people.find((p) => p.id === rest.split('@')[0]);
         const text = prose(page);
-        // docs/46 §1: at Medium a star is a walk, and the hand-off says only where to go.
-        if (tier === 4) expect(text.toLowerCase(), `tier ${tier} ${type}`).toContain((d.kase.places.find((p) => `go ${p.id}` === star?.command)?.short ?? '\u0000').toLowerCase());
-        else if ((kind === 'account' || kind === 'confront') && who) expect(text).toContain(who.short);
+        // docs/55 1b: at every tier, Medium too, the hand-off names whoever the first star is about.
+        if ((kind === 'account' || kind === 'confront') && who) expect(text, `tier ${tier} ${type}`).toContain(who.short);
       }
     }
   });

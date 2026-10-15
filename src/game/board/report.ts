@@ -36,6 +36,7 @@ import {
   pronOf,
   suspectsOf,
   victimOf,
+  type BoardCase,
   type BoardDeal,
   type BoardReport,
   type BoardRun,
@@ -43,6 +44,7 @@ import {
   type PersonId,
 } from './model.js';
 import { withCaps } from './pages.js';
+import { titleClient } from './home.js';
 import { motiveForm, whyOrder } from './motives.js';
 
 export type FieldKey = 'who' | 'when' | 'how' | 'why' | 'where' | 'breaks' | 'whereBy';
@@ -210,42 +212,71 @@ export function hoursThatMattered(d: BoardDeal): Hour[] {
  * never their own, in the order they came. With nobody named, only the lines
  * at those hours.
  */
-export function breakOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>, who: PersonId | null): LineOption[] {
+export function breakOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>, who: PersonId | null): LineOption[] {
   const c = d.kase;
   const hours = new Set(hoursThatMattered(d));
   const own = who !== null && run.asked.includes(`account:${who}`) ? accountOf(c, who) : undefined;
   // docs/47 A4: a line touches their story when it says where they were at an hour that mattered,
-  // or who was at the place they claimed then.
-  const touches = (l: Line): boolean => who !== null && l.hour !== undefined && hours.has(l.hour) && (l.about.includes(who) || (!!own && l.place !== undefined && l.place === own.claims[l.hour]?.place));
+  // or who was at the place they claimed then. docs/55 5: or who was, at those hours, at any place
+  // their own story names: so the group is the lines a careful reader would check, in the order they
+  // were held, and never the one line that breaks it, alone, on top.
+  const theirs = new Set<string>(own ? Object.values(own.claims).flatMap((x) => (x?.place ? [x.place] : [])) : []);
+  const touches = (l: Line): boolean => who !== null && l.hour !== undefined && hours.has(l.hour) && (l.about.includes(who) || (!!own && l.place !== undefined && (l.place === own.claims[l.hour]?.place || theirs.has(l.place))));
   return linesHeld(c, run)
     .filter((l) => l.kind !== 'find' && (who === null || l.speaker !== who))
     .filter((l) => (l.hour !== undefined && hours.has(l.hour)) || (who !== null && l.about.includes(who)))
-    .map((l) => ({ value: l.id, label: l.text, ...(touches(l) ? { touches: true } : {}) }));
+    .map((l) => ({ value: l.id, label: saidLabel(c, run, l), ...(touches(l) ? { touches: true } : {}) }));
 }
 
 /**
  * The same lines as the form shows them (docs/47 A4): the ones that touch the named person's
  * story at the hours that mattered first, then the rest. `breaks=N` counts down this order.
  */
-export function breakOptionsShown(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>, who: PersonId | null): LineOption[] {
+export function breakOptionsShown(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>, who: PersonId | null): LineOption[] {
   const all = breakOptions(d, run, who);
   return [...all.filter((o) => o.touches), ...all.filter((o) => !o.touches)];
 }
 
-/** A small case's crack, held: the culprit said where it went when it was put to them. */
-function crackHeld(d: BoardDeal, run: Pick<BoardRun, 'asked'>): LineOption | null {
+/**
+ * docs/55 5: the words a page said for a held line, when the page voiced it (a remark, a crack): the
+ * report quotes what the player read, not the case's own wording of it.
+ */
+function saidOnPage(run: Partial<Pick<BoardRun, 'log'>>, carries: string): string | undefined {
+  for (const p of run.log ?? []) {
+    for (const u of p.board?.units ?? []) {
+      if (u.kind !== 'fact' || !u.carries.includes(carries)) continue;
+      const t = u.text.replace(/⁣\d+⁤/g, '').trim();
+      if (t) return t;
+    }
+  }
+  return undefined;
+}
+
+/** A held line's label: a remark as the page quoted it, everything else as the notebook has it. */
+function saidLabel(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>, l: Line): string {
+  if (l.kind !== 'remark' || !l.speaker) return l.text;
+  const said = saidOnPage(run, l.id);
+  if (!said) return l.text;
+  const q = said.replace(/^“|”$/g, '').replace(/”\s*$/, '').trim();
+  return `${nameOf(c, l.speaker)}: “${q}”`;
+}
+
+/** A small case's crack, held: the culprit said where it went when it was put to them, in the page's words. */
+function crackHeld(d: BoardDeal, run: Pick<BoardRun, 'asked'> & Partial<Pick<BoardRun, 'log'>>): LineOption | null {
   const c = d.kase;
   const k = c.confrontations.find((x) => x.response === 'crack' && x.gives?.whereNow && run.asked.includes(`confront:${x.person}@${x.hour}`));
   if (!k) return null;
-  const said = /“All right\. I took it\.[^”]*”/.exec(k.text)?.[0] ?? '“All right. I took it.”';
+  const page = saidOnPage(run, `crack:${k.person}@${k.hour}`);
+  const onPage = page ? /“[^”]*took it[^”]*”?/.exec(page)?.[0] : undefined;
+  const said = onPage ? (onPage.endsWith('”') ? onPage : `${onPage}”`) : (/“All right\. I took it\.[^”]*”/.exec(k.text)?.[0] ?? '“All right. I took it.”');
   return { value: `crack:${k.person}@${k.hour}`, label: `${nameOf(c, k.person)}, put to it: ${said}` };
 }
 
 /** What "What puts it there?" offers, for a lost thing: every remark and find held, and a crack. */
-export function whereByOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>): LineOption[] {
+export function whereByOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>): LineOption[] {
   const out: LineOption[] = linesHeld(d.kase, run)
     .filter((l) => l.kind === 'remark' || l.kind === 'find')
-    .map((l) => ({ value: l.id, label: l.text }));
+    .map((l) => ({ value: l.id, label: saidLabel(d.kase, run, l) }));
   const crack = crackHeld(d, run);
   if (crack) out.push(crack);
   return out;
@@ -373,8 +404,12 @@ function homecoming(d: BoardDeal): string | null {
 }
 
 function closingOf(d: BoardDeal, run: BoardRun, outcome: Outcome, whereRight = false): string[] {
+  return closingLines(d, run, outcome, whereRight).map((x) => titleClient(d.kase, x));
+}
+
+function closingLines(d: BoardDeal, run: BoardRun, outcome: Outcome, whereRight = false): string[] {
   const c = d.kase;
-  const hand = new Hand(run.seed * 31 + 7, 999, run.spent);
+  const hand = new Hand(run.seed * 31 + 7, 999, run.spent, run.seen);
   const cl = clientOf(c);
   const slots = withCaps({ client: cl.short, cHis: pronOf(c, c.client).his });
   const type = isMurder(c) ? 'murder' : 'small';
@@ -398,6 +433,10 @@ function closingOf(d: BoardDeal, run: BoardRun, outcome: Outcome, whereRight = f
  * ------------------------------------------------------------------ */
 
 export function storyOfBoard(d: BoardDeal): string[] {
+  return storyLines(d).map((x) => titleClient(d.kase, x));
+}
+
+function storyLines(d: BoardDeal): string[] {
   const c = d.kase;
   const p = c.crime.culprit;
   const pr = pronOf(c, p);
@@ -515,7 +554,8 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
     out.push(`- ${nameOf(c, l.person)} said ${placeName(c, l.claim)} at ${hourWord(l.hour)}; ${pronOf(c, l.person).he} was at ${placeName(c, l.truth)}, ${why}. ${put}`);
   }
   out.push('');
-  out.push(`THE PATH (par ${d.analysis.par} questions${d.analysis.motive ? ' and the motive search' : ''}, ${d.analysis.walks} walks)`);
+  // docs/55 7: par, the number the verdict says, and what it's made of.
+  out.push(`THE PATH (par ${parCalls(d)}: ${d.analysis.par} questions${d.analysis.motive ? ', the motive search' : ''} and ${d.analysis.walks} walks)`);
   // "who was at Kowalski’s tonight?", not "tonight?." (Raw 11's #27).
   d.analysis.path.forEach((s, i) => out.push(`${i + 1}. ${s.label}${/[?.!]$/.test(s.label) ? '' : '.'} ${s.why.replace(/\s*\(step \d+\)/g, '').replace(/\s*\(the office\):/g, ' (the office said so):')}`));
   if (d.analysis.motive) out.push(`+. ${questionById(c, d.analysis.motive)?.label ?? ''}.`);

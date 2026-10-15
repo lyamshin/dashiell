@@ -19,6 +19,7 @@ import { sayFirst } from './bones/say.js';
 import { plainComposite } from './bones/plain.js';
 import { entryOf, remarkProps } from './bones/extract.js';
 import { andList, cap, hourWord, nameOf, oclock, personOf, placeName, type BoardCase } from './model.js';
+import { shortOther } from './bones/phrase.js';
 
 /* ------------------------------------------------------------------ *
  * A reason, in the speaker's own mouth.
@@ -154,7 +155,8 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
   // The runs spent alone, said once (docs/47 C13): which they are, before any is told.
   const aloneRuns = runs.filter((r) => {
     for (let h = r.from; h <= r.to; h++) if ((a.claims[h]?.company ?? []).length > 0) return false;
-    return !/\bwith [A-Z]/.test(r.reason ?? '');
+    // (docs/55 2: a reason's "with Sokol" names nobody the night has with them: it's said without it, and the run is alone.)
+    return true;
   });
   const aloneOnce = aloneRuns.length === 1 || (runs.length === 1 && aloneRuns.length === 1);
   const push = (spec: SaySpec, hs: Hour[], props: Prop[]) => out.push({ text: lineText(c, spec, props), hours: hs, props, say: spec });
@@ -171,6 +173,14 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
     const stem = short.replace(/^the /, '').split(' ')[0] ?? short;
     const says = (t: string) => t.includes(short) || (stem.length >= 4 && t.includes(stem)) || /\bhome\b|\bmy room\b/.test(t);
     let reason0 = r.reason ? firstPerson(r.reason, female) : undefined;
+    // docs/55 2: a reason names nobody the account doesn't have with them ("for coffee with Sokol" when
+    // the notebook says alone, Medium 14's #3), and says no change of plan it never told ("after all").
+    if (reason0) {
+      const company = new Set(Array.from({ length: r.to - r.from + 1 }, (_, k) => a.claims[(r.from + k) as Hour]?.company ?? []).flat().map((x) => nameOf(c, x)));
+      reason0 = reason0.replace(/ with ((?:Mrs\.|Mr\.|Miss|Dr\.) )?([A-Z][\w’]+)$/, (m, t: string | undefined, n: string) => (company.has(`${t ?? ''}${n}`) ? m : ''));
+      reason0 = reason0.replace(/ after all\b/, '');
+      if (female) reason0 = reason0.replace(/\ba collar stud\b/, 'a hatpin');
+    }
     // The office's gathering is called what it was: a burial society's meeting isn't "the party".
     if (reason0 && party?.occasion) reason0 = reason0.replace(/\bthe party\b/g, `the ${party.occasion}`);
     // Supper once a night: a second meal the same evening is coffee (docs/47 B9).
@@ -303,6 +313,8 @@ export function spokenListLines(c: BoardCase, l: WatchList, rot = 0, manner: Man
   const push = (spec: SaySpec, hs: Hour[], props: Prop[], extra: Partial<SaidLine> = {}) => out.push({ text: lineText(c, spec, props), hours: hs, props, say: spec, ...extra });
   // Somebody there at every hour the watcher kept (the fence in his booth) is said once, first.
   const always = new Set<string>();
+  // docs/55 2: what the watcher calls whoever was there all evening, for "besides Pardo" on the first hour's "nobody else".
+  const alwaysNames: string[] = [];
   const others = (c.others ?? []).filter((o) => hours.length > 1 && hours.every((h) => (l.entries[h] ?? []).some((e) => 'other' in e && e.other === o.id)));
   for (const o of others) {
     always.add(o.id);
@@ -312,6 +324,7 @@ export function spokenListLines(c: BoardCase, l: WatchList, rot = 0, manner: Man
     const booth = /^(.+?) in (his|her) (.+)$/.exec(o.name);
     const plural = /^(two|three|a couple)\b/i.test(o.name);
     const name = who ? (who[1] as string) : booth ? cap(booth[1] as string) : cap(o.name);
+    alwaysNames.push(shortOther(name));
     const args: Args = { who: name, ...(who ? { does: `He ${who[2]}` } : {}), ...(booth ? { post: `in ${booth[2]} ${booth[3]}` } : {}) };
     // docs/52: somebody there at every hour the watcher kept.
     const props = hours.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: [`other:${o.id}`] }) as Prop);
@@ -353,8 +366,10 @@ export function spokenListLines(c: BoardCase, l: WatchList, rot = 0, manner: Man
     });
     const whole = g.hs.every((h) => listExhaustive(c, l, h));
     const nobody = nobodyElse(i + rot);
+    // docs/55 2: the first hour's "nobody else" says it's besides whoever was there all evening (Raw 11's #18).
+    const besides = whole && i === 0 && alwaysNames.length > 0 && !alwaysNames.some((n) => /^(?:two|three|a couple)\b/i.test(n));
     push(
-      { shape: 'LIST-HOUR', flags: ['hour', whole ? 'whole' : 'part', at, ...(g.es.length > 1 ? ['many'] : ['one'])], args: { ...hs, names: andList(names) }, manner },
+      { shape: 'LIST-HOUR', flags: ['hour', whole ? 'whole' : 'part', at, ...(g.es.length > 1 ? ['many'] : ['one']), ...(besides ? ['besides'] : [])], args: { ...hs, names: andList(names), ...(besides ? { who: andList(alwaysNames) } : {}) }, manner },
       [...g.hs],
       g.hs.map((h) => ({ k: 'LIST', watcher: l.watcher, place: l.place, hour: h, people: g.es.map(entryOf), ...(whole ? { whole: true } : {}) }) as Prop),
       { hour: { when: g.hs.length === 1 ? (i === 0 ? `${cap(hourWord(g.hs[0] as Hour))} o’clock` : cap(hourWord(g.hs[0] as Hour))) : cap(andList(g.hs.map(hourWord))), names: andList(names), whole, nobody } },

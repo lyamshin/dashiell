@@ -93,7 +93,9 @@ export function motiveForm(c: BoardCase, p: PersonId): string {
 export function papersLine(c: BoardCase, p: PersonId, planned = false): string {
   const who = personOf(c, p);
   // The dead man as his role only where his "he" could be read as theirs: on a man's page.
-  const role = planned && !!who?.female === !!victimOf(c).female;
+  // docs/55 2: on every page, since a woman's page with the dead man's "his" in it can't be read until
+  // her sex is known ("his own testimony against her brother", Hard-boiled 8's #5).
+  const role = planned;
   const t = who?.motivePapers ?? (who?.motiveId ? (role ? PAPERS_PLANNED : PAPERS)[who.motiveId]?.replace(/the dead man/g, victimOf(c).female ? 'the dead woman' : 'the dead man') : undefined);
   const pr = pronOf(c, p);
   if (!t || !isMurder(c)) return `${nameOf(c, p)}: ${who?.motive ?? ''}.`;

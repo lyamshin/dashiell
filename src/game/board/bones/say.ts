@@ -36,6 +36,8 @@ export interface VoiceHand {
   readonly mayJoke: boolean;
   joke(): void;
   int(n: number): number;
+  /** docs/55 6: 2 when last night said it, 1 when one of the ten before did, 0 when none did. */
+  seenBefore?(id: string): number;
 }
 
 /**
@@ -109,7 +111,13 @@ export function preview(
   const liked = prefer ? pool.filter((v) => prefer(render(v))) : [];
   if (liked.length > 0 && (liked.some((v) => last(v) < 0) || !pool.some((v) => last(v) < 0))) pool = liked;
   const oldest = Math.min(...pool.map(last));
-  const best = pool.filter((v) => last(v) === oldest);
+  let best = pool.filter((v) => last(v) === oldest);
+  // docs/55 6: among those, what the last nights said least: never last night's while another fits.
+  if (hand.seenBefore && best.length > 1) {
+    const seen = (v: Voicing) => (hand.seenBefore as (id: string) => number)(`v:${v.id}`);
+    const least = Math.min(...best.map(seen));
+    best = best.filter((v) => seen(v) === least);
+  }
   const v = best.length > 1 ? (best[hand.int(best.length)] as Voicing) : (best[0] as Voicing);
   const text = render(v);
   const others = pool.filter((x) => x !== v && last(x) < 0).map((x) => ({ v: x, text: render(x) }));

@@ -164,7 +164,7 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
     if (!l) return null;
     const L = l.place;
     if (sk === 'search') {
-      if (isMurder(c)) return out(`the ${c.means.name.replace(/^(a|an) /, '')} had come from ${at(c, L, here)}`, [`find:${srest}`], { places: [L] });
+      if (isMurder(c)) return out(`the ${c.means.name.replace(/^(a|an) /, '')} had come from ${placeName(c, L)}`, [`find:${srest}`], { places: [L] });
       return out(`the way in at ${placeName(c, c.crime.scene)} had been learnt ${at(c, L, here)}`, [`find:${srest}`], { places: [L, c.crime.scene] });
     }
     if (sk === 'account') {
@@ -216,7 +216,10 @@ function givenPointer(c: BoardCase, p: PersonId, here: PlaceId): Pointer {
     // docs/49: a bare "she" or "him" in what they did is the dead man's, or the pet's, marked so.
     const vp = pronOf(c, c.crime.victim);
     const theirs = new RegExp(`\\b(${[vp.he, vp.him, vp.his].join('|')})\\b(?!\u2063)`, 'g');
-    if (behaviour) return base(`${cl} had pointed me at ${P}, who ${behaviour.replace(theirs, (m: string) => `${m}${markPronoun(c, c.crime.victim)}`).replace(new RegExp(`\\b${cl}’s\\b`, 'g'), pm(c, c.client, 'his'))}`, ['givens:pointer'], { people: [p, c.client] });
+    // docs/55 2: the office said its reason for pointing in its own words (a motive, or what they did);
+    // the thread doesn't say a second one ("who asked twice where Fritz sleeps" after "asked me what Fritz was worth").
+    void behaviour;
+    void theirs;
     return base(`${cl} had pointed me at ${P}`, ['givens:pointer'], { people: [p, c.client] });
   }
   if (c.crime.finder === p) return base(`${P} had found ${victimOf(c).short}`, ['givens:found'], { people: [p, c.crime.victim] });

@@ -165,6 +165,17 @@ export function clarityOf(c: BoardCase, comp: Composite & { said?: string; args?
     if (!c.places.some((p) => before.includes(placeName(c, p.id).replace(/^the /, '').toLowerCase())) && !/\bhome\b|\b(?:in|on|at|under|behind|by|over|into) (?:my|the|his|her|a|its)\b|[a-z]’s\b|\bmy (?:room|rooms|place|flat)\b/.test(before)) out.push(`"there" with no place before it`);
   }
   if (/\bthe list\b/.test(narr) && !/’s list\b/.test(narr)) out.push('"the list", not whose');
+  // docs/55 2: an account says it was with somebody only where its bones have them with it ("coffee
+  // with Sokol" when the bones say alone).
+  if (comp.shape === 'CLAIM-SPAN') {
+    const company = new Set(comp.props.flatMap((p) => (p.k === 'CLAIM' ? (p.company ?? []) : [])).map((id) => personOf(c, id)?.short ?? id));
+    for (const m of said.matchAll(/\bwith ((?:Mrs\.|Mr\.|Miss|Dr\.) )?([A-Z][\w’]+)/g)) {
+      const n = `${m[1] ?? ''}${m[2] ?? ''}`;
+      if (company.has(n)) continue;
+      if (c.places.some((p) => placeName(c, p.id).includes(m[2] as string))) continue;
+      out.push(`company not in the bones: ${n}`);
+    }
+  }
   for (const o of OBLIQUE) if (o.re.test(narr || said)) out.push(`oblique: ${o.name}`);
   return out;
 }

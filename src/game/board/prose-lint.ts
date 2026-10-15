@@ -14,18 +14,32 @@
  *   `GAG_MAX` times a night;
  * - **pet:** a lost pet called "it" ("who took it", "it went at ten"), on a
  *   page or on the form.
+ * - **grid** (docs/55 1c): narration that says a story stood up, or that
+ *   nothing went against it ("I had nothing to put against it"), on a page
+ *   whose person has a line held against them (the grid shows the collision),
+ *   or in a paragraph that has just said only their own word stood for an hour;
+ * - **turned-out** (docs/55 1e): "It turned out X was…" for somebody who was in
+ *   the room all along ("it turned out" is for one who came back in).
+ * - **posture** (docs/55 2): standing on the mat, hat in hand, after sitting
+ *   down, on the page or on the pages before it in the same room, with no
+ *   getting up between;
+ * - **inside** (docs/55 2): knocking on a page that isn't the walk in, when the
+ *   page before was in the same room.
  *
  * Pure: it reads the night and returns what it found.
  */
 
 import type { Page } from './types.js';
 import { isMurder, type BoardDeal, type BoardRun } from './model.js';
+import { collisionsOf } from './knowledge.js';
+import { KNOCKED, OWN_WORD_ONLY, STANDING, STOOD, STOOD_UP, UNCONTRADICTED, seatedAfter } from './plan/situated.js';
+import { sentencesOf } from './plan/sentences.js';
 import { GAG_MAX } from './pages.js';
 import { boardFields } from './report.js';
 
 export interface ProseIssue {
   page: number;
-  rule: 'place-tag' | 'phrase' | 'signpost' | 'gag' | 'pet';
+  rule: 'place-tag' | 'phrase' | 'signpost' | 'gag' | 'pet' | 'grid' | 'turned-out' | 'posture' | 'inside';
   detail: string;
 }
 
@@ -74,6 +88,25 @@ export function proseIssues(d: BoardDeal, run: BoardRun): ProseIssue[] {
   const c = d.kase;
   const out: ProseIssue[] = [];
   const places = c.places.map((p) => p.short).filter((s) => s.length >= 4);
+  // What was held as each page was read: the questions asked and the puts made by then.
+  const askedAt = new Map<string, number>();
+  for (const p of run.log) if (p.board?.q && run.asked.includes(p.board.q) && !askedAt.has(p.board.q)) askedAt.set(p.board.q, p.n);
+  const heldAt = (i: number) => ({ asked: run.asked.filter((q) => (askedAt.get(q) ?? Infinity) <= i), puts: run.puts.filter((x) => x.page <= i) });
+  // docs/55 2: whether I'm sitting down, carried across the pages in one room.
+  let seated = false;
+  run.log.forEach((p, i) => {
+    const prev = run.log[i - 1];
+    const inside = !!prev && prev.at === p.at && p.board?.job !== 'arrive' && p.at !== 'office';
+    if (!inside) seated = false;
+    for (const para of narration(p)) {
+      for (const s of sentencesOf(para.text)) {
+        if (seated && STANDING.test(s) && !STOOD_UP.test(s)) out.push({ page: i, rule: 'posture', detail: s.trim() });
+        seated = seatedAfter(s, seated);
+      }
+      const k = inside ? KNOCKED.exec(para.text) : null;
+      if (k) out.push({ page: i, rule: 'inside', detail: k[0] });
+    }
+  });
   run.log.forEach((p, i) => {
     const paras = narration(p);
     // docs/53, the dial: a fact says its place by name, every time ("at the Thalia", never "here"), so
@@ -99,6 +132,18 @@ export function proseIssues(d: BoardDeal, run: BoardRun): ProseIssue[] {
     for (const b of BANNED) {
       const m = b.re.exec(b.name === 'in this room' || b.name.startsWith('So,') || b.name.startsWith('X') ? paras.map((x) => x.text).join('\n') : all);
       if (m) out.push({ page: i, rule: 'phrase', detail: `${b.name}: “${m[0].trim()}”` });
+    }
+    // docs/55 1c: the narration never says a story stood where the grid has it broken, nor right after saying it stood on one word.
+    const subject = /^(?:account|motive|confront):([^@]+)/.exec(p.board?.q ?? '')?.[1];
+    const crossed = subject !== undefined && collisionsOf(c, heldAt(i), subject).length > 0;
+    for (const para of paras) {
+      const m = crossed ? UNCONTRADICTED.exec(para.text) : OWN_WORD_ONLY.test(para.text) ? STOOD.exec(para.text) : null;
+      if (m) out.push({ page: i, rule: 'grid', detail: `${crossed ? 'collision held' : 'own word only'}: “${m[0]}”` });
+    }
+    // docs/55 1e: "it turned out" is for somebody who came back in, not one who was there all along.
+    for (const para of paras) {
+      const m = /\b(?:[Aa]s it turned out,|[Ii]t turned out) (?:my witness|[A-Z][\w.’]*(?: [A-Z][\w’]*)?) (?:was|were)\b/.exec(para.text.replace(/⁣\d+⁤/g, ''));
+      if (m) out.push({ page: i, rule: 'turned-out', detail: m[0] });
     }
     // Where-next sentences: one a page.
     const sig = paras.flatMap((x) => x.text.split(/(?<=[.!?])\s+/)).filter((s) => SIGNPOST.test(s));

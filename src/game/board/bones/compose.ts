@@ -48,6 +48,7 @@ import type { Composite, Prop, Shape, Src } from './types.js';
 import { fitting, type Args, type Voicing } from './voice.js';
 import { preview, SAMPLES, VARIETY, unpick, type Picked } from './say.js';
 import { plainComposite } from './plain.js';
+import { homeNamed } from '../home.js';
 
 /** The longest sentence composition makes. */
 const LONGEST = 40;
@@ -784,7 +785,7 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       const said = hs.map((h) => claimSaid(c, p, h));
       const same = said.every((s) => s.replace(/ at \w+$/, '') === (said[0] ?? '').replace(/ at \w+$/, ''));
       const homeAt = cl[0]?.place ?? '';
-      const what = same ? ((said[0] ?? '').startsWith('home') && homeAt ? `home at ${placeName(c, homeAt)}` : (said[0] ?? '').replace(/ at \w+$/, '')) : andList(said);
+      const what = same ? ((said[0] ?? '').startsWith('home') && homeAt && !homeNamed(c, p) ? `home at ${placeName(c, homeAt)}` : (said[0] ?? '').replace(/ at \w+$/, '')) : andList(said);
       const named = !!(it.flesh as { named?: boolean } | undefined)?.named;
       const who = named ? nameOf(c, p) : pr(c, p).he;
       const listy = what.includes(',') || / at (?:seven|eight|nine|ten|eleven|twelve|midnight)\b/.test(what);
