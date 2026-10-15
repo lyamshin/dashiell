@@ -230,7 +230,7 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
     const at = lines.filter((l) => l.kind === 'list' && l.hour === put.hour && l.place === alt);
     const breaks = at.filter((l) => !l.about.includes(p) && listWhole(d, l));
     if (breaks.length === 0) continue;
-    const label = `${placeName(c, alt)} at ${hourWord(put.hour)}, the second story`;
+    const label = `${placeName(c, alt)} at ${hourWord(put.hour)}, what ${pronOf(c, p).he} said next`;
     claims.push({ hour: put.hour, label, again: true, lines: at.map((l) => lineChoice(d, p, put.hour, l, true, run)) });
     ready.push({ command: `put ${p} ${put.hour} ${(breaks[0] as Line).id} again`, label: `${cap(nameOf(c, p))} now says ${placeName(c, alt)} at ${hourWord(put.hour)}. ${cap(breakSaid(c, breaks[0] as Line, p, run.asked))}.` });
   }
@@ -243,7 +243,7 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
     help:
       c.tier <= 1
         ? `Read ${pr.him} the line that breaks ${pr.his} story.`
-        : `Pick the hour ${pr.his} story can’t live with, then the line that breaks it: say, somebody who saw who was there then, and not ${pr.him}.`,
+        : `Pick the hour where ${pr.his} story is wrong, then the line that breaks it: say, somebody who saw everybody who was there then, and didn’t see ${pr.him}.`,
     minutes: callMinutes(d, run),
   };
 }
@@ -258,7 +258,7 @@ function lineChoice(d: BoardDeal, p: PersonId, h: Hour, l: Line, again: boolean,
   return {
     command: `put ${p} ${h} ${l.id}${again ? ' again' : ''}`,
     label: `${cap(breakSaid(c, l, p, run.asked))}.`,
-    source: l.kind === 'list' ? `${nameOf(c, l.speaker as PersonId)}’s list` : l.kind === 'claim' ? `${nameOf(c, l.speaker as PersonId)}’s story` : l.kind === 'given' ? 'the office' : `${nameOf(c, l.speaker as PersonId)}`,
+    source: l.kind === 'list' ? `who ${nameOf(c, l.speaker as PersonId)} saw` : l.kind === 'claim' ? `what ${nameOf(c, l.speaker as PersonId)} said` : l.kind === 'given' ? 'the office' : `${nameOf(c, l.speaker as PersonId)}`,
   };
 }
 

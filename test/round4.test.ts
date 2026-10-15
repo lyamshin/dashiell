@@ -130,9 +130,9 @@ describe('round 4: stars, the report and the curtain (docs/55 4, 5, 7)', () => {
     expect(prose(run.log[run.log.length - 1] as Page).replace(/\s+/g, ' ')).toContain(quote);
   });
 
-  it('the curtain says par as the verdict does', () => {
+  it('the curtain says the shortest night in calls, the number the verdict uses', () => {
     const d = dealBoard(8, 5, 'murder');
-    expect(curtainOfBoard(d)).toContain('THE PATH (par 13: 7 questions, the motive search and 5 walks)');
+    expect(curtainOfBoard(d)).toContain('THE SHORT WAY THROUGH (13 calls: 7 questions, a look at the papers for the motive and 5 walks)');
   });
 
   it('the CLI says what choosing somebody costs, not a count that reads as a price', () => {

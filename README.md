@@ -86,6 +86,7 @@ npx tsx scripts/bones-read.ts pick --out DIR   # the blind read, build against b
 npx tsx scripts/voicings.ts check              # the voicings held to their shapes (docs/52 build 2); also samples, show, coverage, variety
 npx tsx scripts/bones-read.ts pick --out DIR   # the blind read, build against build (docs/52 build 2): pick, dump, pair, score
 npx tsx scripts/situated-gaps.ts --nights 40   # the gaps the situated deck fills, by situation (docs/51)
+npx tsx scripts/claudisms.ts                    # the tics of model-written prose and the builders' words on the page, per night and per source (docs/56)
 npx tsx scripts/situated-deck.ts build         # the situated deck, written and filtered into content/board/situated.json
 npm run model:sample                           # the tiny model (docs/50): twenty samples
 npm run model:bench                            # and its speed, ms per gap

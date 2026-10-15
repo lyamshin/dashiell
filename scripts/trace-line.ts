@@ -32,6 +32,7 @@ import ts from 'typescript';
 import { replaySave } from '../src/cli/play-lib.js';
 import { pageBodyText } from '../src/game/board/text.js';
 import type { Page } from '../src/game/board/types.js';
+import type { BoardRun } from '../src/game/board/model.js';
 
 /* ------------------------------------------------------------ the types */
 
@@ -667,7 +668,11 @@ function sentenceAround(n: Norm, original: string, q: Span): string {
  * Throws when the save cannot be read; an empty list when no page holds it.
  */
 export function traceLine(saveText: string, quote: string): TraceHit[] {
-  const { run } = replaySave(saveText);
+  return traceRun(replaySave(saveText).run, quote);
+}
+
+/** The same, on a run already played (scripts/claudisms.ts traces its hits this way). */
+export function traceRun(run: Pick<BoardRun, 'log'>, quote: string): TraceHit[] {
   let nq = norm(quote);
   const hits: TraceHit[] = [];
   const pages = run.log.map((page) => {

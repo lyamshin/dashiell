@@ -326,7 +326,7 @@ describe('board: the play CLI', () => {
         const name = d.kase.people.find((x) => x.id === p)?.short as string;
         const opened = runPlay(['confront', name, '--save', save], io);
         expect(opened.code).toBe(0);
-        if (/Which of (her|his) claims\?/.test(opened.out)) expect(runPlay(['do', `claim ${h}`, '--save', save], io).code).toBe(0);
+        if (/Which part of (her|his) evening\?/.test(opened.out)) expect(runPlay(['do', `claim ${h}`, '--save', save], io).code).toBe(0);
         const r = runPlay(['do', cmd, '--save', save], io);
         expect(r.code, r.out).toBe(0);
       } else {
@@ -364,7 +364,7 @@ describe('board: the play CLI', () => {
       if (cmd.startsWith('put ')) {
         const [, p, h] = cmd.split(' ') as [string, string, string];
         const opened = runPlay(['confront', d.kase.people.find((x) => x.id === p)?.short as string, '--save', save], io);
-        if (/Which of (her|his) claims\?/.test(opened.out)) runPlay(['do', `claim ${h}`, '--save', save], io);
+        if (/Which part of (her|his) evening\?/.test(opened.out)) runPlay(['do', `claim ${h}`, '--save', save], io);
       } else if (cmd.startsWith('ask ')) runPlay(['do', d.kase.people.find((x) => x.id === cmd.split(' ')[1])?.short as string, '--save', save], io);
       expect(runPlay(['do', cmd, '--save', save], io).code, cmd).toBe(0);
     }
