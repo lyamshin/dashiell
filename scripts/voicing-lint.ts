@@ -67,6 +67,10 @@ export function lintVoicings(vs: readonly Voicing[]): string[] {
     if (/[A-Za-z]'[A-Za-z]/.test(words)) bad('a straight apostrophe (use ’)');
     if (/—|–| - /.test(words)) bad('a dash');
     if (/[{}]/.test(v.template.replace(/\{[A-Za-z][\w-]*(?::[a-z]+)?\}/g, ''))) bad('a brace that isn’t a slot');
+    // A pronoun opening a sentence takes its capital ({CHe}, {Person:they}): "she didn’t wait to be asked" won't do.
+    for (const m of v.template.matchAll(/(?:^|[.!?][”’]?\s+|“)\{([a-z][\w-]*)(?::(they|them|their))?\}/g)) {
+      if (m[2] || /^(?:c|p|r)?(?:he|she|they|him|his|their|them)$/i.test(m[1] as string)) bad(`{${m[1]}${m[2] ? `:${m[2]}` : ''}} opens a sentence in lower case`);
+    }
     // A pronoun for somebody first named only as an owner ("{Person}’s story put {person:them}") has
     // no subject to hang on: in the notebook, which the reference pass leaves alone, it can be anybody.
     // (And anywhere in the thought, the old pronoun slots: "{name}’s own word put {him} here".)
@@ -81,6 +85,8 @@ export function lintVoicings(vs: readonly Voicing[]): string[] {
       }
     }
     const notebook = v.shape === 'UNSPOKEN' || v.shape === 'HOLD' || (v.requires ?? []).some((r) => ['recap', 'recap-one', 'owned', 'second', 'refused'].includes(r));
+    // The notebook said aloud is many facts in a row, and a page has one "but" and one "So" (docs/49): none of its own.
+    if (notebook && /(?:^|[.!?]\s+)(?:But|So)\b|[,;] but\b/.test(v.template.replace(/“[^”]*”/g, ' '))) bad('the notebook’s own "but" or "So": the page has one of each');
     if (notebook) {
       for (const m of v.template.matchAll(/\{([A-Za-z][\w-]*):(?:they|them|their)\}/g)) {
         const k = (m[1] as string).toLowerCase();
