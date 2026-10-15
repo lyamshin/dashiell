@@ -173,7 +173,7 @@
   {
     "id": "off-008",
     "deck": "office",
-    "text": "Flush enough to run the radiator all night, and the radiator, sensing money, actually worked. The cold stayed on its side of the glass.",
+    "text": "I was flush enough to run the radiator all night, and the radiator, sensing money, actually worked. The cold stayed on its side of the glass.",
     "tags": {
       "circumstance": "flush",
       "weather": "cold"
@@ -225,7 +225,7 @@
   {
     "id": "off-010",
     "deck": "office",
-    "text": "My head kept its own time, behind the clock over the safe and louder. I put the lamp low and thanked it.",
+    "text": "My head was pounding in time with the clock over the safe, a little behind it and louder. I turned the lamp low, and my head thanked me.",
     "tags": {
       "circumstance": "hungover",
       "weather": "any"
@@ -249,7 +249,7 @@
   {
     "id": "off-011",
     "deck": "office",
-    "text": "The coffee I’d made was cold by the time I remembered it. I drank it anyway; it was lighter than holding my head.",
+    "text": "The coffee I’d made was cold by the time I remembered it. I drank it anyway; the cup was lighter than my head.",
     "tags": {
       "circumstance": "hungover",
       "weather": "any"
@@ -385,7 +385,7 @@
         "short": "the three stages",
         "kind": "posture",
         "pay": [
-          "I stayed where I was. Getting up is three stages as well, and I wasn’t ready to start."
+          "I stayed where I was. Getting out of a chair takes the same three stages as getting into one, and I wasn’t ready to start."
         ]
       }
     },
@@ -419,7 +419,7 @@
   {
     "id": "off-022",
     "deck": "office",
-    "text": "I hadn’t slept since the night before the night before. The clock over the door had stopped pretending that mattered to it. I let it keep its own count.",
+    "text": "I hadn’t slept since the night before the night before. The clock over the door had stopped pretending my sleep mattered to it. I let it keep its own count.",
     "tags": {
       "circumstance": "sleepless",
       "weather": "any"
@@ -759,7 +759,7 @@
         "short": "the shade",
         "kind": "light",
         "pay": [
-          "The shade in my office was still down. The moon could hear about it in the morning, with everybody else."
+          "The shade in my office was still down. The moon could hear about my night in the morning, with everybody else."
         ]
       }
     },

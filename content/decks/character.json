@@ -14,7 +14,7 @@
         "short": "the ink",
         "kind": "hands",
         "pay": [
-          "I had ink on my finger too, from the notebook. Mine would scrub out. That’s the difference between a career and a night."
+          "The ink worn into that finger would never scrub out. Mine, from the notebook, would by morning. That’s the difference between a career and a night."
         ]
       }
     },
@@ -97,7 +97,7 @@
         "short": "the eyes",
         "kind": "eyes",
         "pay": [
-          "I kept my mouth closed after that. There are some counts I’d rather not hear the total of."
+          "Those eyes went back to my mouth, and I kept it closed. I didn’t want to hear how many fillings they’d counted."
         ]
       }
     },
@@ -117,7 +117,7 @@
         "short": "the pale look",
         "kind": "face",
         "pay": [
-          "Under that light we both looked like we’d spent the day bent over something. In my case it was the bar."
+          "Under the electric light we both looked like we’d spent the day bent over something. In my case it was the bar."
         ]
       }
     },
@@ -159,7 +159,7 @@
         "short": "the waiting",
         "kind": "habit",
         "pay": [
-          "I said nothing, and I said it grammatically. It’s harder than it sounds."
+          "With that head tilted for dictation, I said nothing, and said it grammatically. It’s harder than it sounds."
         ]
       }
     },
@@ -260,7 +260,7 @@
         "short": "the waiting hands",
         "kind": "posture",
         "pay": [
-          "Nobody counted anybody in. I nearly counted them in myself, out loud, just to get things started."
+          "Those hands were still waiting to be counted in. I nearly gave them a one-two-three myself, just to get things started."
         ]
       }
     },
@@ -342,7 +342,7 @@
         "short": "the clothes",
         "kind": "clothes",
         "pay": [
-          "I buttoned my coat. It came off a rack, and in that company it knew it."
+          "I buttoned my coat. It came off a rack, and next to all that handmade sewing it looked it."
         ]
       }
     },
@@ -363,7 +363,7 @@
         "short": "the squint",
         "kind": "eyes",
         "pay": [
-          "The squint stayed on me a while. I tried to look thinner. It didn’t help."
+          "The needle’s-eye squint stayed on me a while. I tried to look thinner. It didn’t help."
         ]
       }
     },
@@ -384,7 +384,7 @@
         "short": "the lean",
         "kind": "posture",
         "pay": [
-          "Nothing in that room was going anywhere. Somebody should have honked."
+          "Still that forward lean, as if stuck behind a streetcar. Somebody should have honked."
         ]
       }
     },
@@ -425,7 +425,7 @@
         "short": "the gloves",
         "kind": "hands",
         "pay": [
-          "I could have used gloves like that. Mine have all ten fingertips, and they still let the cold in."
+          "I could have used gloves with the fingertips cut out. Mine have all ten, and they still let the cold in."
         ]
       }
     },
@@ -446,7 +446,7 @@
         "short": "the tilt",
         "kind": "posture",
         "pay": [
-          "The head was still tilted, listening. I kept quiet. I didn’t want to be put through to anybody."
+          "The head was still tilted as if under a headset, listening. I kept quiet. I didn’t want to be put through to anybody."
         ]
       }
     },
@@ -487,7 +487,7 @@
         "short": "the headset mark",
         "kind": "face",
         "pay": [
-          "My hat had left a mark in my hair too. Nobody was paying me by the hour for mine."
+          "The headset band had left its mark in that hair, and my hat had left one in mine. Nobody was paying me by the hour for mine."
         ]
       }
     },
@@ -528,7 +528,7 @@
         "short": "the eyes",
         "kind": "eyes",
         "pay": [
-          "The door opened. It was neither. It hardly ever is, which is how bookmakers stay in business."
+          "The door opened. It was neither the police nor a winner. It hardly ever is, which is how bookmakers stay in business."
         ]
       }
     },
@@ -590,7 +590,7 @@
         "short": "the eyeshade",
         "kind": "face",
         "pay": [
-          "I had a sad story of my own, but I kept it. I didn’t want to hear what it would fetch."
+          "I had a sad story of my own, but I kept it away from the green eyeshade. I didn’t want to hear what it would fetch."
         ]
       }
     },
@@ -641,7 +641,7 @@
   {
     "id": "chr-466",
     "deck": "character",
-    "text": "Hands clasped in front, weight back on {his} heels, {he} stood as though poured there and left to set.",
+    "text": "Hands clasped in front, weight back on {his} heels, {he} stood as though poured in place and left to set.",
     "tags": {
       "role": "arch-bouncer",
       "kind": "look"
@@ -652,7 +652,7 @@
         "short": "the stance",
         "kind": "posture",
         "pay": [
-          "Whatever had been poured there had set by then. I walked round it."
+          "That poured-and-set stance hadn’t moved an inch. I walked round it."
         ]
       }
     },
@@ -673,7 +673,7 @@
         "short": "the look at the door",
         "kind": "eyes",
         "pay": [
-          "I stayed a good way from the door. There was no sense helping anybody with the arithmetic."
+          "I stayed a good way from the door. There was no sense helping anybody work out how easily I’d go through it."
         ]
       }
     },
@@ -818,7 +818,7 @@
         "short": "the posture",
         "kind": "posture",
         "pay": [
-          "The building didn’t lean. I did, a little, and nobody held me up."
+          "That straight back was still braced in case the building leaned. The building didn’t. I did, a little, and nobody held me up."
         ]
       }
     },
@@ -899,7 +899,7 @@
         "short": "the cap",
         "kind": "clothes",
         "pay": [
-          "My own hat had been reshaped by a few nights too. Not hot ones."
+          "That cap had a hundred hot nights in it. My own hat had a few nights in it too, and not hot ones."
         ]
       }
     },
@@ -970,7 +970,7 @@
   {
     "id": "chr-611",
     "deck": "character",
-    "text": "{He} had strong hands, a sharp mouth, and a way of folding {his} arms that ended a conversation and collected the rent on it.",
+    "text": "{He} had strong hands, a sharp mouth, and a way of folding {his} arms that ended any conversation, especially one about the rent.",
     "joke": true,
     "tags": {
       "role": "landlady",
@@ -1003,7 +1003,7 @@
         "short": "the camphor",
         "kind": "hands",
         "pay": [
-          "I smelled faintly of camphor by then. It’s the only thing I’ve ever got from a drugstore for free."
+          "I smelled faintly of camphor by then, the only thing I’ve ever got from a drugstore for free."
         ]
       }
     },

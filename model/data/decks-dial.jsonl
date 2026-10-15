@@ -1642,6 +1642,159 @@
 {"id":"bnt-1354","flags":[],"action":"keep","batch":2}
 {"id":"bnt-1355","flags":[],"action":"keep","batch":2}
 {"id":"bnt-1356","flags":[],"action":"keep","batch":2}
+{"id":"chr-117","flags":[],"action":"keep","batch":5}
+{"id":"chr-117/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-117/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"I had ink on my finger too, from the notebook. Mine would scrub out. That’s the difference between a career and a night.","text":"The ink worn into that finger would never scrub out. Mine, from the notebook, would by morning. That’s the difference between a career and a night."}
+{"id":"chr-118","flags":[],"action":"keep","batch":5}
+{"id":"chr-118/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-118/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-119","flags":[],"action":"keep","batch":5}
+{"id":"chr-119/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-119/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-153","flags":[],"action":"keep","batch":5}
+{"id":"chr-153/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-153/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-154","flags":[],"action":"keep","batch":5}
+{"id":"chr-154/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-154/trait/pay/0","flags":["ellipsis","translate"],"action":"rewrite","batch":5,"before":"I kept my mouth closed after that. There are some counts I’d rather not hear the total of.","text":"Those eyes went back to my mouth, and I kept it closed. I didn’t want to hear how many fillings they’d counted."}
+{"id":"chr-155","flags":[],"action":"keep","batch":5}
+{"id":"chr-155/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-155/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"Under that light we both looked like we’d spent the day bent over something. In my case it was the bar.","text":"Under the electric light we both looked like we’d spent the day bent over something. In my case it was the bar."}
+{"id":"chr-171","flags":[],"action":"keep","batch":5}
+{"id":"chr-171/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-171/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-172","flags":[],"action":"keep","batch":5}
+{"id":"chr-172/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-172/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"I said nothing, and I said it grammatically. It’s harder than it sounds.","text":"With that head tilted for dictation, I said nothing, and said it grammatically. It’s harder than it sounds."}
+{"id":"chr-173","flags":[],"action":"keep","batch":5}
+{"id":"chr-173/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-173/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-189","flags":[],"action":"keep","batch":5}
+{"id":"chr-189/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-189/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-190","flags":[],"action":"keep","batch":5}
+{"id":"chr-190/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-190/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-191","flags":[],"action":"keep","batch":5}
+{"id":"chr-191/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-191/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-209","flags":[],"action":"keep","batch":5}
+{"id":"chr-209/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-209/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"Nobody counted anybody in. I nearly counted them in myself, out loud, just to get things started.","text":"Those hands were still waiting to be counted in. I nearly gave them a one-two-three myself, just to get things started."}
+{"id":"chr-210","flags":[],"action":"keep","batch":5}
+{"id":"chr-210/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-210/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-211","flags":[],"action":"keep","batch":5}
+{"id":"chr-211/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-211/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-281","flags":[],"action":"keep","batch":5}
+{"id":"chr-281/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-281/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-282","flags":[],"action":"keep","batch":5}
+{"id":"chr-282/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-282/trait/pay/0","flags":["ellipsis","tag"],"action":"rewrite","batch":5,"before":"I buttoned my coat. It came off a rack, and in that company it knew it.","text":"I buttoned my coat. It came off a rack, and next to all that handmade sewing it looked it."}
+{"id":"chr-283","flags":[],"action":"keep","batch":5}
+{"id":"chr-283/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-283/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"The squint stayed on me a while. I tried to look thinner. It didn’t help.","text":"The needle’s-eye squint stayed on me a while. I tried to look thinner. It didn’t help."}
+{"id":"chr-301","flags":[],"action":"keep","batch":5}
+{"id":"chr-301/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-301/trait/pay/0","flags":["ellipsis","translate"],"action":"rewrite","batch":5,"before":"Nothing in that room was going anywhere. Somebody should have honked.","text":"Still that forward lean, as if stuck behind a streetcar. Somebody should have honked."}
+{"id":"chr-302","flags":[],"action":"keep","batch":5}
+{"id":"chr-302/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-302/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-303","flags":[],"action":"keep","batch":5}
+{"id":"chr-303/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-303/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"I could have used gloves like that. Mine have all ten fingertips, and they still let the cold in.","text":"I could have used gloves with the fingertips cut out. Mine have all ten, and they still let the cold in."}
+{"id":"chr-355","flags":[],"action":"keep","batch":5}
+{"id":"chr-355/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-355/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"The head was still tilted, listening. I kept quiet. I didn’t want to be put through to anybody.","text":"The head was still tilted as if under a headset, listening. I kept quiet. I didn’t want to be put through to anybody."}
+{"id":"chr-356","flags":[],"action":"keep","batch":5}
+{"id":"chr-356/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-356/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-357","flags":[],"action":"keep","batch":5}
+{"id":"chr-357/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-357/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"My hat had left a mark in my hair too. Nobody was paying me by the hour for mine.","text":"The headset band had left its mark in that hair, and my hat had left one in mine. Nobody was paying me by the hour for mine."}
+{"id":"chr-409","flags":[],"action":"keep","batch":5}
+{"id":"chr-409/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-409/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-410","flags":[],"action":"keep","batch":5}
+{"id":"chr-410/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-410/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"The door opened. It was neither. It hardly ever is, which is how bookmakers stay in business.","text":"The door opened. It was neither the police nor a winner. It hardly ever is, which is how bookmakers stay in business."}
+{"id":"chr-411","flags":[],"action":"keep","batch":5}
+{"id":"chr-411/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-411/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-447","flags":[],"action":"keep","batch":5}
+{"id":"chr-447/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-447/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-448","flags":[],"action":"keep","batch":5}
+{"id":"chr-448/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-448/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"I had a sad story of my own, but I kept it. I didn’t want to hear what it would fetch.","text":"I had a sad story of my own, but I kept it away from the green eyeshade. I didn’t want to hear what it would fetch."}
+{"id":"chr-449","flags":[],"action":"keep","batch":5}
+{"id":"chr-449/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-449/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-465","flags":[],"action":"keep","batch":5}
+{"id":"chr-465/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-465/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-466","flags":["place"],"action":"rewrite","batch":5,"before":"Hands clasped in front, weight back on {his} heels, {he} stood as though poured there and left to set.","text":"Hands clasped in front, weight back on {his} heels, {he} stood as though poured in place and left to set."}
+{"id":"chr-466/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-466/trait/pay/0","flags":["ellipsis","place"],"action":"rewrite","batch":5,"before":"Whatever had been poured there had set by then. I walked round it.","text":"That poured-and-set stance hadn’t moved an inch. I walked round it."}
+{"id":"chr-467","flags":[],"action":"keep","batch":5}
+{"id":"chr-467/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-467/trait/pay/0","flags":["compressed"],"action":"rewrite","batch":5,"before":"I stayed a good way from the door. There was no sense helping anybody with the arithmetic.","text":"I stayed a good way from the door. There was no sense helping anybody work out how easily I’d go through it."}
+{"id":"chr-483","flags":[],"action":"keep","batch":5}
+{"id":"chr-483/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-483/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-484","flags":[],"action":"keep","batch":5}
+{"id":"chr-484/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-484/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-485","flags":[],"action":"keep","batch":5}
+{"id":"chr-485/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-485/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-501","flags":[],"action":"keep","batch":5}
+{"id":"chr-501/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-501/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-502","flags":[],"action":"keep","batch":5}
+{"id":"chr-502/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-502/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-503","flags":[],"action":"keep","batch":5}
+{"id":"chr-503/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-503/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-519","flags":[],"action":"keep","batch":5}
+{"id":"chr-519/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-519/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"The building didn’t lean. I did, a little, and nobody held me up.","text":"That straight back was still braced in case the building leaned. The building didn’t. I did, a little, and nobody held me up."}
+{"id":"chr-520","flags":[],"action":"keep","batch":5}
+{"id":"chr-520/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-520/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-521","flags":[],"action":"keep","batch":5}
+{"id":"chr-521/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-521/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-573","flags":[],"action":"keep","batch":5}
+{"id":"chr-573/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-573/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-574","flags":[],"action":"keep","batch":5}
+{"id":"chr-574/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-574/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"My own hat had been reshaped by a few nights too. Not hot ones.","text":"That cap had a hundred hot nights in it. My own hat had a few nights in it too, and not hot ones."}
+{"id":"chr-575","flags":[],"action":"keep","batch":5}
+{"id":"chr-575/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-575/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-609","flags":[],"action":"keep","batch":5}
+{"id":"chr-609/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-609/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-610","flags":[],"action":"keep","batch":5}
+{"id":"chr-610/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-610/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-611","flags":["translate"],"action":"rewrite","batch":5,"before":"{He} had strong hands, a sharp mouth, and a way of folding {his} arms that ended a conversation and collected the rent on it.","text":"{He} had strong hands, a sharp mouth, and a way of folding {his} arms that ended any conversation, especially one about the rent."}
+{"id":"chr-611/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-611/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-663","flags":[],"action":"keep","batch":5}
+{"id":"chr-663/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-663/trait/pay/0","flags":["pronoun"],"action":"rewrite","batch":5,"before":"I smelled faintly of camphor by then. It’s the only thing I’ve ever got from a drugstore for free.","text":"I smelled faintly of camphor by then, the only thing I’ve ever got from a drugstore for free."}
+{"id":"chr-664","flags":[],"action":"keep","batch":5}
+{"id":"chr-664/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-664/trait/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"chr-665","flags":[],"action":"keep","batch":5}
+{"id":"chr-665/trait","flags":[],"action":"keep","batch":5}
+{"id":"chr-665/trait/pay/0","flags":[],"action":"keep","batch":5}
 {"id":"ent-011","flags":["rhythm","compressed"],"action":"rewrite","batch":4,"before":"A man stood in the doorway, cap on, deciding if I was worth coming in for. Narrowly.","text":"A man stood in the doorway, cap on, deciding if I was worth coming in for. I won, but not by much."}
 {"id":"ent-012","flags":["compressed"],"action":"rewrite","batch":4,"before":"My visitor didn’t sit until I told her to. She needed help, she said. That was the speech.","text":"My visitor didn’t sit until I told her to. She needed help, she said. That was the whole speech."}
 {"id":"ent-013","flags":[],"action":"keep","batch":4}
@@ -1660,6 +1813,120 @@
 {"id":"ent-044","flags":[],"action":"keep","batch":4}
 {"id":"ent-046","flags":["compressed"],"action":"rewrite","batch":4,"before":"My visitor came in talking about the stairs, how many and how dark, and was still counting them sitting down. I’d never dared.","text":"My visitor came in talking about the stairs, how many and how dark, and was still counting them sitting down. I’d never had the nerve to count them myself."}
 {"id":"ent-048","flags":[],"action":"keep","batch":4}
+{"id":"off-001","flags":[],"action":"keep","batch":5}
+{"id":"off-001/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-001/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-002","flags":[],"action":"keep","batch":5}
+{"id":"off-002/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-002/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-003","flags":[],"action":"keep","batch":5}
+{"id":"off-003/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-003/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-004","flags":[],"action":"keep","batch":5}
+{"id":"off-004/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-004/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-005","flags":[],"action":"keep","batch":5}
+{"id":"off-005/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-005/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-006","flags":[],"action":"keep","batch":5}
+{"id":"off-006/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-006/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-007","flags":[],"action":"keep","batch":5}
+{"id":"off-007/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-007/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-008","flags":["rhythm"],"action":"rewrite","batch":5,"before":"Flush enough to run the radiator all night, and the radiator, sensing money, actually worked. The cold stayed on its side of the glass.","text":"I was flush enough to run the radiator all night, and the radiator, sensing money, actually worked. The cold stayed on its side of the glass."}
+{"id":"off-008/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-008/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-009","flags":[],"action":"keep","batch":5}
+{"id":"off-009/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-009/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-010","flags":["compressed","pronoun"],"action":"rewrite","batch":5,"before":"My head kept its own time, behind the clock over the safe and louder. I put the lamp low and thanked it.","text":"My head was pounding in time with the clock over the safe, a little behind it and louder. I turned the lamp low, and my head thanked me."}
+{"id":"off-010/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-010/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-011","flags":["compressed"],"action":"rewrite","batch":5,"before":"The coffee I’d made was cold by the time I remembered it. I drank it anyway; it was lighter than holding my head.","text":"The coffee I’d made was cold by the time I remembered it. I drank it anyway; the cup was lighter than my head."}
+{"id":"off-011/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-011/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-012","flags":[],"action":"keep","batch":5}
+{"id":"off-012/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-012/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-013","flags":[],"action":"keep","batch":5}
+{"id":"off-013/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-013/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-014","flags":[],"action":"keep","batch":5}
+{"id":"off-014/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-014/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-015","flags":[],"action":"keep","batch":5}
+{"id":"off-015/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-015/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-016","flags":[],"action":"keep","batch":5}
+{"id":"off-016/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-016/prop/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"I stayed where I was. Getting up is three stages as well, and I wasn’t ready to start.","text":"I stayed where I was. Getting out of a chair takes the same three stages as getting into one, and I wasn’t ready to start."}
+{"id":"off-017","flags":[],"action":"keep","batch":5}
+{"id":"off-017/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-017/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-022","flags":["pronoun"],"action":"rewrite","batch":5,"before":"I hadn’t slept since the night before the night before. The clock over the door had stopped pretending that mattered to it. I let it keep its own count.","text":"I hadn’t slept since the night before the night before. The clock over the door had stopped pretending my sleep mattered to it. I let it keep its own count."}
+{"id":"off-022/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-022/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-023","flags":[],"action":"keep","batch":5}
+{"id":"off-023/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-023/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-024","flags":[],"action":"keep","batch":5}
+{"id":"off-024/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-024/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-025","flags":[],"action":"keep","batch":5}
+{"id":"off-025/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-025/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-026","flags":[],"action":"keep","batch":5}
+{"id":"off-026/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-026/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-027","flags":[],"action":"keep","batch":5}
+{"id":"off-027/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-027/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-028","flags":[],"action":"keep","batch":5}
+{"id":"off-028/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-028/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-029","flags":[],"action":"keep","batch":5}
+{"id":"off-029/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-029/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-030","flags":[],"action":"keep","batch":5}
+{"id":"off-030/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-030/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-031","flags":[],"action":"keep","batch":5}
+{"id":"off-031/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-031/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-032","flags":[],"action":"keep","batch":5}
+{"id":"off-032/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-032/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-033","flags":[],"action":"keep","batch":5}
+{"id":"off-033/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-033/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-034","flags":[],"action":"keep","batch":5}
+{"id":"off-034/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-034/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-035","flags":[],"action":"keep","batch":5}
+{"id":"off-035/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-035/prop/pay/0","flags":["compressed","pronoun"],"action":"rewrite","batch":5,"before":"The shade in my office was still down. The moon could hear about it in the morning, with everybody else.","text":"The shade in my office was still down. The moon could hear about my night in the morning, with everybody else."}
+{"id":"off-036","flags":[],"action":"keep","batch":5}
+{"id":"off-036/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-036/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-037","flags":[],"action":"keep","batch":5}
+{"id":"off-037/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-037/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-038","flags":[],"action":"keep","batch":5}
+{"id":"off-038/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-038/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-041","flags":[],"action":"keep","batch":5}
+{"id":"off-041/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-041/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-042","flags":[],"action":"keep","batch":5}
+{"id":"off-042/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-042/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-043","flags":[],"action":"keep","batch":5}
+{"id":"off-043/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-043/prop/pay/0","flags":[],"action":"keep","batch":5}
+{"id":"off-044","flags":[],"action":"keep","batch":5}
+{"id":"off-044/prop","flags":[],"action":"keep","batch":5}
+{"id":"off-044/prop/pay/0","flags":[],"action":"keep","batch":5}
 {"id":"wch-001","flags":[],"action":"keep","batch":4}
 {"id":"wch-002","flags":[],"action":"keep","batch":4}
 {"id":"wch-003","flags":[],"action":"keep","batch":4}
