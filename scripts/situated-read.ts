@@ -11,6 +11,8 @@
  * `npx tsx scripts/situated-read.ts --score DIR/key.json --answers A.json [B.json …]`
  *   scores readers' answers (`{"1": "1"|"2", …}`, the version preferred in each pair): how often
  *   the situated version was preferred, by reader and in all.
+ *
+ * The rubric (docs/53): which page is clearer, and still sounds like the game, in that order.
  */
 
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -109,7 +111,15 @@ for (let i = pairs.length - 1; i > 0; i--) {
   const j = rng.int(i + 1);
   [pairs[i], pairs[j]] = [pairs[j] as (typeof pairs)[number], pairs[i] as (typeof pairs)[number]];
 }
-const md: string[] = ['# Twenty pages, two versions each', ''];
+// docs/53: readers judge which page is clearer and still sounds like the game, in that order (not "which sounds more like noir").
+const md: string[] = [
+  '# Twenty pages, two versions each',
+  '',
+  'Dashiell is a camp-noir detective game: a private eye in 1920s New York narrates one night of questions, page by page. Each pair below is one page of one night, written twice from the same facts; the two versions differ only in some of the sentences between the facts.',
+  '',
+  '**For each pair, pick the version that is clearer and still sounds like the game, in that order.** First: which can you follow on one read, without stopping to work out what a phrase means or what a word points at? Only if the two are equally clear: which sounds more like the game, a detective story told with a straight face and a wink.',
+  '',
+];
 const key: Record<string, { situated: '1' | '2'; label: string }> = {};
 pairs.slice(0, want).forEach((p, k) => {
   const first = rng.int(2) === 0;
