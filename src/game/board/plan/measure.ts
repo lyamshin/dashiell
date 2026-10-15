@@ -145,7 +145,7 @@ export function clauseHead(text: string, names: { id: string; at: number }[], at
  */
 export function herIsObject(after: string, before = ''): boolean {
   if (/\b(?:owed|gave|give|told|sent|bought|showed|handed|offered|promised|lent|paid|asked|brought|cost|wished|left)\s*$/.test(before)) return true;
-  return /^(?:⁣\d+⁤)?(?:\s+(?:at|here|there|in|on|with|to|for|about|by|from|into|out|again|now|then|and|or|but|as|if|when|that|than|over|across|before|after|go|alone|yet|either|too|first|last|home|anything|nothing|without|while|until|instead|tonight|anyway)\b|\s*[,.;:!?”—]|\s*$)/.test(after);
+  return /^(?:⁣\d+⁤)?(?:\s+(?:at|here|there|in|on|with|to|for|about|by|from|into|out|again|now|then|and|or|but|as|if|when|that|than|over|across|before|after|go|alone|yet|either|too|first|last|home|anything|nothing|without|while|until|instead|tonight|anyway|a|an)\b|\s*[,.;:!?”—]|\s*$)/.test(after);
 }
 
 const PRONOUN = /\b(he|him|his|himself|she|her|hers|herself)\b/gi;

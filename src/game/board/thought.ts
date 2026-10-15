@@ -122,6 +122,8 @@ export interface ThoughtCtx {
 export function thoughtOf(x: ThoughtCtx): Thought {
   const { c, before, run, q, here } = x;
   const t = blank();
+  // docs/55 1a: whether a list page says who had gone out (`sayGone`), decided once.
+  let goneDecided: boolean | undefined;
   const b = solveHeld(c, solverHeld(before));
   const a = solveHeld(c, solverHeld(run));
   const [kind, rest] = q.split(':') as [string, string];
@@ -312,9 +314,9 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const sp = ln.speaker as PersonId;
       // Somebody this page catches lying is the page's news; where their story agrees can wait (docs/39 §4).
       if ([...caught].some((k) => k.startsWith(`${sp}@`))) continue;
-      // docs/55 1a: somebody the hours sentence will say had been there and gone out is said there, once.
-      const gone0 = goneFrom(l);
-      if (gone0.length > 0 && (gone0.includes(sp) || win.slice(0, 2).some((h) => (l?.entries[h as Hour] ?? []).some((e) => 'person' in e && e.person === sp)))) continue;
+      // docs/55 1a: somebody the hours sentence will say had been there and gone out is said there, once
+      // (a list can't make a third "Hauck" into "her").
+      if (goneFrom(l).includes(sp)) continue;
       if ((l?.entries[ln.hour] ?? []).some((e) => 'person' in e && e.person === sp) && !agreed.some((y) => y.p === sp)) agreed.push({ p: sp, h: ln.hour, id: ln.id });
     }
     for (const y of agreed) covered.add(y.p);
@@ -478,12 +480,27 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     return (l.entries[before] ?? []).flatMap((e) => ('person' in e && e.person !== c.crime.victim && !atAny.has(e.person) && personOf(c, e.person) && !personOf(c, e.person)?.object ? [e.person] : []));
   }
 
+  /**
+   * docs/55 1a: whether this list page says who had gone out, decided once, before the placements:
+   * somebody did, and nobody it would name has been named twice already by this thought (a list
+   * can't say a name a third time as "her").
+   */
+  function sayGone(): boolean {
+    if (goneDecided !== undefined) return goneDecided;
+    const l = kind === 'list' ? listOf(c, rest) : undefined;
+    const gone = goneFrom(l);
+    if (!l || gone.length === 0) return (goneDecided = false);
+    const said = t.sentences.join(' ');
+    const named = [...gone, ...(win.slice(0, 2) as Hour[]).flatMap((h) => (l.entries[h] ?? []).flatMap((e) => ('person' in e ? [e.person] : [])))];
+    return (goneDecided = named.every((p) => (said.match(new RegExp(`\\b${nameOf(c, p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'g')) ?? []).length < 2));
+  }
+
   /** docs/55 1a: whether this page's own list has the hour (at its own place): the hours sentence says it whole. */
   function ownListSays(place: PlaceId, h: Hour): boolean {
     if (kind !== 'list') return false;
     const l = listOf(c, rest);
     // (Only where somebody had gone out: otherwise the placements say it as they did.)
-    return !!l && l.place === place && l.entries[h] !== undefined && goneFrom(l).length > 0;
+    return !!l && l.place === place && l.entries[h] !== undefined && sayGone();
   }
 
   // 8. The handover: something under a coat. Not whose, not what, until the board says.
@@ -613,7 +630,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         // docs/55 1a: who the list had the hour before and didn't have at the hours that matter: who had
         // gone out ("Steinbach and Bellucci had been there at nine and gone out"), not who stayed.
         const before = ((hs[0] as Hour) - 1) as Hour;
-        const gone = goneFrom(l);
+        const gone = sayGone() ? goneFrom(l) : [];
         // Not "in this room" (a landlady watches a stair, not a room: Hard-boiled 8's #14). Here, the
         // keeper's list is about here and needn't say so; elsewhere it says where.
         const there = where(c, l.place, here) === 'here' ? '' : `at ${placeName(c, l.place)}`;

@@ -1039,6 +1039,12 @@ export function writeOffice(w: Writer): void {
     // "found in his own walk-up", not "found in Dandridge’s walk-up" of Dandridge (Poached 5's #1).
     if (g.kind === 'found' && v.scene && isMurder(c)) v.scene = v.scene.replace(new RegExp(`^${esc(victimOf(c).short)}’s `), `${pronOf(c, c.crime.victim).his} own `);
     if (g.kind === 'pointer' && v.motive) v.motive = inClientMouth(c, v.motive);
+    // docs/55 2: a reason that calls them "her" or "him" before anything has said which: their whole
+    // name the first time, so the pronoun has somebody to be (Hard-boiled 8's #3).
+    if (g.kind === 'pointer' && v.P && /\b(?:her|him|she|he)\b/i.test(v.motive ?? v.behaviour ?? '')) {
+      const pp = c.people.find((x) => x.short === v.P);
+      if (pp && pp.name !== pp.short) v.P = pp.name.replace(/^(?:Mr\.|Mrs\.|Miss|Dr\.) (?=\S+ \S)/, '');
+    }
     // (Poached 5's #2, "He owed Dandridge the rent on a shop, and he was calling it in", two different
     // men in one sentence, is mended in the motive itself: "…and it was being called in".)
     if (g.kind === 'pointer' && v.behaviour) v.behaviour = v.behaviour.replace(new RegExp(`\\b${cl.short}’s\\b`, 'g'), 'my');
