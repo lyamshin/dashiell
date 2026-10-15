@@ -36,10 +36,11 @@ import { KNOCKED, OWN_WORD_ONLY, SAT, STANDING, STOOD, STOOD_UP, UNCONTRADICTED,
 import { sentencesOf } from './plan/sentences.js';
 import { GAG_MAX } from './pages.js';
 import { boardFields } from './report.js';
+import { engineWords } from './jargon.js';
 
 export interface ProseIssue {
   page: number;
-  rule: 'place-tag' | 'phrase' | 'signpost' | 'gag' | 'pet' | 'grid' | 'turned-out' | 'posture' | 'inside';
+  rule: 'place-tag' | 'phrase' | 'signpost' | 'gag' | 'pet' | 'grid' | 'turned-out' | 'posture' | 'inside' | 'jargon';
   detail: string;
 }
 
@@ -153,6 +154,13 @@ export function proseIssues(d: BoardDeal, run: BoardRun): ProseIssue[] {
     if (c.type === 'lost-pet') {
       const m = /\b(?:[Ii]t went (?:at|missing)|who took it\b|[Ww]here it is now|whoever took it\b|get it back\b)/.exec(all);
       if (m) out.push({ page: i, rule: 'pet', detail: m[0] });
+    }
+  });
+  // docs/53, addendum: no engine words in the narration, and no board-speak in anybody's mouth.
+  run.log.forEach((p, i) => {
+    for (const b of p.blocks) {
+      if (b.kind !== 'prose' || b.voice === 'chapter') continue;
+      for (const h of engineWords(b.voice === 'answer' && !b.text.includes('“') ? `“${b.text}”` : b.text)) out.push({ page: i, rule: 'jargon', detail: `${h.name}${h.speech ? ' (speech)' : ''}: “${h.match}”` });
     }
   });
   // Running gags: each role's payoffs tonight.

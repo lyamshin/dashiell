@@ -82,7 +82,7 @@ export function notebookText(d: BoardDeal, run: BoardRun): string {
   const c = d.kase;
   const out: string[] = ['NOTEBOOK'];
   out.push('');
-  out.push('The office:');
+  out.push('What my client said:');
   // docs/55 7, 8: the widow's title, and "says she says" (Raw 11's #10) said once.
   for (const t of c.givens.text) out.push(`  ${wrap(titleClient(c, t.replace(/\bsays (she|he) says\b/, 'says $1 claims')), 72).replace(/\n/g, '\n  ')}`);
   out.push('');
@@ -98,13 +98,13 @@ export function notebookText(d: BoardDeal, run: BoardRun): string {
   const lines = linesHeld(c, run).filter((l) => l.kind !== 'given');
   if (lines.length > 0) {
     out.push('');
-    out.push('What I have:');
+    out.push('What I was told:');
     for (const l of lines) out.push(`  ${wrap(l.text, 72).replace(/\n/g, '\n  ')}`);
   }
   const motives = run.asked.filter((q) => q.startsWith('motive:')).map((q) => q.slice(7));
   for (const p of motives) out.push(`  ${nameOf(c, p)}’s reason: ${personOf(c, p)?.motive}.`);
   out.push('');
-  out.push('Where it stands:');
+  out.push('How it adds up:');
   for (const cl of recapClauses(d, run)) out.push(`  ${wrap(cl.text, 72).replace(/\n/g, '\n  ')}`);
   out.push('');
   out.push(boardGridText(c, run));

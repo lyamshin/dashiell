@@ -493,11 +493,10 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     // docs/47 A6: the person's own pronouns, never "their" for one woman; costs in calls.
     const female = personOf(c, pk.person)?.female === true;
     const him = female ? 'her' : 'him';
-    const his = female ? 'her' : 'his';
     box.append(el('p', { class: 'note', text: `${pk.help} Looking is free; reading one to ${him} costs a call. If it breaks nothing, the call is gone all the same, and the page says why.` }));
     if (pk.ready.length > 0) {
       const sec = el('section', { class: 'picker-sec' });
-      sec.append(el('h4', { class: 'picker-head', text: `${his[0]?.toUpperCase()}${his.slice(1)} line, and the line that breaks it` }));
+      sec.append(el('h4', { class: 'picker-head', text: `What ${female ? 'she' : 'he'} said, and what says otherwise` }));
       for (const r of pk.ready) {
         const b = el('button', { class: 'choice choice--fact', type: 'button', 'data-command': r.command, text: r.label });
         b.append(el('span', { class: 'mins', text: '1 call' }));
@@ -652,7 +651,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const r = run as BoardRun;
     // Where it stands, plainly.
     if (r.log.length > 1) {
-      body.append(el('h2', { text: 'Where it stands' }));
+      body.append(el('h2', { text: 'How it adds up' }));
       const ul = el('ul', { class: 'nb-stands' });
       for (const cl of recapClauses(d as BoardDeal, r)) ul.append(el('li', { text: cl.text }));
       body.append(ul);
@@ -660,10 +659,10 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     // Everything held, by whose word.
     const lines = linesHeld(c, r).filter((l) => l.kind !== 'given');
     if (lines.length > 0) {
-      body.append(el('h2', { text: 'What I have' }));
+      body.append(el('h2', { text: 'What I was told' }));
       const bySource = new Map<string, string[]>();
       for (const l of lines) {
-        const src = l.q.startsWith('list:') ? `Who ${nameOf(c, l.q.slice(5))} saw` : l.q.startsWith('account:') ? `${nameOf(c, l.q.slice(8))}’s evening` : l.q.startsWith('search:') ? 'What I found' : 'When I put it to them';
+        const src = l.q.startsWith('list:') ? `Who ${nameOf(c, l.q.slice(5))} saw` : l.q.startsWith('account:') ? `${nameOf(c, l.q.slice(8))}’s evening` : l.q.startsWith('search:') ? 'What I found' : 'When I faced them with it';
         bySource.set(src, [...(bySource.get(src) ?? []), l.text]);
       }
       for (const [src, ls] of bySource) {
@@ -675,7 +674,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         body.append(entry);
       }
     }
-    body.append(el('h2', { text: 'The office' }));
+    body.append(el('h2', { text: 'What my client said' }));
     const office = el('ul', { class: 'nb-stands' });
     for (const t of c.givens.text) office.append(el('li', { text: t }));
     body.append(office);
@@ -782,7 +781,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   }
 
   function meansHead(label: string): string {
-    return /^could get\b/.test(label) ? 'could get it?' : 'knew how?';
+    return /^could\b/.test(label) ? 'could get it?' : 'knew how?';
   }
 
   /** "Corrigan’s list" (the grid's source name) said as what happened: "Corrigan saw them at the Velvet Room". */
@@ -791,7 +790,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (list) return `${list[1]} saw them at ${place}`;
     const said = /^(.+)’s (?:story|word)$/.exec(by);
     if (said) return `${said[1]} says they were at ${place}`;
-    return `${by} puts them at ${place}`;
+    return `${by} says they were at ${place}`;
   }
 
   function cellWords(cell: BoardCell): string {

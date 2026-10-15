@@ -382,12 +382,12 @@ export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean; g
   return { run, commands, ok: v.outcome === 'solved', report };
 }
 
-/** The person the turn sent it to put it to: "I could put it to Feeney now." */
+/** The person the turn sent it to put it to: "I could face Feeney with it now." */
 function turnSaid(d: BoardDeal, run: BoardRun): PersonId | null {
   for (const page of run.log) {
     if (!page.board?.turn) continue;
     const text = page.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join('\n');
-    const m = /I could put it to (.+?) now\./.exec(text);
+    const m = /I could face (.+?) with it now\./.exec(text);
     const hit = m ? d.kase.people.find((p) => p.role === 'suspect' && p.short === m[1]) : undefined;
     if (hit) return hit.id;
   }

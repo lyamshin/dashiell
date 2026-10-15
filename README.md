@@ -14,11 +14,11 @@ Playable, at https://dashiell.app. The night runs on **the small board**
 each get a whole answer. Ask anybody where they were tonight and you get the
 whole evening, with company; ask a barman, a landlady or an usher who was in,
 and you get everybody, hour by hour. Every lie runs into something true, and
-"Put it to …" reads a person the line that breaks their story. Murders, lost
+"Put it to …" tells a person what says otherwise. Murders, lost
 pets and lost things, at six tiers from Raw to Hard-boiled. From Raw up the
 book helps less (docs/46): the stars thin out and stop at where to go, the
 detective's thoughts set two lines side by side and leave the conclusion to
-you, and the report asks for the name and the line that breaks their story.
+you, and the report asks for the name and what shows they lied.
 The right name on a hunch counts half. Every question, search, walk and put
 costs one call, and the clock shows what the calls add up to (docs/47).
 
@@ -87,6 +87,8 @@ npx tsx scripts/voicings.ts check              # the voicings held to their shap
 npx tsx scripts/bones-read.ts pick --out DIR   # the blind read, build against build (docs/52 build 2): pick, dump, pair, score
 npx tsx scripts/situated-gaps.ts --nights 40   # the gaps the situated deck fills, by situation (docs/51)
 npx tsx scripts/claudisms.ts                    # the tics of model-written prose and the builders' words on the page, per night and per source (docs/56)
+npx tsx scripts/engine-words.ts --nights 10     # the engine's own words in the narration, counted by where they come from (docs/53, addendum)
+npx tsx scripts/situated-deck.ts claudisms      # the situated deck filtered by the claudisms lint's patterns, in place (docs/56 §5.2)
 npx tsx scripts/situated-deck.ts build         # the situated deck, written and filtered into content/board/situated.json
 npm run model:sample                           # the tiny model (docs/50): twenty samples
 npm run model:bench                            # and its speed, ms per gap

@@ -338,7 +338,7 @@ describe('board: the play CLI', () => {
     const culprit = d.kase.people.find((x) => x.id === d.kase.crime.culprit)?.short as string;
     const form = runPlay(['report', culprit, '--save', save], io);
     expect(form.code).toBe(0);
-    expect(form.out).toContain('What breaks their story (breaks):');
+    expect(form.out).toContain('What shows they lied (breaks):');
     expect(form.out).toContain('A hunch');
     const o2 = playBoardOracle(d);
     const truth = truthReport(d, o2.run);
@@ -348,11 +348,11 @@ describe('board: the play CLI', () => {
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=${n}; when=${d.kase.crime.hour}; where=${truth.where}; whereBy=${wn}; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('THE VERDICT');
-    expect(filed.out).toContain('4 out of 4: who (and the line that breaks the story)');
+    expect(filed.out).toContain('4 out of 4: who (and what shows they lied)');
     // The save records the line, so a measure can tell deduced from guessed.
     expect(JSON.parse(files.get(save) as string).events.at(-1).file.breaks).toBe(truth.breaks);
     expect(runPlay(['story', '--save', save], io).out.length).toBeGreaterThan(100);
-    expect(runPlay(['curtain', '--save', save], io).out).toContain('WHAT BROKE THE STORY');
+    expect(runPlay(['curtain', '--save', save], io).out).toContain('HOW THE LIE CAME OUT');
   });
 
   it('files the right name on a hunch as right, but you couldn’t have known: half on who', () => {
@@ -372,10 +372,10 @@ describe('board: the play CLI', () => {
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=hunch; when=${d.kase.crime.hour}; where=${where}; whereBy=hunch; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('right, but you couldn’t have known');
-    expect(filed.out).toContain('3 out of 4: who (and the line that breaks the story)');
+    expect(filed.out).toContain('3 out of 4: who (and what shows they lied)');
     expect(filed.out).toContain('half credit on who');
     const curtain = runPlay(['curtain', '--save', save], io).out;
-    expect(curtain).toMatch(/What broke it: .+/);
+    expect(curtain).toMatch(/What gave it away: .+/);
     expect(curtain).toContain('You filed:     a hunch.');
   });
 });

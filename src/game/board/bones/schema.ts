@@ -63,7 +63,7 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
       if (has('shut')) return [['hour']];
       if (has('always')) return [['who'], ...(has('does') ? [['does']] : []), ...(has('post') ? [['post']] : [])];
       if (has('empty')) return has('regular') ? [['hours'], ['names']] : [['hours']];
-      if (has('thought')) return [['hours'], ['listed'], ['watcher'], ...(has('gone') ? [['gone'], ['before']] : [])];
+      if (has('thought')) return [['hours'], ['listed'], ['watcher'], ['reason'], ...(has('gone') ? [['gone'], ['before']] : [])];
       if (has('hour')) return [['hours'], ['names']];
       return [['when'], ['names'], ['nobody']];
     case 'REMARK':
@@ -127,7 +127,7 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
       if (has('recap')) return [['owns']];
       if (has('recap-one')) return [['person'], ['said']];
       if (has('told')) return [['person'], ['hours'], ['said']];
-      return [['hs'], ['who'], ['what']];
+      return [['hs'], ['who'], ['what'], ['reason']];
     case 'PLACED-SET':
       if (has('swear')) return [['bits'], ['swear']];
       if (has('self') && has('plain')) return [['runs']];
@@ -160,11 +160,11 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
     case 'WINDOW-MEANS':
       if (has('when')) return [has('hour') && !has('office') ? ['hour'] : ['hours'], ...(has('office') ? [['client']] : [])];
       if (has('means')) return [['means'], ['origin']];
-      if (has('scene')) return [['hours'], ...(has('murder-said') ? [['means']] : has('told') ? [['client'], ['origin'], ['from'], ['till']] : has('party') ? [['occasion'], ['hour']] : has('spare') ? [['key']] : [])];
+      if (has('scene')) return [['hours'], ...(has('murder-said') ? [['means']] : has('told') ? [['client'], ['origin'], ['from'], ['till'], ['way']] : has('party') ? [['occasion'], ['hour'], ['way']] : has('spare') ? [['key']] : [])];
       if (has('find')) {
         if (has('gun') || has('blade')) return [['origin'], ['victim'], ['hours']];
         if (has('poison')) return [['means'], ['origin'], ['delay'], ['victim']];
-        if (has('party')) return [['occasion'], ['scene'], ['hour'], ['client']];
+        if (has('party')) return [['occasion'], ['scene'], ['hour'], ['client'], ['way']];
         if (has('told')) return [['client'], ['origin'], ['from'], ['till']];
         if (has('spare')) return [['key']];
       }
@@ -209,7 +209,7 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'Somebody’s own word confirmed by another line. {person} is whose word it was (a name; {person:they} etc.), {whose} the line that says the same, said as theirs ("Coffin’s list", "Mrs. Cheatham’s account", "Weisglass’s word", "the office"). agree (so | which): {spans} "the Thalia at eleven, with Feeney" (legacy {src} "Coffin had": not under the dial). rest (same | held): {by} the source’s bare name, {him}/{he} the person, {spans}; held adds {name}. list (same | too | many): {watcher}, {them}/{name}/{him}/{person}, {at} "at the Thalia", {hour}, {there} (legacy "there": not under the dial); many: {pairs} "A at ten and B at eleven".',
   },
   'LIST-HOUR': {
-    args: { hours: 'hours', hour: 'hour', names: T, who: T, does: T, post: T, watcher: 'person', listed: T, when: T, nobody: T, gone: 'people', before: 'hour' },
+    args: { hours: 'hours', hour: 'hour', names: T, who: T, does: T, post: T, watcher: 'person', listed: T, when: T, nobody: T, gone: 'people', before: 'hour', reason: T },
     speech: true,
     doc: 'A watcher’s list, an hour (or a run of hours with the same people) at a time, in the watcher’s mouth. hour: at {hours}, {names} (the people, as the watcher calls them: "Feeney, Corrigan and Mr. Prentiss telling the room about his key"); whole: and nobody else (the voicing says so in its own words); part: the voicing says nothing about anybody else. first: the list’s first hour ({hours:oclock} reads well); next: a later one. one | many: one person or several. empty: nobody at {hours} (landlady: nobody but me; regular: just {names}, the one who’s always there; else: nobody else; bare: nobody). always: {who} was there every hour the watcher kept (all: the whole evening; shift: the whole time the watcher was on), {post} where ("in his back booth"), {does} what they do ("He buys things"); plural: {who} is two people. shut: the place shut at {hour}, and nobody after. thought (the detective’s, not the watcher’s): the hours that mattered were {hours} (one | two), and {watcher} had {listed} ("Feeney and Ashby at both, and Pardo at eleven", "Feeney, Ashby and Pardo, at the Thalia"); named: {watcher} was named in the thought already, so the voicing says "the list" instead, and has no {watcher}. gone (docs/55): and {gone} had been there at {before}, the hour before, and weren’t at {hours} (say it: "had been there at nine and gone out after"); whole: one hour with people on it, and nobody else (the voicing says so).',
   },
@@ -218,7 +218,7 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'Nobody, them included, had told me where these people were at these hours (the notebook said aloud). one: one {person} (with {person:they}, "he" or "she"); many: several {people} ("they"). hour | two: one hour or the office’s two (say them with {hours:or}).',
   },
   'ACCESS-SET': {
-    args: { yes: T, no: T, nobody: T, short: T, people: 'people', none: 'people', origin: 'place', means: T, client: 'person', occasion: T, access: T },
+    args: { yes: T, no: T, nobody: T, short: T, people: 'people', none: 'people', origin: 'place', means: T, client: 'person', occasion: T, access: T, way: T },
     doc: 'Who had the way in, and who hadn’t. Thought (legacy): {yes}, {no}, {nobody} {short}. Recap: {people} had it, {none} hadn’t; murder: had been at {origin} while the {means} was there; told: were at {origin} while {client} told the room; party: were at the {occasion}; spare: had been in at {origin} when the spare key was there. Flags: yes, no, and the kind (murder | told | party | spare). Raw’s elimination (elim, no): {none} {access} ("had no way to the rat poison", "never learnt the way in").',
   },
   'WINDOW-ALIVE': {
@@ -251,7 +251,7 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'People placed at an hour on somebody else’s word. Thought: {bits} "Wehrle and Mulcahy at the Thalia at ten" with {swear} ("on Coffin’s list", "on his word", "and Coffin would swear to it"); self: {he} put {bits}; count: {keeper}’s list said {runs} (docs/53: never "by her count"; {his} is legacy); recap (several): {by} had {groups}. Raw’s elimination (elim): at {hour}, {people} was/were {place} ("here", "at the Thalia"), and {src} said so (first: the passage’s first, with the hour; next: a later one, the hour folded; one | many | mutual: mutual says "each said so of the other", no {src}). Recap (recap-one): {person} was at {at} ("the Thalia at ten and eleven", "the Thalia at ten and the Lyric at eleven"); {src} said so ("Coffin", "Coffin and Ashby", "the office").',
   },
   'OWN-WORD': {
-    args: { hs: T, hourword: T, who: T, what: T, owns: T, person: 'person', said: T, hours: 'hours' },
+    args: { hs: T, hourword: T, who: T, what: T, owns: T, person: 'person', said: T, hours: 'hours', reason: T },
     doc: 'The hours that mattered, on somebody’s word alone. hours: for {hs}, the {hourword} that mattered, {who} said {what}. recap: {owns}, and nobody else had said so yet; recap-one: {person} said {said} ("home at nine and ten", "the Thalia at ten"), and nobody else had said so yet. told (the motive page): for {hours}, {person:they} had told me {said}.',
   },
   STREET: {
@@ -259,7 +259,7 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'A remark put somebody on the scene’s street: the part worth keeping, and what {street} is (murder: where {victim} lived; small: where {client} kept {victim}). Flags: one | two (one sentence, or two).',
   },
   'WINDOW-MEANS': {
-    args: { hours: 'hours', hour: 'hour', client: 'person', victim: 'person', means: T, origin: 'place', delay: T, occasion: T, scene: 'place', key: T, from: 'hour', till: 'hour' },
+    args: { hours: 'hours', hour: 'hour', client: 'person', victim: 'person', means: T, origin: 'place', delay: T, occasion: T, scene: 'place', key: T, from: 'hour', till: 'hour', way: T },
     doc: 'The window and the way in, in the detective’s thought or the notebook. when (the notebook): hour: it happened at {hour} (small: {victim:they} went); two: at {hours:or}, and I didn’t know which; office: {client} had said {hours:or} (hour: {hours}). means: the {means} came from {origin} (link: so whoever used it had been there first; fact: only that). scene (on the way into the scene, the office’s window and what it means): murder: if it happened at {hours:or}, it happened in this room, so {victim:they}’d let whoever did it in; murder-said: … whoever did it had walked in with the {means} already in hand; told: if {victim:they} went at {hours:or}, anybody who’d heard {client} at {origin} had known the way in; party: … everybody at the {occasion} had known the way in; spare: … whoever took {victim:them} had a key, and the spare key lives {key}. (party: {hour} is the party’s hour, and must be said; told: {client} told the room at {origin} from {from} until {till}, said "between {from} and {till}".) find (after the search; the page’s "So" may be put before it, so it must read as a plain statement): gun | blade: the gun (the knife) came from {origin}, and since {victim} died at {hours:or}, whoever used it had been there before that, to take it; poison: the {means} came from {origin}, and since it takes {delay}, whoever brought it to {victim} had been there earlier; party: the people who knew the way in were the ones at the {occasion} in {scene} at {hour}, whose names {client} had given me; told: somebody who’d heard {client} at {origin} between {from} and {till}, which made {origin} the place to start counting; spare: the key was the spare, and the spare lived {key}.',
   },
   LEFT: {

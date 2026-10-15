@@ -14,7 +14,8 @@ import { SHAPES, type Shape } from '../src/game/board/bones/types.js';
 import { BANNED } from '../src/game/board/prose-lint.js';
 import { MACHINERY } from '../src/game/board/reader-lint.js';
 import { OVERSTEP } from '../src/game/board/lint.js';
-import { obliqueIn } from '../src/game/board/bones/clarity.js';
+import { isSpeech, obliqueIn } from '../src/game/board/bones/clarity.js';
+import { engineWords } from '../src/game/board/jargon.js';
 // @ts-expect-error — plain JavaScript module, no declarations.
 import { findJargon, loadPlainTerms } from './plain-terms.mjs';
 
@@ -105,6 +106,8 @@ export function lintVoicings(vs: readonly Voicing[]): string[] {
     const narr = v.template.replace(/“[^”]*”/g, ' ').replace(/\bHere(?: was| is|’s)\b/g, '');
     if (/\bhere\b/i.test(narr)) bad('above the dial (docs/53): "here" for a place');
     if (/\bthe list\b/.test(narr)) bad('above the dial (docs/53): "the list", not whose');
+    // docs/53, addendum: no engine words in the narration, no board-speak in anybody's mouth.
+    for (const h of engineWords(isSpeech(v) && !/“/.test(v.template) ? `“${v.template}”` : v.template)) bad(`an engine word (docs/53, addendum)${h.speech ? ' in speech' : ''}: ${h.name}: “${h.match}”`);
     // (What somebody says when it's put to them is theirs, not the detective's thought: "I took it" is a crack.)
     const spoken = (v.requires ?? []).some((r) => /-said$|^admit$|^put$/.test(r));
     if (LEVEL_SHAPES.has(v.shape) && !spoken) {

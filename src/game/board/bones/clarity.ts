@@ -24,6 +24,7 @@ import { stripMarks } from '../plan/refer.js';
 import { sentencesOf } from '../plan/sentences.js';
 import type { Composite, Prop } from './types.js';
 import { voicingById, type Args } from './voice.js';
+import { engineWords } from '../jargon.js';
 
 /** The oblique tags docs/53 names, and their kin: each makes a reader stop and translate. */
 export const OBLIQUE: { name: string; re: RegExp }[] = [
@@ -177,6 +178,9 @@ export function clarityOf(c: BoardCase, comp: Composite & { said?: string; args?
     }
   }
   for (const o of OBLIQUE) if (o.re.test(narr || said)) out.push(`oblique: ${o.name}`);
+  // docs/53, addendum: no engine words in the narration ("Coffin’s list", "the hour that mattered",
+  // "and nobody else"), and none of the board-speak in anybody's mouth either.
+  for (const h of engineWords(speech && !/“/.test(v.template) ? `“${said}”` : said)) out.push(`engine word${h.speech ? ' (speech)' : ''}: ${h.name}: “${h.match}”`);
   return out;
 }
 

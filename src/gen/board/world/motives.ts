@@ -95,7 +95,7 @@ export const SMALL_TIE: Record<TieKind, MotiveForm[]> = {
   'old-flame': [{ kind: 'claim', text: '{they} says {thing} was promised to {them}, back in {client}’s courting days', form: 'Says {thing} was promised to them, back in {client}’s courting days' }],
   'in-law': [{ kind: 'claim', text: '{they} says {thing} should have stayed in the family', form: 'Says {thing} should have stayed in the family' }],
   rival: [{ kind: 'spite', text: '{they} and {client} haven’t been civil since school', form: 'Hasn’t been civil to {client} since school' }],
-  feud: [{ kind: 'spite', text: '{they} and {client} haven’t spoken since the business over the coal bill', form: 'Hasn’t spoken to {client} since the business over the coal bill' }],
+  feud: [{ kind: 'spite', text: '{they} and {client} haven’t spoken since the row over the coal bill', form: 'Hasn’t spoken to {client} since the row over the coal bill' }],
   friend: [{ kind: 'want', text: '{they} has always wanted {thing}, and asked {client} the price', form: 'Has always wanted {thing}, and asked the price' }],
 };
 

@@ -43,7 +43,7 @@ import { speakerOf } from '../plan/speaker.js';
 import { markPronoun } from '../plan/refer.js';
 import { herIsObject } from '../plan/measure.js';
 import { sentencesOf, wordsIn } from '../plan/sentences.js';
-import { accessPhrase, atWhere, claimSaid, shortOther, where } from './phrase.js';
+import { accessPhrase, atWhere, claimSaid, listSaid, shortOther, whyHours, where } from './phrase.js';
 import type { Composite, Prop, Shape, Src } from './types.js';
 import { fitting, type Args, type Voicing } from './voice.js';
 import { preview, SAMPLES, VARIETY, unpick, type Picked } from './say.js';
@@ -336,23 +336,19 @@ function srcHad(c: BoardCase, by: Src): string {
 }
 
 /**
- * docs/53, the dial: whose word a confirmation is, said as theirs: "Coffin’s list", "Mrs. Cheatham’s
- * account", "Weisglass’s word", "the office" (never "what Coffin had").
+ * docs/53, the dial and its addendum: whose word a confirmation is, said as the person who said it:
+ * "Coffin", "Mrs. Cheatham", the client by name (never "Coffin’s list", "her account", "the office").
+ * The voicing says what they did ("Coffin said", "Coffin backed him up"); a search is "what the room said".
  */
 export function srcWhose(c: BoardCase, by: Src): string {
-  // (The office is the client's word: "Schilling’s account", never "the office had her".)
-  if (by.k === 'given') return `${clientOf(c).short}’s account`;
-  if (by.k === 'find') return 'what the room said';
-  const n = nameOf(c, by.who as PersonId);
-  return by.k === 'list' ? `${n}’s list` : by.k === 'admit' ? `${n}’s word` : `${n}’s account`;
-}
-
-/** The name a source goes by in the notebook: "Coffin", "the office", "what the room said". */
-function srcName(c: BoardCase, by: Src): string {
-  // (The office is the client's word: "Schilling’s account", never "the office had her".)
-  if (by.k === 'given') return `${clientOf(c).short}’s account`;
+  if (by.k === 'given') return clientOf(c).short;
   if (by.k === 'find') return 'what the room said';
   return nameOf(c, by.who as PersonId);
+}
+
+/** The name a source goes by in the notebook: "Coffin", the client by name, "what the room said". */
+function srcName(c: BoardCase, by: Src): string {
+  return srcWhose(c, by);
 }
 
 function props<K extends Prop['k']>(ps: readonly Prop[], k: K): Extract<Prop, { k: K }>[] {
@@ -378,9 +374,8 @@ function collisionArgs(c: BoardCase, col: Extract<Prop, { k: 'COLLIDES' }>, _her
     const faceTail = faces.length ? `; ${faces.join('; ')}` : '';
     const at = placeName(c, w.place);
     const onIt = w.people.includes(p);
-    if (onIt) said0 = `${nameOf(c, w.watcher)} had ${nameOf(c, p)} at ${at} at ${oclock(w.hour)}`;
-    else if (names.length === 0) said0 = `${nameOf(c, w.watcher)} had nobody at ${at} at ${oclock(w.hour)}`;
-    else said0 = `${nameOf(c, w.watcher)} had ${andList(names)} at ${at} at ${oclock(w.hour)}${w.whole ? ', and nobody else' : ''}${faceTail}`;
+    // docs/53, addendum: as a person says it ("Coffin saw him at", "Coffin said only … were at"), never "Coffin had".
+    said0 = listSaid(c, w.watcher, onIt ? p : null, names, at, w.hour as Hour, !!w.whole, faceTail);
   } else if (w.k === 'CLAIM') {
     sp = w.person;
     wPlace = w.place;
@@ -393,7 +388,8 @@ function collisionArgs(c: BoardCase, col: Extract<Prop, { k: 'COLLIDES' }>, _her
     said0 = `${nameOf(c, w.person)} was at ${placeName(c, w.place)} at ${oclock(w.hour)}`;
   }
   const P = pr(c, p);
-  const ownAccount = sp && sp !== p && pronOf(c, sp).he === pronOf(c, p).he ? said0.replace(`${nameOf(c, sp)} says ${pronOf(c, sp).he} was at `, `${nameOf(c, sp)}’s own account was `) : said0;
+  // (Somebody of their sex: "Mrs. Bledsoe’s own answer was …", so "she" can't be read as the other.)
+  const ownAccount = sp && sp !== p && pronOf(c, sp).he === pronOf(c, p).he ? said0.replace(`${nameOf(c, sp)} says ${pronOf(c, sp).he} was at `, `${nameOf(c, sp)}’s own answer was `) : said0;
   const breaker = ownAccount.replace(new RegExp(`\\b(had|passed|put|saw) ${esc(nameOf(c, p))}\\b`), `$1 ${P.him}`);
   void wPlace;
   const subtle = w.k === 'CLAIM' && w.place === col.place;
@@ -791,7 +787,7 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       const listy = what.includes(',') || / at (?:seven|eight|nine|ten|eleven|twelve|midnight)\b/.test(what);
       const comp = held(it);
       comp.shape = 'OWN-WORD';
-      const args = { hs: andList(hs.map((h) => hourWord(h as Hour))), hourword: hs.length > 1 ? 'hours' : 'hour', who, what };
+      const args = { hs: andList(hs.map((h) => hourWord(h as Hour))), hourword: hs.length > 1 ? 'hours' : 'hour', who, what, reason: whyHours(c, hs) };
       const v = pickFor('OWN-WORD', ['hours', ...(listy ? ['listy'] : [])], args, ctx);
       if (!v) {
         sayPlain(it, comp, ctx);

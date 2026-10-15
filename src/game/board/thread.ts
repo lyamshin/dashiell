@@ -12,6 +12,7 @@
 import { GIVENS, pointerIndex } from '../../gen/board/pointers.js';
 import { SPARE_KEY } from '../../gen/board/content.js';
 import { accountOf, confrontationOf, listOf } from './knowledge.js';
+import { wayWhat } from './bones/phrase.js';
 import { markPronoun } from './plan/refer.js';
 import {
   andList,
@@ -98,8 +99,8 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
         if (hs.length > 0) {
           const safe = hs.filter((h) => !windowOf(c).includes(h));
           const W = nameOf(c, l.watcher);
-          return out(`${W}’s list had ${P} ${at(c, l.place, here)} ${hoursSaid(c, hs)}`, hs.map((h) => `list:${l.watcher}@${h}`), {
-            ...(safe.length > 0 ? { face: `${W} has you ${atFace(c, l.place, here)} ${hoursSaid(c, safe)}.` } : {}),
+          return out(`${W} had seen ${P} ${at(c, l.place, here)} ${hoursSaid(c, hs)}`, hs.map((h) => `list:${l.watcher}@${h}`), {
+            ...(safe.length > 0 ? { face: `${W} saw you ${atFace(c, l.place, here)} ${hoursSaid(c, safe)}.` } : {}),
             hours: hs,
             people: [p, l.watcher],
             places: [l.place],
@@ -166,7 +167,7 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
     const L = l.place;
     if (sk === 'search') {
       if (isMurder(c)) return out(`the ${c.means.name.replace(/^(a|an) /, '')} had come from ${placeName(c, L)}`, [`find:${srest}`], { places: [L] });
-      return out(`the way in at ${placeName(c, c.crime.scene)} had been learnt ${at(c, L, here)}`, [`find:${srest}`], { places: [L, c.crime.scene] });
+      return out(`whoever went into ${placeName(c, c.crime.scene)} had heard about ${wayWhat(c)} ${at(c, L, here)}`, [`find:${srest}`], { places: [L, c.crime.scene] });
     }
     if (sk === 'account') {
       const a = accountOf(c, srest);
@@ -183,7 +184,7 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
       const h = Number(hs) as Hour;
       const k = confrontationOf(c, x, h);
       const X = nameOf(c, x);
-      if (k?.secondLie?.place === L) return out(`${X}’s second story had ${pm(c, x, 'him')} ${at(c, L, here)} at ${hourWord(h)}`, [`second:${x}@${h}`], { hours: [h], people: [x], places: [L] });
+      if (k?.secondLie?.place === L) return out(`${X} had taken it back and said ${pm(c, x, 'he')} was ${at(c, L, here)} at ${hourWord(h)}`, [`second:${x}@${h}`], { hours: [h], people: [x], places: [L] });
       return out(`${X} had owned up to ${placeName(c, L)}`, [`admit:${x}@${h}`], { people: [x], places: [L] });
     }
     if (src === GIVENS) return givenPlace(c, L, here);
@@ -192,15 +193,15 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
   if (qk === 'search') {
     const f = c.finds.find((x) => x.id === qrest);
     // Said as a detective would, never as the form asks it ("the report wanted a why", Poached 5's #11).
-    if (f?.gives.why) return out(victimOf(c).female ? `a woman’s papers are where she keeps the people who wanted something from her` : `a man’s papers are where he keeps the people who wanted something from him`, ['givens:found'], { places: [f.place] });
+    if (f?.gives.why) return out(victimOf(c).female ? `her papers would have the name of anybody with a grudge against her` : `his papers would have the name of anybody with a grudge against him`, ['givens:found'], { places: [f.place] });
     if (isMurder(c)) return out(`${victimOf(c).short} had died ${at(c, c.crime.scene, here)}`, ['givens:found'], { people: [c.crime.victim], places: [c.crime.scene] });
-    return out(`${victimOf(c).short} had gone from ${at(c, c.crime.scene, here)}`, ['givens:gone'], { places: [c.crime.scene] });
+    return out(`${victimOf(c).short} had gone from ${placeName(c, c.crime.scene)}`, ['givens:gone'], { places: [c.crime.scene] });
   }
 
   if (qk === 'confront') {
     const [p, hs] = qrest.split('@') as [string, string];
     const h = Number(hs) as Hour;
-    return out(`${nameOf(c, p)}’s ${hourWord(h)} o’clock had something held against it`, [`claim:${p}@${h}`], { hours: [h], people: [p] });
+    return out(`what ${nameOf(c, p)} had told me about ${hourWord(h)} didn’t square with something I had`, [`claim:${p}@${h}`], { hours: [h], people: [p] });
   }
   return null;
 }
@@ -234,7 +235,7 @@ function givenPointer(c: BoardCase, p: PersonId, here: PlaceId): Pointer {
   if (f) {
     const party = lines.find((g) => g.kind === 'party')?.vars;
     if (party && f.place === c.crime.scene) return base(`${P} had been at ${cl}’s at ${hourWord(f.h)}, for the ${party.occasion}`, ['givens:party'], { hours: [f.h], people: [p, c.client] });
-    return base(`${cl} had put ${P} at ${placeName(c, f.place)} at ${hourWord(f.h)}`, ['givens:facts'], { hours: [f.h], places: [f.place], people: [p, c.client] });
+    return base(`${cl} had said ${P} was at ${placeName(c, f.place)} at ${hourWord(f.h)}`, ['givens:facts'], { hours: [f.h], places: [f.place], people: [p, c.client] });
   }
   return base(`${cl} had named ${P}`, ['givens:pointer'], { people: [p, c.client] });
 }
@@ -254,7 +255,7 @@ function givenPlace(c: BoardCase, L: PlaceId, here: PlaceId): Pointer {
   if (/^spare/.test(mode)) return base(`the spare key lived ${(SPARE_KEY[mode]?.at ?? 'at {x}').replace(/ at \{x\}$/, '')} ${at(c, L, here)}`, ['givens:means']);
   if (lines.some((g) => g.kind === 'venue') && isMurder(c)) return base(`${victimOf(c).short} had been ${at(c, L, here)} earlier in the evening`, ['givens:venue'], { people: [c.crime.victim] });
   const f = c.givens.facts.find((x) => x.k === 'at' && x.place === L);
-  if (f) return base(`${cl} had put ${nameOf(c, f.p)} ${at(c, L, here)} at ${hourWord(f.h)}`, ['givens:facts'], { hours: [f.h], people: [f.p, c.client] });
+  if (f) return base(`${cl} had said ${nameOf(c, f.p)} was ${at(c, L, here)} at ${hourWord(f.h)}`, ['givens:facts'], { hours: [f.h], people: [f.p, c.client] });
   void means;
   return base(`${cl} had named ${placeName(c, L)}`, ['givens:means'], { people: [c.client] });
 }

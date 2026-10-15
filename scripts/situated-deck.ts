@@ -91,7 +91,37 @@ function showKey(k: string): string {
   return `slot **${x.slot}** · page **${x.page}** · place **${x.place}** · manner **${x.manner}** · tier **${x.tier}** · before **${x.before}** · after **${x.after}** · put **${x.put}** · position **${x.position}**`;
 }
 
-if (cmd === 'batches') {
+if (cmd === 'claudisms') {
+  // docs/56 §5.2: the deck filtered by the claudisms lint's own patterns, in place: a card that says one
+  // of the hard tics is cut; the soft ones (the way-people simile, "as if", ", which …", "the only
+  // one") are kept in at most one card in four of a key (and one at least, so no key goes empty on them).
+  const { PATTERNS } = await import('./claudisms.js');
+  const HARD = new Set(['A03', 'A04', 'A05', 'A07', 'A12', 'A13', 'A14', 'A15', 'A20', 'A22', 'A25', 'A26', 'A28', 'A30']);
+  const SOFT = new Set(['A01', 'A02', 'A21', 'A23']);
+  const deck = JSON.parse(readFileSync(DECK, 'utf8')) as SitCard[];
+  const hits = (text: string, ids: Set<string>) =>
+    PATTERNS.filter((p) => ids.has(p.id)).filter((p) => {
+      const t = p.scope === 'narration' ? text.replace(/“[^”]*”/g, ' ') : text;
+      return new RegExp(p.re.source, p.re.flags.replace('g', '')).test(t);
+    }).map((p) => p.id);
+  const cut = new Map<string, string>();
+  for (const c of deck) {
+    const h = hits(c.text, HARD);
+    if (h.length) cut.set(c.id, h.join(','));
+  }
+  const byKey = new Map<string, SitCard[]>();
+  for (const c of deck) if (!cut.has(c.id)) byKey.set(c.key, [...(byKey.get(c.key) ?? []), c]);
+  for (const cs of byKey.values()) {
+    const soft = cs.filter((c) => hits(c.text, SOFT).length > 0);
+    const allowed = Math.max(1, Math.floor(cs.length / 4));
+    for (const c of soft.slice(allowed)) cut.set(c.id, hits(c.text, SOFT).join(','));
+  }
+  const kept = deck.filter((c) => !cut.has(c.id));
+  writeFileSync(DECK, `[\n${kept.map((c) => JSON.stringify(c)).join(',\n')}\n]\n`);
+  const why = new Map<string, number>();
+  for (const w of cut.values()) for (const id of w.split(',')) why.set(id, (why.get(id) ?? 0) + 1);
+  process.stdout.write(`${deck.length} cards, ${cut.size} cut, ${kept.length} kept → ${DECK}\n${[...why.entries()].sort().map(([k, n]) => `  ${k}: ${n}`).join('\n')}\n`);
+} else if (cmd === 'batches') {
   const size = Number(val('size') ?? 300);
   const out = val('out') ?? 'batches';
   mkdirSync(out, { recursive: true });

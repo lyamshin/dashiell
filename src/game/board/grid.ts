@@ -13,6 +13,7 @@ import type { CellMark } from './types.js';
 import { linesHeld, accountOf, solveRun, knownPeople, knownPlaces } from './knowledge.js';
 import { cap, hourWord, isMurder, nameOf, personOf, placeName, suspectsOf, type BoardCase, type BoardRun, type Hour, type PersonId, type PlaceId } from './model.js';
 import { sourceName } from './stars.js';
+import { meansKnew } from './bones/phrase.js';
 
 export interface BoardCell {
   /** Their own account's place at this hour. */
@@ -114,7 +115,7 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
       // Seen only on somebody else's held word for that place and hour, never on the solver's say alone,
       // so ✓ means two sources agree (docs/47 A5).
       const by = p && others.length > 0 ? support(id, h, p.place) : undefined;
-      if (p && by) cell.seen = { place: p.place, by: by.q === 'givens' ? 'the office' : sourceName(c, by.q) };
+      if (p && by) cell.seen = { place: p.place, by: sourceName(c, by.q) };
       const st = s.status.get(k);
       if (st?.s === 'broken') cell.collision = true;
       else if (says && cell.seen && cell.seen.place === says) cell.confirmed = true;
@@ -128,7 +129,7 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
       // The lines behind it.
       for (const l of lines) {
         if (l.hour !== h) continue;
-        if (l.kind === 'claim' && l.speaker === id) cell.lines.push(`Says: ${l.text}`);
+        if (l.kind === 'claim' && l.speaker === id) cell.lines.push(l.text);
         else if (l.about.includes(id) || (cell.says && l.place === cell.says && (l.kind === 'list' || l.kind === 'claim'))) cell.lines.push(l.text);
       }
       if (run.marks[id]?.[String(h)]) cell.pencil = run.marks[id]?.[String(h)];
@@ -172,7 +173,7 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
     crimeHour: window.length === 1 ? (window[0] as Hour) : null,
     window,
     codes,
-    meansLabel: isMurder(c) ? `could get the ${c.means.name.replace(/^(a|an) /, '')}` : 'knew the way in',
+    meansLabel: meansKnew(c),
   };
 }
 
@@ -208,20 +209,20 @@ export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'
   const cells = g.rows.flatMap((r) => g.hours.map((h) => cellText(g, r.cells[h] as BoardCell)));
   const cw = Math.max(9, ...cells.map((x) => x.length + 2));
   const head = g.hours.map((h) => `${hourWord(h)}${g.crimeHour === h ? ' !' : g.window.includes(h) && g.crimeHour === null ? ' ?' : ''}`.padEnd(cw)).join('');
-  out.push(`${''.padEnd(w0)}${head}means`);
+  out.push(`${''.padEnd(w0)}${head}${/^could\b/.test(g.meansLabel) ? 'could get it?' : 'knew how?'}`);
   for (const r of g.rows) {
     out.push(`${r.name.padEnd(w0)}${g.hours.map((h) => cellText(g, r.cells[h] as BoardCell).padEnd(cw)).join('')}${r.means}`);
   }
   out.push('');
-  out.push(`"X" says so ${''}·  [X] somebody else puts them there  ·  X✓ both  ·  "X"✗ collides  ·  →Y owned up  ·  ~X your pencil`);
-  out.push(`${g.crimeHour !== null ? `! the hour it happened` : `? the hours it could have been`}  ·  means: ${g.meansLabel}`);
+  out.push(`"X" they say so  ·  [X] somebody else saw them there  ·  X✓ both say so  ·  "X"✗ the two don’t agree  ·  →Y owned up  ·  ~X your own guess in pencil`);
+  out.push(`${g.crimeHour !== null ? `! the hour it happened` : `? the hours it could have been`}  ·  last column: ${g.meansLabel}?`);
   // docs/47 B8: the key names only the places the night has named.
   const known = knownPlaces(c, run);
   out.push(`Places: ${Object.entries(g.codes).filter(([id]) => known.has(id) || id === c.crime.scene).map(([id, code]) => `${code} = ${placeName(c, id)}`).join('; ')}`);
   const coll = g.rows.flatMap((r) => g.hours.filter((h) => r.cells[h]?.collision).map((h) => ({ r, h })));
   if (coll.length > 0) {
     out.push('');
-    out.push('COLLISIONS');
+    out.push('WHERE THE STORIES DON’T AGREE');
     for (const { r, h } of coll) {
       out.push(`${r.name}, ${hourWord(h)}:`);
       for (const l of r.cells[h]?.lines ?? []) out.push(`  ${l}`);

@@ -252,7 +252,8 @@ function pickerText(night: Night, pk: Picker): string {
   const picking = pk.ready.length === 0 && night.save.claim !== null;
   const his = pronWord(night, pk.person, 'his');
   out.push('');
-  out.push(pk.ready.length > 0 ? `${cap(his)} line, and the line that breaks it:` : picking ? `Against “${pk.claims.find((x) => x.hour === night.save.claim)?.label}”, read ${pronWord(night, pk.person)}:` : `Which part of ${his} evening?`);
+  const she = his === 'her' ? 'she' : his === 'his' ? 'he' : 'they';
+  out.push(pk.ready.length > 0 ? `What ${she} said, and what says otherwise:` : picking ? `Against “${pk.claims.find((x) => x.hour === night.save.claim)?.label}”, read ${pronWord(night, pk.person)}:` : `Which part of ${his} evening?`);
   for (const it of items) out.push(itemLine(it.n, { command: it.command, label: it.label, minutes: 0, lead: false, done: false }, it.claim !== undefined ? 'free' : '1 call') + (it.source ? `\n          (${it.source})` : ''));
   out.push('', itemLine(items.length + 1, { command: 'back', label: picking ? `Back to ${his} evening` : `Put nothing to ${pronWord(night, pk.person)}`, minutes: 0, lead: false, done: false }, 'free'));
   return out.join('\n');
@@ -264,7 +265,6 @@ function pronWord(night: Night, p: string, form: 'him' | 'his' = 'him'): string 
   return female ? 'her' : form;
 }
 
-const cap = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
 
 /* ------------------------------------------------------------ the form */
 
@@ -305,7 +305,7 @@ function reportText(night: Night, path: string, who: string | null = null): stri
       out.push(`${BREAKS_LABEL} (breaks):`);
       if (who) {
         const N = nameOf(c, who);
-        out.push(...lineList(breakOptionsShown(night.d, night.run, who), { touching: `What I have about ${N}’s own evening at ${hoursWord(night)}:`, rest: `Everything else I have that names ${N}, or is about ${hoursWord(night)}:` }));
+        out.push(...lineList(breakOptionsShown(night.d, night.run, who), { touching: `What I have about where ${N} said ${pronWord(night, who, 'his') === 'her' ? 'she' : 'he'} was at ${hoursWord(night)}:`, rest: `Anything else I have that names ${N} or is about ${hoursWord(night)}:` }));
       } else {
         out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists what I have that names them, or is about ${hoursWord(night)}. Or breaks=hunch.`, WIDTH, '   '));
       }
@@ -613,7 +613,7 @@ function helpText(): string {
     '       (--profile P: a profile file; the night prefers what its last ten nights didn’t deal, and filing adds this night to it)',
     '  look · do <n|words> · page <n> · notebook · grid',
     '  pencil "<Name> <hour> at|not|clear [place]" (pencil "Feldman ten at Rafferty’s") · confront <Name>',
-    '  report [<Name>] (with a name, the lines that could break their story)',
+    '  report [<Name>] (with a name, what could show they lied)',
     '  file "who=…; breaks=…; when=…; how=…; why=…"',
     '       (a lost thing: where=…; whereBy=… instead of how=…; breaks=hunch for a hunch)',
     '  story · curtain (after filing)',
@@ -666,7 +666,7 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
         let night = load(io, path);
         const who = night.d.kase.people.find((p) => fold(p.short) === fold(arg ?? ''));
         if (!who) fail(`Nobody here called ${arg}.`);
-        if (!pickerFor(night.d, night.run, (who as { id: string }).id)) fail(`Nothing I have breaks ${(who as { short: string }).short}’s story yet.`);
+        if (!pickerFor(night.d, night.run, (who as { id: string }).id)) fail(`Nothing I have disagrees with what ${(who as { short: string }).short} said.`);
         night = commit(io, path, night, [], { picker: (who as { id: string }).id, claim: null, person: null });
         return { out: lookText(night, path), code: 0 };
       }
