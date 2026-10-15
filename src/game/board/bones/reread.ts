@@ -433,7 +433,9 @@ function windowV(a: Record<string, string>, v: VCtx, lx: Lexicon): Prop[] {
   const hours = hoursV(lx, a.opts as string);
   const place = a.place !== undefined && a.place !== '' && !/\{place\}/.test(a.place) ? placeV(c, a.place, v) : placeV(c, a.at as string, v);
   const out: Prop[] = [{ k: 'WINDOW', hours }, { k: 'ALIVE', victim, place, hour: hourV(a.hour as string) }];
-  if (a.narrowed) out.push({ k: 'NARROWS', hour: hourV(a.narrowed) });
+  // (The hour it narrowed to: "ten o’clock", or "ten" inside a sentence that has its "so".)
+  const narrowed = a.narrowed || a.narrowword;
+  if (narrowed) out.push({ k: 'NARROWS', hour: hourV(narrowed) });
   return out;
 }
 
