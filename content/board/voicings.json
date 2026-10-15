@@ -261,7 +261,7 @@
   {"id": "own-word/told", "shape": "OWN-WORD", "requires": ["told"], "template": "For {hours}, {person:they} had told me {said}."},
   {"id": "own-word/as-for", "shape": "OWN-WORD", "requires": ["hours"], "template": "As for {hs}, the {hourword} that mattered, {who} said {what}, and so far nobody else had."},
   {"id": "own-word/at-counted", "shape": "OWN-WORD", "requires": ["hours"], "template": "At {hs}, the {hourword} that counted, {who} said {what}, and I had it from nobody else."},
-  {"id": "own-word/cared", "shape": "OWN-WORD", "requires": ["hours"], "template": "For {hs}, the {hourword} I cared about, {who} said {what}, and I had nobody else’s word for it yet."},
+  {"id": "own-word/cared", "shape": "OWN-WORD", "requires": ["hours"], "template": "For {hs}, the {hourword} I cared about, {who} said {what}, and I had nobody else’s word for it."},
   {"id": "own-word/when", "shape": "OWN-WORD", "requires": ["hours"], "template": "When it came to {hs}, the {hourword} that mattered, {who} said {what}, and that was the only word I had."},
   {"id": "own-word/recap-2", "shape": "OWN-WORD", "requires": ["recap"], "template": "{owns}, all of it on their own say-so."},
   {"id": "own-word/recap-3", "shape": "OWN-WORD", "requires": ["recap"], "template": "Nobody had spoken up for any of it yet: {owns}."},
