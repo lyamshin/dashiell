@@ -690,6 +690,12 @@ function whyHere(w: Writer, q: string, kind: string, slots: Record<string, strin
     if (named && w.hand.jokeFree) put(w, 'why', w.hand.draw('why', { kind: 'carried' }, withCaps(slots), { plain: true, fresh: true }), 'narrator');
     return ptr;
   }
+  // The last page's hand-off said this pointer whole (docs/53 names its place now, where it said
+  // "here", so the two read as the same line): carried, not said again.
+  if (ptr.clause && last?.handoff && last.handoff.toLowerCase().includes(stripMarks(ptr.clause).toLowerCase())) {
+    w.carried = true;
+    return ptr;
+  }
   if (ptr.clause) {
     // The pointer names them already: a frame that names them again says it twice.
     const k = ptr.src === 'presence' ? 'presence' : named && ptr.clause.includes(named) && (kind === 'account' || kind === 'check') ? `${kind}-named` : kind;
@@ -1280,7 +1286,9 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   if (sentences.length === 0 && !pl.scene) put(w, 'arrival', `There was nobody there to ask.`, 'presence');
   // Why here: the pointers to what waits in this room, from what's held, the starred one first.
   const lastHand = w.before.log[w.before.log.length - 1]?.board?.handoff;
-  const handed = !!lastHand && lastHand.includes(pl.short);
+  // (The turn's what-next is a hand-off too: "I wanted to know what Coffin had passed on the way to the print shop at nine".)
+  const turnHand = (w.before.log[w.before.log.length - 1]?.board?.units ?? []).filter((u) => u.kind === 'gap' && u.slot === 'hand-off').map((u) => stripMarks(u.text)).join(' ');
+  const handed = (!!lastHand && lastHand.includes(pl.short)) || (PLAN.ops && turnHand.includes(pl.short));
   const ptrs = (pl.scene && first) || handed ? [] : placeThread(c, w.before, place, starredSteps(w.d, w.before), place);
   const sameSubject = (clause: string, before: string) => sameSubjectIn(c, clause, before);
   // The last page's hand-off sent me here, and the walk says I came: no "So, Moe’s." (docs/47 C13).
@@ -1304,7 +1312,7 @@ export function writeArrive(w: Writer, place: PlaceId): void {
       : r0 && r1 && r0[2] === r1[2]
       ? `${head}${r0[1]} and ${r1[1]}${r0[2]}`
       : p1 && head && p1.src === p0.src && p1.clause.startsWith(head)
-      ? `${p0.clause}, and ${p1.clause.slice(head.length).replace(/ at the [^,]+? at /, ' at ').replace(new RegExp(` at ${esc(pl.short)} at `), ' at ').replace(p0.places[0] ? new RegExp(` at ${esc(placeName(c, p0.places[0]))} at `) : /$^/, ' at ')}`
+      ? `${p0.clause}, and ${p1.clause.slice(head.length).replace(/ at the [^,]+? at /, ' at ').replace(new RegExp(` at ${esc(pl.short)} at `), ' at ').replace(p0.places[0] ? new RegExp(` at ${esc(placeName(c, p0.places[0]))} at `) : /$^/, ' at ').replace(p0.places[0] ? new RegExp(` at ${esc(placeName(c, p0.places[0]))}(?= all evening)`) : /$^/, '')}`
       : p1 && said && p1.src === p0.src && p1.clause.startsWith(said)
         ? `${p0.clause}, and that ${p1.clause.slice(said.length)}`
         : ptrs.map((p, i) => (i === 0 ? p.clause : cap(sameSubject(p.clause, p0.clause)))).join('. ');

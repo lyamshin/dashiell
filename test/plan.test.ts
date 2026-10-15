@@ -9,7 +9,7 @@ import { dealBoard, type BoardRun } from '../src/game/board/model.js';
 import { newBoardRun } from '../src/game/board/engine.js';
 import { playBoardOracle, playReader, playWanderer } from '../src/game/board/oracle.js';
 import { PLAN, newBudget, planSection, realize, type Item, type PlanCtx } from '../src/game/board/plan/index.js';
-import { factSentences, joinsIn, listSmell, pronounAmbiguity, restatedPointer, thoughtParagraphs } from '../src/game/board/plan/measure.js';
+import { factSentences, joinWordsIn, joinsIn, listSmell, pronounAmbiguity, restatedPointer, thoughtParagraphs } from '../src/game/board/plan/measure.js';
 import { markPronoun } from '../src/game/board/plan/refer.js';
 import { bandOf } from '../src/game/board/plan/sentences.js';
 import type { Beat } from '../src/game/board/sheets.js';
@@ -96,7 +96,9 @@ describe('docs/49 §4: the measures', () => {
       run.log.forEach((p, i) => {
         expect(pronounAmbiguity(d.kase, p.blocks), `seed ${s} p${i + 1}`).toEqual([]);
         expect(restatedPointer(d.kase, run.log[i - 1], p), `seed ${s} p${i + 1}`).toBeNull();
-        const js = joinsIn(p.board?.units ?? []);
+        const js = [...joinsIn(p.board?.units ?? []), ...joinWordsIn(p.board?.units ?? []).filter((j) => j === 'but' || j === 'so').map((j) => `${j} (said)`)];
+        expect(js.filter((j) => j === 'but (said)').length, `seed ${s} p${i + 1}`).toBeLessThanOrEqual(1);
+        expect(js.filter((j) => j === 'so (said)').length, `seed ${s} p${i + 1}`).toBeLessThanOrEqual(1);
         expect(js.filter((j) => j === 'but').length, `seed ${s} p${i + 1}`).toBeLessThanOrEqual(1);
         expect(js.filter((j) => j === 'so').length, `seed ${s} p${i + 1}`).toBeLessThanOrEqual(1);
       });

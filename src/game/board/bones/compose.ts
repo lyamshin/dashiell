@@ -339,7 +339,8 @@ function srcHad(c: BoardCase, by: Src): string {
  * account", "Weisglass’s word", "the office" (never "what Coffin had").
  */
 export function srcWhose(c: BoardCase, by: Src): string {
-  if (by.k === 'given') return 'the office';
+  // (The office is the client's word: "Schilling’s account", never "the office had her".)
+  if (by.k === 'given') return `${clientOf(c).short}’s account`;
   if (by.k === 'find') return 'what the room said';
   const n = nameOf(c, by.who as PersonId);
   return by.k === 'list' ? `${n}’s list` : by.k === 'admit' ? `${n}’s word` : `${n}’s account`;
@@ -347,7 +348,8 @@ export function srcWhose(c: BoardCase, by: Src): string {
 
 /** The name a source goes by in the notebook: "Coffin", "the office", "what the room said". */
 function srcName(c: BoardCase, by: Src): string {
-  if (by.k === 'given') return 'the office';
+  // (The office is the client's word: "Schilling’s account", never "the office had her".)
+  if (by.k === 'given') return `${clientOf(c).short}’s account`;
   if (by.k === 'find') return 'what the room said';
   return nameOf(c, by.who as PersonId);
 }

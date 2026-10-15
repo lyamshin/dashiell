@@ -743,6 +743,8 @@ function srcR(c: BoardCase, s: string): Src {
   const m = /^(.+)’s (list|story|word|own evening|account|own account)$/.exec(t);
   if (!m) throw new Error(`voiced: whose word is "${s}"?`);
   const who = personV(c, m[1] as string);
+  // (The client's account is the office's.)
+  if (who === c.client && m[2] !== 'list') return { k: 'given' };
   return m[2] === 'list' ? { k: 'list', who } : m[2] === 'word' ? { k: 'admit', who } : { k: 'claim', who };
 }
 
