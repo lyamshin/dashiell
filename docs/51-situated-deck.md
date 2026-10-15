@@ -278,3 +278,130 @@ They read as the book's own. Four slips:
 ### Open
 
 See docs/25, "The situated deck".
+
+## The dial (2026-10-15)
+
+Branch `situated-dial`. The deck was written before docs/53, and its 80% blind read was judged on voice, not clarity. Docs/53 says a texture may be pure flavor, but it must be legible on its own: no oblique tags, no pronoun for a fact or a place the card doesn't name, no figure the reader has to decode. On a scale from plain (1) to Hammett (10), aim at 3 or 4.
+
+### The audit
+
+Every card was read against docs/53, in six batches by slot, one helper at a time. Each helper had the same brief, and for each card its key, its tokens and one page it was written for. I read a tenth of every batch, seeded. Every batch read was 90% or more keepable, and I rewrote the five cards the helpers had kept that I'd have flagged. Each card got flags and one of three verdicts:
+
+- **keep:** nothing to translate. A legible wisecrack or a simile anyone gets is the dial, not a fault.
+- **rewrite:** keep the idea, say it plainly, add at most one broad noir touch. The tokens, the flags and the jokes stay.
+- **cut:** nothing under the voice. No card came to that.
+
+The flags are docs/53's list:
+
+- `tag`: an oblique tag;
+- `ellipsis`: a word standing in for a fact or a place;
+- `compressed`: logic the reader has to rebuild;
+- `rhythm`: cadence over sense;
+- `translate`: a joke or figure to decode;
+- `pronoun`, `place`, `long`: the clarity lint, below.
+
+| slot | cards | flagged | tag | ellipsis | compressed | rhythm | translate | pronoun | place | rewritten | cut | kept |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| why-here | 488 | 71 | 2 | 28 | 2 | 0 | 1 | 22 | 20 | 71 | 0 | 417 |
+| walk | 107 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 107 |
+| staging | 566 | 48 | 0 | 28 | 8 | 5 | 4 | 5 | 3 | 48 | 0 | 518 |
+| ask | 419 | 34 | 3 | 10 | 3 | 0 | 12 | 1 | 8 | 34 | 0 | 385 |
+| reaction | 385 | 44 | 0 | 15 | 7 | 12 | 0 | 9 | 3 | 44 | 0 | 341 |
+| close | 621 | 62 | 1 | 9 | 2 | 2 | 2 | 29 | 24 | 62 | 0 | 559 |
+| hand-off | 84 | 34 | 0 | 9 | 4 | 0 | 2 | 11 | 13 | 34 | 0 | 50 |
+| gloss | 282 | 107 | 14 | 5 | 19 | 4 | 9 | 68 | 8 | 107 | 0 | 175 |
+| **all** | **2,952** | **400** | **20** | **104** | **45** | **23** | **30** | **145** | **79** | **400** | **0** | **2,552** |
+
+The gloss and the hand-off were the most voiced slots. The gloss leaned on a bare "It" or "That" for the fact before it ("It squared with what I’d been told"), and the hand-off on "there" for the place it pointed to. The walks were already concrete street lines, with nothing to translate. Other patterns:
+
+- the ask put the question sideways ("where the evening had found them, and who else it had found there");
+- the put pages called the broken story "it" or "this";
+- the closes opened "It was a small room…" for the room.
+
+The record is `model/data/situated-dial.jsonl`: each card's flags and verdict, with the text before and after. Rewrites go into `situated-written.jsonl`, and `situated-deck.ts build` makes the deck as before. Every key keeps its cards (none was cut). The jokes are still 208. Every card passes the verifier, the prose lints and the near-duplicate check. Gloss · motive · narrows still has its one card.
+
+### The clarity lint
+
+`npx tsx scripts/situated-dial.ts lint` runs the lint over the deck as shipped and the deck before the dial (`26b24ca`). Its rules:
+
+- **pronoun:** "it", "that" or "this" as a sentence's or a clause's subject, with no noun before it in the card. "It" that means nothing ("it was late", "it was the hour when") is let be.
+- **place:** "here" for the place, or "there" for a place the card hasn't said. "There was", "is there", and "here" in speech are let be.
+- **long:** over 40 words.
+- **tag:** docs/53's own tags ("with X’s word under it", "on her count", "and she knew it", "the part worth keeping").
+
+| | before | after |
+|---|---|---|
+| cards flagged | 180 | 0 |
+| pronoun | 113 | 0 |
+| place | 70 | 0 |
+| long | 0 | 0 |
+| tag | 1 | 0 |
+
+By slot: why-here 32 → 0, staging 7 → 0, ask 6 → 0, reaction 11 → 0, close 34 → 0, hand-off 21 → 0, gloss 69 → 0. Walk was 0 before.
+
+The lint is a floor, not the audit: 180 cards tripped it, and the reading flagged 400.
+
+### Measures
+
+`board-prose`, 30 nights a tier from seed 41, both worlds, before → after the dial:
+
+- **Every lint is unchanged.** The one Hard-boiled sentence said twice (dealt) and the neighbourhood's Poached pronoun ambiguity (all three routes) were there before, and off.
+- **Words a page** move by 0–2.
+- **The situated share and exact-key share** are unchanged.
+- **List smell, oracle:**
+  - dealt: Poached 24 → 25, Soft-boiled 13 → 16, Medium 33 → 34, Hard-boiled 45 → 36;
+  - neighbourhood: Poached 37 → 39, Medium 63 → 64, Hard-boiled 48 → 44;
+  - Raw, Coddled and the neighbourhood's Soft-boiled are unchanged.
+
+`test/situated.test.ts` and the suite pass. One rewrite split an office "Who…?" across a said-tag, which `board-connective.test.ts` caught, and it was mended.
+
+### The blind read, with docs/53's rubric
+
+`npx tsx scripts/situated-dial.ts read --vs before|off`, then `score`. Each read takes pages across both worlds, every tier and every kind of page. Each page is written twice from the same night: with the deck after the dial, and with the deck before it (or with the deck off). Two readers read them one at a time, unlabeled. They were asked which page is **clearer, and still sounds like the game, in that order**. `situated-read.ts` now opens with the same rubric.
+
+- **After vs. before, 20 pages: after was preferred in 17 of 20 and in 17 of 20, 34 of 40 (85%).** The target was 60%.
+  - Both readers took the same three pairs from the deck before. In each, both pages were clear, and the old card's "It was …" read tighter than its rewrite: "It was a plain question" over "The question was a plain one", "It was the hour when a rooming house stops being a house" over "At this hour…", and "It was late" over "The night had got on".
+  - The lint lets "it was late" and "it was the hour" be. A helper had rewritten three of these anyway, and those three are put back.
+  - The phrases both readers found hardest were all on the side before the dial: "kept my voice to the width of it", "Better here than out on the street, where it carries", "That was what … had paid for".
+- **After vs. off, 10 pages: after was preferred in 6 and 7 of 10, 13 of 20 (65%).** The losses:
+  - "Every account starts out as just somebody talking. This one was still at that stage" (both readers). It is rewritten: "So far the account was one person’s word and nothing else. Every account starts out that way."
+  - "The two stories agreed on that part" (both readers). Read on its page, it seemed to vouch for the hour nobody had backed. It now says "That part held up…" without saying which.
+  - "By then even a place like that had run out of reasons to be busy", where the arrival had just said the room was empty (one reader). It is now "It was late, and even a place like that had gone quiet for the night."
+  - Two pairs where both were clear, or the loss was the engine's own: a stray "across from Mrs. Sobel’s" in an answer, and a question and answer sharing a paragraph.
+
+  The three rewrites came after the read.
+
+### Ten before and after, verbatim
+
+- `why-here|arrival|restaurant|none|mid|none|none|none|middle` (compressed)
+  - before: "A spoon rang on a saucer somewhere at the back. I let it stand for a bell and began."
+  - after: "A spoon rang on a saucer somewhere at the back, like the bell for the first round, and I got started."
+- `staging|search|scene-murder|terse|high|none|new|none|first` (rhythm, ellipsis)
+  - before: "I went over it once for the shape of things, and once for the things."
+  - after: "I went over the room twice: once to see how it was laid out, and once for what was in it."
+- `ask|office|office|none|high|new|narrows|none|middle` (compressed)
+  - before: "I asked about the time, and whose clock it was."
+  - after: "I asked what time it had happened, and whose clock had said so."
+- `reaction|account|club|plain|mid|none|new|none|middle` (compressed)
+  - before: "{They} looked up at the ceiling for the start of it and found it there."
+  - after: "{They} looked up at the ceiling while {they} found where the evening started, and then began."
+- `reaction|account|club|terse|high|none|new|none|middle` (rhythm)
+  - before: "One shrug, no more. Then the evening, in short pieces."
+  - after: "I got one shrug, and then the evening, in short pieces."
+- `close|arrival|club|none|high|none|none|none|last` (rhythm)
+  - before: "Smoke and talk, and under it all the door, with the night waiting on the other side."
+  - after: "The room was all smoke and talk, and behind it all stood the door, with the night waiting on the other side."
+- `gloss|motive|unwatched|none|mid|new|none|none|middle` (pronoun, tag, place)
+  - before: "That was news. I wrote it in and let it sit there without company for a while."
+  - after: "That reason was news to me. I wrote it down and let it stand alone for a while, with nothing yet to set beside it."
+- `gloss|account|club|none|high|confirms|new|none|middle` (translate)
+  - before: "A second account like that is a small, warm thing in this work, and I held my hands over it a minute."
+  - after: "A second account that matches is a small, warm thing in this work, like a stove on a cold night, and I let myself enjoy it a minute."
+- `hand-off|list|unwatched|none|high|new|none|none|middle` (ellipsis)
+  - before: "I wanted to see the other end of that."
+  - after: "I wanted to see the other place in that story for myself."
+- `hand-off|search|scene-murder|none|high|new|none|none|middle` (compressed)
+  - before: "The dead keep very still, and so do their rooms. The moving parts of this were outside."
+  - after: "The dead keep very still, and so do their rooms. Whatever was still moving in this business was out on the streets."
+
+Kept as they were, because the touch is one anyone gets: "I didn’t argue. Arguing with a no only gets you a firmer one." "So two people agreed about part of the night. On this side of town that’s practically a treaty." "My knee made a remark as I got up. I ignored it, the way I ignore most good advice."

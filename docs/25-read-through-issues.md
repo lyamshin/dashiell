@@ -238,6 +238,21 @@ Branch `situated-deck`. I read two nights in full with the deck on: the golden's
 - **The deck is 677 KB** (129 KB gzipped), and the book's script goes from 896 KB to 1,577 KB (264 KB to 396 KB gzipped). Dropping `source` from the shipped file, and keeping it in `model/data/situated-written.jsonl`, would save about a fifth. Loading the deck on its own, after the first page, would keep it off the first paint.
 - **Docs/52 (bones and flesh)** puts the situated deck after voicing, as texture. `situate` runs in `planSection` before the rhythm. When the planner moves onto propositions, it moves with the texture pass.
 
+## The dial on the situated deck (docs/51, docs/53), 2026-10-15
+Branch `situated-dial`. Docs/51's "The dial" has the audit, the lint and both reads. Left over:
+
+- **The lint's "it" rule overreaches on the hour.** "It was late" and "It was the hour when…" are let be, but the readers also preferred "It was a plain question" to "The question was a plain one". Naming the noun isn't always clearer; the lint should stay a floor, and the audit should weigh it.
+- **Text the deck can't mend,** which both readers stopped on:
+  - in an answer, "across from Mrs. Sobel’s", and a question and its answer sharing a paragraph;
+  - the planner's own gloss in `pages.ts`, "That was what Kaminsky had paid for": who paid, and for what?
+- **The old decks weren't audited** (`connective.json`, `people.json`, `decks.ts`, `cards.ts`). They are the fallback and the deck-off page. Two examples:
+  - "{Src}. That settled where I was going." (`bcn-2050`) is said on arrival, after I've got there;
+  - "I gave the place a minute to show me what it had" (`bcn-3039`) is theirs too.
+
+  They want the same audit.
+- **A gloss after `confirms` can't know what was confirmed.** "The two stories agreed on that part" read as vouching for the wrong hour. The rewrite says less; a key field for what the confirm touched would let it say more.
+- **Gloss · motive · narrows** still has one card.
+
 ## Bones and flesh, build 1 (docs/52), 2026-10-15
 Branch `bones-1`. I read three nights in full, in voice and plainly: the golden's, and the neighbourhood at Medium (seed 5) and at Poached (seed 4). Docs/52's Built section has the measures. Left over:
 
