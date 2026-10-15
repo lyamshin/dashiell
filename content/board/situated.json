@@ -352,7 +352,7 @@
 {"id":"sit-0579","key":"ask|office|office|none|high|new|new|none|middle","text":"I asked who would come out ahead because of this.","source":"neighbourhood/3/5/lost-pet/wanderer#1.7"},
 {"id":"sit-0585","key":"ask|office|office|none|high|new|new|none|middle","text":"“Any enemies I ought to know about?” I asked.","source":"dealt/20/5/murder/oracle#1.8"},
 {"id":"sit-0591","key":"ask|office|office|none|high|new|new|none|middle","text":"I asked who had wanted this, and didn’t dress it up.","source":"dealt/26/5/murder/wanderer#1.8"},
-{"id":"sit-0597","key":"ask|office|office|none|high|new|new|none|middle","text":"“Who comes to your mind,” I asked, “when you think of somebody who’d want this?”","source":"neighbourhood/36/4/murder/wanderer#1.7"},
+{"id":"sit-0597","key":"ask|office|office|none|high|new|new|none|middle","text":"“Who comes to mind as somebody who’d want this?” I asked, and waited for a name.","source":"neighbourhood/36/4/murder/wanderer#1.7"},
 {"id":"sit-0603","key":"ask|office|office|none|high|new|new|none|middle","text":"I asked whether anybody had a reason to want this.","source":"dealt/9/4/lost-pet/reader#1.8"},
 {"id":"sit-0609","key":"ask|office|office|none|high|new|new|none|middle","text":"“Who had cause?” I asked, in as few words as I had.","source":"dealt/22/5/murder/reader#1.7"},
 {"id":"sit-0615","key":"ask|office|office|none|high|new|new|none|middle","text":"I put it simply, and asked who would want this.","source":"dealt/17/5/lost-pet/wanderer#1.8"},

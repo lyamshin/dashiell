@@ -351,7 +351,7 @@
 {"id":"sit-0579","flags":[],"action":"keep","batch":4}
 {"id":"sit-0585","flags":[],"action":"keep","batch":4}
 {"id":"sit-0591","flags":[],"action":"keep","batch":4}
-{"id":"sit-0597","flags":["ellipsis"],"action":"rewrite","batch":4,"before":"“Who comes to your mind?” I asked, and waited for a name.","text":"“Who comes to your mind,” I asked, “when you think of somebody who’d want this?”"}
+{"id":"sit-0597","flags":["ellipsis"],"action":"rewrite","batch":4,"before":"“Who comes to your mind?” I asked, and waited for a name.","text":"“Who comes to mind as somebody who’d want this?” I asked, and waited for a name."}
 {"id":"sit-0603","flags":[],"action":"keep","batch":4}
 {"id":"sit-0609","flags":[],"action":"keep","batch":4}
 {"id":"sit-0615","flags":[],"action":"keep","batch":4}
