@@ -14,7 +14,7 @@ import { canon } from '../src/game/board/bones/extract.js';
 import { plainComposite, plainPage, roundTrip } from '../src/game/board/bones/plain.js';
 import { VOICED, voicedTally } from '../src/game/board/bones/reread.js';
 import { fill, fitting, useVoicings, voicingById, voicings, type Voicing } from '../src/game/board/bones/voice.js';
-import { VARIETY } from '../src/game/board/bones/say.js';
+import { VARIETY, preview, type VoiceHand } from '../src/game/board/bones/say.js';
 import { Hand } from '../src/game/board/decks.js';
 import { mannerOf } from '../src/game/board/pages.js';
 import { lintVoicings } from '../scripts/voicing-lint.js';
@@ -187,6 +187,22 @@ describe('docs/52 §4: the voicings', () => {
     expect(h.uses('v:x')).toBe(2);
     h.forget('v:x#2');
     expect(h.uses('v:x')).toBe(1);
+  });
+
+  it('build 2: an answer’s third “o’clock” goes to a voicing without one, unless that would say a voicing twice', () => {
+    const c = dealBoard(1, 4, 'lost-pet').kase;
+    const flags = ['run', 'next', 'reason', 'one', 'bare'];
+    const args = { from: { t: 'hour' as const, h: 10 }, reason: 'went to the Automat for coffee', with: '' };
+    const o = { manner: 'careful', tierBand: 'high' };
+    const all = fitting('CLAIM-SPAN', new Set(flags), o, args);
+    expect(all.some((v) => v.template.includes(':oclock'))).toBe(true);
+    expect(all.some((v) => !v.template.includes(':oclock'))).toBe(true);
+    const handOf = (said: string[], n: number): VoiceHand => ({ lastUse: (id) => said.indexOf(id), uses: (id) => (said.includes(id) ? 1 : 0), note: () => {}, swap: () => {}, forget: () => {}, mayJoke: false, joke: () => {}, int: (k) => n % k });
+    const prefer = (t: string) => !/o’clock/.test(t);
+    for (let n = 0; n < 6; n++) expect(preview('CLAIM-SPAN', flags, o, args, { c, hand: handOf([], n), prefer })?.text).not.toMatch(/o’clock/);
+    // Every voicing without it said tonight already, and one with it not: variety comes first.
+    const without = all.filter((v) => !v.template.includes(':oclock')).map((v) => `v:${v.id}`);
+    expect(preview('CLAIM-SPAN', flags, o, args, { c, hand: handOf(without, 0), prefer })?.text).toMatch(/o’clock/);
   });
 
   it('build 2: a typed voicing that drops a fact fails the round trip', () => {

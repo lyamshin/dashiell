@@ -173,8 +173,8 @@ export function choose(shape: Shape, flags: string[], ctx: PlanCtx, manner?: str
 }
 
 /** docs/52 build 2: the voicing a composite would take (least recently used tonight), not yet spent. */
-export function pickFor(shape: Shape, flags: readonly string[], args: Args, ctx: PlanCtx, manner?: string): Picked | null {
-  return preview(shape, flags, { manner, tierBand: tierBand(ctx) }, args, ctx);
+export function pickFor(shape: Shape, flags: readonly string[], args: Args, ctx: PlanCtx, manner?: string, prefer?: (text: string) => boolean): Picked | null {
+  return preview(shape, flags, { manner, tierBand: tierBand(ctx) }, args, prefer ? { ...ctx, prefer } : ctx);
 }
 
 /** Give back the voicing an item spent, when it goes into another composite. */
@@ -470,11 +470,16 @@ function inQuotes(old: string, said: string): string {
  * keeps it or doesn't).
  */
 export function sayAll(items: Item[], ctx: PlanCtx): void {
+  // An answer says "o’clock" twice at most: after that, a voicing without it, where one fits.
+  let oclock = 0;
   for (const it of items) {
+    if (!it.speech || !it.runOn) oclock = 0;
+    if (it.speech) oclock += (it.comp ? it.text.match(/o’clock/g)?.length : 0) ?? 0;
     if (it.kind !== 'fact' || !it.say || it.comp) continue;
     const s = it.say;
     const comp: Held = { shape: s.shape, props: [...(it.props ?? [])] };
-    const p = pickFor(s.shape, s.flags, s.args, ctx, s.manner);
+    const p = pickFor(s.shape, s.flags, s.args, ctx, s.manner, it.speech && oclock >= 2 ? (t) => !/o’clock/.test(t) : undefined);
+    if (it.speech) oclock += (p ? p.text : it.text).match(/o’clock/g)?.length ?? 0;
     if (!p) {
       if (it.speech || s.keep) it.comp = { ...comp, voicing: 'flesh', said: it.text } as Held;
       else {

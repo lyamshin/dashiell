@@ -88,7 +88,7 @@ export function preview(
   flags: readonly string[],
   o: { manner?: string; tierBand?: string },
   args: Args,
-  ctx: { c: BoardCase; hand?: VoiceHand; said?: ReadonlySet<string> },
+  ctx: { c: BoardCase; hand?: VoiceHand; said?: ReadonlySet<string>; prefer?: (text: string) => boolean },
 ): Picked | null {
   const all = fitting(shape, new Set(flags), o, args);
   if (all.length === 0) return null;
@@ -103,6 +103,11 @@ export function preview(
   const fresh = pool.filter((v) => !saidBefore(render(v), ctx.said));
   if (fresh.length > 0) pool = fresh;
   const last = (v: Voicing) => hand.lastUse(`v:${v.id}`);
+  // What the speech around it asks of it (no third "o’clock" in one answer), where that costs no
+  // voicing still unsaid tonight: variety comes first.
+  const prefer = ctx.prefer;
+  const liked = prefer ? pool.filter((v) => prefer(render(v))) : [];
+  if (liked.length > 0 && (liked.some((v) => last(v) < 0) || !pool.some((v) => last(v) < 0))) pool = liked;
   const oldest = Math.min(...pool.map(last));
   const best = pool.filter((v) => last(v) === oldest);
   const v = best.length > 1 ? (best[hand.int(best.length)] as Voicing) : (best[0] as Voicing);
