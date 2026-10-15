@@ -21,7 +21,7 @@
   {"id": "bpl-101", "family": "arrive", "tags": {"kind": "flat"}, "text": "I went round to {name}. Two rooms and a kitchen behind a door with three locks, two of them for show."},
   {"id": "bpl-111", "family": "arrive", "tags": {"kind": "rooms"}, "text": "I went round to {name}, two rooms up a back stair with a cat on every landing."},
   {"id": "bpl-201", "family": "return", "tags": {}, "text": "I was back. Nothing had moved but the clock."},
-  {"id": "bpl-202", "family": "return", "tags": {}, "text": "I went back in. It was the same place, a little later, which is all most places are.", "joke": true},
+  {"id": "bpl-202", "family": "return", "tags": {}, "text": "I went back in. Same place, a little later, which is all most places are.", "joke": true},
   {"id": "bpl-203", "family": "return", "tags": {}, "text": "Back again. The welcome was about what it had been the first time."},
   {"id": "bpl-204", "family": "return", "tags": {}, "text": "I was back. The street outside was emptier, and so was I.", "joke": true},
   {"id": "bpl-301", "family": "scene-body", "tags": {"means": "chloral"}, "text": "{Victim} was still where they’d found the body, in the chair by the table, as if waiting for company, and the company had come and gone."},

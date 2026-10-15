@@ -785,7 +785,7 @@
 {"id":"bpl-101","flags":[],"action":"keep","batch":3}
 {"id":"bpl-111","flags":[],"action":"keep","batch":3}
 {"id":"bpl-201","flags":["repeat"],"action":"rewrite","batch":3,"before":"Back at {place}. Nothing had moved but the clock.","text":"I was back. Nothing had moved but the clock."}
-{"id":"bpl-202","flags":["repeat"],"action":"rewrite","batch":3,"before":"I went back to {place}. It was the same place, a little later, which is all most places are.","text":"I went back in. It was the same place, a little later, which is all most places are."}
+{"id":"bpl-202","flags":["repeat"],"action":"rewrite","batch":3,"before":"I went back to {place}. It was the same place, a little later, which is all most places are.","text":"I went back in. Same place, a little later, which is all most places are."}
 {"id":"bpl-203","flags":["repeat"],"action":"rewrite","batch":3,"before":"{Place} again. The welcome was about what it had been the first time.","text":"Back again. The welcome was about what it had been the first time."}
 {"id":"bpl-204","flags":["repeat"],"action":"rewrite","batch":3,"before":"I was back at {place}. The street outside was emptier, and so was I.","text":"I was back. The street outside was emptier, and so was I."}
 {"id":"bpl-301","flags":["translate"],"action":"rewrite","batch":3,"before":"{Victim} was still where they’d found the body, in the chair by the table, as if waiting for something that had come.","text":"{Victim} was still where they’d found the body, in the chair by the table, as if waiting for company, and the company had come and gone."}
