@@ -275,7 +275,8 @@ export function remarkLine(c: BoardCase, speaker: PersonId, r: Remark, i: number
   } else if (x?.k === 'REMARK' && x.how === 'passed' && x.via) {
     spec = { shape: 'REMARK', flags: ['passed'], args: { via: { t: 'place', id: x.via }, hour: { t: 'hour', h: x.hour }, saw: { t: 'person', id: x.saw }, street: x.where }, manner };
   } else if (x?.k === 'REMARK' && x.how === 'had') {
-    const keep = /, (for (?:her|his|its) [^,]+), and put\b/.exec(t)?.[1] ?? '';
+    // (Why they had them: "for her supper", or the bible’s "to keep the mice down".)
+    const keep = /, ((?:for (?:her|his|its)|to) [^,]+), and put\b/.exec(t)?.[1] ?? '';
     if (keep) spec = { shape: 'REMARK', flags: ['had'], args: { saw: { t: 'person', id: x.saw }, hour: { t: 'hour', h: x.hour }, keep, back: { t: 'hour', h: x.hour + 1 } }, manner };
   } else if (x?.k === 'REMARK' && x.how === 'there') {
     const m = /^(.+?) was (.+?) at (?:seven|eight|nine|ten|eleven|twelve)\. I didn’t look again\.$/.exec(t);
