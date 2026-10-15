@@ -213,7 +213,9 @@ function joins(it: Item): 'and' | 'semi' | false {
   // about his parlor window; the kitchen door swung…" read as a non sequitur in the blind read).
   if (it.sit?.card && it.sit.lead) return false;
   // (A collision is its two lines and its one join: "and" inside it would say one follows from the other.)
-  if (it.kind === 'fact') return it.relation !== 'collides' ? 'and' : false;
+  // (The notebook said aloud is notes, one after another: two of them take a semicolon, never "and",
+  // which makes one follow from the other: "…not even him, and I didn’t know what it was yet".)
+  if (it.kind === 'fact') return it.relation === 'collides' ? false : it.voice === 'recap' ? 'semi' : 'and';
   if (it.slot === 'arrival' || it.slot === 'walk' || it.slot === 'staging' || it.slot === 'reaction' || it.slot === 'close' || it.slot === 'ask') return 'and';
   // The detective's reasoning, an aside or a why, takes a semicolon, never "and" (Planner 2): "I
   // hadn’t come for the furniture; I’d come for Lieb."

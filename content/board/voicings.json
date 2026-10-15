@@ -1068,7 +1068,7 @@
   {"id": "office/pointer-gossip-2", "shape": "OFFICE", "requires": ["pointer", "gossip"], "template": "“You might ask about {P},” {client} said. “{Motive}. That’s from the woman downstairs, and she hears most things.”"},
   {"id": "office/pointer-gossip-3", "shape": "OFFICE", "requires": ["pointer", "gossip"], "template": "“There’s {P},” {client} said. “I don’t like gossip, but {motive}. The woman downstairs told me.”"},
   {"id": "office/pointer-behaviour-2", "shape": "OFFICE", "requires": ["pointer", "behaviour"], "template": "“Look at {P},” {client} said. “{Pthey} {behaviour}. Who does that?”"},
-  {"id": "office/pointer-behaviour-3", "shape": "OFFICE", "requires": ["pointer", "behaviour"], "template": "“I keep thinking about {P},” {client} said. “{Pthey} {behaviour}, and I didn’t think anything of it at the time.”"},
+  {"id": "office/pointer-behaviour-3", "shape": "OFFICE", "requires": ["pointer", "behaviour"], "template": "“I keep thinking about {P},” {client} said. “{Pthey} {behaviour}, and I didn’t think anything of it then.”"},
   {"id": "office/gone-pet-3", "shape": "OFFICE", "requires": ["gone", "pet"], "template": "“{Thing}’s gone,” {client} said. “My {breed}. {Pthey} sleeps {where}, and {pthey} isn’t there.”"},
   {"id": "office/gone-pet-4", "shape": "OFFICE", "requires": ["gone", "pet"], "template": "“Somebody has taken my {breed},” {client} said. “{Thing}. Gone from {whereFrom}, just like that.”"},
   {"id": "office/gone-item-3", "shape": "OFFICE", "requires": ["gone", "item"], "template": "“It’s {thingName},” {client} said. “It was {where}, where it always is, and now it isn’t.”"},
