@@ -229,5 +229,5 @@
   {"id": "bpe-1435", "family": "motive", "tags": {"id": "s8"}, "text": "“I’ve always said {thing} was wasted on {client},” {name} said. “I said it to {client}’s face, too, which is more than most people would.”"},
   {"id": "bpe-1436", "family": "motive", "tags": {"id": "s8"}, "text": "“{Thing} was wasted on {client},” {name} said. “I always said so. Some people don’t know what they’ve got.”"},
   {"id": "bpe-1437", "family": "motive", "tags": {"id": "s9"}, "text": "“{Client} and I haven’t spoken since the business over the coal bill,” {name} said. “I’m speaking to you. That’s not the same thing.”", "joke": true},
-  {"id": "bpe-1438", "family": "motive", "tags": {"id": "s9"}, "text": "“We haven’t spoken since the business over the coal bill,” {name} said. “{Client} and I. You can ask {client} why. I’d like to hear the answer myself.”"}
+  {"id": "bpe-1438", "family": "motive", "tags": {"id": "s9"}, "text": "“We haven’t spoken since the row over the coal bill,” {name} said. “{Client} and I. You can ask {client} why. I’d like to hear the answer myself.”"}
 ]

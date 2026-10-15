@@ -591,7 +591,7 @@
   {
     "id": "off-029",
     "deck": "office",
-    "text": "I’d paid the landlady on my way up, and she’d counted it on the landing in front of me. The stairs felt shorter for it. The office looked the same as always, which was its own kind of relief.",
+    "text": "I’d paid the landlady on my way up, and she’d counted it on the landing in front of me. The stairs felt shorter after that. The office looked the same as always, and tonight that was fine with me.",
     "tags": {
       "circumstance": "just-paid",
       "weather": "any"
@@ -606,7 +606,7 @@
         "short": "the stairs",
         "kind": "stair",
         "pay": [
-          "The office stairs would still be a little shorter when I climbed them next. Paid rent does that to a building."
+          "The office stairs would feel shorter when I climbed them next. Paid rent does that."
         ]
       }
     },

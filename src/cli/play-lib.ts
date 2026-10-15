@@ -252,9 +252,9 @@ function pickerText(night: Night, pk: Picker): string {
   const picking = pk.ready.length === 0 && night.save.claim !== null;
   const his = pronWord(night, pk.person, 'his');
   out.push('');
-  out.push(pk.ready.length > 0 ? `${cap(his)} line, and the line that breaks it:` : picking ? `Against “${pk.claims.find((x) => x.hour === night.save.claim)?.label}”, read ${pronWord(night, pk.person)}:` : `Which of ${his} claims?`);
+  out.push(pk.ready.length > 0 ? `${cap(his)} line, and the line that breaks it:` : picking ? `Against “${pk.claims.find((x) => x.hour === night.save.claim)?.label}”, read ${pronWord(night, pk.person)}:` : `Which part of ${his} evening?`);
   for (const it of items) out.push(itemLine(it.n, { command: it.command, label: it.label, minutes: 0, lead: false, done: false }, it.claim !== undefined ? 'free' : '1 call') + (it.source ? `\n          (${it.source})` : ''));
-  out.push('', itemLine(items.length + 1, { command: 'back', label: picking ? 'Back to the claims' : `Put nothing to ${pronWord(night, pk.person)}`, minutes: 0, lead: false, done: false }, 'free'));
+  out.push('', itemLine(items.length + 1, { command: 'back', label: picking ? `Back to ${his} evening` : `Put nothing to ${pronWord(night, pk.person)}`, minutes: 0, lead: false, done: false }, 'free'));
   return out.join('\n');
 }
 
@@ -305,9 +305,9 @@ function reportText(night: Night, path: string, who: string | null = null): stri
       out.push(`${BREAKS_LABEL} (breaks):`);
       if (who) {
         const N = nameOf(c, who);
-        out.push(...lineList(breakOptionsShown(night.d, night.run, who), { touching: `Lines that touch ${N}’s own story at ${hoursWord(night)}:`, rest: `Other lines I hold that name ${N} or fall at ${hoursWord(night)}:` }));
+        out.push(...lineList(breakOptionsShown(night.d, night.run, who), { touching: `What I have about ${N}’s own evening at ${hoursWord(night)}:`, rest: `Everything else I have that names ${N}, or is about ${hoursWord(night)}:` }));
       } else {
-        out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists the lines I hold that name them or fall at ${hoursWord(night)}. Or breaks=hunch.`, WIDTH, '   '));
+        out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists what I have that names them, or is about ${hoursWord(night)}. Or breaks=hunch.`, WIDTH, '   '));
       }
       out.push('');
     }
@@ -482,7 +482,7 @@ function titleText(save: BoardSave, type: CaseType): string {
     'DASHIELL',
     `${what}, an evening, and eight hours to write it down.`,
     '',
-    wrap(`${tierName(save.tier as 0)}. One question gets a whole evening or a whole list, and every lie runs into something true. Murders, lost pets and lost things.`),
+    wrap(`${tierName(save.tier as 0)}. Ask anybody where they were and you get the whole evening; ask a barman who came in and you get everybody. Every lie runs into something true. Murders, lost pets and lost things.`),
   ].join('\n');
 }
 
@@ -512,7 +512,7 @@ function cmdNew(io: PlayIo, values: Map<string, string>, flags: Set<string>): st
   const night = deal(save);
   store(io, path as string, save);
   const teach = flags.has('no-teach') ? [] : [teachText(save.world), '', DOUBLE, ''];
-  return [titleText(save, night.d.kase.type), '', `case ${seed} · ${tierName(tier as 0)} · the small board${save.world ? ' · the neighborhood' : ''}`, '', DOUBLE, '', ...teach, lookText(night, path as string)].join('\n');
+  return [titleText(save, night.d.kase.type), '', `case ${seed} · ${tierName(tier as 0)}${save.world ? ' · the neighborhood' : ''}`, '', DOUBLE, '', ...teach, lookText(night, path as string)].join('\n');
 }
 
 function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
@@ -588,7 +588,7 @@ function cmdPencil(io: PlayIo, raw: string | undefined, path: string): string {
   const [, who, hs, act, pl] = m as RegExpExecArray;
   const c = night.d.kase;
   const person = c.people.find((p) => fold(p.short) === fold(who as string) || fold(p.name) === fold(who as string));
-  if (!person) fail(`Nobody on the board called ${who}.`);
+  if (!person) fail(`Nobody in this case called ${who}.`);
   const h = /^\d+$/.test(hs as string) ? Number(hs) : (HOURS[(hs as string).toLowerCase()] as number);
   if (!c.board.hours.includes(h)) fail(`The hours are ${c.board.hours.map((x) => hourWord(x)).join(', ')}.`);
   let place: string | undefined;
@@ -666,7 +666,7 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
         let night = load(io, path);
         const who = night.d.kase.people.find((p) => fold(p.short) === fold(arg ?? ''));
         if (!who) fail(`Nobody here called ${arg}.`);
-        if (!pickerFor(night.d, night.run, (who as { id: string }).id)) fail(`Nothing I hold collides with ${(who as { short: string }).short}’s story.`);
+        if (!pickerFor(night.d, night.run, (who as { id: string }).id)) fail(`Nothing I have breaks ${(who as { short: string }).short}’s story yet.`);
         night = commit(io, path, night, [], { picker: (who as { id: string }).id, claim: null, person: null });
         return { out: lookText(night, path), code: 0 };
       }

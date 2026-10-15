@@ -462,7 +462,7 @@ function storyLines(d: BoardDeal): string[] {
     if (after !== undefined) out.push(`By ${oclock(after)} ${pr.he} was at ${placeName(c, row[after] ?? '')}, as if ${pr.he} had never left.`);
   } else {
     out.push(`${name} took ${v.short}. ${cap(pastOf(motive ?? ''))}.`);
-    if (atOrigin !== undefined) out.push(`${cap(short)} learned the way in at ${placeName(c, c.means.origin)} at ${oclock(atOrigin)}: ${c.means.originText.replace(/^[^;]*; /, '')}.`);
+    if (atOrigin !== undefined) out.push(`${cap(short)} found out how to get in at ${placeName(c, c.means.origin)} at ${oclock(atOrigin)}: ${c.means.originText.replace(/^[^;]*; /, '')}.`);
     out.push(`At ${oclock(c.crime.hour)} ${pr.he} let ${pr.self} into ${placeName(c, c.crime.scene)} and came out with ${v.short}.`);
     if (c.crime.whereNow) out.push(`${cap(v.short)} ended up ${c.crime.whereNow.text}.`);
   }
@@ -494,7 +494,7 @@ function breakerOf(d: BoardDeal): string {
   const sets = minimalSets(qs, [], (held) => solve(c, held, { techniques: T }).status.get(key(lie.person, lie.hour))?.s === 'broken', 3, true);
   const first = sets[0]?.filter((q) => q !== `account:${lie.person}`) ?? [];
   if (first.length === 0) return 'Nothing true agreed with it.';
-  const names = first.map((q) => questionById(c, q)).map((q) => (q?.kind === 'list' ? `${nameOf(c, q.subject)}’s list` : q?.kind === 'account' ? `${nameOf(c, q.subject)}’s own evening` : 'the room'));
+  const names = first.map((q) => questionById(c, q)).map((q) => (q?.kind === 'list' || q?.kind === 'account' ? nameOf(c, q.subject) : 'what I found in the room'));
   return `${cap(andList(names))} said otherwise.`;
 }
 
@@ -536,7 +536,7 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
   const rows = [...suspectsOf(c), ...c.people.filter((p) => p.role === 'company').map((p) => p.id), ...(isMurder(c) ? [c.crime.victim] : [])];
   const w0 = Math.max(...rows.map((id) => nameOf(c, id).length)) + 3;
   const cw = Math.max(12, ...rows.flatMap((id) => hours.map((h) => placeName(c, c.board.rows[id]?.[h] ?? '').length + 2)));
-  out.push('THE TRUE BOARD');
+  out.push('WHERE THEY REALLY WERE');
   out.push(`${''.padEnd(w0)}${hours.map((h) => `${hourWord(h)}`.padEnd(cw)).join('')}`);
   for (const id of rows) {
     const mark = id === c.crime.culprit ? ' *' : id === c.crime.victim ? ' †' : '';
@@ -547,19 +547,42 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
   out.push('THE LIES');
   for (const l of c.lies) {
     const k = c.confrontations.find((x) => x.person === l.person && x.hour === l.hour);
-    const why = l.kind === 'culprit' || l.kind === 'pair' && l.person === c.crime.culprit ? 'to hide the crime' : l.kind === 'pair' ? 'to cover for a friend' : `to hide ${personOf(c, l.person)?.secret ?? 'something'}`;
-    const would = k?.response === 'admit' ? 'owned up' : k?.response === 'second-lie' ? 'a second story' : k?.response === 'crack' ? 'cracked' : 'refused';
+    const why = l.kind === 'culprit' || l.kind === 'pair' && l.person === c.crime.culprit ? 'to hide the crime' : l.kind === 'pair' ? 'to cover for a friend' : secretWhy(personOf(c, l.person)?.secret);
+    const would = k?.response === 'admit' ? 'owned up' : k?.response === 'second-lie' ? 'told another story' : k?.response === 'crack' ? 'cracked' : 'refused to say';
     // Medium 14: "Put to it: refused" read as a put the player never made. Say whether it was.
-    const put = !run || run.asked.includes(`confront:${l.person}@${l.hour}`) ? `Put to it: ${would}.` : `Never put to ${pronOf(c, l.person).him}; put, it would have been: ${would}.`;
-    out.push(`- ${nameOf(c, l.person)} said ${placeName(c, l.claim)} at ${hourWord(l.hour)}; ${pronOf(c, l.person).he} was at ${placeName(c, l.truth)}, ${why}. ${put}`);
+    const put = !run || run.asked.includes(`confront:${l.person}@${l.hour}`) ? `When you put it to ${pronOf(c, l.person).him}, ${pronOf(c, l.person).he} ${would}.` : `You never put it to ${pronOf(c, l.person).him}; if you had, ${pronOf(c, l.person).he} would have ${wouldHave(k?.response)}.`;
+    out.push(`- ${nameOf(c, l.person)} said ${personOf(c, l.person)?.home === l.claim ? 'home' : placeName(c, l.claim)} at ${hourWord(l.hour)}; ${pronOf(c, l.person).he} was at ${placeName(c, l.truth)}, ${why}. ${put}`);
   }
   out.push('');
   // docs/55 7: par, the number the verdict says, and what it's made of.
-  out.push(`THE PATH (par ${parCalls(d)}: ${d.analysis.par} questions${d.analysis.motive ? ', the motive search' : ''} and ${d.analysis.walks} walks)`);
+  out.push(`THE SHORT WAY THROUGH (${parCalls(d)} calls: ${d.analysis.par} questions${d.analysis.motive ? ', a look at the papers for the motive' : ''} and ${d.analysis.walks} walks)`);
   // "who was at Kowalski’s tonight?", not "tonight?." (Raw 11's #27).
-  d.analysis.path.forEach((s, i) => out.push(`${i + 1}. ${s.label}${/[?.!]$/.test(s.label) ? '' : '.'} ${s.why.replace(/\s*\(step \d+\)/g, '').replace(/\s*\(the office\):/g, ' (the office said so):')}`));
+  d.analysis.path.forEach((s, i) => out.push(`${i + 1}. ${s.label}${/[?.!]$/.test(s.label) ? '' : '.'} ${plainWhy(s.why, d.analysis.path)}`));
   if (d.analysis.motive) out.push(`+. ${questionById(c, d.analysis.motive)?.label ?? ''}.`);
   return out.join('\n');
+}
+
+/** docs/56: a liar's secret, as the curtain says it: a bible secret is a whole sentence ("She lets the attic …"), a dealt one a phrase. */
+function secretWhy(secret: string | undefined): string {
+  if (!secret) return 'to hide something';
+  const s = secret.trim();
+  if (/^[A-Z]/.test(s) && /[.!?]$/.test(s)) return `to keep a secret: ${s.charAt(0).toLowerCase()}${s.slice(1).replace(/[.!?]$/, '')}`;
+  return `to hide ${s}`;
+}
+
+/** What they would have done, put to it, after "would have". */
+function wouldHave(response: string | undefined): string {
+  return response === 'admit' ? 'owned up' : response === 'second-lie' ? 'told another story' : response === 'crack' ? 'cracked' : 'refused to say';
+}
+
+/** docs/56: the path's reasons in the words a player has: who saw whom, not whose list has whom. */
+function plainWhy(why: string, path: readonly { label: string }[]): string {
+  const asked = (n: string): string | undefined => /^Ask ([^:]+):/.exec(path[Number(n) - 1]?.label ?? '')?.[1];
+  return why
+    .replace(/, and step (\d+) says otherwise/g, (m, n: string) => (asked(n) ? `, and ${asked(n)} said otherwise` : m))
+    .replace(/\s*\(step \d+\)/g, '')
+    .replace(/\s*\(the office\):/g, ' (the office said so):')
+    .replace(/((?:(?:Mr|Mrs|Dr)\. )?[A-Z][\w’'-]+)’s list has /g, '$1 saw ');
 }
 
 export type { Hour, PersonId };

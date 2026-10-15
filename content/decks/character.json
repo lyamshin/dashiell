@@ -23,7 +23,7 @@
   {
     "id": "chr-118",
     "deck": "character",
-    "text": "{He} was neat in a way that took effort: every button done, the collar pinned, the hair flat. The hands stayed folded until {he} needed one, and then only the one.",
+    "text": "{He} was neat, and you could see the work in it: every button done, the collar pinned, the hair flat. The hands stayed folded until {he} needed one, and then only the one.",
     "tags": {
       "role": "arch-bookkeeper",
       "kind": "look"
@@ -342,7 +342,7 @@
         "short": "the clothes",
         "kind": "clothes",
         "pay": [
-          "I buttoned my coat. It came off a rack, and in that company it knew it."
+          "I buttoned my coat. It came off a rack, and next to those clothes it looked it."
         ]
       }
     },
@@ -528,7 +528,7 @@
         "short": "the eyes",
         "kind": "eyes",
         "pay": [
-          "The door opened. It was neither the police nor a winner. It hardly ever is, which is how bookmakers stay in business."
+          "The door opened. It was neither the police nor a winner. It hardly ever is. That’s how bookmakers stay in business."
         ]
       }
     },
@@ -786,7 +786,7 @@
   {
     "id": "chr-503",
     "deck": "character",
-    "text": "{He} had a pleasant, forgettable face, which in that trade is the whole trick, and eyes that went to the door every time it opened, and came back.",
+    "text": "{He} had a pleasant face you’d forget by morning, a good face for a bartender, and eyes that went to the door every time it opened and came straight back.",
     "tags": {
       "role": "bartender",
       "kind": "look"
@@ -797,7 +797,7 @@
         "short": "the eyes",
         "kind": "eyes",
         "pay": [
-          "Somebody came in behind me. The eyes went to the door and came back, and I was glad to see I’d been promoted to furniture."
+          "Somebody came in behind me. The bartender’s eyes went to the door and came straight back to me."
         ]
       }
     },
@@ -940,7 +940,7 @@
         "short": "the look at my shoes",
         "kind": "eyes",
         "pay": [
-          "I wiped my feet, late. It didn’t do much for me, but the stairs appreciated it."
+          "I wiped my feet, late, and the landlady watched me do it."
         ]
       }
     },
