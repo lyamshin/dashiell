@@ -1043,7 +1043,8 @@ export function writeOffice(w: Writer): void {
     // name the first time, so the pronoun has somebody to be (Hard-boiled 8's #3).
     if (g.kind === 'pointer' && v.P && /\b(?:her|him|she|he)\b/i.test(v.motive ?? v.behaviour ?? '')) {
       const pp = c.people.find((x) => x.short === v.P);
-      if (pp && pp.name !== pp.short) v.P = pp.name.replace(/^(?:Mr\.|Mrs\.|Miss|Dr\.) (?=\S+ \S)/, '');
+      // (A title says it already: "Miss Kahane" stays as the case calls her.)
+      if (pp && pp.name !== pp.short && !/^(?:Mr|Mrs|Miss|Dr)\.? /.test(pp.short)) v.P = pp.name.replace(/^(?:Mr\.|Mrs\.|Miss|Dr\.) (?=\S+ \S)/, '');
     }
     // (Poached 5's #2, "He owed Dandridge the rent on a shop, and he was calling it in", two different
     // men in one sentence, is mended in the motive itself: "…and it was being called in".)
@@ -2050,9 +2051,9 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
   const near = c.board.hours
     .filter((hh) => hh !== h)
     .map((hh) => ({ hh: hh as Hour, place: accountOf(c, p)?.claims[hh as Hour]?.place }))
-    .filter((x): x is { hh: Hour; place: PlaceId } => !!x.place && x.place !== claimPlace && x.place !== c.crime.scene && c.lists.some((l) => l.place === x.place && l.entries[h] !== undefined))
-    // (A list not asked for yet first: it's the one that might say something new about that hour.)
-    .sort((a, b) => Number(heldList(a.place)) - Number(heldList(b.place)) || Math.abs(a.hh - h) - Math.abs(b.hh - h) || a.hh - b.hh)[0];
+    // (A list not asked for yet: one already held says nothing new about that hour, and pointing at it goes round in a circle.)
+    .filter((x): x is { hh: Hour; place: PlaceId } => !!x.place && x.place !== claimPlace && x.place !== c.crime.scene && !heldList(x.place) && c.lists.some((l) => l.place === x.place && l.entries[h] !== undefined))
+    .sort((a, b) => Math.abs(a.hh - h) - Math.abs(b.hh - h) || a.hh - b.hh)[0];
   const pointsAt = near ? ` ${pr.He} had told me ${placeName(c, near.place)} at ${hourWord(near.hh)}; ${placeName(c, near.place)} might know about ${hourWord(h)}.` : '';
   if (near) {
     w.places.add(near.place);
