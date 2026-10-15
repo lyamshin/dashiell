@@ -2437,3 +2437,89 @@
 {"id":"margolis/voice/refuse/0","flags":[],"action":"keep","batch":6}
 {"id":"margolis/voice/refuse/1","flags":["compressed"],"action":"rewrite","batch":6,"before":"That I don’t buy.","text":"No. That one I’m not opening up."}
 {"id":"margolis/voice/ownUp/0","flags":[],"action":"keep","batch":6}
+{"id":"raffertys/arrival/0","flags":[],"action":"keep","batch":7}
+{"id":"raffertys/arrival/1","flags":[],"action":"keep","batch":7}
+{"id":"raffertys/arrival/2","flags":[],"action":"keep","batch":7}
+{"id":"raffertys/arrival/3","flags":[],"action":"keep","batch":7}
+{"id":"raffertys/arrival/4","flags":[],"action":"keep","batch":7}
+{"id":"raffertys/arrival/5","flags":[],"action":"keep","batch":7}
+{"id":"raffertys/arrival/6","flags":[],"action":"keep","batch":7}
+{"id":"lipskys/arrival/0","flags":["translate"],"action":"rewrite","batch":7,"before":"The flats over Lipsky’s were five floors of brick on Orchard Street, with the cloth shop shut up at the bottom behind iron shutters. After midnight the pushcarts stood along the curb under their tarpaulins, waiting for morning. Down by the cellar steps under the stoop a pipe glowed and went dark: the janitor was still on his steps, or had left the pipe to do it for him.","text":"The flats over Lipsky’s were five floors of brick on Orchard Street, with the cloth shop shut up at the bottom behind iron shutters. After midnight the pushcarts stood along the curb under their tarpaulins, waiting for morning. Down by the cellar steps under the stoop a pipe glowed and went dark: the janitor was still on his steps, or had left the pipe to keep watch for him."}
+{"id":"lipskys/arrival/1","flags":["repeat"],"action":"rewrite","batch":7,"before":"It was a clear night over Orchard Street, the kind that shows you every washing line strung between the buildings, and the tenement over Lipsky’s had more than its share. A whole family’s shirts hung out over the street on a pulley, white as a surrender, waiting for a sun that wasn’t due till six.","text":"It was a clear night over Orchard Street, the kind that shows you every washing line strung between the buildings, and the tenement over Lipsky’s had more than its share. A whole family’s shirts hung out over the street on a pulley, white as a surrender, waiting for a sun that wasn’t due for hours."}
+{"id":"lipskys/arrival/2","flags":[],"action":"keep","batch":7}
+{"id":"lipskys/arrival/3","flags":[],"action":"keep","batch":7}
+{"id":"lipskys/arrival/4","flags":[],"action":"keep","batch":7}
+{"id":"lipskys/arrival/5","flags":[],"action":"keep","batch":7}
+{"id":"lipskys/arrival/6","flags":[],"action":"keep","batch":7}
+{"id":"lipskys/arrival/7","flags":[],"action":"keep","batch":7}
+{"id":"sokols/arrival/0","flags":[],"action":"keep","batch":7}
+{"id":"sokols/arrival/1","flags":[],"action":"keep","batch":7}
+{"id":"sokols/arrival/2","flags":[],"action":"keep","batch":7}
+{"id":"sokols/arrival/3","flags":[],"action":"keep","batch":7}
+{"id":"sokols/arrival/4","flags":["place","compressed"],"action":"rewrite","batch":7,"before":"The bar behind Sokol’s bakery was shut, which there means the chairs were up and the barman was still at it, drying glasses and counting them onto a towel. In the front the ovens were coming back up for the morning. The whole place smelled of yeast and gin, which is the smell of a man with two jobs and no sleep.","text":"The bar behind Sokol’s bakery was shut, which in a bar like that meant the chairs were up and the barman was still at work, drying glasses and counting them onto a towel. In the front the ovens were coming back up for the morning. The whole place smelled of yeast and gin, which is the smell of a man with two jobs and no sleep."}
+{"id":"sokols/arrival/5","flags":[],"action":"keep","batch":7}
+{"id":"sokols/arrival/6","flags":[],"action":"keep","batch":7}
+{"id":"sokols/arrival/7","flags":[],"action":"keep","batch":7}
+{"id":"peacock/arrival/0","flags":[],"action":"keep","batch":7}
+{"id":"peacock/arrival/1","flags":["long"],"action":"rewrite","batch":7,"before":"Chrystie Street was dark from end to end except the undertaker’s window, where a lamp burned all night over a coffin with its lid up, and the stair beside it down to the Peacock, where light came up through the slot in the steel door and lay across the sidewalk in a thin bar. Down there the band was playing a slow one, the kind couples lean on.","text":"Chrystie Street was dark from end to end except the undertaker’s window, where a lamp burned all night over a coffin with its lid up. Beside the window a stair went down to the Peacock, and light came up from the slot in the steel door and lay across the sidewalk in a thin bar. Down in the cellar the band was playing a slow one, the kind couples lean on."}
+{"id":"peacock/arrival/2","flags":[],"action":"keep","batch":7}
+{"id":"peacock/arrival/3","flags":["translate"],"action":"rewrite","batch":7,"before":"There was frost on the outside stair, and at the bottom of it the only warm cellar on Chrystie Street; the undertaker next door keeps his cold on purpose. The band played in their coats till the second set. A woman with a tray of cigarettes moved between the tables, selling Luckies and looking at every wrist she passed.","text":"There was frost on the outside stair, and at the bottom of it the only warm cellar on Chrystie Street; the undertaker next door keeps his cold on purpose. The band played in their coats till the second set. A woman with a tray of cigarettes moved between the tables, selling Luckies and pricing every wristwatch she passed."}
+{"id":"peacock/arrival/4","flags":[],"action":"keep","batch":7}
+{"id":"peacock/arrival/5","flags":[],"action":"keep","batch":7}
+{"id":"peacock/arrival/6","flags":["long"],"action":"rewrite","batch":7,"before":"With the band gone home, the Peacock looked like what it was: a low cellar with a damp ceiling and the chairs upside down on the tables, smelling of gin and of lilies, the lilies coming down through the floorboards from the undertaker’s. The steel door was bolted. The slot opened anyway when I knocked, which told me the doorkeeper didn’t go home either.","text":"With the band gone home, the Peacock looked like what it was: a low cellar with a damp ceiling and the chairs upside down on the tables. The place smelled of gin and of lilies, the lilies coming down through the floorboards from the undertaker’s. The steel door was bolted. The slot opened anyway when I knocked, which told me the doorkeeper didn’t go home either."}
+{"id":"peacock/arrival/7","flags":[],"action":"keep","batch":7}
+{"id":"lyric/arrival/0","flags":[],"action":"keep","batch":7}
+{"id":"lyric/arrival/1","flags":["long"],"action":"rewrite","batch":7,"before":"The Lyric had let out, and Second Avenue in front of it had the look of a party after the guests have gone: programs in the gutter, a hat on a hydrant, and the café across the street full of actors explaining the play to each other. In the lobby the lights were down to one chandelier, and the brass rail round the box office was still warm from hands.","text":"The Lyric had let out, and Second Avenue in front of it looked like a party after the guests have gone. There were programs in the gutter, a hat on a hydrant, and the café across the street full of actors explaining the play to each other. In the lobby the lights were down to one chandelier, and the brass rail round the box office was still warm from hands."}
+{"id":"lyric/arrival/2","flags":[],"action":"keep","batch":7}
+{"id":"lyric/arrival/3","flags":[],"action":"keep","batch":7}
+{"id":"lyric/arrival/4","flags":[],"action":"keep","batch":7}
+{"id":"lyric/arrival/5","flags":[],"action":"keep","batch":7}
+{"id":"lyric/arrival/6","flags":[],"action":"keep","batch":7}
+{"id":"lyric/arrival/7","flags":[],"action":"keep","batch":7}
+{"id":"steinmetz/arrival/0","flags":[],"action":"keep","batch":7}
+{"id":"steinmetz/arrival/1","flags":[],"action":"keep","batch":7}
+{"id":"steinmetz/arrival/2","flags":[],"action":"keep","batch":7}
+{"id":"steinmetz/arrival/3","flags":[],"action":"keep","batch":7}
+{"id":"steinmetz/arrival/4","flags":[],"action":"keep","batch":7}
+{"id":"steinmetz/arrival/5","flags":[],"action":"keep","batch":7}
+{"id":"steinmetz/arrival/6","flags":[],"action":"keep","batch":7}
+{"id":"surgery/arrival/0","flags":[],"action":"keep","batch":7}
+{"id":"surgery/arrival/1","flags":[],"action":"keep","batch":7}
+{"id":"surgery/arrival/2","flags":[],"action":"keep","batch":7}
+{"id":"surgery/arrival/3","flags":[],"action":"keep","batch":7}
+{"id":"surgery/arrival/4","flags":[],"action":"keep","batch":7}
+{"id":"surgery/arrival/5","flags":[],"action":"keep","batch":7}
+{"id":"surgery/arrival/6","flags":[],"action":"keep","batch":7}
+{"id":"wexlers/arrival/0","flags":[],"action":"keep","batch":7}
+{"id":"wexlers/arrival/1","flags":[],"action":"keep","batch":7}
+{"id":"wexlers/arrival/2","flags":["ellipsis","translate"],"action":"rewrite","batch":7,"before":"The Bowery at that hour was all doorways and el pillars, and the pawnshop window was the brightest thing on the block, because the pawnbroker leaves a lamp on over the jewelry to discourage the people it would encourage. Under the lamp a tray of wedding rings lay sorted by size, which is as near as the Bowery comes to a jeweler.","text":"The Bowery in the small hours was all doorways and el pillars, and the brightest thing on the block was the pawnshop window. The pawnbroker leaves a lamp on over the jewelry, to discourage anybody the jewelry might give ideas to. Under the lamp a tray of wedding rings lay sorted by size, which is as near as the Bowery comes to a jeweler."}
+{"id":"wexlers/arrival/3","flags":[],"action":"keep","batch":7}
+{"id":"wexlers/arrival/4","flags":[],"action":"keep","batch":7}
+{"id":"wexlers/arrival/5","flags":[],"action":"keep","batch":7}
+{"id":"wexlers/arrival/6","flags":["long"],"action":"rewrite","batch":7,"before":"Morning came in cold on the Bowery, and a line had formed already outside the pawnshop under the three brass balls: three men with their collars up and a woman with a sewing machine in a baby carriage, waiting for the grille to go up. In the window every overcoat had its ticket fluttering in the draft from the door.","text":"Morning came in cold on the Bowery, and a line had already formed outside the pawnshop under the three brass balls. Three men stood in it with their collars up, and a woman with a sewing machine in a baby carriage, all waiting for the grille to go up. In the window every overcoat had its ticket fluttering in the draft from the door."}
+{"id":"cardroom/arrival/0","flags":[],"action":"keep","batch":7}
+{"id":"cardroom/arrival/1","flags":[],"action":"keep","batch":7}
+{"id":"cardroom/arrival/2","flags":["compressed"],"action":"rewrite","batch":7,"before":"The card room’s outside stair was slick with the rain coming down through the el tracks over Allen Street, and it leaned toward the street as if it meant to leave. Inside, the players had kept their hats on; the roof leaks over the window table, and nobody sits at the window table.","text":"The card room’s outside stair was slick with the rain coming down through the el tracks over Allen Street, and it leaned toward the street as if it meant to leave. Inside, the players had kept their hats on against the drips, and nobody was sitting at the window table, where the roof leaks worst."}
+{"id":"cardroom/arrival/3","flags":[],"action":"keep","batch":7}
+{"id":"cardroom/arrival/4","flags":[],"action":"keep","batch":7}
+{"id":"cardroom/arrival/5","flags":[],"action":"keep","batch":7}
+{"id":"cardroom/arrival/6","flags":["rhythm","translate"],"action":"rewrite","batch":7,"before":"The card room had shut for the night: the lamp off, the chairs pushed in, and the ashtrays not emptied by anybody, ever. The smell of the garage came up through the floor, oil and rubber, and met the smell of the night coming down.","text":"The card room had shut for the night: the lamp off, the chairs pushed in, and the ashtrays not emptied by anybody, ever. The smell of the garage came up through the floor, oil and rubber, and met the night’s stale smoke still hanging under the ceiling."}
+{"id":"cardroom/arrival/7","flags":["ellipsis"],"action":"rewrite","batch":7,"before":"The card room over the garage was cold and empty at that hour, the oil stove out and frost on the inside of the black windows, where somebody had scraped one corner clear for a look at the street. A hand of five had been left face down on the baize, squared up neatly, as if somebody meant to come back and play it.","text":"The card room over the garage was cold and empty this close to morning, the oil stove out and frost on the inside of the black windows, where somebody had scraped one corner clear for a look at the street. A hand of five had been left face down on the baize, squared up neatly, as if somebody meant to come back and play it."}
+{"id":"excelsior/arrival/0","flags":["long"],"action":"rewrite","batch":7,"before":"The Excelsior was a block of private flats on East Houston Street, six floors with its name over the door in gold script, and a lobby with a mirror, a potted palm and nobody at the desk, because there isn’t a desk. Everybody who lives there has a key to the front door. After midnight the lobby light was on, because it’s nobody’s job to turn it off.","text":"The Excelsior was a block of private flats on East Houston Street, six floors with its name over the door in gold script. The lobby had a mirror, a potted palm and nobody at the desk, because there isn’t a desk. Everybody who lives there has a key to the front door. After midnight the lobby light was on, because it’s nobody’s job to turn it off."}
+{"id":"excelsior/arrival/1","flags":["long"],"action":"rewrite","batch":7,"before":"The Excelsior stood on East Houston Street between a bank and a bakery, six floors of yellow brick with its name over the door and a lamp either side, the kind of building that puts on a necktie for the street. The lobby was tiled in black and white like a checkerboard, and somebody’s galoshes stood by the door in the middle of a game.","text":"The Excelsior stood on East Houston Street between a bank and a bakery, six floors of yellow brick with its name over the door and a lamp either side. It was the kind of building that puts on a necktie for the street. The lobby was tiled in black and white like a checkerboard, and somebody’s galoshes stood by the door in the middle of a game."}
+{"id":"excelsior/arrival/2","flags":["compressed"],"action":"rewrite","batch":7,"before":"After midnight East Houston Street was trolley wires and wet light, and the Excelsior’s front door was the only one on the block with a brass kick plate polished by tenants’ shoes instead of a janitor. Inside, the stairs went up into the dark from a lobby lamp nobody owns, past landings where every door had its tenant’s name in a little brass frame.","text":"After midnight East Houston Street was trolley wires and lamplight, and the Excelsior’s front door was the only one on the block with a brass kick plate polished by tenants’ shoes instead of a janitor. Inside, the stairs went up into the dark from a lobby lamp nobody owns, past landings where every door had its tenant’s name in a little brass frame."}
+{"id":"excelsior/arrival/3","flags":[],"action":"keep","batch":7}
+{"id":"excelsior/arrival/4","flags":[],"action":"keep","batch":7}
+{"id":"excelsior/arrival/5","flags":[],"action":"keep","batch":7}
+{"id":"excelsior/arrival/6","flags":[],"action":"keep","batch":7}
+{"id":"excelsior/arrival/7","flags":[],"action":"keep","batch":7}
+{"id":"excelsior/arrival/8","flags":[],"action":"keep","batch":7}
+{"id":"belvedere/arrival/0","flags":[],"action":"keep","batch":7}
+{"id":"belvedere/arrival/1","flags":[],"action":"keep","batch":7}
+{"id":"belvedere/arrival/2","flags":[],"action":"keep","batch":7}
+{"id":"belvedere/arrival/3","flags":["long"],"action":"rewrite","batch":7,"before":"Rain on Ludlow Street, and the Belvedere was taking it badly: the gutter over the door ran straight onto the stoop, and the tenants had laid an old door across two bricks to walk on, so that coming home was like boarding a ship. Inside, wet umbrellas stood open on the stairs to dry, one to a step, five flights up.","text":"Rain on Ludlow Street, and the Belvedere was taking it badly: the gutter over the door ran straight onto the stoop. The tenants had laid an old door across two bricks to walk on, so that coming home was like boarding a ship. Inside, wet umbrellas stood open on the stairs to dry, one to a step, five flights up."}
+{"id":"belvedere/arrival/4","flags":[],"action":"keep","batch":7}
+{"id":"belvedere/arrival/5","flags":["ellipsis","pronoun"],"action":"rewrite","batch":7,"before":"By that hour the Belvedere had gone dark from the pickle store to the roof, every flat but one, where a kitchen light was on and a kettle was beginning to think about it. The stairs creaked under nobody at all, the way old stairs do at night, settling the day’s accounts.","text":"By the middle of the night the Belvedere had gone dark from the pickle store to the roof, every flat but one, where a kitchen light was on and a kettle was beginning to think about boiling. The stairs creaked under nobody at all, the way old stairs do at night, settling the day’s accounts."}
+{"id":"belvedere/arrival/6","flags":[],"action":"keep","batch":7}
+{"id":"belvedere/arrival/7","flags":[],"action":"keep","batch":7}
+{"id":"belvedere/arrival/8","flags":[],"action":"keep","batch":7}
