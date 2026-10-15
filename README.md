@@ -78,7 +78,11 @@ npm run board-sweep -- --tier all --n 60       # the generator's rates and invar
 npx tsx scripts/board-measure.ts --seeds 50    # the puzzle, measured
 npx tsx scripts/board-prose.ts                 # the prose, measured (--plan off: without the microplanner; --situated 0: without the situated deck)
 npx tsx scripts/skeletons.ts --n 300 --tier all # the skeletons, a JSONL corpus (docs/49, docs/50)
-npx tsx scripts/roundtrip.ts --nights 30       # the round trip: plain pages and voicings read back to their propositions (docs/52)
+npx tsx scripts/roundtrip.ts --nights 30       # the round trip: plain pages and voicings read back to their propositions, and the clarity check (docs/52, docs/53)
+npx tsx scripts/voicings.ts check              # the voicings held to their shapes and the dial (also: samples, show, coverage, variety)
+npx tsx scripts/bones-read.ts pick --out DIR   # the blind read, build against build (pick, dump, pair, score)
+npx tsx scripts/voicings.ts check              # the voicings held to their shapes (docs/52 build 2); also samples, show, coverage, variety
+npx tsx scripts/bones-read.ts pick --out DIR   # the blind read, build against build (docs/52 build 2): pick, dump, pair, score
 npx tsx scripts/situated-gaps.ts --nights 40   # the gaps the situated deck fills, by situation (docs/51)
 npx tsx scripts/situated-deck.ts build         # the situated deck, written and filtered into content/board/situated.json
 npm run model:sample                           # the tiny model (docs/50): twenty samples
@@ -95,7 +99,8 @@ src/game/board/bones/  bones and flesh (docs/52): every fact as propositions, co
 src/ui/           the book: the only code that touches the document.
 src/cli/          play, read, case, board-sweep.
 content/board/    the board's card families, the situated deck (docs/51): texture keyed by the gap's situation,
-                  and the voicings (docs/52): the planner's composites in the voice.
+                  and the voicings (docs/52): every composite a page says, in the voice, by shape,
+                  form and the speaker's manner.
 content/decks/    the four older decks the board still deals from.
 content/plain-terms.json   the words a page may not use.
 model/            the tiny model's corpus, tokenizer and training (docs/50; model/README.md).

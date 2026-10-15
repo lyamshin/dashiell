@@ -236,7 +236,7 @@ export function pronounAmbiguity(c: BoardCase, blocks: readonly Block[]): string
 
 /** docs/49 §2's joins, as the page says them. */
 export const JOINS: { name: string; re: RegExp }[] = [
-  { name: 'but', re: /(?:^|[.!?]\s+)But\b|, but\b/ },
+  { name: 'but', re: /(?:^|[.!?]\s+)But\b|[,;] but\b/ },
   { name: 'so', re: /(?:^|[.!?]\s+)So\b/ },
   // Planner 2: a narrowing's "so" inside its sentence, "…in this room, so he’d let whoever did it in" (not "so far", "so that").
   { name: 'so (clause)', re: /, so (?!far\b|that\b|much\b|many\b|long\b)/ },
@@ -251,8 +251,31 @@ export const JOINS: { name: string; re: RegExp }[] = [
   { name: 'that put', re: /\b(?:That|He|She) put\b/ },
 ];
 
-/** The joins in a page's fact units (the narration of them). */
+/** The connectives a composite took, and the joins of its pairs (docs/52: what composition decided). */
+const BONE_JOINS = new Set(['so', 'but', 'which', 'same', 'too', 'held', 'count', 'self', 'two', 'colon', 'and', 'semi', 'who', 'and-he', 'with']);
+function boneJoins(c: { shape: string; join?: string; parts?: unknown[] }): string[] {
+  const out = c.join && BONE_JOINS.has(c.join) ? [c.join] : [];
+  if (c.shape === 'CONFIRMED-WITH') out.push('with');
+  for (const p of (c.parts ?? []) as { shape: string; join?: string; parts?: unknown[] }[]) out.push(...boneJoins(p));
+  return out;
+}
+
+/**
+ * The joins in a page's fact units. Read off the composites where the page has them (docs/52 build
+ * 2: the voicings say a join many ways, and the words alone can't count them); the narration's own
+ * connectives otherwise.
+ */
 export function joinsIn(units: readonly Unit[]): string[] {
+  const out: string[] = [];
+  if (units.some((u) => u.kind === 'fact' && (u.bones ?? []).length > 0)) {
+    for (const u of units) if (u.kind === 'fact') for (const b of u.bones ?? []) out.push(...boneJoins(b));
+    return out;
+  }
+  return joinWordsIn(units);
+}
+
+/** The joins the narration of a page's fact units says in words ("But", "So", "which was what"…). */
+export function joinWordsIn(units: readonly Unit[]): string[] {
   const out: string[] = [];
   for (const u of units) {
     if (u.kind !== 'fact') continue;

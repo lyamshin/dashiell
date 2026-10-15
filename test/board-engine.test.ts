@@ -173,8 +173,9 @@ describe('board: putting it to them', () => {
           if (wrong) {
             const r = stepBoard(d, run, `put ${p} ${h} ${wrong.id}`);
             expect(r.run.used).toBe(run.used + 1);
-            const text = r.page.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join(' ');
-            expect(text).toContain('That doesn’t touch anything I told you.');
+            // docs/52 build 2: what they say back is a held-said voicing, in their manner.
+            const said = (r.page.board?.units ?? []).flatMap((u) => (u.kind === 'fact' ? (u.bones ?? []).map((b) => b.voicing ?? '') : []));
+            expect(said.some((v) => v.startsWith('reaction/held-said')), said.join(', ')).toBe(true);
             expect(r.run.asked).not.toContain(`confront:${p}@${h}`);
             checked++;
           }

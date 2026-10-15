@@ -78,23 +78,24 @@ export function remarkSaid(c: BoardCase, l: Line): string {
   return l.text.replace(/^[^:]+: /, '').replace(/[.”]+$/, '').replace(/^“/, '');
 }
 
-/** "here", or the place by name. */
-export function where(c: BoardCase, pl: PlaceId, here: PlaceId): string {
-  return pl === here ? 'here' : placeName(c, pl);
+/** The place by name. (docs/53, the dial: never "here" for a place, even the one I'm standing in; `here` is kept for the callers.) */
+export function where(c: BoardCase, pl: PlaceId, _here: PlaceId): string {
+  return placeName(c, pl);
 }
 
-/** "here", or "at the Thalia". */
-export function atWhere(c: BoardCase, pl: PlaceId, here: PlaceId): string {
-  return pl === here ? 'here' : `at ${placeName(c, pl)}`;
+/** "at the Thalia" (docs/53: never "here"). */
+export function atWhere(c: BoardCase, pl: PlaceId, _here: PlaceId): string {
+  return `at ${placeName(c, pl)}`;
 }
 
 /** How the means was had, said of one person: "heard about the key", "been at Rafferty’s while the chloral was on the shelf". */
 export function accessPhrase(c: BoardCase, yes: boolean, again = false, here?: PlaceId): string {
   const mode = c.setup?.means ?? '';
   const party = c.givens.lines?.find((g) => g.kind === 'party')?.vars;
-  // docs/47 C13: "here" in the room itself, not the place's name a third time in a paragraph.
-  const at = here === c.means.origin ? 'here' : `at ${placeName(c, c.means.origin)}`;
-  const inAt = here === c.means.origin ? 'in here' : `in at ${placeName(c, c.means.origin)}`;
+  // docs/53, the dial: the place by name, even in the room itself (docs/47 C13's "here" retired).
+  void here;
+  const at = `at ${placeName(c, c.means.origin)}`;
+  const inAt = `in at ${placeName(c, c.means.origin)}`;
   // `again`: the same fact a second time tonight, in other words (the elimination recaps it).
   if (isMurder(c)) {
     const m = c.means.name.replace(/^(a|an) /, '');

@@ -9,7 +9,7 @@ import { dealBoard, type BoardRun } from '../src/game/board/model.js';
 import { newBoardRun } from '../src/game/board/engine.js';
 import { playBoardOracle, playReader, playWanderer } from '../src/game/board/oracle.js';
 import { PLAN, newBudget, planSection, realize, type Item, type PlanCtx } from '../src/game/board/plan/index.js';
-import { factSentences, joinsIn, listSmell, pronounAmbiguity, restatedPointer, thoughtParagraphs } from '../src/game/board/plan/measure.js';
+import { factSentences, joinWordsIn, joinsIn, listSmell, pronounAmbiguity, restatedPointer, thoughtParagraphs } from '../src/game/board/plan/measure.js';
 import { markPronoun } from '../src/game/board/plan/refer.js';
 import { bandOf } from '../src/game/board/plan/sentences.js';
 import type { Beat } from '../src/game/board/sheets.js';
@@ -96,7 +96,9 @@ describe('docs/49 §4: the measures', () => {
       run.log.forEach((p, i) => {
         expect(pronounAmbiguity(d.kase, p.blocks), `seed ${s} p${i + 1}`).toEqual([]);
         expect(restatedPointer(d.kase, run.log[i - 1], p), `seed ${s} p${i + 1}`).toBeNull();
-        const js = joinsIn(p.board?.units ?? []);
+        const js = [...joinsIn(p.board?.units ?? []), ...joinWordsIn(p.board?.units ?? []).filter((j) => j === 'but' || j === 'so').map((j) => `${j} (said)`)];
+        expect(js.filter((j) => j === 'but (said)').length, `seed ${s} p${i + 1}`).toBeLessThanOrEqual(1);
+        expect(js.filter((j) => j === 'so (said)').length, `seed ${s} p${i + 1}`).toBeLessThanOrEqual(1);
         expect(js.filter((j) => j === 'but').length, `seed ${s} p${i + 1}`).toBeLessThanOrEqual(1);
         expect(js.filter((j) => j === 'so').length, `seed ${s} p${i + 1}`).toBeLessThanOrEqual(1);
       });
@@ -213,21 +215,24 @@ describe('docs/49 §2: reference', () => {
 });
 
 describe('docs/49 §2: aggregation and connectives', () => {
-  it('a watcher’s hour and its "nobody else" are one sentence', () => {
+  it('a watcher’s hour and its "nobody else" are one composite, said in a voicing of the watcher’s manner', () => {
+    // docs/52 build 2: the writer hands the hour over (LIST-HOUR `whole`); the voicing says "nobody else" its own way.
     const out = plan(
       {
         job: [
           fact('job', '“Ten, Feeney. Nobody else.”', [id('Feeney')], {
             exempt: true,
+            speech: true,
             carries: ['list:barkeep@10'],
             props: [{ k: 'LIST', watcher: 'barkeep', place: 'bar', hour: 10, people: ['feeney'], whole: true }],
-            flesh: { when: 'Ten', names: 'Feeney', whole: true, nobody: 'Nobody else' },
+            say: { shape: 'LIST-HOUR', flags: ['hour', 'whole', 'next', 'one'], args: { hours: { t: 'hours', hs: [10] }, names: 'Feeney' }, manner: 'terse' },
           }),
         ],
       },
       [['job']],
     );
-    expect(out[0]).toBe('“Ten, Feeney, and nobody else.”');
+    expect(out[0]).toMatch(/^“.*\b[Tt]en\b.*Feeney.*”$/);
+    expect(out[0]).toMatch(/\bnobody\b|\bno one\b|\bthe lot\b|\beverybody\b|\bThat’s all\b|\bthat’s it\b/i);
   });
 
   it('a collision takes the page’s one "but"; the second goes without', () => {
@@ -250,7 +255,7 @@ describe('docs/49 §2: aggregation and connectives', () => {
     );
     expect(out[0]).toMatch(/^Corrigan said home at eleven, but Ashby passed her on Stuyvesant Street at eleven\./);
     // (Without the "but", Planner 2 says the second as one sentence, its join after a colon.)
-    expect(out[0]).toMatch(/Corrigan said home at ten, and Coffin had nobody here at ten o’clock: one of them was wrong\.$/);
+    expect(out[0]).toMatch(/Corrigan said home at ten, and Coffin had nobody at the Thalia at ten o’clock: one of them was wrong\.$/);
   });
 });
 
@@ -274,7 +279,7 @@ describe('docs/49 §2: rhythm', () => {
  * ------------------------------------------------------------------ */
 
 describe('docs/49 Planner 2: composition', () => {
-  it('two people one list confirms are one sentence, who could get at the means is said of the person, and the window is one sentence', () => {
+  it('two people one list confirms are one sentence (docs/53: the list by whose it is, and the place by name), joined to who could get at the means; the window is one sentence', () => {
     const coffin = id('Coffin');
     const ashby = id('Ashby');
     const feeney = id('Feeney');
@@ -297,7 +302,7 @@ describe('docs/49 Planner 2: composition', () => {
       },
       [['thought']],
     );
-    expect(out[0]).toBe('Coffin had Feeney here at eleven, same as she said, and with her Ashby, who never heard Prentiss tell the room. Prentiss had said ten or eleven, and at ten Duchess was at the Delmonico rooms.');
+    expect(out[0]).toBe('Ashby never heard Prentiss tell the room, and Coffin’s list had Feeney at the Thalia at eleven, just like she said, and the same list had Ashby right there with her. Prentiss had said ten or eleven, and at ten Duchess was at the Delmonico rooms.');
   });
 
   it('an evening that held, and the hour that mattered on their word alone, are one sentence with the "but"; the aside after the agreement goes', () => {
@@ -322,7 +327,7 @@ describe('docs/49 Planner 2: composition', () => {
       [['thought']],
     );
     // ("he" after Coffin could be Coffin: the name.)
-    expect(out[0]).toBe('So the Automat at eight, which was what Coffin had, but for eleven, the hour that mattered, Ashby said the Thalia. I let it stand.');
+    expect(out[0]).toBe('So Ashby had told it straight: Coffin’s list had him at the Automat at eight, but for eleven, the hour that mattered, Ashby said the Thalia, and nobody else had said so. I let it stand.');
   });
 
   it('a thought of N facts takes at most ceil(N/2) sentences, but for a collision’s own sentence and two long facts', () => {

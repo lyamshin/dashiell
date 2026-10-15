@@ -20,7 +20,7 @@ import { lintBoardRun } from '../../src/game/board/lint.js';
 import { proseIssues } from '../../src/game/board/prose-lint.js';
 import { boardFields, truthReport, scoreBoard, storyOfBoard, curtainOfBoard } from '../../src/game/board/report.js';
 import { accountOf } from '../../src/game/board/knowledge.js';
-import { hoursWithReason, spokenAccountLines } from '../../src/game/board/tell.js';
+import { hoursWithReason } from '../../src/game/board/tell.js';
 import { bibleShare, biblePerson } from '../../src/game/board/world.js';
 import { mannerOf } from '../../src/game/board/pages.js';
 import { walkBetween } from '../../src/game/board/walk.js';
@@ -461,9 +461,11 @@ describe('the prose draws on the bible first', () => {
           const answer = p.blocks.find((b) => b.kind === 'prose' && b.voice === 'answer');
           if (!bp || !a || answer?.kind !== 'prose') continue;
           const reasoned = hoursWithReason(d.kase, a);
-          const said = spokenAccountLines(d.kase, a, mannerOf(d.kase, who), d.kase.seed % 4).filter((x) => x.remark === undefined);
-          const first = answer.text.indexOf((said[0]?.text ?? '').slice(0, 20));
-          const last = answer.text.indexOf((said[said.length - 1]?.text ?? '').slice(0, 20));
+          // (docs/52 build 2: the account's lines are voiced on the page, so they're found by their units.)
+          const said = (p.board?.units ?? []).filter((u) => u.kind === 'fact' && u.carries.some((x) => x.startsWith('claim:'))).map((u) => u.text.replace(/^“|”$/g, ''));
+          const first = answer.text.indexOf((said[0] ?? '').slice(0, 20));
+          const last = answer.text.indexOf((said[said.length - 1] ?? '').slice(0, 20));
+          expect(first, `${d.kase.id} p${p.n}`).toBeGreaterThanOrEqual(0);
           for (const [h, l] of Object.entries(bp.voice.hours)) {
             const at = answer.text.indexOf(l.replace(/^[“"]|[”"]$/g, '').slice(0, 30));
             if (at < 0) continue;

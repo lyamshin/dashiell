@@ -15,7 +15,8 @@
 
 import type { Beat } from '../sheets.js';
 import type { ProseVoice } from '../types.js';
-import type { Composite, Prop } from '../bones/types.js';
+import type { Composite, Prop, Shape } from '../bones/types.js';
+import type { Args } from '../bones/voice.js';
 
 /** docs/49 §2: what the page has spent of its joins: one "so" chain, one "but", and Planner 2's semicolons. */
 export interface PageBudget {
@@ -95,6 +96,25 @@ export interface Item {
   opener?: 'So' | 'But';
   /** docs/52: the composite the planner made of it, and how it was said. */
   comp?: Composite;
+  /**
+   * docs/52 build 2: the composite as the writer hands it over to be voiced: its shape, the flags
+   * that pick its voicings, its arguments (typed where the round trip reads them back by type), and
+   * the speaker's manner. The planner says it in a voicing (`bones/say.ts`); `text` is the plain
+   * fallback where none fits.
+   */
+  say?: SaySpec;
+  /** docs/52 build 2: words said in the same breath after the voicing (inside its closing quotation mark): the office's pointer's reason. */
+  sayAfter?: string;
+}
+
+/** docs/52 build 2: a composite to be voiced. */
+export interface SaySpec {
+  shape: Shape;
+  flags: string[];
+  args: Args;
+  manner?: string;
+  /** Where no voicing fits, keep the writer's own words (the case's description of a find), not the plain page's. */
+  keep?: boolean;
 }
 
 /** The skeleton: what the page is made of, in order. */

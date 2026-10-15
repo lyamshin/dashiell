@@ -76,12 +76,18 @@ export function proseIssues(d: BoardDeal, run: BoardRun): ProseIssue[] {
   const places = c.places.map((p) => p.short).filter((s) => s.length >= 4);
   run.log.forEach((p, i) => {
     const paras = narration(p);
+    // docs/53, the dial: a fact says its place by name, every time ("at the Thalia", never "here"), so
+    // the place names counted are the texture's: what's left of a paragraph once its facts are taken out.
+    const facts = (p.board?.units ?? []).flatMap((u) => (u.kind === 'fact' ? [u.text.replace(/⁣\d+⁤/g, '').replace(/“[^”]*”/g, ' ')] : []));
+    const texture = (t: string) => facts.reduce((x, f) => (f.trim().length > 0 ? x.split(f.trim()).join(' ') : x), t);
     // Place names: bolted onto a sentence after the paragraph has named the place, or three in a paragraph.
-    for (const para of paras) {
+    for (const para0 of paras) {
+      const para = { ...para0, text: texture(para0.text) };
       for (const pl of places) {
         const n = count(para.text, pl);
         if (n >= 3) out.push({ page: i, rule: 'place-tag', detail: `${pl} ×${n}: ${para.text.slice(0, 80)}` });
-        const sentences = para.text.split(/(?<=[.!?])\s+/);
+        // (Not at "Mrs." or "Dr.": "…with Mrs. Krantz, and at eight" is one sentence.)
+        const sentences = para.text.split(/(?<!\b(?:Mrs?|Dr)\.)(?<=[.!?])\s+/);
         sentences.forEach((s, k) => {
           if (k === 0 || !new RegExp(`\\bat ${pl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[,.]?$`).test(s.trim())) return;
           if (sentences.slice(0, k).some((x) => x.toLowerCase().includes(pl.toLowerCase())) && /\b(hung|stood|sat|was|were|lay|leaned|ticked|knocked)\b/.test(s) && !/^(It was|I |From|Getting|The walk|[A-Z]\w+ (was|lay) )/.test(s)) out.push({ page: i, rule: 'place-tag', detail: s.trim() });

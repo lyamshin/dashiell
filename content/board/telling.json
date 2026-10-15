@@ -90,8 +90,5 @@
   {"id": "bte-1606", "family": "motive-close", "tags": {}, "text": "{name} had a reason. Plenty of people have a reason. What matters is where they were."},
   {"id": "bte-1701", "family": "find-papers", "tags": {"top": "named"}, "text": "There was a page on everybody with a grudge, typed and clipped together. {Top}’s page was on top, and it said that {motive}."},
   {"id": "bte-1702", "family": "find-papers", "tags": {"top": "named"}, "text": "There was a page in the papers for everybody with a grudge, in a careful hand, and {top}’s was the one on top: {motive}."},
-  {"id": "bte-1703", "family": "find-papers", "tags": {"top": "named"}, "text": "The papers held a page on everybody with a grudge, kept like a doctor’s files. {Top}’s page was on top. {Motive}."},
-  {"id": "bte-1711", "family": "find-papers", "tags": {"top": "none"}, "text": "There was a page on everybody with a grudge, typed and clipped together, and every page said what the grudge was. They’d been kept square, so that nobody got top billing."},
-  {"id": "bte-1712", "family": "find-papers", "tags": {"top": "none"}, "text": "There was a page in the papers for everybody with a grudge, in a careful hand. Every one of them had a reason, and every reason was written down."},
-  {"id": "bte-1713", "family": "find-papers", "tags": {"top": "none"}, "text": "The papers held a page on everybody with a grudge, kept like a doctor’s files, one grudge to a page and every page full."}
+  {"id": "bte-1703", "family": "find-papers", "tags": {"top": "named"}, "text": "The papers held a page on everybody with a grudge, kept like a doctor’s files. {Top}’s page was on top. {Motive}."}
 ]
