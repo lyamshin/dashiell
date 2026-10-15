@@ -16,7 +16,7 @@ const LIVING = /^(?:The|A|An) (?:[\w’-]+ )?(?:man|woman|men|women|landlady|lan
 /** A close whose first sentence is about a thing: the room, the weather, an object, a sound. */
 export function thingClose(text: string): boolean {
   const t = stripMarks(text).trim().replace(/^“[^”]*”\s*/, '');
-  if (!/^(?:The|A|An|Somewhere|Overhead|Outside|Upstairs|Downstairs|Across the|Behind me|Above|Below|Down the|Out on|Next door|In the|On the|Through the|From somewhere)\b/.test(t)) return false;
+  if (!/^(?:The|A|An|Somewhere|Overhead|Outside|Upstairs|Downstairs|Across the|Behind|Above|Below|Down the|Out on|Next door|In the|On the|Through the|From somewhere)\b/.test(t)) return false;
   return !LIVING.test(t);
 }
 

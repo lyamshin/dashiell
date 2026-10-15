@@ -127,7 +127,7 @@ export function boardFields(d: BoardDeal): FieldSpec[] {
   const people = suspectsOf(c).map((p) => ({ value: p, label: personOf(c, p)?.name ?? p }));
   const hours = c.board.hours.map((h) => ({ value: String(h), label: `${cap(hourWord(h))} o’clock` }));
   // docs/47 B7: the reasons in an order of their own, and without the suspect's pronoun.
-  const why = whyOrder(c, suspectsOf(c)).map((p) => ({ value: p, label: motiveForm(c, p) }));
+  const why = whyOrder(c, suspectsOf(c)).map((p) => ({ value: p, label: titleClient(c, motiveForm(c, p)) }));
   // docs/47 B9: a lost pet is "him" or "her" on the form too.
   const it = c.type === 'lost-pet' ? pronOf(c, c.crime.victim) : { he: 'it', him: 'it' };
   const out: FieldSpec[] = [

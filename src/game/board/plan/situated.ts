@@ -64,7 +64,7 @@ export const UNCONTRADICTED = new RegExp(`nothing to put against it|nothing agai
  * hand (until I get up); once I'm inside, I don't knock. The prose lint (`posture`, `inside`) holds
  * the pages to the same words.
  */
-export const SAT = /\bI (?:took|pulled up) (?:a |the |an )?(?:[\w’]+ )?(?:chair|stool|seat)\b|\b(?:I|and) sat (?:down|still|on|in|at)\b|\bsat on it\b|\b[Ww]e sat down\b|\bI took the (?:[\w’]+ )?(?:chair|stool)\b|\bsat down (?:across|opposite|beside|at|on|in)\b/;
+export const SAT = /\bI (?:took|pulled up) (?:a |the |an )?(?:[\w’]+ )?(?:chair|stool|seat)\b|\bI sat (?:down|still|on|in|at)\b|(?:^|[.!?”] +)I\b[^.]*\band sat (?:down|on|in|at)\b|(?:^|[.!?”] +)I\b[^.]*\bsat on it\b|\b[Ww]e sat down\b|\bI took the (?:[\w’]+ )?(?:chair|stool)\b/;
 export const STOOD_UP = /\bI (?:got|stood) up\b|\bgot to my feet\b/;
 export const STANDING = /\b(?:I|and) stood (?:on|in|at|by|with|just|there|in the|on the)\b|\bstayed on my feet\b|\bI stayed standing\b|\bon my feet in\b|\bI kept standing\b|\bI stood\.|\bstood on the mat\b|\bstanding (?:a|in|by|at|on|there)\b/;
 export const KNOCKED = /\bI knocked\b|\bthe door took its time\b|\bknocked and waited\b|\bI shut (?:[\w’]+ |\{their\} )?door behind me\b/;

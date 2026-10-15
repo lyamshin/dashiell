@@ -292,12 +292,14 @@ export class Hand {
   }
 
   /** Deal from one of the old decks, by a plain match on its tags. */
-  drawOld(deck: DeckName, match: (c: Card) => boolean, slots: Slots = {}, plain = false): { card: Card; text: string } | null {
+  drawOld(deck: DeckName, match: (c: Card) => boolean, slots: Slots = {}, plain = false, notLastNight = false): { card: Card; text: string } | null {
     const pool = (DECKS[deck] ?? []).filter((c) => match(c) && (!(plain || !this.mayJoke) || !c.joke) && !(this.avoid && this.avoid.test(c.text)));
     const filled = pool.map((c) => ({ card: c, text: fill(c, slots) })).filter((x): x is { card: Card; text: string } => x.text !== null);
     const fresh = filled.filter((x) => !this.spentSet.has(x.card.id));
     const from = fresh.length > 0 ? this.prefer(fresh, (x) => x.card.id) : filled;
     if (from.length === 0) return null;
+    // docs/55 6: a card a player remembers isn't dealt two nights running, even where it's the only one that fits.
+    if (notLastNight && from.every((x) => this.lastNight.has(x.card.id))) return null;
     const pick = from[this.rng.int(from.length)] as { card: Card; text: string };
     if (fresh.length === 0) this.reuses++;
     this.note(pick.card.id);

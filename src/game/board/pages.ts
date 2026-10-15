@@ -584,6 +584,8 @@ function lookAt(w: Writer, p: PersonId): string | null {
     (card: Card) => card.tags.role === arch && card.tags.kind === 'look' && !/\{place\}|\{victim\}/.test(card.text) && !w.hand.used(card.id),
     { He: pr.He, he: pr.he, his: pr.his, him: pr.him, His: pr.His, name: who_.short },
     true,
+    // docs/55 6: a look (and the line that pays it off) isn't dealt two nights running.
+    true,
   );
   const trait = drawn?.card.exports?.trait;
   if (trait?.pay?.length) w.run.traits = { ...(w.run.traits ?? {}), [p]: { short: trait.short, pay: trait.pay } };

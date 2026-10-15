@@ -174,7 +174,10 @@ function pageItems(night: Night): Item[] {
   for (const g of groups) {
     if (g.kind === 'ask') {
       const star = g.choices.find((c) => c.lead);
-      out.push({ n: n++, group: g, person: g.personId as string, choice: { command: `person ${g.personId}`, label: nameOf(night.d.kase, g.personId as string), minutes: 0, lead: !!star, done: false, ...(star?.why ? { why: star.why } : {}) } });
+      const name = nameOf(night.d.kase, g.personId as string);
+      // docs/55 4: the row is the person, so the star's "ask Pickering who…" says "ask who…".
+      const why = star?.why?.replace(new RegExp(`\\bask ${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} `), 'ask ');
+      out.push({ n: n++, group: g, person: g.personId as string, choice: { command: `person ${g.personId}`, label: name, minutes: 0, lead: !!star, done: false, ...(why ? { why } : {}) } });
       continue;
     }
     for (const c of [...g.choices, ...(g.more ?? [])]) out.push({ n: n++, group: g, choice: c });
