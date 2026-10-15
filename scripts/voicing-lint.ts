@@ -14,6 +14,7 @@ import { SHAPES, type Shape } from '../src/game/board/bones/types.js';
 import { BANNED } from '../src/game/board/prose-lint.js';
 import { MACHINERY } from '../src/game/board/reader-lint.js';
 import { OVERSTEP } from '../src/game/board/lint.js';
+import { obliqueIn } from '../src/game/board/bones/clarity.js';
 // @ts-expect-error — plain JavaScript module, no declarations.
 import { findJargon, loadPlainTerms } from './plain-terms.mjs';
 
@@ -99,6 +100,11 @@ export function lintVoicings(vs: readonly Voicing[]): string[] {
     for (const b of BANNED) if (b.re.test(filled)) bad(`banned: ${b.name}`);
     for (const m of MACHINERY) if (m.re.test(filled)) bad(`machinery: ${m.name}`);
     if (/\bclear(?:ed|s)\b|\bout of it\b|\bcrossed (?:\w+ )?off\b/i.test(filled)) bad('a verdict word');
+    // docs/53, the dial: no oblique tag, no "here" for a place, a list said as somebody's.
+    for (const o of obliqueIn(v.template)) bad(`above the dial (docs/53): ${o}`);
+    const narr = v.template.replace(/“[^”]*”/g, ' ').replace(/\bHere(?: was| is|’s)\b/g, '');
+    if (/\bhere\b/i.test(narr)) bad('above the dial (docs/53): "here" for a place');
+    if (/\bthe list\b/.test(narr)) bad('above the dial (docs/53): "the list", not whose');
     // (What somebody says when it's put to them is theirs, not the detective's thought: "I took it" is a crack.)
     const spoken = (v.requires ?? []).some((r) => /-said$|^admit$|^put$/.test(r));
     if (LEVEL_SHAPES.has(v.shape) && !spoken) {

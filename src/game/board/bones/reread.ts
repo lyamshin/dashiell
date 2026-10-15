@@ -29,14 +29,15 @@ import { canon, meansProp } from './extract.js';
 import { lexicon, parsePlain, type Lexicon } from './plain.js';
 import type { Composite, Entry, Id, Prop, Shape, Src } from './types.js';
 import { SCHEMA, mustSay, type ArgType } from './schema.js';
-import { fill, voicingById } from './voice.js';
+import { fill, voicingById, type Args } from './voice.js';
+import { clarityOf } from './clarity.js';
 
 export const VOICED: { check: boolean } = { check: false };
 
-const T = { voiced: 0, voicedOk: 0, flesh: 0, fleshOk: 0, misses: [] as string[] };
+const T = { voiced: 0, voicedOk: 0, flesh: 0, fleshOk: 0, misses: [] as string[], clear: 0, unclear: [] as { id: string; why: string[]; said: string }[] };
 
 export function voicedTally(): typeof T {
-  return { ...T, misses: [...T.misses] };
+  return { ...T, misses: [...T.misses], unclear: [...T.unclear] };
 }
 
 type P<K extends Prop['k']> = Extract<Prop, { k: K }>;
@@ -594,7 +595,7 @@ function withR(c: BoardCase, lx: Lexicon, s: string | undefined): Id[] | undefin
   return namesV(c, lx, m[1] as string);
 }
 
-/** "Abramowitz was there at eight; at nine it was just me": who was with them, hour by hour. */
+/** "Abramowitz was with me at eight; at nine it was just me": who was with them, hour by hour. */
 function bitsR(c: BoardCase, lx: Lexicon, s: string): { h: number; who: Id[] }[] {
   const out: { h: number; who: Id[] }[] = [];
   for (const part of s.split('; ')) {
@@ -604,7 +605,7 @@ function bitsR(c: BoardCase, lx: Lexicon, s: string): { h: number; who: Id[] }[]
       for (const h of hoursV(lx, m[1] as string)) out.push({ h, who: [] });
       continue;
     }
-    m = new RegExp(`^(.+) (?:was|were) there at ((?:${lx.re.H})(?:(?:, | and )(?:${lx.re.H}))*)$`).exec(t);
+    m = new RegExp(`^(.+) (?:was|were) (?:there|with me) at ((?:${lx.re.H})(?:(?:, | and )(?:${lx.re.H}))*)$`).exec(t);
     if (!m) throw new Error(`voiced: no company in "${t}"`);
     const who = namesV(c, lx, m[1] as string);
     for (const h of hoursV(lx, m[2] as string)) out.push({ h, who });
@@ -1199,6 +1200,10 @@ export function checkVoiced(comp: Composite & { said?: string; args?: Record<str
   const r = rereadVoiced(comp, v);
   if (r.ok) T.voicedOk++;
   else if (T.misses.length < 200) T.misses.push(`voiced ${v.c.id}: ${r.why}\n   said: ${comp.said}\n   bones: ${comp.props.map(canon).join(' ')}`);
+  // docs/53: and clear, by the dial: every argument in its words, no pronoun for a place, no oblique tag.
+  const why = clarityOf(v.c, comp as Composite & { said?: string; args?: Args; voicing?: string }, v.here);
+  if (why.length === 0) T.clear++;
+  else T.unclear.push({ id: comp.voicing ?? '', why, said: comp.said ?? '' });
 }
 
 /* ------------------------------------------------------------------ *

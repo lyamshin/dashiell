@@ -1,0 +1,128 @@
+/**
+ * docs/53, the dial: the clarity check, beside the round trip. The plain sentence is the spine: a
+ * voiced composite is clear when
+ *
+ * - every place and hour its propositions name is in its words, as the plain rendering says it: a
+ *   place by its name (a person's own home may be "home"), an hour by its word (a run of hours may
+ *   be "from eight through ten", the end of the evening "the rest of the evening"). Nothing folded
+ *   into "here", "there", "what Coffin had";
+ * - no pronoun stands for a place the same sentence doesn't name ("there", with no place before it
+ *   in its sentence);
+ * - a list is said as somebody's ("Coffin's list"), not "the list", unless its keeper is named in
+ *   the same sentence;
+ * - none of the oblique tags docs/53 names ("which was what X had", "with X's word under it", "where
+ *   I could check it", "on her count", "the part worth keeping").
+ *
+ * The round trip asks whether the facts can be read back at all; this asks whether a reader skimming
+ * the sentence gets them as fast as from the plain one. People may be pronouns: the reference pass
+ * owns them (docs/49 §2).
+ */
+
+import type { BoardCase } from '../model.js';
+import { hourWord, personOf, placeName, type Hour } from '../model.js';
+import { stripMarks } from '../plan/refer.js';
+import { sentencesOf } from '../plan/sentences.js';
+import type { Composite, Prop } from './types.js';
+import { voicingById, type Args } from './voice.js';
+
+/** The oblique tags docs/53 names, and their kin: each makes a reader stop and translate. */
+export const OBLIQUE: { name: string; re: RegExp }[] = [
+  { name: 'which was what X had', re: /\bwhich was what\b|\bwhat (?!I\b)[A-Z{][^,.;:]*? had\b(?! (?:been|said|told|given|seen|heard|put|written|named))/ },
+  { name: 'X’s word under it', re: /\bword under it\b|\bunder it\b[^.]*\bword\b|’s word under\b/ },
+  { name: 'where I could check it', re: /\bwhere I could check\b/ },
+  { name: 'on her count', re: /\b(?:on|by|as) (?:his|her|their|\{\w+(?::\w+)?\}|[A-Z{][\w’{}:]*’s) count\b/i },
+  { name: 'the part worth keeping', re: /\bpart worth keeping\b|\bcame last\b/ },
+  { name: 'that was a hole', re: /\bthat was a hole\b/i },
+  { name: 'where X kept the pet', re: /\bwhere [A-Z{][^,.;]*? kept\b/ },
+];
+
+/** A "there" that points: not "there was", "there were", "there’s", "there had been". */
+const POINTING_THERE = /\bthere\b(?! (?:was|were|is|are|had|has|will|would|wasn’t|weren’t|isn’t|aren’t|hadn’t|might|may|must|could|should|seemed|came|went))(?!’s)/i;
+
+/** "the rest of the evening", "all evening": the hours to the evening's end, said without their words. */
+const TO_THE_END = /\b(?:rest of (?:the|my) (?:evening|night)|all evening|all night|whole (?:evening|night)|whole of the evening|entire evening|every hour|each hour|start to finish|end of the evening|evening was over|remainder of the evening|till closing|stayed put|there the whole time|the whole time|all the while|as long as I was|(?:start|beginning) of the evening|throughout the evening|first hour to the last|from the time I came on)\b/i;
+
+const WORDS: Record<string, number> = { seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, midnight: 12 };
+
+/** The places and hours a proposition names. */
+function placesAndHours(p: Prop): { places: string[]; hours: number[] } {
+  const out = { places: [] as string[], hours: [] as number[] };
+  const walk = (x: Record<string, unknown>) => {
+    for (const [k, v] of Object.entries(x)) {
+      if (k === 'k') continue;
+      if (v && typeof v === 'object' && !Array.isArray(v)) walk(v as Record<string, unknown>);
+      else if ((k === 'place' || k === 'via' || k === 'claimed') && typeof v === 'string' && v) out.places.push(v);
+      else if ((k === 'hour' || k === 'from') && typeof v === 'number') out.hours.push(v);
+      else if (k === 'hours' && Array.isArray(v)) out.hours.push(...(v as number[]));
+    }
+  };
+  walk(p as unknown as Record<string, unknown>);
+  return out;
+}
+
+/** The hours a sentence says: by word, the hours between two it joins with "through", "till", "to", and the rest of the evening after the last it names. */
+function hoursSaid(text: string, all: readonly number[]): Set<number> {
+  const out = new Set<number>();
+  const said = [...text.toLowerCase().matchAll(/\b(seven|eight|nine|ten|eleven|twelve|midnight)\b/g)].map((m) => WORDS[m[1] as string] as number);
+  for (const h of said) out.add(h);
+  for (const m of text.toLowerCase().matchAll(/\b(seven|eight|nine|ten|eleven|twelve)(?: o’clock)?,? (?:through|till|until|to|and stayed (?:on )?(?:through|till|until)|and (?:I )?(?:was )?(?:still )?there (?:at|through|till)|right through to)\b[^.;]*?\b(seven|eight|nine|ten|eleven|twelve)\b/g)) {
+    const a = WORDS[m[1] as string] as number;
+    const b = WORDS[m[2] as string] as number;
+    for (let h = a; h <= b; h++) out.add(h);
+  }
+  // A span said as "stayed through ten" after "at eight": every hour from the first said to the last.
+  if (said.length >= 2 && /\b(?:through|till|until|stayed|still there|remained)\b/i.test(text)) for (let h = Math.min(...said); h <= Math.max(...said); h++) out.add(h);
+  if (TO_THE_END.test(text)) {
+    const from = said.length ? Math.min(...said) : Math.min(...all);
+    for (const h of all) if (h >= from) out.add(h);
+  }
+  return out;
+}
+
+/** What's unclear in one voiced composite, by docs/53's rule; empty when it's clear. */
+export function clarityOf(c: BoardCase, comp: Composite & { said?: string; args?: Args; voicing?: string }, here?: string): string[] {
+  const v = comp.voicing ? voicingById(comp.voicing) : undefined;
+  if (!v || comp.said === undefined) return [];
+  const out: string[] = [];
+  const said = stripMarks(comp.said);
+  const speech = /“/.test(v.template);
+  const narr = speech ? said.replace(/“[^”]*”/g, ' ') : said;
+  const lower = said.toLowerCase();
+  // Every place and hour its propositions name, said.
+  const ph = comp.props.map(placesAndHours);
+  const homes = new Set(comp.props.flatMap((p) => Object.values(p).filter((x): x is string => typeof x === 'string').map((id) => personOf(c, id)?.home).filter((x): x is string => !!x)));
+  // (Somebody's own words may leave out the place they're standing in, or their own home, as anybody
+  // would: "Ten, Feeney, and nobody else." The detective's may leave out the room I'm standing in,
+  // when they don't point at it: "The cushion by the radiator was empty.")
+  for (const id of new Set(ph.flatMap((x) => x.places))) {
+    if (speech || id === here) continue;
+    const name = placeName(c, id);
+    const short = name.replace(/^the /, '').toLowerCase();
+    if (lower.includes(short)) continue;
+    if (homes.has(id) && /\bhome\b/.test(lower)) continue;
+    out.push(`the place not said: ${name}`);
+  }
+  const all = c.board.hours;
+  const hs = hoursSaid(said, all);
+  // (What was under the coat is the answer to a question about the line before it, which said the hour.)
+  const coat = speech && comp.shape === 'HANDOVER' && /\bcoat-|\/coat\b|coat/.test(comp.voicing ?? '') && !/seen/.test(comp.voicing ?? '');
+  if (!coat) for (const h of new Set(ph.flatMap((x) => x.hours))) if (!hs.has(h)) out.push(`the hour not said: ${hourWord(h as Hour)}`);
+  // ("Here was the trouble", "Here’s what I had" point at what follows, not at a place.)
+  if (/\bhere\b/i.test(narr.replace(/\bHere(?: was| is|’s)\b/g, ''))) out.push('"here" for a place');
+  for (const s of sentencesOf(said.replace(/[“”]/g, ""))) {
+    const m = POINTING_THERE.exec(s);
+    if (!m) continue;
+    const before = s.slice(0, m.index).toLowerCase();
+    // (A place the sentence has said, by name or by where in it: "in my medicine cupboard … was there".)
+    if (!c.places.some((p) => before.includes(placeName(c, p.id).replace(/^the /, '').toLowerCase())) && !/\bhome\b|\b(?:in|on|at|under|behind|by|over|into) (?:my|the|his|her|a|its)\b/.test(before)) out.push(`"there" with no place before it`);
+  }
+  if (/\bthe list\b/.test(narr) && !/’s list\b/.test(narr)) out.push('"the list", not whose');
+  for (const o of OBLIQUE) if (o.re.test(narr)) out.push(`oblique: ${o.name}`);
+  return out;
+}
+
+/** The template's own oblique tags (for the voicings' lint), narration only. */
+export function obliqueIn(template: string): string[] {
+  const narr = template.replace(/“[^”]*”/g, ' ');
+  return OBLIQUE.filter((o) => o.re.test(narr)).map((o) => o.name);
+}

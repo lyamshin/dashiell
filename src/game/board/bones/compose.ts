@@ -346,7 +346,7 @@ function props<K extends Prop['k']>(ps: readonly Prop[], k: K): Extract<Prop, { 
 }
 
 /** A collision's claim and breaker, from the propositions, as the detective says them to himself. */
-function collisionArgs(c: BoardCase, col: Extract<Prop, { k: 'COLLIDES' }>, here: PlaceId): { claim: string; breaker: string; subtle: boolean } {
+function collisionArgs(c: BoardCase, col: Extract<Prop, { k: 'COLLIDES' }>, _here: PlaceId): { claim: string; breaker: string; subtle: boolean } {
   const p = col.person;
   const claim = `${nameOf(c, p)} said ${claimSaid(c, p, col.hour)}`;
   const w = col.with as Prop;
@@ -380,7 +380,8 @@ function collisionArgs(c: BoardCase, col: Extract<Prop, { k: 'COLLIDES' }>, here
   }
   const P = pr(c, p);
   const ownAccount = sp && sp !== p && pronOf(c, sp).he === pronOf(c, p).he ? said0.replace(`${nameOf(c, sp)} says ${pronOf(c, sp).he} was at `, `${nameOf(c, sp)}’s own account was `) : said0;
-  const breaker = ownAccount.replace(new RegExp(`\\b(had|passed|put|saw) ${esc(nameOf(c, p))}\\b`), `$1 ${P.him}`).replace(` at ${placeName(c, here)} at `, wPlace === here ? ' here at ' : ` at ${placeName(c, here)} at `);
+  const breaker = ownAccount.replace(new RegExp(`\\b(had|passed|put|saw) ${esc(nameOf(c, p))}\\b`), `$1 ${P.him}`);
+  void wPlace;
   const subtle = w.k === 'CLAIM' && w.place === col.place;
   return { claim, breaker, subtle };
 }

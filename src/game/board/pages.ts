@@ -1567,7 +1567,7 @@ export function writeList(w: Writer, watcher: PersonId): void {
     const es = l.entries[putx.hour] ?? [];
     if (es.some((e) => 'person' in e && e.person === putx.person)) continue;
     extra.push({
-      text: `${nameOf(c, putx.person)}’s second story had ${markedPron(c, putx.person).him} ${l.place === w.run.at ? 'here' : `at ${placeName(c, l.place)}`} at ${oclock(putx.hour)}. ${nameOf(c, l.watcher)} didn’t have ${markedPron(c, putx.person).him}.`,
+      text: `${nameOf(c, putx.person)}’s second story had ${markedPron(c, putx.person).him} at ${placeName(c, l.place)} at ${oclock(putx.hour)}. ${nameOf(c, l.watcher)} didn’t have ${markedPron(c, putx.person).him}.`,
       props: [{ k: 'COLLIDES', person: putx.person, place: l.place, hour: putx.hour, second: true, with: { k: 'list', who: l.watcher } }],
       say: { shape: 'COLLISION-PAIR', flags: ['second-list'], args: { person: { t: 'person', id: putx.person }, at: { t: 'at', id: l.place, here: w.run.at }, hour: { t: 'hour', h: putx.hour }, watcher: { t: 'person', id: l.watcher } } },
     });

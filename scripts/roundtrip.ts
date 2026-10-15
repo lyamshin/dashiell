@@ -35,8 +35,8 @@ const worlds = (val('worlds') ?? 'dealt,neighbourhood').split(',');
 
 VOICED.check = true;
 const rows: string[] = [];
-rows.push('| world | tier | pages | plain pages read back | propositions | voiced composites read back | flesh units naming all they say |');
-rows.push('|---|---|---|---|---|---|---|');
+rows.push('| world | tier | pages | plain pages read back | propositions | voiced composites read back | voiced composites clear (docs/53) | flesh units naming all they say |');
+rows.push('|---|---|---|---|---|---|---|---|');
 const misses: string[] = [];
 let bad = 0;
 for (const world of worlds) {
@@ -86,11 +86,20 @@ for (const world of worlds) {
     const vo = after.voicedOk - before.voicedOk;
     const ft = after.flesh - before.flesh;
     const fo = after.fleshOk - before.fleshOk;
-    rows.push(`| ${world} | ${tierName(tier)} | ${pages} | ${ok} of ${pages} (${pages ? ((100 * ok) / pages).toFixed(1) : '—'}%) | ${props} | ${vo} of ${vt} (${vt ? ((100 * vo) / vt).toFixed(1) : '—'}%) | ${fo} of ${ft} (${ft ? ((100 * fo) / ft).toFixed(1) : '—'}%) |`);
+    const vc = after.clear - before.clear;
+    rows.push(`| ${world} | ${tierName(tier)} | ${pages} | ${ok} of ${pages} (${pages ? ((100 * ok) / pages).toFixed(1) : '—'}%) | ${props} | ${vo} of ${vt} (${vt ? ((100 * vo) / vt).toFixed(1) : '—'}%) | ${vc} of ${vt} (${vt ? ((100 * vc) / vt).toFixed(1) : '—'}%) | ${fo} of ${ft} (${ft ? ((100 * fo) / ft).toFixed(1) : '—'}%) |`);
   }
 }
 const t = voicedTally();
 process.stdout.write(`${rows.join('\n')}\n`);
 if (misses.length) process.stdout.write(`\n${misses.join('\n')}\n`);
 if (t.misses.length) process.stdout.write(`\n${t.misses.slice(0, show).join('\n')}\n`);
+// docs/53: what wasn't clear, by voicing, the most often first.
+const byId = new Map<string, { n: number; why: string; said: string }>();
+for (const u of t.unclear) {
+  const x = byId.get(u.id) ?? { n: 0, why: u.why.join('; '), said: u.said };
+  x.n++;
+  byId.set(u.id, x);
+}
+if (byId.size && show) process.stdout.write(`\n${[...byId].sort((a, b) => b[1].n - a[1].n).slice(0, show).map(([id, x]) => `unclear ×${x.n} ${id}: ${x.why}\n   ${x.said}`).join('\n')}\n`);
 if (bad > 0 || t.voicedOk < t.voiced) process.exitCode = 1;

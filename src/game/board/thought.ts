@@ -188,7 +188,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     const said = ownAccount
       .replace(new RegExp(`\\b(had|passed|put|saw) ${nameOf(c, p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`), `$1 ${P(p).him}`)
       // In the room itself the list is "here", not the place's name again (docs/47 C13).
-      .replace(` at ${placeName(c, here)} at `, br.place === here ? ' here at ' : ` at ${placeName(c, here)} at `);
+      ;
     const people = [p, ...br.about, ...(br.speaker ? [br.speaker] : []), ...c.people.filter((y) => !y.object && said.includes(y.short)).map((y) => y.id)];
     const two = x.pick('two-stories', [
       'One of them was wrong.',
@@ -466,7 +466,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const holder = (c.others ?? []).find((o) => o.id === 'fence')?.name ?? 'somebody';
       const hh = /^(\w+):/.exec(r.text)?.[1]?.toLowerCase() ?? 'twelve';
       const HOUR: Record<string, Hour> = { eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12 };
-      add(`Whatever went out of ${placeName(c, c.crime.scene)}, something came in ${l?.place === here ? 'here' : `at ${placeName(c, l?.place ?? '')}`} under a coat at ${hh} and went to ${shortOther(holder)}.`, ['givens:gone'], {
+      add(`Whatever went out of ${placeName(c, c.crime.scene)}, something came in at ${placeName(c, l?.place ?? '')} under a coat at ${hh} and went to ${shortOther(holder)}.`, ['givens:gone'], {
         rule: 'handover',
         props: [{ k: 'HANDOVER', to: `other:${(c.others ?? []).find((o) => o.id === 'fence')?.id ?? 'somebody'}`, place: l?.place ?? '', ...(HOUR[hh] !== undefined ? { hour: HOUR[hh] as Hour } : {}) }],
         ...(HOUR[hh] !== undefined && l ? { say: { shape: 'HANDOVER' as const, flags: ['thought'], args: { scene: { t: 'place' as const, id: c.crime.scene }, place: { t: 'at' as const, id: l.place, here }, hour: { t: 'hour' as const, h: HOUR[hh] as Hour }, holder: { t: 'people' as const, ids: [`other:${(c.others ?? []).find((o) => o.id === 'fence')?.id ?? 'somebody'}`] } } } } : {}),
@@ -528,7 +528,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       // docs/47 C13: the hour said once ("For ten, the hour that mattered, he said Moe’s"), not "ten … Moe’s at ten".
       // "home" said where home is, so the thought keeps its place in the night (docs/44's measure).
       const homeAt = accountOf(c, rest)?.claims[hs[0] as Hour]?.place ?? '';
-      const what = same ? ((said[0] ?? '').startsWith('home') && homeAt ? (homeAt === here ? `home, here at ${placeName(c, homeAt)}` : `home at ${placeName(c, homeAt)}`) : (said[0] ?? '').replace(/ at \w+$/, '')) : andList(said);
+      const what = same ? ((said[0] ?? '').startsWith('home') && homeAt ? `home at ${placeName(c, homeAt)}` : (said[0] ?? '').replace(/ at \w+$/, '')) : andList(said);
       const own = x.pick('own-word', [
           'I wrote it down and left it standing, for now.',
           'Whether anything else I held touched it, I’d have to see.',

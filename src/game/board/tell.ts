@@ -229,13 +229,13 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
   return out;
 }
 
-/** Who was with them at which hours of one stretch: "Abramowitz was there at eight; at nine it was just me". */
+/** Who was with them at which hours of one stretch: "Abramowitz was with me at eight; at nine it was just me" (docs/53: company, said as company, not "there"). */
 export function companyBits(c: BoardCase, spans: { hs: number[]; who: string[] }[]): string {
   return spans
     .map((x) => {
       const who = x.who.map((y) => nameOf(c, y));
       const at = andList(x.hs.map((h) => hourWord(h as Hour)));
-      return who.length ? `${andList(who)} ${who.length > 1 ? 'were' : 'was'} there at ${at}` : `at ${at} it was just me`;
+      return who.length ? `${andList(who)} ${who.length > 1 ? 'were' : 'was'} with me at ${at}` : `at ${at} it was just me`;
     })
     .join('; ');
 }

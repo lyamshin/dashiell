@@ -29,6 +29,7 @@ import { FORMS, SCHEMA, mustSay } from '../src/game/board/bones/schema.js';
 import { SHAPES, type Shape } from '../src/game/board/bones/types.js';
 import { plainComposite } from '../src/game/board/bones/plain.js';
 import { rereadVoiced } from '../src/game/board/bones/reread.js';
+import { clarityOf } from '../src/game/board/bones/clarity.js';
 import { canon } from '../src/game/board/bones/extract.js';
 import { lintVoicings } from './voicing-lint.js';
 
@@ -157,6 +158,7 @@ if (cmd === 'check') {
     const per = Number(val('n') ?? 2);
     let ok = 0;
     let bad = 0;
+    let unclear = 0;
     for (const v of mine) {
       const fits = list.filter((x) => {
         const band = x.c.tier <= 1 ? 'low' : x.c.tier <= 3 ? 'mid' : 'high';
@@ -174,9 +176,12 @@ if (cmd === 'check') {
         const r = rereadVoiced({ shape: x.shape as Shape, props: x.props as never, voicing: v.id, said: fill(v.template, x.args, x.c), args: x.args as never }, { c: x.c, here: x.here, ...(x.speaker ? { speaker: x.speaker } : {}) });
         if (r.ok) ok++;
         else bad++;
-        process.stdout.write(`   ${r.ok ? 'ok ' : 'BAD'} ${said}${r.ok ? '' : `\n       ${r.why}\n       bones: ${(x.props as never[]).map((p) => canon(p)).join(' ')}`}\n`);
+        // docs/53: and clear, by the dial.
+        const why = clarityOf(x.c, { shape: x.shape as Shape, props: x.props as never, voicing: v.id, said: fill(v.template, x.args, x.c), args: x.args as never }, x.here);
+        if (why.length) unclear++;
+        process.stdout.write(`   ${r.ok ? 'ok ' : 'BAD'} ${said}${r.ok ? '' : `\n       ${r.why}\n       bones: ${(x.props as never[]).map((p) => canon(p)).join(' ')}`}${why.length ? `\n       unclear: ${why.join('; ')}` : ''}\n`);
       }
     }
-    process.stdout.write(`\n${ok} read back, ${bad} didn't.\n`);
+    process.stdout.write(`\n${ok} read back, ${bad} didn't; ${unclear} not clear by docs/53.\n`);
   }
 }

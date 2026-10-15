@@ -164,7 +164,8 @@ export function renderTyped(c: BoardCase, x: Typed, form?: string): string {
     case 'place':
       return placeName(c, x.id);
     case 'at':
-      return x.id === x.here ? 'here' : `at ${placeName(c, x.id)}`;
+      // docs/53, the dial: the place by name, even the one I'm standing in.
+      return `at ${placeName(c, x.id)}`;
   }
 }
 
