@@ -121,7 +121,7 @@
   {"id": "bcn-2050", "family": "why", "tags": {"kind": "arrive"}, "text": "{Src}, and that was what had brought me."},
   {"id": "bcn-2051", "family": "why", "tags": {"kind": "arrive"}, "text": "{Src}. It was reason enough to look."},
   {"id": "bcn-2054", "family": "why", "tags": {"kind": "arrive"}, "text": "{Src}. That was reason enough for the walk."},
-  {"id": "bcn-2056", "family": "why", "tags": {"kind": "scene", "type": "small"}, "text": "{Client} had said {thing} went missing from this spot, and a place is the one witness that stays put."},
+  {"id": "bcn-2056", "family": "why", "tags": {"kind": "scene", "type": "small"}, "text": "{Client} had said {thing} went from this spot, and a place is the one witness that stays put."},
   {"id": "bcn-2057", "family": "why", "tags": {"kind": "scene", "type": "small"}, "text": "I was back where {thing} had been and wasn’t any more, and I wanted another look."},
   {"id": "bcn-2058", "family": "why", "tags": {"kind": "scene", "type": "small"}, "text": "Before I asked anybody anything more, I wanted another look at where {thing} had been."},
   {"id": "bcn-2059", "family": "why", "tags": {"kind": "scene", "type": "small"}, "text": "{Thing} had gone missing from this place. I wanted another look before anybody tidied up."},
