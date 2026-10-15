@@ -266,6 +266,26 @@ export function altsFor(comp: Held, p: Picked, ctx: PlanCtx): Item['alts'] {
       }));
 }
 
+/**
+ * The trades for a composite said after the page's "So" or "But" (`Item.opener`): the same others,
+ * with the opener before them while the page keeps it (`connect` drops a second one).
+ */
+function openerAlts(it: Item, comp: Held, p: Picked, ctx: PlanCtx): Item['alts'] {
+  const alts = altsFor(comp, p, ctx);
+  const op = it.opener;
+  if (!alts || !op) return alts;
+  return () => {
+    const kept = it.text.startsWith(`${op} `);
+    return alts().map((o) => ({
+      text: kept ? `${op} ${lowerFirst(o.text)}` : o.text,
+      take: () => {
+        o.take();
+        it.flesh = { ...(it.flesh ?? {}), bare: o.text };
+      },
+    }));
+  };
+}
+
 /** Two composites, one sentence: the parts' bones in order, under a join. */
 function pairOf(shape: Shape, a: Composite, b: Composite, join: string): Held {
   return { shape, props: [...a.props, ...b.props], parts: [a, b], join };
@@ -506,6 +526,7 @@ export function sayAll(items: Item[], ctx: PlanCtx): void {
     else if (it.opener) {
       it.flesh = { ...(it.flesh ?? {}), bare: p.text };
       it.text = `${it.opener} ${lowerFirst(p.text)}`;
+      it.alts = openerAlts(it, comp, p, ctx);
     } else {
       it.text = p.text;
       it.alts = altsFor(comp, p, ctx);

@@ -780,6 +780,8 @@
   {"id": "window-means/means-link-3", "shape": "WINDOW-MEANS", "requires": ["means", "link"], "template": "Whoever used the {means} had been to {origin} first; that was where it came from."},
   {"id": "window-means/means-fact-2", "shape": "WINDOW-MEANS", "requires": ["means", "fact"], "joke": true, "template": "The {means} came from {origin}, which is where it should have stayed."},
   {"id": "window-means/means-fact-3", "shape": "WINDOW-MEANS", "requires": ["means", "fact"], "template": "I knew where the {means} came from: {origin}."},
+  {"id": "window-means/find-poison-5", "shape": "WINDOW-MEANS", "requires": ["find", "poison"], "template": "Whoever dosed {victim} had fetched the {means} from {origin} first; it takes {delay}."},
+  {"id": "window-means/find-poison-6", "shape": "WINDOW-MEANS", "requires": ["find", "poison"], "template": "The {means} was from {origin} and takes {delay}; whoever gave it to {victim} went there first."},
 
   {"id": "reaction/owned-unchecked", "shape": "REACTION", "requires": ["owned", "witness", "unchecked"], "template": "{Person} owned up to {place}, with {witness}, and {witness} could say whether that was so."},
   {"id": "reaction/owned-checked", "shape": "REACTION", "requires": ["owned", "witness", "checked"], "template": "{Person} owned up to {place}, with {witness}."},
