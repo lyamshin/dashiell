@@ -116,7 +116,8 @@ export function listText(c: BoardCase, l: WatchList, h: Hour): string {
   if (es.length === 0) return `${nameOf(c, l.watcher)}: nobody at ${where} at ${oclock(h)}.`;
   // In the notebook a regular is his name: "Pardo", not "Pardo who buys things" eight times a night (Raw 11's #11).
   const names = es.map((e) => entryName(c, e).replace(/^(Lou|Pardo|Benny)\b.*$/, '$1'));
-  return `${nameOf(c, l.watcher)}: at ${where} at ${oclock(h)}, ${andList(names)}${listExhaustive(c, l, h) ? ', and nobody else' : ''}.`;
+  // docs/53, addendum: "only Feeney and Ashby", never "…, and nobody else".
+  return `${nameOf(c, l.watcher)}: at ${where} at ${oclock(h)}, ${listExhaustive(c, l, h) ? 'only ' : ''}${andList(names)}.`;
 }
 
 function remarkFacts(r: Remark): Fact[] {

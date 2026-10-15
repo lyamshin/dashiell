@@ -46,6 +46,7 @@ import {
 import { withCaps } from './pages.js';
 import { titleClient } from './home.js';
 import { motiveForm, whyOrder } from './motives.js';
+import { plainWhy } from './stars.js';
 
 export type FieldKey = 'who' | 'when' | 'how' | 'why' | 'where' | 'breaks' | 'whereBy';
 
@@ -97,7 +98,7 @@ export function pointsText(points: number): string {
 }
 
 /** The report's new questions, as the form asks them. */
-export const BREAKS_LABEL = 'What breaks their story';
+export const BREAKS_LABEL = 'What shows they lied';
 export const WHERE_BY_LABEL = 'What puts it there';
 
 export interface FieldSpec {
@@ -372,8 +373,8 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
   const outcome: Outcome = !who.answered ? 'cold' : !who.correct ? 'wrong-man' : who.half ? 'lucky' : points === asked ? 'solved' : 'thin';
   const plain: string[] = [];
   if (who.half) plain.push('Right, but you couldn’t have known: half credit on who.');
-  if (scored.some((f) => f.key === 'where' && f.half)) plain.push('Where it is now was right, but not on the line that put it there: half credit on where.');
-  const what = scored.map((f) => (f.key === 'who' ? 'who (and the line that breaks the story)' : f.key === 'where' ? 'where (and what puts it there)' : f.key));
+  if (scored.some((f) => f.key === 'where' && f.half)) plain.push('Where it is now was right, but not on what showed it: half credit on where.');
+  const what = scored.map((f) => (f.key === 'who' ? 'who (and what shows they lied)' : f.key === 'where' ? 'where (and what puts it there)' : f.key));
   const scoreLine = `${pointsText(points)} out of ${asked}: ${andList(what)}.`;
   return {
     points,
@@ -462,7 +463,7 @@ function storyLines(d: BoardDeal): string[] {
     if (after !== undefined) out.push(`By ${oclock(after)} ${pr.he} was at ${placeName(c, row[after] ?? '')}, as if ${pr.he} had never left.`);
   } else {
     out.push(`${name} took ${v.short}. ${cap(pastOf(motive ?? ''))}.`);
-    if (atOrigin !== undefined) out.push(`${cap(short)} learned the way in at ${placeName(c, c.means.origin)} at ${oclock(atOrigin)}: ${c.means.originText.replace(/^[^;]*; /, '')}.`);
+    if (atOrigin !== undefined) out.push(`${cap(short)} was at ${placeName(c, c.means.origin)} at ${oclock(atOrigin)} and heard about ${c.means.originText.replace(/^[^;]*; /, '')}.`);
     out.push(`At ${oclock(c.crime.hour)} ${pr.he} let ${pr.self} into ${placeName(c, c.crime.scene)} and came out with ${v.short}.`);
     if (c.crime.whereNow) out.push(`${cap(v.short)} ended up ${c.crime.whereNow.text}.`);
   }
@@ -494,7 +495,7 @@ function breakerOf(d: BoardDeal): string {
   const sets = minimalSets(qs, [], (held) => solve(c, held, { techniques: T }).status.get(key(lie.person, lie.hour))?.s === 'broken', 3, true);
   const first = sets[0]?.filter((q) => q !== `account:${lie.person}`) ?? [];
   if (first.length === 0) return 'Nothing true agreed with it.';
-  const names = first.map((q) => questionById(c, q)).map((q) => (q?.kind === 'list' ? `${nameOf(c, q.subject)}’s list` : q?.kind === 'account' ? `${nameOf(c, q.subject)}’s own evening` : 'the room'));
+  const names = first.map((q) => questionById(c, q)).map((q) => (q?.kind === 'list' || q?.kind === 'account' ? nameOf(c, q.subject) : 'the room'));
   return `${cap(andList(names))} said otherwise.`;
 }
 
@@ -507,14 +508,21 @@ function breakerOf(d: BoardDeal): string {
  * breaking line beside the player's (docs/46 §3), and for a lost thing the
  * line that put it where it is.
  */
+/** docs/53, addendum: a step's reason as a person says it: "Shapiro saw Tramonti at …", "(Mrs. Krantz said so)", "face Grasso with it". */
+function pathWhy(why: string, client: string): string {
+  return plainWhy(why, client)
+    .replace(/\s*\(the office\):/g, ` (${client} said so):`)
+    .replace(/\bput it to ((?:Mrs\.|Miss|Dr\.) )?([A-Z][\w’]*)/g, 'face $1$2 with it');
+}
+
 export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'>, filed?: BoardReport): string {
   const c = d.kase;
   const out: string[] = [];
   const culprit = c.crime.culprit;
   const lie = c.lies.find((l) => l.person === culprit && l.hour === c.crime.hour) ?? c.lies.find((l) => l.person === culprit);
-  out.push('WHAT BROKE THE STORY');
+  out.push('HOW THE LIE CAME OUT');
   if (lie) out.push(`${nameOf(c, culprit)} said ${personOf(c, culprit)?.home === lie.claim ? 'home' : placeName(c, lie.claim)} at ${hourWord(lie.hour)}.`);
-  out.push(`  What broke it: ${trueBreakerText(d, run)}`);
+  out.push(`  What gave it away: ${trueBreakerText(d, run)}`);
   if (filed && run) {
     const mine = filed.breaks ? (linesHeld(c, run).find((l) => l.id === filed.breaks)?.text ?? filed.breaks) : `${HUNCH.toLowerCase()}.`;
     const ok = filed.who === culprit && !!filed.breaks && heldBreakers(d, run).some((l) => l.id === filed.breaks);
@@ -548,16 +556,16 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
   for (const l of c.lies) {
     const k = c.confrontations.find((x) => x.person === l.person && x.hour === l.hour);
     const why = l.kind === 'culprit' || l.kind === 'pair' && l.person === c.crime.culprit ? 'to hide the crime' : l.kind === 'pair' ? 'to cover for a friend' : `to hide ${personOf(c, l.person)?.secret ?? 'something'}`;
-    const would = k?.response === 'admit' ? 'owned up' : k?.response === 'second-lie' ? 'a second story' : k?.response === 'crack' ? 'cracked' : 'refused';
+    const would = k?.response === 'admit' ? 'owned up' : k?.response === 'second-lie' ? 'changed the answer' : k?.response === 'crack' ? 'cracked' : 'refused';
     // Medium 14: "Put to it: refused" read as a put the player never made. Say whether it was.
-    const put = !run || run.asked.includes(`confront:${l.person}@${l.hour}`) ? `Put to it: ${would}.` : `Never put to ${pronOf(c, l.person).him}; put, it would have been: ${would}.`;
+    const put = !run || run.asked.includes(`confront:${l.person}@${l.hour}`) ? `Faced with it: ${would}.` : `Never faced with it; faced, ${pronOf(c, l.person).he} would have ${would === 'owned up' ? 'owned up' : would === 'cracked' ? 'cracked' : would === 'refused' ? 'refused' : 'changed the answer'}.`;
     out.push(`- ${nameOf(c, l.person)} said ${placeName(c, l.claim)} at ${hourWord(l.hour)}; ${pronOf(c, l.person).he} was at ${placeName(c, l.truth)}, ${why}. ${put}`);
   }
   out.push('');
   // docs/55 7: par, the number the verdict says, and what it's made of.
   out.push(`THE PATH (par ${parCalls(d)}: ${d.analysis.par} questions${d.analysis.motive ? ', the motive search' : ''} and ${d.analysis.walks} walks)`);
   // "who was at Kowalski’s tonight?", not "tonight?." (Raw 11's #27).
-  d.analysis.path.forEach((s, i) => out.push(`${i + 1}. ${s.label}${/[?.!]$/.test(s.label) ? '' : '.'} ${s.why.replace(/\s*\(step \d+\)/g, '').replace(/\s*\(the office\):/g, ' (the office said so):')}`));
+  d.analysis.path.forEach((s, i) => out.push(`${i + 1}. ${s.label}${/[?.!]$/.test(s.label) ? '' : '.'} ${pathWhy(s.why.replace(/\s*\(step \d+\)/g, ''), nameOf(c, c.client))}`));
   if (d.analysis.motive) out.push(`+. ${questionById(c, d.analysis.motive)?.label ?? ''}.`);
   return out.join('\n');
 }

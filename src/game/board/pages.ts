@@ -69,6 +69,7 @@ import { movedAt, sourceName, starPlace, starredSteps, walksOnly } from './stars
 import { sheetsFor, type Beat, type SheetJob } from './sheets.js';
 import { placeThread, sourceOf as sourceOfQ, threadFor, type Pointer } from './thread.js';
 import { breakSaid, claimSaid, eliminationOf, shortOther, thoughtOf, type Thought, type ThoughtPart } from './thought.js';
+import { wayKnown } from './bones/phrase.js';
 import { walkBetween } from './walk.js';
 import { papersLine, whyOrder } from './motives.js';
 import { SPARE_KEY } from '../../gen/board/content.js';
@@ -1347,7 +1348,7 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   if (ptrs.length > 0) {
     // Two lines from one list run together: "Mrs. Tramonti’s list had Lathrop there at nine, and Mulcahy at eight and nine."
     const [p0, p1] = ptrs as [Pointer, Pointer | undefined];
-    const head = /^(.+?’s list had )/.exec(p0.clause)?.[1];
+    const head = /^(.+? had seen )/.exec(p0.clause)?.[1];
     const said = /^(.+? had said )/.exec(p0.clause)?.[1];
     // "Grasso had said she was here at seven, with Abramowitz", not "…here at seven, and that
     // Abramowitz was with her here at seven" (Hard-boiled 8's #18).
@@ -1393,9 +1394,9 @@ export function writeArrive(w: Writer, place: PlaceId): void {
         ? `If it happened at ${andList(hs).replace(' and ', ' or ')}, it happened in this room, so whoever did it had walked in here with the ${m} already in hand.`
         : `If it happened at ${andList(hs).replace(' and ', ' or ')}, it happened in this room, so ${markedPron(c, c.crime.victim).he}’d let whoever did it in.`
       : /^told/.test(mode) && venue
-        ? `If ${it.he} went at ${andList(hs).replace(' and ', ' or ')}, the flat had been empty, and anybody who’d heard ${clientOf(c).short} at ${venue} had known the way in.`
+        ? `If ${it.he} went at ${andList(hs).replace(' and ', ' or ')}, the flat had been empty, and anybody who’d heard ${clientOf(c).short} at ${venue} had known ${wayKnown(c)}.`
         : party
-          ? `If ${it.he} went at ${andList(hs).replace(' and ', ' or ')}, ${it.he} went after the ${party.occasion}, so everybody at the ${party.occasion} had known the way in.`
+          ? `If ${it.he} went at ${andList(hs).replace(' and ', ' or ')}, ${it.he} went after the ${party.occasion}, so everybody at the ${party.occasion} had known ${wayKnown(c)}.`
           : `If ${it.he} went at ${andList(hs).replace(' and ', ' or ')}, whoever took ${it.him} had a key, and the spare key lives ${key}.`;
     const kind = isMurder(c) ? (officeSaid ? 'murder-said' : 'murder') : /^told/.test(mode) && venue ? 'told' : party ? 'party' : 'spare';
     fact(w, 'thought', t, 'thought', {
@@ -1406,7 +1407,7 @@ export function writeArrive(w: Writer, place: PlaceId): void {
       say: {
         shape: 'WINDOW-MEANS',
         flags: ['scene', kind],
-        args: { hours: { t: 'hours', hs: [...(c.givens.window ?? c.crime.window)] }, victim: { t: 'person', id: c.crime.victim }, means: m, client: { t: 'person', id: c.client }, origin: { t: 'place', id: c.means.origin }, occasion: party?.occasion ?? '', key, ...meansArgs(c).args },
+        args: { hours: { t: 'hours', hs: [...(c.givens.window ?? c.crime.window)] }, victim: { t: 'person', id: c.crime.victim }, means: m, client: { t: 'person', id: c.client }, origin: { t: 'place', id: c.means.origin }, occasion: party?.occasion ?? '', key, way: wayKnown(c), ...meansArgs(c).args },
       },
     });
     for (const h of c.givens.window ?? c.crime.window) w.hours.add(h);
@@ -1767,15 +1768,15 @@ export function writeSearch(w: Writer, findId: string): void {
     const vars = c.givens.lines?.find((g) => g.kind === 'means')?.vars ?? {};
     const party = c.givens.lines?.find((g) => g.kind === 'party')?.vars;
     if (party) {
-      body = `whoever it was knew the way in, and the people who knew were the ones at the ${party.occasion} in ${placeName(c, c.crime.scene)} at ${party.h0}, whose names ${clientOf(c).short} had given me.`;
+      body = `whoever it was knew ${wayKnown(c)}, and the people who knew were the ones at the ${party.occasion} in ${placeName(c, c.crime.scene)} at ${party.h0}, whose names ${clientOf(c).short} had given me.`;
       w.hours.add(hs[0] as Hour);
-      say = { shape: 'WINDOW-MEANS', flags: ['find', 'party'], args: { occasion: party.occasion ?? '', scene: { t: 'place', id: c.crime.scene }, hour: { t: 'hour', h: hs[0] as Hour }, client: { t: 'person', id: c.client } } };
+      say = { shape: 'WINDOW-MEANS', flags: ['find', 'party'], args: { occasion: party.occasion ?? '', scene: { t: 'place', id: c.crime.scene }, hour: { t: 'hour', h: hs[0] as Hour }, client: { t: 'person', id: c.client }, way: wayKnown(c) } };
     } else if (/^told/.test(mode)) {
-      body = `it was somebody who’d heard ${clientOf(c).short} at ${vars.venue ?? placeName(c, c.means.origin)} between ${vars.h0} and ${vars.h2} and had come here after, which made ${vars.venue ?? placeName(c, c.means.origin)} the place to start counting.`;
+      body = `it was somebody who’d heard ${clientOf(c).short} at ${vars.venue ?? placeName(c, c.means.origin)} between ${vars.h0} and ${vars.h2} and had come here after, which made ${vars.venue ?? placeName(c, c.means.origin)} the place to start asking.`;
       for (const h of hs) w.hours.add(h);
       w.hours.add(Math.max(...hs) + 1);
       if (!vars.venue || vars.venue === placeName(c, c.means.origin))
-        say = { shape: 'WINDOW-MEANS', flags: ['find', 'told'], args: { client: { t: 'person', id: c.client }, origin: { t: 'place', id: c.means.origin }, from: { t: 'hour', h: Math.min(...hs) as Hour }, till: { t: 'hour', h: (Math.max(...hs) + 1) as Hour } } };
+        say = { shape: 'WINDOW-MEANS', flags: ['find', 'told'], args: { way: wayKnown(c), client: { t: 'person', id: c.client }, origin: { t: 'place', id: c.means.origin }, from: { t: 'hour', h: Math.min(...hs) as Hour }, till: { t: 'hour', h: (Math.max(...hs) + 1) as Hour } } };
     } else {
       // Raw 11's #14: "whoever it was" once a page is plenty, and the key is where the office said it was.
       const key = SPARE_KEY[mode]?.at.replace('{x}', origin) ?? `at ${origin}`;
@@ -1884,7 +1885,7 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
   const s = withCaps({ ...who(c, p) });
   const claimLine = again ? `${placeName(c, confrontationOf(c, p, h)?.secondLie?.place ?? '')} at ${hourWord(h)}` : claimSaid(c, p, h);
   // Why: their line and what's held against it.
-  const src = line.q === 'givens' ? 'the office' : sourceName(c, line.q).replace(/’s story$/, '’s own evening');
+  const src = sourceName(c, line.q);
   const psrc = `${nameOf(c, p)} had told me ${claimLine}, and ${src} said otherwise`;
   const pwhy = w.hand.draw('why', { kind: 'put' }, withCaps({ ...s, src: psrc, claim: claimLine }), { plain: true });
   put(w, 'why', pwhy, 'narrator', { about: [p], ...sit(w, pwhy, `${cap(psrc)}.`) });
@@ -2271,7 +2272,7 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
       if (yes.length) bits.push(`${andList(yes)} had been at ${at} earlier, when the ${c.means.name.replace(/^(a|an) /, '')} was there for the taking`);
       if (no.length) bits.push(`${andList(no)} hadn’t`);
     } else if (party) {
-      if (yes.length) bits.push(`${andList(yes)} ${were(yes)} at the ${party.occasion} and knew the way in`);
+      if (yes.length) bits.push(`${andList(yes)} ${were(yes)} at the ${party.occasion} and knew ${wayKnown(c)}`);
       if (no.length) bits.push(`${andList(no)} ${no.length > 1 ? 'weren’t' : 'wasn’t'}`);
     } else if (told) {
       if (yes.length) bits.push(`${andList(yes)} ${were(yes)} at ${at} while ${clientOf(c).short} told the room`);
@@ -2294,7 +2295,7 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
         say: {
           shape: 'ACCESS-SET',
           flags: ['recap', kind, ...(yesIds.length ? ['yes', yesIds.length > 1 ? 'many' : 'one'] : []), ...(noIds.length ? ['no', noIds.length > 1 ? 'nones' : 'none'] : [])],
-          args: { people: { t: 'people', ids: yesIds }, none: { t: 'people', ids: noIds }, origin: { t: 'place', id: c.means.origin }, means: c.means.name.replace(/^(a|an) /, ''), client: { t: 'person', id: c.client }, occasion: party?.occasion ?? '' },
+          args: { people: { t: 'people', ids: yesIds }, none: { t: 'people', ids: noIds }, origin: { t: 'place', id: c.means.origin }, means: c.means.name.replace(/^(a|an) /, ''), client: { t: 'person', id: c.client }, occasion: party?.occasion ?? '', way: wayKnown(c) },
         },
       });
   }
@@ -2567,7 +2568,7 @@ export function writeTurn(w: Writer): void {
       if (p && knownPeople(c, w.run).has(rest)) w.people.add(rest);
       w.places.add(starPlace(c, next));
     }
-    const said = c.tier <= 1 ? (first ? `I could put it to ${name} now. Or I could ${first}.` : `I could put it to ${name} now.`) : first ? `Before I did anything about it, I wanted to ${first.replace(/ first$/, '').replace(/^find out first /, 'find out ')}.` : undefined;
+    const said = c.tier <= 1 ? (first ? `I could face ${name} with it now. Or I could ${first}.` : `I could face ${name} with it now.`) : first ? `Before I did anything about it, I wanted to ${first.replace(/ first$/, '').replace(/^find out first /, 'find out ')}.` : undefined;
     if (c.tier <= 1) w.people.add(caught);
     put(w, 'handoff', said, 'recap', { keepNames: true });
   }

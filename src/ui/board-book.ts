@@ -493,11 +493,10 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     // docs/47 A6: the person's own pronouns, never "their" for one woman; costs in calls.
     const female = personOf(c, pk.person)?.female === true;
     const him = female ? 'her' : 'him';
-    const his = female ? 'her' : 'his';
     box.append(el('p', { class: 'note', text: `${pk.help} Looking is free; reading one to ${him} costs a call. If it breaks nothing, the call is gone all the same, and the page says why.` }));
     if (pk.ready.length > 0) {
       const sec = el('section', { class: 'picker-sec' });
-      sec.append(el('h4', { class: 'picker-head', text: `${his[0]?.toUpperCase()}${his.slice(1)} line, and the line that breaks it` }));
+      sec.append(el('h4', { class: 'picker-head', text: `What ${female ? 'she' : 'he'} said, and what says otherwise` }));
       for (const r of pk.ready) {
         const b = el('button', { class: 'choice choice--fact', type: 'button', 'data-command': r.command, text: r.label });
         b.append(el('span', { class: 'mins', text: '1 call' }));
@@ -663,7 +662,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       body.append(el('h2', { text: 'What I have' }));
       const bySource = new Map<string, string[]>();
       for (const l of lines) {
-        const src = l.q.startsWith('list:') ? `${nameOf(c, l.q.slice(5))}’s list` : l.q.startsWith('account:') ? `${nameOf(c, l.q.slice(8))}’s evening` : l.q.startsWith('search:') ? 'Searched' : 'Put to them';
+        const src = l.q.startsWith('list:') ? `What ${nameOf(c, l.q.slice(5))} saw` : l.q.startsWith('account:') ? `What ${nameOf(c, l.q.slice(8))} said` : l.q.startsWith('search:') ? 'Searched' : 'When I faced them';
         bySource.set(src, [...(bySource.get(src) ?? []), l.text]);
       }
       for (const [src, ls] of bySource) {
@@ -675,7 +674,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         body.append(entry);
       }
     }
-    body.append(el('h2', { text: 'The office' }));
+    body.append(el('h2', { text: 'What my client said' }));
     const office = el('ul', { class: 'nb-stands' });
     for (const t of c.givens.text) office.append(el('li', { text: t }));
     body.append(office);
@@ -765,10 +764,10 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     wrap.append(table);
     const key = el('p', { class: 'bgrid-key' });
     key.append(
-      el('span', { class: 'k is-says', text: 'Odessa' }), ' says so · ',
-      el('span', { class: 'k is-seen', text: 'Odessa' }), ' somebody else says so · ',
+      el('span', { class: 'k is-says', text: 'Odessa' }), ' they say so · ',
+      el('span', { class: 'k is-seen', text: 'Odessa' }), ' somebody saw them there · ',
       el('span', { class: 'k is-confirmed', text: 'Odessa✓' }), ' both · ',
-      el('span', { class: 'k is-collision', text: 'Odessa✗' }), ' they collide · ',
+      el('span', { class: 'k is-collision', text: 'Odessa✗' }), ' doesn’t agree · ',
       el('span', { class: 'k is-pencil', text: '~Odessa' }), ' your pencil. Tap a cell for the lines behind it.',
     );
     wrap.append(key);
@@ -780,8 +779,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const c = (d as BoardDeal).kase;
     const bits: string[] = [];
     if (cell.says) bits.push(`says ${placeName(c, cell.says)}`);
-    if (cell.seen) bits.push(`${cell.seen.by} puts them at ${placeName(c, cell.seen.place)}`);
-    if (cell.collision) bits.push('they collide');
+    if (cell.seen) bits.push(`${cell.seen.by} saw them at ${placeName(c, cell.seen.place)}`);
+    if (cell.collision) bits.push('that doesn’t agree');
     if (cell.pencil?.at) bits.push(`pencilled at ${placeName(c, cell.pencil.at)}`);
     return bits.join('; ') || 'nothing yet';
   }

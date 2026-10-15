@@ -322,7 +322,7 @@ export function worldDeck(d: BoardDeal, run: BoardRun): WorldDeck | undefined {
         const bp = p ? biblePerson(c, p) : undefined;
         const pl = bp ? b.places.find((x) => x.watcher?.person === bp.id) : undefined;
         // Somebody who keeps the unwatched place only when it mattered isn't a watcher of the bible's.
-        if (bp && !pl && personOf(c, p as PersonId)?.id === 'ukeeper') return [card(`${bp.id}:keeper`, family, `{Name} had the room from the hour that mattered, and not before. Before that, {he} said, it was anybody’s.`)];
+        if (bp && !pl && personOf(c, p as PersonId)?.id === 'ukeeper') return [card(`${bp.id}:keeper`, family, `{Name} had only been minding the room for part of the evening. Before that, {he} said, it was anybody’s.`)];
         if (!bp || !pl?.watcher || !clean(pl.watcher.sees)) return [];
         // How they count, in their own words, one of their three, unless it names an hour the page doesn't tell.
         const sees = `From {his} post {name} could see ${pl.watcher.sees.replace(/\.$/, '')}.`;
@@ -480,10 +480,12 @@ export function worldListVoice(c: BoardCase, hand: Hand, watcher: PersonId, said
   // The last hour's "nobody else", said their way, before whatever they remark on after the list.
   const last = out.length - 1 - remarks;
   const line = out[last] ?? '';
-  const theirs = /\bnobody else(?: at all|, that hour)?\.$/i.test(line)
+  // (docs/53, addendum: a list's whole hour ends "That was everybody", "that’s all", "only Rafferty and Moretti", never "nobody else".)
+  const WHOLE = /(?:,? (?:and )?that(?: was|’s) (?:everybody|all|the lot)|[.:] That(?: was|’s) (?:everybody|all|the lot))\.$/;
+  const theirs = WHOLE.test(line) || /\b(?:only|just) [^.]+\.$/.test(line) || /\bnobody else(?: at all|, that hour)?\.$/i.test(line)
     ? fresh1(hand, bp.voice.nobodyElse.map((l, i) => ({ l, id: `nb:${bp.id}:nobody:${i}` })).filter((x) => safeVoice(c, b, bp, x.l, { own }) && clean(x.l) && /\b(nobody|lot|everybody|all|no one)\b/i.test(x.l)))
     : undefined;
-  if (theirs) out[last] = /\bNobody else(?: at all|, that hour)?\.$/.test(line) ? line.replace(/\bNobody else(?: at all|, that hour)?\.$/, theirs) : `${line} ${theirs}`;
+  if (theirs) out[last] = WHOLE.test(line) ? line.replace(WHOLE, `. ${theirs}`) : /\bNobody else(?: at all|, that hour)?\.$/.test(line) ? line.replace(/\bNobody else(?: at all|, that hour)?\.$/, theirs) : `${line} ${theirs}`;
   return open ? [open, ...out] : out;
 }
 

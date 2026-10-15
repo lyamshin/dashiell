@@ -25,8 +25,8 @@ import { minimalSets } from '../../gen/board/path.js';
 import { GIVENS, pointerIndex } from '../../gen/board/pointers.js';
 import { questionsOf } from '../../gen/board/solver.js';
 import type { Question } from '../../gen/board/types.js';
-import { knownPeople, linesHeld, solveHeld, solveRun } from './knowledge.js';
-import { cap, isMurder, nameOf, placeName, pronOf, solverHeld, type BoardCase, type BoardDeal, type BoardRun, type PersonId } from './model.js';
+import { accountOf, knownPeople, linesHeld, solveHeld, solveRun } from './knowledge.js';
+import { cap, isMurder, nameOf, personOf, placeName, pronOf, solverHeld, type BoardCase, type BoardDeal, type BoardRun, type Hour, type PersonId } from './model.js';
 
 export interface Star {
   /** The question it serves. */
@@ -203,7 +203,10 @@ export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: stri
     const st = solveRun(c, run).status.get(`${p}@${hs}`);
     const by = st?.deps.find((d) => d !== `account:${p}` && d !== qid);
     const src = by ? sourceName(c, by) : '';
-    return `${nameOf(c, p)}’s story at ${hourWords(Number(hs))} against ${src || 'what I had'}`;
+    // docs/53, addendum: what they said and who said otherwise, never "her story against Coffin’s list".
+    const cl = accountOf(c, p)?.claims[Number(hs) as Hour];
+    const said = cl ? (personOf(c, p)?.home === cl.place ? 'home' : placeName(c, cl.place)) : '';
+    return `${nameOf(c, p)} said ${said ? `${said} at ` : ''}${hourWords(Number(hs))}, and ${src || 'something I had'} said otherwise`;
   }
   if (q.kind === 'search') {
     const f = c.finds.find((x) => x.id === q.subject);
@@ -236,25 +239,33 @@ function hourWords(h: number): string {
   return ['twelve', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven'][h % 12] ?? String(h);
 }
 
-/** Whose answer a question id is: "Shapiro’s list", "Tramonti’s story". */
+/**
+ * Whose answer a question id is, by the name of whoever gave it: "Shapiro", "Tramonti", the client
+ * (docs/53, addendum: never "Shapiro’s list", "Tramonti’s story", "the office"); a search is "what the room said".
+ */
 export function sourceName(c: BoardCase, q: string): string {
   const [kind, rest] = q.split(':') as [string, string];
-  if (kind === 'list') return `${nameOf(c, rest)}’s list`;
-  if (kind === 'account') return `${nameOf(c, rest)}’s story`;
+  if (kind === 'list' || kind === 'account') return nameOf(c, rest);
   if (kind === 'search') return 'what the room said';
-  if (kind === 'confront') return `${nameOf(c, rest.split('@')[0] as string)}’s word`;
-  return 'the office';
+  if (kind === 'confront') return nameOf(c, rest.split('@')[0] as string);
+  return nameOf(c, c.client);
 }
 
-/** The pointer's own words, made short: "Shapiro’s list has Tramonti at the Odessa at ten" → "Shapiro has Tramonti at the Odessa at ten". */
-function shorten(why: string, client: string): string {
+/**
+ * The pointer's own words, said as a person would (docs/53, addendum): "Shapiro’s list has Tramonti at
+ * the Odessa at ten" → "Shapiro saw Tramonti at the Odessa at ten"; "the office puts Feeney at …" →
+ * "Mrs. Krantz says Feeney was at …".
+ */
+export function plainWhy(why: string, client: string): string {
   return why
-    .replace(/’s list has /, ' has ')
-    .replace(/^the office names /, `${client} mentioned `)
-    .replace(/^the office puts /, `${client} puts `)
-    .replace(/^the office says /, `${client} says `)
-    .replace(/^the office /, '');
+    .replace(/^(.+?)’s list has (.+?) at /, '$1 saw $2 at ')
+    .replace(/^(.+?)’s account has /, '$1 said ')
+    .replace(/^[Tt]he office names /, `${client} mentioned `)
+    .replace(/^[Tt]he office puts (.+?) at /, `${client} says $1 was at `)
+    .replace(/^[Tt]he office says /, `${client} says `)
+    .replace(/^[Tt]he office /, '');
 }
+const shorten = plainWhy;
 
 /** A star's place in the page: where its question is asked. */
 export function starPlace(c: BoardCase, qid: string): string {

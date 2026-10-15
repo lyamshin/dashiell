@@ -19,7 +19,7 @@
 import { andList, cap, hourWord, isMurder, nameOf, placeName, pronOf, victimOf, type BoardCase, type Hour } from '../model.js';
 import { sentencesOf } from '../plan/sentences.js';
 import type { Block, Page } from '../types.js';
-import { shortOther } from './phrase.js';
+import { shortOther, wayKnown } from './phrase.js';
 import { canon } from './extract.js';
 import type { Composite, HeldWhy, Id, Prop, Src } from './types.js';
 
@@ -51,7 +51,14 @@ export interface Lexicon {
   find: Map<string, Id>;
   hour: Map<string, number>;
   /** Regex sources (no captures). */
-  re: Record<'NAME' | 'PRON' | 'PL' | 'H' | 'HS' | 'NS' | 'E' | 'ES' | 'STREET' | 'WHAT' | 'THING' | 'MEANS' | 'SRC', string>;
+  re: Record<'NAME' | 'PRON' | 'PL' | 'H' | 'HS' | 'HOR' | 'NS' | 'E' | 'ES' | 'STREET' | 'WHAT' | 'THING' | 'MEANS' | 'SRC' | 'ACC' | 'WAY', string>;
+}
+
+/** docs/53, addendum: what having the way in was, after "could have": "got the chloral", "known where the key was". */
+function accessWords(c: BoardCase): string {
+  if (isMurder(c)) return `got the ${meansLabel(c)}`;
+  if (/^spare/.test(c.setup?.means ?? '')) return 'got the spare key';
+  return `known ${wayKnown(c)}`;
 }
 
 const LEX = new WeakMap<BoardCase, Lexicon>();
@@ -92,7 +99,8 @@ export function lexicon(c: BoardCase): Lexicon {
   const NAME = alt([...person.keys()]);
   const H = alt([...hour.keys()]);
   const E = alt([...entry.keys()]);
-  const SRC = `(?:[Tt]he office|[Tt]he search|[Aa] list|[Aa]n evening|(?:${NAME})’s (?:list|evening|admission|remark|second story))`;
+  // docs/53, addendum: whose word, by the name of whoever said it (a watcher's is what they saw, the client's the office's).
+  const SRC = `(?:(?:${NAME})(?: on owning up| in passing| the second time)?|[Tt]he search|[Aa] witness|[Ss]omebody)`;
   const lx: Lexicon = {
     c,
     person,
@@ -106,6 +114,7 @@ export function lexicon(c: BoardCase): Lexicon {
       PL: alt([...place.keys()]),
       H,
       HS: listOf(H),
+      HOR: `(?:${H})(?:, (?:${H}))*(?: or (?:${H}))?`,
       NS: listOf(NAME),
       E,
       ES: listOf(E),
@@ -114,6 +123,8 @@ export function lexicon(c: BoardCase): Lexicon {
       THING: alt([victimOf(c).short]),
       MEANS: alt([meansLabel(c)]),
       SRC,
+      ACC: esc(accessWords(c)),
+      WAY: esc(wayKnown(c)),
     },
   };
   LEX.set(c, lx);
@@ -240,47 +251,52 @@ interface Rd {
 }
 
 const WHY: Record<HeldWhy, string> = {
-  agreed: 'it agreed with the story',
-  strangers: 'the list had people nobody could name',
-  elsewhere: 'the list was for another place',
+  agreed: 'it agreed with what they had said',
+  strangers: 'there were people there nobody could name',
+  elsewhere: 'it only covered the one place',
   face: 'a face is not a name',
   company: 'it had them together',
-  'other-place': 'it was about another place',
-  untrusted: 'nothing stood under it yet',
+  'other-place': 'it was about somewhere else',
+  untrusted: 'nobody had backed it up yet',
   nowhere: 'it put them nowhere else',
-  untouched: 'nothing in it touched the story',
+  untouched: 'nothing in it touched what they had said',
 };
 
+/**
+ * docs/53, addendum: whose word a line is, said as the person who said it: "Coffin", the client by
+ * name; "Weisglass on owning up", "Ashby in passing", "Grasso the second time"; "the search". What
+ * kind of word a bare name is follows from who they are (`srcRead`): a watcher's is what they saw, the
+ * client's is the office's, anybody else's is their own account.
+ */
 function srcSaid(c: BoardCase, s: Src): string {
   const who = s.who ? nameOf(c, s.who) : '';
   switch (s.k) {
     case 'given':
-      return 'the office';
+      return nameOf(c, c.client);
     case 'find':
       return 'the search';
     case 'list':
-      return who ? `${who}’s list` : 'a list';
+      return who || 'a witness';
     case 'claim':
-      return who ? `${who}’s evening` : 'an evening';
+      return who || 'somebody';
     case 'admit':
-      return `${who}’s admission`;
+      return `${who} on owning up`;
     case 'remark':
-      return `${who}’s remark`;
+      return `${who} in passing`;
     case 'second':
-      return `${who}’s second story`;
+      return `${who} the second time`;
   }
 }
 
 function srcRead(lx: Lexicon, s: string): Src {
-  if (/^the office$/i.test(s)) return { k: 'given' };
   if (/^the search$/i.test(s)) return { k: 'find' };
-  if (/^a list$/i.test(s)) return { k: 'list' };
-  if (/^an evening$/i.test(s)) return { k: 'claim' };
-  const m = /^(.+)’s (list|evening|admission|remark|second story)$/.exec(s);
-  if (!m) throw new Error(`plain: no source "${s}"`);
+  if (/^a witness$/i.test(s)) return { k: 'list' };
+  if (/^somebody$/i.test(s)) return { k: 'claim' };
+  const m = /^(.+?)(?: (on owning up|in passing|the second time))?$/.exec(s) as RegExpExecArray;
   const who = person(lx, m[1] as string);
-  const k = ({ list: 'list', evening: 'claim', admission: 'admit', remark: 'remark', 'second story': 'second' } as const)[m[2] as 'list'];
-  return { k, who };
+  if (m[2]) return { k: m[2] === 'on owning up' ? 'admit' : m[2] === 'in passing' ? 'remark' : 'second', who };
+  if (who === lx.c.client) return { k: 'given' };
+  return { k: lx.c.lists.some((l) => l.watcher === who) && !lx.c.accounts.some((a) => a.person === who) ? 'list' : 'claim', who };
 }
 
 function person(lx: Lexicon, s: string): Id {
@@ -389,7 +405,7 @@ const CLAUSES: Clause[] = [
       return { props: out, subject: p };
     },
   },
-  // A watcher's hours: "Coffin had only Feeney and Ashby at the Thalia at eleven."
+  // A watcher's hours, as they said them (docs/53, addendum): "Coffin said only Feeney and Ashby were at the Thalia at eleven."
   {
     kinds: ['LIST'],
     joins: (a, b, run) => {
@@ -402,11 +418,11 @@ const CLAUSES: Clause[] = [
       const who = S(c, ref, x.watcher);
       const at = hs(ps.map((y) => (y as P<'LIST'>).hour));
       if (x.shut) return { text: `${who} said ${placeName(c, x.place)} was shut at ${at}`, subject: x.watcher };
-      if (x.people.length === 0) return { text: `${who} had nobody at ${placeName(c, x.place)} at ${at}`, subject: x.watcher };
+      if (x.people.length === 0) return { text: `${who} said nobody was at ${placeName(c, x.place)} at ${at}`, subject: x.watcher };
       const faces = Object.entries(x.faces ?? {}).map(([look, p]) => `${nameOf(c, p)} was the one ${look}`);
-      return { text: `${who} had ${x.whole ? 'only ' : ''}${andList(x.people.map((e) => entryLabel(c, e)))} at ${placeName(c, x.place)} at ${at}${faces.length ? `, where ${faces.join(' and ')}` : ''}`, subject: x.watcher };
+      return { text: `${who} said ${x.whole ? 'only ' : ''}${andList(x.people.map((e) => entryLabel(c, e)))} ${x.people.length > 1 ? 'were' : 'was'} at ${placeName(c, x.place)} at ${at}${faces.length ? `, where ${faces.join(' and ')}` : ''}`, subject: x.watcher };
     },
-    re: (l) => `^(${l.re.NAME}|${l.re.PRON}) (?:said (${l.re.PL}) was shut at (${l.re.HS})|had nobody() at (${l.re.PL}) at (${l.re.HS})|had (only )?(${l.re.ES}) at (${l.re.PL}) at (${l.re.HS})(?:, where ((?:${l.re.NAME}) was the one .+))?)$`,
+    re: (l) => `^(${l.re.NAME}|${l.re.PRON}) said (?:(${l.re.PL}) was shut at (${l.re.HS})|nobody() was at (${l.re.PL}) at (${l.re.HS})|(only )?(${l.re.ES}) (?:was|were) at (${l.re.PL}) at (${l.re.HS})(?:, where ((?:${l.re.NAME}) was the one .+))?)$`,
     read: (m, { lx, ref }) => {
       const w = subj(lx, ref, m[1] as string);
       if (m[2]) return { props: hours(lx, m[3] as string).map((h) => ({ k: 'LIST', watcher: w, place: place(lx, m[2] as string), hour: h, people: [], shut: true }) as Prop), subject: w };
@@ -430,10 +446,10 @@ const CLAUSES: Clause[] = [
       const x = ps[0] as P<'REMARK'>;
       const who = S(c, ref, x.speaker);
       if (x.how === 'passed') return { text: `${who} said ${he(c, x.speaker)} passed ${nameOf(c, x.saw)} on ${x.where} at ${hourWord(x.hour as Hour)}${x.via ? ` on the way to ${placeName(c, x.via)}` : ''}`, subject: x.speaker };
-      if (x.how === 'had') return { text: `${who} said ${he(c, x.speaker)} had ${nameOf(c, x.saw)} at ${placeName(c, x.where)} at ${hourWord(x.hour as Hour)}`, subject: x.speaker };
+      if (x.how === 'had') return { text: `${who} said ${he(c, x.speaker)} had ${nameOf(c, x.saw)} with ${pronOf(c, x.speaker).him} at ${placeName(c, x.where)} at ${hourWord(x.hour as Hour)}`, subject: x.speaker };
       return { text: `${who} said the ${meansLabel(c)} was at ${placeName(c, x.where)} at ${hourWord(x.hour as Hour)}`, subject: x.speaker };
     },
-    re: (l) => `^(${l.re.NAME}|${l.re.PRON}) said (?:${l.re.PRON} passed (${l.re.NAME}) on (${l.re.STREET}) at (${l.re.H})(?: on the way to (${l.re.PL}))?|${l.re.PRON} had (${l.re.NAME}) at (${l.re.PL}) at (${l.re.H})|the (?:${l.re.MEANS}) was at (${l.re.PL}) at (${l.re.H}))$`,
+    re: (l) => `^(${l.re.NAME}|${l.re.PRON}) said (?:${l.re.PRON} passed (${l.re.NAME}) on (${l.re.STREET}) at (${l.re.H})(?: on the way to (${l.re.PL}))?|${l.re.PRON} had (${l.re.NAME}) with (?:him|her|them|it) at (${l.re.PL}) at (${l.re.H})|the (?:${l.re.MEANS}) was at (${l.re.PL}) at (${l.re.H}))$`,
     read: (m, { lx, ref }) => {
       const s = subj(lx, ref, m[1] as string);
       if (m[2]) return { props: [{ k: 'REMARK', speaker: s, saw: person(lx, m[2]), how: 'passed', where: m[3] as string, hour: lx.hour.get(m[4] as string) as number, ...(m[5] ? { via: place(lx, m[5]) } : {}) }], subject: s };
@@ -468,7 +484,7 @@ const CLAUSES: Clause[] = [
       return { props: [{ k: 'FIND', find: id, place: f?.place ?? '' }], subject: null };
     },
   },
-  // The way in: "Feeney and Corrigan could have had the way in, from eight."
+  // The way in, as the thing it was (docs/53, addendum): "Feeney and Corrigan could have known where the key was, from eight."
   {
     kinds: ['ACCESS'],
     joins: (a, b) => (a as P<'ACCESS'>).had === (b as P<'ACCESS'>).had && (a as P<'ACCESS'>).hour === (b as P<'ACCESS'>).hour,
@@ -476,9 +492,9 @@ const CLAUSES: Clause[] = [
       const xs = ps as P<'ACCESS'>[];
       const x = xs[0] as P<'ACCESS'>;
       const who = xs.length === 1 ? S(c, ref, x.person) : ns(c, xs.map((y) => y.person));
-      return { text: `${who} could ${x.had ? '' : 'not '}have had the way in${x.hour !== undefined ? `, from ${hourWord(x.hour as Hour)}` : ''}`, subject: xs.length === 1 ? x.person : null };
+      return { text: `${who} could ${x.had ? '' : 'not '}have ${accessWords(c)}${x.hour !== undefined ? `, from ${hourWord(x.hour as Hour)}` : ''}`, subject: xs.length === 1 ? x.person : null };
     },
-    re: (l) => `^(${l.re.NS}|${l.re.PRON}) could (not )?have had the way in(?:, from (${l.re.H}))?$`,
+    re: (l) => `^(${l.re.NS}|${l.re.PRON}) could (not )?have ${l.re.ACC}(?:, from (${l.re.H}))?$`,
     read: (m, { lx, ref }) => {
       const who = /^(?:he|she|it)$/i.test(m[1] as string) ? [subj(lx, ref, m[1] as string)] : names(lx, m[1] as string);
       return { props: who.map((p) => ({ k: 'ACCESS', person: p, had: !m[2], ...(m[3] ? { hour: lx.hour.get(m[3]) as number } : {}) }) as Prop), subject: who.length === 1 ? (who[0] as Id) : null };
@@ -486,12 +502,15 @@ const CLAUSES: Clause[] = [
   },
   {
     kinds: ['WINDOW'],
-    say: (ps) => {
+    // The hours it could have happened in, said as what happened (docs/53, addendum): "Carbone died at nine or ten", "Fritz went at ten".
+    say: (ps, c) => {
       const x = ps[0] as P<'WINDOW'>;
-      return { text: x.hours.length > 1 ? `The hours that mattered were ${hs(x.hours)}` : `The hour that mattered was ${hs(x.hours)}`, subject: null };
+      const ws = x.hours.map((h) => hourWord(h as Hour));
+      const or = ws.length > 1 ? `${ws.slice(0, -1).join(', ')} or ${ws[ws.length - 1]}` : (ws[0] ?? '');
+      return { text: `${cap(victimOf(c).short)} ${isMurder(c) ? 'died' : 'went'} at ${or}`, subject: c.crime.victim };
     },
-    re: (l) => `^The hours? that mattered (?:were|was) (${l.re.HS})$`,
-    read: (m, { lx }) => ({ props: [{ k: 'WINDOW', hours: hours(lx, m[1] as string) }], subject: null }),
+    re: (l) => `^(?:${l.re.THING}) (?:died|went) at (${l.re.HOR})$`,
+    read: (m, { lx }) => ({ props: [{ k: 'WINDOW', hours: (m[1] as string).split(/, | or /).map((x) => lx.hour.get(x) as number) }], subject: lx.c.crime.victim }),
   },
   {
     kinds: ['ALIVE'],
@@ -505,7 +524,7 @@ const CLAUSES: Clause[] = [
       return { props: [{ k: 'ALIVE', victim: v, place: place(lx, m[2] as string), hour: lx.hour.get(m[3] as string) as number }], subject: v };
     },
   },
-  // A claim confirmed: "Coffin’s list put Ashby at the Thalia at eleven, with Feeney, as he had said."
+  // A claim confirmed (docs/53, addendum): "Coffin backed up Ashby: he was at the Thalia at eleven, with Feeney."
   {
     kinds: ['CONFIRMS'],
     joins: (a, b, run) => {
@@ -516,9 +535,9 @@ const CLAUSES: Clause[] = [
     say: (ps, c) => {
       const x = ps[0] as P<'CONFIRMS'>;
       const comp = x.company === undefined ? '' : x.company.length ? `, with ${ns(c, x.company)}` : ', alone';
-      return { text: `${cap(srcSaid(c, x.by))} put ${nameOf(c, x.person)} at ${placeName(c, x.place)} at ${hs(ps.map((y) => (y as P<'CONFIRMS'>).hour))}${comp}, as ${he(c, x.person)} had said`, subject: null };
+      return { text: `${cap(srcSaid(c, x.by))} backed up ${nameOf(c, x.person)}: ${he(c, x.person)} was at ${placeName(c, x.place)} at ${hs(ps.map((y) => (y as P<'CONFIRMS'>).hour))}${comp}`, subject: null };
     },
-    re: (l) => `^(${l.re.SRC}) put (${l.re.NAME}) at (${l.re.PL}) at (${l.re.HS})(?:, with (${l.re.NS})|, (alone))?, as ${l.re.PRON} had said$`,
+    re: (l) => `^(${l.re.SRC}) backed up (${l.re.NAME}): ${l.re.PRON} was at (${l.re.PL}) at (${l.re.HS})(?:, with (${l.re.NS})|, (alone))?$`,
     read: (m, { lx }) => {
       const by = srcRead(lx, m[1] as string);
       const p = person(lx, m[2] as string);
@@ -526,7 +545,7 @@ const CLAUSES: Clause[] = [
       return { props: hours(lx, m[4] as string).map((h) => ({ k: 'CONFIRMS', person: p, place: place(lx, m[3] as string), hour: h, ...(company ? { company } : {}), by }) as Prop), subject: null };
     },
   },
-  // Somebody placed on somebody's word: "Coffin’s list put Feeney and Ashby at the Thalia at eleven."
+  // Somebody placed on somebody's word (docs/53, addendum): "According to Coffin, Feeney and Ashby were at the Thalia at eleven."
   {
     kinds: ['PLACED'],
     joins: (a, b, run) => {
@@ -545,9 +564,9 @@ const CLAUSES: Clause[] = [
       const x = xs[0] as P<'PLACED'>;
       const people = [...new Set(xs.map((y) => y.person))];
       const hrs = [...new Set(xs.map((y) => y.hour))];
-      return { text: `${cap(srcSaid(c, x.by))} put ${ns(c, people)} at ${placeName(c, x.place)} at ${hs(hrs)}`, subject: null };
+      return { text: `According to ${srcSaid(c, x.by)}, ${ns(c, people)} ${people.length > 1 ? 'were' : 'was'} at ${placeName(c, x.place)} at ${hs(hrs)}`, subject: null };
     },
-    re: (l) => `^(${l.re.SRC}) put (${l.re.NS}) at (${l.re.PL}) at (${l.re.HS})$`,
+    re: (l) => `^According to (${l.re.SRC}), (${l.re.NS}) (?:was|were) at (${l.re.PL}) at (${l.re.HS})$`,
     read: (m, { lx }) => {
       const by = srcRead(lx, m[1] as string);
       const who = names(lx, m[2] as string);
@@ -557,16 +576,16 @@ const CLAUSES: Clause[] = [
       return { props: out, subject: null };
     },
   },
-  // A collision: "Corrigan said she was at her flat at eleven, which collided with this: Ashby said…"
+  // A collision (docs/53, addendum): "Corrigan said she was at the Corrigan flat at eleven, which did not agree with this: Ashby said…"
   {
     kinds: ['COLLIDES'],
     say: (ps, c, ref) => {
       const x = ps[0] as P<'COLLIDES'>;
       const w = x.with;
-      const by = isSrc(w) ? srcSaid(c, w) : `this: ${sayClause(c, [w], { subject: null, named: new Set() }).text}`;
-      return { text: `${S(c, ref, x.person)} said${x.second ? ' in a second story' : ''} ${he(c, x.person)} was at ${placeName(c, x.place)} at ${hourWord(x.hour as Hour)}, which collided with ${by}`, subject: x.person };
+      const by = isSrc(w) ? `what ${srcSaid(c, w)} said` : `this: ${sayClause(c, [w], { subject: null, named: new Set() }).text}`;
+      return { text: `${S(c, ref, x.person)} said${x.second ? ' the second time' : ''} ${he(c, x.person)} was at ${placeName(c, x.place)} at ${hourWord(x.hour as Hour)}, which did not agree with ${by}`, subject: x.person };
     },
-    re: (l) => `^(${l.re.NAME}|${l.re.PRON}) said( in a second story)? ${l.re.PRON} was at (${l.re.PL}) at (${l.re.H}), which collided with (?:this: (.+)|(${l.re.SRC}))$`,
+    re: (l) => `^(${l.re.NAME}|${l.re.PRON}) said( the second time)? ${l.re.PRON} was at (${l.re.PL}) at (${l.re.H}), which did not agree with (?:this: (.+)|what (${l.re.SRC}) said)$`,
     read: (m, { lx, ref }) => {
       const p = subj(lx, ref, m[1] as string);
       const w: Prop | Src = m[5] ? (readClause(lx, m[5], { subject: null, named: new Set() }).props[0] as Prop) : srcRead(lx, m[6] as string);
@@ -584,9 +603,9 @@ const CLAUSES: Clause[] = [
     say: (ps, c) => {
       const x = ps[0] as P<'LEFT'>;
       if (x.people) return { text: `That left ${ns(c, x.people)}, with the hours still open from ${hourWord(x.hours[0] as Hour)} to ${hourWord(x.hours[x.hours.length - 1] as Hour)}`, subject: null };
-      return { text: `That left one person with the way in and no true account for ${hs(x.hours)}${x.seen ? ', seen on the street of the scene' : ''}`, subject: null };
+      return { text: `That left one person who could have ${accessWords(c)} and had nobody to back them up at ${hs(x.hours)}${x.seen ? ', seen on the street where it happened' : ''}`, subject: null };
     },
-    re: (l) => `^That left (?:(${l.re.NS}), with the hours still open from (${l.re.H}) to (${l.re.H})|one person with the way in and no true account for (${l.re.HS})(, seen on the street of the scene)?)$`,
+    re: (l) => `^That left (?:(${l.re.NS}), with the hours still open from (${l.re.H}) to (${l.re.H})|one person who could have ${l.re.ACC} and had nobody to back them up at (${l.re.HS})(, seen on the street where it happened)?)$`,
     read: (m, { lx }) => {
       if (m[1]) return { props: [{ k: 'LEFT', people: names(lx, m[1]), hours: [lx.hour.get(m[2] as string) as number, lx.hour.get(m[3] as string) as number] }], subject: null };
       return { props: [{ k: 'LEFT', hours: hours(lx, m[4] as string), ...(m[5] ? { seen: true } : {}) }], subject: null };
@@ -620,9 +639,9 @@ const CLAUSES: Clause[] = [
     kinds: ['SECOND'],
     say: (ps, c, ref) => {
       const x = ps[0] as P<'SECOND'>;
-      return { text: `${S(c, ref, x.person)} told a second story: ${placeName(c, x.place)}${x.hour !== undefined ? ` at ${hourWord(x.hour as Hour)}` : ''}`, subject: x.person };
+      return { text: `${S(c, ref, x.person)} changed the answer to ${placeName(c, x.place)}${x.hour !== undefined ? ` at ${hourWord(x.hour as Hour)}` : ''}`, subject: x.person };
     },
-    re: (l) => `^(${l.re.NAME}|${l.re.PRON}) told a second story: (${l.re.PL})(?: at (${l.re.H}))?$`,
+    re: (l) => `^(${l.re.NAME}|${l.re.PRON}) changed the answer to (${l.re.PL})(?: at (${l.re.H}))?$`,
     read: (m, { lx, ref }) => {
       const p = subj(lx, ref, m[1] as string);
       return { props: [{ k: 'SECOND', person: p, place: place(lx, m[2] as string), ...(m[3] ? { hour: lx.hour.get(m[3]) as number } : {}) }], subject: p };
@@ -644,15 +663,17 @@ const CLAUSES: Clause[] = [
     kinds: ['HELD'],
     say: (ps, c) => {
       const x = ps[0] as P<'HELD'>;
-      const line = x.by ? `, ${nameOf(c, x.by)}’s${x.place ? ` at ${placeName(c, x.place)}` : ''},` : x.place ? `, the one at ${placeName(c, x.place)},` : '';
-      return { text: `The line put to ${nameOf(c, x.person)} about ${hourWord(x.hour as Hour)}${line} did not break the story${x.why ? ` (${WHY[x.why]})` : ''}`, subject: null };
+      // docs/53, addendum: what I told them and whose it was, never "the line put to": "Grasso did not
+      // budge on ten when I told her what Coffin said about the Thalia (it agreed with what they had said)".
+      const told = x.by ? ` when I told ${pronOf(c, x.person).him} what ${nameOf(c, x.by)} said` : x.place ? ` when I told ${pronOf(c, x.person).him} what was said` : '';
+      return { text: `${nameOf(c, x.person)} did not budge on ${hourWord(x.hour as Hour)}${told}${x.place ? ` about ${placeName(c, x.place)}` : ''}${x.why ? ` (${WHY[x.why]})` : ''}`, subject: null };
     },
-    re: (l) => `^The line put to (${l.re.NAME}) about (${l.re.H})(?:, (${l.re.NAME})’s(?: at (${l.re.PL}))?,|, the one at (${l.re.PL}),)? did not break the story(?: \\((.+)\\))?$`,
+    re: (l) => `^(${l.re.NAME}) did not budge on (${l.re.H})(?: when I told (?:him|her|them|it) what (?:(${l.re.NAME}) said|was said))?(?: about (${l.re.PL}))?(?: \\((.+)\\))?$`,
     read: (m, { lx }) => {
-      const why = m[6] ? (Object.entries(WHY).find(([, v]) => v === m[6])?.[0] as HeldWhy | undefined) : undefined;
-      if (m[6] && !why) throw new Error(`plain: no reason "${m[6]}"`);
+      const why = m[5] ? (Object.entries(WHY).find(([, v]) => v === m[5])?.[0] as HeldWhy | undefined) : undefined;
+      if (m[5] && !why) throw new Error(`plain: no reason "${m[5]}"`);
       return {
-        props: [{ k: 'HELD', person: person(lx, m[1] as string), hour: lx.hour.get(m[2] as string) as number, ...(why ? { why } : {}), ...(m[3] ? { by: person(lx, m[3]) } : {}), ...(m[4] || m[5] ? { place: place(lx, (m[4] ?? m[5]) as string) } : {}) }],
+        props: [{ k: 'HELD', person: person(lx, m[1] as string), hour: lx.hour.get(m[2] as string) as number, ...(why ? { why } : {}), ...(m[3] ? { by: person(lx, m[3]) } : {}), ...(m[4] ? { place: place(lx, m[4]) } : {}) }],
         subject: null,
       };
     },
@@ -665,14 +686,16 @@ const CLAUSES: Clause[] = [
       const x = xs[0] as P<'MOTIVE'>;
       if (x.person === '*') return { text: 'Everybody in the papers had a reason', subject: null };
       const who = xs.length === 1 ? S(c, ref, x.person) : ns(c, xs.map((y) => y.person));
-      const said = x.said === 'office' ? ' the office had given' : x.said === 'not-office' ? ' the office had not given' : '';
+      // (docs/53, addendum: the client said it, or didn't, never "the office had given".)
+      const cl = nameOf(c, c.client);
+      const said = x.said === 'office' ? `, as ${cl} had said` : x.said === 'not-office' ? ` that ${cl} had not mentioned` : '';
       return { text: `${who} had ${xs.length > 1 ? 'reasons' : 'a reason'}${said}`, subject: xs.length === 1 ? x.person : null };
     },
-    re: (l) => `^(?:(Everybody) in the papers had a reason|(${l.re.NS}|${l.re.PRON}) had (?:a reason|reasons)( the office had given| the office had not given)?)$`,
+    re: (l) => `^(?:(Everybody) in the papers had a reason|(${l.re.NS}|${l.re.PRON}) had (?:a reason|reasons)(, as (?:${l.re.NAME}) had said| that (?:${l.re.NAME}) had not mentioned)?)$`,
     read: (m, { lx, ref }) => {
       if (m[1]) return { props: [{ k: 'MOTIVE', person: '*' }], subject: null };
       const who = /^(?:he|she|it)$/i.test(m[2] as string) ? [subj(lx, ref, m[2] as string)] : names(lx, m[2] as string);
-      const said = m[3] === ' the office had given' ? 'office' : m[3] ? 'not-office' : undefined;
+      const said = m[3]?.startsWith(', as ') ? 'office' : m[3] ? 'not-office' : undefined;
       return { props: who.map((p) => ({ k: 'MOTIVE', person: p, ...(said ? { said } : {}) }) as Prop), subject: who.length === 1 ? (who[0] as Id) : null };
     },
   },
@@ -681,18 +704,19 @@ const CLAUSES: Clause[] = [
     say: (ps, c) => {
       const x = ps[0] as P<'POINTER'>;
       // The street a remark put somebody on is the scene's: said as the street it is.
-      if (x.why === 'street') return { text: `${c.places.find((p) => p.id === x.to)?.street ?? ''} was the street of ${placeName(c, x.to)}`, subject: null };
+      // docs/53, addendum: who sent me, never "the office pointed at": "Mrs. Krantz sent me to Feeney",
+      // "Mrs. Krantz said Feeney looked after Fritz", "The Prentiss flat was on Stuyvesant Street".
+      if (x.why === 'street') return { text: `${cap(placeName(c, x.to))} was on ${c.places.find((p) => p.id === x.to)?.street ?? ''}`, subject: null };
       const to = c.people.some((p) => p.id === x.to) ? nameOf(c, x.to) : placeName(c, x.to);
-      const from = x.from === 'office' ? 'The office' : x.from === 'remark' ? 'The remark' : 'The second story';
-      const verb = x.why === 'keeper' ? 'named the keeper,' : 'pointed at';
-      return { text: `${from} ${verb} ${to}`, subject: null };
+      const from = x.from === 'office' ? nameOf(c, c.client) : x.from === 'remark' ? 'What I heard in passing' : 'The place they named instead';
+      return { text: x.why === 'keeper' ? `${from} said ${to} looked after ${victimOf(c).short}` : `${from} sent me to ${to}`, subject: null };
     },
-    re: (l) => `^(?:The (office|remark|second story) (named the keeper,|pointed at) (?:(${l.re.NAME})|(${l.re.PL}))|(?:${l.re.STREET}) was the street of (${l.re.PL}))$`,
+    re: (l) => `^(?:(${l.re.NAME}|What I heard in passing|The place they named instead) (?:(said) (${l.re.NAME}) looked after (?:${l.re.THING})|sent me to (?:(${l.re.NAME})|(${l.re.PL})))|(${l.re.PL}) was on (?:${l.re.STREET}))$`,
     read: (m, { lx }) => {
-      if (m[5]) return { props: [{ k: 'POINTER', from: 'remark', to: place(lx, m[5]), why: 'street' }], subject: null };
-      const from = m[1] === 'office' ? 'office' : m[1] === 'remark' ? 'remark' : 'second';
-      const to = m[3] ? person(lx, m[3]) : place(lx, m[4] as string);
-      const why = m[2] === 'named the keeper,' ? 'keeper' : from === 'remark' ? 'street' : from === 'second' ? 'watcher' : m[3] ? 'pointer' : 'venue';
+      if (m[6]) return { props: [{ k: 'POINTER', from: 'remark', to: place(lx, m[6]), why: 'street' }], subject: null };
+      const from = /^What I heard/.test(m[1] as string) ? 'remark' : /^The place they named/.test(m[1] as string) ? 'second' : 'office';
+      const to = m[3] ? person(lx, m[3]) : m[4] ? person(lx, m[4]) : place(lx, m[5] as string);
+      const why = m[2] ? 'keeper' : from === 'remark' ? 'street' : from === 'second' ? 'watcher' : m[4] ? 'pointer' : 'venue';
       return { props: [{ k: 'POINTER', from, to, why }], subject: null };
     },
   },
@@ -734,24 +758,25 @@ const CLAUSES: Clause[] = [
     kinds: ['UNSPOKEN'],
     say: (ps, c) => {
       const x = ps[0] as P<'UNSPOKEN'>;
-      return { text: `Nobody had placed ${ns(c, x.people)} at ${hs(x.hours)}`, subject: null };
+      return { text: `Nobody had said where ${ns(c, x.people)} ${x.people.length > 1 ? 'were' : 'was'} at ${hs(x.hours)}`, subject: null };
     },
-    re: (l) => `^Nobody had placed (${l.re.NS}) at (${l.re.HS})$`,
+    re: (l) => `^Nobody had said where (${l.re.NS}) (?:was|were) at (${l.re.HS})$`,
     read: (m, { lx }) => ({ props: [{ k: 'UNSPOKEN', people: names(lx, m[1] as string), hours: hours(lx, m[2] as string) }], subject: null }),
   },
   {
     kinds: ['HOLD'],
+    // docs/53, addendum: what I knew and from whom, never "evenings from" and "lists from".
     say: (ps, c) => {
       const x = ps[0] as P<'HOLD'>;
-      return { text: `I had ${[x.evenings.length ? `evenings from ${ns(c, x.evenings)}` : '', x.lists.length ? `lists from ${ns(c, x.lists)}` : ''].filter(Boolean).join(' and ')}`, subject: null };
+      return { text: `I knew ${[x.evenings.length ? `where ${ns(c, x.evenings)} had been` : '', x.lists.length ? `who ${ns(c, x.lists)} had seen` : ''].filter(Boolean).join(' and ')}`, subject: null };
     },
-    re: (l) => `^I had (?:evenings from (${l.re.NS}))?(?: and )?(?:lists from (${l.re.NS}))?$`,
+    re: (l) => `^I knew (?:where (${l.re.NS}) had been)?(?: and )?(?:who (${l.re.NS}) had seen)?$`,
     read: (m, { lx }) => ({ props: [{ k: 'HOLD', evenings: m[1] ? names(lx, m[1]) : [], lists: m[2] ? names(lx, m[2]) : [] }], subject: null }),
   },
   {
     kinds: ['MISSING'],
-    say: (ps, c) => ({ text: `I did not have evenings from ${ns(c, (ps[0] as P<'MISSING'>).people)}`, subject: null }),
-    re: (l) => `^I did not have evenings from (${l.re.NS})$`,
+    say: (ps, c) => ({ text: `I did not know yet where ${ns(c, (ps[0] as P<'MISSING'>).people)} had been`, subject: null }),
+    re: (l) => `^I did not know yet where (${l.re.NS}) had been$`,
     read: (m, { lx }) => ({ props: [{ k: 'MISSING', people: names(lx, m[1] as string) }], subject: null }),
   },
   {
@@ -792,11 +817,11 @@ const CLAUSES: Clause[] = [
     say: (ps, c) => {
       const x = ps[0] as P<'MEANS'>;
       if (x.how === 'origin') return { text: `The ${meansLabel(c)} came from ${placeName(c, x.place)}`, subject: null };
-      if (x.how === 'told') return { text: `${nameOf(c, c.client)} told the room at ${placeName(c, x.place)} about the way in at ${hs(x.hours ?? [])}`, subject: null };
+      if (x.how === 'told') return { text: `${nameOf(c, c.client)} told the room at ${placeName(c, x.place)} ${wayKnown(c)} at ${hs(x.hours ?? [])}`, subject: null };
       if (x.how === 'party') return { text: `${nameOf(c, c.client)} had people in at ${placeName(c, x.place)} at ${hs(x.hours ?? [])}${x.who ? `, where ${nameOf(c, x.who)} lodged` : ''}`, subject: null };
       return { text: `The spare key was at ${placeName(c, x.place)}${x.who ? `, in ${nameOf(c, x.who)}’s keeping` : ''}`, subject: null };
     },
-    re: (l) => `^(?:The (?:${l.re.MEANS}) came from (${l.re.PL})|(?:${l.re.NAME}) told the room at (${l.re.PL}) about the way in at (${l.re.HS})|(?:${l.re.NAME}) had people in at (${l.re.PL}) at (${l.re.HS})(?:, where (${l.re.NAME}) lodged)?|The spare key was at (${l.re.PL})(?:, in (${l.re.NAME})’s keeping)?)$`,
+    re: (l) => `^(?:The (?:${l.re.MEANS}) came from (${l.re.PL})|(?:${l.re.NAME}) told the room at (${l.re.PL}) ${l.re.WAY} at (${l.re.HS})|(?:${l.re.NAME}) had people in at (${l.re.PL}) at (${l.re.HS})(?:, where (${l.re.NAME}) lodged)?|The spare key was at (${l.re.PL})(?:, in (${l.re.NAME})’s keeping)?)$`,
     read: (m, { lx }) => {
       if (m[1]) return { props: [{ k: 'MEANS', how: 'origin', place: place(lx, m[1]) }], subject: null };
       if (m[2]) return { props: [{ k: 'MEANS', how: 'told', place: place(lx, m[2]), hours: hours(lx, m[3] as string) }], subject: null };
@@ -852,7 +877,7 @@ function runsOf(ps: readonly Prop[]): Prop[][] {
 const SEP: Record<string, string> = { and: ', and ', rhythm: ', and ', who: ', and ', 'and-he': ', and ', semi: '; ', but: ', but ' };
 
 /** The words a clause may open on that go lower case after a comma (never a name, never "I"). */
-const LOWER = /^(?:He|She|It|The|That|Nobody|Everybody|Something)\b/;
+const LOWER = /^(?:He|She|It|The|That|Nobody|Everybody|Something|According|What)\b/;
 
 function sayComposite(c: BoardCase, comp: Composite, ref: Ref): string {
   if (comp.parts && comp.parts.length === 2 && (comp.shape === 'PAIR' || comp.shape === 'ATTACH' || comp.shape === 'ADMIT-CHECK')) {

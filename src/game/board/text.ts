@@ -82,7 +82,7 @@ export function notebookText(d: BoardDeal, run: BoardRun): string {
   const c = d.kase;
   const out: string[] = ['NOTEBOOK'];
   out.push('');
-  out.push('The office:');
+  out.push('What my client said:');
   // docs/55 7, 8: the widow's title, and "says she says" (Raw 11's #10) said once.
   for (const t of c.givens.text) out.push(`  ${wrap(titleClient(c, t.replace(/\bsays (she|he) says\b/, 'says $1 claims')), 72).replace(/\n/g, '\n  ')}`);
   out.push('');

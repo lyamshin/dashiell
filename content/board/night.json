@@ -65,7 +65,7 @@
   { "id": "bnt-1343", "family": "ending", "tags": { "outcome": "cold" }, "text": "I left the name blank and told {client} so. {client} took it better than I did." },
   { "id": "bnt-1344", "family": "ending", "tags": { "outcome": "cold" }, "text": "The report went in with a blank where the name goes. A blank never hurt anybody. That’s the best you can say for it, and the worst.", "joke": true },
 
-  { "id": "bnt-1351", "family": "ending", "tags": { "outcome": "lucky" }, "text": "I had the right name and nothing under it. **A right name you can’t stand behind is a coin that came down the right way.** I filed it, and I didn’t tell anybody how I’d got there." },
+  { "id": "bnt-1351", "family": "ending", "tags": { "outcome": "lucky" }, "text": "I had the right name and nothing to prove it. **A right name you can’t stand behind is a coin that came down the right way.** I filed it, and I didn’t tell anybody how I’d got there." },
   { "id": "bnt-1352", "family": "ending", "tags": { "outcome": "lucky" }, "text": "The name was right. The reason I wrote it down wasn’t a reason, and if anybody had asked me why, I’d have had to look at my shoes.", "joke": true },
   { "id": "bnt-1353", "family": "ending", "tags": { "outcome": "lucky" }, "text": "The right name, got the wrong way. I’ll take it. I won’t frame it.", "joke": true },
   { "id": "bnt-1354", "family": "ending", "tags": { "outcome": "lucky" }, "text": "{client} got the right name, and I got lucky, which isn’t the same thing. **Next time the coin comes down the other way, and somebody who did nothing pays for it.**" },

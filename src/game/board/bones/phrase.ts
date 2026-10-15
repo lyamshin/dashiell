@@ -7,7 +7,7 @@
 
 import type { Line } from '../knowledge.js';
 import { accountOf, listExhaustive, listOf } from '../knowledge.js';
-import { andList, clientOf, hourWord, isMurder, nameOf, oclock, personOf, placeName, pronOf, type BoardCase, type Hour, type PersonId, type PlaceId } from '../model.js';
+import { andList, clientOf, hourWord, isMurder, nameOf, oclock, personOf, placeName, pronOf, victimOf, type BoardCase, type Hour, type PersonId, type PlaceId } from '../model.js';
 
 /** "the Odessa at ten", or "home at ten" when it's their own. */
 export function claimSaid(c: BoardCase, p: PersonId, h: Hour): string {
@@ -33,9 +33,7 @@ export function breakSaid(c: BoardCase, l: Line, p: PersonId, asked: readonly st
     const faceTail = faces.length ? `; ${faces.join('; ')}` : '';
     const at = placeName(c, l.place as PlaceId);
     const onIt = es.some((e) => 'person' in e && e.person === p);
-    if (onIt) return `${nameOf(c, l.speaker as PersonId)} had ${nameOf(c, p)} at ${at} at ${oclock(l.hour as Hour)}`;
-    if (names.length === 0) return `${nameOf(c, l.speaker as PersonId)} had nobody at ${at} at ${oclock(l.hour as Hour)}`;
-    return `${nameOf(c, l.speaker as PersonId)} had ${andList(names)} at ${at} at ${oclock(l.hour as Hour)}${lst && listExhaustive(c, lst, l.hour as Hour) ? ', and nobody else' : ''}${faceTail}`;
+    return listSaid(c, l.speaker as PersonId, onIt ? p : null, names, at, l.hour as Hour, !!lst && listExhaustive(c, lst, l.hour as Hour), faceTail);
   }
   if (l.kind === 'claim') {
     const sp = l.speaker as PersonId;
@@ -47,6 +45,59 @@ export function breakSaid(c: BoardCase, l: Line, p: PersonId, asked: readonly st
   if (l.kind === 'remark') return remarkSaid(c, l);
   if (l.kind === 'given' || l.kind === 'find') return l.text.replace(/^[^:]+: /, '').replace(/[.”]+$/, '').replace(/^“/, '');
   return l.text.replace(/\.$/, '');
+}
+
+/**
+ * docs/53, addendum: a watcher's hour as a person says it, never "Coffin had Ashby at": "Coffin saw
+ * Ashby at the Thalia at eleven o’clock" (the person on it), "Coffin said nobody was at the Thalia at
+ * eleven o’clock", "Coffin said only Feeney and Ashby were at the Thalia at eleven o’clock" (whole).
+ * Read back by `reread.ts` (`breakerV`).
+ */
+export function listSaid(c: BoardCase, watcher: PersonId, onIt: PersonId | null, names: readonly string[], at: string, h: Hour, whole: boolean, faceTail = ''): string {
+  const W = nameOf(c, watcher);
+  if (onIt) return `${W} saw ${nameOf(c, onIt)} at ${at} at ${oclock(h)}`;
+  if (names.length === 0) return `${W} said nobody was at ${at} at ${oclock(h)}`;
+  return `${W} said ${whole ? 'only ' : ''}${andList(names)} ${names.length > 1 ? 'were' : 'was'} at ${at} at ${oclock(h)}${faceTail}`;
+}
+
+/**
+ * docs/53, addendum: the hours that matter, said with why they matter, never "the hour that
+ * mattered": "when the watch went", "when Carbone died", "when Fritz could have gone" (two hours).
+ */
+export function whyHours(c: BoardCase, hours: readonly number[]): string {
+  const two = hours.length > 1;
+  if (isMurder(c)) return `when ${nameOf(c, c.crime.victim)} ${two ? 'could have died' : 'died'}`;
+  return `when ${victimOf(c).short} ${two ? 'could have gone' : 'went'}`;
+}
+
+/**
+ * docs/53, addendum: the way in, said as the thing it was, never "the way in": the key under the mat,
+ * the parlor window that wouldn’t latch, the broken lock, the door left unlocked, the spare key; a
+ * murder's, its means ("the chloral").
+ */
+export function wayWhat(c: BoardCase): string {
+  if (isMurder(c)) return `the ${c.means.name.replace(/^(a|an|the) /, '')}`;
+  const t = c.means.originText.replace(/^[^;]*; /, '').replace(/,? which .*$/, '');
+  if (/^the spare key\b/.test(t)) return 'the spare key';
+  return t.replace(/^the door, left unlocked for (.+)$/, 'the door left unlocked for $1').replace(/\bwon’t latch\b/, 'wouldn’t latch');
+}
+
+/** What knowing the way in was, after "knew" or "had known": "where the key was", "about the window", "that the door was left unlocked". */
+export function wayKnown(c: BoardCase): string {
+  const mode = c.setup?.means ?? '';
+  if (isMurder(c)) return `where the ${c.means.name.replace(/^(a|an|the) /, '')} was kept`;
+  if (/mat$/.test(mode)) return 'where the key was';
+  if (/window$/.test(mode)) return 'about the window that wouldn’t latch';
+  if (mode === 'broken-lock') return 'about the broken lock';
+  if (mode === 'latch-key') return 'that the door was left unlocked';
+  return 'where the spare key was';
+}
+
+/** The grid's word for the means column: "could have got the chloral", "knew where the key was". */
+export function meansKnew(c: BoardCase): string {
+  if (isMurder(c)) return `could have got the ${c.means.name.replace(/^(a|an|the) /, '')}`;
+  if (/^spare/.test(c.setup?.means ?? '')) return 'could have got the spare key';
+  return `knew ${wayKnown(c)}`;
 }
 
 /** A standing fact said once: "Mr. Prentiss telling the room about his key" is "Mr. Prentiss" in a later breath; "Lou the bookmaker in his back booth" is Lou. */
@@ -104,7 +155,7 @@ export function accessPhrase(c: BoardCase, yes: boolean, again = false, here?: P
     // no says the means and where it was kept, never "while it was there to take" (docs/49, Planner 2).
     return yes ? `had been ${at} earlier, when the ${m} was there for the taking` : `hadn’t been ${at} while the ${m} was ${keptAt(c)}`;
   }
-  if (party) return yes ? (again ? `had been at the ${party.occasion} to learn the way in` : `was at the ${party.occasion}`) : again ? `never learnt the way in` : `wasn’t at the ${party.occasion}`;
+  if (party) return yes ? (again ? `had been at the ${party.occasion} and knew ${wayKnown(c)}` : `was at the ${party.occasion}`) : again ? `never knew ${wayKnown(c)}` : `wasn’t at the ${party.occasion}`;
   if (/^told/.test(mode)) {
     const thing = mode === 'told-window' ? 'window' : 'key';
     if (again) return yes ? `had heard about the ${thing}` : `hadn’t heard about the ${thing} at all`;
