@@ -327,7 +327,7 @@ export function worldDeck(d: BoardDeal, run: BoardRun): WorldDeck | undefined {
         const bp = p ? biblePerson(c, p) : undefined;
         const pl = bp ? b.places.find((x) => x.watcher?.person === bp.id) : undefined;
         // Somebody who keeps the unwatched place only when it mattered isn't a watcher of the bible's.
-        if (bp && !pl && personOf(c, p as PersonId)?.id === 'ukeeper') return [card(`${bp.id}:keeper`, family, `{Name} had only been minding the room for part of the evening. Before that, {he} said, it was anybody’s.`)];
+        if (bp && !pl && personOf(c, p as PersonId)?.id === 'ukeeper') return [card(`${bp.id}:keeper`, family, `{Name} had only been keeping an eye on the place for part of the evening. Before that, {he} said, it was anybody’s.`)];
         if (!bp || !pl?.watcher || !clean(pl.watcher.sees)) return [];
         // How they count, in their own words, one of their three, unless it names an hour the page doesn't tell.
         // (docs/56 A29: what they could see, not "From his post …" every night.)
