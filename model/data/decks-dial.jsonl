@@ -784,10 +784,10 @@
 {"id":"bpl-092","flags":[],"action":"keep","batch":3}
 {"id":"bpl-101","flags":[],"action":"keep","batch":3}
 {"id":"bpl-111","flags":[],"action":"keep","batch":3}
-{"id":"bpl-201","flags":["repeat"],"action":"rewrite","batch":3,"before":"Back at {place}. Nothing had moved but the clock.","text":"I was back. Nothing had moved but the clock."}
-{"id":"bpl-202","flags":["repeat"],"action":"rewrite","batch":3,"before":"I went back to {place}. It was the same place, a little later, which is all most places are.","text":"I went back in. Same place, a little later, which is all most places are."}
-{"id":"bpl-203","flags":["repeat"],"action":"rewrite","batch":3,"before":"{Place} again. The welcome was about what it had been the first time.","text":"Back again. The welcome was about what it had been the first time."}
-{"id":"bpl-204","flags":["repeat"],"action":"rewrite","batch":3,"before":"I was back at {place}. The street outside was emptier, and so was I.","text":"I was back. The street outside was emptier, and so was I."}
+{"id":"bpl-201","flags":["repeat"],"action":"keep","batch":8}
+{"id":"bpl-202","flags":["repeat"],"action":"keep","batch":8}
+{"id":"bpl-203","flags":["repeat"],"action":"keep","batch":8}
+{"id":"bpl-204","flags":["repeat"],"action":"keep","batch":8}
 {"id":"bpl-301","flags":["translate"],"action":"rewrite","batch":3,"before":"{Victim} was still where they’d found the body, in the chair by the table, as if waiting for something that had come.","text":"{Victim} was still where they’d found the body, in the chair by the table, as if waiting for company, and the company had come and gone."}
 {"id":"bpl-302","flags":[],"action":"keep","batch":3}
 {"id":"bpl-303","flags":[],"action":"keep","batch":3}
@@ -895,16 +895,16 @@
 {"id":"bpl-1081","flags":[],"action":"keep","batch":3}
 {"id":"bpl-1082","flags":[],"action":"keep","batch":3}
 {"id":"bpl-1083","flags":[],"action":"keep","batch":3}
-{"id":"bpl-1101","flags":["repeat"],"action":"rewrite","batch":3,"before":"{Place} hadn’t changed while I was gone, which is the nicest thing a place can do for you.","text":"The place hadn’t changed while I was gone, which is the nicest thing a place can do for you."}
-{"id":"bpl-1102","flags":["repeat"],"action":"rewrite","batch":3,"before":"I went back to {place}, which had kept my welcome at about room temperature.","text":"I went back in, and my welcome was still at about room temperature."}
-{"id":"bpl-1103","flags":["repeat"],"action":"rewrite","batch":3,"before":"Back at {place}, everything was where I’d left it except the time.","text":"I was back, and everything was where I’d left it except the time."}
-{"id":"bpl-1104","flags":["repeat"],"action":"rewrite","batch":3,"before":"I came back into {place} the way you come back to a crossword, hoping it had got easier while I was out.","text":"I came back the way you come back to a crossword, hoping it had got easier while I was out."}
-{"id":"bpl-1105","flags":["repeat"],"action":"rewrite","batch":3,"before":"{Place} again, a little later and a little quieter.","text":"Back again, a little later, and the place a little quieter."}
-{"id":"bpl-1106","flags":["repeat"],"action":"rewrite","batch":3,"before":"I let myself back into {place}, and nobody made a fuss about it.","text":"I let myself back in, and nobody made a fuss about it."}
-{"id":"bpl-1107","flags":["repeat"],"action":"rewrite","batch":3,"before":"Back at {place}, I had my hands in my pockets and my questions in order.","text":"I came back with my hands in my pockets and my questions in order."}
-{"id":"bpl-1108","flags":["repeat"],"action":"rewrite","batch":3,"before":"{Place} looked the same the second time, which in my line of work is never quite true.","text":"The place looked the same the second time, which in my line of work is never quite true."}
-{"id":"bpl-1109","flags":["repeat"],"action":"rewrite","batch":3,"before":"I went back to {place}, because there’s no such thing as a place you’re finished with.","text":"I went back in, because there’s no such thing as a place you’re finished with."}
-{"id":"bpl-1110","flags":["repeat"],"action":"rewrite","batch":3,"before":"{Place} was where I’d left it, and I was grateful, because I wasn’t sure where I’d left anything else tonight.","text":"The place was where I’d left it, and I was grateful, because I wasn’t sure where I’d left anything else tonight."}
+{"id":"bpl-1101","flags":["repeat"],"action":"keep","batch":8}
+{"id":"bpl-1102","flags":["repeat"],"action":"keep","batch":8}
+{"id":"bpl-1103","flags":["repeat"],"action":"keep","batch":8}
+{"id":"bpl-1104","flags":["repeat"],"action":"keep","batch":8}
+{"id":"bpl-1105","flags":["repeat"],"action":"keep","batch":8}
+{"id":"bpl-1106","flags":["repeat"],"action":"keep","batch":8}
+{"id":"bpl-1107","flags":["repeat"],"action":"keep","batch":8}
+{"id":"bpl-1108","flags":["repeat"],"action":"keep","batch":8}
+{"id":"bpl-1109","flags":["repeat"],"action":"keep","batch":8}
+{"id":"bpl-1110","flags":["repeat"],"action":"keep","batch":8}
 {"id":"bpl-1201","flags":[],"action":"keep","batch":3}
 {"id":"bpl-1202","flags":[],"action":"keep","batch":3}
 {"id":"bpl-1203","flags":[],"action":"keep","batch":3}
@@ -1349,7 +1349,7 @@
 {"id":"bpe-1301","flags":["place"],"action":"rewrite","batch":4,"before":"{name}, my client, was already there, keeping one eye on the door and the other on me.","text":"{name}, my client, had arrived first and was keeping one eye on the door and the other on me."}
 {"id":"bpe-1302","flags":["place"],"action":"rewrite","batch":4,"before":"My client, {name}, had beaten me there and stood just inside the door, gloves in {his} hand.","text":"My client, {name}, had come ahead of me and stood just inside the door, gloves in {his} hand."}
 {"id":"bpe-1303","flags":[],"action":"keep","batch":4}
-{"id":"bpe-1304","flags":["place"],"action":"rewrite","batch":4,"before":"{name} had got there before me and looked up when I came in, the way people look up when they’re paying for your time.","text":"{name} was ahead of me, and looked up when I came in, the way people look up when they’re paying for your time."}
+{"id":"bpe-1304","flags":["place"],"action":"rewrite","batch":8,"before":"{name} had got there before me and looked up when I came in, the way people look up when they’re paying for your time.","text":"{name}, my client, had got in ahead of me and looked up when I came in, the way people look up when they’re paying for your time."}
 {"id":"bpe-1305","flags":[],"action":"keep","batch":4}
 {"id":"bpe-1401","flags":[],"action":"keep","batch":4}
 {"id":"bpe-1402","flags":[],"action":"keep","batch":4}
@@ -1692,7 +1692,7 @@
 {"id":"chr-281/trait/pay/0","flags":[],"action":"keep","batch":5}
 {"id":"chr-282","flags":[],"action":"keep","batch":5}
 {"id":"chr-282/trait","flags":[],"action":"keep","batch":5}
-{"id":"chr-282/trait/pay/0","flags":["ellipsis","tag"],"action":"rewrite","batch":5,"before":"I buttoned my coat. It came off a rack, and in that company it knew it.","text":"I buttoned my coat. It came off a rack, and next to all that handmade sewing it looked it."}
+{"id":"chr-282/trait/pay/0","flags":["ellipsis","tag"],"action":"keep","batch":8}
 {"id":"chr-283","flags":[],"action":"keep","batch":5}
 {"id":"chr-283/trait","flags":[],"action":"keep","batch":5}
 {"id":"chr-283/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"The squint stayed on me a while. I tried to look thinner. It didn’t help.","text":"The needle’s-eye squint stayed on me a while. I tried to look thinner. It didn’t help."}
@@ -1773,7 +1773,7 @@
 {"id":"chr-573/trait/pay/0","flags":[],"action":"keep","batch":5}
 {"id":"chr-574","flags":[],"action":"keep","batch":5}
 {"id":"chr-574/trait","flags":[],"action":"keep","batch":5}
-{"id":"chr-574/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":5,"before":"My own hat had been reshaped by a few nights too. Not hot ones.","text":"That cap had a hundred hot nights in it. My own hat had a few nights in it too, and not hot ones."}
+{"id":"chr-574/trait/pay/0","flags":["ellipsis"],"action":"rewrite","batch":8,"before":"My own hat had been reshaped by a few nights too. Not hot ones.","text":"That uniform cap had been reshaped by a hundred hot nights. My own hat had had a few nights of its own, and not hot ones."}
 {"id":"chr-575","flags":[],"action":"keep","batch":5}
 {"id":"chr-575/trait","flags":[],"action":"keep","batch":5}
 {"id":"chr-575/trait/pay/0","flags":[],"action":"keep","batch":5}
@@ -1965,7 +1965,7 @@
 {"id":"wch-060","flags":[],"action":"keep","batch":4}
 {"id":"wch-061","flags":[],"action":"keep","batch":4}
 {"id":"wch-062","flags":[],"action":"keep","batch":4}
-{"id":"wch-063","flags":["place"],"action":"rewrite","batch":4,"before":"Nobody kept watch there. It wasn’t that kind of place.","text":"Nobody was keeping watch, because it wasn’t that kind of place."}
+{"id":"wch-063","flags":["place"],"action":"rewrite","batch":8,"before":"Nobody kept watch there. It wasn’t that kind of place.","text":"Nobody kept watch in a place like that."}
 {"id":"wch-064","flags":[],"action":"keep","batch":4}
 {"id":"wch-065","flags":["pronoun"],"action":"rewrite","batch":4,"before":"It was the kind of place nobody kept an eye on.","text":"Nobody kept an eye on a place like that."}
 {"id":"wch-066","flags":[],"action":"keep","batch":4}
@@ -2469,7 +2469,7 @@
 {"id":"peacock/arrival/6","flags":["long"],"action":"rewrite","batch":7,"before":"With the band gone home, the Peacock looked like what it was: a low cellar with a damp ceiling and the chairs upside down on the tables, smelling of gin and of lilies, the lilies coming down through the floorboards from the undertaker’s. The steel door was bolted. The slot opened anyway when I knocked, which told me the doorkeeper didn’t go home either.","text":"With the band gone home, the Peacock looked like what it was: a low cellar with a damp ceiling and the chairs upside down on the tables. The place smelled of gin and of lilies, the lilies coming down through the floorboards from the undertaker’s. The steel door was bolted. The slot opened anyway when I knocked, which told me the doorkeeper didn’t go home either."}
 {"id":"peacock/arrival/7","flags":[],"action":"keep","batch":7}
 {"id":"lyric/arrival/0","flags":[],"action":"keep","batch":7}
-{"id":"lyric/arrival/1","flags":["long"],"action":"rewrite","batch":7,"before":"The Lyric had let out, and Second Avenue in front of it had the look of a party after the guests have gone: programs in the gutter, a hat on a hydrant, and the café across the street full of actors explaining the play to each other. In the lobby the lights were down to one chandelier, and the brass rail round the box office was still warm from hands.","text":"The Lyric had let out, and Second Avenue in front of it looked like a party after the guests have gone. There were programs in the gutter, a hat on a hydrant, and the café across the street full of actors explaining the play to each other. In the lobby the lights were down to one chandelier, and the brass rail round the box office was still warm from hands."}
+{"id":"lyric/arrival/1","flags":["long"],"action":"keep","batch":8}
 {"id":"lyric/arrival/2","flags":[],"action":"keep","batch":7}
 {"id":"lyric/arrival/3","flags":[],"action":"keep","batch":7}
 {"id":"lyric/arrival/4","flags":[],"action":"keep","batch":7}

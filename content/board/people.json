@@ -190,7 +190,7 @@
   {"id": "bpe-1301", "family": "client-here", "tags": {}, "text": "{name}, my client, had arrived first and was keeping one eye on the door and the other on me."},
   {"id": "bpe-1302", "family": "client-here", "tags": {}, "text": "My client, {name}, had come ahead of me and stood just inside the door, gloves in {his} hand."},
   {"id": "bpe-1303", "family": "client-here", "tags": {}, "text": "{name} was there ahead of me, hat in {his} hands, turning the brim."},
-  {"id": "bpe-1304", "family": "client-here", "tags": {}, "text": "{name} was ahead of me, and looked up when I came in, the way people look up when they’re paying for your time."},
+  {"id": "bpe-1304", "family": "client-here", "tags": {}, "text": "{name}, my client, had got in ahead of me and looked up when I came in, the way people look up when they’re paying for your time."},
   {"id": "bpe-1305", "family": "client-here", "tags": {}, "text": "{name} was there, with a cup of something {he} hadn’t touched and {his} coat still buttoned."},
   {"id": "bpe-1401", "family": "motive", "tags": {"id": "m0"}, "text": "“{Victim} had a file on me,” {name} said. “I never saw it. I didn’t need to. I know what’s in it better than he did.”"},
   {"id": "bpe-1402", "family": "motive", "tags": {"id": "m0"}, "text": "“{Victim} had a file on me,” {name} said, as if it were the weather. “A man like that collects people the way other men collect stamps.”", "joke": true},

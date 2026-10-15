@@ -390,6 +390,10 @@ if (cmd === 'lint') {
   const { SITUATED } = await import('../src/game/board/plan/situated.js');
   // `--situated 0`: the deck off, so the connective deck's own families are the page's.
   if (val('situated') === '0') SITUATED.on = false;
+  // `--plan off`: the microplanner off (docs/49's "before"), whose rhythm trades a card for another of the
+  // same draw by its length: with it off, a page's cards are the dealer's alone.
+  const { PLAN } = await import('../src/game/board/plan/index.js');
+  if (val('plan') === 'off') PLAN.ops = false;
   const from = Number(val('from') ?? 500);
   const nights = Number(val('nights') ?? 60);
   const rng = new Rng(54);
