@@ -708,7 +708,9 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       const so = b.so === 0 && !(next && /^So\b/.test(next.text));
       const comp = held(it);
       comp.shape = 'CONFIRMED';
-      voice(it, comp, ['agree', so ? 'so' : 'which'], { spans: bits, src: srcHad(c, by), whose: srcWhose(c, by), person: { t: 'person', id: cs[0]?.person as PersonId } }, ctx);
+      // docs/53: where the line is somebody of their sex ("Coffin’s list had Ashby…, just like he said"), no pronoun for them.
+      const twosome = !!by?.who && pronOf(c, by.who as PersonId).he === pronOf(c, cs[0]?.person as PersonId).he;
+      voice(it, comp, ['agree', so ? 'so' : 'which', ...(twosome ? ['twosome'] : [])], { spans: bits, src: srcHad(c, by), whose: srcWhose(c, by), person: { t: 'person', id: cs[0]?.person as PersonId } }, ctx);
       comp.join = so ? 'so' : 'which';
       it.joined = comp.join;
       if (so) b.so++;

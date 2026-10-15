@@ -65,7 +65,13 @@ function hoursSaid(c: BoardCase, hs: Hour[]): string {
   return `at ${andList(hs.map(hourWord))}`;
 }
 
-function at(c: BoardCase, place: PlaceId, here: PlaceId): string {
+/** The place by name (docs/53, the dial: never "here", even for the room I'm standing in). */
+function at(c: BoardCase, place: PlaceId, _here: PlaceId): string {
+  return `at ${placeName(c, place)}`;
+}
+
+/** Said to somebody's face, in the room itself, "here" is plain speech. */
+function atFace(c: BoardCase, place: PlaceId, here: PlaceId): string {
   return place === here ? 'here' : `at ${placeName(c, place)}`;
 }
 
@@ -93,7 +99,7 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
           const safe = hs.filter((h) => !windowOf(c).includes(h));
           const W = nameOf(c, l.watcher);
           return out(`${W}’s list had ${P} ${at(c, l.place, here)} ${hoursSaid(c, hs)}`, hs.map((h) => `list:${l.watcher}@${h}`), {
-            ...(safe.length > 0 ? { face: `${W} has you ${at(c, l.place, here)} ${hoursSaid(c, safe)}.` } : {}),
+            ...(safe.length > 0 ? { face: `${W} has you ${atFace(c, l.place, here)} ${hoursSaid(c, safe)}.` } : {}),
             hours: hs,
             people: [p, l.watcher],
             places: [l.place],
@@ -113,11 +119,11 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
           const h0 = [...hs].sort((x, y) => Number(windowOf(c).includes(y)) - Number(windowOf(c).includes(x)) || x - y)[0] as Hour;
           const pl = a.claims[h0]?.place as PlaceId;
           const own = personOf(c, a.person)?.home === pl;
-          const where = own ? `${pm(c, a.person, 'his')} place` : at(c, pl, here) === 'here' ? 'here' : placeName(c, pl);
+          const where = own ? `${pm(c, a.person, 'his')} place` : placeName(c, pl);
           const safe = hs.filter((h) => !windowOf(c).includes(h) && a.claims[h]?.place === pl);
           return out(`${A} had said ${P} was with ${pm(c, a.person, 'him')} ${where === 'here' ? 'here' : `at ${where}`} at ${hourWord(h0)}`, [`claim:${a.person}@${h0}`], {
             // To their face, only a watcher's word: "Coffin has you here at nine." Another suspect's would be one more name, and a story set against a story.
-            ...(safe.length > 0 && personOf(c, a.person)?.role === 'watcher' ? { face: `${A} says you were with ${pa.him} ${where === 'here' ? 'here' : `at ${where.replace(/\u2063\d+\u2064/g, '')}`} ${hoursSaid(c, safe)}.` } : {}),
+            ...(safe.length > 0 && personOf(c, a.person)?.role === 'watcher' ? { face: `${A} says you were with ${pa.him} ${pl === here && !own ? 'here' : `at ${where.replace(/\u2063\d+\u2064/g, '')}`} ${hoursSaid(c, safe)}.` } : {}),
             hours: [h0],
             people: [p, a.person],
             places: [pl],
