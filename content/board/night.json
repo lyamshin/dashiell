@@ -4,7 +4,7 @@
   { "id": "bnt-003", "family": "turn-title", "tags": {}, "text": "The One Who Lied" },
   { "id": "bnt-004", "family": "turn-title", "tags": {}, "text": "Where the Story Broke" },
 
-  { "id": "bnt-101", "family": "turn-open", "tags": {}, "text": "I counted it on my fingers, which is where I keep my best work." , "joke": true },
+  { "id": "bnt-101", "family": "turn-open", "tags": {}, "text": "I counted the hours on my fingers, which is where I keep my best work." , "joke": true },
   { "id": "bnt-102", "family": "turn-open", "tags": {}, "text": "I leaned on the wall for a minute. The wall didn’t mind, and I needed the company." , "joke": true },
   { "id": "bnt-103", "family": "turn-open", "tags": {}, "text": "I went over it once more, the way you go over a bill you know is wrong." },
 
@@ -16,11 +16,11 @@
   { "id": "bnt-302", "family": "ending", "tags": { "outcome": "solved", "type": "murder" }, "text": "The DA’s man read it twice, which is once more than he reads most things, and put it in the basket that matters." },
   { "id": "bnt-311", "family": "ending", "tags": { "outcome": "solved", "type": "small" }, "text": "{client} took the news the way people take good news at eight in the morning: suspiciously, and with coffee." , "joke": true },
   { "id": "bnt-312", "family": "ending", "tags": { "outcome": "solved", "type": "small" }, "text": "I told {client} who, and where, and {client} went straight out with a look on {cHis} face I wouldn’t have wanted to be on the other end of." },
-  { "id": "bnt-321", "family": "ending", "tags": { "outcome": "thin" }, "text": "It was most of the answer. Most of an answer is what this city usually settles for, and it settled." },
+  { "id": "bnt-321", "family": "ending", "tags": { "outcome": "thin" }, "text": "I had most of the answer. Most of an answer is what this city usually settles for, and it settled." },
   { "id": "bnt-322", "family": "ending", "tags": { "outcome": "thin" }, "text": "I had the who and not all the rest. The rest is the part that holds up in daylight." },
   { "id": "bnt-331", "family": "ending", "tags": { "outcome": "wrong-man" }, "text": "I filed the wrong name. **The wrong name is a name somebody has to live with.** I went home and didn’t sleep, which seemed fair." },
   { "id": "bnt-332", "family": "ending", "tags": { "outcome": "wrong-man" }, "text": "The name I wrote down was the wrong one. **Somebody who did nothing is going to have a very bad morning on my account.**" },
-  { "id": "bnt-341", "family": "ending", "tags": { "outcome": "cold" }, "text": "Eight o’clock came and I had nothing to put on the page. Nothing files itself. It just goes cold." },
+  { "id": "bnt-341", "family": "ending", "tags": { "outcome": "cold" }, "text": "Eight o’clock came and I had nothing to put on the page. A case doesn’t file itself. It just goes cold." },
   { "id": "bnt-342", "family": "ending", "tags": { "outcome": "cold" }, "text": "I left the name blank. A blank is honest, which is the best thing anybody said about it." },
 
   { "id": "bnt-1001", "family": "turn-title", "tags": {}, "text": "A Hole in the Evening" },
@@ -37,7 +37,7 @@
   { "id": "bnt-1105", "family": "turn-open", "tags": {}, "text": "I sat down on the nearest thing that would hold me. It was the only thing in the room that didn’t want something from me.", "joke": true },
   { "id": "bnt-1106", "family": "turn-open", "tags": {}, "text": "I stopped and took stock. Something had come loose, and I wanted to see what it was fastened to." },
 
-  { "id": "bnt-1201", "family": "recap-open", "tags": {}, "text": "I went over what I had. It fitted on one page, with room left for a sandwich.", "joke": true },
+  { "id": "bnt-1201", "family": "recap-open", "tags": {}, "text": "I went over what I had. All of it fitted on one page, with room left for a sandwich.", "joke": true },
   { "id": "bnt-1202", "family": "recap-open", "tags": {}, "text": "I took out the notebook and read it from the top, as if somebody else had written it." },
   { "id": "bnt-1203", "family": "recap-open", "tags": {}, "text": "I stopped to go over what I had, before there was any more of it." },
   { "id": "bnt-1204", "family": "recap-open", "tags": {}, "text": "I went over the night from the beginning, every name and every hour, slowly." },
@@ -45,15 +45,15 @@
   { "id": "bnt-1206", "family": "recap-open", "tags": {}, "text": "I took stock, which in my line of work means counting what you know, then counting what you don’t, and coming up short on both.", "joke": true },
 
   {"id": "bnt-1301", "family": "ending", "tags": {"outcome": "solved", "type": "murder"}, "text": "I put the name in the report and the report on the desk of a man who could do something about it. {client} heard about it on the telephone at breakfast."},
-  { "id": "bnt-1302", "family": "ending", "tags": { "outcome": "solved", "type": "murder" }, "text": "It was done by daylight. I took {client} through it over coffee, and {client} listened to all of it without once putting the cup down." },
+  { "id": "bnt-1302", "family": "ending", "tags": { "outcome": "solved", "type": "murder" }, "text": "The job was done by daylight. I took {client} through it over coffee, and {client} listened to all of it without once putting the cup down." },
   { "id": "bnt-1303", "family": "ending", "tags": { "outcome": "solved", "type": "murder" }, "text": "The police took the name, and after an hour of telling me how they’d have got there anyway, they took the rest.", "joke": true },
   { "id": "bnt-1304", "family": "ending", "tags": { "outcome": "solved", "type": "murder" }, "text": "I filed it and went home past the milk wagons. Somewhere behind me, a door was going to get a knock it had been expecting." },
   { "id": "bnt-1311", "family": "ending", "tags": { "outcome": "solved", "type": "small" }, "text": "By the afternoon everything was back where it belonged, and {client} was telling the neighbors it had never been in doubt.", "joke": true },
   { "id": "bnt-1312", "family": "ending", "tags": { "outcome": "solved", "type": "small" }, "text": "I told {client} the whole of it. {client} listened, nodded and put the kettle on, which on that street is the highest honor there is.", "joke": true },
-  { "id": "bnt-1313", "family": "ending", "tags": { "outcome": "solved", "type": "small" }, "text": "It was a small thing, as these things go, but it wasn’t small to {client}, and it was put right." },
+  { "id": "bnt-1313", "family": "ending", "tags": { "outcome": "solved", "type": "small" }, "text": "A small thing, as these things go, but not small to {client}, and it was put right." },
   { "id": "bnt-1314", "family": "ending", "tags": { "outcome": "solved", "type": "small" }, "text": "I told {client} who, and where, and why. {client} took it in quietly and went to get {cHis} coat." },
   { "id": "bnt-1321", "family": "ending", "tags": { "outcome": "thin" }, "text": "I had the who and a fair part of the rest. It would do, the way a coat with one button does.", "joke": true },
-  { "id": "bnt-1322", "family": "ending", "tags": { "outcome": "thin" }, "text": "It was most of the answer, and I filed it as most of an answer. Somebody else would have to find the rest, or nobody would." },
+  { "id": "bnt-1322", "family": "ending", "tags": { "outcome": "thin" }, "text": "I filed most of the answer and called it most of an answer. Somebody else would have to find the rest, or nobody would." },
   { "id": "bnt-1323", "family": "ending", "tags": { "outcome": "thin" }, "text": "{client} read it and said it was more than {client} had had before. That’s a kind thing to say about a report with holes in it.", "joke": true },
   { "id": "bnt-1324", "family": "ending", "tags": { "outcome": "thin" }, "text": "I had the right name and not everything that went with it. Some of the night would stay where I’d left it." },
   { "id": "bnt-1331", "family": "ending", "tags": { "outcome": "wrong-man" }, "text": "I put a name in the report, and it was the wrong one. **Somebody who did nothing will spend the next year explaining it to people who won’t believe a word.**" },
@@ -67,7 +67,7 @@
 
   { "id": "bnt-1351", "family": "ending", "tags": { "outcome": "lucky" }, "text": "I had the right name and nothing under it. **A right name you can’t stand behind is a coin that came down the right way.** I filed it, and I didn’t tell anybody how I’d got there." },
   { "id": "bnt-1352", "family": "ending", "tags": { "outcome": "lucky" }, "text": "The name was right. The reason I wrote it down wasn’t a reason, and if anybody had asked me why, I’d have had to look at my shoes.", "joke": true },
-  { "id": "bnt-1353", "family": "ending", "tags": { "outcome": "lucky" }, "text": "It was the right name, got the wrong way. I’ll take it. I won’t frame it.", "joke": true },
+  { "id": "bnt-1353", "family": "ending", "tags": { "outcome": "lucky" }, "text": "The right name, got the wrong way. I’ll take it. I won’t frame it.", "joke": true },
   { "id": "bnt-1354", "family": "ending", "tags": { "outcome": "lucky" }, "text": "{client} got the right name, and I got lucky, which isn’t the same thing. **Next time the coin comes down the other way, and somebody who did nothing pays for it.**" },
   { "id": "bnt-1355", "family": "ending", "tags": { "outcome": "lucky" }, "text": "I wrote the name down on a feeling, and the feeling was right. Feelings have been right before. They’ve put the wrong people away too." },
   { "id": "bnt-1356", "family": "ending", "tags": { "outcome": "lucky" }, "text": "I had a name and no line to hang it on. It was the right name. I’d have liked to know why it was, before and not after." }

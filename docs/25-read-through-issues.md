@@ -269,3 +269,11 @@ Branch `bones-1`. I read three nights in full, in voice and plainly: the golden'
 - **The same phrasings live in two places.** `thought.ts` still writes the pre-planner sentences, which `PLAN.ops = false` (docs/49's "before") uses, and `voicings.json` says them with the planner on. `breakSaid` (for the put's card) and the composer's breaker from propositions are two builds of one phrasing. Once the "before" measure retires, the writers can stop writing sentences for the planner's shapes.
 - **Only the hours that mattered pick their voicing with the hand's dice** (`own-word/for` or `/said`, as Planner 2's "hours-form" did). Build 2's larger set will move more picks into realization, and the night's later draws will move with them.
 - **`bones/reread.ts` ships in the book,** though only the round trip uses it. The script went up 51 KB (16 KB gzipped) for the bones, the plain grammar and its reader; the check could be a hook the script installs.
+
+## The dial on the other decks (docs/54), 2026-10-15
+Branch `decks-dial`. Docs/54 has the audit, the lint, the measures and the read. Left over:
+
+- **A return page names its place twice:** the walk line, then "Back at {place}". The blind readers want the card's, so the walk line on a return should say "back" instead (`pages.ts`).
+- **Dead lines:** four banned hand-offs (`bcn-2781`, `2785`–`2787`), eight bible "nobody else" lines without the word the filter wants, eight hour lines with a leaving word, and Miss Nowak's own-up naming Mrs. Rafferty. Make them live or retire them.
+- **Bible hour lines that name a post** are codas on account pages too, where they could contradict the account.
+- **List smell in the neighbourhood** moved by one to three pages at Coddled and Hard-boiled where a split arrival or a rewritten card fell between two medium sentences; it went down everywhere dealt.
