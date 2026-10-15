@@ -1812,7 +1812,7 @@
 {"id": "g0858", "text": "There was room at the bar on {their} left, and I filled it without making a business of it.", "batch": 7}
 {"id": "g0838", "text": "I stood at {their} shoulder until {they} looked round.", "batch": 7}
 {"id": "g0876", "text": "I didn’t bother with a stool. I stood at the bar beside {them} and kept it short.", "batch": 7}
-{"id": "g0873", "text": "I went down the bar to {them} with my hat already in my hand, which saves a sentence.", "joke": true, "batch": 7}
+{"id": "g0873", "text": "I went down the bar to {them} with my hat already in my hand. A hat in the hand says you won’t stay long, and saves you saying so.", "joke": true, "batch": 7}
 {"id": "g0824", "text": "{They} watched me come the length of the bar and didn’t move over, so I stood.", "batch": 7}
 {"id": "g0846", "text": "One word of greeting each way, and I took the stool at {their} elbow.", "batch": 7}
 {"id": "g0869", "text": "I crossed the room between the tables and asked {role} if I might sit.", "batch": 7}
@@ -1875,7 +1875,7 @@
 {"id": "g0833", "text": "I took the seat beside {them} and said my name to the stage, which was easier on both of us.", "batch": 7}
 {"id": "g0841", "text": "One seat along from {them} was empty, so I sat in it and gave my name.", "batch": 7}
 {"id": "g0835", "text": "I stood in the aisle at the end of {their} row until {they} moved over a seat.", "batch": 7}
-{"id": "g0872", "text": "For a while the two of us just sat there and looked at the curtain.", "batch": 7}
+{"id": "g0872", "text": "For a while the two of us just sat in our seats and looked at the curtain.", "batch": 7}
 {"id": "g0867", "text": "I went down the aisle to {them}, and {they} lifted a coat off the seat beside without being asked.", "batch": 7}
 {"id": "g0851", "text": "I sat in the row behind and spoke to the back of {their} head, which seemed to suit {them}.", "batch": 7}
 {"id": "g0820", "text": "There was a spare chair, and I asked {role} before I sat in it.", "batch": 7}
@@ -1938,7 +1938,7 @@
 {"id": "g1365", "text": "I caught {role}’s eye across the room and waited by the kitchen door until {they} came.", "batch": 7}
 {"id": "g1391", "text": "I went up to {role} and said I had a question or two about the evening.", "batch": 7}
 {"id": "g1356", "text": "I stood where {role} would have to notice me, and {they} did.", "batch": 7}
-{"id": "g1409", "text": "I went over to {role} and stood there until it was my turn.", "batch": 7}
+{"id": "g1409", "text": "I went over to {role} and waited, like anybody else, until my turn came.", "batch": 7}
 {"id": "g1387", "text": "I gave {role} my name and no reason to hurry.", "batch": 7}
 {"id": "g1389", "text": "{They} came out to see who was on {their} stairs, and I said my name before {they} had to ask.", "batch": 7}
 {"id": "g1369", "text": "I found {role} in {their} parlor off the hall and stood in the doorway until I was asked in.", "batch": 7}
@@ -1960,7 +1960,7 @@
 {"id": "g1355", "text": "I came over to {role} with my hat off and stood until {they} was ready for me.", "batch": 7}
 {"id": "g1373", "text": "I tracked down {role} and stood beside {them}, out of the way of the doors.", "batch": 7}
 {"id": "g1401", "text": "{They} was free for a moment, so I went over and said who I was.", "batch": 7}
-{"id": "g1348", "text": "I kept my voice at theater pitch when I found {role}, out of habit.", "batch": 7}
+{"id": "g1348", "text": "When I found {role}, I kept my voice down to a theater whisper, out of habit.", "batch": 7}
 {"id": "g1358", "text": "In the lobby {role} was counting something, so I waited until the count came out right.", "batch": 7}
 {"id": "g1406", "text": "I caught {role} between jobs and asked for some of {their} time, and a little of {their} memory.", "batch": 7}
 {"id": "g1395", "text": "I said who I was to {role} in the lobby, once, and watched {them} file it away.", "batch": 7}
@@ -2006,7 +2006,7 @@
 {"id": "g1698", "text": "I sat down across from {them} and turned my cup upside down, so nobody would come and fill it.", "batch": 7}
 {"id": "g1760", "text": "Across from {them}, I waited for a lull in the room.", "batch": 7}
 {"id": "g1699", "text": "I found {them} at a table by the wall and asked if I could sit.", "batch": 7}
-{"id": "g1729", "text": "I took the chair opposite {them} and let the place be noisy for both of us.", "batch": 7}
+{"id": "g1729", "text": "I took the chair opposite {them} and let the noise of the room do the talking for a minute.", "batch": 7}
 {"id": "g1713", "text": "I sat down across the table from {them} and got a nod, which was plenty.", "batch": 7}
 {"id": "g1727", "text": "I sat at {their} table with my coat still on, which kept it short for both of us.", "batch": 7}
 {"id": "g1700", "text": "I asked if there was somewhere we could sit, and {they} found two chairs in the front parlor.", "batch": 7}
@@ -2040,7 +2040,7 @@
 {"id": "g1717", "text": "I went over to {them} and stood where we could talk.", "batch": 7}
 {"id": "g1744", "text": "I came over to {them} and leaned where I wouldn’t be in the way of anything.", "batch": 7}
 {"id": "g1721", "text": "I sat down across from {them} where the light was, so {they} could see who {they} was talking to.", "batch": 7}
-{"id": "g1753", "text": "I went over and stood by {them}. That was the opening.", "batch": 7}
+{"id": "g1753", "text": "I went over and stood by {them} and said nothing at first. With some people, saying nothing is the best opening there is.", "batch": 7}
 {"id": "g1761", "text": "I came up beside {them} and waited to be looked at.", "batch": 7}
 {"id": "g1743", "text": "I found {them}, and {they} didn’t make me ask twice for a minute.", "batch": 7}
 {"id": "g1914", "text": "{They} sat down in the client’s chair a little at a time, and I waited until all of {them} had arrived.", "joke": true, "batch": 7}
@@ -2102,7 +2102,7 @@
 {"id": "g1943", "text": "I took my feet off the desk, which is as near as I come to standing up for people, and {they} sat.", "joke": true, "batch": 8}
 {"id": "g2466", "text": "I waited until the barman found something to do at the far end, and then I leaned on the bar beside {them}.", "batch": 8}
 {"id": "g2459", "text": "I drew my stool in and turned it toward {them} a little, so that whatever came of this could stay between the two of us.", "batch": 8}
-{"id": "g2473", "text": "I let the noise of the bar come up around us before I leaned in. A quiet room carries.", "batch": 8}
+{"id": "g2473", "text": "I let the noise of the bar come up around us before I leaned in. In a quiet room, every word carries.", "batch": 8}
 {"id": "g2464", "text": "I stayed on my feet, close at {their} elbow, with my back to the rest of the room.", "batch": 8}
 {"id": "g2454", "text": "I caught the barman’s eye and shook my head, and the barman took the hint and found work at the other end.", "batch": 8}
 {"id": "g2442", "text": "I hooked the next stool out with my foot and sat on it, near enough that I wouldn’t need to raise my voice over the bar.", "batch": 8}
@@ -2117,7 +2117,7 @@
 {"id": "g2460", "text": "I stayed on my feet in {their} front room with my hat in my hand, the way you stand in a room you may be asked to leave.", "batch": 8}
 {"id": "g2470", "text": "Nobody offered me a chair, so I picked one and turned it round to face {them}.", "batch": 8}
 {"id": "g2449", "text": "I shut {their} door behind me and stood with my back against it.", "batch": 8}
-{"id": "g2455", "text": "I let the waiter go by with a tray before I sat down across the table from {them}, and I kept my voice to the width of it.", "batch": 8}
+{"id": "g2455", "text": "I let the waiter go by with a tray before I sat down opposite {them}, and kept my voice too low to carry past our table.", "batch": 8}
 {"id": "g2465", "text": "I moved the sugar and the salt aside, which opened up a stretch of tablecloth between us and gave my hands something to do.", "batch": 8}
 {"id": "g2447", "text": "I sat down opposite {them} and put my hat on the empty chair.", "batch": 8}
 {"id": "g2476", "text": "I pulled out the chair across from {them} and sat before the waiter could come over with a menu and a hopeful look.", "batch": 8}
@@ -2130,8 +2130,8 @@
 {"id": "g2458", "text": "The hall was narrow and the walls were thin. I stood close and pitched my voice under what the landlady could hear.", "batch": 8}
 {"id": "g2443", "text": "I took my hat off at the foot of the stairs and waited for a door somewhere above us to finish closing.", "batch": 8}
 {"id": "g2440", "text": "I stood with {them} in the hall under its one bulb, hat in hand.", "batch": 8}
-{"id": "g2444", "text": "I sat down on the bottom stair, which put me lower than {them}, and I let it.", "batch": 8}
-{"id": "g2441", "text": "The landlady’s door stood open a crack down the hall. I walked us along until it was out of earshot.", "batch": 8}
+{"id": "g2444", "text": "I sat down on the bottom stair, which put me lower than {them}. I didn’t mind being looked down on for a minute.", "batch": 8}
+{"id": "g2441", "text": "The landlady’s door stood open a crack, so I walked us down to the far end of the hall, out of earshot.", "batch": 8}
 {"id": "g2453", "text": "I stopped {them} at the turn of the stairs, one step below, and kept my hand off the rail.", "batch": 8}
 {"id": "g2479", "text": "I took the seat beside {them} and kept my eyes on the empty stage while I got my words in order.", "batch": 8}
 {"id": "g2456", "text": "The usher’s torch was working the far aisle. I waited until it turned away, then sat down one seat over from {them}.", "batch": 8}
@@ -2159,7 +2159,7 @@
 {"id": "g1065", "text": "I found a table under the stairs, out of everybody’s traffic, and spread the form out on it.", "batch": 8}
 {"id": "g1097", "text": "The club had gone quiet except for glasses being stacked somewhere. I took a table by the wall and got out the form.", "batch": 8}
 {"id": "g1073", "text": "I sat down with the form, and before I wrote a word I went over the night once more, slowly, from the top.", "batch": 8}
-{"id": "g1105", "text": "I laid the form face down on the table and thought it through first. You don’t put a thing in writing until you’ve walked it twice.", "batch": 8}
+{"id": "g1105", "text": "I laid the form face down on the table and thought the night through first. I don’t put anything in writing until I’ve gone over it twice.", "batch": 8}
 {"id": "g1058", "text": "Somebody had left a chair upturned on a table. I set it on its feet, sat in it, and laid the form where the ashtray had been.", "batch": 8}
 {"id": "g1090", "text": "The smoke still hung under the low ceiling, and I sat down in the thick of it with the form and my pencil.", "batch": 8}
 {"id": "g1060", "text": "I took the table farthest from the door, put my hat on the other chair, and smoothed the form out under the lamp.", "batch": 8}
@@ -2170,7 +2170,7 @@
 {"id": "g1066", "text": "I took a table by the window and asked for coffee, and wrote nothing at all until it came.", "batch": 8}
 {"id": "g1098", "text": "The chairs were going up on the tables around me. I kept mine down and got out the form.", "batch": 8}
 {"id": "g1071", "text": "I sat over a cold cup with the form beside it, and took the night apart once more before I put anything down.", "batch": 8}
-{"id": "g1103", "text": "I asked for a clean table and nothing on it, and sat there going over the night in order before I wrote.", "batch": 8}
+{"id": "g1103", "text": "I asked for a clean table with nothing on it, and sat going over the night in order before I wrote a word.", "batch": 8}
 {"id": "g1050", "text": "I let the waiter clear the table and then spread the form across the whole of it, which the waiter took personally.", "joke": true, "batch": 8}
 {"id": "g1082", "text": "Behind the swing door the kitchen was scraping its pans. I sat near it with the form, at a table nobody would want.", "batch": 8}
 {"id": "g1112", "text": "I ordered a bowl of soup to be decent about the table, and wrote around it.", "batch": 8}
@@ -2181,7 +2181,7 @@
 {"id": "g1086", "text": "I sat on the hall chair under the coat hooks and wrote on the form against the crown of my hat.", "batch": 8}
 {"id": "g1116", "text": "The parlor was dim and smelled of other people’s suppers. I sat down in it anyway, with the form.", "batch": 8}
 {"id": "g1062", "text": "Under the hall light, with the form on my knee, I went back over the night once more before the pencil touched it.", "batch": 8}
-{"id": "g1094", "text": "I took the form up to the landing, where the light was better, and went through it all again in my head first.", "batch": 8}
+{"id": "g1094", "text": "I took the form up to the landing, where the light was better, and went through the whole evening again in my head first.", "batch": 8}
 {"id": "g1049", "text": "Somebody coughed behind a door upstairs and then thought better of it. I sat on the stairs and got out the form.", "batch": 8}
 {"id": "g1081", "text": "I found a step halfway up the stairs that didn’t creak, and sat on it with the form.", "batch": 8}
 {"id": "g1111", "text": "The landlady brought me a cup of tea I hadn’t asked for and watched until I drank some. Then I got out the form.", "batch": 8}
@@ -2189,8 +2189,8 @@
 {"id": "g1080", "text": "I asked the landlady for a table and was given a corner of one, between the bread box and the cat.", "joke": true, "batch": 8}
 {"id": "g1110", "text": "The hall had a hard chair and a poor light, and both of them kept me awake. I did the form out there.", "batch": 8}
 {"id": "g1057", "text": "I sat down in the room {thing} had gone from and wrote on the form against the arm of the chair.", "batch": 8}
-{"id": "g1089", "text": "I sat at the table in {place} and wrote it out, with the lamp pulled close and my hat on the floor.", "batch": 8}
-{"id": "g1075", "text": "With the form in my lap, I looked a long while at the empty place in the flat before I went over it all again.", "batch": 8}
+{"id": "g1089", "text": "I sat at the table in {place} and wrote out the form, with the lamp pulled close and my hat on the floor.", "batch": 8}
+{"id": "g1075", "text": "With the form in my lap, I looked a long while at the empty place in the flat before I went over the whole night again.", "batch": 8}
 {"id": "g1063", "text": "It seemed right to do the paperwork where the trouble started, so I sat down in the front room and got on with it.", "batch": 8}
 {"id": "g1095", "text": "The flat was quiet the way a place is quiet with something missing from it. I sat down in it with the form.", "batch": 8}
 {"id": "g1056", "text": "I took the chair by the door, so I could see the whole room while I wrote, and got out the form.", "batch": 8}
@@ -2198,7 +2198,7 @@
 {"id": "g1118", "text": "Before I wrote a word, I looked round the flat once more, as if {thing} might have turned up while I was out.", "batch": 8}
 {"id": "g1061", "text": "I didn’t sit down in that room. I took the form out to the hall and wrote it there, standing.", "batch": 8}
 {"id": "g1093", "text": "I did the form at the kitchen table, with my back to the room where it had happened.", "batch": 8}
-{"id": "g1074", "text": "I sat by the door with the form on my knee and let the quiet of the place help me count the night over.", "batch": 8}
+{"id": "g1074", "text": "I sat by the door with the form on my knee and let the quiet of the place help me go over the hours once more.", "batch": 8}
 {"id": "g1070", "text": "I took my hat off, because of where I was, and sat down with the form on a hard chair in the hall.", "batch": 8}
 {"id": "g1102", "text": "I found a chair by the window, away from where it had happened, and wrote slowly, without looking up much.", "batch": 8}
 {"id": "g1067", "text": "I sat down on a kitchen chair with my hat in my lap, turned the lamp low, and opened out the form.", "batch": 8}
@@ -2219,7 +2219,7 @@
 {"id": "g1069", "text": "At the empty table, with the form in front of me, I listened to the room being quiet. Rooms like that only manage it at the very end of the night.", "batch": 8}
 {"id": "g1101", "text": "There was a bulb on a cord and a chair under it. I took both and got out the form.", "batch": 8}
 {"id": "g1045", "text": "With nobody on the door to send me off, I made myself at home with the form and a stub of pencil.", "batch": 8}
-{"id": "g1077", "text": "I found a flat surface and did the form standing up. It keeps the answers short.", "batch": 8}
+{"id": "g1077", "text": "I found a flat surface and did the form standing up. Standing keeps the answers short.", "batch": 8}
 {"id": "g1107", "text": "Somebody had left a chair facing the wall. I turned it round, sat in it, and opened out the form.", "batch": 8}
 {"id": "g1072", "text": "I sat at the end of a work counter, out of the way of anybody still on, and laid the form flat.", "batch": 8}
 {"id": "g1104", "text": "The place kept working around me, the way some places do all night. I found a stool out of the way and got out the form.", "batch": 8}
@@ -2229,7 +2229,7 @@
 {"id": "g0929", "text": "I let the room settle round me, and then I started looking.", "batch": 8}
 {"id": "g0941", "text": "Whatever had been moved, and whatever hadn’t: I went over the flat with an eye for both.", "batch": 8}
 {"id": "g0953", "text": "I started with the lock and the windows, since nothing leaves a flat any other way, and then went over the rest.", "batch": 8}
-{"id": "g0965", "text": "A missing thing leaves a hole in a room. I went looking for the edges of it.", "batch": 8}
+{"id": "g0965", "text": "A missing thing leaves a gap in a room, the way a pulled tooth leaves one in a smile. I went looking for the gap.", "batch": 8}
 {"id": "g0890", "text": "I went over the flat slowly, touching nothing at first, so I wouldn’t move anything I might want to look at twice.", "batch": 8}
 {"id": "g0902", "text": "I got down on one knee by the door, which my knee had views on, and worked outward from there.", "joke": true, "batch": 8}
 {"id": "g0914", "text": "I put on every light in the flat. A place gives up more when it has no dark corners to keep things in.", "batch": 8}
@@ -2258,7 +2258,7 @@
 {"id": "g0956", "text": "I worked through the place a piece at a time, and put each thing back exactly where it had been before I went on.", "batch": 8}
 {"id": "g0968", "text": "I stood still long enough to hear the room. Then I went over it high and low, the drawers and the shelves and the floor.", "batch": 8}
 {"id": "g0898", "text": "I put my handkerchief over my fingers before I touched anything, and went over the room one wall at a time.", "batch": 8}
-{"id": "g0910", "text": "I went over it the long way, every surface and every drawer, with the patience the place deserved.", "batch": 8}
+{"id": "g0910", "text": "I went over the room the long way, every surface and every drawer, with the patience a room like that deserves.", "batch": 8}
 {"id": "g0922", "text": "Before I touched anything, I looked at the room the way {they} would have seen it from the door, coming home.", "batch": 8}
 {"id": "g0934", "text": "I went over the place slowly, and then again, because the first time round you only see what you expect.", "batch": 8}
 {"id": "g0946", "text": "I set my hat down by the door, out of the way, and took the room a section at a time, top to bottom.", "batch": 8}
@@ -2268,10 +2268,10 @@
 {"id": "g0913", "text": "I turned the light up and went over the place, beginning where I stood.", "batch": 8}
 {"id": "g0925", "text": "I worked my way round the room the long way, and didn’t skip the dull parts.", "batch": 8}
 {"id": "g0937", "text": "I went through the place the plain way, one thing after another.", "batch": 8}
-{"id": "g0949", "text": "It wasn’t a big place, and I went over every bit of it.", "batch": 8}
+{"id": "g0949", "text": "The room wasn’t big, and I went over every bit of it.", "batch": 8}
 {"id": "g0961", "text": "I took off my hat and began with what was in front of me.", "batch": 8}
 {"id": "g0894", "text": "I went over the room the way I go over any room, and tried not to think about whose it was until I’d finished.", "batch": 8}
-{"id": "g0906", "text": "It was an ordinary room, which made it worse. I went over it the ordinary way, end to end and back.", "batch": 8}
+{"id": "g0906", "text": "The room was an ordinary one, which somehow made the job worse. I went over it the ordinary way, end to end and back.", "batch": 8}
 {"id": "g0918", "text": "I went round once just looking, and the second time I opened things.", "batch": 8}
 {"id": "g0930", "text": "I went through the room drawer by drawer and shelf by shelf, and then I got down and looked at the floor.", "batch": 8}
 {"id": "g0942", "text": "{Their} coat was still on the hook by the door. I left it there and went over the rest of the room.", "batch": 8}
@@ -2281,39 +2281,39 @@
 {"id": "g0904", "text": "I went round the room once by the walls and once through the middle, and kept my hands to myself the first time.", "batch": 8}
 {"id": "g0916", "text": "I moved through the room the way you move through somebody else’s house, quietly, and looked at everything.", "batch": 8}
 {"id": "g0928", "text": "The room still looked lived in, which is the hardest kind to search. I went over it slowly.", "batch": 8}
-{"id": "g0940", "text": "I took the room in order: the door, the chair, the table, the shelves, the floor. It’s dull work, and it’s the work.", "batch": 8}
+{"id": "g0940", "text": "I took the room in order: the door, the chair, the table, the shelves, the floor. Searching is dull work, but it’s the job.", "batch": 8}
 {"id": "g0952", "text": "I didn’t sit down. I went over the room on my feet, a piece at a time, from end to end.", "batch": 8}
 {"id": "g0964", "text": "I looked at the room for a long minute before I went into it. Then I went in and looked at everything.", "batch": 8}
 {"id": "g0899", "text": "Slowly, saying nothing, I went over the place.", "batch": 8}
 {"id": "g0911", "text": "I started at the door and missed nothing I could help.", "batch": 8}
-{"id": "g0923", "text": "I went over it once for the shape of things, and once for the things.", "batch": 8}
+{"id": "g0923", "text": "I went over the room twice: once to see how it was laid out, and once for what was in it.", "batch": 8}
 {"id": "g0935", "text": "I started low, along the baseboards, and worked my way up the walls.", "batch": 8}
-{"id": "g0947", "text": "I went through all of it, and touched as little as I could.", "batch": 8}
+{"id": "g0947", "text": "I went through the whole room and touched as little of it as I could.", "batch": 8}
 {"id": "g0959", "text": "I gave the room a long look before I gave it my hands.", "batch": 8}
-{"id": "g0900", "text": "I searched it the way you search your own pockets for a key, everywhere once and the likely places twice.", "batch": 8}
-{"id": "g0912", "text": "I didn’t hurry. A room like that has already waited, and it can wait for me.", "batch": 8}
+{"id": "g0900", "text": "I searched the room the way you search your own pockets for a key: everywhere once, and the likely places twice.", "batch": 8}
+{"id": "g0912", "text": "I didn’t hurry. Nothing in a room like that is going anywhere, so I could afford to be slow.", "batch": 8}
 {"id": "g0924", "text": "The room was still and close. I went over it a corner at a time.", "batch": 8}
-{"id": "g0936", "text": "Slowly and in order, I went to work on it, the way the job is meant to be done and seldom is.", "batch": 8}
+{"id": "g0936", "text": "Slowly and in order, I went to work on the room, the way the job is meant to be done and seldom is.", "batch": 8}
 {"id": "g0948", "text": "I went round the walls first, then the middle, then the floor on my knees.", "batch": 8}
 {"id": "g0960", "text": "Every inch of the room got a look, as if I’d be asked about each one later.", "batch": 8}
 {"id": "g0895", "text": "I didn’t sit, and I didn’t hurry. I went over the place.", "batch": 8}
 {"id": "g0907", "text": "One look round from where I stood, and then I got down to it.", "batch": 8}
 {"id": "g0919", "text": "I worked from the door to the window, and back again by a different way.", "batch": 8}
 {"id": "g0931", "text": "I kept to the edges of the room at first, and looked.", "batch": 8}
-{"id": "g0943", "text": "With the lamp in my hand, I went over it close, a little at a time.", "batch": 8}
+{"id": "g0943", "text": "With the lamp in my hand, I went over the room close, a little at a time.", "batch": 8}
 {"id": "g0955", "text": "I took the room slowly, top to bottom, and said nothing to anybody.", "batch": 8}
-{"id": "g0967", "text": "It was a quiet room. I went over it quietly, from the door to the far wall.", "batch": 8}
+{"id": "g0967", "text": "The room was quiet, so I went over it quietly, from the door to the far wall.", "batch": 8}
 {"id": "g1843", "text": "I stayed on my stool and let the bar get on without me for a while.", "batch": 8}
 {"id": "g1861", "text": "I put my elbows on the bar and my chin on my fists, and went back over the hours.", "batch": 8}
-{"id": "g1879", "text": "The mirror behind the bar showed me a tired face and a notebook full of evenings. I looked at the notebook.", "batch": 8}
+{"id": "g1879", "text": "The mirror behind the bar showed me a tired face and a notebook full of other people’s evenings. I looked at the notebook.", "batch": 8}
 {"id": "g1897", "text": "I hooked a heel on the rail, shut my eyes for a moment, and went back to the beginning of the night.", "batch": 8}
-{"id": "g1834", "text": "Down the bar somebody laughed at a joke I’d missed. I let it go by and went back over what I had, hour by hour.", "batch": 8}
+{"id": "g1834", "text": "Down the bar somebody laughed at a joke I’d missed. I let the laugh go by and went back over my notes, hour by hour.", "batch": 8}
 {"id": "g1852", "text": "I moved down to the empty end of the bar, where nobody would talk to me, and laid the evening out in order.", "batch": 8}
 {"id": "g1870", "text": "I sat still on my stool and set the night out in a row, hour after hour, the way a barman lines up clean glasses.", "batch": 8}
 {"id": "g1888", "text": "I didn’t move from the bar. I sat there and put every story I had side by side, to see which edges met.", "batch": 8}
 {"id": "g1835", "text": "The barman left me alone, which is the best thing a barman can do for you. I used it to think.", "batch": 8}
 {"id": "g1853", "text": "I took out the notebook and turned back to the first page, and read forward from there as if I’d never seen it.", "batch": 8}
-{"id": "g1871", "text": "I sat with my back to the bar and my hat tipped forward, and went through it all again from the start.", "batch": 8}
+{"id": "g1871", "text": "I sat with my back to the bar and my hat tipped forward, and went through the whole night again from the start.", "batch": 8}
 {"id": "g1889", "text": "Before anything else I wanted a minute alone with the evening. The far end of the bar gave me one.", "batch": 8}
 {"id": "g1842", "text": "I leaned on the wall at the foot of the stairs and counted back through the night.", "batch": 8}
 {"id": "g1860", "text": "The room went on without me. I sat still in the middle of it and went back over the evening.", "batch": 8}
@@ -2321,52 +2321,52 @@
 {"id": "g1896", "text": "I took a table nobody wanted and sat at it with the notebook shut.", "batch": 8}
 {"id": "g1837", "text": "There’s no quiet in a club like that, so I made some: a corner table, my back to the room, the notebook open.", "batch": 8}
 {"id": "g1855", "text": "I sat in the corner under the stairs, with feet going over my head, and went through the evening the slow way.", "batch": 8}
-{"id": "g1873", "text": "I let the room turn without me and went round the night once more on my own.", "batch": 8}
+{"id": "g1873", "text": "I let the room carry on without me and went over the night once more on my own.", "batch": 8}
 {"id": "g1891", "text": "I sat down at an empty table, pushed the ashtray to one side, and spread the whole evening out in my head.", "batch": 8}
 {"id": "g1848", "text": "The smoke hung low, and so did I. I sat back in a corner and went through what I had.", "joke": true, "batch": 8}
 {"id": "g1866", "text": "I found a quiet table, which in a club is only quiet by comparison, and opened the notebook at the beginning.", "batch": 8}
 {"id": "g1884", "text": "I stood by the stairs with my coat over my arm and put the night back in order, one hour after another.", "batch": 8}
-{"id": "g1847", "text": "I stood at the window a minute with my back to the room and went back over it.", "batch": 8}
+{"id": "g1847", "text": "I stood at the window a minute with my back to the room and went back over the evening.", "batch": 8}
 {"id": "g1865", "text": "I stood in the kitchen doorway a while, saying nothing, and let the evening sort itself out.", "batch": 8}
-{"id": "g1883", "text": "I sat on the edge of the nearest chair and went through it all again in my head.", "batch": 8}
+{"id": "g1883", "text": "I sat on the edge of the nearest chair and went through the whole evening again in my head.", "batch": 8}
 {"id": "g1839", "text": "I kept my table and turned the whole night over again, slowly, like a coat I was thinking of buying.", "joke": true, "batch": 8}
 {"id": "g1857", "text": "I sat on at the table, alone with my notebook, and thought.", "batch": 8}
-{"id": "g1875", "text": "The waiter went past twice and then gave up on me. I was busy counting.", "batch": 8}
-{"id": "g1893", "text": "I moved to the counter, where nobody sits for long, and went back through it.", "batch": 8}
+{"id": "g1875", "text": "The waiter went past twice and then gave up on me. I was busy counting the hours on my fingers.", "batch": 8}
+{"id": "g1893", "text": "I moved to the counter, where nobody sits for long, and went back through the night.", "batch": 8}
 {"id": "g1833", "text": "I pushed my chair back from the table and let the noise of the room go on without me while I lined up the hours.", "batch": 8}
-{"id": "g1851", "text": "The steam off the kitchen had misted the window. I sat by it and went through my evenings one at a time.", "batch": 8}
+{"id": "g1851", "text": "The steam off the kitchen had misted the window. I sat by it and went through the evenings I’d collected, one at a time.", "batch": 8}
 {"id": "g1869", "text": "I folded my hands on the tablecloth like a man saying grace, and went back to the start of the night.", "batch": 8}
 {"id": "g1887", "text": "I sat with my hat on the chair beside me and walked through the evening again without leaving the table.", "batch": 8}
 {"id": "g1845", "text": "The place was emptying around me. I let it, and went back to the first page.", "batch": 8}
 {"id": "g1863", "text": "I turned my chair to face the wall, which is rude in a restaurant and useful everywhere else, and thought.", "joke": true, "batch": 8}
 {"id": "g1881", "text": "I sat over the tablecloth and drew the night on it with a fingernail, hour by hour, where nobody could read it.", "batch": 8}
 {"id": "g1899", "text": "I stayed at the table and went back through the evening, setting each story beside the others to see where they rubbed.", "batch": 8}
-{"id": "g1841", "text": "I sat down on the stairs, halfway up, and went over it.", "batch": 8}
+{"id": "g1841", "text": "I sat down on the stairs, halfway up, and went over the night from the beginning.", "batch": 8}
 {"id": "g1859", "text": "The hall light buzzed. I stood under it and went through the hours once more.", "batch": 8}
-{"id": "g1877", "text": "I stopped on the landing with my hand on the rail and let it all come round again.", "batch": 8}
-{"id": "g1895", "text": "I sat on the bottom step, where the draft from the front door came in, and thought it over.", "batch": 8}
+{"id": "g1877", "text": "I stopped on the landing with my hand on the rail and let the whole night come round again.", "batch": 8}
+{"id": "g1895", "text": "I sat on the bottom step, where the draft from the front door came in, and thought the hours over.", "batch": 8}
 {"id": "g1849", "text": "I leaned on the post at the foot of the stairs and laid the night out in my head, hour by hour and face by face.", "batch": 8}
 {"id": "g1867", "text": "Upstairs a door shut. I waited for the house to settle, and then went back over the night from the start.", "batch": 8}
-{"id": "g1885", "text": "The hall had a chair nobody ever sat in. I sat in it and put the evenings I had end to end.", "batch": 8}
-{"id": "g1836", "text": "I stood in the hall with my hat in my hand and went through it again, quietly, so as not to wake the house.", "batch": 8}
+{"id": "g1885", "text": "The hall had a chair nobody ever sat in. I sat in it and laid everybody’s evenings end to end.", "batch": 8}
+{"id": "g1836", "text": "I stood in the hall with my hat in my hand and went through the night again, quietly, so as not to wake the house.", "batch": 8}
 {"id": "g1854", "text": "The landlady’s door was shut for once. I took the quiet while it lasted and went over the hours.", "batch": 8}
 {"id": "g1872", "text": "I sat on the stairs with my elbows on my knees and went back through the night, a step at a time.", "batch": 8}
-{"id": "g1890", "text": "I leaned against the wall by the mailboxes and sorted out what I had.", "batch": 8}
+{"id": "g1890", "text": "I leaned against the wall by the mailboxes and sorted out everything I’d been told that night.", "batch": 8}
 {"id": "g1844", "text": "I sat down in the last row and let the evening play through once more.", "batch": 8}
-{"id": "g1862", "text": "I stood at the back of the house and went over it, slowly.", "batch": 8}
+{"id": "g1862", "text": "I stood at the back of the house and went over the evening, slowly.", "batch": 8}
 {"id": "g1880", "text": "I found an empty seat on the aisle, sat, and thought.", "batch": 8}
 {"id": "g1898", "text": "Out in the lobby, under the lights, I stopped and went back through the hours.", "batch": 8}
 {"id": "g1838", "text": "I sat in an empty row and ran the evening through again, the way they run a play that isn’t working yet.", "joke": true, "batch": 8}
 {"id": "g1856", "text": "I leaned in the lobby doorway, between the house and the street, and laid the hours out one after another.", "batch": 8}
 {"id": "g1874", "text": "The stage was bare. I took a seat facing it and put the night back together in front of me, hour by hour.", "batch": 8}
-{"id": "g1892", "text": "I stood under the exit sign, where nobody ever stops, and stopped, and went back through what I had.", "batch": 8}
-{"id": "g1840", "text": "I sat with my hat on my knees in a seat that had seen better plays, and thought it through.", "joke": true, "batch": 8}
+{"id": "g1892", "text": "I stopped under the exit sign, where nobody ever stops, and went back over the night.", "batch": 8}
+{"id": "g1840", "text": "I sat with my hat on my knees in a seat that had seen better plays, and thought the night through.", "joke": true, "batch": 8}
 {"id": "g1858", "text": "The house was dark but for the work light. I sat in what there was of it and went over the evening again.", "batch": 8}
 {"id": "g1876", "text": "I went and stood in the side aisle, out of the usher’s way, and put the night in order.", "batch": 8}
 {"id": "g1894", "text": "The back row is where the latecomers sit. I sat there and caught up with myself.", "batch": 8}
 {"id": "g1846", "text": "Nobody was watching that room, which suited me. I stood in it and went back over the night.", "batch": 8}
 {"id": "g1864", "text": "Where I was seemed as good a place as any, so I stayed put and gave the evening another look.", "batch": 8}
-{"id": "g1882", "text": "I stopped by the door and went over it once more.", "batch": 8}
+{"id": "g1882", "text": "I stopped by the door and went over the evening once more.", "batch": 8}
 {"id": "g1832", "text": "I pulled a chair into the corner, sat on it backward with my arms along the top, and thought.", "batch": 8}
 {"id": "g1850", "text": "I stood under the one bulb in the room and turned the evening over, like a coin I wasn’t sure of.", "batch": 8}
 {"id": "g1868", "text": "Nobody keeps that room, so nobody minded me stopping in the middle of it to think.", "batch": 8}
