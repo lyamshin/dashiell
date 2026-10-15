@@ -41,7 +41,7 @@
           "7": "Seven, I take my chair and the mending, and the house knows I’m on.",
           "8": "Eight, I’ve the tea on and a sock on the egg and one ear on the door.",
           "9": "Nine’s the quiet hour. You can hear a lodger think, if he does.",
-          "10": "Ten’s the hour. After ten I’m not a landlady, I’m a customs house.",
+          "10": "Ten, I start minding who comes in. After ten I’m not a landlady, I’m a customs house.",
           "11": "Eleven, I start listening for the late ones, the way you’d listen for rain."
         },
         "refuse": [
@@ -108,7 +108,7 @@
         ],
         "hours": {
           "7": "Seven, I bank the boiler for the night. She sulks. Then she settles.",
-          "8": "Eight, I sit. Pipe. Steps. Street.",
+          "8": "Eight, I sit on the steps with my pipe and watch the street.",
           "9": "Nine, the fourth floor bangs on the pipe. I bang back. That’s our conversation.",
           "10": "Ten, I sweep the stoop. It doesn’t need it. I need it.",
           "11": "Eleven, I look at the fire one more time, and then I look at the street one more time."
@@ -232,7 +232,7 @@
         ],
         "deflect": [
           "I’ve thrown bigger questions than that down a flight of stairs.",
-          "Ask me something with a weight class."
+          "Ask me something heavier. That one’s a featherweight."
         ],
         "nobodyElse": [
           "Nobody else. I’d remember. I don’t like enough faces to forget any.",
@@ -250,7 +250,7 @@
           "You’re knocking on the wrong door."
         ],
         "ownUp": [
-          "Two falls out of three. You got the first. Here’s the rest."
+          "All right, you pinned me fair. Here’s the rest."
         ]
       },
       "ties": [
@@ -306,7 +306,7 @@
         ],
         "hours": {
           "7": "Seven, I open the doors and take up the chart. Every seat sold, a cross. I’m very good at crosses.",
-          "8": "Eight, the curtain goes up, and I go to the back of the house, where an usher belongs and an actor once didn’t.",
+          "8": "Eight, the curtain goes up, and I go to the back of the house, where an usher belongs. Once I was up on the stage.",
           "9": "Nine, the second act. I could do it in my sleep, and some nights I think I have.",
           "10": "Ten, I go round with the flashlight and wake the ones who only came in for the warm.",
           "11": "Eleven, they go home, and I go round picking up gloves. Nobody ever comes back for a glove."
@@ -639,7 +639,7 @@
         "hours": {
           "7": "Seven, I’m fixing my face. Takes an hour. Takes longer every year.",
           "8": "Eight, I fill the tray. Luckies on top, the rest underneath.",
-          "9": "Nine, I start on the room. You smile at the men and you look at the wrists.",
+          "9": "Nine, I start on the room. You smile at the men and you look at their wrists for a good watch.",
           "10": "Ten, my feet start talking. I don’t listen. I can’t afford to.",
           "11": "Eleven, I count the tray. What’s gone tells me what kind of night it’s been."
         },
@@ -711,7 +711,7 @@
           "11": "Eleven, I’m reading something I won’t admit to. Medical journals, I tell people."
         },
         "refuse": [
-          "No. I don’t answer that, and I don’t need gas to keep from it.",
+          "No. I won’t answer that, and laughing gas wouldn’t make me.",
           "This consultation is over."
         ],
         "ownUp": [
@@ -779,7 +779,7 @@
           "8": "Eight, I start thinking about what to wear. I’ve got a lot to choose from. Don’t ask.",
           "9": "Nine’s too early for anything good and too late for anything respectable.",
           "10": "Ten’s when a fellow’s clothes start doing the talking, if he picked the right ones.",
-          "11": "Eleven’s my hour. A fellow’s got to have one."
+          "11": "Eleven’s my hour, when I look my best. A fellow’s got to have one."
         },
         "refuse": [
           "Nope. That one I’m keeping, ticket and all.",
@@ -915,7 +915,7 @@
         ],
         "hours": {
           "7": "Seven is when a man of the theater begins to feel his public waiting for him, wherever he is.",
-          "8": "Eight o’clock, my friend, is a curtain, whether or not there is a curtain.",
+          "8": "Eight o’clock, my friend, is curtain time, whether or not there is a curtain.",
           "9": "Nine, I grow thoughtful. Ask anyone. It’s very becoming.",
           "10": "Ten, I am at my best. I have been told so by critics, two of them sober.",
           "11": "Eleven, I begin to feel my age, and I refuse it, as I refuse all bad notices."
@@ -1113,7 +1113,7 @@
           "Not my business. My business is the stove."
         ],
         "nobodyElse": [
-          "Nobody. Me. That’s enough.",
+          "Nobody. Just me, and that’s enough.",
           "Nobody else. I don’t need company. I have the stove."
         ],
         "hours": {
@@ -1259,7 +1259,7 @@
         "hours": {
           "7": "Seven, I’m a public servant still. The public doesn’t stop needing things at six.",
           "8": "Eight’s a good hour for a favor. People have eaten. They’re grateful.",
-          "9": "Nine, it’s November on my mind. A man in my line always has November on his mind.",
+          "9": "Nine, I’ve got the election on my mind. A man in my line always has November on his mind.",
           "10": "Ten, I start remembering who I promised what. It’s a long list. I keep it short by forgetting.",
           "11": "Eleven, I’m tired of being liked. It’s harder work than people think."
         },
@@ -1391,7 +1391,7 @@
           "Couldn’t say. My eyes were on the road, and the road was empty."
         ],
         "nobodyElse": [
-          "Nobody in the back. Flag up.",
+          "Nobody in the back. Empty cab, flag up.",
           "Just me. Not a fare all night, and you can tell my mother."
         ],
         "hours": {
@@ -1406,7 +1406,7 @@
           "Meter’s off. I’m not saying."
         ],
         "ownUp": [
-          "Flag down. Here’s the real route."
+          "All right, the meter’s running. Here’s the real route."
         ]
       },
       "ties": [
@@ -1474,7 +1474,7 @@
           "That one stays in the bag."
         ],
         "ownUp": [
-          "Well. It comes out eventually. They always do."
+          "Well. The truth comes out in the end, same as babies. They always do."
         ]
       },
       "ties": [
@@ -1533,7 +1533,7 @@
           "7": "Seven, I still hear the switchboard in my ears. It takes till eight to stop.",
           "8": "Eight’s when I feel lucky. I don’t know why. It’s cost me a fortune.",
           "9": "Nine’s for Scranton. You’d be amazed how much I think about Scranton for somebody who left it.",
-          "10": "Ten I’m supposed to be in. Number four on the card. I know number four by heart.",
+          "10": "Ten I’m supposed to be in. It’s house rule number four, and I know it by heart.",
           "11": "Eleven, I wish I was asleep and I wish I was dancing, both at once."
         },
         "refuse": [
@@ -1857,7 +1857,7 @@
       ],
       "voice": {
         "ask": [
-          "Mm. Wait. Pins. There. My evening, you want. Fine.",
+          "Mm. Wait, let me take out the pins. So. My evening, you want. Fine.",
           "Where was I? At the window. Where else does a wigmaker sit? The light is there."
         ],
         "deflect": [
@@ -1870,7 +1870,7 @@
         ],
         "hours": {
           "7": "Seven, the light goes and I light the lamp. A wigmaker who works by bad light makes bad wigs.",
-          "8": "Eight, the hair. One hair at a time. You count, or you go mad.",
+          "8": "Eight, I sew in the hair, one hair at a time. You count, or you go mad.",
           "9": "Nine, my eyes hurt, and I don’t stop.",
           "10": "Ten, my husband, may he rest, used to call me in from the window. Now nobody calls, and I stay.",
           "11": "Eleven, I put a cloth over the heads, so they shouldn’t watch me sleep."
@@ -2071,7 +2071,7 @@
         ],
         "deflect": [
           "I see clothes, not people. People come and go. A good coat, I remember.",
-          "Ask me about a hem. About that, I know nothing."
+          "Ask me about a hem, I’ll talk all night. About that, I know nothing."
         ],
         "nobodyElse": [
           "Nobody else, darling. Me and forty costumes and a dragon.",
@@ -2089,7 +2089,7 @@
           "That I don’t alter."
         ],
         "ownUp": [
-          "All right, darling. Here’s the whole cloth."
+          "All right, darling. I’ll unpick the whole seam for you."
         ]
       },
       "ties": [
@@ -2133,7 +2133,7 @@
       "voice": {
         "ask": [
           "Ah, sure. Pull up a stool and I’ll open you a dozen while I talk; they’re no use to anybody shut.",
-          "My evening, is it? It went by in shells."
+          "My evening, is it? It went by opening oysters, and that’s the truth of it."
         ],
         "deflect": [
           "I open oysters. What’s inside people, I leave shut.",
@@ -2219,7 +2219,7 @@
         },
         "refuse": [
           "No. Go and lose your money like a gentleman.",
-          "That I don’t buy."
+          "No. That one I’m not opening up."
         ],
         "ownUp": [
           "All right. I’ll tell you, and then I’ll have my tea."
