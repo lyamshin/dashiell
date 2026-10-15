@@ -325,7 +325,7 @@ describe('docs/49 Planner 2: composition', () => {
       [['thought']],
     );
     // ("he" after Coffin could be Coffin: the name.)
-    expect(out[0]).toBe('So Coffin’s list had Ashby at the Automat at eight, just like Ashby said, but for eleven, the hour that mattered, the milliner said the Thalia, and nobody else had said so. I let it stand.');
+    expect(out[0]).toBe('So Ashby had told it straight: Coffin’s list had him at the Automat at eight, but for eleven, the hour that mattered, Ashby said the Thalia, and nobody else had said so. I let it stand.');
   });
 
   it('a thought of N facts takes at most ceil(N/2) sentences, but for a collision’s own sentence and two long facts', () => {

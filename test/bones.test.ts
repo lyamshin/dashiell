@@ -83,7 +83,7 @@ describe('docs/52 §3: the plain page, and the round trip', () => {
     const blocks = plainPage(d.kase, run.log[7] as (typeof run.log)[number]);
     expect(blocks.map((b) => b.text)).toEqual([
       'Ashby said he was at the Automat at eight and nine, alone. He said he was at the Delmonico rooms at ten, with Mrs. Cheatham. He said he was at the Thalia at eleven, with Feeney. He said he passed Corrigan on Stuyvesant Street at eleven on the way to the Thalia.',
-      'Coffin’s list put Ashby at the Thalia at eleven, with Feeney, as he had said, but Stuyvesant Street was the street of the Prentiss flat.',
+      'Coffin’s list put Ashby at the Thalia at eleven, with Feeney, as he had said; Stuyvesant Street was the street of the Prentiss flat.',
     ]);
   });
 

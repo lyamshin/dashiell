@@ -1119,10 +1119,11 @@ function band(w: Writer): string {
 }
 
 /** The street between: the distance, and a line of the night outside. The first walk sets the street's role up; a later one may pay it off. */
-function writeWalk(w: Writer, from: PlaceId, to: PlaceId): void {
+function writeWalk(w: Writer, from: PlaceId, to: PlaceId, back = false): void {
   const c = w.c;
   const wk = walkBetween(c, from, to);
-  const dest = to === OFFICE ? 'the office' : placeName(c, to);
+  // A return names its place once, in the arrival's "back at …" (docs/25, the decks' dial): the walk says only that it's the same door.
+  const dest = to === OFFICE ? 'the office' : back ? 'the same door as before' : placeName(c, to);
   const fromName = from === OFFICE ? 'the office' : placeName(c, from);
   // Where it matters: from the scene to where the way in was had, the night turns on who could walk it in an hour.
   const matters = (from === c.crime.scene && to === c.means.origin) || (to === c.crime.scene && from === c.means.origin);
@@ -1183,7 +1184,7 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   const again = first ? undefined : peopleAt(c, w.run, place).find((x) => w.run.traits?.[x]);
   const callback = (!first && (again !== undefined || !!w.run.props?.[place])) || (!!w.run.street && w.hand.rng.int(10) < 3);
   if (callback) w.hand.hold(true);
-  writeWalk(w, w.before.at, place);
+  writeWalk(w, w.before.at, place, !first);
   // `{name}` is the whole name ("the Odessa, a café where the actors eat after the show"); as the
   // subject of a sentence it takes the closing comma its aside needs (`{nameSubj}`).
   const slots = withCaps({ name: pl.name, nameSubj: pl.name.includes(',') ? `${pl.name},` : pl.name, place: pl.short, street: pl.street });
@@ -1294,8 +1295,14 @@ export function writeArrive(w: Writer, place: PlaceId): void {
     // Abramowitz was with her here at seven" (Hard-boiled 8's #18).
     const m0 = /^.+? had said (?:he|she)(?:\u2063\d+\u2064)? was (here|at .+?) at (\w+)$/.exec(p0.clause);
     const m1 = p1 && said && p1.src === p0.src ? new RegExp(`^${esc(said)}(.+?) was with (?:him|her)(?:\u2063\\d+\u2064)? (here|at .+?) at (\\w+)$`).exec(p1.clause) : null;
+    // docs/53: one list's two people at the same place and hours, said once: "Mrs. Kowalski’s list had
+    // Brauer and Brennan at Kowalski’s all evening", not the place twice.
+    const r0 = head ? /^(.+?)( at .+)$/.exec(p0.clause.slice(head.length)) : null;
+    const r1 = head && p1 && p1.src === p0.src && p1.clause.startsWith(head) ? /^(.+?)( at .+)$/.exec(p1.clause.slice(head.length)) : null;
     const src = m0 && m1 && m0[1] === m1[2] && m0[2] === m1[3]
       ? `${p0.clause}, with ${m1[1]}`
+      : r0 && r1 && r0[2] === r1[2]
+      ? `${head}${r0[1]} and ${r1[1]}${r0[2]}`
       : p1 && head && p1.src === p0.src && p1.clause.startsWith(head)
       ? `${p0.clause}, and ${p1.clause.slice(head.length).replace(/ at the [^,]+? at /, ' at ').replace(new RegExp(` at ${esc(pl.short)} at `), ' at ').replace(p0.places[0] ? new RegExp(` at ${esc(placeName(c, p0.places[0]))} at `) : /$^/, ' at ')}`
       : p1 && said && p1.src === p0.src && p1.clause.startsWith(said)
