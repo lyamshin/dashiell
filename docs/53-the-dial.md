@@ -38,3 +38,20 @@ Pastiche, broad and legible: the noir everybody already has in their head. The w
 - **Textures (docs/51):** a texture may be pure flavor, but it must be legible on its own; no oblique tags.
 - **Goldens:** `board-connective.md` and `seed3-camp.md` were written above the dial in places. They stay as voice references for warmth and jokes, but this document wins on clarity.
 - **Blind reads:** readers judge "which page is clearer and still sounds like the game", in that order, not "which sounds more like noir".
+
+## Addendum, 2026-10-15: no engine words in the narration
+
+The designer, on "At ten, the hour that mattered, Mrs. Kowalski's list had Rafferty and Moretti at Kowalski's and nobody else; Steinbach and Bellucci had been there at nine and gone out after": "What list? 'And nobody else' is very odd. 'The hour that mattered' is vague."
+
+The narrator reports what people **said and saw**, in the words a person would use. The engine's nouns for its own structures never appear in narration (speech may be colloquial, but never board-speak either):
+
+| engine word | say instead |
+|---|---|
+| list, account, claim, story (as a mechanic), word, count | "Mrs. Kowalski said", "Ashby told me", "according to Coffin" |
+| "and nobody else" | "only Rafferty and Moretti were in the house" |
+| "the hour that mattered", "the crime hour", "the window" | the hour and why: "at ten, when the watch went", "at nine, when Carbone died" |
+| "with X's word under it", "on her count", "X had him at" | "Coffin saw him there", "Coffin says he was there" |
+| collides, collision, placed, cleared, access, means, the way in | "doesn't agree with", "was somewhere else", "couldn't have got the chloral", "knew where the key was" |
+| "put it to" (in narration) | "I told her what Coffin had seen" |
+
+Rendered as a lint on narration (outside quotes): zero.
