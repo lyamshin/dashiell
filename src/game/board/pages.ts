@@ -651,7 +651,9 @@ function staying(w: Writer, line: string, p: PersonId | undefined): string {
   // docs/56 A22: "Mrs. Szabo went back to counting bills", not "Counting bills: I didn’t interrupt her".
   const m = /^(.+) was still (.+) when I left\.$/.exec(line);
   if (!m) return line;
-  return `${m[1]} went back to ${m[2]}.`;
+  // (The pronoun, marked, as the old line had it: the planner names them there when it must.)
+  const he = markedPron(w.c, p).he;
+  return `${he.charAt(0).toUpperCase()}${he.slice(1)} went back to ${m[2]}.`;
 }
 
 /** docs/49: the other lines a gag could have been paid off with, as the rhythm's alternatives. */

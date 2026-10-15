@@ -651,7 +651,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const r = run as BoardRun;
     // Where it stands, plainly.
     if (r.log.length > 1) {
-      body.append(el('h2', { text: 'Where it stands' }));
+      body.append(el('h2', { text: 'How it adds up' }));
       const ul = el('ul', { class: 'nb-stands' });
       for (const cl of recapClauses(d as BoardDeal, r)) ul.append(el('li', { text: cl.text }));
       body.append(ul);
@@ -659,7 +659,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     // Everything held, by whose word.
     const lines = linesHeld(c, r).filter((l) => l.kind !== 'given');
     if (lines.length > 0) {
-      body.append(el('h2', { text: 'What I have' }));
+      body.append(el('h2', { text: 'What I was told' }));
       const bySource = new Map<string, string[]>();
       for (const l of lines) {
         const src = l.q.startsWith('list:') ? `Who ${nameOf(c, l.q.slice(5))} saw` : l.q.startsWith('account:') ? `${nameOf(c, l.q.slice(8))}’s evening` : l.q.startsWith('search:') ? 'What I found' : 'When I faced them with it';

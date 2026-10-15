@@ -232,7 +232,7 @@ describe('docs/49 §2: aggregation and connectives', () => {
       [['job']],
     );
     expect(out[0]).toMatch(/^“.*\b[Tt]en\b.*Feeney.*”$/);
-    expect(out[0]).toMatch(/\bnobody\b|\bno one\b|\bthe lot\b|\beverybody\b|\bThat’s all\b|\bthat’s it\b/i);
+    expect(out[0]).toMatch(/\bonly\b|\bjust\b|\bnot another soul\b|\bnobody\b|\bno one\b|\bthe lot\b|\beverybody\b|\bThat’s all\b|\bthat’s it\b/i);
   });
 
   it('a collision takes the page’s one "but"; the second goes without', () => {

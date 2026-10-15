@@ -421,7 +421,7 @@
   {"id": "bcn-3043", "family": "arrive-close", "tags": {"kind": "any"}, "text": "I stood still and listened. You hear a lot in a place if you keep quiet long enough."},
   {"id": "bcn-3044", "family": "arrive-close", "tags": {"kind": "any"}, "text": "I was indoors and out of the night, for a while at least."},
   {"id": "bcn-3060", "family": "search-close", "tags": {}, "text": "I went over it once more, in case I’d been hasty. I hadn’t, but it’s nice to be sure.", "joke": true},
-  {"id": "bcn-3061", "family": "search-close", "tags": {}, "text": "I left it as I found it, give or take my fingerprints.", "joke": true},
+  {"id": "bcn-3061", "family": "search-close", "tags": {}, "text": "I left it as I found it, apart from my fingerprints.", "joke": true},
   {"id": "bcn-3062", "family": "search-close", "tags": {}, "text": "The room had nothing more to tell me, and it hadn’t needed asking twice."},
   {"id": "bcn-3063", "family": "search-close", "tags": {}, "text": "I stood up, and my knees told me about it.", "joke": true},
   {"id": "bcn-3064", "family": "search-close", "tags": {}, "text": "I put everything back where it had been, as near as I could."},
