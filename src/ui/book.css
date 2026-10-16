@@ -621,7 +621,24 @@ button {
 
 /* ----------------------------------------------------------- title page */
 
+/*
+ * One button first, like the old games' title screens: the name, the line
+ * under it, "Open tonight's case". The picker folds under a quieter button,
+ * and the rules live in a drawer. The sheet is the weather's stacking context,
+ * as the spread is in a night.
+ */
+.title-sheet {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  overflow-x: clip;
+}
+
 .title-page {
+  width: 100%;
   max-width: 30rem;
   margin: auto;
   padding: 3rem var(--gutter);
@@ -639,63 +656,279 @@ button {
 .title-page .sub {
   color: var(--ink-soft);
   font-style: italic;
-  margin: 0 0 2.6rem;
+  margin: 0 0 2.8rem;
 }
 
-.title-page label {
+.title-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.title-actions .action {
+  width: 100%;
+  max-width: 20rem;
+}
+
+.big-button {
   display: block;
-  font-size: 0.7rem;
+  width: 100%;
+  min-height: 3.4rem;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  color: var(--paper);
+  padding: 0.8rem 1.4rem;
+  cursor: pointer;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  font-size: 0.86rem;
+}
+
+.big-button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.big-button--second {
+  background: none;
+  color: var(--ink);
+  border-color: var(--rule);
+}
+
+.big-button--second:hover {
+  background: none;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.big-button:focus-visible,
+.quiet-button:focus-visible,
+.link-button:focus-visible,
+.pick:focus-visible,
+.picker-form input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.action-note {
+  margin: 0.45rem 0 0;
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--ink-faint);
-  margin-bottom: 0.3rem;
 }
 
-.title-page .name-line {
-  margin-bottom: 2.4rem;
+.quiet-button {
+  background: none;
+  border: 0;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 0.9rem;
+  min-height: 44px;
+  padding: 0.4rem 1rem;
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 0.25em;
 }
 
-.title-page input[type='text'] {
+.quiet-button:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.choose-toggle {
+  margin-top: 1.8rem;
+}
+
+.choose-toggle::after {
+  content: '▾';
+  display: inline-block;
+  margin-left: 0.35em;
+  font-size: 0.8em;
+}
+
+.choose-toggle[aria-expanded='true']::after {
+  content: '▴';
+}
+
+.picker-form {
+  margin: 0.8rem 0 0;
+  padding: 1.2rem 0 0.4rem;
+  border-top: 1px solid var(--rule);
+  text-align: left;
+}
+
+.picker-form[hidden] {
+  display: none;
+}
+
+.pick-field {
+  margin: 0 0 1.3rem;
+}
+
+.pick-label {
+  display: block;
+  margin: 0 0 0.4rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  line-height: 1.5;
+}
+
+.pick-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.pick {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 0;
+  padding: 0.35rem 0.4rem;
+  background: none;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.pick:hover {
+  border-color: var(--accent);
+}
+
+.pick[aria-checked='true'] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.pick--locked,
+.pick--locked:hover {
+  border-style: dashed;
+  border-color: var(--rule);
+  color: var(--ink-faint);
+  cursor: not-allowed;
+}
+
+.pick-note {
+  margin-top: 0.15rem;
+  font-size: 0.66rem;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+.picker-form input {
   width: 100%;
+  min-height: 44px;
   background: transparent;
   border: 0;
   border-bottom: 1px solid var(--rule);
   color: var(--ink);
   font: inherit;
-  font-size: 1.4rem;
-  text-align: center;
-  padding: 0.3rem 0;
+  font-size: 1.15rem;
+  padding: 0.25rem 0;
   outline: none;
 }
 
-.title-page input:focus {
+.picker-form input:focus {
   border-bottom-color: var(--accent);
 }
 
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.4rem;
-  margin-bottom: 2.4rem;
-  font-size: 0.9rem;
+.picker-form .big-button {
+  margin-top: 0.4rem;
 }
 
-.controls .field {
-  min-width: 7rem;
+.new-line {
+  margin: 2.4rem 0 0;
+  font-size: 0.86rem;
+  color: var(--ink-faint);
 }
 
-.controls input[type='number'],
-.controls select {
-  width: 100%;
-  background: transparent;
+.link-button {
+  background: none;
   border: 0;
-  border-bottom: 1px solid var(--rule);
-  color: var(--ink);
+  padding: 0.6rem 0.1rem;
   font: inherit;
-  text-align: center;
-  padding: 0.25rem 0;
-  outline: none;
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* "How it plays": a drawer up from the foot of the window. */
+.drawer {
+  max-width: min(34rem, 100vw);
+  width: 100%;
+  max-height: 85vh;
+  max-height: 85dvh;
+  margin: auto auto 0;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-bottom: 0;
+  background: var(--paper);
+  color: var(--ink);
+  text-align: left;
+  overflow-y: auto;
+}
+
+.drawer::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.drawer-body {
+  padding: 1.6rem var(--gutter) 1rem;
+}
+
+@media (min-width: 600px) {
+  .drawer-body {
+    padding: 2rem 2.2rem 1.2rem;
+  }
+}
+
+.drawer h2,
+.drawer h3 {
+  font-weight: 400;
+  margin: 0 0 0.8rem;
+}
+
+.drawer h2 {
+  font-size: 1.3rem;
+}
+
+.drawer h3 {
+  font-size: 1.05rem;
+  margin-top: 1.6rem;
+}
+
+.drawer p {
+  margin: 0 0 0.8rem;
+}
+
+.teach-list {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.teach-list li {
+  margin: 0 0 0.5rem;
+}
+
+.drawer-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.drawer-close {
+  margin-right: -1rem;
 }
 
 .open-case,
@@ -722,16 +955,6 @@ button {
   margin: 0 0 1.8rem;
 }
 
-.title-page .resume {
-  margin: -1rem 0 2rem;
-  font-size: 0.9rem;
-  color: var(--ink-soft);
-}
-
-.title-page .resume p {
-  margin: 0 0 0.6rem;
-}
-
 .tier-news {
   border-top: 1px solid var(--rule);
   margin: 1.2rem 0 0;
@@ -747,21 +970,12 @@ button {
   margin: 0;
 }
 
-/* A thumb's width for every control on the title page and under the verdict. */
+/* A thumb's width for every control under the verdict (the title page's are that already). */
 @media (max-width: 600px) {
   .open-case,
-  .plain-button,
-  .title-page input,
-  .title-page select {
+  .plain-button {
     min-height: 44px;
   }
-}
-
-.title-page .footnote {
-  margin-top: 2.6rem;
-  font-size: 0.78rem;
-  color: var(--ink-faint);
-  line-height: 1.7;
 }
 
 /* ---------------------------------------------------------------- report */
@@ -924,27 +1138,24 @@ button {
   margin: 0;
 }
 
-/* docs/39 §5: the teaching page, before the office. */
+/* docs/39 §5: the teach-once page. Plain: a title, six lines, Start. */
 .teach {
   max-width: 34rem;
   margin: 1.5rem 0;
 }
 
 .teach-title {
-  font-size: 1.1rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: 400;
   margin: 0 0 1rem;
 }
 
-.teach-line {
-  margin: 0 0 0.9rem;
-  line-height: 1.55;
+.teach .teach-list li {
+  margin: 0 0 0.6rem;
+  line-height: 1.5;
 }
 
 .teach-buttons {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
+  max-width: 16rem;
 }

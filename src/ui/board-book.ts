@@ -35,9 +35,9 @@ import {
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
 import { BREAKS_LABEL, HUNCH, WHERE_BY_LABEL, boardFields, breakOptionsShown, curtainOfBoard, hoursThatMattered, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
-import { BOARD_RULES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
+import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
 import { costLabel } from '../game/board/text.js';
-import { continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, type KeyValueStore } from '../game/board/profile.js';
+import { continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, tierOpen, tonightTier, type KeyValueStore, type Profile } from '../game/board/profile.js';
 import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
 import { plainPage } from '../game/board/bones/plain.js';
@@ -113,6 +113,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   let justSpent = 0;
   /** The grid cell whose lines are open, as `person@hour`. */
   let openCell: string | null = null;
+  /** The title page's picker is unfolded ("Choose a case"). */
+  let choosing = false;
   const weather = createWeatherLayer({ enabled: loadWeatherOn(store) });
   let spread: HTMLElement | null = null;
 
@@ -242,8 +244,12 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (screen.kind === 'title' || !d || !run) {
       clear(root);
       spread = null;
-      weather.show(null);
-      root.append(titlePage());
+      const sheet = titlePage();
+      root.append(sheet);
+      // The title page has its own rain, quietly, unless the weather is switched off.
+      weather.show('rain');
+      weather.attach(sheet);
+      if (!sheet.querySelector('dialog[open]')) sheet.querySelector<HTMLElement>(choosing ? '#case-picker [role="radio"][tabindex="0"]' : '[data-primary]')?.focus({ preventScroll: true });
       return;
     }
     if (!spread || spread.parentNode !== root) {
@@ -267,8 +273,10 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (screen.kind === 'teach') {
       const teach = el('div', { class: 'teach', role: 'region', 'aria-label': BOARD_TEACH_TITLE });
       teach.append(el('h2', { class: 'teach-title', text: BOARD_TEACH_TITLE }));
-      for (const line of teachLines(d?.kase.world)) teach.append(el('p', { class: 'teach-line', text: line }));
-      const go = el('button', { class: 'plain-button teach-go', type: 'button', text: 'Up the stairs to the office' });
+      const list = el('ol', { class: 'teach-list' });
+      for (const line of teachLines(d?.kase.world)) list.append(el('li', { class: 'teach-line', text: line }));
+      teach.append(list);
+      const go = el('button', { class: 'big-button teach-go', type: 'button', text: 'Start' });
       go.addEventListener('click', () => {
         screen = { kind: 'book' };
         render();
@@ -805,52 +813,189 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
 
   /* ------------------------------------------------------------ title */
 
+  /** A case number for a fresh night: any whole number names one. */
+  const freshSeed = (): number => 1 + Math.floor(Math.random() * 9999);
+
+  const KIND_WORDS: Record<CaseType, string> = { murder: 'A murder', 'lost-pet': 'A lost pet', 'lost-item': 'A lost thing' };
+
+  /**
+   * The title page: the name, the line under it, and one button that starts a night at the tier the
+   * profile has earned (`tonightTier`). A night in progress puts "Back to the case" first. "Choose a
+   * case" unfolds the picker; "How it plays" opens the rules in a drawer.
+   */
   function titlePage(): HTMLElement {
-    const wrap = el('div', { class: 'title-page' });
-    const form = el('form');
-    const name = el('input', { type: 'text', value: storedName(), 'aria-label': 'The detective’s name', autocomplete: 'off' });
-    const seed = el('input', { type: 'number', value: String(1 + Math.floor(Math.random() * 9999)), min: '1', 'aria-label': 'Case number' });
-    const tier = el('select', { 'aria-label': 'Tier', name: 'tier' });
-    for (let t = 0; t <= 5; t++) tier.append(el('option', { value: String(t) }, tierName(t as TierIndex)));
-    const type = el('select', { 'aria-label': 'Kind of case', name: 'type' });
-    const paintTypes = (): void => {
-      const was = type.value;
-      clear(type);
-      type.append(el('option', { value: '' }, 'Any'));
-      for (const x of typesFor(Number(tier.value) as TierIndex)) type.append(el('option', { value: x }, x === 'murder' ? 'A murder' : x === 'lost-pet' ? 'A lost pet' : 'A lost thing'));
-      type.value = [...type.options].some((o) => o.value === was) ? was : '';
-    };
-    tier.addEventListener('change', paintTypes);
-    paintTypes();
-    form.append(
-      el('h1', { text: 'DASHIELL' }),
-      el('p', { class: 'sub', text: 'A murder, an evening, and eight hours to write it down.' }),
-      el('p', { class: 'tier-rule', text: 'Ask anybody where they were and you get the whole evening; ask a barman who came in and you get everybody. Every lie runs into something true. Murders, lost pets and lost things.' }),
-      el('div', { class: 'name-line' }, el('label', { text: 'The detective' }), name),
-    );
+    const sheet = el('div', { class: 'title-sheet' });
+    const wrap = el('main', { class: 'title-page' });
+    sheet.append(wrap);
+    const profile = loadProfile(store);
+    const tonight = tonightTier(profile);
     const prior = loadSaved(store);
-    if (prior && !prior.filed) {
-      const back = el('button', { class: 'plain-button', type: 'button', text: 'Go back to it' });
-      back.addEventListener('click', () => openCase(prior.seed, prior.tier, prior.type, prior.detective, true, prior.world));
-      form.append(el('div', { class: 'resume' }, el('p', { text: `Case ${prior.seed} is still open on the desk: ${tierName(prior.tier)}.` }), back));
+    const inProgress = prior && !prior.filed ? prior : null;
+
+    wrap.append(el('h1', { text: 'DASHIELL' }), el('p', { class: 'sub', text: 'A murder, an evening, and eight hours to write it down.' }));
+
+    const startTonight = (): void => openCase(freshSeed(), tonight, undefined, storedName(), true, world, true);
+    const actions = el('div', { class: 'title-actions' });
+    const tonightNote = el('p', { class: 'action-note', text: `Tonight: ${tierName(tonight)}` });
+    if (inProgress) {
+      const back = el('button', { class: 'big-button', type: 'button', 'data-primary': 'true', text: 'Back to the case' });
+      back.addEventListener('click', () => openCase(inProgress.seed, inProgress.tier, inProgress.type, inProgress.detective, true, inProgress.world));
+      const fresh = el('button', { class: 'big-button big-button--second', type: 'button', text: 'Open a new case' });
+      fresh.addEventListener('click', startTonight);
+      actions.append(
+        el('div', { class: 'action' }, back, el('p', { class: 'action-note', text: `Case ${inProgress.seed} · ${tierName(inProgress.tier)}` })),
+        el('div', { class: 'action' }, fresh, tonightNote),
+      );
+    } else {
+      const open = el('button', { class: 'big-button', type: 'button', 'data-primary': 'true', text: 'Open tonight’s case' });
+      open.addEventListener('click', startTonight);
+      actions.append(el('div', { class: 'action' }, open, tonightNote));
     }
+    wrap.append(actions);
+
+    const picker = pickerForm(profile, tonight);
+    const choose = el('button', { class: 'quiet-button choose-toggle', type: 'button', 'aria-expanded': String(choosing), 'aria-controls': 'case-picker', text: 'Choose a case' });
+    choose.addEventListener('click', () => {
+      choosing = !choosing;
+      choose.setAttribute('aria-expanded', String(choosing));
+      picker.hidden = !choosing;
+      if (choosing) picker.querySelector<HTMLElement>('[role="radio"][tabindex="0"]')?.focus();
+    });
+    picker.hidden = !choosing;
+    wrap.append(choose, picker);
+
+    const how = el('button', { class: 'link-button', type: 'button', 'aria-haspopup': 'dialog', text: 'How it plays' });
+    const drawer = howDrawer();
+    how.addEventListener('click', () => {
+      if (typeof drawer.showModal === 'function') drawer.showModal();
+      else drawer.setAttribute('open', '');
+    });
+    wrap.append(el('p', { class: 'new-line' }, 'New? The first night teaches you as you go. ', how), drawer);
+    return sheet;
+  }
+
+  /** The picker, folded under "Choose a case": a row of tiers, a row of kinds, the number, the name. */
+  function pickerForm(profile: Profile, tonight: TierIndex): HTMLFormElement {
+    const form = el('form', { class: 'picker-form', id: 'case-picker', 'aria-label': 'Choose a case' });
+    let tier: TierIndex = tonight;
+    let kind: CaseType | '' = '';
+
+    /** A row of small buttons that acts as one radio group: the arrows move along it, Tab leaves it. */
+    function radioRow(label: string, items: { value: string; text: string; note?: string; locked?: boolean }[], current: string, pick: (v: string) => void): HTMLElement {
+      const row = el('div', { class: 'pick-row', role: 'radiogroup', 'aria-label': label });
+      for (const it of items) {
+        const b = el('button', {
+          class: `pick${it.locked ? ' pick--locked' : ''}`,
+          type: 'button',
+          role: 'radio',
+          'aria-checked': String(it.value === current),
+          'aria-disabled': it.locked ? 'true' : undefined,
+          tabindex: it.value === current ? '0' : '-1',
+          'data-value': it.value,
+        });
+        b.append(el('span', { class: 'pick-name', text: it.text }));
+        if (it.note) b.append(el('span', { class: 'pick-note', text: it.note }));
+        b.addEventListener('click', () => {
+          if (!it.locked) pick(it.value);
+        });
+        row.append(b);
+      }
+      row.addEventListener('keydown', (e) => {
+        const step = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+        if (!step) return;
+        e.preventDefault();
+        const open = items.filter((it) => !it.locked);
+        const at = open.findIndex((it) => it.value === current);
+        const next = open[(at + step + open.length) % open.length];
+        if (next) {
+          pick(next.value);
+          form.querySelector<HTMLElement>(`[aria-label="${label}"] [data-value="${next.value}"]`)?.focus();
+        }
+      });
+      return row;
+    }
+
+    const tierSlot = el('div', { class: 'pick-field' });
+    const kindSlot = el('div', { class: 'pick-field' });
+    const paint = (): void => {
+      clear(tierSlot);
+      clear(kindSlot);
+      const tiers = ([0, 1, 2, 3, 4, 5] as TierIndex[]).map((t) =>
+        tierOpen(profile, t) ? { value: String(t), text: tierName(t) } : { value: String(t), text: tierName(t), locked: true, note: `clear ${tierName((t - 1) as TierIndex)} to open` },
+      );
+      tierSlot.append(
+        el('p', { class: 'pick-label', text: 'Tier' }),
+        radioRow('Tier', tiers, String(tier), (v) => {
+          tier = Number(v) as TierIndex;
+          if (kind && !typesFor(tier).includes(kind)) kind = '';
+          paint();
+        }),
+      );
+      const kinds = [{ value: '', text: 'Any' }, ...typesFor(tier).map((x) => ({ value: x, text: KIND_WORDS[x] }))];
+      kindSlot.append(
+        el('p', { class: 'pick-label', text: 'Kind' }),
+        radioRow('Kind', kinds, kind, (v) => {
+          kind = v as CaseType | '';
+          paint();
+        }),
+      );
+    };
+    paint();
+
+    const seed = el('input', { id: 'pick-seed', type: 'number', inputmode: 'numeric', min: '1', step: '1', value: String(freshSeed()) });
+    const name = el('input', { id: 'pick-name', type: 'text', value: storedName(), autocomplete: 'off', spellcheck: 'false' });
     form.append(
-      el('div', { class: 'controls' }, el('div', { class: 'field' }, el('label', { text: 'Tier' }), tier), el('div', { class: 'field' }, el('label', { text: 'Kind' }), type), el('div', { class: 'field' }, el('label', { text: 'Case number' }), seed)),
-      el('button', { class: 'open-case', type: 'submit', text: 'Open the case' }),
+      tierSlot,
+      kindSlot,
+      el('div', { class: 'pick-field' }, el('label', { class: 'pick-label', for: 'pick-seed', text: 'Case number (any number; the same number gives the same night)' }), seed),
+      el('div', { class: 'pick-field' }, el('label', { class: 'pick-label', for: 'pick-name', text: 'The detective' }), name),
+      el('button', { class: 'big-button big-button--second', type: 'submit', text: 'Open this case' }),
     );
-    for (const l of BOARD_RULES) form.append(el('p', { class: 'footnote', text: l }));
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      const who = name.value.trim() || 'Dashiell';
       try {
-        store.setItem(NAME_KEY, name.value.trim() || 'Dashiell');
+        store.setItem(NAME_KEY, who);
       } catch {
         /* forgets the name */
       }
-      openCase(Number(seed.value) || 1, Number(tier.value) as TierIndex, (type.value || undefined) as CaseType | undefined, name.value.trim() || 'Dashiell', true, world, true);
+      const n = Math.floor(Number(seed.value));
+      openCase(Number.isFinite(n) && n >= 1 ? n : freshSeed(), tier, kind || undefined, who, true, world, true);
     });
-    wrap.append(form);
-    return wrap;
+    return form;
   }
+
+  /** "How it plays": the rules, and the teach page's six lines, in a drawer. Esc or Close shuts it. */
+  function howDrawer(): HTMLDialogElement {
+    const dialog = el('dialog', { class: 'drawer', 'aria-labelledby': 'how-title' });
+    const close = el('button', { class: 'quiet-button drawer-close', type: 'button', text: 'Close' });
+    close.addEventListener('click', () => (typeof dialog.close === 'function' ? dialog.close() : dialog.removeAttribute('open')));
+    // A click on the dimmed page around the drawer closes it too.
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    // Close sits at the top, so the drawer opens with the focus on it and its first line in view.
+    const body = el('div', { class: 'drawer-body' }, el('div', { class: 'drawer-head' }, el('h2', { id: 'how-title', text: 'How it plays' }), close));
+    for (const l of BOARD_RULES) body.append(el('p', { text: l }));
+    body.append(el('h3', { text: BOARD_TEACH_TITLE }));
+    const list = el('ol', { class: 'teach-list' });
+    for (const l of BOARD_TEACH_LINES) list.append(el('li', { text: l }));
+    body.append(list);
+    dialog.append(body);
+    return dialog;
+  }
+
+  // On the title page, Enter opens the case even when nothing has the focus (a click on the paper
+  // drops it): the first button, "Open tonight's case" or "Back to the case".
+  document.addEventListener('keydown', (e) => {
+    if (screen.kind !== 'title' || e.key !== 'Enter' || e.defaultPrevented || e.isComposing) return;
+    const at = document.activeElement;
+    if (at && at !== document.body && at !== document.documentElement && !at.classList.contains('title-sheet') && !at.classList.contains('title-page')) return;
+    const first = root.querySelector<HTMLButtonElement>('[data-primary]');
+    if (!first) return;
+    e.preventDefault();
+    first.click();
+  });
 
   /* --------------------------------------------------------------- boot */
 

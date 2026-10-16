@@ -37,7 +37,11 @@ npm run preview    # serves dist/
 npm run deploy     # build, deploy to Cloudflare, verify the live hash (docs/HOSTING.md)
 ```
 
-The title page is the picker: the tier, the case type and the seed. A night
+The title page is one button, "Open tonight's case": a fresh case number, the
+kind dealt by it, and the tier the profile has earned (Raw on a first visit;
+then the highest tier cleared, or the next one up once that one is cleared
+twice: `tonightTier` in `src/game/board/profile.ts`). "Choose a case" unfolds
+the picker: the tier, the kind, the case number and the detective's name. A night
 is identified by its seed and tier, and the URL says which:
 `?seed=4&t=2&type=lost-pet`. Share the link and you share the night. `?situated=0` writes the pages with the old decks only (docs/51), for comparison; `?plain=1` shows each page's plain page, every fact and no voice (docs/52). The
 night in progress is kept in `localStorage` (`dashiell:board-run`), and so is

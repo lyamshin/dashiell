@@ -43,6 +43,11 @@ export interface Profile {
    * night's again while anything else fits.
    */
   dealt?: string[][];
+  /**
+   * Full-credit reports per tier, keyed by `String(tier)`. Absent on a profile written before the
+   * title page chose the tier (a cleared tier there counts as cleared once: `clearsAt`).
+   */
+  clears?: Partial<Record<string, number>>;
 }
 
 export function emptyProfile(): Profile {
@@ -78,6 +83,7 @@ export function recordRun(profile: Profile, result: RunResult): RecordOutcome {
   if (result.dealt && result.dealt.length) next.dealt = [...(profile.dealt ?? []), result.dealt].slice(-RECENT);
   if (!won) return { profile: next, won, firstClear: null };
   const tier = result.tier;
+  next.clears = { ...(profile.clears ?? {}), [String(tier)]: clearsAt(profile, tier) + 1 };
   const firstClear = profile.cleared.includes(tier) ? null : tier;
   if (firstClear !== null) next.cleared = TIERS.filter((t) => t === tier || next.cleared.includes(t));
   const delta = result.actionsUsed - result.par;
@@ -106,6 +112,14 @@ export function sanitizeProfile(value: unknown): Profile {
     const ids = (x: unknown) => (Array.isArray(x) ? x.filter((y): y is string => typeof y === 'string').slice(-RECENT) : []);
     const r = v.recent as Record<string, unknown>;
     out.recent = { culprits: ids(r.culprits), victims: ids(r.victims) };
+  }
+  if (typeof v.clears === 'object' && v.clears !== null) {
+    const clears: Partial<Record<string, number>> = {};
+    for (const t of out.cleared) {
+      const n = (v.clears as Record<string, unknown>)[String(t)];
+      if (typeof n === 'number' && Number.isFinite(n) && n >= 1) clears[String(t)] = Math.floor(n);
+    }
+    if (Object.keys(clears).length) out.clears = clears;
   }
   if (Array.isArray(v.dealt)) {
     const nights = (v.dealt as unknown[]).filter((n): n is unknown[] => Array.isArray(n)).map((n) => n.filter((y): y is string => typeof y === 'string').slice(0, 2000));
@@ -181,4 +195,29 @@ export function fileToProfile(store: KeyValueStore, result: RunResult): RecordOu
 export function teachOn(profile: Pick<Profile, 'runs' | 'wins'>, tier: TierIndex): boolean {
   if (profile.wins > 0) return false;
   return profile.runs === 0 || tier === 0;
+}
+
+/** How many full-credit reports a tier has had: at least one if it is cleared, whatever the profile kept. */
+export function clearsAt(profile: Pick<Profile, 'cleared' | 'clears'>, tier: TierIndex): number {
+  const n = profile.clears?.[String(tier)] ?? 0;
+  return Math.max(n, profile.cleared.includes(tier) ? 1 : 0);
+}
+
+/**
+ * docs/16: Raw is open from the first night, and a cleared tier opens the next. Every tier up to
+ * one past the highest cleared is open (a tier cleared from a shared link opens the ones under it).
+ */
+export function tierOpen(profile: Pick<Profile, 'cleared'>, tier: TierIndex): boolean {
+  const top = profile.cleared.length ? Math.max(...profile.cleared) : -1;
+  return tier <= top + 1;
+}
+
+/**
+ * The tier the title page's one button opens: Raw on a profile with nothing cleared; otherwise the
+ * highest tier cleared, or the one above it once the highest has been cleared twice.
+ */
+export function tonightTier(profile: Pick<Profile, 'cleared' | 'clears'>): TierIndex {
+  if (!profile.cleared.length) return 0;
+  const top = Math.max(...profile.cleared) as TierIndex;
+  return top < 5 && clearsAt(profile, top) >= 2 ? ((top + 1) as TierIndex) : top;
 }
