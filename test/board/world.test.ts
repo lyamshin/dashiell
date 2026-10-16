@@ -517,9 +517,10 @@ describe('the prose draws on the bible first', () => {
     }
   });
 
-  it('adds the map line to the teach page on a night from the neighbourhood, and only then', () => {
+  it('teaches the same six plain lines on a night from the neighbourhood as on any other', () => {
     expect(teachLines()).toEqual(BOARD_TEACH_LINES);
-    expect(teachLines('neighbourhood').at(-1)).toBe('Same few blocks every night. You’ll get to know them.');
+    expect(teachLines('neighbourhood')).toEqual(BOARD_TEACH_LINES);
+    expect(BOARD_TEACH_LINES).toHaveLength(6);
   });
 });
 
@@ -529,7 +530,7 @@ describe('the tools take --world', () => {
     const io: PlayIo = { read: (p) => files.get(p) ?? null, write: (p, d) => void files.set(p, d) };
     const out = runPlay(['new', '--seed', '3', '--tier', '2', '--world', 'neighbourhood', '--save', 'n.json'], io);
     expect(out.code).toBe(0);
-    expect(out.out).toContain('Same few blocks every night.');
+    expect(out.out).toContain('HOW THIS WORKS');
     expect(JSON.parse(files.get('n.json') as string).world).toBe('neighbourhood');
     expect(runPlay(['look', '--save', 'n.json'], io).code).toBe(0);
     expect(runPlay(['new', '--seed', '3', '--tier', '2', '--world', 'atlantis', '--save', 'x.json'], io).code).not.toBe(0);

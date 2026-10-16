@@ -1,37 +1,42 @@
 /**
- * docs/43 §7: the teach-once page, rewritten for the small board. Four lines
- * in the detective's voice, and docs/46 §3's fifth:
+ * docs/39 §5: the teach-once page, and the book's help.
  *
- * - everyone gives you their whole evening;
- * - whoever kept the door or the bar names everyone;
- * - every lie runs into something true;
- * - not everyone who refuses is guilty;
- * - a name's no good without the line that breaks it.
+ * Plain modern English, one short sentence a line, no detective voice
+ * (the designer, 2026-10-16: "should not be written in period language and
+ * should be MUCH MUCH simpler"). The six lines:
+ *
+ * - everyone gives you their whole evening, with company;
+ * - whoever kept the bar or the stairs names everyone, hour by hour;
+ * - people lie about themselves, never about what they saw;
+ * - when two stories don't match, tell one what the other said;
+ * - a refusal isn't proof;
+ * - the case closes on a name and the fact that proves they lied.
  */
 
-export const BOARD_TEACH_TITLE = 'Before the office';
+export const BOARD_TEACH_TITLE = 'How this works';
 
 export const BOARD_TEACH_LINES: readonly string[] = [
-  'Ask anybody where they were tonight and you get the whole evening, every hour of it, and who was with them. People like to be thorough about themselves.',
-  'Somebody whose job keeps them in one place all night, the barman at the taps, the landlady on her stairs, can tell you everybody who came in, hour by hour, and when they say that was everybody, it was.',
-  'A lie always runs into something true: a barman who never saw them come in, or somebody else who saw them somewhere else. When two stories don’t agree, tell the one you doubt what the other said.',
-  'Not everybody who won’t explain themselves did it. Some people would rather be suspected than found out, and somebody else will have to say where they were.',
-  'A name’s no good to me without the thing that shows they lied.',
+  'Ask anyone where they were tonight, and they’ll tell you their whole evening and who they were with.',
+  'A bartender or a landlady can tell you everyone who came in, hour by hour.',
+  'People lie about themselves. Nobody lies about what they saw.',
+  'When two stories don’t match, tell the person what the other one said.',
+  'Some innocent people refuse to explain. A refusal isn’t proof.',
+  'To close the case you need a name and the fact that proves they lied.',
 ];
 
-/** docs/48 §3: the map line, on a night from the neighbourhood. */
-export const WORLD_MAP_LINE = 'Same few blocks every night. You’ll get to know them.';
-
-/** The teach page's lines for a night: the five, and the map line when it's cast from a world. */
+/**
+ * The teach page's lines for a night. The same six from every world (the neighbourhood's map line
+ * went with the period voice); `world` is kept so callers needn't change.
+ */
 export function teachLines(world?: string): readonly string[] {
-  return world ? [...BOARD_TEACH_LINES, WORLD_MAP_LINE] : BOARD_TEACH_LINES;
+  void world;
+  return BOARD_TEACH_LINES;
 }
 
-/** The book's help, for the play CLI and the title page: how a board night plays. */
+/** The book's help, for the play CLI and the title page's "How it plays": how a night plays. */
 export const BOARD_RULES: readonly string[] = [
-  'Every page ends in choices: who to talk to, what to search, where to go. Each says what it costs of the night. A star marks one worth taking now and says why, never what the answer will be; the harder the tier, the fewer the stars. The office is free.',
-  'Asked "Where were you tonight?", anybody gives the whole evening, with company. Asked "Who was here tonight?", a watcher names everybody, hour by hour, and says so when that was everybody. Watchers and the people who were only company tell the truth; what a person says about their own evening may not.',
-  'When what somebody says doesn’t agree with something you have, "Put it to …" tells them what says otherwise. They own up and name somebody who can check it, they refuse, they change their answer, or they crack. A refusal proves nothing.',
-  'In the notebook, the grid has everybody against every hour: what they say, what somebody else saw, and where the two don’t agree. Pencil in what you think; it is never a fact.',
-  'File the report when you are ready, or at eight when the calls run out: who, what shows they lied, when, how and why; for a lost thing, where it is now and what puts it there instead of how. What shows they lied is one of the things you have, or a hunch. The right name on a hunch counts half.',
+  'Each page gives you choices: who to ask, what to search, where to go. Each one costs a call, and you have the night, until eight in the morning.',
+  'A star marks a choice worth taking now, and says why.',
+  'The notebook keeps what you’ve learned. The grid shows where everyone says they were, and where the stories clash.',
+  'File the report when you’re ready: who, when, how, why, and the fact that proves it. A hunch counts half.',
 ];
