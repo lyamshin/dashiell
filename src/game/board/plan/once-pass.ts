@@ -29,6 +29,10 @@ const DROPPABLE = new Set(['gloss', 'hand-off', 'close']);
 /** A sentence's narration: its quotations taken out. */
 const narr = (t: string): string => stripMarks(t).replace(/“[^”]*”?/g, ' ');
 
+/** The things in my hands and on my head: a page's gestures use each once. */
+const HAND_PROPS = /\b(pencil|notebook|hat|cigarette|matches|handkerchief|gloves)\b/gi;
+const propsIn = (t: string): string[] => [...narr(t).matchAll(HAND_PROPS)].map((m) => (m[1] as string).toLowerCase());
+
 /** Words that go with a verb and say no act of their own: "took off my hat" is "took my hat off". */
 const PARTICLES = new Set(['off', 'up', 'down', 'out', 'in', 'on', 'over', 'back', 'away', 'round', 'around', 'aside']);
 
@@ -86,7 +90,9 @@ export function sayOnce(paras: Item[][], ctx: PlanCtx): void {
     const i = items.indexOf(it);
     const fw = wordsOf([...items.filter((x) => x.kind === 'fact'), ...items.slice(0, i).filter((x) => x.kind === 'gap')]);
     const done = new Set(before(it).flatMap(actsOf));
-    const echo = (t: string) => sentencesOf(stripMarks(t)).some((s) => actsOf(s).some((a) => done.has(a)) || fw.some((f) => sharedContent(contentWords(s), f).length >= SAME_WORDS));
+    // (And a thing in my hands said once: "…and I put my pencil between them" and then "I asked, and found my pencil".)
+    const held = new Set(items.slice(0, i).filter((x) => x.kind === 'gap' && x.text.trim()).flatMap((x) => propsIn(x.text)));
+    const echo = (t: string) => sentencesOf(stripMarks(t)).some((s) => actsOf(s).some((a) => done.has(a)) || propsIn(s).some((x) => held.has(x)) || fw.some((f) => sharedContent(contentWords(s), f).length >= SAME_WORDS));
     if (!echo(it.text)) continue;
     const alt = it.alts?.().find((a) => !echo(a.text));
     if (alt) {

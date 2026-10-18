@@ -727,11 +727,15 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       // account): the thought says what it does to the story, never the line again ("Hauck said
       // Moskowitz’s at ten, but Lanza said only Feldman, Obermann and Benny were at Moskowitz’s at
       // ten o’clock" after Lanza had just said who was in).
+      // A watcher's list is the same on any page: what it does to the story is that they weren't on it
+      // ("…and Hauck never saw her there"), or were somewhere else on it.
       const w = col.with as Prop;
+      // (Never where the words would claim what the list doesn't: "never saw her there" is the list of the
+      // place she said; one somewhere else has her on it, "saw her at…".)
+      const listSays = w.k === 'LIST' && (w.people.includes(col.person) ? w.place !== col.place : w.place === col.place);
       const toldHere =
         !col.second &&
-        (w.k === 'LIST' || w.k === 'CLAIM') &&
-        items.slice(0, i).some((x) => x.kind === 'fact' && x.beat !== 'thought' && (x.props ?? []).some((y) => (w.k === 'LIST' && y.k === 'LIST' && y.watcher === w.watcher) || (w.k === 'CLAIM' && y.k === 'CLAIM' && y.person === w.person)));
+        (listSays || (w.k === 'CLAIM' && items.slice(0, i).some((x) => x.kind === 'fact' && x.beat !== 'thought' && (x.props ?? []).some((y) => y.k === 'CLAIM' && y.person === w.person))));
       if (toldHere) {
         const home = personOf(c, col.person)?.home === col.place;
         const seen = w.k === 'LIST' && w.people.includes(col.person);

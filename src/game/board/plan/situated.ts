@@ -420,6 +420,9 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
           if (s.avoid && s.avoid.test(c.text)) continue;
           if (s.theySit && ASK_SIT.test(c.text)) continue;
           if (s.theyPlaced && /\bI found (?:\{role\}|\{them\}|her|him) (?:in|at|on|by|behind|out|up)\b/i.test(c.text)) continue;
+          // (Nor a card that brings them in: "She came out to see who was on her stairs", when the
+          // arrival had her on a chair at the foot of them.)
+          if (s.theyPlaced && /\{(?:They|Role)\} (?:came (?:out|down|up|in|to the door|over)|appeared|opened the door|answered the door|looked out)\b/i.test(c.text)) continue;
           if (s.gags?.some((g) => new RegExp(`\\b${g}s?\\b`, 'i').test(c.text))) continue;
           // docs/59 item 8: the reason before it has named them ("Marchetti had seen Stannard…, so"): the card doesn't name them again.
           if (leadNames && /\{role\}/i.test(c.text)) continue;

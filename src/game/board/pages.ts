@@ -1136,8 +1136,12 @@ export function writeOffice(w: Writer): void {
   // docs/59 item 7: a gag set up is the night's: nothing else brings its thing up again.
   if (office?.card.exports?.prop && gagNoun(office.card.exports.prop.short)) w.hand.note(`gag:${gagNoun(office.card.exports.prop.short)}`);
   put(w, 'arrival', [open, office?.text].filter(Boolean).join(' '), 'establish');
-  const entrance = w.hand.drawOld('entrances', (card) => (card.tags.gender === 'any' || card.tags.gender === (cl.female ? 'f' : 'm')) && card.tags.familiar !== 'yes' && ['working', 'professional', 'any'].includes(String(card.tags.class)) && !/\{detective\}/.test(card.text), { name: cl.short }, true);
-  put(w, 'arrival', [w.hand.draw('knock', {}, {}, { widen: true }), entrance?.text].filter(Boolean).join(' '), 'establish');
+  // docs/59 item 4: one knock: "…and then a knock, so soft I nearly missed it. My visitor knocked once"
+  // is the door knocked on twice.
+  const knock = w.hand.draw('knock', {}, {}, { widen: true });
+  const knocked = /\bknock/i.test(knock ?? '');
+  const entrance = w.hand.drawOld('entrances', (card) => (card.tags.gender === 'any' || card.tags.gender === (cl.female ? 'f' : 'm')) && card.tags.familiar !== 'yes' && ['working', 'professional', 'any'].includes(String(card.tags.class)) && !/\{detective\}/.test(card.text) && !(knocked && /\bknock/i.test(card.text)), { name: cl.short }, true);
+  put(w, 'arrival', [knock, entrance?.text].filter(Boolean).join(' '), 'establish');
   // docs/59 item 4, note 3: the client sits down once. The entrance may say it; if it doesn't, the
   // client's first line may (a relation voicing that sits), and the chair line otherwise.
   let sat = VISITOR_SAT.test(entrance?.text ?? '');

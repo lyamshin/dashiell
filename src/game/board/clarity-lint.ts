@@ -165,6 +165,9 @@ export const FEET = /\bfeet\b[^.]*\b(?:off|down from|down off)\b[^.]*\bdesk\b|\b
 /** The client at the scene, and how they got there ahead of me. */
 const AHEAD = /\bahead of me\b|\bhad (?:arrived|come|got) (?:there |in )?(?:first|ahead|before)\b|\bin a cab\b|\bhad taken a cab\b|\bbeaten me there\b/;
 
+/** A knock at the door, not the radiator's: "a knock, so soft I nearly missed it", "knocked once, came in". */
+const DOOR_KNOCK = /^(?!.*\b(?:radiator|pipes?|heating|boiler)\b).*\b(?:a knock|knocked|knocks)\b/i;
+
 export function continuityIssues(d: BoardDeal, run: BoardRun): ClarityIssue[] {
   const c = d.kase;
   const out: ClarityIssue[] = [];
@@ -178,6 +181,9 @@ export function continuityIssues(d: BoardDeal, run: BoardRun): ClarityIssue[] {
       // My feet come off the desk once.
       const feet = narr.flatMap((t) => sentencesOf(t)).filter((s) => FEET.test(s));
       if (feet.length > 1) out.push({ page: i, rule: 'continuity', detail: `my feet came off the desk twice: ${feet.map((s) => s.trim()).join(' / ')}` });
+      // The door is knocked on once ("…and then a knock, so soft I nearly missed it. My visitor knocked once…").
+      const knocks = narr.flatMap((t) => sentencesOf(t)).filter((s) => DOOR_KNOCK.test(s));
+      if (knocks.length > 1) out.push({ page: i, rule: 'continuity', detail: `the door knocked on twice: ${knocks.map((s) => s.trim()).join(' / ')}` });
     }
     if (p.board?.job === 'arrive') {
       const units = p.board.units ?? [];
