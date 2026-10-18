@@ -1000,6 +1000,22 @@ const ATTACH_LINE: Draft = {
   tags: ['shape:ATTACH', 'shape:PLACED-SET', 'shape:ACCESS-SET'],
 };
 
+/**
+ * Shapes the pages may stop saying on the fixed nights as the engine changes (clarity-1, docs/59,
+ * folded CONFIRMED-WITH and ADMIT-CHECK into other sentences there). When the sample misses one,
+ * it is read from a hand line said in its own voicing, so the script still covers every shape.
+ */
+const FALLBACK_LINES: Readonly<Record<string, Draft>> = {
+  'shape:CONFIRMED-WITH': {
+    text: 'Sokol saw Glick at the bar at ten, just as he said, and the same witness saw Mrs. Blau there too.',
+    tags: ['shape:CONFIRMED-WITH', 'shape:CONFIRMED'],
+  },
+  'shape:ADMIT-CHECK': {
+    text: 'Abramowitz owned up to the Automat at eleven, and Weisglass, who had been at the table with him, said the same.',
+    tags: ['shape:ADMIT-CHECK'],
+  },
+};
+
 function pickPages(nights: Night[], target: number, taken: Set<string>): PagePick {
   const all = nights.flatMap((n, i) => candidatesOf(n, i));
   const usable = all.filter((c) => c.words >= 5 && c.words <= MAX_WORDS && !lineProblem(c.text));
@@ -1073,7 +1089,14 @@ function pickPages(nights: Night[], target: number, taken: Set<string>): PagePic
     if ((perNight.get(c.night) ?? 0) >= nightCap || c.atAnd) continue;
     takeWhole(c);
   }
-  const covered = [...new Set([...chosen.flatMap((c) => c.tags), ...(ATTACH_LINE.tags ?? [])])].sort();
+  // A shape the sample didn't reach is read from its hand line (FALLBACK_LINES), if it has one.
+  const sampled = new Set([...chosen.flatMap((c) => c.tags), ...(ATTACH_LINE.tags ?? [])]);
+  const fallbacks = Object.entries(FALLBACK_LINES).filter(([tag]) => !sampled.has(tag)).map(([, d]) => d);
+  for (const f of fallbacks) {
+    const p = lineProblem(f.text);
+    if (p) throw new Error(`voice-script: “${f.text}”: ${p}`);
+  }
+  const covered = [...new Set([...sampled, ...fallbacks.flatMap((f) => f.tags ?? [])])].sort();
   const missing = [...required, 'shape:ATTACH'].filter((t) => !covered.includes(t));
   // The order: round the nights, so any stretch of the section is a mix; a favorite every ten lines.
   // (A long sentence's pieces stay together, in order.)
@@ -1099,7 +1122,7 @@ function pickPages(nights: Night[], target: number, taken: Set<string>): PagePic
     else blocks.push([d]);
   }
   // A favorite every ten blocks or so, never inside a sentence said in pieces.
-  [...favoriteUnits, [ATTACH_LINE]].forEach((u, i) => blocks.splice(Math.min(blocks.length, i * 10), 0, u));
+  [...favoriteUnits, [ATTACH_LINE], ...fallbacks.map((f) => [f])].forEach((u, i) => blocks.splice(Math.min(blocks.length, i * 10), 0, u));
   return { lines: blocks.flat(), covered, missing };
 }
 
