@@ -169,13 +169,23 @@ export function renderTyped(c: BoardCase, x: Typed, form?: string): string {
   }
 }
 
+/** The words a sentence opens on that go lower case after a comma or a semicolon: never a name. */
+export const LOWER = /^(?:He|She|It|They|We|You|There|Nobody|Somebody|Everybody|Anybody|Nothing|Everything|That|This|The|A|An|His|Her|My|Their|Its|Every|Each|No|Some|All|Both|Most|One|By|For|At|In|On|Under|Over|Behind|Above|Below|Through|Outside|Inside|Across|Along|Beside|Near|Upstairs|Downstairs|Somewhere|Overhead|Down|Up|Whatever|Whoever|Whether|If|When|Fewer|Plenty|Two|Three|Like|As|Just|With|Past|Which|Then|Once)\b/;
+
+/** Whether a slot at `at` in `template` sits inside a sentence: not at its start, after a stop or an opening quotation mark. */
+export function midSentence(template: string, at: number): boolean {
+  const before = template.slice(0, at);
+  return !(before.trim() === '' || /[.!?…]["”’)]?\s*$/.test(before) || /[“"(]\s*$/.test(before));
+}
+
 /**
  * A template filled: `{arg}` as given (a string, or a typed argument said by name), `{Arg}` with a
  * capital, `{arg:form}` a typed argument in a form. A missing argument leaves the slot (and fails the
- * round trip).
+ * round trip). docs/59 item 8: a clause the case says whole ("He threw her out of a lease") goes in
+ * lower case where the template splices it inside a sentence ("but he threw her out of a lease").
  */
 export function fill(template: string, args: Args, c?: BoardCase): string {
-  return template.replace(SLOT, (m, k: string, form: string | undefined) => {
+  return template.replace(SLOT, (m, k: string, form: string | undefined, at: number) => {
     const lower = lc1(k);
     const v = args[k] ?? args[lower];
     if (v === undefined) return m;
@@ -183,7 +193,8 @@ export function fill(template: string, args: Args, c?: BoardCase): string {
     if (typeof v === 'string') s = v;
     else if (c) s = renderTyped(c, v, form);
     else return m;
-    return k !== lower ? cap(s) : s;
+    if (k !== lower) return cap(s);
+    return typeof v === 'string' && LOWER.test(s) && midSentence(template, at) ? lc1(s) : s;
   });
 }
 

@@ -59,6 +59,11 @@ export interface Item {
   keepNames?: boolean;
   /** A watcher's list, a person's own account, the notebook said aloud: they have to name people, and don't count. */
   exempt?: boolean;
+  /**
+   * docs/59: exempt, but its names count toward the page's cap all the same (the office's finding is
+   * left as written, and the reader has read the names in it: the line after says "the dead man").
+   */
+  counted?: boolean;
   /** Somebody else talking (a watcher's list): a pronoun after it could be theirs. */
   barrier?: boolean;
   /** Runs on in the paragraph of the item before it in the beat, instead of starting a paragraph. */
@@ -115,6 +120,17 @@ export interface SaySpec {
   manner?: string;
   /** Where no voicing fits, keep the writer's own words (the case's description of a find), not the plain page's. */
   keep?: boolean;
+  /**
+   * docs/59 item 2: a composite said as a run of clauses (a list told by what changed, a stretch of
+   * company): each part voiced on its own, the parts joined by `sep`. A part's `props` are what that
+   * clause says; the item's own props are what they add up to (`bones/reread.ts` merges them back).
+   */
+  parts?: SaySpec[];
+  sep?: string;
+  /** docs/59: a part's propositions: what the clause says of the whole. */
+  props?: Prop[];
+  /** docs/59: a part in the speaker's own words (the bible's last "that's the lot"), not a voicing. */
+  own?: string;
 }
 
 /** The skeleton: what the page is made of, in order. */

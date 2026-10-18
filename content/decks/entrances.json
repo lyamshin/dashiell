@@ -256,7 +256,7 @@
   {
     "id": "ent-048",
     "deck": "entrances",
-    "text": "My visitor came in with an apology for the hour and a second one for the first, and was well into a third before sitting down.",
+    "text": "My visitor came in apologizing for the hour, then for apologizing, and was still at it sitting down.",
     "tags": {
       "temper": "yap",
       "class": "professional",

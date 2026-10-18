@@ -48,6 +48,8 @@ import { pronOf, victimOf, type BoardCase } from '../model.js';
 import type { Item, Relation } from './types.js';
 import type { PlanCtx } from './index.js';
 import { markPronoun, roleOf, stripMarks } from './refer.js';
+import { similesIn, ticsIn } from '../tics.js';
+import { ARRIVAL_MOVES, ASK_SIT, FEET, WALK_ARRIVES } from '../clarity-lint.js';
 import { sentencesOf } from './sentences.js';
 
 /**
@@ -233,6 +235,12 @@ export interface SituCtx {
   inside?: boolean;
   /** docs/55 2: I sat down on the page before, in this room, and haven't got up. */
   seated?: boolean;
+  /** docs/59 item 4: whoever the page is about is sitting already (the arrival had them on a chair): nobody asks them to sit. */
+  theySit?: boolean;
+  /** docs/59 item 7: the running gags set up tonight, by their one word: no card brings them up again. */
+  gags?: string[];
+  /** docs/59 item 4: the arrival in this room put whoever the page is about somewhere: nobody finds them somewhere else. */
+  theyPlaced?: boolean;
 }
 
 /** What a filled card is filled with, for one gap. */
@@ -392,6 +400,14 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
       const crossed = s.crossed === true;
       const oneWord = OWN_WORD_ONLY.test(para);
       const others = new Set(items.filter((x) => x !== it).flatMap((x) => sentencesOf(stripMarks(x.text)).map(norm)));
+      // (Whether the reason it follows on from names whoever the card would call by name.)
+      const leadNames = !!it.sit.lead && !!tokens.role && stripMarks(it.sit.lead).includes(stripMarks(tokens.role));
+      // (Whether the page has my feet off the desk already.)
+      const feetSaid = items.some((x) => x !== it && FEET.test(stripMarks(x.text)));
+      // (Whether the page's arrival walks in itself: "I went down to Moskowitz’s…".)
+      const arrivalMoves = items.some((x) => x.slot === 'arrival' && ARRIVAL_MOVES.test(stripMarks(x.text).trim()));
+      // (The simile frames the rest of the page says already.)
+      const pageSimiles = items.filter((x) => x !== it).reduce((n, x) => n + similesIn(x.text), 0);
       const fresh = (text: string) => sentencesOf(stripMarks(text)).every((t) => !others.has(norm(t)) && !(ctx.said && ctx.said.has(stripMarks(t))));
       const rng = new Rng(seedOf(s.seed, salt * 1000 + ordinal));
       /** The cards that fit at a level, filled. */
@@ -402,6 +418,17 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
           if (s.used(c.id) || !fits(c, cond)) continue;
           if (c.joke && !mayJoke) continue;
           if (s.avoid && s.avoid.test(c.text)) continue;
+          if (s.theySit && ASK_SIT.test(c.text)) continue;
+          if (s.theyPlaced && /\bI found (?:\{role\}|\{them\}|her|him) (?:in|at|on|by|behind|out|up)\b/i.test(c.text)) continue;
+          if (s.gags?.some((g) => new RegExp(`\\b${g}s?\\b`, 'i').test(c.text))) continue;
+          // docs/59 item 8: the reason before it has named them ("Marchetti had seen Stannard…, so"): the card doesn't name them again.
+          if (leadNames && /\{role\}/i.test(c.text)) continue;
+          // docs/59 item 4: my feet come off the desk once a page.
+          if (feetSaid && FEET.test(c.text)) continue;
+          // docs/59 item 4: one arrival a visit: where the arrival walks in itself, the walk doesn't arrive too.
+          if (slot === 'walk' && arrivalMoves && WALK_ARRIVES.test(c.text)) continue;
+          // docs/59 item 7: no tic the night has said once, and no second simile frame on the page.
+          if (ticsIn(c.text).some((id) => s.used(id)) || (pageSimiles > 0 && similesIn(c.text) > 0)) continue;
           if ((crossed && UNCONTRADICTED.test(c.text)) || (oneWord && STOOD.test(c.text))) continue;
           if ((seated && (STANDING.test(c.text) || SAT.test(c.text)) && !STOOD_UP.test(c.text)) || (s.inside && KNOCKED.test(c.text))) continue;
           // (Walking in, I don't sit down before anybody's been asked anything: that's the asking page's.)
@@ -427,6 +454,7 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
         const from = seenB ? from0.filter((x) => seenB(x.c.id) === least) : from0;
         const pick = from[rng.int(from.length)] as { c: SitCard; text: string };
         s.note(pick.c.id);
+        for (const id of ticsIn(pick.text)) s.note(id);
         if (pick.c.joke) jokeFree = false;
         const sit = it.sit;
         sit.card = pick.c.id;

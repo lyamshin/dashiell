@@ -131,22 +131,16 @@ describe('trace-line', () => {
     // (Above Raw the papers put nobody on top, docs/46 §2, and say one of three lines of their own.)
     // (docs/47 B7: every page has its grievance by name, and the thought sets them against the way to the means.)
     // (docs/52 build 2: those lines are voicings now, MOTIVE-SET `papers`, and the page records which.)
-    const lines = [
-      'had a reason, but fewer of them had been at',
-      'A reason is the easy half, but the other half was a way to the',
-      'I put the pages back in their box: a grudge on paper is a long way from',
-      'a grudge on paper is a long way from the',
-      'had a reason, but a reason isn’t a hand on the',
-      'A reason is the easy half, and everybody in',
-    ];
+    // (docs/59 item 3: the find's thought, what it means: whoever did it had been where the means was, first.)
+    const lines = ['Whoever shot', 'Whoever pulled the trigger on', 'Whoever used the knife on', 'Whoever held the knife had been at', 'Whoever gave it to', 'Whoever put it in', 'Whoever let themselves into', 'Whoever used the spare on', 'Whoever it was had heard', 'Whoever it was had been at', 'Whoever it was had sat at'];
     const where = PAGES.flatMap((p) => lines.filter((l) => p.text.includes(l)).map((l) => ({ ...p, l })))[0];
-    expect(where, 'no papers line on these pages').toBeDefined();
+    expect(where, 'no find line on these pages').toBeDefined();
     const w = where as NonNullable<typeof where>;
     const hits = traceLine(w.save, typed(w.l)).filter((h) => h.page === w.page.n + 1);
     const top = hits[0]?.sources[0];
     expect(top?.source.kind, formatHits(hits)).toBe('deck');
     expect(top?.source.file).toBe('content/board/voicings.json');
-    expect(top?.source.id).toMatch(/^motive-set\/papers-/);
+    expect(top?.source.id).toMatch(/^window-means\/find-first-/);
     expect(top?.usedOnPage).toBe(true);
   });
 

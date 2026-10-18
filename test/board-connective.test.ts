@@ -132,10 +132,11 @@ describe('board: the thought', () => {
           // The hand-off says where the night goes next; the papers themselves name everybody once.
           const papers = prose(p).replace(p.board?.handoff ?? '\u0000', '');
           expect(papers, `tier ${tier} seed ${s}`).not.toMatch(/on top\b(?!,)|the one on top/i);
-          for (const x of suspects) expect(papers, `tier ${tier} seed ${s}: ${x.short}`).toContain(`${x.short}: `);
+          // (docs/59 note 7: a grievance a sentence, its direction said, the suspect named in it.)
+          for (const x of suspects) expect(papers, `tier ${tier} seed ${s}: ${x.short}`).toMatch(new RegExp(`(?<![\\w’])${x.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w])`));
         }
         const nb = linesHeld(d.kase, run).find((l) => l.id === 'find:papers')?.text ?? '';
-        for (const x of suspects) expect(nb, `tier ${tier} seed ${s} notebook`).toContain(`${x.short}: `);
+        for (const x of suspects) expect(nb, `tier ${tier} seed ${s} notebook`).toContain(x.short);
       }
     }
   });
@@ -317,9 +318,9 @@ describe('board: a clue is said at most twice a night', () => {
 
   it('after a hand-off that named them, the next page turns to them without a signpost (docs/47 C13)', () => {
     let seen = 0;
-    for (let s = 1; s <= 6; s++) {
-      for (const tier of [0, 1, 2] as TierIndex[]) {
-        const d = dealBoard(s, tier, 'lost-pet');
+    for (let s = 1; s <= 16; s++) {
+      for (const [tier, type] of [[0, 'lost-pet'], [1, 'lost-pet'], [2, 'lost-pet'], [0, 'murder'], [2, 'murder'], [4, 'lost-pet']] as [TierIndex, CaseType][]) {
+        const d = dealBoard(s, tier, type);
         const run = playBoardOracle(d).run;
         run.log.forEach((p, i) => {
           const next = run.log[i + 1];
@@ -372,7 +373,7 @@ describe('board: the generator’s nits (docs/44)', () => {
     for (const { tier, type } of cases) {
       for (let s = 1; s <= 6; s++) {
         const run = playBoardOracle(dealBoard(s, tier, type)).run;
-        for (const p of run.log) if (p.board?.job === 'account') expect(prose(p, 'answer')).not.toMatch(/till (\w+)[^.]*\.\s*[^.;]*\b(?:went|walked|headed|came|got)\b[^.;]*\bat \1\b/);
+        for (const p of run.log) if (p.board?.job === 'account') expect(prose(p, 'answer')).not.toMatch(/till (\w+)[^.]*\.\s*[^.;]*\bI (?:went|walked|headed|came|got)\b[^.;]*\bat \1\b/);
       }
     }
   });

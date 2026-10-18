@@ -32,7 +32,8 @@ describe('round 4: the reasoning lines (docs/55 1)', () => {
   it('after a watcher’s list, the thought says who had gone out by the hour that mattered', () => {
     const run = night(11, 0, 'lost-item', RAW11.slice(0, 4));
     const page = prose(run.log[run.log.length - 1] as Page);
-    expect(page).toMatch(/at ten, when the watch went, only Rafferty and\s+Moretti were at Kowalski’s[;.] Steinbach and Bellucci had been (?:there|in)\s+at nine and gone/);
+    // (docs/59 item 3: the consequence, never the list again.)
+    expect(page).toMatch(/Steinbach and Bellucci had been at Kowalski’s at eight and nine, where the spare key was kept,\s+and (?:gone before|had left by) ten/);
     expect(page).not.toMatch(/hour that mattered|nobody else|’s list/);
     expect(page).not.toMatch(/it said Rafferty was at Kowalski’s at ten/);
   });
@@ -78,7 +79,10 @@ describe('round 4: facts and continuity (docs/55 2)', () => {
 
   it('nobody else, besides the one who was there all evening', () => {
     const run = night(11, 0, 'lost-item', RAW11.slice(0, 7));
-    expect(prose(run.log[run.log.length - 1] as Page).replace(/\s+/g, ' ')).toMatch(/Pardo was in the whole evening and never left\. He buys things\. (?:Besides|Not counting|Leaving|Apart from) Pardo/);
+    // (docs/59 item 2: told by what changed, and "nobody else" once for the span, after everybody it had.)
+    const text = prose(run.log[run.log.length - 1] as Page).replace(/\s+/g, ' ');
+    expect(text).toMatch(/Pardo was in the whole evening and never left\. He buys things\./);
+    expect(text).toMatch(/Steinbach came in at ten\. (?:Nobody|No one) else/);
   });
 
   it('the pet’s basket is a basket, and the client is still the client', () => {

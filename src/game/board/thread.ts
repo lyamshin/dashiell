@@ -123,7 +123,10 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
           const where = own ? `${pm(c, a.person, 'his')} place` : placeName(c, pl);
           const safe = hs.filter((h) => !windowOf(c).includes(h) && a.claims[h]?.place === pl);
           // docs/55 8: at their own place, "with her at nine" says it (not "with her at Mrs. Whitfield’s place").
-          return out(own ? `${A} had said ${P} was with ${pm(c, a.person, 'him')} at ${hourWord(h0)}` : `${A} had said ${P} was with ${pm(c, a.person, 'him')} ${where === 'here' ? 'here' : `at ${where}`} at ${hourWord(h0)}`, [`claim:${a.person}@${h0}`], {
+          // docs/59 item 8: "Grasso had said she was with Whitfield at the Delmonico rooms at nine": the
+          // speaker's own pronoun, next to her name; "Whitfield was with her" left "her" to either woman,
+          // and the reference pass said "with Grasso", her name twice in the sentence.
+          return out(own ? `${A} had said ${pm(c, a.person, 'he')} was home with ${P} at ${hourWord(h0)}` : `${A} had said ${pm(c, a.person, 'he')} was with ${P} ${where === 'here' ? 'here' : `at ${where}`} at ${hourWord(h0)}`, [`claim:${a.person}@${h0}`], {
             // To their face, only a watcher's word: "Coffin has you here at nine." Another suspect's would be one more name, and a story set against a story.
             ...(safe.length > 0 && personOf(c, a.person)?.role === 'watcher' ? { face: `${A} says you were with ${pa.him} ${pl === here && !own ? 'here' : `at ${where.replace(/\u2063\d+\u2064/g, '')}`} ${hoursSaid(c, safe)}.` } : {}),
             hours: [h0],
@@ -150,7 +153,8 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
       const lie = c.lies.find((l) => l.person === x && l.hour === h);
       const X = nameOf(c, x);
       if (lie) {
-        return out(`${X} had named ${P}: ${placeName(c, lie.truth)} at ${hourWord(h)}, the two of them`, [`admit:${x}@${h}`], { hours: [h], people: [p, x], places: [lie.truth] });
+        // docs/59 item 1: the owning up was the page before; the next page says who named them, not the story again.
+        return out(`${X} had named ${P}`, [`admit:${x}@${h}`], { people: [p, x] });
       }
       return out(`${X} had named ${P}`, [], { people: [p, x] });
     }
@@ -228,7 +232,7 @@ function givenPointer(c: BoardCase, p: PersonId, here: PlaceId): Pointer {
   if (c.givens.access.includes(p)) return base(`${P} lodged at ${at(c, c.crime.scene, here) === 'here' ? 'the flat' : placeName(c, c.crime.scene)}`, ['givens:means']);
   if ((c.givens.known ?? []).includes(p)) {
     const k = lines.find((g) => g.kind === 'keeper');
-    const verb = k?.id === 'borrows' ? `borrowed ${victimOf(c).short} most evenings` : k?.id === 'looks-in' ? `looked in on ${victimOf(c).short} of an evening` : `minded ${victimOf(c).short} when ${cl} was out`;
+    const verb = k?.id === 'borrows' ? `borrowed ${victimOf(c).short} most evenings` : k?.id === 'looks-in' ? `looked in on ${victimOf(c).short} of an evening` : `minded ${victimOf(c).short}`;
     return base(`${cl} had said ${P} ${verb}`, ['givens:keeper'], { people: [p, c.client] });
   }
   const f = c.givens.facts.find((x) => x.k === 'at' && x.p === p);

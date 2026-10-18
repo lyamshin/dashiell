@@ -48,6 +48,7 @@ import { rhythm } from './rhythm.js';
 import { refer, stripMarks } from './refer.js';
 import { situate, type SituCtx } from './situated.js';
 import { capThingClose } from './closers.js';
+import { sayOnce } from './once-pass.js';
 import { speakerOf } from './speaker.js';
 export { speakerOf } from './speaker.js';
 
@@ -79,6 +80,8 @@ export interface PlanCtx {
   situ?: SituCtx;
   /** docs/52 §4, build 2: the page's hand, for the voicings' least-recently-used rule and the page's joke. */
   hand?: VoiceHand;
+  /** docs/59 item 7: the page's own prose laid out already (the section before the turn), for its one simile. */
+  pageSoFar?: string;
 }
 
 export function newBudget(): PageBudget {
@@ -154,6 +157,9 @@ export function planSection(
   if (PLAN.ops) situate(paraItems, ctx, firstBlock);
   if (PLAN.ops) {
     paraItems = rhythm(paraItems, ctx);
+    // docs/59 items 1 and 7: said once on the page, and one simile frame (before the reference, so a
+    // line traded in has its pronouns settled with the rest).
+    sayOnce(paraItems, ctx);
     referWithTrades(paraItems, ctx);
     // docs/55 6: about half a night's pages end on a thing having a feeling, at most.
     if (ctx.run) capThingClose(paraItems, ctx.run.log);

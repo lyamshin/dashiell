@@ -37,15 +37,15 @@
 
 import { andList, hourWord, isMurder, nameOf, oclock, personOf, placeName, pronOf, victimOf, clientOf, type BoardCase, type Hour, type PersonId, type PlaceId } from '../model.js';
 import { solveRun } from '../knowledge.js';
-import type { Item, PageBudget } from '../plan/types.js';
+import type { Item, PageBudget, SaySpec } from '../plan/types.js';
 import type { PlanCtx } from '../plan/index.js';
 import { speakerOf } from '../plan/speaker.js';
 import { markPronoun } from '../plan/refer.js';
-import { herIsObject } from '../plan/measure.js';
+import { herIsObject, maskPlaces } from '../plan/measure.js';
 import { sentencesOf, wordsIn } from '../plan/sentences.js';
 import { accessPhrase, atWhere, claimSaid, listSaid, shortOther, whyHours, where } from './phrase.js';
 import type { Composite, Prop, Shape, Src } from './types.js';
-import { fitting, type Args, type Voicing } from './voice.js';
+import { fitting, LOWER, type Args, type Voicing } from './voice.js';
 import { preview, SAMPLES, VARIETY, unpick, type Picked } from './say.js';
 import { plainComposite } from './plain.js';
 import { homeNamed } from '../home.js';
@@ -58,8 +58,8 @@ const MOST = 4;
 const esc = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const cap = (s: string): string => (s ? (s[0] as string).toUpperCase() + s.slice(1) : s);
 
-/** The words a sentence opens on that go lower case after a comma or a semicolon: never a name. */
-export const LOWER = /^(?:He|She|It|They|We|You|There|Nobody|Somebody|Everybody|Anybody|Nothing|Everything|That|This|The|A|An|His|Her|My|Their|Its|Every|Each|No|Some|All|Both|Most|One|By|For|At|In|On|Under|Over|Behind|Above|Below|Through|Outside|Inside|Across|Along|Beside|Near|Upstairs|Downstairs|Somewhere|Overhead|Down|Up|Whatever|Whoever|Whether|If|When|Fewer|Plenty|Two|Three|Like|As|Just|With|Past|Which|Then|Once)\b/;
+/** The words a sentence opens on that go lower case after a comma or a semicolon: never a name (`voice.ts`). */
+export { LOWER };
 
 /** "The", "By", "He" go lower case after a comma; "I", a name and "Mrs." keep their capitals. */
 export function lowerFirst(s: string): string {
@@ -508,6 +508,11 @@ export function sayAll(items: Item[], ctx: PlanCtx): void {
     if (it.speech) oclock += (it.comp ? it.text.match(/o’clock/g)?.length : 0) ?? 0;
     if (it.kind !== 'fact' || !it.say || it.comp) continue;
     const s = it.say;
+    // docs/59 item 2: a run of clauses, each voiced on its own.
+    if (s.parts) {
+      oclock += sayParts(it, s, ctx, oclock);
+      continue;
+    }
     const comp: Held = { shape: s.shape, props: [...(it.props ?? [])] };
     const p = pickFor(s.shape, s.flags, s.args, ctx, s.manner, it.speech && oclock >= 2 ? (t) => !/o’clock/.test(t) : undefined);
     if (it.speech) oclock += (p ? p.text : it.text).match(/o’clock/g)?.length ?? 0;
@@ -543,6 +548,50 @@ export function sayAll(items: Item[], ctx: PlanCtx): void {
       it.alts = altsFor(comp, p, ctx);
     }
   }
+}
+
+/**
+ * docs/59 item 2: a composite said as a run of clauses (a watcher's list told by what changed, a
+ * stretch of company): every part in a voicing of its own shape and flags, least recently used
+ * tonight, joined by the spec's `sep`; the whole is a `seq` composite whose parts carry what each
+ * clause says. Where a part has no voicing, the whole stays in the writer's own words. Returns the
+ * o'clocks it said (an answer says it twice at most).
+ */
+function sayParts(it: Item, s: SaySpec, ctx: PlanCtx, oclock0: number): number {
+  const picks: { spec: SaySpec; p: Picked | null; noted?: string }[] = [];
+  let oclock = oclock0;
+  for (const part of s.parts ?? []) {
+    if (part.own !== undefined) {
+      picks.push({ spec: part, p: null });
+      continue;
+    }
+    const p = pickFor(part.shape, part.flags, part.args, ctx, part.manner, oclock >= 2 ? (t) => !/o’clock/.test(t) : undefined);
+    if (!p) {
+      // (Nothing fits a clause: the writer's own words, the parts' first voicings, stand.)
+      for (const x of picks) if (x.p) unspend({ comp: { noted: x.noted } } as unknown as Item, ctx);
+      it.comp = { shape: s.shape, props: [...(it.props ?? [])], voicing: 'flesh', said: it.text } as Held;
+      return 0;
+    }
+    // (Spent now, so the next clause that fits the same voicings takes another: least recently used.)
+    const noted = p.commit();
+    picks.push({ spec: part, p, noted });
+    oclock += (p.text.match(/o’clock/g) ?? []).length;
+  }
+  const parts: Held[] = picks.map(({ spec, p, noted }) => {
+    const comp: Held = { shape: spec.shape, props: [...(spec.props ?? [])], flags: spec.flags, ...(spec.manner ? { manner: spec.manner } : {}) };
+    if (!p) return { ...comp, voicing: 'flesh', said: spec.own ?? '' };
+    if (noted) comp.noted = noted;
+    comp.voicing = p.v.id;
+    comp.args = spec.args;
+    comp.said = p.text;
+    sample(comp, it, ctx);
+    return comp;
+  });
+  const text = parts.map((x) => x.said ?? '').join(s.sep ?? ' ');
+  it.comp = { shape: s.shape, props: [...(it.props ?? [])], parts, join: s.sep ?? ' ', voicing: 'seq', said: text, flags: s.flags } as Held;
+  it.text = it.speech ? inQuotes(it.text, text) : text;
+  it.alts = undefined;
+  return oclock - oclock0;
 }
 
 export function aggregate(items: Item[], ctx: PlanCtx): Item[] {
@@ -849,7 +898,11 @@ export function connect(items: Item[], ctx: PlanCtx): void {
     }
     if (it.opener) {
       const word = it.opener;
-      const spent = word === 'So' ? b.so > 0 : b.but > 0;
+      // (docs/59 item 3: "…so now two people said so. So Colquitt…": a "so" in the sentence before,
+      // in the same beat, is the join said already.)
+      const prev = items.slice(0, i).reverse().find((x) => x.kind === 'fact' && x.beat === it.beat);
+      const echo = word === 'So' && !!prev && /\bso\b/i.test(plain(prev.text).replace(/“[^”]*”/g, ' '));
+      const spent = word === 'So' ? b.so > 0 || echo : b.but > 0;
       if (spent) {
         it.text = String((it.flesh as { bare?: string } | undefined)?.bare ?? it.text);
         comp.said = it.text;
@@ -865,6 +918,13 @@ export function connect(items: Item[], ctx: PlanCtx): void {
     // (The writers mark their openers; anything else opening on "So" or "But" is a writer's slip.)
     if (opensOn(it.text, 'So') || opensOn(it.text, 'But')) throw new Error(`docs/52: an unmarked opener in a fact: ${it.text.slice(0, 80)}`);
   });
+}
+
+/** docs/59 item 8: whether two sentences name somebody in common (a place called after them aside). */
+function sharesName(c: BoardCase, a: string, b: string): boolean {
+  const pa = maskPlaces(c, plain(a));
+  const pb = maskPlaces(c, plain(b));
+  return c.people.some((p) => !p.object && p.short.length > 2 && new RegExp(`(?<![\\w’])${esc(p.short)}(?![\\w])`).test(pa) && new RegExp(`(?<![\\w’])${esc(p.short)}(?![\\w])`).test(pb));
 }
 
 /** The street's lead and its link, from its proposition. */
@@ -1076,8 +1136,12 @@ function heldBut(segs: Seg[], ctx: PlanCtx): void {
   for (let i = 0; i + 1 < segs.length; i++) {
     const A = (segs[i] as Seg).fact;
     const B = (segs[i + 1] as Seg).fact;
-    if (ruleOf(A) !== 'agree' || ruleOf(B) !== 'hours' || A.composed || B.composed) continue;
+    if (ruleOf(A) !== 'agree' || (ruleOf(B) !== 'hours' && ruleOf(B) !== 'unbacked') || A.composed || B.composed) continue;
     if (ctx.budget.but > 0 || !single(A.text) || !single(B.text) || /^(?:So|But)\b/.test(B.text)) continue;
+    // (docs/59 item 8: where the agreement names somebody else of their sex, the "but" clause would want
+    // their name again in the same sentence: two sentences.)
+    const who = props(A.props ?? [], 'CONFIRMS')[0]?.person;
+    if (who && sameSexIn(ctx.c, who, plain(A.text)).length > 0) continue;
     const { comp, text, commit } = sayPair(A, B, 'but', ctx);
     if (wordsIn(plain(text)) > LONGEST) continue;
     commit();
@@ -1100,6 +1164,10 @@ function sideBySide(segs: Seg[], ctx: PlanCtx, n: number): void {
     const A = (segs[i] as Seg).fact;
     const B = (segs[i + 1] as Seg).fact;
     if (!single(A.text) || !single(B.text) || /^(?:So|But)\b/.test(plain(B.text)) || ruleOf(B) === 'collision') return null;
+    // docs/59 item 3: a consequence is a sentence of its own.
+    if (ruleOf(A) === 'then' || ruleOf(B) === 'then') return null;
+    // docs/59 item 8: two facts that name one person don't go in one sentence ("…according to Ruggiero; … and Ruggiero said otherwise").
+    if (sharesName(ctx.c, A.text, B.text)) return null;
     let made: { comp: Held; text: string; commit: () => void } | undefined;
     let join: string | undefined;
     // A collision keeps a clause of its own (docs/49 §2): after it, only a semicolon.
@@ -1117,6 +1185,8 @@ function sideBySide(segs: Seg[], ctx: PlanCtx, n: number): void {
       [made, join] = [sayPair(A, B, 'semi', ctx), 'semi'];
     }
     if (!made || wordsIn(plain(made.text)) > LONGEST) return null;
+    // (docs/59: three "and"s is a list, not a sentence.)
+    if ((plain(made.text).match(/, and /g) ?? []).length >= 3) return null;
     // The plainest join first: fewest joins already in the two, a semicolon last, then the shorter.
     return { ...made, ...(join ? { join } : {}), cost: (joined(A.text) + joined(B.text)) * 20 + (join === 'semi' ? 30 : 0) + wordsIn(plain(made.text)) };
   };

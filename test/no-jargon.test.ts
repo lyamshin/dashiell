@@ -36,7 +36,9 @@ describe('docs/53 addendum: the engine’s words out of the narration', () => {
     let run = newBoardRun(d);
     for (const c of RAW11) run = stepBoard(d, run, c).run;
     const page = (run.log[run.log.length - 1] as Page).blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join('\n');
-    expect(page).toMatch(/at ten, when the watch went, only Rafferty and\s+Moretti were at Kowalski’s/);
+    // (docs/59 item 3: what the list means then, not the list again: who had been where the spare key
+    // was kept, and gone, and who was still there.)
+    expect(page).toMatch(/Steinbach and Bellucci had been at Kowalski’s at eight and nine, where the spare key was kept,\s+and (?:gone before|had left by) ten/);
     expect(page).not.toMatch(/hour that mattered|nobody else|’s list|had Rafferty/);
   });
 

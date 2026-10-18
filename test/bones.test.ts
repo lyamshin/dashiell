@@ -83,7 +83,8 @@ describe('docs/52 §3: the plain page, and the round trip', () => {
     const blocks = plainPage(d.kase, run.log[7] as (typeof run.log)[number]);
     expect(blocks.map((b) => b.text)).toEqual([
       'Ashby said he was at the Automat at eight and nine, alone. He said he was at the Delmonico rooms at ten, with Mrs. Cheatham. He said he was at the Thalia at eleven, with Feeney. He said he passed Corrigan on Stuyvesant Street at eleven on the way to the Thalia.',
-      'Coffin backed up Ashby: he was at the Thalia at eleven, with Feeney; the Prentiss flat was on Stuyvesant Street.',
+      // (docs/59 item 3: an agreement says where, not who with: the account has just said its company.)
+      'Coffin backed up Ashby: he was at the Thalia at eleven; the Prentiss flat was on Stuyvesant Street.',
     ]);
   });
 
@@ -154,10 +155,14 @@ describe('docs/52 §4: the voicings', () => {
         for (const u of p.board.units ?? []) {
           if (u.kind !== 'fact' || u.voice !== 'answer' || !u.carries.some((x) => x.startsWith('claim:'))) continue;
           lines++;
-          const v = u.bones?.[0]?.voicing ?? '';
-          expect(v, u.text).toMatch(/^claim\//);
-          const vo = voicingById(v);
-          expect([undefined, mannerOf(d.kase, who)], `${v}: ${u.text}`).toContain(vo?.manner);
+          // (docs/59 item 2: company told by what changed is a run of clauses, `seq`, each in a claim voicing.)
+          const top = u.bones?.[0];
+          const vs = top?.voicing === 'seq' ? (top.parts ?? []).map((x) => x.voicing ?? '') : [top?.voicing ?? ''];
+          for (const v of vs) {
+            expect(v, u.text).toMatch(/^claim\//);
+            const vo = voicingById(v);
+            expect([undefined, mannerOf(d.kase, who)], `${v}: ${u.text}`).toContain(vo?.manner);
+          }
         }
       }
     }
@@ -258,7 +263,8 @@ describe('docs/52 §4: the voicings', () => {
   });
 
   it('a voicing that drops a fact fails the round trip', () => {
-    const dropped = voicings().map((v): Voicing => (v.id === 'confirmed/list' ? { ...v, template: '{watcher} had {them} {at}, same as {he} said.' } : v));
+    // (Every voicing a list's agreement may take, so whichever the night picks drops the hour.)
+    const dropped = voicings().map((v): Voicing => (v.id.startsWith('confirmed/list') && (v.requires ?? []).includes('same') ? { ...v, template: '{Watcher} saw {person} {at}, just like {person:they} said.' } : v));
     useVoicings(dropped);
     VOICED.check = true;
     const before = voicedTally();
@@ -267,7 +273,7 @@ describe('docs/52 §4: the voicings', () => {
       playBoardOracle(d);
     }
     const after = voicedTally();
-    const misses = after.misses.slice(before.misses.length).filter((m) => m.includes('confirmed/list:'));
+    const misses = after.misses.slice(before.misses.length).filter((m) => /confirmed\/list(?:-\d)?:/.test(m));
     expect(misses.length).toBeGreaterThan(0);
   });
 

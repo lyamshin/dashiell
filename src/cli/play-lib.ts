@@ -396,7 +396,7 @@ function verdictText(night: Night): string {
   for (const f of v.fields) {
     // A line asked under an answer sits under it, indented: it counts with that answer (docs/47 A2).
     const pad = f.line ? '      ' : '  ';
-    const ls = wrap(`${f.label}: ${f.given}${f.correct ? (f.half ? '  ½ — right, but you couldn’t have known' : '  ✓') : `  ✗ — it was ${f.truth}`}`, WIDTH - pad.length - 4).split('\n');
+    const ls = wrap(`${f.label}${/\?$/.test(f.label) ? '' : ':'} ${f.given}${f.correct ? (f.half ? '  ½ — right, but you couldn’t have known' : '  ✓') : `  ✗ — it was ${f.truth}`}`, WIDTH - pad.length - 4).split('\n');
     out.push([`${pad}${ls[0]}`, ...ls.slice(1).map((l) => `${pad}    ${l}`)].join('\n'));
   }
   out.push('', wrap(v.scoreLine), ...v.plain.map((p) => wrap(p)), '');

@@ -23,7 +23,7 @@
 
 import type { Item } from './types.js';
 import type { PlanCtx } from './index.js';
-import { LIST_ENTRY, indefiniteFor, pronounAmbiguity } from './measure.js';
+import { LIST_ENTRY, indefiniteFor, maskPlaces, pronounAmbiguity } from './measure.js';
 import { LOWER } from '../bones/compose.js';
 import type { Block, ProseVoice } from '../types.js';
 import { bandOf, openingOf, sentencesOf, wordsIn, type Band } from './sentences.js';
@@ -200,6 +200,10 @@ function mendable(it: Item): boolean {
   if (it.speech || it.slot === 'chapter' || it.slot === 'voice') return false;
   // "The part worth keeping came last." stands alone: it's the beat before the link.
   if (it.tag === 'thought:street') return false;
+  // docs/59 item 3: a consequence is a sentence of its own.
+  if (it.tag === 'thought:then') return false;
+  // (docs/59 note 7: the papers' pages, a grudge to a sentence, stay one each.)
+  if (it.say?.flags?.includes('papers-list')) return false;
   return true;
 }
 
@@ -264,6 +268,8 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
       // necktie…"), unless each opens on its own person's name ("Mrs. Szabo was knitting a muffler…,
       // and Glick was polishing his derby…", Planner 2).
       if (ia !== ib && ia.kind === 'gap' && (ia.about ?? []).length > 0 && (ib.about ?? []).length > 0 && !(ia.about ?? []).some((x) => (ib.about ?? []).includes(x)) && !(opensOn(a.text, ia) && opensOn(b.text, ib))) return null;
+      // docs/59 item 8: two facts that name one person don't go in one sentence.
+      if (ia !== ib && ia.kind === 'fact' && ib.kind === 'fact' && ctx.c.people.some((p) => !p.object && p.short.length > 2 && new RegExp(`(?<![\\w’])${esc(p.short)}(?![\\w])`).test(maskPlaces(ctx.c, a.text)) && new RegExp(`(?<![\\w’])${esc(p.short)}(?![\\w])`).test(maskPlaces(ctx.c, b.text)))) return null;
       const joined = joinable(a.text, b.text, budget.semis < 2, and);
       if (!joined) return null;
       // A semicolon is spent only when the mend is kept.

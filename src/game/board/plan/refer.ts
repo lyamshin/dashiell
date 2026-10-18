@@ -30,7 +30,7 @@
 import { pronOf, type BoardCase } from '../model.js';
 import type { Item } from './types.js';
 import type { PlanCtx } from './index.js';
-import { sentencesOf } from './sentences.js';
+import { PAST_PARTICIPLE, sentencesOf } from './sentences.js';
 import { clauseHead, herIsObject, indefiniteFor, maskPlaces, narrationOf, opensOnRole } from './measure.js';
 
 /** The engine's mark on a pronoun it wrote: whom it means, by their place in the case's people. */
@@ -69,6 +69,8 @@ interface Mention {
   rep?: string;
   /** A pronoun before it in its sentence hangs on it: the name, not the role. */
   wantName?: boolean;
+  /** docs/59: a place said as whose it is ("at Kreuzer’s"): shorter, it's "her place", never "her". */
+  place?: boolean;
 }
 
 interface Sent {
@@ -81,6 +83,8 @@ interface Sent {
 }
 
 const VERB = /^(was|were|had|has|hadn’t|wasn’t|didn’t|did|does|doesn’t|would|wouldn’t|could|couldn’t|said|says|asked|told|tells|thought|minded|took|takes|kept|keeps|stood|stands|sat|sits|answered|answers|looked|looks|went|goes|came|comes|saw|sees|heard|never|put|passed|seemed|watched|nodded|shrugged|let|gave|made|counted|started|turned|knew|owned|named|wanted|got|gets|needed|found|lifted|isn’t|is|might|must|will|won’t|shut|opened|moved|left|stayed|held|meant|liked|lit|tore|smoothed|lowered|raised|folded|unfolded|leaned|waited|reached|picked|stopped|closed|hasn’t|owed|lodged|minded|borrowed|swore|pointed|heard|still|already|always|only|also)$/;
+/** A preposition a place goes after: "at Kreuzer’s", "round to Kreuzer’s", "from Kreuzer’s". */
+const PLACE_PREP = /\b(?:at|to|from|in|into|inside|near|past|toward|towards|round|around|outside|by|over)\s*$/;
 const OBJ = /\b(to|at|with|for|by|from|of|asked|told|thanked|had|put|passed|saw|over|beside|near|behind|let|gave|watched|named|left|caught|found|about|after|against|than|wanted|met|made|kept|on|offered|pointed|showed|followed|joined|sent|minded|across from|next to)\s*$/;
 
 const esc = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -171,11 +175,15 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       const after = s.text.slice(at + w.short.length);
       const poss = /^’s\b/.test(after);
       const nextWord = (/^(?:’s)?\s+([^\s,.;:]+)/.exec(after)?.[1] ?? '').toLowerCase();
+      // docs/59 (the voice kit's find): "at Kreuzer’s", "round to Kreuzer’s," is a place, said by whose
+      // it is, with nothing after the possessive: never a bare pronoun ("The table at her was set at
+      // eight"). Said shorter, it's "her place".
+      const place = poss && PLACE_PREP.test(prev) && (/^’s(?:\s*[,.;:”)!?]|\s*$)/.test(after) || VERB.test(nextWord) || /^(?:and|but|or|on|in|at|for|until|till|by|with|where|when|that|which|so|then|to|from|after|before|every|each|all)$/.test(nextWord));
       const start = prev === '' || /[“—]$/.test(prev);
       // After a preposition it's an object ("brought it to Carbone had been…" is no subject), whatever follows.
       const form: Form = poss ? 'poss' : OBJ.test(prev) && !start ? 'obj' : start || VERB.test(nextWord) ? 'subj' : 'unknown';
       const listy = /\b[A-Z][\w’.]+ and$/.test(prev) || /\b[A-Z][\w’.]+,$/.test(prev) || /^(?:’s)?(?:, [A-Z]| and [A-Z]|, and [A-Z])/.test(after) || /\bboth$/.test(prev);
-      s.mentions.push({ who: w, at, len: w.short.length + (poss ? 2 : 0), kind: 'name', form, listy, titled: !!x[1] });
+      s.mentions.push({ who: w, at, len: w.short.length + (poss ? 2 : 0), kind: 'name', form, listy, titled: !!x[1], ...(place ? { place: true } : {}) });
     }
     // Speech: the names said in it, for the cap.
     const speech = maskPlaces(c, s.text.split('').map((ch, i) => (s.narr[i] === ' ' && ch !== ' ' ? ch : ' ')).join(''));
@@ -321,7 +329,7 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   let inThought = false;
   // Names still to come that nothing can change (said in a quotation, in a hand-off, "Mr." on a
   // list): the cap counts them before they come.
-  const fixed = (it: Item, m: Mention) => !it.exempt && (m.kind === 'speech' || (m.kind === 'name' && (m.titled || !!it.keepNames || !!it.speech)));
+  const fixed = (it: Item, m: Mention) => (!it.exempt || !!it.counted) && (m.kind === 'speech' || (m.kind === 'name' && (m.titled || !!it.keepNames || !!it.speech || !!it.counted)));
   const ahead = new Map<number, number>();
   for (const s of sents) for (const m of s.mentions) if (fixed(items[s.item] as Item, m)) ahead.set(m.who.idx, (ahead.get(m.who.idx) ?? 0) + 1);
 
@@ -356,7 +364,7 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       if (m.kind === 'name') {
         if (frozen || m.titled || it.speech) {
           note(true);
-          if (!frozen) count.set(w.idx, n + 1);
+          if (!frozen || it.counted) count.set(w.idx, n + 1);
           introduced.add(w.idx);
           continue;
         }
@@ -370,13 +378,19 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         // The thought ties back by name (docs/44): when nothing else in it names somebody or somewhere
         // from an earlier page, a name there turns to a pronoun only when the cap asks it to.
         const link = it.kind === 'fact' && it.voice === 'thought' && !tiedElsewhere(w);
-        if (canPron && ((recent && !link) || pressed)) {
-          m.rep = pronounWord(w, m.form);
+        // (docs/59 item 8: "“Francis Doyle,” Doyle said" is "he said": the quotation has just named them.)
+        const spokeHere = s.mentions.some((x) => x.kind === 'speech' && x.who === w && x.at < m.at);
+        // (Who said the quotation that has just named them is them: "“Lazar Belkin,” he said".)
+        const quoted = spokeHere && m.form === 'subj' && !m.listy && !it.keepNames && !anchors.has(m) && !s.named.some((n) => n.who !== w && n.who.female === w.female) && !s.mentions.some((x) => x.kind === 'speech' && x.who !== w && x.who.female === w.female && x.at < m.at);
+        if ((canPron && ((recent && !link) || pressed || spokeHere)) || quoted) {
+          m.rep = m.place ? `${pronounWord(w, 'poss')} place` : pronounWord(w, m.form);
           note(false);
           continue;
         }
-        if (pressed && introduced.has(w.idx) && w.role && !m.listy) {
-          m.rep = roleFor(w, m.form);
+        // (The dead man is known by his role from the office on: "Corrigan had found the dead man",
+        // where his name is to come twice in somebody's own words.)
+        if (pressed && (introduced.has(w.idx) || (w.id === c.crime.victim && c.type === 'murder') || w.id === c.client) && w.role && !m.listy) {
+          m.rep = m.place ? `${roleFor(w, 'poss')} place` : roleFor(w, m.form);
           note(false);
           continue;
         }
@@ -387,7 +401,9 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         continue;
       }
       // A pronoun: kept when it's read as whom it means; otherwise the name, or the role.
-      if (it.speech || (resolves(si, m.at, w, m.form, true) && !otherPronoun(s, w))) {
+      // (docs/59 item 8: "“Lazar Belkin,” he said": the quotation has just named whoever said it.)
+      const saidIt = m.form === 'subj' && s.mentions.some((x) => x.kind === 'speech' && x.who === w && x.at < m.at) && !s.mentions.some((x) => x.who !== w && x.who.female === w.female && x.at < m.at);
+      if (it.speech || saidIt || (resolves(si, m.at, w, m.form, true) && !otherPronoun(s, w))) {
         note(false);
         continue;
       }
@@ -397,6 +413,13 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       const last = s.mentions.find((x) => x !== m && x.kind === 'pronoun' && x.who === w && x.at > m.at && /: (?:that was the last I saw of|I didn’t (?:interrupt|disturb)) (?:him|her)⁣?\d*⁤?\.$/.test(s.narr.slice(0, x.at + x.len + 1)));
       if (!frozen && last && !s.mentions.some((x) => x.who !== w && x.who.female === w.female && x.kind !== 'speech')) {
         last.wantName = true;
+        continue;
+      }
+      // docs/59 item 8: named a few words back in this very sentence, the name isn't said again ("Vogel had
+      // named Tramonti, so I went… to give Tramonti nothing to steer by"): the role, or the pronoun stays.
+      if (!frozen && !m.wantName && s.named.some((x) => x.who === w && x.at < m.at)) {
+        if (w.role) m.rep = roleFor(w, m.form);
+        note(false);
         continue;
       }
       // (The role as soon as the cap is pressed, counting the names still to come: "who heard the dead
@@ -434,7 +457,8 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       // A pronoun's contraction said out with a name: "he’d let" is "Dandridge had let", "she’ll" is "Ruth will".
       if (m.kind === 'pronoun' && !/^(?:he|him|his|she|her)$/i.test(rep)) {
         after = after
-          .replace(/^’d (been|had|let|got|gone|done|seen|known|come|made|put|left|kept|told|said|found|heard|taken|given|\w+ed)\b/, ' had $1')
+          // (docs/59 item 8: any past participle, "he’d spent" is "the dead man had spent", never "would spent".)
+          .replace(/^’d ([a-z]+)\b/, (m0, w: string) => (PAST_PARTICIPLE.test(w) ? ` had ${w}` : m0))
           .replace(/^’d\b/, ' would')
           .replace(/^’ll\b/, ' will')
           .replace(/^’s (been)\b/, ' has $1')
