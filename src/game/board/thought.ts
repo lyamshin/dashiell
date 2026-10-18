@@ -586,7 +586,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     const reason = reasonFor(hs);
     const goneIds = plainGone.map((g) => g.p);
     const text = thereNow.length
-      ? `At ${H}, ${reason}, ${names(thereNow)} ${be}${still ? ' still' : ''} at ${where}.${goneIds.length ? ` ${names(goneIds)} had left by then.` : ''}`
+      ? `At ${H}, ${reason}, ${names(thereNow)} ${be}${still ? ' still' : ''} at ${where}${goneIds.length ? `, and by then ${names(goneIds)} had left` : ''}.`
       : `At ${H}, ${reason}, ${names(goneIds)} had gone from ${where}.`;
     add(text, ['givens:clock'], {
       rule: 'then',

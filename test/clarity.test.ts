@@ -90,7 +90,7 @@ describe('docs/59 item 3: the thought gives the consequence', () => {
   it('Raw 7: after Hauck’s hours and Mrs. Nagy’s, what they mean at ten, never the list again', () => {
     const run = playBoardOracle(dealBoard(7, 0, 'murder')).run;
     const all = run.log.map(prose).join('\n');
-    expect(all).toMatch(/at ten, when Rafferty died, Mosley was still at Moskowitz’s and Bledsoe had gone/i);
+    expect(all).toMatch(/at ten, when Rafferty died, Mosley was still at Moskowitz’s, and by then Bledsoe had left/i);
     expect(all).toMatch(/Bledsoe had been at Mrs\. Nagy’s at nine, where the revolver was kept, and (?:gone before|had left by) ten/);
     expect(all).not.toMatch(/She said that at ten, when Rafferty died, only/);
   });

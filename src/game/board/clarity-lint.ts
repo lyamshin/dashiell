@@ -271,6 +271,8 @@ export function ticIssues(run: BoardRun): ClarityIssue[] {
 export const WOULD_PAST = /\bwould (?!have\b|be\b|rather\b|not\b|never\b|always\b|just\b|still\b|only\b|also\b|soon\b)(?:been|spent|sent|lost|met|brought|bought|thought|sat|stood|slept|eaten|drunk|gone|done|seen|known|taken|given|written|begun|told|said|found|heard|kept|left|made|came|went|got|had|ran|run|took|gave|saw|knew|[a-z]{2,}[^e\s]ed)\b/;
 /** A capital pronoun after a lower-case word or a comma: "but He threw", "and She said". */
 export const CAP_PRONOUN = /(?<=[a-z,;]) (?:He|She|It|They|His|Her|Him|Them|Their|We|Its)\b/;
+/** docs/59: a joining word put before a sentence that kept its capital: "But Only he said…", "So The spare…". */
+export const OPENER_CAP = /(?:^|[.!?] |[“"])(?:So|But|And) (?:He|She|It|They|We|You|There|Nobody|Somebody|Everybody|Anybody|Nothing|Everything|That|This|The|A|An|His|Her|My|Their|Its|Every|Each|No|Some|All|Both|Most|One|Only|Then|Once|Whoever|Whatever)\b/;
 /** A place said as a pronoun: "The table at her was set at eight", "Fritz lived at her, in a basket". */
 export const PLACE_PRONOUN = /(?<!\b(?:look|looked|looks|looking|glance|glanced|stare|stared|staring|smile|smiled|nod|nodded|laugh|laughed|wave|waved|point|pointed|shout|shouted|wink|winked|frown|frowned|grin|grinned|turn|turned|come|came|go|went|get|got|run|ran|walk|walked|talk|talked|aim|aimed|blink|blinked|squint|squinted|it|that|this|back|up|down|over|straight|right|me|us|you|them) )\bat (?:her|him)(?=,| was\b| were\b)|\bto (?:her|him)(?= was\b)/;
 
@@ -286,6 +288,8 @@ export function assemblyIssues(d: BoardDeal, run: BoardRun): ClarityIssue[] {
       if (w) out.push({ page: i, rule: 'assembly', detail: `would + past: “${w[0]}”` });
       const k = CAP_PRONOUN.exec(text);
       if (k) out.push({ page: i, rule: 'assembly', detail: `capital pronoun mid-sentence: “${text.slice(Math.max(0, k.index - 30), k.index + 12)}”` });
+      const oc = OPENER_CAP.exec(text);
+      if (oc) out.push({ page: i, rule: 'assembly', detail: `an opener before a capital: “${text.slice(oc.index, oc.index + 40)}”` });
       const pl = PLACE_PRONOUN.exec(text);
       if (pl) out.push({ page: i, rule: 'assembly', detail: `a place as a pronoun: “${text.slice(Math.max(0, pl.index - 30), pl.index + 16)}”` });
       for (const s of sentencesOf(text)) {

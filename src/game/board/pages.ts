@@ -85,6 +85,7 @@ import { sentencesOf } from './plan/sentences.js';
 import { gagNoun, ticsIn } from './tics.js';
 import { finderGloss, glossOf, guestsGlossed } from './gloss.js';
 import { isPoison, officeWhen } from './when.js';
+import { titleClient } from './home.js';
 import { LOWER } from './bones/voice.js';
 import type { GivenLine } from '../../gen/board/types.js';
 import type { VoiceHand } from './bones/say.js';
@@ -849,8 +850,12 @@ function handOff(w: Writer, always = false): void {
     const jw = (slots.job ?? '').split(/[\s-]+/);
     if (jw.length > 2 && jw.slice(1, -1).some((x) => x.length > 2 && placeWords.has(x.toLowerCase()))) slots.job = `${jw[0]} ${jw[jw.length - 1]}`;
     if (kind === 'list' && !known) k = 'list-job';
-    // (docs/59: somebody to be found at home is found "at home", not "at Hargrove’s flat" beside "Hargrove".)
-    if (kind === 'account' && p.home === at) slots.place = 'home';
+    // (docs/59: a watcher by their job at a room of a bigger place is at the place: "the leading man at
+    // the Lyric", never "the leading man at the boxes at the Lyric"; the star shows the room.)
+    if (k === 'list-job') slots.place = / at (.+)$/.exec(placeName(c, at))?.[1] ?? slots.place;
+    // (docs/59: somebody to be found at a home called after them is found "at home", not "at Hargrove’s
+    // flat" beside "Hargrove"; a home with a name of its own keeps it, "at the Delmonico rooms".)
+    if (kind === 'account' && p.home === at && placeName(c, at).includes(p.short.replace(/^(?:Mrs\.|Mr\.|Miss|Dr\.) /, ''))) slots.place = 'home';
     if (kind === 'account' && threadFor(c, w.run, q, w.run.at).src.startsWith('confront:')) k = 'check';
     for (const x of [rest]) if (known) w.people.add(x);
     if (!known && kind === 'account') return;
@@ -1188,6 +1193,8 @@ export function writeOffice(w: Writer): void {
     if (g.kind === 'clock' || g.kind === 'window') v.line = officeWhen(c, g, c.givens.window ?? c.crime.window) ?? line;
     // docs/55 2: the pet's place is said without the client's name in it ("in a basket by the stove",
     // not "in Hauck's basket", which the reference pass makes "my client's"), Medium 14's #1.
+    // (docs/55 7, docs/59: a widow says her title when she says who she is, "“I’m Mrs. Marchetti,” she said".)
+    if (g.kind === 'gone' && titleClient(c, cl.short) !== cl.short) v.clientFull = titleClient(c, cl.short);
     if (g.kind === 'gone' && v.where) v.where = v.where.replace(new RegExp(`\\b(?:${esc(me)}’s|his|her)\\b`), 'a');
     if (v.where) v.whereFrom = v.where.replace(/^(in|on) /, '');
     // docs/59: the police's word without the dead man's pronoun beside the finder's ("called it his heart").
