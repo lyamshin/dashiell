@@ -1,0 +1,6 @@
+# Recordings never go in git (README.md): if the recordings folder is ever this one, these stay out.
+clips/
+wavs
+progress.json
+metadata.csv
+session.json

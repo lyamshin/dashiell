@@ -1,0 +1,1346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashiell voice recorder</title>
+<meta name="description" content="Read the narrator's lines aloud, one at a time, into 22,050 Hz mono WAV clips for fine-tuning a local voice.">
+<style>
+  :root {
+    --paper: #f4efe5;
+    --card: #fffdf8;
+    --ink: #1f1b16;
+    --muted: #6d6456;
+    --rule: #ddd3c1;
+    --accent: #8c2f1f;
+    --ok: #2e6b3b;
+    --warn: #9a5f08;
+    --bad: #a3241a;
+    --meter-bg: #e7dfcf;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #16130f;
+      --card: #201c17;
+      --ink: #ede5d6;
+      --muted: #a69a86;
+      --rule: #3b342a;
+      --accent: #e3876e;
+      --ok: #85c493;
+      --warn: #e4aa52;
+      --bad: #f07565;
+      --meter-bg: #2c271f;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); }
+  body { font: 15px/1.45 var(--sans); }
+  button, select, input { font: inherit; color: inherit; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 18px 16px 40px; }
+  header { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; justify-content: space-between; }
+  header h1 { font: 600 17px/1.2 var(--serif); letter-spacing: 0.08em; text-transform: uppercase; margin: 0; }
+  header h1 small { font: 400 13px var(--sans); letter-spacing: 0; text-transform: none; color: var(--muted); margin-left: 8px; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .btn { border: 1px solid var(--rule); background: var(--card); padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+  .btn:hover { border-color: var(--muted); }
+  .btn.primary { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .btn[disabled] { opacity: 0.45; cursor: default; }
+  .folder { color: var(--muted); font-size: 13px; }
+  .folder b { color: var(--ink); font-weight: 600; }
+  #resume { margin: 16px 0 10px; padding: 10px 14px; border-left: 3px solid var(--accent); background: var(--card); border-radius: 0 6px 6px 0; }
+  #resume:empty { display: none; }
+  #resume .sub { color: var(--muted); font-size: 13px; display: block; margin-top: 2px; }
+  #flash { min-height: 1.4em; margin: 6px 0; font-size: 14px; }
+  #flash.bad { color: var(--bad); }
+  #flash.warn { color: var(--warn); }
+  #flash.ok { color: var(--ok); }
+  #loader { border: 2px dashed var(--rule); border-radius: 10px; padding: 28px; text-align: center; background: var(--card); margin: 16px 0; }
+  #loader.over { border-color: var(--accent); }
+  #loader p { margin: 6px 0; }
+  #card { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 22px 16px; margin-top: 8px; }
+  #card.recording { border-color: var(--bad); box-shadow: 0 0 0 3px color-mix(in srgb, var(--bad) 18%, transparent); }
+  .where { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 13px; letter-spacing: 0.02em; }
+  .where #section { text-transform: uppercase; letter-spacing: 0.08em; }
+  #line { font: 400 clamp(24px, 3.6vw, 36px)/1.32 var(--serif); margin: 18px 0 12px; min-height: 2.6em; text-wrap: pretty; }
+  #note { font: italic 16px/1.4 var(--serif); color: var(--muted); margin: 0 0 12px; min-height: 1.4em; }
+  .state { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; font-size: 13px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 10px; }
+  .state code { font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); }
+  #lineState.done { color: var(--ok); }
+  #lineState.skipped { color: var(--warn); }
+  #lineState.rec { color: var(--bad); font-weight: 600; }
+  #meter { margin: 14px 0 6px; }
+  .meter-row { display: flex; align-items: center; gap: 12px; }
+  .meter { position: relative; flex: 1; height: 14px; background: var(--meter-bg); border-radius: 7px; overflow: hidden; }
+  .meter .fill { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--ok); transition: width 50ms linear; }
+  .meter .fill.hot { background: var(--warn); }
+  .meter .fill.clip { background: var(--bad); }
+  .meter .hold { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--ink); left: 0; opacity: 0.7; }
+  .meter .zone { position: absolute; top: 0; bottom: 0; left: 70%; width: 20%; border-left: 1px dashed var(--muted); border-right: 1px dashed var(--muted); opacity: 0.7; }
+  .meter-text { width: 150px; text-align: right; font: 13px ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); }
+  .meter-hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  #take { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 12px 16px; margin: 10px 0; }
+  #take canvas { width: 100%; height: 64px; display: block; }
+  #take .facts { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--muted); margin-top: 6px; }
+  #take .warnings { margin: 6px 0 0; padding: 0; list-style: none; font-size: 14px; }
+  #take .warnings li.bad { color: var(--bad); }
+  #take .warnings li.warn { color: var(--warn); }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .controls .btn kbd { font: 11px ui-monospace, Menlo, monospace; border: 1px solid var(--rule); border-radius: 3px; padding: 0 4px; margin-left: 6px; color: var(--muted); }
+  details { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 8px 14px; margin: 10px 0; }
+  details summary { cursor: pointer; font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+  td, th { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--rule); }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+  .settings-row { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin: 8px 0; }
+  footer { margin-top: 18px; color: var(--muted); font-size: 13px; }
+  footer kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--rule); border-radius: 3px; padding: 0 5px; background: var(--card); color: var(--ink); }
+  .hidden { display: none !important; }
+  @media (max-width: 640px) {
+    .meter-text { width: 96px; }
+    #card { padding: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Dashiell <small>the narrator’s voice, a line at a time</small></h1>
+    <div class="bar">
+      <span class="folder" id="folder">No recordings folder yet.</span>
+      <button class="btn primary" id="pickFolder" type="button">Choose the recordings folder</button>
+      <button class="btn" id="writeIndex" type="button" title="Writes metadata.csv and session.json for everything kept so far">Write the index</button>
+    </div>
+  </header>
+
+  <section id="resume" role="status" aria-live="polite"></section>
+  <div id="flash" role="status" aria-live="polite"></div>
+
+  <section id="loader" class="hidden" aria-label="Load the script">
+    <p><b>The script didn’t load by itself.</b> Pages opened straight from a file can’t fetch their neighbors.</p>
+    <p>Drop <code>script.json</code> here (it sits next to this page, in <code>model/voice/</code>), or <label><u>choose it</u><input id="scriptFile" type="file" accept=".json,application/json" class="hidden"></label>.</p>
+    <p class="folder">It’s remembered after that, so this only happens once.</p>
+  </section>
+
+  <section id="card" aria-live="polite">
+    <div class="where"><span id="section">—</span><span id="position"></span></div>
+    <p id="line"></p>
+    <p id="note"></p>
+    <div class="state"><span id="lineState"></span><code id="lineId"></code></div>
+  </section>
+
+  <section id="meter" aria-label="Input level">
+    <div class="meter-row">
+      <div class="meter" aria-hidden="true"><div class="zone" id="zone"></div><div class="fill" id="fill"></div><div class="hold" id="hold"></div></div>
+      <div class="meter-text" id="meterText">microphone off</div>
+    </div>
+    <div class="meter-hint">Aim for peaks inside the dashed band (about −18 to −6 dB). Red means too close or too loud.</div>
+  </section>
+
+  <section id="take" class="hidden" aria-label="The take">
+    <canvas id="wave" width="900" height="64"></canvas>
+    <div class="facts" id="takeFacts"></div>
+    <ul class="warnings" id="takeWarnings"></ul>
+  </section>
+
+  <div class="controls">
+    <button class="btn primary" id="bRecord" type="button">Record<kbd>Space</kbd></button>
+    <button class="btn" id="bKeep" type="button">Keep and next<kbd>Enter</kbd></button>
+    <button class="btn" id="bRedo" type="button">Redo<kbd>R</kbd></button>
+    <button class="btn" id="bPlay" type="button">Play<kbd>P</kbd></button>
+    <button class="btn" id="bPrev" type="button">Back<kbd>←</kbd></button>
+    <button class="btn" id="bNext" type="button">Forward<kbd>→</kbd></button>
+    <button class="btn" id="bSkip" type="button">Skip<kbd>S</kbd></button>
+  </div>
+
+  <details id="sections">
+    <summary>The sections</summary>
+    <table><thead><tr><th>Section</th><th class="n">Done</th><th class="n">Lines</th><th class="n">Minutes kept</th><th></th></tr></thead><tbody id="sectionRows"></tbody></table>
+  </details>
+
+  <details id="settings">
+    <summary>Microphone and settings</summary>
+    <div class="settings-row">
+      <label>Microphone <select id="device"><option value="">The system’s default</option></select></label>
+      <label><input type="checkbox" id="playback"> Play each take back after recording</label>
+    </div>
+    <div class="settings-row folder" id="recorderInfo">Takes are recorded with the browser’s MediaRecorder, decoded and brought to 22,050 Hz by the Web Audio API, mixed to mono, high-passed at 50 Hz, trimmed to the speech with 150 ms either side, and saved as 16-bit WAV.</div>
+  </details>
+
+  <footer>
+    <kbd>Space</kbd> record or stop · <kbd>Enter</kbd> keep and go on · <kbd>R</kbd> redo · <kbd>←</kbd> <kbd>→</kbd> move · <kbd>S</kbd> skip · <kbd>P</kbd> play · <kbd>Esc</kbd> throw the take away.
+    Close the page whenever you like; it picks up where you left off.
+  </footer>
+</div>
+
+<script>
+/* <voice-core>
+ * The recorder's pure parts: no DOM, no Web Audio. test/voice.test.ts runs this block in Node,
+ * so keep it plain JavaScript that needs nothing but the language.
+ */
+const RATE = 22050;
+const PAD_MS = 150;
+const MIN_SECONDS = 0.5;
+const MAX_SECONDS = 12;
+
+/** PCM16 mono WAV bytes for float samples in -1..1. */
+function encodeWav(samples, rate) {
+  const n = samples.length;
+  const buf = new ArrayBuffer(44 + n * 2);
+  const v = new DataView(buf);
+  const str = (at, s) => { for (let i = 0; i < s.length; i++) v.setUint8(at + i, s.charCodeAt(i)); };
+  str(0, 'RIFF');
+  v.setUint32(4, 36 + n * 2, true);
+  str(8, 'WAVE');
+  str(12, 'fmt ');
+  v.setUint32(16, 16, true);
+  v.setUint16(20, 1, true); // PCM
+  v.setUint16(22, 1, true); // mono
+  v.setUint32(24, rate, true);
+  v.setUint32(28, rate * 2, true);
+  v.setUint16(32, 2, true);
+  v.setUint16(34, 16, true);
+  str(36, 'data');
+  v.setUint32(40, n * 2, true);
+  for (let i = 0; i < n; i++) {
+    const s = Math.max(-1, Math.min(1, samples[i]));
+    v.setInt16(44 + i * 2, s < 0 ? Math.round(s * 32768) : Math.round(s * 32767), true);
+  }
+  return new Uint8Array(buf);
+}
+
+/** A WAV's format and length from its first bytes (enough to hold the header) and its size. */
+function wavHeader(bytes, size) {
+  const v = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  const tag = (at) => String.fromCharCode(bytes[at], bytes[at + 1], bytes[at + 2], bytes[at + 3]);
+  if (bytes.length < 12 || tag(0) !== 'RIFF' || tag(8) !== 'WAVE') return null;
+  let at = 12;
+  let fmt = null;
+  while (at + 8 <= bytes.length) {
+    const id = tag(at);
+    const len = v.getUint32(at + 4, true);
+    if (id === 'fmt ' && at + 24 <= bytes.length) {
+      fmt = { format: v.getUint16(at + 8, true), channels: v.getUint16(at + 10, true), rate: v.getUint32(at + 12, true), bits: v.getUint16(at + 22, true) };
+    } else if (id === 'data' && fmt) {
+      const dataBytes = Math.min(len, (size === undefined ? bytes.length : size) - (at + 8));
+      const frames = Math.floor(dataBytes / (fmt.channels * (fmt.bits / 8)));
+      return Object.assign({}, fmt, { frames, seconds: frames / fmt.rate });
+    }
+    at += 8 + len + (len % 2);
+  }
+  return null;
+}
+
+/** Peak and loudness of a take, and how many samples sat at full scale. */
+function levels(x) {
+  let peak = 0;
+  let sum = 0;
+  let clipped = 0;
+  for (let i = 0; i < x.length; i++) {
+    const a = Math.abs(x[i]);
+    if (a > peak) peak = a;
+    if (a >= 0.999) clipped++;
+    sum += x[i] * x[i];
+  }
+  const rms = Math.sqrt(sum / Math.max(1, x.length));
+  const db = (a) => (a > 0 ? 20 * Math.log10(a) : -120);
+  return { peak, peakDb: db(peak), rmsDb: db(rms), clipped };
+}
+
+/**
+ * Where the speech is: 10 ms frames, a threshold from the room's own noise and the take's peak,
+ * speech as a run of at least 60 ms over it (so a key's click isn't speech), widened over the
+ * softer edges, and `padMs` of the take either side. Null if nothing in it is speech.
+ */
+function trimSilence(x, rate, padMs) {
+  const pad = Math.round(rate * (padMs === undefined ? PAD_MS : padMs) / 1000);
+  const frame = Math.max(1, Math.round(rate * 0.01));
+  const n = Math.floor(x.length / frame);
+  if (n < 3) return null;
+  const rms = new Float64Array(n);
+  for (let i = 0; i < n; i++) {
+    let s = 0;
+    for (let j = i * frame; j < (i + 1) * frame; j++) s += x[j] * x[j];
+    rms[i] = Math.sqrt(s / frame);
+  }
+  const sorted = Array.from(rms).sort((a, b) => a - b);
+  const floor = sorted[Math.floor(n * 0.1)];
+  const top = sorted[n - 1];
+  const loud = Math.max(floor * 3.2, top * 0.03, 0.002);
+  const soft = Math.max(floor * 1.8, loud * 0.5);
+  let first = -1;
+  let last = -1;
+  let run = 0;
+  for (let i = 0; i < n; i++) {
+    if (rms[i] > loud) {
+      run++;
+      if (run >= 6) {
+        if (first < 0) first = i - run + 1;
+        last = i;
+      }
+    } else run = 0;
+  }
+  if (first < 0) return null;
+  // The softer edges: an "h" before, an "s" after, up to 300 ms each way.
+  for (let k = 0; k < 30 && first > 0 && rms[first - 1] > soft; k++) first--;
+  for (let k = 0; k < 30 && last < n - 1 && rms[last + 1] > soft; k++) last++;
+  const start = Math.max(0, first * frame - pad);
+  const end = Math.min(x.length, (last + 1) * frame + pad);
+  return { start, end, samples: x.subarray(start, end) };
+}
+
+/** What's wrong with a take: `bad` ones need a second Enter to keep, since the checker will refuse them. */
+function takeWarnings(seconds, lv) {
+  const out = [];
+  if (lv.clipped >= 3) out.push({ level: 'bad', text: `Clipped: ${lv.clipped} samples hit full scale. Sit back a little or turn the input down, and press R.` });
+  if (seconds > MAX_SECONDS) out.push({ level: 'bad', text: `${seconds.toFixed(1)} seconds is over the twelve a clip may run. Read it a little quicker, or press S to skip it.` });
+  if (seconds < MIN_SECONDS) out.push({ level: 'bad', text: 'Under half a second: that sounds like a cough, not a line.' });
+  if (lv.peakDb < -30) out.push({ level: 'warn', text: `Quiet: the loudest moment was ${lv.peakDb.toFixed(0)} dB. Come a little closer, or turn the input up.` });
+  else if (lv.peakDb > -1.5 && lv.clipped < 3) out.push({ level: 'warn', text: 'Very close to the top. A little further back next time.' });
+  return out;
+}
+
+function emptyProgress() {
+  return { version: 1, clips: {}, skipped: {}, sittings: [] };
+}
+
+/** Two records of the work joined: the newer entry of each line wins; a recording beats a skip of the same words. */
+function mergeProgress(a, b) {
+  const out = emptyProgress();
+  const later = (x, y) => (!y || (x.at || '') > (y.at || '') ? x : y);
+  const sittings = new Map();
+  for (const p of [a, b]) {
+    if (!p || typeof p !== 'object') continue;
+    for (const id of Object.keys(p.clips || {})) out.clips[id] = later(p.clips[id], out.clips[id]);
+    for (const id of Object.keys(p.skipped || {})) out.skipped[id] = later(p.skipped[id], out.skipped[id]);
+    for (const s of p.sittings || []) {
+      const had = sittings.get(s.start);
+      if (!had || (s.kept || 0) > (had.kept || 0)) sittings.set(s.start, s);
+    }
+  }
+  for (const id of Object.keys(out.skipped)) {
+    const c = out.clips[id];
+    if (c && c.text === out.skipped[id].text) delete out.skipped[id];
+  }
+  out.sittings = [...sittings.values()].sort((x, y) => (x.start < y.start ? -1 : 1));
+  return out;
+}
+
+/** A line is done when a clip was kept from its words as they are now (and, with a folder, the clip is in it). */
+function isDone(line, progress, onDisk) {
+  const c = progress.clips[line.id];
+  return !!c && c.text === line.text && (!onDisk || onDisk.has(line.id));
+}
+
+function isSkipped(line, progress, onDisk) {
+  const s = progress.skipped[line.id];
+  return !!s && s.text === line.text && !isDone(line, progress, onDisk);
+}
+
+/** The first line neither recorded nor skipped, or -1. */
+function firstToDo(script, progress, onDisk) {
+  return script.findIndex((l) => !isDone(l, progress, onDisk) && !isSkipped(l, progress, onDisk));
+}
+
+/** Done, skipped, to go, seconds kept, by section. */
+function summarize(script, progress, onDisk) {
+  const sections = [];
+  const bySection = new Map();
+  let done = 0;
+  let skipped = 0;
+  let seconds = 0;
+  for (const l of script) {
+    let s = bySection.get(l.section);
+    if (!s) {
+      s = { title: l.section, lines: 0, done: 0, skipped: 0, seconds: 0 };
+      bySection.set(l.section, s);
+      sections.push(s);
+    }
+    s.lines++;
+    if (isDone(l, progress, onDisk)) {
+      const sec = progress.clips[l.id].seconds || 0;
+      s.done++;
+      s.seconds += sec;
+      done++;
+      seconds += sec;
+    } else if (isSkipped(l, progress, onDisk)) {
+      s.skipped++;
+      skipped++;
+    }
+  }
+  return { lines: script.length, done, skipped, toGo: script.length - done - skipped, seconds, sections };
+}
+
+/** "N lines done, M to go, about X minutes recorded so far." */
+function resumeText(sum) {
+  const lines = (n) => `${n} line${n === 1 ? '' : 's'}`;
+  if (sum.done === 0 && sum.skipped === 0) return `Nothing recorded yet: ${lines(sum.lines)} to go.`;
+  const minutes = Math.round(sum.seconds / 60);
+  const about = sum.seconds < 60 ? 'under a minute' : `about ${minutes} minute${minutes === 1 ? '' : 's'}`;
+  const skipped = sum.skipped ? `, ${sum.skipped} skipped` : '';
+  return `${lines(sum.done)} done${skipped}, ${sum.toGo} to go, ${about} recorded so far.`;
+}
+
+/**
+ * metadata.csv, Piper's (LJSpeech's) `id|text`: every kept clip whose file is there, in the
+ * script's order, then any kept from an older script, each with the words it was read from.
+ */
+function metadataCsv(script, progress, onDisk) {
+  const rows = [];
+  const seen = new Set();
+  const has = (id) => !!progress.clips[id] && progress.clips[id].text && (!onDisk || onDisk.has(id));
+  for (const l of script) {
+    if (!has(l.id)) continue;
+    rows.push(`${l.id}|${clean(progress.clips[l.id].text)}`);
+    seen.add(l.id);
+  }
+  for (const id of Object.keys(progress.clips).sort()) if (!seen.has(id) && has(id)) rows.push(`${id}|${clean(progress.clips[id].text)}`);
+  return rows.length ? `${rows.join('\n')}\n` : '';
+  function clean(t) {
+    return String(t).replace(/[|\r\n]+/g, ' ').trim();
+  }
+}
+/* </voice-core> */
+</script>
+
+<script>
+(() => {
+  'use strict';
+
+  const KEYS = { progress: 'dashiell-voice:progress', script: 'dashiell-voice:script', settings: 'dashiell-voice:settings' };
+  const $ = (id) => document.getElementById(id);
+
+  const st = {
+    script: null,
+    byId: new Map(),
+    index: 0,
+    progress: emptyProgress(),
+    dir: null,
+    clipsDir: null,
+    onDisk: null,
+    stream: null,
+    live: null,
+    analyser: null,
+    decodeCtx: null,
+    recorder: null,
+    chunks: [],
+    mime: '',
+    badMimes: new Set(),
+    recording: false,
+    recStart: 0,
+    processing: false,
+    keepAfter: false,
+    discardNext: false,
+    take: null,
+    confirmKeep: false,
+    hold: -120,
+    sitting: { start: new Date().toISOString(), kept: 0, seconds: 0 },
+    keptSinceIndex: 0,
+    keeping: false,
+    restartAfterDiscard: false,
+    settings: Object.assign({ deviceId: '', playback: false }, readJson(KEYS.settings) || {}),
+    canPickFolder: typeof window.showDirectoryPicker === 'function',
+    audio: null,
+  };
+
+  /* ---------------------------------------------------------------- storage */
+
+  function readJson(key) {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  }
+  function writeJson(key, value) {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function idb() {
+    return new Promise((resolve, reject) => {
+      const r = indexedDB.open('dashiell-voice', 1);
+      r.onupgradeneeded = () => r.result.createObjectStore('handles');
+      r.onsuccess = () => resolve(r.result);
+      r.onerror = () => reject(r.error);
+    });
+  }
+  async function idbGet(key) {
+    try {
+      const db = await idb();
+      return await new Promise((resolve) => {
+        const q = db.transaction('handles').objectStore('handles').get(key);
+        q.onsuccess = () => resolve(q.result);
+        q.onerror = () => resolve(undefined);
+      });
+    } catch {
+      return undefined;
+    }
+  }
+  async function idbSet(key, value) {
+    try {
+      const db = await idb();
+      await new Promise((resolve) => {
+        const tx = db.transaction('handles', 'readwrite');
+        tx.objectStore('handles').put(value, key);
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => resolve();
+      });
+    } catch {
+      /* the folder is asked for again next time */
+    }
+  }
+
+  function saveLocal() {
+    if (!writeJson(KEYS.progress, st.progress)) flash('This browser won’t keep the progress; the folder’s progress.json still has it.', 'warn');
+  }
+
+  async function writeFile(dir, name, data) {
+    const fh = await dir.getFileHandle(name, { create: true });
+    const w = await fh.createWritable();
+    await w.write(data);
+    await w.close();
+  }
+
+  // One write of progress.json at a time, each of the record as it stands when its turn comes,
+  // so quick skips can't leave an older copy written last.
+  let folderWrites = Promise.resolve();
+  function saveFolderProgress() {
+    folderWrites = folderWrites.then(async () => {
+      if (!st.dir) return;
+      try {
+        await writeFile(st.dir, 'progress.json', `${JSON.stringify(st.progress, null, 1)}\n`);
+      } catch (e) {
+        flash(`Couldn’t write progress.json: ${e.message}. Choose the folder again.`, 'bad');
+      }
+    });
+    return folderWrites;
+  }
+
+  function download(name, blob) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.append(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  }
+
+  /* ----------------------------------------------------------------- script */
+
+  function validScript(x) {
+    return Array.isArray(x) && x.length > 0 && x.every((l) => l && typeof l.id === 'string' && typeof l.text === 'string' && typeof l.section === 'string');
+  }
+
+  function useScript(lines, from) {
+    st.script = lines;
+    st.byId = new Map(lines.map((l, i) => [l.id, Object.assign({ n: i }, l)]));
+    writeJson(KEYS.script, lines);
+    $('loader').classList.add('hidden');
+    if (from) flash(`The script: ${lines.length} lines, ${from}.`, 'ok');
+  }
+
+  async function loadScript() {
+    try {
+      const r = await fetch('script.json', { cache: 'no-store' });
+      if (r.ok) {
+        const x = await r.json();
+        if (validScript(x)) return useScript(x, '');
+      }
+    } catch {
+      /* a page opened from a file can't fetch; the copy this browser kept, or a drop */
+    }
+    const kept = readJson(KEYS.script);
+    if (validScript(kept)) return useScript(kept, '');
+    $('loader').classList.remove('hidden');
+  }
+
+  async function scriptFromFile(file) {
+    try {
+      const x = JSON.parse(await file.text());
+      if (!validScript(x)) throw new Error('that isn’t the voice script');
+      useScript(x, `from ${file.name}`);
+      start();
+    } catch (e) {
+      flash(`Couldn’t read ${file.name}: ${e.message}.`, 'bad');
+    }
+  }
+
+  /* ----------------------------------------------------------------- folder */
+
+  async function pickFolder() {
+    if (!st.canPickFolder) {
+      flash('This browser can’t write into a folder, so each kept clip downloads instead. Chrome can.', 'warn');
+      return false;
+    }
+    try {
+      const handle = await window.showDirectoryPicker({ id: 'dashiell-voice', mode: 'readwrite', startIn: 'documents' });
+      await idbSet('dir', handle);
+      await connect(handle);
+      return true;
+    } catch (e) {
+      if (e && e.name !== 'AbortError') flash(`Couldn’t open that folder: ${e.message}`, 'bad');
+      return false;
+    }
+  }
+
+  async function reconnect() {
+    const handle = await idbGet('dir');
+    if (!handle) return pickFolder();
+    try {
+      const p = await handle.requestPermission({ mode: 'readwrite' });
+      if (p === 'granted') {
+        await connect(handle);
+        return true;
+      }
+    } catch {
+      /* fall through to choosing it */
+    }
+    return pickFolder();
+  }
+
+  /** Reads the folder's own record of the work and its clips, and joins them to this browser's. */
+  async function connect(handle) {
+    st.dir = handle;
+    st.clipsDir = await handle.getDirectoryHandle('clips', { create: true });
+    let fromFolder = null;
+    try {
+      const f = await (await handle.getFileHandle('progress.json')).getFile();
+      fromFolder = JSON.parse(await f.text());
+    } catch {
+      /* a new folder */
+    }
+    if (!st.script) {
+      try {
+        const f = await (await handle.getFileHandle('script.json')).getFile();
+        const x = JSON.parse(await f.text());
+        if (validScript(x)) useScript(x, 'from the folder');
+      } catch {
+        /* the script is the page's neighbor, not the folder's */
+      }
+    }
+    const disk = new Map();
+    for await (const [name, h] of st.clipsDir.entries()) if (h.kind === 'file' && /\.wav$/i.test(name)) disk.set(name.replace(/\.wav$/i, ''), h);
+    const merged = mergeProgress(st.progress, fromFolder);
+    // Clips with no record (a lost progress.json): their words from the script, their length from the file.
+    let recovered = 0;
+    for (const [id, h] of disk) {
+      if (merged.clips[id]) continue;
+      const f = await h.getFile();
+      const head = wavHeader(new Uint8Array(await f.slice(0, 4096).arrayBuffer()), f.size);
+      const line = st.byId.get(id);
+      merged.clips[id] = { text: line ? line.text : null, seconds: head ? Math.round(head.seconds * 1000) / 1000 : 0, at: new Date(f.lastModified).toISOString(), folder: handle.name, recovered: true };
+      recovered++;
+    }
+    const elsewhere = Object.keys(merged.clips).filter((id) => !disk.has(id)).length;
+    st.progress = merged;
+    st.onDisk = new Set(disk.keys());
+    saveLocal();
+    await saveFolderProgress();
+    const bits = [`Saving to ‘${handle.name}’, ${disk.size} clip${disk.size === 1 ? '' : 's'} in it.`];
+    if (recovered) bits.push(`${recovered} found without a record and put back from the script.`);
+    if (elsewhere) bits.push(`${elsewhere} this browser remembers aren’t in this folder; if they’re in another, choose that one.`);
+    flash(bits.join(' '), elsewhere ? 'warn' : 'ok');
+    if (st.script && !started) start();
+    else if (st.script) {
+      showResume(true);
+      render();
+    }
+  }
+
+  /* -------------------------------------------------------------- microphone */
+
+  async function ensureMic() {
+    if (st.stream) return true;
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      flash('No microphone access here. Open the page in Chrome, from a file or from localhost.', 'bad');
+      return false;
+    }
+    const audio = { channelCount: 1, echoCancellation: false, noiseSuppression: false, autoGainControl: false };
+    if (st.settings.deviceId) audio.deviceId = { exact: st.settings.deviceId };
+    try {
+      st.stream = await navigator.mediaDevices.getUserMedia({ audio });
+    } catch (e) {
+      if (st.settings.deviceId && e.name === 'OverconstrainedError') {
+        st.settings.deviceId = '';
+        writeJson(KEYS.settings, st.settings);
+        return ensureMic();
+      }
+      flash(`The microphone didn’t open (${e.name}). Allow it for this page, then press Space again.`, 'bad');
+      return false;
+    }
+    try {
+      st.live = new AudioContext();
+      await st.live.resume();
+      const src = st.live.createMediaStreamSource(st.stream);
+      st.analyser = st.live.createAnalyser();
+      st.analyser.fftSize = 2048;
+      src.connect(st.analyser);
+      meterLoop();
+    } catch {
+      /* no meter, but recording still works */
+    }
+    const track = st.stream.getAudioTracks()[0];
+    if (track) $('recorderInfo').dataset.device = track.label;
+    listDevices();
+    return true;
+  }
+
+  async function listDevices() {
+    try {
+      const all = await navigator.mediaDevices.enumerateDevices();
+      const sel = $('device');
+      const cur = st.settings.deviceId;
+      sel.innerHTML = '';
+      sel.append(new Option('The system’s default', ''));
+      for (const d of all) if (d.kind === 'audioinput' && d.deviceId && d.deviceId !== 'default') sel.append(new Option(d.label || `Microphone ${sel.options.length}`, d.deviceId, false, d.deviceId === cur));
+      sel.value = cur;
+    } catch {
+      /* the default it is */
+    }
+  }
+
+  function meterLoop() {
+    const buf = new Float32Array(st.analyser.fftSize);
+    const tick = () => {
+      if (!st.analyser) return;
+      st.analyser.getFloatTimeDomainData(buf);
+      let peak = 0;
+      for (let i = 0; i < buf.length; i++) {
+        const a = Math.abs(buf[i]);
+        if (a > peak) peak = a;
+      }
+      const db = peak > 0 ? 20 * Math.log10(peak) : -120;
+      st.hold = Math.max(db, st.hold - 0.35);
+      drawMeter(db);
+      requestAnimationFrame(tick);
+    };
+    tick();
+  }
+
+  const pct = (db) => `${Math.max(0, Math.min(100, ((db + 60) / 60) * 100))}%`;
+  function drawMeter(db) {
+    const fill = $('fill');
+    fill.style.width = pct(db);
+    fill.className = `fill${db > -3 ? ' clip' : db > -6 ? ' hot' : ''}`;
+    $('hold').style.left = pct(st.hold);
+    $('meterText').textContent = st.hold <= -119 ? 'silence' : `peak ${st.hold.toFixed(0)} dB`;
+  }
+
+  /* -------------------------------------------------------------- recording */
+
+  function pickMime() {
+    const wanted = ['audio/webm;codecs=pcm', 'audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus', 'audio/mp4'];
+    for (const m of wanted) if (!st.badMimes.has(m) && window.MediaRecorder && MediaRecorder.isTypeSupported(m)) return m;
+    return '';
+  }
+
+  async function startRecording() {
+    if (st.recording || st.processing || !current()) return;
+    if (!(await ensureMic())) return;
+    stopPlayback();
+    st.take = null;
+    st.confirmKeep = false;
+    st.chunks = [];
+    st.mime = pickMime();
+    let rec;
+    try {
+      rec = new MediaRecorder(st.stream, st.mime ? { mimeType: st.mime, audioBitsPerSecond: 256000 } : undefined);
+    } catch {
+      rec = new MediaRecorder(st.stream);
+      st.mime = rec.mimeType;
+    }
+    rec.ondataavailable = (e) => {
+      if (e.data && e.data.size) st.chunks.push(e.data);
+    };
+    rec.onstop = () => onStopped(rec);
+    rec.lineId = current().id;
+    st.recorder = rec;
+    rec.start();
+    st.recording = true;
+    st.recStart = performance.now();
+    render();
+    timerLoop();
+  }
+
+  function timerLoop() {
+    if (!st.recording) return;
+    $('lineState').textContent = `Recording… ${((performance.now() - st.recStart) / 1000).toFixed(1)} s`;
+    setTimeout(timerLoop, 100);
+  }
+
+  function stopRecording(keepAfter) {
+    if (!st.recording) return;
+    st.recording = false;
+    st.keepAfter = !!keepAfter;
+    st.processing = true;
+    st.recorder.stop();
+    render();
+  }
+
+  function discard() {
+    if (st.recording) {
+      st.discardNext = true;
+      st.recording = false;
+      st.processing = true;
+      st.recorder.stop();
+    }
+    st.take = null;
+    st.confirmKeep = false;
+    stopPlayback();
+    render();
+  }
+
+  async function onStopped(rec) {
+    const blob = new Blob(st.chunks, { type: rec.mimeType || st.mime || 'audio/webm' });
+    if (st.discardNext) {
+      st.discardNext = false;
+      st.processing = false;
+      render();
+      if (st.restartAfterDiscard) {
+        st.restartAfterDiscard = false;
+        startRecording();
+      }
+      return;
+    }
+    try {
+      st.take = await processTake(blob);
+      st.take.lineId = rec.lineId;
+      // Moved on while it was being read back: it isn't this line's take.
+      if (!current() || current().id !== rec.lineId) st.take = null;
+    } catch (e) {
+      st.take = null;
+      if (/pcm/.test(st.mime)) {
+        st.badMimes.add(st.mime);
+        flash('That take couldn’t be read back in this format, so the next one will use another. Please record it again.', 'warn');
+      } else flash(`That take couldn’t be read back: ${e.message}`, 'bad');
+    }
+    st.processing = false;
+    const keepIt = st.keepAfter;
+    st.keepAfter = false;
+    if (st.take && keepIt && !st.take.warnings.some((w) => w.level === 'bad')) {
+      await keep();
+      return;
+    }
+    render();
+    if (st.take && st.take.samples && st.settings.playback) play();
+  }
+
+  function decoder() {
+    if (!st.decodeCtx) {
+      try {
+        // An AudioContext running at 22,050 Hz: decodeAudioData brings the take to its rate with the
+        // browser's own resampler (a windowed sinc in Chrome), which is better than a buffer source's.
+        st.decodeCtx = new AudioContext({ sampleRate: RATE });
+        // It only decodes; it never plays, so its clock needn't run.
+        st.decodeCtx.suspend().catch(() => {});
+      } catch {
+        st.decodeCtx = new OfflineAudioContext(1, 1, RATE);
+      }
+    }
+    return st.decodeCtx;
+  }
+
+  /** Decode, bring to 22,050 Hz mono, high-pass at 50 Hz, trim to the speech with 150 ms either side, encode. */
+  async function processTake(blob) {
+    const raw = await blob.arrayBuffer();
+    const decoded = await decoder().decodeAudioData(raw);
+    const off = new OfflineAudioContext(1, Math.max(1, Math.ceil(decoded.duration * RATE)), RATE);
+    const src = off.createBufferSource();
+    src.buffer = decoded;
+    const hp = off.createBiquadFilter();
+    hp.type = 'highpass';
+    hp.frequency.value = 50;
+    hp.Q.value = Math.SQRT1_2;
+    src.connect(hp);
+    hp.connect(off.destination);
+    src.start(0);
+    const mono = (await off.startRendering()).getChannelData(0);
+    const t = trimSilence(mono, RATE, PAD_MS);
+    if (!t) return { samples: null, seconds: 0, rawSeconds: mono.length / RATE, wav: null, warnings: [{ level: 'bad', text: 'No speech found in that take. Press Space and try again.' }], lv: null };
+    const lv = levels(t.samples);
+    const seconds = t.samples.length / RATE;
+    return { samples: t.samples, seconds, rawSeconds: mono.length / RATE, peakDb: lv.peakDb, lv, wav: encodeWav(t.samples, RATE), warnings: takeWarnings(seconds, lv) };
+  }
+
+  /* ------------------------------------------------------------------ lines */
+
+  const current = () => (st.script ? st.script[st.index] : null);
+
+  async function keep() {
+    if (st.keeping) return;
+    st.keeping = true;
+    try {
+      await keepTake();
+    } finally {
+      st.keeping = false;
+    }
+  }
+
+  async function keepTake() {
+    const line = current();
+    const t = st.take;
+    if (!line || !t || !t.wav || t.lineId !== line.id) return;
+    const bad = t.warnings.some((w) => w.level === 'bad');
+    if (bad && !st.confirmKeep) {
+      st.confirmKeep = true;
+      flash('This take has a problem the checker will refuse. Press Enter again to keep it anyway, or R to redo it.', 'warn');
+      return;
+    }
+    const name = `${line.id}.wav`;
+    if (!st.dir && st.canPickFolder) {
+      const handle = await idbGet('dir');
+      const ok = handle ? await reconnect() : await pickFolder();
+      if (!ok) {
+        flash('Choose the recordings folder first; the take is still here. Press Enter again once it’s chosen.', 'warn');
+        return;
+      }
+    }
+    try {
+      if (st.dir) {
+        await writeFile(st.clipsDir, name, t.wav);
+        st.onDisk.add(line.id);
+      } else download(name, new Blob([t.wav], { type: 'audio/wav' }));
+    } catch (e) {
+      flash(`Couldn’t save ${name}: ${e.message}. Choose the folder again, then press Enter.`, 'bad');
+      st.dir = null;
+      return;
+    }
+    const at = new Date().toISOString();
+    st.progress.clips[line.id] = { text: line.text, seconds: Math.round(t.seconds * 1000) / 1000, peakDb: Math.round(t.peakDb * 10) / 10, at, folder: st.dir ? st.dir.name : 'downloads', sitting: st.sitting.start };
+    delete st.progress.skipped[line.id];
+    st.sitting.kept++;
+    st.sitting.seconds = Math.round((st.sitting.seconds + t.seconds) * 1000) / 1000;
+    st.sitting.end = at;
+    st.progress.sittings = st.progress.sittings.filter((s) => s.start !== st.sitting.start).concat([Object.assign({}, st.sitting)]);
+    saveLocal();
+    await saveFolderProgress();
+    st.take = null;
+    st.confirmKeep = false;
+    st.keptSinceIndex++;
+    if (st.dir && st.keptSinceIndex >= 20) writeIndex(true);
+    flash(`Kept ${name}, ${t.seconds.toFixed(1)} s.`, 'ok');
+    step(1);
+  }
+
+  function skip() {
+    const line = current();
+    if (!line || st.recording || st.processing || st.keeping) return;
+    if (!isDone(line, st.progress, st.onDisk)) {
+      st.progress.skipped[line.id] = { text: line.text, at: new Date().toISOString() };
+      saveLocal();
+      saveFolderProgress();
+      flash('Skipped. It’s left out of the count; come back to it any time with ←.', 'warn');
+    }
+    move(1);
+  }
+
+  /** ← and →: not while a take is being read back or saved. */
+  function move(d) {
+    if (st.processing || st.keeping) return;
+    step(d);
+  }
+
+  function step(d) {
+    if (!st.script) return;
+    if (st.recording) discard();
+    st.take = null;
+    st.confirmKeep = false;
+    stopPlayback();
+    st.index = Math.max(0, Math.min(st.script.length - 1, st.index + d));
+    render();
+  }
+
+  function goTo(i) {
+    if (!st.script || st.processing || st.keeping) return;
+    if (st.recording) discard();
+    st.take = null;
+    st.index = Math.max(0, Math.min(st.script.length - 1, i));
+    render();
+  }
+
+  function redo() {
+    if (st.processing || st.keeping) return;
+    if (st.recording) {
+      st.restartAfterDiscard = true;
+      discard();
+      return;
+    }
+    st.take = null;
+    startRecording();
+  }
+
+  function stopPlayback() {
+    if (st.audio) {
+      st.audio.pause();
+      st.audio = null;
+    }
+  }
+
+  async function play() {
+    stopPlayback();
+    let blob = null;
+    if (st.take && st.take.wav) blob = new Blob([st.take.wav], { type: 'audio/wav' });
+    else {
+      const line = current();
+      if (line && st.clipsDir && st.onDisk && st.onDisk.has(line.id)) {
+        try {
+          blob = await (await st.clipsDir.getFileHandle(`${line.id}.wav`)).getFile();
+        } catch {
+          blob = null;
+        }
+      }
+    }
+    if (!blob) return flash('Nothing to play yet.', 'warn');
+    const url = URL.createObjectURL(blob);
+    st.audio = new Audio(url);
+    st.audio.onended = () => URL.revokeObjectURL(url);
+    st.audio.play().catch(() => flash('The browser wouldn’t play it.', 'warn'));
+  }
+
+  /* ------------------------------------------------------------------ index */
+
+  async function writeIndex(quiet) {
+    if (!st.script) return;
+    const csv = metadataCsv(st.script, st.progress, st.onDisk);
+    const sum = summarize(st.script, st.progress, st.onDisk);
+    const session = {
+      written: new Date().toISOString(),
+      folder: st.dir ? st.dir.name : 'downloads',
+      format: { sampleRate: RATE, channels: 1, bitsPerSample: 16, container: 'WAV, PCM', trimPaddingMs: PAD_MS, highpassHz: 50 },
+      script: { lines: st.script.length, first: st.script[0].id, last: st.script[st.script.length - 1].id },
+      recorded: { clips: csv ? csv.trim().split('\n').length : 0, lines: sum.done, skipped: sum.skipped, toGo: sum.toGo, seconds: Math.round(sum.seconds * 10) / 10, minutes: Math.round((sum.seconds / 60) * 10) / 10 },
+      sections: sum.sections.map((s) => ({ title: s.title, lines: s.lines, done: s.done, skipped: s.skipped, minutes: Math.round((s.seconds / 60) * 10) / 10 })),
+      sittings: st.progress.sittings,
+      skipped: st.script.filter((l) => isSkipped(l, st.progress, st.onDisk)).map((l) => ({ id: l.id, text: l.text })),
+      recorder: { mimeType: st.mime || null, device: $('recorderInfo').dataset.device || null, userAgent: navigator.userAgent },
+    };
+    const json = `${JSON.stringify(session, null, 1)}\n`;
+    try {
+      if (st.dir) {
+        await writeFile(st.dir, 'metadata.csv', csv);
+        await writeFile(st.dir, 'session.json', json);
+        await saveFolderProgress();
+      } else {
+        download('metadata.csv', new Blob([csv], { type: 'text/csv' }));
+        download('session.json', new Blob([json], { type: 'application/json' }));
+        download('progress.json', new Blob([`${JSON.stringify(st.progress, null, 1)}\n`], { type: 'application/json' }));
+      }
+      st.keptSinceIndex = 0;
+      if (!quiet) flash(`Wrote metadata.csv (${session.recorded.clips} clips) and session.json${st.dir ? ` into ‘${st.dir.name}’` : ''}.`, 'ok');
+    } catch (e) {
+      flash(`Couldn’t write the index: ${e.message}`, 'bad');
+    }
+  }
+
+  /* ---------------------------------------------------------------- drawing */
+
+  let flashTimer = 0;
+  function flash(text, kind) {
+    const el = $('flash');
+    el.textContent = text;
+    el.className = kind || '';
+    clearTimeout(flashTimer);
+    if (kind === 'ok') flashTimer = setTimeout(() => (el.textContent = ''), 6000);
+  }
+
+  function showResume(jump) {
+    const sum = summarize(st.script, st.progress, st.onDisk);
+    const first = firstToDo(st.script, st.progress, st.onDisk);
+    const total = st.script.reduce((n, l) => n + l.text.split(/\s+/).length, 0);
+    const minutes = Math.round(total / 145 + (st.script.length * 0.3) / 60);
+    const sub = sum.done === 0 && sum.skipped === 0
+      ? `${minutes < 1 ? 'Under a minute' : `About ${minutes} minute${minutes === 1 ? '' : 's'}`} of reading in all. Record in sittings of ten to twenty minutes; press Space to start the first line.`
+      : first >= 0
+        ? `${jump ? 'Picking up' : 'The first line still to do is'} at line ${first + 1}, in ${st.script[first].section}.${jump ? ' Going back five lines with ← to warm up is a good start to a sitting.' : ''}`
+        : 'Every line is recorded or skipped. Press “Write the index” and you’re done.';
+    $('resume').innerHTML = '';
+    const b = document.createElement('b');
+    st.bannerCount = resumeText(sum);
+    b.textContent = st.bannerCount;
+    const s = document.createElement('span');
+    s.className = 'sub';
+    s.textContent = sub;
+    $('resume').append(b, s);
+    if (jump) st.index = first >= 0 ? first : st.script.length - 1;
+  }
+
+  function render() {
+    const line = current();
+    const card = $('card');
+    card.classList.toggle('recording', st.recording);
+    if (!line) {
+      $('line').textContent = '';
+      $('note').textContent = '';
+      return;
+    }
+    $('section').textContent = line.section;
+    $('position').textContent = `line ${st.index + 1} of ${st.script.length}`;
+    $('line').textContent = line.text;
+    $('note').textContent = line.note || '';
+    $('lineId').textContent = line.id;
+    const ls = $('lineState');
+    ls.className = '';
+    const clip = st.progress.clips[line.id];
+    if (st.recording) {
+      ls.textContent = 'Recording…';
+      ls.className = 'rec';
+    } else if (st.processing) ls.textContent = 'Reading the take back…';
+    else if (st.take) ls.textContent = st.take.wav ? 'Enter keeps it; R records it again; P plays it.' : 'Nothing usable in that take.';
+    else if (isDone(line, st.progress, st.onDisk)) {
+      ls.textContent = `Recorded, ${clip.seconds.toFixed(1)} s. Space records it again.`;
+      ls.className = 'done';
+    } else if (clip && clip.text !== line.text) ls.textContent = 'The words changed since this was recorded: record it again.';
+    else if (clip && st.onDisk && !st.onDisk.has(line.id)) ls.textContent = `Recorded into ‘${clip.folder}’, not this folder.`;
+    else if (isSkipped(line, st.progress, st.onDisk)) {
+      ls.textContent = 'Skipped. Space records it after all.';
+      ls.className = 'skipped';
+    } else ls.textContent = 'Not recorded yet. Space to start.';
+    // The count above stays current: once a line is kept or skipped, the banner says so.
+    if (started && resumeText(summarize(st.script, st.progress, st.onDisk)) !== st.bannerCount) showResume(false);
+    $('bRecord').firstChild.textContent = st.recording ? 'Stop' : 'Record';
+    $('bKeep').disabled = !(st.take && st.take.wav) && !st.recording;
+    $('bPlay').disabled = !(st.take && st.take.wav) && !(st.onDisk && st.onDisk.has(line.id));
+    drawTake();
+    drawFolder();
+    drawSections();
+  }
+
+  function drawTake() {
+    const box = $('take');
+    const t = st.take;
+    box.classList.toggle('hidden', !t);
+    if (!t) return;
+    const facts = [];
+    if (t.samples) facts.push(`${t.seconds.toFixed(2)} s kept of ${t.rawSeconds.toFixed(1)} s`, `peak ${t.peakDb.toFixed(1)} dB`, `loudness ${t.lv.rmsDb.toFixed(0)} dB`, '22,050 Hz mono, 16-bit');
+    $('takeFacts').textContent = facts.join(' · ');
+    const ul = $('takeWarnings');
+    ul.innerHTML = '';
+    for (const w of t.warnings) {
+      const li = document.createElement('li');
+      li.className = w.level;
+      li.textContent = w.text;
+      ul.append(li);
+    }
+    const c = $('wave');
+    const g = c.getContext('2d');
+    const w = (c.width = c.clientWidth * (window.devicePixelRatio || 1));
+    const h = (c.height = 64 * (window.devicePixelRatio || 1));
+    g.clearRect(0, 0, w, h);
+    if (!t.samples) return;
+    const ink = getComputedStyle(document.documentElement).getPropertyValue('--ink').trim() || '#222';
+    g.fillStyle = ink;
+    const per = Math.max(1, Math.floor(t.samples.length / w));
+    for (let x = 0; x < w; x++) {
+      let lo = 0;
+      let hi = 0;
+      for (let i = x * per; i < Math.min(t.samples.length, (x + 1) * per); i++) {
+        if (t.samples[i] < lo) lo = t.samples[i];
+        if (t.samples[i] > hi) hi = t.samples[i];
+      }
+      g.fillRect(x, h / 2 - hi * (h / 2), 1, Math.max(1, (hi - lo) * (h / 2)));
+    }
+  }
+
+  function drawFolder() {
+    const el = $('folder');
+    const btn = $('pickFolder');
+    if (st.dir) {
+      el.innerHTML = '';
+      el.append('Saving to ');
+      const b = document.createElement('b');
+      b.textContent = `${st.dir.name}/clips`;
+      el.append(b);
+      btn.textContent = 'Change folder';
+      btn.classList.remove('primary');
+    } else if (st.pendingHandle) {
+      el.textContent = `Last time: ‘${st.pendingHandle.name}’.`;
+      btn.textContent = `Reconnect to ‘${st.pendingHandle.name}’`;
+    } else if (!st.canPickFolder) {
+      el.textContent = 'This browser downloads each clip instead of saving into a folder.';
+      btn.disabled = true;
+    }
+  }
+
+  function drawSections() {
+    const tbody = $('sectionRows');
+    if (!st.script) return;
+    const sum = summarize(st.script, st.progress, st.onDisk);
+    tbody.innerHTML = '';
+    for (const s of sum.sections) {
+      const tr = document.createElement('tr');
+      const cells = [s.title, `${s.done}${s.skipped ? ` (+${s.skipped} skipped)` : ''}`, String(s.lines), (s.seconds / 60).toFixed(1)];
+      cells.forEach((v, i) => {
+        const td = document.createElement('td');
+        td.textContent = v;
+        if (i > 0) td.className = 'n';
+        tr.append(td);
+      });
+      const td = document.createElement('td');
+      const go = document.createElement('button');
+      go.type = 'button';
+      go.className = 'btn';
+      go.textContent = 'Go';
+      go.addEventListener('click', () => {
+        const i = st.script.findIndex((l) => l.section === s.title && !isDone(l, st.progress, st.onDisk) && !isSkipped(l, st.progress, st.onDisk));
+        goTo(i >= 0 ? i : st.script.findIndex((l) => l.section === s.title));
+        go.blur();
+      });
+      td.append(go);
+      tr.append(td);
+      tbody.append(tr);
+    }
+  }
+
+  /* ------------------------------------------------------------------ input */
+
+  document.addEventListener(
+    'keydown',
+    (e) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const tag = e.target && e.target.tagName;
+      if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
+      if (!st.script) return;
+      const k = e.key;
+      if (k === ' ' || e.code === 'Space') {
+        e.preventDefault();
+        if (e.repeat) return;
+        if (st.recording) stopRecording(false);
+        else startRecording();
+      } else if (k === 'Enter') {
+        e.preventDefault();
+        if (e.repeat) return;
+        if (st.recording) stopRecording(true);
+        else if (st.take) keep();
+        else flash('Nothing to keep yet: Space records the line, → moves on without it.', 'warn');
+      } else if (k === 'r' || k === 'R') {
+        e.preventDefault();
+        redo();
+      } else if (k === 'ArrowLeft') {
+        e.preventDefault();
+        move(-1);
+      } else if (k === 'ArrowRight') {
+        e.preventDefault();
+        move(1);
+      } else if (k === 's' || k === 'S') {
+        e.preventDefault();
+        skip();
+      } else if (k === 'p' || k === 'P') {
+        e.preventDefault();
+        play();
+      } else if (k === 'Escape') discard();
+    },
+    true,
+  );
+  // A focused button would take the space bar for a click of its own.
+  document.addEventListener('keyup', (e) => {
+    if ((e.key === ' ' || e.code === 'Space') && e.target && e.target.tagName === 'BUTTON') e.preventDefault();
+  }, true);
+
+  const click = (id, fn) =>
+    $(id).addEventListener('click', (e) => {
+      e.currentTarget.blur();
+      fn();
+    });
+  click('bRecord', () => (st.recording ? stopRecording(false) : startRecording()));
+  click('bKeep', () => (st.recording ? stopRecording(true) : keep()));
+  click('bRedo', redo);
+  click('bPlay', play);
+  click('bPrev', () => move(-1));
+  click('bNext', () => move(1));
+  click('bSkip', skip);
+  click('pickFolder', () => (st.pendingHandle && !st.dir ? reconnect() : pickFolder()));
+  click('writeIndex', () => writeIndex(false));
+
+  $('device').addEventListener('change', (e) => {
+    st.settings.deviceId = e.target.value;
+    writeJson(KEYS.settings, st.settings);
+    if (st.stream) {
+      st.stream.getTracks().forEach((t) => t.stop());
+      st.stream = null;
+      st.analyser = null;
+      if (st.live) st.live.close();
+      st.live = null;
+      ensureMic();
+    }
+  });
+  $('playback').checked = !!st.settings.playback;
+  $('playback').addEventListener('change', (e) => {
+    st.settings.playback = e.target.checked;
+    writeJson(KEYS.settings, st.settings);
+  });
+
+  const loader = $('loader');
+  loader.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    loader.classList.add('over');
+  });
+  loader.addEventListener('dragleave', () => loader.classList.remove('over'));
+  loader.addEventListener('drop', (e) => {
+    e.preventDefault();
+    loader.classList.remove('over');
+    const f = e.dataTransfer.files[0];
+    if (f) scriptFromFile(f);
+  });
+  // A drop anywhere on the page does the same, and never navigates away from it.
+  window.addEventListener('dragover', (e) => e.preventDefault());
+  window.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const f = e.dataTransfer && e.dataTransfer.files[0];
+    if (f && /\.json$/i.test(f.name) && !st.script) scriptFromFile(f);
+  });
+  $('scriptFile').addEventListener('change', (e) => {
+    const f = e.target.files[0];
+    if (f) scriptFromFile(f);
+  });
+
+  window.addEventListener('beforeunload', (e) => {
+    if (st.recording || (st.take && st.take.wav)) {
+      e.preventDefault();
+      e.returnValue = '';
+    }
+  });
+
+  /* ------------------------------------------------------------------ start */
+
+  let started = false;
+  function start() {
+    if (!st.script || started) return;
+    started = true;
+    showResume(true);
+    render();
+  }
+
+  async function boot() {
+    st.progress = mergeProgress(readJson(KEYS.progress), null);
+    await loadScript();
+    // The folder from last time: straight back in if the browser still allows it, else one click.
+    const handle = st.canPickFolder ? await idbGet('dir') : undefined;
+    if (handle) {
+      let p = 'prompt';
+      try {
+        p = await handle.queryPermission({ mode: 'readwrite' });
+      } catch {
+        /* ask */
+      }
+      if (p === 'granted') await connect(handle);
+      else st.pendingHandle = handle;
+    }
+    start();
+    drawFolder();
+  }
+
+  // For the console and the checks: the state and the pure parts.
+  window.voiceKit = { st, encodeWav, wavHeader, levels, trimSilence, takeWarnings, mergeProgress, summarize, firstToDo, metadataCsv, resumeText, processTake, connect, keep, skip, move, writeIndex, render };
+  boot();
+})();
+</script>
+</body>
+</html>
