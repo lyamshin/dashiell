@@ -158,8 +158,10 @@ if (cmd === 'pick') {
           const two = suspects.slice(0, 3);
           for (const x of two) {
             const motive = (model.personOf(c, x)?.motive ?? '').toLowerCase();
-            const word = (/\b(lease|four hundred|rent|shop|file|squeezing|1921|business|brother|sister|letters|money|wedding|will|books|rival|roof|throat)\b/.exec(motive)?.[1] ?? motive.split(' ').slice(-1)[0]) as string;
-            qs.push({ q: `What grudge did ${nm(c, x)} have, by the papers?`, key: [[word]] });
+            // (Round 4: "knew" and "friend" too, where the bible's motive ends "…only an old friend would".)
+            const word = (/\b(lease|four hundred|rent|shop|file|squeezing|1921|business|brother|sister|letters|money|wedding|will|books|rival|roof|throat|knew|friend)\b/.exec(motive)?.[1] ?? motive.split(' ').slice(-1)[0]) as string;
+            // (A lease is answered by the notice to quit too, the way main's papers put it: round 4.)
+            qs.push({ q: `What grudge did ${nm(c, x)} have, by the papers?`, key: [word === 'lease' ? ['lease', 'quit', 'evict', 'street'] : [word]] });
           }
         } else if (model.isMurder(c)) {
           qs.push({ q: `What was found at the scene?`, key: [[c.means.name.replace(/^(a|an|the) /, '').split(' ').slice(-1)[0] as string]] });
