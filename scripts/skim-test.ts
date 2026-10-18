@@ -116,7 +116,9 @@ if (cmd === 'pick') {
         const claimed = c.board.hours.filter((h) => a?.claims[h as never]);
         const h1 = (claimed.find((h) => hc.includes(h as never)) ?? claimed[0]) as number;
         const cl1 = a?.claims[h1 as never];
-        if (cl1) qs.push({ q: `Where does ${nm(c, who)} say ${he.he} was at ${HOUR[h1]}?`, key: [placeKey(pn(c, cl1.place))] });
+        // (A home is answered by "home" or "my room", the way an account says it: round 2's key took only the place's name.)
+        const whereKey = (pl: string) => (model.personOf(c, who)?.home === pl ? ['home', 'room', ...placeKey(pn(c, pl))] : placeKey(pn(c, pl)));
+        if (cl1) qs.push({ q: `Where does ${nm(c, who)} say ${he.he} was at ${HOUR[h1]}?`, key: [whereKey(cl1.place)] });
         const h2 = claimed.find((h) => (a?.claims[h as never]?.company ?? []).length > 0 && h !== h1) ?? claimed.find((h) => h !== h1);
         const cl2 = h2 !== undefined ? a?.claims[h2 as never] : undefined;
         if (cl2 && cl2.company.length) qs.push({ q: `Who does ${nm(c, who)} say was with ${he.him} at ${HOUR[h2 as number]}?`, key: cl2.company.map((x) => personKey(nm(c, x))) });
@@ -126,7 +128,7 @@ if (cmd === 'pick') {
         const remark = a?.remarks.find((x) => /passed/.test(x.text));
         const passed = remark ? /I passed ((?:Mrs\.|Miss|Dr\.) \S+|\S+) on/.exec(remark.text)?.[1] : undefined;
         if (passed) qs.push({ q: `Who did ${nm(c, who)} pass on the way, by ${he.his} own account?`, key: [personKey(passed)] });
-        else if (cl3) qs.push({ q: `Where does ${nm(c, who)} say ${he.he} was at ${HOUR[h3 as number]}?`, key: [placeKey(pn(c, cl3.place))] });
+        else if (cl3) qs.push({ q: `Where does ${nm(c, who)} say ${he.he} was at ${HOUR[h3 as number]}?`, key: [whereKey(cl3.place)] });
       } else if (job === 'list' && q) {
         const w = q.slice('list:'.length);
         const l = knowledge.listOf(c, w);
@@ -143,7 +145,8 @@ if (cmd === 'pick') {
         else {
           const came = c.people.filter((x) => !x.object && hs.some((h) => at(x.id, h))).map((x) => ({ id: x.id, first: hs.find((h) => at(x.id, h)) as number }));
           const y = came[r(Math.max(1, came.length))];
-          if (y) qs.push({ q: `According to ${nm(c, w)}, when did ${nm(c, y.id)} first come in?`, key: [hourKey(y.first)] });
+          // (In from the list's first hour is answered by "from the start", the way a list by change says it.)
+          if (y) qs.push({ q: `According to ${nm(c, w)}, when did ${nm(c, y.id)} first come in?`, key: [y.first === hs[0] ? [...hourKey(y.first), 'start', 'beginning', 'all evening', 'whole evening', 'throughout'] : hourKey(y.first)] });
         }
         const left = c.people.filter((x) => !x.object && hs.some((h) => at(x.id, h)) && !at(x.id, hs[hs.length - 1] as number)).map((x) => ({ id: x.id, last: [...hs].reverse().find((h) => at(x.id, h)) as number }));
         const z = left[r(Math.max(1, left.length))];
@@ -242,7 +245,9 @@ if (cmd === 'pick') {
       '',
       '**For each page: read it once, top to bottom, at your normal pace. Then answer its three questions from what you took in, without going back over the page.** Short answers are best (a name, a place, an hour, yes or no).',
       '',
-      '**Then quote, exactly, every sentence on the page you had to read twice, or that was unclear to you (what it meant, who or what a word pointed at, or how it followed from the sentence before).** You may look back at the page for this part only. If nothing was unclear, give an empty list.',
+      // (Round 3 on: "every sentence … you had to read twice" read as a quota, two a page whatever the page;
+      // a sentence understood on the first pass isn't one, and many pages have none.)
+      '**Then quote, exactly, each sentence you actually had to go back and read again, or whose meaning you are still unsure of (what it meant, who or what a word pointed at, or how it followed from the sentence before).** A sentence you understood on the first pass doesn’t count, even if it’s figurative or you’d have put it differently. You may look back at the page for this part only. Many pages will have none; then give an empty list.',
       '',
       'Answer in one JSON block at the end, in this shape: `{"pages": [{"page": "R1", "answers": ["…", "…", "…"], "unclear": ["…"]}]}`.',
       '',

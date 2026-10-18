@@ -450,7 +450,8 @@ export function worldAccountVoice(c: BoardCase, hand: Hand, p: PersonId, reasone
   if (!b || !bp) return {};
   // An account page tells every hour of the evening, so an opener may name one ("From seven, then").
   const open = fresh1(hand, bp.voice.ask.map((l, i) => ({ l, id: `nb:${bp.id}:ask:${i}` })).filter((x) => safeVoice(c, b, bp, x.l, { hours: true }) && clean(x.l, c.board.hours)));
-  const free = c.board.hours.filter((h) => !reasoned.has(h));
+  // (docs/59: never the evening's first hour, whose line would sit before that hour's own fact.)
+  const free = c.board.hours.filter((h) => !reasoned.has(h) && h !== c.board.hours[0]);
   const k = hand.rng.int(Math.max(1, free.length));
   const h = free[k];
   const coda = h === undefined ? undefined : hourLine(c, b, bp, hand, [h], c.board.hours);

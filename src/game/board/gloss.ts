@@ -50,9 +50,9 @@ export function finderGloss(c: BoardCase, finder: PersonId, finderWhy: string): 
   const owes = /^m[34]$/.test(c.people.find((x) => x.id === finder)?.motiveId ?? '');
   if (/collect a debt/.test(why)) return owes ? `${job} who owed ${him} money and had come round about it` : `${job} ${he} owed money to, who’d come round to collect`;
   if (/card game/.test(why)) return `${job} ${he} played cards with on Thursdays, who’d come up for the game`;
-  if (/radio still going/.test(why)) return `${job} who heard ${his} radio still going, and knocked`;
-  if (/borrowed book/.test(why)) return `${job} who’d borrowed a book from ${him}, and came to give it back`;
-  if (/settle a bet/.test(why)) return `${job} who’d had a bet with ${him}, and came to settle it`;
+  if (/radio still going/.test(why)) return `${job} who heard ${his} radio still going and knocked`;
+  if (/borrowed book/.test(why)) return `${job} who’d borrowed a book from ${him} and came to give it back`;
+  if (/settle a bet/.test(why)) return `${job} who’d had a bet with ${him} and came to settle it`;
   return `${job}, ${why}`;
 }
 

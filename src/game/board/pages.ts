@@ -844,7 +844,13 @@ function handOff(w: Writer, always = false): void {
     const known = knownPeople(c, w.run).has(rest);
     Object.assign(slots, who(c, rest));
     slots.job = jobWords(p.description);
+    // (docs/59: the place said once: "the keeper at the card room", never "the card-room keeper at the card room".)
+    const placeWords = new Set(placeName(c, at).toLowerCase().split(/[\s-]+/));
+    const jw = (slots.job ?? '').split(/[\s-]+/);
+    if (jw.length > 2 && jw.slice(1, -1).some((x) => x.length > 2 && placeWords.has(x.toLowerCase()))) slots.job = `${jw[0]} ${jw[jw.length - 1]}`;
     if (kind === 'list' && !known) k = 'list-job';
+    // (docs/59: somebody to be found at home is found "at home", not "at Hargrove’s flat" beside "Hargrove".)
+    if (kind === 'account' && p.home === at) slots.place = 'home';
     if (kind === 'account' && threadFor(c, w.run, q, w.run.at).src.startsWith('confront:')) k = 'check';
     for (const x of [rest]) if (known) w.people.add(x);
     if (!known && kind === 'account') return;
@@ -1726,9 +1732,10 @@ export function writeAccount(w: Writer, p: PersonId): void {
   const said = spokenAccountLines(c, a, mannerOf(c, p), c.seed % 4);
   // docs/48 §3: the evening is the engine's, exactly; how they open and close it is their own.
   const v = worldAccountVoice(c, w.hand, p, hoursWithReason(c, a));
-  // Planner 2: their line for an hour frames the account, never inside it: before it when the hour
-  // is the evening's first, after the evening's own lines (and before anything they passed on the
-  // way) otherwise.
+  // Planner 2: their line for an hour frames the account, never inside it: after the evening's own
+  // lines (and before anything they passed on the way). (docs/59: never the evening's first hour,
+  // whose line sat before that hour's own fact, "Eight, I think about mortality. At eight o’clock I
+  // was at Russo’s"; `worldAccountVoice` doesn't pick it.)
   const told: (SaidLine | { voice: string })[] = [...said];
   if (v.coda) {
     const remark = said.findIndex((x) => x.remark !== undefined);
@@ -1913,7 +1920,8 @@ export function writeSearch(w: Writer, findId: string): void {
   const empty = isMurder(c) ? '' : emptyOf(c, pastTense(thingEmpty(c)));
   // docs/52 build 2: what the search turned up (FIND, by the way in), in a voicing; the case's own words where none fits.
   const ma = meansArgs(c);
-  const found: SaySpec = { shape: 'FIND', flags: ['means', c.setup?.means ?? '', ...ma.flags], args: { ...stringArgs(withCaps({ x: origin, victim: vict.short, empty, thing: vict.short })), ...ma.args }, keep: true };
+  // (docs/59: the poison by name, so the thought after the find isn't the first the page says of it.)
+  const found: SaySpec = { shape: 'FIND', flags: ['means', c.setup?.means ?? '', ...ma.flags], args: { ...stringArgs(withCaps({ x: origin, victim: vict.short, empty, thing: vict.short, means: c.means.name.replace(/^(?:a|an|the) /, '') })), ...ma.args }, keep: true };
   fact(w, 'job', sayFirst(c, found) ?? f.text, 'find', { about: [c.crime.victim], carries: [`find:${findId}`], place: c.means.origin, props: findProps(c, findId), say: found });
   w.places.add(c.means.origin);
   // docs/59 item 3: what it means, not the find again: whoever did it had been where the means was, first.

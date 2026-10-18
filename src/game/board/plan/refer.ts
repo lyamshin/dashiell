@@ -130,6 +130,13 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   if (ws.length === 0) return breaks;
   const byIdx = new Map(ws.map((w) => [w.idx, w]));
   const nameRe = new RegExp(`(Mr\\. )?\\b(${ws.map((x) => esc(x.short)).sort((a, b) => b.length - a.length).join('|')})\\b`, 'g');
+  // (docs/59: a quotation names somebody by their whole name, "“I’m Hinda Pomerantz,” she said", so a
+  // titled short name is heard in speech by its surname too, where nobody else has that surname.)
+  const bare = (x: string): string => x.replace(/^(?:Mrs\.|Miss|Dr\.|Mr\.) /, '');
+  const bares = new Map<string, number>();
+  for (const x of ws) bares.set(bare(x.short), (bares.get(bare(x.short)) ?? 0) + 1);
+  const spoken = ws.flatMap((x) => (bare(x.short) !== x.short && bares.get(bare(x.short)) === 1 ? [x.short, bare(x.short)] : [x.short]));
+  const speechRe = new RegExp(`(Mr\\. )?\\b(${spoken.map(esc).sort((a, b) => b.length - a.length).join('|')})\\b`, 'g');
   const items = paras.flat();
   // Sentences, the quotation carried through a paragraph, and the narration of each.
   const sents: Sent[] = [];
@@ -171,8 +178,8 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
     }
     // Speech: the names said in it, for the cap.
     const speech = maskPlaces(c, s.text.split('').map((ch, i) => (s.narr[i] === ' ' && ch !== ' ' ? ch : ' ')).join(''));
-    for (const x of speech.matchAll(nameRe)) {
-      const w = ws.find((y) => y.short === x[2]);
+    for (const x of speech.matchAll(speechRe)) {
+      const w = ws.find((y) => y.short === x[2]) ?? ws.find((y) => bare(y.short) === x[2]);
       if (w) s.mentions.push({ who: w, at: (x.index ?? 0) + (x[1] ?? '').length, len: w.short.length, kind: 'speech', form: 'unknown', listy: false, titled: !!x[1] });
     }
     for (const x of s.narr.matchAll(PRON)) {

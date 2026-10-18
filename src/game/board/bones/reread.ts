@@ -557,7 +557,8 @@ function placesIn(c: BoardCase, lx: Lexicon, text: string, who: Id): { id: Place
   if (out.length === 0) {
     // A place said by its own name, the way the account's whole-evening check takes it ("round to Sokol’s").
     for (const p of c.places) {
-      const stem = placeName(c, p.id).replace(/^the /, '').split(' ')[0] ?? '';
+      // (Past a title, as the account takes it: "round to Dr. Hirsch’s" is Dr. Hirsch’s flat.)
+      const stem = placeName(c, p.id).replace(/^(?:the|Mrs\.|Mr\.|Miss|Dr\.) /, '').split(' ')[0] ?? '';
       const at = stem.length >= 4 ? text.indexOf(stem) : -1;
       if (at >= 0) out.push({ id: p.id, at });
     }
@@ -588,11 +589,11 @@ function whereR(c: BoardCase, lx: Lexicon, s: string, who: Id): PlaceId {
   return placeIdOf(c, m[1] as string) as PlaceId;
 }
 
-/** A tail of company: ", with Feeney and Ashby (about the house)", ", on my own", or nothing. */
+/** A tail of company: ", with Feeney and Ashby (in the house)", ", on my own", or nothing. */
 function withR(c: BoardCase, lx: Lexicon, s: string | undefined): Id[] | undefined {
   if (s === undefined || s === '') return undefined;
   if (/^, (?:on my own|by myself|alone)$/.test(s)) return [];
-  const m = /^, with (.+?)(?: about the house)?$/.exec(s);
+  const m = /^, with (.+?)(?: in the house| about the house)?$/.exec(s);
   if (!m) throw new Error(`voiced: no company in "${s}"`);
   return namesV(c, lx, m[1] as string);
 }

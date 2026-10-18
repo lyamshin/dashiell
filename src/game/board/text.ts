@@ -94,6 +94,8 @@ export function notebookText(d: BoardDeal, run: BoardRun): string {
     // money and had come round about it"), never the errand that said the debt the other way round.
     const fp = g.kind === 'found' && g.vars?.finder && g.vars.finderWhy ? c.people.find((x) => x.short === g.vars?.finder) : undefined;
     if (fp && g.vars?.finderWhy) t = t.replace(`${g.vars.finder}, ${g.vars.finderWhy}`, `${g.vars.finder}, ${finderGloss(c, fp.id, g.vars.finderWhy)}`);
+    // (docs/59: the neighbors' word, as the office says it now, not a woman downstairs nobody meets.)
+    t = t.replace(/, on the word of the woman downstairs:/, ', on the neighbors’ word:').replace(/\. The woman downstairs says\b/, '. The neighbors say');
     out.push(`  ${wrap(titleClient(c, t.replace(/\bsays (she|he) says\b/, 'says $1 claims')), 72).replace(/\n/g, '\n  ')}`);
   }
   out.push('');

@@ -157,7 +157,9 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
       const X = nameOf(c, x);
       if (lie) {
         // docs/59 item 1: the owning up was the page before; the next page says who named them, not the story again.
-        return out(`${X} had named ${P}`, [`admit:${x}@${h}`], { people: [p, x] });
+        // (docs/59, the skim test: what they were named for, "Margolis had said she was with Ashby at ten",
+        // never a bare "Margolis had named Ashby".)
+        return out(`${X} had said ${pm(c, x, 'he')} was with ${P} at ${hourWord(h)}`, [`admit:${x}@${h}`], { hours: [h], people: [p, x] });
       }
       return out(`${X} had named ${P}`, [], { people: [p, x] });
     }

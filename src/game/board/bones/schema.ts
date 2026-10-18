@@ -299,7 +299,7 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'Raw’s elimination (the walk, Raw only: "that left" is allowed here). open: that left {person}, and the clock still open between {from} and {to}. last (the elimination’s last step): that left one person who {access} ("had heard about the window"), with no true account for {hour} (seen: and who’d been seen on {street} at {hour}).',
   },
   FIND: {
-    args: { x: T, victim: T, empty: T, thing: T, client: 'person', occasion: T, hour: 'hour', from: 'hour', till: 'hour' },
+    args: { x: T, victim: T, empty: T, thing: T, means: T, client: 'person', occasion: T, hour: 'hour', from: 'hour', till: 'hour' },
     doc: 'What a search turned up, the room’s own words. means (by the way in, the flag after it: chloral, revolver, told-mat, spare-tin…): the find as the case has it, with {x} where it came from ("the hall-stand drawer at Rafferty’s"), {empty} the empty cushion or dome ("The cushion by the radiator was empty."), {victim}, {thing}. A small case also says how the way in got about (docs/53: every fact said): party: {client} had people in for the {occasion} at {hour} (the lock, the window, the key under the mat was shown or told at that table); told: {client} told the room at {x} about it, from {from} until {till} ("between eight and ten"). papers: the dead man’s papers, a page on everybody with a grudge.',
   },
   REACTION: {

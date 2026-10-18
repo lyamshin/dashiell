@@ -170,7 +170,7 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
     const where = wherePhrase(c, p, r.place);
     // A reason that doesn't say where ("turned in early") takes the place after it.
     const short = placeName(c, r.place);
-    const stem = short.replace(/^the /, '').split(' ')[0] ?? short;
+    const stem = short.replace(/^(?:the|Mrs\.|Mr\.|Miss|Dr\.) /, '').split(' ')[0] ?? short;
     const says = (t: string) => t.includes(short) || (stem.length >= 4 && t.includes(stem)) || /\bhome\b|\bmy room\b/.test(t);
     let reason0 = r.reason ? firstPerson(r.reason, female) : undefined;
     // docs/55 2: a reason names nobody the account doesn't have with them ("for coffee with Sokol" when
@@ -186,7 +186,14 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
     // Supper once a night: a second meal the same evening is coffee (docs/47 B9).
     if (reason0 && ate) reason0 = reason0.replace(/ for (the blue-plate )?supper\b/, ' for coffee');
     if (reason0 && /\bsupper\b|\bplate of\b|\bpie\b|\bbeans\b/.test(reason0)) ate = true;
-    const reason = reason0 && !says(reason0) ? `${reason0}, ${where.replace(/^at /, 'at ')}` : reason0;
+    let reason = reason0 && !says(reason0) ? `${reason0}, ${where.replace(/^at /, 'at ')}` : reason0;
+    // docs/59 (the skim test): company beside the going, before the why: "went to the Lyric with Mrs.
+    // Greco, because a friend was in the show", never "…, because a friend was in the show, with Mrs. Greco".
+    if (reason && reason === reason0 && same && !/\bmy room\b/.test(reason)) {
+      const cut = /, (?:because|since) /.exec(reason);
+      const others = (comps[0]?.who ?? []).map(nm).filter((x) => !(reason ?? '').includes(x));
+      if (cut && others.length) reason = `${reason.slice(0, cut.index)} with ${andList(others)}${reason.slice(cut.index)}`;
+    }
     const toEnd = r.to === last;
     const long = r.to > r.from;
     // The composite: which stretch of the evening it is, and how it's told.
@@ -210,8 +217,8 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
       // Alone: a short tag when it's the evening's one hour alone; otherwise said once, after (docs/47 C13).
       const alone = who.length === 0 && !withSomebody ? (aloneOnce && runs.length > 1 ? (ALONE_TAG[rot % ALONE_TAG.length] as string) : '') : '';
       // "back to my room to write letters, with Abramowitz and Thorndike" put them in the room: in a
-      // rooming house they were about the house (Hard-boiled 8).
-      const house = who.length > 0 && /\bmy room\b/.test(reason ?? '') && !!c.places.find((x) => x.id === r.place)?.key?.startsWith('rooming') ? ' about the house' : '';
+      // rooming house they were in the house (Hard-boiled 8; docs/59: "about the house" stopped the skim readers).
+      const house = who.length > 0 && /\bmy room\b/.test(reason ?? '') && !!c.places.find((x) => x.id === r.place)?.key?.startsWith('rooming') ? ' in the house' : '';
       // docs/52: where, for every hour of the run; with whom, where the line says it (by name, or alone).
       const said = named || who.length > 0 || alone !== '';
       // (docs/59 item 8: "went along with Salerno to Rafferty’s, with Ruggiero and Sirkin": whoever the reason names isn't named again after it.)

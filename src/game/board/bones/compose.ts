@@ -433,6 +433,9 @@ function accessArgs(c: BoardCase, as: Extract<Prop, { k: 'ACCESS' }>[], here: Pl
   if (yes.length > 0 && no.length > 0 && short && !/, and /.test(out.yes ?? '')) {
     out.nobody = andList(no.map((p) => nameOf(c, p)));
     out.short = short;
+    // docs/59 (the skim test): beside who had, who hadn't is said short ("…, when the spare key was there
+    // for the taking, but Tillman hadn’t"), never the place and the key again.
+    out.no = `${out.nobody} ${short}`;
   }
   // One person alone: what it says of them without their name, so it can be said where another fact names them.
   const one = yes.length + no.length === 1 ? (yes[0] ?? no[0]) : undefined;
@@ -1050,7 +1053,7 @@ function oneSentence(it: Item, ctx: PlanCtx): void {
     const d = collisionArgs(ctx.c, col, ctx.run?.at ?? '');
     const two = (sentencesOf(it.text).pop() ?? '').trim();
     const one = `${d.claim}, and ${d.breaker}: ${lowerFirst(two)}`;
-    if (/;/.test(d.breaker) || wordsIn(plain(one)) > 34 || !clearAfter(ctx.c, col.person, d.breaker)) return;
+    if (/;/.test(d.breaker) || wordsIn(plain(one)) > 24 || !clearAfter(ctx.c, col.person, d.breaker)) return;
     voice(it, comp, ['colon'], { claim: d.claim, breaker: d.breaker, two: lowerFirst(two) }, ctx);
     comp.join = 'colon';
     it.composed = true;

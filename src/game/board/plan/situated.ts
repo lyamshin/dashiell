@@ -352,7 +352,9 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
         seated = seatedAfter(lastGap.text, seated);
         lastGap = null;
       }
-      if (it.kind !== 'gap' || !it.sit || !(SIT_SLOTS as readonly string[]).includes(it.slot ?? '')) {
+      // docs/59: an account's aside stays the engine's plain one ("I wrote it down as said."): the deck's
+      // ("Her evening as she told it was, for now, the only telling I had.") stopped the skim readers.
+      if (it.kind !== 'gap' || !it.sit || !(SIT_SLOTS as readonly string[]).includes(it.slot ?? '') || (it.slot === 'gloss' && s.page === 'account')) {
         seated = seatedAfter(it.text, seated);
         continue;
       }

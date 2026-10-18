@@ -586,7 +586,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     const reason = reasonFor(hs);
     const goneIds = plainGone.map((g) => g.p);
     const text = thereNow.length
-      ? `At ${H}, ${reason}, ${names(thereNow)} ${be}${still ? ' still' : ''} at ${where}${goneIds.length ? ` and ${names(goneIds)} had gone` : ''}.`
+      ? `At ${H}, ${reason}, ${names(thereNow)} ${be}${still ? ' still' : ''} at ${where}.${goneIds.length ? ` ${names(goneIds)} had left by then.` : ''}`
       : `At ${H}, ${reason}, ${names(goneIds)} had gone from ${where}.`;
     add(text, ['givens:clock'], {
       rule: 'then',
@@ -679,7 +679,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     sayThen(true);
     if (t.sentences.length === 0) {
       const where = placeName(c, thenList.place);
-      add(x.pick('then-none', [`Nobody I was asking after was at ${where} at ${andList(thenHs.map(hourWord))}, ${reasonFor(thenHs)}.`, `At ${andList(thenHs.map(hourWord))}, ${reasonFor(thenHs)}, none of the people I was asking after was at ${where}.`]), ['givens:clock'], { rule: 'gloss', people: [], places: [thenList.place], hours: [...thenHs] });
+      const either = thenHs.length === 2 ? `${hourWord(thenHs[0] as Hour)} or ${hourWord(thenHs[1] as Hour)}` : andList(thenHs.map(hourWord));
+      add(x.pick('then-none', [`None of the people I was asking about was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people I was asking about was at ${where}.`]), ['givens:clock'], { rule: 'gloss', people: [], places: [thenList.place], hours: [...thenHs] });
     }
   }
   t.refs = [...new Set(t.refs.filter(Boolean))];
