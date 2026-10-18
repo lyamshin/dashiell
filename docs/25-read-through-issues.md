@@ -308,3 +308,14 @@ Branch `round4-fixes`. Four blind testers (Raw 11, Poached 5, Medium 14, Hard-bo
 - **The office's chair, twice:** the client "sat down in the good chair without being asked", then "Mosley sat in it the way you sit in church" (Hard-boiled seed 12): the chair card's check reads the entrance card, not the line that replaced it.
 - **The closer cap** reads a thing-with-feelings close off its first words ("The radiator…"); "I buttoned my coat. It came off a rack…" isn't counted. The share is 34% of pages; Hard-boiled 8 was the heavy night.
 - **The profile's memory is the book's and `--profile`'s;** the oracle, the wanderer and the reader play without one, so the measures are unchanged by it.
+
+## Clarity, build 1 (docs/59), 2026-10-19
+Branch `clarity-1`. Docs/59 has what was built, the skim test and the measures. Taken from the lists above: the scene's and the find's sugar tin on back-to-back pages (the find says where the spare was; the office said the tin), the office's chair twice (one sit-down a visit, held by the `continuity` lint), and the look-role said for somebody the sentence had already named (the subject of its own clause keeps its pronoun; a role isn't said twice in a sentence). Left over:
+
+- **Hard-boiled's thought after an account** is an aside where a line already speaks to the hour that matters: said once, nothing is left there that isn't a link. "Job pages with a thought naming an earlier fact" is 70% at Hard-boiled (68% in the neighbourhood), from 99%. Whether Hard-boiled wants something there is the designer's call.
+- **List smell** rose (dealt Raw 9 → 23 pages of 280, Hard-boiled 29 → 53): the consequence and the collision are each one medium sentence, beside the presence line, and the rhythm can't trade a fact. The hand-over aside comes in three lengths now; the thought's own sentences could too.
+- **An account that goes back to a place with the same people** names them again ("…at seven I went to the Delmonico rooms to collect a debt, with Donnelly, Kreuzer and Zeldin. Later, at nine, I went up to the Delmonico rooms … with Donnelly…"). A "back there, with the same three" form wants its reader in `bones/reread.ts`.
+- **Turn recaps** still say the collision the page before said ("In the notebook I had Bledsoe down for Moskowitz’s at ten…, and right beside it what Hauck had told me"): the turn is outside the said-once rule by the brief.
+- **A bible voice line about an hour can land after a later hour** in an account ("Eight’s a good hour for a favor" after the ten o’clock clause, the neighbourhood's Medium 5).
+- **Medium 7's search** says "the Delmonico rooms" in three sentences running (the find, the thought, the hand-off).
+- **Callbacks** fell (dealt Raw 74% → 67% of pages): the thoughts that said an earlier page's fact again were most of them.

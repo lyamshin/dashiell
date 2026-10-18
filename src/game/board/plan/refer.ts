@@ -478,7 +478,9 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   }
   items.forEach((it, i) => {
     const ts = texts.get(i);
-    if (ts) it.text = ts.join(' ');
+    // (docs/59 item 8: who said a question or an exclamation is said in lower case after it, "…start
+    // with you?” she said", though the sentence read as its own once the name was a pronoun.)
+    if (ts) it.text = ts.join(' ').replace(/([!?…][”"])\s+(He|She|They)(⁣\d+⁤)? (said|asked|answered|added)\b/g, (_m, q: string, pr: string, mark: string | undefined, v: string) => `${q} ${pr.toLowerCase()}${mark ?? ''} ${v}`);
   });
   return breaks;
 }

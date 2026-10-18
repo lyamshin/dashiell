@@ -175,6 +175,8 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
     case 'WINDOW-ALIVE':
       // docs/59 item 3: a walk's narrowing, said as the hour it leaves.
       if (has('narrows')) return [['narrowed']];
+      // Above a walk, the sighting at one of the hours it could have happened: whose, where and when.
+      if (has('link')) return [['victim'], ['place', 'at'], ['hour']];
       return [['client'], ['opts'], ['victim'], ['place', 'at'], ['hour'], ...(has('walk') ? [['narrowed', 'narrowword']] : [])];
     case 'STREET':
       return [['street'], ['victim'], ...(has('small') ? [['client']] : [])];

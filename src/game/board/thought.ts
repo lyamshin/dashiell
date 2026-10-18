@@ -160,14 +160,14 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   const winFirst = (hs: Hour[]) => [...hs].sort((u, v) => Number(win.includes(v)) - Number(win.includes(u)) || u - v);
   const walk = x.level === 'walk';
   const fact = x.level === 'fact';
-  // docs/46 §2: above a walk, an hour that matters is one of the office's, never yet the hour it
-  // happened: "at eleven, when Fritz went" is the walk's to say once the office's two hours narrow.
+  // docs/46 §2: above a walk, an hour that matters is one it could have happened at, never yet the
+  // hour it happened: "at eleven, when Fritz went" is the walk's to say once the office's two hours
+  // narrow ("at eleven, when Fritz could have gone"). (Never the client's say-so, "the hours Kreuzer had
+  // given me": the skim readers didn't know whose hours they were.)
   const office = c.givens.window ?? c.crime.window;
-  const reasonFor = (hs: readonly number[]): string => {
-    if (walk || office.length <= 1 || !hs.every((h) => office.includes(h as Hour))) return whyHours(c, hs);
-    const cl = clientOf(c).short;
-    return hs.length >= office.length ? `the hours ${cl} had given me` : `one of the ${office.length === 2 ? 'two ' : ''}hours ${cl} had given me`;
-  };
+  // (Said without a name: "when it could have happened". The dead man or the pet named there was one
+  // more person a "she" after it could be.)
+  const reasonFor = (hs: readonly number[]): string => (walk || office.length <= 1 || !hs.every((h) => office.includes(h as Hour)) ? whyHours(c, hs) : 'when it could have happened');
   // The page that settles who. Only a walk says so; above it, that page reads like any other.
   // docs/47 B11: the walk's elimination is never on the page whose fact completes it. It moves to
   // the turn, or the page after (`eliminationOf`, said once a night by the page writer); the page
@@ -646,11 +646,16 @@ export function thoughtOf(x: ThoughtCtx): Thought {
           say: { shape: 'WINDOW-ALIVE', flags: ['narrows', isMurder(c) ? 'murder' : 'small'], args: { client: { t: 'person', id: c.client }, victim: { t: 'person', id: c.crime.victim }, narrowed: { t: 'hour', h: h1 } } },
         });
       } else {
-        add(x.pick('window-link', [`${cap(hourWord(seen.h))} was one of the two hours ${cl} had given me.`, `${cl} had given me two hours, and ${hourWord(seen.h)} was one of them.`]), ['givens:clock'], {
-          rule: 'gloss',
+        // (Above a walk, the link: the sighting, at one of the hours it could have happened. Which one is left is the player's.)
+        const at = seen.x.place;
+        add(`${cap(victimOf(c).short)} was still ${isMurder(c) ? 'alive ' : ''}at ${placeName(c, at)} at ${hourWord(seen.h)}, one of the two hours it could have happened.`, ['givens:clock'], {
+          rel: 'narrows',
+          rule: 'alive',
           hours: [seen.h],
-          people: [c.client],
-          places: [],
+          people: [c.crime.victim],
+          places: [at],
+          props: [{ k: 'ALIVE', victim: c.crime.victim, place: at, hour: seen.h }],
+          say: { shape: 'WINDOW-ALIVE', flags: ['link', isMurder(c) ? 'murder' : 'small'], args: { victim: { t: 'person', id: c.crime.victim }, place: { t: 'place', id: at }, hour: { t: 'hour', h: seen.h } } },
         });
       }
     }

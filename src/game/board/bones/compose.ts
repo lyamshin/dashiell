@@ -52,7 +52,8 @@ import { ticsIn } from '../tics.js';
 import { homeNamed } from '../home.js';
 
 /** The longest sentence composition makes. */
-const LONGEST = 40;
+// docs/59: a thought's sentence is one a reader takes in at once (the skim test's readers stopped on the forty-word joins).
+const LONGEST = 34;
 /** The most facts one sentence carries (aggregation). */
 const MOST = 4;
 

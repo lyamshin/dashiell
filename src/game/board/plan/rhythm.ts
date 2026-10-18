@@ -90,6 +90,9 @@ function opensOnClause(b: string): boolean {
 /** A situated card that is something I did, for the why-here's fold (docs/52): its subject and its act. */
 const FOLD_ACT = /^I (?:went|stood|stayed|kept my (?:voice|questions)|took|found|let|loosened|hung|nodded|waved|followed|crossed|came|walked|got out|sat|pulled|asked if|made my way|slipped|edged|eased|knocked|stepped)\b/;
 
+/** docs/59: the longest sentence two facts make together (the skim test's readers stopped on longer). */
+const FACTS_LONGEST = 26;
+
 /** Words a short lead of place or time opens on, before a clause's subject. */
 const LEAD = /^(?:For|In|On|Under|Over|At|Behind|Above|Below|Through|Outside|Inside|Across|Along|Beside|Near|Upstairs|Downstairs|Somewhere|Overhead|Down|Up)$/;
 
@@ -274,6 +277,7 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
       if (ia !== ib && ia.kind === 'fact' && ib.kind === 'fact' && ctx.c.people.some((p) => !p.object && p.short.length > 2 && new RegExp(`(?<![\\w’])${esc(p.short)}(?![\\w])`).test(maskPlaces(ctx.c, a.text)) && new RegExp(`(?<![\\w’])${esc(p.short)}(?![\\w])`).test(maskPlaces(ctx.c, b.text)))) return null;
       const joined = joinable(a.text, b.text, budget.semis < 2, and);
       if (!joined) return null;
+      if (ia.kind === 'fact' && ib.kind === 'fact' && wordsIn(joined) > FACTS_LONGEST) return null;
       // A semicolon is spent only when the mend is kept.
       if (/; /.test(joined) && !/; /.test(`${a.text} ${b.text}`)) t.take = () => budget.semis++;
       if (a.i === b.i) {

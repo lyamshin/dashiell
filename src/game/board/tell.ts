@@ -295,7 +295,7 @@ export function companyByChange(c: BoardCase, p: PersonId, comps: { h: Hour; who
       const props = r.map((h) => CL(h, [...g.who]));
       if (a === first && b === last) add(['all', n], { names }, props);
       else if (a === first) add(['left', n], { names, to: { t: 'hour', h: b } }, props);
-      else if (b === last) add(['came', n], { names, from: { t: 'hour', h: a } }, props);
+      else if (b === last) add(['came', n, ...(a === b ? ['last'] : [])], { names, from: { t: 'hour', h: a } }, props);
       else if (a === b) add(['mid', 'hour', n], { names, from: { t: 'hour', h: a }, next: { t: 'hour', h: hs[hs.indexOf(b) + 1] as number } }, props);
       else add(['mid', 'span', n], { names, from: { t: 'hour', h: a }, to: { t: 'hour', h: b } }, props);
     }

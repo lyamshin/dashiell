@@ -1292,7 +1292,7 @@ export function writeOffice(w: Writer): void {
     if (!asked.venue && g.kind === 'venue') {
       asked = { ...asked, venue: true };
       const vp = markedPron(c, c.crime.victim);
-      put(w, 'job', w.hand.pick('office-ask-venue', [`I asked where ${vp.he}’d spent the evening.`, `“Where had ${vp.he} been earlier?” I asked.`, `“Was ${vp.he} out at all tonight?” I asked.`]), 'exchange', { slot: 'ask' });
+      put(w, 'job', w.hand.pick('office-ask-venue', [`I asked where ${vp.he}’d spent the evening.`, `“Where had ${vp.he} been earlier in the evening?” I asked.`, `“Was ${vp.he} out at all tonight?” I asked.`]), 'exchange', { slot: 'ask' });
     }
     if (!asked.who && g.kind === 'pointer') {
       asked = { ...asked, who: true };
@@ -1910,7 +1910,7 @@ export function writeSearch(w: Writer, findId: string): void {
     return;
   }
   const origin = placeName(c, c.means.origin);
-  const empty = isMurder(c) ? '' : pastTense(thingEmpty(c));
+  const empty = isMurder(c) ? '' : emptyOf(c, pastTense(thingEmpty(c)));
   // docs/52 build 2: what the search turned up (FIND, by the way in), in a voicing; the case's own words where none fits.
   const ma = meansArgs(c);
   const found: SaySpec = { shape: 'FIND', flags: ['means', c.setup?.means ?? '', ...ma.flags], args: { ...stringArgs(withCaps({ x: origin, victim: vict.short, empty, thing: vict.short })), ...ma.args }, keep: true };
@@ -1936,7 +1936,7 @@ export function writeSearch(w: Writer, findId: string): void {
               ? `Whoever it was had heard ${cl} at ${there} first.`
               : `Whoever let themselves into ${cl}’s flat had been at ${there} first, for the key.`;
   const props: Prop[] = [{ k: 'MEANS', how: 'first', place: at }];
-  const say: SaySpec = { shape: 'WINDOW-MEANS', flags: ['find', 'first', kind], args: { origin: { t: 'place', id: at }, victim: { t: 'person', id: c.crime.victim }, client: { t: 'person', id: c.client }, occasion: party?.occasion ?? '' } };
+  const say: SaySpec = { shape: 'WINDOW-MEANS', flags: ['find', 'first', kind], args: { origin: { t: 'place', id: at }, victim: { t: 'person', id: c.crime.victim }, client: { t: 'person', id: c.client }, occasion: party?.occasion ?? '', means: c.means.name.replace(/^(?:a|an|the) /, '') } };
   const refs = isMurder(c) ? ['givens:found'] : ['givens:means'];
   void origin;
   // (docs/56 A19: the search's reasoning says itself, without a "So" in front of it.)
@@ -1944,6 +1944,18 @@ export function writeSearch(w: Writer, findId: string): void {
   handOff(w);
   closeWith(w, undefined, 'search-close', {}, {});
   lay(w, 'search');
+}
+
+/**
+ * docs/59: the empty place says what isn't there ("The cushion by the radiator was empty: no Duchess.",
+ * "There was a clean square in the dust on the sideboard, where the cigarette case had been."): the
+ * skim readers couldn't tell from the page what was gone.
+ */
+function emptyOf(c: BoardCase, line: string): string {
+  const thing = victimOf(c).short;
+  if (!line) return line;
+  if (/^There was a clean square\b/.test(line)) return line.replace(/\.$/, `, where ${thing} had been.`);
+  return line.replace(/\.$/, `: no ${thing.replace(/^the /, '')}.`);
 }
 
 function thingEmpty(c: BoardCase): string {

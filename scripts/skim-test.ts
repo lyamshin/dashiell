@@ -9,7 +9,7 @@
  *
  * Gate: the after build's accuracy at least the before build's, and its sentences flagged cut by half.
  *
- *   npx tsx scripts/skim-test.ts pick --out DIR [--pages 24] [--seed 59]
+ *   npx tsx scripts/skim-test.ts pick --out DIR [--pages 24] [--seed 59] [--from 200]
  *     choose the pages and write their questions: DIR/ids.json
  *   npx tsx scripts/skim-test.ts dump --root ROOT --ids DIR/ids.json --out FILE
  *     those pages' prose, as the tree at ROOT writes them (this one, or a copy of main)
@@ -81,7 +81,8 @@ if (cmd === 'pick') {
   const jobs = ['office', 'account', 'list', 'search', 'confront', 'turn'];
   const per = Math.ceil(want / jobs.length);
   const ids: PageId[] = [];
-  let s = 200;
+  // (`--from`: where the nights start, so a second round reads nights the first never saw.)
+  let s = Number(val('from') ?? 200);
   for (const job of jobs) {
     let got = 0;
     for (let tries = 0; got < per && tries < 600; tries++) {

@@ -72,7 +72,7 @@ describe('round 4: the reasoning lines (docs/55 1)', () => {
 describe('round 4: facts and continuity (docs/55 2)', () => {
   it('a home is said as the place it is, the first time a page says it', () => {
     const d = dealBoard(8, 5, 'murder');
-    expect(nameHomes(d.kase, 'Grasso said home at ten. She said home again.', new Set())).toBe('Grasso said home, the Delmonico rooms, at ten. She said home again.');
+    expect(nameHomes(d.kase, 'Grasso said home at ten. She said home again.', new Set())).toBe('Grasso said home at the Delmonico rooms at ten. She said home again.');
     // Renfro's flat is called after him: "home" says it.
     expect(nameHomes(d.kase, 'Renfro said home at nine.', new Set())).toBe('Renfro said home at nine.');
   });
