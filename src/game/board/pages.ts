@@ -1223,9 +1223,18 @@ export function writeOffice(w: Writer): void {
       ns.sort((a, b) => (v.guests ?? '').indexOf(a.short) - (v.guests ?? '').indexOf(b.short));
       v.guests = guestsGlossed(c, ns.map((x) => x.id), glossed);
     }
+    // docs/59 note 4: the neighbor who keeps the spare key, said with who she is the first time the
+    // client names her ("Mrs. Kowalski, the landlady, keeps my spare key…"), where no line before has.
+    if (g.kind === 'means') {
+      for (const k of ['keeper', 'Keeper']) {
+        const kp = v[k] ? c.people.find((x) => x.short === v[k]) : undefined;
+        const first = kp ? (kp.job ?? kp.description.split(/;|,/)[0]?.trim() ?? '') : '';
+        if (kp && !glossed.has(kp.id) && /^(?:a|an|the) /.test(first) && !/\bclient\b/.test(first)) v[k] = `${v[k]}, ${first},`;
+      }
+    }
     // The neighbor who minds the pet, or keeps the key: met once, with where they live.
     for (const k of ['keeper', 'Keeper', 'resident']) {
-      const kp = v[k] ? c.people.find((x) => x.short === v[k]) : undefined;
+      const kp = v[k] ? c.people.find((x) => x.short === v[k] || (v[k] ?? '').startsWith(`${x.short}, `)) : undefined;
       if (kp) glossed.add(kp.id);
     }
     if (v.pthey) v.Pthey = cap(v.pthey);

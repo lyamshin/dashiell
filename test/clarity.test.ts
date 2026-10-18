@@ -11,7 +11,7 @@ import { boardFields } from '../src/game/board/report.js';
 import { clarityIssues, CAP_PRONOUN, PLACE_PRONOUN, slotClauses, WOULD_PAST } from '../src/game/board/clarity-lint.js';
 import { VOICED, voicedTally } from '../src/game/board/bones/reread.js';
 import { similesIn, ticsIn } from '../src/game/board/tics.js';
-import { contentWords, factAtoms, sharedContent } from '../src/game/board/plan/once.js';
+import { contentWords, factAtoms, saysAgain, sharedContent } from '../src/game/board/plan/once.js';
 import { papersLine } from '../src/game/board/motives.js';
 import { gates } from '../scripts/claudisms.js';
 import type { Page } from '../src/game/board/types.js';
@@ -32,16 +32,20 @@ describe('docs/59 item 1: said once', () => {
     expect(factAtoms({ k: 'AWAY', person: 'a', place: 'bar', hour: 10, by: { k: 'list', who: 'w' } })).toEqual(['away|a|bar|10']);
   });
 
-  it('two sentences sharing five content words say one thing twice', () => {
+  it('two sentences sharing five content words say one thing twice, unless the second brings words of its own', () => {
     const a = contentWords('Everybody who drops in at the Delmonico rooms knows the spare is in the sugar tin.');
     const b = contentWords('The key that let them in was the spare, and the spare lived in the sugar tin at the Delmonico rooms.');
     expect(sharedContent(a, b).length).toBeGreaterThanOrEqual(5);
+    expect(saysAgain('The key that let them in was the spare, and the spare lived in the sugar tin at the Delmonico rooms.', ['Everybody who drops in at the Delmonico rooms knows the spare is in the sugar tin.'])).toBe(true);
+    // A conclusion drawn from what the page said: the street, and whose street it was.
+    expect(saysAgain('So he had it right, and Pinsky said the same: the Lyric at ten and at seven; East Houston Street was where Mrs. Krantz lived, and that was what mattered.', ['Pinsky saw you here at seven and eight.', 'At ten, walking over to the Lyric, I passed Glick on East Houston Street, in a hurry and no hat on.'])).toBe(false);
   });
 
-  it('Medium 7’s search says the sugar tin once, and the thought says what it means', () => {
+  it('Medium 7’s search says the sugar tin once at most (the office said it), and the thought says what it means', () => {
     const run = playBoardOracle(dealBoard(7, 4, 'lost-pet')).run;
     const find = run.log.find((p) => p.board?.job === 'search') as Page;
-    expect((prose(find).match(/sugar tin/g) ?? []).length).toBe(1);
+    expect((prose(find).match(/sugar tin/g) ?? []).length).toBeLessThanOrEqual(1);
+    expect(prose(find)).toMatch(/\b[Tt]he spare\b/);
     expect(prose(find)).toMatch(/Whoever [^.]* had been at the Delmonico rooms first/);
     // The scene says no window and no way in again (the office said them).
     const scene = run.log.find((p) => p.board?.job === 'arrive' && p.at === 'scene') as Page;

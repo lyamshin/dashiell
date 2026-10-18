@@ -59,6 +59,21 @@ export function sharedContent(a: ReadonlySet<string>, b: ReadonlySet<string>): s
 export const SAME_WORDS = 5;
 
 /**
+ * Whether a sentence says again what the sentences before it on the page said: it shares five content
+ * words with one of them, and brings fewer than three of its own ("…the spare lived in the sugar tin at
+ * the Delmonico rooms" after "…knows the spare is in the sugar tin" brings "let" and "lived"). A
+ * sentence that draws something new from them says its new words ("East Houston Street was where Mrs.
+ * Krantz lived, and that was what mattered").
+ */
+export function saysAgain(sentence: string, before: readonly string[]): boolean {
+  const w = contentWords(sentence);
+  const prior = before.map((b) => contentWords(b));
+  if (!prior.some((p) => sharedContent(w, p).length >= SAME_WORDS)) return false;
+  const seen = new Set(prior.flatMap((p) => [...p]));
+  return [...w].filter((x) => !seen.has(x)).length < 3;
+}
+
+/**
  * What a proposition says, keyed by what makes it that fact. Somebody at a place at an hour is the
  * same fact whoever's word it is (a list's entry, an account's own hour or its company, a placement);
  * a conclusion drawn from it (an agreement, a collision, a narrowing) is a fact of its own.

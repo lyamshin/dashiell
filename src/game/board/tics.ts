@@ -43,7 +43,7 @@ export const SIMILE = new RegExp(
     String.raw`\bas if\b`,
     String.raw`\bas though\b`,
     String.raw`(?<!\b(?:would|I’d|I|you’d|you|we|they|didn’t|don’t|felt|look|looks|looked|sounds?|sounded|seem|seems|seemed|more|nothing|things?|anything|something)\s)\blike (?:a|an|somebody|someone|the|it was|he was|she was|they were)\b(?! (?:that|this|it|nothing)\b)`,
-    String.raw`(?<!\b(?:on|by|all|of|along|out of|halfway|across|part of|in|that’s|is|was|it’s)\s)\bthe way (?:you’d|you|people|a man|a woman|men|women|somebody|someone)\b`,
+    String.raw`(?<!\b(?:on|by|all|of|along|out of|halfway|across|part of|in|that’s|is|was|it’s)\s)\bthe way (?:you’d|you|people|a man|a woman|men|women|somebody|someone|(?:other|most|some) (?:men|women|people))\b`,
   ].join('|'),
   'gi',
 );

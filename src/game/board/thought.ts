@@ -160,6 +160,14 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   const winFirst = (hs: Hour[]) => [...hs].sort((u, v) => Number(win.includes(v)) - Number(win.includes(u)) || u - v);
   const walk = x.level === 'walk';
   const fact = x.level === 'fact';
+  // docs/46 §2: above a walk, an hour that matters is one of the office's, never yet the hour it
+  // happened: "at eleven, when Fritz went" is the walk's to say once the office's two hours narrow.
+  const office = c.givens.window ?? c.crime.window;
+  const reasonFor = (hs: readonly number[]): string => {
+    if (walk || office.length <= 1 || !hs.every((h) => office.includes(h as Hour))) return whyHours(c, hs);
+    const cl = clientOf(c).short;
+    return hs.length >= office.length ? `the hours ${cl} had given me` : `one of the ${office.length === 2 ? 'two ' : ''}hours ${cl} had given me`;
+  };
   // The page that settles who. Only a walk says so; above it, that page reads like any other.
   // docs/47 B11: the walk's elimination is never on the page whose fact completes it. It moves to
   // the turn, or the page after (`eliminationOf`, said once a night by the page writer); the page
@@ -575,7 +583,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     }
     const thereNow = withMeans.length ? [] : there;
     if (!thereNow.length && !plainGone.length) return;
-    const reason = whyHours(c, hs);
+    const reason = reasonFor(hs);
     const goneIds = plainGone.map((g) => g.p);
     const text = thereNow.length
       ? `At ${H}, ${reason}, ${names(thereNow)} ${be}${still ? ' still' : ''} at ${where}${goneIds.length ? ` and ${names(goneIds)} had gone` : ''}.`
@@ -666,7 +674,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     sayThen(true);
     if (t.sentences.length === 0) {
       const where = placeName(c, thenList.place);
-      add(x.pick('then-none', [`Nobody I was asking after was at ${where} at ${andList(thenHs.map(hourWord))}, ${whyHours(c, thenHs)}.`, `At ${andList(thenHs.map(hourWord))}, ${whyHours(c, thenHs)}, none of the people I was asking after was at ${where}.`]), ['givens:clock'], { rule: 'gloss', people: [], places: [thenList.place], hours: [...thenHs] });
+      add(x.pick('then-none', [`Nobody I was asking after was at ${where} at ${andList(thenHs.map(hourWord))}, ${reasonFor(thenHs)}.`, `At ${andList(thenHs.map(hourWord))}, ${reasonFor(thenHs)}, none of the people I was asking after was at ${where}.`]), ['givens:clock'], { rule: 'gloss', people: [], places: [thenList.place], hours: [...thenHs] });
     }
   }
   t.refs = [...new Set(t.refs.filter(Boolean))];
@@ -688,7 +696,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   const backed = (h: Hour) => lines.some((l) => l.hour === h && l.speaker !== rest && l.about.includes(rest)) || (a.placed.get(`${rest}@${h}`)?.deps ?? []).some((d) => d !== `account:${rest}` && d !== q);
   const alone = hs.filter((h) => accountOf(c, rest)?.claims[h] && !backed(h) && !crossed.has(h) && !caught.has(`${rest}@${h}`));
   if (alone.length) {
-    const reason = whyHours(c, alone);
+    const reason = reasonFor(alone);
     add(`Nobody else had said where ${nameOf(c, rest)} was at ${andList(alone.map(hourWord))}, ${reason}.`, clockRef, {
       rule: 'unbacked',
       hours: alone,

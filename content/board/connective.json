@@ -248,7 +248,7 @@
   {"id": "bcn-2559", "family": "ask", "tags": {"job": "account", "face": "no"}, "text": "“Tell me where you were tonight,” I said. “Every hour, and anybody who can say so.”"},
   {"id": "bcn-2560", "family": "ask", "tags": {"job": "account", "face": "yes"}, "text": "“{Reason} I’d like the rest of your evening to go with it.”"},
   {"id": "bcn-2561", "family": "ask", "tags": {"job": "account", "face": "yes"}, "text": "I said it plainly. “{Reason} So where were you the rest of the night?”"},
-  {"id": "bcn-2562", "family": "ask", "tags": {"job": "account", "face": "yes"}, "text": "“{Reason} That’s one hour. Tell me about the others.”"},
+  {"id": "bcn-2562", "family": "ask", "tags": {"job": "account", "face": "yes"}, "text": "“{Reason} That’s part of your evening. Tell me about the rest.”"},
   {"id": "bcn-2563", "family": "ask", "tags": {"job": "account", "face": "yes"}, "text": "“{Reason} I’m asking everybody the same. Where else were you tonight?”"},
   {"id": "bcn-2564", "family": "ask", "tags": {"job": "account", "face": "yes"}, "text": "“{Reason} Fill in the rest of the evening for me, in order.”"},
   {"id": "bcn-2565", "family": "ask", "tags": {"job": "account", "face": "yes"}, "text": "“{Reason} Now tell me the rest of it, from the beginning.”"},

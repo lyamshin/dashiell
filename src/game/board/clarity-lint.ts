@@ -29,7 +29,7 @@ import type { BoardDeal, BoardRun, BoardReport } from './model.js';
 import { clientOf, isMurder } from './model.js';
 import { sentencesOf } from './plan/sentences.js';
 import { maskPlaces } from './plan/measure.js';
-import { contentWords, factAtoms, sharedContent, SAME_WORDS } from './plan/once.js';
+import { contentWords, factAtoms, sharedContent, saysAgain, SAME_WORDS } from './plan/once.js';
 import { NIGHT_TICS, SIMILE } from './tics.js';
 import type { Unit } from './plan/types.js';
 
@@ -88,7 +88,8 @@ export function repeatIssues(run: BoardRun): ClarityIssue[] {
       for (let b = a + 1; b < sents.length; b++) {
         if ((said[a] as { answer: boolean }).answer && (said[a] as { bi: number }).bi === (said[b] as { bi: number }).bi) continue;
         const shared = sharedContent(words[a] as Set<string>, words[b] as Set<string>);
-        if (shared.length >= SAME_WORDS) out.push({ page: i, rule: 'repeat', detail: `${shared.length} words (${shared.join(', ')}): “${(sents[a] as string).slice(0, 90)}” / “${(sents[b] as string).slice(0, 90)}”` });
+        // (Unless the later one brings three words of its own the page hadn't said: it drew something new.)
+        if (shared.length >= SAME_WORDS && saysAgain(sents[b] as string, sents.slice(0, b))) out.push({ page: i, rule: 'repeat', detail: `${shared.length} words (${shared.join(', ')}): “${(sents[a] as string).slice(0, 90)}” / “${(sents[b] as string).slice(0, 90)}”` });
       }
     }
   });
@@ -165,8 +166,8 @@ export const FEET = /\bfeet\b[^.]*\b(?:off|down from|down off)\b[^.]*\bdesk\b|\b
 /** The client at the scene, and how they got there ahead of me. */
 const AHEAD = /\bahead of me\b|\bhad (?:arrived|come|got) (?:there |in )?(?:first|ahead|before)\b|\bin a cab\b|\bhad taken a cab\b|\bbeaten me there\b/;
 
-/** A knock at the door, not the radiator's: "a knock, so soft I nearly missed it", "knocked once, came in". */
-const DOOR_KNOCK = /^(?!.*\b(?:radiator|pipes?|heating|boiler)\b).*\b(?:a knock|knocked|knocks)\b/i;
+/** A knock at my door, not the radiator's, nor the finder's at the dead man's ("…who heard his radio still going, and knocked"). */
+const DOOR_KNOCK = /^(?!.*\b(?:radiator|pipes?|heating|boiler|found|radio)\b).*\b(?:a knock|knocked|knocks)\b/i;
 
 export function continuityIssues(d: BoardDeal, run: BoardRun): ClarityIssue[] {
   const c = d.kase;

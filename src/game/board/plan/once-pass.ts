@@ -20,7 +20,7 @@ import type { PlanCtx } from './index.js';
 import type { Item } from './types.js';
 import { sentencesOf } from './sentences.js';
 import { stripMarks } from './refer.js';
-import { contentWords, factAtoms, sharedContent, SAME_WORDS, STOP_WORDS } from './once.js';
+import { contentWords, factAtoms, sharedContent, saysAgain, SAME_WORDS, STOP_WORDS } from './once.js';
 import { similesIn } from '../tics.js';
 
 /** Slots whose texture may go when it says a fact again and nothing else fits. */
@@ -51,7 +51,7 @@ const actsOf = (t: string): string[] => {
 };
 
 /** The simile clause a sentence ends on, or a sentence that is only one: what comes off. */
-const TRAILING_SIMILE = /,? (?:like (?:a|an|somebody|someone|the) |as if |as though |the way (?:you’d |you |people |a man |a woman |somebody |someone |everybody |anybody ))[^.;:!?“”]*(?=[.!?]$)/i;
+const TRAILING_SIMILE = /,? (?:like (?:a|an|somebody|someone|the) |as if |as though |the way (?:you’d |you |people |a man |a woman |men |women |somebody |someone |everybody |anybody |(?:other|most|some) (?:men|women|people) ))[^.;:!?“”]*(?=[.!?]$)/i;
 const ONLY_SIMILE = /^(?:The way|Like|As if|As though)\b[^“”]*[.!?]$/;
 
 export function sayOnce(paras: Item[][], ctx: PlanCtx): void {
@@ -74,11 +74,8 @@ export function sayOnce(paras: Item[][], ctx: PlanCtx): void {
     const said = new Set(earlierFacts.flatMap((x) => (x.props ?? []).flatMap(factAtoms)));
     const mine = (it.props ?? []).flatMap(factAtoms);
     const allSaid = mine.length > 0 && mine.every((a) => said.has(a));
-    const prior = before(it).map((s) => contentWords(s));
-    const echoes = sentencesOf(stripMarks(it.text)).some((s) => {
-      const w = contentWords(s);
-      return prior.some((p) => sharedContent(w, p).length >= SAME_WORDS);
-    });
+    const prior = before(it);
+    const echoes = sentencesOf(stripMarks(it.text)).some((s) => saysAgain(s, prior));
     if (allSaid || echoes) it.text = '';
   }
   // 2. Texture that says a fact again, or another piece of texture before it; or does again what the
