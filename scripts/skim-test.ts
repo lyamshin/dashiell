@@ -86,8 +86,9 @@ if (cmd === 'pick') {
     let got = 0;
     for (let tries = 0; got < per && tries < 600; tries++) {
       s++;
-      const world = (ids.length + tries) % 2 === 0 ? 'dealt' : 'neighbourhood';
-      const tier = (ids.length % 6) as 0 | 1 | 2 | 3 | 4 | 5;
+      // Both worlds a tier at a time: every tier four times, each world twelve.
+      const world = ids.length % 2 === 0 ? 'dealt' : 'neighbourhood';
+      const tier = (Math.floor(ids.length / 2) % 6) as 0 | 1 | 2 | 3 | 4 | 5;
       const types = gen.typesFor(tier);
       const type = types[r(types.length)] as string;
       const route: 'oracle' | 'wanderer' = job === 'confront' ? 'wanderer' : 'oracle';

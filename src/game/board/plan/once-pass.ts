@@ -20,7 +20,7 @@ import type { PlanCtx } from './index.js';
 import type { Item } from './types.js';
 import { sentencesOf } from './sentences.js';
 import { stripMarks } from './refer.js';
-import { contentWords, factAtoms, sharedContent, SAME_WORDS } from './once.js';
+import { contentWords, factAtoms, sharedContent, SAME_WORDS, STOP_WORDS } from './once.js';
 import { similesIn } from '../tics.js';
 
 /** Slots whose texture may go when it says a fact again and nothing else fits. */
@@ -28,6 +28,23 @@ const DROPPABLE = new Set(['gloss', 'hand-off', 'close']);
 
 /** A sentence's narration: its quotations taken out. */
 const narr = (t: string): string => stripMarks(t).replace(/“[^”]*”?/g, ' ');
+
+/** Words that go with a verb and say no act of their own: "took off my hat" is "took my hat off". */
+const PARTICLES = new Set(['off', 'up', 'down', 'out', 'in', 'on', 'over', 'back', 'away', 'round', 'around', 'aside']);
+
+/**
+ * What a narration sentence of mine does, folded: its first four words ("i wrote it down"), and its
+ * verb with the first thing it's done to ("took hat", for "I took my hat off" and "I took off my hat
+ * and began…"). The same act twice on a page is the page doing it again.
+ */
+const actsOf = (t: string): string[] => {
+  const w = narr(t).trim().toLowerCase().replace(/[^a-z’' ]+/g, ' ').split(/\s+/).filter(Boolean);
+  if (w[0] !== 'i' || w.length < 3) return [];
+  const out = w.length >= 4 ? [w.slice(0, 4).join(' ')] : [];
+  const obj = w.slice(2, 6).find((x) => !PARTICLES.has(x) && !STOP_WORDS.has(x));
+  if (obj) out.push(`${w[1]} ${obj}`);
+  return out;
+};
 
 /** The simile clause a sentence ends on, or a sentence that is only one: what comes off. */
 const TRAILING_SIMILE = /,? (?:like (?:a|an|somebody|someone|the) |as if |as though |the way (?:you’d |you |people |a man |a woman |somebody |someone |everybody |anybody ))[^.;:!?“”]*(?=[.!?]$)/i;
@@ -60,13 +77,16 @@ export function sayOnce(paras: Item[][], ctx: PlanCtx): void {
     });
     if (allSaid || echoes) it.text = '';
   }
-  // 2. Texture that says a fact again, or another piece of texture before it.
+  // 2. Texture that says a fact again, or another piece of texture before it; or does again what the
+  // page has just done ("I wrote it down. Writing things down is what I do…" and then "I wrote it down
+  // as given and put the pencil behind my ear").
   const wordsOf = (xs: Item[]) => xs.filter((x) => x.text.trim()).flatMap((x) => sentencesOf(stripMarks(x.text)).map((s) => contentWords(s)));
   for (const it of items) {
     if (it.kind !== 'gap' || it.speech || !it.text.trim()) continue;
     const i = items.indexOf(it);
     const fw = wordsOf([...items.filter((x) => x.kind === 'fact'), ...items.slice(0, i).filter((x) => x.kind === 'gap')]);
-    const echo = (t: string) => sentencesOf(stripMarks(t)).some((s) => fw.some((f) => sharedContent(contentWords(s), f).length >= SAME_WORDS));
+    const done = new Set(before(it).flatMap(actsOf));
+    const echo = (t: string) => sentencesOf(stripMarks(t)).some((s) => actsOf(s).some((a) => done.has(a)) || fw.some((f) => sharedContent(contentWords(s), f).length >= SAME_WORDS));
     if (!echo(it.text)) continue;
     const alt = it.alts?.().find((a) => !echo(a.text));
     if (alt) {

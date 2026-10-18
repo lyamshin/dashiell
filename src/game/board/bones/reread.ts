@@ -1215,6 +1215,22 @@ READ['COLLISION-PAIR'] = (a, flags, comp, v, lx) => {
   ]);
 };
 
+// docs/59 item 3: the thought on the page that told the line: whose story, where and when, and whose
+// line it was; the line itself is the page's own, folded.
+const herePair = READ['COLLISION-PAIR'] as Reader;
+READ['COLLISION-PAIR'] = (a, flags, comp, v, lx) => {
+  if (!flags.has('here')) return herePair(a, flags, comp, v, lx);
+  const x = comp.props[0] as P<'COLLIDES'>;
+  const w = x.with as Prop;
+  const person = a.person as Id;
+  const place = flags.has('home') ? (personOf(v.c, person)?.home as PlaceId) : (a.place as PlaceId);
+  const src = w.k === 'LIST' ? w.watcher : w.k === 'CLAIM' ? w.person : undefined;
+  if (!src || personV(v.c, (a.src as string) ?? '') !== src) throw new Error(`voiced: whose line is "${a.src}"?`);
+  if (flags.has('seen') && (w.k !== 'LIST' || a.at !== w.place)) throw new Error('voiced: seen where?');
+  if (flags.has('unseen') && (w.k !== 'LIST' || w.people.includes(person))) throw new Error('voiced: never saw them, but the list has them');
+  return [{ k: 'COLLIDES', person, place, hour: a.hour as number, with: w }];
+};
+
 function c2place(c: BoardCase, name: string): PlaceId | undefined {
   return c.places.find((p) => placeName(c, p.id).toLowerCase() === name.toLowerCase())?.id;
 }

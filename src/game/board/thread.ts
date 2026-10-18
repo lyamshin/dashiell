@@ -126,7 +126,10 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
           // docs/59 item 8: "Grasso had said she was with Whitfield at the Delmonico rooms at nine": the
           // speaker's own pronoun, next to her name; "Whitfield was with her" left "her" to either woman,
           // and the reference pass said "with Grasso", her name twice in the sentence.
-          return out(own ? `${A} had said ${pm(c, a.person, 'he')} was home with ${P} at ${hourWord(h0)}` : `${A} had said ${pm(c, a.person, 'he')} was with ${P} ${where === 'here' ? 'here' : `at ${where}`} at ${hourWord(h0)}`, [`claim:${a.person}@${h0}`], {
+          // docs/59 item 1: who and when is the reason to come; where is the account's to say, once
+          // ("Feeney had said he was home, the Delmonico rooms, with Brauer at eight", and then the
+          // account and the thought said the Delmonico rooms at eight again).
+          return out(`${A} had said ${pm(c, a.person, 'he')} was with ${P} at ${hourWord(h0)}`, [`claim:${a.person}@${h0}`], {
             // To their face, only a watcher's word: "Coffin has you here at nine." Another suspect's would be one more name, and a story set against a story.
             ...(safe.length > 0 && personOf(c, a.person)?.role === 'watcher' ? { face: `${A} says you were with ${pa.him} ${pl === here && !own ? 'here' : `at ${where.replace(/\u2063\d+\u2064/g, '')}`} ${hoursSaid(c, safe)}.` } : {}),
             hours: [h0],

@@ -136,6 +136,8 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
       return has('apart') ? [['confirmed'], ['placed']] : [['confirmed'], ['others']];
     case 'COLLISION-PAIR':
       if (has('recap')) return [['person'], ...(has('home') ? [] : [['place']]), ['hour'], ['src']];
+      // docs/59 item 3: on the page that told the line: whose story, where and when, and whose line (the line itself is the page's, folded).
+      if (has('here')) return [['person'], ...(has('home') ? [] : [['place']]), ['hour'], ['src'], ...(has('seen') ? [['at']] : [])];
       if (has('hole') || has('second-refused')) return [['person'], ['place'], ['hour']];
       if (has('put')) return [['claim'], ['breaker']];
       if (has('still')) return [['person'], ['place'], ['hour'], ['src']];
@@ -255,7 +257,7 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
   },
   'COLLISION-PAIR': {
     args: { claim: T, breaker: T, two: T, person: 'person', place: 'place', hour: 'hour', src: T, at: 'at', watcher: 'person' },
-    doc: 'Somebody’s claim and the line that breaks it. Thought: {claim} "Abramowitz said the Thalia at eleven", {breaker} the line, {two} the closing line. Flags: but | two | colon. Recap: {person} had told me {place} at {hour}, and {src} said otherwise (home: "home", no {place}). After a put: hole: that was a hole in {person}’s story (where and when are the put’s, folded); second-refused: {person}’s second story had a list against it now, and {person:they} had nothing in its place; still: {person}’s {hour} o’clock still had {src} ("Coffin’s list", "Ashby’s own evening", "the office") against it; second-list (on a list page): {person}’s second story had {person:them} {at} at {hour}, and {watcher} didn’t have {person:them}.',
+    doc: 'Somebody’s claim and the line that breaks it. Thought: {claim} "Abramowitz said the Thalia at eleven", {breaker} the line, {two} the closing line. Flags: but | two | colon. Recap: {person} had told me {place} at {hour}, and {src} said otherwise (home: "home", no {place}). here (the thought on the page that told the line, which isn’t said again): {person} had told me {place} at {hour} (home: "home"), and {src} (the list’s watcher, or whose account it was) said otherwise (list unseen: never saw {person:them} there; list seen: saw {person:them} {at}). After a put: hole: that was a hole in {person}’s story (where and when are the put’s, folded); second-refused: {person}’s second story had a list against it now, and {person:they} had nothing in its place; still: {person}’s {hour} o’clock still had {src} ("Coffin’s list", "Ashby’s own evening", "the office") against it; second-list (on a list page): {person}’s second story had {person:them} {at} at {hour}, and {watcher} didn’t have {person:them}.',
   },
   'ADMIT-CHECK': {
     args: { a: T, b: T },

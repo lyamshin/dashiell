@@ -57,16 +57,18 @@ const PAPERS: Record<string, string> = {
  * docs/59 note 7: the papers' line for a dealt night, a plain sentence with the grudge's direction in
  * it and the suspect named once (`{name}`); "him" is the dead man, whose papers they are.
  */
+// (An entry a suspect, opening on their name: the pronoun in it is theirs, the dead man is said as
+// "the dead man", and three entries never open alike, "The dead man… The dead man… The dead man…".)
 const PAPERS_SAID: Record<string, string> = {
-  m0: 'The dead man had a file on {name}.',
-  m1: 'The dead man had been squeezing {name} for years.',
-  m2: 'The dead man knew where {name} was in 1921.',
-  m3: '{name} owed him four hundred dollars.',
-  m4: '{name} owed him the rent on a shop, and it was being called in.',
-  m5: 'The dead man closed {name}’s business.',
-  m6: 'The dead man threw {name} out of a lease.',
-  m7: 'The dead man testified against {name}’s brother.',
-  m8: 'The dead man jilted {name}’s sister a week before the wedding.',
+  m0: '{name}: the dead man had kept a file on {him}.',
+  m1: '{name}: the dead man had been squeezing {him} for years.',
+  m2: '{name}: the dead man knew where {he} was in 1921.',
+  m3: '{name}: {he} owed the dead man four hundred dollars.',
+  m4: '{name}: {he} owed the dead man the rent on a shop, and it was being called in.',
+  m5: '{name}: the dead man had put {him} out of business.',
+  m6: '{name}: the dead man had thrown {him} out of a lease.',
+  m7: '{name}: the dead man had testified against {his} brother.',
+  m8: '{name}: the dead man had jilted {his} sister a week before the wedding.',
 };
 
 /**
@@ -153,8 +155,8 @@ export function papersLine(c: BoardCase, p: PersonId, planned = false): string {
   // A dealt night's grudge, said as its own sentence.
   const said = !who?.motiveForm && who?.motiveId ? PAPERS_SAID[who.motiveId] : undefined;
   if (said) {
-    const t = said.replace('{name}', nm);
-    return v.female ? t.replace(/\bThe dead man\b/g, 'The dead woman').replace(/\bowed him\b/g, 'owed her') : t;
+    const t = said.replace('{name}', nm).replace('{he}', pr.he).replace('{him}', pr.him).replace('{his}', pr.his);
+    return v.female ? t.replace(/\bthe dead man\b/g, 'the dead woman') : t;
   }
   let f = motiveForm(c, p);
   // "They owed him four hundred dollars": a sentence of their own, by name.

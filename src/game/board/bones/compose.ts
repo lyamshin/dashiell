@@ -48,6 +48,7 @@ import type { Composite, Prop, Shape, Src } from './types.js';
 import { fitting, LOWER, type Args, type Voicing } from './voice.js';
 import { preview, SAMPLES, VARIETY, unpick, type Picked } from './say.js';
 import { plainComposite } from './plain.js';
+import { ticsIn } from '../tics.js';
 import { homeNamed } from '../home.js';
 
 /** The longest sentence composition makes. */
@@ -249,7 +250,8 @@ export function altsFor(comp: Held, p: Picked, ctx: PlanCtx): Item['alts'] {
   if (!hand || p.others.length === 0) return undefined;
   return () =>
     p.others
-      .filter((o) => hand.lastUse(`v:${o.v.id}`) < 0)
+      // (docs/59 item 7: never a trade that says a night's tic again.)
+      .filter((o) => hand.lastUse(`v:${o.v.id}`) < 0 && !ticsIn(o.text).some((id) => hand.lastUse(id) >= 0))
       .map((o) => ({
         text: o.text,
         take: () => {
@@ -258,6 +260,7 @@ export function altsFor(comp: Held, p: Picked, ctx: PlanCtx): Item['alts'] {
             hand.swap(comp.noted, key);
             unpick(comp.noted);
           } else hand.note(key);
+          for (const id of ticsIn(o.text)) hand.note(id);
           // (Only a voicing unsaid tonight is offered: the trade is never one said again.)
           if (VARIETY.on) VARIETY.picks.push({ id: o.v.id, key, shape: comp.shape, pool: p.others.length + 1, again: false, unsaidLeft: false });
           comp.noted = key;
@@ -720,6 +723,22 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       const col = props(ps, 'COLLIDES')[0];
       if (!col) return;
       const comp = held(it);
+      // docs/59 item 3: the line that breaks the story was told on this very page (the list, the
+      // account): the thought says what it does to the story, never the line again ("Hauck said
+      // Moskowitz’s at ten, but Lanza said only Feldman, Obermann and Benny were at Moskowitz’s at
+      // ten o’clock" after Lanza had just said who was in).
+      const w = col.with as Prop;
+      const toldHere =
+        !col.second &&
+        (w.k === 'LIST' || w.k === 'CLAIM') &&
+        items.slice(0, i).some((x) => x.kind === 'fact' && x.beat !== 'thought' && (x.props ?? []).some((y) => (w.k === 'LIST' && y.k === 'LIST' && y.watcher === w.watcher) || (w.k === 'CLAIM' && y.k === 'CLAIM' && y.person === w.person)));
+      if (toldHere) {
+        const home = personOf(c, col.person)?.home === col.place;
+        const seen = w.k === 'LIST' && w.people.includes(col.person);
+        const src = w.k === 'LIST' ? w.watcher : (w as Extract<Prop, { k: 'CLAIM' }>).person;
+        voice(it, comp, ['here', home ? 'home' : 'away', ...(w.k === 'LIST' ? ['list', seen ? 'seen' : 'unseen'] : ['claim'])], { person: { t: 'person', id: col.person }, place: { t: 'place', id: col.place }, hour: { t: 'hour', h: col.hour }, src: nameOf(c, src), ...(seen ? { at: { t: 'at', id: (w as Extract<Prop, { k: 'LIST' }>).place, here: '' } } : {}) }, ctx);
+        return;
+      }
       const d = collisionArgs(c, col, here);
       const fl = it.flesh as { two: string; twos: string[] };
       const one = `${d.claim}, but ${d.breaker}.`;
@@ -1168,6 +1187,10 @@ function sideBySide(segs: Seg[], ctx: PlanCtx, n: number): void {
     if (ruleOf(A) === 'then' || ruleOf(B) === 'then') return null;
     // docs/59 item 8: two facts that name one person don't go in one sentence ("…according to Ruggiero; … and Ruggiero said otherwise").
     if (sharesName(ctx.c, A.text, B.text)) return null;
+    // Nor where the second's pronoun could be somebody of that sex the first names ("…though Dr.
+    // Hirsch hadn’t brought it up in the office; Miss Kahane had told me where she was").
+    const pron = /\b(he|him|his|she|her)\b/i.exec(plain(B.text));
+    if (pron && ctx.c.people.some((p) => !p.object && !!p.female === /^(?:she|her)$/i.test(pron[1] as string) && maskPlaces(ctx.c, plain(A.text)).includes(p.short))) return null;
     let made: { comp: Held; text: string; commit: () => void } | undefined;
     let join: string | undefined;
     // A collision keeps a clause of its own (docs/49 §2): after it, only a semicolon.

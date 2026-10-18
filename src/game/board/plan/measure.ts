@@ -135,7 +135,8 @@ export function clauseHead(text: string, names: { id: string; at: number }[], at
   const from = cut < 0 ? 0 : cut + 1;
   const n = names.filter((x) => x.at >= from && x.at < at)[0];
   if (!n) return undefined;
-  const lead = text.slice(from, n.at).replace(/\b(and|that|said|then|so|but|the|Mrs\.|Mr\.|Dr\.|Miss)\b/g, '').trim();
+  // (A sentence's opener is no subject: "So Cheatham backed him up" is Cheatham's clause.)
+  const lead = text.slice(from, n.at).replace(/\b(and|that|said|then|so|but|the|Mrs\.|Mr\.|Dr\.|Miss)\b/gi, '').trim();
   return lead === '' ? n.id : undefined;
 }
 
@@ -178,6 +179,24 @@ export function opensOnRole(text: string, female: boolean): boolean {
 /** A list entry's heading: "Hargrove: …", "Mrs. Nagy: …". */
 const ENTRY = /^(?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?[A-Z][\w’]+: /;
 const ENTRY_SEAM = /; (?=(?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?[A-Z][\w’]+: )/g;
+
+/** "the house manager", "my client", "the dead man": a role clear enough to stand for a name. */
+export function roleOf(c: BoardCase, id: string): string | undefined {
+  const p = c.people.find((x) => x.id === id);
+  if (!p) return undefined;
+  if (p.role === 'client') return 'my client';
+  if (p.role === 'victim' && c.type === 'murder') return p.female ? 'the dead woman' : 'the dead man';
+  if ((c.variant === 'face' || c.variant === 'pair') && p.role === 'suspect' && p.look) return `the ${p.female ? 'woman' : 'man'} ${p.look}`;
+  // A suspect's trade, when nobody else in the case has it: "the dentist", "the milliner" (the
+  // office's aside and the notebook give everybody's).
+  if (p.role === 'suspect' && p.job && c.people.filter((x) => x.job === p.job).length === 1) return `the ${p.job.replace(/^(?:a|an|the) /, '')}`;
+  if (p.role === 'watcher') {
+    const j = p.description.split(/,| at /)[0]?.trim();
+    return j && /^the /.test(j) ? j : undefined;
+  }
+  if (p.role === 'company' && /^a neighbou?r\b/.test(p.description)) return 'the neighbor';
+  return undefined;
+}
 
 /** Pronouns in the narration with two possible referents (see the header). */
 export function pronounAmbiguity(c: BoardCase, blocks: readonly Block[]): string[] {
@@ -222,6 +241,10 @@ export function pronounAmbiguity(c: BoardCase, blocks: readonly Block[]): string
         const after = new Set(here.filter((x) => x.at > at && sexOf.get(x.id) === female).map((x) => x.id));
         if (local.size === 0 && after.size === 1) continue;
         if (local.size === 0 && indefiniteFor(narr.slice(from, at), female) && !here.some((x) => x.at >= from && x.at < at && sexOf.get(x.id) === female)) continue;
+        // (docs/59: a sentence that opens on somebody by their role, "The insurance agent went back to
+        // polishing his derby", names nobody of that sex before it: its "his" is the insurance agent's.
+        // Never an object: "The dead man had a file on him" isn't the dead man's.)
+        if (local.size === 0 && !object && roleOpener(c, narr.slice(from), female)) continue;
         if (local.size === 0 && !entries) {
           cands = new Set<string>();
           for (const ns of prior.slice(-1)) for (const x of ns) if (sexOf.get(x.id) === female) cands.add(x.id);
@@ -232,6 +255,20 @@ export function pronounAmbiguity(c: BoardCase, blocks: readonly Block[]): string
     }
   }
   return out;
+}
+
+/** Whether a clause opens on one person by their role ("The insurance agent …"), of that sex. */
+function roleOpener(c: BoardCase, text: string, female: boolean): boolean {
+  const t = text.trimStart().toLowerCase();
+  const roles = new Map<string, { female: boolean; n: number }>();
+  for (const p of c.people) {
+    const r = roleOf(c, p.id);
+    if (!r) continue;
+    const was = roles.get(r.toLowerCase());
+    roles.set(r.toLowerCase(), { female: pronOf(c, p.id).he === 'she', n: (was?.n ?? 0) + 1 });
+  }
+  for (const [r, x] of roles) if (x.n === 1 && x.female === female && t.startsWith(`${r} `)) return true;
+  return false;
 }
 
 /** docs/49 §2's joins, as the page says them. */

@@ -82,7 +82,7 @@ import type { Prop } from './bones/types.js';
 import { KNOCKED, SAT, STANDING, seatedAfter } from './plan/situated.js';
 import { ARRIVAL_MOVES, ASK_SIT, FEET, SITTING, VISITOR_SAT, WALK_ARRIVES } from './clarity-lint.js';
 import { sentencesOf } from './plan/sentences.js';
-import { gagNoun } from './tics.js';
+import { gagNoun, ticsIn } from './tics.js';
 import { finderGloss, glossOf, guestsGlossed } from './gloss.js';
 import { isPoison, officeWhen } from './when.js';
 import { LOWER } from './bones/voice.js';
@@ -226,7 +226,17 @@ function pickAlts(w: Writer, text: string): Item['alts'] {
  */
 function altsOf(w: Writer, last: Hand['last'], shape: (t: string) => string = (t) => t): Item['alts'] {
   if (!PLAN.ops || !last || last.others.length === 0) return undefined;
-  return () => last.others.filter((o) => !w.hand.used(o.id)).map((o) => ({ text: tidy(shape(o.text)), take: () => w.hand.swap(last.id, o.id) }));
+  // (docs/59 item 7: never a trade that says a night's tic again; one taken notes its own.)
+  return () =>
+    last.others
+      .filter((o) => !w.hand.used(o.id) && !ticsIn(o.text).some((id) => w.hand.used(id)))
+      .map((o) => ({
+        text: tidy(shape(o.text)),
+        take: () => {
+          w.hand.swap(last.id, o.id);
+          for (const id of ticsIn(o.text)) w.hand.note(id);
+        },
+      }));
 }
 
 /**
@@ -1540,7 +1550,8 @@ export function writeArrive(w: Writer, place: PlaceId): void {
     // "Grasso had said she was here at seven, with Abramowitz", not "…here at seven, and that
     // Abramowitz was with her here at seven" (Hard-boiled 8's #18).
     const m0 = /^.+? had said (?:he|she)(?:\u2063\d+\u2064)? was (here|at .+?) at (\w+)$/.exec(p0.clause);
-    const m1 = p1 && said && p1.src === p0.src ? new RegExp(`^${esc(said)}(?:he|she)(?:\u2063\\d+\u2064)? was with (.+?) (here|at .+?) at (\\w+)$`).exec(p1.clause) : null;
+    // (docs/59 item 1: the companion's pointer says who and when, no place: "…had said she was with Mrs. Pomerantz at ten".)
+    const m1 = p1 && said && p1.src === p0.src ? new RegExp(`^${esc(said)}(?:he|she)(?:\u2063\\d+\u2064)? was with (.+?)(?: (here|at .+?))? at (\\w+)$`).exec(p1.clause) : null;
     // docs/53: one list's two people at the same place and hours, said once: "Mrs. Kowalski’s list had
     // Brauer and Brennan at Kowalski’s all evening", not the place twice.
     const r0 = head ? /^(.+?)( at .+)$/.exec(p0.clause.slice(head.length)) : null;
@@ -1557,7 +1568,7 @@ export function writeArrive(w: Writer, place: PlaceId): void {
         : `${p0.clause}, and with ${w1[3]} at ${w1[5]}`
       : w0 && w1
       ? `${p0.clause}, and with ${w1[3]}${w1[4] ? ` ${w1[4]}` : ''} at ${w1[5]}`
-      : m0 && m1 && m0[1] === m1[2] && m0[2] === m1[3]
+      : m0 && m1 && (m1[2] === undefined || m0[1] === m1[2]) && m0[2] === m1[3]
       ? `${p0.clause}, with ${m1[1]}`
       : r0 && r1 && r0[2] === r1[2]
       ? `${head}${r0[1]} and ${r1[1]}${r0[2]}`

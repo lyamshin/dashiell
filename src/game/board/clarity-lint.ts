@@ -74,11 +74,19 @@ export function repeatIssues(run: BoardRun): ClarityIssue[] {
         if (shared) out.push({ page: i, rule: 'repeat', detail: `${shared}: “${strip((facts[a] as Unit).text).slice(0, 90)}” / “${strip((facts[b] as Unit).text).slice(0, 90)}”` });
       }
     }
-    // The same words.
-    const sents = blocks.flatMap((b) => (b.kind === 'prose' && b.voice !== 'chapter' ? sentencesOf(strip(b.text)) : []));
+    // The same words. (A put reads the line that breaks the story back to their face, and their answer
+    // is about it: on a put's page the talk is the put's, and only the narration counts, as docs/47's
+    // "sentences twice" has it.)
+    const put = p.board?.job === 'confront';
+    // (One person's own evening names every hour's place and company, docs/43's "whole": going back to
+    // the Delmonico rooms with the same three people at nine says them again, and that's two hours, not
+    // one fact twice. Within one answer, the facts above tell them apart.)
+    const said = blocks.flatMap((b, bi) => (b.kind === 'prose' && b.voice !== 'chapter' && !(put && b.voice === 'exchange') ? sentencesOf(strip(b.text)).map((t) => ({ t, bi, answer: b.voice === 'answer' })) : []));
+    const sents = said.map((x) => x.t);
     const words = sents.map((s) => contentWords(s));
     for (let a = 0; a < sents.length; a++) {
       for (let b = a + 1; b < sents.length; b++) {
+        if ((said[a] as { answer: boolean }).answer && (said[a] as { bi: number }).bi === (said[b] as { bi: number }).bi) continue;
         const shared = sharedContent(words[a] as Set<string>, words[b] as Set<string>);
         if (shared.length >= SAME_WORDS) out.push({ page: i, rule: 'repeat', detail: `${shared.length} words (${shared.join(', ')}): “${(sents[a] as string).slice(0, 90)}” / “${(sents[b] as string).slice(0, 90)}”` });
       }
@@ -106,7 +114,7 @@ const CHANGE = /\b(?:came|come|comes|coming|went|go|goes|going|gone|left|leave|l
 const DID = /\b(?:had|took|saw|got|made|ran|sat|stood|kept|met|bought|brought|caught|read|wrote|spoke|ate|drank|heard|found|gave|told|said|thought|knew|slept|lay|did|put|set|paid|sent|spent|lost|won|rang|sang|drove|rode|fed|led|meant|sold|taught|wore|[a-z]{2,}ed)\b/i;
 
 /** Somebody doing something: a subject and a verb besides "was" ("Eight, I start thinking about what to wear"). */
-const DOES = /\bI (?!was\b|were\b|had nobody\b|had no one\b|had (?:nobody|no one) with me\b)[a-z’]+\b|\b(?:my|our) \w+ [a-z]+s\b/;
+const DOES = /\bI (?!was\b|were\b|had (?:nobody|no one|somebody|(?:Mrs\.|Mr\.|Miss|Dr\.)? ?[A-Z]))[a-z’]+\b|\b(?:my|our) \w+ [a-z]+s\b/;
 /** Somebody in it: a slot is who was where ("Ten, nobody", "Eight o’clock, Mosley"), not a thing ("At seven, the rat poison was there"). */
 const PERSONISH = /\b(?:I|me|nobody|no one|everybody|somebody|anybody)\b|(?<=\S\s)[A-Z][a-z’]{2,}\b/;
 /** An hour word that's a count: "Ten rounds, no decision". */
@@ -118,7 +126,8 @@ export function slotClauses(quote: string): string[] {
     .split(/(?<!\b(?:Mrs?|Dr|St))[.!?;]\s*/)
     .map((x) => x.replace(/^[“”\s]+|[“”\s]+$/g, '').trim())
     .filter((x) => x.length > 0)
-    .filter((x) => (SLOT_OPEN.test(x) || SLOT_WITH.test(x)) && !CHANGE.test(x) && !DID.test(x.replace(/\b(?:it was|I was|was|were)\b/g, '')) && !DOES.test(x) && !COUNT.test(x) && PERSONISH.test(x));
+    // (Not what's always so: "Eight is when the mothers want me" is the speaker's habit, not tonight's hour.)
+    .filter((x) => (SLOT_OPEN.test(x) || SLOT_WITH.test(x)) && !CHANGE.test(x) && !DID.test(x.replace(/\b(?:it was|I was|was|were)\b|\bhad (?=(?:Mrs\.|Mr\.|Miss|Dr\.)? ?[A-Z]|nobody|no one|somebody)/g, '')) && !DOES.test(x) && !COUNT.test(x) && !/\b(?:is|are)\b/.test(x) && PERSONISH.test(x));
 }
 
 export function slotIssues(run: BoardRun): ClarityIssue[] {

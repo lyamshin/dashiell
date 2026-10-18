@@ -605,7 +605,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       // (The coat's hour is the watcher's, said on this page: the page tells it.)
       const HOUR: Record<string, Hour> = { eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12 };
       const hh = HOUR[/^(\w+):/.exec(r.text)?.[1]?.toLowerCase() ?? ''] ?? r.facts[0]?.h;
-      add(x.pick('handover-link', [`Whatever went out of ${scene} tonight had to end up somewhere.`, `Something had gone out of ${scene} tonight, and it had to go somewhere.`, `I thought about what had gone out of ${scene}, and where a thing like that goes.`]), ['givens:gone'], {
+      // (Of three lengths, so the page's rhythm has one to trade for: docs/49's list smell.)
+      add(x.pick('handover-link', [`Whatever went out of ${scene} tonight had to end up somewhere.`, `Something had gone out of ${scene} tonight, and it had to go somewhere.`, 'Whatever went out had to go somewhere.', `I thought about what had gone out of ${scene} tonight, and about where a thing like that ends up at this hour of the night.`]), ['givens:gone'], {
         rule: 'gloss',
         people: [],
         places: [c.crime.scene],

@@ -79,6 +79,8 @@ function opensOnClause(b: string): boolean {
     return false;
   }
   if (NOT_SUBJECT.test(w0)) return false;
+  // ("That she was with Mrs. Pomerantz at ten" is what somebody said, not a sentence: its "That" is no subject.)
+  if (w0 === 'That' && (/^(?:I|he|she|they|we|you|it|there|Mrs|Mr|Miss|Dr)$/.test(ws[1] ?? '') || NAMES.has(ws[1] ?? ''))) return false;
   // (A possessive opens a subject too: "Somebody’s galoshes stood by the door".)
   const w0s = w0.replace(/’s$/, '');
   if (!OPENER.test(w0s) && !NAMES.has(w0s)) return false;
@@ -358,6 +360,9 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
       // state of mind: "…, so I wished rooms could talk" is a non sequitur.
       if (!/\b(?:had|said|passed|was|were)\b/.test(l) || /\b(?:are|is|keeps|keep)\b/.test(l)) return null;
       if (!FOLD_ACT.test(card) || /\bso\b/i.test(card) || wordsIn(l) + wordsIn(card) > 34) return null;
+      // (docs/59 item 8: not where the card's pronoun could be either of two people the reason names:
+      // "Vogel had named Tramonti, so I went… to give her nothing to steer by".)
+      if (/\b(?:he|him|his|she|her)\b/i.test(card) && ctx.c.people.filter((p) => p.short.length > 2 && l.includes(p.short)).length >= 2) return null;
       const old = it.text;
       it.text = `${lead.slice(0, -1)}, so ${card}`;
       const alts = it.alts;

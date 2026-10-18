@@ -273,9 +273,14 @@ export class Hand {
         if (filled0.length === 0) continue;
         const ok = filled0.filter((x) => this.untic(x.text));
         if (strict && ok.length === 0) continue;
-        const filled = ok.length > 0 ? ok : filled0;
-        const fresh = filled.filter((x) => !this.spentSet.has(x.c.id));
+        const freshAll = filled0.filter((x) => !this.spentSet.has(x.c.id));
+        const freshOk = ok.filter((x) => !this.spentSet.has(x.c.id));
+        // A fresh card that says no tic; else, where the strict pass has a fresher rung to try, that
+        // rung; else a fresh card at all before one dealt tonight already (a card twice is a repeat too).
+        if (strict && freshOk.length === 0 && freshAll.length > 0) continue;
+        const fresh = freshOk.length > 0 ? freshOk : freshAll;
         if (fresh.length === 0 && opts.fresh) continue;
+        const filled = ok.length > 0 ? ok : filled0;
         const from = fresh.length > 0 ? this.prefer(fresh, (x) => x.c.id) : filled;
         const pick = from[this.rng.int(from.length)] as { c: BoardCard; text: string };
         this.dealt(pick.text);
@@ -336,11 +341,11 @@ export class Hand {
   /** Deal from one of the old decks, by a plain match on its tags. */
   drawOld(deck: DeckName, match: (c: Card) => boolean, slots: Slots = {}, plain = false, notLastNight = false): { card: Card; text: string } | null {
     const pool = (DECKS[deck] ?? []).filter((c) => match(c) && (!(plain || !this.mayJoke) || !c.joke) && !(this.avoid && this.avoid.test(c.text)));
-    const filled = this.unticked(
-      pool.map((c) => ({ card: c, text: fill(c, slots) })).filter((x): x is { card: Card; text: string } => x.text !== null),
-      (x) => x.text,
-    );
-    const fresh = filled.filter((x) => !this.spentSet.has(x.card.id));
+    const all = pool.map((c) => ({ card: c, text: fill(c, slots) })).filter((x): x is { card: Card; text: string } => x.text !== null);
+    const filled = this.unticked(all, (x) => x.text);
+    // A fresh card that says no tic, else a fresh card, before one dealt tonight already.
+    const freshOk = filled.filter((x) => !this.spentSet.has(x.card.id));
+    const fresh = freshOk.length > 0 ? freshOk : all.filter((x) => !this.spentSet.has(x.card.id));
     const from = fresh.length > 0 ? this.prefer(fresh, (x) => x.card.id) : filled;
     if (from.length === 0) return null;
     // docs/55 6: a card a player remembers isn't dealt two nights running, even where it's the only one that fits.

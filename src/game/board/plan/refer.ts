@@ -31,7 +31,7 @@ import { pronOf, type BoardCase } from '../model.js';
 import type { Item } from './types.js';
 import type { PlanCtx } from './index.js';
 import { PAST_PARTICIPLE, sentencesOf } from './sentences.js';
-import { clauseHead, herIsObject, indefiniteFor, maskPlaces, narrationOf, opensOnRole } from './measure.js';
+import { clauseHead, herIsObject, indefiniteFor, maskPlaces, narrationOf, opensOnRole, roleOf } from './measure.js';
 
 /** The engine's mark on a pronoun it wrote: whom it means, by their place in the case's people. */
 export function markPronoun(c: BoardCase, id: string): string {
@@ -85,7 +85,7 @@ interface Sent {
 const VERB = /^(was|were|had|has|hadn’t|wasn’t|didn’t|did|does|doesn’t|would|wouldn’t|could|couldn’t|said|says|asked|told|tells|thought|minded|took|takes|kept|keeps|stood|stands|sat|sits|answered|answers|looked|looks|went|goes|came|comes|saw|sees|heard|never|put|passed|seemed|watched|nodded|shrugged|let|gave|made|counted|started|turned|knew|owned|named|wanted|got|gets|needed|found|lifted|isn’t|is|might|must|will|won’t|shut|opened|moved|left|stayed|held|meant|liked|lit|tore|smoothed|lowered|raised|folded|unfolded|leaned|waited|reached|picked|stopped|closed|hasn’t|owed|lodged|minded|borrowed|swore|pointed|heard|still|already|always|only|also)$/;
 /** A preposition a place goes after: "at Kreuzer’s", "round to Kreuzer’s", "from Kreuzer’s". */
 const PLACE_PREP = /\b(?:at|to|from|in|into|inside|near|past|toward|towards|round|around|outside|by|over)\s*$/;
-const OBJ = /\b(to|at|with|for|by|from|of|asked|told|thanked|had|put|passed|saw|over|beside|near|behind|let|gave|watched|named|left|caught|found|about|after|against|than|wanted|met|made|kept|on|offered|pointed|showed|followed|joined|sent|minded|across from|next to)\s*$/;
+const OBJ = /\b(to|at|with|for|by|from|of|asked|told|thanked|had|put|passed|saw|over|beside|near|behind|let|gave|watched|named|left|caught|found|about|after|against|than|wanted|met|made|kept|on|offered|pointed|showed|followed|joined|sent|minded|backed|believed|contradicted|mentioned|remembered|noticed|spotted|across from|next to)\s*$/;
 
 const esc = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -93,23 +93,7 @@ function cap(s: string): string {
   return s ? (s[0] as string).toUpperCase() + s.slice(1) : s;
 }
 
-/** "the house manager", "my client", "the dead man": a role clear enough to stand for a name. */
-export function roleOf(c: BoardCase, id: string): string | undefined {
-  const p = c.people.find((x) => x.id === id);
-  if (!p) return undefined;
-  if (p.role === 'client') return 'my client';
-  if (p.role === 'victim' && c.type === 'murder') return p.female ? 'the dead woman' : 'the dead man';
-  if ((c.variant === 'face' || c.variant === 'pair') && p.role === 'suspect' && p.look) return `the ${p.female ? 'woman' : 'man'} ${p.look}`;
-  // A suspect's trade, when nobody else in the case has it: "the dentist", "the milliner" (the
-  // office's aside and the notebook give everybody's).
-  if (p.role === 'suspect' && p.job && c.people.filter((x) => x.job === p.job).length === 1) return `the ${p.job.replace(/^(?:a|an|the) /, '')}`;
-  if (p.role === 'watcher') {
-    const j = p.description.split(/,| at /)[0]?.trim();
-    return j && /^the /.test(j) ? j : undefined;
-  }
-  if (p.role === 'company' && /^a neighbou?r\b/.test(p.description)) return 'the neighbor';
-  return undefined;
-}
+export { roleOf } from './measure.js';
 
 function peopleOf(c: BoardCase, text: string): Who[] {
   const ws: Who[] = [];
@@ -407,6 +391,17 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         note(false);
         continue;
       }
+      // (docs/59 item 8: the subject of its own clause, with nobody else of that sex in the clause, is
+      // whom it means: "…, and the man in a fur collar never said he was there", never "…never said the
+      // man in a fur collar was there", nor "Mabry said Mabry was". Not a clause of its own after a comma:
+      // "Thorndike said Winslow was at the flat, and that was what he’d told me" is either man's.)
+      const from = Math.max(...[',', ';', ':', '“', '—'].map((x) => s.narr.lastIndexOf(x, m.at - 1))) + 1;
+      const inClause = s.mentions.filter((x) => x !== m && x.kind !== 'speech' && x.at >= from && x.at < m.at && x.who.female === w.female);
+      const subj = inClause[0];
+      if (!frozen && !m.wantName && subj && subj.form === 'subj' && inClause.every((x) => x.who === w) && /^\s*(?:(?:and|but|so|then|or)\s+)?$/i.test(s.narr.slice(from, subj.at)) && !otherPronoun(s, w)) {
+        note(false);
+        continue;
+      }
       // Theirs again later in the sentence, and nobody else of that sex in it: this one waits for the
       // name the last one becomes ("…under her breath, with one eye open: that was the last I saw of
       // Mrs. Rafferty").
@@ -417,8 +412,15 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       }
       // docs/59 item 8: named a few words back in this very sentence, the name isn't said again ("Vogel had
       // named Tramonti, so I went… to give Tramonti nothing to steer by"): the role, or the pronoun stays.
-      if (!frozen && !m.wantName && s.named.some((x) => x.who === w && x.at < m.at)) {
-        if (w.role) m.rep = roleFor(w, m.form);
+      // (And said by their role already in it, the role isn't said twice: "My client sat down…, and he
+      // took one look at the pot", never "…and my client took one look".)
+      // (Unless the sentence before named two of that sex and this one names none of them before it: then
+      // the pronoun reads as one of theirs, and the role is said again.)
+      const prevNamed = narrIdx.length ? (sents[narrIdx[narrIdx.length - 1] as number] as Sent).named : [];
+      const crowded = new Set(prevNamed.filter((x) => x.who.female === w.female).map((x) => x.who)).size >= 2 && !s.named.some((x) => x.who.female === w.female && x.at < m.at);
+      const byRole = !crowded && s.mentions.some((x) => x !== m && x.who === w && x.at < m.at && x.rep !== undefined && !/^(?:he|him|his|she|her)$/i.test(x.rep));
+      if (!frozen && !m.wantName && (s.named.some((x) => x.who === w && x.at < m.at) || byRole)) {
+        if (w.role && !byRole) m.rep = roleFor(w, m.form);
         note(false);
         continue;
       }

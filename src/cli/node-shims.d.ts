@@ -12,6 +12,8 @@ declare module 'node:fs' {
   export function readFileSync(path: string | URL, encoding: string): string;
   /** The tests and `npm run trace` read the card files. */
   export function readdirSync(path: string | URL): string[];
+  /** `scripts/claudisms.ts` walks src/ and content/ for a sentence's source. */
+  export function readdirSync(path: string | URL, opts: { withFileTypes: true }): { name: string; isDirectory(): boolean }[];
   /** docs/50: the tiny model's export, as bytes. */
   export function readFileSync(path: string | URL): Uint8Array;
 }

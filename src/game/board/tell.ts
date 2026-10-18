@@ -411,7 +411,14 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
   const parts: SaySpec[] = [];
   const add = (flags: string[], args: Args, props: Prop[]) => parts.push({ shape: 'LIST-HOUR', flags: ['clause', ...flags], args, manner, props });
   // The standing others (the fence in his booth) say themselves their own way, first.
-  const standing = shut.length > 0 ? [] : order.filter((k) => k.startsWith('other:') && (at.get(k) ?? []).length === open.length && open.length > 1 && (c.others ?? []).find((o) => `other:${o.id}` === k)?.known !== false);
+  // (docs/59 item 2: one who was simply there all evening, like a name who was, goes in with them:
+  // "Benny and Obermann were here all evening", never a clause each saying "all evening" twice.)
+  const plainOther = (k: string): boolean => {
+    const nm = (c.others ?? []).find((o) => `other:${o.id}` === k)?.name ?? k;
+    return !/^(\w+) who (.+)$/.test(nm) && !/^(.+?) in (his|her) (.+)$/.test(nm) && !/^(two|three|a couple)\b/i.test(nm);
+  };
+  const namedAll = order.some((k) => !k.startsWith('other:') && (at.get(k) ?? []).length === open.length);
+  const standing = shut.length > 0 ? [] : order.filter((k) => k.startsWith('other:') && (at.get(k) ?? []).length === open.length && open.length > 1 && (c.others ?? []).find((o) => `other:${o.id}` === k)?.known !== false && !(namedAll && plainOther(k)));
   for (const k of standing) {
     const o = (c.others ?? []).find((x) => `other:${x.id}` === k);
     const name = o?.name ?? k;
@@ -492,7 +499,8 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
     const marks = whole.map((h) => LISTP(h, [], { whole: true }));
     if (whole.length === peopled.length) {
       if (own) parts.push({ shape: 'LIST-HOUR', flags: ['clause', 'nobody', 'own'], args: {}, manner, props: marks, own });
-      else add(['nobody', ...(flavor === 'house' ? ['house'] : []), ...(!allEvening ? ['shift'] : [])], {}, marks);
+      // (After "…were here all evening", "Nobody else came in": the span is said once.)
+      else add(['nobody', ...(flavor === 'house' ? ['house'] : []), ...(!allEvening ? ['shift'] : []), ...(parts.some((x) => x.flags.includes('all')) ? ['span'] : [])], {}, marks);
     } else add(['nobody', 'some'], { hours: { t: 'hours', hs: whole } }, marks);
   }
   if (shut.length > 0) parts.push({ shape: 'LIST-HOUR', flags: ['shut'], args: { hour: { t: 'hour', h: shut[0] as Hour } }, manner, props: shut.map((h) => LISTP(h, [], { shut: true })) });
