@@ -50,9 +50,8 @@ export function nameHomes(c: BoardCase, text: string, seen: Set<PersonId>, subje
       if (!p || seen.has(p) || homeNamed(c, p)) return m;
       seen.add(p);
       const home = c.people.find((x) => x.id === p)?.home as string;
-      const next = part.slice(off + m.length);
-      const tail = /^ (?:at|and|on|with|for|from|until|by|when|that)\b/.test(next) ? ',' : '';
-      return `${verb} home, ${placeName(c, home)}${tail}`;
+      // (docs/59: "home at the Delmonico rooms", where the skim readers stopped on "home, the Delmonico rooms, at ten".)
+      return `${verb} home at ${placeName(c, home)}`;
     });
     at += part.length;
   }

@@ -97,7 +97,8 @@ export function lintBoardRun(d: BoardDeal, run: BoardRun): BoardLintIssue[] {
         const ownHome = c.people.find((x) => x.id === who)?.home === cl.place;
         const party = cl.place === c.crime.scene && said.includes(`${c.people.find((x) => x.id === c.client)?.short}’s`);
         // The place said whole, or by its own name ("round to Sokol’s" for Sokol’s back room).
-        const stem = place.replace(/^the /, '').split(' ')[0] ?? place;
+        // (Past a title too, as the account says it: "round to Dr. Hirsch’s" is Dr. Hirsch’s flat.)
+        const stem = place.replace(/^(?:the|Mrs\.|Mr\.|Miss|Dr\.) /, '').split(' ')[0] ?? place;
         if (!said.includes(place) && !(stem.length >= 4 && said.includes(stem)) && !party && !(ownHome && /\bhome\b|\bmy room\b/.test(said)) && !/the rest of the evening|all evening/.test(said)) out.push({ page: i, rule: 'whole', detail: `${nameOf(c, who)}’s account leaves out ${place} at ${h}` });
         for (const x of cl.company) if (!said.includes(nameOf(c, x))) out.push({ page: i, rule: 'whole', detail: `${nameOf(c, who)}’s account leaves out ${nameOf(c, x)} at ${h}` });
       }

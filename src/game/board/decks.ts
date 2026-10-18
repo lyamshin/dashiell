@@ -20,6 +20,7 @@ import nightJson from '../../../content/board/night.json';
 import connectiveJson from '../../../content/board/connective.json';
 import stillJson from '../../../content/board/still.json';
 import walkJson from '../../../content/board/walk.json';
+import { similesIn, ticsIn } from './tics.js';
 
 /** A board card: an old deck's card shape, with its family. */
 export interface BoardCard {
@@ -114,6 +115,7 @@ export class Hand {
     this.voiceRng = new Rng(((seed * 2246822519) ^ (page * 3266489917 + 0x51ed)) >>> 0);
     this.spentSet = new Set(spent);
     this.night = spent;
+    for (const x of spent) if (x.startsWith('gag:')) this.gags.add(x.slice(4));
     this.recent = new Set(seen?.recent ?? []);
     this.lastNight = new Set(seen?.last ?? []);
   }
@@ -159,6 +161,38 @@ export class Hand {
 
   private held = false;
 
+  /** docs/59 item 7: the simile frames dealt on this page. */
+  private similes = 0;
+
+  /** docs/59 item 7: the running gags set up tonight, by their one word ("radiator"). */
+  private readonly gags = new Set<string>();
+
+  /** The gags set up tonight, for the situated deck. */
+  gagWords(): string[] {
+    return [...this.gags];
+  }
+
+  /**
+   * docs/59 item 7: whether a line may be dealt without a tic: nothing the night has said once
+   * already ("as it turned out", "which I wrote down", the room asked to help), and no second simile
+   * frame on the page.
+   */
+  private untic(text: string): boolean {
+    return !ticsIn(text).some((id) => this.spentSet.has(id)) && (this.similes === 0 || similesIn(text) === 0) && ![...this.gags].some((g) => new RegExp(`\\b${g}s?\\b`, 'i').test(text));
+  }
+
+  /** Of what fits, what says no tic again, where anything does. */
+  private unticked<T>(xs: T[], text: (x: T) => string): T[] {
+    const ok = xs.filter((x) => this.untic(text(x)));
+    return ok.length > 0 ? ok : xs;
+  }
+
+  /** A line dealt: its tics noted for the night, its similes for the page. */
+  dealt(text: string): void {
+    for (const id of ticsIn(text)) this.note(id);
+    this.similes += similesIn(text);
+  }
+
   /** May a card be a joke now: none told yet, and none kept for the page's last word. */
   get mayJoke(): boolean {
     return this.jokes === 0 && !this.held;
@@ -184,6 +218,7 @@ export class Hand {
   }
 
   note(id: string): void {
+    if (id.startsWith('gag:')) this.gags.add(id.slice(4));
     if (this.spentSet.has(id)) return;
     this.spentSet.add(id);
     this.spent.push(id);
@@ -196,7 +231,7 @@ export class Hand {
    * true. Cards whose slots can't all be filled are passed over. Null when
    * nothing fits.
    */
-  draw(family: string, want: Want = {}, slots: Slots = {}, opts: { widen?: boolean; plain?: boolean; need?: boolean; fresh?: boolean; joke?: boolean } = {}): string | null {
+  draw(family: string, want: Want = {}, slots: Slots = {}, opts: { widen?: boolean; plain?: boolean; need?: boolean; fresh?: boolean; joke?: boolean; untic?: boolean } = {}): string | null {
     this.lastWorld = null;
     this.last = null;
     if (this.world) {
@@ -209,7 +244,9 @@ export class Hand {
         (x) => x.c.id,
       );
       if (ours.length > 0) {
-        const pick = ours[this.rng.int(ours.length)] as { c: BoardCard; text: string };
+        const fromOurs = this.unticked(ours, (x) => x.text);
+        const pick = fromOurs[this.rng.int(fromOurs.length)] as { c: BoardCard; text: string };
+        this.dealt(pick.text);
         this.lastId = pick.c.id;
         this.lastWorld = pick.c;
         this.note(pick.c.id);
@@ -228,15 +265,25 @@ export class Hand {
     }
     if (rungs.length === 0) rungs.push([]);
     const plainOnly = opts.plain === true || (!this.mayJoke && !(opts.joke && this.jokes === 0));
-    for (const pass of plainOnly && opts.need ? [true, false] : [plainOnly]) {
+    // docs/59 item 7: a rung whose every card says a tic again gives way to the next, before anything says one.
+    for (const [pass, strict] of (plainOnly && opts.need ? [true, false] : [plainOnly]).flatMap((x) => (opts.untic ? [[x, true]] : [[x, true], [x, false]]) as [boolean, boolean][])) {
       for (const rung of rungs) {
         const fits = pool.filter((c) => rung.every((k) => tagFits(c, k, want[k] as string)) && (!pass || !c.joke) && !(this.avoid && this.avoid.test(c.text)));
-        const filled = fits.map((c) => ({ c, text: fill(c as unknown as Card, slots) })).filter((x): x is { c: BoardCard; text: string } => x.text !== null);
-        if (filled.length === 0) continue;
-        const fresh = filled.filter((x) => !this.spentSet.has(x.c.id));
+        const filled0 = fits.map((c) => ({ c, text: fill(c as unknown as Card, slots) })).filter((x): x is { c: BoardCard; text: string } => x.text !== null);
+        if (filled0.length === 0) continue;
+        const ok = filled0.filter((x) => this.untic(x.text));
+        if (strict && ok.length === 0) continue;
+        const freshAll = filled0.filter((x) => !this.spentSet.has(x.c.id));
+        const freshOk = ok.filter((x) => !this.spentSet.has(x.c.id));
+        // A fresh card that says no tic; else, where the strict pass has a fresher rung to try, that
+        // rung; else a fresh card at all before one dealt tonight already (a card twice is a repeat too).
+        if (strict && freshOk.length === 0 && freshAll.length > 0) continue;
+        const fresh = freshOk.length > 0 ? freshOk : freshAll;
         if (fresh.length === 0 && opts.fresh) continue;
+        const filled = ok.length > 0 ? ok : filled0;
         const from = fresh.length > 0 ? this.prefer(fresh, (x) => x.c.id) : filled;
         const pick = from[this.rng.int(from.length)] as { c: BoardCard; text: string };
+        this.dealt(pick.text);
         if (fresh.length === 0) this.reuses++;
         this.lastId = pick.c.id;
         this.note(pick.c.id);
@@ -294,14 +341,18 @@ export class Hand {
   /** Deal from one of the old decks, by a plain match on its tags. */
   drawOld(deck: DeckName, match: (c: Card) => boolean, slots: Slots = {}, plain = false, notLastNight = false): { card: Card; text: string } | null {
     const pool = (DECKS[deck] ?? []).filter((c) => match(c) && (!(plain || !this.mayJoke) || !c.joke) && !(this.avoid && this.avoid.test(c.text)));
-    const filled = pool.map((c) => ({ card: c, text: fill(c, slots) })).filter((x): x is { card: Card; text: string } => x.text !== null);
-    const fresh = filled.filter((x) => !this.spentSet.has(x.card.id));
+    const all = pool.map((c) => ({ card: c, text: fill(c, slots) })).filter((x): x is { card: Card; text: string } => x.text !== null);
+    const filled = this.unticked(all, (x) => x.text);
+    // A fresh card that says no tic, else a fresh card, before one dealt tonight already.
+    const freshOk = filled.filter((x) => !this.spentSet.has(x.card.id));
+    const fresh = freshOk.length > 0 ? freshOk : all.filter((x) => !this.spentSet.has(x.card.id));
     const from = fresh.length > 0 ? this.prefer(fresh, (x) => x.card.id) : filled;
     if (from.length === 0) return null;
     // docs/55 6: a card a player remembers isn't dealt two nights running, even where it's the only one that fits.
     if (notLastNight && from.every((x) => this.lastNight.has(x.card.id))) return null;
     const pick = from[this.rng.int(from.length)] as { card: Card; text: string };
     if (fresh.length === 0) this.reuses++;
+    this.dealt(pick.text);
     this.note(pick.card.id);
     if (pick.card.joke) this.jokes++;
     return pick;
@@ -309,9 +360,13 @@ export class Hand {
 
   /** One of a few hand-written lines, without repeating tonight. Keyed so the night remembers it. */
   pick(key: string, lines: readonly string[]): string {
-    const fresh = lines.map((l, i) => ({ l, id: `${key}#${i}` })).filter((x) => !this.spentSet.has(x.id));
+    const fresh = this.unticked(
+      lines.map((l, i) => ({ l, id: `${key}#${i}` })).filter((x) => !this.spentSet.has(x.id)),
+      (x) => x.l,
+    );
     const from = fresh.length > 0 ? this.prefer(fresh, (x) => x.id) : lines.map((l, i) => ({ l, id: `${key}#${i}` }));
     const x = from[this.rng.int(from.length)] as { l: string; id: string };
+    this.dealt(x.l);
     this.note(x.id);
     this.picks.set(x.l, { id: x.id, others: lines.map((l, i) => ({ l, id: `${key}#${i}` })).filter((y) => y.id !== x.id) });
     return x.l;

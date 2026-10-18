@@ -7,7 +7,9 @@ import { titleClient } from './home.js';
 import type { OfferedChoice, OfferedGroup, Page } from './types.js';
 import { boardGridText } from './grid.js';
 import { knownPeople, knownPlaces, linesHeld } from './knowledge.js';
-import { cap, nameOf, personOf, placeName, type BoardDeal, type BoardRun } from './model.js';
+import { cap, clientOf, nameOf, personOf, placeName, type BoardDeal, type BoardRun } from './model.js';
+import { notebookWhen } from './when.js';
+import { finderGloss } from './gloss.js';
 import { recapClauses } from './pages.js';
 
 const WIDTH = 76;
@@ -84,7 +86,18 @@ export function notebookText(d: BoardDeal, run: BoardRun): string {
   out.push('');
   out.push('What my client said:');
   // docs/55 7, 8: the widow's title, and "says she says" (Raw 11's #10) said once.
-  for (const t of c.givens.text) out.push(`  ${wrap(titleClient(c, t.replace(/\bsays (she|he) says\b/, 'says $1 claims')), 72).replace(/\n/g, '\n  ')}`);
+  // docs/59 note 9: a poisoning's hour said as the office said it: when he was poisoned, and that he died after.
+  const office = c.givens.lines ?? c.givens.text.map((t) => ({ kind: 'found' as const, id: 'text', text: t, vars: {} as Record<string, string> }));
+  for (const g of office) {
+    let t = notebookWhen(c, g, c.givens.window ?? c.crime.window, clientOf(c).short) ?? g.text;
+    // docs/59 note 4: the finder as the office said them ("Mosley, a bus conductor who owed the dead man
+    // money and had come round about it"), never the errand that said the debt the other way round.
+    const fp = g.kind === 'found' && g.vars?.finder && g.vars.finderWhy ? c.people.find((x) => x.short === g.vars?.finder) : undefined;
+    if (fp && g.vars?.finderWhy) t = t.replace(`${g.vars.finder}, ${g.vars.finderWhy}`, `${g.vars.finder}, ${finderGloss(c, fp.id, g.vars.finderWhy)}`);
+    // (docs/59: the neighbors' word, as the office says it now, not a woman downstairs nobody meets.)
+    t = t.replace(/, on the word of the woman downstairs:/, ', on the neighbors’ word:').replace(/\. The woman downstairs says\b/, '. The neighbors say');
+    out.push(`  ${wrap(titleClient(c, t.replace(/\bsays (she|he) says\b/, 'says $1 claims')), 72).replace(/\n/g, '\n  ')}`);
+  }
   out.push('');
   out.push('People:');
   for (const p of knownPeople(c, run)) {

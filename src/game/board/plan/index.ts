@@ -48,6 +48,8 @@ import { rhythm } from './rhythm.js';
 import { refer, stripMarks } from './refer.js';
 import { situate, type SituCtx } from './situated.js';
 import { capThingClose } from './closers.js';
+import { sayOnce } from './once-pass.js';
+import { pronounAmbiguity } from './measure.js';
 import { speakerOf } from './speaker.js';
 export { speakerOf } from './speaker.js';
 
@@ -79,6 +81,8 @@ export interface PlanCtx {
   situ?: SituCtx;
   /** docs/52 §4, build 2: the page's hand, for the voicings' least-recently-used rule and the page's joke. */
   hand?: VoiceHand;
+  /** docs/59 item 7: the page's own prose laid out already (the section before the turn), for its one simile. */
+  pageSoFar?: string;
 }
 
 export function newBudget(): PageBudget {
@@ -154,6 +158,9 @@ export function planSection(
   if (PLAN.ops) situate(paraItems, ctx, firstBlock);
   if (PLAN.ops) {
     paraItems = rhythm(paraItems, ctx);
+    // docs/59 items 1 and 7: said once on the page, and one simile frame (before the reference, so a
+    // line traded in has its pronouns settled with the rest).
+    sayOnce(paraItems, ctx);
     referWithTrades(paraItems, ctx);
     // docs/55 6: about half a night's pages end on a thing having a feeling, at most.
     if (ctx.run) capThingClose(paraItems, ctx.run.log);
@@ -237,7 +244,7 @@ function referWithTrades(paras: Item[][], ctx: PlanCtx): void {
         }
       }
     }
-    if (trades.length === 0) return;
+    if (trades.length === 0) break;
     const restore = () => paras.forEach((ps, i) => ps.forEach((x, k) => (x.text = original[i]?.[k] as string)));
     restore();
     for (const t of trades) t.it.text = t.text;
@@ -245,7 +252,7 @@ function referWithTrades(paras: Item[][], ctx: PlanCtx): void {
     if (again.length >= breaks.length) {
       restore();
       refer(paras, ctx);
-      return;
+      break;
     }
     for (const t of trades) {
       t.take();
@@ -257,6 +264,53 @@ function referWithTrades(paras: Item[][], ctx: PlanCtx): void {
     }
     breaks = again;
   }
+  // docs/59 item 8: a card whose pronoun the page leaves to two people ("Bernstein looked once at the
+  // place where Fritz belonged, and then kept his eyes on me") takes another card that fitted its draw
+  // as well, where the page then has fewer such pronouns. (Tried on the words before the reference
+  // pass, and the pass run again on them.)
+  const restore = () => paras.forEach((ps, i) => ps.forEach((x, k) => (x.text = original[i]?.[k] as string)));
+  for (let round = 0; round < 3; round++) {
+    const n = unclearPronouns(paras, ctx);
+    if (n === 0) return;
+    let found: { it: Item; text: string; take: () => void } | null = null;
+    for (const it of paras.flat()) {
+      // (Texture's other cards, or a voiced fact's other voicings.)
+      if (it.speech || !it.alts || !/\b(?:he|him|his|she|her)\b/i.test(stripMarks(it.text))) continue;
+      const k = paras.findIndex((ps) => ps.includes(it));
+      const at = (paras[k] as Item[]).indexOf(it);
+      for (const o of it.alts().filter((x) => !x.lastResort)) {
+        restore();
+        it.text = o.text;
+        refer(paras, ctx);
+        const m = unclearPronouns(paras, ctx);
+        it.text = (original[k] as string[])[at] as string;
+        if (m < n) {
+          found = { it, text: o.text, take: o.take };
+          break;
+        }
+      }
+      if (found) break;
+    }
+    restore();
+    if (!found) {
+      refer(paras, ctx);
+      return;
+    }
+    found.take();
+    found.it.alts = undefined;
+    found.it.text = found.text;
+    paras.forEach((ps, i) => {
+      const k = ps.indexOf((found as { it: Item }).it);
+      if (k >= 0) (original[i] as string[])[k] = (found as { text: string }).text;
+    });
+    refer(paras, ctx);
+  }
+}
+
+/** Pronouns two people could be, on the section as it stands (the measure's count). */
+function unclearPronouns(paras: Item[][], ctx: PlanCtx): number {
+  const blocks: Block[] = paras.map((ps) => ({ kind: 'prose', voice: ps[0]?.voice ?? 'narrator', text: ps.map((x) => stripMarks(x.text)).filter((x) => x.trim()).join(' ') }) as Block);
+  return pronounAmbiguity(ctx.c, blocks).length;
 }
 
 /** A chapter heading, as a unit of its own. */

@@ -302,10 +302,11 @@ describe('docs/49 Planner 2: composition', () => {
       },
       [['thought']],
     );
-    expect(out[0]).toBe('Ashby never heard Prentiss tell the room, and Coffin saw Feeney at the Thalia at eleven, just like she said, and the same witness had seen Ashby right there with her. Prentiss had said ten or eleven, and at ten Duchess was at the Delmonico rooms.');
+    // (docs/59 item 8: the way in and the list's agreement both name Ashby: two sentences, never his name twice in one.)
+    expect(out[0]).toBe('Ashby never heard Prentiss tell the room. Coffin saw Feeney at the Thalia at eleven, just like she said, and the same witness had seen Ashby right there with her. Prentiss had said ten or eleven, and at ten Duchess was at the Delmonico rooms.');
   });
 
-  it('an evening that held, and the hour that mattered on their word alone, are one sentence with the "but"; the aside after the agreement goes', () => {
+  it('an evening that held, and the hour that mattered on their word alone: with somebody of their sex in the agreement, two sentences, and the aside stays (docs/59 item 8)', () => {
     const ashby = id('Ashby');
     const out = plan(
       {
@@ -326,8 +327,8 @@ describe('docs/49 Planner 2: composition', () => {
       },
       [['thought']],
     );
-    // ("he" after Coffin could be Coffin: the name.)
-    expect(out[0]).toBe('So Ashby had told it straight, and Coffin said the same: the Automat at eight, but Ashby said the Thalia at eleven, when Duchess went, and nobody had backed it up. I let it stand.');
+    // ("he" after Coffin could be Coffin, and "but Ashby said" would say his name twice in one sentence: two.)
+    expect(out[0]).toBe('So Ashby had told it straight, and Coffin said the same: the Automat at eight. That much held. Ashby said the Thalia at eleven, when Duchess went, and nobody had backed it up. I let it stand.');
   });
 
   it('a thought of N facts takes at most ceil(N/2) sentences, but for a collision’s own sentence and two long facts', () => {

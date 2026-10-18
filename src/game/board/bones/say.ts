@@ -25,6 +25,7 @@ import { stripMarks } from '../plan/refer.js';
 import { sentencesOf, wordsIn } from '../plan/sentences.js';
 import type { Shape } from './types.js';
 import { fill, fitting, type Args, type Voicing } from './voice.js';
+import { ticsIn } from '../tics.js';
 
 /** What the chooser needs of the page's hand. */
 export interface VoiceHand {
@@ -104,6 +105,9 @@ export function preview(
   if (pool.length === 0) pool = all;
   const fresh = pool.filter((v) => !saidBefore(render(v), ctx.said));
   if (fresh.length > 0) pool = fresh;
+  // docs/59 item 7: a tic the night has said once ("as it turned out", "and I wrote that down") isn't said again.
+  const untic = pool.filter((v) => !ticsIn(render(v)).some((id) => hand.lastUse(id) >= 0));
+  if (untic.length > 0) pool = untic;
   const last = (v: Voicing) => hand.lastUse(`v:${v.id}`);
   // What the speech around it asks of it (no third "o’clock" in one answer), where that costs no
   // voicing still unsaid tonight: variety comes first.
@@ -131,6 +135,7 @@ export function preview(
       // (Unsaid means unsaid and sayable: a joke the page has no room for, or a sentence said tonight already, isn't.)
       if (VARIETY.on) VARIETY.picks.push({ id: v.id, key, shape, pool: pool.length, again, unsaidLeft: again && pool.some((x) => last(x) < 0) });
       hand.note(key);
+      for (const id of ticsIn(text)) hand.note(id);
       if (v.joke) hand.joke();
       return key;
     },

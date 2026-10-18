@@ -103,7 +103,8 @@ export function lintVoicings(vs: readonly Voicing[]): string[] {
     if (/\bclear(?:ed|s)\b|\bout of it\b|\bcrossed (?:\w+ )?off\b/i.test(filled)) bad('a verdict word');
     // docs/53, the dial: no oblique tag, no "here" for a place, a list said as somebody's.
     for (const o of obliqueIn(v.template)) bad(`above the dial (docs/53): ${o}`);
-    const narr = v.template.replace(/“[^”]*”/g, ' ').replace(/\bHere(?: was| is|’s)\b/g, '');
+    // (Somebody's own words may say "here" for the room they're in: a voicing that's all speech has no narration.)
+    const narr = isSpeech(v) && !/“/.test(v.template) ? '' : v.template.replace(/“[^”]*”/g, ' ').replace(/\bHere(?: was| is|’s)\b/g, '');
     if (/\bhere\b/i.test(narr)) bad('above the dial (docs/53): "here" for a place');
     if (/\bthe list\b/.test(narr)) bad('above the dial (docs/53): "the list", not whose');
     // docs/53, addendum: no engine words in the narration, no board-speak in anybody's mouth.

@@ -54,6 +54,24 @@ const PAPERS: Record<string, string> = {
 };
 
 /**
+ * docs/59 note 7: the papers' line for a dealt night, a plain sentence with the grudge's direction in
+ * it and the suspect named once (`{name}`); "him" is the dead man, whose papers they are.
+ */
+// (An entry a suspect, opening on their name: the pronoun in it is theirs, the dead man is said as
+// "the dead man", and three entries never open alike, "The dead man… The dead man… The dead man…".)
+const PAPERS_SAID: Record<string, string> = {
+  m0: '{name}: the dead man had kept a file on {him}.',
+  m1: '{name}: the dead man had been squeezing {him} for years.',
+  m2: '{name}: the dead man knew where {he} was in 1921.',
+  m3: '{name}: {he} owed the dead man four hundred dollars.',
+  m4: '{name}: {he} owed the dead man the rent on a shop, and it was being called in.',
+  m5: '{name}: the dead man had put {him} out of business.',
+  m6: '{name}: the dead man had thrown {him} out of a lease.',
+  m7: '{name}: the dead man had testified against {his} brother.',
+  m8: '{name}: the dead man had jilted {his} sister a week before the wedding.',
+};
+
+/**
  * docs/49: the same lines as the microplanner says them. In the dead man's papers a bare "he" is the
  * dead man, and on a man's page it sits beside the man's own "him": the dead man is said as his
  * role, so no pronoun on the page could be either of them.
@@ -89,17 +107,74 @@ export function motiveForm(c: BoardCase, p: PersonId): string {
   return /\{\w+\}/.test(out) ? cap(who?.motive ?? p) : out;
 }
 
-/** The murder's papers, a line a suspect: "Reinhardt: a court transcript: his own testimony against her brother." */
-export function papersLine(c: BoardCase, p: PersonId, planned = false): string {
-  const who = personOf(c, p);
-  // The dead man as his role only where his "he" could be read as theirs: on a man's page.
-  // docs/55 2: on every page, since a woman's page with the dead man's "his" in it can't be read until
-  // her sex is known ("his own testimony against her brother", Hard-boiled 8's #5).
-  const role = planned;
-  const t = who?.motivePapers ?? (who?.motiveId ? (role ? PAPERS_PLANNED : PAPERS)[who.motiveId]?.replace(/the dead man/g, victimOf(c).female ? 'the dead woman' : 'the dead man') : undefined);
+/**
+ * docs/59 item 8: the reason as the verdict says it, of the one person the report named: their
+ * pronoun where the form had "them" ("Rafferty threw her out of a lease"), and the dead man by name
+ * where the form had "He" (the line follows "Who did it", so a bare "He" could be either of them).
+ */
+export function motiveSaid(c: BoardCase, p: PersonId): string {
+  const form = motiveForm(c, p);
   const pr = pronOf(c, p);
-  if (!t || !isMurder(c)) return `${nameOf(c, p)}: ${who?.motive ?? ''}.`;
-  return `${nameOf(c, p)}: ${fill(t, { he: pr.he, his: pr.his, him: pr.him })}.`;
+  const v = victimOf(c);
+  // docs/59 note 7: the grudge with its direction. "He owed him four hundred dollars" could be either
+  // man's debt: where the suspect and the dead man are of one sex, the one who owed is said by name.
+  // ("Abramowitz closed his business" is theirs: nobody closes their own business on somebody.)
+  const same = isMurder(c) && pronOf(c, v.id).he === pr.he;
+  let s = form
+    .replace(/\bthemselves\b/g, pr.he === 'she' ? 'herself' : 'himself')
+    .replace(/\bthey were\b/g, `${pr.he} was`)
+    .replace(/\bthey’d\b/g, `${pr.he}’d`)
+    .replace(/\bthey\b/g, pr.he)
+    .replace(/\bthem\b/g, pr.him)
+    .replace(/\btheir\b/g, pr.his)
+    .replace(/\bThey owed\b/, `${same ? nameOf(c, p) : cap(pr.he)} owed`);
+  if (isMurder(c)) s = s.replace(/^He\b/, v.short).replace(/^They\b/, same ? nameOf(c, p) : cap(pr.he));
+  return s;
+}
+
+/**
+ * The murder's papers, a line a suspect. docs/59 note 7: the grudge in one plain clause with its
+ * direction said, never a document standing in for it ("Kavanagh: the lease on a shop, the rent
+ * owing, and a carbon…" left the player to work out who owed whom): "Zeldin owed him four hundred
+ * dollars." "Fairbanks: the dead man had a file on her." "Reinhardt: the dead man jilted
+ * Reinhardt’s sister…" where "his sister" could be the dead man's own. The why form's words
+ * (`motiveForm`), so the papers and the report say one grievance alike.
+ */
+export function papersLine(c: BoardCase, p: PersonId, planned = false): string {
+  void planned;
+  void PAPERS;
+  void PAPERS_PLANNED;
+  void fill;
+  const who = personOf(c, p);
+  if (!isMurder(c)) return `${nameOf(c, p)}: ${who?.motive ?? ''}.`;
+  const nm = nameOf(c, p);
+  const pr = pronOf(c, p);
+  const v = victimOf(c);
+  const same = pronOf(c, v.id).he === pr.he;
+  const dead = v.female ? 'the dead woman' : 'the dead man';
+  // A dealt night's grudge, said as its own sentence.
+  const said = !who?.motiveForm && who?.motiveId ? PAPERS_SAID[who.motiveId] : undefined;
+  if (said) {
+    const t = said.replace('{name}', nm).replace('{he}', pr.he).replace('{him}', pr.him).replace('{his}', pr.his);
+    return v.female ? t.replace(/\bthe dead man\b/g, 'the dead woman') : t;
+  }
+  let f = motiveForm(c, p);
+  // "They owed him four hundred dollars": a sentence of their own, by name.
+  const own = /^They\b/.test(f);
+  f = f.replace(/^They\b\s*/, '');
+  // The dead man as the one who did it, by his role: no pronoun on the line is his.
+  f = f.replace(/^(?:He|She)\b/, dead);
+  // (On a line that opens on their name, their pronoun is theirs: "Margolis: the dead man knew what he
+  // got up to at the card room.")
+  void same;
+  f = f
+    .replace(/\bthemselves\b/g, pr.he === 'she' ? 'herself' : 'himself')
+    .replace(/\bthey were\b/g, `${pr.he} was`)
+    .replace(/\bthey’d\b/g, `${pr.he}’d`)
+    .replace(/\btheir\b/g, pr.his)
+    .replace(/\bthem\b/g, pr.him)
+    .replace(/\bthey\b/g, pr.he);
+  return own ? `${nm} ${f}.` : `${nm}: ${f.charAt(0).toLowerCase() === f.charAt(0) ? f : f.charAt(0).toLowerCase() + f.slice(1)}.`;
 }
 
 /**

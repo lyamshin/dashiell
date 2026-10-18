@@ -69,3 +69,17 @@ export function openingOf(text: string): string {
     .toLowerCase()
     .replace(/[,.;:!?”’]+$/, '');
 }
+
+/**
+ * docs/59 item 8: the past participles a contraction may stand before ("he’d spent" is "Rafferty had
+ * spent", never "would spent"): the irregular ones, and any word in -ed but "need" and its kin.
+ */
+export const PAST_PARTICIPLE = new RegExp(
+  `^(?:${[
+    'been', 'had', 'let', 'got', 'gotten', 'gone', 'done', 'seen', 'known', 'come', 'made', 'put', 'left', 'kept', 'told', 'said', 'found', 'heard', 'taken', 'given',
+    'spent', 'sent', 'lost', 'met', 'brought', 'bought', 'thought', 'sat', 'stood', 'slept', 'eaten', 'drunk', 'run', 'begun', 'written', 'read', 'felt', 'held', 'built',
+    'paid', 'won', 'caught', 'taught', 'sold', 'meant', 'dealt', 'fought', 'hung', 'shut', 'cut', 'hit', 'set', 'become', 'driven', 'ridden', 'fallen', 'forgotten',
+    'hidden', 'broken', 'chosen', 'spoken', 'stolen', 'woken', 'worn', 'torn', 'sworn', 'thrown', 'grown', 'shown', 'flown', 'drawn', 'blown', 'lent', 'lit', 'led', 'fed',
+    'swept', 'wept', 'crept', 'learnt', 'burnt', 'bent', 'understood', 'forgiven', 'beaten', 'bitten', 'risen',
+  ].join('|')}|[a-z]+[^e\\s]ed|[a-z]+ied)$`,
+);

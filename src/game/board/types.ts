@@ -69,6 +69,8 @@ export interface Page {
     repeats?: number;
     /** docs/44: the hand-off's words, so the next page needn't give the reason again. */
     handoff?: string;
+    /** docs/59 item 1: the step the hand-off pointed at, so the page after doesn't point at it again. */
+    handoffTo?: string;
     /** docs/44: the recap's clauses (the notebook said aloud), which may name people more than twice. */
     recap?: string;
     /** docs/47 C13: the page's reason was said on the page before, so it isn't said again here. */

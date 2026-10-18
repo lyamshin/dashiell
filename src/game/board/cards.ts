@@ -11,6 +11,7 @@ import characterJson from '../../../content/decks/character.json';
 import entrancesJson from '../../../content/decks/entrances.json';
 import officeJson from '../../../content/decks/office.json';
 import watchJson from '../../../content/decks/watch.json';
+import { LOWER, midSentence } from './bones/voice.js';
 
 export type TagValue = string | number;
 
@@ -79,7 +80,9 @@ export function fill(card: { text: string }, slots: Slots): string | null {
     const value = slots[name] as string;
     // Not after "?”" or "!”": "“Where?” {pronoun} asked" is still one sentence.
     const opens = at === 0 || /(?:\.[”"’)]+|[.!?])\s+$/.test(whole.slice(0, at));
-    return opens ? value.charAt(0).toUpperCase() + value.slice(1) : value;
+    if (opens) return value.charAt(0).toUpperCase() + value.slice(1);
+    // docs/59 item 8: a clause the case says whole ("He threw her out…") goes lower case inside a sentence.
+    return name === name.toLowerCase() && LOWER.test(value) && midSentence(whole, at) ? value.charAt(0).toLowerCase() + value.slice(1) : value;
   });
   // Only a card that had something put into it can have a seam in it. A card
   // with no slots is exactly what the writer wrote, punctuation and all.

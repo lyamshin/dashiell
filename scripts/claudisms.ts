@@ -10,6 +10,7 @@
  *   npx tsx scripts/claudisms.ts --trace 60       # trace up to 60 hits a pattern to their source (default 25; 0 skips)
  *   npx tsx scripts/claudisms.ts --json           # the whole tally, as JSON
  *   npx tsx scripts/claudisms.ts --dump DIR       # write each night's surfaces to DIR, to read
+ *   npx tsx scripts/claudisms.ts --gates          # docs/59 item 7's gates: exit 1 on any breach
  *
  * The nights: tiers 0–5, both worlds (the dealt city and the neighbourhood),
  * three case types each (Raw to Poached: murder, lost pet, lost thing; above:
@@ -31,8 +32,11 @@
  * voicing, template or engine string that wrote it; the other surfaces name
  * the function that renders them, and a ui hit its file and line.
  *
- * Nothing here gates the suite: it is a measure, and the numbers in docs/56
- * are its output.
+ * Nothing here gates the suite but `--gates` (docs/59 item 7, held by `test/clarity.test.ts` over
+ * twelve nights): one simile frame a page ("as if", "like somebody", "the way you’d"); the room asked
+ * to help ("as if the tables could help") once a night; "as it turned out" and "which I wrote down"
+ * (and kin) once a night each; a running gag (the radiator, the register) on two pages a night at
+ * most. The rest is a measure, and the numbers in docs/56 are its output.
  */
 
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
@@ -46,6 +50,7 @@ import { playBoardOracle } from '../src/game/board/oracle.js';
 import { curtainOfBoard, scoreBoard, storyOfBoard } from '../src/game/board/report.js';
 import { choicesText, notebookText, pageBodyText } from '../src/game/board/text.js';
 import { traceRun } from './trace-line.js';
+import { ticIssues } from '../src/game/board/clarity-lint.js';
 
 /* ------------------------------------------------------------ the patterns */
 
@@ -485,8 +490,24 @@ export function measure(opts: { nights?: number; only?: string[]; examples?: num
   return { nights: nights.length, pages, tallies, rhythm: { paragraphs, shortClosers, pagesEndingShort }, stock };
 }
 
+/** docs/59 item 7: the gates, over the first N of the nights: every breach, by night and page. */
+export function gates(opts: { nights?: number } = {}): string[] {
+  const out: string[] = [];
+  for (const spec of nightSpecs().slice(0, opts.nights ?? 36)) {
+    const n = readNight(spec);
+    for (const x of ticIssues(n.run)) out.push(`${n.d.kase.id}${spec.world ? ' (neighbourhood)' : ''}${x.page >= 0 ? ` p${x.page + 1}` : ''}: ${x.detail}`);
+  }
+  return out;
+}
+
 function main(argv: string[]): void {
   const { values, flags } = parseArgs(argv);
+  if (flags.has('gates')) {
+    const g = gates(values.has('nights') ? { nights: Number(values.get('nights')) } : {});
+    process.stdout.write(g.length ? `${g.join('\n')}\n${g.length} breaches\n` : 'the gates hold: one simile frame a page, each night tic once, a running gag twice at most\n');
+    if (g.length) process.exitCode = 1;
+    return;
+  }
   const only = values.get('only')?.split(',').map((s) => s.trim());
   const r = measure({
     ...(values.has('nights') ? { nights: Number(values.get('nights')) } : {}),

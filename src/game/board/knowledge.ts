@@ -176,7 +176,8 @@ export function linesHeld(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>): 
       const lie = c.lies.find((l) => l.person === p && l.hour === h);
       if (k.response === 'admit' && lie) {
         const y = (k.names ?? []).map((x) => nameOf(c, x));
-        out.push({ id: `admit:${p}@${h}`, q, kind: 'admit', speaker: p, hour: h, place: lie.truth, about: [p], text: `${nameOf(c, p)} owns up: ${placeName(c, lie.truth)} at ${oclock(h)}${y.length ? `, with ${andList(y)}` : ''}.` });
+        // (docs/59: the owning up puts whoever it names with them there too, as an account's company does.)
+        out.push({ id: `admit:${p}@${h}`, q, kind: 'admit', speaker: p, hour: h, place: lie.truth, about: [p, ...(k.names ?? [])], text: `${nameOf(c, p)} owns up: ${placeName(c, lie.truth)} at ${oclock(h)}${y.length ? `, with ${andList(y)}` : ''}.` });
       }
       if (k.secondLie?.place) {
         out.push({ id: `second:${p}@${h}`, q, kind: 'second', speaker: p, hour: h, place: k.secondLie.place, about: [p], text: `${nameOf(c, p)} now says ${pronOf(c, p).he} was at ${placeName(c, k.secondLie.place)} at ${oclock(h)}.` });

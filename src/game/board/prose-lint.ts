@@ -25,6 +25,13 @@
  *   getting up between;
  * - **inside** (docs/55 2): knocking on a page that isn't the walk in, when the
  *   page before was in the same room.
+ * - docs/59, the clarity build (`clarity-lint.ts`): **repeat** (a fact said twice on a page, or two
+ *   sentences sharing five content words), **slots** (an evening recited by hour slot), **continuity**
+ *   (sitting down twice, arriving twice, asked to sit while sitting, the client at the scene
+ *   unexplained, my feet off the desk twice), **tic** (two simile frames a page; "as it turned out",
+ *   "which I wrote down", the room asked to help, more than once a night; a running gag on three pages)
+ *   and **assembly** ("would spent", "but He threw", a name twice in a sentence, a place said as a
+ *   pronoun, "them" for one person in the verdict's why).
  *
  * Pure: it reads the night and returns what it found.
  */
@@ -37,10 +44,14 @@ import { sentencesOf } from './plan/sentences.js';
 import { GAG_MAX } from './pages.js';
 import { boardFields } from './report.js';
 import { engineWords } from './jargon.js';
+import { clarityIssues, verdictIssues } from './clarity-lint.js';
+import { motiveSaid } from './motives.js';
+import { titleClient } from './home.js';
+import { suspectsOf } from './model.js';
 
 export interface ProseIssue {
   page: number;
-  rule: 'place-tag' | 'phrase' | 'signpost' | 'gag' | 'pet' | 'grid' | 'turned-out' | 'posture' | 'inside' | 'jargon';
+  rule: 'place-tag' | 'phrase' | 'signpost' | 'gag' | 'pet' | 'grid' | 'turned-out' | 'posture' | 'inside' | 'jargon' | 'repeat' | 'slots' | 'continuity' | 'tic' | 'assembly';
   detail: string;
 }
 
@@ -169,6 +180,9 @@ export function proseIssues(d: BoardDeal, run: BoardRun): ProseIssue[] {
     const n = r.pay.filter((l) => run.spent.includes(`pay:${l.slice(0, 40)}`)).length;
     if (n > GAG_MAX) out.push({ page: -1, rule: 'gag', detail: `${r.short} ×${n}` });
   }
+  // docs/59: the clarity build's rules, and the verdict's why for whoever it names.
+  for (const x of clarityIssues(d, run)) out.push({ page: x.page, rule: x.rule, detail: x.detail });
+  for (const p of suspectsOf(c)) for (const x of verdictIssues(titleClient(c, motiveSaid(c, p)))) out.push({ page: x.page, rule: x.rule, detail: x.detail });
   // The form says "him" or "her" for a pet too.
   if (c.type === 'lost-pet' && !isMurder(c)) {
     for (const f of boardFields(d)) if (/\bit\b/.test(f.label)) out.push({ page: -1, rule: 'pet', detail: `form: ${f.label}` });

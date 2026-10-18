@@ -100,7 +100,7 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
   out.push('');
   const v = scoreBoard(d, run, report);
   out.push(`THE VERDICT: ${v.scoreLine} (${pointsText(v.points)} of ${v.asked}, ${v.outcome}); ${run.used} calls against par ${v.par}.`);
-  for (const f of v.fields) out.push(`  ${f.label}: ${f.given}${f.correct ? (f.half ? ' ½ (right, but you couldn’t have known)' : ' ✓') : ` ✗ (it was ${f.truth})`}`);
+  for (const f of v.fields) out.push(`  ${f.label}${/\?$/.test(f.label) ? '' : ':'} ${f.given}${f.correct ? (f.half ? ' ½ (right, but you couldn’t have known)' : ' ✓') : ` ✗ (it was ${f.truth})`}`);
   for (const p of v.plain) out.push(wrap(p));
   for (const p of v.closing) out.push(wrap(p));
   out.push('');

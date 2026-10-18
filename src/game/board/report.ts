@@ -45,8 +45,9 @@ import {
 } from './model.js';
 import { withCaps } from './pages.js';
 import { titleClient } from './home.js';
-import { motiveForm, whyOrder } from './motives.js';
+import { motiveForm, motiveSaid, whyOrder } from './motives.js';
 import { plainWhy } from './stars.js';
+import { poisonAfter, whenQuestion } from './when.js';
 
 export type FieldKey = 'who' | 'when' | 'how' | 'why' | 'where' | 'breaks' | 'whereBy';
 
@@ -133,7 +134,8 @@ export function boardFields(d: BoardDeal): FieldSpec[] {
   const it = c.type === 'lost-pet' ? pronOf(c, c.crime.victim) : { he: 'it', him: 'it' };
   const out: FieldSpec[] = [
     { key: 'who', label: isMurder(c) ? 'Who did it' : `Who took ${it.him}`, options: people },
-    { key: 'when', label: isMurder(c) ? 'When' : `When ${it.he} went`, options: hours },
+    // docs/59 note 9: the question says exactly what it asks: "When was he poisoned?", the hour the dose went in.
+    { key: 'when', label: whenQuestion(c), options: hours },
   ];
   if (isMurder(c)) out.push({ key: 'how', label: 'How', options: meansOptions(d) });
   else out.push({ key: 'where', label: `Where ${it.he} is now`, options: whereOptions(d) });
@@ -349,7 +351,8 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
   const scored: FieldResult[] = boardFields(d).map((f) => {
     const g = given(report, f.key);
     const t = truthOf(d, f.key);
-    const label = (v: string | null) => (v === null ? 'I don’t know' : (f.options.find((o) => o.value === v)?.label ?? v));
+    // docs/59 item 8: the verdict's why is one person's, said with their pronoun ("Rafferty threw her out of a lease"), never "them".
+    const label = (v: string | null) => (v === null ? 'I don’t know' : f.key === 'why' && personOf(d.kase, v) ? titleClient(d.kase, motiveSaid(d.kase, v)) : (f.options.find((o) => o.value === v)?.label ?? v));
     return { key: f.key, label: f.label, given: label(g), truth: label(t), correct: g !== null && g === t, answered: g !== null };
   });
   const who = scored[0] as FieldResult;
@@ -458,7 +461,11 @@ function storyLines(d: BoardDeal): string[] {
         ? `At ${oclock(atOrigin)} ${short} was at ${placeName(c, c.means.origin)}, and took ${c.means.originText.replace(/, there from .*$/, '').replace(/, open from .*$/, '').replace(new RegExp(` (?:at|from) ${placeName(c, c.means.origin).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`), '')}.`
         : `${cap(short)} took ${c.means.originText} while it sat there to be taken.`,
     );
-    out.push(`At ${oclock(c.crime.hour)} ${pr.he} went round to ${placeName(c, c.crime.scene)}, and ${v.short} let ${pr.him} in. ${meansMoment(c.means.kind, v.short, c.means.name.replace(/^(a|an) /, ''), c.finds.find((f) => f.gives.means)?.text ?? '', pronOf(c, c.crime.victim).his, pronOf(c, c.crime.culprit).he === pronOf(c, c.crime.victim).he)}`);
+    const moment = meansMoment(c.means.kind, v.short, c.means.name.replace(/^(a|an) /, ''), c.finds.find((f) => f.gives.means)?.text ?? '', pronOf(c, c.crime.victim).his, pronOf(c, c.crime.culprit).he === pronOf(c, c.crime.victim).he);
+    // docs/59 note 9: a poisoning's hour is the hour the dose went in, said as the office and the report say it.
+    const dose = poisonAfter(c);
+    const vp = pronOf(c, c.crime.victim);
+    out.push(`At ${oclock(c.crime.hour)} ${pr.he} went round to ${placeName(c, c.crime.scene)}, and ${v.short} let ${pr.him} in. ${dose ? `That was when ${vp.he} was poisoned: ${moment.replace(/, and [^,]+ never tasted it\.$/, '').replace(/^The\b/, 'the')}, and ${dose.replace(/^.*?, so /, '')}.` : moment}`);
     const after = c.board.hours.find((h) => h > c.crime.hour);
     if (after !== undefined) out.push(`By ${oclock(after)} ${pr.he} was at ${placeName(c, row[after] ?? '')}, as if ${pr.he} had never left.`);
   } else {

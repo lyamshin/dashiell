@@ -23,7 +23,7 @@
 
 import type { Item } from './types.js';
 import type { PlanCtx } from './index.js';
-import { LIST_ENTRY, indefiniteFor, pronounAmbiguity } from './measure.js';
+import { LIST_ENTRY, indefiniteFor, maskPlaces, pronounAmbiguity } from './measure.js';
 import { LOWER } from '../bones/compose.js';
 import type { Block, ProseVoice } from '../types.js';
 import { bandOf, openingOf, sentencesOf, wordsIn, type Band } from './sentences.js';
@@ -79,6 +79,8 @@ function opensOnClause(b: string): boolean {
     return false;
   }
   if (NOT_SUBJECT.test(w0)) return false;
+  // ("That she was with Mrs. Pomerantz at ten" is what somebody said, not a sentence: its "That" is no subject.)
+  if (w0 === 'That' && (/^(?:I|he|she|they|we|you|it|there|Mrs|Mr|Miss|Dr)$/.test(ws[1] ?? '') || NAMES.has(ws[1] ?? ''))) return false;
   // (A possessive opens a subject too: "Somebody’s galoshes stood by the door".)
   const w0s = w0.replace(/’s$/, '');
   if (!OPENER.test(w0s) && !NAMES.has(w0s)) return false;
@@ -87,6 +89,9 @@ function opensOnClause(b: string): boolean {
 
 /** A situated card that is something I did, for the why-here's fold (docs/52): its subject and its act. */
 const FOLD_ACT = /^I (?:went|stood|stayed|kept my (?:voice|questions)|took|found|let|loosened|hung|nodded|waved|followed|crossed|came|walked|got out|sat|pulled|asked if|made my way|slipped|edged|eased|knocked|stepped)\b/;
+
+/** docs/59: the longest sentence two facts make together (the skim test's readers stopped on longer). */
+const FACTS_LONGEST = 26;
 
 /** Words a short lead of place or time opens on, before a clause's subject. */
 const LEAD = /^(?:For|In|On|Under|Over|At|Behind|Above|Below|Through|Outside|Inside|Across|Along|Beside|Near|Upstairs|Downstairs|Somewhere|Overhead|Down|Up)$/;
@@ -200,6 +205,10 @@ function mendable(it: Item): boolean {
   if (it.speech || it.slot === 'chapter' || it.slot === 'voice') return false;
   // "The part worth keeping came last." stands alone: it's the beat before the link.
   if (it.tag === 'thought:street') return false;
+  // docs/59 item 3: a consequence is a sentence of its own.
+  if (it.tag === 'thought:then') return false;
+  // (docs/59 note 7: the papers' pages, a grudge to a sentence, stay one each.)
+  if (it.say?.flags?.includes('papers-list')) return false;
   return true;
 }
 
@@ -264,8 +273,11 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
       // necktie…"), unless each opens on its own person's name ("Mrs. Szabo was knitting a muffler…,
       // and Glick was polishing his derby…", Planner 2).
       if (ia !== ib && ia.kind === 'gap' && (ia.about ?? []).length > 0 && (ib.about ?? []).length > 0 && !(ia.about ?? []).some((x) => (ib.about ?? []).includes(x)) && !(opensOn(a.text, ia) && opensOn(b.text, ib))) return null;
+      // docs/59 item 8: two facts that name one person don't go in one sentence.
+      if (ia !== ib && ia.kind === 'fact' && ib.kind === 'fact' && ctx.c.people.some((p) => !p.object && p.short.length > 2 && new RegExp(`(?<![\\w’])${esc(p.short)}(?![\\w])`).test(maskPlaces(ctx.c, a.text)) && new RegExp(`(?<![\\w’])${esc(p.short)}(?![\\w])`).test(maskPlaces(ctx.c, b.text)))) return null;
       const joined = joinable(a.text, b.text, budget.semis < 2, and);
       if (!joined) return null;
+      if (ia.kind === 'fact' && ib.kind === 'fact' && wordsIn(joined) > FACTS_LONGEST) return null;
       // A semicolon is spent only when the mend is kept.
       if (/; /.test(joined) && !/; /.test(`${a.text} ${b.text}`)) t.take = () => budget.semis++;
       if (a.i === b.i) {
@@ -352,6 +364,9 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
       // state of mind: "…, so I wished rooms could talk" is a non sequitur.
       if (!/\b(?:had|said|passed|was|were)\b/.test(l) || /\b(?:are|is|keeps|keep)\b/.test(l)) return null;
       if (!FOLD_ACT.test(card) || /\bso\b/i.test(card) || wordsIn(l) + wordsIn(card) > 34) return null;
+      // (docs/59 item 8: not where the card's pronoun could be either of two people the reason names:
+      // "Vogel had named Tramonti, so I went… to give her nothing to steer by".)
+      if (/\b(?:he|him|his|she|her)\b/i.test(card) && ctx.c.people.filter((p) => p.short.length > 2 && l.includes(p.short)).length >= 2) return null;
       const old = it.text;
       it.text = `${lead.slice(0, -1)}, so ${card}`;
       const alts = it.alts;

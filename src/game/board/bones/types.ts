@@ -76,7 +76,7 @@ export type Prop =
    * pet's keeper, where the dead man had been); a remark on the scene's street points at the scene;
    * a second story points at whoever keeps the room it names.
    */
-  | { k: 'POINTER'; from: 'office' | 'remark' | 'second'; to: Id; why: 'pointer' | 'keeper' | 'venue' | 'street' | 'watcher' }
+  | { k: 'POINTER'; from: 'office' | 'remark' | 'second' | 'admit'; to: Id; why: 'pointer' | 'keeper' | 'venue' | 'street' | 'watcher' | 'witness' }
   /**
    * The thing's last move: to somebody (`other:<id>`), at a place (and an hour, when the watcher saw
    * it go). `thing`: what it was, once known; `what`: what the watcher saw of it (something alive, something small).
@@ -84,6 +84,13 @@ export type Prop =
   | { k: 'HANDOVER'; to: Entry; place: Id; hour?: number; thing?: Id; what?: 'alive' | 'small' }
   /** Somebody placed at an hour on somebody else's word. */
   | { k: 'PLACED'; person: Id; place: Id; hour: number; by: Src }
+  /**
+   * docs/59 item 3: somebody not at a place at an hour, on the word of whoever kept it (a whole list
+   * that hasn't them on it): who had gone by the hour it happened.
+   */
+  | { k: 'AWAY'; person: Id; place: Id; hour: number; by: Src }
+  /** docs/59 item 3: nobody but they themselves had said where somebody was at these hours. */
+  | { k: 'UNBACKED'; person: Id; hours: number[] }
   /** Somebody turned out to be in the room. */
   | { k: 'PRESENT'; person: Id; place: Id }
   /** Nobody, them included, had said where these people were at these hours. */
@@ -101,12 +108,14 @@ export type Prop =
   /**
    * The way in: where the means was had (a murder's origin; the room told about the key; the party;
    * the spare key), and the hours; `who`, the lodger whose key it was, or who keeps the spare.
+   * docs/59 item 3: `first`, the conclusion a find draws from it: whoever did it had been at that place
+   * first (at those hours, when said).
    */
-  | { k: 'MEANS'; how: 'origin' | 'told' | 'party' | 'spare'; place: Id; hours?: number[]; who?: Id };
+  | { k: 'MEANS'; how: 'origin' | 'told' | 'party' | 'spare' | 'first'; place: Id; hours?: number[]; who?: Id };
 
 export type PropKind = Prop['k'];
 export const PROP_KINDS: readonly PropKind[] = [
-  'CLAIM', 'LIST', 'REMARK', 'SHIFT', 'FIND', 'ACCESS', 'WINDOW', 'ALIVE', 'CONFIRMS', 'COLLIDES', 'NARROWS', 'LEFT', 'ADMIT', 'REFUSE', 'SECOND', 'CRACK', 'HELD', 'MOTIVE', 'POINTER', 'HANDOVER', 'PLACED', 'PRESENT', 'UNSPOKEN', 'HOLD', 'MISSING', 'RELATION', 'FOUND', 'GONE', 'MEANS',
+  'CLAIM', 'LIST', 'REMARK', 'SHIFT', 'FIND', 'ACCESS', 'WINDOW', 'ALIVE', 'CONFIRMS', 'COLLIDES', 'NARROWS', 'LEFT', 'ADMIT', 'REFUSE', 'SECOND', 'CRACK', 'HELD', 'MOTIVE', 'POINTER', 'HANDOVER', 'PLACED', 'AWAY', 'UNBACKED', 'PRESENT', 'UNSPOKEN', 'HOLD', 'MISSING', 'RELATION', 'FOUND', 'GONE', 'MEANS',
 ];
 
 /**
