@@ -201,7 +201,8 @@ export function petKind(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
  * possessive.
  */
 export function introduce(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
-  if (!lean()) return;
+  // (Who somebody is is the night's to know: a section planned without the night's pages has nothing to go by.)
+  if (!lean() || ctx.earlier === undefined) return;
   const c = ctx.c;
   const people = c.people.filter((x) => !x.object && x.short.length >= 3 && (x.role === 'suspect' || x.role === 'company' || x.role === 'watcher'));
   if (!people.length) return;
@@ -381,18 +382,32 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
         }
       }
     }
-    // (And within one line of several people.)
+    // (And within one line of several people: after the first, "…, and Feeney was in the back row with a
+    // bag of peanuts" is "…, and Feeney was there with a bag of peanuts".)
+    for (const m0 of [...stripMarks(it.text).matchAll(SPOT)]) {
+      const sp = key(m0[0] as string);
+      const at = it.text.indexOf(m0[0] as string);
+      const second = at >= 0 ? it.text.indexOf(m0[0] as string, at + 1) : -1;
+      if (second < 0) continue;
+      const head = it.text.slice(0, second - 12 < 0 ? 0 : second - 12);
+      const tail = it.text.slice(head.length).replace(new RegExp(`\\b(stood|sat|waited|leaned|lingered|was|were) (?:at|in|by|near) ${sp}(?= with\\b)`), '$1 there');
+      it.text = head + tail;
+    }
     const seen = new Set<string>();
     it.text = it.text.replace(/(\b(?:a|an|the)(?: [a-z]+)? (?:booth|table|stool|chair|seat|bench|cushion|step)) ((?:by|near|against|under) (the [a-z]+))\b/g, (m, seat: string, _p: string, sp: string) => {
       if (seen.has(sp) || spots.has(sp)) return seat;
       seen.add(sp);
       return m;
     });
-    // (The rhythm may trade the line for another card later: never one that says a spot again.)
-    const before = new Set(spots);
-    const all = it.alts;
-    if (all) it.alts = () => all().filter((a) => ![...stripMarks(a.text).matchAll(SPOT)].some((m) => before.has(key(m[0] as string))));
     for (const m of stripMarks(it.text).matchAll(SPOT)) spots.add(key(m[0] as string));
+  }
+  // (The rhythm may trade a line for another card later: never one that says a spot another line has.)
+  for (const it of items) {
+    if (roleOf(it) !== 'people' || !it.alts) continue;
+    const mine = new Set([...stripMarks(it.text).matchAll(SPOT)].map((m) => key(m[0] as string)));
+    const others = new Set([...spots].filter((x) => !mine.has(x) || items.some((y) => y !== it && roleOf(y) === 'people' && [...stripMarks(y.text).matchAll(SPOT)].some((m) => key(m[0] as string) === x))));
+    const all = it.alts;
+    it.alts = () => all().filter((a) => ![...stripMarks(a.text).matchAll(SPOT)].some((m) => others.has(key(m[0] as string))));
   }
   // The one joke or flourish: a callback when one is due, else the page's joke. (On a page that asks,
   // the ask is the staging line: a joke dealt on the staging or the ask isn't the page's joke there,

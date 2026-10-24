@@ -159,7 +159,8 @@ export function clarityOf(c: BoardCase, comp: Composite & { said?: string; args?
   const coat = comp.shape === 'HANDOVER' && (v.requires ?? []).includes('coat');
   // (docs/59 item 2: "Nobody else came in" after "…were here all evening": the clause before it in the
   // list said the span, once.)
-  const spanned = comp.shape === 'LIST-HOUR' && ((comp as { flags?: string[] }).flags ?? []).includes('span');
+  // (docs/62, P2: "Nobody else came in till eleven" says every hour before eleven.)
+  const spanned = comp.shape === 'LIST-HOUR' && (((comp as { flags?: string[] }).flags ?? []).includes('span') || ((comp as { flags?: string[] }).flags ?? []).includes('till'));
   if (!coat && !spanned) for (const h of new Set(ph.flatMap((x) => x.hours))) if (!hs.has(h)) out.push(`the hour not said: ${hourWord(h as Hour)}`);
   // ("Here was the trouble", "Here’s what I had" point at what follows, not at a place.)
   if (/\bhere\b/i.test(narr.replace(/\bHere(?: was| is|’s)\b/g, ''))) out.push('"here" for a place');

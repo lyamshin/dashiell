@@ -388,7 +388,7 @@ export function theySitNow(w: Writer, p: PersonId, anywhere = false): boolean {
 }
 
 /** docs/55 2: texture about going over a room, which a page reading the papers doesn't do. */
-const PAPERS_NOT_ROOM = /\bcorners?\b|\b(?:the|a|this) room\b|\bon my feet\b|\bthe floor\b|a yard at a time|end to end|\bI didn’t sit down\b|\bRooms where\b|\bthe doorway\b|\bchairs\b|\bon my knees\b|\beye level\b|\bA place doesn’t\b/i;
+const PAPERS_NOT_ROOM = /\bcorners?\b|\b(?:the|a|this|whole) room\b|\binside the door\b|\bhat off\b|\bon my feet\b|\bthe floor\b|a yard at a time|end to end|\bI didn’t sit down\b|\bRooms where\b|\bthe doorway\b|\bchairs\b|\bon my knees\b|\beye level\b|\bA place doesn’t\b/i;
 
 /** docs/55 2: I was in this room on the page before: nothing on this page knocks to come in. */
 export function insideNow(w: Writer): boolean {
@@ -464,7 +464,7 @@ function placeNewcomers(w: Writer): void {
     const back = c.board.rows[p]?.[last] !== undefined && c.board.rows[p]?.[last] !== here;
     // (docs/60 item 1: lean, where they are and nothing after it; docs/62, short enough that who they are fits beside it: "Hanrahan, a regular, was at a table.")
     const spot: Record<string, string> = lean()
-      ? { theatre: 'three rows back', bar: 'at the bar', restaurant: 'at a table', home: 'in the front room', work: 'at the far bench', back: 'in the corner', office: 'by the door', any: 'there too' }
+      ? { theatre: 'three rows back', bar: 'at the bar', restaurant: 'at a table', home: 'in the front room', work: 'at the far bench', back: 'in the corner', office: 'by the door', any: 'in the room' }
       : {
           theatre: `three rows back with ${pr.his} hat over ${pr.his} eyes`,
           bar: 'at the far end of the bar, nursing something',

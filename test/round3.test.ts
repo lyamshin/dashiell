@@ -127,14 +127,17 @@ describe('round 3: the puzzle and its facts (docs/47 B)', () => {
     }
   });
 
-  it('an evening never eats supper twice, and says being alone once', () => {
+  it('an evening never eats supper twice, and says being alone in the clause of that hour (docs/62, P7)', () => {
     for (let s = 1; s <= 30; s++) {
       for (const tier of [2, 5] as TierIndex[]) {
         const c = dealBoard(s, tier).kase;
         for (const a of c.accounts) {
           const said = spokenAccount(c, a, 'plain').join(' ');
           expect((said.match(/\bfor (?:the blue-plate )?supper\b/g) ?? []).length, said).toBeLessThanOrEqual(1);
-          expect((said.match(/\bon my own\b/g) ?? []).length, said).toBeLessThanOrEqual(1);
+          // (docs/62, P7: never tacked on after the evening as a sentence of its own, "Alone at nine.",
+          // "On my own at seven, eight and ten."; each hour alone says so in its own clause, once.)
+          expect(said, said).not.toMatch(/(?:^|[.!?] )(?:Alone|On my own|By myself) at (?:seven|eight|nine|ten|eleven)\b/);
+          expect(said, said).not.toMatch(/(?:on my own|by myself|alone)[^.]*\b(?:on my own|by myself|alone)\b/);
           expect(said).not.toMatch(/hadn’t eaten|met my sister|a lodger\b|sick friend/);
         }
       }

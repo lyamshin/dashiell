@@ -349,7 +349,10 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   const thoughtText = items.filter((x) => x.kind === 'fact' && x.voice === 'thought').map((x) => x.text).join(' ');
   const earlier = ctx.earlier ?? '';
   const ties = [...c.people.map((p) => p.short), ...c.places.flatMap((p) => [p.short, p.street])].filter((n) => n.length >= 3 && thoughtText.includes(n) && earlier.includes(n));
-  const tiedElsewhere = (w: Who): boolean => ties.some((n) => n !== w.short);
+  // (docs/62: lean, a tie to somebody else holds only if it stays a name, which a place always does and a
+  // person may not: "He had told me he was home at nine, and she didn’t see him there" ties to nothing.)
+  const placeTies = new Set(c.places.flatMap((p) => [p.short, p.street]));
+  const tiedElsewhere = (w: Who): boolean => ties.some((n) => n !== w.short && (!lean() || placeTies.has(n)));
   // A name the thought keeps for its tie is held back for it: before the thought, the cap comes one
   // mention sooner (docs/39's first and last, where the last is the one that does the work).
   const thoughtItems = new Set(items.filter((x) => x.kind === 'fact' && x.voice === 'thought'));

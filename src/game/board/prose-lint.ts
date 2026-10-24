@@ -50,6 +50,7 @@ import { boardFields } from './report.js';
 import { engineWords } from './jargon.js';
 import { clarityIssues, verdictIssues } from './clarity-lint.js';
 import { hingeIssues, type HingeRule } from './hinge-lint.js';
+import { lean } from './plan/dial.js';
 import { motiveSaid } from './motives.js';
 import { titleClient } from './home.js';
 import { suspectsOf } from './model.js';
@@ -190,7 +191,8 @@ export function proseIssues(d: BoardDeal, run: BoardRun): ProseIssue[] {
   // docs/59: the clarity build's rules, and the verdict's why for whoever it names.
   for (const x of clarityIssues(d, run)) out.push({ page: x.page, rule: x.rule, detail: x.detail });
   // docs/62: the hinge lines, said as a person says them (the verdict's close is read with the report, `epilogueIssues`).
-  for (const x of hingeIssues(d, run)) out.push({ page: x.page, rule: 'hinge', hinge: x.rule, detail: `${x.rule}: ${x.detail}` });
+  // (Lean only: `texture=full` is the page as it read before the texture budget, and holds to nothing new.)
+  if (lean()) for (const x of hingeIssues(d, run)) out.push({ page: x.page, rule: 'hinge', hinge: x.rule, detail: `${x.rule}: ${x.detail}` });
   for (const p of suspectsOf(c)) for (const x of verdictIssues(titleClient(c, motiveSaid(c, p)))) out.push({ page: x.page, rule: x.rule, detail: x.detail });
   // The form says "him" or "her" for a pet too.
   if (c.type === 'lost-pet' && !isMurder(c)) {

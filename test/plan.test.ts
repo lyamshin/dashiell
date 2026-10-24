@@ -260,9 +260,10 @@ describe('docs/49 §2: aggregation and connectives', () => {
       },
       [['thought']],
     );
-    expect(out[0]).toMatch(/^Corrigan said home at eleven, but Ashby passed her on Stuyvesant Street at eleven\./);
+    // (docs/62 item 2: what they said, as a clause: "said she was home", never "said home".)
+    expect(out[0]).toMatch(/^Corrigan said she was home at eleven, but Ashby passed her on Stuyvesant Street at eleven\./);
     // (Without the "but", Planner 2 says the second as one sentence, its join after a colon.)
-    expect(out[0]).toMatch(/Corrigan said home at ten, and Coffin said nobody was at the Thalia at ten o’clock: one of them was wrong\.$/);
+    expect(out[0]).toMatch(/Corrigan said she was home at ten, and Coffin said nobody was at the Thalia at ten o’clock: one of them was wrong\.$/);
   });
 });
 
@@ -341,7 +342,7 @@ describe('docs/49 Planner 2: composition', () => {
       [['thought']],
     );
     // ("he" after Coffin could be Coffin, and "but Ashby said" would say his name twice in one sentence: two.)
-    expect(out[0]).toBe('So Ashby had told it straight, and Coffin said the same: the Automat at eight. That much held. Ashby said the Thalia at eleven, when Duchess went, and nobody had backed it up. I let it stand.');
+    expect(out[0]).toBe('So Ashby had told it straight, and Coffin said the same: the Automat at eight. That much held. Ashby said he was at the Thalia at eleven, when Duchess went, and nobody had backed it up. I let it stand.');
   });
 
   it('a thought of N facts takes at most ceil(N/2) sentences, but for a collision’s own sentence and two long facts', () => {
