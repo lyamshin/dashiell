@@ -9,7 +9,7 @@ import { budgetCalls, dealBoard, parCalls, type BoardRun } from '../src/game/boa
 import { playBoardOracle, playReader, playWanderer, refusalShortcutCalls } from '../src/game/board/oracle.js';
 import { pageStars } from '../src/game/board/choices.js';
 import { isOpen } from '../src/game/board/stars.js';
-import { breakOptionsShown, scoreBoard, truthReport, whereByOptions } from '../src/game/board/report.js';
+import { breakOptionsShown, clearOptions, scoreBoard, truthReport, whereByOptions } from '../src/game/board/report.js';
 import { firstPerson } from '../src/game/board/tell.js';
 import { REASONS } from '../src/gen/board/content.js';
 import { runPlay, type PlayIo } from '../src/cli/play-lib.js';
@@ -345,14 +345,24 @@ describe('board: the play CLI', () => {
     const n = breakOptionsShown(d, o2.run, d.kase.crime.culprit).findIndex((x) => x.value === truth.breaks) + 1;
     const wn = whereByOptions(d, o2.run).findIndex((x) => x.value === truth.whereBy) + 1;
     expect(n).toBeGreaterThan(0);
-    const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=${n}; when=${d.kase.crime.hour}; where=${truth.where}; whereBy=${wn}; why=${d.kase.crime.culprit}`, '--save', save], io);
+    // docs/61: who else lied, and what cleared them, counted down the same list `report <other>` shows.
+    const otherName = d.kase.people.find((x) => x.id === truth.other)?.short as string;
+    const cn = clearOptions(d, o2.run, truth.other).findIndex((x) => x.value === truth.cleared) + 1;
+    expect(cn).toBeGreaterThan(0);
+    expect(form.out).toContain('Somebody else’s story didn’t hold either. Who, and what cleared them? (other):');
+    expect(runPlay(['report', otherName, '--save', save], io).out).toContain(`If ${otherName} is who else lied, cleared counts down this same list.`);
+    const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=${n}; other=${otherName}; cleared=${cn}; when=${d.kase.crime.hour}; where=${truth.where}; whereBy=${wn}; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('THE VERDICT');
-    expect(filed.out).toContain('4 out of 4: who (and what shows they lied)');
+    expect(filed.out).toMatch(/5 out of 5: who \(and what shows they lied\), who else lied \(and what\s+cleared\s+them\)/);
     // The save records the line, so a measure can tell deduced from guessed.
     expect(JSON.parse(files.get(save) as string).events.at(-1).file.breaks).toBe(truth.breaks);
+    expect(JSON.parse(files.get(save) as string).events.at(-1).file.cleared).toBe(truth.cleared);
     expect(runPlay(['story', '--save', save], io).out.length).toBeGreaterThan(100);
-    expect(runPlay(['curtain', '--save', save], io).out).toContain('HOW THE LIE CAME OUT');
+    const curtain = runPlay(['curtain', '--save', save], io).out;
+    expect(curtain).toContain('HOW THE LIE CAME OUT');
+    expect(curtain).toContain('WHO ELSE LIED, AND WHAT CLEARED THEM');
+    expect(curtain).toMatch(new RegExp(`You filed: +${otherName}, on .+ ✓`));
   });
 
   it('files the right name on a hunch as right, but you couldn’t have known: half on who', () => {
@@ -372,8 +382,10 @@ describe('board: the play CLI', () => {
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=hunch; when=${d.kase.crime.hour}; where=${where}; whereBy=hunch; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('right, but you couldn’t have known');
-    expect(filed.out).toContain('3 out of 4: who (and what shows they lied)');
+    expect(filed.out).toMatch(/3 out of 5: who \(and what shows they lied\), who else lied \(and what\s+cleared\s+them\)/);
     expect(filed.out).toContain('half credit on who');
+    // docs/61: the other question left out costs its point, said plainly.
+    expect(filed.out).toMatch(/You had the right name, but you didn’t rule out [A-Z]\w+\./);
     const curtain = runPlay(['curtain', '--save', save], io).out;
     expect(curtain).toMatch(/What gave it away: .+/);
     expect(curtain).toContain('You filed:     a hunch.');

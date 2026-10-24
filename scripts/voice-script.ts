@@ -49,7 +49,7 @@ import { TIER_NAMES, type CaseType, type TierIndex } from '../src/gen/board/type
 import { NAME_POOLS } from '../src/gen/board/names.js';
 import { clientOf, dealBoard, deadlineWords, personOf, type BoardDeal, type BoardReport, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
-import { boardFields, scoreBoard, storyOfBoard, truthReport, BREAKS_LABEL, HUNCH, WHERE_BY_LABEL } from '../src/game/board/report.js';
+import { boardFields, scoreBoard, storyOfBoard, truthReport, BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY_LABEL, OTHER_QUESTION, WHERE_BY_LABEL } from '../src/game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE } from '../src/game/board/teach.js';
 import { clockStrip } from '../src/game/board/clock.js';
 import { engineWords } from '../src/game/board/jargon.js';
@@ -241,8 +241,9 @@ const GATES: { id: string; re: RegExp }[] = [
 
 /**
  * Why a line can't go in the script, or null. `help`: the book's own help text (the rules, the
- * report form), which may say "the grid" and "the notebook" as the book's parts; anything else is
- * held to the reader lint's machinery words too.
+ * report form), which may say "the grid" and "the notebook" as the book's parts, and (docs/61) ask
+ * what cleared somebody and offer "Nobody else", the report's own question and answer; anything
+ * else is held to the reader lint's machinery words too.
  */
 export function lineProblem(text: string, opts: { help?: boolean } = {}): string | null {
   if (/["']/.test(text)) return 'straight quote';
@@ -254,7 +255,7 @@ export function lineProblem(text: string, opts: { help?: boolean } = {}): string
   if (/\b(?!IOU\b|DA\b)[A-Z]{3,}\b/.test(text)) return 'capitals';
   if (!/^[“A-Z(]/.test(text)) return 'starts lowercase';
   if (!/[.?!…”)]$/.test(text)) return 'no end stop';
-  const jargon = engineWords(text);
+  const jargon = engineWords(text).filter((j) => !(opts.help && (j.name === 'cleared' || (j.name === 'and nobody else' && text === `${NOBODY_LABEL}.`))));
   if (jargon.length > 0) return `engine word: ${jargon[0]?.name} (“${jargon[0]?.match}”)`;
   for (const b of BANNED) if (b.re.test(text)) return `prose lint: ${b.name}`;
   const pt = plainTerms(text);
@@ -358,10 +359,14 @@ function fixedLines(nights: Night[]): Draft[] {
   // The report form: each kind of case's questions, read as one line, and the line questions.
   for (const n of [murder, small]) {
     if (!n) continue;
-    const labels = boardFields(n.d).map((f) => f.label.replace(/^\w/, (c) => c.toLowerCase()));
+    // (docs/61: the question about the other broken story is a sentence of its own, said below.)
+    const labels = boardFields(n.d).filter((f) => f.key !== 'other').map((f) => f.label.replace(/^\w/, (c) => c.toLowerCase()));
     push(`${cap(andList(labels))}.`);
   }
   push(`${BREAKS_LABEL}.`);
+  push(OTHER_QUESTION);
+  push(`${CLEARED_LABEL}.`);
+  push(`${NOBODY_LABEL}.`);
   push(`${WHERE_BY_LABEL}.`);
   push(`${HUNCH}.`);
   push('I don’t know.');
@@ -378,7 +383,7 @@ function verdictLines(n: Night): Draft[] {
   const truth = truthReport(n.d, n.run);
   const fields = boardFields(n.d);
   const other = fields[0]?.options.map((o) => o.value).find((v) => v !== truth.who) ?? null;
-  const wrongHour = fields[1]?.options.map((o) => Number(o.value)).find((h) => h !== truth.when) ?? null;
+  const wrongHour = fields.find((f) => f.key === 'when')?.options.map((o) => Number(o.value)).find((h) => h !== truth.when) ?? null;
   const reports: [string, BoardReport][] = [
     ['solved', truth],
     ['lucky', { ...truth, breaks: null }],
@@ -387,6 +392,8 @@ function verdictLines(n: Night): Draft[] {
     ['cold', { ...truth, who: null }],
   ];
   if (truth.where !== undefined) reports.push(['where-half', { ...truth, whereBy: null }]);
+  // docs/61: the right name, and the other liar not ruled out.
+  if (truth.other !== undefined) reports.push(['other-missed', { ...truth, cleared: null }], ['other-wrong', { ...truth, other: null }]);
   const seen = new Set<string>();
   const take = (text: string, max = 2) => {
     const sents = sentencesOf(sayable(spellNumbers(text))).slice(0, max);

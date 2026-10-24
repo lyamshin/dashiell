@@ -3,14 +3,15 @@
  *
  * Plain modern English, one short sentence a line, no detective voice
  * (the designer, 2026-10-16: "should not be written in period language and
- * should be MUCH MUCH simpler"). The six lines:
+ * should be MUCH MUCH simpler"). The seven lines:
  *
  * - everyone gives you their whole evening, with company;
  * - whoever kept the bar or the stairs names everyone, hour by hour;
  * - people lie about themselves, never about what they saw;
  * - when two stories don't match, tell one what the other said;
  * - a refusal isn't proof;
- * - the case closes on a name and the fact that proves they lied.
+ * - the case closes on a name and the fact that proves they lied;
+ * - docs/61: when two stories break, it also needs what clears the other one.
  */
 
 export const BOARD_TEACH_TITLE = 'How this works';
@@ -22,10 +23,11 @@ export const BOARD_TEACH_LINES: readonly string[] = [
   'When two stories don’t match, tell the person what the other one said.',
   'Some innocent people refuse to explain. A refusal isn’t proof.',
   'To close the case you need a name and the fact that proves they lied.',
+  'When two stories break, you also need what clears the other one.',
 ];
 
 /**
- * The teach page's lines for a night. The same six from every world (the neighbourhood's map line
+ * The teach page's lines for a night. The same seven from every world (the neighbourhood's map line
  * went with the period voice); `world` is kept so callers needn't change.
  */
 export function teachLines(world?: string): readonly string[] {
@@ -38,5 +40,5 @@ export const BOARD_RULES: readonly string[] = [
   'Each page gives you choices: who to ask, what to search, where to go. Each one costs a call, and you have the night, until eight in the morning.',
   'A star marks a choice worth taking now, and says why.',
   'The notebook keeps what you’ve learned. The grid shows where everyone says they were, and where the stories clash.',
-  'File the report when you’re ready: who, when, how, why, and the fact that proves it. A hunch counts half.',
+  'File the report when you’re ready: who, when, how, why, and the fact that proves it. A hunch counts half. When two stories break, it also asks who else lied and what cleared them.',
 ];
