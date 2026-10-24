@@ -223,7 +223,7 @@ export function introduce(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
     for (const s of sentencesOf(block)) {
       const n = maskPlaces(c, narrationOf(s, inQ));
       inQ = quote(s, inQ);
-      for (const x of people) if (!met.has(x.id) && reOf(x).test(s) && (reOf(x).test(n) || glossedIn(c, x.id, s))) met.add(x.id);
+      for (const x of people) if (!met.has(x.id) && reOf(x).test(maskPlaces(c, s)) && (reOf(x).test(n) || glossedIn(c, x.id, s))) met.add(x.id);
     }
   }
   if (people.every((x) => met.has(x.id))) return;
@@ -237,7 +237,7 @@ export function introduce(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
         const sn = maskPlaces(c, narrationOf(s, inQ));
         inQ = quote(s, inQ);
         for (const x of people) {
-          if (met.has(x.id) || !reOf(x).test(s)) continue;
+          if (met.has(x.id) || !reOf(x).test(maskPlaces(c, s))) continue;
           if (!reOf(x).test(sn)) {
             if (glossedIn(c, x.id, s)) met.add(x.id);
             continue;

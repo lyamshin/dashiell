@@ -388,7 +388,7 @@ export function theySitNow(w: Writer, p: PersonId, anywhere = false): boolean {
 }
 
 /** docs/55 2: texture about going over a room, which a page reading the papers doesn't do. */
-const PAPERS_NOT_ROOM = /\bcorners?\b|\b(?:the|a|this|whole) room\b|\binside the door\b|\bhat off\b|\bon my feet\b|\bthe floor\b|a yard at a time|end to end|\bI didn’t sit down\b|\bRooms where\b|\bthe doorway\b|\bchairs\b|\bon my knees\b|\beye level\b|\bA place doesn’t\b/i;
+const PAPERS_NOT_ROOM = /\bcorners?\b|\b(?:the|a|this|whole) room\b|\binside the door\b|\bhat off\b|\bover the place\b|\bfirst time round\b|\bwent round once\b|\bon my feet\b|\bthe floor\b|a yard at a time|end to end|\bI didn’t sit down\b|\bRooms where\b|\bthe doorway\b|\bchairs\b|\bon my knees\b|\beye level\b|\bA place doesn’t\b/i;
 
 /** docs/55 2: I was in this room on the page before: nothing on this page knocks to come in. */
 export function insideNow(w: Writer): boolean {
@@ -415,6 +415,8 @@ export function seatedNow(w: Writer): boolean {
  */
 function theatreAvoid(c: BoardCase, at: PlaceId): RegExp | undefined {
   const pl = at === OFFICE ? undefined : placeOf(c, at);
+  // (docs/62 item 11: a print shop on its night shift or an Automat isn't a place people go to be unseen.)
+  if (lean() && /^unwatched:(?:3|5)$/.test(pl?.key ?? '')) return /\bwhole point of the place\b/i;
   if (pl?.kind !== 'theatre') return undefined;
   return pl.stage ? /\bpictures?\b|\bscreen\b|\bnewsreel\b|\bfilm\b|\bprojector\b/i : /\bplays?\b|\bacts?\b|\bactors?\b|\bcast\b|\bperformance\b|\brehears\w*|\bplaybill\b|\bscene\b|\bfootlights\b|\bwings\b|\bcue\b/i;
 }
@@ -478,9 +480,11 @@ function placeNewcomers(w: Writer): void {
     const kind = placeOf(c, here)?.kind === 'theatre' ? 'theatre' : stageKind(c, here);
     // (docs/62, P11: not a spot somebody else in this room was given already: "Fairbanks … was in the
     // corner" when Alfano had been in the corner since I came in.)
-    const roomSaid = w.before.log.filter((pg) => pg.at === here).map((pg) => pg.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join(' ')).join(' ');
+    const roomSaid = w.before.log.filter((pg) => pg.at === here).map((pg) => pg.blocks.map((b) => (b.kind === 'prose' && b.voice !== 'answer' ? b.text.replace(/“[^”]*”?/g, ' ') : '')).join(' ')).join(' ');
     const at0 = spot[kind] ?? (spot.any as string);
-    const at = lean() && at0 !== spot.any && roomSaid.includes(at0) ? (spot.any as string) : at0;
+    // (Only a spot of one's own: "at a table" or "at the bar" has room for everybody.)
+    const own = !/^at (?:a table|the bar)$/.test(at0);
+    const at = lean() && own && at0 !== spot.any && roomSaid.includes(at0) ? (spot.any as string) : at0;
     // Named twice on the page already (an admission says the name and says it again): "my witness".
     // (docs/60 item 3: lean, the name, never "my witness": the reader has to work out who that is.)
     const who = lean() || namesFit(w, `${nameOf(c, p)}`) ? nameOf(c, p) : `my witness${markPronoun(c, p)}`;
@@ -860,6 +864,7 @@ function walkKnown(c: BoardCase, run: BoardRun, p: PersonId, mv: { from: string;
   const pr = markedPron(c, p);
   const lines = linesHeld(c, { asked: run.asked, puts: [] });
   const by = (place: string, h: number) => lines.find((l) => l.speaker !== p && l.about.includes(p) && l.place === place && l.hour === h && (l.kind === 'list' || l.kind === 'claim' || l.kind === 'given'));
+  const by0 = by;
   const whose = (l: ReturnType<typeof by>) => (!l ? '' : l.kind === 'given' ? clientOf(c).short : nameOf(c, l.speaker as PersonId));
   const verb = (l: ReturnType<typeof by>) => (l?.kind === 'list' ? 'saw' : 'said');
   const at = (place: string, h: number) => `at ${placeName(c, place)} at ${hourWord(h as Hour)}`;
@@ -875,7 +880,8 @@ function walkKnown(c: BoardCase, run: BoardRun, p: PersonId, mv: { from: string;
     const N = nameOf(c, p);
     const one = a && b && whose(a) === whose(b) && verb(a) === verb(b);
     if (one) return { text: verb(a) === 'saw' ? `${whose(a)} saw ${N} ${at(mv.from, mv.h - 1)} and ${at(mv.to, mv.h)}.` : `${whose(a)} said ${N} was ${at(mv.from, mv.h - 1)} and ${at(mv.to, mv.h)}.`, people, hours };
-    return { text: `${said(a, N, mv.from, mv.h - 1, N)}. ${cap(said(b, N, mv.to, mv.h, N))}.`, people, hours };
+    const by = (l: ReturnType<typeof by0>) => (l ? `, ${whose(l)} said` : '');
+    return { text: `${N} was ${at(mv.from, mv.h - 1)}${by(a)}, and ${at(mv.to, mv.h)}${by(b)}: a walk between the two.`, people, hours };
   }
   // (One witness for both hours is said once: "Rosenbaum said Shapiro was at Rafferty’s at nine and at the Velvet Room at ten".)
   if (a && b && whose(a) === whose(b) && verb(a) === verb(b)) {

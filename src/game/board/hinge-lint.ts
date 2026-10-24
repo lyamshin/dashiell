@@ -163,7 +163,8 @@ function bareFirst(c: BoardCase, run: BoardRun): HingeIssue[] {
         for (const x of who) {
           if (done.has(x.id)) continue;
           const re = new RegExp(`(?<![\\w’])${esc(x.short)}(?![\\w])`);
-          const inSpeech = re.test(s) && !re.test(sn);
+          // (Inside a place's name, "the landlady at Mrs. Nagy’s", it's the place, not her.)
+          const inSpeech = re.test(maskPlaces(c, s)) && !re.test(sn);
           if (inSpeech) {
             // Said in somebody's mouth with who they are: met.
             if (glossedIn(c, x.id, s)) glossedSoFar.add(x.id);

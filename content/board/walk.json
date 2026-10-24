@@ -9,7 +9,6 @@
   {"id": "bwk-008", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "Getting to {dest} meant {far} {way}."},
   {"id": "bwk-009", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "I headed {way} for {dest}, {far} away."},
   {"id": "bwk-010", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "It was {far} from there to {dest}, {way}, with my collar up."},
-  {"id": "bwk-011", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "{Dest} was {far} {way}. It’s no distance at all when somebody else is doing the walking."},
   {"id": "bwk-012", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "I set off {way} for {dest}. It was {far}."},
   {"id": "bwk-021", "family": "walk-way", "tags": {"matters": "no", "near": "yes"}, "text": "{Dest} was a short walk."},
   {"id": "bwk-022", "family": "walk-way", "tags": {"matters": "no", "near": "yes"}, "text": "{Dest} was only round the corner, and I was there before I’d finished a thought."},

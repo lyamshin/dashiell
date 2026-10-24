@@ -1083,7 +1083,8 @@ function thenR(a: Record<string, Read>, flags: ReadonlySet<string>, comp: Compos
   const out: Prop[] = [];
   if (flags.has('means')) {
     const first = a.first as number;
-    for (const p of gone) for (const h of (a.before as number[]) ?? []) out.push({ k: 'PLACED', person: p, place: where, hour: h, by });
+    // (docs/62, P1: `all`, everybody who had been there, without their hours: the answer just said them.)
+    if (!flags.has('all')) for (const p of gone) for (const h of (a.before as number[]) ?? []) out.push({ k: 'PLACED', person: p, place: where, hour: h, by });
     if (!(a.kept as string)?.trim()) throw new Error('voiced: where was it kept?');
     out.push({ k: 'MEANS', how: 'origin', place: where });
     if (flags.has('access')) for (const p of gone) out.push({ k: 'ACCESS', person: p, had: true });

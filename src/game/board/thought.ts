@@ -554,10 +554,40 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     const be = there.length > 1 ? 'were' : 'was';
     // Who had been where the means was kept (the same hours for all of them: one sentence).
     const was0 = meansGone[0]?.was.join();
-    const withMeans = meansGone.filter((g) => g.was.join() === was0);
+    // (docs/62, P1: lean, everybody who had been where the means was kept, whatever their hours, in the one
+    // sentence: "So Hanrahan, Ruggiero and Reinhardt had all been at the Delmonico rooms, where the laudanum
+    // was kept, and had all left by nine", never Hanrahan alone of three. The hours each was there are the
+    // landlady's answer, just said; the thought says what they add up to.)
+    const allMeans = lean() && meansGone.length > 1 && meansGone.some((g) => g.was.join() !== was0);
+    const withMeans = allMeans ? meansGone : meansGone.filter((g) => g.was.join() === was0);
     const plainGone = gone.filter((g) => !withMeans.includes(g));
     let opened = false;
-    if (withMeans.length) {
+    if (withMeans.length && allMeans) {
+      const ps = withMeans.map((g) => g.p);
+      const first = hs[0] as Hour;
+      const access = ps.filter((p) => a.accessYes.has(p) && !b.accessYes.has(p));
+      const kept = `where ${wayWhat(c)} was kept`;
+      const tail = there.length ? `; ${names(there)} ${be}${still ? ' still' : ''} there at ${H}` : '';
+      add(`${names(ps)} had all been at ${where}, ${kept}, and had all left by ${hourWord(first)}${tail}.`, ['givens:clock', 'givens:means'], {
+        rule: 'then',
+        ...(lean() && caught.size > 0 ? {} : { opener: 'So' as const }),
+        hours: [...hs],
+        people: [...ps, ...there],
+        places: [l.place],
+        props: [
+          { k: 'MEANS', how: 'origin', place: l.place },
+          ...access.map((p) => ({ k: 'ACCESS', person: p, had: true }) as Prop),
+          ...ps.map((p) => ({ k: 'AWAY', person: p, place: l.place, hour: first, by }) as Prop),
+          ...thereProps,
+        ],
+        say: {
+          shape: 'PLACED-SET',
+          flags: ['then', 'means', 'all', ...(access.length ? ['access'] : []), ...thereFlags],
+          args: { gone: { t: 'people', ids: [...ps] }, where: { t: 'place', id: l.place }, first: { t: 'hour', h: first }, kept, ...thereArgs },
+        },
+      });
+      opened = true;
+    } else if (withMeans.length) {
       const ps = withMeans.map((g) => g.p);
       const was = withMeans[0]?.was ?? [];
       const first = hs[0] as Hour;

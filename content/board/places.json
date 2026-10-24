@@ -126,7 +126,7 @@
   {"id": "bpl-1109", "family": "return", "tags": {}, "text": "I went back to {place}, because there’s no such thing as a place you’re finished with."},
   {"id": "bpl-1110", "family": "return", "tags": {}, "text": "{Place} was where I’d left it, and I was grateful, because I wasn’t sure where I’d left anything else tonight.", "joke": true},
   {"id": "bpl-1201", "family": "scene-body", "tags": {"means": "chloral"}, "text": "{Victim} was in the chair by the table, where the police had left the body, chin down like somebody resting tired eyes for a minute."},
-  {"id": "bpl-1202", "family": "scene-body", "tags": {"means": "chloral"}, "text": "{Victim} sat in the chair with both hands in the lap. If you didn’t know, you’d have said asleep, and lowered your voice."},
+  {"id": "bpl-1202", "family": "scene-body", "tags": {"means": "chloral"}, "text": "{Victim} sat in the chair with both hands folded. If you didn’t know, you’d have said asleep, and lowered your voice."},
   {"id": "bpl-1203", "family": "scene-body", "tags": {"means": "chloral"}, "text": "{Victim} was in the chair with the head back and the mouth a little open, the way people sleep when they’re too tired to care how they look."},
   {"id": "bpl-1204", "family": "scene-body", "tags": {"means": "poison"}, "text": "{Victim} was slumped in the chair with one arm hanging down, as if sleep had come in the middle of a sentence."},
   {"id": "bpl-1205", "family": "scene-body", "tags": {"means": "poison"}, "text": "{Victim} was in the chair, sitting very still, the way nobody living ever sits for long."},
