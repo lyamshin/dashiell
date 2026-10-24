@@ -4,12 +4,16 @@
  *
  *   new --seed N --tier 0..5 [--type murder|lost-item|lost-pet] [--name Dashiell] [--no-teach] --save F
  *   look · do <n|words> · page <n> · notebook · grid · pencil "<Name> <hour> at|not|clear [place]"
- *   confront <Name> · report [<Name>] · file "who=…; breaks=…; when=…; how=…; why=…; where=…; whereBy=…"
+ *   confront <Name> · report [<Name>] · file "who=…; breaks=…; other=…; cleared=…; when=…; how=…; why=…; where=…; whereBy=…"
  *   story · curtain · help
  *
  * docs/46 §3: the report asks what breaks their story. `report <Name>` lists
  * the lines held that name them or fall at the hour that mattered; `breaks`
  * counts down that list, and `breaks=hunch` is a hunch.
+ *
+ * docs/61: from Poached up, where two stories break, it asks who else lied
+ * (`other`) and what cleared them (`cleared`), which counts down the same list
+ * `report <Name>` shows for that person.
  *
  * A page lists the people here (choosing one opens their topics, free),
  * then what to search and where to go. "Put it to X" opens the picker: at
@@ -34,9 +38,13 @@ import { setTexture } from '../game/board/plan/texture.js';
 import { OFFICE, budgetCalls, dealBoard, deadlineWords, hourWord, nameOf, placeName, tierName, type BoardDeal, type BoardReport, type BoardRun } from '../game/board/model.js';
 import {
   BREAKS_LABEL,
+  CLEARED_LABEL,
   HUNCH,
+  NOBODY,
   WHERE_BY_LABEL,
+  asksOther,
   boardFields,
+  clearOptions,
   hoursThatMattered,
   breakOptionsShown,
   curtainOfBoard,
@@ -310,9 +318,17 @@ function reportText(night: Night, path: string, who: string | null = null): stri
       if (who) {
         const N = nameOf(c, who);
         out.push(...lineList(breakOptionsShown(night.d, night.run, who), { touching: `What I have about where ${N} said ${pronWord(night, who, 'his') === 'her' ? 'she' : 'he'} was at ${hoursWord(night)}:`, rest: `Anything else I have that names ${N} or is about ${hoursWord(night)}:` }));
+        // docs/61: the same list answers the other question.
+        if (asksOther(night.d)) out.push(wrap(`If ${N} is who else lied, cleared counts down this same list.`, WIDTH, '   '));
       } else {
         out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists what I have that names them, or is about ${hoursWord(night)}. Or breaks=hunch.`, WIDTH, '   '));
       }
+      out.push('');
+    }
+    if (f.key === 'other') {
+      // docs/61: what cleared them counts down the same list `report <name>` shows for that person.
+      out.push(`${CLEARED_LABEL} (cleared):`);
+      out.push(wrap(`The lines that touch their story: npm run play -- report <name> --save ${path} lists them, the same list as for breaks. Give its number, or cleared=hunch.`, WIDTH, '   '));
       out.push('');
     }
     if (f.key === 'where') {
@@ -321,10 +337,13 @@ function reportText(night: Night, path: string, who: string | null = null): stri
       out.push('');
     }
   }
-  const keys = murder ? 'who=…; breaks=…; when=…; how=…; why=…' : 'who=…; breaks=…; when=…; where=…; whereBy=…; why=…';
+  const two = asksOther(night.d);
+  const head = `who=…; breaks=…; ${two ? 'other=…; cleared=…; ' : ''}when=…;`;
+  const keys = murder ? `${head} how=…; why=…` : `${head} where=…; whereBy=…; why=…`;
+  const lines = ['breaks', ...(two ? ['cleared'] : []), ...(murder ? [] : ['whereBy'])];
   out.push(
     wrap(
-      `File it with: npm run play -- file "${keys}" --save ${path}. An answer is its number or enough of its words. For breaks, give the number from that person’s list (report <name> shows it). Leave a line out and it goes in as “I don’t know”; leave breaks${murder ? '' : ' or whereBy'} out and it goes in as a hunch.`,
+      `File it with: npm run play -- file "${keys}" --save ${path}. An answer is its number or enough of its words. For ${two ? 'breaks and cleared' : 'breaks'}, give the number from that person’s list (report <name> shows it). Leave a line out and it goes in as “I don’t know”; leave ${lines.length > 1 ? `${lines.slice(0, -1).join(', ')} or ${lines[lines.length - 1]}` : lines[0]} out and it goes in as a hunch.`,
     ),
   );
   return out.join('\n');
@@ -342,19 +361,20 @@ function suspectNamed(night: Night, raw: string): string {
 function parseReport(night: Night, text: string): BoardReport {
   const fields = boardFields(night.d);
   const answers: Partial<Record<FieldKey, string | null>> = {};
-  const lineAnswers: { key: 'breaks' | 'whereBy'; raw: string }[] = [];
+  const lineAnswers: { key: 'breaks' | 'whereBy' | 'cleared'; raw: string }[] = [];
   for (const part of text.split(';').map((x) => x.trim()).filter(Boolean)) {
     const m = /^(\w+)\s*=\s*(.+)$/.exec(part);
     if (!m) fail(`Can’t read "${part}". Write key=answer.`);
     const key = (m as RegExpExecArray)[1] as FieldKey;
     const raw = ((m as RegExpExecArray)[2] as string).trim();
-    if (key === 'breaks' || fold(key) === 'whereby') {
-      if (key !== 'breaks' && night.d.kase.type === 'murder') fail('The form asks what puts it there only for a lost thing.');
-      lineAnswers.push({ key: key === 'breaks' ? 'breaks' : 'whereBy', raw });
+    if (key === 'breaks' || fold(key) === 'whereby' || key === 'cleared') {
+      if (fold(key) === 'whereby' && night.d.kase.type === 'murder') fail('The form asks what puts it there only for a lost thing.');
+      if (key === 'cleared' && !asksOther(night.d)) fail('Tonight’s form doesn’t ask who else lied, so there’s nothing to clear.');
+      lineAnswers.push({ key: key === 'breaks' ? 'breaks' : key === 'cleared' ? 'cleared' : 'whereBy', raw });
       continue;
     }
     const f = fields.find((x) => x.key === key);
-    if (!f) fail(`The form doesn’t ask "${key}". It asks: ${[...fields.map((x) => x.key), 'breaks', ...(night.d.kase.type === 'murder' ? [] : ['whereBy'])].join(', ')}.`);
+    if (!f) fail(`The form doesn’t ask "${key}". It asks: ${[...fields.map((x) => x.key), 'breaks', ...(asksOther(night.d) ? ['cleared'] : []), ...(night.d.kase.type === 'murder' ? [] : ['whereBy'])].join(', ')}.`);
     const spec = f as (typeof fields)[number];
     const v = fold(raw);
     if (/^\d+$/.test(v) && spec.options[Number(v) - 1] && !(key === 'when' && spec.options.some((o) => o.value === v))) {
@@ -373,7 +393,8 @@ function parseReport(night: Night, text: string): BoardReport {
       continue;
     }
     if (key === 'breaks' && !answers.who) fail('Name who first: breaks counts down the lines that name them.');
-    const opts = key === 'breaks' ? breakOptionsShown(night.d, night.run, answers.who as string) : whereByOptions(night.d, night.run);
+    if (key === 'cleared' && (!answers.other || answers.other === NOBODY)) fail('Name who else lied first (other=…): cleared counts down the lines that touch their story.');
+    const opts = key === 'breaks' ? breakOptionsShown(night.d, night.run, answers.who as string) : key === 'cleared' ? clearOptions(night.d, night.run, answers.other as string) : whereByOptions(night.d, night.run);
     if (/^\d+$/.test(v)) {
       const n = Number(v);
       if (n === opts.length + 1) {
@@ -381,7 +402,7 @@ function parseReport(night: Night, text: string): BoardReport {
         continue;
       }
       const o = opts[n - 1];
-      if (!o) fail(`${key} is 1 to ${opts.length + 1}: \`report${key === 'breaks' ? ` ${nameOf(night.d.kase, answers.who as string)}` : ''}\` shows them.`);
+      if (!o) fail(`${key} is 1 to ${opts.length + 1}: \`report${key === 'breaks' ? ` ${nameOf(night.d.kase, answers.who as string)}` : key === 'cleared' ? ` ${nameOf(night.d.kase, answers.other as string)}` : ''}\` shows them.`);
       answers[key] = (o as LineOption).value;
       continue;
     }
@@ -400,7 +421,7 @@ function verdictText(night: Night): string {
   for (const f of v.fields) {
     // A line asked under an answer sits under it, indented: it counts with that answer (docs/47 A2).
     const pad = f.line ? '      ' : '  ';
-    const ls = wrap(`${f.label}${/\?$/.test(f.label) ? '' : ':'} ${f.given}${f.correct ? (f.half ? '  ½ — right, but you couldn’t have known' : '  ✓') : `  ✗ — it was ${f.truth}`}`, WIDTH - pad.length - 4).split('\n');
+    const ls = wrap(`${f.label}${/\?$/.test(f.label) ? '' : ':'} ${f.given}${f.correct ? (f.half ? '  ½ — right, but you couldn’t have known' : '  ✓') : `  ✗ — ${f.why ?? `it was ${f.truth}`}`}`, WIDTH - pad.length - 4).split('\n');
     out.push([`${pad}${ls[0]}`, ...ls.slice(1).map((l) => `${pad}    ${l}`)].join('\n'));
   }
   out.push('', wrap(v.scoreLine), ...v.plain.map((p) => wrap(p)), '');
@@ -617,9 +638,10 @@ function helpText(): string {
     '       (--profile P: a profile file; the night prefers what its last ten nights didn’t deal, and filing adds this night to it)',
     '  look · do <n|words> · page <n> · notebook · grid',
     '  pencil "<Name> <hour> at|not|clear [place]" (pencil "Feldman ten at Rafferty’s") · confront <Name>',
-    '  report [<Name>] (with a name, what could show they lied)',
-    '  file "who=…; breaks=…; when=…; how=…; why=…"',
-    '       (a lost thing: where=…; whereBy=… instead of how=…; breaks=hunch for a hunch)',
+    '  report [<Name>] (with a name, the lines that touch their story: what could show they lied, or clear them)',
+    '  file "who=…; breaks=…; other=…; cleared=…; when=…; how=…; why=…"',
+    '       (a lost thing: where=…; whereBy=… instead of how=…; breaks=hunch for a hunch;',
+    '        other and cleared only when two stories break: who else lied, and the line that cleared them)',
     '  story · curtain (after filing)',
   );
   return out.join('\n');

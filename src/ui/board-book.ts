@@ -34,7 +34,7 @@ import {
   type TierIndex,
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
-import { BREAKS_LABEL, HUNCH, WHERE_BY_LABEL, boardFields, breakOptionsShown, curtainOfBoard, hoursThatMattered, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
+import { BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, WHERE_BY_LABEL, boardFields, breakOptionsShown, clearOptions, curtainOfBoard, hoursThatMattered, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
 import { costLabel } from '../game/board/text.js';
 import { continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, tierOpen, tonightTier, type KeyValueStore, type Profile } from '../game/board/profile.js';
@@ -596,7 +596,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const hs = hoursThatMattered(dd).map((h) => hourWord(h));
     const hours = hs.length > 1 ? `${hs.slice(0, -1).join(', ')} or ${hs[hs.length - 1]}` : (hs[0] ?? '');
     /** A line question: the lines it offers as a list to pick one from, and a hunch. */
-    const lineField = (key: 'breaks' | 'whereBy', label: string, options: () => LineOption[], note: () => string, group: () => string = () => '') => {
+    const lineField = (key: 'breaks' | 'whereBy' | 'cleared', label: string, options: () => LineOption[], note: () => string, group: () => string = () => '') => {
       const box = el('fieldset', { class: 'field field--lines' });
       box.append(el('legend', { text: label }));
       const hint = el('p', { class: 'line-hint' });
@@ -609,8 +609,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         // docs/47 A4: the lines that touch the named person's own story come first, under a heading.
         const touching = opts.filter((o) => o.touches).length;
         [...opts, { value: '', label: HUNCH }].forEach((o, i) => {
-          if (key === 'breaks' && touching > 0 && i === 0) list.append(el('p', { class: 'line-group', text: group() }));
-          if (key === 'breaks' && touching > 0 && i === touching && i < opts.length) list.append(el('p', { class: 'line-group', text: 'Everything else I have:' }));
+          if (key !== 'whereBy' && touching > 0 && i === 0) list.append(el('p', { class: 'line-group', text: group() }));
+          if (key !== 'whereBy' && touching > 0 && i === touching && i < opts.length) list.append(el('p', { class: 'line-group', text: 'Everything else I have:' }));
           const id = `rf-${key}-${i}`;
           const input = el('input', { type: 'radio', name: key, value: o.value, id });
           if (o.value === '') input.checked = true;
@@ -636,6 +636,22 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           () => breakOptionsShown(dd, r, who()),
           () => (who() ? `What I have that names ${nameOf(dd.kase, who() as string)}, or is about ${hours}.` : `Name them first. Until then, what I have about ${hours}.`),
           () => (who() ? `What I have about ${nameOf(dd.kase, who() as string)}’s own evening at ${hours}:` : ''),
+        );
+        s.addEventListener('change', refill);
+      }
+      if (f.key === 'other') {
+        // docs/61: who else lied, and the line that cleared them: the same lines as for who, for that name.
+        const other = () => s.value || null;
+        const named = () => {
+          const o = other();
+          return o && o !== NOBODY ? nameOf(dd.kase, o) : null;
+        };
+        const refill = lineField(
+          'cleared',
+          CLEARED_LABEL,
+          () => clearOptions(dd, r, other()),
+          () => (other() === NOBODY ? 'Nobody else, so there’s nothing to clear.' : named() ? `What I have that names ${named()}, or is about ${hours}.` : `Name them first. Until then, what I have about ${hours}.`),
+          () => (named() ? `What I have about ${named()}’s own evening at ${hours}:` : ''),
         );
         s.addEventListener('change', refill);
       }
@@ -969,7 +985,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     return form;
   }
 
-  /** "How it plays": the rules, and the teach page's six lines, in a drawer. Esc or Close shuts it. */
+  /** "How it plays": the rules, and the teach page's seven lines, in a drawer. Esc or Close shuts it. */
   function howDrawer(): HTMLDialogElement {
     const dialog = el('dialog', { class: 'drawer', 'aria-labelledby': 'how-title' });
     const close = el('button', { class: 'quiet-button drawer-close', type: 'button', text: 'Close' });
