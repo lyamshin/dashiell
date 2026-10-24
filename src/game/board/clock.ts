@@ -79,7 +79,7 @@ export interface ClockStrip {
   time: string;
   /** One per call in the night's budget: spent, the next one, or still to come. */
   notches: Notch[];
-  /** "Six calls left before the DA files at eight." */
+  /** "Six actions left. The DA charges somebody at eight." (docs/64: an action, never a "call") */
   left: string;
 }
 
@@ -91,7 +91,7 @@ export function clockStrip(
   used: number,
   budget: number,
   /** Who is waiting at eight: the DA, or a client who wants an answer. */
-  deadline = 'the DA files at eight',
+  deadline = 'the DA charges somebody at eight',
 ): ClockStrip {
   const spent = Math.max(0, Math.min(used, budget));
   const notches: Notch[] = Array.from({ length: Math.max(0, budget) }, (_, i) =>
@@ -99,10 +99,8 @@ export function clockStrip(
   );
   const n = callsLeft(used, budget);
   const word = countWord(n);
-  const left =
-    n === 0
-      ? `No calls left. ${deadline.charAt(0).toUpperCase()}${deadline.slice(1)}.`
-      : `${word.charAt(0).toUpperCase()}${word.slice(1)} call${n === 1 ? '' : 's'} left before ${deadline}.`;
+  const Deadline = `${deadline.charAt(0).toUpperCase()}${deadline.slice(1)}`;
+  const left = n === 0 ? `No actions left. ${Deadline}.` : `${word.charAt(0).toUpperCase()}${word.slice(1)} action${n === 1 ? '' : 's'} left. ${Deadline}.`;
   return { time: clockAfter(used, budget), notches, left };
 }
 

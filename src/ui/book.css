@@ -357,13 +357,6 @@ button {
   margin: 0 0 0.35rem;
 }
 
-/* Round 5, U1: what's free and what costs, beside "Talk to", in plain case. */
-.choice-heading-note {
-  letter-spacing: 0;
-  text-transform: none;
-  font-size: 0.8rem;
-}
-
 .choice-list {
   display: flex;
   flex-wrap: wrap;

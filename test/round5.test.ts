@@ -11,7 +11,7 @@ import { accountOf, lineShown, linesHeld } from '../src/game/board/knowledge.js'
 import { OFFICE, budgetCalls, dealBoard, placeName, type BoardDeal, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
 import { blankRule, boardFields, breakOptionsShown, hoursThatMattered, lineGroupHeads, scoreBoard, spareCalls, truthReport } from '../src/game/board/report.js';
-import { TALK_HEADING, TALK_NOTE, notebookText, questionsText, starsNote } from '../src/game/board/text.js';
+import { TALK_HEADING, notebookText, questionsText, starsNote } from '../src/game/board/text.js';
 import { spot, walkBetween } from '../src/game/board/walk.js';
 import { runPlay, type PlayIo } from '../src/cli/play-lib.js';
 
@@ -57,7 +57,7 @@ for (const tier of [0, 1, 2, 3, 4, 5] as TierIndex[]) {
 describe('round 5, U1: picking somebody is free; each question is a call', () => {
   it('the heading says it once, and a person’s row counts the questions still to ask', () => {
     const out = cli(RAW11)('look');
-    expect(out).toContain(`${TALK_HEADING} (${TALK_NOTE}):`);
+    expect(out).toContain(`${TALK_HEADING}:`);
     expect(out).not.toMatch(/free · \d/);
     expect(out).toMatch(/Lanza\s+1 question$/m);
     expect(out).toMatch(/Alfano\s+all asked$/m);
@@ -75,12 +75,13 @@ describe('round 5, U2 and U6: the report says what to type, and what a blank is,
   it('what a blank goes in as is one sentence, said once, the same in the book', () => {
     for (const n of [RAW11, POACHED5, MEDIUM14, HB8]) {
       const out = cli(n)('report').replace(/\s+/g, ' ');
-      expect(out.match(/goes? in as/g)?.length, n.type).toBe(1);
+      expect(out.match(/Leave anything blank/g)?.length, n.type).toBe(1);
       const { d, run } = played(n);
       expect(out).toContain(blankRule(d, run.used >= budgetCalls(d)));
     }
-    expect(blankRule(dealBoard(14, 4, 'lost-pet'), false)).toBe('Filing is final. Anything left blank goes in as “I don’t know”, except What shows they lied, What cleared them and What puts it there, which go in as “A hunch”.');
-    expect(blankRule(dealBoard(11, 0, 'lost-item'), true)).toMatch(/^The calls are spent, so this is what gets filed\. /);
+    // (docs/64: in plain words.)
+    expect(blankRule(dealBoard(14, 4, 'lost-pet'), false)).toBe('Closing the case is final. Leave anything blank if you’re not sure.');
+    expect(blankRule(dealBoard(11, 0, 'lost-item'), true)).toMatch(/^No actions left\. /);
   });
 });
 
@@ -93,8 +94,7 @@ describe('round 5, U3: docs/55 5’s wide first group, under a heading that says
         const own = run.asked.includes(`account:${who}`) ? accountOf(d.kase, who) : undefined;
         const theirs = new Set(Object.values(own?.claims ?? {}).map((cl) => cl?.place));
         const head = lineGroupHeads(d, run, who).touching;
-        // The heading names the places only when there are places to name: their own evening, held.
-        expect(head.includes('the places'), `${d.kase.id} ${who} ${head}`).toBe(!!own);
+        expect(head, `${d.kase.id} ${who}`).toMatch(/^What you know about .+ at .+:$/);
         for (const o of breakOptionsShown(d, run, who).filter((x) => x.touches)) {
           const l = lines.find((x) => x.id === o.value);
           expect(l && l.hour !== undefined && hours.has(l.hour), `${d.kase.id} ${who} ${o.label}`).toBe(true);
@@ -108,15 +108,16 @@ describe('round 5, U3: docs/55 5’s wide first group, under a heading that says
     const out = cli(RAW11)('report', 'Bellucci');
     const { d, run } = played(RAW11);
     const head = lineGroupHeads(d, run, 'bellucci');
-    expect(head.touching).toBe('What I have at ten about Bellucci and the places he said he was tonight:');
-    const first = out.slice(out.indexOf('What I have at ten about Bellucci'), out.indexOf('Anything else I have'));
+    // (docs/64: the heading in plain words, over docs/55 5's same wide group.)
+    expect(head.touching).toBe('What you know about Bellucci at ten:');
+    const first = out.slice(out.indexOf('What you know about Bellucci at ten:'), out.indexOf('Everything else:'));
     expect(first).toContain('Mrs. Kowalski: at ten o’clock, only Rafferty and Moretti were at');
     expect(first).toContain('Alfano: at ten o’clock, only Steinbach, Lanza and Pardo were at');
     const med = played(MEDIUM14);
     const thorndike = breakOptionsShown(med.d, med.run, 'thorndike').filter((o) => o.touches);
     expect(thorndike.length).toBeGreaterThan(2);
     expect(thorndike[0]?.value).not.toBe('remark:account:pickering#0');
-    expect(lineGroupHeads(med.d, med.run, 'thorndike').touching).toBe('What I have at nine or ten about Thorndike and the places he said he was tonight:');
+    expect(lineGroupHeads(med.d, med.run, 'thorndike').touching).toBe('What you know about Thorndike at nine or ten:');
     const hb = played(HB8);
     expect(breakOptionsShown(hb.d, hb.run, 'renfro').filter((o) => o.touches).length).toBeGreaterThan(2);
   });
@@ -176,11 +177,11 @@ describe('round 5, U7: the verdict says which call was spare, and the score does
   it('the testers’ one spare call each was a put, and the closing says so', () => {
     const raw = filedAs(RAW11);
     expect(raw.v.outcome).toBe('solved');
-    expect(raw.v.closing.join(' ')).toContain('It took me 8 calls. A better detective would have done it in 7. Facing Bellucci was a call I didn’t need: Alfano had already told me where the watch went.');
+    expect(raw.v.closing.join(' ')).toContain('It took me 8 actions. A better detective would have done it in 7. I didn’t need to confront Bellucci: Alfano had already told me where the watch went.');
     for (const [n, who, he] of [[POACHED5, 'Reinhardt', 'she'], [MEDIUM14, 'Thorndike', 'he'], [HB8, 'Grasso', 'she']] as const) {
       const { d, run, v } = filedAs(n);
       expect(spareCalls(d, run)).toHaveLength(1);
-      expect(v.closing.join(' ')).toContain(`Facing ${who} was a call I didn’t need: ${he} wouldn’t say, and I had enough to file without it.`);
+      expect(v.closing.join(' ')).toContain(`I didn’t need to confront ${who}: ${he} wouldn’t say, and I had enough to close the case without it.`);
       expect(v.points).toBe(v.asked);
     }
   });

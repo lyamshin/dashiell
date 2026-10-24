@@ -18,12 +18,12 @@ import type { Page } from '../src/game/board/types.js';
 const prose = (p: Page) => p.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join('\n');
 
 describe('round 3: the interface (docs/47 A)', () => {
-  it('every choice costs "1 call" or "free", never minutes', () => {
+  it('every choice says nothing or "free" (docs/64: one action is the rule), never minutes', () => {
     for (const tier of [0, 2, 4] as TierIndex[]) {
       const d = dealBoard(3, tier);
       let run = newBoardRun(d);
       for (const cmd of playBoardOracle(d).commands.slice(0, 6)) {
-        for (const g of boardChoices(d, run)) for (const ch of [...g.choices, ...(g.more ?? [])]) expect(costText(ch)).toMatch(/^(1 call|free|free ✓)$/);
+        for (const g of boardChoices(d, run)) for (const ch of [...g.choices, ...(g.more ?? [])]) expect(costText(ch)).toMatch(/^(|free|free ✓)$/);
         run = stepBoard(d, run, cmd).run;
       }
     }
@@ -92,7 +92,7 @@ describe('round 3: the interface (docs/47 A)', () => {
     const scene = d.kase.places.find((p) => p.scene)?.short as string;
     const words = runPlay(['pencil', `${suspect} ten at ${scene}`, '--save', 'p.json'], io);
     expect(words.code, words.out).toBe(0);
-    expect(words.out).toContain('Pencilled:');
+    expect(words.out).toContain('Your guess:');
     expect(words.out).toMatch(/~flat/);
     const digits = runPlay(['pencil', `${suspect} 10 clear`, '--save', 'p.json'], io);
     expect(digits.code, digits.out).toBe(0);

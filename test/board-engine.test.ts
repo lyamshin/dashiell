@@ -338,7 +338,7 @@ describe('board: the play CLI', () => {
     const culprit = d.kase.people.find((x) => x.id === d.kase.crime.culprit)?.short as string;
     const form = runPlay(['report', culprit, '--save', save], io);
     expect(form.code).toBe(0);
-    expect(form.out).toContain('What shows they lied (breaks):');
+    expect(form.out).toContain('What proves they lied (proof):');
     expect(form.out).toContain('A hunch');
     const o2 = playBoardOracle(d);
     const truth = truthReport(d, o2.run);
@@ -349,7 +349,7 @@ describe('board: the play CLI', () => {
     const otherName = d.kase.people.find((x) => x.id === truth.other)?.short as string;
     const cn = clearOptions(d, o2.run, truth.other).findIndex((x) => x.value === truth.cleared) + 1;
     expect(cn).toBeGreaterThan(0);
-    expect(form.out).toContain('Somebody else’s story didn’t hold either. Who, and what cleared them? (other):');
+    expect(form.out).toContain('Someone else lied too. Who, and what clears them? (other):');
     expect(runPlay(['report', otherName, '--save', save], io).out.replace(/\s+/g, ' ')).toContain(`If ${otherName} is the other liar, give “cleared” as a number from this list too.`);
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=${n}; other=${otherName}; cleared=${cn}; when=${d.kase.crime.hour}; where=${truth.where}; whereBy=${wn}; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
@@ -362,7 +362,7 @@ describe('board: the play CLI', () => {
     const curtain = runPlay(['curtain', '--save', save], io).out;
     expect(curtain).toContain('HOW THE LIE CAME OUT');
     expect(curtain).toContain('WHO ELSE LIED, AND WHAT CLEARED THEM');
-    expect(curtain).toMatch(new RegExp(`You filed: +${otherName}, on .+ ✓`));
+    expect(curtain).toMatch(new RegExp(`You picked: +${otherName}, on .+ ✓`));
   });
 
   it('files the right name on a hunch as right, but you couldn’t have known: half on who', () => {
@@ -388,7 +388,7 @@ describe('board: the play CLI', () => {
     expect(filed.out).toMatch(/You had the right name, but you didn’t rule out [A-Z]\w+\./);
     const curtain = runPlay(['curtain', '--save', save], io).out;
     expect(curtain).toMatch(/What gave it away: .+/);
-    expect(curtain).toContain('You filed:     a hunch.');
+    expect(curtain).toMatch(/You picked: +a hunch\./);
   });
 });
 

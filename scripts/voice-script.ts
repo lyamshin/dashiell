@@ -323,7 +323,7 @@ const TITLE_PAGE = [
 /** The book's headings: the running head, the turn, the notebook, the report and the closing page (`src/ui`). */
 const HEADINGS = [
   'The office.',
-  'The turn.',
+  'Where things stood.',
   'Where they were.',
   'How it adds up.',
   'What I was told.',
@@ -332,8 +332,7 @@ const HEADINGS = [
   'Back to the page.',
   'A page turned back to.',
   'Nothing new.',
-  'File the report.',
-  'The report.',
+  'Close the case.',
   'The verdict.',
   'What really happened.',
   'Look behind the curtain.',
@@ -370,8 +369,8 @@ function fixedLines(nights: Night[]): Draft[] {
   push(`${WHERE_BY_LABEL}.`);
   push(`${HUNCH}.`);
   push('I don’t know.');
-  push('Everything else I have.');
-  push('File it.');
+  push('Everything else.');
+  push('Review my notes.');
   // The verdict: the score, what counted half, the closing for each way a report comes out, the story.
   for (const n of [murder, small]) if (n) out.push(...verdictLines(n));
   return out;

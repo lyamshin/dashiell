@@ -176,13 +176,13 @@ export function movedSaid(c: BoardCase, p: PersonId, mv: { from: string; to: str
   return `${nameOf(c, p)} walked from ${placeName(c, mv.from)} to ${placeName(c, mv.to)} at ${hourWords(mv.h)}`;
 }
 
-/** "ask Brauer who was there", "ask Lindemann where she was", "search the table", "put it to Hargrove". */
+/** "ask Brauer who was there", "ask Lindemann where she was", "search the table", "confront Hargrove" (docs/64). */
 export function actionWords(c: BoardCase, q: Question): string {
   const p = c.people.find((x) => x.id === q.subject);
   const name = p?.short ?? q.subject;
   if (q.kind === 'search') return `search ${c.finds.find((f) => f.id === q.subject)?.what ?? 'the room'}`;
   if (q.kind === 'list') return `ask ${name} who was there`;
-  if (q.kind === 'confront') return `put it to ${name}`;
+  if (q.kind === 'confront') return `confront ${name}`;
   return `ask ${name} where ${pronOf(c, q.subject).he} was`;
 }
 

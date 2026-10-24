@@ -7,9 +7,10 @@
  *   confront <Name> · report [<Name>] · file "who=…; breaks=…; other=…; cleared=…; when=…; how=…; why=…; where=…; whereBy=…"
  *   story · curtain · help
  *
- * docs/46 §3: the report asks what breaks their story. `report <Name>` lists
- * the lines held that name them or fall at the hour that mattered; `breaks`
- * counts down that list, and `breaks=hunch` is a hunch.
+ * docs/46 §3: the report asks what proves they lied. `report <Name>` lists
+ * what you know that names them or falls at the hour that mattered; `proof`
+ * (docs/64; `breaks` before it, still read) is a number from that list, and
+ * `proof=hunch` is a hunch.
  *
  * docs/61: from Poached up, where two stories break, it asks who else lied
  * (`other`) and what cleared them (`cleared`), which counts down the same list
@@ -58,7 +59,7 @@ import {
   type LineOption,
 } from '../game/board/report.js';
 import { dealtIds, recordRun, sanitizeProfile, seenOf } from '../game/board/profile.js';
-import { TALK_HEADING, TALK_NOTE, costText, notebookText, pageBodyText, questionsText, starsNote, wrap } from '../game/board/text.js';
+import { ACTION_KEY, TALK_HEADING, costText, notebookText, pageBodyText, questionsText, starsNote, wrap } from '../game/board/text.js';
 import type { OfferedChoice, OfferedGroup } from '../game/board/types.js';
 
 /* ------------------------------------------------------------------ io */
@@ -75,6 +76,15 @@ export interface PlayResult {
 }
 
 const WIDTH = 76;
+
+/** docs/64: the form's keys as a player types them; the engine's own (`breaks`, `whereBy`) still read. */
+const KEY_SHOWN: Partial<Record<string, string>> = { breaks: 'proof', whereBy: 'whereproof' };
+
+/** A key as typed, to the form's own: `proof` is `breaks`, `whereproof` is `whereBy`. */
+function keyOf(typed: string): string {
+  const k = typed.toLowerCase();
+  return k === 'proof' ? 'breaks' : k === 'whereproof' ? 'whereBy' : typed;
+}
 const RULE = '─'.repeat(WIDTH);
 const DOUBLE = '═'.repeat(WIDTH);
 
@@ -209,13 +219,13 @@ function pageChoicesText(night: Night): string {
     const kind = it.group.kind;
     if (kind !== last) {
       out.push('');
-      out.push(kind === 'ask' ? `${TALK_HEADING} (${TALK_NOTE}):` : kind === 'free' ? 'Free:' : `${it.group.heading}:`);
+      out.push(kind === 'ask' ? `${TALK_HEADING}:` : kind === 'free' ? 'Free:' : `${it.group.heading}:`);
       last = kind;
     }
     if (it.person) {
       const g = it.group;
-      // Round 5, U1: "2 questions", the ones still to ask; the heading says picking is free (docs/55 7's
-      // "free · 2 questions" read as two free questions to all four testers).
+      // Round 5, U1: "2 questions", the ones still to ask (docs/55 7's "free · 2 questions" read as two
+      // free questions to all four testers). Picking somebody is free; the key says so.
       out.push(itemLine(it.n, it.choice, questionsText(g)));
       continue;
     }
@@ -229,9 +239,8 @@ function pageChoicesText(night: Night): string {
   return out.join('\n');
 }
 
-/** The key to a page's marks, said once, on the first page (docs/47 A3). */
-const CHOICE_KEY =
-  'Every question, search and walk costs one call, and so does reading somebody a line with “Put it to”; the clock moves with the calls. A star means it’s worth doing next, and says why. A tick means done, and free to read again. Picking somebody costs nothing: what to ask them opens, and "back" shuts it. `page <n>` turns back to an earlier page.';
+/** The key to a page's marks, said once, on the first page (docs/47 A3), in docs/64's words; and the CLI's own two commands. */
+const CHOICE_KEY = `${ACTION_KEY} Picking somebody shows what you can ask them; \`back\` shuts it, and \`page <n>\` turns back to an earlier page.`;
 
 function topicItems(night: Night, person: string): Item[] {
   const g = boardChoices(night.d, night.run).find((x) => x.kind === 'ask' && x.personId === person);
@@ -267,15 +276,15 @@ function pickerItems(night: Night, pk: Picker): { n: number; command: string; la
 
 function pickerText(night: Night, pk: Picker): string {
   const c = night.d.kase;
-  const out = [`PUT IT TO ${nameOf(c, pk.person).toUpperCase()}`, '', wrap(pickerNote(night.d, pk))];
+  const out = [`CONFRONT ${nameOf(c, pk.person).toUpperCase()}`, '', wrap(pickerNote(night.d, pk))];
   const items = pickerItems(night, pk);
   const picking = pk.ready.length === 0 && night.save.claim !== null;
   const his = pronWord(night, pk.person, 'his');
   out.push('');
   const she = his === 'her' ? 'she' : his === 'his' ? 'he' : 'they';
-  out.push(pk.ready.length > 0 ? `What ${she} said, and what says otherwise:` : picking ? `Against “${pk.claims.find((x) => x.hour === night.save.claim)?.label}”, read ${pronWord(night, pk.person)}:` : `Which part of ${his} evening?`);
-  for (const it of items) out.push(itemLine(it.n, { command: it.command, label: it.label, minutes: 0, lead: false, done: false }, it.claim !== undefined ? 'free' : '1 call') + (it.source ? `\n          (${it.source})` : ''));
-  out.push('', itemLine(items.length + 1, { command: 'back', label: picking ? `Back to ${his} evening` : `Put nothing to ${pronWord(night, pk.person)}`, minutes: 0, lead: false, done: false }, 'free'));
+  out.push(pk.ready.length > 0 ? `What ${she} said, and what says otherwise:` : picking ? `Against “${pk.claims.find((x) => x.hour === night.save.claim)?.label}”, tell ${pronWord(night, pk.person)}:` : `Which part of ${his} evening?`);
+  for (const it of items) out.push(itemLine(it.n, { command: it.command, label: it.label, minutes: 0, lead: false, done: false }, it.claim !== undefined ? 'free' : '') + (it.source ? `\n          (${it.source})` : ''));
+  out.push('', itemLine(items.length + 1, { command: 'back', label: picking ? `Back to ${his} evening` : `Don’t confront ${pronWord(night, pk.person)}`, minutes: 0, lead: false, done: false }, 'free'));
   return out.join('\n');
 }
 
@@ -313,16 +322,16 @@ function reportText(night: Night, path: string, who: string | null = null): stri
   const c = night.d.kase;
   const murder = c.type === 'murder';
   // Round 5, U6: what a blank goes in as, once, in one sentence, the book's words.
-  const out = ['THE REPORT', '', wrap(blankRule(night.d, night.run.used >= budgetCalls(night.d))), ''];
+  const out = ['CLOSE THE CASE', '', wrap(blankRule(night.d, night.run.used >= budgetCalls(night.d))), ''];
   const field = (f: ReturnType<typeof boardFields>[number]) => {
-    out.push(`${f.label} (${f.key}):`);
+    out.push(`${f.label} (${KEY_SHOWN[f.key] ?? f.key}):`);
     f.options.forEach((o, i) => out.push(`   ${String(i + 1).padStart(2)}. ${o.label}`));
     out.push('');
   };
   for (const f of boardFields(night.d, night.run)) {
     field(f);
     if (f.key === 'who') {
-      out.push(`${BREAKS_LABEL} (breaks):`);
+      out.push(`${BREAKS_LABEL} (proof):`);
       if (who) {
         const N = nameOf(c, who);
         // Round 5, U3: the headings say what's under them, the book's words.
@@ -330,27 +339,27 @@ function reportText(night: Night, path: string, who: string | null = null): stri
         // docs/61: the same list answers the other question. Round 5, U2: said as what to type.
         if (asksOther(night.d)) out.push(wrap(`If ${N} is the other liar, give “cleared” as a number from this list too.`, WIDTH, '   '));
       } else {
-        out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists what I have that names them, or is about ${hoursWord(night)}. Give “breaks” as a number from that list, or breaks=hunch.`, WIDTH, '   '));
+        out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists what you know about them, or about ${hoursWord(night)}. Give “proof” as a number from that list, or proof=hunch.`, WIDTH, '   '));
       }
       out.push('');
     }
     if (f.key === 'other') {
-      // docs/61: what cleared them counts down the same list `report <name>` shows for that person.
+      // docs/61: what clears them is a number from the same list `report <name>` shows for that person.
       out.push(`${CLEARED_LABEL} (cleared):`);
-      out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists what I have that names them, the same list as for breaks. Give “cleared” as a number from it, or cleared=hunch.`, WIDTH, '   '));
+      out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists what you know about them, the same list as for proof. Give “cleared” as a number from it, or cleared=hunch.`, WIDTH, '   '));
       out.push('');
     }
     if (f.key === 'where') {
-      out.push(`${WHERE_BY_LABEL} (whereBy):`);
+      out.push(`${WHERE_BY_LABEL} (whereproof):`);
       out.push(...lineList(whereByOptions(night.d, night.run)));
       out.push('');
     }
   }
   const two = asksOther(night.d);
-  const head = `who=…; breaks=…; ${two ? 'other=…; cleared=…; ' : ''}when=…;`;
-  const keys = murder ? `${head} how=…; why=…` : `${head} where=…; whereBy=…; why=…`;
+  const head = `who=…; proof=…; ${two ? 'other=…; cleared=…; ' : ''}when=…;`;
+  const keys = murder ? `${head} how=…; why=…` : `${head} where=…; whereproof=…; why=…`;
   // (Round 5, U6: what a blank goes in as is said once, at the top.)
-  out.push(wrap(`File it with: npm run play -- file "${keys}" --save ${path}. An answer is its number or enough of its words. For ${two ? 'breaks and cleared' : 'breaks'}, give the number from that person’s list (report <name> shows it).`));
+  out.push(wrap(`Close it with: npm run play -- close "${keys}" --save ${path}. An answer is its number or enough of its words. For ${two ? 'proof and cleared' : 'proof'}, give the number from that person’s list (report <name> shows it).`));
   return out.join('\n');
 }
 
@@ -370,16 +379,17 @@ function parseReport(night: Night, text: string): BoardReport {
   for (const part of text.split(';').map((x) => x.trim()).filter(Boolean)) {
     const m = /^(\w+)\s*=\s*(.+)$/.exec(part);
     if (!m) fail(`Can’t read "${part}". Write key=answer.`);
-    const key = (m as RegExpExecArray)[1] as FieldKey;
+    // docs/64: `proof` and `whereproof`, with `breaks` and `whereBy` still read, so saves and old notes work.
+    const key = keyOf((m as RegExpExecArray)[1] as string) as FieldKey;
     const raw = ((m as RegExpExecArray)[2] as string).trim();
     if (key === 'breaks' || fold(key) === 'whereby' || key === 'cleared') {
-      if (fold(key) === 'whereby' && night.d.kase.type === 'murder') fail('The form asks what puts it there only for a lost thing.');
+      if (fold(key) === 'whereby' && night.d.kase.type === 'murder') fail('The form asks where it is only for a lost thing.');
       if (key === 'cleared' && !asksOther(night.d)) fail('Tonight’s form doesn’t ask who else lied, so there’s nothing to clear.');
       lineAnswers.push({ key: key === 'breaks' ? 'breaks' : key === 'cleared' ? 'cleared' : 'whereBy', raw });
       continue;
     }
     const f = fields.find((x) => x.key === key);
-    if (!f) fail(`The form doesn’t ask "${key}". It asks: ${[...fields.map((x) => x.key), 'breaks', ...(asksOther(night.d) ? ['cleared'] : []), ...(night.d.kase.type === 'murder' ? [] : ['whereBy'])].join(', ')}.`);
+    if (!f) fail(`The form doesn’t ask "${key}". It asks: ${[...fields.map((x) => x.key), 'proof', ...(asksOther(night.d) ? ['cleared'] : []), ...(night.d.kase.type === 'murder' ? [] : ['whereproof'])].join(', ')}.`);
     const spec = f as (typeof fields)[number];
     const v = fold(raw);
     if (/^\d+$/.test(v) && spec.options[Number(v) - 1] && !(key === 'when' && spec.options.some((o) => o.value === v))) {
@@ -390,14 +400,14 @@ function parseReport(night: Night, text: string): BoardReport {
     if (hits.length !== 1) fail(hits.length === 0 ? `"${raw}" isn’t one of the ${key} options.` : `"${raw}" fits more than one ${key} option.`);
     answers[key] = (hits[0] as { value: string }).value;
   }
-  // The line questions read against their lists: what breaks the story counts down the named person's.
+  // The proofs read against their lists: what proves they lied is a number from the named person's.
   for (const { key, raw } of lineAnswers) {
     const v = fold(raw);
     if (v === 'hunch' || v === fold(HUNCH)) {
       answers[key] = null;
       continue;
     }
-    if (key === 'breaks' && !answers.who) fail('Name who first: breaks is a number from the list `report <name>` shows for them.');
+    if (key === 'breaks' && !answers.who) fail('Name who first: proof is a number from the list `report <name>` shows for them.');
     if (key === 'cleared' && (!answers.other || answers.other === NOBODY)) fail('Name who else lied first (other=…): cleared is a number from the list `report <name>` shows for them.');
     const opts = key === 'breaks' ? breakOptionsShown(night.d, night.run, answers.who as string) : key === 'cleared' ? clearOptions(night.d, night.run, answers.other as string) : whereByOptions(night.d, night.run);
     if (/^\d+$/.test(v)) {
@@ -407,12 +417,12 @@ function parseReport(night: Night, text: string): BoardReport {
         continue;
       }
       const o = opts[n - 1];
-      if (!o) fail(`${key} is 1 to ${opts.length + 1}: \`report${key === 'breaks' ? ` ${nameOf(night.d.kase, answers.who as string)}` : key === 'cleared' ? ` ${nameOf(night.d.kase, answers.other as string)}` : ''}\` shows them.`);
+      if (!o) fail(`${KEY_SHOWN[key] ?? key} is 1 to ${opts.length + 1}: \`report${key === 'breaks' ? ` ${nameOf(night.d.kase, answers.who as string)}` : key === 'cleared' ? ` ${nameOf(night.d.kase, answers.other as string)}` : ''}\` shows them.`);
       answers[key] = (o as LineOption).value;
       continue;
     }
     const hits = opts.filter((o) => fold(o.label).includes(v));
-    if (hits.length !== 1) fail(hits.length === 0 ? `"${raw}" isn’t one of the ${key} lines.` : `"${raw}" fits more than one ${key} line.`);
+    if (hits.length !== 1) fail(hits.length === 0 ? `"${raw}" isn’t one of the ${KEY_SHOWN[key] ?? key} answers.` : `"${raw}" fits more than one ${KEY_SHOWN[key] ?? key} answer.`);
     answers[key] = (hits[0] as LineOption).value;
   }
   return reportFrom(night.d, answers);
@@ -431,7 +441,7 @@ function verdictText(night: Night): string {
   }
   out.push('', wrap(v.scoreLine), ...v.plain.map((p) => wrap(p)), '');
   for (const p of v.closing) out.push(wrap(p.replace(/\*\*/g, '')), '');
-  out.push(wrap('`story` tells what really happened; `curtain` shows the true board, the path and the lies.'));
+  out.push(wrap('`story` tells what really happened; `curtain` shows the true board, the lies and the fastest solve.'));
   return out.join('\n');
 }
 
@@ -548,8 +558,8 @@ function cmdNew(io: PlayIo, values: Map<string, string>, flags: Set<string>): st
 function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
   let night = load(io, path);
   if (raw === undefined) fail('do what? A choice’s number, or its words.');
-  if (night.run.filed) fail('The report is filed; the night is over. `look` shows the verdict again.');
-  if (night.run.reportOpen) fail('The report form is out: `report` shows it, `file` files it.');
+  if (night.run.filed) fail('The case is closed; the night is over. `look` shows the verdict again.');
+  if (night.run.reportOpen) fail('The case is being closed: `report` shows the form, `close` closes it.');
   const v = fold(raw as string);
   const s = night.save;
   // The picker.
@@ -560,7 +570,7 @@ function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
       return lookText(night, path);
     }
     const items = pickerItems(night, pk);
-    if (v === 'back' || v === String(items.length + 1) || /^put nothing to (them|her|him)$/.test(v)) {
+    if (v === 'back' || v === String(items.length + 1) || /^(?:put nothing to|don't confront) (them|her|him)$/.test(v)) {
       night = commit(io, path, night, [], s.claim !== null && pk.ready.length === 0 ? { claim: null } : { picker: null, claim: null });
       return lookText(night, path);
     }
@@ -614,7 +624,7 @@ function cmdPencil(io: PlayIo, raw: string | undefined, path: string): string {
   // docs/47 A5: the hour as the grid says it ("ten") or as a number ("10"), with or without "o’clock".
   const HOURS: Record<string, number> = { five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12 };
   const m = /^(\S+(?: \S+)?)\s+(\d{1,2}|five|six|seven|eight|nine|ten|eleven|twelve)(?:\s+o[’']clock)?\s+(at|not|clear)\s*(.*)$/i.exec((raw ?? '').trim());
-  if (!m) fail('pencil "<Name> <hour> at|not|clear [place]", e.g. pencil "Feldman ten at Rafferty’s" or pencil "Feldman 10 at Rafferty’s".');
+  if (!m) fail('mark "<Name> <hour> at|not|clear [place]", e.g. mark "Feldman ten at Rafferty’s" or mark "Feldman 10 at Rafferty’s".');
   const [, who, hs, act, pl] = m as RegExpExecArray;
   const c = night.d.kase;
   const person = c.people.find((p) => fold(p.short) === fold(who as string) || fold(p.name) === fold(who as string));
@@ -630,7 +640,7 @@ function cmdPencil(io: PlayIo, raw: string | undefined, path: string): string {
     place = (hit as { id: string }).id;
   }
   night = commit(io, path, night, [{ mark: { person: (person as { id: string }).id, hour: h, action: act as 'at' | 'not' | 'clear', ...(place ? { place } : {}) } }]);
-  const said = act === 'clear' ? `Rubbed out ${nameOf(c, (person as { id: string }).id)} at ${hourWord(h)}.` : `Pencilled: ${nameOf(c, (person as { id: string }).id)} ${act === 'not' ? 'not at' : 'at'} ${placeName(c, place as string)} at ${hourWord(h)}. It shows as ~ on the grid.`;
+  const said = act === 'clear' ? `Cleared your guess for ${nameOf(c, (person as { id: string }).id)} at ${hourWord(h)}.` : `Your guess: ${nameOf(c, (person as { id: string }).id)} ${act === 'not' ? 'not at' : 'at'} ${placeName(c, place as string)} at ${hourWord(h)}. It shows as ~ on the grid.`;
   return `${said}\n\n${boardGridText(c, night.run)}`;
 }
 
@@ -640,14 +650,14 @@ function helpText(): string {
   out.push(
     'COMMANDS',
     '  new --seed N --tier 0..5 [--type murder|lost-item|lost-pet] [--world neighbourhood] [--name <detective>] [--no-teach] [--profile P] --save F',
-    '       (--profile P: a profile file; the night prefers what its last ten nights didn’t deal, and filing adds this night to it)',
+    '       (--profile P: a profile file; the night prefers what its last ten nights didn’t deal, and closing the case adds this night to it)',
     '  look · do <n|words> · page <n> · notebook · grid',
-    '  pencil "<Name> <hour> at|not|clear [place]" (pencil "Feldman ten at Rafferty’s") · confront <Name>',
-    '  report [<Name>] (with a name, the lines that touch their story: what could show they lied, or clear them)',
-    '  file "who=…; breaks=…; other=…; cleared=…; when=…; how=…; why=…"',
-    '       (a lost thing: where=…; whereBy=… instead of how=…; breaks=hunch for a hunch;',
-    '        other and cleared only when two stories break: who else lied, and the line that cleared them)',
-    '  story · curtain (after filing)',
+    '  mark "<Name> <hour> at|not|clear [place]" (mark a guess on the grid: mark "Feldman ten at Rafferty’s") · confront <Name>',
+    '  report [<Name>] (with a name, what you know about them: what could prove they lied, or clear them)',
+    '  close "who=…; proof=…; other=…; cleared=…; when=…; how=…; why=…"',
+    '       (a lost thing: where=…; whereproof=… instead of how=…; proof=hunch for a hunch;',
+    '        other and cleared only when two people lied: who else lied, and what clears them)',
+    '  story · curtain (once the case is closed)',
   );
   return out.join('\n');
 }
@@ -691,6 +701,7 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
         const night = load(io, path);
         return { out: boardGridText(night.d.kase, night.run), code: 0 };
       }
+      case 'mark':
       case 'pencil':
         return { out: cmdPencil(io, arg, path), code: 0 };
       case 'confront': {
@@ -706,9 +717,10 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
         if (night.run.filed) return { out: verdictText(night), code: 0 };
         return { out: reportText(night, path, arg ? suspectNamed(night, arg) : null), code: 0 };
       }
+      case 'close':
       case 'file': {
         let night = load(io, path);
-        if (night.run.filed) fail('Filed already.');
+        if (night.run.filed) fail('The case is closed already.');
         const report = parseReport(night, arg ?? '');
         if (!night.run.reportOpen) night = commit(io, path, night, [{ do: 'file' }]);
         night = commit(io, path, night, [{ file: report }]);
@@ -729,7 +741,7 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
       case 'story':
       case 'curtain': {
         const night = load(io, path);
-        if (!night.run.filed) fail('Not until the report is filed.');
+        if (!night.run.filed) fail('Not until the case is closed.');
         return { out: command === 'story' ? storyOfBoard(night.d).map((p) => wrap(p)).join('\n\n') : curtainOfBoard(night.d, night.run, night.run.filed), code: 0 };
       }
       case 'help':

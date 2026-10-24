@@ -125,8 +125,8 @@ describe('docs/61: who else lied, and what cleared them', () => {
     const right = curtainOfBoard(d, o.run, truth);
     expect(right).toContain('WHO ELSE LIED, AND WHAT CLEARED THEM');
     expect(right).toMatch(/What cleared (him|her): .+/);
-    expect(right).toMatch(/You filed: +\S.* ✓/);
-    expect(curtainOfBoard(d, o.run, { ...truth, other: NOBODY, cleared: null })).toMatch(/You filed: +nobody else\. +✗/);
+    expect(right).toMatch(/You picked: +\S.* ✓/);
+    expect(curtainOfBoard(d, o.run, { ...truth, other: NOBODY, cleared: null })).toMatch(/You picked: +nobody else\. +✗/);
     expect(curtainOfBoard(dealBoard(2, 1, 'murder'))).not.toContain('WHO ELSE LIED');
   });
 
@@ -149,7 +149,7 @@ describe('docs/61: who else lied, and what cleared them', () => {
 
   it('the teach page says it, plainly, on a line of its own', () => {
     expect(BOARD_TEACH_LINES).toContain('To close the case you need a name and the fact that proves they lied.');
-    expect(BOARD_TEACH_LINES).toContain('When two stories break, you also need what clears the other one.');
+    expect(BOARD_TEACH_LINES).toContain('When two people lied, you also need what clears the innocent one.');
   });
 });
 

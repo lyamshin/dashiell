@@ -88,7 +88,7 @@ export interface StepResult {
 export function stepBoard(d: BoardDeal, run: BoardRun, input: string): StepResult {
   const c = d.kase;
   const fail = (error: string): StepResult => ({ run, page: run.log[run.log.length - 1] as Page, error });
-  if (run.filed) return fail('The report is filed.');
+  if (run.filed) return fail('The case is closed.');
   const words = input.trim().split(/\s+/);
   const verb = words[0];
   const next: BoardRun = { ...run, asked: [...run.asked], puts: [...run.puts], visited: [...run.visited], log: [...run.log], spent: [...run.spent], visits: { ...run.visits } };
@@ -100,7 +100,7 @@ export function stepBoard(d: BoardDeal, run: BoardRun, input: string): StepResul
     writeReport(w);
     return { run: finish(w, next, { job: 'nothing', cost: 0 }), page: next.log[n] as Page };
   }
-  if (run.reportOpen) return fail('The report form is out. File it.');
+  if (run.reportOpen) return fail('The case is being closed: close it.');
 
   if (verb === 'recap') {
     if (run.at === OFFICE) return fail('Not in the office.');
@@ -179,7 +179,7 @@ export function stepBoard(d: BoardDeal, run: BoardRun, input: string): StepResul
     if (!peopleAt(c, run, run.at).includes(p)) return fail(`${nameOf(c, p)} isn’t here.`);
     if (!run.asked.includes(`account:${p}`)) return fail(`I haven’t heard ${nameOf(c, p)}’s story yet.`);
     const line = linesHeld(c, run).find((l) => l.id === lineId);
-    if (!line) return fail('I don’t have that line.');
+    if (!line) return fail('I wasn’t told that.');
     let j = judgeLine(c, run, p, h, line);
     if (again) {
       // The second story: the list where it claims to be, without them on it.
