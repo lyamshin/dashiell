@@ -255,7 +255,8 @@ export function introduce(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
           const after = t.slice(at);
           // (Not a possessive, nor one of a list of names: "Mosley, Bledsoe and Hanrahan".)
           // (A clause of its own after a comma, ", and Coffin was finishing a late supper", is no list.)
-          if (/^’s\b/.test(after) || /^(?:, (?:(?:Mrs\.|Miss|Dr\.) )?[A-Z][\w’.-]+(?:,| and)| and (?:(?:Mrs\.|Miss|Dr\.) )?[A-Z])/.test(after) || /[A-Z][\w’.-]+(?:,| and) $/.test(before)) continue;
+          // (Two names and an "and", "where Lathrop and Pickering were", take it: "Lathrop, a typist, and Pickering".)
+          if (/^’s\b/.test(after) || /^(?:, (?:(?:Mrs\.|Miss|Dr\.) )?[A-Z][\w’.-]+(?:,| and))/.test(after) || /^ and (?:(?:Mrs\.|Miss|Dr\.) )?[A-Z][\w’.-]+(?:,| and)/.test(after) || /[A-Z][\w’.-]+, $/.test(before) || /[A-Z][\w’.-]+, (?:(?:Mrs\.|Miss|Dr\.) )?[A-Z][\w’.-]+ and $/.test(before)) continue;
           it.text = /^[.,;:!?]/.test(after) ? `${t.slice(0, at)}, ${intro}${after}` : `${t.slice(0, at)}, ${intro},${after}`;
           it.alts = undefined;
         }
@@ -279,9 +280,22 @@ function foldPointer(paras: Item[][], ctx: PlanCtx): void {
   if (!why || !ask || items.indexOf(ask) < items.indexOf(why)) return;
   const w = stripMarks(why.text).trim();
   if (sentencesOf(w).length !== 1 || !/\b(?:had|has) (?:seen|said|told me|passed|mentioned|named)\b/.test(w)) return;
-  // Nothing else between them but the staging budgeted away.
+  // Nothing else between them but the staging budgeted away; a staging line left between, the pointer
+  // opens its paragraph ("Grasso had said she was at the Delmonico rooms at eight and ten. Mrs. Sirkin
+  // talked to me in the hall…").
   const between = items.slice(items.indexOf(why) + 1, items.indexOf(ask)).filter((x) => x.text.trim());
-  if (between.length > 0) return;
+  if (between.length > 0) {
+    const first = between[0] as Item;
+    const wp0 = paras.find((ps) => ps.includes(why)) as Item[];
+    const fp = paras.find((ps) => ps.includes(first)) as Item[];
+    if (wp0 !== fp && wp0.filter((x) => x.text.trim()).length === 1) {
+      wp0.splice(wp0.indexOf(why), 1);
+      fp.splice(fp.indexOf(first), 0, why);
+      first.runOn = true;
+      for (let k = paras.length - 1; k >= 0; k--) if ((paras[k] as Item[]).length === 0) paras.splice(k, 1);
+    }
+    return;
+  }
   const a = stripMarks(ask.text).trim();
   const wp = paras.find((ps) => ps.includes(why)) as Item[];
   const ap = paras.find((ps) => ps.includes(ask)) as Item[];
@@ -343,6 +357,42 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
     alt.take();
     it.text = alt.text;
     it.alts = undefined;
+  }
+  // docs/62 item 11: each person in a spot of their own: "at a little table by the wall", then never "in a
+  // booth by the wall" for the next. A line that says a spot again takes a card that fitted as well and
+  // doesn't; with none, where the spot only says where the seat is, the seat alone ("in a booth").
+  const SPOT = /\b(?:by|at|in|near|against|under) the (?:wall|corner|window|door|bar|stairs|counter|register|stove|mirror|back row|back)\b/g;
+  const key = (m: string) => m.replace(/^\w+ /, '');
+  const spots = new Set<string>();
+  for (const it of items) {
+    if (roleOf(it) !== 'people' || !it.text.trim()) continue;
+    const clash = (t: string) => [...stripMarks(t).matchAll(SPOT)].some((m) => spots.has(key(m[0] as string)));
+    if (clash(it.text)) {
+      const alt = it.alts?.().find((a) => !a.lastResort && !clash(a.text));
+      if (alt) {
+        alt.take();
+        it.text = alt.text;
+        it.alts = undefined;
+      } else {
+        for (const sp of spots) {
+          it.text = it.text.replace(new RegExp(`(\\b(?:a|an|the)(?: [a-z]+)? (?:booth|table|stool|chair|seat|bench|cushion|step)) (?:by|near|against|under) ${sp}\\b`), '$1');
+          // ("Lathrop stood at the back with his hat in his hand", after the usher stood at the back: "Lathrop stood with his hat in his hand".)
+          it.text = it.text.replace(new RegExp(`\\b(stood|sat|waited|leaned|lingered|was|were) (?:at|in|by|near) ${sp}(?= with\\b)`), '$1');
+        }
+      }
+    }
+    // (And within one line of several people.)
+    const seen = new Set<string>();
+    it.text = it.text.replace(/(\b(?:a|an|the)(?: [a-z]+)? (?:booth|table|stool|chair|seat|bench|cushion|step)) ((?:by|near|against|under) (the [a-z]+))\b/g, (m, seat: string, _p: string, sp: string) => {
+      if (seen.has(sp) || spots.has(sp)) return seat;
+      seen.add(sp);
+      return m;
+    });
+    // (The rhythm may trade the line for another card later: never one that says a spot again.)
+    const before = new Set(spots);
+    const all = it.alts;
+    if (all) it.alts = () => all().filter((a) => ![...stripMarks(a.text).matchAll(SPOT)].some((m) => before.has(key(m[0] as string))));
+    for (const m of stripMarks(it.text).matchAll(SPOT)) spots.add(key(m[0] as string));
   }
   // The one joke or flourish: a callback when one is due, else the page's joke. (On a page that asks,
   // the ask is the staging line: a joke dealt on the staging or the ask isn't the page's joke there,

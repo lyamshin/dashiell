@@ -834,16 +834,20 @@ function spotKey(m: string): string {
 function spotFree(spots: Set<string>, text: string | null, alts: Item['alts']): string | null {
   if (!lean() || !text || spots.size === 0) return text;
   const clash = (t: string) => [...t.matchAll(SPOT)].some((m) => spots.has(spotKey(m[0] as string)));
-  if (!clash(text) || !alts) return text;
-  const alt = alts().find((a) => !a.lastResort && !clash(a.text));
-  if (!alt) return text;
-  alt.take();
-  return alt.text;
+  if (!clash(text)) return text;
+  const alt = alts ? alts().find((a) => !a.lastResort && !clash(a.text)) : undefined;
+  if (alt) {
+    alt.take();
+    return alt.text;
+  }
+  // (None: where the spot only says where the seat is, "in a booth by the wall", the seat alone.)
+  return text.replace(/(\b(?:a|an|the)(?: [a-z]+)? (?:booth|table|stool|chair|seat|bench|cushion|step)) (?:by|near|against|under) the (?:wall|window|door|stove|mirror|counter|bar|stairs)\b/, '$1');
 }
 
 /** docs/62, P8: whether tonight has said already that a place keeps no watch ("No clerk, no doorman, nobody watching the stairs"). */
 function unwatchedSaid(w: Writer): boolean {
-  return w.before.log.some((pg) => pg.blocks.some((b) => b.kind === 'prose' && b.voice !== 'answer' && UNWATCHED.test(b.text.replace(/“[^”]*”?/g, ' '))));
+  const said = (t: string) => UNWATCHED.test(t.replace(/“[^”]*”?/g, ' '));
+  return w.before.log.some((pg) => pg.blocks.some((b) => b.kind === 'prose' && b.voice !== 'answer' && said(b.text))) || Object.values(w.parts).flat().some((x) => !!x && x.voice !== 'answer' && said(x.text));
 }
 
 /**
@@ -982,6 +986,10 @@ function handOff(w: Writer, always = false): void {
   if (named) {
     const already = Object.values(w.parts).flat().reduce((n, x) => n + (x?.text.match(new RegExp(`\\b${esc(named)}\\b`, 'g')) ?? []).length, 0);
     if (already >= 2) return;
+    // (docs/62 item 4: somebody the narration hasn't met yet is met by name, not by "Mrs. Wehrle’s evening",
+    // which leaves nowhere to say who she is.)
+    const metNarr = [...w.before.log.flatMap((pg) => pg.blocks), ...Object.values(w.parts).flat()].some((b) => !!b && 'voice' in b && b.voice !== 'answer' && b.text.replace(/“[^”]*”?/g, ' ').includes(named));
+    if (lean() && !metNarr) w.hand.avoid = alsoAvoid(w.hand.avoid, /^\{Name\}’s\b/);
   }
   const said = w.hand.draw('handoff', { kind: k, away }, withCaps(slots), { plain: true });
   put(w, 'handoff', said, 'thought', { keepNames: true });
@@ -1670,7 +1678,11 @@ export function writeArrive(w: Writer, place: PlaceId): void {
         continue;
       }
       const wAlts = doingW ? altsOf(w, doingDrawn) : undefined;
-      const wText = spotFree(spots, doingW, wAlts);
+      // (docs/62 item 1: who they are is said once a night: a card that says it again on a second visit, "Prentiss,
+      // the head waiter, was standing by the coats", is the name alone.)
+      const metAlready = lean() && !!doingW && w.before.log.some((pg) => pg.blocks.some((b) => b.kind === 'prose' && b.voice !== 'answer' && b.text.replace(/“[^”]*”?/g, ' ').includes(person.short)));
+      const wText0 = metAlready && doingW ? doingW.replace(new RegExp(`^${esc(person.short)}, the [a-z’ -]+, `), `${person.short} `) : doingW;
+      const wText = spotFree(spots, wText0, wText0 === doingW ? wAlts : undefined);
       sentences.push({ text: wText ?? `${person.short} was there, ${person.description}.`, about: [p], alts: wText === doingW ? wAlts : undefined });
       for (const m of (wText ?? '').matchAll(SPOT)) spots.add(spotKey(m[0] as string));
       const met = w.before.visited.includes(place);

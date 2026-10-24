@@ -113,7 +113,11 @@ export function introOf(c: BoardCase, id: PersonId, here?: string): string | nul
   const d = whoTheyAre(c, id);
   if (p.role === 'watcher') {
     const j = d.split(/,| at | in /)[0]?.trim() ?? '';
-    return /^the /.test(j) ? j : null;
+    if (/^the /.test(j)) return j;
+    // (A keeper the case gives no trade, "Mr. Feld, at the counter at Feld’s studio": who keeps the place.)
+    const kept = c.lists.find((l) => l.watcher === id)?.place;
+    const name = kept ? c.places.find((x) => x.id === kept)?.short : undefined;
+    return name ? `who keeps ${name}` : null;
   }
   if (p.role === 'company') {
     const w = /^was with (.+?) at .+?; nobody else knows it$/.exec(d);

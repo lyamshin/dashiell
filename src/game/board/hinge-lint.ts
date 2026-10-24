@@ -170,6 +170,10 @@ function bareFirst(c: BoardCase, run: BoardRun): HingeIssue[] {
             continue;
           }
           if (!re.test(sn)) continue;
+          // (A roll call of three names or more, "I still had to ask Thorndike, Grasso, Doyle and Vitale",
+          // is nobody appearing: who they are waits for the sentence that meets them.)
+          const n0 = esc(x.short);
+          if (new RegExp(`(?:[A-Z][\\w’.-]+, (?:(?:Mrs\\.|Miss|Dr\\.) )?[A-Z][\\w’.-]+(?:,| and) ${n0}\\b|\\b${n0}, (?:(?:Mrs\\.|Miss|Dr\\.) )?[A-Z][\\w’.-]+(?:,| and) |[A-Z][\\w’.-]+, ${n0},? and )`).test(sn)) continue;
           done.add(x.id);
           if (glossedSoFar.has(x.id) || glossedIn(c, x.id, s) || glossedIn(c, x.id, prevNarr)) continue;
           out.push({ page: i, rule: 'bare', detail: `${x.short}: “${s.slice(0, 100)}”` });
@@ -249,7 +253,7 @@ function thoughtWho(c: BoardCase, run: BoardRun): HingeIssue[] {
   return out;
 }
 
-const AGREE = /\bsaid the same\b|\bbore\b[^.]* out\b|\btold me too\b|\bwhat (?:he|she|they)’d told me\b|\bbacked\b|\bagreed\b|\bsame as\b|\bjust as\b|\bjust like\b|\bsaid so too\b|\btold it straight\b|\bhad it right\b|\bwas right\b|\bsaid so\b|\bsaw (?:him|her|them)\b/;
+const AGREE = /\bsaid the same\b|\bbore (?:\S+ ){1,3}?out\b|\btold me too\b|\bwhat (?:he|she|they)’d told me\b|\bbacked\b|\bagreed\b|\bsame as\b|\bjust as\b|\bjust like\b|\bsaid so too\b|\btold it straight\b|\bhad it right\b|\bwas right\b|\bsaid so\b|\bsaw (?:him|her|them)\b/;
 /** "That much held." with nothing before it that it says held. */
 function orphan(run: BoardRun): HingeIssue[] {
   const out: HingeIssue[] = [];
@@ -350,7 +354,8 @@ function unwatched(run: BoardRun): HingeIssue[] {
   let n = 0;
   run.log.forEach((p, i) => {
     for (const b of prose(p)) {
-      if (b.voice === 'answer' || b.voice === 'recap') continue;
+      // (A place's own description, "The Belvedere had no doorman", is what the place is, not the signpost.)
+      if (b.voice === 'answer' || b.voice === 'recap' || b.voice === 'establish') continue;
       // (A line of two sentences, "Nobody kept the stairs here. Whoever came and went did it unseen.", is one saying.)
       const s = sentencesOf(narr(b.text)).find((x) => UNWATCHED.test(x));
       if (!s) continue;
@@ -399,7 +404,7 @@ function evening(run: BoardRun): HingeIssue[] {
 /** The same spot twice in one paragraph of narration. */
 function locative(run: BoardRun): HingeIssue[] {
   const out: HingeIssue[] = [];
-  const RE = /\b(?:by|at|in|near|against|under) the (?:wall|corner|window|door|bar|back|stairs|counter|register|stove|mirror)\b/g;
+  const RE = /\b(?:by|at|in|near|against|under) the (?:wall|corner|window|door|bar|back row|back|stairs|counter|register|stove|mirror)\b/g;
   run.log.forEach((p, i) => {
     // (Who's there and where, on the way in: the people lines.)
     const units = (p.board?.units ?? []).filter((u) => u.voice === 'presence');
