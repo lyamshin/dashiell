@@ -89,7 +89,7 @@ This worktree's build (`vite preview`), at the pane's desktop width and at 375 p
 
 ## 7. Tests
 
-TESTS
+**773** (was 766), all passing at three workers; `tsc` is clean and `npm run build` works. New, `test/other-liar.test.ts` (7): the question is asked from Poached up, second on the form, and never below; the oracle files it solved on the check or the list, never the liar's own owning up, and the form offers that line under the name; a hunch, the wrong line, the wrong name, nobody or I don't know cost one point with the plain line; nothing clears the culprit; the curtain's block; the first-liar, last-liar and star readers under 10%; the teach page's two lines; the CLI's `other=`/`cleared=`, its plain refusals, the save, and no question on a Raw night. Updated: the play CLI's two filing tests (5 out of 5 with the other liar; 3 out of 5 and "didn’t rule out" on a hunch), and the world test's seven teach lines. (The suite took about six minutes here, with the machine's load average over 100 from other work; the same suite took two before that load.)
 
 ## 8. What's open
 
