@@ -369,7 +369,9 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       const n = count.get(w.idx) ?? 0;
       // The cap, sooner for somebody named later where nothing can change it, or whom the thought
       // will want by name. (Lean, any name still to come in the narration.)
-      const later = (ahead.get(w.idx) ?? 0) + (!inThought && reserved.has(w.idx) ? 1 : 0) + (aheadLean.get(w.idx) ?? 0);
+      // (And, run again for somebody the first run named a third time, pressed from the start: a pronoun
+      // that had to be the name comes later, so one before it is the pronoun where that's clear.)
+      const later = (ahead.get(w.idx) ?? 0) + (!inThought && reserved.has(w.idx) ? 1 : 0) + (aheadLean.get(w.idx) ?? 0) + (ctx.press?.has(w.id) ? 1 : 0);
       const pressed = n + later >= 2;
       if (m.kind === 'speech') {
         // Said in a quotation, a name counts toward the cap, and the reader has met it. (docs/60 item 3:

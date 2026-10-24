@@ -87,6 +87,8 @@ export interface PlanCtx {
   pageSoFar?: string;
   /** docs/60 item 1: what the page has spent of its texture budget (its one joke, its one staging line), across its sections. */
   tex?: TexSpent;
+  /** docs/60 item 3: people the reference pass named a third time, pressed from the start when it's run again. */
+  press?: Set<string>;
 }
 
 export function newBudget(): PageBudget {
@@ -301,6 +303,20 @@ function referWithTrades(paras: Item[][], ctx: PlanCtx): void {
     if (!dropped) break;
     restore0();
     breaks = refer(paras, ctx);
+  }
+  // (Still a third name: run again with them pressed from the start, kept where it names fewer.)
+  if (lean() && breaks.length > 0) {
+    const press = new Set(breaks.map((b) => b.who));
+    const was = paras.map((ps) => ps.map((x) => x.text));
+    restore0();
+    const before = ctx.press;
+    ctx.press = press;
+    const again = refer(paras, ctx);
+    ctx.press = before;
+    if (again.length < breaks.length) breaks = again;
+    else {
+      paras.forEach((ps, i) => ps.forEach((x, k) => (x.text = was[i]?.[k] as string)));
+    }
   }
   // docs/59 item 8: a card whose pronoun the page leaves to two people ("Bernstein looked once at the
   // place where Fritz belonged, and then kept his eyes on me") takes another card that fitted its draw
