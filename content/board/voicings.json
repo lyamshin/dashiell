@@ -1325,7 +1325,7 @@
   {"id": "reaction/witness-2", "shape": "REACTION", "requires": ["witness-thought"], "template": "Whether {person}’s new story checked out was up to {witness}."},
   {"id": "reaction/witness-3", "shape": "REACTION", "requires": ["witness-thought"], "template": "{Witness} would know if {person} was telling the truth."},
   {"id": "reaction/witness-lean-1", "shape": "REACTION", "requires": ["witness-thought", "lean"], "template": "If {witness} told it the same way, it was {truth} and not {claimed}."},
-  {"id": "reaction/witness-lean-2", "shape": "REACTION", "requires": ["witness-thought", "lean"], "template": "If {witness} said the same, {truth} checked out and {claimed} hadn’t."},
+  {"id": "reaction/witness-lean-2", "shape": "REACTION", "requires": ["witness-thought", "lean"], "template": "If {witness} said the same, {truth} would check out where {claimed} hadn’t."},
   {"id": "reaction/second-pointer-met-1", "shape": "REACTION", "requires": ["second-pointer", "met"], "template": "{Watcher} would know whether {person} had been at {place}."},
   {"id": "reaction/second-pointer-met-2", "shape": "REACTION", "requires": ["second-pointer", "met"], "template": "If {person} was telling it straight, {watcher} would have seen {person:them}."},
   {"id": "reaction/second-pointer-unmet-1", "shape": "REACTION", "requires": ["second-pointer", "unmet"], "template": "Whoever kept the room at {place} would know whether {person} was there."},
