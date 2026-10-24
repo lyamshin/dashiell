@@ -246,7 +246,8 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
   const subject = ctx.situ?.subject ? ctx.c.people.find((p) => p.id === ctx.situ?.subject) : undefined;
   const says = (it: Item) => !!subject && stripMarks(it.text).includes(subject.short);
   const nobodyNamed = asking && !!keep && !!subject && !says(keep) && !items.some((it) => it !== keep && it.slot === 'why-here' && it.text.trim() && says(it));
-  const also = nobodyNamed ? stage.find((it) => it !== keep && it.text.trim() && says(it)) : undefined;
+  // (One with their pronoun will do: the reference pass says a first mention as the name.)
+  const also = nobodyNamed ? (stage.find((it) => it !== keep && it.text.trim() && says(it)) ?? stage.find((it) => it !== keep && it.text.trim() && (it.about ?? []).includes(subject.id))) : undefined;
   for (const it of stage) if (it !== keep && it !== joke && it !== also) drop(it, paras);
   if (keep || jokeStages) spent.staging = true;
   leadIn(paras, ctx, spent);
