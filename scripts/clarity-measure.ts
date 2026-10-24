@@ -39,6 +39,13 @@ const model = await import(`${root}/src/game/board/model.ts`);
 const oracle = await import(`${root}/src/game/board/oracle.ts`);
 const knowledge = await import(`${root}/src/game/board/knowledge.ts`);
 const report = await import(`${root}/src/game/board/report.ts`);
+// docs/60: `--texture full` reads the tree's pages with every line of texture (a tree without the dial ignores it).
+try {
+  const dial = await import(`${root}/src/game/board/plan/dial.ts`);
+  dial.setTexture(val('texture'));
+} catch {
+  /* a tree from before docs/60 */
+}
 
 function words(t: string): number {
   return t.split(/\s+/).filter((x) => /[A-Za-z0-9]/.test(x)).length;

@@ -23,9 +23,10 @@ import { choicesText, notebookText, pageBodyText, wrap } from '../game/board/tex
 import { ignoreBrokenPipe, parseArgs } from './args.js';
 import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
+import { setTexture } from '../game/board/plan/texture.js';
 import { plainPage } from '../game/board/bones/plain.js';
 
-const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--plain] [--world neighbourhood] [--situated 0]\n';
+const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--plain] [--world neighbourhood] [--situated 0] [--texture lean|full]\n';
 
 export function readBoard(values: Map<string, string>, flags: Set<string>): string {
   const seed = Number(values.get('seed') ?? 1);
@@ -37,6 +38,8 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
   if (world !== undefined && !isWorld(world)) throw new Error(`No world called "${world}". Try --world neighbourhood.\n`);
   // docs/51: `--situated 0` reads the night with the old decks only.
   SITUATED.on = values.get('situated') !== '0';
+  // docs/60: `--texture full` reads the night with every line of texture, as before the budget.
+  setTexture(values.get('texture'));
   const d = dealBoard(seed, tier, type, world ? { world } : {});
   const c = d.kase;
   let run: BoardRun;

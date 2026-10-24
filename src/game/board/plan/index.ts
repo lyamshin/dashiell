@@ -51,7 +51,9 @@ import { capThingClose } from './closers.js';
 import { sayOnce } from './once-pass.js';
 import { pronounAmbiguity } from './measure.js';
 import { speakerOf } from './speaker.js';
+import { budgetTexture, type TexSpent } from './texture.js';
 export { speakerOf } from './speaker.js';
+export { TEXTURE, lean, setTexture } from './texture.js';
 
 export type { Item, Unit, Relation, GapSlot, PageBudget } from './types.js';
 export { sentencesOf, wordsIn, bandOf, markedSentences, openingOf } from './sentences.js';
@@ -83,6 +85,8 @@ export interface PlanCtx {
   hand?: VoiceHand;
   /** docs/59 item 7: the page's own prose laid out already (the section before the turn), for its one simile. */
   pageSoFar?: string;
+  /** docs/60 item 1: what the page has spent of its texture budget (its one joke, its one staging line), across its sections. */
+  tex?: TexSpent;
 }
 
 export function newBudget(): PageBudget {
@@ -156,6 +160,8 @@ export function planSection(
   // docs/51, docs/52 §4: textures attach after the voicing, here and only here: the gaps'
   // situations, and the situated deck. Then the reference and the rhythm.
   if (PLAN.ops) situate(paraItems, ctx, firstBlock);
+  // docs/60 item 1: the texture budget (lean only): one joke, one staging line, the place and its people.
+  if (PLAN.ops) budgetTexture(paraItems, ctx);
   if (PLAN.ops) {
     paraItems = rhythm(paraItems, ctx);
     // docs/59 items 1 and 7: said once on the page, and one simile frame (before the reference, so a

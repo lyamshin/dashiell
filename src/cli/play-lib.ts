@@ -29,6 +29,7 @@ import { boardGridText, placeCodes } from '../game/board/grid.js';
 import { BOARD_TEACH_TITLE, BOARD_RULES, teachLines } from '../game/board/teach.js';
 import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
+import { setTexture } from '../game/board/plan/texture.js';
 
 import { OFFICE, budgetCalls, dealBoard, deadlineWords, hourWord, nameOf, placeName, tierName, type BoardDeal, type BoardReport, type BoardRun } from '../game/board/model.js';
 import {
@@ -80,6 +81,8 @@ export interface BoardSave {
   world?: string;
   /** docs/51: false when the night was opened with the old decks only (`new --situated 0`). */
   situated?: false;
+  /** docs/60: `full` when the night was opened with every line of texture (`new --texture full`). */
+  texture?: 'full';
   detective: string;
   events: Event[];
   /** Whose topics are open. Free; not a page. */
@@ -108,6 +111,7 @@ interface Night {
 function deal(save: BoardSave): Night {
   // docs/51: the deck the night was opened with, every time it's replayed.
   SITUATED.on = save.situated !== false;
+  setTexture(save.texture);
   const d = dealBoard(save.seed, save.tier as 0, save.type, save.world ? { world: save.world } : {});
   let run = newBoardRun(d, { detectiveName: save.detective, ...(save.type ? { type: save.type } : {}), ...(save.seen ? { seen: save.seen } : {}) });
   const pages: BoardRun[] = [run];
@@ -508,7 +512,7 @@ function cmdNew(io: PlayIo, values: Map<string, string>, flags: Set<string>): st
   const profilePath = values.get('profile');
   const prof = profilePath ? sanitizeProfile((() => { try { return JSON.parse(io.read(profilePath) ?? 'null'); } catch { return null; } })()) : null;
   const seen = prof ? seenOf(prof) : null;
-  const save: BoardSave = { game: 'dashiell-play', version: 1, engine: 'board', seed, tier: tier as number, ...(type ? { type } : {}), ...(world ? { world } : {}), ...(values.get('situated') === '0' ? { situated: false as const } : {}), detective: values.get('name') || 'Dashiell', events: [], person: null, picker: null, claim: null, ...(profilePath ? { profile: profilePath } : {}), ...(seen && (seen.recent.length || seen.last.length) ? { seen } : {}) };
+  const save: BoardSave = { game: 'dashiell-play', version: 1, engine: 'board', seed, tier: tier as number, ...(type ? { type } : {}), ...(world ? { world } : {}), ...(values.get('situated') === '0' ? { situated: false as const } : {}), ...(values.get('texture') === 'full' ? { texture: 'full' as const } : {}), detective: values.get('name') || 'Dashiell', events: [], person: null, picker: null, claim: null, ...(profilePath ? { profile: profilePath } : {}), ...(seen && (seen.recent.length || seen.last.length) ? { seen } : {}) };
   const night = deal(save);
   store(io, path as string, save);
   const teach = flags.has('no-teach') ? [] : [teachText(save.world), '', DOUBLE, ''];

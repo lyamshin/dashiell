@@ -51,6 +51,7 @@ import { markPronoun, roleOf, stripMarks } from './refer.js';
 import { similesIn, ticsIn } from '../tics.js';
 import { ARRIVAL_MOVES, ASK_SIT, FEET, WALK_ARRIVES } from '../clarity-lint.js';
 import { sentencesOf } from './sentences.js';
+import { lean } from './dial.js';
 
 /**
  * docs/55 1c: texture that says a story stood up, or that nothing went against it. Never dealt where
@@ -315,7 +316,9 @@ function tokensFor(it: Item, ctx: PlanCtx, said: string): Tokens {
     // docs/55 8: a suspect is asked by name, not by trade ("I asked the sewing-machine operator…", Poached 5's #25).
     const suspect = c.people.find((x) => x.id === who)?.role === 'suspect';
     if (suspect) out.role = c.people.find((x) => x.id === who)?.short ?? role;
-    else if (role) out.role = role + m;
+    // (docs/60 item 3: lean, a card says the name, and the reference pass makes it "her" where that's clear:
+    // "I went straight over to Renfro. I found a space at the bar and waited for her", not "for the bartender".)
+    else if (role) out.role = lean() ? (c.people.find((x) => x.id === who)?.short ?? role) : role + m;
   }
   if (s.placeName) out.place = s.placeName;
   if (c.type !== 'murder') out.thing = victimOf(c).short;
@@ -354,7 +357,9 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
       }
       // docs/59: an account's aside stays the engine's plain one ("I wrote it down as said."): the deck's
       // ("Her evening as she told it was, for now, the only telling I had.") stopped the skim readers.
-      if (it.kind !== 'gap' || !it.sit || !(SIT_SLOTS as readonly string[]).includes(it.slot ?? '') || (it.slot === 'gloss' && s.page === 'account')) {
+      // (docs/60 item 1: lean, the ask is the page's one staging line, and it's the plain one: it says what
+      // the answer answers, without the deck's wit on it.)
+      if (it.kind !== 'gap' || !it.sit || !(SIT_SLOTS as readonly string[]).includes(it.slot ?? '') || (it.slot === 'gloss' && s.page === 'account') || (it.slot === 'ask' && lean())) {
         seated = seatedAfter(it.text, seated);
         continue;
       }

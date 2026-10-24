@@ -77,6 +77,7 @@ import { papersLine, whyOrder } from './motives.js';
 import { worldAccountVoice, worldDeck, worldFoundWith, worldListLines, worldLook, worldManner, worldStaging } from './world.js';
 import { sayFirst } from './bones/say.js';
 import { PLAN, chapterUnit, markPronoun, newBudget, planSection, stripMarks, type GapSlot, type Item, type Relation, type SituCtx, type Unit } from './plan/index.js';
+import { lean, type TexSpent } from './plan/texture.js';
 import type { PageBudget, SaySpec } from './plan/types.js';
 import type { Prop } from './bones/types.js';
 import { KNOCKED, SAT, STANDING, seatedAfter } from './plan/situated.js';
@@ -147,6 +148,8 @@ export interface Writer {
   lastPay?: { id: string; others: { l: string; id: string }[] };
   /** Planner 2: the page's own job ends the visit (the report), so it may close on the last I saw of them. */
   leaves?: boolean;
+  /** docs/60 item 1: the page's texture budget, spent across its sections. */
+  tex: TexSpent;
 }
 
 export function writer(d: BoardDeal, before: BoardRun, run: BoardRun, page: number): Writer {
@@ -170,6 +173,7 @@ export function writer(d: BoardDeal, before: BoardRun, run: BoardRun, page: numb
     said: {},
     units: [],
     budget: newBudget(),
+    tex: { joke: false, staging: false },
   };
   // docs/55 2: inside already, no card knocks; sitting already, no card has me standing on the mat.
   if (insideNow(w)) hand.avoid = alsoAvoid(hand.avoid, KNOCKED);
@@ -210,7 +214,9 @@ function put(w: Writer, beat: Beat, text: string | null | undefined, voice: Voic
   // well, when the page's rhythm wants a sentence of another length.
   const last = w.hand.last;
   const alts = meta.alts ?? (last && last.text === text && meta.kind !== 'fact' ? altsOf(w, last) : undefined);
-  (w.parts[beat] ??= []).push({ kind: 'gap', slot: SLOT[beat], ...meta, beat, voice, text: t, ...(alts ? { alts } : {}) });
+  // docs/60 item 1: a card dealt as the page's joke, for the texture budget.
+  const jk = meta.kind !== 'fact' && last && last.text === text && last.joke ? { jk: true } : {};
+  (w.parts[beat] ??= []).push({ kind: 'gap', slot: SLOT[beat], ...jk, ...meta, beat, voice, text: t, ...(alts ? { alts } : {}) });
 }
 
 /** docs/49: the other lines a hand-written aside could have been (`Hand.pick`), as the rhythm's alternatives. */
@@ -285,7 +291,7 @@ function lay(w: Writer, job: SheetJob): void {
   // docs/48 §4: what the arrival and the staging said, before the planner touched a name.
   for (const b of Object.keys(w.parts) as Beat[]) w.said[b] = [...(w.said[b] ?? []), ...(w.parts[b] ?? []).map((p) => stripMarks(p.text))];
   // docs/49: the microplanner lays the beats out by the sheet, and says them.
-  const planned = planSection(w.parts, sheet.paras, { c: w.c, budget: w.budget, pick: (k, ls) => w.hand.pick(k, ls), level: thoughtLevel(w.c), run: w.run, said: saidTonight(w), earlier: earlierProse(w), int: (n) => w.hand.rng.int(n), situ: situOf(w, job), hand: voiceHand(w.hand), pageSoFar: w.blocks.map((b) => (b.kind === 'prose' && b.voice !== 'answer' ? b.text : '')).join('\n') }, w.blocks.length);
+  const planned = planSection(w.parts, sheet.paras, { c: w.c, budget: w.budget, pick: (k, ls) => w.hand.pick(k, ls), level: thoughtLevel(w.c), run: w.run, said: saidTonight(w), earlier: earlierProse(w), int: (n) => w.hand.rng.int(n), situ: situOf(w, job), hand: voiceHand(w.hand), tex: w.tex, pageSoFar: w.blocks.map((b) => (b.kind === 'prose' && b.voice !== 'answer' ? b.text : '')).join('\n') }, w.blocks.length);
   w.beats.push(...planned.beats);
   w.blocks.push(...planned.blocks);
   w.units.push(...planned.units);
@@ -616,6 +622,8 @@ function archetypeOf(desc: string): string | undefined {
 function lookAt(w: Writer, p: PersonId): string | null {
   const who_ = personOf(w.c, p);
   if (!who_) return null;
+  // docs/60 item 1: a first look is a flourish, and the callback to it a look the reader has to hold: lean pages say neither.
+  if (lean()) return null;
   const own = worldLook(w.c, w.run, w.hand, p);
   if (own !== undefined) return own;
   const arch = archetypeOf(who_.job ?? who_.description);
@@ -703,6 +711,21 @@ function payAlts(w: Writer, said: string | null | undefined): Item['alts'] {
   return () => p.others.filter((o) => !w.hand.used(o.id)).map((o) => ({ text: tidy(o.l), take: () => w.hand.swap(p.id, o.id) }));
 }
 
+/**
+ * docs/60 item 1: a pay-off, for the texture budget: the page's joke when one is due; taken off the
+ * page, the gag isn't paid off tonight after all (it may be on a later page).
+ */
+function callbackOf(w: Writer): Pick<Item, 'tex' | 'onDrop'> {
+  const id = w.lastPay?.id;
+  return {
+    tex: 'callback',
+    onDrop: () => {
+      w.callback = false;
+      if (id) w.hand.forget(id);
+    },
+  };
+}
+
 /** docs/49: a hand-written aside with the planner on, one of a few; with it off, as it always was (the first). */
 function aside(w: Writer, key: string, lines: readonly string[]): string {
   return PLAN.ops ? w.hand.pick(key, lines) : (lines[0] as string);
@@ -720,7 +743,7 @@ function closeWith(w: Writer, p: PersonId | undefined, family: string, want: Rec
     const payId = w.lastPay?.id;
     const plain = PLAN.ops && payId ? w.hand.options(family, want, slots, /\{[Nn]ame\}|\{[Hh]e\}|\{[Hh]is\}|\{[Hh]im\}/) : [];
     const alts: Item['alts'] = own || plain.length ? () => [...(own ? own() : []), ...plain.filter((o) => !w.hand.used(o.id)).map((o) => ({ text: tidy(o.text), take: () => w.hand.swap(payId as string, o.id), lastResort: true }))] : undefined;
-    put(w, 'close', pay, 'thought', { alts, tag: 'pay', ...(p ? { about: [p] } : {}) });
+    put(w, 'close', pay, 'thought', { alts, tag: 'pay', ...(p ? { about: [p] } : {}), ...callbackOf(w) });
     return;
   }
   // A name twice at most a page: a close that would say it a third time isn't dealt.
@@ -766,7 +789,7 @@ function whyHere(w: Writer, q: string, kind: string, slots: Record<string, strin
   if (((last?.job === 'arrive' && w.before.at === w.run.at) || saidBefore) && ptr.src !== 'presence') {
     w.carried = true;
     // The one the testers kept ("I hadn’t come for the furniture. I’d come for Alfano."), once a night at most.
-    if (named && w.hand.jokeFree) put(w, 'why', w.hand.draw('why', { kind: 'carried' }, withCaps(slots), { plain: true, fresh: true }), 'narrator');
+    if (named && w.hand.jokeFree) put(w, 'why', w.hand.draw('why', { kind: 'carried' }, withCaps(slots), { plain: true, fresh: true }), 'narrator', lean() ? { tex: 'flourish' } : {});
     return ptr;
   }
   // The last page's hand-off said this pointer whole (docs/53 names its place now, where it said
@@ -925,7 +948,7 @@ function think(w: Writer, q: string, extra: Thought | null = null): Thought {
     // docs/49: one fact a sentence, each with what it does; the thought is one paragraph.
     parts.forEach((x, i) => {
       if (x.rule === 'gloss') {
-        put(w, 'thought', x.text, 'thought', { slot: 'gloss', about: x.people, runOn: i > 0, alts: pickAlts(w, x.text), sit: { joke: false } });
+        put(w, 'thought', x.text, 'thought', { slot: 'gloss', about: x.people, runOn: i > 0, alts: pickAlts(w, x.text), sit: { joke: false }, ...(lean() && x.tex ? { tex: x.tex } : {}) });
         return;
       }
       fact(w, 'thought', x.text, 'thought', {
@@ -943,7 +966,8 @@ function think(w: Writer, q: string, extra: Thought | null = null): Thought {
         runOn: i > 0,
       });
       // The detective's aside after it, with no fact in it: a gap (docs/49 §3).
-      if (x.gloss) put(w, 'thought', x.gloss, 'thought', { slot: 'gloss', about: x.people, runOn: true, alts: pickAlts(w, x.gloss), sit: { joke: false } });
+      // (docs/60 item 1: "That much held." says what the fact before it did: a signpost, kept.)
+      if (x.gloss) put(w, 'thought', x.gloss, 'thought', { slot: 'gloss', about: x.people, runOn: true, alts: pickAlts(w, x.gloss), sit: { joke: false }, ...(lean() ? { tex: 'keep' as const } : {}) });
     });
     w.thought = { text: stripMarks(tidy(text)), refs: [...new Set(t.refs)] };
   }
@@ -1146,13 +1170,19 @@ export function writeOffice(w: Writer): void {
   if (office?.card.exports?.prop) w.run.prop = { short: office.card.exports.prop.short, pay: office.card.exports.prop.pay ?? [] };
   // docs/59 item 7: a gag set up is the night's: nothing else brings its thing up again.
   if (office?.card.exports?.prop && gagNoun(office.card.exports.prop.short)) w.hand.note(`gag:${gagNoun(office.card.exports.prop.short)}`);
-  put(w, 'arrival', [open, office?.text].filter(Boolean).join(' '), 'establish');
+  if (lean() && open && office?.text) {
+    // docs/60 item 1: my own room in a sentence; the circumstance after it is atmosphere, and when it
+    // goes, the prop it set up goes with it (the report won't call back to a clock nobody heard).
+    put(w, 'arrival', open, 'establish', { tex: 'place' });
+    put(w, 'arrival', office.text, 'establish', { runOn: true, tex: 'atmosphere', ...(office.card.exports?.prop ? { onDrop: () => (w.run.prop = undefined) } : {}) });
+  } else put(w, 'arrival', [open, office?.text].filter(Boolean).join(' '), 'establish');
   // docs/59 item 4: one knock: "…and then a knock, so soft I nearly missed it. My visitor knocked once"
   // is the door knocked on twice.
-  const knock = w.hand.draw('knock', {}, {}, { widen: true });
+  // (docs/60 item 1: lean, the visitor comes in, without the knock and the wisdom about who climbs stairs at this hour.)
+  const knock = lean() ? null : w.hand.draw('knock', {}, {}, { widen: true });
   const knocked = /\bknock/i.test(knock ?? '');
   const entrance = w.hand.drawOld('entrances', (card) => (card.tags.gender === 'any' || card.tags.gender === (cl.female ? 'f' : 'm')) && card.tags.familiar !== 'yes' && ['working', 'professional', 'any'].includes(String(card.tags.class)) && !/\{detective\}/.test(card.text) && !(knocked && /\bknock/i.test(card.text)), { name: cl.short }, true);
-  put(w, 'arrival', [knock, entrance?.text].filter(Boolean).join(' '), 'establish');
+  put(w, 'arrival', [knock, entrance?.text].filter(Boolean).join(' '), 'establish', lean() ? { tex: 'staging' } : {});
   // docs/59 item 4, note 3: the client sits down once. The entrance may say it; if it doesn't, the
   // client's first line may (a relation voicing that sits), and the chair line otherwise.
   let sat = VISITOR_SAT.test(entrance?.text ?? '');
@@ -1299,18 +1329,19 @@ export function writeOffice(w: Writer): void {
     if (!asked.when && (g.kind === 'clock' || g.kind === 'window')) {
       asked = { ...asked, when: true };
       const ask = w.hand.draw('office-ask', { before: 'when', type: isMurder(c) ? 'murder' : 'small' }, withCaps({ ...base, pthem }), { plain: true });
-      put(w, 'job', ask, 'exchange', { slot: 'ask', ...sit(w, ask) });
+      // (docs/60 item 1: the office's questions frame the client's answers: kept, and plain.)
+      put(w, 'job', ask, 'exchange', { slot: 'ask', ...(lean() ? { tex: 'keep' as const } : sit(w, ask)) });
     }
     // docs/55 7: the client never answers a question nobody asked: where the dead man had been is asked for.
     if (!asked.venue && g.kind === 'venue') {
       asked = { ...asked, venue: true };
       const vp = markedPron(c, c.crime.victim);
-      put(w, 'job', w.hand.pick('office-ask-venue', [`I asked where ${vp.he}’d spent the evening.`, `“Where had ${vp.he} been earlier in the evening?” I asked.`, `“Was ${vp.he} out at all tonight?” I asked.`]), 'exchange', { slot: 'ask' });
+      put(w, 'job', w.hand.pick('office-ask-venue', [`I asked where ${vp.he}’d spent the evening.`, `“Where had ${vp.he} been earlier in the evening?” I asked.`, `“Was ${vp.he} out at all tonight?” I asked.`]), 'exchange', { slot: 'ask', ...(lean() ? { tex: 'keep' as const } : {}) });
     }
     if (!asked.who && g.kind === 'pointer') {
       asked = { ...asked, who: true };
       const ask = w.hand.draw('office-ask', { before: 'who', type: isMurder(c) ? 'murder' : 'small' }, withCaps({ ...base, pthem }), { plain: true });
-      put(w, 'job', ask, 'exchange', { slot: 'ask', ...sit(w, ask) });
+      put(w, 'job', ask, 'exchange', { slot: 'ask', ...(lean() ? { tex: 'keep' as const } : sit(w, ask)) });
     }
     let kind: string = g.kind;
     if (g.kind === 'clock' && !isMurder(c)) kind = 'small-clock';
@@ -1359,7 +1390,7 @@ export function writeOffice(w: Writer): void {
   for (const h of c.givens.window ?? c.crime.window) w.hours.add(h);
   for (const f of c.givens.facts) w.hours.add(f.h);
   const retainer = w.hand.draw('retainer', { type: isMurder(c) ? 'murder' : 'small' }, withCaps(base), { need: true });
-  put(w, 'job', retainer, 'exchange', { slot: 'close', about: [c.client] });
+  put(w, 'job', retainer, 'exchange', { slot: 'close', about: [c.client], ...(lean() ? { tex: 'keep' as const } : {}) });
   const officeClose = w.hand.draw('office-close', {}, {}, { widen: true });
   put(w, 'close', officeClose, 'exchange', sit(w, officeClose));
   w.beats.push('why');
@@ -1402,6 +1433,8 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId, back = false, noArrive
   frame = were(frame);
   // A later walk may pay the street's role off; the first sets it up.
   let line: string | null = null;
+  // docs/60 item 1: the street line's part in the budget: a pay-off, or a set-up its pay-offs go with.
+  let lineTex: Pick<Item, 'tex' | 'onDrop'> = {};
   const role = w.run.street;
   if (role && w.hand.jokeFree && w.hand.rng.int(10) < 6) {
     const all = role.pay.map((l) => ({ l, id: `pay:${l.slice(0, 40)}` }));
@@ -1413,6 +1446,7 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId, back = false, noArrive
       w.hand.joke();
       w.callback = true;
       line = x.l;
+      lineTex = { tex: 'callback', onDrop: () => ((w.callback = false), w.hand.forget(x.id)) };
     }
   }
   // docs/51: a street line is texture the situated deck may fill, unless it sets up the street's role or pays it off.
@@ -1421,12 +1455,14 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId, back = false, noArrive
     const drawn = w.hand.drawCard('walk', { weather: w.run.weather, band: band(w) }, slots, {});
     line = drawn?.text ?? null;
     const ex = drawn?.card.exports?.street;
-    if (!role && ex?.pay?.length) w.run.street = { short: ex.short, pay: ex.pay };
-    else if (!ex?.pay?.length) lineSit = sit(w, line);
+    if (!role && ex?.pay?.length) {
+      w.run.street = { short: ex.short, pay: ex.pay };
+      lineTex = { onDrop: () => delete w.run.street };
+    } else if (!ex?.pay?.length) lineSit = sit(w, line);
   }
   // docs/49: the frame and the street, two pieces of one paragraph.
   put(w, 'walk', frame, 'establish', { alts: altsOf(w, frameDrawn, were) });
-  put(w, 'walk', line, 'establish', { runOn: true, ...lineSit });
+  put(w, 'walk', line, 'establish', { runOn: true, ...lineSit, ...lineTex });
   w.places.add(to);
   if (from !== OFFICE) w.places.add(from);
 }
@@ -1462,7 +1498,8 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   if (first) {
     const arrive = arrive0;
     // (Planner 2: the cards that fitted the arrival's draw as well, taken before the prop's draw.)
-    const arriveAlts = keepStill(altsOf(w, arriveLast));
+    // (docs/60 item 5: an arrival says its street once: "the passage from the street", not from Allen Street again.)
+    const arriveAlts = keepStill(altsOf(w, arriveLast, (t) => streetOnce(t, pl.street)));
     // M13's prop: something in the room a later page here can call back to.
     const prop = w.hand.drawCard('prop', { kind }, w.hand.world ? { ...slots, arrived: arrive } : slots);
     // docs/59 item 7: a thing the night has brought up already ("one radiator…" in another house) isn't
@@ -1477,17 +1514,18 @@ export function writeArrive(w: Writer, place: PlaceId): void {
     const propText = prop?.text ? unplace(prop.text) : prop?.text;
     // (A prop that pays off later is the night's: it isn't traded for another.)
     const propAlts = prop && !ex?.pay?.length ? altsOf(w, w.hand.last?.text === prop.text ? w.hand.last : null, unplace) : () => [];
-    put(w, 'arrival', arrive, 'establish', arriveAlts ? { alts: arriveAlts } : {});
-    put(w, 'arrival', propText, 'establish', { runOn: true, ...(propAlts ? { alts: propAlts } : {}) });
+    put(w, 'arrival', streetOnce(arrive, pl.street), 'establish', arriveAlts ? { alts: arriveAlts } : {});
+    // (docs/60 item 1: a prop is atmosphere; when the budget takes it off the page, nothing calls back to it.)
+    put(w, 'arrival', propText, 'establish', { runOn: true, ...(propAlts ? { alts: propAlts } : {}), ...(prop && ex?.pay?.length ? { onDrop: () => { const ps = { ...(w.run.props ?? {}) }; delete ps[place]; w.run.props = ps; } } : {}) });
   } else {
     put(w, 'arrival', arrive0, 'establish');
   }
   const vict = victimOf(c);
   if (pl.scene && first) {
-    if (isMurder(c)) put(w, 'arrival', w.hand.draw('scene-body', { means: c.means.kind }, withCaps({ victim: vict.short }), { need: true, widen: true }), 'establish', { about: [c.crime.victim] });
+    if (isMurder(c)) put(w, 'arrival', w.hand.draw('scene-body', { means: c.means.kind }, withCaps({ victim: vict.short }), { need: true, widen: true }), 'establish', { about: [c.crime.victim], ...(lean() ? { tex: 'keep' as const } : {}) });
     // docs/48 §3: and what the bible says he'd be found with.
     if (isMurder(c)) putOn(w, 'arrival', worldFoundWith(c), 'establish');
-    else put(w, 'arrival', w.hand.draw('scene-empty', { kind: c.type === 'lost-pet' ? 'pet' : 'item' }, withCaps({ client: clientOf(c).short, thing: vict.short }), { need: true, widen: true }), 'establish', { about: [c.client] });
+    else put(w, 'arrival', w.hand.draw('scene-empty', { kind: c.type === 'lost-pet' ? 'pet' : 'item' }, withCaps({ client: clientOf(c).short, thing: vict.short }), { need: true, widen: true }), 'establish', { about: [c.client], ...(lean() ? { tex: 'keep' as const } : {}) });
   }
   // Who's here, and what they're doing.
   const here = peopleAt(c, w.run, place);
@@ -1606,13 +1644,14 @@ export function writeArrive(w: Writer, place: PlaceId): void {
     const why = w.hand.draw('why', { kind: 'arrive' }, withCaps({ src, place: pl.short }), { plain: true });
     put(w, 'why', why ?? `${cap(src)}.`, 'narrator', sit(w, why, `${cap(src)}.`));
   } else if (pl.scene && !first) {
-    put(w, 'why', w.hand.draw('why', { kind: 'scene', type: isMurder(c) ? 'murder' : 'small' }, withCaps({ victim: vict.short, thing: vict.short, client: clientOf(c).short, place: 'here' }), { plain: true }), 'narrator');
+    put(w, 'why', w.hand.draw('why', { kind: 'scene', type: isMurder(c) ? 'murder' : 'small' }, withCaps({ victim: vict.short, thing: vict.short, client: clientOf(c).short, place: 'here' }), { plain: true }), 'narrator', lean() ? { tex: 'keep' } : {});
   }
   // What the detective thinks on the way in: what a watcher is good for, or the scene against the office's clock.
-  if (watcherLine) put(w, 'thought', watcherLine, 'thought', { about: here.filter((x) => personOf(c, x)?.role === 'watcher') });
+  // (docs/60 item 1: what a watcher is good for, or that nobody watches here, is a signpost: kept.)
+  if (watcherLine) put(w, 'thought', watcherLine, 'thought', { about: here.filter((x) => personOf(c, x)?.role === 'watcher'), ...(lean() ? { tex: 'keep' as const } : {}) });
   else if (first && !c.lists.some((l) => l.place === place)) {
     const none = w.hand.drawOld('watch', (card) => card.tags.watcher === 'none', {}, true);
-    put(w, 'thought', none?.text, 'thought');
+    put(w, 'thought', none?.text, 'thought', lean() ? { tex: 'keep' } : {});
   }
   // docs/59 items 1 and 3: on the way into the scene, not the office's hours and way in again. A
   // murder's door says what it means, as an aside with no fact in it; a small case's says nothing more.
@@ -1624,13 +1663,13 @@ export function writeArrive(w: Writer, place: PlaceId): void {
     const aside = officeSaid
       ? w.hand.pick('scene-said', [`Whoever did it had walked in with the ${m} already in hand.`, `The ${m} had come in at the front door, with whoever it was.`])
       : w.hand.pick('scene-door', [`Nobody had forced the lock, so ${V} had let whoever it was in.`, `There wasn’t a mark on the door. ${V} had opened it to whoever it was.`, `Nobody had picked the lock. ${V} had let the visitor in.`]);
-    put(w, 'thought', aside, 'thought', { slot: 'gloss', about: [c.crime.victim], alts: pickAlts(w, aside), sit: { joke: false } });
+    put(w, 'thought', aside, 'thought', { slot: 'gloss', about: [c.crime.victim], alts: pickAlts(w, aside), sit: { joke: false }, ...(lean() ? { tex: 'keep' as const } : {}) });
   }
   if (callback) {
     const pay = payOff(w, again);
     // (docs/49: somebody's own last-I-saw line is about them, for the planner's "him".)
     const theirs = PLAN.ops && again !== undefined && !!pay && (w.run.traits?.[again]?.pay ?? []).some((l) => `pay:${l.slice(0, 40)}` === w.lastPay?.id);
-    put(w, 'close', pay, 'thought', { alts: payAlts(w, pay), ...(theirs ? { about: [again] } : {}) });
+    put(w, 'close', pay, 'thought', { alts: payAlts(w, pay), ...(theirs ? { about: [again] } : {}), ...(pay ? callbackOf(w) : {}) });
   }
   if (!(w.parts.close ?? []).length) {
     const close = w.hand.draw('arrive-close', { kind: pl.scene && first ? 'scene' : stageKind(c, place) }, withCaps({ place: pl.short }), { joke: true });
@@ -1639,6 +1678,22 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   w.places.add(place);
   lay(w, 'arrival');
   w.hand.avoid = null;
+}
+
+/**
+ * docs/60 item 5: a street said once in a clause (lean): "the passage from the street", never "…on Allen
+ * Street the passage from Allen Street". (Further on, "because on Second Avenue nobody goes home…", it's
+ * the joke, and stays.)
+ */
+function streetOnce(text: string, street: string): string {
+  if (!lean() || !street) return text;
+  const re = new RegExp(`\\b${esc(street)}\\b`, 'g');
+  let last = -1;
+  return text.replace(re, (m, at: number) => {
+    const near = last >= 0 && text.slice(last, at).split(/\s+/).length <= 6;
+    last = at + m.length;
+    return near ? 'the street' : m;
+  });
 }
 
 /** A second pointer that opens on somebody the first just named opens on "he" or "she" instead. */
@@ -1663,7 +1718,7 @@ export function writeReturn(w: Writer): void {
   writeWalk(w, w.before.at, OFFICE);
   put(w, 'arrival', 'I went back up to the office. It had kept my chair warm for nobody.', 'establish');
   const why = w.hand.draw('why', { kind: 'return' }, {}, { plain: true });
-  put(w, 'why', why, 'narrator', sit(w, why));
+  put(w, 'why', why, 'narrator', { ...sit(w, why), ...(lean() ? { tex: 'flourish' as const } : {}) });
   lay(w, 'return');
 }
 
@@ -1718,6 +1773,10 @@ function stageAndAsk(w: Writer, p: PersonId, job: 'account' | 'check' | 'list' |
   if (namedInWhy || remarks || namedInStaging) w.hand.avoid = alsoAvoid(avoid, /\{Title\}/);
   // docs/59 item 4: nobody already sitting is asked to sit.
   if (theySitNow(w, p)) w.hand.avoid = alsoAvoid(w.hand.avoid, ASK_SIT);
+  // docs/60 item 1: lean, the ask is the page's one staging line, so it says whom I'm asking, where
+  // nothing before it on the page has.
+  const named = (w.parts.why ?? []).some((x) => x.text.includes(nameOf(c, p)));
+  if (lean() && !face && !named) w.hand.avoid = alsoAvoid(w.hand.avoid, /^(?![\s\S]*\{(?:[Nn]ame|Title)\})/);
   const asked = w.hand.draw('ask', { job, face: face ? 'yes' : 'no' }, withCaps({ ...s, reason: face }));
   // (An ask that says the reason to their face carries it: it stays.)
   put(w, 'ask', asked, 'exchange', { about: [p], ...(face ? {} : sit(w, asked)) });
@@ -1823,7 +1882,7 @@ export function writeList(w: Writer, watcher: PersonId): void {
   // The handover: what was under the coat is the question anybody would ask, and the answer says no more than the watcher saw.
   if (l.remarks.some((r) => r.gives?.whereNow)) {
     const what = c.type === 'lost-pet' ? 'pet' : 'item';
-    put(w, 'job', w.hand.draw('coat-q', {}, {}, { widen: true, plain: true }), 'exchange', { slot: 'ask' });
+    put(w, 'job', w.hand.draw('coat-q', {}, {}, { widen: true, plain: true }), 'exchange', { slot: 'ask', ...(lean() ? { tex: 'keep' as const } : {}) });
     const r = l.remarks.findIndex((x) => x.gives?.whereNow);
     // docs/52 build 2: what was under the coat, a composite of its own (HANDOVER `coat`), in the watcher's voicing.
     const coat: SaySpec = { shape: 'HANDOVER', flags: ['coat', what === 'pet' ? 'alive' : 'small'], args: {}, manner: mannerOf(c, watcher) };
@@ -2354,7 +2413,7 @@ export function writeReport(w: Writer): void {
   // Whether what's held is enough is the player's to say above a walk (docs/46 §2): the form gets no hint.
   // (docs/51: at a walk the why says whether it's enough, and it stays.)
   const rwhy = w.hand.draw('report-why', { done: thoughtLevel(c) !== 'walk' ? 'open' : s.done ? 'yes' : 'no' }, {}, { plain: true });
-  put(w, 'why', rwhy, 'narrator', thoughtLevel(c) !== 'walk' ? sit(w, rwhy) : {});
+  put(w, 'why', rwhy, 'narrator', { ...(thoughtLevel(c) !== 'walk' ? sit(w, rwhy) : {}), ...(lean() ? { tex: thoughtLevel(c) === 'walk' ? ('keep' as const) : ('flourish' as const) } : {}) });
   // At Raw, the elimination not walked yet tonight is walked here, before the form (docs/47 B11).
   const el = walkedElimination(w, true);
   if (el) {
@@ -2372,7 +2431,7 @@ export function writeReport(w: Writer): void {
     w.hand.note(`pay:${l.slice(0, 40)}`);
     w.hand.joke();
     w.callback = true;
-    put(w, 'close', l, 'thought');
+    put(w, 'close', l, 'thought', lean() ? { tex: 'callback', onDrop: () => ((w.callback = false), w.hand.forget(`pay:${l.slice(0, 40)}`)) } : {});
   } else {
     const rclose = w.hand.draw('report-close', {}, {}, { widen: true, joke: true });
     put(w, 'close', rclose, 'thought', sit(w, rclose));
@@ -2440,9 +2499,12 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
     );
   const meansHeld = run.asked.some((q) => q.startsWith('search:') && c.finds.find((f) => `search:${f.id}` === q)?.gives.means);
   if (meansHeld && isMurder(c)) {
-    out.push({ key: 'means', text: `The ${c.means.name.replace(/^(a|an) /, '')} came from ${placeName(c, c.means.origin)}, so whoever used it had been there first.`, hours: [], people: [], places: [c.means.origin], props: [{ k: 'MEANS', how: 'origin', place: c.means.origin }], say: { shape: 'WINDOW-MEANS', flags: ['means', 'link'], args: { means: c.means.name.replace(/^(a|an) /, ''), origin: { t: 'place', id: c.means.origin } } } });
+    // (docs/60 item 4: lean, where it came from, plainly: what that means the find's page said.)
+    out.push({ key: 'means', text: `The ${c.means.name.replace(/^(a|an) /, '')} came from ${placeName(c, c.means.origin)}, so whoever used it had been there first.`, hours: [], people: [], places: [c.means.origin], props: [{ k: 'MEANS', how: 'origin', place: c.means.origin }], say: { shape: 'WINDOW-MEANS', flags: ['means', lean() ? 'fact' : 'link'], args: { means: c.means.name.replace(/^(a|an) /, ''), origin: { t: 'place', id: c.means.origin } } } });
   }
-  if (c.tier >= 1 && (s.accessYes.size > 0 || s.accessNo.size > 0)) {
+  // (docs/60 item 4: lean, the turn is the hour, who's accounted for, whose story doesn't hold and what's
+  // open: who could have got at the means is the pages' own, not the recap's.)
+  if (c.tier >= 1 && (s.accessYes.size > 0 || s.accessNo.size > 0) && !lean()) {
     const yes = named.filter((p) => s.accessYes.has(p)).map((p) => nameOf(c, p));
     const no = named.filter((p) => s.accessNo.has(p)).map((p) => nameOf(c, p));
     const at = placeName(c, c.means.origin);
@@ -2704,7 +2766,8 @@ export function writeTurn(w: Writer): void {
   void title;
   chapter(w, 'The turn');
   const topen = w.hand.draw('turn-open', {}, {}, { widen: true });
-  put(w, 'staging', topen, 'recap', sit(w, topen));
+  // (docs/60 items 1 and 4: the turn is the chapter, the recap and what next; how I sat down to it goes.)
+  put(w, 'staging', topen, 'recap', { ...sit(w, topen), ...(lean() ? { tex: 'flourish' as const } : {}) });
   // docs/47 B11: at Raw, when who is settled by now, the turn walks the elimination instead of
   // reading the notebook back: once, and after the page's own fact, never in its thought.
   const el = walkedElimination(w, true);
@@ -2717,7 +2780,7 @@ export function writeTurn(w: Writer): void {
       parts.forEach((x, i) => fact(w, 'job', x.text, 'recap', { relation: 'narrows', about: el.people, carries: el.refs, exempt: true, props: x.props ?? [], runOn: i > 0, ...(x.say ? { say: x.say } : {}) }));
     } else fact(w, 'job', el.sentences.join(' '), 'recap', { relation: 'narrows', about: el.people, carries: el.refs, exempt: true, props: parts.flatMap((x) => x.props ?? []) });
   } else {
-    const clauses = recapClauses(w.d, w.run);
+    const clauses = lean() ? turnOrder(recapClauses(w.d, w.run)) : recapClauses(w.d, w.run);
     for (const cl of clauses) {
       for (const h of cl.hours) w.hours.add(h);
       for (const p of cl.people) w.people.add(p);
@@ -2758,6 +2821,19 @@ export function writeTurn(w: Writer): void {
   const tclose = w.hand.draw('turn-close', {}, {}, { widen: true, joke: true });
   put(w, 'close', tclose, 'recap', sit(w, tclose));
   lay(w, 'turn');
+}
+
+/**
+ * docs/60 item 4: the turn in the order a reader wants it: the hour, where it came from, who's accounted
+ * for and by whom, whose story doesn't hold, what was said when it was put, who's said where they were
+ * with nobody to back it, and what's still open.
+ */
+function turnOrder(cs: Clause[]): Clause[] {
+  const rank = (k: string): number => {
+    const head = k.split(':')[0] ?? '';
+    return ({ when: 0, means: 1, access: 2, placed: 3, held: 3, broken: 4, admit: 5, second: 5, refused: 5, own: 6, open: 7, where: 8 } as Record<string, number>)[head] ?? 9;
+  };
+  return cs.map((x, i) => ({ x, i })).sort((a, b) => rank(a.x.key) - rank(b.x.key) || a.i - b.i).map((y) => y.x);
 }
 
 function collisionsOfRun(w: Writer): PersonId[] {

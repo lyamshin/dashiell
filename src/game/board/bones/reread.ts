@@ -728,7 +728,8 @@ function clauseR(a: Record<string, Read>, flags: ReadonlySet<string>, comp: Comp
   const E = entryAlt(v.c);
   // (A clause may open on its names: "Somebody in a grey fedora came in at eleven", "Two men off the docks…".)
   const said = (a.names as string).replace(/^(?:Somebody|Two|Three|A) /, (x) => x.toLowerCase());
-  const who = listV(said, E.re).map((n) => E.of.get(n) as string);
+  // (docs/60 item 5: somebody back for a second stint is the engine's marked pronoun.)
+  const who = new RegExp(`^${MARK}$`, 'i').test(said.trim()) ? [personV(v.c, said.trim())] : listV(said, E.re).map((n) => E.of.get(n) as string);
   if (flags.has('doing') && !(a.doing as string)?.trim()) throw new Error('voiced: doing what?');
   const from = a.from as number | undefined;
   let hs: number[];

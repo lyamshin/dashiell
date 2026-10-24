@@ -18,7 +18,9 @@ import type { Args } from './bones/voice.js';
 import { sayFirst } from './bones/say.js';
 import { plainComposite } from './bones/plain.js';
 import { entryOf, listProp, remarkProps } from './bones/extract.js';
-import { andList, cap, hourWord, nameOf, oclock, personOf, placeName, type BoardCase } from './model.js';
+import { andList, cap, hourWord, nameOf, oclock, personOf, placeName, pronOf, type BoardCase } from './model.js';
+import { lean } from './plan/dial.js';
+import { markPronoun } from './plan/refer.js';
 import { shortOther } from './bones/phrase.js';
 
 /* ------------------------------------------------------------------ *
@@ -487,8 +489,11 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
       const a = r[0] as Hour;
       const b = r[r.length - 1] as Hour;
       const props = r.map((h) => LISTP(h, [...g.ks]));
-      const extra = [n, ...(flavor ? [flavor] : []), ...(i > 0 ? ['back'] : []), ...(doing ? ['doing'] : []), ...(usual ? ['usual'] : []), ...(!allEvening ? ['shift'] : [])];
-      const base: Args = { names, ...(doing ? { doing } : {}) };
+      const extra = [n, ...(flavor ? [flavor] : []), ...(i > 0 ? ['back', ...(lean() ? ['back-lean'] : [])] : []), ...(doing ? ['doing'] : []), ...(usual ? ['usual'] : []), ...(!allEvening ? ['shift'] : [])];
+      // docs/60 item 5: lean, somebody back for a second stint is "he" or "she", not their name again
+      // ("Glick was in at seven and left soon after. He came back at nine…").
+      const again = lean() && i > 0 && g.ks.length === 1 && !(g.ks[0] as string).includes(':') ? `${pronOf(c, g.ks[0] as string).he}${markPronoun(c, g.ks[0] as string)}` : undefined;
+      const base: Args = { names: again ?? names, ...(doing ? { doing } : {}) };
       if (a === first && b === last) add(['all', ...extra], base, props);
       else if (a === first) add(['left', a === b ? 'first' : 'after', ...extra], { ...base, to: { t: 'hour', h: b } }, props);
       else if (b === last) add(['came', a === b ? 'last' : 'stay', ...extra], { ...base, from: { t: 'hour', h: a } }, props);

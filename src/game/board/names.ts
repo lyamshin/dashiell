@@ -14,6 +14,7 @@
 
 import type { Block } from './types.js';
 import type { BoardCase, Person } from './model.js';
+import { lean } from './plan/dial.js';
 
 interface Who {
   name: string;
@@ -244,7 +245,8 @@ export function namesOverTwo(c: BoardCase, blocks: Block[], exempt: (b: Block) =
       continue;
     }
     if (exempt(b)) continue;
-    let text = b.text;
+    // (docs/60 item 3: lean, the cap is the narrator's: what's said in quotation marks doesn't count.)
+    let text = lean() ? b.text.replace(/“[^”]*”?/g, ' ') : b.text;
     for (const pn of placeNames) text = text.split(pn).join(' ');
     text = text.replace(placeLikeRe(ps.map((p) => p.short)), ' ');
     for (const p of ps) {
