@@ -245,9 +245,9 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
   // nothing else says whom I'm asking: the staging line that names them stays too.)
   const subject = ctx.situ?.subject ? ctx.c.people.find((p) => p.id === ctx.situ?.subject) : undefined;
   const says = (it: Item) => !!subject && stripMarks(it.text).includes(subject.short);
-  const nobodyNamed = asking && !!keep && !!subject && !says(keep) && !items.some((it) => it !== keep && it.slot === 'why-here' && it.text.trim() && says(it));
+  const nobodyNamed = asking && !!keep && !!subject && !says(keep) && !items.some((it) => it !== keep && (it.slot === 'why-here' || it.tex === 'keep') && it.text.trim() && says(it));
   // (One with their pronoun will do: the reference pass says a first mention as the name.)
-  const also = nobodyNamed ? (stage.find((it) => it !== keep && it.text.trim() && says(it)) ?? stage.find((it) => it !== keep && it.text.trim() && (it.about ?? []).includes(subject.id))) : undefined;
+  const also = nobodyNamed ? (stage.find((it) => it !== keep && it.text.trim() && says(it)) ?? stage.find((it) => it !== keep && it.text.trim() && (it.about ?? []).includes(subject.id) && /\b(?:he|him|his|she|her)\b/i.test(stripMarks(it.text)))) : undefined;
   for (const it of stage) if (it !== keep && it !== joke && it !== also) drop(it, paras);
   if (keep || jokeStages) spent.staging = true;
   leadIn(paras, ctx, spent);

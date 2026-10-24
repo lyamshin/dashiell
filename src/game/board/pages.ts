@@ -1836,8 +1836,11 @@ function stageAndAsk(w: Writer, p: PersonId, job: 'account' | 'check' | 'list' |
   // (And, sitting already, the ask doesn't sit me down again: the situated deck saw to that, and lean the ask is the hand's.)
   if (lean() && seatedNow(w)) w.hand.avoid = alsoAvoid(w.hand.avoid, SAT);
   const asked = w.hand.draw('ask', { job, face: face ? 'yes' : 'no' }, withCaps({ ...s, reason: face }));
+  // (docs/60 item 1: lean, an ask said to their face names nobody: where nothing before it has named
+  // them, a plain line says whom I'm asking, and it stays.)
+  if (lean() && face && asked && !named) put(w, 'ask', `I went over to ${nameOf(c, p)}.`, 'act', { about: [p], tex: 'keep' });
   // (An ask that says the reason to their face carries it: it stays.)
-  put(w, 'ask', asked, 'exchange', { about: [p], ...(face ? {} : sit(w, asked)) });
+  put(w, 'ask', asked, 'exchange', { about: [p], ...(face ? {} : sit(w, asked)), ...(lean() && face && asked && !named ? { runOn: true } : {}) });
   w.hand.avoid = avoid;
   const reaction = w.hand.draw('reaction', { job: job === 'check' ? 'account' : job, manner }, s);
   put(w, 'reaction', reaction, 'act', { about: [p], ...sit(w, reaction) });
