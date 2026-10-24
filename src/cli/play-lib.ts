@@ -189,7 +189,7 @@ function itemLine(n: number, c: OfferedChoice, cost: string): string {
   const num = `${String(n).padStart(4)}. `;
   const room = WIDTH - num.length - mark.length - cost.length - 2;
   const lines = wrap(label, room).split('\n');
-  return [`${num}${mark}${(lines[0] ?? '').padEnd(room)}  ${cost}`, ...lines.slice(1).map((l) => `${' '.repeat(num.length + mark.length)}${l}`)].join('\n');
+  return [`${num}${mark}${(lines[0] ?? '').padEnd(room)}  ${cost}`.trimEnd(), ...lines.slice(1).map((l) => `${' '.repeat(num.length + mark.length)}${l}`)].join('\n');
 }
 
 /** The page's numbered items: a line a person, then searches, walks and the free row. */

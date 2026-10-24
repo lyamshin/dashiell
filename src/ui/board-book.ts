@@ -642,7 +642,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           'breaks',
           BREAKS_LABEL,
           () => breakOptionsShown(dd, r, who()),
-          () => (who() ? `What you know about ${nameOf(dd.kase, who() as string)}, or about ${hours}.` : `Name them first. Until then, what you know about ${hours}.`),
+          () => (who() ? 'Pick what proves it, or “A hunch”.' : `Name them first. Until then, what you know about ${hours}.`),
           () => (who() ? lineGroupHeads(dd, r, who() as string) : null),
         );
         s.addEventListener('change', refill);
@@ -658,7 +658,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           'cleared',
           CLEARED_LABEL,
           () => clearOptions(dd, r, other()),
-          () => (other() === NOBODY ? 'Nobody else, so there’s nothing to clear.' : named() ? `What you know about ${named()}, or about ${hours}.` : `Name them first. Until then, what you know about ${hours}.`),
+          () => (other() === NOBODY ? 'Nobody else, so there’s nothing to clear.' : named() ? 'Pick what clears them, or “A hunch”.' : `Name them first. Until then, what you know about ${hours}.`),
           () => (other() && other() !== NOBODY ? lineGroupHeads(dd, r, other() as string) : null),
         );
         s.addEventListener('change', refill);

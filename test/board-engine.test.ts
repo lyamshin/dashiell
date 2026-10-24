@@ -354,7 +354,7 @@ describe('board: the play CLI', () => {
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=${n}; other=${otherName}; cleared=${cn}; when=${d.kase.crime.hour}; where=${truth.where}; whereBy=${wn}; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('THE VERDICT');
-    expect(filed.out).toMatch(/5 out of 5: who \(and what shows they lied\), who else lied \(and what\s+cleared\s+them\)/);
+    expect(filed.out).toMatch(/5 out of 5: who \(and what proves they lied\), who else lied \(and what\s+clears\s+them\)/);
     // The save records the line, so a measure can tell deduced from guessed.
     expect(JSON.parse(files.get(save) as string).events.at(-1).file.breaks).toBe(truth.breaks);
     expect(JSON.parse(files.get(save) as string).events.at(-1).file.cleared).toBe(truth.cleared);
@@ -382,7 +382,7 @@ describe('board: the play CLI', () => {
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=hunch; when=${d.kase.crime.hour}; where=${where}; whereBy=hunch; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('right, but you couldn’t have known');
-    expect(filed.out).toMatch(/3 out of 5: who \(and what shows they lied\), who else lied \(and what\s+cleared\s+them\)/);
+    expect(filed.out).toMatch(/3 out of 5: who \(and what proves they lied\), who else lied \(and what\s+clears\s+them\)/);
     expect(filed.out).toContain('half credit on who');
     // docs/61: the other question left out costs its point, said plainly.
     expect(filed.out).toMatch(/You had the right name, but you didn’t rule out [A-Z]\w+\./);

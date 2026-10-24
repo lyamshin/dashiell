@@ -35,7 +35,145 @@
 - **The curtain:** "You filed:" → "You picked:"; "WHAT PUT IT THERE" → "WHERE IT WENT"; "When you faced him with it, he refused to say." → "When you confronted him, he refused to say."; the fastest solve's steps say "Confront Ruggiero: nine o’clock." and "confront Ruggiero", where the generator's labels say "Put it to" (rewritten as they're shown; the generator isn't touched).
 - **Errors and small words:** "The report is filed." → "The case is closed."; "I don’t have that line." → "I wasn’t told that."; "Nothing held about this hour yet." → "Nothing yet about this hour."; the CLI's "Filed already.", "Not until the report is filed.", "The report form is out: `report` shows it, `file` files it." → the case closed, or being closed.
 
-BEFORE-AFTER
+## 2. One night, before → after: Poached 5 (the round-5 tester's route, `npm run play`)
+
+**The office page's head and choices** (page one):
+
+```
+the office                                            12:00 AM
+[o.............] Fourteen calls left before the DA files at eight.
+…
+Go to:
+   1. * Dandridge’s place — start where he died                       1 call
+   2.   the Shamrock — Winslow is there                               1 call
+   3.   the Palace — Ruggiero is there                                1 call
+Free:
+   4.   File the report                                                 free
+
+Every question, search and walk costs one call, and so does reading somebody
+a line with “Put it to”; the clock moves with the calls. A star means it’s
+worth doing next, and says why. A tick means done, and free to read again.
+Picking somebody costs nothing: what to ask them opens, and "back" shuts it.
+`page <n>` turns back to an earlier page.
+```
+
+```
+the office                                            12:00 AM
+[o.............] Fourteen actions left. The DA charges somebody at eight.
+…
+Go to:
+   1. * Dandridge’s place — start where he died
+   2.   the Shamrock — Winslow is there
+   3.   the Palace — Ruggiero is there
+Free:
+   4.   Close the case                                                  free
+
+Everything you do takes one action unless it says free. A star marks a good
+next step. Picking somebody shows what you can ask them; `back` shuts it,
+and `page <n>` turns back to an earlier page.
+```
+
+**The Shamrock, where the turn comes** (page 9): "— THE TURN —" is "— Where things stood —" (the book: "Where things stood", small caps, where it printed "The turn"); "Talk to (picking someone is free; each question costs a call):" is "Talk to:"; "Go over what I have" and "File the report" are "Review my notes" and "Close the case"; the walks lose their "1 call".
+
+**The picker**, against Reinhardt's nine o'clock:
+
+```
+PUT IT TO REINHARDT
+
+Pick the hour where her story is wrong, then the line that breaks it, such
+as somebody who saw everyone there at that hour and not her. Looking is
+free; reading one to her costs a call. If it breaks nothing, the call is
+gone all the same, and the page says why. The report counts the line whether
+you read it to her or not.
+
+Against “the Shamrock at nine”, read her:
+   1.   Zeldin: at nine o’clock, only Hanrahan and Winslow were at    1 call
+        the Shamrock.
+```
+
+```
+CONFRONT REINHARDT
+
+Pick the hour where what she said doesn’t match, then what you’ll tell her,
+such as somebody who saw everyone there at that hour and not her. If it
+doesn’t catch her out, the action is used anyway. The report counts it
+whether you tell her or not.
+
+Against “the Shamrock at nine”, tell her:
+   1.   Zeldin: at nine o’clock, only Hanrahan and Winslow were at the
+        Shamrock.
+```
+
+**The report** (`report Reinhardt`):
+
+```
+THE REPORT
+
+Filing is final. Anything left blank goes in as “I don’t know”, except What
+shows they lied and What cleared them, which go in as “A hunch”.
+…
+What shows they lied (breaks):
+   What I have at nine about Reinhardt and the places she said she was tonight:
+   …
+   Anything else I have that names Reinhardt or is about nine:
+…
+Somebody else’s story didn’t hold either. Who, and what cleared them? (other):
+…
+What cleared them (cleared):
+…
+File it with: npm run play -- file "who=…; breaks=…; other=…; cleared=…; …"
+```
+
+```
+CLOSE THE CASE
+
+Closing the case is final. Leave anything blank if you’re not sure.
+…
+What proves they lied (proof):
+   What you know about Reinhardt at nine:
+   …
+   Everything else:
+…
+Someone else lied too. Who, and what clears them? (other):
+…
+What clears them (cleared):
+…
+Close it with: npm run play -- close "who=…; proof=…; other=…; cleared=…; …"
+```
+
+**The grid** (the notebook's):
+
+```
+             seven     eight     nine !        ten       could get it?
+…
+"X" they say so  ·  [X] somebody else saw them there  ·  X✓ both say so  ·  "X"✗ the two don’t agree  ·  →Y owned up  ·  ~X your own guess in pencil
+! the hour it happened  ·  last column: could have got the laudanum?
+…
+WHERE THE STORIES DON’T AGREE
+```
+
+```
+             seven     eight     nine !        ten       Could they get the laudanum?
+…
+"X" they say so  ·  [X] somebody saw them there  ·  "X"✗ where they clash  ·  X✓ both say so  ·  →Y owned up  ·  ~X your own guess
+! the hour it happened
+…
+WHERE THEY CLASH
+```
+
+(The last three keys are there because this grid shows each: a ✓, Ruggiero's owning up, and the tester's own mark on Reinhardt at nine. A grid without them shows the first three only.)
+
+**The verdict and the curtain:**
+
+> 5 out of 5: who (and what shows they lied), who else lied (and what cleared them), when, how and why. … It took me 13 calls. A better detective would have done it in 12. Facing Reinhardt was a call I didn’t need: she wouldn’t say, and I had enough to file without it.
+
+> 5 out of 5: who (and what proves they lied), who else lied (and what clears them), when, how and why. … It took me 13 actions. A better detective would have done it in 12. I didn’t need to confront Reinhardt: she wouldn’t say, and I had enough to close the case without it.
+
+> You filed: … · When you faced her with it, she refused to say. · THE SHORT WAY THROUGH (12 calls: 7 questions, a look at the papers for the motive and 4 walks) · 4. Put it to Ruggiero: nine o’clock. … face Ruggiero with it.
+
+> You picked: … · When you confronted her, she refused to say. · THE FASTEST SOLVE: 12 actions (7 questions, a look at the papers for the motive and 4 walks) · 4. Confront Ruggiero: nine o’clock. … confront Ruggiero.
+
+**The book** (this worktree's vite, desktop and 375 px, nothing sideways at 375): page one's head "Fourteen actions left. The DA charges somebody at eight.", the choices with no "1 call" and "Close the case · free", and the key under them; the Shamrock page's "Where things stood" divider, "TALK TO" with "all asked" / "2 questions", "Confront Reinhardt · free to look", "Review my notes"; the picker's note and "Against “the Shamrock at nine”, tell her:"; the grid's key (three, then "✓ both say so" and "~ your own guess" where the grid shows them) and "The last column: Could they get the laudanum?", its column headed "laudanum?"; the form ("Close the case", the blank rule, "What proves they lied", "Pick what proves it, or “A hunch”.", "What you know about Reinhardt at nine:", "Everything else:", "Someone else lied too…", the "Close the case" button); and the verdict.
 
 ## 3. Tests
 
@@ -51,4 +189,9 @@ MEASURES
 
 ## 5. What's open
 
-OPEN
+- **Prose that still says the old words, clarity-3's:** the last page's note "(Eight o’clock. The DA’s man was on the stairs, and whatever I had was what got filed.)", the report page's narration ("I had something for every line on it…"), the turn's offer ("I could face Bellucci with it now."), and the prose half of the list ("held"/"didn't hold", "a line") wherever a page says it. The turn's block is still written "The turn" by `pages.ts`; the book and the CLI show it as "Where things stood" (`chapterShown`), so if clarity-3 renames the block, the divider shows their name instead.
+- **The report's first heading is less literal than round 5's.** "What you know about Bellucci at ten:" sits over docs/55 5's wide group, so Mrs. Kowalski's ten o'clock at Kowalski's is under it though it's about a place in his evening, not him. That's the designer's call, as asked.
+- **The generator's own words are rewritten as they're shown, not at the source:** the fastest solve's step labels ("Put it to Ruggiero: nine o’clock." → "Confront …"); `src/gen/` is untouched, so the dealt boards hash the same.
+- **Not player-facing, left:** the code's own names (`breaks`, `whereBy`, `pencil`, `budgetCalls`, `filed`, the `file` and `mark` events in a save), so saves made before this read the same; `npm run read` and `npm run case` still say "par" (they're the designer's tools, and show the truth). docs 01–63 are history and keep their words.
+- **The teach page** keeps its fourth line, "When two stories don’t match, tell the person what the other one said." ("stories" isn't on the list; the designer approved the page).
+- **`model/voice/script.json`** isn't rebuilt (between sittings, as before); `scripts/voice-script.ts`'s fixed lines say the new words when it is.
