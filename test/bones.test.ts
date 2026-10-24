@@ -18,6 +18,7 @@ import { VARIETY, preview, type VoiceHand } from '../src/game/board/bones/say.js
 import { Hand } from '../src/game/board/decks.js';
 import { mannerOf } from '../src/game/board/pages.js';
 import { lintVoicings } from '../scripts/voicing-lint.js';
+import { setTexture } from '../src/game/board/plan/dial.js';
 import type { Beat } from '../src/game/board/sheets.js';
 
 const worlds = [undefined, 'neighbourhood'] as const;
@@ -79,13 +80,24 @@ describe('docs/52 §3: the plain page, and the round trip', () => {
   });
 
   it('the golden’s page 8, plainly: every fact, no voice, a pronoun for the clause before’s subject', () => {
+    const account = 'Ashby said he was at the Automat at eight and nine, alone. He said he was at the Delmonico rooms at ten, with Mrs. Cheatham. He said he was at the Thalia at eleven, with Feeney. He said he passed Corrigan on Stuyvesant Street at eleven on the way to the Thalia.';
+    // (texture=full: today's page.)
+    setTexture('full');
+    try {
+      const { run, d } = oracle(1, 4, 'lost-pet');
+      const blocks = plainPage(d.kase, run.log[7] as (typeof run.log)[number]);
+      expect(blocks.map((b) => b.text)).toEqual([
+        account,
+        // (docs/59 item 3: an agreement says where, not who with: the account has just said its company.)
+        'Coffin backed up Ashby: he was at the Thalia at eleven; the Prentiss flat was on Stuyvesant Street.',
+      ]);
+    } finally {
+      setTexture('lean');
+    }
+    // (docs/60 item 5, lean: the why-here said Coffin saw him there at eleven; the agreement isn't said again.)
     const { run, d } = oracle(1, 4, 'lost-pet');
     const blocks = plainPage(d.kase, run.log[7] as (typeof run.log)[number]);
-    expect(blocks.map((b) => b.text)).toEqual([
-      'Ashby said he was at the Automat at eight and nine, alone. He said he was at the Delmonico rooms at ten, with Mrs. Cheatham. He said he was at the Thalia at eleven, with Feeney. He said he passed Corrigan on Stuyvesant Street at eleven on the way to the Thalia.',
-      // (docs/59 item 3: an agreement says where, not who with: the account has just said its company.)
-      'Coffin backed up Ashby: he was at the Thalia at eleven; the Prentiss flat was on Stuyvesant Street.',
-    ]);
+    expect(blocks.map((b) => b.text)).toEqual([account, 'The Prentiss flat was on Stuyvesant Street.']);
   });
 
   it('never a pronoun another of that sex in the clause before could be: the name', () => {

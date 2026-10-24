@@ -138,6 +138,8 @@ export interface Writer {
    * "Alfano it was.", "Mrs. Kowalski was the one I’d come for").
    */
   carried?: boolean;
+  /** docs/60: this page heard where a small case's thing went (the turn on it doesn't say it again). */
+  handover?: boolean;
   /** docs/47 B8: whoever this page's answer put in the room has been placed in a line. */
   placed?: boolean;
   /** docs/49: the skeleton, unit by unit, as the planner laid it out. */
@@ -1651,7 +1653,11 @@ export function writeArrive(w: Writer, place: PlaceId): void {
       : p1 && head && p1.src === p0.src && p1.clause.startsWith(head)
       ? `${p0.clause}, and ${p1.clause.slice(head.length).replace(/ at the [^,]+? at /, ' at ').replace(new RegExp(` at ${esc(pl.short)} at `), ' at ').replace(p0.places[0] ? new RegExp(` at ${esc(placeName(c, p0.places[0]))} at `) : /$^/, ' at ').replace(p0.places[0] ? new RegExp(` at ${esc(placeName(c, p0.places[0]))}(?= all evening)`) : /$^/, '')}`
       : p1 && said && p1.src === p0.src && p1.clause.startsWith(said)
-        ? `${p0.clause}, and that ${p1.clause.slice(said.length)}`
+        ? // (docs/60, lean: not "Ashby had said he was with Bernstein at ten, and that he was at Moskowitz’s…",
+          // whose "he" is either man: the first line says why I'm here, and the second can wait for the page.)
+          lean() && (c.people.some((x) => !x.object && p1.clause.slice(said.length).startsWith(`${x.short} `) && p0.clause.includes(x.short)) || (/^(?:he|she)\b/.test(p1.clause.slice(said.length)) && c.people.filter((x) => !x.object && x.female === p1.clause.slice(said.length).startsWith('she') && p0.clause.includes(x.short)).length >= 2))
+          ? p0.clause
+          : `${p0.clause}, and that ${p1.clause.slice(said.length)}`
         : ptrs.map((p, i) => (i === 0 ? p.clause : cap(sameSubject(p.clause, p0.clause)))).join('. ');
     const why = w.hand.draw('why', { kind: 'arrive' }, withCaps({ src, place: pl.short }), { plain: true });
     put(w, 'why', why ?? `${cap(src)}.`, 'narrator', sit(w, why, `${cap(src)}.`));
@@ -1734,7 +1740,15 @@ function peopleInBrief(c: BoardCase, xs: { text: string; about: PersonId[]; alts
     }
     group = [];
   };
-  for (const x of xs) {
+  for (const x0 of xs) {
+    // (A simile said as a sentence of its own after what they're doing goes: "Demos was smoothing his
+    // hair with both palms. As if it might have moved.")
+    // (And one at the end of the line: "smoothing his hair with both palms, as if it might have moved" is
+    // what they're doing, and the simile is the page's flourish, which it has elsewhere or not at all.)
+    const ss = sentencesOf(x0.text);
+    const x1 = ss.length > 1 && /^(?:As if|As though|Like)\b/.test(ss[ss.length - 1] as string) ? { ...x0, text: ss.slice(0, -1).join(' '), alts: undefined } : x0;
+    const tail = /, (?:as if|as though|like a|like an|like somebody|like someone)\b[^.,;]*\.$/.exec(x1.text);
+    const x = tail && x1.text.slice(0, tail.index).split(/\s+/).length >= 5 ? { ...x1, text: `${x1.text.slice(0, tail.index)}.`, alts: undefined } : x1;
     const p = x.about.length === 1 ? personOf(c, x.about[0] as PersonId) : undefined;
     // (Only a line that opens on its one person's name: the client's own, and "still there", stand alone.)
     if (!p || p.role === 'client' || !x.text.startsWith(p.short) || /\bstill there\.$/.test(x.text) || sentencesOf(x.text).length > 1) {
@@ -1745,7 +1759,10 @@ function peopleInBrief(c: BoardCase, xs: { text: string; about: PersonId[]; alts
     // Their name (a face said with it, "Winslow, in a green hat,"), and what they're doing, to its first comma.
     const look = new RegExp(`^${esc(p.short)}, [^,]+, `).exec(x.text)?.[0] ?? `${p.short} `;
     const rest = x.text.slice(look.length);
-    const comma = rest.indexOf(', ');
+    // (To its first comma, or to a simile, whichever comes first: "looking at a stranger’s hair as if pricing it".)
+    const sim = rest.search(/,? (?:as if|as though|like a|like an|like somebody|like someone)\b/);
+    const comma0 = rest.indexOf(', ');
+    const comma = sim >= 0 && (comma0 < 0 || sim < comma0) ? sim : comma0;
     const head = comma >= 0 && !/^and\b/.test(rest.slice(comma + 2)) && `${look}${rest.slice(0, comma)}`.split(/\s+/).length >= 6 ? `${look}${rest.slice(0, comma)}.` : x.text;
     // (A pronoun after somebody of that sex already in the sentence could be theirs: a sentence of its own.)
     const pr = /\b(she|her|he|him|his)\b/i.exec(head.slice(look.length))?.[1]?.toLowerCase();
@@ -1908,7 +1925,10 @@ export function writeAccount(w: Writer, p: PersonId): void {
   // docs/60 item 5 (docs/59 §7): lean, the sighting said to their face ("Demos saw you here at eight and
   // eleven") isn't said again in the thought ("Some of his evening did hold: Demos saw him at Steinmetz’s
   // at eight and eleven"): the page has said it.
-  if (lean() && ptr?.face) {
+  // (Or in the why-here, "Callahan had seen Hauck at the Orpheum at nine and ten.", then "So Hauck and
+  // Callahan agreed: the Orpheum at ten and at nine.")
+  const whySaid = !!ptr?.clause && (w.parts.why ?? []).some((x) => stripMarks(x.text).includes(stripMarks(cap(ptr.clause as string))));
+  if (lean() && ptr && (ptr.face || whySaid)) {
     const by = ptr.src.split(':')[1] ?? '';
     const ps = w.parts.thought ?? [];
     for (let i = ps.length - 1; i >= 0; i--) {
@@ -1967,6 +1987,7 @@ export function writeList(w: Writer, watcher: PersonId): void {
   // The handover: what was under the coat is the question anybody would ask, and the answer says no more than the watcher saw.
   if (l.remarks.some((r) => r.gives?.whereNow)) {
     const what = c.type === 'lost-pet' ? 'pet' : 'item';
+    w.handover = true;
     put(w, 'job', w.hand.draw('coat-q', {}, {}, { widen: true, plain: true }), 'exchange', { slot: 'ask', ...(lean() ? { tex: 'keep' as const } : {}) });
     const r = l.remarks.findIndex((x) => x.gives?.whereNow);
     // docs/52 build 2: what was under the coat, a composite of its own (HANDOVER `coat`), in the watcher's voicing.
@@ -2213,7 +2234,9 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
   // Why: their line and what's held against it.
   // (A watcher by what they are, "the landlady": the put names them a line later; docs/39 §4's three names.)
   const src = line.q.startsWith('list:') ? (roleOf(c, line.q.slice(5)) ?? sourceName(c, line.q)) : sourceName(c, line.q);
-  const psrc = `${nameOf(c, p)} had told me ${claimLine}, and ${src} said otherwise`;
+  // (docs/60, the skim readers: lean, a put that won't land doesn't say beforehand that the line says
+  // otherwise. It's the line I meant to put, and the page finds out it doesn't.)
+  const psrc = lean() && !j.landed && !again ? `${nameOf(c, p)} had told me ${claimLine}, and I wanted to ask about something ${src} had said` : `${nameOf(c, p)} had told me ${claimLine}, and ${src} said otherwise`;
   const pwhy = w.hand.draw('why', { kind: 'put' }, withCaps({ ...s, src: psrc, claim: claimLine }), { plain: true });
   put(w, 'why', pwhy, 'narrator', { about: [p], ...sit(w, pwhy, `${cap(psrc)}.`) });
   const pstage = w.hand.draw('put-stage', {}, s);
@@ -2866,7 +2889,9 @@ export function writeTurn(w: Writer): void {
       parts.forEach((x, i) => fact(w, 'job', x.text, 'recap', { relation: 'narrows', about: el.people, carries: el.refs, exempt: true, props: x.props ?? [], runOn: i > 0, ...(x.say ? { say: x.say } : {}) }));
     } else fact(w, 'job', el.sentences.join(' '), 'recap', { relation: 'narrows', about: el.people, carries: el.refs, exempt: true, props: parts.flatMap((x) => x.props ?? []) });
   } else {
-    const clauses = lean() ? turnOrder(recapClauses(w.d, w.run), c.tier <= 2 ? 70 : 90) : recapClauses(w.d, w.run);
+    // (docs/60, lean: where a small case's thing went isn't said again in a turn on the page that just heard it.)
+    const heardHere = lean() && !!w.handover;
+    const clauses = lean() ? turnOrder(recapClauses(w.d, w.run).filter((x) => !(heardHere && x.key.split(':')[0] === 'where')), c.tier <= 2 ? 70 : 90) : recapClauses(w.d, w.run);
     for (const cl of clauses) {
       for (const h of cl.hours) w.hours.add(h);
       for (const p of cl.people) w.people.add(p);
@@ -2930,15 +2955,16 @@ function turnOrder(cs: Clause[], most: number): Clause[] {
   const rank = (k: string): number => ({ when: 0, means: 1, access: 2, placed: 3, held: 3, broken: 4, admit: 5, second: 5, refused: 5, own: 6, open: 7, where: 8 } as Record<string, number>)[head(k)] ?? 9;
   const out = cs.map((x, i) => ({ x, i })).sort((a, b) => rank(a.x.key) - rank(b.x.key) || a.i - b.i).map((y) => y.x);
   // docs/60 item 4: one short paragraph, 70 words at Raw to Poached and 90 above: past that, who said
-  // where they were with nobody to back it goes first, then who was accounted for, the last first (the
-  // hour, where it came from, whose story doesn't hold and what's still open always stay).
+  // where they were with nobody to back it goes first, then who was accounted for, the last first, then
+  // where a small case's thing went (the list page said it, and the notebook keeps it), then the last of
+  // who was accounted for (the hour, where it came from or who knew the way in, whose story doesn't
+  // hold and what's still open always stay).
   const wordsOf = (xs: Clause[]) => xs.reduce((n, x) => n + x.text.split(/\s+/).length, 0);
-  for (const drop of ['own', 'placed']) {
+  for (const [drop, keep] of [['own', 0], ['placed', 1], ['where', 0], ['placed', 0]] as const) {
     // (The notebook's words, a little shorter than the page says them.)
     while (wordsOf(out) * 1.2 > most - 2) {
       const k = out.map((x) => head(x.key)).lastIndexOf(drop);
-      // (One of who was accounted for always stays.)
-      if (k < 0 || (drop === 'placed' && out.filter((x) => head(x.key) === 'placed').length <= 1)) break;
+      if (k < 0 || out.filter((x) => head(x.key) === drop).length <= keep) break;
       out.splice(k, 1);
     }
   }

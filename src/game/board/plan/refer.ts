@@ -247,6 +247,8 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   const putOther = (k: number, w: Who): boolean => {
     const s = sents[k] as Sent;
     if (!s.mentions.some((m) => m.kind === 'speech' && m.who !== w && m.who.female === w.female)) return false;
+    // (A put: the line I set against their story. An ask that says who saw them where is only the why.)
+    if ((items[s.item] as Item).relation !== 'collides') return false;
     return sents.some((x) => x.item === s.item && /\bI (?:said|asked)\b/.test(x.narr));
   };
   /** Would a pronoun for `w` at `at` in sentence `si` be read as `w`, and as nobody else? */
@@ -337,7 +339,10 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
     // (Once the page has named them: the first time it's the name.)
     if ((w.id === c.client || (w.id === c.crime.victim && c.type === 'murder')) && introduced.has(w.idx)) return true;
     if (s.named.some((x) => x.who === w && x.at < at)) return true;
-    const prev = narrIdx.length ? (sents[narrIdx[narrIdx.length - 1] as number] as Sent) : undefined;
+    // (A signpost between, "Something didn’t fit.", or my own question's "I said", names nobody and
+    // doesn't take the page from them.)
+    const back = narrIdx.filter((k) => !/^(?:(?:One thing|Something) didn’t (?:fit|add up)|,? ?I (?:said|asked))\.$/.test((sents[k] as Sent).narr.replace(/\s+/g, ' ').trim()));
+    const prev = back.length ? (sents[back[back.length - 1] as number] as Sent) : undefined;
     return !!prev && prev.named.some((x) => x.who === w);
   };
   // What the thought names that an earlier page named too, besides a given person.

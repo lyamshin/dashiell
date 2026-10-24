@@ -46,7 +46,7 @@ describe('docs/59 item 1: said once', () => {
     const find = run.log.find((p) => p.board?.job === 'search') as Page;
     expect((prose(find).match(/sugar tin/g) ?? []).length).toBeLessThanOrEqual(1);
     expect(prose(find)).toMatch(/\b[Tt]he spare\b/);
-    expect(prose(find)).toMatch(/Whoever [^.]* had been at the Delmonico rooms first/);
+    expect(prose(find)).toMatch(/(?:Whoever [^.]*|\w+’s (?:visitor|caller)) had been at the Delmonico rooms first/);
     // The scene says no window and no way in again (the office said them).
     const scene = run.log.find((p) => p.board?.job === 'arrive' && p.at === 'scene') as Page;
     expect(prose(scene)).not.toMatch(/sugar tin|ten or eleven/);
