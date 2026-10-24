@@ -241,7 +241,13 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
   // (A joke that is the staging is both: no second staging line.)
   const jokeStages = !!joke && stage.includes(joke);
   const keep = spent.staging || jokeStages ? undefined : ((asking ? stage.find((it) => roleOf(it) === 'ask') : undefined) ?? stage[0]);
-  for (const it of stage) if (it !== keep && it !== joke) drop(it, paras);
+  // (An ask that names nobody, "Mrs. Nagy saw you here at nine. Tell me about the rest.", on a page where
+  // nothing else says whom I'm asking: the staging line that names them stays too.)
+  const subject = ctx.situ?.subject ? ctx.c.people.find((p) => p.id === ctx.situ?.subject) : undefined;
+  const says = (it: Item) => !!subject && stripMarks(it.text).includes(subject.short);
+  const nobodyNamed = asking && !!keep && !!subject && !says(keep) && !items.some((it) => it !== keep && it.slot === 'why-here' && it.text.trim() && says(it));
+  const also = nobodyNamed ? stage.find((it) => it !== keep && it.text.trim() && says(it)) : undefined;
+  for (const it of stage) if (it !== keep && it !== joke && it !== also) drop(it, paras);
   if (keep || jokeStages) spent.staging = true;
   leadIn(paras, ctx, spent);
   // What went is out of the paragraphs, so what's left stands side by side for the rhythm.
