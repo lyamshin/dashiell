@@ -1188,7 +1188,9 @@ export function writeOffice(w: Writer): void {
   const knock = lean() ? null : w.hand.draw('knock', {}, {}, { widen: true });
   const knocked = /\bknock/i.test(knock ?? '');
   const entrance = w.hand.drawOld('entrances', (card) => (card.tags.gender === 'any' || card.tags.gender === (cl.female ? 'f' : 'm')) && card.tags.familiar !== 'yes' && ['working', 'professional', 'any'].includes(String(card.tags.class)) && !/\{detective\}/.test(card.text) && !(knocked && /\bknock/i.test(card.text)), { name: cl.short }, true);
-  put(w, 'arrival', [knock, entrance?.text].filter(Boolean).join(' '), 'establish', lean() ? { tex: 'staging' } : {});
+  // (docs/60: lean, the visitor coming in stays: without it the client's first "she said" is nobody's.
+  // Where it's a joke, it's the page's.)
+  put(w, 'arrival', [knock, entrance?.text].filter(Boolean).join(' '), 'establish', lean() ? { tex: 'keep' } : {});
   // docs/59 item 4, note 3: the client sits down once. The entrance may say it; if it doesn't, the
   // client's first line may (a relation voicing that sits), and the chair line otherwise.
   let sat = VISITOR_SAT.test(entrance?.text ?? '');
@@ -1697,6 +1699,11 @@ export function writeArrive(w: Writer, place: PlaceId): void {
  */
 function streetOnce(text: string, street: string): string {
   if (!lean() || !street) return text;
+  // (The place's own description says it, and the card says it again further on in that sentence,
+  // "…four steps down on Second Avenue, was still serving, because on Second Avenue nobody…": the
+  // description's goes.)
+  const ss = text.split(/(?<=[.!?”]) /);
+  if (ss.some((s) => s.split(street).length > 2)) text = ss.map((s) => (s.split(street).length > 2 ? s.replace(new RegExp(` (?:on|in|off) ${esc(street)}(?=,)`), '') : s)).join(' ');
   const re = new RegExp(`\\b${esc(street)}\\b`, 'g');
   let last = -1;
   return text.replace(re, (m, at: number) => {

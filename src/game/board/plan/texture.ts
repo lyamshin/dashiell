@@ -226,8 +226,12 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
   const asks = ASKING.has(ctx.situ?.page ?? '') && items.some((it) => roleOf(it) === 'ask');
   const funny = items.filter((it) => {
     const r = roleOf(it);
-    return r === 'flourish' || r === 'atmosphere' || r === 'close' || r === 'callback' || (!asks && (r === 'staging' || r === 'ask') && isJoke(it));
+    // (A staging line with a simile in it is a flourish too: "A missing thing leaves a gap in a room,
+    // the way a pulled tooth leaves one in a smile.")
+    return r === 'flourish' || r === 'atmosphere' || r === 'close' || r === 'callback' || (!asks && (r === 'staging' || r === 'ask') && (isJoke(it) || similesIn(stripMarks(it.text)) > 0 || /, the way an? /.test(stripMarks(it.text))));
   });
+  // (A line that stays whatever it is, the visitor coming in, and is a joke as dealt: the page's joke.)
+  if (items.some((it) => it.slot === 'arrival' && it.tex === 'keep' && isJoke(it))) spent.joke = true;
   const callback = funny.find((it) => roleOf(it) === 'callback');
   const joke = callback ?? funny.find((it) => isJoke(it));
   for (const it of funny) {
