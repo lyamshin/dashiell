@@ -12,10 +12,10 @@
  */
 
 import { clockStrip, usedByPage } from '../game/board/clock.js';
-import { boardChoices, pickerFor, type Picker } from '../game/board/choices.js';
+import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { boardGrid, cellText, type BoardCell, type BoardGrid } from '../game/board/grid.js';
-import { knownPeople, knownPlaces, linesHeld } from '../game/board/knowledge.js';
+import { knownPeople, knownPlaces, lineShown, linesHeld } from '../game/board/knowledge.js';
 import {
   BOARD_SAVE_KEY,
   budgetCalls,
@@ -34,9 +34,9 @@ import {
   type TierIndex,
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
-import { BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, WHERE_BY_LABEL, boardFields, breakOptionsShown, clearOptions, curtainOfBoard, hoursThatMattered, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
+import { BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, WHERE_BY_LABEL, blankRule, boardFields, breakOptionsShown, clearOptions, curtainOfBoard, hoursThatMattered, lineGroupHeads, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
-import { costLabel } from '../game/board/text.js';
+import { TALK_HEADING, TALK_NOTE, costLabel, officeLines, questionsText, starsNote } from '../game/board/text.js';
 import { continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, tierOpen, tonightTier, type KeyValueStore, type Profile } from '../game/board/profile.js';
 import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
@@ -417,7 +417,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const asks = groups.filter((g) => g.kind === 'ask');
     if (asks.length > 0) {
       const section = el('section', { class: 'choice-group choice-group--people' });
-      section.append(el('h3', { class: 'choice-heading', text: 'Talk to' }));
+      // Round 5, U1: what's free and what costs, said once in the heading, the CLI's words.
+      section.append(el('h3', { class: 'choice-heading' }, TALK_HEADING, el('span', { class: 'choice-heading-note', text: ` (${TALK_NOTE})` })));
       const row = el('div', { class: 'choice-list who-list', role: 'group', 'aria-label': 'Who to talk to' });
       for (const g of asks) {
         const id = g.personId as string;
@@ -428,12 +429,12 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           type: 'button',
           'data-person': id,
           'aria-expanded': on ? 'true' : 'false',
-          'aria-label': [nameOf((d as BoardDeal).kase, id), star?.why ? `starred: ${star.why}` : '', on ? 'topics open' : `${g.choices.length} topics`, 'free'].filter(Boolean).join(', '),
+          'aria-label': [nameOf((d as BoardDeal).kase, id), star?.why ? `starred: ${star.why}` : '', on ? 'questions open' : questionsText(g), 'free to pick'].filter(Boolean).join(', '),
         });
         if (star) b.append(el('span', { class: 'mark', 'aria-hidden': 'true', text: '*' }));
         b.append(el('span', { class: 'label', text: nameOf((d as BoardDeal).kase, id) }));
         if (star?.why) b.append(el('span', { class: 'aside why', text: star.why }));
-        b.append(el('span', { class: 'mins', text: on ? 'close' : `${g.choices.length} ${g.choices.length === 1 ? 'topic' : 'topics'}` }));
+        b.append(el('span', { class: 'mins', text: on ? 'close' : questionsText(g) }));
         b.addEventListener('click', () => {
           selected = on ? null : id;
           pickerOpen = false;
@@ -468,6 +469,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       section.append(list);
       panel.append(section);
     }
+    const stars = starsNote(d as BoardDeal, run as BoardRun);
+    if (stars) panel.append(el('p', { class: 'note stars-note', text: stars }));
     return panel;
   }
 
@@ -502,10 +505,11 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   function pickerNode(pk: Picker): HTMLElement {
     const c = (d as BoardDeal).kase;
     const box = el('div', { class: 'confront-picker board-picker', role: 'group', 'aria-label': `Put it to ${nameOf(c, pk.person)}` });
-    // docs/47 A6: the person's own pronouns, never "their" for one woman; costs in calls.
+    // docs/47 A6: the person's own pronouns, never "their" for one woman; costs in calls. Round 5, U7:
+    // the CLI's words, and that the report counts the line either way.
     const female = personOf(c, pk.person)?.female === true;
     const him = female ? 'her' : 'him';
-    box.append(el('p', { class: 'note', text: `${pk.help} Looking is free; reading one to ${him} costs a call. If it breaks nothing, the call is gone all the same, and the page says why.` }));
+    box.append(el('p', { class: 'note', text: pickerNote(d as BoardDeal, pk) }));
     if (pk.ready.length > 0) {
       const sec = el('section', { class: 'picker-sec' });
       sec.append(el('h4', { class: 'picker-head', text: `What ${female ? 'she' : 'he'} said, and what says otherwise` }));
@@ -587,7 +591,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const form = el('form', { class: 'report' });
     form.append(
       el('h2', { text: 'The report' }),
-      el('p', { class: 'note', text: r.used >= budgetCalls(d as BoardDeal) ? 'The calls are spent. Whatever is on the page is what gets filed; leave a line blank and it goes in as I don’t know.' : 'Filing is final. Leave a line blank and it goes in as I don’t know.' }),
+      // Round 5, U6: what a blank goes in as, once, the CLI's words.
+      el('p', { class: 'note', text: blankRule(d as BoardDeal, r.used >= budgetCalls(d as BoardDeal)) }),
     );
     const dd = d as BoardDeal;
     const selects = new Map<FieldKey, HTMLSelectElement>();
@@ -596,7 +601,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const hs = hoursThatMattered(dd).map((h) => hourWord(h));
     const hours = hs.length > 1 ? `${hs.slice(0, -1).join(', ')} or ${hs[hs.length - 1]}` : (hs[0] ?? '');
     /** A line question: the lines it offers as a list to pick one from, and a hunch. */
-    const lineField = (key: 'breaks' | 'whereBy' | 'cleared', label: string, options: () => LineOption[], note: () => string, group: () => string = () => '') => {
+    const lineField = (key: 'breaks' | 'whereBy' | 'cleared', label: string, options: () => LineOption[], note: () => string, group: () => { touching: string; rest: string } | null = () => null) => {
       const box = el('fieldset', { class: 'field field--lines' });
       box.append(el('legend', { text: label }));
       const hint = el('p', { class: 'line-hint' });
@@ -609,8 +614,9 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         // docs/47 A4: the lines that touch the named person's own story come first, under a heading.
         const touching = opts.filter((o) => o.touches).length;
         [...opts, { value: '', label: HUNCH }].forEach((o, i) => {
-          if (key !== 'whereBy' && touching > 0 && i === 0) list.append(el('p', { class: 'line-group', text: group() }));
-          if (key !== 'whereBy' && touching > 0 && i === touching && i < opts.length) list.append(el('p', { class: 'line-group', text: 'Everything else I have:' }));
+          const heads = group();
+          if (heads && touching > 0 && i === 0) list.append(el('p', { class: 'line-group', text: heads.touching }));
+          if (heads && touching > 0 && i === touching && i < opts.length) list.append(el('p', { class: 'line-group', text: heads.rest }));
           const id = `rf-${key}-${i}`;
           const input = el('input', { type: 'radio', name: key, value: o.value, id });
           if (o.value === '') input.checked = true;
@@ -622,7 +628,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       form.append(box);
       return fill;
     };
-    for (const f of boardFields(dd)) {
+    for (const f of boardFields(dd, r)) {
       const s = el('select', { name: f.key });
       s.append(el('option', { value: '' }, 'I don’t know'));
       for (const o of f.options) s.append(el('option', { value: o.value }, o.label));
@@ -635,7 +641,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           BREAKS_LABEL,
           () => breakOptionsShown(dd, r, who()),
           () => (who() ? `What I have that names ${nameOf(dd.kase, who() as string)}, or is about ${hours}.` : `Name them first. Until then, what I have about ${hours}.`),
-          () => (who() ? `What I have about ${nameOf(dd.kase, who() as string)}’s own evening at ${hours}:` : ''),
+          () => (who() ? lineGroupHeads(dd, r, who() as string) : null),
         );
         s.addEventListener('change', refill);
       }
@@ -651,7 +657,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           CLEARED_LABEL,
           () => clearOptions(dd, r, other()),
           () => (other() === NOBODY ? 'Nobody else, so there’s nothing to clear.' : named() ? `What I have that names ${named()}, or is about ${hours}.` : `Name them first. Until then, what I have about ${hours}.`),
-          () => (named() ? `What I have about ${named()}’s own evening at ${hours}:` : ''),
+          () => (other() && other() !== NOBODY ? lineGroupHeads(dd, r, other() as string) : null),
         );
         s.addEventListener('change', refill);
       }
@@ -691,8 +697,10 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       const bySource = new Map<string, string[]>();
       for (const l of lines) {
         const src = l.q.startsWith('list:') ? `Who ${nameOf(c, l.q.slice(5))} saw` : l.q.startsWith('account:') ? `${nameOf(c, l.q.slice(8))}’s evening` : l.q.startsWith('search:') ? 'What I found' : 'When I faced them with it';
-        bySource.set(src, [...(bySource.get(src) ?? []), l.text]);
+        bySource.set(src, [...(bySource.get(src) ?? []), lineShown(c, r, l)]);
       }
+      // (The reasons asked of them, as the CLI's notebook has them.)
+      for (const q of r.asked.filter((x) => x.startsWith('motive:'))) bySource.set('Their reasons', [...(bySource.get('Their reasons') ?? []), `${nameOf(c, q.slice(7))}’s reason: ${personOf(c, q.slice(7))?.motive}.`]);
       for (const [src, ls] of bySource) {
         const entry = el('div', { class: 'nb-entry' });
         entry.append(el('div', { class: 'who', text: src }));
@@ -704,7 +712,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     }
     body.append(el('h2', { text: 'What my client said' }));
     const office = el('ul', { class: 'nb-stands' });
-    for (const t of c.givens.text) office.append(el('li', { text: t }));
+    for (const t of officeLines(d as BoardDeal)) office.append(el('li', { text: t }));
     body.append(office);
     body.append(el('h2', { text: 'People and places' }));
     const people = el('ul', { class: 'nb-stands' });
