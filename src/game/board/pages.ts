@@ -2435,7 +2435,8 @@ function answer(w: Writer, lines: { text: string; gap?: boolean; about?: string[
  * story, a crack). docs/49: the two are a gap and a fact, in one paragraph.
  */
 function react(w: Writer, p: PersonId, how: string, said: string, carries: string, relation: Relation = 'new', howSit: Pick<Item, 'sit'> = {}, props: Prop[] = [], say?: SaySpec): void {
-  put(w, 'reaction', how, 'exchange', { about: [p], ...howSit });
+  // (docs/60: lean, how they take it stays on a put: it says who answers, and both preference readers missed it gone.)
+  put(w, 'reaction', how, 'exchange', { about: [p], ...howSit, ...(lean() ? { tex: 'keep' as const } : {}) });
   // docs/52 build 2: what they said, a composite voiced whole (its quotation marks are the voicing's).
   fact(w, 'reaction', said, 'exchange', { about: [p], carries: [carries], relation, runOn: (w.parts.reaction ?? []).length > 0, props, ...(say ? { say } : {}) });
 }
