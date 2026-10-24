@@ -263,6 +263,41 @@ export function introduce(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
   }
 }
 
+/**
+ * docs/62, P4: a page doesn't open on a pointer standing on its own ("Zeldin had seen Reinhardt at the
+ * Shamrock at seven and ten." and then, a paragraph down, "I asked her to walk me through her night").
+ * The pointer is said in the asking: "Zeldin had seen Reinhardt at the Shamrock at seven and ten, so I
+ * asked her to walk me through her night." An ask in quotation marks follows it in its paragraph.
+ */
+function foldPointer(paras: Item[][], ctx: PlanCtx): void {
+  if (!ASKING.has(ctx.situ?.page ?? '')) return;
+  const items = paras.flat();
+  const why = items.find((it) => it.slot === 'why-here' && it.text.trim());
+  const ask = items.find((it) => roleOf(it) === 'ask' && it.text.trim());
+  if (!why || !ask || items.indexOf(ask) < items.indexOf(why)) return;
+  const w = stripMarks(why.text).trim();
+  if (sentencesOf(w).length !== 1 || !/\b(?:had|has) (?:seen|said|told me|passed|mentioned|named)\b/.test(w)) return;
+  // Nothing else between them but the staging budgeted away.
+  const between = items.slice(items.indexOf(why) + 1, items.indexOf(ask)).filter((x) => x.text.trim());
+  if (between.length > 0) return;
+  const a = stripMarks(ask.text).trim();
+  const wp = paras.find((ps) => ps.includes(why)) as Item[];
+  const ap = paras.find((ps) => ps.includes(ask)) as Item[];
+  if (/^I asked\b/.test(a)) {
+    why.text = `${why.text.replace(/\.\s*$/, '')}, so ${ask.text.trim()}`;
+    why.alts = undefined;
+    // (The ask's pronouns are the person asked: the sentence is about them now too.)
+    why.about = [...new Set([...(why.about ?? []), ...(ask.about ?? [])])];
+    ask.text = '';
+    ask.alts = undefined;
+  } else if (wp !== ap) {
+    ap.splice(ap.indexOf(ask), 1);
+    wp.splice(wp.indexOf(why) + 1, 0, ask);
+    ask.runOn = true;
+  }
+  for (const ps of paras) for (let k = ps.length - 1; k >= 0; k--) if ((ps[k] as Item).kind === 'gap' && !(ps[k] as Item).text.trim()) ps.splice(k, 1);
+}
+
 /** The pages that ask somebody something: the ask says what the answer answers. */
 const ASKING = new Set(['account', 'admission-check', 'list', 'motive']);
 
@@ -337,6 +372,7 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
   for (const it of stage) if (it !== keep && it !== joke && it !== also) drop(it, paras);
   if (keep || jokeStages) spent.staging = true;
   leadIn(paras, ctx, spent);
+  foldPointer(paras, ctx);
   // What went is out of the paragraphs, so what's left stands side by side for the rhythm.
   for (const ps of paras) for (let k = ps.length - 1; k >= 0; k--) if ((ps[k] as Item).kind === 'gap' && !(ps[k] as Item).text.trim()) ps.splice(k, 1);
   ctx.tex = spent;

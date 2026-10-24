@@ -818,6 +818,24 @@ function whyHere(w: Writer, q: string, kind: string, slots: Record<string, strin
 }
 
 /**
+ * docs/62 item 12: a walk said with how I know it: who had them where at the hour before, and who saw
+ * them where at the hour, so they had walked over ("Steinbach said Tillman was at the print shop at ten,
+ * and Weisglass saw her at the Shamrock at eleven, so she had walked over."). Never "Tillman had walked
+ * from the print shop to the Shamrock at eleven" with nothing under it.
+ */
+function walkKnown(c: BoardCase, run: BoardRun, p: PersonId, mv: { from: string; to: string; h: number }): string {
+  const pr = markedPron(c, p);
+  const lines = linesHeld(c, { asked: run.asked, puts: [] });
+  const by = (place: string, h: number) => lines.find((l) => l.speaker !== p && l.about.includes(p) && l.place === place && l.hour === h && (l.kind === 'list' || l.kind === 'claim' || l.kind === 'given'));
+  const said = (l: ReturnType<typeof by>, who: string, place: string, h: number) =>
+    !l ? `${who} was at ${placeName(c, place)} at ${hourWord(h as Hour)}` : l.kind === 'list' ? `${nameOf(c, l.speaker as PersonId)} saw ${who} at ${placeName(c, place)} at ${hourWord(h as Hour)}` : l.kind === 'given' ? `${clientOf(c).short} said ${who} was at ${placeName(c, place)} at ${hourWord(h as Hour)}` : `${nameOf(c, l.speaker as PersonId)} said ${who} was at ${placeName(c, place)} at ${hourWord(h as Hour)}`;
+  const a = by(mv.from, mv.h - 1);
+  const b = by(mv.to, mv.h);
+  const second = b?.kind === 'list' ? said(b, pr.him, mv.to, mv.h) : said(b, pr.he, mv.to, mv.h);
+  return `${said(a, nameOf(c, p), mv.from, mv.h - 1)}, and ${second}, so ${pr.he} had walked over.`;
+}
+
+/**
  * The hand-off: what this page makes the detective want next. It is the
  * page's first star, said in his voice, so it always agrees with the starred
  * choice. No star (Hard-boiled after page one, Medium in the room the next
@@ -852,7 +870,8 @@ function handOff(w: Writer, always = false): void {
     const pr = markedPron(c, rest);
     // (Said in one of a few ways, so a night that hands off to the same walk twice doesn't say it twice.)
     const ask = w.hand.pick('handoff-passed', [`I wanted to know who ${pr.he}’d passed on the way.`, `${cap(pr.he)} might have passed somebody on the way, and I wanted to know who.`, `Whoever ${pr.he}’d passed on the way, I wanted to hear about it.`]);
-    let said: string | null = `${nameOf(c, rest)} had walked from ${placeName(c, mover.from)} to ${placeName(c, mover.to)} at ${hourWord(mover.h)}. ${ask}`;
+    // (docs/62 item 12: how I know they walked, first.)
+    let said: string | null = lean() ? `${walkKnown(c, w.run, rest, mover)} ${ask}` : `${nameOf(c, rest)} had walked from ${placeName(c, mover.from)} to ${placeName(c, mover.to)} at ${hourWord(mover.h)}. ${ask}`;
     // A name twice at most a page (docs/39 §4): a reason that would say one a third time isn't said; the star still shows the way.
     if (!namesFit(w, said)) said = `I wanted to know who ${nameOf(c, rest)} had passed on the way over at ${hourWord(mover.h)}.`;
     if (!namesFit(w, said)) said = null;
@@ -2419,7 +2438,7 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
     // (A list not asked for yet: one already held says nothing new about that hour, and pointing at it goes round in a circle.)
     .filter((x): x is { hh: Hour; place: PlaceId } => !!x.place && x.place !== claimPlace && x.place !== c.crime.scene && !heldList(x.place) && c.lists.some((l) => l.place === x.place && l.entries[h] !== undefined))
     .sort((a, b) => Math.abs(a.hh - h) - Math.abs(b.hh - h) || a.hh - b.hh)[0];
-  const pointsAt = near ? ` ${pr.He} had told me ${placeName(c, near.place)} at ${hourWord(near.hh)}; ${placeName(c, near.place)} might know about ${hourWord(h)}.` : '';
+  const pointsAt = near ? ` ${pr.He} had told me ${pr.he} was at ${placeName(c, near.place)} at ${hourWord(near.hh)}; ${placeName(c, near.place)} might know about ${hourWord(h)}.` : '';
   if (near) {
     w.places.add(near.place);
     w.hours.add(near.hh);
@@ -2530,7 +2549,7 @@ export function writeReport(w: Writer): void {
   const s = solveRun(c, w.run);
   const at = w.run.at;
   const rstage = w.hand.draw('report-stage', { kind: stageKind(c, at) }, withCaps({ place: at === OFFICE ? 'the office' : placeName(c, at) }), { plain: true });
-  put(w, 'staging', rstage ?? 'I sat down with the form.', 'act', sit(w, rstage));
+  put(w, 'staging', rstage ?? 'I sat down with the report.', 'act', sit(w, rstage));
   // Whether what's held is enough is the player's to say above a walk (docs/46 §2): the form gets no hint.
   // (docs/51: at a walk the why says whether it's enough, and it stays.)
   const rwhy = w.hand.draw('report-why', { done: thoughtLevel(c) !== 'walk' ? 'open' : s.done ? 'yes' : 'no' }, {}, { plain: true });
@@ -2683,7 +2702,7 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
       const by = st.st?.deps.find((dq) => dq !== `account:${p}` && !dq.startsWith('confront:'));
       out.push({
         key: `broken:${p}`,
-        text: `${nameOf(c, p)} had told me ${personOf(c, p)?.home === cl?.place ? 'home' : placeName(c, cl?.place ?? '')} at ${hourWord(st.h)}, and ${by ? sourceName(c, by) : 'what I had'} said otherwise.`,
+        text: `${nameOf(c, p)} had told me ${claimWas(c, p, [st.h], { mark: markPronoun(c, p) })}, and ${by ? sourceName(c, by) : 'what I had'} said otherwise.`,
         hours: [st.h],
         people: [p, ...sourcePeople(by)],
         places: [cl?.place ?? ''],
@@ -2926,7 +2945,7 @@ export function writeTurn(w: Writer): void {
     if (next && mv && lean()) {
       // (docs/60: the walk first, then who they passed: "Thorndike had walked from the Thalia to the Delmonico
       // rooms at ten. Before I did anything about it, I wanted to know who she’d passed on the way.")
-      walked = `${nameOf(c, nrest)} had walked from ${placeName(c, mv.from)} to ${placeName(c, mv.to)} at ${hourWord(mv.h)}. `;
+      walked = `${walkKnown(c, w.run, nrest, mv)} `;
       first = `know who ${pronOf(c, nrest).he}’d passed on the way`;
       w.people.add(nrest);
       w.places.add(mv.from);

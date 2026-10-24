@@ -254,8 +254,8 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'Who had the way in, and who hadn’t. Thought (legacy): {yes}, {no}, {nobody} {short}. Recap: {people} had it, {none} hadn’t; murder: had been at {origin} while the {means} was there; told: were at {origin} while {client} told the room; party: were at the {occasion}; spare: had been in at {origin} when the spare key was there. Flags: yes, no, and the kind (murder | told | party | spare). Raw’s elimination (elim, no): {none} {access} ("had no way to the rat poison", "never learnt the way in").',
   },
   'WINDOW-ALIVE': {
-    args: { client: T, opts: T, victim: T, place: T, at: T, hour: T, him: T, narrowed: T, narrowword: T },
-    doc: 'The office’s two hours, and the victim (or the pet) seen at one of them. docs/59 item 3, narrows (a walk, Raw; the planner may put "So" before it): it happened at {narrowed}, the other hour {client} had given me (small: {victim} went). {client} had said {opts}; {victim} was at {place} / {at} at {hour}. At a walk the hour left: {narrowed}. Flags: one | two, murder | small, walk, so.',
+    args: { client: T, opts: T, victim: T, place: T, at: T, hour: T, him: T, narrowed: T, narrowword: T, done: T },
+    doc: 'The office’s two hours, and the victim (or the pet) seen at one of them. docs/59 item 3, narrows (a walk, Raw; the planner may put "So" before it): it happened at {narrowed}, the other hour {client} had given me (small: {victim} went). {client} had said {opts}; {victim} was at {place} / {at} at {hour}. At a walk the hour left: {narrowed}. link (docs/62 item 12): {victim} was still at {place} at {hour}, and {done} (the office’s hours, as what happened: "he was poisoned at nine or ten"). Flags: one | two, murder | small, walk, so.',
   },
   'COLLISION-PAIR': {
     args: { claim: T, breaker: T, two: T, person: 'person', place: 'place', hour: 'hour', src: T, at: 'at', watcher: 'person' },

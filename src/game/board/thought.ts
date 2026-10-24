@@ -20,7 +20,7 @@
  */
 
 import type { Solved } from '../../gen/board/solver.js';
-import { accountOf, collisionsOf, linesHeld, listExhaustive, listOf, shutAt, solveHeld } from './knowledge.js';
+import { accountOf, collisionsOf, knownPeople, linesHeld, listExhaustive, listOf, shutAt, solveHeld } from './knowledge.js';
 import {
   andList,
   cap,
@@ -47,6 +47,7 @@ import type { Prop, Src } from './bones/types.js';
 import { breakerProp, srcOfQ } from './bones/extract.js';
 import type { Args } from './bones/voice.js';
 import { accessPhrase, atWhere, breakSaid, claimSaid, claimWas, keptAt, remarkSaid, shortOther, wayWhat, where, whyHours } from './bones/phrase.js';
+import { whenDone } from './when.js';
 
 export { breakSaid, claimSaid, keptAt, remarkSaid, shortOther };
 import { markPronoun } from './plan/refer.js';
@@ -632,10 +633,13 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   // makes the hour, never the office's hours and the sighting said again. A walk says the hour ("So it
   // happened at eleven, the other hour Kreuzer had given me"); above it, the link only ("Ten was one
   // of the two hours Kreuzer had given me"), and the player says which is left (docs/46 §2).
-  if (!fact && b.possibleHours.length > 1 && a.possibleHours.length === 1) {
+  // (docs/62, P1: and at Hard-boiled too, where the sighting is this page's own fact: "So Carbone was
+  // still at the Odessa at nine" is what the barman's answer means, and it's said first. Only the link,
+  // never which hour is left.)
+  if (b.possibleHours.length > 1 && a.possibleHours.length === 1) {
     const lost = b.possibleHours.filter((h) => !a.possibleHours.includes(h));
     const h1 = a.possibleHours[0] as Hour;
-    const seen = lost.map((h) => ({ h, x: a.placed.get(`${c.crime.victim}@${h}`) })).find((y) => y.x);
+    const seen = lost.map((h) => ({ h, x: a.placed.get(`${c.crime.victim}@${h}`) })).find((y) => y.x && (!fact || (lean() && (y.x.deps ?? []).includes(q))));
     if (seen?.x) {
       const cl = clientOf(c).short;
       if (walk) {
@@ -653,14 +657,17 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       } else {
         // (Above a walk, the link: the sighting, at one of the hours it could have happened. Which one is left is the player's.)
         const at = seen.x.place;
-        add(`${cap(victimOf(c).short)} was still ${isMurder(c) ? 'alive ' : ''}at ${placeName(c, at)} at ${hourWord(seen.h)}, one of the two hours it could have happened.`, ['givens:clock'], {
+        // (docs/62 item 12: the hours said as what happened, in a clause of their own: "Fritz was still at
+        // the Delmonico rooms at ten, and he went at ten or eleven", never "one of the two hours it could have happened".)
+        const done = whenDone(c, `at ${office.map((h) => hourWord(h)).join(' or ')}`).replace(/^(he|she)\b/, (m) => `${m}${markPronoun(c, c.crime.victim)}`);
+        add(`${cap(victimOf(c).short)} was still ${isMurder(c) ? 'alive ' : ''}at ${placeName(c, at)} at ${hourWord(seen.h)}, and ${done}.`, ['givens:clock'], {
           rel: 'narrows',
           rule: 'alive',
           hours: [seen.h],
           people: [c.crime.victim],
           places: [at],
           props: [{ k: 'ALIVE', victim: c.crime.victim, place: at, hour: seen.h }],
-          say: { shape: 'WINDOW-ALIVE', flags: ['link', isMurder(c) ? 'murder' : 'small'], args: { victim: { t: 'person', id: c.crime.victim }, place: { t: 'place', id: at }, hour: { t: 'hour', h: seen.h } } },
+          say: { shape: 'WINDOW-ALIVE', flags: ['link', isMurder(c) ? 'murder' : 'small'], args: { victim: { t: 'person', id: c.crime.victim }, place: { t: 'place', id: at }, hour: { t: 'hour', h: seen.h }, done } },
         });
       }
     }
@@ -686,9 +693,22 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const where = placeName(c, thenList.place);
       const either = thenHs.length === 2 ? `${hourWord(thenHs[0] as Hour)} or ${hourWord(thenHs[1] as Hour)}` : andList(thenHs.map(hourWord));
       // (docs/60: lean, "the people with a reason": the skim readers didn't know whom I was asking about.)
-      const none = lean() ? [`None of the people with a reason was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people with a reason was at ${where}.`] : [`None of the people I was asking about was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people I was asking about was at ${where}.`];
+      // (docs/62 item 12: the people by name, and whose word: "At nine or ten, when it could have happened,
+      // Zeldin saw none of Ruggiero, Winslow or Hanrahan at the Shamrock", never "none of the people with a
+      // reason", which one reader took to say a suspect seen there at another hour wasn't.)
+      const asking = suspectsOf(c).filter((p) => knownPeople(c, run).has(p));
+      const W = nameOf(c, thenList.watcher);
+      const nobody = asking.length === 1 ? `${W} didn’t see ${nameOf(c, asking[0] as PersonId)}` : asking.length === 2 ? `${W} saw neither ${nameOf(c, asking[0] as PersonId)} nor ${nameOf(c, asking[1] as PersonId)}` : `${W} saw none of ${asking.slice(0, -1).map((p) => nameOf(c, p)).join(', ')} or ${nameOf(c, asking[asking.length - 1] as PersonId)}`;
+      const none = lean() && asking.length ? [`At ${either}, ${reasonFor(thenHs)}, ${nobody} at ${where}.`, `${nobody} at ${where} at ${either}, ${reasonFor(thenHs)}.`] : lean() ? [`None of the people with a reason was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people with a reason was at ${where}.`] : [`None of the people I was asking about was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people I was asking about was at ${where}.`];
       add(x.pick('then-none', none), ['givens:clock'], { rule: 'gloss', people: [], places: [thenList.place], hours: [...thenHs], tex: 'keep' });
     }
+  }
+  // docs/62, P1: the dead man (or the pet) seen alive at an hour it could have happened is what a
+  // witness's answer means first: said before who else was where.
+  const alive = (t.parts ?? []).findIndex((y) => y.rule === 'alive');
+  if (lean() && alive > 0 && t.parts && t.parts.length === t.sentences.length) {
+    t.parts.unshift(...t.parts.splice(alive, 1));
+    t.sentences.unshift(...t.sentences.splice(alive, 1));
   }
   t.refs = [...new Set(t.refs.filter(Boolean))];
   t.places = t.places.filter(Boolean);
@@ -722,7 +742,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const H = andList(claimed.map(hourWord));
       // (The dead man or the pet by name, as the office has it: "when Carbone could have died". At the
       // fact level the thought is the page's own, and the name is what it shares with the night.)
-      const reason = office.length > 1 ? (isMurder(c) ? `when ${nameOf(c, c.crime.victim)} could have died` : `when ${victimOf(c).short} could have gone`) : whyHours(c, claimed);
+      const reason = office.length > 1 ? whyHours(c, office) : whyHours(c, claimed);
       const flags = ['hours', ...(listy ? ['listy'] : []), ...(alone.length ? [] : ['said-only'])];
       const text = alone.length ? (listy ? `${nameOf(c, rest)} said ${what}, and for ${H}, ${reason}, nobody had backed it up.` : `${nameOf(c, rest)} said ${what} at ${H}, ${reason}, and nobody had backed it up.`) : listy ? `${nameOf(c, rest)} said ${what}, ${reason}.` : `${nameOf(c, rest)} said ${what} at ${H}, ${reason}.`;
       add(text, clockRef, {

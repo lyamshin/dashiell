@@ -9,6 +9,7 @@ import type { Line } from '../knowledge.js';
 import { accountOf, listExhaustive, listOf } from '../knowledge.js';
 import { andList, clientOf, hourWord, isMurder, nameOf, oclock, personOf, placeName, pronOf, victimOf, type BoardCase, type Hour, type PersonId, type PlaceId } from '../model.js';
 import { lean } from '../plan/dial.js';
+import { isPoison } from '../when.js';
 
 /** "the Odessa at ten", or "home at ten" when it's their own. */
 export function claimSaid(c: BoardCase, p: PersonId, h: Hour): string {
@@ -131,6 +132,9 @@ export function listSaid(c: BoardCase, watcher: PersonId, onIt: PersonId | null,
  */
 export function whyHours(c: BoardCase, hours: readonly number[]): string {
   const two = hours.length > 1;
+  // (docs/62, P5, the designer's note 9: a poisoning's hour is the hour the dose went in, never "died":
+  // "when Carbone could have been given the chloral".)
+  if (isPoison(c)) return `when ${nameOf(c, c.crime.victim)} ${two ? 'could have been given' : 'was given'} the ${c.means.name.replace(/^(?:a|an|the) /, '')}`;
   if (isMurder(c)) return `when ${nameOf(c, c.crime.victim)} ${two ? 'could have died' : 'died'}`;
   return `when ${victimOf(c).short} ${two ? 'could have gone' : 'went'}`;
 }

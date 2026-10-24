@@ -606,6 +606,9 @@ function sameCompany(c: BoardCase, who: Id, place: PlaceId, before: number): Id[
 function withR(c: BoardCase, lx: Lexicon, s: string | undefined): Id[] | undefined {
   if (s === undefined || s === '') return undefined;
   if (/^, (?:on my own|by myself|alone)$/.test(s)) return [];
+  // (docs/62, P7: "…, and Thorndike was there".)
+  const there = /^, and (.+?) (?:was|were) there$/.exec(s);
+  if (there) return namesV(c, lx, there[1] as string);
   const m = /^, with (.+?)(?: in the house| about the house)?$/.exec(s);
   if (!m) throw new Error(`voiced: no company in "${s}"`);
   return namesV(c, lx, m[1] as string);

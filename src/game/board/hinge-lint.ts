@@ -99,9 +99,9 @@ function saidPlace(c: BoardCase, run: BoardRun): HingeIssue[] {
   const places = c.places.map((x) => x.short).filter((x) => x.length >= 3).sort((a, b) => b.length - a.length);
   if (!places.length) return out;
   const PL = places.map(esc).join('|');
-  const VERB = String.raw`\b(?:said|says|told me|had said|had told me|still said|stuck to)`;
+  const VERB = String.raw`\b(?:said|says|told me|had said|had told me|still said)`;
   // (Not a place that's the subject of a clause after it: "said the Odessa was shut".)
-  const re = new RegExp(`${VERB} (?:home\\b(?! (?:was|is)\\b)|(?:at )?(?:${PL})(?! (?:was|were|is|had|kept|shut)\\b))`, 'g');
+  const re = new RegExp(`(?<!\\b(?:label|sign|card|note|paper|letter)(?: on it)? )${VERB} (?:home\\b(?! (?:was|is)\\b)|(?:at )?(?:${PL})(?! (?:was|were|is|had|kept|shut)\\b))`, 'g');
   // In speech, the put's "You told me home at ten", "You said Moe’s".
   const reYou = new RegExp(`\\b[Yy]ou (?:told me|said) (?:home\\b|(?:at )?(?:${PL})\\b)`, 'g');
   run.log.forEach((p, i) => {

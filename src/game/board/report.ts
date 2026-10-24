@@ -513,7 +513,8 @@ function closingLines(d: BoardDeal, run: BoardRun, outcome: Outcome, whereRight 
   const c = d.kase;
   const hand = new Hand(run.seed * 31 + 7, 999, run.spent, run.seen);
   const cl = clientOf(c);
-  const slots = withCaps({ client: cl.short, cHis: pronOf(c, c.client).his });
+  // (docs/62 item 10: the client by name once, then the pronoun: "I took Steinbach through it over coffee, and she listened".)
+  const slots = withCaps({ client: cl.short, cHis: pronOf(c, c.client).his, cHe: pronOf(c, c.client).he });
   const type = isMurder(c) ? 'murder' : 'small';
   const out: string[] = [];
   const end = hand.draw('ending', { outcome, type }, slots, { widen: true });
