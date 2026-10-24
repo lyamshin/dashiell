@@ -105,7 +105,9 @@ function peopleOf(c: BoardCase, text: string): Who[] {
     if (p.short.length <= 2) return;
     if (p.object && c.type !== 'lost-pet') return;
     // (docs/60 item 3: lean, never a look for a name: "the woman with a bandaged hand" is Grasso.)
-    const look = lean() && (c.variant === 'face' || c.variant === 'pair') && p.role === 'suspect' && !!p.look;
+    // (And never a suspect by their trade: "sat down where the cafeteria cashier couldn’t look past me"
+    // read as somebody else. A watcher is met by their job, and the client and the dead are nobody else.)
+    const look = lean() && p.role === 'suspect';
     const role = look ? undefined : roleOf(c, p.id);
     ws.push({ idx, id: p.id, short: p.short, female: pronOf(c, p.id).he === 'she', ...(role ? { role } : {}) });
   });
@@ -472,6 +474,7 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         note(true);
       }
     }
+    if (process.env.FDEBUG && s.text.includes(process.env.FDEBUG)) process.stderr.write(`REFER ${s.text}\n  ${s.mentions.map((m) => `${m.kind}:${m.who.short}@${m.at}/${m.form}${m.rep !== undefined ? `→${m.rep}` : ''}`).join(' ')}\n  named ${s.named.map((x) => x.who.short).join(',')}\n`);
     if (/[A-Za-z]/.test(s.narr)) narrIdx.push(si);
   });
 

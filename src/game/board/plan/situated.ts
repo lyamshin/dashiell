@@ -261,7 +261,13 @@ const TOKEN = /\{(they|them|their|role|place|thing|means)\}/gi;
 /** Fill a card's tokens; null when one has nothing to go in it. */
 export function fillCard(text: string, t: Tokens): string | null {
   const slots: Record<string, string | undefined> = { they: t.they, them: t.them, their: t.their, role: t.role, place: t.place, thing: t.thing, means: t.means };
-  const lower = text.replace(TOKEN, (m) => m.toLowerCase());
+  let lower = text.replace(TOKEN, (m) => m.toLowerCase());
+  // (docs/60 item 3: lean, a card's {role} is the name; said again in the card, it's the pronoun, never
+  // the name twice in a sentence: "I asked Vitale for the truth…, or the nearest thing he had to hand".)
+  if (lean()) {
+    let n = 0;
+    lower = lower.replace(/(\b\w+\s+)?\{role\}/g, (m, before: string | undefined) => (n++ === 0 ? m : `${before ?? ''}${/^(?:to|at|with|for|by|from|of|asked|told|saw|watched|left|let|gave|over|beside|near|behind|past|on|after)\s+$/i.test(before ?? '') ? '{them}' : '{they}'}`));
+  }
   return fill({ text: lower }, slots);
 }
 

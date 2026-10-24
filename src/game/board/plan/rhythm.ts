@@ -408,6 +408,24 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
       (out[out.length - 1] as Try & { take?: () => void }).take = o.take;
     }
   }
+  // docs/60 item 6: lean, who was still there and who had gone may be two sentences again, where the
+  // page's rhythm wants one short ("…, Mosley was still at Moskowitz’s. By then Bledsoe had left.").
+  if (lean()) {
+    for (const s of [trio[1], trio[2], trio[0]]) {
+      const it = itemOf(s);
+      const m = it.tag === 'thought:then' ? /^(.*\S), and by then (.+)$/.exec(s.text) : null;
+      if (!m) continue;
+      out.push(() => {
+        const old = it.text;
+        const xs = sentencesOf(it.text);
+        xs.splice(s.k, 1, `${m[1]}.`, `By then ${m[2]}`);
+        it.text = xs.join(' ');
+        return () => {
+          it.text = old;
+        };
+      });
+    }
+  }
   // Part one at a seam it already has: the middle first, then the ends. What's seen may end on its
   // last touch alone ("…hid the street. Which suited me."), three times a page at most.
   for (const s of [trio[1], trio[2], trio[0]]) {

@@ -73,8 +73,9 @@ function leadIn(paras: Item[][], ctx: PlanCtx, spent: TexSpent): void {
   const body1 = body.charAt(0).toUpperCase() + body.slice(1);
   const first = (/^(\S+)/.exec(stripMarks(body1))?.[1] ?? '').replace(/[,.]$/, '');
   const lower = /^(?:He|She|They|It|There|The|A|An|His|Her|Their|At|By|Nobody|Somebody)$/.test(first);
-  // (A long collision takes the lead-in as a short sentence of its own, which the page's rhythm wants too.)
-  const long = wordsIn(stripMarks(sentencesOf(body1)[0] ?? '')) > 14;
+  // (The lead-in is a short sentence of its own, which the page's rhythm wants too; before a collision of
+  // a few words, a colon.)
+  const long = wordsIn(stripMarks(sentencesOf(body1)[0] ?? '')) > 4;
   it.text = long ? `${lead}. ${body1}` : `${lead}: ${lower ? body1.charAt(0).toLowerCase() + body1.slice(1) : body1}`;
   it.alts = undefined;
   spent.sign = true;
@@ -149,29 +150,40 @@ function trimPlace(it: Item): void {
   it.onTrim?.();
 }
 
+/** docs/60 item 3: decoration the narrator's cap may take off the page, where a name would be said a third time. */
+export function droppable(it: Item): boolean {
+  if (it.kind !== 'gap' || it.speech || it.slot === 'chapter') return false;
+  const r = roleOf(it);
+  return r === 'close' || r === 'flourish' || r === 'callback' || r === 'atmosphere' || r === 'staging';
+}
+
 /**
- * docs/60 item 3: the narrator's cap, after the reference pass: where somebody is named a third time in
- * the narration and nothing could be said instead (no pronoun was clear, and no role is allowed there),
- * a piece of decoration that names them goes, latest first (a close, a flourish, a callback, an
- * atmosphere line). The facts and the signposts stay.
+ * docs/60 item 5: a pet by name in the detective's reckoning ("…and at ten Duchess was at the flats over
+ * Lipsky’s") says what it is the first time a page names it there: "Duchess, the Pomeranian,". A
+ * reader who didn't hold the office can't place a name alone.
  */
-export function capNames(paras: Item[][], ctx: PlanCtx): void {
-  if (!lean()) return;
+export function petKind(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
+  if (!lean() || ctx.c.type !== 'lost-pet') return;
+  const pet = ctx.c.people.find((p) => p.id === ctx.c.crime.victim);
+  const kind = pet ? /^[^,]+, (?:a|an) (.+)$/.exec(pet.name)?.[1] : undefined;
+  if (!pet || !kind) return;
   const items = paras.flat();
-  const narr = (t: string) => stripMarks(t).replace(/“[^”]*”?/g, ' ');
-  const counted = (x: Item) => x.text.trim() && !x.speech && (!x.exempt || x.counted);
-  for (const p of ctx.c.people) {
-    if (p.object || p.short.length <= 2) continue;
-    const re = new RegExp(`(?<![\\w’])${p.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w])`, 'g');
-    const n = () => items.filter(counted).reduce((k, x) => k + (narr(x.text).match(re) ?? []).length, 0);
-    if (n() <= 2) continue;
-    for (const it of [...items].reverse()) {
-      if (n() <= 2) break;
-      if (it.kind !== 'gap' || !counted(it) || !re.test(narr(it.text))) continue;
-      re.lastIndex = 0;
-      const r = roleOf(it);
-      if (r === 'close' || r === 'flourish' || r === 'callback' || r === 'atmosphere') drop(it, paras);
-    }
+  const said = (t: string) => new RegExp(`\\b${kind.split(' ').slice(-1)[0]}\\b`, 'i').test(t);
+  if (said(sofar)) return;
+  for (const it of items) {
+    if (!it.text.trim()) continue;
+    const t = stripMarks(it.text);
+    if (said(t.replace(/“[^”]*”?/g, ' '))) return;
+    if (it.speech || it.kind !== 'fact' || (it.voice !== 'thought' && it.voice !== 'recap')) continue;
+    // Its first mention in the narration, not a possessive and not inside quotation marks.
+    const re = new RegExp(`(?<![\\w’])${pet.short}(?![\\w’])(?!’s)`);
+    const m = re.exec(t.replace(/“[^”]*”?/g, (q) => ' '.repeat(q.length)));
+    if (!m) continue;
+    const at = m.index + pet.short.length;
+    const after = t.slice(at);
+    it.text = /^[.,;:!?]/.test(after) ? `${t.slice(0, at)}, the ${kind}${after}` : `${t.slice(0, at)}, the ${kind},${after}`;
+    it.alts = undefined;
+    return;
   }
 }
 
@@ -207,10 +219,13 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
     it.text = alt.text;
     it.alts = undefined;
   }
-  // The one joke or flourish: a callback when one is due, else the page's joke.
+  // The one joke or flourish: a callback when one is due, else the page's joke. (On a page that asks,
+  // the ask is the staging line: a joke dealt on the staging or the ask isn't the page's joke there,
+  // or the ask would go and the answer would answer nothing.)
+  const asks = ASKING.has(ctx.situ?.page ?? '') && items.some((it) => roleOf(it) === 'ask');
   const funny = items.filter((it) => {
     const r = roleOf(it);
-    return r === 'flourish' || r === 'atmosphere' || r === 'close' || r === 'callback' || ((r === 'staging' || r === 'ask') && isJoke(it));
+    return r === 'flourish' || r === 'atmosphere' || r === 'close' || r === 'callback' || (!asks && (r === 'staging' || r === 'ask') && isJoke(it));
   });
   const callback = funny.find((it) => roleOf(it) === 'callback');
   const joke = callback ?? funny.find((it) => isJoke(it));
@@ -228,5 +243,7 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
   for (const it of stage) if (it !== keep && it !== joke) drop(it, paras);
   if (keep || jokeStages) spent.staging = true;
   leadIn(paras, ctx, spent);
+  // What went is out of the paragraphs, so what's left stands side by side for the rhythm.
+  for (const ps of paras) for (let k = ps.length - 1; k >= 0; k--) if ((ps[k] as Item).kind === 'gap' && !(ps[k] as Item).text.trim()) ps.splice(k, 1);
   ctx.tex = spent;
 }

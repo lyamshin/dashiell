@@ -51,7 +51,7 @@ import { capThingClose } from './closers.js';
 import { sayOnce } from './once-pass.js';
 import { pronounAmbiguity } from './measure.js';
 import { speakerOf } from './speaker.js';
-import { budgetTexture, capNames, type TexSpent } from './texture.js';
+import { budgetTexture, droppable, lean, petKind, type TexSpent } from './texture.js';
 export { speakerOf } from './speaker.js';
 export { TEXTURE, lean, setTexture } from './texture.js';
 
@@ -167,9 +167,11 @@ export function planSection(
     // docs/59 items 1 and 7: said once on the page, and one simile frame (before the reference, so a
     // line traded in has its pronouns settled with the rest).
     sayOnce(paraItems, ctx);
+    // (docs/60 item 6: lean, the rhythm again on what said-once left, where it took a sentence out.)
+    if (lean()) paraItems = rhythm(paraItems, ctx);
     referWithTrades(paraItems, ctx);
-    // docs/60 item 3: the narrator's cap, where nothing could be said instead: the decoration goes.
-    capNames(paraItems, ctx);
+    // docs/60 item 5: a pet named in the reckoning says what it is, once a page.
+    petKind(paraItems, ctx, ctx.pageSoFar ?? '');
     // docs/55 6: about half a night's pages end on a thing having a feeling, at most.
     if (ctx.run) capThingClose(paraItems, ctx.run.log);
   }
@@ -271,6 +273,34 @@ function referWithTrades(paras: Item[][], ctx: PlanCtx): void {
       });
     }
     breaks = again;
+  }
+  // docs/60 item 3: lean, where a name would still be said a third time in the narration (no pronoun
+  // was clear, and no role is allowed there), the decoration that says it goes: a close, a flourish, a
+  // staging line, latest first. The reference pass is run again on what's left.
+  const restore0 = () => paras.forEach((ps, i) => ps.forEach((x, k) => (x.text = original[i]?.[k] as string)));
+  for (let round = 0; lean() && round < 3 && breaks.length > 0; round++) {
+    let dropped = false;
+    for (const b of breaks) {
+      const p = ctx.c.people.find((x) => x.id === b.who);
+      if (!p) continue;
+      const said = (x: Item) => {
+        const i = paras.findIndex((ps) => ps.includes(x));
+        const k = i >= 0 ? (paras[i] as Item[]).indexOf(x) : -1;
+        return k >= 0 && ((original[i]?.[k] ?? '').includes(p.short) || ((x.about ?? []).includes(p.id) && x.kind === 'gap'));
+      };
+      const it = [b.item, ...[...paras.flat()].reverse().filter((x) => x !== b.item)].find((x) => droppable(x) && x.text.trim() && said(x));
+      if (!it) continue;
+      paras.forEach((ps, i) => {
+        const k = ps.indexOf(it);
+        if (k >= 0) (original[i] as string[])[k] = '';
+      });
+      it.alts = undefined;
+      it.onDrop?.();
+      dropped = true;
+    }
+    if (!dropped) break;
+    restore0();
+    breaks = refer(paras, ctx);
   }
   // docs/59 item 8: a card whose pronoun the page leaves to two people ("Bernstein looked once at the
   // place where Fritz belonged, and then kept his eyes on me") takes another card that fitted its draw

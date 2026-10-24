@@ -459,16 +459,19 @@ function placeNewcomers(w: Writer): void {
   for (const p of fresh) {
     const pr = pronOf(c, p);
     const back = c.board.rows[p]?.[last] !== undefined && c.board.rows[p]?.[last] !== here;
-    const spot: Record<string, string> = {
-      theatre: `three rows back with ${pr.his} hat over ${pr.his} eyes`,
-      bar: 'at the far end of the bar, nursing something',
-      restaurant: 'at a table by the wall, behind a menu',
-      home: 'in the front room, in the good chair',
-      work: 'at the far bench, keeping busy',
-      back: 'in the corner, out of the light',
-      office: 'by the door',
-      any: 'over by the wall',
-    };
+    // (docs/60 item 1: lean, where they are and nothing after it.)
+    const spot: Record<string, string> = lean()
+      ? { theatre: 'three rows back', bar: 'at the end of the bar', restaurant: 'at a table by the wall', home: 'in the front room', work: 'at the far bench', back: 'in the corner', office: 'by the door', any: 'over by the wall' }
+      : {
+          theatre: `three rows back with ${pr.his} hat over ${pr.his} eyes`,
+          bar: 'at the far end of the bar, nursing something',
+          restaurant: 'at a table by the wall, behind a menu',
+          home: 'in the front room, in the good chair',
+          work: 'at the far bench, keeping busy',
+          back: 'in the corner, out of the light',
+          office: 'by the door',
+          any: 'over by the wall',
+        };
     const kind = placeOf(c, here)?.kind === 'theatre' ? 'theatre' : stageKind(c, here);
     const at = spot[kind] ?? (spot.any as string);
     // Named twice on the page already (an admission says the name and says it again): "my witness".
@@ -1525,7 +1528,8 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   }
   const vict = victimOf(c);
   if (pl.scene && first) {
-    if (isMurder(c)) put(w, 'arrival', w.hand.draw('scene-body', { means: c.means.kind }, withCaps({ victim: vict.short }), { need: true, widen: true }), 'establish', { about: [c.crime.victim], ...(lean() ? { tex: 'keep' as const } : {}) });
+    // (docs/60 item 1: lean, how he lay, and not the flourish after it; the bible's "found with" stays whole.)
+    if (isMurder(c)) put(w, 'arrival', w.hand.draw('scene-body', { means: c.means.kind }, withCaps({ victim: vict.short }), { need: true, widen: true }), 'establish', { about: [c.crime.victim], ...(lean() ? { tex: worldFoundWith(c) ? ('keep' as const) : ('place' as const) } : {}) });
     // docs/48 §3: and what the bible says he'd be found with.
     if (isMurder(c)) putOn(w, 'arrival', worldFoundWith(c), 'establish');
     else put(w, 'arrival', w.hand.draw('scene-empty', { kind: c.type === 'lost-pet' ? 'pet' : 'item' }, withCaps({ client: clientOf(c).short, thing: vict.short }), { need: true, widen: true }), 'establish', { about: [c.client], ...(lean() ? { tex: 'keep' as const } : {}) });
@@ -1599,7 +1603,8 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   if (stillThere.length > 0) sentences.push({ text: `${cap(andList(stillThere))} ${stillThere.length > 1 ? 'were' : 'was'} still there.`, about: here.filter((x) => stillThere.includes(nameOf(c, x))) });
   // docs/60 item 1: lean, who's there doing what in a sentence or two, not a sentence a person.
   const said = lean() ? peopleInBrief(c, sentences) : sentences;
-  said.forEach((x, i) => put(w, 'arrival', x.text, 'presence', { about: x.about, runOn: i > 0, ...(x.alts ? { alts: x.alts } : {}) }));
+  // (Lean, in the place's own paragraph: "what the place is and who's there doing what".)
+  said.forEach((x, i) => put(w, 'arrival', x.text, 'presence', { about: x.about, runOn: i > 0 || (lean() && (w.parts.arrival ?? []).length > 0), ...(x.alts ? { alts: x.alts } : {}) }));
   if (sentences.length === 0 && !pl.scene) put(w, 'arrival', `There was nobody there to ask.`, 'presence');
   // Why here: the pointers to what waits in this room, from what's held, the starred one first.
   const lastHand = w.before.log[w.before.log.length - 1]?.board?.handoff;
