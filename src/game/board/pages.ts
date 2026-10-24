@@ -2832,7 +2832,7 @@ export function writeTurn(w: Writer): void {
       parts.forEach((x, i) => fact(w, 'job', x.text, 'recap', { relation: 'narrows', about: el.people, carries: el.refs, exempt: true, props: x.props ?? [], runOn: i > 0, ...(x.say ? { say: x.say } : {}) }));
     } else fact(w, 'job', el.sentences.join(' '), 'recap', { relation: 'narrows', about: el.people, carries: el.refs, exempt: true, props: parts.flatMap((x) => x.props ?? []) });
   } else {
-    const clauses = lean() ? turnOrder(recapClauses(w.d, w.run)) : recapClauses(w.d, w.run);
+    const clauses = lean() ? turnOrder(recapClauses(w.d, w.run), c.tier <= 2 ? 70 : 90) : recapClauses(w.d, w.run);
     for (const cl of clauses) {
       for (const h of cl.hours) w.hours.add(h);
       for (const p of cl.people) w.people.add(p);
@@ -2880,12 +2880,24 @@ export function writeTurn(w: Writer): void {
  * for and by whom, whose story doesn't hold, what was said when it was put, who's said where they were
  * with nobody to back it, and what's still open.
  */
-function turnOrder(cs: Clause[]): Clause[] {
-  const rank = (k: string): number => {
-    const head = k.split(':')[0] ?? '';
-    return ({ when: 0, means: 1, access: 2, placed: 3, held: 3, broken: 4, admit: 5, second: 5, refused: 5, own: 6, open: 7, where: 8 } as Record<string, number>)[head] ?? 9;
-  };
-  return cs.map((x, i) => ({ x, i })).sort((a, b) => rank(a.x.key) - rank(b.x.key) || a.i - b.i).map((y) => y.x);
+function turnOrder(cs: Clause[], most: number): Clause[] {
+  const head = (k: string) => k.split(':')[0] ?? '';
+  const rank = (k: string): number => ({ when: 0, means: 1, access: 2, placed: 3, held: 3, broken: 4, admit: 5, second: 5, refused: 5, own: 6, open: 7, where: 8 } as Record<string, number>)[head(k)] ?? 9;
+  const out = cs.map((x, i) => ({ x, i })).sort((a, b) => rank(a.x.key) - rank(b.x.key) || a.i - b.i).map((y) => y.x);
+  // docs/60 item 4: one short paragraph, 70 words at Raw to Poached and 90 above: past that, who said
+  // where they were with nobody to back it goes first, then who was accounted for, the last first (the
+  // hour, where it came from, whose story doesn't hold and what's still open always stay).
+  const wordsOf = (xs: Clause[]) => xs.reduce((n, x) => n + x.text.split(/\s+/).length, 0);
+  for (const drop of ['own', 'placed']) {
+    // (The notebook's words, a little shorter than the page says them.)
+    while (wordsOf(out) * 1.2 > most - 2) {
+      const k = out.map((x) => head(x.key)).lastIndexOf(drop);
+      // (One of who was accounted for always stays.)
+      if (k < 0 || (drop === 'placed' && out.filter((x) => head(x.key) === 'placed').length <= 1)) break;
+      out.splice(k, 1);
+    }
+  }
+  return out;
 }
 
 function collisionsOfRun(w: Writer): PersonId[] {
