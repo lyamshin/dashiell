@@ -105,7 +105,10 @@ export function breakToFace(c: BoardCase, l: Line, p: PersonId, asked: readonly 
     const comp = (cl?.company ?? []).filter((x) => x !== p).map((x) => nameOf(c, x));
     const mine = accountOf(c, p)?.claims[l.hour as Hour];
     const pr = pronOf(c, sp);
-    const where = `${personOf(c, sp)?.home === cl?.place ? 'home' : `at ${placeName(c, cl?.place ?? '')}`} at ${hourWord(l.hour as Hour)}`;
+    // (Home by its name where it isn't called after them: "home at Rafferty’s", so the place is said.)
+    const own = personOf(c, sp)?.home === cl?.place;
+    const called = own && placeName(c, cl?.place ?? '').includes(nameOf(c, sp).replace(/^(?:Mrs\.|Miss|Dr\.|Mr\.) /, ''));
+    const where = `${own ? (called ? 'home' : `home at ${placeName(c, cl?.place ?? '')}`) : `at ${placeName(c, cl?.place ?? '')}`} at ${hourWord(l.hour as Hour)}`;
     const company = comp.length ? `with ${andList(comp)}` : `on ${pr.his} own`;
     const tail = mine?.place === cl?.place ? ', and you weren’t there' : (mine?.company ?? []).includes(sp) ? ', and not with you' : '';
     return `${nameOf(c, sp)} says ${pr.he} was ${where}, ${company}${tail}`;

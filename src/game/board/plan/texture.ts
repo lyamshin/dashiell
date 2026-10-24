@@ -24,6 +24,7 @@
  */
 
 import type { Item } from './types.js';
+import { pronOf } from '../model.js';
 import type { PlanCtx } from './index.js';
 import { markPronoun, stripMarks } from './refer.js';
 import { sentencesOf, wordsIn } from './sentences.js';
@@ -286,7 +287,7 @@ function foldPointer(paras: Item[][], ctx: PlanCtx): void {
   const ap = paras.find((ps) => ps.includes(ask)) as Item[];
   const subj = ctx.situ?.subject ? ctx.c.people.find((x) => x.id === ctx.situ?.subject) : undefined;
   // (One sentence only where "her" can be nobody but whom I asked: not after "Feeney had seen Quill".)
-  const crowded = !!subj && ctx.c.people.some((x) => x.id !== subj.id && !x.object && !!x.female === !!subj.female && new RegExp(`\\b${x.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(w));
+  const crowded = !!subj && ctx.c.people.some((x) => x.id !== subj.id && (!x.object || ctx.c.type === 'lost-pet') && pronOf(ctx.c, x.id).he === pronOf(ctx.c, subj.id).he && new RegExp(`\\b${x.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(w));
   if (/^I asked\b/.test(a) && !crowded) {
     // (Whom I asked is the pointer's person, said once: "…, so I asked her for her evening", never "…, so I asked Quill".)
     const askText = subj && w.includes(subj.short) ? ask.text.trim().replace(new RegExp(`^I asked ${subj.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`), `I asked ${subj.female ? 'her' : 'him'}${markPronoun(ctx.c, subj.id)}`) : ask.text.trim();

@@ -821,6 +821,22 @@ function whyHere(w: Writer, q: string, kind: string, slots: Record<string, strin
 /** docs/62 item 11: a spot in a room, as a people line says where somebody is: "by the wall", "in the back row". */
 const SPOT = /\b(?:by|at|in|near|against|under) the (?:wall|corner|window|door|bar|stairs|counter|register|stove|mirror|back row|back)\b/g;
 
+/** docs/62 item 11: a spot said, as a key: "by the wall" and "against the wall" are one. */
+function spotKey(m: string): string {
+  return m.replace(/^\w+ /, '');
+}
+
+/** docs/62 item 11: the line, or one of the cards that fitted its draw as well, that says no spot already said (lean). */
+function spotFree(spots: Set<string>, text: string | null, alts: Item['alts']): string | null {
+  if (!lean() || !text || spots.size === 0) return text;
+  const clash = (t: string) => [...t.matchAll(SPOT)].some((m) => spots.has(spotKey(m[0] as string)));
+  if (!clash(text) || !alts) return text;
+  const alt = alts().find((a) => !a.lastResort && !clash(a.text));
+  if (!alt) return text;
+  alt.take();
+  return alt.text;
+}
+
 /** docs/62, P8: whether tonight has said already that a place keeps no watch ("No clerk, no doorman, nobody watching the stairs"). */
 function unwatchedSaid(w: Writer): boolean {
   return w.before.log.some((pg) => pg.blocks.some((b) => b.kind === 'prose' && b.voice !== 'answer' && UNWATCHED.test(b.text.replace(/“[^”]*”?/g, ' '))));
@@ -845,6 +861,14 @@ function walkKnown(c: BoardCase, run: BoardRun, p: PersonId, mv: { from: string;
   const b = by(mv.to, mv.h);
   const people = [p, ...[a, b].flatMap((l) => (l?.speaker ? [l.speaker as PersonId] : l?.kind === 'given' ? [c.client] : []))];
   const hours = [mv.h - 1, mv.h] as Hour[];
+  // (Where a witness is of their sex, no pronoun two of them could be: two sentences, by name.)
+  const crowded = people.slice(1).some((x) => pronOf(c, x).he === pronOf(c, p).he);
+  if (crowded) {
+    const N = nameOf(c, p);
+    const one = a && b && whose(a) === whose(b) && verb(a) === verb(b);
+    if (one) return { text: verb(a) === 'saw' ? `${whose(a)} saw ${N} ${at(mv.from, mv.h - 1)} and ${at(mv.to, mv.h)}.` : `${whose(a)} said ${N} was ${at(mv.from, mv.h - 1)} and ${at(mv.to, mv.h)}.`, people, hours };
+    return { text: `${said(a, N, mv.from, mv.h - 1, N)}. ${cap(said(b, N, mv.to, mv.h, N))}.`, people, hours };
+  }
   // (One witness for both hours is said once: "Rosenbaum said Shapiro was at Rafferty’s at nine and at the Velvet Room at ten".)
   if (a && b && whose(a) === whose(b) && verb(a) === verb(b)) {
     const N = nameOf(c, p);
@@ -1257,6 +1281,8 @@ export function writeOffice(w: Writer): void {
   let asked = { when: false, who: false, venue: false };
   const aside = lines.some((g) => g.kind === 'aside');
   let pointerTold = false;
+  // (docs/62 item 8: whether the client's last line was a quotation and its "she said", with nothing of mine after it.)
+  let lastBare = false;
   /** The chair, once the client has said who they are and what's wrong, if nothing has sat them down yet. */
   const chair = () => {
     if (sat) return;
@@ -1383,6 +1409,7 @@ export function writeOffice(w: Writer): void {
         const spec: SaySpec = { shape: 'OFFICE', flags: ['aside', gi === 0 ? 'first' : 'more'], args: stringArgs({ ...cs, said: talk(g) }) };
         fact(w, 'job', sayFirst(c, spec) ?? `“${talk(g)}”`, 'exchange', { about: asideAbout, carries: ['givens:aside'], props, say: spec });
       });
+      lastBare = false;
       continue;
     }
     // The detective's questions, where a speech would want one.
@@ -1391,17 +1418,20 @@ export function writeOffice(w: Writer): void {
       const ask = w.hand.draw('office-ask', { before: 'when', type: isMurder(c) ? 'murder' : 'small' }, withCaps({ ...base, pthem }), { plain: true });
       // (docs/60 item 1: the office's questions frame the client's answers: kept, and plain.)
       put(w, 'job', ask, 'exchange', { slot: 'ask', ...(lean() ? { tex: 'keep' as const } : sit(w, ask)) });
+      lastBare = false;
     }
     // docs/55 7: the client never answers a question nobody asked: where the dead man had been is asked for.
     if (!asked.venue && g.kind === 'venue') {
       asked = { ...asked, venue: true };
       const vp = markedPron(c, c.crime.victim);
       put(w, 'job', w.hand.pick('office-ask-venue', [`I asked where ${vp.he}’d spent the evening.`, `“Where had ${vp.he} been earlier in the evening?” I asked.`, `“Was ${vp.he} out at all tonight?” I asked.`]), 'exchange', { slot: 'ask', ...(lean() ? { tex: 'keep' as const } : {}) });
+      lastBare = false;
     }
     if (!asked.who && g.kind === 'pointer') {
       asked = { ...asked, who: true };
       const ask = w.hand.draw('office-ask', { before: 'who', type: isMurder(c) ? 'murder' : 'small' }, withCaps({ ...base, pthem }), { plain: true });
       put(w, 'job', ask, 'exchange', { slot: 'ask', ...(lean() ? { tex: 'keep' as const } : sit(w, ask)) });
+      lastBare = false;
     }
     let kind: string = g.kind;
     if (g.kind === 'clock' && !isMurder(c)) kind = 'small-clock';
@@ -1432,6 +1462,14 @@ export function writeOffice(w: Writer): void {
     if (pointerAlso) pointerTold = true;
     if (text && pointerAlso) text = afterQuote(text, pointerAlso);
     if (g.kind === 'relation' && flags.includes('sit') && text && VISITOR_SAT.test(text.replace(/“[^”]*”/g, ' '))) sat = true;
+    // docs/62 item 8: the office is a conversation. Two of the client's lines running, each a quotation
+    // and its "she said", have my question between them, in the office's own order.
+    const bare = !!text && /^“[^”]*[,.?!]” (?:she|he|[A-Z][\w.’]*(?: [A-Z][\w’]*)?) said\b/.test(text);
+    if (lean() && bare && lastBare) {
+      const q = g.kind === 'means' ? '“And where were you tonight?” I asked.' : g.kind === 'keeper' ? '“Who else goes in and out?” I asked.' : g.kind === 'party' ? '“Who was there?” I asked.' : '“What else?” I asked.';
+      put(w, 'job', q, 'exchange', { slot: 'ask', tex: 'keep' as const });
+    }
+    lastBare = bare;
     fact(w, 'job', text ?? `“${g.text}”`, g.kind === 'found' ? 'narrator' : 'exchange', {
       ...(c.givens.lines ? { say: spec, ...(pointerAlso ? { sayAfter: pointerAlso } : {}) } : {}),
       about: c.people.filter((x) => !x.object && g.text.includes(x.short)).map((x) => x.id),
@@ -1599,15 +1637,14 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   let watcherLine: string | null = null;
   let looked = false;
   // (docs/62 item 11: lean, each person in their own spot: "at a little table by the wall", then never
-  // "in a booth by the wall" for the next; "in the back row" once.)
-  const avoidSpots = w.hand.avoid;
+  // "in a booth by the wall" for the next; "in the back row" once. A line that says a spot again takes
+  // a card that fitted its draw as well and doesn't, where there is one.)
   const spots = new Set<string>();
   for (const p of here) {
     const person = personOf(c, p);
     if (!person) continue;
     w.people.add(p);
     const s = withCaps(who(c, p));
-    w.hand.avoid = lean() && spots.size ? alsoAvoid(avoidSpots, new RegExp(`\\b(?:${[...spots].join('|')})\\b`)) : avoidSpots;
     if (person.role === 'client') {
       // At a lost thing's flat the client is already in the room's own line.
       if (pl.scene && !isMurder(c) && first) continue;
@@ -1628,8 +1665,10 @@ export function writeArrive(w: Writer, place: PlaceId): void {
         stillThere.push(person.short);
         continue;
       }
-      sentences.push({ text: doingW ?? `${person.short} was there, ${person.description}.`, about: [p], alts: doingW ? altsOf(w, doingDrawn) : undefined });
-      for (const m of (doingW ?? '').matchAll(SPOT)) spots.add((m[0] as string).replace(/^\w+ /, '').replace(/ /g, '\\s+'));
+      const wAlts = doingW ? altsOf(w, doingDrawn) : undefined;
+      const wText = spotFree(spots, doingW, wAlts);
+      sentences.push({ text: wText ?? `${person.short} was there, ${person.description}.`, about: [p], alts: wText === doingW ? wAlts : undefined });
+      for (const m of (wText ?? '').matchAll(SPOT)) spots.add(spotKey(m[0] as string));
       const met = w.before.visited.includes(place);
       if (!met) {
         const look = !looked ? lookAt(w, p) : null;
@@ -1654,15 +1693,16 @@ export function writeArrive(w: Writer, place: PlaceId): void {
       stillThere.push(person.short);
       continue;
     }
-    const doing = drawn ?? `${person.short} was there.`;
+    const dAlts = drawn && !s.name?.includes(',') ? altsOf(w, doingDrawn) : undefined;
+    const drawn2 = spotFree(spots, drawn, dAlts);
+    const doing = drawn2 ?? `${person.short} was there.`;
     // One first look a page, at the first suspect met here: more is a parade.
     const look = first && person.role === 'suspect' && !looked ? lookAt(w, p) : null;
     if (look) looked = true;
-    sentences.push({ text: doing, about: [p], alts: drawn && !s.name?.includes(',') ? altsOf(w, doingDrawn) : undefined });
+    sentences.push({ text: doing, about: [p], alts: drawn2 === drawn ? dAlts : undefined });
     if (look) sentences.push({ text: look, about: [p] });
-    for (const m of doing.matchAll(SPOT)) spots.add((m[0] as string).replace(/^\w+ /, '').replace(/ /g, '\\s+'));
+    for (const m of doing.matchAll(SPOT)) spots.add(spotKey(m[0] as string));
   }
-  w.hand.avoid = avoidSpots;
   if (stillThere.length > 0) sentences.push({ text: `${cap(andList(stillThere))} ${stillThere.length > 1 ? 'were' : 'was'} still there.`, about: here.filter((x) => stillThere.includes(nameOf(c, x))) });
   // docs/60 item 1: lean, who's there doing what in a sentence or two, not a sentence a person.
   const said = lean() ? peopleInBrief(c, sentences) : sentences;
@@ -2400,7 +2440,7 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
       y
         ? [
             // docs/59 item 3: not the hole and the story again (the put and the owning up just said them), but who could say whether it held.
-            { text: `${nameOf(c, y)} could say whether ${nameOf(c, p)} was telling it straight.`, props: [{ k: 'POINTER', from: 'admit', to: y, why: 'witness' }], say: { shape: 'REACTION', flags: ['witness-thought'], args: { person: { t: 'person', id: p }, witness: { t: 'person', id: y }, claimed: { t: 'place', id: lie.claim } } } },
+            { text: `${nameOf(c, y)} could say whether ${nameOf(c, p)} was telling it straight.`, props: [{ k: 'POINTER', from: 'admit', to: y, why: 'witness' }], say: { shape: 'REACTION', flags: ['witness-thought'], args: { person: { t: 'person', id: p }, witness: { t: 'person', id: y }, claimed: { t: 'place', id: lie.claim }, truth: { t: 'place', id: lie.truth } } } },
             { gloss: aside(w, 'owned-up', ['An owned-up story is only as good as whoever’s in it with you.', 'A story like that leans on whoever’s in it with you.', 'I wasn’t sure yet it was the one I wanted.']) },
           ]
         : [{ text: `${nameOf(c, p)} owned up to ${placeName(c, lie.truth)} at ${hourWord(h)}. Nobody had said so but ${pr.him}.`, props: [{ k: 'ADMIT', person: p, place: lie.truth, hour: h }], say: { shape: 'REACTION', flags: ['owned-hour'], args: { person: { t: 'person', id: p }, place: { t: 'place', id: lie.truth }, hour: { t: 'hour', h } } } }],
@@ -3017,7 +3057,10 @@ export function writeTurn(w: Writer): void {
       if (p && knownPeople(c, w.run).has(rest)) w.people.add(rest);
       w.places.add(starPlace(c, next));
     }
-    const said0 = c.tier <= 1 ? (first ? `I could face ${name} with it now. Or I could ${first}.` : `I could face ${name} with it now.`) : first ? `Before I did anything about it, I wanted to ${first.replace(/ first$/, '').replace(/^find out first /, 'find out ')}.` : undefined;
+    // (docs/62, U7 with round5-ui: the put is one way, never the only one. All four round-5 testers spent a
+    // call over par on the put the turn offered; "or file on what I had" says the report is open now too.)
+    const offer = lean() ? (first ? `I could face ${name} with it, or ${first}, or file on what I had.` : `I could face ${name} with it, or file on what I had.`) : first ? `I could face ${name} with it now. Or I could ${first}.` : `I could face ${name} with it now.`;
+    const said0 = c.tier <= 1 ? offer : first ? `Before I did anything about it, I wanted to ${first.replace(/ first$/, '').replace(/^find out first /, 'find out ')}.` : undefined;
     const said = said0 && walked ? `${walked}${said0}` : said0;
     if (c.tier <= 1) w.people.add(caught);
     put(w, 'handoff', said, 'recap', { keepNames: true });
