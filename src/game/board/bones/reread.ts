@@ -189,7 +189,7 @@ function breakerV(c: BoardCase, lx: Lexicon, s: string, v: VCtx): Prop {
     }
     return { k: 'LIST', watcher, place, hour, people, ...(m[3] ? { whole: true } : {}), ...(Object.keys(faces).length ? { faces } : {}) };
   }
-  m = new RegExp(`^(${lx.re.NAME})(?: says (?:he|she) was (?:at )?|’s own answer was (?:at )?)(here|${lx.re.PL}) at ((?:${lx.re.H}) o’clock), (?:with (.+)|alone)$`).exec(t);
+  m = new RegExp(`^(${lx.re.NAME})(?: says (?:he|she)(?: himself| herself)? was (?:at )?|’s own answer was (?:at )?)(here|${lx.re.PL}) at ((?:${lx.re.H}) o’clock), (?:with (.+)|alone)$`).exec(t);
   if (m) return { k: 'CLAIM', person: personV(c, m[1] as string), place: placeV(c, m[2] as string, v), hour: hourV(m[3] as string), company: m[4] ? namesV(c, lx, m[4]) : [] };
   m = new RegExp(`^(${lx.re.NAME}) passed (${lx.re.NAME}|${MARK}) on (${lx.re.STREET}) at (${lx.re.H})$`).exec(t);
   if (m) return { k: 'REMARK', speaker: personV(c, m[1] as string), saw: personV(c, m[2] as string), how: 'passed', where: m[3] as string, hour: hourV(m[4] as string) };

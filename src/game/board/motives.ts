@@ -16,6 +16,7 @@
  */
 
 import { cap, clientOf, isMurder, nameOf, personOf, pronOf, victimOf, type BoardCase, type PersonId } from './model.js';
+import { lean } from './plan/dial.js';
 
 /** The report's why, without the suspect's pronoun. `{client}`, `{thing}`, `{breed}`, `{pthem}` are the night's. */
 const FORMS: Record<string, string> = {
@@ -159,6 +160,18 @@ export function papersLine(c: BoardCase, p: PersonId, planned = false): string {
     return v.female ? t.replace(/\bthe dead man\b/g, 'the dead woman') : t;
   }
   let f = motiveForm(c, p);
+  // docs/60 (the skim readers): lean, where the dead and whoever had the grudge are of one sex, a pronoun
+  // of the dead's is "the dead woman", and "their friend, Miss Gutman" is "a friend of hers": "Miss
+  // Lowenthal: the dead woman’s old friend, and the dead woman knew things about her", not "her old
+  // friend, and she knew things about her".
+  if (lean() && same) {
+    const vp = pronOf(c, v.id);
+    f = f
+      .replace(new RegExp(`\\b${vp.his}\\b(?= (?:old|rival|family|throat|own|business|books|letters)\\b)`, 'gi'), (m) => (m[0] === m[0]?.toUpperCase() ? `${dead.charAt(0).toUpperCase()}${dead.slice(1)}’s` : `${dead}’s`))
+      .replace(new RegExp(`(?<=, and )${vp.he}\\b`, 'g'), dead)
+      .replace(new RegExp(`\\b${vp.him}\\b(?! (?:old|rival|family|throat|own|business|books|letters)\\b)`, 'g'), dead)
+      .replace(/\btheir (\w+), (?=[A-Z])/g, (_m, rel: string) => `a ${rel} of ${pr.he === 'she' ? 'hers' : 'his'}, `);
+  }
   // "They owed him four hundred dollars": a sentence of their own, by name.
   const own = /^They\b/.test(f);
   f = f.replace(/^They\b\s*/, '');

@@ -566,7 +566,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const tail = there.length ? `; ${names(there)} ${be}${still ? ' still' : ''} there at ${H}` : '';
       add(`${names(ps)} had been at ${where} at ${andList(was.map(hourWord))}, ${kept}, and gone before ${hourWord(first)}${tail}.`, ['givens:clock', 'givens:means'], {
         rule: 'then',
-        opener: 'So',
+        // (docs/60: lean, no "So" after a story that didn't hold: the readers took it to follow from that.)
+        ...(lean() && caught.size > 0 ? {} : { opener: 'So' as const }),
         hours: [...was, ...hs],
         people: [...ps, ...there],
         places: [l.place],
@@ -594,7 +595,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       : `At ${H}, ${reason}, ${names(goneIds)} had gone from ${where}.`;
     add(text, ['givens:clock'], {
       rule: 'then',
-      ...(opened ? {} : { opener: 'So' as const }),
+      ...(opened || (lean() && caught.size > 0) ? {} : { opener: 'So' as const }),
       hours: [...hs],
       people: [...thereNow, ...goneIds],
       places: [l.place],
@@ -684,7 +685,9 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     if (t.sentences.length === 0) {
       const where = placeName(c, thenList.place);
       const either = thenHs.length === 2 ? `${hourWord(thenHs[0] as Hour)} or ${hourWord(thenHs[1] as Hour)}` : andList(thenHs.map(hourWord));
-      add(x.pick('then-none', [`None of the people I was asking about was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people I was asking about was at ${where}.`]), ['givens:clock'], { rule: 'gloss', people: [], places: [thenList.place], hours: [...thenHs], tex: 'keep' });
+      // (docs/60: lean, "the people with a reason": the skim readers didn't know whom I was asking about.)
+      const none = lean() ? [`None of the people with a reason was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people with a reason was at ${where}.`] : [`None of the people I was asking about was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people I was asking about was at ${where}.`];
+      add(x.pick('then-none', none), ['givens:clock'], { rule: 'gloss', people: [], places: [thenList.place], hours: [...thenHs], tex: 'keep' });
     }
   }
   t.refs = [...new Set(t.refs.filter(Boolean))];

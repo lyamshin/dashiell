@@ -1936,7 +1936,8 @@ export function writeList(w: Writer, watcher: PersonId): void {
   const kept = c.board.hours.filter((h) => l.entries[h] !== undefined);
   const peopled = kept.filter((h) => !shutAtPlace(c, l.place, h) && (l.entries[h] ?? []).length > 0);
   const own = worldListLines(c, w.hand, watcher, kept, peopled.length > 0 && peopled.every((h) => listWhole(c, l, h)));
-  const lines = spokenListLines(c, l, c.seed % 4, mannerOf(c, watcher), own.nobody);
+  // (docs/60 item 1: lean, the bible's own last words, "Anybody else came to my slot, he’s still out on the sidewalk", are its voice: the plain clause says nobody else.)
+  const lines = spokenListLines(c, l, c.seed % 4, mannerOf(c, watcher), lean() ? undefined : own.nobody);
   // docs/49: a line a fact (the hours it tells); the watcher's own opening line a gap.
   answer(
     w,
@@ -2578,7 +2579,7 @@ export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
   }
   // (docs/60 item 4: lean, the turn is the hour, who's accounted for, whose story doesn't hold and what's
   // open: who could have got at the means is the pages' own, not the recap's.)
-  if (c.tier >= 1 && (s.accessYes.size > 0 || s.accessNo.size > 0) && !lean()) {
+  if (c.tier >= 1 && (s.accessYes.size > 0 || s.accessNo.size > 0) && (!lean() || !isMurder(c))) {
     const yes = named.filter((p) => s.accessYes.has(p)).map((p) => nameOf(c, p));
     const no = named.filter((p) => s.accessNo.has(p)).map((p) => nameOf(c, p));
     const at = placeName(c, c.means.origin);
@@ -2873,7 +2874,17 @@ export function writeTurn(w: Writer): void {
     let first = '';
     const [nk, nrest] = (next ?? '').split(':') as [string, string];
     const mv = next && nk === 'account' ? movedAt(c, w.run, nrest) : null;
-    if (next && mv) {
+    let walked = '';
+    if (next && mv && lean()) {
+      // (docs/60: the walk first, then who they passed: "Thorndike had walked from the Thalia to the Delmonico
+      // rooms at ten. Before I did anything about it, I wanted to know who she’d passed on the way.")
+      walked = `${nameOf(c, nrest)} had walked from ${placeName(c, mv.from)} to ${placeName(c, mv.to)} at ${hourWord(mv.h)}. `;
+      first = `know who ${pronOf(c, nrest).he}’d passed on the way`;
+      w.people.add(nrest);
+      w.places.add(mv.from);
+      w.places.add(mv.to);
+      w.hours.add(mv.h);
+    } else if (next && mv) {
       // The reason that matters, not a stop on a route (docs/47 B10).
       first = `know who ${nameOf(c, nrest)} had passed on the way to ${placeName(c, mv.to)} at ${hourWord(mv.h)}`;
       w.people.add(nrest);
@@ -2888,7 +2899,8 @@ export function writeTurn(w: Writer): void {
       if (p && knownPeople(c, w.run).has(rest)) w.people.add(rest);
       w.places.add(starPlace(c, next));
     }
-    const said = c.tier <= 1 ? (first ? `I could face ${name} with it now. Or I could ${first}.` : `I could face ${name} with it now.`) : first ? `Before I did anything about it, I wanted to ${first.replace(/ first$/, '').replace(/^find out first /, 'find out ')}.` : undefined;
+    const said0 = c.tier <= 1 ? (first ? `I could face ${name} with it now. Or I could ${first}.` : `I could face ${name} with it now.`) : first ? `Before I did anything about it, I wanted to ${first.replace(/ first$/, '').replace(/^find out first /, 'find out ')}.` : undefined;
+    const said = said0 && walked ? `${walked}${said0}` : said0;
     if (c.tier <= 1) w.people.add(caught);
     put(w, 'handoff', said, 'recap', { keepNames: true });
   }
