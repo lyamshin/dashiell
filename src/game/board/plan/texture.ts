@@ -29,6 +29,8 @@ import { stripMarks } from './refer.js';
 import { sentencesOf, wordsIn } from './sentences.js';
 import { situatedDeck } from './situated.js';
 import { similesIn } from '../tics.js';
+import { glossedIn, introOf } from '../gloss.js';
+import { narrationOf } from './measure.js';
 
 export { TEXTURE, lean, setTexture } from './dial.js';
 import { lean } from './dial.js';
@@ -169,7 +171,8 @@ export function petKind(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
   if (!pet || !kind) return;
   const items = paras.flat();
   const said = (t: string) => new RegExp(`\\b${kind.split(' ').slice(-1)[0]}\\b`, 'i').test(t);
-  if (said(sofar)) return;
+  // (docs/62 item 1: once a night. The office's "My dachshund" says it, and every page after has the name alone.)
+  if (said(sofar) || said(ctx.earlier ?? '')) return;
   for (const it of items) {
     if (!it.text.trim()) continue;
     const t = stripMarks(it.text);
@@ -187,6 +190,79 @@ export function petKind(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
   }
 }
 
+/**
+ * docs/62 items 1 and 4, P12: nobody appears bare. The first time the night's narration names somebody,
+ * the sentence says who they are, unless that sentence or the one before already does, or the night
+ * said it before (the office's "Ask about Althea Tillman, a piano teacher", the papers' "Reinhardt: …"):
+ * "Hanrahan, a regular, was at a table by the wall", "Zeldin, the barman, stood at the register end",
+ * "Vogel, the woman Steinbach had named, was in the corner". Said once: after that, the name alone.
+ * After the reference pass, on what it left; never inside quotation marks, a list of names or a
+ * possessive.
+ */
+export function introduce(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
+  if (!lean()) return;
+  const c = ctx.c;
+  const people = c.people.filter((x) => !x.object && x.short.length >= 3 && (x.role === 'suspect' || x.role === 'company' || x.role === 'watcher'));
+  if (!people.length) return;
+  const reOf = (x: { short: string }) => new RegExp(`(?<![\\w’])${x.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w])`);
+  const met = new Set<string>();
+  // What the night has said already: a name in the narration, or said in somebody's mouth with who they
+  // are. (Quotation marks carried through a paragraph, sentence to sentence.)
+  const quote = (s: string, inQ: boolean): boolean => {
+    let q = inQ;
+    for (const ch of s) {
+      if (ch === '“') q = true;
+      if (ch === '”') q = false;
+    }
+    return q;
+  };
+  for (const block of stripMarks(`${ctx.earlier ?? ''}\n${sofar}`).split(/\n+/)) {
+    let inQ = false;
+    for (const s of sentencesOf(block)) {
+      const n = narrationOf(s, inQ);
+      inQ = quote(s, inQ);
+      for (const x of people) if (!met.has(x.id) && reOf(x).test(s) && (reOf(x).test(n) || glossedIn(c, x.id, s))) met.add(x.id);
+    }
+  }
+  if (people.every((x) => met.has(x.id))) return;
+  let prev = '';
+  for (const para of paras) {
+    let inQ = false;
+    for (const it of para) {
+      if (!it.text.trim()) continue;
+      const startQ = inQ;
+      for (const s of sentencesOf(stripMarks(it.text))) {
+        const sn = narrationOf(s, inQ);
+        inQ = quote(s, inQ);
+        for (const x of people) {
+          if (met.has(x.id) || !reOf(x).test(s)) continue;
+          if (!reOf(x).test(sn)) {
+            if (glossedIn(c, x.id, s)) met.add(x.id);
+            continue;
+          }
+          met.add(x.id);
+          if (it.speech || glossedIn(c, x.id, s) || glossedIn(c, x.id, prev)) continue;
+          const intro = introOf(c, x.id, ctx.run?.at);
+          if (!intro) continue;
+          // In the item's own words (marks and all): the first time the name stands in its narration.
+          const t = it.text;
+          const tn = narrationOf(t, startQ);
+          const m = reOf(x).exec(tn);
+          if (!m) continue;
+          const at = m.index + x.short.length;
+          const before = tn.slice(0, m.index);
+          const after = t.slice(at);
+          // (Not a possessive, nor one of a list of names: "Mosley, Bledsoe and Hanrahan".)
+          if (/^’s\b/.test(after) || /^(?:, (?:(?:Mrs\.|Miss|Dr\.) )?[A-Z][\w’.-]+(?:,| and)| and (?:(?:Mrs\.|Miss|Dr\.) )?[A-Z])/.test(after) || /(?:[A-Z][\w’-]+,|[A-Z][\w’-]+ and|\band) $/.test(before)) continue;
+          it.text = /^[.,;:!?]/.test(after) ? `${t.slice(0, at)}, ${intro}${after}` : `${t.slice(0, at)}, ${intro},${after}`;
+          it.alts = undefined;
+        }
+        if (sn.trim()) prev = s;
+      }
+    }
+  }
+}
+
 /** The pages that ask somebody something: the ask says what the answer answers. */
 const ASKING = new Set(['account', 'admission-check', 'list', 'motive']);
 
@@ -199,8 +275,14 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
   const spent = ctx.tex ?? { joke: false, staging: false };
   const items = paras.flat().filter((x) => x.kind === 'gap' && x.slot !== 'chapter' && x.text.trim());
   // A why-here's reason stays; the card after it goes (what I did about it is staging, and the page has its own).
+  // docs/62 item 3, P3: a put says to their face what they told me and what says otherwise; the why-here
+  // that said it first ("Steinbach had told me she was home at eleven, and Mrs. Mulcahy said otherwise.")
+  // is the same thing a line before. It goes, and the card after it with it.
+  if (ctx.situ?.page === 'put' && paras.flat().some((x) => x.kind === 'fact' && x.relation === 'collides' && x.voice === 'exchange' && /“You (?:told me|said)\b/.test(x.text))) {
+    for (const it of items) if (it.slot === 'why-here') drop(it, paras);
+  }
   for (const it of items) {
-    if (it.slot === 'why-here' && it.sit?.lead && !it.tex && it.text !== it.sit.lead) {
+    if (it.slot === 'why-here' && it.sit?.lead && !it.tex && it.text.trim() && it.text !== it.sit.lead) {
       it.text = it.sit.lead;
       it.alts = undefined;
     }

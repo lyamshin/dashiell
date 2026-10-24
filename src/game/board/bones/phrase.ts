@@ -17,6 +17,31 @@ export function claimSaid(c: BoardCase, p: PersonId, h: Hour): string {
   return `${own ? 'home' : placeName(c, cl?.place ?? '')} at ${hourWord(h)}`;
 }
 
+/**
+ * docs/62 item 2: where somebody said they were, as the clause a person says it in after "said" or
+ * "told me": "at the Odessa at ten", "home at ten". Never a place as the object of "said" ("She said
+ * home at the Delmonico rooms at eleven", "Bledsoe had said Moskowitz’s at ten").
+ */
+export function claimAt(c: BoardCase, p: PersonId, h: Hour): string {
+  const s = claimSaid(c, p, h);
+  return s.startsWith('home ') ? s : `at ${s}`;
+}
+
+/**
+ * docs/62 item 2: what somebody said of their hours, as a clause: "she was at Moskowitz’s at ten", "he
+ * was home at nine and ten", "she was at the Automat at nine and home at ten". The pronoun is marked
+ * with whom it means, for the reference pass (`markPronoun`); `you` says it to their face ("you were
+ * home at eleven"), and `hours: false` leaves the hours for the sentence to say ("she was at Moskowitz’s").
+ */
+export function claimWas(c: BoardCase, p: PersonId, hs: readonly Hour[], o: { you?: boolean; hours?: boolean; mark?: string } = {}): string {
+  const subj = o.you ? 'you were' : `${pronOf(c, p).he}${o.mark ?? ''} was`;
+  const parts = hs.map((h) => claimAt(c, p, h));
+  const where = parts.map((x) => x.replace(/ at \w+$/, ''));
+  const same = where.every((x) => x === where[0]);
+  if (o.hours === false && same) return `${subj} ${where[0] ?? ''}`;
+  return `${subj} ${same ? `${where[0]} at ${andList(hs.map(hourWord))}` : andList(parts)}`;
+}
+
 /** A breaking line, said as the detective would put it to himself. */
 export function breakSaid(c: BoardCase, l: Line, p: PersonId, asked: readonly string[] = []): string {
   if (l.kind === 'list') {
@@ -49,6 +74,42 @@ export function breakSaid(c: BoardCase, l: Line, p: PersonId, asked: readonly st
   if (l.kind === 'remark') return remarkSaid(c, l);
   if (l.kind === 'given' || l.kind === 'find') return l.text.replace(/^[^:]+: /, '').replace(/[.”]+$/, '').replace(/^“/, '');
   return l.text.replace(/\.$/, '');
+}
+
+/**
+ * docs/62, P3: a breaking line said to the face of the one it's against, as a person says it, not as
+ * the notebook has it: "Alfano saw Steinbach, Lanza and Pardo at Moe’s at ten, and not you", "Mrs.
+ * Mulcahy says she was home at eleven, on her own, and you weren’t there", "Pickering passed you on
+ * Second Avenue at ten", "Mrs. Cheatham says nobody was at the Delmonico rooms at nine, you included".
+ */
+export function breakToFace(c: BoardCase, l: Line, p: PersonId, asked: readonly string[] = []): string {
+  const you = (t: string) => t.replace(new RegExp(`\\b(passed|had|put|saw) ${nameOf(c, p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'g'), '$1 you');
+  if (l.kind === 'list') {
+    const lst = listOf(c, l.speaker as PersonId);
+    const es = lst?.entries[l.hour as Hour] ?? [];
+    const W = nameOf(c, l.speaker as PersonId);
+    const at = placeName(c, l.place as PlaceId);
+    const h = hourWord(l.hour as Hour);
+    if (es.some((e) => 'person' in e && e.person === p)) return `${W} saw you at ${at} at ${h}`;
+    const faceOf = (look: string) => c.people.find((x) => x.look === look && x.role === 'suspect' && asked.includes(`account:${x.id}`));
+    const names = es.map((e) => ('person' in e ? nameOf(c, e.person) : 'other' in e ? shortOther(c.others?.find((o) => o.id === e.other)?.name ?? '') : `somebody ${e.look}`)).filter(Boolean);
+    const faces = es.flatMap((e) => ('look' in e && faceOf(e.look) ? [`${e.look.replace(/^(in|with) an? /, 'the ')} was ${nameOf(c, faceOf(e.look)?.id ?? '')}’s`] : []));
+    const tail = faces.length ? `. ${faces.map((f) => f.charAt(0).toUpperCase() + f.slice(1)).join('. ')}` : '';
+    if (names.length === 0) return `${W} says nobody was at ${at} at ${h}, you included${tail}`;
+    return `${W} saw ${andList(names)} at ${at} at ${h}, and not you${tail}`;
+  }
+  if (l.kind === 'claim') {
+    const sp = l.speaker as PersonId;
+    const cl = accountOf(c, sp)?.claims[l.hour as Hour];
+    const comp = (cl?.company ?? []).filter((x) => x !== p).map((x) => nameOf(c, x));
+    const mine = accountOf(c, p)?.claims[l.hour as Hour];
+    const pr = pronOf(c, sp);
+    const where = `${personOf(c, sp)?.home === cl?.place ? 'home' : `at ${placeName(c, cl?.place ?? '')}`} at ${hourWord(l.hour as Hour)}`;
+    const company = comp.length ? `with ${andList(comp)}` : `on ${pr.his} own`;
+    const tail = mine?.place === cl?.place ? ', and you weren’t there' : (mine?.company ?? []).includes(sp) ? ', and not with you' : '';
+    return `${nameOf(c, sp)} says ${pr.he} was ${where}, ${company}${tail}`;
+  }
+  return you(breakSaid(c, l, p, asked)).replace(/ at (seven|eight|nine|ten|eleven|twelve) o’clock\b/g, ' at $1');
 }
 
 /**

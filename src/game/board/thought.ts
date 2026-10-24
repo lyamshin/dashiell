@@ -46,7 +46,7 @@ import type { Relation, SaySpec } from './plan/types.js';
 import type { Prop, Src } from './bones/types.js';
 import { breakerProp, srcOfQ } from './bones/extract.js';
 import type { Args } from './bones/voice.js';
-import { accessPhrase, atWhere, breakSaid, claimSaid, keptAt, remarkSaid, shortOther, wayWhat, where, whyHours } from './bones/phrase.js';
+import { accessPhrase, atWhere, breakSaid, claimSaid, claimWas, keptAt, remarkSaid, shortOther, wayWhat, where, whyHours } from './bones/phrase.js';
 
 export { breakSaid, claimSaid, keptAt, remarkSaid, shortOther };
 import { markPronoun } from './plan/refer.js';
@@ -214,7 +214,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       `Two stories about ${P(p).him} at the same hour, and only one of them could stand.`,
       `They couldn’t both be true, and ${br.kind === 'list' ? `${nameOf(c, br.speaker as PersonId)} had no reason to be the wrong one` : 'I knew which one I’d bet on'}.`,
     ];
-    add(`${nameOf(c, p)} said ${claimSaid(c, p, col.hour)}. ${cap(said)}. ${two}`, refs.length ? refs : [col.claim.id], {
+    add(`${nameOf(c, p)} said ${claimWas(c, p, [col.hour], { mark: markPronoun(c, p) })}. ${cap(said)}. ${two}`, refs.length ? refs : [col.claim.id], {
       rel: 'collides',
       rule: 'collision',
       // docs/52: the claim and the line that breaks it, in full; the closing line is the writer's.
@@ -716,7 +716,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     if (claimed.length) {
       const said = claimed.map((h) => claimSaid(c, rest, h));
       const same = said.every((y) => y.replace(/ at \w+$/, '') === (said[0] ?? '').replace(/ at \w+$/, ''));
-      const what = same ? (said[0] ?? '').replace(/ at \w+$/, '') : andList(said);
+      // (docs/62 item 2: what they said as a clause, "she was at the Automat at nine and home at ten".)
+      const what = claimWas(c, rest, claimed, { mark: markPronoun(c, rest), ...(same ? { hours: false } : {}) });
       const listy = !same;
       const H = andList(claimed.map(hourWord));
       // (The dead man or the pet by name, as the office has it: "when Carbone could have died". At the

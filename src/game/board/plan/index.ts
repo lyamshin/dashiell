@@ -51,7 +51,7 @@ import { capThingClose } from './closers.js';
 import { sayOnce } from './once-pass.js';
 import { pronounAmbiguity } from './measure.js';
 import { speakerOf } from './speaker.js';
-import { budgetTexture, droppable, lean, petKind, type TexSpent } from './texture.js';
+import { budgetTexture, droppable, introduce, lean, petKind, type TexSpent } from './texture.js';
 export { speakerOf } from './speaker.js';
 export { TEXTURE, lean, setTexture } from './texture.js';
 
@@ -174,6 +174,8 @@ export function planSection(
     referWithTrades(paraItems, ctx);
     // docs/60 item 5: a pet named in the reckoning says what it is, once a page.
     petKind(paraItems, ctx, ctx.pageSoFar ?? '');
+    // docs/62 items 1 and 4: the first time the night's narration meets somebody, who they are, once.
+    introduce(paraItems, ctx, ctx.pageSoFar ?? '');
     // docs/55 6: about half a night's pages end on a thing having a feeling, at most.
     if (ctx.run) capThingClose(paraItems, ctx.run.log);
   }
