@@ -462,9 +462,9 @@ function placeNewcomers(w: Writer): void {
   for (const p of fresh) {
     const pr = pronOf(c, p);
     const back = c.board.rows[p]?.[last] !== undefined && c.board.rows[p]?.[last] !== here;
-    // (docs/60 item 1: lean, where they are and nothing after it.)
+    // (docs/60 item 1: lean, where they are and nothing after it; docs/62, short enough that who they are fits beside it: "Hanrahan, a regular, was at a table.")
     const spot: Record<string, string> = lean()
-      ? { theatre: 'three rows back', bar: 'at the end of the bar', restaurant: 'at a table by the wall', home: 'in the front room', work: 'at the far bench', back: 'in the corner', office: 'by the door', any: 'over by the wall' }
+      ? { theatre: 'three rows back', bar: 'at the bar', restaurant: 'at a table', home: 'in the front room', work: 'at the far bench', back: 'in the corner', office: 'by the door', any: 'there too' }
       : {
           theatre: `three rows back with ${pr.his} hat over ${pr.his} eyes`,
           bar: 'at the far end of the bar, nursing something',

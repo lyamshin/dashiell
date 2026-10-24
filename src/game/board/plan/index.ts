@@ -165,6 +165,9 @@ export function planSection(
   // docs/60 item 1: the texture budget (lean only): one joke, one staging line, the place and its people.
   if (PLAN.ops) budgetTexture(paraItems, ctx);
   if (PLAN.ops) {
+    // (docs/62: who somebody is, before the rhythm, which then sees the sentence as it will read; and
+    // again below, for a line the rhythm or said-once traded in.)
+    introduce(paraItems, ctx, ctx.pageSoFar ?? '');
     paraItems = rhythm(paraItems, ctx);
     // docs/59 items 1 and 7: said once on the page, and one simile frame (before the reference, so a
     // line traded in has its pronouns settled with the rest).
