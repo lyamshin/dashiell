@@ -71,6 +71,7 @@ import { sheetsFor, type Beat, type SheetJob } from './sheets.js';
 import { placeThread, sourceOf as sourceOfQ, threadFor, type Pointer } from './thread.js';
 import { breakSaid, claimSaid, eliminationOf, shortOther, thoughtOf, type Thought, type ThoughtPart } from './thought.js';
 import { breakToFace, claimWas, wayKnown } from './bones/phrase.js';
+import { UNWATCHED } from './tics.js';
 import { roleOf } from './plan/refer.js';
 import { walkBetween } from './walk.js';
 import { papersLine, whyOrder } from './motives.js';
@@ -817,22 +818,41 @@ function whyHere(w: Writer, q: string, kind: string, slots: Record<string, strin
   return ptr;
 }
 
+/** docs/62 item 11: a spot in a room, as a people line says where somebody is: "by the wall", "in the back row". */
+const SPOT = /\b(?:by|at|in|near|against|under) the (?:wall|corner|window|door|bar|stairs|counter|register|stove|mirror|back row|back)\b/g;
+
+/** docs/62, P8: whether tonight has said already that a place keeps no watch ("No clerk, no doorman, nobody watching the stairs"). */
+function unwatchedSaid(w: Writer): boolean {
+  return w.before.log.some((pg) => pg.blocks.some((b) => b.kind === 'prose' && b.voice !== 'answer' && UNWATCHED.test(b.text.replace(/“[^”]*”?/g, ' '))));
+}
+
 /**
  * docs/62 item 12: a walk said with how I know it: who had them where at the hour before, and who saw
  * them where at the hour, so they had walked over ("Steinbach said Tillman was at the print shop at ten,
  * and Weisglass saw her at the Shamrock at eleven, so she had walked over."). Never "Tillman had walked
  * from the print shop to the Shamrock at eleven" with nothing under it.
  */
-function walkKnown(c: BoardCase, run: BoardRun, p: PersonId, mv: { from: string; to: string; h: number }): string {
+function walkKnown(c: BoardCase, run: BoardRun, p: PersonId, mv: { from: string; to: string; h: number }): { text: string; people: PersonId[]; hours: Hour[] } {
   const pr = markedPron(c, p);
   const lines = linesHeld(c, { asked: run.asked, puts: [] });
   const by = (place: string, h: number) => lines.find((l) => l.speaker !== p && l.about.includes(p) && l.place === place && l.hour === h && (l.kind === 'list' || l.kind === 'claim' || l.kind === 'given'));
-  const said = (l: ReturnType<typeof by>, who: string, place: string, h: number) =>
-    !l ? `${who} was at ${placeName(c, place)} at ${hourWord(h as Hour)}` : l.kind === 'list' ? `${nameOf(c, l.speaker as PersonId)} saw ${who} at ${placeName(c, place)} at ${hourWord(h as Hour)}` : l.kind === 'given' ? `${clientOf(c).short} said ${who} was at ${placeName(c, place)} at ${hourWord(h as Hour)}` : `${nameOf(c, l.speaker as PersonId)} said ${who} was at ${placeName(c, place)} at ${hourWord(h as Hour)}`;
+  const whose = (l: ReturnType<typeof by>) => (!l ? '' : l.kind === 'given' ? clientOf(c).short : nameOf(c, l.speaker as PersonId));
+  const verb = (l: ReturnType<typeof by>) => (l?.kind === 'list' ? 'saw' : 'said');
+  const at = (place: string, h: number) => `at ${placeName(c, place)} at ${hourWord(h as Hour)}`;
+  const said = (l: ReturnType<typeof by>, who: string, place: string, h: number, obj: string) =>
+    !l ? `${who} was ${at(place, h)}` : l.kind === 'list' ? `${whose(l)} saw ${obj} ${at(place, h)}` : `${whose(l)} said ${who} was ${at(place, h)}`;
   const a = by(mv.from, mv.h - 1);
   const b = by(mv.to, mv.h);
-  const second = b?.kind === 'list' ? said(b, pr.him, mv.to, mv.h) : said(b, pr.he, mv.to, mv.h);
-  return `${said(a, nameOf(c, p), mv.from, mv.h - 1)}, and ${second}, so ${pr.he} had walked over.`;
+  const people = [p, ...[a, b].flatMap((l) => (l?.speaker ? [l.speaker as PersonId] : l?.kind === 'given' ? [c.client] : []))];
+  const hours = [mv.h - 1, mv.h] as Hour[];
+  // (One witness for both hours is said once: "Rosenbaum said Shapiro was at Rafferty’s at nine and at the Velvet Room at ten".)
+  if (a && b && whose(a) === whose(b) && verb(a) === verb(b)) {
+    const N = nameOf(c, p);
+    const first = verb(a) === 'saw' ? `${whose(a)} saw ${N} ${at(mv.from, mv.h - 1)} and ${at(mv.to, mv.h)}` : `${whose(a)} said ${N} was ${at(mv.from, mv.h - 1)} and ${at(mv.to, mv.h)}`;
+    return { text: `${first}, so ${pr.he} had walked over.`, people, hours };
+  }
+  const second = said(b, pr.he, mv.to, mv.h, pr.him);
+  return { text: `${said(a, nameOf(c, p), mv.from, mv.h - 1, nameOf(c, p))}, and ${second}, so ${pr.he} had walked over.`, people, hours };
 }
 
 /**
@@ -869,9 +889,14 @@ function handOff(w: Writer, always = false): void {
   if (mover) {
     const pr = markedPron(c, rest);
     // (Said in one of a few ways, so a night that hands off to the same walk twice doesn't say it twice.)
-    const ask = w.hand.pick('handoff-passed', [`I wanted to know who ${pr.he}’d passed on the way.`, `${cap(pr.he)} might have passed somebody on the way, and I wanted to know who.`, `Whoever ${pr.he}’d passed on the way, I wanted to hear about it.`]);
+    // (docs/62 item 12: lean, after how I know it, no pronoun the walk's two witnesses could take: "I wanted to
+    // know who else had been on the street then.")
+    const ask = lean()
+      ? w.hand.pick('handoff-passed-lean', ['I wanted to know who else had been on the street then.', 'Somebody else on the street then might have seen something, and I wanted to know who.', 'Whoever else had been on the street then, I wanted to hear from.'])
+      : w.hand.pick('handoff-passed', [`I wanted to know who ${pr.he}’d passed on the way.`, `${cap(pr.he)} might have passed somebody on the way, and I wanted to know who.`, `Whoever ${pr.he}’d passed on the way, I wanted to hear about it.`]);
     // (docs/62 item 12: how I know they walked, first.)
-    let said: string | null = lean() ? `${walkKnown(c, w.run, rest, mover)} ${ask}` : `${nameOf(c, rest)} had walked from ${placeName(c, mover.from)} to ${placeName(c, mover.to)} at ${hourWord(mover.h)}. ${ask}`;
+    const known = walkKnown(c, w.run, rest, mover);
+    let said: string | null = lean() ? `${known.text} ${ask}` : `${nameOf(c, rest)} had walked from ${placeName(c, mover.from)} to ${placeName(c, mover.to)} at ${hourWord(mover.h)}. ${ask}`;
     // A name twice at most a page (docs/39 §4): a reason that would say one a third time isn't said; the star still shows the way.
     if (!namesFit(w, said)) said = `I wanted to know who ${nameOf(c, rest)} had passed on the way over at ${hourWord(mover.h)}.`;
     if (!namesFit(w, said)) said = null;
@@ -881,6 +906,8 @@ function handOff(w: Writer, always = false): void {
       w.places.add(mover.to);
       w.places.add(at);
       w.hours.add(mover.h);
+      if (lean()) for (const x of known.people) w.people.add(x);
+      if (lean()) for (const h of known.hours) w.hours.add(h);
     }
     put(w, 'handoff', said, 'thought', { keepNames: true });
     if (said) {
@@ -998,7 +1025,7 @@ function think(w: Writer, q: string, extra: Thought | null = null): Thought {
       });
       // The detective's aside after it, with no fact in it: a gap (docs/49 §3).
       // (docs/60 item 1: "That much held." says what the fact before it did: a signpost, kept.)
-      if (x.gloss) put(w, 'thought', x.gloss, 'thought', { slot: 'gloss', about: x.people, runOn: true, alts: pickAlts(w, x.gloss), sit: { joke: false }, ...(lean() ? { tex: 'keep' as const } : {}) });
+      if (x.gloss) put(w, 'thought', x.gloss, 'thought', { slot: 'gloss', about: x.people, runOn: true, alts: pickAlts(w, x.gloss), sit: { joke: false }, ...(lean() ? { tex: 'keep' as const, hangs: true } : {}) });
     });
     w.thought = { text: stripMarks(tidy(text)), refs: [...new Set(t.refs)] };
   }
@@ -1571,17 +1598,23 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   const freshOnly = first ? {} : { fresh: true };
   let watcherLine: string | null = null;
   let looked = false;
+  // (docs/62 item 11: lean, each person in their own spot: "at a little table by the wall", then never
+  // "in a booth by the wall" for the next; "in the back row" once.)
+  const avoidSpots = w.hand.avoid;
+  const spots = new Set<string>();
   for (const p of here) {
     const person = personOf(c, p);
     if (!person) continue;
     w.people.add(p);
     const s = withCaps(who(c, p));
+    w.hand.avoid = lean() && spots.size ? alsoAvoid(avoidSpots, new RegExp(`\\b(?:${[...spots].join('|')})\\b`)) : avoidSpots;
     if (person.role === 'client') {
       // At a lost thing's flat the client is already in the room's own line.
       if (pl.scene && !isMurder(c) && first) continue;
       // docs/59 item 4: the client at a murder's scene says how they got there ahead of me.
       const avoidHere: RegExp | null = w.hand.avoid;
-      if (pl.scene && isMurder(c) && first) w.hand.avoid = alsoAvoid(avoidHere, /^(?![\s\S]*(?:ahead of me|arrived first|had come ahead|in a cab))/);
+      // (docs/62 item 11: and why: "had come on ahead to let me in".)
+      if (pl.scene && isMurder(c) && first) w.hand.avoid = alsoAvoid(avoidHere, lean() ? /^(?![\s\S]*(?:to let me in|to open up))/ : /^(?![\s\S]*(?:ahead of me|arrived first|had come ahead|in a cab))/);
       const here_ = w.hand.draw('client-here', {}, s, { widen: true, plain: true });
       w.hand.avoid = avoidHere;
       sentences.push({ text: here_ ?? `${person.short} was there.`, about: [p], alts: here_ ? altsOf(w, w.hand.last) : undefined });
@@ -1596,6 +1629,7 @@ export function writeArrive(w: Writer, place: PlaceId): void {
         continue;
       }
       sentences.push({ text: doingW ?? `${person.short} was there, ${person.description}.`, about: [p], alts: doingW ? altsOf(w, doingDrawn) : undefined });
+      for (const m of (doingW ?? '').matchAll(SPOT)) spots.add((m[0] as string).replace(/^\w+ /, '').replace(/ /g, '\\s+'));
       const met = w.before.visited.includes(place);
       if (!met) {
         const look = !looked ? lookAt(w, p) : null;
@@ -1626,7 +1660,9 @@ export function writeArrive(w: Writer, place: PlaceId): void {
     if (look) looked = true;
     sentences.push({ text: doing, about: [p], alts: drawn && !s.name?.includes(',') ? altsOf(w, doingDrawn) : undefined });
     if (look) sentences.push({ text: look, about: [p] });
+    for (const m of doing.matchAll(SPOT)) spots.add((m[0] as string).replace(/^\w+ /, '').replace(/ /g, '\\s+'));
   }
+  w.hand.avoid = avoidSpots;
   if (stillThere.length > 0) sentences.push({ text: `${cap(andList(stillThere))} ${stillThere.length > 1 ? 'were' : 'was'} still there.`, about: here.filter((x) => stillThere.includes(nameOf(c, x))) });
   // docs/60 item 1: lean, who's there doing what in a sentence or two, not a sentence a person.
   const said = lean() ? peopleInBrief(c, sentences) : sentences;
@@ -1690,7 +1726,8 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   // What the detective thinks on the way in: what a watcher is good for, or the scene against the office's clock.
   // (docs/60 item 1: what a watcher is good for, or that nobody watches here, is a signpost: kept.)
   if (watcherLine) put(w, 'thought', watcherLine, 'thought', { about: here.filter((x) => personOf(c, x)?.role === 'watcher'), ...(lean() ? { tex: 'keep' as const } : {}) });
-  else if (first && !c.lists.some((l) => l.place === place)) {
+  else if (first && !c.lists.some((l) => l.place === place) && !(lean() && unwatchedSaid(w))) {
+    // (docs/62, P8: once a night, in full. After that the reader knows a place like that keeps no watch.)
     const none = w.hand.drawOld('watch', (card) => card.tags.watcher === 'none', {}, true);
     put(w, 'thought', none?.text, 'thought', lean() ? { tex: 'keep' } : {});
   }
@@ -1701,10 +1738,14 @@ export function writeArrive(w: Writer, place: PlaceId): void {
     // docs/47 B9: the means is named here only when the office named it; otherwise the table says it, a page on.
     const officeSaid = c.givens.text.some((t) => t.toLowerCase().includes(m.toLowerCase()));
     const V = victimOf(c).short;
-    const aside = officeSaid
+    // (docs/62, P9: lean, nothing of the means before the table shows it: "The laudanum had come in at the
+    // front door" on the way in read as found before it was.)
+    const aside = officeSaid && lean()
+      ? null
+      : officeSaid
       ? w.hand.pick('scene-said', [`Whoever did it had walked in with the ${m} already in hand.`, `The ${m} had come in at the front door, with whoever it was.`])
       : w.hand.pick('scene-door', [`Nobody had forced the lock, so ${V} had let whoever it was in.`, `There wasn’t a mark on the door. ${V} had opened it to whoever it was.`, `Nobody had picked the lock. ${V} had let the visitor in.`]);
-    put(w, 'thought', aside, 'thought', { slot: 'gloss', about: [c.crime.victim], alts: pickAlts(w, aside), sit: { joke: false }, ...(lean() ? { tex: 'keep' as const } : {}) });
+    if (aside) put(w, 'thought', aside, 'thought', { slot: 'gloss', about: [c.crime.victim], alts: pickAlts(w, aside), sit: { joke: false }, ...(lean() ? { tex: 'keep' as const } : {}) });
   }
   if (callback) {
     const pay = payOff(w, again);
@@ -1791,6 +1832,13 @@ function peopleInBrief(c: BoardCase, xs: { text: string; about: PersonId[]; alts
     const pr = /\b(she|her|he|him|his)\b/i.exec(head.slice(look.length))?.[1]?.toLowerCase();
     const female = pr === 'she' || pr === 'her';
     const clash = !!pr && group.some((g) => g.about.some((id) => personOf(c, id)?.female === female));
+    // (docs/62: a line that can't be cut to its first comma stands alone: joined, its commas ran into the
+    // next person's clause, "…with a flashlight, Mosley was in the lobby, reading the bills".)
+    if (lean() && head === x.text && /, /.test(rest)) {
+      flush();
+      out.push(x);
+      continue;
+    }
     if (clash || group.length === 3) flush();
     group.push({ text: x.text, head, about: x.about, ...(x.alts ? { alts: x.alts } : {}) });
   }
@@ -2945,8 +2993,11 @@ export function writeTurn(w: Writer): void {
     if (next && mv && lean()) {
       // (docs/60: the walk first, then who they passed: "Thorndike had walked from the Thalia to the Delmonico
       // rooms at ten. Before I did anything about it, I wanted to know who she’d passed on the way.")
-      walked = `${walkKnown(c, w.run, nrest, mv)} `;
-      first = `know who ${pronOf(c, nrest).he}’d passed on the way`;
+      const known = walkKnown(c, w.run, nrest, mv);
+      walked = `${known.text} `;
+      for (const x of known.people) w.people.add(x);
+      for (const h of known.hours) w.hours.add(h);
+      first = 'know who else had been on the street then';
       w.people.add(nrest);
       w.places.add(mv.from);
       w.places.add(mv.to);

@@ -35,8 +35,8 @@
  *   at eight o’clock:", "I’ll start at seven:", "Started at eight:".
  * - **tail** (P7): company tacked on after the evening as a sentence of its own ("Alone at nine.", "On
  *   my own at seven, eight and ten.", "Nobody was with me at nine or ten.").
- * - **locative** (item 11): the same spot twice in one paragraph ("at a little table by the wall …
- *   in a booth by the wall").
+ * - **locative** (item 11): the same spot twice in one paragraph of who's there ("at a little table by
+ *   the wall … in a booth by the wall").
  * - **reason** (item 12): the stock phrases the skim readers stopped on: "one of the two hours it could
  *   have happened", "none of the people with a reason was at", "as far as anybody had told me".
  *
@@ -48,8 +48,10 @@ import type { BoardDeal, BoardRun } from './model.js';
 import { clientOf, isMurder, victimOf, type BoardCase } from './model.js';
 import { sentencesOf } from './plan/sentences.js';
 import { glossedIn } from './gloss.js';
-import { narrationOf } from './plan/measure.js';
+import { maskPlaces, narrationOf } from './plan/measure.js';
 import { isPoison } from './when.js';
+import { UNWATCHED } from './tics.js';
+export { UNWATCHED };
 
 export type HingeRule =
   | 'said-place'
@@ -153,7 +155,7 @@ function bareFirst(c: BoardCase, run: BoardRun): HingeIssue[] {
       // (Quotation marks carried sentence to sentence: an answer's middle sentence is still speech.)
       let inQ = false;
       for (const s of sentencesOf(b.text)) {
-        const sn = narrationOf(s, inQ);
+        const sn = maskPlaces(c, narrationOf(s, inQ));
         for (const ch of s) {
           if (ch === '“') inQ = true;
           if (ch === '”') inQ = false;
@@ -234,16 +236,20 @@ function thoughtWho(c: BoardCase, run: BoardRun): HingeIssue[] {
       const m = /^(?:So |But |And )?(she|he|her|his|him)\b/i.exec(first.trim());
       if (!m) return;
       const female = /^(?:she|her)$/i.test(m[1] as string);
-      // The block before: whom it named of that sex (speech included).
+      // Somebody else of that sex the same sentence names after it ("So she had it right, and Steinbach
+      // said the same"), just after an answer.
       const before = (bs[k - 1] as { text: string }).text;
-      const named = people.filter((x) => !!x.female === female && new RegExp(`(?<![\\w’])${esc(x.short)}(?![\\w])`).test(before));
-      if (named.length >= 1 && /“/.test(before)) out.push({ page: i, rule: 'thought-who', detail: `“${first.slice(0, 80)}” after ${named.map((x) => x.short).join(', ')}` });
+      // (As the subject of a clause of its own: "…, and Steinbach said the same", "She and Hargrove agreed".
+      // An object, "She saw Dandridge at eight", is nobody but who she saw.)
+      const rest = first.slice(m[0].length);
+      const named = people.filter((x) => !!x.female === female && (new RegExp(`^ and ${esc(x.short)}\\b`).test(rest) || new RegExp(`, (?:and|but|while) ${esc(x.short)} (?:said|had|was|did|backed|saw|agreed|told|bore)\\b`).test(rest)));
+      if (named.length >= 1 && /“/.test(before)) out.push({ page: i, rule: 'thought-who', detail: `“${first.slice(0, 80)}”, beside ${named.map((x) => x.short).join(', ')}` });
     });
   });
   return out;
 }
 
-const AGREE = /\bsaid the same\b|\bbacked\b|\bagreed\b|\bsame as\b|\bjust as\b|\bjust like\b|\bsaid so too\b|\btold it straight\b|\bhad it right\b|\bwas right\b|\bsaid so\b|\bsaw (?:him|her|them)\b/;
+const AGREE = /\bsaid the same\b|\bbore\b[^.]* out\b|\btold me too\b|\bwhat (?:he|she|they)’d told me\b|\bbacked\b|\bagreed\b|\bsame as\b|\bjust as\b|\bjust like\b|\bsaid so too\b|\btold it straight\b|\bhad it right\b|\bwas right\b|\bsaid so\b|\bsaw (?:him|her|them)\b/;
 /** "That much held." with nothing before it that it says held. */
 function orphan(run: BoardRun): HingeIssue[] {
   const out: HingeIssue[] = [];
@@ -339,18 +345,17 @@ function dose(c: BoardCase, run: BoardRun): HingeIssue[] {
 }
 
 /** "Nobody watching the stairs" and its kin, more than once a night. */
-export const UNWATCHED = /\bnobody (?:watching|kept (?:watch|the stairs|an eye)|minded who|on duty|was posted|saw who came)\b|\bno (?:clerk|doorman|one was posted|one on the door)\b|\bnobody in the place was paid to notice\b|\bwhoever came and went did it unseen\b|\bnobody would have known it\b|\banybody could have come and gone\b|\bthere was nobody on duty\b|\bnobody kept watch\b|\bno one was posted\b|\bnobody minded who came\b/i;
 function unwatched(run: BoardRun): HingeIssue[] {
   const out: HingeIssue[] = [];
   let n = 0;
   run.log.forEach((p, i) => {
     for (const b of prose(p)) {
       if (b.voice === 'answer' || b.voice === 'recap') continue;
-      for (const s of sentencesOf(narr(b.text))) {
-        if (!UNWATCHED.test(s)) continue;
-        n++;
-        if (n > 1) out.push({ page: i, rule: 'unwatched', detail: `“${s.trim().slice(0, 100)}” (${n} tonight)` });
-      }
+      // (A line of two sentences, "Nobody kept the stairs here. Whoever came and went did it unseen.", is one saying.)
+      const s = sentencesOf(narr(b.text)).find((x) => UNWATCHED.test(x));
+      if (!s) continue;
+      n++;
+      if (n > 1) out.push({ page: i, rule: 'unwatched', detail: `“${s.trim().slice(0, 100)}” (${n} tonight)` });
     }
   });
   return out;
@@ -396,8 +401,12 @@ function locative(run: BoardRun): HingeIssue[] {
   const out: HingeIssue[] = [];
   const RE = /\b(?:by|at|in|near|against|under) the (?:wall|corner|window|door|bar|back|stairs|counter|register|stove|mirror)\b/g;
   run.log.forEach((p, i) => {
-    for (const b of prose(p)) {
-      if (b.voice === 'answer') continue;
+    // (Who's there and where, on the way in: the people lines.)
+    const units = (p.board?.units ?? []).filter((u) => u.voice === 'presence');
+    const paras = new Map<number, string>();
+    for (const u of units) paras.set(u.para, `${paras.get(u.para) ?? ''} ${strip(u.text)}`);
+    for (const text of paras.values()) {
+      const b = { text };
       const seen = new Map<string, number>();
       for (const m of narr(b.text).matchAll(RE)) {
         const k = (m[0] as string).replace(/^\w+ /, '');

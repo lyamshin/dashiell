@@ -25,12 +25,12 @@
 
 import type { Item } from './types.js';
 import type { PlanCtx } from './index.js';
-import { stripMarks } from './refer.js';
+import { markPronoun, stripMarks } from './refer.js';
 import { sentencesOf, wordsIn } from './sentences.js';
 import { situatedDeck } from './situated.js';
 import { similesIn } from '../tics.js';
 import { glossedIn, introOf } from '../gloss.js';
-import { narrationOf } from './measure.js';
+import { maskPlaces, narrationOf } from './measure.js';
 
 export { TEXTURE, lean, setTexture } from './dial.js';
 import { lean } from './dial.js';
@@ -219,7 +219,7 @@ export function introduce(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
   for (const block of stripMarks(`${ctx.earlier ?? ''}\n${sofar}`).split(/\n+/)) {
     let inQ = false;
     for (const s of sentencesOf(block)) {
-      const n = narrationOf(s, inQ);
+      const n = maskPlaces(c, narrationOf(s, inQ));
       inQ = quote(s, inQ);
       for (const x of people) if (!met.has(x.id) && reOf(x).test(s) && (reOf(x).test(n) || glossedIn(c, x.id, s))) met.add(x.id);
     }
@@ -232,7 +232,7 @@ export function introduce(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
       if (!it.text.trim()) continue;
       const startQ = inQ;
       for (const s of sentencesOf(stripMarks(it.text))) {
-        const sn = narrationOf(s, inQ);
+        const sn = maskPlaces(c, narrationOf(s, inQ));
         inQ = quote(s, inQ);
         for (const x of people) {
           if (met.has(x.id) || !reOf(x).test(s)) continue;
@@ -246,14 +246,15 @@ export function introduce(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
           if (!intro) continue;
           // In the item's own words (marks and all): the first time the name stands in its narration.
           const t = it.text;
-          const tn = narrationOf(t, startQ);
+          const tn = maskPlaces(c, narrationOf(t, startQ));
           const m = reOf(x).exec(tn);
           if (!m) continue;
           const at = m.index + x.short.length;
           const before = tn.slice(0, m.index);
           const after = t.slice(at);
           // (Not a possessive, nor one of a list of names: "Mosley, Bledsoe and Hanrahan".)
-          if (/^’s\b/.test(after) || /^(?:, (?:(?:Mrs\.|Miss|Dr\.) )?[A-Z][\w’.-]+(?:,| and)| and (?:(?:Mrs\.|Miss|Dr\.) )?[A-Z])/.test(after) || /(?:[A-Z][\w’-]+,|[A-Z][\w’-]+ and|\band) $/.test(before)) continue;
+          // (A clause of its own after a comma, ", and Coffin was finishing a late supper", is no list.)
+          if (/^’s\b/.test(after) || /^(?:, (?:(?:Mrs\.|Miss|Dr\.) )?[A-Z][\w’.-]+(?:,| and)| and (?:(?:Mrs\.|Miss|Dr\.) )?[A-Z])/.test(after) || /[A-Z][\w’.-]+(?:,| and) $/.test(before)) continue;
           it.text = /^[.,;:!?]/.test(after) ? `${t.slice(0, at)}, ${intro}${after}` : `${t.slice(0, at)}, ${intro},${after}`;
           it.alts = undefined;
         }
@@ -283,8 +284,13 @@ function foldPointer(paras: Item[][], ctx: PlanCtx): void {
   const a = stripMarks(ask.text).trim();
   const wp = paras.find((ps) => ps.includes(why)) as Item[];
   const ap = paras.find((ps) => ps.includes(ask)) as Item[];
-  if (/^I asked\b/.test(a)) {
-    why.text = `${why.text.replace(/\.\s*$/, '')}, so ${ask.text.trim()}`;
+  const subj = ctx.situ?.subject ? ctx.c.people.find((x) => x.id === ctx.situ?.subject) : undefined;
+  // (One sentence only where "her" can be nobody but whom I asked: not after "Feeney had seen Quill".)
+  const crowded = !!subj && ctx.c.people.some((x) => x.id !== subj.id && !x.object && !!x.female === !!subj.female && new RegExp(`\\b${x.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(w));
+  if (/^I asked\b/.test(a) && !crowded) {
+    // (Whom I asked is the pointer's person, said once: "…, so I asked her for her evening", never "…, so I asked Quill".)
+    const askText = subj && w.includes(subj.short) ? ask.text.trim().replace(new RegExp(`^I asked ${subj.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`), `I asked ${subj.female ? 'her' : 'him'}${markPronoun(ctx.c, subj.id)}`) : ask.text.trim();
+    why.text = `${why.text.replace(/\.\s*$/, '')}, so ${askText}`;
     why.alts = undefined;
     // (The ask's pronouns are the person asked: the sentence is about them now too.)
     why.about = [...new Set([...(why.about ?? []), ...(ask.about ?? [])])];
@@ -313,7 +319,7 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
   // docs/62 item 3, P3: a put says to their face what they told me and what says otherwise; the why-here
   // that said it first ("Steinbach had told me she was home at eleven, and Mrs. Mulcahy said otherwise.")
   // is the same thing a line before. It goes, and the card after it with it.
-  if (ctx.situ?.page === 'put' && paras.flat().some((x) => x.kind === 'fact' && x.relation === 'collides' && x.voice === 'exchange' && /“You (?:told me|said)\b/.test(x.text))) {
+  if (ctx.situ?.page === 'put' && paras.flat().some((x) => x.kind === 'fact' && x.relation === 'collides' && x.voice === 'exchange' && /\byou (?:told me|said)\b/i.test(x.text))) {
     for (const it of items) if (it.slot === 'why-here') drop(it, paras);
   }
   for (const it of items) {

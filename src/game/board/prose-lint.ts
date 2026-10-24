@@ -33,6 +33,10 @@
  *   and **assembly** ("would spent", "but He threw", a name twice in a sentence, a place said as a
  *   pronoun, "them" for one person in the verdict's why).
  *
+ * - docs/62, the hinge lines (`hinge-lint.ts`): **hinge**, one rule a kind (said-place, gloss, bare,
+ *   put-lead, put-speech, thought-who, orphan, shift, telling, form, dose, unwatched, pointer,
+ *   connector, tail, locative, reason; the verdict's close, epilogue, is read with the report).
+ *
  * Pure: it reads the night and returns what it found.
  */
 
@@ -45,13 +49,16 @@ import { GAG_MAX } from './pages.js';
 import { boardFields } from './report.js';
 import { engineWords } from './jargon.js';
 import { clarityIssues, verdictIssues } from './clarity-lint.js';
+import { hingeIssues, type HingeRule } from './hinge-lint.js';
 import { motiveSaid } from './motives.js';
 import { titleClient } from './home.js';
 import { suspectsOf } from './model.js';
 
 export interface ProseIssue {
   page: number;
-  rule: 'place-tag' | 'phrase' | 'signpost' | 'gag' | 'pet' | 'grid' | 'turned-out' | 'posture' | 'inside' | 'jargon' | 'repeat' | 'slots' | 'continuity' | 'tic' | 'assembly';
+  rule: 'place-tag' | 'phrase' | 'signpost' | 'gag' | 'pet' | 'grid' | 'turned-out' | 'posture' | 'inside' | 'jargon' | 'repeat' | 'slots' | 'continuity' | 'tic' | 'assembly' | 'hinge';
+  /** docs/62: which of the hinge rules (`hinge-lint.ts`). */
+  hinge?: HingeRule;
   detail: string;
 }
 
@@ -182,6 +189,8 @@ export function proseIssues(d: BoardDeal, run: BoardRun): ProseIssue[] {
   }
   // docs/59: the clarity build's rules, and the verdict's why for whoever it names.
   for (const x of clarityIssues(d, run)) out.push({ page: x.page, rule: x.rule, detail: x.detail });
+  // docs/62: the hinge lines, said as a person says them (the verdict's close is read with the report, `epilogueIssues`).
+  for (const x of hingeIssues(d, run)) out.push({ page: x.page, rule: 'hinge', hinge: x.rule, detail: `${x.rule}: ${x.detail}` });
   for (const p of suspectsOf(c)) for (const x of verdictIssues(titleClient(c, motiveSaid(c, p)))) out.push({ page: x.page, rule: x.rule, detail: x.detail });
   // The form says "him" or "her" for a pet too.
   if (c.type === 'lost-pet' && !isMurder(c)) {

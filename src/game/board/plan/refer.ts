@@ -89,7 +89,7 @@ const PLACE_PREP = /\b(?:at|to|from|in|into|inside|near|past|toward|towards|roun
 const OBJ = /\b(to|at|with|for|by|from|of|asked|told|thanked|had|put|passed|saw|over|beside|near|behind|let|gave|watched|named|left|caught|found|about|after|against|than|wanted|met|made|kept|on|offered|pointed|showed|followed|joined|sent|minded|backed|believed|contradicted|mentioned|remembered|noticed|spotted|across from|next to)\s*$/;
 
 /** docs/60 item 3: more verbs a name is the object of (lean). */
-const OBJ_LEAN = /\b(?:see|seen|sees|heard|hear|vouched for|placed|put|asked after|waited for|went over to|went up to|sat down with|backed up)\s*$/;
+const OBJ_LEAN = /\b(?:see|seen|sees|heard|hear|vouched for|placed|put|asked after|waited for|went over to|went up to|sat down with|backed up|bore)\s*$/;
 
 const esc = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 

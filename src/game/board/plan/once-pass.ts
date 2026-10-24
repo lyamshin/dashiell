@@ -78,6 +78,18 @@ export function sayOnce(paras: Item[][], ctx: PlanCtx): void {
     const echoes = sentencesOf(stripMarks(it.text)).some((s) => saysAgain(s, prior));
     if (allSaid || echoes) it.text = '';
   }
+  // (docs/62, docs/60 §6: an aside that says what the fact before it did, "That much held.", goes with
+  // it: never standing alone after its agreement went as said once.)
+  for (const ps of paras) {
+    let prev: Item | undefined;
+    for (const it of ps) {
+      if (it.hangs && it.text.trim() && (!prev || prev.kind !== 'fact')) {
+        it.text = '';
+        it.alts = undefined;
+      }
+      if (it.text.trim()) prev = it;
+    }
+  }
   // 2. Texture that says a fact again, or another piece of texture before it; or does again what the
   // page has just done ("I wrote it down. Writing things down is what I do…" and then "I wrote it down
   // as given and put the pencil behind my ear").

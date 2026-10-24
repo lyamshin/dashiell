@@ -171,11 +171,12 @@ export function planSection(
     sayOnce(paraItems, ctx);
     // (docs/60 item 6: lean, the rhythm again on what said-once left, where it took a sentence out.)
     if (lean()) paraItems = rhythm(paraItems, ctx);
+    // docs/62 items 1 and 4: the first time the night's narration meets somebody, who they are, once
+    // (before the reference pass, which counts the names it says).
+    introduce(paraItems, ctx, ctx.pageSoFar ?? '');
     referWithTrades(paraItems, ctx);
     // docs/60 item 5: a pet named in the reckoning says what it is, once a page.
     petKind(paraItems, ctx, ctx.pageSoFar ?? '');
-    // docs/62 items 1 and 4: the first time the night's narration meets somebody, who they are, once.
-    introduce(paraItems, ctx, ctx.pageSoFar ?? '');
     // docs/55 6: about half a night's pages end on a thing having a feeling, at most.
     if (ctx.run) capThingClose(paraItems, ctx.run.log);
   }

@@ -47,7 +47,6 @@ import type { Prop, Src } from './bones/types.js';
 import { breakerProp, srcOfQ } from './bones/extract.js';
 import type { Args } from './bones/voice.js';
 import { accessPhrase, atWhere, breakSaid, claimSaid, claimWas, keptAt, remarkSaid, shortOther, wayWhat, where, whyHours } from './bones/phrase.js';
-import { whenDone } from './when.js';
 
 export { breakSaid, claimSaid, keptAt, remarkSaid, shortOther };
 import { markPronoun } from './plan/refer.js';
@@ -659,7 +658,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         const at = seen.x.place;
         // (docs/62 item 12: the hours said as what happened, in a clause of their own: "Fritz was still at
         // the Delmonico rooms at ten, and he went at ten or eleven", never "one of the two hours it could have happened".)
-        const done = whenDone(c, `at ${office.map((h) => hourWord(h)).join(' or ')}`).replace(/^(he|she)\b/, (m) => `${m}${markPronoun(c, c.crime.victim)}`);
+        // (Without a pronoun the next sentence's "he" could be read as: "it happened at nine or ten".)
+        const done = `it happened at ${office.map((h) => hourWord(h)).join(' or ')}`;
         add(`${cap(victimOf(c).short)} was still ${isMurder(c) ? 'alive ' : ''}at ${placeName(c, at)} at ${hourWord(seen.h)}, and ${done}.`, ['givens:clock'], {
           rel: 'narrows',
           rule: 'alive',
@@ -706,7 +706,11 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   // docs/62, P1: the dead man (or the pet) seen alive at an hour it could have happened is what a
   // witness's answer means first: said before who else was where.
   const alive = (t.parts ?? []).findIndex((y) => y.rule === 'alive');
-  if (lean() && alive > 0 && t.parts && t.parts.length === t.sentences.length) {
+  // (Not where it would take the pronoun from somebody of the dead's sex the rest of the thought says
+  // twice: said first, the dead would be whom a later "he" read as, and the name would be said again.)
+  const vsex = pronOf(c, c.crime.victim).he;
+  const twice = c.people.some((y) => y.id !== c.crime.victim && !y.object && pronOf(c, y.id).he === vsex && (t.parts ?? []).filter((x, i) => i !== alive && x.people.includes(y.id)).length >= 2) || (kind === 'list' && !!personOf(c, rest) && pronOf(c, rest).he === vsex && (t.parts ?? []).length > 3);
+  if (lean() && alive > 0 && t.parts && t.parts.length === t.sentences.length && !twice) {
     t.parts.unshift(...t.parts.splice(alive, 1));
     t.sentences.unshift(...t.sentences.splice(alive, 1));
   }
