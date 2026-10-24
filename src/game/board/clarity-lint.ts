@@ -66,7 +66,10 @@ export function repeatIssues(run: BoardRun): ClarityIssue[] {
     if (!readsOwnFacts(p)) return;
     const { blocks, units } = ownSection(p);
     // The same fact, by what it says.
-    const facts = units.filter((u): u is Unit & { kind: 'fact' } => u.kind === 'fact');
+    // (docs/60 items 2 and 6: Hard-boiled's thought is the page's own fact said again at the hours that
+    // matter, docs/46's fact level, "and nobody had backed it up" where nobody had: by design, not a repeat.)
+    const hoursAgain = (u: Unit & { kind: 'fact' }) => u.beat === 'thought' && (u.bones ?? []).some((b) => b.props.some((x) => x.k === 'WINDOW') && b.props.some((x) => x.k === 'CLAIM'));
+    const facts = units.filter((u): u is Unit & { kind: 'fact' } => u.kind === 'fact' && !hoursAgain(u as Unit & { kind: 'fact' }));
     const atoms = facts.map((u) => new Set((u.bones ?? []).flatMap((b) => b.props.flatMap(factAtoms))));
     for (let a = 0; a < facts.length; a++) {
       for (let b = a + 1; b < facts.length; b++) {

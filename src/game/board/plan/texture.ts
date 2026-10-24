@@ -53,8 +53,8 @@ export interface TexSpent {
   sign?: boolean;
 }
 
-/** docs/60 item 2: the lead-ins on a collision, plain, one a page. */
-const DIDNT_FIT = ['One thing didn’t fit:', 'One thing didn’t fit:', 'Something didn’t fit:', 'One thing didn’t square:'];
+/** docs/60 item 2: the lead-ins on a collision, plain, one a page: before a short one, with a colon; before a long one, a sentence of its own. */
+const DIDNT_FIT = ['One thing didn’t fit', 'One thing didn’t fit', 'Something didn’t fit', 'One thing didn’t add up'];
 
 /**
  * docs/60 item 2: a signpost back, said once: the page's first collision in the thought opens on a
@@ -69,10 +69,13 @@ function leadIn(paras: Item[][], ctx: PlanCtx, spent: TexSpent): void {
   // (Not a collision said with a lead of its own, nor one built on a colon or a semicolon already.)
   if (/^(?:One thing|Something|Here was|Two stories)\b/.test(t) || /[:;]/.test(sentencesOf(t)[0] ?? '')) return;
   const lead = ctx.pick('didnt-fit', DIDNT_FIT);
-  const body = it.text.replace(/^(?:But|So|And) /, '');
-  const first = (/^(\S+)/.exec(stripMarks(body))?.[1] ?? '').replace(/[,.]$/, '');
+  const body = it.text.replace(/^(?:But|So|And) /, (x) => (x === 'But ' || x === 'So ' || x === 'And ' ? '' : x));
+  const body1 = body.charAt(0).toUpperCase() + body.slice(1);
+  const first = (/^(\S+)/.exec(stripMarks(body1))?.[1] ?? '').replace(/[,.]$/, '');
   const lower = /^(?:He|She|They|It|There|The|A|An|His|Her|Their|At|By|Nobody|Somebody)$/.test(first);
-  it.text = `${lead} ${lower ? body.charAt(0).toLowerCase() + body.slice(1) : body}`;
+  // (A long collision takes the lead-in as a short sentence of its own, which the page's rhythm wants too.)
+  const long = wordsIn(stripMarks(sentencesOf(body1)[0] ?? '')) > 14;
+  it.text = long ? `${lead}. ${body1}` : `${lead}: ${lower ? body1.charAt(0).toLowerCase() + body1.slice(1) : body1}`;
   it.alts = undefined;
   spent.sign = true;
 }
@@ -144,6 +147,32 @@ function trimPlace(it: Item): void {
   it.alts = undefined;
   // (What it set up went with the sentences after: the office's prop, say.)
   it.onTrim?.();
+}
+
+/**
+ * docs/60 item 3: the narrator's cap, after the reference pass: where somebody is named a third time in
+ * the narration and nothing could be said instead (no pronoun was clear, and no role is allowed there),
+ * a piece of decoration that names them goes, latest first (a close, a flourish, a callback, an
+ * atmosphere line). The facts and the signposts stay.
+ */
+export function capNames(paras: Item[][], ctx: PlanCtx): void {
+  if (!lean()) return;
+  const items = paras.flat();
+  const narr = (t: string) => stripMarks(t).replace(/“[^”]*”?/g, ' ');
+  const counted = (x: Item) => x.text.trim() && !x.speech && (!x.exempt || x.counted);
+  for (const p of ctx.c.people) {
+    if (p.object || p.short.length <= 2) continue;
+    const re = new RegExp(`(?<![\\w’])${p.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w])`, 'g');
+    const n = () => items.filter(counted).reduce((k, x) => k + (narr(x.text).match(re) ?? []).length, 0);
+    if (n() <= 2) continue;
+    for (const it of [...items].reverse()) {
+      if (n() <= 2) break;
+      if (it.kind !== 'gap' || !counted(it) || !re.test(narr(it.text))) continue;
+      re.lastIndex = 0;
+      const r = roleOf(it);
+      if (r === 'close' || r === 'flourish' || r === 'callback' || r === 'atmosphere') drop(it, paras);
+    }
+  }
 }
 
 /** The pages that ask somebody something: the ask says what the answer answers. */

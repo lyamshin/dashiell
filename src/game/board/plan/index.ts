@@ -51,7 +51,7 @@ import { capThingClose } from './closers.js';
 import { sayOnce } from './once-pass.js';
 import { pronounAmbiguity } from './measure.js';
 import { speakerOf } from './speaker.js';
-import { budgetTexture, type TexSpent } from './texture.js';
+import { budgetTexture, capNames, type TexSpent } from './texture.js';
 export { speakerOf } from './speaker.js';
 export { TEXTURE, lean, setTexture } from './texture.js';
 
@@ -168,6 +168,8 @@ export function planSection(
     // line traded in has its pronouns settled with the rest).
     sayOnce(paraItems, ctx);
     referWithTrades(paraItems, ctx);
+    // docs/60 item 3: the narrator's cap, where nothing could be said instead: the decoration goes.
+    capNames(paraItems, ctx);
     // docs/55 6: about half a night's pages end on a thing having a feeling, at most.
     if (ctx.run) capThingClose(paraItems, ctx.run.log);
   }

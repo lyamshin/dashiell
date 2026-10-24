@@ -88,6 +88,9 @@ const VERB = /^(was|were|had|has|hadn’t|wasn’t|didn’t|did|does|doesn’t|w
 const PLACE_PREP = /\b(?:at|to|from|in|into|inside|near|past|toward|towards|round|around|outside|by|over)\s*$/;
 const OBJ = /\b(to|at|with|for|by|from|of|asked|told|thanked|had|put|passed|saw|over|beside|near|behind|let|gave|watched|named|left|caught|found|about|after|against|than|wanted|met|made|kept|on|offered|pointed|showed|followed|joined|sent|minded|backed|believed|contradicted|mentioned|remembered|noticed|spotted|across from|next to)\s*$/;
 
+/** docs/60 item 3: more verbs a name is the object of (lean). */
+const OBJ_LEAN = /\b(?:see|seen|sees|heard|hear|vouched for|placed|put|asked after|waited for|went over to|went up to|sat down with|backed up)\s*$/;
+
 const esc = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 function cap(s: string): string {
@@ -175,7 +178,8 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       const place = poss && PLACE_PREP.test(prev) && (/^’s(?:\s*[,.;:”)!?]|\s*$)/.test(after) || VERB.test(nextWord) || /^(?:and|but|or|on|in|at|for|until|till|by|with|where|when|that|which|so|then|to|from|after|before|every|each|all)$/.test(nextWord));
       const start = prev === '' || /[“—]$/.test(prev);
       // After a preposition it's an object ("brought it to Carbone had been…" is no subject), whatever follows.
-      const form: Form = poss ? 'poss' : OBJ.test(prev) && !start ? 'obj' : start || VERB.test(nextWord) ? 'subj' : 'unknown';
+      // (docs/60 item 3: lean, "did see Prentiss at Mrs. Nagy’s" is an object too, so the third mention can be "him".)
+      const form: Form = poss ? 'poss' : (OBJ.test(prev) || (lean() && OBJ_LEAN.test(prev))) && !start ? 'obj' : start || VERB.test(nextWord) ? 'subj' : 'unknown';
       const listy = /\b[A-Z][\w’.]+ and$/.test(prev) || /\b[A-Z][\w’.]+,$/.test(prev) || /^(?:’s)?(?:, [A-Z]| and [A-Z]|, and [A-Z])/.test(after) || /\bboth$/.test(prev);
       s.mentions.push({ who: w, at, len: w.short.length + (poss ? 2 : 0), kind: 'name', form, listy, titled: !!x[1], ...(place ? { place: true } : {}) });
     }
@@ -312,6 +316,8 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
    */
   const roleOk = (w: Who, s: Sent, at: number): boolean => {
     if (!lean()) return true;
+    // ("My client" and "the dead man" are nobody else, ever: the reader always knows who they are.)
+    if (w.id === c.client || (w.id === c.crime.victim && c.type === 'murder')) return true;
     if (s.named.some((x) => x.who === w && x.at < at)) return true;
     const prev = narrIdx.length ? (sents[narrIdx[narrIdx.length - 1] as number] as Sent) : undefined;
     return !!prev && prev.named.some((x) => x.who === w);

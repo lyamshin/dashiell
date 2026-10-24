@@ -379,7 +379,9 @@ export function theySitNow(w: Writer, p: PersonId, anywhere = false): boolean {
   while (i > 0 && (log[i - 1] as Page).at === w.run.at && (log[i - 1] as Page).board?.job !== 'arrive') i--;
   const opens = new RegExp(`^(?:${esc(who.short)}|${who.female ? 'She' : 'He'})\\b`);
   // (`anywhere`: the arrival put them somewhere, sitting or not.)
-  return log.slice(Math.max(0, i - 1)).some((pg) => pg.at === w.run.at && pg.blocks.some((b) => b.kind === 'prose' && b.voice !== 'answer' && sentencesOf(stripMarks(b.text).replace(/“[^”]*”/g, ' ')).some((t) => opens.test(t.trim()) && t.includes(who.short) && (anywhere || SITTING.test(t)))));
+  // (docs/60 item 1: and a clause of a sentence that says who's there: "…, and Crowninshield stood on the landing".)
+  const clauses = (t: string) => (lean() ? t.split(/, (?:and )?(?=[A-Z])/) : [t]);
+  return log.slice(Math.max(0, i - 1)).some((pg) => pg.at === w.run.at && pg.blocks.some((b) => b.kind === 'prose' && b.voice !== 'answer' && sentencesOf(stripMarks(b.text).replace(/“[^”]*”/g, ' ')).flatMap(clauses).some((t) => opens.test(t.trim()) && t.includes(who.short) && (anywhere || SITTING.test(t)))));
 }
 
 /** docs/55 2: texture about going over a room, which a page reading the papers doesn't do. */
@@ -470,7 +472,8 @@ function placeNewcomers(w: Writer): void {
     const kind = placeOf(c, here)?.kind === 'theatre' ? 'theatre' : stageKind(c, here);
     const at = spot[kind] ?? (spot.any as string);
     // Named twice on the page already (an admission says the name and says it again): "my witness".
-    const who = namesFit(w, `${nameOf(c, p)}`) ? nameOf(c, p) : `my witness${markPronoun(c, p)}`;
+    // (docs/60 item 3: lean, the name, never "my witness": the reader has to work out who that is.)
+    const who = lean() || namesFit(w, `${nameOf(c, p)}`) ? nameOf(c, p) : `my witness${markPronoun(c, p)}`;
     // docs/55 1e: somebody who was in the room all along "was" there; "it turned out" only for one who came back in.
     fact(w, 'thought', back ? `${cap(who)}, it turned out, had come back in and was ${at}.` : `${cap(who)} was ${at}.`, 'presence', {
       about: [p],
@@ -1594,7 +1597,9 @@ export function writeArrive(w: Writer, place: PlaceId): void {
     if (look) sentences.push({ text: look, about: [p] });
   }
   if (stillThere.length > 0) sentences.push({ text: `${cap(andList(stillThere))} ${stillThere.length > 1 ? 'were' : 'was'} still there.`, about: here.filter((x) => stillThere.includes(nameOf(c, x))) });
-  sentences.forEach((x, i) => put(w, 'arrival', x.text, 'presence', { about: x.about, runOn: i > 0, ...(x.alts ? { alts: x.alts } : {}) }));
+  // docs/60 item 1: lean, who's there doing what in a sentence or two, not a sentence a person.
+  const said = lean() ? peopleInBrief(c, sentences) : sentences;
+  said.forEach((x, i) => put(w, 'arrival', x.text, 'presence', { about: x.about, runOn: i > 0, ...(x.alts ? { alts: x.alts } : {}) }));
   if (sentences.length === 0 && !pl.scene) put(w, 'arrival', `There was nobody there to ask.`, 'presence');
   // Why here: the pointers to what waits in this room, from what's held, the starred one first.
   const lastHand = w.before.log[w.before.log.length - 1]?.board?.handoff;
@@ -1694,6 +1699,48 @@ function streetOnce(text: string, street: string): string {
     last = at + m.length;
     return near ? 'the street' : m;
   });
+}
+
+/**
+ * docs/60 item 1: who's there doing what, in a sentence or two: each person's line to its first clause
+ * (what they're doing, not the flourish after it: "Mrs. Bledsoe was in the hall with a dustpan", not
+ * "…, sweeping a stair that had been swept already"), up to three to a sentence. A line whose pronoun
+ * could be somebody named before it in the sentence starts a sentence of its own; the client and
+ * somebody "still there" keep theirs.
+ */
+function peopleInBrief(c: BoardCase, xs: { text: string; about: PersonId[]; alts?: Item['alts'] }[]): { text: string; about: PersonId[]; alts?: Item['alts'] }[] {
+  const out: { text: string; about: PersonId[]; alts?: Item['alts'] }[] = [];
+  let group: { text: string; about: PersonId[] }[] = [];
+  const flush = () => {
+    if (group.length === 1) out.push(group[0] as { text: string; about: PersonId[] });
+    else if (group.length > 1) {
+      const parts = group.map((g) => g.text.replace(/\.$/, ''));
+      out.push({ text: `${parts.slice(0, -1).join(', ')}, and ${parts[parts.length - 1]}.`, about: group.flatMap((g) => g.about) });
+    }
+    group = [];
+  };
+  for (const x of xs) {
+    const p = x.about.length === 1 ? personOf(c, x.about[0] as PersonId) : undefined;
+    // (Only a line that opens on its one person's name: the client's own, and "still there", stand alone.)
+    if (!p || p.role === 'client' || !x.text.startsWith(p.short) || /\bstill there\.$/.test(x.text) || sentencesOf(x.text).length > 1) {
+      flush();
+      out.push(x);
+      continue;
+    }
+    // Their name (a face said with it, "Winslow, in a green hat,"), and what they're doing, to its first comma.
+    const look = new RegExp(`^${esc(p.short)}, [^,]+, `).exec(x.text)?.[0] ?? `${p.short} `;
+    const rest = x.text.slice(look.length);
+    const comma = rest.indexOf(', ');
+    const head = comma >= 0 && !/^and\b/.test(rest.slice(comma + 2)) && `${look}${rest.slice(0, comma)}`.split(/\s+/).length >= 6 ? `${look}${rest.slice(0, comma)}.` : x.text;
+    // (A pronoun after somebody of that sex already in the sentence could be theirs: a sentence of its own.)
+    const pr = /\b(she|her|he|him|his)\b/i.exec(head.slice(look.length))?.[1]?.toLowerCase();
+    const female = pr === 'she' || pr === 'her';
+    const clash = !!pr && group.some((g) => g.about.some((id) => personOf(c, id)?.female === female));
+    if (clash || group.length === 3) flush();
+    group.push({ text: head, about: x.about });
+  }
+  flush();
+  return out;
 }
 
 /** A second pointer that opens on somebody the first just named opens on "he" or "she" instead. */
