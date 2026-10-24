@@ -344,7 +344,12 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   // (docs/60 item 3: lean, the cap is the narrator's: names said in quotation marks don't count toward it.)
   const fixed = (it: Item, m: Mention) => (!it.exempt || !!it.counted) && ((m.kind === 'speech' && !lean()) || (m.kind === 'name' && !(lean() && it.speech) && (m.titled || !!it.keepNames || !!it.speech || !!it.counted)));
   const ahead = new Map<number, number>();
+  // (docs/60 item 3: lean, every name still to come in the narration counts: somebody said three times is
+  // a pronoun in the middle where that's clear, so the name is left for where it isn't.)
+  const coming = (it: Item, m: Mention) => lean() && m.kind === 'name' && !it.speech && (!it.exempt || !!it.counted) && !fixed(it, m);
+  const aheadLean = new Map<number, number>();
   for (const s of sents) for (const m of s.mentions) if (fixed(items[s.item] as Item, m)) ahead.set(m.who.idx, (ahead.get(m.who.idx) ?? 0) + 1);
+  for (const s of sents) for (const m of s.mentions) if (coming(items[s.item] as Item, m)) aheadLean.set(m.who.idx, (aheadLean.get(m.who.idx) ?? 0) + 1);
 
   sents.forEach((s, si) => {
     inThought = thoughtItems.has(items[s.item] as Item);
@@ -359,10 +364,11 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         lastAtOf.set(w.female, here);
       };
       if (fixed(it, m)) ahead.set(w.idx, (ahead.get(w.idx) ?? 1) - 1);
+      if (coming(it, m)) aheadLean.set(w.idx, (aheadLean.get(w.idx) ?? 1) - 1);
       const n = count.get(w.idx) ?? 0;
       // The cap, sooner for somebody named later where nothing can change it, or whom the thought
-      // will want by name.
-      const later = (ahead.get(w.idx) ?? 0) + (!inThought && reserved.has(w.idx) ? 1 : 0);
+      // will want by name. (Lean, any name still to come in the narration.)
+      const later = (ahead.get(w.idx) ?? 0) + (!inThought && reserved.has(w.idx) ? 1 : 0) + (aheadLean.get(w.idx) ?? 0);
       const pressed = n + later >= 2;
       if (m.kind === 'speech') {
         // Said in a quotation, a name counts toward the cap, and the reader has met it. (docs/60 item 3:

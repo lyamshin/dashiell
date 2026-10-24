@@ -716,7 +716,9 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const what = same ? (said[0] ?? '').replace(/ at \w+$/, '') : andList(said);
       const listy = !same;
       const H = andList(claimed.map(hourWord));
-      const reason = reasonFor(claimed);
+      // (The dead man or the pet by name, as the office has it: "when Carbone could have died". At the
+      // fact level the thought is the page's own, and the name is what it shares with the night.)
+      const reason = office.length > 1 ? (isMurder(c) ? `when ${nameOf(c, c.crime.victim)} could have died` : `when ${victimOf(c).short} could have gone`) : whyHours(c, claimed);
       const flags = ['hours', ...(listy ? ['listy'] : []), ...(alone.length ? [] : ['said-only'])];
       const text = alone.length ? (listy ? `${nameOf(c, rest)} said ${what}, and for ${H}, ${reason}, nobody had backed it up.` : `${nameOf(c, rest)} said ${what} at ${H}, ${reason}, and nobody had backed it up.`) : listy ? `${nameOf(c, rest)} said ${what}, ${reason}.` : `${nameOf(c, rest)} said ${what} at ${H}, ${reason}.`;
       add(text, clockRef, {
