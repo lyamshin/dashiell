@@ -6,8 +6,8 @@
 import { titleClient } from './home.js';
 import type { OfferedChoice, OfferedGroup, Page } from './types.js';
 import { boardGridText } from './grid.js';
-import { knownPeople, knownPlaces, linesHeld } from './knowledge.js';
-import { cap, clientOf, nameOf, personOf, placeName, type BoardDeal, type BoardRun } from './model.js';
+import { knownPeople, knownPlaces, lineShown, linesHeld } from './knowledge.js';
+import { cap, clientOf, isMurder, nameOf, personOf, placeName, type BoardDeal, type BoardRun } from './model.js';
 import { notebookWhen } from './when.js';
 import { finderGloss } from './gloss.js';
 import { recapClauses } from './pages.js';
@@ -47,6 +47,28 @@ export function costLabel(ch: Pick<OfferedChoice, 'minutes'>): string {
   return callsText(ch.minutes > 0 ? 1 : 0);
 }
 
+/**
+ * Round 5, U1: the people on a page, as the book and the CLI both head them. "free · 1 question" read
+ * as one free question to all four testers; the heading says what's free and what costs, once.
+ */
+export const TALK_HEADING = 'Talk to';
+export const TALK_NOTE = 'picking someone is free; each question costs a call';
+
+/** A person's row: how many questions are open to ask them, "1 question", "2 questions", or "all asked". */
+export function questionsText(g: Pick<OfferedGroup, 'choices'>): string {
+  const open = g.choices.filter((c) => !c.done).length;
+  return open === 0 ? 'all asked' : `${open} ${open === 1 ? 'question' : 'questions'}`;
+}
+
+/**
+ * Round 5, U10: docs/46 §1 gives Hard-boiled one star, the scene on page one, and none after. Said
+ * once, on that page, where the star is, so no star after it doesn't read as nothing worth doing.
+ */
+export function starsNote(d: BoardDeal, run: Pick<BoardRun, 'log'>): string | null {
+  if (d.kase.tier !== 5 || run.log.length !== 1) return null;
+  return 'At Hard-boiled this is the only star you get. After this page, where to go and whom to ask is up to you.';
+}
+
 export function pageBodyText(page: Page): string {
   const out: string[] = [];
   for (const b of page.blocks) {
@@ -79,16 +101,17 @@ export function choicesText(groups: readonly OfferedGroup[], taken?: string): st
   return out.join('\n');
 }
 
-/** The notebook: the people and places known, and every line held, by whose word. */
-export function notebookText(d: BoardDeal, run: BoardRun): string {
+/**
+ * What the client said, as the notebook says it, the same in the book and the CLI (round 5: the book
+ * printed the office's raw lines, the CLI these). docs/55 7, 8: the widow's title, and "says she says"
+ * said once. docs/59 note 9: a poisoning's hour said as the office said it: when he was poisoned, and
+ * that he died after. Round 5, U5: a small case's "He went at nine or ten o’clock", after a line about
+ * the client, says whose going it was.
+ */
+export function officeLines(d: BoardDeal): string[] {
   const c = d.kase;
-  const out: string[] = ['NOTEBOOK'];
-  out.push('');
-  out.push('What my client said:');
-  // docs/55 7, 8: the widow's title, and "says she says" (Raw 11's #10) said once.
-  // docs/59 note 9: a poisoning's hour said as the office said it: when he was poisoned, and that he died after.
   const office = c.givens.lines ?? c.givens.text.map((t) => ({ kind: 'found' as const, id: 'text', text: t, vars: {} as Record<string, string> }));
-  for (const g of office) {
+  return office.map((g) => {
     let t = notebookWhen(c, g, c.givens.window ?? c.crime.window, clientOf(c).short) ?? g.text;
     // docs/59 note 4: the finder as the office said them ("Mosley, a bus conductor who owed the dead man
     // money and had come round about it"), never the errand that said the debt the other way round.
@@ -96,8 +119,18 @@ export function notebookText(d: BoardDeal, run: BoardRun): string {
     if (fp && g.vars?.finderWhy) t = t.replace(`${g.vars.finder}, ${g.vars.finderWhy}`, `${g.vars.finder}, ${finderGloss(c, fp.id, g.vars.finderWhy)}`);
     // (docs/59: the neighbors' word, as the office says it now, not a woman downstairs nobody meets.)
     t = t.replace(/, on the word of the woman downstairs:/, ', on the neighbors’ word:').replace(/\. The woman downstairs says\b/, '. The neighbors say');
-    out.push(`  ${wrap(titleClient(c, t.replace(/\bsays (she|he) says\b/, 'says $1 claims')), 72).replace(/\n/g, '\n  ')}`);
-  }
+    if (!isMurder(c) && (g.kind === 'window' || g.kind === 'clock') && g.vars?.thing) t = t.replace(/^(?:He|She|It|They) (went|was taken|were taken|disappeared)\b/, `${cap(g.vars.thing)} $1`);
+    return titleClient(c, t.replace(/\b(says|say) (she|he) says\b/, '$1 $2 insists'));
+  });
+}
+
+/** The notebook: the people and places known, and every line held, by whose word. */
+export function notebookText(d: BoardDeal, run: BoardRun): string {
+  const c = d.kase;
+  const out: string[] = ['NOTEBOOK'];
+  out.push('');
+  out.push('What my client said:');
+  for (const t of officeLines(d)) out.push(`  ${wrap(t, 72).replace(/\n/g, '\n  ')}`);
   out.push('');
   out.push('People:');
   for (const p of knownPeople(c, run)) {
@@ -112,7 +145,7 @@ export function notebookText(d: BoardDeal, run: BoardRun): string {
   if (lines.length > 0) {
     out.push('');
     out.push('What I was told:');
-    for (const l of lines) out.push(`  ${wrap(l.text, 72).replace(/\n/g, '\n  ')}`);
+    for (const l of lines) out.push(`  ${wrap(lineShown(c, run, l), 72).replace(/\n/g, '\n  ')}`);
   }
   const motives = run.asked.filter((q) => q.startsWith('motive:')).map((q) => q.slice(7));
   for (const p of motives) out.push(`  ${nameOf(c, p)}’s reason: ${personOf(c, p)?.motive}.`);

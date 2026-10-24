@@ -27,7 +27,7 @@
 
 import { parseTier, typesFor, type CaseType } from '../gen/board/index.js';
 import { clockStrip, usedByPage } from '../game/board/clock.js';
-import { boardChoices, pickerFor, type Picker } from '../game/board/choices.js';
+import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { boardGridText, placeCodes } from '../game/board/grid.js';
 import { BOARD_TEACH_TITLE, BOARD_RULES, teachLines } from '../game/board/teach.js';
@@ -43,10 +43,12 @@ import {
   NOBODY,
   WHERE_BY_LABEL,
   asksOther,
+  blankRule,
   boardFields,
   clearOptions,
-  hoursThatMattered,
+  hoursWords,
   breakOptionsShown,
+  lineGroupHeads,
   curtainOfBoard,
   reportFrom,
   scoreBoard,
@@ -56,7 +58,7 @@ import {
   type LineOption,
 } from '../game/board/report.js';
 import { dealtIds, recordRun, sanitizeProfile, seenOf } from '../game/board/profile.js';
-import { costText, notebookText, pageBodyText, wrap } from '../game/board/text.js';
+import { TALK_HEADING, TALK_NOTE, costText, notebookText, pageBodyText, questionsText, starsNote, wrap } from '../game/board/text.js';
 import type { OfferedChoice, OfferedGroup } from '../game/board/types.js';
 
 /* ------------------------------------------------------------------ io */
@@ -151,7 +153,9 @@ function head(night: Night, i: number): string {
   const { d, run } = night;
   const strip = clockStrip(usedByPage(run.log, i), budgetCalls(d), deadlineWords(d.kase));
   const place = run.log[i]?.head ?? '';
-  const right = `${strip.time} · page ${i + 1} of ${run.log.length}`;
+  // Round 5, U8: "page 9 of 9" counted nothing a tester could name. The head says the time; `page <n>`
+  // turns back, and a page turned back to says which it is.
+  const right = strip.time;
   const notches = strip.notches.map((n) => (n === 'spent' ? 'x' : n === 'next' ? 'o' : '.')).join('');
   return [`${place}${' '.repeat(Math.max(2, WIDTH - place.length - right.length))}${right}`, `[${notches}] ${strip.left}`, RULE].join('\n');
 }
@@ -205,25 +209,29 @@ function pageChoicesText(night: Night): string {
     const kind = it.group.kind;
     if (kind !== last) {
       out.push('');
-      out.push(kind === 'ask' ? 'Talk to (choosing somebody opens what to ask them; that is free):' : kind === 'free' ? 'Free:' : `${it.group.heading}:`);
+      out.push(kind === 'ask' ? `${TALK_HEADING} (${TALK_NOTE}):` : kind === 'free' ? 'Free:' : `${it.group.heading}:`);
       last = kind;
     }
     if (it.person) {
       const g = it.group;
-      // docs/55 7: "free · 2 questions", not "2 topics" in the cost column (Poached 5).
-      out.push(itemLine(it.n, it.choice, `free · ${g.choices.length} ${g.choices.length === 1 ? 'question' : 'questions'}`));
+      // Round 5, U1: "2 questions", the ones still to ask; the heading says picking is free (docs/55 7's
+      // "free · 2 questions" read as two free questions to all four testers).
+      out.push(itemLine(it.n, it.choice, questionsText(g)));
       continue;
     }
     out.push(itemLine(it.n, it.choice, costText(it.choice)));
   }
-  // docs/47 A3: the key to the marks, once, on the first page.
+  // docs/47 A3: the key to the marks, once, on the first page; round 5, U10: and at Hard-boiled, that
+  // its star is the night's only one.
   if (night.run.log.length === 1) out.push('', wrap(CHOICE_KEY));
+  const stars = starsNote(night.d, night.run);
+  if (stars) out.push('', wrap(stars));
   return out.join('\n');
 }
 
 /** The key to a page's marks, said once, on the first page (docs/47 A3). */
 const CHOICE_KEY =
-  'Every question, search, walk and put costs one call; the clock moves with the calls. A star means it’s worth doing next, and says why. A tick means done, and free to read again. Choosing somebody costs nothing: their topics open, and "back" shuts them.';
+  'Every question, search and walk costs one call, and so does reading somebody a line with “Put it to”; the clock moves with the calls. A star means it’s worth doing next, and says why. A tick means done, and free to read again. Picking somebody costs nothing: what to ask them opens, and "back" shuts it. `page <n>` turns back to an earlier page.';
 
 function topicItems(night: Night, person: string): Item[] {
   const g = boardChoices(night.d, night.run).find((x) => x.kind === 'ask' && x.personId === person);
@@ -259,7 +267,7 @@ function pickerItems(night: Night, pk: Picker): { n: number; command: string; la
 
 function pickerText(night: Night, pk: Picker): string {
   const c = night.d.kase;
-  const out = [`PUT IT TO ${nameOf(c, pk.person).toUpperCase()}`, '', wrap(`${pk.help} Looking is free; reading one to ${pronWord(night, pk.person)} costs a call. If it breaks nothing, the call is gone all the same, and I’ll say why.`)];
+  const out = [`PUT IT TO ${nameOf(c, pk.person).toUpperCase()}`, '', wrap(pickerNote(night.d, pk))];
   const items = pickerItems(night, pk);
   const picking = pk.ready.length === 0 && night.save.claim !== null;
   const his = pronWord(night, pk.person, 'his');
@@ -282,8 +290,7 @@ function pronWord(night: Night, p: string, form: 'him' | 'his' = 'him'): string 
 
 /** The hours that mattered, as the notebook has them: "ten", "nine or ten". */
 function hoursWord(night: Night): string {
-  const hs = hoursThatMattered(night.d).map((h) => hourWord(h));
-  return hs.length > 1 ? `${hs.slice(0, -1).join(', ')} or ${hs[hs.length - 1]}` : (hs[0] ?? '');
+  return hoursWords(night.d);
 }
 
 /**
@@ -305,30 +312,32 @@ function lineList(opts: LineOption[], heads?: { touching: string; rest: string }
 function reportText(night: Night, path: string, who: string | null = null): string {
   const c = night.d.kase;
   const murder = c.type === 'murder';
-  const out = ['THE REPORT', '', wrap(night.run.used >= budgetCalls(night.d) ? 'The calls are spent. Whatever is on the page is what gets filed; leave a line blank and it goes in as I don’t know.' : 'Filing is final. Leave a line blank and it goes in as I don’t know.'), ''];
+  // Round 5, U6: what a blank goes in as, once, in one sentence, the book's words.
+  const out = ['THE REPORT', '', wrap(blankRule(night.d, night.run.used >= budgetCalls(night.d))), ''];
   const field = (f: ReturnType<typeof boardFields>[number]) => {
     out.push(`${f.label} (${f.key}):`);
     f.options.forEach((o, i) => out.push(`   ${String(i + 1).padStart(2)}. ${o.label}`));
     out.push('');
   };
-  for (const f of boardFields(night.d)) {
+  for (const f of boardFields(night.d, night.run)) {
     field(f);
     if (f.key === 'who') {
       out.push(`${BREAKS_LABEL} (breaks):`);
       if (who) {
         const N = nameOf(c, who);
-        out.push(...lineList(breakOptionsShown(night.d, night.run, who), { touching: `What I have about where ${N} said ${pronWord(night, who, 'his') === 'her' ? 'she' : 'he'} was at ${hoursWord(night)}:`, rest: `Anything else I have that names ${N} or is about ${hoursWord(night)}:` }));
-        // docs/61: the same list answers the other question.
-        if (asksOther(night.d)) out.push(wrap(`If ${N} is who else lied, cleared counts down this same list.`, WIDTH, '   '));
+        // Round 5, U3: the headings say what's under them, the book's words.
+        out.push(...lineList(breakOptionsShown(night.d, night.run, who), lineGroupHeads(night.d, night.run, who)));
+        // docs/61: the same list answers the other question. Round 5, U2: said as what to type.
+        if (asksOther(night.d)) out.push(wrap(`If ${N} is the other liar, give “cleared” as a number from this list too.`, WIDTH, '   '));
       } else {
-        out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists what I have that names them, or is about ${hoursWord(night)}. Or breaks=hunch.`, WIDTH, '   '));
+        out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists what I have that names them, or is about ${hoursWord(night)}. Give “breaks” as a number from that list, or breaks=hunch.`, WIDTH, '   '));
       }
       out.push('');
     }
     if (f.key === 'other') {
       // docs/61: what cleared them counts down the same list `report <name>` shows for that person.
       out.push(`${CLEARED_LABEL} (cleared):`);
-      out.push(wrap(`The lines that touch their story: npm run play -- report <name> --save ${path} lists them, the same list as for breaks. Give its number, or cleared=hunch.`, WIDTH, '   '));
+      out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists what I have that names them, the same list as for breaks. Give “cleared” as a number from it, or cleared=hunch.`, WIDTH, '   '));
       out.push('');
     }
     if (f.key === 'where') {
@@ -340,12 +349,8 @@ function reportText(night: Night, path: string, who: string | null = null): stri
   const two = asksOther(night.d);
   const head = `who=…; breaks=…; ${two ? 'other=…; cleared=…; ' : ''}when=…;`;
   const keys = murder ? `${head} how=…; why=…` : `${head} where=…; whereBy=…; why=…`;
-  const lines = ['breaks', ...(two ? ['cleared'] : []), ...(murder ? [] : ['whereBy'])];
-  out.push(
-    wrap(
-      `File it with: npm run play -- file "${keys}" --save ${path}. An answer is its number or enough of its words. For ${two ? 'breaks and cleared' : 'breaks'}, give the number from that person’s list (report <name> shows it). Leave a line out and it goes in as “I don’t know”; leave ${lines.length > 1 ? `${lines.slice(0, -1).join(', ')} or ${lines[lines.length - 1]}` : lines[0]} out and it goes in as a hunch.`,
-    ),
-  );
+  // (Round 5, U6: what a blank goes in as is said once, at the top.)
+  out.push(wrap(`File it with: npm run play -- file "${keys}" --save ${path}. An answer is its number or enough of its words. For ${two ? 'breaks and cleared' : 'breaks'}, give the number from that person’s list (report <name> shows it).`));
   return out.join('\n');
 }
 
@@ -359,7 +364,7 @@ function suspectNamed(night: Night, raw: string): string {
 }
 
 function parseReport(night: Night, text: string): BoardReport {
-  const fields = boardFields(night.d);
+  const fields = boardFields(night.d, night.run);
   const answers: Partial<Record<FieldKey, string | null>> = {};
   const lineAnswers: { key: 'breaks' | 'whereBy' | 'cleared'; raw: string }[] = [];
   for (const part of text.split(';').map((x) => x.trim()).filter(Boolean)) {
@@ -392,8 +397,8 @@ function parseReport(night: Night, text: string): BoardReport {
       answers[key] = null;
       continue;
     }
-    if (key === 'breaks' && !answers.who) fail('Name who first: breaks counts down the lines that name them.');
-    if (key === 'cleared' && (!answers.other || answers.other === NOBODY)) fail('Name who else lied first (other=…): cleared counts down the lines that touch their story.');
+    if (key === 'breaks' && !answers.who) fail('Name who first: breaks is a number from the list `report <name>` shows for them.');
+    if (key === 'cleared' && (!answers.other || answers.other === NOBODY)) fail('Name who else lied first (other=…): cleared is a number from the list `report <name>` shows for them.');
     const opts = key === 'breaks' ? breakOptionsShown(night.d, night.run, answers.who as string) : key === 'cleared' ? clearOptions(night.d, night.run, answers.other as string) : whereByOptions(night.d, night.run);
     if (/^\d+$/.test(v)) {
       const n = Number(v);
@@ -676,7 +681,7 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
         const night = load(io, path);
         const n = Number(arg);
         if (!Number.isInteger(n) || n < 1 || n > night.run.log.length) fail(`page 1 to ${night.run.log.length}.`);
-        return { out: n === night.run.log.length ? lookText(night, path) : `${pageText(night, n - 1)}\n\n(A page turned back to.)`, code: 0 };
+        return { out: n === night.run.log.length ? lookText(night, path) : `${pageText(night, n - 1)}\n\n(A page turned back to: page ${n} of ${night.run.log.length}. \`look\` shows the newest.)`, code: 0 };
       }
       case 'notebook': {
         const night = load(io, path);

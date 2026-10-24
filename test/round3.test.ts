@@ -42,10 +42,10 @@ describe('round 3: the interface (docs/47 A)', () => {
     const files = new Map<string, string>();
     const io: PlayIo = { read: (p) => files.get(p) ?? null, write: (p, x) => void files.set(p, x) };
     const first = runPlay(['new', '--seed', '7', '--tier', '0', '--save', 's.json', '--no-teach'], io).out;
-    expect(first).toContain('A star means it’s worth doing next');
+    expect(first.replace(/\s+/g, ' ')).toContain('A star means it’s worth doing next');
     const d = dealBoard(7, 0);
     const second = runPlay(['do', '1', '--save', 's.json'], io).out;
-    expect(second).not.toContain('A star means it’s worth doing next');
+    expect(second.replace(/\s+/g, ' ')).not.toContain('A star means it’s worth doing next');
     const o = playBoardOracle(d);
     const v = scoreBoard(d, o.run, o.report);
     expect(v.scoreLine).toMatch(/^4 out of 4: who \(and what shows they lied\), when, (how|where \(and what puts it there\)) and why\.$/);

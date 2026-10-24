@@ -142,14 +142,15 @@ describe('round 4: stars, the report and the curtain (docs/55 4, 5, 7)', () => {
     expect(curtainOfBoard(d)).toContain('THE SHORT WAY THROUGH (13 calls: 7 questions, a look at the papers for the motive and 5 walks)');
   });
 
-  it('the CLI says what choosing somebody costs, not a count that reads as a price', () => {
+  it('the CLI says what picking somebody costs, not a count that reads as a price (round 5, U1)', () => {
     const files = new Map<string, string>();
     const io = { read: (p: string) => files.get(p) ?? null, write: (p: string, s: string) => void files.set(p, s) };
     runPlay(['new', '--seed', '14', '--tier', '4', '--type', 'lost-pet', '--save', 's', '--no-teach'], io);
     const save = JSON.parse(files.get('s') as string);
     files.set('s', JSON.stringify({ ...save, events: MED14.slice(0, 3).map((x) => ({ do: x })) }));
     const out = runPlay(['look', '--save', 's'], io).out;
-    expect(out).toMatch(/free · \d questions?/);
+    expect(out).toMatch(/\d questions?$/m);
+    expect(out).not.toMatch(/free · /);
     expect(out).not.toMatch(/\d topics?\b/);
   });
 });
