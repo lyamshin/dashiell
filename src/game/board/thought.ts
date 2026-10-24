@@ -51,6 +51,7 @@ import { accessPhrase, atWhere, breakSaid, claimSaid, keptAt, remarkSaid, shortO
 export { breakSaid, claimSaid, keptAt, remarkSaid, shortOther };
 import { markPronoun } from './plan/refer.js';
 import { PLAN } from './plan/index.js';
+import { lean } from './plan/dial.js';
 
 export interface Thought {
   sentences: string[];
@@ -89,6 +90,8 @@ export interface ThoughtPart {
   opener?: 'So' | 'But';
   /** docs/52 build 2: the sentence as a composite to be voiced (its shape, flags and arguments). */
   say?: SaySpec;
+  /** docs/60 item 1: an aside that carries something ("None of the people I was asking about was there"): kept by the texture budget. */
+  tex?: 'keep';
 }
 
 function blank(): Thought {
@@ -129,7 +132,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     const m = markPronoun(c, p);
     return { he: pr.he + m, him: pr.him + m, his: pr.his + m, He: pr.He + m, His: pr.His + m };
   };
-  const add = (s: string, refs: string[], o: { hours?: Hour[]; people?: PersonId[]; places?: PlaceId[]; rel?: Relation; rule?: string; gloss?: string; props?: Prop[]; flesh?: Record<string, unknown>; say?: SaySpec; opener?: 'So' | 'But' } = {}) => {
+  const add = (s: string, refs: string[], o: { hours?: Hour[]; people?: PersonId[]; places?: PlaceId[]; rel?: Relation; rule?: string; gloss?: string; props?: Prop[]; flesh?: Record<string, unknown>; say?: SaySpec; opener?: 'So' | 'But'; tex?: 'keep' } = {}) => {
     t.sentences.push(s);
     t.refs.push(...refs);
     t.hours.push(...(o.hours ?? []));
@@ -147,6 +150,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       ...(o.props ? { props: o.props } : {}),
       ...(o.flesh ? { flesh: o.flesh } : {}),
       ...(o.say ? { say: o.say } : {}),
+      ...(o.tex ? { tex: o.tex } : {}),
       // docs/59 item 3: an opening "So", the page's join, said by the planner when it's free.
       ...(o.opener ? { opener: o.opener, flesh: { ...(o.flesh ?? {}), bare: s } } : {}),
     });
@@ -562,7 +566,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const tail = there.length ? `; ${names(there)} ${be}${still ? ' still' : ''} there at ${H}` : '';
       add(`${names(ps)} had been at ${where} at ${andList(was.map(hourWord))}, ${kept}, and gone before ${hourWord(first)}${tail}.`, ['givens:clock', 'givens:means'], {
         rule: 'then',
-        opener: 'So',
+        // (docs/60: lean, no "So" after a story that didn't hold: the readers took it to follow from that.)
+        ...(lean() && caught.size > 0 ? {} : { opener: 'So' as const }),
         hours: [...was, ...hs],
         people: [...ps, ...there],
         places: [l.place],
@@ -590,7 +595,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       : `At ${H}, ${reason}, ${names(goneIds)} had gone from ${where}.`;
     add(text, ['givens:clock'], {
       rule: 'then',
-      ...(opened ? {} : { opener: 'So' as const }),
+      ...(opened || (lean() && caught.size > 0) ? {} : { opener: 'So' as const }),
       hours: [...hs],
       people: [...thereNow, ...goneIds],
       places: [l.place],
@@ -680,7 +685,9 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     if (t.sentences.length === 0) {
       const where = placeName(c, thenList.place);
       const either = thenHs.length === 2 ? `${hourWord(thenHs[0] as Hour)} or ${hourWord(thenHs[1] as Hour)}` : andList(thenHs.map(hourWord));
-      add(x.pick('then-none', [`None of the people I was asking about was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people I was asking about was at ${where}.`]), ['givens:clock'], { rule: 'gloss', people: [], places: [thenList.place], hours: [...thenHs] });
+      // (docs/60: lean, "the people with a reason": the skim readers didn't know whom I was asking about.)
+      const none = lean() ? [`None of the people with a reason was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people with a reason was at ${where}.`] : [`None of the people I was asking about was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people I was asking about was at ${where}.`];
+      add(x.pick('then-none', none), ['givens:clock'], { rule: 'gloss', people: [], places: [thenList.place], hours: [...thenHs], tex: 'keep' });
     }
   }
   t.refs = [...new Set(t.refs.filter(Boolean))];
@@ -701,6 +708,33 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   // on more than their own account, an owning up that named them, say.)
   const backed = (h: Hour) => lines.some((l) => l.hour === h && l.speaker !== rest && l.about.includes(rest)) || (a.placed.get(`${rest}@${h}`)?.deps ?? []).some((d) => d !== `account:${rest}` && d !== q);
   const alone = hs.filter((h) => accountOf(c, rest)?.claims[h] && !backed(h) && !crossed.has(h) && !caught.has(`${rest}@${h}`));
+  // docs/60 items 2 and 6: at Hard-boiled, the signpost the readers found the point by: what they said
+  // for the hours it could have happened, and "nobody had backed it up" where nobody had. (The page's
+  // own fact at the hours that matter, docs/46's fact level: it ties to nothing but this page.)
+  if (fact && lean()) {
+    const claimed = alone.length ? alone : hs.filter((h) => accountOf(c, rest)?.claims[h]);
+    if (claimed.length) {
+      const said = claimed.map((h) => claimSaid(c, rest, h));
+      const same = said.every((y) => y.replace(/ at \w+$/, '') === (said[0] ?? '').replace(/ at \w+$/, ''));
+      const what = same ? (said[0] ?? '').replace(/ at \w+$/, '') : andList(said);
+      const listy = !same;
+      const H = andList(claimed.map(hourWord));
+      // (The dead man or the pet by name, as the office has it: "when Carbone could have died". At the
+      // fact level the thought is the page's own, and the name is what it shares with the night.)
+      const reason = office.length > 1 ? (isMurder(c) ? `when ${nameOf(c, c.crime.victim)} could have died` : `when ${victimOf(c).short} could have gone`) : whyHours(c, claimed);
+      const flags = ['hours', ...(listy ? ['listy'] : []), ...(alone.length ? [] : ['said-only'])];
+      const text = alone.length ? (listy ? `${nameOf(c, rest)} said ${what}, and for ${H}, ${reason}, nobody had backed it up.` : `${nameOf(c, rest)} said ${what} at ${H}, ${reason}, and nobody had backed it up.`) : listy ? `${nameOf(c, rest)} said ${what}, ${reason}.` : `${nameOf(c, rest)} said ${what} at ${H}, ${reason}.`;
+      add(text, clockRef, {
+        rule: 'own-hours',
+        hours: claimed,
+        people: [rest],
+        places: claimed.map((h) => accountOf(c, rest)?.claims[h]?.place ?? ''),
+        props: [{ k: 'WINDOW', hours: [...claimed] }, ...claimed.map((h) => ({ k: 'CLAIM', person: rest, place: accountOf(c, rest)?.claims[h]?.place ?? '', hour: h }) as Prop)],
+        say: { shape: 'OWN-WORD', flags, args: { hs: H, hourword: claimed.length > 1 ? 'hours' : 'hour', who: nameOf(c, rest), what, reason } },
+      });
+      return;
+    }
+  }
   if (alone.length) {
     const reason = reasonFor(alone);
     add(`Nobody else had said where ${nameOf(c, rest)} was at ${andList(alone.map(hourWord))}, ${reason}.`, clockRef, {

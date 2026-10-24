@@ -32,6 +32,7 @@ import type { Item } from './types.js';
 import type { PlanCtx } from './index.js';
 import { PAST_PARTICIPLE, sentencesOf } from './sentences.js';
 import { clauseHead, herIsObject, indefiniteFor, maskPlaces, narrationOf, opensOnRole, roleOf } from './measure.js';
+import { lean } from './dial.js';
 
 /** The engine's mark on a pronoun it wrote: whom it means, by their place in the case's people. */
 export function markPronoun(c: BoardCase, id: string): string {
@@ -87,6 +88,9 @@ const VERB = /^(was|were|had|has|hadn’t|wasn’t|didn’t|did|does|doesn’t|w
 const PLACE_PREP = /\b(?:at|to|from|in|into|inside|near|past|toward|towards|round|around|outside|by|over)\s*$/;
 const OBJ = /\b(to|at|with|for|by|from|of|asked|told|thanked|had|put|passed|saw|over|beside|near|behind|let|gave|watched|named|left|caught|found|about|after|against|than|wanted|met|made|kept|on|offered|pointed|showed|followed|joined|sent|minded|backed|believed|contradicted|mentioned|remembered|noticed|spotted|across from|next to)\s*$/;
 
+/** docs/60 item 3: more verbs a name is the object of (lean). */
+const OBJ_LEAN = /\b(?:see|seen|sees|heard|hear|vouched for|placed|put|asked after|waited for|went over to|went up to|sat down with|backed up)\s*$/;
+
 const esc = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 function cap(s: string): string {
@@ -100,7 +104,11 @@ function peopleOf(c: BoardCase, text: string): Who[] {
   c.people.forEach((p, idx) => {
     if (p.short.length <= 2) return;
     if (p.object && c.type !== 'lost-pet') return;
-    const role = roleOf(c, p.id);
+    // (docs/60 item 3: lean, never a look for a name: "the woman with a bandaged hand" is Grasso.)
+    // (And never a suspect by their trade: "sat down where the cafeteria cashier couldn’t look past me"
+    // read as somebody else. A watcher is met by their job, and the client and the dead are nobody else.)
+    const look = lean() && p.role === 'suspect';
+    const role = look ? undefined : roleOf(c, p.id);
     ws.push({ idx, id: p.id, short: p.short, female: pronOf(c, p.id).he === 'she', ...(role ? { role } : {}) });
   });
   // A role two people on the page share stands for neither ("the usher" at the Orpheum is
@@ -172,7 +180,8 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       const place = poss && PLACE_PREP.test(prev) && (/^’s(?:\s*[,.;:”)!?]|\s*$)/.test(after) || VERB.test(nextWord) || /^(?:and|but|or|on|in|at|for|until|till|by|with|where|when|that|which|so|then|to|from|after|before|every|each|all)$/.test(nextWord));
       const start = prev === '' || /[“—]$/.test(prev);
       // After a preposition it's an object ("brought it to Carbone had been…" is no subject), whatever follows.
-      const form: Form = poss ? 'poss' : OBJ.test(prev) && !start ? 'obj' : start || VERB.test(nextWord) ? 'subj' : 'unknown';
+      // (docs/60 item 3: lean, "did see Prentiss at Mrs. Nagy’s" is an object too, so the third mention can be "him".)
+      const form: Form = poss ? 'poss' : (OBJ.test(prev) || (lean() && OBJ_LEAN.test(prev))) && !start ? 'obj' : start || VERB.test(nextWord) ? 'subj' : 'unknown';
       const listy = /\b[A-Z][\w’.]+ and$/.test(prev) || /\b[A-Z][\w’.]+,$/.test(prev) || /^(?:’s)?(?:, [A-Z]| and [A-Z]|, and [A-Z])/.test(after) || /\bboth$/.test(prev);
       s.mentions.push({ who: w, at, len: w.short.length + (poss ? 2 : 0), kind: 'name', form, listy, titled: !!x[1], ...(place ? { place: true } : {}) });
     }
@@ -230,6 +239,18 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
     (items[x.item] as Item).slot !== 'hand-off' && opensOnRole(x.narr, female) && !x.mentions.some((m) => m.kind !== 'speech' && m.who.female === female);
   /** Names a pronoun before them hangs on ("From her post Mrs. Rafferty…"): they stay names. */
   const anchors = new Set<Mention>();
+  /**
+   * docs/60: sentence `k` is in something I said aloud ("…,” I said."), and names somebody else of
+   * `w`'s sex: after a put, who answers is said by name. (Their own answer naming somebody doesn't:
+   * "So he had told it straight" after it is theirs.)
+   */
+  const putOther = (k: number, w: Who): boolean => {
+    const s = sents[k] as Sent;
+    if (!s.mentions.some((m) => m.kind === 'speech' && m.who !== w && m.who.female === w.female)) return false;
+    // (A put: the line I set against their story. An ask that says who saw them where is only the why.)
+    if ((items[s.item] as Item).relation !== 'collides') return false;
+    return sents.some((x) => x.item === s.item && /\bI (?:said|asked)\b/.test(x.narr));
+  };
   /** Would a pronoun for `w` at `at` in sentence `si` be read as `w`, and as nobody else? */
   const resolves = (si: number, at: number, w: Who, form: Form, written = false): boolean => {
     const s = sents[si] as Sent;
@@ -258,6 +279,11 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       // closing… He had a little black notebook" was Doyle's look).
       const before = narrIdx.length ? (sents[narrIdx[narrIdx.length - 1] as number] as Sent) : undefined;
       if (before && roleOpens(before, w.female)) return false;
+      // (docs/60, lean: what I put to them since, naming somebody else of that sex, takes the pronoun
+      // from them: "“…Mrs. Mulcahy says she herself was there.” She was quiet a moment" is either woman.)
+      if (lean()) {
+        for (let k = Math.max(0, narrIdx[narrIdx.length - 1] ?? 0); k < si; k++) if (putOther(k, w)) return false;
+      }
       const win = new Set<Who>();
       for (const k of narrIdx.slice(-1)) for (const n of (sents[k] as Sent).named) if (n.who.female === w.female) win.add(n.who);
       if (win.size >= 2) return false;
@@ -303,6 +329,22 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   const otherPronoun = (s: Sent, w: Who): boolean =>
     s.mentions.some((m) => m.who !== w && m.who.female === w.female && (m.kind === 'pronoun' ? m.rep === undefined || /^(he|him|his|she|her)$/i.test(m.rep) : /^(he|him|his|she|her)$/i.test(m.rep ?? '')));
   const roleFor = (w: Who, form: Form) => (form === 'poss' ? `${w.role}’s` : (w.role as string));
+  /**
+   * docs/60 item 3: lean, a role ("the head waiter") only where the name was said in the sentence before
+   * (or earlier in this one): anywhere else the reader has to work out who it is, and the name says.
+   */
+  const roleOk = (w: Who, s: Sent, at: number): boolean => {
+    if (!lean()) return true;
+    // ("My client" and "the dead man" are nobody else, ever: the reader always knows who they are.)
+    // (Once the page has named them: the first time it's the name.)
+    if ((w.id === c.client || (w.id === c.crime.victim && c.type === 'murder')) && introduced.has(w.idx)) return true;
+    if (s.named.some((x) => x.who === w && x.at < at)) return true;
+    // (A signpost between, "Something didn’t fit.", or my own question's "I said", names nobody and
+    // doesn't take the page from them.)
+    const back = narrIdx.filter((k) => !/^(?:(?:One thing|Something) didn’t (?:fit|add up)|,? ?I (?:said|asked))\.$/.test((sents[k] as Sent).narr.replace(/\s+/g, ' ').trim()));
+    const prev = back.length ? (sents[back[back.length - 1] as number] as Sent) : undefined;
+    return !!prev && prev.named.some((x) => x.who === w);
+  };
   // What the thought names that an earlier page named too, besides a given person.
   const thoughtText = items.filter((x) => x.kind === 'fact' && x.voice === 'thought').map((x) => x.text).join(' ');
   const earlier = ctx.earlier ?? '';
@@ -320,9 +362,15 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   let inThought = false;
   // Names still to come that nothing can change (said in a quotation, in a hand-off, "Mr." on a
   // list): the cap counts them before they come.
-  const fixed = (it: Item, m: Mention) => (!it.exempt || !!it.counted) && (m.kind === 'speech' || (m.kind === 'name' && (m.titled || !!it.keepNames || !!it.speech || !!it.counted)));
+  // (docs/60 item 3: lean, the cap is the narrator's: names said in quotation marks don't count toward it.)
+  const fixed = (it: Item, m: Mention) => (!it.exempt || !!it.counted) && ((m.kind === 'speech' && !lean()) || (m.kind === 'name' && !(lean() && it.speech) && (m.titled || !!it.keepNames || !!it.speech || !!it.counted)));
   const ahead = new Map<number, number>();
+  // (docs/60 item 3: lean, every name still to come in the narration counts: somebody said three times is
+  // a pronoun in the middle where that's clear, so the name is left for where it isn't.)
+  const coming = (it: Item, m: Mention) => lean() && m.kind === 'name' && !it.speech && (!it.exempt || !!it.counted) && !fixed(it, m);
+  const aheadLean = new Map<number, number>();
   for (const s of sents) for (const m of s.mentions) if (fixed(items[s.item] as Item, m)) ahead.set(m.who.idx, (ahead.get(m.who.idx) ?? 0) + 1);
+  for (const s of sents) for (const m of s.mentions) if (coming(items[s.item] as Item, m)) aheadLean.set(m.who.idx, (aheadLean.get(m.who.idx) ?? 0) + 1);
 
   sents.forEach((s, si) => {
     inThought = thoughtItems.has(items[s.item] as Item);
@@ -337,14 +385,18 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         lastAtOf.set(w.female, here);
       };
       if (fixed(it, m)) ahead.set(w.idx, (ahead.get(w.idx) ?? 1) - 1);
+      if (coming(it, m)) aheadLean.set(w.idx, (aheadLean.get(w.idx) ?? 1) - 1);
       const n = count.get(w.idx) ?? 0;
       // The cap, sooner for somebody named later where nothing can change it, or whom the thought
-      // will want by name.
-      const later = (ahead.get(w.idx) ?? 0) + (!inThought && reserved.has(w.idx) ? 1 : 0);
+      // will want by name. (Lean, any name still to come in the narration.)
+      // (And, run again for somebody the first run named a third time, pressed from the start: a pronoun
+      // that had to be the name comes later, so one before it is the pronoun where that's clear.)
+      const later = (ahead.get(w.idx) ?? 0) + (!inThought && reserved.has(w.idx) ? 1 : 0) + (aheadLean.get(w.idx) ?? 0) + (ctx.press?.has(w.id) ? 1 : 0);
       const pressed = n + later >= 2;
       if (m.kind === 'speech') {
-        // Said in a quotation, a name counts toward the cap, and the reader has met it.
-        if (!frozen) count.set(w.idx, n + 1);
+        // Said in a quotation, a name counts toward the cap, and the reader has met it. (docs/60 item 3:
+        // lean, the reader has met it, and it doesn't count: the cap is the narrator's.)
+        if (!frozen && !lean()) count.set(w.idx, n + 1);
         introduced.add(w.idx);
         continue;
       }
@@ -355,7 +407,7 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       if (m.kind === 'name') {
         if (frozen || m.titled || it.speech) {
           note(true);
-          if (!frozen || it.counted) count.set(w.idx, n + 1);
+          if ((!frozen || it.counted) && !(lean() && it.speech)) count.set(w.idx, n + 1);
           introduced.add(w.idx);
           continue;
         }
@@ -363,7 +415,9 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         // had a table near the bandstand. Russo sat on the bench. Wojcik’s list had her…" has Russo
         // in between.
         const last = lastAtOf.get(w.female) ?? -10;
-        const between = narrIdx.slice(Math.max(0, last + 1)).some((k) => (sents[k] as Sent).mentions.some((x) => x.kind !== 'speech' && x.who !== w));
+        // (docs/60, lean: somebody else of that sex in the quotation between is somebody in between too,
+        // "Mrs. Mulcahy says she herself was…” She was quiet a moment": who answers is said by name.)
+        const between = narrIdx.slice(Math.max(0, last + 1)).some((k) => (sents[k] as Sent).mentions.some((x) => x.kind !== 'speech' && x.who !== w) || (lean() && putOther(k, w)));
         const recent = (chain.get(w.female) ?? []).slice(-1)[0] === w && here - last <= 2 && !between;
         const canPron = introduced.has(w.idx) && !anchors.has(m) && !it.keepNames && !m.listy && m.form !== 'unknown' && !otherPronoun(s, w) && resolves(si, m.at, w, m.form);
         // The thought ties back by name (docs/44): when nothing else in it names somebody or somewhere
@@ -380,7 +434,7 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         }
         // (The dead man is known by his role from the office on: "Corrigan had found the dead man",
         // where his name is to come twice in somebody's own words.)
-        if (pressed && (introduced.has(w.idx) || (w.id === c.crime.victim && c.type === 'murder') || w.id === c.client) && w.role && !m.listy) {
+        if (pressed && (introduced.has(w.idx) || (w.id === c.crime.victim && c.type === 'murder') || w.id === c.client) && w.role && !m.listy && roleOk(w, s, m.at)) {
           m.rep = m.place ? `${roleFor(w, 'poss')} place` : roleFor(w, m.form);
           note(false);
           continue;
@@ -435,7 +489,7 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       // man’s radio", when the client will name him again. A role that would read as a place, "Mrs.
       // Rafferty’s", is better than the name.)
       const placeLike = m.form === 'poss' && c.places.some((pl) => `${w.short}’s`.endsWith(pl.short));
-      if (!m.wantName && (n >= 2 || (pressed && introduced.has(w.idx)) || placeLike) && w.role && !frozen) {
+      if (!m.wantName && (n >= 2 || (pressed && introduced.has(w.idx)) || placeLike) && w.role && !frozen && (placeLike || roleOk(w, s, m.at))) {
         m.rep = roleFor(w, m.form);
         note(false);
       } else if (n >= 2 && !frozen && it.kind === 'gap' && it.slot === 'close' && unclaimed(s, m.at, w)) {

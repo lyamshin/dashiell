@@ -40,6 +40,7 @@ import { costLabel } from '../game/board/text.js';
 import { continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, tierOpen, tonightTier, type KeyValueStore, type Profile } from '../game/board/profile.js';
 import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
+import { TEXTURE, setTexture } from '../game/board/plan/texture.js';
 import { plainPage } from '../game/board/bones/plain.js';
 import type { CellMark, OfferedChoice, OfferedGroup, Page } from '../game/board/types.js';
 import { typesFor } from '../gen/board/index.js';
@@ -124,13 +125,16 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   let world: string | undefined = isWorld(w0) ? w0 : undefined;
   // docs/51: `?situated=0` writes the pages from here on with the old decks only, for comparison.
   SITUATED.on = params().get('situated') !== '0';
+  // docs/60: `?texture=full` writes the pages with every line of texture, as before the budget.
+  setTexture(params().get('texture'));
   // docs/52 §3: `?plain=1` shows each page's plain page: every fact it says, and no voice.
   const PLAIN = params().get('plain') === '1';
 
   function writeUrl(): void {
     const w = saved && screen.kind !== 'title' ? saved.world : world;
     const q0 = saved && screen.kind !== 'title' ? `?seed=${saved.seed}&t=${saved.tier}${saved.type ? `&type=${saved.type}` : ''}${w ? `&world=${w}` : ''}` : w ? `?world=${w}` : '';
-    const q1 = SITUATED.on ? q0 : `${q0 ? `${q0}&` : '?'}situated=0`;
+    const q1a = SITUATED.on ? q0 : `${q0 ? `${q0}&` : '?'}situated=0`;
+    const q1 = TEXTURE.mode === 'full' ? `${q1a ? `${q1a}&` : '?'}texture=full` : q1a;
     const q = PLAIN ? `${q1 ? `${q1}&` : '?'}plain=1` : q1;
     window.history.replaceState(null, '', `${window.location.pathname}${q}`);
   }

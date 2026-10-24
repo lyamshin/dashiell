@@ -27,6 +27,7 @@ import { LIST_ENTRY, indefiniteFor, maskPlaces, pronounAmbiguity } from './measu
 import { LOWER } from '../bones/compose.js';
 import type { Block, ProseVoice } from '../types.js';
 import { bandOf, openingOf, sentencesOf, wordsIn, type Band } from './sentences.js';
+import { lean } from './dial.js';
 
 interface S {
   /** Paragraph, item within it, sentence within the item. */
@@ -130,7 +131,8 @@ function partings(s: string, tail = false, colon = true, scene = false): [string
   // remark nobody had asked for." "…hid the street. Which suited me."
   if (tail) {
     // (Planner 2: and "…the name. Just a loop of string over a nail…", "…instead. Which has stood there…".)
-    for (const m of s.matchAll(/, (like|as if|which|the way|the kind of|just|with|past|under|over|through|along|behind|between) /g)) {
+    // (docs/60 item 5: lean, never a bare phrase of place or company on its own: "With the lamp behind her." after a look.)
+    for (const m of s.matchAll(lean() ? /, (like|as if|which|the way) /g : /, (like|as if|which|the way|the kind of|just|with|past|under|over|through|along|behind|between) /g)) {
       const at = m.index ?? 0;
       const a = s.slice(0, at).trim();
       const b = s.slice(at + 2).trim();
@@ -224,7 +226,8 @@ function joins(it: Item): 'and' | 'semi' | false {
   // (A collision is its two lines and its one join: "and" inside it would say one follows from the other.)
   // (The notebook said aloud is notes, one after another: two of them take a semicolon, never "and",
   // which makes one follow from the other: "…not even him, and I didn’t know what it was yet".)
-  if (it.kind === 'fact') return it.relation === 'collides' ? false : it.voice === 'recap' ? 'semi' : 'and';
+  // (docs/60 item 4: lean, the turn's notes are plain sentences, never two run together on a semicolon.)
+  if (it.kind === 'fact') return it.relation === 'collides' ? false : it.voice === 'recap' ? (lean() ? false : 'semi') : 'and';
   if (it.slot === 'arrival' || it.slot === 'walk' || it.slot === 'staging' || it.slot === 'reaction' || it.slot === 'close' || it.slot === 'ask') return 'and';
   // The detective's reasoning, an aside or a why, takes a semicolon, never "and" (Planner 2): "I
   // hadn’t come for the furniture; I’d come for Lieb."
@@ -403,6 +406,24 @@ function mends(paras: Item[][], ss: S[], j: number, ctx: PlanCtx, budget: { frag
       });
       // The trade is made with the hand only when it's kept (`keep`, below).
       (out[out.length - 1] as Try & { take?: () => void }).take = o.take;
+    }
+  }
+  // docs/60 item 6: lean, who was still there and who had gone may be two sentences again, where the
+  // page's rhythm wants one short ("…, Mosley was still at Moskowitz’s. By then Bledsoe had left.").
+  if (lean()) {
+    for (const s of [trio[1], trio[2], trio[0]]) {
+      const it = itemOf(s);
+      const m = it.tag === 'thought:then' ? /^(.*\S), and by then (.+)$/.exec(s.text) : null;
+      if (!m) continue;
+      out.push(() => {
+        const old = it.text;
+        const xs = sentencesOf(it.text);
+        xs.splice(s.k, 1, `${m[1]}.`, `By then ${m[2]}`);
+        it.text = xs.join(' ');
+        return () => {
+          it.text = old;
+        };
+      });
     }
   }
   // Part one at a seam it already has: the middle first, then the ends. What's seen may end on its

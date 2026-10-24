@@ -51,6 +51,7 @@ import { markPronoun, roleOf, stripMarks } from './refer.js';
 import { similesIn, ticsIn } from '../tics.js';
 import { ARRIVAL_MOVES, ASK_SIT, FEET, WALK_ARRIVES } from '../clarity-lint.js';
 import { sentencesOf } from './sentences.js';
+import { lean } from './dial.js';
 
 /**
  * docs/55 1c: texture that says a story stood up, or that nothing went against it. Never dealt where
@@ -260,7 +261,13 @@ const TOKEN = /\{(they|them|their|role|place|thing|means)\}/gi;
 /** Fill a card's tokens; null when one has nothing to go in it. */
 export function fillCard(text: string, t: Tokens): string | null {
   const slots: Record<string, string | undefined> = { they: t.they, them: t.them, their: t.their, role: t.role, place: t.place, thing: t.thing, means: t.means };
-  const lower = text.replace(TOKEN, (m) => m.toLowerCase());
+  let lower = text.replace(TOKEN, (m) => m.toLowerCase());
+  // (docs/60 item 3: lean, a card's {role} is the name; said again in the card, it's the pronoun, never
+  // the name twice in a sentence: "I asked Vitale for the truth…, or the nearest thing he had to hand".)
+  if (lean()) {
+    let n = 0;
+    lower = lower.replace(/(\b\w+\s+)?\{role\}/g, (m, before: string | undefined) => (n++ === 0 ? m : `${before ?? ''}${/^(?:to|at|with|for|by|from|of|asked|told|saw|watched|left|let|gave|over|beside|near|behind|past|on|after)\s+$/i.test(before ?? '') ? '{them}' : '{they}'}`));
+  }
   return fill({ text: lower }, slots);
 }
 
@@ -315,7 +322,9 @@ function tokensFor(it: Item, ctx: PlanCtx, said: string): Tokens {
     // docs/55 8: a suspect is asked by name, not by trade ("I asked the sewing-machine operator…", Poached 5's #25).
     const suspect = c.people.find((x) => x.id === who)?.role === 'suspect';
     if (suspect) out.role = c.people.find((x) => x.id === who)?.short ?? role;
-    else if (role) out.role = role + m;
+    // (docs/60 item 3: lean, a card says the name, and the reference pass makes it "her" where that's clear:
+    // "I went straight over to Renfro. I found a space at the bar and waited for her", not "for the bartender".)
+    else if (role) out.role = lean() ? (c.people.find((x) => x.id === who)?.short ?? role) : role + m;
   }
   if (s.placeName) out.place = s.placeName;
   if (c.type !== 'murder') out.thing = victimOf(c).short;
@@ -382,7 +391,9 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
       const ref = referentOf(it, ctx.c, s.subject);
       if (ref) it.sit.who = ref;
       ordinal++;
-      if (!SITUATED.on) continue;
+      // (docs/60 item 1: lean, the ask is the page's one staging line, and it's the plain one: it says what
+      // the answer answers, without the deck's wit on it. It's keyed all the same.)
+      if (!SITUATED.on || (it.slot === 'ask' && lean())) continue;
       const prev = items[i - 1];
       const quoteBefore = !!prev && (prev.speech === true || /”\s*$/.test(stripMarks(prev.text)));
       const tokens = tokensFor(it, ctx, said);

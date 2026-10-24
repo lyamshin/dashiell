@@ -23,14 +23,14 @@ function memoryIo(): PlayIo & { files: Map<string, string> } {
 }
 
 /** A save a tester might send: the office and the designed path's first steps, taken by their words. */
-function night(seed: number, tier: number): string {
+function night(seed: number, tier: number, texture?: 'full'): string {
   const io = memoryIo();
   const save = ['--save', 'night.json'];
   const run = (...argv: string[]): void => {
     const r = runPlay([...argv, ...save], io);
     expect(r.code, `${argv.join(' ')}: ${r.out}`).toBe(0);
   };
-  run('new', '--seed', String(seed), '--tier', String(tier), '--no-teach');
+  run('new', '--seed', String(seed), '--tier', String(tier), '--no-teach', ...(texture ? ['--texture', texture] : []));
   const d = dealBoard(seed, tier as 0);
   for (const cmd of playBoardOracle(d).commands.slice(0, 6)) {
     if (cmd.startsWith('put ')) break;
@@ -42,6 +42,9 @@ function night(seed: number, tier: number): string {
 
 const SAVES = [night(3, 4), night(5, 0)];
 const PAGES = SAVES.flatMap((save) => replaySave(save).run.log.map((page) => ({ save, page, text: pageBodyText(page).replace(/\s+/g, ' ') })));
+// (docs/60: a callback is rarer on a lean page; the same nights with every line of texture have them.)
+const FULL_SAVES = [night(3, 4, 'full'), night(5, 0, 'full')];
+const FULL_PAGES = FULL_SAVES.flatMap((save) => replaySave(save).run.log.map((page) => ({ save, page, text: pageBodyText(page).replace(/\s+/g, ' ') })));
 
 /** The longest run of a template's fixed words, from its first letter: what a tester would quote of it. */
 function fixedRun(template: string): string {
@@ -108,7 +111,7 @@ describe('trace-line', () => {
 
   it('traces a callback line to the card that exported it', () => {
     let tried = 0;
-    for (const { save, page, text } of PAGES) {
+    for (const { save, page, text } of [...PAGES, ...FULL_PAGES]) {
       for (const key of page.cardsUsed.filter((id) => id.startsWith('pay:'))) {
         const hit = [...CARDS.entries()].flatMap(([id, c]) => c.pay.filter((l) => lineKey(l) === key).map((l) => ({ id, c, l })))[0];
         const quote = hit ? fixedRun(hit.l) : '';
@@ -132,7 +135,8 @@ describe('trace-line', () => {
     // (docs/47 B7: every page has its grievance by name, and the thought sets them against the way to the means.)
     // (docs/52 build 2: those lines are voicings now, MOTIVE-SET `papers`, and the page records which.)
     // (docs/59 item 3: the find's thought, what it means: whoever did it had been where the means was, first.)
-    const lines = ['Whoever shot', 'Whoever pulled the trigger on', 'Whoever used the knife on', 'Whoever held the knife had been at', 'Whoever gave it to', 'Whoever put it in', 'Whoever let themselves into', 'Whoever used the spare on', 'Whoever it was had heard', 'Whoever it was had been at', 'Whoever it was had sat at'];
+    // (docs/60: and lean's short forms.)
+    const lines = ['Whoever shot', 'Whoever pulled the trigger on', 'Whoever used the knife on', 'Whoever held the knife had been at', 'Whoever gave it to', 'Whoever put it in', 'Whoever let themselves into', 'Whoever used the spare on', 'Whoever it was had heard', 'Whoever it was had been at', 'Whoever it was had sat at', 'Whoever poisoned', 'Whoever stabbed', 'Whoever got into', 'killer had been at'];
     const where = PAGES.flatMap((p) => lines.filter((l) => p.text.includes(l)).map((l) => ({ ...p, l })))[0];
     expect(where, 'no find line on these pages').toBeDefined();
     const w = where as NonNullable<typeof where>;

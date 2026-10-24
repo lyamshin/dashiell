@@ -44,7 +44,7 @@ then the highest tier cleared, or the next one up once that one is cleared
 twice: `tonightTier` in `src/game/board/profile.ts`). "Choose a case" unfolds
 the picker: the tier, the kind, the case number and the detective's name. A night
 is identified by its seed and tier, and the URL says which:
-`?seed=4&t=2&type=lost-pet`. Share the link and you share the night. `?situated=0` writes the pages with the old decks only (docs/51), for comparison; `?plain=1` shows each page's plain page, every fact and no voice (docs/52). The
+`?seed=4&t=2&type=lost-pet`. Share the link and you share the night. `?situated=0` writes the pages with the old decks only (docs/51), for comparison; `?plain=1` shows each page's plain page, every fact and no voice (docs/52); `?texture=full` writes the fuller pages from before docs/60's texture budget, byte for byte (the default is lean). The
 night in progress is kept in `localStorage` (`dashiell:board-run`), and so is
 the profile (`dashiell:board-profile`: nights filed, full credit, tiers
 cleared, and what the last ten nights dealt, so a new night prefers lines it
@@ -72,6 +72,7 @@ npm run read -- --seed 7 --tier 2 --curtain        # and the true board after it
 npm run read -- --seed 7 --tier 2 --skeleton       # and each page's skeleton, as JSONL (docs/49)
 npm run read -- --seed 7 --tier 2 --situated 0     # with the old decks only, not the situated deck (docs/51)
 npm run read -- --seed 7 --tier 2 --plain          # each page's plain page: every fact, no voice (docs/52)
+npm run read -- --seed 7 --tier 2 --texture full   # the fuller pages, as before docs/60's texture budget (also `play new --texture full`)
 npm run case -- --seed 7 --tier 2                  # the case itself: truth, board, path
 npm run trace -- night.json "a line off a page"    # what wrote these words
 ```
@@ -86,6 +87,10 @@ npx tsx scripts/board-measure.ts --seeds 50    # the puzzle, measured
 npx tsx scripts/board-prose.ts                 # the prose, measured (--plan off: without the microplanner; --situated 0: without the situated deck)
 npx tsx scripts/skeletons.ts --n 300 --tier all # the skeletons, a JSONL corpus (docs/49, docs/50)
 npx tsx scripts/roundtrip.ts --nights 30       # the round trip: plain pages and voicings read back to their propositions, and the clarity check (docs/52, docs/53)
+npx tsx scripts/clarity-measure.ts --nights 30 # words a page and a new fact, the repeats and the slots, against a copy of main with --root (docs/59)
+npx tsx scripts/skim-test.ts pick --out DIR    # the skim test, build against build (docs/58, docs/60): pick, dump, packets, score
+npx tsx scripts/turn-measure.ts --nights 30    # the turn's recap, in words, against docs/60's 70 and 90
+npx tsx scripts/texture-full.ts --root DIR --out FILE   # every page's hash, to show --texture full writes main's pages byte for byte (--against FILE)
 npx tsx scripts/voicings.ts check              # the voicings held to their shapes and the dial (also: samples, show, coverage, variety)
 npx tsx scripts/bones-read.ts pick --out DIR   # the blind read, build against build (pick, dump, pair, score)
 npx tsx scripts/voicings.ts check              # the voicings held to their shapes (docs/52 build 2); also samples, show, coverage, variety

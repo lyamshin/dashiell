@@ -21,6 +21,7 @@ import connectiveJson from '../../../content/board/connective.json';
 import stillJson from '../../../content/board/still.json';
 import walkJson from '../../../content/board/walk.json';
 import { similesIn, ticsIn } from './tics.js';
+import { lean } from './plan/dial.js';
 
 /** A board card: an old deck's card shape, with its family. */
 export interface BoardCard {
@@ -66,6 +67,9 @@ function tagFits(card: BoardCard, name: string, want: string): boolean {
   if (Array.isArray(have)) return have.includes(want) || have.includes('any');
   return have === want || have === 'any';
 }
+
+/** docs/60 item 3: a card that says its person's name twice. */
+const NAME_TWICE = /\{name\}[\s\S]*\{name\}/i;
 
 /**
  * The page's hand. One per page, seeded from the night and the page, and told
@@ -268,7 +272,8 @@ export class Hand {
     // docs/59 item 7: a rung whose every card says a tic again gives way to the next, before anything says one.
     for (const [pass, strict] of (plainOnly && opts.need ? [true, false] : [plainOnly]).flatMap((x) => (opts.untic ? [[x, true]] : [[x, true], [x, false]]) as [boolean, boolean][])) {
       for (const rung of rungs) {
-        const fits = pool.filter((c) => rung.every((k) => tagFits(c, k, want[k] as string)) && (!pass || !c.joke) && !(this.avoid && this.avoid.test(c.text)));
+        // (docs/60 item 3: lean, no card that names its person twice: the cards that did leaned on a role for the second.)
+        const fits = pool.filter((c) => rung.every((k) => tagFits(c, k, want[k] as string)) && (!pass || !c.joke) && !(this.avoid && this.avoid.test(c.text)) && !(lean() && NAME_TWICE.test(c.text)));
         const filled0 = fits.map((c) => ({ c, text: fill(c as unknown as Card, slots) })).filter((x): x is { c: BoardCard; text: string } => x.text !== null);
         if (filled0.length === 0) continue;
         const ok = filled0.filter((x) => this.untic(x.text));

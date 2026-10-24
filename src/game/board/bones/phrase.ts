@@ -8,6 +8,7 @@
 import type { Line } from '../knowledge.js';
 import { accountOf, listExhaustive, listOf } from '../knowledge.js';
 import { andList, clientOf, hourWord, isMurder, nameOf, oclock, personOf, placeName, pronOf, victimOf, type BoardCase, type Hour, type PersonId, type PlaceId } from '../model.js';
+import { lean } from '../plan/dial.js';
 
 /** "the Odessa at ten", or "home at ten" when it's their own. */
 export function claimSaid(c: BoardCase, p: PersonId, h: Hour): string {
@@ -40,7 +41,10 @@ export function breakSaid(c: BoardCase, l: Line, p: PersonId, asked: readonly st
     const cl = accountOf(c, sp)?.claims[l.hour as Hour];
     const comp = (cl?.company ?? []).map((x) => nameOf(c, x));
     // Plain speech, not the board read aloud ("Abramowitz had himself at…", Hard-boiled 8).
-    return `${nameOf(c, sp)} says ${pronOf(c, sp).he} was at ${placeName(c, cl?.place ?? '')} at ${oclock(l.hour as Hour)}, ${comp.length ? `with ${andList(comp)}` : 'alone'}`;
+    // (docs/60: lean, where the one put to it is of the speaker's sex, "she herself": the skim readers read
+    // the "she" as the other woman.)
+    const self = lean() && pronOf(c, sp).he === pronOf(c, p).he && sp !== p ? (pronOf(c, sp).he === 'she' ? ' herself' : ' himself') : '';
+    return `${nameOf(c, sp)} says ${pronOf(c, sp).he}${self} was at ${placeName(c, cl?.place ?? '')} at ${oclock(l.hour as Hour)}, ${comp.length ? `with ${andList(comp)}` : 'alone'}`;
   }
   if (l.kind === 'remark') return remarkSaid(c, l);
   if (l.kind === 'given' || l.kind === 'find') return l.text.replace(/^[^:]+: /, '').replace(/[.”]+$/, '').replace(/^“/, '');

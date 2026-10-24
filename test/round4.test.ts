@@ -48,7 +48,8 @@ describe('round 4: the reasoning lines (docs/55 1)', () => {
   it('a hand-off names the person and the question, never the ground', () => {
     const run = night(14, 4, 'lost-pet', MED14);
     const page = prose(run.log[run.log.length - 1] as Page).replace(/\s+/g, ' ');
-    expect(page).toMatch(/I wanted to know who she’d passed on the way\.|She might have passed somebody on the way, and I wanted to know who\.|Whoever she’d passed on the way, I wanted to hear about it\./);
+    // (docs/60 item 6: lean, the rhythm may part the second at its "and".)
+    expect(page).toMatch(/I wanted to know who she’d passed on the way\.|She might have passed somebody on the way(?:, and|\.) I wanted to know who\.|Whoever she’d passed on the way, I wanted to hear about it\./);
     expect(page).not.toMatch(/place behind them|that ground for myself/);
   });
 
@@ -95,7 +96,8 @@ describe('round 4: facts and continuity (docs/55 2)', () => {
   it('the office asks where the dead man had been before the client says, and the dead man isn’t "found dead"', () => {
     for (const [s, t] of [[5, 2], [8, 5]] as const) {
       const page = prose(night(s, t, 'murder', []).log[0] as Page).replace(/\s+/g, ' ');
-      expect(page).toMatch(/(?:I asked where he’d spent the evening\.|“Where had he been earlier\?” I asked\.|“Was he out at all tonight\?” I asked\.) “The (?:Shamrock|Odessa)/);
+      // (docs/60 item 3: lean, the dead man by name where "he" could be the finder.)
+      expect(page).toMatch(/(?:I asked where (?:he’d|[A-Z][\w’]+ had) spent the evening\.|“Where had he been earlier(?: in the evening)?\?” I asked\.|“Was he out at all tonight\?” I asked\.) “(?:The|[^”]{0,30} the) (?:Shamrock|Odessa)/);
       expect(page).not.toMatch(/found dead/);
     }
   });

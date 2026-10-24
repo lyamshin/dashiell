@@ -189,7 +189,7 @@ function breakerV(c: BoardCase, lx: Lexicon, s: string, v: VCtx): Prop {
     }
     return { k: 'LIST', watcher, place, hour, people, ...(m[3] ? { whole: true } : {}), ...(Object.keys(faces).length ? { faces } : {}) };
   }
-  m = new RegExp(`^(${lx.re.NAME})(?: says (?:he|she) was (?:at )?|’s own answer was (?:at )?)(here|${lx.re.PL}) at ((?:${lx.re.H}) o’clock), (?:with (.+)|alone)$`).exec(t);
+  m = new RegExp(`^(${lx.re.NAME})(?: says (?:he|she)(?: himself| herself)? was (?:at )?|’s own answer was (?:at )?)(here|${lx.re.PL}) at ((?:${lx.re.H}) o’clock), (?:with (.+)|alone)$`).exec(t);
   if (m) return { k: 'CLAIM', person: personV(c, m[1] as string), place: placeV(c, m[2] as string, v), hour: hourV(m[3] as string), company: m[4] ? namesV(c, lx, m[4]) : [] };
   m = new RegExp(`^(${lx.re.NAME}) passed (${lx.re.NAME}|${MARK}) on (${lx.re.STREET}) at (${lx.re.H})$`).exec(t);
   if (m) return { k: 'REMARK', speaker: personV(c, m[1] as string), saw: personV(c, m[2] as string), how: 'passed', where: m[3] as string, hour: hourV(m[4] as string) };
@@ -590,6 +590,15 @@ function whereR(c: BoardCase, lx: Lexicon, s: string, who: Id): PlaceId {
 }
 
 /** A tail of company: ", with Feeney and Ashby (in the house)", ", on my own", or nothing. */
+/** docs/60 item 5: the company somebody had the last time tonight they were at a place, before an hour. */
+function sameCompany(c: BoardCase, who: Id, place: PlaceId, before: number): Id[] {
+  const a = c.accounts.find((x) => x.person === who);
+  const hs = c.board.hours.filter((h) => h < before && a?.claims[h as Hour]?.place === place);
+  const last = hs[hs.length - 1];
+  if (last === undefined) throw new Error('voiced: the same people as when?');
+  return [...(a?.claims[last as Hour]?.company ?? [])];
+}
+
 function withR(c: BoardCase, lx: Lexicon, s: string | undefined): Id[] | undefined {
   if (s === undefined || s === '') return undefined;
   if (/^, (?:on my own|by myself|alone)$/.test(s)) return [];
@@ -683,7 +692,8 @@ const READ: Partial<Record<Shape, Reader>> = {
     } else if (reason !== undefined) place = placesIn(c, lx, reason, who).at(-1)?.id;
     else if (a.where !== undefined) place = whereR(c, lx, a.where as string, who);
     if (!place) throw new Error('voiced: where?');
-    let company = withR(c, lx, a.with as string | undefined);
+    // (docs/60 item 5: "with the same people": whoever was with them the last time they were there tonight.)
+    let company = a.with === ', with the same people' ? sameCompany(c, who, place, hours[0] as number) : withR(c, lx, a.with as string | undefined);
     if (company === undefined && flags.has('alone')) company = [];
     if (reason !== undefined && !flags.has('aside')) {
       // (Company the reason names, "to meet Abramowitz", "to Dr. Hirsch’s surgery": named, the writer's flag, counts a place called after them.)
@@ -728,7 +738,8 @@ function clauseR(a: Record<string, Read>, flags: ReadonlySet<string>, comp: Comp
   const E = entryAlt(v.c);
   // (A clause may open on its names: "Somebody in a grey fedora came in at eleven", "Two men off the docks…".)
   const said = (a.names as string).replace(/^(?:Somebody|Two|Three|A) /, (x) => x.toLowerCase());
-  const who = listV(said, E.re).map((n) => E.of.get(n) as string);
+  // (docs/60 item 5: somebody back for a second stint is the engine's marked pronoun.)
+  const who = new RegExp(`^${MARK}$`, 'i').test(said.trim()) ? [personV(v.c, said.trim())] : listV(said, E.re).map((n) => E.of.get(n) as string);
   if (flags.has('doing') && !(a.doing as string)?.trim()) throw new Error('voiced: doing what?');
   const from = a.from as number | undefined;
   let hs: number[];

@@ -55,6 +55,13 @@ async function engine(root: string) {
   const gen = await import(`${R}/gen/board/index.js`);
   const model = await import(`${R}/game/board/model.js`);
   const oracle = await import(`${R}/game/board/oracle.js`);
+  // (docs/60: `--texture full|lean` for a tree with the dial; a tree from before it has none.)
+  try {
+    const dial = await import(`${R}/game/board/plan/dial.js`);
+    dial.setTexture(val('texture'));
+  } catch {
+    /* a tree from before docs/60 */
+  }
   return { typesFor: gen.typesFor as (t: number) => string[], dealBoard: model.dealBoard, tierName: model.tierName as (t: number) => string, playBoardOracle: oracle.playBoardOracle, playWanderer: oracle.playWanderer };
 }
 

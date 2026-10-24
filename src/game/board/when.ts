@@ -14,6 +14,7 @@
 
 import type { GivenLine } from '../../gen/board/types.js';
 import { cap, hourWord, isMurder, pronOf, type BoardCase, type Hour } from './model.js';
+import { lean } from './plan/dial.js';
 
 /** A poisoning: chloral, laudanum, rat poison. */
 export function isPoison(c: BoardCase): boolean {
@@ -78,7 +79,10 @@ export function officeWhen(c: BoardCase, g: GivenLine, hours: readonly number[])
     // A poisoning: that's when the dose went in, and the death came after.
     const pr = pronOf(c, c.crime.victim);
     const after = poisonAfter(c);
-    const done = after ? (two ? ` Whichever it was, that’s when ${pr.he} was poisoned; ${after}.` : ` That’s when ${pr.he} was poisoned; ${after}.`) : '';
+    // (docs/60: lean, two sentences: the skim readers stopped on the semicolon.)
+    const sep = lean() ? '. ' : '; ';
+    const tail = lean() && after ? `${after.charAt(0).toUpperCase()}${after.slice(1)}` : after;
+    const done = after ? (two ? ` Whichever it was, that’s when ${pr.he} was poisoned${sep}${tail}.` : ` That’s when ${pr.he} was poisoned${sep}${tail}.`) : '';
     return `${lead} ${what}.${done}`;
   }
   const what = smallWhat(g, hours);

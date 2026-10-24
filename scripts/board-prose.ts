@@ -81,6 +81,7 @@ import { proseIssues, type ProseIssue } from '../src/game/board/prose-lint.js';
 import { isWorld, worldBible } from '../src/gen/board/world/index.js';
 import { bibleShare } from '../src/game/board/world.js';
 import { PLAN } from '../src/game/board/plan/index.js';
+import { setTexture } from '../src/game/board/plan/dial.js';
 import { SITUATED, DROPS, parseKey, project, situatedDeck } from '../src/game/board/plan/situated.js';
 import { factSentences, joinsIn, listSmell, pronounAmbiguity, restatedPointer, thoughtParagraphs } from '../src/game/board/plan/measure.js';
 // @ts-expect-error — plain JavaScript module, no declarations.
@@ -98,6 +99,8 @@ const tiers = (val('tiers') ?? '0,1,2,3,4,5').split(',').map(Number) as TierInde
 const show = args.includes('--show');
 if (val('plan') === 'off') PLAN.ops = false;
 if (val('situated') === '0') SITUATED.on = false;
+// docs/60: `--texture full` measures the pages with every line of texture, as before the budget.
+setTexture(val('texture'));
 const SIT_SLOTS = new Set(['why-here', 'walk', 'staging', 'ask', 'reaction', 'close', 'hand-off', 'gloss']);
 const cardKey = new Map(situatedDeck().map((c) => [c.id, parseKey(c.key)]));
 // docs/48 §4: `--world neighbourhood` reads nights cast from the bible, and adds the bible's share.

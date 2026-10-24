@@ -18,7 +18,9 @@ import type { Args } from './bones/voice.js';
 import { sayFirst } from './bones/say.js';
 import { plainComposite } from './bones/plain.js';
 import { entryOf, listProp, remarkProps } from './bones/extract.js';
-import { andList, cap, hourWord, nameOf, oclock, personOf, placeName, type BoardCase } from './model.js';
+import { andList, cap, hourWord, nameOf, oclock, personOf, placeName, pronOf, type BoardCase } from './model.js';
+import { lean } from './plan/dial.js';
+import { markPronoun } from './plan/refer.js';
 import { shortOther } from './bones/phrase.js';
 
 /* ------------------------------------------------------------------ *
@@ -222,7 +224,10 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
       // docs/52: where, for every hour of the run; with whom, where the line says it (by name, or alone).
       const said = named || who.length > 0 || alone !== '';
       // (docs/59 item 8: "went along with Salerno to Rafferty’s, with Ruggiero and Sirkin": whoever the reason names isn't named again after it.)
-      const tail = named || withSomebody ? '' : who.length ? `, with ${andList(who.filter((x) => !(reason ?? '').includes(x)))}${house}` : alone;
+      // (docs/60 item 5: lean, back at the same place with the same people later in the evening: "with the
+      // same people", not their names again.)
+      const again = lean() && i > 0 && who.length > 0 && !named && !withSomebody && !house && runs.slice(0, i).some((r0) => r0.place === r.place && Array.from({ length: r0.to - r0.from + 1 }, (_, k) => key(a.claims[(r0.from + k) as Hour]?.company ?? [])).every((x) => x === key(comps[0]?.who ?? [])));
+      const tail = named || withSomebody ? '' : again ? ', with the same people' : who.length ? `, with ${andList(who.filter((x) => !(reason ?? '').includes(x)))}${house}` : alone;
       const company = named ? 'named' : withSomebody ? 'aside' : who.length ? 'with' : alone ? 'alone' : 'bare';
       push({ shape: 'CLAIM-SPAN', flags: [...flags, company], args: { ...args, with: tail }, manner }, runHours, runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h, ...(said ? { company: [...(a.claims[h]?.company ?? [])] } : {}) }) as Prop));
     } else {
@@ -487,8 +492,11 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
       const a = r[0] as Hour;
       const b = r[r.length - 1] as Hour;
       const props = r.map((h) => LISTP(h, [...g.ks]));
-      const extra = [n, ...(flavor ? [flavor] : []), ...(i > 0 ? ['back'] : []), ...(doing ? ['doing'] : []), ...(usual ? ['usual'] : []), ...(!allEvening ? ['shift'] : [])];
-      const base: Args = { names, ...(doing ? { doing } : {}) };
+      const extra = [n, ...(flavor ? [flavor] : []), ...(i > 0 ? ['back', ...(lean() ? ['back-lean'] : [])] : []), ...(doing ? ['doing'] : []), ...(usual ? ['usual'] : []), ...(!allEvening ? ['shift'] : [])];
+      // docs/60 item 5: lean, somebody back for a second stint is "he" or "she", not their name again
+      // ("Glick was in at seven and left soon after. He came back at nine…").
+      const again = lean() && i > 0 && g.ks.length === 1 && !(g.ks[0] as string).includes(':') ? `${pronOf(c, g.ks[0] as string).he}${markPronoun(c, g.ks[0] as string)}` : undefined;
+      const base: Args = { names: again ?? names, ...(doing ? { doing } : {}) };
       if (a === first && b === last) add(['all', ...extra], base, props);
       else if (a === first) add(['left', a === b ? 'first' : 'after', ...extra], { ...base, to: { t: 'hour', h: b } }, props);
       else if (b === last) add(['came', a === b ? 'last' : 'stay', ...extra], { ...base, from: { t: 'hour', h: a } }, props);

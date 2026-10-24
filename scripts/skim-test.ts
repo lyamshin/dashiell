@@ -210,6 +210,13 @@ if (cmd === 'pick') {
   const ids = JSON.parse(readFileSync(val('ids') as string, 'utf8')) as PageId[];
   const model = await import(`${root}/src/game/board/model.ts`);
   const oracle = await import(`${root}/src/game/board/oracle.ts`);
+  // (docs/60: `--texture full|lean` for a tree with the dial; a tree from before it has none.)
+  try {
+    const dial = await import(`${root}/src/game/board/plan/dial.ts`);
+    dial.setTexture(val('texture'));
+  } catch {
+    /* a tree from before docs/60 */
+  }
   const out: Record<string, string> = {};
   for (const [k, id] of ids.entries()) {
     const d = model.dealBoard(id.seed, id.tier, id.type, id.world === 'neighbourhood' ? { world: id.world } : {});

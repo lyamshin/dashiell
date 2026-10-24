@@ -35,6 +35,7 @@ import { andList, hourWord, nameOf, oclock, placeName, pronOf, type BoardCase, t
 import { markPronoun, roleOf } from '../plan/refer.js';
 import { shortOther } from './phrase.js';
 import type { Id, Shape } from './types.js';
+import { lean } from '../plan/dial.js';
 
 export interface Voicing {
   id: string;
@@ -89,7 +90,10 @@ export function specificity(v: Voicing): number {
  * names one the composite hasn't doesn't fit (the old decks' rule: a card is dealt only when every
  * slot can be filled).
  */
-export function fitting(shape: Shape, flags: ReadonlySet<string>, o: { manner?: string; tierBand?: string } = {}, args?: Args): Voicing[] {
+export function fitting(shape: Shape, flags0: ReadonlySet<string>, o: { manner?: string; tierBand?: string } = {}, args?: Args): Voicing[] {
+  // docs/60: lean, every composite carries `lean`: a voicing that asks for it is lean's own, one that
+  // forbids it is the page as it read before (`?texture=full`).
+  const flags = lean() && !flags0.has('lean') ? new Set([...flags0, 'lean']) : flags0;
   const out = (BY_SHAPE.get(shape) ?? []).filter(
     (v) =>
       (v.manner === undefined || v.manner === o.manner) &&

@@ -51,7 +51,9 @@ import { capThingClose } from './closers.js';
 import { sayOnce } from './once-pass.js';
 import { pronounAmbiguity } from './measure.js';
 import { speakerOf } from './speaker.js';
+import { budgetTexture, droppable, lean, petKind, type TexSpent } from './texture.js';
 export { speakerOf } from './speaker.js';
+export { TEXTURE, lean, setTexture } from './texture.js';
 
 export type { Item, Unit, Relation, GapSlot, PageBudget } from './types.js';
 export { sentencesOf, wordsIn, bandOf, markedSentences, openingOf } from './sentences.js';
@@ -83,6 +85,10 @@ export interface PlanCtx {
   hand?: VoiceHand;
   /** docs/59 item 7: the page's own prose laid out already (the section before the turn), for its one simile. */
   pageSoFar?: string;
+  /** docs/60 item 1: what the page has spent of its texture budget (its one joke, its one staging line), across its sections. */
+  tex?: TexSpent;
+  /** docs/60 item 3: people the reference pass named a third time, pressed from the start when it's run again. */
+  press?: Set<string>;
 }
 
 export function newBudget(): PageBudget {
@@ -156,12 +162,18 @@ export function planSection(
   // docs/51, docs/52 §4: textures attach after the voicing, here and only here: the gaps'
   // situations, and the situated deck. Then the reference and the rhythm.
   if (PLAN.ops) situate(paraItems, ctx, firstBlock);
+  // docs/60 item 1: the texture budget (lean only): one joke, one staging line, the place and its people.
+  if (PLAN.ops) budgetTexture(paraItems, ctx);
   if (PLAN.ops) {
     paraItems = rhythm(paraItems, ctx);
     // docs/59 items 1 and 7: said once on the page, and one simile frame (before the reference, so a
     // line traded in has its pronouns settled with the rest).
     sayOnce(paraItems, ctx);
+    // (docs/60 item 6: lean, the rhythm again on what said-once left, where it took a sentence out.)
+    if (lean()) paraItems = rhythm(paraItems, ctx);
     referWithTrades(paraItems, ctx);
+    // docs/60 item 5: a pet named in the reckoning says what it is, once a page.
+    petKind(paraItems, ctx, ctx.pageSoFar ?? '');
     // docs/55 6: about half a night's pages end on a thing having a feeling, at most.
     if (ctx.run) capThingClose(paraItems, ctx.run.log);
   }
@@ -263,6 +275,48 @@ function referWithTrades(paras: Item[][], ctx: PlanCtx): void {
       });
     }
     breaks = again;
+  }
+  // docs/60 item 3: lean, where a name would still be said a third time in the narration (no pronoun
+  // was clear, and no role is allowed there), the decoration that says it goes: a close, a flourish, a
+  // staging line, latest first. The reference pass is run again on what's left.
+  const restore0 = () => paras.forEach((ps, i) => ps.forEach((x, k) => (x.text = original[i]?.[k] as string)));
+  for (let round = 0; lean() && round < 3 && breaks.length > 0; round++) {
+    let dropped = false;
+    for (const b of breaks) {
+      const p = ctx.c.people.find((x) => x.id === b.who);
+      if (!p) continue;
+      const said = (x: Item) => {
+        const i = paras.findIndex((ps) => ps.includes(x));
+        const k = i >= 0 ? (paras[i] as Item[]).indexOf(x) : -1;
+        return k >= 0 && ((original[i]?.[k] ?? '').includes(p.short) || ((x.about ?? []).includes(p.id) && x.kind === 'gap'));
+      };
+      const it = [b.item, ...[...paras.flat()].reverse().filter((x) => x !== b.item)].find((x) => droppable(x) && x.text.trim() && said(x));
+      if (!it) continue;
+      paras.forEach((ps, i) => {
+        const k = ps.indexOf(it);
+        if (k >= 0) (original[i] as string[])[k] = '';
+      });
+      it.alts = undefined;
+      it.onDrop?.();
+      dropped = true;
+    }
+    if (!dropped) break;
+    restore0();
+    breaks = refer(paras, ctx);
+  }
+  // (Still a third name: run again with them pressed from the start, kept where it names fewer.)
+  if (lean() && breaks.length > 0) {
+    const press = new Set(breaks.map((b) => b.who));
+    const was = paras.map((ps) => ps.map((x) => x.text));
+    restore0();
+    const before = ctx.press;
+    ctx.press = press;
+    const again = refer(paras, ctx);
+    ctx.press = before;
+    if (again.length < breaks.length) breaks = again;
+    else {
+      paras.forEach((ps, i) => ps.forEach((x, k) => (x.text = was[i]?.[k] as string)));
+    }
   }
   // docs/59 item 8: a card whose pronoun the page leaves to two people ("Bernstein looked once at the
   // place where Fritz belonged, and then kept his eyes on me") takes another card that fitted its draw

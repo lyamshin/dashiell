@@ -17,6 +17,7 @@ import type { Beat } from '../sheets.js';
 import type { ProseVoice } from '../types.js';
 import type { Composite, Prop, Shape } from '../bones/types.js';
 import type { Args } from '../bones/voice.js';
+import type { TexRole } from './texture.js';
 
 /** docs/49 §2: what the page has spent of its joins: one "so" chain, one "but", and Planner 2's semicolons. */
 export interface PageBudget {
@@ -110,6 +111,14 @@ export interface Item {
   say?: SaySpec;
   /** docs/52 build 2: words said in the same breath after the voicing (inside its closing quotation mark): the office's pointer's reason. */
   sayAfter?: string;
+  /** docs/60 item 1: what the texture is for, for the budget (`texture.ts`); unset, its slot says. */
+  tex?: TexRole;
+  /** docs/60 item 1: the card was dealt as the page's joke. */
+  jk?: boolean;
+  /** docs/60 item 1: what the budget undoes when it takes this off the page (a set-up's pay-offs). */
+  onDrop?: () => void;
+  /** docs/60 item 1: what the budget undoes when it trims this to its first sentence. */
+  onTrim?: () => void;
 }
 
 /** docs/52 build 2: a composite to be voiced. */

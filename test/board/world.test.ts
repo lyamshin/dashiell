@@ -3,7 +3,7 @@
  * doesn't hold; a night is cast from it with every invariant the dealt cast
  * keeps; the prose draws on it first; continuity keeps the culprit fresh.
  */
-import { describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import placesJson from '../../content/neighbourhood/places.json';
 import peopleJson from '../../content/neighbourhood/people.json';
 import stubPlaces from '../../content/neighbourhood/stub/places.json';
@@ -27,6 +27,7 @@ import { walkBetween } from '../../src/game/board/walk.js';
 import { teachLines, BOARD_TEACH_LINES } from '../../src/game/board/teach.js';
 import { continuityOf, recordRun, sanitizeProfile, emptyProfile } from '../../src/game/board/profile.js';
 import { runPlay, type PlayIo } from '../../src/cli/play-lib.js';
+import { setTexture } from '../../src/game/board/plan/dial.js';
 
 const clone = <T>(x: T): T => JSON.parse(JSON.stringify(x)) as T;
 const bible = worldBible('neighbourhood');
@@ -264,12 +265,22 @@ describe('continuity', () => {
 });
 
 describe('the prose draws on the bible first', () => {
-  const runs = [
-    dealBoard(3, 4, 'murder', { world: 'neighbourhood' }),
-    dealBoard(5, 1, 'lost-pet', { world: 'neighbourhood' }),
-    dealBoard(2, 2, 'lost-item', { world: 'neighbourhood' }),
-    dealBoard(4, 5, 'murder', { world: 'neighbourhood' }),
-  ].map((d) => ({ d, run: playBoardOracle(d).run }));
+  // (docs/60: the bible's voice lines and closes are texture; these hold them on the full page.)
+  beforeAll(() => setTexture('full'));
+  afterAll(() => setTexture('lean'));
+  const runs = (() => {
+    setTexture('full');
+    try {
+      return [
+        dealBoard(3, 4, 'murder', { world: 'neighbourhood' }),
+        dealBoard(5, 1, 'lost-pet', { world: 'neighbourhood' }),
+        dealBoard(2, 2, 'lost-item', { world: 'neighbourhood' }),
+        dealBoard(4, 5, 'murder', { world: 'neighbourhood' }),
+      ].map((d) => ({ d, run: playBoardOracle(d).run }));
+    } finally {
+      setTexture('lean');
+    }
+  })();
 
   it('says a place’s own arrival on the way in, and most of what an arrival and a staging say is the bible’s', () => {
     for (const { d, run } of runs) {
