@@ -84,33 +84,41 @@ describe('round 5, U2 and U6: the report says what to type, and what a blank is,
   });
 });
 
-describe('round 5, U3: the first group is what its heading says', () => {
-  it('every line under it is about them at the hours that mattered, or about where they said they were then', () => {
+describe('round 5, U3: docs/55 5’s wide first group, under a heading that says what it holds', () => {
+  it('every line under the heading fits it: at the hours that mattered, about them or a place they said they were tonight', () => {
     for (const { d, run } of NIGHTS) {
       const hours = new Set(hoursThatMattered(d));
+      const lines = linesHeld(d.kase, run);
       for (const who of d.kase.people.filter((p) => p.role === 'suspect').map((p) => p.id)) {
         const own = run.asked.includes(`account:${who}`) ? accountOf(d.kase, who) : undefined;
-        const lines = linesHeld(d.kase, run);
+        const theirs = new Set(Object.values(own?.claims ?? {}).map((cl) => cl?.place));
+        const head = lineGroupHeads(d, run, who).touching;
+        // The heading names the places only when there are places to name: their own evening, held.
+        expect(head.includes('the places'), `${d.kase.id} ${who} ${head}`).toBe(!!own);
         for (const o of breakOptionsShown(d, run, who).filter((x) => x.touches)) {
           const l = lines.find((x) => x.id === o.value);
           expect(l && l.hour !== undefined && hours.has(l.hour), `${d.kase.id} ${who} ${o.label}`).toBe(true);
-          const about = l?.about.includes(who) || (!!own && l?.place === own.claims[l?.hour ?? 0]?.place);
-          expect(about, `${d.kase.id} ${who} ${o.label}`).toBe(true);
+          expect(l?.about.includes(who) || (!!own && l?.place !== undefined && theirs.has(l.place)), `${d.kase.id} ${who}: “${o.label}” under “${head}”`).toBe(true);
         }
       }
     }
   });
 
-  it('Raw 11: Mrs. Kowalski’s ten o’clock is under “anything else”, since Bellucci said Moe’s at ten', () => {
+  it('the testers’ nights: Bellucci’s Kowalski’s ten o’clock fits the heading now, and the line that breaks a story is one of several', () => {
     const out = cli(RAW11)('report', 'Bellucci');
-    const head = lineGroupHeads(...(() => {
-      const { d, run } = played(RAW11);
-      return [d, run, 'bellucci'] as const;
-    })());
-    expect(head.touching).toBe('What I have about Bellucci, or about where he said he was, at ten:');
-    const first = out.slice(out.indexOf(head.touching), out.indexOf('Anything else I have'));
+    const { d, run } = played(RAW11);
+    const head = lineGroupHeads(d, run, 'bellucci');
+    expect(head.touching).toBe('What I have at ten about Bellucci and the places he said he was tonight:');
+    const first = out.slice(out.indexOf('What I have at ten about Bellucci'), out.indexOf('Anything else I have'));
+    expect(first).toContain('Mrs. Kowalski: at ten o’clock, only Rafferty and Moretti were at');
     expect(first).toContain('Alfano: at ten o’clock, only Steinbach, Lanza and Pardo were at');
-    expect(first).not.toContain('Mrs. Kowalski: at ten o’clock');
+    const med = played(MEDIUM14);
+    const thorndike = breakOptionsShown(med.d, med.run, 'thorndike').filter((o) => o.touches);
+    expect(thorndike.length).toBeGreaterThan(2);
+    expect(thorndike[0]?.value).not.toBe('remark:account:pickering#0');
+    expect(lineGroupHeads(med.d, med.run, 'thorndike').touching).toBe('What I have at nine or ten about Thorndike and the places he said he was tonight:');
+    const hb = played(HB8);
+    expect(breakOptionsShown(hb.d, hb.run, 'renfro').filter((o) => o.touches).length).toBeGreaterThan(2);
   });
 });
 

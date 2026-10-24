@@ -29,26 +29,23 @@ The first page's key also says what a put is ("Every question, search and walk c
 
 The form's own hints say it the same way ("Name them first: … lists what I have that names them, the same list as for breaks. Give “cleared” as a number from it, or cleared=hunch."), and so do the CLI's refusals ("cleared is a number from the list `report <name>` shows for them"). The book shows that list under the question itself, so it needs no sentence.
 
-### U3. The first group is what its heading says (`report.ts` `breakOptions`, `lineGroupHeads`)
+### U3. The first group keeps its lines, and its heading says what they are (`report.ts` `lineGroupHeads`)
 
-A line goes in the first group when it's at an hour that mattered and either names them or is about the place they said they were then: the same test a put reads a line by (`judgeLine`). Lines about a place their story names at *another* hour (docs/55 5's widening) go under "Anything else". Inside the first group, what was said of the place they said comes first, then where anybody else put them, each in the order held. Both headings are one function the book and the CLI share; the first says what's under it.
+The testers' complaint was that the heading said something its lines weren't ("What I have about where Bellucci said he was at ten", over Mrs. Kowalski's ten o'clock at Kowalski's, where he never said he was at ten), not that there were lines to choose between. So the group is docs/55 5's, unchanged: lines at the hours that mattered about them, or about any place their own story names, in the order held, so the line that breaks a story is "one of several and not first by rank". What changed is the heading, which now says exactly that, from one function the book and the CLI share. Once their own evening is held: "What I have at ten about Bellucci and the places he said he was tonight:"; before it, "What I have at ten about Bellucci:"; with two hours, "at nine or ten". The second group stays "Anything else I have that names Bellucci or is about ten:".
 
 Raw 11, `report Bellucci` (he said Kowalski's at eight and nine, Moe's at ten):
 
 > What I have about where Bellucci said he was at ten:
 > &nbsp;&nbsp;1. Mrs. Kowalski: at ten o’clock, only Rafferty and Moretti were at Kowalski’s.
 > &nbsp;&nbsp;2. Alfano: at ten o’clock, only Steinbach, Lanza and Pardo were at Moe’s.
-> Anything else I have that names Bellucci or is about ten:
-> &nbsp;&nbsp;3. … eight o’clock … 4. … nine o’clock …
 
-> What I have about Bellucci, or about where he said he was, at ten:
-> &nbsp;&nbsp;1. Alfano: at ten o’clock, only Steinbach, Lanza and Pardo were at Moe’s.
-> Anything else I have that names Bellucci or is about ten:
-> &nbsp;&nbsp;2. … eight o’clock … 3. … nine o’clock … 4. Mrs. Kowalski: at ten o’clock, only Rafferty and Moretti were at Kowalski’s.
+> What I have at ten about Bellucci and the places he said he was tonight:
+> &nbsp;&nbsp;1. Mrs. Kowalski: at ten o’clock, only Rafferty and Moretti were at Kowalski’s.
+> &nbsp;&nbsp;2. Alfano: at ten o’clock, only Steinbach, Lanza and Pardo were at Moe’s.
 
-Medium 14, `report Thorndike`: five lines under the heading, among them "Alfano says she was at the chop house at ten o’clock" (the tester: "That isn't about Thorndike at all") → one, Pickering's Second Avenue. Hard-boiled 8, `report Renfro`: seven → two (Reinhardt's ten o'clock and Abramowitz's own Odessa at ten). Poached 5's "a line about the other liar under each" goes the same way.
+Medium 14, `report Thorndike`: the same five lines, now under "What I have at nine or ten about Thorndike and the places he said he was tonight:", where "Alfano says she was at the chop house at ten o’clock" fits (he said the chop house at eleven), which "What I have about where Thorndike said he was at nine or ten" didn't. Hard-boiled 8, `report Renfro`: the same seven, under "What I have at nine or ten about Renfro and the places he said he was tonight:" (the Delmonico rooms at seven, the Odessa at eight and ten). Poached 5's "line about the other liar under each" stays too: it's at the hour that mattered, at a place the named person's own story names, and the heading says so.
 
-**This reverses docs/55 5,** which widened the group so the line that breaks a story was "one of several and not first by rank". With the heading true, the one line about Thorndike at nine or ten is the group. `test/round4.test.ts`'s docs/55 test now holds the new rule. What it costs the "first line the form offers" readers is in §3.
+The first build of this branch narrowed the group to what the old heading claimed instead (lines about them, or about the place they said, at those hours). The coordinator turned that down before merging: the group was then often one line, and that line was the answer (Thorndike 5 → 1, Renfro 7 → 2), so the form did the player's last step, for the culprit and the other liar alike, which is what docs/55 5 was written to stop; and the readers that file the first line the form offers rose from 0% to as much as 9% a tier (§3). The honest heading over the wide group is the choice here; the designer may revisit it.
 
 ### U4. The fences offered are the ones the night named (`report.ts` `whereOptions`, `boardFields(d, run)`)
 
@@ -152,7 +149,7 @@ Distances follow the map, so some walks say a different distance and the walk ca
 
 - U1: the heading, "1 question", "all asked", never "free ·";
 - U2, U6: "give “cleared” as a number", never "counts down"; "goes in as" once in the CLI's form, in `blankRule`'s words, which the book uses;
-- U3: every line in the first group is at an hour that mattered and names them or is at the place they said then; Raw 11's Kowalski ten o'clock is under "Anything else";
+- U3: every line in the first group fits its heading's own test (at an hour that mattered, and about them or a place they said they were tonight), and the heading names the places only once their evening is held; Raw 11's Kowalski ten o'clock is under it; Medium 14's Thorndike and Hard-boiled 8's Renfro keep more than two lines there;
 - U4: **a report option for a fence nobody named that night fails**; Raw 11 offers Pardo and the flat;
 - U5: the face and stranger lines; no list line says "I didn’t"/"I couldn’t" or "back to the room"; the notebook and the report agree word for word; "home"; "Fritz went"; the why form;
 - U7: the four closings, the score unchanged; at par, nothing spare;
@@ -161,7 +158,7 @@ Distances follow the map, so some walks say a different distance and the walk ca
 - U10: the note on page one at Hard-boiled only;
 - U11: every place on an avenue is north of Houston and uptown from the office; Medium 14's first walk is "uptown and east".
 
-Updated: `round4.test.ts` (docs/55 5's group test, now the U3 rule; the cost label), `round3.test.ts` (the key's star sentence, read across its new line break), `other-liar.test.ts` and `board-engine.test.ts` (the cleared sentence).
+Updated: `round4.test.ts` (the cost label; docs/55 5's group test is as on main), `round3.test.ts` (the key's star sentence, read across its new line break), `other-liar.test.ts` and `board-engine.test.ts` (the cleared sentence).
 
 ## 3. Measures
 
@@ -169,18 +166,13 @@ Updated: `round4.test.ts` (docs/55 5's group test, now the U3 rule; the cost lab
 - **Dealt boards:** dealt `b906a1009c23fe86`, neighbourhood `af89ea961f7168e1`, as docs/60.
 - **`board-prose`, 30 nights a tier, both worlds:** every lint 0, the engine-words column included, as on main. Words a page (median) moved by one at most (dealt Coddled 102 → 101; the neighbourhood's Poached 121 → 122 and Hard-boiled 113 → 114): the walks say other distances. Every other column is main's.
 - **The new chrome, linted** (`jargon.ts`'s `engineWords`): the 162 spare-call closings above, every held line as shown, the client's lines and the picker's new sentences, over the oracle's nights (12 seeds a tier and type; the closings, 15): no engine words, but for the client's own "Nobody else." after a party's guest list, the generator's line, printed as before. (It found "says she claims", main's rule, and the rule says "insists" now. The CLI form's own help says "list" and "cleared" as before; docs/61 allows the form's question and answer.)
-- **`board-measure`, 50 seeds a tier and type, main → this branch.** The puzzle columns are main's, line for line: the oracle (100% solved, at par), par, the refusal shortcut, the confession route, the wanderer (who right, solved, citing), whose story breaks first, the lint and plain terms. The "liar did it" readers, which answer what cleared the other liar with the first line the form offers, moved at Soft-boiled and Medium murders only (§4):
+- **`board-measure`, 50 seeds a tier and type: main's, byte for byte**, every table and every line under them: the puzzle columns (the oracle 100% solved at par, par, the refusal shortcut, the confession route, the wanderer, whose story breaks first, the lint and plain terms) and the shortcut readers' columns, which answer what cleared the other liar with the first line the form offers (0% at Soft-boiled and Medium for the first, the last and a random liar caught, and anybody with access; 42% and 44% for the reader citing the grid, as docs/61 §4 left them). The readers see the form as the player does, the fences the night named included (U4), and nothing moved.
 
-  | tier, murders | first liar caught | anybody with access | a liar at random | last liar caught | the last, citing the grid |
-  |---|---|---|---|---|---|
-  | Soft-boiled | 0% → 18% | 0% → 8% | 0% → 10% | 0% → 0% | 46% → 46% |
-  | Medium | 0% → 6% | 0% → 4% | 0% → 16% | 0% → 12% | 60% → 60% |
-
-  By tier, all case types: Soft-boiled 0/0/0/0% → 9/4/5/0%, Medium 0/0/0/0% → 3/2/8/6%. Every lost-pet and lost-item night, and Poached and Hard-boiled throughout, are main's.
+  For the record, the first build's narrow group (§1 U3) moved those readers on Soft-boiled and Medium murders, all on refusers' nights where the innocent liar said home: Soft-boiled 0% → 18% (first liar caught), 8% (anybody with access), 10% (a liar at random); Medium 0% → 6%, 4%, 16%, and 12% (last liar caught); by tier at most 9%. With the wide group back they're 0% again.
 
 ## 4. What's open
 
-- **U3's cost to the shortcut readers.** The reader that names the first (or the last, or a random) liar it caught and answers "what cleared them" with the first line the form offers was at 0% from Soft-boiled up (docs/61); it's now up to 9% at Soft-boiled and 8% at Medium (by tier; 18% on Soft-boiled murders). Every one is a refuser's night (docs/61 §4, §8): the innocent liar said home, nobody watches a home, and the one line about them at the crime hour is the keeper's list at the place they really were, which both breaks their story and clears them. docs/55 5's wider group buried that line under lines about other places in their evening; with the heading true it's the group. The puzzle columns didn't move, and the reader that cites the grid's own line was already at 42–44% on those nights. Closing it is docs/61 §8's: the generator (the culprit's story not the one met last), or the grid. Or the designer may prefer docs/55 5's decoys back with a heading that says what they are ("…, and the places in his evening").
+- **U3, the designer's to revisit.** The wide group under an honest heading is the coordinator's call over the narrow group the first build had (§1 U3). The testers' Medium 14 line, "Alfano says she was at the chop house at ten o’clock" under Thorndike, now fits its heading but is still there to read past; if that's still noise to a player, the next step is ordering inside the group, not leaving lines out.
 - **The turn's offer (U7), clarity-3's.** "I could face Bellucci with it now." (Raw and Coddled, docs/46's teaching tiers) invites the call the verdict now names as spare. Proposed: "I could face Bellucci with it, or file on what I had." `oracle.ts`'s `turnSaid` reads the sentence ("I could face (.+?) with it now\.") and has to follow it.
 - **Pickering's route (U11), the generator's.** A side remark puts the passer-by on the scene's street on their way between their two places, whether or not the way runs there. The fix (pick a remark only where the scene's street lies between the two places, or say it without "on my way to") changes the dealt cases, so it isn't made here.
 - **The grid's "!" at Hard-boiled (U9):** docs/47 #5's, above; the designer's call.
@@ -191,4 +183,4 @@ Updated: `round4.test.ts` (docs/55 5's group test, now the U3 rule; the cost lab
 
 ## 5. In the browser
 
-This worktree's vite, at the pane's desktop width (1024) and at 375 px: the Raw 11 turn page ("Talk to (picking someone is free; each question costs a call)", "Alfano all asked", "Steinbach 2 questions"); Bellucci's picker with its note; the report form (the blank rule, "What I have about Bellucci, or about where he said he was, at ten:" over Alfano's line alone, "Anything else…" over the three Kowalski lines, "Where it is now: Pardo / Still at the Marchetti flat", the why "Says the late Mr. Marchetti promised them the watch"); Hard-boiled 8's page one with the star note; its Delmonico page's people at 375; and its verdict ("Facing Grasso was a call I didn’t need…"). At 375 px nothing scrolls sideways (the document is 375 wide) and the heading's note wraps under "Talk to".
+This worktree's vite, at the pane's desktop width (1024) and at 375 px: the Raw 11 turn page ("Talk to (picking someone is free; each question costs a call)", "Alfano all asked", "Steinbach 2 questions"); Bellucci's picker with its note; the report form (the blank rule, "What I have at ten about Bellucci and the places he said he was tonight:" over Mrs. Kowalski's and Alfano's ten o'clock, "Anything else…" over Mrs. Kowalski's eight and nine, re-checked at 375 px after the heading changed, "Where it is now: Pardo / Still at the Marchetti flat", the why "Says the late Mr. Marchetti promised them the watch"); Hard-boiled 8's page one with the star note; its Delmonico page's people at 375; and its verdict ("Facing Grasso was a call I didn’t need…"). At 375 px nothing scrolls sideways (the document is 375 wide) and the heading's note wraps under "Talk to".

@@ -268,11 +268,12 @@ export function breakOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>
   const hours = new Set(hoursThatMattered(d));
   const own = who !== null && run.asked.includes(`account:${who}`) ? accountOf(c, who) : undefined;
   // docs/47 A4: a line touches their story when it says where they were at an hour that mattered,
-  // or who was at the place they said they were then: what the group's heading says, and the same
-  // test a put reads a line by (`judgeLine`). Round 5, U3: no longer any place their story names at
-  // another hour (docs/55 5), which put lines about nobody's claim under a heading that said they
-  // were; in the order held, so the line that breaks it isn't first by rank.
-  const touches = (l: Line): boolean => who !== null && l.hour !== undefined && hours.has(l.hour) && (l.about.includes(who) || (!!own && l.place !== undefined && l.place === own.claims[l.hour]?.place));
+  // or who was at the place they claimed then. docs/55 5: or who was, at those hours, at any place
+  // their own story names: so the group is the lines a careful reader would check, in the order they
+  // were held, and never the one line that breaks it, alone, on top. Round 5, U3 (docs/63): the
+  // group's heading says exactly this (`lineGroupHeads`), so every line under it fits it.
+  const theirs = new Set<string>(own ? Object.values(own.claims).flatMap((x) => (x?.place ? [x.place] : [])) : []);
+  const touches = (l: Line): boolean => who !== null && l.hour !== undefined && hours.has(l.hour) && (l.about.includes(who) || (!!own && l.place !== undefined && (l.place === own.claims[l.hour]?.place || theirs.has(l.place))));
   return linesHeld(c, run)
     .filter((l) => l.kind !== 'find' && (who === null || l.speaker !== who))
     .filter((l) => (l.hour !== undefined && hours.has(l.hour)) || (who !== null && l.about.includes(who)))
@@ -285,17 +286,7 @@ export function breakOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>
  */
 export function breakOptionsShown(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>, who: PersonId | null): LineOption[] {
   const all = breakOptions(d, run, who);
-  // Round 5, U3: in the first group, what was said of the place they said they were first (the
-  // digest's "lines about the claimed place and hour first"), then where anybody else put them,
-  // each in the order held. Truth-blind: it's the same order for the liar and the honest.
-  const own = who !== null && run.asked.includes(`account:${who}`) ? accountOf(d.kase, who) : undefined;
-  const lines = linesHeld(d.kase, run);
-  const atTheirs = (o: LineOption) => {
-    const l = lines.find((x) => x.id === o.value);
-    return !!own && l?.hour !== undefined && l.place === own.claims[l.hour]?.place;
-  };
-  const touching = all.filter((o) => o.touches);
-  return [...touching.filter(atTheirs), ...touching.filter((o) => !atTheirs(o)), ...all.filter((o) => !o.touches)];
+  return [...all.filter((o) => o.touches), ...all.filter((o) => !o.touches)];
 }
 
 /** The hours that mattered, as the form says them: "ten", "nine or ten". */
@@ -305,17 +296,19 @@ export function hoursWords(d: BoardDeal): string {
 }
 
 /**
- * Round 5, U3: the two groups' headings, as the book and the CLI both say them. The first says
- * exactly what `touches` holds: lines about them at those hours, or about where they said they
- * were then (only once their own evening is held).
+ * Round 5, U3 (docs/63): the two groups' headings, as the book and the CLI both say them. The first
+ * says exactly what `touches` holds, docs/55 5's group: lines at the hours that mattered about them,
+ * or about any place they said they were tonight (once their own evening is held). "What I have
+ * about where Bellucci said he was at ten" claimed less than that, over Mrs. Kowalski's ten o'clock.
  */
 export function lineGroupHeads(d: BoardDeal, run: Pick<BoardRun, 'asked'>, who: PersonId): { touching: string; rest: string } {
   const c = d.kase;
   const N = nameOf(c, who);
   const hs = hoursWords(d);
   const told = run.asked.includes(`account:${who}`);
+  const he = pronOf(c, who).he;
   return {
-    touching: told ? `What I have about ${N}, or about where ${pronOf(c, who).he} said ${pronOf(c, who).he} was, at ${hs}:` : `What I have about ${N} at ${hs}:`,
+    touching: told ? `What I have at ${hs} about ${N} and the places ${he} said ${he} was tonight:` : `What I have at ${hs} about ${N}:`,
     rest: `Anything else I have that names ${N} or is about ${hs}:`,
   };
 }

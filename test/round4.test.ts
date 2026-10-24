@@ -118,19 +118,15 @@ describe('round 4: stars, the report and the curtain (docs/55 4, 5, 7)', () => {
     expect(stars[0]?.why).toBe('ask Pickering who she passed on the way over at ten');
   });
 
-  // Round 5, U3 (docs/63) reverses docs/55 5: the first group is what its heading says, the lines
-  // about them, or about where they said they were, at the hours that mattered, and nothing else, so
-  // here the one line about Thorndike at nine or ten is the group. What docs/55 5 kept from it: the
-  // rest is all there, under "Anything else", in the order held.
-  it('the report groups the lines about them by what its heading says, and keeps the rest under it', () => {
+  it('the report doesn’t put the line that breaks the story first, alone', () => {
     const save = { game: 'dashiell-play', version: 1, engine: 'board', seed: 14, tier: 4, type: 'lost-pet', detective: 'Dashiell', events: ['go scene', 'search scene', 'go neighbours', 'ask whitfield evening', 'go bar', 'ask barkeep list', 'go h', 'ask thorndike evening', 'go u', 'ask alfano evening', 'put alfano 10 list:barkeep@10', 'ask fairbanks evening', 'go bar', 'ask pickering evening'].map((x) => ({ do: x })), person: null, picker: null, claim: null };
     const d = dealBoard(14, 4, 'lost-pet');
     let run = newBoardRun(d);
     for (const e of save.events) run = stepBoard(d, run, e.do).run;
     const opts = breakOptionsShown(d, run, 'thorndike');
     const touching = opts.filter((o) => o.touches);
-    expect(touching.map((o) => o.value)).toEqual(['remark:account:pickering#0']);
-    expect(opts.filter((o) => !o.touches).map((o) => o.value)).toEqual(expect.arrayContaining(['list:barkeep@9', 'list:barkeep@10']));
+    expect(touching.length).toBeGreaterThan(2);
+    expect(touching[0]?.value).not.toBe('remark:account:pickering#0');
   });
 
   it('the report quotes what the page said', () => {
