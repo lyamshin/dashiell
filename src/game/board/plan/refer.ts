@@ -239,6 +239,16 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
     (items[x.item] as Item).slot !== 'hand-off' && opensOnRole(x.narr, female) && !x.mentions.some((m) => m.kind !== 'speech' && m.who.female === female);
   /** Names a pronoun before them hangs on ("From her post Mrs. Rafferty…"): they stay names. */
   const anchors = new Set<Mention>();
+  /**
+   * docs/60: sentence `k` is in something I said aloud ("…,” I said."), and names somebody else of
+   * `w`'s sex: after a put, who answers is said by name. (Their own answer naming somebody doesn't:
+   * "So he had told it straight" after it is theirs.)
+   */
+  const putOther = (k: number, w: Who): boolean => {
+    const s = sents[k] as Sent;
+    if (!s.mentions.some((m) => m.kind === 'speech' && m.who !== w && m.who.female === w.female)) return false;
+    return sents.some((x) => x.item === s.item && /\bI (?:said|asked)\b/.test(x.narr));
+  };
   /** Would a pronoun for `w` at `at` in sentence `si` be read as `w`, and as nobody else? */
   const resolves = (si: number, at: number, w: Who, form: Form, written = false): boolean => {
     const s = sents[si] as Sent;
@@ -267,6 +277,11 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       // closing… He had a little black notebook" was Doyle's look).
       const before = narrIdx.length ? (sents[narrIdx[narrIdx.length - 1] as number] as Sent) : undefined;
       if (before && roleOpens(before, w.female)) return false;
+      // (docs/60, lean: what I put to them since, naming somebody else of that sex, takes the pronoun
+      // from them: "“…Mrs. Mulcahy says she herself was there.” She was quiet a moment" is either woman.)
+      if (lean()) {
+        for (let k = Math.max(0, narrIdx[narrIdx.length - 1] ?? 0); k < si; k++) if (putOther(k, w)) return false;
+      }
       const win = new Set<Who>();
       for (const k of narrIdx.slice(-1)) for (const n of (sents[k] as Sent).named) if (n.who.female === w.female) win.add(n.who);
       if (win.size >= 2) return false;
@@ -395,7 +410,9 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         // had a table near the bandstand. Russo sat on the bench. Wojcik’s list had her…" has Russo
         // in between.
         const last = lastAtOf.get(w.female) ?? -10;
-        const between = narrIdx.slice(Math.max(0, last + 1)).some((k) => (sents[k] as Sent).mentions.some((x) => x.kind !== 'speech' && x.who !== w));
+        // (docs/60, lean: somebody else of that sex in the quotation between is somebody in between too,
+        // "Mrs. Mulcahy says she herself was…” She was quiet a moment": who answers is said by name.)
+        const between = narrIdx.slice(Math.max(0, last + 1)).some((k) => (sents[k] as Sent).mentions.some((x) => x.kind !== 'speech' && x.who !== w) || (lean() && putOther(k, w)));
         const recent = (chain.get(w.female) ?? []).slice(-1)[0] === w && here - last <= 2 && !between;
         const canPron = introduced.has(w.idx) && !anchors.has(m) && !it.keepNames && !m.listy && m.form !== 'unknown' && !otherPronoun(s, w) && resolves(si, m.at, w, m.form);
         // The thought ties back by name (docs/44): when nothing else in it names somebody or somewhere
