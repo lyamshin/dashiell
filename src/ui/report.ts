@@ -69,7 +69,7 @@ export function renderVerdict(verdict: Verdict, onAgain: () => void, endings: En
     const row = el('div', { class: `verdict-row${f.correct ? (f.half ? ' half' : '') : ' wrong'}${f.line ? ' verdict-row--line' : ''}` });
     row.append(
       el('span', { class: 'label' }, f.label),
-      el('span', { class: 'given' }, f.correct ? (f.half ? `${f.given} — right, but you couldn’t have known` : f.given) : `${f.given} — it was ${f.truth}`),
+      el('span', { class: 'given' }, f.correct ? (f.half ? `${f.given} — right, but you couldn’t have known` : f.given) : `${f.given} — ${f.why ?? `it was ${f.truth}`}`),
       el('span', { class: 'mark', text: f.correct ? (f.half ? '½' : '✓') : '✗' }),
     );
     table.append(row);

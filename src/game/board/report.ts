@@ -10,6 +10,11 @@
  * right name on the right line is solved; the right name on a hunch or the
  * wrong line is right, but you couldn't have known, and counts half.
  *
+ * docs/61: from Poached up, where the night has an innocent liar, the report
+ * asks about the other broken story too: who else lied, and what cleared
+ * them (the check on an admission, or the list that places them), or a
+ * hunch. That's its own point, and solved needs it.
+ *
  * The verdict (`Verdict`) is what the book's verdict page and the play CLI
  * print.
  */
@@ -21,7 +26,8 @@ import { minimalSets } from '../../gen/board/path.js';
 import { techniquesUpTo } from '../../gen/board/tiers.js';
 import { questionsOf, solve } from '../../gen/board/solver.js';
 import { Hand } from './decks.js';
-import { accountOf, collisionsOf, confrontationOf, judgeLine, linesHeld, type Line } from './knowledge.js';
+import { accountOf, collisionsOf, confrontationOf, judgeLine, linesHeld, listOf, solveRun, type Line } from './knowledge.js';
+import type { Lie } from '../../gen/board/types.js';
 import {
   andList,
   cap,
@@ -49,7 +55,7 @@ import { motiveForm, motiveSaid, whyOrder } from './motives.js';
 import { plainWhy } from './stars.js';
 import { poisonAfter, whenQuestion } from './when.js';
 
-export type FieldKey = 'who' | 'when' | 'how' | 'why' | 'where' | 'breaks' | 'whereBy';
+export type FieldKey = 'who' | 'when' | 'how' | 'why' | 'where' | 'breaks' | 'whereBy' | 'other' | 'cleared';
 
 /**
  * How a filed report came out: everything right on the right lines (solved), the right name on a
@@ -69,6 +75,8 @@ export interface FieldResult {
   half?: boolean;
   /** A line asked for under another answer (what breaks their story, what puts it there). It scores through that answer, not on its own. */
   line?: boolean;
+  /** docs/61: said after the answer in place of "it was …" when it isn't right: "the right name, but not what cleared him". */
+  why?: string;
 }
 
 /** The report, scored. */
@@ -101,6 +109,28 @@ export function pointsText(points: number): string {
 /** The report's new questions, as the form asks them. */
 export const BREAKS_LABEL = 'What shows they lied';
 export const WHERE_BY_LABEL = 'What puts it there';
+/** docs/61: the other broken story, as the form asks it (plain: it's an instruction), and as the verdict says it. */
+export const OTHER_QUESTION = 'Somebody else’s story didn’t hold either. Who, and what cleared them?';
+export const OTHER_LABEL = 'Who else lied';
+export const CLEARED_LABEL = 'What cleared them';
+/** The form's answer for nobody else. */
+export const NOBODY = 'nobody';
+export const NOBODY_LABEL = 'Nobody else';
+
+/**
+ * docs/61: the other liar: the innocent whose story breaks at the crime hour too (a secret, or the
+ * Hard-boiled friend covering for the culprit). Only from Poached up, where rule 9 deals one.
+ */
+export function otherLie(d: BoardDeal): Lie | null {
+  const c = d.kase;
+  if (c.tier < 2) return null;
+  return c.lies.find((l) => l.person !== c.crime.culprit && l.hour === c.crime.hour) ?? c.lies.find((l) => l.person !== c.crime.culprit) ?? null;
+}
+
+/** Whether the report asks who else lied: only on a night with an innocent liar. */
+export function asksOther(d: BoardDeal): boolean {
+  return otherLie(d) !== null;
+}
 
 export interface FieldSpec {
   key: FieldKey;
@@ -134,6 +164,8 @@ export function boardFields(d: BoardDeal): FieldSpec[] {
   const it = c.type === 'lost-pet' ? pronOf(c, c.crime.victim) : { he: 'it', him: 'it' };
   const out: FieldSpec[] = [
     { key: 'who', label: isMurder(c) ? 'Who did it' : `Who took ${it.him}`, options: people },
+    // docs/61: who else lied (the line that cleared them is asked under it).
+    ...(asksOther(d) ? [{ key: 'other' as const, label: OTHER_QUESTION, options: [...people, { value: NOBODY, label: NOBODY_LABEL }] }] : []),
     // docs/59 note 9: the question says exactly what it asks: "When was he poisoned?", the hour the dose went in.
     { key: 'when', label: whenQuestion(c), options: hours },
   ];
@@ -149,6 +181,7 @@ function truthOf(d: BoardDeal, k: FieldKey): string {
   if (k === 'when') return String(c.crime.hour);
   if (k === 'how') return c.means.name;
   if (k === 'why') return c.crime.culprit;
+  if (k === 'other') return otherLie(d)?.person ?? NOBODY;
   const h = holdersOf(c).find((x) => c.crime.whereNow?.text.includes(x.who.split(',')[0] as string));
   return h ? `holder:${h.id}` : 'scene';
 }
@@ -163,6 +196,7 @@ export function truthReport(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'>
     why: truthOf(d, 'why'),
     ...(isMurder(d.kase) ? { how: truthOf(d, 'how') } : { where: truthOf(d, 'where'), whereBy }),
     breaks,
+    ...(asksOther(d) ? { other: truthOf(d, 'other'), cleared: run ? (heldClearers(d, run)[0]?.id ?? null) : null } : {}),
   };
 }
 
@@ -179,6 +213,7 @@ export function reportFrom(d: BoardDeal, answers: Partial<Record<FieldKey, strin
     why: answers.why ?? null,
     ...(isMurder(d.kase) ? { how: answers.how ?? null } : { where: answers.where ?? null, whereBy: answers.whereBy ?? null }),
     breaks: answers.breaks ?? null,
+    ...(asksOther(d) ? { other: answers.other ?? null, cleared: answers.other && answers.other !== NOBODY ? (answers.cleared ?? null) : null } : {}),
   };
 }
 
@@ -342,6 +377,49 @@ export function trueWhereByText(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'pu
   return o?.label ?? 'nothing on the night’s path';
 }
 
+/* ------------------------------------------------------------------ *
+ * docs/61: who else lied, and what cleared them.
+ * ------------------------------------------------------------------ */
+
+/**
+ * What "what cleared them" offers for whoever is named as the other liar: the same list as "what
+ * shows they lied" offers for that name (the lines that touch their story first), so `report <Name>`
+ * answers both. Nobody else: no line, only a hunch.
+ */
+export function clearOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>, other: PersonId | null | undefined): LineOption[] {
+  if (other === NOBODY) return [];
+  return breakOptionsShown(d, run, other ?? null);
+}
+
+/**
+ * The held lines that clear the other liar: at the hour they lied, a line that puts them where they
+ * really were, on somebody's word that holds (a list, a face on a list matched to them, a trusted
+ * story they're in, the check an admission named), once what's held places them there. Their own
+ * owning up is never one (decided 2026-09-28: an admission is checked, not believed).
+ */
+export function heldClearers(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>): Line[] {
+  const c = d.kase;
+  const lie = otherLie(d);
+  if (!lie) return [];
+  const p = lie.person;
+  const h = lie.hour;
+  const s = solveRun(c, run);
+  if (s.placed.get(`${p}@${h}`)?.place !== lie.truth) return [];
+  const look = personOf(c, p)?.look;
+  return linesHeld(c, run).filter((l) => {
+    if (l.hour !== h || l.place !== lie.truth || l.speaker === p) return false;
+    if (l.kind === 'list') return l.about.includes(p) || (!!look && (listOf(c, l.speaker as PersonId)?.entries[h] ?? []).some((e) => 'look' in e && e.look === look));
+    if (l.kind === 'claim') return l.about.includes(p) && s.status.get(`${l.speaker}@${h}`)?.s === 'trusted';
+    return (l.kind === 'remark' || l.kind === 'given') && l.about.includes(p);
+  });
+}
+
+/** The line that cleared the other liar, as the notebook says it: the player's own if they held one, else the designed path's. */
+export function trueClearerText(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'>): string {
+  const l = (run ? heldClearers(d, run)[0] : undefined) ?? heldClearers(d, pathRun(d))[0];
+  return l?.text ?? 'nothing on the night’s path';
+}
+
 function lineLabel(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>, id: string | null | undefined, opts: LineOption[]): string {
   if (!id) return HUNCH;
   return opts.find((o) => o.value === id)?.label ?? linesHeld(d.kase, run).find((l) => l.id === id)?.text ?? id;
@@ -363,8 +441,22 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
     who,
     { key: 'breaks', label: BREAKS_LABEL, given: lineLabel(d, run, report.breaks, breakOptions(d, run, report.who)), truth: trueBreakerText(d, run), correct: who.correct && breaksOk, answered: true, line: true },
   ];
+  const other = otherLie(d);
   for (const f of scored.slice(1)) {
     fields.push(f);
+    if (f.key === 'other' && other) {
+      // docs/61: who else lied, and the line that clears them. Its point needs both; a hunch, the
+      // wrong line or the wrong name costs it.
+      const named = f.correct;
+      const ok = named && !!report.cleared && heldClearers(d, run).some((l) => l.id === report.cleared);
+      f.label = OTHER_LABEL;
+      if (named && !ok) {
+        f.correct = false;
+        f.why = `the right name, but not what cleared ${pronOf(d.kase, other.person).him}`;
+      }
+      fields.push({ key: 'cleared', label: CLEARED_LABEL, given: lineLabel(d, run, report.cleared, clearOptions(d, run, report.other)), truth: trueClearerText(d, run), correct: ok, answered: true, line: true });
+      continue;
+    }
     if (f.key !== 'where') continue;
     // Where it is now: which line put it there. A hunch or the wrong line halves where.
     const ok = !!report.whereBy && heldWhereBy(d, run).some((o) => o.value === report.whereBy);
@@ -376,8 +468,14 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
   const outcome: Outcome = !who.answered ? 'cold' : !who.correct ? 'wrong-man' : who.half ? 'lucky' : points === asked ? 'solved' : 'thin';
   const plain: string[] = [];
   if (who.half) plain.push('Right, but you couldn’t have known: half credit on who.');
+  // docs/61: the right name, and the other liar not ruled out, said plainly.
+  if (other && who.correct && scored.some((f) => f.key === 'other' && !f.correct)) {
+    const him = pronOf(d.kase, other.person).him;
+    const tail = report.other !== other.person ? '' : report.cleared ? `: the line you picked doesn’t clear ${him}` : `: a hunch doesn’t clear ${him}`;
+    plain.push(`You had the right name, but you didn’t rule out ${nameOf(d.kase, other.person)}${tail}.`);
+  }
   if (scored.some((f) => f.key === 'where' && f.half)) plain.push('Where it is now was right, but not on what showed it: half credit on where.');
-  const what = scored.map((f) => (f.key === 'who' ? 'who (and what shows they lied)' : f.key === 'where' ? 'where (and what puts it there)' : f.key));
+  const what = scored.map((f) => (f.key === 'who' ? 'who (and what shows they lied)' : f.key === 'other' ? 'who else lied (and what cleared them)' : f.key === 'where' ? 'where (and what puts it there)' : f.key));
   const scoreLine = `${pointsText(points)} out of ${asked}: ${andList(what)}.`;
   return {
     points,
@@ -534,6 +632,23 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
     const mine = filed.breaks ? (linesHeld(c, run).find((l) => l.id === filed.breaks)?.text ?? filed.breaks) : `${HUNCH.toLowerCase()}.`;
     const ok = filed.who === culprit && !!filed.breaks && heldBreakers(d, run).some((l) => l.id === filed.breaks);
     out.push(`  You filed:     ${filed.who && filed.who !== culprit ? `${nameOf(c, filed.who)}, on ` : ''}${mine}${ok ? '  ✓' : '  ✗'}`);
+  }
+  // docs/61: the other broken story, and what cleared them, beside what was filed.
+  const other = otherLie(d);
+  if (other) {
+    const p = other.person;
+    out.push('');
+    out.push('WHO ELSE LIED, AND WHAT CLEARED THEM');
+    out.push(`${nameOf(c, p)} said ${personOf(c, p)?.home === other.claim ? 'home' : placeName(c, other.claim)} at ${hourWord(other.hour)}.`);
+    const lead = `  What cleared ${pronOf(c, p).him}:`;
+    out.push(`${lead} ${trueClearerText(d, run)}`);
+    if (filed && run) {
+      const named = filed.other && filed.other !== NOBODY ? nameOf(c, filed.other) : null;
+      const line = filed.cleared ? (linesHeld(c, run).find((l) => l.id === filed.cleared)?.text ?? filed.cleared) : `${HUNCH.toLowerCase()}.`;
+      const mine = named ? `${named}, on ${line}` : filed.other === NOBODY ? 'nobody else.' : 'nobody.';
+      const ok = filed.other === p && !!filed.cleared && heldClearers(d, run).some((l) => l.id === filed.cleared);
+      out.push(`${'  You filed:'.padEnd(lead.length)} ${mine}${ok ? '  ✓' : '  ✗'}`);
+    }
   }
   if (!isMurder(c)) {
     out.push('');

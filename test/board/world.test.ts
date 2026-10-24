@@ -517,10 +517,10 @@ describe('the prose draws on the bible first', () => {
     }
   });
 
-  it('teaches the same six plain lines on a night from the neighbourhood as on any other', () => {
+  it('teaches the same seven plain lines on a night from the neighbourhood as on any other', () => {
     expect(teachLines()).toEqual(BOARD_TEACH_LINES);
     expect(teachLines('neighbourhood')).toEqual(BOARD_TEACH_LINES);
-    expect(BOARD_TEACH_LINES).toHaveLength(6);
+    expect(BOARD_TEACH_LINES).toHaveLength(7);
   });
 });
 

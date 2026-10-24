@@ -10,6 +10,10 @@
  *   and files whoever it caught lying. It should rarely solve from Poached up.
  * - docs/46 §4, the reader: it follows every star, otherwise takes the first
  *   choice, and files what the book told it. Its solved rate must fall by tier.
+ *
+ * docs/61: where the report asks who else lied, the wanderer and the reader
+ * answer it as they answer the rest: another liar they caught (the reader,
+ * one a star pointed it at first), and a line off the form.
  */
 
 import { Rng } from '../../gen/board/rng.js';
@@ -21,7 +25,7 @@ import { boardChoices, pageStars, pickerFor } from './choices.js';
 import { newBoardRun, stepBoard } from './engine.js';
 import { collisionsOf, knownPlaces, solveRun } from './knowledge.js';
 import { OFFICE, budgetCalls, isMurder, parCalls, suspectsOf, type BoardDeal, type BoardReport, type BoardRun, type Hour, type PersonId } from './model.js';
-import { boardFields, breakOptions, heldWhereBy, truthReport, scoreBoard, whereByOptions } from './report.js';
+import { NOBODY, asksOther, boardFields, breakOptions, clearOptions, heldWhereBy, truthReport, scoreBoard, whereByOptions } from './report.js';
 
 export interface Played {
   run: BoardRun;
@@ -32,6 +36,23 @@ export interface Played {
   report: BoardReport;
   /** The wanderer's report again, citing the line its collision showed instead of a random one. */
   alt?: BoardReport;
+}
+
+/** docs/61: the liars a run caught, one each, with the hour each was caught at. */
+function caughtLiars(d: BoardDeal, run: BoardRun): { person: PersonId; hour: Hour }[] {
+  const c = d.kase;
+  const out: { person: PersonId; hour: Hour }[] = [];
+  for (const x of collisionsOf(c, run)) if (suspectsOf(c).includes(x.person) && !out.some((y) => y.person === x.person)) out.push({ person: x.person, hour: x.hour });
+  return out;
+}
+
+/**
+ * docs/61: who else lied, as a shortcut player answers it: another liar it caught besides the one it
+ * named (the first of `prefer` it caught, else the first caught), or nobody else.
+ */
+function otherCaught(caught: readonly { person: PersonId }[], who: PersonId | null, prefer: readonly PersonId[] = []): PersonId {
+  const rest = caught.map((x) => x.person).filter((p) => p !== who);
+  return prefer.find((p) => rest.includes(p)) ?? rest[0] ?? NOBODY;
 }
 
 /** The command that asks a question, from wherever the detective is, or the walk to it first. */
@@ -276,6 +297,17 @@ export function playWanderer(d: BoardDeal, seed: number): Played {
     ...(isMurder(c) ? {} : { whereBy: wopts.length > 0 ? rng.pick(wopts).value : null }),
   };
   const alt: BoardReport = { ...base, breaks: pick ? (collisionsOf(c, run, pick.person).find((x) => x.hour === pick.hour)?.breakers[0]?.id ?? null) : null, ...(isMurder(c) ? {} : { whereBy: heldWhereBy(d, run)[0]?.value ?? null }) };
+  // docs/61: who else lied: another liar it caught, at random, on a line picked at random from what
+  // the form offers for them; `alt` cites the line its collision showed against them.
+  if (asksOther(d)) {
+    const rest = caughtLiars(d, run).filter((x) => x.person !== base.who);
+    const o = rest.length > 0 ? (rng.pick(rest) as { person: PersonId; hour: Hour }) : null;
+    const copts = o ? clearOptions(d, run, o.person) : [];
+    report.other = o?.person ?? NOBODY;
+    report.cleared = copts.length > 0 ? rng.pick(copts).value : null;
+    alt.other = report.other;
+    alt.cleared = o ? (collisionsOf(c, run, o.person).find((x) => x.hour === o.hour)?.breakers[0]?.id ?? null) : null;
+  }
   run = stepBoard(d, run, 'file').run;
   const v = scoreBoard(d, run, report);
   return { run, commands, ok: v.outcome === 'solved', report, alt };
@@ -318,16 +350,22 @@ function filedFrom(d: BoardDeal, run: BoardRun, rng: Rng, pick: { person: Person
  * - `access`: anybody who had the means, at random (the truth's access), on
  *   the line set against them if it caught them, else a hunch. The floor the
  *   first two are held to.
+ *
+ * docs/61: who else lied, each answers the same way: another liar it caught,
+ * the one a star pointed it at first if any, cleared by the first line the
+ * form offers for them (`cite`: by the line the grid showed against them).
  */
 export type ReaderGuess = 'first' | 'last' | 'liar' | 'access';
 
-export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean; guess?: ReaderGuess } = {}): Played {
+export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean; guess?: ReaderGuess; cite?: boolean } = {}): Played {
   const c = d.kase;
   const rng = new Rng((seed * 2654435761 + 97) >>> 0);
   const guess: ReaderGuess | undefined = opts.guess ?? (opts.liar ? 'liar' : undefined);
   let run = newBoardRun(d);
   const commands: string[] = [];
   const sentTo: PersonId[] = [];
+  // docs/61: the people a star pointed it at (asked, or put to), in order.
+  const pointed: PersonId[] = [];
   const budget = budgetCalls(d);
   // The liars in the order it caught them: each page's new collisions, a page at a time.
   const order: { person: PersonId; hour: Hour }[][] = [];
@@ -339,6 +377,7 @@ export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean; g
     if (r.error) break;
     commands.push(next.command);
     if (next.starred && next.command.startsWith('put ')) sentTo.push(next.command.split(' ')[1] as PersonId);
+    if (next.starred && /^(ask|put) /.test(next.command)) pointed.push(next.command.split(' ')[1] as PersonId);
     run = r.run;
     if (guess === 'first' || guess === 'last') {
       const fresh = collisionsOf(c, run).filter((x) => suspectsOf(c).includes(x.person) && !seen.has(x.person));
@@ -377,6 +416,15 @@ export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean; g
     breaks = breakOptions(d, run, base.who)[0]?.value ?? null;
   }
   const report: BoardReport = { ...base, breaks, ...(isMurder(c) ? {} : { whereBy: heldWhereBy(d, run)[0]?.value ?? null }) };
+  // docs/61: who else lied: another liar it caught, the one a star pointed it at first if any; cleared
+  // by the first line the form offers for them.
+  if (asksOther(d)) {
+    report.other = otherCaught(caught, report.who, pointed);
+    // `cite`: for the record, the line the grid showed against them instead (what a careless player would pick).
+    const o = report.other;
+    const shown = o === NOBODY ? undefined : collisionsOf(c, run, o).find((x) => x.hour === (caught.find((y) => y.person === o)?.hour ?? c.crime.hour))?.breakers[0]?.id;
+    report.cleared = o === NOBODY ? null : opts.cite ? (shown ?? null) : (clearOptions(d, run, o)[0]?.value ?? null);
+  }
   run = stepBoard(d, run, 'file').run;
   const v = scoreBoard(d, run, report);
   return { run, commands, ok: v.outcome === 'solved', report };
