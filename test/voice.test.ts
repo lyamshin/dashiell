@@ -8,6 +8,7 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import { checkClip, checkFolder, parseMetadata, readWav, type FolderIo, type ScriptLine } from '../scripts/voice-check.js';
 import { balanceQuotes, buildScript, hintsFor, lineProblem, MAX_WORDS, scriptStats, SECTIONS, splitLong, type ScriptBuild } from '../scripts/voice-script.js';
 import { wordsIn } from '../src/game/board/plan/sentences.js';
+import { setTexture } from '../src/game/board/plan/dial.js';
 
 interface Levels {
   peak: number;
@@ -226,8 +227,11 @@ describe('stop and resume', () => {
 
 describe('the script generator', () => {
   let built: ScriptBuild;
+  // (docs/60: the script records every line the book can say, every line of texture included.)
   beforeAll(() => {
+    setTexture('full');
     built = buildScript();
+    setTexture('lean');
   }, 120_000);
 
   it('has the five sections in recording order, at their sizes, about an hour', () => {

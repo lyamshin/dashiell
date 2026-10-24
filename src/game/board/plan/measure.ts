@@ -29,6 +29,7 @@ import type { Block, Page } from '../types.js';
 import { pronOf, type BoardCase } from '../model.js';
 import type { Unit } from './types.js';
 import { bandOf, markedSentences, openingOf, sentencesOf, type Band } from './sentences.js';
+import { lean } from './dial.js';
 
 /** The page's sentences in reading order, speech marked, with a break at a chapter heading. */
 export function pageSentences(blocks: readonly Block[]): { text: string; speech: boolean; chapter?: boolean }[] {
@@ -146,6 +147,8 @@ export function clauseHead(text: string, names: { id: string; at: number }[], at
  */
 export function herIsObject(after: string, before = ''): boolean {
   if (/\b(?:owed|gave|give|told|sent|bought|showed|handed|offered|promised|lent|paid|asked|brought|cost|wished|left|backed)\s*$/.test(before)) return true;
+  // (docs/60: lean, after a preposition and before a word, "with her back to the room", it's hers: the back isn't a particle there.)
+  if (lean() && /\b(?:with|in|on|from|into|under|behind|over|of|against)\s*$/.test(before) && /^\s+[a-z]/.test(after)) return false;
   // (A verb's particle after it: "backed her up", "let her off", "brought her back".)
   // (A determiner after it, too: "read her the wrong line", "gave her my card".)
   return /^(?:⁣\d+⁤)?(?:\s+(?:at|here|there|in|on|with|to|for|about|by|from|into|out|up|down|off|back|away|round|around|again|now|then|and|or|but|as|if|when|that|than|over|across|before|after|go|alone|yet|either|too|first|last|home|anything|nothing|without|while|until|instead|tonight|anyway|a|an|the|my|his|your|our|their|some)\b|\s*[,.;:!?”—]|\s*$)/.test(after);

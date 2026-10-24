@@ -363,9 +363,7 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
       }
       // docs/59: an account's aside stays the engine's plain one ("I wrote it down as said."): the deck's
       // ("Her evening as she told it was, for now, the only telling I had.") stopped the skim readers.
-      // (docs/60 item 1: lean, the ask is the page's one staging line, and it's the plain one: it says what
-      // the answer answers, without the deck's wit on it.)
-      if (it.kind !== 'gap' || !it.sit || !(SIT_SLOTS as readonly string[]).includes(it.slot ?? '') || (it.slot === 'gloss' && s.page === 'account') || (it.slot === 'ask' && lean())) {
+      if (it.kind !== 'gap' || !it.sit || !(SIT_SLOTS as readonly string[]).includes(it.slot ?? '') || (it.slot === 'gloss' && s.page === 'account')) {
         seated = seatedAfter(it.text, seated);
         continue;
       }
@@ -393,7 +391,9 @@ export function situate(paras: Item[][], ctx: PlanCtx, salt = 0): void {
       const ref = referentOf(it, ctx.c, s.subject);
       if (ref) it.sit.who = ref;
       ordinal++;
-      if (!SITUATED.on) continue;
+      // (docs/60 item 1: lean, the ask is the page's one staging line, and it's the plain one: it says what
+      // the answer answers, without the deck's wit on it. It's keyed all the same.)
+      if (!SITUATED.on || (it.slot === 'ask' && lean())) continue;
       const prev = items[i - 1];
       const quoteBefore = !!prev && (prev.speech === true || /”\s*$/.test(stripMarks(prev.text)));
       const tokens = tokensFor(it, ctx, said);

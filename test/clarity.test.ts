@@ -98,7 +98,8 @@ describe('docs/59 item 3: the thought gives the consequence', () => {
   it('the find says whoever did it had been where the means was, first; the papers each grudge with its direction', () => {
     const run = playBoardOracle(dealBoard(7, 0, 'murder')).run;
     const all = run.log.map(prose).join('\n');
-    expect(all).toMatch(/Whoever (?:shot|pulled the trigger on) Rafferty had been at Mrs\. Nagy’s first/);
+    // (docs/60: lean, the short form, "Whoever shot Rafferty had been at Mrs. Nagy’s first" or "Rafferty’s killer …".)
+    expect(all).toMatch(/(?:Whoever (?:shot|pulled the trigger on) Rafferty|Rafferty’s killer) had been at Mrs\. Nagy’s first/);
     const d = dealBoard(7, 0, 'murder');
     const lines = d.kase.people.filter((p) => p.role === 'suspect').map((p) => papersLine(d.kase, p.id, true));
     // (An entry a suspect: their name, then the grudge with its direction.)

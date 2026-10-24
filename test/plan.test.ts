@@ -3,7 +3,7 @@
  * rhythm, reference), the skeleton it hands realization, and the measures it
  * answers to, held to on the oracle's nights in both worlds.
  */
-import { describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
 import { dealBoard, type BoardRun } from '../src/game/board/model.js';
 import { newBoardRun } from '../src/game/board/engine.js';
@@ -12,6 +12,7 @@ import { PLAN, newBudget, planSection, realize, type Item, type PlanCtx } from '
 import { factSentences, joinWordsIn, joinsIn, listSmell, pronounAmbiguity, restatedPointer, thoughtParagraphs } from '../src/game/board/plan/measure.js';
 import { markPronoun } from '../src/game/board/plan/refer.js';
 import { bandOf } from '../src/game/board/plan/sentences.js';
+import { setTexture } from '../src/game/board/plan/dial.js';
 import type { Beat } from '../src/game/board/sheets.js';
 import type { Page } from '../src/game/board/types.js';
 import type { Prop } from '../src/game/board/bones/types.js';
@@ -154,6 +155,9 @@ const gap = (beat: Beat, text: string, about: string[] = [], runOn = false): Ite
 const fact = (beat: Beat, text: string, about: string[] = [], extra: Partial<Item> = {}): Item => ({ kind: 'fact', beat, voice: 'thought', text, relation: 'new', carries: ['x'], about, ...extra });
 
 describe('docs/49 §2: reference', () => {
+  // (docs/60: these hold the planner's own rules on the page as it read before the texture budget.)
+  beforeAll(() => setTexture('full'));
+  afterAll(() => setTexture('lean'));
   it('somebody the page has just been about is a pronoun; the first mention is the name', () => {
     const [a, b] = plan({ staging: [gap('staging', 'I sat down near Ashby.', [id('Ashby')])], reaction: [gap('reaction', 'Ashby took a moment to put the evening in order.', [id('Ashby')])] }, [['staging'], ['reaction']]);
     expect(a).toBe('I sat down near Ashby.');
@@ -215,6 +219,9 @@ describe('docs/49 §2: reference', () => {
 });
 
 describe('docs/49 §2: aggregation and connectives', () => {
+  // (docs/60: these hold the planner's own rules on the page as it read before the texture budget.)
+  beforeAll(() => setTexture('full'));
+  afterAll(() => setTexture('lean'));
   it('a watcher’s hour and its "nobody else" are one composite, said in a voicing of the watcher’s manner', () => {
     // docs/52 build 2: the writer hands the hour over (LIST-HOUR `whole`); the voicing says "nobody else" its own way.
     const out = plan(
@@ -260,6 +267,9 @@ describe('docs/49 §2: aggregation and connectives', () => {
 });
 
 describe('docs/49 §2: rhythm', () => {
+  // (docs/60: these hold the planner's own rules on the page as it read before the texture budget.)
+  beforeAll(() => setTexture('full'));
+  afterAll(() => setTexture('lean'));
   it('three sentences in a row of one length are mended, and a joke ends short', () => {
     const out = plan(
       {
@@ -279,6 +289,9 @@ describe('docs/49 §2: rhythm', () => {
  * ------------------------------------------------------------------ */
 
 describe('docs/49 Planner 2: composition', () => {
+  // (docs/60: these hold the planner's own rules on the page as it read before the texture budget.)
+  beforeAll(() => setTexture('full'));
+  afterAll(() => setTexture('lean'));
   it('two people one list confirms are one sentence (docs/53: the list by whose it is, and the place by name), joined to who could get at the means; the window is one sentence', () => {
     const coffin = id('Coffin');
     const ashby = id('Ashby');

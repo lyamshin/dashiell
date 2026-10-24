@@ -2,7 +2,7 @@
  * docs/51: the situated deck. The deck as shipped, the keys the planner reads off a page, what
  * realization deals, and what it never touches: the facts, the boards, the old decks when off.
  */
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
 import { dealBoard, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle, playWanderer } from '../src/game/board/oracle.js';
@@ -14,6 +14,7 @@ import { proseIssues } from '../src/game/board/prose-lint.js';
 import { pronounAmbiguity } from '../src/game/board/plan/measure.js';
 import { namesOverTwo } from '../src/game/board/names.js';
 import type { Page } from '../src/game/board/types.js';
+import { setTexture } from '../src/game/board/plan/dial.js';
 
 const worlds = [undefined, 'neighbourhood'] as const;
 const nights: { tier: TierIndex; type: CaseType; world?: 'neighbourhood' }[] = [];
@@ -101,6 +102,10 @@ describe('docs/51: the key and the fallback', () => {
 });
 
 describe('docs/51: every gap the deck may fill has its situation', () => {
+  // (docs/60: on the full page, where every gap the deck keys is still there to be filled: lean, the
+  // budget keeps a close only where it's the page's joke, and which card is a joke differs on and off.)
+  beforeAll(() => setTexture('full'));
+  afterAll(() => setTexture('lean'));
   // (On and off, the gaps keyed on a page can differ after the first card the deck deals: the page's
   // rhythm trades and the hand's later draws aren't the same. The office, dealt first, is the same.)
   it.each(nights.filter((x) => x.tier % 2 === 1))('keys every gap it may fill, on or off: tier $tier, $type, $world', ({ tier, type, world }) => {

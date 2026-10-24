@@ -1829,6 +1829,8 @@ function stageAndAsk(w: Writer, p: PersonId, job: 'account' | 'check' | 'list' |
   // nothing before it on the page has.
   const named = (w.parts.why ?? []).some((x) => x.text.includes(nameOf(c, p)));
   if (lean() && !face && !named) w.hand.avoid = alsoAvoid(w.hand.avoid, /^(?![\s\S]*\{(?:[Nn]ame|Title)\})/);
+  // (And, sitting already, the ask doesn't sit me down again: the situated deck saw to that, and lean the ask is the hand's.)
+  if (lean() && seatedNow(w)) w.hand.avoid = alsoAvoid(w.hand.avoid, SAT);
   const asked = w.hand.draw('ask', { job, face: face ? 'yes' : 'no' }, withCaps({ ...s, reason: face }));
   // (An ask that says the reason to their face carries it: it stays.)
   put(w, 'ask', asked, 'exchange', { about: [p], ...(face ? {} : sit(w, asked)) });
