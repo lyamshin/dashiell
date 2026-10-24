@@ -2956,11 +2956,11 @@ function turnOrder(cs: Clause[], most: number): Clause[] {
   const out = cs.map((x, i) => ({ x, i })).sort((a, b) => rank(a.x.key) - rank(b.x.key) || a.i - b.i).map((y) => y.x);
   // docs/60 item 4: one short paragraph, 70 words at Raw to Poached and 90 above: past that, who said
   // where they were with nobody to back it goes first, then who was accounted for, the last first, then
-  // where a small case's thing went (the list page said it, and the notebook keeps it), then the last of
-  // who was accounted for (the hour, where it came from or who knew the way in, whose story doesn't
-  // hold and what's still open always stay).
+  // where a small case's thing went (the list page said it, and the notebook keeps it) (the hour, where
+  // it came from or who knew the way in, one of who was accounted for, whose story doesn't hold and
+  // what's still open always stay).
   const wordsOf = (xs: Clause[]) => xs.reduce((n, x) => n + x.text.split(/\s+/).length, 0);
-  for (const [drop, keep] of [['own', 0], ['placed', 1], ['where', 0], ['placed', 0]] as const) {
+  for (const [drop, keep] of [['own', 0], ['placed', 1], ['where', 0]] as const) {
     // (The notebook's words, a little shorter than the page says them.)
     while (wordsOf(out) * 1.2 > most - 2) {
       const k = out.map((x) => head(x.key)).lastIndexOf(drop);
