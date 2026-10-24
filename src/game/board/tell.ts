@@ -233,10 +233,16 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
       // (docs/62, P7: lean, somebody where I went on an errand was there, not along with me: "…to return a
       // borrowed umbrella, and Thorndike was there", never "…to return a borrowed umbrella, with Thorndike".)
       const others = who.filter((x) => !(reason ?? '').includes(x));
-      const there = lean() && !!reason && !house && others.length > 0 && !/\bmy room\b|\bhome\b/.test(reason) ? `, and ${andList(others)} ${others.length > 1 ? 'were' : 'was'} there` : '';
-      const tail = named || withSomebody ? '' : again ? ', with the same people' : there ? there : who.length ? `, with ${andList(others)}${house}` : alone;
+      // (Only in an hour's clause that ends there: "…for the company, and Steinbach was there, and stayed through
+      // nine" would have Steinbach staying. A run that goes on keeps "with".)
+      const there = lean() && span === 'one' && !!reason && !house && others.length > 0 && !/\bmy room\b|\bhome\b/.test(reason) ? `, and ${andList(others)} ${others.length > 1 ? 'were' : 'was'} there` : '';
+      // (docs/62, P7: lean, alone beside the going, before the why: "I went home alone, because my feet hurt",
+      // never "…, because my feet hurt, alone".)
+      const why = lean() && alone && reason ? /, (?:because|since) /.exec(reason) : null;
+      const reasonX = why && reason ? `${reason.slice(0, why.index)}${alone.replace(/^,/, '')}${reason.slice(why.index)}` : undefined;
+      const tail = named || withSomebody ? '' : again ? ', with the same people' : there ? there : who.length ? `, with ${andList(others)}${house}` : reasonX ? '' : alone;
       const company = named ? 'named' : withSomebody ? 'aside' : who.length ? 'with' : alone ? 'alone' : 'bare';
-      push({ shape: 'CLAIM-SPAN', flags: [...flags, company], args: { ...args, with: tail }, manner }, runHours, runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h, ...(said ? { company: [...(a.claims[h]?.company ?? [])] } : {}) }) as Prop));
+      push({ shape: 'CLAIM-SPAN', flags: [...flags, company], args: { ...args, ...(reasonX ? { reason: reasonX } : {}), with: tail }, manner }, runHours, runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h, ...(said ? { company: [...(a.claims[h]?.company ?? [])] } : {}) }) as Prop));
     } else {
       push({ shape: 'CLAIM-SPAN', flags: [...flags, 'bare'], args: { ...args, with: '' }, manner }, runHours, runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h }) as Prop));
       // docs/59 item 2: who was with them told by what changed, never "hour by hour".
@@ -322,6 +328,13 @@ export function companyByChange(c: BoardCase, p: PersonId, comps: { h: Hour; who
   // The hours on their own.
   const alone = comps.filter((x) => x.who.length === 0).map((x) => x.h);
   if (alone.length) add(['alone'], { hours: { t: 'hours', hs: alone } }, alone.map((h) => CL(h, [])));
+  // (docs/62, P7: lean, in the evening's order: "At nine, just me. Hanrahan and Winslow joined me at ten",
+  // never the hour alone tacked on after the hour that came later.)
+  if (lean()) {
+    const from = (x: SaySpec) => Math.min(...(x.props ?? []).map((y) => (y as { hour: number }).hour));
+    const sorted = parts.map((x, i) => ({ x, i })).sort((u, w) => from(u.x) - from(w.x) || u.i - w.i).map((u) => u.x);
+    parts.splice(0, parts.length, ...sorted);
+  }
   const props = comps.map((x) => CL(x.h, [...x.who]));
   const say: SaySpec = { shape: 'CLAIM-SPAN', flags: ['with-change'], args: {}, manner, parts, sep: ' ' };
   const text = parts.map((x) => sayFirst(c, x) ?? plainComposite(c, { shape: 'CLAIM-SPAN', props: x.props ?? [] })).join(' ');

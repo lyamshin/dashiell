@@ -290,7 +290,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const pr = P(rest);
       // First, the golden's "So … which was what Coffin had." After a lie caught, the same from the other side.
       const first = t.sentences.length === 0;
-      const gloss = first ? (held ? x.pick('one-holds', ['That much of it stood up.', 'That much held.']) : x.pick('one-holds-early', ['So far as it went, it stood up.', 'That much held.'])) : undefined;
+      const gloss = first ? (held ? x.pick('one-holds', ['That much of it stood up.', 'That much checked out.']) : x.pick('one-holds-early', ['So far as it went, it stood up.', 'That much checked out.'])) : undefined;
       const restParts = first
         ? []
         : (namedSoFar.clear(),
@@ -306,7 +306,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
           }));
       const text = first
         ? `So ${andList(bits)}, which was what ${src}. ${gloss}`
-        : `The rest held where I could check it: ${src.replace(/ had( said)?$/, '')} had ${pr.him} ${andList(restParts.map((y) => `${y.at} at ${hourWord(y.h)}${y.comp ? `, with ${y.comp}` : ''}`))}, same as ${pr.he} said.`;
+        : `The rest checked out: ${src.replace(/ had( said)?$/, '')} had ${pr.him} ${andList(restParts.map((y) => `${y.at} at ${hourWord(y.h)}${y.comp ? `, with ${y.comp}` : ''}`))}, same as ${pr.he} said.`;
       const fixComma = (x: string) => x.replace(/(\w), (with [^,]+) and (here|at|home)\b/, '$1, $2, and $3');
       add(
         fixComma(text),
@@ -576,7 +576,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         places: [l.place],
         props: [
           { k: 'MEANS', how: 'origin', place: l.place },
-          ...access.map((p) => ({ k: 'ACCESS', person: p, had: true }) as Prop),
+          ...(access.length ? ps : []).map((p) => ({ k: 'ACCESS', person: p, had: true }) as Prop),
           ...ps.map((p) => ({ k: 'AWAY', person: p, place: l.place, hour: first, by }) as Prop),
           ...thereProps,
         ],

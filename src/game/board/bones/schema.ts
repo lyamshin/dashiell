@@ -152,7 +152,8 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
       return [['hs'], ['who'], ['what'], ['reason']];
     case 'PLACED-SET':
       // docs/59 item 3: a list's consequence at the hour it happened.
-      if (has('then')) return [['where'], ...(has('means') ? [['gone'], ['before'], ['first'], ['kept']] : []), ...(has('there') ? [['there'], ['hours']] : []), ...(has('gone') ? [['gone'], ['hours']] : [])];
+      // (docs/62, P1: `all`, everybody who had been there, whatever their hours: the list just said them.)
+      if (has('then')) return [['where'], ...(has('means') ? [['gone'], ...(has('all') ? [] : [['before']]), ['first'], ['kept']] : []), ...(has('there') ? [['there'], ['hours']] : []), ...(has('gone') ? [['gone'], ['hours']] : [])];
       if (has('swear')) return [['bits'], ['swear']];
       if (has('self') && has('plain')) return [['runs']];
       if (has('self')) return [['he'], ['bits']];

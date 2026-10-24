@@ -37,6 +37,10 @@
  *   my own at seven, eight and ten.", "Nobody was with me at nine or ten.").
  * - **locative** (item 11): the same spot twice in one paragraph of who's there ("at a little table by
  *   the wall … in a booth by the wall").
+ * - **vocab** (batch 3, the designer's plain words): a story that "held" or "didn't hold" ("That much
+ *   held.", "whether that held any better", "the Palace held where the Odessa hadn't") for "checked out"
+ *   or the fact; "put" as a noun ("the put", "a put"); the game's unit, "calls", in page prose; "file"
+ *   for closing the case ("or file on what I had", "whatever I had was what got filed").
  * - **reason** (item 12): the stock phrases the skim readers stopped on: "one of the two hours it could
  *   have happened", "none of the people with a reason was at", "as far as anybody had told me".
  *
@@ -71,9 +75,10 @@ export type HingeRule =
   | 'connector'
   | 'tail'
   | 'locative'
-  | 'reason';
+  | 'reason'
+  | 'vocab';
 
-export const HINGE_RULES: HingeRule[] = ['said-place', 'gloss', 'bare', 'put-lead', 'put-speech', 'thought-who', 'orphan', 'shift', 'telling', 'form', 'epilogue', 'dose', 'unwatched', 'pointer', 'connector', 'tail', 'locative', 'reason'];
+export const HINGE_RULES: HingeRule[] = ['said-place', 'gloss', 'bare', 'put-lead', 'put-speech', 'thought-who', 'orphan', 'shift', 'telling', 'form', 'epilogue', 'dose', 'unwatched', 'pointer', 'connector', 'tail', 'locative', 'reason', 'vocab'];
 
 export interface HingeIssue {
   page: number;
@@ -254,15 +259,15 @@ function thoughtWho(c: BoardCase, run: BoardRun): HingeIssue[] {
   return out;
 }
 
-const AGREE = /\bsaid the same\b|\bbore (?:\S+ ){1,3}?out\b|\btold me too\b|\bwhat (?:he|she|they)’d told me\b|\bbacked\b|\bagreed\b|\bsame as\b|\bjust as\b|\bjust like\b|\bsaid so too\b|\btold it straight\b|\bhad it right\b|\bwas right\b|\bsaid so\b|\bsaw (?:him|her|them)\b/;
-/** "That much held." with nothing before it that it says held. */
+const AGREE = /\bsaid the same\b|\bchecked out\b|\btold it the same\b|\bhad it the same\b|\bbore (?:\S+ ){1,3}?out\b|\btold me too\b|\bwhat (?:he|she|they)’d told me\b|\bbacked\b|\bagreed\b|\bsame as\b|\bjust as\b|\bjust like\b|\bsaid so too\b|\btold it straight\b|\bhad it right\b|\bwas right\b|\bsaid so\b|\bsaw (?:him|her|them)\b/;
+/** "That much checked out." with nothing before it that it says checked out. */
 function orphan(run: BoardRun): HingeIssue[] {
   const out: HingeIssue[] = [];
   run.log.forEach((p, i) => {
     for (const b of own(p)) {
       const ss = sentencesOf(narr(b.text));
       ss.forEach((s, k) => {
-        if (!/^(?:That much (?:held|of it stood up)|So far as it went, it stood up)\.$/.test(s.trim())) return;
+        if (!/^(?:That much (?:held|checked out|of it stood up)|So far as it went, it stood up)\.$/.test(s.trim())) return;
         if (k === 0 || !AGREE.test(ss[k - 1] as string)) out.push({ page: i, rule: 'orphan', detail: `“${b.text.slice(0, 120)}”` });
       });
     }
@@ -294,7 +299,7 @@ function shift(c: BoardCase, run: BoardRun): HingeIssue[] {
 /** The turn telling the act of telling. */
 function telling(run: BoardRun): HingeIssue[] {
   const out: HingeIssue[] = [];
-  const RE = /\bhad told me (?:who came in|where the evening went)\b|\bI had heard from\b[^.]*\babout\b/;
+  const RE = /\bhad told me (?:who came in|who came and went|where the evening went)\b|\bI had heard from\b[^.]*\babout\b/;
   run.log.forEach((p, i) => {
     for (const b of p.blocks) {
       if (b.kind !== 'prose' || b.voice === 'answer') continue;
@@ -437,6 +442,29 @@ function reason(run: BoardRun): HingeIssue[] {
   return out;
 }
 
+/** The designer's plain words (batch 3): a story "held", "put" as a noun, the game's "calls". */
+function vocab(run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  const HELD = /\bThat much held\b|\b(?:did|didn’t|did not|would|wouldn’t|might|still|it|that|this|which|story|evening|answer|one) (?:had )?(?:held|hold)(?: up)?(?=[.,:;”]| (?:where|any better|either|for a second|when|if|was|and|but)\b)|\bheld where\b|\bhold(?:s)? up\b(?= (?:either|for a second)|[.,:;”])/i;
+  const PUT = /\b(?:the|a|my|that|this|your|another) put\b(?! (?:it|out|down|up|on|in|away|back|her|him|them|me|my|the|a)\b)|\b[Pp]ut to it\b/;
+  // (The chrome says "Close the case": the page never "files" it.)
+  const FILE = /\b(?:file|filed|filing) (?:on|it(?! away)|the case|what|without|most)\b|\b(?:got|was) filed\b|\benough to file\b/i;
+  const CALLS = /\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|a) calls?\b(?= (?:left|to spare|I didn’t need|against par|over)\b)|\bcalls? I didn’t need\b/i;
+  run.log.forEach((p, i) => {
+    // (The page's notes too: "Eight o’clock. The DA’s man was on the stairs…")
+    const notes = p.blocks.flatMap((b) => (b.kind === 'note' ? [{ text: strip(b.text), voice: 'note' }] : []));
+    for (const b of [...prose(p), ...notes]) {
+      for (const s of sentencesOf(b.text)) {
+        for (const [what, re] of [['held', HELD], ['put', PUT], ['calls', CALLS], ['filed', FILE]] as const) {
+          const m = re.exec(s);
+          if (m) out.push({ page: i, rule: 'vocab', detail: `${what}: “${s.trim().slice(0, 110)}”` });
+        }
+      }
+    }
+  });
+  return out;
+}
+
 /** Every hinge rule over a night (the verdict's close is `epilogueIssues`, read by the caller with the report). */
 export function hingeIssues(d: BoardDeal, run: BoardRun): HingeIssue[] {
   const c = d.kase;
@@ -458,5 +486,6 @@ export function hingeIssues(d: BoardDeal, run: BoardRun): HingeIssue[] {
     ...evening(run),
     ...locative(run),
     ...reason(run),
+    ...vocab(run),
   ];
 }

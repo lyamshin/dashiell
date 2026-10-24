@@ -59,7 +59,7 @@ import { lean } from './dial.js';
  * that says only their own word stood for an hour ("and nobody else had said so"). The prose lint
  * (`prose-lint.ts`, rule `grid`) holds the pages to the same words.
  */
-export const STOOD = /squared (?:up )?(?:neatly )?with|story squared|squares; there|checked out against|held up when I set it|That part held up|stood up, and I let it stand|no reason to doubt|been held up enough|didn’t have to choose between anybody’s word/i;
+export const STOOD = /squared (?:up )?(?:neatly )?with|story squared|squares; there|checked out against|(?:held up|checked out) when I set it|That part (?:held up|checked out)|stood up, and I let it stand|no reason to doubt|been held up enough|didn’t have to choose between anybody’s word/i;
 export const UNCONTRADICTED = new RegExp(`nothing to put against it|nothing against it|nothing I held (?:touched|went against) it|${STOOD.source}`, 'i');
 
 /**

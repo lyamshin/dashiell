@@ -431,12 +431,12 @@ export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean; g
   return { run, commands, ok: v.outcome === 'solved', report };
 }
 
-/** The person the turn sent it to put it to: "I could face Feeney with it now.", "I could face Feeney with it, or file on what I had." */
+/** The person the turn sent it to put it to: "I could face Feeney with it now.", "I could face Feeney with it, or close the case on what I had." */
 function turnSaid(d: BoardDeal, run: BoardRun): PersonId | null {
   for (const page of run.log) {
     if (!page.board?.turn) continue;
     const text = page.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join('\n');
-    // (docs/62: lean, "I could face Feeney with it, or file on what I had.")
+    // (docs/62: lean, "I could face Feeney with it, or close the case on what I had.")
     const m = /I could face (.+?) with it(?: now\.|,)/.exec(text);
     const hit = m ? d.kase.people.find((p) => p.role === 'suspect' && p.short === m[1]) : undefined;
     if (hit) return hit.id;

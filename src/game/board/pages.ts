@@ -2553,23 +2553,32 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
     w.places.add(near.place);
     w.hours.add(near.hh);
   }
+  // (docs/62, P13: lean, where somebody already saw them somewhere else at that hour, passed on a street or
+  // on a list at another place, "somebody saw him where he was, and if nobody had…" undercuts what I hold.)
+  const seenElsewhere =
+    lean() &&
+    (linesHeld(c, w.run).some((l) => l.kind === 'remark' && l.hour === h && l.speaker !== p && l.about.includes(p)) ||
+      c.lists.some((l) => l.place !== claimPlace && w.run.asked.includes(`list:${l.watcher}`) && (l.entries[h] ?? []).some((e) => 'person' in e && e.person === p)));
+  // (docs/59 item 3: not the line against it again; the put just said it.)
+  const refusal = { gloss: aside(w, 'refusal', ['A refusal isn’t a confession.', 'Saying nothing isn’t saying it.', 'A refusal is only a refusal, whoever makes it.']) };
   done(
     'refuse-close',
-    [
-      // (docs/59 item 3: not the line against it again; the put just said it.)
-      { gloss: aside(w, 'refusal', ['A refusal isn’t a confession.', 'Saying nothing isn’t saying it.', 'A refusal is only a refusal, whoever makes it.']) },
-      {
-        text: `But if ${pr.he} wasn’t ${claimed} at ${hourWord(h)}, somebody saw ${pr.him} where ${pr.he} was, and if nobody had, that would say something too.${pointsAt}`,
-        bare: `If ${pr.he} wasn’t ${claimed} at ${hourWord(h)}, somebody saw ${pr.him} where ${pr.he} was, and if nobody had, that would say something too.${pointsAt}`,
-        opener: 'But',
-        props: [{ k: 'REFUSE', person: p, hour: h }, ...(near ? [{ k: 'CLAIM', person: p, place: near.place, hour: near.hh } as Prop] : [])],
-        say: {
-          shape: 'REACTION',
-          flags: ['refuse-thought', claimed === 'home' ? 'home' : 'away', ...(near ? ['points'] : [])],
-          args: { person: { t: 'person', id: p }, hour: { t: 'hour', h }, claimed: { t: 'place', id: claimPlace }, ...(near ? { near: { t: 'place', id: near.place }, nearHour: { t: 'hour', h: near.hh } } : {}) },
-        },
-      },
-    ],
+    seenElsewhere
+      ? [refusal]
+      : [
+          refusal,
+          {
+            text: `But if ${pr.he} wasn’t ${claimed} at ${hourWord(h)}, somebody saw ${pr.him} where ${pr.he} was, and if nobody had, that would say something too.${pointsAt}`,
+            bare: `If ${pr.he} wasn’t ${claimed} at ${hourWord(h)}, somebody saw ${pr.him} where ${pr.he} was, and if nobody had, that would say something too.${pointsAt}`,
+            opener: 'But',
+            props: [{ k: 'REFUSE', person: p, hour: h }, ...(near ? [{ k: 'CLAIM', person: p, place: near.place, hour: near.hh } as Prop] : [])],
+            say: {
+              shape: 'REACTION',
+              flags: ['refuse-thought', claimed === 'home' ? 'home' : 'away', ...(near ? ['points'] : [])],
+              args: { person: { t: 'person', id: p }, hour: { t: 'hour', h }, claimed: { t: 'place', id: claimPlace }, ...(near ? { near: { t: 'place', id: near.place }, nearHour: { t: 'hour', h: near.hh } } : {}) },
+            },
+          },
+        ],
     lineRef,
   );
 }
@@ -3080,8 +3089,8 @@ export function writeTurn(w: Writer): void {
       w.places.add(starPlace(c, next));
     }
     // (docs/62, U7 with round5-ui: the put is one way, never the only one. All four round-5 testers spent a
-    // call over par on the put the turn offered; "or file on what I had" says the report is open now too.)
-    const offer = lean() ? (first ? `I could face ${name} with it, or ${first}, or file on what I had.` : `I could face ${name} with it, or file on what I had.`) : first ? `I could face ${name} with it now. Or I could ${first}.` : `I could face ${name} with it now.`;
+    // call over par on the put the turn offered; "or close the case on what I had" says the report is open now too.)
+    const offer = lean() ? (first ? `I could face ${name} with it, or ${first}, or close the case on what I had.` : `I could face ${name} with it, or close the case on what I had.`) : first ? `I could face ${name} with it now. Or I could ${first}.` : `I could face ${name} with it now.`;
     const said0 = c.tier <= 1 ? offer : first ? `Before I did anything about it, I wanted to ${first.replace(/ first$/, '').replace(/^find out first /, 'find out ')}.` : undefined;
     const said = said0 && walked ? `${walked}${said0}` : said0;
     if (c.tier <= 1) w.people.add(caught);

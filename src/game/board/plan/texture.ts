@@ -208,6 +208,12 @@ export function introduce(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
   if (!people.length) return;
   const reOf = (x: { short: string }) => new RegExp(`(?<![\\w’])${x.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w])`);
   const met = new Set<string>();
+  // (A roll call of three names or more, "So Mrs. Ostrow, Mabry and Miss Nowak had all been…", meets
+  // nobody: who they are waits for the sentence that names them on their own, as the lint reads it.)
+  const roll = (n: string, x: { short: string }): boolean => {
+    const n0 = x.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp(`(?:[A-Z][\\w’.-]+, (?:(?:Mrs\\.|Miss|Dr\\.) )?[A-Z][\\w’.-]+(?:,| and) ${n0}\\b|\\b${n0}, (?:(?:Mrs\\.|Miss|Dr\\.) )?[A-Z][\\w’.-]+(?:,| and) |[A-Z][\\w’.-]+, ${n0},? and )`).test(n);
+  };
   // What the night has said already: a name in the narration, or said in somebody's mouth with who they
   // are. (Quotation marks carried through a paragraph, sentence to sentence.)
   const quote = (s: string, inQ: boolean): boolean => {
@@ -223,7 +229,7 @@ export function introduce(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
     for (const s of sentencesOf(block)) {
       const n = maskPlaces(c, narrationOf(s, inQ));
       inQ = quote(s, inQ);
-      for (const x of people) if (!met.has(x.id) && reOf(x).test(maskPlaces(c, s)) && (reOf(x).test(n) || glossedIn(c, x.id, s))) met.add(x.id);
+      for (const x of people) if (!met.has(x.id) && reOf(x).test(maskPlaces(c, s)) && ((reOf(x).test(n) && !roll(n, x)) || glossedIn(c, x.id, s))) met.add(x.id);
     }
   }
   if (people.every((x) => met.has(x.id))) return;
@@ -242,6 +248,7 @@ export function introduce(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
             if (glossedIn(c, x.id, s)) met.add(x.id);
             continue;
           }
+          if (roll(sn, x) && !glossedIn(c, x.id, s)) continue;
           met.add(x.id);
           if (it.speech || glossedIn(c, x.id, s) || glossedIn(c, x.id, prev)) continue;
           const intro = introOf(c, x.id, ctx.run?.at);
@@ -448,4 +455,32 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
   // What went is out of the paragraphs, so what's left stands side by side for the rhythm.
   for (const ps of paras) for (let k = ps.length - 1; k >= 0; k--) if ((ps[k] as Item).kind === 'gap' && !(ps[k] as Item).text.trim()) ps.splice(k, 1);
   ctx.tex = spent;
+}
+
+/**
+ * docs/62 item 3: the put's why-here gone, and whatever staging the page kept not naming them (the
+ * reference pass names a pronoun's first mention, so this runs after it), "You told me…" would be to
+ * nobody: the page opens "I went over to Steinbach." In place, lean only.
+ */
+export function namePut(paras: Item[][], ctx: PlanCtx): void {
+  if (!lean() || ctx.situ?.page !== 'put' || !ctx.situ.subject) return;
+  const subject = ctx.c.people.find((p) => p.id === ctx.situ?.subject);
+  if (!subject) return;
+  const flat = paras.flat();
+  const k = flat.findIndex((x) => x.kind === 'fact' && x.relation === 'collides' && x.voice === 'exchange' && /\byou (?:told me|said)\b/i.test(stripMarks(x.text)));
+  if (k < 0) return;
+  const re = new RegExp(`(?<![\\w’])${subject.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w])`);
+  const narrOf = (t: string) => stripMarks(t).replace(/“[^”]*”?/g, ' ');
+  if (flat.slice(0, k).some((x) => re.test(narrOf(x.text)))) return;
+  // (Never a third time on the page: where the narration after names them twice already, who answers
+  // says it a line later.)
+  const reG = new RegExp(re.source, 'g');
+  const said = [ctx.pageSoFar ?? '', ...flat.map((x) => x.text)].reduce((n, t) => n + (narrOf(t).match(reG) ?? []).length, 0);
+  if (said >= 2) return;
+  const put = flat[k] as Item;
+  const item: Item = { kind: 'gap', slot: 'why-here', beat: put.beat, voice: 'narrator', text: `I went over to ${subject.short}.`, about: [subject.id], tex: 'keep' };
+  const first = paras.find((ps) => ps.some((x) => x.text.trim()));
+  if (!first) return;
+  if (first.includes(put) && first.findIndex((x) => x.text.trim()) === first.indexOf(put)) paras.splice(paras.indexOf(first), 0, [item]);
+  else first.splice(first.findIndex((x) => x.text.trim()), 0, item);
 }

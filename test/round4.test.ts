@@ -42,7 +42,8 @@ describe('round 4: the reasoning lines (docs/55 1)', () => {
     const run = night(8, 5, 'murder', HB8);
     const page = prose(run.log[run.log.length - 1] as Page).replace(/\s+/g, ' ');
     expect(page).toMatch(/the Automat at nine/);
-    expect(page).toMatch(/the Automat (?:might know|was the first place I’d ask|might know about) /);
+    // (docs/62, P13: "I’d ask at the Automat about ten too", not "the first place I’d ask".)
+    expect(page).toMatch(/the Automat (?:might know|was the first place I’d ask|might know about) |I’d ask at the Automat about /);
   });
 
   it('a hand-off names the person and the question, never the ground', () => {

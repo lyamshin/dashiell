@@ -786,7 +786,11 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       comp.shape = 'CONFIRMED';
       // docs/53: where the line is somebody of their sex ("Coffin’s list had Ashby…, just like he said"), no pronoun for them.
       const twosome = !!by?.who && pronOf(c, by.who as PersonId).he === pronOf(c, cs[0]?.person as PersonId).he;
-      voice(it, comp, ['agree', so ? 'so' : 'which', ...(twosome ? ['twosome'] : [])], { spans: bits, src: srcHad(c, by), whose: srcWhose(c, by), person: { t: 'person', id: cs[0]?.person as PersonId } }, ctx);
+      // (docs/62 item 5: lean, a suspect's word that named the one now telling it, "I was at the Palace with
+      // Ashby", and Ashby's own evening: "So she told it the same as Ruggiero", never "So Ruggiero bore her
+      // out", which has the alibi backing its witness, nor "So she had it right, and Ruggiero said the same".)
+      const both = !!by?.who && (by.k === 'claim' || by.k === 'admit');
+      voice(it, comp, ['agree', so ? 'so' : 'which', ...(twosome ? ['twosome'] : []), ...(both ? ['both'] : [])], { spans: bits, src: srcHad(c, by), whose: srcWhose(c, by), person: { t: 'person', id: cs[0]?.person as PersonId } }, ctx);
       comp.join = so ? 'so' : 'which';
       it.joined = comp.join;
       if (so) b.so++;
