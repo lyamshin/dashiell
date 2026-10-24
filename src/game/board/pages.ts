@@ -476,7 +476,11 @@ function placeNewcomers(w: Writer): void {
           any: 'over by the wall',
         };
     const kind = placeOf(c, here)?.kind === 'theatre' ? 'theatre' : stageKind(c, here);
-    const at = spot[kind] ?? (spot.any as string);
+    // (docs/62, P11: not a spot somebody else in this room was given already: "Fairbanks … was in the
+    // corner" when Alfano had been in the corner since I came in.)
+    const roomSaid = w.before.log.filter((pg) => pg.at === here).map((pg) => pg.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join(' ')).join(' ');
+    const at0 = spot[kind] ?? (spot.any as string);
+    const at = lean() && at0 !== spot.any && roomSaid.includes(at0) ? (spot.any as string) : at0;
     // Named twice on the page already (an admission says the name and says it again): "my witness".
     // (docs/60 item 3: lean, the name, never "my witness": the reader has to work out who that is.)
     const who = lean() || namesFit(w, `${nameOf(c, p)}`) ? nameOf(c, p) : `my witness${markPronoun(c, p)}`;

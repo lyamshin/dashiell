@@ -400,7 +400,7 @@ const lc1 = (s: string): string => (/^(?:The|A|An|My|His|Her)\b/.test(s) ? (s[0]
  * `own`: the watcher's own last words from the bible ("That's the lot."), said in place of the
  * clause that says nobody else came in.
  */
-export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: string): { text: string; props: Prop[]; say: SaySpec; hours: Hour[] } {
+export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: string, till?: Hour): { text: string; props: Prop[]; say: SaySpec; hours: Hour[] } {
   const kept = c.board.hours.filter((h) => l.entries[h] !== undefined) as Hour[];
   const shut = kept.filter((h) => shutAt(c, l.place, h));
   const open = kept.filter((h) => !shutAt(c, l.place, h));
@@ -524,6 +524,9 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
     if (whole.length === peopled.length) {
       if (own) parts.push({ shape: 'LIST-HOUR', flags: ['clause', 'nobody', 'own'], args: {}, manner, props: marks, own });
       // (After "…were here all evening", "Nobody else came in": the span is said once.)
+      // (docs/62, P2: somebody came in later, with something under a coat: "nobody else came in till eleven",
+      // never "Nobody else came through that door. At eleven somebody came in".)
+      else if (till !== undefined && lean()) add(['nobody', 'till'], { till: { t: 'hour', h: till } }, marks);
       else add(['nobody', ...(flavor === 'house' ? ['house'] : []), ...(!allEvening ? ['shift'] : []), ...(parts.some((x) => x.flags.includes('all')) ? ['span'] : [])], {}, marks);
     } else add(['nobody', 'some'], { hours: { t: 'hours', hs: whole } }, marks);
   }
@@ -541,7 +544,9 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
  */
 export function spokenListLines(c: BoardCase, l: WatchList, rot = 0, manner: Manner = 'plain', own?: string): SaidLine[] {
   void rot;
-  const body = listByChange(c, l, manner, own);
+  // (A remark of somebody coming in later, after the list's hours: the list's "nobody else" says until when.)
+  const later = l.remarks.flatMap((r) => remarkProps(c, l.watcher, r, l).flatMap((x) => (x.k === 'HANDOVER' && x.hour !== undefined ? [x.hour as Hour] : []))).filter((h) => h > (c.board.hours[c.board.hours.length - 1] as number))[0];
+  const body = listByChange(c, l, manner, own, later);
   const out: SaidLine[] = [{ text: body.text, hours: body.hours, props: body.props, say: body.say }];
   l.remarks.forEach((r, i) => out.push(remarkLine(c, l.watcher, r, i, manner, l)));
   // docs/62 item 6, P2: a watcher who came on late starts from their shift: "I came on at ten. Before
