@@ -590,6 +590,15 @@ function whereR(c: BoardCase, lx: Lexicon, s: string, who: Id): PlaceId {
 }
 
 /** A tail of company: ", with Feeney and Ashby (in the house)", ", on my own", or nothing. */
+/** docs/60 item 5: the company somebody had the last time tonight they were at a place, before an hour. */
+function sameCompany(c: BoardCase, who: Id, place: PlaceId, before: number): Id[] {
+  const a = c.accounts.find((x) => x.person === who);
+  const hs = c.board.hours.filter((h) => h < before && a?.claims[h as Hour]?.place === place);
+  const last = hs[hs.length - 1];
+  if (last === undefined) throw new Error('voiced: the same people as when?');
+  return [...(a?.claims[last as Hour]?.company ?? [])];
+}
+
 function withR(c: BoardCase, lx: Lexicon, s: string | undefined): Id[] | undefined {
   if (s === undefined || s === '') return undefined;
   if (/^, (?:on my own|by myself|alone)$/.test(s)) return [];
@@ -683,7 +692,8 @@ const READ: Partial<Record<Shape, Reader>> = {
     } else if (reason !== undefined) place = placesIn(c, lx, reason, who).at(-1)?.id;
     else if (a.where !== undefined) place = whereR(c, lx, a.where as string, who);
     if (!place) throw new Error('voiced: where?');
-    let company = withR(c, lx, a.with as string | undefined);
+    // (docs/60 item 5: "with the same people": whoever was with them the last time they were there tonight.)
+    let company = a.with === ', with the same people' ? sameCompany(c, who, place, hours[0] as number) : withR(c, lx, a.with as string | undefined);
     if (company === undefined && flags.has('alone')) company = [];
     if (reason !== undefined && !flags.has('aside')) {
       // (Company the reason names, "to meet Abramowitz", "to Dr. Hirsch’s surgery": named, the writer's flag, counts a place called after them.)

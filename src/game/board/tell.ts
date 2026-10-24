@@ -224,7 +224,10 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
       // docs/52: where, for every hour of the run; with whom, where the line says it (by name, or alone).
       const said = named || who.length > 0 || alone !== '';
       // (docs/59 item 8: "went along with Salerno to Rafferty’s, with Ruggiero and Sirkin": whoever the reason names isn't named again after it.)
-      const tail = named || withSomebody ? '' : who.length ? `, with ${andList(who.filter((x) => !(reason ?? '').includes(x)))}${house}` : alone;
+      // (docs/60 item 5: lean, back at the same place with the same people later in the evening: "with the
+      // same people", not their names again.)
+      const again = lean() && i > 0 && who.length > 0 && !named && !withSomebody && !house && runs.slice(0, i).some((r0) => r0.place === r.place && Array.from({ length: r0.to - r0.from + 1 }, (_, k) => key(a.claims[(r0.from + k) as Hour]?.company ?? [])).every((x) => x === key(comps[0]?.who ?? [])));
+      const tail = named || withSomebody ? '' : again ? ', with the same people' : who.length ? `, with ${andList(who.filter((x) => !(reason ?? '').includes(x)))}${house}` : alone;
       const company = named ? 'named' : withSomebody ? 'aside' : who.length ? 'with' : alone ? 'alone' : 'bare';
       push({ shape: 'CLAIM-SPAN', flags: [...flags, company], args: { ...args, with: tail }, manner }, runHours, runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h, ...(said ? { company: [...(a.claims[h]?.company ?? [])] } : {}) }) as Prop));
     } else {

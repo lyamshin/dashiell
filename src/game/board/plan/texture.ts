@@ -213,7 +213,8 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
     if (roleOf(it) !== 'people' || !it.alts) continue;
     const n = wordsIn(stripMarks(it.text));
     if (similesIn(it.text) === 0 && n <= 18) continue;
-    const alt = it.alts().find((a) => similesIn(a.text) === 0 && wordsIn(stripMarks(a.text)) <= Math.min(18, n - 1));
+    // (Nor a pronoun the sentence before could lend to somebody else: "with her back to the room".)
+    const alt = it.alts().find((a) => similesIn(a.text) === 0 && wordsIn(stripMarks(a.text)) <= Math.min(18, n - 1) && !/\b(?:he|him|his|she|her)\b/i.test(stripMarks(a.text)));
     if (!alt) continue;
     alt.take();
     it.text = alt.text;

@@ -480,7 +480,6 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         note(true);
       }
     }
-    if (process.env.FDEBUG && s.text.includes(process.env.FDEBUG)) process.stderr.write(`REFER ${s.text}\n  ${s.mentions.map((m) => `${m.kind}:${m.who.short}@${m.at}/${m.form}${m.rep !== undefined ? `→${m.rep}` : ''}`).join(' ')}\n  named ${s.named.map((x) => x.who.short).join(',')}\n`);
     if (/[A-Za-z]/.test(s.narr)) narrIdx.push(si);
   });
 

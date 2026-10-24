@@ -1889,6 +1889,22 @@ export function writeAccount(w: Writer, p: PersonId): void {
     }
   });
   think(w, q);
+  // docs/60 item 5 (docs/59 §7): lean, the sighting said to their face ("Demos saw you here at eight and
+  // eleven") isn't said again in the thought ("Some of his evening did hold: Demos saw him at Steinmetz’s
+  // at eight and eleven"): the page has said it.
+  if (lean() && ptr?.face) {
+    const by = ptr.src.split(':')[1] ?? '';
+    const ps = w.parts.thought ?? [];
+    for (let i = ps.length - 1; i >= 0; i--) {
+      const x = ps[i] as Item;
+      const props = x.props ?? [];
+      if (!/^thought:agree/.test(x.tag ?? '') || !props.length || !props.every((y) => y.k === 'CONFIRMS' && (y.by as { who?: string }).who === by)) continue;
+      ps.splice(i, 1);
+      // (And the aside that said it held, after it.)
+      if ((ps[i] as Item | undefined)?.slot === 'gloss' && (ps[i] as Item).runOn) ps.splice(i, 1);
+      if (ps[0]) ps[0].runOn = false;
+    }
+  }
   handOff(w, check);
   closeWith(w, p, 'account-close', {}, s);
   lay(w, check ? 'check' : 'account');
