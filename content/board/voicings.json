@@ -1364,7 +1364,7 @@
   {"id": "present/first", "shape": "PRESENT", "forbids": ["lean"], "requires": ["first"], "template": "{Who} was {where}, and had been all along."},
   {"id": "present/first-2", "shape": "PRESENT", "requires": ["first"], "template": "{Who} was {where}."},
   {"id": "present/first-3", "shape": "PRESENT", "requires": ["first"], "template": "I found {who} {where}."},
-  {"id": "present/first-4", "shape": "PRESENT", "requires": ["first"], "joke": true, "template": "It saved me a walk: {who} was {where}."},
+  {"id": "present/first-4", "shape": "PRESENT", "forbids": ["lean"], "requires": ["first"], "joke": true, "template": "It saved me a walk: {who} was {where}."},
   {"id": "present/back", "shape": "PRESENT", "forbids": ["lean"], "requires": ["back"], "template": "{Who}, it turned out, had come back in and was {where}."},
   {"id": "present/back-2", "shape": "PRESENT", "requires": ["back"], "template": "In the meantime {who} had come back in and was {where}."},
   {"id": "present/back-3", "shape": "PRESENT", "requires": ["back"], "template": "I looked round, and {who} was {where}, back in again."},

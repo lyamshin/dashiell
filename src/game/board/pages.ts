@@ -1715,11 +1715,14 @@ function streetOnce(text: string, street: string): string {
  */
 function peopleInBrief(c: BoardCase, xs: { text: string; about: PersonId[]; alts?: Item['alts'] }[]): { text: string; about: PersonId[]; alts?: Item['alts'] }[] {
   const out: { text: string; about: PersonId[]; alts?: Item['alts'] }[] = [];
-  let group: { text: string; about: PersonId[] }[] = [];
+  let group: { text: string; head: string; about: PersonId[]; alts?: Item['alts'] }[] = [];
   const flush = () => {
-    if (group.length === 1) out.push(group[0] as { text: string; about: PersonId[] });
-    else if (group.length > 1) {
-      const parts = group.map((g) => g.text.replace(/\.$/, ''));
+    // (One person alone keeps their whole line, what they're doing and all: "stacking nickels into columns".)
+    if (group.length === 1) {
+      const g = group[0] as (typeof group)[number];
+      out.push({ text: g.text, about: g.about, ...(g.alts ? { alts: g.alts } : {}) });
+    } else if (group.length > 1) {
+      const parts = group.map((g) => g.head.replace(/\.$/, ''));
       out.push({ text: `${parts.slice(0, -1).join(', ')}, and ${parts[parts.length - 1]}.`, about: group.flatMap((g) => g.about) });
     }
     group = [];
@@ -1742,7 +1745,7 @@ function peopleInBrief(c: BoardCase, xs: { text: string; about: PersonId[]; alts
     const female = pr === 'she' || pr === 'her';
     const clash = !!pr && group.some((g) => g.about.some((id) => personOf(c, id)?.female === female));
     if (clash || group.length === 3) flush();
-    group.push({ text: head, about: x.about });
+    group.push({ text: x.text, head, about: x.about, ...(x.alts ? { alts: x.alts } : {}) });
   }
   flush();
   return out;
@@ -1827,7 +1830,8 @@ function stageAndAsk(w: Writer, p: PersonId, job: 'account' | 'check' | 'list' |
   if (theySitNow(w, p)) w.hand.avoid = alsoAvoid(w.hand.avoid, ASK_SIT);
   // docs/60 item 1: lean, the ask is the page's one staging line, so it says whom I'm asking, where
   // nothing before it on the page has.
-  const named = (w.parts.why ?? []).some((x) => x.text.includes(nameOf(c, p)));
+  // (A why the budget will take off the page, "Hauck was the one I wanted to talk to.", doesn't count.)
+  const named = (w.parts.why ?? []).some((x) => x.tex !== 'flourish' && x.text.includes(nameOf(c, p)));
   if (lean() && !face && !named) w.hand.avoid = alsoAvoid(w.hand.avoid, /^(?![\s\S]*\{(?:[Nn]ame|Title)\})/);
   // (And, sitting already, the ask doesn't sit me down again: the situated deck saw to that, and lean the ask is the hand's.)
   if (lean() && seatedNow(w)) w.hand.avoid = alsoAvoid(w.hand.avoid, SAT);

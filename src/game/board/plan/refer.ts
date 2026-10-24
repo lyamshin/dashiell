@@ -319,7 +319,8 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   const roleOk = (w: Who, s: Sent, at: number): boolean => {
     if (!lean()) return true;
     // ("My client" and "the dead man" are nobody else, ever: the reader always knows who they are.)
-    if (w.id === c.client || (w.id === c.crime.victim && c.type === 'murder')) return true;
+    // (Once the page has named them: the first time it's the name.)
+    if ((w.id === c.client || (w.id === c.crime.victim && c.type === 'murder')) && introduced.has(w.idx)) return true;
     if (s.named.some((x) => x.who === w && x.at < at)) return true;
     const prev = narrIdx.length ? (sents[narrIdx[narrIdx.length - 1] as number] as Sent) : undefined;
     return !!prev && prev.named.some((x) => x.who === w);
