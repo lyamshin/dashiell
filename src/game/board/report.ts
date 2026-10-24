@@ -23,10 +23,11 @@ import { ROOMING_MEANS, WORKPLACES } from '../../gen/board/content.js';
 import { holdersOf } from './world.js';
 import { questionById, key } from '../../gen/board/solver.js';
 import { minimalSets } from '../../gen/board/path.js';
+import { closure } from '../../gen/board/pointers.js';
 import { techniquesUpTo } from '../../gen/board/tiers.js';
 import { questionsOf, solve } from '../../gen/board/solver.js';
 import { Hand } from './decks.js';
-import { accountOf, collisionsOf, confrontationOf, judgeLine, linesHeld, listOf, solveRun, type Line } from './knowledge.js';
+import { accountOf, collisionsOf, confrontationOf, judgeLine, lineShown, linesHeld, listOf, saidOnPage, solveHeld, solveRun, type Line } from './knowledge.js';
 import type { Lie } from '../../gen/board/types.js';
 import {
   andList,
@@ -40,9 +41,9 @@ import {
   personOf,
   placeName,
   pronOf,
+  solverHeld,
   suspectsOf,
   victimOf,
-  type BoardCase,
   type BoardDeal,
   type BoardReport,
   type BoardRun,
@@ -146,15 +147,27 @@ function meansOptions(d: BoardDeal): { value: string; label: string }[] {
   return [...names].map((n) => ({ value: n, label: cap(n.replace(/^(a|an) /, '')) }));
 }
 
-/** Where a lost thing could be: with whoever buys such things, in the places the night has. */
-function whereOptions(d: BoardDeal): { value: string; label: string }[] {
+/**
+ * Where a lost thing could be: with whoever buys such things, in the places the night has. Round 5,
+ * U4: given the run, only the ones the night has named, on a page read or in a line held: a fence
+ * nobody mentioned isn't a thread the player missed. Without a run (the truth's labels), all of them.
+ */
+function whereOptions(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>): { value: string; label: string }[] {
   const c = d.kase;
-  const out: { value: string; label: string }[] = holdersOf(c).map((h) => ({ value: `holder:${h.id}`, label: cap(h.who.split(',')[0] as string) }));
+  const said = run ? [...(run.log ?? []).flatMap((p) => p.blocks.map((b) => ('text' in b ? b.text : ''))), ...linesHeld(c, run).map((l) => l.text)].join('\n').replace(/⁣\d+⁤/g, '') : null;
+  const named = (who: string) => said === null || new RegExp(`(?<![\\w’])${who.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w])`).test(said);
+  const out: { value: string; label: string }[] = holdersOf(c)
+    .map((h) => ({ value: `holder:${h.id}`, label: cap(h.who.split(',')[0] as string) }))
+    .filter((o) => named(o.label));
   out.push({ value: 'scene', label: `Still at ${placeName(c, c.crime.scene)}` });
   return out;
 }
 
-export function boardFields(d: BoardDeal): FieldSpec[] {
+/**
+ * The form's questions and their answers. With the run, the answers it offers are the ones the night
+ * has given the player (round 5, U4: the fences named); without, every answer (for the truth's words).
+ */
+export function boardFields(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>): FieldSpec[] {
   const c = d.kase;
   const people = suspectsOf(c).map((p) => ({ value: p, label: personOf(c, p)?.name ?? p }));
   const hours = c.board.hours.map((h) => ({ value: String(h), label: `${cap(hourWord(h))} o’clock` }));
@@ -170,7 +183,7 @@ export function boardFields(d: BoardDeal): FieldSpec[] {
     { key: 'when', label: whenQuestion(c), options: hours },
   ];
   if (isMurder(c)) out.push({ key: 'how', label: 'How', options: meansOptions(d) });
-  else out.push({ key: 'where', label: `Where ${it.he} is now`, options: whereOptions(d) });
+  else out.push({ key: 'where', label: `Where ${it.he} is now`, options: whereOptions(d, run) });
   out.push({ key: 'why', label: 'Why', options: why });
   return out;
 }
@@ -257,13 +270,14 @@ export function breakOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>
   // docs/47 A4: a line touches their story when it says where they were at an hour that mattered,
   // or who was at the place they claimed then. docs/55 5: or who was, at those hours, at any place
   // their own story names: so the group is the lines a careful reader would check, in the order they
-  // were held, and never the one line that breaks it, alone, on top.
+  // were held, and never the one line that breaks it, alone, on top. Round 5, U3 (docs/63): the
+  // group's heading says exactly this (`lineGroupHeads`), so every line under it fits it.
   const theirs = new Set<string>(own ? Object.values(own.claims).flatMap((x) => (x?.place ? [x.place] : [])) : []);
   const touches = (l: Line): boolean => who !== null && l.hour !== undefined && hours.has(l.hour) && (l.about.includes(who) || (!!own && l.place !== undefined && (l.place === own.claims[l.hour]?.place || theirs.has(l.place))));
   return linesHeld(c, run)
     .filter((l) => l.kind !== 'find' && (who === null || l.speaker !== who))
     .filter((l) => (l.hour !== undefined && hours.has(l.hour)) || (who !== null && l.about.includes(who)))
-    .map((l) => ({ value: l.id, label: saidLabel(c, run, l), ...(touches(l) ? { touches: true } : {}) }));
+    .map((l) => ({ value: l.id, label: lineShown(c, run, l), ...(touches(l) ? { touches: true } : {}) }));
 }
 
 /**
@@ -275,28 +289,39 @@ export function breakOptionsShown(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'p
   return [...all.filter((o) => o.touches), ...all.filter((o) => !o.touches)];
 }
 
-/**
- * docs/55 5: the words a page said for a held line, when the page voiced it (a remark, a crack): the
- * report quotes what the player read, not the case's own wording of it.
- */
-function saidOnPage(run: Partial<Pick<BoardRun, 'log'>>, carries: string): string | undefined {
-  for (const p of run.log ?? []) {
-    for (const u of p.board?.units ?? []) {
-      if (u.kind !== 'fact' || !u.carries.includes(carries)) continue;
-      const t = u.text.replace(/⁣\d+⁤/g, '').trim();
-      if (t) return t;
-    }
-  }
-  return undefined;
+/** The hours that mattered, as the form says them: "ten", "nine or ten". */
+export function hoursWords(d: BoardDeal): string {
+  const hs = hoursThatMattered(d).map((h) => hourWord(h));
+  return hs.length > 1 ? `${hs.slice(0, -1).join(', ')} or ${hs[hs.length - 1]}` : (hs[0] ?? '');
 }
 
-/** A held line's label: a remark as the page quoted it, everything else as the notebook has it. */
-function saidLabel(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>, l: Line): string {
-  if (l.kind !== 'remark' || !l.speaker) return l.text;
-  const said = saidOnPage(run, l.id);
-  if (!said) return l.text;
-  const q = said.replace(/^“|”$/g, '').replace(/”\s*$/, '').trim();
-  return `${nameOf(c, l.speaker)}: “${q}”`;
+/**
+ * Round 5, U3 (docs/63): the two groups' headings, as the book and the CLI both say them. The first
+ * says exactly what `touches` holds, docs/55 5's group: lines at the hours that mattered about them,
+ * or about any place they said they were tonight (once their own evening is held). "What I have
+ * about where Bellucci said he was at ten" claimed less than that, over Mrs. Kowalski's ten o'clock.
+ */
+export function lineGroupHeads(d: BoardDeal, run: Pick<BoardRun, 'asked'>, who: PersonId): { touching: string; rest: string } {
+  const c = d.kase;
+  const N = nameOf(c, who);
+  const hs = hoursWords(d);
+  const told = run.asked.includes(`account:${who}`);
+  const he = pronOf(c, who).he;
+  return {
+    touching: told ? `What I have at ${hs} about ${N} and the places ${he} said ${he} was tonight:` : `What I have at ${hs} about ${N}:`,
+    rest: `Anything else I have that names ${N} or is about ${hs}:`,
+  };
+}
+
+/**
+ * Round 5, U6: what filing does with a blank, in one sentence, said once, the same in the book and
+ * the CLI: an answer left blank is "I don’t know"; a line asked under an answer, "A hunch".
+ */
+export function blankRule(d: BoardDeal, spent: boolean): string {
+  const lines = [BREAKS_LABEL, ...(asksOther(d) ? [CLEARED_LABEL] : []), ...(isMurder(d.kase) ? [] : [WHERE_BY_LABEL])];
+  const named = lines.length > 1 ? `${lines.slice(0, -1).join(', ')} and ${lines[lines.length - 1]}` : (lines[0] as string);
+  const lead = spent ? 'The calls are spent, so this is what gets filed.' : 'Filing is final.';
+  return `${lead} Anything left blank goes in as “I don’t know”, except ${named}, which ${lines.length > 1 ? 'go' : 'goes'} in as “${HUNCH}”.`;
 }
 
 /** A small case's crack, held: the culprit said where it went when it was put to them, in the page's words. */
@@ -314,7 +339,7 @@ function crackHeld(d: BoardDeal, run: Pick<BoardRun, 'asked'> & Partial<Pick<Boa
 export function whereByOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>): LineOption[] {
   const out: LineOption[] = linesHeld(d.kase, run)
     .filter((l) => l.kind === 'remark' || l.kind === 'find')
-    .map((l) => ({ value: l.id, label: saidLabel(d.kase, run, l) }));
+    .map((l) => ({ value: l.id, label: lineShown(d.kase, run, l) }));
   const crack = crackHeld(d, run);
   if (crack) out.push(crack);
   return out;
@@ -522,12 +547,86 @@ function closingLines(d: BoardDeal, run: BoardRun, outcome: Outcome, whereRight 
   if (home) out.push(home);
   const par = parCalls(d);
   if (outcome === 'solved') {
-    out.push(run.used <= par ? `It took me ${run.used} calls. A better detective would have needed the same, and there aren’t many of those about.` : `It took me ${run.used} calls. A better detective would have done it in ${par}.`);
+    // Round 5, U7: over par, it says which calls the short way didn't need, and why, so the call a
+    // page offered ("I could face Bellucci with it now") isn't docked without saying so.
+    const spare = run.used > par ? spareCalls(d, run) : [];
+    const why = spare.slice(0, 3).map((q) => spareSaid(d, run, q));
+    const rest = run.used - par - why.length;
+    const tail = why.length === 0 ? '' : ` ${why.join(' ')}${rest > 0 ? ' The rest was the long way round.' : ''}`;
+    out.push(run.used <= par ? `It took me ${run.used} calls. A better detective would have needed the same, and there aren’t many of those about.` : `It took me ${run.used} calls. A better detective would have done it in ${par}.${tail}`);
   }
   // The office's prop, paid off, unless the report page already paid it off with this line.
   const fresh = (run.prop?.pay ?? []).filter((l) => !run.spent.includes(`pay:${l.slice(0, 40)}`));
   if (fresh.length) out.push(hand.rng.pick(fresh));
   return out;
+}
+
+/**
+ * Round 5, U7: the calls a run made that the short way didn't need: questions it could drop and
+ * still have everything par's own test asks for (the solver done on what a detective could be pointed
+ * to: `analyse`'s goal), at most as many as it ran over par. Puts first (a refusal, then a crack,
+ * then the rest), then questions the short way doesn't ask, then the rest, the latest first within
+ * each. Never the score: this only says what it was. The motive search par counts is never one; a suspect's
+ * own reason, asked, is one when the papers were read too, or the case has no papers to read.
+ */
+export function spareCalls(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'used'>): string[] {
+  const c = d.kase;
+  const over = run.used - parCalls(d);
+  if (over <= 0) return [];
+  const goal = (held: readonly string[]) => solveHeld(c, closure(c, held)).done;
+  let held = solverHeld(run);
+  if (!goal(held)) return [];
+  const papers = d.analysis.motive;
+  const out: string[] = [];
+  // A suspect's reason, asked: never what the solver needs; spare when the papers (or the client) said it anyway.
+  const reasons = run.asked.filter((q) => q.startsWith('motive:'));
+  const freeWhy = !papers || run.asked.includes(papers);
+  const path = new Set(d.analysis.path.map((s) => s.q));
+  const rank = (q: string): number => {
+    // A question the short way asks too is named last: what the curtain's short way skips, first.
+    if (!q.startsWith('confront:')) return path.has(q) ? 4 : 3;
+    const [p, h] = q.slice(9).split('@') as [string, string];
+    const r = confrontationOf(c, p, Number(h))?.response;
+    return r === 'refuse' ? 0 : r === 'crack' ? 1 : 2;
+  };
+  const order = held
+    .map((q, i) => ({ q, i }))
+    .filter((x) => x.q !== papers)
+    .sort((a, b) => rank(a.q) - rank(b.q) || b.i - a.i)
+    .map((x) => x.q);
+  for (const q of order) {
+    if (out.length >= over) break;
+    const rest = held.filter((x) => x !== q);
+    if (!goal(rest)) continue;
+    out.push(q);
+    held = rest;
+  }
+  for (const q of freeWhy ? reasons : reasons.slice(1)) if (out.length < over) out.push(q);
+  return out;
+}
+
+/** One spare call, said in the closing's voice: what it was, and why it wasn't needed. */
+function spareSaid(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>, q: string): string {
+  const c = d.kase;
+  const [kind, rest] = q.split(/:(.*)/s) as [string, string];
+  const didnt = 'was a call I didn’t need';
+  if (kind === 'confront') {
+    const [p, h] = rest.split('@') as [string, string];
+    const k = confrontationOf(c, p, Number(h));
+    const pr = pronOf(c, p);
+    const lead = `Facing ${nameOf(c, p)} ${didnt}`;
+    if (k?.response === 'refuse') return `${lead}: ${pr.he} wouldn’t say, and I had enough to file without it.`;
+    // A crack's where-it-went, already said by somebody who saw the handover.
+    const by = k?.response === 'crack' ? heldWhereBy(d, run).find((o) => !o.value.startsWith('crack:')) : undefined;
+    const who = by ? /^remark:(?:list|account):(.+)#\d+$/.exec(by.value)?.[1] : undefined;
+    if (who) return `${lead}: ${nameOf(c, who)} had already told me where ${victimOf(c).short} went.`;
+    return `${lead}: I had enough to file without it.`;
+  }
+  if (kind === 'list') return `Asking ${nameOf(c, rest)} who was in tonight ${didnt}.`;
+  if (kind === 'account') return `Asking ${nameOf(c, rest)} where ${pronOf(c, rest).he} was tonight ${didnt}.`;
+  if (kind === 'motive') return `Asking ${nameOf(c, rest)} about ${victimOf(c).short} ${didnt}.`;
+  const f = c.finds.find((x) => x.id === rest);
+  return `Searching ${f ? f.what.replace(/^[A-Z]/, (x) => x.toLowerCase()) : 'there'} ${didnt}.`;
 }
 
 /* ------------------------------------------------------------------ *

@@ -350,7 +350,7 @@ describe('board: the play CLI', () => {
     const cn = clearOptions(d, o2.run, truth.other).findIndex((x) => x.value === truth.cleared) + 1;
     expect(cn).toBeGreaterThan(0);
     expect(form.out).toContain('Somebody else’s story didn’t hold either. Who, and what cleared them? (other):');
-    expect(runPlay(['report', otherName, '--save', save], io).out).toContain(`If ${otherName} is who else lied, cleared counts down this same list.`);
+    expect(runPlay(['report', otherName, '--save', save], io).out.replace(/\s+/g, ' ')).toContain(`If ${otherName} is the other liar, give “cleared” as a number from this list too.`);
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=${n}; other=${otherName}; cleared=${cn}; when=${d.kase.crime.hour}; where=${truth.where}; whereBy=${wn}; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('THE VERDICT');

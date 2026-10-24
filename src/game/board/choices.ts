@@ -16,7 +16,7 @@
 
 import { minutesAfter } from './clock.js';
 import type { OfferedChoice, OfferedGroup } from './types.js';
-import { candidateLines, collisionsOf, confrontationOf, judgeLine, knownPeople, knownPlaces, linesHeld, listOf, peopleAt, type Line } from './knowledge.js';
+import { candidateLines, collisionsOf, confrontationOf, judgeLine, knownPeople, knownPlaces, lineShown, linesHeld, listOf, peopleAt, type Line } from './knowledge.js';
 import {
   OFFICE,
   andList,
@@ -220,7 +220,7 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
     const label = `${personOf(c, p)?.home === col.claim.place ? (homeNamed(c, p) ? 'home' : `home (${placeName(c, col.claim.place ?? '')})`) : placeName(c, col.claim.place ?? '')} at ${hourWord(col.hour)}`;
     claims.push({ hour: col.hour, label, again: false, lines: cands.map((l) => lineChoice(d, p, col.hour, l, false, run)) });
     const b = col.breakers[0];
-    if (b) ready.push({ command: `put ${p} ${col.hour} ${b.id}`, label: `${cap(nameOf(c, p))} says ${label}. ${cap(breakSaid(c, b, p, run.asked))}.` });
+    if (b) ready.push({ command: `put ${p} ${col.hour} ${b.id}`, label: `${cap(nameOf(c, p))} says ${label}. ${cap(factSaid(c, b, p))}.` });
   }
   // A second story, once told, collides with the list where it claims to be.
   for (const put of run.puts.filter((x) => x.person === p && x.landed && !x.again)) {
@@ -232,7 +232,7 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
     if (breaks.length === 0) continue;
     const label = `${placeName(c, alt)} at ${hourWord(put.hour)}, what ${pronOf(c, p).he} said next`;
     claims.push({ hour: put.hour, label, again: true, lines: at.map((l) => lineChoice(d, p, put.hour, l, true, run)) });
-    ready.push({ command: `put ${p} ${put.hour} ${(breaks[0] as Line).id} again`, label: `${cap(nameOf(c, p))} now says ${placeName(c, alt)} at ${hourWord(put.hour)}. ${cap(breakSaid(c, breaks[0] as Line, p, run.asked))}.` });
+    ready.push({ command: `put ${p} ${put.hour} ${(breaks[0] as Line).id} again`, label: `${cap(nameOf(c, p))} now says ${placeName(c, alt)} at ${hourWord(put.hour)}. ${cap(factSaid(c, breaks[0] as Line, p))}.` });
   }
   if (claims.length === 0) return null;
   const pr = pronOf(c, p);
@@ -243,9 +243,20 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
     help:
       c.tier <= 1
         ? `Read ${pr.him} the line that breaks ${pr.his} story.`
-        : `Pick the hour where ${pr.his} story is wrong, then the line that breaks it: say, somebody who saw everybody who was there then, and didn’t see ${pr.him}.`,
+        : `Pick the hour where ${pr.his} story is wrong, then the line that breaks it, such as somebody who saw everyone there at that hour and not ${pr.him}.`,
     minutes: callMinutes(d, run),
   };
+}
+
+/**
+ * The picker's note, as the book and the CLI both say it: how to use it, what it costs, and (round 5,
+ * U7) that it isn't needed for the report: the line counts there whether it's read to them or not, so
+ * a put is for what they say back.
+ */
+export function pickerNote(d: BoardDeal, pk: Picker): string {
+  const c = d.kase;
+  const him = personOf(c, pk.person)?.female ? 'her' : 'him';
+  return `${pk.help} Looking is free; reading one to ${him} costs a call. If it breaks nothing, the call is gone all the same, and the page says why. The report counts the line whether you read it to ${him} or not.`;
 }
 
 function listWhole(d: BoardDeal, l: Line): boolean {
@@ -253,11 +264,26 @@ function listWhole(d: BoardDeal, l: Line): boolean {
   return !!lst && (lst.entries[l.hour as Hour] ?? []).every((e) => !('other' in e) || (d.kase.others?.find((o) => o.id === e.other)?.known ?? true));
 }
 
+/**
+ * A ready-made pair's line (Raw and Coddled): what the line says, and nothing worked out from it.
+ * Round 5, U9: never "the camel coat was Abramowitz’s", the face matched to a name, which is a
+ * deduction the player makes (docs/46 §2); the put itself still says it, once it's read
+ * (`breakSaid` with what's asked). With nothing asked, `breakSaid` matches no face.
+ */
+function factSaid(c: BoardDeal['kase'], l: Line, p: PersonId): string {
+  return breakSaid(c, l, p, []);
+}
+
+/**
+ * A line the player picks to read them (Poached up): as the notebook and the report have it, word
+ * for word (round 5, U5 and U9: one wording for a line everywhere it's offered, and never more
+ * than it says).
+ */
 function lineChoice(d: BoardDeal, p: PersonId, h: Hour, l: Line, again: boolean, run: BoardRun): { command: string; label: string; source: string } {
   const c = d.kase;
   return {
     command: `put ${p} ${h} ${l.id}${again ? ' again' : ''}`,
-    label: `${cap(breakSaid(c, l, p, run.asked))}.`,
+    label: lineShown(c, run, l),
     source: l.kind === 'list' ? `who ${nameOf(c, l.speaker as PersonId)} saw` : l.kind === 'claim' ? `what ${nameOf(c, l.speaker as PersonId)} said` : l.kind === 'given' ? 'the office' : `${nameOf(c, l.speaker as PersonId)}`,
   };
 }

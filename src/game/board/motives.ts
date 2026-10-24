@@ -35,7 +35,7 @@ const FORMS: Record<string, string> = {
   s3: 'Lost a job on Friday, and asked {client} what {thing} was worth',
   s4: 'Bitten by {thing} at Easter, and swore to see the back of {pthem}',
   s5: 'Woken by {thing} through the wall at five every morning, and said what they’d do about it',
-  s6: 'Says {thing} was promised to them by the late Mr. {client}',
+  s6: 'Says the late Mr. {client} promised them {thing}',
   s7: 'Has wanted {thing} since the day {client} brought {pthem} home',
   s8: 'Always said {thing} was wasted on its owner',
   s9: 'Hasn’t spoken to {client} since the row over the coal bill',

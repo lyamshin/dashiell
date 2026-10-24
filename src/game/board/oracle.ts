@@ -317,7 +317,8 @@ export function playWanderer(d: BoardDeal, seed: number): Played {
 function filedFrom(d: BoardDeal, run: BoardRun, rng: Rng, pick: { person: PersonId; hour: Hour } | null): BoardReport {
   const c = d.kase;
   const s = solveRun(c, run);
-  const fields = boardFields(d);
+  // (Round 5, U4: the form as the player sees it, the fences the night named.)
+  const fields = boardFields(d, run);
   const guess = (k: string) => rng.pick(fields.find((f) => f.key === k)?.options ?? [{ value: '', label: '' }]).value;
   const truth = truthReport(d);
   const who = pick?.person ?? guess('who');

@@ -10,7 +10,7 @@
  */
 
 import type { CellMark } from './types.js';
-import { linesHeld, accountOf, solveRun, knownPeople, knownPlaces } from './knowledge.js';
+import { linesHeld, lineShown, accountOf, solveRun, knownPeople, knownPlaces } from './knowledge.js';
 import { cap, hourWord, isMurder, nameOf, personOf, placeName, suspectsOf, type BoardCase, type BoardRun, type Hour, type PersonId, type PlaceId } from './model.js';
 import { sourceName } from './stars.js';
 import { meansKnew } from './bones/phrase.js';
@@ -85,7 +85,7 @@ export function placeCodes(c: BoardCase): Record<PlaceId, string> {
   return out;
 }
 
-export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visited' | 'marks'>): BoardGrid {
+export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visited' | 'marks'> & Partial<Pick<BoardRun, 'log'>>): BoardGrid {
   const s = solveRun(c, run);
   const hours = c.board.hours;
   const known = knownPeople(c, run);
@@ -129,8 +129,8 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
       // The lines behind it.
       for (const l of lines) {
         if (l.hour !== h) continue;
-        if (l.kind === 'claim' && l.speaker === id) cell.lines.push(l.text);
-        else if (l.about.includes(id) || (cell.says && l.place === cell.says && (l.kind === 'list' || l.kind === 'claim'))) cell.lines.push(l.text);
+        if (l.kind === 'claim' && l.speaker === id) cell.lines.push(lineShown(c, run, l));
+        else if (l.about.includes(id) || (cell.says && l.place === cell.says && (l.kind === 'list' || l.kind === 'claim'))) cell.lines.push(lineShown(c, run, l));
       }
       if (run.marks[id]?.[String(h)]) cell.pencil = run.marks[id]?.[String(h)];
       cells[h] = cell;
@@ -197,7 +197,7 @@ export function cellText(g: BoardGrid, cell: BoardCell): string {
   return base || pencil || '·';
 }
 
-export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visited' | 'marks'>): string {
+export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visited' | 'marks'> & Partial<Pick<BoardRun, 'log'>>): string {
   const g = boardGrid(c, run);
   const out: string[] = [];
   out.push('WHERE THEY WERE');

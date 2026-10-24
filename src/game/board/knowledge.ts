@@ -30,6 +30,7 @@ import {
   type PersonId,
   type PlaceId,
 } from './model.js';
+import { homeNamed } from './home.js';
 import { papersLine, whyOrder } from './motives.js';
 import type { HeldWhy } from './bones/types.js';
 
@@ -103,21 +104,61 @@ export function shutAt(c: BoardCase, place: PlaceId, h: Hour): boolean {
   return !!p && (h < p.open[0] || h > p.open[1]);
 }
 
+/**
+ * Where somebody says they were, as the page says it: "home" when it's their own (docs/55 1d), and
+ * "home at the Delmonico rooms" when their home isn't called after them (docs/59), never "at
+ * Thorndike’s flat" for the man who said "home" (round 5, U5).
+ */
+export function claimWhere(c: BoardCase, p: PersonId, place: PlaceId): string {
+  const who = personOf(c, p);
+  if (who?.home !== place) return `at ${placeName(c, place)}`;
+  return homeNamed(c, p) ? 'home' : `home at ${placeName(c, place)}`;
+}
+
 export function claimText(c: BoardCase, p: PersonId, h: Hour, cl: Claim): string {
   const pr = pronOf(c, p);
   const comp = cl.company.map((x) => nameOf(c, x));
-  return `${nameOf(c, p)} says ${pr.he} was at ${placeName(c, cl.place)} at ${oclock(h)}, ${comp.length ? `with ${andList(comp)}` : `on ${pr.his} own`}.`;
+  return `${nameOf(c, p)} says ${pr.he} was ${claimWhere(c, p, cl.place)} at ${oclock(h)}, ${comp.length ? `with ${andList(comp)}` : `on ${pr.his} own`}.`;
 }
 
+/**
+ * A stranger on a watcher's list, as the notebook says it: the watcher's own "I didn’t know" is the
+ * watcher's, so the notebook leaves it off and says it after, by name (round 5, U5: "Broadnax: at ten
+ * o’clock, Grasso and somebody at the same table I didn’t know were at the Automat").
+ */
+function strangerNoun(name: string): string {
+  return name.replace(/ (?:I didn’t know|nobody could put a name to)$/, '');
+}
+
+/**
+ * A watcher's hour, as the notebook and the report say it: plainly, in the third person, and no more
+ * than the watcher said (round 5, U5). "Alfano: at ten o’clock, only Steinbach, Lanza and Pardo were
+ * at Moe’s." "Reinhardt: at ten o’clock, only somebody in a camel coat was at the Odessa; Reinhardt
+ * couldn’t say who that was." "Broadnax: at ten o’clock, Grasso was at the Automat, with somebody at
+ * the same table; Broadnax didn’t know who that was."
+ */
 export function listText(c: BoardCase, l: WatchList, h: Hour): string {
   const es = l.entries[h] ?? [];
   const where = placeName(c, l.place);
-  if (shutAt(c, l.place, h)) return `${nameOf(c, l.watcher)}: ${where} was shut at ${oclock(h)}.`;
-  if (es.length === 0) return `${nameOf(c, l.watcher)}: at ${oclock(h)}, nobody was at ${where}.`;
+  const W = nameOf(c, l.watcher);
+  if (shutAt(c, l.place, h)) return `${W}: ${where} was shut at ${oclock(h)}.`;
+  if (es.length === 0) return `${W}: at ${oclock(h)}, nobody was at ${where}.`;
+  const known = (e: ListEntry) => !('other' in e) || (c.others?.find((o) => o.id === e.other)?.known ?? true);
   // In the notebook a regular is his name: "Pardo", not "Pardo who buys things" eight times a night (Raw 11's #11).
-  const names = es.map((e) => entryName(c, e).replace(/^(Lou|Pardo|Benny)\b.*$/, '$1'));
+  const short = (n: string) => n.replace(/^(Lou|Pardo|Benny)\b.*$/, '$1');
+  const names = es.filter(known).map((e) => ('look' in e ? `somebody ${e.look}` : short(entryName(c, e))));
+  const strangers = es.filter((e) => !known(e)).map((e) => strangerNoun(entryName(c, e)));
+  const looks = es.filter((e) => 'look' in e).length;
+  const many = (xs: readonly string[]) => xs.length > 1 || /^(?:two|three|four|some) /.test(xs[0] ?? '');
   // docs/53, addendum: "only Feeney and Ashby", never "…, and nobody else".
-  return `${nameOf(c, l.watcher)}: at ${oclock(h)}, ${listExhaustive(c, l, h) ? 'only ' : ''}${andList(names)} ${names.length > 1 ? 'were' : 'was'} at ${where}.`;
+  const only = listExhaustive(c, l, h) ? 'only ' : '';
+  let said: string;
+  if (names.length > 0) said = `${only}${andList(names)} ${many(names) ? 'were' : 'was'} at ${where}${strangers.length ? `, with ${andList(strangers)}` : ''}`;
+  else said = `${andList(strangers)} ${many(strangers) ? 'were' : 'was'} at ${where}`;
+  // Who the watcher couldn't name, said once, after: a face (docs/47 B9: a coat, not a face) or a stranger.
+  const unnamed = looks + strangers.length;
+  const tail = unnamed === 0 ? '' : `; ${W} ${strangers.length ? 'didn’t know' : 'couldn’t say'} who ${unnamed > 1 || many(strangers) ? 'they were' : 'that was'}`;
+  return `${W}: at ${oclock(h)}, ${said}${tail}.`;
 }
 
 function remarkFacts(r: Remark): Fact[] {
@@ -185,6 +226,33 @@ export function linesHeld(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>): 
     }
   }
   return out;
+}
+
+/**
+ * docs/55 5: the words a page said for a held line, when the page voiced it (a remark, a crack): the
+ * notebook and the report quote what the player read, not the case's own wording of it.
+ */
+export function saidOnPage(run: Partial<Pick<BoardRun, 'log'>>, carries: string): string | undefined {
+  for (const p of run.log ?? []) {
+    for (const u of p.board?.units ?? []) {
+      if (u.kind !== 'fact' || !u.carries.includes(carries)) continue;
+      const t = u.text.replace(/⁣\d+⁤/g, '').trim();
+      if (t) return t;
+    }
+  }
+  return undefined;
+}
+
+/**
+ * A held line as the notebook, the grid's list and the report show it (round 5, U5: they say the
+ * same words, and a remark in the words the page quoted). Everything else as `Line.text` says it.
+ */
+export function lineShown(c: BoardCase, run: Partial<Pick<BoardRun, 'log'>>, l: Line): string {
+  if (l.kind !== 'remark' || !l.speaker) return l.text;
+  const said = saidOnPage(run, l.id);
+  if (!said) return l.text;
+  const q = said.replace(/^“|”$/g, '').replace(/”\s*$/, '').trim();
+  return `${nameOf(c, l.speaker)}: “${q}”`;
 }
 
 function remarkLine(c: BoardCase, q: string, speaker: PersonId, r: Remark, i: number): Line {

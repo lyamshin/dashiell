@@ -173,7 +173,7 @@ describe('docs/61: the play CLI files it', () => {
     const truth = truthReport(d, o.run);
     const other = d.kase.people.find((x) => x.id === truth.other)?.short as string;
     const listed = runPlay(['report', other, '--save', save], io).out;
-    expect(listed).toContain(`If ${other} is who else lied, cleared counts down this same list.`);
+    expect(listed.replace(/\s+/g, ' ')).toContain(`If ${other} is the other liar, give “cleared” as a number from this list too.`);
     const bad = runPlay(['file', `who=${d.kase.crime.culprit}; cleared=1`, '--save', save], io);
     expect(bad.code).toBe(1);
     expect(bad.out).toContain('Name who else lied first');
