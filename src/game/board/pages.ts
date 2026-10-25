@@ -521,7 +521,7 @@ function placeNewcomers(w: Writer): void {
     // named, had come back in", which said the naming again and a coming back from nowhere the reader saw.)
     const putPage = /^confront:/.test(w.run.asked[w.run.asked.length - 1] ?? '');
     const ident = !!seen;
-    const where = ident ? (seen?.[1] as string) : at;
+    const where = ident ? (seen?.[1] as string).replace(/^(in|at|on|by) (?:a|an) /, '$1 the ') : at;
     // (docs/66, skim round 2: who it was first, "Moretti was the lodger in the front room.", which reads as the
     // answer to the way in's "A lodger was in the front room.", and on its own.)
     const text = ident ? `${cap(who)} was the ${noun} ${where}.` : back && !lean() ? `${cap(who)}, it turned out, had come back in and was ${at}.` : back ? `${cap(who)} was in by then, ${at}.` : `${cap(who)} was ${at}.`;
@@ -562,8 +562,8 @@ const SPOTS: Record<string, string[]> = {
   bar: ['at the far end of the bar', 'in the back booth', 'at a table by the door'],
   restaurant: ['at a corner table', 'at a table by the kitchen', 'by the window'],
   home: ['in the front room', 'in the kitchen', 'on the landing'],
-  work: ['at the far bench', 'by the door', 'by the window'],
-  back: ['in the corner', 'by the door', 'at the far table'],
+  work: ['at the far bench', 'by the window', 'by the door'],
+  back: ['in the corner', 'at the far table', 'by the door'],
   office: ['by the door', 'at the window'],
   any: ['across the room', 'by the wall'],
 };
