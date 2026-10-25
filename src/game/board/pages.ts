@@ -511,7 +511,8 @@ function placeNewcomers(w: Writer): void {
     const at = lean() ? (own ? spotFor(kind, roomSaid) : at0) : own && at0 !== spot.any && roomSaid.includes(at0) ? (spot.any as string) : at0;
     // (docs/66, P4: the one the arrival saw without a name, named now: "The lodger in the front room was Moretti.")
     const noun = lean() ? anonNoun(c, p) : null;
-    const seen = noun ? new RegExp(`\\b[Aa] ${noun} was ([^.;]+?)[.;]`).exec(roomSaid) : null;
+    // (Up to the clause's end: the way in may have folded two of them into one sentence, "…, and somebody was…".)
+    const seen = noun ? new RegExp(`\\b[Aa] ${noun} was ([^.;,]+?)(?:[.;,]|$)`).exec(stripMarks(roomSaid)) : null;
     // Named twice on the page already (an admission says the name and says it again): "my witness".
     // (docs/60 item 3: lean, the name, never "my witness": the reader has to work out who that is.)
     const who = lean() || namesFit(w, `${nameOf(c, p)}`) ? nameOf(c, p) : `my witness${markPronoun(c, p)}`;
@@ -1518,6 +1519,9 @@ export function writeOffice(w: Writer): void {
       const kp = v[k] ? c.people.find((x) => x.short === v[k] || (v[k] ?? '').startsWith(`${x.short}, `)) : undefined;
       if (kp) glossed.add(kp.id);
     }
+    // (docs/66, P2: the pet's own pronoun, marked as the pet's, so the reference pass knows "and now he was
+    // gone" was Fritz, and the client's card after it, "He sat.", is said by name.)
+    if (lean() && g.kind === 'gone' && c.type === 'lost-pet' && v.pthey && !/⁣/.test(v.pthey)) v.pthey = `${v.pthey}${markPronoun(c, c.crime.victim)}`;
     if (v.pthey) v.Pthey = cap(v.pthey);
     if (g.kind === 'means' && v.resident) {
       const res = c.people.find((p) => p.short === v.resident);
@@ -1685,6 +1689,8 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId, back = false, noArrive
   // docs/59 item 4: where the arrival walks in itself ("I went down to Moskowitz’s…"), the walk doesn't arrive too.
   const avoidWalk = w.hand.avoid;
   if (noArrive) w.hand.avoid = alsoAvoid(avoidWalk, WALK_ARRIVES);
+  // (docs/66, P7: where the bearing is said, on the night's first walk and the one that matters, a card that says it.)
+  if (lean() && way) w.hand.avoid = alsoAvoid(w.hand.avoid, /^(?![\s\S]*\{way\})/);
   let frame = w.hand.draw('walk-way', { matters: matters ? 'yes' : 'no', near: wk.near ? 'yes' : 'no' }, slots, { plain: true, untic: true }) ?? (wk.near ? `${cap(dest)} was round the corner.` : `It was ${wk.far} to ${dest}, ${wk.dir}.`);
   const frameDrawn = w.hand.last;
   w.hand.avoid = avoidWalk;

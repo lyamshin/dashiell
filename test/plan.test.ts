@@ -358,6 +358,8 @@ describe('docs/49 Planner 2: composition', () => {
     }
     // (docs/55: 0.80 on main, at the edge; the round-4 voicings and the list’s who-went-out sentence,
     // which is long and stands alone where the placements and an agreement used to join: 0.75 here.)
-    expect(within / paras).toBeGreaterThan(0.7);
+    // (docs/66, P1: and the hour the facts settle, "So he went at ten.", a sentence of its own the
+    // testers asked for, which joins nothing: 0.70 here.)
+    expect(within / paras).toBeGreaterThan(0.68);
   });
 });

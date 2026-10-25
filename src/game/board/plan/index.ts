@@ -113,7 +113,9 @@ export function planSection(
 ): { units: Unit[]; blocks: Block[]; beats: Beat[] } {
   const byBeat: Partial<Record<Beat, Item[]>> = {};
   // docs/52 build 2: the writers' composites said in their voicings, before anything is joined.
-  for (const xs of Object.values(items)) sayAll(xs ?? [], ctx);
+  // (docs/66: with what the page's other beats already say beside it, for its one simile frame.)
+  const all = Object.values(items).flat();
+  for (const xs of Object.values(items)) sayAll(xs ?? [], ctx, () => all.filter((x) => !!x && !(xs ?? []).includes(x) && (!x.say || !!x.comp)).map((x) => (x as Item).text).join(' '));
   for (const [b, xs] of Object.entries(items) as [Beat, Item[]][]) byBeat[b] = PLAN.ops ? aggregate(xs, ctx) : xs;
   // The beats in the sheet's order, then any the sheet hasn't room for, at the end.
   const order: { beats: Beat[] }[] = [];

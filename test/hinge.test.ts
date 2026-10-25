@@ -194,7 +194,7 @@ describe('docs/66: the round-6 testers’ joining text, a rule at a time', () =>
   it('log: the narration says what happened, not what I noted', () => {
     for (const t of ['I noted that Winslow hadn’t been at the Delmonico rooms while the laudanum was in the medicine cupboard.', 'Before Dandridge was given the laudanum, somebody had been at the Delmonico rooms for it.', 'If Ashby said the same, the Palace would check out where the Delmonico rooms hadn’t.', 'Everybody at the meeting knew where the key was, and Alfano and Thorndike had been at it.'])
       expect(rules(night(pg('list', [{ text: t, voice: 'thought' }]))), t).toContain('log');
-    for (const t of ['Winslow hadn’t been at the Delmonico rooms while the laudanum was in the medicine cupboard.', 'The one who gave Dandridge the laudanum had been to the Delmonico rooms for it first.', 'If Ashby said the same, Ruggiero had been at the Palace and not at the Delmonico rooms.', 'Alfano and Thorndike had been at the meeting, where everybody heard where the key was.'])
+    for (const t of ['Winslow hadn’t been at the Delmonico rooms while the laudanum was in the medicine cupboard.', 'To give Dandridge the laudanum, somebody had to go to the Delmonico rooms for it first.', 'If Ashby said the same, Ruggiero had been at the Palace and not at the Delmonico rooms.', 'Alfano and Thorndike had been at the meeting, where everybody heard where the key was.'])
       expect(rules(night(pg('list', [{ text: t, voice: 'thought' }]))).filter((r) => r === 'log'), t).toEqual([]);
   });
 

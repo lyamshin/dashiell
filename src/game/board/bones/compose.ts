@@ -48,7 +48,7 @@ import type { Composite, Prop, Shape, Src } from './types.js';
 import { fitting, LOWER, type Args, type Voicing } from './voice.js';
 import { preview, SAMPLES, VARIETY, unpick, type Picked } from './say.js';
 import { plainComposite } from './plain.js';
-import { ticsIn } from '../tics.js';
+import { similesIn, ticsIn } from '../tics.js';
 import { homeNamed } from '../home.js';
 import { lean } from '../plan/dial.js';
 
@@ -509,7 +509,7 @@ function inQuotes(old: string, said: string): string {
  * the page's "So" or "But" (`Item.opener`) is voiced bare, and the join is put before it (`connect`
  * keeps it or doesn't).
  */
-export function sayAll(items: Item[], ctx: PlanCtx): void {
+export function sayAll(items: Item[], ctx: PlanCtx, besides: () => string = () => ''): void {
   // An answer says "o’clock" twice at most: after that, a voicing without it, where one fits.
   let oclock = 0;
   // (docs/66, P6: and "After that" once: two in one evening read as a timetable.)
@@ -530,7 +530,12 @@ export function sayAll(items: Item[], ctx: PlanCtx): void {
       continue;
     }
     const comp: Held = { shape: s.shape, props: [...(it.props ?? [])] };
-    const keep = it.speech && (oclock >= 2 || (lean() && after >= 1)) ? (t: string) => !(oclock >= 2 && /o’clock/.test(t)) && !(lean() && after >= 1 && AFTER.test(t)) : undefined;
+    const keep0 = it.speech && (oclock >= 2 || (lean() && after >= 1)) ? (t: string) => !(oclock >= 2 && /o’clock/.test(t)) && !(lean() && after >= 1 && AFTER.test(t)) : undefined;
+    // (docs/66: one simile frame a page, in a voicing too: the office's "the way people do" after the
+    // arrival's "as if he’d booked it" was two.)
+    // (A spoken voicing's own words are the speaker's: only a frame round the quotation counts.)
+    const simSoFar = lean() ? similesIn([ctx.pageSoFar ?? '', besides(), ...items.filter((x) => x !== it && (!x.say || x.comp)).map((x) => x.text)].join(' ')) : 0;
+    const keep = simSoFar > 0 ? (t: string) => (!(!it.speech || /“/.test(t)) || similesIn(t) === 0) && (!keep0 || keep0(t)) : keep0;
     const p = pickFor(s.shape, s.flags, s.args, ctx, s.manner, keep);
     if (it.speech) oclock += (p ? p.text : it.text).match(/o’clock/g)?.length ?? 0;
     if (it.speech && AFTER.test(p ? p.text : it.text)) after++;

@@ -246,7 +246,8 @@ describe('round 5, U11: the streets where they really run', () => {
   it('Medium 14: from Mulberry Street to Second Avenue is uptown and east', () => {
     const { run } = played(MEDIUM14);
     const page = run.log[1]?.blocks.map((b) => ('text' in b ? b.text : '')).join(' ') ?? '';
-    expect(page).toMatch(/uptown and east to the Hauck flat/);
+    // (docs/66, P7: the bearing on the night's first walk, in whichever card says it.)
+    expect(page).toMatch(/uptown and east,? (?:to|and I was at) the Hauck flat|Hauck flat (?:was|lay) [^.]* uptown and east/);
     expect(page).not.toMatch(/downtown/);
   });
 });
