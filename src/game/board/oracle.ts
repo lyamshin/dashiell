@@ -74,7 +74,7 @@ function step(d: BoardDeal, run: BoardRun, cmd: string, commands: string[]): Boa
   let command = cmd;
   if (cmd.startsWith('CONFRONT ')) {
     const [p, hs] = cmd.slice(9).split('@') as [string, string];
-    const col = collisionsOf(d.kase, run, p).find((x) => x.hour === Number(hs));
+    const col = collisionsOf(d.kase, run, p, { all: true }).find((x) => x.hour === Number(hs));
     const b = col?.breakers[0];
     if (!b) return `nothing breaks ${p} at ${hs}`;
     command = `put ${p} ${hs} ${b.id}`;

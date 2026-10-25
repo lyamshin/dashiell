@@ -305,14 +305,19 @@ describe('board: a name twice at most a page (docs/39 §4)', () => {
 
 describe('board: a clue is said at most twice a night', () => {
   it('the side remark is pointed at, not repeated: the thought gives the street, not the words', () => {
-    const run = playBoardOracle(dealBoard(1, 4, 'lost-pet')).run;
+    // (docs/65 §1: a night whose remark names the scene's own street, where the two walks cross on it.)
+    const d = dealBoard(17, 4, 'lost-pet');
+    const run = playBoardOracle(d).run;
     const all = run.log.map((p) => prose(p)).join('\n');
+    const street = d.kase.places.find((p) => p.id === d.kase.crime.scene)?.street as string;
+    const client = d.kase.people.find((p) => p.id === d.kase.client)?.short as string;
+    expect(d.kase.accounts.some((a) => a.remarks.some((r) => r.text.includes(` on ${street},`)))).toBe(true);
     // (docs/52 build 2: the remark is said in one of its voicings, but said once.)
     expect((all.match(/\bno hat\b|without a hat/g) ?? []).length).toBe(1);
     // (docs/49, Planner 2: the street's lead and its link are one sentence; docs/52 build 2: in one of its voicings.)
-    expect(all).toMatch(/Stuyvesant Street[^.]*(?:where Prentiss lived|Prentiss’s street)/);
+    expect(all).toMatch(new RegExp(`${street}[^.]*(?:where ${client} lived|${client}’s street)`));
     // docs/53: a pet lives with its owner, never "is kept".
-    expect(all).not.toMatch(/kept Duchess/);
+    expect(all).not.toMatch(new RegExp(`kept ${d.kase.people.find((p) => p.id === d.kase.crime.victim)?.short}`));
     expect((all.match(/under a coat/g) ?? []).length).toBeLessThanOrEqual(2);
   });
 

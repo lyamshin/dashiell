@@ -2983,7 +2983,10 @@ function recapClausesMarked(d: BoardDeal, run: BoardRun): Clause[] {
     const st = hs.map((h) => ({ h, st: s.status.get(`${p}@${h}`) })).find((y) => y.st?.s === 'broken');
     if (st) {
       const cl = accountOf(c, p)?.claims[st.h];
-      const by = st.st?.deps.find((dq) => dq !== `account:${p}` && !dq.startsWith('confront:'));
+      // docs/65 §2: who said otherwise is whoever broke the story first, as the collision keeps it (once a
+      // refuser's keeper says where they really were, the solver's break rests on the list that clears them).
+      const first = collisionsOf(c, run, p, { all: true }).find((x) => x.hour === st.h)?.breakers[0]?.q;
+      const by = first ?? st.st?.deps.find((dq) => dq !== `account:${p}` && !dq.startsWith('confront:'));
       out.push({
         key: `broken:${p}`,
         text: `${nameOf(c, p)} had told me ${claimWas(c, p, [st.h], { mark: markPronoun(c, p) })}, and ${by ? sourceName(c, by) : 'what I had'} said otherwise.`,

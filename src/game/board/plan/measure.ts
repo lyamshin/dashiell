@@ -30,6 +30,7 @@ import { pronOf, type BoardCase } from '../model.js';
 import type { Unit } from './types.js';
 import { bandOf, markedSentences, openingOf, sentencesOf, type Band } from './sentences.js';
 import { lean } from './dial.js';
+import { remarkStreets } from '../../../gen/board/streets.js';
 
 /** The page's sentences in reading order, speech marked, with a break at a chapter heading. */
 export function pageSentences(blocks: readonly Block[]): { text: string; speech: boolean; chapter?: boolean }[] {
@@ -528,6 +529,8 @@ export function restatedPointer(c: BoardCase, prev: Page | undefined, page: Page
   const names = new Set<string>();
   for (const p of c.people) for (const w of p.short.toLowerCase().split(/[^a-z’'-]+/)) if (w) names.add(w);
   for (const p of c.places) for (const w of `${p.short} ${p.name} ${p.street}`.toLowerCase().split(/[^a-z’'-]+/)) if (w) names.add(w.replace(/’s$/, ''));
+  // (docs/65 §1: a side remark's street is a name, though not always a place's.)
+  for (const st of remarkStreets(c)) for (const w of st.toLowerCase().split(/[^a-z’'-]+/)) if (w) names.add(w);
   for (const w of FRAME) names.add(w);
   const a = grams(hand, names);
   const shared = [...grams(why, names)].filter((g) => a.has(g));

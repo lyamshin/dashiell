@@ -10,7 +10,7 @@
  */
 
 import type { CellMark } from './types.js';
-import { linesHeld, lineShown, accountOf, solveRun, knownPeople, knownPlaces } from './knowledge.js';
+import { linesHeld, lineShown, accountOf, solveRun, knownPeople, knownPlaces, faceUnmatched } from './knowledge.js';
 import { cap, hourWord, isMurder, nameOf, personOf, placeName, suspectsOf, type BoardCase, type BoardRun, type Hour, type PersonId, type PlaceId } from './model.js';
 import { sourceName } from './stars.js';
 import { meansKnew } from './bones/phrase.js';
@@ -121,7 +121,8 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
       const by = p && (others.length > 0 || p.deps.length === 0) ? support(id, h, p.place) : undefined;
       if (p && by) cell.seen = { place: p.place, by: sourceName(c, by.q) };
       const st = s.status.get(k);
-      if (st?.s === 'broken') cell.collision = true;
+      // docs/65 §3: a clash that rests on a face not yet matched to a name is the player's to find.
+      if (st?.s === 'broken' && !faceUnmatched(c, run, id, h)) cell.collision = true;
       else if (says && cell.seen && cell.seen.place === says) cell.confirmed = true;
       // Admissions and second stories, once put.
       const k2 = c.confrontations.find((x) => x.person === id && x.hour === h);

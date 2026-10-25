@@ -370,7 +370,7 @@ export function heldBreakers(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>
   const add = (l: Line) => {
     if (!out.some((x) => x.id === l.id)) out.push(l);
   };
-  const cols = collisionsOf(c, run, p);
+  const cols = collisionsOf(c, run, p, { all: true });
   for (const lie of c.lies.filter((l) => l.person === p)) {
     const h = lie.hour;
     for (const b of cols.find((x) => x.hour === h)?.breakers ?? []) add(b);

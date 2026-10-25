@@ -22,6 +22,7 @@ import type { Block, Page } from '../types.js';
 import { shortOther, wayKnown } from './phrase.js';
 import { canon } from './extract.js';
 import type { Composite, HeldWhy, Id, Prop, Src } from './types.js';
+import { remarkStreets } from '../../../gen/board/streets.js';
 
 type P<K extends Prop['k']> = Extract<Prop, { k: K }>;
 
@@ -118,7 +119,8 @@ export function lexicon(c: BoardCase): Lexicon {
       NS: listOf(NAME),
       E,
       ES: listOf(E),
-      STREET: alt(c.places.map((p) => p.street)),
+      // docs/65 §1: a side remark's street is where two walks cross, not always a place's.
+      STREET: alt([...c.places.map((p) => p.street), ...remarkStreets(c)]),
       WHAT: alt(c.finds.map((f) => f.what)),
       THING: alt([victimOf(c).short]),
       MEANS: alt([meansLabel(c)]),

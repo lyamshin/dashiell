@@ -348,3 +348,11 @@ Branch `clarity-3`: the hinge lines said as a person says them (docs/62: the twe
 - **The put to somebody named twice after it** opens on the put, without "I went over to X." (docs/62 §5).
 - **List smell** rose in the dealt world's Raw (10 → 18 of 280), Coddled (5 → 10) and Hard-boiled (13 → 17); it fell or held everywhere else.
 - **Routed**: the notebook's People list should use `gloss.ts` `whoTheyAre` (no posture; U5's); the verdict's endings in `night.json` still "file" (docs/64's).
+
+## Puzzle fixes (docs/65), 2026-10-25
+Branch `puzzle-fixes`: the passer-by's street (docs/63 U11's), the refuser night's shortcut (docs/61 §8: the last liar, citing what caught the other, 50% → 0% at Soft-boiled and 48% → 8% at Medium), and round 6's three (a face matched for the player at Hard-boiled, a star that picked the culprit out of a tie, star reasons at an hour that didn't matter). Left over:
+
+- **The scene's street** is said on 93 of 160 Medium remarks (it was on all of them, 72 untruly); where it isn't, Medium 14 among them, the "rang a bell" link goes. Walking the passer-by over from the generator's other place keeps it on 5 more nights and changes their evenings: the designer's call.
+- **Three Medium murders** (2, 5, 13) keep the refuser's shortcut: the keeper's list is both the first thing that breaks the story and what clears them. The generator's, if anybody's.
+- **Hard-boiled's face clashes wait for a mark**, which nothing teaches; on pair nights every clash does, so an unmarked night shows no clash, turn or confront. Teach it, or keep one faceless clash in the pair: the designer's call.
+- **Routed** (the prose build's): the arrival's pointer still cites the first hour ("Pickering had said she was with him at eleven." on Thorndike's doorstep, Medium 14), and so do the curtain's fastest-solve steps (`pointers.ts` `reasonFor`). The star's rule (docs/65 §5) would do for both.
