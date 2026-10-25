@@ -5,7 +5,7 @@
 
 import { titleClient } from './home.js';
 import type { OfferedChoice, OfferedGroup, Page } from './types.js';
-import { FACE_MARK, boardGridText } from './grid.js';
+import { boardGridText } from './grid.js';
 import { knownPeople, knownPlaces, lineShown, linesHeld } from './knowledge.js';
 import { cap, clientOf, isMurder, nameOf, personOf, placeName, type BoardDeal, type BoardRun } from './model.js';
 import { notebookWhen } from './when.js';
@@ -47,8 +47,11 @@ export function costLabel(ch: Pick<OfferedChoice, 'minutes'>): string {
   return ch.minutes > 0 ? '' : 'free';
 }
 
-/** docs/64: the key to the choices, the same in the book and the CLI. */
-export const ACTION_KEY = 'Everything you do takes one action unless it says free. A star marks a good next step.';
+/**
+ * docs/64: the key to the choices, the same in the book and the CLI. (docs/67: no "A star marks a
+ * good next step": a star is a hint now, and says why where it's given.)
+ */
+export const ACTION_KEY = 'Everything you do takes one action unless it says free.';
 
 /**
  * Round 5, U1, and docs/64: the people on a page, as the book and the CLI both head them. Picking
@@ -87,16 +90,6 @@ export const PICKER_COST = 'free to open';
 
 /** Round 6, U2: a done question or search: ticked, and free to read again ("free ✓" read as a refund). */
 export const DONE_COST = 'free to reread';
-
-/**
- * Round 5, U10: docs/46 §1 gives Hard-boiled one star, the scene on page one, and none after. Said
- * once, on that page, where the star is, so no star after it doesn't read as nothing worth doing.
- */
-export function starsNote(d: BoardDeal, run: Pick<BoardRun, 'log'>): string | null {
-  if (d.kase.tier !== 5 || run.log.length !== 1) return null;
-  // (docs/66: and how a face's clash shows at Hard-boiled: the player's own mark on the grid.)
-  return `At Hard-boiled this is the only star you get. After this page, where to go and whom to ask is up to you. ${FACE_MARK}`;
-}
 
 export function pageBodyText(page: Page): string {
   const out: string[] = [];

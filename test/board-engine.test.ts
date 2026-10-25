@@ -9,6 +9,7 @@ import { budgetCalls, dealBoard, parCalls, type BoardRun } from '../src/game/boa
 import { playBoardOracle, playReader, playWanderer, refusalShortcutCalls } from '../src/game/board/oracle.js';
 import { pageStars } from '../src/game/board/choices.js';
 import { isOpen } from '../src/game/board/stars.js';
+import { hasHints, hintsLeft, takeHint } from '../src/game/board/hints.js';
 import { breakOptionsShown, clearOptions, scoreBoard, truthReport, whereByOptions } from '../src/game/board/report.js';
 import { firstPerson } from '../src/game/board/tell.js';
 import { REASONS } from '../src/gen/board/content.js';
@@ -70,53 +71,32 @@ describe('board: what the player reads', () => {
   });
 });
 
-describe('board: stars follow what the player holds', () => {
-  it('at most three a page, never the client, every one an open step', () => {
+describe('board: stars follow what the player holds (docs/67: a hint gives each one)', () => {
+  /** The oracle's route with a hint taken on every page the tier allows: the runs, page by page. */
+  const hintedRoute = (d: ReturnType<typeof dealBoard>): ReturnType<typeof newBoardRun>[] => {
+    const out: ReturnType<typeof newBoardRun>[] = [];
+    let run = newBoardRun(d);
+    for (const cmd of ['', ...playBoardOracle(d).commands]) {
+      if (cmd) run = stepBoard(d, run, cmd).run;
+      if (run.reportOpen) break;
+      if (hasHints(d.kase.tier) && hintsLeft(run) > 0) {
+        const h = takeHint(d, run);
+        if (!('error' in h)) run = h.run;
+      }
+      out.push(run);
+    }
+    return out;
+  };
+
+  it('never the client, every one an open step', () => {
     for (const { tier, type } of cases) {
       for (let s = 1; s <= 3; s++) {
         const d = dealBoard(s, tier, type);
-        const o = playBoardOracle(d);
-        let run = newBoardRun(d);
-        for (const cmd of ['', ...o.commands]) {
-          if (cmd) run = stepBoard(d, run, cmd).run;
-          if (run.reportOpen) break;
-          const stars = pageStars(d, run);
-          expect(stars.length).toBeLessThanOrEqual(3);
-          for (const st of stars) {
+        for (const run of hintedRoute(d)) {
+          for (const st of pageStars(d, run)) {
             expect(st.command).not.toContain(d.kase.client);
             expect(isOpen(d.kase, run, st.q), `${st.q} on seed ${s}`).toBe(true);
             expect(st.why.length).toBeGreaterThan(0);
-          }
-        }
-      }
-    }
-  });
-
-  it('thin by tier (docs/46 §1): one way at Coddled, one a page from Poached, only walks at Medium, the scene on page one at Hard-boiled', () => {
-    for (const { tier, type } of cases) {
-      for (let s = 1; s <= 4; s++) {
-        const d = dealBoard(s, tier, type);
-        // Along the oracle's route and the reader's (every star, else the first choice).
-        for (const commands of [playBoardOracle(d).commands, playReader(d, s).commands]) {
-          let run = newBoardRun(d);
-          let pageOne = true;
-          for (const cmd of ['', ...commands]) {
-            if (cmd) {
-              run = stepBoard(d, run, cmd).run;
-              pageOne = false;
-            }
-            if (run.reportOpen) break;
-            const stars = pageStars(d, run);
-            if (tier >= 2) expect(stars.length, `tier ${tier} seed ${s}`).toBeLessThanOrEqual(1);
-            // "Put it to …" is starred only at Raw and Coddled.
-            if (tier >= 2) for (const st of stars) expect(st.q.startsWith('confront:'), `tier ${tier} seed ${s}: ${st.q}`).toBe(false);
-            // Medium: where to go, and (docs/55 4) in the room with them, the question itself; never a put.
-            if (tier === 4) for (const st of stars) expect(/^(?:go|ask|search) /.test(st.command), `seed ${s}: ${st.command}`).toBe(true);
-            // Hard-boiled: one star, the scene, on page one. None after.
-            if (tier === 5) {
-              if (pageOne) expect(stars.map((x) => x.command)).toEqual([`go ${d.kase.crime.scene}`]);
-              else expect(stars).toEqual([]);
-            }
           }
         }
       }
@@ -127,12 +107,7 @@ describe('board: stars follow what the player holds', () => {
     for (const { tier, type } of cases) {
       for (let s = 1; s <= 3; s++) {
         const d = dealBoard(s, tier, type);
-        let run = newBoardRun(d);
-        for (const cmd of ['', ...playBoardOracle(d).commands]) {
-          if (cmd) run = stepBoard(d, run, cmd).run;
-          if (run.reportOpen) break;
-          for (const st of pageStars(d, run)) expect(st.why, `tier ${tier} seed ${s}`).not.toMatch(/\bclear|\bleft\b|\bdid it\b|\bguilty\b|\bbreaks?\b|\bwill (show|say|tell)\b|\blying\b|\blie\b/i);
-        }
+        for (const run of hintedRoute(d)) for (const st of pageStars(d, run)) expect(st.why, `tier ${tier} seed ${s}`).not.toMatch(/\bclear|\bleft\b|\bdid it\b|\bguilty\b|\bbreaks?\b|\bwill (show|say|tell)\b|\blying\b|\blie\b/i);
       }
     }
   });
@@ -231,7 +206,7 @@ describe('board: the refusal shortcut and the wanderer', () => {
     expect(solved / n).toBeLessThan(0.1);
   });
 
-  it('the reader (every star, else the first choice) is handed the name at Raw and not from Poached up (docs/46 §4)', () => {
+  it('the reader, docs/67’s hint-taker, is handed the name at Raw and not from Poached up (docs/46 §4)', () => {
     const rate = (tier: TierIndex) => {
       let ok = 0;
       let n = 0;

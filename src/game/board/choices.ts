@@ -9,8 +9,8 @@
  * - Go to the places the player knows of.
  * - The free row: go over what I have, file the report.
  *
- * Stars (`stars.ts`) go on the topic, search or walk that takes an open
- * step, at most three, each with its reason. Every label's minutes are what
+ * Stars (`stars.ts`) go on the topic, search or walk that takes a step a
+ * hint gave (docs/67), each with its reason. Every label's minutes are what
  * the engine charges (docs/38).
  */
 
@@ -36,7 +36,7 @@ import {
 } from './model.js';
 import { breakSaid } from './pages.js';
 import { homeNamed } from './home.js';
-import { starPlace, starReason, starredSteps, walksOnly } from './stars.js';
+import { routeSteps, starCommand, starReason, starredSteps } from './stars.js';
 
 /** The minutes the next call moves the clock: what a label says and the engine charges. */
 export function callMinutes(d: BoardDeal, run: Pick<BoardRun, 'used'>): number {
@@ -52,36 +52,20 @@ export interface BoardStar {
 }
 
 /**
- * The page's stars: at most three, each on the choice that takes its step
- * from where the detective stands. At Medium a star is only ever a walk
- * (docs/46 §1): it says where to go, and why, never what to ask there.
+ * The page's stars, each on the choice that takes its step from where the detective stands (the
+ * topic, the search, the confront, or the walk to where it waits), with its reason. docs/67: the
+ * steps are the hints the player took (`starredSteps`), so a page has none until one is asked for.
+ * `steps` gives others: the wanderer passes docs/46's old stars (`routeSteps`, at most three, as
+ * they were) so it sees the choices in the order it always did.
  */
-export function pageStars(d: BoardDeal, run: BoardRun): BoardStar[] {
+export function pageStars(d: BoardDeal, run: BoardRun, steps: readonly string[] = starredSteps(d, run), most = Infinity): BoardStar[] {
   const c = d.kase;
   const out: BoardStar[] = [];
-  const here = new Set(peopleAt(c, run, run.at));
-  const places = knownPlaces(c, run);
-  const walks = walksOnly(c);
-  for (const q of starredSteps(d, run)) {
-    if (out.length >= 3) break;
-    const [kind, rest] = q.split(':') as [string, string];
-    let command: string | null = null;
-    void walks;
-    if (kind === 'account' || kind === 'list') {
-      if (here.has(rest)) command = `ask ${rest} ${kind === 'list' ? 'list' : 'evening'}`;
-    } else if (kind === 'search') {
-      const f = c.finds.find((x) => x.id === rest);
-      if (f && f.place === run.at) command = `search ${rest}`;
-    } else if (kind === 'confront') {
-      const [p] = rest.split('@') as [string];
-      if (here.has(p)) command = `picker ${p}`;
-    }
-    if (command === null) {
-      const at = starPlace(c, q);
-      if (!at || at === run.at || !places.has(at)) continue;
-      command = `go ${at}`;
-      if (out.some((s) => s.command === command)) continue;
-    }
+  for (const q of steps) {
+    if (out.length >= most) break;
+    const command = starCommand(d, run, q);
+    // (Two steps in one far room are one walk, starred once.)
+    if (command === null || (command.startsWith('go ') && out.some((s) => s.command === command))) continue;
     out.push({ q, why: starReason(c, run, q, command.startsWith('go ')), command });
   }
   return out;
@@ -93,11 +77,15 @@ export function motiveLabel(d: BoardDeal): string {
   return v ? cap(v.short) : 'The case';
 }
 
-export function boardChoices(d: BoardDeal, run: BoardRun): OfferedGroup[] {
+/**
+ * The page's choices. `legacy`: the wanderer's view, starred by docs/46's old stars (never shown), so
+ * its options come in the order they always did (docs/67).
+ */
+export function boardChoices(d: BoardDeal, run: BoardRun, legacy = false): OfferedGroup[] {
   const c = d.kase;
   if (run.filed || run.reportOpen) return [];
   const mins = callMinutes(d, run);
-  const stars = pageStars(d, run);
+  const stars = legacy ? pageStars(d, run, routeSteps(d, run), 3) : pageStars(d, run);
   const starOf = (command: string) => stars.find((s) => s.command === command);
   const choice = (command: string, label: string, done = false, free = false): OfferedChoice => {
     const s = done ? undefined : starOf(command);

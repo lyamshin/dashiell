@@ -9,6 +9,7 @@
  * - `search <find>`: a search, a call (free once done);
  * - `put <person> <hour> <line> [again]`: a confrontation, a call, landed or not;
  * - `recap`: go over what I have, free;
+ * - `hint`: docs/67, star a good next step (or say the report is ready), free, on a tier that has hints;
  * - `file`: take out the report form, free.
  *
  * The clock (`clock.ts`): the night's calls spread across midnight to eight.
@@ -16,7 +17,8 @@
 
 import { isOver } from './clock.js';
 import type { Page, Weather } from './types.js';
-import { boardChoices, pageStars, type BoardStar } from './choices.js';
+import { boardChoices } from './choices.js';
+import { takeHint } from './hints.js';
 import { thinNames } from './names.js';
 import { nameHomesOnPage, titleClientOnPage } from './home.js';
 import { PLAN, linkGaps } from './plan/index.js';
@@ -94,6 +96,13 @@ export function stepBoard(d: BoardDeal, run: BoardRun, input: string): StepResul
   const next: BoardRun = { ...run, asked: [...run.asked], puts: [...run.puts], visited: [...run.visited], log: [...run.log], spent: [...run.spent], visits: { ...run.visits } };
   const n = run.log.length;
 
+  // docs/67: a hint is free and writes no page: the run keeps it, and the page stars it.
+  if (verb === 'hint') {
+    const h = takeHint(d, run);
+    if ('error' in h) return fail(h.error);
+    return { run: h.run, page: run.log[run.log.length - 1] as Page };
+  }
+
   if (verb === 'file') {
     next.reportOpen = true;
     const w = writer(d, run, next, n);
@@ -105,7 +114,8 @@ export function stepBoard(d: BoardDeal, run: BoardRun, input: string): StepResul
   if (verb === 'recap') {
     if (run.at === OFFICE) return fail('Not in the office.');
     const w = writer(d, run, next, n);
-    writeRecap(w, starsLine(d, next));
+    // (docs/67: the notes, without the stars read out after them: a star is a hint the player asks for.)
+    writeRecap(w);
     return { run: finish(w, next, { job: 'recap', cost: 0 }), page: next.log[n] as Page };
   }
 
@@ -269,14 +279,6 @@ function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>[
   next.spent = [...next.spent, ...w.hand.spent];
   next.log = [...next.log, page];
   return next;
-}
-
-/** "Three things would move it. …": the page's stars, read out (the recap's last word). */
-export function starsLine(d: BoardDeal, run: BoardRun): string | null {
-  const stars: BoardStar[] = pageStars(d, run);
-  if (stars.length === 0) return null;
-  const words = ['', 'One thing', 'Two things', 'Three things'][stars.length] ?? 'A few things';
-  return `${words} would move it. ${stars.map((s) => `${s.why.replace(/\s—\s/, ': ')}.`).join(' ')}`;
 }
 
 /** File the report. Final. */

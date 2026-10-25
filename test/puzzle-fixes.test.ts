@@ -14,6 +14,7 @@ import { collisionsOf, faceUnmatched } from '../src/game/board/knowledge.js';
 import { dealBoard, placeOf, type BoardDeal, type BoardRun, type Hour, type PlaceId } from '../src/game/board/model.js';
 import { playReader } from '../src/game/board/oracle.js';
 import { spot } from '../src/game/board/walk.js';
+import { starReason } from '../src/game/board/stars.js';
 
 const played = (seed: number, tier: TierIndex, type: string, cmds: string[]): { d: BoardDeal; run: BoardRun } => {
   const d = dealBoard(seed, tier, type as 'murder');
@@ -130,22 +131,24 @@ describe('docs/65 §3: at Hard-boiled the player puts the name to the face', () 
 });
 
 describe('docs/65 §4 and §5: stars name everybody the evidence treats the same, for the hour that matters', () => {
-  it('Raw 11: after Mrs. Kowalski’s list the star names Bellucci and Steinbach together, and Moe’s stars them both', () => {
-    const { d, run } = played(11, 0, 'lost-item', ['go scene', 'search scene', 'go neighbours', 'ask xwatcher list']);
+  it('Raw 11: after Mrs. Kowalski’s list the star names Bellucci and Steinbach together, and at Moe’s two hints star them both', () => {
+    // (docs/67: a star is a hint now, and a tie's hint goes to the first by name.)
+    const { d, run } = played(11, 0, 'lost-item', ['go scene', 'search scene', 'go neighbours', 'ask xwatcher list', 'hint']);
     const walk = pageStars(d, run).find((s) => s.command === 'go bar');
     expect(walk?.why).toBe('Bellucci and Steinbach could have had the spare key, and nobody had said where either of them was at ten — ask them where they were');
-    const at = played(11, 0, 'lost-item', ['go scene', 'search scene', 'go neighbours', 'ask xwatcher list', 'go bar']);
+    const at = played(11, 0, 'lost-item', ['go scene', 'search scene', 'go neighbours', 'ask xwatcher list', 'hint', 'go bar', 'hint']);
     expect(pageStars(at.d, at.run).map((s) => s.command)).toEqual(expect.arrayContaining(['ask bellucci evening', 'ask steinbach evening']));
   });
 
   it('Medium 14: Alfano is asked for at ten, not for eight', () => {
     const { d, run } = played(14, 4, 'lost-pet', ['go scene', 'search scene', 'go neighbours', 'ask whitfield evening', 'go bar', 'ask barkeep list', 'ask pickering evening', 'go h', 'ask thorndike evening']);
-    expect(pageStars(d, run)[0]?.why).toBe('Alfano was at the meeting, and nobody had said where she was at ten — ask Alfano where she was');
+    // (docs/67: Medium has no hints; the reason is the star's, as a hint would give it.)
+    expect(starReason(d.kase, run, 'account:alfano')).toBe('Alfano was at the meeting, and nobody had said where she was at ten — ask Alfano where she was');
   });
 
   it('a reason keeps its pointer’s own capitals: “Kowalski’s — the spare key is in the sugar tin there”', () => {
     const d = dealBoard(11, 0, 'lost-item');
-    const st = pageStars(d, newBoardRun(d)).find((s) => s.command === 'go neighbours');
-    expect(st?.why).toBe('the spare key is in the sugar tin there — ask the landlady who was there');
+    // (docs/67: the walk's star, as a hint would give it.)
+    expect(starReason(d.kase, newBoardRun(d), 'list:xwatcher', true)).toBe('the spare key is in the sugar tin there — ask the landlady who was there');
   });
 });

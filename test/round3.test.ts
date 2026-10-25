@@ -42,10 +42,10 @@ describe('round 3: the interface (docs/47 A)', () => {
     const files = new Map<string, string>();
     const io: PlayIo = { read: (p) => files.get(p) ?? null, write: (p, x) => void files.set(p, x) };
     const first = runPlay(['new', '--seed', '7', '--tier', '0', '--save', 's.json', '--no-teach'], io).out;
-    expect(first.replace(/\s+/g, ' ')).toContain('A star marks a good next step');
+    expect(first.replace(/\s+/g, ' ')).toContain('Everything you do takes one action unless it says free.');
     const d = dealBoard(7, 0);
     const second = runPlay(['do', '1', '--save', 's.json'], io).out;
-    expect(second.replace(/\s+/g, ' ')).not.toContain('A star marks a good next step');
+    expect(second.replace(/\s+/g, ' ')).not.toContain('Everything you do takes one action unless it says free.');
     const o = playBoardOracle(d);
     const v = scoreBoard(d, o.run, o.report);
     // (Round 6, P11: plainly, and what counts with it.)

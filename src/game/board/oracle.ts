@@ -8,8 +8,9 @@
  *   one who won't own up. It must never beat par.
  * - The wanderer takes random reasonable choices until the night runs out,
  *   and files whoever it caught lying. It should rarely solve from Poached up.
- * - docs/46 §4, the reader: it follows every star, otherwise takes the first
- *   choice, and files what the book told it. Its solved rate must fall by tier.
+ * - docs/46 §4, the reader: docs/67's hint-taker. It takes every hint it's
+ *   allowed, follows each star, otherwise takes the first choice, and files
+ *   the name a hint handed it. Its solved rate falls with the hints.
  *
  * docs/61: where the report asks who else lied, the wanderer and the reader
  * answer it as they answer the rest: another liar they caught (the reader,
@@ -25,6 +26,7 @@ import { boardChoices, pageStars, pickerFor } from './choices.js';
 import { newBoardRun, stepBoard } from './engine.js';
 import { collisionsOf, knownPlaces, solveRun } from './knowledge.js';
 import { OFFICE, budgetCalls, isMurder, parCalls, suspectsOf, type BoardDeal, type BoardReport, type BoardRun, type Hour, type PersonId } from './model.js';
+import { hasHints, hintsLeft, hintsUsed, takeHint } from './hints.js';
 import { NOBODY, asksOther, boardFields, breakOptions, clearOptions, heldWhereBy, truthReport, scoreBoard, whereByOptions } from './report.js';
 
 export interface Played {
@@ -36,6 +38,8 @@ export interface Played {
   report: BoardReport;
   /** The wanderer's report again, citing the line its collision showed instead of a random one. */
   alt?: BoardReport;
+  /** docs/67: the hints the reader took. */
+  hints?: number;
 }
 
 /** docs/61: the liars a run caught, one each, with the hour each was caught at. */
@@ -259,7 +263,9 @@ export function playWanderer(d: BoardDeal, seed: number): Played {
   const commands: string[] = [];
   const budget = budgetCalls(d);
   for (let guard = 0; guard < 80 && !run.reportOpen && run.used < budget; guard++) {
-    const groups = boardChoices(d, run);
+    // (docs/67: the choices in the order they came before hints, when a star went first: it picks at
+    // random, so the order only says which seed picks what, and this keeps every night as it was.)
+    const groups = boardChoices(d, run, true);
     const options: string[] = [];
     for (const g of groups) {
       for (const ch of [...g.choices, ...(g.more ?? [])]) {
@@ -331,14 +337,14 @@ function filedFrom(d: BoardDeal, run: BoardRun, rng: Rng, pick: { person: Person
 }
 
 /**
- * docs/46 §4: the reader. It follows every star and otherwise takes the first
- * choice a page offers (the first person's first topic not yet asked, the
- * first search, the first place), until the night runs out. It reads instead
- * of deducing, so it files the name the book handed it: the one a thought
- * walked it to ("That left one person who…", "That left Feeney"), or the one
- * a star or the turn sent it to put it to ("I could put it to Feeney now"),
- * on the line the book set against them. Handed no name, it does what it
- * does everywhere else and takes the form's first choices.
+ * docs/46 §4, and docs/67: the reader, now the hint-taker. It takes every hint the tier allows (one
+ * whenever no star stands), follows each star, and otherwise takes the first choice a page offers
+ * (the first person's first topic not yet asked, the first search, the first place), until the night
+ * runs out. It reads instead of deducing, so it files the name a hint handed it: the one Raw's hint
+ * walked it to ("That left one person who…", "That left Feeney"), or the one a hint sent it to
+ * confront, on the line the book set against them. Handed no name, it does what it does everywhere
+ * else and takes the form's first choices. At Soft-boiled and up there are no hints, so it is the
+ * first-choice player.
  *
  * Handed no name, three shortcut players file instead (`guess`), for the
  * measure (decided 2026-10-11, docs/41 rule 9):
@@ -371,7 +377,22 @@ export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean; g
   // The liars in the order it caught them: each page's new collisions, a page at a time.
   const order: { person: PersonId; hour: Hour }[][] = [];
   const seen = new Set<PersonId>();
+  // docs/67: what its hints said, and whether there's any point asking again (not once the report is ready).
+  const said: string[] = [];
+  let asking = hasHints(c.tier);
   for (let guard = 0; guard < 80 && !run.reportOpen && run.used < budget; guard++) {
+    if (asking && hintsLeft(run) > 0 && pageStars(d, run).length === 0) {
+      const h = takeHint(d, run);
+      if ('error' in h) asking = false;
+      else {
+        said.push(h.said.text);
+        if (h.said.spent) {
+          run = h.run;
+          commands.push('hint');
+        }
+        if (h.said.kind === 'ready') asking = false;
+      }
+    }
     const next = readerNext(d, run);
     if (!next) break;
     const r = stepBoard(d, run, next.command);
@@ -388,9 +409,21 @@ export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean; g
       if (page.length > 0) order.push(page);
     }
   }
+  // (The night's out, or there's nothing left to follow: one more hint on the way to the report, if it
+  // has one, says what's missing or that the report can be filled, and at Raw who's left.)
+  if (asking && hintsLeft(run) > 0) {
+    const h = takeHint(d, run);
+    if (!('error' in h)) {
+      said.push(h.said.text);
+      if (h.said.spent) {
+        run = h.run;
+        commands.push('hint');
+      }
+    }
+  }
   const caught = collisionsOf(c, run).filter((x) => suspectsOf(c).includes(x.person));
-  // The name the book handed it: walked to, or sent to put it to.
-  const told = toldWho(d, run) ?? sentTo[0] ?? turnSaid(d, run);
+  // The name a hint handed it: walked to, or sent to confront.
+  const told = toldWho(d, run, said) ?? sentTo[0] ?? null;
   let pick: { person: PersonId; hour: Hour } | null = told ? (caught.find((x) => x.person === told) ?? { person: told, hour: c.crime.hour }) : null;
   if (!pick && guess === 'liar' && caught.length > 0) pick = rng.pick(caught) as { person: PersonId; hour: Hour };
   if (!pick && (guess === 'first' || guess === 'last') && order.length > 0) {
@@ -428,20 +461,7 @@ export function playReader(d: BoardDeal, seed: number, opts: { liar?: boolean; g
   }
   run = stepBoard(d, run, 'file').run;
   const v = scoreBoard(d, run, report);
-  return { run, commands, ok: v.outcome === 'solved', report };
-}
-
-/** The person the turn sent it to put it to: "I could face Feeney with it now.", "I could face Feeney with it, or close the case on what I had." */
-function turnSaid(d: BoardDeal, run: BoardRun): PersonId | null {
-  for (const page of run.log) {
-    if (!page.board?.turn) continue;
-    const text = page.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join('\n');
-    // (docs/62: lean, "I could face Feeney with it, or close the case on what I had.")
-    const m = /I could face (.+?) with it(?: now\.|,)/.exec(text);
-    const hit = m ? d.kase.people.find((p) => p.role === 'suspect' && p.short === m[1]) : undefined;
-    if (hit) return hit.id;
-  }
-  return null;
+  return { run, commands, ok: v.outcome === 'solved', report, hints: hintsUsed(run) };
 }
 
 /** The reader's next command: the page's first star, or else its first choice. */
@@ -491,11 +511,10 @@ function pickerCommand(d: BoardDeal, run: BoardRun, p: PersonId, q?: string): st
   return null;
 }
 
-/** Whom the night's thoughts named as the one left, if they did. */
-function toldWho(d: BoardDeal, run: BoardRun): PersonId | null {
+/** Whom the night's hints named as the one left (docs/67: Raw's elimination is the hint's now), if they did. */
+function toldWho(d: BoardDeal, run: BoardRun, said: readonly string[]): PersonId | null {
   const c = d.kase;
-  for (const page of run.log) {
-    const text = page.blocks.map((b) => (b.kind === 'prose' ? b.text : '')).join('\n');
+  for (const text of said) {
     if (/That left one person who/.test(text)) {
       // The elimination's last step: the one nobody placed, and the solver agrees.
       const who = solveRun(c, run).who;

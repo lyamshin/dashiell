@@ -48,6 +48,11 @@ export interface Profile {
    * title page chose the tier (a cleared tier there counts as cleared once: `clearsAt`).
    */
   clears?: Partial<Record<string, number>>;
+  /**
+   * docs/67: gold stars per tier, keyed by `String(tier)`: perfect reports with no hint taken. (A
+   * star is a perfect report, which is what a clear always was: `starsAt` counts them.)
+   */
+  golds?: Partial<Record<string, number>>;
 }
 
 export function emptyProfile(): Profile {
@@ -65,6 +70,8 @@ export interface RunResult {
   cast?: { culprit?: string; victim?: string };
   /** docs/55 6: what the night dealt (`dealtIds` of its spent list). */
   dealt?: string[];
+  /** docs/67: the hints taken. A full-credit report with none is a gold star. Absent is none. */
+  hints?: number;
 }
 
 export interface RecordOutcome {
@@ -84,6 +91,7 @@ export function recordRun(profile: Profile, result: RunResult): RecordOutcome {
   if (!won) return { profile: next, won, firstClear: null };
   const tier = result.tier;
   next.clears = { ...(profile.clears ?? {}), [String(tier)]: clearsAt(profile, tier) + 1 };
+  if (!result.hints) next.golds = { ...(profile.golds ?? {}), [String(tier)]: goldsAt(profile, tier) + 1 };
   const firstClear = profile.cleared.includes(tier) ? null : tier;
   if (firstClear !== null) next.cleared = TIERS.filter((t) => t === tier || next.cleared.includes(t));
   const delta = result.actionsUsed - result.par;
@@ -120,6 +128,15 @@ export function sanitizeProfile(value: unknown): Profile {
       if (typeof n === 'number' && Number.isFinite(n) && n >= 1) clears[String(t)] = Math.floor(n);
     }
     if (Object.keys(clears).length) out.clears = clears;
+  }
+  // docs/67: gold stars, on cleared tiers only, never more than the tier's clears.
+  if (typeof v.golds === 'object' && v.golds !== null) {
+    const golds: Partial<Record<string, number>> = {};
+    for (const t of out.cleared) {
+      const n = (v.golds as Record<string, unknown>)[String(t)];
+      if (typeof n === 'number' && Number.isFinite(n) && n >= 1) golds[String(t)] = Math.min(Math.floor(n), clearsAt(out, t));
+    }
+    if (Object.keys(golds).length) out.golds = golds;
   }
   if (Array.isArray(v.dealt)) {
     const nights = (v.dealt as unknown[]).filter((n): n is unknown[] => Array.isArray(n)).map((n) => n.filter((y): y is string => typeof y === 'string').slice(0, 2000));
@@ -201,6 +218,21 @@ export function teachOn(profile: Pick<Profile, 'runs' | 'wins'>, tier: TierIndex
 export function clearsAt(profile: Pick<Profile, 'cleared' | 'clears'>, tier: TierIndex): number {
   const n = profile.clears?.[String(tier)] ?? 0;
   return Math.max(n, profile.cleared.includes(tier) ? 1 : 0);
+}
+
+/** docs/67: stars at a tier: its perfect reports (a clear is one). */
+export function starsAt(profile: Pick<Profile, 'cleared' | 'clears'>, tier: TierIndex): number {
+  return clearsAt(profile, tier);
+}
+
+/** docs/67: gold stars at a tier: its perfect reports with no hint taken. */
+export function goldsAt(profile: Pick<Profile, 'golds'>, tier: TierIndex): number {
+  return profile.golds?.[String(tier)] ?? 0;
+}
+
+/** docs/67: a tier's best, for the title page's list: a gold star, a star, or nothing yet. */
+export function bestAt(profile: Pick<Profile, 'cleared' | 'clears' | 'golds'>, tier: TierIndex): 'gold' | 'star' | null {
+  return goldsAt(profile, tier) > 0 ? 'gold' : starsAt(profile, tier) > 0 ? 'star' : null;
 }
 
 /**

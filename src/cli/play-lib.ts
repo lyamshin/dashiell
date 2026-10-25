@@ -53,13 +53,16 @@ import {
   curtainOfBoard,
   reportFrom,
   scoreBoard,
+  starWords,
   storyOfBoard,
   whereByOptions,
   type FieldKey,
   type LineOption,
 } from '../game/board/report.js';
 import { dealtIds, recordRun, sanitizeProfile, seenOf } from '../game/board/profile.js';
-import { ACTION_KEY, TALK_HEADING, costText, notebookText, pageBodyText, questionsText, starsNote, wrap } from '../game/board/text.js';
+import { ACTION_KEY, TALK_HEADING, costText, notebookText, pageBodyText, questionsText, wrap } from '../game/board/text.js';
+import { hintsLine, hintsNote, takeHint } from '../game/board/hints.js';
+import { starCommand } from '../game/board/stars.js';
 import type { OfferedChoice, OfferedGroup } from '../game/board/types.js';
 
 /* ------------------------------------------------------------------ io */
@@ -238,8 +241,12 @@ function pageChoicesText(night: Night): string {
   // docs/47 A3: the key to the marks, once, on the first page; round 5, U10: and at Hard-boiled, that
   // its star is the night's only one.
   if (night.run.log.length === 1) out.push('', wrap(CHOICE_KEY));
-  const stars = starsNote(night.d, night.run);
-  if (stars) out.push('', wrap(stars));
+  // docs/67: tonight's hints, said once on the first page (and Hard-boiled's mark line), and the count
+  // under the choices on every page of a tier that has them.
+  const note = hintsNote(night.d, night.run);
+  const left = hintsLine(night.run);
+  if (note) out.push('', wrap(left ? `${note} \`hint\` stars a good next step and says why.` : note));
+  else if (left) out.push('', wrap(left));
   return out.join('\n');
 }
 
@@ -345,6 +352,9 @@ function reportText(night: Night, path: string, who: string | null = null): stri
   if (who) return personReportText(night, path, who);
   // Round 5, U6: what a blank goes in as, once, in one sentence, the book's words.
   const out = ['CLOSE THE CASE', '', wrap(blankRule(night.d, night.run.used >= budgetCalls(night.d))), ''];
+  // docs/67: a hint here says what's still missing, or that the report can be filled from what you have.
+  const left = hintsLine(night.run);
+  if (left) out.push(wrap(left), '');
   const field = (f: ReturnType<typeof boardFields>[number]) => {
     out.push(`${f.label} (${KEY_SHOWN[f.key] ?? f.key}):`);
     f.options.forEach((o, i) => out.push(`   ${String(i + 1).padStart(2)}. ${o.label}`));
@@ -465,7 +475,11 @@ function verdictText(night: Night): string {
     const ls = wrap(`${f.label}${/\?$/.test(f.label) ? '' : ':'} ${f.given}${f.correct ? (f.half ? '  ½ — right, but you couldn’t have known' : '  ✓') : `  ✗ — ${f.why ?? `it was ${f.truth}`}`}`, WIDTH - pad.length - 4).split('\n');
     out.push([`${pad}${ls[0]}`, ...ls.slice(1).map((l) => `${pad}    ${l}`)].join('\n'));
   }
-  out.push('', wrap(v.scoreLine), ...v.plain.map((p) => wrap(p)), '');
+  out.push('', wrap(v.scoreLine), ...v.plain.map((p) => wrap(p)));
+  // docs/67: the actions and the hints taken, and the star a perfect report earns.
+  out.push(wrap(v.tally));
+  if (v.star) out.push(wrap(`★ ${starWords(v.star)}`));
+  out.push('');
   for (const p of v.closing) out.push(wrap(p.replace(/\*\*/g, '')), '');
   // (docs/64: plain words. "The true board" was the builders'.)
   out.push(wrap('`story` tells what really happened; `curtain` shows where everybody really was, the lies and the fastest solve.'));
@@ -553,9 +567,14 @@ function titleText(save: BoardSave, type: CaseType): string {
   ].join('\n');
 }
 
+/** docs/67: the book's "Hint button", as the CLI has it: the `hint` command. */
+function cliHint(l: string): string {
+  return l.replace(/\bThe Hint button\b/g, 'The `hint` command');
+}
+
 function teachText(world?: string): string {
   const out = [BOARD_TEACH_TITLE.toUpperCase(), ''];
-  for (const l of teachLines(world)) out.push(wrap(l), '');
+  for (const l of teachLines(world)) out.push(wrap(cliHint(l)), '');
   out.push(wrap('(Shown on a first night. `new --no-teach` leaves it out.)'));
   return out.join('\n');
 }
@@ -671,14 +690,41 @@ function cmdPencil(io: PlayIo, raw: string | undefined, path: string): string {
   return `${said}\n\n${boardGridText(c, night.run)}`;
 }
 
+/**
+ * docs/67: `hint`. It stars a good next step and prints that choice with its reason, as `look` will
+ * list it, and the hints left; with nothing left to find, that the case can be closed; on the report
+ * page, what's still missing. The save records it (`{ do: 'hint' }`), so a replay gives the same
+ * hints and the verdict counts them. Pressing again on a step already starred is free.
+ */
+function cmdHint(io: PlayIo, path: string): string {
+  let night = load(io, path);
+  if (night.run.filed) fail('The case is closed; the night is over. `look` shows the verdict again.');
+  const h = takeHint(night.d, night.run);
+  if ('error' in h) return fail(h.error);
+  const { said } = h;
+  // (The page's own list, so the starred choice's number is the one `do` takes.)
+  night = commit(io, path, night, said.spent ? [{ do: 'hint' }] : [], { person: null, picker: null, claim: null });
+  const out = ['HINT', '', wrap(said.text)];
+  if (said.q && !night.run.reportOpen) {
+    const cmd = starCommand(night.d, night.run, said.q);
+    const who = cmd && /^(?:ask|picker) (\S+)/.exec(cmd)?.[1];
+    const it = pageItems(night).find((x) => (who ? x.person === who : x.choice.command === cmd) && x.choice.lead);
+    if (it) out.push('', itemLine(it.n, it.choice, it.person ? questionsText(it.group) : costText(it.choice)));
+  }
+  const left = hintsLine(night.run);
+  if (left) out.push('', wrap(left));
+  return out.join('\n');
+}
+
 function helpText(): string {
   const out = ['HOW IT PLAYS', ''];
-  for (const l of BOARD_RULES) out.push(wrap(l), '');
+  for (const l of BOARD_RULES) out.push(wrap(cliHint(l)), '');
   out.push(
     'COMMANDS',
     '  new --seed N --tier 0..5 [--type murder|lost-item|lost-pet] [--world neighbourhood] [--name <detective>] [--no-teach] [--profile P] --save F',
     '       (--profile P: a profile file; the night prefers what its last ten nights didn’t deal, and closing the case adds this night to it)',
     '  look · do <n|words> · page <n> · notebook · grid',
+    '  hint (stars a good next step and says why; unlimited at Raw, three at Coddled, one at Poached, none after)',
     '  mark "<Name> <hour> at|not|clear [place]" (mark a guess on the grid: mark "Feldman ten at Rafferty’s") · confront <Name>',
     '  report [<Name>] (with a name, what you know about them: what could prove they lied, or clear them)',
     '  close "who=…; proof=…; other=…; cleared=…; when=…; how=…; why=…"',
@@ -710,6 +756,8 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
     switch (command) {
       case 'new':
         return { out: cmdNew(io, values, flags), code: 0 };
+      case 'hint':
+        return { out: cmdHint(io, path), code: 0 };
       case 'look':
         return { out: lookText(load(io, path), path), code: 0 };
       case 'do':
@@ -760,7 +808,7 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
           } catch {
             old = null;
           }
-          const next = recordRun(sanitizeProfile(old), { tier: night.run.tier, points: v.points, asked: v.asked, actionsUsed: v.actionsUsed, par: v.par, dealt: dealtIds(night.run.spent) }).profile;
+          const next = recordRun(sanitizeProfile(old), { tier: night.run.tier, points: v.points, asked: v.asked, actionsUsed: v.actionsUsed, par: v.par, dealt: dealtIds(night.run.spent), hints: v.hints }).profile;
           io.write(night.save.profile, JSON.stringify(next));
         }
         return { out: verdictText(night), code: 0 };

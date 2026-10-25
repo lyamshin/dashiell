@@ -5,8 +5,7 @@ import { mannerOf } from '../src/game/board/pages.js';
 import { dealBoard, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle, playWanderer } from '../src/game/board/oracle.js';
 import { SHEETS } from '../src/game/board/sheets.js';
-import { pageStars } from '../src/game/board/choices.js';
-import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
+import { newBoardRun } from '../src/game/board/engine.js';
 import { walkBetween } from '../src/game/board/walk.js';
 import { namesOverTwo, thinNames } from '../src/game/board/names.js';
 import { levelIssues } from '../src/game/board/lint.js';
@@ -53,22 +52,12 @@ describe('board: the thread', () => {
     }
   });
 
-  it('a hand-off agrees with the starred choice', () => {
+  it('docs/67: no page hands off to the next step: a star is a hint the player asks for', () => {
     for (const { tier, type } of cases) {
       const d = dealBoard(1, tier, type);
-      let run = newBoardRun(d);
-      for (const cmd of playBoardOracle(d).commands) {
-        run = stepBoard(d, run, cmd).run;
-        const page = run.log[run.log.length - 1] as Page;
-        if (!page.board?.beats?.includes('handoff') || page.board.turn) continue;
-        const star = pageStars(d, run)[0];
-        expect(star, `tier ${tier} ${type}: a hand-off with no star`).toBeDefined();
-        // The hand-off names whoever (or wherever) the first star sends the detective to.
-        const [kind, rest] = (star?.q ?? '').split(':') as [string, string];
-        const who = d.kase.people.find((p) => p.id === rest.split('@')[0]);
-        const text = prose(page);
-        // docs/55 1b: at every tier, Medium too, the hand-off names whoever the first star is about.
-        if ((kind === 'account' || kind === 'confront') && who) expect(text, `tier ${tier} ${type}`).toContain(who.short);
+      for (const page of playBoardOracle(d).run.log) {
+        expect(page.board?.beats ?? [], `tier ${tier} ${type} p${page.n + 1}`).not.toContain('handoff');
+        expect(page.board?.handoff).toBeUndefined();
       }
     }
   });
@@ -94,24 +83,21 @@ describe('board: the thought', () => {
     }
   });
 
-  it('only Raw walks the elimination to its last step; above it no thought says who is left', () => {
-    let walked = 0;
+  it('docs/67: no page walks the elimination, Raw’s included: no thought says who is left (the hint says it, asked)', () => {
     for (let s = 1; s <= 6; s++) {
       for (const tier of [0, 1, 2, 3, 4, 5] as TierIndex[]) {
         for (const type of typesFor(tier)) {
           const run = playBoardOracle(dealBoard(s, tier, type)).run;
           const said = run.log.some((p) => /That left one person|That left \w+, and the clock/.test(prose(p)));
-          if (tier === 0) walked += said ? 1 : 0;
-          else expect(said, `tier ${tier} ${type} seed ${s}`).toBe(false);
+          expect(said, `tier ${tier} ${type} seed ${s}`).toBe(false);
         }
       }
     }
-    expect(walked).toBeGreaterThan(0);
   });
 
-  it('above Raw, the page that settles who reads like any other: no elimination, and the report doesn’t say it’s done', () => {
+  it('the page that settles who reads like any other, Raw’s included: no elimination, and the report doesn’t say it’s done', () => {
     for (let s = 1; s <= 4; s++) {
-      for (const tier of [1, 2, 3, 4] as TierIndex[]) {
+      for (const tier of [0, 1, 2, 3, 4] as TierIndex[]) {
         for (const type of typesFor(tier)) {
           const d = dealBoard(s, tier, type);
           const run = playBoardOracle(d).run;

@@ -5,6 +5,7 @@
  */
 import { describe, expect, it } from 'vitest';
 import { pageStars } from '../src/game/board/choices.js';
+import { starCommand, starReason } from '../src/game/board/stars.js';
 import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { nameHomes, titleClient } from '../src/game/board/home.js';
 import { dealBoard, type BoardRun } from '../src/game/board/model.js';
@@ -117,12 +118,12 @@ describe('round 4: facts and continuity (docs/55 2)', () => {
 });
 
 describe('round 4: stars, the report and the curtain (docs/55 4, 5, 7)', () => {
-  it('Medium stars the person and the question, in the room with them', () => {
+  it('a star names the person and the question, in the room with them (docs/67: no star at Medium unasked, and no hints there)', () => {
     const d = dealBoard(14, 4, 'lost-pet');
     const run = night(14, 4, 'lost-pet', MED14);
-    const stars = pageStars(d, run);
-    expect(stars.map((s) => s.command)).toEqual(['ask pickering evening']);
-    expect(stars[0]?.why).toBe('ask Pickering who she passed on the way over at ten');
+    expect(pageStars(d, run)).toEqual([]);
+    expect(starCommand(d, run, 'account:pickering')).toBe('ask pickering evening');
+    expect(starReason(d.kase, run, 'account:pickering')).toBe('ask Pickering who she passed on the way over at ten');
   });
 
   it('the report doesn’t put the line that breaks the story first, alone', () => {
