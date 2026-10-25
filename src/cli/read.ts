@@ -15,6 +15,9 @@
  * the tier allows), `--hints N` on its first N pages; each page then prints
  * what the hint said, and its choices show the stars. `--reader` takes the
  * hint-taker's route (`playReader`), hints and all.
+ *
+ * docs/69: `--first-liar` takes the "first liar, nobody else" reader's route (`playFirstLiar`): the
+ * designed path until the grid shows a lie, and the report it files on it.
  */
 
 import { CASE_TYPES, parseTier, typesFor, type CaseType } from '../gen/board/index.js';
@@ -22,7 +25,7 @@ import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { budgetCalls, dealBoard, deadlineWords, parCalls, tierName, type BoardRun } from '../game/board/model.js';
-import { playBoardOracle, playReader, playWanderer } from '../game/board/oracle.js';
+import { playBoardOracle, playFirstLiar, playReader, playWanderer } from '../game/board/oracle.js';
 import { hintsUsed, takeHint } from '../game/board/hints.js';
 import { curtainOfBoard, pointsText, scoreBoard, storyOfBoard, truthReport } from '../game/board/report.js';
 import { choicesText, notebookText, pageBodyText, wrap } from '../game/board/text.js';
@@ -32,7 +35,7 @@ import { SITUATED } from '../game/board/plan/situated.js';
 import { setTexture } from '../game/board/plan/texture.js';
 import { plainPage } from '../game/board/bones/plain.js';
 
-const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--plain] [--world neighbourhood] [--situated 0] [--texture lean|full] [--hints every|N] [--reader]\n';
+const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--plain] [--world neighbourhood] [--situated 0] [--texture lean|full] [--hints every|N] [--reader] [--first-liar]\n';
 
 export function readBoard(values: Map<string, string>, flags: Set<string>): string {
   const seed = Number(values.get('seed') ?? 1);
@@ -67,9 +70,10 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
     run = p.run;
     commands = [];
     report = p.report;
-  } else if (flags.has('reader')) {
-    // docs/67: the hint-taker's route, with its hints, and the report it made.
-    const p = playReader(d, seed);
+  } else if (flags.has('reader') || flags.has('first-liar')) {
+    // docs/67: the hint-taker's route, with its hints, and the report it made. docs/69: or the "first
+    // liar, nobody else" reader's.
+    const p = flags.has('first-liar') ? playFirstLiar(d, seed) : playReader(d, seed);
     commands = p.commands;
     report = p.report;
     run = newBoardRun(d);
@@ -83,7 +87,7 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
   }
   // docs/67: `--hints every|N`: a hint before each of the route's commands, on the first N pages.
   const hintsArg = values.get('hints') ?? (flags.has('hints') ? 'every' : undefined);
-  if (hintsArg !== undefined && !flags.has('random') && !flags.has('reader')) {
+  if (hintsArg !== undefined && !flags.has('random') && !flags.has('reader') && !flags.has('first-liar')) {
     const most = hintsArg === 'every' ? Infinity : Number(hintsArg);
     const withHints: string[] = [];
     let pages = 0;

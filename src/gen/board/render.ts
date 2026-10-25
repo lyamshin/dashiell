@@ -1,7 +1,7 @@
 import type { Account, BoardCase, Hour, PersonId, PlaceId, WatchList } from './types.js';
 import { TIER_NAMES } from './types.js';
 import type { Analysis } from './path.js';
-import { breaksAt, innocentLie, minimalSets, refusalShortcut } from './path.js';
+import { breaksAt, innocentLie, minimalSets, oneLiar, refusalShortcut } from './path.js';
 import { fmtHour, key, questionById, questionsOf, solve } from './solver.js';
 import { techniquesUpTo, TIERS, LADDER } from './tiers.js';
 import { checkInvariants, invariantFailures } from './invariants.js';
@@ -146,6 +146,11 @@ export function renderCase(c: BoardCase, a: Analysis): string {
     const k = breaksAt(c, order, T, c.crime.culprit, c.crime.hour);
     const at = (n: number) => (Number.isFinite(n) ? `step ${n}` : 'never');
     line(`  Two broken stories at ${fmtHour(c.crime.hour)}. The case leads with the ${c.lead ?? 'innocent'} liar's; the path breaks ${pname(inn.person)}'s at ${at(i)} and ${pname(c.crime.culprit)}'s at ${at(k)}.`);
+  } else if (oneLiar(c)) {
+    // Decided 2026-10-25 (docs/69): a night with one liar, and where on the path the culprit's story breaks.
+    const k = breaksAt(c, a.path.map((s) => s.q), T, c.crime.culprit, c.crime.hour);
+    const keeper = c.people.find((p) => p.secret);
+    line(`  One liar: nobody but ${pname(c.crime.culprit)} lies${keeper ? ` (${pname(keeper.id)} tells the truth about ${fmtHour(c.crime.hour)}: ${keeper.secret})` : ''}. The path breaks the story at step ${k} of ${a.path.length}.`);
   }
 
   rule(`The designed path: par ${a.par} questions${a.motive ? ' + 1 motive search' : ''}, ${a.walks} walks; budget ${a.budget}`);

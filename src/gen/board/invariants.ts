@@ -1,7 +1,7 @@
 import type { BoardCase, Hour, PersonId, PlaceId } from './types.js';
 import { fmtHour, key, questionsOf, solve } from './solver.js';
 import { techniquesUpTo } from './tiers.js';
-import { hadAccess, type Analysis } from './path.js';
+import { hadAccess, rivalsOf, type Analysis } from './path.js';
 import { isErrand, reasonFits } from './content.js';
 import { pointed } from './pointers.js';
 
@@ -48,9 +48,16 @@ export interface InvariantReport {
   /**
    * Decided 2026-10-11 (docs/41 rule 9): from Poached up the innocent liar lies about the
    * crime hour too, and the designed path breaks both stories, so telling them apart is the
-   * deduction and not a lie skipped.
+   * deduction and not a lie skipped. Decided 2026-10-25 (docs/69): on two-liar nights only.
    */
   twoStories: string[];
+  /**
+   * Decided 2026-10-25 (docs/69 §2): on a night with one liar (from Poached up, nobody but the culprit
+   * lies), the designed path checks every rival's evening at the hours that mattered: each is placed
+   * away from the scene by what the path holds, never cleared by default. And the path needs more
+   * than the culprit's broken story: some rival is cleared by a line that breaks nothing of theirs.
+   */
+  rivalsChecked: string[];
 }
 
 export const INVARIANT_NAMES: (keyof InvariantReport)[] = [
@@ -75,6 +82,7 @@ export const INVARIANT_NAMES: (keyof InvariantReport)[] = [
   'reasonsMatch',
   'pathMotivated',
   'twoStories',
+  'rivalsChecked',
 ];
 
 /** Where people are plausibly found with no reason but their own (4a.2). */
@@ -107,6 +115,7 @@ export function checkInvariants(c: BoardCase, a?: Pick<Analysis, 'path' | 'sugge
     reasonsMatch: [],
     pathMotivated: [],
     twoStories: [],
+    rivalsChecked: [],
   };
   const hours = c.board.hours;
   const place = new Map(c.places.map((p) => [p.id, p]));
@@ -434,6 +443,29 @@ export function checkInvariants(c: BoardCase, a?: Pick<Analysis, 'path' | 'sugge
     ).status;
     for (const l of [...innocentLies, ...c.lies.filter((x) => x.person === c.crime.culprit)]) {
       if (st.get(key(l.person, l.hour))?.s !== 'broken') r.twoStories.push(`the designed path never breaks ${l.person}'s story at ${l.hour}`);
+    }
+  }
+
+  // Decided 2026-10-25 (docs/69 §2): a night with one liar. The rivals are cleared by evidence, not by
+  // default: their own true evenings and the lists, each placing them at the hours that mattered. And
+  // a night whose path is the culprit's broken story and nothing else is a Coddled night.
+  if (a && c.tier >= 2 && innocentLies.length === 0) {
+    const s = solve(
+      c,
+      a.path.map((x) => x.q),
+      { techniques: techniquesUpTo(c.tier) },
+    );
+    const rivals = rivalsOf(c);
+    for (const rv of rivals) {
+      const cl = s.cleared.get(rv);
+      if (!cl) r.rivalsChecked.push(`the designed path never places ${rv} at ${s.possibleHours.join(' or ')}`);
+      else if (cl.how !== 'placed away' || cl.deps.length === 0) r.rivalsChecked.push(`${rv} is cleared ${cl.how === 'no access' ? 'for want of access' : 'by default'}, not placed`);
+    }
+    const caught = new Set(s.status.get(key(c.crime.culprit, c.crime.hour))?.deps ?? []);
+    const meansQ = c.finds.find((f) => f.gives.means);
+    if (meansQ) caught.add(`search:${meansQ.id}`);
+    if (!rivals.some((rv) => (s.cleared.get(rv)?.deps ?? []).some((d) => !caught.has(d)))) {
+      r.rivalsChecked.push('the designed path is the culprit’s broken story and nothing else');
     }
   }
 

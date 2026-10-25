@@ -49,7 +49,7 @@ import type { Args } from './bones/voice.js';
 import { accessPhrase, atWhere, breakSaid, claimSaid, claimWas, keptAt, remarkSaid, shortOther, wayWhat, where, whyHours } from './bones/phrase.js';
 
 export { breakSaid, claimSaid, keptAt, remarkSaid, shortOther };
-import { markPronoun } from './plan/refer.js';
+import { markPronoun, stripMarks } from './plan/refer.js';
 import { PLAN } from './plan/index.js';
 import { lean } from './plan/dial.js';
 
@@ -856,7 +856,13 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     }
   }
   if (alone.length) {
-    const reason = reasonFor(alone);
+    let reason = reasonFor(alone);
+    // (Docs/69: said of somebody of the same sex at the same hours on an earlier page, "Nobody else had
+    // said where she was at eleven, when Fritz went.", the hour's reason was said: it goes, as docs/66 P1
+    // has it at the fact level. The sentence again word for word kept the name to tell it apart, a third
+    // time on the page.)
+    const again = `Nobody else had said where ${pronOf(c, rest).he} was at ${andList(alone.map(hourWord))}, ${reason}.`;
+    if (reason && lean() && x.before.log.some((pg) => pg.blocks.some((bl) => bl.kind === 'prose' && bl.voice !== 'answer' && stripMarks(bl.text).includes(again)))) reason = '';
     add(`Nobody else had said where ${nameOf(c, rest)} was at ${andList(alone.map(hourWord))}${reason ? `, ${reason}` : ''}.`, clockRef, {
       rule: 'unbacked',
       hours: alone,

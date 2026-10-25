@@ -89,6 +89,77 @@ export const REFUSE_SHARE: Record<TierIndex, number> = { 0: 0, 1: 0, 2: 0.4, 3: 
  */
 export const INNOCENT_LEADS = 0.6;
 
+/**
+ * Decided 2026-10-25 (docs/69, docs/41 rule 9): the share of nights dealt with no innocent liar, by
+ * tier. The culprit lies and nobody else does, so the report's "Did anyone else lie?" has "Nobody
+ * else" for its answer on some nights, and a player can't know which without checking.
+ * - Poached to Medium: about one night in three.
+ * - Hard-boiled: face nights only (`variant: 'face'`), about half of them; the pair is the tier's
+ *   signature (docs/41 rule 10), and the friend is the other liar.
+ * - Raw and Coddled never deal a second liar, so there's nothing to drop.
+ * Drawn per attempt on a stream of its own (`oneLiarDrawn`), so nothing else about the deal moves.
+ * Tuned by the measure (docs/69 §4).
+ */
+export const ONE_LIAR_SHARE: Record<TierIndex, number> = { 0: 0, 1: 0, 2: 0.34, 3: 0.34, 4: 0.34, 5: 0.5 };
+
+/**
+ * Decided 2026-10-25: whether this attempt deals a one-liar night, on its own stream (docs/69 §1). The
+ * stream's salt is the first from 0x1a that keeps the 36 nights the tests and docs/46–68 read by seed
+ * (the blind testers' nights, the golden's, the reads) dealt as they were: any salt deals the same share.
+ */
+export function oneLiarDrawn(seed: number, tier: TierIndex, type: CaseType, attempt: number): boolean {
+  return ONE_LIAR_SHARE[tier] > 0 && new Rng(mix(seed, tier, CASE_TYPES.indexOf(type), attempt, 0x13fd4)).chance(ONE_LIAR_SHARE[tier]);
+}
+
+/**
+ * Decided 2026-10-25 (docs/69 §2): a night with one liar, made from a night as the generator deals it
+ * with two. The innocent who would have lied tells the truth: their story says where they really were
+ * at the crime hour, with whoever was with them (the company an admission would have named, or nobody,
+ * where the keeper's list is what places them), and the moves in it are the truth's, with the truth's
+ * reasons. Their lie, their confrontation and the night's lead (`INNOCENT_LEADS`) go; everything else
+ * is the night as it was dealt, word for word: the cast, the board, the lists, the office, the
+ * culprit's lie. Null where there's no secret to drop (Raw, Coddled, the Hard-boiled pair).
+ */
+export function oneLiarNight(c: BoardCase): BoardCase | null {
+  const lie = c.lies.find((l) => l.kind === 'secret');
+  if (!lie || c.variant === 'pair') return null;
+  const L = lie.person;
+  const hours = c.board.hours;
+  const row = c.board.rows[L] as Record<Hour, PlaceId>;
+  const old = c.accounts.find((a) => a.person === L) as Account;
+  const victim = c.people.find((p) => p.id === c.crime.victim);
+  const boardPeople = [
+    ...c.people.filter((p) => p.role === 'suspect').map((p) => p.id),
+    ...(victim && !victim.object ? [victim.id] : []),
+    ...c.people.filter((p) => p.role === 'company').map((p) => p.id),
+  ];
+  const claims: Record<Hour, Claim> = {};
+  hours.forEach((h, i) => {
+    const was = old.claims[h] as Claim;
+    // Only the lied hour and the hour after it change: the lie, and the move back from it.
+    if (h !== lie.hour && hours[i - 1] !== lie.hour) {
+      claims[h] = was;
+      return;
+    }
+    const place = row[h] as PlaceId;
+    const company = boardPeople.filter((x) => x !== L && c.board.rows[x]?.[h] === place);
+    const moved = i > 0 && row[hours[i - 1] as Hour] !== place;
+    const reason = moved ? c.board.reasons[L]?.[h] : undefined;
+    claims[h] = { place, company, ...(reason ? { reason } : {}) };
+  });
+  const hL = hours[hours.length - 1] as Hour;
+  const out: BoardCase = {
+    ...c,
+    // A refuser was found back where they claimed to be (decided 2026-10-11); with no claim, where they were.
+    people: c.people.map((p) => (p.id === L ? { ...p, foundAt: row[hL] as PlaceId } : p)),
+    accounts: c.accounts.map((a) => (a.person === L ? { ...a, claims } : a)),
+    confrontations: c.confrontations.filter((k) => !(k.person === L && k.hour === lie.hour)),
+    lies: c.lies.filter((l) => l !== lie),
+  };
+  delete out.lead;
+  return out;
+}
+
 /** Which types each tier can build. A lost item has no honest last sighting to narrow a window. */
 export function typesFor(tier: TierIndex): CaseType[] {
   return tier >= 3 ? ['murder', 'lost-pet'] : [...CASE_TYPES];

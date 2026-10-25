@@ -550,7 +550,12 @@ export function solve(c: BoardCase, held: Iterable<string>, opts: SolveOptions):
     const liars = [...new Set(c.lies.map((l) => l.person))].filter((p) => ctx.suspects.includes(p));
     const allPut = c.lies.every((l) => status.get(key(l.person, l.hour))?.s === 'broken' && confronted.has(key(l.person, l.hour)));
     const holdouts = liars.filter((p) => c.lies.some((l) => l.person === p && confronted.get(key(p, l.hour)) !== 'admit'));
-    if (allPut && holdouts.length === 1) {
+    // Decided 2026-10-25 (docs/69): below Poached a night has one liar, and from Poached up two at most
+    // (rule 9's one innocent, or the Hard-boiled pair), so that many caught is all of them. From Poached
+    // up one caught is all of them only once what's held rules everybody else out: on a night with one
+    // liar, nobody can know it has one without checking.
+    const everyLiar = liars.length >= 2 || c.tier < 2 || ctx.suspects.every((p) => liars.includes(p) || cleared.has(p));
+    if (allPut && everyLiar && holdouts.length === 1) {
       const cand = holdouts[0] as PersonId;
       const free = possible.filter((h) => !placedAway(cand, h));
       const atScene = free.find((h) => at.get(key(cand, h))?.place === scene);

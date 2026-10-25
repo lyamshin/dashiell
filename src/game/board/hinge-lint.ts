@@ -300,8 +300,9 @@ function bareFirst(c: BoardCase, run: BoardRun): HingeIssue[] {
           if (new RegExp(`(?:[A-Z][\\w’.-]+, (?:(?:Mrs\\.|Miss|Dr\\.) )?[A-Z][\\w’.-]+(?:,| and) ${n0}\\b|\\b${n0}, (?:(?:Mrs\\.|Miss|Dr\\.) )?[A-Z][\\w’.-]+(?:,| and) |[A-Z][\\w’.-]+, ${n0},? and )`).test(sn)) continue;
           done.add(x.id);
           if (glossedSoFar.has(x.id) || glossedIn(c, x.id, s) || glossedIn(c, x.id, prevNarr)) continue;
-          // (docs/66, P4: somebody an owning up has just named, said in the line after it: the confession met them.)
-          if (p.board?.job === 'confront' && spokenOnPage(p, b.text, s, re)) continue;
+          // (docs/66, P4: somebody an owning up has just named, said in the line after it: the confession met them.
+          // Docs/69: or company somebody's own story has just named, on a night with one liar: the story met them.)
+          if ((p.board?.job === 'confront' || (p.board?.job === 'account' && x.role === 'company')) && spokenOnPage(p, b.text, s, re)) continue;
           out.push({ page: i, rule: 'bare', detail: `${x.short}: “${s.slice(0, 100)}”` });
         }
         if (sn.trim().replace(/…/g, '').trim()) prevNarr = s;
@@ -405,7 +406,8 @@ function shift(c: BoardCase, run: BoardRun): HingeIssue[] {
     const q = p.board.q ?? '';
     const l = late.find((x) => q === `list:${x.watcher}`);
     if (!l) return;
-    const said = own(p).filter((b) => b.voice === 'answer' || /“/.test(b.text)).map((b) => b.text).join(' ');
+    // (Docs/69: the watcher's words, never the detective's own ask quoted in the narration: "“Who was in tonight?” I said.")
+    const said = own(p).filter((b) => b.voice === 'answer' || (/“/.test(b.text) && !/[?.!,]” I (?:said|asked)\b/.test(b.text))).map((b) => b.text).join(' ');
     const quote = [...said.matchAll(/“([^”]*)”?/g)].map((m) => m[1] as string).join(' ');
     const all = /\ball evening\b|\bfrom the start\b|\bstart to finish\b|\bnever left\b|\bthe whole evening\b/.exec(quote);
     if (all) out.push({ page: i, rule: 'shift', detail: `“${all[0]}” from a watcher who came on late` });
