@@ -2721,7 +2721,14 @@ export interface Clause {
  * (the office's two hours and the sighting), and at fact level it's only what's
  * held and what's open, with nothing joined to anything.
  */
-export function recapClauses(d: BoardDeal, run: BoardRun): Clause[] {
+export function recapClauses(d: BoardDeal, run: BoardRun, marks = false): Clause[] {
+  // (docs/62: the clauses carry the reference pass's marks on their pronouns, "he⁣2⁤ was at Moe’s", for
+  // the turn the planner says; the notebook reads them without.)
+  const out = recapClausesMarked(d, run);
+  return marks ? out : out.map((x) => ({ ...x, text: stripMarks(x.text) }));
+}
+
+function recapClausesMarked(d: BoardDeal, run: BoardRun): Clause[] {
   const c = d.kase;
   const level = thoughtLevel(c);
   if (level === 'fact') return factClauses(d, run);
@@ -3003,7 +3010,7 @@ function recapFacts(w: Writer, clauses: Clause[], lead?: string): void {
 export function writeRecap(w: Writer, starsLine: string | null): void {
   const ropen = w.hand.draw('recap-open', {}, {}, { widen: true });
   put(w, 'why', ropen, 'recap', { slot: 'staging', ...sit(w, ropen) });
-  const clauses = recapClauses(w.d, w.run);
+  const clauses = recapClauses(w.d, w.run, true);
   for (const cl of clauses) {
     for (const h of cl.hours) w.hours.add(h);
     for (const p of cl.people) w.people.add(p);
@@ -3041,7 +3048,7 @@ export function writeTurn(w: Writer): void {
   } else {
     // (docs/60, lean: where a small case's thing went isn't said again in a turn on the page that just heard it.)
     const heardHere = lean() && !!w.handover;
-    const clauses = lean() ? turnOrder(recapClauses(w.d, w.run).filter((x) => !(heardHere && x.key.split(':')[0] === 'where')), c.tier <= 2 ? 70 : 90) : recapClauses(w.d, w.run);
+    const clauses = lean() ? turnOrder(recapClauses(w.d, w.run, true).filter((x) => !(heardHere && x.key.split(':')[0] === 'where')), c.tier <= 2 ? 70 : 90) : recapClauses(w.d, w.run, true);
     for (const cl of clauses) {
       for (const h of cl.hours) w.hours.add(h);
       for (const p of cl.people) w.people.add(p);
