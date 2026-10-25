@@ -386,6 +386,8 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
           it.text = it.text.replace(new RegExp(`(\\b(?:a|an|the)(?: [a-z]+)? (?:booth|table|stool|chair|seat|bench|cushion|step)) (?:by|near|against|under) ${sp}\\b`), '$1');
           // ("Lathrop stood at the back with his hat in his hand", after the usher stood at the back: "Lathrop stood with his hat in his hand".)
           it.text = it.text.replace(new RegExp(`\\b(stood|sat|waited|leaned|lingered|was|were) (?:at|in|by|near) ${sp}(?= with\\b)`), '$1');
+          // ("Dr. Hirsch was drinking a brandy at the bar with a medical journal…", after somebody stood at the bar: the spot goes.)
+          it.text = it.text.replace(new RegExp(` (?:at|in|by|near) ${sp}(?= with\\b)`), '');
         }
       }
     }
