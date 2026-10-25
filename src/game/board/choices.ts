@@ -82,7 +82,7 @@ export function pageStars(d: BoardDeal, run: BoardRun): BoardStar[] {
       command = `go ${at}`;
       if (out.some((s) => s.command === command)) continue;
     }
-    out.push({ q, why: starReason(c, run, q, walks), command });
+    out.push({ q, why: starReason(c, run, q, command.startsWith('go ')), command });
   }
   return out;
 }

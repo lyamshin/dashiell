@@ -385,8 +385,12 @@ export interface Collision {
   breakers: Line[];
 }
 
-/** Claims of `p` that collide with something held: broken, and not yet put to them with a line that lands. */
-export function collisionsOf(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>, p?: PersonId): Collision[] {
+/**
+ * Claims of `p` that collide with something held: broken, and not yet put to them with a line that lands.
+ * As the player is shown them: a break that rests on a face not yet matched to a name (docs/65 §3) is
+ * left out, unless `all` (the oracle's own puts, and the report's score, which read what's held).
+ */
+export function collisionsOf(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'marks'>>, p?: PersonId, opts: { all?: boolean } = {}): Collision[] {
   const s = solveRun(c, run);
   const lines = linesHeld(c, run);
   const out: Collision[] = [];
@@ -397,16 +401,92 @@ export function collisionsOf(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>
     const h = Number(hs);
     const claim = lines.find((l) => l.id === `claim:${who}@${h}`);
     if (!claim) continue;
+    if (!opts.all && faceUnmatched(c, run, who, h)) continue;
     out.push({ person: who, hour: h, claim, breakers: breakersOf(c, run, who, h, lines, st.deps) });
   }
   return out.sort((a, b) => a.hour - b.hour);
 }
 
-/** The held lines at that hour that the solver's break rests on. */
+/**
+ * The held lines at that hour that the solver's break rests on: what broke the story first, in the
+ * order the questions were asked (docs/65 §2). A line held later that breaks it too doesn't take
+ * its place: once a refuser's keeper says where they really were, the solver's break rests on that
+ * list, which is also what clears them, and the collision would hand it over.
+ */
 function breakersOf(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>, p: PersonId, h: Hour, lines: Line[], deps: string[]): Line[] {
   const cands = candidateLines(c, run, p, h, lines);
-  const hit = cands.filter((l) => deps.includes(l.q) && l.q !== `account:${p}`);
+  const on = (ds: readonly string[]) => cands.filter((l) => ds.includes(l.q) && l.q !== `account:${p}`);
+  const first = on(firstBreak(c, run, p, h) ?? []);
+  if (first.length > 0) return first;
+  const hit = on(deps);
   return hit.length > 0 ? hit : cands.filter((l) => judgeLine(c, run, p, h, l).landed);
+}
+
+/**
+ * Could they get the means, as the grid's last column shows it from what's held: yes (the office
+ * says they live there, or somebody's word has them where it was while it was there), no (somebody's
+ * word has them elsewhere every hour it was there), or not known. A murder's means is known once the
+ * search that finds it is held.
+ */
+export function meansShown(c: BoardCase, run: Pick<BoardRun, 'asked'>, p: PersonId): 'yes' | 'no' | '?' {
+  const s = solveRun(c, run);
+  const known = !isMurder(c) || run.asked.some((q) => q.startsWith('search:') && !!c.finds.find((f) => `search:${f.id}` === q)?.gives.means);
+  if (!known) return '?';
+  if (c.givens.access.includes(p) || c.means.available.some((h) => s.placed.get(`${p}@${h}`)?.place === c.means.origin)) return 'yes';
+  const no = c.means.available.every((h) => {
+    const x = s.placed.get(`${p}@${h}`);
+    return (x && x.place !== c.means.origin) || s.notPlaced.get(`${p}@${h}`)?.has(c.means.origin);
+  });
+  return no ? 'no' : '?';
+}
+
+const FACELESS = new Map<string, Solved>();
+
+/**
+ * docs/65 §3 (round 6): a break that rests on putting a name to a face is the player's to make. At
+ * Hard-boiled a watcher may see only "somebody in a camel coat", and the one in the camel coat walked
+ * in past the player. A claim that breaks only once the solver matches that coat to a name isn't
+ * shown as a clash (the grid's ✗, the put picker's claim) until the player has shown the match: a
+ * pencil mark that puts the face's owner there then, or the claimant not there; or the line, read
+ * to the claimant, landing. Below Hard-boiled no list carries a face, so nothing is held back.
+ */
+export function faceUnmatched(c: BoardCase, run: Pick<BoardRun, 'asked'> & Partial<Pick<BoardRun, 'marks'>>, p: PersonId, h: Hour): boolean {
+  const T = techniquesUpTo(c.tier);
+  if (!T.has('face')) return false;
+  const held = solverHeld(run);
+  if (solveHeld(c, held).status.get(`${p}@${h}`)?.s !== 'broken') return false;
+  if (held.includes(`confront:${p}@${h}`)) return false;
+  const key = `${c.id}|${[...held].sort().join(',')}`;
+  let without = FACELESS.get(key);
+  if (!without) {
+    without = solve(c, held, { techniques: new Set([...T].filter((t) => t !== 'face')) });
+    if (FACELESS.size > 200) FACELESS.delete(FACELESS.keys().next().value as string);
+    FACELESS.set(key, without);
+  }
+  if (without.status.get(`${p}@${h}`)?.s === 'broken') return false;
+  // The match, shown: a face seen at that hour put on its owner, or the claimant pencilled out of the place.
+  const claimed = accountOf(c, p)?.claims[h]?.place;
+  const marks = run.marks ?? {};
+  if (claimed && marks[p]?.[String(h)]?.notAt?.includes(claimed)) return false;
+  for (const l of c.lists) {
+    if (!held.includes(`list:${l.watcher}`)) continue;
+    for (const e of l.entries[h] ?? []) {
+      if (!('look' in e)) continue;
+      const owner = c.people.find((x) => x.look === e.look);
+      if (owner && marks[owner.id]?.[String(h)]?.at === l.place) return false;
+    }
+  }
+  return true;
+}
+
+/** docs/65 §2: what the break rested on when it first broke, asking the held questions in order. */
+function firstBreak(c: BoardCase, run: Pick<BoardRun, 'asked'>, p: PersonId, h: Hour): string[] | undefined {
+  const held = solverHeld(run);
+  for (let i = 1; i <= held.length; i++) {
+    const st = solveHeld(c, held.slice(0, i)).status.get(`${p}@${h}`);
+    if (st?.s === 'broken') return st.deps;
+  }
+  return undefined;
 }
 
 /**
