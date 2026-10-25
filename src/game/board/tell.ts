@@ -224,9 +224,10 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
       // (docs/62, P7: lean, an hour alone is said in the clause of that hour, never tacked on after the
       // evening as a sentence of its own: "…, and at ten I went home, on my own", not "Alone at ten.")
       const tagAll = lean() && aloneRuns.length > 0 && aloneRuns.length < runs.length;
-      // (docs/66, P6: one word for it an evening, "again" after its first: never "by myself", "alone" and
-      // "on my own" in three clauses running, which read like a thesaurus.)
-      const aloneTag = (ALONE_TAG[(rot + (tagAll && !lean() ? i : 0)) % ALONE_TAG.length] as string) + (lean() && tagAll && aloneSaid > 0 ? ' again' : '');
+      // (docs/66, P6: one word for it an evening, "again" the second time: never "by myself", "alone" and
+      // "on my own" in three clauses running, which read like a thesaurus; and never "again" twice, "I looked
+      // in at the card room again, by myself again", skim round 1.)
+      const aloneTag = (ALONE_TAG[(rot + (tagAll && !lean() ? i : 0)) % ALONE_TAG.length] as string) + (lean() && tagAll && aloneSaid === 1 && !/\bagain\b/.test(reason ?? '') ? ' again' : '');
       const alone = who.length === 0 && !withSomebody ? ((aloneOnce || tagAll) && runs.length > 1 ? aloneTag : '') : '';
       if (alone) aloneSaid++;
       // "back to my room to write letters, with Abramowitz and Thorndike" put them in the room: in a
@@ -236,7 +237,8 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
       const said = named || who.length > 0 || alone !== '';
       // (docs/59 item 8: "went along with Salerno to Rafferty’s, with Ruggiero and Sirkin": whoever the reason names isn't named again after it.)
       // (docs/60 item 5: lean, back at the same place with the same people later in the evening: "with the
-      // same people", not their names again.)
+      // same people", not their names again. docs/66, skim round 1: one or two of them by name, "with Mrs.
+      // Sobel again": "with the same people" after one person read as nobody in particular.)
       const again = lean() && i > 0 && who.length > 0 && !named && !withSomebody && !house && runs.slice(0, i).some((r0) => r0.place === r.place && Array.from({ length: r0.to - r0.from + 1 }, (_, k) => key(a.claims[(r0.from + k) as Hour]?.company ?? [])).every((x) => x === key(comps[0]?.who ?? [])));
       // (docs/62, P7: lean, somebody where I went on an errand was there, not along with me: "…to return a
       // borrowed umbrella, and Thorndike was there", never "…to return a borrowed umbrella, with Thorndike".)
@@ -248,7 +250,7 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
       // never "…, because my feet hurt, alone".)
       const why = lean() && alone && reason ? /, (?:because|since) /.exec(reason) : null;
       const reasonX = why && reason ? `${reason.slice(0, why.index)}${alone.replace(/^,/, '')}${reason.slice(why.index)}` : undefined;
-      const tail = named || withSomebody ? '' : again ? ', with the same people' : there ? there : who.length ? `, with ${andList(others)}${house}` : reasonX ? '' : alone;
+      const tail = named || withSomebody ? '' : again ? (others.length > 0 && others.length <= 2 ? `, with ${andList(others)} again` : ', with the same people') : there ? there : who.length ? `, with ${andList(others)}${house}` : reasonX ? '' : alone;
       const company = named ? 'named' : withSomebody ? 'aside' : who.length ? 'with' : alone ? 'alone' : 'bare';
       push({ shape: 'CLAIM-SPAN', flags: [...flags, company], args: { ...args, ...(reasonX ? { reason: reasonX } : {}), with: tail }, manner }, runHours, runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h, ...(said ? { company: [...(a.claims[h]?.company ?? [])] } : {}) }) as Prop));
     } else {

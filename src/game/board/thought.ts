@@ -777,7 +777,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const loose = known.filter((p) => !thenHs.every((h) => { const at = a.placed.get(`${p}@${h}`)?.place; return !!at && at !== thenList.place; }));
       const asking = loose.length ? loose : known;
       const W = nameOf(c, thenList.watcher);
-      const nobody = asking.length === 1 ? `${W} didn’t see ${nameOf(c, asking[0] as PersonId)}` : asking.length === 2 ? `${W} saw neither ${nameOf(c, asking[0] as PersonId)} nor ${nameOf(c, asking[1] as PersonId)}` : `${W} saw none of ${asking.slice(0, -1).map((p) => nameOf(c, p)).join(', ')} or ${nameOf(c, asking[asking.length - 1] as PersonId)}`;
+      // (docs/66, skim round 1: lean, "didn’t see A, B or C", never "saw none of A, B or C", which readers stopped on.)
+      const nobody = asking.length === 1 || lean() ? `${W} didn’t see ${asking.length === 1 ? nameOf(c, asking[0] as PersonId) : `${asking.slice(0, -1).map((p) => nameOf(c, p)).join(', ')} or ${nameOf(c, asking[asking.length - 1] as PersonId)}`}` : asking.length === 2 ? `${W} saw neither ${nameOf(c, asking[0] as PersonId)} nor ${nameOf(c, asking[1] as PersonId)}` : `${W} saw none of ${asking.slice(0, -1).map((p) => nameOf(c, p)).join(', ')} or ${nameOf(c, asking[asking.length - 1] as PersonId)}`;
       // (docs/66, P1: an hour said bare where its reason is spent or settled, at Hard-boiled.)
       const rz = reasonFor(thenHs) ? `, ${reasonFor(thenHs)}` : '';
       const none = lean() && asking.length ? [`At ${either}${rz}, ${nobody} at ${where}.`, `${nobody} at ${where} at ${either}${rz}.`] : lean() ? [`None of the people with a reason was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people with a reason was at ${where}.`] : [`None of the people I was asking about was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people I was asking about was at ${where}.`];

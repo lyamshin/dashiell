@@ -80,10 +80,12 @@ const PAPERS_SAID: Record<string, string> = {
  * name ({victim}) where it could: "Renfro, a milliner, owed him four hundred dollars. Grasso had been
  * paying him for years.", never "the dead man" five times running.
  */
+// (docs/66, skim round 1: the grudge says who held it over whom: "There was a note of where Schilling had
+// been in 1921" left a reader asking what the grudge was.)
 const PAPERS_LEAN: Record<string, string> = {
-  m0: 'There was a file on {name}{g}, thick enough to matter.',
+  m0: '{victim} had kept a file on {name}{g}, thick enough to matter.',
   m1: '{name}{g} had been paying {dhim} for years.',
-  m2: 'There was a note of where {name}{g} had been in 1921.',
+  m2: '{victim} knew where {name}{g} had been in 1921.',
   m3: '{name}{g} owed {dhim} four hundred dollars.',
   m4: '{name}{g} owed {dhim} the rent on a shop, and it was being called in.',
   m5: '{name}{g} had lost {his} business to {dhim}.',

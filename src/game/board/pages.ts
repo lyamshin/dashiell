@@ -1349,6 +1349,8 @@ function inClientMouth(c: BoardCase, text: string, about?: PersonId): string {
   }
   // (docs/66, P5: "Bellucci … is three weeks behind on the rent" read as the client's rent: theirs.)
   if (about && lean()) text = text.replace(/\bbehind on the rent\b/, `behind on ${pronOf(c, about).his} rent`);
+  // (docs/66, skim round 1: "Belkin … owes Wexler money, and he has started asking for it": the one owed, by name.)
+  if (lean()) text = text.replace(/\bowes ((?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?[A-Z][\w’]+) money, and (?:he|she) /, 'owes $1 money, and $1 ');
   return text
     .replace(new RegExp(`\\band ${me} haven’t\\b`), 'and I haven’t')
     .replace(new RegExp(`\\basked ${me}\\b`), 'asked me')

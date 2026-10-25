@@ -1230,7 +1230,9 @@ function sideBySide(segs: Seg[], ctx: PlanCtx, n: number): void {
     let join: string | undefined;
     // A collision keeps a clause of its own (docs/49 §2): after it, only a semicolon.
     if (ruleOf(A) === 'collision') {
-      if ((budget.semi ?? 0) === 0 && !/;/.test(A.text + B.text) && joined(B.text) === 0) [made, join] = [sayPair(A, B, 'semi', ctx), 'semi'];
+      // (docs/66, skim round 1: lean, nothing after it either: "…and Reinhardt hadn’t seen him there; Mosley
+      // hadn’t been at Mrs. Nagy’s…" stopped readers in both builds.)
+      if (!lean() && (budget.semi ?? 0) === 0 && !/;/.test(A.text + B.text) && joined(B.text) === 0) [made, join] = [sayPair(A, B, 'semi', ctx), 'semi'];
     } else if ((A.comp as Held | undefined)?.flags?.includes('hole') && (B.comp as Held | undefined)?.flags?.includes('if-held') && budget.but === 0) {
       // The hole, and the story owned up to in its place: "but if it held, …".
       [made, join] = [sayPair(A, B, 'but', ctx, 'ADMIT-CHECK'), 'but'];
