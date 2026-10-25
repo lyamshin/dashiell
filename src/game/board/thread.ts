@@ -224,7 +224,8 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
     const f = c.finds.find((x) => x.id === qrest);
     // Said as a detective would, never as the form asks it ("the report wanted a why", Poached 5's #11).
     // (docs/66, P10: the page says "papers" and "grudge" once each; the pointer, neither.)
-    if (f?.gives.why) return out(victimOf(c).female ? `if anybody had a reason, her desk would say so` : `if anybody had a reason, his desk would say so`, ['givens:found'], { places: [f.place] });
+    // (docs/66, skim round 3: "his desk" opening a page had nobody for the "his": the desk, at the dead's place.)
+    if (f?.gives.why) return out(`if anybody had a reason, the desk would say so`, ['givens:found'], { places: [f.place] });
     if (isMurder(c)) return out(`${victimOf(c).short} had died ${at(c, c.crime.scene, here)}`, ['givens:found'], { people: [c.crime.victim], places: [c.crime.scene] });
     return out(`${victimOf(c).short} had gone from ${placeName(c, c.crime.scene)}`, ['givens:gone'], { places: [c.crime.scene] });
   }

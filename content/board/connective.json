@@ -317,7 +317,7 @@
   {"id": "bcn-2752", "family": "handoff", "tags": {"kind": "account", "away": "no"}, "text": "{Name} was in the room with me, and I didn’t know yet where {he}’d been tonight."},
   {"id": "bcn-2753", "family": "handoff", "tags": {"kind": "account", "away": "no"}, "text": "{Name} was a few feet away, and {his} evening was still a blank in my notebook."},
   {"id": "bcn-2754", "family": "handoff", "tags": {"kind": "account", "away": "yes"}, "text": "That pointed me at {name}, over at {place}."},
-  {"id": "bcn-2755", "family": "handoff", "tags": {"kind": "account", "away": "yes"}, "text": "{Name}’s evening was still a blank in my notebook, and {he} was at {place}."},
+  {"id": "bcn-2755", "family": "handoff", "tags": {"kind": "account", "away": "yes"}, "text": "{Name} was at {place}, and {his} evening was still a blank in my notebook."},
   {"id": "bcn-2756", "family": "handoff", "tags": {"kind": "account", "away": "yes"}, "text": "{Name} was at {place}, and still hadn’t told me where {he}’d been tonight."},
   {"id": "bcn-2757", "family": "handoff", "tags": {"kind": "account", "away": "yes"}, "text": "Next was {name}, at {place}. I didn’t have a word of {his} evening yet."},
   {"id": "bcn-2758", "family": "handoff", "tags": {"kind": "check", "away": "any"}, "text": "{Name} could stand behind that or not, and I wanted to know which."},

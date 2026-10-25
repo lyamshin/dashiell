@@ -96,7 +96,7 @@ Each is a kind of line round 6 stopped on, read over a whole night as a player r
 
 ### 1.11 The papers (P10)
 
-- The pointer to them says neither word: "If anybody had a reason, his desk would say so." (`thread.ts`); the search card "I went through {victim}’s desk a drawer at a time" for "People keep their worst habits in their papers, filed under something else" (also the seed's "filed").
+- The pointer to them says neither word: "If anybody had a reason, the desk would say so." (`thread.ts`; "his desk", first, had nobody for the "his" at the top of a page, skim round 3); the search card "I went through {victim}’s desk a drawer at a time" for "People keep their worst habits in their papers, filed under something else" (also the seed's "filed").
 - Who they are, beside the name, where the night hasn't met them: "Renfro, a milliner, owed him four hundred dollars. … Winslow, a night-school teacher, had a brother Carbone had testified against." (`papersLine`, lean).
 - The dead by their role twice on the page, then by what they were where nobody else that night was ("the dentist"), since a third name goes back to the role in the reference pass.
 

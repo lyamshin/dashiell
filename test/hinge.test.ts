@@ -201,7 +201,7 @@ describe('docs/66: the round-6 testers’ joining text, a rule at a time', () =>
   it('papers: "papers" and "grudge" twice at most on the page, the dead man three times', () => {
     const papers = (text: string) => pg('search', [{ text }], { q: 'search:papers' });
     expect(rules(night(papers('His papers would have the name of anybody with a grudge against him. I went through his papers. His papers held a page on everybody with a grudge, one grudge to a page.')))).toContain('papers');
-    expect(rules(night(papers('If anybody had a reason, his desk would say so. Carbone had kept a page on everybody with a grudge.')))).not.toContain('papers');
+    expect(rules(night(papers('If anybody had a reason, the desk would say so. Carbone had kept a page on everybody with a grudge.')))).not.toContain('papers');
     expect(rules(night(papers('Renfro: the dead man owed him. Grasso: the dead man squeezed her. Winslow: the dead man testified. Thorndike: the dead man kept a file.')))).toContain('papers');
     expect(rules(night(papers('Renfro, a milliner, owed him four hundred dollars. Grasso had been paying the dead man for years. Winslow had a brother Carbone had testified against.')))).not.toContain('papers');
   });
