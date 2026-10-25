@@ -397,7 +397,9 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
       const second = at >= 0 ? it.text.indexOf(m0[0] as string, at + 1) : -1;
       if (second < 0) continue;
       const head = it.text.slice(0, second - 12 < 0 ? 0 : second - 12);
-      const tail = it.text.slice(head.length).replace(new RegExp(`\\b(stood|sat|waited|leaned|lingered|was|were) (?:at|in|by|near) ${sp}(?= with\\b)`), '$1 there');
+      let tail = it.text.slice(head.length).replace(new RegExp(`\\b(stood|sat|waited|leaned|lingered|was|were) (?:at|in|by|near) ${sp}(?= with\\b)`), '$1 there');
+      // ("…, and Dr. Hirsch was drinking a brandy at the bar with a medical journal…": the spot goes.)
+      if (tail.includes(m0[0] as string)) tail = tail.replace(new RegExp(` (?:at|in|by|near) ${sp}(?= with\\b|[,.])`), '');
       it.text = head + tail;
     }
     const seen = new Set<string>();
