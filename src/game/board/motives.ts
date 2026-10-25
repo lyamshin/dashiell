@@ -74,6 +74,25 @@ const PAPERS_SAID: Record<string, string> = {
 };
 
 /**
+ * docs/66, P10: the papers' lines as the page says them (lean): the suspect is the one each line is
+ * about, who they are beside the name the first time the night meets them (`{g}`), and the dead man,
+ * whose papers they are, is "him" ({dhim}, {dhis}) where the line can't make him anybody else, or his
+ * name ({victim}) where it could: "Renfro, a milliner, owed him four hundred dollars. Grasso had been
+ * paying him for years.", never "the dead man" five times running.
+ */
+const PAPERS_LEAN: Record<string, string> = {
+  m0: 'There was a file on {name}{g}, thick enough to matter.',
+  m1: '{name}{g} had been paying {dhim} for years.',
+  m2: 'There was a note of where {name}{g} had been in 1921.',
+  m3: '{name}{g} owed {dhim} four hundred dollars.',
+  m4: '{name}{g} owed {dhim} the rent on a shop, and it was being called in.',
+  m5: '{name}{g} had lost {his} business to {dhim}.',
+  m6: '{name}{g} had been put out of a lease by {dhim}.',
+  m7: '{name}{g} had a brother {victim} had testified against.',
+  m8: '{name}{g} had a sister {victim} jilted a week before the wedding.',
+};
+
+/**
  * docs/49: the same lines as the microplanner says them. In the dead man's papers a bare "he" is the
  * dead man, and on a man's page it sits beside the man's own "him": the dead man is said as his
  * role, so no pronoun on the page could be either of them.
@@ -143,7 +162,7 @@ export function motiveSaid(c: BoardCase, p: PersonId): string {
  * Reinhardt’s sister…" where "his sister" could be the dead man's own. The why form's words
  * (`motiveForm`), so the papers and the report say one grievance alike.
  */
-export function papersLine(c: BoardCase, p: PersonId, planned = false): string {
+export function papersLine(c: BoardCase, p: PersonId, planned = false, gloss?: string | null): string {
   void planned;
   void PAPERS;
   void PAPERS_PLANNED;
@@ -155,6 +174,13 @@ export function papersLine(c: BoardCase, p: PersonId, planned = false): string {
   const v = victimOf(c);
   const same = pronOf(c, v.id).he === pr.he;
   const dead = v.female ? 'the dead woman' : 'the dead man';
+  // (docs/66, P10: the page's own lines, lean; `gloss` is who they are, the first time the night meets them.)
+  const leanSaid = gloss !== undefined && lean() && !who?.motiveForm && who?.motiveId ? PAPERS_LEAN[who.motiveId] : undefined;
+  if (leanSaid) {
+    const vp = pronOf(c, v.id);
+    const t = leanSaid.replace('{name}', nm).replace('{g}', gloss ? `, ${gloss},` : '').replace('{he}', pr.he).replace('{him}', pr.him).replace('{his}', pr.his).replace('{dhim}', vp.him).replace('{dhis}', vp.his).replace('{victim}', v.short);
+    return t.replace(/,\s*([.,])/g, '$1').replace(/^./, (x) => x.toUpperCase());
+  }
   // A dealt night's grudge, said as its own sentence.
   const said = !who?.motiveForm && who?.motiveId ? PAPERS_SAID[who.motiveId] : undefined;
   if (said) {

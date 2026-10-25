@@ -122,7 +122,9 @@ function murderWhat(c: BoardCase, g: GivenLine, hours: readonly number[]): strin
     case 'telephone':
       return `${He} telephoned me at ${hc}, cheerful, to say ${pr.he} had company`;
     case 'radio':
-      return isPoison(c) ? `The woman across the hall heard ${pr.him} laughing with somebody all through ${prog}, which starts at ${hc}` : `${He} was shot in the middle of ${prog}, which starts at ${hc}; the family across the hall turned it up`;
+      // (docs/66, P5: "laughing with somebody all through the Fleischmann Hour, which starts at nine" left
+      // no moment for the dose: the laughing when the hour came on.)
+      return isPoison(c) ? (lean() ? `The woman across the hall heard ${pr.him} laughing with somebody when ${prog} came on at ${hc}` : `The woman across the hall heard ${pr.him} laughing with somebody all through ${prog}, which starts at ${hc}`) : `${He} was shot in the middle of ${prog}, which starts at ${hc}; the family across the hall turned it up`;
     case 'heard':
       return 'The man downstairs heard the shot and looked at his clock';
     case 'el':
@@ -139,8 +141,14 @@ function murderWhat(c: BoardCase, g: GivenLine, hours: readonly number[]): strin
       return `The police surgeon puts it at one or the other, by the warmth of ${pr.him}`;
     case 'clock':
       return `${pr.His} mantel clock was knocked over and stopped at five past, but it was never right`;
-    case 'dozed':
-      return `The woman across the landing heard ${v.sound ?? 'something'} at one or the other; she’d dozed off over the radio and can’t say which`;
+    case 'dozed': {
+      // (docs/66, P5: "heard him laugh with somebody and then go quiet at one or the other" said the hour
+      // in a clause nobody could find: what she heard, and then that she can't say which hour.)
+      if (!lean()) return `The woman across the landing heard ${v.sound ?? 'something'} at one or the other; she’d dozed off over the radio and can’t say which`;
+      const heard = (v.sound ?? 'something').replace(/^(him|her) laugh with somebody and then go quiet$/, '$1 laughing with somebody, and then nothing');
+      const [a, b] = hours.map((h) => hourWord(h as Hour));
+      return `The woman across the landing heard ${heard}, but she’d dozed off over the radio and can’t say if it was ${a ?? 'one'} or ${b ?? 'the other'}`;
+    }
   }
   return null;
 }

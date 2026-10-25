@@ -981,16 +981,16 @@ const handoverSeen = READ.HANDOVER as Reader;
 READ.HANDOVER = (a, flags, comp, v, lx) => (flags.has('recap') ? handoverRecap(a, flags, comp, v, lx) : handoverSeen(a, flags, comp, v, lx));
 
 READ['WINDOW-ALIVE'] = (a, flags, _comp, v, lx) => {
-  // docs/59 item 3: above a walk, the sighting alone (the office's hours are the office's, said once).
-  if (flags.has('link')) {
-    const place = a.place !== undefined && a.place !== '' ? placeV(v.c, a.place as string, v) : placeV(v.c, a.at as string, v);
-    return [{ k: 'ALIVE', victim: personV(v.c, a.victim as string), place, hour: hourV(a.hour as string) }];
-  }
-  // docs/59 item 3: a walk's narrowing, said as the hour it leaves.
+  // docs/59 item 3: a walk's narrowing, said as the hour it leaves (docs/66, P1: and the link's, "So he went at ten").
   if (flags.has('narrows')) {
     const h = lx.hour.get(String(a.narrowed).replace(/ o’clock$/, '').toLowerCase());
     if (h === undefined) throw new Error('voiced: narrowed to when?');
     return [{ k: 'NARROWS', hour: h }];
+  }
+  // docs/59 item 3: above a walk, the sighting alone (the office's hours are the office's, said once).
+  if (flags.has('link')) {
+    const place = a.place !== undefined && a.place !== '' ? placeV(v.c, a.place as string, v) : placeV(v.c, a.at as string, v);
+    return [{ k: 'ALIVE', victim: personV(v.c, a.victim as string), place, hour: hourV(a.hour as string) }];
   }
   return windowV(a as Record<string, string>, v, lx);
 };

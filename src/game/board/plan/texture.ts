@@ -57,7 +57,8 @@ export interface TexSpent {
 }
 
 /** docs/60 item 2: the lead-ins on a collision, plain, one a page: before a short one, with a colon; before a long one, a sentence of its own. */
-const DIDNT_FIT = ['One thing didn’t fit', 'One thing didn’t fit', 'Something didn’t fit', 'One thing didn’t add up'];
+// (docs/66, P7: four different ones, so a night says each once before any again.)
+const DIDNT_FIT = ['One thing didn’t fit', 'Something didn’t add up', 'There was a problem with that', 'Here was the trouble'];
 
 /**
  * docs/60 item 2: a signpost back, said once: the page's first collision in the thought opens on a

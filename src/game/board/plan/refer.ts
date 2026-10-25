@@ -182,7 +182,11 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       // After a preposition it's an object ("brought it to Carbone had been…" is no subject), whatever follows.
       // (docs/60 item 3: lean, "did see Prentiss at Mrs. Nagy’s" is an object too, so the third mention can be "him".)
       const form: Form = poss ? 'poss' : (OBJ.test(prev) || (lean() && OBJ_LEAN.test(prev))) && !start ? 'obj' : start || VERB.test(nextWord) ? 'subj' : 'unknown';
-      const listy = /\b[A-Z][\w’.]+ and$/.test(prev) || /\b[A-Z][\w’.]+,$/.test(prev) || /^(?:’s)?(?:, [A-Z]| and [A-Z]|, and [A-Z])/.test(after) || /\bboth$/.test(prev);
+      // (docs/66, P2: and the second of two parallel phrases, "with Hanrahan at seven, and with Winslow at
+      // eight": "with him" there reads as somebody the sentence named, and there's no man in it.)
+      const para = /,? and (with|to|from|for|beside|after|by) $/.exec(prev + ' ');
+      const parallel = lean() && !!para && new RegExp(`\\b${para[1]} (?:(?:Mrs\\.|Mr\\.|Miss|Dr\\.) )?[A-Z][\\w’]+`).test(prev.slice(0, prev.length - para[0].length + 1));
+      const listy = /\b[A-Z][\w’.]+ and$/.test(prev) || /\b[A-Z][\w’.]+,$/.test(prev) || /^(?:’s)?(?:, [A-Z]| and [A-Z]|, and [A-Z])/.test(after) || /\bboth$/.test(prev) || parallel;
       s.mentions.push({ who: w, at, len: w.short.length + (poss ? 2 : 0), kind: 'name', form, listy, titled: !!x[1], ...(place ? { place: true } : {}) });
     }
     // Speech: the names said in it, for the cap.
@@ -323,6 +327,9 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
     if (s.named.some((n) => n.at < at && n.who.female === w.female && n.who !== w)) return false;
     const prev = narrIdx.length ? (sents[narrIdx[narrIdx.length - 1] as number] as Sent) : undefined;
     if ((prev?.named ?? []).some((n) => n.who.female === w.female && n.who !== w)) return false;
+    // (docs/66, P2: nor a pronoun the sentence before gave somebody else of that sex: "I’d find her at
+    // Sokol’s back room. She gave me the night the way a good waiter brings the check" is Alfano's.)
+    if (lean() && (prev?.mentions ?? []).some((m) => m.kind === 'pronoun' && m.who !== w && m.who.female === w.female && (m.rep === undefined || /^(?:he|him|his|she|her)$/i.test(m.rep)))) return false;
     return !(prev && roleOpens(prev, w.female));
   };
   /** Two people of one sex as pronouns in one sentence ("She had her at Kowalski’s") read as anybody's. */
