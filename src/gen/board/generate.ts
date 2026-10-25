@@ -27,6 +27,7 @@ import type {
 } from './types.js';
 import { CASE_TYPES } from './types.js';
 import { fmtHour } from './solver.js';
+import { crossingStreet, placeSpot, type Spot } from './streets.js';
 import { castNight, nameOf as worldName, tieOf, type Cast, type WorldCtx } from './world/cast.js';
 import { NEIGHBOR, RELATION_BY_TIE } from './world/motives.js';
 import type { Bible, BiblePerson } from './world/types.js';
@@ -1048,10 +1049,24 @@ export function buildCase(seed: number, tier: TierIndex, type: CaseType, attempt
   const accountOf = (p: PersonId) => accounts.find((a) => a.person === p) as Account;
   if (refuses && L && !hours.some((h) => h !== hc && accountOf(L).claims[h]?.place === U)) return veto('the refuser’s story never names where they were');
   // Medium: the side remark. The outsider walked over at the crime hour and passed the culprit.
+  // docs/65 §1: where their two walks could cross, on the map the walks are said from: the outsider's
+  // to the venue, and the culprit's to the scene or away from it after (on to where they are the hour
+  // after, or, after the board's last hour, where the culprit goes then: home from a murder, the venue
+  // with a lost thing). The scene's own street where the walks can cross on it; else the street
+  // nearest the scene they both come near. Two walks that never come near each other pass nobody.
   if (tier === 4 && N) {
-    const sceneStreet = (placeById.get(S) as Place).street;
+    const at = (p: PlaceId) => placeSpot(placeById.get(p), p);
+    const nRow = rows[N] as Record<Hour, PlaceId>;
+    const cRow = rows[C] as Record<Hour, PlaceId>;
+    const after: PlaceId = cRow[(hc + 1) as Hour] ?? (murder ? H : B);
+    const theirs: [Spot, Spot][] = [
+      ...(cRow[(hc - 1) as Hour] !== undefined ? [[at(cRow[(hc - 1) as Hour] as PlaceId), at(S)] as [Spot, Spot]] : []),
+      [at(S), at(after)],
+    ];
+    const street = crossingStreet([at(nRow[(hc - 1) as Hour] as PlaceId), at(nRow[hc] as PlaceId)], at(S), theirs);
+    if (!street) return veto('the side remark’s speaker never comes near the culprit’s way');
     accountOf(N).remarks.push({
-      text: `Walking over to ${venue.short} at ${fmtHour(hc)} I passed ${shortOf(cName)} on ${sceneStreet}, going fast, no hat.`,
+      text: `Walking over to ${venue.short} at ${fmtHour(hc)} I passed ${shortOf(cName)} on ${street}, going fast, no hat.`,
       facts: [{ k: 'notAt', p: C, h: hc, place: H }],
       side: true,
     });

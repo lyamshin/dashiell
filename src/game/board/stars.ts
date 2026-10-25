@@ -25,8 +25,10 @@ import { minimalSets } from '../../gen/board/path.js';
 import { GIVENS, pointerIndex } from '../../gen/board/pointers.js';
 import { questionsOf } from '../../gen/board/solver.js';
 import type { Question } from '../../gen/board/types.js';
-import { accountOf, knownPeople, linesHeld, solveHeld, solveRun } from './knowledge.js';
-import { cap, isMurder, nameOf, personOf, placeName, pronOf, solverHeld, type BoardCase, type BoardDeal, type BoardRun, type Hour, type PersonId } from './model.js';
+import { accountOf, knownPeople, linesHeld, meansShown, solveHeld, solveRun } from './knowledge.js';
+import { andList, isMurder, nameOf, personOf, placeName, pronOf, solverHeld, suspectsOf, type BoardCase, type BoardDeal, type BoardRun, type Hour, type PersonId } from './model.js';
+import { accessPhrase } from './bones/phrase.js';
+import { remarkStreet } from '../../gen/board/streets.js';
 
 export interface Star {
   /** The question it serves. */
@@ -128,11 +130,11 @@ export function starredSteps(d: BoardDeal, run: Pick<BoardRun, 'asked'> & Partia
     // Raw: every open step of every cheapest way on, the commonest first.
     const count = new Map<string, number>();
     for (const s of rest) for (const q of s) count.set(q, (count.get(q) ?? 0) + 1);
-    return [...count.keys()].filter((q) => isOpen(c, run, q)).sort((a, b) => (count.get(b) as number) - (count.get(a) as number) || byPath(a, b));
+    return withTies(c, run, [...count.keys()].filter((q) => isOpen(c, run, q)).sort((a, b) => (count.get(b) as number) - (count.get(a) as number) || byPath(a, b)));
   }
   if (c.tier === 1) {
     // Coddled: the open steps of one cheapest way on.
-    return [...(rest[0] as string[])].sort(byPath).filter((q) => isOpen(c, run, q));
+    return withTies(c, run, [...(rest[0] as string[])].sort(byPath).filter((q) => isOpen(c, run, q)));
   }
   // Poached up: one star, the nearest open step of any cheapest way, and never a put.
   const count = new Map<string, number>();
@@ -140,11 +142,54 @@ export function starredSteps(d: BoardDeal, run: Pick<BoardRun, 'asked'> & Partia
   const open = [...count.keys()].filter((q) => !q.startsWith('confront:') && isOpen(c, run, q));
   const here = (q: string) => (run.at !== undefined && starPlace(c, q) === run.at ? 0 : 1);
   open.sort((a, b) => here(a) - here(b) || (count.get(b) as number) - (count.get(a) as number) || byPath(a, b));
-  const best = open[0];
+  let best = open[0];
   if (best === undefined) return [];
+  // docs/65 §4: one star, so among suspects the held evidence treats the same it goes to the first by
+  // name, whoever the cheapest way runs through.
+  if (best.startsWith('account:')) best = `account:${sameStanding(c, run, best.slice(8))[0]}`;
   // docs/55 4: Medium stars where to go, and, in the room with the person the step is about, the
   // question itself (Medium 14 sat across from Pickering with no star on her).
   return [best];
+}
+
+/**
+ * docs/65 §4 (round 6, Raw 11): a star never picks out one of several suspects the held evidence
+ * treats the same. The cheapest way on runs through the culprit's evening, because their story is
+ * the one that has to break, so a star on one of two suspects with the same standing named the
+ * culprit more often than chance. What's held says the same of two suspects when it gives them the
+ * same means (had it, didn't, or not known), puts them in the same place (or nowhere) at each hour
+ * it could have been, clears both or neither, and has neither out on the street at an hour that
+ * mattered (`movedAt`, the passer-by's own reason). The group is the starred suspect and every other
+ * suspect like them whose evening isn't held and whom something held points at, by name.
+ */
+export function sameStanding(c: BoardCase, run: Pick<BoardRun, 'asked'>, p: PersonId): PersonId[] {
+  const suspects = suspectsOf(c);
+  if (!suspects.includes(p) || p === c.client) return [p];
+  const s = solveRun(c, run);
+  const lines = linesHeld(c, { asked: run.asked, puts: [] });
+  // What's held at each hour it could have been: where it places them, and what else is said of them then.
+  const at = (x: PersonId, h: Hour) => `${s.placed.get(`${x}@${h}`)?.place ?? '-'}:${lines.filter((l) => l.hour === h && l.speaker !== x && l.about.includes(x)).map((l) => l.kind).sort().join('+')}`;
+  const standing = (x: PersonId) => [meansShown(c, run, x), s.possibleHours.map((h) => at(x, h)).join(','), s.cleared.has(x) ? 'c' : '', movedAt(c, run, x) ? 'm' : ''].join('|');
+  const mine = standing(p);
+  const family = (x: PersonId) => (personOf(c, x)?.short ?? x).replace(/^(?:Mrs\.|Miss|Dr\.|Mr\.) /, '');
+  return suspects
+    .filter((q) => q === p || (q !== c.client && !run.asked.includes(`account:${q}`) && isOpen(c, run, `account:${q}`) && standing(q) === mine))
+    .sort((a, b) => family(a).localeCompare(family(b)));
+}
+
+/**
+ * Raw and Coddled star every step they offer, so a suspect's evening brings the evenings of those
+ * with the same standing (docs/65 §4): all of them starred, the ones in the room first (the page's
+ * hand-off says the first), then by name.
+ */
+function withTies(c: BoardCase, run: Pick<BoardRun, 'asked'> & Partial<Pick<BoardRun, 'at'>>, steps: string[]): string[] {
+  const here = (p: PersonId) => (run.at !== undefined && personOf(c, p)?.foundAt === run.at ? 0 : 1);
+  const out: string[] = [];
+  for (const q of steps) {
+    const group = q.startsWith('account:') ? [...sameStanding(c, run, q.slice(8))].sort((a, b) => here(a) - here(b)).map((p) => `account:${p}`) : [q];
+    for (const x of group) if (!out.includes(x)) out.push(x);
+  }
+  return out;
 }
 
 /* ------------------------------------------------------------------ *
@@ -196,8 +241,7 @@ export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: stri
   const q = questionsOf(c).find((x) => x.id === qid);
   if (!q) return '';
   // docs/55 4: a walk's star names the person and the question, as any star does: the choice it
-  // sits on (the walk) says where.
-  void walk;
+  // sits on (the walk) says where. (`walk`: this star sits on a walk.)
   if (q.kind === 'confront') {
     const [p, hs] = q.subject === undefined ? ['', ''] : [q.subject, String(q.hour)];
     const st = solveRun(c, run).status.get(`${p}@${hs}`);
@@ -222,17 +266,71 @@ export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: stri
     // docs/55 4: the person and the question: "ask Pickering who she passed on the way over at ten".
     if (mv) return `ask ${nameOf(c, q.subject)} who ${pronOf(c, q.subject).he} passed on the way over at ${hourWords(mv.h)}`;
   }
-  let why: string | undefined;
-  for (let i = run.asked.length - 1; i >= 0 && why === undefined; i--) why = by.get(run.asked[i] as string);
-  why ??= by.get(GIVENS);
-  if (!why) return '';
   // A watcher not met yet is asked for by the job ("ask the bartender who was there").
   let act = actionWords(c, q);
   if (q.kind === 'list' && !knownPeople(c, { asked: run.asked, visited: (run as Partial<BoardRun>).visited ?? [] }).has(q.subject)) {
     const job = (c.people.find((x) => x.id === q.subject)?.description ?? '').split(/,| at /)[0];
     if (job) act = act.replace(nameOf(c, q.subject), job);
   }
-  return `${cap(shorten(why, nameOf(c, c.client)))} — ${act}`;
+  // docs/65 §5 (round 6, Medium 14): a suspect's evening is asked for what matters about them, not an
+  // hour that doesn't. Where the grid has them able to get the means and nothing held puts them
+  // anywhere at the hours it could have been, the reason says so, of everybody the held evidence
+  // treats the same (§4): "Alfano was at the meeting, and nobody had said where she was at ten";
+  // "Bellucci and Steinbach could have had the spare key, and nobody had said where either of them
+  // was at ten". Else the latest pointer that has them at one of those hours; else the latest.
+  const s = q.kind === 'account' && suspectsOf(c).includes(q.subject) ? solveRun(c, run) : undefined;
+  const hours = s?.possibleHours ?? [];
+  const saidOf = s ? linesHeld(c, { asked: run.asked, puts: [] }).filter((l) => l.hour !== undefined && hours.includes(l.hour) && l.speaker !== q.subject && l.about.includes(q.subject)) : [];
+  if (s && meansShown(c, run, q.subject) === 'yes' && hours.length > 0 && saidOf.length === 0 && hours.every((h) => !s.placed.has(`${q.subject}@${h}`))) {
+    const group = sameStanding(c, run, q.subject);
+    const many = group.length > 1;
+    const party = !isMurder(c) ? c.givens.lines?.find((g) => g.kind === 'party')?.vars.occasion : undefined;
+    const had = party ? `${many ? 'were' : 'was'} at the ${party}` : accessPhrase(c, true, true);
+    const whose = many ? (group.length === 2 ? 'either of them' : 'any of them') : pronOf(c, q.subject).he;
+    // A walk to where they all are goes to them all; otherwise the star is on one question.
+    const all = many && walk && group.every((p) => personOf(c, p)?.foundAt === q.at);
+    return `${andList(group.map((p) => nameOf(c, p)))} ${had}, and nobody had said where ${whose} was at ${hoursOr(hours)} — ${all ? 'ask them where they were' : act}`;
+  }
+  let why: string | undefined;
+  if (q.kind === 'account') for (let i = run.asked.length - 1; i >= 0 && why === undefined; i--) if (by.has(run.asked[i] as string)) why = saidAt(c, run.asked[i] as string, q.subject, hours);
+  for (let i = run.asked.length - 1; i >= 0 && why === undefined; i--) why = by.get(run.asked[i] as string);
+  why ??= by.get(GIVENS);
+  if (!why) return '';
+  // (Round 6: the reason follows the choice it sits on, "Kowalski’s — the spare key is in the sugar
+  // tin there", so it keeps the pointer's own capitals and adds none.)
+  return `${shorten(why, nameOf(c, c.client))} — ${act}`;
+}
+
+/**
+ * What a held answer says of somebody at the first of `hours` it says anything, as a pointer: a
+ * watcher who saw them ("Ellery saw Marchetti at the chop house at ten"), an account that had them
+ * for company ("Thorndike says Alfano was with him at the chop house at ten"), a passer-by
+ * ("Pickering passed Thorndike on Second Avenue at ten"). Undefined when it says nothing of them then.
+ */
+function saidAt(c: BoardCase, src: string, p: PersonId, hours: readonly number[]): string | undefined {
+  const [kind, rest] = src.split(':') as [string, string];
+  for (const h of hours) {
+    if (kind === 'list') {
+      const l = c.lists.find((x) => x.watcher === rest);
+      if (l && (l.entries[h as Hour] ?? []).some((e) => 'person' in e && e.person === p)) return `${nameOf(c, rest)} saw ${nameOf(c, p)} at ${placeName(c, l.place)} at ${hourWords(h)}`;
+    }
+    if (kind === 'account') {
+      const a = accountOf(c, rest);
+      const cl = a?.claims[h as Hour];
+      if (cl?.company.includes(p)) return `${nameOf(c, rest)} says ${nameOf(c, p)} was with ${pronOf(c, rest).him} at ${placeName(c, cl.place)} at ${hourWords(h)}`;
+      for (const r of a?.remarks ?? []) {
+        const street = remarkStreet(r.text);
+        if (street && r.facts.some((f) => f.p === p && f.h === h)) return `${nameOf(c, rest)} passed ${nameOf(c, p)} on ${street} at ${hourWords(h)}`;
+      }
+    }
+  }
+  return undefined;
+}
+
+/** "ten", "nine or ten". */
+function hoursOr(hs: readonly number[]): string {
+  const ws = hs.map(hourWords);
+  return ws.length <= 1 ? (ws[0] ?? '') : `${ws.slice(0, -1).join(', ')} or ${ws[ws.length - 1]}`;
 }
 
 function hourWords(h: number): string {

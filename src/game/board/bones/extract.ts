@@ -10,6 +10,7 @@ import type { Line } from '../knowledge.js';
 import { accountOf, confrontationOf, listExhaustive, listOf, shutAt } from '../knowledge.js';
 import { isMurder, type BoardCase, type PersonId, type PlaceId } from '../model.js';
 import type { Entry, Prop, Src } from './types.js';
+import { remarkStreet } from '../../../gen/board/streets.js';
 
 /** A list entry as a proposition says it: a person's id, `other:<id>`, or `look:<look>`. */
 export function entryOf(e: ListEntry): Entry {
@@ -67,8 +68,9 @@ export function claimProp(c: BoardCase, p: PersonId, h: Hour, o: { place?: boole
 
 /**
  * A remark's propositions. The generator's remarks are a closed few: the side remark (passed
- * somebody on the scene's street, on the way to where they were going), the keeper's (had the pet
- * at their place), the means seen where it was kept, a watcher who came on late, and the handover.
+ * somebody on a street, on the way to where they were going: where the two walks cross, the
+ * scene's own street when they cross on it), the keeper's (had the pet at their place), the means
+ * seen where it was kept, a watcher who came on late, and the handover.
  */
 export function remarkProps(c: BoardCase, speaker: PersonId, r: Remark, list?: WatchList): Prop[] {
   if (r.gives?.whereNow) {
@@ -77,7 +79,8 @@ export function remarkProps(c: BoardCase, speaker: PersonId, r: Remark, list?: W
   }
   const f = r.facts[0];
   if (f && f.k === 'notAt') {
-    const street = c.places.find((p) => p.id === c.crime.scene)?.street ?? '';
+    // docs/65 §1: the street the remark says, where the two walks could cross (the scene's own, where they can).
+    const street = remarkStreet(r.text) ?? c.places.find((p) => p.id === c.crime.scene)?.street ?? '';
     const via = accountOf(c, speaker)?.claims[f.h]?.place;
     return [{ k: 'REMARK', speaker, saw: f.p, how: 'passed', where: street, hour: f.h, ...(via ? { via } : {}) }];
   }

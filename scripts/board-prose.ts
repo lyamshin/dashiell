@@ -85,6 +85,7 @@ import { proseIssues, type ProseIssue } from '../src/game/board/prose-lint.js';
 import { HINGE_RULES, epilogueIssues } from '../src/game/board/hinge-lint.js';
 import { scoreBoard, truthReport } from '../src/game/board/report.js';
 import { isWorld, worldBible } from '../src/gen/board/world/index.js';
+import { remarkStreets } from '../src/gen/board/streets.js';
 import { bibleShare } from '../src/game/board/world.js';
 import { PLAN } from '../src/game/board/plan/index.js';
 import { setTexture } from '../src/game/board/plan/dial.js';
@@ -147,6 +148,8 @@ function namesOf(run: BoardRun, d: ReturnType<typeof dealBoard>): string[] {
     out.add(p.short);
     out.add(p.street);
   }
+  // docs/65 §1: a side remark's street is where two walks cross, not always a place's: a name all the same.
+  for (const st of remarkStreets(c)) out.add(st);
   void run;
   return [...out].filter((x) => x.length >= 3);
 }
@@ -168,6 +171,7 @@ function cluesOf(d: ReturnType<typeof dealBoard>): { id: string; grams: Set<stri
   const names = new Set<string>();
   for (const p of c.people) for (const w of tokens(p.short)) names.add(w);
   for (const p of c.places) for (const w of tokens(`${p.short} ${p.street} ${p.name}`)) names.add(w);
+  for (const st of remarkStreets(c)) for (const w of tokens(st)) names.add(w);
   // The means and the thing are named all night; the office's own words aren't a clue restated.
   for (const w of tokens(`${c.means.name} ${c.means.originText}`)) names.add(w);
   const office = gramsOf(c.givens.text.join(' '));

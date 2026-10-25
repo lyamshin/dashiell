@@ -204,7 +204,10 @@ describe('round 5, U8: the CLI’s head says the time, and a page turned back to
 
 describe('round 5, U9: the picker says what a line says, never the face matched to a name', () => {
   it('Hard-boiled 8: Reinhardt’s camel coat isn’t Abramowitz’s on the picker, which says the line as the notebook does', () => {
-    const { d, run } = played(HB8);
+    const played8 = played(HB8);
+    const d = played8.d;
+    // (docs/65 §3: Renfro's ten is a clash once the camel coat is matched; the tester marked Abramowitz at the Odessa at ten.)
+    const run: BoardRun = { ...played8.run, marks: { abramowitz: { '10': { at: 'bar' } } } };
     const pk = pickerFor(d, run, 'renfro');
     const labels = (pk?.claims ?? []).flatMap((c) => c.lines.map((l) => l.label)).join('\n');
     expect(labels).toContain('Reinhardt: at ten o’clock, only somebody in a camel coat was at the Odessa; Reinhardt couldn’t say who that was.');
