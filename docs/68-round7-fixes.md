@@ -123,11 +123,50 @@ MEASURES
 
 ## 4. The nights, read
 
-READ
+Each of the four nights read in full, page by page, with the choices, the notebook, the grid, the verdict, the story and the curtain: along the tester's own route (replayed from their save, marks and all, `scratchpad/r7fix/night.mts`; and with `npm run read --route … --curtain`) and along the oracle's, on main (`04b40d7`) and on this branch (`scratchpad/r7fix/{before,b1}/`, `scratchpad/r7fix/read/{main,b2}-*`). Everything not listed is main's, word for word, but for a card or a voicing a page or two on that the change in what a page said before it moved (a different walk card at Mrs. Nagy’s, "There was a snag. He had said he was at Moe’s at nine, and Bidwell hadn’t seen him there." for "…didn’t see him there then.").
+
+**Raw 23** (the cat; the tester's route and the oracle's):
+
+- The office: "His lodger, Lindemann, a shoe clerk, had lost her key again." → "…, was out, and had lost her key again."; "He lost his job on Friday, and asked me what Mimi was worth. I had it from the neighbors, and they hear most things." → "He lost his job on Friday. I had that from the neighbors, and they hear most things. And he asked me what Mimi was worth."
+- Seven stars, the office to the Shamrock, and the fastest solve's step 2: "Ashby, Lindemann and Winslow were at the supper, and nobody had said where any of them was at ten" → "Ashby, Lindemann and Winslow knew the door would be unlocked, and nobody had said where any of them was at ten". After Pickering's list (Lindemann placed), "Ashby and Winslow were at the supper, …", as on main: both were.
+- The parlor: "Whoever it was had been at the supper at the Thorndike flat, one of his guests." → "Whoever it was knew the door would be unlocked: one of his guests at the supper at the Thorndike flat, or the lodger it was left unlocked for."
+- The Odessa's turn: "That left one person: somebody who had been at the supper and knew that the door was left unlocked, …" → "That left one person: somebody who knew that the door was left unlocked, …".
+- The confrontation (the tester's): "“All right. I took it. It’s with Pardo, …”" → "“All right. I took her. She’s with Pardo, …”", and on the form and in the verdict "What proves where it is" → "What proves where she is".
+- The notebook: "Lindemann lodges there and has lost her key again, …" → "Lindemann lodges there, was out, and has lost her key again, …"; "Thorndike points at Winslow. The neighbors say he lost his job on Friday, and asked Thorndike what Mimi was worth." → "Thorndike points at Winslow: he asked Thorndike what Mimi was worth, and the neighbors say he lost his job on Friday."
+
+**Poached 17** (the tester's route and the oracle's):
+
+- Mrs. Nagy’s, the way in: "Mrs. Nagy’s rooms on East Fourth Street was a tall thin house that leaned a little on its neighbor, …" → "Mrs. Nagy’s, on East Fourth Street, was quiet at this hour." (the walk before it takes a line of the street).
+- Mrs. Nagy’s list: "So Dandridge and Callahan had all been at Mrs. Nagy’s, where the carving knife was kept, and had all left by nine." → "…had both been …, and had both left by nine."
+- Dandridge's evening: "Renfro and Quill were with me at first and left after eight. Nobody with me at nine." → "Renfro kept me company at eight. Quill was with me at first and left after eight. Nobody with me at nine."
+- The verdict: "I closed the case at a quarter to eight" → "at eight" (the tester's, at 8:00) and "at ten to seven" (the oracle's, at 6:50); "Who else lied: Rufus Dandridge ✓" → "Did anyone else lie? Rufus Dandridge ✓"; the score line "who, who else lied, when, …" → "who, whether anyone else lied, when, …". The form's question: "Someone else lied too. Who, and what clears them?" → "Did anyone else lie? If so, who, and what clears them?".
+- The confront box: "… You don’t have to: the report takes what proves she lied either way." → "Confronting her takes an action and isn’t needed to prove she lied, but she may name somebody who can clear her."
+
+**Medium 21** (the tester's route and the oracle's):
+
+- The floor: "Whoever stabbed Mulcahy had been at Kowalski’s first." → "Whoever stabbed Mulcahy had been at Kowalski’s for the knife before nine, the earliest it could have happened."
+- Mrs. Kowalski's list: "Mosley had been at Kowalski’s earlier, when the carving knife was there for the taking; Vitale hadn’t, though. So Salerno and Sweeney had all been at Kowalski’s, …, and had all left by ten." → "…, and Vitale didn’t come till nine, too late for it. So Salerno and Sweeney had both been at Kowalski’s, …, and had both left by ten." (The oracle's: "…every one of them had gone by ten" → "both of them had gone by ten".)
+- The stars to the Blue Lantern and on Vitale: "ask Vitale who she passed on the way over at ten" → "Vitale walked over from Kowalski’s at ten — ask Vitale who she passed on the way".
+- The notebook: "The carving knife came from Kowalski’s, so whoever used it had been there first." → "…, so whoever used it had been there before nine, the earliest it could have happened."
+- The tester's silent `confront Salerno` from the Eagle club office now answers "Salerno isn’t here. She’s at Salerno’s flat, and confronting her takes a walk there first."
+
+**Hard-boiled 19** (the tester's route, with the tester's mark, and the oracle's):
+
+- The table: "To give Vitale the chloral, somebody had to go to the Delmonico rooms for it first." → "Whoever gave Vitale the chloral had been at the Delmonico rooms for it before eight, the earliest it could have happened."
+- Bledsoe: "Somebody in a fur collar came in for a bite at nine and was gone by ten. Mosley came in at ten." → "Somebody in a fur collar came in for a bite at nine. Mosley was here at ten."
+- The grid after the mark, WHERE THEY CLASH: "Mosley, nine: Mosley says … with Grasso. / Grasso says … with Mosley." → "Mosley says … with Grasso. / Bledsoe: at nine o’clock, only somebody in a fur collar was at Moskowitz’s; … / Your guess: Mosley at Moskowitz’s at nine." (and so under Grasso).
+- The verdict's proof on the oracle's own filing: "Mosley says he was at Grasso’s flat at nine o’clock, with Grasso. ✓" → "Bledsoe: at nine o’clock, only somebody in a fur collar was at Moskowitz’s; … ✓".
+- The story, the curtain's "What gave it away" and step 7 of the fastest solve: as in §1, B3 and B4.
+- The tester's three silent confrontations from the card room: "Mosley isn’t here. He’s at Moskowitz’s, and confronting him takes a walk there first." (and "Grasso isn’t here. She’s at Grasso’s flat, …").
 
 ## 5. Tests
 
-TESTS
+**867** (main's 836, and 31 new), all passing at three workers (`npx vitest run --minWorkers=1 --maxWorkers=3`); `tsc` is clean.
+
+- `test/round7.test.ts` (19): B1 on Hard-boiled 19 (refused with where he is, the save untouched; in the room it opens; an old save's open picker says "Mosley isn’t here." and keeps nothing; no picker for anybody away on the oracle's nights at Poached up); B2 on Hard-boiled 19 and Poached 17; B3 on Hard-boiled 19 (curtain, story, both clash lists); B4 on Hard-boiled 19's step 7 and Medium 21's star; B5 on Raw 23 (the stars, the office, the parlor, the turn); B6 on Medium 21 (the find, Vitale, `meansLate`, the grid's hover) and Hard-boiled 19; B7 at Poached and Raw; B8 (the clock's words and the close, the cat, the label, the gossip in the office and the notebook, plural names, "both"); B9 (asked by tier at every tier; the constructed one-liar night).
+- `test/hinge.test.ts` (9): each new rule catches main's line and passes this build's (§2).
+- `test/plain-words.test.ts` (3): B9's chrome.
+- Updated: `round4.test.ts` (Medium 14's star: "Pickering walked over from the Delmonico rooms at ten — ask Pickering who she passed on the way"), `plain-words.test.ts` (the confront box), `board-engine.test.ts`, `other-liar.test.ts` and `round5.test.ts` (B9's words).
 
 ## 6. What's open
 

@@ -11,7 +11,9 @@ import { accountOf, lineShown, linesHeld } from '../src/game/board/knowledge.js'
 import { OFFICE, budgetCalls, dealBoard, placeName, type BoardDeal, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
 import { blankRule, boardFields, breakOptionsShown, hoursThatMattered, lineGroupHeads, scoreBoard, spareCalls, truthReport } from '../src/game/board/report.js';
-import { TALK_HEADING, notebookText, questionsText, starsNote } from '../src/game/board/text.js';
+import { TALK_HEADING, notebookText, questionsText } from '../src/game/board/text.js';
+import { hintsNote } from '../src/game/board/hints.js';
+import { FACE_MARK } from '../src/game/board/grid.js';
 import { spot, walkBetween } from '../src/game/board/walk.js';
 import { runPlay, type PlayIo } from '../src/cli/play-lib.js';
 
@@ -222,14 +224,14 @@ describe('round 5, U9: the picker says what a line says, never the face matched 
   });
 });
 
-describe('round 5, U10: at Hard-boiled, page one says its star is the only one', () => {
+describe('round 5, U10, and docs/67: at Hard-boiled, page one keeps its mark line; the only-star note is gone', () => {
   it('said on page one, at Hard-boiled only', () => {
     const d = dealBoard(8, 5, 'murder');
     const run = newBoardRun(d);
-    expect(starsNote(d, run)).toMatch(/only star/);
-    expect(cli({ ...HB8, cmds: [] })('look')).toMatch(/At Hard-boiled this is the only star you get/);
-    expect(starsNote(d, stepBoard(d, run, 'go scene').run)).toBeNull();
-    expect(starsNote(dealBoard(14, 4, 'lost-pet'), newBoardRun(dealBoard(14, 4, 'lost-pet')))).toBeNull();
+    expect(hintsNote(d, run)).toBe(FACE_MARK);
+    expect(cli({ ...HB8, cmds: [] })('look')).not.toMatch(/only star/);
+    expect(hintsNote(d, stepBoard(d, run, 'go scene').run)).toBeNull();
+    expect(hintsNote(dealBoard(14, 4, 'lost-pet'), newBoardRun(dealBoard(14, 4, 'lost-pet')))).toBeNull();
   });
 });
 

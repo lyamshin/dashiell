@@ -107,6 +107,7 @@ import type { Prop } from './bones/types.js';
 import { voicingById } from './bones/voice.js';
 import { accountOf, agreesWith, linesHeld, lineShown, listOf, meansBy, meansLate, shutAt } from './knowledge.js';
 import { pageStars } from './choices.js';
+import { hintStep, routeSteps } from './stars.js';
 import { namePlural } from './pages.js';
 import { boardGrid } from './grid.js';
 import { curtainOfBoard, heldBreakers, scoreBoard, storyOfBoard, truthReport } from './report.js';
@@ -121,6 +122,8 @@ type P<K extends Prop['k']> = Extract<Prop, { k: K }>;
  */
 export interface LintEnv {
   pageStars?: typeof pageStars;
+  routeSteps?: typeof routeSteps;
+  hintStep?: typeof hintStep;
   heldBreakers?: typeof heldBreakers;
   storyOfBoard?: typeof storyOfBoard;
   boardGrid?: typeof boardGrid;
@@ -892,7 +895,7 @@ function moved(c: BoardCase, run: BoardRun): HingeIssue[] {
 }
 
 /**
- * B4 and B5, **star**: a star's reason that says what isn't so: who somebody "passed on the way" where
+ * B4 and B5, **star**: a star's reason (what a hint quotes) that says what isn't so: who somebody "passed on the way" where
  * no passer-by's word can be had (outside Medium), "on the way over" for a walk home, or a group "at
  * the supper" with somebody in it who wasn't at the table.
  */
@@ -904,7 +907,12 @@ function starReasons(d: BoardDeal, run: BoardRun, env: LintEnv = {}): HingeIssue
   const seen = new Set<string>();
   run.log.forEach((_, i) => {
     if (run.log[i]?.board?.job === 'nothing') return;
-    for (const s of (env.pageStars ?? pageStars)(d, runAt(run, i))) {
+    // (docs/67: no star by itself; a hint quotes one. What a hint would star here, and the designed
+    // stars a reason is written for, each read as the choice it would sit on says it.)
+    const at = runAt(run, i);
+    const hint = (env.hintStep ?? hintStep)(d, at);
+    const steps = [...new Set([...(env.routeSteps ?? routeSteps)(d, at), ...(hint ? [hint] : [])])];
+    for (const s of (env.pageStars ?? pageStars)(d, at, steps)) {
       if (seen.has(s.why)) continue;
       seen.add(s.why);
       for (const x of starWrong(c, s.why, occasion, h0)) out.push({ page: i, rule: 'star', detail: `${x}: “${s.why}”` });

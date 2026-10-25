@@ -58,6 +58,7 @@ import { introOf } from './gloss.js';
 import { motiveForm, motiveSaid, whyOrder } from './motives.js';
 import { plainWhy, starReason } from './stars.js';
 import { poisonAfter, whenQuestion } from './when.js';
+import { hasHints, hintsUsed } from './hints.js';
 
 export type FieldKey = 'who' | 'when' | 'how' | 'why' | 'where' | 'breaks' | 'whereBy' | 'other' | 'cleared';
 
@@ -102,6 +103,27 @@ export interface Verdict {
   plain: string[];
   /** The closing page, in the book's voice. Paragraphs. */
   closing: string[];
+  /** docs/67: the hints taken tonight. They cost nothing; the verdict says how many. */
+  hints: number;
+  /**
+   * docs/67: a perfect report (outcome `solved`) earns a star, and a perfect one with no hint taken
+   * a gold star. From Soft-boiled up there are no hints, so every perfect report there is gold.
+   */
+  star: 'gold' | 'star' | null;
+  /** docs/67: the actions, and the hints beside them where the tier has any: "11 actions, 2 hints." */
+  tally: string;
+}
+
+/** docs/67: the verdict's star, said for a screen reader and beside the glyph: "Gold star: a perfect report, with no hints." */
+export function starWords(star: Verdict['star']): string {
+  return star === 'gold' ? 'Gold star: a perfect report, with no hints.' : star === 'star' ? 'Star: a perfect report.' : '';
+}
+
+/** docs/67: "11 actions, 2 hints.", "11 actions, no hints.", or at a tier without hints "11 actions." */
+export function tallyWords(tier: number, actions: number, hints: number): string {
+  const a = `${actions} ${actions === 1 ? 'action' : 'actions'}`;
+  if (!hasHints(tier)) return `${a}.`;
+  return `${a}, ${hints === 0 ? 'no hints' : `${hints} ${hints === 1 ? 'hint' : 'hints'}`}.`;
 }
 
 /** "3", "3½", "½". */
@@ -555,7 +577,14 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
     par: parCalls(d),
     plain,
     closing: closingOf(d, run, outcome, scored.some((f) => f.key === 'where' && f.correct)),
+    ...verdictStar(d, run, outcome),
   };
+}
+
+/** docs/67: the star, the hints taken and the tally, for the verdict. */
+function verdictStar(d: BoardDeal, run: BoardRun, outcome: Outcome): Pick<Verdict, 'hints' | 'star' | 'tally'> {
+  const hints = hintsUsed(run);
+  return { hints, star: outcome !== 'solved' ? null : hints === 0 ? 'gold' : 'star', tally: tallyWords(d.kase.tier, run.used, hints) };
 }
 
 /**

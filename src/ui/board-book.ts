@@ -37,8 +37,9 @@ import { recapClauses } from '../game/board/pages.js';
 import { peopleLine } from '../game/board/gloss.js';
 import { BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, whereByLabel, blankRule, boardFields, breakOptionsShown, clearOptions, curtainOfBoard, hoursThatMattered, lineGroupHeads, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
-import { ACTION_KEY, TALK_HEADING, chapterShown, costText, officeLines, questionsText, starsNote } from '../game/board/text.js';
-import { continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, tierOpen, tonightTier, type KeyValueStore, type Profile } from '../game/board/profile.js';
+import { ACTION_KEY, TALK_HEADING, chapterShown, costText, officeLines, questionsText } from '../game/board/text.js';
+import { hasHints, hintLabel, hintStanding, hintsLeft, hintsNote, takeHint } from '../game/board/hints.js';
+import { bestAt, continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, tierOpen, tonightTier, type KeyValueStore, type Profile } from '../game/board/profile.js';
 import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
 import { TEXTURE, setTexture } from '../game/board/plan/texture.js';
@@ -113,6 +114,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   let pickerClaim: number | null = null;
   let moreGo = false;
   let justSpent = 0;
+  /** docs/67: what the last press of the Hint button said, until the next choice. */
+  let hintSaid: string | null = null;
   /** The grid cell whose lines are open, as `person@hour`. */
   let openCell: string | null = null;
   /** The title page's picker is unfolded ("Choose a case"). */
@@ -193,10 +196,49 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     pickerClaim = null;
     moreGo = false;
     openCell = null;
+    hintSaid = null;
     justSpent = r.page.cost;
     document.body.classList.remove('notebook-open');
     render();
     root.querySelector('.page--prose')?.scrollTo?.({ top: 0 });
+  }
+
+  /**
+   * docs/67: the Hint button. It stars a step (or says the report is ready, or on the report page what's
+   * missing) and writes no page; the save keeps it as a command, so a reload gives the same stars and
+   * the verdict counts it. A press that gives nothing new is free and isn't kept.
+   */
+  function hint(): void {
+    if (!d || !run || !saved || run.filed) return;
+    hideCard();
+    const h = takeHint(d, run);
+    if ('error' in h) hintSaid = h.error;
+    else {
+      if (h.said.spent) {
+        run = { ...h.run, marks: saved.marks };
+        saved = { ...saved, commands: [...saved.commands, 'hint'] };
+        writeSaved(store, saved);
+      }
+      hintSaid = h.said.text;
+    }
+    justSpent = 0;
+    renderInPlace();
+    root.querySelector<HTMLElement>('.hint-button')?.focus({ preventScroll: true });
+  }
+
+  /** docs/67: the Hint button and what it said, on a tier that has hints (none from Soft-boiled up). */
+  function hintNodes(): HTMLElement[] {
+    const r = run as BoardRun;
+    if (!hasHints(r.tier)) return [];
+    const left = hintsLeft(r);
+    const b = el('button', { class: 'choice choice--hint hint-button', type: 'button', 'aria-describedby': 'hint-note' });
+    b.append(el('span', { class: 'label', text: hintLabel(r) }), el('span', { class: 'mins', text: 'free' }));
+    b.disabled = left <= 0;
+    b.addEventListener('click', hint);
+    const said = hintSaid ?? hintStanding(d as BoardDeal, r);
+    const note = el('p', { class: 'note hint-note', id: 'hint-note', role: 'status', 'aria-live': 'polite' });
+    if (said) note.append(withNames(said));
+    return [b, note];
   }
 
   function file(report: BoardReport): void {
@@ -205,7 +247,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     saved = { ...saved, filed: report };
     writeSaved(store, saved);
     const verdict = scoreBoard(d, run, report);
-    const outcome = fileToProfile(store, { tier: run.tier, points: verdict.points, asked: verdict.asked, actionsUsed: verdict.actionsUsed, par: verdict.par, ...(d.kase.world ? { cast: castOf(d.kase) } : {}), dealt: dealtIds(run.spent) });
+    const outcome = fileToProfile(store, { tier: run.tier, points: verdict.points, asked: verdict.asked, actionsUsed: verdict.actionsUsed, par: verdict.par, ...(d.kase.world ? { cast: castOf(d.kase) } : {}), dealt: dealtIds(run.spent), hints: verdict.hints });
     const news: TierNews | undefined = outcome.firstClear !== null ? { cleared: run.tier, firstClear: true } : undefined;
     screen = news ? { kind: 'verdict', verdict, news } : { kind: 'verdict', verdict };
     render();
@@ -469,13 +511,17 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         list.append(t);
         if (moreGo) for (const ch of g.more ?? []) list.append(button(ch, () => command(ch.command)));
       }
+      // docs/67: the Hint button sits with the free choices, and what it said under them.
+      const [hb, hnote] = g.kind === 'free' ? hintNodes() : [];
+      if (hb) list.append(hb);
       section.append(list);
+      if (hnote) section.append(hnote);
       panel.append(section);
     }
-    // docs/64: the key, on the first page, as the CLI says it; and Hard-boiled's one star.
+    // docs/64: the key, on the first page, as the CLI says it; docs/67: and tonight's hints (Hard-boiled: its mark line).
     if ((run as BoardRun).log.length === 1) panel.append(el('p', { class: 'note action-key', text: ACTION_KEY }));
-    const stars = starsNote(d as BoardDeal, run as BoardRun);
-    if (stars) panel.append(el('p', { class: 'note stars-note', text: stars }));
+    const hints = hintsNote(d as BoardDeal, run as BoardRun);
+    if (hints) panel.append(el('p', { class: 'note hints-note', text: hints }));
     return panel;
   }
 
@@ -598,6 +644,9 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       // Round 5, U6: what a blank goes in as, once, the CLI's words.
       el('p', { class: 'note', text: blankRule(d as BoardDeal, r.used >= budgetCalls(d as BoardDeal)) }),
     );
+    // docs/67: here a hint says what's still missing, or that the report can be filled from what you have.
+    const [hb, hnote] = hintNodes();
+    if (hb && hnote) form.append(el('div', { class: 'choice-list report-hint' }, hb), hnote);
     const dd = d as BoardDeal;
     const selects = new Map<FieldKey, HTMLSelectElement>();
     const lines = new Map<FieldKey, () => string | null>();
@@ -920,7 +969,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     let kind: CaseType | '' = '';
 
     /** A row of small buttons that acts as one radio group: the arrows move along it, Tab leaves it. */
-    function radioRow(label: string, items: { value: string; text: string; note?: string; locked?: boolean }[], current: string, pick: (v: string) => void): HTMLElement {
+    function radioRow(label: string, items: { value: string; text: string; note?: string; locked?: boolean; star?: 'gold' | 'star' | null }[], current: string, pick: (v: string) => void): HTMLElement {
       const row = el('div', { class: 'pick-row', role: 'radiogroup', 'aria-label': label });
       for (const it of items) {
         const b = el('button', {
@@ -932,7 +981,10 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           tabindex: it.value === current ? '0' : '-1',
           'data-value': it.value,
         });
-        b.append(el('span', { class: 'pick-name', text: it.text }));
+        const name = el('span', { class: 'pick-name', text: it.text });
+        // docs/67: the tier's best report: a gold star, a star, or nothing yet. The glyph is for the eye; the words for a screen reader.
+        if (it.star) name.append(el('span', { class: `pick-star pick-star--${it.star}`, 'aria-hidden': 'true', text: ' ★' }), el('span', { class: 'sr-only', text: it.star === 'gold' ? ', gold star' : ', star' }));
+        b.append(name);
         if (it.note) b.append(el('span', { class: 'pick-note', text: it.note }));
         b.addEventListener('click', () => {
           if (!it.locked) pick(it.value);
@@ -960,7 +1012,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       clear(tierSlot);
       clear(kindSlot);
       const tiers = ([0, 1, 2, 3, 4, 5] as TierIndex[]).map((t) =>
-        tierOpen(profile, t) ? { value: String(t), text: tierName(t) } : { value: String(t), text: tierName(t), locked: true, note: `clear ${tierName((t - 1) as TierIndex)} to open` },
+        tierOpen(profile, t) ? { value: String(t), text: tierName(t), star: bestAt(profile, t) } : { value: String(t), text: tierName(t), locked: true, note: `clear ${tierName((t - 1) as TierIndex)} to open` },
       );
       tierSlot.append(
         el('p', { class: 'pick-label', text: 'Tier' }),

@@ -42,6 +42,18 @@ export interface PutRecord {
   page: number;
 }
 
+/**
+ * docs/67: a hint the player asked for. It stars one step (a question id) with its reason, or
+ * (`q` null) says the report can be closed on what's held. A hint that would give nothing new (the
+ * starred step again) isn't recorded: a player never pays twice for the same step.
+ */
+export interface HintRecord {
+  /** The page it was asked on (its index in the log). */
+  page: number;
+  /** The step it starred, or null: you have what you need. */
+  q: string | null;
+}
+
 /** What the player files (docs/43 §2, the report). Any field left out is "I don't know". */
 export interface BoardReport {
   who: PersonId | null;
@@ -85,6 +97,8 @@ export interface BoardRun {
   /** Places walked into, in order of first visit. */
   visited: PlaceId[];
   log: Page[];
+  /** docs/67: the hints taken tonight, in order. Free; the tier sets how many (`hints.ts`). */
+  hints?: HintRecord[];
   /** The player's pencil on the board. Free, never a fact. */
   marks: Record<PersonId, Record<string, CellMark>>;
   reportOpen: boolean;
@@ -285,8 +299,9 @@ export function tierName(t: TierIndex): string {
 
 /**
  * docs/46 §2: how far a thought may go.
- * - walk (Raw): everything, the elimination to its last step included;
- * - link (Coddled to Medium): collisions, agreements, the link to the scene,
+ * - walk: everything, the elimination to its last step included. docs/67: no tier deals it any
+ *   more; Raw's elimination is the hint's to say, when the player asks (`hints.ts`);
+ * - link (Raw to Medium): collisions, agreements, the link to the scene,
  *   the way in; never who is cleared, who is left or how many remain;
  * - fact (Hard-boiled): this page's fact said again in the voice, and a
  *   collision only when both its lines are on this page.
@@ -295,7 +310,7 @@ export function tierName(t: TierIndex): string {
 export type ThoughtLevel = 'walk' | 'link' | 'fact';
 
 export function thoughtLevel(c: Pick<BoardCase, 'tier'>): ThoughtLevel {
-  return c.tier === 0 ? 'walk' : c.tier === 5 ? 'fact' : 'link';
+  return c.tier === 5 ? 'fact' : 'link';
 }
 
 /* ------------------------------------------------------------------ *

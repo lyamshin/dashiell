@@ -10,6 +10,11 @@
  * the units it was realized from (docs/49 §3), one JSON object a line.
  * `--plain` prints each page's plain page instead (docs/52 §3): every fact it
  * says, a sentence a composite, no voice and no texture.
+ *
+ * docs/67: `--hints every` takes a hint on every page of the route (as many as
+ * the tier allows), `--hints N` on its first N pages; each page then prints
+ * what the hint said, and its choices show the stars. `--reader` takes the
+ * hint-taker's route (`playReader`), hints and all.
  */
 
 import { CASE_TYPES, parseTier, typesFor, type CaseType } from '../gen/board/index.js';
@@ -17,7 +22,8 @@ import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { budgetCalls, dealBoard, deadlineWords, parCalls, tierName, type BoardRun } from '../game/board/model.js';
-import { playBoardOracle, playWanderer } from '../game/board/oracle.js';
+import { playBoardOracle, playReader, playWanderer } from '../game/board/oracle.js';
+import { hintsUsed, takeHint } from '../game/board/hints.js';
 import { curtainOfBoard, pointsText, scoreBoard, storyOfBoard, truthReport } from '../game/board/report.js';
 import { choicesText, notebookText, pageBodyText, wrap } from '../game/board/text.js';
 import { ignoreBrokenPipe, parseArgs } from './args.js';
@@ -26,7 +32,7 @@ import { SITUATED } from '../game/board/plan/situated.js';
 import { setTexture } from '../game/board/plan/texture.js';
 import { plainPage } from '../game/board/bones/plain.js';
 
-const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--plain] [--world neighbourhood] [--situated 0] [--texture lean|full]\n';
+const USAGE = 'usage: npm run read -- --seed N --tier 0..5|raw|…|hard-boiled [--type murder|lost-item|lost-pet] [--random] [--route "go bar; …"] [--no-choices] [--curtain] [--skeleton] [--plain] [--world neighbourhood] [--situated 0] [--texture lean|full] [--hints every|N] [--reader]\n';
 
 export function readBoard(values: Map<string, string>, flags: Set<string>): string {
   const seed = Number(values.get('seed') ?? 1);
@@ -61,6 +67,13 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
     run = p.run;
     commands = [];
     report = p.report;
+  } else if (flags.has('reader')) {
+    // docs/67: the hint-taker's route, with its hints, and the report it made.
+    const p = playReader(d, seed);
+    commands = p.commands;
+    report = p.report;
+    run = newBoardRun(d);
+    for (const cmd of [...commands, 'file']) run = stepBoard(d, run, cmd).run;
   } else {
     const p = playBoardOracle(d);
     run = p.run;
@@ -68,10 +81,42 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
     report = p.report;
     if (!p.ok) process.stderr.write(`(the oracle: ${p.reason})\n`);
   }
-  // Replay to know each page's state for its choices.
+  // docs/67: `--hints every|N`: a hint before each of the route's commands, on the first N pages.
+  const hintsArg = values.get('hints') ?? (flags.has('hints') ? 'every' : undefined);
+  if (hintsArg !== undefined && !flags.has('random') && !flags.has('reader')) {
+    const most = hintsArg === 'every' ? Infinity : Number(hintsArg);
+    const withHints: string[] = [];
+    let pages = 0;
+    for (const cmd of commands) {
+      if (pages < most && cmd !== 'file') withHints.push('hint');
+      withHints.push(cmd);
+      pages++;
+    }
+    // (And on the last page, before the case is closed.)
+    if (pages < most) withHints.push('hint');
+    commands = withHints;
+    run = newBoardRun(d);
+    for (const cmd of commands) run = stepBoard(d, run, cmd).run;
+    report = route !== undefined ? truthReport(d, run) : report;
+    if (route === undefined) run = stepBoard(d, run, 'file').run;
+  }
+  // Replay to know each page's state for its choices, and what each hint said, by page.
   const states: BoardRun[] = [newBoardRun(d)];
+  const hintSaid = new Map<number, string[]>();
+  const shown: string[] = [];
   if (route !== undefined || !flags.has('random')) {
-    for (const cmd of commands) states.push(stepBoard(d, states[states.length - 1] as BoardRun, cmd).run);
+    for (const cmd of commands) {
+      const st = states[states.length - 1] as BoardRun;
+      if (cmd === 'hint') {
+        const h = takeHint(d, st);
+        const at = st.log.length - 1;
+        hintSaid.set(at, [...(hintSaid.get(at) ?? []), 'error' in h ? `(${h.error})` : h.said.text]);
+        if (!('error' in h)) states[states.length - 1] = h.run;
+        continue;
+      }
+      shown.push(cmd);
+      states.push(stepBoard(d, st, cmd).run);
+    }
   }
   const out: string[] = [];
   out.push(`${c.id} · ${tierName(c.tier)} · ${c.type}${c.variant ? ` (${c.variant})` : ''} · par ${parCalls(d)} actions (${d.analysis.par} questions${d.analysis.motive ? ' + the motive search' : ''}, ${d.analysis.walks} walks), budget ${budgetCalls(d)}`);
@@ -92,10 +137,11 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
       out.push('');
       for (const u of page.board?.units ?? []) out.push(JSON.stringify({ page: i + 1, ...u }));
     }
+    for (const said of hintSaid.get(i) ?? []) out.push('', wrap(`[hint] ${said}`));
     const st = states[i];
     if (st && !flags.has('no-choices') && i < run.log.length - 1) {
       out.push('');
-      out.push(choicesText(boardChoices(d, st), commands[i]));
+      out.push(choicesText(boardChoices(d, st), shown[i]));
     }
     out.push('');
   });
@@ -112,7 +158,7 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
   out.push('');
   if (flags.has('curtain')) out.push(curtainOfBoard(d, run, report));
   const words = run.log.reduce((n, p) => n + p.blocks.reduce((m, b) => m + (b.kind === 'prose' || b.kind === 'note' ? b.text.split(/\s+/).length : 0), 0), 0);
-  out.push(`${run.log.length} pages · ${words} words · ${Math.round(words / Math.max(1, run.log.length))} a page · ${run.used} actions`);
+  out.push(`${run.log.length} pages · ${words} words · ${Math.round(words / Math.max(1, run.log.length))} a page · ${run.used} actions · ${hintsUsed(run)} hints`);
   return out.join('\n');
 }
 

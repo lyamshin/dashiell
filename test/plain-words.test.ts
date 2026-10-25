@@ -9,6 +9,9 @@
  * line to hang it on" and "the true board" were left: the report's answers, the verdict whole (its
  * score, what it says plainly, its endings), the notebook's "How it adds up", the story, the curtain
  * whole, and every ending card in `night.json`. What people said, inside quotation marks, is theirs.
+ *
+ * docs/67: and the hints' chrome: the button and its count, the first page's note, what a hint says, the
+ * verdict's tally and star.
  */
 import { readFileSync } from 'node:fs';
 import { recapClauses } from '../src/game/board/pages.js';
@@ -20,7 +23,8 @@ import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { boardGrid, gridKey, meansAsked } from '../src/game/board/grid.js';
 import { dealBoard, deadlineWords, type BoardDeal } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
-import { BREAKS_LABEL, CLEARED_LABEL, OTHER_LABEL, OTHER_QUESTION, WHERE_BY_LABEL, blankRule, boardFields, curtainOfBoard, lineGroupHeads, scoreBoard, storyOfBoard, truthReport, whereByOptions } from '../src/game/board/report.js';
+import { BREAKS_LABEL, CLEARED_LABEL, OTHER_LABEL, OTHER_QUESTION, WHERE_BY_LABEL, blankRule, boardFields, curtainOfBoard, lineGroupHeads, scoreBoard, starWords, storyOfBoard, tallyWords, truthReport, whereByOptions } from '../src/game/board/report.js';
+import { hintLabel, hintsLine, hintsNote, takeHint } from '../src/game/board/hints.js';
 import { BOARD_RULES, BOARD_TEACH_LINES } from '../src/game/board/teach.js';
 import { ACTION_KEY, TALK_HEADING, TURN_DIVIDER, chapterShown, costText } from '../src/game/board/text.js';
 import { runPlay, type PlayIo } from '../src/cli/play-lib.js';
@@ -184,6 +188,39 @@ describe('docs/64: plain words in the chrome', () => {
     const g = boardChoices(d, run).find((x) => x.personId === 'reinhardt');
     const topics = (g?.choices ?? []).map((ch) => costText(ch));
     expect(topics).toEqual(['free to reread', '', 'free to open']);
+  });
+
+  it('docs/67: the hints’ chrome (the button, its count, the notes, what a hint says, the tally and the star) never says a retired word', () => {
+    const found: string[] = [];
+    const say = (where: string, t: string | null | undefined) => {
+      if (t) found.push(...retiredIn(unquoted(t)).map((x) => `${where}: ${x}`));
+    };
+    for (const tier of [0, 1, 2, 3, 4, 5] as TierIndex[]) {
+      const d = dealBoard(2 + tier, tier, typesFor(tier)[0] as never);
+      let run = newBoardRun(d);
+      say('first page', hintsNote(d, run));
+      say('button', hintLabel(run));
+      say('count', hintsLine(run));
+      // A hint before every step of the oracle's route while any are left, then on the report page.
+      for (const cmd of [...playBoardOracle(d).commands, 'file', '']) {
+        const h = takeHint(d, run);
+        if ('error' in h) say('hint error', h.error);
+        else {
+          say(`hint ${h.said.kind}`, h.said.text);
+          run = h.run;
+        }
+        say('button', hintLabel(run));
+        say('count', hintsLine(run));
+        if (cmd) run = stepBoard(d, run, cmd).run;
+      }
+      const v = scoreBoard(d, run, truthReport(d, run));
+      say('tally', v.tally);
+      say('star', starWords(v.star));
+      const out = cli(d, [])('hint');
+      say('cli hint', out);
+    }
+    for (const t of [starWords('gold'), starWords('star'), tallyWords(0, 11, 2), tallyWords(4, 11, 0)]) say('verdict', t);
+    expect([...new Set(found)]).toEqual([]);
   });
 
   it('the book’s own strings never say a retired word', () => {

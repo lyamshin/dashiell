@@ -16,6 +16,8 @@ import { boardFields, curtainOfBoard, scoreBoard, storyOfBoard, truthReport, whe
 import { clockWords } from '../src/game/board/clock.js';
 import { notebookText, officeLines, pageBodyText } from '../src/game/board/text.js';
 import { replaySave, runPlay, type PlayIo } from '../src/cli/play-lib.js';
+import { rawWalk } from '../src/game/board/hints.js';
+import { routeSteps, starReason } from '../src/game/board/stars.js';
 
 type Ev = { do: string } | { mark: { person: string; hour: number; action: 'at'; place: string } };
 const save = (seed: number, tier: number, type: string | undefined, events: Ev[]) => JSON.stringify({ game: 'dashiell-play', version: 1, engine: 'board', seed, tier, ...(type ? { type } : {}), detective: 'Dashiell', events, person: null, picker: null, claim: null });
@@ -124,7 +126,8 @@ describe('B4: a star asks who somebody passed only where a passer-by can be had,
     const d = dealBoard(21, 4);
     let run = newBoardRun(d);
     for (const c of ['go scene', 'search scene', 'search papers', 'go bar', 'ask barkeep list', 'go rooming', 'ask xwatcher list']) run = stepBoard(d, run, c).run;
-    expect(pageStars(d, run).map((s) => s.why)).toEqual(['Vitale walked over from Kowalski’s at ten — ask Vitale who she passed on the way']);
+    // (docs/67: no star at Medium; the reason is what a star on Vitale's evening says, the curtain's steps too.)
+    expect(starReason(d.kase, run, 'account:vitale', true)).toBe('Vitale walked over from Kowalski’s at ten — ask Vitale who she passed on the way');
   });
 });
 
@@ -135,9 +138,14 @@ describe('B5: "at the supper" only of who sat at the table', () => {
     expect(text).not.toMatch(/Lindemann(?: and [A-Z]\w+)? (?:were|was) at the supper/);
     expect(text).toContain('His lodger, Lindemann, a shoe clerk, was out, and had lost her key again.');
     expect(text).toContain('Whoever it was knew the door would be unlocked: one of his guests at the supper at the Thorndike flat, or the lodger it was left unlocked for.');
-    expect(text).toContain('That left one person: somebody who knew that the door was left unlocked');
+    // (docs/67: Raw's elimination is the hint's now: what a hint says at the Odessa, after Hargrove.)
+    const odessa = night(save(23, 0, undefined, dos('go scene', 'search scene', 'go bar', 'ask barkeep list', 'ask winslow evening', 'go neighbours', 'ask xwatcher list')));
+    const walk = rawWalk(odessa.d, odessa.run) ?? '';
+    expect(walk).toContain('That left one person who knew that the door was left unlocked, with nobody to back up where they were at ten.');
+    expect(walk).not.toMatch(/at the supper/);
     const office = newBoardRun(d);
-    expect(pageStars(d, office).map((s) => s.why)).toEqual([
+    // (docs/67: the stars a hint would give, as their choices say them.)
+    expect(pageStars(d, office, routeSteps(d, office)).map((s) => s.why)).toEqual([
       'start where it went missing',
       'Ashby, Lindemann and Winslow knew the door would be unlocked, and nobody had said where any of them was at ten — ask Ashby where she was',
       'Ashby, Lindemann and Winslow knew the door would be unlocked, and nobody had said where any of them was at ten — ask Lindemann where she was',

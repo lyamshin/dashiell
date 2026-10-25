@@ -366,3 +366,13 @@ Branch `clarity-4`: round 6's joining text (docs/66: the digest's P1–P12 and U
 - **The anonymous on a route that leaves before the list**: "A regular was at the far end of the bar." stays unnamed.
 - **Words a page** at the dealt world's Raw +4.7% (107 → 112), inside the 5%.
 - **For the designer**: Mrs. Whitfield's way in, the body-finder's reason, the tagline, Hard-boiled's marks as a free check, the passer-by's street, the refuser's last 8%, a male client's "my late husband's gold watch" (the generator's).
+
+## Hints (docs/67), 2026-10-25
+Branch `hints`: no star on the page by itself; a Hint button gives one (unlimited at Raw, three at Coddled, one at Poached, none from Soft-boiled up), free but counted on the verdict; a star for a perfect report and a gold star for one with no hints, in the profile and on the title page's tier list; the hand-offs, the turn's what-next, "Review my notes"' read-out and Raw's walk thought off every page (Raw thinks at the link; the elimination is Raw's hint's, asked). Round 7's designer items 1 and 2 (Raw concludes for you; Poached feels like rails). The oracle's and the wanderer's measures and the dealt boards are main's. Left over:
+
+- **The round-8 blind playtest** is the gate: whether a Raw player takes the last step now, a Poached player misses the rails, and the counts are right. The prompt's line is in `scratchpad/hints/r8-prompt-template.txt`.
+- **Coddled's hint-taker solves 2%** (from 100%): three hints spent on the first pages leave a first-choice player nowhere. Whether three is enough is the designer's call.
+- **List smell** rose where a hand-off used to end a page in a sentence of another length (docs/67 §7); not a gate.
+- **A way in with no reason**, where the hand-off carried it and the lean way in won't say a person's pointer (Poached 17's Sokol's back room): the reason comes to the face a page on.
+- **The turn ends on the notebook** where the page has no joke to spare for its close.
+- **For the prose build** (round 7's P list): "I dusted off my knees" after a desk search, now dealt where a hand-off sat; star reasons (the hint's words) that put a lodger at the supper or cite seven for an hour that matters (the other branch's B4, B5).
