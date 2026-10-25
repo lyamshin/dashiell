@@ -53,3 +53,6 @@ export function similesIn(text: string): number {
   const narr = text.replace(/⁣\d+⁤/g, '').replace(/“[^”]*”?/g, ' ');
   return [...narr.matchAll(SIMILE)].length;
 }
+
+/** docs/62, P8: that a place keeps no watch ("No clerk, no doorman, nobody watching the stairs"): said once a night. */
+export const UNWATCHED = /\bnobody (?:watching|kept (?:watch|the stairs|an eye)|minded who|on duty|was posted|saw who came)\b|\bno (?:clerk|doorman|one was posted|one on the door)\b|\bnobody in the place was paid to notice\b|\bwhoever came and went did it unseen\b|\bnobody would have known it\b|\banybody could have come and gone\b|\bthere was nobody on duty\b|\bnobody kept watch\b|\bno one was posted\b|\bnobody minded who came\b/i;

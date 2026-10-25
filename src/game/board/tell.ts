@@ -217,7 +217,10 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
       // "went round to Sokol's for coffee with Sokol" has company already: not "on my own" after it.
       const withSomebody = who.length === 0 && /\bwith [A-Z]/.test(reason ?? '');
       // Alone: a short tag when it's the evening's one hour alone; otherwise said once, after (docs/47 C13).
-      const alone = who.length === 0 && !withSomebody ? (aloneOnce && runs.length > 1 ? (ALONE_TAG[rot % ALONE_TAG.length] as string) : '') : '';
+      // (docs/62, P7: lean, an hour alone is said in the clause of that hour, never tacked on after the
+      // evening as a sentence of its own: "…, and at ten I went home, on my own", not "Alone at ten.")
+      const tagAll = lean() && aloneRuns.length > 0 && aloneRuns.length < runs.length;
+      const alone = who.length === 0 && !withSomebody ? ((aloneOnce || tagAll) && runs.length > 1 ? (ALONE_TAG[(rot + (tagAll ? i : 0)) % ALONE_TAG.length] as string) : '') : '';
       // "back to my room to write letters, with Abramowitz and Thorndike" put them in the room: in a
       // rooming house they were in the house (Hard-boiled 8; docs/59: "about the house" stopped the skim readers).
       const house = who.length > 0 && /\bmy room\b/.test(reason ?? '') && !!c.places.find((x) => x.id === r.place)?.key?.startsWith('rooming') ? ' in the house' : '';
@@ -227,9 +230,19 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
       // (docs/60 item 5: lean, back at the same place with the same people later in the evening: "with the
       // same people", not their names again.)
       const again = lean() && i > 0 && who.length > 0 && !named && !withSomebody && !house && runs.slice(0, i).some((r0) => r0.place === r.place && Array.from({ length: r0.to - r0.from + 1 }, (_, k) => key(a.claims[(r0.from + k) as Hour]?.company ?? [])).every((x) => x === key(comps[0]?.who ?? [])));
-      const tail = named || withSomebody ? '' : again ? ', with the same people' : who.length ? `, with ${andList(who.filter((x) => !(reason ?? '').includes(x)))}${house}` : alone;
+      // (docs/62, P7: lean, somebody where I went on an errand was there, not along with me: "…to return a
+      // borrowed umbrella, and Thorndike was there", never "…to return a borrowed umbrella, with Thorndike".)
+      const others = who.filter((x) => !(reason ?? '').includes(x));
+      // (Only in an hour's clause that ends there: "…for the company, and Steinbach was there, and stayed through
+      // nine" would have Steinbach staying. A run that goes on keeps "with".)
+      const there = lean() && span === 'one' && !!reason && !house && others.length > 0 && !/\bmy room\b|\bhome\b/.test(reason) ? `, and ${andList(others)} ${others.length > 1 ? 'were' : 'was'} there` : '';
+      // (docs/62, P7: lean, alone beside the going, before the why: "I went home alone, because my feet hurt",
+      // never "…, because my feet hurt, alone".)
+      const why = lean() && alone && reason ? /, (?:because|since) /.exec(reason) : null;
+      const reasonX = why && reason ? `${reason.slice(0, why.index)}${alone.replace(/^,/, '')}${reason.slice(why.index)}` : undefined;
+      const tail = named || withSomebody ? '' : again ? ', with the same people' : there ? there : who.length ? `, with ${andList(others)}${house}` : reasonX ? '' : alone;
       const company = named ? 'named' : withSomebody ? 'aside' : who.length ? 'with' : alone ? 'alone' : 'bare';
-      push({ shape: 'CLAIM-SPAN', flags: [...flags, company], args: { ...args, with: tail }, manner }, runHours, runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h, ...(said ? { company: [...(a.claims[h]?.company ?? [])] } : {}) }) as Prop));
+      push({ shape: 'CLAIM-SPAN', flags: [...flags, company], args: { ...args, ...(reasonX ? { reason: reasonX } : {}), with: tail }, manner }, runHours, runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h, ...(said ? { company: [...(a.claims[h]?.company ?? [])] } : {}) }) as Prop));
     } else {
       push({ shape: 'CLAIM-SPAN', flags: [...flags, 'bare'], args: { ...args, with: '' }, manner }, runHours, runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h }) as Prop));
       // docs/59 item 2: who was with them told by what changed, never "hour by hour".
@@ -238,7 +251,7 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
     }
   });
   // Several hours alone, or the whole evening: said once, at the end.
-  if (aloneRuns.length > 0 && (aloneRuns.length === runs.length || !aloneOnce || runs.length === 1)) {
+  if (aloneRuns.length > 0 && (aloneRuns.length === runs.length || ((!aloneOnce || runs.length === 1) && !(lean() && aloneRuns.length < runs.length)))) {
     const alone = aloneRuns.flatMap((r) => Array.from({ length: r.to - r.from + 1 }, (_, k) => r.from + k));
     const aloneProps = alone.map((h) => ({ k: 'CLAIM', person: p, hour: h, company: [] }) as Prop);
     push({ shape: 'CLAIM-SPAN', flags: ['solo', aloneRuns.length === runs.length ? 'all' : 'some'], args: { hours: { t: 'hours', hs: alone } }, manner }, alone, aloneProps);
@@ -315,6 +328,13 @@ export function companyByChange(c: BoardCase, p: PersonId, comps: { h: Hour; who
   // The hours on their own.
   const alone = comps.filter((x) => x.who.length === 0).map((x) => x.h);
   if (alone.length) add(['alone'], { hours: { t: 'hours', hs: alone } }, alone.map((h) => CL(h, [])));
+  // (docs/62, P7: lean, in the evening's order: "At nine, just me. Hanrahan and Winslow joined me at ten",
+  // never the hour alone tacked on after the hour that came later.)
+  if (lean()) {
+    const from = (x: SaySpec) => Math.min(...(x.props ?? []).map((y) => (y as { hour: number }).hour));
+    const sorted = parts.map((x, i) => ({ x, i })).sort((u, w) => from(u.x) - from(w.x) || u.i - w.i).map((u) => u.x);
+    parts.splice(0, parts.length, ...sorted);
+  }
   const props = comps.map((x) => CL(x.h, [...x.who]));
   const say: SaySpec = { shape: 'CLAIM-SPAN', flags: ['with-change'], args: {}, manner, parts, sep: ' ' };
   const text = parts.map((x) => sayFirst(c, x) ?? plainComposite(c, { shape: 'CLAIM-SPAN', props: x.props ?? [] })).join(' ');
@@ -393,7 +413,7 @@ const lc1 = (s: string): string => (/^(?:The|A|An|My|His|Her)\b/.test(s) ? (s[0]
  * `own`: the watcher's own last words from the bible ("That's the lot."), said in place of the
  * clause that says nobody else came in.
  */
-export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: string): { text: string; props: Prop[]; say: SaySpec; hours: Hour[] } {
+export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: string, till?: Hour): { text: string; props: Prop[]; say: SaySpec; hours: Hour[] } {
   const kept = c.board.hours.filter((h) => l.entries[h] !== undefined) as Hour[];
   const shut = kept.filter((h) => shutAt(c, l.place, h));
   const open = kept.filter((h) => !shutAt(c, l.place, h));
@@ -485,14 +505,16 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
     const r0 = runs[0] as Hour[];
     const r1 = runs[1];
     if (runs.length === 2 && r1 && r0[0] === first && r1[r1.length - 1] === last && !doing) {
-      add(['outback', n, ...(flavor === 'house' ? ['house'] : [])], { names, to: { t: 'hour', h: r0[r0.length - 1] as Hour }, back: { t: 'hour', h: r1[0] as Hour } }, g.hs.map((h) => LISTP(h, [...g.ks])));
+      add(['outback', n, ...(flavor === 'house' ? ['house'] : []), ...(!allEvening ? ['shift'] : [])], { names, to: { t: 'hour', h: r0[r0.length - 1] as Hour }, back: { t: 'hour', h: r1[0] as Hour } }, g.hs.map((h) => LISTP(h, [...g.ks])));
       return;
     }
     runs.forEach((r, i) => {
       const a = r[0] as Hour;
       const b = r[r.length - 1] as Hour;
       const props = r.map((h) => LISTP(h, [...g.ks]));
-      const extra = [n, ...(flavor ? [flavor] : []), ...(i > 0 ? ['back', ...(lean() ? ['back-lean'] : [])] : []), ...(doing ? ['doing'] : []), ...(usual ? ['usual'] : []), ...(!allEvening ? ['shift'] : [])];
+      // (docs/62, P2: a lodger in their own house was in, not "came by".)
+      const lives = lean() && g.ks.length === 1 && personOf(c, g.ks[0] as string)?.home === l.place;
+      const extra = [n, ...(flavor ? [flavor] : []), ...(i > 0 ? ['back', ...(lean() ? ['back-lean'] : [])] : []), ...(doing ? ['doing'] : []), ...(usual ? ['usual'] : []), ...(!allEvening ? ['shift'] : []), ...(lives ? ['lives'] : [])];
       // docs/60 item 5: lean, somebody back for a second stint is "he" or "she", not their name again
       // ("Glick was in at seven and left soon after. He came back at nine…").
       const again = lean() && i > 0 && g.ks.length === 1 && !(g.ks[0] as string).includes(':') ? `${pronOf(c, g.ks[0] as string).he}${markPronoun(c, g.ks[0] as string)}` : undefined;
@@ -515,6 +537,9 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
     if (whole.length === peopled.length) {
       if (own) parts.push({ shape: 'LIST-HOUR', flags: ['clause', 'nobody', 'own'], args: {}, manner, props: marks, own });
       // (After "…were here all evening", "Nobody else came in": the span is said once.)
+      // (docs/62, P2: somebody came in later, with something under a coat: "nobody else came in till eleven",
+      // never "Nobody else came through that door. At eleven somebody came in".)
+      else if (till !== undefined && lean()) add(['nobody', 'till'], { till: { t: 'hour', h: till } }, marks);
       else add(['nobody', ...(flavor === 'house' ? ['house'] : []), ...(!allEvening ? ['shift'] : []), ...(parts.some((x) => x.flags.includes('all')) ? ['span'] : [])], {}, marks);
     } else add(['nobody', 'some'], { hours: { t: 'hours', hs: whole } }, marks);
   }
@@ -532,9 +557,15 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
  */
 export function spokenListLines(c: BoardCase, l: WatchList, rot = 0, manner: Manner = 'plain', own?: string): SaidLine[] {
   void rot;
-  const body = listByChange(c, l, manner, own);
+  // (A remark of somebody coming in later, after the list's hours: the list's "nobody else" says until when.)
+  const later = l.remarks.flatMap((r) => remarkProps(c, l.watcher, r, l).flatMap((x) => (x.k === 'HANDOVER' && x.hour !== undefined ? [x.hour as Hour] : []))).filter((h) => h > (c.board.hours[c.board.hours.length - 1] as number))[0];
+  const body = listByChange(c, l, manner, own, later);
   const out: SaidLine[] = [{ text: body.text, hours: body.hours, props: body.props, say: body.say }];
   l.remarks.forEach((r, i) => out.push(remarkLine(c, l.watcher, r, i, manner, l)));
+  // docs/62 item 6, P2: a watcher who came on late starts from their shift: "I came on at ten. Before
+  // that I couldn't tell you. Grasso and somebody I didn't know were here the whole time I was on."
+  const shift = lean() ? out.findIndex((x) => (x.props ?? []).some((y) => y.k === 'SHIFT')) : -1;
+  if (shift > 0) out.unshift(...out.splice(shift, 1));
   return out;
 }
 

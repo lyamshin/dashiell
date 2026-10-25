@@ -162,10 +162,11 @@ function spansV(c: BoardCase, lx: Lexicon, s: string, v: VCtx, who: Id): { place
 
 /** A collision's claim and its breaker, read back. */
 function claimV(c: BoardCase, lx: Lexicon, s: string): { person: Id; place: PlaceId; hour: number } {
-  const m = new RegExp(`^(${lx.re.NAME}) said (home|${lx.re.PL}) at (${lx.re.H})$`).exec(s);
+  // (docs/62 item 2: "Bledsoe said she was at Moskowitz’s at ten", "…said he was home at ten".)
+  const m = new RegExp(`^(${lx.re.NAME}) said (?:${MARK}|he|she) was (home|at (?:${lx.re.PL})) at (${lx.re.H})$`).exec(s);
   if (!m) throw new Error(`voiced: no claim in "${s}"`);
   const person = personV(c, m[1] as string);
-  const place = m[2] === 'home' ? (personOf(c, person)?.home as PlaceId) : placeV(c, m[2] as string, { c, here: '' });
+  const place = m[2] === 'home' ? (personOf(c, person)?.home as PlaceId) : placeV(c, (m[2] as string).replace(/^at /, ''), { c, here: '' });
   return { person, place, hour: hourV(m[3] as string) };
 }
 
@@ -295,18 +296,19 @@ const UNARGS: Record<string, Unargs> = {
   'own-word/said': (a, _comp, v, lx) => ownWordV(a, v, lx),
   'own-word/recap': (a, _comp, v, lx) => {
     const c = v.c;
-    const SAID = `(?:home|${lx.re.PL}) at (?:${lx.re.H})(?:(?:, | and )(?:${lx.re.H}))*`;
+    // (docs/62 item 2: each said as a clause: "Hargrove said she was home at eleven, and Tillman said he was at the Odessa at ten".)
+    const SAID = `(?:home|at (?:${lx.re.PL})) at (?:${lx.re.H})(?:(?:, | and )(?:${lx.re.H}))*`;
     const out: Prop[] = [];
-    const re = new RegExp(`^(${lx.re.NAME})(?: said)? ((?:${SAID})(?: and (?:${SAID}))?)(?:, | and |$)`);
+    const re = new RegExp(`^(${lx.re.NAME}) said (?:${MARK}|he|she) was ((?:${SAID})(?: and (?:${SAID}))?)(?:, and |, | and |$)`);
     let rest = a.owns as string;
     while (rest.length) {
       const m = re.exec(rest);
       if (!m) throw new Error(`voiced: can't read "${rest}"`);
       const p = personV(c, m[1] as string);
-      const parts = (m[2] as string).split(/ and (?=home|[A-Z]|the )/);
+      const parts = (m[2] as string).split(/ and (?=home|at )/);
       for (const part of parts) {
-        const k = new RegExp(`^(home|${lx.re.PL}) at (.+)$`).exec(part) as RegExpExecArray;
-        const place = k[1] === 'home' ? (personOf(c, p)?.home as PlaceId) : placeV(c, k[1] as string, v);
+        const k = new RegExp(`^(home|at (?:${lx.re.PL})) at (.+)$`).exec(part) as RegExpExecArray;
+        const place = k[1] === 'home' ? (personOf(c, p)?.home as PlaceId) : placeV(c, (k[1] as string).replace(/^at /, ''), v);
         for (const h of hoursV(lx, k[2] as string)) out.push({ k: 'CLAIM', person: p, place, hour: h });
       }
       rest = rest.slice((m[0] as string).length);
@@ -376,7 +378,9 @@ function ownWordV(a: Record<string, string>, v: VCtx, lx: Lexicon): Prop[] {
   const hours = hoursV(lx, a.hs as string);
   if (a.hourword !== undefined && (a.hourword === 'hours') !== hours.length > 1) throw new Error('voiced: hour or hours?');
   const who = personV(c, a.who as string);
-  const what = a.what as string;
+  // (docs/62 item 2: what they said is a clause, "she was at Moskowitz’s", "he was at the Automat at nine and home at ten".)
+  const was = new RegExp(`^(?:${MARK}|he|she) was `).exec(a.what as string);
+  const what = was ? (a.what as string).slice(was[0].length).replace(/^at (?!(?:seven|eight|nine|ten|eleven|twelve)\b)/, '').replace(/ and at /g, ' and ').replace(/, at /g, ', ') : (a.what as string);
   let places: PlaceId[];
   const home = new RegExp(`^home(?:, here)? at (${lx.re.PL})$`).exec(what);
   if (home) {
@@ -602,6 +606,9 @@ function sameCompany(c: BoardCase, who: Id, place: PlaceId, before: number): Id[
 function withR(c: BoardCase, lx: Lexicon, s: string | undefined): Id[] | undefined {
   if (s === undefined || s === '') return undefined;
   if (/^, (?:on my own|by myself|alone)$/.test(s)) return [];
+  // (docs/62, P7: "…, and Thorndike was there".)
+  const there = /^, and (.+?) (?:was|were) there$/.exec(s);
+  if (there) return namesV(c, lx, there[1] as string);
   const m = /^, with (.+?)(?: in the house| about the house)?$/.exec(s);
   if (!m) throw new Error(`voiced: no company in "${s}"`);
   return namesV(c, lx, m[1] as string);
@@ -872,7 +879,11 @@ function placesAtR(c: BoardCase, lx: Lexicon, s: string, v: VCtx, who?: Id): { p
   const out: { place: PlaceId; hour: number }[] = [];
   const AT = `(?:home|here|${lx.re.PL}) at (?:${lx.re.H})(?:(?:, | and )(?:${lx.re.H}))*`;
   const re = new RegExp(`^(home|here|${lx.re.PL}) at ((?:${lx.re.H})(?:(?:, | and )(?:${lx.re.H}))*?)(?:, | and |$)(?=$|home|here|${lx.re.PL})`);
-  let rest = s.trim();
+  // (docs/62 item 2: said as a clause, "she was at the Odessa at ten and home at eleven".)
+  let rest = s
+    .trim()
+    .replace(new RegExp(`^(?:${MARK}|he|she|you) (?:was|were) `), '')
+    .replace(new RegExp(`(^|, | and )at (?=(?:${lx.re.PL}))`, 'g'), '$1');
   void AT;
   while (rest.length) {
     const m = re.exec(rest);
@@ -1072,7 +1083,8 @@ function thenR(a: Record<string, Read>, flags: ReadonlySet<string>, comp: Compos
   const out: Prop[] = [];
   if (flags.has('means')) {
     const first = a.first as number;
-    for (const p of gone) for (const h of (a.before as number[]) ?? []) out.push({ k: 'PLACED', person: p, place: where, hour: h, by });
+    // (docs/62, P1: `all`, everybody who had been there, without their hours: the answer just said them.)
+    if (!flags.has('all')) for (const p of gone) for (const h of (a.before as number[]) ?? []) out.push({ k: 'PLACED', person: p, place: where, hour: h, by });
     if (!(a.kept as string)?.trim()) throw new Error('voiced: where was it kept?');
     out.push({ k: 'MEANS', how: 'origin', place: where });
     if (flags.has('access')) for (const p of gone) out.push({ k: 'ACCESS', person: p, had: true });
@@ -1222,7 +1234,8 @@ const putPair = READ['COLLISION-PAIR'] as Reader;
 READ['COLLISION-PAIR'] = (a, flags, comp, v, lx) => {
   if (!flags.has('put')) return putPair(a, flags, comp, v, lx);
   const x = comp.props[0] as P<'COLLIDES'>;
-  const claim = lc((a.claim as string) ?? '');
+  // (docs/62 item 2: to their face, "you were home at eleven", "you were at the Odessa at ten".)
+  const claim = lc((a.claim as string) ?? '').replace(/^you were (?:at (?!home\b))?/, '');
   const at = /^(.+) at (seven|eight|nine|ten|eleven|twelve)$/.exec(claim);
   const place = at?.[1] === 'home' ? personOf(v.c, x.person)?.home : at ? c2place(v.c, at[1] as string) : undefined;
   return folded(comp, [

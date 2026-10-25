@@ -65,8 +65,9 @@ describe('docs/53 addendum: the engine’s words out of the narration', () => {
 
   it('the hours that matter are said with why, and the way in as the thing it was', () => {
     const murder = dealBoard(2, 2, 'murder').kase;
-    expect(whyHours(murder, [9])).toMatch(/^when \S.* died$/);
-    expect(whyHours(murder, [9, 10])).toMatch(/could have died$/);
+    // (docs/62, P5: a poisoning's hour is the dose: "when Renfro was given the chloral".)
+    expect(whyHours(murder, [9])).toMatch(/^when \S.* (?:died|was given the [a-z ]+)$/);
+    expect(whyHours(murder, [9, 10])).toMatch(/could have (?:died|been given the [a-z ]+)$/);
     const pet = dealBoard(1, 4, 'lost-pet').kase;
     expect(whyHours(pet, [11])).toMatch(/^when \S+ went$/);
     expect(wayKnown(pet)).not.toMatch(/way in/);

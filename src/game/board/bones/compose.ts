@@ -43,7 +43,7 @@ import { speakerOf } from '../plan/speaker.js';
 import { markPronoun } from '../plan/refer.js';
 import { herIsObject, maskPlaces } from '../plan/measure.js';
 import { sentencesOf, wordsIn } from '../plan/sentences.js';
-import { accessPhrase, atWhere, claimSaid, listSaid, shortOther, whyHours, where } from './phrase.js';
+import { accessPhrase, atWhere, claimSaid, claimWas, listSaid, shortOther, whyHours, where } from './phrase.js';
 import type { Composite, Prop, Shape, Src } from './types.js';
 import { fitting, LOWER, type Args, type Voicing } from './voice.js';
 import { preview, SAMPLES, VARIETY, unpick, type Picked } from './say.js';
@@ -362,7 +362,8 @@ function props<K extends Prop['k']>(ps: readonly Prop[], k: K): Extract<Prop, { 
 /** A collision's claim and breaker, from the propositions, as the detective says them to himself. */
 function collisionArgs(c: BoardCase, col: Extract<Prop, { k: 'COLLIDES' }>, _here: PlaceId): { claim: string; breaker: string; subtle: boolean } {
   const p = col.person;
-  const claim = `${nameOf(c, p)} said ${claimSaid(c, p, col.hour)}`;
+  // (docs/62 item 2: what they said, as a clause: "Bledsoe said she was at Moskowitz’s at ten".)
+  const claim = `${nameOf(c, p)} said ${claimWas(c, p, [col.hour as Hour], { mark: markPronoun(c, p) })}`;
   const w = col.with as Prop;
   let said0 = '';
   let sp: PersonId | undefined;
@@ -489,8 +490,8 @@ function ownClause(it: Item, c: BoardCase): { who: string; said: string } | null
   const cs = props(it.props ?? [], 'CLAIM');
   if (cs.length === 0) return null;
   const p = (cs[0] as Extract<Prop, { k: 'CLAIM' }>).person;
-  const wh = cs.map((x) => claimSaid(c, p, x.hour).replace(/ at \w+$/, ''));
-  const said = wh.every((x) => x === wh[0]) ? `${wh[0]} at ${andList(cs.map((x) => hourWord(x.hour)))}` : andList(cs.map((x) => claimSaid(c, p, x.hour)));
+  // (docs/62 item 2: "she was home at nine and ten", a clause, never "said home at nine".)
+  const said = claimWas(c, p, cs.map((x) => x.hour as Hour), { mark: markPronoun(c, p) });
   return { who: nameOf(c, p), said };
 }
 
@@ -647,7 +648,7 @@ export function aggregate(items: Item[], ctx: PlanCtx): Item[] {
         const os = run.map((x) => ownClause(x, c) as { who: string; said: string });
         const nu: Item = { ...it, about: [...new Set(run.flatMap((x) => x.about ?? []))], carries: run.flatMap((x) => x.carries ?? []), props: run.flatMap((x) => x.props ?? []), joined: 'aggregated' };
         const comp: Held = { shape: 'OWN-WORD', props: [...(nu.props ?? [])] };
-        voice(nu, comp, ['recap'], { owns: andList(os.map((x, j) => (j === 0 ? `${x.who} said ${x.said}` : `${x.who} ${x.said}`))) }, ctx);
+        voice(nu, comp, ['recap'], { owns: andList(os.map((x) => `${x.who} said ${x.said}`)) }, ctx);
         out.push(nu);
         i += run.length - 1;
         continue;
@@ -785,7 +786,14 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       comp.shape = 'CONFIRMED';
       // docs/53: where the line is somebody of their sex ("Coffin’s list had Ashby…, just like he said"), no pronoun for them.
       const twosome = !!by?.who && pronOf(c, by.who as PersonId).he === pronOf(c, cs[0]?.person as PersonId).he;
-      voice(it, comp, ['agree', so ? 'so' : 'which', ...(twosome ? ['twosome'] : [])], { spans: bits, src: srcHad(c, by), whose: srcWhose(c, by), person: { t: 'person', id: cs[0]?.person as PersonId } }, ctx);
+      // (docs/62 item 5: lean, a suspect's word that named the one now telling it, "I was at the Palace with
+      // Ashby", and Ashby's own evening: "So she told it the same as Ruggiero", never "So Ruggiero bore her
+      // out", which has the alibi backing its witness, nor "So she had it right, and Ruggiero said the same".)
+      const both = !!by?.who && (by.k === 'claim' || by.k === 'admit');
+      // (docs/62, skim round 1: a watcher's word, "So Russo bore her out: the Russo flat at eight", said as
+      // what they saw: "So that matched what Russo had seen".)
+      const seen = by?.k === 'list' && !!by.who;
+      voice(it, comp, ['agree', so ? 'so' : 'which', ...(twosome ? ['twosome'] : []), ...(both ? ['both'] : []), ...(seen ? ['seen'] : [])], { spans: bits, src: srcHad(c, by), whose: srcWhose(c, by), person: { t: 'person', id: cs[0]?.person as PersonId } }, ctx);
       comp.join = so ? 'so' : 'which';
       it.joined = comp.join;
       if (so) b.so++;
@@ -857,7 +865,9 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       const said = hs.map((h) => claimSaid(c, p, h));
       const same = said.every((s) => s.replace(/ at \w+$/, '') === (said[0] ?? '').replace(/ at \w+$/, ''));
       const homeAt = cl[0]?.place ?? '';
-      const what = same ? ((said[0] ?? '').startsWith('home') && homeAt && !homeNamed(c, p) ? `home at ${placeName(c, homeAt)}` : (said[0] ?? '').replace(/ at \w+$/, '')) : andList(said);
+      // (docs/62 item 2: what they said as a clause: "she was at Moskowitz’s", "he was home at the Delmonico rooms".)
+      const was = `${pr(c, p).he} was`;
+      const what = same ? ((said[0] ?? '').startsWith('home') && homeAt && !homeNamed(c, p) ? `${was} home at ${placeName(c, homeAt)}` : claimWas(c, p, hs as Hour[], { hours: false, mark: markPronoun(c, p) })) : claimWas(c, p, hs as Hour[], { mark: markPronoun(c, p) });
       const named = !!(it.flesh as { named?: boolean } | undefined)?.named;
       const who = named ? nameOf(c, p) : pr(c, p).he;
       const listy = what.includes(',') || / at (?:seven|eight|nine|ten|eleven|twelve|midnight)\b/.test(what);

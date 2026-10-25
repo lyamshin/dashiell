@@ -58,6 +58,10 @@
  *   of thought paragraphs whose N facts take at most ceil(N/2) sentences (all of them; and of those
  *   with two facts or more).
  *
+ * docs/62, the hinge lines (`hinge-lint.ts`), over the oracle's, the wanderer's and the reader's nights, a
+ * column ("hinge lines") and a table of their own, one rule a kind; the verdict's close (`epilogue`) on the
+ * oracle's (target 0 each).
+ *
  * `--plan off` measures the same nights with the microplanner's four operations off: the pages as
  * they read before docs/49, word for word, for the "before" column.
  *
@@ -78,6 +82,8 @@ import { playBoardOracle, playReader, playWanderer } from '../src/game/board/ora
 import type { Block, Page } from '../src/game/board/types.js';
 import { namesOverTwo } from '../src/game/board/names.js';
 import { proseIssues, type ProseIssue } from '../src/game/board/prose-lint.js';
+import { HINGE_RULES, epilogueIssues } from '../src/game/board/hinge-lint.js';
+import { scoreBoard, truthReport } from '../src/game/board/report.js';
 import { isWorld, worldBible } from '../src/gen/board/world/index.js';
 import { bibleShare } from '../src/game/board/world.js';
 import { PLAN } from '../src/game/board/plan/index.js';
@@ -189,8 +195,11 @@ function gramsOf(t: string): Set<string> {
 }
 
 const rows: string[] = [];
-rows.push('| tier | nights | pages | words a page, median [p10–p90] | why-here or walk | job pages with a thought naming an earlier fact | callbacks | lint (reader) | correspondence | thoughts over their level | plain terms | cards twice | sentences twice | pages naming somebody 3+ times | clues said 3+ times | place names bolted on | banned phrases | pages with 2+ signposts | gags paid off 3+ times | a pet called “it” | thought against the grid | “it turned out” for somebody there all along | standing after sitting | knocking when inside | engine words (docs/53 addendum) | repeat (docs/59) | hour slots | continuity | tics | assembly |');
-rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
+rows.push('| tier | nights | pages | words a page, median [p10–p90] | why-here or walk | job pages with a thought naming an earlier fact | callbacks | lint (reader) | correspondence | thoughts over their level | plain terms | cards twice | sentences twice | pages naming somebody 3+ times | clues said 3+ times | place names bolted on | banned phrases | pages with 2+ signposts | gags paid off 3+ times | a pet called “it” | thought against the grid | “it turned out” for somebody there all along | standing after sitting | knocking when inside | engine words (docs/53 addendum) | repeat (docs/59) | hour slots | continuity | tics | assembly | hinge lines (docs/62) |');
+rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
+const rows5: string[] = [];
+rows5.push(`| tier | ${HINGE_RULES.join(' | ')} |`);
+rows5.push(`|---|${HINGE_RULES.map(() => '---').join('|')}|`);
 const examples: string[] = [];
 const rows3: string[] = [];
 rows3.push('| tier | sentences per fact unit | list smell, pages (oracle) | pronoun ambiguity (oracle) | joins a page with facts, mean [share with 1–3] | restated pointer | list smell, pages (all three) | pronoun ambiguity (all three) | thought: fact sentences per fact [paragraphs within ceil(N/2); of those with 2+ facts] |');
@@ -217,7 +226,9 @@ for (const tier of tiers) {
   let sentTwice = 0;
   let namePages = 0;
   let cluesThrice = 0;
-  const r3: Record<ProseIssue['rule'], number> = { 'place-tag': 0, phrase: 0, signpost: 0, gag: 0, pet: 0, grid: 0, 'turned-out': 0, posture: 0, inside: 0, jargon: 0, repeat: 0, slots: 0, continuity: 0, tic: 0, assembly: 0 };
+  const r3: Record<ProseIssue['rule'], number> = { 'place-tag': 0, phrase: 0, signpost: 0, gag: 0, pet: 0, grid: 0, 'turned-out': 0, posture: 0, inside: 0, jargon: 0, repeat: 0, slots: 0, continuity: 0, tic: 0, assembly: 0, hinge: 0 };
+  // docs/62: the hinge rules, one a kind, and the verdict's close.
+  const hinge: Record<string, number> = Object.fromEntries(HINGE_RULES.map((r) => [r, 0]));
   const share = { arrival: { bible: 0, total: 0 }, staging: { bible: 0, total: 0 } };
   // docs/49 §4.
   let factSent = 0;
@@ -390,6 +401,15 @@ for (const tier of tiers) {
         if (examples.length < 60) examples.push(`twice: ${tierName(tier)} ${type} seed ${s}: ${sent.slice(0, 100)}`);
       }
     }
+    // docs/62 item 10: the verdict's close, read on a copy of the oracle's night (the report deals from it).
+    {
+      const copy = structuredClone(o.run) as BoardRun;
+      for (const x of epilogueIssues(d.kase, scoreBoard(d, copy, truthReport(d, copy)).closing)) {
+        hinge.epilogue = (hinge.epilogue ?? 0) + 1;
+        r3.hinge++;
+        if (examples.length < 120) examples.push(`hinge ${tierName(tier)} ${type} seed ${s}: epilogue: ${x.detail}`);
+      }
+    }
     for (const r of [run, playWanderer(d, s).run, playReader(d, s).run] as BoardRun[]) {
       for (const issue of lintBoardRun(d, r)) {
         if (issue.rule === 'hour' || issue.rule === 'name' || issue.rule === 'whole') corr++;
@@ -405,6 +425,7 @@ for (const tier of tiers) {
       // docs/47 C14: place names bolted on, banned phrases, signposts a page, running gags, a pet called "it".
       for (const issue of proseIssues(d, r)) {
         r3[issue.rule]++;
+        if (issue.hinge) hinge[issue.hinge] = (hinge[issue.hinge] ?? 0) + 1;
         if (examples.length < 120) examples.push(`${issue.rule} ${tierName(tier)} ${type} seed ${s} p${issue.page + 1}: ${issue.detail}`);
       }
     }
@@ -420,12 +441,14 @@ for (const tier of tiers) {
     `| ${tierName(tier)} | ${factUnits ? (factSent / factUnits).toFixed(2) : '—'} | ${smellPages} of ${pages} | ${ambiguous} | ${joinPages ? (joinCount / joinPages).toFixed(1) : '—'} [${pct(joinInBand, joinPages)}] | ${restated} | ${smellAll} | ${ambiguousAll} | ${thFacts ? (thSent / thFacts).toFixed(2) : '—'} [${pct(thWithin, thParas)}; ${pct(thWithin2, thParas2)}] |`,
   );
   rows.push(
-    `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${level} | ${jargon} | ${cardsTwice} | ${sentTwice} | ${namePages} | ${cluesThrice} | ${r3['place-tag']} | ${r3.phrase} | ${r3.signpost} | ${r3.gag} | ${r3.pet} | ${r3.grid} | ${r3['turned-out']} | ${r3.posture} | ${r3.inside} | ${r3.jargon} | ${r3.repeat} | ${r3.slots} | ${r3.continuity} | ${r3.tic} | ${r3.assembly} |`,
+    `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${level} | ${jargon} | ${cardsTwice} | ${sentTwice} | ${namePages} | ${cluesThrice} | ${r3['place-tag']} | ${r3.phrase} | ${r3.signpost} | ${r3.gag} | ${r3.pet} | ${r3.grid} | ${r3['turned-out']} | ${r3.posture} | ${r3.inside} | ${r3.jargon} | ${r3.repeat} | ${r3.slots} | ${r3.continuity} | ${r3.tic} | ${r3.assembly} | ${r3.hinge} |`,
   );
+  rows5.push(`| ${tierName(tier)} | ${HINGE_RULES.map((r) => hinge[r] ?? 0).join(' | ')} |`);
 }
 process.stdout.write(`${rows.join('\n')}\n`);
 process.stdout.write(`\n${rows3.join('\n')}\n`);
 process.stdout.write(`\n${rows4.join('\n')}\n`);
+process.stdout.write(`\n${rows5.join('\n')}\n`);
 if (bible) {
   process.stdout.write('\n| tier | arrival, look and staging from the bible | arrivals and looks on the way in | staging | a gag 3+ times a night |\n|---|---|---|---|---|\n');
   process.stdout.write(`${rows2.join('\n')}\n`);

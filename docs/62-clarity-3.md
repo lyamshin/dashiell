@@ -1,0 +1,234 @@
+# Clarity, build 3
+
+*2026-10-24, branch `clarity-3`. Clarity-2 (docs/60) cut the pages by a third and the round-5 blind testers (four nights, `scratchpad/round5-digest.md`) found them mostly clear on a skim, and named one pattern on all four nights: scenery and jokes work, and the prose fails on the lines that carry the facts, a witness's answer, the "So at…" thought after it, the turn, the put's dialogue. They called it database grammar. This build says those lines as a person says them, by rule, in the layer that makes each one (the sheet, the composition, the realizer, the voicings, the texture card, the lint), never for one night: the twelve items of the first brief, the round-5 digest's P1–P13, and the designer's plain words (batch 3). Each rule has a lint (`src/game/board/hinge-lint.ts`, rule `hinge` of the prose lint, lean only) and a test (`test/hinge.test.ts`), and was run at 30 nights a tier, both worlds, three routes. Lean only, like docs/60: `texture=full` is the old pages and no longer matches anything byte for byte.*
+
+## 1. What was built, and where each rule lives
+
+### 1.1 The hinge lints (`hinge-lint.ts`)
+
+Nineteen rules, each a kind of line the testers stopped on, read over a whole night as a player reads it, target 0. They run in `proseIssues` (rule `hinge`, its kind in `hinge`), in `board-prose` (a column, "hinge lines (docs/62)", and a table of their own, a rule a column), and over whole nights in `round3.test.ts` and `situated.test.ts`; `test/hinge.test.ts` holds each one to the line it catches and the line this build says instead.
+
+| rule | item | catches |
+|---|---|---|
+| said-place | 2, P3 | a place as the object of "said" or "told": "Bledsoe had said Moskowitz’s at ten", "“You told me home at ten.”" |
+| gloss | 1 | the same gloss twice a night ("Fritz, the dachshund," on three pages); a pet's kind said again |
+| bare | 4, P12 | somebody's first sentence in the night's narration that doesn't say who they are (a roll call of three names meets nobody) |
+| put-lead | 3, P3 | the put's page saying the collision before the put says it to their face |
+| put-speech | P3 | the put said like the notebook: "said only … at ten o’clock", "says she herself was", "o’clock, alone" |
+| thought-who | 5 | a thought opening on "she" beside another woman named as the subject of a clause after it |
+| orphan | docs/60 §6 | "That much checked out." with no agreement before it |
+| shift | 6, P2 | a watcher who came on late saying "all evening", or their shift after what they saw |
+| telling | 7, P6 | the turn telling the act of telling ("Mrs. Sirkin had told me who came in.") |
+| form | 9 | "the form" for the report |
+| epilogue | 10 | the client named twice in a sentence, or two running, in the verdict's close |
+| dose | P5 | on a poisoning, "died" for the hour the dose went in |
+| unwatched | P8 | "nobody watching the stairs" and its kin more than once a night |
+| pointer | P4 | a page that opens on a pointer of its own before I ask |
+| connector | P7 | "Next was ten.", "The next thing was at eight o’clock:", "Started at eight:" |
+| tail | P7 | company tacked on after the evening ("Alone at nine.", "Nobody was with me at nine or ten.") |
+| locative | 11 | the same spot twice in a paragraph of who's there |
+| reason | 12 | "one of the two hours it could have happened", "none of the people with a reason was at", "as far as anybody had told me" |
+| vocab | batch 3, docs/64 §5 | a story that "held" or "didn't hold"; "put" as a noun, "Put to it"; the game's "calls"; "file" for closing the case; "a line" for what somebody said or for the report's questions |
+
+### 1.2 What somebody said, as a clause (items 2 and 3, P3)
+
+A claim is said as a clause with its verb everywhere a thought, a collision, a recap or a put says it (`bones/phrase.ts` `claimAt`, `claimWas`; `compose.ts`, `thought.ts`, `pages.ts`; the voicings' `{said}`, `{what}`, `{claim}`): "She had said she was at the Shamrock at nine", "Thorndike had told me he was home at ten", "You told me you were home at eleven", never "said the Shamrock" or "told me home". A home is named ("home at the Delmonico rooms") unless the place is called after them. The round trip reads the clause back (`reread.ts` `claimV`, `ownWordV`).
+
+### 1.3 The put (item 3, P3, U7's offer)
+
+- **Said to their face, plainly** (`phrase.ts` `breakToFace`): a list, "Alfano saw Steinbach, Lanza and Pardo at Moe’s at ten, and not you"; nobody, "Mrs. Cheatham says nobody was at the Delmonico rooms at nine, not you or anybody else"; two who give each other for company, "Mulcahy and Lefkowitz both say they were at Hanley’s at ten, and neither of them says you were"; a claim, "Mrs. Mulcahy says she was home at the Delmonico rooms at eleven, on her own, and you weren’t there".
+- **Not said first**: on a put's page, the why-here that said the collision ("Steinbach had told me home at eleven, and Mrs. Mulcahy said otherwise.") goes (`plan/texture.ts` `budgetTexture`). Somebody is still named before "You told me…": the staging that's left, or else "I went over to Steinbach." opens the page (`namePut`, after the reference pass), unless that would name them a third time on the page, where the reaction after the put names them.
+- **The offer, optional** (the coordinator's U7 half): "I could face Bellucci with it, or close the case on what I had." (`pages.ts`; `oracle.ts` `turnSaid` reads it).
+- **A refusal after a sighting held** says nothing of what somebody would have seen ("But if he wasn’t home at ten, somebody saw him where he was…" undercut what I held): it goes where somebody already passed them, or a list has them, somewhere else at that hour (`pages.ts`, P13).
+
+### 1.4 Who somebody is, once (items 1 and 4, P11, P12)
+
+- **The first time the night's narration names somebody**, the sentence says who they are (`plan/texture.ts` `introduce`, run before the rhythm and again before the reference pass; `gloss.ts` `introOf`): a watcher by their job ("Zeldin, the bartender,"), the keeper by their place, company by who named them ("Vogel, the woman Steinbach had named,"), a lodger, a regular, a neighbor, a suspect by their trade. Never inside speech, a possessive or a roll call of three names; a name inside a place's name ("the landlady at Mrs. Nagy’s") is the place.
+- **Said once**: a gloss isn't said again on a later page; a pet's kind once a night (`petKind`, and the office's "now the dachshund was gone" says "now he was gone").
+- **A newcomer** comes back into a spot of their own (`pages.ts` `placeNewcomers`, `SPOT`): "Ashby, the woman Ruggiero had named, had come back in by then and was three rows back", never "back, back in again", and never "in the corner" where somebody already is. A spot is said once in a paragraph of who's there: the cards trade for an alternative or lose the spot (`texture.ts`).
+- `gloss.ts` `whoTheyAre` is the posture-free gloss ("lives on Pitt Street", not "lives at Steinbach’s flat") for the People list; the list itself is the notebook's (routed, §5).
+
+### 1.5 The thought (items 5 and 12, P1, P5)
+
+- **Everybody where the means was kept, in one sentence** (`thought.ts`, P1): "So Hanrahan, Ruggiero and Reinhardt had all been at the Delmonico rooms, where the laudanum was kept, and had all left by nine." The hours each was there are the answer just said.
+- **The dead seen alive, first** (P1): "Carbone was still alive at the Odessa at nine, and Margolis had said nine or ten. So at nine and ten…", the client's hours beside it (skim round 1: "…, and it happened at nine or ten" read as a non sequitur).
+- **The poison's hour is the dose's** (P5, `phrase.ts` `whyHours`): "when Dandridge was given the laudanum", "when Carbone could have been given the chloral", never "when he died".
+- **An agreement says whose word matched whose** (item 5, `compose.ts` agree, flag `both`): a suspect's word that named the one now telling it, and their own evening, "So she told it the same as Ruggiero: the Palace at nine." Never "So Ruggiero bore her out" (the alibi backing its witness), nor "So she had it right, and Ruggiero said the same". A watcher's word is what they saw (flag `seen`): "So that matched what Weisglass had seen: the Shamrock at eleven".
+- **The stock phrases** (item 12): "one of the two hours it could have happened" says whose hours they are ("At nine, Fritz was still at the Delmonico rooms, and Hauck had said nine or ten."); "none of the people with a reason" names them, the ones nothing held puts elsewhere at those hours ("Zeldin saw neither Winslow nor Reinhardt at the Shamrock…"); the walk's hand-off asks the question ("I wanted to know who Tillman had passed on the way over at eleven."), with how I know the walk where the page hasn't said it ("Steinbach said Tillman was at the print shop at ten, and Weisglass saw her at the Shamrock at eleven, so she had walked over."; where a witness is of the walker's sex, the walk and then whose word: "Colquitt went from the Thalia to Mrs. Nagy’s between eight and nine, by what Shapiro and Brennan had told me.").
+- **The origin find** names the dead or the client, without a second "Whoever" (P9): "Before Carbone was given the chloral, somebody had been at the Delmonico rooms for it.", "Whoever let themselves into Mrs. Marchetti’s flat had been at Kowalski’s first." (P13: never "Mrs. Marchetti’s caller").
+
+### 1.6 Witness answers (item 6, P2)
+
+`tell.ts` (`spokenListLines`, `listByChange`) and the list voicings: a watcher who came on late starts from the shift ("On at ten. Anything earlier, I can’t say. Grasso … were in as long as I was."); nobody else is said up to the handover ("Nobody else came in before eleven. At eleven somebody came in with something under a coat…"); a lodger is in, never "came by" (flag `lives`, which the mid-hour forms now give way to); the one who stayed past the hour says so ("didn’t leave till after nine", beside "gone by nine").
+
+### 1.7 Accounts (P7)
+
+`tell.ts` and the CLAIM-SPAN voicings: no machine joins ("At nine I…"); alone in the hour's own clause ("At nine I went to the Automat for coffee and a newspaper, by myself."), before the why ("I went home alone, because my feet hurt"); company where I went on an errand was there, not along with me ("…to return a borrowed umbrella, and Thorndike was there"), in an hour's clause that ends there (a run that goes on keeps "with", or "…and Steinbach was there, and stayed through nine" would have Steinbach staying); company told by change in the evening's order ("Just me at nine. Hanrahan and Winslow came by at ten."); "with me from the time I sat down", never "the whole time" for a stretch; "I was still there at ten", never "I stayed till ten".
+
+### 1.8 The turn (item 7, P6)
+
+What I had, never the act of telling (the HOLD voicings; the collision said, not told, "Reinhardt said she was at the Shamrock at nine. Zeldin said otherwise."; the clauses counted as the page will voice them, so the turn stays inside docs/60's 70 and 90 words): "I knew from Mrs. Sirkin who had come and gone. I had the evening as Grasso told it.", its verb kept when the rhythm parts it. Hard-boiled's turn says what's held, as docs/46 has it, and doesn't conclude.
+
+### 1.9 The office (item 8)
+
+A conversation, in the office's order: a question before each answer the client gives (`pages.ts`, the office's `lastBare`): "“And where were you tonight?” I asked.", "“Who else goes in and out?” I asked.", "“Who was there?” I asked.", and "he said" for "my client said" after the first.
+
+### 1.10 Seams, cards and words
+
+- **The report** (item 9): "the report" in narration and the decks, never "the form".
+- **The epilogue** (item 10, `night.json`, `report.ts` `cHe`): "I told Kreuzer the whole of it. She listened…".
+- **The client at the scene** (item 11) came to let me in ("Moretti, my client, had come on ahead to let me in…").
+- **Nobody watching, once a night** (P8): the arrival's signpost once; after that the page says nothing of it.
+- **The papers aren't a room** (P9): a papers search takes no card that stands inside the door, takes its hat off or goes round the room.
+- **A print shop or an Automat isn't a hideout** (item 11): "There wasn’t anybody, which is the whole point of the place" only at a picture house or a back room.
+- **Cards out** (P13, the jokes that missed and the clichés): "as if lists were something that happened to other people", "It’s no distance at all when somebody else is doing the walking", "which is the only speed tables can be gone over at", "as high up as the building went", "Moved more than I did all night", "as if the room had ears", "I let her finish whatever she was doing first", "I said it plainly.", "both hands in the lap", "Nobody had been through the papers at Dandridge’s place yet." (a menu hint), "The door was locked again.", "the Automat was the first place I’d ask about ten".
+- **The designer's plain words** (batch 3): a story that checked out says "checked out" or the fact ("That much checked out.", "Some of his evening checked out: Wehrle saw him at eight.", "If Ashby said the same, the Palace would check out where the Delmonico rooms hadn’t.", "what she said the second time didn’t check out"); "put" isn't a noun and nothing is "put to" anybody in the page's prose; the game's unit never appears in it; nothing is "filed": the chrome says "Close the case", and so does the page ("I could face Bellucci with it, or close the case on what I had.", "Eight o’clock. The DA’s man was on the stairs, and I’d close the case on whatever I had."). The report page says its questions, not its lines ("I had an answer for every question on it, and I could say where I’d got each one.", "There were questions on it I couldn’t answer yet…"), and a put that didn't land "faced him with the wrong thing", never "read him the wrong line". The turn's offer keeps "face", which the confront button's new name agrees with, and the turn's block is still "The turn" (the chrome shows it as "Where things stood", docs/64).
+
+## 2. The measures
+
+30 nights a tier, both worlds; "before" is main (5d49972, plain-words merged; its pages are 687594a's, which plain-words didn't touch), read with this build's measures; "after" is this build's last commit, in lean.
+
+**The hinge lints**, 13,278 hits on main to 0, the oracle's, the wanderer's and the reader's nights (`scratchpad/c3/hinge.mts`, the lint run over either tree; the verdict's close on the oracle's), main → this build:
+
+| rule | main | this build |
+|---|---|---|
+| said-place | 2838 | 0 |
+| gloss | 910 | 0 |
+| bare | 2653 | 0 |
+| put-lead | 233 | 0 |
+| put-speech | 225 | 0 |
+| thought-who | 208 | 0 |
+| orphan | 55 | 0 |
+| shift | 283 | 0 |
+| telling | 79 | 0 |
+| form | 1011 | 0 |
+| epilogue | 92 | 0 |
+| dose | 309 | 0 |
+| unwatched | 729 | 0 |
+| pointer | 1377 | 0 |
+| connector | 339 | 0 |
+| tail | 664 | 0 |
+| locative | 114 | 0 |
+| reason | 396 | 0 |
+| vocab | 763 | 0 |
+
+Every tier, both worlds, is 0 on every rule (`board-prose`'s "hinge lines" column is 0 at every tier too).
+
+**The pages**, main → this build:
+
+| world | tier | words a page (median) | words per new fact | list smell, pages (oracle) | turn recap, words (median [most]) |
+|---|---|---|---|---|---|
+| dealt | Raw | 109 → 107 | 66.3 → 67.0 | 10 → 18 of 280 | 41 [53] → 40 [49] |
+| dealt | Coddled | 101 → 102 | 62.6 → 63.5 | 5 → 10 of 276 | 46 [64] → 46 [65] |
+| dealt | Poached | 111 → 110 | 58.6 → 57.9 | 20 → 16 of 398 | 50 [68] → 50 [69] |
+| dealt | Soft-boiled | 110 → 112 | 54.4 → 54.3 | 25 → 23 of 383 | 69 [89] → 67 [79] |
+| dealt | Medium | 104 → 103 | 51.6 → 50.9 | 44 → 28 of 439 | 68 [86] → 66 [84] |
+| dealt | Hard-boiled | 98 → 100 | 48.9 → 48.9 | 13 → 17 of 435 | 44 [51] → 45 [55] |
+| neighbourhood | Raw | 124 → 124 | 70.8 → 71.5 | 15 → 11 of 280 | 42 [50] → 42 [50] |
+| neighbourhood | Coddled | 114 → 113 | 68.0 → 68.7 | 13 → 11 of 276 | 47 [67] → 47 [66] |
+| neighbourhood | Poached | 122 → 118 | 60.0 → 58.9 | 36 → 36 of 407 | 54 [68] → 54 [66] |
+| neighbourhood | Soft-boiled | 128 → 125 | 59.3 → 58.8 | 54 → 49 of 385 | 71 [89] → 68 [88] |
+| neighbourhood | Medium | 118 → 117 | 57.0 → 56.4 | 61 → 34 of 437 | 73 [87] → 69 [85] |
+| neighbourhood | Hard-boiled | 114 → 114 | 54.6 → 54.7 | 48 → 28 of 435 | 45 [57] → 47 [60] |
+
+Words a page moved −3% to +2% (the gate was +5% at most): saying the clause's verb ("she was at") and who somebody is cost words; the why-here a put no longer says, the second no-watcher line, the tacked-on company and the cards that went gave them back. Every turn is inside its target (70 words at Raw to Poached, 90 above) on every night. List smell fell at most tiers and rose at the dealt world's Raw, Coddled and Hard-boiled (the one-sentence "everybody where the means was kept" and the shift-first answers make lists out of what were two sentences); it isn't a gate.
+
+The rest held:
+
+- **board-prose**, 30 nights, both worlds: every lint 0 at every tier, before and after (names said three times, clues three times, place names bolted on, banned phrases, signposts, gags, the pet as "it", the grid, posture, knocking, engine words, repeats, hour slots, continuity, tics, assembly, and now the hinge lines); reader lint, correspondence, levels and plain terms 0; pronoun ambiguity 0 on the oracle's route and on all three; cards twice and sentences twice 0; job pages with a thought naming an earlier fact 100% at every tier in both worlds.
+- **Round trip and clarity** (`scripts/roundtrip.ts --nights 30 --routes oracle,wanderer,reader`): every plain page and every voiced composite reads back, and every voiced composite is clear, 100.0% on every tier in both worlds. The flesh column's misses are Miss Nowak naming Mrs. Rafferty, as before (6 and 4 units).
+- **The claudisms gates** hold: one simile frame a page, each night tic once, a running gag twice at most.
+- **Jargon**: plain terms 0, engine words 0 (board-prose; the suite's no-jargon); plain-words' `test/plain-words.test.ts` passes on the merged branch.
+- **Dealt boards** hash the same, seeds 1–40, every tier and type, both worlds (dealt 600 `b906a1009c23fe86`, neighbourhood 600 `af89ea961f7168e1`): nothing in `src/gen/` changed.
+- **board-measure** (`--seeds 20`, this branch at 455991c against 687594a, before plain-words was merged; plain-words changed labels only, no puzzle code): every puzzle column unchanged (the oracle, the wanderer, the reader, the shortcuts and the confession route, the other liar, lint issues 0, plain-terms hits 0, choices a page); only "callback pages" moves, at one row (Coddled murder 6% → 7%).
+- **The suite**: 808 tests, 30 files, pass (`npx vitest run --minWorkers=1 --maxWorkers=3`), main's 794 and `test/hinge.test.ts`'s 14. tsc is clean.
+
+## 3. The skim test
+
+`scripts/skim-test.ts`, as docs/59 §3 and docs/60 §3: 24 job pages a round (four each of the office, accounts, lists, finds, puts and turns, twelve a world, every tier four times), each as main writes it (5d49972, with plain-words merged; its pages are 687594a's, which plain-words left alone) and as this build writes it from the same night, three questions each read off the engine's facts; two blind readers, one at a time, each reading every page once, half in each build, crossed; then the sentences they had to read again. The gate the coordinator set: questions right at least main's, sentences flagged lower. Three rounds, each on nights no round read before, each after a build that fixed by rule what the round before stopped on:
+
+| round | nights | build | before: right | after: right | before: flagged | after: flagged | words a page, before → after | gate |
+|---|---|---|---|---|---|---|---|---|
+| 1 | from 5000 | 3e07e5d | 66 of 72 (92%) | 66 of 72 (92%) | 12 | 20 | 161 → 165 | fail |
+| 2 | from 6000 | fc74983 | 68 of 72 (94%) | 68 of 72 (94%) | 9 | 9 | 156 → 158 | fail (even) |
+| 3 | from 7000 | bf2ad9d | 68 of 72 (94%) | 68 of 72 (94%) | 14 | 12 | 162 → 161 | **pass** |
+| all | | | 202 of 216 | 202 of 216 | 35 | 41 | | |
+
+Accuracy was even in every round, on the same questions in both builds: Hard-boiled's turn doesn't say whose story breaks or where the way in was learned (docs/46, by design: the readers answered "nobody's yet" in both builds), and one put both readers took to have landed in both builds. The flags:
+
+- **Round 1** stopped on this build's own new lines, eight of its twenty: the list's "Mrs. Szabo saw none of Miss Moskin, Mrs. Blau, Glick, Kaminsky or Miss Kahane at the Peacock at ten" (twice), the dead seen alive's "…, and it happened at nine or ten" (twice: it read as a non sequitur), the crowded walk's "…, Shapiro said, and at Mrs. Nagy’s at nine, Brennan said: a walk between the two" and "Russo said Amato was at … and at …", "So Russo bore her out" (a watcher's word), and a folded pointer's "so I asked him". Five more were lines both builds have and both readers' builds flagged (the office's "Rafferty, a bookmaker, says the spoons was promised to her…", "Russo, the card-room keeper, owes Margolis money…", "What I told her didn’t touch where she said she was at eleven o’clock.", "Stannard was the only one who had said where he was…", "“Where were you tonight?” I said."). Fixed by rule (fc74983): the none-of names only the suspects nothing held puts elsewhere at those hours; the alive line says whose hours they are ("Dr. Hirsch was still alive at Steinmetz’s at nine, and Margolis had said nine or ten."); a watcher's agreement is what they saw ("So that matched what Russo had seen: the Russo flat at eight"); a crowded walk is the walk, then whose word ("Colquitt went from the Thalia to Mrs. Nagy’s between eight and nine, by what Shapiro and Brennan had told me.").
+- **Round 2** was even, 9 and 9. In this build's pages, two of the nine were its own: the put's "Mrs. Rafferty says nobody was at Rafferty’s at ten, you included." and the alive line again; the rest both builds share ("Mulcahy and Lefkowitz had each other at Hanley’s at ten o’clock." was flagged in both, "So at ten, when it could have happened, Colquitt had already left the Kit Kat." in both, a bible reason, the turn's window line). Fixed by rule (bf2ad9d): "…, not you or anybody else"; two who give each other for company, "Mulcahy and Lefkowitz both say they were at Hanley’s at ten, and neither of them says you were."
+- **Round 3** passed, 14 → 12. Main's pages stopped readers on four lines this build doesn't say: "None of the people with a reason was at the Lyric at ten…", "I looked round, and Salerno was in the corner, back in again.", "Whether it held any better than Kowalski’s was up to Salerno.", "Mrs. Ostrow and Mrs. Sobel had each other at the Peacock at ten o’clock." This build's own that still stopped a reader: the alive line inside a longer thought ("Crowninshield said Corrigan and Bellucci were at the Velvet Room at ten; at nine, Winslow was still alive at the Velvet Room, and Grasso had said nine or ten.") and a put's claim breaker ("Renfro says she was at the Odessa at ten, with Vogel."). Most of its twelve are lines main has too, flagged in both builds this round: the office's "Feeney, a typist came round to his place at eight…", "Tillman had been on duty all evening with nothing to do but notice.", "Doyle was with me from the start and went after nine.", "So at nine and ten, when it could have happened, Petrosino had already left the Velvet Room.", the access line ("Corrigan hadn’t been at Kowalski’s while the laudanum was in the medicine cupboard."), and the turn's window line ("Belkin had said ten or eleven, and Mimi was at Rafferty’s at ten.", "Lindemann had said nine or ten, and at nine Mimi was at Mrs. Nagy’s.").
+
+Across the three rounds this build is flagged more often than main (41 to 35), all of it in round 1, on lines this build had just written; the rounds after fixed what each found, and the last passed. The alive line (the dead seen alive at an hour the client gave) is flagged in both builds in every round: it's the deduction the thought leaves to the player (docs/46), and the readers stop there.
+
+## 4. The nights, read
+
+Read in full, page by page, in lean, on main (687594a) and on this build's last commit: the four round-5 tester nights along the testers' own routes (Raw 11, Poached 5 murder, Medium 14, Hard-boiled 8 murder) and along the oracle's, and batch 1's three (Raw 7 murder, Medium 7, Hard-boiled 8 murder). Words a page, main → this build: Raw 11 125 → 123, Poached 5 127 → 125, Medium 14 129 → 122, Hard-boiled 8 124 → 123 (the testers' routes); Raw 7 127 → 128, Medium 7 116 → 113, Hard-boiled 8 122 → 122 (the oracle's). Each item, main → this build:
+
+**Raw 11** (the watch; the testers' route).
+- *The put* (3, P3), page 9: "Bellucci had told me Moe’s at ten, and the bartender said otherwise. I took the stool beside him… “Let me read you something back,” I said. “You told me Moe’s at ten. Alfano said only Steinbach, Lanza and Pardo were at Moe’s at ten o’clock.”" → "I took the stool beside Bellucci… “Let me read you something back,” I said. “You told me you were at Moe’s at ten. Alfano saw Steinbach, Lanza and Pardo at Moe’s at ten, and not you.”"
+- *An evening* (P7), page 8: "“Started at eight: I went to Kowalski’s for the company, with Steinbach, Rafferty and Moretti, and stayed through nine. Next was ten. I stopped in at Moe’s to get warm, by myself.”" → "“At eight I went to Kowalski’s for the company, with Steinbach, Rafferty and Moretti, and stayed through nine. At ten I stopped in at Moe’s to get warm, alone.”" And "He had told me Moe’s at ten" → "He had told me he was at Moe’s at ten" (2).
+- *Up to the handover* (P2), page 7: "Steinbach came in at ten. Nobody else came through that door. At eleven somebody came in…" → "Steinbach came in at ten. Nobody else came in before eleven. At eleven somebody came in…"
+- *Who they are* (4, P12): "Moretti was in the front room. / Mrs. Kowalski watched me write it all down, to be sure I spelled the tenants properly." → "Moretti, a lodger, was in the front room."; "Lanza was at the end of the bar." → "Lanza, a regular, was at the bar."; "Alfano was behind the bar" → "Alfano, the bartender, was behind the bar".
+- *The find* (P13), page 3: "The door was locked again. … Mrs. Marchetti’s caller had been at Kowalski’s first." → "The door was locked. … Whoever let themselves into Mrs. Marchetti’s flat had been at Kowalski’s first."
+- *The office and the turn* (8, U7): "“And where were you tonight?” I asked." comes before the client's evening; "I could face Bellucci with it now." → "I could face Bellucci with it, or close the case on what I had."
+
+**Poached 5** (murder; the testers' route).
+- *Everybody where the means was kept* (P1), page 6: "Winslow hadn’t been at the Delmonico rooms while the laudanum was in the medicine cupboard. So Hanrahan had been at the Delmonico rooms at seven and eight, where the laudanum was kept, and had left by nine. At nine, when Dandridge died, Ruggiero and Reinhardt had already left the Delmonico rooms." → "I noted that Winslow hadn’t been at the Delmonico rooms while the laudanum was in the medicine cupboard. So Hanrahan, Ruggiero and Reinhardt had all been at the Delmonico rooms, where the laudanum was kept, and had all left by nine."
+- *The dose* (P5), page 8: "So Hanrahan and Winslow were at the Shamrock at nine, when Dandridge died" → "…, when Dandridge was given the laudanum".
+- *The pointer in the asking* (P4), page 9: "Zeldin had seen Reinhardt at the Shamrock at seven and ten. / I asked her to walk me through her night" → "Zeldin had seen Reinhardt at the Shamrock at seven and ten, so I asked her to walk me through her night, every stop of it."
+- *Alone in the hour, in order* (P7): "Eight, I went round to the Delmonico rooms to borrow a hatpin, with Hanrahan. … Hanrahan and Winslow joined me at ten. Alone at nine." → "…to borrow a hatpin, and Hanrahan was there. … Just me at nine. Hanrahan and Winslow came by at ten."; Ruggiero's "“I’ll start at seven: … The next thing was at eight o’clock: … I had nobody with me at nine or ten.”" → "“At seven I was home at the Delmonico rooms, with Hanrahan. At eight o’clock I stopped in at the Shamrock to get warm, and Winslow and Dandridge were there. At nine o’clock I went back to my room to write letters, alone. After that, at ten, I went to the Palace to sit through the double bill, on my own.”"
+- *The puts* (3): "“You told me the Shamrock at nine,” … “Zeldin said only Hanrahan and Winslow were at the Shamrock at nine o’clock.”" → "“You told me you were at the Shamrock at nine,” … “Zeldin saw Hanrahan and Winslow at the Shamrock at nine, and not you.”"; "“Mrs. Cheatham said nobody was at the Delmonico rooms at nine o’clock.”" → "“Mrs. Cheatham says nobody was at the Delmonico rooms at nine, not you or anybody else.”"
+- *The witness* (5, P11, P13), pages 13–14: "Ashby could say whether that held any better than the Delmonico rooms had. / I looked round, and Ashby was three rows back, back in again. … So she had it right, and Ruggiero said the same: the Palace at nine." → "Ashby, the woman Ruggiero had named, had come back in by then and was three rows back. / If Ashby said the same, the Palace would check out where the Delmonico rooms hadn’t. … So she had it the same as Ruggiero: the Palace at nine." Ashby's "“Next was ten. I went home, because my feet hurt. On my own at seven, eight and ten.”" → "“At ten I went home by myself, because my feet hurt.”"
+- *The search* (P9): "The laudanum had come in at the front door, with whoever it was." (before anything was found) and "Nobody had been through the papers at Dandridge’s place yet." are gone; "Whoever gave Dandridge the laudanum had been at the Delmonico rooms first." → "Before Dandridge was given the laudanum, somebody had been at the Delmonico rooms for it."
+- *Nobody watching* (P8): the Palace's "Nobody kept an eye on a place like that.", the night's second, is gone. *Jokes and clichés* (P13): "as if lists were something that happened to other people", "as if the room had ears", "I let her finish whatever she was doing first" are gone.
+
+**Medium 14** (the dachshund; the testers' route).
+- *The gloss once* (1): "Fritz, the dachshund," on page 5, page 8 and in the turn → "Fritz" after the office; the office's "“My dachshund.” Fritz lived at my client’s place, … and now the dachshund was gone." → "…and now he was gone."; "At nine, one of the two hours it could have happened, Fritz, the dachshund, was still at the Delmonico rooms." → "At nine, Fritz was still at the Delmonico rooms, and Hauck had said nine or ten." (12)
+- *Said, not told* (2, P3; "told me home" four times on pages 10–11): "Thorndike had told me home at ten." (the turn) → "Thorndike said he was home at ten."; "“You told me home at ten.”" → "“You told me you were home at ten.”"; "he said home at ten" → "he said he was home at ten".
+- *An evening* (P7): "and I stayed till ten" → "and I was still there at ten"; "Marchetti was with me the whole time." → "Marchetti was with me from the time I sat down."; "…to the chop house for coffee, with Marchetti and Pickering." → "…, and Marchetti and Pickering were there."; Alfano's "At nine, ten and eleven I had nobody with me." after her evening → in each hour's clause.
+- *The office* (8): "“Who else goes in and out?” I asked." before the neighbor who borrows Fritz.
+- *The walk* (12): "Pickering had walked from the Delmonico rooms to the chop house at ten. She might have passed somebody on the way. I wanted to know who." → "I wanted to know who Pickering had passed on the way over at ten."
+- *A refusal after a sighting* (P13), page 11: "But if he wasn’t home at ten, somebody saw him where he was, and if nobody had, that would say something too." (Pickering had passed him on Second Avenue) is gone, and the page opens "I went over to Thorndike."
+- *The witness* (5, P11): "In the meantime Fairbanks had come back in and was in the corner." (where Alfano was) → "Fairbanks, the woman Alfano had named, had come back in, and was in the room."; "So she had it right, and Alfano said the same: Sokol’s back room at ten. That much held." → "So she told it the same as Alfano: Sokol’s back room at ten. That much checked out."
+- *Nobody watching* (P8): "Nobody kept the stairs here. Whoever came and went did it unseen.", "There was nobody on duty, and nobody to ask who had been by." and "Anybody could have come and gone. Nobody would have known it." after the first are gone. *Jokes*: "Moved more than I did all night." → "It moved."
+
+**Hard-boiled 8** (murder; the testers' route).
+- *The turn says what I had* (7, P6): "Mrs. Sirkin had told me who came in. Grasso had told me where the evening went." → "I had the evening as Grasso told it. I knew who Mrs. Sirkin had seen come and go."
+- *The partial shift* (6, P2): Broadnax's "“Grasso and somebody at the same table I didn’t know were in all evening. On at ten. Anything earlier, I can’t say.”" → "“On at ten. Anything earlier, I can’t say. Grasso and somebody at the same table I didn’t know were in as long as I was.”"
+- *The dead seen alive* (P1), page 10: "So at nine and ten, when it could have happened, Grasso and Renfro had already left the Odessa." → "Carbone was still alive at the Odessa at nine, and Margolis had said nine or ten. So at nine and ten, …"; and "Winslow and Carbone were in from the start and gone after nine", beside "Renfro … was gone by nine" → "…and didn’t leave till after nine".
+- *The dose* (P5): "She said the Automat at nine, when Carbone could have died" → "Grasso said she was at the Automat at nine, when Carbone could have been given the chloral"; "He told me the Odessa at ten, when Carbone could have died." → "He told me he was at the Odessa at ten, when Carbone could have been given the chloral."
+- *A lodger* (P2): "Grasso came by at eight and was gone by nine." → "Grasso was in at eight and went out before nine."
+- *Accounts* (P7): Grasso's "Next was nine. … Alone at nine and ten." → "At nine I went to the Automat for coffee and a newspaper, by myself. At ten I went home to listen to the radio, alone."; Renfro's "…to return a borrowed umbrella, with Thorndike. … Come nine, I went home, because my feet hurt. … I was on my own at nine and ten." → "…to return a borrowed umbrella, and Thorndike was there. … Come nine, I went home alone, because my feet hurt. … so I went to the Odessa for coffee, on my own."
+- *The put* (3, P13): "Grasso had told me home at the Delmonico rooms at ten, and the landlady said otherwise. I stopped her at the turn of the stairs… “Mrs. Sirkin said only Winslow and Thorndike were at the Delmonico rooms at ten o’clock.”" → "I stopped Grasso at the turn of the stairs… “Mrs. Sirkin saw Winslow and Thorndike at the Delmonico rooms at ten, and not you.”"; "the Automat was the first place I’d ask about ten" → "I’d ask at the Automat about ten too".
+- *The search* (P9, P13): the papers search's "I took my hat off and stood inside the door until I had the whole room in my head" → "I worked through the place a piece at a time…"; "Whoever drank with Carbone hadn’t been a stranger. / Whoever gave Carbone the chloral had been at the Delmonico rooms first." → "… / Before Carbone was given the chloral, somebody had been at the Delmonico rooms for it."; "as high up as the building went" → "had its lamp lit and its door shut: the police had been and gone"; "both hands in the lap" → "both hands folded"; "It’s no distance at all when somebody else is doing the walking" is gone.
+- *Who they are* (4): "Mrs. Sirkin sat in the open door" → "Mrs. Sirkin, the landlady, sat…"; "Reinhardt was behind the register" → "Reinhardt, the cashier, …".
+- *The end*: "(Eight o’clock. The DA’s man was on the stairs, and whatever I had was what got filed.)" → "(… and I’d close the case on whatever I had.)"
+
+**Batch 1's three** (the oracle's route).
+- *Medium 7, the put* (3, 11): "Steinbach had told me home at the Delmonico rooms at eleven, and Mrs. Mulcahy said otherwise. I looked round once for anybody listening. There wasn’t anybody, which is the whole point of the place, so I sat down. / “You told me home at eleven,” I said. “I wrote it down. Mrs. Mulcahy says she herself was at the Delmonico rooms at eleven o’clock, alone.”" → "“You told me you were home at eleven,” I said. “I wrote it down. Mrs. Mulcahy says she was home at the Delmonico rooms at eleven, on her own, and you weren’t there.”" (The print shop isn't a hideout. Steinbach is named twice after the put, by how she takes it and by who Vogel is, and a third would break the cap, so this page still opens on the put: §5.)
+- *Medium 7, the witness* (4, 5): "Vogel could say whether that held any better than the Delmonico rooms had. / Vogel was in the corner." → "Vogel, the woman Steinbach had named, was in the corner. / If Vogel told it the same way, it was the print shop and not the Delmonico rooms."; "So she had it right, and Steinbach said the same: the print shop at eleven. That much held." → "So she had it the same as Steinbach: the print shop at eleven. That much checked out."
+- *Medium 7, the walk and the find* (12, P13, 9): "Tillman had walked from the print shop to the Shamrock at eleven. She might have passed somebody on the way. I wanted to know who." → "I wanted to know who Tillman had passed on the way over at eleven."; "Kreuzer’s visitor had been at the Delmonico rooms first." → "Whoever came into Kreuzer’s flat had been at the Delmonico rooms first."; the elimination's "one of the two hours it could have happened" → "At ten, Fritz was still at the Delmonico rooms, and Kreuzer had said ten or eleven."; "laid out the form" → "laid out the report".
+- *Medium 7, the epilogue* (10): "I told Kreuzer the whole of it. Kreuzer listened, nodded and put the kettle on" → "… She listened, nodded and put the kettle on".
+- *Raw 7* (4, 2): "Hanrahan was at a table by the wall." → "Hanrahan, a regular, was at a table."; "Bledsoe had said Moskowitz’s at ten" → "Bledsoe had said she was at Moskowitz’s at ten"; the turn's "At ten, Bledsoe said Moskowitz’s" → "At ten, Bledsoe said she was at Moskowitz’s".
+- *Hard-boiled 8, the oracle's* (7): "Mrs. Sirkin had told me who came in. Grasso had told me where the evening went." → "I knew from Mrs. Sirkin who had come and gone. I had the evening as Grasso told it."
+
+What the reads found, fixed by rule before the measures: an errand's "…, and Steinbach, Rafferty and Moretti were there, and stayed through nine" (they stayed: "was there" only in an hour's clause that ends there); "So Ruggiero bore her out" (the alibi backing its witness, §1.5); a put opening on "You told me…" to nobody once the why-here went (§1.3); a lodger who "came by" where a manner's form tied the lodger's; "I had who Mrs. Sirkin saw come and go", then "Mrs. Sirkin had told me who came and went" (the act of telling again: "I knew from Mrs. Sirkin who had come and gone"); a roll call's name met by nobody and then bare in the turn ("Mrs. Ostrow, the matchmaker, and Dr. Hirsch"); "the Palace checked out and the Delmonico rooms hadn’t" (the tenses: "would check out where … hadn’t").
+
+## 5. Open
+
+In docs/25 too.
+
+- **The turn's hour, said once** (P6): Poached 5's turn still says "nine" four times ("It happened at nine o’clock. … Hanrahan was at the Shamrock at nine; … Reinhardt said she was at the Shamrock at nine. … where Ruggiero was at nine."). Each clause is its own composite, and the clarity check (docs/53) wants every composite to say its hour; folding them needs the turn to carry the hour as one composite with its clauses as parts.
+- **The face pointer at a window hour** (P4): "Ellery saw you here at eleven" when Ellery had her from ten. By design, the face reason never names an hour of the crime window (`thread.ts` `windowOf`: a liar would lie around it). The hand-off "X hadn’t told me her evening yet, and I’d find her at Y" still comes three or four times a night.
+- **Mrs. Sirkin's thought** (P1, Hard-boiled 8) still leaves out Abramowitz at nine and Winslow at ten: the "then" thought says who stayed and who left among those the night is asking about, not everybody on the list.
+- **Two people's "After that, at nine, I left the meeting…"** (P7) on one night: the generator's reasons, said by different voicings, start the same.
+- **The papers' "the dead man"** five times in a list (P9): docs/60's role rule names the dead by what they were once a sentence names somebody else; a list of five grudges is five sentences.
+- **The office** (P10): "heard him laugh with somebody and then go quiet at one or the other", the coroner's recital, "Every night it was the Odessa, earlier on", "the key would be under the mat for his sister" (whose), two "there was more" beats, and the finder named again in full by the pointer ("found by Grasso, a typist" and "a letter … from Carmela Grasso"). The office is a page of givens, each a fact; they want their own pass.
+- **Staging against the arrival** (P11): a put's staging card that sits at the bar beside somebody the arrival put in a booth ("I took the stool beside Bellucci" for "Bellucci was in a booth by the wall"); a fence the crack's line looks at who was never placed in the arrival ("Pardo … sat ten feet away"); "A landlady who sits on her stairs knows who used them" beside "sat in the open door of the front room". The staging deck's keys don't know where the arrival put people.
+- **An arrival that names its place after a walk that did** (P13): "The Delmonico rooms were a few blocks downtown … The Delmonico rooms over the fish market were up a steep stair…".
+- **The put to somebody named twice after it** opens on the put itself (Medium 7 page 8: "“You told me you were home at eleven,” I said.", and "Steinbach was quiet a moment…" after it): "I went over to Steinbach." would be her third name on the page. `namePut` runs after the reference pass, which can't take it back; run before it, the pass could say the newcomer's "the woman Steinbach had named" another way.
+- **For routing** (outside this branch's scope):
+  - *The notebook* (U5): the People list's posture gloss ("Mrs. Kowalski: the landlady, on a chair at the foot of her stairs", against the arrival's "in the hall with a dustpan"; P11, item 11's Crowninshield) should be `gloss.ts` `whoTheyAre` (the call sites are `text.ts`'s People list and `board-book.ts`'s). The recap clauses under "How it adds up" (`pages.ts` `recapClauses`, this branch's) now read as clauses ("Bellucci had told me he was at Moe’s at ten, and Alfano said otherwise.", from `claimWas`), without the reference pass's marks on their pronouns (the turn asks for them, `recapClauses(d, run, true)`), and their plain lines say "Faced with it, X changed the answer to Y" where they said "Put to it, X had a second story".
+  - *The verdict's endings* (`night.json`, docs/64's): "I filed it at a quarter to eight…", "The name I filed…", "A case doesn’t file itself", "no line to hang it on". The chrome says "Close the case"; the endings are the verdict's, and docs/64 §5 didn't list them for this branch.

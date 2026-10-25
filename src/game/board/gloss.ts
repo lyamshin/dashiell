@@ -8,6 +8,7 @@
  */
 
 import { pronOf, victimOf, type BoardCase, type PersonId } from './model.js';
+import { roleOf } from './plan/measure.js';
 
 const esc = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -72,3 +73,103 @@ export function guestsGlossed(c: BoardCase, ids: readonly PersonId[], glossed: S
   if (bits.length === 2) return commas ? `${bits[0]}, and ${bits[1]}` : `${bits[0]} and ${bits[1]}`;
   return commas ? `${bits.slice(0, -1).join('; ')}; and ${bits[bits.length - 1]}` : `${bits.slice(0, -1).join(', ')} and ${bits[bits.length - 1]}`;
 }
+
+/* ------------------------------------------------------------------ *
+ * docs/62 items 1, 4 and 11, P11 and P12: who somebody is, said once.
+ * ------------------------------------------------------------------ */
+
+/**
+ * Who somebody is, as the notebook's People list says it: their job, where they live or what they
+ * keep, and their tie to the night, but never where they sat tonight ("on a chair at the foot of her
+ * stairs", "who sat up in the parlor"), which is the scene's to say (P11: the People line said the
+ * chair while the arrival had her in the hall with a dustpan). A home called after its owner ("lives
+ * at Thorndike’s flat") is said by its street (P12).
+ */
+export function whoTheyAre(c: BoardCase, id: PersonId): string {
+  const p = c.people.find((x) => x.id === id);
+  if (!p) return '';
+  let d = p.description
+    .replace(/, who sat up in the parlor$/, '')
+    .replace(/, who sits through every show twice$/, '')
+    .replace(/, at the same table every night$/, '')
+    .replace(/^(the landlady), on a chair at the foot of (?:her|his) stairs at /, '$1 at ');
+  const home = p.home ? c.places.find((x) => x.id === p.home) : undefined;
+  if (home && home.name.includes(p.short.replace(/^(?:Mrs\.|Miss|Dr\.|Mr\.) /, ''))) d = d.replace(new RegExp(`\\blives at ${esc(home.short)}$`), `lives on ${home.street}`);
+  return d;
+}
+
+/**
+ * Who somebody is, in a few words beside their name the first time the night's narration meets them
+ * ("Hanrahan, a regular, was at a table by the wall", "Zeldin, the barman, stood at the register end",
+ * "Vogel, the woman Steinbach had named, was in the corner"): a watcher by their job, the
+ * company by their tie to the night, a suspect by their trade. `here` is where the sentence is: a
+ * regular here is "a regular". Null when the case gives nothing to say.
+ */
+export function introOf(c: BoardCase, id: PersonId, here?: string): string | null {
+  const p = c.people.find((x) => x.id === id);
+  if (!p) return null;
+  const hereShort = here ? c.places.find((x) => x.id === here)?.short : undefined;
+  const at = (s: string) => (hereShort ? s.replace(new RegExp(` at ${esc(hereShort)}$`), '') : s);
+  const d = whoTheyAre(c, id);
+  if (p.role === 'watcher') {
+    const j = d.split(/,| at | in /)[0]?.trim() ?? '';
+    if (/^the /.test(j)) return j;
+    // (A keeper the case gives no trade, "Mr. Feld, at the counter at Feld’s studio": who keeps the place.)
+    const kept = c.lists.find((l) => l.watcher === id)?.place;
+    const name = kept ? c.places.find((x) => x.id === kept)?.short : undefined;
+    return name ? `who keeps ${name}` : null;
+  }
+  if (p.role === 'company') {
+    const w = /^was with (.+?) at .+?; nobody else knows it$/.exec(d);
+    // (Named in somebody's owning up: "the woman Steinbach had named", with no pronoun two people could be.)
+    if (w) return `the ${p.female ? 'woman' : 'man'} ${w[1]} had named`;
+    if (/^keeps /.test(d)) return `who ${d}`;
+    if (/^works /.test(d)) return `who ${at(d)}`;
+    const first = d.split(';')[0]?.trim() ?? '';
+    if (/^a neighbou?r\b/.test(first)) return 'a neighbor';
+    if (/^(?:a|an|the) /.test(first)) return at(first);
+    return null;
+  }
+  if (p.role === 'suspect') return glossOf(c, id)?.split(';')[0]?.trim() ?? null;
+  return null;
+}
+
+const strip = (s: string): string => s.replace(/⁣\d+⁤/g, '');
+
+/** The words that say who somebody is, beside their name: their job, their role, their tie to the night. */
+function glossWords(c: BoardCase, id: string): RegExp | null {
+  const p = c.people.find((x) => x.id === id);
+  if (!p) return null;
+  const ws = new Set<string>();
+  const role = roleOf(c, id);
+  if (role) for (const w of role.replace(/^(?:the|my|a|an) /, '').split(/\s+/)) if (w.length > 3 && !/^(?:woman|with|camel|coat)$/.test(w)) ws.add(w);
+  // (Their trade, never the place it's at: "the bartender at the Shamrock" is "bartender". A tie that
+  // isn't a trade, "was with Steinbach at the print shop", says nothing on its own.)
+  const first = (p.job ?? p.description.split(/[;,]/)[0] ?? '').split(/ at | in | on /)[0] ?? '';
+  const job = /^(?:the|a|an) /.test(first) ? first.replace(/^(?:the|a|an) /, '') : '';
+  for (const w of job.split(/\s+/)) if (w.length > 3 && !/^(?:with|from|that|this|who)$/.test(w)) ws.add(w.replace(/’s$/, ''));
+  if (p.role === 'watcher') for (const w of ['landlady', 'bartender', 'barman', 'waiter', 'usher', 'cashier', 'janitor', 'doorman', 'clerk', 'keeper', 'manager']) if (p.description.includes(w)) ws.add(w);
+  if (p.role === 'company') for (const w of ['regular', 'lodger', 'neighbor', 'tenant']) if (p.description.includes(w)) ws.add(w);
+  if (ws.size === 0) return null;
+  return new RegExp(`\\b(?:${[...ws].map(esc).join('|')})s?\\b`, 'i');
+}
+
+/**
+ * Whether a sentence says who somebody is, where it names them: an apposition ("Hauck, the head
+ * waiter,"), a clause ("Vogel, who Steinbach said…"), a role before the name ("the barman, Zeldin"),
+ * the papers' "Reinhardt: …", or their job or role anywhere in it.
+ */
+export function glossedIn(c: BoardCase, id: string, sentence: string): boolean {
+  const p = c.people.find((x) => x.id === id);
+  if (!p) return false;
+  const s = strip(sentence);
+  const n = esc(p.short);
+  if (new RegExp(`\\b${n}(?:’s)?, (?:the|a|an|my|our|his|her|their|who|whose|which|one of|[A-Z][\\w’]+’s)\\b`).test(s)) return true;
+  if (new RegExp(`\\b${n}(?:\\s*\\(|: )`).test(s)) return true;
+  // (A role or a tie before the name, set off by a comma: "the barman, Zeldin", "My client’s lodger, Rafferty".)
+  if (new RegExp(`\\b(?:[Tt]he|[Aa]n?|[Mm]y|[Oo]ur|[Hh]is|[Hh]er) [\\w’ -]{2,40}?, ${n}\\b`).test(s)) return true;
+  if (id === c.client && /\bmy (?:client|visitor)\b/.test(s)) return true;
+  const g = glossWords(c, id);
+  return !!g && g.test(s);
+}
+

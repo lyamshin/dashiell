@@ -337,3 +337,14 @@ Branch `clarity-2`: the texture budget as a dial (`texture: 'lean'` by default, 
 - **List smell in the neighbourhood's Soft-boiled**: 54 pages of 385, beside main's 50.
 - **The verdict's epilogue** names the client twice in a sentence ("I took Steinbach through it over coffee, and Steinbach listened…"): the report's.
 - **The voice kit's coverage test** passes again (its nights are written in full).
+
+## Clarity, build 3 (docs/62), 2026-10-24
+Branch `clarity-3`: the hinge lines said as a person says them (docs/62: the twelve items of its first brief, round 5's P1–P13, the designer's plain words), each rule a lint (`hinge-lint.ts`, 19 rules: main's 13,278 hits to 0 at 30 nights a tier, both worlds, three routes) and a test. Taken from clarity-2's list: "one of the two hours it could have happened", "none of the people with a reason", a walk with nothing under it, the access line's "as far as anybody had told me", a put's "says she herself was", "That much held." alone (now "That much checked out.", and never alone), the verdict's epilogue naming the client twice, list smell in the neighbourhood's Soft-boiled (54 → 49). Left over:
+
+- **The skim gate passed in the third round of three** (docs/62 §3: flags 12 → 20, 9 → 9, 14 → 12; accuracy even in all three). What still stops readers in both builds: the dead seen alive at an hour the client gave (the deduction the thought leaves to the player), the office's givens ("Rafferty, a bookmaker, says the spoons was promised to her…"), the bible's lines, "So at nine and ten, when it could have happened, X had already left…".
+- **The turn's hour, said once** (P6): each of a turn's clauses says its hour ("nine" four times in Poached 5's).
+- **The face pointer at a window hour** (P4) is by design ("Ellery saw you here at eleven" when she had her from ten); the hand-off "X hadn’t told me her evening yet" comes three or four times a night.
+- **The office's own lines** (P10), **staging against the arrival** (P11: a put that sits at the bar beside somebody in a booth, a fence never placed), **an arrival that names its place after the walk did** (P13).
+- **The put to somebody named twice after it** opens on the put, without "I went over to X." (docs/62 §5).
+- **List smell** rose in the dealt world's Raw (10 → 18 of 280), Coddled (5 → 10) and Hard-boiled (13 → 17); it fell or held everywhere else.
+- **Routed**: the notebook's People list should use `gloss.ts` `whoTheyAre` (no posture; U5's); the verdict's endings in `night.json` still "file" (docs/64's).

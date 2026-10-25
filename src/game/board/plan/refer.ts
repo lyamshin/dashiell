@@ -89,7 +89,7 @@ const PLACE_PREP = /\b(?:at|to|from|in|into|inside|near|past|toward|towards|roun
 const OBJ = /\b(to|at|with|for|by|from|of|asked|told|thanked|had|put|passed|saw|over|beside|near|behind|let|gave|watched|named|left|caught|found|about|after|against|than|wanted|met|made|kept|on|offered|pointed|showed|followed|joined|sent|minded|backed|believed|contradicted|mentioned|remembered|noticed|spotted|across from|next to)\s*$/;
 
 /** docs/60 item 3: more verbs a name is the object of (lean). */
-const OBJ_LEAN = /\b(?:see|seen|sees|heard|hear|vouched for|placed|put|asked after|waited for|went over to|went up to|sat down with|backed up)\s*$/;
+const OBJ_LEAN = /\b(?:see|seen|sees|heard|hear|vouched for|placed|put|asked after|waited for|went over to|went up to|sat down with|backed up|bore)\s*$/;
 
 const esc = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -349,7 +349,10 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   const thoughtText = items.filter((x) => x.kind === 'fact' && x.voice === 'thought').map((x) => x.text).join(' ');
   const earlier = ctx.earlier ?? '';
   const ties = [...c.people.map((p) => p.short), ...c.places.flatMap((p) => [p.short, p.street])].filter((n) => n.length >= 3 && thoughtText.includes(n) && earlier.includes(n));
-  const tiedElsewhere = (w: Who): boolean => ties.some((n) => n !== w.short);
+  // (docs/62: lean, a tie to somebody else holds only if it stays a name, which a place always does and a
+  // person may not: "He had told me he was home at nine, and she didn’t see him there" ties to nothing.)
+  const placeTies = new Set(c.places.flatMap((p) => [p.short, p.street]));
+  const tiedElsewhere = (w: Who): boolean => ties.some((n) => n !== w.short && (!lean() || placeTies.has(n)));
   // A name the thought keeps for its tie is held back for it: before the thought, the cap comes one
   // mention sooner (docs/39's first and last, where the last is the one that does the work).
   const thoughtItems = new Set(items.filter((x) => x.kind === 'fact' && x.voice === 'thought'));

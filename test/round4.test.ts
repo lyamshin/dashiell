@@ -42,14 +42,17 @@ describe('round 4: the reasoning lines (docs/55 1)', () => {
     const run = night(8, 5, 'murder', HB8);
     const page = prose(run.log[run.log.length - 1] as Page).replace(/\s+/g, ' ');
     expect(page).toMatch(/the Automat at nine/);
-    expect(page).toMatch(/the Automat (?:might know|was the first place I’d ask|might know about) /);
+    // (docs/62, P13: "I’d ask at the Automat about ten too", not "the first place I’d ask".)
+    expect(page).toMatch(/the Automat (?:might know|was the first place I’d ask|might know about) |I’d ask at the Automat about /);
   });
 
   it('a hand-off names the person and the question, never the ground', () => {
     const run = night(14, 4, 'lost-pet', MED14);
     const page = prose(run.log[run.log.length - 1] as Page).replace(/\s+/g, ' ');
     // (docs/60 item 6: lean, the rhythm may part the second at its "and".)
-    expect(page).toMatch(/I wanted to know who she’d passed on the way\.|She might have passed somebody on the way(?:, and|\.) I wanted to know who\.|Whoever she’d passed on the way, I wanted to hear about it\./);
+    // (docs/62 item 12: after how I know she walked, nothing a pronoun the walk's witnesses could take.)
+    // (Or, where how I know would say a name a third time on the page, the question alone.)
+    expect(page).toMatch(/I wanted to know who else had been on the street then\.|Somebody else on the street then might have seen something(?:, and|\.) I wanted to know who\.|Whoever else had been on the street then, I wanted to hear from\.|I wanted to know who \S+ had passed on the way over at \w+\./);
     expect(page).not.toMatch(/place behind them|that ground for myself/);
   });
 
@@ -83,7 +86,8 @@ describe('round 4: facts and continuity (docs/55 2)', () => {
     // (docs/59 item 2: told by what changed, and "nobody else" once for the span, after everybody it had.)
     const text = prose(run.log[run.log.length - 1] as Page).replace(/\s+/g, ' ');
     expect(text).toMatch(/Pardo was in the whole evening and never left\. He buys things\./);
-    expect(text).toMatch(/Steinbach came in at ten\. (?:Nobody|No one) else/);
+    // (docs/62, P2: with somebody in later under a coat, nobody else came in till then.)
+    expect(text).toMatch(/Steinbach came in at ten\. (?:Nobody|No one) else(?: came in (?:till|before) eleven)?/);
   });
 
   it('the pet’s basket is a basket, and the client is still the client', () => {

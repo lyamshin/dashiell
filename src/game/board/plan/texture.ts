@@ -24,11 +24,14 @@
  */
 
 import type { Item } from './types.js';
+import { pronOf } from '../model.js';
 import type { PlanCtx } from './index.js';
-import { stripMarks } from './refer.js';
+import { markPronoun, stripMarks } from './refer.js';
 import { sentencesOf, wordsIn } from './sentences.js';
 import { situatedDeck } from './situated.js';
 import { similesIn } from '../tics.js';
+import { glossedIn, introOf } from '../gloss.js';
+import { maskPlaces, narrationOf } from './measure.js';
 
 export { TEXTURE, lean, setTexture } from './dial.js';
 import { lean } from './dial.js';
@@ -169,7 +172,8 @@ export function petKind(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
   if (!pet || !kind) return;
   const items = paras.flat();
   const said = (t: string) => new RegExp(`\\b${kind.split(' ').slice(-1)[0]}\\b`, 'i').test(t);
-  if (said(sofar)) return;
+  // (docs/62 item 1: once a night. The office's "My dachshund" says it, and every page after has the name alone.)
+  if (said(sofar) || said(ctx.earlier ?? '')) return;
   for (const it of items) {
     if (!it.text.trim()) continue;
     const t = stripMarks(it.text);
@@ -187,6 +191,142 @@ export function petKind(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
   }
 }
 
+/**
+ * docs/62 items 1 and 4, P12: nobody appears bare. The first time the night's narration names somebody,
+ * the sentence says who they are, unless that sentence or the one before already does, or the night
+ * said it before (the office's "Ask about Althea Tillman, a piano teacher", the papers' "Reinhardt: …"):
+ * "Hanrahan, a regular, was at a table by the wall", "Zeldin, the barman, stood at the register end",
+ * "Vogel, the woman Steinbach had named, was in the corner". Said once: after that, the name alone.
+ * After the reference pass, on what it left; never inside quotation marks, a list of names or a
+ * possessive.
+ */
+export function introduce(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
+  // (Who somebody is is the night's to know: a section planned without the night's pages has nothing to go by.)
+  if (!lean() || ctx.earlier === undefined) return;
+  const c = ctx.c;
+  const people = c.people.filter((x) => !x.object && x.short.length >= 3 && (x.role === 'suspect' || x.role === 'company' || x.role === 'watcher'));
+  if (!people.length) return;
+  const reOf = (x: { short: string }) => new RegExp(`(?<![\\w’])${x.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w])`);
+  const met = new Set<string>();
+  // (A roll call of three names or more, "So Mrs. Ostrow, Mabry and Miss Nowak had all been…", meets
+  // nobody: who they are waits for the sentence that names them on their own, as the lint reads it.)
+  const roll = (n: string, x: { short: string }): boolean => {
+    const n0 = x.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp(`(?:[A-Z][\\w’.-]+, (?:(?:Mrs\\.|Miss|Dr\\.) )?[A-Z][\\w’.-]+(?:,| and) ${n0}\\b|\\b${n0}, (?:(?:Mrs\\.|Miss|Dr\\.) )?[A-Z][\\w’.-]+(?:,| and) |[A-Z][\\w’.-]+, ${n0},? and )`).test(n);
+  };
+  // What the night has said already: a name in the narration, or said in somebody's mouth with who they
+  // are. (Quotation marks carried through a paragraph, sentence to sentence.)
+  const quote = (s: string, inQ: boolean): boolean => {
+    let q = inQ;
+    for (const ch of s) {
+      if (ch === '“') q = true;
+      if (ch === '”') q = false;
+    }
+    return q;
+  };
+  for (const block of stripMarks(`${ctx.earlier ?? ''}\n${sofar}`).split(/\n+/)) {
+    let inQ = false;
+    for (const s of sentencesOf(block)) {
+      const n = maskPlaces(c, narrationOf(s, inQ));
+      inQ = quote(s, inQ);
+      for (const x of people) if (!met.has(x.id) && reOf(x).test(maskPlaces(c, s)) && ((reOf(x).test(n) && !roll(n, x)) || glossedIn(c, x.id, s))) met.add(x.id);
+    }
+  }
+  if (people.every((x) => met.has(x.id))) return;
+  let prev = '';
+  for (const para of paras) {
+    let inQ = false;
+    for (const it of para) {
+      if (!it.text.trim()) continue;
+      const startQ = inQ;
+      for (const s of sentencesOf(stripMarks(it.text))) {
+        const sn = maskPlaces(c, narrationOf(s, inQ));
+        inQ = quote(s, inQ);
+        for (const x of people) {
+          if (met.has(x.id) || !reOf(x).test(maskPlaces(c, s))) continue;
+          if (!reOf(x).test(sn)) {
+            if (glossedIn(c, x.id, s)) met.add(x.id);
+            continue;
+          }
+          if (roll(sn, x) && !glossedIn(c, x.id, s)) continue;
+          met.add(x.id);
+          if (it.speech || glossedIn(c, x.id, s) || glossedIn(c, x.id, prev)) continue;
+          const intro = introOf(c, x.id, ctx.run?.at);
+          if (!intro) continue;
+          // In the item's own words (marks and all): the first time the name stands in its narration.
+          const t = it.text;
+          const tn = maskPlaces(c, narrationOf(t, startQ));
+          const m = reOf(x).exec(tn);
+          if (!m) continue;
+          const at = m.index + x.short.length;
+          const before = tn.slice(0, m.index);
+          const after = t.slice(at);
+          // (Not a possessive, nor one of a list of names: "Mosley, Bledsoe and Hanrahan".)
+          // (A clause of its own after a comma, ", and Coffin was finishing a late supper", is no list.)
+          // (Two names and an "and", "where Lathrop and Pickering were", take it: "Lathrop, a typist, and Pickering".)
+          if (/^’s\b/.test(after) || /^(?:, (?:(?:Mrs\.|Miss|Dr\.) )?[A-Z][\w’.-]+(?:,| and))/.test(after) || /^ and (?:(?:Mrs\.|Miss|Dr\.) )?[A-Z][\w’.-]+(?:,| and)/.test(after) || /[A-Z][\w’.-]+, $/.test(before) || /[A-Z][\w’.-]+, (?:(?:Mrs\.|Miss|Dr\.) )?[A-Z][\w’.-]+ and $/.test(before)) continue;
+          it.text = /^[.,;:!?]/.test(after) ? `${t.slice(0, at)}, ${intro}${after}` : `${t.slice(0, at)}, ${intro},${after}`;
+          it.alts = undefined;
+        }
+        if (sn.trim()) prev = s;
+      }
+    }
+  }
+}
+
+/**
+ * docs/62, P4: a page doesn't open on a pointer standing on its own ("Zeldin had seen Reinhardt at the
+ * Shamrock at seven and ten." and then, a paragraph down, "I asked her to walk me through her night").
+ * The pointer is said in the asking: "Zeldin had seen Reinhardt at the Shamrock at seven and ten, so I
+ * asked her to walk me through her night." An ask in quotation marks follows it in its paragraph.
+ */
+function foldPointer(paras: Item[][], ctx: PlanCtx): void {
+  if (!ASKING.has(ctx.situ?.page ?? '')) return;
+  const items = paras.flat();
+  const why = items.find((it) => it.slot === 'why-here' && it.text.trim());
+  const ask = items.find((it) => roleOf(it) === 'ask' && it.text.trim());
+  if (!why || !ask || items.indexOf(ask) < items.indexOf(why)) return;
+  const w = stripMarks(why.text).trim();
+  if (sentencesOf(w).length !== 1 || !/\b(?:had|has) (?:seen|said|told me|passed|mentioned|named)\b/.test(w)) return;
+  // Nothing else between them but the staging budgeted away; a staging line left between, the pointer
+  // opens its paragraph ("Grasso had said she was at the Delmonico rooms at eight and ten. Mrs. Sirkin
+  // talked to me in the hall…").
+  const between = items.slice(items.indexOf(why) + 1, items.indexOf(ask)).filter((x) => x.text.trim());
+  if (between.length > 0) {
+    const first = between[0] as Item;
+    const wp0 = paras.find((ps) => ps.includes(why)) as Item[];
+    const fp = paras.find((ps) => ps.includes(first)) as Item[];
+    if (wp0 !== fp && wp0.filter((x) => x.text.trim()).length === 1) {
+      wp0.splice(wp0.indexOf(why), 1);
+      fp.splice(fp.indexOf(first), 0, why);
+      first.runOn = true;
+      for (let k = paras.length - 1; k >= 0; k--) if ((paras[k] as Item[]).length === 0) paras.splice(k, 1);
+    }
+    return;
+  }
+  const a = stripMarks(ask.text).trim();
+  const wp = paras.find((ps) => ps.includes(why)) as Item[];
+  const ap = paras.find((ps) => ps.includes(ask)) as Item[];
+  const subj = ctx.situ?.subject ? ctx.c.people.find((x) => x.id === ctx.situ?.subject) : undefined;
+  // (One sentence only where "her" can be nobody but whom I asked: not after "Feeney had seen Quill".)
+  const crowded = !!subj && ctx.c.people.some((x) => x.id !== subj.id && (!x.object || ctx.c.type === 'lost-pet') && pronOf(ctx.c, x.id).he === pronOf(ctx.c, subj.id).he && new RegExp(`\\b${x.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(w));
+  if (/^I asked\b/.test(a) && !crowded) {
+    // (Whom I asked is the pointer's person, said once: "…, so I asked her for her evening", never "…, so I asked Quill".)
+    const askText = subj && w.includes(subj.short) ? ask.text.trim().replace(new RegExp(`^I asked ${subj.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`), `I asked ${subj.female ? 'her' : 'him'}${markPronoun(ctx.c, subj.id)}`) : ask.text.trim();
+    why.text = `${why.text.replace(/\.\s*$/, '')}, so ${askText}`;
+    why.alts = undefined;
+    // (The ask's pronouns are the person asked: the sentence is about them now too.)
+    why.about = [...new Set([...(why.about ?? []), ...(ask.about ?? [])])];
+    ask.text = '';
+    ask.alts = undefined;
+  } else if (wp !== ap) {
+    ap.splice(ap.indexOf(ask), 1);
+    wp.splice(wp.indexOf(why) + 1, 0, ask);
+    ask.runOn = true;
+  }
+  for (const ps of paras) for (let k = ps.length - 1; k >= 0; k--) if ((ps[k] as Item).kind === 'gap' && !(ps[k] as Item).text.trim()) ps.splice(k, 1);
+}
+
 /** The pages that ask somebody something: the ask says what the answer answers. */
 const ASKING = new Set(['account', 'admission-check', 'list', 'motive']);
 
@@ -199,8 +339,14 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
   const spent = ctx.tex ?? { joke: false, staging: false };
   const items = paras.flat().filter((x) => x.kind === 'gap' && x.slot !== 'chapter' && x.text.trim());
   // A why-here's reason stays; the card after it goes (what I did about it is staging, and the page has its own).
+  // docs/62 item 3, P3: a put says to their face what they told me and what says otherwise; the why-here
+  // that said it first ("Steinbach had told me she was home at eleven, and Mrs. Mulcahy said otherwise.")
+  // is the same thing a line before. It goes, and the card after it with it.
+  if (ctx.situ?.page === 'put' && paras.flat().some((x) => x.kind === 'fact' && x.relation === 'collides' && x.voice === 'exchange' && /\byou (?:told me|said)\b/i.test(x.text))) {
+    for (const it of items) if (it.slot === 'why-here') drop(it, paras);
+  }
   for (const it of items) {
-    if (it.slot === 'why-here' && it.sit?.lead && !it.tex && it.text !== it.sit.lead) {
+    if (it.slot === 'why-here' && it.sit?.lead && !it.tex && it.text.trim() && it.text !== it.sit.lead) {
       it.text = it.sit.lead;
       it.alts = undefined;
     }
@@ -219,6 +365,60 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
     alt.take();
     it.text = alt.text;
     it.alts = undefined;
+  }
+  // docs/62 item 11: each person in a spot of their own: "at a little table by the wall", then never "in a
+  // booth by the wall" for the next. A line that says a spot again takes a card that fitted as well and
+  // doesn't; with none, where the spot only says where the seat is, the seat alone ("in a booth").
+  const SPOT = /\b(?:by|at|in|near|against|under) the (?:wall|corner|window|door|bar|stairs|counter|register|stove|mirror|back row|back)\b/g;
+  const key = (m: string) => m.replace(/^\w+ /, '');
+  const spots = new Set<string>();
+  for (const it of items) {
+    if (roleOf(it) !== 'people' || !it.text.trim()) continue;
+    const clash = (t: string) => [...stripMarks(t).matchAll(SPOT)].some((m) => spots.has(key(m[0] as string)));
+    if (clash(it.text)) {
+      const alt = it.alts?.().find((a) => !a.lastResort && !clash(a.text));
+      if (alt) {
+        alt.take();
+        it.text = alt.text;
+        it.alts = undefined;
+      } else {
+        for (const sp of spots) {
+          it.text = it.text.replace(new RegExp(`(\\b(?:a|an|the)(?: [a-z]+)? (?:booth|table|stool|chair|seat|bench|cushion|step)) (?:by|near|against|under) ${sp}\\b`), '$1');
+          // ("Lathrop stood at the back with his hat in his hand", after the usher stood at the back: "Lathrop stood with his hat in his hand".)
+          it.text = it.text.replace(new RegExp(`\\b(stood|sat|waited|leaned|lingered|was|were) (?:at|in|by|near) ${sp}(?= with\\b)`), '$1');
+          // ("Dr. Hirsch was drinking a brandy at the bar with a medical journal…", after somebody stood at the bar: the spot goes.)
+          it.text = it.text.replace(new RegExp(` (?:at|in|by|near) ${sp}(?= with\\b)`), '');
+        }
+      }
+    }
+    // (And within one line of several people: after the first, "…, and Feeney was in the back row with a
+    // bag of peanuts" is "…, and Feeney was there with a bag of peanuts".)
+    for (const m0 of [...stripMarks(it.text).matchAll(SPOT)]) {
+      const sp = key(m0[0] as string);
+      const at = it.text.indexOf(m0[0] as string);
+      const second = at >= 0 ? it.text.indexOf(m0[0] as string, at + 1) : -1;
+      if (second < 0) continue;
+      const head = it.text.slice(0, second - 12 < 0 ? 0 : second - 12);
+      let tail = it.text.slice(head.length).replace(new RegExp(`\\b(stood|sat|waited|leaned|lingered|was|were) (?:at|in|by|near) ${sp}(?= with\\b)`), '$1 there');
+      // ("…, and Dr. Hirsch was drinking a brandy at the bar with a medical journal…": the spot goes.)
+      if (tail.includes(m0[0] as string)) tail = tail.replace(new RegExp(` (?:at|in|by|near) ${sp}(?= with\\b|[,.])`), '');
+      it.text = head + tail;
+    }
+    const seen = new Set<string>();
+    it.text = it.text.replace(/(\b(?:a|an|the)(?: [a-z]+)? (?:booth|table|stool|chair|seat|bench|cushion|step)) ((?:by|near|against|under) (the [a-z]+))\b/g, (m, seat: string, _p: string, sp: string) => {
+      if (seen.has(sp) || spots.has(sp)) return seat;
+      seen.add(sp);
+      return m;
+    });
+    for (const m of stripMarks(it.text).matchAll(SPOT)) spots.add(key(m[0] as string));
+  }
+  // (The rhythm may trade a line for another card later: never one that says a spot another line has.)
+  for (const it of items) {
+    if (roleOf(it) !== 'people' || !it.alts) continue;
+    const mine = new Set([...stripMarks(it.text).matchAll(SPOT)].map((m) => key(m[0] as string)));
+    const others = new Set([...spots].filter((x) => !mine.has(x) || items.some((y) => y !== it && roleOf(y) === 'people' && [...stripMarks(y.text).matchAll(SPOT)].some((m) => key(m[0] as string) === x))));
+    const all = it.alts;
+    it.alts = () => all().filter((a) => ![...stripMarks(a.text).matchAll(SPOT)].some((m) => others.has(key(m[0] as string))));
   }
   // The one joke or flourish: a callback when one is due, else the page's joke. (On a page that asks,
   // the ask is the staging line: a joke dealt on the staging or the ask isn't the page's joke there,
@@ -255,7 +455,36 @@ export function budgetTexture(paras: Item[][], ctx: PlanCtx): void {
   for (const it of stage) if (it !== keep && it !== joke && it !== also) drop(it, paras);
   if (keep || jokeStages) spent.staging = true;
   leadIn(paras, ctx, spent);
+  foldPointer(paras, ctx);
   // What went is out of the paragraphs, so what's left stands side by side for the rhythm.
   for (const ps of paras) for (let k = ps.length - 1; k >= 0; k--) if ((ps[k] as Item).kind === 'gap' && !(ps[k] as Item).text.trim()) ps.splice(k, 1);
   ctx.tex = spent;
+}
+
+/**
+ * docs/62 item 3: the put's why-here gone, and whatever staging the page kept not naming them (the
+ * reference pass names a pronoun's first mention, so this runs after it), "You told me…" would be to
+ * nobody: the page opens "I went over to Steinbach." In place, lean only.
+ */
+export function namePut(paras: Item[][], ctx: PlanCtx): void {
+  if (!lean() || ctx.situ?.page !== 'put' || !ctx.situ.subject) return;
+  const subject = ctx.c.people.find((p) => p.id === ctx.situ?.subject);
+  if (!subject) return;
+  const flat = paras.flat();
+  const k = flat.findIndex((x) => x.kind === 'fact' && x.relation === 'collides' && x.voice === 'exchange' && /\byou (?:told me|said)\b/i.test(stripMarks(x.text)));
+  if (k < 0) return;
+  const re = new RegExp(`(?<![\\w’])${subject.short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w])`);
+  const narrOf = (t: string) => stripMarks(t).replace(/“[^”]*”?/g, ' ');
+  if (flat.slice(0, k).some((x) => re.test(narrOf(x.text)))) return;
+  // (Never a third time on the page: where the narration after names them twice already, who answers
+  // says it a line later.)
+  const reG = new RegExp(re.source, 'g');
+  const said = [ctx.pageSoFar ?? '', ...flat.map((x) => x.text)].reduce((n, t) => n + (narrOf(t).match(reG) ?? []).length, 0);
+  if (said >= 2) return;
+  const put = flat[k] as Item;
+  const item: Item = { kind: 'gap', slot: 'why-here', beat: put.beat, voice: 'narrator', text: `I went over to ${subject.short}.`, about: [subject.id], tex: 'keep' };
+  const first = paras.find((ps) => ps.some((x) => x.text.trim()));
+  if (!first) return;
+  if (first.includes(put) && first.findIndex((x) => x.text.trim()) === first.indexOf(put)) paras.splice(paras.indexOf(first), 0, [item]);
+  else first.splice(first.findIndex((x) => x.text.trim()), 0, item);
 }

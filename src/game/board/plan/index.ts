@@ -51,7 +51,7 @@ import { capThingClose } from './closers.js';
 import { sayOnce } from './once-pass.js';
 import { pronounAmbiguity } from './measure.js';
 import { speakerOf } from './speaker.js';
-import { budgetTexture, droppable, lean, petKind, type TexSpent } from './texture.js';
+import { budgetTexture, droppable, introduce, lean, namePut, petKind, type TexSpent } from './texture.js';
 export { speakerOf } from './speaker.js';
 export { TEXTURE, lean, setTexture } from './texture.js';
 
@@ -165,13 +165,21 @@ export function planSection(
   // docs/60 item 1: the texture budget (lean only): one joke, one staging line, the place and its people.
   if (PLAN.ops) budgetTexture(paraItems, ctx);
   if (PLAN.ops) {
+    // (docs/62: who somebody is, before the rhythm, which then sees the sentence as it will read; and
+    // again below, for a line the rhythm or said-once traded in.)
+    introduce(paraItems, ctx, ctx.pageSoFar ?? '');
     paraItems = rhythm(paraItems, ctx);
     // docs/59 items 1 and 7: said once on the page, and one simile frame (before the reference, so a
     // line traded in has its pronouns settled with the rest).
     sayOnce(paraItems, ctx);
     // (docs/60 item 6: lean, the rhythm again on what said-once left, where it took a sentence out.)
     if (lean()) paraItems = rhythm(paraItems, ctx);
+    // docs/62 items 1 and 4: the first time the night's narration meets somebody, who they are, once
+    // (before the reference pass, which counts the names it says).
+    introduce(paraItems, ctx, ctx.pageSoFar ?? '');
     referWithTrades(paraItems, ctx);
+    // (docs/62 item 3: a put says to somebody, by name, before "You told me…".)
+    namePut(paraItems, ctx);
     // docs/60 item 5: a pet named in the reckoning says what it is, once a page.
     petKind(paraItems, ctx, ctx.pageSoFar ?? '');
     // docs/55 6: about half a night's pages end on a thing having a feeling, at most.

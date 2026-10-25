@@ -52,7 +52,7 @@ export const ENGINE_WORDS: EngineWord[] = [
   { name: 'means', re: /\bthe means\b|\b(?:had|have|has|no|any) means\b/i },
   { name: 'the way in', re: /(?<!\bon )\bthe way in\b/i },
   { name: 'put it to', re: /\bput (?:it|that|the line|this|them|the story) to\b|\bput to (?:him|her|them|[A-Z])|\bline put\b|\bwhen it was put\b/ },
-  { name: 'the line (as a fact)', re: new RegExp(String.raw`(?<![\w’])(?:the|that|this|whose|one|no|any|each|every) lines? (?:that|put|I put|about|against|from|on(?! (?:the form|it\b))|said|says|broke|breaks|held|agreed|touched|didn’t|changed)\b|\bheard the line\b|\bthrough the line\b|\b(?:[A-Z][\w’-]+’s|his|her|their) (?:own )?line\b`) },
+  { name: 'the line (as a fact)', re: new RegExp(String.raw`(?<![\w’])(?:the|that|this|whose|one|no|any|each|every) lines? (?:that|put|I put|about|against|from|on(?! (?:the form|the report|it\b))|said|says|broke|breaks|held|agreed|touched|didn’t|changed)\b|\bheard the line\b|\bthrough the line\b|\b(?:[A-Z][\w’-]+’s|his|her|their) (?:own )?line\b`) },
   { name: 'the office (the briefing)', re: /\b[Tt]he office (?:had(?! (?:kept|been|gone|stayed))|said|says|gave|given|named|pointed|put|told|hadn’t|had not|didn’t)\b|\bwhat the office\b|\bthe office’s\b/ },
   { name: 'the board', re: /\bthe board\b(?! (?:floor|walk))/i },
   { name: 'the notebook (as a record)', re: /\b(?:the|my) notebook (?:had|has|said|says|showed|shows|held|holds)\b|\bwhat the notebook\b|\bthe notebook’s\b/i },

@@ -87,7 +87,7 @@ npx vitest run --minWorkers=1 --maxWorkers=3   # the suite
 npm run typecheck                              # tsc --noEmit
 npm run board-sweep -- --tier all --n 60       # the generator's rates and invariants
 npx tsx scripts/board-measure.ts --seeds 50    # the puzzle, measured
-npx tsx scripts/board-prose.ts                 # the prose, measured (--plan off: without the microplanner; --situated 0: without the situated deck)
+npx tsx scripts/board-prose.ts                 # the prose, measured, with the hinge lines a rule a column (docs/62) (--plan off: without the microplanner; --situated 0: without the situated deck)
 npx tsx scripts/skeletons.ts --n 300 --tier all # the skeletons, a JSONL corpus (docs/49, docs/50)
 npx tsx scripts/roundtrip.ts --nights 30       # the round trip: plain pages and voicings read back to their propositions, and the clarity check (docs/52, docs/53)
 npx tsx scripts/clarity-measure.ts --nights 30 # words a page and a new fact, the repeats and the slots, against a copy of main with --root (docs/59)

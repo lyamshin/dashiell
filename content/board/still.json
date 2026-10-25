@@ -51,7 +51,6 @@
   {"id": "bst-217", "family": "put-stage", "tags": {}, "text": "I went at {name}’s story again the way you go at a sum that won’t add up: slowly, with a pencil.", "joke": true},
   {"id": "bst-218", "family": "put-stage", "tags": {}, "text": "{Name} saw the notebook in my hand and knew what it meant before I opened my mouth."},
   {"id": "bst-219", "family": "put-stage", "tags": {}, "text": "I took the chair beside {name} without asking. I’d stopped being company."},
-  {"id": "bst-220", "family": "put-stage", "tags": {}, "text": "I let {name} finish whatever {he} was doing first. It was the last thing I’d let {him} finish for a while.", "joke": true},
   {"id": "bst-310", "family": "why", "tags": {"kind": "carried"}, "text": "I went straight over to {name}."},
   {"id": "bst-311", "family": "why", "tags": {"kind": "carried"}, "text": "{Name} was the one I wanted to talk to."},
   {"id": "bst-312", "family": "why", "tags": {"kind": "carried"}, "text": "I went over to {name}."},
@@ -63,8 +62,8 @@
   {"id": "bst-343", "family": "why", "tags": {"kind": "account-named"}, "text": "{Src}. I wanted the rest of it in {name}’s own words."},
   {"id": "bst-344", "family": "why", "tags": {"kind": "account-named"}, "text": "{Src}. I wanted to hear the other side of it."},
   {"id": "bst-345", "family": "why", "tags": {"kind": "account-named"}, "text": "{Src}, so I went over."},
-  {"id": "bst-346", "family": "why", "tags": {"kind": "check-named"}, "text": "{Src}. Whether that held was the next question."},
+  {"id": "bst-346", "family": "why", "tags": {"kind": "check-named"}, "text": "{Src}. Whether that checked out was the next question."},
   {"id": "bst-347", "family": "why", "tags": {"kind": "check-named"}, "text": "{Src}, and that wanted checking."},
   {"id": "bst-348", "family": "why", "tags": {"kind": "check-named"}, "text": "{Src}. An owned-up story needs somebody to stand behind it."},
-  {"id": "bst-349", "family": "why", "tags": {"kind": "check-named"}, "text": "{Src}, so I went to see if it held."}
+  {"id": "bst-349", "family": "why", "tags": {"kind": "check-named"}, "text": "{Src}, so I went to see if it checked out."}
 ]

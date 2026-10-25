@@ -167,7 +167,7 @@ export const SITTING = /\b(?:sat|sitting|seated)\b|\bon a (?:kitchen |hard |stra
 /** My feet coming down off the desk (the office's posture). */
 export const FEET = /\bfeet\b[^.]*\b(?:off|down from|down off)\b[^.]*\bdesk\b|\bfeet (?:down|off)\b/i;
 /** The client at the scene, and how they got there ahead of me. */
-const AHEAD = /\bahead of me\b|\bhad (?:arrived|come|got) (?:there |in )?(?:first|ahead|before)\b|\bin a cab\b|\bhad taken a cab\b|\bbeaten me there\b/;
+const AHEAD = /\bto let me in\b|\bcome on ahead\b|\bto open up\b|\bahead of me\b|\bhad (?:arrived|come|got) (?:there |in )?(?:first|ahead|before)\b|\bin a cab\b|\bhad taken a cab\b|\bbeaten me there\b/;
 
 /** A knock at my door, not the radiator's, nor the finder's at the dead man's ("…who heard his radio still going, and knocked"). */
 const DOOR_KNOCK = /^(?!.*\b(?:radiator|pipes?|heating|boiler|found|radio)\b).*\b(?:a knock|knocked|knocks)\b/i;
