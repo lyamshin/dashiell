@@ -137,7 +137,9 @@ function partings(s: string, tail = false, colon = true, scene = false): [string
       const a = s.slice(0, at).trim();
       const b = s.slice(at + 2).trim();
       const most = /^(?:like|as if|the way)$/.test(m[1] as string) ? 10 : 14;
-      if (wordsIn(a) >= 5 && wordsIn(b) >= 2 && wordsIn(b) <= most && !/,/.test(b)) out.push([`${a}.`, cap(b)]);
+      // (docs/66: never a fragment that opens on "he" or "she": "As if he were keeping count for her." had
+      // nobody for the "he" once it stood alone; the cat was in the sentence before.)
+      if (wordsIn(a) >= 5 && wordsIn(b) >= 2 && wordsIn(b) <= most && !/,/.test(b) && !(lean() && /^\w+(?: if| though)? (?:he|she)\b/i.test(b))) out.push([`${a}.`, cap(b)]);
     }
   }
   // A place's own sentence may end on what it was full of (Planner 2): "…waking to it floor by

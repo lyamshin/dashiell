@@ -3302,7 +3302,8 @@ export function writeTurn(w: Writer): void {
       const p = personOf(c, rest);
       if (k === 'account' && p && knownPeople(c, w.run).has(rest)) first = `find out first what ${p.short} had to say for ${pronOf(c, rest).self}`;
       else if (k === 'list' && p) first = knownPeople(c, w.run).has(rest) ? `find out first who ${p.short} had seen at ${placeName(c, starPlace(c, next))}` : `find out first from ${jobWords(p.description)} at ${placeName(c, starPlace(c, next))} who’d been in`;
-      else if (k === 'search') first = `go over ${c.finds.find((f) => f.id === rest)?.what ?? 'the room'} first`;
+      // (docs/66: "go over his papers" with nobody of his sex named before it: whose they are, by name.)
+      else if (k === 'search') first = `go over ${(c.finds.find((f) => f.id === rest)?.what ?? 'the room').replace(/^(?:his|her) /, lean() ? `${victimOf(c).short}’s ` : '$&')} first`;
       if (p && knownPeople(c, w.run).has(rest)) w.people.add(rest);
       w.places.add(starPlace(c, next));
     }
