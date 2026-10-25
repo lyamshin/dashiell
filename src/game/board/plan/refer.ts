@@ -27,7 +27,7 @@
  * count toward the cap.
  */
 
-import { pronOf, type BoardCase } from '../model.js';
+import { personOf, pronOf, type BoardCase } from '../model.js';
 import type { Item } from './types.js';
 import type { PlanCtx } from './index.js';
 import { PAST_PARTICIPLE, sentencesOf } from './sentences.js';
@@ -367,6 +367,9 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
     // (Once the page has named them: the first time it's the name.)
     if ((w.id === c.client || (w.id === c.crime.victim && c.type === 'murder')) && introduced.has(w.idx)) return true;
     if (s.named.some((x) => x.who === w && x.at < at)) return true;
+    // (docs/66: a watcher the page has named twice already, by their job, where a pronoun could be somebody
+    // else: "The bartender wasn’t talking about her own evening…", never her name a third time.)
+    if ((count.get(w.idx) ?? 0) >= 2 && personOf(c, w.id)?.role === 'watcher') return true;
     // (A signpost between, "Something didn’t fit.", or my own question's "I said", names nobody and
     // doesn't take the page from them.)
     const back = narrIdx.filter((k) => !/^(?:(?:One thing|Something) didn’t (?:fit|add up)|,? ?I (?:said|asked))\.$/.test((sents[k] as Sent).narr.replace(/\s+/g, ' ').trim()));

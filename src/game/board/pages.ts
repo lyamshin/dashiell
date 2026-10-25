@@ -522,7 +522,9 @@ function placeNewcomers(w: Writer): void {
     const putPage = /^confront:/.test(w.run.asked[w.run.asked.length - 1] ?? '');
     const ident = !!seen;
     const where = ident ? (seen?.[1] as string) : at;
-    const text = ident ? `The ${noun} ${where} was ${who}.` : back && !lean() ? `${cap(who)}, it turned out, had come back in and was ${at}.` : back ? `${cap(who)} was in by then, ${at}.` : `${cap(who)} was ${at}.`;
+    // (docs/66, skim round 2: who it was first, "Moretti was the lodger in the front room.", which reads as the
+    // answer to the way in's "A lodger was in the front room.", and on its own.)
+    const text = ident ? `${cap(who)} was the ${noun} ${where}.` : back && !lean() ? `${cap(who)}, it turned out, had come back in and was ${at}.` : back ? `${cap(who)} was in by then, ${at}.` : `${cap(who)} was ${at}.`;
     fact(w, lean() && !putPage ? 'job' : 'thought', text, 'presence', {
       about: [p],
       // (Who turns out to be in the room is introduced, by name: never a pronoun a paragraph could give to somebody else.)
@@ -546,7 +548,7 @@ function placeNewcomers(w: Writer): void {
     // (Not where the answer said the spot itself: "Lou the bookmaker was in his back booth all evening.")
     const spotNoun = (anon?.[1] ?? '').replace(/^(?:in|at|on|by) (?:the|a|an|his|her) /, '');
     const spotSaid = !!spotNoun && Object.values(w.parts).some((xs) => (xs ?? []).some((x) => x.voice === 'answer' && x.text.includes(spotNoun)));
-    if (anon && fence && named && !spotSaid && !stripMarks(roomSaid).includes(fn)) put(w, 'job', `The one ${anon[1]} was ${fn}.`, 'presence', { about: [], tex: 'keep', ...((w.parts.job ?? []).slice(-1)[0]?.voice === 'presence' ? { runOn: true } : {}) });
+    if (anon && fence && named && !spotSaid && !stripMarks(roomSaid).includes(fn)) put(w, 'job', `${fn} was the one ${anon[1].replace(/^(in|at|on|by) (?:a|an) /, '$1 the ')}.`, 'presence', { about: [], tex: 'keep', ...((w.parts.job ?? []).slice(-1)[0]?.voice === 'presence' ? { runOn: true } : {}) });
   }
 }
 
@@ -560,8 +562,8 @@ const SPOTS: Record<string, string[]> = {
   bar: ['at the far end of the bar', 'in the back booth', 'at a table by the door'],
   restaurant: ['at a corner table', 'at a table by the kitchen', 'by the window'],
   home: ['in the front room', 'in the kitchen', 'on the landing'],
-  work: ['at the far bench', 'by the door', 'at the back'],
-  back: ['in the corner', 'at the back', 'by the door'],
+  work: ['at the far bench', 'by the door', 'by the window'],
+  back: ['in the corner', 'by the door', 'at the far table'],
   office: ['by the door', 'at the window'],
   any: ['across the room', 'by the wall'],
 };
@@ -940,6 +942,9 @@ function whyHere(w: Writer, q: string, kind: string, slots: Record<string, strin
 /** docs/62 item 11: a spot in a room, as a people line says where somebody is: "by the wall", "in the back row". */
 const SPOT = /\b(?:by|at|in|near|against|under) the (?:wall|corner|window|door|bar|stairs|counter|register|stove|mirror|back row|back)\b/g;
 
+/** docs/66: a spot after a word, for taking it off a doing that said it again (the word before kept, to tell a doing from a place). */
+const SPOT_AFTER = /(?<=\b(\w+)) (?:by|at|in|near|against|under) the (?:wall|corner|window|door|bar|stairs|counter|register|stove|mirror|back row|back)\b/g;
+
 /** docs/62 item 11: a spot said, as a key: "by the wall" and "against the wall" are one. */
 function spotKey(m: string): string {
   return m.replace(/^\w+ /, '');
@@ -956,7 +961,10 @@ function spotFree(spots: Set<string>, text: string | null, alts: Item['alts']): 
     return alt.text;
   }
   // (None: where the spot only says where the seat is, "in a booth by the wall", the seat alone.)
-  return text.replace(/(\b(?:a|an|the)(?: [a-z]+)? (?:booth|table|stool|chair|seat|bench|cushion|step)) (?:by|near|against|under) the (?:wall|window|door|stove|mirror|counter|bar|stairs)\b/, '$1');
+  const seat = text.replace(/(\b(?:a|an|the)(?: [a-z]+)? (?:booth|table|stool|chair|seat|bench|cushion|step)) (?:by|near|against|under) the (?:wall|window|door|stove|mirror|counter|bar|stairs)\b/, '$1');
+  // (docs/66: or where it says where somebody was doing something, the doing alone: "nursing a glass of tea
+  // and telling the barman about his feet", never "at the bar" twice in one paragraph of who's there.)
+  return clash(seat) ? seat.replace(SPOT_AFTER, (m: string, w0: string) => (spots.has(spotKey(m.trim())) && !/^(?:was|were|sat|stood|leaned|stayed)$/.test(w0) ? '' : m)).replace(/\s+([,.])/g, '$1') : seat;
 }
 
 /** docs/62, P8: whether tonight has said already that a place keeps no watch ("No clerk, no doorman, nobody watching the stairs"). */
@@ -1350,7 +1358,11 @@ function inClientMouth(c: BoardCase, text: string, about?: PersonId): string {
   // (docs/66, P5: "Bellucci … is three weeks behind on the rent" read as the client's rent: theirs.)
   if (about && lean()) text = text.replace(/\bbehind on the rent\b/, `behind on ${pronOf(c, about).his} rent`);
   // (docs/66, skim round 1: "Belkin … owes Wexler money, and he has started asking for it": the one owed, by name.)
-  if (lean()) text = text.replace(/\bowes ((?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?[A-Z][\w’]+) money, and (?:he|she) /, 'owes $1 money, and $1 ');
+  // (Only where the one who owes is of that sex too: "Mabry owes Mrs. Blau money, and she isn’t a patient woman" was clear.)
+  if (lean()) text = text.replace(/\b((?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?[A-Z][\w’]+)(, [^,]+,)? owes ((?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?[A-Z][\w’]+) money, and (he|she) /, (m: string, a: string, g: string | undefined, b: string, pr: string) => {
+    const owes = c.people.find((x) => x.short === a || x.name === a);
+    return owes && pronOf(c, owes.id).he === pr ? `${a}${g ?? ''} owes ${b} money, and ${b} ` : m;
+  });
   return text
     .replace(new RegExp(`\\band ${me} haven’t\\b`), 'and I haven’t')
     .replace(new RegExp(`\\basked ${me}\\b`), 'asked me')
@@ -2477,7 +2489,9 @@ export function writeMotive(w: Writer, p: PersonId): void {
   license(w, ptr);
   // (docs/49: the card's "how he felt" is theirs, whoever else its pointer names.)
   const msrc = ptr.clause || `${person.short} was in the room`;
-  const mwhy = w.hand.draw('why', { kind: 'motive' }, withCaps({ ...s, src: msrc }), { plain: true });
+  // (docs/66, P3: lean, the asking is the reason: "Doyle had said he was with Kaminsky at nine. I asked Kaminsky
+  // about Belkin." said a pointer that had nothing to do with the question.)
+  const mwhy = lean() ? null : w.hand.draw('why', { kind: 'motive' }, withCaps({ ...s, src: msrc }), { plain: true });
   put(w, 'why', mwhy, 'narrator', { ...(PLAN.ops ? { about: [p] } : {}), ...sit(w, mwhy, `${cap(msrc)}.`) });
   const look = setUp(w, p);
   const staged = w.hand.draw('staging', { kind: stageKind(c, w.run.at), who: 'person', manner: mannerOf(c, p) }, s);

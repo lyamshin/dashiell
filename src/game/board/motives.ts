@@ -84,7 +84,7 @@ const PAPERS_SAID: Record<string, string> = {
 // been in 1921" left a reader asking what the grudge was.)
 const PAPERS_LEAN: Record<string, string> = {
   m0: '{victim} had kept a file on {name}{g}, thick enough to matter.',
-  m1: '{name}{g} had been paying {dhim} for years.',
+  m1: '{victim} had been squeezing {name}{g} for years.',
   m2: '{victim} knew where {name}{g} had been in 1921.',
   m3: '{name}{g} owed {dhim} four hundred dollars.',
   m4: '{name}{g} owed {dhim} the rent on a shop, and it was being called in.',

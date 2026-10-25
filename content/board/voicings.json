@@ -1429,7 +1429,7 @@
   {"id": "present/back-3", "shape": "PRESENT", "requires": ["back"], "forbids": ["lean"], "template": "{Who} had come back in, and was {where}."},
   {"id": "present/back-lean-1", "shape": "PRESENT", "requires": ["back", "lean"], "template": "{Who} was in by then, {where}."},
   {"id": "present/back-lean-2", "shape": "PRESENT", "requires": ["back", "lean"], "template": "By then {who} was {where}."},
-  {"id": "present/ident-1", "shape": "PRESENT", "requires": ["ident"], "template": "The {noun} {where} was {who}."},
+  {"id": "present/ident-1", "shape": "PRESENT", "requires": ["ident"], "template": "{Who} was the {noun} {where}."},
   {"id": "present/back-d1", "shape": "PRESENT", "forbids": ["lean"], "requires": ["back"], "template": "Like a bad penny, {who} had drifted back in and was {where}."},
   {"id": "motive-set/own", "shape": "MOTIVE-SET", "requires": ["own"], "template": "That was {person}’s reason, in {person:their} own words."},
   {"id": "motive-set/own-2", "shape": "MOTIVE-SET", "requires": ["own"], "template": "That was the reason, and {person} had given it in {person:their} own words."},

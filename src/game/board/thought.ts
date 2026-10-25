@@ -274,7 +274,9 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     // (docs/66, P3: after a story that didn't check out, the part of it that did is said only at an hour
     // that matters: "Hauck did see him at the Hauck flat at eight, though." after "he said he was home at
     // ten, but Pickering passed him on Second Avenue" contrasted with nothing.)
-    const restOutside = lean() && t.sentences.length > 0 && !!best && !best[1].hs.some((h) => win.includes(h));
+    // (And once the facts have settled the hour, only at that hour: "Some of Glick’s evening checked out: …
+    // at nine" when it happened at ten named him a third time for an hour that no longer mattered.)
+    const restOutside = lean() && t.sentences.length > 0 && !!best && !best[1].hs.some((h) => win.includes(h) && (a.possibleHours.length !== 1 || a.possibleHours.includes(h as Hour)));
     if (best && !settles && !restOutside && !(t.sentences.length > 0 && t.sentences.some((x) => x.includes(best[0].replace(/ had( said)?$/, ''))))) {
       const [src, g] = best;
       const namedSoFar = new Set<string>();
