@@ -35,7 +35,7 @@ Each is a kind of line round 6 stopped on, read over a whole night as a player r
 ### 1.3 Pronouns, and the wrong fact (P2)
 
 - **The cause of "Ruggiero had said she was with Hanrahan at seven, and with him at eight."** Two things. The account's pointer named only the person it pointed at, so "with Winslow and Dandridge at eight" became "with Winslow at eight" (wrong: she was with both); and the reference pass made the second of two parallel names, "with Winslow", into "him" (the paragraph before had a man in it). Fixed where each happens: the pointer says the company whole (`thread.ts` `pointerSaid`); the second of two parallel phrases ("with X at seven, and with Y at eight") keeps its name (`refer.ts`, `parallel`); and the arrival no longer says a pointer to somebody in the room at all (§1.4), which is where this one stood.
-- **The reference pass** (`refer.ts` `resolves`, `unclaimed`): a pronoun is never somebody's when an answer since named somebody else of that sex ("She had said she was at the Shamrock at nine, and he hadn’t seen her there", the "he" Zeldin's from a paragraph back, after Reinhardt's answer named Winslow and Dandridge); nor when the sentence before gave a pronoun of that sex to somebody else ("I’d find her at Sokol’s back room. She gave me the night…"); nor when the narration's last person of that sex, however far back, was somebody else. The hand-off is about whom it hands off to (`pages.ts` `handOff`, `about`), so its pronouns are theirs and the card about the speaker after it is said by name ("Ellery gave me the night the way a good waiter brings the check"). The office's pet's own pronoun is marked as the pet's ("and now he was gone"), so the client's card after it says "My client sat.", not "He sat."
+- **The reference pass** (`refer.ts` `resolves`, `unclaimed`): a pronoun is never somebody's when an answer since named somebody else of that sex ("She had said she was at the Shamrock at nine, and he hadn’t seen her there", the "he" Zeldin's from a paragraph back, after Reinhardt's answer named Winslow and Dandridge); nor when the sentence before gave a pronoun of that sex to somebody else ("I’d find her at Sokol’s back room. She gave me the night…"); nor when the narration's last person of that sex, however far back, was somebody else. The hand-off is about whom it hands off to (`pages.ts` `handOff`, `about`), so its pronouns are theirs and the card about the speaker after it names them, by name or, where the page has named them twice, by their job ("The head waiter gave me the night the way a good waiter brings the check", for main's "She gave me the night…" after "I’d find her at Sokol’s back room", Medium 14 on the oracle's route). The office's pet's own pronoun is marked as the pet's ("and now he was gone"), so the client's card after it says "My client sat.", not "He sat."
 - **The pronoun check, extended** (`plan/measure.ts` `pronounAntecedents`, inside `pronounAmbiguity` and `pageAmbiguity`): besides two people a pronoun could be, it now catches a pronoun with nobody of its sex to be ("no antecedent"), one across an answer that named somebody else of that sex ("across speech"), the second of two parallel names made a pronoun ("parallel"), and a card about the page's speaker after the narration turned to somebody else ("speaker card"). The office's subject is the client; "he said" after a quotation is its speaker's.
 
 ### 1.4 Pointers and the way in (P3)
@@ -108,7 +108,7 @@ Each is a kind of line round 6 stopped on, read over a whole night as a player r
 
 - **A card about a speaker after the hand-off to somebody else** (Medium 14): §1.3.
 - **"I went over to Thorndike." to somebody I was already talking to** (`namePut`): "I turned back to Thorndike." where the page before was a word with them in the same room.
-- **The report page's lead-in** folds the report away as before; its cards say "read it through once", never "signed" or "folded it… safe from me".
+- **The report page's lead-in** no longer puts the report away before it's filled in (`connective.json`): "I smoothed it flat and read it through once, before I wrote a word." for "I folded it once and put it in my inside pocket, where it would be safe from me.", and "I read it through once, the way you read a menu in a place you can’t afford." for "I signed it the way I sign everything".
 - **Poached 5's turn says "nine" four times**: open (§5).
 - **"filed under something else"** (`telling.json`): gone (§1.11).
 
@@ -142,7 +142,58 @@ Built in a fork of this branch (`clarity-4-chrome`, merged at d238cfb):
 
 ## 2. The measures
 
-TBD
+30 nights a tier, both worlds; "before" is main (`7d9033c`, puzzle-fixes merged), read with this build's measures; "after" is this build at a2b29bd (e60cefd only marks a motive page's reason as carried, which no prose reads), in lean.
+
+**The new hinge rules**, 7,668 hits on main to 0, on the oracle's, the wanderer's and the reader's nights (`scratchpad/c4/hinge.mts`, this build's lint over either tree), main → this build:
+
+| rule | main | this build |
+|---|---|---|
+| unsettled | 289 | 0 |
+| hedge | 402 | 0 |
+| restated | 1042 | 0 |
+| find | 202 | 0 |
+| presumes | 122 | 0 |
+| newcomer | 512 | 0 |
+| office | 804 | 0 |
+| alone | 723 | 0 |
+| walk | 1854 | 0 |
+| log | 294 | 0 |
+| papers | 519 | 0 |
+| staging | 411 | 0 |
+| retired | 494 | 0 |
+
+docs/62's nineteen are 0 on both. Every tier, both worlds, is 0 on every rule, and `board-prose`'s "hinge lines" column is 0 at every tier.
+
+**The pronoun check, extended** (§1.3), 30 nights a tier, both worlds, three routes (`scratchpad/c4/amb.mts`): main 355 (no antecedent 293, across speech 41, the second of two parallel names made a pronoun 5, a card about the speaker after the narration turned to somebody else 16) → this build 0. The old check (a pronoun two people could be) is 0 in both, on the oracle's route and on all three.
+
+**The pages**, main → this build:
+
+| world | tier | words a page (median) | words per new fact | list smell, pages (oracle) | turn recap, words (median [most]) |
+|---|---|---|---|---|---|
+| dealt | Raw | 107 → 112 | 67.1 → 68.3 | 17 → 23 of 280 | 40 [49] → 40 [50] |
+| dealt | Coddled | 102 → 102 | 63.6 → 64.2 | 9 → 14 of 276 | 46 [65] → 45 [65] |
+| dealt | Poached | 110 → 110 | 57.9 → 57.8 | 17 → 17 of 398 | 50 [69] → 50 [69] |
+| dealt | Soft-boiled | 112 → 111 | 54.3 → 53.9 | 23 → 33 of 383 | 67 [79] → 63 [84] |
+| dealt | Medium | 103 → 103 | 50.9 → 50.2 | 27 → 39 of 441 | 68 [84] → 64 [77] |
+| dealt | Hard-boiled | 97 → 97 | 48.0 → 46.1 | 17 → 20 of 435 | 43 [52] → 43 [52] |
+| neighbourhood | Raw | 126 → 126 | 71.7 → 71.9 | 13 → 5 of 280 | 42 [50] → 42 [50] |
+| neighbourhood | Coddled | 113 → 115 | 68.8 → 69.3 | 11 → 12 of 276 | 47 [66] → 47 [66] |
+| neighbourhood | Poached | 118 → 115 | 59.0 → 58.7 | 36 → 29 of 407 | 54 [66] → 55 [66] |
+| neighbourhood | Soft-boiled | 124 → 122 | 58.8 → 58.3 | 51 → 50 of 385 | 68 [88] → 69 [87] |
+| neighbourhood | Medium | 115 → 115 | 56.3 → 55.6 | 33 → 36 of 436 | 69 [85] → 66 [86] |
+| neighbourhood | Hard-boiled | 110 → 104 | 53.8 → 50.9 | 26 → 29 of 435 | 51 [58] → 51 [58] |
+
+Words a page moved −5.5% to +4.7% (the gate was +5% at most): the way in that says who's in the room, the ident after the answer, and "So it happened at ten" cost words at Raw (+4.7%, the dealt world's list pages: 119 → 125); the pointers the way in and the asking no longer say, the hour's reason once a night at Hard-boiled, and the papers' one sentence a grudge gave them back. Every turn is inside its target (70 words at Raw to Poached, 90 above) on every night. List smell rose at five of the dealt world's tiers (the idents, "Moretti was the lodger in the front room.", and the hour said, "So Fritz was taken at ten.", are short sentences of their own) and fell at the neighbourhood's Raw and Poached; it isn't a gate.
+
+The rest held:
+
+- **board-prose**, 30 nights, both worlds: every lint 0 at every tier (names said three times, clues three times, place names bolted on, banned phrases, signposts, gags, a pet called "it", the grid, posture, knocking, engine words, repeats, hour slots, continuity, tics, assembly, the hinge lines); reader lint, correspondence, thoughts over their level and plain terms 0; cards twice and sentences twice 0; job pages with a thought naming an earlier fact 100% at every tier in both worlds.
+- **Round trip and clarity** (`scripts/roundtrip.ts --nights 30 --routes oracle,wanderer,reader`): every plain page and every voiced composite reads back, and every voiced composite is clear, 100.0% on every tier in both worlds. The flesh column's misses are main's, Miss Nowak naming Mrs. Rafferty (5 and 4 units).
+- **The claudisms gates** hold: one simile frame a page, each night tic once, a running gag twice at most.
+- **Jargon**: plain terms 0; engine words as main (the report's, verdict's and curtain's "cleared", docs/64's word); `test/plain-words.test.ts` passes, with the chrome's two new tests.
+- **Dealt boards** hash the same, seeds 1–40, every tier and type, both worlds: dealt 600 `7b413655bf181abb`, neighbourhood 600 `1c2bed28c49370c6` (main's). Nothing in `src/gen/` changed.
+- **board-measure** (`--seeds 20`, this build against main): every puzzle column is unchanged at every row (the oracle, par, the shortcuts and the confession route, the wanderer, the reader in all its kinds, the other liar's story, lint issues 0, plain-terms hits 0, choices a page); only "callback pages" moves, by one to four points either way, at twelve rows. There is no "when" column to change: the hour said at the link is prose, and the solvers read the board.
+- **The suite**: 836 tests, 31 files, pass (`npx vitest run --minWorkers=1 --maxWorkers=3`), with `test/hinge.test.ts`'s new rules (the line each catches and the line said instead) and the pronoun check's four kinds. tsc is clean.
 
 ## 3. The skim test
 
