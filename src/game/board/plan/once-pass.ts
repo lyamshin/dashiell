@@ -55,7 +55,6 @@ const TRAILING_SIMILE = /,? (?:like (?:a|an|somebody|someone|the) |as if |as tho
 const ONLY_SIMILE = /^(?:The way|Like|As if|As though)\b[^“”]*[.!?]$/;
 
 export function sayOnce(paras: Item[][], ctx: PlanCtx): void {
-  void ctx;
   const items = paras.flat();
   // The sentences said so far on the page, in order, with the item each belongs to.
   const before = (it: Item): string[] => {
@@ -68,21 +67,23 @@ export function sayOnce(paras: Item[][], ctx: PlanCtx): void {
     return out;
   };
   // 1. A thought's fact that says nothing new.
-  // (Round 7, Medium 21: unless the page before asked for it: "If Winslow told it the same way, it was the
-  // Eagle club office and not Kowalski’s." and then Winslow's answer with nothing after it. The agreement
-  // is the answer to the page's own question, and stays.)
-  const tail = stripMarks(ctx.earlier ?? '').slice(-600);
-  const asked = /\bIf (?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?\S+ (?:told it the same way|said the same)\b/.test(tail);
+  // (Round 7, Medium 21: unless the page before asked for it, "If Winslow told it the same way, it was the
+  // Eagle club office and not Kowalski’s.", and it doesn't say the answer's words again: the agreement is
+  // the answer to the page's own question. One that would say the answer's words again says only the
+  // agreement: "So he had it the same as Sweeney: the Eagle club office at ten." → "So he had it the same
+  // as Sweeney.")
+  const asked = /\bIf (?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?\S+ (?:told it the same way|said the same)\b/.test(stripMarks(ctx.earlier ?? '').slice(-600));
   for (const it of items) {
     if (it.kind !== 'fact' || it.beat !== 'thought' || !it.text.trim()) continue;
-    if (asked && it.relation === 'confirms') continue;
     const earlierFacts = items.slice(0, items.indexOf(it)).filter((x) => x.kind === 'fact' && x.text.trim());
     const said = new Set(earlierFacts.flatMap((x) => (x.props ?? []).flatMap(factAtoms)));
     const mine = (it.props ?? []).flatMap(factAtoms);
     const allSaid = mine.length > 0 && mine.every((a) => said.has(a));
     const prior = before(it);
     const echoes = sentencesOf(stripMarks(it.text)).some((s) => saysAgain(s, prior));
-    if (allSaid || echoes) it.text = '';
+    const bare = asked && it.relation === 'confirms' ? /^([^:“”]+?): [^:“”]+\.$/.exec(it.text.trim()) : null;
+    if (bare && (allSaid || echoes)) it.text = `${bare[1]}.`;
+    else if (allSaid || echoes) it.text = '';
   }
   // (docs/62, docs/60 §6: an aside that says what the fact before it did, "That much held.", goes with
   // it: never standing alone after its agreement went as said once.)

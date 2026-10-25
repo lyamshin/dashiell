@@ -359,7 +359,9 @@ function situOf(w: Writer, job: SheetJob): SituCtx {
     swap: (a, b) => w.hand.swap(a, b),
     placeName: w.run.at === OFFICE ? 'the office' : placeOf(c, w.run.at)?.short,
     weather: w.run.weather,
-    ...(theatreAvoid(c, w.run.at) || (job === 'search' && w.hand.avoid?.source.includes('Rooms where')) || seatAvoid(w, subject) ? { avoid: [theatreAvoid(c, w.run.at), job === 'search' && w.hand.avoid?.source.includes('Rooms where') ? PAPERS_NOT_ROOM : undefined, seatAvoid(w, subject)].filter((x): x is RegExp => !!x).reduce((a, b) => alsoAvoid(a, b)) } : {}),
+    // (Round 7, seed 1: on the office page the reference pass says who the client is, a role once and then
+    // a pronoun or the name: a card's own "my client" made it three or four times a page.)
+    ...(theatreAvoid(c, w.run.at) || (job === 'search' && w.hand.avoid?.source.includes('Rooms where')) || seatAvoid(w, subject) || (lean() && job === 'office') ? { avoid: [theatreAvoid(c, w.run.at), job === 'search' && w.hand.avoid?.source.includes('Rooms where') ? PAPERS_NOT_ROOM : undefined, seatAvoid(w, subject), lean() && job === 'office' ? /\bmy client\b/i : undefined].filter((x): x is RegExp => !!x).reduce((a, b) => alsoAvoid(a, b)) } : {}),
     // docs/55 1c: the page's person has a line held against them.
     ...(subject && personOf(c, subject) && collisionsOf(c, w.run, subject).length > 0 ? { crossed: true } : {}),
     // docs/55 2: already inside, and sitting or not, from the pages before in this room.
@@ -1821,7 +1823,14 @@ export function writeArrive(w: Writer, place: PlaceId): void {
     const fn = fence ? shortOther(fence.name).replace(/,.*$/, '') : '';
     const before = stripMarks(w.before.log.filter((pg) => pg.at === place).map((pg) => pg.blocks.map((b) => (b.kind === 'prose' && b.voice !== 'answer' ? b.text : '')).join(' ')).join(' '));
     const spot = fn ? new RegExp(`\\b${esc(fn)} was the one ((?:in|at|on|by) the [^.,;]+)`).exec(before)?.[1] : undefined;
-    if (spot) put(w, 'arrival', `${fn} was still ${spot}.`, 'presence', { about: [], tex: 'keep', runOn: true });
+    // (A spot once in a paragraph of who's there, docs/62 item 11: where the room has said it, "still there".)
+    const room = stripMarks((w.parts.arrival ?? []).map((x) => x.text).join(' '));
+    // (Its noun, "booth", or its "the back": "Ashby sat at the back with his coat still on. Lou was still in
+    // the back booth." said the back twice.)
+    const spotWord = spot ? /(\w+)$/.exec(spot)?.[1] : undefined;
+    const spotThe = spot ? /\bthe (\w+)/.exec(spot)?.[1] : undefined;
+    const saidSpot = (!!spotWord && new RegExp(`\\b${spotWord}\\b`, 'i').test(room)) || (!!spotThe && new RegExp(`\\bthe ${spotThe}\\b`, 'i').test(room));
+    if (spot) put(w, 'arrival', saidSpot ? `${fn} was still there.` : `${fn} was still ${spot}.`, 'presence', { about: [], tex: 'keep', runOn: true });
   }
   // Why here: the pointers to what waits in this room, from what's held, the starred one first.
   const lastHand = w.before.log[w.before.log.length - 1]?.board?.handoff;
@@ -3025,7 +3034,8 @@ function recapClausesMarked(d: BoardDeal, run: BoardRun): Clause[] {
         if (k.response === 'admit' && lie) {
           const y = (k.names ?? [])[0];
           const checked = y ? run.asked.includes(`account:${y}`) : false;
-          out.push({ key: `admit:${p}`, text: `${nameOf(c, p)} owned up to ${placeName(c, lie.truth)}${y ? `, with ${nameOf(c, y)}` : ''}${y && !checked ? `, and ${nameOf(c, y)} could say whether that was so` : ''}.`, hours: [], people: [p, ...(y ? [y] : [])], places: [lie.truth], props: [{ k: 'ADMIT', person: p, place: lie.truth, ...(y ? { witness: y } : {}) }], say: { shape: 'REACTION', flags: ['owned', ...(y ? ['witness', checked ? 'checked' : 'unchecked'] : ['alone'])], args: { person: { t: 'person', id: p }, place: { t: 'place', id: lie.truth }, ...(y ? { witness: { t: 'person', id: y } } : {}) } } });
+          // (Round 7, U2: what they admitted is where they were, said plainly: never "owned up to Sokol’s back room".)
+          out.push({ key: `admit:${p}`, text: `${nameOf(c, p)} admitted ${pronOf(c, p).he} was at ${placeName(c, lie.truth)}${y ? `, with ${nameOf(c, y)}` : ''}${y && !checked ? `, and ${nameOf(c, y)} could say whether that was so` : ''}.`, hours: [], people: [p, ...(y ? [y] : [])], places: [lie.truth], props: [{ k: 'ADMIT', person: p, place: lie.truth, ...(y ? { witness: y } : {}) }], say: { shape: 'REACTION', flags: ['owned', ...(y ? ['witness', checked ? 'checked' : 'unchecked'] : ['alone'])], args: { person: { t: 'person', id: p }, place: { t: 'place', id: lie.truth }, ...(y ? { witness: { t: 'person', id: y } } : {}) } } });
         } else if (k.response === 'second-lie' && k.secondLie?.place) {
           const again = run.puts.some((x) => x.person === p && x.hour === st.h && x.again && x.landed);
           out.push({

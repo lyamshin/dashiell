@@ -253,7 +253,8 @@ describe('round 5, U11: the streets where they really run', () => {
     const { run } = played(MEDIUM14);
     const page = run.log[1]?.blocks.map((b) => ('text' in b ? b.text : '')).join(' ') ?? '';
     // (docs/66, P7: the bearing on the night's first walk, in whichever card says it.)
-    expect(page).toMatch(/uptown and east,? (?:to|and I was at) the Hauck flat|Hauck flat (?:was|lay) [^.]* uptown and east/);
+    // (Round 7, P2: the walk says how far and which way, and the arrival names the place.)
+    expect(page).toMatch(/uptown and east,? (?:to|and I was at) the Hauck flat|Hauck flat (?:was|lay) [^.]* uptown and east|^It was [^.]* uptown and east\b[^]*[Tt]he Hauck flat/);
     expect(page).not.toMatch(/downtown/);
   });
 });

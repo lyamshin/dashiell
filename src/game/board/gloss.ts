@@ -143,7 +143,9 @@ export function introOf(c: BoardCase, id: PersonId, here?: string): string | nul
     // (A keeper the case gives no trade, "Mr. Feld, at the counter at Feld’s studio": who keeps the place.)
     const kept = c.lists.find((l) => l.watcher === id)?.place;
     const name = kept ? c.places.find((x) => x.id === kept)?.short : undefined;
-    return name ? `who keeps ${name}` : null;
+    // (Round 7, P2: in the place itself, "who keeps the place": "I went up to Feld’s photographic studio …,
+    // and Hanrahan, who keeps Feld’s studio, was…" said its name twice.)
+    return name ? (kept === here ? 'who keeps the place' : `who keeps ${name}`) : null;
   }
   if (p.role === 'company') {
     const w = /^was with (.+?) at .+?; nobody else knows it$/.exec(d);

@@ -768,7 +768,9 @@ function papers(run: BoardRun): HingeIssue[] {
   run.log.forEach((p, i) => {
     if (p.board?.job !== 'search' || !/\bpapers?\b|\bdesk\b/.test(p.board?.q ?? '') && !prose(p).some((b) => /\bgrudge\b/.test(b.text))) return;
     const all = prose(p).map((b) => narr(b.text)).join(' ');
-    for (const [w, re] of [['the dead man', /\bthe dead (?:man|woman)\b/g], ['papers', /\bpapers\b/g], ['grudge', /\bgrudges?\b/g]] as const) {
+    // (Round 7, P8: the dead by their role twice at most; "the dead man’s old friend", whose, is a role the
+    // line needs beside a "him" that's the one on the page, and isn't counted.)
+    for (const [w, re] of [['the dead man', /\bthe dead (?:man|woman)\b(?!’s)/g], ['papers', /\bpapers\b/g], ['grudge', /\bgrudges?\b/g]] as const) {
       const n = [...all.matchAll(re)].length;
       // (The dead by their role three times at most: a page of grudges against a woman, by women, needs her
       // by role where "her" could be the one on the page.)
@@ -1072,6 +1074,7 @@ function both(run: BoardRun): HingeIssue[] {
 
 const HW = ['twelve', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven'];
 const HC = '(?:Seven|Eight|Nine|Ten|Eleven|Twelve)';
+const HL = '(?:seven|eight|nine|ten|eleven|twelve)';
 
 /** The answers on a page, whole, as the player reads them. */
 function answers(p: Page): string[] {
@@ -1123,7 +1126,9 @@ function timetable(run: BoardRun): HingeIssue[] {
     for (const a of answers(p)) {
       const q = a.replace(/^“|”$/g, '');
       const hit = (why: string, m: string) => out.push({ page: i, rule: 'timetable', detail: `${why}: “${m.slice(0, 100)}”` });
-      const colon = new RegExp(`(?:^|[.!?]\\s+|“)${HC}(?: o’clock)?(?: and \\w+)?:`).exec(a);
+      // (And with its lead-in, "Start with seven: I took a letter round", "First, seven o’clock: Grasso",
+      // "Then nine:", "From the top:".)
+      const colon = new RegExp(`(?:^|[.!?]\\s+|“)(?:(?:Then|Next|First|First off|Start with|To start with|To begin|To begin at|To begin, at|My evening began at|The first I can give you is),? )?(?:${HC}|${HL})(?: o’clock)?(?: and \\w+)?:|(?:^|[.!?]\\s+|“)From the top:`).exec(a);
       if (colon) hit('an hour and a colon', colon[0]);
       if (/: there at \w+/.test(a)) hit('the means and a colon', a);
       const frag = new RegExp(`(?:^|[.!?]\\s+|“)${HC} through \\w+\\.`).exec(a);
@@ -1138,7 +1143,9 @@ function timetable(run: BoardRun): HingeIssue[] {
       const ix = (w: string) => HW.indexOf(w);
       const suffix = /\bleft after (\w+)\. At (\w+)(?: and \w+)? I had nobody with me\.(?![^“”]*\b(?:came by|joined me|looked in) at\b)/.exec(q);
       const prefix = /\bAt (\w+)(?: and (\w+))? I had nobody with me\. (?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?[A-Z]\S* (?:came by|joined me) at (\w+)\b/.exec(q);
-      if ((suffix && ix(suffix[2] as string) === ix(suffix[1] as string) + 1) || (prefix && ix(prefix[3] as string) === ix((prefix[2] ?? prefix[1]) as string) + 1 && (!prefix[2] || ix(prefix[2]) === ix(prefix[1] as string) + 1))) hit('the hours alone as a row', q);
+      const before = prefix ? q.slice(0, prefix.index) : '';
+      const first = !/\b(?:with me at first|left after|came by at|joined me at|kept me company at|looked in at)\b/.test(before);
+      if ((suffix && ix(suffix[2] as string) === ix(suffix[1] as string) + 1) || (prefix && first && ix(prefix[3] as string) === ix((prefix[2] ?? prefix[1]) as string) + 1 && (!prefix[2] || ix(prefix[2]) === ix(prefix[1] as string) + 1))) hit('the hours alone as a row', q);
     }
   });
   return out;
@@ -1173,7 +1180,7 @@ function ahead(run: BoardRun): HingeIssue[] {
   run.log.forEach((p, i) => {
     for (const b of prose(p)) {
       if (b.voice === 'answer') continue;
-      for (const s of sentencesOf(narr(b.text))) if (/\bhadn’t been at [^.]+? while the [a-z ]+? was (?:in|on) the\b/.test(s)) out.push({ page: i, rule: 'ahead', detail: `“${s.trim().slice(0, 110)}”` });
+      for (const s of sentencesOf(narr(b.text))) if (/\bhadn’t been at (?:(?:Mrs|Mr|Dr)\.|[^.])+? while the [a-z ]+? was (?:in|on) the\b/.test(s)) out.push({ page: i, rule: 'ahead', detail: `“${s.trim().slice(0, 110)}”` });
     }
   });
   return out;
@@ -1231,8 +1238,9 @@ function contradicts(c: BoardCase, run: BoardRun): HingeIssue[] {
  * P7, **hint**: a hint's words (the starred choices' reasons and the hint the player asked for): a
  * shared reason said again on a later star ("Ashby, Lindemann and Winslow knew the door would be
  * unlocked, and nobody had said where any of them was at ten" on every star of three pages), and a
- * suspect's evening pointed at by an hour that doesn't matter ("Bidwell saw Callahan at Moe’s at
- * seven — ask Callahan where she was").
+ * suspect's or a witness's evening pointed at by an hour that doesn't matter ("Bidwell saw Callahan at
+ * Moe’s at seven — ask Callahan where she was"; "Bledsoe says Crowninshield was with her at Mrs. Nagy’s
+ * at nine", on Raw 7, where ten is the hour).
  */
 function hintWordsLint(d: BoardDeal, run: BoardRun, env: LintEnv = {}): HingeIssue[] {
   const c = d.kase;
@@ -1249,8 +1257,9 @@ function hintWordsLint(d: BoardDeal, run: BoardRun, env: LintEnv = {}): HingeIss
         if (was !== undefined && was !== i) out.push({ page: i, rule: 'hint', detail: `a shared reason again (first on page ${was + 1}): “${why.slice(0, 90)}”` });
         else said.set(why, i);
       }
-      const own = /^(?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?[A-Z][\w’]+ (?:saw|had seen) [^—]*? at (seven|eight|nine|ten|eleven|twelve)$/.exec(why);
-      if (own && /\b(?:ask \S+ where (?:he|she) was|Where were you tonight)/.test(s.why + s.command) && /^(?:go |ask \S+ evening)/.test(s.command) && !office.includes(HW.indexOf(own[1] as string) as Hour)) out.push({ page: i, rule: 'hint', detail: `an hour that doesn't matter: “${s.why.slice(0, 90)}”` });
+      const own = /^(?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?[A-Z][\w’]+ (?:saw|had seen|says [^—]*? was with (?:him|her)) [^—]*? at (seven|eight|nine|ten|eleven|twelve)$/.exec(why);
+      const toEvening = /^account:/.test(s.q) && (/^ask \S+ evening$/.test(s.command) || (/^go /.test(s.command) && /— ask \S+ where (?:he|she) was$/.test(s.why)));
+      if (own && toEvening && !office.includes(HW.indexOf(own[1] as string) as Hour)) out.push({ page: i, rule: 'hint', detail: `an hour that doesn't matter: “${s.why.slice(0, 90)}”` });
     }
   });
   return out;
@@ -1274,10 +1283,11 @@ function repeats(c: BoardCase, run: BoardRun): HingeIssue[] {
     const n = narr(all);
     if (isMurder(c) && p.board?.job === 'search' && new RegExp(`\\b${esc(c.means.name.replace(/^(?:a|an|the) /, ''))}\\b`).test(n) && /\bcome from\b|\bcame from\b|\bhad been at\b/.test(n)) found = found < 0 ? i : found;
     if (found >= 0 && found < i && p.board?.job === 'arrive' && p.at === c.means.origin && new RegExp(`\\b(?:had come|came) from ${esc(c.places.find((x) => x.id === c.means.origin)?.short ?? '#')}`).test(n)) out.push({ page: i, rule: 'repeats', detail: 'the means’ origin again on the way in' });
-    // (Once a page; whose, "my client’s lodger", once more, where the name would leave a "his" to either man.)
+    // (Once a page; whose, "my client’s lodger", "my client’s place", twice more, where the name would
+    // leave a "his" to either man: never four times, round 7's seed 1.)
     const mc = (n.match(/\bmy client\b(?!’s)/gi) ?? []).length;
     const mcs = (n.match(/\bmy client’s\b/gi) ?? []).length;
-    if (mc >= 2 || mc + mcs >= 3) out.push({ page: i, rule: 'repeats', detail: `“my client” ×${mc + mcs} on the page` });
+    if (mc >= 2 || mc + mcs >= 4) out.push({ page: i, rule: 'repeats', detail: `“my client” ×${mc + mcs} on the page` });
   });
   return out;
 }
@@ -1331,7 +1341,15 @@ function drew(c: BoardCase, run: BoardRun): HingeIssue[] {
     if (!first || !pl || pl.scene) return;
     const units = p.board?.units ?? [];
     const why = units.some((u) => (u.kind === 'gap' && u.slot === 'why-here') || u.beat === 'why' || u.voice === 'thought');
-    if (!why) out.push({ page: i, rule: 'drew', detail: `the way into ${pl.short} says nothing of why` });
+    // (Only where something held drew me: somebody in the room the night had put here before, in a sentence
+    // with the place in it. A wanderer who walks in on nothing has nothing to say why, and a name the night
+    // gave only a motive, "Miss Nowak: the dead man was at war with her friend.", put her nowhere.)
+    const earlier = run.log.slice(0, i).flatMap((x) => prose(x).flatMap((b) => strip(b.text).replace(/\s+/g, ' ').split(/(?<=[.!?”])\s+/)));
+    const said = (s: string, x: { short: string }) => new RegExp(`(?<![\\w’])${esc(x.short)}(?![\\w])`).test(s);
+    const here = units.filter((u) => u.beat === 'arrival').map((u) => strip(u.text)).join(' ');
+    const head = pl.short.replace(/^(?:the|Mrs\.|Mr\.|Miss|Dr\.) /, '').split(' ')[0] ?? pl.short;
+    const drawn = c.people.filter((x) => !x.object && x.role !== 'watcher' && x.role !== 'client').some((x) => said(here, x) && earlier.some((s) => said(s, x) && (s.includes(pl.short) || (head.length >= 4 && s.includes(head)))));
+    if (!why && drawn) out.push({ page: i, rule: 'drew', detail: `the way into ${pl.short} says nothing of why` });
     if (p.board?.drew) {
       const next = run.log[i + 1];
       if (next?.at === p.at && prose(next).some((b) => /“[^”]*\bsaw you\b/.test(b.text))) out.push({ page: i + 1, rule: 'drew', detail: 'what drew me, said again to their face' });

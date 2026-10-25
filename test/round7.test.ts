@@ -89,9 +89,11 @@ describe('B2: a telling by change says a coming or going only where the board ha
 
   it('Poached 17, Dandridge: Renfro, at Moe’s all evening, never "left after eight"', () => {
     const { run } = night(POACHED17);
-    const p = pages(run).find((x) => x.includes('Start with seven')) as string;
+    const p = pages(run).find((x) => x.includes('I took a letter round to Mrs. Nagy’s')) as string;
     expect(p).not.toMatch(/Renfro and Quill were with me at first and left after eight/);
-    expect(p).toContain('Renfro kept me company at eight. Quill was with me at first and left after eight.');
+    // (docs/68 §6, done in docs/70: company said one way a stretch.)
+    expect(p).toContain('Renfro and Quill kept me company at eight.');
+    expect(p).not.toMatch(/Quill was with me at first and left after eight/);
   });
 });
 
@@ -136,7 +138,8 @@ describe('B5: "at the supper" only of who sat at the table', () => {
     const { d, run } = night(RAW23);
     const text = all(run);
     expect(text).not.toMatch(/Lindemann(?: and [A-Z]\w+)? (?:were|was) at the supper/);
-    expect(text).toContain('His lodger, Lindemann, a shoe clerk, was out, and had lost her key again.');
+    // (docs/70: whose lodger, by the role where "his" would follow Winslow's name.)
+    expect(text).toMatch(/(?:His|My client’s) lodger, Lindemann, a shoe clerk, was out, and had lost her key again\./);
     expect(text).toContain('Whoever it was knew the door would be unlocked: one of his guests at the supper at the Thorndike flat, or the lodger it was left unlocked for.');
     // (docs/67: Raw's elimination is the hint's now: what a hint says at the Odessa, after Hargrove.)
     const odessa = night(save(23, 0, undefined, dos('go scene', 'search scene', 'go bar', 'ask barkeep list', 'ask winslow evening', 'go neighbours', 'ask xwatcher list')));

@@ -50,7 +50,8 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
     case 'CLAIM-SPAN': {
       // docs/59 item 2: who was with them, told by what changed.
       if (has('who-with')) {
-        if (has('alone')) return [['hours']];
+        // (Round 7, P1: the hours alone at the stretch's end or start, folded: "From then on it was just me.")
+        if (has('alone')) return has('rest') || has('before') ? [] : [['hours']];
         if (has('singles')) return [['pairs']];
         // (Round 7, B2: with them at those hours, no coming or going said.)
         if (has('seen')) return [['names'], ['hours']];

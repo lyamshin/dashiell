@@ -391,6 +391,9 @@ describe('docs/70: round 7’s joining text, a rule at a time (the line main sai
       '“Salerno was in from the start of the evening and back at nine. Quill was in from the start of the evening, like every night.”',
       '“After that, at eight, I went back to my room to write letters. At nine I went to the Eagle club office to write letters, by myself.”',
       '“Later, at eight, I went home to iron a shirt. Salerno was with me at first and left after eight. At nine and ten I had nobody with me.”',
+      '“Start with seven: I took a letter round to Mrs. Nagy’s, alone. Eight, I went to Moe’s to see who was in.”',
+      '“First, seven o’clock: Renfro and Salerno. Then eight: Renfro.”',
+      '“Eight, I was at Quill’s for the meeting, alone. At nine I went home.”',
     ])
       expect(t(s), s).toContain('timetable');
     for (const s of [
@@ -399,6 +402,9 @@ describe('docs/70: round 7’s joining text, a rule at a time (the line main sai
       '“Salerno was in from the start of the evening and back at nine. Quill was in early, like every night.”',
       '“After that, at eight, I went back to my room to write letters. At nine I went to the Eagle club office, by myself.”',
       '“Later, at eight, I went home to iron a shirt. Salerno was with me at first and left after eight. Then it was just me.”',
+      '“At seven I took a letter round to Mrs. Nagy’s, alone. Eight, I went to Moe’s to see who was in.”',
+      '“Seven o’clock, Renfro and Salerno. At eight, Renfro.”',
+      '“Eight, I was at Quill’s for the meeting. At nine I left the meeting and went home alone.”',
     ])
       expect(t(s).filter((x) => x === 'timetable'), s).toEqual([]);
   });
@@ -441,13 +447,18 @@ describe('docs/70: round 7’s joining text, a rule at a time (the line main sai
     const whole = 'Ashby, Lindemann and Winslow knew the door would be unlocked, and nobody had said where any of them was at ten';
     const mainStars = () => [{ q: 'account:ashby', why: `${whole} — ask Ashby where she was`, command: 'go neighbours' }];
     expect(hingeIssues(raw23, run, { pageStars: mainStars as never }).map((x) => x.rule)).toContain('hint');
+    // docs/68 §6: a suspect's evening pointed at by an hour that doesn't matter, and by the one that does.
+    const pr = (takeHint(p17, newBoardRun(p17)) as { run: BoardRun }).run;
+    const star = (why: string) => () => [{ q: 'account:callahan', why, command: 'go rooming' }];
+    expect(hingeIssues(p17, pr, { pageStars: star('Bidwell saw Callahan at Moe’s at seven — ask Callahan where she was') as never }).map((x) => x.rule)).toContain('hint');
+    expect(hingeIssues(p17, pr, { pageStars: star('nobody had said where Callahan was at nine — ask Callahan where she was') as never }).map((x) => x.rule)).not.toContain('hint');
   });
 
   it('repeats: "earlier in the evening" once, the means’ origin once, "my client" once a page', () => {
     const t = (dd: typeof d, ...pages: Page[]) => ruled(dd, on(dd, ...pages));
     expect(t(p17, at(p17, 'office', [{ text: '“Where had he been earlier in the evening?” I asked. “Moe’s, earlier in the evening, every night of the week,” Ruggiero said.' }]))).toContain('repeats');
     expect(t(p17, at(p17, 'office', [{ text: '“Where had he been tonight?” I asked. “Moe’s, every night of the week, tonight too,” Ruggiero said.' }]))).not.toContain('repeats');
-    expect(t(m14, at(m14, 'office', [{ text: 'Fritz lived at my client’s place, in a basket by the stove. “Mrs. Whitfield borrows Fritz,” my client said.' }]))).toContain('repeats');
+    expect(t(m14, at(m14, 'office', [{ text: 'Fritz lived at my client’s place, in a basket by the stove. “Mrs. Whitfield borrows Fritz,” my client said. My client took the chair across the desk.' }]))).toContain('repeats');
     expect(t(m14, at(m14, 'office', [{ text: 'Fritz lived at my client’s place, in a basket by the stove. “Mrs. Whitfield borrows Fritz,” he said.' }]))).not.toContain('repeats');
     const floor = p17.kase.finds.find((f) => f.gives.means)?.id as string;
     const found = at(p17, 'search', [{ text: 'A carving knife lay on the floor. It had come from the kitchen at Mrs. Nagy’s.', voice: 'thought' }], { q: `search:${floor}` });
@@ -475,9 +486,15 @@ describe('docs/70: round 7’s joining text, a rule at a time (the line main sai
     const sokol = p17.kase.places.find((x) => /Sokol/.test(x.short))?.id as string;
     const way = (blocks: B[], units: never[]) => at(p17, 'arrive', blocks, { units }, sokol);
     const room = 'I went round to the back of Sokol’s bakery, and Dandridge was sitting where he could see the door.';
-    expect(ruled(p17, on(p17, way([{ text: room }], [u(room, 'arrival')])))).toContain('drew');
+    const met = at(p17, 'list', [{ text: '“Dandridge was round at Sokol’s at seven, and gone by eight.”', voice: 'answer' }]);
+    expect(ruled(p17, on(p17, met, way([{ text: room }], [u(room, 'arrival')])))).toContain('drew');
     const why = 'Mrs. Nagy had seen Dandridge at her place at seven.';
-    expect(ruled(p17, on(p17, way([{ text: room }, { text: why }], [u(room, 'arrival'), u(why, 'why-here', { slot: 'why-here' })])))).not.toContain('drew');
+    expect(ruled(p17, on(p17, met, way([{ text: room }, { text: why }], [u(room, 'arrival'), u(why, 'why-here', { slot: 'why-here' })])))).not.toContain('drew');
+    // (A wanderer who walks in on somebody the night never named has nothing to say why, nor on somebody
+    // the night named only for a motive: that put him nowhere.)
+    expect(ruled(p17, on(p17, way([{ text: room }], [u(room, 'arrival')])))).not.toContain('drew');
+    const motive = at(p17, 'search', [{ text: 'Dandridge: the dead man had put his sister out of a lease.' }]);
+    expect(ruled(p17, on(p17, motive, way([{ text: room }], [u(room, 'arrival')])))).not.toContain('drew');
     const t = (text: string) => ruled(p17, on(p17, at(p17, 'account', [{ text, voice: 'answer' }])));
     expect(t('“Eight, I went to Moe’s. Renfro kept me company at eight. Quill was with me at first and left after eight.”')).toContain('company');
     expect(t('“Eight, I went to Moe’s. Renfro and Quill kept me company at eight. Then it was just me.”')).not.toContain('company');

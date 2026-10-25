@@ -157,9 +157,12 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
   // The runs spent alone, said once (docs/47 C13): which they are, before any is told.
   // (Round 7, P1: "for the committee meeting, alone": a reason that has other people in it, a meeting,
   // a game, a call, isn't said alone; nobody the night knows was with them, and that's all.)
-  const SOCIAL = /\b(?:meeting|for the company|a game of|to meet|to pay a call|party|to help)\b/;
+  // (One that leaves it, "left the meeting when the gin ran out", is on its own again.)
+  const SOCIAL = /(?<!\bleft the )\b(?:meeting|for the company|a game of|to meet|to pay a call|party|to help)\b/;
   const aloneRuns = runs.filter((r) => {
     if (lean() && r.reason && SOCIAL.test(r.reason)) return false;
+    // (And the office's gathering, "Eight, I was at Winslow’s for the meeting", never "…, alone".)
+    if (lean() && r === runs[0] && !!party && r.place === c.crime.scene && !r.reason) return false;
     for (let h = r.from; h <= r.to; h++) if ((a.claims[h]?.company ?? []).length > 0) return false;
     // (docs/55 2: a reason's "with Sokol" names nobody the night has with them: it's said without it, and the run is alone.)
     return true;
@@ -241,7 +244,7 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
       // (Round 7, seed 6: and the third time "still", never "on my own" a third time bare.)
       const tag0 = ALONE_TAG[(rot + (tagAll && !lean() ? i : 0)) % ALONE_TAG.length] as string;
       const aloneTag = lean() && tagAll && aloneSaid >= 2 ? tag0.replace(/^, /, ', still ') : tag0 + (lean() && tagAll && aloneSaid === 1 && !/\bagain\b/.test(reason ?? '') ? ' again' : '');
-      const social = lean() && !!r.reason && SOCIAL.test(r.reason);
+      const social = lean() && ((!!r.reason && SOCIAL.test(r.reason)) || isParty);
       const alone = who.length === 0 && !withSomebody && !social ? ((aloneOnce || tagAll) && runs.length > 1 ? aloneTag : '') : '';
       if (alone) aloneSaid++;
       // "back to my room to write letters, with Abramowitz and Thorndike" put them in the room: in a

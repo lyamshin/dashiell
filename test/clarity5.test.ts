@@ -8,7 +8,7 @@ import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { FACE_MARK, boardGridText, faceMarkPage } from '../src/game/board/grid.js';
 import { hintsNote, takeHint } from '../src/game/board/hints.js';
 import { dealBoard, type BoardDeal, type BoardRun } from '../src/game/board/model.js';
-import { playBoardOracle } from '../src/game/board/oracle.js';
+import { playBoardOracle, playReader } from '../src/game/board/oracle.js';
 import { pageStars } from '../src/game/board/choices.js';
 import { hintWords } from '../src/game/board/stars.js';
 import { hingeIssues } from '../src/game/board/hinge-lint.js';
@@ -19,6 +19,7 @@ const route = (d: BoardDeal, cmds: string[]): BoardRun => {
   for (const cmd of cmds) run = cmd === 'hint' ? (takeHint(d, run) as { run: BoardRun }).run : stepBoard(d, run, cmd).run;
   return run;
 };
+const playReaderRun = (d: BoardDeal, seed: number): BoardRun => playReader(d, seed).run;
 const text = (run: BoardRun): string => run.log.map((p) => pageBodyText(p).replace(/\s+/g, ' ')).join('\n');
 
 const P17 = ['go scene', 'search scene', 'search papers', 'go bar', 'ask barkeep list', 'go rooming', 'ask xwatcher list', 'ask callahan evening', 'go u', 'ask dandridge evening', 'put dandridge 9 list:barkeep@9', 'ask bledsoe evening', 'go rooming', 'put callahan 9 list:xwatcher@9'];
@@ -181,6 +182,23 @@ describe('docs/70: the rules on other nights', () => {
   it('seed 1: "my client" once on the office page', () => {
     const d = dealBoard(14, 4, 'lost-pet');
     const office = pageBodyText(playBoardOracle(d).run.log[0] as never).replace(/“[^”]*”/g, ' ');
-    expect((office.match(/\bmy client\b/gi) ?? []).length).toBeLessThanOrEqual(1);
+    expect((office.match(/\bmy client\b(?!’s)/gi) ?? []).length).toBeLessThanOrEqual(1);
+    expect((office.match(/\bmy client\b/gi) ?? []).length).toBeLessThanOrEqual(2);
+  });
+  it('seed 1: and the client named twice at most, "he said" after his own quotation where he was the last man narrated', () => {
+    const d = dealBoard(1, 0, 'lost-item');
+    const office = pageBodyText(playBoardOracle(d).run.log[0] as never).replace(/\s+/g, ' ');
+    expect(office).toContain('Lathrop, a night-school teacher,” he said.');
+    expect((office.replace(/“[^”]*”/g, ' ').match(/\bmy client\b/gi) ?? []).length).toBeLessThanOrEqual(2);
+  });
+  it('docs/68 §6: a witness’s evening pointed at by the hour that matters (Raw 7: ten, not Bledsoe’s nine)', () => {
+    const d = dealBoard(7, 0, 'murder');
+    const run = route(d, ['go scene', 'search scene', 'search papers', 'go bar', 'ask barkeep list', 'ask bledsoe evening']);
+    expect(hintWords(d.kase, run, 'account:crowninshield')).toBe('nobody had said where Crowninshield was at ten — ask Crowninshield where she was');
+  });
+  it('the office’s gathering isn’t alone, and leaving it is', () => {
+    const d = dealBoard(22, 1, 'lost-item');
+    const page = text(playReaderRun(d, 22));
+    expect(page).toContain('“Eight, I was at Winslow’s for the meeting. At nine I left the meeting when the gin ran out and went to the Blue Lantern alone,');
   });
 });

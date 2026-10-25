@@ -108,7 +108,8 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
           const partial = safe.length > 0 && safe.length < hs.length;
           // (Round 7: "Mrs. Nagy saw you at Mrs. Nagy’s at seven": a place called after its keeper is
           // theirs, lean: "Mrs. Nagy saw you at her place at seven.")
-          const theirs = lean() && placeName(c, l.place).includes(W.replace(/’s$/, ''));
+          // (By the surname: "Mrs. Kowalski had seen him at Kowalski’s at eight" is hers too.)
+          const theirs = lean() && placeName(c, l.place).includes(W.replace(/’s$/, '').replace(/^(?:Mrs\.|Mr\.|Miss|Dr\.) /, ''));
           const atW = theirs ? `at ${pm(c, l.watcher, 'his')} place` : at(c, l.place, here);
           const atWFace = theirs && l.place !== here ? `at ${pm(c, l.watcher, 'his')} place` : atFace(c, l.place, here);
           return out(`${W} had seen ${P} ${atW} ${hoursSaid(c, hs)}`, hs.map((h) => `list:${l.watcher}@${h}`), {
@@ -139,7 +140,11 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
           if (m) return out(`${A} had passed ${P} on ${m[4]} at ${m[2]}`, [`remark:account:${a.person}#${rWin}`], { hours: [rm?.facts[0]?.h as Hour], people: [p, a.person] });
         }
         if (hs.length > 0) {
-          const h0 = [...hs].sort((x, y) => Number(windowOf(c).includes(y)) - Number(windowOf(c).includes(x)) || x - y)[0] as Hour;
+          // (Round 7, Hard-boiled 19: lean, on the way into the place they said they were together, that
+          // hour first: at Grasso's flat, "Mosley had said he was with Grasso at nine", the gin game, never
+          // "…with Grasso, Donnelly and Lefkowitz at eight", at the Delmonico rooms.)
+          const atHere = (h: Hour) => Number(lean() && a.claims[h]?.place === here);
+          const h0 = [...hs].sort((x, y) => atHere(y) - atHere(x) || Number(windowOf(c).includes(y)) - Number(windowOf(c).includes(x)) || x - y)[0] as Hour;
           const pl = a.claims[h0]?.place as PlaceId;
           const own = personOf(c, a.person)?.home === pl;
           const where = own ? `${pm(c, a.person, 'his')} place` : placeName(c, pl);

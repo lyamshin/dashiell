@@ -449,7 +449,9 @@ export function hintWords(c: BoardCase, run: Pick<BoardRun, 'asked'> & Partial<P
   const act = full.slice(cut + 3);
   const q = questionsOf(c).find((x) => x.id === qid);
   const p = q?.subject as PersonId | undefined;
-  const s = q?.kind === 'account' && p && suspectsOf(c).includes(p) ? solveRun(c, run) : undefined;
+  // (Anybody's evening, a suspect's or a witness's: "Bledsoe says Crowninshield was with her at Mrs. Nagy’s
+  // at nine" on Raw 7, where ten is the hour.)
+  const s = q?.kind === 'account' && p && !personOf(c, p)?.object ? solveRun(c, run) : undefined;
   const hours = s?.possibleHours ?? [];
   // (A pointer's own hour, where it isn't one that matters and nothing places them at one that does.)
   const ownHour = /\bat (seven|eight|nine|ten|eleven|twelve)$/.exec(why)?.[1];

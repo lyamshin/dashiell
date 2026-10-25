@@ -384,7 +384,8 @@ describe('round 7, U1–U3: the report’s lists, the labels and the confront bo
     const o = playBoardOracle(d);
     const nb = notebookText(d, o.run).replace(/\s+/g, ' ');
     expect(nb).toContain('Dandridge admits he was at Sokol’s back room at nine o’clock, with Bledsoe.');
-    expect(nb).not.toMatch(/owns up:|owned up to being/);
+    expect(nb).not.toMatch(/owns up:|owned up to being|owned up to (?:the |Mrs\. )?[A-Z]/);
+    expect(nb).toContain('Dandridge admitted he was at Sokol’s back room, with Bledsoe');
     expect(gridKey(boardGrid(d.kase, o.run))).toContain('→Y where they admitted they were');
   });
 
