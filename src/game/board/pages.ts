@@ -356,7 +356,7 @@ function situOf(w: Writer, job: SheetJob): SituCtx {
     swap: (a, b) => w.hand.swap(a, b),
     placeName: w.run.at === OFFICE ? 'the office' : placeOf(c, w.run.at)?.short,
     weather: w.run.weather,
-    ...(theatreAvoid(c, w.run.at) || (job === 'search' && w.hand.avoid?.source.includes('Rooms where')) ? { avoid: [theatreAvoid(c, w.run.at), job === 'search' && w.hand.avoid?.source.includes('Rooms where') ? PAPERS_NOT_ROOM : undefined].filter((x): x is RegExp => !!x).reduce((a, b) => alsoAvoid(a, b)) } : {}),
+    ...(theatreAvoid(c, w.run.at) || (job === 'search' && w.hand.avoid?.source.includes('Rooms where')) || seatAvoid(w, subject) ? { avoid: [theatreAvoid(c, w.run.at), job === 'search' && w.hand.avoid?.source.includes('Rooms where') ? PAPERS_NOT_ROOM : undefined, seatAvoid(w, subject)].filter((x): x is RegExp => !!x).reduce((a, b) => alsoAvoid(a, b)) } : {}),
     // docs/55 1c: the page's person has a line held against them.
     ...(subject && personOf(c, subject) && collisionsOf(c, w.run, subject).length > 0 ? { crossed: true } : {}),
     // docs/55 2: already inside, and sitting or not, from the pages before in this room.
@@ -385,6 +385,28 @@ export function theySitNow(w: Writer, p: PersonId, anywhere = false): boolean {
   // (docs/60 item 1: and a clause of a sentence that says who's there: "…, and Crowninshield stood on the landing".)
   const clauses = (t: string) => (lean() ? t.split(/, (?:and )?(?=[A-Z])/) : [t]);
   return log.slice(Math.max(0, i - 1)).some((pg) => pg.at === w.run.at && pg.blocks.some((b) => b.kind === 'prose' && b.voice !== 'answer' && sentencesOf(stripMarks(b.text).replace(/“[^”]*”/g, ' ')).flatMap(clauses).some((t) => opens.test(t.trim()) && t.includes(who.short) && (anywhere || SITTING.test(t)))));
+}
+
+/**
+ * docs/66, P8: where the pages before in this room put somebody, as a card that sits me beside them
+ * has to agree: in a booth or at a table, no stool and no bar ("I took the stool on Reinhardt’s left"
+ * when she was in a booth); at the bar or on a stool, no booth.
+ */
+export function seatAvoid(w: Writer, p: PersonId | undefined): RegExp | undefined {
+  if (!lean() || !p || !insideNow(w)) return undefined;
+  const who = personOf(w.c, p);
+  if (!who) return undefined;
+  const log = w.before.log;
+  let i = log.length;
+  while (i > 0 && (log[i - 1] as Page).at === w.run.at && (log[i - 1] as Page).board?.job !== 'arrive') i--;
+  const said = log
+    .slice(Math.max(0, i - 1))
+    .filter((pg) => pg.at === w.run.at)
+    .flatMap((pg) => pg.blocks.flatMap((b) => (b.kind === 'prose' && b.voice !== 'answer' ? sentencesOf(stripMarks(b.text).replace(/“[^”]*”/g, ' ')).flatMap((t) => t.split(/, (?:and )?(?=[A-Z])/)) : [])))
+    .filter((t) => t.includes(who.short));
+  if (said.some((t) => /\b(?:booth|table)\b/i.test(t))) return /\bstool\b|\b(?:on|at|along) the bar\b/i;
+  if (said.some((t) => /\b(?:stool|at the bar|along the bar|end of the bar)\b/i.test(t))) return /\bbooth\b/i;
+  return undefined;
 }
 
 /** docs/55 2: texture about going over a room, which a page reading the papers doesn't do. */
@@ -485,19 +507,30 @@ function placeNewcomers(w: Writer): void {
     const at0 = spot[kind] ?? (spot.any as string);
     // (Only a spot of one's own: "at a table" or "at the bar" has room for everybody.)
     const own = !/^at (?:a table|the bar)$/.test(at0);
-    const at = lean() && own && at0 !== spot.any && roomSaid.includes(at0) ? (spot.any as string) : at0;
+    // (docs/66, P4: lean, a spot of the room's own nobody has, never "in the room".)
+    const at = lean() ? (own ? spotFor(kind, roomSaid) : at0) : own && at0 !== spot.any && roomSaid.includes(at0) ? (spot.any as string) : at0;
+    // (docs/66, P4: the one the arrival saw without a name, named now: "The lodger in the front room was Moretti.")
+    const noun = lean() ? anonNoun(c, p) : null;
+    const seen = noun ? new RegExp(`\\b[Aa] ${noun} was ([^.;]+?)[.;]`).exec(roomSaid) : null;
     // Named twice on the page already (an admission says the name and says it again): "my witness".
     // (docs/60 item 3: lean, the name, never "my witness": the reader has to work out who that is.)
     const who = lean() || namesFit(w, `${nameOf(c, p)}`) ? nameOf(c, p) : `my witness${markPronoun(c, p)}`;
     // docs/55 1e: somebody who was in the room all along "was" there; "it turned out" only for one who came back in.
-    fact(w, 'thought', back ? `${cap(who)}, it turned out, had come back in and was ${at}.` : `${cap(who)} was ${at}.`, 'presence', {
+    // (docs/66, P4: lean, somebody named in an owning up is in by then, said once: never "the woman Alfano had
+    // named, had come back in", which said the naming again and a coming back from nowhere the reader saw.)
+    const putPage = /^confront:/.test(w.run.asked[w.run.asked.length - 1] ?? '');
+    const ident = !!seen;
+    const where = ident ? (seen?.[1] as string) : at;
+    const text = ident ? `The ${noun} ${where} was ${who}.` : back && !lean() ? `${cap(who)}, it turned out, had come back in and was ${at}.` : back ? `${cap(who)} was in by then, ${at}.` : `${cap(who)} was ${at}.`;
+    fact(w, lean() && !putPage ? 'job' : 'thought', text, 'presence', {
       about: [p],
       // (Who turns out to be in the room is introduced, by name: never a pronoun a paragraph could give to somebody else.)
       keepNames: true,
       place: here,
       carries: [`here:${p}`],
       props: [{ k: 'PRESENT', person: p, place: here }],
-      say: { shape: 'PRESENT', flags: [back ? 'back' : 'first'], args: { who, where: at } },
+      say: { shape: 'PRESENT', flags: [ident ? 'ident' : back ? 'back' : 'first'], args: { who, where, ...(ident ? { noun: noun as string } : {}) } },
+      ...(lean() && putPage ? { tag: 'newcomer:named' } : {}),
     });
     w.people.add(p);
   }
@@ -505,6 +538,59 @@ function placeNewcomers(w: Writer): void {
 
 function esc(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/** docs/66, P4: the spots somebody can be in a room, by its kind, the first not taken first. */
+const SPOTS: Record<string, string[]> = {
+  theatre: ['three rows back', 'on the aisle', 'in the back row'],
+  bar: ['at the far end of the bar', 'in the back booth', 'at a table by the door'],
+  restaurant: ['at a corner table', 'at a table by the kitchen', 'by the window'],
+  home: ['in the front room', 'in the kitchen', 'on the landing'],
+  work: ['at the far bench', 'by the door', 'at the back'],
+  back: ['in the corner', 'at the back', 'by the door'],
+  office: ['by the door', 'at the window'],
+  any: ['across the room', 'by the wall'],
+};
+
+/** A spot of the room's kind that the room's own words haven't given somebody already. */
+function spotFor(kind: string, said: string, taken: readonly string[] = []): string {
+  const xs = [...(SPOTS[kind] ?? []), ...(SPOTS.any as string[])];
+  return xs.find((x) => !said.includes(x) && !taken.includes(x)) ?? (SPOTS.any as string[])[0] as string;
+}
+
+/** A lodger, a regular: what somebody the night hasn't named is, from who they are. */
+function anonNoun(c: BoardCase, p: PersonId): string | null {
+  const d = personOf(c, p)?.description ?? '';
+  return /^an? (lodger|regular)\b/.exec(d)?.[1] ?? null;
+}
+
+/**
+ * docs/66, P4: on the way in, the people here the night hasn't named yet, said as what they are: "A
+ * lodger was in the front room.", "Somebody was in the back booth." Their names come when the
+ * watcher's answer gives them, and the page says so then ("The lodger in the front room was Moretti."),
+ * never a name tacked on after the thought with nobody met in the room before it.
+ */
+function anonPresence(c: BoardCase, run: BoardRun, place: PlaceId, known: readonly PersonId[], said: string): string[] {
+  const last = c.board.hours[c.board.hours.length - 1] as Hour;
+  const kind = placeOf(c, place)?.kind === 'theatre' ? 'theatre' : stageKind(c, place);
+  const out: string[] = [];
+  const taken: string[] = [];
+  for (const p of c.people) {
+    if (p.role !== 'company' || known.includes(p.id) || c.board.rows[p.id]?.[last] !== place) continue;
+    if (c.confrontations.some((k) => (k.names ?? []).includes(p.id))) continue;
+    const noun = anonNoun(c, p.id);
+    if (!noun) continue;
+    const spot = spotFor(kind, said, taken);
+    taken.push(spot);
+    out.push(`A ${noun} was ${spot}.`);
+  }
+  const fence = (c.others ?? []).find((o) => o.id === 'fence' && o.known && (o.at as Record<string, string>)[String(last)] === place);
+  if (fence && c.type !== 'murder') {
+    const spot = spotFor(kind === 'bar' ? 'bar' : kind, said, ['at the far end of the bar', ...taken]);
+    out.push(`Somebody was ${spot}, keeping to themselves.`);
+  }
+  void run;
+  return out;
 }
 
 /** Slots with a capitalised twin for every key: `{name}` and `{Name}`. */
@@ -1047,7 +1133,8 @@ function think(w: Writer, q: string, extra: Thought | null = null): Thought {
   // docs/62 item 4: on a put, whoever the owning up named is placed in the room before the thought
   // says what they could tell me, so the reader meets them first ("Vogel, the woman Steinbach had
   // named, was in the corner. If Vogel told it the same way, it held.").
-  if (lean() && q.startsWith('confront:')) placeNewcomers(w);
+  // (docs/66, P4: lean, any page: placed after the answer that names them, not after the thought.)
+  if (lean()) placeNewcomers(w);
   // docs/47 B11: at Raw the elimination is walked once, on the page after the one that settled it
   // (unless the turn walked it already), so the page with the fact never concludes for the player.
   const el = walkedElimination(w);
@@ -1571,7 +1658,7 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId, back = false, noArrive
   // first walk and on the one that matters; the distance said one of a few ways, the least said first.)
   const walkedBefore = w.before.log.some((pg) => (pg.blocks ?? []).length > 0 && pg.board?.job === 'arrive');
   const way = wk.near || (lean() && walkedBefore && !matters) ? undefined : wk.dir;
-  const FAR: Record<string, string[]> = { 'a couple of blocks': ['a couple of blocks', 'two blocks over'], 'a few blocks': ['a few blocks', 'a handful of blocks'], 'several blocks': ['several blocks', 'a fair walk'], 'a good walk': ['a good walk', 'a good ten blocks', 'a fair stretch on foot'], 'a long walk': ['a long walk', 'a long way on foot'] };
+  const FAR: Record<string, string[]> = { 'a couple of blocks': ['a couple of blocks', 'two blocks over', 'a short two blocks'], 'a few blocks': ['a few blocks', 'a handful of blocks', 'a short way'], 'several blocks': ['several blocks', 'a fair walk', 'a stretch'], 'a good walk': ['a good walk', 'a good ten blocks', 'a fair stretch on foot'], 'a long walk': ['a long walk', 'a long way on foot', 'a long way'] };
   const far = lean() && FAR[wk.far] ? w.hand.pick(`far:${wk.far}`, FAR[wk.far] as string[]) : wk.far;
   const slots = withCaps({ dest, from: fromName, far, way, street: wk.street, place: dest });
   // docs/59 item 4: where the arrival walks in itself ("I went down to Moskowitz’s…"), the walk doesn't arrive too.
@@ -1633,6 +1720,8 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   stageGuard(w, place);
   // docs/55 2: walking in, I don't sit down yet: the page that asks does that, or doesn't.
   w.hand.avoid = alsoAvoid(w.hand.avoid, SAT);
+  // (docs/66, P8: nobody is finishing a late supper at a quarter past six in the morning.)
+  if (lean() && (band(w) === '4-6' || band(w) === '6-8')) w.hand.avoid = alsoAvoid(w.hand.avoid, /\blate supper\b/i);
   const kind = placeKind(c, place);
   // A later visit: somebody here already has a trait, and the page's last word pays it off.
   const again = first ? undefined : peopleAt(c, w.run, place).find((x) => w.run.traits?.[x]);
@@ -1736,7 +1825,12 @@ export function writeArrive(w: Writer, place: PlaceId): void {
           looked = true;
           sentences.push({ text: look, about: [p] });
         }
+        // (docs/66, P8: never "A landlady who sits on her stairs knows who used them" where the line before
+        // had her in the open door of the front room: the watcher's line says no spot the arrival didn't.)
+        const avoidW: RegExp | null = w.hand.avoid;
+        if (lean() && !/\bstairs?\b/i.test(wText ?? '')) w.hand.avoid = alsoAvoid(avoidW, /\b(?:her|his) stairs\b|\bon the stairs\b|\bfoot of the stairs\b/i);
         watcherLine = w.hand.draw('watcher', { job }, s) ?? oldWatch(w, job, person.short);
+        w.hand.avoid = avoidW;
       }
       continue;
     }
@@ -1764,6 +1858,8 @@ export function writeArrive(w: Writer, place: PlaceId): void {
     for (const m of doing.matchAll(SPOT)) spots.add(spotKey(m[0] as string));
   }
   if (stillThere.length > 0) sentences.push({ text: `${cap(andList(stillThere))} ${stillThere.length > 1 ? 'were' : 'was'} still there.`, about: here.filter((x) => stillThere.includes(nameOf(c, x))) });
+  // (docs/66, P4: and who else is here, by what they are, till the night names them.)
+  if (lean() && first) for (const t of anonPresence(c, w.run, place, here, sentences.map((x) => x.text).join(' '))) sentences.push({ text: t, about: [] });
   // docs/60 item 1: lean, who's there doing what in a sentence or two, not a sentence a person.
   const said = lean() ? peopleInBrief(c, sentences) : sentences;
   // (Lean, in the place's own paragraph: "what the place is and who's there doing what".)
@@ -2012,6 +2108,8 @@ function stageAndAsk(w: Writer, p: PersonId, job: 'account' | 'check' | 'list' |
   // docs/48 §3: the bible first (what they're doing, the place's own habit); the deck fills what's left.
   const own = worldStaging(c, w.run, w.hand, p);
   if (theySitNow(w, p)) w.hand.avoid = alsoAvoid(w.hand.avoid, ASK_SIT);
+  const seat = seatAvoid(w, p);
+  if (seat) w.hand.avoid = alsoAvoid(w.hand.avoid, seat);
   const staged = own ?? w.hand.draw('staging', { kind, who: watcher ? 'watcher' : 'person', manner }, s);
   put(w, 'staging', staged, 'act', { about: [p], ...(own ? {} : sit(w, staged)) });
   w.hand.avoid = avoidStage;
@@ -2252,9 +2350,13 @@ export function writeSearch(w: Writer, findId: string): void {
     // (docs/66, P10: who somebody is, beside the name, where the night's narration hasn't met them yet:
     // "Renfro, a milliner, owed him four hundred dollars", never a surname and nothing else.)
     const metTonight = (p: PersonId) => w.before.log.some((pg) => pg.blocks.some((b) => b.kind === 'prose' && b.voice !== 'answer' && b.text.replace(/“[^”]*”?/g, ' ').includes(nameOf(c, p)))) || w.before.log.some((pg) => pg.blocks.some((b) => b.kind === 'prose' && glossedIn(c, p, b.text)));
-    const line = (p: PersonId) => papersLine(c, p, PLAN.ops, lean() ? (metTonight(p) ? null : glossOf(c, p)) : undefined);
-    const pages: SaySpec = { shape: 'MOTIVE-SET', flags: ['papers-list'], args: { lines: ps.map(line).join(' ') } };
-    fact(w, 'job', ps.map(line).join(' '), 'find', { about: ps, carries: ps.map((p) => `motive:${p}`), keepNames: true, props: ps.map((p) => ({ k: 'MOTIVE', person: p }) as Prop), flesh: { papers: ps.map(line) }, say: pages });
+    const vsex = pronOf(c, c.crime.victim).he;
+    const line = (p: PersonId, i: number) => papersLine(c, p, PLAN.ops, lean() ? (metTonight(p) ? null : glossOf(c, p)) : undefined, i > 0 && pronOf(c, ps[i - 1] as PersonId).he === vsex);
+    // (docs/66, P10: "the dead man" twice at most on the page: after that, by name.)
+    let deadSaid = 0;
+    const lines = ps.map(line).map((l) => (lean() ? l.replace(/\bthe dead (?:man|woman)\b/g, (m) => (++deadSaid <= 2 ? m : vict.short)) : l));
+    const pages: SaySpec = { shape: 'MOTIVE-SET', flags: ['papers-list'], args: { lines: lines.join(' ') } };
+    fact(w, 'job', lines.join(' '), 'find', { about: ps, carries: ps.map((p) => `motive:${p}`), keepNames: true, props: ps.map((p) => ({ k: 'MOTIVE', person: p }) as Prop), flesh: { papers: lines }, say: pages });
     for (const p of ps) w.people.add(p);
     w.people.add(c.crime.victim);
     const V = vict.short;
@@ -2422,7 +2524,11 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
   const psrc = lean() && !j.landed && !again ? `${nameOf(c, p)} had told me ${claimNarr}, and I wanted to ask about something ${src} had said` : `${nameOf(c, p)} had told me ${claimNarr}, and ${src} said otherwise`;
   const pwhy = w.hand.draw('why', { kind: 'put' }, withCaps({ ...s, src: psrc, claim: claimLine }), { plain: true });
   put(w, 'why', pwhy, 'narrator', { about: [p], ...sit(w, pwhy, `${cap(psrc)}.`) });
+  const avoidSeat = w.hand.avoid;
+  const seat = seatAvoid(w, p);
+  if (seat) w.hand.avoid = alsoAvoid(avoidSeat, seat);
   const pstage = w.hand.draw('put-stage', {}, s);
+  w.hand.avoid = avoidSeat;
   put(w, 'staging', pstage, 'act', { about: [p], ...sit(w, pstage) });
   // Said to their face: "Tillman passed you on Avenue B", not "passed Hargrove".
   const toYou = (t: string) => t.replace(new RegExp(`\\b(passed|had|put|saw) ${nameOf(c, p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'g'), '$1 you');

@@ -173,6 +173,18 @@ export function meansKnew(c: BoardCase): string {
   return `knew ${wayKnown(c)}`;
 }
 
+/**
+ * docs/66, P6: somebody a watcher didn't know, said in the watcher's mouth so the not-knowing doesn't hang
+ * off the wrong name: "Grasso and a stranger at the same table were in as long as I was", never "Grasso
+ * and somebody at the same table I didn't know were in…".
+ */
+export function strangerSaid(name: string): string {
+  return name
+    .replace(/^(?:somebody|a man|a woman) (.+) I didn’t know$/, 'a stranger $1')
+    .replace(/^two men (.+) I didn’t know$/, 'two strangers $1')
+    .replace(/^two men I didn’t know$/, 'two strangers');
+}
+
 /** A standing fact said once: "Mr. Prentiss telling the room about his key" is "Mr. Prentiss" in a later breath; "Lou the bookmaker in his back booth" is Lou. */
 export function shortOther(name: string): string {
   return name

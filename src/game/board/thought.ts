@@ -178,7 +178,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   const settledBefore = b.possibleHours.length === 1 && office.length > 1;
   const factReasonSpent = fact && lean() && reasonSaidBefore(c, before, office);
   const reasonFor0 = (hs: readonly number[]): string => (walk || office.length <= 1 || !hs.every((h) => office.includes(h as Hour)) ? whyHours(c, hs) : 'when it could have happened');
-  const reasonFor = (hs: readonly number[]): string => (!lean() ? reasonFor0(hs) : fact ? (settledBefore || factReasonSpent ? '' : reasonFor0(hs)) : settledBefore && !walk ? whyHours(c, hs) : reasonFor0(hs));
+  const reasonFor = (hs: readonly number[]): string => (!lean() ? reasonFor0(hs) : fact ? (settledBefore || factReasonSpent ? '' : reasonFor0(hs)) : (settledBefore || settlesHere) && !walk ? whyHours(c, hs) : reasonFor0(hs));
   // The page that settles who. Only a walk says so; above it, that page reads like any other.
   // docs/47 B11: the walk's elimination is never on the page whose fact completes it. It moves to
   // the turn, or the page after (`eliminationOf`, said once a night by the page writer); the page
@@ -236,7 +236,10 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   // docs/59 item 3: on a list, who had been there and gone by the hour it happened, worked out before
   // the sentences that would otherwise say them (the way in, who it backs): the consequence says it.
   const thenList = kind === 'list' ? listOf(c, rest) : undefined;
-  const thenHs = thenList ? (win.slice(0, 2) as Hour[]).filter((h) => thenList.entries[h] !== undefined || shutAt(c, thenList.place, h)) : [];
+  // (docs/66, P1: at the link, on the page whose own sighting settles the hour, the list's consequence is
+  // at the hour it leaves, after the sighting and the hour: never the two hours again before them.)
+  const settlesHere = lean() && !fact && !walk && sightingHere() !== undefined;
+  const thenHs = thenList ? ((settlesHere ? a.possibleHours : win.slice(0, 2)) as Hour[]).filter((h) => thenList.entries[h] !== undefined || shutAt(c, thenList.place, h)) : [];
   const gone = thenList && thenHs.length ? goneOf(thenList, thenHs) : [];
   // (Who had been where the means was kept, while it was there for the taking, and gone: one
   // sentence, with the way in in it. Not at fact level, docs/46 §2.)
@@ -268,7 +271,11 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     const best = [...bySrc.entries()].sort((u, v) => Number(v[1].hs.some((h) => win.includes(h))) - Number(u[1].hs.some((h) => win.includes(h))) || v[1].hs.length - u[1].hs.length)[0];
     // The one who said so is placed by this evening in turn: that's the same agreement, not a second one.
     if (best) for (const y of c.people) if (best[0].startsWith(`${y.short} `)) covered.add(y.id);
-    if (best && !settles && !(t.sentences.length > 0 && t.sentences.some((x) => x.includes(best[0].replace(/ had( said)?$/, ''))))) {
+    // (docs/66, P3: after a story that didn't check out, the part of it that did is said only at an hour
+    // that matters: "Hauck did see him at the Hauck flat at eight, though." after "he said he was home at
+    // ten, but Pickering passed him on Second Avenue" contrasted with nothing.)
+    const restOutside = lean() && t.sentences.length > 0 && !!best && !best[1].hs.some((h) => win.includes(h));
+    if (best && !settles && !restOutside && !(t.sentences.length > 0 && t.sentences.some((x) => x.includes(best[0].replace(/ had( said)?$/, ''))))) {
       const [src, g] = best;
       const namedSoFar = new Set<string>();
       // docs/47 C13: the same place at both hours is said once ("Kowalski’s at eight and nine"), not
@@ -784,7 +791,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   // twice: said first, the dead would be whom a later "he" read as, and the name would be said again.)
   const vsex = pronOf(c, c.crime.victim).he;
   const twice = c.people.some((y) => y.id !== c.crime.victim && !y.object && pronOf(c, y.id).he === vsex && (t.parts ?? []).filter((x, i) => i !== alive && x.people.includes(y.id)).length >= 2) || (kind === 'list' && !!personOf(c, rest) && pronOf(c, rest).he === vsex && (t.parts ?? []).length > 3);
-  if (lean() && alive > 0 && t.parts && t.parts.length === t.sentences.length && !twice) {
+  if (lean() && alive > 0 && t.parts && t.parts.length === t.sentences.length && (!twice || settlesHere)) {
     // (docs/66, P1: and the hour it settles goes with it.)
     const n = t.parts[alive + 1]?.rule === 'narrows' ? 2 : 1;
     t.parts.unshift(...t.parts.splice(alive, n));

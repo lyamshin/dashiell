@@ -372,7 +372,7 @@ function referWithTrades(paras: Item[][], ctx: PlanCtx): void {
 /** Pronouns two people could be, on the section as it stands (the measure's count). */
 function unclearPronouns(paras: Item[][], ctx: PlanCtx): number {
   const blocks: Block[] = paras.map((ps) => ({ kind: 'prose', voice: ps[0]?.voice ?? 'narrator', text: ps.map((x) => stripMarks(x.text)).filter((x) => x.trim()).join(' ') }) as Block);
-  return pronounAmbiguity(ctx.c, blocks).length;
+  return pronounAmbiguity(ctx.c, blocks, ctx.situ?.subject ? { subject: ctx.situ.subject } : {}).length;
 }
 
 /** A chapter heading, as a unit of its own. */

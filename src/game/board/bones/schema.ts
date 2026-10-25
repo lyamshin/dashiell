@@ -319,7 +319,7 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'Something a person or a watcher mentions besides, in their mouth. passed: walking over to {via} at {hour} they passed {saw} on {street}, going fast, no hat. had: they had {saw} (the pet: {saw:them} is him or her) at their place at {hour}, {keep} ("for her supper"), and put {saw:them} back in the flat just before {back}. there: {means} ("the rat poison on the cellar shelf") was {still} ("there", "on its nail") at {hour}, and they didn’t look again. shift: the watcher came on at {from}; before that they can’t say.',
   },
   PRESENT: {
-    args: { who: T, where: T },
+    args: { who: T, where: T, noun: T },
     doc: 'Somebody turned out to be in the room: {who} (their name, or "my witness" where the name would be said a third time) was {where} ("in the corner, out of the light"). first | back (back: had come back in).',
   },
   HOLD: {

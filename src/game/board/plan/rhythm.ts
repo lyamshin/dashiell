@@ -487,7 +487,7 @@ function runs(ss: S[]): number {
 /** Pronouns two people could be, on the section as it stands (the measure's count). */
 function ambiguous(paras: Item[][], ctx: PlanCtx): number {
   const blocks: Block[] = paras.map((ps) => ({ kind: 'prose', voice: (ps[0]?.voice ?? 'narrator') as ProseVoice, text: ps.map((x) => x.text.replace(/⁣\d+⁤/g, '')).join(' ') }));
-  return pronounAmbiguity(ctx.c, blocks).length;
+  return pronounAmbiguity(ctx.c, blocks, ctx.situ?.subject ? { subject: ctx.situ.subject } : {}).length;
 }
 
 export function rhythm(paras: Item[][], ctx: PlanCtx): Item[][] {

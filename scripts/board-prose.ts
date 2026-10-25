@@ -89,7 +89,7 @@ import { bibleShare } from '../src/game/board/world.js';
 import { PLAN } from '../src/game/board/plan/index.js';
 import { setTexture } from '../src/game/board/plan/dial.js';
 import { SITUATED, DROPS, parseKey, project, situatedDeck } from '../src/game/board/plan/situated.js';
-import { factSentences, joinsIn, listSmell, pronounAmbiguity, restatedPointer, thoughtParagraphs } from '../src/game/board/plan/measure.js';
+import { factSentences, joinsIn, listSmell, pageAmbiguity, restatedPointer, thoughtParagraphs } from '../src/game/board/plan/measure.js';
 // @ts-expect-error — plain JavaScript module, no declarations.
 import { findJargon, loadPlainTerms } from './plain-terms.mjs';
 
@@ -306,7 +306,7 @@ for (const tier of tiers) {
         smellPages++;
         if (examples3.length < 200) examples3.push(`smell ${tierName(tier)} ${type} seed ${s} p${i + 1}: ${[...sm.band, ...sm.opening][0]}`);
       }
-      const amb = pronounAmbiguity(d.kase, p.blocks);
+      const amb = pageAmbiguity(d.kase, p);
       ambiguous += amb.length;
       for (const a of amb) if (examples3.length < 200) examples3.push(`pronoun ${tierName(tier)} ${type} seed ${s} p${i + 1}: ${a}`);
       if (fs.units > 0 && p.board?.job !== 'office' && p.board?.job !== 'nothing') {
@@ -337,7 +337,7 @@ for (const tier of tiers) {
       for (const p of r.log) {
         const sm = listSmell(p.blocks);
         if (sm.band.length || sm.opening.length) smellAll++;
-        ambiguousAll += pronounAmbiguity(d.kase, p.blocks).length;
+        ambiguousAll += pageAmbiguity(d.kase, p).length;
       }
     }
     const names = namesOf(run, d);

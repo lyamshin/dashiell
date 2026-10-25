@@ -162,7 +162,7 @@ export function motiveSaid(c: BoardCase, p: PersonId): string {
  * Reinhardt’s sister…" where "his sister" could be the dead man's own. The why form's words
  * (`motiveForm`), so the papers and the report say one grievance alike.
  */
-export function papersLine(c: BoardCase, p: PersonId, planned = false, gloss?: string | null): string {
+export function papersLine(c: BoardCase, p: PersonId, planned = false, gloss?: string | null, prevSame = false): string {
   void planned;
   void PAPERS;
   void PAPERS_PLANNED;
@@ -178,7 +178,10 @@ export function papersLine(c: BoardCase, p: PersonId, planned = false, gloss?: s
   const leanSaid = gloss !== undefined && lean() && !who?.motiveForm && who?.motiveId ? PAPERS_LEAN[who.motiveId] : undefined;
   if (leanSaid) {
     const vp = pronOf(c, v.id);
-    const t = leanSaid.replace('{name}', nm).replace('{g}', gloss ? `, ${gloss},` : '').replace('{he}', pr.he).replace('{him}', pr.him).replace('{his}', pr.his).replace('{dhim}', vp.him).replace('{dhis}', vp.his).replace('{victim}', v.short);
+    // (After a line about somebody of his sex, "him" could be them: the dead man by his role then.)
+    const dhim = prevSame ? dead : vp.him;
+    const dhis = prevSame ? `${dead}’s` : vp.his;
+    const t = leanSaid.replace('{name}', nm).replace('{g}', gloss ? `, ${gloss},` : '').replace('{he}', pr.he).replace('{him}', pr.him).replace('{his}', pr.his).replace('{dhim}', dhim).replace('{dhis}', dhis).replace('{victim}', v.short);
     return t.replace(/,\s*([.,])/g, '$1').replace(/^./, (x) => x.toUpperCase());
   }
   // A dealt night's grudge, said as its own sentence.

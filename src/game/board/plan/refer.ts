@@ -233,6 +233,10 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   const lastAtOf = new Map<boolean, number>();
   /** Narration sentences so far: the one before is a pronoun's window. */
   const narrIdx: number[] = [];
+  /** docs/66, P2: people of each sex named in speech since the narration last spoke of that sex. */
+  const speechSince = new Map<boolean, Set<Who>>();
+  /** docs/66, P2: whose answer the page is: their own speech doesn't take a pronoun from them. */
+  const speaker = ctx.situ?.subject;
 
   /**
    * A sentence in the room that opens on somebody by their job and names nobody of that sex ("The
@@ -258,6 +262,10 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   /** Would a pronoun for `w` at `at` in sentence `si` be read as `w`, and as nobody else? */
   const resolves = (si: number, at: number, w: Who, form: Form, written = false): boolean => {
     const s = sents[si] as Sent;
+    // (docs/66, P2: "She had said she was at the Shamrock at nine, and he hadn’t seen her there", the
+    // "he" Zeldin's from a paragraph back, after her answer named Winslow and Dandridge: an answer that
+    // named somebody else of that sex since takes the pronoun from anybody but the one who gave it.)
+    if (lean() && w.id !== speaker && [...(speechSince.get(w.female) ?? [])].some((x) => x !== w) && !s.named.some((n) => n.who === w && n.at < at)) return false;
     // Who its own sentence has already put before it: by name, or by a role the engine marked ("my witness").
     const local = new Set([...s.named, ...s.mentions.filter((m) => m.kind === 'role').map((m) => ({ who: m.who, at: m.at }))].filter((n) => n.at < at && n.who.female === w.female).map((n) => n.who));
     if (form === 'obj') {
@@ -330,6 +338,18 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
     // (docs/66, P2: nor a pronoun the sentence before gave somebody else of that sex: "I’d find her at
     // Sokol’s back room. She gave me the night the way a good waiter brings the check" is Alfano's.)
     if (lean() && (prev?.mentions ?? []).some((m) => m.kind === 'pronoun' && m.who !== w && m.who.female === w.female && (m.rep === undefined || /^(?:he|him|his|she|her)$/i.test(m.rep)))) return false;
+    // (docs/66, P2: nor anybody else of that sex the narration spoke of last, however far back: "…Lanza
+    // was still alive at Moe’s at nine. It happened at ten. He didn’t add anything", the barman's card,
+    // read as the dead man's.)
+    if (lean()) {
+      for (let k = narrIdx.length - 1; k >= 0; k--) {
+        const x = sents[narrIdx[k] as number] as Sent;
+        const of = x.mentions.filter((m) => m.kind !== 'speech' && m.who.female === w.female);
+        if (!of.length) continue;
+        if (of[of.length - 1]?.who !== w) return false;
+        break;
+      }
+    }
     return !(prev && roleOpens(prev, w.female));
   };
   /** Two people of one sex as pronouns in one sentence ("She had her at Kowalski’s") read as anybody's. */
@@ -393,6 +413,7 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         if (asName) s.named.push({ who: w, at: m.at });
         chain.set(w.female, [...(chain.get(w.female) ?? []), w]);
         lastAtOf.set(w.female, here);
+        speechSince.set(w.female, new Set());
       };
       if (fixed(it, m)) ahead.set(w.idx, (ahead.get(w.idx) ?? 1) - 1);
       if (coming(it, m)) aheadLean.set(w.idx, (aheadLean.get(w.idx) ?? 1) - 1);
@@ -408,6 +429,8 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         // lean, the reader has met it, and it doesn't count: the cap is the narrator's.)
         if (!frozen && !lean()) count.set(w.idx, n + 1);
         introduced.add(w.idx);
+        if (!speechSince.has(w.female)) speechSince.set(w.female, new Set());
+        (speechSince.get(w.female) as Set<Who>).add(w);
         continue;
       }
       if (m.kind === 'role') {

@@ -22,7 +22,7 @@
 import { nameOf, personOf, placeName, pronOf, type BoardCase, type Hour, type PersonId, type PlaceId } from '../model.js';
 import { entryName, listExhaustive, listOf, shutAt } from '../knowledge.js';
 import type { Unit } from '../plan/types.js';
-import { accessPhrase, shortOther } from './phrase.js';
+import { accessPhrase, shortOther, strangerSaid } from './phrase.js';
 import { roleOf } from '../plan/refer.js';
 import { maskPlaces } from '../plan/measure.js';
 import { canon, meansProp } from './extract.js';
@@ -123,6 +123,8 @@ function entryAlt(c: BoardCase): { re: string; of: Map<string, Entry> } {
     const full = entryName(c, { other: o.id });
     of.set(full, `other:${o.id}`);
     of.set(shortOther(full), `other:${o.id}`);
+    // (docs/66, P6: "a stranger at the same table", in the watcher's mouth.)
+    of.set(strangerSaid(shortOther(full).replace(/ nobody could put a name to$/, ' I didn’t know')), `other:${o.id}`);
     const head = full.replace(/ (telling|complaining) .*$/, '');
     of.set(`${head}, still telling it`, `other:${o.id}`);
     of.set(`${head}, still complaining`, `other:${o.id}`);
@@ -605,7 +607,7 @@ function sameCompany(c: BoardCase, who: Id, place: PlaceId, before: number): Id[
 
 function withR(c: BoardCase, lx: Lexicon, s: string | undefined): Id[] | undefined {
   if (s === undefined || s === '') return undefined;
-  if (/^, (?:on my own|by myself|alone)$/.test(s)) return [];
+  if (/^, (?:on my own|by myself|alone)(?: again)?$/.test(s)) return [];
   // (docs/62, P7: "…, and Thorndike was there".)
   const there = /^, and (.+?) (?:was|were) there$/.exec(s);
   if (there) return namesV(c, lx, there[1] as string);

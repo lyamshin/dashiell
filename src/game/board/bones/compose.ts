@@ -50,6 +50,7 @@ import { preview, SAMPLES, VARIETY, unpick, type Picked } from './say.js';
 import { plainComposite } from './plain.js';
 import { ticsIn } from '../tics.js';
 import { homeNamed } from '../home.js';
+import { lean } from '../plan/dial.js';
 
 /** The longest sentence composition makes. */
 // docs/59: a thought's sentence is one a reader takes in at once (the skim test's readers stopped on the forty-word joins).
@@ -511,9 +512,16 @@ function inQuotes(old: string, said: string): string {
 export function sayAll(items: Item[], ctx: PlanCtx): void {
   // An answer says "o’clock" twice at most: after that, a voicing without it, where one fits.
   let oclock = 0;
+  // (docs/66, P6: and "After that" once: two in one evening read as a timetable.)
+  let after = 0;
+  const AFTER = /\bAfter that\b/;
   for (const it of items) {
-    if (!it.speech || !it.runOn) oclock = 0;
+    if (!it.speech || !it.runOn) {
+      oclock = 0;
+      after = 0;
+    }
     if (it.speech) oclock += (it.comp ? it.text.match(/o’clock/g)?.length : 0) ?? 0;
+    if (it.speech && it.comp && AFTER.test(it.text)) after++;
     if (it.kind !== 'fact' || !it.say || it.comp) continue;
     const s = it.say;
     // docs/59 item 2: a run of clauses, each voiced on its own.
@@ -522,8 +530,10 @@ export function sayAll(items: Item[], ctx: PlanCtx): void {
       continue;
     }
     const comp: Held = { shape: s.shape, props: [...(it.props ?? [])] };
-    const p = pickFor(s.shape, s.flags, s.args, ctx, s.manner, it.speech && oclock >= 2 ? (t) => !/o’clock/.test(t) : undefined);
+    const keep = it.speech && (oclock >= 2 || (lean() && after >= 1)) ? (t: string) => !(oclock >= 2 && /o’clock/.test(t)) && !(lean() && after >= 1 && AFTER.test(t)) : undefined;
+    const p = pickFor(s.shape, s.flags, s.args, ctx, s.manner, keep);
     if (it.speech) oclock += (p ? p.text : it.text).match(/o’clock/g)?.length ?? 0;
+    if (it.speech && AFTER.test(p ? p.text : it.text)) after++;
     if (!p) {
       if (it.speech || s.keep) it.comp = { ...comp, voicing: 'flesh', said: it.text } as Held;
       else {
