@@ -1,6 +1,6 @@
 # Round 7 fixes
 
-*2026-10-25, branch `round7-fixes`, off main at `04b40d7` (clarity-4, #104). Round 7's blind testers played four new nights on main (Raw 23, the Persian cat; Poached 17, a murder; Medium 21, a murder; Hard-boiled 19, a pair night; `scratchpad/round7-digest.md`, reports `scratchpad/r7-*.md`, saves `scratchpad/playtest7-*.json`). All four solved by deduction, and they hit real bugs and wrong facts, each checked against the board. This build fixes the digest's "Bugs and wrong facts", B1–B8, by rule, in the layer that makes the line, never for one night, and B9, the designer's mid-build: the report asks whether anyone else lied, and never says that somebody did. The prose patterns (P1–P9) and the interface items (U1–U4) are the next build's. Every wrong fact a lint can catch has a rule in `hinge-lint.ts` (ten new ones) and a test in `test/hinge.test.ts`; every bug has a regression test on its own night in `test/round7.test.ts`. Nothing in `src/gen/` changed.*
+*2026-10-25, branch `round7-fixes`, off main at `04b40d7` (clarity-4, #104), with main at `c1c6745` (hints, #105, docs/67) merged in; the measures are against `c1c6745`. Round 7's blind testers played four new nights on main (Raw 23, the Persian cat; Poached 17, a murder; Medium 21, a murder; Hard-boiled 19, a pair night; `scratchpad/round7-digest.md`, reports `scratchpad/r7-*.md`, saves `scratchpad/playtest7-*.json`). All four solved by deduction, and they hit real bugs and wrong facts, each checked against the board. This build fixes the digest's "Bugs and wrong facts", B1–B8, by rule, in the layer that makes the line, never for one night, and B9, the designer's mid-build: the report asks whether anyone else lied, and never says that somebody did. The prose patterns (P1–P9) and the interface items (U1–U4) are the next build's. Every wrong fact a lint can catch has a rule in `hinge-lint.ts` (ten new ones) and a test in `test/hinge.test.ts`; every bug has a regression test on its own night in `test/round7.test.ts`. Nothing in `src/gen/` changed.*
 
 ## 1. The bugs, and the rules
 
@@ -54,12 +54,12 @@
 
 **Before** (Raw 23, the door left unlocked for the lodger, Lindemann):
 
-- Seven stars: "Ashby, Lindemann and Winslow were at the supper, and nobody had said where any of them was at ten". docs/65's group phrase assumed everybody with access was at the table.
+- Seven stars (on `04b40d7`; since docs/67 the reason a hint quotes, and the fastest solve's step 2): "Ashby, Lindemann and Winslow were at the supper, and nobody had said where any of them was at ten". docs/65's group phrase assumed everybody with access was at the table.
 - The parlor: "Whoever it was had been at the supper at the Thorndike flat, one of his guests." (which would rule the lodger out).
 - The elimination: "That left one person: somebody who had been at the supper and knew that the door was left unlocked".
 - The office: "“Winslow …, and Ashby …,” my client said. “That was everybody.” / His lodger, Lindemann, a shoe clerk, had lost her key again. “So I left the door unlocked for her sake,” he said, “and everybody at the table at eight heard me say so.”" Three testers in four read her as a guest.
 
-**The rule:** "at the supper" only of a group who were all at it. Where the office gave somebody the way in without a seat at the table (the lodger, `givens.access`), the way in is said as what they all knew: the star's group ("Ashby, Lindemann and Winslow knew the door would be unlocked, …": a star's reason never says "left", docs/46 §1), the elimination ("somebody who knew that the door was left unlocked"), the find ("Whoever it was knew the door would be unlocked: one of his guests at the supper at the Thorndike flat, or the lodger it was left unlocked for."). The office says where the lodger was: "His lodger, Lindemann, a shoe clerk, was out, and had lost her key again." (the lodger is never at the party: 79 of 79 latch-key nights, seeds 1–60, both worlds), and so does the notebook ("Lindemann lodges there, was out, and has lost her key again, so the door was left unlocked."). The turn's recap of who could have got in names the guests at the table and leaves the lodger to the office's line ("Mosley and Mulcahy had been at the meeting and knew…", of a lodger, was the same slip on another night).
+**The rule:** "at the supper" only of a group who were all at it. Where the office gave somebody the way in without a seat at the table (the lodger, `givens.access`), the way in is said as what they all knew: the star's group ("Ashby, Lindemann and Winslow knew the door would be unlocked, …": a star's reason never says "left", docs/46 §1), the elimination ("somebody who knew that the door was left unlocked"), the find ("Whoever it was knew the door would be unlocked: one of his guests at the supper at the Thorndike flat, or the lodger it was left unlocked for."). The office says where the lodger was: "His lodger, Lindemann, a shoe clerk, was out, and had lost her key again." (the lodger is never at the party: 79 of 79 latch-key nights, seeds 1–60, both worlds), and so does the notebook ("Lindemann lodges there, was out, and has lost her key again, so the door was left unlocked."). Where the find's own card has said already that the door was left unlocked for the lodger, just as the client told the table, the thought after it goes, saying nothing new (docs/59's once pass). The turn's recap of who could have got in names the guests at the table and leaves the lodger to the office's line ("Mosley and Mulcahy had been at the meeting and knew…", of a lodger, was the same slip on another night).
 
 ### B6. The weapon's deadline was never said (`pages.ts`, `thought.ts`, `bones/compose.ts`, `knowledge.ts`)
 
@@ -78,7 +78,7 @@
 - **The verdict's time** (`night.json`, `report.ts`): "I closed the case at a quarter to eight" at 8:00. An ending names only the clock's time: "I closed the case at {closedAt}" (`clock.ts` `clockWords`: "eight", "ten to seven"), from five, when the city is waking up; "Eight o’clock came" only when it had.
 - **A named cat is "her"** (`voicings.json`, `pages.ts`, `report.ts`): "“All right. I took it. It’s with Pardo…”" → "“All right. I took her. She’s with Pardo, a man who buys things and asks nothing.”"; the form's "What proves where it is" → "What proves where she is" (`whereByLabel`), under "Where she is now".
 - **The neighbors' word** (`pages.ts`, `text.ts`): "He lost his job on Friday, and asked me what Mimi was worth. I had it from the neighbors" → "He lost his job on Friday. I had that from the neighbors, and they hear most things. And he asked me what Mimi was worth." The neighbors' word covers only what the client couldn't know himself; a reason he was party to all through ("he and I haven’t spoken") is his own. The notebook: "Thorndike points at Winslow: he asked Thorndike what Mimi was worth, and the neighbors say he lost his job on Friday."
-- **A plural name takes "were"** (`places.json`, `connective.json`, `pages.ts` `namePlural`): "Mrs. Nagy’s rooms on East Fourth Street was a tall thin house" (and, on other nights, "The Delmonico rooms was where I’d left it"). A card whose verb says how many takes a name of that number (`{NameOne}`, `{NameMany}`, `{PlaceOne}`); the walk's own were-rule reads the same head noun.
+- **A plural name takes "were"** (`places.json`, `connective.json`, `pages.ts` `namePlural`): "Mrs. Nagy’s rooms on East Fourth Street was a tall thin house" (and, on other nights, "The Delmonico rooms was where I’d left it"). A card whose verb says how many takes a name of that number (`{NameOne}`, `{NameMany}`, `{PlaceOne}`); the walk's own were-rule reads the same head noun. Mrs. Nagy's is the one place whose own card (`bpl-1045`, key `rooming:3`) then fitted nothing, so it takes the short name, which is one house: "Mrs. Nagy’s was a tall thin house on East Fourth Street that leaned a little on its neighbor, …".
 - **"Had both been"** (`thought.ts`, `voicings.json`): "So Dandridge and Callahan had all been at Mrs. Nagy’s …, and had all left by nine" → "had both been …, and had both left by nine" (and "every one of them" of two → "both of them").
 - "Someone else lied too" beside "Nobody else" was left to the designer at first; it's B9 now.
 
@@ -108,7 +108,7 @@ Ten new rules, in `hingeIssues` (the pages) and `nightIssues` (the after-pages: 
 |---|---|---|
 | moved | B2 | a telling by change (a list, a stretch of company) saying a coming or going the board doesn't have, a face counted as its owner (read off the clauses' voicings and propositions) |
 | agrees | B3 | the curtain's "What gave it away", the story's "said otherwise" or a clash's list citing a line that agrees with the lie |
-| star | B4, B5 | a star's reason, on every page, or a fastest-solve step, asking who somebody passed outside Medium, taking "the way over" as known, or putting somebody at the supper who wasn't at the table |
+| star | B4, B5 | a star's reason (the designed stars and the step a hint would give, on every page, as the choice it would sit on says it), or a fastest-solve step, asking who somebody passed outside Medium, taking "the way over" as known, or putting somebody at the supper who wasn't at the table |
 | party | B5 | the narration putting somebody at the supper who wasn't, or "one of his guests" where the lodger knew the way in too |
 | deadline | B6 | a windowed murder's find not saying the hour the means had to be had by; a "hadn't" of somebody there only after, without why |
 | clock | B8 | the close at a time the clock didn't show, or "Eight o’clock came" before eight |
@@ -117,26 +117,79 @@ Ten new rules, in `hingeIssues` (the pages) and `nightIssues` (the after-pages: 
 | number | B8 | a plural place name with "was" |
 | both | B8 | "had all been" of two |
 
-## 3. The measures
+## 3. The measures, main → this branch
 
-MEASURES
+Main is `c1c6745` (hints merged, an exported copy, `scratchpad/r7fix/main2`), measured with this branch's lint and its own scripts; this branch at its last commit, with main merged in. Every run held the shared lock, one at a time, three vitest workers at most (`scratchpad/r7fix/gates.sh`, `finals2.sh`, outputs in `scratchpad/r7fix/out/`, `main2-*` and `br3-*`; `measures.py` makes these tables).
+
+**The hinge lint** (30 nights a tier, both worlds, three routes: the oracle's, the wanderer's and the reader's, with `nightIssues` on the oracle's): this branch is 0 on all 42 rules, in every row. On main the 32 rules before this build are 0, and the ten new ones find 1,983 lines:
+
+| world | tier | moved | agrees | star | party | deadline | clock | pet-it | gossip | number | both | all |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| dealt | Raw | 32 | 0 | 76 | 10 | 0 | 2 | 2 | 18 | 8 | 6 | 154 |
+| dealt | Coddled | 16 | 0 | 51 | 11 | 0 | 2 | 6 | 9 | 6 | 0 | 101 |
+| dealt | Poached | 52 | 0 | 15 | 5 | 0 | 1 | 8 | 18 | 5 | 1 | 105 |
+| dealt | Soft-boiled | 44 | 0 | 108 | 12 | 36 | 2 | 0 | 12 | 6 | 6 | 226 |
+| dealt | Medium | 0 | 0 | 119 | 3 | 41 | 2 | 0 | 15 | 10 | 3 | 193 |
+| dealt | Hard-boiled | 100 | 76 | 114 | 2 | 35 | 2 | 0 | 3 | 5 | 0 | 337 |
+| neighbourhood | Raw | 22 | 0 | 0 | 0 | 0 | 2 | 0 | 15 | 0 | 5 | 44 |
+| neighbourhood | Coddled | 14 | 0 | 12 | 0 | 0 | 2 | 6 | 39 | 0 | 0 | 73 |
+| neighbourhood | Poached | 37 | 0 | 0 | 0 | 0 | 1 | 3 | 27 | 1 | 2 | 71 |
+| neighbourhood | Soft-boiled | 36 | 0 | 54 | 0 | 40 | 2 | 0 | 15 | 5 | 6 | 158 |
+| neighbourhood | Medium | 0 | 0 | 141 | 0 | 43 | 3 | 0 | 9 | 3 | 3 | 202 |
+| neighbourhood | Hard-boiled | 89 | 54 | 128 | 0 | 35 | 2 | 0 | 9 | 2 | 0 | 319 |
+| **all** | | 442 | 130 | 818 | 43 | 230 | 23 | 25 | 189 | 51 | 32 | **1,983** |
+
+- **moved** counts a person a route: mostly a liar's company "with me at first and left after nine" when they were there at ten too (Raw 3: "Cheatham and Reinhardt were with me at first and left after nine. At ten I had nobody with me."), or "joined me at ten" of somebody there at nine; at Hard-boiled, faces too. Medium has none in either world.
+- **agrees** is Hard-boiled only: only pair nights have a partner to agree.
+- **star** counts every page's star reasons and the step a hint would give there, on each route, and the fastest solve's steps, so one wrong reason counts on every page it stands on (Raw 1, the dealt world: "Doyle, Lathrop and Rafferty were at the supper, …", of Rafferty, the lodger, on page after page of all three routes).
+- **deadline** is from Soft-boiled up: only a windowed murder has a window to be before.
+- On `04b40d7`, before hints merged, the same ten rules found 2,013 (moved 467, agrees 130, star 791, party 47, deadline 240, clock 30, pet-it 14, gossip 189, number 55, both 50; `out/main04-hinge.txt`); the hints build moved them a little, as it moved the pages.
+
+**Dealt boards** (`scratchpad/r7fix/dealhash.mts`, docs/62 §2's: seeds 1–40, every tier and type, both worlds): dealt 600 `7b413655bf181abb`, neighbourhood 600 `1c2bed28c49370c6`, main's. Nothing in `src/gen/` changed.
+
+**board-measure** (`--seeds 20`): **identical to main's, every cell of every row**, the oracle's, the wanderer's, the readers', par, the shortcuts, the innocent liar's first break, lint issues (0), plain-terms hits (0), choices a page and callback pages. (Before Mrs. Nagy's card was given its singular name, B8, callback pages had risen a point or two on six rows: dropping "Mrs. Nagy’s rooms … was a tall thin house" changed the cards drawn after it, and one of them set up a cat that paid off two pages on. With the card back, the dice fall as they did.)
+
+**board-prose** (30 nights a tier, both worlds; the oracle's route for the page measures, three routes for the lints): every lint at 0 in both worlds, the 32 rules before this build and the ten new ones.
+
+| world | tier | words a page (median) | words per new fact | list smell, pages (oracle) | pronoun ambiguity (three routes) |
+|---|---|---|---|---|---|
+| dealt | Raw | 106 → 106 (0%) | 64.0 → 64.0 | 31 of 280 → 31 of 280 | 0 → 0 |
+| dealt | Coddled | 102 → 102 (0%) | 62.4 → 62.4 | 16 of 276 → 16 of 276 | 0 → 0 |
+| dealt | Poached | 105 → 105 (0%) | 56.0 → 55.9 | 30 of 398 → 30 of 398 | 0 → 0 |
+| dealt | Soft-boiled | 106 → 108 (+1.9%) | 52.2 → 52.4 | 30 of 383 → 30 of 383 | 0 → 0 |
+| dealt | Medium | 99 → 100 (+1.0%) | 48.1 → 48.2 | 36 of 441 → 36 of 441 | 0 → 0 |
+| dealt | Hard-boiled | 97 → 97 (0%) | 46.1 → 46.1 | 20 of 435 → 20 of 435 | 0 → 0 |
+| neighbourhood | Raw | 123 → 123 (0%) | 67.9 → 67.8 | 23 of 280 → 23 of 280 | 0 → 0 |
+| neighbourhood | Coddled | 113 → 113 (0%) | 67.4 → 67.4 | 19 of 276 → 19 of 276 | 0 → 0 |
+| neighbourhood | Poached | 114 → 114 (0%) | 57.0 → 56.9 | 43 of 407 → 43 of 407 | 0 → 0 |
+| neighbourhood | Soft-boiled | 117 → 117 (0%) | 56.5 → 56.6 | 55 of 385 → 55 of 385 | 0 → 0 |
+| neighbourhood | Medium | 111 → 112 (+0.9%) | 53.2 → 53.3 | 41 of 436 → 41 of 436 | 0 → 0 |
+| neighbourhood | Hard-boiled | 104 → 105 (+1.0%) | 50.9 → 51.0 | 29 of 435 → 29 of 435 | 0 → 0 |
+
+- **Words a page** rose by a word or two at Soft-boiled and Medium in the dealt world, and at Medium and Hard-boiled in the neighbourhood: the find says the means' deadline from Soft-boiled up (B6: "…for the knife before nine, the earliest it could have happened."), and a list page now and then says who came too late. On a latch-key night the find says that the lodger knew the way in too (B5), a longer line. The median search page, dealt: Raw 90 → 93, Coddled 91 → 92, Poached 92 → 96, Soft-boiled 100 → 104, Medium 95 → 98, Hard-boiled 93 → 95 (a median of 40 pages, so a few changed pages move it: at Raw five of 40 changed, at Poached two). Where the find's own card has said already that the door was left unlocked for the lodger, as the table heard, the lodger's thought goes as saying nothing new (docs/59's once pass: five content words shared), and the page is shorter: Raw 11 and Poached 20, lost pets. List smell along the oracle's route is main's in every row; across the three routes it moved by a page or three either way (dealt Poached 73 → 74, Medium 79 → 82; the neighbourhood's Raw 70 → 68, Poached 91 → 92, Medium 87 → 88).
+
+**The round trip** (`scripts/roundtrip.ts`, 30 nights a tier, three routes): every page read back, plain and voiced, and every voiced composite clear, 100% in every row of both worlds; flesh units naming all they say 100% but for the neighbourhood's Poached (171 of 174) and Medium (131 of 133), Nowak's admission at the Peacock, as on main. The new clauses (`seen`, a MEANS `before`, an ACCESS with the hour they came) are in the bones and read back.
+
+**Clarity** (`scripts/clarity-measure.ts`, 30 nights a tier): every lint at 0 in both worlds, as on main (`slots` included: "kept me company at eight", never "was with me at eight", B2); words per new fact within 0.2 of main's in every row (the table above).
+
+**The suite**: 887 tests in 33 files, all passing at three workers; `tsc` is clean (§5).
 
 ## 4. The nights, read
 
-Each of the four nights read in full, page by page, with the choices, the notebook, the grid, the verdict, the story and the curtain: along the tester's own route (replayed from their save, marks and all, `scratchpad/r7fix/night.mts`; and with `npm run read --route … --curtain`) and along the oracle's, on main (`04b40d7`) and on this branch (`scratchpad/r7fix/{before,b1}/`, `scratchpad/r7fix/read/{main,b2}-*`). Everything not listed is main's, word for word, but for a card or a voicing a page or two on that the change in what a page said before it moved (a different walk card at Mrs. Nagy’s, "There was a snag. He had said he was at Moe’s at nine, and Bidwell hadn’t seen him there." for "…didn’t see him there then.").
+Each of the four nights read in full, page by page, with the choices, the notebook, the grid, the verdict, the story and the curtain: along the tester's own route (replayed from their save, marks and all, `scratchpad/r7fix/night.mts`; and with `npm run read --route … --curtain`) and along the oracle's, on main (`04b40d7`, and again on `c1c6745` once hints had merged) and on this branch, before and after main was merged in (`scratchpad/r7fix/{before,b1}/`, `scratchpad/r7fix/read/{main,b2,main2,b3,b4}-*`). The quotes are main's → this branch's; where hints moved a line (Raw's elimination is the hint's now, docs/67 §2), the line is quoted where it is now. Everything not listed is main's, word for word, but for a card or a voicing a page or two on that the change in what a page said before it moved ("There was a snag. He had said he was at Moe’s at nine, and Bidwell hadn’t seen him there." for "…didn’t see him there then.").
 
 **Raw 23** (the cat; the tester's route and the oracle's):
 
 - The office: "His lodger, Lindemann, a shoe clerk, had lost her key again." → "…, was out, and had lost her key again."; "He lost his job on Friday, and asked me what Mimi was worth. I had it from the neighbors, and they hear most things." → "He lost his job on Friday. I had that from the neighbors, and they hear most things. And he asked me what Mimi was worth."
 - Seven stars, the office to the Shamrock, and the fastest solve's step 2: "Ashby, Lindemann and Winslow were at the supper, and nobody had said where any of them was at ten" → "Ashby, Lindemann and Winslow knew the door would be unlocked, and nobody had said where any of them was at ten". After Pickering's list (Lindemann placed), "Ashby and Winslow were at the supper, …", as on main: both were.
 - The parlor: "Whoever it was had been at the supper at the Thorndike flat, one of his guests." → "Whoever it was knew the door would be unlocked: one of his guests at the supper at the Thorndike flat, or the lodger it was left unlocked for."
-- The Odessa's turn: "That left one person: somebody who had been at the supper and knew that the door was left unlocked, …" → "That left one person: somebody who knew that the door was left unlocked, …".
+- The elimination (the Odessa's turn on `04b40d7`, the hint's on `c1c6745`): "That left one person: somebody who had been at the supper and knew that the door was left unlocked, …" → "That left one person who knew that the door was left unlocked, with nobody to back up where they were at ten."
 - The confrontation (the tester's): "“All right. I took it. It’s with Pardo, …”" → "“All right. I took her. She’s with Pardo, …”", and on the form and in the verdict "What proves where it is" → "What proves where she is".
 - The notebook: "Lindemann lodges there and has lost her key again, …" → "Lindemann lodges there, was out, and has lost her key again, …"; "Thorndike points at Winslow. The neighbors say he lost his job on Friday, and asked Thorndike what Mimi was worth." → "Thorndike points at Winslow: he asked Thorndike what Mimi was worth, and the neighbors say he lost his job on Friday."
 
 **Poached 17** (the tester's route and the oracle's):
 
-- Mrs. Nagy’s, the way in: "Mrs. Nagy’s rooms on East Fourth Street was a tall thin house that leaned a little on its neighbor, …" → "Mrs. Nagy’s, on East Fourth Street, was quiet at this hour." (the walk before it takes a line of the street).
+- Mrs. Nagy’s, the way in (the tester's): "Mrs. Nagy’s rooms on East Fourth Street was a tall thin house that leaned a little on its neighbor, …" → "Mrs. Nagy’s was a tall thin house on East Fourth Street that leaned a little on its neighbor, …".
 - Mrs. Nagy’s list: "So Dandridge and Callahan had all been at Mrs. Nagy’s, where the carving knife was kept, and had all left by nine." → "…had both been …, and had both left by nine."
 - Dandridge's evening: "Renfro and Quill were with me at first and left after eight. Nobody with me at nine." → "Renfro kept me company at eight. Quill was with me at first and left after eight. Nobody with me at nine."
 - The verdict: "I closed the case at a quarter to eight" → "at eight" (the tester's, at 8:00) and "at ten to seven" (the oracle's, at 6:50); "Who else lied: Rufus Dandridge ✓" → "Did anyone else lie? Rufus Dandridge ✓"; the score line "who, who else lied, when, …" → "who, whether anyone else lied, when, …". The form's question: "Someone else lied too. Who, and what clears them?" → "Did anyone else lie? If so, who, and what clears them?".
@@ -144,9 +197,9 @@ Each of the four nights read in full, page by page, with the choices, the notebo
 
 **Medium 21** (the tester's route and the oracle's):
 
-- The floor: "Whoever stabbed Mulcahy had been at Kowalski’s first." → "Whoever stabbed Mulcahy had been at Kowalski’s for the knife before nine, the earliest it could have happened."
+- The floor: "Whoever stabbed Mulcahy had been at Kowalski’s first." ("Mulcahy’s killer had been at Kowalski’s first, for the knife." on `c1c6745`) → "Whoever stabbed Mulcahy had been at Kowalski’s for the knife before nine, the earliest it could have happened."
 - Mrs. Kowalski's list: "Mosley had been at Kowalski’s earlier, when the carving knife was there for the taking; Vitale hadn’t, though. So Salerno and Sweeney had all been at Kowalski’s, …, and had all left by ten." → "…, and Vitale didn’t come till nine, too late for it. So Salerno and Sweeney had both been at Kowalski’s, …, and had both left by ten." (The oracle's: "…every one of them had gone by ten" → "both of them had gone by ten".)
-- The stars to the Blue Lantern and on Vitale: "ask Vitale who she passed on the way over at ten" → "Vitale walked over from Kowalski’s at ten — ask Vitale who she passed on the way".
+- The stars to the Blue Lantern and on Vitale (on `04b40d7`; on `c1c6745` no star shows at Medium, and the reason is what the curtain's steps and a star would say): "ask Vitale who she passed on the way over at ten" → "Vitale walked over from Kowalski’s at ten — ask Vitale who she passed on the way".
 - The notebook: "The carving knife came from Kowalski’s, so whoever used it had been there first." → "…, so whoever used it had been there before nine, the earliest it could have happened."
 - The tester's silent `confront Salerno` from the Eagle club office now answers "Salerno isn’t here. She’s at Salerno’s flat, and confronting her takes a walk there first."
 
@@ -161,13 +214,18 @@ Each of the four nights read in full, page by page, with the choices, the notebo
 
 ## 5. Tests
 
-**867** (main's 836, and 31 new), all passing at three workers (`npx vitest run --minWorkers=1 --maxWorkers=3`); `tsc` is clean.
+**887** in 33 files (main's 856 in 32 at `c1c6745`, and 31 new), all passing at three workers (`npx vitest run --minWorkers=1 --maxWorkers=3`); `tsc` is clean.
 
-- `test/round7.test.ts` (19): B1 on Hard-boiled 19 (refused with where he is, the save untouched; in the room it opens; an old save's open picker says "Mosley isn’t here." and keeps nothing; no picker for anybody away on the oracle's nights at Poached up); B2 on Hard-boiled 19 and Poached 17; B3 on Hard-boiled 19 (curtain, story, both clash lists); B4 on Hard-boiled 19's step 7 and Medium 21's star; B5 on Raw 23 (the stars, the office, the parlor, the turn); B6 on Medium 21 (the find, Vitale, `meansLate`, the grid's hover) and Hard-boiled 19; B7 at Poached and Raw; B8 (the clock's words and the close, the cat, the label, the gossip in the office and the notebook, plural names, "both"); B9 (asked by tier at every tier; the constructed one-liar night).
+- `test/round7.test.ts` (19): B1 on Hard-boiled 19 (refused with where he is, the save untouched; in the room it opens; an old save's open picker says "Mosley isn’t here." and keeps nothing; no picker for anybody away on the oracle's nights at Poached up); B2 on Hard-boiled 19 and Poached 17; B3 on Hard-boiled 19 (curtain, story, both clash lists); B4 on Hard-boiled 19's step 7 and Medium 21's star; B5 on Raw 23 (the stars, the office, the parlor, the turn); B6 on Medium 21 (the find, Vitale, `meansLate`, the grid's hover) and Hard-boiled 19; B7 at Poached and Raw; B8 (the clock's words and the close, the cat, the label, the gossip in the office and the notebook, plural names and Mrs. Nagy’s own card, "both"); B9 (asked by tier at every tier; the constructed one-liar night).
 - `test/hinge.test.ts` (9): each new rule catches main's line and passes this build's (§2).
 - `test/plain-words.test.ts` (3): B9's chrome.
 - Updated: `round4.test.ts` (Medium 14's star: "Pickering walked over from the Delmonico rooms at ten — ask Pickering who she passed on the way"), `plain-words.test.ts` (the confront box), `board-engine.test.ts`, `other-liar.test.ts` and `round5.test.ts` (B9's words).
 
 ## 6. What's open
 
-OPEN
+- **B9 waits for the generator.** Every night from Poached up deals an innocent liar today (270 of 270), so the question is asked where the answer is always a name, and "Nobody else" scored right is tested on a constructed deal only. Dealing one-liar nights is the generator's, and the designer's, call.
+- **B6 on the "How this works" page**: the deadline is said on the night's pages, in the notebook and in the grid's hover; whether the teach page says it too is the designer's call.
+- **A hint before the means is placed cites the pointer's own hour**: "Bidwell saw Callahan at Moe’s at seven — ask Callahan where she was." (Poached 17, both routes, on a page and on the report page, docs/67 §5; docs/67 §7 left it to this branch as B4's). It's true, it's docs/65 §5's last fallback (nothing held yet puts her near the knife), and it's main's word for word; once Mrs. Nagy's list is in, the reason is the hour that matters ("Callahan and Dandridge could have had the carving knife, and nobody had said where either of them was at nine"). Whether the fallback should add the hour that matters is for the next hints or prose build. It's not a wrong fact, so it has no lint.
+- **Two ways of saying company, side by side** (B2): "Renfro kept me company at eight. Quill was with me at first and left after eight." Both true; folding them is the prose build's.
+- **The turn's recap and the lodger** (B5): the recap of who knew the way in names the guests at the table and leaves the lodger to the office's line. It says nothing false, but it leaves her out; a clause of her own is the prose build's.
+- **The prose patterns (P1–P9) and the interface items (U1–U4)** are the next build's, as the digest has them.

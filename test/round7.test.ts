@@ -247,6 +247,8 @@ describe('B8: the small slips', () => {
     expect(['Moe’s, a back-room bar behind a cigar store', 'Rafferty’s rooming house on Mott Street', 'the Grand Street chop house', 'Mrs. Nagy’s', 'the back of Sokol’s bakery on Rivington Street, where the numbers are taken'].map(namePlural)).toEqual([false, false, false, false, false]);
     const text = all(night(POACHED17).run);
     expect(text).not.toMatch(/Mrs\. Nagy’s rooms on East Fourth Street was\b/);
+    // The house keeps its own card, with the name that's one house.
+    expect(text).toContain('Mrs. Nagy’s was a tall thin house on East Fourth Street that leaned a little on its neighbor, like a lodger who has had one too many.');
   });
 
   it('two people "had both been", never "had all been"', () => {
