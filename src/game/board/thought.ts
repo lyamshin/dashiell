@@ -432,11 +432,18 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       } else if (yes.length > 0) {
         parts.push(`${andList(yes.map((p) => nameOf(c, p)))} ${accessPhrase(c, true, false, here).replace(/^was\b/, yes.length > 1 ? 'were' : 'was')}.`);
       }
-      if (no.length > 0) parts.push(`${andList(no.map((p) => nameOf(c, p)))} ${accessPhrase(c, false, false, here).replace(/^was\b/, no.length > 1 ? 'were' : 'was').replace(/^wasn’t\b/, no.length > 1 ? 'weren’t' : 'wasn’t')}.`);
+      // Round 7, B6: somebody there only once it had to be gone says why it rules them out: "Vitale
+      // didn’t come till nine, too late for it", never a bare "Vitale hadn’t, though" about a woman the
+      // landlady had in the house at nine.
+      const after = Math.max(...c.means.available);
+      const lateAt = (p: PersonId): Hour | undefined => (isMurder(c) || /^spare/.test(mode) ? (c.board.hours as Hour[]).find((h) => h > after && a.placed.get(`${p}@${h}`)?.place === c.means.origin) : undefined);
+      const noPlain = no.filter((p) => lateAt(p) === undefined);
+      if (noPlain.length > 0) parts.push(`${andList(noPlain.map((p) => nameOf(c, p)))} ${accessPhrase(c, false, false, here).replace(/^was\b/, noPlain.length > 1 ? 'were' : 'was').replace(/^wasn’t\b/, noPlain.length > 1 ? 'weren’t' : 'wasn’t')}.`);
+      for (const p of no.filter((x) => lateAt(x) !== undefined)) parts.push(`${nameOf(c, p)} didn’t come till ${hourWord(lateAt(p) as Hour)}, too late for it.`);
       const said = parts.map((y) => cap(y)).join(' ');
       // docs/52: who could and who couldn't, each with the hour they had it, where it's said.
       const told = /^told/.test(mode) && yes.every((p) => firstAt(p) !== undefined) && yes.length > 0;
-      const access: Prop[] = [...yes.map((p) => ({ k: 'ACCESS', person: p, had: true, ...(told ? { hour: firstAt(p) } : {}) }) as Prop), ...no.map((p) => ({ k: 'ACCESS', person: p, had: false }) as Prop)];
+      const access: Prop[] = [...yes.map((p) => ({ k: 'ACCESS', person: p, had: true, ...(told ? { hour: firstAt(p) } : {}) }) as Prop), ...no.map((p) => ({ k: 'ACCESS', person: p, had: false, ...(lateAt(p) !== undefined ? { hour: lateAt(p) } : {}) }) as Prop)];
       add(said, ['givens:means'], { rel: 'narrows', rule: 'way-in', people: [...yes, ...no, c.client], hours: hs, places: [c.means.origin], props: access });
     }
   }
@@ -584,7 +591,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const access = ps.filter((p) => a.accessYes.has(p) && !b.accessYes.has(p));
       const kept = `where ${wayWhat(c)} was kept`;
       const tail = there.length ? `; ${names(there)} ${be}${still ? ' still' : ''} there at ${H}` : '';
-      add(`${names(ps)} had all been at ${where}, ${kept}, and had all left by ${hourWord(first)}${tail}.`, ['givens:clock', 'givens:means'], {
+      add(`${names(ps)} had ${ps.length === 2 ? 'both' : 'all'} been at ${where}, ${kept}, and had ${ps.length === 2 ? 'both' : 'all'} left by ${hourWord(first)}${tail}.`, ['givens:clock', 'givens:means'], {
         rule: 'then',
         ...(lean() && caught.size > 0 ? {} : { opener: 'So' as const }),
         hours: [...hs],
@@ -598,7 +605,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         ],
         say: {
           shape: 'PLACED-SET',
-          flags: ['then', 'means', 'all', ...(access.length ? ['access'] : []), ...thereFlags],
+          flags: ['then', 'means', 'all', ...(ps.length === 2 ? ['two'] : []), ...(access.length ? ['access'] : []), ...thereFlags],
           args: { gone: { t: 'people', ids: [...ps] }, where: { t: 'place', id: l.place }, first: { t: 'hour', h: first }, kept, ...thereArgs },
         },
       });

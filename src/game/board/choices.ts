@@ -266,7 +266,11 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
  */
 export function pickerNote(d: BoardDeal, pk: Picker): string {
   const pr = pronOf(d.kase, pk.person);
-  return `${pk.help} Confronting ${pr.him} takes an action, whether ${pr.he} talks or not. You don’t have to: the report takes what proves ${pr.he} lied either way.`;
+  // Round 7, B7: "You don’t have to: the report takes what proves he lied either way" wasn't quite true:
+  // confronting the innocent liar is how you learn who clears them. From Poached up, where an innocent
+  // liar can be dealt, it says so; below, there's nobody to clear, and what they say back tells you more.
+  const back = d.kase.tier >= 2 ? `${pr.he} may name somebody who can clear ${pr.him}` : `${pr.he} may tell you more`;
+  return `${pk.help} Confronting ${pr.him} takes an action and isn’t needed to prove ${pr.he} lied, but ${back}.`;
 }
 
 function listWhole(d: BoardDeal, l: Line): boolean {

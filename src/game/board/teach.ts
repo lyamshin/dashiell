@@ -40,5 +40,6 @@ export const BOARD_RULES: readonly string[] = [
   'Each page gives you choices: who to ask, what to search, where to go. Each one takes an action, and you have the night, until eight in the morning.',
   'A star marks a choice worth taking now, and says why.',
   'The notebook keeps what you’ve learned. The grid shows where everyone says they were, and where the stories clash.',
-  'Close the case when you’re ready: who, when, how, why, and what proves it. A hunch counts half. When two people lied, it also asks who else lied and what clears them.',
+  // (Round 7, B9: asked, never told: "When two people lied, it also asks who else lied" said there was one.)
+  'Close the case when you’re ready: who, when, how, why, and what proves it. A hunch counts half. On the harder cases it also asks whether anyone else lied, and if so, what clears them.',
 ];

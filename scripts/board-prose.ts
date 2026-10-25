@@ -82,7 +82,7 @@ import { playBoardOracle, playReader, playWanderer } from '../src/game/board/ora
 import type { Block, Page } from '../src/game/board/types.js';
 import { namesOverTwo } from '../src/game/board/names.js';
 import { proseIssues, type ProseIssue } from '../src/game/board/prose-lint.js';
-import { HINGE_RULES, epilogueIssues } from '../src/game/board/hinge-lint.js';
+import { HINGE_RULES, epilogueIssues, nightIssues } from '../src/game/board/hinge-lint.js';
 import { scoreBoard, truthReport } from '../src/game/board/report.js';
 import { isWorld, worldBible } from '../src/gen/board/world/index.js';
 import { remarkStreets } from '../src/gen/board/streets.js';
@@ -412,6 +412,12 @@ for (const tier of tiers) {
         hinge.epilogue = (hinge.epilogue ?? 0) + 1;
         r3.hinge++;
         if (examples.length < 120) examples.push(`hinge ${tierName(tier)} ${type} seed ${s}: epilogue: ${x.detail}`);
+      }
+      // docs/68: the night's after-pages (the curtain, the story, the grid's clashes, the close, the notebook's office).
+      for (const x of nightIssues(d, structuredClone(o.run) as BoardRun)) {
+        hinge[x.rule] = (hinge[x.rule] ?? 0) + 1;
+        r3.hinge++;
+        if (examples.length < 120) examples.push(`hinge ${tierName(tier)} ${type} seed ${s}: ${x.rule}: ${x.detail}`);
       }
     }
     for (const r of [run, playWanderer(d, s).run, playReader(d, s).run] as BoardRun[]) {

@@ -415,11 +415,27 @@ export function collisionsOf(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>
  */
 function breakersOf(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>, p: PersonId, h: Hour, lines: Line[], deps: string[]): Line[] {
   const cands = candidateLines(c, run, p, h, lines);
-  const on = (ds: readonly string[]) => cands.filter((l) => ds.includes(l.q) && l.q !== `account:${p}`);
+  const on = (ds: readonly string[]) => agreeingLast(c, p, h, cands.filter((l) => ds.includes(l.q) && l.q !== `account:${p}`));
   const first = on(firstBreak(c, run, p, h) ?? []);
   if (first.length > 0) return first;
   const hit = on(deps);
   return hit.length > 0 ? hit : cands.filter((l) => judgeLine(c, run, p, h, l).landed);
+}
+
+/**
+ * Round 7, B3: what broke a story is never the line that agrees with it. On a pair night the break
+ * rests on the partner's own story too ("Mosley says he was at Grasso’s flat at nine, with Grasso"),
+ * which says just what Grasso said; what broke it is the face at Moskowitz’s that was Mosley's. A
+ * line that puts them where they said, then, comes after the lines that don't: the collision's first
+ * line, the curtain's "What gave it away", the oracle's put and the readers' proof are the break.
+ */
+export function agreesWith(c: BoardCase, p: PersonId, h: Hour, l: Line): boolean {
+  const claimed = accountOf(c, p)?.claims[h]?.place;
+  return claimed !== undefined && l.place === claimed && l.about.includes(p) && (l.kind === 'claim' || l.kind === 'list' || l.kind === 'given' || l.kind === 'admit');
+}
+
+function agreeingLast(c: BoardCase, p: PersonId, h: Hour, ls: Line[]): Line[] {
+  return [...ls.filter((l) => !agreesWith(c, p, h, l)), ...ls.filter((l) => agreesWith(c, p, h, l))];
 }
 
 /**
@@ -438,6 +454,29 @@ export function meansShown(c: BoardCase, run: Pick<BoardRun, 'asked'>, p: Person
     return (x && x.place !== c.means.origin) || s.notPlaced.get(`${p}@${h}`)?.has(c.means.origin);
   });
   return no ? 'no' : '?';
+}
+
+/**
+ * Round 7, B6: somebody what's held puts where the means was kept, but only once it had to be gone:
+ * the first such hour. A windowed murder's means had to be taken before the window's first hour, the
+ * earliest it could have happened (`generate.ts`: the hours it was there are those before it), so
+ * Vitale at Kowalski’s at nine, with the knife there at seven and the window nine or ten, came too
+ * late for it. Undefined where they couldn't be ruled out on it, or were never there.
+ */
+export function meansLate(c: BoardCase, run: Pick<BoardRun, 'asked'>, p: PersonId): Hour | undefined {
+  // (A thing there for the taking: a murder's means, or a spare key. Who came after a room was told
+  // about the window never heard it, and says so already.)
+  if (!(isMurder(c) || /^spare/.test(c.setup?.means ?? ''))) return undefined;
+  if (meansShown(c, run, p) !== 'no' || c.means.available.length === 0) return undefined;
+  const s = solveRun(c, run);
+  const after = Math.max(...c.means.available);
+  return c.board.hours.find((h) => h > after && s.placed.get(`${p}@${h}`)?.place === c.means.origin);
+}
+
+/** Round 7, B6: the hour a windowed murder's means had to be had by: the earliest it could have happened. */
+export function meansBy(c: BoardCase): Hour | undefined {
+  const w = c.givens.window ?? c.crime.window;
+  return isMurder(c) && w.length > 1 ? (w[0] as Hour) : undefined;
 }
 
 const FACELESS = new Map<string, Solved>();

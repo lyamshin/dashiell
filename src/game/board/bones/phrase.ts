@@ -240,7 +240,9 @@ export function accessPhrase(c: BoardCase, yes: boolean, again = false, here?: P
     // no says the means and where it was kept, never "while it was there to take" (docs/49, Planner 2).
     return yes ? `had been ${at} earlier, when the ${m} was there for the taking` : `hadn’t been ${at} while the ${m} was ${keptAt(c)}`;
   }
-  if (party) return yes ? (again ? `had been at the ${party.occasion} and knew ${wayKnown(c)}` : `was at the ${party.occasion}`) : again ? `never knew ${wayKnown(c)}` : `wasn’t at the ${party.occasion}`;
+  // (Round 7, B5: the lodger the door was left unlocked for knew it without a seat at the table: where
+  // the office gave somebody the way in so, the way in is what they all knew, not the supper.)
+  if (party) return yes ? (again ? (c.givens.access.length > 0 ? `knew ${wayKnown(c)}` : `had been at the ${party.occasion} and knew ${wayKnown(c)}`) : `was at the ${party.occasion}`) : again ? `never knew ${wayKnown(c)}` : `wasn’t at the ${party.occasion}`;
   if (/^told/.test(mode)) {
     const thing = mode === 'told-window' ? 'window' : 'key';
     if (again) return yes ? `had heard about the ${thing}` : `hadn’t heard about the ${thing} at all`;

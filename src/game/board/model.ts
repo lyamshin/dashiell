@@ -60,8 +60,8 @@ export interface BoardReport {
   /** docs/46 §3, a lost thing: which line put it where it is now (a held line's id, or `crack:p@h`). Null is a hunch. */
   whereBy?: string | null;
   /**
-   * docs/61, from Poached up on a night with an innocent liar: who else lied (a suspect's id, or
-   * `nobody`). Null is "I don't know".
+   * docs/61, from Poached up (round 7, B9: every night, by tier): whether anyone else lied, and who (a
+   * suspect's id, or `nobody`). Null is "I don't know".
    */
   other?: PersonId | null;
   /** docs/61: the held line that cleared the other liar (`Line.id`). Null is a hunch. */

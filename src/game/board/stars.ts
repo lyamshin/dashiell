@@ -27,7 +27,7 @@ import { questionsOf } from '../../gen/board/solver.js';
 import type { Question } from '../../gen/board/types.js';
 import { accountOf, knownPeople, linesHeld, meansShown, solveHeld, solveRun } from './knowledge.js';
 import { andList, isMurder, nameOf, personOf, placeName, pronOf, solverHeld, suspectsOf, type BoardCase, type BoardDeal, type BoardRun, type Hour, type PersonId } from './model.js';
-import { accessPhrase } from './bones/phrase.js';
+import { accessPhrase, wayKnown } from './bones/phrase.js';
 import { remarkStreet } from '../../gen/board/streets.js';
 
 export interface Star {
@@ -261,10 +261,18 @@ export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: stri
   if (!by) return '';
   // docs/47 B10: the reason that matters first. Somebody out on the street at an hour that mattered
   // may have passed something; that, not who they were with an hour before, is why to ask.
-  if (q.kind === 'account') {
+  // Round 7, B4: only at Medium, where a passer-by's word is a thing an evening can hold, and said as
+  // what's known, the walk, and where it went: "ask Grasso who she passed on the way over at nine" was
+  // a star on a walk home, at Hard-boiled, where nobody passes anybody, and named no pointer at all.
+  if (q.kind === 'account' && walksOnly(c)) {
     const mv = movedAt(c, run, q.subject);
-    // docs/55 4: the person and the question: "ask Pickering who she passed on the way over at ten".
-    if (mv) return `ask ${nameOf(c, q.subject)} who ${pronOf(c, q.subject).he} passed on the way over at ${hourWords(mv.h)}`;
+    // docs/55 4: the person and the question: "Pickering walked over from the Delmonico rooms at ten —
+    // ask Pickering who she passed on the way".
+    if (mv) {
+      const N = nameOf(c, q.subject);
+      const home = personOf(c, q.subject)?.home === mv.to;
+      return `${N} walked ${home ? 'home' : 'over'} from ${placeName(c, mv.from)} at ${hourWords(mv.h)} — ask ${N} who ${pronOf(c, q.subject).he} passed on the way`;
+    }
   }
   // A watcher not met yet is asked for by the job ("ask the bartender who was there").
   let act = actionWords(c, q);
@@ -285,7 +293,12 @@ export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: stri
     const group = sameStanding(c, run, q.subject);
     const many = group.length > 1;
     const party = !isMurder(c) ? c.givens.lines?.find((g) => g.kind === 'party')?.vars.occasion : undefined;
-    const had = party ? `${many ? 'were' : 'was'} at the ${party}` : accessPhrase(c, true, true);
+    // Round 7, B5: "were at the supper" only of a group who were all at it. The lodger the door was
+    // left unlocked for knew it without a seat at the table ("Ashby, Lindemann and Winslow were at the
+    // supper" had her at it): a group with her in it is said by what they all knew.
+    const atTable = !!party && group.every((p) => !c.givens.access.includes(p));
+    // (Never "left unlocked" in a star's reason: a reason doesn't say who's left, docs/46 §1.)
+    const had = atTable ? `${many ? 'were' : 'was'} at the ${party}` : party ? `knew ${wayKnown(c).replace(/^that the door was left unlocked$/, 'the door would be unlocked')}` : accessPhrase(c, true, true);
     const whose = many ? (group.length === 2 ? 'either of them' : 'any of them') : pronOf(c, q.subject).he;
     // A walk to where they all are goes to them all; otherwise the star is on one question.
     const all = many && walk && group.every((p) => personOf(c, p)?.foundAt === q.at);

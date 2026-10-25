@@ -20,7 +20,7 @@ import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { boardGrid, gridKey, meansAsked } from '../src/game/board/grid.js';
 import { dealBoard, deadlineWords, type BoardDeal } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
-import { BREAKS_LABEL, CLEARED_LABEL, OTHER_QUESTION, WHERE_BY_LABEL, blankRule, boardFields, curtainOfBoard, lineGroupHeads, scoreBoard, storyOfBoard, truthReport, whereByOptions } from '../src/game/board/report.js';
+import { BREAKS_LABEL, CLEARED_LABEL, OTHER_LABEL, OTHER_QUESTION, WHERE_BY_LABEL, blankRule, boardFields, curtainOfBoard, lineGroupHeads, scoreBoard, storyOfBoard, truthReport, whereByOptions } from '../src/game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES } from '../src/game/board/teach.js';
 import { ACTION_KEY, TALK_HEADING, TURN_DIVIDER, chapterShown, costText } from '../src/game/board/text.js';
 import { runPlay, type PlayIo } from '../src/cli/play-lib.js';
@@ -177,8 +177,9 @@ describe('docs/64: plain words in the chrome', () => {
     const pk = pickerFor(d, run, 'reinhardt');
     expect(pk).not.toBeNull();
     const note = pickerNote(d, pk as NonNullable<typeof pk>);
-    expect(note).toContain('Confronting her takes an action, whether she talks or not. You don’t have to: the report takes what proves she lied either way.');
-    expect(note).not.toMatch(/\bit\b(?! either way)/);
+    // (Round 7, B7: shorter, and true: confronting the innocent liar is how you learn who clears them.)
+    expect(note).toContain('Confronting her takes an action and isn’t needed to prove she lied, but she may name somebody who can clear her.');
+    expect(note).not.toMatch(/\bit\b/i);
     expect(pk?.claims.map((x) => x.said)).toEqual(['She said she was at the Shamrock at nine']);
     const g = boardChoices(d, run).find((x) => x.personId === 'reinhardt');
     const topics = (g?.choices ?? []).map((ch) => costText(ch));
@@ -218,5 +219,36 @@ describe('docs/64: plain words in the chrome', () => {
     expect(cli(d, events)('close', 'who=Bellucci; proof=hunch; when=10; where=Pardo; whereproof=hunch; why=rent')).toBe(old);
     expect(plain).toContain('What proves they lied: A hunch');
     expect(cli(d, events)('help')).toMatch(/close "who=…; proof=…;/);
+  });
+});
+
+describe('round 7, B9: no chrome says or implies that somebody else lied', () => {
+  /** "Someone else lied too", "who else lied", "the other liar", "when two people lied, it also asks": each says a second liar exists. */
+  const TELLS = /\b(?:someone|somebody) else (?:lied|is lying)\b|\bwho else lied\b|\bthe other liar\b|\bwhen two people lied, (?:it|the report) (?:also )?asks\b|\banother liar\b|\bsecond liar\b/i;
+  const tells = (t: string) => (TELLS.test(t) && !/^Did anyone else lie\?/.test(t) ? [t] : []);
+
+  it('the question, its labels and the help ask; they never tell', () => {
+    for (const t of [OTHER_QUESTION, OTHER_LABEL, CLEARED_LABEL, ...BOARD_RULES]) expect(tells(t), t).toEqual([]);
+    expect(OTHER_QUESTION).toBe('Did anyone else lie? If so, who, and what clears them?');
+    expect(BOARD_RULES.join(' ')).toContain('it also asks whether anyone else lied, and if so, what clears them');
+  });
+
+  it('the CLI’s form, a person’s list, the help and its refusals, on a night with another liar', () => {
+    const d = dealBoard(17, 2, 'murder');
+    const say = cli(d, playBoardOracle(d).commands.map((x) => ({ do: x })));
+    const texts = [say('report'), say('report', 'Dandridge'), say('report', 'Callahan'), say('help'), say('close', 'who=Callahan; cleared=1')];
+    for (const t of texts) for (const line of t.split('\n')) expect(tells(line), line).toEqual([]);
+    expect(texts[0]).toContain('Did anyone else lie? If so, who, and what clears them? (other):');
+  });
+
+  it('the book’s own strings never tell either', () => {
+    for (const file of ['src/ui/board-book.ts', 'src/ui/report.ts', 'src/game/board/teach.ts']) {
+      const src = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8')
+        .replace(/\/\*[\s\S]*?\*\//g, '')
+        .replace(/^\s*\/\/.*$/gm, '')
+        .replace(/\s\/\/ .*$/gm, '');
+      const literals = [...src.matchAll(/'([^'\n]*)'|`([^`]*)`|"([^"\n]*)"/g)].map((m) => (m[1] ?? m[2] ?? m[3] ?? '').replace(/\$\{[^}]*\}/g, ' '));
+      expect(literals.flatMap(tells), file).toEqual([]);
+    }
   });
 });

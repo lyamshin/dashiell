@@ -35,7 +35,7 @@ import {
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
 import { peopleLine } from '../game/board/gloss.js';
-import { BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, WHERE_BY_LABEL, blankRule, boardFields, breakOptionsShown, clearOptions, curtainOfBoard, hoursThatMattered, lineGroupHeads, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
+import { BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, whereByLabel, blankRule, boardFields, breakOptionsShown, clearOptions, curtainOfBoard, hoursThatMattered, lineGroupHeads, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
 import { ACTION_KEY, TALK_HEADING, chapterShown, costText, officeLines, questionsText, starsNote } from '../game/board/text.js';
 import { continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, tierOpen, tonightTier, type KeyValueStore, type Profile } from '../game/board/profile.js';
@@ -665,7 +665,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         );
         s.addEventListener('change', refill);
       }
-      if (f.key === 'where') lineField('whereBy', WHERE_BY_LABEL, () => whereByOptions(dd, r), () => 'What people let slip, what you found, and what they said when you confronted them.');
+      if (f.key === 'where') lineField('whereBy', whereByLabel(dd), () => whereByOptions(dd, r), () => 'What people let slip, what you found, and what they said when you confronted them.');
     }
     form.append(el('div', { class: 'after' }, el('button', { class: 'open-case', type: 'submit', text: 'Close the case' })));
     form.addEventListener('submit', (e) => {

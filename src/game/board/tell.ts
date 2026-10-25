@@ -256,7 +256,7 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
     } else {
       push({ shape: 'CLAIM-SPAN', flags: [...flags, 'bare'], args: { ...args, with: '' }, manner }, runHours, runHours.map((h) => ({ k: 'CLAIM', person: p, place: r.place, hour: h }) as Prop));
       // docs/59 item 2: who was with them told by what changed, never "hour by hour".
-      const cc = companyByChange(c, p, comps, manner);
+      const cc = companyByChange(c, p, comps, manner, r.place);
       out.push({ text: cc.text, hours: runHours, props: cc.props, say: cc.say });
     }
   });
@@ -278,12 +278,34 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
  * Each clause a part of one `seq` composite; what they say adds up to one CLAIM an hour, with
  * everybody who was with them then (`bones/reread.ts` `mergeParts`).
  */
-export function companyByChange(c: BoardCase, p: PersonId, comps: { h: Hour; who: PersonId[] }[], manner: Manner): { text: string; props: Prop[]; say: SaySpec } {
+export function companyByChange(c: BoardCase, p: PersonId, comps: { h: Hour; who: PersonId[] }[], manner: Manner, place?: PlaceId): { text: string; props: Prop[]; say: SaySpec } {
   const hs = comps.map((x) => x.h);
   const first = hs[0] as Hour;
   const last = hs[hs.length - 1] as Hour;
   const CL = (h: number, company: PersonId[]): Prop => ({ k: 'CLAIM', person: p, hour: h, company }) as Prop;
-  // Each companion's hours in the stretch, grouped by the same hours.
+  // Round 7, B2: a telling by change says somebody came or left only where the board has them come or
+  // go. A liar's own evening ("Moe's at nine, nobody with me") can lose a companion of the hour before
+  // at the hour they lie about, though the companion never left the room (Renfro, at Moe's all evening,
+  // "with me at first and left after eight"): that companion is said at their hours, plainly.
+  const stayed = (y: PersonId, r: readonly Hour[]): boolean => {
+    if (place === undefined) return false;
+    const a = r[0] as Hour;
+    const b = r[r.length - 1] as Hour;
+    const came = a !== first && c.board.rows[y]?.[hs[hs.indexOf(a) - 1] as Hour] === place;
+    const went = b !== last && c.board.rows[y]?.[hs[hs.indexOf(b) + 1] as Hour] === place;
+    return came || went;
+  };
+  const runsIn = (yh: readonly Hour[]): Hour[][] => {
+    const runs: Hour[][] = [];
+    for (const h of yh) {
+      const r = runs[runs.length - 1];
+      if (r && hs.indexOf(h) === hs.indexOf(r[r.length - 1] as Hour) + 1) r.push(h);
+      else runs.push([h]);
+    }
+    return runs;
+  };
+  // Each companion's hours in the stretch, grouped by the same hours (and by whether the board has them
+  // come and go where the telling would say so).
   const order: PersonId[] = [];
   const at = new Map<PersonId, Hour[]>();
   for (const x of comps) {
@@ -295,17 +317,18 @@ export function companyByChange(c: BoardCase, p: PersonId, comps: { h: Hour; who
       (at.get(y) as Hour[]).push(x.h);
     }
   }
-  const groups: { who: PersonId[]; hs: Hour[] }[] = [];
+  const groups: { who: PersonId[]; hs: Hour[]; sig: string }[] = [];
   for (const y of order) {
     const yh = at.get(y) as Hour[];
-    const g = groups.find((z) => z.hs.join() === yh.join());
+    const sig = `${yh.join()}|${runsIn(yh).map((r) => (stayed(y, r) ? 's' : '')).join()}`;
+    const g = groups.find((z) => z.sig === sig);
     if (g) g.who.push(y);
-    else groups.push({ who: [y], hs: [...yh] });
+    else groups.push({ who: [y], hs: [...yh], sig });
   }
   const parts: SaySpec[] = [];
   const add = (flags: string[], args: Args, props: Prop[]) => parts.push({ shape: 'CLAIM-SPAN', flags: ['who-with', ...flags], args, manner, props });
   // Somebody who looked in for one hour, each at an hour of their own: "Hargrove came by at eight, Steinbach at nine and Colquitt at ten".
-  const singles = groups.filter((g) => g.who.length === 1 && g.hs.length === 1 && !(g.hs[0] === first && first === last));
+  const singles = groups.filter((g) => g.who.length === 1 && g.hs.length === 1 && !(g.hs[0] === first && first === last) && !stayed(g.who[0] as PersonId, g.hs));
   const singleHours = new Set(singles.map((g) => g.hs[0]));
   const asSingles = singles.length >= 2 && singleHours.size === singles.length;
   if (asSingles) {
@@ -318,17 +341,13 @@ export function companyByChange(c: BoardCase, p: PersonId, comps: { h: Hour; who
     const n = g.who.length > 1 ? 'many' : 'one';
     const names = andList(g.who.map((y) => nameOf(c, y)));
     // (Somebody who left and came back is two clauses; each says its own hours.)
-    const runs: Hour[][] = [];
-    for (const h of g.hs) {
-      const r = runs[runs.length - 1];
-      if (r && hs.indexOf(h) === hs.indexOf(r[r.length - 1] as Hour) + 1) r.push(h);
-      else runs.push([h]);
-    }
-    for (const r of runs) {
+    for (const r of runsIn(g.hs)) {
       const a = r[0] as Hour;
       const b = r[r.length - 1] as Hour;
       const props = r.map((h) => CL(h, [...g.who]));
-      if (a === first && b === last) add(['all', n], { names }, props);
+      // (Round 7, B2: with them at those hours, and nothing said of a coming or going the board hasn't.)
+      if (stayed(g.who[0] as PersonId, r)) add(['seen', n], { names, hours: { t: 'hours', hs: [...r] } }, props);
+      else if (a === first && b === last) add(['all', n], { names }, props);
       else if (a === first) add(['left', n], { names, to: { t: 'hour', h: b } }, props);
       else if (b === last) add(['came', n, ...(a === b ? ['last'] : [])], { names, from: { t: 'hour', h: a } }, props);
       else if (a === b) add(['mid', 'hour', n], { names, from: { t: 'hour', h: a }, next: { t: 'hour', h: hs[hs.indexOf(b) + 1] as number } }, props);
@@ -476,14 +495,44 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
       props: open.map((h) => LISTP(h, [k])),
     });
   }
+  // Round 7, B2: a telling by change says somebody came in or left only where the board has them come
+  // or go, and a face and a name at the same place are one person, never two. Bledsoe saw only a fur
+  // collar at nine and Mosley at ten, the same man both hours: "Somebody in a fur collar came in for a
+  // bite at nine and was gone by ten. Mosley came in at ten." said a going and a coming nobody made.
+  const ownerOf = (k: string): PersonId | undefined => {
+    const e = said.get(k) as ListEntry;
+    if ('person' in e) return e.person;
+    if ('look' in e) return c.people.find((x) => x.look === e.look)?.id;
+    return undefined;
+  };
+  const runsIn = (hs: readonly Hour[]): Hour[][] => {
+    const runs: Hour[][] = [];
+    for (const h of hs) {
+      const r = runs[runs.length - 1];
+      const prev = r ? (r[r.length - 1] as number) : -1;
+      if (r && open.indexOf(h) === open.indexOf(prev as Hour) + 1) r.push(h);
+      else runs.push([h]);
+    }
+    return runs;
+  };
+  /** Whether the board has them at the place the hour before the run (a coming in that wasn't), and the hour after it (a going that wasn't). */
+  const stay = (k: string, r: readonly Hour[]): { before: boolean; after: boolean } => {
+    const o = ownerOf(k);
+    const a = r[0] as Hour;
+    const b = r[r.length - 1] as Hour;
+    if (!o) return { before: false, after: false };
+    return { before: a !== first && c.board.rows[o]?.[open[open.indexOf(a) - 1] as Hour] === l.place, after: b !== last && c.board.rows[o]?.[open[open.indexOf(b) + 1] as Hour] === l.place };
+  };
+  const sigOf = (k: string, hs: readonly Hour[]) => `${hs.join()}|${runsIn(hs).map((r) => Object.values(stay(k, r)).map(Number).join('')).join()}`;
   // Everybody else, grouped by the hours they were there, and each run of hours a clause.
-  const groups: { ks: string[]; hs: Hour[] }[] = [];
+  const groups: { ks: string[]; hs: Hour[]; sig: string }[] = [];
   for (const k of order) {
     if (standing.includes(k)) continue;
     const hs = at.get(k) as Hour[];
-    const g = groups.find((x) => x.hs.join() === hs.join());
+    const sig = sigOf(k, hs);
+    const g = groups.find((x) => x.sig === sig);
     if (g) g.ks.push(k);
-    else groups.push({ ks: [k], hs: [...hs] });
+    else groups.push({ ks: [k], hs: [...hs], sig });
   }
   const name = (k: string) => {
     const e = said.get(k) as ListEntry;
@@ -508,17 +557,13 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
     const doing = g.ks.length === 1 ? doingOf(g.ks[0] as string) : undefined;
     const usual = !!venue && g.ks.length === 1 && g.ks[0] === c.crime.victim;
     // The runs of hours (somebody who went out and came back is two runs).
-    const runs: Hour[][] = [];
-    for (const h of g.hs) {
-      const r = runs[runs.length - 1];
-      const prev = r ? (r[r.length - 1] as number) : -1;
-      if (r && open.indexOf(h) === open.indexOf(prev as Hour) + 1) r.push(h);
-      else runs.push([h]);
-    }
+    const runs = runsIn(g.hs);
+    const k0 = g.ks[0] as string;
+    const stays = runs.map((r) => stay(k0, r));
     // Out after an hour and back for the rest of the evening: one clause.
     const r0 = runs[0] as Hour[];
     const r1 = runs[1];
-    if (runs.length === 2 && r1 && r0[0] === first && r1[r1.length - 1] === last && !doing) {
+    if (runs.length === 2 && r1 && r0[0] === first && r1[r1.length - 1] === last && !doing && !stays.some((x) => x.before || x.after)) {
       add(['outback', n, ...(flavor === 'house' ? ['house'] : []), ...(!allEvening ? ['shift'] : [])], { names, to: { t: 'hour', h: r0[r0.length - 1] as Hour }, back: { t: 'hour', h: r1[0] as Hour } }, g.hs.map((h) => LISTP(h, [...g.ks])));
       return;
     }
@@ -533,7 +578,11 @@ export function listByChange(c: BoardCase, l: WatchList, manner: Manner, own?: s
       // ("Glick was in at seven and left soon after. He came back at nine…").
       const again = lean() && i > 0 && g.ks.length === 1 && !(g.ks[0] as string).includes(':') ? `${pronOf(c, g.ks[0] as string).he}${markPronoun(c, g.ks[0] as string)}` : undefined;
       const base: Args = { names: again ?? names, ...(doing ? { doing } : {}) };
-      if (a === first && b === last) add(['all', ...extra], base, props);
+      // (Round 7, B2: there at those hours, and no coming or going the board doesn't have; a single hour
+      // they really did come in at says so: "Somebody in a fur collar came in for a bite at nine.")
+      const st = stays[i] as { before: boolean; after: boolean };
+      if (st.before || st.after) add(['seen', ...(a !== first && !st.before && a === b ? ['in'] : []), ...extra.filter((x) => x !== 'back' && x !== 'back-lean')], { ...base, hours: { t: 'hours', hs: [...r] } }, props);
+      else if (a === first && b === last) add(['all', ...extra], base, props);
       else if (a === first) add(['left', a === b ? 'first' : 'after', ...extra], { ...base, to: { t: 'hour', h: b } }, props);
       else if (b === last) add(['came', a === b ? 'last' : 'stay', ...extra], { ...base, from: { t: 'hour', h: a } }, props);
       else if (a === b) add(['mid', 'hour', ...extra], { ...base, from: { t: 'hour', h: a }, next: { t: 'hour', h: open[open.indexOf(b) + 1] as number } }, props);
