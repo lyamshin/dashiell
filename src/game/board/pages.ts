@@ -2847,8 +2847,8 @@ function recapClausesMarked(d: BoardDeal, run: BoardRun): Clause[] {
           out.push({
             key: `second:${p}`,
             text: again
-              ? `Put to it, ${nameOf(c, p)} had a second story, ${placeName(c, k.secondLie.place)}; that didn’t hold either, and ${pronOf(c, p).he} wouldn’t say more.`
-              : `Put to it, ${nameOf(c, p)} had a second story: ${placeName(c, k.secondLie.place)}.`,
+              ? `Faced with it, ${nameOf(c, p)} changed the answer to ${placeName(c, k.secondLie.place)}; that didn’t check out either, and ${pronOf(c, p).he} wouldn’t say more.`
+              : `Faced with it, ${nameOf(c, p)} changed the answer to ${placeName(c, k.secondLie.place)}.`,
             hours: [],
             people: [p],
             places: [k.secondLie.place],
@@ -2957,14 +2957,14 @@ function factClauses(d: BoardDeal, run: BoardRun): Clause[] {
     if (k.response === 'second-lie' && k.secondLie?.place)
       out.push({
         key: `second:${putx.person}`,
-        text: again ? `Put to it, ${name} had a second story, ${placeName(c, k.secondLie.place)}, and when that was put back ${pronOf(c, putx.person).he} wouldn’t say more.` : `Put to it, ${name} had a second story: ${placeName(c, k.secondLie.place)}.`,
+        text: again ? `Faced with it, ${name} changed the answer to ${placeName(c, k.secondLie.place)}, and faced with that, ${pronOf(c, putx.person).he} wouldn’t say more.` : `Faced with it, ${name} changed the answer to ${placeName(c, k.secondLie.place)}.`,
         hours: [],
         people: [putx.person],
         places: [k.secondLie.place],
         props: [{ k: 'SECOND', person: putx.person, place: k.secondLie.place }, ...(again ? [{ k: 'REFUSE', person: putx.person } as Prop] : [])],
         say: { shape: 'REACTION', flags: ['second', again ? 'again' : 'once'], args: { person: { t: 'person', id: putx.person }, place: { t: 'place', id: k.secondLie.place } } },
       });
-    else if (k.response !== 'crack' && k.response !== 'admit') out.push({ key: `refused:${putx.person}`, text: `Put to it, ${name} wouldn’t say where ${pronOf(c, putx.person).he} had been instead.`, hours: [], people: [putx.person], places: [], props: [{ k: 'REFUSE', person: putx.person }], say: { shape: 'REACTION', flags: ['refused'], args: { person: { t: 'person', id: putx.person } } } });
+    else if (k.response !== 'crack' && k.response !== 'admit') out.push({ key: `refused:${putx.person}`, text: `Faced with it, ${name} wouldn’t say where ${pronOf(c, putx.person).he} had been instead.`, hours: [], people: [putx.person], places: [], props: [{ k: 'REFUSE', person: putx.person }], say: { shape: 'REACTION', flags: ['refused'], args: { person: { t: 'person', id: putx.person } } } });
   }
   // docs/47 B8: only the people the night has named.
   const known = knownPeople(c, run);
