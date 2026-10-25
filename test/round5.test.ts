@@ -130,7 +130,8 @@ describe('round 5, U4: the fences offered are the ones the night named', () => {
     for (const { d, run } of NIGHTS.filter((x) => x.d.kase.type !== 'murder')) {
       const said = [...run.log.flatMap((p) => p.blocks.map((b) => ('text' in b ? b.text : ''))), ...linesHeld(d.kase, run).map((l) => l.text)].join('\n');
       const where = boardFields(d, run).find((f) => f.key === 'where');
-      for (const o of where?.options.filter((x) => x.value.startsWith('holder:')) ?? []) expect(said, `${d.kase.id} ${o.label}`).toContain(o.label);
+      // (Round 6, U5: the option is "With Pardo"; the night named Pardo.)
+      for (const o of where?.options.filter((x) => x.value.startsWith('holder:')) ?? []) expect(said, `${d.kase.id} ${o.label}`).toContain(o.label.replace(/^With /, ''));
       // The truth is still in its own words on the verdict, named or not.
       expect(boardFields(d).find((f) => f.key === 'where')?.options.some((o) => o.value === truthReport(d).where)).toBe(true);
     }
@@ -138,7 +139,7 @@ describe('round 5, U4: the fences offered are the ones the night named', () => {
 
   it('Raw 11 offers Pardo and the flat, not Lou and Benny', () => {
     const { d, run } = played(RAW11);
-    expect(boardFields(d, run).find((f) => f.key === 'where')?.options.map((o) => o.label)).toEqual(['Pardo', 'Still at the Marchetti flat']);
+    expect(boardFields(d, run).find((f) => f.key === 'where')?.options.map((o) => o.label)).toEqual(['With Pardo', 'Still at the Marchetti flat']);
   });
 });
 
