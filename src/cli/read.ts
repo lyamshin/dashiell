@@ -74,7 +74,7 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
     for (const cmd of commands) states.push(stepBoard(d, states[states.length - 1] as BoardRun, cmd).run);
   }
   const out: string[] = [];
-  out.push(`${c.id} · ${tierName(c.tier)} · ${c.type}${c.variant ? ` (${c.variant})` : ''} · par ${parCalls(d)} calls (${d.analysis.par} questions${d.analysis.motive ? ' + the motive search' : ''}, ${d.analysis.walks} walks), budget ${budgetCalls(d)}`);
+  out.push(`${c.id} · ${tierName(c.tier)} · ${c.type}${c.variant ? ` (${c.variant})` : ''} · par ${parCalls(d)} actions (${d.analysis.par} questions${d.analysis.motive ? ' + the motive search' : ''}, ${d.analysis.walks} walks), budget ${budgetCalls(d)}`);
   out.push('');
   const budget = budgetCalls(d);
   run.log.forEach((page, i) => {
@@ -102,7 +102,7 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
   out.push(notebookText(d, run));
   out.push('');
   const v = scoreBoard(d, run, report);
-  out.push(`THE VERDICT: ${v.scoreLine} (${pointsText(v.points)} of ${v.asked}, ${v.outcome}); ${run.used} calls against par ${v.par}.`);
+  out.push(`THE VERDICT: ${v.scoreLine} (${pointsText(v.points)} of ${v.asked}, ${v.outcome}); ${run.used} actions against par ${v.par}.`);
   for (const f of v.fields) out.push(`  ${f.label}${/\?$/.test(f.label) ? '' : ':'} ${f.given}${f.correct ? (f.half ? ' ½ (right, but you couldn’t have known)' : ' ✓') : ` ✗ (${f.why ?? `it was ${f.truth}`})`}`);
   for (const p of v.plain) out.push(wrap(p));
   for (const p of v.closing) out.push(wrap(p));
@@ -112,7 +112,7 @@ export function readBoard(values: Map<string, string>, flags: Set<string>): stri
   out.push('');
   if (flags.has('curtain')) out.push(curtainOfBoard(d, run, report));
   const words = run.log.reduce((n, p) => n + p.blocks.reduce((m, b) => m + (b.kind === 'prose' || b.kind === 'note' ? b.text.split(/\s+/).length : 0), 0), 0);
-  out.push(`${run.log.length} pages · ${words} words · ${Math.round(words / Math.max(1, run.log.length))} a page · ${run.used} calls`);
+  out.push(`${run.log.length} pages · ${words} words · ${Math.round(words / Math.max(1, run.log.length))} a page · ${run.used} actions`);
   return out.join('\n');
 }
 

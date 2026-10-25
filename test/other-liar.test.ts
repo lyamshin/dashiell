@@ -101,7 +101,7 @@ describe('docs/61: who else lied, and what cleared them', () => {
       if (culpritLine && !heldClearers(d, o.run).some((l) => l.id === culpritLine)) {
         const wrongLine = scoreBoard(d, o.run, { ...truth, cleared: culpritLine });
         expect(wrongLine.points).toBe(solved.asked - 1);
-        expect(wrongLine.plain.join(' ')).toContain(`didn’t rule out ${name}: the line you picked doesn’t clear`);
+        expect(wrongLine.plain.join(' ')).toContain(`didn’t rule out ${name}: what you picked doesn’t clear`);
       }
       for (const other of [NOBODY, null, d.kase.crime.culprit]) {
         const v = scoreBoard(d, o.run, { ...truth, other, cleared: other === d.kase.crime.culprit ? (heldBreakers(d, o.run)[0]?.id ?? null) : null });
@@ -125,8 +125,8 @@ describe('docs/61: who else lied, and what cleared them', () => {
     const right = curtainOfBoard(d, o.run, truth);
     expect(right).toContain('WHO ELSE LIED, AND WHAT CLEARED THEM');
     expect(right).toMatch(/What cleared (him|her): .+/);
-    expect(right).toMatch(/You filed: +\S.* ✓/);
-    expect(curtainOfBoard(d, o.run, { ...truth, other: NOBODY, cleared: null })).toMatch(/You filed: +nobody else\. +✗/);
+    expect(right).toMatch(/You picked: +\S.* ✓/);
+    expect(curtainOfBoard(d, o.run, { ...truth, other: NOBODY, cleared: null })).toMatch(/You picked: +nobody else\. +✗/);
     expect(curtainOfBoard(dealBoard(2, 1, 'murder'))).not.toContain('WHO ELSE LIED');
   });
 
@@ -149,7 +149,7 @@ describe('docs/61: who else lied, and what cleared them', () => {
 
   it('the teach page says it, plainly, on a line of its own', () => {
     expect(BOARD_TEACH_LINES).toContain('To close the case you need a name and the fact that proves they lied.');
-    expect(BOARD_TEACH_LINES).toContain('When two stories break, you also need what clears the other one.');
+    expect(BOARD_TEACH_LINES).toContain('When two people lied, you also need what clears the innocent one.');
   });
 });
 
@@ -184,7 +184,7 @@ describe('docs/61: the play CLI files it', () => {
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=hunch; other=${other}; cleared=${wrong}; when=${d.kase.crime.hour}; how=${truth.how}; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toMatch(/Who else lied: .+ ✗ — the right name, but not what\s+cleared (him|her)/);
-    expect(filed.out).toMatch(/You had the right name, but you didn’t rule out \w+: the line you\s+picked doesn’t clear (him|her)\./);
+    expect(filed.out).toMatch(/You had the right name, but you didn’t rule out \w+: what you\s+picked\s+doesn’t\s+clear\s+(him|her)\./);
     expect(JSON.parse(files.get(save) as string).events.at(-1).file.other).toBe(truth.other);
 
     const raw = 'r.json';

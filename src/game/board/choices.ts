@@ -123,8 +123,8 @@ export function boardChoices(d: BoardDeal, run: BoardRun): OfferedGroup[] {
         if (person.role === 'suspect') topics.push(choice(`ask ${p} motive`, motiveLabel(d), run.asked.includes(`motive:${p}`)));
         if (pickerFor(d, run, p) !== null) {
           const s = starOf(`picker ${p}`);
-          // docs/47 A6: opening the picker is free to look; the put itself is the call.
-          topics.push({ command: `picker ${p}`, label: `Put it to ${person.short}`, minutes: 0, lead: s !== undefined, done: false, ...(s ? { why: s.why } : {}) });
+          // docs/47 A6: opening the picker is free to look; confronting them is the action. (docs/64: "Confront", never "Put it to".)
+          topics.push({ command: `picker ${p}`, label: `Confront ${person.short}`, minutes: 0, lead: s !== undefined, done: false, ...(s ? { why: s.why } : {}) });
         }
       }
       groups.push({ kind: 'ask', heading: `Ask ${person.short} about`, personId: p, choices: topics });
@@ -173,8 +173,9 @@ export function boardChoices(d: BoardDeal, run: BoardRun): OfferedGroup[] {
   const more = go.filter((g) => !shown.includes(g));
   groups.push({ kind: 'go', heading: 'Go to', choices: shown, ...(more.length > 0 ? { more } : {}) });
   const free: OfferedChoice[] = [];
-  if (run.at !== OFFICE) free.push({ command: 'recap', label: 'Go over what I have', minutes: 0, lead: false, done: false });
-  free.push({ command: 'file', label: 'File the report', minutes: 0, lead: false, done: false });
+  // docs/64: plain words for the free row.
+  if (run.at !== OFFICE) free.push({ command: 'recap', label: 'Review my notes', minutes: 0, lead: false, done: false });
+  free.push({ command: 'file', label: 'Close the case', minutes: 0, lead: false, done: false });
   groups.push({ kind: 'free', heading: '', choices: free });
   return groups;
 }
@@ -240,23 +241,24 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
     person: p,
     ready: c.tier <= 1 ? ready : [],
     claims: c.tier <= 1 ? [] : claims,
+    // docs/64: what you tell them, and what you were told, never "the line that breaks it".
     help:
       c.tier <= 1
-        ? `Read ${pr.him} the line that breaks ${pr.his} story.`
-        : `Pick the hour where ${pr.his} story is wrong, then the line that breaks it, such as somebody who saw everyone there at that hour and not ${pr.him}.`,
+        ? `Pick what you’ll tell ${pr.him}.`
+        : `Pick the hour where what ${pr.he} said doesn’t match, then what you’ll tell ${pr.him}, such as somebody who saw everyone there at that hour and not ${pr.him}.`,
     minutes: callMinutes(d, run),
   };
 }
 
 /**
  * The picker's note, as the book and the CLI both say it: how to use it, what it costs, and (round 5,
- * U7) that it isn't needed for the report: the line counts there whether it's read to them or not, so
- * a put is for what they say back.
+ * U7) that it isn't needed for the report: what you were told counts there whether you tell them or
+ * not, so confronting them is for what they say back. docs/64: in plain words.
  */
 export function pickerNote(d: BoardDeal, pk: Picker): string {
   const c = d.kase;
   const him = personOf(c, pk.person)?.female ? 'her' : 'him';
-  return `${pk.help} Looking is free; reading one to ${him} costs a call. If it breaks nothing, the call is gone all the same, and the page says why. The report counts the line whether you read it to ${him} or not.`;
+  return `${pk.help} If it doesn’t catch ${him} out, the action is used anyway. The report counts it whether you tell ${him} or not.`;
 }
 
 function listWhole(d: BoardDeal, l: Line): boolean {

@@ -14,7 +14,7 @@
 import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
-import { boardGrid, cellText, type BoardCell, type BoardGrid } from '../game/board/grid.js';
+import { boardGrid, cellText, meansAsked, type BoardCell, type BoardGrid } from '../game/board/grid.js';
 import { knownPeople, knownPlaces, lineShown, linesHeld } from '../game/board/knowledge.js';
 import {
   BOARD_SAVE_KEY,
@@ -36,7 +36,7 @@ import {
 import { recapClauses } from '../game/board/pages.js';
 import { BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, WHERE_BY_LABEL, blankRule, boardFields, breakOptionsShown, clearOptions, curtainOfBoard, hoursThatMattered, lineGroupHeads, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
-import { TALK_HEADING, TALK_NOTE, costLabel, officeLines, questionsText, starsNote } from '../game/board/text.js';
+import { ACTION_KEY, TALK_HEADING, chapterShown, costLabel, officeLines, questionsText, starsNote } from '../game/board/text.js';
 import { continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, tierOpen, tonightTier, type KeyValueStore, type Profile } from '../game/board/profile.js';
 import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
@@ -323,7 +323,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const nbLink = el('button', { class: 'nb-link', type: 'button', text: 'Notebook' });
     nbLink.addEventListener('click', () => document.body.classList.add('notebook-open'));
     head.append(el('div', { class: 'runhead-line' }, el('span', { class: 'place', text: r.log[i]?.head ?? '' }), nbLink, el('span', { class: 'time', text: strip.time })));
-    const notches = el('div', { class: 'notches', role: 'img', 'aria-label': `${used} of ${budget} calls spent`, 'data-spent': String(used) });
+    const notches = el('div', { class: 'notches', role: 'img', 'aria-label': `${used} of ${budget} actions used`, 'data-spent': String(used) });
     strip.notches.forEach((kind, j) => {
       const fresh = i === r.log.length - 1 && justSpent > 0 && kind === 'spent' && j >= used - justSpent;
       notches.append(el('span', { class: `notch notch--${kind}${fresh ? ' notch--fresh' : ''}` }));
@@ -340,7 +340,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     for (const b of plain ?? p.blocks) {
       if (b.kind === 'prose') {
         const node = el('p', { class: `prose--${b.voice}` });
-        node.append(withNames(b.text));
+        // docs/64: the turn's heading is a plain divider, "Where things stood".
+        node.append(withNames(b.voice === 'chapter' ? chapterShown(b.text) : b.text));
         out.push(node);
       } else if (b.kind === 'note') {
         const node = el('p', { class: 'note' });
@@ -417,8 +418,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const asks = groups.filter((g) => g.kind === 'ask');
     if (asks.length > 0) {
       const section = el('section', { class: 'choice-group choice-group--people' });
-      // Round 5, U1: what's free and what costs, said once in the heading, the CLI's words.
-      section.append(el('h3', { class: 'choice-heading' }, TALK_HEADING, el('span', { class: 'choice-heading-note', text: ` (${TALK_NOTE})` })));
+      // Round 5, U1, in docs/64's words: "Talk to", the CLI's heading; the key says what's free.
+      section.append(el('h3', { class: 'choice-heading', text: TALK_HEADING }));
       const row = el('div', { class: 'choice-list who-list', role: 'group', 'aria-label': 'Who to talk to' });
       for (const g of asks) {
         const id = g.personId as string;
@@ -469,6 +470,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       section.append(list);
       panel.append(section);
     }
+    // docs/64: the key, on the first page, as the CLI says it; and Hard-boiled's one star.
+    if ((run as BoardRun).log.length === 1) panel.append(el('p', { class: 'note action-key', text: ACTION_KEY }));
     const stars = starsNote(d as BoardDeal, run as BoardRun);
     if (stars) panel.append(el('p', { class: 'note stars-note', text: stars }));
     return panel;
@@ -504,9 +507,9 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
   /** docs/43 §5: their line against the line that breaks it. */
   function pickerNode(pk: Picker): HTMLElement {
     const c = (d as BoardDeal).kase;
-    const box = el('div', { class: 'confront-picker board-picker', role: 'group', 'aria-label': `Put it to ${nameOf(c, pk.person)}` });
-    // docs/47 A6: the person's own pronouns, never "their" for one woman; costs in calls. Round 5, U7:
-    // the CLI's words, and that the report counts the line either way.
+    const box = el('div', { class: 'confront-picker board-picker', role: 'group', 'aria-label': `Confront ${nameOf(c, pk.person)}` });
+    // docs/47 A6: the person's own pronouns, never "their" for one woman. Round 5, U7: the CLI's words,
+    // and that the report counts it either way. docs/64: an action, said only where it's free.
     const female = personOf(c, pk.person)?.female === true;
     const him = female ? 'her' : 'him';
     box.append(el('p', { class: 'note', text: pickerNote(d as BoardDeal, pk) }));
@@ -515,7 +518,6 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       sec.append(el('h4', { class: 'picker-head', text: `What ${female ? 'she' : 'he'} said, and what says otherwise` }));
       for (const r of pk.ready) {
         const b = el('button', { class: 'choice choice--fact', type: 'button', 'data-command': r.command, text: r.label });
-        b.append(el('span', { class: 'mins', text: '1 call' }));
         b.addEventListener('click', () => command(r.command));
         sec.append(b);
       }
@@ -539,10 +541,10 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       return box;
     }
     const sec = el('section', { class: 'picker-sec' });
-    sec.append(el('h4', { class: 'picker-head', text: `Against “${claim.label}”, read ${him}:` }));
+    sec.append(el('h4', { class: 'picker-head', text: `Against “${claim.label}”, tell ${him}:` }));
     for (const l of claim.lines) {
       const b = el('button', { class: 'choice choice--fact', type: 'button', 'data-command': l.command });
-      b.append(el('span', { class: 'label', text: l.label }), el('span', { class: 'fact-src', text: l.source }), el('span', { class: 'mins', text: '1 call' }));
+      b.append(el('span', { class: 'label', text: l.label }), el('span', { class: 'fact-src', text: l.source }));
       b.addEventListener('click', () => command(l.command));
       sec.append(b);
     }
@@ -590,7 +592,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const r = run as BoardRun;
     const form = el('form', { class: 'report' });
     form.append(
-      el('h2', { text: 'The report' }),
+      el('h2', { text: 'Close the case' }),
       // Round 5, U6: what a blank goes in as, once, the CLI's words.
       el('p', { class: 'note', text: blankRule(d as BoardDeal, r.used >= budgetCalls(d as BoardDeal)) }),
     );
@@ -640,7 +642,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           'breaks',
           BREAKS_LABEL,
           () => breakOptionsShown(dd, r, who()),
-          () => (who() ? `What I have that names ${nameOf(dd.kase, who() as string)}, or is about ${hours}.` : `Name them first. Until then, what I have about ${hours}.`),
+          () => (who() ? 'Pick what proves it, or “A hunch”.' : `Name them first. Until then, what you know about ${hours}.`),
           () => (who() ? lineGroupHeads(dd, r, who() as string) : null),
         );
         s.addEventListener('change', refill);
@@ -656,14 +658,14 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           'cleared',
           CLEARED_LABEL,
           () => clearOptions(dd, r, other()),
-          () => (other() === NOBODY ? 'Nobody else, so there’s nothing to clear.' : named() ? `What I have that names ${named()}, or is about ${hours}.` : `Name them first. Until then, what I have about ${hours}.`),
+          () => (other() === NOBODY ? 'Nobody else, so there’s nothing to clear.' : named() ? 'Pick what clears them, or “A hunch”.' : `Name them first. Until then, what you know about ${hours}.`),
           () => (other() && other() !== NOBODY ? lineGroupHeads(dd, r, other() as string) : null),
         );
         s.addEventListener('change', refill);
       }
-      if (f.key === 'where') lineField('whereBy', WHERE_BY_LABEL, () => whereByOptions(dd, r), () => 'What people let drop, what I found, and what they said when I put it to them.');
+      if (f.key === 'where') lineField('whereBy', WHERE_BY_LABEL, () => whereByOptions(dd, r), () => 'What people let slip, what you found, and what they said when you confronted them.');
     }
-    form.append(el('div', { class: 'after' }, el('button', { class: 'open-case', type: 'submit', text: 'File it' })));
+    form.append(el('div', { class: 'after' }, el('button', { class: 'open-case', type: 'submit', text: 'Close the case' })));
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const answers: Partial<Record<FieldKey, string | null>> = {};
@@ -724,7 +726,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     for (const [id, why] of knownPlaces(c, r)) people.append(el('li', { text: `${placeName(c, id)} — ${why}.` }));
     body.append(people);
     if (!r.reportOpen) {
-      const f = el('button', { class: 'plain-button', type: 'button', text: 'File the report' });
+      const f = el('button', { class: 'plain-button', type: 'button', text: 'Close the case' });
       f.addEventListener('click', () => command('file'));
       body.append(f);
     }
@@ -751,7 +753,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       const maybe = g.crimeHour === null && g.window.includes(h);
       head.append(el('th', { scope: 'col', class: `bgrid-hour${crime ? ' bgrid-hour--crime' : ''}${maybe ? ' bgrid-hour--maybe' : ''}`, title: crime ? 'when it happened' : maybe ? 'it may have happened then' : '', text: `${h}` }));
     }
-    head.append(el('th', { scope: 'col', class: 'bgrid-means', title: meansWords(g.meansLabel), text: meansHead(g.meansLabel) }));
+    head.append(el('th', { scope: 'col', class: 'bgrid-means', title: meansAsked(meansWords(g.meansLabel)), text: meansHead(g.meansLabel) }));
     table.append(el('thead', {}, head));
     const tbody = el('tbody');
     for (const r of g.rows) {
@@ -778,17 +780,18 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         const cell = r.cells[h] as BoardCell;
         const detail = el('td', { colspan: String(g.hours.length + 2), class: 'bgrid-detail' });
         detail.append(el('div', { class: 'bgrid-detail-head', text: `${r.name}, ${h} o’clock` }));
-        if (cell.lines.length === 0) detail.append(el('p', { class: 'note', text: 'Nothing held about this hour yet.' }));
+        if (cell.lines.length === 0) detail.append(el('p', { class: 'note', text: 'Nothing yet about this hour.' }));
         for (const l of cell.lines) detail.append(el('p', { class: `bgrid-line${cell.collision ? ' collides' : ''}`, text: l }));
-        const pencil = el('div', { class: 'bgrid-pencil', role: 'group', 'aria-label': 'Pencil' });
-        pencil.append(el('span', { class: 'bgrid-pencil-label', text: 'Pencil:' }));
+        // docs/64: "mark a guess", never "pencil".
+        const pencil = el('div', { class: 'bgrid-pencil', role: 'group', 'aria-label': 'Mark a guess' });
+        pencil.append(el('span', { class: 'bgrid-pencil-label', text: 'Your guess:' }));
         for (const [pid] of knownPlaces(c, run as BoardRun)) {
           const pb = el('button', { type: 'button', class: `chip${cell.pencil?.at === pid ? ' on' : ''}`, text: g.codes[pid] ?? placeName(c, pid) });
           pb.addEventListener('click', () => mark(r.id, h, cell.pencil?.at === pid ? null : { at: pid }));
           pencil.append(pb);
         }
         if (cell.pencil) {
-          const rub = el('button', { type: 'button', class: 'chip', text: 'rub out' });
+          const rub = el('button', { type: 'button', class: 'chip', text: 'clear' });
           rub.addEventListener('click', () => mark(r.id, h, null));
           pencil.append(rub);
         }
@@ -798,16 +801,16 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     }
     table.append(tbody);
     wrap.append(table);
+    // docs/64: the key cut to what matters (what they say, who saw them, where the two clash), and the
+    // rest only when the grid shows it, as the CLI's `gridKey` does.
+    const cells = g.rows.flatMap((x) => g.hours.map((h) => x.cells[h] as BoardCell));
     const key = el('p', { class: 'bgrid-key' });
-    key.append(
-      el('span', { class: 'k is-says', text: 'Odessa' }), ' they say so · ',
-      el('span', { class: 'k is-seen', text: 'Odessa' }), ' somebody else saw them there · ',
-      el('span', { class: 'k is-confirmed', text: 'Odessa✓' }), ' both say so · ',
-      el('span', { class: 'k is-collision', text: 'Odessa✗' }), ' the two don’t agree · ',
-      el('span', { class: 'k is-pencil', text: '~Odessa' }), ' your own guess in pencil. Tap a cell for what was said.',
-    );
+    key.append(el('span', { class: 'k is-says', text: 'Odessa' }), ' they say so · ', el('span', { class: 'k is-seen', text: 'Odessa' }), ' somebody saw them there · ', el('span', { class: 'k is-collision', text: 'Odessa✗' }), ' where they clash');
+    if (cells.some((x) => x.confirmed)) key.append(' · ', el('span', { class: 'k is-confirmed', text: 'Odessa✓' }), ' both say so');
+    if (cells.some((x) => x.pencil)) key.append(' · ', el('span', { class: 'k is-pencil', text: '~Odessa' }), ' your own guess');
+    key.append('. Tap a cell for what was said.');
     wrap.append(key);
-    wrap.append(el('p', { class: 'bgrid-key', text: `${g.crimeHour !== null ? `The marked hour is when it happened.` : g.window.length > 1 ? `It happened at ${g.window.join(' or ')}.` : ''} The last column: ${meansWords(g.meansLabel)}? ${Object.entries(g.codes).filter(([id]) => knownPlaces(c, run as BoardRun).has(id) || id === c.crime.scene).map(([id, code]) => `${code}: ${placeName(c, id)}`).join('; ')}.` }));
+    wrap.append(el('p', { class: 'bgrid-key', text: `${g.crimeHour !== null ? `The marked hour is when it happened.` : g.window.length > 1 ? `It happened at ${g.window.join(' or ')}.` : ''} The last column: ${meansAsked(meansWords(g.meansLabel))} ${Object.entries(g.codes).filter(([id]) => knownPlaces(c, run as BoardRun).has(id) || id === c.crime.scene).map(([id, code]) => `${code}: ${placeName(c, id)}`).join('; ')}.` }));
     return wrap;
   }
 
@@ -816,8 +819,10 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     return label.replace(/\bknew the way in\b/, 'knew how to get in');
   }
 
+  /** docs/64: the column's head, the night's means: "laudanum?", "spare key?", "key?" (the key below asks it whole). */
   function meansHead(label: string): string {
-    return /^could\b/.test(label) ? 'could get it?' : 'knew how?';
+    const what = /^could have got (?:the |a |an )?(.+)$/.exec(label)?.[1] ?? /\b(key|window|lock|door)\b/.exec(label)?.[1] ?? 'how';
+    return `${what}?`;
   }
 
   /** "Corrigan’s list" (the grid's source name) said as what happened: "Corrigan saw them at the Velvet Room". */
@@ -835,7 +840,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (cell.says) bits.push(`says ${placeName(c, cell.says)}`);
     if (cell.seen) bits.push(seenWords(cell.seen.by, placeName(c, cell.seen.place)));
     if (cell.collision) bits.push('the two don’t agree');
-    if (cell.pencil?.at) bits.push(`pencilled at ${placeName(c, cell.pencil.at)}`);
+    if (cell.pencil?.at) bits.push(`your guess: ${placeName(c, cell.pencil.at)}`);
     return bits.join('; ') || 'nothing yet';
   }
 

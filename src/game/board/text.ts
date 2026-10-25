@@ -33,26 +33,37 @@ export function wrap(text: string, width = WIDTH, indent = ''): string {
 }
 
 /**
- * docs/47 A1: a cost is said in calls, the night's one unit. Every question,
- * search, walk and put is one call; the clock strip shows what the calls add
- * up to. "1 call", or "free".
+ * docs/64: everything a player does is an action, the night's one unit (docs/47 A1 called it a
+ * "call"). Every question, search, walk and confrontation takes one, so a choice says nothing about
+ * its cost unless it's free: "free", or nothing.
  */
-export function callsText(calls: number): string {
-  if (calls <= 0) return 'free';
-  return calls === 1 ? '1 call' : `${calls} calls`;
+export function actionsText(actions: number): string {
+  if (actions <= 0) return 'free';
+  return actions === 1 ? '1 action' : `${actions} actions`;
 }
 
-/** What a button in the book says it costs: "1 call", or "free". */
+/** What a button says it costs: "free", or nothing (one action is the rule, docs/64). */
 export function costLabel(ch: Pick<OfferedChoice, 'minutes'>): string {
-  return callsText(ch.minutes > 0 ? 1 : 0);
+  return ch.minutes > 0 ? '' : 'free';
 }
+
+/** docs/64: the key to the choices, the same in the book and the CLI. */
+export const ACTION_KEY = 'Everything you do takes one action unless it says free. A star marks a good next step.';
 
 /**
- * Round 5, U1: the people on a page, as the book and the CLI both head them. "free · 1 question" read
- * as one free question to all four testers; the heading says what's free and what costs, once.
+ * Round 5, U1, and docs/64: the people on a page, as the book and the CLI both head them. Picking
+ * somebody is free and says so ("free to pick", on the row's label for a screen reader); a person's
+ * row counts the questions still open.
  */
 export const TALK_HEADING = 'Talk to';
-export const TALK_NOTE = 'picking someone is free; each question costs a call';
+
+/** docs/64: the turn's divider, where the page used to print "The turn". */
+export const TURN_DIVIDER = 'Where things stood';
+
+/** A chapter block as the book and the CLI print it: the turn's heading is a plain divider (docs/64). */
+export function chapterShown(text: string): string {
+  return /^the turn$/i.test(text.trim()) ? TURN_DIVIDER : text;
+}
 
 /** A person's row: how many questions are open to ask them, "1 question", "2 questions", or "all asked". */
 export function questionsText(g: Pick<OfferedGroup, 'choices'>): string {
@@ -73,7 +84,7 @@ export function pageBodyText(page: Page): string {
   const out: string[] = [];
   for (const b of page.blocks) {
     if (b.kind === 'prose') {
-      if (b.voice === 'chapter') out.push(`— ${b.text.toUpperCase()} —`);
+      if (b.voice === 'chapter') out.push(`— ${chapterShown(b.text)} —`);
       else out.push(wrap(b.text));
     } else if (b.kind === 'note') out.push(wrap(`(${b.text})`));
   }
@@ -95,7 +106,8 @@ export function choicesText(groups: readonly OfferedGroup[], taken?: string): st
     for (const ch of [...g.choices, ...(g.more ?? [])]) {
       n++;
       const mark = ch.command === taken ? '>' : ch.lead ? '*' : ' ';
-      out.push(`   ${mark}${String(n).padStart(2)}. ${ch.label}${ch.note ? ` (${ch.note})` : ''} — ${costText(ch)}${ch.lead && ch.why ? `  [${ch.why}]` : ''}`);
+      const cost = costText(ch);
+      out.push(`   ${mark}${String(n).padStart(2)}. ${ch.label}${ch.note ? ` (${ch.note})` : ''}${cost ? ` — ${cost}` : ''}${ch.lead && ch.why ? `  [${ch.why}]` : ''}`);
     }
   }
   return out.join('\n');

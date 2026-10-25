@@ -12,7 +12,7 @@
  *   already on an earlier page, and a held line it cites (target 100% below
  *   Hard-boiled; at Hard-boiled the thought stays on its own page, docs/46 §2);
  * - **thoughts over their level** (docs/46 §2, the lint's `level` rule): above
- *   Raw, a thought, turn or "Go over what I have" before the report that says
+ *   Raw, a thought, turn or "Review my notes" (once "Go over what I have") before the report that says
  *   "that left", "only … left", "cleared", how many remain or who did it; at
  *   Hard-boiled, a thought tied to an earlier page. Over the oracle's, the
  *   wanderer's and the reader's nights (target 0);
