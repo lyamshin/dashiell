@@ -81,7 +81,7 @@ export function breakSaid(c: BoardCase, l: Line, p: PersonId, asked: readonly st
  * docs/62, P3: a breaking line said to the face of the one it's against, as a person says it, not as
  * the notebook has it: "Alfano saw Steinbach, Lanza and Pardo at Moe’s at ten, and not you", "Mrs.
  * Mulcahy says she was home at eleven, on her own, and you weren’t there", "Pickering passed you on
- * Second Avenue at ten", "Mrs. Cheatham says nobody was at the Delmonico rooms at nine, you included".
+ * Second Avenue at ten", "Mrs. Cheatham says nobody was at the Delmonico rooms at nine, not you or anybody else".
  */
 export function breakToFace(c: BoardCase, l: Line, p: PersonId, asked: readonly string[] = []): string {
   const you = (t: string) => t.replace(new RegExp(`\\b(passed|had|put|saw) ${nameOf(c, p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'g'), '$1 you');
@@ -96,7 +96,8 @@ export function breakToFace(c: BoardCase, l: Line, p: PersonId, asked: readonly 
     const names = es.map((e) => ('person' in e ? nameOf(c, e.person) : 'other' in e ? shortOther(c.others?.find((o) => o.id === e.other)?.name ?? '') : `somebody ${e.look}`)).filter(Boolean);
     const faces = es.flatMap((e) => ('look' in e && faceOf(e.look) ? [`${e.look.replace(/^(in|with) an? /, 'the ')} was ${nameOf(c, faceOf(e.look)?.id ?? '')}’s`] : []));
     const tail = faces.length ? `. ${faces.map((f) => f.charAt(0).toUpperCase() + f.slice(1)).join('. ')}` : '';
-    if (names.length === 0) return `${W} says nobody was at ${at} at ${h}, you included${tail}`;
+    // (docs/62, skim round 2: "…, you included" stopped a reader: who it leaves out, plainly.)
+    if (names.length === 0) return `${W} says nobody was at ${at} at ${h}, not you or anybody else${tail}`;
     return `${W} saw ${andList(names)} at ${at} at ${h}, and not you${tail}`;
   }
   if (l.kind === 'claim') {

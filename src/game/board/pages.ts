@@ -2388,7 +2388,10 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
   const mutual =
     (j.with ?? []).length === 1 && other && line.kind === 'claim' && other.kind === 'claim' && line.place === other.place && line.hour === other.hour && line.about.includes(other.speaker as string) && other.about.includes(line.speaker as string);
   const breaker = mutual
-    ? `${nameOf(c, line.speaker as string)} and ${nameOf(c, other.speaker as string)} had each other at ${placeName(c, line.place as string)} at ${oclock(line.hour as Hour)}.`
+    ? lean()
+      ? // (docs/62, skim round 2: "had each other at Hanley’s" stopped a reader in both builds.)
+        `${nameOf(c, line.speaker as string)} and ${nameOf(c, other.speaker as string)} both say they were at ${placeName(c, line.place as string)} at ${hourWord(line.hour as Hour)}, and neither of them says you were.`
+      : `${nameOf(c, line.speaker as string)} and ${nameOf(c, other.speaker as string)} had each other at ${placeName(c, line.place as string)} at ${oclock(line.hour as Hour)}.`
     : lean()
       ? // docs/62, P3: the line against it said as a person says it to your face, not as the notebook has it.
         `${cap(breakToFace(c, line, p, w.run.asked))}.${(j.with ?? []).length > 0 ? ` ${cap(andList((j.with ?? []).map((x) => breakToFace(c, x, p, w.run.asked))))}.` : ''}`
