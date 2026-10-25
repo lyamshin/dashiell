@@ -30,7 +30,7 @@ import { parseTier, typesFor, type CaseType } from '../gen/board/index.js';
 import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
-import { boardGridText, placeCodes } from '../game/board/grid.js';
+import { FACE_MARK, boardGridText, placeCodes } from '../game/board/grid.js';
 import { peopleAt } from '../game/board/knowledge.js';
 import { BOARD_TEACH_TITLE, BOARD_RULES, teachLines } from '../game/board/teach.js';
 import { isWorld } from '../gen/board/world/index.js';
@@ -247,7 +247,8 @@ function pageChoicesText(night: Night): string {
   // under the choices on every page of a tier that has them.
   const note = hintsNote(night.d, night.run);
   const left = hintsLine(night.run);
-  if (note) out.push('', wrap(left ? `${note} \`hint\` stars a good next step and says why.` : note));
+  // (Round 7, U4: the mark line, once, on the page of the night's first coat or hat, with the command.)
+  if (note) out.push('', wrap(left ? `${note} \`hint\` stars a good next step and says why.` : note === FACE_MARK ? `${note} (\`mark "<Name> <hour> at <place>"\`)` : note));
   // (After a hint on the first page, how many are left, as on every page after.)
   if (left && (!note || hintsUsed(night.run) > 0)) out.push('', wrap(left));
   return out.join('\n');

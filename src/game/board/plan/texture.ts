@@ -173,7 +173,10 @@ export function petKind(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
   const kind = pet ? /^[^,]+, (?:a|an) (.+)$/.exec(pet.name)?.[1] : undefined;
   if (!pet || !kind) return;
   const items = paras.flat();
-  const said = (t: string) => new RegExp(`\\b${kind.split(' ').slice(-1)[0]}\\b`, 'i').test(t);
+  // (Round 7: any word of the kind: the office's "my Persian" said what Mimi was, and "Mimi, the Persian
+  // cat," in the Shamrock's thought read as a database to the tester.)
+  const words = [kind.split(' ').slice(-1)[0] as string, ...kind.split(' ').filter((x) => /^[A-Z]/.test(x))];
+  const said = (t: string) => words.some((k) => new RegExp(`\\b${k}\\b`, 'i').test(t));
   // (docs/62 item 1: once a night. The office's "My dachshund" says it, and every page after has the name alone.)
   if (said(sofar) || said(ctx.earlier ?? '')) return;
   for (const it of items) {

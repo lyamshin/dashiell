@@ -35,7 +35,7 @@
   {"id": "bpe-401", "family": "doing", "tags": {"kind": "bar"}, "text": "{name} was at the bar with a drink {he} wasn’t drinking."},
   {"id": "bpe-402", "family": "doing", "tags": {"kind": "bar"}, "text": "{name} had a stool at the end of the bar and was looking at the mirror behind it, which looked back."},
   {"id": "bpe-403", "family": "doing", "tags": {"kind": "bar"}, "text": "{name} was in a booth by the wall, alone with a glass of beer and a newspaper."},
-  {"id": "bpe-411", "family": "doing", "tags": {"kind": "club"}, "text": "{name} had a table near the empty bandstand and was tapping the time of a song nobody was playing."},
+  {"id": "bpe-411", "family": "doing", "tags": {"kind": "club"}, "text": "{name} had a table near the empty bandstand and was drumming on it with two fingers."},
   {"id": "bpe-412", "family": "doing", "tags": {"kind": "club"}, "text": "{name} sat at the back with {his} coat still on, as if {he} might leave at any minute and had been thinking so for an hour."},
   {"id": "bpe-421", "family": "doing", "tags": {"kind": "restaurant"}, "text": "{name} had a table by the window and a glass of tea gone cold."},
   {"id": "bpe-422", "family": "doing", "tags": {"kind": "restaurant"}, "text": "{name} was finishing a plate of something with the care of somebody who had paid for it."},

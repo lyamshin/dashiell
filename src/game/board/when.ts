@@ -82,6 +82,16 @@ export function officeWhen(c: BoardCase, g: GivenLine, hours: readonly number[])
     // (docs/60: lean, two sentences: the skim readers stopped on the semicolon.)
     const sep = lean() ? '. ' : '; ';
     const tail = lean() && after ? `${after.charAt(0).toUpperCase()}${after.slice(1)}` : after;
+    // (Round 7, P9: "The police surgeon puts it at one or the other, by the warmth of him. Whichever it was,
+    // that’s when he was poisoned. Chloral takes twenty minutes to an hour, so he died within the hour."
+    // asked whether the hours were the death's or the dose's. Lean, how fast it works first, then that
+    // the hours are when he was given it: "Chloral works inside the hour, so whichever it was, that’s
+    // when he was given it.")
+    if (lean() && after) {
+      const m = bare(c.means.name);
+      const fast = (c.means.delay[1] ?? 0) > 15 ? `${cap(m)} works inside the hour` : `${cap(m)} acts in minutes`;
+      return `${lead} ${what}. ${fast}, so ${two ? 'whichever it was, ' : ''}that’s when ${pr.he} was given it.`;
+    }
     const done = after ? (two ? ` Whichever it was, that’s when ${pr.he} was poisoned${sep}${tail}.` : ` That’s when ${pr.he} was poisoned${sep}${tail}.`) : '';
     return `${lead} ${what}.${done}`;
   }
@@ -102,6 +112,12 @@ export function notebookWhen(c: BoardCase, g: GivenLine, hours: readonly number[
   const after = poisonAfter(c);
   if (!what || !after) return null;
   const at = whenWords(hours).replace(/^[A-Z]/, (x) => x.toLowerCase());
+  // (Round 7, P9: lean, "one or the other" once, and the dose said as the dose: "He was given the chloral
+  // at eight or nine o’clock. …; chloral works inside the hour.")
+  if (lean()) {
+    const fast = (c.means.delay[1] ?? 0) > 15 ? `${bare(c.means.name)} works inside the hour` : `${bare(c.means.name)} acts in minutes`;
+    return `${cap(pronOf(c, c.crime.victim).he)} was given the ${bare(c.means.name)} at ${at}. ${what.replace(/\btelephoned me\b/, `telephoned ${client}`)}; ${fast}.`;
+  }
   return `${cap(pronOf(c, c.crime.victim).he)} was poisoned at ${at}${hours.length > 1 ? ', one or the other' : ''}. ${what.replace(/\btelephoned me\b/, `telephoned ${client}`)}; ${after}.`;
 }
 
@@ -138,7 +154,8 @@ function murderWhat(c: BoardCase, g: GivenLine, hours: readonly number[]): strin
     case 'radios':
       return `${He} was shot at one or the other, and nobody heard it over the radios`;
     case 'surgeon':
-      return `The police surgeon puts it at one or the other, by the warmth of ${pr.him}`;
+      // (Round 7, P9: lean, a poisoning's surgeon is as close as he can get, not "it" at one or the other.)
+      return lean() && isPoison(c) ? `That’s as close as the police surgeon can get, by the warmth of ${pr.him}` : `The police surgeon puts it at one or the other, by the warmth of ${pr.him}`;
     case 'clock':
       return `${pr.His} mantel clock was knocked over and stopped at five past, but it was never right`;
     case 'dozed': {

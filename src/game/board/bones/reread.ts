@@ -669,7 +669,8 @@ const READ: Partial<Record<Shape, Reader>> = {
     // ends ("the whole time", "at first", "and stayed") are the clause's hours, folded.
     if (flags.has('who-with')) {
       const CL = (h: number, company: Id[]): Prop => ({ k: 'CLAIM', person: who, hour: h, company });
-      if (flags.has('alone')) return (a.hours as number[]).map((h) => CL(h, []));
+      // (Round 7, P1: "Then it was just me.", "At first it was just me.": the hours alone at the stretch's end or start, folded.)
+      if (flags.has('alone')) return (flags.has('rest') || flags.has('before') ? (comp.props as P<'CLAIM'>[]).map((x) => x.hour) : (a.hours as number[])).map((h) => CL(h, []));
       if (flags.has('singles')) {
         const out: Prop[] = [];
         for (const bit of (a.pairs as string).split(/, | and (?=(?:Mrs\. |Mr\. |Miss |Dr\. )?[A-Z])/)) {
@@ -925,7 +926,9 @@ READ['ACCESS-SET'] = (a, flags, _comp, v, lx) => {
   if (flags.has('recap') || flags.has('elim')) {
     const yes = flags.has('yes') ? ((a.people as string[]) ?? []) : [];
     const no = flags.has('no') ? ((a.none as string[]) ?? []) : [];
-    return [...yes.map((p) => ({ k: 'ACCESS', person: p, had: true }) as Prop), ...no.map((p) => ({ k: 'ACCESS', person: p, had: false }) as Prop)];
+    // (Round 7: the lodger the door was left unlocked for, who knew it without a seat at the table.)
+    const lodger = flags.has('lodger') ? ((a.lodger as string[]) ?? []) : [];
+    return [...yes.map((p) => ({ k: 'ACCESS', person: p, had: true }) as Prop), ...lodger.map((p) => ({ k: 'ACCESS', person: p, had: true }) as Prop), ...no.map((p) => ({ k: 'ACCESS', person: p, had: false }) as Prop)];
   }
   const r = a as Record<string, string>;
   if (r.nobody !== undefined && r.short !== undefined && r.no === undefined) return accessV(v.c, lx, r.yes ?? '', `${r.nobody} ${r.short}`, v);

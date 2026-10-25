@@ -36,7 +36,7 @@ import {
 } from './model.js';
 import { breakSaid } from './pages.js';
 import { homeNamed } from './home.js';
-import { routeSteps, starCommand, starReason, starredSteps } from './stars.js';
+import { hintWords, routeSteps, starCommand, starredSteps } from './stars.js';
 
 /** The minutes the next call moves the clock: what a label says and the engine charges. */
 export function callMinutes(d: BoardDeal, run: Pick<BoardRun, 'used'>): number {
@@ -66,7 +66,9 @@ export function pageStars(d: BoardDeal, run: BoardRun, steps: readonly string[] 
     const command = starCommand(d, run, q);
     // (Two steps in one far room are one walk, starred once.)
     if (command === null || (command.startsWith('go ') && out.some((s) => s.command === command))) continue;
-    out.push({ q, why: starReason(c, run, q, command.startsWith('go ')), command });
+    // (Round 7, P7: the hint's words, `hintWords`: one short clause, a shared reason once, and on the
+    // question it asks only the reason.)
+    out.push({ q, why: hintWords(c, run, q, command.startsWith('go '), command.startsWith('ask ')), command });
   }
   return out;
 }

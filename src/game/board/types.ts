@@ -71,6 +71,8 @@ export interface Page {
     handoff?: string;
     /** docs/59 item 1: the step the hand-off pointed at, so the page after doesn't point at it again. */
     handoffTo?: string;
+    /** Round 7, docs/67: the pointer the way in said as what drew me (its source), so the ask doesn't say it to their face again. */
+    drew?: string;
     /** docs/44: the recap's clauses (the notebook said aloud), which may name people more than twice. */
     recap?: string;
     /** docs/47 C13: the page's reason was said on the page before, so it isn't said again here. */

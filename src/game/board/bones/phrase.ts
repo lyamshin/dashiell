@@ -238,6 +238,11 @@ export function accessPhrase(c: BoardCase, yes: boolean, again = false, here?: P
     if (again) return yes ? `could have had the ${m}` : `had no way to the ${m}`;
     // Plain speech, not the board read aloud ("while the laudanum was there", Poached 5's #27). The
     // no says the means and where it was kept, never "while it was there to take" (docs/49, Planner 2).
+    // (Round 7, P4: lean, the no says only what's known: "Renfro hadn’t been at Mrs. Nagy’s while the
+    // carving knife was in the kitchen drawer" came at Moe's, before anybody had said when the knife was
+    // in the drawer. Whoever used it had it before the hour it happened, which the office gave: "Renfro
+    // hadn’t been at Mrs. Nagy’s before nine.")
+    if (!yes && lean()) return `hadn’t been ${at} before ${hourWord(Math.min(...(c.givens.window ?? c.crime.window ?? [c.crime.hour])) as Hour)}`;
     return yes ? `had been ${at} earlier, when the ${m} was there for the taking` : `hadn’t been ${at} while the ${m} was ${keptAt(c)}`;
   }
   // (Round 7, B5: the lodger the door was left unlocked for knew it without a seat at the table: where

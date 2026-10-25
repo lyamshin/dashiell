@@ -227,11 +227,12 @@ describe('round 5, U9: the picker says what a line says, never the face matched 
   });
 });
 
-describe('round 5, U10, and docs/67: at Hard-boiled, page one keeps its mark line; the only-star note is gone', () => {
-  it('said on page one, at Hard-boiled only', () => {
+describe('round 5, U10, docs/67 and round 7, U4: at Hard-boiled the mark line is said once, on the page of the first coat; the only-star note is gone', () => {
+  it('not on page one, at Hard-boiled only', () => {
     const d = dealBoard(8, 5, 'murder');
     const run = newBoardRun(d);
-    expect(hintsNote(d, run)).toBe(FACE_MARK);
+    expect(hintsNote(d, run)).toBeNull();
+    void FACE_MARK;
     expect(cli({ ...HB8, cmds: [] })('look')).not.toMatch(/only star/);
     expect(hintsNote(d, stepBoard(d, run, 'go scene').run)).toBeNull();
     expect(hintsNote(dealBoard(14, 4, 'lost-pet'), newBoardRun(dealBoard(14, 4, 'lost-pet')))).toBeNull();

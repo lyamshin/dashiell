@@ -68,8 +68,14 @@ export function sayOnce(paras: Item[][], ctx: PlanCtx): void {
     return out;
   };
   // 1. A thought's fact that says nothing new.
+  // (Round 7, Medium 21: unless the page before asked for it: "If Winslow told it the same way, it was the
+  // Eagle club office and not Kowalski’s." and then Winslow's answer with nothing after it. The agreement
+  // is the answer to the page's own question, and stays.)
+  const tail = stripMarks(ctx.earlier ?? '').slice(-600);
+  const asked = /\bIf (?:(?:Mrs\.|Mr\.|Miss|Dr\.) )?\S+ (?:told it the same way|said the same)\b/.test(tail);
   for (const it of items) {
     if (it.kind !== 'fact' || it.beat !== 'thought' || !it.text.trim()) continue;
+    if (asked && it.relation === 'confirms') continue;
     const earlierFacts = items.slice(0, items.indexOf(it)).filter((x) => x.kind === 'fact' && x.text.trim());
     const said = new Set(earlierFacts.flatMap((x) => (x.props ?? []).flatMap(factAtoms)));
     const mine = (it.props ?? []).flatMap(factAtoms);

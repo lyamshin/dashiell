@@ -14,7 +14,7 @@
 import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
-import { FACE_MARK, boardGrid, cellText, meansAsked, placesKey, type BoardCell, type BoardGrid } from '../game/board/grid.js';
+import { FACE_MARK, boardGrid, cellText, faceMarkDue, meansAsked, placesKey, type BoardCell, type BoardGrid } from '../game/board/grid.js';
 import { knownPeople, knownPlaces, lineShown, linesHeld } from '../game/board/knowledge.js';
 import {
   BOARD_SAVE_KEY,
@@ -863,7 +863,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (cells.some((x) => x.pencil)) key.append(' · ', el('span', { class: 'k is-pencil', text: '~Odessa' }), ' your own guess');
     key.append('. Tap a cell for what was said.');
     // (docs/66: at Hard-boiled, how a face's clash shows: the player's own mark, under "Your guess".)
-    if (c.tier === 5) key.append(` ${FACE_MARK}`);
+    // (Round 7, U4: once a night, on the page of the first coat or hat, as the CLI says it.)
+    if (faceMarkDue(c, run as BoardRun)) key.append(` ${FACE_MARK}`);
     wrap.append(key);
     // (Round 7, U2: the places only where a label isn't the place's own name, as the CLI says them.)
     const places = placesKey(c, run as BoardRun, g.codes);

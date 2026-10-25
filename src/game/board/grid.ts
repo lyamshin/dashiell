@@ -287,6 +287,28 @@ export function meansAsked(label: string): string {
  */
 export const FACE_MARK = 'When somebody saw only a coat or a hat, mark on the grid who you think it was, and the grid will show who that leaves out.';
 
+/**
+ * Round 7, U4: the mark teach is said once a night, where it's needed: on the page that brings the
+ * night's first sighting of only a coat or a hat ("somebody in a fur collar"), and on the grid while
+ * that page is the one open. It printed under every grid, five times a night, and once on page one,
+ * before any coat had been seen. The page's index, or -1 before one.
+ */
+export function faceMarkPage(c: BoardCase, run: Pick<BoardRun, 'log'>): number {
+  return run.log.findIndex((p) => {
+    const q = p.board?.q ?? '';
+    if (!q.startsWith('list:')) return false;
+    const l = listOf(c, q.slice('list:'.length) as PersonId);
+    return !!l && Object.values(l.entries).some((es) => (es ?? []).some((e) => 'look' in e));
+  });
+}
+
+/** Round 7, U4: whether the mark teach is due now: Hard-boiled, on the page of the night's first coat. */
+export function faceMarkDue(c: BoardCase, run: Pick<BoardRun, 'log'>): boolean {
+  if (c.tier !== 5) return false;
+  const i = faceMarkPage(c, run);
+  return i >= 0 && i === run.log.length - 1;
+}
+
 export function gridKey(g: BoardGrid): string[] {
   const cells = g.rows.flatMap((r) => g.hours.map((h) => r.cells[h] as BoardCell));
   const out = ['"X" they say so', '[X] somebody saw them there', '"X"✗ where they clash'];
@@ -317,7 +339,8 @@ export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'
   out.push(gridKey(g).join('  ·  '));
   out.push(g.crimeHour !== null ? '! the hour it happened' : '? the hours it could have been');
   // (docs/66: at Hard-boiled, how a face's clash shows: the player's mark.)
-  if (c.tier === 5) out.push(`${FACE_MARK} (mark "<Name> <hour> at <place>")`);
+  // (Round 7, U4: once a night, on the page of the first coat.)
+  if (faceMarkDue(c, { log: run.log ?? [] })) out.push(`${FACE_MARK} (mark "<Name> <hour> at <place>")`);
   // docs/47 B8: the key names only the places the night has named; round 7, U2: and only where the
   // label isn't the place's own name.
   const places = placesKey(c, run, g.codes);

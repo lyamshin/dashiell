@@ -41,7 +41,7 @@ export const OBLIQUE: { name: string; re: RegExp }[] = [
 const POINTING_THERE = /\bthere\b(?! (?:was|were|is|are|had|has|will|would|wasn’t|weren’t|isn’t|aren’t|hadn’t|might|may|must|could|should|seemed|came|went))(?!’s)/i;
 
 /** "the rest of the evening", "all evening": the hours to the evening's end, said without their words. */
-const TO_THE_END = /\b(?:throughout|from (?:seven|eight|nine|ten|eleven) on|stayed(?: on)?\b(?! (?:till|until|through|for|at|in|home|with|put))|still here at the end|until the end|rest of (?:the|my) (?:evening|night)|all evening|all night|whole (?:evening|night)|whole of the evening|entire evening|every hour|each hour|start to finish|end of the evening|evening was over|remainder of the evening|till closing|stayed put|there the whole time|the whole time|all the while|as long as I was|(?:start|beginning) of the evening|throughout the evening|first hour to the last|from the time I came on|from the (?:time|moment) I sat down|(?:shut|closed|locked up)\b[^.;]*\bafter that)\b/i;
+const TO_THE_END = /\b(?:throughout|from (?:seven|eight|nine|ten|eleven) on|stayed(?: on)?\b(?! (?:till|until|through|for|at|in|home|with|put))|still here at the end|until the end|rest of (?:the|my) (?:evening|night)|all evening|all night|whole (?:evening|night)|whole of the evening|entire evening|every hour|each hour|start to finish|end of the evening|evening was over|remainder of the evening|till closing|stayed put|there the whole time|the whole time|all the while|as long as I was|(?:start|beginning) of the evening|throughout the evening|first hour to the last|from the time I came on|from the (?:time|moment) I sat down|from then on|(?:shut|closed|locked up)\b[^.;]*\bafter that)\b/i;
 
 const WORDS: Record<string, number> = { seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, midnight: 12 };
 
@@ -77,7 +77,7 @@ function hoursSaid(text: string, all: readonly number[]): Set<number> {
   // A span said as "stayed through ten" after "at eight": every hour from the first said to the last.
   if (said.length >= 2 && /\b(?:through|till|until|stayed|still there|remained)\b/i.test(text)) for (let h = Math.min(...said); h <= Math.max(...said); h++) out.add(h);
   // docs/59 item 2: "from the start", told by change: every hour from the evening's first to the last one said.
-  if (/\bfrom the (?:start|beginning|first)\b|\bstart of the evening\b|\bat first\b/i.test(text)) for (const h of all) if (h <= (said.length ? Math.max(...said) : Math.max(...all))) out.add(h);
+  if (/\bfrom the (?:start|beginning|first)\b|\bstart of the evening\b|\bat first\b|\bto begin with\b|\bto start\b|\bearly on\b|\b(?:in|here) early\b/i.test(text)) for (const h of all) if (h <= (said.length ? Math.max(...said) : Math.max(...all))) out.add(h);
   if (TO_THE_END.test(text)) {
     const from = said.length ? Math.min(...said) : Math.min(...all);
     for (const h of all) if (h >= from) out.add(h);

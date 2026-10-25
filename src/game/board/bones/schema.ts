@@ -168,7 +168,7 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
       if (has('elim')) return [['people'], ['place'], ['hour'], ...(has('mutual') ? [] : [['src']])];
       return [];
     case 'ACCESS-SET': {
-      if (has('recap')) return [...(has('yes') ? [['people']] : []), ...(has('no') ? [['none']] : [])];
+      if (has('recap')) return [...(has('yes') ? [['people']] : []), ...(has('no') ? [['none']] : []), ...(has('lodger') ? [['lodger']] : [])];
       if (has('elim')) return [['none'], ['access']];
       const out: string[][] = [];
       if (has('yes')) out.push(['yes']);
@@ -256,8 +256,8 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'Nobody, them included, had told me where these people were at these hours (the notebook said aloud). one: one {person} (with {person:they}, "he" or "she"); many: several {people} ("they"). hour | two: one hour or the office’s two (say them with {hours:or}).',
   },
   'ACCESS-SET': {
-    args: { yes: T, no: T, nobody: T, short: T, people: 'people', none: 'people', origin: 'place', means: T, client: 'person', occasion: T, access: T, way: T },
-    doc: 'Who had the way in, and who hadn’t. Thought (legacy): {yes}, {no}, {nobody} {short}. Recap: {people} had it, {none} hadn’t; murder: had been at {origin} while the {means} was there; told: were at {origin} while {client} told the room; party: were at the {occasion}; spare: had been in at {origin} when the spare key was there. Flags: yes, no, and the kind (murder | told | party | spare). Raw’s elimination (elim, no): {none} {access} ("had no way to the rat poison", "never learnt the way in").',
+    args: { yes: T, no: T, nobody: T, short: T, people: 'people', none: 'people', lodger: 'people', origin: 'place', means: T, client: 'person', occasion: T, access: T, way: T },
+    doc: 'Who had the way in, and who hadn’t. Thought (legacy): {yes}, {no}, {nobody} {short}. Recap: {people} had it, {none} hadn’t; murder: had been at {origin} while the {means} was there; told: were at {origin} while {client} told the room; party: were at the {occasion}; spare: had been in at {origin} when the spare key was there. Flags: yes, no, and the kind (murder | told | party | spare); lodger (round 7): {lodger}, the lodger the door was left unlocked for, knew it too, without a seat at the table. Raw’s elimination (elim, no): {none} {access} ("had no way to the rat poison", "never learnt the way in").',
   },
   'WINDOW-ALIVE': {
     args: { client: T, opts: T, victim: T, place: T, at: T, hour: T, him: T, narrowed: T, narrowword: T, done: T, pet: 'person' },
@@ -323,8 +323,8 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'Something a person or a watcher mentions besides, in their mouth. passed: walking over to {via} at {hour} they passed {saw} on {street}, going fast, no hat. had: they had {saw} (the pet: {saw:them} is him or her) at their place at {hour}, {keep} ("for her supper"), and put {saw:them} back in the flat just before {back}. there: {means} ("the rat poison on the cellar shelf") was {still} ("there", "on its nail") at {hour}, and they didn’t look again. shift: the watcher came on at {from}; before that they can’t say.',
   },
   PRESENT: {
-    args: { who: T, where: T, noun: T },
-    doc: 'Somebody turned out to be in the room: {who} (their name, or "my witness" where the name would be said a third time) was {where} ("in the corner, out of the light"). first | back (back: had come back in).',
+    args: { who: T, where: T, noun: T, gloss: T },
+    doc: 'Somebody turned out to be in the room: {who} (their name, or "my witness" where the name would be said a third time) was {where} ("in the corner, out of the light"). first | back (back: had come back in). named (round 7, P3): an owning up named them, and {gloss} says who they are ("a seamstress", "the woman Dandridge had named").',
   },
   HOLD: {
     args: { evenings: 'people', lists: 'people', people: 'people' },

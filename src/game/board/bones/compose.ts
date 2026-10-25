@@ -177,8 +177,19 @@ export function choose(shape: Shape, flags: string[], ctx: PlanCtx, manner?: str
 }
 
 /** docs/52 build 2: the voicing a composite would take (least recently used tonight), not yet spent. */
-export function pickFor(shape: Shape, flags: readonly string[], args: Args, ctx: PlanCtx, manner?: string, prefer?: (text: string) => boolean): Picked | null {
-  return preview(shape, flags, { manner, tierBand: tierBand(ctx) }, args, prefer ? { ...ctx, prefer } : ctx);
+export function pickFor(shape: Shape, flags: readonly string[], args: Args, ctx: PlanCtx, manner?: string, prefer?: (text: string) => boolean, must?: (text: string) => boolean): Picked | null {
+  return preview(shape, flags, { manner, tierBand: tierBand(ctx) }, args, prefer || must ? { ...ctx, ...(prefer ? { prefer } : {}), ...(must ? { must } : {}) } : ctx);
+}
+
+/**
+ * Round 7, P1: what one answer says once: "from the start of the evening" three times in two
+ * sentences, "till the end of the evening" twice, read as a timetable. A clause after one that said it
+ * takes a voicing that doesn't, where one fits.
+ */
+const ONCE_AN_ANSWER = [/\bthe start of the evening\b/, /\b(?:the end of the evening|the rest of the evening|the rest of the night)\b/];
+function onceMust(said: string): ((t: string) => boolean) | undefined {
+  const spent = ONCE_AN_ANSWER.filter((re) => re.test(said));
+  return spent.length > 0 && lean() ? (t: string) => !spent.some((re) => re.test(t)) : undefined;
 }
 
 /** Give back the voicing an item spent, when it goes into another composite. */
@@ -528,18 +539,25 @@ export function sayAll(items: Item[], ctx: PlanCtx, besides: () => string = () =
   // (docs/66, P6: and "After that" once: two in one evening read as a timetable.)
   let after = 0;
   const AFTER = /\bAfter that\b/;
+  // (Round 7, P1: and what one answer says once, `onceMust`.)
+  let answer = '';
   for (const it of items) {
     if (!it.speech || !it.runOn) {
       oclock = 0;
       after = 0;
+      answer = '';
     }
     if (it.speech) oclock += (it.comp ? it.text.match(/o’clock/g)?.length : 0) ?? 0;
     if (it.speech && it.comp && AFTER.test(it.text)) after++;
-    if (it.kind !== 'fact' || !it.say || it.comp) continue;
+    if (it.kind !== 'fact' || !it.say || it.comp) {
+      if (it.speech) answer += ` ${it.text}`;
+      continue;
+    }
     const s = it.say;
     // docs/59 item 2: a run of clauses, each voiced on its own.
     if (s.parts) {
-      oclock += sayParts(it, s, ctx, oclock);
+      oclock += sayParts(it, s, ctx, oclock, answer);
+      if (it.speech) answer += ` ${it.text}`;
       continue;
     }
     const comp: Held = { shape: s.shape, props: [...(it.props ?? [])] };
@@ -549,9 +567,10 @@ export function sayAll(items: Item[], ctx: PlanCtx, besides: () => string = () =
     // (A spoken voicing's own words are the speaker's: only a frame round the quotation counts.)
     const simSoFar = lean() ? similesIn([ctx.pageSoFar ?? '', besides(), ...items.filter((x) => x !== it && (!x.say || x.comp)).map((x) => x.text)].join(' ')) : 0;
     const keep = simSoFar > 0 ? (t: string) => (!(!it.speech || /“/.test(t)) || similesIn(t) === 0) && (!keep0 || keep0(t)) : keep0;
-    const p = pickFor(s.shape, s.flags, s.args, ctx, s.manner, keep);
+    const p = pickFor(s.shape, s.flags, s.args, ctx, s.manner, keep, it.speech ? onceMust(answer) : undefined);
     if (it.speech) oclock += (p ? p.text : it.text).match(/o’clock/g)?.length ?? 0;
     if (it.speech && AFTER.test(p ? p.text : it.text)) after++;
+    if (it.speech) answer += ` ${p ? p.text : it.text}`;
     if (!p) {
       if (it.speech || s.keep) it.comp = { ...comp, voicing: 'flesh', said: it.text } as Held;
       else {
@@ -593,15 +612,19 @@ export function sayAll(items: Item[], ctx: PlanCtx, besides: () => string = () =
  * clause says. Where a part has no voicing, the whole stays in the writer's own words. Returns the
  * o'clocks it said (an answer says it twice at most).
  */
-function sayParts(it: Item, s: SaySpec, ctx: PlanCtx, oclock0: number): number {
+function sayParts(it: Item, s: SaySpec, ctx: PlanCtx, oclock0: number, before = ''): number {
   const picks: { spec: SaySpec; p: Picked | null; noted?: string }[] = [];
   let oclock = oclock0;
+  // (Round 7, P1: the answer so far, for what it says once.)
+  let saidSoFar = before;
   for (const part of s.parts ?? []) {
     if (part.own !== undefined) {
       picks.push({ spec: part, p: null });
+      saidSoFar += ` ${part.own}`;
       continue;
     }
-    const p = pickFor(part.shape, part.flags, part.args, ctx, part.manner, oclock >= 2 ? (t) => !/o’clock/.test(t) : undefined);
+    const p = pickFor(part.shape, part.flags, part.args, ctx, part.manner, oclock >= 2 ? (t) => !/o’clock/.test(t) : undefined, onceMust(saidSoFar));
+    if (p) saidSoFar += ` ${p.text}`;
     if (!p) {
       // (Nothing fits a clause: the writer's own words, the parts' first voicings, stand.)
       for (const x of picks) if (x.p) unspend({ comp: { noted: x.noted } } as unknown as Item, ctx);
@@ -1056,7 +1079,9 @@ function oneSentence(it: Item, ctx: PlanCtx): void {
     return;
   }
   if (rule === 'street') {
-    sayStreet(it, ctx, true);
+    // (Round 7, P5: lean, the street in sentences of its own, "The street rang a bell. Allen Street was
+    // where Mulcahy lived.", never folded into one with a "since" after the agreement's colon.)
+    sayStreet(it, ctx, !lean());
     it.composed = true;
     return;
   }
@@ -1203,6 +1228,9 @@ function heldBut(segs: Seg[], ctx: PlanCtx): void {
     const B = (segs[i + 1] as Seg).fact;
     if (ruleOf(A) !== 'agree' || (ruleOf(B) !== 'hours' && ruleOf(B) !== 'unbacked') || A.composed || B.composed) continue;
     if (ctx.budget.but > 0 || !single(A.text) || !single(B.text) || /^(?:So|But)\b/.test(B.text)) continue;
+    // (Round 7, P5: lean, not after the agreement's colon: "So Coffin backed her up: the Coffin flat at
+    // eight; but nobody else had said…" stacked its logic. Two sentences.)
+    if (lean() && stacks(A.text, B.text)) continue;
     // (docs/59 item 8: where the agreement names somebody else of their sex, the "but" clause would want
     // their name again in the same sentence: two sentences.)
     const who = props(A.props ?? [], 'CONFIRMS')[0]?.person;
@@ -1217,6 +1245,16 @@ function heldBut(segs: Seg[], ctx: PlanCtx): void {
     (segs[i] as Seg).glosses = [...(segs[i + 1] as Seg).glosses];
     segs.splice(i + 1, 1);
   }
+}
+
+/**
+ * Round 7, P5: two facts that would stack their logic in one sentence: "So Broadnax had seen the same:
+ * the Blue Lantern at ten; the street was what mattered, since Allen Street was where Mulcahy lived."
+ * A colon already in the first, or a "since", "because", "so" or "though" in the second, and the two
+ * are sentences of their own.
+ */
+function stacks(a: string, b: string): boolean {
+  return /:/.test(plain(a)) || /\b(?:since|because|though|so)\b/i.test(plain(b));
 }
 
 /** The rest, side by side, where they'll go: ", and", or a semicolon once a page. */
@@ -1249,12 +1287,12 @@ function sideBySide(segs: Seg[], ctx: PlanCtx, n: number): void {
     } else if ((A.comp as Held | undefined)?.flags?.includes('hole') && (B.comp as Held | undefined)?.flags?.includes('if-held') && budget.but === 0) {
       // The hole, and the story owned up to in its place: "but if it held, …".
       [made, join] = [sayPair(A, B, 'but', ctx, 'ADMIT-CHECK'), 'but'];
-    } else if (ruleOf(B) === 'street' && A.relation === 'confirms' && budget.but === 0 && joined(A.text) === 0) {
+    } else if (ruleOf(B) === 'street' && A.relation === 'confirms' && budget.but === 0 && joined(A.text) === 0 && !(lean() && stacks(A.text, B.text))) {
       // A confirmed evening, and the thing worth keeping after it: "but".
       [made, join] = [sayPair(A, B, 'but', ctx), 'but'];
     } else if (joined(A.text) + joined(B.text) === 0 && runsOn(B.text, ctx.c)) {
       made = sayPair(A, B, 'and', ctx);
-    } else if ((budget.semi ?? 0) === 0 && joined(A.text) + joined(B.text) <= 2 && !/;/.test(A.text + B.text) && (runsOn(B.text, ctx.c) || ruleOf(B) === 'street' || ruleOf(B) === 'hours')) {
+    } else if ((budget.semi ?? 0) === 0 && joined(A.text) + joined(B.text) <= 2 && !/;/.test(A.text + B.text) && (runsOn(B.text, ctx.c) || ruleOf(B) === 'street' || ruleOf(B) === 'hours') && !(lean() && (ruleOf(B) === 'street' || stacks(A.text, B.text)))) {
       [made, join] = [sayPair(A, B, 'semi', ctx), 'semi'];
     }
     if (!made || wordsIn(plain(made.text)) > LONGEST) return null;

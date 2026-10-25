@@ -421,6 +421,58 @@ export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: stri
   return `${shorten(why, nameOf(c, c.client))} — ${act}`;
 }
 
+/** The shared part of a group's reason (docs/65 §5): "Ashby, Lindemann and Winslow knew the door would be unlocked, and nobody had said where any of them was at ten". */
+const GROUP_WHY = /^.+?, and nobody had said where (?:any|either) of them was at (.+)$/;
+
+/**
+ * Round 7, P7: a hint's words, and a starred choice's. The star's reason (`starReason`) is the curtain's
+ * and the fastest solve's; on the page it was long and the same seven times over three pages (Raw 23:
+ * "Ashby, Lindemann and Winslow were at the supper, and nobody had said where any of them was at ten —
+ * ask Ashby where she was", on every star). So:
+ *
+ * - **one short clause**: a pointer to a suspect's evening at an hour that doesn't matter ("Bidwell saw
+ *   Callahan at Moe’s at seven", which read as if seven did, docs/68 §6) is what does matter, plainly:
+ *   "nobody had said where Callahan was at nine";
+ * - **a shared reason once**: where several hints share a reason, the first says it, and the rest say
+ *   only the ask: "ask Lindemann where she was";
+ * - **on the choice it asks** (`onAsk`, the question itself, not the walk to it) the choice is the ask:
+ *   only the reason, and for a shared one already said, the person's own clause: "nobody had said where
+ *   she was at ten".
+ *
+ * The star reasons still never name an outcome (docs/46 §1).
+ */
+export function hintWords(c: BoardCase, run: Pick<BoardRun, 'asked'> & Partial<Pick<BoardRun, 'hints' | 'visited' | 'log'>>, qid: string, walk = false, onAsk = false): string {
+  const full = starReason(c, run, qid, walk);
+  const cut = full.indexOf(' — ');
+  if (cut < 0) return full;
+  let why = full.slice(0, cut);
+  const act = full.slice(cut + 3);
+  const q = questionsOf(c).find((x) => x.id === qid);
+  const p = q?.subject as PersonId | undefined;
+  const s = q?.kind === 'account' && p && suspectsOf(c).includes(p) ? solveRun(c, run) : undefined;
+  const hours = s?.possibleHours ?? [];
+  // (A pointer's own hour, where it isn't one that matters and nothing places them at one that does.)
+  const ownHour = /\bat (seven|eight|nine|ten|eleven|twelve)$/.exec(why)?.[1];
+  const HW = ['twelve', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven'];
+  if (s && p && ownHour && hours.length > 0 && !hours.includes(HW.indexOf(ownHour)) && hours.every((h) => !s.placed.has(`${p}@${h}`))) why = `nobody had said where ${nameOf(c, p)} was at ${hoursOr(hours)}`;
+  // (Said already: an earlier hint tonight gave a step with this reason.)
+  const group = GROUP_WHY.exec(why);
+  const hs = run.hints ?? [];
+  const mine = hs.findIndex((h) => h.q === qid);
+  const before = (mine < 0 ? hs : hs.slice(0, mine)).filter((h) => h.q && h.q !== qid);
+  // (And the first one's own star says it on the page it was given: on a later page, the ask.)
+  const given = mine >= 0 ? hs[mine] : undefined;
+  const said =
+    !!group &&
+    ((!!given && run.log !== undefined && run.log.length - 1 > given.page) ||
+      before.some((h) => {
+        const r = starReason(c, run, h.q as string, false);
+        return r.slice(0, r.indexOf(' — ')) === why;
+      }));
+  if (onAsk) return said && group && p ? `nobody had said where ${pronOf(c, p).he} was at ${group[1]}` : why;
+  return said ? act : `${why} — ${act}`;
+}
+
 /**
  * What a held answer says of somebody at the first of `hours` it says anything, as a pointer: a
  * watcher who saw them ("Ellery saw Marchetti at the chop house at ten"), an account that had them
