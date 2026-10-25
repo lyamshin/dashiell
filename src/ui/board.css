@@ -479,3 +479,78 @@
   font-style: italic;
   text-indent: 0;
 }
+
+/* ------------------------------------------------------------- hints */
+
+/*
+ * docs/67: the Hint button sits with the free choices: "Hint", "Hint (2 left)", and greyed out at none
+ * left. What it said goes under the row; the star it gives is the choice's own mark.
+ */
+.choice--hint {
+  border-style: dotted;
+}
+
+.choice--hint:disabled {
+  opacity: 0.45;
+  border-style: dashed;
+}
+
+.choices p.hint-note,
+.report p.hint-note {
+  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
+  text-indent: 0;
+}
+
+.hint-note:empty {
+  display: none;
+}
+
+.report .report-hint {
+  margin: 0.2rem 0 0;
+}
+
+.report p.hint-note {
+  margin: 0.35rem 0 1rem;
+}
+
+/* The verdict's star: ★ in the accent for a star, in amber for a gold star. */
+.leaf p.verdict-star {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6ch;
+  margin: 0 0 1rem;
+  text-indent: 0;
+}
+
+.verdict-star .star-glyph {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.verdict-star--gold .star-glyph,
+.pick-star--gold {
+  color: var(--amber);
+}
+
+.pick-star--star {
+  color: var(--accent);
+}
+
+.pick[aria-checked='true'] .pick-star--star {
+  color: var(--paper);
+}
+
+/* Words for a screen reader only. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

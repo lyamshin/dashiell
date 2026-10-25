@@ -6,26 +6,26 @@
  * report: a choice that would give them a fact they don't hold. Its reason
  * names the pointer ("Coffin has Ashby here at eleven"), never what the
  * answer will show, who it clears or who is left. The client is never
- * starred, and there are at most three a page.
+ * starred.
  *
- * By tier (docs/46 §1):
- * - Raw: every open step of every cheapest way on.
- * - Coddled: the open steps of one cheapest way on.
- * - Poached, Soft-boiled: at most one, the nearest open step.
- * - Medium: only where to go: the walk to the nearest open step, never the
- *   question to ask when you get there.
- * - Hard-boiled: one star, the scene, on page one. None after.
+ * docs/67: no star appears by itself. A star is a hint the player asked for
+ * (`hints.ts`): one step, the nearest open step of a cheapest way on
+ * (`hintStep`), starred with its reason, and it stays starred until it's taken
+ * or is no longer on a cheapest way (`starredSteps`). Confronts are included:
+ * a hint is asked for, so it may give the confront the grid already shows.
  *
- * "Put it to …" is starred only at Raw and Coddled, where the pair comes
- * ready-made. From Poached up the grid shows the collision, and putting it is
- * the player's own idea.
+ * Before docs/67 the stars thinned by tier (docs/46 §1): every open step at
+ * Raw, one cheapest way at Coddled, one star at Poached and Soft-boiled, walks
+ * only at Medium, the scene on page one at Hard-boiled. That rule is kept as
+ * `routeSteps`, never shown: the way in still says its pointers in that
+ * order, so the pages read as they did.
  */
 
 import { minimalSets } from '../../gen/board/path.js';
 import { GIVENS, pointerIndex } from '../../gen/board/pointers.js';
 import { questionsOf } from '../../gen/board/solver.js';
 import type { Question } from '../../gen/board/types.js';
-import { accountOf, knownPeople, linesHeld, meansShown, solveHeld, solveRun } from './knowledge.js';
+import { accountOf, knownPeople, knownPlaces, linesHeld, meansShown, peopleAt, solveHeld, solveRun } from './knowledge.js';
 import { andList, isMurder, nameOf, personOf, placeName, pronOf, solverHeld, suspectsOf, type BoardCase, type BoardDeal, type BoardRun, type Hour, type PersonId } from './model.js';
 import { accessPhrase } from './bones/phrase.js';
 import { remarkStreet } from '../../gen/board/streets.js';
@@ -79,7 +79,7 @@ export function completions(d: BoardDeal, run: Pick<BoardRun, 'asked'>): string[
     }
     return extra.filter((q) => got.has(q));
   };
-  const needMotive = isMurder(c) && motive !== undefined && !heldSet.has(motive) && !run.asked.some((q) => q === `motive:${c.crime.culprit}`);
+  const needMotive = needsMotive(d, run, heldSet);
   const goal = (x: string[]): boolean => {
     const extra = reachable(x.filter((q) => !heldSet.has(q)));
     if (needMotive && !extra.includes(motive as string)) return false;
@@ -90,6 +90,22 @@ export function completions(d: BoardDeal, run: Pick<BoardRun, 'asked'>): string[
   if (REST.size > 300) REST.delete(REST.keys().next().value as string);
   REST.set(key, out);
   return out;
+}
+
+/** A murder's report asks why: the papers, or the culprit's own reason, until one is held. */
+function needsMotive(d: BoardDeal, run: Pick<BoardRun, 'asked'>, heldSet: ReadonlySet<string>): boolean {
+  const c = d.kase;
+  const motive = d.analysis.motive;
+  return isMurder(c) && motive !== undefined && !heldSet.has(motive) && !run.asked.some((q) => q === `motive:${c.crime.culprit}`);
+}
+
+/**
+ * docs/67: whether what's held already fills the report: the solver done on it, and a murder's why
+ * held. (`completions` is empty then; it's empty too when nothing within reach finishes it.)
+ */
+export function reportReady(d: BoardDeal, run: Pick<BoardRun, 'asked'>): boolean {
+  const held = solverHeld(run);
+  return !needsMotive(d, run, new Set(held)) && solveHeld(d.kase, held).done;
 }
 
 /** A question is open when what's held (or the office) points at it, and a confrontation when its claim is broken. */
@@ -110,11 +126,102 @@ export function walksOnly(c: BoardCase): boolean {
 }
 
 /**
- * The steps a star may go on tonight, best first (docs/46 §1). `at` is where
- * the detective stands, for "the nearest"; `log` says whether this is still
- * page one, for Hard-boiled's one star.
+ * docs/67: the stars on the page: the steps the player's hints gave, in the order they were given,
+ * each while it stands: not taken yet, and still on a cheapest way on. When nothing within reach
+ * finishes the report (`completions` empty, the report not ready), a hinted step stands while it's
+ * open, since it came from the designed path. None once the report is ready.
  */
-export function starredSteps(d: BoardDeal, run: Pick<BoardRun, 'asked'> & Partial<Pick<BoardRun, 'at' | 'log'>>): string[] {
+export function starredSteps(d: BoardDeal, run: Pick<BoardRun, 'asked'> & Partial<Pick<BoardRun, 'at' | 'log' | 'hints'>>): string[] {
+  const hinted = [...new Set((run.hints ?? []).map((h) => h.q).filter((q): q is string => !!q))];
+  if (hinted.length === 0) return [];
+  const c = d.kase;
+  const open = hinted.filter((q) => isOpen(c, run, q));
+  if (open.length === 0) return [];
+  const rest = completions(d, run);
+  if (rest.length > 0) {
+    // (docs/65 §4: a suspect's evening the hint gave for one the cheapest way runs through, the
+    // evidence treating the two the same, is on the way as much as theirs is.)
+    const ways = new Set(rest.flat());
+    const tied = (q: string) => q.startsWith('account:') && [...ways].some((x) => x.startsWith('account:') && sameStanding(c, run, x.slice(8)).includes(q.slice(8)));
+    return open.filter((q) => ways.has(q) || tied(q));
+  }
+  return reportReady(d, run) ? [] : open;
+}
+
+/**
+ * docs/67: the command a star on `q` sits on from where the detective stands: the topic, the
+ * search or the confront under somebody in the room, or else the walk to where it waits. Null when
+ * the place isn't one the player knows of yet.
+ */
+export function starCommand(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'visited' | 'at'>, q: string): string | null {
+  const c = d.kase;
+  const [kind, rest] = q.split(':') as [string, string];
+  const here = peopleAt(c, run, run.at);
+  if ((kind === 'account' || kind === 'list') && here.includes(rest)) return `ask ${rest} ${kind === 'list' ? 'list' : 'evening'}`;
+  if (kind === 'search' && c.finds.find((x) => x.id === rest)?.place === run.at) return `search ${rest}`;
+  if (kind === 'confront') {
+    const [p] = rest.split('@') as [string];
+    if (here.includes(p)) return `picker ${p}`;
+  }
+  const at = starPlace(c, q);
+  if (!at || at === run.at || !knownPlaces(c, run).has(at)) return null;
+  return `go ${at}`;
+}
+
+/**
+ * docs/67: the step a hint gives: the nearest open step of a cheapest way on, by docs/46's
+ * Poached rule (one in this room first, then the commonest across the cheapest ways, then path
+ * order), confronts included. Never one already starred (`starred`), nor one whose star would sit on
+ * a choice a star already sits on (the same walk), so pressing again gives a new choice. Among
+ * suspects the held evidence treats the same (docs/65 §4, `sameStanding`) it's the first by name.
+ * Where nothing within reach finishes the report, the designed path's next open step (and a
+ * murder's papers). Null when the report is ready, or nothing new can be starred.
+ *
+ * `commands`: false on the report page, where no choice shows and the hint says the step in words.
+ */
+export function hintStep(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'visited' | 'at'>, starred: readonly string[] = [], commands = true): string | null {
+  const c = d.kase;
+  if (reportReady(d, run)) return null;
+  const pathRank = new Map(d.analysis.path.map((s, i) => [s.q, i]));
+  const byPath = (a: string, b: string) => (pathRank.get(a) ?? 50) - (pathRank.get(b) ?? 50);
+  const taken = new Set(commands ? starred.map((q) => starCommand(d, run, q)).filter((x): x is string => !!x) : []);
+  const fits = (q: string) => !starred.includes(q) && isOpen(c, run, q) && (!commands || (() => {
+    const cmd = starCommand(d, run, q);
+    return !!cmd && !taken.has(cmd);
+  })());
+  const first = (open: readonly string[]): string | null => {
+    for (const q of open) {
+      if (!q.startsWith('account:')) {
+        if (fits(q)) return q;
+        continue;
+      }
+      // docs/65 §4: the first by name of those the held evidence treats the same, that can still be starred.
+      const tie = sameStanding(c, run, q.slice(8)).map((p) => `account:${p}`).find(fits);
+      if (tie) return tie;
+    }
+    return null;
+  };
+  const rest = completions(d, run);
+  if (rest.length > 0) {
+    const count = new Map<string, number>();
+    for (const s of rest) for (const q of s) count.set(q, (count.get(q) ?? 0) + 1);
+    const here = (q: string) => (starPlace(c, q) === run.at ? 0 : 1);
+    const got = first([...count.keys()].filter((q) => isOpen(c, run, q)).sort((a, b) => here(a) - here(b) || (count.get(b) as number) - (count.get(a) as number) || byPath(a, b)));
+    // (Everything on the cheapest ways starred already: nothing new to give.)
+    if (got || starred.length > 0) return got;
+  }
+  // Out of reach of a cheapest way (past MAX_REST), or none of its steps can be starred from here:
+  // the designed path, in order, and the papers.
+  return first([...d.analysis.path.map((s) => s.q), ...(d.analysis.motive ? [d.analysis.motive] : [])].filter((q) => !run.asked.includes(q)));
+}
+
+/**
+ * docs/46 §1's stars, by tier, as they were before docs/67. Never shown now: the way in says its
+ * pointers in this order (`placeThread`), so a page reads the same whether or not a hint was taken,
+ * and the wanderer sees the choices in the order it always did. `at` is where the detective stands,
+ * for "the nearest"; `log` says whether this is still page one, for Hard-boiled's one star.
+ */
+export function routeSteps(d: BoardDeal, run: Pick<BoardRun, 'asked'> & Partial<Pick<BoardRun, 'at' | 'log'>>): string[] {
   const c = d.kase;
   if (c.tier === 5) {
     // Hard-boiled: the scene, on page one. None after.

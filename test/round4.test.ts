@@ -5,6 +5,7 @@
  */
 import { describe, expect, it } from 'vitest';
 import { pageStars } from '../src/game/board/choices.js';
+import { starCommand, starReason } from '../src/game/board/stars.js';
 import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { nameHomes, titleClient } from '../src/game/board/home.js';
 import { dealBoard, type BoardRun } from '../src/game/board/model.js';
@@ -46,17 +47,14 @@ describe('round 4: the reasoning lines (docs/55 1)', () => {
     expect(page).toMatch(/the Automat (?:might know|was the first place I’d ask|might know about) |I’d ask at the Automat about /);
   });
 
-  it('a hand-off names the person and the question, never the ground', () => {
+  it('docs/67: no hand-off, so nothing on the page says where to go next or what to ask there', () => {
     const run = night(14, 4, 'lost-pet', MED14);
     const page = prose(run.log[run.log.length - 1] as Page).replace(/\s+/g, ' ');
-    // (docs/60 item 6: lean, the rhythm may part the second at its "and".)
-    // (docs/62 item 12: after how I know she walked, nothing a pronoun the walk's witnesses could take.)
-    // (Or, where how I know would say a name a third time on the page, the question alone.)
-    // (docs/66, P3: the walk first, then that they might have passed somebody: "I wanted to know who
-    // Pickering had passed" took it as known that she had.)
-    expect(page).toMatch(/I wanted to know who else had been on the street then\.|Somebody else on the street then might have seen something(?:, and|\.) I wanted to know who\.|Whoever else had been on the street then, I wanted to hear from\.|\S+ had walked over from .+? at \w+, and might have passed somebody on the way\./);
-    expect(page).not.toMatch(/I wanted to know who \S+ had passed/);
+    // (Before: "Pickering had walked over from the Delmonico rooms at ten, and might have passed somebody on
+    // the way." and "I wanted to know who else had been on the street then.": the star said aloud.)
+    expect(page).not.toMatch(/I wanted to know who|might have passed somebody on the way|on the street then/);
     expect(page).not.toMatch(/place behind them|that ground for myself/);
+    expect(run.log.every((p) => p.board?.handoff === undefined)).toBe(true);
   });
 
   it('the lints catch a thought against the grid, "it turned out" for somebody there all along, sitting twice and knocking inside', () => {
@@ -117,12 +115,12 @@ describe('round 4: facts and continuity (docs/55 2)', () => {
 });
 
 describe('round 4: stars, the report and the curtain (docs/55 4, 5, 7)', () => {
-  it('Medium stars the person and the question, in the room with them', () => {
+  it('a star names the person and the question, in the room with them (docs/67: no star at Medium unasked, and no hints there)', () => {
     const d = dealBoard(14, 4, 'lost-pet');
     const run = night(14, 4, 'lost-pet', MED14);
-    const stars = pageStars(d, run);
-    expect(stars.map((s) => s.command)).toEqual(['ask pickering evening']);
-    expect(stars[0]?.why).toBe('ask Pickering who she passed on the way over at ten');
+    expect(pageStars(d, run)).toEqual([]);
+    expect(starCommand(d, run, 'account:pickering')).toBe('ask pickering evening');
+    expect(starReason(d.kase, run, 'account:pickering')).toBe('ask Pickering who she passed on the way over at ten');
   });
 
   it('the report doesn’t put the line that breaks the story first, alone', () => {

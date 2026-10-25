@@ -1,6 +1,6 @@
 /** The verdict page: the report scored, the closing, and what the ending can open. */
 
-import { pointsText, type Verdict } from '../game/board/report.js';
+import { pointsText, starWords, type Verdict } from '../game/board/report.js';
 import { TIER_NAMES, type TierIndex } from '../gen/board/types.js';
 import { el } from './dom.js';
 
@@ -78,6 +78,12 @@ export function renderVerdict(verdict: Verdict, onAgain: () => void, endings: En
 
   wrap.append(el('p', { class: 'score', text: verdict.scoreLine ?? `${pointsText(verdict.points)} out of ${verdict.asked}.` }));
   for (const line of verdict.plain) wrap.append(el('p', { class: 'score-plain', text: line }));
+  // docs/67: the actions and the hints beside them, and the star a perfect report earns (gold with no
+  // hints). The glyph is for the eye; the words beside it say it for a screen reader too.
+  wrap.append(el('p', { class: 'score-plain tally', text: verdict.tally }));
+  if (verdict.star) {
+    wrap.append(el('p', { class: `verdict-star verdict-star--${verdict.star}` }, el('span', { class: 'star-glyph', 'aria-hidden': 'true', text: '★' }), el('span', { class: 'star-words', text: starWords(verdict.star) })));
+  }
   for (const paragraph of verdict.closing) {
     const p = el('p');
     // The only formatting in a closing line is a bold sentence.

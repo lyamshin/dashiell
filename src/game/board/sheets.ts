@@ -14,7 +14,7 @@
  * | job | the account, list, find or confrontation |
  * | thought | what it means, tied back to something held, by name (the engine's) |
  * | close | the page's one joke, or a callback |
- * | handoff | what this makes me want next; it agrees with the starred choice |
+ * | handoff | docs/67: never filled now (a star is a hint the player asks for); it was what this made me want next |
  *
  * A writer fills the beats it has; the sheet lays them out. A beat with
  * nothing in it is skipped, so a sheet is the most a page can be.
