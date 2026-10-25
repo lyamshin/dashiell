@@ -186,8 +186,13 @@ export function boardChoices(d: BoardDeal, run: BoardRun): OfferedGroup[] {
 
 export interface PickerClaim {
   hour: Hour;
-  /** "the Odessa at ten" — their own line. */
+  /** "at the Odessa at ten", "home at the Delmonico rooms at ten" — where they said they were. */
   label: string;
+  /**
+   * Round 6, U2: what they said, as a sentence, the same in the book and the CLI: "She said she was
+   * home at the Delmonico rooms at ten", never "Grasso says home (the Delmonico rooms) at ten".
+   */
+  said: string;
   /** A second story, put back after a second lie. */
   again: boolean;
   /** The lines held for that place and hour, to read them. From Poached up the player picks. */
@@ -214,14 +219,16 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
   const landedAgain = new Set(run.puts.filter((x) => x.landed && x.again).map((x) => `${x.person}@${x.hour}`));
   const claims: PickerClaim[] = [];
   const ready: { command: string; label: string }[] = [];
+  const pr = pronOf(c, p);
   for (const col of collisionsOf(c, run, p)) {
     if (landed.has(`${p}@${col.hour}`)) continue;
     const cands = candidateLines(c, run, p, col.hour, lines);
-    // docs/55 1d: "home" says which place, where the grid calls it by another name ("home, the Delmonico rooms").
-    const label = `${personOf(c, p)?.home === col.claim.place ? (homeNamed(c, p) ? 'home' : `home (${placeName(c, col.claim.place ?? '')})`) : placeName(c, col.claim.place ?? '')} at ${hourWord(col.hour)}`;
-    claims.push({ hour: col.hour, label, again: false, lines: cands.map((l) => lineChoice(d, p, col.hour, l, false, run)) });
+    // docs/55 1d: "home" says which place, where the grid calls it by another name. Round 6, U2: as a
+    // clause, "home at the Delmonico rooms at ten", never "home (the Delmonico rooms) at ten".
+    const label = `${personOf(c, p)?.home === col.claim.place ? (homeNamed(c, p) ? 'home' : `home at ${placeName(c, col.claim.place ?? '')}`) : `at ${placeName(c, col.claim.place ?? '')}`} at ${hourWord(col.hour)}`;
+    claims.push({ hour: col.hour, label, said: `${pr.He} said ${pr.he} was ${label}`, again: false, lines: cands.map((l) => lineChoice(d, p, col.hour, l, false, run)) });
     const b = col.breakers[0];
-    if (b) ready.push({ command: `put ${p} ${col.hour} ${b.id}`, label: `${cap(nameOf(c, p))} says ${label}. ${cap(factSaid(c, b, p))}.` });
+    if (b) ready.push({ command: `put ${p} ${col.hour} ${b.id}`, label: `${cap(nameOf(c, p))} said ${pr.he} was ${label}. ${cap(factSaid(c, b, p))}.` });
   }
   // A second story, once told, collides with the list where it claims to be.
   for (const put of run.puts.filter((x) => x.person === p && x.landed && !x.again)) {
@@ -231,21 +238,22 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
     const at = lines.filter((l) => l.kind === 'list' && l.hour === put.hour && l.place === alt);
     const breaks = at.filter((l) => !l.about.includes(p) && listWhole(d, l));
     if (breaks.length === 0) continue;
-    const label = `${placeName(c, alt)} at ${hourWord(put.hour)}, what ${pronOf(c, p).he} said next`;
-    claims.push({ hour: put.hour, label, again: true, lines: at.map((l) => lineChoice(d, p, put.hour, l, true, run)) });
-    ready.push({ command: `put ${p} ${put.hour} ${(breaks[0] as Line).id} again`, label: `${cap(nameOf(c, p))} now says ${placeName(c, alt)} at ${hourWord(put.hour)}. ${cap(factSaid(c, breaks[0] as Line, p))}.` });
+    const label = `at ${placeName(c, alt)} at ${hourWord(put.hour)}`;
+    claims.push({ hour: put.hour, label, said: `Then ${pr.he} said ${pr.he} was ${label}`, again: true, lines: at.map((l) => lineChoice(d, p, put.hour, l, true, run)) });
+    ready.push({ command: `put ${p} ${put.hour} ${(breaks[0] as Line).id} again`, label: `${cap(nameOf(c, p))} then said ${pr.he} was ${label}. ${cap(factSaid(c, breaks[0] as Line, p))}.` });
   }
   if (claims.length === 0) return null;
-  const pr = pronOf(c, p);
   return {
     person: p,
     ready: c.tier <= 1 ? ready : [],
     claims: c.tier <= 1 ? [] : claims,
-    // docs/64: what you tell them, and what you were told, never "the line that breaks it".
+    // docs/64: what you tell them, and what you were told, never "the line that breaks it". Round 6,
+    // U1: what to pick, said as what it is: somebody who saw them somewhere else, or everybody at the
+    // place they named and not them.
     help:
       c.tier <= 1
         ? `Pick what you’ll tell ${pr.him}.`
-        : `Pick the hour where what ${pr.he} said doesn’t match, then what you’ll tell ${pr.him}, such as somebody who saw everyone there at that hour and not ${pr.him}.`,
+        : `Pick the hour where what ${pr.he} told you doesn’t match, then what you’ll tell ${pr.him}: somebody who saw ${pr.him} somewhere else, or somebody who saw everyone at the place ${pr.he} named, and not ${pr.him}.`,
     minutes: callMinutes(d, run),
   };
 }
@@ -253,12 +261,12 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
 /**
  * The picker's note, as the book and the CLI both say it: how to use it, what it costs, and (round 5,
  * U7) that it isn't needed for the report: what you were told counts there whether you tell them or
- * not, so confronting them is for what they say back. docs/64: in plain words.
+ * not, so confronting them is for what they say back. docs/64: in plain words. Round 6, U1 (all four
+ * testers: "the report counts it", counts what?): the cost and the choice said outright, no bare "it".
  */
 export function pickerNote(d: BoardDeal, pk: Picker): string {
-  const c = d.kase;
-  const him = personOf(c, pk.person)?.female ? 'her' : 'him';
-  return `${pk.help} If it doesn’t catch ${him} out, the action is used anyway. The report counts it whether you tell ${him} or not.`;
+  const pr = pronOf(d.kase, pk.person);
+  return `${pk.help} Confronting ${pr.him} takes an action, whether ${pr.he} talks or not. You don’t have to: the report takes what proves ${pr.he} lied either way.`;
 }
 
 function listWhole(d: BoardDeal, l: Line): boolean {

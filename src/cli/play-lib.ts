@@ -77,13 +77,17 @@ export interface PlayResult {
 
 const WIDTH = 76;
 
-/** docs/64: the form's keys as a player types them; the engine's own (`breaks`, `whereBy`) still read. */
-const KEY_SHOWN: Partial<Record<string, string>> = { breaks: 'proof', whereBy: 'whereproof' };
+/**
+ * docs/64: the form's keys as a player types them; the engine's own (`breaks`, `whereBy`) still read.
+ * Round 6, U5: what proves where it is, typed `evidence` ("whereproof" was a word nobody would use);
+ * `whereproof` still reads, so notes and saves from before work.
+ */
+const KEY_SHOWN: Partial<Record<string, string>> = { breaks: 'proof', whereBy: 'evidence' };
 
-/** A key as typed, to the form's own: `proof` is `breaks`, `whereproof` is `whereBy`. */
+/** A key as typed, to the form's own: `proof` is `breaks`, `evidence` (or `whereproof`) is `whereBy`. */
 function keyOf(typed: string): string {
   const k = typed.toLowerCase();
-  return k === 'proof' ? 'breaks' : k === 'whereproof' ? 'whereBy' : typed;
+  return k === 'proof' ? 'breaks' : k === 'evidence' || k === 'whereproof' ? 'whereBy' : typed;
 }
 const RULE = '─'.repeat(WIDTH);
 const DOUBLE = '═'.repeat(WIDTH);
@@ -240,7 +244,8 @@ function pageChoicesText(night: Night): string {
 }
 
 /** The key to a page's marks, said once, on the first page (docs/47 A3), in docs/64's words; and the CLI's own two commands. */
-const CHOICE_KEY = `${ACTION_KEY} Picking somebody shows what you can ask them; \`back\` shuts it, and \`page <n>\` turns back to an earlier page.`;
+// (Round 6, U2: "`back` shuts it" said what it does: takes you back to the page.)
+const CHOICE_KEY = `${ACTION_KEY} Pick somebody to see what you can ask them; \`back\` takes you back to the page, and \`page <n>\` shows an earlier page.`;
 
 function topicItems(night: Night, person: string): Item[] {
   const g = boardChoices(night.d, night.run).find((x) => x.kind === 'ask' && x.personId === person);
@@ -251,7 +256,7 @@ function topicItems(night: Night, person: string): Item[] {
 function topicText(night: Night, person: string): string {
   const items = topicItems(night, person);
   const out = [`ASK ${nameOf(night.d.kase, person).toUpperCase()} ABOUT`, ''];
-  for (const it of items) out.push(itemLine(it.n, it.choice, it.choice.command.startsWith('picker') ? 'free to look' : costText(it.choice)));
+  for (const it of items) out.push(itemLine(it.n, it.choice, costText(it.choice)));
   out.push('', itemLine(items.length + 1, { command: 'back', label: 'Back to the page', minutes: 0, lead: false, done: false }, 'free'));
   return out.join('\n');
 }
@@ -267,7 +272,7 @@ function pickerItems(night: Night, pk: Picker): { n: number; command: string; la
   }
   const cl = night.save.claim === null ? null : pk.claims.find((x) => x.hour === night.save.claim);
   if (!cl) {
-    for (const x of pk.claims) out.push({ n: n++, command: `claim ${x.hour}`, label: `${nameOf(night.d.kase, pk.person)} says ${x.label}`, claim: x.hour });
+    for (const x of pk.claims) out.push({ n: n++, command: `claim ${x.hour}`, label: x.said, claim: x.hour });
     return out;
   }
   for (const l of cl.lines) out.push({ n: n++, command: l.command, label: l.label, source: l.source });
@@ -282,7 +287,8 @@ function pickerText(night: Night, pk: Picker): string {
   const his = pronWord(night, pk.person, 'his');
   out.push('');
   const she = his === 'her' ? 'she' : his === 'his' ? 'he' : 'they';
-  out.push(pk.ready.length > 0 ? `What ${she} said, and what says otherwise:` : picking ? `Against “${pk.claims.find((x) => x.hour === night.save.claim)?.label}”, tell ${pronWord(night, pk.person)}:` : `Which part of ${his} evening?`);
+  // Round 6, U2: what they said, as a sentence, then what to tell them.
+  out.push(pk.ready.length > 0 ? `What ${she} said, and what says otherwise:` : picking ? `${pk.claims.find((x) => x.hour === night.save.claim)?.said}. Tell ${pronWord(night, pk.person)}:` : `Which part of ${his} evening?`);
   for (const it of items) out.push(itemLine(it.n, { command: it.command, label: it.label, minutes: 0, lead: false, done: false }, it.claim !== undefined ? 'free' : '') + (it.source ? `\n          (${it.source})` : ''));
   out.push('', itemLine(items.length + 1, { command: 'back', label: picking ? `Back to ${his} evening` : `Don’t confront ${pronWord(night, pk.person)}`, minutes: 0, lead: false, done: false }, 'free'));
   return out.join('\n');
@@ -318,9 +324,25 @@ function lineList(opts: LineOption[], heads?: { touching: string; rest: string }
   return out;
 }
 
-function reportText(night: Night, path: string, who: string | null = null): string {
+/**
+ * The command that closes the case, on a line of its own (round 6, U5: a save's path in the middle of
+ * a sentence read as part of it), and how an answer is given.
+ */
+function closeLines(night: Night, path: string): string[] {
   const c = night.d.kase;
-  const murder = c.type === 'murder';
+  const two = asksOther(night.d);
+  const head = `who=…; proof=…; ${two ? 'other=…; cleared=…; ' : ''}when=…;`;
+  const keys = c.type === 'murder' ? `${head} how=…; why=…` : `${head} where=…; evidence=…; why=…`;
+  return [
+    'To close the case:',
+    `   npm run play -- close "${keys}" --save ${path}`,
+    wrap(`Give an answer by its number or enough of its words. For ${two ? 'proof and cleared' : 'proof'}, give a number from that person’s list (\`report <name>\` shows it), or hunch.`),
+  ];
+}
+
+function reportText(night: Night, path: string, who: string | null = null): string {
+  // Round 6, U5: `report <Name>` shows that person's list and how to use it, not the whole form again.
+  if (who) return personReportText(night, path, who);
   // Round 5, U6: what a blank goes in as, once, in one sentence, the book's words.
   const out = ['CLOSE THE CASE', '', wrap(blankRule(night.d, night.run.used >= budgetCalls(night.d))), ''];
   const field = (f: ReturnType<typeof boardFields>[number]) => {
@@ -332,34 +354,38 @@ function reportText(night: Night, path: string, who: string | null = null): stri
     field(f);
     if (f.key === 'who') {
       out.push(`${BREAKS_LABEL} (proof):`);
-      if (who) {
-        const N = nameOf(c, who);
-        // Round 5, U3: the headings say what's under them, the book's words.
-        out.push(...lineList(breakOptionsShown(night.d, night.run, who), lineGroupHeads(night.d, night.run, who)));
-        // docs/61: the same list answers the other question. Round 5, U2: said as what to type.
-        if (asksOther(night.d)) out.push(wrap(`If ${N} is the other liar, give “cleared” as a number from this list too.`, WIDTH, '   '));
-      } else {
-        out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists what you know about them, or about ${hoursWord(night)}. Give “proof” as a number from that list, or proof=hunch.`, WIDTH, '   '));
-      }
+      out.push(wrap(`Name them first: \`report <name>\` lists what you know about them, or about ${hoursWord(night)}. Give proof as a number from that list, or proof=hunch.`, WIDTH, '   '));
       out.push('');
     }
     if (f.key === 'other') {
       // docs/61: what clears them is a number from the same list `report <name>` shows for that person.
       out.push(`${CLEARED_LABEL} (cleared):`);
-      out.push(wrap(`Name them first: npm run play -- report <name> --save ${path} lists what you know about them, the same list as for proof. Give “cleared” as a number from it, or cleared=hunch.`, WIDTH, '   '));
+      out.push(wrap('Name them first: `report <name>` lists what you know about them, the same list as for proof. Give cleared as a number from it, or cleared=hunch.', WIDTH, '   '));
       out.push('');
     }
     if (f.key === 'where') {
-      out.push(`${WHERE_BY_LABEL} (whereproof):`);
+      out.push(`${WHERE_BY_LABEL} (${KEY_SHOWN.whereBy}):`);
       out.push(...lineList(whereByOptions(night.d, night.run)));
       out.push('');
     }
   }
-  const two = asksOther(night.d);
-  const head = `who=…; proof=…; ${two ? 'other=…; cleared=…; ' : ''}when=…;`;
-  const keys = murder ? `${head} how=…; why=…` : `${head} where=…; whereproof=…; why=…`;
   // (Round 5, U6: what a blank goes in as is said once, at the top.)
-  out.push(wrap(`Close it with: npm run play -- close "${keys}" --save ${path}. An answer is its number or enough of its words. For ${two ? 'proof and cleared' : 'proof'}, give the number from that person’s list (report <name> shows it).`));
+  out.push(...closeLines(night, path));
+  return out.join('\n');
+}
+
+/** Round 6, U5: one person's list, for proof (and cleared, if they're the other liar), and how to give it. */
+function personReportText(night: Night, path: string, who: string): string {
+  const c = night.d.kase;
+  const N = nameOf(c, who);
+  const out = [`CLOSE THE CASE: ${N.toUpperCase()}`, ''];
+  out.push(`${BREAKS_LABEL} (proof):`);
+  // Round 5, U3: the headings say what's under them, the book's words.
+  out.push(...lineList(breakOptionsShown(night.d, night.run, who), lineGroupHeads(night.d, night.run, who)));
+  // docs/61: the same list answers the other question. Round 5, U2: said as what to type.
+  if (asksOther(night.d)) out.push(wrap(`If ${N} is the other liar, give “cleared” as a number from this list too.`, WIDTH, '   '));
+  out.push('', wrap('`report` shows the whole form.'), '');
+  out.push(...closeLines(night, path));
   return out.join('\n');
 }
 
@@ -389,7 +415,7 @@ function parseReport(night: Night, text: string): BoardReport {
       continue;
     }
     const f = fields.find((x) => x.key === key);
-    if (!f) fail(`The form doesn’t ask "${key}". It asks: ${[...fields.map((x) => x.key), 'proof', ...(asksOther(night.d) ? ['cleared'] : []), ...(night.d.kase.type === 'murder' ? [] : ['whereproof'])].join(', ')}.`);
+    if (!f) fail(`The form doesn’t ask "${key}". It asks: ${[...fields.map((x) => x.key), 'proof', ...(asksOther(night.d) ? ['cleared'] : []), ...(night.d.kase.type === 'murder' ? [] : ['evidence'])].join(', ')}.`);
     const spec = f as (typeof fields)[number];
     const v = fold(raw);
     if (/^\d+$/.test(v) && spec.options[Number(v) - 1] && !(key === 'when' && spec.options.some((o) => o.value === v))) {
@@ -441,7 +467,8 @@ function verdictText(night: Night): string {
   }
   out.push('', wrap(v.scoreLine), ...v.plain.map((p) => wrap(p)), '');
   for (const p of v.closing) out.push(wrap(p.replace(/\*\*/g, '')), '');
-  out.push(wrap('`story` tells what really happened; `curtain` shows the true board, the lies and the fastest solve.'));
+  // (docs/64: plain words. "The true board" was the builders'.)
+  out.push(wrap('`story` tells what really happened; `curtain` shows where everybody really was, the lies and the fastest solve.'));
   return out.join('\n');
 }
 
@@ -655,7 +682,7 @@ function helpText(): string {
     '  mark "<Name> <hour> at|not|clear [place]" (mark a guess on the grid: mark "Feldman ten at Rafferty’s") · confront <Name>',
     '  report [<Name>] (with a name, what you know about them: what could prove they lied, or clear them)',
     '  close "who=…; proof=…; other=…; cleared=…; when=…; how=…; why=…"',
-    '       (a lost thing: where=…; whereproof=… instead of how=…; proof=hunch for a hunch;',
+    '       (a lost thing: where=…; evidence=… instead of how=…; proof=hunch for a hunch;',
     '        other and cleared only when two people lied: who else lied, and what clears them)',
     '  story · curtain (once the case is closed)',
   );

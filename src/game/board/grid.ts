@@ -58,7 +58,11 @@ export interface BoardGrid {
 
 const STOP = new Set(['the', 'back', 'room', 'rooms', 'flat', 'place', 'shop', 'house', 'mrs.', 'mr.', 'card', 'night', 'desk', 'club', 'office']);
 
-/** Short labels, unique within the case: "Odessa", "Rafferty", "Sokol". The scene is "scene". */
+/**
+ * Short labels, unique within the case: "Odessa", "Rafferty’s", "Sokol’s". The scene is "scene".
+ * Round 6, U3: a label is a whole word ("Delmonico", "Thorndike’s", "Fairbanks’s"), never cut at
+ * eight letters ("Delmonic" read as a bug to three testers).
+ */
 export function placeCodes(c: BoardCase): Record<PlaceId, string> {
   const out: Record<PlaceId, string> = {};
   const used = new Set<string>();
@@ -66,11 +70,10 @@ export function placeCodes(c: BoardCase): Record<PlaceId, string> {
     let code: string;
     if (p.scene) code = isMurder(c) ? 'scene' : 'flat';
     else {
-      const words = p.short
-        .split(/\s+/)
-        .map((w) => w.replace(/[’']s$/, '').replace(/[’']/g, ''))
-        .filter((w) => w.length > 0 && !STOP.has(w.toLowerCase()));
-      code = (words[0] ?? p.short).slice(0, 8);
+      // (A place called after somebody keeps its "’s", "Thorndike’s", "Moe’s": "Thorndike" alone, in
+      // Thorndike's own row, read as the person.)
+      const words = p.short.split(/\s+/).filter((w) => w.length > 0 && !STOP.has(w.toLowerCase().replace(/[’']s$/, '')));
+      code = words[0] ?? p.short;
       if (/card room/.test(p.short)) code = 'cards';
       if (/print shop/.test(p.short)) code = 'print';
       if (/exchange/.test(p.short)) code = 'exchange';
@@ -78,7 +81,7 @@ export function placeCodes(c: BoardCase): Record<PlaceId, string> {
       if (/club office/.test(p.short)) code = 'Eagle';
     }
     let k = code;
-    for (let i = 2; used.has(k); i++) k = `${code.slice(0, 7)}${i}`;
+    for (let i = 2; used.has(k); i++) k = `${code}${i}`;
     used.add(k);
     out[p.id] = k;
   }
@@ -113,8 +116,9 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
       const p = placed.get(k);
       const others = p ? p.deps.filter((d) => d !== `account:${id}`) : [];
       // Seen only on somebody else's held word for that place and hour, never on the solver's say alone,
-      // so ✓ means two sources agree (docs/47 A5).
-      const by = p && others.length > 0 ? support(id, h, p.place) : undefined;
+      // so ✓ means two sources agree (docs/47 A5). Round 6, U3: the client's word is somebody else's
+      // too: a guest the office put at the party is seen there ("·" read as nobody had placed them).
+      const by = p && (others.length > 0 || p.deps.length === 0) ? support(id, h, p.place) : undefined;
       if (p && by) cell.seen = { place: p.place, by: sourceName(c, by.q) };
       const st = s.status.get(k);
       if (st?.s === 'broken') cell.collision = true;
@@ -181,7 +185,11 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
  * As text, for the play CLI and the read tool.
  * ------------------------------------------------------------------ */
 
-/** One cell in a few characters: `Odessa✓`, `"Odessa"✗`, `[Sokol]`, `~Odessa` (pencil). */
+/**
+ * One cell in a few characters: `"Odessa"✓`, `"Odessa"✗`, `[Sokol]`, `~Odessa` (pencil). Round 6, U3:
+ * their own word is in quotes wherever it's shown, so a ✓ (somebody saw them there too) and a ✗
+ * (what somebody saw doesn't match) mark the same quotes, and `[X]` alone is somebody else's word.
+ */
 export function cellText(g: BoardGrid, cell: BoardCell): string {
   const code = (p: PlaceId) => g.codes[p] ?? p;
   // docs/47 A5: the pencil shows beside whatever else the cell holds, never under it.
@@ -190,7 +198,7 @@ export function cellText(g: BoardGrid, cell: BoardCell): string {
   if (cell.collision) {
     const tail = cell.admitted ? `→${code(cell.admitted)}` : cell.second ? `→"${code(cell.second)}"` : '';
     base = `"${code(cell.says ?? '')}"✗${tail}`;
-  } else if (cell.confirmed && cell.says) base = `${code(cell.says)}✓`;
+  } else if (cell.confirmed && cell.says) base = `"${code(cell.says)}"✓`;
   else if (cell.seen) base = `[${code(cell.seen.place)}]`;
   else if (cell.says) base = `"${code(cell.says)}"`;
   if (base && pencil) return `${base} ${pencil}`;
@@ -210,13 +218,16 @@ export function meansAsked(label: string): string {
 
 /**
  * docs/64: the grid's key, cut to what matters (what they say, who saw them, where the two clash), and
- * the rest only when the grid shows it: both saying so, owning up, your own guess.
+ * the rest only when the grid shows it: both saying so, owning up, your own guess. Round 6, U3: "X✓
+ * both say so" (both who?) says who: they, and somebody who saw them; an owning up and a second
+ * story are each said for what they are.
  */
 export function gridKey(g: BoardGrid): string[] {
   const cells = g.rows.flatMap((r) => g.hours.map((h) => r.cells[h] as BoardCell));
   const out = ['"X" they say so', '[X] somebody saw them there', '"X"✗ where they clash'];
-  if (cells.some((x) => x.confirmed)) out.push('X✓ both say so');
-  if (cells.some((x) => x.admitted || x.second)) out.push('→Y owned up');
+  if (cells.some((x) => x.confirmed)) out.push('"X"✓ they say so, and somebody saw them there');
+  if (cells.some((x) => x.admitted)) out.push('→Y where they owned up to being');
+  if (cells.some((x) => x.second && !x.admitted)) out.push('→"Y" what they said the second time');
   if (cells.some((x) => x.pencil)) out.push('~X your own guess');
   return out;
 }

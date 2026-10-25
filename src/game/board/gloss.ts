@@ -7,7 +7,7 @@
  * what the office already says of them (the finder's errand), never invented.
  */
 
-import { pronOf, victimOf, type BoardCase, type PersonId } from './model.js';
+import { hourWord, pronOf, victimOf, type BoardCase, type PersonId } from './model.js';
 import { roleOf } from './plan/measure.js';
 
 const esc = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -95,6 +95,32 @@ export function whoTheyAre(c: BoardCase, id: PersonId): string {
     .replace(/^(the landlady), on a chair at the foot of (?:her|his) stairs at /, '$1 at ');
   const home = p.home ? c.places.find((x) => x.id === p.home) : undefined;
   if (home && home.name.includes(p.short.replace(/^(?:Mrs\.|Miss|Dr\.|Mr\.) /, ''))) d = d.replace(new RegExp(`\\blives at ${esc(home.short)}$`), `lives on ${home.street}`);
+  return d;
+}
+
+/**
+ * Round 6, U6: a person's line in the notebook's People list, the same in the book and the CLI: who
+ * they are (`whoTheyAre`: their job, where they live by its street, never where they sat tonight),
+ * with a watcher's spot at their post left to the scene ("the pawnbroker, behind his cage at
+ * Kaplan’s pawnshop" for a woman; "the cashier at the register at the Odessa"), a job said for
+ * their sex ("the woman who runs the game"), and company named in somebody's owning up said as that:
+ * who named them, and what they said ("was with Alfano at Sokol’s back room; nobody else knows it"
+ * read as the notebook keeping a secret).
+ */
+export function peopleLine(c: BoardCase, id: PersonId): string {
+  const p = c.people.find((x) => x.id === id);
+  if (!p) return '';
+  if (p.role === 'client') return `my client, ${p.description}`;
+  let d = whoTheyAre(c, id)
+    .replace(/,? (?:behind (?:his|her) (?:cage|counter)|in the change booth|at the register|at the front desk),?(?= at )/, '')
+    .replace(/^Mr\. \S+, at the counter at /, 'who keeps the counter at ')
+    .replace(/^the man who\b/, p.female ? 'the woman who' : 'the man who');
+  const w = /^was with (.+?) at (.+?); nobody else knows it$/.exec(d);
+  if (w) {
+    const k = c.confrontations.find((x) => (x.names ?? []).includes(id));
+    const named = w[1] as string;
+    d = `${named} named ${p.female ? 'her' : 'him'}, and says they were together at ${w[2]}${k ? ` at ${hourWord(k.hour)}` : ''}`;
+  }
   return d;
 }
 

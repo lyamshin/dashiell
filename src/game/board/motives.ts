@@ -35,7 +35,8 @@ const FORMS: Record<string, string> = {
   s3: 'Lost a job on Friday, and asked {client} what {thing} was worth',
   s4: 'Bitten by {thing} at Easter, and swore to see the back of {pthem}',
   s5: 'Woken by {thing} through the wall at five every morning, and said what they’d do about it',
-  s6: 'Says the late Mr. {client} promised them {thing}',
+  // (Round 6, U6: the claim in their own mouth, which needs no pronoun: "promised them" read as more than one.)
+  s6: 'Says “the late Mr. {client} promised me {thing}”',
   s7: 'Has wanted {thing} since the day {client} brought {pthem} home',
   s8: 'Always said {thing} was wasted on its owner',
   s9: 'Hasn’t spoken to {client} since the row over the coal bill',
@@ -122,6 +123,7 @@ export function motiveSaid(c: BoardCase, p: PersonId): string {
   // ("Abramowitz closed his business" is theirs: nobody closes their own business on somebody.)
   const same = isMurder(c) && pronOf(c, v.id).he === pr.he;
   let s = form
+    .replace(/^Says “(.+?) promised me (.+)”$/, `Says $1 promised ${pr.him} $2`)
     .replace(/\bthemselves\b/g, pr.he === 'she' ? 'herself' : 'himself')
     .replace(/\bthey were\b/g, `${pr.he} was`)
     .replace(/\bthey’d\b/g, `${pr.he}’d`)
