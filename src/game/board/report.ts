@@ -495,7 +495,7 @@ export function heldClearers(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>
 }
 
 /**
- * Decided 2026-10-25 (docs/69 §3): "Nobody else" needs proof, like every other answer. On a night where
+ * Decided 2026-10-25 (docs/69 §1.5): "Nobody else" needs proof, like every other answer. On a night where
  * nobody else lied it's the full point only when what's held rules out every other suspect at the
  * hours that mattered: the solver on what's held (`solveRun`) clears every suspect but the culprit,
  * each placed away by a story that stands (nothing breaks it, and a list or somebody's agreeing story
@@ -554,7 +554,7 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
       fields.push({ key: 'cleared', label: CLEARED_LABEL, given: lineLabel(d, run, report.cleared, clearOptions(d, run, report.other)), truth: trueClearerText(d, run), correct: ok, answered: true, line: true });
       continue;
     }
-    // Decided 2026-10-25 (docs/69 §3): "Nobody else", right, but not on what's held: half.
+    // Decided 2026-10-25 (docs/69 §1.5): "Nobody else", right, but not on what's held: half.
     if (f.key === 'other' && f.correct && !nobodyElseProved(d, run)) f.half = true;
     if (f.key !== 'where') continue;
     // Where it is now: which line put it there. A hunch or the wrong line halves where.
@@ -575,7 +575,7 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
   }
   // (Round 7, B9: a night where only one story broke: somebody named as lying too had told the truth.)
   if (!other && report.other && report.other !== NOBODY && scored.some((f) => f.key === 'other')) plain.push(`Nobody else lied: ${nameOf(d.kase, report.other)} had told the truth.`);
-  // (Decided 2026-10-25, docs/69 §3: and "Nobody else" before everybody else was checked, said as who on a hunch is.)
+  // (Decided 2026-10-25, docs/69 §1.5: and "Nobody else" before everybody else was checked, said as who on a hunch is.)
   if (scored.some((f) => f.key === 'other' && f.half)) plain.push('Right, but you hadn’t checked everyone: half credit on whether anyone else lied.');
   if (scored.some((f) => f.key === 'where' && f.half)) plain.push('Where it is now was right, but not on what showed it: half credit on where.');
   // Round 6, P11: what's scored, plainly, and what counts with it ("4 out of 4: who (and what proves
@@ -905,7 +905,7 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
   // docs/61: the other broken story, and what cleared them, beside what was filed.
   const other = otherLie(d);
   // (Round 7, B9: asked on every night from Poached up; where nobody else lied, the curtain says so.
-  // Decided 2026-10-25, docs/69 §3, §5: in a heading that doesn't say somebody did, and "Nobody else"
+  // Decided 2026-10-25, docs/69 §1.5: in a heading that doesn't say somebody did, and "Nobody else"
   // without everybody checked is half, as the verdict has it.)
   if (!other && asksOther(d)) {
     out.push('');

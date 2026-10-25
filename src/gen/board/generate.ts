@@ -98,12 +98,12 @@ export const INNOCENT_LEADS = 0.6;
  *   signature (docs/41 rule 10), and the friend is the other liar.
  * - Raw and Coddled never deal a second liar, so there's nothing to drop.
  * Drawn per attempt on a stream of its own (`oneLiarDrawn`), so nothing else about the deal moves.
- * Tuned by the measure (docs/69 §4).
+ * Tuned by the measure (docs/69 §3).
  */
 export const ONE_LIAR_SHARE: Record<TierIndex, number> = { 0: 0, 1: 0, 2: 0.34, 3: 0.34, 4: 0.34, 5: 0.5 };
 
 /**
- * Decided 2026-10-25: whether this attempt deals a one-liar night, on its own stream (docs/69 §1). The
+ * Decided 2026-10-25: whether this attempt deals a one-liar night, on its own stream (docs/69 §1.1). The
  * stream's salt is the first from 0x1a that keeps the 36 nights the tests and docs/46–68 read by seed
  * (the blind testers' nights, the golden's, the reads) dealt as they were: any salt deals the same share.
  */
@@ -112,7 +112,7 @@ export function oneLiarDrawn(seed: number, tier: TierIndex, type: CaseType, atte
 }
 
 /**
- * Decided 2026-10-25 (docs/69 §2): a night with one liar, made from a night as the generator deals it
+ * Decided 2026-10-25 (docs/69 §1.1): a night with one liar, made from a night as the generator deals it
  * with two. The innocent who would have lied tells the truth: their story says where they really were
  * at the crime hour, with whoever was with them (the company an admission would have named, or nobody,
  * where the keeper's list is what places them), and the moves in it are the truth's, with the truth's

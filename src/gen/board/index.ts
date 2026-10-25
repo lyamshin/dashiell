@@ -107,7 +107,7 @@ export function generateBoard(
       opts.onReject?.(why);
       continue;
     }
-    // Decided 2026-10-25 (docs/69 §1): on a one-liar draw the night is dealt without its innocent
+    // Decided 2026-10-25 (docs/69 §1.1): on a one-liar draw the night is dealt without its innocent
     // liar: the night above, accepted, with the second lie dropped (`oneLiarNight`). It must pass every
     // gate again as a night with one liar, or it's dealt again; a night with two keeps the deal it had.
     if (oneLiarDrawn(seed, tier, type, attempt)) {

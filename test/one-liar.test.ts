@@ -51,7 +51,7 @@ function firstOneLiar(tier: TierIndex, type?: CaseType, from = 1): BoardDeal {
   throw new Error(`no one-liar night at ${tier}`);
 }
 
-describe('docs/69 §1: the share', () => {
+describe('docs/69 §1.1: the share', () => {
   it('none at Raw or Coddled; about one in three from Poached to Medium; at Hard-boiled about half the face nights and no pair night', () => {
     expect(ONE_LIAR_SHARE[0]).toBe(0);
     expect(ONE_LIAR_SHARE[1]).toBe(0);
@@ -73,7 +73,7 @@ describe('docs/69 §1: the share', () => {
   });
 });
 
-describe('docs/69 §2: what a one-liar night is', () => {
+describe('docs/69 §1.2: what a one-liar night is', () => {
   it('a night the old generator accepts, its second lie dropped, and nothing else changed', () => {
     let seen = 0;
     for (const tier of HIGH) {
@@ -143,7 +143,7 @@ describe('docs/69 §2: what a one-liar night is', () => {
   });
 });
 
-describe('docs/69 §3: "Nobody else" needs proof', () => {
+describe('docs/69 §1.5: "Nobody else" needs proof', () => {
   it('full on what the oracle holds; half before everyone is checked; nothing on a night with two', () => {
     for (const tier of HIGH) {
       const d = firstOneLiar(tier);
@@ -269,7 +269,7 @@ describe('docs/69 §5: the pages assume no second liar', () => {
   });
 });
 
-describe('docs/69 §4: "first liar, nobody else" stays under 10% perfect', () => {
+describe('docs/69 §3: "first liar, nobody else" stays under 10% perfect', () => {
   it('from Poached up', () => {
     for (const tier of HIGH) {
       const ns = nightsOf(tier, 16);

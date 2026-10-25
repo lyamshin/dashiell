@@ -231,7 +231,7 @@ export function analyse(c: BoardCase, opts: AnalyseOptions = {}): Analysis {
   const innocent = innocentLie(c);
   const culprit = { person: c.crime.culprit, hour: c.crime.hour };
   const breaks = (x: { person: PersonId; hour: Hour }) => (s: Solved) => s.status.get(key(x.person, x.hour))?.s === 'broken';
-  // Decided 2026-10-25 (docs/69 §4): on a night with one liar, one where the culprit's story breaks
+  // Decided 2026-10-25 (docs/69 §1.4): on a night with one liar, one where the culprit's story breaks
   // while somebody else is still unchecked, wherever the walks allow it: so the first lie a player
   // meets isn't one they can close on, "nobody else", without checking the rest.
   const others = c.people.filter((p) => p.role === 'suspect' && p.id !== c.crime.culprit).map((p) => p.id);
@@ -308,7 +308,7 @@ export function oneLiar(c: BoardCase): boolean {
 
 /**
  * Tatham (docs/42 §2): the tier's techniques finish the night and the tier below's don't. Decided
- * 2026-10-25 (docs/69 §2): a Poached night with one liar is the exception. Poached's technique is the
+ * 2026-10-25 (docs/69 §1.2): a Poached night with one liar is the exception. Poached's technique is the
  * innocent liar's (resolving an admission), so without one the night finishes on lower tiers'
  * techniques; it's dealt from a night that rated Poached with its second liar, and in place of the
  * floor its path must check every rival and need more than the culprit's broken story
@@ -352,7 +352,7 @@ export function hadAccess(c: BoardCase, p: PersonId): boolean {
 
 /**
  * What the path meets first and what after, as what's held shows them: decided 2026-10-11, with two
- * liars, the story the night leads with breaking before the other; decided 2026-10-25 (docs/69 §4),
+ * liars, the story the night leads with breaking before the other; decided 2026-10-25 (docs/69 §1.4),
  * with one, the culprit's story breaking before everybody else is cleared.
  */
 interface Lead {

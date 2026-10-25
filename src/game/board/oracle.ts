@@ -320,7 +320,7 @@ export function playWanderer(d: BoardDeal, seed: number): Played {
 }
 
 /**
- * Decided 2026-10-25 (docs/69 §4): the shortcut a night with one liar invites, "first liar, nobody
+ * Decided 2026-10-25 (docs/69 §1.6, §3): the shortcut a night with one liar invites, "first liar, nobody
  * else". It follows the cheapest way (the designed path, as the oracle walks it, papers and all) until
  * the grid shows it a lie; then it names that liar, on the line the grid set against them, answers
  * "Nobody else", and closes on what it has. Two caught on one step are a coin flip. Caught nothing by

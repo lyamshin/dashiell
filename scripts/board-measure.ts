@@ -26,7 +26,7 @@
  *   reader citing the line the grid showed against the other one;
  * - the reader lint and the plain-terms check over the oracle's and the wanderer's pages;
  * - first-level choices a page (median and most);
- * - decided 2026-10-25 (docs/69 §4): the share of nights with one liar; par on those nights and on
+ * - decided 2026-10-25 (docs/69 §3): the share of nights with one liar; par on those nights and on
  *   nights with two; and the shortcut they invite, "first liar, nobody else" (`playFirstLiar`): its
  *   perfect report (every point, so a star; under 10% from Poached up), how often it has who right on
  *   its line, and its points (mean, out of what the report asks).

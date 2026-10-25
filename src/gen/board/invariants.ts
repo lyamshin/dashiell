@@ -52,7 +52,7 @@ export interface InvariantReport {
    */
   twoStories: string[];
   /**
-   * Decided 2026-10-25 (docs/69 §2): on a night with one liar (from Poached up, nobody but the culprit
+   * Decided 2026-10-25 (docs/69 §1.2): on a night with one liar (from Poached up, nobody but the culprit
    * lies), the designed path checks every rival's evening at the hours that mattered: each is placed
    * away from the scene by what the path holds, never cleared by default. And the path needs more
    * than the culprit's broken story: some rival is cleared by a line that breaks nothing of theirs.
@@ -446,7 +446,7 @@ export function checkInvariants(c: BoardCase, a?: Pick<Analysis, 'path' | 'sugge
     }
   }
 
-  // Decided 2026-10-25 (docs/69 §2): a night with one liar. The rivals are cleared by evidence, not by
+  // Decided 2026-10-25 (docs/69 §1.2): a night with one liar. The rivals are cleared by evidence, not by
   // default: their own true evenings and the lists, each placing them at the hours that mattered. And
   // a night whose path is the culprit's broken story and nothing else is a Coddled night.
   if (a && c.tier >= 2 && innocentLies.length === 0) {
