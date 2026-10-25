@@ -183,9 +183,16 @@ WHERE THEY CLASH
 - The shared words (the key, the heading, the divider, the rules, the teach page, the form's labels, the blank rule, the group heads, the clock) say none of them, and the clock and the teach line say exactly what docs/64 asks.
 - `mark` and `pencil`, `close` and `file`, `proof`/`whereproof` and `breaks`/`whereBy`: the same verdict either way.
 
-Updated for the new words: `round5.test.ts` (U1's heading, U6's rule, U3's heads, U7's closings), `round4.test.ts` (the fastest solve), `round3.test.ts` (a choice says nothing or "free"; "Your guess:"), `other-liar.test.ts` (the teach line; "You picked"), `board-engine.test.ts` (the form's labels, "You picked"). `scripts/voice-script.ts`'s fixed lines say the new headings ("Where things stood.", "Close the case.", "Everything else.", "Review my notes.").
+Updated for the new words: `round5.test.ts` (U1's heading, U6's rule, U3's heads, U7's closings), `round4.test.ts` (the fastest solve), `round3.test.ts` (a choice says nothing or "free"; "Your guess:"), `other-liar.test.ts` (the teach line; "You picked"; "what you picked doesn’t clear her"), `board-engine.test.ts` (the form's labels and score line, "You picked"), `no-jargon.test.ts` (the grid asks its means question). `scripts/voice-script.ts`'s fixed lines say the new headings ("Where things stood.", "Close the case.", "Everything else.", "Review my notes.").
 
-MEASURES
+## 4. Measures
+
+Run under the shared test lock (`scratchpad/vitest.lock`), one heavy run at a time.
+
+- **`board-measure`, 50 seeds a tier and type: main's, byte for byte**, every table and every line. The readers in `oracle.ts` choose by command, never by a label, and their one read of the page (`turnSaid`, "I could face X with it now.") is the turn's prose, which this doesn't touch.
+- **`board-prose`, 30 nights a tier, both worlds:** identical to main's, every lint 0, engine words included. (The pages are main's: the turn's block is unchanged, and only shown differently.)
+- **Dealt boards:** dealt `b906a1009c23fe86`, neighbourhood `af89ea961f7168e1`.
+- **The suite** at three workers: 794 tests, all passing (790 on main, and the 4 new); `tsc` clean.
 
 ## 5. What's open
 
