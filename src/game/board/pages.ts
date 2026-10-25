@@ -878,10 +878,12 @@ function walkKnown(c: BoardCase, run: BoardRun, p: PersonId, mv: { from: string;
   const crowded = people.slice(1).some((x) => pronOf(c, x).he === pronOf(c, p).he);
   if (crowded) {
     const N = nameOf(c, p);
-    const one = a && b && whose(a) === whose(b) && verb(a) === verb(b);
-    if (one) return { text: verb(a) === 'saw' ? `${whose(a)} saw ${N} ${at(mv.from, mv.h - 1)} and ${at(mv.to, mv.h)}.` : `${whose(a)} said ${N} was ${at(mv.from, mv.h - 1)} and ${at(mv.to, mv.h)}.`, people, hours };
-    const by = (l: ReturnType<typeof by0>) => (l ? `, ${whose(l)} said` : '');
-    return { text: `${N} was ${at(mv.from, mv.h - 1)}${by(a)}, and ${at(mv.to, mv.h)}${by(b)}: a walk between the two.`, people, hours };
+    // (docs/62, skim round 1: "…, Shapiro said, and at Mrs. Nagy’s at nine, Brennan said: a walk between
+    // the two" and "Russo said Amato was at … and at …" stopped a reader: the walk, then whose word.)
+    const who = [...new Set([a, b].filter((l): l is NonNullable<typeof l> => !!l).map((l) => whose(l)))];
+    if (who.length) return { text: `${N} went from ${placeName(c, mv.from)} to ${placeName(c, mv.to)} between ${hourWord((mv.h - 1) as Hour)} and ${hourWord(mv.h as Hour)}, by what ${andList(who)} had told me.`, people, hours };
+    void by0;
+    return { text: `${N} went from ${placeName(c, mv.from)} at ${hourWord((mv.h - 1) as Hour)} to ${placeName(c, mv.to)} at ${hourWord(mv.h as Hour)}.`, people, hours };
   }
   // (One witness for both hours is said once: "Rosenbaum said Shapiro was at Rafferty’s at nine and at the Velvet Room at ten".)
   if (a && b && whose(a) === whose(b) && verb(a) === verb(b)) {

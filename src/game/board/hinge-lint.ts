@@ -260,7 +260,7 @@ function thoughtWho(c: BoardCase, run: BoardRun): HingeIssue[] {
   return out;
 }
 
-const AGREE = /\bsaid the same\b|\bchecked out\b|\btold it the same\b|\bhad it the same\b|\bbore (?:\S+ ){1,3}?out\b|\btold me too\b|\bwhat (?:he|she|they)’d told me\b|\bbacked\b|\bagreed\b|\bsame as\b|\bjust as\b|\bjust like\b|\bsaid so too\b|\btold it straight\b|\bhad it right\b|\bwas right\b|\bsaid so\b|\bsaw (?:him|her|them)\b/;
+const AGREE = /\bsaid the same\b|\bmatched what\b|\bhad seen the same\b|\bchecked out\b|\btold it the same\b|\bhad it the same\b|\bbore (?:\S+ ){1,3}?out\b|\btold me too\b|\bwhat (?:he|she|they)’d told me\b|\bbacked\b|\bagreed\b|\bsame as\b|\bjust as\b|\bjust like\b|\bsaid so too\b|\btold it straight\b|\bhad it right\b|\bwas right\b|\bsaid so\b|\bsaw (?:him|her|them)\b/;
 /** "That much checked out." with nothing before it that it says checked out. */
 function orphan(run: BoardRun): HingeIssue[] {
   const out: HingeIssue[] = [];

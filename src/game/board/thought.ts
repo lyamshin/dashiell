@@ -689,7 +689,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         // (docs/62 item 12: the hours said as what happened, in a clause of their own: "Fritz was still at
         // the Delmonico rooms at ten, and he went at ten or eleven", never "one of the two hours it could have happened".)
         // (Without a pronoun the next sentence's "he" could be read as: "it happened at nine or ten".)
-        const done = `it happened at ${office.map((h) => hourWord(h)).join(' or ')}`;
+        // (docs/62, skim round 1: "…, and it happened at nine or ten" read as a non sequitur: whose hours they are.)
+        const done = `${clientOf(c).short} had said ${office.map((h) => hourWord(h)).join(' or ')}`;
         add(`${cap(victimOf(c).short)} was still ${isMurder(c) ? 'alive ' : ''}at ${placeName(c, at)} at ${hourWord(seen.h)}, and ${done}.`, ['givens:clock'], {
           rel: 'narrows',
           rule: 'alive',
@@ -726,7 +727,11 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       // (docs/62 item 12: the people by name, and whose word: "At nine or ten, when it could have happened,
       // Zeldin saw none of Ruggiero, Winslow or Hanrahan at the Shamrock", never "none of the people with a
       // reason", which one reader took to say a suspect seen there at another hour wasn't.)
-      const asking = suspectsOf(c).filter((p) => knownPeople(c, run).has(p));
+      // (docs/62, skim round 1: "Mrs. Szabo saw none of Miss Moskin, Mrs. Blau, Glick, Kaminsky or Miss
+      // Kahane at the Peacock at ten" stopped a reader: only the ones nothing held puts elsewhere then.)
+      const known = suspectsOf(c).filter((p) => knownPeople(c, run).has(p));
+      const loose = known.filter((p) => !thenHs.every((h) => { const at = a.placed.get(`${p}@${h}`)?.place; return !!at && at !== thenList.place; }));
+      const asking = loose.length ? loose : known;
       const W = nameOf(c, thenList.watcher);
       const nobody = asking.length === 1 ? `${W} didn’t see ${nameOf(c, asking[0] as PersonId)}` : asking.length === 2 ? `${W} saw neither ${nameOf(c, asking[0] as PersonId)} nor ${nameOf(c, asking[1] as PersonId)}` : `${W} saw none of ${asking.slice(0, -1).map((p) => nameOf(c, p)).join(', ')} or ${nameOf(c, asking[asking.length - 1] as PersonId)}`;
       const none = lean() && asking.length ? [`At ${either}, ${reasonFor(thenHs)}, ${nobody} at ${where}.`, `${nobody} at ${where} at ${either}, ${reasonFor(thenHs)}.`] : lean() ? [`None of the people with a reason was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people with a reason was at ${where}.`] : [`None of the people I was asking about was at ${where} at ${either}, ${reasonFor(thenHs)}.`, `At ${either}, ${reasonFor(thenHs)}, none of the people I was asking about was at ${where}.`];

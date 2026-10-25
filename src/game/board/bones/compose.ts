@@ -790,7 +790,10 @@ export function connect(items: Item[], ctx: PlanCtx): void {
       // Ashby", and Ashby's own evening: "So she told it the same as Ruggiero", never "So Ruggiero bore her
       // out", which has the alibi backing its witness, nor "So she had it right, and Ruggiero said the same".)
       const both = !!by?.who && (by.k === 'claim' || by.k === 'admit');
-      voice(it, comp, ['agree', so ? 'so' : 'which', ...(twosome ? ['twosome'] : []), ...(both ? ['both'] : [])], { spans: bits, src: srcHad(c, by), whose: srcWhose(c, by), person: { t: 'person', id: cs[0]?.person as PersonId } }, ctx);
+      // (docs/62, skim round 1: a watcher's word, "So Russo bore her out: the Russo flat at eight", said as
+      // what they saw: "So that matched what Russo had seen".)
+      const seen = by?.k === 'list' && !!by.who;
+      voice(it, comp, ['agree', so ? 'so' : 'which', ...(twosome ? ['twosome'] : []), ...(both ? ['both'] : []), ...(seen ? ['seen'] : [])], { spans: bits, src: srcHad(c, by), whose: srcWhose(c, by), person: { t: 'person', id: cs[0]?.person as PersonId } }, ctx);
       comp.join = so ? 'so' : 'which';
       it.joined = comp.join;
       if (so) b.so++;
