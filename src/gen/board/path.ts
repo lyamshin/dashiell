@@ -230,7 +230,18 @@ export function analyse(c: BoardCase, opts: AnalyseOptions = {}): Analysis {
   // one, so the first lie a player meets isn't the culprit's for the asking, nor the last.
   const innocent = innocentLie(c);
   const culprit = { person: c.crime.culprit, hour: c.crime.hour };
-  const lead = innocent ? (c.lead === 'culprit' ? { first: culprit, then: innocent } : { first: innocent, then: culprit }) : undefined;
+  const breaks = (x: { person: PersonId; hour: Hour }) => (s: Solved) => s.status.get(key(x.person, x.hour))?.s === 'broken';
+  // Decided 2026-10-25 (docs/69 §1.4): on a night with one liar, one where the culprit's story breaks
+  // while somebody else is still unchecked, wherever the walks allow it: so the first lie a player
+  // meets isn't one they can close on, "nobody else", without checking the rest.
+  const others = c.people.filter((p) => p.role === 'suspect' && p.id !== c.crime.culprit).map((p) => p.id);
+  const lead: Lead | undefined = innocent
+    ? c.lead === 'culprit'
+      ? { first: breaks(culprit), then: breaks(innocent) }
+      : { first: breaks(innocent), then: breaks(culprit) }
+    : oneLiar(c)
+      ? { first: breaks(culprit), then: (s) => others.every((p) => s.cleared.has(p)) }
+      : undefined;
   let best: { order: string[]; walks: number; late: number; rankSum: number } | null = null;
   for (const s of sets.slice(0, 60)) {
     const o = orderPath(c, s, rank, T, lead);
@@ -290,6 +301,24 @@ export function innocentLie(c: BoardCase): { person: PersonId; hour: Hour } | un
   return l ? { person: l.person, hour: l.hour } : undefined;
 }
 
+/** Decided 2026-10-25 (docs/69): a night from Poached up where nobody but the culprit lies. */
+export function oneLiar(c: BoardCase): boolean {
+  return c.tier >= 2 && !innocentLie(c);
+}
+
+/**
+ * Tatham (docs/42 §2): the tier's techniques finish the night and the tier below's don't. Decided
+ * 2026-10-25 (docs/69 §1.2): a Poached night with one liar is the exception. Poached's technique is the
+ * innocent liar's (resolving an admission), so without one the night finishes on lower tiers'
+ * techniques; it's dealt from a night that rated Poached with its second liar, and in place of the
+ * floor its path must check every rival and need more than the culprit's broken story
+ * (`rivalsChecked`). From Soft-boiled up a night with one liar still needs its tier's technique.
+ */
+export function ratesAt(c: BoardCase, rating: TierIndex | null): boolean {
+  if (rating === c.tier) return true;
+  return c.tier === 2 && oneLiar(c) && rating !== null && rating < c.tier;
+}
+
 /** Decided 2026-10-11: the step at which a story first breaks on a path (1-based), or Infinity. */
 export function breaksAt(c: BoardCase, order: readonly string[], T: ReadonlySet<Technique>, p: PersonId, h: Hour): number {
   for (let i = 1; i <= order.length; i++) if (solve(c, order.slice(0, i), { techniques: T }).status.get(key(p, h))?.s === 'broken') return i;
@@ -322,18 +351,22 @@ export function hadAccess(c: BoardCase, p: PersonId): boolean {
 }
 
 /**
- * The cheapest order for a set: fewest walks, confrontations after what breaks the line; then
- * (decided 2026-10-11) with two liars, `lead.first`'s story breaking before `lead.then`'s where
- * the walks allow it; then the suggested order. `late` is 0 when it does, 1 when both break on
- * one step, 2 when the other breaks first.
+ * What the path meets first and what after, as what's held shows them: decided 2026-10-11, with two
+ * liars, the story the night leads with breaking before the other; decided 2026-10-25 (docs/69 §1.4),
+ * with one, the culprit's story breaking before everybody else is cleared.
  */
-function orderPath(
-  c: BoardCase,
-  set: string[],
-  rank: Map<string, number>,
-  T: ReadonlySet<Technique>,
-  lead?: { first: { person: PersonId; hour: Hour }; then: { person: PersonId; hour: Hour } },
-): { order: string[]; walks: number; late: number } | null {
+interface Lead {
+  first: (s: Solved) => boolean;
+  then: (s: Solved) => boolean;
+}
+
+/**
+ * The cheapest order for a set: fewest walks, confrontations after what breaks the line; then
+ * (decided 2026-10-11) `lead.first` happening before `lead.then` where the walks allow it; then the
+ * suggested order. `late` is 0 when it does, 1 when both happen on one step, 2 when the other
+ * happens first.
+ */
+function orderPath(c: BoardCase, set: string[], rank: Map<string, number>, T: ReadonlySet<Technique>, lead?: Lead): { order: string[]; walks: number; late: number } | null {
   const qs = new Map(questionsOf(c).map((q) => [q.id, q]));
   const n = set.length;
   const loc = set.map((q) => qs.get(q)?.at ?? '');
@@ -378,8 +411,8 @@ function orderPath(
         c,
         set.filter((_, j) => mask & (1 << j)),
         { techniques: T },
-      ).status;
-      v = lead ? (st.get(key(lead.then.person, lead.then.hour))?.s === 'broken' ? 1 : 0) | (st.get(key(lead.first.person, lead.first.hour))?.s === 'broken' ? 2 : 0) : 0;
+      );
+      v = lead ? (lead.then(st) ? 1 : 0) | (lead.first(st) ? 2 : 0) : 0;
       brokenMemo.set(mask, v);
     }
     return v;

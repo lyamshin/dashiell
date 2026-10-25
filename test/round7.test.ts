@@ -195,15 +195,14 @@ describe('B9: whether anyone else lied is asked, never told, on every night from
     }
   });
 
-  it('a night where only one story broke (a deal with the innocent liar’s lie taken out): "Nobody else" is right', () => {
-    // No dealt night has one yet (every Poached+ night deals an innocent liar), so the deal is made one
-    // here: Poached 17 with Dandridge's lie struck from `lies`, the way a one-liar deal would have it.
-    const d0 = dealBoard(17, 2, 'murder');
-    const d: BoardDeal = { ...d0, kase: { ...d0.kase, lies: d0.kase.lies.filter((l) => l.person === d0.kase.crime.culprit) } };
+  it('a night where only one story broke: "Nobody else" is right', () => {
+    // (Decided 2026-10-25, docs/69: dealt now. Poached 6, a murder: Rosenbaum, who would have lied, tells the truth.)
+    const d: BoardDeal = dealBoard(6, 2, 'murder');
+    expect(d.kase.lies.map((l) => l.person)).toEqual([d.kase.crime.culprit]);
     const f = boardFields(d).find((x) => x.key === 'other');
     expect(f?.label).toBe('Did anyone else lie? If so, who, and what clears them?');
     expect(f?.options.at(-1)).toEqual({ value: 'nobody', label: 'Nobody else' });
-    const run = playBoardOracle(d0).run;
+    const run = playBoardOracle(d).run;
     const truth = truthReport(d, run);
     expect(truth.other).toBe('nobody');
     expect(truth.cleared).toBeNull();
@@ -212,11 +211,11 @@ describe('B9: whether anyone else lied is asked, never told, on every night from
     expect(right.fields.some((x) => x.key === 'cleared')).toBe(false);
     expect(right.scoreLine).toMatch(/^5 out of 5: who, whether anyone else lied, when, how and why, with the proof for who\.$/);
     expect(right.outcome).toBe('solved');
-    const wrong = scoreBoard(d, structuredClone(run), { ...truth, other: 'dandridge', cleared: null });
+    const wrong = scoreBoard(d, structuredClone(run), { ...truth, other: 'rosenbaum', cleared: null });
     expect(wrong.fields.find((x) => x.key === 'other')?.correct).toBe(false);
-    expect(wrong.plain).toContain('Nobody else lied: Dandridge had told the truth.');
+    expect(wrong.plain).toContain('Nobody else lied: Rosenbaum had told the truth.');
     const curtain = curtainOfBoard(d, run, truth);
-    expect(curtain).toContain('DID ANYONE ELSE LIE?\nNobody else.\n  You picked: nobody else.  ✓');
+    expect(curtain).toContain('DID ANYONE ELSE LIE?\nNobody else lied.\n  You picked: nobody else.  ✓');
     expect(curtain).not.toContain('WHO ELSE LIED');
   });
 });

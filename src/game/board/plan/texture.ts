@@ -158,6 +158,8 @@ function trimPlace(it: Item): void {
 /** docs/60 item 3: decoration the narrator's cap may take off the page, where a name would be said a third time. */
 export function droppable(it: Item): boolean {
   if (it.kind !== 'gap' || it.speech || it.slot === 'chapter') return false;
+  // (docs/69: a list's reason the arrival in this room gave already.)
+  if (it.reasonGiven) return true;
   const r = roleOf(it);
   return r === 'close' || r === 'flourish' || r === 'callback' || r === 'atmosphere' || r === 'staging';
 }

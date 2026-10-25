@@ -956,11 +956,24 @@ function whyHere(w: Writer, q: string, kind: string, slots: Record<string, strin
     // The pointer names them already: a frame that names them again says it twice.
     const k = ptr.src === 'presence' ? 'presence' : named && ptr.clause.includes(named) && (kind === 'account' || kind === 'check') ? `${kind}-named` : kind;
     const why = w.hand.draw('why', { kind: k }, withCaps({ ...slots, src: ptr.clause }), { plain: true });
-    put(w, 'why', why ?? `${cap(ptr.clause)}.`, 'narrator', sit(w, why, `${cap(ptr.clause)}.`));
+    // (Docs/69: a list's reason, where the arrival in this room gave one already, is the cap's last resort's
+    // to take off, and then the page carries it: never a name a third time for it.)
+    const given = kind === 'list' && arrivalGaveWhy(w) ? { reasonGiven: true, onDrop: () => void (w.carried = true) } : {};
+    put(w, 'why', why ?? `${cap(ptr.clause)}.`, 'narrator', { ...sit(w, why, `${cap(ptr.clause)}.`), ...given });
     // The reason is in the narration now: the ask needn't say it to their face as well.
     return { ...ptr, face: undefined } as Pointer;
   }
   return ptr;
+}
+
+/** Docs/69: the arrival in this room (with only this room's pages since) said why I'd come. */
+function arrivalGaveWhy(w: Writer): boolean {
+  for (let i = w.before.log.length - 1; i >= 0; i--) {
+    const pg = w.before.log[i];
+    if (!pg || pg.at !== w.run.at) return false;
+    if (pg.board?.job === 'arrive') return (pg.board.units ?? []).some((u) => u.kind === 'gap' && u.slot === 'why-here' && stripMarks(u.text).trim() !== '');
+  }
+  return false;
 }
 
 /** docs/67: whether this page's answer (`q`) breaks a claim of `p`'s that nothing held broke before it. */

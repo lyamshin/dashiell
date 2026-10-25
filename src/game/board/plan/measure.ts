@@ -320,12 +320,20 @@ export function pronounAntecedents(c: BoardCase, blocks: readonly Block[], o: { 
   // A card about somebody, opening on their pronoun, after somebody else of that sex.
   if (o.units?.length) {
     const lastU = new Map<boolean, string>();
+    // (Docs/69: a quotation carried from one unit to the next, an answer's second sentence, is still speech.)
+    let inQU = false;
     for (const u of o.units) {
       if (u.voice === 'chapter') {
         lastU.clear();
+        inQU = false;
         continue;
       }
-      const t = u.text.replace(/“[^”]*”?/g, ' ');
+      let t = '';
+      for (const ch of u.text) {
+        if (ch === '“') inQU = true;
+        t += inQU ? ' ' : ch;
+        if (ch === '”') inQU = false;
+      }
       if (u.kind === 'gap' && u.who && sexOf.has(u.who)) {
         const f = sexOf.get(u.who) as boolean;
         const opens = (f ? /^(?:She|Her)\b/ : /^(?:He|His|Him)\b/).test(t.trim());

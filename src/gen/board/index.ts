@@ -1,7 +1,7 @@
 import { Rng } from './rng.js';
 import type { BoardCase, CaseType, TierIndex } from './types.js';
-import { buildCase, lastVeto, typesFor } from './generate.js';
-import { analyse, rate, refusalShortcut, type Analysis } from './path.js';
+import { buildCase, lastVeto, oneLiarDrawn, oneLiarNight, typesFor } from './generate.js';
+import { analyse, rate, ratesAt, refusalShortcut, type Analysis } from './path.js';
 import { checkInvariants, invariantFailures } from './invariants.js';
 import { PAR_TARGET, TIERS } from './tiers.js';
 import type { WorldCtx } from './world/cast.js';
@@ -9,12 +9,12 @@ import type { WorldCtx } from './world/cast.js';
 export type { WorldCtx } from './world/cast.js';
 
 export * from './types.js';
-export { analyse, refusalShortcut, type Analysis, type Shortcut } from './path.js';
+export { analyse, oneLiar, refusalShortcut, type Analysis, type Shortcut } from './path.js';
 export { checkInvariants, invariantFailures } from './invariants.js';
 export { solve, questionsOf } from './solver.js';
 export { closure, pointed, pointerIndex } from './pointers.js';
 export { techniquesUpTo, TIERS, LADDER, parseTier } from './tiers.js';
-export { typesFor, REFUSE_SHARE } from './generate.js';
+export { typesFor, REFUSE_SHARE, ONE_LIAR_SHARE, oneLiarDrawn, oneLiarNight } from './generate.js';
 
 /**
  * docs/42 §1–2: generate, then accept the way Tatham does. A candidate is kept
@@ -48,7 +48,7 @@ export function reject(c: BoardCase, a: Analysis): string | null {
   const inv = invariantFailures(checkInvariants(c, a));
   if (inv.length > 0) return `invariant: ${inv[0]}`;
   if (!a.solvable) return 'unsolvable at its tier';
-  if (a.rating !== c.tier) return `rates ${a.rating}`;
+  if (!ratesAt(c, a.rating)) return `rates ${a.rating}`;
   if (a.par < PAR_FLOOR[c.tier] || a.par > PAR_TARGET[1]) return `par ${a.par}`;
   const w = TIERS[c.tier].width;
   for (const r of a.rivals) {
@@ -107,7 +107,32 @@ export function generateBoard(
       opts.onReject?.(why);
       continue;
     }
+    // Decided 2026-10-25 (docs/69 §1.1): on a one-liar draw the night is dealt without its innocent
+    // liar: the night above, accepted, with the second lie dropped (`oneLiarNight`). It must pass every
+    // gate again as a night with one liar, or it's dealt again; a night with two keeps the deal it had.
+    if (oneLiarDrawn(seed, tier, type, attempt)) {
+      const o = oneLiarNight(c);
+      if (o) {
+        const g = accepted(o);
+        if ('why' in g) {
+          opts.onReject?.(`one liar: ${g.why}`);
+          continue;
+        }
+        return { kase: o, analysis: g.analysis, attempts: attempt + 1 };
+      }
+    }
     return { kase: c, analysis: a, attempts: attempt + 1 };
   }
   return null;
+}
+
+/** Every gate on a built night: the invariants, the rating, then `reject` on its analysis. */
+function accepted(c: BoardCase): { why: string } | { analysis: Analysis } {
+  const pre = invariantFailures(checkInvariants(c));
+  if (pre.length > 0) return { why: `invariant: ${pre[0]}` };
+  const rating = rate(c);
+  if (!ratesAt(c, rating)) return { why: `rates ${rating}` };
+  const analysis = analyse(c);
+  const why = reject(c, analysis);
+  return why ? { why } : { analysis };
 }
