@@ -9,7 +9,7 @@ import { boardGridText } from './grid.js';
 import { knownPeople, knownPlaces, lineShown, linesHeld } from './knowledge.js';
 import { cap, clientOf, isMurder, nameOf, personOf, placeName, type BoardDeal, type BoardRun } from './model.js';
 import { notebookWhen } from './when.js';
-import { finderGloss } from './gloss.js';
+import { finderGloss, peopleLine } from './gloss.js';
 import { recapClauses } from './pages.js';
 
 const WIDTH = 76;
@@ -65,11 +65,28 @@ export function chapterShown(text: string): string {
   return /^the turn$/i.test(text.trim()) ? TURN_DIVIDER : text;
 }
 
-/** A person's row: how many questions are open to ask them, "1 question", "2 questions", or "all asked". */
+/**
+ * A person's row: how many questions are open to ask them, "1 question", "2 questions", or "nothing
+ * left to ask", and whether they can be confronted. Round 6, U4: confronting isn't a question, so the
+ * count goes down when one is asked, never up when "Confront" joins the list (two testers). U2: "all
+ * asked" was a word nobody would use.
+ */
 export function questionsText(g: Pick<OfferedGroup, 'choices'>): string {
-  const open = g.choices.filter((c) => !c.done).length;
-  return open === 0 ? 'all asked' : `${open} ${open === 1 ? 'question' : 'questions'}`;
+  const qs = g.choices.filter((c) => !c.command.startsWith('picker'));
+  const open = qs.filter((c) => !c.done).length;
+  const ask = open === 0 ? 'nothing left to ask' : `${open} ${open === 1 ? 'question' : 'questions'}`;
+  return g.choices.some((c) => c.command.startsWith('picker')) ? `${ask} · can confront` : ask;
 }
+
+/**
+ * Round 6, U2: what the confront row costs to open, the same in the book and the CLI. Opening it is
+ * free; the confronting is the action, and the confront screen says so ("free to look" read as
+ * whether the confronting was free).
+ */
+export const PICKER_COST = 'free to open';
+
+/** Round 6, U2: a done question or search: ticked, and free to read again ("free ✓" read as a refund). */
+export const DONE_COST = 'free to reread';
 
 /**
  * Round 5, U10: docs/46 §1 gives Hard-boiled one star, the scene on page one, and none after. Said
@@ -92,7 +109,8 @@ export function pageBodyText(page: Page): string {
 }
 
 export function costText(ch: OfferedChoice): string {
-  if (ch.done) return 'free ✓';
+  if (ch.done) return DONE_COST;
+  if (ch.command.startsWith('picker')) return PICKER_COST;
   return costLabel(ch);
 }
 
@@ -148,7 +166,8 @@ export function notebookText(d: BoardDeal, run: BoardRun): string {
   for (const p of knownPeople(c, run)) {
     const who = personOf(c, p);
     if (!who || who.role === 'victim') continue;
-    out.push(`  ${who.name}: ${who.role === 'client' ? 'my client, ' : ''}${who.description}.`);
+    // (Round 6, U6: who they are, never where they sat tonight: `peopleLine`, the book's too.)
+    out.push(`  ${wrap(`${who.name}: ${peopleLine(c, p)}.`, 72).replace(/\n/g, '\n    ')}`);
   }
   out.push('');
   out.push('Places:');

@@ -349,12 +349,13 @@ describe('board: the play CLI', () => {
     const otherName = d.kase.people.find((x) => x.id === truth.other)?.short as string;
     const cn = clearOptions(d, o2.run, truth.other).findIndex((x) => x.value === truth.cleared) + 1;
     expect(cn).toBeGreaterThan(0);
-    expect(form.out).toContain('Someone else lied too. Who, and what clears them? (other):');
+    // (Round 6, U5: `report <name>` is that person's list; the whole form is `report`.)
+    expect(runPlay(['report', '--save', save], io).out).toContain('Someone else lied too. Who, and what clears them? (other):');
     expect(runPlay(['report', otherName, '--save', save], io).out.replace(/\s+/g, ' ')).toContain(`If ${otherName} is the other liar, give “cleared” as a number from this list too.`);
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=${n}; other=${otherName}; cleared=${cn}; when=${d.kase.crime.hour}; where=${truth.where}; whereBy=${wn}; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('THE VERDICT');
-    expect(filed.out).toMatch(/5 out of 5: who \(and what proves they lied\), who else lied \(and what\s+clears\s+them\)/);
+    expect(filed.out).toMatch(/5 out of 5: who, who else lied, when, where and why, with the\s+proof\s+for\s+who\s+and\s+for\s+where,\s+and\s+what\s+clears\s+the\s+other\s+liar\./);
     // The save records the line, so a measure can tell deduced from guessed.
     expect(JSON.parse(files.get(save) as string).events.at(-1).file.breaks).toBe(truth.breaks);
     expect(JSON.parse(files.get(save) as string).events.at(-1).file.cleared).toBe(truth.cleared);
@@ -382,7 +383,7 @@ describe('board: the play CLI', () => {
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=hunch; when=${d.kase.crime.hour}; where=${where}; whereBy=hunch; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('right, but you couldn’t have known');
-    expect(filed.out).toMatch(/3 out of 5: who \(and what proves they lied\), who else lied \(and what\s+clears\s+them\)/);
+    expect(filed.out).toMatch(/3 out of 5: who, who else lied, when, where and why, with the\s+proof\s+for\s+who\s+and\s+for\s+where,\s+and\s+what\s+clears\s+the\s+other\s+liar\./);
     expect(filed.out).toContain('half credit on who');
     // docs/61: the other question left out costs its point, said plainly.
     expect(filed.out).toMatch(/You had the right name, but you didn’t rule out [A-Z]\w+\./);
