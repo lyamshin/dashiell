@@ -218,7 +218,10 @@ export function linesHeld(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>): 
       if (k.response === 'admit' && lie) {
         const y = (k.names ?? []).map((x) => nameOf(c, x));
         // (docs/59: the owning up puts whoever it names with them there too, as an account's company does.)
-        out.push({ id: `admit:${p}@${h}`, q, kind: 'admit', speaker: p, hour: h, place: lie.truth, about: [p, ...(k.names ?? [])], text: `${nameOf(c, p)} owns up: ${placeName(c, lie.truth)} at ${oclock(h)}${y.length ? `, with ${andList(y)}` : ''}.` });
+        // Round 7, U2: said as a person would, the way a claim is ("Dandridge owns up: Sokol’s back room
+        // at nine o’clock" read as a database row): "Dandridge admits he was at Sokol’s back room at nine
+        // o’clock, with Bledsoe." ("now says" is a second story's.)
+        out.push({ id: `admit:${p}@${h}`, q, kind: 'admit', speaker: p, hour: h, place: lie.truth, about: [p, ...(k.names ?? [])], text: `${nameOf(c, p)} admits ${pronOf(c, p).he} was ${claimWhere(c, p, lie.truth)} at ${oclock(h)}${y.length ? `, with ${andList(y)}` : ''}.` });
       }
       if (k.secondLie?.place) {
         out.push({ id: `second:${p}@${h}`, q, kind: 'second', speaker: p, hour: h, place: k.secondLie.place, about: [p], text: `${nameOf(c, p)} now says ${pronOf(c, p).he} was at ${placeName(c, k.secondLie.place)} at ${oclock(h)}.` });

@@ -237,11 +237,12 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
     claims: c.tier <= 1 ? [] : claims,
     // docs/64: what you tell them, and what you were told, never "the line that breaks it". Round 6,
     // U1: what to pick, said as what it is: somebody who saw them somewhere else, or everybody at the
-    // place they named and not them.
+    // place they named and not them. Round 7, U3 (three testers: still dense): shorter, the same two
+    // kinds of witness.
     help:
       c.tier <= 1
         ? `Pick what you’ll tell ${pr.him}.`
-        : `Pick the hour where what ${pr.he} told you doesn’t match, then what you’ll tell ${pr.him}: somebody who saw ${pr.him} somewhere else, or somebody who saw everyone at the place ${pr.he} named, and not ${pr.him}.`,
+        : `Pick the hour that doesn’t match, then who says otherwise: somebody who saw ${pr.him} somewhere else, or who saw everybody where ${pr.he} said ${pr.he} was, and not ${pr.him}.`,
     minutes: callMinutes(d, run),
   };
 }

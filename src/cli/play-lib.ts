@@ -51,6 +51,7 @@ import {
   hoursWords,
   breakOptionsShown,
   lineGroupHeads,
+  lineNumbers,
   curtainOfBoard,
   reportFrom,
   scoreBoard,
@@ -234,7 +235,7 @@ function pageChoicesText(night: Night): string {
       const g = it.group;
       // Round 5, U1: "2 questions", the ones still to ask (docs/55 7's "free · 2 questions" read as two
       // free questions to all four testers). Picking somebody is free; the key says so.
-      out.push(itemLine(it.n, it.choice, questionsText(g)));
+      out.push(itemLine(it.n, it.choice, questionsText(g, night.d.kase)));
       continue;
     }
     out.push(itemLine(it.n, it.choice, costText(it.choice)));
@@ -318,18 +319,22 @@ function hoursWord(night: Night): string {
 }
 
 /**
- * A numbered list of line options, and the hunch after them. docs/47 A4: with `heads`, the lines
- * that touch the named person's story come first under the one heading, the rest under the other.
+ * A list of line options, each under its number for the night (round 7, U1: `lineNumbers`, the same
+ * number on every list and in the notebook), and the hunch after them. docs/47 A4: with `heads`, the
+ * lines that touch the named person's story come first under the one heading, the rest under the
+ * other.
  */
-function lineList(opts: LineOption[], heads?: { touching: string; rest: string }): string[] {
+function lineList(night: Night, opts: LineOption[], heads?: { touching: string; rest: string }): string[] {
   const out: string[] = [];
+  const nums = lineNumbers(night.d, night.run);
   const touching = opts.filter((o) => o.touches).length;
   opts.forEach((o, i) => {
     if (heads && i === 0 && touching > 0) out.push(wrap(heads.touching, WIDTH, '   '));
-    if (heads && i === touching && i < opts.length) out.push(wrap(touching > 0 ? heads.rest : heads.rest.replace(/^Other /, ''), WIDTH, '   '));
-    out.push(wrap(o.label, WIDTH - 7).split('\n').map((l, j) => (j === 0 ? `   ${String(i + 1).padStart(2)}. ${l}` : `       ${l}`)).join('\n'));
+    if (heads && i === touching && i < opts.length) out.push(wrap(heads.rest, WIDTH, '   '));
+    const n = nums.get(o.value) ?? 0;
+    out.push(wrap(o.label, WIDTH - 7).split('\n').map((l, j) => (j === 0 ? `   ${String(n).padStart(2)}. ${l}` : `       ${l}`)).join('\n'));
   });
-  out.push(`   ${String(opts.length + 1).padStart(2)}. ${HUNCH}`);
+  out.push(`   ${HUNCH}: give “hunch” instead of a number.`);
   return out;
 }
 
@@ -345,7 +350,8 @@ function closeLines(night: Night, path: string): string[] {
   return [
     'To close the case:',
     `   npm run play -- close "${keys}" --save ${path}`,
-    wrap(`Give an answer by its number or enough of its words. For ${two ? 'proof and cleared' : 'proof'}, give a number from that person’s list (\`report <name>\` shows it), or hunch.`),
+    // (Round 7, U1: one numbering for the night, so a number means the same thing on every list.)
+    wrap(`Give an answer by its number or enough of its words. For ${two ? 'proof and cleared' : 'proof'}, give a number from \`report <name>\` (the notebook numbers them the same), or hunch.`),
   ];
 }
 
@@ -365,19 +371,20 @@ function reportText(night: Night, path: string, who: string | null = null): stri
   for (const f of boardFields(night.d, night.run)) {
     field(f);
     if (f.key === 'who') {
+      // Round 7, U1: "lists what you know about them, or about nine or ten" baffled three testers.
       out.push(`${BREAKS_LABEL} (proof):`);
-      out.push(wrap(`Name them first: \`report <name>\` lists what you know about them, or about ${hoursWord(night)}. Give proof as a number from that list, or proof=hunch.`, WIDTH, '   '));
+      out.push(wrap(`Pick who first. Then \`report <name>\` shows what you were told about them and about ${hoursWord(night)} o’clock, numbered as in the notebook. Give proof as one of those numbers, or proof=hunch.`, WIDTH, '   '));
       out.push('');
     }
     if (f.key === 'other') {
-      // docs/61: what clears them is a number from the same list `report <name>` shows for that person.
+      // docs/61: what clears them is one of the numbers `report <name>` shows for that person.
       out.push(`${CLEARED_LABEL} (cleared):`);
-      out.push(wrap('Name them first: `report <name>` lists what you know about them, the same list as for proof. Give cleared as a number from it, or cleared=hunch.', WIDTH, '   '));
+      out.push(wrap('If you name somebody, `report <name>` shows the same for them. Give cleared as one of those numbers, or cleared=hunch.', WIDTH, '   '));
       out.push('');
     }
     if (f.key === 'where') {
       out.push(`${whereByLabel(night.d)} (${KEY_SHOWN.whereBy}):`);
-      out.push(...lineList(whereByOptions(night.d, night.run)));
+      out.push(...lineList(night, whereByOptions(night.d, night.run)));
       out.push('');
     }
   }
@@ -393,7 +400,7 @@ function personReportText(night: Night, path: string, who: string): string {
   const out = [`CLOSE THE CASE: ${N.toUpperCase()}`, ''];
   out.push(`${BREAKS_LABEL} (proof):`);
   // Round 5, U3: the headings say what's under them, the book's words.
-  out.push(...lineList(breakOptionsShown(night.d, night.run, who), lineGroupHeads(night.d, night.run, who)));
+  out.push(...lineList(night, breakOptionsShown(night.d, night.run, who), lineGroupHeads(night.d, night.run, who)));
   // docs/61: the same list answers the other question. Round 5, U2: said as what to type.
   // (Round 7, B9: never "the other liar": the form asks whether there was one.)
   if (asksOther(night.d)) out.push(wrap(`If you say ${N} lied too, give “cleared” as a number from this list too.`, WIDTH, '   '));
@@ -446,17 +453,17 @@ function parseReport(night: Night, text: string): BoardReport {
       answers[key] = null;
       continue;
     }
-    if (key === 'breaks' && !answers.who) fail('Name who first: proof is a number from the list `report <name>` shows for them.');
-    if (key === 'cleared' && (!answers.other || answers.other === NOBODY)) fail('Name them first (other=…): cleared is a number from the list `report <name>` shows for them.');
+    if (key === 'breaks' && !answers.who) fail('Name who first: proof is one of the numbers `report <name>` shows for them.');
+    if (key === 'cleared' && (!answers.other || answers.other === NOBODY)) fail('Name them first (other=…): cleared is one of the numbers `report <name>` shows for them.');
     const opts = key === 'breaks' ? breakOptionsShown(night.d, night.run, answers.who as string) : key === 'cleared' ? clearOptions(night.d, night.run, answers.other as string) : whereByOptions(night.d, night.run);
     if (/^\d+$/.test(v)) {
-      const n = Number(v);
-      if (n === opts.length + 1) {
-        answers[key] = null;
-        continue;
+      // Round 7, U1: the night's one numbering (`lineNumbers`), the same on every list and in the notebook.
+      const nums = lineNumbers(night.d, night.run);
+      const o = opts.find((x) => nums.get(x.value) === Number(v));
+      if (!o) {
+        const whose = key === 'breaks' ? nameOf(night.d.kase, answers.who as string) : key === 'cleared' ? nameOf(night.d.kase, answers.other as string) : '';
+        fail(whose ? `${v} isn’t on ${whose}’s list for ${KEY_SHOWN[key] ?? key}: \`report ${whose}\` shows what is.` : `${v} isn’t one of the ${KEY_SHOWN[key] ?? key} answers: \`report\` shows them.`);
       }
-      const o = opts[n - 1];
-      if (!o) fail(`${KEY_SHOWN[key] ?? key} is 1 to ${opts.length + 1}: \`report${key === 'breaks' ? ` ${nameOf(night.d.kase, answers.who as string)}` : key === 'cleared' ? ` ${nameOf(night.d.kase, answers.other as string)}` : ''}\` shows them.`);
       answers[key] = (o as LineOption).value;
       continue;
     }
@@ -702,7 +709,8 @@ function cmdPencil(io: PlayIo, raw: string | undefined, path: string): string {
   if (act !== 'clear') {
     const codes = placeCodes(c);
     const want = fold(pl ?? '').replace(/^the /, '');
-    const hit = c.places.find((p) => fold(p.short).replace(/^the /, '') === want || fold(codes[p.id] ?? '') === want || (fold(p.short).includes(want) && want.length > 2));
+    // (Round 7, U2: the scene's label is its own name now, "Quill’s"; "scene" still finds it.)
+    const hit = c.places.find((p) => fold(p.short).replace(/^the /, '') === want || fold(codes[p.id] ?? '') === want || (p.scene && want === 'scene') || (fold(p.short).includes(want) && want.length > 2));
     if (!hit) fail(`No place called "${pl}".`);
     place = (hit as { id: string }).id;
   }
@@ -730,7 +738,7 @@ function cmdHint(io: PlayIo, path: string): string {
     const cmd = starCommand(night.d, night.run, said.q);
     const who = cmd && /^(?:ask|picker) (\S+)/.exec(cmd)?.[1];
     const it = pageItems(night).find((x) => (who ? x.person === who : x.choice.command === cmd) && x.choice.lead);
-    if (it) out.push('', itemLine(it.n, it.choice, it.person ? questionsText(it.group) : costText(it.choice)));
+    if (it) out.push('', itemLine(it.n, it.choice, it.person ? questionsText(it.group, night.d.kase) : costText(it.choice)));
   }
   const left = hintsLine(night.run);
   if (left) out.push('', wrap(left));

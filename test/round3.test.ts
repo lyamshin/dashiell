@@ -23,7 +23,7 @@ describe('round 3: the interface (docs/47 A)', () => {
       const d = dealBoard(3, tier);
       let run = newBoardRun(d);
       for (const cmd of playBoardOracle(d).commands.slice(0, 6)) {
-        for (const g of boardChoices(d, run)) for (const ch of [...g.choices, ...(g.more ?? [])]) expect(costText(ch)).toMatch(/^(|free|free to reread|free to open)$/);
+        for (const g of boardChoices(d, run)) for (const ch of [...g.choices, ...(g.more ?? [])]) expect(costText(ch)).toMatch(/^(|free|free to reread|free to look; an action if you go ahead)$/);
         run = stepBoard(d, run, cmd).run;
       }
     }

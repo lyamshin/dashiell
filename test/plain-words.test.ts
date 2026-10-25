@@ -20,13 +20,14 @@ import { typesFor, type TierIndex } from '../src/gen/board/index.js';
 import { boardChoices, pickerFor, pickerNote } from '../src/game/board/choices.js';
 import { clockStrip } from '../src/game/board/clock.js';
 import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
-import { boardGrid, gridKey, meansAsked } from '../src/game/board/grid.js';
+import { boardGrid, boardGridText, gridKey, meansAsked, placeCodes, placesKey } from '../src/game/board/grid.js';
 import { dealBoard, deadlineWords, type BoardDeal } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
-import { BREAKS_LABEL, CLEARED_LABEL, OTHER_LABEL, OTHER_QUESTION, WHERE_BY_LABEL, blankRule, boardFields, curtainOfBoard, lineGroupHeads, scoreBoard, starWords, storyOfBoard, tallyWords, truthReport, whereByOptions } from '../src/game/board/report.js';
+import { BREAKS_LABEL, CLEARED_LABEL, OTHER_LABEL, OTHER_QUESTION, WHERE_BY_LABEL, blankRule, boardFields, breakOptionsShown, curtainOfBoard, lineGroupHeads, lineNumbers, scoreBoard, starWords, storyOfBoard, tallyWords, truthReport, whereByOptions } from '../src/game/board/report.js';
 import { hintLabel, hintsLine, hintsNote, takeHint } from '../src/game/board/hints.js';
 import { BOARD_RULES, BOARD_TEACH_LINES } from '../src/game/board/teach.js';
-import { ACTION_KEY, TALK_HEADING, TURN_DIVIDER, chapterShown, costText } from '../src/game/board/text.js';
+import { ACTION_KEY, PICKER_COST, TALK_HEADING, TURN_DIVIDER, chapterShown, costText, notebookText, questionsText } from '../src/game/board/text.js';
+import { linesHeld } from '../src/game/board/knowledge.js';
 import { runPlay, type PlayIo } from '../src/cli/play-lib.js';
 
 /** The retired words (docs/64's table), as the chrome must never say them. "Clear" stays. */
@@ -187,7 +188,7 @@ describe('docs/64: plain words in the chrome', () => {
     expect(pk?.claims.map((x) => x.said)).toEqual(['She said she was at the Shamrock at nine']);
     const g = boardChoices(d, run).find((x) => x.personId === 'reinhardt');
     const topics = (g?.choices ?? []).map((ch) => costText(ch));
-    expect(topics).toEqual(['free to reread', '', 'free to open']);
+    expect(topics).toEqual(['free to reread', '', 'free to look; an action if you go ahead']);
   });
 
   it('docs/67: the hints’ chrome (the button, its count, the notes, what a hint says, the tally and the star) never says a retired word', () => {
@@ -287,5 +288,140 @@ describe('round 7, B9: no chrome says or implies that somebody else lied', () =>
       const literals = [...src.matchAll(/'([^'\n]*)'|`([^`]*)`|"([^"\n]*)"/g)].map((m) => (m[1] ?? m[2] ?? m[3] ?? '').replace(/\$\{[^}]*\}/g, ' '));
       expect(literals.flatMap(tells), file).toEqual([]);
     }
+  });
+});
+
+describe('round 7, U1–U3: the report’s lists, the labels and the confront box (docs/70)', () => {
+  /** A CLI list's entries, by number: "   12. Bidwell: at nine …" with its wrapped lines. */
+  const numbered = (out: string): Map<number, string> => {
+    const m = new Map<number, string>();
+    let last: number | null = null;
+    for (const l of out.split('\n')) {
+      const hit = /^\s{2,}(\d+)\. (.*)$/.exec(l);
+      if (hit) {
+        last = Number(hit[1]);
+        m.set(last, hit[2] as string);
+      } else if (last !== null && /^\s{5,}\S/.test(l)) m.set(last, `${m.get(last)} ${l.trim()}`);
+      else last = null;
+    }
+    return m;
+  };
+
+  it('U1: one numbering a night: the same thing has the same number on every person’s list, on the form and in the notebook', () => {
+    const d = dealBoard(17, 2, 'murder');
+    const o = playBoardOracle(d);
+    const events = o.commands.map((x) => ({ do: x }));
+    const say = cli(d, events);
+    const nb = say('notebook');
+    const told = numbered(nb.slice(nb.indexOf('What I was told:'), nb.indexOf('How it adds up:')));
+    expect(told.size).toBeGreaterThan(10);
+    const lists = d.kase.people.filter((p) => p.role === 'suspect').map((p) => numbered(say('report', p.short).split('`report` shows')[0] as string));
+    const seen = new Map<number, string>();
+    for (const list of lists) {
+      for (const [n, label] of list) {
+        if (seen.has(n)) expect(label, `#${n}`).toBe(seen.get(n));
+        seen.set(n, label);
+        // (The office's own facts and a crack aren't in "What I was told"; everything else is, by the same number.)
+        if (told.has(n)) expect(told.get(n), `#${n}`).toBe(label);
+      }
+    }
+    // Bledsoe's nine o'clock, the line round 7 found at #4 on one list and #8 on another, is one number on both.
+    const bledsoe = (l: string) => l.startsWith('Bledsoe says she was at Sokol’s back room at nine');
+    expect([...seen].filter(([, l]) => bledsoe(l)).length).toBe(1);
+    expect(lists.filter((list) => [...list.values()].some(bledsoe)).length).toBeGreaterThan(1);
+    // And the number closes the case: proof and cleared by the night's numbers.
+    const truth = truthReport(d, o.run);
+    const nums = lineNumbers(d, o.run);
+    const filed = say('close', `who=Callahan; proof=${nums.get(truth.breaks as string)}; other=Dandridge; cleared=${nums.get(truth.cleared as string)}; when=nine; how=knife; why=lease`);
+    expect(filed).toMatch(/5 out of 5/);
+    // A number from somebody else's list is refused, with whose list to look at.
+    const offList = [...nums].find(([id]) => !breakOptionsShown(d, o.run, 'callahan').some((x) => x.value === id))?.[1];
+    expect(cli(d, events)('close', `who=Callahan; proof=${offList}; when=nine; how=knife; why=lease`)).toMatch(/isn’t on Callahan’s list for proof: `report Callahan` shows what is\./);
+  });
+
+  it('U1: every list the form offers, on a night at every tier and both worlds, has a number for everything on it', () => {
+    for (const { d } of NIGHTS) {
+      const run = playBoardOracle(d).run;
+      const nums = lineNumbers(d, run);
+      const opts = [...d.kase.people.filter((p) => p.role === 'suspect').flatMap((p) => breakOptionsShown(d, run, p.id)), ...(d.kase.type === 'murder' ? [] : whereByOptions(d, run))];
+      for (const o of opts) expect(nums.get(o.value), `${d.kase.id} ${o.label}`).toBeGreaterThan(0);
+      // One number each: no two things share one.
+      expect(new Set(nums.values()).size).toBe(nums.size);
+      // The notebook's "What I was told" is numbered 1 to n, in the order it was held.
+      linesHeld(d.kase, run)
+        .filter((l) => l.kind !== 'given')
+        .forEach((l, i) => expect(nums.get(l.id)).toBe(i + 1));
+    }
+  });
+
+  it('U1: the headings and the form say what a list holds, in plain words', () => {
+    const d = dealBoard(17, 2, 'murder');
+    const o = playBoardOracle(d);
+    const heads = lineGroupHeads(d, o.run, 'dandridge');
+    expect(heads.touching).toBe('About Dandridge, or anywhere he said he was tonight, at nine o’clock:');
+    expect(heads.rest).toBe('About anybody else at nine o’clock, or Dandridge at other hours:');
+    expect(lineGroupHeads(d, newBoardRun(d), 'dandridge').touching).toBe('About Dandridge at nine o’clock:');
+    const hb = dealBoard(19, 5, 'murder');
+    expect(lineGroupHeads(hb, newBoardRun(hb), 'grasso').rest).toBe('About anybody else at eight or nine o’clock, or Grasso at other hours:');
+    const form = cli(d, o.commands.map((x) => ({ do: x })))('report').replace(/\s+/g, ' ');
+    expect(form).toContain('Pick who first. Then `report <name>` shows what you were told about them and about nine o’clock, numbered as in the notebook. Give proof as one of those numbers, or proof=hunch.');
+    expect(form).toContain('If you name somebody, `report <name>` shows the same for them. Give cleared as one of those numbers, or cleared=hunch.');
+    expect(form).not.toMatch(/lists what you know about them, or about|the same list as for proof|Name them first:/);
+    for (const t of [heads.touching, heads.rest]) expect(retiredIn(t), t).toEqual([]);
+  });
+
+  it('U2: the confront row, a person’s row, the grid’s key and an admission say it as a person would', () => {
+    expect(PICKER_COST).toBe('free to look; an action if you go ahead');
+    const d = dealBoard(17, 2, 'murder');
+    let run = newBoardRun(d);
+    for (const cmd of ['go scene', 'search scene', 'search papers', 'go bar', 'ask barkeep list', 'go rooming', 'ask xwatcher list', 'ask callahan evening']) run = stepBoard(d, run, cmd).run;
+    const g = boardChoices(d, run).find((x) => x.personId === 'callahan') as NonNullable<ReturnType<typeof boardChoices>[number]>;
+    expect(questionsText(g, d.kase)).toBe('1 question, or confront her');
+    const asked = { ...g, choices: g.choices.map((ch) => ({ ...ch, done: !ch.command.startsWith('picker') })) };
+    expect(questionsText(asked, d.kase)).toBe('nothing left to ask, but you can confront her');
+    expect(cli(d, [])('help')).not.toMatch(/can confront|free to open/);
+    // An admission, in the notebook, the form and the grid's clash list.
+    const o = playBoardOracle(d);
+    const nb = notebookText(d, o.run).replace(/\s+/g, ' ');
+    expect(nb).toContain('Dandridge admits he was at Sokol’s back room at nine o’clock, with Bledsoe.');
+    expect(nb).not.toMatch(/owns up:|owned up to being/);
+    expect(gridKey(boardGrid(d.kase, o.run))).toContain('→Y where they admitted they were');
+  });
+
+  it('U2: the grid’s labels are words a player would use, and its key names only the ones that aren’t the place’s own name', () => {
+    const bad = /^(?:scene|cards|print|chop|at|Dr\.|Miss|Mr\.|Mrs\.|Kit|Blue|little|curtained)$/;
+    for (const { d } of NIGHTS) {
+      const run = playBoardOracle(d).run;
+      for (const code of Object.values(placeCodes(d.kase))) expect(code, d.kase.id).not.toMatch(bad);
+      const grid = boardGridText(d.kase, run);
+      expect(grid, d.kase.id).not.toMatch(/^Places: |\bscene = /m);
+      const key = placesKey(d.kase, run);
+      if (key) {
+        expect(key).toMatch(/^In the grid, .+ is .+\.$/);
+        for (const pair of key.replace(/^In the grid, |\.$/g, '').split(/, | and (?=[^,]+ is )/)) {
+          const [code, name] = pair.split(' is ') as [string, string];
+          expect(name.replace(/^the /, ''), `${d.kase.id}: ${pair}`).not.toBe(code);
+        }
+      }
+    }
+    const hb = dealBoard(19, 5, 'murder');
+    expect(placeCodes(hb.kase)).toMatchObject({ scene: 'Vitale’s' });
+    expect(Object.values(placeCodes(hb.kase))).toContain('card room');
+    const p17 = dealBoard(17, 2, 'murder');
+    expect(placesKey(p17.kase, playBoardOracle(p17).run)).toBe('In the grid, Sokol’s is Sokol’s back room.');
+    // (The tester's own mark, "Callahan nine at scene", still finds the scene, now labelled by its name.)
+    const marked = cli(p17, playBoardOracle(p17).commands.map((x) => ({ do: x })))('mark', 'Callahan nine at scene');
+    expect(marked).toContain('Your guess: Callahan at Quill’s place at nine.');
+    expect(marked).toContain('~Quill’s');
+  });
+
+  it('U3: the confront box is shorter, and still says both kinds of witness, its cost, and that it isn’t needed', () => {
+    const d = dealBoard(5, 2, 'murder');
+    let run = newBoardRun(d);
+    for (const cmd of ['go scene', 'search scene', 'search papers', 'go rooming', 'ask xwatcher list', 'go bar', 'ask barkeep list', 'ask reinhardt evening']) run = stepBoard(d, run, cmd).run;
+    const pk = pickerFor(d, run, 'reinhardt');
+    const note = pickerNote(d, pk as NonNullable<typeof pk>);
+    expect(note).toBe('Pick the hour that doesn’t match, then who says otherwise: somebody who saw her somewhere else, or who saw everybody where she said she was, and not her. Confronting her takes an action and isn’t needed to prove she lied, but she may name somebody who can clear her.');
+    expect(note.split(/\s+/).length).toBeLessThan(50);
   });
 });

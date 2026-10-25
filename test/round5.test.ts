@@ -97,8 +97,10 @@ describe('round 5, U3: docs/55 5’s wide first group, under a heading that says
         const own = run.asked.includes(`account:${who}`) ? accountOf(d.kase, who) : undefined;
         const theirs = new Set(Object.values(own?.claims ?? {}).map((cl) => cl?.place));
         const head = lineGroupHeads(d, run, who).touching;
-        // (Round 6, U5: the heading says only what every line under it is: about those hours.)
-        expect(head, `${d.kase.id} ${who}`).toMatch(/^What you know about (?:seven|eight|nine|ten|eleven)(?: and (?:seven|eight|nine|ten|eleven))?:$/);
+        // (Round 6, U5: the heading says only what every line under it is: about those hours. Round 7,
+        // U1: and about whom, and where they said they were, once their evening is held.)
+        const N = d.kase.people.find((p) => p.id === who)?.short as string;
+        expect(head, `${d.kase.id} ${who}`).toMatch(new RegExp(`^About ${N.replace(/[.]/g, '\\.')}${own ? ', or anywhere (?:he|she) said (?:he|she) was tonight,' : ''} at (?:seven|eight|nine|ten|eleven)(?:, (?:seven|eight|nine|ten|eleven))*(?: or (?:seven|eight|nine|ten|eleven))? o’clock:$`));
         for (const o of breakOptionsShown(d, run, who).filter((x) => x.touches)) {
           const l = lines.find((x) => x.id === o.value);
           expect(l && l.hour !== undefined && hours.has(l.hour), `${d.kase.id} ${who} ${o.label}`).toBe(true);
@@ -113,15 +115,16 @@ describe('round 5, U3: docs/55 5’s wide first group, under a heading that says
     const { d, run } = played(RAW11);
     const head = lineGroupHeads(d, run, 'bellucci');
     // (docs/64: the heading in plain words, over docs/55 5's same wide group.)
-    expect(head.touching).toBe('What you know about ten:');
-    const first = out.slice(out.indexOf('What you know about ten:'), out.indexOf('Everything else:'));
+    expect(head.touching).toBe('About Bellucci, or anywhere he said he was tonight, at ten o’clock:');
+    expect(head.rest).toBe('About anybody else at ten o’clock, or Bellucci at other hours:');
+    const first = out.slice(out.indexOf('About Bellucci, or anywhere'), out.indexOf('About anybody else at ten o’clock'));
     expect(first).toContain('Mrs. Kowalski: at ten o’clock, only Rafferty and Moretti were at');
     expect(first).toContain('Alfano: at ten o’clock, only Steinbach, Lanza and Pardo were at');
     const med = played(MEDIUM14);
     const thorndike = breakOptionsShown(med.d, med.run, 'thorndike').filter((o) => o.touches);
     expect(thorndike.length).toBeGreaterThan(2);
     expect(thorndike[0]?.value).not.toBe('remark:account:pickering#0');
-    expect(lineGroupHeads(med.d, med.run, 'thorndike').touching).toBe('What you know about nine and ten:');
+    expect(lineGroupHeads(med.d, med.run, 'thorndike').touching).toBe('About Thorndike, or anywhere he said he was tonight, at nine or ten o’clock:');
     const hb = played(HB8);
     expect(breakOptionsShown(hb.d, hb.run, 'renfro').filter((o) => o.touches).length).toBeGreaterThan(2);
   });
