@@ -319,6 +319,52 @@ export function playWanderer(d: BoardDeal, seed: number): Played {
   return { run, commands, ok: v.outcome === 'solved', report, alt };
 }
 
+/**
+ * Decided 2026-10-25 (docs/69 §1.6, §3): the shortcut a night with one liar invites, "first liar, nobody
+ * else". It follows the cheapest way (the designed path, as the oracle walks it, papers and all) until
+ * the grid shows it a lie; then it names that liar, on the line the grid set against them, answers
+ * "Nobody else", and closes on what it has. Two caught on one step are a coin flip. Caught nothing by
+ * the end of the path, it takes the form's first name. Its perfect report (every point, so a star)
+ * must stay under 10% from Poached up: "Nobody else" before everybody else is checked counts half.
+ */
+export function playFirstLiar(d: BoardDeal, seed: number): Played {
+  const c = d.kase;
+  const rng = new Rng((seed * 2654435761 + 131) >>> 0);
+  let run = newBoardRun(d);
+  const commands: string[] = [];
+  const motive = d.analysis.motive;
+  const caughtNow = () => collisionsOf(c, run).filter((x) => suspectsOf(c).includes(x.person));
+  let caught = caughtNow();
+  walk: for (const q of d.analysis.path.map((s) => s.q)) {
+    const cmds = [...(commandsFor(d, run, q) ?? [])];
+    // The papers, while it's at the scene, as the oracle reads them.
+    if (motive && q.startsWith('search:') && !run.asked.includes(motive)) cmds.push(`search ${motive.slice(7)}`);
+    for (const cmd of cmds) {
+      if (cmd === `search ${motive?.slice(7)}` && run.at !== c.crime.scene) continue;
+      const r = step(d, run, cmd, commands);
+      if (typeof r === 'string') break walk;
+      run = r;
+      caught = caughtNow();
+      if (caught.length > 0) break walk;
+    }
+  }
+  const first = caught.length > 0 ? (rng.pick(caught) as { person: PersonId; hour: Hour }) : null;
+  const base = filedFrom(d, run, rng, first);
+  if (!first) {
+    base.who = boardFields(d)[0]?.options[0]?.value ?? null;
+    base.why = base.who;
+  }
+  const report: BoardReport = {
+    ...base,
+    breaks: first ? (collisionsOf(c, run, first.person).find((x) => x.hour === first.hour)?.breakers[0]?.id ?? null) : null,
+    ...(isMurder(c) ? {} : { whereBy: heldWhereBy(d, run)[0]?.value ?? null }),
+    ...(asksOther(d) ? { other: NOBODY, cleared: null } : {}),
+  };
+  run = stepBoard(d, run, 'file').run;
+  const v = scoreBoard(d, run, report);
+  return { run, commands, ok: v.outcome === 'solved', report };
+}
+
 /** A filed report's plain answers, as the wanderer and the reader give them: the person named, at the hour they were caught, and what the night told them. */
 function filedFrom(d: BoardDeal, run: BoardRun, rng: Rng, pick: { person: PersonId; hour: Hour } | null): BoardReport {
   const c = d.kase;

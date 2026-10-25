@@ -16,7 +16,7 @@ import { givensSignature, PAR_FLOOR, pointed, type BoardCase, type CaseType } fr
 import { renderCase } from '../../src/gen/board/render.js';
 import { moves } from '../../src/gen/board/generate.js';
 import { PAR_TARGET } from '../../src/gen/board/tiers.js';
-import { breaksAt, innocentLie } from '../../src/gen/board/path.js';
+import { breaksAt, innocentLie, oneLiar } from '../../src/gen/board/path.js';
 import { pointerIndex } from '../../src/gen/board/pointers.js';
 
 /** docs/42 §1–2 and §5, on a small sweep: every tier, a dozen seeds. */
@@ -53,7 +53,9 @@ describe.each(TIER_LIST)('tier %i', (tier) => {
       const c = g!.kase;
       const all = questionsOf(c).map((q) => q.id);
       expect(solve(c, all, { techniques: techniquesUpTo(tier) }).done).toBe(true);
-      if (tier > 0) expect(solve(c, all, { techniques: techniquesUpTo(tier - 1) }).done).toBe(false);
+      // (Decided 2026-10-25, docs/69 §1.2: a Poached night with one liar may finish below; its path checks every rival instead.)
+      if (tier > 0 && !(tier === 2 && oneLiar(c))) expect(solve(c, all, { techniques: techniquesUpTo(tier - 1) }).done).toBe(false);
+      if (tier === 2 && oneLiar(c)) expect(checkInvariants(c, g!.analysis).rivalsChecked).toEqual([]);
     }
   });
 
@@ -354,6 +356,11 @@ describe('decided 2026-10-11: two broken stories at one hour (docs/41 rule 9)', 
     for (const g of all) {
       const c = g.kase;
       const innocent = innocentLie(c);
+      // (Decided 2026-10-25, docs/69: or there's no innocent liar, and the path checks every rival.)
+      if (!innocent && oneLiar(c)) {
+        expect(checkInvariants(c, g.analysis).rivalsChecked, c.id).toEqual([]);
+        continue;
+      }
       expect(innocent, c.id).toBeDefined();
       expect(innocent?.hour, c.id).toBe(c.crime.hour);
       expect(checkInvariants(c, g.analysis).twoStories, c.id).toEqual([]);
@@ -363,7 +370,7 @@ describe('decided 2026-10-11: two broken stories at one hour (docs/41 rule 9)', 
   it('the path meets the innocent liar’s story no later than the culprit’s on most nights, and the culprit’s first on some', () => {
     // The sweep (200 seeds a tier) has the innocent's first on 61–72% of nights; twenty seeds are a sample.
     for (const t of HIGH) {
-      const nights = all.filter((g) => g.kase.tier === t);
+      const nights = all.filter((g) => g.kase.tier === t && !!innocentLie(g.kase));
       let first = 0;
       let same = 0;
       let culpritFirst = 0;

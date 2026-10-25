@@ -117,6 +117,12 @@ export interface Item {
   jk?: boolean;
   /** docs/60 item 1: what the budget undoes when it takes this off the page (a set-up's pay-offs). */
   onDrop?: () => void;
+  /**
+   * docs/69: a list's reason, where the arrival in this room gave one already: only the cap's last
+   * resort may take it off (`droppable`), where a name would be said a third time, and the page then
+   * carries it.
+   */
+  reasonGiven?: boolean;
   /** docs/60 item 1: what the budget undoes when it trims this to its first sentence. */
   onTrim?: () => void;
   /** docs/62 §6 of docs/60: an aside that says what the fact before it did ("That much held."): it goes with that fact. */

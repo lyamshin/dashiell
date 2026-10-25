@@ -59,6 +59,8 @@ describe('docs/61: who else lied, and what cleared them', () => {
   it('the oracle files it solved: the innocent liar, on a line that places them where they were', () => {
     for (const { tier, type, seed } of nights) {
       const d = dealBoard(seed, tier, type as never);
+      // (Decided 2026-10-25, docs/69: some nights have no other liar; test/one-liar.test.ts has those.)
+      if (!otherLie(d)) continue;
       const o = oracleOf(d);
       const lie = otherLie(d);
       const truth = truthReport(d, o.run);
@@ -86,6 +88,7 @@ describe('docs/61: who else lied, and what cleared them', () => {
   it('a hunch, the wrong line, the wrong name or nobody costs that point, and the verdict says so plainly', () => {
     for (const { tier, type, seed } of nights.filter((x) => x.seed <= 2)) {
       const d = dealBoard(seed, tier, type as never);
+      if (!otherLie(d)) continue;
       const o = oracleOf(d);
       const truth = truthReport(d, o.run);
       const lie = otherLie(d);

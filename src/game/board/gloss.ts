@@ -147,8 +147,10 @@ export function introOf(c: BoardCase, id: PersonId, here?: string): string | nul
   }
   if (p.role === 'company') {
     const w = /^was with (.+?) at .+?; nobody else knows it$/.exec(d);
-    // (Named in somebody's owning up: "the woman Steinbach had named", with no pronoun two people could be.)
-    if (w) return `the ${p.female ? 'woman' : 'man'} ${w[1]} had named`;
+    // (Named in somebody's owning up: "the woman Steinbach had named", with no pronoun two people could be.
+    // Docs/69: on a night with one liar, named in that somebody's own true story, which the page has just
+    // said: the story met them, and saying whose it was would name its teller a third time.)
+    if (w) return c.confrontations.some((k) => (k.names ?? []).includes(id)) ? `the ${p.female ? 'woman' : 'man'} ${w[1]} had named` : null;
     if (/^keeps /.test(d)) return `who ${d}`;
     if (/^works /.test(d)) return `who ${at(d)}`;
     const first = d.split(';')[0]?.trim() ?? '';
