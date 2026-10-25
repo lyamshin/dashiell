@@ -499,9 +499,10 @@ const CLAUSES: Clause[] = [
       const xs = ps as P<'ACCESS'>[];
       const x = xs[0] as P<'ACCESS'>;
       const who = xs.length === 1 ? S(c, ref, x.person) : ns(c, xs.map((y) => y.person));
-      return { text: `${who} could ${x.had ? '' : 'not '}have ${accessWords(c)}${x.hour !== undefined ? `, from ${hourWord(x.hour as Hour)}` : ''}`, subject: xs.length === 1 ? x.person : null };
+      // (Round 7, B6: who couldn't, coming only once it had to be gone: "…, coming only at nine".)
+      return { text: `${who} could ${x.had ? '' : 'not '}have ${accessWords(c)}${x.hour !== undefined ? (x.had ? `, from ${hourWord(x.hour as Hour)}` : `, coming only at ${hourWord(x.hour as Hour)}`) : ''}`, subject: xs.length === 1 ? x.person : null };
     },
-    re: (l) => `^(${l.re.NS}|${l.re.PRON}) could (not )?have ${l.re.ACC}(?:, from (${l.re.H}))?$`,
+    re: (l) => `^(${l.re.NS}|${l.re.PRON}) could (not )?have ${l.re.ACC}(?:, (?:from|coming only at) (${l.re.H}))?$`,
     read: (m, { lx, ref }) => {
       const who = /^(?:he|she|it)$/i.test(m[1] as string) ? [subj(lx, ref, m[1] as string)] : names(lx, m[1] as string);
       return { props: who.map((p) => ({ k: 'ACCESS', person: p, had: !m[2], ...(m[3] ? { hour: lx.hour.get(m[3]) as number } : {}) }) as Prop), subject: who.length === 1 ? (who[0] as Id) : null };
@@ -861,14 +862,14 @@ const CLAUSES: Clause[] = [
       const x = ps[0] as P<'MEANS'>;
       if (x.how === 'origin') return { text: `The ${meansLabel(c)} came from ${placeName(c, x.place)}`, subject: null };
       // docs/59 item 3: what a find concludes: whoever did it had been there first.
-      if (x.how === 'first') return { text: `Whoever did it had been at ${placeName(c, x.place)}${x.hours?.length ? ` at ${hs(x.hours)}` : ''} first`, subject: null };
+      if (x.how === 'first') return { text: `Whoever did it had been at ${placeName(c, x.place)}${x.hours?.length ? ` at ${hs(x.hours)}` : ''} first${x.before !== undefined ? `, before ${hourWord(x.before as Hour)}` : ''}`, subject: null };
       if (x.how === 'told') return { text: `${nameOf(c, c.client)} told the room at ${placeName(c, x.place)} ${wayKnown(c)} at ${hs(x.hours ?? [])}`, subject: null };
       if (x.how === 'party') return { text: `${nameOf(c, c.client)} had people in at ${placeName(c, x.place)} at ${hs(x.hours ?? [])}${x.who ? `, where ${nameOf(c, x.who)} lodged` : ''}`, subject: null };
       return { text: `The spare key was at ${placeName(c, x.place)}${x.who ? `, in ${nameOf(c, x.who)}’s keeping` : ''}`, subject: null };
     },
-    re: (l) => `^(?:The (?:${l.re.MEANS}) came from (${l.re.PL})|(?:${l.re.NAME}) told the room at (${l.re.PL}) ${l.re.WAY} at (${l.re.HS})|(?:${l.re.NAME}) had people in at (${l.re.PL}) at (${l.re.HS})(?:, where (${l.re.NAME}) lodged)?|The spare key was at (${l.re.PL})(?:, in (${l.re.NAME})’s keeping)?|Whoever did it had been at (${l.re.PL})(?: at (${l.re.HS}))? first)$`,
+    re: (l) => `^(?:The (?:${l.re.MEANS}) came from (${l.re.PL})|(?:${l.re.NAME}) told the room at (${l.re.PL}) ${l.re.WAY} at (${l.re.HS})|(?:${l.re.NAME}) had people in at (${l.re.PL}) at (${l.re.HS})(?:, where (${l.re.NAME}) lodged)?|The spare key was at (${l.re.PL})(?:, in (${l.re.NAME})’s keeping)?|Whoever did it had been at (${l.re.PL})(?: at (${l.re.HS}))? first(?:, before (${l.re.H}))?)$`,
     read: (m, { lx }) => {
-      if (m[9]) return { props: [{ k: 'MEANS', how: 'first', place: place(lx, m[9]), ...(m[10] ? { hours: hours(lx, m[10]) } : {}) }], subject: null };
+      if (m[9]) return { props: [{ k: 'MEANS', how: 'first', place: place(lx, m[9]), ...(m[10] ? { hours: hours(lx, m[10]) } : {}), ...(m[11] ? { before: lx.hour.get(m[11]) as number } : {}) }], subject: null };
       if (m[1]) return { props: [{ k: 'MEANS', how: 'origin', place: place(lx, m[1]) }], subject: null };
       if (m[2]) return { props: [{ k: 'MEANS', how: 'told', place: place(lx, m[2]), hours: hours(lx, m[3] as string) }], subject: null };
       if (m[4]) return { props: [{ k: 'MEANS', how: 'party', place: place(lx, m[4]), hours: hours(lx, m[5] as string), ...(m[6] ? { who: person(lx, m[6]) } : {}) }], subject: null };

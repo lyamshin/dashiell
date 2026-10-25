@@ -12,7 +12,7 @@
   { "id": "bnt-202", "family": "recap-open", "tags": {}, "text": "I took stock. It didn’t take long, which was either a good sign or the other kind." , "joke": true },
   { "id": "bnt-203", "family": "recap-open", "tags": {}, "text": "I went over it from the top, slowly, the way a man reads his own handwriting." },
 
-  { "id": "bnt-301", "family": "ending", "tags": { "outcome": "solved", "type": "murder" }, "text": "I closed the case at a quarter to eight and went home the long way. The city was waking up and didn’t want to hear about it." },
+  { "id": "bnt-301", "family": "ending", "tags": { "outcome": "solved", "type": "murder" }, "text": "I closed the case at {closedAt} and went home the long way. The city was waking up and didn’t want to hear about it." },
   { "id": "bnt-302", "family": "ending", "tags": { "outcome": "solved", "type": "murder" }, "text": "The DA’s man read it twice, which is once more than he reads most things, and put it in the basket that matters." },
   { "id": "bnt-311", "family": "ending", "tags": { "outcome": "solved", "type": "small" }, "text": "{client} took the news the way people take good news at eight in the morning: suspiciously, and with coffee." , "joke": true },
   { "id": "bnt-312", "family": "ending", "tags": { "outcome": "solved", "type": "small" }, "text": "I told {client} who, and where, and {cHe} went straight out with a look on {cHis} face I wouldn’t have wanted to be on the other end of." },
@@ -20,7 +20,7 @@
   { "id": "bnt-322", "family": "ending", "tags": { "outcome": "thin" }, "text": "I had the who and not all the rest. The rest is the part that holds up in daylight." },
   { "id": "bnt-331", "family": "ending", "tags": { "outcome": "wrong-man" }, "text": "I put the wrong name in the report. **The wrong name is a name somebody has to live with.** I went home and didn’t sleep, which seemed fair." },
   { "id": "bnt-332", "family": "ending", "tags": { "outcome": "wrong-man" }, "text": "The name I wrote down was the wrong one. **Somebody who did nothing is going to have a very bad morning on my account.**" },
-  { "id": "bnt-341", "family": "ending", "tags": { "outcome": "cold" }, "text": "Eight o’clock came and I had nothing to put on the page. A case doesn’t close itself. It just goes cold." },
+  { "id": "bnt-341", "family": "ending", "tags": { "outcome": "cold" }, "text": "{eightOclock} came and I had nothing to put on the page. A case doesn’t close itself. It just goes cold." },
   { "id": "bnt-342", "family": "ending", "tags": { "outcome": "cold" }, "text": "I left the name blank. A blank is honest, which is the best thing anybody said about it." },
 
   { "id": "bnt-1001", "family": "turn-title", "tags": {}, "text": "A Hole in the Evening" },

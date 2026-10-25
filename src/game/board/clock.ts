@@ -34,6 +34,23 @@ export function clockAfter(used: number, budget: number): string {
   return formatClock(minutesAfter(used, budget));
 }
 
+const HOUR_NAMES = ['midnight', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+const PAST = ['', 'five past', 'ten past', 'a quarter past', 'twenty past', 'twenty-five past', 'half past', 'twenty-five to', 'twenty to', 'a quarter to', 'ten to', 'five to'];
+
+/**
+ * Round 7, B8: the clock's own time, said: "eight", "a quarter to eight", "twenty past five". The
+ * verdict's ending says only the time the head of the page showed ("I closed the case at a quarter to
+ * eight" came at 8:00 AM).
+ */
+export function clockWords(minutesPastMidnight: number): string {
+  const total = ((round5(minutesPastMidnight) % 1440) + 1440) % 1440;
+  const h = Math.floor(total / 60) % 12;
+  const m = (total % 60) / 5;
+  const name = (x: number) => HOUR_NAMES[x % 12 === 0 && x !== 0 ? 12 : x % 12] as string;
+  if (m === 0) return name(h);
+  return m <= 6 ? `${PAST[m]} ${name(h)}` : `${PAST[m]} ${name(h + 1)}`;
+}
+
 export function callsLeft(used: number, budget: number): number {
   return Math.max(0, budget - used);
 }

@@ -229,9 +229,17 @@ function accessV(c: BoardCase, lx: Lexicon, yes: string, no: string, v: VCtx): P
   if (no) {
     const ph = accessPhrase(c, false, false, v.here);
     const forms = [ph, ph.replace(/^was\b/, 'were'), ph.replace(/^wasn’t\b/, 'weren’t'), 'hadn’t', 'wasn’t', 'weren’t', 'never did'];
-    const k = new RegExp(`^(${NS}) (${forms.map(esc).join('|')})$`).exec(no);
-    if (!k) throw new Error(`voiced: no way in "${no}"`);
-    for (const p of namesV(c, lx, k[1] as string)) out.push({ k: 'ACCESS', person: p, had: false });
+    for (const part of no.split('; ')) {
+      // (Round 7, B6: "Vitale didn’t come till nine, too late for it": there, but only once it had to be gone.)
+      const late = new RegExp(`^(${NS}) didn’t come(?: to (?:${lx.re.PL}))? till (${lx.re.H}), too late for (?:it|the [\\w ’-]+)$`).exec(part);
+      if (late) {
+        for (const p of namesV(c, lx, late[1] as string)) out.push({ k: 'ACCESS', person: p, had: false, hour: hourV(late[2] as string) });
+        continue;
+      }
+      const k = new RegExp(`^(${NS}) (${forms.map(esc).join('|')})$`).exec(part);
+      if (!k) throw new Error(`voiced: no way in "${part}"`);
+      for (const p of namesV(c, lx, k[1] as string)) out.push({ k: 'ACCESS', person: p, had: false });
+    }
   }
   return out;
 }
@@ -674,7 +682,9 @@ const READ: Partial<Record<Shape, Reader>> = {
       const names = namesV(c, lx, a.names as string);
       const own = (comp.props as P<'CLAIM'>[]).map((x) => x.hour);
       let hs: number[];
-      if (flags.has('all')) hs = own;
+      // (Round 7, B2: "Renfro was with me at eight": the hours said, and nothing of coming or going.)
+      if (flags.has('seen')) hs = (a.hours as number[]) ?? [];
+      else if (flags.has('all')) hs = own;
       else if (flags.has('left')) hs = own.filter((h) => h <= (a.to as number));
       else if (flags.has('came')) hs = own.filter((h) => h >= (a.from as number));
       else if (flags.has('mid')) {
@@ -752,7 +762,9 @@ function clauseR(a: Record<string, Read>, flags: ReadonlySet<string>, comp: Comp
   if (flags.has('doing') && !(a.doing as string)?.trim()) throw new Error('voiced: doing what?');
   const from = a.from as number | undefined;
   let hs: number[];
-  if (flags.has('all')) hs = open;
+  // (Round 7, B2: "Mosley was here at ten": the hours said, and nothing of coming or going.)
+  if (flags.has('seen')) hs = ((a.hours as number[]) ?? []).filter((h) => open.includes(h));
+  else if (flags.has('all')) hs = open;
   else if (flags.has('outback')) hs = open.filter((h) => h <= (a.to as number) || h >= (a.back as number));
   else if (flags.has('left')) hs = open.filter((h) => h <= (a.to as number));
   else if (flags.has('came')) hs = open.filter((h) => h >= (from as number));
@@ -1130,7 +1142,8 @@ READ['WINDOW-MEANS'] = (a, flags, comp, v, lx) => {
   if (flags.has('scene')) return [{ k: 'WINDOW', hours: a.hours as number[] }, ...(flags.has('murder') || flags.has('murder-said') ? [] : [means()])];
   if (flags.has('find')) {
     // docs/59 item 3: what the find concludes: whoever did it had been there first.
-    if (flags.has('first')) return [{ k: 'MEANS', how: 'first', place: a.origin as Id }];
+    // (Round 7, B6: and the hour it had to be had by.)
+    if (flags.has('first')) return [{ k: 'MEANS', how: 'first', place: a.origin as Id, ...(flags.has('before') ? { before: a.before as number } : {}) }];
     if (flags.has('gun') || flags.has('blade')) return [{ k: 'MEANS', how: 'origin', place: a.origin as Id }, { k: 'WINDOW', hours: a.hours as number[] }];
     if (flags.has('poison')) return [{ k: 'MEANS', how: 'origin', place: a.origin as Id }];
     return [means()];

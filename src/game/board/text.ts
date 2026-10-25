@@ -6,8 +6,8 @@
 import { titleClient } from './home.js';
 import type { OfferedChoice, OfferedGroup, Page } from './types.js';
 import { boardGridText } from './grid.js';
-import { knownPeople, knownPlaces, lineShown, linesHeld } from './knowledge.js';
-import { cap, clientOf, isMurder, nameOf, personOf, placeName, type BoardDeal, type BoardRun } from './model.js';
+import { knownPeople, knownPlaces, lineShown, linesHeld, meansBy } from './knowledge.js';
+import { cap, clientOf, hourWord, isMurder, nameOf, personOf, placeName, pronOf, type BoardDeal, type BoardRun } from './model.js';
 import { notebookWhen } from './when.js';
 import { finderGloss, peopleLine } from './gloss.js';
 import { recapClauses } from './pages.js';
@@ -143,9 +143,28 @@ export function officeLines(d: BoardDeal): string[] {
     if (fp && g.vars?.finderWhy) t = t.replace(`${g.vars.finder}, ${g.vars.finderWhy}`, `${g.vars.finder}, ${finderGloss(c, fp.id, g.vars.finderWhy)}`);
     // (docs/59: the neighbors' word, as the office says it now, not a woman downstairs nobody meets.)
     t = t.replace(/, on the word of the woman downstairs:/, ', on the neighbors’ word:').replace(/\. The woman downstairs says\b/, '. The neighbors say');
+    // Round 7, B8: the neighbors' word is only what the client couldn't know himself; what he was party
+    // to ("asked Thorndike what Mimi was worth") is his own: "Thorndike points at Winslow: he asked
+    // Thorndike what Mimi was worth, and the neighbors say he lost his job on Friday."
+    if (g.kind === 'pointer' && g.id === 'gossip') t = gossipOwn(c, t);
+    // (Round 7, B5: the lodger the door was left unlocked for was out, not at the table.)
+    if (g.kind === 'means' && g.id === 'latch-key') t = t.replace(/^(.+?) lodges there and has lost (her|his|their) key again,/, '$1 lodges there, was out, and has lost $2 key again,');
     if (!isMurder(c) && (g.kind === 'window' || g.kind === 'clock') && g.vars?.thing) t = t.replace(/^(?:He|She|It|They) (went|was taken|were taken|disappeared)\b/, `${cap(g.vars.thing)} $1`);
     return titleClient(c, t.replace(/\b(says|say) (she|he) says\b/, '$1 $2 insists'));
   });
+}
+
+/** Round 7, B8: a gossip pointer's line, with the client's own part of the reason said as his. */
+function gossipOwn(c: BoardDeal['kase'], t: string): string {
+  const cl = clientOf(c).short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const mine = (x: string) => new RegExp(`(?<![\\w’])${cl}(?![\\w])`).test(x);
+  const m = /^(.+?)(?:\. The neighbors say|, on the neighbors’ word:) (.+?)\.$/.exec(t);
+  if (!m || !mine(m[2] as string) || !c.givens.pointer) return t;
+  const head = m[1] as string;
+  const reason = m[2] as string;
+  const sp = /^(.*?), and (.+)$/.exec(reason);
+  if (sp && !mine(sp[1] as string) && mine(sp[2] as string)) return `${head}: ${pronOf(c, c.givens.pointer).he} ${sp[2]}, and the neighbors say ${sp[1]}.`;
+  return `${head}: ${reason}.`;
 }
 
 /** The notebook: the people and places known, and every line held, by whose word. */
@@ -176,7 +195,12 @@ export function notebookText(d: BoardDeal, run: BoardRun): string {
   for (const p of motives) out.push(`  ${nameOf(c, p)}’s reason: ${personOf(c, p)?.motive}.`);
   out.push('');
   out.push('How it adds up:');
-  for (const cl of recapClauses(d, run)) out.push(`  ${wrap(cl.text, 72).replace(/\n/g, '\n  ')}`);
+  // (Round 7, B6: where it adds up, a windowed murder's means had to be had before the earliest hour.)
+  const by = meansBy(c);
+  for (const cl of recapClauses(d, run)) {
+    const t = by !== undefined && cl.key === 'means' ? cl.text.replace(/, so whoever used it had been there first\.$/, `, so whoever used it had been there before ${hourWord(by)}, the earliest it could have happened.`) : cl.text;
+    out.push(`  ${wrap(t, 72).replace(/\n/g, '\n  ')}`);
+  }
   out.push('');
   out.push(boardGridText(c, run));
   return out.join('\n');

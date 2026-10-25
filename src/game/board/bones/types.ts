@@ -109,9 +109,10 @@ export type Prop =
    * The way in: where the means was had (a murder's origin; the room told about the key; the party;
    * the spare key), and the hours; `who`, the lodger whose key it was, or who keeps the spare.
    * docs/59 item 3: `first`, the conclusion a find draws from it: whoever did it had been at that place
-   * first (at those hours, when said).
+   * first (at those hours, when said). Round 7, B6: `before`, a windowed murder's: the hour it had to be
+   * had by, the earliest it could have happened.
    */
-  | { k: 'MEANS'; how: 'origin' | 'told' | 'party' | 'spare' | 'first'; place: Id; hours?: number[]; who?: Id };
+  | { k: 'MEANS'; how: 'origin' | 'told' | 'party' | 'spare' | 'first'; place: Id; hours?: number[]; who?: Id; before?: number };
 
 export type PropKind = Prop['k'];
 export const PROP_KINDS: readonly PropKind[] = [

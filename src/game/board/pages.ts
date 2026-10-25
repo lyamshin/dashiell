@@ -33,6 +33,7 @@ import {
   knownPeople,
   linesHeld,
   listOf,
+  meansBy,
   peopleAt,
   solveHeld,
   solveRun,
@@ -1170,6 +1171,9 @@ function victimToClient(c: BoardCase): string | null {
   return inverse[rel] ?? null;
 }
 
+/** Round 7, B8: a reason, in the client's mouth, that the client was party to ("asked me", "he and I", "my"). */
+const CLIENT_OWN = /\b(?:me|my|I)\b/;
+
 function inClientMouth(c: BoardCase, text: string, about?: PersonId): string {
   const cl = clientOf(c);
   const me = cl.short;
@@ -1313,6 +1317,19 @@ export function writeOffice(w: Writer): void {
       v.means = c.means.name.replace(/^(?:a|an) /, '');
     }
     if (g.kind === 'pointer' && v.motive) v.motive = inClientMouth(c, v.motive, c.givens.pointer);
+    // Round 7, B8: the neighbors' word covers only what the client couldn't know himself. A reason the
+    // client was party to ("asked me what Mimi was worth", "he and I haven’t spoken") is his own: what
+    // the neighbors told him is said as theirs, and the rest as his ("He lost his job on Friday. I had
+    // that from the neighbors… And he asked me what Mimi was worth."), or the whole as his own.
+    let pointerAs: string = g.id;
+    if (g.kind === 'pointer' && g.id === 'gossip' && v.motive && CLIENT_OWN.test(v.motive)) {
+      const m = /^(.*?), and (.+)$/.exec(v.motive);
+      if (m && !CLIENT_OWN.test(m[1] as string) && CLIENT_OWN.test(m[2] as string) && c.givens.pointer) {
+        v.motive = m[1];
+        v.own = `${pronOf(c, c.givens.pointer).he} ${m[2]}`;
+        pointerAs = 'gossip-own';
+      } else pointerAs = 'motive';
+    }
     // docs/55 2: a reason that calls them "her" or "him" before anything has said which: their whole
     // name the first time, so the pronoun has somebody to be (Hard-boiled 8's #3).
     if (g.kind === 'pointer' && v.P && /\b(?:her|him|she|he)\b/i.test(v.motive ?? v.behaviour ?? '')) {
@@ -1447,7 +1464,9 @@ export function writeOffice(w: Writer): void {
     // finding says the police's word and, for a poisoning, the coroner's, in the same breath.
     const finderSex = g.kind === 'found' ? (c.people.find((x) => x.short === v.finder)?.female ? 'finder-woman' : 'finder-man') : '';
     const flags =
-      g.kind === 'pointer' || g.kind === 'gone' || g.kind === 'means' || g.kind === 'keeper'
+      g.kind === 'pointer'
+        ? [kind, ...(pointerAs === 'gossip-own' ? ['gossip', 'own'] : [pointerAs])]
+        : g.kind === 'gone' || g.kind === 'means' || g.kind === 'keeper'
         ? [kind, g.id]
         : g.kind === 'relation'
           ? [kind, ...(firstLineSits && !sat ? ['sit'] : [])]
@@ -1541,7 +1560,7 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId, back = false, noArrive
   // "The Delmonico rooms were", not "was".
   // (With the planner on, only where the rooms are what the sentence is about: "From there to the
   // Delmonico rooms was a long walk" is a walk.)
-  const were = (t: string) => (/\brooms$|^the flats\b/i.test(dest) ? t.replace(new RegExp(`${PLAN.ops ? '^' : ''}(${esc(cap(dest))}|${esc(dest)}) was\\b`), '$1 were') : t);
+  const were = (t: string) => (namePlural(dest) ? t.replace(new RegExp(`${PLAN.ops ? '^' : ''}(${esc(cap(dest))}|${esc(dest)}) was\\b`), '$1 were') : t);
   frame = were(frame);
   // A later walk may pay the street's role off; the first sets it up.
   let line: string | null = null;
@@ -1583,6 +1602,21 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId, back = false, noArrive
  * Arriving.
  * ------------------------------------------------------------------ */
 
+/**
+ * Round 7, B8: whether a place's name is plural, by its head noun: "Mrs. Nagy’s rooms on East Fourth
+ * Street", "the Delmonico rooms", "the flats over Lipsky’s", "the wings at the Lyric"; never a name in
+ * the possessive ("Moe’s", "Rafferty’s").
+ */
+export function namePlural(name: string): boolean {
+  const head = (name.split(/,| (?:on|over|behind|in|at|under|upstairs|past|through|among|down|by|near|with|where|which|of|open|four|six) /)[0] ?? name).trim().split(/\s+/).pop() ?? '';
+  return /[a-z]s$/.test(head) && !/(?:ss|us|’s|'s)$/.test(head);
+}
+
+/** A name in a slot that says its number: `{nameOne}` for one, `{nameMany}` for more (round 7, B8). */
+function numbered(key: string, name: string, said = name): Record<string, string> {
+  return { [`${key}${namePlural(name) ? 'Many' : 'One'}`]: said };
+}
+
 export function writeArrive(w: Writer, place: PlaceId): void {
   const { c } = w;
   const first = !w.before.visited.includes(place);
@@ -1600,7 +1634,10 @@ export function writeArrive(w: Writer, place: PlaceId): void {
   if (callback) w.hand.hold(true);
   // `{name}` is the whole name ("the Odessa, a café where the actors eat after the show"); as the
   // subject of a sentence it takes the closing comma its aside needs (`{nameSubj}`).
-  const slots = withCaps({ name: pl.name, nameSubj: pl.name.includes(',') ? `${pl.name},` : pl.name, place: pl.short, street: pl.street });
+  // Round 7, B8: a card whose verb says how many takes a name of that number: "{NameOne} was a tall thin
+  // house", "{NameMany} were up a steep stair" ("Mrs. Nagy’s rooms on East Fourth Street was…").
+  const subj = pl.name.includes(',') ? `${pl.name},` : pl.name;
+  const slots = withCaps({ name: pl.name, nameSubj: subj, ...numbered('name', pl.name, subj), place: pl.short, ...numbered('place', pl.short), street: pl.street });
   // docs/59 item 4: one arrival a visit. The arrival is dealt first; where it walks in itself ("I went
   // down to Moskowitz’s…"), the walk doesn't arrive too ("…round the corner, and there it was").
   const arrive0 = first ? (w.hand.draw('arrive', { kind, key: pl.key }, slots, { need: true }) ?? `I went to ${pl.name}.`) : (w.hand.draw('return', {}, slots, { widen: true }) ?? `Back at ${pl.short}.`);
@@ -2266,16 +2303,24 @@ export function writeSearch(w: Writer, findId: string): void {
         : kind === 'poison'
           ? `Whoever gave it to ${vict.short} had been at ${there} first, to get it.`
           : kind === 'party'
-            ? `Whoever it was had been at ${cl}’s ${party?.occasion ?? 'party'} at ${there} first.`
+            ? c.givens.access.length > 0
+              ? `Whoever it was knew the door would be unlocked: one of ${cl}’s guests at the ${party?.occasion ?? 'party'} at ${there}, or the lodger it was left unlocked for.`
+              : `Whoever it was had been at ${cl}’s ${party?.occasion ?? 'party'} at ${there} first.`
             : kind === 'told'
               ? `Whoever it was had heard ${cl} at ${there} first.`
               : `Whoever let themselves into ${cl}’s flat had been at ${there} first, for the key.`;
-  const props: Prop[] = [{ k: 'MEANS', how: 'first', place: at }];
-  const say: SaySpec = { shape: 'WINDOW-MEANS', flags: ['find', 'first', kind], args: { origin: { t: 'place', id: at }, victim: { t: 'person', id: c.crime.victim }, client: { t: 'person', id: c.client }, occasion: party?.occasion ?? '', means: c.means.name.replace(/^(?:a|an|the) /, '') } };
+  // Round 7, B6: a windowed murder's means had to be had before the earliest hour it could have
+  // happened, and the page that says where it was kept says so, plainly: "Whoever stabbed Mulcahy had
+  // been at Kowalski’s for the knife before nine, the earliest it could have happened."
+  const by = meansBy(c);
+  const bodyBy = by === undefined ? body : body.replace(/ first(?:, (?:for the gun|to take it|to get it))?\.$/, ` for ${kind === 'gun' ? 'the gun' : kind === 'blade' ? 'the knife' : 'it'} before ${hourWord(by)}, the earliest it could have happened.`);
+  const props: Prop[] = [{ k: 'MEANS', how: 'first', place: at, ...(by !== undefined ? { before: by } : {}) }];
+  // (Round 7, B5: the lodger knew it too: "one of his guests" alone would rule her out.)
+  const say: SaySpec = { shape: 'WINDOW-MEANS', flags: ['find', 'first', kind, ...(by !== undefined ? ['before'] : []), ...(kind === 'party' && c.givens.access.length > 0 ? ['resident'] : [])], args: { origin: { t: 'place', id: at }, victim: { t: 'person', id: c.crime.victim }, client: { t: 'person', id: c.client }, occasion: party?.occasion ?? '', means: c.means.name.replace(/^(?:a|an|the) /, ''), ...(by !== undefined ? { before: { t: 'hour', h: by } } : {}) } };
   const refs = isMurder(c) ? ['givens:found'] : ['givens:means'];
   void origin;
   // (docs/56 A19: the search's reasoning says itself, without a "So" in front of it.)
-  think(w, q, thoughtOnly([{ text: body, props, say }], refs, { places: [at] }));
+  think(w, q, thoughtOnly([{ text: bodyBy, props, say }], refs, { places: [at] }));
   closeWith(w, undefined, 'search-close', {}, {});
   lay(w, 'search');
 }
@@ -2525,10 +2570,11 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
     const crack: SaySpec = {
       shape: 'REACTION',
       flags: ['crack-said', k.secondLie?.place ? (personOf(c, p)?.home === lie?.claim ? 'second-home' : 'second-away') : 'straight'],
-      args: { person: { t: 'person', id: p }, holder, why: crackWhy(c, p), ...(k.secondLie?.place ? { claimed: { t: 'place', id: lie?.claim ?? '' }, place: { t: 'place', id: k.secondLie.place } } : {}) },
+      // (Round 7, B8: the thing by its own pronoun, a pet "her" or "him": "I took her. She’s with Pardo.")
+      args: { person: { t: 'person', id: p }, thing: { t: 'person', id: c.crime.victim }, holder, why: crackWhy(c, p), ...(k.secondLie?.place ? { claimed: { t: 'place', id: lie?.claim ?? '' }, place: { t: 'place', id: k.secondLie.place } } : {}) },
       manner: mannerOf(c, p),
     };
-    react(w, p, how ?? '', sayFirst(c, crack) ?? `${first}“All right. I took it. It’s with ${holder}. ${crackWhy(c, p)}”`, `crack:${p}@${h}`, 'narrows', sit(w, how), [
+    react(w, p, how ?? '', sayFirst(c, crack) ?? `${first}“All right. I took ${pronOf(c, c.crime.victim).him}. ${pronOf(c, c.crime.victim).He}’s with ${holder}. ${crackWhy(c, p)}”`, `crack:${p}@${h}`, 'narrows', sit(w, how), [
       ...(k.secondLie?.place ? [{ k: 'SECOND', person: p, place: k.secondLie.place } as Prop] : []),
       { k: 'CRACK', person: p, to: 'other:fence', place: c.crime.whereNow?.place ?? '' },
       { k: 'MOTIVE', person: p },
@@ -2796,7 +2842,11 @@ function recapClausesMarked(d: BoardDeal, run: BoardRun): Clause[] {
   // (docs/60 item 4: lean, the turn is the hour, who's accounted for, whose story doesn't hold and what's
   // open: who could have got at the means is the pages' own, not the recap's.)
   if (c.tier >= 1 && (s.accessYes.size > 0 || s.accessNo.size > 0) && (!lean() || !isMurder(c))) {
-    const yes = named.filter((p) => s.accessYes.has(p)).map((p) => nameOf(c, p));
+    // (Round 7, B5: at a party, who knew because they were at the table; the lodger the door was left
+    // unlocked for knew it without a seat, as the office said, and isn't put at the supper.)
+    const party0 = c.givens.lines?.find((g) => g.kind === 'party')?.vars;
+    const seated = (p: PersonId) => !(party0 && c.givens.access.includes(p));
+    const yes = named.filter((p) => s.accessYes.has(p) && seated(p)).map((p) => nameOf(c, p));
     const no = named.filter((p) => s.accessNo.has(p)).map((p) => nameOf(c, p));
     const at = placeName(c, c.means.origin);
     const party = c.givens.lines?.find((g) => g.kind === 'party')?.vars;
@@ -2817,7 +2867,7 @@ function recapClausesMarked(d: BoardDeal, run: BoardRun): Clause[] {
       if (yes.length) bits.push(`${andList(yes)} had been in at ${at} earlier, when the spare key was there for the taking`);
       if (no.length) bits.push(`${andList(no)} hadn’t`);
     }
-    const yesIds = named.filter((p) => s.accessYes.has(p));
+    const yesIds = named.filter((p) => s.accessYes.has(p) && seated(p));
     const noIds = named.filter((p) => s.accessNo.has(p));
     const kind = isMurder(c) ? 'murder' : party ? 'party' : told ? 'told' : 'spare';
     if (bits.length)
@@ -2825,7 +2875,7 @@ function recapClausesMarked(d: BoardDeal, run: BoardRun): Clause[] {
         key: 'access',
         text: `${cap(bits.join('; '))}.`,
         hours: [],
-        people: named.filter((p) => s.accessYes.has(p) || s.accessNo.has(p)),
+        people: named.filter((p) => (s.accessYes.has(p) && seated(p)) || s.accessNo.has(p)),
         places: [c.means.origin],
         props: [...yesIds.map((p) => ({ k: 'ACCESS', person: p, had: true }) as Prop), ...noIds.map((p) => ({ k: 'ACCESS', person: p, had: false }) as Prop)],
         say: {

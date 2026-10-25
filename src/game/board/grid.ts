@@ -10,7 +10,7 @@
  */
 
 import type { CellMark } from './types.js';
-import { linesHeld, lineShown, accountOf, solveRun, knownPeople, knownPlaces, faceUnmatched } from './knowledge.js';
+import { linesHeld, lineShown, accountOf, agreesWith, collisionsOf, solveRun, knownPeople, knownPlaces, faceUnmatched, listOf, meansLate } from './knowledge.js';
 import { cap, hourWord, isMurder, nameOf, personOf, placeName, suspectsOf, type BoardCase, type BoardRun, type Hour, type PersonId, type PlaceId } from './model.js';
 import { sourceName } from './stars.js';
 import { meansKnew } from './bones/phrase.js';
@@ -103,6 +103,8 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
     ...c.people.filter((p) => p.role === 'company' && known.has(p.id)).map((p) => p.id),
   ];
   const placed = s.placed;
+  // (Round 7, B3: what each clash rests on, its breakers, as the collision has them.)
+  const clashes = collisionsOf(c, run, undefined, { all: true });
   /** A held line from somebody else that puts them at that place at that hour: a second source. */
   const support = (id: PersonId, h: Hour, place: PlaceId) => lines.find((l) => l.hour === h && l.place === place && l.speaker !== id && l.about.includes(id) && l.kind !== 'find');
   const rows: BoardRow[] = ids.map((id) => {
@@ -132,10 +134,32 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
         if (k2.secondLie?.place) cell.second = k2.secondLie.place;
       }
       // The lines behind it.
+      // (Round 7, B3: under a clash, what it clashes with: their own word, what broke it, and what came
+      // of it; never a line that only says what they said, as a pair's partner does. Where the break
+      // rests on a face, the player's own mark that put a name to it, too.)
+      const col = cell.collision ? clashes.find((x) => x.person === id && x.hour === h) : undefined;
       for (const l of lines) {
         if (l.hour !== h) continue;
+        if (col && l.speaker !== id && agreesWith(c, id, h as Hour, l) && !col.breakers.some((b) => b.id === l.id && !agreesWith(c, id, h as Hour, b))) continue;
         if (l.kind === 'claim' && l.speaker === id) cell.lines.push(lineShown(c, run, l));
         else if (l.about.includes(id) || (cell.says && l.place === cell.says && (l.kind === 'list' || l.kind === 'claim'))) cell.lines.push(lineShown(c, run, l));
+      }
+      if (col) {
+        // (What touches the claim, them or the place they named, or a face that was theirs to match: not
+        // every line of the answer the break rests on, a passer-by's own evening beside her remark.)
+        const faceOf = (b: (typeof col.breakers)[number]) => b.kind === 'list' && (listOf(c, b.speaker as PersonId)?.entries[h as Hour] ?? []).some((e) => 'look' in e);
+        const breaking = col.breakers.filter((b) => !agreesWith(c, id, h as Hour, b) && (b.about.includes(id) || b.place === col.claim.place || faceOf(b)));
+        const at = cell.lines.findIndex((t) => t === lineShown(c, run, col.claim)) + 1;
+        const extra = breaking.map((b) => lineShown(c, run, b)).filter((t) => !cell.lines.includes(t));
+        cell.lines.splice(at, 0, ...extra);
+        for (const b of breaking) {
+          const looks = b.kind === 'list' ? (listOf(c, b.speaker as PersonId)?.entries[h as Hour] ?? []).flatMap((e) => ('look' in e ? [e.look] : [])) : [];
+          if (looks.length === 0 || b.place === undefined) continue;
+          for (const q of c.people) {
+            const m = run.marks[q.id]?.[String(h)];
+            if (m?.at === b.place) cell.lines.push(`Your guess: ${nameOf(c, q.id)} at ${placeName(c, b.place)} at ${hourWord(h as Hour)}.`);
+          }
+        }
       }
       if (run.marks[id]?.[String(h)]) cell.pencil = run.marks[id]?.[String(h)];
       cells[h] = cell;
@@ -156,7 +180,9 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
         meansWhy = `${nameOf(c, id)} was at ${placeName(c, c.means.origin)} while it was there.`;
       } else if (meansKnown && no) {
         means = 'no';
-        meansWhy = `${nameOf(c, id)} was never at ${placeName(c, c.means.origin)} while it was there.`;
+        // (Round 7, B6: there, but only once it had to be gone, says so.)
+        const late = meansLate(c, run, id);
+        meansWhy = late !== undefined ? `${nameOf(c, id)} didn’t come to ${placeName(c, c.means.origin)} till ${hourWord(late)}, too late for it.` : `${nameOf(c, id)} was never at ${placeName(c, c.means.origin)} while it was there.`;
       }
     }
     const isVictim = id === c.crime.victim;

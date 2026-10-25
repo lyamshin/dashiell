@@ -27,10 +27,12 @@ import { closure } from '../../gen/board/pointers.js';
 import { techniquesUpTo } from '../../gen/board/tiers.js';
 import { questionsOf, solve } from '../../gen/board/solver.js';
 import { Hand } from './decks.js';
-import { accountOf, collisionsOf, confrontationOf, judgeLine, lineShown, linesHeld, listOf, saidOnPage, solveHeld, solveRun, type Line } from './knowledge.js';
+import { clockWords, minutesAfter, NIGHT_MINUTES } from './clock.js';
+import { accountOf, agreesWith, collisionsOf, confrontationOf, judgeLine, lineShown, linesHeld, listOf, saidOnPage, solveHeld, solveRun, type Line } from './knowledge.js';
 import type { Lie } from '../../gen/board/types.js';
 import {
   andList,
+  budgetCalls,
   cap,
   clientOf,
   hourWord,
@@ -134,9 +136,17 @@ export function pointsText(points: number): string {
 // docs/64: plain words: what proves it, never "what breaks their story" or "the line".
 export const BREAKS_LABEL = 'What proves they lied';
 export const WHERE_BY_LABEL = 'What proves where it is';
-/** docs/61: the other broken story, as the form asks it (plain: it's an instruction), and as the verdict says it. */
-export const OTHER_QUESTION = 'Someone else lied too. Who, and what clears them?';
-export const OTHER_LABEL = 'Who else lied';
+/** Round 7, B8: a pet is "him" or "her" on the form ("Where she is now"), so what proves it is too. */
+export function whereByLabel(d: BoardDeal): string {
+  return d.kase.type === 'lost-pet' ? `What proves where ${pronOf(d.kase, d.kase.crime.victim).he} is` : WHERE_BY_LABEL;
+}
+/**
+ * docs/61: the other broken story, as the form asks it, and as the verdict says it. Round 7, B9 (the
+ * designer): asked as a question, never as news ("Someone else lied too" told the player a second liar
+ * existed before they'd found one), on every night from Poached up, "Nobody else" a real answer.
+ */
+export const OTHER_QUESTION = 'Did anyone else lie? If so, who, and what clears them?';
+export const OTHER_LABEL = 'Did anyone else lie?';
 export const CLEARED_LABEL = 'What clears them';
 /** The form's answer for nobody else. */
 export const NOBODY = 'nobody';
@@ -152,9 +162,13 @@ export function otherLie(d: BoardDeal): Lie | null {
   return c.lies.find((l) => l.person !== c.crime.culprit && l.hour === c.crime.hour) ?? c.lies.find((l) => l.person !== c.crime.culprit) ?? null;
 }
 
-/** Whether the report asks who else lied: only on a night with an innocent liar. */
+/**
+ * Whether the report asks whether anyone else lied: round 7, B9, on every night from Poached up, by
+ * tier, never by whether the night has an innocent liar (asked only where there was one, the question
+ * itself said there was). Where nobody else lied, "Nobody else" is right.
+ */
 export function asksOther(d: BoardDeal): boolean {
-  return otherLie(d) !== null;
+  return d.kase.tier >= 2;
 }
 
 export interface FieldSpec {
@@ -354,7 +368,8 @@ function crackHeld(d: BoardDeal, run: Pick<BoardRun, 'asked'> & Partial<Pick<Boa
   const k = c.confrontations.find((x) => x.response === 'crack' && x.gives?.whereNow && run.asked.includes(`confront:${x.person}@${x.hour}`));
   if (!k) return null;
   const page = saidOnPage(run, `crack:${k.person}@${k.hour}`);
-  const onPage = page ? /“[^”]*took it[^”]*”?/.exec(page)?.[0] : undefined;
+  // (Round 7, B8: a pet is "her" or "him" in the crack too: "I took her.")
+  const onPage = page ? /“[^”]*\btook (?:it|her|him|them)\b[^”]*”?/.exec(page)?.[0] : undefined;
   const said = onPage ? (onPage.endsWith('”') ? onPage : `${onPage}”`) : (/“All right\. I took it\.[^”]*”/.exec(k.text)?.[0] ?? '“All right. I took it.”');
   // (Round 6, P11, docs/64: never "put to it".)
   return { value: `crack:${k.person}@${k.hour}`, label: `${nameOf(c, k.person)}, when I confronted ${pronOf(c, k.person).him}: ${said}` };
@@ -424,6 +439,16 @@ export function trueBreakerText(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'pu
   const mine = run ? heldBreakers(d, run)[0] : undefined;
   if (mine && run) return lineShown(d.kase, run, mine);
   return heldBreakers(d, pathRun(d))[0]?.text ?? 'nothing on the night’s path';
+}
+
+/** Round 7, B3: a list line's faces, said with whose they were: " The one in a fur collar was Mosley." */
+function faceOwned(d: BoardDeal, l: Line): string {
+  if (l.kind !== 'list' || l.hour === undefined) return '';
+  const looks = (listOf(d.kase, l.speaker as PersonId)?.entries[l.hour as Hour] ?? []).flatMap((e) => ('look' in e ? [e.look] : []));
+  return looks.map((look) => {
+    const who = d.kase.people.find((x) => x.look === look);
+    return who ? ` The one ${look} was ${nameOf(d.kase, who.id)}.` : '';
+  }).join('');
 }
 
 /** The line that put the lost thing where it is: the player's own if they held one, else the designed path's. */
@@ -500,6 +525,8 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
   const other = otherLie(d);
   for (const f of scored.slice(1)) {
     fields.push(f);
+    // (Round 7, B9: the question as the verdict asks it, whether or not anybody else lied.)
+    if (f.key === 'other') f.label = OTHER_LABEL;
     if (f.key === 'other' && other) {
       // docs/61: who else lied, and the line that clears them. Its point needs both; a hunch, the
       // wrong line or the wrong name costs it.
@@ -517,7 +544,7 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
     // Where it is now: which line put it there. A hunch or the wrong line halves where.
     const ok = !!report.whereBy && heldWhereBy(d, run).some((o) => o.value === report.whereBy);
     if (f.correct && !ok) f.half = true;
-    fields.push({ key: 'whereBy', label: WHERE_BY_LABEL, given: lineLabel(d, run, report.whereBy, whereByOptions(d, run)), truth: trueWhereByText(d, run), correct: f.correct && ok, answered: true, line: true });
+    fields.push({ key: 'whereBy', label: whereByLabel(d), given: lineLabel(d, run, report.whereBy, whereByOptions(d, run)), truth: trueWhereByText(d, run), correct: f.correct && ok, answered: true, line: true });
   }
   const points = scored.reduce((n, f) => n + (f.correct ? (f.half ? 0.5 : 1) : 0), 0);
   const asked = scored.length;
@@ -530,12 +557,15 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
     const tail = report.other !== other.person ? '' : report.cleared ? `: what you picked doesn’t clear ${him}` : `: a hunch doesn’t clear ${him}`;
     plain.push(`You had the right name, but you didn’t rule out ${nameOf(d.kase, other.person)}${tail}.`);
   }
+  // (Round 7, B9: a night where only one story broke: somebody named as lying too had told the truth.)
+  if (!other && report.other && report.other !== NOBODY && scored.some((f) => f.key === 'other')) plain.push(`Nobody else lied: ${nameOf(d.kase, report.other)} had told the truth.`);
   if (scored.some((f) => f.key === 'where' && f.half)) plain.push('Where it is now was right, but not on what showed it: half credit on where.');
   // Round 6, P11: what's scored, plainly, and what counts with it ("4 out of 4: who (and what proves
   // they lied), when, where (and what proves it) and why." read like a form to every tester).
-  const what = scored.map((f) => (f.key === 'other' ? 'who else lied' : f.key));
+  // (Round 7, B9: "whether anyone else lied", and what clears them only where somebody else did.)
+  const what = scored.map((f) => (f.key === 'other' ? 'whether anyone else lied' : f.key));
   const proofs = scored.flatMap((f) => (f.key === 'who' ? ['who'] : f.key === 'where' ? ['where'] : []));
-  const clears = scored.some((f) => f.key === 'other');
+  const clears = scored.some((f) => f.key === 'other') && !!other;
   const scoreLine = `${pointsText(points)} out of ${asked}: ${andList(what)}, with the proof for ${proofs.map((x, i) => (i === 0 ? x : `for ${x}`)).join(' and ')}${clears ? ', and what clears the other liar' : ''}.`;
   return {
     points,
@@ -581,7 +611,10 @@ function closingLines(d: BoardDeal, run: BoardRun, outcome: Outcome, whereRight 
   const hand = new Hand(run.seed * 31 + 7, 999, run.spent, run.seen);
   const cl = clientOf(c);
   // (docs/62 item 10: the client by name once, then the pronoun: "I took Steinbach through it over coffee, and she listened".)
-  const slots = withCaps({ client: cl.short, cHis: pronOf(c, c.client).his, cHe: pronOf(c, c.client).he });
+  // (Round 7, B8: an ending that names a time names the clock's: "I closed the case at {closedAt}", said
+  // from five, when the city is waking up, and "Eight o’clock came" only when it had.)
+  const closedMin = minutesAfter(run.used, budgetCalls(d));
+  const slots = withCaps({ client: cl.short, cHis: pronOf(c, c.client).his, cHe: pronOf(c, c.client).he, ...(closedMin >= 300 ? { closedAt: clockWords(closedMin) } : {}), ...(closedMin >= NIGHT_MINUTES ? { eightOclock: 'eight o’clock' } : {}) });
   const type = isMurder(c) ? 'murder' : 'small';
   const out: string[] = [];
   const end = hand.draw('ending', { outcome, type }, slots, { widen: true });
@@ -778,10 +811,24 @@ function breakerOf(d: BoardDeal): string {
   const passed = path.find((l) => l.kind === 'remark' && l.speaker);
   const m = passed ? /\bI passed (?:(?:Mrs\.|Miss|Dr\.) )?\S+ on (.+?), (.+?)\.$/.exec(passed.text.replace(/”$/, '')) : null;
   if (passed?.speaker && m) return `But ${nameOf(c, passed.speaker)} had passed ${pr.him} on ${m[1]} at ${hourWord(lie.hour)}, ${m[2]}.`;
+  // Round 7, B3: a pair's story is broken by the face the partner was seen in, never by the partner,
+  // who said the same: "Mosley said the same, to cover for her, but Bledsoe, the head waiter, had only
+  // somebody in a fur collar at Moskowitz’s at nine, and that was Mosley."
+  const partner = lie.kind === 'pair' ? c.lies.find((l) => l.kind === 'pair' && l.person !== p && l.hour === lie.hour)?.person : undefined;
+  const look = partner ? personOf(c, partner)?.look : undefined;
+  const faced = look ? path.find((l) => l.kind === 'list' && (listOf(c, l.speaker as PersonId)?.entries[lie.hour] ?? []).some((e) => 'look' in e && e.look === look)) : undefined;
+  if (partner && look && faced?.speaker) {
+    const W = nameOf(c, faced.speaker);
+    const role = introOf(c, faced.speaker);
+    const only = (listOf(c, faced.speaker)?.entries[lie.hour] ?? []).length === 1 ? 'only ' : '';
+    return `${nameOf(c, partner)} said the same, to cover for ${pr.him}, but ${W}${role ? `, ${role},` : ''} had seen ${only}somebody ${look} at ${placeName(c, faced.place ?? '')} at ${hourWord(lie.hour)}, and that was ${nameOf(c, partner)}.`;
+  }
   const T = techniquesUpTo(c.tier);
   const qs = questionsOf(c).map((q) => q.id).filter((q) => !q.startsWith('confront:'));
   const sets = minimalSets(qs, [], (held) => solve(c, held, { techniques: T }).status.get(key(lie.person, lie.hour))?.s === 'broken', 3, true);
-  const first = sets[0]?.filter((q) => q !== `account:${lie.person}`) ?? [];
+  // (Round 7, B3: whoever only said what they said isn't somebody who "said otherwise".)
+  const agrees = (q: string) => linesHeld(c, { asked: [q], puts: [] }).some((l) => l.hour === lie.hour && agreesWith(c, p, lie.hour, l));
+  const first = sets[0]?.filter((q) => q !== `account:${lie.person}` && !agrees(q)) ?? [];
   if (first.length === 0) return 'Nothing true agreed with it.';
   const names = first.map((q) => questionById(c, q)).map((q) => (q?.kind === 'list' || q?.kind === 'account' ? nameOf(c, q.subject) : 'what I found in the room'));
   return `${cap(andList(names))} said otherwise.`;
@@ -825,7 +872,9 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
   const lie = c.lies.find((l) => l.person === culprit && l.hour === c.crime.hour) ?? c.lies.find((l) => l.person === culprit);
   out.push('HOW THE LIE CAME OUT');
   if (lie) out.push(`${saidWas(c, culprit, lie.claim, lie.hour)}.`);
-  out.push(`  What gave it away: ${trueBreakerText(d, run)}`);
+  // (Round 7, B3: a face that gave it away says whose it was: the curtain is where the truth is told.)
+  const gave = (run ? heldBreakers(d, run)[0] : undefined) ?? heldBreakers(d, pathRun(d))[0];
+  out.push(`  What gave it away: ${trueBreakerText(d, run)}${gave ? faceOwned(d, gave) : ''}`);
   if (filed && run) {
     const shown = (id: string) => {
       const l = linesHeld(c, run).find((x) => x.id === id);
@@ -837,13 +886,21 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
   }
   // docs/61: the other broken story, and what cleared them, beside what was filed.
   const other = otherLie(d);
+  // (Round 7, B9: asked on every night from Poached up; where nobody else lied, the curtain says so.)
+  if (!other && asksOther(d)) {
+    out.push('');
+    out.push('DID ANYONE ELSE LIE?');
+    out.push('Nobody else.');
+    if (filed && run) out.push(`  You picked: ${filed.other && filed.other !== NOBODY ? `${nameOf(c, filed.other)}  ✗` : filed.other === NOBODY ? 'nobody else.  ✓' : 'nobody.  ✗'}`);
+  }
   if (other) {
     const p = other.person;
     out.push('');
     out.push('WHO ELSE LIED, AND WHAT CLEARED THEM');
     out.push(`${saidWas(c, p, other.claim, other.hour)}.`);
     const lead = `  What cleared ${pronOf(c, p).him}:`;
-    out.push(`${lead} ${trueClearerText(d, run)}`);
+    const cleared = (run ? heldClearers(d, run)[0] : undefined) ?? heldClearers(d, pathRun(d))[0];
+    out.push(`${lead} ${trueClearerText(d, run)}${cleared ? faceOwned(d, cleared) : ''}`);
     if (filed && run) {
       const named = filed.other && filed.other !== NOBODY ? nameOf(c, filed.other) : null;
       const held = filed.cleared ? linesHeld(c, run).find((l) => l.id === filed.cleared) : undefined;

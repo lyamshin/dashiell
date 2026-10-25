@@ -173,17 +173,17 @@ describe('docs/61: the play CLI files it', () => {
     const truth = truthReport(d, o.run);
     const other = d.kase.people.find((x) => x.id === truth.other)?.short as string;
     const listed = runPlay(['report', other, '--save', save], io).out;
-    expect(listed.replace(/\s+/g, ' ')).toContain(`If ${other} is the other liar, give “cleared” as a number from this list too.`);
+    expect(listed.replace(/\s+/g, ' ')).toContain(`If you say ${other} lied too, give “cleared” as a number from this list too.`);
     const bad = runPlay(['file', `who=${d.kase.crime.culprit}; cleared=1`, '--save', save], io);
     expect(bad.code).toBe(1);
-    expect(bad.out).toContain('Name who else lied first');
+    expect(bad.out).toContain('Name them first (other=…)');
     // Filing a wrong line under the right name: the point goes, and the verdict says why.
     const lineIds = clearOptions(d, o.run, truth.other).map((x) => x.value);
     const wrong = lineIds.findIndex((id) => !heldClearers(d, o.run).some((l) => l.id === id)) + 1;
     expect(wrong).toBeGreaterThan(0);
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=hunch; other=${other}; cleared=${wrong}; when=${d.kase.crime.hour}; how=${truth.how}; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
-    expect(filed.out).toMatch(/Who else lied: .+ ✗ — the right name, but not what\s+cleared (him|her)/);
+    expect(filed.out).toMatch(/Did\s+anyone\s+else\s+lie\?\s+[\s\S]+?✗\s+—\s+the\s+right\s+name,\s+but\s+not\s+what\s+cleared\s+(him|her)/);
     expect(filed.out).toMatch(/You had the right name, but you didn’t rule out \w+: what you\s+picked\s+doesn’t\s+clear\s+(him|her)\./);
     expect(JSON.parse(files.get(save) as string).events.at(-1).file.other).toBe(truth.other);
 
@@ -191,7 +191,7 @@ describe('docs/61: the play CLI files it', () => {
     expect(runPlay(['new', '--seed', '2', '--tier', '0', '--save', raw, '--no-teach'], io).code).toBe(0);
     const no = runPlay(['file', 'who=1; cleared=1', '--save', raw], io);
     expect(no.code).toBe(1);
-    expect(no.out).toContain('doesn’t ask who else lied');
+    expect(no.out).toContain('doesn’t ask whether anyone else lied');
     expect(runPlay(['report', '--save', raw], io).out).not.toContain('Somebody else’s story');
   });
 });

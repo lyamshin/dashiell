@@ -71,7 +71,7 @@ describe('round 5, U1: picking somebody is free; each question is a call', () =>
 describe('round 5, U2 and U6: the report says what to type, and what a blank is, once', () => {
   it('“cleared” is a number from the same list', () => {
     const out = cli(HB8)('report', 'Grasso').replace(/\s+/g, ' ');
-    expect(out).toContain('If Grasso is the other liar, give “cleared” as a number from this list too.');
+    expect(out).toContain('If you say Grasso lied too, give “cleared” as a number from this list too.');
     expect(out).not.toMatch(/counts down/);
   });
 

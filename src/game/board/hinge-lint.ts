@@ -79,13 +79,59 @@
  * - **retired** (P12): the witness lines the testers stopped on: "nobody left out because…", "take it
  *   untidy", "kept my hand off the rail", "Ask me where I was at ten again in the morning".
  *
+ * docs/68, round 7 (wrong facts: a line that says what the board doesn't have):
+ *
+ * - **moved** (B2): a telling by change that says somebody came in or left where the board has them
+ *   stay, a face and its owner's name at one place counted as one person ("Somebody in a fur collar …
+ *   was gone by ten. Mosley came in at ten.").
+ * - **agrees** (B3, `nightIssues`): the curtain's "What gave it away", the story's "said otherwise" or
+ *   a clash's list citing a line that says what the liar said, as a pair's partner does.
+ * - **star** (B4, B5): a star's reason, or a fastest-solve step, asking who somebody passed outside
+ *   Medium, taking a walk "over" as known, or putting somebody at the supper who wasn't at the table.
+ * - **party** (B5): the narration putting somebody at the supper who wasn't, or "one of his guests"
+ *   where the lodger knew the way in too.
+ * - **deadline** (B6): a windowed murder's find not saying the hour the means had to be had by, or a
+ *   "hadn't" for somebody there only after it, without why.
+ * - **clock**, **pet-it**, **gossip**, **number**, **both** (B8): the close at a time the clock didn't
+ *   show; a named pet "it" in the crack; the neighbors' word on what the client was party to; a plural
+ *   place with "was"; "had all been" of two.
+ *
  * Pure: it reads the night and returns what it found.
  */
 
 import type { Page } from './types.js';
 import type { BoardDeal, BoardRun } from './model.js';
-import { budgetCalls, clientOf, isMurder, victimOf, type BoardCase } from './model.js';
-import { minutesAfter, usedByPage } from './clock.js';
+import { OFFICE, budgetCalls, clientOf, hourWord, isMurder, victimOf, type BoardCase, type Hour } from './model.js';
+import { clockWords, minutesAfter, usedByPage } from './clock.js';
+import type { Prop } from './bones/types.js';
+import { voicingById } from './bones/voice.js';
+import { accountOf, agreesWith, linesHeld, lineShown, listOf, meansBy, meansLate, shutAt } from './knowledge.js';
+import { pageStars } from './choices.js';
+import { hintStep, routeSteps } from './stars.js';
+import { namePlural } from './pages.js';
+import { boardGrid } from './grid.js';
+import { curtainOfBoard, heldBreakers, scoreBoard, storyOfBoard, truthReport } from './report.js';
+import { officeLines } from './text.js';
+
+type P<K extends Prop['k']> = Extract<Prop, { k: K }>;
+
+/**
+ * docs/68: what the round-7 rules read the night with, by default this tree's own. A measure of another
+ * tree (main's nights, read with this tree's lint) hands that tree's in, so its stars, its curtain and
+ * its grid are what's read.
+ */
+export interface LintEnv {
+  pageStars?: typeof pageStars;
+  routeSteps?: typeof routeSteps;
+  hintStep?: typeof hintStep;
+  heldBreakers?: typeof heldBreakers;
+  storyOfBoard?: typeof storyOfBoard;
+  boardGrid?: typeof boardGrid;
+  scoreBoard?: typeof scoreBoard;
+  truthReport?: typeof truthReport;
+  officeLines?: typeof officeLines;
+  curtainOfBoard?: typeof curtainOfBoard;
+}
 import { sentencesOf } from './plan/sentences.js';
 import { glossedIn } from './gloss.js';
 import { maskPlaces, narrationOf } from './plan/measure.js';
@@ -125,9 +171,19 @@ export type HingeRule =
   | 'log'
   | 'papers'
   | 'staging'
-  | 'retired';
+  | 'retired'
+  | 'moved'
+  | 'agrees'
+  | 'star'
+  | 'party'
+  | 'deadline'
+  | 'clock'
+  | 'pet-it'
+  | 'gossip'
+  | 'number'
+  | 'both';
 
-export const HINGE_RULES: HingeRule[] = ['said-place', 'gloss', 'bare', 'put-lead', 'put-speech', 'thought-who', 'orphan', 'shift', 'telling', 'form', 'epilogue', 'dose', 'unwatched', 'pointer', 'connector', 'tail', 'locative', 'reason', 'vocab', 'unsettled', 'hedge', 'restated', 'find', 'presumes', 'newcomer', 'office', 'alone', 'walk', 'log', 'papers', 'staging', 'retired'];
+export const HINGE_RULES: HingeRule[] = ['said-place', 'gloss', 'bare', 'put-lead', 'put-speech', 'thought-who', 'orphan', 'shift', 'telling', 'form', 'epilogue', 'dose', 'unwatched', 'pointer', 'connector', 'tail', 'locative', 'reason', 'vocab', 'unsettled', 'hedge', 'restated', 'find', 'presumes', 'newcomer', 'office', 'alone', 'walk', 'log', 'papers', 'staging', 'retired', 'moved', 'agrees', 'star', 'party', 'deadline', 'clock', 'pet-it', 'gossip', 'number', 'both'];
 
 export interface HingeIssue {
   page: number;
@@ -737,10 +793,317 @@ function retired(run: BoardRun): HingeIssue[] {
 }
 
 /** Every hinge rule over a night (the verdict's close is `epilogueIssues`, read by the caller with the report). */
-export function hingeIssues(d: BoardDeal, run: BoardRun): HingeIssue[] {
+/* ------------------------------------------------------------------ *
+ * docs/68, round 7: wrong facts. Each is a line that said something the board doesn't have.
+ * ------------------------------------------------------------------ */
+
+/** The run as it stood after page `i`: what was asked and where I'd been, for the stars a page offered. */
+function runAt(run: BoardRun, i: number): BoardRun {
+  const asked: string[] = [];
+  const visited: string[] = [];
+  for (let k = 0; k <= i; k++) {
+    const pg = run.log[k];
+    const b = pg?.board;
+    if (!pg || !b) continue;
+    if (b.job === 'arrive' && pg.at && pg.at !== OFFICE && !visited.includes(pg.at)) visited.push(pg.at);
+    if (b.q && (b.job === 'account' || b.job === 'list' || b.job === 'motive' || b.job === 'search') && !asked.includes(b.q)) asked.push(b.q);
+    if (b.q && b.job === 'confront') {
+      const put = run.puts.find((x) => x.page === k);
+      if (put?.landed && !put.again && !asked.includes(b.q)) asked.push(b.q);
+    }
+  }
+  const last = run.log[i] as Page;
+  return { ...run, asked, visited, at: last.at ?? run.at, log: run.log.slice(0, i + 1), puts: run.puts.filter((x) => x.page <= i), used: usedByPage(run.log, i), reportOpen: false, filed: undefined };
+}
+
+/** A list entry's person on the board: a name, or the face's owner. */
+function ownerOf(c: BoardCase, e: string): string | undefined {
+  if (e.startsWith('other:')) return undefined;
+  if (e.startsWith('look:')) return c.people.find((x) => x.look === e.slice(5))?.id;
+  return e;
+}
+
+/**
+ * B2, **moved**: a telling by change (a watcher's list, a stretch of somebody's company) that says
+ * somebody came in or left where the board has them stay: "Somebody in a fur collar came in for a bite
+ * at nine and was gone by ten. Mosley came in at ten." of one man there both hours; "Renfro and Quill
+ * were with me at first and left after eight" of a man at Moe's all evening. Read off the clauses'
+ * voicings and propositions, each person (or the face's owner) against the board an hour either side.
+ */
+function moved(c: BoardCase, run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  type Part = { shape: string; props: Prop[]; voicing?: string; parts?: Part[] };
+  run.log.forEach((pg, i) => {
+    for (const u of pg.board?.units ?? []) {
+      if (u.kind !== 'fact') continue;
+      for (const comp of (u.bones ?? []) as unknown as Part[]) {
+        const whole = comp.props.flatMap((x) => ('hour' in x && typeof x.hour === 'number' ? [x.hour] : []));
+        for (const part of comp.parts ?? []) {
+          const vo = part.voicing ? voicingById(part.voicing) : undefined;
+          if (!vo) continue;
+          const f = new Set(vo.requires ?? []);
+          const came = f.has('came') || f.has('mid') || f.has('outback') || f.has('singles') || (f.has('seen') && f.has('in'));
+          const went = f.has('left') || f.has('mid') || f.has('outback');
+          if (!came && !went) continue;
+          let place: string | undefined;
+          let hs: number[] = [];
+          let open: number[] = [];
+          const who = new Map<string, number[]>();
+          if (part.shape === 'LIST-HOUR' && f.has('clause')) {
+            const ps = part.props as P<'LIST'>[];
+            const l = listOf(c, ps[0]?.watcher as string);
+            if (!l) continue;
+            place = l.place;
+            open = c.board.hours.filter((h) => l.entries[h as Hour] !== undefined && !shutAt(c, l.place, h as Hour));
+            for (const x of ps) for (const e of x.people) who.set(e, [...(who.get(e) ?? []), x.hour]);
+          } else if (part.shape === 'CLAIM-SPAN' && f.has('who-with')) {
+            const ps = part.props as P<'CLAIM'>[];
+            const sp = ps[0]?.person as string;
+            place = accountOf(c, sp)?.claims[ps[0]?.hour as Hour]?.place;
+            open = [...new Set(whole)].sort((a, b) => a - b);
+            for (const x of ps) for (const e of x.company ?? []) who.set(e, [...(who.get(e) ?? []), x.hour]);
+          } else continue;
+          if (!place) continue;
+          for (const [e, hours] of who) {
+            const o = ownerOf(c, e);
+            if (!o) continue;
+            hs = [...hours].sort((a, b) => a - b);
+            // The runs of the clause's hours (out and back is two).
+            const runs: number[][] = [];
+            for (const h of hs) {
+              const r = runs[runs.length - 1];
+              if (r && open.indexOf(h) === open.indexOf(r[r.length - 1] as number) + 1) r.push(h);
+              else runs.push([h]);
+            }
+            runs.forEach((r, k) => {
+              const a = r[0] as number;
+              const b = r[r.length - 1] as number;
+              const before = open[open.indexOf(a) - 1];
+              const after = open[open.indexOf(b) + 1];
+              const arrives = came && (!f.has('outback') || k > 0) && before !== undefined;
+              const leaves = went && (!f.has('outback') || k === 0) && after !== undefined;
+              const who_ = e.startsWith('look:') ? `somebody ${e.slice(5)} (${nameOfIn(c, o)})` : nameOfIn(c, o);
+              if (arrives && c.board.rows[o]?.[before as Hour] === place) out.push({ page: i, rule: 'moved', detail: `${who_} came in at ${a}, but was there at ${before}: “${strip(u.text).slice(0, 120)}”` });
+              if (leaves && c.board.rows[o]?.[after as Hour] === place) out.push({ page: i, rule: 'moved', detail: `${who_} left after ${b}, but was there at ${after}: “${strip(u.text).slice(0, 120)}”` });
+            });
+          }
+        }
+      }
+    }
+  });
+  return out;
+}
+
+/**
+ * B4 and B5, **star**: a star's reason (what a hint quotes) that says what isn't so: who somebody "passed on the way" where
+ * no passer-by's word can be had (outside Medium), "on the way over" for a walk home, or a group "at
+ * the supper" with somebody in it who wasn't at the table.
+ */
+function starReasons(d: BoardDeal, run: BoardRun, env: LintEnv = {}): HingeIssue[] {
+  const c = d.kase;
+  const out: HingeIssue[] = [];
+  const occasion = c.givens.lines?.find((g) => g.kind === 'party')?.vars.occasion;
+  const h0 = c.board.hours[0] as Hour;
+  const seen = new Set<string>();
+  run.log.forEach((_, i) => {
+    if (run.log[i]?.board?.job === 'nothing') return;
+    // (docs/67: no star by itself; a hint quotes one. What a hint would star here, and the designed
+    // stars a reason is written for, each read as the choice it would sit on says it.)
+    const at = runAt(run, i);
+    const hint = (env.hintStep ?? hintStep)(d, at);
+    const steps = [...new Set([...(env.routeSteps ?? routeSteps)(d, at), ...(hint ? [hint] : [])])];
+    for (const s of (env.pageStars ?? pageStars)(d, at, steps)) {
+      if (seen.has(s.why)) continue;
+      seen.add(s.why);
+      for (const x of starWrong(c, s.why, occasion, h0)) out.push({ page: i, rule: 'star', detail: `${x}: “${s.why}”` });
+    }
+  });
+  return out;
+}
+
+/** What a star's reason (or a fastest-solve step) says that isn't so. */
+export function starWrong(c: BoardCase, why: string, occasion = c.givens.lines?.find((g) => g.kind === 'party')?.vars.occasion, h0 = c.board.hours[0] as Hour): string[] {
+  const out: string[] = [];
+  if (/\bpassed on the way\b/.test(why) && c.tier !== 4) out.push('a passer-by’s question outside Medium');
+  if (/\bpassed on the way over at\b/.test(why)) out.push('“on the way over”, taken as known');
+  if (occasion) {
+    const at = new RegExp(`^(.+?) (?:were|was) at the ${esc(occasion)}\\b`).exec(why);
+    if (at) for (const p of c.people) if (new RegExp(`(?<![\\w’])${esc(p.short)}(?![\\w])`).test(at[1] as string) && c.board.rows[p.id]?.[h0] !== c.crime.scene) out.push(`${p.short} wasn’t at the ${occasion}`);
+  }
+  return out;
+}
+
+/**
+ * B5, **party**: somebody said to have been at the client's supper who wasn't at the table, or the way
+ * in said as the guests' alone ("one of his guests") where the office gave the lodger it too.
+ */
+function party(c: BoardCase, run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  const occasion = c.givens.lines?.find((g) => g.kind === 'party')?.vars.occasion;
+  if (!occasion) return out;
+  const h0 = c.board.hours[0] as Hour;
+  run.log.forEach((p, i) => {
+    for (const b of prose(p)) {
+      if (b.voice === 'answer') continue;
+      for (const s of sentencesOf(narr(b.text))) {
+        const at = new RegExp(`(?:^|[,;] )((?:(?:Mrs\\.|Mr\\.|Miss|Dr\\.) )?[A-Z][^,;]*?) (?:were|was|had (?:all |both )?been) at the ${esc(occasion)}\\b`).exec(s);
+        if (at) for (const x of c.people) if (x.role !== 'client' && new RegExp(`(?<![\\w’])${esc(x.short)}(?![\\w])`).test(at[1] as string) && c.board.rows[x.id]?.[h0] !== c.crime.scene) out.push({ page: i, rule: 'party', detail: `${x.short} wasn’t at the ${occasion}: “${s.trim().slice(0, 110)}”` });
+        if (c.givens.access.length > 0 && /\bone of (?:his|her|[A-Z][\w’.]+’s) guests\b/.test(s) && !/\bor the lodger\b/.test(s)) out.push({ page: i, rule: 'party', detail: `the lodger knew it too: “${s.trim().slice(0, 110)}”` });
+      }
+    }
+  });
+  return out;
+}
+
+/**
+ * B6, **deadline**: on a windowed murder, the page that finds where the means came from says the
+ * hour it had to be had by ("before nine, the earliest it could have happened"); and who's ruled out
+ * on it, having come where it was kept only after, is said with why ("didn’t come till nine, too late
+ * for it"), never a bare "hadn’t".
+ */
+function deadline(d: BoardDeal, run: BoardRun): HingeIssue[] {
+  const c = d.kase;
+  const out: HingeIssue[] = [];
+  const by = meansBy(c);
+  const find = c.finds.find((f) => f.gives.means);
+  run.log.forEach((p, i) => {
+    if (by !== undefined && find && p.board?.job === 'search' && p.board.q === `search:${find.id}`) {
+      const said = prose(p).filter((b) => b.voice === 'thought').map((b) => b.text).join(' ');
+      if (!new RegExp(`\\bbefore ${hourWord(by)}\\b`).test(said)) out.push({ page: i, rule: 'deadline', detail: `the find doesn’t say it had to be had before ${hourWord(by)}` });
+    }
+    const late = new Map<string, Hour | undefined>();
+    for (const u of p.board?.units ?? []) {
+      if (u.kind !== 'fact') continue;
+      for (const comp of u.bones ?? []) {
+        for (const x of comp.props) {
+          if (x.k !== 'ACCESS' || x.had || x.hour !== undefined) continue;
+          if (!late.has(x.person)) late.set(x.person, meansLate(c, runAt(run, i), x.person));
+          const h = late.get(x.person);
+          if (h !== undefined) out.push({ page: i, rule: 'deadline', detail: `${nameOfIn(c, x.person)} came at ${hourWord(h)}, and the line doesn’t say it was too late: “${strip(u.text).slice(0, 100)}”` });
+        }
+      }
+    }
+  });
+  return out;
+}
+
+const nameOfIn = (c: BoardCase, p: string): string => c.people.find((x) => x.id === p)?.short ?? p;
+
+/** B8, **pet-it**: a named pet called "it" in the speech that says where it went ("I took it. It’s with Pardo"). */
+function petIt(c: BoardCase, run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  if (c.type !== 'lost-pet') return out;
+  run.log.forEach((p, i) => {
+    if (p.board?.job !== 'confront') return;
+    for (const b of prose(p)) for (const q of b.text.matchAll(/“[^”]*”?/g)) if (/\bI took it\b|\b[Ii]t’s with\b|\b[Ii]t went to\b/.test(q[0])) out.push({ page: i, rule: 'pet-it', detail: `“${q[0].slice(0, 90)}”` });
+  });
+  return out;
+}
+
+/** B8, **gossip**: the neighbors' word put on something the client was party to ("…, and asked me what Mimi was worth. I had it from the neighbors"). */
+function gossip(run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  const p = run.log[0];
+  if (!p) return out;
+  for (const b of prose(p)) {
+    for (const q of b.text.matchAll(/“([^”]*)”?/g)) {
+      const ss = sentencesOf(q[1] as string);
+      ss.forEach((s, k) => {
+        if (!/\bneighbors\b/.test(s)) return;
+        const said = /^(?:I had (?:it|that) from the neighbors|That’s what the neighbors say)/.test(s.trim()) ? ss[k - 1] : /\bI don’t like gossip, but\b/.test(s) ? s.replace(/^.*?\bbut\b/, '') : undefined;
+        if (said && /\b(?:me|my)\b/.test(said)) out.push({ page: 0, rule: 'gossip', detail: `“${said.trim()} ${s.trim()}”` });
+      });
+    }
+  }
+  return out;
+}
+
+/** B8, **number**: a plural place name with "was" ("Mrs. Nagy’s rooms on East Fourth Street was a tall thin house"). */
+function numberAgrees(c: BoardCase, run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  const names = [...new Set(c.places.flatMap((x) => [x.name, x.short]))].filter((n) => namePlural(n)).sort((a, b) => b.length - a.length);
+  if (!names.length) return out;
+  const re = new RegExp(`(?:^|[.!?”] )(${names.map((n) => esc(n.charAt(0).toUpperCase() + n.slice(1))).join('|')})(?:,[^,]+,)? was\\b`);
+  run.log.forEach((p, i) => {
+    for (const b of prose(p)) for (const s of sentencesOf(b.text)) {
+      const m = re.exec(` ${s.trim()}`.replace(/^ /, ''));
+      if (m) out.push({ page: i, rule: 'number', detail: `“${s.trim().slice(0, 100)}”` });
+    }
+  });
+  return out;
+}
+
+/** B8, **both**: "had all been" of two people ("So Salerno and Sweeney had all been at Kowalski’s"). */
+function both(run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  const N = '(?:(?:Mrs\\.|Mr\\.|Miss|Dr\\.) )?[A-Z][\\w’-]+';
+  const re = new RegExp(`(?:^|\\bSo |[;:] )${N} and ${N} had all\\b`);
+  run.log.forEach((p, i) => {
+    for (const b of prose(p)) for (const s of sentencesOf(narr(b.text))) if (re.test(s.trim())) out.push({ page: i, rule: 'both', detail: `“${s.trim().slice(0, 100)}”` });
+  });
+  return out;
+}
+
+/**
+ * docs/68, the night's after-pages, read with the report: B3, **agrees**: what gave the lie away (the
+ * curtain), who said otherwise (the story) and what a clash is listed with (the grid) are never a line
+ * that says what the liar said, as a pair's partner does; B8, **clock**: the verdict's close names only
+ * the time the clock showed; **gossip** in the notebook's office lines; **star** in the curtain's fastest
+ * solve (its steps are the stars' reasons).
+ */
+export function nightIssues(d: BoardDeal, run: BoardRun, env: LintEnv = {}): HingeIssue[] {
+  const c = d.kase;
+  const out: HingeIssue[] = [];
+  const lie = c.lies.find((l) => l.person === c.crime.culprit && l.hour === c.crime.hour) ?? c.lies.find((l) => l.person === c.crime.culprit);
+  const breaker = (env.heldBreakers ?? heldBreakers)(d, run)[0];
+  if (lie && breaker && agreesWith(c, lie.person, lie.hour as Hour, breaker)) out.push({ page: -1, rule: 'agrees', detail: `what gave it away agrees with the lie: “${breaker.text}”` });
+  if (lie) {
+    const story = (env.storyOfBoard ?? storyOfBoard)(d).join(' ');
+    const said = /\b([A-Z][^.]*?) said otherwise\./.exec(story);
+    if (said) {
+      for (const p of c.people) {
+        if (!new RegExp(`(?<![\\w’])${esc(p.short)}(?![\\w])`).test(said[1] as string)) continue;
+        const l = linesHeld(c, { asked: [`account:${p.id}`, `list:${p.id}`], puts: [] }).find((x) => x.hour === lie.hour && agreesWith(c, lie.person, lie.hour as Hour, x));
+        if (l) out.push({ page: -1, rule: 'agrees', detail: `the story has ${p.short} saying otherwise: “${said[0]}”` });
+      }
+    }
+  }
+  const g = (env.boardGrid ?? boardGrid)(c, run);
+  for (const r of g.rows) {
+    for (const h of g.hours) {
+      const cell = r.cells[h];
+      if (!cell?.collision) continue;
+      for (const l of linesHeld(c, run)) {
+        if (l.hour !== h || l.speaker === r.id || !agreesWith(c, r.id, h, l)) continue;
+        if (cell.lines.includes(lineShown(c, run, l))) out.push({ page: -1, rule: 'agrees', detail: `${r.name}, ${hourWord(h)}: the clash lists “${l.text}”` });
+      }
+    }
+  }
+  const copy = structuredClone(run) as BoardRun;
+  const closing = (env.scoreBoard ?? scoreBoard)(d, copy, (env.truthReport ?? truthReport)(d, copy)).closing.join(' ');
+  const at = minutesAfter(run.used, budgetCalls(d));
+  const closed = /\bclosed the case at ((?:a quarter|half|twenty(?:-five)?|ten|five) (?:past|to) [a-z]+|[a-z]+)\b/.exec(closing);
+  if (closed && closed[1] !== clockWords(at)) out.push({ page: -1, rule: 'clock', detail: `“${closed[0]}” at ${clockWords(at)}` });
+  if (/\bEight o’clock came\b/.test(closing) && at < 480) out.push({ page: -1, rule: 'clock', detail: `“Eight o’clock came” at ${clockWords(at)}` });
+  const cl = esc(clientOf(c).short);
+  for (const t of (env.officeLines ?? officeLines)(d)) if (new RegExp(`\\bneighbors say\\b[^.]*(?<![\\w’])${cl}(?![\\w])`).test(t)) out.push({ page: -1, rule: 'gossip', detail: `notebook: “${t}”` });
+  const occasion = c.givens.lines?.find((x) => x.kind === 'party')?.vars.occasion;
+  for (const step of (env.curtainOfBoard ?? curtainOfBoard)(d, run).split('\n').filter((x) => /^\d+\. /.test(x))) for (const x of starWrong(c, step, occasion, c.board.hours[0] as Hour)) out.push({ page: -1, rule: 'star', detail: `fastest solve: ${x}: “${step.slice(0, 120)}”` });
+  return out;
+}
+
+export function hingeIssues(d: BoardDeal, run: BoardRun, env: LintEnv = {}): HingeIssue[] {
   const c = d.kase;
   void isMurder;
   return [
+    ...moved(c, run),
+    ...starReasons(d, run, env),
+    ...party(c, run),
+    ...deadline(d, run),
+    ...petIt(c, run),
+    ...gossip(run),
+    ...numberAgrees(c, run),
+    ...both(run),
     ...saidPlace(c, run),
     ...glossTwice(c, run),
     ...bareFirst(c, run),

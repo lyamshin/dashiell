@@ -414,11 +414,11 @@ function agreeSpans(c: BoardCase, cs: Extract<Prop, { k: 'CONFIRMS' }>[], here: 
 }
 
 /** The way-in's sentences from its propositions: who could (by the hour they heard, when told), and who couldn't. */
-function accessArgs(c: BoardCase, as: Extract<Prop, { k: 'ACCESS' }>[], here: PlaceId): { yes?: string; no?: string; nobody?: string; short?: string; of?: string; one?: PersonId } {
+function accessArgs(c: BoardCase, as: Extract<Prop, { k: 'ACCESS' }>[], here: PlaceId): { yes?: string; no?: string; nobody?: string; short?: string; of?: string; one?: PersonId; late?: boolean } {
   const yes = as.filter((a) => a.had).map((a) => a.person);
   const no = as.filter((a) => !a.had).map((a) => a.person);
   const mode = c.setup?.means ?? '';
-  const out: { yes?: string; no?: string; nobody?: string; short?: string; of?: string; one?: PersonId } = {};
+  const out: { yes?: string; no?: string; nobody?: string; short?: string; of?: string; one?: PersonId; late?: boolean } = {};
   const hourOf = new Map(as.filter((a) => a.had && a.hour !== undefined).map((a) => [a.person, a.hour as Hour]));
   if (yes.length > 0 && yes.every((p) => hourOf.has(p))) {
     const thing = mode === 'told-window' ? 'the window' : 'the key';
@@ -429,10 +429,23 @@ function accessArgs(c: BoardCase, as: Extract<Prop, { k: 'ACCESS' }>[], here: Pl
   } else if (yes.length > 0) {
     out.yes = `${andList(yes.map((p) => nameOf(c, p)))} ${accessPhrase(c, true, false, here).replace(/^was\b/, yes.length > 1 ? 'were' : 'was')}`;
   }
-  if (no.length > 0) out.no = `${andList(no.map((p) => nameOf(c, p)))} ${accessPhrase(c, false, false, here).replace(/^was\b/, no.length > 1 ? 'were' : 'was').replace(/^wasn’t\b/, no.length > 1 ? 'weren’t' : 'wasn’t')}`;
+  // Round 7, B6: who couldn't because they came only once it had to be gone (`hour`, the first hour
+  // they were there), said with why: "Vitale didn’t come till nine, too late for it".
+  const lateOf = new Map(as.filter((a) => !a.had && a.hour !== undefined).map((a) => [a.person, a.hour as Hour]));
+  const noPlain = no.filter((p) => !lateOf.has(p));
+  const late = no.filter((p) => lateOf.has(p));
+  if (noPlain.length > 0) out.no = `${andList(noPlain.map((p) => nameOf(c, p)))} ${accessPhrase(c, false, false, here).replace(/^was\b/, noPlain.length > 1 ? 'were' : 'was').replace(/^wasn’t\b/, noPlain.length > 1 ? 'weren’t' : 'wasn’t')}`;
+  if (late.length > 0) {
+    const byHour = new Map<Hour, PersonId[]>();
+    for (const p of late) byHour.set(lateOf.get(p) as Hour, [...(byHour.get(lateOf.get(p) as Hour) ?? []), p]);
+    const what = yes.length > 0 ? 'it' : `the ${isMurder(c) ? c.means.name.replace(/^(?:a|an) /, '') : 'spare key'}`;
+    const lateSaid = [...byHour.entries()].sort((u, v) => u[0] - v[0]).map(([h, ps]) => `${andList(ps.map((p) => nameOf(c, p)))} didn’t come${yes.length > 0 ? '' : ` to ${placeName(c, c.means.origin)}`} till ${hourWord(h)}, too late for ${what}`).join('; ');
+    out.no = out.no ? `${out.no}; ${lateSaid}` : lateSaid;
+    out.late = true;
+  }
   const neg = accessPhrase(c, false, false, here);
   const short = /^hadn’t\b/.test(neg) ? 'hadn’t' : /^wasn’t\b/.test(neg) ? (no.length > 1 ? 'weren’t' : 'wasn’t') : /^never heard\b/.test(neg) ? 'never did' : undefined;
-  if (yes.length > 0 && no.length > 0 && short && !/, and /.test(out.yes ?? '')) {
+  if (yes.length > 0 && no.length > 0 && late.length === 0 && short && !/, and /.test(out.yes ?? '')) {
     out.nobody = andList(no.map((p) => nameOf(c, p)));
     out.short = short;
     // docs/59 (the skim test): beside who had, who hadn't is said short ("…, when the spare key was there
@@ -453,7 +466,7 @@ function accessArgs(c: BoardCase, as: Extract<Prop, { k: 'ACCESS' }>[], here: Pl
 function sayAccess(it: Item, ctx: PlanCtx, form: string[]): string | null {
   const comp = held(it);
   const a = accessArgs(ctx.c, props(comp.props, 'ACCESS'), ctx.run?.at ?? '');
-  const flags = [...(a.yes ? ['yes'] : []), ...(a.no ? ['no'] : []), ...form];
+  const flags = [...(a.yes ? ['yes'] : []), ...(a.no ? ['no'] : []), ...(a.late ? ['late'] : []), ...form];
   return voice(it, comp, flags, { yes: a.yes ?? '', no: a.no ?? '', nobody: a.nobody ?? '', short: a.short ?? '' }, ctx);
 }
 

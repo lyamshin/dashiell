@@ -120,7 +120,8 @@ describe('round 4: stars, the report and the curtain (docs/55 4, 5, 7)', () => {
     const run = night(14, 4, 'lost-pet', MED14);
     expect(pageStars(d, run)).toEqual([]);
     expect(starCommand(d, run, 'account:pickering')).toBe('ask pickering evening');
-    expect(starReason(d.kase, run, 'account:pickering')).toBe('ask Pickering who she passed on the way over at ten');
+    // (Round 7, B4: the walk said as what's known, then the question.)
+    expect(starReason(d.kase, run, 'account:pickering')).toBe('Pickering walked over from the Delmonico rooms at ten — ask Pickering who she passed on the way');
   });
 
   it('the report doesn’t put the line that breaks the story first, alone', () => {

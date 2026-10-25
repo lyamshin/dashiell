@@ -44,5 +44,6 @@ export const BOARD_RULES: readonly string[] = [
   // docs/67: no star by itself; the Hint button gives one.
   'The Hint button stars a choice worth taking now and says why. A perfect report earns a star; a perfect one with no hints, a gold star.',
   'The notebook keeps what you’ve learned. The grid shows where everyone says they were, and where the stories clash.',
-  'Close the case when you’re ready: who, when, how, why, and what proves it. A hunch counts half. When two people lied, it also asks who else lied and what clears them.',
+  // (Round 7, B9: asked, never told: "When two people lied, it also asks who else lied" said there was one.)
+  'Close the case when you’re ready: who, when, how, why, and what proves it. A hunch counts half. On the harder cases it also asks whether anyone else lied, and if so, what clears them.',
 ];

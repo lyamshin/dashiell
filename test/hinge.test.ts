@@ -7,7 +7,9 @@
 import { describe, expect, it } from 'vitest';
 import { dealBoard, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
-import { epilogueIssues, hingeIssues, type HingeRule } from '../src/game/board/hinge-lint.js';
+import { epilogueIssues, hingeIssues, nightIssues, starWrong, type HingeRule } from '../src/game/board/hinge-lint.js';
+import { linesHeld } from '../src/game/board/knowledge.js';
+import { scoreBoard } from '../src/game/board/report.js';
 import { pronounAmbiguity } from '../src/game/board/plan/measure.js';
 import type { Block, Page, PageJob, ProseVoice } from '../src/game/board/types.js';
 
@@ -251,5 +253,101 @@ describe('docs/66, P2: the pronoun check catches a pronoun with nobody to be', (
     const b = blocks(['Alfano hadn’t told me her evening yet. I’d find her at Sokol’s back room.'], ['She gave me the night the way a good waiter brings the check.']);
     expect(pronounAmbiguity(d14.kase, b, { units: card('She gave me the night the way a good waiter brings the check.') }).some((x) => x.startsWith('speaker card'))).toBe(true);
     expect(pronounAmbiguity(d14.kase, b, { units: card('Ellery gave me the night the way a good waiter brings the check.') }).some((x) => x.startsWith('speaker card'))).toBe(false);
+  });
+});
+
+describe('docs/68: round 7’s wrong facts, a rule at a time', () => {
+  const hb19 = dealBoard(19, 5, 'murder');
+  const raw23 = dealBoard(23, 0);
+  const p17 = dealBoard(17, 2, 'murder');
+  const m21 = dealBoard(21, 4);
+  const on = (dd: typeof d, ...pages: Page[]): BoardRun => ({ ...playBoardOracle(dd).run, log: pages.map((p, n) => ({ ...p, n })) });
+  const page1 = (dd: typeof d) => playBoardOracle(dd).run.log[1] as Page;
+  const at = (dd: typeof d, job: PageJob, blocks: B[], extra: Partial<Page['board']> = {}): Page => ({
+    ...page1(dd),
+    blocks: blocks.map((b) => ({ kind: 'prose', text: b.text, voice: b.voice ?? 'narrator' }) as Block),
+    board: { ...page1(dd).board, job, q: undefined, units: undefined, ...extra },
+  });
+  const ruled = (dd: typeof d, r: BoardRun) => hingeIssues(dd, r).map((x) => x.rule);
+
+  it('moved: a coming or going the board doesn’t have; a face and a name at one place are one person', () => {
+    const LIST = (h: number, people: string[]) => ({ k: 'LIST', watcher: 'barkeep', place: 'bar', hour: h, people });
+    const list = (voicing: string) => ({ kind: 'fact', text: 'Bledsoe’s list', locked: true, about: [], relation: 'new', beat: 'job', para: 1, voice: 'answer', carries: [], bones: [{ shape: 'LIST-HOUR', props: [LIST(7, ['hauck', 'vitale']), LIST(8, ['hauck', 'vitale']), LIST(9, ['look:in a fur collar']), LIST(10, ['mosley'])], voicing: 'seq', parts: [{ shape: 'LIST-HOUR', props: [LIST(9, ['look:in a fur collar'])], voicing }] }] }) as never;
+    expect(ruled(hb19, on(hb19, at(hb19, 'list', [{ text: 'x' }], { units: [list('list/c-mid-hour-eat-1-one')] })))).toContain('moved');
+    expect(ruled(hb19, on(hb19, at(hb19, 'list', [{ text: 'x' }], { units: [list('list/c-seen-in-eat-1-one')] })))).not.toContain('moved');
+  });
+
+  it('star: no passer-by’s question outside Medium, no walk taken as known, nobody "at the supper" who wasn’t', () => {
+    expect(starWrong(hb19.kase, 'ask Grasso who she passed on the way over at nine')).toEqual(['a passer-by’s question outside Medium', '“on the way over”, taken as known']);
+    expect(starWrong(hb19.kase, 'Mosley says Grasso was with him at Grasso’s flat at nine — ask Grasso where she was')).toEqual([]);
+    expect(starWrong(m21.kase, 'ask Vitale who she passed on the way over at ten')).toEqual(['“on the way over”, taken as known']);
+    expect(starWrong(m21.kase, 'Vitale walked over from Kowalski’s at ten — ask Vitale who she passed on the way')).toEqual([]);
+    expect(starWrong(raw23.kase, 'Ashby, Lindemann and Winslow were at the supper, and nobody had said where any of them was at ten — ask Ashby where she was')).toEqual(['Lindemann wasn’t at the supper']);
+    expect(starWrong(raw23.kase, 'Ashby and Winslow were at the supper, and nobody had said where either of them was at ten — ask Ashby where she was')).toEqual([]);
+  });
+
+  it('party: the lodger is never at the supper, and never left out of who knew', () => {
+    const t = (text: string) => ruled(raw23, on(raw23, at(raw23, 'search', [{ text, voice: 'thought' }])));
+    expect(t('Whoever it was had been at the supper at the Thorndike flat, one of his guests.')).toContain('party');
+    expect(t('Ashby, Lindemann and Winslow were at the supper.')).toContain('party');
+    expect(t('Whoever it was knew the door would be unlocked: one of his guests at the supper at the Thorndike flat, or the lodger it was left unlocked for.')).not.toContain('party');
+    expect(t('Ashby and Winslow were at the supper.')).not.toContain('party');
+  });
+
+  it('deadline: the find says before the earliest hour, and who came after says it was too late', () => {
+    const find = m21.kase.finds.find((f) => f.gives.means)?.id as string;
+    const t = (text: string) => ruled(m21, on(m21, at(m21, 'search', [{ text, voice: 'thought' }], { q: `search:${find}` })));
+    expect(t('Whoever stabbed Mulcahy had been at Kowalski’s first.')).toContain('deadline');
+    expect(t('Whoever stabbed Mulcahy had been at Kowalski’s for the knife before nine, the earliest it could have happened.')).not.toContain('deadline');
+    // Vitale, at Kowalski’s at nine, on Mrs. Kowalski’s page: with the hour she came, and without it.
+    const real = playBoardOracle(m21).run;
+    const i = real.log.findIndex((p) => (p.board?.units ?? []).some((u) => u.kind === 'fact' && (u.bones ?? []).some((b) => b.props.some((x) => x.k === 'ACCESS' && x.person === 'vitale' && !x.had))));
+    expect(i).toBeGreaterThan(0);
+    expect(hingeIssues(m21, real).filter((x) => x.rule === 'deadline')).toEqual([]);
+    const bare = structuredClone(real);
+    for (const u of bare.log[i]?.board?.units ?? []) if (u.kind === 'fact') for (const b of u.bones ?? []) for (const x of b.props) if (x.k === 'ACCESS') delete (x as { hour?: number }).hour;
+    expect(hingeIssues(m21, bare).map((x) => x.rule)).toContain('deadline');
+  });
+
+  it('pet-it: a named pet is never "it" in the crack', () => {
+    const t = (text: string) => ruled(raw23, on(raw23, at(raw23, 'confront', [{ text, voice: 'exchange' }])));
+    expect(t('“All right. I took it. It’s with Pardo, a man who buys things and asks nothing.”')).toContain('pet-it');
+    expect(t('“All right. I took her. She’s with Pardo, a man who buys things and asks nothing.”')).not.toContain('pet-it');
+  });
+
+  it('gossip: the neighbors’ word never covers what the client was party to', () => {
+    const t = (text: string) => ruled(raw23, on(raw23, at(raw23, 'office', [{ text, voice: 'exchange' }])));
+    expect(t('“You might ask about Winslow,” he said. “He lost his job on Friday, and asked me what Mimi was worth. I had it from the neighbors, and they hear most things.”')).toContain('gossip');
+    expect(t('“You might ask about Winslow,” he said. “He lost his job on Friday. I had that from the neighbors, and they hear most things. And he asked me what Mimi was worth.”')).not.toContain('gossip');
+  });
+
+  it('number: a plural name takes "were"', () => {
+    const t = (text: string) => ruled(p17, on(p17, at(p17, 'arrive', [{ text }])));
+    expect(t('Mrs. Nagy’s rooms on East Fourth Street was a tall thin house that leaned a little on its neighbor.')).toContain('number');
+    expect(t('Mrs. Nagy’s, on East Fourth Street, was quiet at this hour.')).not.toContain('number');
+  });
+
+  it('both: two people "had both been"', () => {
+    const t = (text: string) => ruled(p17, on(p17, at(p17, 'list', [{ text, voice: 'thought' }])));
+    expect(t('So Dandridge and Callahan had all been at Mrs. Nagy’s, where the carving knife was kept, and had all left by nine.')).toContain('both');
+    expect(t('So Dandridge and Callahan had both been at Mrs. Nagy’s, where the carving knife was kept, and had both left by nine.')).not.toContain('both');
+    expect(t('So Hanrahan, Ruggiero and Reinhardt had all been at the Delmonico rooms, where the laudanum was kept, and had all left by nine.')).not.toContain('both');
+  });
+
+  it('agrees, clock, gossip and star after the night: what main said, and what this build says', () => {
+    const run = playBoardOracle(hb19).run;
+    expect(nightIssues(hb19, run)).toEqual([]);
+    // Main's: the partner's agreeing line first, "Bledsoe and Mosley said otherwise", a quarter to eight at 8:00, a passer's question at Hard-boiled.
+    const agreeing = linesHeld(hb19.kase, run).find((l) => l.speaker === 'mosley' && l.hour === 9) as ReturnType<typeof linesHeld>[number];
+    const mainEnv = {
+      heldBreakers: () => [agreeing],
+      storyOfBoard: () => ['Asked, she said she had been home at nine. Bledsoe and Mosley said otherwise.'],
+      scoreBoard: (dd: typeof d, r: BoardRun, rep: never) => ({ ...scoreBoard(dd, r, rep), closing: ['I closed the case at a quarter to eight and went home the long way.'] }),
+      curtainOfBoard: () => '7. Ask Grasso: where were you tonight? ask Grasso who she passed on the way over at nine.',
+    };
+    const rulesOf = nightIssues(hb19, { ...run, used: 14 }, mainEnv as never).map((x) => x.rule);
+    expect(rulesOf).toEqual(expect.arrayContaining(['agrees', 'clock', 'star']));
+    expect(rulesOf.filter((x) => x === 'agrees').length).toBe(2);
+    expect(nightIssues(raw23, playBoardOracle(raw23).run, { officeLines: () => ['Thorndike points at Winslow. The neighbors say he lost his job on Friday, and asked Thorndike what Mimi was worth.'] }).map((x) => x.rule)).toEqual(['gossip']);
   });
 });

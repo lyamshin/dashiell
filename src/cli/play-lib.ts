@@ -12,8 +12,8 @@
  * (docs/64; `breaks` before it, still read) is a number from that list, and
  * `proof=hunch` is a hunch.
  *
- * docs/61: from Poached up, where two stories break, it asks who else lied
- * (`other`) and what cleared them (`cleared`), which counts down the same list
+ * docs/61: from Poached up it asks whether anyone else lied (round 7, B9: on every night from
+ * Poached up, "Nobody else" a real answer; `other`) and what cleared them (`cleared`), which counts down the same list
  * `report <Name>` shows for that person.
  *
  * A page lists the people here (choosing one opens their topics, free),
@@ -31,6 +31,7 @@ import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
 import { boardGridText, placeCodes } from '../game/board/grid.js';
+import { peopleAt } from '../game/board/knowledge.js';
 import { BOARD_TEACH_TITLE, BOARD_RULES, teachLines } from '../game/board/teach.js';
 import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
@@ -42,7 +43,7 @@ import {
   CLEARED_LABEL,
   HUNCH,
   NOBODY,
-  WHERE_BY_LABEL,
+  whereByLabel,
   asksOther,
   blankRule,
   boardFields,
@@ -375,7 +376,7 @@ function reportText(night: Night, path: string, who: string | null = null): stri
       out.push('');
     }
     if (f.key === 'where') {
-      out.push(`${WHERE_BY_LABEL} (${KEY_SHOWN.whereBy}):`);
+      out.push(`${whereByLabel(night.d)} (${KEY_SHOWN.whereBy}):`);
       out.push(...lineList(whereByOptions(night.d, night.run)));
       out.push('');
     }
@@ -394,7 +395,8 @@ function personReportText(night: Night, path: string, who: string): string {
   // Round 5, U3: the headings say what's under them, the book's words.
   out.push(...lineList(breakOptionsShown(night.d, night.run, who), lineGroupHeads(night.d, night.run, who)));
   // docs/61: the same list answers the other question. Round 5, U2: said as what to type.
-  if (asksOther(night.d)) out.push(wrap(`If ${N} is the other liar, give “cleared” as a number from this list too.`, WIDTH, '   '));
+  // (Round 7, B9: never "the other liar": the form asks whether there was one.)
+  if (asksOther(night.d)) out.push(wrap(`If you say ${N} lied too, give “cleared” as a number from this list too.`, WIDTH, '   '));
   out.push('', wrap('`report` shows the whole form.'), '');
   out.push(...closeLines(night, path));
   return out.join('\n');
@@ -421,7 +423,7 @@ function parseReport(night: Night, text: string): BoardReport {
     const raw = ((m as RegExpExecArray)[2] as string).trim();
     if (key === 'breaks' || fold(key) === 'whereby' || key === 'cleared') {
       if (fold(key) === 'whereby' && night.d.kase.type === 'murder') fail('The form asks where it is only for a lost thing.');
-      if (key === 'cleared' && !asksOther(night.d)) fail('Tonight’s form doesn’t ask who else lied, so there’s nothing to clear.');
+      if (key === 'cleared' && !asksOther(night.d)) fail('Tonight’s form doesn’t ask whether anyone else lied, so there’s nothing to clear.');
       lineAnswers.push({ key: key === 'breaks' ? 'breaks' : key === 'cleared' ? 'cleared' : 'whereBy', raw });
       continue;
     }
@@ -445,7 +447,7 @@ function parseReport(night: Night, text: string): BoardReport {
       continue;
     }
     if (key === 'breaks' && !answers.who) fail('Name who first: proof is a number from the list `report <name>` shows for them.');
-    if (key === 'cleared' && (!answers.other || answers.other === NOBODY)) fail('Name who else lied first (other=…): cleared is a number from the list `report <name>` shows for them.');
+    if (key === 'cleared' && (!answers.other || answers.other === NOBODY)) fail('Name them first (other=…): cleared is a number from the list `report <name>` shows for them.');
     const opts = key === 'breaks' ? breakOptionsShown(night.d, night.run, answers.who as string) : key === 'cleared' ? clearOptions(night.d, night.run, answers.other as string) : whereByOptions(night.d, night.run);
     if (/^\d+$/.test(v)) {
       const n = Number(v);
@@ -550,11 +552,30 @@ function commit(io: PlayIo, path: string, night: Night, events: Event[], changes
   let run = night.run;
   const pages = [...night.pages];
   for (const e of events) {
-    run = apply(night.d, run, e);
+    // Round 7, B1: a command the engine turns down is said, and the save keeps nothing of it (an
+    // error used to be stored as an event and the page shown again without a word).
+    if ('do' in e) {
+      const r = stepBoard(night.d, run, e.do);
+      if (r.error) fail(r.error);
+      run = r.run;
+    } else run = apply(night.d, run, e);
     pages[run.log.length - 1] = run;
   }
   store(io, path, save);
   return { ...night, save, run, pages };
+}
+
+/**
+ * Round 7, B1: where somebody is, when it isn't here: "Mosley isn’t here. He’s at Moskowitz’s." Null
+ * when they're in the room.
+ */
+function awayText(night: Night, p: string): string | null {
+  const { d, run } = night;
+  if (peopleAt(d.kase, run, run.at).includes(p)) return null;
+  const who = d.kase.people.find((x) => x.id === p);
+  if (!who) return null;
+  const pr = who.female ? 'She' : 'He';
+  return `${who.short} isn’t here. ${pr}’s at ${placeName(d.kase, who.foundAt)}, and confronting ${who.female ? 'her' : 'him'} takes a walk there first.`;
 }
 
 function titleText(save: BoardSave, type: CaseType): string {
@@ -660,8 +681,7 @@ function cmdDo(io: PlayIo, raw: string | undefined, path: string): string {
     night = commit(io, path, night, [{ do: 'file' }]);
     return lookText(night, path);
   }
-  const r = stepBoard(night.d, night.run, it.choice.command);
-  if (r.error) fail(r.error);
+  // (Round 7, B1: `commit` says whatever the engine turns down.)
   night = commit(io, path, night, [{ do: it.choice.command }], { person: null, picker: null, claim: null });
   return lookText(night, path);
 }
@@ -730,7 +750,7 @@ function helpText(): string {
     '  report [<Name>] (with a name, what you know about them: what could prove they lied, or clear them)',
     '  close "who=…; proof=…; other=…; cleared=…; when=…; how=…; why=…"',
     '       (a lost thing: where=…; evidence=… instead of how=…; proof=hunch for a hunch;',
-    '        other and cleared only when two people lied: who else lied, and what clears them)',
+    '        other and cleared from Poached up: whether anyone else lied (other=nobody if not), and what clears them)',
     '  story · curtain (once the case is closed)',
   );
   return out.join('\n');
@@ -785,6 +805,11 @@ export function runPlay(argv: string[], io: PlayIo): PlayResult {
         const who = night.d.kase.people.find((p) => fold(p.short) === fold(arg ?? ''));
         if (!who) fail(`Nobody here called ${arg}.`);
         if (!pickerFor(night.d, night.run, (who as { id: string }).id)) fail(`Nothing I have disagrees with what ${(who as { short: string }).short} said.`);
+        // Round 7, B1: confronting somebody is done to their face. Refused here, with where they are,
+        // never opened and then dropped when the last pick finds them gone (the book offers it only
+        // in the room with them).
+        const away = awayText(night, (who as { id: string }).id);
+        if (away) fail(away);
         night = commit(io, path, night, [], { picker: (who as { id: string }).id, claim: null, person: null });
         return { out: lookText(night, path), code: 0 };
       }
