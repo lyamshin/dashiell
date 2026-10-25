@@ -3053,7 +3053,7 @@ export function writeTurn(w: Writer): void {
   } else {
     // (docs/60, lean: where a small case's thing went isn't said again in a turn on the page that just heard it.)
     const heardHere = lean() && !!w.handover;
-    const clauses = lean() ? turnOrder(recapClauses(w.d, w.run, true).filter((x) => !(heardHere && x.key.split(':')[0] === 'where')), c.tier <= 2 ? 70 : 90) : recapClauses(w.d, w.run, true);
+    const clauses = lean() ? turnOrder(recapClauses(w.d, w.run, true).filter((x) => !(heardHere && x.key.split(':')[0] === 'where')), c.tier <= 2 ? 70 : 90, c) : recapClauses(w.d, w.run, true);
     for (const cl of clauses) {
       for (const h of cl.hours) w.hours.add(h);
       for (const p of cl.people) w.people.add(p);
@@ -3118,7 +3118,7 @@ export function writeTurn(w: Writer): void {
  * for and by whom, whose story doesn't hold, what was said when it was put, who's said where they were
  * with nobody to back it, and what's still open.
  */
-function turnOrder(cs: Clause[], most: number): Clause[] {
+function turnOrder(cs: Clause[], most: number, c?: BoardCase): Clause[] {
   const head = (k: string) => k.split(':')[0] ?? '';
   const rank = (k: string): number => ({ when: 0, means: 1, access: 2, placed: 3, held: 3, broken: 4, admit: 5, second: 5, refused: 5, own: 6, open: 7, where: 8 } as Record<string, number>)[head(k)] ?? 9;
   const out = cs.map((x, i) => ({ x, i })).sort((a, b) => rank(a.x.key) - rank(b.x.key) || a.i - b.i).map((y) => y.x);
@@ -3127,7 +3127,8 @@ function turnOrder(cs: Clause[], most: number): Clause[] {
   // where a small case's thing went (the list page said it, and the notebook keeps it) (the hour, where
   // it came from or who knew the way in, one of who was accounted for, whose story doesn't hold and
   // what's still open always stay).
-  const wordsOf = (xs: Clause[]) => xs.reduce((n, x) => n + x.text.split(/\s+/).length, 0);
+  // (docs/62: as the page will say it, where a voicing does, which says the verbs the notebook leaves out.)
+  const wordsOf = (xs: Clause[]) => xs.reduce((n, x) => n + Math.max(x.text.split(/\s+/).length, c && x.say ? (sayFirst(c, x.say) ?? '').split(/\s+/).length : 0), 0);
   for (const [drop, keep] of [['own', 0], ['placed', 1], ['where', 0]] as const) {
     // (The notebook's words, a little shorter than the page says them.)
     while (wordsOf(out) * 1.2 > most - 2) {
