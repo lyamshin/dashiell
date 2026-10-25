@@ -2492,6 +2492,8 @@ export function writeMotive(w: Writer, p: PersonId): void {
   // (docs/66, P3: lean, the asking is the reason: "Doyle had said he was with Kaminsky at nine. I asked Kaminsky
   // about Belkin." said a pointer that had nothing to do with the question.)
   const mwhy = lean() ? null : w.hand.draw('why', { kind: 'motive' }, withCaps({ ...s, src: msrc }), { plain: true });
+  // (The reason is carried: the page asks a person in the room, or the one the last page pointed at.)
+  if (!mwhy) w.carried = true;
   put(w, 'why', mwhy, 'narrator', { ...(PLAN.ops ? { about: [p] } : {}), ...sit(w, mwhy, `${cap(msrc)}.`) });
   const look = setUp(w, p);
   const staged = w.hand.draw('staging', { kind: stageKind(c, w.run.at), who: 'person', manner: mannerOf(c, p) }, s);
