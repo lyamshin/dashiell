@@ -40,7 +40,8 @@
  * - **vocab** (batch 3, the designer's plain words): a story that "held" or "didn't hold" ("That much
  *   held.", "whether that held any better", "the Palace held where the Odessa hadn't") for "checked out"
  *   or the fact; "put" as a noun ("the put", "a put"); the game's unit, "calls", in page prose; "file"
- *   for closing the case ("or file on what I had", "whatever I had was what got filed").
+ *   for closing the case ("or file on what I had", "whatever I had was what got filed"); "a line" for what
+ *   somebody said or for the report's questions ("I'd read him the wrong line", "every line on it").
  * - **reason** (item 12): the stock phrases the skim readers stopped on: "one of the two hours it could
  *   have happened", "none of the people with a reason was at", "as far as anybody had told me".
  *
@@ -450,13 +451,15 @@ function vocab(run: BoardRun): HingeIssue[] {
   // (The chrome says "Close the case": the page never "files" it.)
   // (A verb, never the noun: "he had kept a file on her".)
   const FILE = /(?<!\b(?:a|the|one|his|her|its|my|their|box) )\b(?:file|filed|filing) (?:on|it(?! away)|the case|what|without|most)\b|\b(?:got|was) filed\b|\benough to file\b/i;
+  // ("a line" for something somebody said, or for the report's questions.)
+  const LINE = /\b(?:every|each|one|the wrong|a|no|that|this) lines? (?:on (?:it|the report)|at a time|had an answer|to hang)\b|\blines on it\b|\b(?:read|put|gave|told) (?:him|her|them|me) the (?:\w+ )?line\b|\bthe line that\b/i;
   const CALLS = /\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|a) calls?\b(?= (?:left|to spare|I didn’t need|against par|over)\b)|\bcalls? I didn’t need\b/i;
   run.log.forEach((p, i) => {
     // (The page's notes too: "Eight o’clock. The DA’s man was on the stairs…")
     const notes = p.blocks.flatMap((b) => (b.kind === 'note' ? [{ text: strip(b.text), voice: 'note' }] : []));
     for (const b of [...prose(p), ...notes]) {
       for (const s of sentencesOf(b.text)) {
-        for (const [what, re] of [['held', HELD], ['put', PUT], ['calls', CALLS], ['filed', FILE]] as const) {
+        for (const [what, re] of [['held', HELD], ['put', PUT], ['calls', CALLS], ['filed', FILE], ['line', LINE]] as const) {
           const m = re.exec(s);
           if (m) out.push({ page: i, rule: 'vocab', detail: `${what}: “${s.trim().slice(0, 110)}”` });
         }

@@ -17,7 +17,7 @@
   {"id": "bcf-322", "family": "second-close", "tags": {}, "text": "A man with two stories has one too many. I wrote the second one down next to the first.", "joke": true},
   {"id": "bcf-331", "family": "crack-close", "tags": {}, "text": "So the truth was out. It always comes out in the end, if you leave it nowhere else to go."},
   {"id": "bcf-341", "family": "held-close", "tags": {}, "text": "My question didn’t touch {his} story, and the time was gone all the same."},
-  {"id": "bcf-342", "family": "held-close", "tags": {}, "text": "I’d read {him} the wrong line. The night doesn’t give you that time back.", "joke": true},
+  {"id": "bcf-342", "family": "held-close", "tags": {}, "text": "I’d faced {him} with the wrong thing. The night doesn’t give you that time back.", "joke": true},
   {"id": "bcf-1101", "family": "react", "tags": {"response": "admit"}, "text": "{name} closed {his} eyes for a second, like somebody hearing a bill read out that {he}’d known was coming."},
   {"id": "bcf-1102", "family": "react", "tags": {"response": "admit"}, "text": "{name} rubbed {his} face with both hands and came out from behind them looking a little older."},
   {"id": "bcf-1103", "family": "react", "tags": {"response": "admit"}, "text": "{name} looked round to see who was listening, and lowered {his} voice."},

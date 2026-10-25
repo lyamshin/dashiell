@@ -110,9 +110,9 @@ describe('docs/62: the hinge lints, a rule at a time', () => {
   });
 
   it('vocab: a story checks out, and the game\u2019s own words stay out of the page', () => {
-    for (const t of ['So Weisglass backed Tillman up: the Shamrock at eleven. That much held.', 'If Ashby said the same, the Palace held where the Delmonico rooms hadn\u2019t.', 'Some of his evening did hold: Wehrle saw him at eight.', 'I went over the put again.', 'That was two calls I didn\u2019t need.', 'I could face Bellucci with it, or file on what I had.'])
+    for (const t of ['So Weisglass backed Tillman up: the Shamrock at eleven. That much held.', 'If Ashby said the same, the Palace held where the Delmonico rooms hadn\u2019t.', 'Some of his evening did hold: Wehrle saw him at eight.', 'I went over the put again.', 'That was two calls I didn\u2019t need.', 'I could face Bellucci with it, or file on what I had.', 'I had something for every line on it.', 'I\u2019d read him the wrong line.'])
       expect(rules(night(pg('account', [{ text: t, voice: 'thought' }]))), t).toContain('vocab');
-    for (const t of ['So Weisglass backed Tillman up: the Shamrock at eleven. That much checked out.', 'Some of his evening checked out: Wehrle saw him at eight.', 'Pickering was at the window with the curtain held back an inch.', 'I put the pencil away.', 'At eight I went up to Kowalski\u2019s to pay a call.', 'I could face Bellucci with it, or close the case on what I had.', 'I watched him file it away.', 'Grasso: the dead man had kept a file on her.', '“He had a file on me,” she said.'])
+    for (const t of ['So Weisglass backed Tillman up: the Shamrock at eleven. That much checked out.', 'Some of his evening checked out: Wehrle saw him at eight.', 'Pickering was at the window with the curtain held back an inch.', 'I put the pencil away.', 'At eight I went up to Kowalski\u2019s to pay a call.', 'I could face Bellucci with it, or close the case on what I had.', 'I watched him file it away.', 'Grasso: the dead man had kept a file on her.', '“He had a file on me,” she said.', 'I had an answer for every question on it.', 'In my line of work you don\u2019t say thank you.'])
       expect(rules(night(pg('account', [{ text: t, voice: 'thought' }]))).filter((r) => r === 'vocab'), t).toEqual([]);
   });
 
