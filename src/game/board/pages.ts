@@ -552,10 +552,12 @@ const SPOTS: Record<string, string[]> = {
   any: ['across the room', 'by the wall'],
 };
 
-/** A spot of the room's kind that the room's own words haven't given somebody already. */
+/** A spot of the room's kind that the room's own words haven't given somebody already ("in the back booth" is "in the back" too). */
 function spotFor(kind: string, said: string, taken: readonly string[] = []): string {
   const xs = [...(SPOTS[kind] ?? []), ...(SPOTS.any as string[])];
-  return xs.find((x) => !said.includes(x) && !taken.includes(x)) ?? (SPOTS.any as string[])[0] as string;
+  const keys = (t: string) => [...t.matchAll(SPOT)].map((m) => spotKey(m[0] as string));
+  const had = new Set([...keys(said), ...taken.flatMap(keys)]);
+  return xs.find((x) => !said.includes(x) && !taken.includes(x) && !keys(x).some((k) => had.has(k))) ?? ((SPOTS.any as string[])[0] as string);
 }
 
 /** A lodger, a regular: what somebody the night hasn't named is, from who they are. */
@@ -1659,7 +1661,10 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId, back = false, noArrive
   const walkedBefore = w.before.log.some((pg) => (pg.blocks ?? []).length > 0 && pg.board?.job === 'arrive');
   const way = wk.near || (lean() && walkedBefore && !matters) ? undefined : wk.dir;
   const FAR: Record<string, string[]> = { 'a couple of blocks': ['a couple of blocks', 'two blocks over', 'a short two blocks'], 'a few blocks': ['a few blocks', 'a handful of blocks', 'a short way'], 'several blocks': ['several blocks', 'a fair walk', 'a stretch'], 'a good walk': ['a good walk', 'a good ten blocks', 'a fair stretch on foot'], 'a long walk': ['a long walk', 'a long way on foot', 'a long way'] };
-  const far = lean() && FAR[wk.far] ? w.hand.pick(`far:${wk.far}`, FAR[wk.far] as string[]) : wk.far;
+  // (Once tonight has said each of them, a walk that doesn't matter says how far no more: "I walked over to the chop house.")
+  const farAlts = FAR[wk.far];
+  const farSpent = !!farAlts && farAlts.every((_, i) => w.hand.used(`far:${wk.far}#${i}`));
+  const far = lean() && farAlts ? (farSpent && !matters ? undefined : w.hand.pick(`far:${wk.far}`, farAlts)) : wk.far;
   const slots = withCaps({ dest, from: fromName, far, way, street: wk.street, place: dest });
   // docs/59 item 4: where the arrival walks in itself ("I went down to Moskowitz’s…"), the walk doesn't arrive too.
   const avoidWalk = w.hand.avoid;
@@ -1828,7 +1833,9 @@ export function writeArrive(w: Writer, place: PlaceId): void {
         // (docs/66, P8: never "A landlady who sits on her stairs knows who used them" where the line before
         // had her in the open door of the front room: the watcher's line says no spot the arrival didn't.)
         const avoidW: RegExp | null = w.hand.avoid;
-        if (lean() && !/\bstairs?\b/i.test(wText ?? '')) w.hand.avoid = alsoAvoid(avoidW, /\b(?:her|his) stairs\b|\bon the stairs\b|\bfoot of the stairs\b/i);
+        // (The people line it would have to agree with can be traded for another by the rhythm, so a watcher's
+        // line that puts them somewhere isn't dealt at all: the job, never the chair.)
+        if (lean()) w.hand.avoid = alsoAvoid(avoidW, /\bsits on (?:her|his) stairs\b|\bhad (?:her|his) chair\b|\bfoot of the stairs\b/i);
         watcherLine = w.hand.draw('watcher', { job }, s) ?? oldWatch(w, job, person.short);
         w.hand.avoid = avoidW;
       }

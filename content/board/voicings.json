@@ -973,7 +973,7 @@
   {"id": "claim/w-alone-1", "shape": "CLAIM-SPAN", "requires": ["who-with", "alone"], "template": "I spent {hours} by myself.", "forbids": ["lean"]},
   {"id": "claim/w-alone-2", "shape": "CLAIM-SPAN", "requires": ["who-with", "alone"], "template": "At {hours} I was by myself.", "forbids": ["lean"]},
   {"id": "claim/w-alone-3", "shape": "CLAIM-SPAN", "requires": ["who-with", "alone"], "template": "At {hours} nobody was with me."},
-  {"id": "claim/w-alone-lean-1", "shape": "CLAIM-SPAN", "requires": ["who-with", "alone", "lean"], "template": "I had nobody with me at {hours}."},
+  {"id": "claim/w-alone-lean-1", "shape": "CLAIM-SPAN", "requires": ["who-with", "alone", "lean"], "template": "At {hours} I had nobody with me."},
   {"id": "claim/w-all-terse-1-one", "shape": "CLAIM-SPAN", "manner": "terse", "requires": ["who-with", "all", "one"], "template": "{Names} was with me from the time I sat down."},
   {"id": "claim/w-all-terse-1-many", "shape": "CLAIM-SPAN", "manner": "terse", "requires": ["who-with", "all", "many"], "template": "{Names} were with me from the time I sat down."},
   {"id": "claim/w-left-terse-1-one", "shape": "CLAIM-SPAN", "manner": "terse", "requires": ["who-with", "left", "one"], "forbids": ["lean"], "template": "{Names} was with me from the start till {to}, then gone."},

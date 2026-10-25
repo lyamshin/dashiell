@@ -72,8 +72,8 @@
  * - **walk** (P7): "a fair few" (it reads British); one distance said three times a night.
  * - **log** (P9): the narration as a ledger: "I noted that", "Before Carbone was given the chloral,
  *   somebody had been at the Delmonico rooms for it", "would check out where … hadn't", "had been at it".
- * - **papers** (P10): the papers' page saying "the dead man" more than twice, or "papers" or "grudge"
- *   more than twice.
+ * - **papers** (P10): the papers' page saying "the dead man" more than three times (five, on main), or
+ *   "papers" or "grudge" more than twice.
  * - **staging** (P8): a card against the clock or the room: "a late supper" after four in the morning,
  *   "the DA's man was on the stairs", "the whole point of the place" at a picture house.
  * - **retired** (P12): the witness lines the testers stopped on: "nobody left out because…", "take it
@@ -693,7 +693,9 @@ function papers(run: BoardRun): HingeIssue[] {
     const all = prose(p).map((b) => narr(b.text)).join(' ');
     for (const [w, re] of [['the dead man', /\bthe dead (?:man|woman)\b/g], ['papers', /\bpapers\b/g], ['grudge', /\bgrudges?\b/g]] as const) {
       const n = [...all.matchAll(re)].length;
-      if (n > 2) out.push({ page: i, rule: 'papers', detail: `“${w}” ×${n}` });
+      // (The dead by their role three times at most: a page of grudges against a woman, by women, needs her
+      // by role where "her" could be the one on the page.)
+      if (n > (w === 'the dead man' ? 3 : 2)) out.push({ page: i, rule: 'papers', detail: `“${w}” ×${n}` });
     }
   });
   return out;
@@ -714,6 +716,8 @@ function staging(d: BoardDeal, run: BoardRun): HingeIssue[] {
       if (/\blate supper\b/.test(t) && late) out.push({ page: i, rule: 'staging', detail: `a late supper at ${p.head}` });
       if (/\bThe DA’s man was on the stairs\b/.test(t)) out.push({ page: i, rule: 'staging', detail: 'the DA’s man on the stairs' });
       if (/\bwhole point of the place\b/.test(t) && /\bunwatched:4\b/.test(c.places.find((x) => x.id === p.at)?.key ?? '')) out.push({ page: i, rule: 'staging', detail: 'the whole point of a picture house' });
+      // (A watcher's line that puts her on her stairs, where the way in had her somewhere else.)
+      if (/\bsits on (?:her|his) stairs\b/.test(t) && !all.some((x) => x !== b && /\bstairs?\b/.test(narr(x.text)))) out.push({ page: i, rule: 'staging', detail: 'on her stairs, where the page put her elsewhere' });
     }
   });
   return out;

@@ -54,7 +54,7 @@ import { withCaps } from './pages.js';
 import { homeNamed, titleClient } from './home.js';
 import { introOf } from './gloss.js';
 import { motiveForm, motiveSaid, whyOrder } from './motives.js';
-import { plainWhy } from './stars.js';
+import { plainWhy, starReason } from './stars.js';
 import { poisonAfter, whenQuestion } from './when.js';
 
 export type FieldKey = 'who' | 'when' | 'how' | 'why' | 'where' | 'breaks' | 'whereBy' | 'other' | 'cleared';
@@ -861,7 +861,15 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
   // docs/55 7: par, the number the verdict says, and what it's made of; docs/64: "the fastest solve", in actions.
   out.push(`THE FASTEST SOLVE: ${parCalls(d)} actions (${d.analysis.par} questions${d.analysis.motive ? ', a look at the papers for the motive' : ''} and ${d.analysis.walks} walks)`);
   // "who was at Kowalski’s tonight?", not "tonight?." (Raw 11's #27).
-  d.analysis.path.forEach((s, i) => out.push(`${i + 1}. ${pathLabel(s.label)}${/[?.!]$/.test(s.label) ? '' : '.'} ${pathWhy(pathSteps(s.why, d.analysis.path), nameOf(c, c.client))}`));
+  // (docs/66, docs/65's routed item: a suspect's evening is asked for what matters about them, as the star says
+  // it now, "Alfano was at the meeting, and nobody had said where she was at ten", never the first hour the
+  // generator's pointer had, "Alfano was at Hauck’s at eight". Game-side: the star's own reason on the path so far.)
+  const stepWhy = (s: (typeof d.analysis.path)[number], i: number): string => {
+    if (!s.q.startsWith('account:')) return pathWhy(pathSteps(s.why, d.analysis.path), nameOf(c, c.client));
+    const star = starReason(c, { asked: d.analysis.path.slice(0, i).map((x) => x.q) }, s.q);
+    return star ? `${pathWhy(star.replace(' — ', ': '), nameOf(c, c.client))}.` : pathWhy(pathSteps(s.why, d.analysis.path), nameOf(c, c.client));
+  };
+  d.analysis.path.forEach((s, i) => out.push(`${i + 1}. ${pathLabel(s.label)}${/[?.!]$/.test(s.label) ? '' : '.'} ${stepWhy(s, i)}`));
   if (d.analysis.motive) out.push(`+. ${questionById(c, d.analysis.motive)?.label ?? ''}.`);
   return out.join('\n');
 }

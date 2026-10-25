@@ -5,7 +5,7 @@
 
 import { titleClient } from './home.js';
 import type { OfferedChoice, OfferedGroup, Page } from './types.js';
-import { boardGridText } from './grid.js';
+import { FACE_MARK, boardGridText } from './grid.js';
 import { knownPeople, knownPlaces, lineShown, linesHeld } from './knowledge.js';
 import { cap, clientOf, isMurder, nameOf, personOf, placeName, type BoardDeal, type BoardRun } from './model.js';
 import { notebookWhen } from './when.js';
@@ -94,7 +94,8 @@ export const DONE_COST = 'free to reread';
  */
 export function starsNote(d: BoardDeal, run: Pick<BoardRun, 'log'>): string | null {
   if (d.kase.tier !== 5 || run.log.length !== 1) return null;
-  return 'At Hard-boiled this is the only star you get. After this page, where to go and whom to ask is up to you.';
+  // (docs/66: and how a face's clash shows at Hard-boiled: the player's own mark on the grid.)
+  return `At Hard-boiled this is the only star you get. After this page, where to go and whom to ask is up to you. ${FACE_MARK}`;
 }
 
 export function pageBodyText(page: Page): string {

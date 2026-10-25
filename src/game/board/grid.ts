@@ -223,6 +223,12 @@ export function meansAsked(label: string): string {
  * both say so" (both who?) says who: they, and somebody who saw them; an owning up and a second
  * story are each said for what they are.
  */
+/**
+ * docs/66 (docs/65's Hard-boiled faces): at Hard-boiled a clash that needs a face matched to a name
+ * waits for the player's own mark. How to make one, as a rule about the grid, never about tonight.
+ */
+export const FACE_MARK = 'When somebody saw only a coat or a hat, mark on the grid who you think it was, and the grid will show who that leaves out.';
+
 export function gridKey(g: BoardGrid): string[] {
   const cells = g.rows.flatMap((r) => g.hours.map((h) => r.cells[h] as BoardCell));
   const out = ['"X" they say so', '[X] somebody saw them there', '"X"✗ where they clash'];
@@ -252,6 +258,8 @@ export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'
   out.push('');
   out.push(gridKey(g).join('  ·  '));
   out.push(g.crimeHour !== null ? '! the hour it happened' : '? the hours it could have been');
+  // (docs/66: at Hard-boiled, how a face's clash shows: the player's mark.)
+  if (c.tier === 5) out.push(`${FACE_MARK} (mark "<Name> <hour> at <place>")`);
   // docs/47 B8: the key names only the places the night has named.
   const known = knownPlaces(c, run);
   out.push(`Places: ${Object.entries(g.codes).filter(([id]) => known.has(id) || id === c.crime.scene).map(([id, code]) => `${code} = ${placeName(c, id)}`).join('; ')}`);
