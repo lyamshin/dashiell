@@ -1020,7 +1020,18 @@ const FALLBACK_LINES: Readonly<Record<string, Draft>> = {
     text: 'Abramowitz owned up to the Automat at eleven, and Weisglass, who had been at the table with him, said the same.',
     tags: ['shape:ADMIT-CHECK'],
   },
+  // (docs/67: the kit's nights reach the street's link less often without the hand-offs' cards.)
+  'shape:STREET': {
+    text: 'The street was what mattered, since East Houston Street was where Mrs. Krantz lived.',
+    tags: ['shape:STREET'],
+  },
 };
+
+/**
+ * docs/67: what no page says any more, so the kit doesn't ask for it: the elimination (LEFT) is a
+ * Raw hint's, which is the book's chrome and not read aloud, and the hand-off is gone.
+ */
+const RETIRED_TAGS: ReadonlySet<string> = new Set(['shape:LEFT', 'slot:hand-off']);
 
 function pickPages(nights: Night[], target: number, taken: Set<string>): PagePick {
   const all = nights.flatMap((n, i) => candidatesOf(n, i));
@@ -1075,7 +1086,7 @@ function pickPages(nights: Night[], target: number, taken: Set<string>): PagePic
   }
   // 1. Coverage: every shape and slot, read once as narration and once as speech where both exist,
   // the sentence nearest eleven words first.
-  const required = [...SHAPES.filter((s) => s !== 'ATTACH').map((s) => `shape:${s}`), ...SLOTS.map((s) => `slot:${s}`)];
+  const required = [...SHAPES.filter((s) => s !== 'ATTACH').map((s) => `shape:${s}`), ...SLOTS.map((s) => `slot:${s}`)].filter((t) => !RETIRED_TAGS.has(t));
   const pref = (c: Candidate): number => Math.abs(c.words - 11) + (c.words > 16 ? 4 : 0);
   for (const tag of required) {
     for (const speech of [false, true]) {

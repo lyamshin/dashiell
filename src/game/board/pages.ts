@@ -916,6 +916,14 @@ function whyHere(w: Writer, q: string, kind: string, slots: Record<string, strin
     w.carried = true;
     return ptr;
   }
+  // (docs/67: no hand-off carries a list's reason now. Where the reason is somebody's claim this list goes
+  // on to break, the thought says the claim with what breaks it ("Broadnax had said he was home at the
+  // Delmonico rooms at ten, and Mrs. Prentiss hadn’t seen him there"), so it isn't said first as the
+  // reason too. Not at Hard-boiled, whose thought says a collision only when both lines are on the page.)
+  if (lean() && kind === 'list' && ptr.src.startsWith('account:') && thoughtLevel(w.c) !== 'fact' && breaksHere(w, q, ptr.src.slice('account:'.length))) {
+    w.carried = true;
+    return ptr;
+  }
   if (((last?.job === 'arrive' && w.before.at === w.run.at) || saidBefore) && ptr.src !== 'presence') {
     w.carried = true;
     // The one the testers kept ("I hadn’t come for the furniture. I’d come for Alfano."), once a night at most.
@@ -937,6 +945,12 @@ function whyHere(w: Writer, q: string, kind: string, slots: Record<string, strin
     return { ...ptr, face: undefined } as Pointer;
   }
   return ptr;
+}
+
+/** docs/67: whether this page's answer (`q`) breaks a claim of `p`'s that nothing held broke before it. */
+function breaksHere(w: Writer, q: string, p: PersonId): boolean {
+  const was = new Set(collisionsOf(w.c, w.before, p).map((x) => x.hour));
+  return collisionsOf(w.c, w.run, p).some((x) => !was.has(x.hour) && x.breakers.some((b) => b.q === q));
 }
 
 /** docs/62 item 11: a spot in a room, as a people line says where somebody is: "by the wall", "in the back row". */
@@ -3060,7 +3074,8 @@ export function writeTurn(w: Writer): void {
   recapFacts(w, clauses);
   w.recap = (w.parts.job ?? []).map((x) => x.text).join(' ');
   // docs/67: no what-next. "I could face X with it", "Before I did anything about it, I wanted to…" were
-  // the stars said aloud; the turn ends on its close, and a hint gives the next step when it's asked for.
+  // the stars said aloud; the turn ends on its close (where a joke is free) or on the notebook read back,
+  // and a hint gives the next step when it’s asked for.
   const tclose = w.hand.draw('turn-close', {}, {}, { widen: true, joke: true });
   put(w, 'close', tclose, 'recap', sit(w, tclose));
   lay(w, 'turn');

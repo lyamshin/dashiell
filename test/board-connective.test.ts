@@ -143,7 +143,7 @@ describe('board: the thought', () => {
     expect(reordered).toBe(24);
   });
 
-  it('the level lint catches a thought that oversteps: "that left", "only … left", "cleared", who did it', () => {
+  it('the level lint catches a thought that oversteps: "that left", "only … left", "cleared", who did it, at every tier (docs/67: Raw too)', () => {
     const over = ['That left one person who had heard about the key.', 'Only Corrigan was left with no true account.', 'That cleared Feeney.', 'So Corrigan took it, and nobody else could have.'];
     for (const [tier, type] of [[4, 'lost-pet'], [0, 'lost-pet']] as [TierIndex, CaseType][]) {
       const d = dealBoard(1, tier, type);
@@ -153,8 +153,8 @@ describe('board: the thought', () => {
         const said = text.replace('Corrigan', culprit);
         const page = run.log[3] as Page;
         const bent = { ...run, log: run.log.map((p) => (p === page ? { ...p, board: { ...(p.board as NonNullable<Page['board']>), thought: { text: said, refs: [] } } } : p)) };
-        // Above walk level it's caught; at Raw (walk) the elimination is the thought's to walk.
-        expect(levelIssues(d, bent).length, `${tier}: ${said}`).toBe(tier === 0 ? 0 : 1);
+        // (docs/67: Raw thinks at the link now; the elimination is the hint's, asked.)
+        expect(levelIssues(d, bent).length, `${tier}: ${said}`).toBe(1);
       }
     }
   });
@@ -307,22 +307,18 @@ describe('board: a clue is said at most twice a night', () => {
     expect((all.match(/under a coat/g) ?? []).length).toBeLessThanOrEqual(2);
   });
 
-  it('after a hand-off that named them, the next page turns to them without a signpost (docs/47 C13)', () => {
+  it('an evening never opens on a quest-log signpost (docs/47 C13; docs/67: no hand-off before it to carry the reason)', () => {
     let seen = 0;
     for (let s = 1; s <= 16; s++) {
       for (const [tier, type] of [[0, 'lost-pet'], [1, 'lost-pet'], [2, 'lost-pet'], [0, 'murder'], [2, 'murder'], [4, 'lost-pet']] as [TierIndex, CaseType][]) {
         const d = dealBoard(s, tier, type);
         const run = playBoardOracle(d).run;
-        run.log.forEach((p, i) => {
-          const next = run.log[i + 1];
-          const who = next?.board?.q?.startsWith('account:') ? d.kase.people.find((x) => x.id === next.board?.q?.slice(8)) : undefined;
-          if (!who || !p.board?.handoff?.includes(who.short) || next?.board?.job !== 'account' || p.board.job === 'arrive') return;
+        for (const p of run.log) {
+          if (p.board?.job !== 'account') continue;
           seen++;
-          // The reason was the hand-off's: this page carries it, and says neither it nor "So, Corrigan." again.
-          expect(next.board?.carried, prose(next)).toBe(true);
-          expect(next.board?.beats ?? []).not.toContain('why');
-          expect(prose(next)).not.toMatch(/^(So, |Which brought me to |Next, |On to )/);
-        });
+          expect(p.board?.handoff).toBeUndefined();
+          expect(prose(p)).not.toMatch(/^(So, |Which brought me to |Next, |On to )/);
+        }
       }
     }
     expect(seen).toBeGreaterThan(0);

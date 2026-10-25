@@ -133,7 +133,7 @@ export function stepBoard(d: BoardDeal, run: BoardRun, input: string): StepResul
     next.at = place;
     next.used = run.used + 1;
     next.visits[place] = (run.visits[place] ?? 0) + 1;
-    // Visited before the page is written, so its hand-off reads the stars from inside the room.
+    // Visited before the page is written, so the page reads the room as somebody inside it.
     if (!next.visited.includes(place)) next.visited.push(place);
     const w = writer(d, run, next, n);
     writeArrive(w, place);

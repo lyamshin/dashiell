@@ -61,7 +61,7 @@ import {
 } from '../game/board/report.js';
 import { dealtIds, recordRun, sanitizeProfile, seenOf } from '../game/board/profile.js';
 import { ACTION_KEY, TALK_HEADING, costText, notebookText, pageBodyText, questionsText, wrap } from '../game/board/text.js';
-import { hintsLine, hintsNote, takeHint } from '../game/board/hints.js';
+import { hintsLine, hintsNote, hintsUsed, takeHint } from '../game/board/hints.js';
 import { starCommand } from '../game/board/stars.js';
 import type { OfferedChoice, OfferedGroup } from '../game/board/types.js';
 
@@ -246,7 +246,8 @@ function pageChoicesText(night: Night): string {
   const note = hintsNote(night.d, night.run);
   const left = hintsLine(night.run);
   if (note) out.push('', wrap(left ? `${note} \`hint\` stars a good next step and says why.` : note));
-  else if (left) out.push('', wrap(left));
+  // (After a hint on the first page, how many are left, as on every page after.)
+  if (left && (!note || hintsUsed(night.run) > 0)) out.push('', wrap(left));
   return out.join('\n');
 }
 

@@ -81,18 +81,33 @@
   "section": "Warm-up and the fixed lines"
  },
  {
+  "id": "wu-e9c3bf45",
+  "text": "When two people lied, you also need what clears the innocent one.",
+  "section": "Warm-up and the fixed lines"
+ },
+ {
+  "id": "wu-f123f993",
+  "text": "Stuck? The Hint button shows you a good next step and why. You get fewer as the cases get harder.",
+  "section": "Warm-up and the fixed lines"
+ },
+ {
   "id": "wu-1ad4a271",
   "text": "Each page gives you choices: who to ask, what to search, where to go.",
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-d747b2ab",
-  "text": "Each one costs a call, and you have the night, until eight in the morning.",
+  "id": "wu-b010d103",
+  "text": "Each one takes an action, and you have the night, until eight in the morning.",
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-c0fa39d1",
-  "text": "A star marks a choice worth taking now, and says why.",
+  "id": "wu-36986b91",
+  "text": "The Hint button stars a choice worth taking now and says why.",
+  "section": "Warm-up and the fixed lines"
+ },
+ {
+  "id": "wu-0bb2eb4a",
+  "text": "A perfect report earns a star; a perfect one with no hints, a gold star.",
   "section": "Warm-up and the fixed lines"
  },
  {
@@ -106,8 +121,8 @@
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-13e21275",
-  "text": "File the report when you’re ready: who, when, how, why, and the fact that proves it.",
+  "id": "wu-b00a51b7",
+  "text": "Close the case when you’re ready: who, when, how, why, and what proves it.",
   "section": "Warm-up and the fixed lines"
  },
  {
@@ -116,18 +131,23 @@
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-d7d5219d",
-  "text": "Fourteen calls left before the DA files at eight.",
+  "id": "wu-973cf766",
+  "text": "When two people lied, it also asks who else lied and what clears them.",
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-c5fd765b",
-  "text": "No calls left. The DA files at eight.",
+  "id": "wu-30fd375a",
+  "text": "Fourteen actions left. The DA charges somebody at eight.",
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-dce63209",
-  "text": "One call left before Zeldin wants an answer at eight.",
+  "id": "wu-09687b19",
+  "text": "No actions left. The DA charges somebody at eight.",
+  "section": "Warm-up and the fixed lines"
+ },
+ {
+  "id": "wu-1978a7d0",
+  "text": "One action left. Zeldin wants an answer at eight.",
   "section": "Warm-up and the fixed lines"
  },
  {
@@ -136,8 +156,8 @@
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-af76e2ff",
-  "text": "The turn.",
+  "id": "wu-35c90fa8",
+  "text": "Where things stood.",
   "section": "Warm-up and the fixed lines"
  },
  {
@@ -181,13 +201,8 @@
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-c0a37714",
-  "text": "File the report.",
-  "section": "Warm-up and the fixed lines"
- },
- {
-  "id": "wu-6450efa8",
-  "text": "The report.",
+  "id": "wu-b7409fae",
+  "text": "Close the case.",
   "section": "Warm-up and the fixed lines"
  },
  {
@@ -211,23 +226,38 @@
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-85f8abbe",
-  "text": "Who did it, when, how and why.",
+  "id": "wu-d1283e76",
+  "text": "Who did it, when was he poisoned?, how and why.",
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-d691bf52",
-  "text": "Who took him, when he went, where he is now and why.",
+  "id": "wu-60431656",
+  "text": "Who took him, when did he go?, where he is now and why.",
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-dac6d911",
-  "text": "What shows they lied.",
+  "id": "wu-d748dbc4",
+  "text": "What proves they lied.",
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-7dc9c9a4",
-  "text": "What puts it there.",
+  "id": "wu-768ee29c",
+  "text": "Someone else lied too. Who, and what clears them?",
+  "section": "Warm-up and the fixed lines"
+ },
+ {
+  "id": "wu-1f3f8e6b",
+  "text": "What clears them.",
+  "section": "Warm-up and the fixed lines"
+ },
+ {
+  "id": "wu-1cc08c83",
+  "text": "Nobody else.",
+  "section": "Warm-up and the fixed lines"
+ },
+ {
+  "id": "wu-e63e60b4",
+  "text": "What proves where it is.",
   "section": "Warm-up and the fixed lines"
  },
  {
@@ -241,18 +271,13 @@
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-630c422e",
-  "text": "Everything else I have.",
+  "id": "wu-11cef90d",
+  "text": "Everything else.",
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-570c4086",
-  "text": "File it.",
-  "section": "Warm-up and the fixed lines"
- },
- {
-  "id": "wu-44dbb6af",
-  "text": "Four out of four: who (and what shows they lied), when, how and why.",
+  "id": "wu-f67f1dc2",
+  "text": "Review my notes.",
   "section": "Warm-up and the fixed lines"
  },
  {
@@ -271,13 +296,28 @@
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-254e5e3f",
-  "text": "I filed it feeling sure, which is the worst way to be wrong.",
+  "id": "wu-1aad8ecc",
+  "text": "Moretti read it and said it was more than he had had before.",
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-cd193f7e",
-  "text": "I left the name blank and told Moretti so. Moretti took it better than I did.",
+  "id": "wu-0f05aec1",
+  "text": "I closed the case feeling sure, which is the worst way to be wrong.",
+  "section": "Warm-up and the fixed lines"
+ },
+ {
+  "id": "wu-ea520995",
+  "text": "I left the name blank and told Moretti so. He took it better than I did.",
+  "section": "Warm-up and the fixed lines"
+ },
+ {
+  "id": "wu-c6581e7c",
+  "text": "You had the right name, but you didn’t rule out Ruggiero: a hunch doesn’t clear her.",
+  "section": "Warm-up and the fixed lines"
+ },
+ {
+  "id": "wu-4be856f7",
+  "text": "You had the right name, but you didn’t rule out Ruggiero.",
   "section": "Warm-up and the fixed lines"
  },
  {
@@ -286,8 +326,8 @@
   "section": "Warm-up and the fixed lines"
  },
  {
-  "id": "wu-85d2b973",
-  "text": "Four out of four: who (and what shows they lied), when, where (and what puts it there) and why.",
+  "id": "wu-4cf49d2b",
+  "text": "Four out of four: who, when, where and why, with the proof for who and for where.",
   "section": "Warm-up and the fixed lines"
  },
  {
@@ -824,66 +864,67 @@
   "section": "Names and places"
  },
  {
-  "id": "nm-7bacbb0c",
-  "text": "I had three names to ask about: Reinhardt, Winslow and Bellucci.",
+  "id": "nm-4d5120df",
+  "text": "I had three names to ask about: Brauer, Hargrove and Reinhardt.",
+  "section": "Names and places"
+ },
+ {
+  "id": "nm-6dbac027",
+  "text": "Only Mosley, Winslow and Bellucci were at the bar at ten.",
   "section": "Names and places",
   "note": "Bellucci: beh-LOO-chee"
  },
  {
-  "id": "nm-ac045e34",
-  "text": "Only Brauer, Hargrove and Mosley were at the bar at ten.",
-  "section": "Names and places"
- },
- {
-  "id": "nm-22d1f925",
-  "text": "Havemeyer sent me to Colquitt, and Colquitt sent me to Dettweiler.",
+  "id": "nm-bfeda8a2",
+  "text": "Colquitt sent me to Dettweiler, and Dettweiler sent me to Hanrahan.",
   "section": "Names and places",
-  "note": "Dettweiler: DET-why-ler; Havemeyer: HAVE-my-er; Colquitt: COLE-kwit"
+  "note": "Dettweiler: DET-why-ler; Colquitt: COLE-kwit"
  },
  {
-  "id": "nm-a7716b74",
-  "text": "I found Hanrahan at the window, Vogel at the bar and Bernstein by the door.",
-  "section": "Names and places"
+  "id": "nm-849fdcb0",
+  "text": "I found Havemeyer at the window, Stannard at the bar and Vogel by the door.",
+  "section": "Names and places",
+  "note": "Havemeyer: HAVE-my-er"
  },
  {
-  "id": "nm-d35d3507",
-  "text": "Feldman had seen Kavanagh and Mulcahy on the stairs.",
+  "id": "nm-8bbc7c88",
+  "text": "Bernstein had seen Kavanagh and Mulcahy on the stairs.",
   "section": "Names and places",
   "note": "Kavanagh: KAV-uh-nuh; Mulcahy: mul-KAH-hee"
  },
  {
-  "id": "nm-f5a41001",
-  "text": "According to Rosenbaum, Stannard and Tramonti left together.",
-  "section": "Names and places"
- },
- {
-  "id": "nm-1cf303f1",
-  "text": "Abramowitz, Ashby and Dandridge were at the supper at eight.",
+  "id": "nm-1b21dfc2",
+  "text": "According to Rosenbaum, Tramonti and Abramowitz left together.",
   "section": "Names and places",
   "note": "Abramowitz: uh-BRAM-uh-witz"
  },
  {
-  "id": "nm-a9460374",
-  "text": "I had three names to ask about: Hauck, Kreuzer and Lefkowitz.",
-  "section": "Names and places",
-  "note": "Kreuzer: KROY-tser; Lefkowitz: LEFF-kuh-witz"
- },
- {
-  "id": "nm-e5ef273f",
-  "text": "Only Marchetti, Prentiss and Weisglass were at the bar at ten.",
-  "section": "Names and places",
-  "note": "Weisglass: WICE-glass; Marchetti: mar-KET-ee"
- },
- {
-  "id": "nm-688d8dd8",
-  "text": "Broadnax sent me to Coffin, and Coffin sent me to Fairbanks.",
+  "id": "nm-2e6863f4",
+  "text": "Ashby, Dandridge and Feldman were at the supper at eight.",
   "section": "Names and places"
  },
  {
-  "id": "nm-30b7d941",
-  "text": "I found Grasso at the window, Hochstetter at the bar and Crowninshield by the door.",
+  "id": "nm-fd65107b",
+  "text": "I had three names to ask about: Hauck, Kreuzer and Lanza.",
   "section": "Names and places",
-  "note": "Hochstetter: HOKE-stet-er; Crowninshield: CROWN-in-sheeld"
+  "note": "Kreuzer: KROY-tser"
+ },
+ {
+  "id": "nm-ee0e9ad8",
+  "text": "Only Prentiss, Broadnax and Coffin were at the bar at ten.",
+  "section": "Names and places"
+ },
+ {
+  "id": "nm-e809897c",
+  "text": "Crowninshield sent me to Fairbanks, and Fairbanks sent me to Grasso.",
+  "section": "Names and places",
+  "note": "Crowninshield: CROWN-in-sheeld"
+ },
+ {
+  "id": "nm-483369e1",
+  "text": "I found Lefkowitz at the window, Marchetti at the bar and Hochstetter by the door.",
+  "section": "Names and places",
+  "note": "Hochstetter: HOKE-stet-er; Marchetti: mar-KET-ee; Lefkowitz: LEFF-kuh-witz"
  },
  {
   "id": "nm-c06d5530",
@@ -897,10 +938,9 @@
   "section": "Names and places"
  },
  {
-  "id": "nm-654b6ac8",
-  "text": "My client named Adelaide Stannard, and then, almost as an afterthought, Antonio Marchetti.",
-  "section": "Names and places",
-  "note": "Marchetti: mar-KET-ee"
+  "id": "nm-23cabf73",
+  "text": "My client named Abraham Margolis, and then, almost as an afterthought, Adelaide Stannard.",
+  "section": "Names and places"
  },
  {
   "id": "nm-96c37aad",
@@ -944,14 +984,14 @@
   "section": "Names and places"
  },
  {
-  "id": "nm-184c1f3a",
-  "text": "The cab took Elizabeth Street to Cannon Street and let me out on Forsyth Street.",
+  "id": "nm-30a65452",
+  "text": "The cab took Elizabeth Street to Forsyth Street and let me out on Hester Street.",
   "section": "Names and places",
   "note": "Forsyth: for-SYTHE"
  },
  {
-  "id": "nm-baaea8ff",
-  "text": "From Hester Street it was a short walk to Suffolk Street, and a long one to Houston Street.",
+  "id": "nm-216d3459",
+  "text": "From Suffolk Street it was a short walk to Cannon Street, and a long one to Houston Street.",
   "section": "Names and places",
   "note": "Houston: HOW-stun, not the city"
  },
@@ -1194,49 +1234,51 @@
   "note": "Pages: Sentences off the game’s own pages. The narrator is the detective telling it: unhurried, dry, warm. Words inside quotation marks get a light shift into the speaker, not an impression; “he said” is the narrator again. A playtesters’ favorite."
  },
  {
-  "id": "pg-62f9f5c3",
-  "text": "“Ten o’clock, I stopped in at Moe’s to get warm, by myself.”",
+  "id": "pg-df15bb63",
+  "text": "The spare key lived in the sugar tin at Kowalski’s.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-a87b1451",
+  "text": "The cardboard cowboy was still tipping Bellucci’s hat.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-3997eb00",
+  "text": "So she had it the same as Ruggiero: the Palace at nine.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-6a0b7a65",
+  "text": "“Mrs. Thorndike, over at Mrs. Nagy’s, minds Caruso when I’m out,” my client said.",
   "section": "Pages",
-  "note": "Speech: Bellucci, a milliner. A light shift into the character, not an impression."
+  "note": "The words in quotation marks are Wehrle: a light shift. The rest is the narrator."
  },
  {
-  "id": "pg-edfec008",
-  "text": "I stood at the ticket seller’s elbow and said I needed a word.",
+  "id": "pg-6f76263c",
+  "text": "It was a good ten blocks.",
   "section": "Pages"
  },
  {
-  "id": "pg-7ee749e8",
-  "text": "I wanted every one of those faces.",
+  "id": "pg-0d776893",
+  "text": "There were two glasses on the table, and I smelled them both.",
   "section": "Pages"
  },
  {
-  "id": "pg-dbe2626c",
-  "text": "The tin sign was still promising relief.",
-  "section": "Pages"
+  "id": "pg-179c9177",
+  "text": "“I was home at the flats over Lipsky’s from eight through nine, with Miss Lowenthal and Miss Moskin.”",
+  "section": "Pages",
+  "note": "Speech: Mrs. Sobel, the midwife. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-52cb7279",
-  "text": "Nobody kept the stairs here.",
-  "section": "Pages"
+  "id": "pg-588fe6cc",
+  "text": "“I’ve lost a set of silver spoons, or somebody has taken it, which is worse.”",
+  "section": "Pages",
+  "note": "Speech: Mrs. Krantz. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-3956dd66",
-  "text": "I don’t hurry in rooms like this.",
-  "section": "Pages"
- },
- {
-  "id": "pg-ebfb71ef",
-  "text": "Wojcik saw Miss Lowenthal at the flats over Lipsky’s at ten.",
-  "section": "Pages"
- },
- {
-  "id": "pg-29feea32",
-  "text": "He was answering the fourth floor by banging a pipe with a wrench.",
-  "section": "Pages"
- },
- {
-  "id": "pg-19c0b51d",
-  "text": "“There’s one way in and one way out, and I’m sitting in both of them.”",
+  "id": "pg-c1e3a1aa",
+  "text": "“Every face comes to my slot first.”",
   "section": "Pages",
   "note": "Speech: a light shift into the character, not an impression."
  },
@@ -1247,58 +1289,51 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-1af6b417",
-  "text": "They took their time about it.",
+  "id": "pg-9864aa74",
+  "text": "I turned it round, sat in it, and opened out the report.",
   "section": "Pages"
  },
  {
-  "id": "pg-e5648628",
-  "text": "“They wait at the doors for the end of the scene like everybody else, and while they wait, I look at them.”",
+  "id": "pg-63db3d9f",
+  "text": "“Amato was in at seven and left soon after.”",
   "section": "Pages",
-  "note": "Speech: a light shift into the character, not an impression."
+  "note": "Speech: Pinsky. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-254ee558",
-  "text": "She waited out the echo of it, and then told me.",
+  "id": "pg-34c4cb39",
+  "text": "Somebody was in the back booth, keeping to themselves.",
   "section": "Pages"
  },
  {
-  "id": "pg-6f536c8f",
-  "text": "“We haven’t spoken since the row over the coal bill.”",
+  "id": "pg-f67762dd",
+  "text": "Whoever let themselves into Mrs. Marchetti’s flat had been at Kowalski’s first.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-de33a6a9",
+  "text": "I set off uptown and east for the Zeldin flat.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-64f7daa5",
+  "text": "He saw Ruggiero at the Shamrock at eight, just like she said.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-d0b0fa39",
+  "text": "Benny was the one three rows back.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-56c3849e",
+  "text": "I asked Pickering for her evening, in order, the way you’d ask for a receipt.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-4075e902",
+  "text": "“No one else came in all evening; I’d have seen them.”",
   "section": "Pages",
-  "note": "Speech: Marchetti. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-d81f5ea0",
-  "text": "“Eleven, somebody in with something under a coat.”",
-  "section": "Pages",
-  "note": "Speech: Rosenbaum. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-9d1a7c38",
-  "text": "“I wasn’t at the Delmonico rooms at nine.”",
-  "section": "Pages",
-  "note": "Speech: Ruggiero, a sewing-machine operator. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-e4377d50",
-  "text": "I gave the aspidistra a nod.",
-  "section": "Pages"
- },
- {
-  "id": "pg-da717117",
-  "text": "Ellery saw Pickering at the chop house at ten, so now two people said so.",
-  "section": "Pages"
- },
- {
-  "id": "pg-61514bb4",
-  "text": "And at the same hour the same witness saw Marchetti there.",
-  "section": "Pages"
- },
- {
-  "id": "pg-09087395",
-  "text": "Thorndike: a file the dead man had kept on her, thick enough to matter.",
-  "section": "Pages"
+  "note": "Speech: Reinhardt. A light shift into the character, not an impression."
  },
  {
   "id": "pg-2d0b6133",
@@ -1307,56 +1342,50 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-b9178264",
-  "text": "“The rat poison on the cellar shelf was there at eight.”",
+  "id": "pg-a835da09",
+  "text": "Russo said it slowly, so that I’d get it right.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-75f26fac",
+  "text": "It went at ten o’clock.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-70b1f081",
+  "text": "Russo counted out ten dollars in ones and change, and the change was the part that got to me.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-26fc5205",
+  "text": "I asked Wojcik who he’d seen come and go since the evening started.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-76175ba6",
+  "text": "Pinsky could see the whole house, from the back of the center aisle.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-8febff0a",
+  "text": "“I’ll pay,” Miss Kahane said, and did: ten dollars, folded small.",
   "section": "Pages",
-  "note": "Speech: Wojcik. A light shift into the character, not an impression."
+  "note": "The words in quotation marks are Kahane: a light shift. The rest is the narrator."
  },
  {
-  "id": "pg-9f0805cf",
-  "text": "Demos had seen Mabry at Steinmetz’s at nine.",
+  "id": "pg-3e78d5d9",
+  "text": "Mrs. Kowalski was in the hall with a dustpan, sweeping a stair that had been swept already.",
   "section": "Pages"
  },
  {
-  "id": "pg-d8ee2fc7",
-  "text": "I found a quiet table, which in a club is only quiet by comparison, and opened the notebook at the beginning.",
-  "section": "Pages"
- },
- {
-  "id": "pg-944ed4c0",
-  "text": "One thing didn’t fit: he said the Lyric at ten.",
-  "section": "Pages"
- },
- {
-  "id": "pg-c681e11c",
-  "text": "But Pinsky said only Miss Kahane and Mrs. Krantz were at the Lyric at ten o’clock.",
-  "section": "Pages"
- },
- {
-  "id": "pg-9e60b1cd",
-  "text": "It’s the only preparation I make.",
-  "section": "Pages"
- },
- {
-  "id": "pg-394b9b87",
-  "text": "“Miss Marsh the cigarette girl was in all evening.”",
+  "id": "pg-76f0432d",
+  "text": "“Then, at ten, I went to the Odessa to read the late paper over a plate of soup, on my own.”",
   "section": "Pages",
-  "note": "Speech: Mrs. Szabo. A light shift into the character, not an impression."
+  "note": "Speech: Vogel, a cab driver. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-68c38733",
-  "text": "The story squared with what I’d been told.",
-  "section": "Pages"
- },
- {
-  "id": "pg-ac3d040d",
-  "text": "“From the top: eight o’clock, just Feeney.”",
-  "section": "Pages",
-  "note": "Speech: Bellucci. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-8677ddfd",
-  "text": "She vouched for Ruggiero at the Palace at nine.",
+  "id": "pg-594368fb",
+  "text": "I read them standing up, one page at a time.",
   "section": "Pages"
  },
  {
@@ -1366,63 +1395,52 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-7de7e4c0",
-  "text": "I headed east for the Wehrle flat, a couple of blocks away.",
+  "id": "pg-00ad6a7b",
+  "text": "I came over to Ashby with my hat off and stood until she was ready for me.",
   "section": "Pages"
  },
  {
-  "id": "pg-8d12e760",
-  "text": "One thing didn’t fit: she said the chop house at ten.",
+  "id": "pg-a9d85d32",
+  "text": "I signed my name at the bottom and blew on it, though pencil doesn’t need it.",
   "section": "Pages"
  },
  {
-  "id": "pg-92957f0b",
-  "text": "But Ellery said only Marchetti, Pickering and Benny were at the chop house at ten o’clock.",
+  "id": "pg-8284b3ed",
+  "text": "A man in shirtsleeves on a stoop held a bottle out to me without a word.",
   "section": "Pages"
  },
  {
-  "id": "pg-d1b1048c",
-  "text": "Nobody had forced the lock.",
-  "section": "Pages"
- },
- {
-  "id": "pg-96c9fbe4",
-  "text": "“I had that from the woman downstairs.”",
+  "id": "pg-faf0b7fc",
+  "text": "“If you want a name, try Mrs. Sobel, the midwife,” he said.",
   "section": "Pages",
-  "note": "Speech: Russo. A light shift into the character, not an impression."
+  "note": "The words in quotation marks are Russo: a light shift. The rest is the narrator."
  },
  {
-  "id": "pg-ab038cdb",
-  "text": "“The stoop has five steps, and the fourth one rings when you stand on it.”",
-  "section": "Pages",
-  "note": "Speech: a light shift into the character, not an impression."
+  "id": "pg-c9e6bea4",
+  "text": "Tierney was the one at the corner table.",
+  "section": "Pages"
  },
  {
-  "id": "pg-a7ef648d",
-  "text": "“I suppose it’s better out than in.”",
-  "section": "Pages",
-  "note": "Speech: Dr. Hirsch, the dentist. A light shift into the character, not an impression."
+  "id": "pg-5e865d90",
+  "text": "A handful of blocks downtown and west, and I was at the flats over Lipsky’s.",
+  "section": "Pages"
  },
  {
-  "id": "pg-e1644838",
-  "text": "“Seven, I count the day.”",
+  "id": "pg-db37d2dd",
+  "text": "“I wasn’t at the flats over Lipsky’s.”",
   "section": "Pages",
   "note": "Speech: Teitel, the pushcart man. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-7ccc68b3",
-  "text": "Down the aisle a seat folded itself up with a bang.",
+  "id": "pg-bcb51e63",
+  "text": "Before that, he said, it was anybody’s.",
   "section": "Pages"
  },
  {
-  "id": "pg-fd30707b",
-  "text": "I kept my coat on, sat on the edge of a hard chair and got the form out.",
-  "section": "Pages"
- },
- {
-  "id": "pg-ec8728be",
-  "text": "The place wasn’t mine, so I meant to be quick with the form.",
-  "section": "Pages"
+  "id": "pg-373b208d",
+  "text": "“Kaminsky, the prizefighter, says Fritz was promised to him, back in my courting days.”",
+  "section": "Pages",
+  "note": "Speech: Miss Kahane. A light shift into the character, not an impression."
  },
  {
   "id": "pg-8e923c46",
@@ -1431,49 +1449,53 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-69239175",
-  "text": "From there to the Marchetti flat was a good walk.",
+  "id": "pg-2e92c283",
+  "text": "“Find out who, and where.”",
+  "section": "Pages",
+  "note": "Speech: Marchetti. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-089544c9",
+  "text": "The cat from the step was on a different step now.",
   "section": "Pages"
  },
  {
-  "id": "pg-68e59161",
-  "text": "The samovar hissed once as I passed.",
+  "id": "pg-c0d56f3c",
+  "text": "“Laudanum takes twenty minutes to an hour, so he died within the hour.”",
+  "section": "Pages",
+  "note": "Speech: Moretti. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-e792386f",
+  "text": "She had asked up and down the stairs.",
   "section": "Pages"
  },
  {
-  "id": "pg-851f30ea",
-  "text": "I put my back to the room and an elbow on the bar beside her.",
+  "id": "pg-826d8038",
+  "text": "“A neighbor, over at the Delmonico rooms, and Fritz likes the cooking there better than mine.”",
+  "section": "Pages",
+  "note": "Speech: Hauck. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-3975b028",
+  "text": "I walked over to Renfro’s flat.",
   "section": "Pages"
  },
  {
-  "id": "pg-f6772062",
-  "text": "I’d see it every time the thing didn’t ring.",
+  "id": "pg-575c85ac",
+  "text": "My visitor knocked once, came in, and sat down like somebody who’d been rehearsing it all the way up.",
   "section": "Pages"
  },
  {
-  "id": "pg-0ec86b99",
-  "text": "Thorndike’s evening was still a blank in my notebook.",
+  "id": "pg-8c44dee6",
+  "text": "The flats over Lipsky’s were waking from the top down, a light on the fifth floor, then the fourth.",
   "section": "Pages"
  },
  {
-  "id": "pg-eeb1b93f",
-  "text": "Renfro’s flat lay a good walk downtown and east.",
-  "section": "Pages"
- },
- {
-  "id": "pg-769c50a8",
-  "text": "She was telling somebody what they weighed at birth.",
-  "section": "Pages"
- },
- {
-  "id": "pg-63734b68",
-  "text": "They’d have got somewhere by now, or given up and found a doorway.",
-  "section": "Pages"
- },
- {
-  "id": "pg-97a1aa7a",
-  "text": "Nobody kept watch in a place like that.",
-  "section": "Pages"
+  "id": "pg-27f261b5",
+  "text": "“Did you see what was under the coat?”",
+  "section": "Pages",
+  "note": "Speech: the detective himself, so your own voice."
  },
  {
   "id": "pg-849d227c",
@@ -1482,49 +1504,50 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-ca3f2226",
-  "text": "Mrs. Krantz had been in at nine and gone out after.",
+  "id": "pg-e2de1fcb",
+  "text": "Glick was in the corner.",
   "section": "Pages"
  },
  {
-  "id": "pg-4cc0da4f",
-  "text": "Nobody there was paid to keep track of anybody.",
-  "section": "Pages"
- },
- {
-  "id": "pg-924c7294",
-  "text": "I said over the noise, “Where’ve you been tonight, and who with?”",
+  "id": "pg-f8a15e1e",
+  "text": "“Mrs. Krantz kept me company from the time I sat down.”",
   "section": "Pages",
-  "note": "The quoted words are the detective’s own: your own voice throughout."
+  "note": "Speech: Doyle, the alderman’s clerk. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-695f4825",
-  "text": "After midnight it had the quiet of a place that expects to be quiet and is paid to be.",
+  "id": "pg-f4f43bb8",
+  "text": "The flats over Lipsky’s were just along the block.",
   "section": "Pages"
  },
  {
-  "id": "pg-68777435",
-  "text": "At eleven, whatever it was had gone to Lou at the Odessa.",
+  "id": "pg-c25ef640",
+  "text": "“Anybody you can think of who’d want the watch?”",
+  "section": "Pages",
+  "note": "Speech: the detective himself, so your own voice."
+ },
+ {
+  "id": "pg-bf6d88ad",
+  "text": "I went on to the Bijou on foot.",
   "section": "Pages"
  },
  {
-  "id": "pg-09f8a234",
-  "text": "She took me into the front parlor and sat with her back to the window, where she could still hear the stairs.",
+  "id": "pg-0b024d55",
+  "text": "She answered with the care of somebody filling in a form for the government.",
   "section": "Pages"
  },
  {
-  "id": "pg-31f2dabe",
-  "text": "I’d have settled for less.",
+  "id": "pg-bc577988",
+  "text": "He said he was home at Mrs. Nagy’s at ten.",
   "section": "Pages"
  },
  {
-  "id": "pg-f670cc5e",
-  "text": "Ellery said Marchetti was at the chop house at nine and ten.",
+  "id": "pg-dc33bf02",
+  "text": "Everybody at my client’s meeting at eight had heard where to find it.",
   "section": "Pages"
  },
  {
-  "id": "pg-49f56128",
-  "text": "Under the table lay an empty brown bottle from the Delmonico rooms, where the lodgers keep it on the hall shelf.",
+  "id": "pg-c1c68e0b",
+  "text": "Whoever sits in the change booth sees every hand that comes to the glass for nickels, and the faces above them.",
   "section": "Pages"
  },
  {
@@ -1534,57 +1557,49 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-179c9177",
-  "text": "“I was home at the flats over Lipsky’s from eight through nine, with Miss Lowenthal and Miss Moskin.”",
-  "section": "Pages",
-  "note": "Speech: Mrs. Sobel, the midwife. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-52a9cfd8",
-  "text": "I wanted Mabry’s evening laid out like a menu: each place, each hour, and whoever was there for it.",
+  "id": "pg-9e706a9f",
+  "text": "Sokol could see the bar, the four tables and the door through from the bakery.",
   "section": "Pages"
  },
  {
-  "id": "pg-c36a31d5",
-  "text": "“Miss Marsh the cigarette girl, every hour, start to finish.”",
+  "id": "pg-cc9ef76c",
+  "text": "I did, badly, but I said no, and she let me work.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-15878418",
+  "text": "Amato had told me he was home at the flats over Lipsky’s at ten, and Wojcik didn’t see him there then.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-87f506ce",
+  "text": "So it had happened at ten.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-eaf1a154",
+  "text": "The street was what mattered, since East Houston Street was where Mrs. Krantz lived.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-49d816b0",
+  "text": "“I was watching the coat, not the face.”",
   "section": "Pages",
   "note": "Speech: Mrs. Szabo. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-ca81a79f",
-  "text": "“He owed Wexler, his boss, and wasn’t paying.”",
-  "section": "Pages",
-  "note": "Speech: Mrs. Blau. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-10b0d321",
-  "text": "Teitel was eating a baked potato out of his coat pocket, and Doyle was writing a name in a little black book.",
+  "id": "pg-df2a111f",
+  "text": "At ten, when the watch went, Steinbach was at Moe’s.",
   "section": "Pages"
  },
  {
-  "id": "pg-95a6c5e3",
-  "text": "A cab went by slowly with its flag up, hoping, and I let it hope.",
+  "id": "pg-b67feb0b",
+  "text": "I asked Vogel to walk me through his night, every stop of it.",
   "section": "Pages"
  },
  {
-  "id": "pg-83912f06",
-  "text": "The office stairs would feel shorter when I climbed them next.",
-  "section": "Pages"
- },
- {
-  "id": "pg-5e2d5dc9",
-  "text": "“Watched the coat, not the face.”",
-  "section": "Pages",
-  "note": "Speech: Rosenbaum. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-659406e8",
-  "text": "Hanrahan, Ruggiero and Reinhardt had been at the Delmonico rooms earlier, when the laudanum was there for the taking.",
-  "section": "Pages"
- },
- {
-  "id": "pg-b5eb52b0",
-  "text": "But Winslow, as it turned out, hadn’t.",
+  "id": "pg-10295d86",
+  "text": "I pulled a chair across and sat down facing Ruggiero, close.",
   "section": "Pages"
  },
  {
@@ -1594,63 +1609,54 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-41c49186",
-  "text": "A holy picture hung in the hall, with a little lamp in a red glass under it.",
+  "id": "pg-f0fd6d83",
+  "text": "She looked at the ceiling for the next one, and found it there.",
   "section": "Pages"
  },
  {
-  "id": "pg-239c7562",
-  "text": "“Where were you this evening,” I said, “in the house or out of it?”",
+  "id": "pg-1b506554",
+  "text": "“Fritz bit Alfano at Easter, and she swore she’d see the back of him.”",
   "section": "Pages",
-  "note": "The quoted words are the detective’s own: your own voice throughout."
+  "note": "Speech: Hauck. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-2903709c",
-  "text": "Mrs. Sirkin had told me who came in, and Grasso where the evening went.",
+  "id": "pg-c28eaec2",
+  "text": "Winslow, a night-school teacher, had a brother the dead man had testified against.",
   "section": "Pages"
  },
  {
-  "id": "pg-b446d0f5",
-  "text": "I still didn’t know where Abramowitz, Winslow, Renfro and Thorndike had been.",
-  "section": "Pages"
- },
- {
-  "id": "pg-d8abf71a",
-  "text": "“It’s not a short story; I’m an old woman.”",
+  "id": "pg-ebc24bf8",
+  "text": "“Nobody else came in or out.”",
   "section": "Pages",
-  "note": "Speech: Mrs. Sobel, the midwife. A light shift into the character, not an impression."
+  "note": "Speech: Wojcik. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-700d8968",
-  "text": "Mabry had told me Steinmetz’s at ten, and that was how I had it written down.",
-  "section": "Pages"
- },
- {
-  "id": "pg-7a55e07b",
-  "text": "Demos said otherwise, and they couldn’t both be right.",
-  "section": "Pages"
- },
- {
-  "id": "pg-dfe3aaac",
-  "text": "“And there’s Doyle, the alderman’s clerk.”",
+  "id": "pg-54b72012",
+  "text": "“A gentleman orders the chop, sir.”",
   "section": "Pages",
-  "note": "Speech: Russo. A light shift into the character, not an impression."
+  "note": "Speech: a light shift into the character, not an impression."
  },
  {
-  "id": "pg-c126b34c",
-  "text": "“I was at the card room over Feingold’s garage, with Glick.”",
+  "id": "pg-394c858a",
+  "text": "I walked uptown and east to the Russo flat.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-03dec4cb",
+  "text": "“Where were you the rest of the evening?”",
   "section": "Pages",
-  "note": "Speech: Teitel, the pushcart man. A light shift into the character, not an impression."
+  "note": "Speech: the detective himself, so your own voice."
  },
  {
-  "id": "pg-49271d83",
-  "text": "My jaw had found yet another color nobody sells paint in.",
+  "id": "pg-2ac94110",
+  "text": "So at ten, when Mrs. Krantz was given the rat poison, Amato was at the bakery cellar at Sokol’s.",
   "section": "Pages"
  },
  {
-  "id": "pg-bdab36df",
-  "text": "She went back to looking through the slot in the steel door.",
-  "section": "Pages"
+  "id": "pg-a7066470",
+  "text": "“At eight and nine, nobody with me.”",
+  "section": "Pages",
+  "note": "Speech: Fishel. A light shift into the character, not an impression."
  },
  {
   "id": "pg-c8c45aab",
@@ -1659,61 +1665,52 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-035ace4e",
-  "text": "I like a story that squares; there are few enough of them on these streets.",
+  "id": "pg-91093fb1",
+  "text": "“And when did the watch go?”",
+  "section": "Pages",
+  "note": "Speech: the detective himself, so your own voice."
+ },
+ {
+  "id": "pg-6cd8465e",
+  "text": "My visitor knocked twice and waited to be asked in, as if somebody’s mother was listening.",
   "section": "Pages"
  },
  {
-  "id": "pg-d26ad69a",
-  "text": "I asked him to go through the evening from the start, place by place, naming whoever was at each.",
+  "id": "pg-73535d8d",
+  "text": "The office on Mulberry Street was dark except for the desk lamp, and the street under the window had gone quiet.",
   "section": "Pages"
  },
  {
-  "id": "pg-022e295e",
-  "text": "I said corrections were welcome, and so were pauses.",
+  "id": "pg-5f985fed",
+  "text": "“I was at Wehrle’s meeting at eight, with Salerno and Ainsworth.”",
+  "section": "Pages",
+  "note": "Speech: Broadnax, a shoe clerk. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-4565b2f6",
+  "text": "“You told me you were at the chop house at ten.”",
+  "section": "Pages",
+  "note": "Speech: Alfano, a bus conductor. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-e57d6616",
+  "text": "“Somebody in a camel coat came in at ten.”",
+  "section": "Pages",
+  "note": "Speech: Reinhardt. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-2a8ddedb",
+  "text": "I started at the door and missed nothing I could help.",
   "section": "Pages"
  },
  {
-  "id": "pg-474e271d",
-  "text": "I set the form down in it and nodded my thanks.",
-  "section": "Pages"
- },
- {
-  "id": "pg-b2dd9e7d",
-  "text": "I wanted my answer down on paper before the night could change its mind.",
-  "section": "Pages"
- },
- {
-  "id": "pg-6bfca001",
-  "text": "A draft came down the center aisle from somewhere and went along the rows, lifting the corner of a dropped program.",
+  "id": "pg-35e56abb",
+  "text": "Whoever it was had heard her at Steinmetz’s first.",
   "section": "Pages"
  },
  {
   "id": "pg-c39998ab",
   "text": "My visitor hung up his own coat and sat like a man who’d waited in better rooms and billed for it.",
-  "section": "Pages"
- },
- {
-  "id": "pg-caeff800",
-  "text": "“I want the right one.”",
-  "section": "Pages",
-  "note": "Speech: Margolis. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-0eee9dd4",
-  "text": "“Then ten o’clock rolled around, and I went to Sokol’s to hear the fight on the radio, alone.”",
-  "section": "Pages",
-  "note": "Speech: Mrs. Sobel, the midwife. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-46818613",
-  "text": "“Tierney the oyster opener was present the whole of the evening, every hour of it.”",
-  "section": "Pages",
-  "note": "Speech: Demos. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-246c6bf7",
-  "text": "I asked her to take me through tonight in order, every place and every person, and not to hurry it.",
   "section": "Pages"
  },
  {
@@ -1723,52 +1720,51 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-baed9225",
-  "text": "The police put it down as the dead man’s heart and closed the file.",
+  "id": "pg-728e6f06",
+  "text": "Miss Kahane was at the Lyric at ten, according to Pinsky.",
   "section": "Pages"
  },
  {
-  "id": "pg-56153578",
-  "text": "“Then nine o’clock rolled around, and I dropped a parcel off at the flats over Lipsky’s, with Teitel.”",
+  "id": "pg-18cde653",
+  "text": "“Nobody comes in late past me.”",
   "section": "Pages",
-  "note": "Speech: Doyle, the alderman’s clerk. A light shift into the character, not an impression."
+  "note": "Speech: a light shift into the character, not an impression."
  },
  {
-  "id": "pg-1c3d1165",
-  "text": "“At nine I went to the Peacock to dance, with Teitel, Belkin and Russo.”",
-  "section": "Pages",
-  "note": "Speech: Kaminsky, the prizefighter. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-42305671",
-  "text": "“Something small, held in close.”",
-  "section": "Pages",
-  "note": "Speech: Alfano. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-c1ad0a85",
-  "text": "An usher with a flashlight sees every face that comes in out of the street, and most of them twice.",
+  "id": "pg-c7fe4067",
+  "text": "I kept my coat on, sat on the edge of a hard chair and got the report out.",
   "section": "Pages"
  },
  {
-  "id": "pg-2ca19668",
-  "text": "“The Shamrock, earlier in the evening, every night of the week,” he said.",
+  "id": "pg-84351dbf",
+  "text": "Mrs. Marchetti had left everything just as it was, so that the watch would know the way home.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-cb8ccbc4",
+  "text": "Lou was the one at the corner table.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-9cffaa6e",
+  "text": "The cocoa on the table had gone cold, and the last of it in the cup was bitter.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-b6020c46",
+  "text": "“He came back at eleven.”",
   "section": "Pages",
-  "note": "The words in quotation marks are Moretti: a light shift. The rest is the narrator."
+  "note": "Speech: Ashby. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-0c525474",
-  "text": "I went round the corner to the Orpheum.",
-  "section": "Pages"
+  "id": "pg-ff0576d4",
+  "text": "“All evening I was home at the Delmonico rooms.”",
+  "section": "Pages",
+  "note": "Speech: Mrs. Whitfield. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-1867d38c",
-  "text": "He had asked up and down the stairs.",
-  "section": "Pages"
- },
- {
-  "id": "pg-bbc32cd7",
-  "text": "I went round to Renfro’s flat on Cannon Street.",
+  "id": "pg-410e8b24",
+  "text": "Even the cat had somewhere to be.",
   "section": "Pages"
  },
  {
@@ -1778,54 +1774,55 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-7f495422",
-  "text": "I was in my office on Mulberry Street, going over the month’s bills by the desk lamp.",
-  "section": "Pages"
- },
- {
-  "id": "pg-ace65086",
-  "text": "“I’ve lost a set of silver spoons,” she said, “or somebody has taken it, which is worse.”",
+  "id": "pg-9e28d99c",
+  "text": "“When the stool is empty, I notice.”",
   "section": "Pages",
-  "note": "The words in quotation marks are Mrs. Krantz: a light shift. The rest is the narrator."
+  "note": "Speech: a light shift into the character, not an impression."
  },
  {
-  "id": "pg-9348cf40",
-  "text": "Nobody in the place was paid to notice who came and went, so nobody had.",
+  "id": "pg-9bf2e79c",
+  "text": "Wojcik could see the street door and the stoop, from the cellar steps.",
   "section": "Pages"
  },
  {
-  "id": "pg-c8f49c59",
-  "text": "He went back to polishing his derby with his sleeve.",
+  "id": "pg-dd5d80df",
+  "text": "“Anybody you can think of who’d want Caruso?”",
+  "section": "Pages",
+  "note": "Speech: the detective himself, so your own voice."
+ },
+ {
+  "id": "pg-45a262d2",
+  "text": "Lieb: the dead man owed a boss of his, Wexler, and wasn’t paying.",
   "section": "Pages"
  },
  {
-  "id": "pg-0336ecd4",
-  "text": "I shook my head without one.",
+  "id": "pg-b6615d2b",
+  "text": "No clerk, no doorman, nobody watching the stairs: nobody saw who came.",
   "section": "Pages"
  },
  {
-  "id": "pg-32d79764",
-  "text": "According to Miss Kahane, it was nine or ten o’clock.",
+  "id": "pg-f6bbd42c",
+  "text": "From there to the Peacock was two blocks over.",
   "section": "Pages"
  },
  {
-  "id": "pg-ce7ff333",
-  "text": "Miss Moskin and Belkin had told me where the evening went, and Mrs. Szabo who came in.",
+  "id": "pg-61ad3faa",
+  "text": "Steinbach was at the bar with a drink she wasn’t drinking, and Bellucci was in a booth by the wall.",
   "section": "Pages"
  },
  {
-  "id": "pg-20f193a0",
-  "text": "The frost had come up on every car on this street too.",
+  "id": "pg-fa6eaa56",
+  "text": "A regular was at the far end of the bar.",
   "section": "Pages"
  },
  {
-  "id": "pg-b03e4920",
-  "text": "I could have used gloves with the fingertips cut out.",
+  "id": "pg-c63783fb",
+  "text": "The parlor window was up six inches, with soot from the fire escape on the sill.",
   "section": "Pages"
  },
  {
-  "id": "pg-afc1f11e",
-  "text": "An empty birdcage hung in the corner, with nothing in it but a little swing.",
+  "id": "pg-2466c521",
+  "text": "He didn’t have to think about it.",
   "section": "Pages"
  },
  {
@@ -1835,51 +1832,51 @@
   "note": "A playtesters’ favorite. Speech: Lieb, a pawnbroker’s clerk. A light shift, not an impression."
  },
  {
-  "id": "pg-b8920190",
-  "text": "Wehrle had said nine or ten, and Caruso was at Mrs. Nagy’s at nine.",
+  "id": "pg-85819d9b",
+  "text": "He scratched his ear, thought for about as long as it takes to scratch an ear, and began.",
   "section": "Pages"
  },
  {
-  "id": "pg-9bbc794d",
-  "text": "“Eleven, just Thorndike, Marchetti and Pickering.”",
+  "id": "pg-0a6b6fc5",
+  "text": "“And Thorndike is three weeks behind on his rent, and has been heard to say what a dachshund with papers fetches.”",
   "section": "Pages",
-  "note": "Speech: Ellery. A light shift into the character, not an impression."
+  "note": "Speech: Hauck. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-b1910345",
-  "text": "Margolis stood by the window with her back to the room.",
+  "id": "pg-4be592fa",
+  "text": "I nodded at the chair, and my client sat down in it and waited for me to catch up.",
   "section": "Pages"
  },
  {
-  "id": "pg-d25557bc",
-  "text": "“Nobody gets up that stoop without stepping on my shadow.”",
+  "id": "pg-96c20119",
+  "text": "“Even the ones who tip.”",
   "section": "Pages",
-  "note": "Speech: Wojcik. A light shift into the character, not an impression."
+  "note": "Speech: the detective himself, so your own voice."
  },
  {
-  "id": "pg-9e20cd3a",
-  "text": "I wasn’t ready to start.",
+  "id": "pg-13497e90",
+  "text": "I put on every light in the flat.",
   "section": "Pages"
  },
  {
-  "id": "pg-5ac5bab5",
-  "text": "“You told me the Peacock at ten.”",
+  "id": "pg-971ecef4",
+  "text": "I still didn’t know where Mrs. Greco, Doyle and Dr. Hirsch were at ten.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-022bcddf",
+  "text": "“My name is Minna Blau,” she said.",
   "section": "Pages",
-  "note": "Speech: Dr. Hirsch, the dentist. A light shift into the character, not an impression."
+  "note": "The words in quotation marks are Mrs. Blau: a light shift. The rest is the narrator."
  },
  {
-  "id": "pg-4a39943a",
-  "text": "The fee on my blotter would have company soon.",
+  "id": "pg-34d3473a",
+  "text": "Nobody had told me yet where Glick was at ten.",
   "section": "Pages"
  },
  {
-  "id": "pg-b21654c0",
-  "text": "I went round the room once with my hands in my pockets, and once more with them out.",
-  "section": "Pages"
- },
- {
-  "id": "pg-4aec2618",
-  "text": "The room went on without me.",
+  "id": "pg-45fcb233",
+  "text": "Miss Marsh was the one in the back booth.",
   "section": "Pages"
  },
  {
@@ -1889,53 +1886,56 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-d176073a",
-  "text": "“Ten: Rafferty and Moretti, and not a soul more.”",
+  "id": "pg-262e490e",
+  "text": "Nobody comes or goes in a rooming house without the landlady knowing.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-21a9874f",
+  "text": "And Mrs. Kowalski had the look of a landlady who made a point of it.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-c1ad0a85",
+  "text": "An usher with a flashlight sees every face that comes in out of the street, and most of them twice.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-a118f95a",
+  "text": "“At nine I went to the Palace to meet Ruggiero.”",
   "section": "Pages",
-  "note": "Speech: Mrs. Kowalski. A light shift into the character, not an impression."
+  "note": "Speech: Ashby. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-ba3209ce",
-  "text": "“Eight, Lou, and that’s all.”",
+  "id": "pg-8ce99cea",
+  "text": "Whoever it was had been at the meeting at the Wehrle flat, one of her guests.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-2d46b203",
+  "text": "I went round to the back of Sokol’s bakery on Rivington Street, where the numbers are taken.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-c66ef2e5",
+  "text": "To give Carbone the chloral, somebody had to go to the Delmonico rooms for it first.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-b9178264",
+  "text": "“The rat poison on the cellar shelf was there at eight.”",
   "section": "Pages",
-  "note": "Speech: Rosenbaum. A light shift into the character, not an impression."
+  "note": "Speech: Wojcik. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-b9b2fe11",
-  "text": "Searching is dull work, but it’s the job.",
+  "id": "pg-15616036",
+  "text": "She had been over it a hundred times.",
   "section": "Pages"
  },
  {
-  "id": "pg-6d139939",
-  "text": "An old tin sign for a cough syrup nobody makes any more was nailed to the wall.",
+  "id": "pg-fcd02743",
+  "text": "Down in the cellar club it was the last set, for the serious drinkers, and the band had slowed to match them.",
   "section": "Pages"
- },
- {
-  "id": "pg-5b2265d9",
-  "text": "Ellery had been on duty all night, and would know who came and went.",
-  "section": "Pages"
- },
- {
-  "id": "pg-7cd0a673",
-  "text": "It works for the comedians.",
-  "section": "Pages"
- },
- {
-  "id": "pg-aa3db26e",
-  "text": "He opened his bag and counted out fifty dollars, slowly, so I’d know what it cost.",
-  "section": "Pages"
- },
- {
-  "id": "pg-90abc746",
-  "text": "“Nobody sits in my room without my say-so.”",
-  "section": "Pages",
-  "note": "Speech: a light shift into the character, not an impression."
- },
- {
-  "id": "pg-2e92c283",
-  "text": "“Find out who, and where.”",
-  "section": "Pages",
-  "note": "Speech: Russo. A light shift into the character, not an impression."
  },
  {
   "id": "pg-f0068531",
@@ -1944,55 +1944,52 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-2b73ec89",
-  "text": "The hours Mrs. Blau had given me were nine or ten, and at nine Belkin was at the Lyric, alive and well.",
+  "id": "pg-7f495422",
+  "text": "I was in my office on Mulberry Street, going over the month’s bills by the desk lamp.",
   "section": "Pages"
  },
  {
-  "id": "pg-d4ba5534",
-  "text": "Glick: a clipping about him, with a remark pencilled across it.",
+  "id": "pg-792a5545",
+  "text": "He asked me to stop him if he went too fast.",
   "section": "Pages"
  },
  {
-  "id": "pg-0ebbc917",
-  "text": "“He has always wanted Fritz, and asked me the price.”",
+  "id": "pg-2948164f",
+  "text": "Belkin told me he was at Russo’s flat at ten.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-34d21412",
+  "text": "Rafferty was still in at ten.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-a02def01",
+  "text": "Nobody had told me yet where Grasso and Mosley were at ten.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-ee80fe3b",
+  "text": "I asked Ashby to tell me her evening, and who she’d seen.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-9f849871",
+  "text": "“Salerno, a cafeteria cashier; Ainsworth, a cab driver; and Broadnax, a shoe clerk,” my client said.",
   "section": "Pages",
-  "note": "Speech: Miss Kahane. A light shift into the character, not an impression."
+  "note": "The words in quotation marks are Wehrle: a light shift. The rest is the narrator."
  },
  {
-  "id": "pg-ecfe6f97",
-  "text": "That left one person: somebody who could have had the spare key, and who couldn’t say where they were at ten.",
-  "section": "Pages"
+  "id": "pg-b0ce8d6b",
+  "text": "“Here’s my trouble,” I said.",
+  "section": "Pages",
+  "note": "The quoted words are the detective’s own: your own voice throughout."
  },
  {
-  "id": "pg-f1bf86df",
-  "text": "But the cab driver said the Odessa at ten, when Fritz went.",
-  "section": "Pages"
- },
- {
-  "id": "pg-c9c09679",
-  "text": "Nobody had backed it up.",
-  "section": "Pages"
- },
- {
-  "id": "pg-3f7a98a6",
-  "text": "That was all that moved.",
-  "section": "Pages"
- },
- {
-  "id": "pg-2065b37b",
-  "text": "I rarely have a ticket for anything.",
-  "section": "Pages"
- },
- {
-  "id": "pg-2cf91b66",
-  "text": "The bare bulb went on lighting the room, not that the room was worth it.",
-  "section": "Pages"
- },
- {
-  "id": "pg-a293155b",
-  "text": "He asked me to wait a moment, and used the whole of it.",
-  "section": "Pages"
+  "id": "pg-62ef1fa8",
+  "text": "“I was Nunzio Carbone’s sister-in-law.”",
+  "section": "Pages",
+  "note": "Speech: Margolis. A light shift into the character, not an impression."
  },
  {
   "id": "pg-a8ec2005",
@@ -2001,52 +1998,51 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-e87e41a0",
-  "text": "The new money would go in the drawer beside the old.",
+  "id": "pg-0a580fd3",
+  "text": "It was no distance to Sokol’s: round the corner, and there it was.",
   "section": "Pages"
  },
  {
-  "id": "pg-2f1a6c51",
-  "text": "A couple of blocks west, and I was at Steinmetz’s.",
+  "id": "pg-68eab53c",
+  "text": "It was a good walk to the Krantz flat, uptown and east.",
   "section": "Pages"
  },
  {
-  "id": "pg-44a3525f",
-  "text": "“Mrs. Greco, the cook, says Caruso should have stayed in the family.”",
+  "id": "pg-8314d996",
+  "text": "“When eleven o’clock came, I went home to iron a shirt for the morning, by myself again.”",
   "section": "Pages",
-  "note": "Speech: Russo. A light shift into the character, not an impression."
+  "note": "Speech: Miss Nowak. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-6acc839d",
-  "text": "Mrs. Blau had given me nine or ten, and Belkin had been alive at the Lyric at nine.",
+  "id": "pg-6ce0c3c3",
+  "text": "From there to the flats over Lipsky’s was a few blocks.",
   "section": "Pages"
  },
  {
-  "id": "pg-901acf1e",
-  "text": "“From seven through eight I was at the Lyric.”",
+  "id": "pg-3b8bb4e5",
+  "text": "Pinsky said Teitel was at the Lyric at ten.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-ec5ae968",
+  "text": "I was on a budget.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-a97dc416",
+  "text": "A lodger was in the front room.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-8712ce36",
+  "text": "It was a long way on foot.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-7efcec75",
+  "text": "“Ten sharp, I went home alone again, because my feet hurt.”",
   "section": "Pages",
-  "note": "Speech: Doyle, the alderman’s clerk. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-56c15b4e",
-  "text": "Not a mark on the door.",
-  "section": "Pages"
- },
- {
-  "id": "pg-135067db",
-  "text": "“Fill in the rest of the evening for me, in order.”",
-  "section": "Pages",
-  "note": "Speech: the detective himself, so your own voice."
- },
- {
-  "id": "pg-d5f47869",
-  "text": "That uniform cap had been reshaped by a hundred hot nights.",
-  "section": "Pages"
- },
- {
-  "id": "pg-3f8966ed",
-  "text": "Home at nine, Ruggiero had told me, and Mrs. Cheatham said no.",
-  "section": "Pages"
+  "note": "Speech: Ashby. A light shift into the character, not an impression."
  },
  {
   "id": "pg-6985c549",
@@ -2055,51 +2051,54 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-e6693955",
-  "text": "I went straight over to Whitfield.",
+  "id": "pg-81220877",
+  "text": "The Orpheum, a picture house with continuous shows till midnight, had stopped the pictures for the night.",
   "section": "Pages"
  },
  {
-  "id": "pg-97ceb23c",
-  "text": "“Well, I was at Hauck’s at eight, for the meeting, with Thorndike and Marchetti.”",
+  "id": "pg-118a63e0",
+  "text": "Benny was the one at the corner table.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-3b3b7c10",
+  "text": "I made a space among the cups on the table and laid out the report.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-dffe2f9d",
+  "text": "“Rat poison takes twenty minutes to an hour, so she died within the hour.”",
   "section": "Pages",
-  "note": "Speech: Alfano, a bus conductor. A light shift into the character, not an impression."
+  "note": "Speech: Russo. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-147d0a28",
-  "text": "My visitor came in without hurrying, midnight or no midnight.",
+  "id": "pg-b37c2e96",
+  "text": "So at ten, when the spoons went, Miss Moskin was at the flats over Lipsky’s, and by then Mabry had left.",
   "section": "Pages"
  },
  {
-  "id": "pg-67f49486",
-  "text": "“I don’t look up when the door goes.”",
+  "id": "pg-40e4af23",
+  "text": "“After that, at ten, I went to the Peacock to see who was about, by myself.”",
   "section": "Pages",
-  "note": "Speech: a light shift into the character, not an impression."
+  "note": "Speech: Dr. Hirsch, the dentist. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-b205d444",
-  "text": "I sat by it and went through the evenings I’d collected, one at a time.",
-  "section": "Pages"
+  "id": "pg-83155b0d",
+  "text": "“Pinsky saw you here tonight.”",
+  "section": "Pages",
+  "note": "Speech: the detective himself, so your own voice."
  },
  {
-  "id": "pg-9141ab23",
-  "text": "I checked the door first, the lock and the frame and the hinges, and then turned round to face the room.",
-  "section": "Pages"
+  "id": "pg-e7495cad",
+  "text": "“Amato and a stranger sitting on a crate were in as long as I was.”",
+  "section": "Pages",
+  "note": "Speech: Fishel. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-8c44dee6",
-  "text": "The flats over Lipsky’s were waking from the top down, a light on the fifth floor, then the fourth.",
-  "section": "Pages"
- },
- {
-  "id": "pg-177ca3ff",
-  "text": "Amato had told me the Lyric at ten, and Pinsky said otherwise.",
-  "section": "Pages"
- },
- {
-  "id": "pg-5632cde0",
-  "text": "There was no dressing the answer up with him.",
-  "section": "Pages"
+  "id": "pg-35134df8",
+  "text": "“I took him back to the flat just before ten.”",
+  "section": "Pages",
+  "note": "Speech: Miss Moskin. A light shift into the character, not an impression."
  },
  {
   "id": "pg-f8ad5fb8",
@@ -2108,51 +2107,50 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-533ccebb",
-  "text": "A landlady who sits on her stairs knows who used them.",
-  "section": "Pages"
- },
- {
-  "id": "pg-f3198d98",
-  "text": "Up in the dark of the ceiling something ticked as it cooled, the lights or the pipes, I couldn’t say which.",
-  "section": "Pages"
- },
- {
-  "id": "pg-7b2b507c",
-  "text": "Hanrahan had a stool at the end of the bar and was looking at the mirror behind it.",
-  "section": "Pages"
- },
- {
-  "id": "pg-14e8ce20",
-  "text": "Whitfield was in the change booth behind the glass, pushing nickels across the marble in little stacks of five.",
-  "section": "Pages"
- },
- {
-  "id": "pg-5c7a15c2",
-  "text": "“And ten, Marchetti and Pickering.”",
+  "id": "pg-62f9f5c3",
+  "text": "“Ten o’clock, I stopped in at Moe’s to get warm, by myself.”",
   "section": "Pages",
-  "note": "Speech: Ellery. A light shift into the character, not an impression."
+  "note": "Speech: Bellucci, a milliner. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-579968c9",
-  "text": "Reinhardt sits at the register, and sooner or later the whole room has to come to him.",
+  "id": "pg-4dd8111f",
+  "text": "No one was posted to see who came and went.",
   "section": "Pages"
  },
  {
-  "id": "pg-589fea55",
-  "text": "“She knew things about her only an old friend would.”",
-  "section": "Pages",
-  "note": "Speech: Russo. A light shift into the character, not an impression."
+  "id": "pg-68b8ab93",
+  "text": "A bartender who stands behind a bar all night knows who drank at it.",
+  "section": "Pages"
  },
  {
-  "id": "pg-1da69954",
-  "text": "“A small thing, carried close; I couldn’t say more than that.”",
-  "section": "Pages",
-  "note": "Speech: Demos. A light shift into the character, not an impression."
+  "id": "pg-97a1aa7a",
+  "text": "Nobody kept watch in a place like that.",
+  "section": "Pages"
  },
  {
-  "id": "pg-431c6731",
-  "text": "Wojcik was who I’d come to see.",
+  "id": "pg-de1427f9",
+  "text": "Ten dollars came out of a pocket that had been saving it for something better.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-0c852424",
+  "text": "I hadn’t asked Abramowitz, Winslow, Renfro and Thorndike about their evenings yet.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-26aa65a4",
+  "text": "Mrs. Sobel had said she was at Sokol’s at ten.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-362e11c2",
+  "text": "“That’s where the spoons lives,” Mrs. Krantz said, and then, more quietly, “lived.”",
+  "section": "Pages",
+  "note": "The words in quotation marks are Mrs. Krantz: a light shift. The rest is the narrator."
+ },
+ {
+  "id": "pg-94763ca4",
+  "text": "It was a fair stretch on foot.",
   "section": "Pages"
  },
  {
@@ -2167,51 +2165,58 @@
   "section": "Pages"
  },
  {
-  "id": "pg-0aab1c7c",
-  "text": "No doorman, no neighbor on a chair by the window.",
-  "section": "Pages"
- },
- {
-  "id": "pg-02a58bcf",
-  "text": "He was reading the death notices in the evening paper with a pencil.",
-  "section": "Pages"
- },
- {
-  "id": "pg-3cd57fe8",
-  "text": "He just gave it plain.",
-  "section": "Pages"
- },
- {
-  "id": "pg-336e6197",
-  "text": "The landlady at Kowalski’s sees every face that comes through the door.",
-  "section": "Pages"
- },
- {
-  "id": "pg-4dd8111f",
-  "text": "No one was posted to see who came and went.",
-  "section": "Pages"
- },
- {
-  "id": "pg-f2614039",
-  "text": "She nodded at the question rather than at me, and began.",
-  "section": "Pages"
- },
- {
-  "id": "pg-809665d6",
-  "text": "I didn’t have his evening yet.",
-  "section": "Pages"
- },
- {
-  "id": "pg-9a272fa6",
-  "text": "“Where were you this evening, and with whom?”",
+  "id": "pg-898acd2c",
+  "text": "“Teitel went out after seven.”",
   "section": "Pages",
-  "note": "Speech: the detective himself, so your own voice."
+  "note": "Speech: Wojcik. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-153c55e1",
-  "text": "“At nine and ten it was just me.”",
+  "id": "pg-8669ef15",
+  "text": "A cup of cocoa sat on the table, cold, with something bitter at the bottom.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-94f942f0",
+  "text": "“A policeman knocks like he owns the door.”",
   "section": "Pages",
-  "note": "Speech: Grasso, a typist. A light shift into the character, not an impression."
+  "note": "Speech: a light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-b99e63cf",
+  "text": "There wasn’t a mark on it.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-e3968fcd",
+  "text": "“I showed it to everybody at the table at eight,” she said, “and we all had a laugh about it.”",
+  "section": "Pages",
+  "note": "The words in quotation marks are Zeldin: a light shift. The rest is the narrator."
+ },
+ {
+  "id": "pg-934bc15f",
+  "text": "The smoke had hung under the ceiling so long it had a lease.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-482596f7",
+  "text": "And nobody was going to argue with it at this hour.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-88a175e9",
+  "text": "The Automat was a good ten blocks.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-a87733a5",
+  "text": "“Ellery saw Marchetti, Pickering and Benny at the chop house at ten, and not you.”",
+  "section": "Pages",
+  "note": "Speech: Alfano, a bus conductor. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-19e820c1",
+  "text": "Carbone had kept a typed page on everybody with a reason to hate him, clipped together.",
+  "section": "Pages"
  },
  {
   "id": "pg-10e896a0",
@@ -2220,57 +2225,53 @@
   "note": "A playtesters’ favorite."
  },
  {
-  "id": "pg-a4a946fb",
-  "text": "“Run me through tonight,” I said.",
+  "id": "pg-8d8721cf",
+  "text": "The rat poison had come from the flats over Lipsky’s.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-f105028d",
+  "text": "She thought of something else, and didn’t like it.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-8cb468de",
+  "text": "Most of it was nouns.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-e6cd38e2",
+  "text": "“All of it, in order.”",
   "section": "Pages",
-  "note": "The quoted words are the detective’s own: your own voice throughout."
+  "note": "Speech: the detective himself, so your own voice."
  },
  {
-  "id": "pg-690b5842",
-  "text": "He was tapping out a tempo on the table with two fingers.",
-  "section": "Pages"
- },
- {
-  "id": "pg-b5cd6a20",
-  "text": "He had a pencil mustache trimmed so thin it looks drawn on, and might have been.",
-  "section": "Pages"
- },
- {
-  "id": "pg-bf619cc6",
-  "text": "It was a few blocks from there to the Russo flat, east, with my collar up.",
-  "section": "Pages"
- },
- {
-  "id": "pg-369a185c",
-  "text": "An ice truck went by with its load under burlap, leaving a wet line down the middle of the street behind it.",
-  "section": "Pages"
- },
- {
-  "id": "pg-017f458f",
-  "text": "“I take seven off when I can.”",
+  "id": "pg-be20baed",
+  "text": "“Glick came in at nine and had gone by ten.”",
   "section": "Pages",
-  "note": "Speech: Amato, the cab driver. A light shift into the character, not an impression."
+  "note": "Speech: Pinsky. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-5f42ba72",
-  "text": "“My night’s a short hand.”",
+  "id": "pg-d5e72f2c",
+  "text": "“At eleven somebody came in with something under a coat and went straight to Miss Marsh.”",
   "section": "Pages",
-  "note": "Speech: Russo, the card-room keeper. A light shift into the character, not an impression."
+  "note": "Speech: Mrs. Szabo. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-dc98714e",
-  "text": "I asked when it happened, as near as anybody could say.",
-  "section": "Pages"
+  "id": "pg-06928bee",
+  "text": "“And Bellucci, a milliner, is three weeks behind on his rent, and once asked what the watch would pawn for.”",
+  "section": "Pages",
+  "note": "Speech: Marchetti. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-006b8981",
-  "text": "“Lou the bookmaker sat in his back booth all evening.”",
+  "id": "pg-e8ee88cf",
+  "text": "“Went straight to Lou, and it changed hands.”",
   "section": "Pages",
   "note": "Speech: Rosenbaum. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-0c37d4f6",
-  "text": "It happened at nine o’clock.",
+  "id": "pg-004c4cef",
+  "text": "The laudanum had come from the Delmonico rooms.",
   "section": "Pages"
  },
  {
@@ -2280,50 +2281,54 @@
   "note": "A playtesters’ favorite. Since cut from the game; kept for the playtesters."
  },
  {
-  "id": "pg-c563fdbf",
-  "text": "Wehrle didn’t follow me round, which I appreciated.",
-  "section": "Pages"
+  "id": "pg-72e0fcd2",
+  "text": "“Who else goes in and out?”",
+  "section": "Pages",
+  "note": "Speech: the detective himself, so your own voice."
  },
  {
-  "id": "pg-b6fd9a5b",
-  "text": "The china shepherdess had kept her painted patience through all of it.",
-  "section": "Pages"
+  "id": "pg-d1ccdfad",
+  "text": "“And I did,” he said.",
+  "section": "Pages",
+  "note": "The words in quotation marks are Hauck: a light shift. The rest is the narrator."
  },
  {
-  "id": "pg-854c9e9d",
-  "text": "“After that, at ten o’clock, I went to the Odessa to read the late paper over a plate of soup, by myself.”",
+  "id": "pg-5344e5ea",
+  "text": "“At eight I went to the Delmonico rooms for the company, and I was there through nine.”",
   "section": "Pages",
   "note": "Speech: Abramowitz, a bus conductor. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-e52b550b",
-  "text": "“Let’s have names,” I said.",
+  "id": "pg-5a4e3c28",
+  "text": "She had a covered pot of soup, still warm, and her wooden spoon in her apron pocket.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-2e49c615",
+  "text": "“I know the tenants by their shoes.”",
   "section": "Pages",
-  "note": "The quoted words are the detective’s own: your own voice throughout."
+  "note": "Speech: a light shift into the character, not an impression."
  },
  {
-  "id": "pg-ae8c15c9",
-  "text": "Nobody kept an eye on a place like that.",
+  "id": "pg-c8e2ee6e",
+  "text": "“When did you last see him?”",
+  "section": "Pages",
+  "note": "Speech: the detective himself, so your own voice."
+ },
+ {
+  "id": "pg-ad2b21ab",
+  "text": "“Miss Kahane was in all evening and never left.”",
+  "section": "Pages",
+  "note": "Speech: Pinsky. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-147d0a28",
+  "text": "My visitor came in without hurrying, midnight or no midnight.",
   "section": "Pages"
  },
  {
-  "id": "pg-ec12f0f4",
-  "text": "Mrs. Szabo could see the street door through the slot, and the stairs down.",
-  "section": "Pages"
- },
- {
-  "id": "pg-316f8bcc",
-  "text": "Miss Kahane was at the Lyric at nine and ten; Pinsky said so.",
-  "section": "Pages"
- },
- {
-  "id": "pg-57115da6",
-  "text": "The Belvedere above him was waking to it floor by floor.",
-  "section": "Pages"
- },
- {
-  "id": "pg-dc98ca79",
-  "text": "I started with the lock and the windows, since nothing leaves a flat any other way, and then went over the rest.",
+  "id": "pg-c96f974c",
+  "text": "So at ten, Kaminsky and Russo had already left the Peacock.",
   "section": "Pages"
  },
  {
@@ -2333,50 +2338,50 @@
   "note": "A playtesters’ favorite. Since cut from the game; kept for the playtesters."
  },
  {
-  "id": "pg-91cb5af2",
-  "text": "He let a second go by and then answered, with the corners cut off every sentence.",
+  "id": "pg-6eafc4e2",
+  "text": "I pushed a row of empty glasses down the bar and laid out the report where they had been.",
   "section": "Pages"
  },
  {
-  "id": "pg-bcbb490b",
-  "text": "I let it settle, then wrote.",
+  "id": "pg-c2c9923a",
+  "text": "Grasso hadn’t been at the card party; Mosley and Vogel had, and knew about the window that wouldn’t latch.",
   "section": "Pages"
  },
  {
-  "id": "pg-991972e4",
-  "text": "So far I had the evening as somebody else told it.",
+  "id": "pg-e458085c",
+  "text": "If she told it the same way, it was the Palace and not the Delmonico rooms.",
   "section": "Pages"
  },
  {
-  "id": "pg-5f985fed",
-  "text": "“I was at Wehrle’s meeting at eight, with Salerno and Ainsworth.”",
+  "id": "pg-45462941",
+  "text": "Against that, Mrs. Thorndike says she was at Mrs. Nagy’s at ten o’clock, alone.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-637b4051",
+  "text": "The basket by the stove was empty: no Fritz.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-eadd65f2",
+  "text": "“At seven o’clock I was at the Odessa, with Winslow, Grasso and Carbone.”",
   "section": "Pages",
-  "note": "Speech: Broadnax, a shoe clerk. A light shift into the character, not an impression."
+  "note": "Speech: Abramowitz, a bus conductor. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-826d8038",
-  "text": "“A neighbor, over at the Delmonico rooms, and Fritz likes the cooking there better than mine.”",
+  "id": "pg-f9dd2bed",
+  "text": "To give Mrs. Greco the rat poison, somebody had to go to the flats over Lipsky’s for it first.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-1da69954",
+  "text": "“A small thing, carried close; I couldn’t say more than that.”",
   "section": "Pages",
-  "note": "Speech: Hauck. A light shift into the character, not an impression."
+  "note": "Speech: Demos. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-bbf68f52",
-  "text": "I asked where he’d spent the evening.",
-  "section": "Pages"
- },
- {
-  "id": "pg-2e2b46c7",
-  "text": "Down in the building somebody laughed at something, a long way off, and stopped.",
-  "section": "Pages"
- },
- {
-  "id": "pg-d36b0ff8",
-  "text": "I made my way over to Wojcik.",
-  "section": "Pages"
- },
- {
-  "id": "pg-5e74ab6a",
-  "text": "She had her own copy.",
+  "id": "pg-7d33f15b",
+  "text": "Dr. Hirsch had said she was with Miss Nowak at ten.",
   "section": "Pages"
  },
  {
@@ -2392,53 +2397,50 @@
   "note": "The words in quotation marks: a light shift into the speaker, not an impression."
  },
  {
-  "id": "pg-e841d5ab",
-  "text": "I took my hat off.",
+  "id": "pg-464c4287",
+  "text": "I put the notebook away.",
   "section": "Pages"
  },
  {
-  "id": "pg-8f9dbf9f",
-  "text": "“Every cross on the chart has a face, and I’ve given you every face.”",
+  "id": "pg-931d4660",
+  "text": "“At seven o’clock I went round to the flats over Lipsky’s to borrow a collar stud, and Teitel was there.”",
   "section": "Pages",
-  "note": "Speech: Pinsky. A light shift into the character, not an impression."
+  "note": "Speech: Glick, the insurance agent. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-a7a5bbe0",
-  "text": "Mrs. Szabo was explaining to a large man why he was going home.",
+  "id": "pg-2f02bbeb",
+  "text": "The back booth at Sokol’s was a few doors down.",
   "section": "Pages"
  },
  {
-  "id": "pg-ee5c77e5",
-  "text": "A brass spittoon stood at the foot of the bar, polished brighter than anything else in the room.",
+  "id": "pg-c5264d62",
+  "text": "Steinbach had been at Moe’s at ten, and Alfano had said as much.",
   "section": "Pages"
  },
  {
-  "id": "pg-a8804e6f",
-  "text": "A big samovar sat at the end of the counter, steaming quietly.",
+  "id": "pg-a4237aaf",
+  "text": "It didn’t latch, and everybody at Zeldin’s card party at eight knew it.",
   "section": "Pages"
  },
  {
-  "id": "pg-51281f83",
-  "text": "“At seven o’clock I had Winslow, Reinhardt and Dandridge, and not another soul.”",
-  "section": "Pages",
-  "note": "Speech: Zeldin. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-6ea89cb5",
-  "text": "“Something alive, I would say; it moved.”",
-  "section": "Pages",
-  "note": "Speech: Ashby. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-f443e283",
-  "text": "I went up to the head waiter and said I had a question or two about the evening.",
+  "id": "pg-b016ab48",
+  "text": "My visitor wiped his boots on the mat from habit, not respect.",
   "section": "Pages"
  },
  {
-  "id": "pg-04e4d3fb",
-  "text": "“The police have their answer,” she said, and put fifty dollars on my desk.",
-  "section": "Pages",
-  "note": "The words in quotation marks are Margolis: a light shift. The rest is the narrator."
+  "id": "pg-83ccc92e",
+  "text": "Somebody was three rows back, keeping to themselves.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-1e613c25",
+  "text": "I had that from Ellery.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-09fe2792",
+  "text": "He told me he was at the Odessa at ten.",
+  "section": "Pages"
  },
  {
   "id": "pg-dd85500d",
@@ -2446,352 +2448,35 @@
   "section": "Pages"
  },
  {
-  "id": "pg-8772f2aa",
-  "text": "He was wiping flour off the gin bottles.",
+  "id": "pg-1cee9414",
+  "text": "The police called it heart failure.",
   "section": "Pages"
  },
  {
-  "id": "pg-ce6fb0ca",
-  "text": "“At eight o’clock: only Miss Moskin and Mrs. Krantz telling the room about her key.”",
+  "id": "pg-ae5f3f4c",
+  "text": "I took the stairs two at a time for the first flight and one at a time after that.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-4210db95",
+  "text": "Amato said he was home at ten.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-df0909be",
+  "text": "I went round the corner to the card room over Feingold’s garage.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-00b760db",
+  "text": "I walked uptown and east to Mrs. Krantz’s place.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-7e6d25cd",
+  "text": "“Who, and where Fritz is now.”",
   "section": "Pages",
-  "note": "Speech: Demos. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-cccbdda7",
-  "text": "“They only want to sit down.”",
-  "section": "Pages",
-  "note": "Speech: Mrs. Szabo. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-7a6fe9a1",
-  "text": "Mrs. Krantz: a letter from her asking for her money, never answered.",
-  "section": "Pages"
- },
- {
-  "id": "pg-28dbe78e",
-  "text": "It made the dark around it look deeper.",
-  "section": "Pages"
- },
- {
-  "id": "pg-3287d22b",
-  "text": "Somebody had turned the lights down another notch.",
-  "section": "Pages"
- },
- {
-  "id": "pg-420df626",
-  "text": "Every answer had a name and an hour behind it.",
-  "section": "Pages"
- },
- {
-  "id": "pg-8ff1b088",
-  "text": "I walked the flat from end to end with my notebook shut.",
-  "section": "Pages"
- },
- {
-  "id": "pg-507d0b9a",
-  "text": "I climbed to Dandridge’s walk-up over the drugstore on Grand Street.",
-  "section": "Pages"
- },
- {
-  "id": "pg-68976d11",
-  "text": "The drugstore below was dark, and the only sound in the building was the stair under my feet.",
-  "section": "Pages"
- },
- {
-  "id": "pg-74adf064",
-  "text": "Whoever it was had known about the window that wouldn’t latch.",
-  "section": "Pages"
- },
- {
-  "id": "pg-ccfb2a6e",
-  "text": "And everybody who knew had been at the meeting in the Wehrle flat at eight.",
-  "section": "Pages"
- },
- {
-  "id": "pg-fd6c2478",
-  "text": "She had named them all.",
-  "section": "Pages"
- },
- {
-  "id": "pg-ab2c785f",
-  "text": "The wallpaper roses had faded to the color of weak tea, except in the corners the light never reached.",
-  "section": "Pages"
- },
- {
-  "id": "pg-09af3f00",
-  "text": "Mrs. Sirkin had seen Abramowitz at the Delmonico rooms at eight and nine.",
-  "section": "Pages"
- },
- {
-  "id": "pg-b1e5fd69",
-  "text": "Miss Lowenthal: a complaint against Demos, with her name pencilled at the bottom.",
-  "section": "Pages"
- },
- {
-  "id": "pg-0ea2f4f5",
-  "text": "Nobody had told me where Miss Moskin was at ten, not even her.",
-  "section": "Pages"
- },
- {
-  "id": "pg-f8368b26",
-  "text": "Here was the trouble: he said home, the flats over Lipsky’s, at ten.",
-  "section": "Pages"
- },
- {
-  "id": "pg-0beb3b78",
-  "text": "But Wojcik said nobody was at the flats over Lipsky’s at ten o’clock.",
-  "section": "Pages"
- },
- {
-  "id": "pg-c6f2f425",
-  "text": "In the cloth shop’s window a dressmaker’s dummy wore a hat it had been wearing since spring, and wore it well.",
-  "section": "Pages"
- },
- {
-  "id": "pg-42b7ae1a",
-  "text": "He considered the house before answering, as if it were still full.",
-  "section": "Pages"
- },
- {
-  "id": "pg-299b1125",
-  "text": "I didn’t wait to be shown in.",
-  "section": "Pages"
- },
- {
-  "id": "pg-1071bf40",
-  "text": "Frost had come up on the parked cars, and somebody had written a name in it with a finger.",
-  "section": "Pages"
- },
- {
-  "id": "pg-e3bd27ef",
-  "text": "“Mrs. Cheatham said nobody was at the Delmonico rooms at nine o’clock.”",
-  "section": "Pages",
-  "note": "Speech: Ruggiero, a sewing-machine operator. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-d3585d64",
-  "text": "“Salerno, Ainsworth and Broadnax,” she said.",
-  "section": "Pages",
-  "note": "The words in quotation marks are Wehrle: a light shift. The rest is the narrator."
- },
- {
-  "id": "pg-2f8523e1",
-  "text": "The Hauck flat lay a couple of blocks downtown and east.",
-  "section": "Pages"
- },
- {
-  "id": "pg-0db1bc28",
-  "text": "I asked, and got the notebook ready.",
-  "section": "Pages"
- },
- {
-  "id": "pg-09fcd0c0",
-  "text": "It was making better time than I was.",
-  "section": "Pages"
- },
- {
-  "id": "pg-4762ee7f",
-  "text": "“I was watching the coat, and not the face.”",
-  "section": "Pages",
-  "note": "Speech: Demos. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-3f089b20",
-  "text": "“Gone from a cage by the window, just like that.”",
-  "section": "Pages",
-  "note": "Speech: Russo. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-eb5765c9",
-  "text": "Mrs. Krantz was drinking lemon tea with the lemon left in.",
-  "section": "Pages"
- },
- {
-  "id": "pg-c1b7f3c7",
-  "text": "“At eight o’clock I went home to listen to the radio.”",
-  "section": "Pages",
-  "note": "Speech: Glick, the insurance agent. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-69518150",
-  "text": "In a club that means the evening is over and the night has started.",
-  "section": "Pages"
- },
- {
-  "id": "pg-0a43a36e",
-  "text": "I went over to Mrs. Kowalski.",
-  "section": "Pages"
- },
- {
-  "id": "pg-20a7ab93",
-  "text": "The dance hall crowd would have finished saying goodnight by now.",
-  "section": "Pages"
- },
- {
-  "id": "pg-0215596f",
-  "text": "It was a good walk to the Automat, downtown and west.",
-  "section": "Pages"
- },
- {
-  "id": "pg-4c10a09e",
-  "text": "Thin, and bent at the shoulders from years over a sewing machine, she wore clothes too good to have been bought.",
-  "section": "Pages"
- },
- {
-  "id": "pg-24e4ce94",
-  "text": "“Ten sharp, I went home to listen to the radio.”",
-  "section": "Pages",
-  "note": "Speech: Grasso, a typist. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-19d938f8",
-  "text": "Somebody had made Mrs. Greco a cup of cocoa.",
-  "section": "Pages"
- },
- {
-  "id": "pg-b82c275c",
-  "text": "Mrs. Krantz had come about something gone from her flat.",
-  "section": "Pages"
- },
- {
-  "id": "pg-c939c171",
-  "text": "“After that, at nine, I went to the Peacock, where the band was new.”",
-  "section": "Pages",
-  "note": "Speech: Amato, the cab driver. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-d46e4082",
-  "text": "There was a row of tin mailboxes in the hall.",
-  "section": "Pages"
- },
- {
-  "id": "pg-304d2e9c",
-  "text": "“At ten, walking over to the Lyric, I passed Glick on East Houston Street, in a hurry and no hat on.”",
-  "section": "Pages",
-  "note": "Speech: Doyle, the alderman’s clerk. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-41a1a027",
-  "text": "The Peacock lay a couple of blocks west.",
-  "section": "Pages"
- },
- {
-  "id": "pg-cdc762df",
-  "text": "The landing light was turned down as low as it went, which is how landladies like their light and their gas bill.",
-  "section": "Pages"
- },
- {
-  "id": "pg-a6a02370",
-  "text": "The little swing in the empty birdcage moved when the door went.",
-  "section": "Pages"
- },
- {
-  "id": "pg-23f6a27f",
-  "text": "“Nine: Salerno, Sirkin and Ainsworth; that was everybody I had in.”",
-  "section": "Pages",
-  "note": "Speech: Ashby. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-0a85129a",
-  "text": "I found something to sit on near her and sat on it.",
-  "section": "Pages"
- },
- {
-  "id": "pg-d7700c16",
-  "text": "Whatever else the night had been, it wasn’t going to end dry.",
-  "section": "Pages"
- },
- {
-  "id": "pg-dda79b14",
-  "text": "It was getting crowded in there.",
-  "section": "Pages"
- },
- {
-  "id": "pg-838e185a",
-  "text": "He was holding a fork up to the light.",
-  "section": "Pages"
- },
- {
-  "id": "pg-a476d274",
-  "text": "I meant to borrow some of the memories.",
-  "section": "Pages"
- },
- {
-  "id": "pg-98d36171",
-  "text": "“Come nine, I went to the Lyric to see the new play, and stayed the rest of the evening.”",
-  "section": "Pages",
-  "note": "Speech: Lieb, the pawnbroker’s clerk. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-c0b4aaa4",
-  "text": "The way other men carry a newspaper.",
-  "section": "Pages"
- },
- {
-  "id": "pg-236e6577",
-  "text": "It was a couple of blocks.",
-  "section": "Pages"
- },
- {
-  "id": "pg-db963771",
-  "text": "Lanza was at the far end of the bar, nursing something.",
-  "section": "Pages"
- },
- {
-  "id": "pg-1c51099c",
-  "text": "“To begin at seven o’clock: only Hanrahan and Ruggiero.”",
-  "section": "Pages",
-  "note": "Speech: Mrs. Cheatham. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-9f440215",
-  "text": "“At nine, ten and eleven I had nobody with me.”",
-  "section": "Pages",
-  "note": "Speech: Broadnax, a shoe clerk. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-837cf9a8",
-  "text": "The landlady’s bill was folded under the telephone.",
-  "section": "Pages"
- },
- {
-  "id": "pg-f1b1f5bb",
-  "text": "“Nine: Winslow and Carbone; that was everybody I had in.”",
-  "section": "Pages",
-  "note": "Speech: Reinhardt. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-876011ce",
-  "text": "Russo didn’t wait to be asked.",
-  "section": "Pages"
- },
- {
-  "id": "pg-75f26fac",
-  "text": "It went at ten o’clock.",
-  "section": "Pages"
- },
- {
-  "id": "pg-d005385e",
-  "text": "“At eight, the spare key for the Russo flat was on its nail.”",
-  "section": "Pages",
-  "note": "Speech: Wojcik. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-bc9821d2",
-  "text": "He could see the street door and the stoop, from the cellar steps.",
-  "section": "Pages"
- },
- {
-  "id": "pg-59c0dd63",
-  "text": "“After that, at eight, I went home, because my feet hurt, with Teitel.”",
-  "section": "Pages",
-  "note": "Speech: Amato, the cab driver. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-93a2a97a",
-  "text": "“Nine, I start feeling like somebody.”",
-  "section": "Pages",
-  "note": "Speech: Miss Moskin. A light shift into the character, not an impression."
+  "note": "Speech: Miss Kahane. A light shift into the character, not an impression."
  },
  {
   "id": "pg-9193f899",
@@ -2800,72 +2485,154 @@
   "note": "Speech: Marchetti. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-95af3225",
-  "text": "I headed east for Dandridge’s place, a fair few blocks away.",
+  "id": "pg-e95137f3",
+  "text": "The usher lent me a seat and a little of the torch, and I got out the report.",
   "section": "Pages"
  },
  {
-  "id": "pg-246a83c9",
-  "text": "A dance hall upstairs was letting out, and the street was full of people saying goodnight at length.",
-  "section": "Pages"
- },
- {
-  "id": "pg-a64c91cc",
-  "text": "Somewhere a radio was still arguing.",
-  "section": "Pages"
- },
- {
-  "id": "pg-8284b3ed",
-  "text": "A man in shirtsleeves on a stoop held a bottle out to me without a word.",
-  "section": "Pages"
- },
- {
-  "id": "pg-5efbe33e",
-  "text": "“Ten: somebody in a camel coat, back to the room, I couldn’t swear who, and not a soul more.”",
+  "id": "pg-ed9644e8",
+  "text": "“Mrs. Cheatham says nobody was at the Delmonico rooms at nine, not you or anybody else.”",
   "section": "Pages",
-  "note": "Speech: Reinhardt. A light shift into the character, not an impression."
+  "note": "Speech: Ruggiero, a sewing-machine operator. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-5b4d3e5a",
-  "text": "Mrs. Pomerantz had found Mrs. Greco.",
+  "id": "pg-99035545",
+  "text": "Sokol saw Glick at the bar at ten, just as he said, and the same witness saw Mrs. Blau there too.",
   "section": "Pages"
  },
  {
-  "id": "pg-31edb12c",
-  "text": "“Ten, Miss Moskin and Teitel.”",
+  "id": "pg-ddc9eb54",
+  "text": "“I’ll tell you what the neighbors say,” she said.",
   "section": "Pages",
-  "note": "Speech: Wojcik. A light shift into the character, not an impression."
+  "note": "The words in quotation marks are Wehrle: a light shift. The rest is the narrator."
  },
  {
-  "id": "pg-cb140e69",
-  "text": "Standing keeps the answers short.",
+  "id": "pg-5d210364",
+  "text": "The table at my client’s place was set at eight, for the burial society’s meeting.",
   "section": "Pages"
  },
  {
-  "id": "pg-9dcdc252",
-  "text": "The fee sat on the blotter where I’d dropped it, more money than the desk usually saw in a month.",
+  "id": "pg-fe5706f0",
+  "text": "She put fifty dollars on the desk.",
   "section": "Pages"
  },
  {
-  "id": "pg-049bb432",
-  "text": "Her papers would have the name of anybody with a grudge against her.",
+  "id": "pg-7eaca429",
+  "text": "Mrs. Greco’s place was a fair stretch on foot uptown and east.",
   "section": "Pages"
  },
  {
-  "id": "pg-5d74d474",
-  "text": "“I spent the whole evening home at the flats over Lipsky’s.”",
+  "id": "pg-76293079",
+  "text": "Somebody was at a corner table, keeping to themselves.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-5b42f635",
+  "text": "“Wojcik saw you at the flats over Lipsky’s at eight.”",
   "section": "Pages",
-  "note": "Speech: Miss Moskin. A light shift into the character, not an impression."
+  "note": "Speech: the detective himself, so your own voice."
  },
  {
-  "id": "pg-e999a024",
-  "text": "“At ten I had Steinbach and Lanza, and not another soul.”",
+  "id": "pg-36c16085",
+  "text": "I had the old feeling of having come in after the good part, with everybody else already knowing how it ends.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-15309b13",
+  "text": "It was a short way to Glick’s flat.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-c2b3436b",
+  "text": "“Belkin was in from the start of the evening, out after nine, and back at eleven till the end of the evening.”",
   "section": "Pages",
-  "note": "Speech: Alfano. A light shift into the character, not an impression."
+  "note": "Speech: Mrs. Szabo. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-b9845802",
-  "text": "He gave the bar a wipe it didn’t need, then gave me the night, front to back.",
+  "id": "pg-537f446e",
+  "text": "Abramowitz owned up to the Automat at eleven, and Weisglass, who had been at the table with him, said the same.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-939d3725",
+  "text": "Rafferty was at the window with the curtain held back an inch, keeping an eye on the street.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-72f1692d",
+  "text": "At ten, when Fritz went, Mosley had already left the Odessa.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-838d911d",
+  "text": "“Anybody who’d be glad of it?”",
+  "section": "Pages",
+  "note": "Speech: the detective himself, so your own voice."
+ },
+ {
+  "id": "pg-11327019",
+  "text": "“At ten I had nobody with me.”",
+  "section": "Pages",
+  "note": "Speech: Salerno, a cafeteria cashier. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-8b174eb6",
+  "text": "It was the only thing in the room that didn’t want something from me.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-8e773a87",
+  "text": "“Abramowitz came in at eight and stayed till past nine.”",
+  "section": "Pages",
+  "note": "Speech: Mrs. Sirkin. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-a5157afd",
+  "text": "I knew where the rat poison came from: the flats over Lipsky’s.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-3376c03c",
+  "text": "“Mabry came in for a bite at nine and was gone by ten.”",
+  "section": "Pages",
+  "note": "Speech: Demos. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-dfe3aaac",
+  "text": "“And there’s Doyle, the alderman’s clerk.”",
+  "section": "Pages",
+  "note": "Speech: Russo. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-0494e7b6",
+  "text": "Teitel had been hoping I was finished.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-82381139",
+  "text": "Mrs. Krantz had been at the Lyric earlier in the evening.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-69852307",
+  "text": "“I listen to the knock before I open the slot.”",
+  "section": "Pages",
+  "note": "Speech: a light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-f215aaf7",
+  "text": "“Steinbach and Bellucci were in from the start of the evening and went out after nine.”",
+  "section": "Pages",
+  "note": "Speech: Mrs. Kowalski. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-ed11f05e",
+  "text": "Mosley was in the lobby, reading the bills for next week as if they might change.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-e441704a",
+  "text": "I asked Mrs. Cheatham who’d been in tonight, everybody, hour by hour.",
   "section": "Pages"
  },
  {
@@ -2875,454 +2642,343 @@
   "note": "The words in quotation marks are Wehrle: a light shift. The rest is the narrator."
  },
  {
-  "id": "pg-a55c040f",
-  "text": "Mrs. Whitfield was finishing a late supper at the kitchen table, with a napkin still tucked into her collar.",
-  "section": "Pages"
- },
- {
-  "id": "pg-3161e8c4",
-  "text": "The flat fingertips were typing on nothing, a line at a time.",
-  "section": "Pages"
- },
- {
-  "id": "pg-b31ccf6a",
-  "text": "He said at ten, when Mrs. Greco died, only Miss Lowenthal and Miss Moskin were at the flats over Lipsky’s.",
-  "section": "Pages"
- },
- {
-  "id": "pg-d727542c",
-  "text": "Mrs. Sobel had been there at nine and gone by then.",
-  "section": "Pages"
- },
- {
-  "id": "pg-45bcebd3",
-  "text": "“Tell me where you’ve been tonight,” I said, “start to finish, and who was with you at each place.”",
-  "section": "Pages",
-  "note": "The quoted words are the detective’s own: your own voice throughout."
- },
- {
-  "id": "pg-48bba8c0",
-  "text": "Whoever came in had a key, and the spare hangs on a nail in the hall at the flats over Lipsky’s.",
-  "section": "Pages"
- },
- {
-  "id": "pg-7ea09a07",
-  "text": "“Wojcik saw you at the flats over Lipsky’s at seven.”",
+  "id": "pg-b1953a46",
+  "text": "“When did this happen, as near as you can say?”",
   "section": "Pages",
   "note": "Speech: the detective himself, so your own voice."
  },
  {
-  "id": "pg-2b761b0b",
-  "text": "“Every seat sold, a cross.”",
+  "id": "pg-2456b46b",
+  "text": "I went over to Abramowitz.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-e8bd526f",
+  "text": "Miss Moskin, the ingénue, was in the front room.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-4dd112dc",
+  "text": "I sat on the stairs and got out the report.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-cb140e69",
+  "text": "Standing keeps the answers short.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-d22026b5",
+  "text": "Lieb had said he was at the flats over Lipsky’s at eight.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-b21654c0",
+  "text": "I went round the room once with my hands in my pockets, and once more with them out.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-8e625c91",
+  "text": "He gave me a look that said he had better things to do, and then did this one instead.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-5b859550",
+  "text": "Moretti was the lodger in the front room.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-21ca6476",
+  "text": "“I was at Zeldin’s card party at eight, with Mosley.”",
   "section": "Pages",
-  "note": "Speech: Pinsky. A light shift into the character, not an impression."
+  "note": "Speech: Vogel, a cab driver. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-c65db61c",
-  "text": "“Everywhere a man of the theater should be, my friend.”",
+  "id": "pg-d55143d5",
+  "text": "Reinhardt, a typist, had a brother Dandridge had testified against.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-076df202",
+  "text": "I walked to the Orpheum.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-430c2806",
+  "text": "The key was back under the mat, square in the middle.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-b0a54528",
+  "text": "The Delmonico rooms over the fish market were up a steep stair from Catherine Street, three floors of them.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-bc1ca5d7",
+  "text": "My client, Russo, had come on ahead to let me in and stood just inside the door, gloves in his hand.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-5407e6ed",
+  "text": "“The woman upstairs heard feet on the stairs in the middle of the Fleischmann Hour, which starts at ten.”",
   "section": "Pages",
-  "note": "Speech: Belkin, the leading man. A light shift into the character, not an impression."
+  "note": "Speech: Mrs. Krantz. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-b1434f3c",
-  "text": "At ten, Steinbach was at Moe’s, and Alfano said so.",
-  "section": "Pages"
- },
- {
-  "id": "pg-75e89f7a",
-  "text": "I let the door close on the office with the lamp still lit.",
-  "section": "Pages"
- },
- {
-  "id": "pg-766f88c5",
-  "text": "The hook by the window where the cage hung was empty.",
-  "section": "Pages"
- },
- {
-  "id": "pg-df0ce2a3",
-  "text": "A tap dripped somewhere at the back, patient as a landlord.",
-  "section": "Pages"
- },
- {
-  "id": "pg-78dcf022",
-  "text": "It was a fair few blocks to the Odessa, uptown and west.",
-  "section": "Pages"
- },
- {
-  "id": "pg-7f232839",
-  "text": "He went back to sweeping a stoop he had swept an hour ago.",
-  "section": "Pages"
- },
- {
-  "id": "pg-7f24e821",
-  "text": "The street door banged downstairs, and somebody started up.",
-  "section": "Pages"
- },
- {
-  "id": "pg-3d3528dd",
-  "text": "“The next thing was at ten o’clock: I went to the card room over Feingold’s garage to meet Dr. Hirsch.”",
+  "id": "pg-c4b2b0fa",
+  "text": "“After that, at nine, I went to the Peacock, where the band was new, by myself again.”",
   "section": "Pages",
-  "note": "Speech: Miss Nowak. A light shift into the character, not an impression."
+  "note": "Speech: Amato, the cab driver. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-64b60d2b",
-  "text": "The rest was up to the pencil.",
-  "section": "Pages"
- },
- {
-  "id": "pg-8b43a752",
-  "text": "She had her satchel locked and still in her hand, and the key on a ribbon round her neck.",
-  "section": "Pages"
- },
- {
-  "id": "pg-a3ab894b",
-  "text": "I let it settle into the notebook.",
-  "section": "Pages"
- },
- {
-  "id": "pg-50f6c9b5",
-  "text": "Moe’s was a short walk.",
-  "section": "Pages"
- },
- {
-  "id": "pg-e4a88e6f",
-  "text": "Everybody in Dandridge’s box had a reason, which is the easy half.",
-  "section": "Pages"
- },
- {
-  "id": "pg-e7078920",
-  "text": "The hard half was getting to the laudanum at the Delmonico rooms.",
-  "section": "Pages"
- },
- {
-  "id": "pg-50bc7195",
-  "text": "“I’ll tell you what the woman downstairs told me,” she said.",
+  "id": "pg-11bb23cf",
+  "text": "“My old sweetheart owed Wexler, his boss, and wasn’t paying.”",
   "section": "Pages",
-  "note": "The words in quotation marks are Wehrle: a light shift. The rest is the narrator."
+  "note": "Speech: Mrs. Blau. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-202717ae",
-  "text": "“I went to the Delmonico rooms for a game of pinochle, with Mrs. Whitfield.”",
+  "id": "pg-c0b4a9b6",
+  "text": "“Before that, couldn’t tell you.”",
+  "section": "Pages",
+  "note": "Speech: Fishel. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-ff4d3eb8",
+  "text": "“A man with something to hide knocks once and starts talking.”",
+  "section": "Pages",
+  "note": "Speech: a light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-7640093e",
+  "text": "“And where were you tonight?”",
+  "section": "Pages",
+  "note": "Speech: the detective himself, so your own voice."
+ },
+ {
+  "id": "pg-3148e0bf",
+  "text": "There was a window in Zeldin’s parlor, onto the fire escape, that wouldn’t latch.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-dee525c9",
+  "text": "I set the report down in it and nodded my thanks.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-3dbbd4d4",
+  "text": "Wehrle had left everything just as it was, so that Caruso would know the way home.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-4f6d2dae",
+  "text": "“I was home from eight through nine, by myself.”",
+  "section": "Pages",
+  "note": "Speech: Fairbanks. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-65ef84f6",
+  "text": "“At ten o’clock I went to the Odessa to read the late paper over a plate of soup, by myself.”",
+  "section": "Pages",
+  "note": "Speech: Abramowitz, a bus conductor. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-117d3803",
+  "text": "Mrs. Pomerantz was still at Sokol’s at ten, when Mrs. Greco was given the rat poison.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-b7aaff38",
+  "text": "The velvet box in the sideboard drawer was empty: no spoons.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-57d91243",
+  "text": "The card room over Feingold’s garage was a couple of blocks.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-0ff5c9f4",
+  "text": "Mrs. Blau had given me nine or ten, and at nine Belkin was alive at the Lyric, so the hour was ten.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-ffd3d478",
+  "text": "“I started the evening at the Lyric, at seven, with Doyle and Mrs. Krantz.”",
+  "section": "Pages",
+  "note": "Speech: Amato, the cab driver. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-183e3ecf",
+  "text": "People who have been up all night thinking of names never are.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-2a7a6b63",
+  "text": "Mrs. Kowalski’s boarding house on Orchard Street had its hall lamp lit and its floors scrubbed white.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-ae5292c6",
+  "text": "From there to the Shamrock was a fair walk.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-ee85ef5d",
+  "text": "I found a flat surface and did the report standing up.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-4e88b1bd",
+  "text": "“Marchetti was with me from the time I sat down.”",
   "section": "Pages",
   "note": "Speech: Pickering, a milliner. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-d3182d05",
-  "text": "“I was at the Odessa at seven, with Abramowitz, Winslow and Carbone.”",
-  "section": "Pages",
-  "note": "Speech: Grasso, a typist. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-2bbbd88a",
-  "text": "“I have a feeling about who’s next.”",
-  "section": "Pages",
-  "note": "Speech: Mrs. Sobel, the midwife. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-3ad4252e",
-  "text": "“Now tell me the rest of it, from the beginning.”",
-  "section": "Pages",
-  "note": "Speech: the detective himself, so your own voice."
- },
- {
-  "id": "pg-db37d2dd",
-  "text": "“I wasn’t at the flats over Lipsky’s.”",
-  "section": "Pages",
-  "note": "Speech: Teitel, the pushcart man. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-8d96b08b",
-  "text": "“At ten o’clock, Teitel and Doyle.”",
-  "section": "Pages",
-  "note": "Speech: Pinsky. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-2c0cb10c",
-  "text": "“At eight I was home, alone.”",
-  "section": "Pages",
-  "note": "Speech: Russo, the card-room keeper. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-bb68e5a7",
-  "text": "I stood inside the door long enough to know where everybody was, and then I went in to start asking.",
+  "id": "pg-2f089f53",
+  "text": "Nobody had forced the lock, so Carbone had let whoever it was in.",
   "section": "Pages"
  },
  {
-  "id": "pg-36bf82bd",
-  "text": "Now her story had a hole in it: the Delmonico rooms at nine.",
-  "section": "Pages"
- },
- {
-  "id": "pg-b5dab0e6",
-  "text": "But if that was true, she was at the Palace at nine, not at home.",
-  "section": "Pages"
- },
- {
-  "id": "pg-49ba50c5",
-  "text": "The holy picture had its eyes on me, and it looked more forgiving than I had any right to expect.",
-  "section": "Pages"
- },
- {
-  "id": "pg-87010979",
-  "text": "He was at Thorndike’s flat.",
-  "section": "Pages"
- },
- {
-  "id": "pg-2baa4087",
-  "text": "“At seven I went round to the Delmonico rooms to return a borrowed umbrella, with Thorndike.”",
+  "id": "pg-60dfc442",
+  "text": "“There’s been a murder, and the police are calling it something else.”",
   "section": "Pages",
-  "note": "Speech: Renfro, a milliner. A light shift into the character, not an impression."
+  "note": "Speech: Russo. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-1251b473",
-  "text": "He went back to slicing rye for a free lunch nobody eats.",
+  "id": "pg-1fde6163",
+  "text": "It was a minute’s walk to the flats over Lipsky’s.",
   "section": "Pages"
  },
  {
-  "id": "pg-f86d667c",
-  "text": "“I was at my sister’s all evening, and the flat was locked,” he said.",
+  "id": "pg-3fcdde8c",
+  "text": "“He owes Margolis money, and he isn’t a patient man.”",
+  "section": "Pages",
+  "note": "Speech: Russo. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-f3edf848",
+  "text": "“Lieb was in at eight, gone by nine.”",
+  "section": "Pages",
+  "note": "Speech: Wojcik. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-88cecbae",
+  "text": "“I was Bertha Krantz’s neighbor.”",
+  "section": "Pages",
+  "note": "Speech: Russo. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-e55e5745",
+  "text": "A door along the hall opened an inch and closed again, which in a rooming house is how you say good night.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-da8f3ff8",
+  "text": "Lanza was the regular at the far end of the bar.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-fe89d664",
+  "text": "Ruggiero had been put out of a lease by him.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-236e6577",
+  "text": "It was a couple of blocks.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-d9d81afa",
+  "text": "I ignored it, the way I ignore most good advice.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-ff216e28",
+  "text": "“Winslow turned up at ten.”",
+  "section": "Pages",
+  "note": "Speech: Mrs. Sirkin. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-ceae26b6",
+  "text": "Miss Lowenthal: the dead woman was at war with a friend of hers, Demos.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-baf239cb",
+  "text": "I’d never had the nerve to count them myself.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-579dd5b7",
+  "text": "Dr. Hirsch glanced toward the door and back again, and then lowered her voice.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-278ee56e",
+  "text": "I hadn’t, but it’s nice to be sure.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-6122e442",
+  "text": "“Ask about Monday,” he said.",
   "section": "Pages",
   "note": "The words in quotation marks are Russo: a light shift. The rest is the narrator."
  },
  {
-  "id": "pg-aa13747a",
-  "text": "I wrote the new answer under the old one and drew nothing through either.",
-  "section": "Pages"
- },
- {
-  "id": "pg-1bc6dc2e",
-  "text": "“I’ll give it to you like a fare: the long way, and you don’t argue with the meter.”",
+  "id": "pg-cd858222",
+  "text": "“At eleven I went to the Peacock with Belkin, because a friend was on the door.”",
   "section": "Pages",
-  "note": "Speech: Amato, the cab driver. A light shift into the character, not an impression."
+  "note": "Speech: Russo, the card-room keeper. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-1936ed1d",
-  "text": "He didn’t fuss and didn’t ask me why; he just told me the evening.",
+  "id": "pg-ae0dc69f",
+  "text": "By then Ashby was three rows back.",
   "section": "Pages"
  },
  {
-  "id": "pg-24e49dd7",
-  "text": "I stood at his shoulder until he looked round.",
-  "section": "Pages"
- },
- {
-  "id": "pg-735db93a",
-  "text": "“I should add that I was alone at nine and ten.”",
+  "id": "pg-c610aba5",
+  "text": "“I was by myself the whole evening.”",
   "section": "Pages",
-  "note": "Speech: Ruggiero, a sewing-machine operator. A light shift into the character, not an impression."
+  "note": "Speech: Mrs. Thorndike. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-625df9ed",
-  "text": "“Anybody in here tonight,” I said, “and when?”",
+  "id": "pg-b8691d74",
+  "text": "“At ten I was in Sokol’s back room betting a dime on a number, not at the chop house.”",
   "section": "Pages",
-  "note": "The quoted words are the detective’s own: your own voice throughout."
+  "note": "Speech: Alfano, a bus conductor. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-6e83ad5d",
-  "text": "“I was home from eight through nine.”",
-  "section": "Pages",
-  "note": "Speech: Fairbanks. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-95fe8a26",
-  "text": "Somebody in this city ought to be.",
-  "section": "Pages"
- },
- {
-  "id": "pg-4ccd61a5",
-  "text": "She glanced toward the door and back again, and then lowered her voice, as if the room had ears.",
-  "section": "Pages"
- },
- {
-  "id": "pg-fcc2ae29",
-  "text": "Lieb went back to eating peanuts out of his hat.",
-  "section": "Pages"
- },
- {
-  "id": "pg-222ad406",
-  "text": "Fishel was reading the racing results with his lips moving.",
-  "section": "Pages"
- },
- {
-  "id": "pg-9cce9f0a",
-  "text": "“Doyle, the alderman’s clerk, hasn’t forgotten what my family did to Mrs. Krantz, his old flame.”",
-  "section": "Pages",
-  "note": "Speech: Miss Kahane. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-dc21d331",
-  "text": "Whoever it was had a key and had locked up behind them.",
-  "section": "Pages"
- },
- {
-  "id": "pg-2a9810df",
-  "text": "And the spare key lives in the sugar tin at Kowalski’s.",
-  "section": "Pages"
- },
- {
-  "id": "pg-e92cbd04",
-  "text": "I’d come to look, and looking takes time.",
-  "section": "Pages"
- },
- {
-  "id": "pg-0959e081",
-  "text": "Ashby said Salerno, Sirkin and Ainsworth were at the Orpheum at nine.",
-  "section": "Pages"
- },
- {
-  "id": "pg-1540d2e0",
-  "text": "At eleven something came in at the Orpheum under a coat and went to Benny.",
-  "section": "Pages"
- },
- {
-  "id": "pg-8653cb63",
-  "text": "And I thought about what had gone out of the Wehrle flat.",
-  "section": "Pages"
- },
- {
-  "id": "pg-410e8b24",
-  "text": "Even the cat had somewhere to be.",
-  "section": "Pages"
- },
- {
-  "id": "pg-dd238f43",
-  "text": "“Nobody was with me at nine or ten.”",
+  "id": "pg-5198c709",
+  "text": "“At seven I went round to the Delmonico rooms to return a borrowed umbrella, and Thorndike was there.”",
   "section": "Pages",
   "note": "Speech: Renfro, a milliner. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-a0f1b16c",
-  "text": "Nobody will say who won it.",
+  "id": "pg-c9abce8f",
+  "text": "Whoever had been standing in them had found somewhere better to be, which was more than I had.",
   "section": "Pages"
  },
  {
-  "id": "pg-e1da7f44",
-  "text": "“Just the plain run of it.”",
+  "id": "pg-5deb224b",
+  "text": "“Miss Moskin was with me at first and left after nine.”",
   "section": "Pages",
-  "note": "Speech: the detective himself, so your own voice."
+  "note": "Speech: Mabry, the bandleader. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-9e9f16a4",
-  "text": "Glick was at the Lyric at nine; Pinsky said so.",
-  "section": "Pages"
- },
- {
-  "id": "pg-355552ef",
-  "text": "The last set was playing to a room that had stopped dancing and started leaning.",
-  "section": "Pages"
- },
- {
-  "id": "pg-443cc118",
-  "text": "I asked her if she could spare a few minutes, and waited for a yes before I sat down.",
-  "section": "Pages"
- },
- {
-  "id": "pg-cf962b2a",
-  "text": "They aren’t as young as they let on.",
-  "section": "Pages"
- },
- {
-  "id": "pg-885e171f",
-  "text": "“Mrs. Whitfield borrows Fritz most evenings,” he said.",
+  "id": "pg-9dbdb58b",
+  "text": "“Saint Teresa’s was striking ten when the woman across the hall heard the door.”",
   "section": "Pages",
-  "note": "The words in quotation marks are Hauck: a light shift. The rest is the narrator."
+  "note": "Speech: Russo. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-5e0286b5",
-  "text": "“He had been squeezing her for years.”",
-  "section": "Pages",
-  "note": "Speech: Margolis. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-4f57a5be",
-  "text": "“I mean, what would you like to know?”",
-  "section": "Pages",
-  "note": "Speech: Miss Nowak. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-35d329df",
-  "text": "The door opened before I’d said anything.",
+  "id": "pg-f7463178",
+  "text": "The empty seats sat in their rows and kept their opinions to themselves.",
   "section": "Pages"
  },
  {
-  "id": "pg-2dfbdea7",
-  "text": "Somebody had made it for Mrs. Krantz.",
+  "id": "pg-8c1eaff3",
+  "text": "I put the pencil away.",
   "section": "Pages"
- },
- {
-  "id": "pg-1e105c15",
-  "text": "The street door beside it stood open on a hall where somebody had left the light on, as somebody always does.",
-  "section": "Pages"
- },
- {
-  "id": "pg-0ac4c678",
-  "text": "Somebody leaned on the chair with the short leg.",
-  "section": "Pages"
- },
- {
-  "id": "pg-b7f3f20d",
-  "text": "There was more, and he didn’t much want to say it.",
-  "section": "Pages"
- },
- {
-  "id": "pg-4884ce04",
-  "text": "Landladies don’t sleep, I’ve found; they wait.",
-  "section": "Pages"
- },
- {
-  "id": "pg-1e303f2c",
-  "text": "Wojcik said at ten, when Caruso went, nobody was at the flats over Lipsky’s.",
-  "section": "Pages"
- },
- {
-  "id": "pg-a35a530d",
-  "text": "The house was no place for my kind of talk.",
-  "section": "Pages"
- },
- {
-  "id": "pg-fdb3eeda",
-  "text": "The rat poison came from the flats over Lipsky’s.",
-  "section": "Pages"
- },
- {
-  "id": "pg-5789be10",
-  "text": "“I don’t like enough faces to forget any.”",
-  "section": "Pages",
-  "note": "Speech: Mrs. Szabo. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-fdd9d1d9",
-  "text": "I sat back and let the room forget about me.",
-  "section": "Pages"
- },
- {
-  "id": "pg-f3abee24",
-  "text": "“Nobody was with me at eight, nine or eleven.”",
-  "section": "Pages",
-  "note": "Speech: Fairbanks. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-7cc5c120",
-  "text": "“I wasn’t on till ten.”",
-  "section": "Pages",
-  "note": "Speech: Broadnax. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-8e7f39c8",
-  "text": "“Then ten, Mrs. Greco and Doyle.”",
-  "section": "Pages",
-  "note": "Speech: Mrs. Szabo. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-56561148",
-  "text": "Whoever came and went did it unseen.",
-  "section": "Pages"
- },
- {
-  "id": "pg-5d0cf371",
-  "text": "“It was just me at nine and ten, which is the company I usually keep.”",
-  "section": "Pages",
-  "note": "Speech: Amato, the cab driver. A light shift into the character, not an impression."
  },
  {
   "id": "pg-6669d611",
@@ -3330,159 +2986,566 @@
   "section": "Pages"
  },
  {
-  "id": "pg-dfe1733e",
-  "text": "Somebody ought to be in, even if it’s only the lamp.",
+  "id": "pg-43376c8e",
+  "text": "She had said she was at the Shamrock at nine, and Zeldin hadn’t seen her there.",
   "section": "Pages"
  },
  {
-  "id": "pg-ff0576d4",
-  "text": "“All evening I was home at the Delmonico rooms.”",
+  "id": "pg-76fb7091",
+  "text": "I asked Salerno where he’d been tonight, and I said please.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-8abc3600",
+  "text": "I asked Ellery for everybody she’d seen tonight, in order, friends included.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-f7a59e05",
+  "text": "It had done its best.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-1ac1bfd4",
+  "text": "“It was in a drink, and she drank it at ten.”",
   "section": "Pages",
-  "note": "Speech: Mrs. Whitfield. A light shift into the character, not an impression."
+  "note": "Speech: Russo. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-b199a28e",
-  "text": "The tin sign on the wall had outlasted the company and would outlast me.",
+  "id": "pg-56c15b4e",
+  "text": "Not a mark on the door.",
   "section": "Pages"
  },
  {
-  "id": "pg-a3c1efab",
-  "text": "Dr. Hirsch had named Miss Nowak: the card room over Feingold’s garage at ten, the two of them.",
-  "section": "Pages"
- },
- {
-  "id": "pg-fefb4060",
-  "text": "“Seven, I open the doors and take up the chart.”",
-  "section": "Pages",
-  "note": "Speech: Pinsky. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-bcd1a30a",
-  "text": "At nine or ten, if that was the hour, somebody walked into Mrs. Krantz’s place with the rat poison already on them.",
-  "section": "Pages"
- },
- {
-  "id": "pg-fa5115a3",
-  "text": "Nobody had written in any of it.",
-  "section": "Pages"
- },
- {
-  "id": "pg-4b0021f4",
-  "text": "She answered slowly, like a person giving dictation to somebody who writes in ink.",
-  "section": "Pages"
- },
- {
-  "id": "pg-3cca970f",
-  "text": "They don’t usually come in under a coat.",
-  "section": "Pages"
- },
- {
-  "id": "pg-b6615d2b",
-  "text": "No clerk, no doorman, nobody watching the stairs: nobody saw who came.",
-  "section": "Pages"
- },
- {
-  "id": "pg-ff65478c",
-  "text": "“At nine o’clock I kept Doyle company as far as the flats over Lipsky’s.”",
+  "id": "pg-a7ef648d",
+  "text": "“I suppose it’s better out than in.”",
   "section": "Pages",
   "note": "Speech: Dr. Hirsch, the dentist. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-2421cb85",
-  "text": "“Start at the start, and put the people in where they belong.”",
+  "id": "pg-c521cd92",
+  "text": "Somebody had made it for Belkin.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-0a1ef911",
+  "text": "It was a minute’s walk to the bakery cellar at Sokol’s.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-144815b7",
+  "text": "Some people have all the luck.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-245c51c2",
+  "text": "I made my way to the Palace.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-acbd8ce8",
+  "text": "I went straight to the parlor window.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-ce5e9df4",
+  "text": "Mrs. Whitfield, a neighbor, was in the front room with a book, one finger in it to keep the place.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-bbc32cd7",
+  "text": "I went round to Renfro’s flat on Cannon Street.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-9636fa7d",
+  "text": "Mrs. Ostrow, the matchmaker, was at the bar.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-1cbf92fc",
+  "text": "It was showing on mine.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-6cbaca21",
+  "text": "My client had the hour ready.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-acead173",
+  "text": "I asked where she’d spent the evening.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-a0b0d370",
+  "text": "I took the place in again from the doorway.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-b74f12b8",
+  "text": "“Nine and ten, nobody in at all.”",
+  "section": "Pages",
+  "note": "Speech: Mrs. Cheatham. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-3f6e87ee",
+  "text": "I took my hat off the stand.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-72cde266",
+  "text": "Alfano said she was at the chop house at ten.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-c4ec0dd8",
+  "text": "If anybody had a reason, the desk would say so.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-b3dd720d",
+  "text": "“When a stranger sits on it, I notice twice.”",
+  "section": "Pages",
+  "note": "Speech: a light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-6f536c8f",
+  "text": "“We haven’t spoken since the row over the coal bill.”",
+  "section": "Pages",
+  "note": "Speech: Russo. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-5d20840d",
+  "text": "“If you want a name, it’s Lieb, the pawnbroker’s clerk,” she said.",
+  "section": "Pages",
+  "note": "The words in quotation marks are Mrs. Blau: a light shift. The rest is the narrator."
+ },
+ {
+  "id": "pg-c0ba828b",
+  "text": "Mrs. Krantz was still alive at the Lyric at nine.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-67ba512c",
+  "text": "And Russo had said nine or ten, so it happened at ten o’clock.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-ed9c0eae",
+  "text": "I asked Miss Moskin where she’d been tonight, and who with, hour by hour.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-c074c318",
+  "text": "She kept the house, and the house kept no secrets from her, or not for long.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-58f617d7",
+  "text": "I asked Whitfield to count the night for me, face by face.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-fda2fd35",
+  "text": "Fairbanks was in by then, at the far table.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-11304870",
+  "text": "“Grasso and a stranger at the same table were here the whole time I was on.”",
+  "section": "Pages",
+  "note": "Speech: Broadnax. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-1c7819f5",
+  "text": "The doorways had emptied out.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-5f42d2ad",
+  "text": "Dr. Hirsch was smoking one cigarette very slowly at a window.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-e8cd5daf",
+  "text": "“You told me you were home at ten.”",
+  "section": "Pages",
+  "note": "Speech: Teitel, the pushcart man. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-77abf713",
+  "text": "I asked Pinsky to take me through the night, hour by hour, everybody in the place.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-b136fc4a",
+  "text": "Miss Kahane had sat at the Peacock telling the room about her key.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-507d0b9a",
+  "text": "I climbed to Dandridge’s walk-up over the drugstore on Grand Street.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-92e6c6d6",
+  "text": "And a radiator under the window knocked every so often, as if it wanted to be let in on something.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-cfea8dfe",
+  "text": "It has been with me longer than most clients, and it has never once asked for its money back.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-d726c2be",
+  "text": "There was more, and Hauck didn’t much want to say it.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-c597274e",
+  "text": "It makes for an honest witness, and a dull one.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-2a29782d",
+  "text": "Mrs. Sobel said she was at Sokol’s at ten.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-52cb7279",
+  "text": "Nobody kept the stairs here.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-5ef6237a",
+  "text": "Somebody had left a chair facing the wall.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-94e7e124",
+  "text": "Fishel said it as if he were reading it off the back of his hand, and maybe he was.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-312b9828",
+  "text": "“The family across the hall heard the door during the Cliquot Club Eskimos or the hour after it.”",
+  "section": "Pages",
+  "note": "Speech: Miss Kahane. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-782d9af0",
+  "text": "“Seven, I was home, alone, and stayed through eight.”",
+  "section": "Pages",
+  "note": "Speech: Ashby. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-6e8f54b3",
+  "text": "I still didn’t know where Broadnax was at nine or ten.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-c97a3e79",
+  "text": "My visitor had found fault with the stairs, the room and my lack of a secretary before he sat down.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-25e158f4",
+  "text": "The dead man had been squeezing Grasso for years.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-a544c205",
+  "text": "The room was still and close.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-417b2c09",
+  "text": "Whoever came into Russo’s flat had been at the flats over Lipsky’s first.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-70a733b5",
+  "text": "Miss Kahane: at his throat for years.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-eeeda890",
+  "text": "“At nine I dropped a parcel off at the flats over Lipsky’s, and Teitel was there.”",
+  "section": "Pages",
+  "note": "Speech: Doyle, the alderman’s clerk. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-257fb0a5",
+  "text": "Then she went quieter, though it was only the two of us in the room.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-bbce0810",
+  "text": "There was nobody on the door to mind us.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-19b4dd85",
+  "text": "Caruso went at nine or ten o’clock; which of the two, I couldn’t say yet.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-b8c8a886",
+  "text": "Nobody else had said where Pickering was at ten, when Fritz went.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-e68f109c",
+  "text": "“Where had he been earlier in the evening?”",
   "section": "Pages",
   "note": "Speech: the detective himself, so your own voice."
  },
  {
-  "id": "pg-9b0156fc",
-  "text": "So he and Pinsky agreed: the Lyric at ten, with Teitel, and at seven, with Amato and Mrs. Krantz.",
+  "id": "pg-a9faf60a",
+  "text": "I made a note of that.",
   "section": "Pages"
  },
  {
-  "id": "pg-eaf1a154",
-  "text": "The street was what mattered, since East Houston Street was where Mrs. Krantz lived.",
+  "id": "pg-72138702",
+  "text": "Nobody here had watched the door.",
   "section": "Pages"
  },
  {
-  "id": "pg-ecd758db",
-  "text": "“I’ll pay,” he said, and did: ten dollars, folded small.",
+  "id": "pg-bfa0d973",
+  "text": "Amato: owed her money and couldn’t pay it.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-82d50bf3",
+  "text": "“Fritz was at my place at nine, for his supper.”",
   "section": "Pages",
-  "note": "The words in quotation marks are Hauck: a light shift. The rest is the narrator."
+  "note": "Speech: Miss Moskin. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-60c72e38",
-  "text": "He explained it the way he would to a new lodger, all in one go.",
+  "id": "pg-7baf6634",
+  "text": "“After that, at eight, I stopped in at the Shamrock to get warm, and Winslow and Dandridge were there.”",
+  "section": "Pages",
+  "note": "Speech: Ruggiero, a sewing-machine operator. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-a34950c0",
+  "text": "“I showed everybody at the table at eight.”",
+  "section": "Pages",
+  "note": "Speech: Wehrle. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-df8fc8c6",
+  "text": "Pickering had said she was at the chop house at ten and eleven.",
   "section": "Pages"
  },
  {
-  "id": "pg-b9ee729b",
-  "text": "“Later, at ten, I went home, because my feet hurt.”",
-  "section": "Pages",
-  "note": "Speech: Amato, the cab driver. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-e1f29ca1",
-  "text": "Pinsky had seen Lieb at the Lyric at seven and nine.",
-  "section": "Pages"
- },
- {
-  "id": "pg-ca1549f8",
-  "text": "Pickering was at the Delmonico rooms at nine and the chop house at ten, according to Mrs. Whitfield and Ellery.",
-  "section": "Pages"
- },
- {
-  "id": "pg-c9605425",
-  "text": "“You could have set a clock by it.”",
-  "section": "Pages",
-  "note": "Speech: Margolis. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-7bfe662b",
-  "text": "“I was on my own at eight, nine and ten.”",
-  "section": "Pages",
-  "note": "Speech: Amato, the cab driver. A light shift into the character, not an impression."
- },
- {
-  "id": "pg-b0ce8d6b",
-  "text": "“Here’s my trouble,” I said.",
+  "id": "pg-78a32489",
+  "text": "“I need the whole night,” I said.",
   "section": "Pages",
   "note": "The quoted words are the detective’s own: your own voice throughout."
  },
  {
-  "id": "pg-9f3b5637",
-  "text": "“The chloral on my hall shelf was there at seven.”",
+  "id": "pg-ec2f9ac9",
+  "text": "Teitel: the dead man was at war with his friend.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-eea4cca5",
+  "text": "I pulled up whatever was nearest to sit on and got the report out under the one light.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-45e3e1fb",
+  "text": "He said he was at the back booth at Sokol’s at ten.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-f5956ceb",
+  "text": "The Delmonico rooms were a stretch downtown and west, near enough to get there and back inside the hour.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-261c17e1",
+  "text": "“Broadnax and a stranger at the same table were in as long as I was.”",
   "section": "Pages",
-  "note": "Speech: Mrs. Sirkin. A light shift into the character, not an impression."
+  "note": "Speech: Whitfield. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-0372f316",
-  "text": "I put my feet down off the desk.",
+  "id": "pg-d452aa95",
+  "text": "I went past the rubber plant on the landing.",
   "section": "Pages"
  },
  {
-  "id": "pg-04d00607",
-  "text": "He had a white mustache waxed to points so fine they quiver when he disapproves.",
+  "id": "pg-a4cf8a2a",
+  "text": "“I’m asking everybody the same.”",
+  "section": "Pages",
+  "note": "Speech: the detective himself, so your own voice."
+ },
+ {
+  "id": "pg-23747bce",
+  "text": "Mrs. Krantz: the leading man owed her money and wasn’t paying it.",
   "section": "Pages"
  },
  {
-  "id": "pg-c909f2e5",
-  "text": "“Anybody else came to my slot, he’s still out on the sidewalk.”",
+  "id": "pg-77d5f56b",
+  "text": "The coroner says rat poison.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-97f52ce7",
+  "text": "“Miss Marsh the cigarette girl, all evening.”",
   "section": "Pages",
   "note": "Speech: Mrs. Szabo. A light shift into the character, not an impression."
  },
  {
-  "id": "pg-9a31119f",
-  "text": "Now his story had a hole in it: the flats over Lipsky’s at ten.",
+  "id": "pg-1253b3da",
+  "text": "“As of tonight I’m nobody’s.”",
+  "section": "Pages",
+  "note": "Speech: Moretti. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-55c7c1ae",
+  "text": "Nobody was laughing at her now.",
   "section": "Pages"
  },
  {
-  "id": "pg-a1a1d0a4",
-  "text": "But if what he said now was true, he had been at the card room over Feingold’s garage at ten, not home.",
+  "id": "pg-570e36e2",
+  "text": "A second look costs nothing.",
   "section": "Pages"
  },
  {
-  "id": "pg-f3f4e3d3",
-  "text": "I’d hear this one out too.",
+  "id": "pg-058f6e03",
+  "text": "At nine, Carbone was still alive at the Odessa.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-da062095",
+  "text": "“That was everybody, and I was watching.”",
+  "section": "Pages",
+  "note": "Speech: Pinsky. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-2bbf1805",
+  "text": "Glick: her rival, and losing.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-a94c1e08",
+  "text": "She had it written on the back of an envelope, and read it out to me.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-cb877c7c",
+  "text": "Winslow hadn’t been at the Delmonico rooms while the laudanum was in the medicine cupboard.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-efbf8d43",
+  "text": "“The whole evening, in order.”",
+  "section": "Pages",
+  "note": "Speech: the detective himself, so your own voice."
+ },
+ {
+  "id": "pg-f5a047a2",
+  "text": "It was a fair walk to the Odessa.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-cc9f1c6b",
+  "text": "“His mantel clock was knocked over and stopped at five past, but it was never right.”",
+  "section": "Pages",
+  "note": "Speech: Mrs. Blau. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-1bdc8870",
+  "text": "Amato had said he was at the bakery cellar at Sokol’s at nine.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-a8516d6a",
+  "text": "“Under the coat,” I said.",
+  "section": "Pages",
+  "note": "The quoted words are the detective’s own: your own voice throughout."
+ },
+ {
+  "id": "pg-b934f760",
+  "text": "“I’d like the rest of your evening to go with it.”",
+  "section": "Pages",
+  "note": "Speech: the detective himself, so your own voice."
+ },
+ {
+  "id": "pg-f11de2fb",
+  "text": "“Mrs. Whitfield borrows Fritz most evenings,” my client said.",
+  "section": "Pages",
+  "note": "The words in quotation marks are Hauck: a light shift. The rest is the narrator."
+ },
+ {
+  "id": "pg-ade0dc69",
+  "text": "“Reinhardt saw you here at seven.”",
+  "section": "Pages",
+  "note": "Speech: the detective himself, so your own voice."
+ },
+ {
+  "id": "pg-50ac1f44",
+  "text": "“I was Lazar Belkin’s old sweetheart.”",
+  "section": "Pages",
+  "note": "Speech: Mrs. Blau. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-b70316d1",
+  "text": "“Come ten, I went to the Lyric to see the new play, and Doyle was there.”",
+  "section": "Pages",
+  "note": "Speech: Teitel, the pushcart man. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-e31efb60",
+  "text": "Fishel, the bookmaker, was in the corner.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-d81f5ea0",
+  "text": "“Eleven, somebody in with something under a coat.”",
+  "section": "Pages",
+  "note": "Speech: Ellery. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-f1cea7aa",
+  "text": "“Where else were you tonight?”",
+  "section": "Pages",
+  "note": "Speech: the detective himself, so your own voice."
+ },
+ {
+  "id": "pg-c126b34c",
+  "text": "“I was at the card room over Feingold’s garage, with Glick.”",
+  "section": "Pages",
+  "note": "Speech: Teitel, the pushcart man. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-15e92721",
+  "text": "He never came near it.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-50f8fb23",
+  "text": "There wasn’t a mark on the door.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-1a3d0b19",
+  "text": "“Whichever it was, that’s when he was poisoned.”",
+  "section": "Pages",
+  "note": "Speech: Margolis. A light shift into the character, not an impression."
+ },
+ {
+  "id": "pg-4581f68a",
+  "text": "I made my way to the chop house.",
+  "section": "Pages"
+ },
+ {
+  "id": "pg-9248626a",
+  "text": "I knew from Mrs. Sirkin who had come and gone.",
   "section": "Pages"
  },
  {

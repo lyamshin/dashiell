@@ -16,7 +16,7 @@ import { dealBoard, thoughtLevel, type BoardDeal, type BoardRun } from '../src/g
 import { playBoardOracle, playReader, playWanderer } from '../src/game/board/oracle.js';
 import { bestAt, emptyProfile, goldsAt, recordRun, sanitizeProfile, starsAt } from '../src/game/board/profile.js';
 import { scoreBoard, tallyWords, truthReport } from '../src/game/board/report.js';
-import { completions, hintStep, isOpen, reportReady, sameStanding, starCommand, starredSteps } from '../src/game/board/stars.js';
+import { completions, hintStep, isOpen, reportReady, sameStanding, starCommand, starReason, starredSteps } from '../src/game/board/stars.js';
 import { BOARD_RULES, BOARD_TEACH_LINES } from '../src/game/board/teach.js';
 import { FACE_MARK } from '../src/game/board/grid.js';
 import { runPlay, type PlayIo } from '../src/cli/play-lib.js';
@@ -233,6 +233,11 @@ describe('docs/67 §1: the hint when the report is ready, and on the report page
       if (tier === 0) expect(h.said.text).toMatch(/That left one person who .+, with nobody to back up where they were at (?:nine|ten|eleven)\.$/);
       else expect(h.said.text).toBe('You have what you need to close the case.');
       expect(pageStars(d, h.run)).toEqual([]);
+      // Poached's one hint is spent; elsewhere, asking again is free and says the same.
+      if (hintsLeft(h.run) === 0) {
+        expect(takeHint(d, h.run)).toEqual({ error: 'No hints left tonight.' });
+        continue;
+      }
       const again = hinted(d, h.run);
       expect(again.said.spent).toBe(false);
       expect(hintsUsed(again.run)).toBe(1);
@@ -247,7 +252,8 @@ describe('docs/67 §1: the hint when the report is ready, and on the report page
     const run = stepBoard(d, stepBoard(d, newBoardRun(d), 'go scene').run, 'file').run;
     const h = hinted(d, run);
     expect(h.said.kind).toBe('step');
-    expect(h.said.text).toMatch(/^Still missing: .+ — .+\.$/);
+    expect(h.said.text).toMatch(/^Still missing: .+\.$/);
+    expect(h.said.text).toContain(starReason(d.kase, h.run, h.said.q as string));
     expect(stepBoard(d, h.run, 'go scene').error).toBeDefined();
   });
 
