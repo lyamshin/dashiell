@@ -14,7 +14,7 @@
 import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
-import { boardGrid, cellText, meansAsked, type BoardCell, type BoardGrid } from '../game/board/grid.js';
+import { FACE_MARK, boardGrid, cellText, meansAsked, type BoardCell, type BoardGrid } from '../game/board/grid.js';
 import { knownPeople, knownPlaces, lineShown, linesHeld } from '../game/board/knowledge.js';
 import {
   BOARD_SAVE_KEY,
@@ -34,9 +34,10 @@ import {
   type TierIndex,
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
+import { peopleLine } from '../game/board/gloss.js';
 import { BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, WHERE_BY_LABEL, blankRule, boardFields, breakOptionsShown, clearOptions, curtainOfBoard, hoursThatMattered, lineGroupHeads, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
-import { ACTION_KEY, TALK_HEADING, chapterShown, costLabel, officeLines, questionsText, starsNote } from '../game/board/text.js';
+import { ACTION_KEY, TALK_HEADING, chapterShown, costText, officeLines, questionsText, starsNote } from '../game/board/text.js';
 import { continuityOf, dealtIds, fileToProfile, loadProfile, seenOf, teachOn, tierOpen, tonightTier, type KeyValueStore, type Profile } from '../game/board/profile.js';
 import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
@@ -386,7 +387,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (!p) return null;
     const known = knownPeople(c, run as BoardRun).has(id);
     if (!known) return { title: p.short, lines: ['Not in the notebook yet.'] };
-    const role = p.role === 'client' ? `My client: ${p.description}.` : p.role === 'victim' ? `${p.description[0]?.toUpperCase()}${p.description.slice(1)}. The dead ${p.female ? 'woman' : 'man'}.` : `${p.description[0]?.toUpperCase()}${p.description.slice(1)}.`;
+    const who = peopleLine(c, id);
+    const role = p.role === 'client' ? `My client: ${p.description}.` : p.role === 'victim' ? `${p.description[0]?.toUpperCase()}${p.description.slice(1)}. The dead ${p.female ? 'woman' : 'man'}.` : `${who[0]?.toUpperCase()}${who.slice(1)}.`;
     const lines = [role];
     if ((run as BoardRun).asked.includes(`account:${id}`)) lines.push('Their own evening is in the notebook.');
     return { title: p.name, lines };
@@ -399,7 +401,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       class: `choice${ch.lead ? ' choice--lead' : ''}${ch.done ? ' choice--done' : ''}${extra}`,
       type: 'button',
       'data-command': ch.command,
-      'aria-label': [ch.label, ch.lead && ch.why ? `starred: ${ch.why}` : '', ch.done ? 'already done' : '', ch.command.startsWith('picker') ? 'free to look' : costLabel(ch), ch.note ?? ''].filter(Boolean).join(', '),
+      'aria-label': [ch.label, ch.lead && ch.why ? `starred: ${ch.why}` : '', ch.done ? 'already done' : '', costText(ch), ch.note ?? ''].filter(Boolean).join(', '),
     });
     if (ch.lead) b.append(el('span', { class: 'mark', 'aria-hidden': 'true', text: '*' }));
     const label = el('span', { class: 'label', text: ch.label });
@@ -407,7 +409,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     b.append(label);
     if (ch.note) b.append(el('span', { class: 'aside', text: ch.note }));
     if (ch.lead && ch.why) b.append(el('span', { class: 'aside why', text: ch.why }));
-    b.append(el('span', { class: 'mins', text: ch.command.startsWith('picker') ? (pickerOpen ? 'close' : 'free to look') : ch.done ? 'free' : costLabel(ch) }));
+    b.append(el('span', { class: 'mins', text: ch.command.startsWith('picker') && pickerOpen ? 'close' : costText(ch) }));
     b.addEventListener('click', onClick);
     return b;
   }
@@ -530,7 +532,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       sec.append(el('h4', { class: 'picker-head', text: `Which part of ${nameOf(c, pk.person)}’s evening?` }));
       for (const x of pk.claims) {
         const b = el('button', { class: 'choice choice--fact', type: 'button', 'data-claim': String(x.hour) });
-        b.append(el('span', { class: 'label', text: `${nameOf(c, pk.person)} says ${x.label}` }), el('span', { class: 'mins', text: 'free' }));
+        b.append(el('span', { class: 'label', text: x.said }), el('span', { class: 'mins', text: 'free' }));
         b.addEventListener('click', () => {
           pickerClaim = x.hour;
           renderInPlace();
@@ -541,7 +543,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       return box;
     }
     const sec = el('section', { class: 'picker-sec' });
-    sec.append(el('h4', { class: 'picker-head', text: `Against “${claim.label}”, tell ${him}:` }));
+    sec.append(el('h4', { class: 'picker-head', text: `${claim.said}. Tell ${him}:` }));
     for (const l of claim.lines) {
       const b = el('button', { class: 'choice choice--fact', type: 'button', 'data-command': l.command });
       b.append(el('span', { class: 'label', text: l.label }), el('span', { class: 'fact-src', text: l.source }));
@@ -721,7 +723,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     for (const id of knownPeople(c, r)) {
       const p = personOf(c, id);
       if (!p || p.role === 'victim') continue;
-      people.append(el('li', { text: `${p.name}: ${p.role === 'client' ? 'my client, ' : ''}${p.description}.` }));
+      // (Round 6, U6: the CLI's words, who they are and never where they sat tonight.)
+      people.append(el('li', { text: `${p.name}: ${peopleLine(c, id)}.` }));
     }
     for (const [id, why] of knownPlaces(c, r)) people.append(el('li', { text: `${placeName(c, id)} — ${why}.` }));
     body.append(people);
@@ -806,9 +809,12 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const cells = g.rows.flatMap((x) => g.hours.map((h) => x.cells[h] as BoardCell));
     const key = el('p', { class: 'bgrid-key' });
     key.append(el('span', { class: 'k is-says', text: 'Odessa' }), ' they say so · ', el('span', { class: 'k is-seen', text: 'Odessa' }), ' somebody saw them there · ', el('span', { class: 'k is-collision', text: 'Odessa✗' }), ' where they clash');
-    if (cells.some((x) => x.confirmed)) key.append(' · ', el('span', { class: 'k is-confirmed', text: 'Odessa✓' }), ' both say so');
+    // (Round 6, U3: who "both" are, said: they, and somebody who saw them.)
+    if (cells.some((x) => x.confirmed)) key.append(' · ', el('span', { class: 'k is-confirmed', text: 'Odessa✓' }), ' they say so, and somebody saw them there');
     if (cells.some((x) => x.pencil)) key.append(' · ', el('span', { class: 'k is-pencil', text: '~Odessa' }), ' your own guess');
     key.append('. Tap a cell for what was said.');
+    // (docs/66: at Hard-boiled, how a face's clash shows: the player's own mark, under "Your guess".)
+    if (c.tier === 5) key.append(` ${FACE_MARK}`);
     wrap.append(key);
     wrap.append(el('p', { class: 'bgrid-key', text: `${g.crimeHour !== null ? `The marked hour is when it happened.` : g.window.length > 1 ? `It happened at ${g.window.join(' or ')}.` : ''} The last column: ${meansAsked(meansWords(g.meansLabel))} ${Object.entries(g.codes).filter(([id]) => knownPlaces(c, run as BoardRun).has(id) || id === c.crime.scene).map(([id, code]) => `${code}: ${placeName(c, id)}`).join('; ')}.` }));
     return wrap;

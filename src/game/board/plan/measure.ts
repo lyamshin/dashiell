@@ -204,8 +204,146 @@ export function roleOf(c: BoardCase, id: string): string | undefined {
   return undefined;
 }
 
+/**
+ * Pronouns in the narration with two possible referents (see the header); and, docs/66 P2, lean, a
+ * pronoun a reader can't give to anybody: `o.subject` is whose answer the page is (the one whose own
+ * speech a pronoun after it is theirs), `o.units` the page's skeleton (for a card about somebody).
+ */
+export function pronounAmbiguity(c: BoardCase, blocks: readonly Block[], o: { subject?: string; units?: readonly Unit[] } = {}): string[] {
+  return [...pronounAmbiguity0(c, blocks), ...pronounAntecedents(c, blocks, o)];
+}
+
+/** docs/66, P2: a page's pronoun check, with whose answer it is and its skeleton. */
+export function pageAmbiguity(c: BoardCase, page: Pick<Page, 'blocks' | 'board'>): string[] {
+  const q = page.board?.q ?? '';
+  const subject = page.board?.job === 'office' ? c.client : /^(?:account|list|motive|confront):([^@]+)/.exec(q)?.[1];
+  return pronounAmbiguity(c, page.blocks, { ...(subject ? { subject } : {}), ...(page.board?.units ? { units: page.board.units } : {}) });
+}
+
+/**
+ * docs/66, P2, lean: three ways a pronoun has nobody to be, and one way it is somebody else.
+ *
+ * - **no antecedent**: nobody of its sex named in the narration before it on the page (its own
+ *   sentence, or since a chapter heading);
+ * - **across speech**: its antecedent was named before a quotation that named somebody else of its
+ *   sex, and it isn't the speaker's ("She had said she was at the Shamrock at nine, and he hadn't seen
+ *   her there", after her answer named Winslow and Dandridge: "he" was Zeldin, a paragraph back);
+ * - **parallel**: the second of two parallel phrases, where the first names somebody of the other sex
+ *   and nobody of its own is named before it in the sentence ("with Hanrahan at seven, and with him at
+ *   eight": no man in the sentence);
+ * - **speaker card**: a card about somebody (`Unit.who`) that opens on their pronoun after the
+ *   narration's last person of that sex was somebody else ("I'd find her at Sokol's back room. / She
+ *   gave me the night the way a good waiter brings the check", the card about Ellery).
+ */
+export function pronounAntecedents(c: BoardCase, blocks: readonly Block[], o: { subject?: string; units?: readonly Unit[] } = {}): string[] {
+  if (!lean()) return [];
+  const people = referents(c);
+  const sexOf = new Map(people.map((p) => [p.id, p.female]));
+  const short = (id: string) => people.find((p) => p.id === id)?.short ?? id;
+  const out: string[] = [];
+  const last = new Map<boolean, string>();
+  const since = new Map<boolean, Set<string>>();
+  for (const b of blocks) {
+    if (b.kind !== 'prose') continue;
+    if (b.voice === 'chapter') {
+      last.clear();
+      since.clear();
+      continue;
+    }
+    // (A place's own description, "a life-size cardboard cowboy tipping his hat", is about no one of the night.)
+    const establish = b.voice === 'establish';
+    let inQ = false;
+    for (const s of sentencesOf(b.text)) {
+      const narr = narrationOf(s, inQ);
+      const speech = s.split('').map((ch, i) => (narr[i] === ' ' && ch !== ' ' ? ch : ' ')).join('');
+      for (const ch of s) {
+        if (ch === '“') inQ = true;
+        if (ch === '”') inQ = false;
+      }
+      const here = [...namesAt(c, narr), ...[...narr.matchAll(/\b[Mm]y (?:visitor|client)\b/g)].map((m) => ({ id: c.client, at: m.index ?? 0 }))].sort((a, b) => a.at - b.at);
+      // (Somebody named in speech before the narration's pronoun, in the same sentence or before it.)
+      const spokenAt = (upto: number) => namesAt(c, speech.slice(0, upto));
+      if (/[A-Za-z]/.test(narr) && !establish) {
+        for (const m of narr.matchAll(PRONOUN)) {
+          const word = (m[1] as string).toLowerCase();
+          if (word === 'himself' || word === 'herself' || word === 'hers') continue;
+          const female = word === 'she' || word === 'her';
+          const at = m.index ?? 0;
+          if (here.some((x) => x.at < at && sexOf.get(x.id) === female)) continue;
+          const before = narr.slice(0, at);
+          // (Who said the quotation it follows or comes before: "“…,” she said", "she said, “…”": the speaker.)
+          if (/”\s*,?\s*$/.test(s.slice(0, at)) || /^\s*(?:said|asked|added|went on|told me|answered)\b/.test(narr.slice(at + (m[1] as string).length))) continue;
+          if (indefiniteFor(before, female) || roleOpener(c, narr, female) || opensOnRole(narr, female)) continue;
+          if (here.filter((x) => x.at > at && sexOf.get(x.id) === female).length === 1) continue;
+          // (A role the case gives, "the landlady", "my client", said before it in the sentence.)
+          if (people.some((p) => p.female === female && roleOf(c, p.id) && before.toLowerCase().includes((roleOf(c, p.id) as string).toLowerCase()))) continue;
+          const ante = last.get(female);
+          const quoted = [...(since.get(female) ?? []), ...spokenAt(at).filter((x) => sexOf.get(x.id) === female).map((x) => x.id)];
+          if (!ante) {
+            // (Said in the quotation just before, by its speaker: "“I put him back in the flat…” … he", the pet.)
+            if (quoted.length === 1) continue;
+            // (Whose answer the page is, of that sex: the page is about them.)
+            if (o.subject && sexOf.get(o.subject) === female) continue;
+            out.push(`no antecedent: “${m[1]}” has nobody of its sex named before it: ${s.slice(0, 90)}`);
+            continue;
+          }
+          const others = [...new Set(quoted)].filter((x) => x !== ante);
+          if (others.length && ante !== o.subject) out.push(`across speech: “${m[1]}” could be ${short(ante)} or ${others.map(short).join(' or ')}, named in the answer since: ${s.slice(0, 90)}`);
+        }
+        // Parallel phrases: "with Hanrahan at seven, and with him at eight".
+        for (const m of narr.matchAll(/,? and (with|to|from|for|beside|after|by) (him|her)\b/g)) {
+          const female = m[2] === 'her';
+          const at = m.index ?? 0;
+          const head = narr.slice(0, at);
+          const first = new RegExp(`\\b${m[1]} (?:(?:Mrs\\.|Mr\\.|Miss|Dr\\.) )?[A-Z][\\w’]+`).exec(head);
+          if (!first) continue;
+          const named = namesAt(c, head);
+          if (named.some((x) => sexOf.get(x.id) === female)) continue;
+          if (named.some((x) => sexOf.get(x.id) !== female)) out.push(`parallel: “${m[2]}” beside a name of the other sex, and nobody of its own in the sentence: ${s.slice(0, 90)}`);
+        }
+      }
+      // What the reader carries on: the narration's last person of each sex, and who speech named since.
+      for (const x of namesAt(c, speech)) {
+        const f = sexOf.get(x.id);
+        if (f === undefined) continue;
+        if (!since.has(f)) since.set(f, new Set());
+        (since.get(f) as Set<string>).add(x.id);
+      }
+      for (const x of here) {
+        const f = sexOf.get(x.id);
+        if (f === undefined) continue;
+        last.set(f, x.id);
+        since.set(f, new Set());
+      }
+    }
+  }
+  // A card about somebody, opening on their pronoun, after somebody else of that sex.
+  if (o.units?.length) {
+    const lastU = new Map<boolean, string>();
+    for (const u of o.units) {
+      if (u.voice === 'chapter') {
+        lastU.clear();
+        continue;
+      }
+      const t = u.text.replace(/“[^”]*”?/g, ' ');
+      if (u.kind === 'gap' && u.who && sexOf.has(u.who)) {
+        const f = sexOf.get(u.who) as boolean;
+        const opens = (f ? /^(?:She|Her)\b/ : /^(?:He|His|Him)\b/).test(t.trim());
+        const was = lastU.get(f);
+        if (opens && was && was !== u.who) out.push(`speaker card: “${t.trim().slice(0, 60)}” is about ${short(u.who)}, and the page's last of that sex was ${short(was)}`);
+      }
+      for (const x of namesAt(c, t)) {
+        const f = sexOf.get(x.id);
+        if (f !== undefined) lastU.set(f, x.id);
+      }
+      if (u.kind === 'gap' && u.who && sexOf.has(u.who) && /\b(?:he|she|him|her|his)\b/i.test(t)) lastU.set(sexOf.get(u.who) as boolean, u.who);
+    }
+  }
+  return out;
+}
+
 /** Pronouns in the narration with two possible referents (see the header). */
-export function pronounAmbiguity(c: BoardCase, blocks: readonly Block[]): string[] {
+function pronounAmbiguity0(c: BoardCase, blocks: readonly Block[]): string[] {
   const people = referents(c);
   const sexOf = new Map(people.map((p) => [p.id, p.female]));
   const out: string[] = [];

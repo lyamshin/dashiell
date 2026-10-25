@@ -63,7 +63,7 @@ export function walkBetween(c: BoardCase, from: PlaceId, to: PlaceId): Walk {
   const n = NUM[minutes / 5] ?? `${minutes}`;
   const said = minutes === 15 ? 'a quarter of an hour' : minutes === 30 ? 'half an hour' : `${n} minutes`;
   const near = dir === 'round the corner' || minutes <= 5;
-  const far = near ? 'round the corner' : minutes <= 10 ? 'a couple of blocks' : minutes <= 15 ? 'a few blocks' : minutes <= 20 ? 'a fair few blocks' : minutes <= 30 ? 'a good walk' : 'a long walk';
+  const far = near ? 'round the corner' : minutes <= 10 ? 'a couple of blocks' : minutes <= 15 ? 'a few blocks' : minutes <= 20 ? 'several blocks' : minutes <= 30 ? 'a good walk' : 'a long walk';
   return { minutes, dir, said, far, near, from: name(c, from), to: name(c, to), street: b.street };
 }
 

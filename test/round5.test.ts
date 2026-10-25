@@ -60,7 +60,8 @@ describe('round 5, U1: picking somebody is free; each question is a call', () =>
     expect(out).toContain(`${TALK_HEADING}:`);
     expect(out).not.toMatch(/free · \d/);
     expect(out).toMatch(/Lanza\s+1 question$/m);
-    expect(out).toMatch(/Alfano\s+all asked$/m);
+    // (Round 6, U2 and U4: "nothing left to ask", and a confront doesn't count as a question.)
+    expect(out).toMatch(/Alfano\s+nothing left to ask$/m);
     expect(questionsText({ choices: [{ command: 'a', label: 'a', minutes: 1, lead: false, done: true }, { command: 'b', label: 'b', minutes: 1, lead: false, done: false }] })).toBe('1 question');
   });
 });
@@ -94,7 +95,8 @@ describe('round 5, U3: docs/55 5’s wide first group, under a heading that says
         const own = run.asked.includes(`account:${who}`) ? accountOf(d.kase, who) : undefined;
         const theirs = new Set(Object.values(own?.claims ?? {}).map((cl) => cl?.place));
         const head = lineGroupHeads(d, run, who).touching;
-        expect(head, `${d.kase.id} ${who}`).toMatch(/^What you know about .+ at .+:$/);
+        // (Round 6, U5: the heading says only what every line under it is: about those hours.)
+        expect(head, `${d.kase.id} ${who}`).toMatch(/^What you know about (?:seven|eight|nine|ten|eleven)(?: and (?:seven|eight|nine|ten|eleven))?:$/);
         for (const o of breakOptionsShown(d, run, who).filter((x) => x.touches)) {
           const l = lines.find((x) => x.id === o.value);
           expect(l && l.hour !== undefined && hours.has(l.hour), `${d.kase.id} ${who} ${o.label}`).toBe(true);
@@ -109,15 +111,15 @@ describe('round 5, U3: docs/55 5’s wide first group, under a heading that says
     const { d, run } = played(RAW11);
     const head = lineGroupHeads(d, run, 'bellucci');
     // (docs/64: the heading in plain words, over docs/55 5's same wide group.)
-    expect(head.touching).toBe('What you know about Bellucci at ten:');
-    const first = out.slice(out.indexOf('What you know about Bellucci at ten:'), out.indexOf('Everything else:'));
+    expect(head.touching).toBe('What you know about ten:');
+    const first = out.slice(out.indexOf('What you know about ten:'), out.indexOf('Everything else:'));
     expect(first).toContain('Mrs. Kowalski: at ten o’clock, only Rafferty and Moretti were at');
     expect(first).toContain('Alfano: at ten o’clock, only Steinbach, Lanza and Pardo were at');
     const med = played(MEDIUM14);
     const thorndike = breakOptionsShown(med.d, med.run, 'thorndike').filter((o) => o.touches);
     expect(thorndike.length).toBeGreaterThan(2);
     expect(thorndike[0]?.value).not.toBe('remark:account:pickering#0');
-    expect(lineGroupHeads(med.d, med.run, 'thorndike').touching).toBe('What you know about Thorndike at nine or ten:');
+    expect(lineGroupHeads(med.d, med.run, 'thorndike').touching).toBe('What you know about nine and ten:');
     const hb = played(HB8);
     expect(breakOptionsShown(hb.d, hb.run, 'renfro').filter((o) => o.touches).length).toBeGreaterThan(2);
   });
@@ -128,7 +130,8 @@ describe('round 5, U4: the fences offered are the ones the night named', () => {
     for (const { d, run } of NIGHTS.filter((x) => x.d.kase.type !== 'murder')) {
       const said = [...run.log.flatMap((p) => p.blocks.map((b) => ('text' in b ? b.text : ''))), ...linesHeld(d.kase, run).map((l) => l.text)].join('\n');
       const where = boardFields(d, run).find((f) => f.key === 'where');
-      for (const o of where?.options.filter((x) => x.value.startsWith('holder:')) ?? []) expect(said, `${d.kase.id} ${o.label}`).toContain(o.label);
+      // (Round 6, U5: the option is "With Pardo"; the night named Pardo.)
+      for (const o of where?.options.filter((x) => x.value.startsWith('holder:')) ?? []) expect(said, `${d.kase.id} ${o.label}`).toContain(o.label.replace(/^With /, ''));
       // The truth is still in its own words on the verdict, named or not.
       expect(boardFields(d).find((f) => f.key === 'where')?.options.some((o) => o.value === truthReport(d).where)).toBe(true);
     }
@@ -136,7 +139,7 @@ describe('round 5, U4: the fences offered are the ones the night named', () => {
 
   it('Raw 11 offers Pardo and the flat, not Lou and Benny', () => {
     const { d, run } = played(RAW11);
-    expect(boardFields(d, run).find((f) => f.key === 'where')?.options.map((o) => o.label)).toEqual(['Pardo', 'Still at the Marchetti flat']);
+    expect(boardFields(d, run).find((f) => f.key === 'where')?.options.map((o) => o.label)).toEqual(['With Pardo', 'Still at the Marchetti flat']);
   });
 });
 
@@ -163,7 +166,8 @@ describe('round 5, U5: the notebook and the report say the line plainly, and as 
 
   it('the why form says the reason plainly', () => {
     const d = dealBoard(11, 0, 'lost-item');
-    expect(boardFields(d).find((f) => f.key === 'why')?.options.map((o) => o.label)).toContain('Says the late Mr. Marchetti promised them the watch');
+    // (Round 6, U6: in her own mouth, no "them" for one woman; the verdict says her.)
+    expect(boardFields(d).find((f) => f.key === 'why')?.options.map((o) => o.label)).toContain('Says “the late Mr. Marchetti promised me the watch”');
   });
 });
 
@@ -177,7 +181,8 @@ describe('round 5, U7: the verdict says which call was spare, and the score does
   it('the testers’ one spare call each was a put, and the closing says so', () => {
     const raw = filedAs(RAW11);
     expect(raw.v.outcome).toBe('solved');
-    expect(raw.v.closing.join(' ')).toContain('It took me 8 actions. A better detective would have done it in 7. I didn’t need to confront Bellucci: Alfano had already told me where the watch went.');
+    // (Round 6, P11: what showed it, the coat, not "Alfano had already told me".)
+    expect(raw.v.closing.join(' ')).toContain('It took me 8 actions. A better detective would have done it in 7. I didn’t need to confront Bellucci: the coat Alfano saw go straight to Pardo at eleven told me where the watch went.');
     for (const [n, who, he] of [[POACHED5, 'Reinhardt', 'she'], [MEDIUM14, 'Thorndike', 'he'], [HB8, 'Grasso', 'she']] as const) {
       const { d, run, v } = filedAs(n);
       expect(spareCalls(d, run)).toHaveLength(1);
@@ -241,7 +246,8 @@ describe('round 5, U11: the streets where they really run', () => {
   it('Medium 14: from Mulberry Street to Second Avenue is uptown and east', () => {
     const { run } = played(MEDIUM14);
     const page = run.log[1]?.blocks.map((b) => ('text' in b ? b.text : '')).join(' ') ?? '';
-    expect(page).toMatch(/uptown and east to the Hauck flat/);
+    // (docs/66, P7: the bearing on the night's first walk, in whichever card says it.)
+    expect(page).toMatch(/uptown and east,? (?:to|and I was at) the Hauck flat|Hauck flat (?:was|lay) [^.]* uptown and east/);
     expect(page).not.toMatch(/downtown/);
   });
 });

@@ -96,10 +96,12 @@ describe('docs/52 §3: the plain page, and the round trip', () => {
     } finally {
       setTexture('lean');
     }
-    // (docs/60 item 5, lean: the why-here said Coffin saw him there at eleven; the agreement isn't said again.)
+    // (docs/60 item 5, lean: the why-here said Coffin saw him there at eleven, and the agreement wasn't
+    // said again. docs/66, P3: lean, the asking says no pointer of its own, and eleven is an hour of the
+    // window, which a face never says, so the agreement is where the page says it, once.)
     const { run, d } = oracle(1, 4, 'lost-pet');
     const blocks = plainPage(d.kase, run.log[7] as (typeof run.log)[number]);
-    expect(blocks.map((b) => b.text)).toEqual([account]);
+    expect(blocks.map((b) => b.text)).toEqual([account, 'Coffin backed up Ashby: he was at the Thalia at eleven.']);
   });
 
   it('never a pronoun another of that sex in the clause before could be: the name', () => {

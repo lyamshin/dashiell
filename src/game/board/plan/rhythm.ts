@@ -137,7 +137,9 @@ function partings(s: string, tail = false, colon = true, scene = false): [string
       const a = s.slice(0, at).trim();
       const b = s.slice(at + 2).trim();
       const most = /^(?:like|as if|the way)$/.test(m[1] as string) ? 10 : 14;
-      if (wordsIn(a) >= 5 && wordsIn(b) >= 2 && wordsIn(b) <= most && !/,/.test(b)) out.push([`${a}.`, cap(b)]);
+      // (docs/66: never a fragment that opens on "he" or "she": "As if he were keeping count for her." had
+      // nobody for the "he" once it stood alone; the cat was in the sentence before.)
+      if (wordsIn(a) >= 5 && wordsIn(b) >= 2 && wordsIn(b) <= most && !/,/.test(b) && !(lean() && /^\w+(?: if| though)? (?:he|she)\b/i.test(b))) out.push([`${a}.`, cap(b)]);
     }
   }
   // A place's own sentence may end on what it was full of (Planner 2): "…waking to it floor by
@@ -209,6 +211,8 @@ function mendable(it: Item): boolean {
   if (it.tag === 'thought:street') return false;
   // docs/59 item 3: a consequence is a sentence of its own.
   if (it.tag === 'thought:then') return false;
+  // (docs/66, P1: and so is the hour the facts settle: "So he was taken at eleven.", never run on.)
+  if (it.tag === 'thought:narrows' || it.say?.flags?.includes('narrows')) return false;
   // (docs/59 note 7: the papers' pages, a grudge to a sentence, stay one each.)
   if (it.say?.flags?.includes('papers-list')) return false;
   return true;
@@ -487,7 +491,7 @@ function runs(ss: S[]): number {
 /** Pronouns two people could be, on the section as it stands (the measure's count). */
 function ambiguous(paras: Item[][], ctx: PlanCtx): number {
   const blocks: Block[] = paras.map((ps) => ({ kind: 'prose', voice: (ps[0]?.voice ?? 'narrator') as ProseVoice, text: ps.map((x) => x.text.replace(/⁣\d+⁤/g, '')).join(' ') }));
-  return pronounAmbiguity(ctx.c, blocks).length;
+  return pronounAmbiguity(ctx.c, blocks, ctx.situ?.subject ? { subject: ctx.situ.subject } : {}).length;
 }
 
 export function rhythm(paras: Item[][], ctx: PlanCtx): Item[][] {

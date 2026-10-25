@@ -22,7 +22,7 @@
 import { nameOf, personOf, placeName, pronOf, type BoardCase, type Hour, type PersonId, type PlaceId } from '../model.js';
 import { entryName, listExhaustive, listOf, shutAt } from '../knowledge.js';
 import type { Unit } from '../plan/types.js';
-import { accessPhrase, shortOther } from './phrase.js';
+import { accessPhrase, shortOther, strangerSaid } from './phrase.js';
 import { roleOf } from '../plan/refer.js';
 import { maskPlaces } from '../plan/measure.js';
 import { canon, meansProp } from './extract.js';
@@ -123,6 +123,8 @@ function entryAlt(c: BoardCase): { re: string; of: Map<string, Entry> } {
     const full = entryName(c, { other: o.id });
     of.set(full, `other:${o.id}`);
     of.set(shortOther(full), `other:${o.id}`);
+    // (docs/66, P6: "a stranger at the same table", in the watcher's mouth.)
+    of.set(strangerSaid(shortOther(full).replace(/ nobody could put a name to$/, ' I didn’t know')), `other:${o.id}`);
     const head = full.replace(/ (telling|complaining) .*$/, '');
     of.set(`${head}, still telling it`, `other:${o.id}`);
     of.set(`${head}, still complaining`, `other:${o.id}`);
@@ -605,7 +607,7 @@ function sameCompany(c: BoardCase, who: Id, place: PlaceId, before: number): Id[
 
 function withR(c: BoardCase, lx: Lexicon, s: string | undefined): Id[] | undefined {
   if (s === undefined || s === '') return undefined;
-  if (/^, (?:on my own|by myself|alone)$/.test(s)) return [];
+  if (/^, (?:on my own|by myself|alone)(?: again)?$/.test(s)) return [];
   // (docs/62, P7: "…, and Thorndike was there".)
   const there = /^, and (.+?) (?:was|were) there$/.exec(s);
   if (there) return namesV(c, lx, there[1] as string);
@@ -981,16 +983,16 @@ const handoverSeen = READ.HANDOVER as Reader;
 READ.HANDOVER = (a, flags, comp, v, lx) => (flags.has('recap') ? handoverRecap(a, flags, comp, v, lx) : handoverSeen(a, flags, comp, v, lx));
 
 READ['WINDOW-ALIVE'] = (a, flags, _comp, v, lx) => {
-  // docs/59 item 3: above a walk, the sighting alone (the office's hours are the office's, said once).
-  if (flags.has('link')) {
-    const place = a.place !== undefined && a.place !== '' ? placeV(v.c, a.place as string, v) : placeV(v.c, a.at as string, v);
-    return [{ k: 'ALIVE', victim: personV(v.c, a.victim as string), place, hour: hourV(a.hour as string) }];
-  }
-  // docs/59 item 3: a walk's narrowing, said as the hour it leaves.
+  // docs/59 item 3: a walk's narrowing, said as the hour it leaves (docs/66, P1: and the link's, "So he went at ten").
   if (flags.has('narrows')) {
     const h = lx.hour.get(String(a.narrowed).replace(/ o’clock$/, '').toLowerCase());
     if (h === undefined) throw new Error('voiced: narrowed to when?');
     return [{ k: 'NARROWS', hour: h }];
+  }
+  // docs/59 item 3: above a walk, the sighting alone (the office's hours are the office's, said once).
+  if (flags.has('link')) {
+    const place = a.place !== undefined && a.place !== '' ? placeV(v.c, a.place as string, v) : placeV(v.c, a.at as string, v);
+    return [{ k: 'ALIVE', victim: personV(v.c, a.victim as string), place, hour: hourV(a.hour as string) }];
   }
   return windowV(a as Record<string, string>, v, lx);
 };

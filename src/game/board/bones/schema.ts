@@ -149,7 +149,8 @@ export function mustSay(v: { shape: Shape; requires?: string[]; template: string
       if (has('recap')) return [['owns']];
       if (has('recap-one')) return [['person'], ['said']];
       if (has('told')) return [['person'], ['hours'], ['said']];
-      return [['hs'], ['who'], ['what'], ['reason']];
+      // (docs/66, P1: `bare`, at Hard-boiled, the hours without their reason once it's been said tonight.)
+      return [['hs'], ['who'], ['what'], ...(has('bare') ? [] : [['reason']])];
     case 'PLACED-SET':
       // docs/59 item 3: a list's consequence at the hour it happened.
       // (docs/62, P1: `all`, everybody who had been there, whatever their hours: the list just said them.)
@@ -255,8 +256,8 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'Who had the way in, and who hadn’t. Thought (legacy): {yes}, {no}, {nobody} {short}. Recap: {people} had it, {none} hadn’t; murder: had been at {origin} while the {means} was there; told: were at {origin} while {client} told the room; party: were at the {occasion}; spare: had been in at {origin} when the spare key was there. Flags: yes, no, and the kind (murder | told | party | spare). Raw’s elimination (elim, no): {none} {access} ("had no way to the rat poison", "never learnt the way in").',
   },
   'WINDOW-ALIVE': {
-    args: { client: T, opts: T, victim: T, place: T, at: T, hour: T, him: T, narrowed: T, narrowword: T, done: T },
-    doc: 'The office’s two hours, and the victim (or the pet) seen at one of them. docs/59 item 3, narrows (a walk, Raw; the planner may put "So" before it): it happened at {narrowed}, the other hour {client} had given me (small: {victim} went). {client} had said {opts}; {victim} was at {place} / {at} at {hour}. At a walk the hour left: {narrowed}. link (docs/62 item 12): {victim} was still at {place} at {hour}, and {done} (the office’s hours, as what happened: "he was poisoned at nine or ten"). Flags: one | two, murder | small, walk, so.',
+    args: { client: T, opts: T, victim: T, place: T, at: T, hour: T, him: T, narrowed: T, narrowword: T, done: T, pet: 'person' },
+    doc: 'The office’s two hours, and the victim (or the pet) seen at one of them. docs/59 item 3, narrows (a walk, Raw; the planner may put "So" before it): it happened at {narrowed}, the other hour {client} had given me (small: {victim} went). {client} had said {opts}; {victim} was at {place} / {at} at {hour}. At a walk the hour left: {narrowed}. link (docs/62 item 12): {victim} was still at {place} at {hour}, and {done} (the office’s hours, as what happened: "he was poisoned at nine or ten"); link fact (docs/66, P1, Hard-boiled): the sighting alone, no {done}. narrows link (docs/66, P1, Coddled to Medium, after the sighting; the planner puts "So" before it): it happened at {narrowed}, or {pet:they} ({pet}, the thing or the pet as a person) went at {narrowed}. Flags: one | two, murder | small, walk, so, link, fact, narrows.',
   },
   'COLLISION-PAIR': {
     args: { claim: T, breaker: T, two: T, person: 'person', place: 'place', hour: 'hour', src: T, at: 'at', watcher: 'person' },
@@ -300,7 +301,7 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'Raw’s elimination (the walk, Raw only: "that left" is allowed here). open: that left {person}, and the clock still open between {from} and {to}. last (the elimination’s last step): that left one person who {access} ("had heard about the window"), with no true account for {hour} (seen: and who’d been seen on {street} at {hour}).',
   },
   FIND: {
-    args: { x: T, victim: T, empty: T, thing: T, means: T, client: 'person', occasion: T, hour: 'hour', from: 'hour', till: 'hour' },
+    args: { x: T, victim: T, empty: T, thing: T, means: T, client: 'person', occasion: T, hour: 'hour', from: 'hour', till: 'hour', dead: 'person' },
     doc: 'What a search turned up, the room’s own words. means (by the way in, the flag after it: chloral, revolver, told-mat, spare-tin…): the find as the case has it, with {x} where it came from ("the hall-stand drawer at Rafferty’s"), {empty} the empty cushion or dome ("The cushion by the radiator was empty."), {victim}, {thing}. A small case also says how the way in got about (docs/53: every fact said): party: {client} had people in for the {occasion} at {hour} (the lock, the window, the key under the mat was shown or told at that table); told: {client} told the room at {x} about it, from {from} until {till} ("between eight and ten"). papers: the dead man’s papers, a page on everybody with a grudge.',
   },
   REACTION: {
@@ -318,7 +319,7 @@ export const SCHEMA: Record<Shape, ShapeSchema> = {
     doc: 'Something a person or a watcher mentions besides, in their mouth. passed: walking over to {via} at {hour} they passed {saw} on {street}, going fast, no hat. had: they had {saw} (the pet: {saw:them} is him or her) at their place at {hour}, {keep} ("for her supper"), and put {saw:them} back in the flat just before {back}. there: {means} ("the rat poison on the cellar shelf") was {still} ("there", "on its nail") at {hour}, and they didn’t look again. shift: the watcher came on at {from}; before that they can’t say.',
   },
   PRESENT: {
-    args: { who: T, where: T },
+    args: { who: T, where: T, noun: T },
     doc: 'Somebody turned out to be in the room: {who} (their name, or "my witness" where the name would be said a third time) was {where} ("in the corner, out of the light"). first | back (back: had come back in).',
   },
   HOLD: {

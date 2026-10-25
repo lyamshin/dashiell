@@ -23,7 +23,7 @@ describe('round 3: the interface (docs/47 A)', () => {
       const d = dealBoard(3, tier);
       let run = newBoardRun(d);
       for (const cmd of playBoardOracle(d).commands.slice(0, 6)) {
-        for (const g of boardChoices(d, run)) for (const ch of [...g.choices, ...(g.more ?? [])]) expect(costText(ch)).toMatch(/^(|free|free ✓)$/);
+        for (const g of boardChoices(d, run)) for (const ch of [...g.choices, ...(g.more ?? [])]) expect(costText(ch)).toMatch(/^(|free|free to reread|free to open)$/);
         run = stepBoard(d, run, cmd).run;
       }
     }
@@ -48,7 +48,8 @@ describe('round 3: the interface (docs/47 A)', () => {
     expect(second.replace(/\s+/g, ' ')).not.toContain('A star marks a good next step');
     const o = playBoardOracle(d);
     const v = scoreBoard(d, o.run, o.report);
-    expect(v.scoreLine).toMatch(/^4 out of 4: who \(and what proves they lied\), when, (how|where \(and what proves it\)) and why\.$/);
+    // (Round 6, P11: plainly, and what counts with it.)
+    expect(v.scoreLine).toMatch(/^4 out of 4: who, when, (how|where) and why, with the proof for who( and for where)?\.$/);
   });
 
   it('the breaks list puts the lines that touch the named person’s story first, and keeps every line', () => {

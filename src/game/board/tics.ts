@@ -16,6 +16,8 @@
 export const NIGHT_TICS: readonly { id: string; name: string; re: RegExp }[] = [
   { id: 'tic:turned-out', name: 'as it turned out', re: /\bas it turned out\b/i },
   { id: 'tic:wrote-down', name: 'which I wrote down', re: /\b(?:which|and) I wrote (?:that |it )?down\b|\band (?:that|it) went in the notebook\b/i },
+  // (docs/66, P7: the rain in the doorways, a picture two street cards share.)
+  { id: 'tic:doorways', name: 'the doorways in the rain', re: /\bdoorways?\b[^.]*\b(?:rain|wet)\b|\b(?:rain|wet)\b[^.]*\bdoorways?\b/i },
   {
     id: 'tic:as-if-help',
     name: 'as if the room could help',

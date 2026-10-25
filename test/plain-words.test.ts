@@ -4,8 +4,14 @@
  * turn's heading is a divider. This holds the chrome to it, in the CLI over a night at every tier and
  * both worlds, and in the book's own strings: none of the retired words, anywhere a player reads the
  * interface. (The pages' prose is clarity-3's and isn't read here.)
+ *
+ * Round 6 (docs/66): and the surfaces after the night, where "put to it", "filed", "file itself", "no
+ * line to hang it on" and "the true board" were left: the report's answers, the verdict whole (its
+ * score, what it says plainly, its endings), the notebook's "How it adds up", the story, the curtain
+ * whole, and every ending card in `night.json`. What people said, inside quotation marks, is theirs.
  */
 import { readFileSync } from 'node:fs';
+import { recapClauses } from '../src/game/board/pages.js';
 import { describe, expect, it } from 'vitest';
 import { typesFor, type TierIndex } from '../src/gen/board/index.js';
 import { boardChoices, pickerFor, pickerNote } from '../src/game/board/choices.js';
@@ -14,7 +20,7 @@ import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { boardGrid, gridKey, meansAsked } from '../src/game/board/grid.js';
 import { dealBoard, deadlineWords, type BoardDeal } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
-import { BREAKS_LABEL, CLEARED_LABEL, OTHER_QUESTION, WHERE_BY_LABEL, blankRule, boardFields, lineGroupHeads, scoreBoard, truthReport } from '../src/game/board/report.js';
+import { BREAKS_LABEL, CLEARED_LABEL, OTHER_QUESTION, WHERE_BY_LABEL, blankRule, boardFields, curtainOfBoard, lineGroupHeads, scoreBoard, storyOfBoard, truthReport, whereByOptions } from '../src/game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES } from '../src/game/board/teach.js';
 import { ACTION_KEY, TALK_HEADING, TURN_DIVIDER, chapterShown, costText } from '../src/game/board/text.js';
 import { runPlay, type PlayIo } from '../src/cli/play-lib.js';
@@ -33,7 +39,15 @@ const RETIRED: [string, RegExp][] = [
   ['go over', /\bgo over what I have\b/i],
   ['could get it', /\bcould get it\?|\bknew how\?/i],
   ['counts down', /\bcounts down\b/i],
+  // Round 6: the leftovers after the night.
+  ['put to it', /\bput to it\b|\bput to (?:him|her|them)\b/i],
+  ['file itself', /\bfiles? itself\b/i],
+  ['a line to hang it on', /\bline to hang\b/i],
+  ['the true board', /\btrue board\b/i],
 ];
+
+/** What people said, in quotation marks, is theirs: a line of the curtain or the story without it. */
+const unquoted = (t: string): string => t.replace(/“[^”]*”?/g, '“”');
 
 function retiredIn(text: string): string[] {
   return RETIRED.filter(([, re]) => re.test(text)).map(([name]) => `${name}: ${text.trim().slice(0, 120)}`);
@@ -138,8 +152,37 @@ describe('docs/64: plain words in the chrome', () => {
       for (const l of curtain) found.push(...retiredIn(l.replace(/^ {2}(What [^:]+|You picked):.*/, '$1')).map((x) => `${where} curtain: ${x}`));
       const g = boardGrid(d.kase, filed);
       for (const t of [...gridKey(g), meansAsked(g.meansLabel)]) found.push(...retiredIn(t).map((x) => `${where} grid: ${x}`));
+      // Round 6: the verdict whole, the answers it shows, the story, the recap and the curtain whole.
+      for (const t of [...v.closing, ...v.fields.map((f) => `${f.label}: ${f.given}`)]) found.push(...retiredIn(unquoted(t)).map((x) => `${where} verdict: ${x}`));
+      for (const o of whereByOptions(d, filed)) found.push(...retiredIn(unquoted(o.label)).map((x) => `${where} report answer: ${x}`));
+      for (const t of storyOfBoard(d)) found.push(...retiredIn(unquoted(t)).map((x) => `${where} story: ${x}`));
+      for (const cl of recapClauses(d, filed)) found.push(...retiredIn(unquoted(cl.text)).map((x) => `${where} recap: ${x}`));
+      for (const l of curtainOfBoard(d, filed, truth).split('\n')) found.push(...retiredIn(unquoted(l)).map((x) => `${where} curtain: ${x}`));
+      found.push(...retiredIn(unquoted(done('look'))).map((x) => `${where} verdict page: ${x}`));
     }
     expect([...new Set(found.map((x) => x.replace(/^\S+ \S+ /, '')))]).toEqual([]);
+  });
+
+  it('the verdict’s endings, every card in night.json, never say a retired word', () => {
+    const deck = JSON.parse(readFileSync(new URL('../content/board/night.json', import.meta.url), 'utf8')) as { family: string; text: string }[];
+    const endings = deck.filter((x) => x.family === 'ending');
+    expect(endings.length).toBeGreaterThan(30);
+    expect(endings.flatMap((x) => retiredIn(x.text.replace(/\*\*/g, '')))).toEqual([]);
+  });
+
+  it('round 6: the confront screen says what it costs and that it isn’t needed; the labels say what they do', () => {
+    const d = dealBoard(5, 2, 'murder');
+    let run = newBoardRun(d);
+    for (const cmd of ['go scene', 'search scene', 'search papers', 'go rooming', 'ask xwatcher list', 'go bar', 'ask barkeep list', 'ask reinhardt evening']) run = stepBoard(d, run, cmd).run;
+    const pk = pickerFor(d, run, 'reinhardt');
+    expect(pk).not.toBeNull();
+    const note = pickerNote(d, pk as NonNullable<typeof pk>);
+    expect(note).toContain('Confronting her takes an action, whether she talks or not. You don’t have to: the report takes what proves she lied either way.');
+    expect(note).not.toMatch(/\bit\b(?! either way)/);
+    expect(pk?.claims.map((x) => x.said)).toEqual(['She said she was at the Shamrock at nine']);
+    const g = boardChoices(d, run).find((x) => x.personId === 'reinhardt');
+    const topics = (g?.choices ?? []).map((ch) => costText(ch));
+    expect(topics).toEqual(['free to reread', '', 'free to open']);
   });
 
   it('the book’s own strings never say a retired word', () => {
@@ -168,9 +211,11 @@ describe('docs/64: plain words in the chrome', () => {
     const fields = boardFields(d);
     expect(fields.map((f) => f.key)).toEqual(['who', 'when', 'where', 'why']);
     // `close` with `proof` and `whereproof`; `file` with `breaks` and `whereBy`, the same verdict.
-    const plain = cli(d, events)('close', 'who=Bellucci; proof=hunch; when=10; where=Pardo; whereproof=hunch; why=rent');
+    const plain = cli(d, events)('close', 'who=Bellucci; proof=hunch; when=10; where=Pardo; evidence=hunch; why=rent');
     const old = cli(d, events)('file', 'who=Bellucci; breaks=hunch; when=10; where=Pardo; whereBy=hunch; why=rent');
     expect(plain).toBe(old);
+    // (Round 6, U5: `evidence`, with `whereproof` still read.)
+    expect(cli(d, events)('close', 'who=Bellucci; proof=hunch; when=10; where=Pardo; whereproof=hunch; why=rent')).toBe(old);
     expect(plain).toContain('What proves they lied: A hunch');
     expect(cli(d, events)('help')).toMatch(/close "who=…; proof=…;/);
   });

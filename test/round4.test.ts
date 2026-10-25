@@ -52,7 +52,10 @@ describe('round 4: the reasoning lines (docs/55 1)', () => {
     // (docs/60 item 6: lean, the rhythm may part the second at its "and".)
     // (docs/62 item 12: after how I know she walked, nothing a pronoun the walk's witnesses could take.)
     // (Or, where how I know would say a name a third time on the page, the question alone.)
-    expect(page).toMatch(/I wanted to know who else had been on the street then\.|Somebody else on the street then might have seen something(?:, and|\.) I wanted to know who\.|Whoever else had been on the street then, I wanted to hear from\.|I wanted to know who \S+ had passed on the way over at \w+\./);
+    // (docs/66, P3: the walk first, then that they might have passed somebody: "I wanted to know who
+    // Pickering had passed" took it as known that she had.)
+    expect(page).toMatch(/I wanted to know who else had been on the street then\.|Somebody else on the street then might have seen something(?:, and|\.) I wanted to know who\.|Whoever else had been on the street then, I wanted to hear from\.|\S+ had walked over from .+? at \w+, and might have passed somebody on the way\./);
+    expect(page).not.toMatch(/I wanted to know who \S+ had passed/);
     expect(page).not.toMatch(/place behind them|that ground for myself/);
   });
 

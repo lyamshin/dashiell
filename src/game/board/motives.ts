@@ -35,7 +35,8 @@ const FORMS: Record<string, string> = {
   s3: 'Lost a job on Friday, and asked {client} what {thing} was worth',
   s4: 'Bitten by {thing} at Easter, and swore to see the back of {pthem}',
   s5: 'Woken by {thing} through the wall at five every morning, and said what they’d do about it',
-  s6: 'Says the late Mr. {client} promised them {thing}',
+  // (Round 6, U6: the claim in their own mouth, which needs no pronoun: "promised them" read as more than one.)
+  s6: 'Says “the late Mr. {client} promised me {thing}”',
   s7: 'Has wanted {thing} since the day {client} brought {pthem} home',
   s8: 'Always said {thing} was wasted on its owner',
   s9: 'Hasn’t spoken to {client} since the row over the coal bill',
@@ -70,6 +71,27 @@ const PAPERS_SAID: Record<string, string> = {
   m6: '{name}: the dead man had thrown {him} out of a lease.',
   m7: '{name}: the dead man had testified against {his} brother.',
   m8: '{name}: the dead man had jilted {his} sister a week before the wedding.',
+};
+
+/**
+ * docs/66, P10: the papers' lines as the page says them (lean): the suspect is the one each line is
+ * about, who they are beside the name the first time the night meets them (`{g}`), and the dead man,
+ * whose papers they are, is "him" ({dhim}, {dhis}) where the line can't make him anybody else, or his
+ * name ({victim}) where it could: "Renfro, a milliner, owed him four hundred dollars. Grasso had been
+ * paying him for years.", never "the dead man" five times running.
+ */
+// (docs/66, skim round 1: the grudge says who held it over whom: "There was a note of where Schilling had
+// been in 1921" left a reader asking what the grudge was.)
+const PAPERS_LEAN: Record<string, string> = {
+  m0: '{victim} had kept a file on {name}{g}, thick enough to matter.',
+  m1: '{victim} had been squeezing {name}{g} for years.',
+  m2: '{victim} knew where {name}{g} had been in 1921.',
+  m3: '{name}{g} owed {dhim} four hundred dollars.',
+  m4: '{name}{g} owed {dhim} the rent on a shop, and it was being called in.',
+  m5: '{name}{g} had lost {his} business to {dhim}.',
+  m6: '{name}{g} had been put out of a lease by {dhim}.',
+  m7: '{name}{g} had a brother {victim} had testified against.',
+  m8: '{name}{g} had a sister {victim} jilted a week before the wedding.',
 };
 
 /**
@@ -122,6 +144,7 @@ export function motiveSaid(c: BoardCase, p: PersonId): string {
   // ("Abramowitz closed his business" is theirs: nobody closes their own business on somebody.)
   const same = isMurder(c) && pronOf(c, v.id).he === pr.he;
   let s = form
+    .replace(/^Says “(.+?) promised me (.+)”$/, `Says $1 promised ${pr.him} $2`)
     .replace(/\bthemselves\b/g, pr.he === 'she' ? 'herself' : 'himself')
     .replace(/\bthey were\b/g, `${pr.he} was`)
     .replace(/\bthey’d\b/g, `${pr.he}’d`)
@@ -141,7 +164,7 @@ export function motiveSaid(c: BoardCase, p: PersonId): string {
  * Reinhardt’s sister…" where "his sister" could be the dead man's own. The why form's words
  * (`motiveForm`), so the papers and the report say one grievance alike.
  */
-export function papersLine(c: BoardCase, p: PersonId, planned = false): string {
+export function papersLine(c: BoardCase, p: PersonId, planned = false, gloss?: string | null, prevSame = false): string {
   void planned;
   void PAPERS;
   void PAPERS_PLANNED;
@@ -153,6 +176,16 @@ export function papersLine(c: BoardCase, p: PersonId, planned = false): string {
   const v = victimOf(c);
   const same = pronOf(c, v.id).he === pr.he;
   const dead = v.female ? 'the dead woman' : 'the dead man';
+  // (docs/66, P10: the page's own lines, lean; `gloss` is who they are, the first time the night meets them.)
+  const leanSaid = gloss !== undefined && lean() && !who?.motiveForm && who?.motiveId ? PAPERS_LEAN[who.motiveId] : undefined;
+  if (leanSaid) {
+    const vp = pronOf(c, v.id);
+    // (After a line about somebody of his sex, "him" could be them: the dead man by his role then.)
+    const dhim = prevSame ? dead : vp.him;
+    const dhis = prevSame ? `${dead}’s` : vp.his;
+    const t = leanSaid.replace('{name}', nm).replace('{g}', gloss ? `, ${gloss},` : '').replace('{he}', pr.he).replace('{him}', pr.him).replace('{his}', pr.his).replace('{dhim}', dhim).replace('{dhis}', dhis).replace('{victim}', v.short);
+    return t.replace(/,\s*([.,])/g, '$1').replace(/^./, (x) => x.toUpperCase());
+  }
   // A dealt night's grudge, said as its own sentence.
   const said = !who?.motiveForm && who?.motiveId ? PAPERS_SAID[who.motiveId] : undefined;
   if (said) {

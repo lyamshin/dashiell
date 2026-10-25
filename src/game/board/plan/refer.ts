@@ -27,7 +27,7 @@
  * count toward the cap.
  */
 
-import { pronOf, type BoardCase } from '../model.js';
+import { personOf, pronOf, type BoardCase } from '../model.js';
 import type { Item } from './types.js';
 import type { PlanCtx } from './index.js';
 import { PAST_PARTICIPLE, sentencesOf } from './sentences.js';
@@ -183,7 +183,11 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       // After a preposition it's an object ("brought it to Carbone had been…" is no subject), whatever follows.
       // (docs/60 item 3: lean, "did see Prentiss at Mrs. Nagy’s" is an object too, so the third mention can be "him".)
       const form: Form = poss ? 'poss' : (OBJ.test(prev) || (lean() && OBJ_LEAN.test(prev))) && !start ? 'obj' : start || VERB.test(nextWord) ? 'subj' : 'unknown';
-      const listy = /\b[A-Z][\w’.]+ and$/.test(prev) || /\b[A-Z][\w’.]+,$/.test(prev) || /^(?:’s)?(?:, [A-Z]| and [A-Z]|, and [A-Z])/.test(after) || /\bboth$/.test(prev);
+      // (docs/66, P2: and the second of two parallel phrases, "with Hanrahan at seven, and with Winslow at
+      // eight": "with him" there reads as somebody the sentence named, and there's no man in it.)
+      const para = /,? and (with|to|from|for|beside|after|by) $/.exec(prev + ' ');
+      const parallel = lean() && !!para && new RegExp(`\\b${para[1]} (?:(?:Mrs\\.|Mr\\.|Miss|Dr\\.) )?[A-Z][\\w’]+`).test(prev.slice(0, prev.length - para[0].length + 1));
+      const listy = /\b[A-Z][\w’.]+ and$/.test(prev) || /\b[A-Z][\w’.]+,$/.test(prev) || /^(?:’s)?(?:, [A-Z]| and [A-Z]|, and [A-Z])/.test(after) || /\bboth$/.test(prev) || parallel;
       s.mentions.push({ who: w, at, len: w.short.length + (poss ? 2 : 0), kind: 'name', form, listy, titled: !!x[1], ...(place ? { place: true } : {}) });
     }
     // Speech: the names said in it, for the cap.
@@ -230,6 +234,10 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   const lastAtOf = new Map<boolean, number>();
   /** Narration sentences so far: the one before is a pronoun's window. */
   const narrIdx: number[] = [];
+  /** docs/66, P2: people of each sex named in speech since the narration last spoke of that sex. */
+  const speechSince = new Map<boolean, Set<Who>>();
+  /** docs/66, P2: whose answer the page is: their own speech doesn't take a pronoun from them. */
+  const speaker = ctx.situ?.subject;
 
   /**
    * A sentence in the room that opens on somebody by their job and names nobody of that sex ("The
@@ -255,6 +263,10 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   /** Would a pronoun for `w` at `at` in sentence `si` be read as `w`, and as nobody else? */
   const resolves = (si: number, at: number, w: Who, form: Form, written = false): boolean => {
     const s = sents[si] as Sent;
+    // (docs/66, P2: "She had said she was at the Shamrock at nine, and he hadn’t seen her there", the
+    // "he" Zeldin's from a paragraph back, after her answer named Winslow and Dandridge: an answer that
+    // named somebody else of that sex since takes the pronoun from anybody but the one who gave it.)
+    if (lean() && w.id !== speaker && [...(speechSince.get(w.female) ?? [])].some((x) => x !== w) && !s.named.some((n) => n.who === w && n.at < at)) return false;
     // Who its own sentence has already put before it: by name, or by a role the engine marked ("my witness").
     const local = new Set([...s.named, ...s.mentions.filter((m) => m.kind === 'role').map((m) => ({ who: m.who, at: m.at }))].filter((n) => n.at < at && n.who.female === w.female).map((n) => n.who));
     if (form === 'obj') {
@@ -324,6 +336,21 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
     if (s.named.some((n) => n.at < at && n.who.female === w.female && n.who !== w)) return false;
     const prev = narrIdx.length ? (sents[narrIdx[narrIdx.length - 1] as number] as Sent) : undefined;
     if ((prev?.named ?? []).some((n) => n.who.female === w.female && n.who !== w)) return false;
+    // (docs/66, P2: nor a pronoun the sentence before gave somebody else of that sex: "I’d find her at
+    // Sokol’s back room. She gave me the night the way a good waiter brings the check" is Alfano's.)
+    if (lean() && (prev?.mentions ?? []).some((m) => m.kind === 'pronoun' && m.who !== w && m.who.female === w.female && (m.rep === undefined || /^(?:he|him|his|she|her)$/i.test(m.rep)))) return false;
+    // (docs/66, P2: nor anybody else of that sex the narration spoke of last, however far back: "…Lanza
+    // was still alive at Moe’s at nine. It happened at ten. He didn’t add anything", the barman's card,
+    // read as the dead man's.)
+    if (lean()) {
+      for (let k = narrIdx.length - 1; k >= 0; k--) {
+        const x = sents[narrIdx[k] as number] as Sent;
+        const of = x.mentions.filter((m) => m.kind !== 'speech' && m.who.female === w.female);
+        if (!of.length) continue;
+        if (of[of.length - 1]?.who !== w) return false;
+        break;
+      }
+    }
     return !(prev && roleOpens(prev, w.female));
   };
   /** Two people of one sex as pronouns in one sentence ("She had her at Kowalski’s") read as anybody's. */
@@ -340,6 +367,9 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
     // (Once the page has named them: the first time it's the name.)
     if ((w.id === c.client || (w.id === c.crime.victim && c.type === 'murder')) && introduced.has(w.idx)) return true;
     if (s.named.some((x) => x.who === w && x.at < at)) return true;
+    // (docs/66: a watcher the page has named twice already, by their job, where a pronoun could be somebody
+    // else: "The bartender wasn’t talking about her own evening…", never her name a third time.)
+    if ((count.get(w.idx) ?? 0) >= 2 && personOf(c, w.id)?.role === 'watcher') return true;
     // (A signpost between, "Something didn’t fit.", or my own question's "I said", names nobody and
     // doesn't take the page from them.)
     const back = narrIdx.filter((k) => !/^(?:(?:One thing|Something) didn’t (?:fit|add up)|,? ?I (?:said|asked))\.$/.test((sents[k] as Sent).narr.replace(/\s+/g, ' ').trim()));
@@ -387,6 +417,7 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         if (asName) s.named.push({ who: w, at: m.at });
         chain.set(w.female, [...(chain.get(w.female) ?? []), w]);
         lastAtOf.set(w.female, here);
+        speechSince.set(w.female, new Set());
       };
       if (fixed(it, m)) ahead.set(w.idx, (ahead.get(w.idx) ?? 1) - 1);
       if (coming(it, m)) aheadLean.set(w.idx, (aheadLean.get(w.idx) ?? 1) - 1);
@@ -402,6 +433,8 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         // lean, the reader has met it, and it doesn't count: the cap is the narrator's.)
         if (!frozen && !lean()) count.set(w.idx, n + 1);
         introduced.add(w.idx);
+        if (!speechSince.has(w.female)) speechSince.set(w.female, new Set());
+        (speechSince.get(w.female) as Set<Who>).add(w);
         continue;
       }
       if (m.kind === 'role') {

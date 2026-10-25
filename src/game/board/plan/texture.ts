@@ -57,7 +57,9 @@ export interface TexSpent {
 }
 
 /** docs/60 item 2: the lead-ins on a collision, plain, one a page: before a short one, with a colon; before a long one, a sentence of its own. */
-const DIDNT_FIT = ['One thing didn’t fit', 'One thing didn’t fit', 'Something didn’t fit', 'One thing didn’t add up'];
+// (docs/66, P7: four different ones, so a night says each once before any again.)
+// (Never one that points back, "There was a problem with that", which a line about the room before it could take.)
+const DIDNT_FIT = ['One thing didn’t fit', 'Something didn’t add up', 'There was a snag', 'Here was the trouble'];
 
 /**
  * docs/60 item 2: a signpost back, said once: the page's first collision in the thought opens on a
@@ -250,7 +252,8 @@ export function introduce(paras: Item[][], ctx: PlanCtx, sofar = ''): void {
           }
           if (roll(sn, x) && !glossedIn(c, x.id, s)) continue;
           met.add(x.id);
-          if (it.speech || glossedIn(c, x.id, s) || glossedIn(c, x.id, prev)) continue;
+          // (docs/66, P4: nor somebody an owning up has just named, said in the line after it.)
+          if (it.speech || it.tag === 'newcomer:named' || glossedIn(c, x.id, s) || glossedIn(c, x.id, prev)) continue;
           const intro = introOf(c, x.id, ctx.run?.at);
           if (!intro) continue;
           // In the item's own words (marks and all): the first time the name stands in its narration.
@@ -482,7 +485,12 @@ export function namePut(paras: Item[][], ctx: PlanCtx): void {
   const said = [ctx.pageSoFar ?? '', ...flat.map((x) => x.text)].reduce((n, t) => n + (narrOf(t).match(reG) ?? []).length, 0);
   if (said >= 2) return;
   const put = flat[k] as Item;
-  const item: Item = { kind: 'gap', slot: 'why-here', beat: put.beat, voice: 'narrator', text: `I went over to ${subject.short}.`, about: [subject.id], tex: 'keep' };
+  // (docs/66, seed 2: the page before was a word with them, in the same room: "I turned back to Thorndike.",
+  // never "I went over to Thorndike." to somebody I was already talking to.)
+  const prev = ctx.run?.log[ctx.run.log.length - 1];
+  const esc0 = subject.id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const again = !!prev && prev.at === ctx.run?.at && new RegExp(`^(?:account|confront|motive):${esc0}(?:@|$)`).test(prev.board?.q ?? '');
+  const item: Item = { kind: 'gap', slot: 'why-here', beat: put.beat, voice: 'narrator', text: again ? `I turned back to ${subject.short}.` : `I went over to ${subject.short}.`, about: [subject.id], tex: 'keep' };
   const first = paras.find((ps) => ps.some((x) => x.text.trim()));
   if (!first) return;
   if (first.includes(put) && first.findIndex((x) => x.text.trim()) === first.indexOf(put)) paras.splice(paras.indexOf(first), 0, [item]);

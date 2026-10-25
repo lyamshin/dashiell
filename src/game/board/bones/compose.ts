@@ -48,8 +48,9 @@ import type { Composite, Prop, Shape, Src } from './types.js';
 import { fitting, LOWER, type Args, type Voicing } from './voice.js';
 import { preview, SAMPLES, VARIETY, unpick, type Picked } from './say.js';
 import { plainComposite } from './plain.js';
-import { ticsIn } from '../tics.js';
+import { similesIn, ticsIn } from '../tics.js';
 import { homeNamed } from '../home.js';
+import { lean } from '../plan/dial.js';
 
 /** The longest sentence composition makes. */
 // docs/59: a thought's sentence is one a reader takes in at once (the skim test's readers stopped on the forty-word joins).
@@ -508,12 +509,19 @@ function inQuotes(old: string, said: string): string {
  * the page's "So" or "But" (`Item.opener`) is voiced bare, and the join is put before it (`connect`
  * keeps it or doesn't).
  */
-export function sayAll(items: Item[], ctx: PlanCtx): void {
+export function sayAll(items: Item[], ctx: PlanCtx, besides: () => string = () => ''): void {
   // An answer says "o’clock" twice at most: after that, a voicing without it, where one fits.
   let oclock = 0;
+  // (docs/66, P6: and "After that" once: two in one evening read as a timetable.)
+  let after = 0;
+  const AFTER = /\bAfter that\b/;
   for (const it of items) {
-    if (!it.speech || !it.runOn) oclock = 0;
+    if (!it.speech || !it.runOn) {
+      oclock = 0;
+      after = 0;
+    }
     if (it.speech) oclock += (it.comp ? it.text.match(/o’clock/g)?.length : 0) ?? 0;
+    if (it.speech && it.comp && AFTER.test(it.text)) after++;
     if (it.kind !== 'fact' || !it.say || it.comp) continue;
     const s = it.say;
     // docs/59 item 2: a run of clauses, each voiced on its own.
@@ -522,8 +530,15 @@ export function sayAll(items: Item[], ctx: PlanCtx): void {
       continue;
     }
     const comp: Held = { shape: s.shape, props: [...(it.props ?? [])] };
-    const p = pickFor(s.shape, s.flags, s.args, ctx, s.manner, it.speech && oclock >= 2 ? (t) => !/o’clock/.test(t) : undefined);
+    const keep0 = it.speech && (oclock >= 2 || (lean() && after >= 1)) ? (t: string) => !(oclock >= 2 && /o’clock/.test(t)) && !(lean() && after >= 1 && AFTER.test(t)) : undefined;
+    // (docs/66: one simile frame a page, in a voicing too: the office's "the way people do" after the
+    // arrival's "as if he’d booked it" was two.)
+    // (A spoken voicing's own words are the speaker's: only a frame round the quotation counts.)
+    const simSoFar = lean() ? similesIn([ctx.pageSoFar ?? '', besides(), ...items.filter((x) => x !== it && (!x.say || x.comp)).map((x) => x.text)].join(' ')) : 0;
+    const keep = simSoFar > 0 ? (t: string) => (!(!it.speech || /“/.test(t)) || similesIn(t) === 0) && (!keep0 || keep0(t)) : keep0;
+    const p = pickFor(s.shape, s.flags, s.args, ctx, s.manner, keep);
     if (it.speech) oclock += (p ? p.text : it.text).match(/o’clock/g)?.length ?? 0;
+    if (it.speech && AFTER.test(p ? p.text : it.text)) after++;
     if (!p) {
       if (it.speech || s.keep) it.comp = { ...comp, voicing: 'flesh', said: it.text } as Held;
       else {
@@ -1203,6 +1218,8 @@ function sideBySide(segs: Seg[], ctx: PlanCtx, n: number): void {
     if (!single(A.text) || !single(B.text) || /^(?:So|But)\b/.test(plain(B.text)) || ruleOf(B) === 'collision') return null;
     // docs/59 item 3: a consequence is a sentence of its own.
     if (ruleOf(A) === 'then' || ruleOf(B) === 'then') return null;
+    // (docs/66, P1: and so is the hour the facts settle: "So he was taken at eleven.")
+    if (ruleOf(A) === 'narrows' || ruleOf(B) === 'narrows') return null;
     // docs/59 item 8: two facts that name one person don't go in one sentence ("…according to Ruggiero; … and Ruggiero said otherwise").
     if (sharesName(ctx.c, A.text, B.text)) return null;
     // Nor where the second's pronoun could be somebody of that sex the first names ("…though Dr.
@@ -1213,7 +1230,9 @@ function sideBySide(segs: Seg[], ctx: PlanCtx, n: number): void {
     let join: string | undefined;
     // A collision keeps a clause of its own (docs/49 §2): after it, only a semicolon.
     if (ruleOf(A) === 'collision') {
-      if ((budget.semi ?? 0) === 0 && !/;/.test(A.text + B.text) && joined(B.text) === 0) [made, join] = [sayPair(A, B, 'semi', ctx), 'semi'];
+      // (docs/66, skim round 1: lean, nothing after it either: "…and Reinhardt hadn’t seen him there; Mosley
+      // hadn’t been at Mrs. Nagy’s…" stopped readers in both builds.)
+      if (!lean() && (budget.semi ?? 0) === 0 && !/;/.test(A.text + B.text) && joined(B.text) === 0) [made, join] = [sayPair(A, B, 'semi', ctx), 'semi'];
     } else if ((A.comp as Held | undefined)?.flags?.includes('hole') && (B.comp as Held | undefined)?.flags?.includes('if-held') && budget.but === 0) {
       // The hole, and the story owned up to in its place: "but if it held, …".
       [made, join] = [sayPair(A, B, 'but', ctx, 'ADMIT-CHECK'), 'but'];

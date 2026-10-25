@@ -11,7 +11,7 @@ import { DROPS, KEY_FIELDS, SITUATED, SIT_PAGES, SIT_SLOTS, fillCard, fits, keyS
 import { lintBoardRun } from '../src/game/board/lint.js';
 import { verdictsIn } from '../src/game/board/reader-lint.js';
 import { proseIssues } from '../src/game/board/prose-lint.js';
-import { pronounAmbiguity } from '../src/game/board/plan/measure.js';
+import { pageAmbiguity } from '../src/game/board/plan/measure.js';
 import { namesOverTwo } from '../src/game/board/names.js';
 import type { Page } from '../src/game/board/types.js';
 import { setTexture } from '../src/game/board/plan/dial.js';
@@ -177,7 +177,7 @@ describe('docs/51: the lints hold with the deck on', () => {
         expect(lintBoardRun(d, r).map((x) => `${x.rule} p${x.page + 1} ${x.detail}`)).toEqual([]);
         expect(proseIssues(d, r).map((x) => `${x.rule} p${x.page + 1} ${x.detail}`)).toEqual([]);
         for (const p of r.log) {
-          expect(pronounAmbiguity(d.kase, p.blocks), `seed ${s} p${p.n + 1}`).toEqual([]);
+          expect(pageAmbiguity(d.kase, p), `seed ${s} p${p.n + 1}`).toEqual([]);
           const exempt = (b: Page['blocks'][number]) => b.kind === 'prose' && ((b.voice === 'answer' && (p.board?.job === 'account' || p.board?.job === 'list')) || (b.voice === 'recap' && b.text === p.board?.recap));
           // (Names a page are measured along the oracle's route, as board-prose measures them.)
           if (route === 'oracle') expect(namesOverTwo(d.kase, p.blocks, exempt), `seed ${s} p${p.n + 1}`).toEqual([]);

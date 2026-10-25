@@ -42,6 +42,8 @@ export interface Pointer {
   face?: string;
   /** The held lines (or `givens:<kind>`) it rests on. */
   refs: string[];
+  /** docs/66, P3: the question it points to (`placeThread`'s), when it's one of a place's. */
+  q?: string;
   hours: Hour[];
   people: PersonId[];
   places: PlaceId[];
@@ -99,8 +101,12 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
         if (hs.length > 0) {
           const safe = hs.filter((h) => !windowOf(c).includes(h));
           const W = nameOf(c, l.watcher);
+          // (docs/66, P3: where the watcher saw them at an hour of the window too, the hours outside it alone
+          // read as wrong to their face, "Ellery saw you here at eleven" when Ellery had her from ten: the
+          // sighting without its hours, which never names the window either.)
+          const partial = safe.length > 0 && safe.length < hs.length;
           return out(`${W} had seen ${P} ${at(c, l.place, here)} ${hoursSaid(c, hs)}`, hs.map((h) => `list:${l.watcher}@${h}`), {
-            ...(safe.length > 0 ? { face: `${W} saw you ${atFace(c, l.place, here)} ${hoursSaid(c, safe)}.` } : {}),
+            ...(safe.length > 0 ? { face: partial ? `${W} saw you ${atFace(c, l.place, here)} tonight.` : `${W} saw you ${atFace(c, l.place, here)} ${hoursSaid(c, safe)}.` } : {}),
             hours: hs,
             people: [p, l.watcher],
             places: [l.place],
@@ -116,6 +122,16 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
         const A = nameOf(c, a.person);
         const pa = pronOf(c, a.person);
         const hs = c.board.hours.filter((h) => a.claims[h]?.company.includes(p));
+        // docs/66, P3: a remark that puts them somewhere at an hour of the window ("Pickering had passed him
+        // on Second Avenue at ten") is why they matter, more than company at an hour outside it ("Pickering
+        // had said she was with him at eleven", which pointed at the hour that didn't matter).
+        const rWin = a.remarks.findIndex((x) => x.facts.some((f) => f.p === p && windowOf(c).includes(f.h as Hour)));
+        const inWin = hs.some((h) => windowOf(c).includes(h));
+        if (rWin >= 0 && !inWin) {
+          const rm = a.remarks[rWin];
+          const m = /^Walking over to (.+?) at (\w+) I passed ((?:Mrs\.|Miss|Dr\.) \S+|\S+) on (.+?), (.+?)\.$/.exec(rm?.text ?? '');
+          if (m) return out(`${A} had passed ${P} on ${m[4]} at ${m[2]}`, [`remark:account:${a.person}#${rWin}`], { hours: [rm?.facts[0]?.h as Hour], people: [p, a.person] });
+        }
         if (hs.length > 0) {
           const h0 = [...hs].sort((x, y) => Number(windowOf(c).includes(y)) - Number(windowOf(c).includes(x)) || x - y)[0] as Hour;
           const pl = a.claims[h0]?.place as PlaceId;
@@ -129,11 +145,16 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
           // docs/59 item 1: who and when is the reason to come; where is the account's to say, once
           // ("Feeney had said he was home, the Delmonico rooms, with Brauer at eight", and then the
           // account and the thought said the Delmonico rooms at eight again).
-          return out(`${A} had said ${pm(c, a.person, 'he')} was with ${P} at ${hourWord(h0)}`, [`claim:${a.person}@${h0}`], {
+          // docs/66, P2: the company they said, whole ("with Winslow and Dandridge at eight"), the one it points
+          // at first: never one of two, which the reference pass could then make "him" of a man named a
+          // sentence before.
+          const others = (a.claims[h0]?.company ?? []).filter((x) => x !== p);
+          const withWhom = andList([P, ...others.map((x) => nameOf(c, x))]);
+          return out(`${A} had said ${pm(c, a.person, 'he')} was with ${withWhom} at ${hourWord(h0)}`, [`claim:${a.person}@${h0}`], {
             // To their face, only a watcher's word: "Coffin has you here at nine." Another suspect's would be one more name, and a story set against a story.
             ...(safe.length > 0 && personOf(c, a.person)?.role === 'watcher' ? { face: `${A} says you were with ${pa.him} ${pl === here && !own ? 'here' : `at ${where.replace(/\u2063\d+\u2064/g, '')}`} ${hoursSaid(c, safe)}.` } : {}),
             hours: [h0],
-            people: [p, a.person],
+            people: [p, a.person, ...others],
             places: [pl],
           });
         }
@@ -202,7 +223,9 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
   if (qk === 'search') {
     const f = c.finds.find((x) => x.id === qrest);
     // Said as a detective would, never as the form asks it ("the report wanted a why", Poached 5's #11).
-    if (f?.gives.why) return out(victimOf(c).female ? `her papers would have the name of anybody with a grudge against her` : `his papers would have the name of anybody with a grudge against him`, ['givens:found'], { places: [f.place] });
+    // (docs/66, P10: the page says "papers" and "grudge" once each; the pointer, neither.)
+    // (docs/66, skim round 3: "his desk" opening a page had nobody for the "his": the desk, at the dead's place.)
+    if (f?.gives.why) return out(`if anybody had a reason, the desk would say so`, ['givens:found'], { places: [f.place] });
     if (isMurder(c)) return out(`${victimOf(c).short} had died ${at(c, c.crime.scene, here)}`, ['givens:found'], { people: [c.crime.victim], places: [c.crime.scene] });
     return out(`${victimOf(c).short} had gone from ${placeName(c, c.crime.scene)}`, ['givens:gone'], { places: [c.crime.scene] });
   }
@@ -308,7 +331,8 @@ export function placeThread(c: BoardCase, before: Pick<BoardRun, 'asked'>, place
   const asked = new Set<string>();
   const take = (src: string, q: string) => {
     if (out.length >= 2 || asked.has(q)) return;
-    const p = pointerSaid(c, src, q, here);
+    const p0 = pointerSaid(c, src, q, here);
+    const p = p0 ? { ...p0, q } : null;
     if (!p || !p.clause || seen.has(p.clause)) return;
     // Two pointers from the office say the same office twice: one is enough.
     if (src === GIVENS && out.some((x) => x.src === GIVENS)) return;

@@ -113,7 +113,9 @@ export function planSection(
 ): { units: Unit[]; blocks: Block[]; beats: Beat[] } {
   const byBeat: Partial<Record<Beat, Item[]>> = {};
   // docs/52 build 2: the writers' composites said in their voicings, before anything is joined.
-  for (const xs of Object.values(items)) sayAll(xs ?? [], ctx);
+  // (docs/66: with what the page's other beats already say beside it, for its one simile frame.)
+  const all = Object.values(items).flat();
+  for (const xs of Object.values(items)) sayAll(xs ?? [], ctx, () => all.filter((x) => !!x && !(xs ?? []).includes(x) && (!x.say || !!x.comp)).map((x) => (x as Item).text).join(' '));
   for (const [b, xs] of Object.entries(items) as [Beat, Item[]][]) byBeat[b] = PLAN.ops ? aggregate(xs, ctx) : xs;
   // The beats in the sheet's order, then any the sheet hasn't room for, at the end.
   const order: { beats: Beat[] }[] = [];
@@ -372,7 +374,7 @@ function referWithTrades(paras: Item[][], ctx: PlanCtx): void {
 /** Pronouns two people could be, on the section as it stands (the measure's count). */
 function unclearPronouns(paras: Item[][], ctx: PlanCtx): number {
   const blocks: Block[] = paras.map((ps) => ({ kind: 'prose', voice: ps[0]?.voice ?? 'narrator', text: ps.map((x) => stripMarks(x.text)).filter((x) => x.trim()).join(' ') }) as Block);
-  return pronounAmbiguity(ctx.c, blocks).length;
+  return pronounAmbiguity(ctx.c, blocks, ctx.situ?.subject ? { subject: ctx.situ.subject } : {}).length;
 }
 
 /** A chapter heading, as a unit of its own. */

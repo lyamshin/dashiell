@@ -106,7 +106,8 @@ describe('docs/65 §3: at Hard-boiled the player puts the name to the face', () 
     // The tester's own pencil: Abramowitz at the Odessa at ten.
     const marked: BoardRun = { ...run, marks: { abramowitz: { '10': { at: 'bar' } } } };
     expect(boardGrid(c, marked).rows.find((r) => r.id === 'renfro')?.cells[10]?.collision).toBe(true);
-    expect(pickerFor(d, marked, 'renfro')?.claims.map((x) => x.label)).toEqual(['the Odessa at ten']);
+    // (docs/66, U2: the claim as the sentence says it, "He said he was at the Odessa at ten".)
+    expect(pickerFor(d, marked, 'renfro')?.claims.map((x) => x.label)).toEqual(['at the Odessa at ten']);
     // Or Renfro pencilled out of the Odessa.
     expect(faceUnmatched(c, { ...run, marks: { renfro: { '10': { notAt: ['bar'] } } } }, 'renfro', 10 as Hour)).toBe(false);
     // A clash the face plays no part in shows as before: Grasso's, against the landlady's list.

@@ -9,7 +9,7 @@ import { dealBoard, type BoardRun } from '../src/game/board/model.js';
 import { newBoardRun } from '../src/game/board/engine.js';
 import { playBoardOracle, playReader, playWanderer } from '../src/game/board/oracle.js';
 import { PLAN, newBudget, planSection, realize, type Item, type PlanCtx } from '../src/game/board/plan/index.js';
-import { factSentences, joinWordsIn, joinsIn, listSmell, pronounAmbiguity, restatedPointer, thoughtParagraphs } from '../src/game/board/plan/measure.js';
+import { factSentences, joinWordsIn, joinsIn, listSmell, pageAmbiguity, restatedPointer, thoughtParagraphs } from '../src/game/board/plan/measure.js';
 import { markPronoun } from '../src/game/board/plan/refer.js';
 import { bandOf } from '../src/game/board/plan/sentences.js';
 import { setTexture } from '../src/game/board/plan/dial.js';
@@ -95,7 +95,7 @@ describe('docs/49 §4: the measures', () => {
       const d = dealBoard(s, tier, type, world ? { world } : {});
       const run = playBoardOracle(d).run;
       run.log.forEach((p, i) => {
-        expect(pronounAmbiguity(d.kase, p.blocks), `seed ${s} p${i + 1}`).toEqual([]);
+        expect(pageAmbiguity(d.kase, p), `seed ${s} p${i + 1}`).toEqual([]);
         expect(restatedPointer(d.kase, run.log[i - 1], p), `seed ${s} p${i + 1}`).toBeNull();
         const js = [...joinsIn(p.board?.units ?? []), ...joinWordsIn(p.board?.units ?? []).filter((j) => j === 'but' || j === 'so').map((j) => `${j} (said)`)];
         expect(js.filter((j) => j === 'but (said)').length, `seed ${s} p${i + 1}`).toBeLessThanOrEqual(1);
@@ -106,7 +106,7 @@ describe('docs/49 §4: the measures', () => {
     }
     // Off the oracle's route too: the wanderer's and the reader's pages.
     const d = dealBoard(1, tier, type, world ? { world } : {});
-    for (const run of [playWanderer(d, 1).run, playReader(d, 1).run]) run.log.forEach((p, i) => expect(pronounAmbiguity(d.kase, p.blocks), `p${i + 1}`).toEqual([]));
+    for (const run of [playWanderer(d, 1).run, playReader(d, 1).run]) run.log.forEach((p, i) => expect(pageAmbiguity(d.kase, p), `p${i + 1}`).toEqual([]));
   });
 
   it('fewer pages read like a list, and the facts take fewer sentences, than with the planner off', () => {
@@ -358,6 +358,8 @@ describe('docs/49 Planner 2: composition', () => {
     }
     // (docs/55: 0.80 on main, at the edge; the round-4 voicings and the list’s who-went-out sentence,
     // which is long and stands alone where the placements and an agreement used to join: 0.75 here.)
-    expect(within / paras).toBeGreaterThan(0.7);
+    // (docs/66, P1: and the hour the facts settle, "So he went at ten.", a sentence of its own the
+    // testers asked for, which joins nothing: 0.70 here.)
+    expect(within / paras).toBeGreaterThan(0.68);
   });
 });

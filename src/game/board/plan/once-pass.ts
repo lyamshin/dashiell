@@ -83,7 +83,9 @@ export function sayOnce(paras: Item[][], ctx: PlanCtx): void {
   for (const ps of paras) {
     let prev: Item | undefined;
     for (const it of ps) {
-      if (it.hangs && it.text.trim() && (!prev || prev.kind !== 'fact')) {
+      // (docs/66: and only after an agreement: "That left one person: … That much checked out." hung it on the
+      // elimination, where the composition had put the agreement it was said of before it.)
+      if (it.hangs && it.text.trim() && (!prev || prev.kind !== 'fact' || !(prev.relation === 'confirms' || /^thought:agree/.test(prev.tag ?? '') || /\b(?:checked out|stood up|held|matched|bore \w+ out|backed \w+ up|same as)\b/.test(prev.text)))) {
         it.text = '';
         it.alts = undefined;
       }

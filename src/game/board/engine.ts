@@ -235,7 +235,7 @@ function finish(w: Writer, next: BoardRun, o: { job: NonNullable<Page['board']>[
     next.reportOpen = true;
     w.blocks.push({
       kind: 'note',
-      text: c.type === 'murder' ? 'Eight o’clock. The DA’s man was on the stairs, and I’d close the case on whatever I had.' : `Eight o’clock, and ${c.people.find((p) => p.id === c.client)?.short ?? 'the client'} was at the door wanting an answer.`,
+      text: c.type === 'murder' ? 'Eight o’clock. The DA’s man was at the door, and I’d close the case on whatever I had.' : `Eight o’clock, and ${c.people.find((p) => p.id === c.client)?.short ?? 'the client'} was at the door wanting an answer.`,
     });
   }
   const page: Page = {
