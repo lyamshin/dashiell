@@ -71,3 +71,17 @@ Never printed: the truth, the oracle or its route, the `>` mark for the oracle's
 | `src/game/transcript.ts` | `renderPageBody` split out of `renderPageText` (same words); `renderNotebookText(view, state, { book: true })` adds what the book's notebook page has and the transcript didn't: the things in each room, "go there first" beside a lead elsewhere, the book's clock line. `npm run read` is unchanged. |
 | `src/game/parser.ts` | A fix found by playing: a place's own short name now always means that place. In v2 seed 3 the office over the Imperial Tailoring Company also answers to "the office", so the book's "Go to: the office" button (and its price, shown as free) wrote a "Which one?" page instead of walking home. |
 | `test/play-cli.test.ts` (new) | Three nights (v2 seed 3 tier 4; seed 5 tier 2, a robbery; seed 12 tier 2, an affair) played through the tool along the oracle's route, one offered choice at a time, with the picker opened and shut, a pencil mark, the notebook, the grid and the form: nothing printed before filing holds `[gap`, par, the oracle, word counts, a `>` mark, the verdict, the story or the truth sheet, and the save holds no solution; then the truth is filed by the form's own words and scores full marks, the affair's question is answered, and the story and the curtain open. |
+
+## The commands today (docs/64)
+
+The tool above was built on the engines before the board. The board's CLI (`src/cli/play-lib.ts`) keeps its shape, with these commands in docs/64's plain words (`npm run play -- help` prints them):
+
+| command | what |
+|---|---|
+| `new --seed N --tier 0..5 [--type murder\|lost-item\|lost-pet] [--world neighbourhood] [--name X] [--no-teach] [--profile P] --save F` | Deals the night and prints the first page. |
+| `look` · `do <n\|words>` · `page <n>` · `notebook` · `grid` | The page; a choice by its number or its words ("Confront Grasso", "Review my notes", "Close the case"); a page turned back to; the notebook; the grid. |
+| `mark "<Name> <hour> at\|not\|clear [place]"` | Marks a guess on the grid (`pencil`, the old name, still works). Free, never a fact. |
+| `confront <Name>` | Opens what you can tell them: the hour, then what you were told. |
+| `report [<Name>]` | The form; with a name, what you know about them, numbered, for `proof` and `cleared`. |
+| `close "who=…; proof=…; other=…; cleared=…; when=…; how=…; why=…"` | Closes the case (`file`, the old name, still works). A lost thing asks `where=…; whereproof=…` in place of `how`. `proof` and `whereproof` were `breaks` and `whereBy`; those still work, so old saves and notes do. |
+| `story` · `curtain` | Once the case is closed: what really happened; and the true board, the lies and the fastest solve. |

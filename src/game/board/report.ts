@@ -108,12 +108,13 @@ export function pointsText(points: number): string {
 }
 
 /** The report's new questions, as the form asks them. */
-export const BREAKS_LABEL = 'What shows they lied';
-export const WHERE_BY_LABEL = 'What puts it there';
+// docs/64: plain words: what proves it, never "what breaks their story" or "the line".
+export const BREAKS_LABEL = 'What proves they lied';
+export const WHERE_BY_LABEL = 'What proves where it is';
 /** docs/61: the other broken story, as the form asks it (plain: it's an instruction), and as the verdict says it. */
-export const OTHER_QUESTION = 'Somebody else’s story didn’t hold either. Who, and what cleared them?';
+export const OTHER_QUESTION = 'Someone else lied too. Who, and what clears them?';
 export const OTHER_LABEL = 'Who else lied';
-export const CLEARED_LABEL = 'What cleared them';
+export const CLEARED_LABEL = 'What clears them';
 /** The form's answer for nobody else. */
 export const NOBODY = 'nobody';
 export const NOBODY_LABEL = 'Nobody else';
@@ -306,22 +307,23 @@ export function lineGroupHeads(d: BoardDeal, run: Pick<BoardRun, 'asked'>, who: 
   const N = nameOf(c, who);
   const hs = hoursWords(d);
   const told = run.asked.includes(`account:${who}`);
-  const he = pronOf(c, who).he;
+  // docs/64: plain words over the same groups (docs/55 5's wide first group); less literal than round 5's
+  // heading, which is the designer's call.
+  void told;
   return {
-    touching: told ? `What I have at ${hs} about ${N} and the places ${he} said ${he} was tonight:` : `What I have at ${hs} about ${N}:`,
-    rest: `Anything else I have that names ${N} or is about ${hs}:`,
+    touching: `What you know about ${N} at ${hs}:`,
+    rest: 'Everything else:',
   };
 }
 
 /**
- * Round 5, U6: what filing does with a blank, in one sentence, said once, the same in the book and
- * the CLI: an answer left blank is "I don’t know"; a line asked under an answer, "A hunch".
+ * Round 5, U6, in docs/64's words: what closing the case does with a blank, said once, the same in
+ * the book and the CLI. (A blank answer is still "I don't know", and a blank proof "A hunch": the
+ * scoring doesn't change, only what the form says about it.)
  */
 export function blankRule(d: BoardDeal, spent: boolean): string {
-  const lines = [BREAKS_LABEL, ...(asksOther(d) ? [CLEARED_LABEL] : []), ...(isMurder(d.kase) ? [] : [WHERE_BY_LABEL])];
-  const named = lines.length > 1 ? `${lines.slice(0, -1).join(', ')} and ${lines[lines.length - 1]}` : (lines[0] as string);
-  const lead = spent ? 'The calls are spent, so this is what gets filed.' : 'Filing is final.';
-  return `${lead} Anything left blank goes in as “I don’t know”, except ${named}, which ${lines.length > 1 ? 'go' : 'goes'} in as “${HUNCH}”.`;
+  void d;
+  return `${spent ? 'No actions left. ' : ''}Closing the case is final. Leave anything blank if you’re not sure.`;
 }
 
 /** A small case's crack, held: the culprit said where it went when it was put to them, in the page's words. */
@@ -496,11 +498,11 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
   // docs/61: the right name, and the other liar not ruled out, said plainly.
   if (other && who.correct && scored.some((f) => f.key === 'other' && !f.correct)) {
     const him = pronOf(d.kase, other.person).him;
-    const tail = report.other !== other.person ? '' : report.cleared ? `: the line you picked doesn’t clear ${him}` : `: a hunch doesn’t clear ${him}`;
+    const tail = report.other !== other.person ? '' : report.cleared ? `: what you picked doesn’t clear ${him}` : `: a hunch doesn’t clear ${him}`;
     plain.push(`You had the right name, but you didn’t rule out ${nameOf(d.kase, other.person)}${tail}.`);
   }
   if (scored.some((f) => f.key === 'where' && f.half)) plain.push('Where it is now was right, but not on what showed it: half credit on where.');
-  const what = scored.map((f) => (f.key === 'who' ? 'who (and what shows they lied)' : f.key === 'other' ? 'who else lied (and what cleared them)' : f.key === 'where' ? 'where (and what puts it there)' : f.key));
+  const what = scored.map((f) => (f.key === 'who' ? 'who (and what proves they lied)' : f.key === 'other' ? 'who else lied (and what clears them)' : f.key === 'where' ? 'where (and what proves it)' : f.key));
   const scoreLine = `${pointsText(points)} out of ${asked}: ${andList(what)}.`;
   return {
     points,
@@ -554,7 +556,7 @@ function closingLines(d: BoardDeal, run: BoardRun, outcome: Outcome, whereRight 
     const why = spare.slice(0, 3).map((q) => spareSaid(d, run, q));
     const rest = run.used - par - why.length;
     const tail = why.length === 0 ? '' : ` ${why.join(' ')}${rest > 0 ? ' The rest was the long way round.' : ''}`;
-    out.push(run.used <= par ? `It took me ${run.used} calls. A better detective would have needed the same, and there aren’t many of those about.` : `It took me ${run.used} calls. A better detective would have done it in ${par}.${tail}`);
+    out.push(run.used <= par ? `It took me ${run.used} actions. A better detective would have needed the same, and there aren’t many of those about.` : `It took me ${run.used} actions. A better detective would have done it in ${par}.${tail}`);
   }
   // The office's prop, paid off, unless the report page already paid it off with this line.
   const fresh = (run.prop?.pay ?? []).filter((l) => !run.spent.includes(`pay:${l.slice(0, 40)}`));
@@ -606,28 +608,27 @@ export function spareCalls(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'used'>):
   return out;
 }
 
-/** One spare call, said in the closing's voice: what it was, and why it wasn't needed. */
+/** One spare action, said in the closing's voice: what it was, and why it wasn't needed (docs/64: no unit). */
 function spareSaid(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>, q: string): string {
   const c = d.kase;
   const [kind, rest] = q.split(/:(.*)/s) as [string, string];
-  const didnt = 'was a call I didn’t need';
   if (kind === 'confront') {
     const [p, h] = rest.split('@') as [string, string];
     const k = confrontationOf(c, p, Number(h));
     const pr = pronOf(c, p);
-    const lead = `Facing ${nameOf(c, p)} ${didnt}`;
-    if (k?.response === 'refuse') return `${lead}: ${pr.he} wouldn’t say, and I had enough to file without it.`;
+    const lead = `I didn’t need to confront ${nameOf(c, p)}`;
+    if (k?.response === 'refuse') return `${lead}: ${pr.he} wouldn’t say, and I had enough to close the case without it.`;
     // A crack's where-it-went, already said by somebody who saw the handover.
     const by = k?.response === 'crack' ? heldWhereBy(d, run).find((o) => !o.value.startsWith('crack:')) : undefined;
     const who = by ? /^remark:(?:list|account):(.+)#\d+$/.exec(by.value)?.[1] : undefined;
     if (who) return `${lead}: ${nameOf(c, who)} had already told me where ${victimOf(c).short} went.`;
-    return `${lead}: I had enough to file without it.`;
+    return `${lead}: I had enough to close the case without it.`;
   }
-  if (kind === 'list') return `Asking ${nameOf(c, rest)} who was in tonight ${didnt}.`;
-  if (kind === 'account') return `Asking ${nameOf(c, rest)} where ${pronOf(c, rest).he} was tonight ${didnt}.`;
-  if (kind === 'motive') return `Asking ${nameOf(c, rest)} about ${victimOf(c).short} ${didnt}.`;
+  if (kind === 'list') return `I didn’t need to ask ${nameOf(c, rest)} who was in tonight.`;
+  if (kind === 'account') return `I didn’t need to ask ${nameOf(c, rest)} where ${pronOf(c, rest).he} was tonight.`;
+  if (kind === 'motive') return `I didn’t need to ask ${nameOf(c, rest)} about ${victimOf(c).short}.`;
   const f = c.finds.find((x) => x.id === rest);
-  return `Searching ${f ? f.what.replace(/^[A-Z]/, (x) => x.toLowerCase()) : 'there'} ${didnt}.`;
+  return `I didn’t need to search ${f ? f.what.replace(/^[A-Z]/, (x) => x.toLowerCase()) : 'there'}.`;
 }
 
 /* ------------------------------------------------------------------ *
@@ -713,11 +714,16 @@ function breakerOf(d: BoardDeal): string {
  * breaking line beside the player's (docs/46 §3), and for a lost thing the
  * line that put it where it is.
  */
-/** docs/53, addendum: a step's reason as a person says it: "Shapiro saw Tramonti at …", "(Mrs. Krantz said so)", "face Grasso with it". */
+/** docs/53, addendum: a step's reason as a person says it: "Shapiro saw Tramonti at …", "(Mrs. Krantz said so)", "confront Grasso" (docs/64). */
 function pathWhy(why: string, client: string): string {
   return plainWhy(why, client)
     .replace(/\s*\(the office\):/g, ` (${client} said so):`)
-    .replace(/\bput it to ((?:Mrs\.|Miss|Dr\.) )?([A-Z][\w’]*)/g, 'face $1$2 with it');
+    .replace(/\bput it to ((?:Mrs\.|Miss|Dr\.) )?([A-Z][\w’]*)/g, 'confront $1$2');
+}
+
+/** A step as the curtain says it: "Confront Ruggiero: nine o’clock.", never the generator's "Put it to" (docs/64). */
+function pathLabel(label: string): string {
+  return label.replace(/^Put it to /, 'Confront ');
 }
 
 export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'puts'>, filed?: BoardReport): string {
@@ -731,7 +737,7 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
   if (filed && run) {
     const mine = filed.breaks ? (linesHeld(c, run).find((l) => l.id === filed.breaks)?.text ?? filed.breaks) : `${HUNCH.toLowerCase()}.`;
     const ok = filed.who === culprit && !!filed.breaks && heldBreakers(d, run).some((l) => l.id === filed.breaks);
-    out.push(`  You filed:     ${filed.who && filed.who !== culprit ? `${nameOf(c, filed.who)}, on ` : ''}${mine}${ok ? '  ✓' : '  ✗'}`);
+    out.push(`  You picked:        ${filed.who && filed.who !== culprit ? `${nameOf(c, filed.who)}, on ` : ''}${mine}${ok ? '  ✓' : '  ✗'}`);
   }
   // docs/61: the other broken story, and what cleared them, beside what was filed.
   const other = otherLie(d);
@@ -747,18 +753,18 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
       const line = filed.cleared ? (linesHeld(c, run).find((l) => l.id === filed.cleared)?.text ?? filed.cleared) : `${HUNCH.toLowerCase()}.`;
       const mine = named ? `${named}, on ${line}` : filed.other === NOBODY ? 'nobody else.' : 'nobody.';
       const ok = filed.other === p && !!filed.cleared && heldClearers(d, run).some((l) => l.id === filed.cleared);
-      out.push(`${'  You filed:'.padEnd(lead.length)} ${mine}${ok ? '  ✓' : '  ✗'}`);
+      out.push(`${'  You picked:'.padEnd(lead.length)} ${mine}${ok ? '  ✓' : '  ✗'}`);
     }
   }
   if (!isMurder(c)) {
     out.push('');
-    out.push('WHAT PUT IT THERE');
+    out.push('WHERE IT WENT');
     out.push(`${cap(victimOf(c).short)} ended up ${c.crime.whereNow?.text ?? 'where it ended up'}.`);
     out.push(`  What said so: ${trueWhereByText(d, run)}`);
     if (filed && run) {
       const mine = filed.whereBy ? (whereByOptions(d, run).find((o) => o.value === filed.whereBy)?.label ?? filed.whereBy) : `${HUNCH.toLowerCase()}.`;
       const ok = !!filed.whereBy && heldWhereBy(d, run).some((o) => o.value === filed.whereBy);
-      out.push(`  You filed:    ${mine}${ok ? '  ✓' : '  ✗'}`);
+      out.push(`  You picked:   ${mine}${ok ? '  ✓' : '  ✗'}`);
     }
   }
   out.push('');
@@ -780,14 +786,14 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
     const why = l.kind === 'culprit' || l.kind === 'pair' && l.person === c.crime.culprit ? 'to hide the crime' : l.kind === 'pair' ? 'to cover for a friend' : secretWhy(personOf(c, l.person)?.secret);
     const would = k?.response === 'admit' ? 'owned up' : k?.response === 'second-lie' ? 'told another story' : k?.response === 'crack' ? 'cracked' : 'refused to say';
     // Medium 14: "Put to it: refused" read as a put the player never made. Say whether it was.
-    const put = !run || run.asked.includes(`confront:${l.person}@${l.hour}`) ? `When you faced ${pronOf(c, l.person).him} with it, ${pronOf(c, l.person).he} ${would}.` : `You never faced ${pronOf(c, l.person).him} with it; if you had, ${pronOf(c, l.person).he} would have ${wouldHave(k?.response)}.`;
+    const put = !run || run.asked.includes(`confront:${l.person}@${l.hour}`) ? `When you confronted ${pronOf(c, l.person).him}, ${pronOf(c, l.person).he} ${would}.` : `You never confronted ${pronOf(c, l.person).him}; if you had, ${pronOf(c, l.person).he} would have ${wouldHave(k?.response)}.`;
     out.push(`- ${nameOf(c, l.person)} said ${personOf(c, l.person)?.home === l.claim ? 'home' : placeName(c, l.claim)} at ${hourWord(l.hour)}; ${pronOf(c, l.person).he} was at ${placeName(c, l.truth)}, ${why}. ${put}`);
   }
   out.push('');
-  // docs/55 7: par, the number the verdict says, and what it's made of.
-  out.push(`THE SHORT WAY THROUGH (${parCalls(d)} calls: ${d.analysis.par} questions${d.analysis.motive ? ', a look at the papers for the motive' : ''} and ${d.analysis.walks} walks)`);
+  // docs/55 7: par, the number the verdict says, and what it's made of; docs/64: "the fastest solve", in actions.
+  out.push(`THE FASTEST SOLVE: ${parCalls(d)} actions (${d.analysis.par} questions${d.analysis.motive ? ', a look at the papers for the motive' : ''} and ${d.analysis.walks} walks)`);
   // "who was at Kowalski’s tonight?", not "tonight?." (Raw 11's #27).
-  d.analysis.path.forEach((s, i) => out.push(`${i + 1}. ${s.label}${/[?.!]$/.test(s.label) ? '' : '.'} ${pathWhy(pathSteps(s.why, d.analysis.path), nameOf(c, c.client))}`));
+  d.analysis.path.forEach((s, i) => out.push(`${i + 1}. ${pathLabel(s.label)}${/[?.!]$/.test(s.label) ? '' : '.'} ${pathWhy(pathSteps(s.why, d.analysis.path), nameOf(c, c.client))}`));
   if (d.analysis.motive) out.push(`+. ${questionById(c, d.analysis.motive)?.label ?? ''}.`);
   return out.join('\n');
 }

@@ -197,6 +197,30 @@ export function cellText(g: BoardGrid, cell: BoardCell): string {
   return base || pencil || '·';
 }
 
+/**
+ * docs/64: the last column, asked as a question with the night's own means: "Could they get the
+ * laudanum?", "Could they get the spare key?", "Did they know where the key was?".
+ */
+export function meansAsked(label: string): string {
+  const got = /^could have got (.+)$/.exec(label);
+  if (got) return `Could they get ${got[1]}?`;
+  const knew = /^knew (?:that )?(.+)$/.exec(label);
+  return knew ? `Did they know ${knew[1]}?` : `${label.charAt(0).toUpperCase()}${label.slice(1)}?`;
+}
+
+/**
+ * docs/64: the grid's key, cut to what matters (what they say, who saw them, where the two clash), and
+ * the rest only when the grid shows it: both saying so, owning up, your own guess.
+ */
+export function gridKey(g: BoardGrid): string[] {
+  const cells = g.rows.flatMap((r) => g.hours.map((h) => r.cells[h] as BoardCell));
+  const out = ['"X" they say so', '[X] somebody saw them there', '"X"✗ where they clash'];
+  if (cells.some((x) => x.confirmed)) out.push('X✓ both say so');
+  if (cells.some((x) => x.admitted || x.second)) out.push('→Y owned up');
+  if (cells.some((x) => x.pencil)) out.push('~X your own guess');
+  return out;
+}
+
 export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visited' | 'marks'> & Partial<Pick<BoardRun, 'log'>>): string {
   const g = boardGrid(c, run);
   const out: string[] = [];
@@ -209,20 +233,20 @@ export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'
   const cells = g.rows.flatMap((r) => g.hours.map((h) => cellText(g, r.cells[h] as BoardCell)));
   const cw = Math.max(9, ...cells.map((x) => x.length + 2));
   const head = g.hours.map((h) => `${hourWord(h)}${g.crimeHour === h ? ' !' : g.window.includes(h) && g.crimeHour === null ? ' ?' : ''}`.padEnd(cw)).join('');
-  out.push(`${''.padEnd(w0)}${head}${/^could\b/.test(g.meansLabel) ? 'could get it?' : 'knew how?'}`);
+  out.push(`${''.padEnd(w0)}${head}${meansAsked(g.meansLabel)}`);
   for (const r of g.rows) {
     out.push(`${r.name.padEnd(w0)}${g.hours.map((h) => cellText(g, r.cells[h] as BoardCell).padEnd(cw)).join('')}${r.means}`);
   }
   out.push('');
-  out.push(`"X" they say so  ·  [X] somebody else saw them there  ·  X✓ both say so  ·  "X"✗ the two don’t agree  ·  →Y owned up  ·  ~X your own guess in pencil`);
-  out.push(`${g.crimeHour !== null ? `! the hour it happened` : `? the hours it could have been`}  ·  last column: ${g.meansLabel}?`);
+  out.push(gridKey(g).join('  ·  '));
+  out.push(g.crimeHour !== null ? '! the hour it happened' : '? the hours it could have been');
   // docs/47 B8: the key names only the places the night has named.
   const known = knownPlaces(c, run);
   out.push(`Places: ${Object.entries(g.codes).filter(([id]) => known.has(id) || id === c.crime.scene).map(([id, code]) => `${code} = ${placeName(c, id)}`).join('; ')}`);
   const coll = g.rows.flatMap((r) => g.hours.filter((h) => r.cells[h]?.collision).map((h) => ({ r, h })));
   if (coll.length > 0) {
     out.push('');
-    out.push('WHERE THE STORIES DON’T AGREE');
+    out.push('WHERE THEY CLASH');
     for (const { r, h } of coll) {
       out.push(`${r.name}, ${hourWord(h)}:`);
       for (const l of r.cells[h]?.lines ?? []) out.push(`  ${l}`);

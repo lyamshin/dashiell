@@ -79,7 +79,8 @@ describe('docs/53 addendum: the engine’s words out of the narration', () => {
     const run = playBoardOracle(d).run;
     const grid = boardGridText(d.kase, run);
     expect(grid).not.toMatch(/collid|the way in|\bmeans\b/i);
-    expect(grid).toMatch(/last column: knew where the key was\?|last column: could have got the spare key\?/);
+    // (docs/64: the last column asks its own question.)
+    expect(grid).toMatch(/Did they know where the key was\?|Could they get the spare key\?/);
     expect(notebookText(d, run)).not.toMatch(/and nobody else|The office:/);
     for (const l of [...BOARD_RULES, ...BOARD_TEACH_LINES]) expect(l).not.toMatch(/collide|the line that breaks|breaks their story|the board\b/);
   });

@@ -20,8 +20,9 @@ book helps less (docs/46): the stars thin out and stop at where to go, the
 detective's thoughts set two lines side by side and leave the conclusion to
 you, and the report asks for the name and what shows they lied.
 The right name on a hunch counts half. From Poached up two stories break at the
-crime hour, and the report also asks who else lied and what cleared them (docs/61). Every question, search, walk and put
-costs one call, and the clock shows what the calls add up to (docs/47).
+crime hour, and the report also asks who else lied and what clears them (docs/61). Every question, search, walk and
+confrontation takes one action, and the clock shows what the actions add up to (docs/47); the book's own words are
+plain (docs/64): an action, "Confront", what you were told, "Close the case".
 
 The engines before the board (v1 and v2) were deleted in docs/45; docs 01–40
 describe them and are kept as history.
@@ -55,6 +56,8 @@ hasn’t shown you lately: docs/55). What the engines before the board kept ther
 ```sh
 npm run play -- new --seed 3 --tier 4 --save night.json
 npm run play -- do 2 --save night.json    # one numbered choice, or its words
+npm run play -- mark "Feldman ten at Rafferty’s" --save night.json   # a guess on the grid (`pencil` still works)
+npm run play -- close "who=…; proof=…; when=…; how=…; why=…" --save night.json   # close the case (docs/64; `file` and `breaks=` still work)
 npm run play -- help                      # the rules and every command
 npm run play -- new --seed 4 --tier 2 --profile me.json --save n2.json   # a night that remembers the last ten (docs/55)
 ```
