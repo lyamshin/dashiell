@@ -534,6 +534,19 @@ function placeNewcomers(w: Writer): void {
     });
     w.people.add(p);
   }
+  // (docs/66, P4: and the one the way in saw keeping to themselves, named once the answer names them: "The
+  // one in the back booth was Pardo.", where the crack's "who was sitting across the room" had nobody placed.)
+  if (lean()) {
+    const roomSaid = w.before.log.filter((pg) => pg.at === here).map((pg) => pg.blocks.map((b) => (b.kind === 'prose' && b.voice !== 'answer' ? b.text.replace(/“[^”]*”?/g, ' ') : '')).join(' ')).join(' ');
+    const anon = /\b[Ss]omebody was ([^,.;]+), keeping to themselves\b/.exec(stripMarks(roomSaid));
+    const fence = (c.others ?? []).find((o) => o.id === 'fence' && o.known && (o.at as Record<string, string>)[String(last)] === here);
+    const fn = fence ? shortOther(fence.name).replace(/,.*$/, '') : '';
+    const named = !!fn && Object.values(w.parts).some((xs) => (xs ?? []).some((x) => x.voice === 'answer' && x.text.includes(fn)));
+    // (Not where the answer said the spot itself: "Lou the bookmaker was in his back booth all evening.")
+    const spotNoun = (anon?.[1] ?? '').replace(/^(?:in|at|on|by) (?:the|a|an|his|her) /, '');
+    const spotSaid = !!spotNoun && Object.values(w.parts).some((xs) => (xs ?? []).some((x) => x.voice === 'answer' && x.text.includes(spotNoun)));
+    if (anon && fence && named && !spotSaid && !stripMarks(roomSaid).includes(fn)) put(w, 'job', `The one ${anon[1]} was ${fn}.`, 'presence', { about: [], tex: 'keep', ...((w.parts.job ?? []).slice(-1)[0]?.voice === 'presence' ? { runOn: true } : {}) });
+  }
 }
 
 function esc(s: string): string {
@@ -1652,7 +1665,10 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId, back = false, noArrive
   const dest = to === OFFICE ? 'the office' : back ? 'the same door as before' : placeName(c, to);
   const fromName = from === OFFICE ? 'the office' : placeName(c, from);
   // Where it matters: from the scene to where the way in was had, the night turns on who could walk it in an hour.
-  const matters = (from === c.crime.scene && to === c.means.origin) || (to === c.crime.scene && from === c.means.origin);
+  // (docs/66, P7: said once a night: a route that goes back and forth between the two says it the first time.)
+  const matters0 = (from === c.crime.scene && to === c.means.origin) || (to === c.crime.scene && from === c.means.origin);
+  const matters = matters0 && !(lean() && w.hand.used('walk:matters'));
+  if (matters && lean()) w.hand.note('walk:matters');
   // docs/47 A1: the walk says how far, never how many minutes: the clock moves a call's worth
   // whatever the walk, and the strip shows it. The way is the direction alone; the place walked
   // from is where the last page stood, and saying it again is the place name bolted on.
@@ -2360,8 +2376,13 @@ export function writeSearch(w: Writer, findId: string): void {
     const vsex = pronOf(c, c.crime.victim).he;
     const line = (p: PersonId, i: number) => papersLine(c, p, PLAN.ops, lean() ? (metTonight(p) ? null : glossOf(c, p)) : undefined, i > 0 && pronOf(c, ps[i - 1] as PersonId).he === vsex);
     // (docs/66, P10: "the dead man" twice at most on the page: after that, by name.)
+    // (After that, by what they were, "the dentist", "the landlord", where nobody else on the night was that:
+    // a third name on the page would go back to "the dead woman" in the reference pass.)
     let deadSaid = 0;
-    const lines = ps.map(line).map((l) => (lean() ? l.replace(/\bthe dead (?:man|woman)\b/g, (m) => (++deadSaid <= 2 ? m : vict.short)) : l));
+    const trade = (vict.description ?? '').replace(/^(?:a|an|the) /, '').split(/[;,(]/)[0]?.trim() ?? '';
+    const tradeOwn = !!trade && trade.split(' ').length <= 3 && !c.people.some((x) => x.id !== vict.id && (x.description ?? '').replace(/^(?:a|an|the) /, '').startsWith(trade));
+    const third = tradeOwn ? `the ${trade}` : vict.short;
+    const lines = ps.map(line).map((l) => (lean() ? l.replace(/\bthe dead (?:man|woman)\b/g, (m) => (++deadSaid <= 2 ? m : third)) : l));
     const pages: SaySpec = { shape: 'MOTIVE-SET', flags: ['papers-list'], args: { lines: lines.join(' ') } };
     fact(w, 'job', lines.join(' '), 'find', { about: ps, carries: ps.map((p) => `motive:${p}`), keepNames: true, props: ps.map((p) => ({ k: 'MOTIVE', person: p }) as Prop), flesh: { papers: lines }, say: pages });
     for (const p of ps) w.people.add(p);
