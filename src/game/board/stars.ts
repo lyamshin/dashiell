@@ -375,7 +375,10 @@ export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: stri
     const mv = movedAt(c, run, q.subject);
     // docs/55 4: the person and the question: "Pickering walked over from the Delmonico rooms at ten —
     // ask Pickering who she passed on the way".
-    if (mv) {
+    // (Docs/69 §5, Medium 16: only where the walk passed somebody: "ask Brauer who she passed on the way"
+    // of somebody who passed nobody sent the player for nothing. Else the reasons below.)
+    const passed = !!mv && (accountOf(c, q.subject)?.remarks ?? []).some((r) => !!remarkStreet(r.text) && r.facts.some((f) => f.h === mv.h));
+    if (mv && passed) {
       const N = nameOf(c, q.subject);
       const home = personOf(c, q.subject)?.home === mv.to;
       return `${N} walked ${home ? 'home' : 'over'} from ${placeName(c, mv.from)} at ${hourWords(mv.h)} — ask ${N} who ${pronOf(c, q.subject).he} passed on the way`;

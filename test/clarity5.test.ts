@@ -52,7 +52,7 @@ describe('docs/70: Poached 17, the tester’s route', () => {
   });
   it('P4: Renfro’s no is said by what’s known at Moe’s', () => {
     expect(all).not.toMatch(/while the carving knife was in the kitchen drawer/);
-    expect(all).toMatch(/Renfro hadn’t been at Mrs\. Nagy’s before nine\./);
+    expect(all).toMatch(/Renfro hadn’t been at Mrs\. Nagy’s before nine, when the carving knife was there to take\./);
   });
   it('P8: "earlier in the evening" once, the knife’s origin once on the pages, the papers’ dead man twice at most', () => {
     expect((all.match(/earlier in the evening/g) ?? []).length).toBeLessThanOrEqual(1);

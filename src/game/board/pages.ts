@@ -2703,15 +2703,19 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
       if (pg.board?.job === 'arrive') break;
     }
     const holderHere = c.crime.whereNow?.place === w.run.at && (!lean() || visit.some((t) => t.includes(fenceName)));
+    // (Docs/70, skim round 1: and where he's here but the visit hasn't said so, "So Fritz had gone to Tierney,
+    // at Steinmetz’s." said at Steinmetz's read as somewhere else: "somewhere in the room".)
+    const hereAt = !holderHere && c.crime.whereNow?.place === w.run.at;
+    const atWords = hereAt ? 'somewhere in the room' : `at ${placeName(c, c.crime.whereNow?.place ?? '')}`;
     done(
       'crack-close',
       [
         {
-          text: `So ${victimOf(c).short} was with ${shortOther(holder).replace(/,.*$/, '')}, ${holderHere ? 'who was sitting ten feet away and hadn’t looked up once' : `at ${placeName(c, c.crime.whereNow?.place ?? '')}`}.`,
-          bare: `${victimOf(c).short} was with ${shortOther(holder).replace(/,.*$/, '')}, ${holderHere ? 'who was sitting ten feet away and hadn’t looked up once' : `at ${placeName(c, c.crime.whereNow?.place ?? '')}`}.`,
+          text: `So ${victimOf(c).short} was with ${shortOther(holder).replace(/,.*$/, '')}, ${holderHere ? 'who was sitting ten feet away and hadn’t looked up once' : atWords}.`,
+          bare: `${victimOf(c).short} was with ${shortOther(holder).replace(/,.*$/, '')}, ${holderHere ? 'who was sitting ten feet away and hadn’t looked up once' : atWords}.`,
           opener: 'So',
           props: [{ k: 'HANDOVER', to: 'other:fence', place: c.crime.whereNow?.place ?? '', thing: c.crime.victim }],
-          say: { shape: 'HANDOVER', flags: ['crack', holderHere ? 'here' : 'away'], args: { thing: { t: 'person', id: c.crime.victim }, holder: { t: 'people', ids: ['other:fence'] }, at: { t: 'place', id: c.crime.whereNow?.place ?? '' } } },
+          say: { shape: 'HANDOVER', flags: ['crack', holderHere || hereAt ? 'here' : 'away', ...(hereAt ? ['unplaced'] : [])], args: { thing: { t: 'person', id: c.crime.victim }, holder: { t: 'people', ids: ['other:fence'] }, at: { t: 'place', id: c.crime.whereNow?.place ?? '' } } },
         },
         { gloss: `That was what ${clientOf(c).short} had paid for.` },
       ],

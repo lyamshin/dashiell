@@ -1117,6 +1117,8 @@
   {"id": "handover/crack-away-2", "shape": "HANDOVER", "requires": ["crack", "away"], "template": "{Holder} had {thing}, over at {at}."},
   {"id": "handover/crack-away-3", "shape": "HANDOVER", "requires": ["crack", "away"], "template": "{Thing} had gone to {holder}, at {at}."},
   {"id": "handover/crack-away-4", "shape": "HANDOVER", "requires": ["crack", "away"], "template": "{Thing} had ended up at {at}, with {holder}."},
+  {"id": "handover/crack-unplaced-1", "shape": "HANDOVER", "requires": ["crack", "here", "unplaced"], "template": "{Thing} had gone to {holder}, who was somewhere in the room."},
+  {"id": "handover/crack-unplaced-2", "shape": "HANDOVER", "requires": ["crack", "here", "unplaced"], "template": "{Holder} had {thing}, and was somewhere in the room."},
   {"id": "window-means/when-hour-murder", "shape": "WINDOW-MEANS", "requires": ["when", "hour", "murder"], "forbids": ["office"], "template": "It happened at {hour:oclock}."},
   {"id": "window-means/when-hour-murder-2", "shape": "WINDOW-MEANS", "requires": ["when", "hour", "murder"], "forbids": ["office"], "template": "It was {hour:oclock} when it happened."},
   {"id": "window-means/when-hour-murder-3", "shape": "WINDOW-MEANS", "requires": ["when", "hour", "murder"], "forbids": ["lean", "office"], "template": "The hour it happened was {hour:oclock}."},
@@ -1671,11 +1673,11 @@
   {"id": "present/named-back-1", "shape": "PRESENT", "requires": ["back", "named", "lean"], "template": "By then {who}, {gloss}, was {where}."},
   {"id": "present/named-back-2", "shape": "PRESENT", "requires": ["back", "named", "lean"], "template": "{Who}, {gloss}, was {where} by then."},
   {"id": "access-set/recap-party-yes-lodger", "shape": "ACCESS-SET", "requires": ["recap", "party", "yes", "lodger"], "forbids": ["no"], "template": "{People} had been at the {occasion} and knew {way}, and so did {lodger}, the lodger it was left unlocked for."},
-  {"id": "access-set/recap-party-both-lodger", "shape": "ACCESS-SET", "requires": ["recap", "party", "yes", "no", "lodger"], "template": "{People} had been at the {occasion} and knew {way}, and so did {lodger}, the lodger it was left unlocked for. {None} hadn’t been there."},
+  {"id": "access-set/recap-party-both-lodger", "shape": "ACCESS-SET", "requires": ["recap", "party", "yes", "no", "lodger"], "template": "{People} had been at the {occasion} and knew {way}, and so did {lodger}, the lodger it was left unlocked for. {None} hadn’t been at the {occasion}."},
   {"id": "access-set/recap-party-lodger", "shape": "ACCESS-SET", "requires": ["recap", "party", "lodger"], "forbids": ["yes", "no"], "template": "{Lodger}, the lodger it was left unlocked for, knew {way}."},
   {"id": "access-set/recap-party-no-lodger", "shape": "ACCESS-SET", "requires": ["recap", "party", "no", "lodger"], "forbids": ["yes"], "template": "{Lodger}, the lodger it was left unlocked for, knew {way}. {None} hadn’t been at the {occasion}."},
-  {"id": "window-alive/recap-murder-1", "shape": "WINDOW-ALIVE", "requires": ["one", "murder", "walk", "so", "recap", "lean"], "template": "It happened at {narrowed}: {client} had said {opts}, and {victim} was still alive at {place} at {hour}."},
-  {"id": "window-alive/recap-small-1", "shape": "WINDOW-ALIVE", "requires": ["one", "small", "walk", "so", "recap", "lean"], "template": "It happened at {narrowed}: {client} had said {opts}, and {victim} was still at {place} at {hour}."},
+  {"id": "window-alive/recap-murder-1", "shape": "WINDOW-ALIVE", "requires": ["one", "murder", "walk", "so", "recap", "lean"], "template": "It happened at {narrowed}. {Client} had said {opts}, and at {hour} {victim} was still alive at {place}."},
+  {"id": "window-alive/recap-small-1", "shape": "WINDOW-ALIVE", "requires": ["one", "small", "walk", "so", "recap", "lean"], "template": "It happened at {narrowed}. {Client} had said {opts}, and at {hour} {victim} was still at {place}."},
   {"id": "claim/w-came-careful-2-one", "shape": "CLAIM-SPAN", "manner": "careful", "requires": ["who-with", "came", "one"], "forbids": ["last"], "template": "{Names} joined me at {from} and stayed on."},
   {"id": "claim/w-came-careful-2-many", "shape": "CLAIM-SPAN", "manner": "careful", "requires": ["who-with", "came", "many"], "forbids": ["last"], "template": "{Names} joined me at {from} and stayed on."}
 ]

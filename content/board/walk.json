@@ -48,5 +48,9 @@
   {"id": "bwk-101", "family": "walk-way", "tags": {"matters": "yes", "near": "no"}, "text": "It was {far} {way} of {from}, close enough for anybody to slip over and back inside the hour. I made a note of that."},
   {"id": "bwk-102", "family": "walk-way", "tags": {"matters": "yes", "near": "no"}, "text": "It was {far} {way} of {from}, near enough to get there and back inside the hour."},
   {"id": "bwk-103", "family": "walk-way", "tags": {"matters": "yes", "near": "no"}, "text": "It was {far} {way}. I made a note of it: tonight was going to be about who could walk where in an hour."},
-  {"id": "bwk-111", "family": "walk-way", "tags": {"matters": "yes", "near": "yes"}, "text": "It was round the corner from {from}. Anybody could have made it there and back in an hour, and I wrote that down."}
+  {"id": "bwk-111", "family": "walk-way", "tags": {"matters": "yes", "near": "yes"}, "text": "It was round the corner from {from}. Anybody could have made it there and back in an hour, and I wrote that down."},
+  {"id": "bwk-084", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "It was {far}, give or take."},
+  {"id": "bwk-085", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "It was {far}, and the night had turned cold."},
+  {"id": "bwk-086", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "It was {far}, and the streets were nearly empty."},
+  {"id": "bwk-087", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "It was {far}, and I didn’t hurry."}
 ]

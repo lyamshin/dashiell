@@ -419,7 +419,7 @@ describe('docs/70: round 7’s joining text, a rule at a time (the line main sai
   it('ahead: who couldn’t have had it, by what’s known', () => {
     const t = (text: string) => ruled(p17, on(p17, at(p17, 'list', [{ text, voice: 'thought' }])));
     expect(t('Renfro hadn’t been at Mrs. Nagy’s while the carving knife was in the kitchen drawer.')).toContain('ahead');
-    expect(t('Renfro hadn’t been at Mrs. Nagy’s before nine.')).not.toContain('ahead');
+    expect(t('Renfro hadn’t been at Mrs. Nagy’s before nine, when the carving knife was there to take.')).not.toContain('ahead');
   });
 
   it('stacked: no colon and semicolon, no semicolon and "since", in one thought', () => {
@@ -482,7 +482,7 @@ describe('docs/70: round 7’s joining text, a rule at a time (the line main sai
   it('turn-hour, drew, company and lodger', () => {
     const turn = (dd: typeof d, text: string) => ruled(dd, on(dd, { ...at(dd, 'list', [{ text: 'x' }], { turn: true }), blocks: [{ kind: 'prose', text: 'the turn', voice: 'chapter' }, { kind: 'prose', text, voice: 'recap' }] as Block[] }));
     expect(turn(m21, 'Mulcahy was still alive at the Blue Lantern at nine, and Vogel had said nine or ten, so it happened at ten o’clock.')).toContain('turn-hour');
-    expect(turn(m21, 'It happened at ten o’clock: Vogel had said nine or ten, and Mulcahy was still alive at the Blue Lantern at nine.')).not.toContain('turn-hour');
+    expect(turn(m21, 'It happened at ten o’clock. Vogel had said nine or ten, and at nine Mulcahy was still alive at the Blue Lantern.')).not.toContain('turn-hour');
     const sokol = p17.kase.places.find((x) => /Sokol/.test(x.short))?.id as string;
     const way = (blocks: B[], units: never[]) => at(p17, 'arrive', blocks, { units }, sokol);
     const room = 'I went round to the back of Sokol’s bakery, and Dandridge was sitting where he could see the door.';

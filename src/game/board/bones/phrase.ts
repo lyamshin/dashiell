@@ -242,7 +242,10 @@ export function accessPhrase(c: BoardCase, yes: boolean, again = false, here?: P
     // carving knife was in the kitchen drawer" came at Moe's, before anybody had said when the knife was
     // in the drawer. Whoever used it had it before the hour it happened, which the office gave: "Renfro
     // hadn’t been at Mrs. Nagy’s before nine.")
-    if (!yes && lean()) return `hadn’t been ${at} before ${hourWord(Math.min(...(c.givens.window ?? c.crime.window ?? [c.crime.hour])) as Hour)}`;
+    // (Docs/70, skim round 1: "Bledsoe hadn’t been at Mrs. Nagy’s before nine." left a reader asking what
+    // that ruled out: the means said with it, as the find had it, "…before nine, when the chloral was there
+    // to take".)
+    if (!yes && lean()) return `hadn’t been ${at} before ${hourWord(Math.min(...(c.givens.window ?? c.crime.window ?? [c.crime.hour])) as Hour)}, when the ${m} was there to take`;
     return yes ? `had been ${at} earlier, when the ${m} was there for the taking` : `hadn’t been ${at} while the ${m} was ${keptAt(c)}`;
   }
   // (Round 7, B5: the lodger the door was left unlocked for knew it without a seat at the table: where

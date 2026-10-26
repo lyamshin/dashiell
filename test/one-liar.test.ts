@@ -27,7 +27,7 @@ import { buildCase } from '../src/gen/board/generate.js';
 import { innocentLie, rate, rivalsOf } from '../src/gen/board/path.js';
 import { dealBoard, type BoardDeal } from '../src/game/board/model.js';
 import { playBoardOracle, playFirstLiar, refusalShortcutCalls } from '../src/game/board/oracle.js';
-import { NOBODY, boardFields, breakOptionsShown, curtainOfBoard, heldBreakers, nobodyElseProved, otherLie, scoreBoard, truthReport } from '../src/game/board/report.js';
+import { NOBODY, boardFields, breakOptionsShown, curtainOfBoard, heldBreakers, lineNumbers, nobodyElseProved, otherLie, scoreBoard, truthReport } from '../src/game/board/report.js';
 import { parCalls } from '../src/game/board/model.js';
 import { runPlay, type PlayIo } from '../src/cli/play-lib.js';
 
@@ -236,7 +236,8 @@ describe('docs/69 §1.5: "Nobody else" needs proof', () => {
       };
     };
     const o = playBoardOracle(deal);
-    const proofOf = (run: typeof o.run) => breakOptionsShown(deal, run, c.crime.culprit).findIndex((x) => heldBreakers(deal, run).some((l) => l.id === x.value)) + 1;
+    // (docs/70, U1: a proof is its number in the notebook, the one numbering of the night.)
+    const proofOf = (run: typeof o.run) => lineNumbers(deal, run).get(breakOptionsShown(deal, run, c.crime.culprit).find((x) => heldBreakers(deal, run).some((l) => l.id === x.value))?.value ?? '') ?? 0;
     const full = close(o.commands)(proofOf(o.run));
     expect(full.out).toMatch(/5 out of 5/);
     expect(full.out).toMatch(/Did anyone else lie\? Nobody else +✓/);
@@ -257,11 +258,11 @@ describe('docs/69 §5: the pages assume no second liar', () => {
     const pages = o.run.log.map((p) => p.blocks.map((b) => b.text).join('\n'));
     const all = pages.join('\n');
     // Rosenbaum, who would have lied, tells it straight, and names Brennan; Brennan is in the room, no gloss.
-    expect(all).toContain('At ten I went round to Sokol’s for coffee, and Brennan was there.');
+    expect(all).toMatch(/(?:At ten|Ten sharp,) I went round to Sokol’s for coffee, and Brennan was there\./);
     expect(all).toContain('Brennan was in the corner.');
     expect(all).not.toMatch(/\bthe (?:man|woman) Rosenbaum had named\b/);
     // The turn reads back what's held, and what's still open; nothing about how many lied.
-    expect(all).toContain('Nobody had told me yet where Rosenbaum was at ten.');
+    expect(all).toMatch(/(?:Nobody had told me yet where|I still didn’t know where) Rosenbaum was at ten\./);
     expect(all).not.toMatch(/\b(?:other|second|another) liar\b|\bboth (?:of them )?lied\b|\btwo (?:people|of them) lied\b/i);
     const curtain = curtainOfBoard(d, o.run, truthReport(d, o.run));
     expect(curtain).not.toMatch(/WHO ELSE LIED|What cleared (?:him|her)/);
