@@ -35,7 +35,7 @@ import {
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
 import { peopleLine } from '../game/board/gloss.js';
-import { BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, whereByLabel, blankRule, boardFields, breakOptionsShown, clearOptions, curtainOfBoard, hoursThatMattered, lineGroupHeads, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
+import { BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, whereByLabel, blankRule, boardFields, breakOptionsShown, clearOptions, curtainOfBoard, hoursThatMattered, keptPick, lineGroupHeads, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
 import { ACTION_KEY, TALK_HEADING, chapterShown, costText, officeLines, questionsText } from '../game/board/text.js';
 import { hasHints, hintLabel, hintStanding, hintsLeft, hintsNote, takeHint } from '../game/board/hints.js';
@@ -662,8 +662,11 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       box.append(hint, list);
       const fill = () => {
         hint.textContent = note();
+        // (A line picked before the name, or before the name changed, stays picked while it's still offered.)
+        const was = (list.querySelector('input:checked') as HTMLInputElement | null)?.value;
         clear(list);
         const opts: LineOption[] = options();
+        const keep = keptPick(was, opts);
         // docs/47 A4: the lines that touch the named person's own story come first, under a heading.
         const touching = opts.filter((o) => o.touches).length;
         [...opts, { value: '', label: HUNCH }].forEach((o, i) => {
@@ -672,7 +675,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           if (heads && touching > 0 && i === touching && i < opts.length) list.append(el('p', { class: 'line-group', text: heads.rest }));
           const id = `rf-${key}-${i}`;
           const input = el('input', { type: 'radio', name: key, value: o.value, id });
-          if (o.value === '') input.checked = true;
+          if (o.value === keep) input.checked = true;
           list.append(el('label', { class: `line-option${o.value === '' ? ' line-option--hunch' : ''}${(o as LineOption).touches ? ' line-option--touches' : ''}`, for: id }, input, el('span', { text: o.label })));
         });
       };

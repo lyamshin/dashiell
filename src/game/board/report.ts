@@ -290,6 +290,15 @@ export interface LineOption {
 export const HUNCH = 'A hunch';
 
 /**
+ * The line to keep picked when a line question's list is drawn again (the name above it picked or
+ * changed): the one picked before, while it's still offered; else none, which is a hunch. A line
+ * picked before the name was dropped for a hunch without a word (case 5695, 2026-10-26).
+ */
+export function keptPick(was: string | null | undefined, options: readonly LineOption[]): string {
+  return was && options.some((o) => o.value === was) ? was : '';
+}
+
+/**
  * The hours that mattered, as the form says them: the office's window. Never
  * the hour worked out from it, which is the player's to work out (docs/46 §2).
  */
