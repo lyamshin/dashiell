@@ -403,3 +403,11 @@ Branch `clarity-5` (main's one-liar merged in): round 7's prose and chrome by ru
 - **Hard-boiled's hours** bare after the night's one reason; **list smell** up a little (short sentences of one step each).
 - **Seen while reading** (both builds'): "There was nobody on duty, and nobody to ask who had been by."; "Pickering had been here all night, and nobody had asked him yet."; "Mrs. Mulcahy’s own answer was … at eleven o’clock, alone."; the curtain's fastest solve still cites a pointer's own hour (`starReason`) where the hint no longer does.
 - **For the designer**: tier names, the means' deadline on "How this works", Whitfield's way in, the body-finder's reason, places full at 5 AM, the tagline.
+
+## Clarity, build 5b (docs/71), 2026-10-26
+Branch `clarity-5b`: the eight slips the designer's read of clarity-5 found on five nights, each by rule with a lint (`hinge-lint.ts`: `walk-tail`, `turn-drop`, `keeper`, `bare-hour`, `twice`, and `hint` on the curtain; main's 1,557 hits to 0 at 30 nights a tier, both worlds, three routes) and a test (`test/hinge.test.ts`, `test/clarity5b.test.ts`). A walk's tail once a night and none after "good"; the turn joins one witness's placements and never drops somebody who could have had the means; the way in names a keeper's place where "her place" would be either woman's; a keeper's put says "she had nobody in"; no bare hour and a comma before a clause; "the dead man" not two sentences running, one aside not two pages running, "there too"; the grid's key glosses only what its cells show, with tonight's label; the fastest solve by the hour that matters (docs/70's open item). The dealt boards, the puzzle columns, the round trip and clarity are main's. Left over:
+
+- **Words a page** up one at the neighbourhood's Hard-boiled (99 → 100): one page over the median, from item 5's word ("Ten, I went" → "Come ten, I went"); the row's mean fell. The brief's gate isn't met there.
+- **The turn's length**: a little longer where only people who could have had the means are left to trim (docs/71 §2).
+- **The notebook's "How it adds up"** still lists one witness's placements one at a time; the join is the turn's.
+- **A keeper's place by the keeper's name in my own thought** ("Callahan had said she was home at Mrs. Nagy’s at nine, and Mrs. Nagy hadn’t seen her there.").

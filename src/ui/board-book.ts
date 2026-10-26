@@ -14,7 +14,7 @@
 import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
-import { FACE_MARK, boardGrid, cellText, faceMarkDue, meansAsked, placesKey, type BoardCell, type BoardGrid } from '../game/board/grid.js';
+import { FACE_MARK, boardGrid, cellText, faceMarkDue, meansAsked, placesKey, shownPlaces, type BoardCell, type BoardGrid } from '../game/board/grid.js';
 import { knownPeople, knownPlaces, lineShown, linesHeld } from '../game/board/knowledge.js';
 import {
   BOARD_SAVE_KEY,
@@ -860,17 +860,19 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     // rest only when the grid shows it, as the CLI's `gridKey` does.
     const cells = g.rows.flatMap((x) => g.hours.map((h) => x.cells[h] as BoardCell));
     const key = el('p', { class: 'bgrid-key' });
-    key.append(el('span', { class: 'k is-says', text: 'Odessa' }), ' they say so · ', el('span', { class: 'k is-seen', text: 'Odessa' }), ' somebody saw them there · ', el('span', { class: 'k is-collision', text: 'Odessa✗' }), ' where they clash');
+    // (clarity-5b, item 7: the sample is a label from tonight's grid, the scene's, never "Odessa" on a night with none.)
+    const lab = g.codes[c.crime.scene] ?? 'X';
+    key.append(el('span', { class: 'k is-says', text: lab }), ' they say so · ', el('span', { class: 'k is-seen', text: lab }), ' somebody saw them there · ', el('span', { class: 'k is-collision', text: `${lab}✗` }), ' where they clash');
     // (Round 6, U3: who "both" are, said: they, and somebody who saw them.)
-    if (cells.some((x) => x.confirmed)) key.append(' · ', el('span', { class: 'k is-confirmed', text: 'Odessa✓' }), ' they say so, and somebody saw them there');
-    if (cells.some((x) => x.pencil)) key.append(' · ', el('span', { class: 'k is-pencil', text: '~Odessa' }), ' your own guess');
+    if (cells.some((x) => x.confirmed)) key.append(' · ', el('span', { class: 'k is-confirmed', text: `${lab}✓` }), ' they say so, and somebody saw them there');
+    if (cells.some((x) => x.pencil)) key.append(' · ', el('span', { class: 'k is-pencil', text: `~${lab}` }), ' your own guess');
     key.append('. Tap a cell for what was said.');
     // (docs/66: at Hard-boiled, how a face's clash shows: the player's own mark, under "Your guess".)
     // (Round 7, U4: once a night, on the page of the first coat or hat, as the CLI says it.)
     if (faceMarkDue(c, run as BoardRun)) key.append(` ${FACE_MARK}`);
     wrap.append(key);
     // (Round 7, U2: the places only where a label isn't the place's own name, as the CLI says them.)
-    const places = placesKey(c, run as BoardRun, g.codes);
+    const places = placesKey(c, run as BoardRun, g.codes, shownPlaces(g, false));
     wrap.append(el('p', { class: 'bgrid-key', text: `${g.crimeHour !== null ? `The marked hour is when it happened.` : g.window.length > 1 ? `It happened at ${g.window.join(' or ')}.` : ''} The last column: ${meansAsked(meansWords(g.meansLabel))}${places ? ` ${places}` : ''}` }));
     return wrap;
   }

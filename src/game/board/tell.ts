@@ -175,6 +175,8 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
   const purposes = new Set<string>();
   // (docs/66, P6: the hours alone said so far this evening.)
   let aloneSaid = 0;
+  // (clarity-5b, item 6: who "was there" so far this evening.)
+  const theres = new Set<string>();
   runs.forEach((r, i) => {
     const comps = [] as { h: Hour; who: PersonId[] }[];
     for (let h = r.from; h <= r.to; h++) comps.push({ h, who: a.claims[h]?.company ?? [] });
@@ -262,7 +264,11 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
       const others = who.filter((x) => !(reason ?? '').includes(x));
       // (Only in an hour's clause that ends there: "…for the company, and Steinbach was there, and stayed through
       // nine" would have Steinbach staying. A run that goes on keeps "with".)
-      const there = lean() && span === 'one' && !!reason && !house && others.length > 0 && !/\bmy room\b|\bhome\b/.test(reason) ? `, and ${andList(others)} ${others.length > 1 ? 'were' : 'was'} there` : '';
+      const there0 = lean() && span === 'one' && !!reason && !house && others.length > 0 && !/\bmy room\b|\bhome\b/.test(reason) ? `, and ${andList(others)} ${others.length > 1 ? 'were' : 'was'} there` : '';
+      // (clarity-5b, item 6: the second time in an answer, "there too": "At nine I went to Kowalski’s to collect
+      // a debt, and Mosley was there. At ten I had a table at the Blue Lantern, and Mosley was there too.")
+      const there = there0 && theres.has(there0) ? `${there0} too` : there0;
+      if (there0) theres.add(there0);
       // (docs/62, P7: lean, alone beside the going, before the why: "I went home alone, because my feet hurt",
       // never "…, because my feet hurt, alone".)
       const why = lean() && alone && reason ? /, (?:because|since) /.exec(reason) : null;

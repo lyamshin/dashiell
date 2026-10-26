@@ -52,5 +52,8 @@
   {"id": "bwk-084", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "It was {far}, give or take."},
   {"id": "bwk-085", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "It was {far}, and the night had turned cold."},
   {"id": "bwk-086", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "It was {far}, and the streets were nearly empty."},
-  {"id": "bwk-087", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "It was {far}, and I didn’t hurry."}
+  {"id": "bwk-087", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "It was {far}, and I didn’t hurry."},
+  {"id": "bwk-088", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "It was {far} from there."},
+  {"id": "bwk-089", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "I walked it. It was {far}."},
+  {"id": "bwk-090", "family": "walk-way", "tags": {"matters": "no", "near": "no"}, "text": "The next stop was {far}."}
 ]

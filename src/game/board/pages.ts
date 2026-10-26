@@ -1553,6 +1553,12 @@ function band(w: Writer): string {
   return m < 120 ? 'midnight-2' : m < 240 ? '2-4' : m < 360 ? '4-6' : '6-8';
 }
 
+/**
+ * clarity-5b, item 1: what a walk card says after the distance, about the walk itself: said once a night,
+ * and never after a distance that says "good" (`walk.json`; the `walk-tail` lint reads the same).
+ */
+export const WALK_TAILS: readonly RegExp[] = [/\bat a good clip\b/, /\bwith my collar up\b/, /\bgive or take\b/, /\bthe night had turned cold\b/, /\bthe streets were nearly empty\b/, /\bI didn’t hurry\b/, /\bbefore I’d finished a thought\b/];
+
 /** The street between: the distance, and a line of the night outside. The first walk sets the street's role up; a later one may pay it off. */
 function writeWalk(w: Writer, from: PlaceId, to: PlaceId, back = false, noArrive = false, named = false): void {
   const c = w.c;
@@ -1590,8 +1596,19 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId, back = false, noArrive
   if (lean() && way) w.hand.avoid = alsoAvoid(w.hand.avoid, /^(?![\s\S]*\{way\})/);
   // (A walk that names its place takes a card that does: the cards without one are the unnamed walk's.)
   if (!unnamed) w.hand.avoid = alsoAvoid(w.hand.avoid, /^(?![\s\S]*\{[Dd]est\})/);
+  // (clarity-5b, item 1: a walk's tail, "with my collar up", "and I took it at a good clip", once a night,
+  // whichever card carries it: "with my collar up" twice in a night on four of five nights read; and no
+  // tail on a walk that says "good" already: "It was a good walk, and I took it at a good clip.")
+  const goodFar = /\bgood\b/i.test(far ?? wk.far);
+  const tailsOff = lean() ? WALK_TAILS.filter((t) => goodFar || w.hand.used(`walk-tail:${t.source}`)) : [];
+  if (tailsOff.length) w.hand.avoid = alsoAvoid(w.hand.avoid, new RegExp(tailsOff.map((t) => t.source).join('|')));
+  // (The plain cards that keep a night of good walks from running out, `bwk-088` to `bwk-090`, are a
+  // reserve: dealt only once "It was {far}." is spent, the shortest first.)
+  if (lean() && !w.hand.used('bwk-081')) w.hand.avoid = alsoAvoid(w.hand.avoid, /^It was \{far\} from there\.$|^I walked it\. It was \{far\}\.$|^The next stop was \{far\}\.$/);
+  else if (lean() && !w.hand.used('bwk-088')) w.hand.avoid = alsoAvoid(w.hand.avoid, /^I walked it\. It was \{far\}\.$|^The next stop was \{far\}\.$/);
   let frame = w.hand.draw('walk-way', { matters: matters ? 'yes' : 'no', near: wk.near ? 'yes' : 'no' }, slots, { plain: true, untic: true }) ?? (unnamed ? (wk.near ? 'It was round the corner.' : `It was ${wk.far}, ${wk.dir}.`) : wk.near ? `${cap(dest)} was round the corner.` : `It was ${wk.far} to ${dest}, ${wk.dir}.`);
   const frameDrawn = w.hand.last;
+  if (lean()) for (const t of WALK_TAILS) if (t.test(frame)) w.hand.note(`walk-tail:${t.source}`);
   w.hand.avoid = avoidWalk;
   // "The Delmonico rooms were", not "was".
   // (With the planner on, only where the rooms are what the sentence is about: "From there to the
@@ -2366,17 +2383,23 @@ export function writeSearch(w: Writer, findId: string): void {
     let names = 1;
     let roles = 0;
     const deadRole = vict.female ? 'the dead woman' : 'the dead man';
-    const mention = (m: string, at: number, s: string): string => {
+    // (clarity-5b, item 6: and the role never in two sentences running: "The dead man had been squeezing
+    // Renfro for years. The dead man knew where Dandridge…" is "…squeezing Renfro for years. The landlord
+    // knew where Dandridge…", the role again a sentence on.)
+    let lastRole = -2;
+    const mention = (m: string, at: number, s: string, li: number): string => {
       // (A role stays a role while it can: "the dead woman" beside "her friend" is the one way "her" is clear.)
       const role = /^[Tt]he dead\b/.test(m);
-      const said = role ? (roles < 2 ? (roles++, deadRole) : tradeOwn ? third : deadRole) : names < 2 ? (names++, vict.short) : roles < 2 ? (roles++, deadRole) : third;
+      const canRole = roles < 2 && lastRole !== li - 1;
+      const said = role ? (canRole ? (roles++, deadRole) : tradeOwn ? third : roles < 2 && names < 2 ? (names++, vict.short) : deadRole) : names < 2 ? (names++, vict.short) : canRole ? (roles++, deadRole) : third;
+      if (said === deadRole) lastRole = li;
       return at === 0 || /[.!?]\s*$/.test(s.slice(0, at)) ? cap(said) : said;
     };
-    const lines = ps.map(line).map((l) => {
+    const lines = ps.map(line).map((l, li) => {
       if (!lean()) return l;
       const ownRe = new RegExp(`(?<![\\w’])(?:${esc(vict.short)}|[Tt]he dead (?:man|woman))(?!’s)(?![\\w])`, 'g');
       void deadSaid;
-      return l.replace(ownRe, (m, at: number, s: string) => mention(m, at, s));
+      return l.replace(ownRe, (m, at: number, s: string) => mention(m, at, s, li));
     });
     const pages: SaySpec = { shape: 'MOTIVE-SET', flags: ['papers-list'], args: { lines: lines.join(' ') } };
     fact(w, 'job', lines.join(' '), 'find', { about: ps, carries: ps.map((p) => `motive:${p}`), keepNames: true, props: ps.map((p) => ({ k: 'MOTIVE', person: p }) as Prop), flesh: { papers: lines }, say: pages });
@@ -3247,7 +3270,9 @@ export function writeTurn(w: Writer): void {
   // (docs/60, lean: where a small case's thing went isn't said again in a turn on the page that just heard it.)
   // (docs/67: Raw's turn reads the notebook back like Coddled's; the elimination it walked is the hint's.)
   const heardHere = lean() && !!w.handover;
-  const clauses = lean() ? turnOrder(recapClauses(w.d, w.run, true).filter((x) => !(heardHere && x.key.split(':')[0] === 'where')), c.tier <= 2 ? 70 : 90, c) : recapClauses(w.d, w.run, true);
+  // (clarity-5b, item 2: who could have had the means, or the way in, by what's held: the trim never drops them.)
+  const sh = solveHeld(c, solverHeld(w.run));
+  const clauses = lean() ? turnOrder(recapClauses(w.d, w.run, true).filter((x) => !(heardHere && x.key.split(':')[0] === 'where')), c.tier <= 2 ? 70 : 90, c, sh.accessNo) : recapClauses(w.d, w.run, true);
   for (const cl of clauses) {
     for (const h of cl.hours) w.hours.add(h);
     for (const p of cl.people) w.people.add(p);
@@ -3268,24 +3293,67 @@ export function writeTurn(w: Writer): void {
  * for and by whom, whose story doesn't hold, what was said when it was put, who's said where they were
  * with nobody to back it, and what's still open.
  */
-function turnOrder(cs: Clause[], most: number, c?: BoardCase): Clause[] {
+function turnOrder(cs: Clause[], most: number, c?: BoardCase, cannot?: ReadonlySet<string>): Clause[] {
   const head = (k: string) => k.split(':')[0] ?? '';
   const rank = (k: string): number => ({ when: 0, means: 1, access: 2, placed: 3, held: 3, broken: 4, admit: 5, second: 5, refused: 5, own: 6, open: 7, where: 8 } as Record<string, number>)[head(k)] ?? 9;
-  const out = cs.map((x, i) => ({ x, i })).sort((a, b) => rank(a.x.key) - rank(b.x.key) || a.i - b.i).map((y) => y.x);
+  const sorted = cs.map((x, i) => ({ x, i })).sort((a, b) => rank(a.x.key) - rank(b.x.key) || a.i - b.i).map((y) => y.x);
+  // (clarity-5b, item 2: placements on one witness's word, at one place and hour, are one clause: "Bidwell
+  // said Renfro and Salerno were at Moe’s at nine.", never Renfro's alone with Salerno's trimmed.)
+  const out = c && lean() ? joinPlaced(c, sorted) : sorted;
   // docs/60 item 4: one short paragraph, 70 words at Raw to Poached and 90 above: past that, who said
   // where they were with nobody to back it goes first, then who was accounted for, the last first, then
   // where a small case's thing went (the list page said it, and the notebook keeps it) (the hour, where
   // it came from or who knew the way in, one of who was accounted for, whose story doesn't hold and
   // what's still open always stay).
+  // (clarity-5b, item 2: only somebody who couldn't have had the means, or the way in, by what's held:
+  // never somebody who could. Poached 6's turn kept Abramowitz, who had no way to the knife, and dropped
+  // Crowninshield, who had; on a one-liar night "Nobody else" needs everybody cleared.)
   // (docs/62: as the page will say it, where a voicing does, which says the verbs the notebook leaves out.)
   const wordsOf = (xs: Clause[]) => xs.reduce((n, x) => n + Math.max(x.text.split(/\s+/).length, c && x.say ? (sayFirst(c, x.say) ?? '').split(/\s+/).length : 0), 0);
+  const who = (x: Clause) => [...new Set(x.props.flatMap((p) => (p.k === 'PLACED' || p.k === 'CLAIM' ? [p.person] : [])))];
+  const droppable = (x: Clause) => !cannot || (who(x).length > 0 && who(x).every((p) => cannot.has(p)));
   for (const [drop, keep] of [['own', 0], ['placed', 1], ['where', 0]] as const) {
     // (The notebook's words, a little shorter than the page says them.)
     while (wordsOf(out) * 1.2 > most - 2) {
-      const k = out.map((x) => head(x.key)).lastIndexOf(drop);
+      const k = out.map((x, i) => (head(x.key) === drop && (drop === 'where' || droppable(x)) ? i : -1)).reduce((a, b) => Math.max(a, b), -1);
       if (k < 0 || out.filter((x) => head(x.key) === drop).length <= keep) break;
       out.splice(k, 1);
     }
+  }
+  return out;
+}
+
+/**
+ * clarity-5b, item 2: the turn's placements on one witness's word at one place and hour, joined: "Renfro
+ * was at Moe’s at nine; Bidwell said so." and "Salerno was at Moe’s at nine; Bidwell said so." are "Bidwell
+ * said Renfro and Salerno were at Moe’s at nine." (PLACED-SET `recap-many`).
+ */
+function joinPlaced(c: BoardCase, cs: Clause[]): Clause[] {
+  const sig = (x: Clause) => (x.key.startsWith('placed:') && x.say?.shape === 'PLACED-SET' && (x.say.flags ?? []).includes('recap-one') ? `${String(x.say.args?.at)}|${String(x.say.args?.src)}` : null);
+  const out: Clause[] = [];
+  const done = new Set<Clause>();
+  for (const x of cs) {
+    if (done.has(x)) continue;
+    const k = sig(x);
+    const same = k ? cs.filter((y) => y !== x && !done.has(y) && sig(y) === k) : [];
+    if (!same.length) {
+      out.push(x);
+      continue;
+    }
+    const all = [x, ...same];
+    for (const y of all) done.add(y);
+    const ids = all.flatMap((y) => [...new Set(y.props.flatMap((p) => (p.k === 'PLACED' ? [p.person] : [])))]);
+    const at = String(x.say?.args?.at);
+    const src = String(x.say?.args?.src);
+    out.push({
+      key: `placed:${ids.join(',')}`,
+      text: `${andList(ids.map((p) => nameOf(c, p)))} were at ${at}; ${src} said so.`,
+      hours: [...new Set(all.flatMap((y) => y.hours))],
+      people: [...new Set(all.flatMap((y) => y.people))],
+      places: [...new Set(all.flatMap((y) => y.places))],
+      props: all.flatMap((y) => y.props),
+      say: { shape: 'PLACED-SET', flags: ['recap-many'], args: { people: { t: 'people', ids }, at, src } },
+    });
   }
   return out;
 }

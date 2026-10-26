@@ -105,11 +105,13 @@ export function placeCodes(c: BoardCase): Record<PlaceId, string> {
  * name with "the", a title or the kind of place ("Delmonico", the Delmonico rooms; "Nagy’s", Mrs.
  * Nagy’s; "Quill’s", Quill’s place), goes without saying. Null when every one does.
  */
-export function placesKey(c: BoardCase, run: Pick<BoardRun, 'asked' | 'visited'>, codes: Record<PlaceId, string> = placeCodes(c)): string | null {
+export function placesKey(c: BoardCase, run: Pick<BoardRun, 'asked' | 'visited'>, codes: Record<PlaceId, string> = placeCodes(c), shown?: ReadonlySet<PlaceId>): string | null {
   const known = knownPlaces(c, run);
   const plain = (s: string) => s.replace(/^the /i, '').split(/\s+/).filter((w) => !TITLE.test(w)).join(' ').toLowerCase();
+  // (clarity-5b, item 7: `shown`, only the labels the grid's cells show: at Mrs. Nagy's, "In the grid, Sokol’s
+  // is Sokol’s back room." came before any cell said Sokol's.)
   const said = Object.entries(codes)
-    .filter(([id]) => known.has(id) || id === c.crime.scene)
+    .filter(([id]) => (shown ? shown.has(id) : known.has(id) || id === c.crime.scene))
     .filter(([id, code]) => {
       const name = plain(placeName(c, id));
       const k = code.toLowerCase();
@@ -265,6 +267,30 @@ export function cellText(g: BoardGrid, cell: BoardCell): string {
 }
 
 /**
+ * clarity-5b, item 7: the places the grid's cells show, as `cellText` says them, for the key's labels.
+ * `arrows`: and what they admitted or said the second time, after "→" (the CLI's; the book's cells leave it).
+ */
+export function shownPlaces(g: BoardGrid, arrows = true): Set<PlaceId> {
+  const out = new Set<PlaceId>();
+  for (const r of g.rows) {
+    for (const h of g.hours) {
+      const cell = r.cells[h];
+      if (!cell) continue;
+      if (cell.pencil?.at) out.add(cell.pencil.at);
+      else if (cell.pencil?.notAt?.length) out.add(cell.pencil.notAt[0] as PlaceId);
+      if (cell.collision) {
+        if (cell.says) out.add(cell.says);
+        if (arrows && cell.admitted) out.add(cell.admitted);
+        else if (arrows && cell.second) out.add(cell.second);
+      } else if (cell.confirmed && cell.says) out.add(cell.says);
+      else if (cell.seen) out.add(cell.seen.place);
+      else if (cell.says) out.add(cell.says);
+    }
+  }
+  return out;
+}
+
+/**
  * docs/64: the last column, asked as a question with the night's own means: "Could they get the
  * laudanum?", "Could they get the spare key?", "Did they know where the key was?".
  */
@@ -343,7 +369,7 @@ export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'
   if (faceMarkDue(c, { log: run.log ?? [] })) out.push(`${FACE_MARK} (mark "<Name> <hour> at <place>")`);
   // docs/47 B8: the key names only the places the night has named; round 7, U2: and only where the
   // label isn't the place's own name.
-  const places = placesKey(c, run, g.codes);
+  const places = placesKey(c, run, g.codes, shownPlaces(g));
   if (places) out.push(places);
   const coll = g.rows.flatMap((r) => g.hours.filter((h) => r.cells[h]?.collision).map((h) => ({ r, h })));
   if (coll.length > 0) {

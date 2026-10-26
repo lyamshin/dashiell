@@ -617,7 +617,7 @@ function withR(c: BoardCase, lx: Lexicon, s: string | undefined): Id[] | undefin
   if (s === undefined || s === '') return undefined;
   if (/^, (?:on my own|by myself|alone)(?: again)?$/.test(s)) return [];
   // (docs/62, P7: "…, and Thorndike was there".)
-  const there = /^, and (.+?) (?:was|were) there$/.exec(s);
+  const there = /^, and (.+?) (?:was|were) there(?: too)?$/.exec(s);
   if (there) return namesV(c, lx, there[1] as string);
   const m = /^, with (.+?)(?: in the house| about the house)?$/.exec(s);
   if (!m) throw new Error(`voiced: no company in "${s}"`);
@@ -960,6 +960,15 @@ READ['PLACED-SET'] = (a, flags, comp, v, lx) => {
     const want = comp.props as P<'PLACED'>[];
     const bys = listV(srcWords(r.src as string), `${lx.re.NAME}|the office|what the room said`);
     const out = placesAtR(v.c, lx, r.at as string, v, person).map((x) => ({ k: 'PLACED', person, place: x.place, hour: x.hour, by: want.find((y) => y.person === person && y.hour === x.hour)?.by ?? { k: 'given' } }) as Prop);
+    const names = new Set(out.map((x) => ((x as P<'PLACED'>).by.k === 'given' ? nameOf(v.c, v.c.client) : (x as P<'PLACED'>).by.k === 'find' ? 'what the room said' : nameOf(v.c, (x as P<'PLACED'>).by.who as Id))));
+    if (bys.some((b) => !names.has(b)) || [...names].some((n) => !bys.includes(n))) throw new Error('voiced: whose word?');
+    return out;
+  }
+  // (clarity-5b, item 2: several people at one place and hours, on one word.)
+  if (flags.has('recap-many')) {
+    const want = comp.props as P<'PLACED'>[];
+    const bys = listV(srcWords(r.src as string), `${lx.re.NAME}|the office|what the room said`);
+    const out = (a.people as Id[]).flatMap((person) => placesAtR(v.c, lx, r.at as string, v, person).map((x) => ({ k: 'PLACED', person, place: x.place, hour: x.hour, by: want.find((y) => y.person === person && y.hour === x.hour)?.by ?? { k: 'given' } }) as Prop));
     const names = new Set(out.map((x) => ((x as P<'PLACED'>).by.k === 'given' ? nameOf(v.c, v.c.client) : (x as P<'PLACED'>).by.k === 'find' ? 'what the room said' : nameOf(v.c, (x as P<'PLACED'>).by.who as Id))));
     if (bys.some((b) => !names.has(b)) || [...names].some((n) => !bys.includes(n))) throw new Error('voiced: whose word?');
     return out;
