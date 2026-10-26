@@ -14,7 +14,7 @@
 import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
-import { FACE_MARK, boardGrid, cellText, meansAsked, type BoardCell, type BoardGrid } from '../game/board/grid.js';
+import { FACE_MARK, boardGrid, cellText, faceMarkDue, meansAsked, placesKey, type BoardCell, type BoardGrid } from '../game/board/grid.js';
 import { knownPeople, knownPlaces, lineShown, linesHeld } from '../game/board/knowledge.js';
 import {
   BOARD_SAVE_KEY,
@@ -474,12 +474,12 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           type: 'button',
           'data-person': id,
           'aria-expanded': on ? 'true' : 'false',
-          'aria-label': [nameOf((d as BoardDeal).kase, id), star?.why ? `starred: ${star.why}` : '', on ? 'questions open' : questionsText(g), 'free to pick'].filter(Boolean).join(', '),
+          'aria-label': [nameOf((d as BoardDeal).kase, id), star?.why ? `starred: ${star.why}` : '', on ? 'questions open' : questionsText(g, (d as BoardDeal).kase), 'free to pick'].filter(Boolean).join(', '),
         });
         if (star) b.append(el('span', { class: 'mark', 'aria-hidden': 'true', text: '*' }));
         b.append(el('span', { class: 'label', text: nameOf((d as BoardDeal).kase, id) }));
         if (star?.why) b.append(el('span', { class: 'aside why', text: star.why }));
-        b.append(el('span', { class: 'mins', text: on ? 'close' : questionsText(g) }));
+        b.append(el('span', { class: 'mins', text: on ? 'close' : questionsText(g, (d as BoardDeal).kase) }));
         b.addEventListener('click', () => {
           selected = on ? null : id;
           pickerOpen = false;
@@ -693,7 +693,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           'breaks',
           BREAKS_LABEL,
           () => breakOptionsShown(dd, r, who()),
-          () => (who() ? 'Pick what proves it, or “A hunch”.' : `Name them first. Until then, what you know about ${hours}.`),
+          () => (who() ? 'Pick what proves it, or “A hunch”.' : `Pick who first. Until then, this is what you were told about ${hours} o’clock.`),
           () => (who() ? lineGroupHeads(dd, r, who() as string) : null),
         );
         s.addEventListener('change', refill);
@@ -709,7 +709,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           'cleared',
           CLEARED_LABEL,
           () => clearOptions(dd, r, other()),
-          () => (other() === NOBODY ? 'Nobody else, so there’s nothing to clear.' : named() ? 'Pick what clears them, or “A hunch”.' : `Name them first. Until then, what you know about ${hours}.`),
+          () => (other() === NOBODY ? 'Nobody else, so there’s nothing to clear.' : named() ? 'Pick what clears them, or “A hunch”.' : `Pick who first. Until then, this is what you were told about ${hours} o’clock.`),
           () => (other() && other() !== NOBODY ? lineGroupHeads(dd, r, other() as string) : null),
         );
         s.addEventListener('change', refill);
@@ -863,9 +863,12 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (cells.some((x) => x.pencil)) key.append(' · ', el('span', { class: 'k is-pencil', text: '~Odessa' }), ' your own guess');
     key.append('. Tap a cell for what was said.');
     // (docs/66: at Hard-boiled, how a face's clash shows: the player's own mark, under "Your guess".)
-    if (c.tier === 5) key.append(` ${FACE_MARK}`);
+    // (Round 7, U4: once a night, on the page of the first coat or hat, as the CLI says it.)
+    if (faceMarkDue(c, run as BoardRun)) key.append(` ${FACE_MARK}`);
     wrap.append(key);
-    wrap.append(el('p', { class: 'bgrid-key', text: `${g.crimeHour !== null ? `The marked hour is when it happened.` : g.window.length > 1 ? `It happened at ${g.window.join(' or ')}.` : ''} The last column: ${meansAsked(meansWords(g.meansLabel))} ${Object.entries(g.codes).filter(([id]) => knownPlaces(c, run as BoardRun).has(id) || id === c.crime.scene).map(([id, code]) => `${code}: ${placeName(c, id)}`).join('; ')}.` }));
+    // (Round 7, U2: the places only where a label isn't the place's own name, as the CLI says them.)
+    const places = placesKey(c, run as BoardRun, g.codes);
+    wrap.append(el('p', { class: 'bgrid-key', text: `${g.crimeHour !== null ? `The marked hour is when it happened.` : g.window.length > 1 ? `It happened at ${g.window.join(' or ')}.` : ''} The last column: ${meansAsked(meansWords(g.meansLabel))}${places ? ` ${places}` : ''}` }));
     return wrap;
   }
 

@@ -25,7 +25,9 @@ export function jobOf(c: BoardCase, id: PersonId): string {
 export function glossOf(c: BoardCase, id: PersonId): string | null {
   const p = c.people.find((x) => x.id === id);
   if (p?.job) return p.job;
-  const first = p?.description.split(/;/)[0]?.trim();
+  // (Docs/69 §5: a job written for a man is said for her sex: Petrosino, a woman, is "the woman who takes
+  // the slips", never "the man who", as the People list has it.)
+  const first = p?.description.split(/;/)[0]?.trim().replace(/^the man who\b/, p?.female ? 'the woman who' : 'the man who');
   return first && /^(?:a|an|the) /.test(first) && !/\bclient\b/.test(first) ? first : null;
 }
 
@@ -138,12 +140,14 @@ export function introOf(c: BoardCase, id: PersonId, here?: string): string | nul
   const at = (s: string) => (hereShort ? s.replace(new RegExp(` at ${esc(hereShort)}$`), '') : s);
   const d = whoTheyAre(c, id);
   if (p.role === 'watcher') {
-    const j = d.split(/,| at | in /)[0]?.trim() ?? '';
+    const j = (d.split(/,| at | in /)[0]?.trim() ?? '').replace(/^the man who\b/, p.female ? 'the woman who' : 'the man who');
     if (/^the /.test(j)) return j;
     // (A keeper the case gives no trade, "Mr. Feld, at the counter at Feld’s studio": who keeps the place.)
     const kept = c.lists.find((l) => l.watcher === id)?.place;
     const name = kept ? c.places.find((x) => x.id === kept)?.short : undefined;
-    return name ? `who keeps ${name}` : null;
+    // (Round 7, P2: in the place itself, "who keeps the place": "I went up to Feld’s photographic studio …,
+    // and Hanrahan, who keeps Feld’s studio, was…" said its name twice.)
+    return name ? (kept === here ? 'who keeps the place' : `who keeps ${name}`) : null;
   }
   if (p.role === 'company') {
     const w = /^was with (.+?) at .+?; nobody else knows it$/.exec(d);

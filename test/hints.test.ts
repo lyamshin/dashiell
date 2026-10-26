@@ -133,9 +133,10 @@ describe('docs/67 §1: no star by itself; a hint gives one', () => {
     }
   });
 
-  it('the first page says tonight’s count; Soft-boiled says there are none from here on; Medium nothing; Hard-boiled its mark line', () => {
+  it('the first page says tonight’s count; Soft-boiled says there are none from here on; Medium and Hard-boiled nothing (round 7, U4: the mark line waits for the first coat)', () => {
     const note = (tier: TierIndex) => hintsNote(dealBoard(4, tier, 'murder'), newBoardRun(dealBoard(4, tier, 'murder')));
-    expect(TIERS.map(note)).toEqual(['Hints are unlimited tonight.', 'You have three hints tonight.', 'You have one hint tonight.', 'No hints from here on.', null, FACE_MARK]);
+    expect(TIERS.map(note)).toEqual(['Hints are unlimited tonight.', 'You have three hints tonight.', 'You have one hint tonight.', 'No hints from here on.', null, null]);
+    void FACE_MARK;
     const d = dealBoard(4, 0, 'murder');
     expect(hintsNote(d, stepBoard(d, newBoardRun(d), 'go scene').run)).toBeNull();
   });

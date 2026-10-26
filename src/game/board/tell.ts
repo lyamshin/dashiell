@@ -155,7 +155,14 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
   const party = c.givens.lines?.find((g) => g.kind === 'party')?.vars;
   const rot = speakerRot(c, p, rot0);
   // The runs spent alone, said once (docs/47 C13): which they are, before any is told.
+  // (Round 7, P1: "for the committee meeting, alone": a reason that has other people in it, a meeting,
+  // a game, a call, isn't said alone; nobody the night knows was with them, and that's all.)
+  // (One that leaves it, "left the meeting when the gin ran out", is on its own again.)
+  const SOCIAL = /(?<!\bleft the )\b(?:meeting|for the company|a game of|to meet|to pay a call|party|to help)\b/;
   const aloneRuns = runs.filter((r) => {
+    if (lean() && r.reason && SOCIAL.test(r.reason)) return false;
+    // (And the office's gathering, "Eight, I was at Winslow’s for the meeting", never "…, alone".)
+    if (lean() && r === runs[0] && !!party && r.place === c.crime.scene && !r.reason) return false;
     for (let h = r.from; h <= r.to; h++) if ((a.claims[h]?.company ?? []).length > 0) return false;
     // (docs/55 2: a reason's "with Sokol" names nobody the night has with them: it's said without it, and the run is alone.)
     return true;
@@ -164,6 +171,8 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
   const push = (spec: SaySpec, hs: Hour[], props: Prop[]) => out.push({ text: lineText(c, spec, props), hours: hs, props, say: spec });
   // Supper said at one hour, "couldn't eat" at another: an evening that eats twice says so (docs/47 B9).
   let ate = false;
+  // (Round 7, P1: the purposes said so far this evening.)
+  const purposes = new Set<string>();
   // (docs/66, P6: the hours alone said so far this evening.)
   let aloneSaid = 0;
   runs.forEach((r, i) => {
@@ -190,6 +199,11 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
     // Supper once a night: a second meal the same evening is coffee (docs/47 B9).
     if (reason0 && ate) reason0 = reason0.replace(/ for (the blue-plate )?supper\b/, ' for coffee');
     if (reason0 && /\bsupper\b|\bplate of\b|\bpie\b|\bbeans\b/.test(reason0)) ate = true;
+    // (Round 7, P1: "to write letters" twice in one answer: the purpose is said once an evening; a
+    // stretch that has it again says where it went: "At nine I went to the Eagle club office".)
+    const purpose = reason0 ? / ((?:to|for) (?!(?:the|my|his|her|a|an|their)\b)[a-z][^,]*)$/.exec(reason0)?.[1] : undefined;
+    if (lean() && reason0 && purpose && purposes.has(purpose) && reason0.length > purpose.length + 8) reason0 = reason0.slice(0, reason0.length - purpose.length - 1);
+    if (purpose) purposes.add(purpose);
     let reason = reason0 && !says(reason0) ? `${reason0}, ${where.replace(/^at /, 'at ')}` : reason0;
     // docs/59 (the skim test): company beside the going, before the why: "went to the Lyric with Mrs.
     // Greco, because a friend was in the show", never "…, because a friend was in the show, with Mrs. Greco".
@@ -227,8 +241,11 @@ export function spokenAccountLines(c: BoardCase, a: Account, manner: Manner, rot
       // (docs/66, P6: one word for it an evening, "again" the second time: never "by myself", "alone" and
       // "on my own" in three clauses running, which read like a thesaurus; and never "again" twice, "I looked
       // in at the card room again, by myself again", skim round 1.)
-      const aloneTag = (ALONE_TAG[(rot + (tagAll && !lean() ? i : 0)) % ALONE_TAG.length] as string) + (lean() && tagAll && aloneSaid === 1 && !/\bagain\b/.test(reason ?? '') ? ' again' : '');
-      const alone = who.length === 0 && !withSomebody ? ((aloneOnce || tagAll) && runs.length > 1 ? aloneTag : '') : '';
+      // (Round 7, seed 6: and the third time "still", never "on my own" a third time bare.)
+      const tag0 = ALONE_TAG[(rot + (tagAll && !lean() ? i : 0)) % ALONE_TAG.length] as string;
+      const aloneTag = lean() && tagAll && aloneSaid >= 2 ? tag0.replace(/^, /, ', still ') : tag0 + (lean() && tagAll && aloneSaid === 1 && !/\bagain\b/.test(reason ?? '') ? ' again' : '');
+      const social = lean() && ((!!r.reason && SOCIAL.test(r.reason)) || isParty);
+      const alone = who.length === 0 && !withSomebody && !social ? ((aloneOnce || tagAll) && runs.length > 1 ? aloneTag : '') : '';
       if (alone) aloneSaid++;
       // "back to my room to write letters, with Abramowitz and Thorndike" put them in the room: in a
       // rooming house they were in the house (Hard-boiled 8; docs/59: "about the house" stopped the skim readers).
@@ -318,9 +335,13 @@ export function companyByChange(c: BoardCase, p: PersonId, comps: { h: Hour; who
     }
   }
   const groups: { who: PersonId[]; hs: Hour[]; sig: string }[] = [];
+  // (Round 7, docs/68 §6: company said one way a stretch. Where somebody's hours must be said plainly,
+  // "Renfro kept me company at eight", everybody's are, by the hours they were there: "Renfro and Quill
+  // kept me company at eight.", never that beside "Quill was with me at first and left after eight.")
+  const plainly = lean() && order.some((y) => runsIn(at.get(y) as Hour[]).some((r) => stayed(y, r)));
   for (const y of order) {
     const yh = at.get(y) as Hour[];
-    const sig = `${yh.join()}|${runsIn(yh).map((r) => (stayed(y, r) ? 's' : '')).join()}`;
+    const sig = plainly ? yh.join() : `${yh.join()}|${runsIn(yh).map((r) => (stayed(y, r) ? 's' : '')).join()}`;
     const g = groups.find((z) => z.sig === sig);
     if (g) g.who.push(y);
     else groups.push({ who: [y], hs: [...yh], sig });
@@ -328,7 +349,7 @@ export function companyByChange(c: BoardCase, p: PersonId, comps: { h: Hour; who
   const parts: SaySpec[] = [];
   const add = (flags: string[], args: Args, props: Prop[]) => parts.push({ shape: 'CLAIM-SPAN', flags: ['who-with', ...flags], args, manner, props });
   // Somebody who looked in for one hour, each at an hour of their own: "Hargrove came by at eight, Steinbach at nine and Colquitt at ten".
-  const singles = groups.filter((g) => g.who.length === 1 && g.hs.length === 1 && !(g.hs[0] === first && first === last) && !stayed(g.who[0] as PersonId, g.hs));
+  const singles = plainly ? [] : groups.filter((g) => g.who.length === 1 && g.hs.length === 1 && !(g.hs[0] === first && first === last) && !stayed(g.who[0] as PersonId, g.hs));
   const singleHours = new Set(singles.map((g) => g.hs[0]));
   const asSingles = singles.length >= 2 && singleHours.size === singles.length;
   if (asSingles) {
@@ -346,7 +367,7 @@ export function companyByChange(c: BoardCase, p: PersonId, comps: { h: Hour; who
       const b = r[r.length - 1] as Hour;
       const props = r.map((h) => CL(h, [...g.who]));
       // (Round 7, B2: with them at those hours, and nothing said of a coming or going the board hasn't.)
-      if (stayed(g.who[0] as PersonId, r)) add(['seen', n], { names, hours: { t: 'hours', hs: [...r] } }, props);
+      if (plainly || stayed(g.who[0] as PersonId, r)) add(['seen', n], { names, hours: { t: 'hours', hs: [...r] } }, props);
       else if (a === first && b === last) add(['all', n], { names }, props);
       else if (a === first) add(['left', n], { names, to: { t: 'hour', h: b } }, props);
       else if (b === last) add(['came', n, ...(a === b ? ['last'] : [])], { names, from: { t: 'hour', h: a } }, props);
@@ -356,7 +377,12 @@ export function companyByChange(c: BoardCase, p: PersonId, comps: { h: Hour; who
   }
   // The hours on their own.
   const alone = comps.filter((x) => x.who.length === 0).map((x) => x.h);
-  if (alone.length) add(['alone'], { hours: { t: 'hours', hs: alone } }, alone.map((h) => CL(h, [])));
+  // (Round 7, P1: "At nine and ten I had nobody with me." after the company read as a timetable. Lean,
+  // the hours alone after everybody had gone are "Then it was just me.", and before anybody came "At
+  // first it was just me.": the stretch's own ends, folded, as "with me at first" folds its hours.)
+  const withHours = comps.filter((x) => x.who.length > 0).map((x) => x.h);
+  const fold = !lean() || withHours.length === 0 ? null : alone.every((h) => h > Math.max(...withHours)) ? 'rest' : alone.every((h) => h < Math.min(...withHours)) ? 'before' : null;
+  if (alone.length) add(['alone', ...(fold ? [fold] : [])], { hours: { t: 'hours', hs: alone } }, alone.map((h) => CL(h, [])));
   // (docs/62, P7: lean, in the evening's order: "At nine, just me. Hanrahan and Winslow joined me at ten",
   // never the hour alone tacked on after the hour that came later.)
   if (lean()) {
@@ -421,7 +447,10 @@ export function remarkLine(c: BoardCase, speaker: PersonId, r: Remark, i: number
     if (keep) spec = { shape: 'REMARK', flags: ['had'], args: { saw: { t: 'person', id: x.saw }, hour: { t: 'hour', h: x.hour }, keep, back: { t: 'hour', h: x.hour + 1 } }, manner };
   } else if (x?.k === 'REMARK' && x.how === 'there') {
     const m = /^(.+?) was (.+?) at (?:seven|eight|nine|ten|eleven|twelve)\. I didn’t look again\.$/.exec(t);
-    if (m) spec = { shape: 'REMARK', flags: ['there'], args: { means: lc1(m[1] as string), still: m[2] as string, hour: { t: 'hour', h: x.hour } }, manner };
+    // (Round 7, P1: "The carving knife in my kitchen drawer: there at seven." read as a timetable: lean,
+    // the thing, then where it was: "The carving knife was in my kitchen drawer at seven.")
+    const where = m && lean() && m[2] === 'there' ? /^(.+?) ((?:in|on|under|behind|inside) (?:my|the|our) .+)$/.exec(m[1] as string) : null;
+    if (m) spec = { shape: 'REMARK', flags: ['there'], args: { means: lc1((where?.[1] ?? m[1]) as string), still: (where?.[2] ?? m[2]) as string, hour: { t: 'hour', h: x.hour } }, manner };
   } else if (x?.k === 'SHIFT') {
     spec = { shape: 'REMARK', flags: ['shift'], args: { from: { t: 'hour', h: x.from } }, manner };
   }

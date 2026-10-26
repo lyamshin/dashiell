@@ -11,6 +11,7 @@ import { cap, clientOf, hourWord, isMurder, nameOf, personOf, placeName, pronOf,
 import { notebookWhen } from './when.js';
 import { finderGloss, peopleLine } from './gloss.js';
 import { recapClauses } from './pages.js';
+import { lineNumbers } from './report.js';
 
 const WIDTH = 76;
 
@@ -74,19 +75,23 @@ export function chapterShown(text: string): string {
  * count goes down when one is asked, never up when "Confront" joins the list (two testers). U2: "all
  * asked" was a word nobody would use.
  */
-export function questionsText(g: Pick<OfferedGroup, 'choices'>): string {
-  const qs = g.choices.filter((c) => !c.command.startsWith('picker'));
-  const open = qs.filter((c) => !c.done).length;
+export function questionsText(g: Pick<OfferedGroup, 'choices'> & Partial<Pick<OfferedGroup, 'personId'>>, c?: BoardDeal['kase']): string {
+  const qs = g.choices.filter((x) => !x.command.startsWith('picker'));
+  const open = qs.filter((x) => !x.done).length;
   const ask = open === 0 ? 'nothing left to ask' : `${open} ${open === 1 ? 'question' : 'questions'}`;
-  return g.choices.some((c) => c.command.startsWith('picker')) ? `${ask} · can confront` : ask;
+  if (!g.choices.some((x) => x.command.startsWith('picker'))) return ask;
+  // Round 7, U2: "can confront" was a word nobody would use (a tester): said as a person would.
+  const him = c && g.personId ? pronOf(c, g.personId).him : 'them';
+  return open === 0 ? `${ask}, but you can confront ${him}` : `${ask}, or confront ${him}`;
 }
 
 /**
  * Round 6, U2: what the confront row costs to open, the same in the book and the CLI. Opening it is
  * free; the confronting is the action, and the confront screen says so ("free to look" read as
- * whether the confronting was free).
+ * whether the confronting was free). Round 7, U2: "free to open" had to be decoded (three testers):
+ * both halves said, what's free and what isn't.
  */
-export const PICKER_COST = 'free to open';
+export const PICKER_COST = 'free to look; an action if you go ahead';
 
 /** Round 6, U2: a done question or search: ticked, and free to read again ("free ✓" read as a refund). */
 export const DONE_COST = 'free to reread';
@@ -189,7 +194,14 @@ export function notebookText(d: BoardDeal, run: BoardRun): string {
   if (lines.length > 0) {
     out.push('');
     out.push('What I was told:');
-    for (const l of lines) out.push(`  ${wrap(lineShown(c, run, l), 72).replace(/\n/g, '\n  ')}`);
+    // Round 7, U1: numbered as the report numbers them (`lineNumbers`), so "proof=12" is the same
+    // twelfth thing here, on every person's list and on the form.
+    const nums = lineNumbers(d, run);
+    const w = String(lines.length).length;
+    for (const l of lines) {
+      const n = `${String(nums.get(l.id) ?? '').padStart(w)}. `;
+      out.push(`  ${n}${wrap(lineShown(c, run, l), 72 - n.length).replace(/\n/g, `\n  ${' '.repeat(n.length)}`)}`);
+    }
   }
   const motives = run.asked.filter((q) => q.startsWith('motive:')).map((q) => q.slice(7));
   for (const p of motives) out.push(`  ${nameOf(c, p)}’s reason: ${personOf(c, p)?.motive}.`);

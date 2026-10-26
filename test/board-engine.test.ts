@@ -10,7 +10,7 @@ import { playBoardOracle, playReader, playWanderer, refusalShortcutCalls } from 
 import { pageStars } from '../src/game/board/choices.js';
 import { isOpen } from '../src/game/board/stars.js';
 import { hasHints, hintsLeft, takeHint } from '../src/game/board/hints.js';
-import { breakOptionsShown, clearOptions, scoreBoard, truthReport, whereByOptions } from '../src/game/board/report.js';
+import { breakOptionsShown, clearOptions, lineNumbers, scoreBoard, truthReport, whereByOptions } from '../src/game/board/report.js';
 import { firstPerson } from '../src/game/board/tell.js';
 import { REASONS } from '../src/gen/board/content.js';
 import { runPlay, type PlayIo } from '../src/cli/play-lib.js';
@@ -317,12 +317,16 @@ describe('board: the play CLI', () => {
     expect(form.out).toContain('A hunch');
     const o2 = playBoardOracle(d);
     const truth = truthReport(d, o2.run);
-    const n = breakOptionsShown(d, o2.run, d.kase.crime.culprit).findIndex((x) => x.value === truth.breaks) + 1;
-    const wn = whereByOptions(d, o2.run).findIndex((x) => x.value === truth.whereBy) + 1;
+    // (Round 7, U1: by the night's one numbering, the same on every list and in the notebook.)
+    const nums = lineNumbers(d, o2.run);
+    expect(breakOptionsShown(d, o2.run, d.kase.crime.culprit).some((x) => x.value === truth.breaks)).toBe(true);
+    const n = nums.get(truth.breaks as string) ?? 0;
+    const wn = whereByOptions(d, o2.run).some((x) => x.value === truth.whereBy) ? (nums.get(truth.whereBy as string) ?? 0) : 0;
     expect(n).toBeGreaterThan(0);
     // docs/61: who else lied, and what cleared them, counted down the same list `report <other>` shows.
     const otherName = d.kase.people.find((x) => x.id === truth.other)?.short as string;
-    const cn = clearOptions(d, o2.run, truth.other).findIndex((x) => x.value === truth.cleared) + 1;
+    expect(clearOptions(d, o2.run, truth.other).some((x) => x.value === truth.cleared)).toBe(true);
+    const cn = nums.get(truth.cleared as string) ?? 0;
     expect(cn).toBeGreaterThan(0);
     // (Round 6, U5: `report <name>` is that person's list; the whole form is `report`.)
     expect(runPlay(['report', '--save', save], io).out).toContain('Did anyone else lie? If so, who, and what clears them? (other):');

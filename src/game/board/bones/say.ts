@@ -91,11 +91,16 @@ export function preview(
   flags: readonly string[],
   o: { manner?: string; tierBand?: string },
   args: Args,
-  ctx: { c: BoardCase; hand?: VoiceHand; said?: ReadonlySet<string>; prefer?: (text: string) => boolean },
+  ctx: { c: BoardCase; hand?: VoiceHand; said?: ReadonlySet<string>; prefer?: (text: string) => boolean; must?: (text: string) => boolean },
 ): Picked | null {
-  const all = fitting(shape, new Set(flags), o, args);
-  if (all.length === 0) return null;
+  const all0 = fitting(shape, new Set(flags), o, args);
+  if (all0.length === 0) return null;
   const render = (v: Voicing) => fill(v.template, args, ctx.c);
+  // (Round 7, P1: what the answer around it rules out, "the start of the evening" a second time in one
+  // answer, wherever another voicing fits: firmer than `prefer`, which gives way to variety.)
+  const must = ctx.must;
+  const allowed = must ? all0.filter((v) => must(render(v))) : all0;
+  const all = allowed.length > 0 ? allowed : all0;
   const hand = ctx.hand;
   if (!hand) {
     const v = all[0] as Voicing;

@@ -102,7 +102,7 @@ describe('round 4: facts and continuity (docs/55 2)', () => {
     for (const [s, t] of [[5, 2], [8, 5]] as const) {
       const page = prose(night(s, t, 'murder', []).log[0] as Page).replace(/\s+/g, ' ');
       // (docs/60 item 3: lean, the dead man by name where "he" could be the finder.)
-      expect(page).toMatch(/(?:I asked where (?:he’d|[A-Z][\w’]+ had) spent the evening\.|“Where had he been earlier(?: in the evening)?\?” I asked\.|“Was he out at all tonight\?” I asked\.) “(?:The|[^”]{0,30} the) (?:Shamrock|Odessa)/);
+      expect(page).toMatch(/(?:I asked where (?:he’d|[A-Z][\w’]+ had) spent the evening\.|“Where had he been earlier(?: in the evening)?\?” I asked\.|“Where had he been tonight\?” I asked\.|“Was he out at all tonight\?” I asked\.) “(?:The|[^”]{0,30} the) (?:Shamrock|Odessa)/);
       expect(page).not.toMatch(/found dead/);
     }
   });

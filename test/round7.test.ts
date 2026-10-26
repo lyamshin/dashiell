@@ -89,9 +89,11 @@ describe('B2: a telling by change says a coming or going only where the board ha
 
   it('Poached 17, Dandridge: Renfro, at Moe’s all evening, never "left after eight"', () => {
     const { run } = night(POACHED17);
-    const p = pages(run).find((x) => x.includes('Start with seven')) as string;
+    const p = pages(run).find((x) => x.includes('I took a letter round to Mrs. Nagy’s')) as string;
     expect(p).not.toMatch(/Renfro and Quill were with me at first and left after eight/);
-    expect(p).toContain('Renfro kept me company at eight. Quill was with me at first and left after eight.');
+    // (docs/68 §6, done in docs/70: company said one way a stretch.)
+    expect(p).toContain('Renfro and Quill kept me company at eight.');
+    expect(p).not.toMatch(/Quill was with me at first and left after eight/);
   });
 });
 
@@ -136,7 +138,8 @@ describe('B5: "at the supper" only of who sat at the table', () => {
     const { d, run } = night(RAW23);
     const text = all(run);
     expect(text).not.toMatch(/Lindemann(?: and [A-Z]\w+)? (?:were|was) at the supper/);
-    expect(text).toContain('His lodger, Lindemann, a shoe clerk, was out, and had lost her key again.');
+    // (docs/70: whose lodger, by the role where "his" would follow Winslow's name.)
+    expect(text).toMatch(/(?:His|My client’s) lodger, Lindemann, a shoe clerk, was out, and had lost her key again\./);
     expect(text).toContain('Whoever it was knew the door would be unlocked: one of his guests at the supper at the Thorndike flat, or the lodger it was left unlocked for.');
     // (docs/67: Raw's elimination is the hint's now: what a hint says at the Odessa, after Hargrove.)
     const odessa = night(save(23, 0, undefined, dos('go scene', 'search scene', 'go bar', 'ask barkeep list', 'ask winslow evening', 'go neighbours', 'ask xwatcher list')));
@@ -158,7 +161,7 @@ describe('B6: a windowed murder’s means had to be had before the earliest hour
     const { d, run } = night(MEDIUM21);
     const text = all(run);
     expect(text).toContain('Whoever stabbed Mulcahy had been at Kowalski’s for the knife before nine, the earliest it could have happened.');
-    expect(text).toContain('Vitale didn’t come till nine, too late for it.');
+    expect(text).toMatch(/Vitale didn’t come (?:to Kowalski’s )?till nine, too late for (?:it|the carving knife)\./);
     expect(text).not.toMatch(/Vitale hadn’t, though/);
     expect(meansLate(d.kase, run, 'vitale')).toBe(9);
     expect(boardGrid(d.kase, run).rows.find((r) => r.id === 'vitale')?.meansWhy).toBe('Vitale didn’t come to Kowalski’s till nine, too late for it.');
@@ -251,8 +254,15 @@ describe('B8: the small slips', () => {
   });
 
   it('two people "had both been", never "had all been"', () => {
+    // (docs/70: everybody who was there while the means was there for the taking is in the one sentence now,
+    // Salerno and Mosley with them: three "had all been", or "had each been".)
     const text = all(night(POACHED17).run);
-    expect(text).toContain('So Dandridge and Callahan had both been at Mrs. Nagy’s, where the carving knife was kept, and had both left by nine.');
-    expect(all(night(MEDIUM21).run)).toContain('Salerno and Sweeney had both been at Kowalski’s');
+    expect(text).toContain('So Dandridge, Callahan and Salerno had all been at Mrs. Nagy’s, where the carving knife was kept, and had all left by nine.');
+    const m21 = all(night(MEDIUM21).run);
+    expect(m21).toMatch(/Salerno, Sweeney and Mosley had (?:all|each) been at Kowalski’s/);
+    for (const x of [text, m21]) {
+      expect(x).not.toMatch(/(?<!, )\b[A-Z][\w’]+ and [A-Z][\w’]+ had all been\b/);
+      expect(x).not.toMatch(/\b[A-Z][\w’]+, [A-Z][\w’]+ and [A-Z][\w’]+ had both been\b/);
+    }
   });
 });

@@ -12,6 +12,7 @@ import {
   curtainOfBoard,
   heldBreakers,
   heldClearers,
+  lineNumbers,
   otherLie,
   scoreBoard,
   truthReport,
@@ -182,7 +183,9 @@ describe('docs/61: the play CLI files it', () => {
     expect(bad.out).toContain('Name them first (other=…)');
     // Filing a wrong line under the right name: the point goes, and the verdict says why.
     const lineIds = clearOptions(d, o.run, truth.other).map((x) => x.value);
-    const wrong = lineIds.findIndex((id) => !heldClearers(d, o.run).some((l) => l.id === id)) + 1;
+    // (Round 7, U1: by the night's one numbering, the same on every list.)
+    const wrongId = lineIds.find((id) => !heldClearers(d, o.run).some((l) => l.id === id));
+    const wrong = wrongId ? (lineNumbers(d, o.run).get(wrongId) ?? 0) : 0;
     expect(wrong).toBeGreaterThan(0);
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=hunch; other=${other}; cleared=${wrong}; when=${d.kase.crime.hour}; how=${truth.how}; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);

@@ -21,9 +21,9 @@
 
 import { solveRun } from './knowledge.js';
 import { andList, cap, hourWord, nameOf, suspectsOf, tierName, type BoardDeal, type BoardRun, type Hour, type PersonId, type TierIndex } from './model.js';
-import { hintStep, reportReady, starCommand, starReason, starredSteps } from './stars.js';
+import { hintStep, hintWords, reportReady, starCommand, starredSteps } from './stars.js';
 import { eliminationOf } from './thought.js';
-import { FACE_MARK } from './grid.js';
+import { FACE_MARK, faceMarkDue } from './grid.js';
 
 /** Hints a night, by tier (Raw first). */
 export const HINTS_A_NIGHT: readonly number[] = [Infinity, 3, 1, 0, 0, 0];
@@ -56,13 +56,15 @@ const COUNT = ['no', 'one', 'two', 'three'];
  * keeps its mark line (docs/66, `FACE_MARK`).
  */
 export function hintsNote(d: BoardDeal, run: Pick<BoardRun, 'log'>): string | null {
-  if (run.log.length !== 1) return null;
   const t = d.kase.tier;
+  // (Round 7, U4: Hard-boiled's mark line once a night, on the page that brings the first coat or hat,
+  // never on page one before anybody has seen one.)
+  if (faceMarkDue(d.kase, run)) return FACE_MARK;
+  if (run.log.length !== 1) return null;
   const n = hintsAllowed(t);
   if (n === Infinity) return 'Hints are unlimited tonight.';
   if (n > 0) return `You have ${COUNT[n] ?? n} ${n === 1 ? 'hint' : 'hints'} tonight.`;
   if (t === 3) return 'No hints from here on.';
-  if (t === 5) return FACE_MARK;
   return null;
 }
 
@@ -118,7 +120,7 @@ export function takeHint(d: BoardDeal, run: BoardRun): HintResult {
     // The report page: no choice to star, so the step in words. A step starred already is said again, free.
     const q = starred[0] ?? hintStep(d, run, [], false);
     if (!q) return { run, said: { kind: 'none', q: null, text: withWalk(d, run, 'There’s nothing new to point to from here.'), spent: false } };
-    const text = withWalk(d, run, `Still missing: ${starReason(c, run, q)}.`);
+    const text = withWalk(d, run, `Still missing: ${hintWords(c, run, q)}.`);
     return starred.includes(q) ? { run, said: { kind: 'again', q, text, spent: false } } : { run: add(q), said: { kind: 'step', q, text, spent: true } };
   }
   const q = hintStep(d, run, starred);
@@ -137,7 +139,7 @@ function pageStarsCount(d: BoardDeal, run: BoardRun): number {
 
 /** The star's reason, as the choice it sits on says it (a walk says where). */
 function stepWhy(d: BoardDeal, run: BoardRun, q: string): string {
-  return starReason(d.kase, run, q, starCommand(d, run, q)?.startsWith('go ') ?? false);
+  return hintWords(d.kase, run, q, starCommand(d, run, q)?.startsWith('go ') ?? false);
 }
 
 /** "You have what you need to close the case.", and on the report page, that it can be filled in. */
@@ -182,6 +184,6 @@ export function hintStanding(d: BoardDeal, run: BoardRun): string | null {
   if (hs.some((h) => h.q === null) && reportReady(d, run)) return readyText(d, run);
   const last = hs[hs.length - 1];
   if (!last?.q || last.page !== run.log.length - 1) return null;
-  if (run.reportOpen) return withWalk(d, run, `Still missing: ${starReason(d.kase, run, last.q)}.`);
+  if (run.reportOpen) return withWalk(d, run, `Still missing: ${hintWords(d.kase, run, last.q)}.`);
   return starredSteps(d, run).includes(last.q) ? withWalk(d, run, `Hint: ${stepWhy(d, run, last.q)}.`) : null;
 }

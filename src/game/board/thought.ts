@@ -244,6 +244,12 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   // (Who had been where the means was kept, while it was there for the taking, and gone: one
   // sentence, with the way in in it. Not at fact level, docs/46 §2.)
   const meansGone = !fact && thenList && thenList.place === c.means.origin && (isMurder(c) || /^spare/.test(c.setup?.means ?? '')) ? gone.filter((g) => g.was.some((h) => c.means.available.includes(h))) : [];
+  // (Round 7, Poached 6: who could have had it, said once: "Crowninshield had been at Rafferty’s earlier,
+  // when the carving knife was there for the taking; Abramowitz hadn’t, though. So Rosenbaum and Steinbach
+  // had both been at Rafferty’s…" left Crowninshield out of the "So". Lean, everybody this list has there
+  // while it was there for the taking and gone by the hour is in the one sentence, placed or not.)
+  if (lean() && thenList && meansGone.length > 0)
+    for (const g of goneOf(thenList, thenHs, true)) if (!meansGone.some((x) => x.p === g.p) && g.was.some((h) => c.means.available.includes(h)) && a.accessYes.has(g.p) && !b.accessYes.has(g.p)) meansGone.push(g);
   // Whose claims this page's list backs, at which hours (rule 3).
   const listAgreed: { p: PersonId; h: Hour }[] = [];
 
@@ -529,7 +535,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
    * have happened: who had gone. Suspects only, and only where it's news (nobody had put them anywhere
    * else at those hours).
    */
-  function goneOf(l: NonNullable<ReturnType<typeof listOf>>, hs: Hour[]): { p: PersonId; was: Hour[] }[] {
+  function goneOf(l: NonNullable<ReturnType<typeof listOf>>, hs: Hour[], loose = false): { p: PersonId; was: Hour[] }[] {
     const on = (p: PersonId, h: Hour) => (l.entries[h] ?? []).some((e) => 'person' in e && e.person === p);
     const earlier = (c.board.hours as Hour[]).filter((h) => h < (hs[0] as Hour) && l.entries[h] !== undefined);
     const out: { p: PersonId; was: Hour[] }[] = [];
@@ -537,7 +543,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       if ([...caught].some((k) => k.startsWith(`${p}@`))) continue;
       if (!hs.every((h) => !on(p, h) && sureAt(l, p, h))) continue;
       const was = earlier.filter((h) => on(p, h));
-      if (!was.length || hs.every((h) => b.placed.has(`${p}@${h}`))) continue;
+      if (!was.length || (!loose && hs.every((h) => b.placed.has(`${p}@${h}`)))) continue;
       out.push({ p, was });
     }
     return out;

@@ -56,36 +56,68 @@ export interface BoardGrid {
   meansLabel: string;
 }
 
-const STOP = new Set(['the', 'back', 'room', 'rooms', 'flat', 'place', 'shop', 'house', 'mrs.', 'mr.', 'card', 'night', 'desk', 'club', 'office']);
+/** A title before a name, never a label of its own ("Dr." and "Miss" were codes, round 7). */
+const TITLE = /^(?:mrs\.|mr\.|miss|dr\.)$/i;
+/** The kind of place a name ends on: said after a common word ("card room"), never alone. */
+const KIND = new Set(['room', 'rooms', 'flat', 'place', 'shop', 'house', 'booth', 'cellar', 'yard', 'stair', 'surgery', 'studio']);
 
 /**
- * Short labels, unique within the case: "Odessa", "Rafferty’s", "Sokol’s". The scene is "scene".
- * Round 6, U3: a label is a whole word ("Delmonico", "Thorndike’s", "Fairbanks’s"), never cut at
- * eight letters ("Delmonic" read as a bug to three testers).
+ * Short labels, unique within the case: "Odessa", "Rafferty’s", "Sokol’s". Round 6, U3: a label is a
+ * whole word ("Delmonico", "Thorndike’s", "Fairbanks’s"), never cut at eight letters ("Delmonic" read
+ * as a bug to three testers). Round 7, U2: and a word a player would use. A place called after
+ * somebody is their name with its "’s" ("Quill’s" for the scene at Quill’s place, never "scene";
+ * "Hirsch’s", never "Dr."); a named place is its name ("Delmonico", "Blue Lantern", "Kit Kat", never
+ * "Blue" or "Kit"); a common one says what kind of place it is ("card room", "chop house", "back
+ * room", never "cards", "chop" or "at"). A lost thing's flat is "flat" ("Thorndike" alone, in
+ * Thorndike's own row, read as the person).
  */
 export function placeCodes(c: BoardCase): Record<PlaceId, string> {
   const out: Record<PlaceId, string> = {};
   const used = new Set<string>();
   for (const p of c.places) {
+    // (The part before " at " is the place: "the back room at Wexler’s" is the back room.)
+    const words = p.short.replace(/ at .*$/, '').split(/\s+/).filter((w) => w.length > 0 && w.toLowerCase() !== 'the' && !TITLE.test(w));
+    const [w0 = p.short, w1] = words;
     let code: string;
-    if (p.scene) code = isMurder(c) ? 'scene' : 'flat';
-    else {
-      // (A place called after somebody keeps its "’s", "Thorndike’s", "Moe’s": "Thorndike" alone, in
-      // Thorndike's own row, read as the person.)
-      const words = p.short.split(/\s+/).filter((w) => w.length > 0 && !STOP.has(w.toLowerCase().replace(/[’']s$/, '')));
-      code = words[0] ?? p.short;
-      if (/card room/.test(p.short)) code = 'cards';
-      if (/print shop/.test(p.short)) code = 'print';
-      if (/exchange/.test(p.short)) code = 'exchange';
-      if (/night desk/.test(p.short)) code = 'Graphic';
-      if (/club office/.test(p.short)) code = 'Eagle';
-    }
-    let k = code;
+    let longer: string | undefined;
+    if (p.scene && !isMurder(c)) code = 'flat';
+    else if (/exchange/.test(p.short)) code = 'exchange';
+    else if (/night desk/.test(p.short)) code = 'Graphic';
+    else if (/club office/.test(p.short)) code = 'Eagle';
+    else if (/[’']s$/.test(w0)) {
+      code = w0;
+      if (w1) longer = `${w0} ${w1}`;
+    } else if (/^[A-Z]/.test(w0)) code = w1 && /^[A-Z]/.test(w1) ? `${w0} ${w1}` : w0;
+    else code = w1 && KIND.has(w1.toLowerCase()) ? `${w0} ${w1}` : w0;
+    // (Two places called after one person: the second says which, "Hirsch’s surgery".)
+    let k = used.has(code) && longer && !used.has(longer) ? longer : code;
     for (let i = 2; used.has(k); i++) k = `${code}${i}`;
     used.add(k);
     out[p.id] = k;
   }
   return out;
+}
+
+/**
+ * Round 7, U2: the grid's places, said where a label isn't the place's own name ("Places: Moe’s =
+ * Moe’s", "scene = Quill’s place" and "cards = the card room" read as a database): "In the grid,
+ * Sokol’s is Sokol’s back room and Eagle is the Eagle club office." A label that is the name, or the
+ * name with "the", a title or the kind of place ("Delmonico", the Delmonico rooms; "Nagy’s", Mrs.
+ * Nagy’s; "Quill’s", Quill’s place), goes without saying. Null when every one does.
+ */
+export function placesKey(c: BoardCase, run: Pick<BoardRun, 'asked' | 'visited'>, codes: Record<PlaceId, string> = placeCodes(c)): string | null {
+  const known = knownPlaces(c, run);
+  const plain = (s: string) => s.replace(/^the /i, '').split(/\s+/).filter((w) => !TITLE.test(w)).join(' ').toLowerCase();
+  const said = Object.entries(codes)
+    .filter(([id]) => known.has(id) || id === c.crime.scene)
+    .filter(([id, code]) => {
+      const name = plain(placeName(c, id));
+      const k = code.toLowerCase();
+      return !(name === k || (name.startsWith(`${k} `) && KIND.has(name.slice(k.length + 1))));
+    })
+    .map(([id, code]) => `${code} is ${placeName(c, id)}`);
+  if (said.length === 0) return null;
+  return `In the grid, ${said.length > 1 ? `${said.slice(0, -1).join(', ')} and ${said[said.length - 1]}` : said[0]}.`;
 }
 
 export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | 'visited' | 'marks'> & Partial<Pick<BoardRun, 'log'>>): BoardGrid {
@@ -255,11 +287,33 @@ export function meansAsked(label: string): string {
  */
 export const FACE_MARK = 'When somebody saw only a coat or a hat, mark on the grid who you think it was, and the grid will show who that leaves out.';
 
+/**
+ * Round 7, U4: the mark teach is said once a night, where it's needed: on the page that brings the
+ * night's first sighting of only a coat or a hat ("somebody in a fur collar"), and on the grid while
+ * that page is the one open. It printed under every grid, five times a night, and once on page one,
+ * before any coat had been seen. The page's index, or -1 before one.
+ */
+export function faceMarkPage(c: BoardCase, run: Pick<BoardRun, 'log'>): number {
+  return run.log.findIndex((p) => {
+    const q = p.board?.q ?? '';
+    if (!q.startsWith('list:')) return false;
+    const l = listOf(c, q.slice('list:'.length) as PersonId);
+    return !!l && Object.values(l.entries).some((es) => (es ?? []).some((e) => 'look' in e));
+  });
+}
+
+/** Round 7, U4: whether the mark teach is due now: Hard-boiled, on the page of the night's first coat. */
+export function faceMarkDue(c: BoardCase, run: Pick<BoardRun, 'log'>): boolean {
+  if (c.tier !== 5) return false;
+  const i = faceMarkPage(c, run);
+  return i >= 0 && i === run.log.length - 1;
+}
+
 export function gridKey(g: BoardGrid): string[] {
   const cells = g.rows.flatMap((r) => g.hours.map((h) => r.cells[h] as BoardCell));
   const out = ['"X" they say so', '[X] somebody saw them there', '"X"✗ where they clash'];
   if (cells.some((x) => x.confirmed)) out.push('"X"✓ they say so, and somebody saw them there');
-  if (cells.some((x) => x.admitted)) out.push('→Y where they owned up to being');
+  if (cells.some((x) => x.admitted)) out.push('→Y where they admitted they were');
   if (cells.some((x) => x.second && !x.admitted)) out.push('→"Y" what they said the second time');
   if (cells.some((x) => x.pencil)) out.push('~X your own guess');
   return out;
@@ -285,10 +339,12 @@ export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'
   out.push(gridKey(g).join('  ·  '));
   out.push(g.crimeHour !== null ? '! the hour it happened' : '? the hours it could have been');
   // (docs/66: at Hard-boiled, how a face's clash shows: the player's mark.)
-  if (c.tier === 5) out.push(`${FACE_MARK} (mark "<Name> <hour> at <place>")`);
-  // docs/47 B8: the key names only the places the night has named.
-  const known = knownPlaces(c, run);
-  out.push(`Places: ${Object.entries(g.codes).filter(([id]) => known.has(id) || id === c.crime.scene).map(([id, code]) => `${code} = ${placeName(c, id)}`).join('; ')}`);
+  // (Round 7, U4: once a night, on the page of the first coat.)
+  if (faceMarkDue(c, { log: run.log ?? [] })) out.push(`${FACE_MARK} (mark "<Name> <hour> at <place>")`);
+  // docs/47 B8: the key names only the places the night has named; round 7, U2: and only where the
+  // label isn't the place's own name.
+  const places = placesKey(c, run, g.codes);
+  if (places) out.push(places);
   const coll = g.rows.flatMap((r) => g.hours.filter((h) => r.cells[h]?.collision).map((h) => ({ r, h })));
   if (coll.length > 0) {
     out.push('');

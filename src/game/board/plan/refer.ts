@@ -237,7 +237,9 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   /** docs/66, P2: people of each sex named in speech since the narration last spoke of that sex. */
   const speechSince = new Map<boolean, Set<Who>>();
   /** docs/66, P2: whose answer the page is: their own speech doesn't take a pronoun from them. */
-  const speaker = ctx.situ?.subject;
+  // (On the office the client gives every answer: who her own answer named takes no pronoun from her,
+  // "“…Duchess bit him at Easter…” There was more, and she didn't much want to say it.")
+  const speaker = ctx.situ?.subject ?? (ctx.situ?.place === 'office' ? c.client : undefined);
 
   /**
    * A sentence in the room that opens on somebody by their job and names nobody of that sex ("The
@@ -356,13 +358,23 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
   /** Two people of one sex as pronouns in one sentence ("She had her at Kowalski’s") read as anybody's. */
   const otherPronoun = (s: Sent, w: Who): boolean =>
     s.mentions.some((m) => m.who !== w && m.who.female === w.female && (m.kind === 'pronoun' ? m.rep === undefined || /^(he|him|his|she|her)$/i.test(m.rep) : /^(he|him|his|she|her)$/i.test(m.rep ?? '')));
-  const roleFor = (w: Who, form: Form) => (form === 'poss' ? `${w.role}’s` : (w.role as string));
+  // (Round 7, seed 1: "my client" four times on the office page: lean, the client's role once a page,
+  // then a pronoun where it's clear, else the name.)
+  const roleUses = new Map<number, number>();
+  const roleFor = (w: Who, form: Form) => {
+    roleUses.set(w.idx, (roleUses.get(w.idx) ?? 0) + 1);
+    return form === 'poss' ? `${w.role}’s` : (w.role as string);
+  };
   /**
    * docs/60 item 3: lean, a role ("the head waiter") only where the name was said in the sentence before
    * (or earlier in this one): anywhere else the reader has to work out who it is, and the name says.
    */
-  const roleOk = (w: Who, s: Sent, at: number): boolean => {
+  const roleOk = (w: Who, s: Sent, at: number, form?: Form): boolean => {
     if (!lean()) return true;
+    // (Once a page; a second time only as whose ("my client’s lodger"), where the name in its place
+    // would leave the "his" after it to either man. And only while the name is still free: past two
+    // names, the role again is better than the name a third time, docs/39 §4.)
+    if (w.id === c.client && (roleUses.get(w.idx) ?? 0) >= (form === 'poss' ? 2 : 1) && (count.get(w.idx) ?? 0) < 2) return false;
     // ("My client" and "the dead man" are nobody else, ever: the reader always knows who they are.)
     // (Once the page has named them: the first time it's the name.)
     if ((w.id === c.client || (w.id === c.crime.victim && c.type === 'murder')) && introduced.has(w.idx)) return true;
@@ -464,14 +476,26 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
         const spokeHere = s.mentions.some((x) => x.kind === 'speech' && x.who === w && x.at < m.at);
         // (Who said the quotation that has just named them is them: "“Lazar Belkin,” he said".)
         const quoted = spokeHere && m.form === 'subj' && !m.listy && !it.keepNames && !anchors.has(m) && !s.named.some((n) => n.who !== w && n.who.female === w.female) && !s.mentions.some((x) => x.kind === 'speech' && x.who !== w && x.who.female === w.female && x.at < m.at);
-        if ((canPron && ((recent && !link) || pressed || spokeHere)) || quoted) {
+        // (Round 7, seed 1: lean, the client giving the office's answers is "he said" after his own
+        // quotation once the page has named him, where nobody else of his sex is in the narration: never
+        // "my client said" four times, nor his name a fourth.)
+        const said = lean() && w.id === c.client && introduced.has(w.idx) && m.form === 'subj' && !m.listy && !anchors.has(m) && /”\s*$/.test(s.text.slice(0, m.at)) && /^\S+(?: \S+)? said\b/.test(s.text.slice(m.at)) && !s.named.some((n) => n.who !== w && n.who.female === w.female) && !otherPronoun(s, w);
+        // (And where the narration since had him last, of the men, the "he said" after his own quotation is
+        // his, whoever the quotation names: "“Doyle, a switchboard operator, and Lathrop, a night-school
+        // teacher,” he said." A man it names is talked about, not talking.)
+        // (And the sentence before named nobody else of his sex: after "Lanza, …, Hochstetter, … and Lathrop
+        // came round to my client’s place at eight", "“Nobody else,” he said" is anybody's.)
+        const prevN = narrIdx.length ? (sents[narrIdx[narrIdx.length - 1] as number] as Sent).named : [];
+        const his = (chain.get(w.female) ?? []).slice(-1)[0] === w && !prevN.some((x) => x.who !== w && x.who.female === w.female);
+        const attrib = said && ((!s.mentions.some((x) => x.kind === 'speech' && x.who !== w && x.who.female === w.female && x.at < m.at) && resolves(si, m.at, w, m.form)) || his);
+        if ((canPron && ((recent && !link) || pressed || spokeHere)) || quoted || attrib) {
           m.rep = m.place ? `${pronounWord(w, 'poss')} place` : pronounWord(w, m.form);
           note(false);
           continue;
         }
         // (The dead man is known by his role from the office on: "Corrigan had found the dead man",
         // where his name is to come twice in somebody's own words.)
-        if (pressed && (introduced.has(w.idx) || (w.id === c.crime.victim && c.type === 'murder') || w.id === c.client) && w.role && !m.listy && roleOk(w, s, m.at)) {
+        if (pressed && (introduced.has(w.idx) || (w.id === c.crime.victim && c.type === 'murder') || w.id === c.client) && w.role && !m.listy && roleOk(w, s, m.at, m.form)) {
           m.rep = m.place ? `${roleFor(w, 'poss')} place` : roleFor(w, m.form);
           note(false);
           continue;
@@ -515,10 +539,14 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       // (Unless the sentence before named two of that sex and this one names none of them before it: then
       // the pronoun reads as one of theirs, and the role is said again.)
       const prevNamed = narrIdx.length ? (sents[narrIdx[narrIdx.length - 1] as number] as Sent).named : [];
-      const crowded = new Set(prevNamed.filter((x) => x.who.female === w.female).map((x) => x.who)).size >= 2 && !s.named.some((x) => x.who.female === w.female && x.at < m.at);
+      // (A role said earlier in it is nobody else, ever: "Everybody at my client’s table at eight had heard
+      // that he would leave the key…", never "…that my client would leave the key under the mat for my
+      // client’s sister".)
+      const roleHere = s.mentions.some((x) => x !== m && x.who === w && x.at < m.at && (x.kind === 'role' || (x.rep !== undefined && x.rep.replace(/’s$/, '') === w.role)));
+      const crowded = new Set(prevNamed.filter((x) => x.who.female === w.female).map((x) => x.who)).size >= 2 && !s.named.some((x) => x.who.female === w.female && x.at < m.at) && !(lean() && w.id === c.client && roleHere);
       const byRole = !crowded && s.mentions.some((x) => x !== m && x.who === w && x.at < m.at && x.rep !== undefined && !/^(?:he|him|his|she|her)$/i.test(x.rep));
       if (!frozen && !m.wantName && (s.named.some((x) => x.who === w && x.at < m.at) || byRole)) {
-        if (w.role && !byRole) m.rep = roleFor(w, m.form);
+        if (w.role && !byRole && !(lean() && w.id === c.client && (roleUses.get(w.idx) ?? 0) >= 1)) m.rep = roleFor(w, m.form);
         note(false);
         continue;
       }
@@ -526,7 +554,7 @@ export function refer(paras: Item[][], ctx: PlanCtx): { item: Item; who: string 
       // man’s radio", when the client will name him again. A role that would read as a place, "Mrs.
       // Rafferty’s", is better than the name.)
       const placeLike = m.form === 'poss' && c.places.some((pl) => `${w.short}’s`.endsWith(pl.short));
-      if (!m.wantName && (n >= 2 || (pressed && introduced.has(w.idx)) || placeLike) && w.role && !frozen && (placeLike || roleOk(w, s, m.at))) {
+      if (!m.wantName && (n >= 2 || (pressed && introduced.has(w.idx)) || placeLike) && w.role && !frozen && (placeLike || roleOk(w, s, m.at, m.form))) {
         m.rep = roleFor(w, m.form);
         note(false);
       } else if (n >= 2 && !frozen && it.kind === 'gap' && it.slot === 'close' && unclaimed(s, m.at, w)) {

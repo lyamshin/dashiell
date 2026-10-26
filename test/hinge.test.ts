@@ -11,6 +11,8 @@ import { epilogueIssues, hingeIssues, nightIssues, starWrong, type HingeRule } f
 import { linesHeld } from '../src/game/board/knowledge.js';
 import { scoreBoard } from '../src/game/board/report.js';
 import { pronounAmbiguity } from '../src/game/board/plan/measure.js';
+import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
+import { takeHint } from '../src/game/board/hints.js';
 import type { Block, Page, PageJob, ProseVoice } from '../src/game/board/types.js';
 
 const d = dealBoard(5, 2, 'murder');
@@ -349,5 +351,158 @@ describe('docs/68: round 7’s wrong facts, a rule at a time', () => {
     expect(rulesOf).toEqual(expect.arrayContaining(['agrees', 'clock', 'star']));
     expect(rulesOf.filter((x) => x === 'agrees').length).toBe(2);
     expect(nightIssues(raw23, playBoardOracle(raw23).run, { officeLines: () => ['Thorndike points at Winslow. The neighbors say he lost his job on Friday, and asked Thorndike what Mimi was worth.'] }).map((x) => x.rule)).toEqual(['gossip']);
+  });
+});
+
+describe('docs/70: round 7’s joining text, a rule at a time (the line main said, and the line this build says)', () => {
+  const raw23 = dealBoard(23, 0);
+  const p17 = dealBoard(17, 2, 'murder');
+  const m21 = dealBoard(21, 4);
+  const hb19 = dealBoard(19, 5, 'murder');
+  const m14 = dealBoard(14, 4, 'lost-pet');
+  const on = (dd: typeof d, ...pages: Page[]): BoardRun => ({ ...playBoardOracle(dd).run, log: pages.map((p, n) => ({ ...p, n })) });
+  const page1 = (dd: typeof d) => playBoardOracle(dd).run.log[1] as Page;
+  const at = (dd: typeof d, job: PageJob, blocks: B[], extra: Partial<Page['board']> = {}, where?: string): Page => ({
+    ...page1(dd),
+    ...(where ? { at: where } : {}),
+    blocks: blocks.map((b) => ({ kind: 'prose', text: b.text, voice: b.voice ?? 'narrator' }) as Block),
+    board: { ...page1(dd).board, job, q: undefined, units: undefined, turn: undefined, drew: undefined, ...extra },
+  });
+  const ruled = (dd: typeof d, r: BoardRun) => hingeIssues(dd, r).map((x) => x.rule);
+  const u = (text: string, beat: string, o: Record<string, unknown> = {}) => ({ kind: 'gap', slot: beat, text, beat, para: 0, voice: 'establish', ...o }) as never;
+
+  it('walk-name: the walk says how far, the arrival says where; no "same door as before"; no word of the name twice', () => {
+    const arrive = (walk: string, arr: string) => at(p17, 'arrive', [{ text: walk }, { text: arr }], { units: [u(walk, 'walk'), u(arr, 'arrival')] }, 'bar');
+    expect(ruled(p17, on(p17, arrive('Moe’s was a short walk.', 'At Moe’s, a back-room bar behind a cigar store, nobody came for the cigars.')))).toContain('walk-name');
+    expect(ruled(p17, on(p17, arrive('It was a short walk.', 'At Moe’s, a back-room bar behind a cigar store, nobody came for the cigars.')))).not.toContain('walk-name');
+    expect(ruled(p17, on(p17, at(p17, 'arrive', [{ text: 'Getting to the same door as before meant a couple of blocks.' }])))).toContain('walk-name');
+    expect(ruled(p17, on(p17, at(p17, 'arrive', [{ text: 'It was a couple of blocks, and I took it at a good clip.' }])))).not.toContain('walk-name');
+    const scene = m21.kase.places.find((x) => x.scene)?.id as string;
+    const tailor = (text: string) => at(m21, 'arrive', [{ text }], { units: [u(text, 'arrival')] }, scene);
+    expect(ruled(m21, on(m21, tailor('I went in by the tailor’s passage to Mulcahy’s rooms behind the tailor’s on Allen Street.')))).toContain('walk-name');
+    expect(ruled(m21, on(m21, tailor('I went in by the side passage to Mulcahy’s rooms behind the tailor’s on Allen Street.')))).not.toContain('walk-name');
+  });
+
+  it('timetable: answers said as a person says them', () => {
+    const t = (text: string) => ruled(p17, on(p17, at(p17, 'list', [{ text, voice: 'answer' }])));
+    for (const s of [
+      '“Salerno came by at eight and was gone by nine. Nine: nobody in. The carving knife in my kitchen drawer: there at seven. I didn’t look again.”',
+      '“Seven through eight. I went to the Eagle club office for the committee meeting, alone.”',
+      '“Salerno was in from the start of the evening and back at nine. Quill was in from the start of the evening, like every night.”',
+      '“After that, at eight, I went back to my room to write letters. At nine I went to the Eagle club office to write letters, by myself.”',
+      '“Later, at eight, I went home to iron a shirt. Salerno was with me at first and left after eight. At nine and ten I had nobody with me.”',
+      '“Start with seven: I took a letter round to Mrs. Nagy’s, alone. Eight, I went to Moe’s to see who was in.”',
+      '“First, seven o’clock: Renfro and Salerno. Then eight: Renfro.”',
+      '“Eight, I was at Quill’s for the meeting, alone. At nine I went home.”',
+    ])
+      expect(t(s), s).toContain('timetable');
+    for (const s of [
+      '“Salerno came by at eight and was gone by nine. Nobody in at nine. The carving knife was in my kitchen drawer at seven, and I didn’t look again.”',
+      '“Seven through eight, I went to the Eagle club office for the committee meeting.”',
+      '“Salerno was in from the start of the evening and back at nine. Quill was in early, like every night.”',
+      '“After that, at eight, I went back to my room to write letters. At nine I went to the Eagle club office, by myself.”',
+      '“Later, at eight, I went home to iron a shirt. Salerno was with me at first and left after eight. Then it was just me.”',
+      '“At seven I took a letter round to Mrs. Nagy’s, alone. Eight, I went to Moe’s to see who was in.”',
+      '“Seven o’clock, Renfro and Salerno. At eight, Renfro.”',
+      '“Eight, I was at Quill’s for the meeting. At nine I left the meeting and went home alone.”',
+    ])
+      expect(t(s).filter((x) => x === 'timetable'), s).toEqual([]);
+  });
+
+  it('named-bare: somebody an owning up named is placed with who they are', () => {
+    const t = (text: string) => ruled(p17, on(p17, at(p17, 'confront', [{ text: '“At nine I was in Sokol’s back room with Bledsoe. Ask her.”', voice: 'exchange' }, { text }])));
+    expect(t('By then Bledsoe was in the corner.')).toContain('named-bare');
+    expect(t('By then Bledsoe, the woman Dandridge had named, was in the corner.')).not.toContain('named-bare');
+    expect(t('By then Bledsoe, the woman Dandridge had named, was in the corner.')).not.toContain('newcomer');
+  });
+
+  it('ahead: who couldn’t have had it, by what’s known', () => {
+    const t = (text: string) => ruled(p17, on(p17, at(p17, 'list', [{ text, voice: 'thought' }])));
+    expect(t('Renfro hadn’t been at Mrs. Nagy’s while the carving knife was in the kitchen drawer.')).toContain('ahead');
+    expect(t('Renfro hadn’t been at Mrs. Nagy’s before nine, when the carving knife was there to take.')).not.toContain('ahead');
+  });
+
+  it('stacked: no colon and semicolon, no semicolon and "since", in one thought', () => {
+    const t = (text: string) => ruled(m21, on(m21, at(m21, 'account', [{ text, voice: 'thought' }])));
+    expect(t('So Broadnax had seen the same: the Blue Lantern at ten; the street was what mattered, since Allen Street was where Mulcahy lived.')).toContain('stacked');
+    expect(t('So Broadnax had seen the same: the Blue Lantern at ten. The street rang a bell. Allen Street was where Mulcahy lived.')).not.toContain('stacked');
+  });
+
+  it('contradicts: staging that agrees with itself and the room', () => {
+    const t = (dd: typeof d, ...pages: Page[]) => ruled(dd, on(dd, ...pages));
+    expect(t(m21, at(m21, 'arrive', [{ text: 'Vitale had a table near the empty bandstand and was tapping the time of a song nobody was playing. Mosley was picking out a tune on the band’s piano.' }]))).toContain('contradicts');
+    expect(t(m21, at(m21, 'arrive', [{ text: 'Vitale had a table near the empty bandstand and was drumming on it with two fingers. Mosley was picking out a tune on the band’s piano.' }]))).not.toContain('contradicts');
+    expect(t(raw23, at(raw23, 'confront', [{ text: 'So Mimi had gone to Pardo, who was sitting ten feet away and hadn’t looked up once.' }]))).toContain('contradicts');
+    expect(t(raw23, at(raw23, 'confront', [{ text: 'Pardo was still in the back booth.' }, { text: 'So Mimi had gone to Pardo, who was sitting ten feet away and hadn’t looked up once.' }]))).not.toContain('contradicts');
+    const papers = p17.kase.finds.find((f) => f.gives.why)?.id as string;
+    expect(t(p17, at(p17, 'search', [{ text: 'I dusted off my knees. They’d done more work tonight than the rest of me.' }], { q: `search:${papers}` }))).toContain('contradicts');
+    expect(t(p17, at(p17, 'search', [{ text: 'I put the pages back the way I’d found them.' }], { q: `search:${papers}` }))).not.toContain('contradicts');
+  });
+
+  it('hint: a shared reason said once', () => {
+    let run = newBoardRun(raw23);
+    for (const cmd of ['hint', 'go scene', 'hint', 'search scene', 'hint']) run = cmd === 'hint' ? (takeHint(raw23, run) as { run: BoardRun }).run : stepBoard(raw23, run, cmd).run;
+    expect(hingeIssues(raw23, run).filter((x) => x.rule === 'hint')).toEqual([]);
+    // Main's: every star of the shared reason said it whole, page after page.
+    const whole = 'Ashby, Lindemann and Winslow knew the door would be unlocked, and nobody had said where any of them was at ten';
+    const mainStars = () => [{ q: 'account:ashby', why: `${whole} — ask Ashby where she was`, command: 'go neighbours' }];
+    expect(hingeIssues(raw23, run, { pageStars: mainStars as never }).map((x) => x.rule)).toContain('hint');
+    // docs/68 §6: a suspect's evening pointed at by an hour that doesn't matter, and by the one that does.
+    const pr = (takeHint(p17, newBoardRun(p17)) as { run: BoardRun }).run;
+    const star = (why: string) => () => [{ q: 'account:callahan', why, command: 'go rooming' }];
+    expect(hingeIssues(p17, pr, { pageStars: star('Bidwell saw Callahan at Moe’s at seven — ask Callahan where she was') as never }).map((x) => x.rule)).toContain('hint');
+    expect(hingeIssues(p17, pr, { pageStars: star('nobody had said where Callahan was at nine — ask Callahan where she was') as never }).map((x) => x.rule)).not.toContain('hint');
+  });
+
+  it('repeats: "earlier in the evening" once, the means’ origin once, "my client" once a page', () => {
+    const t = (dd: typeof d, ...pages: Page[]) => ruled(dd, on(dd, ...pages));
+    expect(t(p17, at(p17, 'office', [{ text: '“Where had he been earlier in the evening?” I asked. “Moe’s, earlier in the evening, every night of the week,” Ruggiero said.' }]))).toContain('repeats');
+    expect(t(p17, at(p17, 'office', [{ text: '“Where had he been tonight?” I asked. “Moe’s, every night of the week, tonight too,” Ruggiero said.' }]))).not.toContain('repeats');
+    expect(t(m14, at(m14, 'office', [{ text: 'Fritz lived at my client’s place, in a basket by the stove. “Mrs. Whitfield borrows Fritz,” my client said. My client took the chair across the desk.' }]))).toContain('repeats');
+    expect(t(m14, at(m14, 'office', [{ text: 'Fritz lived at my client’s place, in a basket by the stove. “Mrs. Whitfield borrows Fritz,” he said.' }]))).not.toContain('repeats');
+    const floor = p17.kase.finds.find((f) => f.gives.means)?.id as string;
+    const found = at(p17, 'search', [{ text: 'A carving knife lay on the floor. It had come from the kitchen at Mrs. Nagy’s.', voice: 'thought' }], { q: `search:${floor}` });
+    expect(t(p17, found, at(p17, 'arrive', [{ text: 'The carving knife had come from Mrs. Nagy’s.' }], {}, p17.kase.means.origin))).toContain('repeats');
+    expect(t(p17, found, at(p17, 'arrive', [{ text: 'Nobody comes or goes in a rooming house without the landlady knowing.' }], {}, p17.kase.means.origin))).not.toContain('repeats');
+  });
+
+  it('office and father: the office says what it means', () => {
+    const t = (dd: typeof d, text: string) => ruled(dd, on(dd, at(dd, 'office', [{ text }])));
+    expect(t(raw23, 'The table at his place was set at eight, for a birthday supper.')).toContain('office');
+    expect(t(raw23, 'At eight there had been people at Thorndike’s, for a birthday supper.')).not.toContain('office');
+    expect(t(hb19, '“Eight or nine o’clock. The police surgeon puts it at one or the other, by the warmth of him. Whichever it was, that’s when he was poisoned.”')).toContain('office');
+    expect(t(hb19, '“Eight or nine o’clock. That’s as close as the police surgeon can get, by the warmth of him. Chloral works inside the hour, so whichever it was, that’s when he was given it.”')).not.toContain('office');
+    expect(t(hb19, '“Ask Mosley, the one who found him,” she said.')).toContain('office');
+    expect(t(hb19, '“There’s Mosley, the one who found him,” she said.')).not.toContain('office');
+    const man = dealBoard(1, 0, 'lost-item');
+    expect(t(man, '“I’ve lost my late husband’s gold watch,” he said.')).toContain('father');
+    expect(t(man, '“I’ve lost my late father’s gold watch,” he said.')).not.toContain('father');
+  });
+
+  it('turn-hour, drew, company and lodger', () => {
+    const turn = (dd: typeof d, text: string) => ruled(dd, on(dd, { ...at(dd, 'list', [{ text: 'x' }], { turn: true }), blocks: [{ kind: 'prose', text: 'the turn', voice: 'chapter' }, { kind: 'prose', text, voice: 'recap' }] as Block[] }));
+    expect(turn(m21, 'Mulcahy was still alive at the Blue Lantern at nine, and Vogel had said nine or ten, so it happened at ten o’clock.')).toContain('turn-hour');
+    expect(turn(m21, 'It happened at ten o’clock. Vogel had said nine or ten, and at nine Mulcahy was still alive at the Blue Lantern.')).not.toContain('turn-hour');
+    const sokol = p17.kase.places.find((x) => /Sokol/.test(x.short))?.id as string;
+    const way = (blocks: B[], units: never[]) => at(p17, 'arrive', blocks, { units }, sokol);
+    const room = 'I went round to the back of Sokol’s bakery, and Dandridge was sitting where he could see the door.';
+    const met = at(p17, 'list', [{ text: '“Dandridge was round at Sokol’s at seven, and gone by eight.”', voice: 'answer' }]);
+    expect(ruled(p17, on(p17, met, way([{ text: room }], [u(room, 'arrival')])))).toContain('drew');
+    const why = 'Mrs. Nagy had seen Dandridge at her place at seven.';
+    expect(ruled(p17, on(p17, met, way([{ text: room }, { text: why }], [u(room, 'arrival'), u(why, 'why-here', { slot: 'why-here' })])))).not.toContain('drew');
+    // (A wanderer who walks in on somebody the night never named has nothing to say why, nor on somebody
+    // the night named only for a motive: that put him nowhere.)
+    expect(ruled(p17, on(p17, way([{ text: room }], [u(room, 'arrival')])))).not.toContain('drew');
+    const motive = at(p17, 'search', [{ text: 'Dandridge: the dead man had put his sister out of a lease.' }]);
+    expect(ruled(p17, on(p17, motive, way([{ text: room }], [u(room, 'arrival')])))).not.toContain('drew');
+    const t = (text: string) => ruled(p17, on(p17, at(p17, 'account', [{ text, voice: 'answer' }])));
+    expect(t('“Eight, I went to Moe’s. Renfro kept me company at eight. Quill was with me at first and left after eight.”')).toContain('company');
+    expect(t('“Eight, I went to Moe’s. Renfro and Quill kept me company at eight. Then it was just me.”')).not.toContain('company');
+    const latch = dealBoard(2, 1, 'lost-item');
+    const occ = latch.kase.givens.lines?.find((g) => g.kind === 'party')?.vars.occasion;
+    const lodger = latch.kase.people.find((x) => latch.kase.givens.access.includes(x.id))?.short as string;
+    expect(occ && lodger).toBeTruthy();
+    expect(turn(latch, `Mosley had been at the ${occ} and knew that the door was left unlocked.`)).toContain('lodger');
+    expect(turn(latch, `Mosley had been at the ${occ} and knew that the door was left unlocked, and so did ${lodger}, the lodger it was left unlocked for.`)).not.toContain('lodger');
   });
 });

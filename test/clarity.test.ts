@@ -120,7 +120,8 @@ describe('docs/59 item 5 and notes 4–6, 9: the office', () => {
           expect(when, `${world ?? 'dealt'} ${s} ${tier}: ${text}`).not.toBeNull();
           if (/coroner says (?:it was )?(?:chloral|laudanum|rat poison|cyanide|arsenic)/.test(text)) {
             poison++;
-            expect(text).toMatch(/that’s when (?:he|she) was poisoned/i);
+            // (Round 7, P9: the dose said as the dose: "that’s when he was given it".)
+            expect(text).toMatch(/that’s when (?:he|she) was (?:poisoned|given it)/i);
             expect(boardFields(d).find((f) => f.key === 'when')?.label).toMatch(/^When was (?:he|she) poisoned\?$/);
           }
           // No money before the client pays it; the finder said who they are.
@@ -134,7 +135,8 @@ describe('docs/59 item 5 and notes 4–6, 9: the office', () => {
   it('a place said as whose it is is never a pronoun ("The table at her was set at eight")', () => {
     const a = prose(playBoardOracle(dealBoard(4, 1, 'lost-pet')).run.log[0] as Page);
     expect(a).not.toMatch(PLACE_PRONOUN);
-    expect(a).toMatch(/The table at (?:Zeldin’s|her place) was set at eight/);
+    // (Round 7, P9: "set at eight" asked eight people or eight o’clock: the office says when the people were in.)
+    expect(a).toMatch(/(?:The table at|there had been people at|The people at) (?:Zeldin’s|her place)/);
     const b = playBoardOracle(dealBoard(10, 5, 'lost-pet', { world: 'neighbourhood' })).run.log.map(prose).join('\n');
     expect(b).not.toMatch(/lived at (?:her|him),/);
   });

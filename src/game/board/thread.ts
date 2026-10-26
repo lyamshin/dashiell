@@ -14,6 +14,7 @@ import { SPARE_KEY } from '../../gen/board/content.js';
 import { accountOf, confrontationOf, listOf } from './knowledge.js';
 import { wayWhat } from './bones/phrase.js';
 import { markPronoun } from './plan/refer.js';
+import { lean } from './plan/dial.js';
 import {
   andList,
   cap,
@@ -105,8 +106,14 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
           // read as wrong to their face, "Ellery saw you here at eleven" when Ellery had her from ten: the
           // sighting without its hours, which never names the window either.)
           const partial = safe.length > 0 && safe.length < hs.length;
-          return out(`${W} had seen ${P} ${at(c, l.place, here)} ${hoursSaid(c, hs)}`, hs.map((h) => `list:${l.watcher}@${h}`), {
-            ...(safe.length > 0 ? { face: partial ? `${W} saw you ${atFace(c, l.place, here)} tonight.` : `${W} saw you ${atFace(c, l.place, here)} ${hoursSaid(c, safe)}.` } : {}),
+          // (Round 7: "Mrs. Nagy saw you at Mrs. Nagy’s at seven": a place called after its keeper is
+          // theirs, lean: "Mrs. Nagy saw you at her place at seven.")
+          // (By the surname: "Mrs. Kowalski had seen him at Kowalski’s at eight" is hers too.)
+          const theirs = lean() && placeName(c, l.place).includes(W.replace(/’s$/, '').replace(/^(?:Mrs\.|Mr\.|Miss|Dr\.) /, ''));
+          const atW = theirs ? `at ${pm(c, l.watcher, 'his')} place` : at(c, l.place, here);
+          const atWFace = theirs && l.place !== here ? `at ${pm(c, l.watcher, 'his')} place` : atFace(c, l.place, here);
+          return out(`${W} had seen ${P} ${atW} ${hoursSaid(c, hs)}`, hs.map((h) => `list:${l.watcher}@${h}`), {
+            ...(safe.length > 0 ? { face: partial ? `${W} saw you ${atWFace} tonight.` : `${W} saw you ${atWFace} ${hoursSaid(c, safe)}.` } : {}),
             hours: hs,
             people: [p, l.watcher],
             places: [l.place],
@@ -133,7 +140,11 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
           if (m) return out(`${A} had passed ${P} on ${m[4]} at ${m[2]}`, [`remark:account:${a.person}#${rWin}`], { hours: [rm?.facts[0]?.h as Hour], people: [p, a.person] });
         }
         if (hs.length > 0) {
-          const h0 = [...hs].sort((x, y) => Number(windowOf(c).includes(y)) - Number(windowOf(c).includes(x)) || x - y)[0] as Hour;
+          // (Round 7, Hard-boiled 19: lean, on the way into the place they said they were together, that
+          // hour first: at Grasso's flat, "Mosley had said he was with Grasso at nine", the gin game, never
+          // "…with Grasso, Donnelly and Lefkowitz at eight", at the Delmonico rooms.)
+          const atHere = (h: Hour) => Number(lean() && a.claims[h]?.place === here);
+          const h0 = [...hs].sort((x, y) => atHere(y) - atHere(x) || Number(windowOf(c).includes(y)) - Number(windowOf(c).includes(x)) || x - y)[0] as Hour;
           const pl = a.claims[h0]?.place as PlaceId;
           const own = personOf(c, a.person)?.home === pl;
           const where = own ? `${pm(c, a.person, 'his')} place` : placeName(c, pl);
@@ -285,7 +296,9 @@ function givenPlace(c: BoardCase, L: PlaceId, here: PlaceId): Pointer {
   }
   // docs/47 B9: the key is where the office said, in the office's words: a nail, or a sugar tin.
   if (/^spare/.test(mode)) return base(`the spare key lived ${(SPARE_KEY[mode]?.at ?? 'at {x}').replace(/ at \{x\}$/, '')} ${at(c, L, here)}`, ['givens:means']);
-  if (lines.some((g) => g.kind === 'venue') && isMurder(c)) return base(`${victimOf(c).short} had been ${at(c, L, here)} earlier in the evening`, ['givens:venue'], { people: [c.crime.victim] });
+  // (Round 7, P8: "earlier in the evening" in the office's question, its answer and the way in: the way
+  // in says it short, "Quill had been at Moe’s earlier", lean.)
+  if (lines.some((g) => g.kind === 'venue') && isMurder(c)) return base(`${victimOf(c).short} had been ${at(c, L, here)} earlier${lean() ? '' : ' in the evening'}`, ['givens:venue'], { people: [c.crime.victim] });
   const f = c.givens.facts.find((x) => x.k === 'at' && x.place === L);
   if (f) return base(`${cl} had said ${nameOf(c, f.p)} was ${at(c, L, here)} at ${hourWord(f.h)}`, ['givens:facts'], { hours: [f.h], people: [f.p, c.client] });
   void means;

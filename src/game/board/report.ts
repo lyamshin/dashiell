@@ -343,13 +343,43 @@ export function hoursWords(d: BoardDeal): string {
  * Grasso's and Abramowitz's own words, three testers); the group stays wide.
  */
 export function lineGroupHeads(d: BoardDeal, run: Pick<BoardRun, 'asked'>, who: PersonId): { touching: string; rest: string } {
-  void run;
-  void who;
-  const hs = hoursThatMattered(d).map((h) => hourWord(h));
+  // Round 7, U1 (three testers: "Callahan says she was home…" on Dandridge's list "proves nothing
+  // about him"): each heading says what's under it, so another person's word reads as theirs. The
+  // first group is about them at those hours, or about where they said they were (once their own
+  // evening is held); the rest is about anybody else at those hours, or about them at other hours.
+  const c = d.kase;
+  const N = nameOf(c, who);
+  const pr = pronOf(c, who);
+  const at = hoursOclock(d);
+  const theirs = run.asked.includes(`account:${who}`);
   return {
-    touching: `What you know about ${andList(hs)}:`,
-    rest: 'Everything else:',
+    touching: theirs ? `About ${N}, or anywhere ${pr.he} said ${pr.he} was tonight, at ${at}:` : `About ${N} at ${at}:`,
+    rest: `About anybody else at ${at}, or ${N} at other hours:`,
   };
+}
+
+/** The hours that mattered, as the form's headings say them: "nine o’clock", "eight or nine o’clock". */
+function hoursOclock(d: BoardDeal): string {
+  const hs = hoursThatMattered(d).map((h) => hourWord(h));
+  return `${hs.length > 1 ? `${hs.slice(0, -1).join(', ')} or ${hs[hs.length - 1]}` : (hs[0] ?? '')} o’clock`;
+}
+
+/**
+ * Round 7, U1: one numbering for the night. The same line had a different number on each person's
+ * list (Bledsoe was #4 on Dandridge's and #8 on Callahan's, two testers), so every line the form can
+ * offer has one number, the same wherever it's listed: the notebook's "What I was told", in the order
+ * it was held, then the office's own facts the form can offer, then a crack. `proof=N`, `cleared=N`
+ * and `whereproof=N` give that number. Only the numbering: which lines a list offers, and in what
+ * order, is `breakOptionsShown`'s and `whereByOptions`'s, as before.
+ */
+export function lineNumbers(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>): Map<string, number> {
+  const held = linesHeld(d.kase, run);
+  const out = new Map<string, number>();
+  for (const l of held) if (l.kind !== 'given') out.set(l.id, out.size + 1);
+  for (const l of held) if (l.kind === 'given') out.set(l.id, out.size + 1);
+  const crack = crackHeld(d, run);
+  if (crack) out.set(crack.value, out.size + 1);
+  return out;
 }
 
 /**

@@ -97,8 +97,10 @@ describe('round 5, U3: docs/55 5’s wide first group, under a heading that says
         const own = run.asked.includes(`account:${who}`) ? accountOf(d.kase, who) : undefined;
         const theirs = new Set(Object.values(own?.claims ?? {}).map((cl) => cl?.place));
         const head = lineGroupHeads(d, run, who).touching;
-        // (Round 6, U5: the heading says only what every line under it is: about those hours.)
-        expect(head, `${d.kase.id} ${who}`).toMatch(/^What you know about (?:seven|eight|nine|ten|eleven)(?: and (?:seven|eight|nine|ten|eleven))?:$/);
+        // (Round 6, U5: the heading says only what every line under it is: about those hours. Round 7,
+        // U1: and about whom, and where they said they were, once their evening is held.)
+        const N = d.kase.people.find((p) => p.id === who)?.short as string;
+        expect(head, `${d.kase.id} ${who}`).toMatch(new RegExp(`^About ${N.replace(/[.]/g, '\\.')}${own ? ', or anywhere (?:he|she) said (?:he|she) was tonight,' : ''} at (?:seven|eight|nine|ten|eleven)(?:, (?:seven|eight|nine|ten|eleven))*(?: or (?:seven|eight|nine|ten|eleven))? o’clock:$`));
         for (const o of breakOptionsShown(d, run, who).filter((x) => x.touches)) {
           const l = lines.find((x) => x.id === o.value);
           expect(l && l.hour !== undefined && hours.has(l.hour), `${d.kase.id} ${who} ${o.label}`).toBe(true);
@@ -113,15 +115,16 @@ describe('round 5, U3: docs/55 5’s wide first group, under a heading that says
     const { d, run } = played(RAW11);
     const head = lineGroupHeads(d, run, 'bellucci');
     // (docs/64: the heading in plain words, over docs/55 5's same wide group.)
-    expect(head.touching).toBe('What you know about ten:');
-    const first = out.slice(out.indexOf('What you know about ten:'), out.indexOf('Everything else:'));
+    expect(head.touching).toBe('About Bellucci, or anywhere he said he was tonight, at ten o’clock:');
+    expect(head.rest).toBe('About anybody else at ten o’clock, or Bellucci at other hours:');
+    const first = out.slice(out.indexOf('About Bellucci, or anywhere'), out.indexOf('About anybody else at ten o’clock'));
     expect(first).toContain('Mrs. Kowalski: at ten o’clock, only Rafferty and Moretti were at');
     expect(first).toContain('Alfano: at ten o’clock, only Steinbach, Lanza and Pardo were at');
     const med = played(MEDIUM14);
     const thorndike = breakOptionsShown(med.d, med.run, 'thorndike').filter((o) => o.touches);
     expect(thorndike.length).toBeGreaterThan(2);
     expect(thorndike[0]?.value).not.toBe('remark:account:pickering#0');
-    expect(lineGroupHeads(med.d, med.run, 'thorndike').touching).toBe('What you know about nine and ten:');
+    expect(lineGroupHeads(med.d, med.run, 'thorndike').touching).toBe('About Thorndike, or anywhere he said he was tonight, at nine or ten o’clock:');
     const hb = played(HB8);
     expect(breakOptionsShown(hb.d, hb.run, 'renfro').filter((o) => o.touches).length).toBeGreaterThan(2);
   });
@@ -224,11 +227,12 @@ describe('round 5, U9: the picker says what a line says, never the face matched 
   });
 });
 
-describe('round 5, U10, and docs/67: at Hard-boiled, page one keeps its mark line; the only-star note is gone', () => {
-  it('said on page one, at Hard-boiled only', () => {
+describe('round 5, U10, docs/67 and round 7, U4: at Hard-boiled the mark line is said once, on the page of the first coat; the only-star note is gone', () => {
+  it('not on page one, at Hard-boiled only', () => {
     const d = dealBoard(8, 5, 'murder');
     const run = newBoardRun(d);
-    expect(hintsNote(d, run)).toBe(FACE_MARK);
+    expect(hintsNote(d, run)).toBeNull();
+    void FACE_MARK;
     expect(cli({ ...HB8, cmds: [] })('look')).not.toMatch(/only star/);
     expect(hintsNote(d, stepBoard(d, run, 'go scene').run)).toBeNull();
     expect(hintsNote(dealBoard(14, 4, 'lost-pet'), newBoardRun(dealBoard(14, 4, 'lost-pet')))).toBeNull();
@@ -249,7 +253,8 @@ describe('round 5, U11: the streets where they really run', () => {
     const { run } = played(MEDIUM14);
     const page = run.log[1]?.blocks.map((b) => ('text' in b ? b.text : '')).join(' ') ?? '';
     // (docs/66, P7: the bearing on the night's first walk, in whichever card says it.)
-    expect(page).toMatch(/uptown and east,? (?:to|and I was at) the Hauck flat|Hauck flat (?:was|lay) [^.]* uptown and east/);
+    // (Round 7, P2: the walk says how far and which way, and the arrival names the place.)
+    expect(page).toMatch(/uptown and east,? (?:to|and I was at) the Hauck flat|Hauck flat (?:was|lay) [^.]* uptown and east|^It was [^.]* uptown and east\b[^]*[Tt]he Hauck flat/);
     expect(page).not.toMatch(/downtown/);
   });
 });

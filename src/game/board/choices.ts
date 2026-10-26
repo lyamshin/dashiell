@@ -36,7 +36,7 @@ import {
 } from './model.js';
 import { breakSaid } from './pages.js';
 import { homeNamed } from './home.js';
-import { routeSteps, starCommand, starReason, starredSteps } from './stars.js';
+import { hintWords, routeSteps, starCommand, starredSteps } from './stars.js';
 
 /** The minutes the next call moves the clock: what a label says and the engine charges. */
 export function callMinutes(d: BoardDeal, run: Pick<BoardRun, 'used'>): number {
@@ -66,7 +66,9 @@ export function pageStars(d: BoardDeal, run: BoardRun, steps: readonly string[] 
     const command = starCommand(d, run, q);
     // (Two steps in one far room are one walk, starred once.)
     if (command === null || (command.startsWith('go ') && out.some((s) => s.command === command))) continue;
-    out.push({ q, why: starReason(c, run, q, command.startsWith('go ')), command });
+    // (Round 7, P7: the hint's words, `hintWords`: one short clause, a shared reason once, and on the
+    // question it asks only the reason.)
+    out.push({ q, why: hintWords(c, run, q, command.startsWith('go '), command.startsWith('ask ')), command });
   }
   return out;
 }
@@ -237,11 +239,12 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
     claims: c.tier <= 1 ? [] : claims,
     // docs/64: what you tell them, and what you were told, never "the line that breaks it". Round 6,
     // U1: what to pick, said as what it is: somebody who saw them somewhere else, or everybody at the
-    // place they named and not them.
+    // place they named and not them. Round 7, U3 (three testers: still dense): shorter, the same two
+    // kinds of witness.
     help:
       c.tier <= 1
         ? `Pick what you’ll tell ${pr.him}.`
-        : `Pick the hour where what ${pr.he} told you doesn’t match, then what you’ll tell ${pr.him}: somebody who saw ${pr.him} somewhere else, or somebody who saw everyone at the place ${pr.he} named, and not ${pr.him}.`,
+        : `Pick the hour that doesn’t match, then who says otherwise: somebody who saw ${pr.him} somewhere else, or who saw everybody where ${pr.he} said ${pr.he} was, and not ${pr.him}.`,
     minutes: callMinutes(d, run),
   };
 }
