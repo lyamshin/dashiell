@@ -199,6 +199,7 @@ describe('docs/70: the rules on other nights', () => {
   it('the office’s gathering isn’t alone, and leaving it is', () => {
     const d = dealBoard(22, 1, 'lost-item');
     const page = text(playReaderRun(d, 22));
-    expect(page).toContain('“Eight, I was at Winslow’s for the meeting. At nine I left the meeting when the gin ran out and went to the Blue Lantern alone,');
+    // (docs/71, item 5: a bare hour and a comma don't open a clause: "Eight, I was at…" is "At eight I was at…".)
+    expect(page).toContain('“At eight I was at Winslow’s for the meeting. At nine I left the meeting when the gin ran out and went to the Blue Lantern alone,');
   });
 });

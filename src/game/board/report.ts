@@ -56,7 +56,7 @@ import { withCaps } from './pages.js';
 import { homeNamed, titleClient } from './home.js';
 import { introOf } from './gloss.js';
 import { motiveForm, motiveSaid, whyOrder } from './motives.js';
-import { plainWhy, starReason } from './stars.js';
+import { hintWords, plainWhy } from './stars.js';
 import { poisonAfter, whenQuestion } from './when.js';
 import { hasHints, hintsUsed } from './hints.js';
 
@@ -1005,8 +1005,10 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
   // generator's pointer had, "Alfano was at Hauck’s at eight". Game-side: the star's own reason on the path so far.)
   const stepWhy = (s: (typeof d.analysis.path)[number], i: number): string => {
     if (!s.q.startsWith('account:')) return pathWhy(pathSteps(s.why, d.analysis.path), nameOf(c, c.client));
-    const star = starReason(c, { asked: d.analysis.path.slice(0, i).map((x) => x.q) }, s.q);
-    return star ? `${pathWhy(star.replace(' — ', ': '), nameOf(c, c.client))}.` : pathWhy(pathSteps(s.why, d.analysis.path), nameOf(c, c.client));
+    // (clarity-5b, item 8: and by the hour that matters, as the hint says it: "Bidwell saw Dandridge at Moe’s
+    // at eight: ask Dandridge where he was" is "Nobody had said where Dandridge was at nine: …".)
+    const star = hintWords(c, { asked: d.analysis.path.slice(0, i).map((x) => x.q) }, s.q);
+    return star ? `${pathWhy(star.replace(' — ', ': ').replace(/^nobody\b/, 'Nobody'), nameOf(c, c.client))}.` : pathWhy(pathSteps(s.why, d.analysis.path), nameOf(c, c.client));
   };
   d.analysis.path.forEach((s, i) => out.push(`${i + 1}. ${pathLabel(s.label)}${/[?.!]$/.test(s.label) ? '' : '.'} ${stepWhy(s, i)}`));
   if (d.analysis.motive) out.push(`+. ${questionById(c, d.analysis.motive)?.label ?? ''}.`);

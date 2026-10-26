@@ -91,14 +91,18 @@ export function breakToFace(c: BoardCase, l: Line, p: PersonId, asked: readonly 
     const W = nameOf(c, l.speaker as PersonId);
     const at = placeName(c, l.place as PlaceId);
     const h = hourWord(l.hour as Hour);
-    if (es.some((e) => 'person' in e && e.person === p)) return `${W} saw you at ${at} at ${h}`;
+    // (clarity-5b, item 4: a keeper's own place, called after them, isn't said by their name again in their
+    // line: "Mrs. Nagy says nobody was at Mrs. Nagy’s at nine" is "Mrs. Nagy says she had nobody in at nine".)
+    const pr = pronOf(c, l.speaker as PersonId);
+    const own = lean() && at.includes(W.replace(/^(?:Mrs\.|Mr\.|Miss|Dr\.) /, ''));
+    if (es.some((e) => 'person' in e && e.person === p)) return own ? `${W} saw you at ${pr.his} place at ${h}` : `${W} saw you at ${at} at ${h}`;
     const faceOf = (look: string) => c.people.find((x) => x.look === look && x.role === 'suspect' && asked.includes(`account:${x.id}`));
     const names = es.map((e) => ('person' in e ? nameOf(c, e.person) : 'other' in e ? shortOther(c.others?.find((o) => o.id === e.other)?.name ?? '') : `somebody ${e.look}`)).filter(Boolean);
     const faces = es.flatMap((e) => ('look' in e && faceOf(e.look) ? [`${e.look.replace(/^(in|with) an? /, 'the ')} was ${nameOf(c, faceOf(e.look)?.id ?? '')}’s`] : []));
     const tail = faces.length ? `. ${faces.map((f) => f.charAt(0).toUpperCase() + f.slice(1)).join('. ')}` : '';
     // (docs/62, skim round 2: "…, you included" stopped a reader: who it leaves out, plainly.)
-    if (names.length === 0) return `${W} says nobody was at ${at} at ${h}, not you or anybody else${tail}`;
-    return `${W} saw ${andList(names)} at ${at} at ${h}, and not you${tail}`;
+    if (names.length === 0) return own ? `${W} says ${pr.he} had nobody in at ${h}, not you or anybody else${tail}` : `${W} says nobody was at ${at} at ${h}, not you or anybody else${tail}`;
+    return own ? `${W} says ${pr.he} had ${andList(names)} in at ${h}, and not you${tail}` : `${W} saw ${andList(names)} at ${at} at ${h}, and not you${tail}`;
   }
   if (l.kind === 'claim') {
     const sp = l.speaker as PersonId;

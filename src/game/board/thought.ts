@@ -312,7 +312,20 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       const pr = P(rest);
       // First, the golden's "So … which was what Coffin had." After a lie caught, the same from the other side.
       const first = t.sentences.length === 0;
-      const gloss = first ? (held ? x.pick('one-holds', ['That much of it stood up.', 'That much checked out.']) : x.pick('one-holds-early', ['So far as it went, it stood up.', 'That much checked out.'])) : undefined;
+      // (clarity-5b, item 6: never the aside the page before closed on: "That much checked out." on Poached
+      // 6's pages 11 and 12 running.)
+      // (Then one the night hasn't said, of the three, where there is one.)
+      const lastPage = before.log[before.log.length - 1];
+      const saidOn = (pg: (typeof before.log)[number] | undefined, l: string) => !!pg && pg.blocks.some((b) => b.kind === 'prose' && b.text.includes(l));
+      const saidLast = (l: string) => lean() && saidOn(lastPage, l);
+      const ASIDES = ['That much of it stood up.', 'So far as it went, it stood up.', 'That much checked out.'];
+      const holds = (key: string, ls: string[]) => {
+        if (!ls.some(saidLast)) return x.pick(key, ls);
+        const fresh = (xs: string[]) => xs.filter((l) => !saidLast(l) && !before.log.some((pg) => saidOn(pg, l)));
+        const pool = [fresh(ls), fresh(ASIDES), ls.filter((l) => !saidLast(l))].find((xs) => xs.length > 0) ?? ls;
+        return x.pick(`${key}-after`, pool);
+      };
+      const gloss = first ? (held ? holds('one-holds', ['That much of it stood up.', 'That much checked out.']) : holds('one-holds-early', ['So far as it went, it stood up.', 'That much checked out.'])) : undefined;
       const restParts = first
         ? []
         : (namedSoFar.clear(),

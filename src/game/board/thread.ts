@@ -110,9 +110,14 @@ export function pointerSaid(c: BoardCase, src: string, q: string, here: PlaceId)
           // theirs, lean: "Mrs. Nagy saw you at her place at seven.")
           // (By the surname: "Mrs. Kowalski had seen him at Kowalski’s at eight" is hers too.)
           const theirs = lean() && placeName(c, l.place).includes(W.replace(/’s$/, '').replace(/^(?:Mrs\.|Mr\.|Miss|Dr\.) /, ''));
-          const atW = theirs ? `at ${pm(c, l.watcher, 'his')} place` : at(c, l.place, here);
+          // (clarity-5b, item 3: where "her place" would be either woman's, Mrs. Kowalski's or Salerno's, the
+          // place by its name, and whoever she saw by the pronoun the reference pass keeps where it reads as
+          // them, else their name: "Mrs. Kowalski had seen her at Kowalski’s at seven", never "…had seen
+          // Salerno at the landlady’s place".)
+          const clash = theirs && p !== l.watcher && !!personOf(c, p)?.female === !!personOf(c, l.watcher)?.female;
+          const atW = theirs && !clash ? `at ${pm(c, l.watcher, 'his')} place` : at(c, l.place, here);
           const atWFace = theirs && l.place !== here ? `at ${pm(c, l.watcher, 'his')} place` : atFace(c, l.place, here);
-          return out(`${W} had seen ${P} ${atW} ${hoursSaid(c, hs)}`, hs.map((h) => `list:${l.watcher}@${h}`), {
+          return out(`${W} had seen ${clash ? pm(c, p, 'him') : P} ${atW} ${hoursSaid(c, hs)}`, hs.map((h) => `list:${l.watcher}@${h}`), {
             ...(safe.length > 0 ? { face: partial ? `${W} saw you ${atWFace} tonight.` : `${W} saw you ${atWFace} ${hoursSaid(c, safe)}.` } : {}),
             hours: hs,
             people: [p, l.watcher],

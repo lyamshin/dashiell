@@ -151,6 +151,9 @@ export function clarityOf(c: BoardCase, comp: Composite & { said?: string; args?
     const whose = /^(?:the )?((?:[A-Z][\w.]* )?[A-Z][\w]*’s)\b/.exec(name)?.[1];
     if (whose && lower.includes(whose.toLowerCase())) continue;
     if (owners.some((o) => sents.some((s) => s.includes(o.short) && /\b(?:his|her) own\b/i.test(s)))) continue;
+    // (clarity-5b, item 4: a keeper's line about the keeper's own place, with the keeper named in it, says it
+    // as theirs: "Mrs. Nagy says she had nobody in at nine", "Mrs. Nagy saw you at her place at nine".)
+    if (owners.some((o) => sents.some((s) => s.includes(o.short) && /\b(?:he|she) had (?:nobody|[A-Z][^.;]*?) in at\b|\bat (?:his|her) place\b/.test(s)))) continue;
     out.push(`the place not said: ${name}`);
   }
   const all = c.board.hours;

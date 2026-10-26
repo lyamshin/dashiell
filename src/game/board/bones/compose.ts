@@ -501,12 +501,16 @@ function sameSide(hours: number[], hc: number | null): boolean {
 /** A notebook placement, from its propositions: who, where at what hours, and on whose word. */
 function placedClause(it: Item, c: BoardCase): { who: string; at: string; by: string; hours: number[] } | null {
   if (it.tag !== 'clause:placed') return null;
-  const ps = props(it.props ?? [], 'PLACED');
-  if (ps.length === 0) return null;
+  const all = props(it.props ?? [], 'PLACED');
+  if (all.length === 0) return null;
+  // (clarity-5b, item 2: the turn's joined placement is several people at one place and hours: "Renfro and
+  // Salerno at Moe’s at nine". Its place and hours are each one's.)
+  const people = [...new Set(all.map((x) => x.person))];
+  const ps = all.filter((x) => x.person === people[0]);
   const same = ps.every((x) => x.place === ps[0]?.place);
   const at = same ? `${placeName(c, (ps[0] as Extract<Prop, { k: 'PLACED' }>).place)} at ${andList(ps.map((x) => hourWord(x.hour)))}` : andList(ps.map((x) => `${placeName(c, x.place)} at ${hourWord(x.hour)}`));
   const by = andList([...new Set(ps.map((x) => srcName(c, x.by)))]);
-  return { who: nameOf(c, (ps[0] as Extract<Prop, { k: 'PLACED' }>).person), at, by, hours: ps.map((x) => x.hour) };
+  return { who: andList(people.map((p) => nameOf(c, p))), at, by, hours: ps.map((x) => x.hour) };
 }
 
 /** A notebook evening on their own word, from its propositions: who, and what they said. */
