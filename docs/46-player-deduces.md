@@ -34,6 +34,8 @@ The thought beat after a job stays, but what it may conclude depends on the tier
 
 The turn (the recap at the first lie caught) follows the same level. "Go over what I have" lists what's held and what's open, and at link level says which claims have nothing under them, never who's left.
 
+*2026-10-26, docs/72 moved the dial.* Round 8's testers said the "So…" lines did the sums a beat before they did. From Poached up the narration (thoughts, arrivals, the turn, "Go over what I have", the notebook) no longer says the settled hour, the crime hour as a frame, who was still there at the hour and who had gone, who could have had the means, or whose whereabouts nobody had or nobody had backed; the link there is collisions, agreements, the sighting as a plain fact, the street and the way in as a fact of the scene, and the turn says what's held and stops. Raw and Coddled keep the sums, and a sum there names everybody the list placed. `model.ts` `sumsSaid`; the level lint's rule `sum`.
+
 ## 3. The report asks what broke the story
 
 The report form gains one question after "who": **"What breaks their story?"** The player picks from the lines they hold that mention that person or the crime hour (a watcher's list, another person's account, a side remark), plus "A hunch." For a lost thing, "where it is now" likewise asks which line put it there (the handover remark), or "A hunch."

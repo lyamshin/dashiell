@@ -213,6 +213,8 @@ function mendable(it: Item): boolean {
   if (it.tag === 'thought:then') return false;
   // (docs/66, P1: and so is the hour the facts settle: "So he was taken at eleven.", never run on.)
   if (it.tag === 'thought:narrows' || it.say?.flags?.includes('narrows')) return false;
+  // (docs/72: and the sighting said as a plain fact: a sentence of its own, not run into the next.)
+  if (it.tag === 'thought:alive' && it.say?.flags?.includes('fact')) return false;
   // (docs/59 note 7: the papers' pages, a grudge to a sentence, stay one each.)
   if (it.say?.flags?.includes('papers-list')) return false;
   return true;

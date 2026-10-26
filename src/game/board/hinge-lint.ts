@@ -102,12 +102,16 @@
  * **twice** (the papers' dead man two sentences running, one aside two pages running, "was there" twice
  * in an answer); and **hint** reads the curtain's fastest solve too.
  *
+ * docs/72, thin-sums: **sum-drop** (round 8, B3: where the sums stay, Raw and Coddled, a list's sum leaving
+ * out somebody the list placed: "So he had been at Kowalski’s at eight, where the laudanum was kept, and
+ * had left by nine. Feldman was still in at nine." without Hargrove, who was in all evening).
+ *
  * Pure: it reads the night and returns what it found.
  */
 
 import type { Page } from './types.js';
 import type { BoardDeal, BoardRun } from './model.js';
-import { OFFICE, budgetCalls, clientOf, hourWord, isMurder, placeName, solverHeld, victimOf, type BoardCase, type Hour } from './model.js';
+import { OFFICE, budgetCalls, clientOf, hourWord, isMurder, placeName, solverHeld, sumsSaid, victimOf, type BoardCase, type Hour } from './model.js';
 import { clockWords, minutesAfter, usedByPage } from './clock.js';
 import type { Prop } from './bones/types.js';
 import { voicingById } from './bones/voice.js';
@@ -139,6 +143,7 @@ export interface LintEnv {
   curtainOfBoard?: typeof curtainOfBoard;
 }
 import { sentencesOf } from './plan/sentences.js';
+import { lean } from './plan/dial.js';
 import { glossedIn } from './gloss.js';
 import { maskPlaces, narrationOf, roleOf } from './plan/measure.js';
 import { isPoison } from './when.js';
@@ -205,9 +210,10 @@ export type HingeRule =
   | 'turn-drop'
   | 'keeper'
   | 'bare-hour'
-  | 'twice';
+  | 'twice'
+  | 'sum-drop';
 
-export const HINGE_RULES: HingeRule[] = ['said-place', 'gloss', 'bare', 'put-lead', 'put-speech', 'thought-who', 'orphan', 'shift', 'telling', 'form', 'epilogue', 'dose', 'unwatched', 'pointer', 'connector', 'tail', 'locative', 'reason', 'vocab', 'unsettled', 'hedge', 'restated', 'find', 'presumes', 'newcomer', 'office', 'alone', 'walk', 'log', 'papers', 'staging', 'retired', 'moved', 'agrees', 'star', 'party', 'deadline', 'clock', 'pet-it', 'gossip', 'number', 'both', 'walk-name', 'timetable', 'named-bare', 'ahead', 'stacked', 'contradicts', 'hint', 'repeats', 'father', 'turn-hour', 'drew', 'company', 'lodger', 'walk-tail', 'turn-drop', 'keeper', 'bare-hour', 'twice'];
+export const HINGE_RULES: HingeRule[] = ['said-place', 'gloss', 'bare', 'put-lead', 'put-speech', 'thought-who', 'orphan', 'shift', 'telling', 'form', 'epilogue', 'dose', 'unwatched', 'pointer', 'connector', 'tail', 'locative', 'reason', 'vocab', 'unsettled', 'hedge', 'restated', 'find', 'presumes', 'newcomer', 'office', 'alone', 'walk', 'log', 'papers', 'staging', 'retired', 'moved', 'agrees', 'star', 'party', 'deadline', 'clock', 'pet-it', 'gossip', 'number', 'both', 'walk-name', 'timetable', 'named-bare', 'ahead', 'stacked', 'contradicts', 'hint', 'repeats', 'father', 'turn-hour', 'drew', 'company', 'lodger', 'walk-tail', 'turn-drop', 'keeper', 'bare-hour', 'twice', 'sum-drop'];
 
 export interface HingeIssue {
   page: number;
@@ -835,7 +841,7 @@ function retired(run: BoardRun): HingeIssue[] {
  * ------------------------------------------------------------------ */
 
 /** The run as it stood after page `i`: what was asked and where I'd been, for the stars a page offered. */
-function runAt(run: BoardRun, i: number): BoardRun {
+export function runAt(run: BoardRun, i: number): BoardRun {
   const asked: string[] = [];
   const visited: string[] = [];
   for (let k = 0; k <= i; k++) {
@@ -1001,6 +1007,9 @@ function party(c: BoardCase, run: BoardRun): HingeIssue[] {
 function deadline(d: BoardDeal, run: BoardRun): HingeIssue[] {
   const c = d.kase;
   const out: HingeIssue[] = [];
+  // (docs/72: where the sums are said, Raw and Coddled. From Poached up the hour the means had to be had
+  // by, and who came too late for it, are the player's: the find says the way in as a fact.)
+  if (!sumsSaid(c)) return out;
   const by = meansBy(c);
   const find = c.finds.find((f) => f.gives.means);
   run.log.forEach((p, i) => {
@@ -1456,6 +1465,47 @@ function turnDrop(d: BoardDeal, run: BoardRun): HingeIssue[] {
   return out;
 }
 
+/** docs/72: a fact unit's composites, and theirs, all the way down. */
+function composites(u: { bones?: { voicing?: string; parts?: unknown[]; props: Prop[] }[] }): { voicing?: string; props: Prop[] }[] {
+  const out: { voicing?: string; props: Prop[] }[] = [];
+  const walk = (cs: { voicing?: string; parts?: unknown[]; props: Prop[] }[]) => {
+    for (const x of cs) {
+      out.push(x);
+      if (x.parts) walk(x.parts as { voicing?: string; parts?: unknown[]; props: Prop[] }[]);
+    }
+  };
+  walk(u.bones ?? []);
+  return out;
+}
+
+/**
+ * docs/72 (round 8, B3), **sum-drop**: where the sums stay (Raw and Coddled), a list's sum, the thought's
+ * consequence of the list ("So … had been at Kowalski’s at eight, where the laudanum was kept, and had
+ * left by nine. Feldman was still in at nine."), names everybody the list placed: who was still there at
+ * the hour, who had gone, and who had been there while the means was there to take. Coddled 35's left
+ * out Hargrove, in all evening; Medium 33's left out Dandridge, in at nine and gone by ten, said only in
+ * the agreement before it. (Turned to a person, "he", the sum still has them: its people are the unit's.)
+ */
+export function sumDrop(c: BoardCase, run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  if (!sumsSaid(c) || !lean()) return out;
+  run.log.forEach((p, i) => {
+    if (p.board?.job !== 'list' || !p.board.q) return;
+    const l = listOf(c, p.board.q.slice('list:'.length));
+    if (!l) return;
+    const sums = (p.board.units ?? []).filter((u) => u.kind === 'fact' && u.voice === 'thought' && composites(u).some((x) => /^placed-set\/then/.test(x.voicing ?? '') || x.props.some((y) => y.k === 'AWAY')));
+    if (!sums.length) return;
+    const said = new Set(sums.flatMap((u) => (u.kind === 'fact' ? u.about : [])));
+    const text = sums.map((u) => strip(u.text)).join(' ');
+    const placed = [...new Set(Object.values(l.entries).flatMap((es) => (es ?? []).flatMap((e) => ('person' in e ? [e.person] : []))))].filter((x) => x !== c.crime.victim);
+    for (const x of placed) {
+      const name = c.people.find((y) => y.id === x)?.short ?? x;
+      if (!said.has(x) && !new RegExp(`(?<![\\w’])${esc(name)}(?![\\w])`).test(text)) out.push({ page: i, rule: 'sum-drop', detail: `${name}, on ${c.people.find((y) => y.id === l.watcher)?.short}’s list, left out of “${text.slice(0, 110)}”` });
+    }
+  });
+  return out;
+}
+
 /**
  * Items 3 and 4, **keeper**: a keeper's own place said by their job ("Mrs. Kowalski had seen Salerno at
  * the landlady’s place at seven", where "her place" would have been either woman's: the place by its
@@ -1645,6 +1695,7 @@ export function hingeIssues(d: BoardDeal, run: BoardRun, env: LintEnv = {}): Hin
     ...lodger(c, run),
     ...walkTail(run),
     ...turnDrop(d, run),
+    ...sumDrop(c, run),
     ...keeper(c, run),
     ...bareHour(run),
     ...twice(run),

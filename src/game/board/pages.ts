@@ -23,6 +23,7 @@ import { tidyPunctuation, type Card } from './cards.js';
 import type { Block, Page, ProseVoice } from './types.js';
 import { minutesAfter } from './clock.js';
 import type { Line } from './knowledge.js';
+import type { Solved } from '../../gen/board/solver.js';
 import {
   accountOf,
   candidateLines,
@@ -57,6 +58,7 @@ import {
   placeOf,
   pronOf,
   solverHeld,
+  sumsSaid,
   suspectsOf,
   thoughtLevel,
   victimOf,
@@ -2445,7 +2447,10 @@ export function writeSearch(w: Writer, findId: string): void {
   // Round 7, B6: a windowed murder's means had to be had before the earliest hour it could have
   // happened, and the page that says where it was kept says so, plainly: "Whoever stabbed Mulcahy had
   // been at Kowalski’s for the knife before nine, the earliest it could have happened."
-  const by = meansBy(c);
+  // (docs/72: Raw and Coddled only. From Poached up the find says the way in as a fact of the search, and
+  // the hour it had to be had by is the player's sum: "the earliest it could have happened" is the crime
+  // hour as a frame, and the grid's last column says who could have had it.)
+  const by = sumsSaid(c) ? meansBy(c) : undefined;
   const bodyBy = by === undefined ? body : body.replace(/ first(?:, (?:for the gun|to take it|to get it))?\.$/, ` for ${kind === 'gun' ? 'the gun' : kind === 'blade' ? 'the knife' : 'it'} before ${hourWord(by)}, the earliest it could have happened.`);
   const props: Prop[] = [{ k: 'MEANS', how: 'first', place: at, ...(by !== undefined ? { before: by } : {}) }];
   // (Round 7, B5: the lodger knew it too: "one of his guests" alone would rule her out.)
@@ -2528,7 +2533,9 @@ export function writeMotive(w: Writer, p: PersonId): void {
   }
   w.people.add(c.client);
   // At fact level the thought doesn't reach back to their evening, an earlier page.
-  if (w.run.asked.includes(`account:${p}`) && thoughtLevel(c) !== 'fact') {
+  // (docs/72: and from Poached up their evening isn't said again at the hour it happened: "For ten, she
+  // had told me she was home" frames it at the crime hour, the settled one where it's settled.)
+  if (w.run.asked.includes(`account:${p}`) && thoughtLevel(c) !== 'fact' && sumsSaid(c)) {
     const hc = crimeHourKnown(c, w.run);
     const hs = hc !== null ? [hc] : (c.givens.window ?? c.crime.window);
     // (docs/62 item 2: what they said, as a clause: "she was at the Odessa at ten".)
@@ -2674,7 +2681,10 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
             { text: `${nameOf(c, y)} could say whether ${nameOf(c, p)} was telling it straight.`, props: [{ k: 'POINTER', from: 'admit', to: y, why: 'witness' }], say: { shape: 'REACTION', flags: ['witness-thought'], args: { person: { t: 'person', id: p }, witness: { t: 'person', id: y }, claimed: { t: 'place', id: lie.claim }, truth: { t: 'place', id: lie.truth } } } },
             { gloss: aside(w, 'owned-up', ['An owned-up story is only as good as whoever’s in it with you.', 'A story like that leans on whoever’s in it with you.', 'I wasn’t sure yet it was the one I wanted.']) },
           ]
-        : [{ text: `${nameOf(c, p)} owned up to ${placeName(c, lie.truth)} at ${hourWord(h)}. Nobody had said so but ${pr.him}.`, props: [{ k: 'ADMIT', person: p, place: lie.truth, hour: h }], say: { shape: 'REACTION', flags: ['owned-hour'], args: { person: { t: 'person', id: p }, place: { t: 'place', id: lie.truth }, hour: { t: 'hour', h } } } }],
+        : // (docs/72: "Nobody had said so but him" is the gap, from Poached up the grid's: the page ends on the owning up.)
+          sumsSaid(c)
+          ? [{ text: `${nameOf(c, p)} owned up to ${placeName(c, lie.truth)} at ${hourWord(h)}. Nobody had said so but ${pr.him}.`, props: [{ k: 'ADMIT', person: p, place: lie.truth, hour: h }], say: { shape: 'REACTION', flags: ['owned-hour'], args: { person: { t: 'person', id: p }, place: { t: 'place', id: lie.truth }, hour: { t: 'hour', h } } } }]
+          : [],
       lineRef,
     );
     return;
@@ -2798,7 +2808,8 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
             props: [{ k: 'REFUSE', person: p, hour: h }, ...(near ? [{ k: 'CLAIM', person: p, place: near.place, hour: near.hh } as Prop] : [])],
             say: {
               shape: 'REACTION',
-              flags: ['refuse-thought', claimed === 'home' ? 'home' : 'away', ...(near ? ['points'] : [])],
+              // (docs/72: `thin` from Poached up, where "Only he said he was home at ten" is the gap pointer, the grid's.)
+              flags: ['refuse-thought', claimed === 'home' ? 'home' : 'away', ...(near ? ['points'] : []), ...(sumsSaid(c) ? [] : ['thin'])],
               args: { person: { t: 'person', id: p }, hour: { t: 'hour', h }, claimed: { t: 'place', id: claimPlace }, ...(near ? { near: { t: 'place', id: near.place }, nearHour: { t: 'hour', h: near.hh } } : {}) },
             },
           },
@@ -2946,7 +2957,9 @@ export function recapClauses(d: BoardDeal, run: BoardRun, marks = false): Clause
 function recapClausesMarked(d: BoardDeal, run: BoardRun): Clause[] {
   const c = d.kase;
   const level = thoughtLevel(c);
-  if (level === 'fact') return factClauses(d, run);
+  // (docs/72: from Poached up, what's held and nothing joined to it, as Hard-boiled's: the turn, "Go over
+  // what I have" and the notebook say no settled hour, nobody's partition or way to the means, and no gap.)
+  if (level === 'fact' || !sumsSaid(c)) return factClauses(d, run);
   const s = solveHeld(c, solverHeld(run));
   const out: Clause[] = [];
   const hc = s.possibleHours.length === 1 ? (s.possibleHours[0] as Hour) : null;
@@ -3052,47 +3065,9 @@ function recapClausesMarked(d: BoardDeal, run: BoardRun): Clause[] {
   const open: PersonId[] = [];
   for (const p of named) {
     const placed = hs.map((h) => ({ h, x: s.placed.get(`${p}@${h}`) })).filter((y) => y.x && y.x.place !== c.crime.scene && y.x.deps.some((dq) => dq !== `account:${p}`));
-    const st = hs.map((h) => ({ h, st: s.status.get(`${p}@${h}`) })).find((y) => y.st?.s === 'broken');
-    if (st) {
-      const cl = accountOf(c, p)?.claims[st.h];
-      // docs/65 §2: who said otherwise is whoever broke the story first, as the collision keeps it (once a
-      // refuser's keeper says where they really were, the solver's break rests on the list that clears them).
-      const first = collisionsOf(c, run, p, { all: true }).find((x) => x.hour === st.h)?.breakers[0]?.q;
-      const by = first ?? st.st?.deps.find((dq) => dq !== `account:${p}` && !dq.startsWith('confront:'));
-      out.push({
-        key: `broken:${p}`,
-        text: `${nameOf(c, p)} had told me ${claimWas(c, p, [st.h], { mark: markPronoun(c, p) })}, and ${by ? sourceName(c, by) : 'what I had'} said otherwise.`,
-        hours: [st.h],
-        people: [p, ...sourcePeople(by)],
-        places: [cl?.place ?? ''],
-        props: [{ k: 'COLLIDES', person: p, place: cl?.place ?? '', hour: st.h, with: by ? srcOfQ(by) : { k: 'given' } }],
-        say: { shape: 'COLLISION-PAIR', flags: ['recap', personOf(c, p)?.home === cl?.place ? 'home' : 'away'], args: { person: { t: 'person', id: p }, place: { t: 'place', id: cl?.place ?? '' }, hour: { t: 'hour', h: st.h }, src: by ? sourceName(c, by) : 'what I had' } },
-      });
-      const k = c.confrontations.find((x) => x.person === p && x.hour === st.h);
-      if (k && run.asked.includes(`confront:${p}@${st.h}`)) {
-        const lie = c.lies.find((l) => l.person === p && l.hour === st.h);
-        if (k.response === 'admit' && lie) {
-          const y = (k.names ?? [])[0];
-          const checked = y ? run.asked.includes(`account:${y}`) : false;
-          // (Round 7, U2: what they admitted is where they were, said plainly: never "owned up to Sokol’s back room".)
-          out.push({ key: `admit:${p}`, text: `${nameOf(c, p)} admitted ${pronOf(c, p).he} was at ${placeName(c, lie.truth)}${y ? `, with ${nameOf(c, y)}` : ''}${y && !checked ? `, and ${nameOf(c, y)} could say whether that was so` : ''}.`, hours: [], people: [p, ...(y ? [y] : [])], places: [lie.truth], props: [{ k: 'ADMIT', person: p, place: lie.truth, ...(y ? { witness: y } : {}) }], say: { shape: 'REACTION', flags: ['owned', ...(y ? ['witness', checked ? 'checked' : 'unchecked'] : ['alone'])], args: { person: { t: 'person', id: p }, place: { t: 'place', id: lie.truth }, ...(y ? { witness: { t: 'person', id: y } } : {}) } } });
-        } else if (k.response === 'second-lie' && k.secondLie?.place) {
-          const again = run.puts.some((x) => x.person === p && x.hour === st.h && x.again && x.landed);
-          out.push({
-            key: `second:${p}`,
-            text: again
-              ? `Faced with it, ${nameOf(c, p)} changed the answer to ${placeName(c, k.secondLie.place)}; that didn’t check out either, and ${pronOf(c, p).he} wouldn’t say more.`
-              : `Faced with it, ${nameOf(c, p)} changed the answer to ${placeName(c, k.secondLie.place)}.`,
-            hours: [],
-            people: [p],
-            places: [k.secondLie.place],
-            props: [{ k: 'SECOND', person: p, place: k.secondLie.place }, ...(again ? [{ k: 'REFUSE', person: p } as Prop] : [])],
-            say: { shape: 'REACTION', flags: ['second', again ? 'again' : 'once'], args: { person: { t: 'person', id: p }, place: { t: 'place', id: k.secondLie.place } } },
-          });
-        } else if (k.response !== 'crack') {
-          out.push({ key: `refused:${p}`, text: `${nameOf(c, p)} wouldn’t say where ${pronOf(c, p).he} had been instead.`, hours: [], people: [p], places: [], props: [{ k: 'REFUSE', person: p }], say: { shape: 'REACTION', flags: ['refused'], args: { person: { t: 'person', id: p } } } });
-        }
-      }
+    const broken = brokenClauses(c, run, s, p, hs, true);
+    if (broken.length) {
+      out.push(...broken);
       continue;
     }
     const pl = placed[0];
@@ -3147,18 +3122,72 @@ function recapClausesMarked(d: BoardDeal, run: BoardRun): Clause[] {
       say: { shape: 'UNSPOKEN', flags: [one ? 'one' : 'many', ohs.length > 1 ? 'two' : 'hour'], args: { ...(one ? { person: { t: 'person', id: one } } : { people: { t: 'people', ids: [...open] } }), hours: { t: 'hours', hs: [...ohs] } } },
     });
   }
-  if (!isMurder(c) && s.whereNow && c.crime.whereNow) {
-    const v = victimOf(c).short;
-    // Said only as far as it's held (docs/44): a crack says whose it is; the watcher saw a coat.
-    const cracked = c.confrontations.some((k) => k.response === 'crack' && run.asked.includes(`confront:${k.person}@${k.hour}`));
-    const holder = shortOther(c.crime.whereNow.text.replace(/^with /, '').replace(/, at .*$/, ''));
-    const remark = c.lists.flatMap((l) => l.remarks).find((r) => r.gives?.whereNow);
-    const hh = /^(\w+):/.exec(remark?.text ?? '')?.[1]?.toLowerCase();
-    out.push(
-      cracked || !hh
-        ? { key: 'where', text: `${cap(v)} ${/^the \w+s$/.test(v) ? 'were' : 'was'} ${c.crime.whereNow.text}.`, hours: [], people: [c.crime.victim], places: [c.crime.whereNow.place], props: [{ k: 'HANDOVER', to: 'other:fence', place: c.crime.whereNow.place, thing: c.crime.victim }], say: { shape: 'HANDOVER', flags: ['recap', 'known', /^the \w+s$/.test(v) ? 'plural' : 'single'], args: { thing: { t: 'person', id: c.crime.victim }, holder: { t: 'people', ids: ['other:fence'] }, at: { t: 'place', id: c.crime.whereNow.place } } } }
-        : { key: 'where', text: `And whatever it was had gone to ${holder} at ${placeName(c, c.crime.whereNow.place)} at ${hh}.`, hours: hh === 'eleven' ? [11] : hh === 'ten' ? [10] : [], people: [], places: [c.crime.whereNow.place], props: [{ k: 'HANDOVER', to: 'other:fence', place: c.crime.whereNow.place, hour: c.crime.hour + 1 }], say: { shape: 'HANDOVER', flags: ['recap', 'unknown'], args: { holder: { t: 'people', ids: ['other:fence'] }, at: { t: 'place', id: c.crime.whereNow.place }, hour: { t: 'hour', h: c.crime.hour + 1 } } } },
-    );
+  const where = whereClause(c, run, s);
+  if (where) out.push(where);
+  return out;
+}
+
+/** A small case's thing, where it went: as far as it's held (docs/44): a crack says whose it is; the watcher saw a coat. */
+function whereClause(c: BoardCase, run: BoardRun, s: Solved): Clause | null {
+  if (!(!isMurder(c) && s.whereNow && c.crime.whereNow)) return null;
+  const v = victimOf(c).short;
+  const cracked = c.confrontations.some((k) => k.response === 'crack' && run.asked.includes(`confront:${k.person}@${k.hour}`));
+  const holder = shortOther(c.crime.whereNow.text.replace(/^with /, '').replace(/, at .*$/, ''));
+  const remark = c.lists.flatMap((l) => l.remarks).find((r) => r.gives?.whereNow);
+  const hh = /^(\w+):/.exec(remark?.text ?? '')?.[1]?.toLowerCase();
+  return cracked || !hh
+    ? { key: 'where', text: `${cap(v)} ${/^the \w+s$/.test(v) ? 'were' : 'was'} ${c.crime.whereNow.text}.`, hours: [], people: [c.crime.victim], places: [c.crime.whereNow.place], props: [{ k: 'HANDOVER', to: 'other:fence', place: c.crime.whereNow.place, thing: c.crime.victim }], say: { shape: 'HANDOVER', flags: ['recap', 'known', /^the \w+s$/.test(v) ? 'plural' : 'single'], args: { thing: { t: 'person', id: c.crime.victim }, holder: { t: 'people', ids: ['other:fence'] }, at: { t: 'place', id: c.crime.whereNow.place } } } }
+    : { key: 'where', text: `And whatever it was had gone to ${holder} at ${placeName(c, c.crime.whereNow.place)} at ${hh}.`, hours: hh === 'eleven' ? [11] : hh === 'ten' ? [10] : [], people: [], places: [c.crime.whereNow.place], props: [{ k: 'HANDOVER', to: 'other:fence', place: c.crime.whereNow.place, hour: c.crime.hour + 1 }], say: { shape: 'HANDOVER', flags: ['recap', 'unknown'], args: { holder: { t: 'people', ids: ['other:fence'] }, at: { t: 'place', id: c.crime.whereNow.place }, hour: { t: 'hour', h: c.crime.hour + 1 } } } };
+}
+
+/**
+ * Whose story didn't square with what, at one of the hours `hs`, and what they said when it was put to
+ * them: the notebook's collision and its reaction. `open`: an owning up's witness not asked yet is said
+ * as somebody who could say whether it was so (the link with its sums); docs/72, from Poached up the
+ * turn says what's held and stops, so the owning up is said as it was owned.
+ */
+function brokenClauses(c: BoardCase, run: BoardRun, s: Solved, p: PersonId, hs: readonly Hour[], open: boolean): Clause[] {
+  const out: Clause[] = [];
+  const st = hs.map((h) => ({ h, st: s.status.get(`${p}@${h}`) })).find((y) => y.st?.s === 'broken');
+  if (!st) return out;
+  const cl = accountOf(c, p)?.claims[st.h];
+  // docs/65 §2: who said otherwise is whoever broke the story first, as the collision keeps it (once a
+  // refuser's keeper says where they really were, the solver's break rests on the list that clears them).
+  const first = collisionsOf(c, run, p, { all: true }).find((x) => x.hour === st.h)?.breakers[0]?.q;
+  const by = first ?? st.st?.deps.find((dq) => dq !== `account:${p}` && !dq.startsWith('confront:'));
+  out.push({
+    key: `broken:${p}`,
+    text: `${nameOf(c, p)} had told me ${claimWas(c, p, [st.h], { mark: markPronoun(c, p) })}, and ${by ? sourceName(c, by) : 'what I had'} said otherwise.`,
+    hours: [st.h],
+    people: [p, ...sourcePeople(by)],
+    places: [cl?.place ?? ''],
+    props: [{ k: 'COLLIDES', person: p, place: cl?.place ?? '', hour: st.h, with: by ? srcOfQ(by) : { k: 'given' } }],
+    say: { shape: 'COLLISION-PAIR', flags: ['recap', personOf(c, p)?.home === cl?.place ? 'home' : 'away'], args: { person: { t: 'person', id: p }, place: { t: 'place', id: cl?.place ?? '' }, hour: { t: 'hour', h: st.h }, src: by ? sourceName(c, by) : 'what I had' } },
+  });
+  const k = c.confrontations.find((x) => x.person === p && x.hour === st.h);
+  if (k && run.asked.includes(`confront:${p}@${st.h}`)) {
+    const lie = c.lies.find((l) => l.person === p && l.hour === st.h);
+    if (k.response === 'admit' && lie) {
+      const y = (k.names ?? [])[0];
+      const checked = y ? run.asked.includes(`account:${y}`) || !open : false;
+      // (Round 7, U2: what they admitted is where they were, said plainly: never "owned up to Sokol’s back room".)
+      out.push({ key: `admit:${p}`, text: `${nameOf(c, p)} admitted ${pronOf(c, p).he} was at ${placeName(c, lie.truth)}${y ? `, with ${nameOf(c, y)}` : ''}${y && !checked ? `, and ${nameOf(c, y)} could say whether that was so` : ''}.`, hours: [], people: [p, ...(y ? [y] : [])], places: [lie.truth], props: [{ k: 'ADMIT', person: p, place: lie.truth, ...(y ? { witness: y } : {}) }], say: { shape: 'REACTION', flags: ['owned', ...(y ? ['witness', checked ? 'checked' : 'unchecked'] : ['alone'])], args: { person: { t: 'person', id: p }, place: { t: 'place', id: lie.truth }, ...(y ? { witness: { t: 'person', id: y } } : {}) } } });
+    } else if (k.response === 'second-lie' && k.secondLie?.place) {
+      const again = run.puts.some((x) => x.person === p && x.hour === st.h && x.again && x.landed);
+      out.push({
+        key: `second:${p}`,
+        text: again
+          ? `Faced with it, ${nameOf(c, p)} changed the answer to ${placeName(c, k.secondLie.place)}; that didn’t check out either, and ${pronOf(c, p).he} wouldn’t say more.`
+          : `Faced with it, ${nameOf(c, p)} changed the answer to ${placeName(c, k.secondLie.place)}.`,
+        hours: [],
+        people: [p],
+        places: [k.secondLie.place],
+        props: [{ k: 'SECOND', person: p, place: k.secondLie.place }, ...(again ? [{ k: 'REFUSE', person: p } as Prop] : [])],
+        say: { shape: 'REACTION', flags: ['second', again ? 'again' : 'once'], args: { person: { t: 'person', id: p }, place: { t: 'place', id: k.secondLie.place } } },
+      });
+    } else if (k.response !== 'crack') {
+      out.push({ key: `refused:${p}`, text: `${nameOf(c, p)} wouldn’t say where ${pronOf(c, p).he} had been instead.`, hours: [], people: [p], places: [], props: [{ k: 'REFUSE', person: p }], say: { shape: 'REACTION', flags: ['refused'], args: { person: { t: 'person', id: p } } } });
+    }
   }
   return out;
 }
@@ -3168,10 +3197,17 @@ function recapClausesMarked(d: BoardDeal, run: BoardRun): Clause[] {
  * nothing joined to anything. The office's hours, where the means came from,
  * whose evenings and lists I had, what anybody said when it was put to them,
  * and whose evenings I still didn't have.
+ *
+ * docs/72: and from Poached up (`sumsSaid`) it's every tier's above Coddled: what's held and nothing
+ * open ("I still had to ask Sweeney and Brennan about their evenings" baited a wasted action, round 8's
+ * B5: the grid's blanks are the open questions). From Poached to Medium, the link, it says too whose
+ * story didn't square with what, and what they said when it was put to them (the collisions and the
+ * owning up, said as held); and a small case's coat, where it went.
  */
 function factClauses(d: BoardDeal, run: BoardRun): Clause[] {
   const c = d.kase;
   const out: Clause[] = [];
+  const link = thoughtLevel(c) !== 'fact';
   const office = c.givens.window ?? c.crime.window;
   const cl = clientOf(c).short;
   out.push({ key: 'when', text: office.length > 1 ? `${cl} had said ${hourWord(office[0] as Hour)} or ${oclock(office[1] as Hour)}.` : `${cl} had said ${oclock(office[0] as Hour)}.`, hours: [...office], people: [c.client], places: [], props: [{ k: 'WINDOW', hours: [...office] }], say: { shape: 'WINDOW-MEANS', flags: ['when', 'office', office.length > 1 ? 'two' : 'hour'], args: { client: { t: 'person', id: c.client }, hours: { t: 'hours', hs: [...office] } } } });
@@ -3183,6 +3219,16 @@ function factClauses(d: BoardDeal, run: BoardRun): Clause[] {
   if (evenings.length) bits.push(`${evenings.length > 1 ? 'evenings' : 'an evening'} from ${andList(evenings.map((p) => nameOf(c, p)))}`);
   if (lists.length) bits.push(`${lists.length > 1 ? 'lists' : 'a list'} from ${andList(lists.map((p) => nameOf(c, p)))}`);
   if (bits.length) out.push({ key: 'held', text: `I had ${bits.join(', and ')}.`, hours: [], people: [...evenings, ...lists], places: [], props: [{ k: 'HOLD', evenings: [...evenings], lists: [...lists] }], say: { shape: 'HOLD', flags: ['hold', evenings.length > 1 ? 'evenings' : evenings.length ? 'evening' : 'no-evening', lists.length > 1 ? 'lists' : lists.length ? 'list' : 'no-list'], args: { evenings: { t: 'people', ids: [...evenings] }, lists: { t: 'people', ids: [...lists] } } } });
+  // docs/47 B8: only the people the night has named.
+  const known = knownPeople(c, run);
+  if (link) {
+    // (docs/72: at the office's hours, never the one the facts settle: which hour it was is the player's.)
+    const s = solveHeld(c, solverHeld(run));
+    for (const p of suspectsOf(c).filter((x) => known.has(x))) out.push(...brokenClauses(c, run, s, p, office, false));
+    const where = whereClause(c, run, s);
+    if (where) out.push(where);
+    return out;
+  }
   for (const putx of run.puts.filter((x) => x.landed && !x.again)) {
     const k = confrontationOf(c, putx.person, putx.hour);
     if (!k) continue;
@@ -3200,9 +3246,8 @@ function factClauses(d: BoardDeal, run: BoardRun): Clause[] {
       });
     else if (k.response !== 'crack' && k.response !== 'admit') out.push({ key: `refused:${putx.person}`, text: `Faced with it, ${name} wouldn’t say where ${pronOf(c, putx.person).he} had been instead.`, hours: [], people: [putx.person], places: [], props: [{ k: 'REFUSE', person: putx.person }], say: { shape: 'REACTION', flags: ['refused'], args: { person: { t: 'person', id: putx.person } } } });
   }
-  // docs/47 B8: only the people the night has named.
-  const known = knownPeople(c, run);
-  const open = suspectsOf(c).filter((p) => !evenings.includes(p) && known.has(p));
+  // (docs/72: whose evenings I didn't have is the gap, and only the full dial says it.)
+  const open = sumsSaid(c) ? suspectsOf(c).filter((p) => !evenings.includes(p) && known.has(p)) : [];
   const owners = open.map((p) => `${nameOf(c, p)}’s`);
   const orList = owners.length > 1 ? `${owners.slice(0, -1).join(', ')} or ${owners[owners.length - 1]}` : (owners[0] ?? '');
   if (open.length) out.push({ key: 'open', text: `I didn’t have ${orList} evening${open.length > 1 ? 's' : ''} yet.`, hours: [], people: open, places: [], props: [{ k: 'MISSING', people: [...open] }], say: { shape: 'HOLD', flags: ['missing', open.length > 1 ? 'many' : 'one'], args: { people: { t: 'people', ids: [...open] } } } });

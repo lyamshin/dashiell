@@ -14,8 +14,9 @@
  * - **thoughts over their level** (docs/46 §2, the lint's `level` rule): above
  *   Raw, a thought, turn or "Review my notes" (once "Go over what I have") before the report that says
  *   "that left", "only … left", "cleared", how many remain or who did it; at
- *   Hard-boiled, a thought tied to an earlier page. Over the oracle's, the
- *   wanderer's and the reader's nights (target 0);
+ *   Hard-boiled, a thought tied to an earlier page; docs/72, from Poached up, a sum (the lint's `sum`
+ *   rule: the settled hour, the crime hour as a frame, the partition, the means tie on people, the gap
+ *   pointer) in the narration or the notebook. Over the oracle's, the wanderer's and the reader's nights (target 0);
  * - **callbacks**: the share of pages after the office that pay off a role set
  *   up earlier tonight (target about 70%);
  * - **reader lint, plain terms and correspondence**: findings over the oracle's
@@ -423,7 +424,7 @@ for (const tier of tiers) {
     for (const r of [run, playWanderer(d, s).run, playReader(d, s).run] as BoardRun[]) {
       for (const issue of lintBoardRun(d, r)) {
         if (issue.rule === 'hour' || issue.rule === 'name' || issue.rule === 'whole') corr++;
-        else if (issue.rule === 'level') level++;
+        else if (issue.rule === 'level' || issue.rule === 'sum') level++;
         else reader++;
         if (examples.length < 60) examples.push(`lint ${tierName(tier)} ${type} seed ${s} p${issue.page + 1}: ${issue.rule} ${issue.detail}`);
       }
