@@ -8,8 +8,9 @@
  * A lost thing's when is the hour it went.
  *
  * The office says it once, plainly, in the client's answer to "when?", which opens on the hour
- * (`officeWhen`); the report asks it in the same words ("When was he poisoned?", `whenQuestion`);
- * the notebook, the verdict and the story say it the same way (`whenDone`).
+ * (`officeWhen`); the report asks it as the office does, "When did it happen?" (`whenQuestion`),
+ * and the rules say what it means for a poisoning (teach.ts's `BOARD_RULES`). Case 2312, the
+ * owner's ruling: the report never names what was done, as "When was he stabbed?" answered How.
  */
 
 import type { GivenLine } from '../../gen/board/types.js';
@@ -28,10 +29,10 @@ export function whenVerb(c: BoardCase): 'poisoned' | 'shot' | 'stabbed' | 'kille
   return k === 'chloral' || k === 'poison' ? 'poisoned' : k === 'gun' ? 'shot' : k === 'blade' ? 'stabbed' : 'killed';
 }
 
-/** The report's question, exactly what it asks: "When was he poisoned?", "When did she go?", "When did it go?". */
+/** The report's question: "When did it happen?", "When did she go?", "When did it go?". */
 export function whenQuestion(c: BoardCase): string {
   const pr = pronOf(c, c.crime.victim);
-  if (isMurder(c)) return `When was ${pr.he} ${whenVerb(c)}?`;
+  if (isMurder(c)) return 'When did it happen?';
   return `When did ${c.type === 'lost-pet' ? pr.he : 'it'} go?`;
 }
 

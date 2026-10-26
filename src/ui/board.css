@@ -151,6 +151,16 @@
   text-align: center;
 }
 
+/* Case 2312: a one-word head ("weapon?") wider than the column runs left, over the last hour's
+   head, never off the edge, where the wrap cut it to "weapo". A right float overflows leftward. */
+.bgrid thead .bgrid-means {
+  overflow: visible;
+}
+
+.bgrid thead .bgrid-means span {
+  float: right;
+}
+
 .bgrid-hour--crime {
   color: var(--accent) !important;
   font-weight: 700 !important;

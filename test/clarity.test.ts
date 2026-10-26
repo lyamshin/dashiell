@@ -122,7 +122,8 @@ describe('docs/59 item 5 and notes 4–6, 9: the office', () => {
             poison++;
             // (Round 7, P9: the dose said as the dose: "that’s when he was given it".)
             expect(text).toMatch(/that’s when (?:he|she) was (?:poisoned|given it)/i);
-            expect(boardFields(d).find((f) => f.key === 'when')?.label).toMatch(/^When was (?:he|she) poisoned\?$/);
+            // (Case 2312, the owner's ruling: the report never names what was done; the rules say a poisoning's when.)
+            expect(boardFields(d).find((f) => f.key === 'when')?.label).toBe('When did it happen?');
           }
           // No money before the client pays it; the finder said who they are.
           expect(text.split('“')[0]).not.toMatch(/retainer|\bfee\b|money in the (?:desk )?drawer/);
