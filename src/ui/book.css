@@ -752,11 +752,15 @@ input {
   .nb-foot {
     display: inline-flex;
   }
+  /* (In the book's italic, as the running head's actions-left line: the frame's caps are never lowercase.) */
   .nb-clock {
     display: block;
     flex: 1 1 100%;
     margin-top: 0.3rem;
-    letter-spacing: 0.04em;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 0.8rem;
+    letter-spacing: 0;
     text-transform: none;
     font-style: italic;
     color: var(--ink-soft);
