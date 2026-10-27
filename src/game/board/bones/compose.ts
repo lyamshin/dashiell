@@ -897,12 +897,16 @@ export function connect(items: Item[], ctx: PlanCtx): void {
         const P = pr(c, y.person);
         const at = atWhere(c, y.place, here);
         const clear = !!(it.flesh as { clear?: boolean } | undefined)?.clear;
+        // (Round 9, docs/71 item 4 from the agreement side: on the keeper's own page, the keeper's own place
+        // isn't said by the keeper's name, "She saw Broadnax at Mrs. Nagy’s at nine": it goes without saying.)
+        const bare = nameOf(c, watcher).replace(/^(?:Mrs\.|Mr\.|Miss|Dr\.) /, '');
+        const own = y.place === here && bare.length > 2 && placeName(c, y.place).includes(bare) ? ['own'] : [];
         if (pronOf(c, watcher).he === pronOf(c, y.person).he) {
-          voice(it, comp, ['list', 'too'], { name: nameOf(c, y.person), person: { t: 'person', id: y.person }, at, hour: hourWord(y.hour as Hour), watcher: W, him: P.him, there: at === 'here' ? 'here' : 'there' }, ctx);
+          voice(it, comp, ['list', 'too', ...own], { name: nameOf(c, y.person), person: { t: 'person', id: y.person }, at, hour: hourWord(y.hour as Hour), watcher: W, him: P.him, there: at === 'here' ? 'here' : 'there' }, ctx);
           comp.join = 'too';
           it.joined = 'too';
         } else {
-          voice(it, comp, ['list', 'same'], { watcher: W, them: clear ? P.him : nameOf(c, y.person), person: { t: 'person', id: y.person }, at, hour: hourWord(y.hour as Hour), he: P.he }, ctx);
+          voice(it, comp, ['list', 'same', ...own], { watcher: W, them: clear ? P.him : nameOf(c, y.person), person: { t: 'person', id: y.person }, at, hour: hourWord(y.hour as Hour), he: P.he }, ctx);
           comp.join = 'same';
           it.joined = 'same';
         }

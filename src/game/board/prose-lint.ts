@@ -184,7 +184,7 @@ export function proseIssues(d: BoardDeal, run: BoardRun): ProseIssue[] {
       if (b.kind !== 'prose' || b.voice === 'chapter') continue;
       for (const h of engineWords(b.voice === 'answer' && !b.text.includes('“') ? `“${b.text}”` : b.text)) out.push({ page: i, rule: 'jargon', detail: `${h.name}${h.speech ? ' (speech)' : ''}: “${h.match}”` });
     }
-    // (docs/72, the coordinator's read: and the notebook's "How it adds up", as it stood after every page that asked
+    // (docs/72, the coordinator's read: and the notebook's "Where things stand", as it stood after every page that asked
     // something: "I had evenings from Kavanagh…, and lists from Mrs. Pickering and Schilling" went unread.)
     if (!NOTEBOOK_AFTER.has(p.board?.job ?? '')) return;
     for (const cl of recapClauses(d, runAt(run, i))) for (const h of engineWords(cl.text)) out.push({ page: i, rule: 'jargon', detail: `the notebook, ${h.name}: “${h.match}”` });

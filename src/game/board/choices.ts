@@ -73,10 +73,14 @@ export function pageStars(d: BoardDeal, run: BoardRun, steps: readonly string[] 
   return out;
 }
 
-/** A topic's label for the victim or the thing: "Weisglass", "Fritz", "the watch". */
+/**
+ * A topic's label for the victim or the thing: "Weisglass (the motive)", "Fritz (the motive)", "The watch
+ * (the motive)". Round 8, B7: the bare name read as a new question, and two testers paid an action each to
+ * hear the papers again; what it asks is their reason.
+ */
 export function motiveLabel(d: BoardDeal): string {
   const v = personOf(d.kase, d.kase.crime.victim);
-  return v ? cap(v.short) : 'The case';
+  return `${v ? cap(v.short) : 'The case'} (the motive)`;
 }
 
 /**

@@ -43,6 +43,27 @@ export function whenDone(c: BoardCase, at: string): string {
   return v === 'went' ? `${pr.he} went ${at}` : `${pr.he} was ${v} ${at}`;
 }
 
+/**
+ * Round 9, item 2: the earliest hour a windowed murder could have happened, said of the dead man so the
+ * "it" points nowhere else: "the earliest Tillman could have been shot", "the earliest Feeney could have
+ * been given it" (never "the earliest it could have happened", round 8's P: "it" the laudanum or the
+ * killing). `victim` is how the sentence names him (a name, or a marked pronoun).
+ */
+export function earliestOf(c: BoardCase, victim: string): string {
+  const k = c.means.kind;
+  return `the earliest ${victim} could have been ${k === 'gun' ? 'shot' : k === 'blade' ? 'stabbed' : 'given it'}`;
+}
+
+/**
+ * Round 9, item 3: what carried the poison, as the scene shows it: the cup of cocoa on the table, the
+ * rye, or the glass. The office, the notebook and the story say the same thing (Poached 37's office had
+ * the chop house's supper while the table had cocoa and the story "the laudanum went into the cocoa").
+ */
+export function vesselOf(c: BoardCase): 'cocoa' | 'rye' | 'drink' {
+  const scene = c.finds.find((f) => f.gives.means)?.text ?? '';
+  return /\bcocoa\b/i.test(scene) ? 'cocoa' : /\brye\b/i.test(scene) ? 'rye' : 'drink';
+}
+
 /** The means as a name with no article: "laudanum", "chloral", "rat poison". */
 function bare(name: string): string {
   return name.replace(/^(?:a|an|the) /, '');
@@ -135,7 +156,9 @@ function murderWhat(c: BoardCase, g: GivenLine, hours: readonly number[]): strin
     case 'coroner':
       return two ? `It was in a drink, and nobody can say which hour ${pr.he} drank it` : `It was in a drink, and ${pr.he} drank it at ${hc}`;
     case 'supper':
-      return `The chop house sent up ${pr.his} supper at ${hc}, and the ${means} was in it`;
+      // (Round 9, item 3: and the poison in what the table shows, never the supper: "…, and the laudanum was
+      // in the cocoa he had with it".)
+      return `The chop house sent up ${pr.his} supper at ${hc}, and the ${means} was in the ${vesselOf(c)} ${pr.he} had with it`;
     case 'telephone':
       return `${He} telephoned me at ${hc}, cheerful, to say ${pr.he} had company`;
     case 'radio':

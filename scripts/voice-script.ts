@@ -325,7 +325,7 @@ const HEADINGS = [
   'The office.',
   'Where things stood.',
   'Where they were.',
-  'How it adds up.',
+  'Where things stand.',
   'What I was told.',
   'What my client said.',
   'People and places.',

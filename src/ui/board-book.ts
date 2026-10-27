@@ -34,7 +34,7 @@ import {
   type TierIndex,
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
-import { peopleLine } from '../game/board/gloss.js';
+import { nameInFull, peopleLine } from '../game/board/gloss.js';
 import { BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, whereByLabel, blankRule, boardFields, breakOptionsShown, clearOptions, curtainOfBoard, hoursThatMattered, keptPick, lineGroupHeads, notebookLines, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
 import { ACTION_KEY, TALK_HEADING, chapterShown, costText, officeLines, questionsText } from '../game/board/text.js';
@@ -433,7 +433,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const role = p.role === 'client' ? `My client: ${p.description}.` : p.role === 'victim' ? `${p.description[0]?.toUpperCase()}${p.description.slice(1)}. The dead ${p.female ? 'woman' : 'man'}.` : `${who[0]?.toUpperCase()}${who.slice(1)}.`;
     const lines = [role];
     if ((run as BoardRun).asked.includes(`account:${id}`)) lines.push('Their own evening is in the notebook.');
-    return { title: p.name, lines };
+    return { title: nameInFull(c, id), lines };
   }
 
   /* ----------------------------------------------------------- choices */
@@ -741,7 +741,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const r = run as BoardRun;
     // Where it stands, plainly.
     if (r.log.length > 1) {
-      body.append(el('h2', { text: 'How it adds up' }));
+      body.append(el('h2', { text: 'Where things stand' }));
       const ul = el('ul', { class: 'nb-stands' });
       for (const cl of recapClauses(d as BoardDeal, r)) ul.append(el('li', { text: cl.text }));
       body.append(ul);
@@ -778,7 +778,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       const p = personOf(c, id);
       if (!p || p.role === 'victim') continue;
       // (Round 6, U6: the CLI's words, who they are and never where they sat tonight.)
-      people.append(el('li', { text: `${p.name}: ${peopleLine(c, id)}.` }));
+      people.append(el('li', { text: `${nameInFull(c, id)}: ${peopleLine(c, id)}.` }));
     }
     for (const [id, why] of knownPlaces(c, r)) people.append(el('li', { text: `${placeName(c, id)} — ${why}.` }));
     body.append(people);

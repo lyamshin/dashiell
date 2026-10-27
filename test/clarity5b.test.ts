@@ -38,7 +38,9 @@ describe('docs/71: Poached 17, the testers’ route', () => {
   it('1: a walk’s tail once a night', () => expect(Math.max(...tails(all))).toBeLessThanOrEqual(1));
   it('2: the turn joins the two Bidwell saw at Moe’s, and keeps Salerno, who could have had the knife (docs/72: from Poached up the turn places nobody)', () => {
     expect(turnOf(run)).not.toMatch(/Renfro (?:and Salerno )?(?:was|were) at Moe’s at nine/);
-    expect(turnOf(run)).toContain('Mrs. Nagy said otherwise.');
+    // (Round 9, item 1: the clash said once on the page, in the thought above the turn, never again in it.)
+    expect(turnOf(run)).toContain('Callahan had said she was home at Mrs. Nagy’s at nine, and Mrs. Nagy hadn’t seen her there.');
+    expect(turnOf(run)).not.toContain('Mrs. Nagy said otherwise.');
   });
   it('4: Mrs. Nagy’s line says her place as hers', () => {
     expect(all).toContain('Mrs. Nagy says she had nobody in at nine, not you or anybody else.');

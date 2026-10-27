@@ -160,9 +160,10 @@ describe('B6: a windowed murder’s means had to be had before the earliest hour
   it('Medium 21: the find says the way in as a fact, and the grid says Vitale, at Kowalski’s at nine, came too late for it', () => {
     const { d, run } = night(MEDIUM21);
     const text = all(run);
-    // docs/72: "before nine, the earliest it could have happened" is the crime hour as a frame, and who came too late the means tie on a person.
+    // docs/72: who came too late is the means tie on a person, the player's. (Round 9, item 2: the hour it
+    // had to be had by is the find's again, once, said of the dead man: the grid's column applies it.)
     expect(text).not.toContain('the earliest it could have happened');
-    expect(text).toMatch(/(?:Whoever stabbed Mulcahy|Mulcahy’s killer) had been at Kowalski’s first/);
+    expect(text).toContain('Whoever stabbed Mulcahy had to fetch the carving knife from Kowalski’s before nine, the earliest he could have been stabbed.');
     expect(text).not.toMatch(/Vitale didn’t come (?:to Kowalski’s )?till nine|Vitale hadn’t, though/);
     expect(meansLate(d.kase, run, 'vitale')).toBe(9);
     expect(boardGrid(d.kase, run).rows.find((r) => r.id === 'vitale')?.meansWhy).toBe('Vitale didn’t come to Kowalski’s till nine, too late for it.');
@@ -171,7 +172,8 @@ describe('B6: a windowed murder’s means had to be had before the earliest hour
   it('Hard-boiled 19: the chloral, from the Delmonico rooms, and the hour the player’s', () => {
     const text = all(night(HB19).run);
     expect(text).not.toContain('before eight, the earliest it could have happened');
-    expect(text).toMatch(/the Delmonico rooms (?:for it )?first/);
+    // (Round 9, item 2: the hour the chloral had to be had by, on the find, of the dead man.)
+    expect(text).toContain('had to fetch it from the Delmonico rooms before eight, the earliest he could have been given it.');
   });
 });
 

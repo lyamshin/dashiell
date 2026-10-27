@@ -109,6 +109,16 @@ export function whoTheyAre(c: BoardCase, id: PersonId): string {
  * who named them, and what they said ("was with Alfano at Sokol’s back room; nobody else knows it"
  * read as the notebook keeping a secret).
  */
+/**
+ * Round 8, B8: somebody's whole name as the People list says it: an engaged woman is "Miss", never
+ * "Mrs." (Hard-boiled 34's "Mrs. Kathleen Hanrahan: my client, Kreuzer’s fiancée").
+ */
+export function nameInFull(c: BoardCase, id: PersonId): string {
+  const p = c.people.find((x) => x.id === id);
+  if (!p) return '';
+  return p.female && /\bfiancée\b/.test(p.description ?? '') ? p.name.replace(/^Mrs\. /, 'Miss ') : p.name;
+}
+
 export function peopleLine(c: BoardCase, id: PersonId): string {
   const p = c.people.find((x) => x.id === id);
   if (!p) return '';
