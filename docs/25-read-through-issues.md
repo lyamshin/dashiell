@@ -411,3 +411,11 @@ Branch `clarity-5b`: the eight slips the designer's read of clarity-5 found on f
 - **The turn's length**: a little longer where only people who could have had the means are left to trim (docs/71 §2).
 - **The notebook's "How it adds up"** still lists one witness's placements one at a time; the join is the turn's.
 - **A keeper's place by the keeper's name in my own thought** ("Callahan had said she was home at Mrs. Nagy’s at nine, and Mrs. Nagy hadn’t seen her there.").
+
+## Thin sums (docs/72), 2026-10-26
+Branch `thin-sums`: round 8's D3, approved. From Poached up nothing narrated before the report (thoughts, arrivals, the turn, "Go over what I have", the notebook) does a sum: the settled hour, the crime hour as a frame, who was still there at the hour and who had gone, who could have had the means, whose whereabouts nobody had or nobody had backed (B5's open clause with it). Collisions, agreements, the sighting as a plain fact, the street and the way in as a fact of the search stay; a page with none of them ends on what was said. Raw and Coddled keep their sums, and a sum there names everybody the list placed, who came in later too (B3). The level lint's rule `sum` (main's 16,084 hits from Poached up, 30 nights a tier, both worlds, three routes, to 0), the hinge rules `sum-drop` (544 to 0 at Raw and Coddled) and `it-was` (the turn's "According to Lanza, it was nine o’clock."), and the notebook read for engine words (950 to 0). The dealt boards, board-measure, the round trip and clarity are main's; words a page fell by four to nine from Poached up, and the turn by a third. Left over:
+
+- **The grid marks the settled hour** from Poached up ("ten !"): chrome, outside the brief; the designer's call.
+- **The confrontation's pointers** ("Ainsworth could say whether…", the refusal's "I’d ask at the Shamrock about nine") stay as the put's hand-off; the refusal's "Only he said he was home at ten" is held back.
+- **Hard-boiled thinks on a third of its job pages** now (the sighting, a collision on its own page); whether it wants a line of its own there is a design question.
+- **No per-person restatement** of a keeper's list (the brief's optional one): the keepers already tell it a person at a time.

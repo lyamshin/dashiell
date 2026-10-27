@@ -261,8 +261,9 @@ describe('docs/69 §5: the pages assume no second liar', () => {
     expect(all).toMatch(/(?:At ten|Ten sharp,) I went round to Sokol’s for coffee, and Brennan was there\./);
     expect(all).toContain('Brennan was in the corner.');
     expect(all).not.toMatch(/\bthe (?:man|woman) Rosenbaum had named\b/);
-    // The turn reads back what's held, and what's still open; nothing about how many lied.
-    expect(all).toMatch(/(?:Nobody had told me yet where|I still didn’t know where) Rosenbaum was at ten\./);
+    // The turn reads back what's held; nothing about how many lied. (docs/72: and nothing open from Poached up:
+    // where Rosenbaum was at ten is the grid's blank, the player's question.)
+    expect(all).not.toMatch(/(?:Nobody had told me yet where|I still didn’t know where) Rosenbaum was at ten\./);
     expect(all).not.toMatch(/\b(?:other|second|another) liar\b|\bboth (?:of them )?lied\b|\btwo (?:people|of them) lied\b/i);
     const curtain = curtainOfBoard(d, o.run, truthReport(d, o.run));
     expect(curtain).not.toMatch(/WHO ELSE LIED|What cleared (?:him|her)/);

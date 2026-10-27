@@ -20,11 +20,14 @@
 import { machineryIn, verdictsIn } from './reader-lint.js';
 import type { Page } from './types.js';
 import { accountOf, listOf, peopleAt } from './knowledge.js';
-import { hourWord, nameOf, placeName, thoughtLevel, type BoardDeal, type BoardRun } from './model.js';
+import { hourWord, nameOf, placeName, sumsSaid, thoughtLevel, type BoardDeal, type BoardRun } from './model.js';
+import { sumIssues } from './sum-lint.js';
+import { recapClauses } from './pages.js';
+import { runAt } from './hinge-lint.js';
 
 export interface BoardLintIssue {
   page: number;
-  rule: 'machinery' | 'verdict' | 'slot' | 'hour' | 'name' | 'whole' | 'quote' | 'level';
+  rule: 'machinery' | 'verdict' | 'slot' | 'hour' | 'name' | 'whole' | 'quote' | 'level' | 'sum';
   detail: string;
 }
 
@@ -154,7 +157,10 @@ function refQuestion(ref: string): string {
  * The level lint. Above walk level (Coddled up) no thought, turn or "Go over
  * what I have" before the report says "that left", "only … left", "cleared",
  * how many remain, or who did it. At fact level (Hard-boiled) a thought ties
- * to nothing but this page's own lines and the office.
+ * to nothing but this page's own lines and the office. docs/72, rule `sum`: from
+ * Poached up nothing narrated before the report, nor the notebook, does a sum
+ * (`sum-lint.ts`: the settled hour, the crime hour as a frame, the partition,
+ * the means tie on people, the gap pointer).
  */
 export function levelIssues(d: BoardDeal, run: BoardRun): BoardLintIssue[] {
   const c = d.kase;
@@ -178,5 +184,9 @@ export function levelIssues(d: BoardDeal, run: BoardRun): BoardLintIssue[] {
       for (const r of b.thought.refs) if (!mine.has(refQuestion(r)) && !(b.told ?? []).includes(r)) out.push({ page: i, rule: 'level', detail: `ties to an earlier page: ${r}` });
     }
   });
+  // docs/72, rule `sum`: above Coddled, none of the five sums (the settled hour, the crime hour as a
+  // frame, the partition, the means tie on people, the gap pointer) in the narration before the report,
+  // nor in the notebook's "How it adds up" as it stood after any page.
+  if (!sumsSaid(c)) for (const h of sumIssues(c, run, (i) => recapClauses(d, runAt(run, i)).map((x) => x.text))) out.push({ page: h.page, rule: 'sum', detail: `${h.kind}${h.where === 'notebook' ? ', the notebook' : ''}: “${h.text.slice(0, 120)}”` });
   return out;
 }

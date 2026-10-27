@@ -156,19 +156,22 @@ describe('B5: "at the supper" only of who sat at the table', () => {
   });
 });
 
-describe('B6: a windowed murder’s means had to be had before the earliest hour, and the page says so', () => {
-  it('Medium 21: the find says before nine, and Vitale, at Kowalski’s at nine, came too late for it', () => {
+describe('B6: a windowed murder’s means had to be had before the earliest hour (docs/72: from Poached up the grid says it, and the player sums it)', () => {
+  it('Medium 21: the find says the way in as a fact, and the grid says Vitale, at Kowalski’s at nine, came too late for it', () => {
     const { d, run } = night(MEDIUM21);
     const text = all(run);
-    expect(text).toContain('Whoever stabbed Mulcahy had been at Kowalski’s for the knife before nine, the earliest it could have happened.');
-    expect(text).toMatch(/Vitale didn’t come (?:to Kowalski’s )?till nine, too late for (?:it|the carving knife)\./);
-    expect(text).not.toMatch(/Vitale hadn’t, though/);
+    // docs/72: "before nine, the earliest it could have happened" is the crime hour as a frame, and who came too late the means tie on a person.
+    expect(text).not.toContain('the earliest it could have happened');
+    expect(text).toMatch(/(?:Whoever stabbed Mulcahy|Mulcahy’s killer) had been at Kowalski’s first/);
+    expect(text).not.toMatch(/Vitale didn’t come (?:to Kowalski’s )?till nine|Vitale hadn’t, though/);
     expect(meansLate(d.kase, run, 'vitale')).toBe(9);
     expect(boardGrid(d.kase, run).rows.find((r) => r.id === 'vitale')?.meansWhy).toBe('Vitale didn’t come to Kowalski’s till nine, too late for it.');
   });
 
-  it('Hard-boiled 19: the chloral before eight', () => {
-    expect(all(night(HB19).run)).toContain('Whoever gave Vitale the chloral had been at the Delmonico rooms for it before eight, the earliest it could have happened.');
+  it('Hard-boiled 19: the chloral, from the Delmonico rooms, and the hour the player’s', () => {
+    const text = all(night(HB19).run);
+    expect(text).not.toContain('before eight, the earliest it could have happened');
+    expect(text).toMatch(/the Delmonico rooms (?:for it )?first/);
   });
 });
 
@@ -256,11 +259,14 @@ describe('B8: the small slips', () => {
   it('two people "had both been", never "had all been"', () => {
     // (docs/70: everybody who was there while the means was there for the taking is in the one sentence now,
     // Salerno and Mosley with them: three "had all been", or "had each been".)
+    // (docs/72: from Poached up the means sum is the player's, and Poached 17 and Medium 21 say none; Raw and
+    // Coddled keep theirs.)
     const text = all(night(POACHED17).run);
-    expect(text).toContain('So Dandridge, Callahan and Salerno had all been at Mrs. Nagy’s, where the carving knife was kept, and had all left by nine.');
     const m21 = all(night(MEDIUM21).run);
-    expect(m21).toMatch(/Salerno, Sweeney and Mosley had (?:all|each) been at Kowalski’s/);
-    for (const x of [text, m21]) {
+    for (const x of [text, m21]) expect(x).not.toMatch(/had (?:all|each|both) been at [^.]*, where the carving knife was kept/);
+    const low = [1, 6, 7, 8].map((s) => all(playBoardOracle(dealBoard(s, 1, 'murder')).run)).join('\n');
+    expect(low).toContain('So Hanrahan and Grasso had both been at Weiss’s pharmacy, where the chloral was kept, and had both left by ten.');
+    for (const x of [low]) {
       expect(x).not.toMatch(/(?<!, )\b[A-Z][\w’]+ and [A-Z][\w’]+ had all been\b/);
       expect(x).not.toMatch(/\b[A-Z][\w’]+, [A-Z][\w’]+ and [A-Z][\w’]+ had both been\b/);
     }

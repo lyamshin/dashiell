@@ -1103,6 +1103,12 @@ function thenR(a: Record<string, Read>, flags: ReadonlySet<string>, comp: Compos
   if (listOf(v.c, watcher)?.place !== where) throw new Error('voiced: not the list’s place');
   const there = (a.there as string[] | undefined) ?? [];
   const gone = (a.gone as string[] | undefined) ?? [];
+  // (docs/72, B3: who the list had there only later: "Marchetti didn’t get to the Blue Lantern till ten.")
+  if (flags.has('late')) {
+    const late = (a.late as string[] | undefined) ?? [];
+    if (!late.length) throw new Error('voiced: who came later?');
+    return late.map((p) => ({ k: 'PLACED', person: p, place: where, hour: a.after as number, by }) as Prop);
+  }
   if (flags.has('there') && !there.length) throw new Error('voiced: who was there?');
   if ((flags.has('gone') || flags.has('means')) && !gone.length) throw new Error('voiced: who had gone?');
   const hours = (a.hours as number[] | undefined) ?? [];

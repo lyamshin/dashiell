@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
 import { familyCards } from '../src/game/board/decks.js';
 import { mannerOf } from '../src/game/board/pages.js';
-import { dealBoard, type BoardRun } from '../src/game/board/model.js';
+import { dealBoard, sumsSaid, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle, playWanderer } from '../src/game/board/oracle.js';
 import { SHEETS } from '../src/game/board/sheets.js';
 import { newBoardRun } from '../src/game/board/engine.js';
@@ -64,7 +64,7 @@ describe('board: the thread', () => {
 });
 
 describe('board: the thought', () => {
-  it.each(cases)('every job page thinks, by name, about something held before (below Hard-boiled): tier $tier, $type', ({ tier, type }) => {
+  it.each(cases)('every job page thinks, by name, about something held before (below Hard-boiled; docs/72: from Poached up a page may end on its answer): tier $tier, $type', ({ tier, type }) => {
     for (let s = 1; s <= SEEDS; s++) {
       const d = dealBoard(s, tier, type);
       const names = [...d.kase.people.map((p) => p.short), ...d.kase.places.flatMap((p) => [p.short, p.street])];
@@ -73,10 +73,15 @@ describe('board: the thought', () => {
       for (const p of run.log) {
         if (p.board && JOBS.has(p.board.job)) {
           const t = p.board.thought;
-          expect(t, `seed ${s} ${p.board.q}`).toBeDefined();
-          expect(t?.refs.length, `seed ${s} ${p.board.q}`).toBeGreaterThan(0);
+          // (docs/72: Raw and Coddled always think; from Poached up the thought is a collision, an agreement, the
+          // sighting or the way in, where there is one, and a page with none ends on what was said.)
+          if (sumsSaid(d.kase)) {
+            expect(t, `seed ${s} ${p.board.q}`).toBeDefined();
+            expect(t?.refs.length, `seed ${s} ${p.board.q}`).toBeGreaterThan(0);
+          }
           // docs/46 §2: at fact level (Hard-boiled) the thought stays on its own page.
-          if (tier < 5) expect(names.some((n) => t?.text.includes(n) && earlier.includes(n)), `seed ${s} ${p.board.q}: ${t?.text}`).toBe(true);
+          const named = names.filter((n) => t?.text.includes(n));
+          if (tier < 5 && (sumsSaid(d.kase) || named.length > 0)) expect(named.some((n) => earlier.includes(n)), `seed ${s} ${p.board.q}: ${t?.text}`).toBe(true);
         }
         earlier += prose(p);
       }

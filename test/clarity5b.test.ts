@@ -36,8 +36,9 @@ describe('docs/71: Poached 17, the testers’ route', () => {
   const all = text(run);
   it('no new slip on the night', () => expect(newIssues(d, run)).toEqual([]));
   it('1: a walk’s tail once a night', () => expect(Math.max(...tails(all))).toBeLessThanOrEqual(1));
-  it('2: the turn joins the two Bidwell saw at Moe’s, and keeps Salerno, who could have had the knife', () => {
-    expect(turnOf(run)).toContain('Renfro and Salerno were at Moe’s at nine; Bidwell said so.');
+  it('2: the turn joins the two Bidwell saw at Moe’s, and keeps Salerno, who could have had the knife (docs/72: from Poached up the turn places nobody)', () => {
+    expect(turnOf(run)).not.toMatch(/Renfro (?:and Salerno )?(?:was|were) at Moe’s at nine/);
+    expect(turnOf(run)).toContain('Mrs. Nagy said otherwise.');
   });
   it('4: Mrs. Nagy’s line says her place as hers', () => {
     expect(all).toContain('Mrs. Nagy says she had nobody in at nine, not you or anybody else.');
@@ -77,8 +78,8 @@ describe('docs/71: Poached 6, a one-liar night, the oracle’s route', () => {
     expect(all).not.toContain('It was a good walk, and I took it at a good clip.');
     expect(Math.max(...tails(all))).toBeLessThanOrEqual(1);
   });
-  it('2: the turn keeps Crowninshield, who could have had the knife, beside Abramowitz', () => {
-    expect(turnOf(run)).toContain('Abramowitz and Crowninshield were at the Bijou at ten; Vogel said so.');
+  it('2: the turn keeps Crowninshield, who could have had the knife, beside Abramowitz (docs/72: from Poached up the turn places nobody)', () => {
+    expect(turnOf(run)).not.toMatch(/(?:Abramowitz|Crowninshield)(?: and \w+)? (?:was|were) at the Bijou at ten/);
   });
   it('5: Rosenbaum’s and Brennan’s hours open their clauses', () => {
     expect(all).toContain('“At seven I went round to Rafferty’s');
@@ -95,7 +96,7 @@ describe('docs/71: Medium 21, the oracle’s route', () => {
   const run = playBoardOracle(d).run;
   const all = text(run);
   it('no new slip on the night', () => expect(newIssues(d, run)).toEqual([]));
-  it('2: the turn keeps Mosley', () => expect(turnOf(run)).toMatch(/Vitale and Mosley were at the Blue Lantern at ten/));
+  it('2: the turn keeps Mosley (docs/72: from Poached up the turn places nobody)', () => expect(turnOf(run)).not.toMatch(/(?:Vitale|Mosley)(?: and \w+)? (?:was|were) at the Blue Lantern at ten/));
   it('3: the way into Salerno’s flat names the place where "her place" would be either woman’s', () => {
     expect(all).toContain('Mrs. Kowalski had seen her at Kowalski’s at seven.');
     expect(all).not.toContain('the landlady’s place');

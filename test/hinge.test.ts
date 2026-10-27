@@ -13,6 +13,7 @@ import { scoreBoard } from '../src/game/board/report.js';
 import { pronounAmbiguity } from '../src/game/board/plan/measure.js';
 import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { takeHint } from '../src/game/board/hints.js';
+import { setTexture } from '../src/game/board/plan/texture.js';
 import type { Block, Page, PageJob, ProseVoice } from '../src/game/board/types.js';
 
 const d = dealBoard(5, 2, 'murder');
@@ -296,19 +297,30 @@ describe('docs/68: round 7’s wrong facts, a rule at a time', () => {
     expect(t('Ashby and Winslow were at the supper.')).not.toContain('party');
   });
 
-  it('deadline: the find says before the earliest hour, and who came after says it was too late', () => {
+  it('deadline: the find says before the earliest hour, and who came after says it was too late (docs/72: where the sums are said)', () => {
     const find = m21.kase.finds.find((f) => f.gives.means)?.id as string;
     const t = (text: string) => ruled(m21, on(m21, at(m21, 'search', [{ text, voice: 'thought' }], { q: `search:${find}` })));
-    expect(t('Whoever stabbed Mulcahy had been at Kowalski’s first.')).toContain('deadline');
-    expect(t('Whoever stabbed Mulcahy had been at Kowalski’s for the knife before nine, the earliest it could have happened.')).not.toContain('deadline');
-    // Vitale, at Kowalski’s at nine, on Mrs. Kowalski’s page: with the hour she came, and without it.
-    const real = playBoardOracle(m21).run;
-    const i = real.log.findIndex((p) => (p.board?.units ?? []).some((u) => u.kind === 'fact' && (u.bones ?? []).some((b) => b.props.some((x) => x.k === 'ACCESS' && x.person === 'vitale' && !x.had))));
-    expect(i).toBeGreaterThan(0);
-    expect(hingeIssues(m21, real).filter((x) => x.rule === 'deadline')).toEqual([]);
-    const bare = structuredClone(real);
-    for (const u of bare.log[i]?.board?.units ?? []) if (u.kind === 'fact') for (const b of u.bones ?? []) for (const x of b.props) if (x.k === 'ACCESS') delete (x as { hour?: number }).hour;
-    expect(hingeIssues(m21, bare).map((x) => x.rule)).toContain('deadline');
+    // docs/72: from Poached up the hour the means had to be had by is the player's sum; the find says the way in as a fact.
+    expect(t('Whoever stabbed Mulcahy had been at Kowalski’s first.')).not.toContain('deadline');
+    expect(hingeIssues(m21, playBoardOracle(m21).run).filter((x) => x.rule === 'deadline')).toEqual([]);
+    // Where the sums are said (the full dial writes Medium 21 with them), the rule holds as round 7 had it.
+    setTexture('full');
+    try {
+      expect(t('Whoever stabbed Mulcahy had been at Kowalski’s first.')).toContain('deadline');
+      expect(t('Whoever stabbed Mulcahy had been at Kowalski’s for the knife before nine, the earliest it could have happened.')).not.toContain('deadline');
+      // Vitale, at Kowalski’s at nine, on Mrs. Kowalski’s page: with the hour she came, and without it.
+      const real = playBoardOracle(m21).run;
+      const i = real.log.findIndex((p) => (p.board?.units ?? []).some((u) => u.kind === 'fact' && (u.bones ?? []).some((b) => b.props.some((x) => x.k === 'ACCESS' && x.person === 'vitale' && !x.had))));
+      expect(i).toBeGreaterThan(0);
+      // (On Mrs. Kowalski's page itself: the full dial's turn has a who-knew clause of its own, round 7's.)
+      const onPage = (r: BoardRun) => hingeIssues(m21, r).filter((x) => x.rule === 'deadline' && x.page === i);
+      expect(onPage(real)).toEqual([]);
+      const bare = structuredClone(real);
+      for (const u of bare.log[i]?.board?.units ?? []) if (u.kind === 'fact') for (const b of u.bones ?? []) for (const x of b.props) if (x.k === 'ACCESS') delete (x as { hour?: number }).hour;
+      expect(onPage(bare).length).toBeGreaterThan(0);
+    } finally {
+      setTexture('lean');
+    }
   });
 
   it('pet-it: a named pet is never "it" in the crack', () => {
@@ -538,8 +550,16 @@ describe('docs/71: clarity-5b, the slips the read of clarity-5 found (the line m
     expect(hingeIssues(p17, r).filter((x) => x.rule === 'turn-drop')).toEqual([]);
     const said = (text: string): BoardRun => ({ ...r, log: r.log.map((p, k) => (k === i ? { ...p, blocks: [...p.blocks.filter((b) => !(b.kind === 'prose' && b.voice === 'recap')), { kind: 'prose', text, voice: 'recap' } as Block] } : p)) });
     const main = 'It was nine o’clock when it happened. I knew where the carving knife came from: Mrs. Nagy’s. Bidwell said Renfro was at Moe’s at nine. Callahan said she was home at nine, and Mrs. Nagy said otherwise. Nobody had told me yet where Dandridge was at nine.';
-    expect(ruled(p17, said(main))).toContain('turn-drop');
-    expect(ruled(p17, said(main.replace('Bidwell said Renfro was', 'Bidwell said Renfro and Salerno were')))).not.toContain('turn-drop');
+    // docs/72: from Poached up the turn places nobody (who was where at the hour is the player's sum), so there's nobody to drop.
+    expect(ruled(p17, said(main))).not.toContain('turn-drop');
+    // Where the sums are said (the full dial writes Poached 17 with them), the rule holds as clarity-5b had it.
+    setTexture('full');
+    try {
+      expect(ruled(p17, said(main))).toContain('turn-drop');
+      expect(ruled(p17, said(main.replace('Bidwell said Renfro was', 'Bidwell said Renfro and Salerno were')))).not.toContain('turn-drop');
+    } finally {
+      setTexture('lean');
+    }
   });
 
   it('keeper: a keeper’s own place by its name where "her place" would be either woman’s, and never by the keeper’s name in the keeper’s line', () => {

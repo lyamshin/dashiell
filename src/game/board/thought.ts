@@ -17,6 +17,12 @@
  *   that settles it reads like any other page, so its shape tells nothing.
  * - fact (Hard-boiled): this page's own fact, said again at the hours that
  *   matter, and a collision only when both its lines are on this page.
+ *
+ * docs/72: and from Poached up (`sumsSaid`) no sums: no settled hour, no crime hour as a frame, nobody's
+ * partition, nobody's way to the means, no gap. What stays is the collision, the agreement, the dead (or
+ * the pet) seen alive as a plain fact, the street, and the way in as a fact of the search; a page with
+ * none of them ends on what was said. Raw and Coddled keep the sums, and a sum there names everybody
+ * the list placed (round 8, B3).
  */
 
 import type { Solved } from '../../gen/board/solver.js';
@@ -32,6 +38,7 @@ import {
   placeName,
   pronOf,
   solverHeld,
+  sumsSaid,
   suspectsOf,
   victimOf,
   type BoardCase,
@@ -164,6 +171,10 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   const winFirst = (hs: Hour[]) => [...hs].sort((u, v) => Number(win.includes(v)) - Number(win.includes(u)) || u - v);
   const walk = x.level === 'walk';
   const fact = x.level === 'fact';
+  // docs/72: from Poached up the thought does no sums: no settled hour, no hour as a frame, nobody's
+  // partition, nobody's way to the means and no gap. Collisions, agreements, the sighting as a fact, the
+  // street and the way in as a fact of the scene stay.
+  const sums = sumsSaid(c);
   // docs/46 §2: above a walk, an hour that matters is one it could have happened at, never yet the
   // hour it happened: "at eleven, when Fritz went" is the walk's to say once the office's two hours
   // narrow ("at eleven, when Fritz could have gone"). (Never the client's say-so, "the hours Kreuzer had
@@ -235,7 +246,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
 
   // docs/59 item 3: on a list, who had been there and gone by the hour it happened, worked out before
   // the sentences that would otherwise say them (the way in, who it backs): the consequence says it.
-  const thenList = kind === 'list' ? listOf(c, rest) : undefined;
+  // (docs/72: from Poached up, no consequence: who was there then and who had gone is the player's.)
+  const thenList = kind === 'list' && sums ? listOf(c, rest) : undefined;
   // (docs/66, P1: at the link, on the page whose own sighting settles the hour, the list's consequence is
   // at the hour it leaves, after the sighting and the hour: never the two hours again before them.)
   const settlesHere = lean() && !fact && !walk && sightingHere() !== undefined;
@@ -250,6 +262,15 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   // while it was there for the taking and gone by the hour is in the one sentence, placed or not.)
   if (lean() && thenList && meansGone.length > 0)
     for (const g of goneOf(thenList, thenHs, true)) if (!meansGone.some((x) => x.p === g.p) && g.was.some((h) => c.means.available.includes(h)) && a.accessYes.has(g.p) && !b.accessYes.has(g.p)) meansGone.push(g);
+  // (docs/72, round 8's B3: where the sums are said, a sum never leaves anybody out. Lean, the list's
+  // consequence names everybody the list placed, suspect or company, news or not: who was still there at
+  // the hour, everybody who had been there while the means was there to take and was gone by it, and who
+  // else had gone. Coddled 35's "…and had left by nine. Feldman was still in at nine." left out Hargrove,
+  // in all evening; Medium 33's means sum left out Dandridge, placed at ten by an earlier list.)
+  const whole = lean() && !!thenList && thenHs.length > 0;
+  const goneAll = whole && thenList ? goneOfAll(thenList, thenHs) : [];
+  const thereAll = whole && thenList ? placedBy(thenList).filter((p) => thenHs.every((h) => (thenList.entries[h] ?? []).some((e) => 'person' in e && e.person === p))) : [];
+  if (whole && !fact && thenList?.place === c.means.origin && (isMurder(c) || /^spare/.test(c.setup?.means ?? ''))) meansGone.splice(0, meansGone.length, ...goneAll.filter((g) => g.was.some((h) => c.means.available.includes(h))));
   // Whose claims this page's list backs, at which hours (rule 3).
   const listAgreed: { p: PersonId; h: Hour }[] = [];
 
@@ -374,6 +395,10 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       if ([...caught].some((k) => k.startsWith(`${sp}@`))) continue;
       // docs/59 item 3: somebody the consequence says had been there and gone is said there, once.
       if (gone.some((g) => g.p === sp)) continue;
+      // (docs/72, B3: and, where the consequence names everybody the list placed, whoever it says was still there
+      // or had gone: "She backed Whitfield up: at the Bijou at nine. So at nine, …, Corrigan and Whitfield were at
+      // the Bijou." said him twice over, a third time with the reason I came.)
+      if (whole && (thereAll.includes(sp) || goneAll.some((g) => g.p === sp))) continue;
       if ((l?.entries[ln.hour] ?? []).some((e) => 'person' in e && e.person === sp) && !agreed.some((y) => y.p === sp)) agreed.push({ p: sp, h: ln.hour, id: ln.id });
     }
     for (const y of agreed) covered.add(y.p);
@@ -430,7 +455,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   if (kind === 'account') wayIn();
 
   function wayIn(): void {
-  if (!fact && (kind === 'list' || (kind === 'account' && t.sentences.length === 0)) && !settles) {
+  // (docs/72: who could have had the means, by name, is a sum: from Poached up the grid's last column says it.)
+  if (!fact && sums && (kind === 'list' || (kind === 'account' && t.sentences.length === 0)) && !settles) {
     // Somebody this page catches saying "home", where the means was kept, had it to hand: that goes
     // without saying, and their name has been said twice already (docs/39 §4).
     const atHome = (p: PersonId) => [...caught].some((k) => k.startsWith(`${p}@`)) && personOf(c, p)?.home === c.means.origin;
@@ -472,7 +498,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
   if (kind === 'list') sayThen();
 
   // 7. Placements: somebody put somewhere at an hour that matters, by this page and an earlier word, or by this page's word.
-  if (!fact && t.sentences.length < 3 && !settles && (kind === 'account' || kind === 'list' || kind === 'confront')) {
+  // (docs/72: the partition, from Poached up the player's.)
+  if (!fact && sums && t.sentences.length < 3 && !settles && (kind === 'account' || kind === 'list' || kind === 'confront')) {
     const hs = a.possibleHours.length === 1 ? a.possibleHours : win;
     const groups = new Map<string, { src: string; srcQ: string; items: { p: PersonId; place: PlaceId; h: Hour }[]; refs: string[] }>();
     for (const p of suspectsOf(c)) {
@@ -562,6 +589,21 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     return out;
   }
 
+  /** docs/72 (B3): everybody a list placed, but the dead (or the pet): suspects and the company they named. */
+  function placedBy(l: NonNullable<ReturnType<typeof listOf>>): PersonId[] {
+    return [...new Set(Object.values(l.entries).flatMap((es) => (es ?? []).flatMap((e) => ('person' in e ? [e.person] : []))))].filter((p) => p !== c.crime.victim && !personOf(c, p)?.object);
+  }
+
+  /** docs/72 (B3): `goneOf` for everybody the list placed, news or not, caught or not: who had been there earlier and gone by the hours. */
+  function goneOfAll(l: NonNullable<ReturnType<typeof listOf>>, hs: Hour[]): { p: PersonId; was: Hour[] }[] {
+    const on = (p: PersonId, h: Hour) => (l.entries[h] ?? []).some((e) => 'person' in e && e.person === p);
+    const earlier = (c.board.hours as Hour[]).filter((h) => h < (hs[0] as Hour) && l.entries[h] !== undefined);
+    return placedBy(l)
+      .filter((p) => hs.every((h) => !on(p, h) && sureAt(l, p, h)))
+      .map((p) => ({ p, was: earlier.filter((h) => on(p, h)) }))
+      .filter((g) => g.was.length > 0);
+  }
+
   /**
    * docs/59 item 3: a list's consequence at the hour it happened, never the list again. Who had been
    * where the means was kept and gone ("So Bledsoe had been at Mrs. Nagy’s at nine, where the revolver
@@ -575,16 +617,42 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     const on = (p: PersonId, h: Hour) => (l.entries[h] ?? []).some((e) => 'person' in e && e.person === p);
     const by: Src = { k: 'list', who: l.watcher };
     // (`force`: the page has said nothing else; who was there then, whether or not it's news.)
-    const there = suspectsOf(c).filter(
-      (p) =>
-        (force || !covered.has(p)) &&
-        ![...caught].some((k) => k.startsWith(`${p}@`)) &&
-        (force || !listAgreed.some((y) => y.p === p && hs.includes(y.h))) &&
-        hs.every((h) => on(p, h)) &&
-        (force || !hs.every((h) => b.placed.get(`${p}@${h}`)?.place === l.place)),
-    );
+    // (docs/72, B3: lean, everybody the list had there at the hours, said once more or not: a sum that
+    // leaves somebody out makes a reader wonder whether they matter.)
+    const there = whole
+      ? placedBy(l).filter((p) => hs.every((h) => on(p, h)))
+      : suspectsOf(c).filter(
+          (p) =>
+            (force || !covered.has(p)) &&
+            ![...caught].some((k) => k.startsWith(`${p}@`)) &&
+            (force || !listAgreed.some((y) => y.p === p && hs.includes(y.h))) &&
+            hs.every((h) => on(p, h)) &&
+            (force || !hs.every((h) => b.placed.get(`${p}@${h}`)?.place === l.place)),
+        );
     for (const p of there) covered.add(p);
     for (const g of gone) covered.add(g.p);
+    // (docs/72, B3: and who the list had there only after the hours: "Marchetti didn’t get to the Blue
+    // Lantern till ten." The list placed them too, and a sum without them says less than the list did.)
+    const late = whole
+      ? placedBy(l)
+          .filter((p) => !there.includes(p) && !goneAll.some((g) => g.p === p) && hs.every((h) => !on(p, h)))
+          .map((p) => ({ p, after: (c.board.hours as Hour[]).find((h) => h > (hs[hs.length - 1] as Hour) && on(p, h)) }))
+          .filter((x): x is { p: PersonId; after: Hour } => x.after !== undefined)
+      : [];
+    const sayLate = (): void => {
+      for (const after of [...new Set(late.map((x) => x.after))].sort((u, v) => u - v)) {
+        const ps = late.filter((x) => x.after === after).map((x) => x.p);
+        for (const p of ps) covered.add(p);
+        add(`${andList(ps.map((p) => nameOf(c, p)))} didn’t get to ${placeName(c, l.place)} till ${hourWord(after)}.`, ['givens:clock'], {
+          rule: 'then',
+          hours: [after],
+          people: ps,
+          places: [l.place],
+          props: ps.map((p) => ({ k: 'PLACED', person: p, place: l.place, hour: after, by }) as Prop),
+          say: { shape: 'PLACED-SET', flags: ['then', 'late', ps.length > 1 ? 'many' : 'one'], args: { late: { t: 'people', ids: ps }, where: { t: 'place', id: l.place }, after: { t: 'hour', h: after } } },
+        });
+      }
+    };
     const prev = ((hs[0] as Hour) - 1) as Hour;
     const still = there.length > 0 && there.every((p) => on(p, prev));
     const thereFlags = there.length ? ['there', there.length > 1 ? 'many' : 'one', ...(still ? ['still'] : [])] : [];
@@ -602,7 +670,8 @@ export function thoughtOf(x: ThoughtCtx): Thought {
     // landlady's answer, just said; the thought says what they add up to.)
     const allMeans = lean() && meansGone.length > 1 && meansGone.some((g) => g.was.join() !== was0);
     const withMeans = allMeans ? meansGone : meansGone.filter((g) => g.was.join() === was0);
-    const plainGone = gone.filter((g) => !withMeans.includes(g));
+    const plainGone = whole ? goneAll.filter((g) => !withMeans.some((x) => x.p === g.p)) : gone.filter((g) => !withMeans.includes(g));
+    for (const g of plainGone) covered.add(g.p);
     let opened = false;
     if (withMeans.length && allMeans) {
       const ps = withMeans.map((g) => g.p);
@@ -659,7 +728,10 @@ export function thoughtOf(x: ThoughtCtx): Thought {
       opened = true;
     }
     const thereNow = withMeans.length ? [] : there;
-    if (!thereNow.length && !plainGone.length) return;
+    if (!thereNow.length && !plainGone.length) {
+      if (opened) sayLate();
+      return;
+    }
     const goneIds = plainGone.map((g) => g.p);
     // docs/66, P1: at Hard-boiled, on the page whose own sighting rules out an hour, the window isn't
     // said again after it ("Carbone was still alive at the Odessa at nine. So at nine and ten, when it
@@ -684,6 +756,7 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         args: { where: { t: 'place', id: l.place }, hours: { t: 'hours', hs: [...hs] }, ...(reason ? { reason } : {}), ...(thereNow.length ? thereArgs : {}), ...(goneIds.length ? { gone: { t: 'people', ids: goneIds } } : {}) },
       },
     });
+    sayLate();
   }
 
   /** docs/66, P1: the hour this page's own fact saw the dead (or the pet) at, where it rules out one of the office's two. */
@@ -748,18 +821,22 @@ export function thoughtOf(x: ThoughtCtx): Thought {
         const done = `${clientOf(c).short} had said ${office.map((h) => hourWord(h)).join(' or ')}`;
         // (docs/66, P1: at Hard-boiled the thought says the fact and nothing after it: the client's two
         // hours said again behind a sighting that rules one out read as undoing it.)
-        add(fact && lean() ? `${cap(victimOf(c).short)} was still ${isMurder(c) ? 'alive ' : ''}at ${placeName(c, at)} at ${hourWord(seen.h)}.` : `${cap(victimOf(c).short)} was still ${isMurder(c) ? 'alive ' : ''}at ${placeName(c, at)} at ${hourWord(seen.h)}, and ${done}.`, ['givens:clock'], {
+        // (docs/72: and from Poached up the same: the sighting as a plain fact. The client's two hours beside
+        // it are a premise that begs its conclusion, and the conclusion, the hour, is the player's.)
+        const bare = (fact && lean()) || !sums;
+        add(bare ? `${cap(victimOf(c).short)} was still ${isMurder(c) ? 'alive ' : ''}at ${placeName(c, at)} at ${hourWord(seen.h)}.` : `${cap(victimOf(c).short)} was still ${isMurder(c) ? 'alive ' : ''}at ${placeName(c, at)} at ${hourWord(seen.h)}, and ${done}.`, ['givens:clock'], {
           rel: 'narrows',
           rule: 'alive',
           hours: [seen.h],
           people: [c.crime.victim],
           places: [at],
           props: [{ k: 'ALIVE', victim: c.crime.victim, place: at, hour: seen.h }],
-          say: { shape: 'WINDOW-ALIVE', flags: ['link', isMurder(c) ? 'murder' : 'small', ...(fact && lean() ? ['fact'] : [])], args: { victim: { t: 'person', id: c.crime.victim }, place: { t: 'place', id: at }, hour: { t: 'hour', h: seen.h }, ...(fact && lean() ? {} : { done }) } },
+          say: { shape: 'WINDOW-ALIVE', flags: ['link', isMurder(c) ? 'murder' : 'small', ...(bare ? ['fact'] : [])], args: { victim: { t: 'person', id: c.crime.victim }, place: { t: 'place', id: at }, hour: { t: 'hour', h: seen.h }, ...(bare ? {} : { done }) } },
         });
         // docs/66, P1: at the link (Coddled to Medium) the hour is a link, and the thought says it when
         // the page's facts settle it: "So he went at ten." (Never who: the hour is everybody's.)
-        if (!fact && lean()) {
+        // (docs/72: Raw and Coddled only. From Poached up the settled hour is the player's sum.)
+        if (!fact && lean() && sums) {
           const what = isMurder(c) ? 'it happened' : `${victimOf(c).short} went`;
           add(`${cap(what)} at ${hourWord(h1)}.`, ['givens:clock'], {
             rel: 'narrows',
@@ -832,6 +909,11 @@ export function thoughtOf(x: ThoughtCtx): Thought {
 
   function hoursThatMatter(): void {
   if (kind !== 'account') return;
+  // (docs/72: from Poached up, an evening's page ends on the answer, or on its collision or agreement:
+  // "nobody else had said where she was at ten" and "…, and nobody had backed it up" are the gap the grid
+  // shows; what they said at the hours that matter, said again, frames it at the crime hour; and the aside
+  // that stood where there was no gap would tell the gap by its absence.)
+  if (!sums) return;
   if (!((t.sentences.length === 0) || (t.sentences.length < 3 && !settles && !t.hours.some((h) => win.includes(h))))) return;
   const hs = win.slice(0, 2) as Hour[];
   const clockRef = c.givens.lines?.some((g) => g.kind === 'window' || g.kind === 'clock') ? ['givens:clock'] : ['givens:found'];

@@ -1275,6 +1275,9 @@ function sideBySide(segs: Seg[], ctx: PlanCtx, n: number): void {
     if (ruleOf(A) === 'then' || ruleOf(B) === 'then') return null;
     // (docs/66, P1: and so is the hour the facts settle: "So he was taken at eleven.")
     if (ruleOf(A) === 'narrows' || ruleOf(B) === 'narrows') return null;
+    // (docs/72: and the sighting said as a plain fact, from Poached up: "At nine, Feeney was still alive at
+    // the Bijou, and Dandridge had told me…" ran the dead man's hour into somebody's agreement.)
+    if ([A, B].some((x) => ruleOf(x) === 'alive' && (x.say?.flags ?? []).includes('fact'))) return null;
     // docs/59 item 8: two facts that name one person don't go in one sentence ("…according to Ruggiero; … and Ruggiero said otherwise").
     if (sharesName(ctx.c, A.text, B.text)) return null;
     // Nor where the second's pronoun could be somebody of that sex the first names ("…though Dr.

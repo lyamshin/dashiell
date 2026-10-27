@@ -45,11 +45,11 @@ import { isMurder, type BoardDeal, type BoardRun } from './model.js';
 import { collisionsOf } from './knowledge.js';
 import { KNOCKED, OWN_WORD_ONLY, SAT, STANDING, STOOD, STOOD_UP, UNCONTRADICTED, seatedAfter } from './plan/situated.js';
 import { sentencesOf } from './plan/sentences.js';
-import { GAG_MAX } from './pages.js';
+import { GAG_MAX, recapClauses } from './pages.js';
 import { boardFields } from './report.js';
 import { engineWords } from './jargon.js';
 import { clarityIssues, verdictIssues } from './clarity-lint.js';
-import { hingeIssues, type HingeRule } from './hinge-lint.js';
+import { hingeIssues, runAt, type HingeRule } from './hinge-lint.js';
 import { lean } from './plan/dial.js';
 import { motiveSaid } from './motives.js';
 import { titleClient } from './home.js';
@@ -103,6 +103,9 @@ function narration(p: Page): { text: string; voice: string }[] {
 function count(text: string, word: string): number {
   return (text.match(new RegExp(`(?<![\\w’])${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w’])`, 'gi')) ?? []).length;
 }
+
+/** docs/72: the pages after which the notebook may read differently: a question asked, a find, a put. */
+const NOTEBOOK_AFTER = new Set(['account', 'list', 'search', 'motive', 'confront']);
 
 export function proseIssues(d: BoardDeal, run: BoardRun): ProseIssue[] {
   const c = d.kase;
@@ -181,6 +184,10 @@ export function proseIssues(d: BoardDeal, run: BoardRun): ProseIssue[] {
       if (b.kind !== 'prose' || b.voice === 'chapter') continue;
       for (const h of engineWords(b.voice === 'answer' && !b.text.includes('“') ? `“${b.text}”` : b.text)) out.push({ page: i, rule: 'jargon', detail: `${h.name}${h.speech ? ' (speech)' : ''}: “${h.match}”` });
     }
+    // (docs/72, the coordinator's read: and the notebook's "How it adds up", as it stood after every page that asked
+    // something: "I had evenings from Kavanagh…, and lists from Mrs. Pickering and Schilling" went unread.)
+    if (!NOTEBOOK_AFTER.has(p.board?.job ?? '')) return;
+    for (const cl of recapClauses(d, runAt(run, i))) for (const h of engineWords(cl.text)) out.push({ page: i, rule: 'jargon', detail: `the notebook, ${h.name}: “${h.match}”` });
   });
   // Running gags: each role's payoffs tonight.
   const roles = [...Object.values(run.props ?? {}), ...Object.values(run.traits ?? {}), ...(run.street ? [run.street] : [])];

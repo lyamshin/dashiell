@@ -17,6 +17,7 @@ import { TIERS } from '../../gen/board/tiers.js';
 import { worldCtx } from '../../gen/board/world/index.js';
 import type { CellMark, Page } from './types.js';
 import type { Weather } from './types.js';
+import { lean } from './plan/dial.js';
 
 export type { BoardCase, Hour, Person, PersonId, Place, PlaceId, TierIndex, CaseType };
 
@@ -306,11 +307,29 @@ export function tierName(t: TierIndex): string {
  * - fact (Hard-boiled): this page's fact said again in the voice, and a
  *   collision only when both its lines are on this page.
  * The turn and "Go over what I have" follow the same level.
+ *
+ * docs/72 moved the dial: from Poached up the narration stops doing the sums (`sumsSaid`).
  */
 export type ThoughtLevel = 'walk' | 'link' | 'fact';
 
 export function thoughtLevel(c: Pick<BoardCase, 'tier'>): ThoughtLevel {
   return c.tier === 5 ? 'fact' : 'link';
+}
+
+/**
+ * docs/72: whether the narration does the sums, the conclusions the player should draw from the facts
+ * and the grid: (1) the settled hour ("So it happened at ten."), (2) the crime hour as a frame ("at ten,
+ * when Feeney was given the laudanum", "when it could have happened"), (3) the partition, who was still
+ * there at the hour and who had gone, (4) the means tie on people ("had been at the Delmonico rooms
+ * earlier, where the laudanum was kept"), and (5) the gap pointer ("Nobody else had said where Hauck was
+ * at ten", "I still had to ask Sweeney about the evening"). Raw and Coddled, the teaching tiers, keep
+ * them, whole (round 8, B3: a sum never leaves anybody out); from Poached up the narration says what was
+ * said, what agrees and what doesn't, and the grid's blanks are the open questions. Thoughts, arrivals,
+ * the turn, "Go over what I have" and the notebook all read it. (The full texture dial writes the pages
+ * as they read before docs/60, sums and all.)
+ */
+export function sumsSaid(c: Pick<BoardCase, 'tier'>): boolean {
+  return c.tier <= 1 || !lean();
 }
 
 /* ------------------------------------------------------------------ *

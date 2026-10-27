@@ -10,12 +10,15 @@
  * - **thought**: the share of job pages (an account, a list, a search, a put, a
  *   motive) whose thought names an earlier fact: a person, place or street
  *   already on an earlier page, and a held line it cites (target 100% below
- *   Hard-boiled; at Hard-boiled the thought stays on its own page, docs/46 §2);
+ *   Hard-boiled; at Hard-boiled the thought stays on its own page, docs/46 §2); docs/72, from Poached up
+ *   a page may end on what was said, so of the job pages whose thought names somebody or somewhere, with
+ *   the share of job pages that think beside it;
  * - **thoughts over their level** (docs/46 §2, the lint's `level` rule): above
  *   Raw, a thought, turn or "Review my notes" (once "Go over what I have") before the report that says
  *   "that left", "only … left", "cleared", how many remain or who did it; at
- *   Hard-boiled, a thought tied to an earlier page. Over the oracle's, the
- *   wanderer's and the reader's nights (target 0);
+ *   Hard-boiled, a thought tied to an earlier page; docs/72, from Poached up, a sum (the lint's `sum`
+ *   rule: the settled hour, the crime hour as a frame, the partition, the means tie on people, the gap
+ *   pointer) in the narration or the notebook. Over the oracle's, the wanderer's and the reader's nights (target 0);
  * - **callbacks**: the share of pages after the office that pay off a role set
  *   up earlier tonight (target about 70%);
  * - **reader lint, plain terms and correspondence**: findings over the oracle's
@@ -77,7 +80,7 @@
 
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
 import { lintBoardRun, boardPlayerText } from '../src/game/board/lint.js';
-import { dealBoard, tierName, type BoardRun } from '../src/game/board/model.js';
+import { dealBoard, sumsSaid, tierName, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle, playReader, playWanderer } from '../src/game/board/oracle.js';
 import type { Block, Page } from '../src/game/board/types.js';
 import { namesOverTwo } from '../src/game/board/names.js';
@@ -199,7 +202,7 @@ function gramsOf(t: string): Set<string> {
 }
 
 const rows: string[] = [];
-rows.push('| tier | nights | pages | words a page, median [p10–p90] | why-here or walk | job pages with a thought naming an earlier fact | callbacks | lint (reader) | correspondence | thoughts over their level | plain terms | cards twice | sentences twice | pages naming somebody 3+ times | clues said 3+ times | place names bolted on | banned phrases | pages with 2+ signposts | gags paid off 3+ times | a pet called “it” | thought against the grid | “it turned out” for somebody there all along | standing after sitting | knocking when inside | engine words (docs/53 addendum) | repeat (docs/59) | hour slots | continuity | tics | assembly | hinge lines (docs/62) |');
+rows.push('| tier | nights | pages | words a page, median [p10–p90] | why-here or walk | job pages with a thought naming an earlier fact (docs/72: from Poached up, of those that think [the share that do]) | callbacks | lint (reader) | correspondence | thoughts over their level | plain terms | cards twice | sentences twice | pages naming somebody 3+ times | clues said 3+ times | place names bolted on | banned phrases | pages with 2+ signposts | gags paid off 3+ times | a pet called “it” | thought against the grid | “it turned out” for somebody there all along | standing after sitting | knocking when inside | engine words (docs/53 addendum) | repeat (docs/59) | hour slots | continuity | tics | assembly | hinge lines (docs/62) |');
 rows.push('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|');
 const rows5: string[] = [];
 rows5.push(`| tier | ${HINGE_RULES.join(' | ')} |`);
@@ -221,6 +224,9 @@ for (const tier of tiers) {
   let threaded = 0;
   let jobPages = 0;
   let thoughtful = 0;
+  // docs/72: every job page, and the ones whose thought names somebody or somewhere.
+  let allJobPages = 0;
+  let thinking = 0;
   let callbacks = 0;
   let reader = 0;
   let corr = 0;
@@ -362,15 +368,20 @@ for (const tier of tiers) {
         else if (examples.length < 40) examples.push(`no why/walk: ${tierName(tier)} ${type} seed ${s} p${i + 1} (${b?.job})`);
         if (b?.callback) callbacks++;
       }
-      if (b && JOBS.has(b.job)) {
+      const th = b ? (b as { thought?: { text: string; refs: string[] } }).thought : undefined;
+      const thoughtText = th?.text ?? proseOf(p, ['thought']);
+      // (docs/72: from Poached up a page may end on what was said, with no thought: of the job pages that think.)
+      if (b && JOBS.has(b.job) && (sumsSaid({ tier }) || names.some((n) => thoughtText.includes(n)))) {
         jobPages++;
-        const th = (b as { thought?: { text: string; refs: string[] } }).thought;
-        const thoughtText = th?.text ?? proseOf(p, ['thought']);
         const earlier = seenText.join('\n');
         const named = names.some((n) => thoughtText.includes(n) && earlier.includes(n));
         const refs = th ? th.refs.length > 0 : true;
         if (thoughtText && named && refs) thoughtful++;
         else if (examples.length < 40) examples.push(`no thought: ${tierName(tier)} ${type} seed ${s} p${i + 1} (${b.job}${b.q ? ` ${b.q}` : ''})`);
+      }
+      if (b && JOBS.has(b.job)) {
+        allJobPages++;
+        if (names.some((n) => thoughtText.includes(n))) thinking++;
       }
       seenText.push(text);
       for (const blk of p.blocks) {
@@ -423,7 +434,7 @@ for (const tier of tiers) {
     for (const r of [run, playWanderer(d, s).run, playReader(d, s).run] as BoardRun[]) {
       for (const issue of lintBoardRun(d, r)) {
         if (issue.rule === 'hour' || issue.rule === 'name' || issue.rule === 'whole') corr++;
-        else if (issue.rule === 'level') level++;
+        else if (issue.rule === 'level' || issue.rule === 'sum') level++;
         else reader++;
         if (examples.length < 60) examples.push(`lint ${tierName(tier)} ${type} seed ${s} p${issue.page + 1}: ${issue.rule} ${issue.detail}`);
       }
@@ -451,7 +462,7 @@ for (const tier of tiers) {
     `| ${tierName(tier)} | ${factUnits ? (factSent / factUnits).toFixed(2) : '—'} | ${smellPages} of ${pages} | ${ambiguous} | ${joinPages ? (joinCount / joinPages).toFixed(1) : '—'} [${pct(joinInBand, joinPages)}] | ${restated} | ${smellAll} | ${ambiguousAll} | ${thFacts ? (thSent / thFacts).toFixed(2) : '—'} [${pct(thWithin, thParas)}; ${pct(thWithin2, thParas2)}] |`,
   );
   rows.push(
-    `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${level} | ${jargon} | ${cardsTwice} | ${sentTwice} | ${namePages} | ${cluesThrice} | ${r3['place-tag']} | ${r3.phrase} | ${r3.signpost} | ${r3.gag} | ${r3.pet} | ${r3.grid} | ${r3['turned-out']} | ${r3.posture} | ${r3.inside} | ${r3.jargon} | ${r3.repeat} | ${r3.slots} | ${r3.continuity} | ${r3.tic} | ${r3.assembly} | ${r3.hinge} |`,
+    `| ${tierName(tier)} | ${N} | ${pages} | ${quantile(counts, 0.5)} [${quantile(counts, 0.1)}–${quantile(counts, 0.9)}] | ${pct(threaded, after)} | ${pct(thoughtful, jobPages)}${sumsSaid({ tier }) ? '' : ` [${pct(thinking, allJobPages)} think]`} | ${pct(callbacks, after)} | ${reader} | ${corr} | ${level} | ${jargon} | ${cardsTwice} | ${sentTwice} | ${namePages} | ${cluesThrice} | ${r3['place-tag']} | ${r3.phrase} | ${r3.signpost} | ${r3.gag} | ${r3.pet} | ${r3.grid} | ${r3['turned-out']} | ${r3.posture} | ${r3.inside} | ${r3.jargon} | ${r3.repeat} | ${r3.slots} | ${r3.continuity} | ${r3.tic} | ${r3.assembly} | ${r3.hinge} |`,
   );
   rows5.push(`| ${tierName(tier)} | ${HINGE_RULES.map((r) => hinge[r] ?? 0).join(' | ')} |`);
 }
