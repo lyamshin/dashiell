@@ -393,8 +393,40 @@ input {
   }
 }
 
+/*
+ * The chase to eight: amber runs once along the notches still left, the night that remains, when the
+ * pointer comes onto the head and just after an action is spent (once its notch has filled). Chosen
+ * from impeccable's live variants.
+ */
+.runhead:hover .notch--left {
+  animation: chase 900ms ease-out both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+.runhead:has(.notch--fresh) .notch--left {
+  animation: chase 900ms ease-out both;
+  animation-delay: calc(360ms + var(--i, 0) * 70ms);
+}
+
+@keyframes chase {
+  0% {
+    background: transparent;
+    border-color: var(--line);
+  }
+  25% {
+    background: var(--amber);
+    border-color: var(--amber);
+  }
+  100% {
+    background: transparent;
+    border-color: var(--line);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .notch--fresh {
+  .notch--fresh,
+  .runhead:hover .notch--left,
+  .runhead:has(.notch--fresh) .notch--left {
     animation: none;
   }
 }

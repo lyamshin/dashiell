@@ -500,6 +500,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       const struck = closed && j >= r.used;
       const n = el('span', { class: `notch notch--${kind}${fresh ? ' notch--fresh' : ''}${struck ? ' notch--struck' : ''}` });
       if (struck) n.style.setProperty('--i', String(j - r.used));
+      // The chase to eight: each notch still left knows its place in the run to the 8.
+      if (kind === 'left') n.style.setProperty('--i', String(j - strip.notches.indexOf('left')));
       notches.append(n);
     });
     dial.append(el('span', { class: 'dial-end', 'aria-hidden': 'true', text: '12' }), notches, el('span', { class: 'dial-end dial-end--eight', 'aria-hidden': 'true', text: '8' }));
