@@ -636,15 +636,19 @@
   height: 11px;
 }
 
-/* Talk to: the lobby directory. The names in the building's letters, the count where the room number goes. */
+/*
+ * Talk to: the lobby directory. The names in the building's letters, a dotted leader running to the
+ * count, and the count's number set like a room number (chosen from impeccable's live variants).
+ */
 .directory {
   background: var(--paper-raised);
   border: 1px solid var(--line);
+  padding: 0.2rem 0;
 }
 
 .choices .who-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 0;
 }
 
@@ -653,18 +657,18 @@
   flex-wrap: nowrap;
   align-items: baseline;
   justify-content: space-between;
-  gap: 0.6rem;
+  gap: 0.55rem;
   width: auto;
   min-height: 46px;
-  padding: 0.6rem 0.85rem 0.5rem;
+  padding: 0.5rem 1rem 0.4rem;
   background: none;
   border: 0;
   border-bottom: 1px solid var(--rule);
   font-size: 1rem;
 }
 
-.choices .who-choice:nth-child(odd) {
-  border-right: 1px solid var(--rule);
+.directory > .who-list:last-child > .who-choice:last-child {
+  border-bottom: 0;
 }
 
 .choices .who-choice:hover:not(:disabled) {
@@ -673,7 +677,7 @@
 
 .choices .who-choice[aria-expanded='true'] {
   background: var(--paper);
-  box-shadow: inset 0 0 0 1px var(--nickel-dim);
+  box-shadow: inset 2px 0 0 -1px var(--nickel-dim);
 }
 
 .choices .who-choice:focus-visible {
@@ -703,6 +707,44 @@
   font-style: italic;
   color: var(--ink-soft);
   white-space: nowrap;
+}
+
+/* The leader: a finger's run of dots from the name to the count; it closes up under the finger. */
+.who-choice .leader {
+  flex: 1 1 auto;
+  align-self: center;
+  min-width: 1.5rem;
+  height: 2px;
+  background-image: radial-gradient(circle, var(--ink-faint) 0.9px, transparent 1.3px);
+  background-size: 7px 2px;
+  background-repeat: repeat-x;
+  opacity: 0.65;
+  transition:
+    opacity 220ms var(--ease),
+    background-size 320ms var(--ease);
+}
+
+.choices .who-choice:hover .leader,
+.choices .who-choice:focus-visible .leader {
+  opacity: 1;
+  background-size: 5px 2px;
+}
+
+.choices .who-choice[aria-expanded='true'] .leader {
+  height: 1px;
+  background: var(--nickel-dim);
+  opacity: 1;
+}
+
+.who-choice .num {
+  margin-right: 0.18em;
+  font-family: var(--deco);
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1.5em;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--ink);
 }
 
 .choices .who-choice .aside.why {
@@ -1034,12 +1076,8 @@
 
 /* The phone: one column for the directory and the transfers; every target a thumb's. */
 @media (max-width: 600px) {
-  .choices .who-list,
   .choices .go-list {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .choices .who-choice:nth-child(odd) {
-    border-right: 0;
   }
   .choices .free-list {
     flex-direction: row;
@@ -1375,6 +1413,9 @@
   }
   .ceremony .verdict-plaque .stamp {
     animation: ink 160ms linear both;
+  }
+  .who-choice .leader {
+    transition: none;
   }
 }
 

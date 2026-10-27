@@ -615,6 +615,12 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     return b;
   }
 
+  /** "2 questions" as the directory says it: the number like a room number, the words after it. */
+  function roomCount(text: string): HTMLElement {
+    const m = /^(\d+) (.*)$/.exec(text);
+    return m ? el('span', { class: 'mins' }, el('span', { class: 'num', text: m[1] }), ` ${m[2]}`) : el('span', { class: 'mins', text });
+  }
+
   function choicesPanel(): HTMLElement {
     const groups = boardChoices(d as BoardDeal, run as BoardRun);
     const kase = (d as BoardDeal).kase;
@@ -642,7 +648,12 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         const label = el('span', { class: 'label' });
         if (star) label.append(el('span', { class: 'mark', 'aria-hidden': 'true', text: '*' }));
         label.append(nameOf(kase, id));
-        b.append(el('span', { class: 'namecell' }, label, star?.why ? el('span', { class: 'aside why', text: star.why }) : null), el('span', { class: 'mins', text: on ? 'close' : questionsText(g, kase) }));
+        // The directory's listing: a dotted leader to the count, its number set like a room number.
+        b.append(
+          el('span', { class: 'namecell' }, label, star?.why ? el('span', { class: 'aside why', text: star.why }) : null),
+          el('span', { class: 'leader', 'aria-hidden': 'true' }),
+          roomCount(on ? 'close' : questionsText(g, kase)),
+        );
         b.addEventListener('click', () => {
           selected = on ? null : id;
           pickerOpen = false;
