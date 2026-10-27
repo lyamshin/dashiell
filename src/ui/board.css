@@ -371,17 +371,22 @@
     letter-spacing: 0.02em;
   }
   .bgrid .bgrid-name {
-    width: 22%;
+    width: 19%;
     font-size: 12px;
   }
   .bgrid thead .bgrid-means,
   .bgrid td.bgrid-means {
-    width: 11%;
+    width: 9%;
   }
+  /* At 12px a long label ("Blue Lantern✓") takes a second line inside the 44px cell, at a space or before its mark, rather than being cut. */
   .bgrid-btn {
     min-height: 44px;
     padding: 0.2rem 0.05rem;
     letter-spacing: -0.01em;
+    line-height: 1.15;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: normal;
   }
   .bgrid-key,
   .bgrid-detail-head,

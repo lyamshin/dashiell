@@ -382,7 +382,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
    */
   function watchChoices(): void {
     const page = root.querySelector<HTMLElement>('.page--prose');
-    const target = page?.querySelector<HTMLElement>('.choices, .report');
+    const target = page?.querySelector<HTMLElement>('.choices, form.report');
     const cue = page?.querySelector<HTMLElement>('.cue-below');
     if (!page || !cue) return;
     if (!target || typeof IntersectionObserver !== 'function') {
@@ -409,7 +409,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (screen.kind === 'book' && shown === r.log.length - 1) {
       const skip = el('button', { class: 'skip-link', type: 'button', 'data-focus': 'skip', text: r.reportOpen && !r.filed ? 'Skip to the report' : 'Skip to the choices' });
       skip.addEventListener('click', () => {
-        const target = root.querySelector<HTMLElement>('.page--prose .choices, .page--prose .report');
+        const target = root.querySelector<HTMLElement>('.page--prose .choices, .page--prose form.report');
         target?.querySelector<HTMLElement>('button:not(:disabled), select, input')?.focus();
       });
       page.append(skip);
@@ -429,14 +429,15 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
       });
       teach.append(el('div', { class: 'teach-buttons' }, go));
       leaf.append(teach);
-      page.append(leaf);
+      // (book-look, item 4: the notebook's button at the foot on every screen of a night, the verdict's too.)
+      page.append(leaf, pageFoot('What next'));
       return page;
     }
     if (screen.kind === 'verdict') {
       leaf.append(
         renderVerdict(screen.verdict, () => toTitle(), { story: storyOfBoard(d as BoardDeal), fastest: fastestSolveLines(d as BoardDeal, r, screen.verdict.outcome), truthSheet: () => curtainOfBoard(d as BoardDeal, r, r.filed) }, screen.news, caption()),
       );
-      page.append(leaf);
+      page.append(leaf, pageFoot('What next'));
       return page;
     }
     const newest = shown === r.log.length - 1;
@@ -467,7 +468,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     cue.append(el('span', { text: what }), el('span', { class: 'cue-arrow', 'aria-hidden': 'true', text: '↓' }));
     cue.hidden = true;
     cue.addEventListener('click', () => {
-      const target = root.querySelector<HTMLElement>('.page--prose .choices, .page--prose .report');
+      const target = root.querySelector<HTMLElement>('.page--prose .choices, .page--prose form.report');
       const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       target?.scrollIntoView({ block: 'start', behavior: still ? 'auto' : 'smooth' });
       target?.querySelector<HTMLElement>('button:not(:disabled), select, input')?.focus({ preventScroll: true });
@@ -1137,7 +1138,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         const k = `${r.id}@${h}`;
         const cls = ['bgrid-cell', cell.collision ? 'is-collision' : cell.confirmed ? 'is-confirmed' : cell.seen ? 'is-seen' : cell.says ? 'is-says' : cell.pencil ? 'is-pencil' : 'is-empty', g.crimeHour === h ? 'is-crime' : ''].join(' ');
         const td = el('td', { class: cls });
-        const b = el('button', { type: 'button', class: 'bgrid-btn', 'data-cell': k, 'aria-expanded': openCell === k ? 'true' : 'false', 'aria-label': `${r.name} at ${h}: ${cellWords(cell)}`, text: cellText(g, cell).replace(/["[\]]/g, '').replace(/→.*$/, '') });
+        const b = el('button', { type: 'button', class: 'bgrid-btn', 'data-cell': k, 'aria-expanded': openCell === k ? 'true' : 'false', 'aria-label': `${r.name} at ${h}: ${cellWords(cell)}`, text: cellText(g, cell).replace(/["[\]]/g, '').replace(/→.*$/, '').replace(/([✓✗])/g, '\u200b$1') });
         b.addEventListener('click', () => {
           openCell = openCell === k ? null : k;
           renderInPlace();
