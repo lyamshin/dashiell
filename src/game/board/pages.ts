@@ -41,7 +41,7 @@ import {
   solveRun,
   type Judgement,
 } from './knowledge.js';
-import { Hand } from './decks.js';
+import { Hand, familyCards } from './decks.js';
 import { hoursWithReason, spokenAccountLines, spokenListLines, type Manner, type SaidLine } from './tell.js';
 import { listExhaustive as listWhole, shutAt as shutAtPlace } from './knowledge.js';
 import {
@@ -1648,6 +1648,10 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId, back = false, noArrive
   if (lean() && way) w.hand.avoid = alsoAvoid(w.hand.avoid, /^(?![\s\S]*\{way\})/);
   // (A walk that names its place takes a card that does: the cards without one are the unnamed walk's.)
   if (!unnamed) w.hand.avoid = alsoAvoid(w.hand.avoid, /^(?![\s\S]*\{[Dd]est\})/);
+  // (Round 9: and the unnamed walk that says how far no more says so plainly, "I walked over.", never a near
+  // walk's card for a far one, "It was a short walk.", which it took for want of any other; while there's a
+  // distance to say, it says it.)
+  if (lean() && unnamed && (far !== undefined || wk.near)) w.hand.avoid = alsoAvoid(w.hand.avoid, /^I walked over\.$|^I went over on foot\.$/);
   // (clarity-5b, item 1: a walk's tail, "with my collar up", "and I took it at a good clip", once a night,
   // whichever card carries it: "with my collar up" twice in a night on four of five nights read; and no
   // tail on a walk that says "good" already: "It was a good walk, and I took it at a good clip.")
@@ -1656,15 +1660,23 @@ function writeWalk(w: Writer, from: PlaceId, to: PlaceId, back = false, noArrive
   if (tailsOff.length) w.hand.avoid = alsoAvoid(w.hand.avoid, new RegExp(tailsOff.map((t) => t.source).join('|')));
   // (The plain cards that keep a night of good walks from running out, `bwk-088` to `bwk-090`, are a
   // reserve: dealt only once "It was {far}." is spent, the shortest first.)
-  if (lean() && !w.hand.used('bwk-081')) w.hand.avoid = alsoAvoid(w.hand.avoid, /^I walked on\. It was \{far\}\.$|^I walked it\. It was \{far\}\.$|^\{Far\}, and I was there\.$/);
-  else if (lean() && !w.hand.used('bwk-088')) w.hand.avoid = alsoAvoid(w.hand.avoid, /^I walked it\. It was \{far\}\.$|^\{Far\}, and I was there\.$/);
   // (Round 8's P and round 9: never two walks running that open "It was…": four in a row on Poached 34
-  // read like a form. Where nothing else fits, the walk says it as it can.)
+  // read like a form. The reserve is open to such a walk, since it says the distance the other way; where
+  // nothing else fits, the walk says it as it can.)
   const itWasLast = lean() && lastWalkOpensItWas(w);
+  if (lean() && !itWasLast && !w.hand.used('bwk-081')) w.hand.avoid = alsoAvoid(w.hand.avoid, /^I walked on\. It was \{far\}\.$|^I walked it\. It was \{far\}\.$|^\{Far\}, and I was there\.$/);
+  else if (lean() && !itWasLast && !w.hand.used('bwk-088')) w.hand.avoid = alsoAvoid(w.hand.avoid, /^I walked it\. It was \{far\}\.$|^\{Far\}, and I was there\.$/);
   const avoidItWas = w.hand.avoid;
   if (itWasLast) w.hand.avoid = alsoAvoid(w.hand.avoid, /^It was\b/);
   // (A fresh card that doesn't open "It was", or else the walk as it would have been: never a card dealt twice for it.)
   let frame0 = w.hand.draw('walk-way', { matters: matters ? 'yes' : 'no', near: wk.near ? 'yes' : 'no' }, slots, { plain: true, untic: true, ...(itWasLast ? { fresh: true } : {}) });
+  // (And never a card of another walk's kind, which the fresh draw lets go of its tags to find: "I only had
+  // a few doors to go." for several blocks.)
+  const drawnCard = itWasLast && frame0 !== null ? familyCards('walk-way').find((x) => x.id === w.hand.last?.id) : undefined;
+  if (drawnCard && (drawnCard.tags.matters !== (matters ? 'yes' : 'no') || drawnCard.tags.near !== (wk.near ? 'yes' : 'no'))) {
+    w.hand.forget(drawnCard.id);
+    frame0 = null;
+  }
   if (frame0 === null && itWasLast) {
     w.hand.avoid = avoidItWas;
     frame0 = w.hand.draw('walk-way', { matters: matters ? 'yes' : 'no', near: wk.near ? 'yes' : 'no' }, slots, { plain: true, untic: true });
