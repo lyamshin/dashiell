@@ -3215,10 +3215,12 @@ function factClauses(d: BoardDeal, run: BoardRun): Clause[] {
   if (meansHeld && isMurder(c)) out.push({ key: 'means', text: `The ${c.means.name.replace(/^(a|an) /, '')} had come from ${placeName(c, c.means.origin)}.`, hours: [], people: [], places: [c.means.origin], props: [{ k: 'MEANS', how: 'origin', place: c.means.origin }], say: { shape: 'WINDOW-MEANS', flags: ['means', 'fact'], args: { means: c.means.name.replace(/^(a|an) /, ''), origin: { t: 'place', id: c.means.origin } } } });
   const evenings = run.asked.filter((q) => q.startsWith('account:')).map((q) => q.slice(8));
   const lists = run.asked.filter((q) => q.startsWith('list:')).map((q) => q.slice(5));
+  // (docs/72, the coordinator's read: as the turn's HOLD voicings say it, never "lists from Schilling", the
+  // engine's word for what a keeper saw (docs/53, addendum), nor "evenings from" Kavanagh.)
   const bits: string[] = [];
-  if (evenings.length) bits.push(`${evenings.length > 1 ? 'evenings' : 'an evening'} from ${andList(evenings.map((p) => nameOf(c, p)))}`);
-  if (lists.length) bits.push(`${lists.length > 1 ? 'lists' : 'a list'} from ${andList(lists.map((p) => nameOf(c, p)))}`);
-  if (bits.length) out.push({ key: 'held', text: `I had ${bits.join(', and ')}.`, hours: [], people: [...evenings, ...lists], places: [], props: [{ k: 'HOLD', evenings: [...evenings], lists: [...lists] }], say: { shape: 'HOLD', flags: ['hold', evenings.length > 1 ? 'evenings' : evenings.length ? 'evening' : 'no-evening', lists.length > 1 ? 'lists' : lists.length ? 'list' : 'no-list'], args: { evenings: { t: 'people', ids: [...evenings] }, lists: { t: 'people', ids: [...lists] } } } });
+  if (evenings.length) bits.push(`I had the evening${evenings.length > 1 ? 's' : ''} as ${andList(evenings.map((p) => nameOf(c, p)))} told ${evenings.length > 1 ? 'them' : 'it'}`);
+  if (lists.length) bits.push(`I knew who ${andList(lists.map((p) => nameOf(c, p)))} had${lists.length > 1 ? ' each' : ''} seen come and go`);
+  if (bits.length) out.push({ key: 'held', text: `${bits.join(', and ')}.`, hours: [], people: [...evenings, ...lists], places: [], props: [{ k: 'HOLD', evenings: [...evenings], lists: [...lists] }], say: { shape: 'HOLD', flags: ['hold', evenings.length > 1 ? 'evenings' : evenings.length ? 'evening' : 'no-evening', lists.length > 1 ? 'lists' : lists.length ? 'list' : 'no-list'], args: { evenings: { t: 'people', ids: [...evenings] }, lists: { t: 'people', ids: [...lists] } } } });
   // docs/47 B8: only the people the night has named.
   const known = knownPeople(c, run);
   if (link) {

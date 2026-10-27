@@ -7,7 +7,10 @@
 import { describe, expect, it } from 'vitest';
 import { typesFor, type CaseType, type TierIndex } from '../src/gen/board/index.js';
 import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
-import { sumDrop } from '../src/game/board/hinge-lint.js';
+import { hingeIssues, sumDrop } from '../src/game/board/hinge-lint.js';
+import { engineWords } from '../src/game/board/jargon.js';
+import { proseIssues } from '../src/game/board/prose-lint.js';
+import type { Block } from '../src/game/board/types.js';
 import { levelIssues } from '../src/game/board/lint.js';
 import { dealBoard, sumsSaid, type BoardDeal, type BoardRun } from '../src/game/board/model.js';
 import { playBoardOracle, playReader, playWanderer } from '../src/game/board/oracle.js';
@@ -87,6 +90,9 @@ describe('docs/72: the sum lint, a kind at a time', () => {
       'Kavanagh said he was home at ten. Mrs. Pickering said otherwise.',
       'I underlined the street. Ludlow Street was where Feeney lived.',
       'I knew from Schilling and Mrs. Pickering who had come and gone at each place, and I had the evenings as Dandridge and Kavanagh told them.',
+      // (Cards, not sums.)
+      'Hauck’s flat hadn’t changed while I was gone, which is the nicest thing a place can do for you.',
+      'Kavanagh looked at the table for a long while, and when he looked up, the evening he had given me was gone from his face.',
     ])
       for (const x of s.split(/(?<=\.)\s+/)) expect(kinds(x), x).toEqual([]);
   });
@@ -141,6 +147,35 @@ describe('docs/72: the round-8 nights, from Poached up', () => {
       const keys = recapClauses(d, run).map((x) => x.key.split(':')[0]);
       for (const k of keys) expect(['when', 'means', 'held', 'broken', 'admit', 'second', 'refused', 'where'], `${s} ${tier}: ${k}`).toContain(k);
     }
+  });
+});
+
+describe('docs/72: the turn and the notebook say what’s held as a person says it (the coordinator’s read)', () => {
+  it('it-was: the office’s hours are whose they were, never the time now ("According to Lanza, it was nine o’clock.")', () => {
+    const rule = (d: BoardDeal, r: BoardRun) => hingeIssues(d, r).filter((x) => x.rule === 'it-was');
+    // Soft-boiled 33 and Poached 34 said it on the build before; Medium 33 said it right.
+    for (const [d, run] of [[dealBoard(33, 3, 'murder'), null], [dealBoard(34, 2, 'murder'), POACHED34]] as [BoardDeal, string[] | null][]) {
+      const r = run ? route(d, run) : playBoardOracle(d).run;
+      const turn = turnOf(r);
+      expect(turn).not.toMatch(/According to [^,.]+, it was/);
+      expect(turn).toMatch(new RegExp(`\\b${d.kase.people.find((x) => x.id === d.kase.client)?.short} had (?:given me|said) (?:nine|ten)`));
+      expect(rule(d, r)).toEqual([]);
+      // The rule reads the line the build before said.
+      const i = r.log.findIndex((p) => p.board?.turn);
+      const bent = { ...r, log: r.log.map((p, k) => (k === i ? { ...p, blocks: [...p.blocks, { kind: 'prose', text: 'According to Lanza, it was nine o’clock. The laudanum had come from the Delmonico rooms.', voice: 'recap' } as Block] } : p)) };
+      expect(rule(d, bent).length).toBe(1);
+    }
+  });
+  it('the notebook’s hold line says what the turn says, at Medium and at Hard-boiled, and the notebook is linted for engine words', () => {
+    const m = route(dealBoard(33, 4, 'murder'), MEDIUM33);
+    const nb = flat(notebookText(dealBoard(33, 4, 'murder'), m));
+    expect(nb).toContain('I had the evenings as Kavanagh, Ainsworth and Hauck told them, and I knew who Mrs. Pickering and Schilling had each seen come and go.');
+    expect(nb).not.toMatch(/\blists from\b|\bevenings? from\b/);
+    const hb = route(dealBoard(34, 5, 'murder'), HB34);
+    expect(flat(notebookText(dealBoard(34, 5, 'murder'), hb))).toContain('I had the evenings as Pickering, Steinbach and Hargrove told them, and I knew who Mrs. Kowalski, Lanza and Coffin had each seen come and go.');
+    for (const [d, r] of [[dealBoard(33, 4, 'murder'), m], [dealBoard(34, 5, 'murder'), hb]] as [BoardDeal, BoardRun][]) expect(proseIssues(d, r).filter((x) => x.rule === 'jargon')).toEqual([]);
+    // The words the notebook said before are engine words.
+    expect(engineWords('I had evenings from Kavanagh, Ainsworth and Hauck, and lists from Mrs. Pickering and Schilling.').map((x) => x.name)).toEqual(expect.arrayContaining(['list', 'evening (as an account)']));
   });
 });
 

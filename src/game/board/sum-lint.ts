@@ -105,7 +105,8 @@ export function sumsInSentence(c: BoardCase, s: string): SumKind[] {
     PLACED.test(s) ||
     (named &&
       (/\bby then\b[^.]*\b(?:left|gone)\b|\bgone by then\b|\band gone before\b/i.test(s) ||
-        /\b(?:had|were|was) (?:both |all |each |already )?(?:left|gone)(?=[,.;]|$| (?:by|before|from) )/.test(s) ||
+        // (Never "while I was gone", nor an evening "gone from his face".)
+        /(?<!\bI )\b(?:had|were|was) (?:both |all |each |already )?(?:left|gone)(?=[,.;]|$| (?:by|before) | from (?!(?:his|her|their|my|its|your) ))/.test(s) ||
         /\bhad (?:already )?left (?:the )?[A-Z]/.test(s) ||
         /\b(?:every one|both) of them had gone\b/.test(s) ||
         (!aboutVictim && new RegExp(`\\b(?:was|were) still (?:in |at |there)[^.]*\\b${H}\\b`).test(s)) ||

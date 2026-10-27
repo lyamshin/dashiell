@@ -104,7 +104,9 @@
  *
  * docs/72, thin-sums: **sum-drop** (round 8, B3: where the sums stay, Raw and Coddled, a list's sum leaving
  * out somebody the list placed: "So he had been at Kowalski’s at eight, where the laudanum was kept, and
- * had left by nine. Feldman was still in at nine." without Hargrove, who was in all evening).
+ * had left by nine. Feldman was still in at nine." without Hargrove, who was in all evening); **it-was** (the
+ * turn or "Go over what I have" saying the office's hours as the time now: "According to Lanza, it was nine
+ * o’clock.", where the "it" has nothing to point at).
  *
  * Pure: it reads the night and returns what it found.
  */
@@ -211,9 +213,10 @@ export type HingeRule =
   | 'keeper'
   | 'bare-hour'
   | 'twice'
-  | 'sum-drop';
+  | 'sum-drop'
+  | 'it-was';
 
-export const HINGE_RULES: HingeRule[] = ['said-place', 'gloss', 'bare', 'put-lead', 'put-speech', 'thought-who', 'orphan', 'shift', 'telling', 'form', 'epilogue', 'dose', 'unwatched', 'pointer', 'connector', 'tail', 'locative', 'reason', 'vocab', 'unsettled', 'hedge', 'restated', 'find', 'presumes', 'newcomer', 'office', 'alone', 'walk', 'log', 'papers', 'staging', 'retired', 'moved', 'agrees', 'star', 'party', 'deadline', 'clock', 'pet-it', 'gossip', 'number', 'both', 'walk-name', 'timetable', 'named-bare', 'ahead', 'stacked', 'contradicts', 'hint', 'repeats', 'father', 'turn-hour', 'drew', 'company', 'lodger', 'walk-tail', 'turn-drop', 'keeper', 'bare-hour', 'twice', 'sum-drop'];
+export const HINGE_RULES: HingeRule[] = ['said-place', 'gloss', 'bare', 'put-lead', 'put-speech', 'thought-who', 'orphan', 'shift', 'telling', 'form', 'epilogue', 'dose', 'unwatched', 'pointer', 'connector', 'tail', 'locative', 'reason', 'vocab', 'unsettled', 'hedge', 'restated', 'find', 'presumes', 'newcomer', 'office', 'alone', 'walk', 'log', 'papers', 'staging', 'retired', 'moved', 'agrees', 'star', 'party', 'deadline', 'clock', 'pet-it', 'gossip', 'number', 'both', 'walk-name', 'timetable', 'named-bare', 'ahead', 'stacked', 'contradicts', 'hint', 'repeats', 'father', 'turn-hour', 'drew', 'company', 'lodger', 'walk-tail', 'turn-drop', 'keeper', 'bare-hour', 'twice', 'sum-drop', 'it-was'];
 
 export interface HingeIssue {
   page: number;
@@ -1507,6 +1510,21 @@ export function sumDrop(c: BoardCase, run: BoardRun): HingeIssue[] {
 }
 
 /**
+ * docs/72 (the coordinator's read), **it-was**: the notebook said aloud (the turn, "Go over what I have") saying the
+ * office's hours as the time now: "According to Wehrle, it was nine or ten o’clock." (Soft-boiled 33), "According
+ * to Lanza, it was nine o’clock." (Poached 34). Out of the office the "it" has nothing to point at; "Abramowitz
+ * had given me nine or ten o’clock." says whose hours they were.
+ */
+function itWas(run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  const re = new RegExp(`\\bAccording to [^,.]+, it was ${H}\\b|^It was ${H}(?: or ${H})?(?: o’clock)?\\.$`);
+  run.log.forEach((p, i) => {
+    for (const b of prose(p)) if (b.voice === 'recap') for (const s of sentencesOf(narr(b.text))) if (re.test(s.trim())) out.push({ page: i, rule: 'it-was', detail: `“${s.trim().slice(0, 110)}”` });
+  });
+  return out;
+}
+
+/**
  * Items 3 and 4, **keeper**: a keeper's own place said by their job ("Mrs. Kowalski had seen Salerno at
  * the landlady’s place at seven", where "her place" would have been either woman's: the place by its
  * name, "…had seen her at Kowalski’s"); and a keeper's line in a put naming the keeper's own place by
@@ -1696,6 +1714,7 @@ export function hingeIssues(d: BoardDeal, run: BoardRun, env: LintEnv = {}): Hin
     ...walkTail(run),
     ...turnDrop(d, run),
     ...sumDrop(c, run),
+    ...itWas(run),
     ...keeper(c, run),
     ...bareHour(run),
     ...twice(run),
