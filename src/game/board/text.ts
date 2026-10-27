@@ -6,12 +6,12 @@
 import { titleClient } from './home.js';
 import type { OfferedChoice, OfferedGroup, Page } from './types.js';
 import { boardGridText } from './grid.js';
-import { knownPeople, knownPlaces, lineShown, linesHeld, meansBy } from './knowledge.js';
+import { knownPeople, knownPlaces, meansBy } from './knowledge.js';
 import { cap, clientOf, hourWord, isMurder, nameOf, personOf, placeName, pronOf, type BoardDeal, type BoardRun } from './model.js';
 import { notebookWhen } from './when.js';
 import { finderGloss, peopleLine } from './gloss.js';
 import { recapClauses } from './pages.js';
-import { lineNumbers } from './report.js';
+import { notebookLines } from './report.js';
 
 const WIDTH = 76;
 
@@ -190,18 +190,19 @@ export function notebookText(d: BoardDeal, run: BoardRun): string {
   out.push('');
   out.push('Places:');
   for (const [id, why] of knownPlaces(c, run)) out.push(`  ${cap(placeName(c, id))} (${why}).`);
-  const lines = linesHeld(c, run).filter((l) => l.kind !== 'given');
+  // Round 8, B1: every line the form can offer, the office's facts and a crack included, numbered from
+  // this one list (`notebookLines`, `lineNumbers`): Raw 33's confession was the report's 12 and never here.
+  const lines = notebookLines(d, run);
   if (lines.length > 0) {
     out.push('');
     out.push('What I was told:');
     // Round 7, U1: numbered as the report numbers them (`lineNumbers`), so "proof=12" is the same
     // twelfth thing here, on every person's list and on the form.
-    const nums = lineNumbers(d, run);
     const w = String(lines.length).length;
-    for (const l of lines) {
-      const n = `${String(nums.get(l.id) ?? '').padStart(w)}. `;
-      out.push(`  ${n}${wrap(lineShown(c, run, l), 72 - n.length).replace(/\n/g, `\n  ${' '.repeat(n.length)}`)}`);
-    }
+    lines.forEach((l, i) => {
+      const n = `${String(i + 1).padStart(w)}. `;
+      out.push(`  ${n}${wrap(l.label, 72 - n.length).replace(/\n/g, `\n  ${' '.repeat(n.length)}`)}`);
+    });
   }
   const motives = run.asked.filter((q) => q.startsWith('motive:')).map((q) => q.slice(7));
   for (const p of motives) out.push(`  ${nameOf(c, p)}’s reason: ${personOf(c, p)?.motive}.`);

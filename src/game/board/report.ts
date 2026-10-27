@@ -28,7 +28,7 @@ import { techniquesUpTo } from '../../gen/board/tiers.js';
 import { questionsOf, solve } from '../../gen/board/solver.js';
 import { Hand } from './decks.js';
 import { clockWords, minutesAfter, NIGHT_MINUTES } from './clock.js';
-import { accountOf, agreesWith, collisionsOf, confrontationOf, judgeLine, lineShown, linesHeld, listOf, saidOnPage, solveHeld, solveRun, type Line } from './knowledge.js';
+import { accountOf, agreesWith, bearsOn, confrontationOf, lineShown, linesHeld, listOf, saidOnPage, secondBreakers, solveHeld, solveRun, storyBreakers, type Line } from './knowledge.js';
 import type { Lie } from '../../gen/board/types.js';
 import {
   andList,
@@ -322,7 +322,9 @@ export function breakOptions(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>
   // were held, and never the one line that breaks it, alone, on top. Round 5, U3 (docs/63): the
   // group's heading says exactly this (`lineGroupHeads`), so every line under it fits it.
   const theirs = new Set<string>(own ? Object.values(own.claims).flatMap((x) => (x?.place ? [x.place] : [])) : []);
-  const touches = (l: Line): boolean => who !== null && l.hour !== undefined && hours.has(l.hour) && (l.about.includes(who) || (!!own && l.place !== undefined && (l.place === own.claims[l.hour]?.place || theirs.has(l.place))));
+  // (Round 9, item 3: and, where company counts (Hard-boiled's pairs), what bears on somebody they said
+  // they were with: HB 39's proof, Feeney's pea coat that was Obermann's, sat under "About anybody else".)
+  const touches = (l: Line): boolean => who !== null && l.hour !== undefined && hours.has(l.hour) && (l.about.includes(who) || (!!own && l.place !== undefined && (l.place === own.claims[l.hour]?.place || theirs.has(l.place))) || (!!own && bearsOn(c, who, l.hour as Hour, l)));
   // (Case 2312, the owner's ruling: a story changed when it was put to them, "now says…" or
   // "admits…", says the first was false, so it's offered under their name. Left off, the line picked
   // before the name went when the name was picked, and the report filed "A hunch".)
@@ -365,8 +367,10 @@ export function lineGroupHeads(d: BoardDeal, run: Pick<BoardRun, 'asked'>, who: 
   const pr = pronOf(c, who);
   const at = hoursOclock(d);
   const theirs = run.asked.includes(`account:${who}`);
+  // (Round 9, item 3: where company counts, the group has what bears on whoever they said they were with.)
+  const company = techniquesUpTo(c.tier).has('pair') ? ` anybody ${pr.he} said ${pr.he} was with,` : '';
   return {
-    touching: theirs ? `About ${N}, or anywhere ${pr.he} said ${pr.he} was tonight, at ${at}:` : `About ${N} at ${at}:`,
+    touching: theirs ? `About ${N},${company} or anywhere ${pr.he} said ${pr.he} was tonight, at ${at}:` : `About ${N} at ${at}:`,
     rest: `About anybody else at ${at}, or ${N} at other hours:`,
   };
 }
@@ -384,14 +388,41 @@ function hoursOclock(d: BoardDeal): string {
  * it was held, then the office's own facts the form can offer, then a crack. `proof=N`, `cleared=N`
  * and `whereproof=N` give that number. Only the numbering: which lines a list offers, and in what
  * order, is `breakOptionsShown`'s and `whereByOptions`'s, as before.
+ *
+ * Round 8, B1: the numbers come from one list, the notebook's (`notebookLines`), and a number never
+ * moves: the office's facts first (they're held from the start), then everything else in the order it
+ * was held, a crack where it was said. Raw 33's confession was offered as 12 and never listed, and the
+ * next line found took 12 (the crack was numbered after everything, so every line held after it pushed
+ * it on), and the office's facts after the lines did the same.
  */
 export function lineNumbers(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>): Map<string, number> {
-  const held = linesHeld(d.kase, run);
   const out = new Map<string, number>();
-  for (const l of held) if (l.kind !== 'given') out.set(l.id, out.size + 1);
-  for (const l of held) if (l.kind === 'given') out.set(l.id, out.size + 1);
+  for (const o of notebookLines(d, run)) out.set(o.value, out.size + 1);
+  return out;
+}
+
+/**
+ * Round 8, B1: every line the form can offer, as the notebook lists it, in the order `lineNumbers`
+ * numbers it: the office's facts, then each line in the order it was held, with a crack in its place
+ * (after the lines held before the confrontation that drew it).
+ */
+export function notebookLines(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'> & Partial<Pick<BoardRun, 'log'>>): LineOption[] {
+  const c = d.kase;
+  const held = linesHeld(c, run);
+  const show = (l: Line): LineOption => ({ value: l.id, label: lineShown(c, run, l) });
+  const out: LineOption[] = [...held.filter((l) => l.kind === 'given').map(show)];
+  const rest = held.filter((l) => l.kind !== 'given');
   const crack = crackHeld(d, run);
-  if (crack) out.set(crack.value, out.size + 1);
+  const at = crack ? run.asked.indexOf(crack.value.replace(/^crack:/, 'confront:')) : -1;
+  let placed = !crack;
+  for (const l of rest) {
+    if (!placed && run.asked.indexOf(l.q) > at) {
+      out.push(crack as LineOption);
+      placed = true;
+    }
+    out.push(show(l));
+  }
+  if (!placed && crack) out.push(crack);
   return out;
 }
 
@@ -439,9 +470,11 @@ function remarkOf(d: BoardDeal, lineId: string): { gives?: { whereNow?: boolean 
 
 /**
  * The lines held that break the culprit's story: at the hour of one of their
- * lies, a line the break rests on (the collision the grid shows), a line that
- * lands when it's put to them, or the list that breaks a second story; and,
- * last, the second story itself.
+ * lies, the lines that break it (`storyBreakers`: what the collision the grid
+ * shows rests on first, then any other that lands when it's put to them), or
+ * the list that breaks a second story; and, last, the second story itself.
+ * Round 9, item 3: one set with the confront's, so a line scored here lands
+ * when it's put to them (HB 39).
  */
 export function heldBreakers(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>): Line[] {
   const c = d.kase;
@@ -451,15 +484,10 @@ export function heldBreakers(d: BoardDeal, run: Pick<BoardRun, 'asked' | 'puts'>
   const add = (l: Line) => {
     if (!out.some((x) => x.id === l.id)) out.push(l);
   };
-  const cols = collisionsOf(c, run, p, { all: true });
   for (const lie of c.lies.filter((l) => l.person === p)) {
     const h = lie.hour;
-    for (const b of cols.find((x) => x.hour === h)?.breakers ?? []) add(b);
-    for (const l of lines) if (l.hour === h && l.speaker !== p && l.kind !== 'find' && judgeLine(c, run, p, h, l).landed) add(l);
-    const k = confrontationOf(c, p, h);
-    if (k?.secondLie?.place && run.asked.includes(`confront:${p}@${h}`)) {
-      for (const l of lines) if (l.kind === 'list' && l.hour === h && l.place === k.secondLie.place && !l.about.includes(p)) add(l);
-    }
+    for (const b of storyBreakers(c, run, p, h, lines)) add(b);
+    for (const l of secondBreakers(c, run, p, h, lines)) add(l);
   }
   // (Case 2312, the owner's ruling: a story changed when it was put to them proves the first was a
   // lie. Last, so the line the night turns on, somebody else's word, stays the first.)
@@ -618,10 +646,16 @@ export function scoreBoard(d: BoardDeal, run: BoardRun, report: BoardReport): Ve
   if (who.half) plain.push('Right, but you couldn’t have known: half credit on who.');
   // docs/61: the right name, and the other liar not ruled out, said plainly.
   if (other && who.correct && scored.some((f) => f.key === 'other' && !f.correct)) {
-    const him = pronOf(d.kase, other.person).him;
-    const tail = report.other !== other.person ? '' : report.cleared ? `: what you picked doesn’t clear ${him}` : `: a hunch doesn’t clear ${him}`;
+    const pr = pronOf(d.kase, other.person);
+    // (Round 9, item 7: what clears them is somebody else's word, never their own. Medium 37 filed
+    // Sirkin's own owning up and lost the point, and nothing said why.)
+    const own = !!report.cleared && linesHeld(d.kase, run).find((l) => l.id === report.cleared)?.speaker === other.person;
+    const tail = report.other !== other.person ? '' : own ? `: ${pr.his} own word doesn’t clear ${pr.him}; somebody else’s has to` : report.cleared ? `: what you picked doesn’t clear ${pr.him}` : `: a hunch doesn’t clear ${pr.him}`;
     plain.push(`You had the right name, but you didn’t rule out ${nameOf(d.kase, other.person)}${tail}.`);
   }
+  // (Round 9, item 7: a line that wasn't the one is said as a line, whose word it was: "it was Bledsoe
+  // says he was at the print shop…" read as broken grammar.)
+  for (const f of fields) if (f.line && !f.correct && !f.why) f.why = `${f.key === 'cleared' && other ? `what cleared ${pronOf(d.kase, other.person).him}` : 'what proved it'}: ${f.truth}`;
   // (Round 7, B9: a night where only one story broke: somebody named as lying too had told the truth.)
   if (!other && report.other && report.other !== NOBODY && scored.some((f) => f.key === 'other')) plain.push(`Nobody else lied: ${nameOf(d.kase, report.other)} had told the truth.`);
   // (Decided 2026-10-25, docs/69 §1.5: and "Nobody else" before everybody else was checked, said as who on a hunch is.)
@@ -1012,12 +1046,21 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
     const why = l.kind === 'culprit' || l.kind === 'pair' && l.person === c.crime.culprit ? 'to hide the crime' : l.kind === 'pair' ? 'to cover for a friend' : secretWhy(personOf(c, l.person)?.secret);
     const would = k?.response === 'admit' ? 'owned up' : k?.response === 'second-lie' ? 'told another story' : k?.response === 'crack' ? 'cracked' : 'refused to say';
     // Medium 14: "Put to it: refused" read as a put the player never made. Say whether it was.
-    const put = !run || run.asked.includes(`confront:${l.person}@${l.hour}`) ? `When you confronted ${pronOf(c, l.person).him}, ${pronOf(c, l.person).he} ${would}.` : `You never confronted ${pronOf(c, l.person).him}; if you had, ${pronOf(c, l.person).he} would have ${wouldHave(k?.response)}.`;
+    // (Round 9, item 4: every confront made, landed or not. HB 39 confronted Tillman with a line that
+    // didn't land, and read "You never confronted her".)
+    const pr = pronOf(c, l.person);
+    const tried = !!run && run.puts.some((x) => x.person === l.person);
+    const put =
+      !run || run.asked.includes(`confront:${l.person}@${l.hour}`)
+        ? `When you confronted ${pr.him}, ${pr.he} ${would}.`
+        : tried
+          ? `You confronted ${pr.him}, but nothing you put to ${pr.him} broke what ${pr.he} said about ${hourWord(l.hour)}, so ${pr.he} stood by it; with something that did, ${pr.he} would have ${wouldHave(k?.response)}.`
+          : `You never confronted ${pr.him}; if you had, ${pr.he} would have ${wouldHave(k?.response)}.`;
     out.push(`- ${saidWas(c, l.person, l.claim, l.hour)}; ${pronOf(c, l.person).he} was at ${placeName(c, l.truth)}, ${why}. ${put}`);
   }
   out.push('');
   // docs/55 7: par, the number the verdict says, and what it's made of; docs/64: "the fastest solve", in actions.
-  out.push(`THE FASTEST SOLVE: ${parCalls(d)} actions (${d.analysis.par} questions${d.analysis.motive ? ', a look at the papers for the motive' : ''} and ${d.analysis.walks} walks)`);
+  out.push(`THE FASTEST SOLVE: ${parCalls(d)} actions (${fastestKinds(d)})`);
   // "who was at Kowalski’s tonight?", not "tonight?." (Raw 11's #27).
   // (docs/66, docs/65's routed item: a suspect's evening is asked for what matters about them, as the star says
   // it now, "Alfano was at the meeting, and nobody had said where she was at ten", never the first hour the
@@ -1032,6 +1075,25 @@ export function curtainOfBoard(d: BoardDeal, run?: Pick<BoardRun, 'asked' | 'put
   d.analysis.path.forEach((s, i) => out.push(`${i + 1}. ${pathLabel(s.label)}${/[?.!]$/.test(s.label) ? '' : '.'} ${stepWhy(s, i)}`));
   if (d.analysis.motive) out.push(`+. ${questionById(c, d.analysis.motive)?.label ?? ''}.`);
   return out.join('\n');
+}
+
+/**
+ * Round 8, B6: the fastest solve's actions, counted by kind: "6 questions, a search, a look at the papers
+ * for the motive and 5 walks". "10 actions (6 questions, …)" counted the table's search as a question, and
+ * listed five (Poached 34). The kinds add up to par (`parCalls`).
+ */
+export function fastestKinds(d: BoardDeal): string {
+  const kinds = d.analysis.path.map((s) => s.q.split(':')[0]);
+  const n = (...ks: string[]) => kinds.filter((k) => ks.includes(k as string)).length;
+  const count = (k: number, one: string, many = `${one}s`) => (k === 1 ? `a ${one}` : `${k} ${many}`);
+  const parts = [
+    n('account', 'list') ? count(n('account', 'list'), 'question') : '',
+    n('search') ? count(n('search'), 'search', 'searches') : '',
+    n('confront') ? count(n('confront'), 'confrontation') : '',
+    d.analysis.motive ? 'a look at the papers for the motive' : '',
+    d.analysis.walks ? count(d.analysis.walks, 'walk') : '',
+  ].filter(Boolean);
+  return andList(parts);
 }
 
 /** docs/56: a liar's secret, as the curtain says it: a bible secret is a whole sentence ("She lets the attic …"), a dealt one a phrase. */

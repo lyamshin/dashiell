@@ -67,20 +67,23 @@ describe('round 3: the interface (docs/47 A)', () => {
     expect(touched).toBeGreaterThan(4);
   });
 
-  it('the grid has the dead man’s row, ✓ only on two sources, and the window narrows with a sighting', () => {
-    for (let s = 1; s <= 6; s++) {
-      const d = dealBoard(s, 5, 'murder');
-      const run = playBoardOracle(d).run;
-      const g = boardGrid(d.kase, run);
-      expect(g.rows[0]?.victim).toBe(true);
-      for (const r of g.rows) for (const h of g.hours) {
-        const cell = r.cells[h];
-        if (cell?.confirmed) expect(cell.seen, `${r.name} ${h}`).toBeDefined();
+  it('the grid has the dead man’s row, ✓ only on two sources, and the window narrows with a sighting (Raw and Coddled; from Poached up never, docs/73)', () => {
+    for (const tier of [1, 5] as const)
+      for (let s = 1; s <= 6; s++) {
+        const d = dealBoard(s, tier, 'murder');
+        const run = playBoardOracle(d).run;
+        const g = boardGrid(d.kase, run);
+        expect(g.rows[0]?.victim).toBe(true);
+        for (const r of g.rows) for (const h of g.hours) {
+          const cell = r.cells[h];
+          if (cell?.confirmed) expect(cell.seen, `${r.name} ${h}`).toBeDefined();
+        }
+        const v = g.rows[0];
+        // An hour the dead man's row puts him away from the scene is no longer one it could have been, at
+        // Coddled; from Poached up the grid keeps the office's hours, and which one it was is the player's sum.
+        if (tier === 1) for (const h of g.window) expect(v?.cells[h]?.seen && v.cells[h]?.seen?.place !== d.kase.crime.scene).toBeFalsy();
+        else expect(g.window).toEqual(d.kase.givens.window ?? d.kase.crime.window);
       }
-      // An hour the dead man's row puts him away from the scene is no longer one it could have been.
-      const v = g.rows[0];
-      for (const h of g.window) expect(v?.cells[h]?.seen && v.cells[h]?.seen?.place !== d.kase.crime.scene).toBeFalsy();
-    }
   });
 
   it('pencil takes "ten" as well as "10", and the mark shows beside what the cell holds', () => {

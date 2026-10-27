@@ -362,7 +362,12 @@ export function starReason(c: BoardCase, run: Pick<BoardRun, 'asked'>, qid: stri
   if (q.kind === 'search') {
     const f = c.finds.find((x) => x.id === q.subject);
     if (f?.gives.why) return `who had what against ${pronOf(c, c.crime.victim).him}`;
-    return isMurder(c) ? `start where ${pronOf(c, c.crime.victim).he} died` : 'start where it went missing';
+    // (Round 8, B4: "start" only before anything is done. Six or eight actions in, it says what's missing:
+    // the scene not seen yet, or seen and not searched.)
+    const r = run as Partial<BoardRun> & Pick<BoardRun, 'asked'>;
+    const where = isMurder(c) ? `where ${pronOf(c, c.crime.victim).he} died` : 'where it went missing';
+    if (run.asked.length === 0 && (r.visited ?? []).length === 0) return `start ${where}`;
+    return (r.visited ?? []).includes(c.crime.scene) || r.at === c.crime.scene ? `you haven’t searched ${where} yet` : `you haven’t seen ${where} yet`;
   }
   const by = pointerIndex(c).by.get(qid);
   if (!by) return '';

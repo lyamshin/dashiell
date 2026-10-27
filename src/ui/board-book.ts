@@ -14,7 +14,7 @@
 import { clockStrip, usedByPage } from '../game/board/clock.js';
 import { boardChoices, pickerFor, pickerNote, type Picker } from '../game/board/choices.js';
 import { newBoardRun, stepBoard } from '../game/board/engine.js';
-import { FACE_MARK, boardGrid, cellText, faceMarkDue, meansAsked, placesKey, shownPlaces, type BoardCell, type BoardGrid } from '../game/board/grid.js';
+import { FACE_MARK, boardGrid, cellText, faceMarkDue, meansAsked, meansReasons, placesKey, shownPlaces, type BoardCell, type BoardGrid } from '../game/board/grid.js';
 import { knownPeople, knownPlaces, lineShown, linesHeld } from '../game/board/knowledge.js';
 import {
   BOARD_SAVE_KEY,
@@ -35,7 +35,7 @@ import {
 } from '../game/board/model.js';
 import { recapClauses } from '../game/board/pages.js';
 import { peopleLine } from '../game/board/gloss.js';
-import { BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, whereByLabel, blankRule, boardFields, breakOptionsShown, clearOptions, curtainOfBoard, hoursThatMattered, keptPick, lineGroupHeads, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
+import { BREAKS_LABEL, CLEARED_LABEL, HUNCH, NOBODY, whereByLabel, blankRule, boardFields, breakOptionsShown, clearOptions, curtainOfBoard, hoursThatMattered, keptPick, lineGroupHeads, notebookLines, reportFrom, scoreBoard, storyOfBoard, whereByOptions, type FieldKey, type LineOption, type Verdict } from '../game/board/report.js';
 import { BOARD_RULES, BOARD_TEACH_LINES, BOARD_TEACH_TITLE, teachLines } from '../game/board/teach.js';
 import { ACTION_KEY, TALK_HEADING, chapterShown, costText, officeLines, questionsText } from '../game/board/text.js';
 import { hasHints, hintLabel, hintStanding, hintsLeft, hintsNote, takeHint } from '../game/board/hints.js';
@@ -712,7 +712,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
           'cleared',
           CLEARED_LABEL,
           () => clearOptions(dd, r, other()),
-          () => (other() === NOBODY ? 'Nobody else, so there’s nothing to clear.' : named() ? 'Pick what clears them, or “A hunch”.' : `Pick who first. Until then, this is what you were told about ${hours} o’clock.`),
+          () => (other() === NOBODY ? 'Nobody else, so there’s nothing to clear.' : named() ? 'Pick what clears them: somebody else’s word, not their own. Or “A hunch”.' : `Pick who first. Until then, this is what you were told about ${hours} o’clock.`),
           () => (other() && other() !== NOBODY ? lineGroupHeads(dd, r, other() as string) : null),
         );
         s.addEventListener('change', refill);
@@ -755,6 +755,8 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
         const src = l.q.startsWith('list:') ? `Who ${nameOf(c, l.q.slice(5))} saw` : l.q.startsWith('account:') ? `${nameOf(c, l.q.slice(8))}’s evening` : l.q.startsWith('search:') ? 'What I found' : 'When I faced them with it';
         bySource.set(src, [...(bySource.get(src) ?? []), lineShown(c, r, l)]);
       }
+      // (Round 8, B1: every line the form can offer is here, a confession too.)
+      for (const o of notebookLines(d as BoardDeal, r)) if (o.value.startsWith('crack:')) bySource.set('When I faced them with it', [...(bySource.get('When I faced them with it') ?? []), o.label]);
       // (The reasons asked of them, as the CLI's notebook has them.)
       for (const q of r.asked.filter((x) => x.startsWith('motive:'))) bySource.set('Their reasons', [...(bySource.get('Their reasons') ?? []), `${nameOf(c, q.slice(7))}’s reason: ${personOf(c, q.slice(7))?.motive}.`]);
       for (const [src, ls] of bySource) {
@@ -806,7 +808,7 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     for (const h of g.hours) {
       const crime = g.crimeHour === h;
       const maybe = g.crimeHour === null && g.window.includes(h);
-      head.append(el('th', { scope: 'col', class: `bgrid-hour${crime ? ' bgrid-hour--crime' : ''}${maybe ? ' bgrid-hour--maybe' : ''}`, title: crime ? 'when it happened' : maybe ? 'it may have happened then' : '', text: `${h}` }));
+      head.append(el('th', { scope: 'col', class: `bgrid-hour${crime ? ' bgrid-hour--crime' : ''}${maybe ? ' bgrid-hour--maybe' : ''}`, title: crime ? 'when it happened' : maybe ? (g.givenBy ? `an hour ${g.givenBy} gave` : 'it may have happened then') : '', text: `${h}` }));
     }
     head.append(el('th', { scope: 'col', class: 'bgrid-means', title: meansAsked(meansWords(g.meansLabel)) }, el('span', { text: meansHead(g.meansLabel) })));
     table.append(el('thead', {}, head));
@@ -873,7 +875,14 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     wrap.append(key);
     // (Round 7, U2: the places only where a label isn't the place's own name, as the CLI says them.)
     const places = placesKey(c, run as BoardRun, g.codes, shownPlaces(g, false));
-    wrap.append(el('p', { class: 'bgrid-key', text: `${g.crimeHour !== null ? `The marked hour is when it happened.` : g.window.length > 1 ? `It happened at ${g.window.join(' or ')}.` : ''} The last column: ${meansAsked(meansWords(g.meansLabel))}${places ? ` ${places}` : ''}` }));
+    // (Round 9, item 1: from Poached up the marked hours are the client's, never narrowed: "The marked hour
+    // is when it happened." on HB 39's first look gave the hour away.)
+    const marked = g.crimeHour !== null ? 'The marked hour is when it happened.' : g.givenBy ? `The marked ${g.window.length > 1 ? 'hours are the ones' : 'hour is the one'} ${g.givenBy} gave.` : g.window.length > 1 ? `It happened at ${g.window.join(' or ')}.` : '';
+    wrap.append(el('p', { class: 'bgrid-key', text: `${marked} The last column: ${meansAsked(meansWords(g.meansLabel))}${places ? ` ${places}` : ''}`.trim() }));
+    // (Round 9, item 2: why a "no", in the grid itself; the cell's title was hover-only, and "Broadnax: no"
+    // from the first look read as a leak.)
+    const why = meansReasons(g);
+    if (why) wrap.append(el('p', { class: 'bgrid-key bgrid-why', text: why }));
     return wrap;
   }
 
@@ -903,6 +912,9 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     if (cell.says) bits.push(`says ${placeName(c, cell.says)}`);
     if (cell.seen) bits.push(seenWords(cell.seen.by, placeName(c, cell.seen.place)));
     if (cell.collision) bits.push('the two don’t agree');
+    // (Round 8, B9: the second story, and whether it clashes too.)
+    if (cell.admitted) bits.push(`admitted ${placeName(c, cell.admitted)}`);
+    else if (cell.second) bits.push(`then said ${placeName(c, cell.second)}${cell.secondClash ? ', and that doesn’t agree either' : ''}`);
     if (cell.pencil?.at) bits.push(`your guess: ${placeName(c, cell.pencil.at)}`);
     return bits.join('; ') || 'nothing yet';
   }

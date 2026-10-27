@@ -244,12 +244,15 @@ describe('board: the refusal shortcut and the wanderer', () => {
 });
 
 describe('board: the grid is the board', () => {
-  it('rows are the people known; a caught lie is a collision; the hour is marked once known', () => {
+  it('rows are the people known; a caught lie is a collision; the hour is marked once known (Raw and Coddled; from Poached up, the office’s hours, docs/73)', () => {
     const d = dealBoard(4, 2, 'lost-pet');
     const o = playBoardOracle(d);
     const g = boardGrid(d.kase, o.run);
     expect(g.rows.length).toBeGreaterThan(0);
-    expect(g.crimeHour).toBe(d.kase.crime.hour);
+    expect(g.crimeHour).toBeNull();
+    expect(g.window).toEqual(d.kase.givens.window ?? d.kase.crime.window);
+    const raw = dealBoard(4, 1, 'lost-pet');
+    expect(boardGrid(raw.kase, playBoardOracle(raw).run).crimeHour).toBe(raw.kase.crime.hour);
     const lie = d.kase.lies.find((l) => l.person === d.kase.crime.culprit);
     const row = g.rows.find((r) => r.id === d.kase.crime.culprit);
     expect(row?.cells[lie?.hour as number]?.collision).toBe(true);
@@ -330,7 +333,7 @@ describe('board: the play CLI', () => {
     expect(cn).toBeGreaterThan(0);
     // (Round 6, U5: `report <name>` is that person's list; the whole form is `report`.)
     expect(runPlay(['report', '--save', save], io).out).toContain('Did anyone else lie? If so, who, and what clears them? (other):');
-    expect(runPlay(['report', otherName, '--save', save], io).out.replace(/\s+/g, ' ')).toContain(`If you say ${otherName} lied too, give “cleared” as a number from this list too.`);
+    expect(runPlay(['report', otherName, '--save', save], io).out.replace(/\s+/g, ' ')).toContain(`Did anyone else lie? If your answer is ${otherName}, pick what clears`);
     const filed = runPlay(['file', `who=${d.kase.crime.culprit}; breaks=${n}; other=${otherName}; cleared=${cn}; when=${d.kase.crime.hour}; where=${truth.where}; whereBy=${wn}; why=${d.kase.crime.culprit}`, '--save', save], io);
     expect(filed.code, filed.out).toBe(0);
     expect(filed.out).toContain('THE VERDICT');

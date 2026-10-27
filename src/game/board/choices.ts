@@ -16,7 +16,7 @@
 
 import { minutesAfter } from './clock.js';
 import type { OfferedChoice, OfferedGroup } from './types.js';
-import { candidateLines, collisionsOf, confrontationOf, judgeLine, knownPeople, knownPlaces, lineShown, linesHeld, listOf, peopleAt, type Line } from './knowledge.js';
+import { bearsOn, candidateLines, collisionsOf, confrontationOf, judgeLine, knownPeople, knownPlaces, lineShown, linesHeld, listOf, peopleAt, type Line } from './knowledge.js';
 import {
   OFFICE,
   andList,
@@ -198,6 +198,8 @@ export interface Picker {
   /** One sentence and an example, in the book's words. */
   help: string;
   minutes: number;
+  /** Round 9, item 7: confronting them takes the night's last action. */
+  last?: boolean;
 }
 
 /** Their claims that collide with something held, and what can be put against each. Null when none. */
@@ -212,7 +214,9 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
   const pr = pronOf(c, p);
   for (const col of collisionsOf(c, run, p)) {
     if (landed.has(`${p}@${col.hour}`)) continue;
-    const cands = candidateLines(c, run, p, col.hour, lines);
+    // (Round 9, item 3: only what bears on what they said: a line that doesn't isn't offered, and one
+    // the report would take as proof lands.)
+    const cands = candidateLines(c, run, p, col.hour, lines).filter((l) => bearsOn(c, p, col.hour, l));
     // docs/55 1d: "home" says which place, where the grid calls it by another name. Round 6, U2: as a
     // clause, "home at the Delmonico rooms at ten", never "home (the Delmonico rooms) at ten".
     const label = `${personOf(c, p)?.home === col.claim.place ? (homeNamed(c, p) ? 'home' : `home at ${placeName(c, col.claim.place ?? '')}`) : `at ${placeName(c, col.claim.place ?? '')}`} at ${hourWord(col.hour)}`;
@@ -246,6 +250,7 @@ export function pickerFor(d: BoardDeal, run: BoardRun, p: PersonId): Picker | nu
         ? `Pick what you’ll tell ${pr.him}.`
         : `Pick the hour that doesn’t match, then who says otherwise: somebody who saw ${pr.him} somewhere else, or who saw everybody where ${pr.he} said ${pr.he} was, and not ${pr.him}.`,
     minutes: callMinutes(d, run),
+    ...(budgetCalls(d) - run.used === 1 ? { last: true } : {}),
   };
 }
 
@@ -261,7 +266,10 @@ export function pickerNote(d: BoardDeal, pk: Picker): string {
   // confronting the innocent liar is how you learn who clears them. From Poached up, where an innocent
   // liar can be dealt, it says so; below, there's nobody to clear, and what they say back tells you more.
   const back = d.kase.tier >= 2 ? `${pr.he} may name somebody who can clear ${pr.him}` : `${pr.he} may tell you more`;
-  return `${pk.help} Confronting ${pr.him} takes an action and isn’t needed to prove ${pr.he} lied, but ${back}.`;
+  // (Round 9, item 7: on the last action, said plainly. Medium 37 confronted Sirkin with the last one, he
+  // named Bledsoe, and there was no action left to ask Bledsoe.)
+  const last = pk.last ? ` This is your last action: if ${pr.he} names somebody, asking them would take another, and you won’t have one.` : '';
+  return `${pk.help} Confronting ${pr.him} takes an action and isn’t needed to prove ${pr.he} lied, but ${back}.${last}`;
 }
 
 function listWhole(d: BoardDeal, l: Line): boolean {

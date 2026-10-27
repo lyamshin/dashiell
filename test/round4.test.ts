@@ -145,7 +145,8 @@ describe('round 4: stars, the report and the curtain (docs/55 4, 5, 7)', () => {
 
   it('the curtain says the shortest night in calls, the number the verdict uses', () => {
     const d = dealBoard(8, 5, 'murder');
-    expect(curtainOfBoard(d)).toContain('THE FASTEST SOLVE: 13 actions (7 questions, a look at the papers for the motive and 5 walks)');
+    // (Round 8, B6, docs/73: by kind; the table's search isn't a question.)
+    expect(curtainOfBoard(d)).toContain('THE FASTEST SOLVE: 13 actions (6 questions, a search, a look at the papers for the motive and 5 walks)');
   });
 
   it('the CLI says what picking somebody costs, not a count that reads as a price (round 5, U1)', () => {

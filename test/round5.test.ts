@@ -7,8 +7,8 @@ import { describe, expect, it } from 'vitest';
 import { typesFor, type TierIndex } from '../src/gen/board/index.js';
 import { pickerFor } from '../src/game/board/choices.js';
 import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
-import { accountOf, lineShown, linesHeld } from '../src/game/board/knowledge.js';
-import { OFFICE, budgetCalls, dealBoard, placeName, type BoardDeal, type BoardRun } from '../src/game/board/model.js';
+import { accountOf, bearsOn, lineShown, linesHeld } from '../src/game/board/knowledge.js';
+import { OFFICE, budgetCalls, dealBoard, placeName, type BoardDeal, type BoardRun, type Hour } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
 import { blankRule, boardFields, breakOptionsShown, hoursThatMattered, lineGroupHeads, scoreBoard, spareCalls, truthReport } from '../src/game/board/report.js';
 import { TALK_HEADING, notebookText, questionsText } from '../src/game/board/text.js';
@@ -69,9 +69,10 @@ describe('round 5, U1: picking somebody is free; each question is a call', () =>
 });
 
 describe('round 5, U2 and U6: the report says what to type, and what a blank is, once', () => {
-  it('“cleared” is a number from the same list', () => {
+  it('“cleared” is a number from the same list (round 8, B2: said under “Did anyone else lie?”, in plain words, docs/73)', () => {
     const out = cli(HB8)('report', 'Grasso').replace(/\s+/g, ' ');
-    expect(out).toContain('If you say Grasso lied too, give “cleared” as a number from this list too.');
+    expect(out).toMatch(/Did anyone else lie\? If your answer is Grasso, pick what clears (?:him|her) from this same list: somebody else’s word, not (?:his|her) own\./);
+    expect(out).not.toMatch(/lied too|give “cleared”/);
     expect(out).not.toMatch(/counts down/);
   });
 
@@ -100,11 +101,13 @@ describe('round 5, U3: docs/55 5’s wide first group, under a heading that says
         // (Round 6, U5: the heading says only what every line under it is: about those hours. Round 7,
         // U1: and about whom, and where they said they were, once their evening is held.)
         const N = d.kase.people.find((p) => p.id === who)?.short as string;
-        expect(head, `${d.kase.id} ${who}`).toMatch(new RegExp(`^About ${N.replace(/[.]/g, '\\.')}${own ? ', or anywhere (?:he|she) said (?:he|she) was tonight,' : ''} at (?:seven|eight|nine|ten|eleven)(?:, (?:seven|eight|nine|ten|eleven))*(?: or (?:seven|eight|nine|ten|eleven))? o’clock:$`));
+        // (docs/73, round 9: where company counts, Hard-boiled's pairs, and whoever they said they were with.)
+        const pair = d.kase.tier === 5;
+        expect(head, `${d.kase.id} ${who}`).toMatch(new RegExp(`^About ${N.replace(/[.]/g, '\\.')}${own ? `,${pair ? ' anybody (?:he|she) said (?:he|she) was with,' : ''} or anywhere (?:he|she) said (?:he|she) was tonight,` : ''} at (?:seven|eight|nine|ten|eleven)(?:, (?:seven|eight|nine|ten|eleven))*(?: or (?:seven|eight|nine|ten|eleven))? o’clock:$`));
         for (const o of breakOptionsShown(d, run, who).filter((x) => x.touches)) {
           const l = lines.find((x) => x.id === o.value);
           expect(l && l.hour !== undefined && hours.has(l.hour), `${d.kase.id} ${who} ${o.label}`).toBe(true);
-          expect(l?.about.includes(who) || (!!own && l?.place !== undefined && theirs.has(l.place)), `${d.kase.id} ${who}: “${o.label}” under “${head}”`).toBe(true);
+          expect(l?.about.includes(who) || (!!own && l?.place !== undefined && theirs.has(l.place)) || (pair && !!own && !!l && bearsOn(d.kase, who, l.hour as Hour, l)), `${d.kase.id} ${who}: “${o.label}” under “${head}”`).toBe(true);
         }
       }
     }
