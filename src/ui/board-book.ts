@@ -49,7 +49,7 @@ import { typesFor } from '../gen/board/index.js';
 import { clear, el } from './dom.js';
 import { attachCard, hideCard, type CardSource } from './hover.js';
 import { renderVerdict, type TierNews } from './report.js';
-import { AGAINST, CONCERNING, COURT, DETECTIVES_REPORT, clockNode, clockParts, crest, reportTo, setback } from './deco.js';
+import { AGAINST, CONCERNING, COURT, DETECTIVES_REPORT, clockNode, clockParts, crest, reportTo, routeSvg, setback } from './deco.js';
 import { createWeatherLayer, loadWeatherOn, saveWeatherOn } from './weather.js';
 import './board.css';
 
@@ -600,9 +600,13 @@ export function mountBoard(root: HTMLElement, store: KeyValueStore): void {
     const aside = ch.note ? el('span', { class: 'aside', text: ch.note }) : null;
     const why = ch.lead && ch.why ? el('span', { class: 'aside why', text: ch.why }) : null;
     if (kind === 'walk') {
-      // The destination as the car's roll-sign, the note under it; the stub torn off at the dashes.
+      // The destination as the car's roll-sign, the note under it; on the stub, torn off at the dashes,
+      // the route from here to there, and a step along it under the finger.
       const body = el('span', { class: 'body' }, label, aside, why);
-      b.append(body, el('span', { class: 'mins stub', 'aria-hidden': 'true', text: cost }));
+      const stub = el('span', { class: 'mins stub', 'aria-hidden': 'true' });
+      if (cost) stub.textContent = cost;
+      else stub.append(routeSvg());
+      b.append(body, stub);
     } else {
       b.append(label);
       // (book-look, item 5: done says so in a word, never a ✓ glyph; the aria-label says "already done".)

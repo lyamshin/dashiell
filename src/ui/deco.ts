@@ -72,6 +72,30 @@ export function crest(): SVGSVGElement {
   return setbackSvg('crest');
 }
 
+/**
+ * A walk's route, for the transfer's stub: a ring for here, a dotted way, a dot for there, and the
+ * walker who steps along it when the ticket is under a finger (chosen from impeccable's live variants).
+ */
+export function routeSvg(): SVGSVGElement {
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('viewBox', '0 0 44 12');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
+  svg.setAttribute('class', 'route');
+  const part = (tag: string, cls: string, attrs: Record<string, string>): void => {
+    const node = document.createElementNS(ns, tag);
+    node.setAttribute('class', cls);
+    for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+    svg.append(node);
+  };
+  part('circle', 'here', { cx: '4', cy: '6', r: '2.6' });
+  part('line', 'path', { x1: '9', y1: '6', x2: '35', y2: '6' });
+  part('circle', 'there', { cx: '40', cy: '6', r: '2.6' });
+  part('circle', 'walker', { cx: '4', cy: '6', r: '1.7' });
+  return svg;
+}
+
 /** A five-pointed star, drawn, for the verdict's star (amber for gold, red for a star). */
 export function starSvg(): SVGSVGElement {
   const ns = 'http://www.w3.org/2000/svg';
