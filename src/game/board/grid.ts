@@ -5,13 +5,14 @@
  * met; columns are the hours, and one column is "could get the means". Each
  * cell shows what the player holds: what they say themselves, what somebody
  * else saw, a collision where those disagree (both lines on hover or tap),
- * and the player's own pencil. The crime hour is marked once known. Every
+ * and the player's own pencil. The crime hour is marked once known (Raw and Coddled; from Poached up the office's hours, round 9). Every
  * mark is read off the held lines and the solver on them, never the truth.
  */
 
 import type { CellMark } from './types.js';
-import { linesHeld, lineShown, accountOf, agreesWith, collisionsOf, solveRun, knownPeople, knownPlaces, faceUnmatched, listOf, meansLate } from './knowledge.js';
-import { cap, hourWord, isMurder, nameOf, personOf, placeName, suspectsOf, type BoardCase, type BoardRun, type Hour, type PersonId, type PlaceId } from './model.js';
+import { linesHeld, lineShown, accountOf, agreesWith, collisionsOf, solveRun, knownPeople, knownPlaces, faceUnmatched, listOf, meansLate, secondBreakers } from './knowledge.js';
+import { cap, clientOf, hourWord, isMurder, nameOf, personOf, placeName, sumsSaid, suspectsOf, type BoardCase, type BoardRun, type Hour, type PersonId, type PlaceId } from './model.js';
+import { isPoison } from './when.js';
 import { sourceName } from './stars.js';
 import { meansKnew } from './bones/phrase.js';
 
@@ -27,6 +28,12 @@ export interface BoardCell {
   /** A second story told when it was put to them, or what they owned up to. */
   second?: PlaceId;
   admitted?: PlaceId;
+  /**
+   * Round 8, B9: the second story clashes too: a keeper's list held for that place and hour, everybody
+   * there and not them. The grid and the notebook stopped at "changed the answer" (Medium 37's Ashby,
+   * "the Orpheum" after the put, never marked against Alfano's list).
+   */
+  secondClash?: boolean;
   /** The lines behind the cell, for the hover or tap. */
   lines: string[];
   pencil?: CellMark;
@@ -49,8 +56,10 @@ export interface BoardGrid {
   rows: BoardRow[];
   /** The crime hour, once the player can know it. */
   crimeHour: Hour | null;
-  /** The hours it could still have been. */
+  /** The hours it could still have been. From Poached up, the office's hours, never narrowed (round 9). */
   window: Hour[];
+  /** Round 9, item 1: from Poached up, whose hours the marked ones are ("Lefkowitz"); null where the grid narrows them. */
+  givenBy: string | null;
   /** A short label for every place the grid names, and the key to them. */
   codes: Record<PlaceId, string>;
   meansLabel: string;
@@ -167,6 +176,9 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
         if (k2.response === 'admit' && lie) cell.admitted = lie.truth;
         if (k2.secondLie?.place) cell.second = k2.secondLie.place;
       }
+      // (Round 8, B9: and where a list held says the second story wasn't so either, it clashes too.)
+      const second = cell.second && !cell.admitted ? secondBreakers(c, run, id, h, lines) : [];
+      if (second.length > 0) cell.secondClash = true;
       // The lines behind it.
       // (Round 7, B3: under a clash, what it clashes with: their own word, what broke it, and what came
       // of it; never a line that only says what they said, as a pair's partner does. Where the break
@@ -194,6 +206,11 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
             if (m?.at === b.place) cell.lines.push(`Your guess: ${nameOf(c, q.id)} at ${placeName(c, b.place)} at ${hourWord(h as Hour)}.`);
           }
         }
+      }
+      // (Round 8, B9: under the second story, what says it wasn't so either.)
+      for (const b of second) {
+        const t = lineShown(c, run, b);
+        if (!cell.lines.includes(t)) cell.lines.push(t);
       }
       if (run.marks[id]?.[String(h)]) cell.pencil = run.marks[id]?.[String(h)];
       cells[h] = cell;
@@ -231,16 +248,23 @@ export function boardGrid(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts' | '
     const seen = vrow?.cells[h]?.seen;
     return !!seen && seen.place !== c.crime.scene;
   };
-  const window = c.tier === 0 ? [...s.possibleHours] : office.filter((h) => !away(h)).length > 0 ? office.filter((h) => !away(h)) : [...office];
+  // Round 9, item 1: from Poached up (docs/72's `sumsSaid`), the grid marks the office's hours and never
+  // narrows them: which one it was is the player's sum, as the narration leaves it (HB 39's "ten !" on the
+  // first look at the grid, before anything had settled it). Raw and Coddled keep the narrowing.
+  const narrows = sumsSaid(c);
+  const window = !narrows ? [...office] : c.tier === 0 ? [...s.possibleHours] : office.filter((h) => !away(h)).length > 0 ? office.filter((h) => !away(h)) : [...office];
+  const client = clientOf(c).short;
   return {
     hours,
     rows,
-    crimeHour: window.length === 1 ? (window[0] as Hour) : null,
+    crimeHour: narrows && window.length === 1 ? (window[0] as Hour) : null,
     window,
+    givenBy: narrows ? null : client,
     codes,
     // (Case 2312, the owner's ruling: never the weapon's name, "carving knife?" from midnight answered
-    // the report's How.)
-    meansLabel: isMurder(c) ? 'could have got the weapon' : meansKnew(c),
+    // the report's How. Round 9, item 2: a poisoning's is "the poison": "Could they get the weapon?" was
+    // asked of a medicine bottle.)
+    meansLabel: isMurder(c) ? (isPoison(c) ? 'could have got the poison' : 'could have got the weapon') : meansKnew(c),
   };
 }
 
@@ -259,7 +283,7 @@ export function cellText(g: BoardGrid, cell: BoardCell): string {
   const pencil = cell.pencil?.at ? `~${code(cell.pencil.at)}` : cell.pencil?.notAt?.length ? `~not ${code(cell.pencil.notAt[0] as string)}` : '';
   let base = '';
   if (cell.collision) {
-    const tail = cell.admitted ? `→${code(cell.admitted)}` : cell.second ? `→"${code(cell.second)}"` : '';
+    const tail = cell.admitted ? `→${code(cell.admitted)}` : cell.second ? `→"${code(cell.second)}"${cell.secondClash ? '✗' : ''}` : '';
     base = `"${code(cell.says ?? '')}"✗${tail}`;
   } else if (cell.confirmed && cell.says) base = `"${code(cell.says)}"✓`;
   else if (cell.seen) base = `[${code(cell.seen.place)}]`;
@@ -293,7 +317,17 @@ export function shownPlaces(g: BoardGrid, arrows = true): Set<PlaceId> {
 }
 
 /**
- * docs/64: the last column, asked as a question: "Could they get the weapon?", and a small case's
+ * Round 9, item 2: why the last column says "no", in the grid itself, the CLI's and the book's: "Why
+ * “no”: Broadnax didn’t come to Mrs. Nagy’s till nine, too late for it." Medium 37's "Broadnax: no" from
+ * the first look, with nothing on the page saying why, read as a leak. Null when nobody's is a no.
+ */
+export function meansReasons(g: BoardGrid): string | null {
+  const why = g.rows.filter((r) => r.means === 'no' && r.meansWhy).map((r) => r.meansWhy as string);
+  return why.length ? `Why “no”: ${why.join(' ')}` : null;
+}
+
+/**
+ * docs/64: the last column, asked as a question: "Could they get the weapon?" ("the poison" on a poisoning, round 9), and a small case's
  * own means, "Could they get the spare key?", "Did they know where the key was?".
  */
 export function meansAsked(label: string): string {
@@ -343,6 +377,8 @@ export function gridKey(g: BoardGrid): string[] {
   if (cells.some((x) => x.confirmed)) out.push('"X"✓ they say so, and somebody saw them there');
   if (cells.some((x) => x.admitted)) out.push('→Y where they admitted they were');
   if (cells.some((x) => x.second && !x.admitted)) out.push('→"Y" what they said the second time');
+  // (Round 8, B9.)
+  if (cells.some((x) => x.secondClash)) out.push('→"Y"✗ where that clashes too');
   if (cells.some((x) => x.pencil)) out.push('~X your own guess');
   return out;
 }
@@ -365,7 +401,11 @@ export function boardGridText(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'
   }
   out.push('');
   out.push(gridKey(g).join('  ·  '));
-  out.push(g.crimeHour !== null ? '! the hour it happened' : '? the hours it could have been');
+  out.push(g.crimeHour !== null ? '! the hour it happened' : g.givenBy ? `? the ${g.window.length > 1 ? 'hours' : 'hour'} ${g.givenBy} gave` : '? the hours it could have been');
+  // (Round 9, item 2: a "no" in the last column says why, in the grid itself: "Broadnax: no" from the
+  // first look read as a leak.)
+  const why = meansReasons(g);
+  if (why) out.push(why);
   // (docs/66: at Hard-boiled, how a face's clash shows: the player's mark.)
   // (Round 7, U4: once a night, on the page of the first coat.)
   if (faceMarkDue(c, { log: run.log ?? [] })) out.push(`${FACE_MARK} (mark "<Name> <hour> at <place>")`);

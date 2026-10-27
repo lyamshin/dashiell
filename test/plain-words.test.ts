@@ -23,7 +23,7 @@ import { newBoardRun, stepBoard } from '../src/game/board/engine.js';
 import { boardGrid, boardGridText, gridKey, meansAsked, placeCodes, placesKey } from '../src/game/board/grid.js';
 import { dealBoard, deadlineWords, type BoardDeal } from '../src/game/board/model.js';
 import { playBoardOracle } from '../src/game/board/oracle.js';
-import { BREAKS_LABEL, CLEARED_LABEL, OTHER_LABEL, OTHER_QUESTION, WHERE_BY_LABEL, blankRule, boardFields, breakOptionsShown, curtainOfBoard, lineGroupHeads, lineNumbers, scoreBoard, starWords, storyOfBoard, tallyWords, truthReport, whereByOptions } from '../src/game/board/report.js';
+import { BREAKS_LABEL, CLEARED_LABEL, OTHER_LABEL, OTHER_QUESTION, WHERE_BY_LABEL, blankRule, boardFields, breakOptionsShown, curtainOfBoard, lineGroupHeads, lineNumbers, notebookLines, scoreBoard, starWords, storyOfBoard, tallyWords, truthReport, whereByOptions } from '../src/game/board/report.js';
 import { hintLabel, hintsLine, hintsNote, takeHint } from '../src/game/board/hints.js';
 import { BOARD_RULES, BOARD_TEACH_LINES } from '../src/game/board/teach.js';
 import { ACTION_KEY, PICKER_COST, TALK_HEADING, TURN_DIVIDER, chapterShown, costText, notebookText, questionsText } from '../src/game/board/text.js';
@@ -108,7 +108,7 @@ describe('docs/64: plain words in the chrome', () => {
     expect(clockStrip(0, 14).left).toBe('Fourteen actions left. The DA charges somebody at eight.');
     expect(clockStrip(7, 10, deadlineWords(dealBoard(11, 0, 'lost-item').kase)).left).toBe('Three actions left. Mrs. Marchetti wants an answer at eight.');
     expect(chapterShown('The turn')).toBe('Where things stood');
-    expect(BOARD_TEACH_LINES).toContain('When two people lied, you also need what clears the innocent one.');
+    expect(BOARD_TEACH_LINES).toContain('When two people lied, you also need what clears the innocent one: somebody else’s word, not their own.');
   });
 
   it('the CLI, over a night at every tier and both worlds, never says a retired word', { timeout: 240_000 }, () => {
@@ -347,10 +347,10 @@ describe('round 7, U1–U3: the report’s lists, the labels and the confront bo
       for (const o of opts) expect(nums.get(o.value), `${d.kase.id} ${o.label}`).toBeGreaterThan(0);
       // One number each: no two things share one.
       expect(new Set(nums.values()).size).toBe(nums.size);
-      // The notebook's "What I was told" is numbered 1 to n, in the order it was held.
-      linesHeld(d.kase, run)
-        .filter((l) => l.kind !== 'given')
-        .forEach((l, i) => expect(nums.get(l.id)).toBe(i + 1));
+      // The notebook's "What I was told" is numbered 1 to n: the office's facts, then in the order it was
+      // held (round 8, B1, docs/73: one list, a crack in its place).
+      notebookLines(d, run).forEach((o, i) => expect(nums.get(o.value)).toBe(i + 1));
+      expect(notebookLines(d, run).filter((o) => !o.value.startsWith('given#') && !o.value.startsWith('crack:')).map((o) => o.value)).toEqual(linesHeld(d.kase, run).filter((l) => l.kind !== 'given').map((l) => l.id));
     }
   });
 
@@ -364,8 +364,9 @@ describe('round 7, U1–U3: the report’s lists, the labels and the confront bo
     const hb = dealBoard(19, 5, 'murder');
     expect(lineGroupHeads(hb, newBoardRun(hb), 'grasso').rest).toBe('About anybody else at eight or nine o’clock, or Grasso at other hours:');
     const form = cli(d, o.commands.map((x) => ({ do: x })))('report').replace(/\s+/g, ' ');
-    expect(form).toContain('Pick who first. Then `report <name>` shows what you were told about them and about nine o’clock, numbered as in the notebook. Give proof as one of those numbers, or proof=hunch.');
-    expect(form).toContain('If you name somebody, `report <name>` shows the same for them. Give cleared as one of those numbers, or cleared=hunch.');
+    // (docs/73, round 9, item 7: the form's keys stay in the command's line, never in a sentence.)
+    expect(form).toContain('Pick who first. Then `report <name>` shows what you were told about them and about nine o’clock, numbered as in the notebook. Give one of those numbers, or “hunch”.');
+    expect(form).toContain('If you name somebody, `report <name>` shows what you were told about them. Pick what clears them from it: somebody else’s word, not their own. Give its number, or “hunch”.');
     expect(form).not.toMatch(/lists what you know about them, or about|the same list as for proof|Name them first:/);
     for (const t of [heads.touching, heads.rest]) expect(retiredIn(t), t).toEqual([]);
   });

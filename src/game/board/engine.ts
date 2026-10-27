@@ -22,7 +22,7 @@ import { takeHint } from './hints.js';
 import { thinNames } from './names.js';
 import { nameHomesOnPage, titleClientOnPage } from './home.js';
 import { PLAN, linkGaps } from './plan/index.js';
-import { collisionsOf, judgeLine, knownPeople, knownPlaces, linesHeld, peopleAt, solveRun } from './knowledge.js';
+import { collisionsOf, judgeLine, secondBreakers, knownPeople, knownPlaces, linesHeld, peopleAt, solveRun } from './knowledge.js';
 import {
   OFFICE,
   budgetCalls,
@@ -192,9 +192,9 @@ export function stepBoard(d: BoardDeal, run: BoardRun, input: string): StepResul
     if (!line) return fail('I wasn’t told that.');
     let j = judgeLine(c, run, p, h, line);
     if (again) {
-      // The second story: the list where it claims to be, without them on it.
-      const k = c.confrontations.find((x) => x.person === p && x.hour === h);
-      const lands = line.kind === 'list' && line.place === k?.secondLie?.place && line.hour === h && !line.about.includes(p);
+      // The second story: the list where it claims to be, without them on it (`secondBreakers`, the
+      // report's and the grid's too).
+      const lands = secondBreakers(c, run, p, h).some((l) => l.id === line.id);
       j = lands ? { landed: true } : { landed: false, why: `It didn’t touch where ${nameOf(c, p)} said ${c.people.find((x) => x.id === p)?.female ? 'she' : 'he'} was the second time.` };
     }
     next.used = run.used + 1;

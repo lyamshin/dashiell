@@ -7,11 +7,11 @@
  *
  * - everyone gives you their whole evening, with company;
  * - whoever kept the bar or the stairs names everyone, hour by hour;
- * - people lie about themselves, never about what they saw;
+ * - people lie about their own evening and who was in it, never about where they saw anybody else (round 9: a pair's "Obermann joined me at ten" is a lie about who she saw);
  * - when two stories don't match, tell one what the other said;
  * - a refusal isn't proof;
  * - the case closes on a name and the fact that proves they lied;
- * - docs/61: when two people lied, it also needs what clears the innocent one (docs/64's words);
+ * - docs/61: when two people lied, it also needs what clears the innocent one (docs/64's words), and round 9: that it's somebody else's word, not their own;
  * - docs/67: the Hint button, and that there are fewer as the cases get harder. The page shows once,
  *   so it never says tonight's count; the night's first page does (`hints.ts` `hintsNote`).
  */
@@ -21,11 +21,11 @@ export const BOARD_TEACH_TITLE = 'How this works';
 export const BOARD_TEACH_LINES: readonly string[] = [
   'Ask anyone where they were tonight, and they’ll tell you their whole evening and who they were with.',
   'A bartender or a landlady can tell you everyone who came in, hour by hour.',
-  'People lie about themselves. Nobody lies about what they saw.',
+  'People lie about their own evening, and who was in it. Nobody lies about where they saw anybody else.',
   'When two stories don’t match, tell the person what the other one said.',
   'Some innocent people refuse to explain. A refusal isn’t proof.',
   'To close the case you need a name and the fact that proves they lied.',
-  'When two people lied, you also need what clears the innocent one.',
+  'When two people lied, you also need what clears the innocent one: somebody else’s word, not their own.',
   'Stuck? The Hint button shows you a good next step and why. You get fewer as the cases get harder.',
 ];
 
@@ -46,5 +46,5 @@ export const BOARD_RULES: readonly string[] = [
   'The notebook keeps what you’ve learned. The grid shows where everyone says they were, and where the stories clash.',
   // (Round 7, B9: asked, never told: "When two people lied, it also asks who else lied" said there was one.)
   // (Case 2312, the owner's ruling: the report asks "When did it happen?", so a poisoning's when is said here.)
-  'Close the case when you’re ready: who, when, how, why, and what proves it. For a poisoning, when is the hour the poison was given, not the hour of death. A hunch counts half. On the harder cases it also asks whether anyone else lied, and if so, what clears them.',
+  'Close the case when you’re ready: who, when, how, why, and what proves it. For a poisoning, when is the hour the poison was given, not the hour of death. A hunch counts half. On the harder cases it also asks whether anyone else lied, and if so, what clears them. What clears them is somebody else’s word, not their own.',
 ];

@@ -80,8 +80,10 @@ export function breakSaid(c: BoardCase, l: Line, p: PersonId, asked: readonly st
 /**
  * docs/62, P3: a breaking line said to the face of the one it's against, as a person says it, not as
  * the notebook has it: "Alfano saw Steinbach, Lanza and Pardo at Moe’s at ten, and not you", "Mrs.
- * Mulcahy says she was home at eleven, on her own, and you weren’t there", "Pickering passed you on
- * Second Avenue at ten", "Mrs. Cheatham says nobody was at the Delmonico rooms at nine, not you or anybody else".
+ * Mulcahy says she was home at eleven, on her own", "Pickering passed you on Second Avenue at ten",
+ * "Mrs. Cheatham says nobody was at the Delmonico rooms at nine, not you or anybody else". Round 8,
+ * B10: only what the line said: never "and you weren’t there" after somebody's own evening, and "and
+ * not you" only at the place they said they were.
  */
 export function breakToFace(c: BoardCase, l: Line, p: PersonId, asked: readonly string[] = []): string {
   const you = (t: string) => t.replace(new RegExp(`\\b(passed|had|put|saw) ${nameOf(c, p).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'g'), '$1 you');
@@ -100,23 +102,27 @@ export function breakToFace(c: BoardCase, l: Line, p: PersonId, asked: readonly 
     const names = es.map((e) => ('person' in e ? nameOf(c, e.person) : 'other' in e ? shortOther(c.others?.find((o) => o.id === e.other)?.name ?? '') : `somebody ${e.look}`)).filter(Boolean);
     const faces = es.flatMap((e) => ('look' in e && faceOf(e.look) ? [`${e.look.replace(/^(in|with) an? /, 'the ')} was ${nameOf(c, faceOf(e.look)?.id ?? '')}’s`] : []));
     const tail = faces.length ? `. ${faces.map((f) => f.charAt(0).toUpperCase() + f.slice(1)).join('. ')}` : '';
+    // (Round 9, item 6: "and not you" only where they said they were: at a place they never named, a
+    // keeper's list leaving them out says nothing of them, and the restatement says only what the line said.)
+    const theirs = accountOf(c, p)?.claims[l.hour as Hour]?.place === l.place;
     // (docs/62, skim round 2: "…, you included" stopped a reader: who it leaves out, plainly.)
-    if (names.length === 0) return own ? `${W} says ${pr.he} had nobody in at ${h}, not you or anybody else${tail}` : `${W} says nobody was at ${at} at ${h}, not you or anybody else${tail}`;
-    return own ? `${W} says ${pr.he} had ${andList(names)} in at ${h}, and not you${tail}` : `${W} saw ${andList(names)} at ${at} at ${h}, and not you${tail}`;
+    if (names.length === 0) return own ? `${W} says ${pr.he} had nobody in at ${h}${theirs ? ', not you or anybody else' : ''}${tail}` : `${W} says nobody was at ${at} at ${h}${theirs ? ', not you or anybody else' : ''}${tail}`;
+    return own ? `${W} says ${pr.he} had ${andList(names)} in at ${h}${theirs ? ', and not you' : ''}${tail}` : `${W} saw ${andList(names)} at ${at} at ${h}${theirs ? ', and not you' : ''}${tail}`;
   }
   if (l.kind === 'claim') {
     const sp = l.speaker as PersonId;
     const cl = accountOf(c, sp)?.claims[l.hour as Hour];
-    const comp = (cl?.company ?? []).filter((x) => x !== p).map((x) => nameOf(c, x));
-    const mine = accountOf(c, p)?.claims[l.hour as Hour];
+    // (Round 9: "with you", where they said so: "on his own" of a man who said he was with them was false.)
+    const comp = [...(cl?.company ?? []).filter((x) => x !== p).map((x) => nameOf(c, x)), ...((cl?.company ?? []).includes(p) ? ['you'] : [])];
     const pr = pronOf(c, sp);
     // (Home by its name where it isn't called after them: "home at Rafferty’s", so the place is said.)
     const own = personOf(c, sp)?.home === cl?.place;
     const called = own && placeName(c, cl?.place ?? '').includes(nameOf(c, sp).replace(/^(?:Mrs\.|Miss|Dr\.|Mr\.) /, ''));
     const where = `${own ? (called ? 'home' : `home at ${placeName(c, cl?.place ?? '')}`) : `at ${placeName(c, cl?.place ?? '')}`} at ${hourWord(l.hour as Hour)}`;
     const company = comp.length ? `with ${andList(comp)}` : `on ${pr.his} own`;
-    const tail = mine?.place === cl?.place ? ', and you weren’t there' : (mine?.company ?? []).includes(sp) ? ', and not with you' : '';
-    return `${nameOf(c, sp)} says ${pr.he} was ${where}, ${company}${tail}`;
+    // (Round 8, B10: only what the line said. "Pickering says he was at the Orpheum at ten, on his own,
+    // and you weren’t there": Pickering never said she wasn't there.)
+    return `${nameOf(c, sp)} says ${pr.he} was ${where}, ${company}`;
   }
   return you(breakSaid(c, l, p, asked)).replace(/ at (seven|eight|nine|ten|eleven|twelve) o’clock\b/g, ' at $1');
 }

@@ -108,6 +108,10 @@
  * turn or "Go over what I have" saying the office's hours as the time now: "According to Lanza, it was nine
  * o’clock.", where the "it" has nothing to point at).
  *
+ * docs/73, round 9's rules: **witness** (item 5: after a refusal, "somebody had seen him at ten if he wasn't
+ * home", of a man who was where nobody keeps a door) and **restate** (round 8, B10: a put saying more than its
+ * line, "Pickering says he was at the Orpheum at ten, on his own, and you weren’t there").
+ *
  * Pure: it reads the night and returns what it found.
  */
 
@@ -214,9 +218,11 @@ export type HingeRule =
   | 'bare-hour'
   | 'twice'
   | 'sum-drop'
+  | 'witness'
+  | 'restate'
   | 'it-was';
 
-export const HINGE_RULES: HingeRule[] = ['said-place', 'gloss', 'bare', 'put-lead', 'put-speech', 'thought-who', 'orphan', 'shift', 'telling', 'form', 'epilogue', 'dose', 'unwatched', 'pointer', 'connector', 'tail', 'locative', 'reason', 'vocab', 'unsettled', 'hedge', 'restated', 'find', 'presumes', 'newcomer', 'office', 'alone', 'walk', 'log', 'papers', 'staging', 'retired', 'moved', 'agrees', 'star', 'party', 'deadline', 'clock', 'pet-it', 'gossip', 'number', 'both', 'walk-name', 'timetable', 'named-bare', 'ahead', 'stacked', 'contradicts', 'hint', 'repeats', 'father', 'turn-hour', 'drew', 'company', 'lodger', 'walk-tail', 'turn-drop', 'keeper', 'bare-hour', 'twice', 'sum-drop', 'it-was'];
+export const HINGE_RULES: HingeRule[] = ['said-place', 'gloss', 'bare', 'put-lead', 'put-speech', 'thought-who', 'orphan', 'shift', 'telling', 'form', 'epilogue', 'dose', 'unwatched', 'pointer', 'connector', 'tail', 'locative', 'reason', 'vocab', 'unsettled', 'hedge', 'restated', 'find', 'presumes', 'newcomer', 'office', 'alone', 'walk', 'log', 'papers', 'staging', 'retired', 'moved', 'agrees', 'star', 'party', 'deadline', 'clock', 'pet-it', 'gossip', 'number', 'both', 'walk-name', 'timetable', 'named-bare', 'ahead', 'stacked', 'contradicts', 'hint', 'repeats', 'father', 'turn-hour', 'drew', 'company', 'lodger', 'walk-tail', 'turn-drop', 'keeper', 'bare-hour', 'twice', 'sum-drop', 'it-was', 'witness', 'restate'];
 
 export interface HingeIssue {
   page: number;
@@ -1525,6 +1531,36 @@ function itWas(run: BoardRun): HingeIssue[] {
 }
 
 /**
+ * docs/73 (round 9, item 5), **witness**: a confrontation's page saying somebody saw them where they were, or
+ * would have, after they wouldn't say ("But somebody had seen him at ten if he wasn't home.", Poached 37):
+ * false of anybody who was where nobody keeps a door, the culprit at the scene, and it sent the tester out
+ * to look for a witness. A second story's pointer, "If Vogel was telling it straight, Feeney would have seen
+ * him.", is a condition on what they said, and passes.
+ */
+function witness(run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  const re = /\bsomebody (?:had )?(?:saw|seen) (?:him|her|them)\b|\bsomebody would have seen (?:him|her|them)\b|\bsomebody saw (?:him|her|them) where\b/i;
+  run.log.forEach((p, i) => {
+    if (p.board?.job !== 'confront') return;
+    for (const b of prose(p)) for (const s of sentencesOf(narr(b.text))) if (re.test(s) && !/\bwas telling it straight\b/.test(s)) out.push({ page: i, rule: 'witness', detail: `“${s.trim().slice(0, 110)}”` });
+  });
+  return out;
+}
+
+/**
+ * docs/73 (round 8, B10), **restate**: a put saying more than the line it puts: "Pickering says he was at the
+ * Orpheum at ten, on his own, and you weren’t there." (Pickering never said she wasn't), "…, and not with you".
+ */
+function restate(run: BoardRun): HingeIssue[] {
+  const out: HingeIssue[] = [];
+  run.log.forEach((p, i) => {
+    if (p.board?.job !== 'confront') return;
+    for (const b of prose(p)) for (const q of b.text.matchAll(/“[^”]*”?/g)) if (/\bsays (?:he|she)(?: (?:himself|herself))? was\b[^”]*, and (?:you weren’t there|not with you)\b/.test(q[0])) out.push({ page: i, rule: 'restate', detail: `“${q[0].slice(0, 120)}”` });
+  });
+  return out;
+}
+
+/**
  * Items 3 and 4, **keeper**: a keeper's own place said by their job ("Mrs. Kowalski had seen Salerno at
  * the landlady’s place at seven", where "her place" would have been either woman's: the place by its
  * name, "…had seen her at Kowalski’s"); and a keeper's line in a put naming the keeper's own place by
@@ -1715,6 +1751,8 @@ export function hingeIssues(d: BoardDeal, run: BoardRun, env: LintEnv = {}): Hin
     ...turnDrop(d, run),
     ...sumDrop(c, run),
     ...itWas(run),
+    ...witness(run),
+    ...restate(run),
     ...keeper(c, run),
     ...bareHour(run),
     ...twice(run),

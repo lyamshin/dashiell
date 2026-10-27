@@ -153,7 +153,7 @@ describe('docs/61: who else lied, and what cleared them', () => {
 
   it('the teach page says it, plainly, on a line of its own', () => {
     expect(BOARD_TEACH_LINES).toContain('To close the case you need a name and the fact that proves they lied.');
-    expect(BOARD_TEACH_LINES).toContain('When two people lied, you also need what clears the innocent one.');
+    expect(BOARD_TEACH_LINES).toContain('When two people lied, you also need what clears the innocent one: somebody else’s word, not their own.');
   });
 });
 
@@ -177,7 +177,7 @@ describe('docs/61: the play CLI files it', () => {
     const truth = truthReport(d, o.run);
     const other = d.kase.people.find((x) => x.id === truth.other)?.short as string;
     const listed = runPlay(['report', other, '--save', save], io).out;
-    expect(listed.replace(/\s+/g, ' ')).toContain(`If you say ${other} lied too, give “cleared” as a number from this list too.`);
+    expect(listed.replace(/\s+/g, ' ')).toContain(`Did anyone else lie? If your answer is ${other}, pick what clears`);
     const bad = runPlay(['file', `who=${d.kase.crime.culprit}; cleared=1`, '--save', save], io);
     expect(bad.code).toBe(1);
     expect(bad.out).toContain('Name them first (other=…)');

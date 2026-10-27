@@ -2772,7 +2772,8 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
   const how = w.hand.draw('react', { response: 'refuse' }, s, { widen: true });
   react(w, p, how ?? '', words ?? '“I’ve told you where I was.”', `refused:${p}@${h}`, 'new', sit(w, how), [{ k: 'REFUSE', person: p }, ...(pairMate ? [{ k: 'CLAIM', person: p, hour: h, company: [pairMate] } as Prop] : [])], own ? undefined : refuse);
   if (pairMate) w.people.add(pairMate);
-  // docs/47 B10: a refusal points somewhere. Wherever they really were, somebody saw them there.
+  // docs/47 B10: a refusal points somewhere. (Round 9, item 5: never that somebody saw them where they
+  // really were: the one who refuses may have been where nobody keeps a door, at the scene.)
   const claimed = personOf(c, p)?.home === lie?.claim ? 'home' : `at ${placeName(c, lie?.claim ?? accountOf(c, p)?.claims[h]?.place ?? '')}`;
   // docs/55 3: and where to ask. Their own story's watched place at the nearest hour (not the place
   // they claimed): "She'd told me the Automat at nine; the Automat might know about ten." Guilty or
@@ -2805,8 +2806,8 @@ export function writeConfront(w: Writer, p: PersonId, h: Hour, line: Line, j: Ju
       : [
           refusal,
           {
-            text: `But if ${pr.he} wasn’t ${claimed} at ${hourWord(h)}, somebody saw ${pr.him} where ${pr.he} was, and if nobody had, that would say something too.${pointsAt}`,
-            bare: `If ${pr.he} wasn’t ${claimed} at ${hourWord(h)}, somebody saw ${pr.him} where ${pr.he} was, and if nobody had, that would say something too.${pointsAt}`,
+            text: `But if ${pr.he} wasn’t ${claimed} at ${hourWord(h)}, ${pr.he} was somewhere, and ${pr.he} wasn’t saying where.${pointsAt}`,
+            bare: `If ${pr.he} wasn’t ${claimed} at ${hourWord(h)}, ${pr.he} was somewhere, and ${pr.he} wasn’t saying where.${pointsAt}`,
             opener: 'But',
             props: [{ k: 'REFUSE', person: p, hour: h }, ...(near ? [{ k: 'CLAIM', person: p, place: near.place, hour: near.hh } as Prop] : [])],
             say: {

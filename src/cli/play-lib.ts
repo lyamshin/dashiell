@@ -37,12 +37,13 @@ import { isWorld } from '../gen/board/world/index.js';
 import { SITUATED } from '../game/board/plan/situated.js';
 import { setTexture } from '../game/board/plan/texture.js';
 
-import { OFFICE, budgetCalls, dealBoard, deadlineWords, hourWord, nameOf, placeName, tierName, type BoardDeal, type BoardReport, type BoardRun } from '../game/board/model.js';
+import { OFFICE, budgetCalls, dealBoard, deadlineWords, hourWord, nameOf, placeName, pronOf, tierName, type BoardDeal, type BoardReport, type BoardRun } from '../game/board/model.js';
 import {
   BREAKS_LABEL,
   CLEARED_LABEL,
   HUNCH,
   NOBODY,
+  OTHER_LABEL,
   whereByLabel,
   asksOther,
   blankRule,
@@ -352,7 +353,8 @@ function closeLines(night: Night, path: string): string[] {
     'To close the case:',
     `   npm run play -- close "${keys}" --save ${path}`,
     // (Round 7, U1: one numbering for the night, so a number means the same thing on every list.)
-    wrap(`Give an answer by its number or enough of its words. For ${two ? 'proof and cleared' : 'proof'}, give a number from \`report <name>\` (the notebook numbers them the same), or hunch.`),
+    // (Round 9, item 7: the keys are the command's; the sentence says what they ask.)
+    wrap(`Give an answer by its number or enough of its words. ${two ? 'What proves they lied, and what clears anyone else who lied, are each' : 'What proves they lied is'} a number from \`report <name>\` (the notebook numbers them the same), or “hunch”.`),
   ];
 }
 
@@ -374,13 +376,15 @@ function reportText(night: Night, path: string, who: string | null = null): stri
     if (f.key === 'who') {
       // Round 7, U1: "lists what you know about them, or about nine or ten" baffled three testers.
       out.push(`${BREAKS_LABEL} (proof):`);
-      out.push(wrap(`Pick who first. Then \`report <name>\` shows what you were told about them and about ${hoursWord(night)} o’clock, numbered as in the notebook. Give proof as one of those numbers, or proof=hunch.`, WIDTH, '   '));
+      // (Round 9, item 7: the form's keys stay in the command's line, never in a sentence.)
+      out.push(wrap(`Pick who first. Then \`report <name>\` shows what you were told about them and about ${hoursWord(night)} o’clock, numbered as in the notebook. Give one of those numbers, or “hunch”.`, WIDTH, '   '));
       out.push('');
     }
     if (f.key === 'other') {
       // docs/61: what clears them is one of the numbers `report <name>` shows for that person.
       out.push(`${CLEARED_LABEL} (cleared):`);
-      out.push(wrap('If you name somebody, `report <name>` shows the same for them. Give cleared as one of those numbers, or cleared=hunch.', WIDTH, '   '));
+      // (Round 8, B2: said here, under the question it answers. Round 9, item 7: somebody else's word.)
+      out.push(wrap('If you name somebody, `report <name>` shows what you were told about them. Pick what clears them from it: somebody else’s word, not their own. Give its number, or “hunch”.', WIDTH, '   '));
       out.push('');
     }
     if (f.key === 'where') {
@@ -402,9 +406,13 @@ function personReportText(night: Night, path: string, who: string): string {
   out.push(`${BREAKS_LABEL} (proof):`);
   // Round 5, U3: the headings say what's under them, the book's words.
   out.push(...lineList(night, breakOptionsShown(night.d, night.run, who), lineGroupHeads(night.d, night.run, who)));
-  // docs/61: the same list answers the other question. Round 5, U2: said as what to type.
-  // (Round 7, B9: never "the other liar": the form asks whether there was one.)
-  if (asksOther(night.d)) out.push(wrap(`If you say ${N} lied too, give “cleared” as a number from this list too.`, WIDTH, '   '));
+  // docs/61: the same list answers the other question. Round 8, B2 (six testers of eight): said only
+  // under that question, in plain words: "If you say Tillman lied too, give “cleared”…" sat on the
+  // culprit's own page, under the proof. Round 9, item 7: and what clears them is somebody else's word.
+  if (asksOther(night.d)) {
+    const pr = pronOf(c, who);
+    out.push('', `${OTHER_LABEL}`, wrap(`If your answer is ${N}, pick what clears ${pr.him} from this same list: somebody else’s word, not ${pr.his} own.`, WIDTH, '   '));
+  }
   out.push('', wrap('`report` shows the whole form.'), '');
   out.push(...closeLines(night, path));
   return out.join('\n');
@@ -759,7 +767,8 @@ function helpText(): string {
     '  report [<Name>] (with a name, what you know about them: what could prove they lied, or clear them)',
     '  close "who=…; proof=…; other=…; cleared=…; when=…; how=…; why=…"',
     '       (a lost thing: where=…; evidence=… instead of how=…; proof=hunch for a hunch;',
-    '        other and cleared from Poached up: whether anyone else lied (other=nobody if not), and what clears them)',
+    '        other and cleared from Poached up: whether anyone else lied (other=nobody if not), and what clears them:',
+    '        somebody else’s word, not their own)',
     '  story · curtain (once the case is closed)',
   );
   return out.join('\n');

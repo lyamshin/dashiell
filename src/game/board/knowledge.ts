@@ -417,12 +417,79 @@ export function collisionsOf(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>
  * list, which is also what clears them, and the collision would hand it over.
  */
 function breakersOf(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>, p: PersonId, h: Hour, lines: Line[], deps: string[]): Line[] {
-  const cands = candidateLines(c, run, p, h, lines);
-  const on = (ds: readonly string[]) => agreeingLast(c, p, h, cands.filter((l) => ds.includes(l.q) && l.q !== `account:${p}`));
+  // (Round 9, item 3: only a line that bears on their story and doesn't agree with it. The solver's break
+  // rests on whole answers, so a passer-by's own evening beside her remark, or the partner's story that
+  // says just what the claim said, rode in with the line that broke it.)
+  const cands = candidateLines(c, run, p, h, lines).filter((l) => bearsOn(c, p, h, l) && !agreesWith(c, p, h, l));
+  const on = (ds: readonly string[]) => cands.filter((l) => ds.includes(l.q) && l.q !== `account:${p}`);
   const first = on(firstBreak(c, run, p, h) ?? []);
   if (first.length > 0) return first;
   const hit = on(deps);
-  return hit.length > 0 ? hit : cands.filter((l) => judgeLine(c, run, p, h, l).landed);
+  return hit.length > 0 ? hit : cands.filter((l) => breakRests(c, run, p, h, l));
+}
+
+/** The people whose look is on a list's hour: who the faces on it were. */
+function faceOwners(c: BoardCase, l: Line): PersonId[] {
+  if (l.kind !== 'list' || l.hour === undefined) return [];
+  const looks = (listOf(c, l.speaker as PersonId)?.entries[l.hour] ?? []).flatMap((e) => ('look' in e ? [e.look] : []));
+  return c.people.filter((x) => !!x.look && looks.includes(x.look)).map((x) => x.id);
+}
+
+/**
+ * Round 9, item 3: whether a held line bears on what `p` said of hour `h`: it's at that hour, somebody
+ * else's, and says something of them, or of the place they named, or (where the solver reads company,
+ * Hard-boiled's pairs) of somebody they said they were with, a face that was theirs or that somebody's
+ * included. The confront offers these lines and no others; a line that bears may still not break it
+ * (it agrees, or its word doesn't stand up yet), and `judgeLine` says why.
+ */
+export function bearsOn(c: BoardCase, p: PersonId, h: Hour, l: Line): boolean {
+  if (l.hour !== h || l.speaker === p || l.kind === 'second' || l.kind === 'admit' || l.kind === 'find') return false;
+  const claim = accountOf(c, p)?.claims[h];
+  const who = [p, ...(techniquesUpTo(c.tier).has('pair') ? (claim?.company ?? []) : [])];
+  if (who.some((q) => l.about.includes(q))) return true;
+  if (claim && l.place === claim.place) return true;
+  return faceOwners(c, l).some((q) => who.includes(q));
+}
+
+/**
+ * The old core of a put that lands: the solver has the claim broken, and the line is one of what the
+ * break rests on, or the break needs it, or it breaks the claim on its own.
+ */
+function breakRests(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>, p: PersonId, h: Hour, line: Line): boolean {
+  const held = solverHeld(run);
+  const st = solveHeld(c, held).status.get(`${p}@${h}`);
+  if (st?.s !== 'broken' || line.q === `account:${p}`) return false;
+  if (st.deps.includes(line.q)) return true;
+  if (solveHeld(c, held.filter((q) => q !== line.q)).status.get(`${p}@${h}`)?.s !== 'broken') return true;
+  return solveHeld(c, [`account:${p}`, line.q]).status.get(`${p}@${h}`)?.s === 'broken';
+}
+
+/**
+ * Round 9, item 3: the held lines that break what `p` said of hour `h`, the one set both the confront
+ * and the report read: a line here lands when it's put to them (`judgeLine`), and a line the report
+ * scores as breaking the culprit's story is one of these (`heldBreakers`). What broke it first comes
+ * first (the collision's `breakers`), then any other line that bears on it and breaks it too. Never a
+ * line that agrees with the claim, nor one that doesn't bear on them (HB 39: the report took Feeney's
+ * pea coat as the proof against Tillman, and the same line, put to her, "could only say who was at the
+ * Kit Kat").
+ */
+export function storyBreakers(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>, p: PersonId, h: Hour, lines = linesHeld(c, run)): Line[] {
+  const st = solveRun(c, run).status.get(`${p}@${h}`);
+  if (st?.s !== 'broken' || !lines.some((l) => l.id === `claim:${p}@${h}`)) return [];
+  const first = breakersOf(c, run, p, h, lines, st.deps);
+  const more = candidateLines(c, run, p, h, lines).filter((l) => !first.some((x) => x.id === l.id) && bearsOn(c, p, h, l) && !agreesWith(c, p, h, l) && breakRests(c, run, p, h, l));
+  return [...first, ...more];
+}
+
+/**
+ * The held lines that break a second story, told when the first was put to them: a keeper's list for the
+ * place and hour it names, without them on it. One set for the put made again (it lands on these), the
+ * report (it scores them) and, round 8's B9, the grid's ✗ on the second story.
+ */
+export function secondBreakers(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>, p: PersonId, h: Hour, lines = linesHeld(c, run)): Line[] {
+  const alt = confrontationOf(c, p, h)?.secondLie?.place;
+  if (!alt || !run.asked.includes(`confront:${p}@${h}`)) return [];
+  return lines.filter((l) => l.kind === 'list' && l.hour === h && l.place === alt && !l.about.includes(p));
 }
 
 /**
@@ -431,14 +498,12 @@ function breakersOf(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>, p: Pers
  * which says just what Grasso said; what broke it is the face at Moskowitz’s that was Mosley's. A
  * line that puts them where they said, then, comes after the lines that don't: the collision's first
  * line, the curtain's "What gave it away", the oracle's put and the readers' proof are the break.
+ * Round 9, item 3: and it isn't one of the breakers at all: put to them, it doesn't land, and the
+ * report doesn't score it.
  */
 export function agreesWith(c: BoardCase, p: PersonId, h: Hour, l: Line): boolean {
   const claimed = accountOf(c, p)?.claims[h]?.place;
   return claimed !== undefined && l.place === claimed && l.about.includes(p) && (l.kind === 'claim' || l.kind === 'list' || l.kind === 'given' || l.kind === 'admit');
-}
-
-function agreeingLast(c: BoardCase, p: PersonId, h: Hour, ls: Line[]): Line[] {
-  return [...ls.filter((l) => !agreesWith(c, p, h, l)), ...ls.filter((l) => agreesWith(c, p, h, l))];
 }
 
 /**
@@ -568,18 +633,14 @@ export function judgeLine(c: BoardCase, run: Pick<BoardRun, 'asked' | 'puts'>, p
   const claim = accountOf(c, p)?.claims[h];
   const pr = pronOf(c, p);
   const who = nameOf(c, p);
-  // The line itself has to touch the claim: say something of them then, or of the place they named
-  // then. Another line from the same answer (Tillman's own evening, beside her remark) doesn't.
-  const touches = line.about.includes(p) || line.place === claim?.place;
-  if (st?.s === 'broken' && line.q !== `account:${p}` && touches) {
-    const rests = st.deps.includes(line.q);
-    const needed = !rests && solveHeld(c, held.filter((q) => q !== line.q)).status.get(`${p}@${h}`)?.s !== 'broken';
-    const alone = !rests && !needed && solveHeld(c, [`account:${p}`, line.q]).status.get(`${p}@${h}`)?.s === 'broken';
-    if (rests || needed || alone) {
-      const lines = linesHeld(c, run);
-      const others = lines.filter((l) => l.id !== line.id && l.hour === h && st.deps.includes(l.q) && l.q !== `account:${p}` && l.q !== line.q && (l.place === claim?.place || l.about.includes(p)));
-      return { landed: true, with: others };
-    }
+  // Round 9, item 3: it lands when it's one of the lines that break the story (`storyBreakers`), the
+  // set the report scores too. The line itself has to bear on the claim: say something of them then,
+  // of the place they named then, or of somebody they said they were with. Another line from the same
+  // answer (Tillman's own evening, beside her remark) doesn't, and a line that agrees with them never breaks it.
+  if (st?.s === 'broken' && storyBreakers(c, run, p, h).some((l) => l.id === line.id)) {
+    const lines = linesHeld(c, run);
+    const others = lines.filter((l) => l.id !== line.id && l.hour === h && st.deps.includes(l.q) && l.q !== `account:${p}` && l.q !== line.q && (l.place === claim?.place || l.about.includes(p)) && !agreesWith(c, p, h, l));
+    return { landed: true, with: others };
   }
   // Why it doesn't: in terms of the rules, from the line and what they claim.
   if (!claim) return { landed: false, code: 'untouched', why: `Nothing in it touched where ${who} said ${pr.he} was.` };
