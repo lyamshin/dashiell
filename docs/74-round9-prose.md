@@ -1,6 +1,6 @@
 # Round 9, prose: the narration's slips, and round 8's leftovers
 
-*2026-10-27, branch `round9-prose`, off main at `2fb370b` (thin-sums, #112, docs/72). The round-9 blind playtest (`scratchpad/round9-notes.md`: Poached 37, Medium 37 and Hard-boiled 39, all murders) found thin-sums working as meant: three of three got who by deduction and did the sums themselves. What it found wrong in the narration, with round 8's leftovers (`scratchpad/round8-digest.md`, B7 and B8), is this build, approved by the designer: thin-sums' held clauses, which read like a machine; the means rule, which the grid applied and no page stated; the office and the scene disagreeing on what carried the poison; a lie leaking the true place; the victim topic; and the continuity list. A parallel build (`round9-logic`, docs/73) owns the grid, confront, the refusal hand-offs, the report, the verdict, the curtain, the rules page, CLI numbering and hints; this one stays out of them. Each item is fixed by rule in the layer that makes the line, with a test (`test/round9-prose.test.ts`) and, where a check can find it again, a hinge rule (`hinge-lint.ts`: ten new, four widened). Nothing in `src/gen/` changed. Lean, like docs/60 to 72; the full dial (`?texture=full`) shares the turn's held clause going, the find's means rule, and the voicings and cards rewritten.*
+*2026-10-27, branch `round9-prose`, off main at `2fb370b` (thin-sums, #112, docs/72), rebased at the end onto `e0cea3f` (round9-logic, #113, docs/73; §1.11). The round-9 blind playtest (`scratchpad/round9-notes.md`: Poached 37, Medium 37 and Hard-boiled 39, all murders) found thin-sums working as meant: three of three got who by deduction and did the sums themselves. What it found wrong in the narration, with round 8's leftovers (`scratchpad/round8-digest.md`, B7 and B8), is this build, approved by the designer: thin-sums' held clauses, which read like a machine; the means rule, which the grid applied and no page stated; the office and the scene disagreeing on what carried the poison; a lie leaking the true place; the victim topic; and the continuity list. A parallel build (`round9-logic`, docs/73) owns the grid, confront, the refusal hand-offs, the report, the verdict, the curtain, the rules page, CLI numbering and hints; this one stays out of them. Each item is fixed by rule in the layer that makes the line, with a test (`test/round9-prose.test.ts`) and, where a check can find it again, a hinge rule (`hinge-lint.ts`: ten new, four widened). Nothing in `src/gen/` changed. Lean, like docs/60 to 72; the full dial (`?texture=full`) shares the turn's held clause going, the find's means rule, and the voicings and cards rewritten.*
 
 Quotes are from the five nights the brief names, read in full on main (`2fb370b`) and on this build, on the testers' routes (the action commands from `playtest9-{poached37,medium37,hb39}.json` and `playtest8-{poached34,hb34}.json`): main → this build.
 
@@ -59,7 +59,7 @@ The office says a gossip pointer as the client's own where the whole reason is s
 A move's reason from work takes a lead ("closed up at ten and …", the generator's `REASONS.closed`), drawn from where they really were. In a lie it put them there: `tell.ts` drops it from the lied hour's reason (`LIE_LEAD`).
 
 - Medium 37, Sirkin (at the print shop at ten): "After that I closed up at ten and turned in early, home at Mrs. Nagy’s, still on my own." → "At ten I turned in early, home at Mrs. Nagy’s, still on my own."
-- Coddled 15 (the rule over nights, main): "Later on I locked up at nine and went down to the Shamrock to hear the piano" → "… went down to the Shamrock to hear the piano".
+- Coddled 15, the oracle's route: "Later on I locked up at nine and went down to the Shamrock to hear the piano, …" → "Then, at nine, I went down to the Shamrock to hear the piano, …".
 
 ### 8. The victim topic is the motive, and agrees with the office (round 8, B7; `topic`)
 
@@ -100,12 +100,65 @@ Ten new hinge rules and four widened, each read over a whole night (`hinge-lint.
 | `walk-it` | 9 | "It was…" two walks running, a walk "from there" with nothing to point at, "two blocks over east" |
 | `keeper` (widened) | 9 | on the keeper's own list page, "She saw X at <her place>" |
 
+### 11. After the rebase onto round9-logic (docs/73)
+
+Main moved while this was measured: round9-logic (#113, `e0cea3f`). This branch is rebased onto it; the shared files (`voicings.json`, `pages.ts`, `hinge-lint.ts`, `text.ts`, `board-book.ts`) merged by hand where both touched the same lines (the rule lists, the imports). Its two new hinge rules, `witness` and `restate`, read this build's voicings and pages too, and hold (§3.2). The grid's new "Why “no”" line says who came too late from the same `meansLate` the find's premise rests on ("Broadnax didn’t come to Mrs. Nagy’s till nine, too late for it." under "Whoever shot Tillman had to fetch the revolver from Mrs. Nagy’s before nine, …"); the two agree.
+
+And one small add the coordinator asked for, in this layer: **a second story that doesn't agree either says so** (docs/73 §3, round 8's B9, where the grid now marks it ✗). The turn's and the notebook's clause (`pages.ts` `secondClause`; REACTION `second` `clash`, three voicings) says whose list it didn't agree with: Medium 37, "Faced with it, Ashby changed the answer to the Orpheum." → "Faced with it, Ashby changed the answer to the Orpheum, and Alfano hadn’t seen her there either."; "Go over what I have": "Pressed, Ashby changed the answer to the Orpheum, and Alfano hadn’t seen her there either."
+
 ## 3. The measures
 
-MEASURES
+Measured once, at the end, before the rebase: 20 nights a tier, both worlds, the oracle's, the wanderer's and the reader's routes (the pronoun check 10 a tier). "Main" is `2fb370b` read with this build's lints (`scratchpad/r9p-build/hinge.mts`, `amb.mts`: main's engine, this build's rules); "this build" is the branch's last commit then. After the rebase (§3.2), the suite, tsc, the build and the lints again on 5 nights a tier, and the three round-9 nights read again.
 
-## 4. What's open
+### 3.1 The gates
+
+- **The puzzle is main's.** Nothing in `src/gen/` changed; the dealt boards hash as main's, seeds 1–40, every tier and type, both worlds: dealt 600 `4fb4585bb4150adf`, neighbourhood 600 `6fac2173840f859a`. `board-measure --seeds 20`: every puzzle column is main's (the oracle, par, the shortcuts, the wanderer, the readers, the one-liar reader, lint issues 0); the one column that moved is callback pages (Raw murder 6% → 5%, Hard-boiled murder 9% → 6%, a point or three at every row), where a prop is no longer paid off on the page that sets it up (item 9).
+- **The hinge rules**, 72 (ten new): main → this build, all three routes, both worlds: `turn-says` 471 → 0, `vessel` 48 → 0, `story` 102 → 0, `lie-leak` 20 → 0, `topic` 0 → 0, `finder` 67 → 1, `picture` 112 → 0, `slips` 360 → 0, `return` 179 → 0, `walk-it` 2,818 → 0, and the widened `deadline` 150 → 0, `retired` 28 → 0, `gossip` 33 → 0, `keeper` 1 → 0. Every other rule 0 → 0, but `walk-tail` 0 → 2. The three left were this build's own and are fixed (a walk card the rhythm traded for one with a tail didn't note the tail; a careful voicing had somebody stay "the rest of the evening" with the body-finder); both are 0 after the rebase (§3.2).
+- **The level lint** (`level` and `sum`, with the find's means rule let stand once): 0 at every tier, both worlds, three routes, as main (board-prose's "thoughts over their level, or a sum" column).
+- **The pronoun check**: 0 on main, 0 on this build.
+- **board-prose**, both worlds: every lint column 0 as main, but "cards twice" (dealt Soft-boiled 0 → 1, Medium 0 → 3, Hard-boiled 0 → 3, the neighbourhood's Soft-boiled 0 → 1) and the walk-tail's "hinge lines" (dealt Medium and Hard-boiled 0 → 1; the neighbourhood's Poached 0 → 1, the finder). The cards twice were this build's: where every fresh walk card that doesn't open "It was" was spent, the hand dealt one again; it now draws fresh or falls back to the walk as it was (0 cards twice and 0 walk slips over 20 nights a tier, both worlds, the oracle's route, after the fix). List smell moved by a few pages either way (dealt Poached 18 → 21 of 250, the neighbourhood's Hard-boiled 15 → 18 of 290, Raw 19 → 17, Medium 23 → 22): not a gate.
+- **Round trip and clarity**: every plain page and every voiced composite reads back, and every voiced composite is clear, 100.0% at every tier in both worlds, as main; the flesh column's three misses are main's (Miss Nowak's owning up). `clarity-measure`: every repeat, slot, continuity, tic and assembly column 0, as main; words per new fact fell from Poached up (dealt Poached 53.0 → 51.9, Soft-boiled 48.7 → 47.9, Medium 45.9 → 45.1; the neighbourhood's 52.5 → 51.4, 51.0 → 50.1, 50.4 → 49.3, Hard-boiled 48.2 → 48.1).
+- **Engine words**: 0 in every source. **The claudisms gates** hold.
+- **The suite** (before the rebase): 1,017 tests, 40 files, pass; tsc is clean; `npm run build` builds.
+
+### 3.2 After the rebase
+
+AFTER
+
+### 3.3 Words a page
+
+board-prose, the oracle's route, median [p10–p90], main → this build:
+
+| world | tier | words a page |
+|---|---|---|
+| dealt | Raw | 105 [43–228] → 105 [43–228] |
+| dealt | Coddled | 100 [40–233] → 100 [40–234] |
+| dealt | Poached | 97 [60–172] → 97 [58–159] |
+| dealt | Soft-boiled | 97 [44–171] → 97 [45–148] |
+| dealt | Medium | 92 [52–164] → 94 [52–145] |
+| dealt | Hard-boiled | 88 [49–145] → 88 [49–142] |
+| neighbourhood | Raw | 125 [42–223] → 125 [42–223] |
+| neighbourhood | Coddled | 113 [38–237] → 113 [38–237] |
+| neighbourhood | Poached | 103 [47–179] → 104 [50–163] |
+| neighbourhood | Soft-boiled | 109 [40–189] → 109 [40–173] |
+| neighbourhood | Medium | 102 [51–179] → 102 [49–164] |
+| neighbourhood | Hard-boiled | 95 [54–161] → 96 [56–155] |
+
+No row is up by more than two at the median (dealt Medium is up two: the find's means rule, a sentence on one page a night); the top of every row from Poached up fell, by three to twenty-three words, with the turn's held clause and repeated clash gone.
+
+## 4. The nights, read
+
+Read in full, page by page (`npm run read`), on main and on this build, on the testers' routes: the three round-9 nights and round 8's Poached 34 and Hard-boiled 34 (`scratchpad/r9p-build/before/`, `after/`). Words a page, main → this build (before the rebase): Poached 37 116 → 115, Medium 37 108 → 106, Hard-boiled 39 104 → 105, Poached 34 113 → 109, Hard-boiled 34 105 → 103. Every quote in §1 is from these reads. Seen while reading: the Orpheum's two keyed arrivals, rewritten to run the picture all night, said "picture", a word of its own name, which the arrival won't deal, so it took the Bijou's ("a narrow little house with a ticket window the size of a mail slot"); they say "feature" and "reel" now, and the Orpheum has its own again. Left: Poached 34's "By then Bernstein was in the corner." (a newcomer named by an evening, docs/66's).
+
+## 5. What's open
 
 In docs/25 too.
 
-OPEN
+- **The arrival echoes** (item 10, optional) are left, for the reason in §1.10: they're the page's why-here, and what says it instead is the designer's call.
+- **"All evening" stays for the body-finder** ("Hochstetter was here all evening."): the evening is the board's hours, and the finder went out after them. Only what keeps them past the last hour goes ("for good", "the rest of the evening", "never left", "turned in early"). "Mabry joined me at nine and stayed." on the finder's own page says nothing of the finder, and stays.
+- **Callback pages fell a point or three** (board-measure): a prop is paid off only on a page after the one that set it up, and never where the budget took the set-up off the page. Not a gate; docs/44's target has been out of reach since the budget (docs/60).
+- **The `return` rule reads the dealt world's props**: the neighbourhood's, built from the bible's details, are paid off by the same rule in the writer (`propSetUp`), but the lint doesn't read them.
+- **"Miss" is said only of a fiancée**: the generator titles every woman client "Mrs.", and only an engagement says she isn't married.
+- **A walk's bearing** now drops the lesser leg under a quarter of the other ("east", not "uptown and east", from Mulberry Street to 12 Ludlow). The map is the generator's; the bearings said are the walk's.
+- **List smell** moved by a few pages either way at most rows (§3.1); not a gate, and docs/71 left it open too.
+- **The keeper's own place in my own thought** (docs/71's open item: "Callahan had said she was home at Mrs. Nagy’s at nine, and Mrs. Nagy hadn’t seen her there.") is as it was; this build took the agreement's side only, as the brief asked.
