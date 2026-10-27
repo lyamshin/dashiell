@@ -36,6 +36,7 @@ import {
   listOf,
   meansBy,
   peopleAt,
+  secondBreakers,
   solveHeld,
   solveRun,
   type Judgement,
@@ -3278,22 +3279,31 @@ function brokenClauses(c: BoardCase, run: BoardRun, s: Solved, p: PersonId, hs: 
       out.push({ key: `admit:${p}`, text: `${nameOf(c, p)} admitted ${pronOf(c, p).he} was at ${placeName(c, lie.truth)}${y ? `, with ${nameOf(c, y)}` : ''}${y && !checked ? `, and ${nameOf(c, y)} could say whether that was so` : ''}.`, hours: [], people: [p, ...(y ? [y] : [])], places: [lie.truth], props: [{ k: 'ADMIT', person: p, place: lie.truth, ...(y ? { witness: y } : {}) }], say: { shape: 'REACTION', flags: ['owned', ...(y ? ['witness', checked ? 'checked' : 'unchecked'] : ['alone'])], args: { person: { t: 'person', id: p }, place: { t: 'place', id: lie.truth }, ...(y ? { witness: { t: 'person', id: y } } : {}) } } });
     } else if (k.response === 'second-lie' && k.secondLie?.place) {
       const again = run.puts.some((x) => x.person === p && x.hour === st.h && x.again && x.landed);
-      out.push({
-        key: `second:${p}`,
-        text: again
-          ? `Faced with it, ${nameOf(c, p)} changed the answer to ${placeName(c, k.secondLie.place)}; that didn’t check out either, and ${pronOf(c, p).he} wouldn’t say more.`
-          : `Faced with it, ${nameOf(c, p)} changed the answer to ${placeName(c, k.secondLie.place)}.`,
-        hours: [],
-        people: [p],
-        places: [k.secondLie.place],
-        props: [{ k: 'SECOND', person: p, place: k.secondLie.place }, ...(again ? [{ k: 'REFUSE', person: p } as Prop] : [])],
-        say: { shape: 'REACTION', flags: ['second', again ? 'again' : 'once'], args: { person: { t: 'person', id: p }, place: { t: 'place', id: k.secondLie.place } } },
-      });
+      out.push(secondClause(c, run, p, st.h, k.secondLie.place, again, `; that didn’t check out either, and ${pronOf(c, p).he} wouldn’t say more`));
     } else if (k.response !== 'crack') {
       out.push({ key: `refused:${p}`, text: `${nameOf(c, p)} wouldn’t say where ${pronOf(c, p).he} had been instead.`, hours: [], people: [p], places: [], props: [{ k: 'REFUSE', person: p }], say: { shape: 'REACTION', flags: ['refused'], args: { person: { t: 'person', id: p } } } });
     }
   }
   return out;
+}
+
+/**
+ * A second story, as the notebook and the turn say it: "Faced with it, Ashby changed the answer to the
+ * Orpheum." (docs/73 §3, round 8's B9: and where a keeper's word held says that wasn't so either, as the
+ * grid's ✗ does, one plain clause: "…, and Alfano hadn’t seen her there either.").
+ */
+function secondClause(c: BoardCase, run: BoardRun, p: PersonId, h: Hour, place: PlaceId, again: boolean, refused: string): Clause {
+  const by = again ? undefined : secondBreakers(c, run, p, h).find((l) => !!l.speaker)?.speaker as PersonId | undefined;
+  const changed = `Faced with it, ${nameOf(c, p)} changed the answer to ${placeName(c, place)}`;
+  return {
+    key: `second:${p}`,
+    text: again ? `${changed}${refused}.` : by ? `${changed}, and ${nameOf(c, by)} hadn’t seen ${pronOf(c, p).him} there either.` : `${changed}.`,
+    hours: [],
+    people: [p, ...(by ? [by] : [])],
+    places: [place],
+    props: [{ k: 'SECOND', person: p, place }, ...(again ? [{ k: 'REFUSE', person: p } as Prop] : [])],
+    say: { shape: 'REACTION', flags: ['second', again ? 'again' : 'once', ...(by ? ['clash'] : [])], args: { person: { t: 'person', id: p }, place: { t: 'place', id: place }, ...(by ? { watcher: { t: 'person', id: by } } : {}) } },
+  };
 }
 
 /**
@@ -3345,16 +3355,7 @@ function factClauses(d: BoardDeal, run: BoardRun): Clause[] {
     if (!k) continue;
     const name = nameOf(c, putx.person);
     const again = run.puts.some((x) => x.person === putx.person && x.hour === putx.hour && x.again && x.landed);
-    if (k.response === 'second-lie' && k.secondLie?.place)
-      out.push({
-        key: `second:${putx.person}`,
-        text: again ? `Faced with it, ${name} changed the answer to ${placeName(c, k.secondLie.place)}, and faced with that, ${pronOf(c, putx.person).he} wouldn’t say more.` : `Faced with it, ${name} changed the answer to ${placeName(c, k.secondLie.place)}.`,
-        hours: [],
-        people: [putx.person],
-        places: [k.secondLie.place],
-        props: [{ k: 'SECOND', person: putx.person, place: k.secondLie.place }, ...(again ? [{ k: 'REFUSE', person: putx.person } as Prop] : [])],
-        say: { shape: 'REACTION', flags: ['second', again ? 'again' : 'once'], args: { person: { t: 'person', id: putx.person }, place: { t: 'place', id: k.secondLie.place } } },
-      });
+    if (k.response === 'second-lie' && k.secondLie?.place) out.push(secondClause(c, run, putx.person, putx.hour, k.secondLie.place, again, `, and faced with that, ${pronOf(c, putx.person).he} wouldn’t say more`));
     else if (k.response !== 'crack' && k.response !== 'admit') out.push({ key: `refused:${putx.person}`, text: `Faced with it, ${name} wouldn’t say where ${pronOf(c, putx.person).he} had been instead.`, hours: [], people: [putx.person], places: [], props: [{ k: 'REFUSE', person: putx.person }], say: { shape: 'REACTION', flags: ['refused'], args: { person: { t: 'person', id: putx.person } } } });
   }
   // (docs/72: whose evenings I didn't have is the gap, and only the full dial says it.)

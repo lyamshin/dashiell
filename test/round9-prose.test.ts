@@ -91,6 +91,13 @@ describe('round 9, item 1: the turn says the hours, the means and the clash, onc
     const one = route(dealBoard(37, 2, 'murder'), POACHED37.slice(0, 6));
     expect(recapClauses(dealBoard(37, 2, 'murder'), one).map((x) => x.text)).toContain('Vogel had told me his evening. Mrs. Kowalski had told me who came and went.');
   });
+  it('a second story that doesn’t agree either says so, in the notebook and aloud (docs/73 §3, round 8’s B9)', () => {
+    const d = dealBoard(37, 4, 'murder');
+    const run = route(d, MEDIUM37.slice(0, 14));
+    expect(recapClauses(d, run).map((x) => x.text)).toContain('Faced with it, Ashby changed the answer to the Orpheum, and Alfano hadn’t seen her there either.');
+    const said = route(d, [...MEDIUM37.slice(0, 14), 'recap']);
+    expect(flat(pageBodyText(said.log[said.log.length - 1]!))).toMatch(/Ashby[^.]*the Orpheum[^.]*\bAlfano (?:hadn’t seen her there either|saw either)\b/);
+  });
   it('"Go over what I have" says it as the notebook does, and the turn-says rule holds over nights from Poached up', () => {
     const d = dealBoard(37, 2, 'murder');
     const run = route(d, [...POACHED37.slice(0, 6), 'recap']);
